@@ -1,12 +1,12 @@
 #pragma once
 
 
-#include "base/ca/ca_str_stream.h"
+#include "base/ca2/ca_str_stream.h"
 
 
 class CLASS_DECL_ca2 _template_std_istringstream :
-   virtual public ::ca::plain_text_input_stream,
-   virtual public ::ca::str_reader
+   virtual public ::ca2::plain_text_input_stream,
+   virtual public ::ca2::str_reader
 {
 public:
    
@@ -26,8 +26,8 @@ public:
 
 
 class CLASS_DECL_ca2 _template_std_ostringstream :
-   virtual public ::ca::plain_text_output_stream,
-   virtual public ::ca::str_writer
+   virtual public ::ca2::plain_text_output_stream,
+   virtual public ::ca2::str_writer
 {
 public:
    
@@ -46,9 +46,9 @@ public:
 
 
 class CLASS_DECL_ca2 _template_std_stringstream :
-   virtual public ::ca::plain_text_stream,
-   virtual public ::ca::str_reader,
-   virtual public ::ca::str_writer
+   virtual public ::ca2::plain_text_stream,
+   virtual public ::ca2::str_reader,
+   virtual public ::ca2::str_writer
 {
 public:
    

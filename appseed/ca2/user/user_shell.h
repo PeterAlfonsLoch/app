@@ -73,7 +73,7 @@ namespace filemanager
 
 
       class CLASS_DECL_ca2 ImageSet :
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
       protected:
 
@@ -94,7 +94,7 @@ namespace filemanager
 
 #endif
 
-         ImageSet(sp(::ca::application) papp);
+         ImageSet(sp(::ca2::application) papp);
          virtual ~ImageSet();
 
          bool GetIcon(oswindow oswindow, const char * lpcsz, const wchar_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
@@ -137,10 +137,10 @@ namespace filemanager
 
 #ifdef WINDOWSEX
       HICON CLASS_DECL_ca2 CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, int32_t cx, int32_t cy);
-      bool CLASS_DECL_ca2 _017HasSubFolder(sp(::ca::application) papp, LPITEMIDLIST lpiidl, const char * lpcszExtra);
+      bool CLASS_DECL_ca2 _017HasSubFolder(sp(::ca2::application) papp, LPITEMIDLIST lpiidl, const char * lpcszExtra);
 #endif
-      EFolder CLASS_DECL_ca2 GetFolderType(sp(::ca::application) papp, const wchar_t * lpcszPath);
-      EFolder CLASS_DECL_ca2 GetFolderType(sp(::ca::application) papp, const char * lpcszPath);
+      EFolder CLASS_DECL_ca2 GetFolderType(sp(::ca2::application) papp, const wchar_t * lpcszPath);
+      EFolder CLASS_DECL_ca2 GetFolderType(sp(::ca2::application) papp, const char * lpcszPath);
 //      void CLASS_DECL_ca2 GetChildren(stringa & stra, const char * lpcszPath);
 #ifdef WINDOWSEX
       LPITEMIDLIST CLASS_DECL_ca2 _017ItemIDListGetLast(LPITEMIDLIST lpiidl);

@@ -4,7 +4,7 @@
 #include "ca_stream_base.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -37,6 +37,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

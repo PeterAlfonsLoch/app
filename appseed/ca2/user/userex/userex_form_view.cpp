@@ -1,7 +1,7 @@
 #include "framework.h"
 
-form_view::form_view(sp(::ca::application) papp) :
-   ca(papp),
+form_view::form_view(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),
    ::user::form(papp),
@@ -12,7 +12,7 @@ form_view::form_view(sp(::ca::application) papp) :
 }
 
 
-void form_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
+void form_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
 {
 
    html_form_view::on_update(pSender, lHint, phint);
@@ -90,7 +90,7 @@ bool form_view::BaseOnControlEvent(::user::control_event * pevent)
    return false;
 }
 
-void form_view::install_message_handling(::ca::message::dispatch * pinterface)
+void form_view::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    html_form_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form_view::_001OnCreate);
@@ -100,15 +100,15 @@ void form_view::install_message_handling(::ca::message::dispatch * pinterface)
 }
 
 
-void form_view::_001OnCreate(::ca::signal_object * pobj)
+void form_view::_001OnCreate(::ca2::signal_object * pobj)
 {
    pobj->previous();
 }
 
 
-void form_view::_001OnTimer(::ca::signal_object * pobj)
+void form_view::_001OnTimer(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::timer, ptimer, pobj);
+   SCAST_PTR(::ca2::message::timer, ptimer, pobj);
    if(m_pcallback != NULL)
    {
       ::user::control_event ev;
@@ -123,9 +123,9 @@ void form_view::_001OnTimer(::ca::signal_object * pobj)
    }
 }
 
-void form_view::_001OnUser123(::ca::signal_object * pobj)
+void form_view::_001OnUser123(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::base, pbase, pobj);
+   SCAST_PTR(::ca2::message::base, pbase, pobj);
    if(pbase->m_wparam == 0x80000001)
    {
       if(GetTopLevelParent() != NULL)

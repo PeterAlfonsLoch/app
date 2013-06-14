@@ -13,7 +13,7 @@ namespace n7z
 {
 
    struct CUpdateItem :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
       int32_t IndexInArchive;
       int32_t IndexInClient;
@@ -72,12 +72,12 @@ namespace n7z
 
    HRESULT Update(
       ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
-      ::ca::byte_input_stream *inStream,
+      ::ca2::byte_input_stream *inStream,
       const CArchiveDatabaseEx *db,
       const smart_pointer_array<CUpdateItem> &updateItems,
       COutArchive &archive,
       CArchiveDatabase &newDatabase,
-      ::ca::writer *seqOutStream,
+      ::ca2::writer *seqOutStream,
       ::libcompress::archive_update_callback_interface *updateCallback,
       const CUpdateOptions &options,
       ::crypto::get_text_password_interface *getDecoderPassword

@@ -5,9 +5,9 @@ namespace user
 {
 
 
-   job::job(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::job(papp)
+   job::job(sp(::ca2::application) papp) :
+      ca2(papp),
+      ::ca2::job(papp)
    {
 
    }

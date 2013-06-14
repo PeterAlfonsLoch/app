@@ -4,12 +4,12 @@
 #ifndef METROWIN
 
 
-namespace ca
+namespace ca2
 {
 
-   process_section::process_section(::ca::application * papp) :
-      ca(papp),
-      ::ca::section(papp)
+   process_section::process_section(::ca2::application * papp) :
+      ca2(papp),
+      ::ca2::section(papp)
    {
    }
 
@@ -98,8 +98,8 @@ namespace ca
 
    }
 
-   process_section::process_thread::process_thread(sp(::ca::application) papp) :
-      ca(papp),
+   process_section::process_thread::process_thread(sp(::ca2::application) papp) :
+      ca2(papp),
       thread(papp),
       simple_thread(papp),
       m_evReady(papp)
@@ -134,7 +134,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

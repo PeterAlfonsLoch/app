@@ -2,11 +2,11 @@
 // from 7-zip
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    template <class T> class buffer :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    protected:
       size_t _capacity;
@@ -75,4 +75,4 @@ namespace ca
    typedef CLASS_DECL_ca2 buffer < wchar_t >  wchar_buffer;
    typedef CLASS_DECL_ca2 buffer < byte >      byte_buffer;
 
-} // namespace ca
+} // namespace ca2

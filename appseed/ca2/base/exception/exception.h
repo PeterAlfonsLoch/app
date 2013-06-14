@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/ca/ca_exception.h"
+#include "base/ca2/ca_exception.h"
 
 
 #include "exception_engine.h"
@@ -23,12 +23,12 @@ namespace win
 }
 
 
-namespace ca
+namespace ca2
 {
 
-   CLASS_DECL_ca2 sp(::ca::application) get_thread_app();
+   CLASS_DECL_ca2 sp(::ca2::application) get_thread_app();
 
-} // namespace ca
+} // namespace ca2
 
 #include "exception_error.h"
 #include "exception_overflow_error.h"
@@ -134,9 +134,9 @@ CLASS_DECL_ca2 __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
 #include "exception_memory_state.h"
 
 // Enumerate allocated objects or runtime classes
-/*void __do_for_all_objects(void (c_cdecl *pfn)(::ca::object* pObject, void * pContext),
+/*void __do_for_all_objects(void (c_cdecl *pfn)(::ca2::object* pObject, void * pContext),
    void * pContext);
-void ::ca::DoForAllClasses(void (c_cdecl *pfn)(sp(::ca::type_info) pClass,
+void ::ca2::DoForAllClasses(void (c_cdecl *pfn)(sp(::ca2::type_info) pClass,
    void * pContext), void * pContext);*/
 
 #define new DEBUG_NEW
@@ -196,14 +196,14 @@ extern CLASS_DECL_ca2 bool g_bTraceEnabled;
 
 
 
-namespace ca
+namespace ca2
 {
 
 
    class object;
 
 
-} // namespace ca
+} // namespace ca2
 
  
 
@@ -232,16 +232,16 @@ CLASS_DECL_ca2 bool __assert_failed_line(const char * lpszFileName, int32_t nLin
 
 CLASS_DECL_ca2 void c_cdecl __trace(const char * lpszFormat, ...);
 // Note: file names are still ANSI strings (filenames rarely need UNICODE)
-CLASS_DECL_ca2 void assert_valid_object(const ::ca::object* pOb,
+CLASS_DECL_ca2 void assert_valid_object(const ::ca2::object* pOb,
             const char * lpszFileName, int32_t nLine);
-CLASS_DECL_ca2 void __dump(const ::ca::object* pOb); // dump an object from CodeView
+CLASS_DECL_ca2 void __dump(const ::ca2::object* pOb); // dump an object from CodeView
 
 
-// extern ::ca::CTrace TRACE;
+// extern ::ca2::CTrace TRACE;
 #ifdef DEBUG
 #ifndef TRACE
-#define TRACE ::ca::trace_add_file_and_line(m_papp, __FILE__, __LINE__)
-#define APPTRACE(papp) ::ca::trace_add_file_and_line(papp, __FILE__, __LINE__)
+#define TRACE ::ca2::trace_add_file_and_line(m_papp, __FILE__, __LINE__)
+#define APPTRACE(papp) ::ca2::trace_add_file_and_line(papp, __FILE__, __LINE__)
 //#define TRACE2 TRACE
 #endif
 #define THIS_FILE          __FILE__
@@ -287,8 +287,8 @@ inline void c_cdecl __trace(...) { }
 #ifdef DEBUG
 
 //#define ASSERT(f)          DEBUG_ONLY(() ((f) || !::__assert_failed_line(THIS_FILE, __LINE__) || (__debug_break(), 0)))
-#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && (!::__assert_failed_line(__FILE__, __LINE__) || (__debug_break(), 0))) || (!is_debugger_attached() && (throw assert_exception(::ca::get_thread_app(), __FILE__, __LINE__), 0))))
-/* see ca headers for commentary on this */
+#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && (!::__assert_failed_line(__FILE__, __LINE__) || (__debug_break(), 0))) || (!is_debugger_attached() && (throw assert_exception(::ca2::get_thread_app(), __FILE__, __LINE__), 0))))
+/* see ca2 headers for commentary on this */
 /* We use the name _ASSUME to avoid name clashes */
 #define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
 //#define ASSERT_VALID(pOb)  DEBUG_ONLY((::assert_valid_object(pOb, THIS_FILE, __LINE__)))
@@ -302,13 +302,13 @@ inline void c_cdecl __trace(...) { }
 // Debug ASSERTs then throws. Retail throws if condition not met
 #define ENSURE_THROW(cond, exception)   \
    do { int32_t _gen__condVal=!!(cond); ASSERT(_gen__condVal); if (!(_gen__condVal)){exception;} } while (false)
-#define ENSURE(cond)      ENSURE_THROW(cond, throw invalid_argument_exception(::ca::get_thread_app()) )
-#define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw invalid_argument_exception(::ca::get_thread_app()) )
+#define ENSURE(cond)      ENSURE_THROW(cond, throw invalid_argument_exception(::ca2::get_thread_app()) )
+#define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw invalid_argument_exception(::ca2::get_thread_app()) )
 
 // Debug ASSERT_VALIDs then throws. Retail throws if pOb is NULL
 #define ENSURE_VALID_THROW(pOb, exception)   \
    do { ASSERT_VALID(pOb); if (!(pOb)){exception;} } while (false)
-#define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, throw invalid_argument_exception(::ca::get_thread_app()) )
+#define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, throw invalid_argument_exception(::ca2::get_thread_app()) )
 
 #define ASSERT_POINTER(p, type) \
    ASSERT(((p) != NULL) && __is_valid_address((p), sizeof(type), FALSE))
@@ -338,9 +338,9 @@ inline void c_cdecl __trace(...) { }
    do { \
       string str; \
       if (pException->get_error_message(str, 0)) \
-         TRACE(::ca::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
+         TRACE(::ca2::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
       else \
-         TRACE(::ca::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
+         TRACE(::ca2::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
       ASSERT(FALSE); \
    } while (0)
 #else
@@ -393,11 +393,11 @@ inline errno_t c_runtime_error_check(errno_t error)
     switch(error)
     {
         case ENOMEM:
-            throw memory_exception(::ca::get_thread_app());
+            throw memory_exception(::ca2::get_thread_app());
             break;
         case EINVAL:
         case ERANGE:
-            throw invalid_argument_exception(::ca::get_thread_app());
+            throw invalid_argument_exception(::ca2::get_thread_app());
             break;
 #if defined(WINDOWS)
         case STRUNCATE:
@@ -405,7 +405,7 @@ inline errno_t c_runtime_error_check(errno_t error)
         case 0:
             break;
         default:
-            throw invalid_argument_exception(::ca::get_thread_app());
+            throw invalid_argument_exception(::ca2::get_thread_app());
             break;
     }
     return error;

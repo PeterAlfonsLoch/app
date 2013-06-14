@@ -1,11 +1,11 @@
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 email :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       email();
@@ -15,4 +15,4 @@ namespace ca
       bool syntax_is_valid(const char * pszCandidate);
    };
 
-} // namespace ca
+} // namespace ca2

@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}</ProjectGuid>
+    <ProjectGuid>{AB77745A-AF30-4253-9E4B-961BF2D98641}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>c</RootNamespace>
@@ -1306,6 +1306,9 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
   <ItemGroup>
     <ProjectReference Include="..\..\thirdparty\appseed\openssl\openssl.vcxproj">
       <Project>{ac98b756-e84c-4a70-9cdb-e9812fef9b98}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\c\c.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

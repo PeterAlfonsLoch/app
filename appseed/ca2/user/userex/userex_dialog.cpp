@@ -3,7 +3,7 @@
 
 
 dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
-   ca(puiParent->get_app()),
+   ca2(puiParent->get_app()),
    user::scroll_view(puiParent->get_app()),
    user::form(puiParent->get_app()),
    html_form(puiParent->get_app()),
@@ -13,12 +13,12 @@ dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
    m_strMatter = pszMatter;
    m_pdocument    = NULL;
    m_pframe       = NULL;
-   m_ulFlags      &= ~::ca::ca::flag_auto_delete;
+   m_ulFlags      &= ~::ca2::ca2::flag_auto_delete;
 }
 
 
-dialog::dialog(sp(::ca::application) papp) :
-   ca(papp),
+dialog::dialog(sp(::ca2::application) papp) :
+   ca2(papp),
    user::scroll_view(papp),
    user::form(papp),
    html_form(papp),
@@ -27,7 +27,7 @@ dialog::dialog(sp(::ca::application) papp) :
 {
    m_pdocument    = NULL;
    m_pframe       = NULL;
-   m_ulFlags      &= ~::ca::ca::flag_auto_delete;
+   m_ulFlags      &= ~::ca2::ca2::flag_auto_delete;
 }
 
 dialog::~dialog()
@@ -45,7 +45,7 @@ dialog::~dialog()
 }
 
 
-bool dialog::show(const char * pszMatter, ::ca::property_set  * ppropertyset)
+bool dialog::show(const char * pszMatter, ::ca2::property_set  * ppropertyset)
 {
 
    if(pszMatter != NULL && *pszMatter != '\0')
@@ -53,7 +53,7 @@ bool dialog::show(const char * pszMatter, ::ca::property_set  * ppropertyset)
       m_strMatter = pszMatter;
    }
 
-   ::ca::property_set set(get_app());
+   ::ca2::property_set set(get_app());
 
    set["hold"] = false;
 
@@ -90,7 +90,7 @@ bool dialog::show(const char * pszMatter, ::ca::property_set  * ppropertyset)
 
 }
 
-void dialog::on_show(const char * pszMatter, ::ca::property_set  * ppropertyset)
+void dialog::on_show(const char * pszMatter, ::ca2::property_set  * ppropertyset)
 {
    
    UNREFERENCED_PARAMETER(pszMatter);

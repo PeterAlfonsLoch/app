@@ -5,8 +5,8 @@ namespace dynamic_source
 {
 
 
-   script_cache::script_cache(sp(::ca::application) papp) :
-      ca(papp)
+   script_cache::script_cache(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
    }
@@ -80,7 +80,7 @@ namespace dynamic_source
    script_instance * script_cache::create_instance(const char * lpcszName)
    {
 
-      if(::ca::str::begins(lpcszName, "netnode://"))
+      if(::ca2::str::begins(lpcszName, "netnode://"))
       {
          single_lock sl(&m_cs, TRUE);
          script * pscript  = get(lpcszName);

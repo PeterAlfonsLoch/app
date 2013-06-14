@@ -3,8 +3,8 @@
 namespace user
 {
 
-   step_slider::step_slider(sp(::ca::application) papp) :
-      ca(papp),
+   step_slider::step_slider(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::interaction(papp)
    {
       m_etranslucency = TranslucencyPresent;
@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   void step_slider::install_message_handling(::ca::message::dispatch * pdispatch)
+   void step_slider::install_message_handling(::ca2::message::dispatch * pdispatch)
    {
       ::user::interaction::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &step_slider::_001OnCreate);
@@ -31,16 +31,16 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &step_slider::_001OnMouseMove);
    }
 
-   void step_slider::_001OnCreate(::ca::signal_object * pobj)
+   void step_slider::_001OnCreate(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca::message::create, pcreate, pobj);
+//      SCAST_PTR(::ca2::message::create, pcreate, pobj);
 
    }
 
-   void step_slider::_001OnTimer(::ca::signal_object * pobj)
+   void step_slider::_001OnTimer(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 1)
       {
          if(m_bHover)
@@ -52,15 +52,15 @@ namespace user
       }
    }
 
-   void step_slider::_001OnLButtonDown(::ca::signal_object * pobj)
+   void step_slider::_001OnLButtonDown(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
       m_iLButtonDown = hit_test(pmouse->m_pt);
    }
 
-   void step_slider::_001OnLButtonUp(::ca::signal_object * pobj)
+   void step_slider::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
       int32_t iLButtonUp = hit_test(pmouse->m_pt);
       int32_t iMin, iMax;
       m_pscalar->GetMinScalar(m_iScalar, iMin);
@@ -73,17 +73,17 @@ namespace user
       }
    }
 
-   void step_slider::_001OnMouseMove(::ca::signal_object * pobj)
+   void step_slider::_001OnMouseMove(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
       SetTimer(1, 200, NULL);
       m_bHover = true;
       UpdateHover();
    }
 
 
-   void step_slider::_001OnDraw(::ca::graphics * pdc)
+   void step_slider::_001OnDraw(::ca2::graphics * pdc)
    {
       
       if(m_pscalar == NULL)

@@ -4,7 +4,7 @@
 #include <ctype.h>
 #endif
 
-namespace ca
+namespace ca2
 {
    namespace str
    {
@@ -22,7 +22,7 @@ namespace ca
 }
 
 
-namespace ca
+namespace ca2
 {
 
    int32_t  str::compare(const char * psz1, const char * psz2)
@@ -431,7 +431,7 @@ namespace ca
 
    }
 
-   string CLASS_DECL_ca2 str::random_replace(sp(::ca::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz)
+   string CLASS_DECL_ca2 str::random_replace(sp(::ca2::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz)
    {
 
       string str(psz);
@@ -794,7 +794,7 @@ namespace ca
       {
 
          if(strFind == string(pszIter, strFind.get_length())
-            && (strlen(pszIter) == (size_t) strFind.get_length() || !::ca::ch::is_letter_or_digit(pszIter + strFind.get_length())))
+            && (strlen(pszIter) == (size_t) strFind.get_length() || !::ca2::ch::is_letter_or_digit(pszIter + strFind.get_length())))
          {
             return i;
          }
@@ -805,7 +805,7 @@ namespace ca
 
          string strChar = get_utf8_char(pszIter);
 
-         if(!::ca::ch::is_letter_or_digit(strChar))
+         if(!::ca2::ch::is_letter_or_digit(strChar))
          {
 
             do
@@ -814,13 +814,13 @@ namespace ca
                pszIter = utf8_inc(pszIter);
                strChar = get_utf8_char(pszIter);
             }
-            while(!::ca::ch::is_letter_or_digit(strChar) && *pszIter != '\0');
+            while(!::ca2::ch::is_letter_or_digit(strChar) && *pszIter != '\0');
 
             if(*pszIter == '\0')
                break;
 
             if(strFind == string(pszIter, strFind.get_length())
-               && (strlen(pszIter) == (size_t) strFind.get_length() || !::ca::ch::is_letter_or_digit(pszIter + strFind.get_length())))
+               && (strlen(pszIter) == (size_t) strFind.get_length() || !::ca2::ch::is_letter_or_digit(pszIter + strFind.get_length())))
             {
 
                return iStart + i;
@@ -858,7 +858,7 @@ namespace ca
       {
 
          if(strFind == string(pszIter, strFind.get_length())
-            && (strlen(pszIter) == (size_t) strFind.get_length() || !::ca::ch::is_letter(pszIter + strFind.get_length())))
+            && (strlen(pszIter) == (size_t) strFind.get_length() || !::ca2::ch::is_letter(pszIter + strFind.get_length())))
          {
 
             return i;
@@ -872,7 +872,7 @@ namespace ca
 
          string strChar = get_utf8_char(pszIter);
 
-         if(!::ca::ch::is_letter(strChar))
+         if(!::ca2::ch::is_letter(strChar))
          {
 
             do
@@ -885,13 +885,13 @@ namespace ca
                strChar = get_utf8_char(pszIter);
 
             }
-            while(!::ca::ch::is_letter(strChar) && *pszIter != '\0');
+            while(!::ca2::ch::is_letter(strChar) && *pszIter != '\0');
 
             if(*pszIter == '\0')
                break;
 
             if(strFind == string(pszIter, strFind.get_length())
-               && (strlen(pszIter) == (size_t) strFind.get_length() || !::ca::ch::is_letter(pszIter + strFind.get_length())))
+               && (strlen(pszIter) == (size_t) strFind.get_length() || !::ca2::ch::is_letter(pszIter + strFind.get_length())))
             {
 
                return iStart + i;
@@ -994,15 +994,15 @@ namespace ca
          {
             break;
          }
-         else if(::ca::ch::is_digit(qc))
+         else if(::ca2::ch::is_digit(qc))
          {
             bHasDigit = true;
          }
-         else if(::ca::ch::is_lower_case(qc))
+         else if(::ca2::ch::is_lower_case(qc))
          {
             bHasLower = true;
          }
-         else if(::ca::ch::is_upper_case(qc))
+         else if(::ca2::ch::is_upper_case(qc))
          {
             bHasUpper = true;
          }
@@ -1074,7 +1074,7 @@ namespace ca
 
 #else
 
-         throw todo(::ca::get_thread_app());
+         throw todo(::ca2::get_thread_app());
 
 #endif
 
@@ -1398,41 +1398,41 @@ namespace ca
 
    const char * str::utf8_inc(const char * psz)
    {
-      char len =  1 + ::ca::str::trailingBytesForUTF8[(uchar) *psz];
+      char len =  1 + ::ca2::str::trailingBytesForUTF8[(uchar) *psz];
       if(len == 0)      return psz;
-      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)   throw invalid_character(::ca2::get_thread_app(), "invalid utf8 character");
       if(len == 1)      return psz;
-      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)   throw invalid_character(::ca2::get_thread_app(), "invalid utf8 character");
       if(len == 2)      return psz;
-      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)   throw invalid_character(::ca2::get_thread_app(), "invalid utf8 character");
       if(len == 3)      return psz;
-      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)   throw invalid_character(::ca2::get_thread_app(), "invalid utf8 character");
       if(len == 4)      return psz;
-      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)   throw invalid_character(::ca2::get_thread_app(), "invalid utf8 character");
       if(len == 5)      return psz;
-      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)   throw invalid_character(::ca2::get_thread_app(), "invalid utf8 character");
       if(len == 6)      return psz;
-      throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      throw invalid_character(::ca2::get_thread_app(), "invalid utf8 character");
    }
 
 
    const char * str::utf8_inc_slide(strsize * pslide, const char * psz)
    {
-      char len =  1 + ::ca::str::trailingBytesForUTF8[(uchar) *psz];
+      char len =  1 + ::ca2::str::trailingBytesForUTF8[(uchar) *psz];
       if(len == 0)   { *pslide += 0; return psz; }
-      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)   throw invalid_character(::ca2::get_thread_app(), "invalid utf8 character");
       if(len == 1)   { *pslide += 1; return psz; }
-      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)   throw invalid_character(::ca2::get_thread_app(), "invalid utf8 character");
       if(len == 2)   { *pslide += 2; return psz; }
-      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)   throw invalid_character(::ca2::get_thread_app(), "invalid utf8 character");
       if(len == 3)   { *pslide += 3; return psz; }
-      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)   throw invalid_character(::ca2::get_thread_app(), "invalid utf8 character");
       if(len == 4)   { *pslide += 4; return psz; }
-      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)   throw invalid_character(::ca2::get_thread_app(), "invalid utf8 character");
       if(len == 5)   { *pslide += 5; return psz; }
-      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)   throw invalid_character(::ca2::get_thread_app(), "invalid utf8 character");
       if(len == 6)   { *pslide += 6; return psz; }
-      throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      throw invalid_character(::ca2::get_thread_app(), "invalid utf8 character");
    }
 
 
@@ -1441,7 +1441,7 @@ namespace ca
 
       strsize count = 0;
 
-      ::ca::str::utf8_inc_slide(&count, pchSrc);
+      ::ca2::str::utf8_inc_slide(&count, pchSrc);
 
       memcpy(pchDst, pchSrc, count);
 
@@ -1518,7 +1518,7 @@ namespace ca
       return psz - 1;
    }
 
-   const char * str::utf8_dec(::ca::utf8_char * pchar, const char * pszBeg, const char * psz)
+   const char * str::utf8_dec(::ca2::utf8_char * pchar, const char * pszBeg, const char * psz)
    {
       if(psz <= pszBeg)
       {
@@ -1626,7 +1626,7 @@ namespace ca
 
    string str::get_utf8_char(const char * psz)
    {
-      ::ca::utf8_char ch;
+      ::ca2::utf8_char ch;
       int32_t len = ch.parse(psz);
       if(len < 0)
          return "";
@@ -1714,7 +1714,7 @@ namespace ca
                {
                   return BAD_WCHAR;
                }
-               int64_t hex = ::ca::hex::to_int64(val);
+               int64_t hex = ::ca2::hex::to_int64(val);
                strsize val_len = val.get_length();
                if(hex < 0 || hex > 0xFFFF)
                {
@@ -1725,7 +1725,7 @@ namespace ca
             }
             else
             {
-               int64_t hex = ::ca::hex::to_int64(string(&lpcsz[pos+2], 2));
+               int64_t hex = ::ca2::hex::to_int64(string(&lpcsz[pos+2], 2));
                if(int64_t(strlen(lpcsz)) <= pos + 2 || hex== -1)
                {
                   return BAD_WCHAR;
@@ -1770,7 +1770,7 @@ namespace ca
          return false;
       while(*psz != '\0')
       {
-         if(!::ca::ch::is_digit(psz))
+         if(!::ca2::ch::is_digit(psz))
             return false;
          psz = utf8_inc(psz);
       }
@@ -1826,7 +1826,7 @@ namespace ca
    {
       const char * psz = pszXml;
       int32_t i = 0;
-      while(::ca::ch::is_whitespace(psz))
+      while(::ca2::ch::is_whitespace(psz))
       {
          psz = utf8_inc(psz);
          i++;
@@ -1842,12 +1842,12 @@ namespace ca
    {
       if(uiMax < uiMin)
       {
-         throw invalid_argument_exception(::ca::get_thread_app(), "max should be greater than min");
+         throw invalid_argument_exception(::ca2::get_thread_app(), "max should be greater than min");
       }
       const char * psz = pszXml;
       int32_t i = 0;
       uint64_t ui;
-      while(::ca::ch::is_digit(psz))
+      while(::ca2::ch::is_digit(psz))
       {
          psz = utf8_inc(psz);
          i++;
@@ -1856,7 +1856,7 @@ namespace ca
       {
          throw "empty natural found";
       }
-      ui = ::ca::str::to_uint(string(pszXml, psz - pszXml));
+      ui = ::ca2::str::to_uint(string(pszXml, psz - pszXml));
       if(ui < uiMin)
       {
          throw "natural less than min";
@@ -1876,7 +1876,7 @@ namespace ca
    {
       const char * psz = pszXml;
       int32_t i = 0;
-      while(::ca::ch::is_whitespace(psz, pszEnd))
+      while(::ca2::ch::is_whitespace(psz, pszEnd))
       {
          psz = __utf8_inc(psz);
          if(psz > pszEnd)
@@ -1896,7 +1896,7 @@ namespace ca
 //      int32_t i = 0;
       while(*psz != '\0')
       {
-         int64_t i = ::ca::ch::uni_index(pszXml);
+         int64_t i = ::ca2::ch::uni_index(pszXml);
          if(isdigit((int32_t) i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
          {
             psz = __utf8_inc(psz);
@@ -1918,11 +1918,11 @@ namespace ca
       bool start = true;
       while(true)
       {
-         const char * c = psz;
+         const char * ca = psz;
          // first char
          if(start)
          {
-            if(!::ca::ch::is_letter(c) || *c == '\0')
+            if(!::ca2::ch::is_letter(ca) || *ca == '\0')
             {
                throw "NCName required here";
             }
@@ -1930,11 +1930,11 @@ namespace ca
          }
          else
          {
-            if(!::ca::ch::is_letter_or_digit(c) && *c != '_' && *c != '-')
+            if(!::ca2::ch::is_letter_or_digit(ca) && *ca != '_' && *ca != '-')
             {
                break;
             }
-            psz = ::ca::str::utf8_inc(psz);
+            psz = ::ca2::str::utf8_inc(psz);
          }
       }
       string str(pszXml, psz - pszXml);
@@ -1956,7 +1956,7 @@ namespace ca
       {
          psz = utf8_inc(psz);
          qc2 = get_utf8_char(psz);
-         //string str = ::ca::international::utf8_to_unicode(qc2);
+         //string str = ::ca2::international::utf8_to_unicode(qc2);
          if(qc2.is_empty())
          {
             throw "Quote character is required here, premature end";
@@ -2027,7 +2027,7 @@ namespace ca
          psz = utf8_inc(psz);
          strPreviousChar = strCurrentChar;
          strCurrentChar = get_utf8_char(psz);
-         //string str = ::ca::international::utf8_to_unicode(qc2);
+         //string str = ::ca2::international::utf8_to_unicode(qc2);
          if(strCurrentChar.is_empty())
          {
             throw "Quote character is required here, premature end";
@@ -2075,7 +2075,7 @@ namespace ca
    string str::xml_consume_comment(const char * & pszXml)
    {
       string str;
-      ::ca::str::consume(pszXml, "<!--");
+      ::ca2::str::consume(pszXml, "<!--");
       while(pszXml[0] != '-' || pszXml[1] != '-' ||pszXml[2] != '>')
       {
 
@@ -2084,7 +2084,7 @@ namespace ca
             break;
          }
          str += *pszXml;
-         pszXml = ::ca::str::utf8_inc(pszXml);
+         pszXml = ::ca2::str::utf8_inc(pszXml);
       }
       consume(pszXml, "-->");
       return str;
@@ -2472,7 +2472,7 @@ namespace ca
             return false;
          }
       }
-      while(::ca::ch::to_lower_case(*lpcsz) == ::ca::ch::to_lower_case(*lpcszPrefix))
+      while(::ca2::ch::to_lower_case(*lpcsz) == ::ca2::ch::to_lower_case(*lpcszPrefix))
       {
          lpcsz++;
          lpcszPrefix++;
@@ -2510,11 +2510,11 @@ namespace ca
             return false;
          }
       }
-      while(*lpcsz && ::ca::ch::is_space_char(*lpcsz))
+      while(*lpcsz && ::ca2::ch::is_space_char(*lpcsz))
          lpcsz++;
       if(!*lpcsz)
          return false;
-      while(::ca::ch::to_lower_case(*lpcsz) == ::ca::ch::to_lower_case(*lpcszPrefix))
+      while(::ca2::ch::to_lower_case(*lpcsz) == ::ca2::ch::to_lower_case(*lpcszPrefix))
       {
          lpcsz++;
          lpcszPrefix++;
@@ -2572,6 +2572,6 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 

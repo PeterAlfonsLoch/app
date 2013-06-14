@@ -177,7 +177,7 @@ public:
 
    inline string(const id & id);
    inline string(const var & var);
-   inline string(const ::ca::property & prop);
+   inline string(const ::ca2::property & prop);
 
 
    template < typename T >
@@ -228,7 +228,7 @@ public:
    string & operator = (wchar_t ch);
    string & operator = (const id & id);
    string & operator = (const var & var);
-   string & operator = (const ::ca::property & prop);
+   string & operator = (const ::ca2::property & prop);
 
    // Assignment operators
    template < typename T >
@@ -251,11 +251,11 @@ public:
    string & assign(const string & str, strsize pos, strsize n);
    string & assign(const char * s, strsize n);
    string & assign(const char * s);
-   string & assign(strsize n, char c);
-   string & assign(int64_t n, int64_t c);
-   string & assign(int32_t n, int32_t c);
-   string & assign(uint32_t n, uint32_t c);
-   string & assign(uint64_t n, uint64_t c);
+   string & assign(strsize n, char ca);
+   string & assign(int64_t n, int64_t ca);
+   string & assign(int32_t n, int32_t ca);
+   string & assign(uint32_t n, uint32_t ca);
+   string & assign(uint64_t n, uint64_t ca);
    template <class InputIterator>
    string & assign (InputIterator first, InputIterator last);
 
@@ -350,42 +350,42 @@ public:
    strsize find_first_in(const string & str, strsize pos = 0) const RELEASENOTHROW;
    strsize find_first_in(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
    strsize find_first_in(const char * s, strsize pos = 0) const RELEASENOTHROW;
-   strsize find_first_in(char c, strsize pos = 0) const RELEASENOTHROW;
+   strsize find_first_in(char ca, strsize pos = 0) const RELEASENOTHROW;
 
    strsize find_first_not_in(const string & str, strsize pos = 0) const RELEASENOTHROW;
    strsize find_first_not_in(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
    strsize find_first_not_in(const char * s, strsize pos = 0) const RELEASENOTHROW;
-   strsize find_first_not_in(char c, strsize pos = 0) const RELEASENOTHROW;
+   strsize find_first_not_in(char ca, strsize pos = 0) const RELEASENOTHROW;
 
    strsize find_last_not_in(const string & str, strsize pos = -1) const RELEASENOTHROW;
    strsize find_last_not_in(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
    strsize find_last_not_in(const char * s, strsize pos = -1) const RELEASENOTHROW;
-   strsize find_last_not_in(char c, strsize pos = -1) const RELEASENOTHROW;
+   strsize find_last_not_in(char ca, strsize pos = -1) const RELEASENOTHROW;
 
    strsize find_last_in(const string & str, strsize pos = -1) const RELEASENOTHROW;
    strsize find_last_in(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
    strsize find_last_in(const char * s, strsize pos = -1) const RELEASENOTHROW;
-   strsize find_last_in(char c, strsize pos = -1) const RELEASENOTHROW;
+   strsize find_last_in(char ca, strsize pos = -1) const RELEASENOTHROW;
 
    strsize find_first_of(const string & str, strsize pos = 0) const RELEASENOTHROW;
    strsize find_first_of(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
    strsize find_first_of(const char * s, strsize pos = 0) const RELEASENOTHROW;
-   strsize find_first_of(char c, strsize pos = 0) const RELEASENOTHROW;
+   strsize find_first_of(char ca, strsize pos = 0) const RELEASENOTHROW;
 
    strsize find_first_not_of(const string & str, strsize pos = 0) const RELEASENOTHROW;
    strsize find_first_not_of(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
    strsize find_first_not_of(const char * s, strsize pos = 0) const RELEASENOTHROW;
-   strsize find_first_not_of(char c, strsize pos = 0) const RELEASENOTHROW;
+   strsize find_first_not_of(char ca, strsize pos = 0) const RELEASENOTHROW;
 
    strsize find_last_not_of(const string & str, strsize pos = -1) const RELEASENOTHROW;
    strsize find_last_not_of(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
    strsize find_last_not_of(const char * s, strsize pos = -1) const RELEASENOTHROW;
-   strsize find_last_not_of(char c, strsize pos = -1) const RELEASENOTHROW;
+   strsize find_last_not_of(char ca, strsize pos = -1) const RELEASENOTHROW;
 
    strsize find_last_of(const string & str, strsize pos = -1) const RELEASENOTHROW;
    strsize find_last_of(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
    strsize find_last_of(const char * s, strsize pos = -1) const RELEASENOTHROW;
-   strsize find_last_of(char c, strsize pos = -1) const RELEASENOTHROW;
+   strsize find_last_of(char ca, strsize pos = -1) const RELEASENOTHROW;
 
    // find the last occurrence of character 'ch'
    strsize reverse_find(char ch, strsize iStart = -1 ) const RELEASENOTHROW;
@@ -600,7 +600,7 @@ public:
    bool getenv(const char * pszVar);
 
    // Load the string from resource 'nID'
-   bool load_string(sp(::ca::application) papp, id id);
+   bool load_string(sp(::ca2::application) papp, id id);
 
    // Load the string from resource 'nID' in module 'hInstance'
    /*    bool load_string(HINSTANCE hInstance,strsize nID )
@@ -776,9 +776,9 @@ inline strsize string::find_first_in(const char * s, strsize pos) const
    return find_first_of(s, pos);
 }
 
-inline strsize string::find_first_in(char c, strsize pos) const
+inline strsize string::find_first_in(char ca, strsize pos) const
 {
-   return find_first_of(c, pos);
+   return find_first_of(ca, pos);
 }
 
 inline strsize string::find_first_not_in(const string & str, strsize pos) const
@@ -796,9 +796,9 @@ inline strsize string::find_first_not_in(const char * s, strsize pos) const
    return find_first_not_of(s, pos);
 }
 
-inline strsize string::find_first_not_in(char c, strsize pos) const
+inline strsize string::find_first_not_in(char ca, strsize pos) const
 {
-   return find_first_not_of(c, pos);
+   return find_first_not_of(ca, pos);
 }
 
 inline strsize string::find_last_not_in(const string & str, strsize pos) const
@@ -816,9 +816,9 @@ inline strsize string::find_last_not_in(const char * s, strsize pos) const
    return find_last_not_of(s, pos);
 }
 
-inline strsize string::find_last_not_in(char c, strsize pos) const
+inline strsize string::find_last_not_in(char ca, strsize pos) const
 {
-   return find_last_not_of(c, pos);
+   return find_last_not_of(ca, pos);
 }
 
 inline strsize string::find_last_in(const string & str, strsize pos) const
@@ -836,9 +836,9 @@ inline strsize string::find_last_in(const char * s, strsize pos) const
    return find_last_of(s, pos);
 }
 
-inline strsize string::find_last_in(char c, strsize pos) const
+inline strsize string::find_last_in(char ca, strsize pos) const
 {
-   return find_last_of(c, pos);
+   return find_last_of(ca, pos);
 }
 
 inline strsize string::length() const
@@ -895,7 +895,7 @@ public:
 
 
 
-namespace ca
+namespace ca2
 {
    extern CLASS_DECL_ca2 const_empty_string g_strEmpty;
    CLASS_DECL_ca2 string_interface & empty_string();
@@ -907,13 +907,13 @@ namespace ca
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
 #include "base/x/x_charcategory.h"
-#include "base/ca/ca_bit.h"
+#include "base/ca2/ca_bit.h"
 #include "base/collection/collection_bit_array.h"
 
-#include "base/ca/ca_ch.h"
-#include "base/ca/ca_ch_class.h"
-#include "base/ca/ca_international.h"
-#include "base/ca/ca_str.h"
+#include "base/ca2/ca_ch.h"
+#include "base/ca2/ca_ch_class.h"
+#include "base/ca2/ca_international.h"
+#include "base/ca2/ca_str.h"
 
 inline bool id::operator == (const string & str) const
 {
@@ -1074,7 +1074,7 @@ simple_string( string_trait::GetDefaultManager() )
 }
 
 
-#include "base/ca/ca_str2.h"
+#include "base/ca2/ca_str2.h"
 
 
 
@@ -1181,7 +1181,7 @@ inline   string CLASS_DECL_ca2 operator+ (const string & str1, int32_t i2)
 
    string strResult( str1.GetManager() );
 
-   strResult = str1 + ::ca::str::from(i2);
+   strResult = str1 + ::ca2::str::from(i2);
 
    return strResult;
 }
@@ -1191,7 +1191,7 @@ inline   string CLASS_DECL_ca2 operator+ (int32_t i1, const string & str2)
 
    string strResult( str2.GetManager() );
 
-   strResult = ::ca::str::from(i1) + str2;
+   strResult = ::ca2::str::from(i1) + str2;
 
    return strResult;
 }
@@ -1201,7 +1201,7 @@ inline   string CLASS_DECL_ca2 operator+ (const string & str1, int64_t i2)
 
    string strResult( str1.GetManager() );
 
-   strResult = str1 + ::ca::str::from(i2);
+   strResult = str1 + ::ca2::str::from(i2);
 
    return strResult;
 }
@@ -1211,7 +1211,7 @@ inline   string CLASS_DECL_ca2 operator+ (int64_t i1, const string & str2)
 
    string strResult( str2.GetManager() );
 
-   strResult = ::ca::str::from(i1) + str2;
+   strResult = ::ca2::str::from(i1) + str2;
 
    return strResult;
 }
@@ -1499,14 +1499,14 @@ inline string to_string(wchar_t * pwsz)
 }
 
 template < >
-inline string to_string(string_composite c)
+inline string to_string(string_composite ca)
 {
 
    string str;
 
-   c.get_string(str.GetBufferSetLength(c.get_length()));
+   ca.get_string(str.GetBufferSetLength(ca.get_length()));
 
-   str.ReleaseBuffer(c.get_length());
+   str.ReleaseBuffer(ca.get_length());
 
    return str;
 
@@ -1674,7 +1674,7 @@ inline void id::clear()
 
 
 
-namespace  ca
+namespace  ca2
 {
 
    namespace str
@@ -1699,7 +1699,7 @@ namespace  ca
 
    } // namespace str
 
-} // namespace ca
+} // namespace ca2
 
 
 inline CLASS_DECL_ca2 string operator + (const id & id, const char * psz)

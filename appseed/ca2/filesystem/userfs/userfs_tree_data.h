@@ -6,15 +6,15 @@ namespace userfs
 
 
    class CLASS_DECL_ca2 tree_data :
-      public ::ca::tree_data
+      public ::ca2::tree_data
    {
    public:
 
 
-      tree_data(sp(::ca::application) papp);
+      tree_data(sp(::ca2::application) papp);
 
 
-      virtual sp(::ca::tree_item_data) on_allocate_item();
+      virtual sp(::ca2::tree_item_data) on_allocate_item();
 
 
    };

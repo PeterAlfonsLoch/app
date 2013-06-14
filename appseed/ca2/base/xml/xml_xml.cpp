@@ -5,9 +5,9 @@ namespace xml
 {
 
 
-   xml::xml(::ca::application * papp) :
-      ca(papp),
-      ::ca::section(papp)
+   xml::xml(::ca2::application * papp) :
+      ca2(papp),
+      ::ca2::section(papp)
    {
       
       m_poptionDefault     = NULL;
@@ -31,7 +31,7 @@ namespace xml
          System.factory().cloneable_large < ::xml::edit_item > ();
       }
 
-      if(!::ca::section::initialize1())
+      if(!::ca2::section::initialize1())
          return false;
 
       m_poptionDefault     = new disp_option(get_app());
@@ -51,7 +51,7 @@ namespace xml
    bool xml::initialize()
    {
 
-      if(!::ca::section::initialize())
+      if(!::ca2::section::initialize())
          return false;
 
       return true;

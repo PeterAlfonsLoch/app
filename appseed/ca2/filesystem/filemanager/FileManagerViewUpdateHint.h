@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca2 FileManagerViewUpdateHint :
-   public ::ca::object  
+   public ::ca2::object  
 {
 public:
    

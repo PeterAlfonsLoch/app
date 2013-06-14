@@ -17,16 +17,16 @@ struct myfx_CTLCOLOR
 };
 
 
-namespace ca
+namespace ca2
 {
 
 
    namespace message
    {
 
-      ::ca::signal * CreateSignal()
+      ::ca2::signal * CreateSignal()
       {
-         return new ::ca::signal();
+         return new ::ca2::signal();
       }
 
 
@@ -119,7 +119,7 @@ namespace ca
             break;
          case PrototypeCreate:
             {
-               pbase = canew(::ca::message::create(get_app()));
+               pbase = canew(::ca2::message::create(get_app()));
             }
             break;
          case PrototypeNcActivate:
@@ -282,13 +282,13 @@ namespace ca
       }
 
 
-      void dispatch::_user_message_handler(::ca::signal_object * pobj)
+      void dispatch::_user_message_handler(::ca2::signal_object * pobj)
       {
 
          dispatch_event_ok()->wait();
 
          SignalPtrArray signalptra;
-         SCAST_PTR(::ca::message::base, pbase, pobj);
+         SCAST_PTR(::ca2::message::base, pbase, pobj);
          if(pbase->m_uiMessage == (WM_APP + 2014))
          {
             sp(base) pbase2 = pbase->m_lparam;
@@ -303,7 +303,7 @@ namespace ca
          for(int32_t i = 0; i < signalptra.get_size(); i++)
          {
             Signal & signal = *signalptra[i];
-            ::ca::signal * psignal = signal.m_psignal;
+            ::ca2::signal * psignal = signal.m_psignal;
             pobj->m_psignal = psignal;
             psignal->emit(pobj);
             if(pobj->m_bRet)
@@ -391,7 +391,7 @@ namespace ca
       //}
 
 
-      void dispatch::RemoveMessageHandler(::ca::signalizable * psignalizable)
+      void dispatch::RemoveMessageHandler(::ca2::signalizable * psignalizable)
       {
          UNREFERENCED_PARAMETER(psignalizable);
    /* xxx     HandlerItemArray & itema = m_handlerset.m_itema;
@@ -419,9 +419,9 @@ namespace ca
       }
 
 
-      sp(::ca::window) dispatch::_GetWnd()
+      sp(::ca2::window) dispatch::_GetWnd()
       {
-         return dynamic_cast < ::ca::window * > (this);
+         return dynamic_cast < ::ca2::window * > (this);
       }
 
       Handler::Handler()
@@ -535,16 +535,16 @@ namespace ca
          }
       }
 
-      base::base(sp(::ca::application) papp, ::ca::signal * psignal) :
-         ca(papp),
+      base::base(sp(::ca2::application) papp, ::ca2::signal * psignal) :
+         ca2(papp),
          signal_object(psignal)
       {
          m_lresult = 0;
          m_plresult = &m_lresult;
       }
 
-      base::base(sp(::ca::application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult) :
-         ca(papp),
+      base::base(sp(::ca2::application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult) :
+         ca2(papp),
          signal_object(papp)
       {
          m_lresult = 0;
@@ -608,9 +608,9 @@ namespace ca
          m_nIDEvent = static_cast<UINT>(wparam);
       }
 
-      activate::activate(sp(::ca::application) papp) :
-         ca(papp),
-         ::ca::message::base(papp)
+      activate::activate(sp(::ca2::application) papp) :
+         ca2(papp),
+         ::ca2::message::base(papp)
       {
       }
 
@@ -624,9 +624,9 @@ namespace ca
 
 
 
-      erase_bkgnd::erase_bkgnd(sp(::ca::application) papp) :
-         ca(papp),
-         ::ca::message::base(papp)
+      erase_bkgnd::erase_bkgnd(sp(::ca2::application) papp) :
+         ca2(papp),
+         ::ca2::message::base(papp)
       {
       }
 
@@ -635,9 +635,9 @@ namespace ca
          set_lresult(bResult);
       }
 
-      key::key(sp(::ca::application) papp) :
-         ca(papp),
-         ::ca::message::base(papp)
+      key::key(sp(::ca2::application) papp) :
+         ca2(papp),
+         ::ca2::message::base(papp)
       {
       }
 
@@ -656,9 +656,9 @@ namespace ca
 
       }
 
-      nc_activate::nc_activate(sp(::ca::application) papp) :
-         ca(papp),
-         ::ca::message::base(papp)
+      nc_activate::nc_activate(sp(::ca2::application) papp) :
+         ca2(papp),
+         ::ca2::message::base(papp)
       {
       }
 
@@ -675,8 +675,8 @@ namespace ca
          m_size      = ::size(LOWORD(lparam), HIWORD(lparam));
       }
 
-      mouse::mouse(sp(::ca::application) papp) :
-         ca(papp),
+      mouse::mouse(sp(::ca2::application) papp) :
+         ca2(papp),
          base(papp),
          m_ecursor(::visual::cursor_unmodified)
       {
@@ -722,7 +722,7 @@ namespace ca
       {
          throw not_implemented(get_app());
          return NULL;
-//            return ::ca::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
+//            return ::ca2::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
       }
 
       UINT mouse_activate::GetHitTest()
@@ -735,11 +735,11 @@ namespace ca
          return HIWORD(m_lparam);
       }
 
-      sp(::ca::window) context_menu::GetWindow()
+      sp(::ca2::window) context_menu::GetWindow()
       {
          throw not_implemented(get_app());
          return NULL;
-//            return ::ca::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
+//            return ::ca2::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
       }
 
       point context_menu::GetPoint()
@@ -871,7 +871,7 @@ namespace ca
          }
       }
 
-      bool dispatch::HandlerItemArray::HasSignalizable(::ca::signalizable * psignalizable)
+      bool dispatch::HandlerItemArray::HasSignalizable(::ca2::signalizable * psignalizable)
       {
          for(int32_t i = 0; i < this->get_size(); i++)
          {
@@ -881,7 +881,7 @@ namespace ca
          return false;
       }
 
-      void dispatch::_start_user_message_handler(::ca::signal_object * pobj)
+      void dispatch::_start_user_message_handler(::ca2::signal_object * pobj)
       {
          single_lock sl(dispatch_mutex(), true);
          _on_start_user_message_handler();
@@ -905,7 +905,7 @@ namespace ca
          m_pfnDispatchWindowProc = &dispatch::_user_message_handler;
       }
 
-      sp(::ca::application) dispatch::calc_app()
+      sp(::ca2::application) dispatch::calc_app()
       {
          return NULL;
       }
@@ -1031,7 +1031,7 @@ namespace ca
                   set_cursor setcursor(get_app());
                   setcursor.m_psignal = psignal;
                   setcursor.set(message, wparam, lparam, lresult);
-                  //setcursor.m_pWnd = ::ca::window::from_os_data(reinterpret_cast<oswindow>(wparam));
+                  //setcursor.m_pWnd = ::ca2::window::from_os_data(reinterpret_cast<oswindow>(wparam));
                   setcursor.m_nHitTest = LOWORD(lparam);
                   setcursor.m_message = HIWORD(lparam);
                   psignal->emit(&setcursor);
@@ -1066,7 +1066,7 @@ namespace ca
                   erase_bkgnd erasebkgnd(get_app());
                   erasebkgnd.m_psignal = psignal;
                   erasebkgnd.set(message, wparam, lparam, lresult);
-   //               erasebkgnd.m_pdc = ::ca::graphics_sp::from_handle(reinterpret_cast<HDC>(wparam));
+   //               erasebkgnd.m_pdc = ::ca2::graphics_sp::from_handle(reinterpret_cast<HDC>(wparam));
                   psignal->emit(&erasebkgnd);
                   if(erasebkgnd.m_bRet)
                      return true;
@@ -1149,13 +1149,13 @@ namespace ca
                   // special case for OnCtlColor to avoid too many temporary objects
                   ASSERT(message == WM_CTLCOLOR);
                   myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
-                  ::ca::graphics_sp dcTemp;
+                  ::ca2::graphics_sp dcTemp;
    //               dcTemp.set_handle1(pCtl->hDC);
-                  ::ca::window wndTemp;
+                  ::ca2::window wndTemp;
    //               wndTemp.set_handle(pCtl->oswindow);
                   UINT nCtlType = pCtl->nCtlType;
-                  // if not coming from a permanent ::ca::window, use stack temporary
-   //               sp(::ca::window) pWnd = ::ca::window::FromHandlePermanent(wndTemp.get_handle());
+                  // if not coming from a permanent ::ca2::window, use stack temporary
+   //               sp(::ca2::window) pWnd = ::ca2::window::FromHandlePermanent(wndTemp.get_handle());
    //               if (pWnd == NULL)
                {
 
@@ -1182,7 +1182,7 @@ namespace ca
                {         // special case for CtlColor to avoid too many temporary objects
                   ASSERT(message == WM_REFLECT_BASE+WM_CTLCOLOR);
                   myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
-                  ::ca::graphics_sp dcTemp;
+                  ::ca2::graphics_sp dcTemp;
    //               dcTemp.set_handle1(pCtl->hDC);
                   UINT nCtlType = pCtl->nCtlType;
                   ctl_color ctlcolor(get_app());

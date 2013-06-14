@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2002
+ Copyright (ca) 2002
  Author: Konstantin Boukreev
  E-mail: konstantin@mail.primorye.ru
  Created: 16.01.2002 12:36:26
@@ -28,7 +28,7 @@
 
 
 class CLASS_DECL_ca2 call_stack :
-   virtual public ::ca::ca
+   virtual public ::ca2::ca2
 {
 public:
 
@@ -40,11 +40,11 @@ public:
 
    void * m_caller_address;
 
-   call_stack(sp(::ca::application) papp, uint32_t uiSkip = 3, void * caller_address = NULL);
+   call_stack(sp(::ca2::application) papp, uint32_t uiSkip = 3, void * caller_address = NULL);
 
 #else
 
-   call_stack(sp(::ca::application) papp, uint32_t uiSkip = 3);
+   call_stack(sp(::ca2::application) papp, uint32_t uiSkip = 3);
 
 #endif
 

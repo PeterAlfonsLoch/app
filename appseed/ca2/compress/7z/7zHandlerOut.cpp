@@ -27,15 +27,15 @@ uint64_t ConvertStringToUInt64(const char *s, const char **end)
   uint64_t result = 0;
   for (;;)
   {
-    char c = *s;
-    if (c < '0' || c > '9')
+    char ca = *s;
+    if (ca < '0' || ca > '9')
     {
       if (end != NULL)
         *end = s;
       return result;
     }
     result *= 10;
-    result += (c - '0');
+    result += (ca - '0');
     s++;
   }
 }
@@ -82,17 +82,17 @@ namespace n7z
    static inline bool IsCopyMethod(const string &methodName)
    { return (methodName.CompareNoCase(kCopyMethod) == 0); }
 
-   ::ca::HRes handler::GetFileTimeType(uint32_t *type)
+   ::ca2::HRes handler::GetFileTimeType(uint32_t *type)
    {
       *type = ::libcompress::NFileTimeType::kWindows;
       return S_OK;
    }
 
-   ::ca::HRes handler::SetCompressionMethod(
+   ::ca2::HRes handler::SetCompressionMethod(
       CCompressionMethodMode &methodMode,
       CCompressionMethodMode &headerMethod)
    {
-      ::ca::HRes res = SetCompressionMethod(methodMode, _methods
+      ::ca2::HRes res = SetCompressionMethod(methodMode, _methods
 #ifndef _7ZIP_ST
          , _numThreads
 #endif
@@ -112,7 +112,7 @@ namespace n7z
          oneMethodInfo.Props[NCoderPropID::kNumFastBytes] = (int32_t) kAlgorithmForHeaders;
          oneMethodInfo.Props[NCoderPropID::kDictionarySize] = (int32_t) kDictionaryForHeaders;
          
-         ::ca::HRes res = SetCompressionMethod(headerMethod, headerMethodInfoVector
+         ::ca2::HRes res = SetCompressionMethod(headerMethod, headerMethodInfoVector
 #ifndef _7ZIP_ST
             , 1
 #endif
@@ -122,7 +122,7 @@ namespace n7z
       return S_OK;
    }
 
-   ::ca::HRes handler::SetCompressionMethod(
+   ::ca2::HRes handler::SetCompressionMethod(
       CCompressionMethodMode &methodMode,
       smart_pointer_array < ::libcompress::COneMethodInfo > &methodsInfo
 #ifndef _7ZIP_ST
@@ -165,7 +165,7 @@ namespace n7z
          {
             for (int32_t j = 0; j < methodFull.Props.m_propertya.get_count(); j++)
             {
-               const ::ca::property &prop = methodFull.Props.m_propertya[j];
+               const ::ca2::property &prop = methodFull.Props.m_propertya[j];
                if ((atoi(prop.name()) == NCoderPropID::kDictionarySize ||
                   atoi(prop.name()) == NCoderPropID::kUsedMemorySize) && prop.get_value().is_integer())
                {
@@ -190,7 +190,7 @@ namespace n7z
 
    #define PROPID int32_t
 
-   static ::ca::HRes GetTime(::libcompress::archive_update_callback_interface *updateCallback, int32_t index, bool writeTime, PROPID propID, uint64_t &ft, bool &ftDefined)
+   static ::ca2::HRes GetTime(::libcompress::archive_update_callback_interface *updateCallback, int32_t index, bool writeTime, PROPID propID, uint64_t &ft, bool &ftDefined)
    {
       ft = 0;
       ftDefined = false;
@@ -208,7 +208,7 @@ namespace n7z
       return S_OK;
    }
 
-   ::ca::HRes handler::UpdateItems(::ca::writer *outStream, uint32_t numItems,
+   ::ca2::HRes handler::UpdateItems(::ca2::writer *outStream, uint32_t numItems,
       ::libcompress::archive_update_callback_interface *updateCallback)
    {
          const CArchiveDatabaseEx *db = 0;
@@ -355,7 +355,7 @@ namespace n7z
       headerMethod.NumThreads = 1;
 #endif
 
-      ::c::smart_pointer < ::crypto::get_text_password2_interface > getPassword2;
+      ::ca::smart_pointer < ::crypto::get_text_password2_interface > getPassword2;
       getPassword2 = dynamic_cast < ::crypto::get_text_password2_interface * > (updateCallback);
 
       if (getPassword2)
@@ -413,10 +413,10 @@ namespace n7z
       COutArchive archive(get_app());
       CArchiveDatabase newDatabase;
 
-      ::c::smart_pointer < ::crypto::get_text_password_interface > getPassword;
+      ::ca::smart_pointer < ::crypto::get_text_password_interface > getPassword;
       getPassword = dynamic_cast < ::crypto::get_text_password_interface * > (updateCallback);
 
-      ::ca::HRes res = Update(
+      ::ca2::HRes res = Update(
          _codecsInfo, &_externalCodecs,
 #ifdef _7Z_VOL
          volume ? volume->Stream: 0,
@@ -439,7 +439,7 @@ namespace n7z
       return archive.WriteDatabase(_codecsInfo, &_externalCodecs, newDatabase, options.HeaderMethod, options.HeaderOptions);
    }
 
-   static ::ca::HRes GetBindInfoPart(string &srcString, uint32_t &coder, uint32_t &stream)
+   static ::ca2::HRes GetBindInfoPart(string &srcString, uint32_t &coder, uint32_t &stream)
    {
       stream = 0;
       int32_t index = ParseStringToUInt32(srcString, coder);
@@ -457,7 +457,7 @@ namespace n7z
       return S_OK;
    }
 
-   static ::ca::HRes GetBindInfo(string &srcString, CBind &bind)
+   static ::ca2::HRes GetBindInfo(string &srcString, CBind &bind)
    {
       RINOK(GetBindInfoPart(srcString, bind.OutCoder, bind.OutStream));
       if (srcString[0] != ':')
@@ -469,7 +469,7 @@ namespace n7z
       return S_OK;
    }
 
-   ::ca::HRes handler::SetProperties(const char **names, const var *values, int32_t numProperties)
+   ::ca2::HRes handler::SetProperties(const char **names, const var *values, int32_t numProperties)
    {
       _binds.remove_all();
       BeforeSetProperty();

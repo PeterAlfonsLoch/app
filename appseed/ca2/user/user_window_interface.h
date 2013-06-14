@@ -64,13 +64,13 @@ namespace user
 
 
       window_interface();
-      window_interface(sp(::ca::application) papp);
+      window_interface(sp(::ca2::application) papp);
       virtual ~window_interface();
 
 
       virtual bool _001IsWindowEnabled();
       virtual void _001EnableWindow(bool bEnable = true);
-      virtual void _000OnDraw(::ca::graphics * pdc);
+      virtual void _000OnDraw(::ca2::graphics * pdc);
 
       //window_interface * _001GetParent() const;
       //virtual bool _001IsFrameWnd();
@@ -119,7 +119,7 @@ namespace user
 
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       virtual void _on_start_user_message_handler();
 
@@ -127,18 +127,18 @@ namespace user
       virtual void UpdateWindow();
       virtual void Invalidate(bool bErase = TRUE);
       /*void InvalidateRect(LPCRECT lprect, bool bErase = TRUE);
-      void InvalidateRgn(::ca::region* prgn, bool bErase = TRUE);
+      void InvalidateRgn(::ca2::region* prgn, bool bErase = TRUE);
       void ValidateRect(LPCRECT lprect);
-      void ValidateRgn(::ca::region* prgn);
+      void ValidateRgn(::ca2::region* prgn);
       bool ShowWindow(int32_t iCmdShow);
       bool IsWindowVisible() const;
       bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
-         ::ca::region* prgnUpdate = NULL,
+         ::ca2::region* prgnUpdate = NULL,
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
       bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, UINT, uint32_t));
       bool KillTimer(int32_t nIDEvent);
-      bool SetWindowPos(const sp(::ca::window) pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
-      sp(::ca::window) SetFocus();*/
+      bool SetWindowPos(const sp(::ca2::window) pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
+      sp(::ca2::window) SetFocus();*/
 
 
       bool RedrawOptimize(LPRECT lprectOut, LPCRECT lpcrect1, LPCRECT lpcrect2);
@@ -149,7 +149,7 @@ namespace user
       bool _001HasTranslucency();
 
       /*
-      virtual void _001SetWindowPos(const sp(::ca::window) pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
+      virtual void _001SetWindowPos(const sp(::ca2::window) pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
       virtual void _001SetFocus();
       virtual void _001ShowWindow(int32_t iShow);
       virtual void _001ScreenToClient(LPPOINT lppoint);
@@ -163,7 +163,7 @@ namespace user
 
 
       virtual void _001RedrawWindow();
-      virtual void _001DrawBackground(::ca::graphics * pdc, LPRECT lprect);
+      virtual void _001DrawBackground(::ca2::graphics * pdc, LPRECT lprect);
 
 
       DECL_GEN_SIGNAL(_001OnCreate)
@@ -175,7 +175,7 @@ namespace user
 #ifdef METROWIN
       virtual sp(interaction) get_wnd() const;
 #else
-      virtual sp(::ca::window) get_wnd() const;
+      virtual sp(::ca2::window) get_wnd() const;
 #endif
 
       enum EOptimize
@@ -214,8 +214,8 @@ namespace user
       void TwfGetWndArray(::user::oswindow_array & oswindowa);
 
       virtual bool Redraw(rect_array & recta);
-      virtual bool Redraw(LPCRECT lprect = NULL, ::ca::region * prgn = NULL);
-      virtual bool Redraw(::ca::graphics * pdc);
+      virtual bool Redraw(LPCRECT lprect = NULL, ::ca2::region * prgn = NULL);
+      virtual bool Redraw(::ca2::graphics * pdc);
 
       void _001BaseWndInterfaceMap();
 
@@ -226,11 +226,11 @@ namespace user
 
 #include "user/user_buffer.h"
 //#include "user/user_window_map.h"
-#include "base/ca/ca_keeper.h"
-#include "base/ca/ca_seekable.h"
-#include "base/ca/ca_reader.h"
-#include "base/ca/ca_writer.h"
-#include "base/ca/ca_stream.h"
-#include "base/ca/ca_byte_stream.h"
-#include "base/ca/ca_stream2.h"
-#include "base/ca/ca_str_stream.h"
+#include "base/ca2/ca_keeper.h"
+#include "base/ca2/ca_seekable.h"
+#include "base/ca2/ca_reader.h"
+#include "base/ca2/ca_writer.h"
+#include "base/ca2/ca_stream.h"
+#include "base/ca2/ca_byte_stream.h"
+#include "base/ca2/ca_stream2.h"
+#include "base/ca2/ca_str_stream.h"

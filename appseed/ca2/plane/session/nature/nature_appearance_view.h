@@ -27,17 +27,17 @@ namespace nature
       };
 
 
-      appearance_view(sp(::ca::application) papp);
+      appearance_view(sp(::ca2::application) papp);
 
 #if !core_level_1
       using ::user::tab_view::on_show_view;
 #endif
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
       virtual void on_show_view();
 
       void on_create_view(::user::view_creator_data * pcreatordata);
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual ~appearance_view();
    #ifdef DEBUG

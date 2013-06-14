@@ -5,8 +5,8 @@ namespace filehandler
 {
 
 
-   view::view(sp(::ca::application) papp) :
-      ca(papp),
+   view::view(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::user::form(papp),
@@ -16,7 +16,7 @@ namespace filehandler
       m_document(papp)
    {
 
-      ::ca::font_sp font(allocer());
+      ::ca2::font_sp font(allocer());
 
       font->create_point_font("Geneva", 14.0);
 
@@ -24,7 +24,7 @@ namespace filehandler
 
    }
 
-   void view::install_message_handling(::ca::message::dispatch * pinterface)
+   void view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       form_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &view::_001OnCreate);
@@ -38,16 +38,16 @@ namespace filehandler
       layout();
    }
 
-   void view::_001OnTimer(::ca::signal_object * pobj)
+   void view::_001OnTimer(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 1984)
       {
          refresh();
       }
    }
 
-   void view::_001OnCreate(::ca::signal_object * pobj)
+   void view::_001OnCreate(::ca2::signal_object * pobj)
    {
 
       if(pobj->previous())
@@ -82,18 +82,18 @@ namespace filehandler
 
    }
 
-   void view::draw_item::draw(sp(view) pview, ::ca::graphics * pdc, list * plist, item * pitem)
+   void view::draw_item::draw(sp(view) pview, ::ca2::graphics * pdc, list * plist, item * pitem)
    {
 
       UNREFERENCED_PARAMETER(plist);
 
       COLORREF cr;
-      sp(::ca::application) papp = pview->get_app();
+      sp(::ca2::application) papp = pview->get_app();
       bool bHover = pview->m_iHover == pitem->m_iIndex;
       cr = bHover ? ARGB(255, 230, 255, 230) : ARGB(255, 200, 255, 200);
-      if(!Sys(papp).savings().is_trying_to_save(::ca::resource_processing)
-         && !Sys(papp).savings().is_trying_to_save(::ca::resource_display_bandwidth)
-         && !Sys(papp).savings().is_trying_to_save(::ca::resource_memory))
+      if(!Sys(papp).savings().is_trying_to_save(::ca2::resource_processing)
+         && !Sys(papp).savings().is_trying_to_save(::ca2::resource_display_bandwidth)
+         && !Sys(papp).savings().is_trying_to_save(::ca2::resource_memory))
       {
          class imaging & imaging = Sys(papp).visual().imaging();
          imaging.color_blend(pdc, m_rectItem, cr, 127);
@@ -152,7 +152,7 @@ namespace filehandler
       }
    }
 
-   void view::draw_list::draw(sp(view) pview, ::ca::graphics * pdc, list * plist)
+   void view::draw_list::draw(sp(view) pview, ::ca2::graphics * pdc, list * plist)
    {
       for(int32_t i = 0; i < get_count(); i++)
       {
@@ -163,14 +163,14 @@ namespace filehandler
 
    void view::layout()
    {
-      ::ca::client_graphics pdc(this);
+      ::ca2::client_graphics pdc(this);
       rect rectClient;
       GetClientRect(rectClient);
       m_drawlist.layout(rectClient, &m_list);
       
    }
 
-   void view::_001OnDraw(::ca::graphics * pdc)
+   void view::_001OnDraw(::ca2::graphics * pdc)
    {
 
       pdc->set_font(GetFont());
@@ -178,10 +178,10 @@ namespace filehandler
 
    }
 
-   void view::_001OnLButtonUp(::ca::signal_object * pobj)
+   void view::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
 
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
       e_element eelement;
 
@@ -198,7 +198,7 @@ namespace filehandler
          Session.request(varRequest);
          */
 
-         sp(::ca::create_context) createcontext(get_app()->cast_app < ::ca::application > ().command());
+         sp(::ca2::create_context) createcontext(get_app()->cast_app < ::ca2::application > ().command());
 
          createcontext->m_spCommandLine->m_strApp                 = m_list[iItem].m_strApp;
 

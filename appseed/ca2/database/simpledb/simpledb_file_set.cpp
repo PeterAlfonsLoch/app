@@ -5,9 +5,9 @@ namespace simpledb
 {
 
 
-   file_set::file_set(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::file_set_sp(allocer())
+   file_set::file_set(sp(::ca2::application) papp) :
+      ca2(papp),
+      ::ca2::file_set_sp(allocer())
    {
 
    }
@@ -19,14 +19,14 @@ namespace simpledb
    }
 
 
-   void file_set::data_on_after_change(::ca::signal_object * pobj)
+   void file_set::data_on_after_change(::ca2::signal_object * pobj)
    {
       
       SCAST_PTR(::database::change_event, pchange, pobj);
 
       if(pchange->m_key.m_idSection == m_dataid
-      && pchange->m_key.m_idIndex == (const ::database::id &) ::ca::system::idEmpty
-      && pchange->m_key.m_idKey == (const ::database::id &) ::ca::system::idEmpty)
+      && pchange->m_key.m_idIndex == (const ::database::id &) ::ca2::system::idEmpty
+      && pchange->m_key.m_idKey == (const ::database::id &) ::ca2::system::idEmpty)
       {
 
          refresh();
@@ -45,10 +45,10 @@ namespace simpledb
 
       bool_array baRecursive;
       
-      if(!data_get(::ca::system::idEmpty, ::ca::system::idEmpty, stra))
+      if(!data_get(::ca2::system::idEmpty, ::ca2::system::idEmpty, stra))
          return false;
 
-      data_get("recursive", ::ca::system::idEmpty, baRecursive);
+      data_get("recursive", ::ca2::system::idEmpty, baRecursive);
       
       // add_search calls Ex2FileSet refresh internally
       m_p->add_search(stra, baRecursive);
@@ -63,12 +63,12 @@ namespace simpledb
 
       stringa stra;
 
-      data_get(::ca::system::idEmpty, ::ca::system::idEmpty, stra);
+      data_get(::ca2::system::idEmpty, ::ca2::system::idEmpty, stra);
 
       if(stra.add_unique(pszSearchDirectory) < 0)
          return true;
 
-      if(!data_set(::ca::system::idEmpty, ::ca::system::idEmpty, stra))
+      if(!data_set(::ca2::system::idEmpty, ::ca2::system::idEmpty, stra))
          return false;
 
       if(!refresh())
@@ -84,7 +84,7 @@ namespace simpledb
 
       stringa stra;
 
-      if(!data_set(::ca::system::idEmpty, ::ca::system::idEmpty, stra))
+      if(!data_set(::ca2::system::idEmpty, ::ca2::system::idEmpty, stra))
          return false;
 
       if(!refresh())

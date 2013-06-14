@@ -9,7 +9,7 @@ namespace frame
 {
 
    SizeManager::SizeManager(WorkSet * pworkset) :
-      ::ca::ca(pworkset->get_app()),
+      ::ca2::ca2(pworkset->get_app()),
       m_minSize(84, 84),
       m_minBorder(33, 33)
    {
@@ -35,7 +35,7 @@ namespace frame
    VMSGEN_WINDOW_ON_MOUSEMOVE_CONDITIONAL(pdispatch, this, _001OnMouseMove);
    }*/
 
-   bool SizeManager::_000OnLButtonDown(::ca::message::mouse * pmouse)
+   bool SizeManager::_000OnLButtonDown(::ca2::message::mouse * pmouse)
    {
       ASSERT(pmouse->m_uiMessage == WM_LBUTTONDOWN
          || pmouse->m_uiMessage == WM_NCLBUTTONDOWN);
@@ -121,7 +121,7 @@ namespace frame
       }
    }
 
-   bool SizeManager::_000OnMouseMove(::ca::message::mouse * pmouse)
+   bool SizeManager::_000OnMouseMove(::ca2::message::mouse * pmouse)
    {
 
       if(!m_pworkset->IsSizingEnabled())
@@ -161,7 +161,7 @@ namespace frame
 
    }
 
-   bool SizeManager::_000OnLButtonUp(::ca::message::mouse * pmouse)
+   bool SizeManager::_000OnLButtonUp(::ca2::message::mouse * pmouse)
    {
       if(!m_pworkset->IsSizingEnabled())
          return false;
@@ -177,7 +177,7 @@ namespace frame
       return false;
    }
 
-   bool SizeManager::Relay(::ca::message::mouse * pmouse)
+   bool SizeManager::Relay(::ca2::message::mouse * pmouse)
    {
       UNREFERENCED_PARAMETER(pmouse);
       return false;
@@ -506,13 +506,13 @@ namespace frame
       UNREFERENCED_PARAMETER(emode);
    }
 
-   void SizeManager::message_handler(sp(::user::interaction) pwnd, ::ca::signal_object * pobj)
+   void SizeManager::message_handler(sp(::user::interaction) pwnd, ::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
 
       if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
-         SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+         SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
          point ptCursor((int16_t) LOWORD(pbase->m_lparam), (int16_t) HIWORD(pbase->m_lparam));
          pwnd->ClientToScreen(&ptCursor);
 //         UINT uiFlags = pbase->m_wparam;
@@ -543,7 +543,7 @@ namespace frame
       else if(pbase->m_uiMessage == WM_MOUSEMOVE ||
          pbase->m_uiMessage == WM_LBUTTONUP)
       {
-         SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+         SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
          if(pbase->m_uiMessage == WM_MOUSEMOVE &&
             (m_dwLastSizingTime + m_dwPaintDelay) > get_tick_count()
             && m_ehittestMode != HitTestNone)
@@ -555,7 +555,7 @@ namespace frame
          pwnd->ClientToScreen(&ptCursor);
          rect rectEvent;
          GetEventWindow()->GetWindowRect(rectEvent);
-         //sp(::ca::application) pApp = &System;
+         //sp(::ca2::application) pApp = &System;
          bool bSize = false;
          rect rectWindow;
          if(m_ehittestMode == HitTestNone)

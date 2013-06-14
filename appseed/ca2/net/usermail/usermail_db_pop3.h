@@ -25,7 +25,7 @@ namespace usermail
       string                  m_strTransaction;
 
 
-      db_pop3(sp(::ca::application) papp);
+      db_pop3(sp(::ca2::application) papp);
 
 
       virtual string get_user();

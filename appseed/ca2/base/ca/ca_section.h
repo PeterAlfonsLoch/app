@@ -1,21 +1,21 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 section :
-      virtual public ::ca::signalizable
+      virtual public ::ca2::signalizable
    {
    public:
 
 
-      section(::ca::application * papp);
+      section(::ca2::application * papp);
       virtual ~section();
 
 
-      virtual void construct(sp(::ca::application) papp);
+      virtual void construct(sp(::ca2::application) papp);
       virtual void connect_to_application_signal();
 
 
@@ -32,12 +32,12 @@ namespace ca
       virtual int32_t exit_instance();
 
 
-      void on_signal(::ca::signal_object * pobj);
+      void on_signal(::ca2::signal_object * pobj);
 
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

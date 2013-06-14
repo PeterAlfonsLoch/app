@@ -29,7 +29,7 @@ namespace colorertake5
       /** Previous and next links to ranged region in this line.
       First region of each line contains reference to it's last
       region in prev field.
-      If @c next field is NULL, this is a last region in line.
+      If @ca next field is NULL, this is a last region in line.
       */
       LineRegion *next, *prev;
       /** Special meaning marker. Generally this is used to inform

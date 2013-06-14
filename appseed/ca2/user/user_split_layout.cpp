@@ -5,8 +5,8 @@ namespace user
 
    const int32_t split_layout::m_iMarging = 5;
 
-   split_layout::split_layout(sp(::ca::application) papp) :
-      ca(papp),
+   split_layout::split_layout(sp(::ca2::application) papp) :
+      ca2(papp),
       m_splitbara(papp),
       m_panea(papp),
       place_holder_container(papp)
@@ -790,8 +790,8 @@ namespace user
    }
 
 
-   split_layout::Pane::Pane(sp(::ca::application) papp) :
-      ca(papp)
+   split_layout::Pane::Pane(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
       m_pholder = NULL;

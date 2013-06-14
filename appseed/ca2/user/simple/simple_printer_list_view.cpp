@@ -4,8 +4,8 @@
 #endif
 
 
-simple_printer_list_view::simple_printer_list_view(sp(::ca::application) papp) :
-   ca(papp),
+simple_printer_list_view::simple_printer_list_view(sp(::ca2::application) papp) :
+   ca2(papp),
    user::scroll_view(papp),
    user::form(papp),
    user::list(papp),
@@ -25,7 +25,7 @@ simple_printer_list_view::~simple_printer_list_view()
 }
 
 
-void simple_printer_list_view::install_message_handling(::ca::message::dispatch * pdispatch)
+void simple_printer_list_view::install_message_handling(::ca2::message::dispatch * pdispatch)
 {
 
    simple_list_view::install_message_handling(pdispatch);
@@ -34,9 +34,9 @@ void simple_printer_list_view::install_message_handling(::ca::message::dispatch 
 }
 
 
-void simple_printer_list_view::_001OnCreate(::ca::signal_object * pobj)
+void simple_printer_list_view::_001OnCreate(::ca2::signal_object * pobj)
 {
-//   SCAST_PTR(::ca::message::create, pcreate, pobj);
+//   SCAST_PTR(::ca2::message::create, pcreate, pobj);
 
    pobj->previous();
 

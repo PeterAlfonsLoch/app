@@ -1,17 +1,17 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 timeout_file : 
-      public ::ca::file
+      public ::ca2::file
    {
    public:
 
 
-      sp(::ca::file)     m_pfile;
+      sp(::ca2::file)     m_pfile;
       uint64_t          m_uiExpectedSize;
       uint32_t             m_dwTimeOut;
       uint32_t             m_dwLastCall;
@@ -19,11 +19,11 @@ namespace ca
       sp(mutex)         m_spmutex;
 
 
-      timeout_file(sp(::ca::application) papp, sp(::ca::file) pfile, uint64_t uiExpectedSize = ((uint64_t) 0));
+      timeout_file(sp(::ca2::application) papp, sp(::ca2::file) pfile, uint64_t uiExpectedSize = ((uint64_t) 0));
       virtual ~timeout_file();
 
       virtual bool IsValid() const;
-      file_position seek(file_offset lOff, ::ca::e_seek  nFrom);
+      file_position seek(file_offset lOff, ::ca2::e_seek  nFrom);
       file_position get_position() const;
       file_size get_length() const;
       file_size get_length(single_lock * psl) const;
@@ -37,6 +37,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

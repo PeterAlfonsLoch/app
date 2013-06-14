@@ -96,10 +96,10 @@ critical_section * FileManagerInterface::GetItemIdListCriticalSection()
 void FileManagerInterface::OnFileManagerBrowse()
 {
 
-   if(::ca::str::begins(m_item->m_strPath, "uifs://")
-      || ::ca::str::begins(m_item->m_strPath, "fs://"))
+   if(::ca2::str::begins(m_item->m_strPath, "uifs://")
+      || ::ca2::str::begins(m_item->m_strPath, "fs://"))
    {
-      data_set("InitialBrowsePath", ::ca::system::idEmpty, m_item->m_strPath);
+      data_set("InitialBrowsePath", ::ca2::system::idEmpty, m_item->m_strPath);
    }
    else
    {
@@ -112,7 +112,7 @@ void FileManagerInterface::OnFileManagerBrowse()
       idMachine = "Windows Desktop";
 #endif
 
-      data_set("InitialBrowsePath", ::ca::system::idEmpty, "machinefs://");
+      data_set("InitialBrowsePath", ::ca2::system::idEmpty, "machinefs://");
       data_set("InitialBrowsePath", idMachine, m_item->m_strPath);
 
    }

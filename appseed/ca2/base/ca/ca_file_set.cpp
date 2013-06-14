@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
    file_set::file_set()
@@ -87,4 +87,4 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2

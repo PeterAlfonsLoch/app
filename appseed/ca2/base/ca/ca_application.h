@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -9,7 +9,7 @@ namespace ca
    class signal;
 
 
-} // namespace ca
+} // namespace ca2
 
 
 namespace user
@@ -67,13 +67,13 @@ namespace fontopus
 
 
 
-namespace ca
+namespace ca2
 {
 
 
  CLASS_DECL_ca2 UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-   typedef sp(::ca::application) (* LPFN_instantiate_application)(sp(::ca::application) pappParent, const char * pszId);
+   typedef sp(::ca2::application) (* LPFN_instantiate_application)(sp(::ca2::application) pappParent, const char * pszId);
 
    extern CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application;
 
@@ -109,17 +109,17 @@ namespace ca
 
 
    class CLASS_DECL_ca2 application_signal_object :
-      public ::ca::signal_object
+      public ::ca2::signal_object
    {
    public:
 
 
-      ::ca::e_application_signal       m_esignal;
+      ::ca2::e_application_signal       m_esignal;
       int32_t                          m_iRet;
       bool                             m_bOk;
 
 
-      application_signal_object(sp(::ca::application) papp, ::ca::signal * psignal, ::ca::e_application_signal esignal);
+      application_signal_object(sp(::ca2::application) papp, ::ca2::signal * psignal, ::ca2::e_application_signal esignal);
 
 
    };
@@ -129,7 +129,7 @@ namespace ca
 
 
    class CLASS_DECL_ca2 application_ptra :
-      virtual public spa(::ca::application_base)
+      virtual public spa(::ca2::application_base)
    {
    public:
 
@@ -139,15 +139,15 @@ namespace ca
 
 
    class CLASS_DECL_ca2 application_base :
-      virtual public ::ca::live_object,
-      virtual public ::ca::thread
+      virtual public ::ca2::live_object,
+      virtual public ::ca2::thread
    {
    public:
 
       // Running args (can be changed in initialize_instance)
       // Human-redable name of the application. Normally set in
       // constructor or retreived from __IDS_APP_TITLE.
-      ::c::smart_pointer < ::ca::application_base >  m_p;
+      ::ca::smart_pointer < ::ca2::application_base >  m_p;
       string                                          m_strAppName;
       string                                          m_strAppId;
       string                                          m_strLibraryName;
@@ -175,17 +175,17 @@ namespace ca
       virtual sp(::user::interaction) window_from_os_data(void * pdata) = 0;
       virtual sp(::user::interaction) window_from_os_data_permanent(void * pdata) = 0;
 #else
-      virtual sp(::ca::window) window_from_os_data(void * pdata) = 0;
-      virtual sp(::ca::window) window_from_os_data_permanent(void * pdata) = 0;
+      virtual sp(::ca2::window) window_from_os_data(void * pdata) = 0;
+      virtual sp(::ca2::window) window_from_os_data_permanent(void * pdata) = 0;
 #endif
 
-      virtual sp(::ca::window) FindWindow(const char * lpszClassName, const char * lpszWindowName) = 0;
-      virtual sp(::ca::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow) = 0;
+      virtual sp(::ca2::window) FindWindow(const char * lpszClassName, const char * lpszWindowName) = 0;
+      virtual sp(::ca2::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow) = 0;
 
       virtual string get_version() = 0;
 
-      virtual ::ca::thread * GetThread() = 0;
-      virtual void set_thread(::ca::thread * pthread) = 0;
+      virtual ::ca2::thread * GetThread() = 0;
+      virtual void set_thread(::ca2::thread * pthread) = 0;
 
       virtual void SetCurrentHandles() = 0;
 
@@ -206,7 +206,7 @@ namespace ca
       virtual bool _001OnDDECommand(const char * lpcsz) = 0;
       virtual void _001EnableShellOpen() = 0;
       virtual sp(::user::document_interface) _001OpenDocumentFile(var varFile) = 0;
-      virtual void _001OnFileNew(::ca::signal_object * pobj) = 0;
+      virtual void _001OnFileNew(::ca2::signal_object * pobj) = 0;
 
       virtual void ShowWaitCursor(bool bShow = true) = 0;
 
@@ -222,10 +222,10 @@ namespace ca
 
 
    class CLASS_DECL_ca2 application :
-      virtual public ::ca::application_base,
+      virtual public ::ca2::application_base,
       virtual public command_target_interface,
       virtual public request_interface,
-      virtual public ::ca::message_window_simple_callback
+      virtual public ::ca2::message_window_simple_callback
    {
    public:
 
@@ -347,7 +347,7 @@ namespace ca
 
 
 
-      ::ca::signal                * m_psignal;
+      ::ca2::signal                * m_psignal;
       sp(::fs::fs)                        m_spfs;
 
       bool                          m_bInitializeProDevianMode;
@@ -357,7 +357,7 @@ namespace ca
       ::plane::system *             m_psystem;
       sp(::plane::session)            m_psession;
 
-      class ::ca::base64                 m_base64;
+      class ::ca2::base64                 m_base64;
       signal                              m_signalAppLanguageChange;
       math::math *                        m_pmath;
       geometry::geometry *                m_pgeometry;
@@ -367,13 +367,13 @@ namespace ca
       string                              m_strModulePath;
       string                              m_strModuleFolder;
       string                              m_strHelpFilePath;
-      sp(::ca::command_thread)             m_pcommandthread;
+      sp(::ca2::command_thread)             m_pcommandthread;
       mutex                               m_mutex;
 
       string                        m_strInstallType;
       string                        m_strInstallToken;
       //sp(::user::interaction)         m_puiInitialPlaceHolderContainer;
-      ::ca::application_bias        m_biasCalling;
+      ::ca2::application_bias        m_biasCalling;
 
 
 #ifdef WINDOWS
@@ -407,7 +407,7 @@ namespace ca
 #endif
       // Pointer to the command-line.
       string                        m_strCmdLine;
-      // Initial state of the application's ::ca::window; normally,
+      // Initial state of the application's ::ca2::window; normally,
       // this is an argument to ShowWindow().
       int32_t                           m_nCmdShow;
 
@@ -458,9 +458,9 @@ namespace ca
       //map < ::waitable *, ::waitable *, mutex *, mutex * > m_mapObjectMutex;
 
       //mutex                            m_mutexObjectEvent;
-      //map < ::ca::object *, ::ca::object *, map < int32_t, int32_t, event *, event * > *, map < int32_t, int32_t, event *, event * >  * > m_mapObjectEvent;
+      //map < ::ca2::object *, ::ca2::object *, map < int32_t, int32_t, event *, event * > *, map < int32_t, int32_t, event *, event * >  * > m_mapObjectEvent;
 
-      //typedef map < ::ca::object *, ::ca::object *, ::ca::property_set, ::ca::property_set > oset;
+      //typedef map < ::ca2::object *, ::ca2::object *, ::ca2::property_set, ::ca2::property_set > oset;
       //oset                             m_mapObjectSet;
 
       sp(::user::str_context)      m_puserstrcontext;
@@ -470,7 +470,7 @@ namespace ca
       rect                             m_rectScreen;
       bool                             m_bSessionSynchronizedScreen;
       sp(::user::interaction)          m_pwndMain;
-      ::ca::allocatorsp                m_allocer;
+      ::ca2::allocatorsp                m_allocer;
 
 
       int32_t                          m_iResourceId;
@@ -524,7 +524,7 @@ namespace ca
 
       virtual int32_t main();
 
-      virtual ::ca::application * get_app() const;
+      virtual ::ca2::application * get_app() const;
 
       virtual bool is_system();
       virtual bool is_session();
@@ -538,7 +538,7 @@ namespace ca
       virtual void app_map_set(const char * psz, void *);
 
 
-      virtual void pre_translate_message(::ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca2::signal_object * pobj);
 
 
       virtual ::fontopus::user * get_safe_user();
@@ -567,7 +567,7 @@ namespace ca
       }
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
       //virtual int32_t run();
 
@@ -598,7 +598,7 @@ namespace ca
 
 
 
-      virtual bool start_application(bool bSynch, ::ca::application_bias * pbias);
+      virtual bool start_application(bool bSynch, ::ca2::application_bias * pbias);
 
 
       virtual bool update_module_paths();
@@ -621,7 +621,7 @@ namespace ca
 
       virtual bool base_support();
 
-      virtual string message_box(const string & pszMatter, ::ca::property_set & propertyset);
+      virtual string message_box(const string & pszMatter, ::ca2::property_set & propertyset);
 
 
       virtual void load_string_table();
@@ -641,7 +641,7 @@ namespace ca
       virtual void set_env_var(const string & var,const string & value);
       virtual uint32_t get_thread_id();
 
-      virtual void message_window_message_handler(::ca::signal_object * pobj);
+      virtual void message_window_message_handler(::ca2::signal_object * pobj);
 
       virtual bool on_install();
       virtual bool on_uninstall();
@@ -663,7 +663,7 @@ namespace ca
 
       // open named file, trying to match a regsitered
       // document template to it.
-      virtual void on_request(sp(::ca::create_context) pline);
+      virtual void on_request(sp(::ca2::create_context) pline);
 
       math::math & math();
       geometry::geometry & geometry();
@@ -677,7 +677,7 @@ namespace ca
 
       // overrides for implementation
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-      virtual void ProcessWndProcException(base_exception* e, ::ca::signal_object * pobj);
+      virtual void ProcessWndProcException(base_exception* e, ::ca2::signal_object * pobj);
 
 
       void EnableModelessEx(bool bEnable);
@@ -712,7 +712,7 @@ namespace ca
          virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
 
-      class ::ca::base64 & base64();
+      class ::ca2::base64 & base64();
 
       virtual string get_local_mutex_id();
       virtual string get_global_mutex_id();
@@ -721,15 +721,15 @@ namespace ca
       virtual void memory_to_hex(string & strHex, primitive::memory & memory);
 
       // Wall-eeeeee aliases
-      sp(::ca::command_thread) command_central();
-      sp(::ca::command_thread) command();
-      sp(::ca::command_thread) guideline();
-      sp(::ca::command_thread) directrix();
-      sp(::ca::command_thread) axiom();
-      sp(::ca::command_thread) creation();
+      sp(::ca2::command_thread) command_central();
+      sp(::ca2::command_thread) command();
+      sp(::ca2::command_thread) guideline();
+      sp(::ca2::command_thread) directrix();
+      sp(::ca2::command_thread) axiom();
+      sp(::ca2::command_thread) creation();
 
-      //virtual void on_allocation_error(const sp(::ca::type_info) info);
-      //virtual sp(::ca::ca) on_alloc(const sp(::ca::type_info) info);
+      //virtual void on_allocation_error(const sp(::ca2::type_info) info);
+      //virtual sp(::ca2::ca2) on_alloc(const sp(::ca2::type_info) info);
 
 
       virtual bool check_exclusive();
@@ -783,7 +783,7 @@ namespace ca
 #endif
 
 
-      virtual bool on_run_exception(::ca::exception & e);
+      virtual bool on_run_exception(::ca2::exception & e);
 
 
       // set regsitry key name to be used by application's
@@ -861,7 +861,7 @@ namespace ca
       void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = TRUE);
 
       // create a DC for the system default printer.
-      ::ca::graphics * CreatePrinterDC();
+      ::ca2::graphics * CreatePrinterDC();
 
 
       //   bool GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg);
@@ -948,7 +948,7 @@ namespace ca
 
       void OnAppExit();
       // System Policy Settings
-      virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that ca API loads.
+      virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that ca2 API loads.
       bool GetSysPolicyValue(uint32_t dwPolicyID, bool *pbValue); // returns the policy's setting in the out parameter
       bool _LoadSysPolicies() throw(); // Implementation helper
       static const char gen_FileSection[];
@@ -964,9 +964,9 @@ namespace ca
 
       virtual void delete_temp();
 
-      //using ::ca::thread::propset;
-      //::ca::property_set & propset(::ca::object * pobject);
-      //::ca::property_set * existing_propset(::ca::object * pobject);
+      //using ::ca2::thread::propset;
+      //::ca2::property_set & propset(::ca2::object * pobject);
+      //::ca2::property_set * existing_propset(::ca2::object * pobject);
 
       virtual oswindow get_ca2_app_wnd(const char * psz);
 
@@ -980,16 +980,16 @@ namespace ca
 
       virtual int32_t get_document_count();
 
-      // transparent ::ca::window framework
+      // transparent ::ca2::window framework
 
 
       //mutex * get_mutex(::waitable * pobject);
-      //using ::ca::thread::lock;
+      //using ::ca2::thread::lock;
       //void wait(::waitable * pobject);
       //wait_result wait(::waitable * pobject, duration dwTimeout);
       //void lock(::waitable * pobject);
       //bool lock(::waitable * pobject, duration dwTimeout);
-      //using ::ca::thread::unlock;
+      //using ::ca2::thread::unlock;
       //bool unlock(::waitable * pobject);
 
       //      event * get_event(::waitable * pobject, int32_t iEvent = 0);
@@ -1036,18 +1036,18 @@ namespace ca
       virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
       virtual void TermThread(HINSTANCE hInstTerm);
 
-      //virtual ::ca::graphics * graphics_from_os_data(void * pdata);
+      //virtual ::ca2::graphics * graphics_from_os_data(void * pdata);
 
 #ifdef METROWIN
       virtual sp(::user::interaction) window_from_os_data(void * pdata);
       virtual sp(::user::interaction) window_from_os_data_permanent(void * pdata);
 #else
-      virtual sp(::ca::window) window_from_os_data(void * pdata);
-      virtual sp(::ca::window) window_from_os_data_permanent(void * pdata);
+      virtual sp(::ca2::window) window_from_os_data(void * pdata);
+      virtual sp(::ca2::window) window_from_os_data_permanent(void * pdata);
 #endif
 
-      virtual sp(::ca::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual sp(::ca::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
+      virtual sp(::ca2::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      virtual sp(::ca2::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual string get_local_mutex_name(const char * pszAppName);
       virtual string get_local_id_mutex_name(const char * pszAppName, const char * pszId);
@@ -1060,24 +1060,24 @@ namespace ca
       virtual string get_global_id_mutex_name();
 
 
-      virtual bool final_handle_exception(::ca::exception & e);
+      virtual bool final_handle_exception(::ca2::exception & e);
 
       bool ca_process_initialize();
       bool ca_initialize1();
 
       bool ca_finalize();
 
-      virtual sp(::ca::ca) alloc(sp(::ca::type_info) info);
-      virtual sp(::ca::ca) alloc(const id & idType);
+      virtual sp(::ca2::ca2) alloc(sp(::ca2::type_info) info);
+      virtual sp(::ca2::ca2) alloc(const id & idType);
 
 
 
-      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca2::create_context) pcontext);
 
 
 
 
-      //      virtual ::ca::file_system & file_system();
+      //      virtual ::ca2::file_system & file_system();
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
       virtual sp(::user::document_interface) _001OpenDocumentFile(var varFile);
@@ -1089,18 +1089,18 @@ namespace ca
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();
 
-      virtual ::ca::thread * GetThread();
-      virtual void set_thread(::ca::thread * pthread);
+      virtual ::ca2::thread * GetThread();
+      virtual void set_thread(::ca2::thread * pthread);
 
 
-      virtual sp(::ca::window) get_desktop_window();
+      virtual sp(::ca2::window) get_desktop_window();
 
 
 
 //      virtual void construct();
       
 
-      //virtual bool final_handle_exception(::ca::exception & e);
+      //virtual bool final_handle_exception(::ca2::exception & e);
       //virtual bool initialize();
       //virtual bool initialize1();
       //virtual bool initialize2();
@@ -1121,11 +1121,11 @@ namespace ca
 
       virtual int32_t run();
 
-//      virtual void on_request(sp(::ca::create_context) pcreatecontext);
+//      virtual void on_request(sp(::ca2::create_context) pcreatecontext);
 
 //      sp(::user::document_interface) _001OpenDocumentFile(var varFile);
 
-      sp(::ca::application) get_system();
+      sp(::ca2::application) get_system();
 
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
@@ -1159,8 +1159,8 @@ namespace ca
       inline ::usermail::usermail                          & usermail         () { return *m_pusermail          ; }
 
       
-      string message_box(const char * pszMatter, ::ca::property_set & propertyset);
-      //using ::ca::application::simple_message_box;
+      string message_box(const char * pszMatter, ::ca2::property_set & propertyset);
+      //using ::ca2::application::simple_message_box;
       //virtual int32_t simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle = MB_OK);
       //virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
       virtual int32_t track_popup_menu(const char * pszMatter, point pt, sp(::user::interaction) puie);
@@ -1187,7 +1187,7 @@ namespace ca
       //virtual oswindow get_ca2_app_wnd(const char * psz);
 
 
-      //virtual void request_create(sp(::ca::create_context) pcreatecontext);
+      //virtual void request_create(sp(::ca2::create_context) pcreatecontext);
 
 //      virtual void on_exclusive_instance_local_conflict();
 
@@ -1206,20 +1206,20 @@ namespace ca
    };
 
 
-   inline application & get(sp(::ca::application) papp)
+   inline application & get(sp(::ca2::application) papp)
    {
       return papp;
    }
 
    // impl
    template < class APP >
-   sp(::ca::application) single_application_library < APP > :: get_new_app(const char * pszAppId)
+   sp(::ca2::application) single_application_library < APP > :: get_new_app(const char * pszAppId)
    {
 
       if(!contains_app(pszAppId))
          return NULL;
 
-      sp(::ca::application) papp = canew(APP());
+      sp(::ca2::application) papp = canew(APP());
 
       if(papp == NULL)
          return NULL;
@@ -1245,17 +1245,17 @@ namespace ca
    }
 
 
-   inline allocatorsp ca::allocer()
+   inline allocatorsp ca2::allocer()
    {
       return m_papp->m_allocer;
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 
-#include "base/ca/ca_font.h"
+#include "base/ca2/ca_font.h"
 
 
 

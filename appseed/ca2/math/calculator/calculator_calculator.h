@@ -9,12 +9,12 @@ namespace calculator
 
 
    class CLASS_DECL_ca2 calculator :
-      virtual public ::ca::section
+      virtual public ::ca2::section
    {
    public:
 
 
-      calculator(::ca::application * papp);
+      calculator(::ca2::application * papp);
       virtual ~calculator();
 
 

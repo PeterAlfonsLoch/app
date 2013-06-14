@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   value pow(const value & val1, double c);
+   value pow(const value & val1, double ca);
 
 
    value::value()
@@ -138,13 +138,13 @@ namespace calculator
       return val;
    }
 
-   value pow(const value & val1, double c)
+   value pow(const value & val1, double ca)
    {
       value val;
       double dMod = val1.mod();
       double dArg = val1.arg();
-      dMod = ::pow(dMod, c);
-      dArg = dArg * c;
+      dMod = ::pow(dMod, ca);
+      dArg = dArg * ca;
       val.m_dR = dMod * ::cos(dArg);
       val.m_dI = dMod * ::sin(dArg);
       return val;

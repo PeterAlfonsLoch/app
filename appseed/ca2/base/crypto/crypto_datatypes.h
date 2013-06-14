@@ -9,7 +9,7 @@
 
 /*
  *
- * Copyright (c) 2001-2006, Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006, Cisco Systems, Inc.
  *
  *
  * Redistribution and use in source and binary forms, with or without
@@ -161,7 +161,7 @@ v128_right_shift(v128_t *x, int32_t index);
  *
  * If DATATYPES_USE_MACROS is defined, then these macros are used
  * directly (and function call overhead is avoided).  Otherwise,
- * the macros are used through the functions defined in datatypes.c
+ * the macros are used through the functions defined in datatypes.ca
  * (and the compiler provides better warnings).
  */
 

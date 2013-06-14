@@ -6,19 +6,19 @@
 #include "ca_stream.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
    class file_exception;         // file exception
    class file;
-   typedef ::c::smart_pointer < file > filesp;
+   typedef ::ca::smart_pointer < file > filesp;
 
 
-} // namespace ca
+} // namespace ca2
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -57,7 +57,7 @@ namespace ca
       byte_input_stream & operator >> (double & d);
       byte_input_stream & operator >> (LPRECT lprect);
       byte_input_stream & operator >> (SIZE & size);
-      byte_input_stream & operator >> (sp(::ca::type_info) info);
+      byte_input_stream & operator >> (sp(::ca2::type_info) info);
       byte_input_stream & operator >> (byte_serializable & serializable);
       byte_input_stream & operator >> (id & id);
       byte_input_stream & operator >> (var & var);
@@ -114,7 +114,7 @@ namespace ca
       byte_output_stream & operator << (double d);
       byte_output_stream & operator << (LPCRECT lpcrect);
       byte_output_stream & operator << (SIZE & size);
-      byte_output_stream & operator << (sp(::ca::type_info) info);
+      byte_output_stream & operator << (sp(::ca2::type_info) info);
       byte_output_stream & operator << (byte_serializable & serializable);
       byte_output_stream & operator << (const char * psz);
       byte_output_stream & operator << (const id & id);
@@ -154,7 +154,7 @@ namespace ca
    CLASS_DECL_ca2 HRESULT ReadStream_FAIL(reader * stream, void * data, ::primitive::memory_size size);
    CLASS_DECL_ca2 HRESULT WriteStream(writer * stream, const void * data, ::primitive::memory_size size);
 
-} // namespace ca
+} // namespace ca2
 
 
 

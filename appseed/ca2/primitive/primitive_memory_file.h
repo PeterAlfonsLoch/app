@@ -4,7 +4,7 @@ namespace primitive
 {
 
    class CLASS_DECL_ca2 memory_file :
-      virtual public ::ca::file,
+      virtual public ::ca2::file,
       virtual public primitive::memory_container
    {
    protected:
@@ -16,19 +16,19 @@ namespace primitive
    public:
    
 
-      memory_file(sp(::ca::application) papp, ::primitive::memory_size iSize = 0);
-      memory_file(sp(::ca::application) papp, void * pMemory, ::primitive::memory_size dwSize);
-      memory_file(sp(::ca::application) papp, const memory_file & memoryfile);
-      memory_file(sp(::ca::application) papp, memory_base * pmemory);
+      memory_file(sp(::ca2::application) papp, ::primitive::memory_size iSize = 0);
+      memory_file(sp(::ca2::application) papp, void * pMemory, ::primitive::memory_size dwSize);
+      memory_file(sp(::ca2::application) papp, const memory_file & memoryfile);
+      memory_file(sp(::ca2::application) papp, memory_base * pmemory);
       virtual ~memory_file();
 
 
       virtual bool IsValid() const;
       memory_size remove_begin(void * lpBuf, ::primitive::memory_size uiCount);
       void load_string(string & str);
-      using ::ca::request_interface::create;
+      using ::ca2::request_interface::create;
       void create(::primitive::memory_size iSize = -1);
-      file_position seek(file_offset lOff, ::ca::e_seek  nFrom);
+      file_position seek(file_offset lOff, ::ca2::e_seek  nFrom);
       file_position get_position() const;
 
       virtual string GetFilePath() const;

@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-plain_service::plain_service(sp(::ca::application) papp) :
-   ca(papp),
+plain_service::plain_service(sp(::ca2::application) papp) :
+   ca2(papp),
    service_base(papp)
 {
 }

@@ -5,8 +5,8 @@
 #include "FileManagerViewUpdateHint.h"
 
 
-folder_selection_list_view::folder_selection_list_view(sp(::ca::application) papp) :
-   ca(papp),
+folder_selection_list_view::folder_selection_list_view(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::split_layout(papp),
    
    ::user::split_view(papp),
@@ -19,7 +19,7 @@ folder_selection_list_view::~folder_selection_list_view()
 {
 }
 
-void folder_selection_list_view::install_message_handling(::ca::message::dispatch * pinterface)
+void folder_selection_list_view::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::split_view::install_message_handling(pinterface);
 }
@@ -45,7 +45,7 @@ void folder_selection_list_view::Initialize(FileManagerTemplate * ptemplate, con
 
    m_plistview->_001UpdateColumns();
 
-   if(data_get("InitialBrowsePath", ::ca::system::idEmpty, str))
+   if(data_get("InitialBrowsePath", ::ca2::system::idEmpty, str))
    {
       FileManagerBrowse(str);
    }
@@ -122,13 +122,13 @@ void folder_selection_list_view::FolderRemove()
 }
 
 
-void folder_selection_list_view::_001OnAdd(::ca::signal_object * pobj)
+void folder_selection_list_view::_001OnAdd(::ca2::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    FolderAdd();
 }
 
-void folder_selection_list_view::_001OnRemove(::ca::signal_object * pobj)
+void folder_selection_list_view::_001OnRemove(::ca2::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    FolderRemove();

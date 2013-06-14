@@ -9,8 +9,8 @@ namespace sockets
    {
 
 
-      batch_file::batch_file(sp(::ca::application) papp) :
-         ca(papp)
+      batch_file::batch_file(sp(::ca2::application) papp) :
+         ca2(papp)
       {
 
          m_nOpenFlags = 0;
@@ -24,7 +24,7 @@ namespace sockets
 
          m_nOpenFlags = nOpenFlags;
 
-         if(m_nOpenFlags & ::ca::file::mode_read)
+         if(m_nOpenFlags & ::ca2::file::mode_read)
          {
 
              get_file_data();
@@ -37,7 +37,7 @@ namespace sockets
       
       void batch_file::close()
       {
-         if(m_nOpenFlags & ::ca::file::mode_write)
+         if(m_nOpenFlags & ::ca2::file::mode_write)
          {
             set_file_data();
          }
@@ -45,7 +45,7 @@ namespace sockets
 
       void batch_file::flush()
       {
-         if(m_nOpenFlags & ::ca::file::mode_write)
+         if(m_nOpenFlags & ::ca2::file::mode_write)
          {
             set_file_data();
          }

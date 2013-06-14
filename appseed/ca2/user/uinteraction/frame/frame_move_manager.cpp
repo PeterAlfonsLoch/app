@@ -13,7 +13,7 @@ namespace uinteraction
       const uint32_t MoveManager::s_dwMoveTime = 150;
 
       MoveManager::MoveManager(WorkSet * pworkset) :
-         ::ca::ca(pworkset->get_app())
+         ::ca2::ca2(pworkset->get_app())
       {
          ASSERT(pworkset != NULL);
          m_pworkset           = pworkset;
@@ -31,7 +31,7 @@ namespace uinteraction
       }
 
 
-      bool MoveManager::_000OnLButtonDown(::ca::message::mouse * pmouse)
+      bool MoveManager::_000OnLButtonDown(::ca2::message::mouse * pmouse)
       {
          if(!m_pworkset->IsMovingEnabled()
             || m_pworkset->m_bSizingCapture)
@@ -57,7 +57,7 @@ namespace uinteraction
          return true;
       }
 
-      bool MoveManager::_000OnMouseMove(::ca::message::mouse * pmouse)
+      bool MoveManager::_000OnMouseMove(::ca2::message::mouse * pmouse)
       {
          if(!m_pworkset->IsMovingEnabled()
             || m_pworkset->m_bSizingCapture)
@@ -71,7 +71,7 @@ namespace uinteraction
          return Relay(pmouse);
       }
 
-      bool MoveManager::_000OnLButtonUp(::ca::message::mouse * pmouse)
+      bool MoveManager::_000OnLButtonUp(::ca2::message::mouse * pmouse)
       {
          if(!m_pworkset->IsMovingEnabled()
             || m_pworkset->m_bSizingCapture)
@@ -81,7 +81,7 @@ namespace uinteraction
       }
 
       // process only WM_MOUSEMOVE and WM_LBUTTONUP messages
-      bool MoveManager::Relay(::ca::message::mouse * pmouse)
+      bool MoveManager::Relay(::ca2::message::mouse * pmouse)
       {
          ASSERT(pmouse->m_uiMessage == WM_MOUSEMOVE
             || pmouse->m_uiMessage == WM_LBUTTONUP
@@ -341,7 +341,7 @@ namespace uinteraction
          //      HRGN hrgnNew = ::CreateRectRgn(0, 0, 0, 0);;
          /*      ::CombineRgn(hrgnNew, (HRGN)g_rgnTotal->get_os_data(), hrgn, RGN_AND);
          ::RedrawWindow(oswindow, NULL, NULL, RDW_INVALIDATE);
-         ::CombineRgn((HRGN)g_rgnTotal->get_os_data(),( HRGN)g_rgnTotal->get_os_data(), hrgnNew, ::ca::region::combine_exclude);
+         ::CombineRgn((HRGN)g_rgnTotal->get_os_data(),( HRGN)g_rgnTotal->get_os_data(), hrgnNew, ::ca2::region::combine_exclude);
          ::DeleteObject(hrgn);
          ::DeleteObject(hrgnNew);*/
 
@@ -452,9 +452,9 @@ namespace uinteraction
          m_eborderMask = emask;
       }
 
-      void MoveManager::message_handler(sp(::user::interaction) pwnd, ::ca::signal_object * pobj)
+      void MoveManager::message_handler(sp(::user::interaction) pwnd, ::ca2::signal_object * pobj)
       {
-         SCAST_PTR(::ca::message::base, pbase, pobj);
+         SCAST_PTR(::ca2::message::base, pbase, pobj);
          if(m_bPendingMove
             && get_tick_count() > m_dwLastMoveTime + s_dwMoveTime)
          {

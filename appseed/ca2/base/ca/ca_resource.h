@@ -15,22 +15,22 @@
 
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 resource :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       resource();
       virtual ~resource();
 
-      virtual bool ReadResource(::ca::file & file, UINT nID, const char * lpcszType);
-      virtual bool ReadResource(HINSTANCE hinst, ::ca::file & file, UINT nID, const char * lpcszType);
+      virtual bool ReadResource(::ca2::file & file, UINT nID, const char * lpcszType);
+      virtual bool ReadResource(HINSTANCE hinst, ::ca2::file & file, UINT nID, const char * lpcszType);
 
    };
 
-   typedef ::c::smart_pointer < resource > resource_sp;
+   typedef ::ca::smart_pointer < resource > resource_sp;
 
-} // namespace ca
+} // namespace ca2
 

@@ -52,7 +52,7 @@ namespace plane
       {
 #ifdef WINDOWSEX
          wstring wstr = ::GetCommandLineW();
-         string str = ::ca::international::unicode_to_utf8(wstr);
+         string str = ::ca2::international::unicode_to_utf8(wstr);
          strsize iFind = str.find(" : ");
          if(iFind >= 0)
          {
@@ -68,8 +68,8 @@ namespace plane
                {
                   m_strId = str.Mid(iFind + 4, iEnd - iFind - 4);
                }
-               ::ca::str::begins_eat(m_strId, "\"");
-               ::ca::str::ends_eat(m_strId, "\"");
+               ::ca2::str::begins_eat(m_strId, "\"");
+               ::ca2::str::ends_eat(m_strId, "\"");
             }
          }
 #endif
@@ -94,7 +94,7 @@ namespace plane
    {
    }
 
-   sp(::ca::application) application::get_system()
+   sp(::ca2::application) application::get_system()
    {
       return new application();
    }
@@ -120,7 +120,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      ::ca::application::_001OnFileNew(NULL);
+      ::ca2::application::_001OnFileNew(NULL);
    }
 
 
@@ -132,7 +132,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return ::ca::application::bergedge_start();
+      return ::ca2::application::bergedge_start();
    }
 
 
@@ -150,7 +150,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return ::ca::application::on_install();
+      return ::ca2::application::on_install();
    }
 
    bool application::on_uninstall()
@@ -161,11 +161,11 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return ::ca::application::on_uninstall();
+      return ::ca2::application::on_uninstall();
    }
 
 
-   void application::on_request(sp(::ca::create_context) pcreatecontext)
+   void application::on_request(sp(::ca2::create_context) pcreatecontext)
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -173,7 +173,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return ::ca::application::on_request(pcreatecontext);
+      return ::ca2::application::on_request(pcreatecontext);
 
 
    }
@@ -188,7 +188,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return ::ca::application::is_serviceable();
+      return ::ca2::application::is_serviceable();
    }
 
    service_base * application::allocate_new_service()
@@ -207,7 +207,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return ::ca::application::_001OpenDocumentFile(varFile);
+      return ::ca2::application::_001OpenDocumentFile(varFile);
 
    }
 
@@ -236,16 +236,16 @@ namespace plane
          {
             create_new_service();
             m_pservice->Start(0);
-            return ::ca::application::run();
+            return ::ca2::application::run();
          }
          else
          {
-            return ::ca::application::run();
+            return ::ca2::application::run();
          }
       }
       else
       {
-         return ::ca::application::run();
+         return ::ca2::application::run();
       }
 
       return 0;
@@ -333,7 +333,7 @@ namespace plane
          if(bCreate)
          {
 
-            sp(::ca::create_context) spcreatecontext(allocer());
+            sp(::ca2::create_context) spcreatecontext(allocer());
 
             papp = Session.start_application("application", pszAppId, spcreatecontext);
 
@@ -346,7 +346,7 @@ namespace plane
          throw e;
 
       }
-      catch(::ca::exception & e)
+      catch(::ca2::exception & e)
       {
 
          if(!Application.on_run_exception(e))
@@ -369,12 +369,12 @@ namespace plane
 
 
 
-typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
+typedef  void (* PFN_ca2_factory_exchange)(sp(::ca2::application) papp);
 
 
 
 
-   ::ca::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
+   ::ca2::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
 
       try
@@ -383,7 +383,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
          return m_file.get_file(varFile, nOpenFlags);
 
       }
-      catch(::ca::file_exception & e)
+      catch(::ca2::file_exception & e)
       {
 
          string strMessage = e.get_message();
@@ -492,7 +492,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
    }
 
 
-   void application::on_service_request(sp(::ca::create_context) pcreatecontext)
+   void application::on_service_request(sp(::ca2::create_context) pcreatecontext)
    {
 
       if(!is_serviceable())
@@ -543,7 +543,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
 
       if(!is_system() && (bool)oprop("SessionSynchronizedInput"))
       {
-         ::AttachThreadInput(GetCurrentThreadId(), (uint32_t) System.::ca::thread::m_p->get_os_int(), TRUE);
+         ::AttachThreadInput(GetCurrentThreadId(), (uint32_t) System.::ca2::thread::m_p->get_os_int(), TRUE);
       }
 
 #endif
@@ -574,7 +574,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
             {
                if (GetMainWnd() != NULL)
                {
-                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                  TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                   GetMainWnd()->DestroyWindow();
                }
                goto InitFailure;
@@ -587,7 +587,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
             throw e;
 
          }
-         catch(const ::ca::exception &)
+         catch(const ::ca2::exception &)
          {
             if (GetMainWnd() != NULL)
             {
@@ -606,7 +606,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
             {
                if (GetMainWnd() != NULL)
                {
-                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                  TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                   GetMainWnd()->DestroyWindow();
                }
 
@@ -631,13 +631,13 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
             throw e;
 
          }
-         catch(const ::ca::exception & e)
+         catch(const ::ca2::exception & e)
          {
-            if(on_run_exception((::ca::exception &) e))
+            if(on_run_exception((::ca2::exception &) e))
                goto run;
             if(GetMainWnd() != NULL)
             {
-               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -648,16 +648,16 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
                   throw e;
 
                }
-               catch(::ca::exception &)
+               catch(::ca2::exception &)
                {
                }
                SetMainWnd(NULL);
             }
-            if(final_handle_exception((::ca::exception &) e))
+            if(final_handle_exception((::ca2::exception &) e))
                goto run;
             if(GetMainWnd() != NULL)
             {
-               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -668,7 +668,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
                   throw e;
 
                }
-               catch(::ca::exception &)
+               catch(::ca2::exception &)
                {
                }
                SetMainWnd(NULL);
@@ -731,7 +731,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
          //           - ::ikaraoke::karaoke file does not open? can open next? do it... may animate with a temporary icon...
          //           - import a little as pepper for the meal, prodevian technology into estamira, so gaming experience relativity can open ligh
          //               speed into cartesian dimensions of
-         //               ca, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
+         //               ca2, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
          //               black letters, or colorful and pink are accepted and sometimes desired, for example, hello kity prodevian, pirarucu games,
          //               I think no one likes to be boring, but a entire background in black... I don't know... only for your personal office, may be...
          //           - could an online colaborator investigate crashes promptly in a funny way, and make news and jokes? Like terra and UOL for the real world?
@@ -772,14 +772,14 @@ run:
 
       try
       {
-         ::ca::application_signal_object signal(this, m_psignal, ::ca::application_signal_start);
+         ::ca2::application_signal_object signal(this, m_psignal, ::ca2::application_signal_start);
          m_psignal->emit(&signal);
       }
       catch(...)
       {
       }
 
-      ::ca::thread * pthread = System.GetThread();
+      ::ca2::thread * pthread = System.GetThread();
 
       install_message_handling(pthread->m_p);
 #if !defined(DEBUG) || defined(WINDOWS)
@@ -813,27 +813,27 @@ run:
             throw e;
 
          }
-         catch(const ::ca::exception & e)
+         catch(const ::ca2::exception & e)
          {
-            if(on_run_exception((::ca::exception &) e))
+            if(on_run_exception((::ca2::exception &) e))
                goto run;
             if (GetMainWnd() != NULL)
             {
-               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
                }
-               catch(::ca::exception &)
+               catch(::ca2::exception &)
                {
                }
                SetMainWnd(NULL);
             }
-            if(final_handle_exception((::ca::exception &) e))
+            if(final_handle_exception((::ca2::exception &) e))
                goto run;
             if (GetMainWnd() != NULL)
             {
-               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -844,7 +844,7 @@ run:
                   throw e;
 
                }
-               catch(::ca::exception &)
+               catch(::ca2::exception &)
                {
                }
                SetMainWnd(NULL);
@@ -911,7 +911,7 @@ run:
          //           - ::ikaraoke::karaoke file does not open? can open next? do it... may animate with a temporary icon...
          //           - import a little as pepper for the meal, prodevian technology into estamira, so gaming experience relativity can open ligh
          //               speed into cartesian dimensions of
-         //               ca, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
+         //               ca2, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
          //               black letters, or colorful and pink are accepted and sometimes desired, for example, hello kity prodevian, pirarucu games,
          //               I think no one likes to be boring, but a entire background in black... I don't know... only for your personal office, may be...
          //           - could an online colaborator investigate crashes promptly in a funny way, and make news and jokes? Like terra and UOL for the real world?
@@ -948,7 +948,7 @@ InitFailure:
       }
       try
       {
-         ::ca::thread * pthread = ::ca::thread::m_p;
+         ::ca2::thread * pthread = ::ca2::thread::m_p;
          if(pthread != NULL && pthread->m_pbReady != NULL)
          {
             *pthread->m_pbReady = true;
@@ -959,7 +959,7 @@ InitFailure:
       }
       /*try
       {
-         ::ca::thread * pthread = dynamic_cast < ::ca::thread * > (this);
+         ::ca2::thread * pthread = dynamic_cast < ::ca2::thread * > (this);
          ::SetEvent((HANDLE) pthread->m_peventReady);
       }
       catch(...)
@@ -1066,12 +1066,12 @@ InitFailure:
          m_iReturnCode = 0;
          m_bReady = true;
          m_p->m_bReady = true;
-         ::ca::thread_base::m_pthread->m_bReady = true;
-         ::ca::thread_base::m_pthread->m_p->m_bReady = true;
+         ::ca2::thread_base::m_pthread->m_bReady = true;
+         ::ca2::thread_base::m_pthread->m_p->m_bReady = true;
          m_bRun = true;
          m_p->m_bRun = true;
-         ::ca::thread_base::m_pthread->m_bRun = true;
-         ::ca::thread_base::m_pthread->m_p->m_bRun = true;
+         ::ca2::thread_base::m_pthread->m_bRun = true;
+         ::ca2::thread_base::m_pthread->m_p->m_bRun = true;
          m_iReturnCode = on_run();
          if(m_iReturnCode != 0)
          {
@@ -1138,10 +1138,10 @@ exit_application:
    }
 
 
-   sp(::ca::application) application::instantiate_application(const char * pszType, const char * pszId, ::ca::application_bias * pbias)
+   sp(::ca2::application) application::instantiate_application(const char * pszType, const char * pszId, ::ca2::application_bias * pbias)
    {
 
-      sp(::ca::application) papp = NULL;
+      sp(::ca2::application) papp = NULL;
 
       string strId(pszId);
 
@@ -1280,15 +1280,15 @@ exit_application:
    }
 
 
-   sp(::ca::application) application::create_application(const char * pszType, const char * pszId, bool bSynch, ::ca::application_bias * pbias)
+   sp(::ca2::application) application::create_application(const char * pszType, const char * pszId, bool bSynch, ::ca2::application_bias * pbias)
    {
 
-      sp(::ca::application) pcaapp = instantiate_application(pszType, pszId, pbias);
+      sp(::ca2::application) pcaapp = instantiate_application(pszType, pszId, pbias);
 
       if(pcaapp == NULL)
          return NULL;
 
-      sp(::ca::application) papp = (pcaapp);
+      sp(::ca2::application) papp = (pcaapp);
 
       if(!papp->start_application(bSynch, pbias))
       {
@@ -1437,7 +1437,7 @@ exit_application:
    }
 
 
-   void application::fill_locale_schema(::ca::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema)
+   void application::fill_locale_schema(::ca2::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema)
    {
 
 
@@ -1465,7 +1465,7 @@ exit_application:
    }
 
 
-   void application::fill_locale_schema(::ca::international::locale_schema & localeschema)
+   void application::fill_locale_schema(::ca2::international::locale_schema & localeschema)
    {
 
 
@@ -1511,7 +1511,7 @@ exit_application:
    bool application::update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession,const char * pszRoot, const char * pszRelative)
    {
 
-      ::ca::international::locale_schema localeschema(this);
+      ::ca2::international::locale_schema localeschema(this);
 
       fill_locale_schema(localeschema);
 
@@ -1560,7 +1560,7 @@ exit_application:
          while(true)
          {
 
-            ::ca::property_set setEmpty(get_app());
+            ::ca2::property_set setEmpty(get_app());
 
             psession = System.http().open(h, System.url().get_server(strUrl), System.url().get_protocol(strUrl), setEmpty, NULL, NULL);
 
@@ -1584,7 +1584,7 @@ exit_application:
 
          string strDir = strFile;
 
-         ::ca::str::ends_eat_ci(strDir, ".zip");
+         ::ca2::str::ends_eat_ci(strDir, ".zip");
 
          try
          {
@@ -1610,7 +1610,7 @@ exit_application:
    }
 
 
-   bool application::add_library(::ca::library * plibrary)
+   bool application::add_library(::ca2::library * plibrary)
    {
 
       plibrary->set_app(this);
@@ -1701,7 +1701,7 @@ exit_application:
       }
 
 
-      if(!::ca::application::initialize())
+      if(!::ca2::application::initialize())
          return false;
 
 
@@ -1722,7 +1722,7 @@ exit_application:
       {
 
          string str;
-         // if system locale has changed (compared to last recorded one by ca)
+         // if system locale has changed (compared to last recorded one by ca2)
          // use the system locale
          if(data_get("system_locale", str))
          {
@@ -1767,7 +1767,7 @@ exit_application:
                set_locale(str, false);
             }
          }
-         // if system schema has changed (compared to last recorded one by ca)
+         // if system schema has changed (compared to last recorded one by ca2)
          // use the system schema
          if(data_get("system_schema", str))
          {
@@ -1834,7 +1834,7 @@ exit_application:
    bool application::process_initialize()
    {
 
-      if(!::ca::application::process_initialize())
+      if(!::ca2::application::process_initialize())
          return false;
 
       m_pfontopus = create_fontopus();
@@ -1899,7 +1899,7 @@ exit_application:
 
       }
 
-      if(!::ca::application::initialize1())
+      if(!::ca2::application::initialize1())
          return false;
 
       if(!m_spuser->initialize1())
@@ -1920,7 +1920,7 @@ exit_application:
    bool application::initialize2()
    {
 
-      if(!::ca::application::initialize2())
+      if(!::ca2::application::initialize2())
          return false;
 
 
@@ -1940,7 +1940,7 @@ exit_application:
 
 
 
-      if(!::ca::application::initialize_instance())
+      if(!::ca2::application::initialize_instance())
          return false;
 
       if(!m_pfontopus->initialize_instance())
@@ -1968,7 +1968,7 @@ exit_application:
       try
       {
 
-         m_iReturnCode = ::ca::application::exit_instance();
+         m_iReturnCode = ::ca2::application::exit_instance();
 
       }
       catch(...)
@@ -2020,7 +2020,7 @@ exit_application:
       return m_pservice;
    }
 
-   void application::data_on_after_change(::ca::signal_object * pobj)
+   void application::data_on_after_change(::ca2::signal_object * pobj)
    {
       SCAST_PTR(::database::change_event, pchange, pobj);
       if(pchange->m_key.m_idKey == "ca2")

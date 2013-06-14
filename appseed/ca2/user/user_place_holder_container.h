@@ -13,11 +13,11 @@ namespace user
       spa(place_holder) m_holdera;
 
 
-      place_holder_container(sp(::ca::application) papp);
+      place_holder_container(sp(::ca2::application) papp);
       virtual ~place_holder_container();
 
 
-      void install_message_handling(::ca::message::dispatch * pdispatch);
+      void install_message_handling(::ca2::message::dispatch * pdispatch);
 
 
       virtual bool create(sp(::user::interaction) puiParent, id id);

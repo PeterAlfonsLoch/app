@@ -6,7 +6,7 @@ namespace html
 {
 
    class CLASS_DECL_ca2 style_sheet :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 

@@ -5,8 +5,8 @@ namespace userfs
 {
 
 
-   list::list(sp(::ca::application) papp) :
-      ca(papp),
+   list::list(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::scroll_view(papp),
       m_headerctrl(papp),
       list_interface(papp),
@@ -27,7 +27,7 @@ namespace userfs
    {
    }
 
-   void list::install_message_handling(::ca::message::dispatch * pinterface)
+   void list::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::userfs::list_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &list::_001OnCreate);
@@ -36,7 +36,7 @@ namespace userfs
       IGUI_WIN_MSG_LINK(WM_CANCELMODE, pinterface, this, &list::_001OnCancelMode);
    }
 
-   void list::_001OnCreate(::ca::signal_object * pobj)
+   void list::_001OnCreate(::ca2::signal_object * pobj)
    {
       pobj->previous();
       if(pobj->m_bRet)
@@ -46,7 +46,7 @@ namespace userfs
    }
 
 
-   void list::_001OnTimer(::ca::signal_object * pobj)
+   void list::_001OnTimer(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -106,7 +106,7 @@ namespace userfs
    }
 #endif //DEBUG
 
-   void list::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object * phint)
+   void list::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object * phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -139,10 +139,10 @@ namespace userfs
       }*/
    }
 
-   void list::_001OnLButtonDblClk(::ca::signal_object * pobj)
+   void list::_001OnLButtonDblClk(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
 /*         index iItem;
       list_data * pdata = get_fs_list_data();
       if(_001HitTest_(pmouse->m_pt, iItem))
@@ -153,7 +153,7 @@ namespace userfs
       }*/
    }
 
-   void list::_001OnCancelMode(::ca::signal_object * pobj)
+   void list::_001OnCancelMode(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    // trans   ::user::view::OnCancelMode();

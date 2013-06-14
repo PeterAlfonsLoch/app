@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2001
+ Copyright (ca) 2001
  Author: Konstantin Boukreev
  E-mail: konstantin@mail.primorye.ru
  Created: 25.12.2001 14:47:20
@@ -28,8 +28,8 @@
    { \
     friend class translator; \
    protected: \
-   name (sp(::ca::application) papp, EXCEPTION_POINTERS * ppointers) : \
-      ca(papp), \
+   name (sp(::ca2::application) papp, EXCEPTION_POINTERS * ppointers) : \
+      ca2(papp), \
       ::call_stack(papp), \
       ::base_exception(papp), \
       ::standard_exception(papp, ppointers) \
@@ -82,8 +82,8 @@ public:
 
 
 #ifdef WINDOWS
-   standard_exception(sp(::ca::application) papp, EXCEPTION_POINTERS * ppointers) :
-      ca(papp),
+   standard_exception(sp(::ca2::application) papp, EXCEPTION_POINTERS * ppointers) :
+      ca2(papp),
       ::call_stack(papp),
       ::base_exception(papp),
       m_ppointers(ppointers)
@@ -94,7 +94,7 @@ public:
    }
 
    standard_exception(const standard_exception & se) :
-      ca(((standard_exception &) se).get_app()),
+      ca2(((standard_exception &) se).get_app()),
       ::call_stack(((standard_exception &) se).get_app()),
       ::base_exception(se),
       m_ppointers(se.m_ppointers)
@@ -103,15 +103,15 @@ public:
    }
 
 #else
-   standard_exception(sp(::ca::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
-      ca(papp),
+   standard_exception(sp(::ca2::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+      ca2(papp),
       ::call_stack(papp),
       ::base_exception(papp),
       m_iSignal(iSignal),
       m_siginfo(*psiginfo),
       m_ucontext(*(ucontext_t *)pc) { /*_ASSERTE(psiginfo != 0);*/ }
    standard_exception(const standard_exception& se) :
-      ca(se),
+      ca2(se),
       ::call_stack(se),
       ::base_exception(se),
       m_iSignal(se.m_iSignal),
@@ -148,8 +148,8 @@ namespace exception
       friend class translator;
    protected:
    #if defined(LINUX) || defined(MACOS)
-      standard_access_violation (sp(::ca::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
-         ca(papp),
+      standard_access_violation (sp(::ca2::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
+         ca2(papp),
 #ifdef LINUX
 #ifdef _LP64
          ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
@@ -176,8 +176,8 @@ namespace exception
                  itohex_dup(info->si_addr) + " from " + itohex_dup(caller_address) + "\n\n";*/
 
    #else
-      standard_access_violation (sp(::ca::application) papp, EXCEPTION_POINTERS * ppointers) :
-         ca(papp),
+      standard_access_violation (sp(::ca2::application) papp, EXCEPTION_POINTERS * ppointers) :
+         ca2(papp),
          ::call_stack(papp),
          ::base_exception(papp),
          ::standard_exception(papp, ppointers)
@@ -194,8 +194,8 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_sigfpe (sp(::ca::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
-         ca(papp),
+      standard_sigfpe (sp(::ca2::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+         ca2(papp),
 #ifdef LINUX
 #ifdef _LP64
       ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
@@ -225,8 +225,8 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_no_memory (sp(::ca::application) papp, EXCEPTION_POINTERS * ppointers) :
-         ca(papp),
+      standard_no_memory (sp(::ca2::application) papp, EXCEPTION_POINTERS * ppointers) :
+         ca2(papp),
          ::call_stack(papp),
          ::base_exception(papp),
          ::standard_exception(papp, ppointers)
@@ -291,7 +291,7 @@ private:
 {
    friend class translator;
 protected:
-   standard_sigsegv (sp(::ca::application) papp, siginfo_t * psiginfo, void * pc) : ca(papp), standard_exception(papp, psiginfo, pc) {}
+   standard_sigsegv (sp(::ca2::application) papp, siginfo_t * psiginfo, void * pc) : ca2(papp), standard_exception(papp, psiginfo, pc) {}
 public:
    //bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
    //uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -301,7 +301,7 @@ public:
 {
    friend class translator;
 protected:
-   standard_sigfpe (sp(::ca::application) papp, siginfo_t * psiginfo, void * pc) : ca(papp), standard_exception(papp, psiginfo, pc) {}
+   standard_sigfpe (sp(::ca2::application) papp, siginfo_t * psiginfo, void * pc) : ca2(papp), standard_exception(papp, psiginfo, pc) {}
 public:
 //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
   // uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }

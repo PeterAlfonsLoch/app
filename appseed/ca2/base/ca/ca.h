@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "app/appseed/c/c/c.h"
+#include "app/appseed/ca/ca/ca.h"
 
 
 #include "nodeapp/operational_system/operational_system.h"
@@ -100,9 +100,9 @@ namespace plane
 
 
 
-// former ca
+// former ca2
 
-// Since ca API itself is built with wchar_t as a native type, it will not have
+// Since ca2 API itself is built with wchar_t as a native type, it will not have
 // the correct type info for types built with wchar_t typedef'd to uint32_t
 // int16_t.  Make sure that the ::fontopus::user's cast builds this type info in this case.
 #ifndef _NATIVE_WCHAR_T_DEFINED
@@ -111,7 +111,7 @@ namespace plane
 
 
 #ifdef __DBGMEM_H__
-#error <atldbgmem.h> cannot be used in ca API projects. See __enable_memory_tracking
+#error <atldbgmem.h> cannot be used in ca2 API projects. See __enable_memory_tracking
 #endif
 
 #if defined(_MFC_DLL_BLD) && defined(DEBUG)
@@ -131,7 +131,7 @@ namespace plane
 
 /////////////////////////////////////////////////////////
 // Forward declations
-namespace ca
+namespace ca2
 {
    class object;
 }
@@ -140,7 +140,7 @@ class simple_exception;
 class memory_exception;
 class not_supported_exception;
 class invalid_argument_exception;
-namespace ca
+namespace ca2
 {
    class file_exception;
    class file;
@@ -150,7 +150,7 @@ namespace primitive
 {
    class memory_file;
 }
-namespace ca
+namespace ca2
 {
    struct file_status;
 }
@@ -192,7 +192,7 @@ class dump_context;
 #pragma warning( push )
 #endif
 
-// warnings caerated with common ca API/Windows code
+// warnings caerated with common ca2 API/Windows code
 #pragma warning(disable: 4134)  // message map member fxn casts
 #pragma warning(disable: 4201)  // nameless unions are part of C++
 #pragma warning(disable: 4320)  // structs with uuid handled as interfaces
@@ -298,8 +298,8 @@ class dump_context;
 #define ASSERT_KINDOF(class_name, object) ASSERT(base < class_name > ::bases(object))
 #define DYNAMIC_DOWNCAST(class_name, object) (dynamic_cast < class_name * > (object))
 #define STATIC_DOWNCAST(class_name, object) (dynamic_cast<class_name*>(object))
-#define STATIC_DOWNCAST_T(class_name, T1, object) (static_cast<class_name<T1>*>(::ca::StaticDownCast(RUNTIME_CLASS_T(class_name, T1), object)))
-#define STATIC_DOWNCAST_T2(class_name, T1, T2, object) (static_cast<class_name<T1, T2>*>(::ca::StaticDownCast(RUNTIME_CLASS_T2(class_name, T1, T2), object)))
+#define STATIC_DOWNCAST_T(class_name, T1, object) (static_cast<class_name<T1>*>(::ca2::StaticDownCast(RUNTIME_CLASS_T(class_name, T1), object)))
+#define STATIC_DOWNCAST_T2(class_name, T1, T2, object) (static_cast<class_name<T1, T2>*>(::ca2::StaticDownCast(RUNTIME_CLASS_T2(class_name, T1, T2), object)))
 
 // optional bit for schema number that enables object versioning
 #define VERSIONABLE_SCHEMA  (0x80000000)
@@ -312,7 +312,7 @@ class dump_context;
 
 
 
-#include "ca.inl"
+#include "ca2.inl"
 
 
 #undef __DATA
@@ -518,17 +518,17 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 /////////////////////////////////////////////////////////////////////////////
 // Classes declared in this file
 
-//::ca::object
+//::ca2::object
    //base_exception
       //simple_exception
          class resource_exception;// Win resource failure exception
          class user_exception;    // Message Box alert and stop operation
 
 
-      namespace ca
+      namespace ca2
       {
          class graphics;                   // a Display Context / HDC wrapper
-         class graphics_object;            // ::ca::graphics_sp drawing tool
+         class graphics_object;            // ::ca2::graphics_sp drawing tool
          class bitmap;           // a bitmap
          class palette;          // a palette
          class rgn;
@@ -536,8 +536,8 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          class pen;
          class brush;
          class window;            // a window
-         class client_graphics;         // ::ca::graphics_sp for client of ::ca::window
-         class window_graphics;         // ::ca::graphics_sp for entire ::ca::window
+         class client_graphics;         // ::ca2::graphics_sp for client of ::ca2::window
+         class window_graphics;         // ::ca2::graphics_sp for entire ::ca2::window
          class paint_graphics;          // embeddable BeginPaint struct helper
       }
 
@@ -573,11 +573,11 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          // views on a document
             class CScrollView;  // a scrolling ::user::view
 
-            namespace ca
+            namespace ca2
             {
                class thread;           // thread base class
                class application;          // application base class
-            } // namespace ca
+            } // namespace ca2
 
 //      class document_template;         // template for document creation
          class single_document_template;// SDI support
@@ -620,10 +620,10 @@ CLASS_DECL_ca2 CArchive& operator>>(CArchive& ar, RECT& rect);
 
 
 
-CLASS_DECL_ca2 void __get_gray_bitmap(sp(::ca::application) papp, const ::ca::bitmap &rSrc, ::ca::bitmap *pDest, COLORREF crBackground);
-CLASS_DECL_ca2 void __draw_gray_bitmap(sp(::ca::application) papp, ::ca::graphics * pgraphics, int32_t x, int32_t y, const ::ca::bitmap &rSrc, COLORREF crBackground);
-CLASS_DECL_ca2 void __get_dithered_bitmap(sp(::ca::application) papp, const ::ca::bitmap &rSrc, ::ca::bitmap *pDest, COLORREF cr1, COLORREF cr2);
-CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(::ca::application) papp, ::ca::graphics * pgraphics, int32_t x, int32_t y, const ::ca::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca2 void __get_gray_bitmap(sp(::ca2::application) papp, const ::ca2::bitmap &rSrc, ::ca2::bitmap *pDest, COLORREF crBackground);
+CLASS_DECL_ca2 void __draw_gray_bitmap(sp(::ca2::application) papp, ::ca2::graphics * pgraphics, int32_t x, int32_t y, const ::ca2::bitmap &rSrc, COLORREF crBackground);
+CLASS_DECL_ca2 void __get_dithered_bitmap(sp(::ca2::application) papp, const ::ca2::bitmap &rSrc, ::ca2::bitmap *pDest, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(::ca2::application) papp, ::ca2::graphics * pgraphics, int32_t x, int32_t y, const ::ca2::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
 
 
 #include "ca_graphic_classes.h"
@@ -648,13 +648,13 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 
 
-CLASS_DECL_ca2 ::ca::thread* __begin_thread(sp(::ca::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
-/* xxx CLASS_DECL_ca2 thread* __begin_thread(sp(::ca::type_info) pThreadClass,
+CLASS_DECL_ca2 ::ca2::thread* __begin_thread(sp(::ca2::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca2::e_thread_priority epriority = ::ca2::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+/* xxx CLASS_DECL_ca2 thread* __begin_thread(sp(::ca2::type_info) pThreadClass,
    int32_t nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
    uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
 template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread (sp(::ca::application) papp, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
+THREAD_TYPE * __begin_thread (sp(::ca2::application) papp, ::ca2::e_thread_priority epriority = ::ca2::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
 {
    THREAD_TYPE * pthread = new THREAD_TYPE(papp);
    pthread->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
@@ -670,7 +670,7 @@ CLASS_DECL_ca2 void __post_quit_message(int32_t nExitCode);
 class CRecentFileList;          // forward reference (see afxadv.h)
 
 
-/*class CLASS_DECL_ca2 CCommandLineInfo : public ::ca::object
+/*class CLASS_DECL_ca2 CCommandLineInfo : public ::ca2::object
 {
 public:
    // Sets default values
@@ -823,7 +823,7 @@ namespace user
 #include "ca_section_container.h"
 
 
-// former ca
+// former ca2
 
 #include "ca_os_history.h"
 
@@ -831,7 +831,7 @@ namespace user
 namespace windows
 {
    template < class APP >
-   inline ::ca::application & cast(APP * papp)
+   inline ::ca2::application & cast(APP * papp)
    {
       return *((papp));
    }
@@ -863,7 +863,7 @@ extern CLASS_DECL_ca2 UINT g_uiTraceFlags;
 #endif // DEBUG
 
 #ifdef DEBUG
-#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_ca2 ::ca::trace::category name;
+#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_ca2 ::ca2::trace::category name;
 #else
 #define DECLARE___TRACE_CATEGORY( name ) const uint_ptr name = 0;
 #endif
@@ -872,8 +872,8 @@ extern CLASS_DECL_ca2 UINT g_uiTraceFlags;
 //////////////////////////////////////////////////////////////////////////////
 // MessageBox helpers
 
-//CLASS_DECL_ca2 void ::ca::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
-//CLASS_DECL_ca2 void ::ca::FormatString2(string & rString, UINT nIDS,
+//CLASS_DECL_ca2 void ::ca2::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
+//CLASS_DECL_ca2 void ::ca2::FormatString2(string & rString, UINT nIDS,
 //            const char * lpsz1, const char * lpsz2);
 /*CLASS_DECL_ca2 int32_t System.simple_message_box(const char * lpszText, UINT nType = MB_OK,
             UINT nIDHelp = 0);*/
@@ -883,7 +883,7 @@ extern CLASS_DECL_ca2 UINT g_uiTraceFlags;
 // Implementation string helpers
 //CLASS_DECL_ca2 void __format_strings(string & rString, UINT nIDS,
 //            const char * const* rglpsz, int32_t nString);
-namespace ca
+namespace ca2
 {
 
    CLASS_DECL_ca2 void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString);
@@ -952,7 +952,7 @@ namespace primitive
 } // namespace primitive
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -960,7 +960,7 @@ namespace ca
    struct file_status;
 
 
-} // namespace ca
+} // namespace ca2
 
 
 #include "ca_file.h"
@@ -1002,11 +1002,11 @@ struct __SIZEPARENTPARAMS;    // control bar implementationproperca_property.h
 
 // Classes declared in this file
 
-   //::ca::graphics_sp
+   //::ca2::graphics_sp
       class preview_dc;               // Virtual DC for print preview
 
    //command_target
-      //::ca::window
+      //::ca2::window
          //::user::view
             class CPreviewView;     // Print preview ::user::view
       //frame_window
@@ -1027,7 +1027,7 @@ class CDockContext;                     // for dragging control bars
 // F000 -> FFFF : standard windows commands and other things etc
    // E000 -> E7FF standard commands
    // E800 -> E8FF control bars (first 32 are special)
-   // E900 -> EEFF standard ::ca::window controls/components
+   // E900 -> EEFF standard ::ca2::window controls/components
    // EF00 -> EFFF SC_ menu help
    // F000 -> FFFF standard strings
 #define ID_COMMAND_FROM_SC(sc)  (((sc - 0xF000) >> 4) + __IDS_SCFIRST)
@@ -1051,7 +1051,7 @@ class CDockContext;                     // for dragging control bars
 
 /////////////////////////////////////////////////////////////////////////////
 // Internal _ Windows messages (see Technical note TN024 for more details)
-// (0x0360 - 0x037F are reserved for ca API)
+// (0x0360 - 0x037F are reserved for ca2 API)
 
 #define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
@@ -1063,10 +1063,10 @@ class CDockContext;                     // for dragging control bars
 #define WM_HELPHITTEST      0x0366  // lResult = dwContext,
                            // lParam = MAKELONG(x,y)
 #define WM_EXITHELPMODE     0x0367  // (params unused)
-#define WM_RECALCPARENT     0x0368  // force layout on frame ::ca::window
+#define WM_RECALCPARENT     0x0368  // force layout on frame ::ca2::window
                            //  (only for inplace frame windows)
 #define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
-                           // wParam = ID of child ::ca::window
+                           // wParam = ID of child ::ca2::window
                            // lParam = lpRectNew (new position/size)
 #define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
 #define WM_QUERYCENTERWND   0x036B  // lParam = oswindow to use as centering parent
@@ -1084,13 +1084,13 @@ class CDockContext;                     // for dragging control bars
 #define WM_RESERVED_036F   0x036F  // was WM_QUERY3DCONTROLS (now not used)
 
 // Note: Messages 0x0370, 0x0371, and 0x372 were incorrectly used by
-//  some versions of Windows.  To remain compatible, ca API does not
+//  some versions of Windows.  To remain compatible, ca2 API does not
 //  use messages in that range.
 #define WM_RESERVED_0370    0x0370
 #define WM_RESERVED_0371    0x0371
 #define WM_RESERVED_0372    0x0372
 
-// WM_SOCKET_NOTIFY and WM_SOCKET_DEAD are used internally by ca API's
+// WM_SOCKET_NOTIFY and WM_SOCKET_DEAD are used internally by ca2 API's
 // Windows sockets implementation.  For more information, see sockcore.cpp
 #define WM_SOCKET_NOTIFY    0x0373
 #define WM_SOCKET_DEAD      0x0374
@@ -1099,7 +1099,7 @@ class CDockContext;                     // for dragging control bars
 #define WM_POPMESSAGESTRING 0x0375
 
 // WM_HELPPROMPTADDR is used internally to get the address of
-//   m_dwPromptContext from the associated frame ::ca::window. This is used
+//   m_dwPromptContext from the associated frame ::ca2::window. This is used
 //   during message boxes to setup for F1 help while that msg box is
 //   displayed. lResult is the address of m_dwPromptContext.
 #define WM_HELPPROMPTADDR   0x0376
@@ -1116,12 +1116,12 @@ class CDockContext;                     // for dragging control bars
 // Marker used while rearranging the message queue
 #define WM_QUEUE_SENTINEL   0x0379
 
-// Note: Messages 0x037C - 0x37E reserved for future ca API use.
+// Note: Messages 0x037C - 0x37E reserved for future ca2 API use.
 #define WM_RESERVED_037C    0x037C
 #define WM_RESERVED_037D    0x037D
 #define WM_RESERVED_037E    0x037E
 
-// WM_FORWARDMSG - used by ca to forward a message to another ::ca::window for processing
+// WM_FORWARDMSG - used by ca2 to forward a message to another ::ca2::window for processing
 //   WPARAM - uint32_t dwUserData - defined by ::fontopus::user
 //   LPARAM - LPMESSAGE pMsg - a pointer to the MESSAGE structure
 //   return value - 0 if the message was not processed, nonzero if it was
@@ -1129,8 +1129,8 @@ class CDockContext;                     // for dragging control bars
 
 // like ON_MESSAGE but no return value
 #define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, ::ca::Sig_vv, \
-      (__PMSG)(__PMSGW)(void (__MSG_CALL ::ca::window::*)())&memberFxn },
+   { message, 0, 0, 0, ::ca2::Sig_vv, \
+      (__PMSG)(__PMSGW)(void (__MSG_CALL ::ca2::window::*)())&memberFxn },
 
 #if defined(LINUX) || defined(MACOS) || defined(METROWIN)
 
@@ -1197,9 +1197,9 @@ class COleControlLock;
 
 // Functions declared in this file
 
-// ::ca::BSTR2ABTSR
-// ::ca::TaskStringA2W
-// ::ca::TaskStringW2A
+// ::ca2::BSTR2ABTSR
+// ::ca2::TaskStringA2W
+// ::ca2::TaskStringW2A
 
 #endif
 
@@ -1305,31 +1305,31 @@ public:
 
    STDMETHOD_(ULONG, AddRef)();
    STDMETHOD_(ULONG, Release)();
-   ::ca::HRes QueryInterface)(REFIID, LPVOID*);
+   ::ca2::HRes QueryInterface)(REFIID, LPVOID*);
 
-   ::ca::HRes read)(void *, ULONG, ULONG*);
-   ::ca::HRes write)(const void *, ::primitive::memory_size cb, ::primitive::memory_size*);
-   ::ca::HRes seek)(LARGE_INTEGER, uint32_t, ULARGE_INTEGER*);
-   ::ca::HRes set_size)(ULARGE_INTEGER);
-   ::ca::HRes CopyTo)(LPSTREAM, ULARGE_INTEGER, ULARGE_INTEGER*,
+   ::ca2::HRes read)(void *, ULONG, ULONG*);
+   ::ca2::HRes write)(const void *, ::primitive::memory_size cb, ::primitive::memory_size*);
+   ::ca2::HRes seek)(LARGE_INTEGER, uint32_t, ULARGE_INTEGER*);
+   ::ca2::HRes set_size)(ULARGE_INTEGER);
+   ::ca2::HRes CopyTo)(LPSTREAM, ULARGE_INTEGER, ULARGE_INTEGER*,
       ULARGE_INTEGER*);
-   ::ca::HRes Commit)(uint32_t);
-   ::ca::HRes Revert)();
-   ::ca::HRes LockRegion)(ULARGE_INTEGER, ULARGE_INTEGER,uint32_t);
-   ::ca::HRes UnlockRegion)(ULARGE_INTEGER, ULARGE_INTEGER, uint32_t);
-   ::ca::HRes Stat)(STATSTG*, uint32_t);
-   ::ca::HRes Clone)(LPSTREAM*);
+   ::ca2::HRes Commit)(uint32_t);
+   ::ca2::HRes Revert)();
+   ::ca2::HRes LockRegion)(ULARGE_INTEGER, ULARGE_INTEGER,uint32_t);
+   ::ca2::HRes UnlockRegion)(ULARGE_INTEGER, ULARGE_INTEGER, uint32_t);
+   ::ca2::HRes Stat)(STATSTG*, uint32_t);
+   ::ca2::HRes Clone)(LPSTREAM*);
 };
 */
 /////////////////////////////////////////////////////////////////////////////
 // Global UNICODE<>ANSI translation helpers
 
-CLASS_DECL_ca2 void ::ca::BSTR2String(string* pStr, BSTR bstr);
+CLASS_DECL_ca2 void ::ca2::BSTR2String(string* pStr, BSTR bstr);
 
 #if !defined(_UNICODE)
-CLASS_DECL_ca2 BSTR ::ca::BSTR2ABSTR(BSTR bstrW);
-CLASS_DECL_ca2 wchar_t * ::ca::TaskStringA2W(const char * lpa);
-CLASS_DECL_ca2 char * ::ca::TaskStringW2A(const wchar_t * lpw);
+CLASS_DECL_ca2 BSTR ::ca2::BSTR2ABSTR(BSTR bstrW);
+CLASS_DECL_ca2 wchar_t * ::ca2::TaskStringA2W(const char * lpa);
+CLASS_DECL_ca2 char * ::ca2::TaskStringW2A(const wchar_t * lpw);
 #endif
 
 #endif // __AFXPRIV2_H__DISP__
@@ -1386,7 +1386,7 @@ CLASS_DECL_ca2 char * ::ca::TaskStringW2A(const wchar_t * lpw);
 
 
 
-// former ca start - former before concatenation of ca + ca + ca + ca
+// former ca2 start - former before concatenation of ca2 + ca2 + ca2 + ca2
 
 #include "ca_debug.h"
 
@@ -1484,8 +1484,8 @@ inline bool is_null(const TYPE & ref)
 #define NULL_REF(class) (*((class *) NULL))
 
 
-CLASS_DECL_ca2 ::ca::byte_input_stream &  operator >>(::ca::byte_input_stream & istream, string & string);
-CLASS_DECL_ca2 ::ca::byte_output_stream &  operator <<(::ca::byte_output_stream & ostream, const string & string);
+CLASS_DECL_ca2 ::ca2::byte_input_stream &  operator >>(::ca2::byte_input_stream & istream, string & string);
+CLASS_DECL_ca2 ::ca2::byte_output_stream &  operator <<(::ca2::byte_output_stream & ostream, const string & string);
 
 #ifdef WIN32
 #include "ca_file_association.h"
@@ -1521,17 +1521,17 @@ class document_interface;
 class main_frame;
 
 
-typedef sp(::ca::application) (* LP_GET_NEW_APP) ();
+typedef sp(::ca2::application) (* LP_GET_NEW_APP) ();
 
 
-namespace ca
+namespace ca2
 {
 
 
    class command_line;
 
 
-} // namespace ca
+} // namespace ca2
 
 namespace visual
 {
@@ -1577,7 +1577,7 @@ typedef ::visual::icon * HICON;
 
 
 class file_system;
-typedef ::c::smart_pointer < file_system > file_system_sp;
+typedef ::ca::smart_pointer < file_system > file_system_sp;
 class Ex1FactoryImpl;
 
 
@@ -1612,14 +1612,14 @@ namespace lemon
 
 
 
-namespace ca
+namespace ca2
 {
 
 
    class application;
 
 
-} // namespace ca
+} // namespace ca2
 
 
 #include "base/crypto/crypto.h"
@@ -1671,7 +1671,7 @@ namespace ca
 #include "compress/compress.h"
 #include "programming/javascript/javascript.h"
 
-// former ca - changed to ca on 2013-02-21
+// former ca2 - changed to ca2 on 2013-02-21
 ////////////////////////////////////////////////////////////////
 // ca2api
 // Layer level 5

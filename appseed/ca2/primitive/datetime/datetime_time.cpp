@@ -143,11 +143,11 @@ namespace datetime
    {
       ASSERT( pFormat != NULL );
       if( pFormat == NULL )
-         throw hresult_exception(::ca::get_thread_app(), E_INVALIDARG );
+         throw hresult_exception(::ca2::get_thread_app(), E_INVALIDARG );
 
       string strBuffer;
-      // string hmsFormats [_CTIMESPANFORMATS] = {"%c","%02ld","%d"};
-      //   string dayFormats [_CTIMESPANFORMATS] = {"%c","%I64d","%I64d"};
+      // string hmsFormats [_CTIMESPANFORMATS] = {"%ca","%02ld","%d"};
+      //   string dayFormats [_CTIMESPANFORMATS] = {"%ca","%I64d","%I64d"};
       strBuffer.Preallocate(maxTimeBufferSize);
       char ch;
 
@@ -290,7 +290,7 @@ namespace datetime
       ASSUME(m_time != -1);   */    // indicates an illegal input time
       if(m_time == -1)
       {
-         throw invalid_argument_exception(::ca::get_thread_app());
+         throw invalid_argument_exception(::ca2::get_thread_app());
       }
    }
 
@@ -320,7 +320,7 @@ namespace datetime
       ASSUME(m_time != -1);       // indicates an illegal input time
 
       if(m_time == -1)
-         throw invalid_argument_exception(::ca::get_thread_app());
+         throw invalid_argument_exception(::ca2::get_thread_app());
 
    }
 
@@ -349,7 +349,7 @@ namespace datetime
       if (!FileTimeToLocalFileTime(&fileTime, &localTime))
       {
          m_time = 0;
-         throw invalid_argument_exception(::ca::get_thread_app());
+         throw invalid_argument_exception(::ca2::get_thread_app());
          return;
       }
 
@@ -358,7 +358,7 @@ namespace datetime
       if (!FileTimeToSystemTime(&localTime, &sysTime))
       {
          m_time = 0;
-         throw invalid_argument_exception(::ca::get_thread_app());
+         throw invalid_argument_exception(::ca2::get_thread_app());
          return;
       }
 
@@ -405,7 +405,7 @@ namespace datetime
    ::datetime::time & time::operator+=( date_span span )
    {
       UNREFERENCED_PARAMETER(span);
-      throw not_implemented(::ca::get_thread_app());
+      throw not_implemented(::ca2::get_thread_app());
 
       return( *this );
    }
@@ -413,7 +413,7 @@ namespace datetime
    ::datetime::time& time::operator-=( date_span span )
    {
       UNREFERENCED_PARAMETER(span);
-      throw not_implemented(::ca::get_thread_app());
+      throw not_implemented(::ca2::get_thread_app());
 
       return( *this );
    }
@@ -447,13 +447,13 @@ namespace datetime
    ::datetime::time time::operator-( date_span span ) const
    {
       UNREFERENCED_PARAMETER(span);
-      throw not_implemented(::ca::get_thread_app());
+      throw not_implemented(::ca2::get_thread_app());
    }
 
    ::datetime::time time::operator+( date_span span ) const
    {
       UNREFERENCED_PARAMETER(span);
-      throw not_implemented(::ca::get_thread_app());
+      throw not_implemented(::ca2::get_thread_app());
    }
 
    bool time::operator==( time time ) const throw()

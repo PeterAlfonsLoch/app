@@ -30,13 +30,13 @@ string chunk_split (const string & body, int32_t chunklen, const string & end)
 
 }
 
-typedef string ( *SALT)(sp(::ca::application), const char * , stringa &);
+typedef string ( *SALT)(sp(::ca2::application), const char * , stringa &);
 
 namespace fontopus
 {
 
-   validate::validate(sp(::ca::application) papp, const char * pszForm, bool bAuth, bool bInteractive) :
-      ca(papp),
+   validate::validate(sp(::ca2::application) papp, const char * pszForm, bool bAuth, bool bInteractive) :
+      ca2(papp),
       m_loginthread(papp),
       m_netcfg(papp)
    {
@@ -44,7 +44,7 @@ namespace fontopus
       m_bAuth          = bAuth;
       m_strForm               = pszForm;
       m_bDeferRegistration    = false;
-      sp(::ca::application) pgenapp = (papp);
+      sp(::ca2::application) pgenapp = (papp);
       if(pgenapp != NULL)
       {
          try
@@ -97,7 +97,7 @@ namespace fontopus
          || command_thread()->property("app") == "app-core/netnodecfg")
       {
          m_puser = Application.m_pfontopus->allocate_user();
-         m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command()->m_varTopicQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + ::ca2::str::has_char(Application.command()->m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = system_user_1;
          return m_puser;
       }
@@ -106,7 +106,7 @@ namespace fontopus
          || command_thread()->has_property("uninstall"))
       {
          m_puser = Application.m_pfontopus->allocate_user();
-         m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command()->m_varTopicQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + ::ca2::str::has_char(Application.command()->m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = system_user_1;
          return m_puser;
       }
@@ -119,7 +119,7 @@ namespace fontopus
          || command_thread()->property("app") == "winservice_filesystemsize")
       {
          m_puser = Application.m_pfontopus->allocate_user();
-         m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command()->m_varTopicQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + ::ca2::str::has_char(Application.command()->m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = system_user_2;
          return m_puser;
       }
@@ -137,9 +137,9 @@ namespace fontopus
       straRequestingServer.add("asia-account.ca2.cc");
       if(strHost.is_empty())
       {
-         if(::ca::get_thread() != NULL && ::ca::get_thread()->m_strWorkUrl.has_char())
+         if(::ca2::get_thread() != NULL && ::ca2::get_thread()->m_strWorkUrl.has_char())
          {
-            strHost = ::ca::get_thread()->m_strWorkUrl;
+            strHost = ::ca2::get_thread()->m_strWorkUrl;
          }
          else
          {
@@ -226,9 +226,9 @@ namespace fontopus
 
    /*void validate::ensure_main_document()
    {
-      sp(::ca::create_context) createcontext(allocer());
+      sp(::ca2::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
-      createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca < ::user::interaction > ();
+      createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca2 < ::user::interaction > ();
       createcontext->m_bOuterPopupAlertLike = true;
    }*/
 
@@ -314,9 +314,9 @@ namespace fontopus
 
       strAuthUrl = "https://" + strApiHost + "/account/auth";
 
-      ::ca::property_set post;
-      ::ca::property_set headers;
-      ::ca::property_set set;
+      ::ca2::property_set post;
+      ::ca2::property_set headers;
+      ::ca2::property_set set;
 
       string strAuth;
       post["entered_license"] = m_strLicense;
@@ -389,8 +389,8 @@ namespace fontopus
 
 
 
-   login_thread::login_thread(sp(::ca::application) papp) :
-      ca(papp),
+   login_thread::login_thread(sp(::ca2::application) papp) :
+      ca2(papp),
       thread(papp),
       simple_thread(papp)
    {
@@ -434,9 +434,9 @@ namespace fontopus
    bool validate::check_ca2_hash()
    {
       string strUrl("https://api.ca2.cc/account/check_hash");
-      ::ca::property_set post;
-      ::ca::property_set headers;
-      ::ca::property_set set;
+      ::ca2::property_set post;
+      ::ca2::property_set headers;
+      ::ca2::property_set set;
       string strResponse;
       stringa straHash;
       stringa straSource;
@@ -492,7 +492,7 @@ namespace fontopus
 
    int32_t login_thread::run()
    {
-      ::ca::http::e_status estatus;
+      ::ca2::http::e_status estatus;
       string strResponse = Login(&estatus);
       e_result iAuth = result_fail;
       xml::document doc(get_app());
@@ -573,7 +573,7 @@ namespace fontopus
 
          delete m_puser;
 
-         if(estatus == ::ca::http::status_connection_timed_out)
+         if(estatus == ::ca2::http::status_connection_timed_out)
          {
 
             iAuth = result_time_out;
@@ -593,7 +593,7 @@ namespace fontopus
       return TRUE;
    }
 
-   string login_thread::Login(::ca::http::e_status * pestatus)
+   string login_thread::Login(::ca2::http::e_status * pestatus)
    {
       if(m_straRequestingServer.get_count() <= 0)
       {
@@ -628,7 +628,7 @@ namespace fontopus
    }
 
 
-   string login_thread::NetLogin(::ca::http::e_status * pestatus)
+   string login_thread::NetLogin(::ca2::http::e_status * pestatus)
    {
 
       if(System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)
@@ -640,7 +640,7 @@ namespace fontopus
 
       m_strFontopusServer.Empty();
 
-      sp(::ca::application) papp = get_app();
+      sp(::ca2::application) papp = get_app();
 
       url_domain domainFontopus;
 
@@ -687,9 +687,9 @@ namespace fontopus
          {
 
 
-            ::ca::property_set post;
-            ::ca::property_set headers;
-            ::ca::property_set set;
+            ::ca2::property_set post;
+            ::ca2::property_set headers;
+            ::ca2::property_set set;
 
             //Sleep(15 * 1000);
 
@@ -1018,9 +1018,9 @@ namespace fontopus
          string strAuthUrl("https://" + strApiServer + "/account/auth?" + m_pcallback->oprop("defer_registration").get_string()
             +"&ruri=" + System.url().url_encode((m_pcallback->oprop("ruri").get_string())));
 
-         ::ca::property_set post;
-         ::ca::property_set headers;
-         ::ca::property_set set;
+         ::ca2::property_set post;
+         ::ca2::property_set headers;
+         ::ca2::property_set set;
 
          if(m_strPasshash.is_empty())
          {
@@ -1044,7 +1044,7 @@ namespace fontopus
          Application.http().get(strAuthUrl, strAuth, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
          uint32_t dwTimeProfile2 = get_tick_count();
 
-         TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + ::ca::str::from(dwTimeProfile2 - dwTimeProfile1));
+         TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + ::ca2::str::from(dwTimeProfile2 - dwTimeProfile1));
 
       }
 
@@ -1055,7 +1055,7 @@ namespace fontopus
    {
       string strFilename;
       string strResponse;
-      ::ca::property_set set;
+      ::ca2::property_set set;
       for(int32_t i = 0; i < m_httpexecutea.get_size(); i++)
       {
          strFilename = System.file().time_square(get_app());
@@ -1077,7 +1077,7 @@ namespace fontopus
    //void validate::authentication_failed(e_result iAuth, const char * pszResponse)
    //{
    //   UNREFERENCED_PARAMETER(pszResponse);
-   //   ::ca::property_set propertyset;
+   //   ::ca2::property_set propertyset;
    //   string strUsername = m_loginthread.m_strUsername;
    //   m_bLicense = false;
    //   m_puser = NULL;
@@ -1152,7 +1152,7 @@ namespace fontopus
       {
          m_pviewAuth->SetTimer(1984, 484, NULL);
       }
-      ::ca::live_signal livesignal;
+      ::ca2::live_signal livesignal;
       livesignal.keep(get_app());
       m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
       m_ptemplatePane->close_all_documents(FALSE);
@@ -1167,9 +1167,9 @@ namespace fontopus
       if(m_pdoc != NULL)
          return;
 
-      sp(::ca::create_context) createcontext(allocer());
+      sp(::ca2::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
-      createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca < ::user::interaction > ();
+      createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca2 < ::user::interaction > ();
       createcontext->m_bOuterPopupAlertLike = true;
       //Sleep(15 * 1000);
       m_pdoc = m_ptemplatePane->open_document_file(createcontext);
@@ -1335,14 +1335,14 @@ namespace fontopus
 
    }
 
-   void validate::pageMessage(const stringa & straMatter, ::ca::property_set & set)
+   void validate::pageMessage(const stringa & straMatter, ::ca2::property_set & set)
    {
       ensure_main_document();
       m_pdocAuth->get_html_data()->m_propertyset = set;
       page1(straMatter);
       if(m_ptabview->get_wnd()->m_iModalCount <= 0)
       {
-         ::ca::live_signal livesignal;
+         ::ca2::live_signal livesignal;
          livesignal.keep(get_app());
          m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
          m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
@@ -1513,7 +1513,7 @@ namespace fontopus
 
       UNREFERENCED_PARAMETER(pszResponse);
 
-      ::ca::property_set propertyset;
+      ::ca2::property_set propertyset;
 
       string strUsername = m_loginthread.m_strUsername;
 
@@ -1636,7 +1636,7 @@ namespace fontopus
 
    validate::auth * validate::get_auth()
    {
-      sp(::ca::create_context) createcontext(allocer());
+      sp(::ca2::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = true;
       sp(::form_document) pdoc = (m_ptemplatePane->open_document_file(createcontext));
       sp(userex::pane_tab_view) pview = pdoc->get_typed_view < userex::pane_tab_view > ();
@@ -1653,7 +1653,7 @@ namespace fontopus
       pview->add_tab("login", 1);
       pview->set_cur_tab_by_id(1);
       pview->GetParentFrame()->RedrawWindow();
-      ::ca::live_signal livesignal;
+      ::ca2::live_signal livesignal;
       livesignal.keep(get_app());
       pview->GetTopLevelFrame()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
       return m_pauth;

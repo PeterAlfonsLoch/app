@@ -1,5 +1,5 @@
 /*
- * xfm.c
+ * xfm.ca
  *
  * Crypto transform implementation
  *
@@ -620,8 +620,8 @@ cryptoalg_ctx_t null_cryptoalg_ctx = {
 cryptoalg_t null_cryptoalg = &null_cryptoalg_ctx;
 
 int32_t
-cryptoalg_get_id(cryptoalg_t c) {
-  if (c == cryptoalg)
+cryptoalg_get_id(cryptoalg_t ca) {
+  if (ca == cryptoalg)
     return 1;
   return 0;
 }

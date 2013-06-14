@@ -5,11 +5,11 @@ namespace visual
 {
 
 
-   void word_break(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2);
+   void word_break(::ca2::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2);
 
 
-   graphics_extension::graphics_extension(sp(::ca::application) papp) :
-      ca(papp)
+   graphics_extension::graphics_extension(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
    }
@@ -19,20 +19,20 @@ namespace visual
 
    }
 
-   bool graphics_extension::TextOut(::ca::graphics * pdc, int32_t x, int32_t y, const char * lpcsz, strsize iCount)
+   bool graphics_extension::TextOut(::ca2::graphics * pdc, int32_t x, int32_t y, const char * lpcsz, strsize iCount)
    {
       return pdc->TextOut(x, y, string(lpcsz, iCount));
       //return ::TextOutU((HDC)pdc->get_os_data(), x, y, lpcsz, iCount);
    }
 
-   void word_break(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2)
+   void word_break(::ca2::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2)
    {
 
       string str;
 
       rect rectClip(*lpcrect);
 
-      wstring wstr = ::ca::international::utf8_to_unicode(lpcsz);
+      wstring wstr = ::ca2::international::utf8_to_unicode(lpcsz);
 
       const wchar_t * lpwsz = wstr;
 
@@ -54,9 +54,9 @@ namespace visual
 
 #else
 
-            throw todo(::ca::get_thread_app());
+            throw todo(::ca2::get_thread_app());
 
-            // ::GetTextExtentPoint32((HDC)pdc->get_os_data(), ::ca::international::unicode_to_utf8(lpwsz), (int32_t) ::ca::international::unicode_to_utf8(lpwsz).get_lengt(), &sz);
+            // ::GetTextExtentPoint32((HDC)pdc->get_os_data(), ::ca2::international::unicode_to_utf8(lpwsz), (int32_t) ::ca2::international::unicode_to_utf8(lpwsz).get_lengt(), &sz);
 
 #endif
 
@@ -76,24 +76,24 @@ namespace visual
 
          }
 
-         ::ca::international::unicode_to_utf8(str1, lpwsz, i);
+         ::ca2::international::unicode_to_utf8(str1, lpwsz, i);
 
-         ::ca::international::unicode_to_utf8(str2, &lpwsz[i]);
+         ::ca2::international::unicode_to_utf8(str2, &lpwsz[i]);
 
       }
       else
       {
 
-         ::ca::international::unicode_to_utf8(str1, lpwsz, iFind);
+         ::ca2::international::unicode_to_utf8(str1, lpwsz, iFind);
 
-         ::ca::international::unicode_to_utf8(str2, &lpwsz[iFind + 1]);
+         ::ca2::international::unicode_to_utf8(str2, &lpwsz[iFind + 1]);
 
       }
 
    }
 
 
-   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpcsz, array < size > & sizea)
+   void graphics_extension::GetTextExtent(::ca2::graphics *pdc, const char * lpcsz, array < size > & sizea)
    {
       string str(lpcsz);
       strsize iLen = str.get_length();
@@ -113,7 +113,7 @@ namespace visual
 
    }
 
-   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpsz, size & size)
+   void graphics_extension::GetTextExtent(::ca2::graphics *pdc, const char * lpsz, size & size)
    {
       /*string str(lpwsz);
       if(pdc == NULL)
@@ -128,7 +128,7 @@ namespace visual
 
    }
 
-   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpcsz, strsize iCount, size & size)
+   void graphics_extension::GetTextExtent(::ca2::graphics *pdc, const char * lpcsz, strsize iCount, size & size)
    {
       /*::GetTextExtentPoint32U(
          (HDC)pdc->get_os_data(),
@@ -275,7 +275,7 @@ namespace visual
 namespace visual
 {
 
-   int32_t graphics_extension::_DrawText(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca::font * pfontUnderline)
+   int32_t graphics_extension::_DrawText(::ca2::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca2::font * pfontUnderline)
    {
 
 
@@ -283,7 +283,7 @@ namespace visual
 
   //    if(pdc->GetBkMode() == TRANSPARENT
 
-      wstring wstr = ::ca::international::utf8_to_unicode(lpcsz);
+      wstring wstr = ::ca2::international::utf8_to_unicode(lpcsz);
 
       string str(lpcsz);
       string str2;
@@ -406,8 +406,8 @@ namespace visual
          return 0;
 
 
-      ::ca::font_sp fontUnderline;
-//      ::ca::font * pfont;
+      ::ca2::font_sp fontUnderline;
+//      ::ca2::font * pfont;
 
 
       if(iUnderline >= 0)
@@ -430,27 +430,27 @@ namespace visual
       int32_t align = 0;
       if(uiFormat & DT_BOTTOM)
       {
-         align |= ::ca::AlignBottom;
+         align |= ::ca2::AlignBottom;
       }
       else if(uiFormat & DT_VCENTER)
       {
-         align |= ::ca::AlignVerticalCenter;
+         align |= ::ca2::AlignVerticalCenter;
       }
       else
       {
-         align |= ::ca::AlignTop;
+         align |= ::ca2::AlignTop;
       }
       if(uiFormat & DT_RIGHT)
       {
-         align |= ::ca::AlignRight;
+         align |= ::ca2::AlignRight;
       }
       else if(uiFormat & DT_CENTER)
       {
-         align |= ::ca::AlignHorizontalCenter;
+         align |= ::ca2::AlignHorizontalCenter;
       }
       else
       {
-         align |= ::ca::AlignLeft;
+         align |= ::ca2::AlignLeft;
       }
 
       rect.Align(align, lpcrect);
@@ -458,7 +458,7 @@ namespace visual
       if(iUnderline >= 0 && iUnderline < str.get_length())
       {
 
-         ::ca::font * pfontOld;
+         ::ca2::font * pfontOld;
 
          pdc->TextOut(rect.left, rect.top, str, (int32_t) min(iUnderline, str.get_length()));
          /*::TextOutU(
@@ -469,7 +469,7 @@ namespace visual
             min(iUnderline, str.get_length()));*/
          if(iUnderline <= str.get_length())
          {
-            ::ca::font fPrevious = pdc->GetCurrentFont();
+            ::ca2::font fPrevious = pdc->GetCurrentFont();
             pfontOld = pdc->SelectObject(pfontUnderline);
             /*::GetTextExtentPoint32U(
                (HDC)pdc->get_os_data(),

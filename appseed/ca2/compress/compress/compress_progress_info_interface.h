@@ -4,10 +4,10 @@ namespace libcompress
 {
 
    class CLASS_DECL_ca2 progress_info_interface :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
-      virtual ::ca::HRes SetRatioInfo(const uint64_t *inSize, const uint64_t *outSize) = 0;
+      virtual ::ca2::HRes SetRatioInfo(const uint64_t *inSize, const uint64_t *outSize) = 0;
    };
 
 } // namespace libcompress

@@ -4,12 +4,12 @@
 CLASS_DECL_ca2 bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt);
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 crypt :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -17,7 +17,7 @@ namespace ca
       // salt here may be dangerous for the universe
 
 
-      crypt(sp(::ca::application) papp);
+      crypt(sp(::ca2::application) papp);
       virtual ~crypt();
 
 
@@ -49,8 +49,8 @@ namespace ca
       void hmac(void * result, const ::primitive::memory & memMessage, const ::primitive::memory & key);
       void hmac(void * result, const string & memMessage, const string & key);
 
-      bool file_set(var varFile, const char * pszData, const char * pszSalt, sp(::ca::application) papp);
-      bool file_get(var varFile, string & str, const char * pszSalt, sp(::ca::application) papp);
+      bool file_set(var varFile, const char * pszData, const char * pszSalt, sp(::ca2::application) papp);
+      bool file_get(var varFile, string & str, const char * pszSalt, sp(::ca2::application) papp);
 
       // get a new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters
@@ -74,10 +74,10 @@ namespace ca
    };
 
 
-   typedef ::c::smart_pointer < crypt > crypt_sp;
+   typedef ::ca::smart_pointer < crypt > crypt_sp;
 
 
-} //   namespace ca
+} //   namespace ca2
 
 
 

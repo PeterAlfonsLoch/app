@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
    resource::resource()
@@ -11,7 +11,7 @@ namespace ca
    {
    }
 
-   bool resource::ReadResource(::ca::file & file, UINT nID, const char * lpcszType)
+   bool resource::ReadResource(::ca2::file & file, UINT nID, const char * lpcszType)
    {
       UNREFERENCED_PARAMETER(file);
       UNREFERENCED_PARAMETER(nID);
@@ -19,7 +19,7 @@ namespace ca
       return false;
    }
 
-   bool resource::ReadResource(HINSTANCE hinst, ::ca::file & file, UINT nID, const char * lpcszType)
+   bool resource::ReadResource(HINSTANCE hinst, ::ca2::file & file, UINT nID, const char * lpcszType)
    {
       UNREFERENCED_PARAMETER(hinst);
       UNREFERENCED_PARAMETER(file);
@@ -28,4 +28,4 @@ namespace ca
       return false;
    }
 
-} // namespace ca
+} // namespace ca2

@@ -5,8 +5,8 @@ namespace userfs
 {
 
 
-   list_item::list_item(sp(::ca::application) papp) :
-      ca(papp)
+   list_item::list_item(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_iIndex = -1;
       m_iArrange = -1;

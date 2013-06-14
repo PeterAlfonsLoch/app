@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_ca2 calendar_interface :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
 
@@ -24,7 +24,7 @@ public:
    ::datetime::time    m_timeEnd;
 
 
-   calendar_interface(sp(::ca::application) papp);
+   calendar_interface(sp(::ca2::application) papp);
 
 
    virtual void GetRectDay(::datetime::time & time, LPRECT lprect);
@@ -41,7 +41,7 @@ public:
 
    virtual int32_t get_week_of_month(::datetime::time & time);
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ca2::graphics * pdc);
 
    void set_pos(point pt, size sz);
 

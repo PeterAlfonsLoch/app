@@ -5,9 +5,9 @@ namespace filemanager
 {
 
 
-   document::document(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::data_container_base(papp),
+   document::document(sp(::ca2::application) papp) :
+      ca2(papp),
+      ::ca2::data_container_base(papp),
       ::userfs::document(papp)
    {
 
@@ -170,7 +170,7 @@ namespace filemanager
    }
    */
 
-   void document::_001OnUpdateLevelUp(::ca::signal_object * pobj)
+   void document::_001OnUpdateLevelUp(::ca2::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
          if(m_item->m_strPath.is_empty())
@@ -184,14 +184,14 @@ namespace filemanager
          pobj->m_bRet = true;
    }
 
-   void document::_001OnLevelUp(::ca::signal_object * pobj)
+   void document::_001OnLevelUp(::ca2::signal_object * pobj)
    {
       FileManagerOneLevelUp();
       pobj->m_bRet = true;
    }
 
 
-   void document::_001OnUpdateAddLocation(::ca::signal_object * pobj)
+   void document::_001OnUpdateAddLocation(::ca2::signal_object * pobj)
    {
 
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
@@ -203,7 +203,7 @@ namespace filemanager
    }
 
 
-   void document::_001OnAddLocation(::ca::signal_object * pobj)
+   void document::_001OnAddLocation(::ca2::signal_object * pobj)
    {
 
       update_all_views(NULL, ::user::view::hint_add_location, NULL);
@@ -213,7 +213,7 @@ namespace filemanager
    }
 
 
-   void document::_001OnUpdateReplaceText(::ca::signal_object * pobj)
+   void document::_001OnUpdateReplaceText(::ca2::signal_object * pobj)
    {
 
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
@@ -225,13 +225,13 @@ namespace filemanager
    }
 
 
-   void document::_001OnReplaceText(::ca::signal_object * pobj)
+   void document::_001OnReplaceText(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       update_all_views(NULL, 89124593, NULL);
    }
 
-   void document::_001OnUpdateEditPaste(::ca::signal_object * pobj)
+   void document::_001OnUpdateEditPaste(::ca2::signal_object * pobj)
    {
 //      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
 
@@ -239,7 +239,7 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
-   void document::_001OnEditPaste(::ca::signal_object * pobj)
+   void document::_001OnEditPaste(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //System.file().paste(get_filemanager_data()->GetFileManager()->get_item().m_strPath, System.m_strCopy);
@@ -247,13 +247,13 @@ namespace filemanager
       //pobj->m_bRet = true;
    }
 
-   void document::_001OnUpdateFileSaveAs(::ca::signal_object * pobj)
+   void document::_001OnUpdateFileSaveAs(::ca2::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
          pcmdui->m_pcmdui->Enable(TRUE);
    }
 
-   void document::_001OnFileSaveAs(::ca::signal_object * pobj)
+   void document::_001OnFileSaveAs(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 
@@ -283,7 +283,7 @@ namespace filemanager
 
       uh.m_pmanager = this;
 
-      if(data_get("InitialBrowsePath", ::ca::system::idEmpty, str))
+      if(data_get("InitialBrowsePath", ::ca2::system::idEmpty, str))
       {
 
          if(str == "machinefs://")

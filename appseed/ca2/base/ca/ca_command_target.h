@@ -6,12 +6,12 @@
 
 
 class CLASS_DECL_ca2 command_target_interface :
-   virtual public ::ca::signalizable,
-   virtual public ::ca::message::dispatch
+   virtual public ::ca2::signalizable,
+   virtual public ::ca2::message::dispatch
 {
 public:
 
-   class CLASS_DECL_ca2 command_signalid : public ::ca::signalid
+   class CLASS_DECL_ca2 command_signalid : public ::ca2::signalid
    {
    public:
 
@@ -23,7 +23,7 @@ public:
 
       id m_id;
 
-      virtual bool is_equal(::ca::signalid * pidParam)
+      virtual bool is_equal(::ca2::signalid * pidParam)
       {
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
          if(pid == NULL)
@@ -31,7 +31,7 @@ public:
          return pid->m_id == m_id;
       };
 
-      virtual bool matches(::ca::signalid * pidParam)
+      virtual bool matches(::ca2::signalid * pidParam)
       {
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
          if(pid == NULL)
@@ -39,7 +39,7 @@ public:
          return pid->m_id == m_id;
       };
 
-      virtual ::ca::signalid * copy()
+      virtual ::ca2::signalid * copy()
       {
          command_signalid * pid = new command_signalid();
          pid->m_id = m_id;
@@ -47,7 +47,7 @@ public:
       }
    };
 
-   class CLASS_DECL_ca2 command_signalrange : public ::ca::signalid
+   class CLASS_DECL_ca2 command_signalrange : public ::ca2::signalid
    {
    public:
 
@@ -60,7 +60,7 @@ public:
       index m_iStart;
       index m_iEnd;
 
-      virtual bool is_equal(::ca::signalid * pidParam)
+      virtual bool is_equal(::ca2::signalid * pidParam)
       {
          command_signalrange * prange = dynamic_cast < command_signalrange * > (pidParam);
          if(prange == NULL)
@@ -68,7 +68,7 @@ public:
          return prange->m_iStart == m_iStart && prange->m_iEnd == m_iEnd;
       };
 
-      virtual bool matches(::ca::signalid * pidParam)
+      virtual bool matches(::ca2::signalid * pidParam)
       {
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
          if(pid == NULL)
@@ -78,7 +78,7 @@ public:
              && pid->m_id <= m_iEnd;
       };
 
-      virtual ::ca::signalid * copy()
+      virtual ::ca2::signalid * copy()
       {
          command_signalrange * pid = new command_signalrange();
          pid->m_iStart = m_iStart;
@@ -87,58 +87,58 @@ public:
       }
    };
 
-   ::ca::signalid_array m_signalidaCommand;
+   ::ca2::signalid_array m_signalidaCommand;
 
-   ::ca::dispatch  m_dispatchUpdateCmdUi;
-   ::ca::dispatch  m_dispatchCommand;
+   ::ca2::dispatch  m_dispatchUpdateCmdUi;
+   ::ca2::dispatch  m_dispatchCommand;
 
    command_target_interface();
-   command_target_interface(sp(::ca::application) papp);
+   command_target_interface(sp(::ca2::application) papp);
 
 
    template < class T >
-   bool connect_update_cmd_ui(const char * pszId, void (T::*pfn)(::ca::signal_object *))
+   bool connect_update_cmd_ui(const char * pszId, void (T::*pfn)(::ca2::signal_object *))
    {
       return connect_update_cmd_ui(id(pszId), pfn);
    }
    template < class T >
-   bool connect_command(const char * pszId, void (T::*pfn)(::ca::signal_object *))
+   bool connect_command(const char * pszId, void (T::*pfn)(::ca2::signal_object *))
    {
       return connect_command(id(pszId), pfn);
    }
    template < class T >
-   bool connect_update_cmd_ui(id id, void (T::*pfn)(::ca::signal_object *))
+   bool connect_update_cmd_ui(id id, void (T::*pfn)(::ca2::signal_object *))
    {
       command_signalid signalid;
-      ::ca::signalid * pid;
+      ::ca2::signalid * pid;
       signalid.m_id = id;
       pid = m_signalidaCommand.get(&signalid);
       return m_dispatchUpdateCmdUi.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
    }
    template < class T >
-   bool connect_command(id id, void (T::*pfn)(::ca::signal_object *))
+   bool connect_command(id id, void (T::*pfn)(::ca2::signal_object *))
    {
       command_signalid signalid;
-      ::ca::signalid * pid;
+      ::ca2::signalid * pid;
       signalid.m_id = id;
       pid = m_signalidaCommand.get(&signalid);
       return m_dispatchCommand.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
    }
    template < class T >
-   bool connect_update_cmd_range_ui(int32_t iStart, int32_t iEnd, void (T::*pfn)(::ca::signal_object *))
+   bool connect_update_cmd_range_ui(int32_t iStart, int32_t iEnd, void (T::*pfn)(::ca2::signal_object *))
    {
       command_signalrange signalrange;
-      ::ca::signalid * pid;
+      ::ca2::signalid * pid;
       signalrange.m_iStart = iStart;
       signalrange.m_iEnd = iEnd;
       pid = m_signalidaCommand.get(&signalrange);
       return m_dispatchUpdateCmdUi.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
    }
    template < class T >
-   bool connect_command_range(int32_t iStart, int32_t iEnd, void (T::*pfn)(::ca::signal_object *))
+   bool connect_command_range(int32_t iStart, int32_t iEnd, void (T::*pfn)(::ca2::signal_object *))
    {
       command_signalrange signalrange;
-      ::ca::signalid * pid;
+      ::ca2::signalid * pid;
       signalrange.m_iStart = iStart;
       signalrange.m_iEnd = iEnd;
       pid = m_signalidaCommand.get(&signalrange);
@@ -156,18 +156,18 @@ public:
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
    //virtual bool _001HasCommandHandler(const char * pszId);
 
-   void get_command_signal_array(BaseCmdMsg::e_type etype, ::ca::dispatch::signal_ptr_array & signalptra, id id);
+   void get_command_signal_array(BaseCmdMsg::e_type etype, ::ca2::dispatch::signal_ptr_array & signalptra, id id);
 };
 
 
 
 class CLASS_DECL_ca2 command_target :
-   virtual public ::ca::signalizable,
+   virtual public ::ca2::signalizable,
    virtual public command_target_interface
 {
 public:
    command_target();
-   command_target(sp(::ca::application) papp);
+   command_target(sp(::ca2::application) papp);
 
    void CommonConstruct();
 
@@ -223,8 +223,8 @@ public:
    ::user::menu *      m_pSubMenu;      // sub containing menu item
                      // if a popup sub menu - ID is for first in popup
 
-   // if from some other ::ca::window
-   sp(::user::interaction)   m_pOther;         // NULL if a menu or not a ::ca::window
+   // if from some other ::ca2::window
+   sp(::user::interaction)   m_pOther;         // NULL if a menu or not a ::ca2::window
 
    bool                    m_bEnableChanged;
    bool                    m_bContinueRouting;
@@ -236,7 +236,7 @@ public:
                      //  (probably a secondary popup menu)
 
 
-   cmd_ui(sp(::ca::application) papp);
+   cmd_ui(sp(::ca2::application) papp);
 
 
 // Operations to do in ON_UPDATE_COMMAND_UI
@@ -265,7 +265,7 @@ inline void cmd_ui::ContinueRouting()
 class CTestCmdUI : public cmd_ui
 {
 public:
-   CTestCmdUI(sp(::ca::application) papp);
+   CTestCmdUI(sp(::ca2::application) papp);
 
 public: // re-implementations only
    virtual void Enable(bool bOn);
@@ -315,7 +315,7 @@ struct CLASS_DECL_ca2 __EVENTSINKMAP_ENTRY
    UINT nCtrlIDLast;
 };
 
-// DSC Sink state/reason codes passed to ca API ::fontopus::user event handlers
+// DSC Sink state/reason codes passed to ca2 API ::fontopus::user event handlers
 enum DSCSTATE
 {
    dscNoState = 0,
@@ -341,43 +341,43 @@ enum DSCREASON
 };
 
 /////////////////////////////////////////////////////////////////////////////
-// ::ca::window implementation
+// ::ca2::window implementation
 namespace user
 {
    class create_context;      // context for creating user interface things
 }
-namespace ca
+namespace ca2
 {
    class create_context;      // context for creating things
 }
 struct CPrintInfo;          // print preview customization info
 
 /////////////////////////////////////////////////////////////////////////////
-// ::ca::window - a Microsoft Windows application ::ca::window
+// ::ca2::window - a Microsoft Windows application ::ca2::window
 
 
-// ::ca::window::m_nFlags (generic to ::ca::window)
-#define WF_TOOLTIPS         0x0001  // ::ca::window is enabled for tooltips
-#define WF_TEMPHIDE         0x0002  // ::ca::window is temporarily hidden
-#define WF_STAYDISABLED     0x0004  // ::ca::window should stay disabled
+// ::ca2::window::m_nFlags (generic to ::ca2::window)
+#define WF_TOOLTIPS         0x0001  // ::ca2::window is enabled for tooltips
+#define WF_TEMPHIDE         0x0002  // ::ca2::window is temporarily hidden
+#define WF_STAYDISABLED     0x0004  // ::ca2::window should stay disabled
 #define WF_OLECTLCONTAINER  0x0100  // some descendant is an OLE control
-#define WF_TRACKINGTOOLTIPS 0x0400  // ::ca::window is enabled for tracking tooltips
+#define WF_TRACKINGTOOLTIPS 0x0400  // ::ca2::window is enabled for tracking tooltips
 
-// ::ca::window::m_nFlags (specific to frame_window)
+// ::ca2::window::m_nFlags (specific to frame_window)
 #define WF_STAYACTIVE       0x0020  // look active even though not active
 #define WF_NOPOPMSG         0x0040  // ignore WM_POPMESSAGESTRING calls
-#define WF_MODALDISABLE     0x0080  // ::ca::window is disabled
+#define WF_MODALDISABLE     0x0080  // ::ca2::window is disabled
 #define WF_KEEPMINIACTIVE   0x0200  // stay activate even though you are deactivated
 
 
 #define WF_NOWIN32ISDIALOGMSG   0x0800
 #define WF_ISWINFORMSVIEWWND    0x1000
 
-// flags for ::ca::window::RunModalLoop
+// flags for ::ca2::window::RunModalLoop
 #define MLF_NOIDLEMSG       0x0001  // don't send WM_ENTERIDLE messages
 #define MLF_NOKICKIDLE      0x0002  // don't send WM_KICKIDLE messages
-#define MLF_SHOWONIDLE      0x0004  // show ::ca::window if not visible at idle time
+#define MLF_SHOWONIDLE      0x0004  // show ::ca2::window if not visible at idle time
 
-// extra ca API defined TTF_ flags for TOOLINFO::uFlags
+// extra ca2 API defined TTF_ flags for TOOLINFO::uFlags
 #define TTF_NOTBUTTON       0x80000000L // no status help on buttondown
 #define TTF_ALWAYSTIP       0x40000000L // always show the tip even if not active

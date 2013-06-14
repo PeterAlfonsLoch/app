@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -115,7 +115,7 @@ namespace ca
       if(m_spwriter.is_set())
       {
          //m_spwriter->close();
-         ::c::release(m_spwriter.m_p);
+         ::ca::release(m_spwriter.m_p);
       }
    }
 
@@ -131,7 +131,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

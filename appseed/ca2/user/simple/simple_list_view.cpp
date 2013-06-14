@@ -1,7 +1,7 @@
 #include "framework.h"
 
-simple_list_view::simple_list_view(sp(::ca::application) papp) :
-   ca(papp),
+simple_list_view::simple_list_view(sp(::ca2::application) papp) :
+   ca2(papp),
    
    ::user::scroll_view(papp),
    ::user::list(papp),
@@ -17,7 +17,7 @@ simple_list_view::~simple_list_view()
 {
 }
 
-void simple_list_view::install_message_handling(::ca::message::dispatch * pinterface)
+void simple_list_view::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::view::install_message_handling(pinterface);
    ::user::list::install_message_handling(pinterface);
@@ -28,7 +28,7 @@ void simple_list_view::install_message_handling(::ca::message::dispatch * pinter
 /////////////////////////////////////////////////////////////////////////////
 // simple_list_view drawing
 
-void simple_list_view::OnDraw(::ca::graphics * pgraphics)
+void simple_list_view::OnDraw(::ca2::graphics * pgraphics)
 {
    UNREFERENCED_PARAMETER(pgraphics);
    ASSERT(FALSE);

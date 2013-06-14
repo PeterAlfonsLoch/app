@@ -3,8 +3,8 @@
 namespace visual
 {
 
-   cursor::cursor(sp(::ca::application) papp) :
-      ca(papp),
+   cursor::cursor(sp(::ca2::application) papp) :
+      ca2(papp),
       m_dib(allocer()),
       m_dibWork(allocer())
    {
@@ -13,7 +13,7 @@ namespace visual
    bool cursor::load_from_file(const char * psz)
    {
       string str(psz);
-      if(!::ca::str::ends_eat_ci(str, ".png"))
+      if(!::ca2::str::ends_eat_ci(str, ".png"))
          return false;
       if(!m_dib.load_from_file(psz))
          return false;
@@ -33,12 +33,12 @@ namespace visual
       return load_from_file(Application.dir().matter(pszMatter));
    }
 
-   bool cursor::to(::ca::graphics * pgraphics, int32_t x, int32_t y)
+   bool cursor::to(::ca2::graphics * pgraphics, int32_t x, int32_t y)
    {
       if(&System.visual().imaging() == NULL)
          return false;
 
-      pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::ca2::alpha_mode_blend);
 
       return System.visual().imaging().color_blend(
          pgraphics,
@@ -50,7 +50,7 @@ namespace visual
          m_dibWork2); 
    }
 
-   bool cursor::to(::ca::graphics * pgraphics, point pt)
+   bool cursor::to(::ca2::graphics * pgraphics, point pt)
    {
       return to(pgraphics, pt.x, pt.y); 
    }

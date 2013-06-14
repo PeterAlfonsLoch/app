@@ -5,7 +5,7 @@ namespace simpledb
 {
 
    class CLASS_DECL_ca2 server :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -13,7 +13,7 @@ namespace simpledb
       base *     m_pbase;
 
 
-      server(sp(::ca::application) papp);
+      server(sp(::ca2::application) papp);
       virtual ~server();
 
       

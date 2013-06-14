@@ -1,10 +1,10 @@
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
-   savings::savings(sp(::ca::application) papp) :
-      ca(papp)
+   savings::savings(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
    }
@@ -59,4 +59,4 @@ namespace ca
       return m_eresourceflagsWarning.is_signalized(eresource);
    }
 
-} // namespace ca
+} // namespace ca2

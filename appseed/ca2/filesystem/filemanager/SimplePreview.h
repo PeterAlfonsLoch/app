@@ -9,11 +9,11 @@ namespace filemanager
       virtual public ::filemanager::SimplePreviewInterface
    {
    public:
-      SimplePreview(sp(::ca::application) papp);
+      SimplePreview(sp(::ca2::application) papp);
       virtual ~SimplePreview();
 
-      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
    };
 
 

@@ -5,8 +5,8 @@ namespace mail
 {
 
 
-   pop3::pop3(sp(::ca::application) papp) :
-      ca(papp),
+   pop3::pop3(sp(::ca2::application) papp) :
+      ca2(papp),
       m_handler(papp),
       m_evFinish(papp)
    {

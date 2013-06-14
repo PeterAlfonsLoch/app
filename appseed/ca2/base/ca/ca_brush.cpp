@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
 
@@ -32,7 +32,7 @@ namespace ca
       UNREFERENCED_PARAMETER(crColor);
       throw interface_only_exception(get_app());
    }
-   void brush::construct(::ca::bitmap* pBitmap)
+   void brush::construct(::ca2::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
       throw interface_only_exception(get_app());
@@ -101,7 +101,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool brush::CreatePatternBrush(::ca::bitmap* pBitmap)
+   bool brush::CreatePatternBrush(::ca2::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
       throw interface_only_exception(get_app());
@@ -153,4 +153,4 @@ namespace ca
 
    }
 
-} // namespace ca
+} // namespace ca2

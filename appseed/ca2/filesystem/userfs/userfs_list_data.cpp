@@ -5,8 +5,8 @@ namespace userfs
 {
 
 
-   list_data::list_data(sp(::ca::application) papp) :
-      ::ca::ca(papp),
+   list_data::list_data(sp(::ca2::application) papp) :
+      ::ca2::ca2(papp),
       ::user::list_data(papp),
       m_itema(papp)
    {

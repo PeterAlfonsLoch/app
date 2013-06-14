@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
-   file_exception::file_exception(sp(::ca::application) papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
-      ca(papp),
+   file_exception::file_exception(sp(::ca2::application) papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
+      ca2(papp),
       ::call_stack(papp),
       ::base_exception(papp),
       ::simple_exception(papp),
@@ -62,7 +62,7 @@ namespace ca
    void file_exception::OnFileFound(OF_INFO_t OpenedFileInfo )
    {
 
-	   if(System.file().name_(::ca::international::unicode_to_utf8(OpenedFileInfo.lpFile)).CompareNoCase(System.file().name_(m_strFileName)) == 0)
+	   if(System.file().name_(::ca2::international::unicode_to_utf8(OpenedFileInfo.lpFile)).CompareNoCase(System.file().name_(m_strFileName)) == 0)
       {
 
 	      PROCESS_INFO_t stInfo;
@@ -149,7 +149,7 @@ namespace ca
 
          wstring wstr;
 
-         wstr = ::ca::international::utf8_to_unicode(System.dir().name(m_strFileName));
+         wstr = ::ca2::international::utf8_to_unicode(System.dir().name(m_strFileName));
 
 #ifdef WINDOWSEX
          GetOpenedFiles(wstr, ALL_TYPES, &file_exception::CallBackFunc, (uint_ptr)this);
@@ -212,7 +212,7 @@ namespace ca
    void file_exception::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-      //::ca::object::dump(dumpcontext);
+      //::ca2::object::dump(dumpcontext);
 
    /*   dumpcontext << "m_cause = ";
       if (m_cause >= 0 && m_cause < _countof(rgszFileExceptionCause))
@@ -226,4 +226,4 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2

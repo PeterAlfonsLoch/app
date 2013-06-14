@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/gen_1.h"
+#include "ca2/gen_1.h"
 
 
 
@@ -14,11 +14,11 @@ struct __SIZEPARENTPARAMS;    // control bar implementationpropergen_property.h
 
 // Classes declared in this file
 
-   //::ca::graphics_sp
+   //::ca2::graphics_sp
       class preview_dc;               // Virtual DC for print preview
 
    //command_target
-      //::ca::window
+      //::ca2::window
          //::user::view
             class CPreviewView;     // Print preview ::user::view
       //frame_window
@@ -39,7 +39,7 @@ class CDockContext;                     // for dragging control bars
 // F000 -> FFFF : standard windows commands and other things etc
    // E000 -> E7FF standard commands
    // E800 -> E8FF control bars (first 32 are special)
-   // E900 -> EEFF standard ::ca::window controls/components
+   // E900 -> EEFF standard ::ca2::window controls/components
    // EF00 -> EFFF SC_ menu help
    // F000 -> FFFF standard strings
 #define ID_COMMAND_FROM_SC(sc)  (((sc - 0xF000) >> 4) + __IDS_SCFIRST)
@@ -63,7 +63,7 @@ class CDockContext;                     // for dragging control bars
 
 /////////////////////////////////////////////////////////////////////////////
 // Internal _ Windows messages (see Technical note TN024 for more details)
-// (0x0360 - 0x037F are reserved for ca API)
+// (0x0360 - 0x037F are reserved for ca2 API)
 
 #define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
@@ -75,10 +75,10 @@ class CDockContext;                     // for dragging control bars
 #define WM_HELPHITTEST      0x0366  // lResult = dwContext,
                            // lParam = MAKELONG(x,y)
 #define WM_EXITHELPMODE     0x0367  // (params unused)
-#define WM_RECALCPARENT     0x0368  // force layout on frame ::ca::window
+#define WM_RECALCPARENT     0x0368  // force layout on frame ::ca2::window
                            //  (only for inplace frame windows)
 #define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
-                           // wParam = ID of child ::ca::window
+                           // wParam = ID of child ::ca2::window
                            // lParam = lpRectNew (new position/size)
 #define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
 #define WM_QUERYCENTERWND   0x036B  // lParam = oswindow to use as centering parent
@@ -96,13 +96,13 @@ class CDockContext;                     // for dragging control bars
 #define WM_RESERVED_036F   0x036F  // was WM_QUERY3DCONTROLS (now not used)
 
 // Note: Messages 0x0370, 0x0371, and 0x372 were incorrectly used by
-//  some versions of Windows.  To remain compatible, ca API does not
+//  some versions of Windows.  To remain compatible, ca2 API does not
 //  use messages in that range.
 #define WM_RESERVED_0370    0x0370
 #define WM_RESERVED_0371    0x0371
 #define WM_RESERVED_0372    0x0372
 
-// WM_SOCKET_NOTIFY and WM_SOCKET_DEAD are used internally by ca API's
+// WM_SOCKET_NOTIFY and WM_SOCKET_DEAD are used internally by ca2 API's
 // Windows sockets implementation.  For more information, see sockcore.cpp
 #define WM_SOCKET_NOTIFY    0x0373
 #define WM_SOCKET_DEAD      0x0374
@@ -111,7 +111,7 @@ class CDockContext;                     // for dragging control bars
 #define WM_POPMESSAGESTRING 0x0375
 
 // WM_HELPPROMPTADDR is used internally to get the address of
-//   m_dwPromptContext from the associated frame ::ca::window. This is used
+//   m_dwPromptContext from the associated frame ::ca2::window. This is used
 //   during message boxes to setup for F1 help while that msg box is
 //   displayed. lResult is the address of m_dwPromptContext.
 #define WM_HELPPROMPTADDR   0x0376
@@ -128,12 +128,12 @@ class CDockContext;                     // for dragging control bars
 // Marker used while rearranging the message queue
 #define WM_QUEUE_SENTINEL   0x0379
 
-// Note: Messages 0x037C - 0x37E reserved for future ca API use.
+// Note: Messages 0x037C - 0x37E reserved for future ca2 API use.
 #define WM_RESERVED_037C    0x037C
 #define WM_RESERVED_037D    0x037D
 #define WM_RESERVED_037E    0x037E
 
-// WM_FORWARDMSG - used by ca to forward a message to another ::ca::window for processing
+// WM_FORWARDMSG - used by ca2 to forward a message to another ::ca2::window for processing
 //   WPARAM - DWORD dwUserData - defined by ::fontopus::user
 //   LPARAM - LPMESSAGE pMsg - a pointer to the MESSAGE structure
 //   return value - 0 if the message was not processed, nonzero if it was
@@ -141,8 +141,8 @@ class CDockContext;                     // for dragging control bars
 
 // like ON_MESSAGE but no return value
 #define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, ::ca::Sig_vv, \
-      (__PMSG)(__PMSGW)(void (__MSG_CALL ::ca::window::*)(void))&memberFxn },
+   { message, 0, 0, 0, ::ca2::Sig_vv, \
+      (__PMSG)(__PMSGW)(void (__MSG_CALL ::ca2::window::*)(void))&memberFxn },
 
 #if defined(LINUX) || defined(MACOS)
 
@@ -166,7 +166,7 @@ enum {  FS_SHOW = 0x01, FS_HIDE = 0x02,
       FS_ENABLE = 0x10, FS_DISABLE = 0x20,
       FS_SYNCACTIVE = 0x40 };
 
-CLASS_DECL_ca2 void ::ca::RepositionWindow(__SIZEPARENTPARAMS* lpLayout,
+CLASS_DECL_ca2 void ::ca2::RepositionWindow(__SIZEPARENTPARAMS* lpLayout,
    sp(::user::interaction) hWnd, LPCRECT lpRect);
 
 #ifndef LAYOUT_LTR

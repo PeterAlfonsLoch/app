@@ -79,13 +79,13 @@ namespace html
             return ARGB(255,n_to_b(r),n_to_b(g),n_to_b(b));
          }
       }
-      else if(::ca::str::begins_eat_ci(str, "rgb") || ::ca::str::begins_eat_ci(str, "argb"))
+      else if(::ca2::str::begins_eat_ci(str, "rgb") || ::ca2::str::begins_eat_ci(str, "argb"))
       {
          str.trim();
-         if(::ca::str::begins_eat_ci(str, "("))
+         if(::ca2::str::begins_eat_ci(str, "("))
          {
             str.trim();
-            if(::ca::str::ends_eat_ci(str, ")"))
+            if(::ca2::str::ends_eat_ci(str, ")"))
             {
                str.trim();
                var a;
@@ -819,23 +819,23 @@ namespace html
       string strEm = str;
       if(string(pszName).CompareNoCase("font-size") == 0)
       {
-         if(::ca::str::find_awwci("em", str) > 0)
+         if(::ca2::str::find_awwci("em", str) > 0)
          {
             if(pelemental->m_pparent != NULL)
             {
                string strParent;
                if(pelemental->m_pparent->m_style.get_text(pszName, pszSubClass, pdata, pelemental->m_pparent, strParent))
                {
-                  str = ::ca::str::from((int32_t)((double) atof(str) * atoi(strParent)));
+                  str = ::ca2::str::from((int32_t)((double) atof(str) * atoi(strParent)));
                }
                else
                {
-                  str = ::ca::str::from((int32_t)((double) atof(str) * 12));
+                  str = ::ca2::str::from((int32_t)((double) atof(str) * 12));
                }
             }
             else
             {
-               str = ::ca::str::from((int32_t)((double) atof(str) * 12));
+               str = ::ca2::str::from((int32_t)((double) atof(str) * 12));
             }
          }
       }
@@ -982,12 +982,12 @@ namespace html
       string str(psz);
 
       str.trim();
-      if(::ca::str::ends_eat_ci(str, "px"))
+      if(::ca2::str::ends_eat_ci(str, "px"))
       {
          str.trim();
          return (float) strtod(str, NULL);
       }
-      else if(::ca::str::ends_eat_ci(str, "pt"))
+      else if(::ca2::str::ends_eat_ci(str, "pt"))
       {
          str.trim();
          return (float) (strtod(str, NULL) * 96.0 / 72.0);
@@ -1012,7 +1012,7 @@ namespace html
       if(str.is_empty())
          return false;
 
-      // todo ::ca::str::find_cssci would find thick between spaces but not concatenated
+      // todo ::ca2::str::find_cssci would find thick between spaces but not concatenated
       if(str.find_ci("thick") >= 0)
       {
          f = 5.0;
@@ -1048,20 +1048,20 @@ namespace html
          {
             try
             {
-               ::ca::str::consume_spaces(psz, 0);
-               ::ca::str::consume(psz, "(");
-               ::ca::str::consume_spaces(psz, 0);
-               ::ca::str::consume_natural(psz, 255);
-               ::ca::str::consume_spaces(psz, 0);
-               ::ca::str::consume(psz, ",");
-               ::ca::str::consume_spaces(psz, 0);
-               ::ca::str::consume_natural(psz, 255);
-               ::ca::str::consume_spaces(psz, 0);
-               ::ca::str::consume(psz, ",");
-               ::ca::str::consume_spaces(psz, 0);
-               ::ca::str::consume_natural(psz, 255);
-               ::ca::str::consume_spaces(psz, 0);
-               ::ca::str::consume(psz, ")");
+               ::ca2::str::consume_spaces(psz, 0);
+               ::ca2::str::consume(psz, "(");
+               ::ca2::str::consume_spaces(psz, 0);
+               ::ca2::str::consume_natural(psz, 255);
+               ::ca2::str::consume_spaces(psz, 0);
+               ::ca2::str::consume(psz, ",");
+               ::ca2::str::consume_spaces(psz, 0);
+               ::ca2::str::consume_natural(psz, 255);
+               ::ca2::str::consume_spaces(psz, 0);
+               ::ca2::str::consume(psz, ",");
+               ::ca2::str::consume_spaces(psz, 0);
+               ::ca2::str::consume_natural(psz, 255);
+               ::ca2::str::consume_spaces(psz, 0);
+               ::ca2::str::consume(psz, ")");
             }
             catch(...)
             {
@@ -1072,7 +1072,7 @@ namespace html
          {
             try
             {
-               ::ca::str::consume_hex(psz);
+               ::ca2::str::consume_hex(psz);
             }
             catch(...)
             {
@@ -1133,7 +1133,7 @@ namespace html
       }
       f = (float) strtod(&str[iFindDigit], NULL);
       str = str.Mid(i);
-      if(::ca::str::begins_ci(str, "pt"))
+      if(::ca2::str::begins_ci(str, "pt"))
       {
          str.trim();
          if(str.get_length() == 2 || isspace(str[3]))
@@ -1157,7 +1157,7 @@ namespace html
       if(str.is_empty())
          return false;
 
-      // todo ::ca::str::find_cssci would find red between spaces but not concatenated
+      // todo ::ca2::str::find_cssci would find red between spaces but not concatenated
       if(str.find_ci("magenta") >= 0)
       {
          cr = ARGB(255, 255, 0, 255);
@@ -1194,20 +1194,20 @@ namespace html
       {
          try
          {
-            ::ca::str::consume_spaces(psz, 0);
-            ::ca::str::consume(psz, "(");
-            ::ca::str::consume_spaces(psz, 0);
-            int32_t R = (int32_t) ::ca::str::consume_natural(psz, 255);
-            ::ca::str::consume_spaces(psz, 0);
-            ::ca::str::consume(psz, ",");
-            ::ca::str::consume_spaces(psz, 0);
-            int32_t G = (int32_t) ::ca::str::consume_natural(psz, 255);
-            ::ca::str::consume_spaces(psz, 0);
-            ::ca::str::consume(psz, ",");
-            ::ca::str::consume_spaces(psz, 0);
-            int32_t B = (int32_t) ::ca::str::consume_natural(psz, 255);
-            ::ca::str::consume_spaces(psz, 0);
-            ::ca::str::consume(psz, ")");
+            ::ca2::str::consume_spaces(psz, 0);
+            ::ca2::str::consume(psz, "(");
+            ::ca2::str::consume_spaces(psz, 0);
+            int32_t R = (int32_t) ::ca2::str::consume_natural(psz, 255);
+            ::ca2::str::consume_spaces(psz, 0);
+            ::ca2::str::consume(psz, ",");
+            ::ca2::str::consume_spaces(psz, 0);
+            int32_t G = (int32_t) ::ca2::str::consume_natural(psz, 255);
+            ::ca2::str::consume_spaces(psz, 0);
+            ::ca2::str::consume(psz, ",");
+            ::ca2::str::consume_spaces(psz, 0);
+            int32_t B = (int32_t) ::ca2::str::consume_natural(psz, 255);
+            ::ca2::str::consume_spaces(psz, 0);
+            ::ca2::str::consume(psz, ")");
             cr = ARGB(255, R, G, B);
             return true;
          }
@@ -1220,7 +1220,7 @@ namespace html
       {
          try
          {
-            ::ca::str::consume_hex(psz);
+            ::ca2::str::consume_hex(psz);
             cr = parse_color(pszStart - 1);
             return true;
          }

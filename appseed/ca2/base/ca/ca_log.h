@@ -8,7 +8,7 @@ class string;
 class id;
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -44,7 +44,7 @@ namespace ca
    va_list list);*/
 
    class CLASS_DECL_ca2 log :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 
@@ -64,7 +64,7 @@ namespace ca
 
 
       bool                    m_bTrace;
-      ::ca::trace::trace *     m_ptrace;
+      ::ca2::trace::trace *     m_ptrace;
       critical_section *      m_pcsTrace;
       stringa *               m_pstraSeparator;
       FILE *                  m_pfile;
@@ -77,7 +77,7 @@ namespace ca
       int32_t                     m_iDay;
 
 
-      log(sp(::ca::application) papp);
+      log(sp(::ca2::application) papp);
       virtual ~log();
 
       virtual void print(const char * psz, ...);
@@ -122,9 +122,9 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 
 
-inline ::ca::log::e_level ca_get_level_warning() { return ::ca::log::level_warning; }
+inline ::ca2::log::e_level ca_get_level_warning() { return ::ca2::log::level_warning; }

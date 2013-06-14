@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-FileManagerLeftView::FileManagerLeftView(sp(::ca::application) papp) :
-   ca(papp),
+FileManagerLeftView::FileManagerLeftView(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::split_layout(papp),
    
    ::user::split_view(papp),
@@ -28,7 +28,7 @@ void FileManagerLeftView::dump(dump_context & dumpcontext) const
 #endif //DEBUG
 
 
-void FileManagerLeftView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint) 
+void FileManagerLeftView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint) 
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != NULL)

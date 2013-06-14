@@ -6,7 +6,7 @@ namespace visual
 
 
    class CLASS_DECL_ca2 icon :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 

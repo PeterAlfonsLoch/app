@@ -149,9 +149,9 @@ public:
 
    // add before head or after tail
    POSITION add_head(object_list* newElement)
-      { return _typed_pointer_list<object_list, object_list*>::add_head((::ca::object*)newElement); }
+      { return _typed_pointer_list<object_list, object_list*>::add_head((::ca2::object*)newElement); }
    POSITION add_tail(object_list* newElement)
-      { return _typed_pointer_list<object_list, object_list*>::add_tail((::ca::object*)newElement); }
+      { return _typed_pointer_list<object_list, object_list*>::add_tail((::ca2::object*)newElement); }
 
    // add another list of elements before head or after tail
    void add_head(typed_pointer_list<object_list, object_list*>* pNewList)

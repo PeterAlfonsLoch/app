@@ -3,8 +3,8 @@
 namespace user
 {
 
-   check_box::check_box(sp(::ca::application) papp) :
-      ca(papp),
+   check_box::check_box(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::interaction(papp)
    {
       m_echeck = check::unchecked;
@@ -37,17 +37,17 @@ namespace user
       if(get_form() != NULL)
       {
          get_form()->send_message(
-            ::ca::message_event, 0, (LPARAM) &ev);
+            ::ca2::message_event, 0, (LPARAM) &ev);
       }
       else
       {
          get_parent()->send_message(
-            ::ca::message_event, 0, (LPARAM) &ev);
+            ::ca2::message_event, 0, (LPARAM) &ev);
       }
    }
 
 
-   void check_box::_001OnDraw(::ca::graphics * pdc)
+   void check_box::_001OnDraw(::ca2::graphics * pdc)
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -68,7 +68,7 @@ namespace user
          if(m_echeck == check::tristate
          || m_echeck == check::checked)
          {
-            ::ca::pen_sp pen(allocer());
+            ::ca2::pen_sp pen(allocer());
             pen->create_solid(pdc, 1, m_echeck == check::checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
             pdc->SelectObject(pen);
             pdc->MoveTo(2, 8);
@@ -84,21 +84,21 @@ namespace user
    }
 
 
-   void check_box::_001OnTimer(::ca::signal_object * pobj)
+   void check_box::_001OnTimer(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::ca::message::timer, ptimer, pobj)
+      //SCAST_PTR(::ca2::message::timer, ptimer, pobj)
    }
 
-   void check_box::_001OnKeyDown(::ca::signal_object * pobj)
+   void check_box::_001OnKeyDown(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca::message::key, pkey, pobj)
+//      SCAST_PTR(::ca2::message::key, pkey, pobj)
    }
 
-   void check_box::_001OnKeyUp(::ca::signal_object * pobj)
+   void check_box::_001OnKeyUp(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::key, pkey, pobj)
+      SCAST_PTR(::ca2::message::key, pkey, pobj)
       if(pkey->m_ekey == ::user::key_space)
       {
          _001ToggleCheck(true);
@@ -106,18 +106,18 @@ namespace user
    }
 
 
-   void check_box::_001OnLButtonDown(::ca::signal_object * pobj)
+   void check_box::_001OnLButtonDown(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       m_bMouseDown = true;
       pobj->m_bRet = true;
 
    }
-   void check_box::_001OnLButtonUp(::ca::signal_object * pobj)
+   void check_box::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       if(m_bMouseDown)
       {
          _001ToggleCheck(true);
@@ -129,10 +129,10 @@ namespace user
    }
 
 
-   void check_box::_001OnMouseMove(::ca::signal_object * pobj)
+   void check_box::_001OnMouseMove(::ca2::signal_object * pobj)
    {
 
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
       pmouse->m_ecursor = ::visual::cursor_text_select;
 
@@ -141,7 +141,7 @@ namespace user
 
 
 
-   void check_box::install_message_handling(::ca::message::dispatch * pinterface)
+   void check_box::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &check_box::_001OnLButtonDown);

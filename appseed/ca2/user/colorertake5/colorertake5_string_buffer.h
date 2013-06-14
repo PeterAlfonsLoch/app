@@ -12,11 +12,11 @@ public:
   str_buffer();
   /** Creates is_empty string buffer */
   str_buffer(int32_t alloc);
-  /** Creates string buffer with @c string */
+  /** Creates string buffer with @ca string */
   str_buffer(const char *string, int32_t s = 0, int32_t l = -1);
-  /** Creates string buffer with @c string */
+  /** Creates string buffer with @ca string */
   str_buffer(string cstring, int32_t s = 0, int32_t l = -1);
-  /** Creates string buffer with @c string */
+  /** Creates string buffer with @ca string */
   str_buffer(const string &cstring, int32_t s = 0, int32_t l = -1);
   /** Destructor */
   ~str_buffer();
@@ -24,26 +24,26 @@ public:
   /** Changes the get_length of this str_buffer */
   void setLength(int32_t newLength);
 
-  /** Appends to this string buffer @c string */
+  /** Appends to this string buffer @ca string */
   str_buffer &append(const string &string);
-  /** Appends to this string buffer @c string */
+  /** Appends to this string buffer @ca string */
   str_buffer &append(string string);
 
-  /** Appends to this string buffer @c string */
-  str_buffer &append(wchar_t c);
+  /** Appends to this string buffer @ca string */
+  str_buffer &append(wchar_t ca);
 
-  /** Appends to this string buffer @c string.
+  /** Appends to this string buffer @ca string.
       C++ operator+ form.
       You can write: yourcall(str_buffer("first")+"second"+third);
   */
   str_buffer &operator+(const string &string);
-  /** Appends to this string buffer @c string. C++ operator+ form. */
+  /** Appends to this string buffer @ca string. C++ operator+ form. */
   str_buffer &operator+(string string);
-  /** Appends to this string buffer @c string. C++ operator+ form. */
+  /** Appends to this string buffer @ca string. C++ operator+ form. */
   str_buffer &operator+(const char *string);
-  /** Appends to this string buffer @c string. C++ operator+= form. */
+  /** Appends to this string buffer @ca string. C++ operator+= form. */
   str_buffer &operator+=(const string &string);
-  /** Appends to this string buffer @c string. C++ operator+= form. */
+  /** Appends to this string buffer @ca string. C++ operator+= form. */
   str_buffer &operator+=(const char *string);
 private:
   int32_t alloc;

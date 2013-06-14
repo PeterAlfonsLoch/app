@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
    CLASS_DECL_ca2 string char2hex( char dec );
-   CLASS_DECL_ca2 string urlencode( const string &c );
+   CLASS_DECL_ca2 string urlencode( const string &ca );
   
 
    typedef enum _eOAuthHttpRequestType
@@ -17,13 +17,13 @@ namespace ca
    } eOAuthHttpRequestType;
 
    typedef stringa oAuthKeyValueList;
-   typedef ::ca::property_set oAuthKeyValuePairs;
+   typedef ::ca2::property_set oAuthKeyValuePairs;
 
    class CLASS_DECL_ca2 oauth :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
-       oauth(sp(::ca::application) papp);
+       oauth(sp(::ca2::application) papp);
        virtual ~oauth();
 
        /* OAuth public methods used by twitCurl */
@@ -47,8 +47,8 @@ namespace ca
 
        bool getOAuthHeader(const eOAuthHttpRequestType eType, /* in */
                            const string& rawUrl, /* in */
-                           ::ca::property_set & rawData, /* in */
-                           ::ca::property_set & headers, /* out */
+                           ::ca2::property_set & rawData, /* in */
+                           ::ca2::property_set & headers, /* out */
                            const bool includeOAuthVerifierPin = false /* in */ );
 
        bool extractOAuthTokenKeySecret( const string& requestTokenResponse /* in */ );
@@ -83,4 +83,4 @@ namespace ca
        void generateNonceTimeStamp();
    };
 
-} // namespace ca
+} // namespace ca2

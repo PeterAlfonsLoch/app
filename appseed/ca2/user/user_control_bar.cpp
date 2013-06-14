@@ -6,7 +6,7 @@ namespace user
 {
    
    
-   void DrawGripperElement001(::ca::graphics * pdc, int32_t ix, int32_t iy);
+   void DrawGripperElement001(::ca2::graphics * pdc, int32_t ix, int32_t iy);
    
 
    control_bar::control_bar()
@@ -34,7 +34,7 @@ namespace user
       m_nMRUWidth = 32767;
    }
 
-   void control_bar::install_message_handling(::ca::message::dispatch * pinterface)
+   void control_bar::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &control_bar::_001OnTimer);
@@ -222,7 +222,7 @@ namespace user
       VERIFY(SetTimer(nEvent, nTime, NULL));
    }
 
-   void control_bar::_001OnTimer(::ca::signal_object * pobj)
+   void control_bar::_001OnTimer(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      UINT nIDEvent = ptimer->m_nIDEvent;
@@ -270,7 +270,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Default control bar processing
 
-   void control_bar::pre_translate_message(::ca::signal_object * pobj)
+   void control_bar::pre_translate_message(::ca2::signal_object * pobj)
    {
       ASSERT_VALID(this);
    //trans   ASSERT(get_handle() != NULL);
@@ -284,7 +284,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
 
       UINT message = pbase->m_uiMessage;
 
@@ -312,7 +312,7 @@ namespace user
       if (pFrameWnd != NULL && pFrameWnd->m_bHelpMode)
          return;
 
-      // since 'IsDialogMessage' will eat frame ::ca::window accelerators,
+      // since 'IsDialogMessage' will eat frame ::ca2::window accelerators,
       //   we call all frame windows' pre_translate_message first
       while (pOwner != NULL)
       {
@@ -329,14 +329,14 @@ namespace user
       // pbase->m_bRet = false;
    }
 
-   void control_bar::message_handler(::ca::signal_object * pobj)
+   void control_bar::message_handler(::ca2::signal_object * pobj)
    {
 
       (this->*m_pfnDispatchWindowProc)(pobj);
       if(pobj->m_bRet)
          return;
 
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
 
       ASSERT_VALID(this);
 
@@ -387,21 +387,21 @@ namespace user
       ::user::interaction::message_handler(pobj);
    }
 
-   void control_bar::_001OnHelpHitTest(::ca::signal_object * pobj)
+   void control_bar::_001OnHelpHitTest(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca::message::base, pbase, pobj)
+//      SCAST_PTR(::ca2::message::base, pbase, pobj)
       ASSERT_VALID(this);
 
    }
 
-   void control_bar::_001OnWindowPosChanging(::ca::signal_object * pobj)
+   void control_bar::_001OnWindowPosChanging(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       Default();
    }
 
-   void control_bar::_001OnCreate(::ca::signal_object * pobj)
+   void control_bar::_001OnCreate(::ca2::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -415,7 +415,7 @@ namespace user
       UpdateWindow();
    }
 
-   void control_bar::_001OnDestroy(::ca::signal_object * pobj)
+   void control_bar::_001OnDestroy(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //   ___THREAD_STATE* pModuleThreadState = __get_thread_state();
@@ -437,9 +437,9 @@ namespace user
          return ::user::interaction::DestroyWindow();
    }
 
-   void control_bar::_001OnMouseActivate(::ca::signal_object * pobj)
+   void control_bar::_001OnMouseActivate(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse_activate, pmouseactivate, pobj)
+      SCAST_PTR(::ca2::message::mouse_activate, pmouseactivate, pobj)
       // call default when toolbar is not floating
       if (!IsFloating())
       {
@@ -456,7 +456,7 @@ namespace user
       return;
    }
 
-   void control_bar::_001OnDraw(::ca::graphics * pdc)
+   void control_bar::_001OnDraw(::ca2::graphics * pdc)
    {
       // background is already filled in gray
       //CPaintDC spgraphics(this);
@@ -470,7 +470,7 @@ namespace user
 
    void control_bar::EraseNonClient()
    {
-      // get ::ca::window DC that is clipped to the non-client area
+      // get ::ca2::window DC that is clipped to the non-client area
    /* trans   CWindowDC spgraphics(this);
       rect rectClient;
       GetClientRect(rectClient);
@@ -492,9 +492,9 @@ namespace user
       DrawGripper(&spgraphics, rectWindow);*/
    }
 
-   void control_bar::EraseNonClient(::ca::graphics * pdc)
+   void control_bar::EraseNonClient(::ca2::graphics * pdc)
    {
-      // get ::ca::window DC that is clipped to the non-client area
+      // get ::ca2::window DC that is clipped to the non-client area
       rect rectClient;
       GetClientRect(rectClient);
       rect rectWindow;
@@ -526,9 +526,9 @@ namespace user
       DrawGripper(pdc, rectWindow);
    }
 
-   void control_bar::_001OnCtlColor(::ca::signal_object * pobj)
+   void control_bar::_001OnCtlColor(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::ctl_color, pctlcolor, pobj)
+      SCAST_PTR(::ca2::message::ctl_color, pctlcolor, pobj)
       LRESULT lResult;
       if (pctlcolor->m_pwnd->SendChildNotifyLastMsg(&lResult))
       {
@@ -538,7 +538,7 @@ namespace user
       }
 
       // force black text on gray background all the time
-/*      if (!::ca::window::GrayCtlColor((HDC)pctlcolor->m_pdc->get_os_data(), pctlcolor->m_pwnd->get_os_data(), pctlcolor->m_nCtlType,
+/*      if (!::ca2::window::GrayCtlColor((HDC)pctlcolor->m_pdc->get_os_data(), pctlcolor->m_pwnd->get_os_data(), pctlcolor->m_nCtlType,
          afxData.hbrBtnFace, afxData.clrBtnText))
       {
          pctlcolor->set_lresult(Default());
@@ -549,9 +549,9 @@ namespace user
       pctlcolor->m_bRet = true;
    }
 
-   void control_bar::_001OnLButtonDown(::ca::signal_object * pobj)
+   void control_bar::_001OnLButtonDown(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       // only start dragging if clicked in "void" space
       if (m_pDockBar != NULL )
          //!m_pDockContext->m_bTracking  && OnToolHitTest(pmouse->m_pt, NULL) == -1)
@@ -567,9 +567,9 @@ namespace user
       }
    }
 
-   void control_bar::_001OnLButtonUp(::ca::signal_object * pobj)
+   void control_bar::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       if(m_bDockTrack)
       {
    //      m_pDockContext->OnBarLButtonUp(pmouse->m_nFlags, pmouse->m_pt);
@@ -577,9 +577,9 @@ namespace user
       pmouse->previous();
    }
 
-   void control_bar::_001OnMouseMove(::ca::signal_object * pobj)
+   void control_bar::_001OnMouseMove(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       if(m_bDockTrack)
       {
    //      m_pDockContext->OnBarMouseMove(pmouse->m_nFlags, pmouse->m_pt);
@@ -587,15 +587,15 @@ namespace user
       pmouse->previous();
    }
 
-   void control_bar::_001OnLButtonDblClk(::ca::signal_object * pobj)
+   void control_bar::_001OnLButtonDblClk(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       pmouse->previous();
    }
 
-   void control_bar::_001OnIdleUpdateCmdUI(::ca::signal_object * pobj)
+   void control_bar::_001OnIdleUpdateCmdUI(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj)
+      SCAST_PTR(::ca2::message::base, pbase, pobj)
       // handle delay hide/show
       bool bVis = (GetStyle() & WS_VISIBLE) != 0;
       UINT swpFlags = 0;
@@ -622,11 +622,11 @@ namespace user
       pbase->set_lresult(0L);
    }
 
-   void control_bar::_001OnInitialUpdate(::ca::signal_object * pobj)
+   void control_bar::_001OnInitialUpdate(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // update the indicators before becoming visible
-      ::ca::message::base base(get_app());
+      ::ca2::message::base base(get_app());
       LRESULT lresult;
       base.set(this, WM_IDLEUPDATECMDUI, TRUE, 0L, lresult);
       _001OnIdleUpdateCmdUI(&base);
@@ -658,25 +658,25 @@ namespace user
          }
          if (swpFlags != 0)
          {
-            // make the ::ca::window seem visible/hidden
+            // make the ::ca2::window seem visible/hidden
             dwStyle ^= WS_VISIBLE;
             // clear delay flags
             m_nStateFlags &= ~(delayShow|delayHide);
-            // hide/show the ::ca::window if actually doing layout
+            // hide/show the ::ca2::window if actually doing layout
             SetWindowPos(0, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
          }
          else
          {
-            // clear delay flags -- ::ca::window is already in correct state
+            // clear delay flags -- ::ca2::window is already in correct state
             m_nStateFlags &= ~(delayShow|delayHide);
          }
       }
       return dwStyle; // return new style
    }
 
-   void control_bar::_001OnSizeParent(::ca::signal_object * pobj)
+   void control_bar::_001OnSizeParent(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj)
+      SCAST_PTR(::ca2::message::base, pbase, pobj)
       __SIZEPARENTPARAMS* lpLayout = (__SIZEPARENTPARAMS*) pbase->m_lparam.m_lparam;
       uint32_t dwStyle = RecalcDelayShow(lpLayout);
 
@@ -734,7 +734,7 @@ namespace user
          rect.right = rect.left + size.cx;
          rect.bottom = rect.top + size.cy;
 
-         // only resize the ::ca::window if doing layout and not just rect query
+         // only resize the ::ca2::window if doing layout and not just rect query
          if (lpLayout->hDWP != NULL)
             __reposition_window(lpLayout, this, &rect);
       }
@@ -765,7 +765,7 @@ namespace user
       return FALSE;
    }
 
-   void control_bar::DoPaint(::ca::graphics * pgraphics)
+   void control_bar::DoPaint(::ca2::graphics * pgraphics)
    {
       ASSERT_VALID(this);
       ASSERT_VALID(pgraphics);
@@ -777,7 +777,7 @@ namespace user
       DrawGripper(pgraphics, rect);
    }
 
-   void control_bar::DrawBorders(::ca::graphics * pdc, rect& rect)
+   void control_bar::DrawBorders(::ca2::graphics * pdc, rect& rect)
    {
       ASSERT_VALID(this);
       ASSERT_VALID(pdc);
@@ -850,8 +850,8 @@ namespace user
 
          if(dwStyle & CBRS_GRIPPER)
          {
-            ::ca::pen_sp pen(pdc, 1, clr);
-            ::ca::pen * ppenOld = pdc->SelectObject(pen);
+            ::ca2::pen_sp pen(pdc, 1, clr);
+            ::ca2::pen * ppenOld = pdc->SelectObject(pen);
             pdc->MoveTo(0, 7);
             pdc->LineTo(7, 0);
             pdc->SelectObject(ppenOld);
@@ -915,7 +915,7 @@ namespace user
    #define CX_BORDER_GRIPPER 2
    #define CY_BORDER_GRIPPER 2
 
-   void DrawGripperElement001(::ca::graphics * pdc, int32_t ix, int32_t iy)
+   void DrawGripperElement001(::ca2::graphics * pdc, int32_t ix, int32_t iy)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(ix);
@@ -929,7 +929,7 @@ namespace user
       pdc->SetPixel(ix + 2, iy + 3, afxData.clrBtnShadow);*/
    }
 
-   void control_bar::DrawGripper(::ca::graphics * pdc, const rect& rect)
+   void control_bar::DrawGripper(::ca2::graphics * pdc, const rect& rect)
    {
       // only draw the gripper if not floating and gripper is specified
       if ((m_dwStyle & (CBRS_GRIPPER|CBRS_FLOATING)) == CBRS_GRIPPER)

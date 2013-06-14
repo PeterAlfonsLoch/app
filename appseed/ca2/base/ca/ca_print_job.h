@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 print_job :
-      virtual public ::ca::job
+      virtual public ::ca2::job
    {
    public:
 
@@ -14,7 +14,7 @@ namespace ca
 
       int32_t      m_iPrintingPage;
 
-      print_job(sp(::ca::application) papp);
+      print_job(sp(::ca2::application) papp);
       virtual ~print_job();
 
 
@@ -22,4 +22,4 @@ namespace ca
 
    };
 
-} // namespace ca
+} // namespace ca2

@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-not_installed::not_installed(sp(::ca::application) papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema) :
-   ca(papp),
+not_installed::not_installed(sp(::ca2::application) papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema) :
+   ca2(papp),
    ::call_stack(papp),
    ::base_exception(papp)
 {
@@ -17,7 +17,7 @@ not_installed::not_installed(sp(::ca::application) papp, const char * pszVersion
 }
 
 not_installed::not_installed(const not_installed & e) :
-   ca(e),
+   ca2(e),
    ::call_stack(e),
    ::base_exception(e)
 {

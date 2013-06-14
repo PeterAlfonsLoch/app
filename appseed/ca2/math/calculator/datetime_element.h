@@ -6,7 +6,7 @@ namespace datetime
 
 
    class CLASS_DECL_ca2 element :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 
@@ -20,8 +20,8 @@ namespace datetime
       element *   m_pelement3;
 
 
-      value get_value(sp(::ca::application) pcaapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
-      string get_expression(sp(::ca::application) pcaapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
+      value get_value(sp(::ca2::application) pcaapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
+      string get_expression(sp(::ca2::application) pcaapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
          
 
 

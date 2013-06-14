@@ -29,7 +29,7 @@
 #include "_class_sort_array.h"
 
 
-#include "ca/_var_array.h"
+#include "ca2/_var_array.h"
 
 #include "_point_array.h"
 #include "_rect_array.h"

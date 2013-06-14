@@ -4,8 +4,8 @@
 namespace user
 {
 
-   place_holder_container::place_holder_container(sp(::ca::application) papp) :
-      ca(papp),
+   place_holder_container::place_holder_container(sp(::ca2::application) papp) :
+      ca2(papp),
       m_holdera(papp)
    {
    }
@@ -14,7 +14,7 @@ namespace user
    {
    }
 
-   void place_holder_container::install_message_handling(::ca::message::dispatch * pdispatch)
+   void place_holder_container::install_message_handling(::ca2::message::dispatch * pdispatch)
    {
       ::user::control::install_message_handling(pdispatch);
    }

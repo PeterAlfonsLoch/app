@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   single_document_template::single_document_template(sp(::ca::application) papp, const char * pszMatter, sp(::ca::type_info) pDocClass, sp(::ca::type_info) pFrameClass, sp(::ca::type_info) pViewClass) :
-      ca(papp),
+   single_document_template::single_document_template(sp(::ca2::application) papp, const char * pszMatter, sp(::ca2::type_info) pDocClass, sp(::ca2::type_info) pFrameClass, sp(::ca2::type_info) pViewClass) :
+      ca2(papp),
       ::user::document_template(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
    {
       m_pdocument = NULL;
@@ -16,7 +16,7 @@ namespace user
    {
 #ifdef DEBUG
       if (m_pdocument != NULL)
-         TRACE(::ca::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document_interface.\n");
+         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document_interface.\n");
 #endif
    }
 
@@ -54,13 +54,13 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // single_document_template commands
 
-   void single_document_template::request_create(sp(::ca::create_context) pcreatecontext)
+   void single_document_template::request_create(sp(::ca2::create_context) pcreatecontext)
       // if lpszPathName == NULL => create new file of this type
    {
-      pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(::ca::ca)) NULL;
+      pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(::ca2::ca2)) NULL;
       bool bMakeVisible = pcreatecontext->m_spCommandLine->m_varQuery["make_visible_boolean"] || pcreatecontext->m_bMakeVisible;
-      //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca < ::user::interaction > ();
-      //   sp(::user::view) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca < ::user::view > ();
+      //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
+      //   sp(::user::view) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca2 < ::user::view > ();
 
       sp(::user::document_interface) pdocument = NULL;
       sp(::user::frame_window) pFrame = NULL;
@@ -126,7 +126,7 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // user has been alerted to what failed in on_new_document
-            TRACE(::ca::trace::category_AppMsg, 0, "::user::document_interface::on_new_document returned FALSE.\n");
+            TRACE(::ca2::trace::category_AppMsg, 0, "::user::document_interface::on_new_document returned FALSE.\n");
             if (bCreated)
                pFrame->DestroyWindow();    // will destroy ::user::document_interface
             return;
@@ -143,7 +143,7 @@ namespace user
          if (!pdocument->on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
          {
             // user has been alerted to what failed in on_open_document
-            TRACE(::ca::trace::category_AppMsg, 0, "::user::document_interface::on_open_document returned FALSE.\n");
+            TRACE(::ca2::trace::category_AppMsg, 0, "::user::document_interface::on_open_document returned FALSE.\n");
             if (bCreated)
             {
                pFrame->DestroyWindow();    // will destroy ::user::document_interface
@@ -160,7 +160,7 @@ namespace user
 
                if (!pdocument->on_new_document())
                {
-                  TRACE(::ca::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
+                  TRACE(::ca2::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
                      "to open a ::user::document_interface - trying to continue.\n");
                   // assume we can continue
                }
@@ -170,13 +170,13 @@ namespace user
          pdocument->set_path_name(pcreatecontext->m_spCommandLine->m_varFile);
       }
 
-      ::ca::thread* pThread = System.GetThread();
+      ::ca2::thread* pThread = System.GetThread();
       ASSERT(pThread);
       if(bCreated)
       {
          if(pThread->GetMainWnd() == NULL)
          {
-            // set as main frame (InitialUpdateFrame will show the ::ca::window)
+            // set as main frame (InitialUpdateFrame will show the ::ca2::window)
             pThread->SetMainWnd(pFrame);
          }
          if(Application.m_puiMain == NULL)

@@ -6,9 +6,9 @@
 int32_t gen_ch_class_reference_tables();
 
 
-inline bool is_legal_uni_index(int64_t c)
+inline bool is_legal_uni_index(int64_t ca)
 {
-   return c >= ((uint64_t) 0xffff) ? false : true;
+   return ca >= ((uint64_t) 0xffff) ? false : true;
 }
 
 int32_t gen_ch_class_reference_tables()
@@ -17,7 +17,7 @@ int32_t gen_ch_class_reference_tables()
 }
 
 
-namespace ca
+namespace ca2
 {
 
    ch_class::ch_class()
@@ -76,7 +76,7 @@ namespace ca
          if(ccs[pos] == '{')
          {
             string categ;
-            if(!::ca::str::get_curly_content(&ccs[pos], categ))
+            if(!::ca2::str::get_curly_content(&ccs[pos], categ))
                return 0;
             if(categ == "ALL")
                cc->fill();
@@ -139,8 +139,8 @@ namespace ca
                break;
             default:
                index retEnd;
-               prev_char = ::ca::str::uni_to_utf8(
-                  ::ca::str::get_escaped_char(ccs, pos, retEnd));
+               prev_char = ::ca2::str::uni_to_utf8(
+                  ::ca2::str::get_escaped_char(ccs, pos, retEnd));
                if(prev_char.is_empty())
                   break;
                cc->add_char(prev_char);
@@ -208,7 +208,7 @@ namespace ca
 
             index retEnd;
 
-            string nextc = ::ca::str::uni_to_utf8(::ca::str::get_escaped_char(ccs, pos+1, retEnd));
+            string nextc = ::ca2::str::uni_to_utf8(::ca2::str::get_escaped_char(ccs, pos+1, retEnd));
 
             if(nextc.is_empty())
                break;
@@ -221,7 +221,7 @@ namespace ca
 
          }
 
-         cc->add_char(::ca::str::get_utf8_char(&ccs[pos]));
+         cc->add_char(::ca2::str::get_utf8_char(&ccs[pos]));
 
          prev_char = ccs[pos];
 
@@ -232,7 +232,7 @@ namespace ca
 
    void ch_class::add_char(const char * pszUtf8Char)
    {
-      int64_t iChar = ::ca::ch::uni_index(pszUtf8Char);
+      int64_t iChar = ::ca2::ch::uni_index(pszUtf8Char);
       bit_array * tablePos = infoIndex[iChar >> 8];
       if (!tablePos)
       {
@@ -244,7 +244,7 @@ namespace ca
 
    void ch_class::clear_char(const char * pszUtf8Char)
    {
-      int64_t iChar = ::ca::ch::uni_index(pszUtf8Char);
+      int64_t iChar = ::ca2::ch::uni_index(pszUtf8Char);
       bit_array *tablePos = infoIndex[iChar >> 8];
       if(!tablePos)
          return;
@@ -253,8 +253,8 @@ namespace ca
 
    void ch_class::add_range(const char * s, const char * e)
    {
-      int64_t iCharStart = ::ca::ch::uni_index(s);
-      int64_t iCharEnd = ::ca::ch::uni_index(e);
+      int64_t iCharStart = ::ca2::ch::uni_index(s);
+      int64_t iCharEnd = ::ca2::ch::uni_index(e);
       for(int64_t ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
          if (!infoIndex[ti])
@@ -267,8 +267,8 @@ namespace ca
 
    void ch_class::clear_range(const char * s, const char * e)
    {
-      int64_t iCharStart = ::ca::ch::uni_index(s);
-      int64_t iCharEnd = ::ca::ch::uni_index(e);
+      int64_t iCharStart = ::ca2::ch::uni_index(s);
+      int64_t iCharEnd = ::ca2::ch::uni_index(e);
       for(int64_t ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
          if (!infoIndex[ti])
@@ -302,7 +302,7 @@ namespace ca
    {
       for(int32_t pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
       {
-         if(::ca::str::begins(cat, char_category_names[pos]))
+         if(::ca2::str::begins(cat, char_category_names[pos]))
          {
             add_category(ECharCategory(pos));
          }
@@ -394,16 +394,16 @@ namespace ca
 
    bool ch_class::in_class(const char * pszUtf8Char) const
    {
-      int64_t c = ::ca::ch::uni_index(pszUtf8Char);
-      if(!is_legal_uni_index(c))
+      int64_t ca = ::ca2::ch::uni_index(pszUtf8Char);
+      if(!is_legal_uni_index(ca))
          return false;
-      bit_array * tablePos = infoIndex[c>>8];
+      bit_array * tablePos = infoIndex[ca>>8];
       if(tablePos == NULL)
          return false;
-      return tablePos->get_bit(c & 0xFF);
+      return tablePos->get_bit(ca & 0xFF);
    }
 
-} // namespace ca
+} // namespace ca2
 
 
 /* ***** BEGIN LICENSE BLOCK *****

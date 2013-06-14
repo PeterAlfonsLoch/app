@@ -9,17 +9,17 @@ namespace lemon
    ::count copy(spa(TDST) & dsta, const spa(TSRC) & srca)
    {
       
-      ::count c = 0;
+      ::count ca = 0;
 
       dsta.remove_all();
 
       for(int i = 0; i < srca.get_size(); i++)
       {
          dsta.add(new TSRC(srca[i]));
-         c++;
+         ca++;
       }
 
-      return c;
+      return ca;
 
    }
 
@@ -31,10 +31,10 @@ namespace lemon
       return a;
    }
    
-   class CLASS_DECL_ca2 array  : virtual public ::ca::object
+   class CLASS_DECL_ca2 array  : virtual public ::ca2::object
    {
    public:
-      array(sp(::ca::application) papp);
+      array(sp(::ca2::application) papp);
 
       template < class A >
       void randomize(A & a)

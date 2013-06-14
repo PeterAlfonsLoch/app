@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-simple_status_bar::simple_status_bar(sp(::ca::application) papp) :
-   ca(papp)
+simple_status_bar::simple_status_bar(sp(::ca2::application) papp) :
+   ca2(papp)
 {
 
 }
@@ -24,13 +24,13 @@ simple_status_bar::~simple_status_bar()
 
 
 /*
-bool simple_status_bar::OnEraseBkgnd(::ca::graphics * pgraphics) 
+bool simple_status_bar::OnEraseBkgnd(::ca2::graphics * pgraphics) 
 {
    return TRUE;
 }
 */
 
-void simple_status_bar::_001OnDraw(::ca::graphics *pdc)
+void simple_status_bar::_001OnDraw(::ca2::graphics *pdc)
 {
    return;
    rect rectClient;

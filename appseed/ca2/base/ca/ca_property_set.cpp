@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
-   property_set::property_set(::ca::application * papp, bool bAutoAdd, bool bMultiValue) :
-      ca(papp),
+   property_set::property_set(::ca2::application * papp, bool bAutoAdd, bool bMultiValue) :
+      ca2(papp),
       m_propertya(papp)
    {
       m_bAutoAdd = bAutoAdd;
@@ -21,7 +21,7 @@ namespace ca
    {
       index iMax = -1;
       index idx;
-      ::ca::property_pair pair(*this);
+      ::ca2::property_pair pair(*this);
       while(pair())
       {
          if(pair->name() == "0")
@@ -51,7 +51,7 @@ namespace ca
    {
       if(m_bAutoAdd)
       {
-         ::ca::property * pproperty = add(idName);
+         ::ca2::property * pproperty = add(idName);
          if(pproperty != NULL)
             return *pproperty;
       }
@@ -243,7 +243,7 @@ namespace ca
 
    ::count property_set::unset(id idName)
    {
-      ::ca::property_map::pair * ppair = m_map.PLookup(idName);
+      ::ca2::property_map::pair * ppair = m_map.PLookup(idName);
       if(ppair == NULL)
          return 0;
       m_propertya.remove_at(ppair->m_element2);
@@ -349,7 +349,7 @@ namespace ca
 
       straKey.explode(".", pszKey);
 
-      ::ca::property_set * pset = this;
+      ::ca2::property_set * pset = this;
 
       int32_t i = 0;
 
@@ -393,9 +393,9 @@ namespace ca
       while(bRun)
       {
          bRun = bRun && *pszCmdLine != '\0';
-         if(!bStarted && !bQuote && *pszCmdLine != '\0' && ::ca::ch::is_space_char(pszCmdLine))
+         if(!bStarted && !bQuote && *pszCmdLine != '\0' && ::ca2::ch::is_space_char(pszCmdLine))
          {
-            pszStart = ::ca::str::utf8_inc(pszCmdLine);
+            pszStart = ::ca2::str::utf8_inc(pszCmdLine);
             bStarted = true;
          }
          if(pszStart <= pszCmdLine && (((bApp || bFile) && ((!bQuote && isspace(*pszCmdLine)) || (bQuote && *pszCmdLine == '\"' && (*(pszCmdLine - 1)) != '\\') || !bRun)) || (!bTwoDots && !bQuote && *pszCmdLine == ':')))
@@ -538,15 +538,15 @@ namespace ca
 
    void property_set::parse_json(const char * & pszJson, const char * pszEnd)
    {
-      ::ca::str::consume_spaces(pszJson, 0, pszEnd);
-      ::ca::str::consume(pszJson, "{", 1, pszEnd);
-      ::ca::str::consume_spaces(pszJson, 0, pszEnd);
+      ::ca2::str::consume_spaces(pszJson, 0, pszEnd);
+      ::ca2::str::consume(pszJson, "{", 1, pszEnd);
+      ::ca2::str::consume_spaces(pszJson, 0, pszEnd);
       while(true)
       {
-         m_propertya.add(canew(::ca::property));
+         m_propertya.add(canew(::ca2::property));
          m_propertya.last_element()->parse_json(pszJson, pszEnd);
          m_map.set_at(m_propertya.last_element()->name(), m_propertya.get_upper_bound());
-         ::ca::str::consume_spaces(pszJson, 0, pszEnd);
+         ::ca2::str::consume_spaces(pszJson, 0, pszEnd);
          if(*pszJson == ',')
          {
             pszJson++;

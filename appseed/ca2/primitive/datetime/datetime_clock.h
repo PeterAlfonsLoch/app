@@ -14,17 +14,17 @@ protected:
 public:
 
 
-   ::ca::font    m_font;
-   ::ca::font    m_fontHour;
-   ::ca::font    m_fontMinute;
-   ::ca::font    m_fontSpin;
+   ::ca2::font    m_font;
+   ::ca2::font    m_fontHour;
+   ::ca2::font    m_fontMinute;
+   ::ca2::font    m_fontSpin;
 
 
-   clock(sp(::ca::application) papp);
+   clock(sp(::ca2::application) papp);
 
    void GetRect(LPRECT lprect, enum EElement eelement);
 
-   void _001OnDraw(::ca::graphics * pdc);
+   void _001OnDraw(::ca2::graphics * pdc);
 
    void set_pos(point pt, size sz);
 

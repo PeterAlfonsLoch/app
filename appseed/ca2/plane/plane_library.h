@@ -6,7 +6,7 @@ namespace plane
 
 
    class CLASS_DECL_ca2 library :
-      virtual public ::ca::single_application_library < application >,
+      virtual public ::ca2::single_application_library < application >,
       virtual public ::filehandler::menu_library
    {
    public:
@@ -21,7 +21,7 @@ namespace plane
       virtual void get_extension_app(stringa & straApp, const char * pszExtension);
 
 
-      //virtual sp(::ca::application) get_new_app(const char * pszAppId);
+      //virtual sp(::ca2::application) get_new_app(const char * pszAppId);
 
 
    };

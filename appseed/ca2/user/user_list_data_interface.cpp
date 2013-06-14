@@ -3,9 +3,9 @@
 namespace user
 {
 
-   list_data::list_data(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::data(papp)
+   list_data::list_data(sp(::ca2::application) papp) :
+      ca2(papp),
+      ::ca2::data(papp)
    {
    }
 

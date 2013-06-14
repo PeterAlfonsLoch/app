@@ -1,26 +1,26 @@
 /*
 Module : IPENUM.H
-Purpose: Interface for an ca API class wrapper for IP address enumeration
+Purpose: Interface for an ca2 API class wrapper for IP address enumeration
 Created: PJN / 21-04-1998
 History: None
 
-Copyright (c) 1998 by PJ Naughter.  
+Copyright (ca) 1998 by PJ Naughter.  
 
 
 */
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 ip_enum :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
 
-      ip_enum(sp(::ca::application) papp);
+      ip_enum(sp(::ca2::application) papp);
       virtual ~ip_enum();
 
 
@@ -30,10 +30,10 @@ namespace ca
    };
 
 
-   typedef ::c::smart_pointer < ip_enum > ip_enum_sp;
+   typedef ::ca::smart_pointer < ip_enum > ip_enum_sp;
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

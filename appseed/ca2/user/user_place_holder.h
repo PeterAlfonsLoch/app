@@ -15,14 +15,14 @@ namespace user
       interaction_ptr_array  m_uiptraHold;
 
 
-      place_holder(sp(::ca::application) papp);
+      place_holder(sp(::ca2::application) papp);
       virtual ~place_holder();
 
 
       using ::user::control::create;
       virtual bool create(sp(::user::place_holder_container) pcontainer, id id);
 
-      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
       virtual bool can_merge(sp(::user::interaction) pui);
       virtual bool merge(sp(::user::interaction) pui);

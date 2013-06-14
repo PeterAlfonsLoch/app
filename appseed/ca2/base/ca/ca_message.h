@@ -46,7 +46,7 @@ class cmd_ui;
 
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -54,7 +54,7 @@ namespace ca
    class graphics;
 
 
-} // namespace ca
+} // namespace ca2
 
 
 #include "user/user_key_enum.h"
@@ -77,7 +77,7 @@ class BaseCommand;
 #define WM_USER                         0x0400
 #endif
 
-namespace ca
+namespace ca2
 {
 
    enum e_message
@@ -131,7 +131,7 @@ namespace ca
          PrototypeOnDraw,
       };
 
-      ::ca::signal * CreateSignal();
+      ::ca2::signal * CreateSignal();
 
       class CLASS_DECL_ca2 Handler
       {
@@ -142,16 +142,16 @@ namespace ca
       };
 
       class CLASS_DECL_ca2 dispatch :
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
       public:
 
          class CLASS_DECL_ca2 HandlerItemBase :
-            virtual public ::c::c
+            virtual public ::ca::ca
          {
          public:
             virtual ~HandlerItemBase();
-            virtual ::ca::signalizable * get_signalizable() = 0;
+            virtual ::ca2::signalizable * get_signalizable() = 0;
          };
 
          template < class T >
@@ -163,7 +163,7 @@ namespace ca
             // prototype.
             // This is a cached value and not the
             // storage holder of the object.
-            virtual ::ca::signalizable * get_signalizable() { return m_psignalizable; }
+            virtual ::ca2::signalizable * get_signalizable() { return m_psignalizable; }
          };
 
          class CLASS_DECL_ca2 HandlerItemArray :
@@ -171,11 +171,11 @@ namespace ca
          {
          public:
             virtual ~HandlerItemArray();
-            bool HasSignalizable(::ca::signalizable * psignalizable);
+            bool HasSignalizable(::ca2::signalizable * psignalizable);
          };
 
          class CLASS_DECL_ca2 Signal :
-            virtual public ::ca::ca
+            virtual public ::ca2::ca2
          {
          public:
             e_prototype          m_eprototype;
@@ -183,7 +183,7 @@ namespace ca
             UINT                 m_uiCode;
             UINT                 m_uiIdStart;
             UINT                 m_uiIdEnd;
-            sp(::ca::signal)     m_psignal;
+            sp(::ca2::signal)     m_psignal;
 
             HandlerItemArray     m_handlera;
 
@@ -212,7 +212,7 @@ namespace ca
 
          virtual void _on_start_user_message_handler();
 
-         virtual sp(::ca::application) calc_app();
+         virtual sp(::ca2::application) calc_app();
 
          virtual sp(base) peek_message(LPMESSAGE lpmsg, sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
          virtual sp(base) get_message(LPMESSAGE lpmsg, sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
@@ -228,8 +228,8 @@ namespace ca
 
 #endif
 
-         void RemoveMessageHandler(::ca::signalizable * psignalizable);
-         sp(::ca::window) _GetWnd();
+         void RemoveMessageHandler(::ca2::signalizable * psignalizable);
+         sp(::ca2::window) _GetWnd();
          // Prototype_bool_WPARAM_LPARAM;
 
          template < class T >
@@ -239,7 +239,7 @@ namespace ca
             UINT uiIdStart,
             UINT uiIdEnd,
             T * psignalizable,
-            void (T::*pfn)(::ca::signal_object *),
+            void (T::*pfn)(::ca2::signal_object *),
             bool bAddUnique = true)
          {
             Signal * psignal = m_signala.GetSignalByMessage(message, uiCode, uiIdStart, uiIdEnd);
@@ -252,7 +252,7 @@ namespace ca
                psignal->m_uiIdStart       = uiIdStart;
                psignal->m_uiIdEnd         = uiIdEnd;
                psignal->m_eprototype      = GetMessagePrototype(message, 0);
-               psignal->m_psignal         = canew(::ca::signal());
+               psignal->m_psignal         = canew(::ca2::signal());
                psignal->m_psignal->connect(psignalizable, pfn);
                HandlerItem <T> * pitem    = canew(HandlerItem < T >);
                pitem->m_psignalizable     = psignalizable;
@@ -277,21 +277,21 @@ namespace ca
 
          virtual e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
-         virtual void install_message_handling(::ca::message::dispatch * pinterface);
+         virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
          virtual void _001ClearMessageHandling();
 
          int32_t                    m_iHandling;
          SignalArray                m_signala;
-         ::ca::signal               m_signalInstallMessageHandling;
+         ::ca2::signal               m_signalInstallMessageHandling;
          sp(manual_reset_event)     m_pevOk;
          sp(mutex)                  m_pmutex;
 
-         virtual void _start_user_message_handler(::ca::signal_object * pobj);
+         virtual void _start_user_message_handler(::ca2::signal_object * pobj);
 
-         void (dispatch::*m_pfnDispatchWindowProc)(::ca::signal_object * pobj);
+         void (dispatch::*m_pfnDispatchWindowProc)(::ca2::signal_object * pobj);
 
-         virtual void _user_message_handler(::ca::signal_object * pobj);
+         virtual void _user_message_handler(::ca2::signal_object * pobj);
          //bool _iguimessageDispatchCommandMessage(BaseCommand * pcommand, bool & b);
          // return TRUE to stop routing
 #ifdef WINDOWS
@@ -307,7 +307,7 @@ namespace ca
 #undef new
 
       class CLASS_DECL_ca2 base :
-            public ::ca::signal_object
+            public ::ca2::signal_object
          {
          public:
 
@@ -318,8 +318,8 @@ namespace ca
             lparam                  m_lparam;
             bool                    m_bConditional;
 
-            base(sp(::ca::application) papp, ::ca::signal * psignal = NULL);
-            base(sp(::ca::application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
+            base(sp(::ca2::application) papp, ::ca2::signal * psignal = NULL);
+            base(sp(::ca2::application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
 
 
@@ -336,7 +336,7 @@ namespace ca
          {
          public:
 
-            create(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            create(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             LPCREATESTRUCT m_lpcreatestruct;
 
             virtual void set_lresult(LRESULT lresult);
@@ -350,7 +350,7 @@ namespace ca
          public:
 
 
-            timer(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            timer(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
             UINT m_nIDEvent;
          };
@@ -365,7 +365,7 @@ namespace ca
             bool  m_bMinimized;
 
 
-            activate(sp(::ca::application) papp);
+            activate(sp(::ca2::application) papp);
 
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
@@ -375,7 +375,7 @@ namespace ca
          public:
 
 
-            move(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            move(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             point m_pt;
          };
 
@@ -384,7 +384,7 @@ namespace ca
          public:
 
 
-            size(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            size(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             UINT     m_nType;
             ::size   m_size;
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -396,7 +396,7 @@ namespace ca
          public:
 
 
-            scroll(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            scroll(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             UINT              m_nSBCode;
             int32_t           m_nPos;
             sp(::user::interaction)  m_pScrollBar;
@@ -414,11 +414,11 @@ namespace ca
             ::visual::e_cursor      m_ecursor;
             bool                    m_bTranslated;
 
-            mouse(sp(::ca::application) papp);
+            mouse(sp(::ca2::application) papp);
             virtual ~mouse();
 
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-            static mouse * cast(::ca::signal_object * pobj) { return (mouse *) pobj; }
+            static mouse * cast(::ca2::signal_object * pobj) { return (mouse *) pobj; }
          };
 
          class CLASS_DECL_ca2 mouse_wheel : public mouse
@@ -426,7 +426,7 @@ namespace ca
          public:
 
 
-            mouse_wheel(sp(::ca::application) papp) : ca(papp), mouse(papp) {}
+            mouse_wheel(sp(::ca2::application) papp) : ca2(papp), mouse(papp) {}
             UINT     GetFlags();
             int16_t    GetDelta();
             point    GetPoint();
@@ -440,7 +440,7 @@ namespace ca
          public:
 
 
-            mouse_activate(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            mouse_activate(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             sp(::user::interaction) GetDesktopWindow();
             UINT GetHitTest();
             UINT GetMessage();
@@ -451,8 +451,8 @@ namespace ca
          public:
 
 
-            context_menu(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
-            sp(::ca::window) GetWindow();
+            context_menu(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
+            sp(::ca2::window) GetWindow();
             point GetPoint();
          };
 
@@ -462,8 +462,8 @@ namespace ca
          public:
 
 
-            set_cursor(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
-            sp(::ca::window) m_pWnd;
+            set_cursor(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
+            sp(::ca2::window) m_pWnd;
             UINT m_nHitTest;
             UINT m_message;
          };
@@ -473,7 +473,7 @@ namespace ca
          public:
 
 
-            show_window(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            show_window(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             bool m_bShow;
             UINT  m_nStatus;
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -484,8 +484,8 @@ namespace ca
          public:
 
 
-            on_draw(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
-            ::ca::graphics * m_pdc;
+            on_draw(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
+            ::ca2::graphics * m_pdc;
          };
 
          class CLASS_DECL_ca2 erase_bkgnd : public base
@@ -493,10 +493,10 @@ namespace ca
          public:
 
 
-            ::ca::graphics * m_pdc;
+            ::ca2::graphics * m_pdc;
 
 
-            erase_bkgnd(sp(::ca::application) papp);
+            erase_bkgnd(sp(::ca2::application) papp);
 
             void set_result(bool bResult);
 
@@ -510,7 +510,7 @@ namespace ca
          public:
 
 
-            nchittest(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            nchittest(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             point m_pt;
          };
 
@@ -533,7 +533,7 @@ namespace ca
 #endif*/
 
 
-            key(sp(::ca::application) papp);
+            key(sp(::ca2::application) papp);
 
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
@@ -546,7 +546,7 @@ namespace ca
             bool m_bActive;
 
 
-            nc_activate(sp(::ca::application) papp);
+            nc_activate(sp(::ca2::application) papp);
 
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
@@ -558,7 +558,7 @@ namespace ca
          public:
 
 
-            notify(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            notify(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             LPNMHDR get_lpnmhdr();
             int32_t get_ctrl_id();
          };
@@ -570,7 +570,7 @@ namespace ca
          public:
 
 
-            update_cmd_ui(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            update_cmd_ui(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             cmd_ui *    m_pcmdui;
          };
 
@@ -579,7 +579,7 @@ namespace ca
          public:
 
 
-            command(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            command(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             UINT GetNotifyCode();
             UINT GetId();
             oswindow get_oswindow();
@@ -590,10 +590,10 @@ namespace ca
          public:
 
 
-            ctl_color(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            ctl_color(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             HBRUSH      m_hbrush;
-            ::ca::graphics *       m_pdc;
-            sp(::ca::window)      m_pwnd;
+            ::ca2::graphics *       m_pdc;
+            sp(::ca2::window)      m_pwnd;
             UINT        m_nCtlType;
          };
 
@@ -602,7 +602,7 @@ namespace ca
          public:
 
 
-            set_focus(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            set_focus(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
 
@@ -612,7 +612,7 @@ namespace ca
          {
          public:
 
-            window_pos(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            window_pos(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             WINDOWPOS * m_pwindowpos;
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
@@ -627,7 +627,7 @@ namespace ca
          public:
 
 
-            measure_item(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            measure_item(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             int32_t m_i;
             LPMEASUREITEMSTRUCT m_lpmis;
          };
@@ -639,7 +639,7 @@ namespace ca
          public:
 
 
-            nc_calc_size(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            nc_calc_size(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             NCCALCSIZE_PARAMS * m_pparams;
             bool GetCalcValidRects();
             virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -652,7 +652,7 @@ namespace ca
          public:
 
 
-            enable(sp(::ca::application) papp) : ca(papp), ::ca::message::base(papp) {}
+            enable(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             bool get_enable();
          };
 
@@ -731,7 +731,7 @@ namespace ca
          UINT                              message,
          dispatch *   pdispatch,
          T1 *                              psignalizable,
-         void (T2::*                      pfn)(::ca::signal_object *))
+         void (T2::*                      pfn)(::ca2::signal_object *))
       {
          pdispatch->AddMessageHandler(
             message,
@@ -747,7 +747,7 @@ namespace ca
          UINT                              message,
          dispatch *   pdispatch,
          T1 *                              psignalizable,
-         void (T2::*                      pfn)(::ca::signal_object *))
+         void (T2::*                      pfn)(::ca2::signal_object *))
       {
 
          UINT uiOsMessage = translate_to_os_message(message);
@@ -764,7 +764,7 @@ namespace ca
          UINT                              uiIdEnd,
          dispatch *   pdispatch,
          T1 *                              psignalizable,
-         void (T2::*                      pfn)(::ca::signal_object *))
+         void (T2::*                      pfn)(::ca2::signal_object *))
       {
          pdispatch->AddMessageHandler(
             uiMessage,
@@ -812,45 +812,45 @@ namespace ca
    } // namespace message
 
 
-} // namespace ca
+} // namespace ca2
 
 
 
 #if defined(WINDOWS) || defined(LINUX) || defined(MACOS)
 #define IGUI_WIN_MSG_LINK \
-   ::ca::message::os_connect
+   ::ca2::message::os_connect
 #else
 #define IGUI_WIN_MSG_LINK(p1, p2, p3, p4) \
    ;
 #endif
 #ifdef LINUX
 #define IGUI_MAC_MSG_LINK \
-   ::ca::message::os_connect
+   ::ca2::message::os_connect
 #else
 #define IGUI_MAC_MSG_LINK(p1, p2, p3, p4) \
    ;
 #endif
 
 #define IGUI_MSG_LINK(param1, param2, param3, param4) \
-   ::ca::message::_connect(param1, param2, param3, param4)
+   ::ca2::message::_connect(param1, param2, param3, param4)
 
 #define USER_MESSAGE_LINK(param1, param2, param3, param4) \
-   IGUI_MSG_LINK(::ca::param1, param2, param3, param4)
+   IGUI_MSG_LINK(::ca2::param1, param2, param3, param4)
 
 
 
 #define IGUI_WIN_CMD_LINK \
-   ::ca::message::cmd_connect
+   ::ca2::message::cmd_connect
 
 #define IGUI_WIN_NOTIFY_REFLECT(wNotifyCode, pinterface, phandler, pfunction) \
    IGUI_WIN_CMD_LINK(WM_COMMAND, (UINT) wNotifyCode + WM_REFLECT_BASE, 0, 0xffffffff, pinterface, phandler, pfunction)
 
-#define IGUI_WIN_ON_CONTROL(id, c, pdispatch, phandler, poperation) \
-   IGUI_WIN_CMD_LINK(WM_COMMAND, c, id, id, pdispatch, phandler, poperation)
+#define IGUI_WIN_ON_CONTROL(id, ca, pdispatch, phandler, poperation) \
+   IGUI_WIN_CMD_LINK(WM_COMMAND, ca, id, id, pdispatch, phandler, poperation)
 
 #define IGUI_WIN_ON_NOTIFY(id, n, pdispatch, phandler, poperation) \
    IGUI_WIN_CMD_LINK(WM_NOTIFY, n, id, id, pdispatch, phandler, poperation)
 
-#define IGUI_WIN_CAST(tcast, pcasted) ::ca::message::tcast * pcasted = (::ca::message::tcast *) pobj;
-#define IGUI_WIN_CST(tcast) ::ca::message::tcast * p##tcast = (::ca::message::tcast *) pobj;
+#define IGUI_WIN_CAST(tcast, pcasted) ::ca2::message::tcast * pcasted = (::ca2::message::tcast *) pobj;
+#define IGUI_WIN_CST(tcast) ::ca2::message::tcast * p##tcast = (::ca2::message::tcast *) pobj;
 

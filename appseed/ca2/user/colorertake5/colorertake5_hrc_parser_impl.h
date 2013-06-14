@@ -14,7 +14,7 @@ namespace colorertake5
    class CLASS_DECL_ca2 HRCParserImpl : public HRCParser
    {
    public:
-      HRCParserImpl(sp(::ca::application) papp);
+      HRCParserImpl(sp(::ca2::application) papp);
      virtual ~HRCParserImpl();
 
      void setErrorHandler(ErrorHandler *eh);

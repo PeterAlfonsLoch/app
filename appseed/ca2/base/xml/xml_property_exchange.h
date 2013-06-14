@@ -6,15 +6,15 @@ namespace xml
    class CLASS_DECL_ca2 property_set_exchange :
       virtual public exportable,
       virtual public importable,
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
 
-      ::ca::property_set * m_ppropertyset;
+      ::ca2::property_set * m_ppropertyset;
 
 
-      property_set_exchange(sp(::ca::application) papp);
+      property_set_exchange(sp(::ca2::application) papp);
       virtual ~property_set_exchange();
 
 

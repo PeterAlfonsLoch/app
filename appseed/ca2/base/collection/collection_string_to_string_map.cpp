@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-string_to_string_map::string_to_string_map(::ca::application * papp, int_ptr nBlockSize) :
-   ::ca::ca(papp),
+string_to_string_map::string_to_string_map(::ca2::application * papp, int_ptr nBlockSize) :
+   ::ca2::ca2(papp),
    base_string_to_string_map(papp,  nBlockSize)
 {
 
@@ -10,7 +10,7 @@ string_to_string_map::string_to_string_map(::ca::application * papp, int_ptr nBl
 
 
 string_to_string_map::string_to_string_map(const string_to_string_map & map) :
-   ::ca::ca(map.get_app()),
+   ::ca2::ca2(map.get_app()),
    base_string_to_string_map(dynamic_cast < const base_string_to_string_map & > (map))
 {
 

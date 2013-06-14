@@ -1,22 +1,22 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 file_composite :
-      virtual public ::ca::file
+      virtual public ::ca2::file
    {
    public:
 
 
 
-      ::ca::filesp     m_spfile;
+      ::ca2::filesp     m_spfile;
 
 
       file_composite();
-      file_composite(sp(::ca::file) pfile);
+      file_composite(sp(::ca2::file) pfile);
       virtual ~file_composite();
 
       virtual file_position get_position() const;
@@ -35,9 +35,9 @@ namespace ca
       virtual void SetStatus(const char * lpszFileName, const file_status& status);
 
 
-      virtual sp(::ca::file) Duplicate() const;
+      virtual sp(::ca2::file) Duplicate() const;
 
-      virtual file_position seek(file_offset lOff, ::ca::e_seek  nFrom);
+      virtual file_position seek(file_offset lOff, ::ca2::e_seek  nFrom);
       virtual void set_length(file_size dwNewLen);
       virtual file_size get_length() const;
 
@@ -74,13 +74,13 @@ namespace ca
 
 
 
-      using ::ca::reader::write;
-      using ::ca::writer::write;
+      using ::ca2::reader::write;
+      using ::ca2::writer::write;
       void write(byte_output_stream & ostream);
 
 
-      using ::ca::writer::read;
-      using ::ca::reader::read;
+      using ::ca2::writer::read;
+      using ::ca2::reader::read;
       void read(byte_input_stream & istream);
 
 
@@ -88,6 +88,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

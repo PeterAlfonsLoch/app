@@ -22,7 +22,7 @@ public:
    strsp(stringa)             m_mapdirFolderName;
 
 
-   ifs(sp(::ca::application) papp, const char * pszRoot);
+   ifs(sp(::ca2::application) papp, const char * pszRoot);
 
    
    virtual bool has_subdir(const char * pszPath);
@@ -36,7 +36,7 @@ public:
 
    virtual bool file_move(const char * pszDst, const char * pszSrc);
 
-   virtual ::ca::filesp get_file(var varFile, UINT nOpenFlags);
+   virtual ::ca2::filesp get_file(var varFile, UINT nOpenFlags);
 
    virtual bool file_exists(const char * pszPath);
 

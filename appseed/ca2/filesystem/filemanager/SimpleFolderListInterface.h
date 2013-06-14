@@ -17,7 +17,7 @@ namespace filemanager
          ModeConfigurationItem,
       };
 
-      SimpleFolderListInterface(sp(::ca::application) papp);
+      SimpleFolderListInterface(sp(::ca2::application) papp);
       virtual ~SimpleFolderListInterface();
 
    public:
@@ -59,7 +59,7 @@ namespace filemanager
       virtual count _001GetItemCount();
       virtual void _001InsertColumns();
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       virtual COLORREF get_background_color();
 

@@ -1,11 +1,11 @@
 #include "framework.h"
 
-clock_interface::clock_interface(sp(::ca::application) papp) :
-   ca(papp)
+clock_interface::clock_interface(sp(::ca2::application) papp) :
+   ca2(papp)
 {
 }
 
-void clock_interface::_001OnDraw(::ca::graphics * pdc)
+void clock_interface::_001OnDraw(::ca2::graphics * pdc)
 {
    UNREFERENCED_PARAMETER(pdc);
 }

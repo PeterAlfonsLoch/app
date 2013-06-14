@@ -18,7 +18,7 @@ class CLASS_DECL_ca2 manual_reset_event :
 public:
 
 
-   manual_reset_event(sp(::ca::application) papp, bool bInitiallyOwn = false);
+   manual_reset_event(sp(::ca2::application) papp, bool bInitiallyOwn = false);
 
    
 };

@@ -22,12 +22,12 @@ namespace user
       virtual ~combo_list();
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
-      virtual void _001OnDrawVerisimple(::ca::graphics * pdc);
-      virtual void _001OnDrawSimply(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDrawVerisimple(::ca2::graphics * pdc);
+      virtual void _001OnDrawSimply(::ca2::graphics * pdc);
 
 
       virtual void query_full_size(LPSIZE lpsize) const;

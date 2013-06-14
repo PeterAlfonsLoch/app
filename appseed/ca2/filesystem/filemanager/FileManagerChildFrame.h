@@ -20,11 +20,11 @@ class CLASS_DECL_ca2 FileManagerChildFrame :
    public simple_child_frame
 {
 public:
-   FileManagerChildFrame(sp(::ca::application) papp);
+   FileManagerChildFrame(sp(::ca2::application) papp);
 
      simple_toolbar           m_toolbar;
 
-   void install_message_handling(::ca::message::dispatch * pinterface);
+   void install_message_handling(::ca2::message::dispatch * pinterface);
 
    void OnChangeEditSearch();
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -17,7 +17,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca2 port_forward   :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -43,7 +43,7 @@ namespace ca
 	   // GetPortMappingVector() and GetDeviceInformationContainer() methods
 	
 	   class CLASS_DECL_ca2 port_map :
-         virtual public ::ca::ca
+         virtual public ::ca2::ca2
 	   {
 	   public:
 		   string ExternalIPAddress;
@@ -56,7 +56,7 @@ namespace ca
 	   };
 		
 	   class CLASS_DECL_ca2 device :
-         virtual public ::ca::ca
+         virtual public ::ca2::ca2
 	   {
 	   public:
 		   // see http://msdn.microsoft.com/library/en-us/upnp/upnp/iupnpdevice.asp
@@ -106,8 +106,8 @@ namespace ca
    };
 
 
-   typedef ::c::smart_pointer < port_forward > port_forward_sp;
+   typedef ::ca::smart_pointer < port_forward > port_forward_sp;
 
 
-} // namespace ca
+} // namespace ca2
 

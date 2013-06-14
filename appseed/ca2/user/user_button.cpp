@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   button::button(sp(::ca::application) papp) :
-      ca(papp),
+   button::button(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::interaction(papp),
       m_istrButtonText(papp),
       m_dib(allocer())
@@ -24,7 +24,7 @@ namespace user
    }
 
 
-   void button::install_message_handling(::ca::message::dispatch * pinterface)
+   void button::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::user::window_interface::install_message_handling(pinterface);
       ::user::interaction::install_message_handling(pinterface);
@@ -42,7 +42,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_CREATE                  , pinterface, this, &button::_001OnCreate);
    }
 
-   void button::_001OnDraw(::ca::graphics * pdc)
+   void button::_001OnDraw(::ca2::graphics * pdc)
    {
       
       string strText(m_istrButtonText);
@@ -69,10 +69,10 @@ namespace user
       {
          if(m_iHover == 0)
          {
-            color c;
-            c.set_rgb(m_pschema->m_crBkHover);
-            c.hls_rate(0.0, -0.33, -0.23);
-            COLORREF crBorder = c.get_rgb() | (0xff << 24);
+            color ca;
+            ca.set_rgb(m_pschema->m_crBkHover);
+            ca.hls_rate(0.0, -0.33, -0.23);
+            COLORREF crBorder = ca.get_rgb() | (0xff << 24);
             pdc->Draw3dRect(rectClient, crBorder, crBorder);
             rectClient.deflate(1, 1);
             //pdc->Draw3dRect(rectClient, crBorder, crBorder);
@@ -84,10 +84,10 @@ namespace user
          }
          else
          {
-            color c;
-            c.set_rgb(m_pschema->m_crBkNormal);
-            c.hls_rate(0.0, -0.33, -0.23);
-            COLORREF crBorder = c.get_rgb() | (0xff << 24);
+            color ca;
+            ca.set_rgb(m_pschema->m_crBkNormal);
+            ca.hls_rate(0.0, -0.33, -0.23);
+            COLORREF crBorder = ca.get_rgb() | (0xff << 24);
             pdc->Draw3dRect(rectClient, crBorder, crBorder);
             rectClient.deflate(1, 1);
             //pdc->Draw3dRect(rectClient, crBorder, crBorder);
@@ -110,9 +110,9 @@ namespace user
 
    }
 
-   void button::_001OnLButtonDown(::ca::signal_object * pobj)
+   void button::_001OnLButtonDown(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
 
          e_element eelement;
 
@@ -129,9 +129,9 @@ namespace user
       return g_pwndLastLButtonDown == this;
    }
 
-   void button::_001OnLButtonUp(::ca::signal_object * pobj)
+   void button::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
 
          e_element eelement;
 
@@ -144,12 +144,12 @@ namespace user
          if(get_form() != NULL)
          {
             get_form()->send_message(
-               ::ca::message_event, 0, (LPARAM) &ev);
+               ::ca2::message_event, 0, (LPARAM) &ev);
          }
          else
          {
             get_parent()->send_message(
-               ::ca::message_event, 0, (LPARAM) &ev);
+               ::ca2::message_event, 0, (LPARAM) &ev);
          }
          pobj->m_bRet = true;
          pmouse->set_lresult(1);
@@ -157,9 +157,9 @@ namespace user
 
    }
 
-   void button::_001OnMouseMove(::ca::signal_object * pobj)
+   void button::_001OnMouseMove(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
          if(get_form() == NULL)
          {
 
@@ -177,7 +177,7 @@ namespace user
                   ev.m_puie = this;
                   ev.m_eevent = ::user::event_mouse_enter;
                   get_parent()->send_message(
-                     ::ca::message_event, 0, (LPARAM) &ev);
+                     ::ca2::message_event, 0, (LPARAM) &ev);
                }
                else if(iHover == -1)
                {
@@ -185,7 +185,7 @@ namespace user
                   ev.m_puie = this;
                   ev.m_eevent = ::user::event_mouse_leave;
                   get_parent()->send_message(
-                     ::ca::message_event, 0, (LPARAM) &ev);
+                     ::ca2::message_event, 0, (LPARAM) &ev);
                }
                track_mouse_hover();
             }
@@ -193,9 +193,9 @@ namespace user
          }
    }
 
-   void button::_001OnMouseLeave(::ca::signal_object * pobj)
+   void button::_001OnMouseLeave(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj)
+      SCAST_PTR(::ca2::message::base, pbase, pobj)
          if(get_form() == NULL)
          {
             index iOldHover = m_iHover;
@@ -208,7 +208,7 @@ namespace user
                ev.m_eevent = ::user::event_mouse_leave;
                if(get_parent() != NULL)
                {
-                  get_parent()->send_message(::ca::message_event, 0, (LPARAM) &ev);
+                  get_parent()->send_message(::ca2::message_event, 0, (LPARAM) &ev);
                }
                track_mouse_leave();
             }
@@ -234,7 +234,7 @@ namespace user
 
    void button::ResizeToFit()
    {
-      ::ca::memory_graphics pdc(allocer());
+      ::ca2::memory_graphics pdc(allocer());
 
       if(pdc.is_null())
          return;
@@ -296,17 +296,17 @@ namespace user
       return m_state;
    }
 
-   void button::_001OnSize(::ca::signal_object * pobj)
+   void button::_001OnSize(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj)
+      SCAST_PTR(::ca2::message::base, pbase, pobj)
          _001Layout();
       pbase->m_bRet = false;
    }
 
-   void button::on_create(::ca::signal_object * pobj)
+   void button::on_create(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::ca::message::create, pcreate, pobj)
+      //SCAST_PTR(::ca2::message::create, pcreate, pobj)
 
       sp(::simple_frame_window) pframewindow = GetTypedParent < ::simple_frame_window > ();
       if(pframewindow != NULL)
@@ -346,11 +346,11 @@ namespace user
       m_rectText = rect;
 
 
-      /*::ca::font font;
+      /*::ca2::font font;
 
       font.m_strFontFamilyName = "Calibri";
       font.m_dFontSize = rect.height() * 0.7;
-      font.m_eunitFontSize = ::ca::unit_pixel;
+      font.m_eunitFontSize = ::ca2::unit_pixel;
 
       SetFont(&font);*/
 
@@ -404,14 +404,14 @@ namespace user
    }
 
 
-   ::ca::font * button::_001GetFont()
+   ::ca2::font * button::_001GetFont()
    {
       if(m_pschema == NULL)
          return GetFont();
       return m_pschema->m_font;
    }
 
-   void button::_002OnDraw(::ca::graphics * pdc)
+   void button::_002OnDraw(::ca2::graphics * pdc)
    {
 
       if(m_pschema == NULL)
@@ -483,7 +483,7 @@ namespace user
       rectClient.left   += 3;
       rectClient.top    += 3;
       rect rectText = m_rectText;
-//      string str = ::ca::international::utf8_to_unicode(str);
+//      string str = ::ca2::international::utf8_to_unicode(str);
       if(m_dib.is_set())
       {
          if(m_dib->cx > 0 &&
@@ -524,7 +524,7 @@ namespace user
 
    }
 
-   void button::_001OnCreate(::ca::signal_object * pobj)
+   void button::_001OnCreate(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       m_pschema   = &::user::GetUfeSchema(get_app())->m_button;

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2003-2004, Mark Borgerding
+Copyright (ca) 2003-2004, Mark Borgerding
 
 
 
@@ -207,7 +207,7 @@ static void kf_bfly5(
     }
 }
 
-/* perform the butterfly for one stage of a mixed ca FFT */
+/* perform the butterfly for one stage of a mixed ca2 FFT */
 static void kf_bfly_generic(
         kiss_fft_cpx * Fout,
         const size_t fstride,
@@ -257,7 +257,7 @@ void kf_work(
         )
 {
     kiss_fft_cpx * Fout_beg=Fout;
-    const int32_t p=*factors++; /* the ca  */
+    const int32_t p=*factors++; /* the ca2  */
     const int32_t m=*factors++; /* stage's fft length/p */
     const kiss_fft_cpx * Fout_end = Fout + p*m;
 

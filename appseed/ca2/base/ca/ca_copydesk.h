@@ -1,17 +1,17 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 copydesk : 
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
       
-      copydesk(sp(::ca::application) papp);
+      copydesk(sp(::ca2::application) papp);
       virtual ~copydesk();
 
 
@@ -27,17 +27,17 @@ namespace ca
       virtual string get_plain_text();
 
 
-      virtual bool desk_to_dib(::ca::dib * pdib);
+      virtual bool desk_to_dib(::ca2::dib * pdib);
       // todo
-      //bool dib_to_desk(::ca::dib * pdib);
+      //bool dib_to_desk(::ca2::dib * pdib);
 
    };
 
 
-   typedef ::c::smart_pointer < copydesk > copydesk_sp;
+   typedef ::ca::smart_pointer < copydesk > copydesk_sp;
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

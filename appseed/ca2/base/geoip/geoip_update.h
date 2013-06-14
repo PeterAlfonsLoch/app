@@ -25,10 +25,10 @@ typedef enum {
 const char * GeoIP_get_error_message(int32_t i);
 
 /* Original Update Function, just for MaxMind GeoIP Country database */
-int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int32_t verbose, void (*f)( char *));
+int16_t GeoIP_update_database (::ca2::application * papp, char * license_key, int32_t verbose, void (*f)( char *));
 
 /* More generalized update function that works more databases */
-int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id, char * license_key,char * data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
+int16_t GeoIP_update_database_general (::ca2::application * papp, char * user_id, char * license_key,char * data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
 
    /* experimental export */
    int32_t  GeoIP_fprintf(int32_t (*f)(FILE *, char *),FILE *fp, const char *fmt, ...);

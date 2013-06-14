@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
    class application;
    class application_signal_object;
 }
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -17,33 +17,33 @@ namespace ca
    // passed as application_bias to bergedge that can later pass or use this information as application_bias
    // for further actions.
    class CLASS_DECL_ca2 application_bias :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
 
       class CLASS_DECL_ca2 callback :
-         virtual public ::ca::signalizable
+         virtual public ::ca2::signalizable
       {
       public:
 
 
-         void connect_to(sp(::ca::application) papp);
+         void connect_to(sp(::ca2::application) papp);
 
-         void on_call_signal(::ca::signal_object * pobj);
+         void on_call_signal(::ca2::signal_object * pobj);
 
-         virtual void on_application_bias_callback_signal(::ca::application_signal_object * pobj);
+         virtual void on_application_bias_callback_signal(::ca2::application_signal_object * pobj);
 
       };
 
       
       sp(::user::interaction)      m_puiParent;
       callback *                 m_pcallback;
-      ::ca::property_set          m_set;
+      ::ca2::property_set          m_set;
 
       
       application_bias();
-      application_bias(sp(::ca::application) papp);
+      application_bias(sp(::ca2::application) papp);
       application_bias(const application_bias & bias);
       application_bias & operator = (const application_bias & bias);
 
@@ -51,4 +51,4 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2

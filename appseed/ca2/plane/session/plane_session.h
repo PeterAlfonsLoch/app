@@ -11,7 +11,7 @@ namespace plane
    class CLASS_DECL_ca2 session :
       virtual public ::platform::application,
       virtual public ::filemanager::item_action,
-      virtual public ::ca::session
+      virtual public ::ca2::session
    {
    public:
 
@@ -24,15 +24,15 @@ namespace plane
          string                  m_strApp;
          string                  m_strQuery;
          sp(::plane::session)      m_pbergedgeParent;
-         sp(::ca::application)   m_papp;
+         sp(::ca2::application)   m_papp;
          bool                    m_bMakeVisible;
          sp(::user::interaction) m_puiParent;
-         ::ca::property_set      m_setParameters;
+         ::ca2::property_set      m_setParameters;
       };
 
 
       class run_start_installer :
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
       public:
          virtual void run_start_install(const char * pszInstall) = 0;
@@ -48,8 +48,8 @@ namespace plane
 
       bool                                                  m_bShowPlatform;
 
-      sp(::ca::application)                                   m_pappCurrent;
-      string_map < sp(::ca::application) >                    m_mapApplication;
+      sp(::ca2::application)                                   m_pappCurrent;
+      string_map < sp(::ca2::application) >                    m_mapApplication;
 
 
       var                                                   m_varTopicFile;
@@ -96,7 +96,7 @@ namespace plane
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-      virtual ::ca::application * get_app() const;
+      virtual ::ca2::application * get_app() const;
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
@@ -106,24 +106,24 @@ namespace plane
 
       void initialize_bergedge_application_interface();
 
-      virtual bool create_bergedge(sp(::ca::create_context) pcreatecontext);
+      virtual bool create_bergedge(sp(::ca2::create_context) pcreatecontext);
 
-      virtual void on_app_request_bergedge_callback(sp(::ca::application) papp);
+      virtual void on_app_request_bergedge_callback(sp(::ca2::application) papp);
 
       
 
 
       // semantics defined by application
-      virtual void request_create(sp(::ca::create_context) pcreatecontext);
+      virtual void request_create(sp(::ca2::create_context) pcreatecontext);
       // main loosely coupled semantics
       // varFile   : empty, one file path, many file paths, one file object, one or more file objects to be opened
       // varQuery  : more ellaborated requests for the application - syntax and semantic defined by requested application
 
-      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca2::create_context) pcontext);
 
-      virtual ::user::place_holder_ptra get_place_holder(sp(::user::frame_window) pmainframe, sp(::ca::create_context) pcontext);
+      virtual ::user::place_holder_ptra get_place_holder(sp(::user::frame_window) pmainframe, sp(::ca2::create_context) pcontext);
 
-      virtual bool place(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcontext);
+      virtual bool place(sp(::user::main_frame) pmainframe, sp(::ca2::create_context) pcontext);
 
       virtual void request_topic_file(var & varQuery);
 
@@ -131,7 +131,7 @@ namespace plane
 
       virtual void check_topic_file_change();
 
-      void on_exclusive_instance_conflict(::ca::EExclusiveInstance eexclusive);
+      void on_exclusive_instance_conflict(::ca2::EExclusiveInstance eexclusive);
 
       void launch_app(const char * psz);
       void install_app(const char * psz);
@@ -155,12 +155,12 @@ namespace plane
 
       virtual service_base * allocate_new_service();
 
-      void on_request(sp(::ca::create_context) pcreatecontext);
+      void on_request(sp(::ca2::create_context) pcreatecontext);
 
-      sp(::ca::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      sp(::ca2::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca2::application_bias * pbiasCreate = NULL);
 
 
-      sp(::ca::application) get_current_application();
+      sp(::ca2::application) get_current_application();
 
       virtual void get_screen_rect(LPRECT lprect);
 
@@ -180,8 +180,8 @@ namespace plane
       virtual void set_default_cursor(::visual::e_cursor ecursor);
       virtual ::visual::cursor * get_default_cursor();
 
-      virtual bool open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate = NULL);
-      virtual bool open_by_file_extension(::ca::create_context * pcc);
+      virtual bool open_by_file_extension(const char * pszPathName, ::ca2::application_bias * pbiasCreate = NULL);
+      virtual bool open_by_file_extension(::ca2::create_context * pcc);
 
       virtual bool is_session();
 
@@ -190,7 +190,7 @@ namespace plane
       virtual bool is_remote_session();
 
       using ::plane::application::start_application;
-      sp(::plane::application) start_application(const char * pszType, const char * pszAppId, sp(::ca::create_context) pcreatecontext);
+      sp(::plane::application) start_application(const char * pszType, const char * pszAppId, sp(::ca2::create_context) pcreatecontext);
 
 
       virtual COLORREF get_default_color(uint64_t ui);

@@ -14,8 +14,8 @@ namespace user
    class CLASS_DECL_ca2 tree_draw_item
    {
    public:
-      sp(::ca::tree_item)      m_pitem;
-      ::ca::graphics *        m_pdc;
+      sp(::ca2::tree_item)      m_pitem;
+      ::ca2::graphics *        m_pdc;
       index                   m_iItem;
       index                   m_iIndentation;
       index                   m_iItemHeight;
@@ -34,7 +34,7 @@ namespace user
 
    class CLASS_DECL_ca2 tree :
       virtual public scroll_view,
-      public ::ca::tree
+      public ::ca2::tree
    {
    public:
 
@@ -51,7 +51,7 @@ namespace user
       index                         m_iClick;
       UINT                          m_uiLButtonUpFlags;
       point                         m_ptLButtonUp;
-      sp(::ca::tree_item)             m_pitemFirstVisible;
+      sp(::ca2::tree_item)             m_pitemFirstVisible;
       index                         m_iFirstVisibleItemLevel;
       index                         m_iFirstVisibleItemProperIndex;
       int32_t                       m_iCurrentViewWidth;
@@ -74,11 +74,11 @@ namespace user
       BYTE                          m_uchHoverAlphaInit;
       
 
-      tree(sp(::ca::application) papp);
+      tree(sp(::ca2::application) papp);
       virtual ~tree();
 
-      virtual void _001OnDrawBackground(::ca::graphics * pdc);
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDrawBackground(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
       virtual void _001DrawItem(tree_draw_item & data);
 
       void layout();
@@ -86,25 +86,25 @@ namespace user
       void _001GetViewRect(LPRECT lprect);
 
       void _001OnTreeDataChange();
-      sp(::ca::tree_item) CalcFirstVisibleItem(index & iLevel, index & iProperIndex);
+      sp(::ca2::tree_item) CalcFirstVisibleItem(index & iLevel, index & iProperIndex);
       virtual int32_t _001CalcCurrentViewWidth();
-      void _001SelectItem(sp(::ca::tree_item) pitem);
+      void _001SelectItem(sp(::ca2::tree_item) pitem);
       count _001GetVisibleItemCount();
       void _001SetCollapseImage(const char * pszMatter);
       void _001SetExpandImage(const char * pszMatter);
       void UpdateHover();
-      virtual void _001OnOpenItem(sp(::ca::tree_item) pitem);
-      void _001ExpandItem(sp(::ca::tree_item) pitem, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
-      virtual void _001OnItemExpand(sp(::ca::tree_item) pitem);
-      virtual void _001OnItemCollapse(sp(::ca::tree_item) pitem);
+      virtual void _001OnOpenItem(sp(::ca2::tree_item) pitem);
+      void _001ExpandItem(sp(::ca2::tree_item) pitem, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
+      virtual void _001OnItemExpand(sp(::ca2::tree_item) pitem);
+      virtual void _001OnItemCollapse(sp(::ca2::tree_item) pitem);
       virtual bool _001GetItemElementRect(LPRECT lprect, tree_draw_item & drawitem, ::user::e_tree_element eelement);
-      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
       int32_t _001GetItemHeight();
       virtual index _001GetIndentation();
       
       
 
-      sp(::ca::tree_item) _001HitTest(POINT pt, ::user::e_tree_element & eelement);
+      sp(::ca2::tree_item) _001HitTest(POINT pt, ::user::e_tree_element & eelement);
       void _001OnClick(UINT uiFlags, point point);
 
 
@@ -150,10 +150,10 @@ namespace user
       virtual public ::user::tree
    {
    public:
-      tree_window(sp(::ca::application) papp);
+      tree_window(sp(::ca2::application) papp);
       virtual ~tree_window();
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
    };
 
 } // namespace user

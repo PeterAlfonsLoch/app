@@ -2,8 +2,8 @@
 #include "framework.h"
 
 
-BaseButtonControl::BaseButtonControl(sp(::ca::application) papp) :
-   ca(papp),
+BaseButtonControl::BaseButtonControl(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::button(papp)
 {
    m_iClick = 0;
@@ -16,7 +16,7 @@ BaseButtonControl::~BaseButtonControl()
 {
 }
 
-void BaseButtonControl::install_message_handling(::ca::message::dispatch * pdispatch)
+void BaseButtonControl::install_message_handling(::ca2::message::dispatch * pdispatch)
 {
    button::install_message_handling(pdispatch);
 }
@@ -33,13 +33,13 @@ bool BaseButtonControl::pre_create_window(CREATESTRUCT& cs)
 
 
 
-void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
+void BaseButtonControl::_001OnDraw(::ca2::graphics * pdc)
 {
    rect rectClient;
    bool bItemHover;
    bool bSubItemHover;
 
-   ::user::draw_context * pdrawcontext = pdc->::ca::simple_chain < ::user::draw_context >::get_last();
+   ::user::draw_context * pdrawcontext = pdc->::ca2::simple_chain < ::user::draw_context >::get_last();
 
    if(pdrawcontext != NULL)
    {
@@ -161,7 +161,7 @@ void BaseButtonControl::UpdateDrawingObjects()
 
 
 
-void BaseButtonControl::_003CustomWindowProc(::ca::signal_object * pobj)
+void BaseButtonControl::_003CustomWindowProc(::ca2::signal_object * pobj)
 {
   return _user_message_handler(pobj);
 }

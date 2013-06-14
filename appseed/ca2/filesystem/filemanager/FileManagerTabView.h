@@ -13,15 +13,15 @@ class CLASS_DECL_ca2 FileManagerTabView :
    virtual public FileManagerViewInterface
 {
 public:
-   FileManagerTabView(sp(::ca::application) papp);
+   FileManagerTabView(sp(::ca2::application) papp);
 
    virtual void on_create_view(::user::view_creator_data * pcreatordata);
-   virtual void install_message_handling(::ca::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
    void FileManagerBrowse(const char * lpcwstr);
 
 
    DECL_GEN_SIGNAL(_001OnCreate)
-   virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+   virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
    virtual ~FileManagerTabView();
 #ifdef DEBUG
    virtual void assert_valid() const;

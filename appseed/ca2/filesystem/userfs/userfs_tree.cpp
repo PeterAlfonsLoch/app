@@ -5,8 +5,8 @@ namespace userfs
 {
 
 
-   tree::tree(sp(::ca::application) papp) :
-      ca(papp),
+   tree::tree(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::scroll_view(papp),
       ::userfs::tree_interface(papp)
    {
@@ -31,7 +31,7 @@ namespace userfs
 #endif //DEBUG
 
 
-   void tree::install_message_handling(::ca::message::dispatch * pinterface)
+   void tree::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::userfs::tree_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tree::_001OnCreate);
@@ -40,7 +40,7 @@ namespace userfs
       IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &tree::_001OnContextMenu);
    }
 
-   void tree::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void tree::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -96,7 +96,7 @@ namespace userfs
    }
 
 
-   void tree::_001OnLButtonDblClk(::ca::signal_object * pobj)
+   void tree::_001OnLButtonDblClk(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //   int32_t iItem;
@@ -170,9 +170,9 @@ namespace userfs
 
    }*/
 
-   void tree::_001OnContextMenu(::ca::signal_object * pobj)
+   void tree::_001OnContextMenu(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
    //   int32_t iItem;
    //   HRESULT hr;
       point ptClient = pcontextmenu->GetPoint();
@@ -213,7 +213,7 @@ namespace userfs
 
             pPopup->TrackPopupMenu(
                point.x, point.y,
-               (sp(::ca::window)) pframe);
+               (sp(::ca2::window)) pframe);
          }
       }
       else
@@ -226,7 +226,7 @@ namespace userfs
             sp(::user::frame_window) pframe = GetTopLevelFrame();
             pPopup->TrackPopupMenu(
                point.x, point.y,
-               (sp(::ca::window)) pframe);
+               (sp(::ca2::window)) pframe);
          }
       }*/
    }
@@ -240,9 +240,9 @@ namespace userfs
    }
 
 
-   void tree::_001OnTimer(::ca::signal_object * pobj)
+   void tree::_001OnTimer(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::timer, ptimer, pobj)
+      SCAST_PTR(::ca2::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == 1234567)
       {
          m_iAnimate += 2;
@@ -273,7 +273,7 @@ namespace userfs
    }
 
 
-   void tree::_001OnShellCommand(::ca::signal_object * pobj)
+   void tree::_001OnShellCommand(::ca2::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -289,7 +289,7 @@ namespace userfs
    }
 
 
-   void tree::_001OnCreate(::ca::signal_object * pobj)
+   void tree::_001OnCreate(::ca2::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);

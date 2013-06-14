@@ -4,8 +4,8 @@
 
 
 
-FileManagerTabView::FileManagerTabView(sp(::ca::application) papp) :
-   ca(papp),
+FileManagerTabView::FileManagerTabView(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::tab(papp),
    
    ::user::tab_view(papp),
@@ -33,13 +33,13 @@ void FileManagerTabView::dump(dump_context & dumpcontext) const
 #endif //DEBUG
 
 
-void FileManagerTabView::install_message_handling(::ca::message::dispatch * pinterface)
+void FileManagerTabView::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::tab_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &FileManagerTabView::_001OnCreate);
 }
 
-void FileManagerTabView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
+void FileManagerTabView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    ::user::tab_view::on_update(pSender, lHint, phint);
@@ -56,7 +56,7 @@ void FileManagerTabView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca:
          {
             string str;
             str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-            sp(FileManagerFrame) pframe = ((sp(::ca::window)) GetParentFrame());
+            sp(FileManagerFrame) pframe = ((sp(::ca2::window)) GetParentFrame());
             if(pframe != NULL)
             {
                pframe->m_dataid = str;
@@ -100,7 +100,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
    if(pcreatordata->m_id == "add_location"
       || pcreatordata->m_id == "replace_name")
    {
-      sp(::ca::create_context) createcontext(allocer());
+      sp(::ca2::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = pcreatordata->m_pholder;
       sp(file_manager_form_document) pdoc = Application.filemanager().m_ptemplateForm->open_document_file(createcontext);
@@ -135,7 +135,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
    }
    else if(pcreatordata->m_id == 200000)
    {
-      sp(::ca::create_context) createcontext(allocer());
+      sp(::ca2::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = this;
       //throw not_implemented(get_app());
@@ -151,7 +151,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
    }
    else
    {
-      sp(::ca::create_context) createcontext(allocer());
+      sp(::ca2::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = true;
       createcontext->m_puiParent = pcreatordata->m_pholder;
       sp(::filemanager::document) pdoc =  (Application.filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));
@@ -232,9 +232,9 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
 }
 
 
-void FileManagerTabView::_001OnCreate(::ca::signal_object * pobj)
+void FileManagerTabView::_001OnCreate(::ca2::signal_object * pobj)
 {
-   //   SCAST_PTR(::ca::message::create, pcreate, pobj)
+   //   SCAST_PTR(::ca2::message::create, pcreate, pobj)
 
    pobj->previous();
 

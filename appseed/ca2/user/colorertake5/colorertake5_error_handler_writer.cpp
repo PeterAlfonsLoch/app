@@ -1,7 +1,7 @@
 #include "framework.h"
 
-ErrorHandlerWriter::ErrorHandlerWriter(sp(::ca::application) papp) :
-ca(papp)
+ErrorHandlerWriter::ErrorHandlerWriter(sp(::ca2::application) papp) :
+ca2(papp)
 {
 }
 

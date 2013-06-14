@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
-   tree::tree(sp(::ca::application) papp) :
-      ca(papp)
+   tree::tree(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
       m_pitem = allocate_item(NULL);
@@ -14,11 +14,11 @@ namespace ca
       if(m_pitem == NULL)
          throw memory_exception(get_app());
 
-      m_pitem->m_dwState |= ::ca::tree_item_state_expandable;
+      m_pitem->m_dwState |= ::ca2::tree_item_state_expandable;
 
-      m_pitem->m_dwState |= ::ca::tree_item_state_expanded;
+      m_pitem->m_dwState |= ::ca2::tree_item_state_expanded;
 
-      ::ca::simple_tree_item_data * pitemdata = new ::ca::simple_tree_item_data();
+      ::ca2::simple_tree_item_data * pitemdata = new ::ca2::simple_tree_item_data();
 
       m_pitem->m_pitemdata = pitemdata;
 
@@ -37,7 +37,7 @@ namespace ca
    sp(tree_data) tree::get_tree_data()
    {
 
-      return ::ca::data_container::get_data();
+      return ::ca2::data_container::get_data();
 
    }
 
@@ -50,7 +50,7 @@ namespace ca
          return NULL;
       if(pitemdata->get_tree_data() != get_data())
          return NULL;
-      sp(::ca::tree_item) pitem = m_pitem;
+      sp(::ca2::tree_item) pitem = m_pitem;
       for(; pitem != NULL; pitem = pitem->get_item(TreeNavigationExpandedForward))
       {
          if(pitem->m_pitemdata == pitemdata)
@@ -70,7 +70,7 @@ namespace ca
 
    bool tree::contains(sp(tree_item) pitemParam)
    {
-      sp(::ca::tree_item) pitem = m_pitem;
+      sp(::ca2::tree_item) pitem = m_pitem;
       for(; pitem != NULL; pitem = pitem->get_item(TreeNavigationExpandedForward))
       {
          if(pitem == pitemParam)
@@ -174,16 +174,16 @@ namespace ca
    ::count tree::remove_tree_item_array(tree_item_ptr_array & itemptra)
    {
       
-      ::count c = 0;
+      ::count ca = 0;
 
       for(int32_t i = 0; i < itemptra.get_count(); i++)
       {
 
-         c += remove_tree_item(itemptra(i));
+         ca += remove_tree_item(itemptra(i));
 
       }
 
-      return c;
+      return ca;
 
    }
 
@@ -257,10 +257,10 @@ namespace ca
       return true;
    }
 
-   sp(::ca::tree_item) tree::get_proper_item(index iIndex, index * piLevel)
+   sp(::ca2::tree_item) tree::get_proper_item(index iIndex, index * piLevel)
    {
       if(*piLevel) *piLevel = 0;
-      sp(::ca::tree_item) pitem = get_base_item();
+      sp(::ca2::tree_item) pitem = get_base_item();
       while(pitem != NULL && iIndex >= 0)
       {
          pitem = pitem->get_item(TreeNavigationProperForward, piLevel);
@@ -270,11 +270,11 @@ namespace ca
 
    }
 
-   index tree::get_proper_item_index(sp(::ca::tree_item) pitemParam, index * piLevel)
+   index tree::get_proper_item_index(sp(::ca2::tree_item) pitemParam, index * piLevel)
    {
       int32_t iIndex = 0;
       if(piLevel != NULL) *piLevel = 0;
-      sp(::ca::tree_item) pitem = get_base_item();
+      sp(::ca2::tree_item) pitem = get_base_item();
       while(pitem != NULL)
       {
          pitem = pitem->get_item(TreeNavigationProperForward, piLevel);
@@ -291,12 +291,12 @@ namespace ca
    }
 
 
-   sp(::ca::tree_item) tree::get_base_item()
+   sp(::ca2::tree_item) tree::get_base_item()
    {
       return m_pitem;
    }
 
-   sp(::ca::tree_item) tree::insert_item_data(sp(::ca::tree_data) pdata, sp(::ca::tree_item_data) pitemdataNew, ERelative erelativeNewItem, sp(::ca::tree_item) pitemRelative)
+   sp(::ca2::tree_item) tree::insert_item_data(sp(::ca2::tree_data) pdata, sp(::ca2::tree_item_data) pitemdataNew, ERelative erelativeNewItem, sp(::ca2::tree_item) pitemRelative)
    {
       if(erelativeNewItem == RelativeReplace)
       {
@@ -309,7 +309,7 @@ namespace ca
          return pitemRelative;
 
       }
-      sp(::ca::tree_item) pitemNew = allocate_item(pdata);
+      sp(::ca2::tree_item) pitemNew = allocate_item(pdata);
       if(pitemNew == NULL)
          return NULL;
       if(!insert_item(pdata, pitemNew, erelativeNewItem, pitemRelative))
@@ -320,11 +320,11 @@ namespace ca
       return pitemNew;
    }
 
-   sp(::ca::tree_item) tree::create_item(sp(::ca::tree_data) pdata, sp(::ca::tree_item) pitemRelative, ERelative erelativeNewItem)
+   sp(::ca2::tree_item) tree::create_item(sp(::ca2::tree_data) pdata, sp(::ca2::tree_item) pitemRelative, ERelative erelativeNewItem)
    {
       if(erelativeNewItem == RelativeReplace)
          return NULL;
-      sp(::ca::tree_item) pitemNew = allocate_item(pdata);
+      sp(::ca2::tree_item) pitemNew = allocate_item(pdata);
       if(pitemNew == NULL)
          return NULL;
       if(!insert_item(pdata, pitemNew, erelativeNewItem, pitemRelative))
@@ -339,7 +339,7 @@ namespace ca
    }
 
 
-   bool tree::insert_item(sp(::ca::tree_data) pdata, sp(::ca::tree_item) pitemNew, ERelative erelativeNewItem, sp(::ca::tree_item) pitemRelative)
+   bool tree::insert_item(sp(::ca2::tree_data) pdata, sp(::ca2::tree_item) pitemNew, ERelative erelativeNewItem, sp(::ca2::tree_item) pitemRelative)
    {
       if(pitemNew == NULL)
          return false;
@@ -368,7 +368,7 @@ namespace ca
             }
             else
             {
-               sp(::ca::tree_item) pitemOldFirstChild = pitemRelative->m_pchild;
+               sp(::ca2::tree_item) pitemOldFirstChild = pitemRelative->m_pchild;
 
                pitemRelative->m_pchild                  = pitemNew;
 
@@ -389,7 +389,7 @@ namespace ca
             }
             else
             {
-               sp(::ca::tree_item) pitemOldLastChild = pitemRelative->get_item(RelativeLastChild);
+               sp(::ca2::tree_item) pitemOldLastChild = pitemRelative->get_item(RelativeLastChild);
 
                pitemNew->m_pparent     = pitemRelative;
                pitemNew->m_pprevious   = pitemOldLastChild;
@@ -472,9 +472,9 @@ namespace ca
       return true;
    }
 
-   sp(::ca::tree_item) tree::allocate_item(sp(::ca::tree_data) pdata)
+   sp(::ca2::tree_item) tree::allocate_item(sp(::ca2::tree_data) pdata)
    {
-      sp(::ca::tree_item) pitemNew = new tree_item;
+      sp(::ca2::tree_item) pitemNew = new tree_item;
       pitemNew->m_ptreedata = pdata;
       pitemNew->m_ptree = this;
       return pitemNew;
@@ -504,4 +504,4 @@ namespace ca
       return NULL;
    }
 
-} // namespace ca
+} // namespace ca2

@@ -5,7 +5,7 @@ namespace html
 {
 
    class CLASS_DECL_ca2 font :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
       
@@ -15,13 +15,13 @@ namespace html
       string            m_strWeight;
       string            m_strSize;
       string            m_strTextDecoration;
-      ::ca::font_sp     m_font;
+      ::ca2::font_sp     m_font;
 
 
       font();
       font(const class font & font);
       
-      bool create(sp(::ca::application) papp);
+      bool create(sp(::ca2::application) papp);
 
       bool operator == (const font & font);
    };

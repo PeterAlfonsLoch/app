@@ -3,8 +3,8 @@
 namespace user
 {
 
-   elastic_slider::elastic_slider(sp(::ca::application) papp) :
-      ca(papp),
+   elastic_slider::elastic_slider(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::interaction(papp)
    {
       m_daScalar.set_size(100);
@@ -20,7 +20,7 @@ namespace user
    }
 
 
-   void elastic_slider::install_message_handling(::ca::message::dispatch * pdispatch)
+   void elastic_slider::install_message_handling(::ca2::message::dispatch * pdispatch)
    {
       ::user::interaction::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &elastic_slider::_001OnCreate);
@@ -30,16 +30,16 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &elastic_slider::_001OnMouseMove);
    }
 
-   void elastic_slider::_001OnCreate(::ca::signal_object * pobj)
+   void elastic_slider::_001OnCreate(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       SetTimer(1, 50, NULL);
    }
 
-   void elastic_slider::_001OnTimer(::ca::signal_object * pobj)
+   void elastic_slider::_001OnTimer(::ca2::signal_object * pobj)
    {
 //      return; // xxxtimer
-      SCAST_PTR(::ca::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 1)
       {
          if(m_bSlide || CalcScalar() > 0.0)
@@ -53,9 +53,9 @@ namespace user
       }
    }
 
-   void elastic_slider::_001OnLButtonDown(::ca::signal_object * pobj)
+   void elastic_slider::_001OnLButtonDown(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
       rect rect;
       GetSliderRect(rect);
       point pt(pmouse->m_pt);
@@ -74,9 +74,9 @@ namespace user
       }
    }
 
-   void elastic_slider::_001OnLButtonUp(::ca::signal_object * pobj)
+   void elastic_slider::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
       if(m_bSlide)
       {
 
@@ -87,10 +87,10 @@ namespace user
       }
    }
 
-   void elastic_slider::_001OnMouseMove(::ca::signal_object * pobj)
+   void elastic_slider::_001OnMouseMove(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
    }
 
    void elastic_slider::Slide()
@@ -188,7 +188,7 @@ namespace user
    }
 
 
-   void elastic_slider::_001OnDraw(::ca::graphics * pdc)
+   void elastic_slider::_001OnDraw(::ca2::graphics * pdc)
    {
       rect rectClient;
       GetClientRect(rectClient);

@@ -8,9 +8,9 @@ namespace libcompress
    static const uint64_t k_LZMA = 0x030101;
    static const uint64_t k_LZMA2 = 0x21;
 
-   #define IUnknown ::ca::object
+   #define IUnknown ::ca2::object
 
-   HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, sp(::ca::ca)coder)
+   HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, sp(::ca2::ca2)coder)
    {
       bool tryReduce = false;
       uint32_t reducedDictionarySize = 1 << 10;
@@ -38,7 +38,7 @@ namespace libcompress
 
       {
          ::count numProps = method.Props.get_count();
-         ::c::smart_pointer < ::libcompress::set_coder_properties_interface > setCoderProperties;
+         ::ca::smart_pointer < ::libcompress::set_coder_properties_interface > setCoderProperties;
          setCoderProperties = coder;
          if (setCoderProperties == NULL)
          {
@@ -54,7 +54,7 @@ namespace libcompress
             {
                for (int32_t i = 0; i < numProps; i++)
                {
-                  const ::ca::property &prop = method.Props[i];
+                  const ::ca2::property &prop = method.Props[i];
                   propIDs.add(atoi(prop.name()));
                   var &value = values[i];
                   value = prop.get_value();
@@ -65,7 +65,7 @@ namespace libcompress
                            if (reducedDictionarySize < value.uint32())
                               value = (uint64_t) reducedDictionarySize;
                }
-               ::c::smart_pointer < ::libcompress::set_coder_properties_interface > setCoderProperties;
+               ::ca::smart_pointer < ::libcompress::set_coder_properties_interface > setCoderProperties;
                setCoderProperties = coder;
                res = setCoderProperties->SetCoderProperties(&propIDs.first_element(), values, (uint32_t) numProps);
             }
@@ -80,12 +80,12 @@ namespace libcompress
       }
 
       /*
-      ::c::smart_pointer<::libcompress::write_coder_properties_interface> writeCoderProperties;
+      ::ca::smart_pointer<::libcompress::write_coder_properties_interface> writeCoderProperties;
       coder->QueryInterface(IID_ICompressWriteCoderProperties, (void **)&writeCoderProperties);
       if (writeCoderProperties != NULL)
       {
       CSequentialOutStreamImp *outStreamSpec = new CSequentialOutStreamImp;
-      ::c::smart_pointer<ISequentialOutStream> outStream(outStreamSpec);
+      ::ca::smart_pointer<ISequentialOutStream> outStream(outStreamSpec);
       outStreamSpec->Init();
       RINOK(writeCoderProperties->WriteCoderProperties(outStream));
       size_t size = outStreamSpec->GetSize();

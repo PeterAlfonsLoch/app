@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
    class file_exception;
@@ -9,8 +9,8 @@ namespace ca
 
 
    class CLASS_DECL_ca2 file :
-      virtual public ::ca::stream,
-      virtual public ::ca::output_stream_flush_interface
+      virtual public ::ca2::stream,
+      virtual public ::ca2::output_stream_flush_interface
    {
    public:
 
@@ -38,9 +38,9 @@ namespace ca
 
 
    // Overridables
-      virtual sp(::ca::file) Duplicate() const;
+      virtual sp(::ca2::file) Duplicate() const;
 
-      virtual file_position seek(file_offset lOff, ::ca::e_seek  nFrom);
+      virtual file_position seek(file_offset lOff, ::ca2::e_seek  nFrom);
       virtual void set_length(file_size dwNewLen);
       virtual file_size get_length() const;
 
@@ -81,20 +81,20 @@ namespace ca
 
 
 
-      using ::ca::reader::write;
-      using ::ca::writer::write;
+      using ::ca2::reader::write;
+      using ::ca2::writer::write;
       void write(byte_output_stream & ostream);
 
 
-      using ::ca::writer::read;
-      using ::ca::reader::read;
+      using ::ca2::writer::read;
+      using ::ca2::reader::read;
       void read(byte_input_stream & istream);
 
 
 
    };
 
-   typedef ::c::smart_pointer < file > filesp;
+   typedef ::ca::smart_pointer < file > filesp;
 
    inline void file::SetFilePath(const char * lpszNewName)
    {
@@ -103,7 +103,7 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

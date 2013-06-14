@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-simple_combo_box::simple_combo_box(sp(::ca::application) papp) :
-      ca(papp),
+simple_combo_box::simple_combo_box(sp(::ca2::application) papp) :
+      ca2(papp),
       
       ::user::scroll_view(papp),
       ::user::edit_plain_text(papp),
@@ -17,7 +17,7 @@ simple_combo_box::~simple_combo_box()
 }
 
 
-void simple_combo_box::_001OnDraw(::ca::graphics *pdc)
+void simple_combo_box::_001OnDraw(::ca2::graphics *pdc)
 {
 
    ::user::combo_box::_001OnDraw(pdc);

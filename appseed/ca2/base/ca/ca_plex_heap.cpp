@@ -8,7 +8,7 @@ plex_heap * plex_heap::create(plex_heap*& pHead, uint_ptr nMax, uint_ptr cbEleme
    ASSERT(nMax > 0 && cbElement > 0);
    if (nMax == 0 || cbElement == 0)
    {
-      throw invalid_argument_exception(::ca::get_thread_app());
+      throw invalid_argument_exception(::ca2::get_thread_app());
    }
 
    plex_heap* p = (plex_heap*) system_heap_alloc(sizeof(plex) + nMax * cbElement);
@@ -380,7 +380,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
 
 #ifndef MEMDLEAK
 
-   throw simple_exception(::ca::get_thread_app(), "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
+   throw simple_exception(::ca2::get_thread_app(), "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
 
 #endif
 
@@ -388,27 +388,27 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
 
    memdleak_block * pblock = s_pmemdleakList;
 
-   ::count c = 0;
+   ::count ca = 0;
 
    while(pblock != NULL)
    {
 
-      c++;
+      ca++;
 
       pblock = pblock->m_pnext;
 
    }
 
 
-   int32_t * piUse =(int32_t *)  malloc(sizeof(int32_t) * c);
-   const char ** pszFile = (const char **) malloc(sizeof(const char *) * c);
-   int32_t * piLine =(int32_t *)  malloc(sizeof(int32_t) * c);
+   int32_t * piUse =(int32_t *)  malloc(sizeof(int32_t) * ca);
+   const char ** pszFile = (const char **) malloc(sizeof(const char *) * ca);
+   int32_t * piLine =(int32_t *)  malloc(sizeof(int32_t) * ca);
 
    index i = 0;
 
    pblock = s_pmemdleakList;
 
-   while(pblock != NULL && i < c)
+   while(pblock != NULL && i < ca)
    {
       piUse[i] = pblock->m_iBlockUse;
       pszFile[i] = strdup(pblock->m_pszFileName);
@@ -427,6 +427,6 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
    *ppiLine = piLine;
 
 
-   return c;
+   return ca;
 
 }

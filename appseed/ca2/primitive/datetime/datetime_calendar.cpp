@@ -1,7 +1,7 @@
 #include "framework.h"
 
-calendar::calendar(sp(::ca::application) papp) :
-   ca(papp),
+calendar::calendar(sp(::ca2::application) papp) :
+   ca2(papp),
    m_font(allocer()),
    m_fontYear(allocer()),
    m_fontMonth(allocer()),
@@ -13,7 +13,7 @@ calendar::calendar(sp(::ca::application) papp) :
    m_iMonth = time.GetMonth();
 }
 
-void calendar::_001OnDraw(::ca::graphics * pdc)
+void calendar::_001OnDraw(::ca2::graphics * pdc)
 {
    pdc->SelectObject(m_font);
    ::datetime::time timeNow = ::datetime::time::get_current_time();
@@ -195,7 +195,7 @@ void calendar::_001GetHtml(sp(::html::file) pfile)
       }
 
             pfile->raw_print("<td>");
-            pfile->raw_print(::ca::str::from(w));
+            pfile->raw_print(::ca2::str::from(w));
             pfile->raw_print("</td>");
          }
          for(int32_t iWeekDay = 1; iWeekDay <=7; iWeekDay++)

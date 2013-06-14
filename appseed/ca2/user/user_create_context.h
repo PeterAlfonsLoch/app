@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/ca/ca_type_info.h"
+#include "base/ca2/ca_type_info.h"
 
 
 namespace user
@@ -18,7 +18,7 @@ namespace user
    {
    public:
       // for creating new views
-      sp(::ca::type_info)         m_typeinfoNewView; // runtime class of ::user::view to create or NULL
+      sp(::ca2::type_info)         m_typeinfoNewView; // runtime class of ::user::view to create or NULL
       sp(::user::document_interface)              m_pCurrentDoc;
       sp(::user::interaction)   m_puiNew;
 

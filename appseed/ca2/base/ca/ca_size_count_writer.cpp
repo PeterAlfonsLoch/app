@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
    void size_count_writer::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize)
@@ -12,4 +12,4 @@ namespace ca
          *processedSize = realProcessedSize;
    }
 
-} // namespace ca
+} // namespace ca2

@@ -2,7 +2,7 @@
 
 #ifndef METROWIN
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 pipe
@@ -90,7 +90,7 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 
 #endif

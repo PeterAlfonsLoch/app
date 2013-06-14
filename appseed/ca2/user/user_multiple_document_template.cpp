@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   multiple_document_template::multiple_document_template(sp(::ca::application) papp, const char * pszMatter, sp(::ca::type_info) pDocClass, sp(::ca::type_info) pFrameClass, sp(::ca::type_info) pViewClass) :
-      ca(papp),
+   multiple_document_template::multiple_document_template(sp(::ca2::application) papp, const char * pszMatter, sp(::ca2::type_info) pDocClass, sp(::ca2::type_info) pFrameClass, sp(::ca2::type_info) pViewClass) :
+      ca2(papp),
       ::user::document_template(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
    {
       ASSERT(m_docptra.is_empty());
@@ -25,7 +25,7 @@ namespace user
    {
 #ifdef DEBUG
       if (!m_docptra.is_empty())
-         TRACE(::ca::trace::category_AppMsg, 0, "Warning: destroying multiple_document_template with %d documents alive.\n", m_docptra.get_count());
+         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: destroying multiple_document_template with %d documents alive.\n", m_docptra.get_count());
 #endif
    }
 
@@ -59,17 +59,17 @@ namespace user
    }
 
 
-   void multiple_document_template::request_create(sp(::ca::create_context) pcreatecontext)
+   void multiple_document_template::request_create(sp(::ca2::create_context) pcreatecontext)
    {
 
-      pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(::ca::ca)) NULL;
+      pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(::ca2::ca2)) NULL;
       bool bMakeVisible = pcreatecontext->m_bMakeVisible;
-      //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca < ::user::interaction > ();
-      //   sp(::user::view) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca < ::user::view > ();
+      //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
+      //   sp(::user::view) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca2 < ::user::view > ();
       sp(::user::document_interface) pdocument = create_new_document();
       if (pdocument == NULL)
       {
-         TRACE(::ca::trace::category_AppMsg, 0, "document_template::create_new_document returned NULL.\n");
+         TRACE(::ca2::trace::category_AppMsg, 0, "document_template::create_new_document returned NULL.\n");
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
          System.simple_message_box(NULL, "failed to create user::document_interface");
          return;
@@ -100,7 +100,7 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // ::fontopus::user has be alerted to what failed in on_new_document
-            TRACE(::ca::trace::category_AppMsg, 0, "user::document_interface::on_new_document returned FALSE.\n");
+            TRACE(::ca2::trace::category_AppMsg, 0, "user::document_interface::on_new_document returned FALSE.\n");
             pFrame->DestroyWindow();
             return;
          }
@@ -115,9 +115,9 @@ namespace user
          {
             // failed to open or just failed to queue to open
             // if m_bQueueDocumentOpening flag is set, document opening is queued, and failure would be reported in a unknown way
-            // prepare ca for async operations and also async failures
+            // prepare ca2 for async operations and also async failures
             // ::fontopus::user has be alerted to what failed in on_open_document
-            TRACE(::ca::trace::category_AppMsg, 0, "user::document_interface::on_open_document returned FALSE.\n");
+            TRACE(::ca2::trace::category_AppMsg, 0, "user::document_interface::on_open_document returned FALSE.\n");
             pFrame->DestroyWindow();
             return;
          }

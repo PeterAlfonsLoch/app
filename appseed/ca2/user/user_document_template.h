@@ -32,7 +32,7 @@ namespace user
 
       enum DocStringIndex
       {
-         windowTitle,        // default ::ca::window title
+         windowTitle,        // default ::ca2::window title
          docName,            // ::fontopus::user visible name for default ::user::document_interface
          fileNewName,        // ::fontopus::user visible name for FileNew
          // for file based documents:
@@ -55,10 +55,10 @@ namespace user
 
 
       bool                    m_bQueueDocumentOpening;
-      ::ca::property_set       m_set;
+      ::ca2::property_set       m_set;
       bool                    m_bAutoDelete;
       // back pointer to OLE or other server (NULL if none or disabled)
-      ::ca::object *       m_pAttachedFactory;
+      ::ca2::object *       m_pAttachedFactory;
 
       // menu & accelerator resources for in-place container
       //HMENU                 m_hMenuInPlace;
@@ -77,17 +77,17 @@ namespace user
       //UINT                  m_nIDEmbeddingResource;        // IDR_ for OLE open frame/menu/accel
       //UINT                  m_nIDContainerResource;        // IDR_ for container frame/menu/accel
 
-      sp(::ca::type_info)         m_typeinfoDocument;         // class for creating new documents
-      sp(::ca::type_info)         m_typeinfoFrame;       // class for creating new frames
-      sp(::ca::type_info)         m_typeinfoView;        // class for creating new views
-      //sp(::ca::type_info)       m_pOleFrameClass;    // class for creating in-place frame
-      //sp(::ca::type_info)       m_pOleViewClass;     // class for creating in-place ::user::view
+      sp(::ca2::type_info)         m_typeinfoDocument;         // class for creating new documents
+      sp(::ca2::type_info)         m_typeinfoFrame;       // class for creating new frames
+      sp(::ca2::type_info)         m_typeinfoView;        // class for creating new views
+      //sp(::ca2::type_info)       m_pOleFrameClass;    // class for creating in-place frame
+      //sp(::ca2::type_info)       m_pOleViewClass;     // class for creating in-place ::user::view
 
       string                  m_strDocStrings;    // '\n' separated names
       // The ::user::document_interface names sub-strings are represented as _one_ string:
       // windowTitle\ndocName\n ... (see DocStringIndex enum)
 
-      document_template(sp(::ca::application) papp, const char * pszMatter, sp(::ca::type_info) pDocClass, sp(::ca::type_info) pFrameClass, sp(::ca::type_info) pViewClass);
+      document_template(sp(::ca2::application) papp, const char * pszMatter, sp(::ca2::type_info) pDocClass, sp(::ca2::type_info) pFrameClass, sp(::ca2::type_info) pViewClass);
 
       virtual void load_template();
 
@@ -98,18 +98,18 @@ namespace user
       virtual void remove_document(sp(::user::document_interface) pDoc);   // must override
 
       virtual bool GetDocString(string & rString, enum DocStringIndex index) const; // get one of the info strings
-      //sp(::user::frame_window) CreateOleFrame(sp(::ca::window) pParentWnd, sp(::user::document_interface) pDoc,
+      //sp(::user::frame_window) CreateOleFrame(sp(::ca2::window) pParentWnd, sp(::user::document_interface) pDoc,
       //   bool bCreateView);
 
-      void update_all_views(sp(::user::view) pviewSender, LPARAM lhint, ::ca::object * puh);
+      void update_all_views(sp(::user::view) pviewSender, LPARAM lhint, ::ca2::object * puh);
 
       virtual Confidence MatchDocType(const char * lpszPathName, sp(::user::document_interface)& rpDocMatch);
       virtual sp(::user::document_interface) create_new_document();
-      virtual sp(::user::frame_window) create_new_frame(sp(::user::document_interface) pDoc, sp(::user::frame_window) pOther, sp(::ca::create_context) pcreatecontext);
+      virtual sp(::user::frame_window) create_new_frame(sp(::user::document_interface) pDoc, sp(::user::frame_window) pOther, sp(::ca2::create_context) pcreatecontext);
       virtual void InitialUpdateFrame(sp(::user::frame_window) pFrame, sp(::user::document_interface) pDoc, bool bMakeVisible = TRUE);
       virtual bool save_all_modified();     // for all documents
       virtual void close_all_documents(bool bEndSession);
-      virtual void request_create(sp(::ca::create_context) pcreatecontext) = 0;
+      virtual void request_create(sp(::ca2::create_context) pcreatecontext) = 0;
       // open named file
       // if lpszPathName == NULL => create new file with this type
       virtual void set_default_title(sp(::user::document_interface) pdocument) = 0;

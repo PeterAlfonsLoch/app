@@ -2,7 +2,7 @@
 #include "db_str_set.h"
 
 db_str_set::db_str_set(db_server * pserver) :
-   ca(pserver->get_app()),
+   ca2(pserver->get_app()),
    db_set(pserver, "stringtable"),
    m_handler(pserver->get_app()),
    m_mutex(pserver->get_app())
@@ -71,8 +71,8 @@ db_str_set::queue_item & db_str_set::queue_item::operator = (const queue_item & 
 }
 
 
-db_str_set::sync_queue::sync_queue(sp(::ca::application) papp) :
-   ca(papp),
+db_str_set::sync_queue::sync_queue(sp(::ca2::application) papp) :
+   ca2(papp),
    thread(papp),
    simple_thread(papp),
    m_handler(papp),
@@ -140,11 +140,11 @@ repeat:;
           {
 
 
-             ::ca::property_set post(get_app());
-             ::ca::property_set headers(get_app());
-             ::ca::property_set set(get_app());
+             ::ca2::property_set post(get_app());
+             ::ca2::property_set headers(get_app());
+             ::ca2::property_set set(get_app());
 
-             ::ca::http::e_status estatus;
+             ::ca2::http::e_status estatus;
 
              string strUrl;
 
@@ -173,7 +173,7 @@ repeat:;
 
              m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-             if(m_phttpsession == NULL || estatus != ::ca::http::status_ok)
+             if(m_phttpsession == NULL || estatus != ::ca2::http::status_ok)
              {
                 Sleep(1984);
                 strApiServer = "";
@@ -242,11 +242,11 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       single_lock slDatabase(db()->GetImplCriticalSection(), true);
 
 
-      ::ca::property_set post(get_app());
-      ::ca::property_set headers(get_app());
-      ::ca::property_set set(get_app());
+      ::ca2::property_set post(get_app());
+      ::ca2::property_set headers(get_app());
+      ::ca2::property_set set(get_app());
 
-      ::ca::http::e_status estatus;
+      ::ca2::http::e_status estatus;
 
       set["interactive_user"] = true;
 
@@ -257,7 +257,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-      if(m_phttpsession == NULL || estatus != ::ca::http::status_ok)
+      if(m_phttpsession == NULL || estatus != ::ca2::http::status_ok)
       {
          return false;
       }

@@ -12,17 +12,17 @@ namespace html
 
 
    class signal : 
-      public ::ca::signal_object
+      public ::ca2::signal_object
    {
    public:
 
 
       ::html::data * m_pdata;
-      ::ca::signal_object * m_psignal;
+      ::ca2::signal_object * m_psignal;
       sp(::user::interaction) m_pui;
 
 
-      signal(::ca::signal * psignal);
+      signal(::ca2::signal * psignal);
 
 
    };

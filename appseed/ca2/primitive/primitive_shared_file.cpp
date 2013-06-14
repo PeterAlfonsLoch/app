@@ -8,8 +8,8 @@ namespace primitive
 {
 
 
-   shared_file::shared_file(sp(::ca::application) papp, UINT nAllocFlags, UINT nGrowBytes) :
-      ca(papp),
+   shared_file::shared_file(sp(::ca2::application) papp, UINT nAllocFlags, UINT nGrowBytes) :
+      ca2(papp),
       memory_container(papp),
       memory_file(papp)
    {

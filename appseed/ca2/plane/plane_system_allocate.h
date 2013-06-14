@@ -2,7 +2,7 @@
 
 #undef new
 
-namespace ca
+namespace ca2
 {
 
    inline void * object::operator new(size_t nSize)
@@ -10,9 +10,9 @@ namespace ca
       void * p = ::operator new(nSize);
       /*try
       {
-         if(::ca::get_thread_state() != NULL)
+         if(::ca2::get_thread_state() != NULL)
          {
-            ::ca::get_thread_state()->m_heapitema.add_item(p, nSize);
+            ::ca2::get_thread_state()->m_heapitema.add_item(p, nSize);
          }
       }
       catch(...)
@@ -29,9 +29,9 @@ namespace ca
       void * p = ::operator new(nSize, ___CLIENT_BLOCK, lpszFileName, nLine);
       /*try
       {
-         if(::ca::get_thread_state() != NULL)
+         if(::ca2::get_thread_state() != NULL)
          {
-            ::ca::get_thread_state()->m_heapitema.add_item(p, nSize);
+            ::ca2::get_thread_state()->m_heapitema.add_item(p, nSize);
          }
       }
       catch(...)
@@ -43,7 +43,7 @@ namespace ca
 #endif
 
 
-} // namespace ca
+} // namespace ca2
 
 
 #define new DEBUG_NEW

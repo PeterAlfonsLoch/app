@@ -56,7 +56,7 @@ extern "C" {
 #endif
 
 #ifndef __cplusplus
-#include "ca/ca_c.h"
+#include "ca2/ca_c.h"
 #endif
 
 #if defined(STRICTUNZIP) || defined(STRICTZIPUNZIP)
@@ -137,7 +137,7 @@ extern int32_t CLASS_DECL_ca2 unzStringFileNameCompare OF ((const char* fileName
 extern unzFile CLASS_DECL_ca2 unzOpen OF((const char *path));
 /*
   open a Zip spfile-> path contain the full pathname (by example,
-     on a Windows XP computer "c:\\zlib\\zlib113.zip" or on an Unix computer
+     on a Windows XP computer "ca:\\zlib\\zlib113.zip" or on an Unix computer
      "zlib/zlib113.zip".
      If the zipfile cannot be opened (file don't exist or in not valid), the
        return value is NULL.

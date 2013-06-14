@@ -42,7 +42,7 @@ namespace sockets
 
 
    resolv_socket::resolv_socket(socket_handler_base& h) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -56,7 +56,7 @@ namespace sockets
 
 
    resolv_socket::resolv_socket(socket_handler_base& h, socket *parent, const string & host, port_t port, bool ipv6) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -72,7 +72,7 @@ namespace sockets
 
 
    resolv_socket::resolv_socket(socket_handler_base& h, socket *parent, in_addr a) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -88,7 +88,7 @@ namespace sockets
 
 
    resolv_socket::resolv_socket(socket_handler_base& h, socket *parent, in6_addr& a) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -110,7 +110,7 @@ namespace sockets
 
    void resolv_socket::OnLine(const string & line)
    {
-      ::ca::parse pa(line, ":");
+      ::ca2::parse pa(line, ":");
       if (m_bServer)
       {
          m_query = pa.getword();

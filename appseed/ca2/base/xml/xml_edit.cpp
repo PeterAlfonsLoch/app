@@ -5,8 +5,8 @@ namespace xml
 {
 
 
-   edit_item::edit_item(sp(::ca::application) papp) :
-      ca(papp)
+   edit_item::edit_item(sp(::ca2::application) papp) :
+      ca2(papp)
    {
    }
 
@@ -49,7 +49,7 @@ namespace xml
 
    }
 
-   void edit_item::write(::ca::byte_output_stream & ostream)
+   void edit_item::write(::ca2::byte_output_stream & ostream)
    {
 
       ostream << (int32_t) m_eaction;
@@ -59,7 +59,7 @@ namespace xml
 
    }
 
-   void edit_item::read(::ca::byte_input_stream & istream)
+   void edit_item::read(::ca2::byte_input_stream & istream)
    {
 
       istream >> (int32_t &) m_eaction;
@@ -71,9 +71,9 @@ namespace xml
 
 
 
-   edit::edit(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::edit < ::xml::document > (papp)
+   edit::edit(sp(::ca2::application) papp) :
+      ca2(papp),
+      ::ca2::edit < ::xml::document > (papp)
    {
       
       m_iEdit = -1;

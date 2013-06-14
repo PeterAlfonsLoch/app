@@ -18,7 +18,7 @@ namespace user
 
 
       class CLASS_DECL_ca2 pane :
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
       public:
 
@@ -32,7 +32,7 @@ namespace user
 
 
          pane();
-         pane(sp(::ca::application) papp);
+         pane(sp(::ca2::application) papp);
          pane(const pane & pane);
          virtual ~pane();
 
@@ -51,7 +51,7 @@ namespace user
       public:
 
 
-         pane_array(sp(::ca::application) papp);
+         pane_array(sp(::ca2::application) papp);
          virtual ~pane_array();
 
 
@@ -63,15 +63,15 @@ namespace user
 
 
       class CLASS_DECL_ca2 data :
-         virtual public ::ca::data
+         virtual public ::ca2::data
       {
       public:
 
          int32_t                              m_iHeightAddUp;
-         ::ca::pen_sp                     m_pen;
-         ::ca::font_sp                    m_font;
-         ::ca::font_sp                    m_fontUnderline;
-         ::ca::font_sp                    m_fontBold;
+         ::ca2::pen_sp                     m_pen;
+         ::ca2::font_sp                    m_font;
+         ::ca2::font_sp                    m_fontUnderline;
+         ::ca2::font_sp                    m_fontBold;
          bool                             m_bCreated;
          int32_t                              m_iTabHeight;
          int32_t                              m_iTabWidth;
@@ -89,11 +89,11 @@ namespace user
          ::index                          m_iDragTab;
          bool                             m_bDrag;
          bool                             m_bVertical;
-         ::ca::match::any                m_matchanyRestore;
+         ::ca2::match::any                m_matchanyRestore;
          bool                             m_bEnableCloseAll;
 
 
-         data(sp(::ca::application) papp);
+         data(sp(::ca2::application) papp);
          virtual ~data();
 
          virtual pane * get_pane_by_id(id id);
@@ -123,10 +123,10 @@ namespace user
       bool                             m_bShowTabs;
       bool                             m_bNoTabs;
       e_element                        m_eelement;
-      sp(::ca::create_context)         m_spcreatecontext;
+      sp(::ca2::create_context)         m_spcreatecontext;
 
 
-      tab(sp(::ca::application) papp);
+      tab(sp(::ca2::application) papp);
             virtual ~tab();
 
 
@@ -143,14 +143,14 @@ namespace user
       virtual sp(::user::interaction) get_tab_window(::index iTab, bool bVisible = true);
       virtual sp(::user::place_holder) get_tab_holder(::index iTab, bool bVisible = true);
 
-      void _000OnMouse(::ca::message::mouse * pmouse);
+      void _000OnMouse(::ca2::message::mouse * pmouse);
 
       virtual sp(::user::interaction) get_view_uie();
 
       virtual void _001SetTabCallback(tab_callback * pcallback);
       virtual bool _001IsAddTab(::index iTab);
       virtual void _001OnDropTab(::index iTab, e_position eposition);
-      virtual void set_cur_tab_by_id(id id, sp(::ca::create_context) pcreatecontext = NULL);
+      virtual void set_cur_tab_by_id(id id, sp(::ca2::create_context) pcreatecontext = NULL);
 
       virtual id get_cur_tab_id();
       virtual id get_current_id();
@@ -163,7 +163,7 @@ namespace user
 
       virtual void _001OnTabClick(::index iTab);
       virtual void _001OnTabClose(::index iTab);
-      virtual sp(::ca::window) GetNotifyWnd();
+      virtual sp(::ca2::window) GetNotifyWnd();
       virtual index hit_test(point pt, e_element & eelement);
       virtual e_position DragHitTest(point pt);
       virtual void GetDragRect(LPRECT lprect, e_position eposition);
@@ -207,8 +207,8 @@ namespace user
       virtual void get_ends_ci_eat_id(stringa & stra, const char * pszSuffix);
       virtual void get_begins_ends_ci_eat_id(stringa & stra, const char * pszPrefix, const char * pszSuffixed);
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
-      virtual void _001ConnectParent(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void _001ConnectParent(::ca2::message::dispatch * pinterface);
 
 
       virtual bool has_restore_tab();
@@ -217,11 +217,11 @@ namespace user
 
 
 
-      void _001OnDraw(::ca::graphics * pdc);
+      void _001OnDraw(::ca2::graphics * pdc);
 
 
-      void _001OnDrawStandard(::ca::graphics * pdc);
-      void _001OnDrawSchema01(::ca::graphics * pdc);
+      void _001OnDrawStandard(::ca2::graphics * pdc);
+      void _001OnDrawSchema01(::ca2::graphics * pdc);
 
 
 

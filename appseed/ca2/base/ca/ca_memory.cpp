@@ -1,4 +1,4 @@
-// This is ca API library.
+// This is ca2 API library.
 // 
 // 
 //
@@ -12,11 +12,11 @@
 
 #pragma warning( disable: 4073 )  // initializers put in library initialization area
 
-namespace ca
+namespace ca2
 {
 
 #pragma init_seg( lib )
 
 //CCRTHeap g_heapCRT;
 
-};  // namespace ca
+};  // namespace ca2

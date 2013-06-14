@@ -1,5 +1,5 @@
 /*
- * ctr_prng.c 
+ * ctr_prng.ca 
  *
  * counter mode based pseudorandom source
  *
@@ -8,7 +8,7 @@
  */
 /*
  *   
- * Copyright(c) 2001-2006 Cisco Systems, Inc.
+ * Copyright(ca) 2001-2006 Cisco Systems, Inc.
  * 
  * 
  * Redistribution and use in source and binary forms, with or without

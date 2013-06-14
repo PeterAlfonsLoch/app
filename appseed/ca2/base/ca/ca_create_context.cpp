@@ -1,13 +1,13 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
-   create_context::create_context(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::command(papp),
+   create_context::create_context(sp(::ca2::application) papp) :
+      ca2(papp),
+      ::ca2::command(papp),
       m_spApplicationBias(allocer()),
       m_spCommandLine(allocer())
    {
@@ -23,9 +23,9 @@ namespace ca
 
    }
 
-   create_context::create_context(sp(::ca::command_thread) pthreadParent) :
-      ca(pthreadParent->get_app()),
-      ::ca::command(pthreadParent->get_app()),
+   create_context::create_context(sp(::ca2::command_thread) pthreadParent) :
+      ca2(pthreadParent->get_app()),
+      ::ca2::command(pthreadParent->get_app()),
       m_spApplicationBias(allocer()),
       m_spCommandLine(allocer()),
       m_pthreadParent(pthreadParent)
@@ -42,9 +42,9 @@ namespace ca
 
    }
 
-   create_context::create_context(sp(::ca::command_thread) pthreadParent, var varFile, bool bMakeVisible, sp(::user::interaction) puiParent) :
-      ca(pthreadParent->get_app()),
-      ::ca::command(pthreadParent->get_app()),
+   create_context::create_context(sp(::ca2::command_thread) pthreadParent, var varFile, bool bMakeVisible, sp(::user::interaction) puiParent) :
+      ca2(pthreadParent->get_app()),
+      ::ca2::command(pthreadParent->get_app()),
       m_spApplicationBias(allocer()),
       m_spCommandLine(allocer()),
       m_pthreadParent(pthreadParent)
@@ -63,8 +63,8 @@ namespace ca
    }
 
    create_context::create_context(const create_context & createcontext) :
-      ca(createcontext.get_app()),
-      ::ca::command(createcontext.get_app()),
+      ca2(createcontext.get_app()),
+      ::ca2::command(createcontext.get_app()),
       m_spApplicationBias(allocer()),
       m_spCommandLine(allocer())
    {
@@ -91,7 +91,7 @@ namespace ca
       m_spApplicationBias        .oattrib(createcontext.m_spApplicationBias);
       m_spCommandLine            .oattrib(createcontext.m_spCommandLine);
 
-      m_pthreadParent->consolidate((sp(::ca::create_context)) this);
+      m_pthreadParent->consolidate((sp(::ca2::create_context)) this);
 
       return *this;
 
@@ -104,7 +104,7 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

@@ -6,8 +6,8 @@ namespace filemanager
 {
 
 
-   SimpleFolderListInterface::SimpleFolderListInterface(sp(::ca::application) papp) :
-      ca(papp),
+   SimpleFolderListInterface::SimpleFolderListInterface(sp(::ca2::application) papp) :
+      ca2(papp),
       
       ::user::scroll_view(papp),
       ::user::list(papp)
@@ -310,7 +310,7 @@ namespace filemanager
       return m_foldera.GetFolderCount();
    }
 
-   void SimpleFolderListInterface::install_message_handling(::ca::message::dispatch * pinterface)
+   void SimpleFolderListInterface::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::user::list::install_message_handling(pinterface);
    }

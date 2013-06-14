@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
    exception::~exception()
@@ -18,7 +18,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 #ifdef WINDOWS
 __declspec(thread) vsstring * t_pstrNote = NULL;

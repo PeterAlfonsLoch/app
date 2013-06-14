@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    enum e_resource
@@ -14,10 +14,10 @@ namespace ca
    };
 
    class CLASS_DECL_ca2 savings :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
-      savings(sp(::ca::application) papp);
+      savings(sp(::ca2::application) papp);
       virtual ~savings();
 
       flags_ex < e_resource > m_eresourceflagsShouldSave;
@@ -40,4 +40,4 @@ namespace ca
 
    };
 
-} // namespace ca
+} // namespace ca2

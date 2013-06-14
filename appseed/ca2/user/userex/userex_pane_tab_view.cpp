@@ -5,8 +5,8 @@ namespace userex
 {
 
 
-   pane_tab_view::pane_tab_view(sp(::ca::application) papp) :
-      ca(papp),
+   pane_tab_view::pane_tab_view(sp(::ca2::application) papp) :
+      ca2(papp),
 
       ::user::tab_view(papp),
       ::user::tab(papp),
@@ -150,7 +150,7 @@ namespace userex
    void pane_tab_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
 
-      ::ca::library * plibrary = NULL;
+      ::ca2::library * plibrary = NULL;
       if(System.m_idmapCreateViewLibrary.Lookup(pcreatordata->m_id, plibrary) && plibrary != NULL)
       {
          plibrary->on_create_view(pcreatordata);
@@ -192,7 +192,7 @@ namespace userex
       else if(pcreatordata->m_id == "tabbed_file_manager")
       {
 
-         sp(::ca::create_context) cc(allocer());
+         sp(::ca2::create_context) cc(allocer());
          cc->m_bTransparentBackground     = true;
          cc->m_bMakeVisible               = true;
          cc->m_puiParent                  = pcreatordata->m_pholder;

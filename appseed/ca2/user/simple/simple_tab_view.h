@@ -7,12 +7,12 @@ class CLASS_DECL_ca2 simple_tab_view :
    virtual public ::user::tab
 {
 public:
-   simple_tab_view(sp(::ca::application) papp);
+   simple_tab_view(sp(::ca2::application) papp);
    virtual ~simple_tab_view();
 
 
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ca2::graphics * pdc);
 
 #ifdef DEBUG
    virtual void assert_valid() const;
@@ -24,11 +24,11 @@ public:
    DECL_GEN_SIGNAL(_001OnSize)
    void layout();
 
-   void _001OnCreate(::ca::signal_object * pobj);
+   void _001OnCreate(::ca2::signal_object * pobj);
 
    virtual void GetClientRect(LPRECT lprect);
 
-   virtual void install_message_handling(::ca::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
    DECL_GEN_VSIGNAL(_001OnLButtonUp)
    DECL_GEN_VSIGNAL(_001OnMouseMove)

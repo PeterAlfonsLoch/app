@@ -6316,7 +6316,7 @@ namespace sqlite3
    ** The sqlite.busyHandler member of the sqlite struct contains the busy
    ** callback for the database handle. Each pager opened via the sqlite
    ** handle is passed a pointer to sqlite.busyHandler. The busy-handler
-   ** callback is currently invoked only from within pager.c.
+   ** callback is currently invoked only from within pager.ca.
    */
    typedef struct BusyHandler BusyHandler;
    struct BusyHandler {
@@ -6621,7 +6621,7 @@ namespace sqlite3
 
    /*
    ** A single VDBE is an opaque structure named "Vdbe".  Only routines
-   ** in the source file sqliteVdbe.c are allowed to see the insides
+   ** in the source file sqliteVdbe.ca are allowed to see the insides
    ** of this structure.
    */
    typedef struct Vdbe Vdbe;
@@ -6728,7 +6728,7 @@ namespace sqlite3
 #define ADDR(X)  (-1-(X))
 
    /*
-   ** The makefile scans the vdbe.c source file and creates the "opcodes.h"
+   ** The makefile scans the vdbe.ca source file and creates the "opcodes.h"
    ** header file that defines a number for each opcode used by the VDBE.
    */
    /************** Include opcodes.h in the middle of vdbe.h ********************/
@@ -6882,7 +6882,7 @@ namespace sqlite3
 
 
    /* Properties such as "out2" or "jump" that are specified in
-   ** comments following the "case" for each opcode in the vdbe.c
+   ** comments following the "case" for each opcode in the vdbe.ca
    ** are encoded into bitvectors as follows:
    */
 #define OPFLG_JUMP            0x0001  /* jump:  P2 holds jmp target */
@@ -7109,7 +7109,7 @@ namespace sqlite3
    ******************************************************************************
    **
    ** This header file (together with is companion C source-code file
-   ** "os.c") attempt to abstract the underlying operating system so that
+   ** "os.ca") attempt to abstract the underlying operating system so that
    ** the SQLite library will work on both POSIX and windows systems.
    **
    ** This header file is #include-ed by sqliteInt.h and thus ends up
@@ -7212,7 +7212,7 @@ namespace sqlite3
    **
    ** 2006-10-31:  The default prefix used to be "sqlite_".  But then
    ** Mcafee started using SQLite in their anti-virus product and it
-   ** started putting files with the "sqlite" name in the c:/temp folder.
+   ** started putting files with the "sqlite" name in the ca:/temp folder.
    ** This annoyed many windows users.  Those users would then do a
    ** Google search for "sqlite", find the telephone numbers of the
    ** developers and call to wake them up at night and complain.
@@ -7796,7 +7796,7 @@ namespace sqlite3
    */
 #define SQLITE_AFF_TEXT     'a'
 #define SQLITE_AFF_NONE     'b'
-#define SQLITE_AFF_NUMERIC  'c'
+#define SQLITE_AFF_NUMERIC  'ca'
 #define SQLITE_AFF_INTEGER  'd'
 #define SQLITE_AFF_REAL     'e'
 
@@ -7901,12 +7901,12 @@ namespace sqlite3
    ** key.  The "to" table is the table that is named in the REFERENCES clause.
    ** Consider this example:
    **
-   **     CREATE TABLE ca(
+   **     CREATE TABLE ca2(
    **       a INTEGER PRIMARY KEY,
-   **       b INTEGER CONSTRAINT fk1 REFERENCES ca(x)
+   **       b INTEGER CONSTRAINT fk1 REFERENCES ca2(x)
    **     );
    **
-   ** For foreign key "fk1", the from-table is "ca" and the to-table is "ca".
+   ** For foreign key "fk1", the from-table is "ca2" and the to-table is "ca2".
    **
    ** Each REFERENCES clause generates an instance of the following structure
    ** which is attached to the from-table.  The to-table need not exist when
@@ -8208,16 +8208,16 @@ namespace sqlite3
 
    /*
    ** An instance of this structure can hold a simple list of identifiers,
-   ** such as the list "a,b,c" in the following statements:
+   ** such as the list "a,b,ca" in the following statements:
    **
-   **      INSERT INTO t(a,b,c) VALUES ...;
-   **      CREATE INDEX idx ON t(a,b,c);
-   **      CREATE TRIGGER trig BEFORE UPDATE ON t(a,b,c) ...;
+   **      INSERT INTO t(a,b,ca) VALUES ...;
+   **      CREATE INDEX idx ON t(a,b,ca);
+   **      CREATE TRIGGER trig BEFORE UPDATE ON t(a,b,ca) ...;
    **
    ** The IdList.a.idx field is used when the IdList represents the list of
    ** column names after a table name in an INSERT statement.  In the statement
    **
-   **     INSERT INTO t(a,b,c) ...
+   **     INSERT INTO t(a,b,ca) ...
    **
    ** If "a" is the k-th column of table "t", then IdList.a[0].idx==k.
    */
@@ -8287,13 +8287,13 @@ namespace sqlite3
    /*
    ** For each nested loop in a WHERE clause implementation, the WhereInfo
    ** structure contains a single instance of this structure.  This structure
-   ** is intended to be private the the where.c module and should not be
+   ** is intended to be private the the where.ca module and should not be
    ** access or modified by other modules.
    **
    ** The pIdxInfo and pBestIdx fields are used to help pick the best
    ** index on a virtual table.  The pIdxInfo pointer contains indexing
    ** information for the i-th table in the FROM clause before reordering.
-   ** All the pIdxInfo pointers are freed by whereInfoFree() in where.c.
+   ** All the pIdxInfo pointers are freed by whereInfoFree() in where.ca.
    ** The pBestIdx pointer is a copy of pIdxInfo for the i-th table after
    ** FROM clause ordering.  This is a little confusing so I will repeat
    ** it in different words.  WhereInfo.a[i].pIdxInfo is index information
@@ -8959,9 +8959,9 @@ namespace sqlite3
    SQLITE_PRIVATE   void sqlite3AuthContextPush(Parse*, AuthContext*, const char*);
    SQLITE_PRIVATE   void sqlite3AuthContextPop(AuthContext*);
 #else
-# define sqlite3AuthRead(a,b,c,d)
-# define sqlite3AuthCheck(a,b,c,d,e)    SQLITE_OK
-# define sqlite3AuthContextPush(a,b,c)
+# define sqlite3AuthRead(a,b,ca,d)
+# define sqlite3AuthCheck(a,b,ca,d,e)    SQLITE_OK
+# define sqlite3AuthContextPush(a,b,ca)
 # define sqlite3AuthContextPop(a)  (()(a))
 #endif
    SQLITE_PRIVATE void sqlite3Attach(Parse*, Expr*, Expr*, Expr*);
@@ -9187,7 +9187,7 @@ namespace sqlite3
 #endif
 
    /************** End of sqliteInt.h *******************************************/
-   /************** begin file date.c ********************************************/
+   /************** begin file date.ca ********************************************/
    /*
    ** 2003 October 31
    **
@@ -9206,7 +9206,7 @@ namespace sqlite3
    ** sqlite3RegisterDateTimeFunctions() found at the bottom of the spfile->
    ** All other code has file scope.
    **
-   ** $Id: date.c,v 1.76 2008/02/21 20:40:44 drh Exp $
+   ** $Id: date.ca,v 1.76 2008/02/21 20:40:44 drh Exp $
    **
    ** SQLite processes all times and dates as Julian Day numbers.  The
    ** dates and times are stored as the number of days since noon
@@ -9330,19 +9330,19 @@ end_getDigits:
    static int32_t parseTimezone(const char *zDate, DateTime *p){
       int32_t sgn = 0;
       int32_t nHr, nMn;
-      int32_t c;
+      int32_t ca;
       while( isspace(*(u8*)zDate) ){ zDate++; }
       p->tz = 0;
-      c = *zDate;
-      if( c=='-' ){
+      ca = *zDate;
+      if( ca=='-' ){
          sgn = -1;
-      }else if( c=='+' ){
+      }else if( ca=='+' ){
          sgn = +1;
-      }else if( c=='Z' || c=='z' ){
+      }else if( ca=='Z' || ca=='z' ){
          zDate++;
          goto zulu_time;
       }else{
-         return c!=0;
+         return ca!=0;
       }
       zDate++;
       if( getDigits(zDate, 2, 0, 14, ':', &nHr, 2, 0, 59, 0, &nMn)!=2 ){
@@ -10161,7 +10161,7 @@ zulu_time:
          time(&t);
 #ifdef SQLITE_TEST
          {
-            extern int32_t sqlite3_current_time;  /* See os_XXX.c */
+            extern int32_t sqlite3_current_time;  /* See os_XXX.ca */
             if( sqlite3_current_time ){
                t = sqlite3_current_time;
             }
@@ -10233,8 +10233,8 @@ zulu_time:
 #endif
    }
 
-   /************** End of date.c ************************************************/
-   /************** begin file os.c **********************************************/
+   /************** End of date.ca ************************************************/
+   /************** begin file os.ca **********************************************/
    /*
    ** 2005 November 29
    **
@@ -10255,7 +10255,7 @@ zulu_time:
 
    /*
    ** The default SQLite sqlite3_vfs implementations do not allocate
-   ** primitive::memory (actually, os_unix.c allocates a small amount of primitive::memory
+   ** primitive::memory (actually, os_unix.ca allocates a small amount of primitive::memory
    ** from within OsOpen()), but some third-party implementations may.
    ** So we test the effects of a ca2_alloc() failing and the sqlite3OsXXX()
    ** function returning SQLITE_IOERR_NOMEM using the DO_OS_MALLOC_TEST macro.
@@ -10502,8 +10502,8 @@ zulu_time:
       return SQLITE_OK;
    }
 
-   /************** End of os.c **************************************************/
-   /************** begin file fault.c *******************************************/
+   /************** End of os.ca **************************************************/
+   /************** begin file fault.ca *******************************************/
    /*
    ** 2008 Jan 22
    **
@@ -10651,8 +10651,8 @@ zulu_time:
 
 #endif /* SQLITE_OMIT_FAULTINJECTOR */
 
-   /************** End of fault.c ***********************************************/
-   /************** begin file mem1.c ********************************************/
+   /************** End of fault.ca ***********************************************/
+   /************** begin file mem1.ca ********************************************/
    /*
    ** 2007 August 14
    **
@@ -10667,7 +10667,7 @@ zulu_time:
    ** This file contains the C functions that implement a primitive::memory
    ** allocation subsystem for use by SQLite.
    **
-   ** $Id: mem1.c,v 1.16 2008/02/14 23:26:56 drh Exp $
+   ** $Id: mem1.ca,v 1.16 2008/02/14 23:26:56 drh Exp $
    */
 
    /*
@@ -10880,8 +10880,8 @@ zulu_time:
 
 #endif /* SQLITE_SYSTEM_MALLOC */
 
-   /************** End of mem1.c ************************************************/
-   /************** begin file mem2.c ********************************************/
+   /************** End of mem1.ca ************************************************/
+   /************** begin file mem2.ca ********************************************/
    /*
    ** 2007 August 15
    **
@@ -10896,7 +10896,7 @@ zulu_time:
    ** This file contains the C functions that implement a primitive::memory
    ** allocation subsystem for use by SQLite.
    **
-   ** $Id: mem2.c,v 1.22 2008/02/19 15:15:16 drh Exp $
+   ** $Id: mem2.ca,v 1.22 2008/02/19 15:15:16 drh Exp $
    */
 
    /*
@@ -11339,8 +11339,8 @@ zulu_time:
 
 #endif /* SQLITE_MEMDEBUG */
 
-   /************** End of mem2.c ************************************************/
-   /************** begin file mem3.c ********************************************/
+   /************** End of mem2.ca ************************************************/
+   /************** begin file mem3.ca ********************************************/
    /*
    ** 2007 October 14
    **
@@ -11363,7 +11363,7 @@ zulu_time:
    ** This version of the primitive::memory allocation subsystem is used if
    ** and only if SQLITE_MEMORY_SIZE is defined.
    **
-   ** $Id: mem3.c,v 1.12 2008/02/19 15:15:16 drh Exp $
+   ** $Id: mem3.ca,v 1.12 2008/02/19 15:15:16 drh Exp $
    */
 
    /*
@@ -11994,8 +11994,8 @@ zulu_time:
 
 #endif /* !SQLITE_MEMORY_SIZE */
 
-   /************** End of mem3.c ************************************************/
-   /************** begin file mem5.c ********************************************/
+   /************** End of mem3.ca ************************************************/
+   /************** begin file mem5.ca ********************************************/
    /*
    ** 2007 October 14
    **
@@ -12018,7 +12018,7 @@ zulu_time:
    ** This version of the primitive::memory allocation subsystem is used if
    ** and only if SQLITE_POW2_MEMORY_SIZE is defined.
    **
-   ** $Id: mem5.c,v 1.4 2008/02/19 15:15:16 drh Exp $
+   ** $Id: mem5.ca,v 1.4 2008/02/19 15:15:16 drh Exp $
    */
 
    /*
@@ -12507,8 +12507,8 @@ zulu_time:
 
 #endif /* !SQLITE_POW2_MEMORY_SIZE */
 
-   /************** End of mem5.c ************************************************/
-   /************** begin file mutex.c *******************************************/
+   /************** End of mem5.ca ************************************************/
+   /************** begin file mutex.ca *******************************************/
    /*
    ** 2007 August 14
    **
@@ -12530,7 +12530,7 @@ zulu_time:
    ** implementation is suitable for testing.
    ** debugging purposes
    **
-   ** $Id: mutex.c,v 1.16 2007/09/10 16:13:00 danielk1977 Exp $
+   ** $Id: mutex.ca,v 1.16 2007/09/10 16:13:00 danielk1977 Exp $
    */
 
 #ifdef SQLITE_MUTEX_NOOP_DEBUG
@@ -12635,8 +12635,8 @@ zulu_time:
    }
 #endif /* SQLITE_MUTEX_NOOP_DEBUG */
 
-   /************** End of mutex.c ***********************************************/
-   /************** begin file mutex_os2.c ***************************************/
+   /************** End of mutex.ca ***********************************************/
+   /************** begin file mutex_os2.ca ***************************************/
    /*
    ** 2007 August 28
    **
@@ -12650,7 +12650,7 @@ zulu_time:
    *************************************************************************
    ** This file contains the C functions that implement mutexes for OS/2
    **
-   ** $Id: mutex_os2.c,v 1.5 2008/02/01 19:42:38 pweilbacher Exp $
+   ** $Id: mutex_os2.ca,v 1.5 2008/02/01 19:42:38 pweilbacher Exp $
    */
 
    /*
@@ -12882,8 +12882,8 @@ zulu_time:
    }
 #endif /* SQLITE_MUTEX_OS2 */
 
-   /************** End of mutex_os2.c *******************************************/
-   /************** begin file mutex_unix.c **************************************/
+   /************** End of mutex_os2.ca *******************************************/
+   /************** begin file mutex_unix.ca **************************************/
    /*
    ** 2007 August 28
    **
@@ -12897,7 +12897,7 @@ zulu_time:
    *************************************************************************
    ** This file contains the C functions that implement mutexes for pthreads
    **
-   ** $Id: mutex_unix.c,v 1.5 2007/11/28 14:04:57 drh Exp $
+   ** $Id: mutex_unix.ca,v 1.5 2007/11/28 14:04:57 drh Exp $
    */
 
    /*
@@ -13184,8 +13184,8 @@ zulu_time:
 #endif
 #endif /* SQLITE_MUTEX_PTHREAD */
 
-   /************** End of mutex_unix.c ******************************************/
-   /************** begin file mutex_w32.c ***************************************/
+   /************** End of mutex_unix.ca ******************************************/
+   /************** begin file mutex_w32.ca ***************************************/
    /*
    ** 2007 August 14
    **
@@ -13199,7 +13199,7 @@ zulu_time:
    *************************************************************************
    ** This file contains the C functions that implement mutexes for win32
    **
-   ** $Id: mutex_w32.c,v 1.5 2007/10/05 15:08:01 drh Exp $
+   ** $Id: mutex_w32.ca,v 1.5 2007/10/05 15:08:01 drh Exp $
    */
 
    /*
@@ -13409,8 +13409,8 @@ zulu_time:
    }
 #endif /* SQLITE_MUTEX_W32 */
 
-   /************** End of mutex_w32.c *******************************************/
-   /************** begin file ca2_alloc.c ******************************************/
+   /************** End of mutex_w32.ca *******************************************/
+   /************** begin file ca2_alloc.ca ******************************************/
    /*
    ** 2001 September 15
    **
@@ -13425,7 +13425,7 @@ zulu_time:
    ** Memory allocation functions used throughout sqlite.
    **
    **
-   ** $Id: ca2_alloc.c,v 1.14 2007/10/20 16:36:31 drh Exp $
+   ** $Id: ca2_alloc.ca,v 1.14 2007/10/20 16:36:31 drh Exp $
    */
 
    /*
@@ -13648,8 +13648,8 @@ zulu_time:
       return rc & (db ? db->errMask : 0xff);
    }
 
-   /************** End of ca2_alloc.c **********************************************/
-   /************** begin file printf.c ******************************************/
+   /************** End of ca2_alloc.ca **********************************************/
+   /************** begin file printf.ca ******************************************/
    /*
    ** The "printf" code that follows dates from the 1980's.  It is in
    ** the public domain.  The original comments are included here for
@@ -13688,10 +13688,10 @@ zulu_time:
    **
    **           *  The %b field outputs an integer in binary notation.
    **
-   **           *  The %c field now accepts a precision.  The character output
+   **           *  The %ca field now accepts a precision.  The character output
    **              is repeated by the number of times the precision specifies.
    **
-   **           *  The %' field works like %c, but takes as its character the
+   **           *  The %' field works like %ca, but takes as its character the
    **              next character of the format string, instead of the next
    **              argument.  For example,  printf("%.78'-")  prints 78 minus
    **              signs, the same as  printf("%.78c",'-').
@@ -13715,7 +13715,7 @@ zulu_time:
 #define etSTRING      6 /* Strings. %s */
 #define etDYNSTRING   7 /* Dynamically allocated strings. %z */
 #define etPERCENT     8 /* Percent symbol. %% */
-#define etCHARX       9 /* Characters. %c */
+#define etCHARX       9 /* Characters. %ca */
    /* The rest are extensions, not normally found in printf() */
 #define etCHARLIT    10 /* Literal characters.  %' */
 #define etSQLESCAPE  11 /* Strings with '\'' doubled.  %q */
@@ -13739,7 +13739,7 @@ zulu_time:
    */
    typedef struct et_info {   /* Information about each format field */
       char fmttype;            /* The format field code letter */
-      etByte base;             /* The base for ca conversion */
+      etByte base;             /* The base for ca2 conversion */
       etByte flags;            /* One or more of FLAG_ constants below */
       etByte type;             /* Conversion paradigm */
       etByte charset;          /* Offset into aDigits[] of the digits string */
@@ -13768,7 +13768,7 @@ zulu_time:
       {  'q',  0, 4, etSQLESCAPE,  0,  0 },
       {  'Q',  0, 4, etSQLESCAPE2, 0,  0 },
       {  'w',  0, 4, etSQLESCAPE3, 0,  0 },
-      {  'c',  0, 0, etCHARX,      0,  0 },
+      {  'ca',  0, 0, etCHARX,      0,  0 },
       {  'o',  8, 0, etRADIX,      0,  2 },
       {  'u', 10, 0, etRADIX,      0,  0 },
       {  'x', 16, 0, etRADIX,      16, 1 },
@@ -13876,7 +13876,7 @@ zulu_time:
       const char *fmt,                   /* Format string */
       va_list ap                         /* arguments */
       ){
-         int32_t c;                     /* Next character in the format string */
+         int32_t ca;                     /* Next character in the format string */
          char *bufpt;               /* Pointer to the conversion buffer */
          int32_t precision;             /* Precision of the current field */
          int32_t length;                /* Length of the field */
@@ -13910,16 +13910,16 @@ zulu_time:
 
          length = 0;
          bufpt = 0;
-         for(; (c=(*fmt))!=0; ++fmt){
-            if( c!='%' ){
+         for(; (ca=(*fmt))!=0; ++fmt){
+            if( ca!='%' ){
                int32_t amt;
                bufpt = (char *)fmt;
                amt = 1;
-               while( (c=(*++fmt))!='%' && c!=0 ) amt++;
+               while( (ca=(*++fmt))!='%' && ca!=0 ) amt++;
                sqlite3StrAccumAppend(pAccum, bufpt, amt);
-               if( c==0 ) break;
+               if( ca==0 ) break;
             }
-            if( (c=(*++fmt))==0 ){
+            if( (ca=(*++fmt))==0 ){
                errorflag = 1;
                sqlite3StrAccumAppend(pAccum, "%", 1);
                break;
@@ -13929,7 +13929,7 @@ zulu_time:
                flag_alternateform = flag_altform2 = flag_zeropad = 0;
             done = 0;
             do{
-               switch( c ){
+               switch( ca ){
                case '-':   flag_leftjustify = 1;     break;
                case '+':   flag_plussign = 1;        break;
                case ' ':   flag_blanksign = 1;       break;
@@ -13938,49 +13938,49 @@ zulu_time:
                case '0':   flag_zeropad = 1;         break;
                default:    done = 1;                 break;
                }
-            }while( !done && (c=(*++fmt))!=0 );
+            }while( !done && (ca=(*++fmt))!=0 );
             /* Get the field width */
             width = 0;
-            if( c=='*' ){
+            if( ca=='*' ){
                width = va_arg(ap,int32_t);
                if( width<0 ){
                   flag_leftjustify = 1;
                   width = -width;
                }
-               c = *++fmt;
+               ca = *++fmt;
             }else{
-               while( c>='0' && c<='9' ){
-                  width = width*10 + c - '0';
-                  c = *++fmt;
+               while( ca>='0' && ca<='9' ){
+                  width = width*10 + ca - '0';
+                  ca = *++fmt;
                }
             }
             if( width > etBUFSIZE-10 ){
                width = etBUFSIZE-10;
             }
             /* Get the precision */
-            if( c=='.' ){
+            if( ca=='.' ){
                precision = 0;
-               c = *++fmt;
-               if( c=='*' ){
+               ca = *++fmt;
+               if( ca=='*' ){
                   precision = va_arg(ap,int32_t);
                   if( precision<0 ) precision = -precision;
-                  c = *++fmt;
+                  ca = *++fmt;
                }else{
-                  while( c>='0' && c<='9' ){
-                     precision = precision*10 + c - '0';
-                     c = *++fmt;
+                  while( ca>='0' && ca<='9' ){
+                     precision = precision*10 + ca - '0';
+                     ca = *++fmt;
                   }
                }
             }else{
                precision = -1;
             }
             /* Get the conversion type modifier */
-            if( c=='l' ){
+            if( ca=='l' ){
                flag_long = 1;
-               c = *++fmt;
-               if( c=='l' ){
+               ca = *++fmt;
+               if( ca=='l' ){
                   flag_longlong = 1;
-                  c = *++fmt;
+                  ca = *++fmt;
                }else{
                   flag_longlong = 0;
                }
@@ -13990,7 +13990,7 @@ zulu_time:
             /* Fetch the info entry for the field */
             infop = 0;
             for(idx=0; idx<etNINFO; idx++){
-               if( c==fmtinfo[idx].fmttype ){
+               if( ca==fmtinfo[idx].fmttype ){
                   infop = &fmtinfo[idx];
                   if( useExtended || (infop->flags & FLAG_INTERN)==0 ){
                      xtype = infop->type;
@@ -14261,9 +14261,9 @@ zulu_time:
                break;
             case etCHARLIT:
             case etCHARX:
-               c = buf[0] = (xtype==etCHARX ? va_arg(ap,int32_t) : *++fmt);
+               ca = buf[0] = (xtype==etCHARX ? va_arg(ap,int32_t) : *++fmt);
                if( precision>=0 ){
-                  for(idx=1; idx<precision; idx++) buf[idx] = c;
+                  for(idx=1; idx<precision; idx++) buf[idx] = ca;
                   length = precision;
                }else{
                   length =1;
@@ -14554,8 +14554,8 @@ zulu_time:
    }
 #endif
 
-   /************** End of printf.c **********************************************/
-   /************** begin file random.c ******************************************/
+   /************** End of printf.ca **********************************************/
+   /************** begin file random.ca ******************************************/
    /*
    ** 2001 September 15
    **
@@ -14573,7 +14573,7 @@ zulu_time:
    ** Random numbers are used by some of the database backends in order
    ** to generate random integer keys for tables or random filenames.
    **
-   ** $Id: random.c,v 1.21 2008/01/16 17:46:38 drh Exp $
+   ** $Id: random.ca,v 1.21 2008/01/16 17:46:38 drh Exp $
    */
 
 
@@ -14677,8 +14677,8 @@ zulu_time:
    }
 #endif /* SQLITE_TEST */
 
-   /************** End of random.c **********************************************/
-   /************** begin file utf.c *********************************************/
+   /************** End of random.ca **********************************************/
+   /************** begin file utf.ca *********************************************/
    /*
    ** 2004 April 13
    **
@@ -14693,7 +14693,7 @@ zulu_time:
    ** This file contains routines used to translate between UTF-8,
    ** UTF-16, UTF-16BE, and UTF-16LE.
    **
-   ** $Id: utf.c,v 1.60 2008/02/13 18:25:27 danielk1977 Exp $
+   ** $Id: utf.ca,v 1.60 2008/02/13 18:25:27 danielk1977 Exp $
    **
    ** Notes on UTF-8:
    **
@@ -14716,7 +14716,7 @@ zulu_time:
    **     0xfe 0xff   big-endian utf-16 follows
    **
    */
-   /************** Include vdbeInt.h in the middle of utf.c *********************/
+   /************** Include vdbeInt.h in the middle of utf.ca *********************/
    /************** begin file vdbeInt.h *****************************************/
    /*
    ** 2003 September 6
@@ -14731,7 +14731,7 @@ zulu_time:
    *************************************************************************
    ** This is the header file for information that is private to the
    ** VDBE.  This information used to all be at the top of the single
-   ** source code file "vdbe.c".  When that file became too big (over
+   ** source code file "vdbe.ca".  When that file became too big (over
    ** 6000 lines long) it was split up into several smaller files and
    ** this header information was factored out.
    */
@@ -15133,7 +15133,7 @@ zulu_time:
 #endif /* !defined(_VDBEINT_H_) */
 
    /************** End of vdbeInt.h *********************************************/
-   /************** Continuing where we left off in utf.c ************************/
+   /************** Continuing where we left off in utf.ca ************************/
 
    /*
    ** The following constant value is used by the SQLITE_BIGENDIAN and
@@ -15160,69 +15160,69 @@ zulu_time:
    };
 
 
-#define WRITE_UTF8(zOut, c) {                          \
-   if( c<0x00080 ){                                     \
-   *zOut++ = (c&0xFF);                                \
+#define WRITE_UTF8(zOut, ca) {                          \
+   if( ca<0x00080 ){                                     \
+   *zOut++ = (ca&0xFF);                                \
    }                                                    \
-  else if( c<0x00800 ){                                \
-  *zOut++ = 0xC0 + ((c>>6)&0x1F);                    \
-  *zOut++ = 0x80 + (c & 0x3F);                       \
+  else if( ca<0x00800 ){                                \
+  *zOut++ = 0xC0 + ((ca>>6)&0x1F);                    \
+  *zOut++ = 0x80 + (ca & 0x3F);                       \
       }                                                    \
-  else if( c<0x10000 ){                                \
-  *zOut++ = 0xE0 + ((c>>12)&0x0F);                   \
-  *zOut++ = 0x80 + ((c>>6) & 0x3F);                  \
-  *zOut++ = 0x80 + (c & 0x3F);                       \
+  else if( ca<0x10000 ){                                \
+  *zOut++ = 0xE0 + ((ca>>12)&0x0F);                   \
+  *zOut++ = 0x80 + ((ca>>6) & 0x3F);                  \
+  *zOut++ = 0x80 + (ca & 0x3F);                       \
       }else{                                               \
-      *zOut++ = 0xF0 + ((c>>18) & 0x07);                 \
-      *zOut++ = 0x80 + ((c>>12) & 0x3F);                 \
-      *zOut++ = 0x80 + ((c>>6) & 0x3F);                  \
-      *zOut++ = 0x80 + (c & 0x3F);                       \
+      *zOut++ = 0xF0 + ((ca>>18) & 0x07);                 \
+      *zOut++ = 0x80 + ((ca>>12) & 0x3F);                 \
+      *zOut++ = 0x80 + ((ca>>6) & 0x3F);                  \
+      *zOut++ = 0x80 + (ca & 0x3F);                       \
       }                                                    \
       }
 
-#define WRITE_UTF16LE(zOut, c) {                                \
-   if( c<=0xFFFF ){                                              \
-   *zOut++ = (c&0x00FF);                                       \
-   *zOut++ = ((c>>8)&0x00FF);                                  \
+#define WRITE_UTF16LE(zOut, ca) {                                \
+   if( ca<=0xFFFF ){                                              \
+   *zOut++ = (ca&0x00FF);                                       \
+   *zOut++ = ((ca>>8)&0x00FF);                                  \
    }else{                                                        \
-   *zOut++ = (((c>>10)&0x003F) + (((c-0x10000)>>10)&0x00C0));  \
-   *zOut++ = (0x00D8 + (((c-0x10000)>>18)&0x03));              \
-   *zOut++ = (c&0x00FF);                                       \
-   *zOut++ = (0x00DC + ((c>>8)&0x03));                         \
+   *zOut++ = (((ca>>10)&0x003F) + (((ca-0x10000)>>10)&0x00C0));  \
+   *zOut++ = (0x00D8 + (((ca-0x10000)>>18)&0x03));              \
+   *zOut++ = (ca&0x00FF);                                       \
+   *zOut++ = (0x00DC + ((ca>>8)&0x03));                         \
    }                                                             \
       }
 
-#define WRITE_UTF16BE(zOut, c) {                                \
-   if( c<=0xFFFF ){                                              \
-   *zOut++ = ((c>>8)&0x00FF);                                  \
-   *zOut++ = (c&0x00FF);                                       \
+#define WRITE_UTF16BE(zOut, ca) {                                \
+   if( ca<=0xFFFF ){                                              \
+   *zOut++ = ((ca>>8)&0x00FF);                                  \
+   *zOut++ = (ca&0x00FF);                                       \
    }else{                                                        \
-   *zOut++ = (0x00D8 + (((c-0x10000)>>18)&0x03));              \
-   *zOut++ = (((c>>10)&0x003F) + (((c-0x10000)>>10)&0x00C0));  \
-   *zOut++ = (0x00DC + ((c>>8)&0x03));                         \
-   *zOut++ = (c&0x00FF);                                       \
+   *zOut++ = (0x00D8 + (((ca-0x10000)>>18)&0x03));              \
+   *zOut++ = (((ca>>10)&0x003F) + (((ca-0x10000)>>10)&0x00C0));  \
+   *zOut++ = (0x00DC + ((ca>>8)&0x03));                         \
+   *zOut++ = (ca&0x00FF);                                       \
    }                                                             \
       }
 
-#define READ_UTF16LE(zIn, c){                                         \
-   c = (*zIn++);                                                       \
-   c += ((*zIn++)<<8);                                                 \
-   if( c>=0xD800 && c<0xE000 ){                                       \
+#define READ_UTF16LE(zIn, ca){                                         \
+   ca = (*zIn++);                                                       \
+   ca += ((*zIn++)<<8);                                                 \
+   if( ca>=0xD800 && ca<0xE000 ){                                       \
    int32_t c2 = (*zIn++);                                                \
    c2 += ((*zIn++)<<8);                                              \
-   c = (c2&0x03FF) + ((c&0x003F)<<10) + (((c&0x03C0)+0x0040)<<10);   \
-   if( (c & 0xFFFF0000)==0 ) c = 0xFFFD;                             \
+   ca = (c2&0x03FF) + ((ca&0x003F)<<10) + (((ca&0x03C0)+0x0040)<<10);   \
+   if( (ca & 0xFFFF0000)==0 ) ca = 0xFFFD;                             \
    }                                                                   \
       }
 
-#define READ_UTF16BE(zIn, c){                                         \
-   c = ((*zIn++)<<8);                                                  \
-   c += (*zIn++);                                                      \
-   if( c>=0xD800 && c<0xE000 ){                                       \
+#define READ_UTF16BE(zIn, ca){                                         \
+   ca = ((*zIn++)<<8);                                                  \
+   ca += (*zIn++);                                                      \
+   if( ca>=0xD800 && ca<0xE000 ){                                       \
    int32_t c2 = ((*zIn++)<<8);                                           \
    c2 += (*zIn++);                                                   \
-   c = (c2&0x03FF) + ((c&0x003F)<<10) + (((c&0x03C0)+0x0040)<<10);   \
-   if( (c & 0xFFFF0000)==0 ) c = 0xFFFD;                             \
+   ca = (c2&0x03FF) + ((ca&0x003F)<<10) + (((ca&0x03C0)+0x0040)<<10);   \
+   if( (ca & 0xFFFF0000)==0 ) ca = 0xFFFD;                             \
    }                                                                   \
       }
 
@@ -15258,18 +15258,18 @@ zulu_time:
       const uchar *zTerm,     /* Pretend this byte is 0x00 */
       const uchar **pzNext    /* Write first byte past UTF-8 char here */
       ){
-         int32_t c = *(z++);
-         if( c>=0xc0 ){
-            c = sqlite3UtfTrans1[c-0xc0];
+         int32_t ca = *(z++);
+         if( ca>=0xc0 ){
+            ca = sqlite3UtfTrans1[ca-0xc0];
             while( z!=zTerm && (*z & 0xc0)==0x80 ){
-               c = (c<<6) + (0x3f & *(z++));
+               ca = (ca<<6) + (0x3f & *(z++));
             }
-            if( c<0x80
-               || (c&0xFFFFF800)==0xD800
-               || (c&0xFFFFFFFE)==0xFFFE ){  c = 0xFFFD; }
+            if( ca<0x80
+               || (ca&0xFFFFF800)==0xD800
+               || (ca&0xFFFFFFFE)==0xFFFE ){  ca = 0xFFFD; }
          }
          *pzNext = z;
-         return c;
+         return ca;
    }
 
 
@@ -15292,7 +15292,7 @@ zulu_time:
       uchar *zIn;                   /* Input iterator */
       uchar *zTerm;                 /* End of input */
       uchar *z;                     /* Output iterator */
-      uint32_t c;
+      uint32_t ca;
 
       assert( pMem->db==0 || sqlite3_mutex_held(pMem->db->mutex) );
       assert( pMem->flags&MEM_Str );
@@ -15367,15 +15367,15 @@ zulu_time:
          if( desiredEnc==SQLITE_UTF16LE ){
             /* UTF-8 -> UTF-16 Little-endian */
             while( zIn<zTerm ){
-               c = sqlite3Utf8Read(zIn, zTerm, (const u8**)&zIn);
-               WRITE_UTF16LE(z, c);
+               ca = sqlite3Utf8Read(zIn, zTerm, (const u8**)&zIn);
+               WRITE_UTF16LE(z, ca);
             }
          }else{
             assert( desiredEnc==SQLITE_UTF16BE );
             /* UTF-8 -> UTF-16 Big-endian */
             while( zIn<zTerm ){
-               c = sqlite3Utf8Read(zIn, zTerm, (const u8**)&zIn);
-               WRITE_UTF16BE(z, c);
+               ca = sqlite3Utf8Read(zIn, zTerm, (const u8**)&zIn);
+               WRITE_UTF16BE(z, ca);
             }
          }
          pMem->n = (int32_t) (z - zOut);
@@ -15385,14 +15385,14 @@ zulu_time:
          if( pMem->enc==SQLITE_UTF16LE ){
             /* UTF-16 Little-endian -> UTF-8 */
             while( zIn<zTerm ){
-               READ_UTF16LE(zIn, c);
-               WRITE_UTF8(z, c);
+               READ_UTF16LE(zIn, ca);
+               WRITE_UTF8(z, ca);
             }
          }else{
             /* UTF-16 Little-endian -> UTF-8 */
             while( zIn<zTerm ){
-               READ_UTF16BE(zIn, c);
-               WRITE_UTF8(z, c);
+               READ_UTF16BE(zIn, ca);
+               WRITE_UTF8(z, ca);
             }
          }
          pMem->n = (int32_t) (z - zOut);
@@ -15497,12 +15497,12 @@ translate_out:
       uchar *zOut = zIn;
       uchar *zStart = zIn;
       uchar *zTerm;
-      u32 c;
+      u32 ca;
 
       while( zIn[0] ){
-         c = sqlite3Utf8Read(zIn, zTerm, (const u8**)&zIn);
-         if( c!=0xfffd ){
-            WRITE_UTF8(zOut, c);
+         ca = sqlite3Utf8Read(zIn, zTerm, (const u8**)&zIn);
+         if( ca!=0xfffd ){
+            WRITE_UTF8(zOut, ca);
          }
       }
       *zOut = 0;
@@ -15541,7 +15541,7 @@ translate_out:
    ** in pZ (or up until the first pair of 0x00 bytes, whichever comes first).
    */
    SQLITE_PRIVATE int32_t sqlite3Utf16ByteLen(const void *zIn, int32_t nChar){
-      uint32_t c = 1;
+      uint32_t ca = 1;
       char const *z = (const char *) zIn;
       int32_t n = 0;
       if( SQLITE_UTF16NATIVE==SQLITE_UTF16BE ){
@@ -15554,17 +15554,17 @@ translate_out:
          ** which branch will be followed. It is therefore assumed that no runtime
          ** penalty is paid for this "if" statement.
          */
-         while( c && ((nChar<0) || n<nChar) ){
-            READ_UTF16BE(z, c);
+         while( ca && ((nChar<0) || n<nChar) ){
+            READ_UTF16BE(z, ca);
             n++;
          }
       }else{
-         while( c && ((nChar<0) || n<nChar) ){
-            READ_UTF16LE(z, c);
+         while( ca && ((nChar<0) || n<nChar) ){
+            READ_UTF16LE(z, ca);
             n++;
          }
       }
-      return (int32_t) (z-(char const *)zIn)-((c==0)?2:0);
+      return (int32_t) (z-(char const *)zIn)-((ca==0)?2:0);
    }
 
 #if defined(SQLITE_TEST)
@@ -15579,7 +15579,7 @@ translate_out:
       uchar *z;
       uchar *zTerm;
       int32_t n;
-      uint32_t c;
+      uint32_t ca;
 
       for(i=0; i<0x00110000; i++){
          z = zBuf;
@@ -15588,11 +15588,11 @@ translate_out:
          z[0] = 0;
          zTerm = z;
          z = zBuf;
-         c = sqlite3Utf8Read(z, zTerm, (const u8**)&z);
+         ca = sqlite3Utf8Read(z, zTerm, (const u8**)&z);
          t = i;
          if( i>=0xD800 && i<=0xDFFF ) t = 0xFFFD;
          if( (i&0xFFFFFFFE)==0xFFFE ) t = 0xFFFD;
-         assert( c==t );
+         assert( ca==t );
          assert( (z-zBuf)==n );
       }
       for(i=0; i<0x00110000; i++){
@@ -15602,8 +15602,8 @@ translate_out:
          n = z-zBuf;
          z[0] = 0;
          z = zBuf;
-         READ_UTF16LE(z, c);
-         assert( c==i );
+         READ_UTF16LE(z, ca);
+         assert( ca==i );
          assert( (z-zBuf)==n );
       }
       for(i=0; i<0x00110000; i++){
@@ -15613,16 +15613,16 @@ translate_out:
          n = z-zBuf;
          z[0] = 0;
          z = zBuf;
-         READ_UTF16BE(z, c);
-         assert( c==i );
+         READ_UTF16BE(z, ca);
+         assert( ca==i );
          assert( (z-zBuf)==n );
       }
    }
 #endif /* SQLITE_TEST */
 #endif /* SQLITE_OMIT_UTF16 */
 
-   /************** End of utf.c *************************************************/
-   /************** begin file util.c ********************************************/
+   /************** End of utf.ca *************************************************/
+   /************** begin file util.ca ********************************************/
    /*
    ** 2001 September 15
    **
@@ -15639,7 +15639,7 @@ translate_out:
    ** This file contains functions for allocating primitive::memory, comparing
    ** strings, and stuff like that.
    **
-   ** $Id: util.c,v 1.216 2008/01/23 03:03:05 drh Exp $
+   ** $Id: util.ca,v 1.216 2008/01/23 03:03:05 drh Exp $
    */
 
 
@@ -15725,8 +15725,8 @@ translate_out:
    ** is a no-op.
    **
    ** 2002-Feb-14: This routine is extended to remove MS-Access style
-   ** brackets from around identifers.  For example:  "[a-b-c]" becomes
-   ** "a-b-c".
+   ** brackets from around identifers.  For example:  "[a-b-ca]" becomes
+   ** "a-b-ca".
    */
    SQLITE_PRIVATE void sqlite3Dequote(char *z){
       int32_t quote;
@@ -15934,12 +15934,12 @@ translate_out:
    ** will return -8.
    */
    static int32_t compare2pow63(const char *zNum){
-      int32_t c;
-      c = memcmp(zNum,"922337203685477580",18);
-      if( c==0 ){
-         c = zNum[18] - '8';
+      int32_t ca;
+      ca = memcmp(zNum,"922337203685477580",18);
+      if( ca==0 ){
+         ca = zNum[18] - '8';
       }
-      return c;
+      return ca;
    }
 
 
@@ -15956,7 +15956,7 @@ translate_out:
    SQLITE_PRIVATE int32_t sqlite3Atoi64(const char *zNum, i64 *pNum){
       i64 v = 0;
       int32_t neg;
-      int32_t i, c;
+      int32_t i, ca;
       while( isspace(*(u8*)zNum) ) zNum++;
       if( *zNum=='-' ){
          neg = 1;
@@ -15968,11 +15968,11 @@ translate_out:
          neg = 0;
       }
       while( zNum[0]=='0' ){ zNum++; } /* Skip over leading zeros. Ticket #2454 */
-      for(i=0; (c=zNum[i])>='0' && c<='9'; i++){
-         v = v*10 + c - '0';
+      for(i=0; (ca=zNum[i])>='0' && ca<='9'; i++){
+         v = v*10 + ca - '0';
       }
       *pNum = neg ? -v : v;
-      if( c!=0 || i==0 || i>19 ){
+      if( ca!=0 || i==0 || i>19 ){
          /* zNum is is_empty or contains non-numeric text or is longer
          ** than 19 digits (thus guaranting that it is too large) */
          return 0;
@@ -15999,7 +15999,7 @@ translate_out:
    ** false.
    */
    SQLITE_PRIVATE int32_t sqlite3FitsIn64Bits(const char *zNum, int32_t negFlag){
-      int32_t i, c;
+      int32_t i, ca;
       int32_t neg = 0;
       if( *zNum=='-' ){
          neg = 1;
@@ -16011,7 +16011,7 @@ translate_out:
       while( *zNum=='0' ){
          zNum++;   /* Skip leading zeros.  Ticket #2454 */
       }
-      for(i=0; (c=zNum[i])>='0' && c<='9'; i++){}
+      for(i=0; (ca=zNum[i])>='0' && ca<='9'; i++){}
       if( i<19 ){
          /* Guaranteed to fit if less than 19 digits */
          return 1;
@@ -16034,7 +16034,7 @@ translate_out:
    */
    SQLITE_PRIVATE int32_t sqlite3GetInt32(const char *zNum, int32_t *pValue){
       sqlite_int64 v = 0;
-      int32_t i, c;
+      int32_t i, ca;
       int32_t neg = 0;
       if( zNum[0]=='-' ){
          neg = 1;
@@ -16043,8 +16043,8 @@ translate_out:
          zNum++;
       }
       while( zNum[0]=='0' ) zNum++;
-      for(i=0; i<11 && (c = zNum[i] - '0')>=0 && c<=9; i++){
-         v = v*10 + c;
+      for(i=0; i<11 && (ca = zNum[i] - '0')>=0 && ca<=9; i++){
+         v = v*10 + ca;
       }
 
       /* The longest decimal representation of a 32 bit integer is 10 digits:
@@ -16127,36 +16127,36 @@ translate_out:
       u32 x;
       u64 x64;
       int32_t n;
-      uchar c;
-      if( ((c = p[0]) & 0x80)==0 ){
-         *v = c;
+      uchar ca;
+      if( ((ca = p[0]) & 0x80)==0 ){
+         *v = ca;
          return 1;
       }
-      x = c & 0x7f;
-      if( ((c = p[1]) & 0x80)==0 ){
-         *v = (x<<7) | c;
+      x = ca & 0x7f;
+      if( ((ca = p[1]) & 0x80)==0 ){
+         *v = (x<<7) | ca;
          return 2;
       }
-      x = (x<<7) | (c&0x7f);
-      if( ((c = p[2]) & 0x80)==0 ){
-         *v = (x<<7) | c;
+      x = (x<<7) | (ca&0x7f);
+      if( ((ca = p[2]) & 0x80)==0 ){
+         *v = (x<<7) | ca;
          return 3;
       }
-      x = (x<<7) | (c&0x7f);
-      if( ((c = p[3]) & 0x80)==0 ){
-         *v = (x<<7) | c;
+      x = (x<<7) | (ca&0x7f);
+      if( ((ca = p[3]) & 0x80)==0 ){
+         *v = (x<<7) | ca;
          return 4;
       }
-      x64 = (x<<7) | (c&0x7f);
+      x64 = (x<<7) | (ca&0x7f);
       n = 4;
       do{
-         c = p[n++];
+         ca = p[n++];
          if( n==9 ){
-            x64 = (x64<<8) | c;
+            x64 = (x64<<8) | ca;
             break;
          }
-         x64 = (x64<<7) | (c&0x7f);
-      }while( (c & 0x80)!=0 );
+         x64 = (x64<<7) | (ca&0x7f);
+      }while( (ca & 0x80)!=0 );
       *v = x64;
       return n;
    }
@@ -16168,7 +16168,7 @@ translate_out:
    SQLITE_PRIVATE int32_t sqlite3GetVarint32(const uchar *p, u32 *v){
       u32 x;
       int32_t n;
-      uchar c;
+      uchar ca;
       if( ((signed char*)p)[0]>=0 ){
          *v = p[0];
          return 1;
@@ -16181,8 +16181,8 @@ translate_out:
       x = (x<<7) | (p[1] & 0x7f);
       n = 2;
       do{
-         x = (x<<7) | ((c = p[n++])&0x7f);
-      }while( (c & 0x80)!=0 && n<9 );
+         x = (x<<7) | ((ca = p[n++])&0x7f);
+      }while( (ca & 0x80)!=0 && n<9 );
       *v = x;
       return n;
    }
@@ -16345,8 +16345,8 @@ translate_out:
       return 1;
    }
 
-   /************** End of util.c ************************************************/
-   /************** begin file hash.c ********************************************/
+   /************** End of util.ca ************************************************/
+   /************** begin file hash.ca ********************************************/
    /*
    ** 2001 September 22
    **
@@ -16361,7 +16361,7 @@ translate_out:
    ** This is the implementation of generic hash-tables
    ** used in SQLite.
    **
-   ** $Id: hash.c,v 1.26 2008/02/18 22:24:58 drh Exp $
+   ** $Id: hash.ca,v 1.26 2008/02/18 22:24:58 drh Exp $
    */
 
    /* Turn bulk primitive::memory into a hash table object by initializing the
@@ -16769,8 +16769,8 @@ translate_out:
       return 0;
    }
 
-   /************** End of hash.c ************************************************/
-   /************** begin file opcodes.c *****************************************/
+   /************** End of hash.ca ************************************************/
+   /************** begin file opcodes.ca *****************************************/
    /* Automatically generated.  Do not edit */
    /* See the mkopcodec.awk script for details. */
 #if !defined(SQLITE_OMIT_EXPLAIN) || !defined(NDEBUG) || defined(VDBE_PROFILE) || defined(SQLITE_DEBUG)
@@ -16923,8 +16923,8 @@ translate_out:
    }
 #endif
 
-   /************** End of opcodes.c *********************************************/
-   /************** begin file os_os2.c ******************************************/
+   /************** End of opcodes.ca *********************************************/
+   /************** begin file os_os2.ca ******************************************/
    /*
    ** 2006 Feb 14
    **
@@ -16977,9 +16977,9 @@ translate_out:
 #endif
 
    /*
-   ** Include code that is common to all os_*.c files
+   ** Include code that is common to all os_*.ca files
    */
-   /************** Include os_common.h in the middle of os_os2.c ****************/
+   /************** Include os_common.h in the middle of os_os2.ca ****************/
    /************** begin file os_common.h ***************************************/
    /*
    ** 2004 May 22
@@ -16994,10 +16994,10 @@ translate_out:
    ******************************************************************************
    **
    ** This file contains macros and a little bit of code that is common to
-   ** all of the platform-specific files (os_*.c) and is #included into those
+   ** all of the platform-specific files (os_*.ca) and is #included into those
    ** files.
    **
-   ** This file should be #included by the os_*.c files only.  It is not a
+   ** This file should be #included by the os_*.ca files only.  It is not a
    ** general purpose header spfile->
    */
 
@@ -17114,7 +17114,7 @@ translate_out:
 #endif
 
    /************** End of os_common.h *******************************************/
-   /************** Continuing where we left off in os_os2.c *********************/
+   /************** Continuing where we left off in os_os2.ca *********************/
 
    /*
    ** The os2File structure is subclass of sqlite3_file specific for the OS/2
@@ -17805,7 +17805,7 @@ translate_out:
             if( DosScanEnv( (PSZ)"TMPDIR", &zTempPath ) ){
                ULONG ulDriveNum = 0, ulDriveMap = 0;
                DosQueryCurrentDisk( &ulDriveNum, &ulDriveMap );
-               sprintf( (char*)zTempPath, "%c:", (char)( 'A' + ulDriveNum - 1 ) );
+               sprintf( (char*)zTempPath, "%ca:", (char)( 'A' + ulDriveNum - 1 ) );
             }
          }
       }
@@ -17990,7 +17990,7 @@ translate_out:
       year = (USHORT)dt.year;
 
       /* Calculations from http://www.astro.keele.ac.uk/~rno/Astronomy/hjd.html
-      http://www.astro.keele.ac.uk/~rno/Astronomy/hjd-0.1.c */
+      http://www.astro.keele.ac.uk/~rno/Astronomy/hjd-0.1.ca */
       /* Calculate the Julian days */
       now = day - 32076 +
          1461*(year + 4800 + (month - 14)/12)/4 +
@@ -18044,8 +18044,8 @@ translate_out:
 
 #endif /* OS_OS2 */
 
-   /************** End of os_os2.c **********************************************/
-   /************** begin file os_unix.c *****************************************/
+   /************** End of os_os2.ca **********************************************/
+   /************** begin file os_unix.ca *****************************************/
    /*
    ** 2004 May 22
    **
@@ -18126,7 +18126,7 @@ translate_out:
       sqlite3_io_methods const *pMethod;  /* Always the first entry */
 #ifdef SQLITE_TEST
       /* In test mode, increase the size of this structure a bit so that
-      ** it is larger than the struct CrashFile defined in test6.c.
+      ** it is larger than the struct CrashFile defined in test6.ca.
       */
       char aPadding[32];
 #endif
@@ -18144,9 +18144,9 @@ translate_out:
    };
 
    /*
-   ** Include code that is common to all os_*.c files
+   ** Include code that is common to all os_*.ca files
    */
-   /************** Include os_common.h in the middle of os_unix.c ***************/
+   /************** Include os_common.h in the middle of os_unix.ca ***************/
    /************** begin file os_common.h ***************************************/
    /*
    ** 2004 May 22
@@ -18161,10 +18161,10 @@ translate_out:
    ******************************************************************************
    **
    ** This file contains macros and a little bit of code that is common to
-   ** all of the platform-specific files (os_*.c) and is #included into those
+   ** all of the platform-specific files (os_*.ca) and is #included into those
    ** files.
    **
-   ** This file should be #included by the os_*.c files only.  It is not a
+   ** This file should be #included by the os_*.ca files only.  It is not a
    ** general purpose header spfile->
    */
 
@@ -18281,7 +18281,7 @@ translate_out:
 #endif
 
    /************** End of os_common.h *******************************************/
-   /************** Continuing where we left off in os_unix.c ********************/
+   /************** Continuing where we left off in os_unix.ca ********************/
 
    /*
    ** Define various macros that are missing from some systems.
@@ -20559,7 +20559,7 @@ afp_end_lock:
          **
          **   (a) Exactly one of the READWRITE and READONLY flags must be set, and
          **   (b) if CREATE is set, then READWRITE must also be set, and
-         **   (c) if EXCLUSIVE is set, then CREATE must also be set.
+         **   (ca) if EXCLUSIVE is set, then CREATE must also be set.
          **   (d) if DELETEONCLOSE is set, then CREATE must also be set.
          */
          assert((isReadonly==0 || isReadWrite==0) && (isReadWrite || isReadonly));
@@ -20948,8 +20948,8 @@ afp_end_lock:
 
 #endif /* OS_UNIX */
 
-   /************** End of os_unix.c *********************************************/
-   /************** begin file os_win.c ******************************************/
+   /************** End of os_unix.ca *********************************************/
+   /************** begin file os_win.ca ******************************************/
    /*
    ** 2004 May 22
    **
@@ -21007,9 +21007,9 @@ afp_end_lock:
 #endif
 
    /*
-   ** Include code that is common to all os_*.c files
+   ** Include code that is common to all os_*.ca files
    */
-   /************** Include os_common.h in the middle of os_win.c ****************/
+   /************** Include os_common.h in the middle of os_win.ca ****************/
    /************** begin file os_common.h ***************************************/
    /*
    ** 2004 May 22
@@ -21024,10 +21024,10 @@ afp_end_lock:
    ******************************************************************************
    **
    ** This file contains macros and a little bit of code that is common to
-   ** all of the platform-specific files (os_*.c) and is #included into those
+   ** all of the platform-specific files (os_*.ca) and is #included into those
    ** files.
    **
-   ** This file should be #included by the os_*.c files only.  It is not a
+   ** This file should be #included by the os_*.ca files only.  It is not a
    ** general purpose header spfile->
    */
 
@@ -21144,7 +21144,7 @@ afp_end_lock:
 #endif
 
    /************** End of os_common.h *******************************************/
-   /************** Continuing where we left off in os_win.c *********************/
+   /************** Continuing where we left off in os_win.ca *********************/
 
    /*
    ** Determine if we are dealing with WindowsCE - which has a much
@@ -21400,9 +21400,9 @@ afp_end_lock:
    /* This will never be called, but defined to make the code compile */
 #define GetTempPathA(a,b)
 
-#define LockFile(a,b,c,d,e)       winceLockFile(&a, b, c, d, e)
-#define UnlockFile(a,b,c,d,e)     winceUnlockFile(&a, b, c, d, e)
-#define LockFileEx(a,b,c,d,e,f)   winceLockFileEx(&a, b, c, d, e, f)
+#define LockFile(a,b,ca,d,e)       winceLockFile(&a, b, ca, d, e)
+#define UnlockFile(a,b,ca,d,e)     winceUnlockFile(&a, b, ca, d, e)
+#define LockFileEx(a,b,ca,d,e,f)   winceLockFileEx(&a, b, ca, d, e, f)
 
 #define HANDLE_TO_WINFILE(a) (winFile*)&((char*)a)[-offsetof(winFile,h)]
 
@@ -22361,7 +22361,7 @@ afp_end_lock:
             rc = file_exists_dup(zFilename) ? 1 : 0;
             break;
          case SQLITE_ACCESS_READWRITE:
-            throw todo(::ca::get_thread_app());
+            throw todo(::ca2::get_thread_app());
           //  rc = (attr & FILE_ATTRIBUTE_READONLY)==0;
             break;
          default:
@@ -22669,8 +22669,8 @@ afp_end_lock:
 
 #endif /* OS_WIN */
 
-   /************** End of os_win.c **********************************************/
-   /************** begin file bitvec.c ******************************************/
+   /************** End of os_win.ca **********************************************/
+   /************** begin file bitvec.ca ******************************************/
    /*
    ** 2008 February 16
    **
@@ -22705,7 +22705,7 @@ afp_end_lock:
    ** start of a transaction, and is thus usually less than a few thousand,
    ** but can be as large as 2 billion for a really big database.
    **
-   ** @(#) $Id: bitvec.c,v 1.2 2008/03/14 13:02:08 mlcreech Exp $
+   ** @(#) $Id: bitvec.ca,v 1.2 2008/03/14 13:02:08 mlcreech Exp $
    */
 
 #define BITVEC_SZ        512
@@ -22882,8 +22882,8 @@ afp_end_lock:
       sqlite3_free(p);
    }
 
-   /************** End of bitvec.c **********************************************/
-   /************** begin file pager.c *******************************************/
+   /************** End of bitvec.ca **********************************************/
+   /************** begin file pager.ca *******************************************/
    /*
    ** 2001 September 15
    **
@@ -22904,7 +22904,7 @@ afp_end_lock:
    ** file simultaneously, or one process from reading the database while
    ** another is writing.
    **
-   ** @(#) $Id: pager.c,v 1.417 2008/03/17 13:50:58 drh Exp $
+   ** @(#) $Id: pager.ca,v 1.417 2008/03/17 13:50:58 drh Exp $
    */
 #ifndef SQLITE_OMIT_DISKIO
 
@@ -23833,13 +23833,13 @@ afp_end_lock:
    */
    static void seekJournalHdr(Pager *pPager){
       i64 offset = 0;
-      i64 c = pPager->journalOff;
-      if( c ){
-         offset = ((c-1)/JOURNAL_HDR_SZ(pPager) + 1) * JOURNAL_HDR_SZ(pPager);
+      i64 ca = pPager->journalOff;
+      if( ca ){
+         offset = ((ca-1)/JOURNAL_HDR_SZ(pPager) + 1) * JOURNAL_HDR_SZ(pPager);
       }
       assert( offset%JOURNAL_HDR_SZ(pPager)==0 );
-      assert( offset>=c );
-      assert( (offset-c)<JOURNAL_HDR_SZ(pPager) );
+      assert( offset>=ca );
+      assert( (offset-ca)<JOURNAL_HDR_SZ(pPager) );
       pPager->journalOff = offset;
    }
 
@@ -24473,7 +24473,7 @@ afp_end_lock:
                ** open it and check if it points at the master journal. If
                ** so, return without deleting the master journal spfile->
                */
-               int32_t c;
+               int32_t ca;
                int32_t flags = (SQLITE_OPEN_READONLY|SQLITE_OPEN_MAIN_JOURNAL);
                rc = sqlite3OsOpen(pVfs, zJournal, pJournal, flags, 0);
                if( rc!=SQLITE_OK ){
@@ -24486,8 +24486,8 @@ afp_end_lock:
                   goto delmaster_out;
                }
 
-               c = zMasterPtr[0]!=0 && strcmp(zMasterPtr, zMaster)==0;
-               if( c ){
+               ca = zMasterPtr[0]!=0 && strcmp(zMasterPtr, zMaster)==0;
+               if( ca ){
                   /* We have a match. Do not delete the master journal spfile-> */
                   goto delmaster_out;
                }
@@ -28055,8 +28055,8 @@ stmt_begin_failed:
 
 #endif /* SQLITE_OMIT_DISKIO */
 
-   /************** End of pager.c ***********************************************/
-   /************** begin file btmutex.c *****************************************/
+   /************** End of pager.ca ***********************************************/
+   /************** begin file btmutex.ca *****************************************/
    /*
    ** 2007 August 27
    **
@@ -28069,14 +28069,14 @@ stmt_begin_failed:
    **
    *************************************************************************
    **
-   ** $Id: btmutex.c,v 1.9 2008/01/23 12:52:41 drh Exp $
+   ** $Id: btmutex.ca,v 1.9 2008/01/23 12:52:41 drh Exp $
    **
    ** This file contains code used to implement mutexes on Btree objects.
-   ** This code really belongs in btree.c.  But btree.c is getting too
+   ** This code really belongs in btree.ca.  But btree.ca is getting too
    ** big and we want to break it down some.  This packaged seemed like
    ** a good breakout.
    */
-   /************** Include btreeInt.h in the middle of btmutex.c ****************/
+   /************** Include btreeInt.h in the middle of btmutex.ca ****************/
    /************** begin file btreeInt.h ****************************************/
    /*
    ** 2004 April 6
@@ -28573,7 +28573,7 @@ stmt_begin_failed:
 
    /*
    ** Routines to read and write var-length integers.  These used to
-   ** be defined locally, but now we use the varint routines in the util.c
+   ** be defined locally, but now we use the varint routines in the util.ca
    ** spfile->
    */
 #define getVarint    sqlite3GetVarint
@@ -28581,7 +28581,7 @@ stmt_begin_failed:
 #define putVarint    sqlite3PutVarint
 
    /* The database page the PENDING_BYTE occupies. This page is never used.
-   ** TODO: This macro is very similary to PAGER_MJ_PGNO() in pager.c. They
+   ** TODO: This macro is very similary to PAGER_MJ_PGNO() in pager.ca. They
    ** should possibly be consolidated (presumably in pager.h).
    **
    ** If disk I/O is omitted (meaning that the database is stored purely
@@ -28729,7 +28729,7 @@ stmt_begin_failed:
    SQLITE_PRIVATE void sqlite3BtreeMoveToParent(BtCursor *pCur);
 
    /************** End of btreeInt.h ********************************************/
-   /************** Continuing where we left off in btmutex.c ********************/
+   /************** Continuing where we left off in btmutex.ca ********************/
 #if SQLITE_THREADSAFE && !defined(SQLITE_OMIT_SHARED_CACHE)
 
 
@@ -29028,8 +29028,8 @@ stmt_begin_failed:
 
 #endif  /* SQLITE_THREADSAFE && !SQLITE_OMIT_SHARED_CACHE */
 
-   /************** End of btmutex.c *********************************************/
-   /************** begin file btree.c *******************************************/
+   /************** End of btmutex.ca *********************************************/
+   /************** begin file btree.ca *******************************************/
    /*
    ** 2004 April 6
    **
@@ -29041,7 +29041,7 @@ stmt_begin_failed:
    **    May you share freely, never taking more than you give.
    **
    *************************************************************************
-   ** $Id: btree.c,v 1.440 2008/03/04 17:45:01 mlcreech Exp $
+   ** $Id: btree.ca,v 1.440 2008/03/04 17:45:01 mlcreech Exp $
    **
    ** This file implements a external (disk-based) database using BTrees.
    ** See the header comment on "btreeInt.h" for additional information.
@@ -29111,8 +29111,8 @@ stmt_begin_failed:
    ** of each BtShared structure and so this locking is not necessary.
    ** So define the lock related functions as no-ops.
    */
-#define queryTableLock(a,b,c) SQLITE_OK
-#define lockTable(a,b,c) SQLITE_OK
+#define queryTableLock(a,b,ca) SQLITE_OK
+#define lockTable(a,b,ca) SQLITE_OK
 #define unlockAllTables(a)
 #endif
 
@@ -31674,12 +31674,12 @@ set_child_ptrmaps_out:
       int32_t n1, const void *p1,    /* First key to compare */
       int32_t n2, const void *p2     /* Second key to compare */
       ){
-         int32_t c;
-         c = memcmp(p1, p2, n1<n2 ? n1 : n2);
-         if( c==0 ){
-            c = n1 - n2;
+         int32_t ca;
+         ca = memcmp(p1, p2, n1<n2 ? n1 : n2);
+         if( ca==0 ){
+            ca = n1 - n2;
          }
-         return c;
+         return ca;
    }
 
    /*
@@ -32643,7 +32643,7 @@ create_cursor_exception:
             int32_t lwr, upr;
             Pgno chldPg;
             MemPage *pPage = pCur->pPage;
-            int32_t c = -1;  /* pRes return if table is is_empty must be -1 */
+            int32_t ca = -1;  /* pRes return if table is is_empty must be -1 */
             lwr = 0;
             upr = pPage->nCell-1;
             if( !pPage->intKey && pKey==0 ){
@@ -32667,30 +32667,30 @@ create_cursor_exception:
                   }
                   getVarint(pCell, (u64 *)&nCellKey);
                   if( nCellKey<nKey ){
-                     c = -1;
+                     ca = -1;
                   }else if( nCellKey>nKey ){
-                     c = +1;
+                     ca = +1;
                   }else{
-                     c = 0;
+                     ca = 0;
                   }
                }else{
                   int32_t available;
                   pCellKey = (void *)fetchPayload(pCur, &available, 0);
                   nCellKey = pCur->info.nKey;
                   if( available>=nCellKey ){
-                     c = pCur->xCompare(pCur->pArg, (int32_t) nCellKey, pCellKey, (int32_t) nKey, pKey);
+                     ca = pCur->xCompare(pCur->pArg, (int32_t) nCellKey, pCellKey, (int32_t) nKey, pKey);
                   }else{
                      pCellKey = sqlite3_malloc( (int32_t) nCellKey );
                      if( pCellKey==0 ) return SQLITE_NOMEM;
                      rc = sqlite3BtreeKey(pCur, 0, (int32_t) nCellKey, (void *)pCellKey);
-                     c = pCur->xCompare(pCur->pArg, (int32_t) nCellKey, pCellKey, (int32_t) nKey, pKey);
+                     ca = pCur->xCompare(pCur->pArg, (int32_t) nCellKey, pCellKey, (int32_t) nKey, pKey);
                      sqlite3_free(pCellKey);
                      if( rc ){
                         return rc;
                      }
                   }
                }
-               if( c==0 ){
+               if( ca==0 ){
                   if( pPage->leafData && !pPage->leaf ){
                      lwr = pCur->idx;
                      upr = lwr - 1;
@@ -32700,7 +32700,7 @@ create_cursor_exception:
                      return SQLITE_OK;
                   }
                }
-               if( c<0 ){
+               if( ca<0 ){
                   lwr = pCur->idx+1;
                }else{
                   upr = pCur->idx-1;
@@ -32721,7 +32721,7 @@ create_cursor_exception:
             }
             if( chldPg==0 ){
                assert( pCur->idx>=0 && pCur->idx<pCur->pPage->nCell );
-               if( pRes ) *pRes = c;
+               if( pRes ) *pRes = ca;
                return SQLITE_OK;
             }
             pCur->idx = lwr;
@@ -35938,7 +35938,7 @@ cleardatabasepage_out:
       /* Check some preconditions:
       **   (a) the cursor is open for writing,
       **   (b) there is no read-lock on the table being modified and
-      **   (c) the cursor points at a valid row of an intKey table.
+      **   (ca) the cursor points at a valid row of an intKey table.
       */
       if( !pCsr->wrFlag ){
          return SQLITE_READONLY;
@@ -35974,8 +35974,8 @@ cleardatabasepage_out:
    }
 #endif
 
-   /************** End of btree.c ***********************************************/
-   /************** begin file vdbefifo.c ****************************************/
+   /************** End of btree.ca ***********************************************/
+   /************** begin file vdbefifo.ca ****************************************/
    /*
    ** 2005 June 16
    **
@@ -36101,8 +36101,8 @@ cleardatabasepage_out:
       sqlite3VdbeFifoInit(pFifo);
    }
 
-   /************** End of vdbefifo.c ********************************************/
-   /************** begin file vdbemem.c *****************************************/
+   /************** End of vdbefifo.ca ********************************************/
+   /************** begin file vdbemem.ca *****************************************/
    /*
    ** 2004 May 26
    **
@@ -37166,8 +37166,8 @@ no_mem:
       return 0;
    }
 
-   /************** End of vdbemem.c *********************************************/
-   /************** begin file vdbeaux.c *****************************************/
+   /************** End of vdbemem.ca *********************************************/
+   /************** begin file vdbeaux.ca *****************************************/
    /*
    ** 2003 September 6
    **
@@ -37181,7 +37181,7 @@ no_mem:
    *************************************************************************
    ** This file contains code used for creating, destroying, and populating
    ** a VDBE (or an "sqlite3_stmt" as it is known to the outside world.)  Prior
-   ** to version 2.8.7, all this code was combined into the vdbe.c source spfile->
+   ** to version 2.8.7, all this code was combined into the vdbe.ca source spfile->
    ** But that file was getting too big so this subroutines were split out.
    */
 
@@ -39512,8 +39512,8 @@ no_mem:
       return v->db;
    }
 
-   /************** End of vdbeaux.c *********************************************/
-   /************** begin file vdbeapi.c *****************************************/
+   /************** End of vdbeaux.ca *********************************************/
+   /************** begin file vdbeapi.ca *****************************************/
    /*
    ** 2004 May 26
    **
@@ -40580,8 +40580,8 @@ failed:
       return pStmt ? ((Vdbe*)pStmt)->db : 0;
    }
 
-   /************** End of vdbeapi.c *********************************************/
-   /************** begin file vdbe.c ********************************************/
+   /************** End of vdbeapi.ca *********************************************/
+   /************** begin file vdbe.ca ********************************************/
    /*
    ** 2001 September 15
    **
@@ -40594,7 +40594,7 @@ failed:
    **
    *************************************************************************
    ** The code in this file implements execution method of the
-   ** Virtual Database Engine (VDBE).  A separate file ("vdbeaux.c")
+   ** Virtual Database Engine (VDBE).  A separate file ("vdbeaux.ca")
    ** handles housekeeping details such as creating and deleting
    ** VDBE instances.  This file is solely interested in executing
    ** the VDBE program.
@@ -40627,7 +40627,7 @@ failed:
    ** in this file for details.  If in doubt, do not deviate from existing
    ** commenting and indentation practices when changing or adding code.
    **
-   ** $Id: vdbe.c,v 1.711 2008/03/17 17:18:38 drh Exp $
+   ** $Id: vdbe.ca,v 1.711 2008/03/17 17:18:38 drh Exp $
    */
 
    /*
@@ -40908,21 +40908,21 @@ failed:
 
       if( f&MEM_Blob ){
          int32_t i;
-         char c;
+         char ca;
          if( f & MEM_Dyn ){
-            c = 'z';
+            ca = 'z';
             assert( (f & (MEM_Static|MEM_Ephem))==0 );
          }else if( f & MEM_Static ){
-            c = 't';
+            ca = 't';
             assert( (f & (MEM_Dyn|MEM_Ephem))==0 );
          }else if( f & MEM_Ephem ){
-            c = 'e';
+            ca = 'e';
             assert( (f & (MEM_Static|MEM_Dyn))==0 );
          }else{
-            c = 's';
+            ca = 's';
          }
 
-         sqlite3_snprintf(100, zCsr, "%c", c);
+         sqlite3_snprintf(100, zCsr, "%ca", ca);
          zCsr += (int32_t) strlen(zCsr);
          sqlite3_snprintf(100, zCsr, "%d[", pMem->n);
          zCsr += (int32_t) strlen(zCsr);
@@ -40963,9 +40963,9 @@ failed:
          k += (int32_t) strlen(&zBuf[k]);
          zBuf[k++] = '[';
          for(j=0; j<15 && j<pMem->n; j++){
-            u8 c = pMem->z[j];
-            if( c>=0x20 && c<0x7f ){
-               zBuf[k++] = c;
+            u8 ca = pMem->z[j];
+            if( ca>=0x20 && ca<0x7f ){
+               zBuf[k++] = ca;
             }else{
                zBuf[k++] = '.';
             }
@@ -41255,10 +41255,10 @@ failed:
                   ** we transition back to normal indentation.
                   **
                   ** The formatting of each case is important.  The makefile for SQLite
-                  ** generates two C files "opcodes.h" and "opcodes.c" by scanning this
+                  ** generates two C files "opcodes.h" and "opcodes.ca" by scanning this
                   ** file looking for lines that begin with "case OP_".  The opcodes.h files
                   ** will be filled with #defines that give unique integer values to each
-                  ** opcode and the opcodes.c file is filled with an array of strings where
+                  ** opcode and the opcodes.ca file is filled with an array of strings where
                   ** each string is the symbolic name for the corresponding opcode.  If the
                   ** case statement is followed by a comment of the form "/# same as ... #/"
                   ** that comment is used to determine the particular value of the opcode.
@@ -41741,7 +41741,7 @@ arithmetic_result_is_null:
                                   **
                                   ** The interface used by the implementation of the aforementioned functions
                                   ** to retrieve the collation sequence set by this opcode is not available
-                                  ** publicly, only to user functions defined in func.c.
+                                  ** publicly, only to user functions defined in func.ca.
                                   */
                case OP_CollSeq: {
                   assert( pOp->p4type==P4_COLLSEQ );
@@ -42309,18 +42309,18 @@ arithmetic_result_is_null:
                                */
                case OP_If:                 /* jump, in1 */
                case OP_IfNot: {            /* jump, in1 */
-                  int32_t c;
+                  int32_t ca;
                   if( pIn1->flags & MEM_Null ){
-                     c = pOp->p3;
+                     ca = pOp->p3;
                   }else{
 #ifdef SQLITE_OMIT_FLOATING_POINT
-                     c = sqlite3VdbeIntValue(pIn1);
+                     ca = sqlite3VdbeIntValue(pIn1);
 #else
-                     c = sqlite3VdbeRealValue(pIn1)!=0.0;
+                     ca = sqlite3VdbeRealValue(pIn1)!=0.0;
 #endif
-                     if( pOp->opcode==OP_IfNot ) c = !c;
+                     if( pOp->opcode==OP_IfNot ) ca = !ca;
                   }
-                  if( c ){
+                  if( ca ){
                      pc = pOp->p2-1;
                   }
                   break;
@@ -45396,8 +45396,8 @@ abort_due_to_interrupt:
          goto vdbe_error_halt;
    }
 
-   /************** End of vdbe.c ************************************************/
-   /************** begin file vdbeblob.c ****************************************/
+   /************** End of vdbe.ca ************************************************/
+   /************** begin file vdbeblob.ca ****************************************/
    /*
    ** 2007 May 1
    **
@@ -45412,7 +45412,7 @@ abort_due_to_interrupt:
    **
    ** This file contains code used to implement incremental BLOB I/O.
    **
-   ** $Id: vdbeblob.c,v 1.20 2008/01/25 15:04:50 drh Exp $
+   ** $Id: vdbeblob.ca,v 1.20 2008/01/25 15:04:50 drh Exp $
    */
 
 
@@ -45734,8 +45734,8 @@ blob_open_out:
 
 #endif /* #ifndef SQLITE_OMIT_INCRBLOB */
 
-   /************** End of vdbeblob.c ********************************************/
-   /************** begin file journal.c *****************************************/
+   /************** End of vdbeblob.ca ********************************************/
+   /************** begin file journal.ca *****************************************/
    /*
    ** 2007 August 22
    **
@@ -45748,7 +45748,7 @@ blob_open_out:
    **
    *************************************************************************
    **
-   ** @(#) $Id: journal.c,v 1.7 2007/09/06 13:49:37 drh Exp $
+   ** @(#) $Id: journal.ca,v 1.7 2007/09/06 13:49:37 drh Exp $
    */
 
 #ifdef SQLITE_ENABLE_ATOMIC_WRITE
@@ -45974,8 +45974,8 @@ blob_open_out:
    }
 #endif
 
-   /************** End of journal.c *********************************************/
-   /************** begin file expr.c ********************************************/
+   /************** End of journal.ca *********************************************/
+   /************** begin file expr.ca ********************************************/
    /*
    ** 2001 September 15
    **
@@ -45990,7 +45990,7 @@ blob_open_out:
    ** This file contains routines used for analyzing expressions and
    ** for generating VDBE code that evaluates expressions in SQLite.
    **
-   ** $Id: expr.c,v 1.354 2008/03/12 10:39:00 danielk1977 Exp $
+   ** $Id: expr.ca,v 1.354 2008/03/12 10:39:00 danielk1977 Exp $
    */
 
    /*
@@ -48453,7 +48453,7 @@ lookupname_end_2:
    **
    ** This code depends on the fact that certain token values (ex: TK_EQ)
    ** are the same as opcode values (ex: OP_Eq) that implement the corresponding
-   ** operation.  Special comments in vdbe.c and the mkopcodeh.awk script in
+   ** operation.  Special comments in vdbe.ca and the mkopcodeh.awk script in
    ** the make process cause these values to align.  Assert()s in the code
    ** below verify that the numbers are aligned correctly.
    */
@@ -48958,8 +48958,8 @@ lookupname_end_2:
       }
    }
 
-   /************** End of expr.c ************************************************/
-   /************** begin file alter.c *******************************************/
+   /************** End of expr.ca ************************************************/
+   /************** begin file alter.ca *******************************************/
    /*
    ** 2005 February 15
    **
@@ -48974,7 +48974,7 @@ lookupname_end_2:
    ** This file contains C code routines that used to generate VDBE code
    ** that implements the ALTER TABLE command.
    **
-   ** $Id: alter.c,v 1.42 2008/02/09 14:30:30 drh Exp $
+   ** $Id: alter.ca,v 1.42 2008/02/09 14:30:30 drh Exp $
    */
 
    /*
@@ -48991,11 +48991,11 @@ lookupname_end_2:
    ** the CREATE TABLE or CREATE INDEX statement is replaced with the third
    ** argument and the result returned. Examples:
    **
-   ** sqlite_rename_table('CREATE TABLE abc(a, b, c)', 'def')
-   **     -> 'CREATE TABLE def(a, b, c)'
+   ** sqlite_rename_table('CREATE TABLE abc(a, b, ca)', 'def')
+   **     -> 'CREATE TABLE def(a, b, ca)'
    **
    ** sqlite_rename_table('CREATE INDEX i ON abc(a)', 'def')
-   **     -> 'CREATE INDEX i ON def(a, b, c)'
+   **     -> 'CREATE INDEX i ON def(a, b, ca)'
    */
    static void renameTableFunc(
       sqlite3_context *context,
@@ -49510,7 +49510,7 @@ exit_rename_table:
    ** for the table being altered and sets Parse.pNewTable to point
    ** to it. Routines called by the parser as the column definition
    ** is parsed (i.e. sqlite3AddColumn()) add the new Column data to
-   ** the copy. The copy of the Table structure is deleted by tokenize.c
+   ** the copy. The copy of the Table structure is deleted by tokenize.ca
    ** after parsing is finished.
    **
    ** Routine sqlite3AlterFinishAddColumn() will be called to complete
@@ -49589,8 +49589,8 @@ exit_begin_add_column:
    }
 #endif  /* SQLITE_ALTER_TABLE */
 
-   /************** End of alter.c ***********************************************/
-   /************** begin file analyze.c *****************************************/
+   /************** End of alter.ca ***********************************************/
+   /************** begin file analyze.ca *****************************************/
    /*
    ** 2005 July 8
    **
@@ -49604,7 +49604,7 @@ exit_begin_add_column:
    *************************************************************************
    ** This file contains code associated with the ANALYZE command.
    **
-   ** @(#) $Id: analyze.c,v 1.41 2008/01/25 15:04:49 drh Exp $
+   ** @(#) $Id: analyze.ca,v 1.41 2008/01/25 15:04:49 drh Exp $
    */
 #ifndef SQLITE_OMIT_ANALYZE
 
@@ -49951,7 +49951,7 @@ exit_begin_add_column:
    static int32_t analysisLoader(void *pData, int32_t argc, char **argv, char **azNotUsed){
       analysisInfo *pInfo = (analysisInfo*)pData;
       Index *pIndex;
-      int32_t i, c;
+      int32_t i, ca;
       uint32_t v;
       const char *z;
 
@@ -49966,8 +49966,8 @@ exit_begin_add_column:
       z = argv[1];
       for(i=0; *z && i<=pIndex->nColumn; i++){
          v = 0;
-         while( (c=z[0])>='0' && c<='9' ){
-            v = v*10 + c - '0';
+         while( (ca=z[0])>='0' && ca<='9' ){
+            v = v*10 + ca - '0';
             z++;
          }
          pIndex->aiRowEst[i] = v;
@@ -50016,8 +50016,8 @@ exit_begin_add_column:
 
 #endif /* SQLITE_OMIT_ANALYZE */
 
-   /************** End of analyze.c *********************************************/
-   /************** begin file attach.c ******************************************/
+   /************** End of analyze.ca *********************************************/
+   /************** begin file attach.ca ******************************************/
    /*
    ** 2003 April 6
    **
@@ -50031,7 +50031,7 @@ exit_begin_add_column:
    *************************************************************************
    ** This file contains code used to implement the ATTACH and DETACH commands.
    **
-   ** $Id: attach.c,v 1.72 2008/02/13 18:25:27 danielk1977 Exp $
+   ** $Id: attach.ca,v 1.72 2008/02/13 18:25:27 danielk1977 Exp $
    */
 
 #ifndef SQLITE_OMIT_ATTACH
@@ -50545,8 +50545,8 @@ attach_end:
    }
 #endif
 
-   /************** End of attach.c **********************************************/
-   /************** begin file auth.c ********************************************/
+   /************** End of attach.ca **********************************************/
+   /************** begin file auth.ca ********************************************/
    /*
    ** 2003 January 11
    **
@@ -50563,7 +50563,7 @@ attach_end:
    ** systems that do not need this facility may omit it by recompiling
    ** the library with -DSQLITE_OMIT_AUTHORIZATION=1
    **
-   ** $Id: auth.c,v 1.29 2007/09/18 15:55:07 drh Exp $
+   ** $Id: auth.ca,v 1.29 2007/09/18 15:55:07 drh Exp $
    */
 
    /*
@@ -50781,8 +50781,8 @@ attach_end:
 
 #endif /* SQLITE_OMIT_AUTHORIZATION */
 
-   /************** End of auth.c ************************************************/
-   /************** begin file build.c *******************************************/
+   /************** End of auth.ca ************************************************/
+   /************** begin file build.ca *******************************************/
    /*
    ** 2001 September 15
    **
@@ -50807,7 +50807,7 @@ attach_end:
    **     COMMIT
    **     ROLLBACK
    **
-   ** $Id: build.c,v 1.474 2008/03/06 09:58:50 mlcreech Exp $
+   ** $Id: build.ca,v 1.474 2008/03/06 09:58:50 mlcreech Exp $
    */
 
    /*
@@ -51799,9 +51799,9 @@ begin_table_error:
       while( zIn!=zEnd ){
          h = (h<<8) + sqlite3UpperToLower[*zIn];
          zIn++;
-         if( h==(('c'<<24)+('h'<<16)+('a'<<8)+'r') ){             /* CHAR */
+         if( h==(('ca'<<24)+('h'<<16)+('a'<<8)+'r') ){             /* CHAR */
             aff = SQLITE_AFF_TEXT;
-         }else if( h==(('c'<<24)+('l'<<16)+('o'<<8)+'b') ){       /* CLOB */
+         }else if( h==(('ca'<<24)+('l'<<16)+('o'<<8)+'b') ){       /* CLOB */
             aff = SQLITE_AFF_TEXT;
          }else if( h==(('t'<<24)+('e'<<16)+('x'<<8)+'t') ){       /* TEXT */
             aff = SQLITE_AFF_TEXT;
@@ -54249,8 +54249,8 @@ exit_drop_index:
       return pKey;
    }
 
-   /************** End of build.c ***********************************************/
-   /************** begin file callback.c ****************************************/
+   /************** End of build.ca ***********************************************/
+   /************** begin file callback.ca ****************************************/
    /*
    ** 2005 May 23
    **
@@ -54266,7 +54266,7 @@ exit_drop_index:
    ** This file contains functions used to access the internal hash tables
    ** of user defined functions and collation sequences.
    **
-   ** $Id: callback.c,v 1.23 2007/08/29 12:31:26 danielk1977 Exp $
+   ** $Id: callback.ca,v 1.23 2007/08/29 12:31:26 danielk1977 Exp $
    */
 
 
@@ -54629,8 +54629,8 @@ exit_drop_index:
       return p;
    }
 
-   /************** End of callback.c ********************************************/
-   /************** begin file delete.c ******************************************/
+   /************** End of callback.ca ********************************************/
+   /************** begin file delete.ca ******************************************/
    /*
    ** 2001 September 15
    **
@@ -54645,7 +54645,7 @@ exit_drop_index:
    ** This file contains C code routines that are called by the parser
    ** in order to generate code for DELETE FROM statements.
    **
-   ** $Id: delete.c,v 1.161 2008/02/12 16:52:14 drh Exp $
+   ** $Id: delete.ca,v 1.161 2008/02/12 16:52:14 drh Exp $
    */
 
    /*
@@ -55170,8 +55170,8 @@ delete_from_cleanup:
          return regBase;
    }
 
-   /************** End of delete.c **********************************************/
-   /************** begin file func.c ********************************************/
+   /************** End of delete.ca **********************************************/
+   /************** begin file func.ca ********************************************/
    /*
    ** 2002 February 23
    **
@@ -55190,7 +55190,7 @@ delete_from_cleanup:
    ** sqliteRegisterBuildinFunctions() found at the bottom of the spfile->
    ** All other code has file scope.
    **
-   ** $Id: func.c,v 1.186 2008/03/06 09:58:50 mlcreech Exp $
+   ** $Id: func.ca,v 1.186 2008/03/06 09:58:50 mlcreech Exp $
    */
 
 
@@ -55629,7 +55629,7 @@ delete_from_cleanup:
       const struct compareInfo *pInfo, /* Information about how to do the compare */
       const int32_t esc                    /* The escape character */
       ){
-         int32_t c, c2;
+         int32_t ca, c2;
          int32_t invert;
          int32_t seen;
          u8 matchOne = pInfo->matchOne;
@@ -55638,22 +55638,22 @@ delete_from_cleanup:
          u8 noCase = pInfo->noCase;
          int32_t prevEscape = 0;     /* True if the previous character was 'escape' */
 
-         while( (c = sqlite3Utf8Read(zPattern,0,&zPattern))!=0 ){
-            if( !prevEscape && c==matchAll ){
-               while( (c=sqlite3Utf8Read(zPattern,0,&zPattern)) == matchAll
-                  || c == matchOne ){
-                     if( c==matchOne && sqlite3Utf8Read(zString, 0, &zString)==0 ){
+         while( (ca = sqlite3Utf8Read(zPattern,0,&zPattern))!=0 ){
+            if( !prevEscape && ca==matchAll ){
+               while( (ca=sqlite3Utf8Read(zPattern,0,&zPattern)) == matchAll
+                  || ca == matchOne ){
+                     if( ca==matchOne && sqlite3Utf8Read(zString, 0, &zString)==0 ){
                         return 0;
                      }
                }
-               if( c==0 ){
+               if( ca==0 ){
                   return 1;
-               }else if( c==esc ){
-                  c = sqlite3Utf8Read(zPattern, 0, &zPattern);
-                  if( c==0 ){
+               }else if( ca==esc ){
+                  ca = sqlite3Utf8Read(zPattern, 0, &zPattern);
+                  if( ca==0 ){
                      return 0;
                   }
-               }else if( c==matchSet ){
+               }else if( ca==matchSet ){
                   assert( esc==0 );         /* This is GLOB, not LIKE */
                   assert( matchSet<0x80 );  /* '[' is a single-byte character */
                   while( *zString && patternCompare(&zPattern[-1],zString,pInfo,esc)==0 ){
@@ -55664,13 +55664,13 @@ delete_from_cleanup:
                while( (c2 = sqlite3Utf8Read(zString,0,&zString))!=0 ){
                   if( noCase ){
                      GlogUpperToLower(c2);
-                     GlogUpperToLower(c);
-                     while( c2 != 0 && c2 != c ){
+                     GlogUpperToLower(ca);
+                     while( c2 != 0 && c2 != ca ){
                         c2 = sqlite3Utf8Read(zString, 0, &zString);
                         GlogUpperToLower(c2);
                      }
                   }else{
-                     while( c2 != 0 && c2 != c ){
+                     while( c2 != 0 && c2 != ca ){
                         c2 = sqlite3Utf8Read(zString, 0, &zString);
                      }
                   }
@@ -55678,33 +55678,33 @@ delete_from_cleanup:
                   if( patternCompare(zPattern,zString,pInfo,esc) ) return 1;
                }
                return 0;
-            }else if( !prevEscape && c==matchOne ){
+            }else if( !prevEscape && ca==matchOne ){
                if( sqlite3Utf8Read(zString, 0, &zString)==0 ){
                   return 0;
                }
-            }else if( c==matchSet ){
+            }else if( ca==matchSet ){
                int32_t prior_c = 0;
                assert( esc==0 );    /* This only occurs for GLOB, not LIKE */
                seen = 0;
                invert = 0;
-               c = sqlite3Utf8Read(zString, 0, &zString);
-               if( c==0 ) return 0;
+               ca = sqlite3Utf8Read(zString, 0, &zString);
+               if( ca==0 ) return 0;
                c2 = sqlite3Utf8Read(zPattern, 0, &zPattern);
                if( c2=='^' ){
                   invert = 1;
                   c2 = sqlite3Utf8Read(zPattern, 0, &zPattern);
                }
                if( c2==']' ){
-                  if( c==']' ) seen = 1;
+                  if( ca==']' ) seen = 1;
                   c2 = sqlite3Utf8Read(zPattern, 0, &zPattern);
                }
                while( c2 && c2!=']' ){
                   if( c2=='-' && zPattern[0]!=']' && zPattern[0]!=0 && prior_c>0 ){
                      c2 = sqlite3Utf8Read(zPattern, 0, &zPattern);
-                     if( c>=prior_c && c<=c2 ) seen = 1;
+                     if( ca>=prior_c && ca<=c2 ) seen = 1;
                      prior_c = 0;
                   }else{
-                     if( c==c2 ){
+                     if( ca==c2 ){
                         seen = 1;
                      }
                      prior_c = c2;
@@ -55714,15 +55714,15 @@ delete_from_cleanup:
                if( c2==0 || (seen ^ invert)==0 ){
                   return 0;
                }
-            }else if( esc==c && !prevEscape ){
+            }else if( esc==ca && !prevEscape ){
                prevEscape = 1;
             }else{
                c2 = sqlite3Utf8Read(zString, 0, &zString);
                if( noCase ){
-                  GlogUpperToLower(c);
+                  GlogUpperToLower(ca);
                   GlogUpperToLower(c2);
                }
-               if( c!=c2 ){
+               if( ca!=c2 ){
                   return 0;
                }
                prevEscape = 0;
@@ -55932,9 +55932,9 @@ delete_from_cleanup:
          z = zHex = (char *) contextMalloc(context, n*2 + 1);
          if( zHex ){
             for(i=0; i<n; i++, pBlob++){
-               uchar c = *pBlob;
-               *(z++) = hexdigits[(c>>4)&0xf];
-               *(z++) = hexdigits[c&0xf];
+               uchar ca = *pBlob;
+               *(z++) = hexdigits[(ca>>4)&0xf];
+               *(z++) = hexdigits[ca&0xf];
             }
             *z = 0;
             sqlite3_result_text(context, zHex, n*2, sqlite3_free);
@@ -56741,8 +56741,8 @@ delete_from_cleanup:
       return 1;
    }
 
-   /************** End of func.c ************************************************/
-   /************** begin file insert.c ******************************************/
+   /************** End of func.ca ************************************************/
+   /************** begin file insert.ca ******************************************/
    /*
    ** 2001 September 15
    **
@@ -56757,7 +56757,7 @@ delete_from_cleanup:
    ** This file contains C code routines that are called by the parser
    ** to handle INSERT statements in SQLite.
    **
-   ** $Id: insert.c,v 1.231 2008/03/06 09:58:50 mlcreech Exp $
+   ** $Id: insert.ca,v 1.231 2008/03/06 09:58:50 mlcreech Exp $
    */
 
    /*
@@ -56769,7 +56769,7 @@ delete_from_cleanup:
    **  ------------------------------
    **  'a'            TEXT
    **  'b'            NONE
-   **  'c'            NUMERIC
+   **  'ca'            NUMERIC
    **  'd'            INTEGER
    **  'e'            REAL
    **
@@ -56813,7 +56813,7 @@ delete_from_cleanup:
    **  ------------------------------
    **  'a'            TEXT
    **  'b'            NONE
-   **  'c'            NUMERIC
+   **  'ca'            NUMERIC
    **  'd'            INTEGER
    **  'e'            REAL
    */
@@ -58408,8 +58408,8 @@ insert_cleanup:
    }
 #endif /* SQLITE_OMIT_XFER_OPT */
 
-   /************** End of insert.c **********************************************/
-   /************** begin file legacy.c ******************************************/
+   /************** End of insert.ca **********************************************/
+   /************** begin file legacy.ca ******************************************/
    /*
    ** 2001 September 15
    **
@@ -58426,7 +58426,7 @@ insert_cleanup:
    ** other files are for internal use by SQLite and should not be
    ** accessed by users of the library.
    **
-   ** $Id: legacy.c,v 1.23 2008/02/13 18:25:27 danielk1977 Exp $
+   ** $Id: legacy.ca,v 1.23 2008/02/13 18:25:27 danielk1977 Exp $
    */
 
 
@@ -58551,8 +58551,8 @@ exec_out:
          return rc;
    }
 
-   /************** End of legacy.c **********************************************/
-   /************** begin file loadext.c *****************************************/
+   /************** End of legacy.ca **********************************************/
+   /************** begin file loadext.ca *****************************************/
    /*
    ** 2006 June 7
    **
@@ -58572,7 +58572,7 @@ exec_out:
 #ifndef SQLITE_CORE
 #define SQLITE_CORE 1  /* Disable the API redefinition in sqlite3ext.h */
 #endif
-   /************** Include sqlite3ext.h in the middle of loadext.c **************/
+   /************** Include sqlite3ext.h in the middle of loadext.ca **************/
    /************** begin file sqlite3ext.h **************************************/
    /*
    ** 2006 June 7
@@ -58763,7 +58763,7 @@ exec_out:
    ** The following macros redefine the API routines so that they are
    ** redirected throught the global sqlite3_api structure.
    **
-   ** This header file is also used by the loadext.c source file
+   ** This header file is also used by the loadext.ca source file
    ** (part of the main SQLite library - not an extension) so that
    ** it can get access to the sqlite3_api_routines structure
    ** definition.  But the main library does not want to redefine
@@ -58925,7 +58925,7 @@ exec_out:
 #endif /* _SQLITE3EXT_H_ */
 
    /************** End of sqlite3ext.h ******************************************/
-   /************** Continuing where we left off in loadext.c ********************/
+   /************** Continuing where we left off in loadext.ca ********************/
 
    /*
    ** Some API routines are omitted when various features are
@@ -59422,8 +59422,8 @@ exec_out:
 
 #endif /* SQLITE_OMIT_LOAD_EXTENSION */
 
-   /************** End of loadext.c *********************************************/
-   /************** begin file pragma.c ******************************************/
+   /************** End of loadext.ca *********************************************/
+   /************** begin file pragma.ca ******************************************/
    /*
    ** 2003 April 6
    **
@@ -59437,7 +59437,7 @@ exec_out:
    *************************************************************************
    ** This file contains code used to implement the PRAGMA command.
    **
-   ** $Id: pragma.c,v 1.170 2008/02/13 18:25:27 danielk1977 Exp $
+   ** $Id: pragma.ca,v 1.170 2008/02/13 18:25:27 danielk1977 Exp $
    */
 
    /* Ignore this whole file if pragmas are disabled
@@ -60651,8 +60651,8 @@ pragma_out:
 
 #endif /* SQLITE_OMIT_PRAGMA || SQLITE_OMIT_PARSER */
 
-   /************** End of pragma.c **********************************************/
-   /************** begin file prepare.c *****************************************/
+   /************** End of pragma.ca **********************************************/
+   /************** begin file prepare.ca *****************************************/
    /*
    ** 2005 May 25
    **
@@ -60668,7 +60668,7 @@ pragma_out:
    ** interface, and routines that contribute to loading the database schema
    ** from disk.
    **
-   ** $Id: prepare.c,v 1.78 2008/03/08 12:23:31 drh Exp $
+   ** $Id: prepare.ca,v 1.78 2008/03/08 12:23:31 drh Exp $
    */
 
    /*
@@ -61120,7 +61120,7 @@ error_out:
       int32_t i = -1000000;
 
       /* If pSchema is NULL, then return -1000000. This happens when code in
-      ** expr.c is trying to resolve a reference to a transient table (i.e. one
+      ** expr.ca is trying to resolve a reference to a transient table (i.e. one
       ** created by a sub-select). In this case the return value of this
       ** function should never be used.
       **
@@ -61432,8 +61432,8 @@ error_out:
 
 #endif /* SQLITE_OMIT_UTF16 */
 
-   /************** End of prepare.c *********************************************/
-   /************** begin file select.c ******************************************/
+   /************** End of prepare.ca *********************************************/
+   /************** begin file select.ca ******************************************/
    /*
    ** 2001 September 15
    **
@@ -61448,7 +61448,7 @@ error_out:
    ** This file contains C code routines that are called by the parser
    ** to handle SELECT statements in SQLite.
    **
-   ** $Id: select.c,v 1.415 2008/03/04 17:45:01 mlcreech Exp $
+   ** $Id: select.ca,v 1.415 2008/03/04 17:45:01 mlcreech Exp $
    */
 
 
@@ -63283,11 +63283,11 @@ error_out:
    **
    ** Example 1:  Consider a three-way compound SQL statement.
    **
-   **     SELECT a FROM t1 UNION SELECT b FROM t2 UNION SELECT c FROM t3
+   **     SELECT a FROM t1 UNION SELECT b FROM t2 UNION SELECT ca FROM t3
    **
    ** This statement is parsed up as follows:
    **
-   **     SELECT c FROM t3
+   **     SELECT ca FROM t3
    **      |
    **      `----->  SELECT b FROM t2
    **                |
@@ -64927,9 +64927,9 @@ multi_select_end:
                **   SELECT min(x) FROM ...
                **   SELECT max(x) FROM ...
                **
-               ** If it is, then ask the code in where.c to attempt to sort results
+               ** If it is, then ask the code in where.ca to attempt to sort results
                ** as if there was an "ORDER ON x" or "ORDER ON x DESC" clause.
-               ** If where.c is able to produce results sorted in this order, then
+               ** If where.ca is able to produce results sorted in this order, then
                ** add vdbe code to break out of the processing loop after the
                ** first iteration (since the first iteration of the loop is
                ** guaranteed to operate on the row with the minimum or maximum
@@ -64939,13 +64939,13 @@ multi_select_end:
                ** modify behaviour as follows:
                **
                **   + If the query is a "SELECT min(x)", then the loop coded by
-               **     where.c should not iterate over any values with a NULL value
+               **     where.ca should not iterate over any values with a NULL value
                **     for x.
                **
-               **   + The optimizer code in where.c (the thing that decides which
+               **   + The optimizer code in where.ca (the thing that decides which
                **     index or indices to use) should place a different priority on
                **     satisfying the 'ORDER BY' clause than it does in other cases.
-               **     Refer to code and comments in where.c for details.
+               **     Refer to code and comments in where.ca for details.
                */
                flag = minMaxQuery(pParse, p);
                if( flag ){
@@ -65128,8 +65128,8 @@ select_end:
    *****************************************************************************/
 #endif /* defined(SQLITE_TEST) || defined(SQLITE_DEBUG) */
 
-   /************** End of select.c **********************************************/
-   /************** begin file table.c *******************************************/
+   /************** End of select.ca **********************************************/
+   /************** begin file table.ca *******************************************/
    /*
    ** 2001 September 15
    **
@@ -65327,8 +65327,8 @@ malloc_failed:
 
 #endif /* SQLITE_OMIT_GET_TABLE */
 
-   /************** End of table.c ***********************************************/
-   /************** begin file trigger.c *****************************************/
+   /************** End of table.ca ***********************************************/
+   /************** begin file trigger.ca *****************************************/
    /*
    **
    ** The author disclaims copyright to this source code.  In place of
@@ -66180,8 +66180,8 @@ drop_trigger_cleanup:
    }
 #endif /* !defined(SQLITE_OMIT_TRIGGER) */
 
-   /************** End of trigger.c *********************************************/
-   /************** begin file update.c ******************************************/
+   /************** End of trigger.ca *********************************************/
+   /************** begin file update.ca ******************************************/
    /*
    ** 2001 September 15
    **
@@ -66196,7 +66196,7 @@ drop_trigger_cleanup:
    ** This file contains C code routines that are called by the parser
    ** to handle UPDATE statements.
    **
-   ** $Id: update.c,v 1.171 2008/02/12 16:52:14 drh Exp $
+   ** $Id: update.ca,v 1.171 2008/02/12 16:52:14 drh Exp $
    */
 
 #ifndef SQLITE_OMIT_VIRTUALTABLE
@@ -66255,7 +66255,7 @@ drop_trigger_cleanup:
    /*
    ** Process an UPDATE statement.
    **
-   **   UPDATE OR IGNORE table_wxyz SET a=b, c=d WHERE e<5 AND f NOT NULL;
+   **   UPDATE OR IGNORE table_wxyz SET a=b, ca=d WHERE e<5 AND f NOT NULL;
    **          \_______/ \________/     \______/       \________________/
    *            onError   pTabList      pChanges             pWhere
    */
@@ -66845,8 +66845,8 @@ update_cleanup:
    }
 #endif /* SQLITE_OMIT_VIRTUALTABLE */
 
-   /************** End of update.c **********************************************/
-   /************** begin file vacuum.c ******************************************/
+   /************** End of update.ca **********************************************/
+   /************** begin file vacuum.ca ******************************************/
    /*
    ** 2003 April 6
    **
@@ -66863,7 +66863,7 @@ update_cleanup:
    ** Most of the code in this file may be omitted by defining the
    ** SQLITE_OMIT_VACUUM macro.
    **
-   ** $Id: vacuum.c,v 1.76 2008/01/03 00:01:25 drh Exp $
+   ** $Id: vacuum.ca,v 1.76 2008/01/03 00:01:25 drh Exp $
    */
 
 #if !defined(SQLITE_OMIT_VACUUM) && !defined(SQLITE_OMIT_ATTACH)
@@ -67109,8 +67109,8 @@ end_of_vacuum:
    }
 #endif  /* SQLITE_OMIT_VACUUM && SQLITE_OMIT_ATTACH */
 
-   /************** End of vacuum.c **********************************************/
-   /************** begin file vtab.c ********************************************/
+   /************** End of vacuum.ca **********************************************/
+   /************** begin file vtab.ca ********************************************/
    /*
    ** 2006 June 10
    **
@@ -67124,7 +67124,7 @@ end_of_vacuum:
    *************************************************************************
    ** This file contains code used to help implement virtual tables.
    **
-   ** $Id: vtab.c,v 1.65 2008/03/06 09:58:50 mlcreech Exp $
+   ** $Id: vtab.ca,v 1.65 2008/03/06 09:58:50 mlcreech Exp $
    */
 #ifndef SQLITE_OMIT_VIRTUALTABLE
 
@@ -67909,8 +67909,8 @@ end_of_vacuum:
 
 #endif /* SQLITE_OMIT_VIRTUALTABLE */
 
-   /************** End of vtab.c ************************************************/
-   /************** begin file where.c *******************************************/
+   /************** End of vtab.ca ************************************************/
+   /************** begin file where.ca *******************************************/
    /*
    ** 2001 September 15
    **
@@ -67929,7 +67929,7 @@ end_of_vacuum:
    ** so is applicable.  Because this module is responsible for selecting
    ** indices, you might also think of this module as the "query optimizer".
    **
-   ** $Id: where.c,v 1.290 2008/03/17 17:08:33 drh Exp $
+   ** $Id: where.ca,v 1.290 2008/03/17 17:08:33 drh Exp $
    */
 
    /*
@@ -68170,7 +68170,7 @@ end_of_vacuum:
    ** operator specified in the op parameter.  The WhereClause structure
    ** is filled with pointers to subexpressions.  For example:
    **
-   **    WHERE  a=='hello' AND coalesce(b,11)<10 AND (c+12!=d OR c==22)
+   **    WHERE  a=='hello' AND coalesce(b,11)<10 AND (ca+12!=d OR ca==22)
    **           \________/     \_______________/     \________________/
    **            slot[0]            slot[1]               slot[2]
    **
@@ -68327,23 +68327,23 @@ end_of_vacuum:
    ** Translate from TK_xx operator to WO_xx bitmask.
    */
    static int32_t operatorMask(int32_t op){
-      int32_t c;
+      int32_t ca;
       assert( allowedOp(op) );
       if( op==TK_IN ){
-         c = WO_IN;
+         ca = WO_IN;
       }else if( op==TK_ISNULL ){
-         c = WO_ISNULL;
+         ca = WO_ISNULL;
       }else{
-         c = WO_EQ<<(op-TK_EQ);
+         ca = WO_EQ<<(op-TK_EQ);
       }
-      assert( op!=TK_ISNULL || c==WO_ISNULL );
-      assert( op!=TK_IN || c==WO_IN );
-      assert( op!=TK_EQ || c==WO_EQ );
-      assert( op!=TK_LT || c==WO_LT );
-      assert( op!=TK_LE || c==WO_LE );
-      assert( op!=TK_GT || c==WO_GT );
-      assert( op!=TK_GE || c==WO_GE );
-      return c;
+      assert( op!=TK_ISNULL || ca==WO_ISNULL );
+      assert( op!=TK_IN || ca==WO_IN );
+      assert( op!=TK_EQ || ca==WO_EQ );
+      assert( op!=TK_LT || ca==WO_LT );
+      assert( op!=TK_LE || ca==WO_LE );
+      assert( op!=TK_GT || ca==WO_GT );
+      assert( op!=TK_GE || ca==WO_GE );
+      return ca;
    }
 
    /*
@@ -68435,7 +68435,7 @@ end_of_vacuum:
          const char *z;
          Expr *pRight, *pLeft;
          ExprList *pList;
-         int32_t c, cnt;
+         int32_t ca, cnt;
          char wc[3];
          CollSeq *pColl;
 
@@ -68468,7 +68468,7 @@ end_of_vacuum:
          z = (char *)pRight->token.z;
          cnt = 0;
          if( z ){
-            while( (c=z[cnt])!=0 && c!=wc[0] && c!=wc[1] && c!=wc[2] ){ cnt++; }
+            while( (ca=z[cnt])!=0 && ca!=wc[0] && ca!=wc[1] && ca!=wc[2] ){ cnt++; }
          }
          if( cnt==0 || 255==(u8)z[cnt] ){
             return 0;
@@ -68828,12 +68828,12 @@ or_not_possible:
             }
             pStr2 = sqlite3ExprDup(db, pStr1);
             if( !db->mallocFailed ){
-               u8 c, *pC;
+               u8 ca, *pC;
                assert( pStr2->token.dyn );
                pC = (u8*)&pStr2->token.z[nPattern-1];
-               c = *pC;
-               if( noCase ) c = sqlite3UpperToLower[c];
-               *pC = c + 1;
+               ca = *pC;
+               if( noCase ) ca = sqlite3UpperToLower[ca];
+               *pC = ca + 1;
             }
             pNewExpr1 = sqlite3PExpr(pParse, TK_GE, sqlite3ExprDup(db,pLeft), pStr1, 0);
             idxNew1 = whereClauseInsert(pWC, pNewExpr1, TERM_VIRTUAL|TERM_DYNAMIC);
@@ -69714,10 +69714,10 @@ or_not_possible:
    ** Generate code that will evaluate all == and IN constraints for an
    ** index.  The values for all constraints are left on the stack.
    **
-   ** For example, consider table t1(a,b,c,d,e,f) with index i1(a,b,c).
-   ** Suppose the WHERE clause is this:  a==5 AND b IN (1,2,3) AND c>5 AND c<10
+   ** For example, consider table t1(a,b,ca,d,e,f) with index i1(a,b,ca).
+   ** Suppose the WHERE clause is this:  a==5 AND b IN (1,2,3) AND ca>5 AND ca<10
    ** The index has as many as three equality constraints, but in this
-   ** example, the third "c" value is an inequality.  So only two
+   ** example, the third "ca" value is an inequality.  So only two
    ** constraints are coded.  This routine will generate code to evaluate
    ** a==5 and b IN (1,2,3).  The current values for a and b will be left
    ** on the stack - a is the deepest and b the shallowest.
@@ -70780,8 +70780,8 @@ whereBeginNoMem:
       return;
    }
 
-   /************** End of where.c ***********************************************/
-   /************** begin file parse.c *******************************************/
+   /************** End of where.ca ***********************************************/
+   /************** begin file parse.ca *******************************************/
    /* Driver template for the LEMON parser generator.
    ** The author disclaims copyright to this source code.
    */
@@ -70812,9 +70812,9 @@ whereBeginNoMem:
    ** TRIGGER.  "a" is the event type, one of TK_UPDATE, TK_INSERT,
    ** TK_DELETE, or TK_INSTEAD.  If the event is of the form
    **
-   **      UPDATE ON (a,b,c)
+   **      UPDATE ON (a,b,ca)
    **
-   ** Then the "b" IdList records the list "a,b,c".
+   ** Then the "b" IdList records the list "a,b,ca".
    */
    struct TrigEvent { int32_t a; IdList * b; };
 
@@ -73870,8 +73870,8 @@ whereBeginNoMem:
          return;
    }
 
-   /************** End of parse.c ***********************************************/
-   /************** begin file tokenize.c ****************************************/
+   /************** End of parse.ca ***********************************************/
+   /************** begin file tokenize.ca ****************************************/
    /*
    ** 2001 September 15
    **
@@ -73889,7 +73889,7 @@ whereBeginNoMem:
    ** individual tokens and sends those tokens one-by-one over to the
    ** parser for analysis.
    **
-   ** $Id: tokenize.c,v 1.138 2008/01/22 23:37:10 drh Exp $
+   ** $Id: tokenize.ca,v 1.138 2008/01/22 23:37:10 drh Exp $
    */
 
    /*
@@ -73932,17 +73932,17 @@ whereBeginNoMem:
    **
    ** The implementation of this routine was generated by a program,
    ** mkkeywordhash.h, located in the tool subdirectory of the distribution.
-   ** The output of the mkkeywordhash.c program is written into a file
+   ** The output of the mkkeywordhash.ca program is written into a file
    ** named keywordhash.h and then included into this source file by
    ** the #include below.
    */
-   /************** Include keywordhash.h in the middle of tokenize.c ************/
+   /************** Include keywordhash.h in the middle of tokenize.ca ************/
    /************** begin file keywordhash.h *************************************/
    /***** This file contains automatically generated code ******
    **
    ** The code in this file has been automatically generated by
    **
-   **     $Header: /sqlite/sqlite/tool/mkkeywordhash.c,v 1.31 2007/07/30 18:26:20 rse Exp $
+   **     $Header: /sqlite/sqlite/tool/mkkeywordhash.ca,v 1.31 2007/07/30 18:26:20 rse Exp $
    **
    ** The code in this file implements a function that determines whether
    ** or not a given identifier is really an SQL keyword.  The same thing
@@ -74052,7 +74052,7 @@ whereBeginNoMem:
    }
 
    /************** End of keywordhash.h *****************************************/
-   /************** Continuing where we left off in tokenize.c *******************/
+   /************** Continuing where we left off in tokenize.ca *******************/
 
 
    /*
@@ -74081,7 +74081,7 @@ whereBeginNoMem:
       0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  /* 6x */
       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0,  /* 7x */
    };
-#define IdChar(C)  (((c=C)&0x80)!=0 || (c>0x1f && sqlite3IsAsciiIdChar[c-0x20]))
+#define IdChar(C)  (((ca=C)&0x80)!=0 || (ca>0x1f && sqlite3IsAsciiIdChar[ca-0x20]))
 #endif
 #ifdef SQLITE_EBCDIC
    SQLITE_PRIVATE const char sqlite3IsEbcdicIdChar[] = {
@@ -74099,7 +74099,7 @@ whereBeginNoMem:
       0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1,  /* Ex */
       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0,  /* Fx */
    };
-#define IdChar(C)  (((c=C)>=0x42 && sqlite3IsEbcdicIdChar[c-0x40]))
+#define IdChar(C)  (((ca=C)>=0x42 && sqlite3IsEbcdicIdChar[ca-0x40]))
 #endif
 
 
@@ -74108,7 +74108,7 @@ whereBeginNoMem:
    ** Store the token type in *tokenType before returning.
    */
    static int32_t getToken(const uchar *z, int32_t *tokenType){
-      int32_t i, c;
+      int32_t i, ca;
       switch( *z ){
       case ' ': case '\t': case '\n': case '\f': case '\r': {
          for(i=1; isspace(z[i]); i++){}
@@ -74117,7 +74117,7 @@ whereBeginNoMem:
                 }
       case '-': {
          if( z[1]=='-' ){
-            for(i=2; (c=z[i])!=0 && c!='\n'; i++){}
+            for(i=2; (ca=z[i])!=0 && ca!='\n'; i++){}
             *tokenType = TK_COMMENT;
             return i;
          }
@@ -74149,8 +74149,8 @@ whereBeginNoMem:
             *tokenType = TK_SLASH;
             return 1;
          }
-         for(i=3, c=z[2]; (c!='*' || z[i]!='/') && (c=z[i])!=0; i++){}
-         if( c ) i++;
+         for(i=3, ca=z[2]; (ca!='*' || z[i]!='/') && (ca=z[i])!=0; i++){}
+         if( ca ) i++;
          *tokenType = TK_COMMENT;
          return i;
                 }
@@ -74163,13 +74163,13 @@ whereBeginNoMem:
          return 1 + (z[1]=='=');
                 }
       case '<': {
-         if( (c=z[1])=='=' ){
+         if( (ca=z[1])=='=' ){
             *tokenType = TK_LE;
             return 2;
-         }else if( c=='>' ){
+         }else if( ca=='>' ){
             *tokenType = TK_NE;
             return 2;
-         }else if( c=='<' ){
+         }else if( ca=='<' ){
             *tokenType = TK_LSHIFT;
             return 2;
          }else{
@@ -74178,10 +74178,10 @@ whereBeginNoMem:
          }
                 }
       case '>': {
-         if( (c=z[1])=='=' ){
+         if( (ca=z[1])=='=' ){
             *tokenType = TK_GE;
             return 2;
-         }else if( c=='>' ){
+         }else if( ca=='>' ){
             *tokenType = TK_RSHIFT;
             return 2;
          }else{
@@ -74223,8 +74223,8 @@ whereBeginNoMem:
       case '\'':
       case '"': {
          int32_t delim = z[0];
-         for(i=1; (c=z[i])!=0; i++){
-            if( c==delim ){
+         for(i=1; (ca=z[i])!=0; i++){
+            if( ca==delim ){
                if( z[i+1]==delim ){
                   i++;
                }else{
@@ -74232,7 +74232,7 @@ whereBeginNoMem:
                }
             }
          }
-         if( c ){
+         if( ca ){
             *tokenType = TK_STRING;
             return i+1;
          }else{
@@ -74278,8 +74278,8 @@ whereBeginNoMem:
          return i;
                 }
       case '[': {
-         for(i=1, c=z[0]; c!=']' && (c=z[i])!=0; i++){}
-         *tokenType = c==']' ? TK_ID : TK_ILLEGAL;
+         for(i=1, ca=z[0]; ca!=']' && (ca=z[i])!=0; i++){}
+         *tokenType = ca==']' ? TK_ID : TK_ILLEGAL;
          return i;
                 }
       case '?': {
@@ -74305,21 +74305,21 @@ whereBeginNoMem:
       case ':': {
          int32_t n = 0;
          *tokenType = TK_VARIABLE;
-         for(i=1; (c=z[i])!=0; i++){
-            if( IdChar(c) ){
+         for(i=1; (ca=z[i])!=0; i++){
+            if( IdChar(ca) ){
                n++;
 #ifndef SQLITE_OMIT_TCL_VARIABLE
-            }else if( c=='(' && n>0 ){
+            }else if( ca=='(' && n>0 ){
                do{
                   i++;
-               }while( (c=z[i])!=0 && !isspace(c) && c!=')' );
-               if( c==')' ){
+               }while( (ca=z[i])!=0 && !isspace(ca) && ca!=')' );
+               if( ca==')' ){
                   i++;
                }else{
                   *tokenType = TK_ILLEGAL;
                }
                break;
-            }else if( c==':' && z[i+1]==':' ){
+            }else if( ca==':' && z[i+1]==':' ){
                i++;
 #endif
             }else{
@@ -74333,13 +74333,13 @@ whereBeginNoMem:
       case 'x': case 'X': {
          if( z[1]=='\'' ){
             *tokenType = TK_BLOB;
-            for(i=2; (c=z[i])!=0 && c!='\''; i++){
-               if( !isxdigit(c) ){
+            for(i=2; (ca=z[i])!=0 && ca!='\''; i++){
+               if( !isxdigit(ca) ){
                   *tokenType = TK_ILLEGAL;
                }
             }
-            if( i%2 || !c ) *tokenType = TK_ILLEGAL;
-            if( c ) i++;
+            if( i%2 || !ca ) *tokenType = TK_ILLEGAL;
+            if( ca ) i++;
             return i;
          }
          /* Otherwise fall through to the next case */
@@ -74475,7 +74475,7 @@ abort_parse:
 
       if( !IN_DECLARE_VTAB ){
          /* If the pParse->declareVtab flag is set, do not delete any table
-         ** structure built up in pParse->pNewTable. The calling code (see vtab.c)
+         ** structure built up in pParse->pNewTable. The calling code (see vtab.ca)
          ** will take responsibility for freeing the Table structure.
          */
          sqlite3DeleteTable(pParse->pNewTable);
@@ -74489,8 +74489,8 @@ abort_parse:
       return nErr;
    }
 
-   /************** End of tokenize.c ********************************************/
-   /************** begin file complete.c ****************************************/
+   /************** End of tokenize.ca ********************************************/
+   /************** begin file complete.ca ****************************************/
    /*
    ** 2001 September 15
    **
@@ -74505,25 +74505,25 @@ abort_parse:
    ** An tokenizer for SQL
    **
    ** This file contains C code that implements the sqlite3_complete() API.
-   ** This code used to be part of the tokenizer.c source spfile->  But by
+   ** This code used to be part of the tokenizer.ca source spfile->  But by
    ** separating it out, the code will be automatically omitted from
    ** static links that do not use it.
    **
-   ** $Id: complete.c,v 1.6 2007/08/27 23:26:59 drh Exp $
+   ** $Id: complete.ca,v 1.6 2007/08/27 23:26:59 drh Exp $
    */
 #ifndef SQLITE_OMIT_COMPLETE
 
    /*
-   ** This is defined in tokenize.c.  We just have to import the definition.
+   ** This is defined in tokenize.ca.  We just have to import the definition.
    */
 #ifndef SQLITE_AMALGAMATION
 #ifdef SQLITE_ASCII
    SQLITE_PRIVATE const char sqlite3IsAsciiIdChar[];
-#define IdChar(C)  (((c=C)&0x80)!=0 || (c>0x1f && sqlite3IsAsciiIdChar[c-0x20]))
+#define IdChar(C)  (((ca=C)&0x80)!=0 || (ca>0x1f && sqlite3IsAsciiIdChar[ca-0x20]))
 #endif
 #ifdef SQLITE_EBCDIC
    SQLITE_PRIVATE const char sqlite3IsEbcdicIdChar[];
-#define IdChar(C)  (((c=C)>=0x42 && sqlite3IsEbcdicIdChar[c-0x40]))
+#define IdChar(C)  (((ca=C)>=0x42 && sqlite3IsEbcdicIdChar[ca-0x40]))
 #endif
 #endif /* SQLITE_AMALGAMATION */
 
@@ -74668,15 +74668,15 @@ abort_parse:
          case '`':     /* Grave-accent quoted symbols used by MySQL */
          case '"':     /* single- and double-quoted strings */
          case '\'': {
-            int32_t c = *zSql;
+            int32_t ca = *zSql;
             zSql++;
-            while( *zSql && *zSql!=c ){ zSql++; }
+            while( *zSql && *zSql!=ca ){ zSql++; }
             if( *zSql==0 ) return 0;
             token = tkOTHER;
             break;
                     }
          default: {
-            int32_t c;
+            int32_t ca;
             if( IdChar((u8)*zSql) ){
                /* Keywords and unquoted identifiers */
                int32_t nId;
@@ -74685,7 +74685,7 @@ abort_parse:
                token = tkOTHER;
 #else
                switch( *zSql ){
-               case 'c': case 'C': {
+               case 'ca': case 'C': {
                   if( nId==6 && sqlite3StrNICmp(zSql, "create", 6)==0 ){
                      token = tkCREATE;
                   }else{
@@ -74762,8 +74762,8 @@ abort_parse:
 #endif /* SQLITE_OMIT_UTF16 */
 #endif /* SQLITE_OMIT_COMPLETE */
 
-   /************** End of complete.c ********************************************/
-   /************** begin file main.c ********************************************/
+   /************** End of complete.ca ********************************************/
+   /************** begin file main.ca ********************************************/
    /*
    ** 2001 September 15
    **
@@ -74780,10 +74780,10 @@ abort_parse:
    ** other files are for internal use by SQLite and should not be
    ** accessed by users of the library.
    **
-   ** $Id: main.c,v 1.421 2008/03/07 21:37:19 drh Exp $
+   ** $Id: main.ca,v 1.421 2008/03/07 21:37:19 drh Exp $
    */
 #ifdef SQLITE_ENABLE_FTS3
-   /************** Include fts3.h in the middle of main.c ***********************/
+   /************** Include fts3.h in the middle of main.ca ***********************/
    /************** begin file fts3.h ********************************************/
    /*
    ** 2006 Oct 10
@@ -74812,7 +74812,7 @@ abort_parse:
 #endif  /* __cplusplus */
 
    /************** End of fts3.h ************************************************/
-   /************** Continuing where we left off in main.c ***********************/
+   /************** Continuing where we left off in main.ca ***********************/
 #endif
 
    /*
@@ -75604,10 +75604,10 @@ abort_parse:
       static const char misuseBe [] = {
          0, 'l', 0, 'i', 0, 'b', 0, 'r', 0, 'a', 0, 'r', 0, 'y', 0, ' ',
          0, 'r', 0, 'o', 0, 'u', 0, 't', 0, 'i', 0, 'n', 0, 'e', 0, ' ',
-         0, 'c', 0, 'a', 0, 'l', 0, 'l', 0, 'e', 0, 'd', 0, ' ',
+         0, 'ca', 0, 'a', 0, 'l', 0, 'l', 0, 'e', 0, 'd', 0, ' ',
          0, 'o', 0, 'u', 0, 't', 0, ' ',
          0, 'o', 0, 'f', 0, ' ',
-         0, 's', 0, 'e', 0, 'q', 0, 'u', 0, 'e', 0, 'n', 0, 'c', 0, 'e', 0, 0, 0
+         0, 's', 0, 'e', 0, 'q', 0, 'u', 0, 'e', 0, 'n', 0, 'ca', 0, 'e', 0, 0, 0
       };
 
       const void *z;
@@ -76317,8 +76317,8 @@ error_out:
       return rc;
    }
 
-   /************** End of main.c ************************************************/
-   /************** begin file fts3.c ********************************************/
+   /************** End of main.ca ************************************************/
+   /************** begin file fts3.ca ********************************************/
    /*
    ** 2006 Oct 10
    **
@@ -76369,7 +76369,7 @@ error_out:
    ** 21 bits - BBA
    ** and so on.
    **
-   ** This is identical to how sqlite encodes varints (see util.c).
+   ** This is identical to how sqlite encodes varints (see util.ca).
    **
    **
    **** ::uibase::document lists ****
@@ -76600,7 +76600,7 @@ error_out:
 #endif
 
 
-   /************** Include fts3_hash.h in the middle of fts3.c ******************/
+   /************** Include fts3_hash.h in the middle of fts3.ca ******************/
    /************** begin file fts3_hash.h ***************************************/
    /*
    ** 2001 September 22
@@ -76714,8 +76714,8 @@ error_out:
 #endif /* _FTS3_HASH_H_ */
 
    /************** End of fts3_hash.h *******************************************/
-   /************** Continuing where we left off in fts3.c ***********************/
-   /************** Include fts3_tokenizer.h in the middle of fts3.c *************/
+   /************** Continuing where we left off in fts3.ca ***********************/
+   /************** Include fts3_tokenizer.h in the middle of fts3.ca *************/
    /************** begin file fts3_tokenizer.h **********************************/
    /*
    ** 2006 July 10
@@ -76863,7 +76863,7 @@ error_out:
 #endif /* _FTS3_TOKENIZER_H_ */
 
    /************** End of fts3_tokenizer.h **************************************/
-   /************** Continuing where we left off in fts3.c ***********************/
+   /************** Continuing where we left off in fts3.ca ***********************/
 #ifndef SQLITE_CORE
    SQLITE_EXTENSION_INIT1
 #endif
@@ -76901,15 +76901,15 @@ error_out:
       ** tokenizer-generated tokens rather than doing its own local
       ** tokenization.
       */
-      /* TODO(shess) Is __isascii() a portable version of (c&0x80)==0? */
-      static int32_t safe_isspace(char c){
-         return (c&0x80)==0 ? isspace(c) : 0;
+      /* TODO(shess) Is __isascii() a portable version of (ca&0x80)==0? */
+      static int32_t safe_isspace(char ca){
+         return (ca&0x80)==0 ? isspace(ca) : 0;
    }
-   static int32_t safe_tolower(char c){
-      return (c&0x80)==0 ? tolower(c) : c;
+   static int32_t safe_tolower(char ca){
+      return (ca&0x80)==0 ? tolower(ca) : ca;
    }
-   static int32_t safe_isalnum(char c){
-      return (c&0x80)==0 ? isalnum(c) : 0;
+   static int32_t safe_isalnum(char ca){
+      return (ca&0x80)==0 ? isalnum(ca) : 0;
    }
 
    typedef enum DocListType {
@@ -77344,7 +77344,7 @@ error_out:
       const char *pData, int32_t nData,
       sqlite_int64 iFirstDocid, sqlite_int64 iLastDocid){
          sqlite_int64 iDocid = 0;
-         char c[VARINT_MAX];
+         char ca[VARINT_MAX];
          int32_t nFirstOld, nFirstNew;     /* Old and new varint len of first docid. */
 #ifndef NDEBUG
          sqlite_int64 iLastDocidDelta;
@@ -77353,7 +77353,7 @@ error_out:
          /* Recode the initial docid as delta from iPrevDocid. */
          nFirstOld = fts3GetVarint(pData, &iDocid);
          assert( nFirstOld<nData || (nFirstOld==nData && pWriter->iType==DL_DOCIDS) );
-         nFirstNew = fts3PutVarint(c, iFirstDocid-pWriter->iPrevDocid);
+         nFirstNew = fts3PutVarint(ca, iFirstDocid-pWriter->iPrevDocid);
 
          /* Verify that the incoming doclist is valid AND that it ends with
          ** the expected docid.  This is essential because we'll trust this
@@ -77366,10 +77366,10 @@ error_out:
          ** should have been delta-encoded from previous initial docid.
          */
          if( nFirstOld<nData ){
-            dataBufferAppend2(pWriter->b, c, nFirstNew,
+            dataBufferAppend2(pWriter->b, ca, nFirstNew,
                pData+nFirstOld, nData-nFirstOld);
          }else{
-            dataBufferAppend(pWriter->b, c, nFirstNew);
+            dataBufferAppend(pWriter->b, ca, nFirstNew);
          }
          pWriter->iPrevDocid = iLastDocid;
    }
@@ -77378,14 +77378,14 @@ error_out:
          dlrDocid(pReader), dlrDocid(pReader));
    }
    static void dlwAdd(DLWriter *pWriter, sqlite_int64 iDocid){
-      char c[VARINT_MAX];
-      int32_t n = fts3PutVarint(c, iDocid-pWriter->iPrevDocid);
+      char ca[VARINT_MAX];
+      int32_t n = fts3PutVarint(ca, iDocid-pWriter->iPrevDocid);
 
       /* Docids must ascend. */
       assert( !pWriter->has_iPrevDocid || iDocid>pWriter->iPrevDocid );
       assert( pWriter->iType==DL_DOCIDS );
 
-      dataBufferAppend(pWriter->b, c, n);
+      dataBufferAppend(pWriter->b, ca, n);
       pWriter->iPrevDocid = iDocid;
 #ifndef NDEBUG
       pWriter->has_iPrevDocid = 1;
@@ -77529,7 +77529,7 @@ error_out:
          /* Worst-case space for POS_COLUMN, iColumn, iPosDelta,
          ** iStartOffsetDelta, and iEndOffsetDelta.
          */
-         char c[5*VARINT_MAX];
+         char ca[5*VARINT_MAX];
          int32_t n = 0;
 
          /* Ban plwAdd() after plwTerminate(). */
@@ -77538,38 +77538,38 @@ error_out:
          if( pWriter->dlw->iType==DL_DOCIDS ) return;
 
          if( iColumn!=pWriter->iColumn ){
-            n += fts3PutVarint(c+n, POS_COLUMN);
-            n += fts3PutVarint(c+n, iColumn);
+            n += fts3PutVarint(ca+n, POS_COLUMN);
+            n += fts3PutVarint(ca+n, iColumn);
             pWriter->iColumn = iColumn;
             pWriter->iPos = 0;
             pWriter->iOffset = 0;
          }
          assert( iPos>=pWriter->iPos );
-         n += fts3PutVarint(c+n, POS_BASE+(iPos-pWriter->iPos));
+         n += fts3PutVarint(ca+n, POS_BASE+(iPos-pWriter->iPos));
          pWriter->iPos = iPos;
          if( pWriter->dlw->iType==DL_POSITIONS_OFFSETS ){
             assert( iStartOffset>=pWriter->iOffset );
-            n += fts3PutVarint(c+n, iStartOffset-pWriter->iOffset);
+            n += fts3PutVarint(ca+n, iStartOffset-pWriter->iOffset);
             pWriter->iOffset = iStartOffset;
             assert( iEndOffset>=iStartOffset );
-            n += fts3PutVarint(c+n, iEndOffset-iStartOffset);
+            n += fts3PutVarint(ca+n, iEndOffset-iStartOffset);
          }
-         dataBufferAppend(pWriter->dlw->b, c, n);
+         dataBufferAppend(pWriter->dlw->b, ca, n);
    }
    static void plwCopy(PLWriter *pWriter, PLReader *pReader){
       plwAdd(pWriter, plrColumn(pReader), plrPosition(pReader),
          plrStartOffset(pReader), plrEndOffset(pReader));
    }
    static void plwInit(PLWriter *pWriter, DLWriter *dlw, sqlite_int64 iDocid){
-      char c[VARINT_MAX];
+      char ca[VARINT_MAX];
       int32_t n;
 
       pWriter->dlw = dlw;
 
       /* Docids must ascend. */
       assert( !pWriter->dlw->has_iPrevDocid || iDocid>pWriter->dlw->iPrevDocid );
-      n = fts3PutVarint(c, iDocid-pWriter->dlw->iPrevDocid);
-      dataBufferAppend(pWriter->dlw->b, c, n);
+      n = fts3PutVarint(ca, iDocid-pWriter->dlw->iPrevDocid);
+      dataBufferAppend(pWriter->dlw->b, ca, n);
       pWriter->dlw->iPrevDocid = iDocid;
 #ifndef NDEBUG
       pWriter->dlw->has_iPrevDocid = 1;
@@ -77589,9 +77589,9 @@ error_out:
    */
    static void plwTerminate(PLWriter *pWriter){
       if( pWriter->dlw->iType>DL_DOCIDS ){
-         char c[VARINT_MAX];
-         int32_t n = fts3PutVarint(c, POS_END);
-         dataBufferAppend(pWriter->dlw->b, c, n);
+         char ca[VARINT_MAX];
+         int32_t n = fts3PutVarint(ca, POS_END);
+         dataBufferAppend(pWriter->dlw->b, ca, n);
       }
 #ifndef NDEBUG
       /* Mark as terminated for assert in plwAdd(). */
@@ -77628,9 +77628,9 @@ error_out:
    */
    static void dlcAddDoclist(DLCollector *pCollector, DataBuffer *b){
       if( pCollector->dlw.iType>DL_DOCIDS ){
-         char c[VARINT_MAX];
-         int32_t n = fts3PutVarint(c, POS_END);
-         dataBufferAppend2(b, pCollector->b.pData, pCollector->b.nData, c, n);
+         char ca[VARINT_MAX];
+         int32_t n = fts3PutVarint(ca, POS_END);
+         dataBufferAppend2(b, pCollector->b.pData, pCollector->b.nData, ca, n);
       }else{
          dataBufferAppend(b, pCollector->b.pData, pCollector->b.nData);
       }
@@ -77883,11 +77883,11 @@ error_out:
       plwInit(&writer, pOut, dlrDocid(pLeft));
 
       while( !plrAtEnd(&left) || !plrAtEnd(&right) ){
-         int32_t c = posListCmp(&left, &right);
-         if( c<0 ){
+         int32_t ca = posListCmp(&left, &right);
+         if( ca<0 ){
             plwCopy(&writer, &left);
             plrStep(&left);
-         }else if( c>0 ){
+         }else if( ca>0 ){
             plwCopy(&writer, &right);
             plrStep(&right);
          }else{
@@ -78588,8 +78588,8 @@ error_out:
       DLReader reader;                 /* Result reader if result not is_empty */
    } fulltext_cursor;
 
-   static struct fulltext_vtab *cursor_vtab(fulltext_cursor *c){
-      return (fulltext_vtab *) c->base.pVtab;
+   static struct fulltext_vtab *cursor_vtab(fulltext_cursor *ca){
+      return (fulltext_vtab *) ca->base.pVtab;
    }
 
    static const sqlite3_module fts3Module;   /* forward declaration */
@@ -79065,7 +79065,7 @@ error_out:
       0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  /* 6x */
       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0,  /* 7x */
    };
-#define ftsIdChar(C)  (((c=C)&0x80)!=0 || (c>0x1f && isFtsIdChar[c-0x20]))
+#define ftsIdChar(C)  (((ca=C)&0x80)!=0 || (ca>0x1f && isFtsIdChar[ca-0x20]))
 
 
    /*
@@ -79073,7 +79073,7 @@ error_out:
    ** Store the token type in *tokenType before returning.
    */
    static int32_t ftsGetToken(const char *z, int32_t *tokenType){
-      int32_t i, c;
+      int32_t i, ca;
       switch( *z ){
       case 0: {
          *tokenType = TOKEN_EOF;
@@ -79088,8 +79088,8 @@ error_out:
       case '\'':
       case '"': {
          int32_t delim = z[0];
-         for(i=1; (c=z[i])!=0; i++){
-            if( c==delim ){
+         for(i=1; (ca=z[i])!=0; i++){
+            if( ca==delim ){
                if( z[i+1]==delim ){
                   i++;
                }else{
@@ -79098,10 +79098,10 @@ error_out:
             }
          }
          *tokenType = TOKEN_STRING;
-         return i + (c!=0);
+         return i + (ca!=0);
                 }
       case '[': {
-         for(i=1, c=z[0]; c!=']' && (c=z[i])!=0; i++){}
+         for(i=1, ca=z[0]; ca!=']' && (ca=z[i])!=0; i++){}
          *tokenType = TOKEN_ID;
          return i;
                 }
@@ -79396,7 +79396,7 @@ error_out:
          }
          for(i=0; i<pSpec->nColumn; i++){
             char *p;
-            pSpec->azContentColumn[i] = sqlite3_mprintf("c%d%s", i, azArg[i]);
+            pSpec->azContentColumn[i] = sqlite3_mprintf("ca%d%s", i, azArg[i]);
             for (p = pSpec->azContentColumn[i]; *p ; ++p) {
                if( !safe_isalnum(*p) ) *p = '_';
             }
@@ -79652,14 +79652,14 @@ out:
    }
 
    static int32_t fulltextOpen(sqlite3_vtab *pVTab, sqlite3_vtab_cursor **ppCursor){
-      fulltext_cursor *c;
+      fulltext_cursor *ca;
 
-      c = (fulltext_cursor *) sqlite3_malloc(sizeof(fulltext_cursor));
-      if( c ){
-         memset(c, 0, sizeof(fulltext_cursor));
-         /* sqlite will initialize c->base */
-         *ppCursor = &c->base;
-         FTSTRACE(("FTS3 open %p: %p\n", pVTab, c));
+      ca = (fulltext_cursor *) sqlite3_malloc(sizeof(fulltext_cursor));
+      if( ca ){
+         memset(ca, 0, sizeof(fulltext_cursor));
+         /* sqlite will initialize ca->base */
+         *ppCursor = &ca->base;
+         FTSTRACE(("FTS3 open %p: %p\n", pVTab, ca));
          return SQLITE_OK;
       }else{
          return SQLITE_NOMEM;
@@ -80130,52 +80130,52 @@ out:
    ** on the xClose method of the virtual table interface.
    */
    static int32_t fulltextClose(sqlite3_vtab_cursor *pCursor){
-      fulltext_cursor *c = (fulltext_cursor *) pCursor;
-      FTSTRACE(("FTS3 close %p\n", c));
-      sqlite3_finalize(c->pStmt);
-      queryClear(&c->q);
-      snippetClear(&c->snippet);
-      if( c->result.nData!=0 ) dlrDestroy(&c->reader);
-      dataBufferDestroy(&c->result);
-      sqlite3_free(c);
+      fulltext_cursor *ca = (fulltext_cursor *) pCursor;
+      FTSTRACE(("FTS3 close %p\n", ca));
+      sqlite3_finalize(ca->pStmt);
+      queryClear(&ca->q);
+      snippetClear(&ca->snippet);
+      if( ca->result.nData!=0 ) dlrDestroy(&ca->reader);
+      dataBufferDestroy(&ca->result);
+      sqlite3_free(ca);
       return SQLITE_OK;
    }
 
    static int32_t fulltextNext(sqlite3_vtab_cursor *pCursor){
-      fulltext_cursor *c = (fulltext_cursor *) pCursor;
+      fulltext_cursor *ca = (fulltext_cursor *) pCursor;
       int32_t rc;
 
       FTSTRACE(("FTS3 Next %p\n", pCursor));
-      snippetClear(&c->snippet);
-      if( c->iCursorType < QUERY_FULLTEXT ){
+      snippetClear(&ca->snippet);
+      if( ca->iCursorType < QUERY_FULLTEXT ){
          /* TODO(shess) Handle SQLITE_SCHEMA AND SQLITE_BUSY. */
-         rc = sqlite3_step(c->pStmt);
+         rc = sqlite3_step(ca->pStmt);
          switch( rc ){
          case SQLITE_ROW:
-            c->eof = 0;
+            ca->eof = 0;
             return SQLITE_OK;
          case SQLITE_DONE:
-            c->eof = 1;
+            ca->eof = 1;
             return SQLITE_OK;
          default:
-            c->eof = 1;
+            ca->eof = 1;
             return rc;
          }
       } else {  /* full-text query */
-         rc = sqlite3_reset(c->pStmt);
+         rc = sqlite3_reset(ca->pStmt);
          if( rc!=SQLITE_OK ) return rc;
 
-         if( c->result.nData==0 || dlrAtEnd(&c->reader) ){
-            c->eof = 1;
+         if( ca->result.nData==0 || dlrAtEnd(&ca->reader) ){
+            ca->eof = 1;
             return SQLITE_OK;
          }
-         rc = sqlite3_bind_int64(c->pStmt, 1, dlrDocid(&c->reader));
-         dlrStep(&c->reader);
+         rc = sqlite3_bind_int64(ca->pStmt, 1, dlrDocid(&ca->reader));
+         dlrStep(&ca->reader);
          if( rc!=SQLITE_OK ) return rc;
          /* TODO(shess) Handle SQLITE_SCHEMA AND SQLITE_BUSY. */
-         rc = sqlite3_step(c->pStmt);
+         rc = sqlite3_step(ca->pStmt);
          if( rc==SQLITE_ROW ){   /* the case we expect */
-            c->eof = 0;
+            ca->eof = 0;
             return SQLITE_OK;
          }
          /* an error occurred; abort */
@@ -80588,8 +80588,8 @@ out:
       int32_t idxNum, const char *idxStr,   /* Which indexing scheme to use */
       int32_t argc, sqlite3_value **argv    /* Arguments for the indexing scheme */
       ){
-         fulltext_cursor *c = (fulltext_cursor *) pCursor;
-         fulltext_vtab *v = cursor_vtab(c);
+         fulltext_cursor *ca = (fulltext_cursor *) pCursor;
+         fulltext_vtab *v = cursor_vtab(ca);
          int32_t rc;
          StringBuffer sb;
 
@@ -80600,18 +80600,18 @@ out:
          appendList(&sb, v->nColumn, v->azContentColumn);
          append(&sb, " FROM %_content");
          if( idxNum!=QUERY_GENERIC ) append(&sb, " WHERE docid = ?");
-         sqlite3_finalize(c->pStmt);
-         rc = sql_prepare(v->db, v->zDb, v->zName, &c->pStmt, stringBufferData(&sb));
+         sqlite3_finalize(ca->pStmt);
+         rc = sql_prepare(v->db, v->zDb, v->zName, &ca->pStmt, stringBufferData(&sb));
          stringBufferDestroy(&sb);
          if( rc!=SQLITE_OK ) return rc;
 
-         c->iCursorType = idxNum;
+         ca->iCursorType = idxNum;
          switch( idxNum ){
          case QUERY_GENERIC:
             break;
 
          case QUERY_DOCID:
-            rc = sqlite3_bind_int64(c->pStmt, 1, sqlite3_value_int64(argv[0]));
+            rc = sqlite3_bind_int64(ca->pStmt, 1, sqlite3_value_int64(argv[0]));
             if( rc!=SQLITE_OK ) return rc;
             break;
 
@@ -80620,18 +80620,18 @@ out:
                const char *zQuery = (const char *)sqlite3_value_text(argv[0]);
                assert( idxNum<=QUERY_FULLTEXT+v->nColumn);
                assert( argc==1 );
-               queryClear(&c->q);
-               if( c->result.nData!=0 ){
+               queryClear(&ca->q);
+               if( ca->result.nData!=0 ){
                   /* This case happens if the same cursor is used repeatedly. */
-                  dlrDestroy(&c->reader);
-                  dataBufferReset(&c->result);
+                  dlrDestroy(&ca->reader);
+                  dataBufferReset(&ca->result);
                }else{
-                  dataBufferInit(&c->result, 0);
+                  dataBufferInit(&ca->result, 0);
                }
-               rc = fulltextQuery(v, idxNum-QUERY_FULLTEXT, zQuery, -1, &c->result, &c->q);
+               rc = fulltextQuery(v, idxNum-QUERY_FULLTEXT, zQuery, -1, &ca->result, &ca->q);
                if( rc!=SQLITE_OK ) return rc;
-               if( c->result.nData!=0 ){
-                  dlrInit(&c->reader, DL_DOCIDS, c->result.pData, c->result.nData);
+               if( ca->result.nData!=0 ){
+                  dlrInit(&ca->reader, DL_DOCIDS, ca->result.pData, ca->result.nData);
                }
                break;
             }
@@ -80645,8 +80645,8 @@ out:
    ** a query's results set.
    */
    static int32_t fulltextEof(sqlite3_vtab_cursor *pCursor){
-      fulltext_cursor *c = (fulltext_cursor *) pCursor;
-      return c->eof;
+      fulltext_cursor *ca = (fulltext_cursor *) pCursor;
+      return ca->eof;
    }
 
    /* This is the xColumn method of the virtual table.  The SQLite
@@ -80657,20 +80657,20 @@ out:
    */
    static int32_t fulltextColumn(sqlite3_vtab_cursor *pCursor,
       sqlite3_context *pContext, int32_t idxCol){
-         fulltext_cursor *c = (fulltext_cursor *) pCursor;
-         fulltext_vtab *v = cursor_vtab(c);
+         fulltext_cursor *ca = (fulltext_cursor *) pCursor;
+         fulltext_vtab *v = cursor_vtab(ca);
 
          if( idxCol<v->nColumn ){
-            sqlite3_value *pVal = sqlite3_column_value(c->pStmt, idxCol+1);
+            sqlite3_value *pVal = sqlite3_column_value(ca->pStmt, idxCol+1);
             sqlite3_result_value(pContext, pVal);
          }else if( idxCol==v->nColumn ){
             /* The extra column whose name is the same as the table.
             ** Return a blob which is a pointer to the cursor
             */
-            sqlite3_result_blob(pContext, &c, sizeof(c), SQLITE_TRANSIENT);
+            sqlite3_result_blob(pContext, &ca, sizeof(ca), SQLITE_TRANSIENT);
          }else if( idxCol==v->nColumn+1 ){
             /* The docid column, which is an alias for rowid. */
-            sqlite3_value *pVal = sqlite3_column_value(c->pStmt, 0);
+            sqlite3_value *pVal = sqlite3_column_value(ca->pStmt, 0);
             sqlite3_result_value(pContext, pVal);
          }
          return SQLITE_OK;
@@ -80682,9 +80682,9 @@ out:
    ** rowid should be written to *pRowid.
    */
    static int32_t fulltextRowid(sqlite3_vtab_cursor *pCursor, sqlite_int64 *pRowid){
-      fulltext_cursor *c = (fulltext_cursor *) pCursor;
+      fulltext_cursor *ca = (fulltext_cursor *) pCursor;
 
-      *pRowid = sqlite3_column_int64(c->pStmt, 0);
+      *pRowid = sqlite3_column_int64(ca->pStmt, 0);
       return SQLITE_OK;
    }
 
@@ -80882,7 +80882,7 @@ out:
    static InteriorBlock *interiorBlockNew(int32_t iHeight, sqlite_int64 iChildBlock,
       const char *pTerm, int32_t nTerm){
          InteriorBlock *block = sqlite3_malloc(sizeof(InteriorBlock));
-         char c[VARINT_MAX+VARINT_MAX];
+         char ca[VARINT_MAX+VARINT_MAX];
          int32_t n;
 
          if( block ){
@@ -80890,10 +80890,10 @@ out:
             dataBufferInit(&block->term, 0);
             dataBufferReplace(&block->term, pTerm, nTerm);
 
-            n = fts3PutVarint(c, iHeight);
-            n += fts3PutVarint(c+n, iChildBlock);
+            n = fts3PutVarint(ca, iHeight);
+            n += fts3PutVarint(ca+n, iChildBlock);
             dataBufferInit(&block->data, INTERIOR_MAX);
-            dataBufferReplace(&block->data, c, n);
+            dataBufferReplace(&block->data, ca, n);
          }
          return block;
    }
@@ -81002,7 +81002,7 @@ out:
    static void interiorWriterAppend(InteriorWriter *pWriter,
       const char *pTerm, int32_t nTerm,
       sqlite_int64 iChildBlock){
-         char c[VARINT_MAX+VARINT_MAX];
+         char ca[VARINT_MAX+VARINT_MAX];
          int32_t n, nPrefix = 0;
 
          ASSERT_VALID_INTERIOR_BLOCK(pWriter->last);
@@ -81014,15 +81014,15 @@ out:
          ** at 0.
          */
          if( pWriter->term.nData==0 ){
-            n = fts3PutVarint(c, nTerm);
+            n = fts3PutVarint(ca, nTerm);
          }else{
             while( nPrefix<pWriter->term.nData &&
                pTerm[nPrefix]==pWriter->term.pData[nPrefix] ){
                   nPrefix++;
             }
 
-            n = fts3PutVarint(c, nPrefix);
-            n += fts3PutVarint(c+n, nTerm-nPrefix);
+            n = fts3PutVarint(ca, nPrefix);
+            n += fts3PutVarint(ca+n, nTerm-nPrefix);
          }
 
 #ifndef NDEBUG
@@ -81041,7 +81041,7 @@ out:
                pWriter->iOpeningChildBlock = iChildBlock;
                dataBufferReset(&pWriter->term);
          }else{
-            dataBufferAppend2(&pWriter->last->data, c, n,
+            dataBufferAppend2(&pWriter->last->data, ca, n,
                pTerm+nPrefix, nTerm-nPrefix);
             dataBufferReplace(&pWriter->term, pTerm, nTerm);
          }
@@ -81223,7 +81223,7 @@ out:
       const char *pTerm, int32_t nTerm, int32_t isPrefix){
          const char *pReaderTerm = interiorReaderTerm(pReader);
          int32_t nReaderTerm = interiorReaderTermBytes(pReader);
-         int32_t c, n = nReaderTerm<nTerm ? nReaderTerm : nTerm;
+         int32_t ca, n = nReaderTerm<nTerm ? nReaderTerm : nTerm;
 
          if( n==0 ){
             if( nReaderTerm>0 ) return -1;
@@ -81231,8 +81231,8 @@ out:
             return 0;
          }
 
-         c = memcmp(pReaderTerm, pTerm, n);
-         if( c!=0 ) return c;
+         ca = memcmp(pReaderTerm, pTerm, n);
+         if( ca!=0 ) return ca;
          if( isPrefix && n==nTerm ) return 0;
          return nReaderTerm - nTerm;
    }
@@ -81497,7 +81497,7 @@ out:
    */
    static int32_t leafWriterEncodeTerm(LeafWriter *pWriter,
       const char *pTerm, int32_t nTerm){
-         char c[VARINT_MAX+VARINT_MAX];
+         char ca[VARINT_MAX+VARINT_MAX];
          int32_t n, nPrefix = 0;
 
          assert( nTerm>0 );
@@ -81514,18 +81514,18 @@ out:
             **  varint(nTerm)
             **  char pTerm[nTerm]
             */
-            n = fts3PutVarint(c, '\0');
-            n += fts3PutVarint(c+n, nTerm);
-            dataBufferAppend2(&pWriter->data, c, n, pTerm, nTerm);
+            n = fts3PutVarint(ca, '\0');
+            n += fts3PutVarint(ca+n, nTerm);
+            dataBufferAppend2(&pWriter->data, ca, n, pTerm, nTerm);
          }else{
             /* Delta-encode the term as:
             **  varint(nPrefix)
             **  varint(nSuffix)
             **  char pTermSuffix[nSuffix]
             */
-            n = fts3PutVarint(c, nPrefix);
-            n += fts3PutVarint(c+n, nTerm-nPrefix);
-            dataBufferAppend2(&pWriter->data, c, n, pTerm+nPrefix, nTerm-nPrefix);
+            n = fts3PutVarint(ca, nPrefix);
+            n += fts3PutVarint(ca+n, nTerm-nPrefix);
+            dataBufferAppend2(&pWriter->data, ca, n, pTerm+nPrefix, nTerm-nPrefix);
          }
          dataBufferReplace(&pWriter->term, pTerm, nTerm);
 
@@ -81540,9 +81540,9 @@ out:
    static int32_t leafWriterInlineFlush(fulltext_vtab *v, LeafWriter *pWriter,
       const char *pTerm, int32_t nTerm,
       int32_t iDoclistData){
-         char c[VARINT_MAX+VARINT_MAX];
-         int32_t iData, n = fts3PutVarint(c, 0);
-         n += fts3PutVarint(c+n, nTerm);
+         char ca[VARINT_MAX+VARINT_MAX];
+         int32_t iData, n = fts3PutVarint(ca, 0);
+         n += fts3PutVarint(ca+n, nTerm);
 
          /* There should always be room for the header.  Even if pTerm shared
          ** a substantial prefix with the previous term, the entire prefix
@@ -81552,7 +81552,7 @@ out:
          assert( iDoclistData>=n+nTerm );
 
          iData = iDoclistData-(n+nTerm);
-         memcpy(pWriter->data.pData+iData, c, n);
+         memcpy(pWriter->data.pData+iData, ca, n);
          memcpy(pWriter->data.pData+iData+n, pTerm, nTerm);
 
          return leafWriterInternalFlush(v, pWriter, iData, pWriter->data.nData-iData);
@@ -81564,7 +81564,7 @@ out:
    static int32_t leafWriterStepMerge(fulltext_vtab *v, LeafWriter *pWriter,
       const char *pTerm, int32_t nTerm,
       DLReader *pReaders, int32_t nReaders){
-         char c[VARINT_MAX+VARINT_MAX];
+         char ca[VARINT_MAX+VARINT_MAX];
          int32_t iTermData = pWriter->data.nData, iDoclistData;
          int32_t i, nData, n, nActualData, nActual, rc, nTermDistinct;
 
@@ -81582,8 +81582,8 @@ out:
          for(i=0, nData=0; i<nReaders; i++){
             nData += dlrAllDataBytes(&pReaders[i]);
          }
-         n = fts3PutVarint(c, nData);
-         dataBufferAppend(&pWriter->data, c, n);
+         n = fts3PutVarint(ca, nData);
+         dataBufferAppend(&pWriter->data, ca, n);
 
          docListMerge(&pWriter->data, pReaders, nReaders);
          ASSERT_VALID_DOCLIST(DL_DEFAULT,
@@ -81596,7 +81596,7 @@ out:
          ** not a big deal, we can just use memmove() to adjust things.
          */
          nActualData = pWriter->data.nData-(iDoclistData+n);
-         nActual = fts3PutVarint(c, nActualData);
+         nActual = fts3PutVarint(ca, nActualData);
          assert( nActualData<=nData );
          assert( nActual<=n );
 
@@ -81620,7 +81620,7 @@ out:
 
             /* Fix the encoded doclist length. */
             iDoclistData += n - nActual;
-            memcpy(pWriter->data.pData+iDoclistData, c, nActual);
+            memcpy(pWriter->data.pData+iDoclistData, ca, nActual);
 
             /* push the standalone leaf node. */
             rc = leafWriterInlineFlush(v, pWriter, pTerm, nTerm, iDoclistData);
@@ -81643,7 +81643,7 @@ out:
          }
 
          /* replace written length with actual length. */
-         memcpy(pWriter->data.pData+iDoclistData, c, nActual);
+         memcpy(pWriter->data.pData+iDoclistData, ca, nActual);
 
          /* If the node is too large, break things up. */
          /* TODO(shess) This test matches leafWriterStep(), which does this
@@ -81795,15 +81795,15 @@ out:
    */
    static int32_t leafReaderTermCmp(LeafReader *pReader,
       const char *pTerm, int32_t nTerm, int32_t isPrefix){
-         int32_t c, n = pReader->term.nData<nTerm ? pReader->term.nData : nTerm;
+         int32_t ca, n = pReader->term.nData<nTerm ? pReader->term.nData : nTerm;
          if( n==0 ){
             if( pReader->term.nData>0 ) return -1;
             if(nTerm>0 ) return 1;
             return 0;
          }
 
-         c = memcmp(pReader->term.pData, pTerm, n);
-         if( c!=0 ) return c;
+         ca = memcmp(pReader->term.pData, pTerm, n);
+         if( ca!=0 ) return ca;
          if( isPrefix && n==nTerm ) return 0;
          return pReader->term.nData - nTerm;
    }
@@ -81960,8 +81960,8 @@ out:
    ** so that older segments sort before newer segments.
    */
    static int32_t leavesReaderCmp(LeavesReader *lr1, LeavesReader *lr2){
-      int32_t c = leavesReaderTermCmp(lr1, lr2);
-      if( c!=0 ) return c;
+      int32_t ca = leavesReaderTermCmp(lr1, lr2);
+      if( ca!=0 ) return ca;
       return lr1->idx-lr2->idx;
    }
 
@@ -82182,9 +82182,9 @@ err:
                ** on a better name.  [Meanwhile, break encapsulation rather than
                ** use a confusing name.]
                */
-               int32_t c = leafReaderTermCmp(&pReader->leafReader, pTerm, nTerm, isPrefix);
-               if( c>0 ) break;      /* Past any possible matches. */
-               if( c==0 ){
+               int32_t ca = leafReaderTermCmp(&pReader->leafReader, pTerm, nTerm, isPrefix);
+               if( ca>0 ) break;      /* Past any possible matches. */
+               if( ca==0 ){
                   const char *pData = leavesReaderData(pReader);
                   int32_t iBuffer, nData = leavesReaderDataBytes(pReader);
 
@@ -82564,8 +82564,8 @@ err:
       const TermData *a = (const TermData *)av;
       const TermData *b = (const TermData *)bv;
       int32_t n = a->nTerm<b->nTerm ? a->nTerm : b->nTerm;
-      int32_t c = memcmp(a->pTerm, b->pTerm, n);
-      if( c!=0 ) return c;
+      int32_t ca = memcmp(a->pTerm, b->pTerm, n);
+      if( ca!=0 ) return ca;
       return a->nTerm-b->nTerm;
    }
 
@@ -82890,7 +82890,7 @@ err:
 
    /*
    ** The fts3 built-in tokenizers - "simple" and "porter" - are implemented
-   ** in files fts3_tokenizer1.c and fts3_porter.c respectively. The following
+   ** in files fts3_tokenizer1.ca and fts3_porter.ca respectively. The following
    ** two forward declarations are for functions declared in these files
    ** used to retrieve the respective implementations.
    **
@@ -82978,8 +82978,8 @@ err:
 
 #endif /* !defined(SQLITE_CORE) || defined(SQLITE_ENABLE_FTS3) */
 
-   /************** End of fts3.c ************************************************/
-   /************** begin file fts3_hash.c ***************************************/
+   /************** End of fts3.ca ************************************************/
+   /************** begin file fts3_hash.ca ***************************************/
    /*
    ** 2001 September 22
    **
@@ -83350,8 +83350,8 @@ err:
 
 #endif /* !defined(SQLITE_CORE) || defined(SQLITE_ENABLE_FTS3) */
 
-   /************** End of fts3_hash.c *******************************************/
-   /************** begin file fts3_porter.c *************************************/
+   /************** End of fts3_hash.ca *******************************************/
+   /************** begin file fts3_porter.ca *************************************/
    /*
    ** 2006 September 30
    **
@@ -83440,25 +83440,25 @@ err:
       const char *zInput, int32_t nInput,        /* string to be tokenized */
       sqlite3_tokenizer_cursor **ppCursor    /* OUT: Tokenization cursor */
       ){
-         porter_tokenizer_cursor *c;
+         porter_tokenizer_cursor *ca;
 
-         c = (porter_tokenizer_cursor *) sqlite3_malloc(sizeof(*c));
-         if( c==NULL ) return SQLITE_NOMEM;
+         ca = (porter_tokenizer_cursor *) sqlite3_malloc(sizeof(*ca));
+         if( ca==NULL ) return SQLITE_NOMEM;
 
-         c->zInput = zInput;
+         ca->zInput = zInput;
          if( zInput==0 ){
-            c->nInput = 0;
+            ca->nInput = 0;
          }else if( nInput<0 ){
-            c->nInput = (int32_t)(int32_t) strlen(zInput);
+            ca->nInput = (int32_t)(int32_t) strlen(zInput);
          }else{
-            c->nInput = nInput;
+            ca->nInput = nInput;
          }
-         c->iOffset = 0;                 /* start tokenizing at the beginning */
-         c->iToken = 0;
-         c->zToken = NULL;               /* no space allocated, yet. */
-         c->nAllocated = 0;
+         ca->iOffset = 0;                 /* start tokenizing at the beginning */
+         ca->iToken = 0;
+         ca->zToken = NULL;               /* no space allocated, yet. */
+         ca->nAllocated = 0;
 
-         *ppCursor = &c->base;
+         *ppCursor = &ca->base;
          return SQLITE_OK;
    }
 
@@ -83467,9 +83467,9 @@ err:
    ** porterOpen() above.
    */
    static int32_t porterClose(sqlite3_tokenizer_cursor *pCursor){
-      porter_tokenizer_cursor *c = (porter_tokenizer_cursor *) pCursor;
-      sqlite3_free(c->zToken);
-      sqlite3_free(c);
+      porter_tokenizer_cursor *ca = (porter_tokenizer_cursor *) pCursor;
+      sqlite3_free(ca->zToken);
+      sqlite3_free(ca);
       return SQLITE_OK;
    }
    /*
@@ -83642,12 +83642,12 @@ err:
       int32_t i, mx, j;
       int32_t hasDigit = 0;
       for(i=0; i<nIn; i++){
-         int32_t c = zIn[i];
-         if( c>='A' && c<='Z' ){
-            zOut[i] = c - 'A' + 'a';
+         int32_t ca = zIn[i];
+         if( ca>='A' && ca<='Z' ){
+            zOut[i] = ca - 'A' + 'a';
          }else{
-            if( c>='0' && c<='9' ) hasDigit = 1;
-            zOut[i] = c;
+            if( ca>='0' && ca<='9' ) hasDigit = 1;
+            zOut[i] = ca;
          }
       }
       mx = hasDigit ? 3 : 10;
@@ -83686,7 +83686,7 @@ err:
    ** no chance of overflowing the zOut buffer.
    */
    static void porter_stemmer(const char *zIn, int32_t nIn, char *zOut, int32_t *pnOut){
-      int32_t i, j, c;
+      int32_t i, j, ca;
       char zReverse[28];
       char *z, *z2;
       if( nIn<3 || nIn>=sizeof(zReverse)-7 ){
@@ -83696,11 +83696,11 @@ err:
          return;
       }
       for(i=0, j=sizeof(zReverse)-6; i<nIn; i++, j--){
-         c = zIn[i];
-         if( c>='A' && c<='Z' ){
-            zReverse[j] = c + 'a' - 'A';
-         }else if( c>='a' && c<='z' ){
-            zReverse[j] = c;
+         ca = zIn[i];
+         if( ca>='A' && ca<='Z' ){
+            zReverse[j] = ca + 'a' - 'A';
+         }else if( ca>='a' && ca<='z' ){
+            zReverse[j] = ca;
          }else{
             /* The use of a character not in [a-zA-Z] means that we fallback
             ** to the copy stemmer */
@@ -83753,7 +83753,7 @@ err:
          stem(&z, "lanoita", "ate", m_gt_0) ||
             stem(&z, "lanoit", "tion", m_gt_0);
          break;
-      case 'c':
+      case 'ca':
          stem(&z, "icne", "ence", m_gt_0) ||
             stem(&z, "icna", "ance", m_gt_0);
          break;
@@ -83814,7 +83814,7 @@ err:
             z += 2;
          }
          break;
-      case 'c':
+      case 'ca':
          if( z[0]=='e' && z[2]=='n' && (z[3]=='a' || z[3]=='e')  && m_gt_1(z+4)  ){
             z += 4;
          }
@@ -83825,7 +83825,7 @@ err:
          }
          break;
       case 'i':
-         if( z[0]=='c' && m_gt_1(z+2) ){
+         if( z[0]=='ca' && m_gt_1(z+2) ){
             z += 2;
          }
          break;
@@ -83930,35 +83930,35 @@ err:
       int32_t *piEndOffset,                   /* OUT: Ending offset of token */
       int32_t *piPosition                     /* OUT: Position integer of token */
       ){
-         porter_tokenizer_cursor *c = (porter_tokenizer_cursor *) pCursor;
-         const char *z = c->zInput;
+         porter_tokenizer_cursor *ca = (porter_tokenizer_cursor *) pCursor;
+         const char *z = ca->zInput;
 
-         while( c->iOffset<c->nInput ){
+         while( ca->iOffset<ca->nInput ){
             int32_t iStartOffset, ch;
 
             /* Scan past delimiter characters */
-            while( c->iOffset<c->nInput && isDelim(z[c->iOffset]) ){
-               c->iOffset++;
+            while( ca->iOffset<ca->nInput && isDelim(z[ca->iOffset]) ){
+               ca->iOffset++;
             }
 
             /* Count non-delimiter characters. */
-            iStartOffset = c->iOffset;
-            while( c->iOffset<c->nInput && !isDelim(z[c->iOffset]) ){
-               c->iOffset++;
+            iStartOffset = ca->iOffset;
+            while( ca->iOffset<ca->nInput && !isDelim(z[ca->iOffset]) ){
+               ca->iOffset++;
             }
 
-            if( c->iOffset>iStartOffset ){
-               int32_t n = c->iOffset-iStartOffset;
-               if( n>c->nAllocated ){
-                  c->nAllocated = n+20;
-                  c->zToken = sqlite3_realloc(c->zToken, c->nAllocated);
-                  if( c->zToken==NULL ) return SQLITE_NOMEM;
+            if( ca->iOffset>iStartOffset ){
+               int32_t n = ca->iOffset-iStartOffset;
+               if( n>ca->nAllocated ){
+                  ca->nAllocated = n+20;
+                  ca->zToken = sqlite3_realloc(ca->zToken, ca->nAllocated);
+                  if( ca->zToken==NULL ) return SQLITE_NOMEM;
                }
-               porter_stemmer(&z[iStartOffset], n, c->zToken, pnBytes);
-               *pzToken = c->zToken;
+               porter_stemmer(&z[iStartOffset], n, ca->zToken, pnBytes);
+               *pzToken = ca->zToken;
                *piStartOffset = iStartOffset;
-               *piEndOffset = c->iOffset;
-               *piPosition = c->iToken++;
+               *piEndOffset = ca->iOffset;
+               *piPosition = ca->iToken++;
                return SQLITE_OK;
             }
          }
@@ -83989,8 +83989,8 @@ err:
 
 #endif /* !defined(SQLITE_CORE) || defined(SQLITE_ENABLE_FTS3) */
 
-   /************** End of fts3_porter.c *****************************************/
-   /************** begin file fts3_tokenizer.c **********************************/
+   /************** End of fts3_porter.ca *****************************************/
+   /************** begin file fts3_tokenizer.ca **********************************/
    /*
    ** 2007 June 22
    **
@@ -84357,8 +84357,8 @@ finish:
 
 #endif /* !defined(SQLITE_CORE) || defined(SQLITE_ENABLE_FTS3) */
 
-   /************** End of fts3_tokenizer.c **************************************/
-   /************** begin file fts3_tokenizer1.c *********************************/
+   /************** End of fts3_tokenizer.ca **************************************/
+   /************** begin file fts3_tokenizer1.ca *********************************/
    /*
    ** 2006 Oct 10
    **
@@ -84407,8 +84407,8 @@ finish:
    /* Forward declaration */
    static const sqlite3_tokenizer_module simpleTokenizerModule;
 
-   static int32_t simpleDelim(simple_tokenizer *t, uchar c){
-      return c<0x80 && t->delim[c];
+   static int32_t simpleDelim(simple_tokenizer *t, uchar ca){
+      return ca<0x80 && t->delim[ca];
    }
 
    /*
@@ -84471,25 +84471,25 @@ finish:
       const char *pInput, int32_t nBytes,        /* string to be tokenized */
       sqlite3_tokenizer_cursor **ppCursor    /* OUT: Tokenization cursor */
       ){
-         simple_tokenizer_cursor *c;
+         simple_tokenizer_cursor *ca;
 
-         c = (simple_tokenizer_cursor *) sqlite3_malloc(sizeof(*c));
-         if( c==NULL ) return SQLITE_NOMEM;
+         ca = (simple_tokenizer_cursor *) sqlite3_malloc(sizeof(*ca));
+         if( ca==NULL ) return SQLITE_NOMEM;
 
-         c->pInput = pInput;
+         ca->pInput = pInput;
          if( pInput==0 ){
-            c->nBytes = 0;
+            ca->nBytes = 0;
          }else if( nBytes<0 ){
-            c->nBytes = (int32_t)(int32_t) strlen(pInput);
+            ca->nBytes = (int32_t)(int32_t) strlen(pInput);
          }else{
-            c->nBytes = nBytes;
+            ca->nBytes = nBytes;
          }
-         c->iOffset = 0;                 /* start tokenizing at the beginning */
-         c->iToken = 0;
-         c->pToken = NULL;               /* no space allocated, yet. */
-         c->nTokenAllocated = 0;
+         ca->iOffset = 0;                 /* start tokenizing at the beginning */
+         ca->iToken = 0;
+         ca->pToken = NULL;               /* no space allocated, yet. */
+         ca->nTokenAllocated = 0;
 
-         *ppCursor = &c->base;
+         *ppCursor = &ca->base;
          return SQLITE_OK;
    }
 
@@ -84498,9 +84498,9 @@ finish:
    ** simpleOpen() above.
    */
    static int32_t simpleClose(sqlite3_tokenizer_cursor *pCursor){
-      simple_tokenizer_cursor *c = (simple_tokenizer_cursor *) pCursor;
-      sqlite3_free(c->pToken);
-      sqlite3_free(c);
+      simple_tokenizer_cursor *ca = (simple_tokenizer_cursor *) pCursor;
+      sqlite3_free(ca->pToken);
+      sqlite3_free(ca);
       return SQLITE_OK;
    }
 
@@ -84516,43 +84516,43 @@ finish:
       int32_t *piEndOffset,                   /* OUT: Ending offset of token */
       int32_t *piPosition                     /* OUT: Position integer of token */
       ){
-         simple_tokenizer_cursor *c = (simple_tokenizer_cursor *) pCursor;
+         simple_tokenizer_cursor *ca = (simple_tokenizer_cursor *) pCursor;
          simple_tokenizer *t = (simple_tokenizer *) pCursor->pTokenizer;
-         uchar *p = (uchar *)c->pInput;
+         uchar *p = (uchar *)ca->pInput;
 
-         while( c->iOffset<c->nBytes ){
+         while( ca->iOffset<ca->nBytes ){
             int32_t iStartOffset;
 
             /* Scan past delimiter characters */
-            while( c->iOffset<c->nBytes && simpleDelim(t, p[c->iOffset]) ){
-               c->iOffset++;
+            while( ca->iOffset<ca->nBytes && simpleDelim(t, p[ca->iOffset]) ){
+               ca->iOffset++;
             }
 
             /* Count non-delimiter characters. */
-            iStartOffset = c->iOffset;
-            while( c->iOffset<c->nBytes && !simpleDelim(t, p[c->iOffset]) ){
-               c->iOffset++;
+            iStartOffset = ca->iOffset;
+            while( ca->iOffset<ca->nBytes && !simpleDelim(t, p[ca->iOffset]) ){
+               ca->iOffset++;
             }
 
-            if( c->iOffset>iStartOffset ){
-               int32_t i, n = c->iOffset-iStartOffset;
-               if( n>c->nTokenAllocated ){
-                  c->nTokenAllocated = n+20;
-                  c->pToken = sqlite3_realloc(c->pToken, c->nTokenAllocated);
-                  if( c->pToken==NULL ) return SQLITE_NOMEM;
+            if( ca->iOffset>iStartOffset ){
+               int32_t i, n = ca->iOffset-iStartOffset;
+               if( n>ca->nTokenAllocated ){
+                  ca->nTokenAllocated = n+20;
+                  ca->pToken = sqlite3_realloc(ca->pToken, ca->nTokenAllocated);
+                  if( ca->pToken==NULL ) return SQLITE_NOMEM;
                }
                for(i=0; i<n; i++){
                   /* TODO(shess) This needs expansion to handle UTF-8
                   ** case-insensitivity.
                   */
                   uchar ch = p[iStartOffset+i];
-                  c->pToken[i] = ch<0x80 ? tolower(ch) : ch;
+                  ca->pToken[i] = ch<0x80 ? tolower(ch) : ch;
                }
-               *ppToken = c->pToken;
+               *ppToken = ca->pToken;
                *pnBytes = n;
                *piStartOffset = iStartOffset;
-               *piEndOffset = c->iOffset;
-               *piPosition = c->iToken++;
+               *piEndOffset = ca->iOffset;
+               *piPosition = ca->iToken++;
 
                return SQLITE_OK;
             }
@@ -84584,7 +84584,7 @@ finish:
 
 #endif /* !defined(SQLITE_CORE) || defined(SQLITE_ENABLE_FTS3) */
 
-   /************** End of fts3_tokenizer1.c *************************************/
+   /************** End of fts3_tokenizer1.ca *************************************/
 
 
 } // namespace sqlite3

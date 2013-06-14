@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-simple_edit_plain_text::simple_edit_plain_text(sp(::ca::application) papp) :
-   ca(papp),
+simple_edit_plain_text::simple_edit_plain_text(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::interaction(papp),
    
    ::user::scroll_view(papp),
@@ -11,7 +11,7 @@ simple_edit_plain_text::simple_edit_plain_text(sp(::ca::application) papp) :
 }
 
 
-void simple_edit_plain_text::install_message_handling(::ca::message::dispatch * pinterface)
+void simple_edit_plain_text::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::interaction::install_message_handling(pinterface);
    ::user::edit_plain_text::install_message_handling(pinterface);
@@ -23,10 +23,10 @@ void simple_edit_plain_text::install_message_handling(::ca::message::dispatch * 
    IGUI_WIN_MSG_LINK(WM_KEYUP, pinterface, this, &::user::edit_plain_text::_001OnKeyUp);
 }
 
-void simple_edit_plain_text::_001OnShowWindow(::ca::signal_object * pobj)
+void simple_edit_plain_text::_001OnShowWindow(::ca2::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-//   SCAST_PTR(::ca::message::show_window, pshowwindow, pobj);
+//   SCAST_PTR(::ca2::message::show_window, pshowwindow, pobj);
 
 }
 

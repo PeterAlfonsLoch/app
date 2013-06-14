@@ -20,7 +20,7 @@ namespace filemanager
             ItemTypeSong,
          };
          class Item :
-            virtual public ::ca::ca
+            virtual public ::ca2::ca2
          {
          public:
             int64_t     m_iParent;
@@ -69,10 +69,10 @@ namespace filemanager
                SubItemFilePath,
             };
 
-            list_view(sp(::ca::application) papp);
+            list_view(sp(::ca2::application) papp);
             sp(::filemanager::fs::simple::view) m_pserver;
 
-            void install_message_handling(::ca::message::dispatch * pinterface);
+            void install_message_handling(::ca2::message::dispatch * pinterface);
        
             ::user::list_cache        m_cache;
             bool                 m_bKickActive;
@@ -126,7 +126,7 @@ namespace filemanager
             virtual count _001GetItemCount();
             virtual void _001SearchGetItemText(::user::list_item * pitem);
 
-            virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+            virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
 
             virtual void _001OnClick(UINT nFlags, point point);
 

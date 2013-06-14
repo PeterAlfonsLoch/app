@@ -2,7 +2,7 @@
 
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -12,17 +12,17 @@ namespace ca
    public:
 
 
-      xml_data(sp(::ca::application) papp, ::xml::parse_info * pparseinfo = NULL);
+      xml_data(sp(::ca2::application) papp, ::xml::parse_info * pparseinfo = NULL);
       virtual ~xml_data();
 
 
-      virtual void write(::ca::byte_output_stream & ostream);
-      virtual void read(::ca::byte_input_stream & istream);
+      virtual void write(::ca2::byte_output_stream & ostream);
+      virtual void read(::ca2::byte_input_stream & istream);
 
 
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

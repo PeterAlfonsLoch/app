@@ -1,7 +1,7 @@
 #include "framework.h"
 
-machine_event_central::machine_event_central(sp(::ca::application) papp) :
-   ca(papp), 
+machine_event_central::machine_event_central(sp(::ca2::application) papp) :
+   ca2(papp), 
    thread(papp),
    simple_thread(papp)
 {

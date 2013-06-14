@@ -7,10 +7,10 @@ namespace nature
 
 
    class CLASS_DECL_ca2 database :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
-      database(sp(::ca::application) papp);
+      database(sp(::ca2::application) papp);
       virtual ~database();
 
       bool                    m_bInitialized;

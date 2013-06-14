@@ -29,7 +29,7 @@ namespace user
    //   AllocElements(0, 0);    // destroys existing elements
    }
 
-   void status_bar::install_message_handling(::ca::message::dispatch * pinterface)
+   void status_bar::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_NCHITTEST         , pinterface, this, &status_bar::_001OnNcHitTest);
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE        , pinterface, this, &status_bar::_001OnNcCalcSize);
@@ -52,10 +52,10 @@ namespace user
    {
       ASSERT_VALID(pParentWnd);   // must have a parent
 
-      // save the style (some of these style bits are ca API specific)
+      // save the style (some of these style bits are ca2 API specific)
       m_dwStyle = (dwStyle & CBRS_ALL);
 
-      // translate ca API style bits to windows style bits
+      // translate ca2 API style bits to windows style bits
       dwStyle &= ~CBRS_ALL;
 #ifdef WINDOWSEX
       dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
@@ -101,7 +101,7 @@ namespace user
       //if (lpIDArray != NULL)
       //{
 //         HFONT hFont = (HFONT)send_message(WM_GETFONT);
-         ::ca::graphics_sp spgraphicsScreen(allocer());
+         ::ca2::graphics_sp spgraphicsScreen(allocer());
 
          throw todo(get_app());
 /*         HGDIOBJ hOldFont = NULL;
@@ -117,7 +117,7 @@ namespace user
             {
    /* xxx            if (!pSBP->strText.load_string(pSBP->strId))
                {
-                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
+                  TRACE(::ca2::trace::category_AppMsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
                      pSBP->strId);
                   bResult = FALSE;
                   break;
@@ -507,9 +507,9 @@ namespace user
    }
 
 
-   void status_bar::_001OnNcHitTest(::ca::signal_object * pobj)
+   void status_bar::_001OnNcHitTest(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::nchittest, pnchittest, pobj)
+      SCAST_PTR(::ca2::message::nchittest, pnchittest, pobj)
       UINT nResult = (UINT)Default();
       if (nResult == HTBOTTOMRIGHT)
       {
@@ -521,10 +521,10 @@ namespace user
       }
    }
 
-   void status_bar::_001OnNcCalcSize(::ca::signal_object * pobj)
+   void status_bar::_001OnNcCalcSize(::ca2::signal_object * pobj)
    {
 #ifdef WINDOWSEX
-      SCAST_PTR(::ca::message::nc_calc_size, pnccalcsize, pobj)
+      SCAST_PTR(::ca2::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect;
       rect.null();
@@ -591,7 +591,7 @@ namespace user
    }
    */
 
-   void status_bar::_001OnDraw(::ca::graphics * pdc)
+   void status_bar::_001OnDraw(::ca2::graphics * pdc)
    {
 
       UNREFERENCED_PARAMETER(pdc);
@@ -601,7 +601,7 @@ namespace user
    }
 
 
-   void status_bar::_001OnSize(::ca::signal_object * pobj)
+   void status_bar::_001OnSize(::ca2::signal_object * pobj)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -612,10 +612,10 @@ namespace user
       UpdateAllPanes(TRUE, FALSE);
    }
 
-   void status_bar::_001OnWindowPosChanging(::ca::signal_object * pobj)
+   void status_bar::_001OnWindowPosChanging(::ca2::signal_object * pobj)
    {
 #ifdef WINDOWSEX
-      SCAST_PTR(::ca::message::window_pos, pwindowpos, pobj)
+      SCAST_PTR(::ca2::message::window_pos, pwindowpos, pobj)
       // not necessary to invalidate the borders
       uint32_t dwStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
@@ -627,9 +627,9 @@ namespace user
 #endif
    }
 
-   void status_bar::_001OnSetText(::ca::signal_object * pobj)
+   void status_bar::_001OnSetText(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj)
+      SCAST_PTR(::ca2::message::base, pbase, pobj)
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
@@ -644,9 +644,9 @@ namespace user
       pbase->m_bRet = true;
    }
 
-   void status_bar::_001OnGetText(::ca::signal_object * pobj)
+   void status_bar::_001OnGetText(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj)
+      SCAST_PTR(::ca2::message::base, pbase, pobj)
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
@@ -675,9 +675,9 @@ namespace user
       pbase->m_bRet = true;
    }
 
-   void status_bar::_001OnGetTextLength(::ca::signal_object * pobj)
+   void status_bar::_001OnGetTextLength(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj)
+      SCAST_PTR(::ca2::message::base, pbase, pobj)
 
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -693,9 +693,9 @@ namespace user
       pbase->m_bRet = true;
    }
 
-   void status_bar::_001OnSetMinHeight(::ca::signal_object * pobj)
+   void status_bar::_001OnSetMinHeight(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj)
+      SCAST_PTR(::ca2::message::base, pbase, pobj)
       LRESULT lResult = Default();
       m_nMinHeight = (int32_t)pbase->m_wparam;
       pbase->set_lresult(lResult);
@@ -708,14 +708,14 @@ namespace user
    {
    public: // re-implementations only
 
-      CStatusCmdUI(sp(::ca::application) papp);
+      CStatusCmdUI(sp(::ca2::application) papp);
       virtual void Enable(bool bOn);
       virtual void SetCheck(check::e_check echeck = check::checked);
       virtual void SetText(const char * lpszText);
    };
 
-   CStatusCmdUI::CStatusCmdUI(sp(::ca::application) papp) :
-   ca(papp),
+   CStatusCmdUI::CStatusCmdUI(sp(::ca2::application) papp) :
+   ca2(papp),
       cmd_ui(papp)
 
 

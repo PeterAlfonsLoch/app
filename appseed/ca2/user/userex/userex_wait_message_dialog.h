@@ -14,10 +14,10 @@ namespace userex // ca8 + cube
       string      m_strResponse;
 
 
-      wait_message_dialog(sp(::ca::application) papp);
+      wait_message_dialog(sp(::ca2::application) papp);
       virtual ~wait_message_dialog();
 
-      virtual void on_show(const char * pszMatter, ::ca::property_set & propertyset);
+      virtual void on_show(const char * pszMatter, ::ca2::property_set & propertyset);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

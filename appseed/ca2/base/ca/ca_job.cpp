@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
-   job::job(sp(::ca::application) papp) :
-      ca(papp)
+   job::job(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_bCancel = false;
    }
@@ -16,4 +16,4 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2

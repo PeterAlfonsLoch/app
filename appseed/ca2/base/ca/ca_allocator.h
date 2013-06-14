@@ -3,7 +3,7 @@
 
 class trace_process;
 class trace_module;
-class ::ca::trace::category;
+class ::ca2::trace::category;
 
 
 class CTraceSnapshot
@@ -74,8 +74,8 @@ public:
 
 	trace_process *GetProcess() const {return m_pProcess;}
 	trace_module *GetModule(index iModule) const;
-//	::ca::trace::category *GetCategory(int32_t iModule, uint32_t nCategory) const;
-	::ca::trace::category* GetCategory(index iCategory) const;
+//	::ca2::trace::category *GetCategory(int32_t iModule, uint32_t nCategory) const;
+	::ca2::trace::category* GetCategory(index iCategory) const;
 
 	/*
 	bool Lock(uint32_t dwTimeOut);

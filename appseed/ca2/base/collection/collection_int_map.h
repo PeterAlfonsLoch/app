@@ -1,13 +1,13 @@
 #pragma once
 
 
-template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ::ca::hash < int32_t > , class EQUALS = ::ca::equals_type_arg_type < int32_t, int32_t > >
+template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ::ca2::hash < int32_t > , class EQUALS = ::ca2::equals_type_arg_type < int32_t, int32_t > >
 class int_map :
    virtual public attrib_map < map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > >
 {
 public:
 
-   int_map(::ca::application * papp = NULL, ::count nBlockSize = 10);
+   int_map(::ca2::application * papp = NULL, ::count nBlockSize = 10);
    int_map(const int_map & map);
 
 
@@ -16,15 +16,15 @@ public:
 };
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(::ca::application * papp, ::count nBlockSize) :
-   ::ca::ca(papp),
+int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(::ca2::application * papp, ::count nBlockSize) :
+   ::ca2::ca2(papp),
    map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > (papp, nBlockSize)
 {
 }
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(const int_map & intmap) :
-   ::ca::ca(intmap.get_app()),
+   ::ca2::ca2(intmap.get_app()),
    attrib_map < map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > >(intmap)
 {
 }

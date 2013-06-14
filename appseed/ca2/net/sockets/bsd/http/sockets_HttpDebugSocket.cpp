@@ -32,7 +32,7 @@ namespace sockets
 {
 
    http_debug_socket::http_debug_socket(socket_handler_base& h) : 
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -55,7 +55,7 @@ namespace sockets
    #ifdef HAVE_OPENSSL
          EnableSSL();
    #else
-         Handler().LogError(this, "url_this", -1, "SSL not available", ::ca::log::level_warning);
+         Handler().LogError(this, "url_this", -1, "SSL not available", ::ca2::log::level_warning);
    #endif
       }
    }

@@ -15,15 +15,15 @@ namespace userfs
       simple_list_header_control    m_headerctrl;
 
 
-      list(sp(::ca::application) papp);
+      list(sp(::ca2::application) papp);
       virtual ~list();
 
 
       void _001OnClick(UINT uiFlags, point point);
 
-      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
       
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
       DECL_GEN_SIGNAL(_001OnCreate)

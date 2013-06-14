@@ -3,7 +3,7 @@
 typedef sort_array < int_ptr, int_ptr, array < int_ptr, int_ptr >, &numeric_compare < int_ptr > > sort_int_ptr_array;
 
 class CLASS_DECL_ca2 base_sort_serializable_int_ptr_array :
-   virtual public ::ca::byte_serializable_array < sort_int_ptr_array >
+   virtual public ::ca2::byte_serializable_array < sort_int_ptr_array >
 {
 
 
@@ -178,7 +178,7 @@ public:
 
 protected:
 
-   ::ca::signal        m_signal;
+   ::ca2::signal        m_signal;
 
 };
 
@@ -247,15 +247,15 @@ bool flags_ex < ENUM > ::unsignalize_all()
 }
 
 class flag_change_signalization :
-   public ::ca::signal_object
+   public ::ca2::signal_object
 {
 public:
 
    int32_t m_iEnum;
 
 
-   flag_change_signalization(::ca::signal * psignal) : 
-      ::ca::signal_object(psignal)
+   flag_change_signalization(::ca2::signal * psignal) : 
+      ::ca2::signal_object(psignal)
    {
    }
    

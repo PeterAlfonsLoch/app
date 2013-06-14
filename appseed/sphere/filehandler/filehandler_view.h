@@ -12,7 +12,7 @@ namespace filehandler
 
 
       class CLASS_DECL_sphere item :
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
       public:
          
@@ -38,7 +38,7 @@ namespace filehandler
       };
 
       class CLASS_DECL_sphere draw_item :
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
       public:
 
@@ -46,7 +46,7 @@ namespace filehandler
          rect        m_rectStatusImage;
          rect        m_rectName;
          
-         void draw(sp(view) pview, ::ca::graphics * pdc, list * plist, item * pcontact);
+         void draw(sp(view) pview, ::ca2::graphics * pdc, list * plist, item * pcontact);
 
       };
 
@@ -61,7 +61,7 @@ namespace filehandler
          draw_list();
 
          void layout(LPCRECT lpcrect, list * plist);
-         void draw(sp(view) pview, ::ca::graphics * pdc, list * plist);
+         void draw(sp(view) pview, ::ca2::graphics * pdc, list * plist);
 
       };
 
@@ -70,12 +70,12 @@ namespace filehandler
       draw_list               m_drawlist;
 
 
-      view(sp(::ca::application) papp);
+      view(sp(::ca2::application) papp);
 
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
       
-      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
       virtual void refresh();
 

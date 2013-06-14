@@ -1,21 +1,21 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
    class graphics;
 
 
-} // namespace ca
+} // namespace ca2
 
 
-namespace ca
+namespace ca2
 {
 
    template < class TYPE >
    class simple_chain :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       
@@ -72,12 +72,12 @@ namespace user
 {
    
    class CLASS_DECL_ca2 draw_context :
-      virtual public ::ca::simple_chain < draw_context >
+      virtual public ::ca2::simple_chain < draw_context >
    {
    public:
 
 
-      ::ca::graphics *     m_pgraphics;
+      ::ca2::graphics *     m_pgraphics;
       rect                 m_rectClient;
       bool                 m_bListItemHover;
       bool                 m_bListSubItemHover;

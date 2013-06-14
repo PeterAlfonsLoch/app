@@ -4,8 +4,8 @@
 namespace zip
 {
 
-   InFile::InFile(sp(::ca::application) papp) :
-      ca(papp)
+   InFile::InFile(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_bCloseOnDelete = true;
    }
@@ -17,7 +17,7 @@ namespace zip
    }
 
 
-   sp(::ca::file) InFile::Duplicate() const
+   sp(::ca2::file) InFile::Duplicate() const
    {
    //   ASSERT_VALID(this);
       ASSERT(get_zip_file() != NULL);
@@ -35,7 +35,7 @@ namespace zip
       ASSERT(pFile->m_hFile != (UINT)hFileNull);
       pFile->m_bCloseOnDelete = m_bCloseOnDelete;*/
       return NULL;
-      //return new ::ca::filesp(this);
+      //return new ::ca2::filesp(this);
    }
 
 
@@ -52,12 +52,12 @@ namespace zip
 
       index iFind = -1;
       index iStart = 0;
-      while((iFind = ::ca::str::find_ci(".zip:", lpszFileName, iStart)) >= 0)
+      while((iFind = ::ca2::str::find_ci(".zip:", lpszFileName, iStart)) >= 0)
       {
          m_straPath.add(string(&lpszFileName[iStart], iFind + strlen(".zip")));
          iStart = iFind + strlen(".zip:");
       }
-      if(::ca::str::ends_ci(lpszFileName, ".zip"))
+      if(::ca2::str::ends_ci(lpszFileName, ".zip"))
       {
          m_straPath.add(string(&lpszFileName[iStart]));
       }
@@ -82,7 +82,7 @@ namespace zip
             return FALSE;
          }
          m_filea.add(new File(get_app()));
-         if(!m_filea.last_element()->zip_open((sp(::ca::file)) m_izfilea.last_element()))
+         if(!m_filea.last_element()->zip_open((sp(::ca2::file)) m_izfilea.last_element()))
          {
             m_filea.remove_all();
             m_izfilea.remove_all();
@@ -90,16 +90,16 @@ namespace zip
          }
          m_straPrefix.add(m_straPath[i]);
       }
-      if(::ca::str::ends(strFile, ":"))
+      if(::ca2::str::ends(strFile, ":"))
          return TRUE;
       iFind = strFile.reverse_find(L':');
       strFile = strFile.Mid(iFind + 1);
-      ::ca::str::begins_eat(strFile, "/");
-      ::ca::str::begins_eat(strFile, "\\");
+      ::ca2::str::begins_eat(strFile, "/");
+      ::ca2::str::begins_eat(strFile, "\\");
       return TRUE;
    }
 
-   bool InFile::unzip_open(sp(::ca::file) pfile)
+   bool InFile::unzip_open(sp(::ca2::file) pfile)
    {
 
       m_filea.remove_all();
@@ -128,12 +128,12 @@ namespace zip
 
       index iFind = -1;
       index iStart = 0;
-      while((iFind = ::ca::str::find_ci(".zip:", lpszFileName, iStart)) >= 0)
+      while((iFind = ::ca2::str::find_ci(".zip:", lpszFileName, iStart)) >= 0)
       {
          m_straPath.add(string(&lpszFileName[iStart], iFind + strlen(".zip")));
          iStart = iFind + strlen(".zip:");
       }
-      if(::ca::str::ends_ci(lpszFileName, ".zip"))
+      if(::ca2::str::ends_ci(lpszFileName, ".zip"))
       {
          m_straPath.add(string(&lpszFileName[iStart]));
       }
@@ -158,7 +158,7 @@ namespace zip
             return FALSE;
          }
          m_filea.add(new File(get_app()));
-         if(!m_filea.last_element()->unzip_open((sp(::ca::file))m_izfilea.last_element()))
+         if(!m_filea.last_element()->unzip_open((sp(::ca2::file))m_izfilea.last_element()))
          {
             m_filea.remove_all();
             m_izfilea.remove_all();
@@ -166,12 +166,12 @@ namespace zip
          }
          m_straPrefix.add(m_straPath[i]);
       }
-      if(::ca::str::ends(strFile, ":"))
+      if(::ca2::str::ends(strFile, ":"))
          return TRUE;
       iFind = strFile.reverse_find(L':');
       strFile = strFile.Mid(iFind + 1);
-      ::ca::str::begins_eat(strFile, "/");
-      ::ca::str::begins_eat(strFile, "\\");
+      ::ca2::str::begins_eat(strFile, "/");
+      ::ca2::str::begins_eat(strFile, "\\");
       if(!locate(strFile))
       {
          if(!locate(strFile + "/"))
@@ -230,7 +230,7 @@ namespace zip
       return TRUE;
    }
 
-   bool InFile::dump(sp(::ca::file) pfile)
+   bool InFile::dump(sp(::ca2::file) pfile)
    {
       if(m_strFileName.is_empty())
          return false;
@@ -271,12 +271,12 @@ namespace zip
       ASSERT(FALSE);
    }
 
-   file_position InFile::seek(file_offset lOff, ::ca::e_seek nFrom)
+   file_position InFile::seek(file_offset lOff, ::ca2::e_seek nFrom)
    {
    //   ASSERT_VALID(this);
       //ASSERT(get_zip_file() != NULL);
-      //ASSERT(nFrom == ::ca::seek_begin || nFrom == ::ca::seek_end || nFrom == ::ca::seek_current);
-      //ASSERT(::ca::seek_begin == FILE_BEGIN && ::ca::seek_end == FILE_END && ::ca::seek_current == FILE_CURRENT);
+      //ASSERT(nFrom == ::ca2::seek_begin || nFrom == ::ca2::seek_end || nFrom == ::ca2::seek_current);
+      //ASSERT(::ca2::seek_begin == FILE_BEGIN && ::ca2::seek_end == FILE_END && ::ca2::seek_current == FILE_CURRENT);
    /*typedef struct unz_file_pos_s
    {
        uint_ptr pos_in_zip_directory;   /* offset in zip file directory */
@@ -285,15 +285,15 @@ namespace zip
 
 
       uint64_t iNewPos;
-      if(nFrom == ::ca::seek_begin)
+      if(nFrom == ::ca2::seek_begin)
       {
          iNewPos = lOff;
       }
-      else if(nFrom == ::ca::seek_end)
+      else if(nFrom == ::ca2::seek_end)
       {
          iNewPos = m_fi.uncompressed_size - lOff;
       }
-      else if(nFrom == ::ca::seek_current)
+      else if(nFrom == ::ca2::seek_current)
       {
          iNewPos = m_iPosition + lOff;
       }
@@ -408,8 +408,8 @@ namespace zip
    /*/////////////////////////////////////////////////////////////////////////////
    // InFile implementation helpers
 
-   #ifdef ::ca::GetFileName
-   #undef ::ca::GetFileName
+   #ifdef ::ca2::GetFileName
+   #undef ::ca2::GetFileName
    #endif
 
    #ifndef ___NO_OLE_SUPPORT
@@ -468,13 +468,13 @@ namespace zip
 
    void InFile::assert_valid() const
    {
-      //::ca::object::assert_valid();
+      //::ca2::object::assert_valid();
       // we permit the descriptor m_hFile to be any value for derived classes
    }
 
    void InFile::dump(dump_context & dumpcontext) const
    {
-   //   ::ca::object::dump(dumpcontext);
+   //   ::ca2::object::dump(dumpcontext);
 
       dumpcontext << "with handle " << (uint_ptr)get_zip_file();
       dumpcontext << " and name \"" << m_strFileName << "\"";
@@ -482,7 +482,7 @@ namespace zip
    }
 
 
-   // IMPLEMENT_DYNAMIC(InFile, ::ca::object)
+   // IMPLEMENT_DYNAMIC(InFile, ::ca2::object)
 
 
    /////////////////////////////////////////////////////////////////////////////
@@ -613,14 +613,14 @@ namespace zip
 
       string strPath(System.dir().path(pszDir, pszRelative));
 
-      ::ca::filesp file;
+      ::ca2::filesp file;
 
-      file = Application.file().get_file(strPath, ::ca::file::mode_read | ::ca::file::type_binary);
+      file = Application.file().get_file(strPath, ::ca2::file::mode_read | ::ca2::file::type_binary);
 
       if(file.is_null())
          throw "failed to open file for compressing";
 
-      ::ca::file_status status;
+      ::ca2::file_status status;
 
       file->GetStatus(status);
 

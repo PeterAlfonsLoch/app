@@ -7,15 +7,15 @@
 #include "../../Common/MyCom.h"
 #include "../../Common/MyException.h"*/
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 out_buffer_exception: 
       virtual public system_exception
    {
    public:
-      out_buffer_exception(sp(::ca::application) papp, HRESULT errorCode) : 
-         ca(papp),
+      out_buffer_exception(sp(::ca2::application) papp, HRESULT errorCode) : 
+         ca2(papp),
          ::call_stack(papp),
          ::base_exception(papp),
          ::simple_exception(papp),
@@ -25,7 +25,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca2 out_buffer :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       ::primitive::virtual_memory      m_memory;
@@ -42,7 +42,7 @@ namespace ca
       out_buffer();
       ~out_buffer();
 
-      using ::ca::request_interface::create;
+      using ::ca2::request_interface::create;
       bool create(::primitive::memory_size bufferSize);
       void free();
 
@@ -63,6 +63,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

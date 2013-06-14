@@ -15,7 +15,7 @@ namespace nature
       sp(::userex::keyboard_layout)             m_pkeyboardlayout;
 
 
-      pane_view(sp(::ca::application) papp);
+      pane_view(sp(::ca2::application) papp);
       virtual ~pane_view();
 
 
@@ -23,9 +23,9 @@ namespace nature
       virtual void on_create_view(::user::view_creator_data * pdata);
       virtual void on_show_view() ;
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
-      void on_update(sp(::user::view) pview, LPARAM lHint, ::ca::object* pHint);
+      void on_update(sp(::user::view) pview, LPARAM lHint, ::ca2::object* pHint);
 
       
    #ifdef DEBUG

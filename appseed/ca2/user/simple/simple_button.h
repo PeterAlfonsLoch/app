@@ -8,19 +8,19 @@ public:
    
    
    bool                 m_bTransparent;
-   ::ca::brush_sp       m_brushBkg;
+   ::ca2::brush_sp       m_brushBkg;
    bool                 m_bFocus;
 
 
-   simple_button(sp(::ca::application) papp);
+   simple_button(sp(::ca2::application) papp);
    virtual ~simple_button();
 
 
 
    virtual void pre_subclass_window();
-   virtual void install_message_handling(::ca::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ca2::graphics * pdc);
 
    virtual void ResizeToFit();
 

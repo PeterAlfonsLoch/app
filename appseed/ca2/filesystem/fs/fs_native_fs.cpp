@@ -5,9 +5,9 @@ namespace fs
 {
 
 
-   native::native(sp(::ca::application) papp) :
-      ::ca::ca(papp),
-      ::ca::data(papp),
+   native::native(sp(::ca2::application) papp) :
+      ::ca2::ca2(papp),
+      ::ca2::data(papp),
       ::fs::data(papp)
    {
    }
@@ -109,16 +109,16 @@ namespace fs
    }
 
 
-   ::ca::filesp native::get_file(var varFile, UINT nOpenFlags)
+   ::ca2::filesp native::get_file(var varFile, UINT nOpenFlags)
    {
 
-      ::ca::filesp spfile(allocer());
+      ::ca2::filesp spfile(allocer());
 
-      // ::ca::file::mode_read | ::ca::file::shareDenyNone | ::ca::file::type_binary
+      // ::ca2::file::mode_read | ::ca2::file::shareDenyNone | ::ca2::file::type_binary
       if(!spfile->open(varFile.get_string(), nOpenFlags))
       {
 
-         throw new ::ca::file_exception(get_app(), ::ca::file_exception::none, 01, varFile.get_string());
+         throw new ::ca2::file_exception(get_app(), ::ca2::file_exception::none, 01, varFile.get_string());
 
       }
 

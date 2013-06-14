@@ -1,15 +1,15 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
    uint32_t g_dwFirstTick = ::get_tick_count();
 
 
-   log::log(sp(::ca::application) papp) :
-      ca(papp)
+   log::log(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
 #if defined(WINDOWSEX)
@@ -22,7 +22,7 @@ namespace ca
 
       m_pcsTrace        = new critical_section();
       m_pmutex          = new mutex(papp);
-      m_ptrace          = new ::ca::trace::trace(papp);
+      m_ptrace          = new ::ca2::trace::trace(papp);
       m_pstraSeparator  = new stringa;
       m_pstrLogPath     = new string;
       m_pid             = new id;
@@ -41,46 +41,46 @@ namespace ca
       m_pstraSeparator->add("\r");
       m_pstraSeparator->add("\n");
 
-      set_trace_category(::ca::trace::category_General, "category_General", 3000);
-      set_trace_category(::ca::trace::category_COM, "category_COM", 0);
-      set_trace_category(::ca::trace::category_QI, "category_QI", 0);
-      set_trace_category(::ca::trace::category_Registrar, "category_Registrar", 0);
-      set_trace_category(::ca::trace::category_Refcount, "category_Refcount", 0);
-      set_trace_category(::ca::trace::category_Windowing, "category_Windowing", 0);
-      set_trace_category(::ca::trace::category_Controls, "category_Controls", 0);
-      set_trace_category(::ca::trace::category_Hosting, "category_Hosting", 0);
-      set_trace_category(::ca::trace::category_DBClient, "category_DBClient", 0);
-      set_trace_category(::ca::trace::category_DBProvider, "category_DBProvider", 0);
-      set_trace_category(::ca::trace::category_Snapin, "category_Snapin", 0);
-      set_trace_category(::ca::trace::category_NotImpl, "category_NotImpl", 0);
-      set_trace_category(::ca::trace::category_Allocation, "category_Allocation", 0);
-      set_trace_category(::ca::trace::category_Exception, "category_Exception", 0);
-      set_trace_category(::ca::trace::category_Time, "category_Time", 0);
-      set_trace_category(::ca::trace::category_Cache, "category_Cache", 0);
-      set_trace_category(::ca::trace::category_Stencil, "category_Stencil", 0);
-      set_trace_category(::ca::trace::category_String, "category_String", 0);
-      set_trace_category(::ca::trace::category_Map, "category_Map", 0);
-      set_trace_category(::ca::trace::category_Util, "category_Util", 0);
-      set_trace_category(::ca::trace::category_Security, "category_Security", 0);
-      set_trace_category(::ca::trace::category_Sync, "category_Sync", 0);
-      set_trace_category(::ca::trace::category_ISAPI, "category_ISAPI", 0);
+      set_trace_category(::ca2::trace::category_General, "category_General", 3000);
+      set_trace_category(::ca2::trace::category_COM, "category_COM", 0);
+      set_trace_category(::ca2::trace::category_QI, "category_QI", 0);
+      set_trace_category(::ca2::trace::category_Registrar, "category_Registrar", 0);
+      set_trace_category(::ca2::trace::category_Refcount, "category_Refcount", 0);
+      set_trace_category(::ca2::trace::category_Windowing, "category_Windowing", 0);
+      set_trace_category(::ca2::trace::category_Controls, "category_Controls", 0);
+      set_trace_category(::ca2::trace::category_Hosting, "category_Hosting", 0);
+      set_trace_category(::ca2::trace::category_DBClient, "category_DBClient", 0);
+      set_trace_category(::ca2::trace::category_DBProvider, "category_DBProvider", 0);
+      set_trace_category(::ca2::trace::category_Snapin, "category_Snapin", 0);
+      set_trace_category(::ca2::trace::category_NotImpl, "category_NotImpl", 0);
+      set_trace_category(::ca2::trace::category_Allocation, "category_Allocation", 0);
+      set_trace_category(::ca2::trace::category_Exception, "category_Exception", 0);
+      set_trace_category(::ca2::trace::category_Time, "category_Time", 0);
+      set_trace_category(::ca2::trace::category_Cache, "category_Cache", 0);
+      set_trace_category(::ca2::trace::category_Stencil, "category_Stencil", 0);
+      set_trace_category(::ca2::trace::category_String, "category_String", 0);
+      set_trace_category(::ca2::trace::category_Map, "category_Map", 0);
+      set_trace_category(::ca2::trace::category_Util, "category_Util", 0);
+      set_trace_category(::ca2::trace::category_Security, "category_Security", 0);
+      set_trace_category(::ca2::trace::category_Sync, "category_Sync", 0);
+      set_trace_category(::ca2::trace::category_ISAPI, "category_ISAPI", 0);
 
-      set_trace_category(::ca::trace::category_User, "category_User", 0);
-      set_trace_category(::ca::trace::category_User2, "category_User2", 0);
-      set_trace_category(::ca::trace::category_User3, "category_User3", 0);
-      set_trace_category(::ca::trace::category_User4, "category_User4", 0);
+      set_trace_category(::ca2::trace::category_User, "category_User", 0);
+      set_trace_category(::ca2::trace::category_User2, "category_User2", 0);
+      set_trace_category(::ca2::trace::category_User3, "category_User3", 0);
+      set_trace_category(::ca2::trace::category_User4, "category_User4", 0);
 
 
-      set_trace_category(::ca::trace::category_AppMsg, "AppMsg", 0);        // main message pump trace (includes DDE)
-      set_trace_category(::ca::trace::category_WinMsg , "category_WinMsg", 0);        // Windows message tracing
-      set_trace_category(::ca::trace::category_CmdRouting , "category_CmdRouting", 0);    // Windows command routing trace
-      set_trace_category(::ca::trace::category_Ole , "category_Ole", 0);          // special OLE callback trace
-      set_trace_category(::ca::trace::category_Database , "category_Database", 0);     // special database trace
-      set_trace_category(::ca::trace::category_Internet , "category_Internet", 0);     // special Internet client trace
-      set_trace_category(::ca::trace::category_dumpContext , "category_dumpContext", 0);   // traces from dump_context
-      set_trace_category(::ca::trace::category_Memory , "category_Memory", 0);      // generic non-kernel primitive::memory traces
-      set_trace_category(::ca::trace::category_Html , "category_Html", 0);         // Html traces
-      set_trace_category(::ca::trace::category_Socket , "category_Socket", 0);      // socket traces
+      set_trace_category(::ca2::trace::category_AppMsg, "AppMsg", 0);        // main message pump trace (includes DDE)
+      set_trace_category(::ca2::trace::category_WinMsg , "category_WinMsg", 0);        // Windows message tracing
+      set_trace_category(::ca2::trace::category_CmdRouting , "category_CmdRouting", 0);    // Windows command routing trace
+      set_trace_category(::ca2::trace::category_Ole , "category_Ole", 0);          // special OLE callback trace
+      set_trace_category(::ca2::trace::category_Database , "category_Database", 0);     // special database trace
+      set_trace_category(::ca2::trace::category_Internet , "category_Internet", 0);     // special Internet client trace
+      set_trace_category(::ca2::trace::category_dumpContext , "category_dumpContext", 0);   // traces from dump_context
+      set_trace_category(::ca2::trace::category_Memory , "category_Memory", 0);      // generic non-kernel primitive::memory traces
+      set_trace_category(::ca2::trace::category_Html , "category_Html", 0);         // Html traces
+      set_trace_category(::ca2::trace::category_Socket , "category_Socket", 0);      // socket traces
 
    }
 
@@ -89,7 +89,7 @@ namespace ca
    }
 
 
-//   extern sp(::ca::application) g_papp;
+//   extern sp(::ca2::application) g_papp;
 
    CLASS_DECL_ca2 int32_t SimpleDebugReport(int32_t iReportType, const char * pszFileName,int32_t iLine,const char *,const char * pszFormat, va_list list)
    {
@@ -107,7 +107,7 @@ namespace ca
             str += "File : ";
             str += pszFileName;
             str += "\r\nLine : ";
-            str += ::ca::str::from(iLine);
+            str += ::ca2::str::from(iLine);
             str += "\r\n";
 
             string strCaption;
@@ -117,7 +117,7 @@ namespace ca
             OutputDebugStringW(wstring(str));
             /*if(MessageBox(NULL, str, strCaption, MB_ICONINFORMATION | MB_OKCANCEL | MB_DEFBUTTON1) == IDCANCEL)
             {
-               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+::ca::str::from(iLine)+"\"";
+               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+::ca2::str::from(iLine)+"\"";
                ::system(strCmdLine);
                exit(0);
             }
@@ -200,8 +200,8 @@ namespace ca
 
       sl.lock();
       log * plog = (log *) this;
-      ::ca::trace::category & category = plog->m_ptrace->m_map[dwCategory];
-      if(category.m_estatus == ::ca::trace::status_disabled || category.m_uiLevel > category.m_uiLevel)
+      ::ca2::trace::category & category = plog->m_ptrace->m_map[dwCategory];
+      if(category.m_estatus == ::ca2::trace::status_disabled || category.m_uiLevel > category.m_uiLevel)
          return;
       sl.unlock();
       stringa stra;
@@ -213,10 +213,10 @@ namespace ca
             string & strLine = stra[i];
             const char * psz = strLine;
             int32_t j = 200;
-            while(*psz != NULL && j >= 0 && !::ca::ch::is_space_char(psz))
+            while(*psz != NULL && j >= 0 && !::ca2::ch::is_space_char(psz))
             {
                j--;
-               psz = ::ca::str::utf8_inc(psz);
+               psz = ::ca2::str::utf8_inc(psz);
             }
             if(j <= 0)
                j = 200;
@@ -300,10 +300,10 @@ namespace ca
          string strLine = strPre + strTick + stra[i] + "\r\n";
          try
          {
-            ::OutputDebugStringW(::ca::international::utf8_to_unicode(strLine));
+            ::OutputDebugStringW(::ca2::international::utf8_to_unicode(strLine));
             fputs(strLine, plog->m_pfile);
          }
-         catch(::ca::exception &)
+         catch(::ca2::exception &)
          {
             // Ignore exception here because this class/function is used for debugging
          }
@@ -335,7 +335,7 @@ namespace ca
    {
       va_list ptr;
       va_start(ptr, pszFormat);
-      trace_v(NULL, -1, ::ca::trace::category_General, 0, pszFormat, ptr);
+      trace_v(NULL, -1, ::ca2::trace::category_General, 0, pszFormat, ptr);
       va_end(ptr);
    }
 
@@ -349,7 +349,7 @@ namespace ca
       single_lock sl(m_pmutex, TRUE);
       if(m_bInitialized)
          return false;
-      //if(!::ca::log::initialize(id))
+      //if(!::ca2::log::initialize(id))
         // return false;
       *m_pid = id;
       m_bInitialized = true;
@@ -379,7 +379,7 @@ namespace ca
       single_lock sl(m_pmutex, TRUE);
       if(!m_bInitialized)
          return false;
-      bool bOk = ::ca::log::finalize();
+      bool bOk = ::ca2::log::finalize();
       fclose(m_pfile);
       m_pfile = NULL;
       m_bInitialized = false;
@@ -399,8 +399,8 @@ namespace ca
       //((log * )this)->print(pszFormat, args);
       //m_trace.TraceV(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
       log * plog = (log *) this;
-      ::ca::trace::category & category = plog->m_trace.m_map[dwCategory];
-      if(category.m_estatus == ::ca::trace::status_disabled || category.m_uiLevel > category.m_uiLevel)
+      ::ca2::trace::category & category = plog->m_trace.m_map[dwCategory];
+      if(category.m_estatus == ::ca2::trace::status_disabled || category.m_uiLevel > category.m_uiLevel)
          return;
       string str;
       str.FormatV(pszFormat, args);
@@ -414,10 +414,10 @@ namespace ca
             string & strLine = stra[i];
             const char * psz = strLine;
             int32_t j = 200;
-            while(*psz != NULL && j >= 0 && !::ca::ch::is_space_char(psz))
+            while(*psz != NULL && j >= 0 && !::ca2::ch::is_space_char(psz))
             {
                j--;
-               psz = ::ca::str::utf8_inc(psz);
+               psz = ::ca2::str::utf8_inc(psz);
             }
             if(j <= 0)
                j = 200;
@@ -455,10 +455,10 @@ namespace ca
 
          try
          {
-            if(!plog->m_spfile->open(m_strLogPath, ::ca::file::type_text
-               | ::ca::file::mode_write
-               | ::ca::file::shareDenyWrite | ::ca::file::mode_create | ::ca::file::modeNoTruncate
-               | ::ca::file::defer_create_directory))
+            if(!plog->m_spfile->open(m_strLogPath, ::ca2::file::type_text
+               | ::ca2::file::mode_write
+               | ::ca2::file::shareDenyWrite | ::ca2::file::mode_create | ::ca2::file::modeNoTruncate
+               | ::ca2::file::defer_create_directory))
             {
                if(plog->m_spfile->IsOpened())
                {
@@ -498,10 +498,10 @@ namespace ca
          string strLine = strPre + strTick + stra[i] + "\r\n";
          try
          {
-            ::OutputDebugStringW(::ca::international::utf8_to_unicode(strLine));
+            ::OutputDebugStringW(::ca2::international::utf8_to_unicode(strLine));
             plog->m_spfile->write(strLine, strLine.get_length());
          }
-         catch(::ca::exception &)
+         catch(::ca2::exception &)
          {
             // Ignore exception here because this class/function is used for debugging
          }
@@ -510,11 +510,11 @@ namespace ca
 
    void log::set_trace_category(uint32_t dwCategory, const char * pszName, uint32_t uiLevel)
    {
-      ::ca::trace::category & category = m_ptrace->operator[](dwCategory);
+      ::ca2::trace::category & category = m_ptrace->operator[](dwCategory);
       category.m_strCategory = pszName;
       category.m_dwCategory = dwCategory;
       category.m_uiLevel = uiLevel;
-      category.m_estatus = uiLevel >= 1 ? ::ca::trace::status_enabled : ::ca::trace::status_disabled;
+      category.m_estatus = uiLevel >= 1 ? ::ca2::trace::status_enabled : ::ca2::trace::status_disabled;
    }
 
 
@@ -524,7 +524,7 @@ namespace ca
          return;
       va_list ptr;
       va_start(ptr, pszFormat);
-      trace_v(NULL, -1, ::ca::trace::category_General, 0, pszFormat, ptr);
+      trace_v(NULL, -1, ::ca2::trace::category_General, 0, pszFormat, ptr);
       va_end(ptr);
    }
 
@@ -538,4 +538,4 @@ namespace ca
       va_end(ptr);
    }*/
 
-} // namespace ca
+} // namespace ca2

@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 section_container_base :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -14,7 +14,7 @@ namespace ca
       virtual ~section_container_base();
 
 
-      ::ca::application * get_section_app();
+      ::ca2::application * get_section_app();
 
 
    };
@@ -43,6 +43,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

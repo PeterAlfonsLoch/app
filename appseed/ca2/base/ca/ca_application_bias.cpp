@@ -2,23 +2,23 @@
 
 
 
-namespace ca
+namespace ca2
 {
 
 
-   void application_bias::callback::connect_to(sp(::ca::application) papp)
+   void application_bias::callback::connect_to(sp(::ca2::application) papp)
    {
       set_app(papp);
       m_papp.cast < application >()->m_psignal->connect(this, &callback::on_call_signal);
    }
 
-   void application_bias::callback::on_call_signal(::ca::signal_object * pobj)
+   void application_bias::callback::on_call_signal(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::application_signal_object, papplicationsignal, pobj);
+      SCAST_PTR(::ca2::application_signal_object, papplicationsignal, pobj);
       on_application_bias_callback_signal(papplicationsignal);
    }
 
-   void application_bias::callback::on_application_bias_callback_signal(::ca::application_signal_object * papplicationsignal)
+   void application_bias::callback::on_application_bias_callback_signal(::ca2::application_signal_object * papplicationsignal)
    {
       UNREFERENCED_PARAMETER(papplicationsignal);
    }
@@ -31,8 +31,8 @@ namespace ca
       m_puiParent                            = NULL;
    }
 
-   application_bias::application_bias(sp(::ca::application) papp) :
-      ca(papp)
+   application_bias::application_bias(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_set["SessionSynchronizedInput"]      = true;
       m_set["NativeWindowFocus"]             = true;
@@ -58,4 +58,4 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2

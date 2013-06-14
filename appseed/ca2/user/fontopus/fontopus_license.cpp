@@ -3,8 +3,8 @@
 namespace fontopus
 {
 
-   license::license(sp(::ca::application) papp) :
-      ca(papp)
+   license::license(sp(::ca2::application) papp) :
+      ca2(papp)
    {
    }
 

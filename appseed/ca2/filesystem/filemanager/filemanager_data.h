@@ -62,7 +62,7 @@ namespace filemanager
       bool  m_bIconView;
 
 
-      data(sp(::ca::application) papp);
+      data(sp(::ca2::application) papp);
       virtual ~data();
 
       bool is_saving();

@@ -5,8 +5,8 @@
 namespace user
 {
 
-   list_header::list_header(sp(::ca::application) papp) :
-      ca(papp),
+   list_header::list_header(sp(::ca2::application) papp) :
+      ca2(papp),
       m_font(allocer()),
       m_dcextension(papp)
    {
@@ -26,10 +26,10 @@ namespace user
       m_plistctrlinterface = pinterface;
    }
 
-   void list_header::DrawItem(::ca::draw_item * pdrawitem)
+   void list_header::DrawItem(::ca2::draw_item * pdrawitem)
    {
 
-      ::ca::graphics * pdc = pdrawitem->m_pgraphics;
+      ::ca2::graphics * pdc = pdrawitem->m_pgraphics;
 
       rect rectColumn = pdrawitem->rcItem;
 
@@ -310,7 +310,7 @@ namespace user
          if(item.m_bOk)
          {
             iWidth = item.m_iColumnWidth;
-            if(data_get(str, ::ca::system::idEmpty, iOldWidth))
+            if(data_get(str, ::ca2::system::idEmpty, iOldWidth))
             {
                if(iOldWidth == iWidth)
                   bSave = false;
@@ -318,7 +318,7 @@ namespace user
          }
          if(bSave)
          {
-            if(!data_set(str, ::ca::system::idEmpty, iWidth))
+            if(!data_set(str, ::ca2::system::idEmpty, iWidth))
                return false;
          }
       }
@@ -326,7 +326,7 @@ namespace user
       {
          if(data_get(
             str,
-            ::ca::system::idEmpty,
+            ::ca2::system::idEmpty,
             iWidth))
          {
             constraint::constraint_min(iWidth, 50);
@@ -338,7 +338,7 @@ namespace user
       return true;
    }
 
-   void list_header::AddMessageHandling(::ca::message::dispatch *pinterface)
+   void list_header::AddMessageHandling(::ca2::message::dispatch *pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &list_header::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &list_header::_001OnLButtonUp);
@@ -346,9 +346,9 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &list_header::_001OnMouseMove);
    }
 
-   void list_header::_001OnLButtonDown(::ca::signal_object * pobj)
+   void list_header::_001OnLButtonDown(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       if(hit_test(ptCursor, m_eelementLButtonDown, m_iItemLButtonDown))
@@ -359,9 +359,9 @@ namespace user
       pmouse->m_bRet = false;
    }
 
-   void list_header::_001OnLButtonUp(::ca::signal_object * pobj)
+   void list_header::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       list * plist = m_plistctrlinterface;
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
@@ -415,9 +415,9 @@ namespace user
 
 
 
-   void list_header::_001OnMouseMove(::ca::signal_object * pobj)
+   void list_header::_001OnMouseMove(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       list * plist = m_plistctrlinterface;
@@ -475,9 +475,9 @@ namespace user
    }
 
 
-   void list_header::_001OnLButtonDblClk(::ca::signal_object * pobj)
+   void list_header::_001OnLButtonDblClk(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       list * plist = m_plistctrlinterface;
@@ -498,7 +498,7 @@ namespace user
       pmouse->m_bRet = false;
    }
 
-   void list_header::_001OnDraw(::ca::graphics *pdc)
+   void list_header::_001OnDraw(::ca2::graphics *pdc)
    {
 
       rect rectClient;
@@ -522,7 +522,7 @@ namespace user
 
       imaging.color_blend(pdc, rectUpdate, RGB(127, 127, 117), 128);
 
-      ::ca::draw_item drawitem;
+      ::ca2::draw_item drawitem;
       drawitem.m_pgraphics = pdc;
       list * plist = m_plistctrlinterface;
       rect rectDivider;

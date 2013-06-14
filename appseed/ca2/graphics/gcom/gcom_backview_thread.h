@@ -15,7 +15,7 @@ namespace gcom
 
 
       class CLASS_DECL_ca2 thread : 
-         virtual public ::ca::thread
+         virtual public ::ca2::thread
       {
       public:
 
@@ -39,7 +39,7 @@ namespace gcom
             //   VARIANT varInfoHeader;
             //   VARIANT varBits;
             //   VARIANT varUserData;
-            ::ca::bitmap     m_pbitmap;
+            ::ca2::bitmap     m_pbitmap;
             int32_t         m_iUserData;
             int32_t      cx;
             int32_t      cy;
@@ -56,7 +56,7 @@ namespace gcom
             //   uint32_t   m_dwEventsCount;
             //   LPSTREAM m_lpStreamImageLoader;
             //   LPSTREAM m_lpStreamImageLoaderCP;
-            ::ca::bitmap * m_pbitmap;
+            ::ca2::bitmap * m_pbitmap;
 
          } ONLOADIMAGESTRUCTURE, *LPONLOADIMAGESTRUCTURE;
 
@@ -66,7 +66,7 @@ namespace gcom
             //   VARIANT varBits;
             //   VARIANT varUserData;
             //HBITMAP      m_hBitmap;
-            ::ca::bitmap *  m_pbitmap;
+            ::ca2::bitmap *  m_pbitmap;
             int32_t          m_cx;
             int32_t          m_cy;
             int32_t          m_iUserData;
@@ -81,7 +81,7 @@ namespace gcom
          mutex                     m_mutexBitmap;
          backview::Main   *          m_pbackviewinterface;   
 
-         thread(sp(::ca::application) papp);
+         thread(sp(::ca2::application) papp);
 
          static const UINT MESSAGE_BACKVIEW;
          static const WPARAM WPARAM_BACKVIEW_IMAGELOADED;
@@ -89,15 +89,15 @@ namespace gcom
 
          void SetMain(backview::Main * pmain);
 
-         void install_message_handling(::ca::message::dispatch * pinterface);
+         void install_message_handling(::ca2::message::dispatch * pinterface);
 
          static uint32_t ThreadProcStretchImage(void * lpParameter);
          static uint32_t ThreadProcLoadImage(void * lpParameter);
 
          //void OnImageLoaded(HBITMAP hbitmap);
-         long OnImageStretched(::ca::bitmap * pbitmap, long cx, long cy, long iUserData);
+         long OnImageStretched(::ca2::bitmap * pbitmap, long cx, long cy, long iUserData);
 
-         //   ::ca::bitmap & GetBitmap();
+         //   ::ca2::bitmap & GetBitmap();
 
          //void OnLyricViewSize(int32_t iType);
          void LoadImageAsync(const load_image & loadimage);
@@ -139,11 +139,11 @@ namespace gcom
 
          string                  m_strImagePath;
          backview::Main *        m_pbackviewinterface;
-         ::ca::signal             m_signalImageLoaded;
-         ::ca::dib *             m_pdib;
+         ::ca2::signal             m_signalImageLoaded;
+         ::ca2::dib *             m_pdib;
 
 
-         load_image(::ca::dib * pdib, gcom::backview::thread * pbackviewthread, backview::Main * pbackviewinterface, const char * lpcwszImagePath);
+         load_image(::ca2::dib * pdib, gcom::backview::thread * pbackviewthread, backview::Main * pbackviewinterface, const char * lpcwszImagePath);
          load_image(const load_image & loadimage);
          void OnImageLoaded();
 

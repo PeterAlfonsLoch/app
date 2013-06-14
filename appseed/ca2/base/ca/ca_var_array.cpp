@@ -3,8 +3,8 @@
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))
 #define ROUND16(x) ROUND(x, 16)
 
-var_array::var_array(::ca::application * papp) :
-   ::ca::ca(papp)
+var_array::var_array(::ca2::application * papp) :
+   ::ca2::ca2(papp)
 {
    set_size(0, 64);
 }
@@ -21,7 +21,7 @@ var_array::var_array(const int_array & ia)
    operator = (ia);
 }
 
-var_array::var_array(const ::ca::property_set & propset)
+var_array::var_array(const ::ca2::property_set & propset)
 {
    set_size(0, ROUND16(propset.get_count() + 16));
    operator = (propset);
@@ -276,7 +276,7 @@ var_array & var_array::operator = (const int_array & inta)
    return *this;
 }
 
-var_array & var_array::operator = (const ::ca::property_set & propset)
+var_array & var_array::operator = (const ::ca2::property_set & propset)
 {
    remove_all();
    for(int32_t i = 0; i < propset.m_propertya.get_count(); i++)
@@ -306,13 +306,13 @@ void var_array::parse_json(const char * & pszJson)
 
 void var_array::parse_json(const char * & pszJson, const char * pszEnd)
 {
-   ::ca::str::consume_spaces(pszJson, 0, pszEnd);
-   ::ca::str::consume(pszJson, "[", 1, pszEnd);
+   ::ca2::str::consume_spaces(pszJson, 0, pszEnd);
+   ::ca2::str::consume(pszJson, "[", 1, pszEnd);
    while(true)
    {
       ::var & var = add_new();
       var.parse_json(pszJson, pszEnd);
-      ::ca::str::consume_spaces(pszJson, 0, pszEnd);
+      ::ca2::str::consume_spaces(pszJson, 0, pszEnd);
       if(*pszJson == ',')
       {
          pszJson++;

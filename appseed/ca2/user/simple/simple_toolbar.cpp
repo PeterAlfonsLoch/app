@@ -6,7 +6,7 @@ class SimpleToolCmdUI : public cmd_ui        // class private to this file !
 {
 public: // re-implementations only
 
-   SimpleToolCmdUI(sp(::ca::application) papp);
+   SimpleToolCmdUI(sp(::ca2::application) papp);
    virtual void Enable(bool bOn);
    virtual void SetCheck(check::e_check echeck = check::checked);
    virtual void SetText(const char * lpszText);
@@ -37,8 +37,8 @@ public: // re-implementations only
 #define ITEMPADBOTTOM   4
 
 
-simple_toolbar::simple_toolbar(sp(::ca::application) papp) :
-ca(papp),
+simple_toolbar::simple_toolbar(sp(::ca2::application) papp) :
+ca2(papp),
    m_dibDraft(allocer())
 {
    m_iHover = 0x80000000;
@@ -71,7 +71,7 @@ simple_toolbar::~simple_toolbar()
 
 }
 
-void simple_toolbar::install_message_handling(::ca::message::dispatch * pdispatch)
+void simple_toolbar::install_message_handling(::ca2::message::dispatch * pdispatch)
 {
    ::user::control_bar::install_message_handling(pdispatch);
    //IGUI_WIN_MSG_LINK(WM_ERASEBKGND()
@@ -206,7 +206,7 @@ size simple_toolbar::CalcSimpleLayout()
    return sizeResult;
 }
 
-void simple_toolbar::_001OnDraw(::ca::graphics *pdc)
+void simple_toolbar::_001OnDraw(::ca2::graphics *pdc)
 {
 
    if(m_bDelayedButtonLayout)
@@ -224,7 +224,7 @@ void simple_toolbar::_001OnDraw(::ca::graphics *pdc)
 }
 
 /*
-bool simple_toolbar::OnEraseBkgnd(::ca::graphics * pgraphics)
+bool simple_toolbar::OnEraseBkgnd(::ca2::graphics * pgraphics)
 {
 return true;
 }
@@ -236,7 +236,7 @@ void simple_toolbar::SetTransparentBackground(bool bSet)
    m_bTransparentBackground = bSet;
 }
 
-void simple_toolbar::TransparentEraseNonClient(::ca::graphics * pdc)
+void simple_toolbar::TransparentEraseNonClient(::ca2::graphics * pdc)
 {
 
    m_dibDraft->get_graphics()->BitBlt(0, 0, 7, 7, pdc, 0, 0, SRCCOPY);
@@ -333,7 +333,7 @@ void simple_toolbar::TransparentEraseNonClient(::ca::graphics * pdc)
 }
 
 
-void simple_toolbar::_001OnCreate(::ca::signal_object * pobj)
+void simple_toolbar::_001OnCreate(::ca2::signal_object * pobj)
 {
    if(pobj->previous())
       return;
@@ -555,7 +555,7 @@ bool simple_toolbar::_001SetItem(int32_t iItem, simple_toolbar_item *pitem)
 }
 
 
-void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
+void simple_toolbar::_001DrawItem(::ca2::graphics * pdc, int32_t iItem)
 {
    rect rectItem;
    rect rectImage;
@@ -681,14 +681,14 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
             if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               ::ca::pen_sp penShadow(pdc, 1, ARGB(255, 127, 127, 127));
-               ::ca::brush_sp brushShadow(allocer(), ARGB(255, 127, 127, 127));
-               ::ca::pen * ppenOld = pdc->SelectObject(penShadow);
-               ::ca::brush * pbrushOld = pdc->SelectObject(brushShadow);
+               ::ca2::pen_sp penShadow(pdc, 1, ARGB(255, 127, 127, 127));
+               ::ca2::brush_sp brushShadow(allocer(), ARGB(255, 127, 127, 127));
+               ::ca2::pen * ppenOld = pdc->SelectObject(penShadow);
+               ::ca2::brush * pbrushOld = pdc->SelectObject(brushShadow);
                pdc->Rectangle(rectShadow);
 
-               ::ca::pen_sp pen(pdc, 1, ARGB(255, 92, 92, 92));
-               ::ca::brush_sp brush(allocer(), ARGB(255, 255, 255, 255));
+               ::ca2::pen_sp pen(pdc, 1, ARGB(255, 92, 92, 92));
+               ::ca2::brush_sp brush(allocer(), ARGB(255, 255, 255, 255));
                pdc->SelectObject(pen);
                pdc->SelectObject(brush);
                pdc->Rectangle(rectItem);
@@ -720,10 +720,10 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
          if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
          {
 
-            ::ca::pen_sp pen(pdc, 1, ARGB(255, 92, 92, 92));
-            ::ca::brush_sp brush(allocer(), ARGB(255, 255, 255, 255));
-            ::ca::pen * ppenOld = pdc->SelectObject(pen);
-            ::ca::brush * pbrushOld = pdc->SelectObject(brush);
+            ::ca2::pen_sp pen(pdc, 1, ARGB(255, 92, 92, 92));
+            ::ca2::brush_sp brush(allocer(), ARGB(255, 255, 255, 255));
+            ::ca2::pen * ppenOld = pdc->SelectObject(pen);
+            ::ca2::brush * pbrushOld = pdc->SelectObject(brush);
             pdc->Rectangle(rectItem);
             pdc->SelectObject(ppenOld);
             pdc->SelectObject(pbrushOld);
@@ -799,7 +799,7 @@ ASSERT_VALID(this);
 ASSERT(lpszResourceName != NULL);
 
 // determine location of the bitmap in resource fork
-HINSTANCE hInst = ::ca::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
+HINSTANCE hInst = ::ca2::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
 HRSRC hRsrc = ::FindResource(hInst, lpszResourceName, RT_TOOLBAR);
 if (hRsrc == NULL)
 return FALSE;
@@ -856,7 +856,7 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
 
    childs = doc.get_root()->children();
 
-   //   sp(::ca::application) papp = (get_app());
+   //   sp(::ca2::application) papp = (get_app());
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
 
@@ -1140,15 +1140,15 @@ ASSERT_VALID(this);
 ASSERT(lpszResourceName != NULL);
 
 // determine location of the bitmap in resource fork
-HINSTANCE hInstImageWell = ::ca::FindResourceHandle(lpszResourceName, RT_BITMAP);
+HINSTANCE hInstImageWell = ::ca2::FindResourceHandle(lpszResourceName, RT_BITMAP);
 HRSRC hRsrcImageWell = ::FindResource(hInstImageWell, lpszResourceName, RT_BITMAP);
 if (hRsrcImageWell == NULL)
 return FALSE;
 
 // load the bitmap
 HBITMAP hbmImageWell;
-//   hbmImageWell = ::ca::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
-::ca::client_graphics pdc(this);;
+//   hbmImageWell = ::ca2::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
+::ca2::client_graphics pdc(this);;
 hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
 
 
@@ -1215,7 +1215,7 @@ void simple_toolbar::layout()
    rect  rectClient;
    GetClientRect(rectClient);
    class size sizeText;
-   ::ca::graphics_sp spgraphics(allocer());
+   ::ca2::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(NULL);
    spgraphics->SelectObject(System.visual().font_central().GetMenuFont());
    for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)
@@ -1349,9 +1349,9 @@ void simple_toolbar::layout()
 
 }
 
-void simple_toolbar::_001OnMouseMove(::ca::signal_object * pobj)
+void simple_toolbar::_001OnMouseMove(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    if(m_bDockTrack)
@@ -1370,9 +1370,9 @@ void simple_toolbar::_001OnMouseMove(::ca::signal_object * pobj)
    }
 }
 
-void simple_toolbar::_001OnLButtonDown(::ca::signal_object * pobj)
+void simple_toolbar::_001OnLButtonDown(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    m_iButtonPressItem = _001HitTest(pt);
@@ -1388,9 +1388,9 @@ void simple_toolbar::_001OnLButtonDown(::ca::signal_object * pobj)
    pobj->previous();
 }
 
-void simple_toolbar::_001OnLButtonUp(::ca::signal_object * pobj)
+void simple_toolbar::_001OnLButtonUp(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    if(m_bDockTrack)
@@ -1469,9 +1469,9 @@ void simple_toolbar::_001Hover(bool bRedraw)
    _001Hover(pt, bRedraw);
 }
 
-void simple_toolbar::_001OnTimer(::ca::signal_object * pobj)
+void simple_toolbar::_001OnTimer(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::timer, ptimer, pobj)
+   SCAST_PTR(::ca2::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == TIMER_HOVER)
       {
          _001Hover();
@@ -1518,7 +1518,7 @@ void simple_toolbar::_001OnImageListAttrib()
    {
    m_pimagelistHue = new image_list();
    }
-   ::ca::graphics_sp spgraphics(allocer());
+   ::ca2::graphics_sp spgraphics(allocer());
    spgraphics->CreateDC("DISPLAY", NULL, NULL, NULL);
    System.visual().imaging().CreateHueImageList(
    &spgraphics,
@@ -1554,8 +1554,8 @@ void simple_toolbar::_001OnImageListAttrib()
 /////////////////////////////////////////////////////////////////////////////
 // simple_toolbar idle update through SimpleToolCmdUI class
 
-SimpleToolCmdUI::SimpleToolCmdUI(sp(::ca::application) papp) :
-ca(papp),
+SimpleToolCmdUI::SimpleToolCmdUI(sp(::ca2::application) papp) :
+ca2(papp),
    cmd_ui(papp)
 {
 }
@@ -1650,10 +1650,10 @@ void simple_toolbar::SetButtonStyle(int32_t nIndex, UINT nStyle)
 }
 
 
-void simple_toolbar::_001OnNcCalcSize(::ca::signal_object * pobj)
+void simple_toolbar::_001OnNcCalcSize(::ca2::signal_object * pobj)
 {
 #if defined(WINDOWSEX) //|| defined(LINUX)
-   SCAST_PTR(::ca::message::nc_calc_size, pnccalcsize, pobj)
+   SCAST_PTR(::ca2::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
    class rect rect;
    rect.null();
@@ -1671,9 +1671,9 @@ void simple_toolbar::_001OnNcCalcSize(::ca::signal_object * pobj)
 }
 
 
-void simple_toolbar::_001OnNcHitTest(::ca::signal_object * pobj)
+void simple_toolbar::_001OnNcHitTest(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::nchittest, pnchittest, pobj)
+   SCAST_PTR(::ca2::message::nchittest, pnchittest, pobj)
       pnchittest->set_lresult(HTCLIENT);
 }
 
@@ -1685,7 +1685,7 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
    int32_t nResult = 0;
 #if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
    ASSERT(nCount > 0);
-   ::ca::memory_graphics pdc(allocer());
+   ::ca2::memory_graphics pdc(allocer());
     int32_t x = 0;
    string str;
    for (int32_t i = 0; i < nCount; i++)
@@ -1929,7 +1929,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
             }
          }
 
-         //::ca::client_graphics pdc(this);
+         //::ca2::client_graphics pdc(this);
          string str;
          if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
             m_nMRUWidth = sizeResult.cx;
@@ -2121,14 +2121,14 @@ size simple_toolbar::CalcDynamicLayout(int32_t nLength, uint32_t dwMode)
    return CalcLayout(dwMode, nLength);
 }
 
-void simple_toolbar::_001OnMove(::ca::signal_object * pobj)
+void simple_toolbar::_001OnMove(::ca2::signal_object * pobj)
 {
    pobj->previous();
 }
 
-void simple_toolbar::_001OnMouseLeave(::ca::signal_object * pobj)
+void simple_toolbar::_001OnMouseLeave(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::base, pbase, pobj)
+   SCAST_PTR(::ca2::message::base, pbase, pobj)
       m_iHover = 0x80000000;
    OnUpdateHover();
    _001RedrawWindow();

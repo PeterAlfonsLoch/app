@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -37,8 +37,8 @@ namespace ca
    {
    }
 
-   data::data(sp(::ca::application) papp) :
-      ca(papp),
+   data::data(sp(::ca2::application) papp) :
+      ca2(papp),
       m_pmutex(NULL)
    {
    }
@@ -66,7 +66,7 @@ namespace ca
       }
    }
 
-   void data::edit(::ca::base_edit * pbaseedit)
+   void data::edit(::ca2::base_edit * pbaseedit)
    {
 
       UNREFERENCED_PARAMETER(pbaseedit);
@@ -74,6 +74,6 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 

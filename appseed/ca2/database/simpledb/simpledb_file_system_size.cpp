@@ -25,8 +25,8 @@ file_size_table::get_fs_size & file_size_table::get_fs_size::operator = (const g
 }
 
 
-file_size_table::file_size_table(sp(::ca::application) papp) :
-   ca(papp)
+file_size_table::file_size_table(sp(::ca2::application) papp) :
+   ca2(papp)
 {
    m_hmap = NULL;
    m_item.m_pitemParent = NULL;
@@ -56,12 +56,12 @@ file_size_table::file_size_table(sp(::ca::application) papp) :
          // Make the security attributes point
          // to the security descriptor
          MutexAttributes.lpSecurityDescriptor = &SD;*/
-         //m_pmutex = new mutex(FALSE, "Global\\::ca::fontopus::file_system_size::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
-         //m_pevExec = new event(FALSE, FALSE, "Global\\::ca::fontopus::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
-         //m_pevDone = new event(FALSE, FALSE, "Global\\::ca::fontopus::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
-         //m_pmutex = new mutex(FALSE, "Local\\::ca::fontopus::file_system_size::7807e510-5579-11dd-ae16-0800200c7784");
-         //m_pevExec = new event(FALSE, FALSE, "Local\\::ca::fontopus::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784");
-         //m_pevDone = new event(FALSE, FALSE, "Local\\::ca::fontopus::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784");
+         //m_pmutex = new mutex(FALSE, "Global\\::ca2::fontopus::file_system_size::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
+         //m_pevExec = new event(FALSE, FALSE, "Global\\::ca2::fontopus::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
+         //m_pevDone = new event(FALSE, FALSE, "Global\\::ca2::fontopus::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
+         //m_pmutex = new mutex(FALSE, "Local\\::ca2::fontopus::file_system_size::7807e510-5579-11dd-ae16-0800200c7784");
+         //m_pevExec = new event(FALSE, FALSE, "Local\\::ca2::fontopus::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784");
+         //m_pevDone = new event(FALSE, FALSE, "Local\\::ca2::fontopus::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784");
 /*      }
    }*/
    m_pwnd  = new FileSystemSizeWnd(papp);
@@ -88,7 +88,7 @@ file_size_table::item::item()
    m_pitemParent = NULL;
 }
 
-void file_size_table::item::ls(sp(::ca::application) papp, index & iIteration)
+void file_size_table::item::ls(sp(::ca2::application) papp, index & iIteration)
 {
    if(m_bDir)
    {
@@ -150,7 +150,7 @@ string file_size_table::item::path()
       return m_pitemParent->path() + "\\" + m_strName;
 }
 
-file_size_table::item * file_size_table::item::FindItem(sp(::ca::application) papp, const char * pszPath, index & iIteration)
+file_size_table::item * file_size_table::item::FindItem(sp(::ca2::application) papp, const char * pszPath, index & iIteration)
 {
    string strName;
    string strPath(pszPath);
@@ -178,7 +178,7 @@ file_size_table::item * file_size_table::item::FindItem(sp(::ca::application) pa
 }
 
 
-index file_size_table::item::FindName(sp(::ca::application) papp, const char * pszName, index & iIteration)
+index file_size_table::item::FindName(sp(::ca2::application) papp, const char * pszName, index & iIteration)
 {
    if(m_bPendingLs)
    {
@@ -192,7 +192,7 @@ index file_size_table::item::FindName(sp(::ca::application) papp, const char * p
    return -1;
 }
 
-void file_size_table::item::update_size(sp(::ca::application) papp, index & iIteration)
+void file_size_table::item::update_size(sp(::ca2::application) papp, index & iIteration)
 {
    UNREFERENCED_PARAMETER(papp);
    UNREFERENCED_PARAMETER(iIteration);
@@ -212,7 +212,7 @@ void file_size_table::item::update_size(sp(::ca::application) papp, index & iIte
 
 }
 
-void file_size_table::item::update_size_recursive(sp(::ca::application) papp, index & iIteration)
+void file_size_table::item::update_size_recursive(sp(::ca2::application) papp, index & iIteration)
 {
    if(m_bPendingLs)
    {
@@ -229,8 +229,8 @@ void file_size_table::item::update_size_recursive(sp(::ca::application) papp, in
 
 
 
-DBFileSystemSizeSet::DBFileSystemSizeSet(sp(::ca::application) papp) :
-   ca(papp), m_table(papp)
+DBFileSystemSizeSet::DBFileSystemSizeSet(sp(::ca2::application) papp) :
+   ca2(papp), m_table(papp)
 {
    m_iMaxIteration = 230;
 }
@@ -327,13 +327,13 @@ bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, b
    return true;
 }
 
-FileSystemSizeWnd::FileSystemSizeWnd(sp(::ca::application) papp) :
-   ca(papp),
-   ::ca::window_sp(papp)
+FileSystemSizeWnd::FileSystemSizeWnd(sp(::ca2::application) papp) :
+   ca2(papp),
+   ::ca2::window_sp(papp)
 {
 }
 
-void FileSystemSizeWnd::install_message_handling(::ca::message::dispatch * pinterface)
+void FileSystemSizeWnd::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    m_p->install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_COPYDATA, pinterface, this, &FileSystemSizeWnd::_001OnCopyData);
@@ -346,10 +346,10 @@ bool FileSystemSizeWnd::CreateClient()
 //#ifdef WINDOWS
 
    m_bServer = false;
-   return m_p->create_message_window("::ca::fontopus::FileSystemSizeWnd::Client");
+   return m_p->create_message_window("::ca2::fontopus::FileSystemSizeWnd::Client");
 /*  sp(::user::interaction) puiMessage = NULL;
    puiMessage = System.window_from_os_data(HWND_MESSAGE);
-   return m_p->create(NULL, "::ca::fontopus::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;*/
+   return m_p->create(NULL, "::ca2::fontopus::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;*/
 
 //#else
 
@@ -365,7 +365,7 @@ bool FileSystemSizeWnd::CreateServer()
 #ifdef WINDOWS
 
    m_bServer = true;
-   if(!m_p->create(NULL, "Local\\::ca::fontopus::FileSystemSizeWnd::Server", 0,
+   if(!m_p->create(NULL, "Local\\::ca2::fontopus::FileSystemSizeWnd::Server", 0,
       rect(0, 0, 0, 0), System.window_from_os_data(HWND_MESSAGE), id()))
       return false;
    m_p->SetTimer(100, 100, NULL);
@@ -399,7 +399,7 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
    size.m_bRet = false;
 
 
-   ::ca::byte_stream_memory_file file(get_app());
+   ::ca2::byte_stream_memory_file file(get_app());
    size.write(file);
 
    COPYDATASTRUCT data;
@@ -429,12 +429,12 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
 }
 
 
-void FileSystemSizeWnd::_001OnCopyData(::ca::signal_object * pobj)
+void FileSystemSizeWnd::_001OnCopyData(::ca2::signal_object * pobj)
 {
 
 #ifdef WINDOWSEX
 
-   SCAST_PTR(::ca::message::base, pbase, pobj);
+   SCAST_PTR(::ca2::message::base, pbase, pobj);
 
    COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam.m_lparam;
    if(pstruct->dwData == 0)
@@ -442,7 +442,7 @@ void FileSystemSizeWnd::_001OnCopyData(::ca::signal_object * pobj)
       //file_size_table::get_fs_size * prec  = (file_size_table::get_fs_size *) pstruct->lpData;
       db_server * pcentral = &System.m_simpledb.db();
       file_size_table::get_fs_size size;
-      ::ca::byte_stream_memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
+      ::ca2::byte_stream_memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
       size.read(file);
 
       single_lock sl(&m_cs, TRUE);
@@ -457,7 +457,7 @@ void FileSystemSizeWnd::_001OnCopyData(::ca::signal_object * pobj)
    else if(pstruct->dwData == 1)
    {
       file_size_table::get_fs_size size;
-      ::ca::byte_stream_memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
+      ::ca2::byte_stream_memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
       size.read(file);
       m_bRet = true;
       m_map.set_at(size.m_strPath, size);
@@ -473,12 +473,12 @@ void FileSystemSizeWnd::_001OnCopyData(::ca::signal_object * pobj)
 
 }
 
-void FileSystemSizeWnd::_001OnTimer(::ca::signal_object * pobj)
+void FileSystemSizeWnd::_001OnTimer(::ca2::signal_object * pobj)
 {
 
 #ifdef WINDOWSEX
 
-    SCAST_PTR(::ca::message::timer, ptimer, pobj);
+    SCAST_PTR(::ca2::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 100)
    {
       //::PostMessage(pbase->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);
@@ -488,7 +488,7 @@ void FileSystemSizeWnd::_001OnTimer(::ca::signal_object * pobj)
          data.dwData = 1;
 
 
-         ::ca::byte_stream_memory_file file(get_app());
+         ::ca2::byte_stream_memory_file file(get_app());
 
          while(m_sizea.get_size() > 0)
          {
@@ -513,8 +513,8 @@ void FileSystemSizeWnd::_001OnTimer(::ca::signal_object * pobj)
 
 }
 
-FileSystemSizeServerThread::FileSystemSizeServerThread(sp(::ca::application) papp) :
-   ca(papp),
+FileSystemSizeServerThread::FileSystemSizeServerThread(sp(::ca2::application) papp) :
+   ca2(papp),
    thread(papp)
 {
 }
@@ -544,7 +544,7 @@ void FileSystemSizeWnd::ClientStartServer()
 
    }
 
-   pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer = ::FindWindowEx(HWND_MESSAGE, NULL, NULL, "Local\\::ca::fontopus::FileSystemSizeWnd::Server");
+   pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer = ::FindWindowEx(HWND_MESSAGE, NULL, NULL, "Local\\::ca2::fontopus::FileSystemSizeWnd::Server");
 
 #else
 
@@ -555,7 +555,7 @@ void FileSystemSizeWnd::ClientStartServer()
 }
 
 
-void file_size_table::get_fs_size::write(::ca::byte_output_stream & ostream)
+void file_size_table::get_fs_size::write(::ca2::byte_output_stream & ostream)
 {
    ostream << m_strPath;
    ostream << m_bPending;
@@ -568,14 +568,14 @@ void file_size_table::get_fs_size::write(::ca::byte_output_stream & ostream)
 
 #else
 
-   throw not_implemented(::ca::get_thread_app());
+   throw not_implemented(::ca2::get_thread_app());
 
 #endif
 
 
 }
 
-void file_size_table::get_fs_size::read(::ca::byte_input_stream & istream)
+void file_size_table::get_fs_size::read(::ca2::byte_input_stream & istream)
 {
    istream >> m_strPath;
    istream >> m_bPending;
@@ -588,7 +588,7 @@ void file_size_table::get_fs_size::read(::ca::byte_input_stream & istream)
 
 #else
 
-   throw not_implemented(::ca::get_thread_app());
+   throw not_implemented(::ca2::get_thread_app());
 
 #endif
 

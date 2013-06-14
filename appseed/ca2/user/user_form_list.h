@@ -49,13 +49,13 @@ namespace user
       };
 
 
-      form_list(sp(::ca::application) papp);
+      form_list(sp(::ca2::application) papp);
       virtual ~form_list();
 
 
       virtual void _001DrawSubItem(draw_list_item * pdrawitem);
 
-      void _000OnMouse(::ca::message::mouse * pmouse);
+      void _000OnMouse(::ca2::message::mouse * pmouse);
 
       void control_get_client_rect(sp(control) pcontrol, LPRECT lprect);
       void control_get_window_rect(sp(control) pcontrol, LPRECT lprect);
@@ -67,7 +67,7 @@ namespace user
 
       void _001HideEditingControls();
       void _001HideControl(sp(control) pcontrol);
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
       virtual LRESULT _001BaseWndGetProperty(EProperty eprop, LPARAM lparam);
       virtual sp(::user::interaction) _GetWnd();
       void _001UpdateColumns();
@@ -89,10 +89,10 @@ namespace user
       DECL_GEN_SIGNAL(_001OnHScroll)
       DECL_GEN_SIGNAL(_001OnKeyDown)
 
-      virtual bool _001OnMouseActivate(sp(::ca::window) pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult);
+      virtual bool _001OnMouseActivate(sp(::ca2::window) pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult);
 
 
-      virtual void install_message_handling( ::ca::message::dispatch *pinterface);
+      virtual void install_message_handling( ::ca2::message::dispatch *pinterface);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
 

@@ -5,7 +5,7 @@
 *  TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR
 *  A PARTICULAR PURPOSE.
 *
-*  Copyright (C) 1993 - 1997 ca.
+*  Copyright (C) 1993 - 1997 ca2.
 *
 ******************************************************************************
 *
@@ -25,7 +25,7 @@
 #ifdef DEBUG
 void TRACELASTERROR()
 {
-   sp(::ca::application) m_papp = ::ca::get_thread_app();
+   sp(::ca2::application) m_papp = ::ca2::get_thread_app();
    string strErrorMessage = ::get_system_error_message(::GetLastError());
    TRACE("Error Message :\n%s\n", strErrorMessage);
 }

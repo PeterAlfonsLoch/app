@@ -12,7 +12,7 @@ namespace userex
    public:
 
 
-      split_view(sp(::ca::application) papp);
+      split_view(sp(::ca2::application) papp);
       virtual ~split_view();
 
       virtual void on_new_view_creator_data(::user::view_creator_data * pcreatordata);

@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-simple_thread::simple_thread(sp(::ca::application) papp) :
-   ca(papp),
+simple_thread::simple_thread(sp(::ca2::application) papp) :
+   ca2(papp),
    thread(papp)
 {
    m_p->set_auto_delete(false);
@@ -11,9 +11,9 @@ simple_thread::simple_thread(sp(::ca::application) papp) :
 
 simple_thread::~simple_thread()
 {
-   if(::ca::thread::m_p->m_p != NULL)
+   if(::ca2::thread::m_p->m_p != NULL)
    {
-      ::ca::thread::m_p->m_p.m_p = NULL;
+      ::ca2::thread::m_p->m_p.m_p = NULL;
    }
    m_p->set_run(false);
    m_p->get_finish_event().wait(millis(m_dwFinishTimeout));

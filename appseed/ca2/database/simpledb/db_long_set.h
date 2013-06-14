@@ -26,7 +26,7 @@ public:
    };
 
    class CLASS_DECL_ca2 queue_item :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 
@@ -60,7 +60,7 @@ public:
 
 
       
-      sync_queue(sp(::ca::application) papp);
+      sync_queue(sp(::ca2::application) papp);
       virtual ~sync_queue();
 
 
@@ -135,10 +135,10 @@ public:
    bool find(const char * lpKey);
 
 
-   bool MoveWindow_(const char * lpKey, sp(::ca::window)pWnd);
-   bool SaveWindowRect_(const char * lpKey, sp(::ca::window)pWnd);
-   bool SetWindowPlacement(const char * lpKey, sp(::ca::window)pWnd);
-   bool SaveWindowPlacement(const char * lpKey, sp(::ca::window)pWnd);
+   bool MoveWindow_(const char * lpKey, sp(::ca2::window)pWnd);
+   bool SaveWindowRect_(const char * lpKey, sp(::ca2::window)pWnd);
+   bool SetWindowPlacement(const char * lpKey, sp(::ca2::window)pWnd);
+   bool SaveWindowPlacement(const char * lpKey, sp(::ca2::window)pWnd);
 
 };
 

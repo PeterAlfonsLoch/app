@@ -17,18 +17,18 @@ typedef  GZIP* LPGZIP;
 static const int32_t gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
 
 
-gzip::gzip(sp(::ca::file) pfileDest) :
+gzip::gzip(sp(::ca2::file) pfileDest) :
    m_ostream(pfileDest)
 {
    construct();
 }
-gzip::gzip(::ca::writer & writer) :
+gzip::gzip(::ca2::writer & writer) :
    m_ostream(&writer)
 {
    construct();
 }
 
-gzip::gzip(::ca::byte_output_stream & ostreamDest) :
+gzip::gzip(::ca2::byte_output_stream & ostreamDest) :
    m_ostream(&ostreamDest)
 {
    construct();
@@ -147,8 +147,8 @@ gzip::~gzip()
    void gzip::putLong (uint_ptr x)
    {
       for(int32_t n = 0; n < 4; n++) {
-         uchar c=(uchar)(x & 0xff);
-         m_ostream.write(&c,1);
+         uchar ca=(uchar)(x & 0xff);
+         m_ostream.write(&ca,1);
          x >>= 8;
       }
    }

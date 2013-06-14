@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class command_line;
 
 
-} // namespace ca
+} // namespace ca2
 
 
 class db_server;
@@ -19,7 +19,7 @@ namespace simpledb
 
 
    class CLASS_DECL_ca2 simpledb :
-      virtual public ::ca::section,
+      virtual public ::ca2::section,
       virtual public ::database::database
    {
    public:
@@ -28,7 +28,7 @@ namespace simpledb
       db_server   *  m_pserver;
 
 
-      simpledb(::ca::application * papp);
+      simpledb(::ca2::application * papp);
       virtual ~simpledb();
 
       virtual bool initialize2();

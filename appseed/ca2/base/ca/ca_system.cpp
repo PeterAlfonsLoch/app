@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -39,12 +39,12 @@ namespace ca
       return true;
    }
 
-   void system::discard_to_factory(sp(::ca::ca) pca)
+   void system::discard_to_factory(sp(::ca2::ca2) pca)
    {
       UNREFERENCED_PARAMETER(pca);
    }
 
-   sp(::ca::ca) system::clone(sp(::ca::ca) pca)
+   sp(::ca2::ca2) system::clone(sp(::ca2::ca2) pca)
    {
       UNREFERENCED_PARAMETER(pca);
       return NULL;
@@ -54,11 +54,11 @@ namespace ca
 
 
 
-   sp(::ca::ca) system::on_alloc(sp(::ca::application) papp, sp(::ca::type_info) info)
+   sp(::ca2::ca2) system::on_alloc(sp(::ca2::application) papp, sp(::ca2::type_info) info)
    {
-/*      if(info == System.type_info < class ::ca::log > ())
+/*      if(info == System.type_info < class ::ca2::log > ())
       {
-         return new class ::ca::log(this); // NULL log implementation
+         return new class ::ca2::log(this); // NULL log implementation
       }*/
       /*string str;
       str.Format("Could not alloc %s", info.name());
@@ -67,17 +67,17 @@ namespace ca
       return NULL;
    }
 
-   sp(::ca::ca) system::alloc(sp(::ca::application) papp, sp(::ca::type_info) info)
+   sp(::ca2::ca2) system::alloc(sp(::ca2::application) papp, sp(::ca2::type_info) info)
    {
       return on_alloc(papp, info);
    }
 
-   sp(::ca::ca) system::alloc(sp(::ca::application) papp, const std_type_info & info)
+   sp(::ca2::ca2) system::alloc(sp(::ca2::application) papp, const std_type_info & info)
    {
-      return on_alloc(papp, canew(::ca::type_info(info)));
+      return on_alloc(papp, canew(::ca2::type_info(info)));
    }
 
-   void system::on_allocation_error(sp(::ca::application) papp, sp(::ca::type_info) info)
+   void system::on_allocation_error(sp(::ca2::application) papp, sp(::ca2::type_info) info)
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(info);
@@ -86,7 +86,7 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

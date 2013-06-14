@@ -1,48 +1,48 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
    class property;
 
-} // namespace ca
+} // namespace ca2
 
 
-string CLASS_DECL_ca2 operator + (const char * psz, const ::ca::property & prop);
-string CLASS_DECL_ca2 operator + (const string & str, const ::ca::property & prop);
+string CLASS_DECL_ca2 operator + (const char * psz, const ::ca2::property & prop);
+string CLASS_DECL_ca2 operator + (const string & str, const ::ca2::property & prop);
 
-var CLASS_DECL_ca2 operator - (int32_t i, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator - (uint32_t user, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator - (int64_t i, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator - (uint64_t ui, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator - (double d, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator - (const var & var, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator - (const ::ca::property & prop1, const ::ca::property & prop2);
+var CLASS_DECL_ca2 operator - (int32_t i, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator - (uint32_t user, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator - (int64_t i, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator - (uint64_t ui, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator - (double d, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator - (const var & var, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator - (const ::ca2::property & prop1, const ::ca2::property & prop2);
 
-var CLASS_DECL_ca2 operator + (int32_t i, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator + (uint32_t user, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator + (int64_t i, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator + (uint64_t ui, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator + (double d, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator + (const var & var, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator + (const ::ca::property & prop1, const ::ca::property & prop2);
+var CLASS_DECL_ca2 operator + (int32_t i, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator + (uint32_t user, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator + (int64_t i, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator + (uint64_t ui, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator + (double d, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator + (const var & var, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator + (const ::ca2::property & prop1, const ::ca2::property & prop2);
 
-var CLASS_DECL_ca2 operator / (int32_t i, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator / (uint32_t user, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator / (int64_t i, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator / (uint64_t ui, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator / (double d, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator / (const var & var, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator / (const ::ca::property & prop1, const ::ca::property & prop2);
+var CLASS_DECL_ca2 operator / (int32_t i, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator / (uint32_t user, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator / (int64_t i, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator / (uint64_t ui, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator / (double d, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator / (const var & var, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator / (const ::ca2::property & prop1, const ::ca2::property & prop2);
 
-var CLASS_DECL_ca2 operator * (int32_t i, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator * (uint32_t user, const ::ca:: property & prop);
-var CLASS_DECL_ca2 operator * (int64_t i, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator * (uint64_t ui, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator * (double d, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator * (const var & var, const ::ca::property & prop);
-var CLASS_DECL_ca2 operator * (const ::ca::property & prop1, const ::ca::property & prop2);
+var CLASS_DECL_ca2 operator * (int32_t i, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator * (uint32_t user, const ::ca2:: property & prop);
+var CLASS_DECL_ca2 operator * (int64_t i, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator * (uint64_t ui, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator * (double d, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator * (const var & var, const ::ca2::property & prop);
+var CLASS_DECL_ca2 operator * (const ::ca2::property & prop1, const ::ca2::property & prop2);
 
 
 namespace xml
@@ -55,7 +55,7 @@ namespace xml
 } // namespace xml
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -107,8 +107,8 @@ namespace ca
 
 
    class CLASS_DECL_ca2 property :
-      public ::ca::object,
-      public ::ca::byte_serializable
+      public ::ca2::object,
+      public ::ca2::byte_serializable
    {
    protected:
 
@@ -120,7 +120,7 @@ namespace ca
       var               m_var;
 
 
-      property(::ca::application * papp);
+      property(::ca2::application * papp);
       property();
       property(const property & prop);
       property(id strName);
@@ -338,13 +338,13 @@ namespace ca
       }
 
       template < class T >
-      property & operator =(const ::c::smart_pointer < T > & p)
+      property & operator =(const ::ca::smart_pointer < T > & p)
       {
          get_value() = p.m_p;
          return *this;
       }
 
-      property & operator =(::ca::ca * p)
+      property & operator =(::ca2::ca2 * p)
       {
          get_value() = p;
          return *this;
@@ -364,15 +364,15 @@ namespace ca
 
 
       template < class T >
-      T * ca()
+      T * ca2()
       {
-         return get_value().ca < T >();
+         return get_value().ca2 < T >();
       }
 
       operator const char *() const
       {
 
-         ((::ca::property *) this)->m_var.m_str = get_value().get_string();
+         ((::ca2::property *) this)->m_var.m_str = get_value().get_string();
 
          return m_var.m_str;
 
@@ -533,8 +533,8 @@ namespace ca
       bool operator > (int32_t i) const;
       bool operator > (bool b) const;
 
-      void write(::ca::byte_output_stream & ostream);
-      void read(::ca::byte_input_stream & ostream);
+      void write(::ca2::byte_output_stream & ostream);
+      void read(::ca2::byte_input_stream & ostream);
 
 
       string operator + (const char * psz) const;
@@ -669,12 +669,12 @@ namespace ca
 
 
    class CLASS_DECL_ca2 property_array :
-      public ::ca::byte_serializable_pointer_array < spa(property) >
+      public ::ca2::byte_serializable_pointer_array < spa(property) >
    {
    public:
 
 
-      property_array(sp(::ca::application) papp = NULL);
+      property_array(sp(::ca2::application) papp = NULL);
 
 
 
@@ -700,7 +700,7 @@ namespace ca
 
    namespace str
    {
-      inline bool CLASS_DECL_ca2 begins(const ::ca::property & property, const char * lpcszPrefix) { return begins(property.get_string(), lpcszPrefix); };
+      inline bool CLASS_DECL_ca2 begins(const ::ca2::property & property, const char * lpcszPrefix) { return begins(property.get_string(), lpcszPrefix); };
    }
 
 
@@ -709,16 +709,16 @@ namespace ca
       return operator [](id(string(pszName)));
    }
 
-} // namespace ca
+} // namespace ca2
 
 
-inline bool operator == (const string & str, const ::ca::property & prop)
+inline bool operator == (const string & str, const ::ca2::property & prop)
 {
    return str == prop.get_string();
 }
 
 
-inline string::string(const ::ca::property & prop) :
+inline string::string(const ::ca2::property & prop) :
    simple_string(string_trait::GetDefaultManager())
 {
 
@@ -726,7 +726,7 @@ inline string::string(const ::ca::property & prop) :
 
 }
 
-inline string & string::operator = (const ::ca::property & prop)
+inline string & string::operator = (const ::ca2::property & prop)
 {
 
    return operator = (prop.to_string());

@@ -4,7 +4,7 @@
 class image_list;
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -41,7 +41,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca2 tree_item :
-      public ::c::c
+      public ::ca::ca
    {
    public:
 
@@ -63,7 +63,7 @@ namespace ca
 
       sp(tree_item) get_child_by_user_data(uint_ptr iUserData);
       sp(tree_item) find_next_by_user_data(uint_ptr iUserData);
-      void get_children(::ca::tree_item_ptr_array &ptra);
+      void get_children(::ca2::tree_item_ptr_array &ptra);
       ::count get_children_count();
       ::count get_expandable_children_count();
       ::count get_proper_descendant_count();
@@ -117,6 +117,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

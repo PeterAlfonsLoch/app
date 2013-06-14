@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-BaseSplitWnd::BaseSplitWnd(sp(::ca::application) papp) :
-   ca(papp),
+BaseSplitWnd::BaseSplitWnd(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::split_layout(papp),
    place_holder_container(papp)
 {
@@ -19,7 +19,7 @@ bool BaseSplitWnd::pre_create_window(CREATESTRUCT& cs)
    return ::user::interaction::pre_create_window(cs);
 }
 
-void BaseSplitWnd::_001OnDraw(::ca::graphics *pdc)
+void BaseSplitWnd::_001OnDraw(::ca2::graphics *pdc)
 {
    
    int32_t i;

@@ -14,10 +14,10 @@ namespace user
       bool           m_bPlacing;
       
       
-      main_frame(sp(::ca::application) papp);
+      main_frame(sp(::ca2::application) papp);
       virtual ~main_frame();
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
 
    #ifdef DEBUG

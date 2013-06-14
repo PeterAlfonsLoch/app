@@ -1,4 +1,4 @@
-/* 7zCrcOpt.c -- CRC32 calculation : optimized version
+/* 7zCrcOpt.ca -- CRC32 calculation : optimized version
 2009-11-23 : Igor Pavlov : Public domain */
 #include "framework.h"
 

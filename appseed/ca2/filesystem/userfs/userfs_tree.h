@@ -14,10 +14,10 @@ namespace userfs
    public:
 
 
-      tree(sp(::ca::application) papp);
+      tree(sp(::ca2::application) papp);
       virtual ~tree();
 
-      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
       virtual void _017OpenFolder(sp(::fs::item) item);
       void StartAnimation();
@@ -25,7 +25,7 @@ namespace userfs
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
 
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
     
       DECL_GEN_SIGNAL(_001OnLButtonDblClk)

@@ -12,7 +12,7 @@ namespace crypto
    {
    }
 
-   ::ca::HRes aes_cbc_coder::Init()
+   ::ca2::HRes aes_cbc_coder::Init()
    {
       return S_OK; 
    }
@@ -28,7 +28,7 @@ namespace crypto
       return size << 4;
    }
 
-   ::ca::HRes aes_cbc_coder::SetKey(const byte *data, uint32_t size)
+   ::ca2::HRes aes_cbc_coder::SetKey(const byte *data, uint32_t size)
    {
       if ((size & 0x7) != 0 || size < 16 || size > 32)
          return E_INVALIDARG;
@@ -36,7 +36,7 @@ namespace crypto
       return S_OK;
    }
 
-   ::ca::HRes aes_cbc_coder::SetInitVector(const byte *data, uint32_t size)
+   ::ca2::HRes aes_cbc_coder::SetInitVector(const byte *data, uint32_t size)
    {
       if (size != AES_BLOCK_SIZE)
          return E_INVALIDARG;

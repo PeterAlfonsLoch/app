@@ -17,7 +17,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 user :
-      virtual public ::ca::section,
+      virtual public ::ca2::section,
       virtual public ::user::document_request_interface,
       virtual public BaseMenuCentralContainer,
       virtual public ::database::client
@@ -44,7 +44,7 @@ namespace user
 
 
 
-      user(::ca::application * papp);
+      user(::ca2::application * papp);
       virtual ~user();
 
       virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
@@ -67,7 +67,7 @@ namespace user
       virtual void set_mouse_focus_RButtonDown(::user::mouse_focus * pmousefocus);
 
 
-      string message_box(const char * pszMatter, ::ca::property_set & propertyset);
+      string message_box(const char * pszMatter, ::ca2::property_set & propertyset);
       virtual int32_t simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle = MB_OK);
       virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
       virtual int32_t track_popup_menu(const char * pszMatter, point pt, sp(::user::interaction) puie);
@@ -75,12 +75,12 @@ namespace user
       virtual bool get_fs_size(string & strSize, const char * pszPath, bool & bPending);
       virtual bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);
 
-      virtual void data_on_after_change(::ca::signal_object * pobj);
+      virtual void data_on_after_change(::ca2::signal_object * pobj);
 
       class keyboard & keyboard();
 
 
-      virtual sp(::ca::type_info) controltype_to_typeinfo(::user::control::e_type type);
+      virtual sp(::ca2::type_info) controltype_to_typeinfo(::user::control::e_type type);
 
 
       virtual int32_t GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept);
@@ -138,7 +138,7 @@ namespace user
          void LoadStdProfileSettings(UINT nMaxMRU = ___MRU_COUNT);
 
 
-//         string message_box(const char * pszMatter, ::ca::property_set & propertyset);
+//         string message_box(const char * pszMatter, ::ca2::property_set & propertyset);
 
 
       // Running Operations - to be done on a running user
@@ -176,7 +176,7 @@ namespace user
 
 
       // create a DC for the system default printer.
-      bool CreatePrinterDC(::ca::graphics_sp& spgraphics);
+      bool CreatePrinterDC(::ca2::graphics_sp& spgraphics);
 
 
    bool GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg);
@@ -220,10 +220,10 @@ namespace user
    };
 
 
-   CLASS_DECL_ca2 ::user::front_end_schema * GetUfeSchema(sp(::ca::application) papp);
-   CLASS_DECL_ca2 ::user::front_end * GetUfe(sp(::ca::application) papp);
+   CLASS_DECL_ca2 ::user::front_end_schema * GetUfeSchema(sp(::ca2::application) papp);
+   CLASS_DECL_ca2 ::user::front_end * GetUfe(sp(::ca2::application) papp);
 
 
-} // namespace ca
+} // namespace ca2
 
 

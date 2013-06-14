@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 exception :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 
@@ -21,5 +21,5 @@ namespace ca
    void CLASS_DECL_ca2 rethrow(exception * pe);
 
 
-} // namespace ca
+} // namespace ca2
 

@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
-   command::command(sp(::ca::application) papp) :
-      ca(papp)
+   command::command(sp(::ca2::application) papp) :
+      ca2(papp)
    {
    }
 
@@ -20,7 +20,7 @@ namespace ca
       return true;
    }
 
-   void command::on_request(sp(::ca::create_context) pcreatecontext)
+   void command::on_request(sp(::ca2::create_context) pcreatecontext)
    {
       UNREFERENCED_PARAMETER(pcreatecontext);
    }

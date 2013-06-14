@@ -9,8 +9,8 @@ namespace user
    const UINT list::MESSAGE_COLUMNHEADERTRACK = WM_USER + 26;
    const UINT list::MESSAGE_ENDCOLUMNHEADERTRACK = WM_USER + 27;
 
-   list::list(sp(::ca::application) papp) :
-   ca(papp),
+   list::list(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::scroll_view(papp),
    m_columna(papp),
    m_font(allocer()),
@@ -102,7 +102,7 @@ namespace user
    }
 
 
-   void list::install_message_handling(::ca::message::dispatch * pinterface)
+   void list::install_message_handling(::ca2::message::dispatch * pinterface)
    {
 
       ::user::scroll_view::install_message_handling(pinterface);
@@ -164,7 +164,7 @@ namespace user
    }
 
 
-   void list::_001OnDraw(::ca::graphics *pdc)
+   void list::_001OnDraw(::ca2::graphics *pdc)
    {
 
       if(m_pdata != NULL)
@@ -181,7 +181,7 @@ namespace user
 
       m_penHighlight->create_solid(pdc, 2, ARGB(255, 0, 255, 255));
 
-      pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
+      pdc->set_text_rendering(::ca2::text_rendering_anti_alias_grid_fit);
 
       if(m_bLockViewUpdate)
          return;
@@ -330,7 +330,7 @@ namespace user
       GetClientRect(rectClient);
 
       bool bHoverFont = false;
-      ::ca::font  * pfont = _001GetFont();
+      ::ca2::font  * pfont = _001GetFont();
       pdrawitem->m_pgraphics->SelectObject(pfont);
 
       m_pdrawlistitem->m_pfont = pfont;
@@ -457,7 +457,7 @@ namespace user
       }
 
       bool bHoverFont = false;
-      ::ca::font  * pfont = _001GetFont();
+      ::ca2::font  * pfont = _001GetFont();
       pdrawitem->m_pgraphics->SelectObject(pfont);
 
       pdrawitem->m_pfont = pfont;
@@ -534,7 +534,7 @@ namespace user
          (m_eview != ViewIcon ||
          ((m_iconlayout.m_iaDisplayToStrict.get_a(m_iItemHover) >= 0 && m_iconlayout.m_iaDisplayToStrict.get_a(m_iItemHover) < m_nItemCount)));
 
-      ::ca::font * pfont;
+      ::ca2::font * pfont;
       if(pdrawitem->m_bListItemHover)
       {
          System.visual().imaging().color_blend(pdrawitem->m_pgraphics, pdrawitem->m_rectItem, RGB(255, 255, 255), 128);
@@ -558,7 +558,7 @@ namespace user
 
       if(pdrawitem->m_bListItemSelected)
       {
-         if(System.savings().is_trying_to_save(::ca::resource_processing))
+         if(System.savings().is_trying_to_save(::ca2::resource_processing))
          {
             pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, ARGB(255, 96,96,96));
          }
@@ -618,8 +618,8 @@ namespace user
       }
       if(rangeHighlight.has_item(pdrawitem->m_iDisplayItem))
       {
-         ::ca::pen_sp penHighlight(allocer());
-         ::ca::pen * ppenHighlight = _001GetPenHighlight();
+         ::ca2::pen_sp penHighlight(allocer());
+         ::ca2::pen * ppenHighlight = _001GetPenHighlight();
          class rect rectHighlight(pdrawitem->m_rectItem);
          rectHighlight.deflate(2, 2);
          pdrawitem->m_pgraphics->SelectObject(ppenHighlight);
@@ -717,19 +717,19 @@ namespace user
 
    //cs.style |= LVS_NOSCROLL;
 
-   return ::ca::window::pre_create_window(cs);
+   return ::ca2::window::pre_create_window(cs);
    }*/
 
    /*void list::OnSize(UINT nType, index cx, index cy)
    {
-   ::ca::window::OnSize(nType, cx, cy);
+   ::ca2::window::OnSize(nType, cx, cy);
 
    layout();
    }*/
 
-   void list::_001OnSize(::ca::signal_object * pobj)
+   void list::_001OnSize(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::size, psize, pobj);
+      SCAST_PTR(::ca2::message::size, psize, pobj);
       layout();
       psize->m_bRet = false;
    }
@@ -1077,7 +1077,7 @@ namespace user
       {
          list_column * pcolumn = m_columna._001GetVisible(iColumn);
          str.Format("SubItem[%d].Visible", pcolumn->m_iSubItem);
-         if(data_get(str, ::ca::system::idEmpty, bVisible))
+         if(data_get(str, ::ca2::system::idEmpty, bVisible))
          {
             if(!bVisible)
             {
@@ -1090,7 +1090,7 @@ namespace user
       {
          list_column * pcolumn = m_columna._001GetNonVisible(iColumn);
          str.Format("SubItem[%d].Visible", pcolumn->m_iSubItem);
-         if(data_get(str, ::ca::system::idEmpty, bVisible))
+         if(data_get(str, ::ca2::system::idEmpty, bVisible))
          {
             if(bVisible)
             {
@@ -1129,8 +1129,8 @@ namespace user
          }
       }
 
-      ::ca::font * pfont = _001GetFont();
-      ::ca::memory_graphics pdc(allocer());
+      ::ca2::font * pfont = _001GetFont();
+      ::ca2::memory_graphics pdc(allocer());
       pdc->SelectObject(pfont);
       size size;
       size = pdc->GetTextExtent("Ap");
@@ -2279,9 +2279,9 @@ namespace user
       }
    }
 
-   void list::_001OnKeyDown(::ca::signal_object * pobj)
+   void list::_001OnKeyDown(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::key, pkey, pobj)
+      SCAST_PTR(::ca2::message::key, pkey, pobj)
          if(pkey->previous()) // give chance to child
             return;
       if(pkey->m_ekey == ::user::key_down || pkey->m_ekey == ::user::key_up ||
@@ -2372,9 +2372,9 @@ namespace user
       pobj->m_bRet = false;
    }
 
-   void list::_001OnLButtonDown(::ca::signal_object * pobj)
+   void list::_001OnLButtonDown(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       pmouse->previous(); // give chance to child control and to base views
       int_ptr iItem;
       point pt = pmouse->m_pt;
@@ -2434,9 +2434,9 @@ namespace user
       pmouse->set_lresult(1);
    }
 
-   void list::_001OnLButtonUp(::ca::signal_object * pobj)
+   void list::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
          point pt = pmouse->m_pt;
       ScreenToClient(&pt);
 
@@ -2477,9 +2477,9 @@ namespace user
       pmouse->set_lresult(1);
    }
 
-   void list::_001OnRButtonDown(::ca::signal_object * pobj)
+   void list::_001OnRButtonDown(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
 
       pmouse->previous();
       point pt = pmouse->m_pt;
@@ -2535,12 +2535,12 @@ namespace user
       else if(get_form() != NULL)
       {
          get_form()->send_message(
-            ::ca::message_event, 0, (LPARAM) &ev);
+            ::ca2::message_event, 0, (LPARAM) &ev);
       }
       else
       {
          get_parent()->send_message(
-            ::ca::message_event, 0, (LPARAM) &ev);
+            ::ca2::message_event, 0, (LPARAM) &ev);
       }
 
    }
@@ -2723,9 +2723,9 @@ namespace user
       return -1;
    }
 
-   void list::_001OnLButtonDblClk(::ca::signal_object * pobj)
+   void list::_001OnLButtonDblClk(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
          m_iClick = 2;
 
       //   _001OnClick(nFlags, point);
@@ -2843,7 +2843,7 @@ namespace user
          width = m_columna.element_at(i)->m_iWidth;
          data_set(
             str,
-            ::ca::system::idEmpty,
+            ::ca2::system::idEmpty,
             width);
       }
 
@@ -2873,7 +2873,7 @@ namespace user
       str.Format("SubItem[%d].Visible", iSubItem);
       data_set(
          str,
-         ::ca::system::idEmpty,
+         ::ca2::system::idEmpty,
          bShow ? 1 : 0);
       m_columna.ShowSubItem(iSubItem, bShow);
       _001OnColumnChange();
@@ -2992,8 +2992,8 @@ namespace user
       return this->get_size();
    }
 
-   list_column_array::list_column_array(sp(::ca::application) papp) :
-   ca(papp)
+   list_column_array::list_column_array(sp(::ca2::application) papp) :
+   ca2(papp)
    {
       m_plist = NULL;
    }
@@ -3313,13 +3313,13 @@ namespace user
          str.Format("list_column[%d].Next", iKey);
          m_plist->data_set(
             str,
-            ::ca::system::idEmpty,
+            ::ca2::system::idEmpty,
             column->m_iNextGlobalOrderKey);
       }
       str.Format("list_column[-1].Next");
       m_plist->data_set(
          str,
-         ::ca::system::idEmpty,
+         ::ca2::system::idEmpty,
          m_iFirstGlobalOrderKey);
 
 
@@ -3335,13 +3335,13 @@ namespace user
          str.Format("list_column[%d].Next", iKey);
          m_plist->data_get(
             str,
-            ::ca::system::idEmpty,
+            ::ca2::system::idEmpty,
             column->m_iNextGlobalOrderKey);
       }
       str.Format("list_column[-1].Next");
       m_plist->data_get(
          str,
-         ::ca::system::idEmpty,
+         ::ca2::system::idEmpty,
          m_iFirstGlobalOrderKey);
 
       GlobalToVisibleOrder();
@@ -3486,9 +3486,9 @@ namespace user
       }
    }
 
-   void list::_001OnCreate(::ca::signal_object * pobj)
+   void list::_001OnCreate(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::create, pcreate, pobj)
+      SCAST_PTR(::ca2::message::create, pcreate, pobj)
 
 
          pobj->previous();
@@ -3562,10 +3562,10 @@ namespace user
    }
 
 
-   void list::_001OnTimer(::ca::signal_object * pobj)
+   void list::_001OnTimer(::ca2::signal_object * pobj)
    {
 //      return; //xxxtimer
-      SCAST_PTR(::ca::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 12345679) // left click
       {
          KillTimer(12345679);
@@ -3819,8 +3819,8 @@ namespace user
 
    void list::_001LayoutTopText()
    {
-      ::ca::font * pfont = _001GetFont();
-      ::ca::memory_graphics pdc(allocer());
+      ::ca2::font * pfont = _001GetFont();
+      ::ca2::memory_graphics pdc(allocer());
       pdc->SelectObject(pfont);
       array < size > sizea;
       m_dcextension.GetTextExtent(pdc, m_strTopText, sizea);
@@ -3973,21 +3973,21 @@ namespace user
 
    int32_t list::_001CalcItemWidth(index iItem, index iSubItem)
    {
-      ::ca::memory_graphics pdc(allocer());
-      ::ca::font * pfont = _001GetFont();
+      ::ca2::memory_graphics pdc(allocer());
+      ::ca2::font * pfont = _001GetFont();
       index cx = _001CalcItemWidth(pdc, pfont, iItem, iSubItem);
 
       return (int32_t) cx;
 
    }
 
-   int32_t list::_001CalcItemWidth(::ca::graphics * pdc, ::ca::font * pfont, index iItem, index iSubItem)
+   int32_t list::_001CalcItemWidth(::ca2::graphics * pdc, ::ca2::font * pfont, index iItem, index iSubItem)
    {
       pdc->SelectObject(pfont);
       return _001CalcItemWidth(pdc, iItem, iSubItem);
    }
 
-   int32_t list::_001CalcItemWidth(::ca::graphics * pdc, index iItem, index iSubItem)
+   int32_t list::_001CalcItemWidth(::ca2::graphics * pdc, index iItem, index iSubItem)
    {
 #ifdef WINDOWSEX
       ::image_list::info ii;
@@ -4676,8 +4676,8 @@ namespace user
    int32_t list::_001CalcColumnWidth(index iColumn)
    {
       UNREFERENCED_PARAMETER(iColumn);
-      ::ca::memory_graphics pdc(allocer());
-      ::ca::font * pfont = _001GetFont();
+      ::ca2::memory_graphics pdc(allocer());
+      ::ca2::font * pfont = _001GetFont();
       pdc->SelectObject(pfont);
       int32_t iMaxWidth = 0;
       ::count iCount = m_nItemCount;
@@ -4701,7 +4701,7 @@ namespace user
       _001SetColumnWidth(iColumn, _001CalcColumnWidth(iColumn));
    }
 
-   void list::_OnDraw(::ca::graphics *pdc)
+   void list::_OnDraw(::ca2::graphics *pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
    }
@@ -4736,28 +4736,28 @@ namespace user
 
 
 
-   ::ca::pen * list::_001GetPenHighlight()
+   ::ca2::pen * list::_001GetPenHighlight()
    {
       return m_penHighlight;
    }
 
-   ::ca::pen * list::_001GetPenFocused()
+   ::ca2::pen * list::_001GetPenFocused()
    {
       return m_penFocused;
 
    }
 
-   ::ca::font * list::_001GetFont()
+   ::ca2::font * list::_001GetFont()
    {
       return m_font;
    }
 
-   ::ca::font * list::_001GetFontHover()
+   ::ca2::font * list::_001GetFontHover()
    {
       return m_fontHover;
    }
 
-   void list::_001OnMouseLeave(::ca::signal_object * pobj)
+   void list::_001OnMouseLeave(::ca2::signal_object * pobj)
    {
       m_iItemHover = -1;
       m_iSubItemHover = -1;
@@ -4766,9 +4766,9 @@ namespace user
    }
 
 
-   void list::_001OnMouseMove(::ca::signal_object * pobj)
+   void list::_001OnMouseMove(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
          pmouse->set_lresult(1);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -4935,17 +4935,17 @@ namespace user
    }
 
 
-   void list::_001OnVScroll(::ca::signal_object * pobj)
+   void list::_001OnVScroll(::ca2::signal_object * pobj)
    {
-//      SCAST_PTR(::ca::message::scroll, pscroll, pobj);
+//      SCAST_PTR(::ca2::message::scroll, pscroll, pobj);
 
       pobj->previous();
 
    }
 
-   void list::_001OnHScroll(::ca::signal_object * pobj)
+   void list::_001OnHScroll(::ca2::signal_object * pobj)
    {
-//      SCAST_PTR(::ca::message::scroll, pscroll, pobj);
+//      SCAST_PTR(::ca2::message::scroll, pscroll, pobj);
 
       pobj->previous();
 
@@ -5054,13 +5054,13 @@ namespace user
    {
    }
 
-   void list::list_layout::write(::ca::byte_output_stream & ostream)
+   void list::list_layout::write(::ca2::byte_output_stream & ostream)
    {
       //ostream << m_iaDisplayToStrict;
       ostream << m_iWidth;
    }
 
-   void list::list_layout::read(::ca::byte_input_stream & istream)
+   void list::list_layout::read(::ca2::byte_input_stream & istream)
    {
       //istream >> m_iaDisplayToStrict;
       istream >> m_iWidth;
@@ -5074,13 +5074,13 @@ namespace user
    {
    }
 
-   void list::icon_layout::write(::ca::byte_output_stream & ostream)
+   void list::icon_layout::write(::ca2::byte_output_stream & ostream)
    {
       ostream << m_iaDisplayToStrict;
       ostream << m_iWidth;
    }
 
-   void list::icon_layout::read(::ca::byte_input_stream & istream)
+   void list::icon_layout::read(::ca2::byte_input_stream & istream)
    {
       istream >> m_iaDisplayToStrict;
       istream >> m_iWidth;
@@ -5132,13 +5132,13 @@ namespace user
       return m_flags.is_signalized(flag_auto_arrange);
    }
 
-   void list::_001OnListViewAutoArrange(::ca::signal_object * pobj)
+   void list::_001OnListViewAutoArrange(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       auto_arrange(!get_auto_arrange());
    }
 
-   void list::_001OnUpdateListViewAutoArrange(::ca::signal_object * pobj)
+   void list::_001OnUpdateListViewAutoArrange(::ca2::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->_001SetCheck(get_auto_arrange());
@@ -5276,13 +5276,13 @@ namespace user
          visual::icon * picon;
          if(m_pcolumn->m_mapIcon.Lookup((int32_t)m_iImage, picon))
          {
-            m_pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
+            m_pgraphics->set_alpha_mode(::ca2::alpha_mode_blend);
             return m_pgraphics->DrawIcon(m_rectImage.top_left(), picon) != FALSE;
          }
       }
       else
       {
-         m_pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
+         m_pgraphics->set_alpha_mode(::ca2::alpha_mode_blend);
          return get_image_list()->draw(m_pgraphics, (int32_t) m_iImage, m_rectImage.top_left(), m_rectImage.size(), point(0,0), 0);
       }
       return false;
@@ -5342,11 +5342,11 @@ namespace user
             size.cx += 4;
             size.cy += 4;
 
-            ::ca::dib_sp dib(m_plist->allocer());
+            ::ca2::dib_sp dib(m_plist->allocer());
             dib->create(size.cx, size.cy);
             dib->Fill(0, 0, 0, 0);
             dib->get_graphics()->SetTextColor(ARGB(255, 255, 255, 255));
-            ::ca::dib_sp dib2(m_plist->allocer());
+            ::ca2::dib_sp dib2(m_plist->allocer());
             dib2->create(size.cx, size.cy);
             dib2->Fill(0, 0, 0, 0);
 

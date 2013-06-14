@@ -6,7 +6,7 @@
 
 #endif
 
-namespace ca
+namespace ca2
 {
 
 
@@ -439,6 +439,6 @@ namespace ca
    } // namespace international
 
 
-} // namespace ca
+} // namespace ca2
 
 

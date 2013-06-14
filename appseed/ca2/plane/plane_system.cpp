@@ -11,7 +11,7 @@ namespace plane
 {
 
 
-   system::system(sp(::ca::application) papp) :
+   system::system(sp(::ca2::application) papp) :
       m_mutexDelete(this),
       m_http(this),
       m_net(this),
@@ -34,7 +34,7 @@ namespace plane
       if(papp == NULL)
       {
 
-         oprop("parent_system") = (sp(::ca::ca)) NULL;
+         oprop("parent_system") = (sp(::ca2::ca2)) NULL;
 
       }
       else
@@ -52,8 +52,8 @@ namespace plane
 
       string strId;
       //strId = m_strAppName;
-      //strId += ::ca::str::has_char(m_strAppId, ".");
-      //strId += ::ca::str::has_char(m_strBaseSupportId, ".");
+      //strId += ::ca2::str::has_char(m_strAppId, ".");
+      //strId += ::ca2::str::has_char(m_strBaseSupportId, ".");
 
 
       strId = "ca2log";
@@ -94,12 +94,12 @@ namespace plane
       use_base_ca2_allocator();
 
 
-      m_pfactory = new class ::ca::factory(this);
+      m_pfactory = new class ::ca2::factory(this);
       m_pfactory->set_app(this);
 
-      m_pfactory->cloneable_large < ::ca::create_context > ();
-      m_pfactory->cloneable_large < ::ca::application_bias > ();
-      m_pfactory->cloneable_large < ::ca::command_line > ();
+      m_pfactory->cloneable_large < ::ca2::create_context > ();
+      m_pfactory->cloneable_large < ::ca2::application_bias > ();
+      m_pfactory->cloneable_large < ::ca2::command_line > ();
       m_pfactory->cloneable_large < ::manual_reset_event > ();
       m_pfactory->cloneable_large < ::mutex > ();
       m_pfactory->cloneable_large < ::event > ();
@@ -115,7 +115,7 @@ namespace plane
 #ifndef METROWIN
       m_processsection.set_app(this);
 #endif
-      m_pdatetime = new class ::ca::datetime(this);
+      m_pdatetime = new class ::ca2::datetime(this);
       m_email.set_app(this);
       m_http.set_app(this);
       m_compress.set_app(this);
@@ -187,10 +187,10 @@ namespace plane
          return false;
 
 
-      ::ca::profiler::initialize();
+      ::ca2::profiler::initialize();
 
 
-//      System.factory().creatable < ::ca::log >(System.type_info < ::ca::log > (), 1);
+//      System.factory().creatable < ::ca2::log >(System.type_info < ::ca2::log > (), 1);
 
 /*      if(!::plane::application::process_initialize())
       {
@@ -298,14 +298,14 @@ namespace plane
       if(fontopus()->create_system_user("system") == NULL)
          return false;
 
-/*      System.factory().cloneable_large < ::ca::font >();
-      System.factory().cloneable_large < ::ca::brush >();
-      System.factory().cloneable_large < ::ca::pen_sp >();
-      System.factory().cloneable_large < ::ca::bitmap_sp >();
-      System.factory().cloneable_large < ::ca::palette_sp >();
-      System.factory().cloneable_large < ::ca::region_sp >();*/
+/*      System.factory().cloneable_large < ::ca2::font >();
+      System.factory().cloneable_large < ::ca2::brush >();
+      System.factory().cloneable_large < ::ca2::pen_sp >();
+      System.factory().cloneable_large < ::ca2::bitmap_sp >();
+      System.factory().cloneable_large < ::ca2::palette_sp >();
+      System.factory().cloneable_large < ::ca2::region_sp >();*/
       //      System.factory().cloneable_large < var >();
-//      System.factory().creatable < ::ca::log >(System.type_info < ::ca::log > (), 1);
+//      System.factory().creatable < ::ca2::log >(System.type_info < ::ca2::log > (), 1);
 
       m_puserstr = new ::user::str(this);
       if(m_puserstr == NULL)
@@ -341,12 +341,12 @@ namespace plane
       if(directrix()->m_varTopicQuery.has_property("install"))
          return true;
 
-      ::ca::filesp file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::ca::file::type_binary | ::ca::file::mode_read);
+      ::ca2::filesp file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::ca2::file::type_binary | ::ca2::file::mode_read);
 
       if(file.is_null())
          return false;
 
-      ::ca::byte_input_stream is(file);
+      ::ca2::byte_input_stream is(file);
 
       is >> m_mapAppLibrary;
 
@@ -392,7 +392,7 @@ namespace plane
    bool system::find_applications_to_cache()
    {
 
-      /*      m_spfilehandler(new ::ca::filehandler::handler(this));*/
+      /*      m_spfilehandler(new ::ca2::filehandler::handler(this));*/
 
       m_mapAppLibrary.remove_all();
 
@@ -406,9 +406,9 @@ namespace plane
 
          strLibraryId = straTitle[i];
 
-         if(::ca::str::ends_eat_ci(strLibraryId, ".dll")
-            || ::ca::str::ends_eat_ci(strLibraryId, ".so")
-            || ::ca::str::ends_eat_ci(strLibraryId, ".dylib"))
+         if(::ca2::str::ends_eat_ci(strLibraryId, ".dll")
+            || ::ca2::str::ends_eat_ci(strLibraryId, ".so")
+            || ::ca2::str::ends_eat_ci(strLibraryId, ".dylib"))
          {
 
             map_application_library(strLibraryId);
@@ -417,12 +417,12 @@ namespace plane
 
       }
 
-      ::ca::filesp file;
+      ::ca2::filesp file;
 
       try
       {
 
-         file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::ca::file::defer_create_directory | ::ca::file::type_binary | ::ca::file::mode_create  | ::ca::file::mode_write);
+         file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::ca2::file::defer_create_directory | ::ca2::file::type_binary | ::ca2::file::mode_create  | ::ca2::file::mode_write);
 
       }
       catch(base_exception &)
@@ -432,7 +432,7 @@ namespace plane
 
       }
 
-      ::ca::byte_output_stream os(file);
+      ::ca2::byte_output_stream os(file);
 
       os << m_mapAppLibrary;
 
@@ -445,7 +445,7 @@ namespace plane
    bool system::map_application_library(const char * pszLibrary)
    {
 
-      ::ca::library library(NULL);
+      ::ca2::library library(NULL);
 
       if(!library.open(this, pszLibrary))
          return false;
@@ -480,10 +480,10 @@ namespace plane
          strLibrary = "ca2";
 
       }
-      else if(!::ca::str::begins_eat(strLibrary, "libca2"))
+      else if(!::ca2::str::begins_eat(strLibrary, "libca2"))
       {
 
-         ::ca::str::begins_eat(strLibrary, "lib");
+         ::ca2::str::begins_eat(strLibrary, "lib");
 
       }
 
@@ -495,7 +495,7 @@ namespace plane
 
       strPrefix.replace("/", "_");
 
-      ::ca::str::begins_eat_ci(strLibrary, strPrefix);
+      ::ca2::str::begins_eat_ci(strLibrary, strPrefix);
 
       strRoot += strLibrary;
 
@@ -538,7 +538,7 @@ namespace plane
       set_enum_name(var::type_string    , "string");
       set_enum_name(var::type_int32   , "integer");
       set_enum_name(var::type_uint32     , "ulong");
-      set_enum_name(var::type_ca2       , "ca");
+      set_enum_name(var::type_ca2       , "ca2");
       set_enum_name(var::type_bool      , "bool");
       set_enum_name(var::type_double    , "double");*/
 
@@ -577,7 +577,7 @@ namespace plane
       if(!m_bDoNotExitIfNoApplications)
       {
 
-         ::ca::application_ptra appptra;
+         ::ca2::application_ptra appptra;
 
          appptra = this->appptra();
 
@@ -714,7 +714,7 @@ namespace plane
          if(m_ptwf != NULL)
          {
             m_ptwf->twf_stop();
-            ::ca::del(m_ptwf);
+            ::ca2::del(m_ptwf);
             m_ptwf = NULL;
          }
       }
@@ -780,25 +780,25 @@ namespace plane
       return iRet;
    }
 
-   sp(::ca::ca) system::on_alloc(sp(::ca::application) papp, sp(::ca::type_info) info)
+   sp(::ca2::ca2) system::on_alloc(sp(::ca2::application) papp, sp(::ca2::type_info) info)
    {
       /*string str;
       str.Format("Could not alloc %s", info.name());
       simple_message_box(str);*/
-      sp(::ca::ca) pobj = Sys(papp).factory().create(papp, info);
+      sp(::ca2::ca2) pobj = Sys(papp).factory().create(papp, info);
       if(pobj != NULL)
          return pobj;
       on_allocation_error(papp, info);
       return NULL;
    }
 
-   sp(::ca::ca) system::clone()
+   sp(::ca2::ca2) system::clone()
    {
       // by the time, it is not possible to clone a system
       return NULL;
    }
 
-   sp(::ca::ca) system::clone(sp(::ca::ca) pobj)
+   sp(::ca2::ca2) system::clone(sp(::ca2::ca2) pobj)
    {
       return System.factory().base_clone(pobj);
    }
@@ -817,7 +817,7 @@ namespace plane
    }
 
 
-   sp(::plane::session) system::get_session(index iEdge, ::ca::application_bias * pbiasCreation)
+   sp(::plane::session) system::get_session(index iEdge, ::ca2::application_bias * pbiasCreation)
    {
       sp(::plane::session) pbergedge = NULL;
       if(m_pbergedgemap == NULL)
@@ -834,14 +834,14 @@ namespace plane
    }
 
 
-   sp(::ca::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   sp(::ca2::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca2::application_bias * pbiasCreate)
    {
       sp(::plane::session) psession = get_session(iEdge, pbiasCreate);
       return psession->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
    }
 
 
-   sp(::ca::window_draw) system::get_twf()
+   sp(::ca2::window_draw) system::get_twf()
    {
 
       return m_ptwf;
@@ -849,29 +849,29 @@ namespace plane
    }
 
 
-   ::ca::history & system::hist()
+   ::ca2::history & system::hist()
    {
       return *m_phistory;
    }
 
 
-   bool system::set_history(::ca::history * phistory)
+   bool system::set_history(::ca2::history * phistory)
    {
       m_phistory = phistory;
       return true;
    }
 
-   ::ca::log & system::log()
+   ::ca2::log & system::log()
    {
       return *m_plog;
    }
 
-   ::ca::factory & system::factory()
+   ::ca2::factory & system::factory()
    {
       return *m_pfactory;
    }
 
-   ::ca::application_ptra & system::appptra()
+   ::ca2::application_ptra & system::appptra()
    {
       return m_appptra;
    }
@@ -881,7 +881,7 @@ namespace plane
       return m_net;
    }
 
-   ::ca::stra & system::stra()
+   ::ca2::stra & system::stra()
    {
       return m_stra;
    }
@@ -896,31 +896,31 @@ namespace plane
       return m_userset;
    }
 
-   ::ca::service & system::service()
+   ::ca2::service & system::service()
    {
       return m_service;
    }
 
-   ::ca::install & system::install()
+   ::ca2::install & system::install()
    {
       return m_install;
    }
 
-   ::ca::os & system::os()
+   ::ca2::os & system::os()
    {
       return m_spos;
    }
 
 #ifndef METROWIN
 
-   ::ca::process_section & system::process()
+   ::ca2::process_section & system::process()
    {
       return m_processsection;
    }
 
 #endif
 
-   ::ca::datetime & system::datetime()
+   ::ca2::datetime & system::datetime()
    {
       return *m_pdatetime;
    }
@@ -930,12 +930,12 @@ namespace plane
       return *m_puserstr;
    }
 
-   /*   ::ca::filehandler::handler & system::filehandler()
+   /*   ::ca2::filehandler::handler & system::filehandler()
    {
    return *m_spfilehandler;
    }*/
 
-   void system::register_bergedge_application(sp(::ca::application) papp)
+   void system::register_bergedge_application(sp(::ca2::application) papp)
    {
 
       retry_single_lock rsl(&m_mutex, millis(84), millis(84));
@@ -955,7 +955,7 @@ namespace plane
 
    }
 
-   void system::unregister_bergedge_application(sp(::ca::application) papp)
+   void system::unregister_bergedge_application(sp(::ca2::application) papp)
    {
 
       retry_single_lock rsl(&m_mutex, millis(84), millis(84));
@@ -971,7 +971,7 @@ namespace plane
 
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
-         sp(::ca::application) papp = appptra()(i);
+         sp(::ca2::application) papp = appptra()(i);
          papp->load_string_table();
       }
 
@@ -984,7 +984,7 @@ namespace plane
 
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
-         sp(::ca::application) papp = appptra()(i);
+         sp(::ca2::application) papp = appptra()(i);
          papp->set_locale(pszLocale, bUser);
       }
 
@@ -997,7 +997,7 @@ namespace plane
 
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
-         sp(::ca::application) papp = appptra()(i);
+         sp(::ca2::application) papp = appptra()(i);
          papp->set_schema(pszStyle, bUser);
       }
 
@@ -1151,7 +1151,7 @@ namespace plane
    {
       if(m_plog != NULL)
          return true;
-      m_plog = new ::ca::log(this);
+      m_plog = new ::ca2::log(this);
       m_plog->set_extended_log();
       m_plog->set_app(this);
       if(!m_plog->initialize(pszId))
@@ -1159,7 +1159,7 @@ namespace plane
          m_plog.release();
          return false;
       }
-      //      ::ca::trace_v = &::ca::system_log_trace_v;
+      //      ::ca2::trace_v = &::ca2::system_log_trace_v;
       return true;
    }
 
@@ -1220,14 +1220,14 @@ namespace plane
    }
 
 
-   string system::matter_as_string(sp(::ca::application) papp, const char * pszMatter, const char * pszMatter2)
+   string system::matter_as_string(sp(::ca2::application) papp, const char * pszMatter, const char * pszMatter2)
    {
       var varQuery;
       varQuery["disable_ca2_sessid"] = true;
       return file().as_string(dir_matter(papp, pszMatter, pszMatter2), varQuery, papp);
    }
 
-   string system::dir_matter(sp(::ca::application) papp, const char * pszMatter, const char * pszMatter2)
+   string system::dir_matter(sp(::ca2::application) papp, const char * pszMatter, const char * pszMatter2)
    {
       return dir().matter(papp, pszMatter, pszMatter2);
    }
@@ -1242,7 +1242,7 @@ namespace plane
       return file().is_read_only(pszPath);
    }
 
-   string system::file_as_string(sp(::ca::application) papp, const char * pszPath)
+   string system::file_as_string(sp(::ca2::application) papp, const char * pszPath)
    {
       return file().as_string(pszPath, papp);
    }
@@ -1272,7 +1272,7 @@ namespace plane
       return file().title_(psz);
    }
 
-   /*void system::register_delete(sp(::ca::ca) plistened, sp(::ca::ca) plistener)
+   /*void system::register_delete(sp(::ca2::ca2) plistened, sp(::ca2::ca2) plistener)
    {
       if(plistened == plistener)
          return;
@@ -1284,7 +1284,7 @@ namespace plane
       plistened->listenerptra().add(plistener);
    }
 
-   void system::unregister_delete(sp(::ca::ca) plistened, sp(::ca::ca) plistener)
+   void system::unregister_delete(sp(::ca2::ca2) plistened, sp(::ca2::ca2) plistener)
    {
       if(plistened == plistener)
          return;
@@ -1305,7 +1305,7 @@ namespace plane
    {
       if(m_plog == NULL || !m_plog->m_bExtendedLog)
       {
-         return ::ca::SimpleDebugReport(iReportType, pszFileName, iLineNumber, pszModuleName, pszFormat, list);
+         return ::ca2::SimpleDebugReport(iReportType, pszFileName, iLineNumber, pszModuleName, pszFormat, list);
       }
 
       string str;
@@ -1342,7 +1342,7 @@ namespace plane
       if(iReportType == _CRT_ASSERT && is_debugger_attached())
       {
 #ifdef DEBUG
-         ::ca::property_set propertyset;
+         ::ca2::property_set propertyset;
          propertyset["filepath"] = pszFileName;
          propertyset["linenumber"] = iLineNumber;
          message_box("system\\debug\\assert.xhtml", propertyset);
@@ -1394,7 +1394,7 @@ namespace plane
 #endif
    }
 
-   void system::on_allocation_error(sp(::ca::application) papp, sp(::ca::type_info) info)
+   void system::on_allocation_error(sp(::ca2::application) papp, sp(::ca2::type_info) info)
    {
       UNREFERENCED_PARAMETER(papp);
       simple_message_box(NULL, MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info->friendly_name());
@@ -1426,7 +1426,7 @@ namespace plane
       return __ca2_logging_report(i1, psz1, i2, psz2, psz3, args);
    }
 
-   void system::on_request(sp(::ca::create_context) pcreatecontext)
+   void system::on_request(sp(::ca2::create_context) pcreatecontext)
    {
       sp(::plane::session) psession = get_session(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
       psession->request_create(pcreatecontext);
@@ -1438,22 +1438,22 @@ namespace plane
       psession->open_by_file_extension(pszFileName);
    }
 
-   sp(::ca::ca) system::alloc(sp(::ca::application) papp, sp(::ca::type_info) info)
+   sp(::ca2::ca2) system::alloc(sp(::ca2::application) papp, sp(::ca2::type_info) info)
    {
-      return ::ca::system::alloc(papp, info);
+      return ::ca2::system::alloc(papp, info);
    }
 
-   sp(::ca::ca) system::alloc(sp(::ca::application) papp, const class id & idType)
+   sp(::ca2::ca2) system::alloc(sp(::ca2::application) papp, const class id & idType)
    {
-      return ::ca::system::alloc(papp, get_type_info(idType));
+      return ::ca2::system::alloc(papp, get_type_info(idType));
    }
 
    bool system::sync_load_url(string & str, const char * lpszUrl, ::fontopus::user * puser, ::http::cookies * pcookies)
    {
       string filename = System.file().time_square(get_app());
-      ::ca::property_set headers;
-      ::ca::property_set post;
-      ::ca::property_set set;
+      ::ca2::property_set headers;
+      ::ca2::property_set post;
+      ::ca2::property_set set;
       if(!http().download(lpszUrl, filename, post, headers, set, pcookies, puser))
          return false;
       if(headers["Location"].get_string().has_char())
@@ -1544,33 +1544,33 @@ namespace plane
       return bOk;*/
    }
 
-   ::ca::compress & system::compress()
+   ::ca2::compress & system::compress()
    {
       return m_compress;
    }
 
-   ::ca::patch & system::patch()
+   ::ca2::patch & system::patch()
    {
       return m_patch;
    }
 
-   class ::ca::crypt & system::crypt()
+   class ::ca2::crypt & system::crypt()
    {
       return m_spcrypt;
    }
 
-   class ::ca::email & system::email()
+   class ::ca2::email & system::email()
    {
       return m_email;
    }
 
-   class ::ca::http::system & system::http()
+   class ::ca2::http::system & system::http()
    {
       return m_http;
    }
 
 
-   ::ca::copydesk & system::copydesk()
+   ::ca2::copydesk & system::copydesk()
    {
       return m_spcopydesk;
    }
@@ -1580,7 +1580,7 @@ namespace plane
       return true;
    }
 
-   index system::get_new_bergedge(::ca::application_bias * pbiasCreation)
+   index system::get_new_bergedge(::ca2::application_bias * pbiasCreation)
    {
       index iNewEdge = m_iNewEdge;
       sp(::plane::session) pbergedge;
@@ -1599,7 +1599,7 @@ namespace plane
    {
       if(m_ptwf != NULL)
          return true;
-      m_ptwf = alloc(this, System.type_info < ::ca::window_draw > ());
+      m_ptwf = alloc(this, System.type_info < ::ca2::window_draw > ());
       m_ptwf->twf_start();
       return true;
    }
@@ -1614,7 +1614,7 @@ namespace plane
       return LibCharGuess::GuessCodePage(pszText);
    }
 
-   void system::discard_to_factory(sp(::ca::ca) pca)
+   void system::discard_to_factory(sp(::ca2::ca2) pca)
    {
 
       if(m_pfactory == NULL)
@@ -1625,7 +1625,7 @@ namespace plane
    }
 
 
-   sp(::ca::application) system::get_new_app(sp(::ca::application) pappNewApplicationParent, const char * pszType, const char * pszAppId)
+   sp(::ca2::application) system::get_new_app(sp(::ca2::application) pappNewApplicationParent, const char * pszType, const char * pszAppId)
    {
 
       string strId(pszAppId);
@@ -1676,7 +1676,7 @@ namespace plane
 
 #endif
 
-      ::ca::library library(NULL);
+      ::ca2::library library(NULL);
 
       string strLibrary = m_mapAppLibrary[pszAppId];
 
@@ -1687,7 +1687,7 @@ namespace plane
 
       }
 
-      sp(::ca::application) papp = NULL;
+      sp(::ca2::application) papp = NULL;
 
       if(!library.open(pappNewApplicationParent, strLibrary, false))
          return NULL;
@@ -1697,7 +1697,7 @@ namespace plane
       if(papp == NULL)
          return NULL;
 
-      sp(::ca::application) pgenapp = (papp);
+      sp(::ca2::application) pgenapp = (papp);
 
       pgenapp->m_strAppId = pszAppId;
 
@@ -1706,7 +1706,7 @@ namespace plane
    }
 
 /*
-   bool system::set_main_init_data(::ca::main_init_data * pdata)
+   bool system::set_main_init_data(::ca2::main_init_data * pdata)
    {
 
       if(pdata == NULL)
@@ -1716,7 +1716,7 @@ namespace plane
          return true;
       }
 
-      ::ca::property_set set(this);
+      ::ca2::property_set set(this);
 
       var varFile;
       string strApp;
@@ -1757,17 +1757,17 @@ namespace plane
 
    }*/
 
-   sp(::ca::type_info) system::get_type_info(const ::std_type_info & info)
+   sp(::ca2::type_info) system::get_type_info(const ::std_type_info & info)
    {
 
 #ifdef WINDOWS
-      sp(::ca::type_info) & typeinfo = m_typemap[info.raw_name()];
+      sp(::ca2::type_info) & typeinfo = m_typemap[info.raw_name()];
 #else
-      sp(::ca::type_info) & typeinfo = m_typemap[info.name()];
+      sp(::ca2::type_info) & typeinfo = m_typemap[info.name()];
 #endif
 
       if(typeinfo.is_null())
-         typeinfo = canew(::ca::type_info(info));
+         typeinfo = canew(::ca2::type_info(info));
 
       return typeinfo;
 
@@ -1912,7 +1912,7 @@ namespace plane
    index system::get_best_intersection_monitor(LPRECT lprect)
    {
 
-      ::count c   = get_monitor_count();
+      ::count ca   = get_monitor_count();
 
       rect        rectIntersect;
       rect        rectMonitor;
@@ -1920,7 +1920,7 @@ namespace plane
       index       iBestAreaIndex = -1;
       int64_t     iArea;
 
-      for(index i = 0; i < c; i++)
+      for(index i = 0; i < ca; i++)
       {
          get_monitor_rect(i, rectMonitor);
          if(rectIntersect.intersect(rectMonitor, lprect))
@@ -1960,7 +1960,7 @@ namespace plane
 
    }
 
-   sp(::ca::command_thread) system::command_thread()
+   sp(::ca2::command_thread) system::command_thread()
    {
       return m_pcommandthread;
    }
@@ -2004,7 +2004,7 @@ namespace plane
    }
 
 
-   string system::get_fontopus_server(const char * pszUrl, sp(::ca::application) papp, int32_t iRetry)
+   string system::get_fontopus_server(const char * pszUrl, sp(::ca2::application) papp, int32_t iRetry)
    {
 
       string strFontopusServer;
@@ -2022,9 +2022,9 @@ retry:
       string strGetFontopus("http://" + System.url().get_server(pszUrl) + "/get_fontopus");
       try
       {
-         ::ca::property_set post;
-         ::ca::property_set headers;
-         ::ca::property_set set;
+         ::ca2::property_set post;
+         ::ca2::property_set headers;
+         ::ca2::property_set set;
          set["disable_ca2_sessid"] = true;
          set["app"] = papp;
          Application.http().get(strGetFontopus, strFontopusServer, post, headers, set, NULL, NULL, NULL, NULL);
@@ -2065,7 +2065,7 @@ retry:
    }
 
 
-   bool system::add_library(::ca::library * plibrary)
+   bool system::add_library(::ca2::library * plibrary)
    {
 
       m_libraryptra.add(plibrary);
@@ -2091,7 +2091,7 @@ retry:
    }
 
 
-   void system::post_fork_uri(const char * pszUri, ::ca::application_bias * pbiasCreate)
+   void system::post_fork_uri(const char * pszUri, ::ca2::application_bias * pbiasCreate)
    {
 
       command()->add_fork_uri(pszUri, pbiasCreate);
@@ -2250,7 +2250,7 @@ retry:
    }
 
 
-   sp(::plane::session) system::get_session(index iEdge, ::ca::application_bias * pbiasCreation)
+   sp(::plane::session) system::get_session(index iEdge, ::ca2::application_bias * pbiasCreation)
    {
       sp(::plane::session) psession = NULL;
       if(m_pbergedgemap == NULL)
@@ -2267,26 +2267,26 @@ retry:
    }*/
 
 
-   sp(::platform::document) system::get_platform(index iEdge, ::ca::application_bias * pbiasCreation)
+   sp(::platform::document) system::get_platform(index iEdge, ::ca2::application_bias * pbiasCreation)
    {
       sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreation);
       return pbergedge->get_platform();
    }
 
-   sp(::nature::document) system::get_nature(index iEdge, ::ca::application_bias * pbiasCreation)
+   sp(::nature::document) system::get_nature(index iEdge, ::ca2::application_bias * pbiasCreation)
    {
       sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreation);
       return pbergedge->get_nature();
    }
 
-   /*sp(::ca::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   /*sp(::ca2::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca2::application_bias * pbiasCreate)
    {
       sp(::plane::session) pbergedge = ge(iEdge, pbiasCreate);
       return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
    }*/
 
 
-   /*bool system::set_history(::ca::history * phistory)
+   /*bool system::set_history(::ca2::history * phistory)
    {
 
       UNREFERENCED_PARAMETER(phistory);
@@ -2297,7 +2297,7 @@ retry:
 
 
 
-   //void system::register_bergedge_application(sp(::ca::application) papp)
+   //void system::register_bergedge_application(sp(::ca2::application) papp)
    //{
 
 
@@ -2306,7 +2306,7 @@ retry:
 
    //}
 
-   //void system::unregister_bergedge_application(sp(::ca::application) papp)
+   //void system::unregister_bergedge_application(sp(::ca2::application) papp)
    //{
 
    //   System.unregister_bergedge_application(papp);
@@ -2337,7 +2337,7 @@ retry:
    //}
 
 
-   //void system::on_request(sp(::ca::create_context) pcreatecontext)
+   //void system::on_request(sp(::ca2::create_context) pcreatecontext)
    //{
    //   ::sp(::plane::session) pbergedge = get_bergedge(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
    //   pbergedge->request_create(pcreatecontext);
@@ -2349,7 +2349,7 @@ retry:
    //}
 
 
-   //index system::get_new_bergedge(::ca::application_bias * pbiasCreation)
+   //index system::get_new_bergedge(::ca2::application_bias * pbiasCreation)
    //{
    //   index iNewEdge = m_iNewEdge;
    //   sp(::plane::session) psession;
@@ -2374,7 +2374,7 @@ retry:
       return true;
    }
 
-   bool system::set_main_init_data(::ca::main_init_data * pdata)
+   bool system::set_main_init_data(::ca2::main_init_data * pdata)
    {
 
       if(pdata == NULL)
@@ -2384,7 +2384,7 @@ retry:
          return true;
       }
 
-      ::ca::property_set set(this);
+      ::ca2::property_set set(this);
 
       var varFile;
       string strApp;
@@ -2425,7 +2425,7 @@ retry:
    }
 
 
-/*   sp(::ca::command_thread) system::command_thread()
+/*   sp(::ca2::command_thread) system::command_thread()
    {
 	   return m_pcommandthread;
    }
@@ -2451,7 +2451,7 @@ retry:
    }
 
 
-/*   sp(::plane::session) system::get_session(index iEdge, ::ca::application_bias * pbiasCreation)
+/*   sp(::plane::session) system::get_session(index iEdge, ::ca2::application_bias * pbiasCreation)
    {
       sp(::plane::session) psession = NULL;
       if(m_pbergedgemap == NULL)
@@ -2468,19 +2468,19 @@ retry:
    }
 
 
-   sp(platform::document) system::get_platform(index iEdge, ::ca::application_bias * pbiasCreation)
+   sp(platform::document) system::get_platform(index iEdge, ::ca2::application_bias * pbiasCreation)
    {
       sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreation);
       return pbergedge->get_platform();
    }
 
-   sp(nature::document) system::get_nature(index iEdge, ::ca::application_bias * pbiasCreation)
+   sp(nature::document) system::get_nature(index iEdge, ::ca2::application_bias * pbiasCreation)
    {
       sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreation);
       return pbergedge->get_nature();
    }
 
-   sp(::ca::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   sp(::ca2::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca2::application_bias * pbiasCreate)
    {
       sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreate);
       return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
@@ -2490,7 +2490,7 @@ retry:
    void application::assert_valid() const
    {
 
-      ::ca::application::assert_valid();
+      ::ca2::application::assert_valid();
       //::database::server::assert_valid();
 
    }
@@ -2499,7 +2499,7 @@ retry:
    void application::dump(dump_context & context) const
    {
 
-      ::ca::application::dump(context);
+      ::ca2::application::dump(context);
       //::database::server::dump(context);
 
    }

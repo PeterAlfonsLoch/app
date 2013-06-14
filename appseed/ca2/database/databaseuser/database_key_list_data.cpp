@@ -5,8 +5,8 @@ namespace databaseuser
 {
 
 
-   data_key_list_data::data_key_list_data(sp(::ca::application) papp) :
-      ca(papp),
+   data_key_list_data::data_key_list_data(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::list_data(papp)
    {
    }
@@ -19,7 +19,7 @@ namespace databaseuser
    void data_key_list_data::_001GetItemText(::user::list_item * pitem)
    {
       stringa stra;
-      if(!data_get(::ca::system::idEmpty, ::ca::system::idEmpty, stra))
+      if(!data_get(::ca2::system::idEmpty, ::ca2::system::idEmpty, stra))
          return_(pitem->m_bOk, false)
       pitem->m_strText = stra[pitem->m_iItem];
       pitem->m_bOk = true;
@@ -28,7 +28,7 @@ namespace databaseuser
    void data_key_list_data::GetSel(::user::list * plist , stringa & stra)
    {
       stringa wstraTotal;
-      if(!data_get(::ca::system::idEmpty, ::ca::system::idEmpty, wstraTotal))
+      if(!data_get(::ca2::system::idEmpty, ::ca2::system::idEmpty, wstraTotal))
          return;
       ::user::list::range range;
       plist->_001GetSelection(range);
@@ -45,7 +45,7 @@ namespace databaseuser
    ::count data_key_list_data::_001GetItemCount()
    {
       stringa straTotal;
-      if(!data_get(::ca::system::idEmpty, ::ca::system::idEmpty, straTotal))
+      if(!data_get(::ca2::system::idEmpty, ::ca2::system::idEmpty, straTotal))
          return -1;
       return straTotal.get_size();
    }
@@ -54,9 +54,9 @@ namespace databaseuser
    bool data_key_list_data::add_unique(const stringa & stra)
    {
       stringa straData;
-      data_get(::ca::system::idEmpty, ::ca::system::idEmpty, straData);
+      data_get(::ca2::system::idEmpty, ::ca2::system::idEmpty, straData);
       straData.add_unique(stra);
-      if(!data_set(::ca::system::idEmpty, ::ca::system::idEmpty, straData))
+      if(!data_set(::ca2::system::idEmpty, ::ca2::system::idEmpty, straData))
          return false;
       return true;
    }
@@ -64,10 +64,10 @@ namespace databaseuser
    bool data_key_list_data::remove(const stringa & stra)
    {
       stringa straData;
-      if(!data_get(::ca::system::idEmpty, ::ca::system::idEmpty, straData))
+      if(!data_get(::ca2::system::idEmpty, ::ca2::system::idEmpty, straData))
          return true;
       straData.remove(stra);
-      if(!data_set(::ca::system::idEmpty, ::ca::system::idEmpty, straData))
+      if(!data_set(::ca2::system::idEmpty, ::ca2::system::idEmpty, straData))
          return false;
       return true;
    }

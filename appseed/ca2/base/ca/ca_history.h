@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 history :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -23,7 +23,7 @@ namespace ca
    public:
 
 
-      history(sp(::ca::application) papp);
+      history(sp(::ca2::application) papp);
          
    
       virtual bool hist(const char *psz);
@@ -31,6 +31,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

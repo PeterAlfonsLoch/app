@@ -9,7 +9,7 @@ namespace fontopus
 
 
    class CLASS_DECL_ca2 user :
-      public ::ca::object
+      public ::ca2::object
    {
    public:
 
@@ -36,7 +36,7 @@ namespace fontopus
       sp(::ifs)                                  m_pifs;
 
 
-      user(sp(::ca::application) papp);
+      user(sp(::ca2::application) papp);
       virtual ~user();
 
       virtual void start_veiev_synch();

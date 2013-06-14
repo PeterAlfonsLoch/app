@@ -59,7 +59,7 @@ public:
 	size_t abandoned_index() const
 	{
 		if ( !abandoned() )
-			throw range_error(::ca::get_thread_app(), "abandoned index out of range");
+			throw range_error(::ca2::get_thread_app(), "abandoned index out of range");
 		return -(m_iWaitResult + Abandon0);
 	}
 
@@ -88,7 +88,7 @@ public:
 	size_t signaled_index() const
 	{
 		if ( !signaled() )
-			throw range_error(::ca::get_thread_app(), "signaled index out of range");
+			throw range_error(::ca2::get_thread_app(), "signaled index out of range");
 		return m_iWaitResult - Event0;
 	}
 

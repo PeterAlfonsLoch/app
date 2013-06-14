@@ -6,19 +6,19 @@ namespace visual
 
 
    class CLASS_DECL_ca2 graphics_extension :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       
       
-      graphics_extension(sp(::ca::application) papp);
+      graphics_extension(sp(::ca2::application) papp);
       virtual ~graphics_extension();
-      void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, array < size > & sizea);
-      void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, size & size);
-      void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, strsize iCount, size & size);
+      void GetTextExtent(::ca2::graphics * pdc, const char * lpcwsz, array < size > & sizea);
+      void GetTextExtent(::ca2::graphics * pdc, const char * lpcwsz, size & size);
+      void GetTextExtent(::ca2::graphics * pdc, const char * lpcwsz, strsize iCount, size & size);
 
-      bool TextOut(::ca::graphics * pdc, int32_t x, int32_t y, const char * lpcwsz, strsize iCount);
-      int32_t _DrawText(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca::font * pfontUnderline = NULL);
+      bool TextOut(::ca2::graphics * pdc, int32_t x, int32_t y, const char * lpcwsz, strsize iCount);
+      int32_t _DrawText(::ca2::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca2::font * pfontUnderline = NULL);
       
       strsize _EncodeV033(string & str);
 

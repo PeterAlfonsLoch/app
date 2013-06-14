@@ -7,12 +7,12 @@
 #endif
 
 
-condition::condition(sp(::ca::application) papp) :
-   ca(papp)
+condition::condition(sp(::ca2::application) papp) :
+   ca2(papp)
 {
 
    if(papp == NULL)
-      throw invalid_argument_exception(::ca::get_thread_app());
+      throw invalid_argument_exception(::ca2::get_thread_app());
 
 #ifdef WINDOWS
 

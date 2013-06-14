@@ -1,7 +1,7 @@
 #include "framework.h"
 
-SimplePushButton::SimplePushButton(sp(::ca::application) papp) :
-   ca(papp),
+SimplePushButton::SimplePushButton(sp(::ca2::application) papp) :
+   ca2(papp),
    
    ::user::button(papp)
 {
@@ -20,7 +20,7 @@ SimplePushButton::~SimplePushButton()
 {
 }
 
-void SimplePushButton::install_message_handling(::ca::message::dispatch * pinterface)
+void SimplePushButton::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &SimplePushButton::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &SimplePushButton::_001OnDestroy);
@@ -55,7 +55,7 @@ void SimplePushButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 }
 #endif
 
-void SimplePushButton::_001OnDraw(::ca::graphics *pdc)
+void SimplePushButton::_001OnDraw(::ca2::graphics *pdc)
 {
 
    int32_t iOriginalBkMode = pdc->GetBkMode();
@@ -170,7 +170,7 @@ void SimplePushButton::_001OnDraw(::ca::graphics *pdc)
    rect.left = x1;
    rect.right = x2;
    rect.bottom = rect.top + 5;
-   ::ca::pen_sp pen(pdc, 1, colorExt1TL);
+   ::ca2::pen_sp pen(pdc, 1, colorExt1TL);
    pdc->SelectObject(pen);
    imaging.color_blend_3dRect(pdc, rect, colorExt1TL, 220, colorExt1BR, 220);
 
@@ -182,14 +182,14 @@ void SimplePushButton::_001OnDraw(::ca::graphics *pdc)
 }
 
 
-void SimplePushButton::_001OnCreate(::ca::signal_object * pobj)
+void SimplePushButton::_001OnCreate(::ca2::signal_object * pobj)
 {
    pobj->previous();
 
    SetTimer(16384, 100, NULL);
 }
 
-void SimplePushButton::_001OnDestroy(::ca::signal_object * pobj)
+void SimplePushButton::_001OnDestroy(::ca2::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 //   ::user::button::OnDestroy();
@@ -198,9 +198,9 @@ void SimplePushButton::_001OnDestroy(::ca::signal_object * pobj)
 
 }
 
-void SimplePushButton::_001OnTimer(::ca::signal_object * pobj)
+void SimplePushButton::_001OnTimer(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::timer, ptimer, pobj);
+   SCAST_PTR(::ca2::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 16384)
    {
       UpdateHover();

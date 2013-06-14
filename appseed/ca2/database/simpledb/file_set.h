@@ -4,11 +4,11 @@ namespace simpledb
 {
 
    class CLASS_DECL_ca2 file_set :
-      public ::ca::file_set_sp,
+      public ::ca2::file_set_sp,
       public ::database::client
    {
    public:
-      file_set(sp(::ca::application) papp);
+      file_set(sp(::ca2::application) papp);
       virtual ~file_set();
 
       virtual bool refresh();

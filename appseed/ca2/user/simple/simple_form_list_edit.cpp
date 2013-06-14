@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-simple_form_list_edit::simple_form_list_edit(sp(::ca::application) papp) :
-    ca(papp),
+simple_form_list_edit::simple_form_list_edit(sp(::ca2::application) papp) :
+    ca2(papp),
    ::user::interaction(papp),
    
    ::user::scroll_view(papp),
@@ -14,13 +14,13 @@ simple_form_list_edit::~simple_form_list_edit()
 {
 }
 
-bool simple_form_list_edit::OnEraseBkgnd(::ca::graphics * pgraphics)
+bool simple_form_list_edit::OnEraseBkgnd(::ca2::graphics * pgraphics)
 {
    UNREFERENCED_PARAMETER(pgraphics);
    return TRUE;
 }
 
-void simple_form_list_edit::_001OnCreate(::ca::signal_object * pobj)
+void simple_form_list_edit::_001OnCreate(::ca2::signal_object * pobj)
 {
 
    UNREFERENCED_PARAMETER(pobj);

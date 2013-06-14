@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2001 - 2002
+Copyright (ca) 2001 - 2002
 Author: Konstantin Boukreev
 E-mail: konstantin@mail.primorye.ru
 Created: 25.12.2001 19:41:07
@@ -123,7 +123,7 @@ WINBOOL __stdcall My_ReadProcessMemory (
 
    SIZE_T size;
 #if defined(METROWIN) || defined(LINUX) || defined(MACOS)
-   throw todo(::ca::get_thread_app());
+   throw todo(::ca2::get_thread_app());
 #else
    if(!ReadProcessMemory(hProcess, (LPCVOID) qwBaseAddress, (LPVOID) lpBuffer, nSize, &size))
       return FALSE;
@@ -166,8 +166,8 @@ namespace exception
 
 #endif
 
-   engine::engine(sp(::ca::application) papp) :
-      ca(papp)
+   engine::engine(sp(::ca2::application) papp) :
+      ca2(papp)
 #ifdef WINDOWSEX
       ,m_bOk(false)
       ,m_pstackframe(NULL)
@@ -1047,7 +1047,7 @@ retry_get_base:
                // if demangling is successful, output the demangled function name
                if (status == 0)
                {
-                   str += "[bt]: (" + ::ca::str::from(i) + ") " + messages[i] + " : "
+                   str += "[bt]: (" + ::ca2::str::from(i) + ") " + messages[i] + " : "
                              + real_name +  "+" +  offset_begin + offset_end
                              + "\n";
 
@@ -1058,7 +1058,7 @@ retry_get_base:
 #endif
 
                {
-                   str += "[bt]: (" + ::ca::str::from(i) + ") " + messages[i] + " : "
+                   str += "[bt]: (" + ::ca2::str::from(i) + ") " + messages[i] + " : "
                              + mangled_name + "+" + offset_begin + offset_end
                              + "\n";
                }
@@ -1073,7 +1073,7 @@ retry_get_base:
            // otherwise, print the whole line
            else
            {
-               str += "[bt]: (" + ::ca::str::from(i) + ") " +  messages[i]+  "\n";
+               str += "[bt]: (" + ::ca2::str::from(i) + ") " +  messages[i]+  "\n";
            }
        }
        str += "\n";
@@ -1142,8 +1142,8 @@ retry_get_base:
          if (*p == '%')
          {
             ++p; // skips '%'
-            char c = *p;
-            switch (c)
+            char ca = *p;
+            switch (ca)
             {
             case 'm':
                if(module(strBuf))
@@ -1209,7 +1209,7 @@ retry_get_base:
                break;
             default:
                str += '%';
-               str += c;
+               str += ca;
                break;
             }
          }

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -16,7 +16,7 @@ namespace ca
       NESSIEinit(&ns);
       NESSIEadd((const byte *) psz, (uint_ptr) (8 * strlen(psz)), &ns);
       NESSIEfinalize(&ns, digest);
-      return ::ca::hex::lo_from(digest, NESSIE_DIGESTBYTES);
+      return ::ca2::hex::lo_from(digest, NESSIE_DIGESTBYTES);
 
    }
 
@@ -24,13 +24,13 @@ namespace ca
    string file_system::nessie(const char * psz)
    {
 
-      ::ca::filesp spfile(allocer());
+      ::ca2::filesp spfile(allocer());
       try
       {
-         if(!spfile->open(psz, ::ca::file::type_binary | ::ca::file::mode_read))
+         if(!spfile->open(psz, ::ca2::file::type_binary | ::ca2::file::mode_read))
             return "";
       }
-      catch(::ca::file_exception &)
+      catch(::ca2::file_exception &)
       {
          return "";
       }
@@ -39,7 +39,7 @@ namespace ca
    }
 
 
-   string file_system::nessie(sp(::ca::file) pfile)
+   string file_system::nessie(sp(::ca2::file) pfile)
    {
       
 	   int32_t iBufSize = 1024 * 256;
@@ -53,12 +53,12 @@ namespace ca
       }
       uint8_t digest[NESSIE_DIGESTBYTES];
       NESSIEfinalize(&ns, digest);
-	  return ::ca::hex::lo_from(digest, NESSIE_DIGESTBYTES);
+	  return ::ca2::hex::lo_from(digest, NESSIE_DIGESTBYTES);
 
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

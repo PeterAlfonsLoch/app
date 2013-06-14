@@ -1,13 +1,13 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
 
 
-   ca::ca()
+   ca2::ca2()
    {
       m_ulFlags            = (uint32_t) flag_auto_clean;
 //      m_papp               = 0; // NULL
@@ -18,7 +18,7 @@ namespace ca
       m_pfactoryitembase   = NULL;
    }
 
-   ca::ca(const ca & o) :
+   ca2::ca2(const ca2 & o) :
       m_papp(o.m_papp)
    {
       m_ulFlags            = o.m_ulFlags;
@@ -29,7 +29,7 @@ namespace ca
       m_pfactoryitembase   = NULL;
    }
 
-   ca::ca(sp(::ca::application) papp) :
+   ca2::ca2(sp(::ca2::application) papp) :
       m_papp(papp)
    {
       m_ulFlags            = (uint32_t) flag_auto_clean;
@@ -39,27 +39,27 @@ namespace ca
       m_pfactoryitembase   = NULL;
    }
 
-   ca::~ca()
+   ca2::~ca2()
    {
 
    }
 
-   ::ca::application * ca::get_app() const
+   ::ca2::application * ca2::get_app() const
    {
       return m_papp;
    }
 
-   void ca::set_app(::ca::application * papp)
+   void ca2::set_app(::ca2::application * papp)
    {
       m_papp = papp;
    }
 
-   void ca::system(const char * pszProjectName)
+   void ca2::system(const char * pszProjectName)
    {
       UNREFERENCED_PARAMETER(pszProjectName);
    }
 
-   ca & ca::operator = (const ca & o)
+   ca2 & ca2::operator = (const ca2 & o)
    {
       if(this != &o)
       {
@@ -69,7 +69,7 @@ namespace ca
       return *this;
    }
 
-   void ca::delete_this()
+   void ca2::delete_this()
    {
       if(m_pfactoryitembase != NULL && m_pfactoryitembase->m_pallocator)
       {
@@ -87,7 +87,7 @@ namespace ca
       }
    }
 
-   sp(::ca::ca) ca::clone()
+   sp(::ca2::ca2) ca2::clone()
    {
       if(m_pfactoryitembase != NULL)
          return m_pfactoryitembase->clone(this);
@@ -96,9 +96,9 @@ namespace ca
    }
 
 
-/*   ptra * ca::new_ptra()
+/*   ptra * ca2::new_ptra()
    {
-      return new ::ca::ptra();
+      return new ::ca2::ptra();
    }*/
 
 
@@ -109,12 +109,12 @@ namespace ca
 
       spallocator->m_papp = papp;
 
-      ::c::smart_pointer < allocator >::operator = (spallocator);
+      ::ca::smart_pointer < allocator >::operator = (spallocator);
 
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

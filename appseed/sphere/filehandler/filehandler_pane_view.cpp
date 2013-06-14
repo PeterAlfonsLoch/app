@@ -7,8 +7,8 @@ namespace filehandler
 {
 
 
-   pane_view::pane_view(sp(::ca::application) papp) :
-      ca(papp),
+   pane_view::pane_view(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::tab(papp),
       
       ::user::tab_view(papp),
@@ -73,7 +73,7 @@ namespace filehandler
    /////////////////////////////////////////////////////////////////////////////
    // pane_view message handlers
 
-   void pane_view::_001OnCreate(::ca::signal_object * pobj)
+   void pane_view::_001OnCreate(::ca2::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -87,11 +87,11 @@ namespace filehandler
    }
 
 
-   void pane_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
+   void pane_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
-      /*   sp(::ca::application) papp =  (get_app());
+      /*   sp(::ca2::application) papp =  (get_app());
       POSITION pos = papp->m_ptemplate_html->get_document_count();
       while(pos != NULL)
       {
@@ -148,7 +148,7 @@ namespace filehandler
 
       string strFile = pcreatordata->m_id;
 
-      if(::ca::str::begins_eat_ci(strFile, "default_file_handler://"))
+      if(::ca2::str::begins_eat_ci(strFile, "default_file_handler://"))
       {
 
          sp(::filehandler::view) pview = create_view < ::filehandler::view > (get_document(), pcreatordata->m_pholder);
@@ -166,7 +166,7 @@ namespace filehandler
       {
       case pane_view_new:
          {
-            /*               sp(::ca::create_context) createcontext(get_app());
+            /*               sp(::ca2::create_context) createcontext(get_app());
             createcontext->m_bMakeVisible = true;
             createcontext->m_puiParent = this;
             rtprxsp(::document) pdoc = dynamic_cast < rtprxsp(::document) > (papp->m_ptemplateVideo->open_document_file(createcontext));
@@ -210,13 +210,13 @@ namespace filehandler
    {
    }
 
-   void pane_view::_001OnMenuMessage(::ca::signal_object * pobj)
+   void pane_view::_001OnMenuMessage(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       set_cur_tab_by_id(m_pviewdataOld->m_id);
    }
 
-   void pane_view::install_message_handling(::ca::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::userex::pane_tab_view::install_message_handling(pinterface);
 

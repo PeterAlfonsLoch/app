@@ -1,27 +1,27 @@
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    template < class DST, class SRC >
    class signal_thread :
-      public ::ca::thread
+      public ::ca2::thread
    {
    public:
 
 
       DST * m_psignalizableDst;
-      void (DST::* m_pfnDst)(::ca::signal_object *);
+      void (DST::* m_pfnDst)(::ca2::signal_object *);
       SRC * m_psignalizableSrc;
-      void (SRC::* m_pfnSrc)(::ca::signal_object *);
-      ::ca::signal_object * m_pobj;
+      void (SRC::* m_pfnSrc)(::ca2::signal_object *);
+      ::ca2::signal_object * m_pobj;
       
       
-      signal_thread(sp(::ca::application) papp,
-         DST * psignalizableDst, void (DST::* pfnDst)(::ca::signal_object *), 
-         SRC * psignalizableSrc, void (SRC::* pfnSrc)(::ca::signal_object *), 
-         ::ca::signal_object * pobj) :
-         ca(papp),
+      signal_thread(sp(::ca2::application) papp,
+         DST * psignalizableDst, void (DST::* pfnDst)(::ca2::signal_object *), 
+         SRC * psignalizableSrc, void (SRC::* pfnSrc)(::ca2::signal_object *), 
+         ::ca2::signal_object * pobj) :
+         ca2(papp),
          thread(papp)
       {
          m_bAutoDelete        = true;
@@ -52,13 +52,13 @@ namespace ca
    };
 
    template < class DST, class SRC >
-   void emit(sp(::ca::application) papp,
-      DST * psignalizableDst, void (DST::* pfnDst)(::ca::signal_object *), 
-      SRC * psignalizableSrc, void (SRC::* pfnSrc)(::ca::signal_object *), 
-      ::ca::signal_object * pobj)
+   void emit(sp(::ca2::application) papp,
+      DST * psignalizableDst, void (DST::* pfnDst)(::ca2::signal_object *), 
+      SRC * psignalizableSrc, void (SRC::* pfnSrc)(::ca2::signal_object *), 
+      ::ca2::signal_object * pobj)
    {
       signal_thread < DST, SRC > * pthread = new signal_thread < DST, SRC > (papp, psignalizableDst, pfnDst, psignalizableSrc, pfnSrc, pobj);
       pthread->begin();
    }
 
-} // namespace ca
+} // namespace ca2

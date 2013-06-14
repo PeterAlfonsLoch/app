@@ -9,14 +9,14 @@ namespace filehandler
       virtual public ::userex::pane_tab_view
    {
    public:
-      pane_view(sp(::ca::application) papp);
+      pane_view(sp(::ca2::application) papp);
       
       void rotate();
 
       void on_create_view(::user::view_creator_data * pcreatordata);
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
       DECL_GEN_SIGNAL(_001OnMenuMessage)

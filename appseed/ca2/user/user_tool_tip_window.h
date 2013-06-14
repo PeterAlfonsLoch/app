@@ -5,7 +5,7 @@ namespace user
 
    class tool_tip_tool;
 
-   class tool_tip_window : public ::ca::window
+   class tool_tip_window : public ::ca2::window
    {
    public:
 
@@ -55,11 +55,11 @@ namespace user
 
       CEnumAlign                 m_ealign;         // current alignment of the tool tip
       CEnumAlign                 m_ealignDefault;  // default alignment of the tool tip
-      sp(::user::interaction)      m_pwnd;           // ::ca::window associate with this tool tip wnd
+      sp(::user::interaction)      m_pwnd;           // ::ca2::window associate with this tool tip wnd
       string                     m_strTip;         // tip string
       int32_t                        m_iEventTool;     // item selected
       int32_t                        m_iTool;          // item where the tip will be showed
-      ::ca::font_sp              m_font;           // tip string font
+      ::ca2::font_sp              m_font;           // tip string font
       point                      m_ptOffset;       // tip point offset
       size                       m_sizeArrow;      // arrow size
       bool                       m_bTipEnable;     // set if the tip is enabled
@@ -72,7 +72,7 @@ namespace user
       bool GetToolText(int32_t iTool, string &str);
       void AddTool(tool_tip_tool * ptool);
       bool GetToolRect(int32_t iTool, LPRECT lprect);
-      tool_tip_window(sp(::ca::application) papp);
+      tool_tip_window(sp(::ca2::application) papp);
       virtual ~tool_tip_window();
       void UpdateDrawingObjects();
       bool ShowTip();
@@ -80,10 +80,10 @@ namespace user
       void EnableTip(bool bEnable = true);
       bool HideTip();
       virtual bool create(sp(::user::interaction) pwnd, id id);
-      bool CalcRect(::ca::graphics * pdc, LPRECT lprect, LPCRECT lprectToolScreen, const char * lpcsz);
+      bool CalcRect(::ca2::graphics * pdc, LPRECT lprect, LPCRECT lprectToolScreen, const char * lpcsz);
       void ShowTip(int32_t iTool, bool bForce = false);
-      void SetPositionHint(sp(::ca::window) pwnd, e_position eposition);
-      void relay_event(tool_tip_tool * pwnd, ::ca::signal_object * pobj);
+      void SetPositionHint(sp(::ca2::window) pwnd, e_position eposition);
+      void relay_event(tool_tip_tool * pwnd, ::ca2::signal_object * pobj);
 
       void OnPaint();
       void OnTimer(UINT nIDEvent);

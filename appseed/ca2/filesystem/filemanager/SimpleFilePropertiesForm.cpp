@@ -5,8 +5,8 @@ namespace filemanager
 {
 
 
-   SimpleFilePropertiesForm::SimpleFilePropertiesForm(sp(::ca::application) papp) :
-      ca(papp)
+   SimpleFilePropertiesForm::SimpleFilePropertiesForm(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_ptemplatePane = new ::user::single_document_template(
          papp,
@@ -25,7 +25,7 @@ namespace filemanager
       m_itema = itema;
       if(itema.get_count() <= 0)
          return NULL;
-      sp(::ca::create_context) createcontext(allocer());
+      sp(::ca2::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = puieParent;
       sp(::form_document) pdoc = (m_ptemplatePane->open_document_file(createcontext));

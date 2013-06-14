@@ -1,4 +1,4 @@
-/* unzip.c -- IO for uncompress .zip files using zlib
+/* unzip.ca -- IO for uncompress .zip files using zlib
    Version 1.00, September 10th, 2003
 
    Copyright (C) 1998-2003 Gilles Vollant
@@ -6,12 +6,12 @@
    read unzip.h for more info
 */
 
-/* Decryption code comes from crypt.c by Info-ZIP but has been greatly reduced in terms of
-compatibility with older software. The following is from the original crypt.c. Code
+/* Decryption code comes from crypt.ca by Info-ZIP but has been greatly reduced in terms of
+compatibility with older software. The following is from the original crypt.ca. Code
 woven in by Terry Thorsen 1/2003.
 */
 /*
-  Copyright (c) 1990-2000 Info-ZIP.
+  Copyright (ca) 1990-2000 Info-ZIP.
 
   See the accompanying file LICENSE, version 2000-Apr-09 or later
   (the contents of which are also included in zip.h) for terms of use.
@@ -19,7 +19,7 @@ woven in by Terry Thorsen 1/2003.
   also may be found at:  ftp://ftp.info-zip.org/pub/infozip/license.html
 */
 /*
-  crypt.c (full version) by Info-ZIP.      Last revised:  [see crypt.h]
+  crypt.ca (full version) by Info-ZIP.      Last revised:  [see crypt.h]
 
   The encryption/decryption parts of this source code (as opposed to the
   non-echoing password parts) were originally written in Europe.  The
@@ -156,11 +156,11 @@ local int32_t unzlocal_getByte OF((
 
 local int32_t unzlocal_getByte(const zlib_filefunc_def * pzlib_filefunc_def, voidpf filestream, int32_t * pi)
 {
-    uchar c;
-    int32_t err = (int32_t)ZREAD(*pzlib_filefunc_def,filestream,&c,1);
+    uchar ca;
+    int32_t err = (int32_t)ZREAD(*pzlib_filefunc_def,filestream,&ca,1);
     if (err==1)
     {
-        *pi = (int32_t)c;
+        *pi = (int32_t)ca;
         return UNZ_OK;
     }
     else
@@ -379,7 +379,7 @@ local uint_ptr unzlocal_SearchCentralDir(
 
 /*
   open a Zip spfile-> path contain the full pathname (by example,
-     on a Windows NT computer "c:\\test\\zlib114.zip" or on an Unix computer
+     on a Windows NT computer "ca:\\test\\zlib114.zip" or on an Unix computer
      "zlib/zlib114.zip".
      If the zipfile cannot be opened (file doesn't exist or in not valid), the
        return value is NULL.

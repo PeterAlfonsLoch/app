@@ -11,7 +11,7 @@ namespace gcom
 
 
       TransitionEffect::TransitionEffect(Main & view) :
-         ::ca::ca(view.get_app()),
+         ::ca2::ca2(view.get_app()),
          Helper(view),
          m_tool001(view),
          m_eventStartTransition(view.get_app()),
@@ -405,15 +405,15 @@ namespace gcom
          if(!sl2Buffer.lock(millis(184)))
             return;
  
-         ::ca::graphics & dcBack = graphics.GetBackDC();
+         ::ca2::graphics & dcBack = graphics.GetBackDC();
 
-         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+         ::ca2::graphics & dcBuffer = graphics.GetBufferDC();
 
-         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
+         ::ca2::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-         ::ca::bitmap & bitmapBuffer = graphics.GetBufferBitmap();
+         ::ca2::bitmap & bitmapBuffer = graphics.GetBufferBitmap();
 
-         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca2::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
 
          if(&dcBack == NULL || dcBack.get_os_data() == NULL)
          {
@@ -494,8 +494,8 @@ namespace gcom
                   }
                   POINT pointa[4];
                   m_tool001.GetRotateRect(point.x, point.y, pointa);
-                  ::ca::region_sp rgnClip(allocer());
-                  rgnClip->create_polygon(pointa, 4, ::ca::fill_mode_winding);
+                  ::ca2::region_sp rgnClip(allocer());
+                  rgnClip->create_polygon(pointa, 4, ::ca2::fill_mode_winding);
 
                   //dcBack.SelectClipRgn(NULL);
                   dcBack.SelectClipRgn(rgnClip);
@@ -547,8 +547,8 @@ namespace gcom
                   }
                   POINT pointa[6];
                   m_tool001.GetRotateHexagon(point.x, point.y, pointa);
-                  ::ca::region_sp rgnClip(allocer());
-                  rgnClip->create_polygon(pointa, 6, ::ca::fill_mode_winding);
+                  ::ca2::region_sp rgnClip(allocer());
+                  rgnClip->create_polygon(pointa, 6, ::ca2::fill_mode_winding);
                   dcBack.SelectClipRgn(rgnClip);
                   m_tool001.GetSimplePolyBox(rectUpdate, pointa, 6);
 
@@ -629,7 +629,7 @@ namespace gcom
                   *lprect = rectUpdate;
                      }*/
 
-                  ::ca::region_sp rgnClip(allocer());
+                  ::ca2::region_sp rgnClip(allocer());
                   if(m_etypea[m_iType] == TransitionEffectCirclypixelate_
                      || m_etypea[m_iType] == TransitionEffectEllipsoidalpixelate_)
                   {
@@ -694,7 +694,7 @@ namespace gcom
 
                rectUpdate.set(finalX, finalY, finalX + finalW, finalY + finalH);
 
-               dcBack.set_alpha_mode(::ca::alpha_mode_blend);
+               dcBack.set_alpha_mode(::ca2::alpha_mode_blend);
 
                dcBack.alpha_blend(rectUpdate.size(), &dcBuffer, dRate);
 
@@ -1317,25 +1317,25 @@ namespace gcom
                ::index iSizeIndex = m_tool001.m_pointa[iIndex].x;
                int32_t iSize = m_tool001.m_ia[iSizeIndex];
                int32_t nextc = m_tool001.m_pointa[iIndex].y;
-               int32_t c;
+               int32_t ca;
 
                if(iIndex <= 0 || nextc == 0)
                {
-                  c = 0;
+                  ca = 0;
                }
                else
                {
-                  c = m_tool001.m_pointa[iIndex - 1].y;
+                  ca = m_tool001.m_pointa[iIndex - 1].y;
                }
 
 
                m_dwDelay = 84;
 
-               ::ca::dib * pdib = graphics.GetDib(7);
+               ::ca2::dib * pdib = graphics.GetDib(7);
 
                if(iIndex >= 0)
                {
-                  double dRateMinus = (double) c / (double) c1;
+                  double dRateMinus = (double) ca / (double) c1;
                   double dRate = (double) nextc / (double) c1;
 
                   if(dRateMinus < 0.0)
@@ -1393,15 +1393,15 @@ namespace gcom
 
                      m_tool001.m_data.m_alphapixelate.m_iSizeIndex = (int32_t) iSizeIndex;
 
-/*                     ::ca::dib * pdib2 = graphics.GetDib(2);
+/*                     ::ca2::dib * pdib2 = graphics.GetDib(2);
 
-                     ::ca::dib * pdib3 = graphics.GetDib(3);
+                     ::ca2::dib * pdib3 = graphics.GetDib(3);
 
-                     ::ca::dib * pdib4 = graphics.GetDib(4);
+                     ::ca2::dib * pdib4 = graphics.GetDib(4);
 
-                     ::ca::dib * pdib5 = graphics.GetDib(5);
+                     ::ca2::dib * pdib5 = graphics.GetDib(5);
 
-                     ::ca::dib * pdib6 = graphics.GetDib(6);
+                     ::ca2::dib * pdib6 = graphics.GetDib(6);
 
                      pdib->create(xPixelMod, yPixelMod);
 
@@ -1562,8 +1562,8 @@ namespace gcom
             break;
             case TransitionEffectRadialUnveil:
                {
-//                  ::ca::dib * pdibT1 = graphics.GetDib(1977); // Radial Fill (White, Radius = 256 pixels)
-                  ::ca::dib * pdibT2 = graphics.GetDib(1977); // Radial Fill (White, Radius = 256 pixels)
+//                  ::ca2::dib * pdibT1 = graphics.GetDib(1977); // Radial Fill (White, Radius = 256 pixels)
+                  ::ca2::dib * pdibT2 = graphics.GetDib(1977); // Radial Fill (White, Radius = 256 pixels)
 
                   ::index iIndex = m_tool001.m_iStep - 1;
                   m_tool001.m_data.m_radialunveil.m_iRadius += m_tool001.m_data.m_radialunveil.m_iRadiusIncrement;
@@ -1597,9 +1597,9 @@ namespace gcom
 //                  double xrate = (double) wWindow / d;
 //                  double yrate = (double) hWindow / d;
 
-                  ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-                  ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-                  //::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+                  ::ca2::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+                  ::ca2::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+                  //::ca2::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
 
                   pdib1->create(wWindow, hWindow);
                   pdib2->create(wWindow, hWindow);
@@ -1656,7 +1656,7 @@ namespace gcom
                      DIB_RGB_COLORS,
                      SRCCOPY);*/
 
-//                  ::ca::dib * pdibBuffer = graphics.GetDib(100);
+//                  ::ca2::dib * pdibBuffer = graphics.GetDib(100);
                   /*StretchDIBits(
                      pdib1->get_graphics(),
                      0, 0,
@@ -1677,7 +1677,7 @@ namespace gcom
                   //dcBack.BitBlt(x1, y1, wWindow, hWindow, pdib1->get_graphics(),
                     // x1, y1, SRCCOPY);
 
-                  dcBack.set_alpha_mode(::ca::alpha_mode_set);
+                  dcBack.set_alpha_mode(::ca2::alpha_mode_set);
 
                   imaging.bitmap_blend(
                      &dcBack,
@@ -1706,8 +1706,8 @@ namespace gcom
          }
 
          single_lock sl(&graphics.m_mutex4Transfer, TRUE);
-         ::ca::graphics & dcTransfer = graphics.GetTransferDC();
-         ::ca::region_sp rgnTransferClip(allocer());
+         ::ca2::graphics & dcTransfer = graphics.GetTransferDC();
+         ::ca2::region_sp rgnTransferClip(allocer());
          rgnTransferClip->create_rect(graphics.m_rectFinalPlacement);
          //dcTransfer.SelectClipRgn(rgnTransferClip);
 
@@ -1820,10 +1820,10 @@ namespace gcom
       }
 
 
-      ::ca::thread * TransitionEffect::CreateRunStepThread()
+      ::ca2::thread * TransitionEffect::CreateRunStepThread()
       {
 
-         return __begin_thread(get_app(), ThreadProcRunStep, this, ::ca::thread_priority_normal, 0, 0, NULL);
+         return __begin_thread(get_app(), ThreadProcRunStep, this, ::ca2::thread_priority_normal, 0, 0, NULL);
 
       }
 
@@ -1837,8 +1837,8 @@ namespace gcom
 
          single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
 
-         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-         ::ca::graphics & dcTransfer = graphics.GetTransferDC();
+         ::ca2::graphics & dcFrame1 = graphics.GetFrame1DC();
+         ::ca2::graphics & dcTransfer = graphics.GetTransferDC();
 
          Interface & iface = main.GetInterface();
 

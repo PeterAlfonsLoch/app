@@ -5,12 +5,12 @@ bool call_stack::s_bDoStackTrace = false;
 
 
 #if defined(LINUX) || defined(MACOS)
-call_stack::call_stack(sp(::ca::application) papp, uint32_t uiSkip, void * address) :
-   ca(papp)
+call_stack::call_stack(sp(::ca2::application) papp, uint32_t uiSkip, void * address) :
+   ca2(papp)
    ,m_caller_address(address)
 #else
-call_stack::call_stack(sp(::ca::application) papp, uint32_t uiSkip) :
-   ca(papp)
+call_stack::call_stack(sp(::ca2::application) papp, uint32_t uiSkip) :
+   ca2(papp)
 #endif
 {
 
@@ -24,7 +24,7 @@ call_stack::call_stack(sp(::ca::application) papp, uint32_t uiSkip) :
 }
 
 call_stack::call_stack(const ::call_stack & cs) :
-   ca(cs)
+   ca2(cs)
 {
 
    m_strCallStack = cs.m_strCallStack;

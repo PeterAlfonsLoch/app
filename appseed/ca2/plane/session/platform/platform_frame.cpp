@@ -5,8 +5,8 @@ namespace platform
 {
 
 
-   frame::frame(sp(::ca::application) papp) :
-      ca(papp),
+   frame::frame(sp(::ca2::application) papp) :
+      ca2(papp),
       simple_frame_window(papp),
       form_frame(papp)
    {
@@ -63,7 +63,7 @@ namespace platform
 
 #endif //DEBUG
 
-   void frame::install_message_handling(::ca::message::dispatch * pinterface)
+   void frame::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame::_001OnCreate);
@@ -75,9 +75,9 @@ namespace platform
    }
 
 
-   void frame::_001OnTimer(::ca::signal_object * pobj)
+   void frame::_001OnTimer(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
 
       static float theta;
@@ -193,12 +193,12 @@ namespace platform
       ShowWindow(SW_RESTORE);
    }
 
-   void frame::_001OnSize(::ca::signal_object * pobj)
+   void frame::_001OnSize(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void frame::_001OnMouseMove(::ca::signal_object * pobj)
+   void frame::_001OnMouseMove(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       if(!m_bHover)
@@ -213,7 +213,7 @@ namespace platform
       }
    }
 
-   void frame::_001OnMouseLeave(::ca::signal_object * pobj)
+   void frame::_001OnMouseLeave(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       m_bMouseLeaveTimer = true;
@@ -221,9 +221,9 @@ namespace platform
       SetTimer(4321875, 884, NULL);
    }
 
-   void frame::_001OnCreate(::ca::signal_object * pobj)
+   void frame::_001OnCreate(::ca2::signal_object * pobj)
    {
-      //      SCAST_PTR(::ca::message::create, pcreate, pobj);
+      //      SCAST_PTR(::ca2::message::create, pcreate, pobj);
       pobj->previous();
 
       m_bTimerOn = false;
@@ -299,14 +299,14 @@ namespace platform
 
    }
 
-   void frame::_000OnDraw(::ca::graphics * pgraphics)
+   void frame::_000OnDraw(::ca2::graphics * pgraphics)
    {
       if(m_bOnDraw)
          return;
       form_frame::_000OnDraw(pgraphics);
    }
 
-   void frame::_001OnClose(::ca::signal_object * pobj)
+   void frame::_001OnClose(::ca2::signal_object * pobj)
    {
       pobj->m_bRet = true;
       ShowWindow(SW_HIDE);

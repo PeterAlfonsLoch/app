@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -16,8 +16,8 @@ namespace ca
    }
 
    stream::stream(const reader & reader, const writer & writer) :
-      ::ca::reader(reader),
-      ::ca::writer(writer)
+      ::ca2::reader(reader),
+      ::ca2::writer(writer)
    {
    }
 
@@ -54,6 +54,6 @@ namespace ca
       writer::close();
    }
 
-} // namespace ca
+} // namespace ca2
 
 

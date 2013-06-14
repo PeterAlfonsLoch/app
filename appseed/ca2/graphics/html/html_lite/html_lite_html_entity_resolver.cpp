@@ -4,7 +4,7 @@
  *   LiteHTMLEntityResolver.cpp
  *
  *   Written By Gurmeet S. Kochar <gomzygotit@hotmail.com>
- *   Copyright (c) 2004.
+ *   Copyright (ca) 2004.
  *
  *   This code may be used in compiled form in any way you desire
  *   (including commercial use). The code may be redistributed
@@ -26,7 +26,7 @@
  */
 #include "framework.h"
 
-LiteHTMLEntityResolver::CharEntityRefs::CharEntityRefs(::ca::application * papp) :
+LiteHTMLEntityResolver::CharEntityRefs::CharEntityRefs(::ca2::application * papp) :
    string_map < char, char >(papp, 55)
 {
    /** C0 Controls and Basic Latin */
@@ -167,16 +167,16 @@ int32_t LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & 
    {
       lpszBegin++;
       chTemp = *lpszBegin;
-      int32_t   ca = (::isdigit(chTemp) ? 10 :
+      int32_t   ca2 = (::isdigit(chTemp) ? 10 :
                (chTemp == 'x' ||
                   chTemp == 'X' ? 16 : 0));
-      if (ca)
+      if (ca2)
       {
-         if (ca == 16)
+         if (ca2 == 16)
             lpszBegin++;
 
-         uint32_t  ulNum = (uint32_t) ::strtoul(lpszBegin, NULL, ca);
-         strChar = ::ca::str::uni_to_utf8(ulNum);
+         uint32_t  ulNum = (uint32_t) ::strtoul(lpszBegin, NULL, ca2);
+         strChar = ::ca2::str::uni_to_utf8(ulNum);
          return (int32_t) (lpszEnd - lpszEntity + 1);
       }
    }

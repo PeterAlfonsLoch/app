@@ -48,7 +48,7 @@ handler::handler()
   #endif
 }
 
-::ca::HRes handler::GetNumberOfItems(uint32_t *numItems)
+::ca2::HRes handler::GetNumberOfItems(uint32_t *numItems)
 {
   *numItems = (uint32_t) _db.Files.get_count();
   return S_OK;
@@ -58,12 +58,12 @@ handler::handler()
 
 IMP_IInArchive_ArcProps_NO
 
-::ca::HRes handler::GetNumberOfProperties(uint32_t * /* numProperties */)
+::ca2::HRes handler::GetNumberOfProperties(uint32_t * /* numProperties */)
 {
   return E_NOTIMPL;
 }
 
-::ca::HRes handler::GetPropertyInfo(uint32_t /* index */,
+::ca2::HRes handler::GetPropertyInfo(uint32_t /* index */,
       BSTR * /* name */, PROPID * /* propID */, VARTYPE * /* varType */)
 {
   return E_NOTIMPL;
@@ -90,7 +90,7 @@ stat_prop_stg kArcProps[] =
   { NULL, ::libcompress::kpidOffset, var::type_uint64}
 };
 
-::ca::HRes handler::GetArchiveProperty(int32_t propID, var *value)
+::ca2::HRes handler::GetArchiveProperty(int32_t propID, var *value)
 {
   var prop;
   switch(propID)
@@ -205,7 +205,7 @@ bool handler::IsEncrypted(uint32_t index1) const
   return false;
 }
 
-::ca::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
+::ca2::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
 {
   var prop;
 
@@ -389,7 +389,7 @@ bool handler::IsEncrypted(uint32_t index1) const
   return S_OK;
 }
 
-::ca::HRes handler::Open(::ca::byte_input_stream *stream,
+::ca2::HRes handler::Open(::ca2::byte_input_stream *stream,
     const file_position *maxCheckStartPosition,
     ::libcompress::archive_open_callback_interface *openArchiveCallback)
 {
@@ -399,10 +399,10 @@ bool handler::IsEncrypted(uint32_t index1) const
   #endif
   try
   {
-    ::c::smart_pointer < ::libcompress::archive_open_callback_interface > openArchiveCallbackTemp = openArchiveCallback;
+    ::ca::smart_pointer < ::libcompress::archive_open_callback_interface > openArchiveCallbackTemp = openArchiveCallback;
 
     #ifndef _NO_CRYPTO
-    ::c::smart_pointer < ::crypto::get_text_password_interface > getTextPassword;
+    ::ca::smart_pointer < ::crypto::get_text_password_interface > getTextPassword;
     if (openArchiveCallback)
     {
       getTextPassword = dynamic_cast < ::crypto::get_text_password_interface * > (openArchiveCallbackTemp.m_p);
@@ -437,9 +437,9 @@ bool handler::IsEncrypted(uint32_t index1) const
   return S_OK;
 }
 
-::ca::HRes handler::Close()
+::ca2::HRes handler::Close()
 {
-::c::release(_inStream.m_p);
+::ca::release(_inStream.m_p);
   _db.clear();
   return S_OK;
 }
@@ -447,7 +447,7 @@ bool handler::IsEncrypted(uint32_t index1) const
 #ifdef __7Z_SET_PROPERTIES
 #ifdef EXTRACT_ONLY
 
-::ca::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *values, Int32 numProperties)
+::ca2::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *values, Int32 numProperties)
 {
   COM_TRY_BEGIN
   const uint32_t numProcessors = NSystem::GetNumberOfProcessors();
@@ -481,7 +481,7 @@ bool handler::IsEncrypted(uint32_t index1) const
 #endif
 
    // IMPL_ISetCompressCodecsInfo2(handler)
-   ::ca::HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
+   ::ca2::HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
    {
       _codecsInfo = compressCodecsInfo;
       return LoadExternalCodecs(_codecsInfo, _externalCodecs);

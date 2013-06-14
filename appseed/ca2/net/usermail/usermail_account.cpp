@@ -5,8 +5,8 @@ namespace usermail
 {
 
 
-   account::account(sp(::ca::application) papp) :
-      ca(papp),
+   account::account(sp(::ca2::application) papp) :
+      ca2(papp),
       m_pop3(papp)
    {
       m_dwCheckTime = 1000 * 60 * 2;

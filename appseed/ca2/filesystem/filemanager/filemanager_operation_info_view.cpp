@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-void DoBar(::ca::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_t cy, double dAnime);
+void DoBar(::ca2::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_t cy, double dAnime);
 
 
-void DoBar(::ca::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_t cy, double dAnime)
+void DoBar(::ca2::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_t cy, double dAnime)
 {
    int32_t iDeltaDark = 23;
       int32_t iDeltaVermelho = 77;
@@ -36,19 +36,19 @@ void DoBar(::ca::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_
 }
 
 
-file_manager_operation_info_view::file_manager_operation_info_view(sp(::ca::application) papp) :
-   ca(papp)
+file_manager_operation_info_view::file_manager_operation_info_view(sp(::ca2::application) papp) :
+   ca2(papp)
 {
    m_dAnime = 0.0;
 }
 
 
-void file_manager_operation_info_view::OnDraw(::ca::graphics * pdc)
+void file_manager_operation_info_view::OnDraw(::ca2::graphics * pdc)
 {
    UNREFERENCED_PARAMETER(pdc);
 }
 
-void file_manager_operation_info_view::_001OnDraw(::ca::graphics * pdc)
+void file_manager_operation_info_view::_001OnDraw(::ca2::graphics * pdc)
 {
       /*::FillRect(hdc, &rectProgress, g_hbrushProgress3);
       rectProgress.left++;
@@ -110,21 +110,21 @@ sp(file_manager_operation_document) file_manager_operation_info_view::get_docume
    return  (::user::view::get_document());
 }
 
-void file_manager_operation_info_view::_001OnTimer(::ca::signal_object * pobj)
+void file_manager_operation_info_view::_001OnTimer(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::timer, ptimer, pobj);
+   SCAST_PTR(::ca2::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 123)
    {
    }
 }
 
-void file_manager_operation_info_view::_001OnCreate(::ca::signal_object * pobj)
+void file_manager_operation_info_view::_001OnCreate(::ca2::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    //SetTimer(123, 184, NULL);
 }
 
-void file_manager_operation_info_view::install_message_handling(::ca::message::dispatch * pinterface)
+void file_manager_operation_info_view::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_info_view::_001OnCreate);

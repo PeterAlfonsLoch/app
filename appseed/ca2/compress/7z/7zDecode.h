@@ -17,7 +17,7 @@ namespace n7z
    };
 
    class CDecoder :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
       bool _bindInfoExPrevIsDefined;
       CBindInfoEx _bindInfoExPrev;
@@ -26,19 +26,19 @@ namespace n7z
       ::libcompress::coder_mixer::CCoderMixer2MT *_mixerCoderMTSpec;
       ::libcompress::coder_mixer::CCoderMixer2 *_mixerCoderCommon;
 
-      ::c::smart_pointer < ::libcompress::coder2_interface > _mixerCoder;
-      array < ::c::smart_pointer < ::ca::ca > > _decoders;
-      // smart_pointer_array<::c::smart_pointer<::libcompress::coder2_interface> > _decoders2;
+      ::ca::smart_pointer < ::libcompress::coder2_interface > _mixerCoder;
+      array < ::ca::smart_pointer < ::ca2::ca2 > > _decoders;
+      // smart_pointer_array<::ca::smart_pointer<::libcompress::coder2_interface> > _decoders2;
    public:
-      CDecoder(sp(::ca::application) papp,  bool multiThread);
+      CDecoder(sp(::ca2::application) papp,  bool multiThread);
       virtual ~CDecoder();
       HRESULT Decode(
          ::libcompress::codecs_info_interface * codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
-         ::ca::byte_input_stream *inStream,
+         ::ca2::byte_input_stream *inStream,
          file_position startPos,
          const file_size * packSizes,
          const CFolder &folder,
-         ::ca::writer *outStream,
+         ::ca2::writer *outStream,
          ::libcompress::progress_info_interface *compressProgress,
          ::crypto::get_text_password_interface *getTextPasswordSpec, bool &passwordIsDefined,
          bool mtMode, uint32_t numThreads

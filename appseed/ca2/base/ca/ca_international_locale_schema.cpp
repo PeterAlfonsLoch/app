@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -9,8 +9,8 @@ namespace ca
    {
 
 
-      locale_schema::locale_schema(sp(::ca::application) papp) :
-         ca(papp)
+      locale_schema::locale_schema(sp(::ca2::application) papp) :
+         ca2(papp)
       {
 
 
@@ -23,7 +23,7 @@ namespace ca
       }
 
       locale_schema::locale_schema(const locale_schema & ls) :
-         ca(ls.get_app())
+         ca2(ls.get_app())
       {
 
          operator = (ls);
@@ -184,7 +184,7 @@ namespace ca
                         }
                      }
                   }
-                  else if(ch1 == 'c')
+                  else if(ch1 == 'ca')
                   {
                      if(ch2 == 'n')
                      {
@@ -210,7 +210,7 @@ namespace ca
                            return __id(es);
                         }
                      }
-                     else if(ch2 == 'c')
+                     else if(ch2 == 'ca')
                      {
                         if(iLen == 2)
                         {
@@ -368,7 +368,7 @@ namespace ca
                      defer_add_locale(__id(es), idSchema);
                   }
                }
-               else if(ch1 == 'c')
+               else if(ch1 == 'ca')
                {
                   if(ch2 == 'n')
                   {
@@ -378,7 +378,7 @@ namespace ca
                   }
                   else if(ch2 == 'a')
                   {
-                     // ca
+                     // ca2
                      defer_add_locale(__id(en_ca), idSchema);
                      defer_add_locale(__id(en), idSchema);
                      defer_add_locale(__id(fr_ca), idSchema);
@@ -400,7 +400,7 @@ namespace ca
                      defer_add_locale(__id(pt_br), idSchema);
                      defer_add_locale(__id(pt), idSchema);
                   }
-                  else if(ch2 == 'c')
+                  else if(ch2 == 'ca')
                   {
                      defer_add_locale(__id(es), idSchema);
                      defer_add_locale(__id(br), idSchema);
@@ -698,18 +698,18 @@ restart:
 
       int64_t locale_schema::add_ref()
       {
-         return ::ca::object::add_ref();
+         return ::ca2::object::add_ref();
       }
        
       int64_t locale_schema::release()
       {
-         return ::ca::object::release();
+         return ::ca2::object::release();
       }
 
 
    }  // namespace international
 
 
-} // namespace ca
+} // namespace ca2
 
 

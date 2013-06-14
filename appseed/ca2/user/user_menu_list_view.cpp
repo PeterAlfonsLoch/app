@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   menu_list_view::menu_list_view(sp(::ca::application) papp) :
-      ca(papp),
+   menu_list_view::menu_list_view(sp(::ca2::application) papp) :
+      ca2(papp),
       menu_base(papp),
       menu_list_window(papp)
    {
@@ -15,7 +15,7 @@ namespace user
       m_bAutoClose         = false;
    }
 
-   void menu_list_view::install_message_handling(::ca::message::dispatch * pinterface)
+   void menu_list_view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       menu_list_window::install_message_handling(pinterface);
    }
@@ -39,9 +39,9 @@ namespace user
 
 #endif //DEBUG
 
-   void menu_list_view::GuieProc(::ca::signal_object * pobj)
+   void menu_list_view::GuieProc(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       if(pbase->m_uiMessage == m_uiMessage)
       {
          if(base < ::user::place_holder >::bases(get_parent()))

@@ -7,14 +7,14 @@ namespace simpledb
    class server;
 
    class CLASS_DECL_ca2 session :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
 
       server *       m_pserver;
 
-      session(sp(::ca::application) papp);
+      session(sp(::ca2::application) papp);
       virtual ~session();
 
       

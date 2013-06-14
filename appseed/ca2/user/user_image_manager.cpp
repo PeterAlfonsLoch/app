@@ -14,7 +14,7 @@ namespace user
    }
 
 
-   bool image_manager::Initialize(sp(::ca::application) papp, UINT uiaMenuV003Map [][2])
+   bool image_manager::Initialize(sp(::ca2::application) papp, UINT uiaMenuV003Map [][2])
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(uiaMenuV003Map);

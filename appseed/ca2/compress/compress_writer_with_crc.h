@@ -12,12 +12,12 @@ namespace libcompress
 {
 
    class writer_with_crc:
-      public ::ca::writer
+      public ::ca2::writer
    {
    public:
 
 
-      ::ca::writer *   _stream;
+      ::ca2::writer *   _stream;
       uint64_t            _size;
       uint32_t            _crc;
       bool              _calculate;

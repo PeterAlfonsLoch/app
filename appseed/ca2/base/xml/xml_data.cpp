@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
-   xml_data::xml_data(sp(::ca::application) papp, ::xml::parse_info * pparseinfo) :
+   xml_data::xml_data(sp(::ca2::application) papp, ::xml::parse_info * pparseinfo) :
       ::xml::document(papp, pparseinfo)
    {
 
@@ -22,7 +22,7 @@ namespace ca
    }
    
 
-   void xml_data::write(::ca::byte_output_stream & ostream)
+   void xml_data::write(::ca2::byte_output_stream & ostream)
    {
 
       ostream << (::xml::document &) *this;
@@ -30,7 +30,7 @@ namespace ca
    }
    
 
-   void xml_data::read(::ca::byte_input_stream & istream)
+   void xml_data::read(::ca2::byte_input_stream & istream)
    {
 
       istream >> (::xml::document &) *this;
@@ -38,7 +38,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

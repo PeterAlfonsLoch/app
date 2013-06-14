@@ -1,7 +1,7 @@
 #include "framework.h"
 
-wait_cursor::wait_cursor(sp(::ca::application) papp) :
-   ca(papp)
+wait_cursor::wait_cursor(sp(::ca2::application) papp) :
+   ca2(papp)
    { System.BeginWaitCursor(); }
  wait_cursor::~wait_cursor()
 {

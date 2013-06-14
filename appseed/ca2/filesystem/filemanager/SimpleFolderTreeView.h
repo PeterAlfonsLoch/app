@@ -18,7 +18,7 @@ namespace filemanager
       simple_list_header_control    m_headerctrl;
 
 
-      SimpleFolderTreeView(sp(::ca::application) papp);
+      SimpleFolderTreeView(sp(::ca2::application) papp);
       virtual ~SimpleFolderTreeView();
 
 
@@ -26,11 +26,11 @@ namespace filemanager
       virtual void _017OpenFolder(sp(::fs::item)  item);
       void StartAnimation();
       void RenameFile(int32_t iLine, string & str);
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
 
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
     
    #ifdef DEBUG

@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 file_set :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       
@@ -34,9 +34,9 @@ namespace ca
    };
 
 
-   typedef ::c::smart_pointer < file_set > file_set_sp;
+   typedef ::ca::smart_pointer < file_set > file_set_sp;
 
 
-} // namespace ca
+} // namespace ca2
 
 

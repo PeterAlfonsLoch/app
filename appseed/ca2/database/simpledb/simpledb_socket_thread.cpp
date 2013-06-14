@@ -5,8 +5,8 @@ namespace simpledb
 {
 
 
-   socket_thread::socket_thread(sp(::ca::application) papp) :
-      ca(papp),
+   socket_thread::socket_thread(sp(::ca2::application) papp) :
+      ca2(papp),
       thread(papp),
       ::sockets::socket_handler(papp),
       m_evCanInit(papp),
@@ -23,7 +23,7 @@ namespace simpledb
    {
    }
 
-   void socket_thread::install_message_handling(::ca::message::dispatch * pinterface)
+   void socket_thread::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_APP, pinterface, this, &socket_thread::OnApp);
    }
@@ -81,9 +81,9 @@ namespace simpledb
    }
 
 
-   void socket_thread::OnApp(::ca::signal_object * pobj)
+   void socket_thread::OnApp(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       if(pbase->m_wparam == 0)
       {
 

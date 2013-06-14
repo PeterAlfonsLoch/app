@@ -9,8 +9,8 @@ namespace gcom
    {
 
 
-      Main::Main(sp(::ca::application) papp, Interface * pinterface) :
-         ca(papp),
+      Main::Main(sp(::ca2::application) papp, Interface * pinterface) :
+         ca2(papp),
          m_pinterface(pinterface),
          m_mutexStateMachine(papp)
       {
@@ -33,7 +33,7 @@ namespace gcom
 
          m_pthreadHighestPriority   = new thread(get_app());
          m_pthreadHighestPriority->SetMain(this);
-         m_pthreadHighestPriority->begin(::ca::thread_priority_highest);
+         m_pthreadHighestPriority->begin(::ca2::thread_priority_highest);
 
          m_bPendingLayout = true;
 
@@ -84,7 +84,7 @@ namespace gcom
 
       void Main::UpdateDrawingObjects()
       {
-         //::ca::savings & savings = System.savings();
+         //::ca2::savings & savings = System.savings();
          Graphics & graphics = GetGraphics();
 
          graphics.UpdateObjects();
@@ -113,12 +113,12 @@ namespace gcom
       {
          return GetImageChange().LoadNextImage(bSynch);
       }
-      void Main::_001OnImageLoaded(::ca::signal_object * pobj)
+      void Main::_001OnImageLoaded(::ca2::signal_object * pobj)
       {
-         OnImageLoaded((*pobj)()["dib"].ca < ::ca::dib > ());
+         OnImageLoaded((*pobj)()["dib"].ca2 < ::ca2::dib > ());
       }
 
-      void Main::OnImageLoaded(::ca::dib * pdib)
+      void Main::OnImageLoaded(::ca2::dib * pdib)
       {
 
          InterfaceData data;
@@ -143,7 +143,7 @@ namespace gcom
          ImageChange & imagechange = GetImageChange();
          Graphics & graphics = GetGraphics();
          EImagePlacement eplacement;
-         //::ca::savings & savings = System.savings();
+         //::ca2::savings & savings = System.savings();
 
          TRACE("\nCXfplayerView::OnAfterImageLoaded\n");
 
@@ -163,7 +163,7 @@ namespace gcom
          if(!m_bInitialized)
             return false;
 
-         sp(::ca::application) papp = &System;
+         sp(::ca2::application) papp = &System;
          if(papp == NULL)
          {
             // if main application is NULL, there's no reason
@@ -173,7 +173,7 @@ namespace gcom
 
          ASSERT(papp != NULL);
 
-         //         ::ca::savings & savings = System.savings();
+         //         ::ca2::savings & savings = System.savings();
 
          Graphics & graphics = GetGraphics();
 
@@ -475,7 +475,7 @@ namespace gcom
          GetImageChange().SetBackgroundUpdateMillis(1000);
       }
 
-      ::ca::graphics & Main::GetTransferDC()
+      ::ca2::graphics & Main::GetTransferDC()
       {
          return GetGraphics().GetTransferDC();
       }

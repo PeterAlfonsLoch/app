@@ -1,11 +1,11 @@
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
    /*
-   file_association::file_association(sp(::ca::application) papp) :
-      ca(papp)
+   file_association::file_association(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_hkeyClassesRoot = NULL;
    }

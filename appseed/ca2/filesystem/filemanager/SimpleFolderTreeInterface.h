@@ -69,26 +69,26 @@ namespace filemanager
 #ifdef WINDOWSEX
       map < EFolder, EFolder, IShellFolder *, IShellFolder *> m_mapFolder;
 #endif
-      sp(::ca::tree_item)        m_pdataitemCreateImageListStep;
+      sp(::ca2::tree_item)        m_pdataitemCreateImageListStep;
       string                  m_strPath;
       //sp(image_list)            m_pimagelistFs;
       int32_t   m_iDefaultImage;
       int32_t   m_iDefaultImageSelected;
 
 
-      SimpleFolderTreeInterface(sp(::ca::application) papp);
+      SimpleFolderTreeInterface(sp(::ca2::application) papp);
       virtual ~SimpleFolderTreeInterface();
 
 
       virtual void _001InsertColumns();
       //virtual void _001CreateImageList(CColumn & column);
-      virtual void _001UpdateImageList(sp(::ca::tree_item) pitem);
+      virtual void _001UpdateImageList(sp(::ca2::tree_item) pitem);
 
       DECL_GEN_VSIGNAL(_001OnTimer)
 
 
       virtual void _017Synchronize();
-      void install_message_handling(::ca::message::dispatch * pinterface);
+      void install_message_handling(::ca2::message::dispatch * pinterface);
 
 
       void _StartCreateImageList();
@@ -96,9 +96,9 @@ namespace filemanager
       void _CreateImageListStep();
 
       // user::tree
-      virtual void _001OnOpenItem(sp(::ca::tree_item) pitem);
-      virtual void _001OnItemExpand(sp(::ca::tree_item) pitem);
-      virtual void _001OnItemCollapse(sp(::ca::tree_item) pitem);
+      virtual void _001OnOpenItem(sp(::ca2::tree_item) pitem);
+      virtual void _001OnItemExpand(sp(::ca2::tree_item) pitem);
+      virtual void _001OnItemCollapse(sp(::ca2::tree_item) pitem);
 
 
       virtual void _017OpenFolder(sp(::fs::item)  item);
@@ -124,11 +124,11 @@ namespace filemanager
 
       void _017Browse(const char * lpcsz, bool bForceUpdate = false);
       void _017UpdateList();
-      void _017UpdateList(const char * lpcsz, sp(::ca::tree_item) pitemParent, int32_t iLevel);
-      void _017UpdateZipList(const char * lpcsz, sp(::ca::tree_item) pitemParent, int32_t iLevel);
+      void _017UpdateList(const char * lpcsz, sp(::ca2::tree_item) pitemParent, int32_t iLevel);
+      void _017UpdateZipList(const char * lpcsz, sp(::ca2::tree_item) pitemParent, int32_t iLevel);
       void _017EnsureVisible(const char * lpcsz);
 
-      sp(::ca::tree_item) find_item(const char * lpcsz);
+      sp(::ca2::tree_item) find_item(const char * lpcsz);
 
 
 

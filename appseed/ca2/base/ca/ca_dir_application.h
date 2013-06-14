@@ -5,14 +5,14 @@ namespace zip
    class Util;
 }
 
-namespace ca
+namespace ca2
 {
 
    namespace dir
    {
 
       class CLASS_DECL_ca2 application :
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
       public:
 
@@ -69,4 +69,4 @@ namespace ca
 
    } // namespace dir
 
-} // namespace ca
+} // namespace ca2

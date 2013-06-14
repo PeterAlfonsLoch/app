@@ -5,7 +5,7 @@ namespace plugin
 {
 
 
-   system::system(sp(::ca::application) papp) :
+   system::system(sp(::ca2::application) papp) :
       ::plane::system(papp)
    {
 

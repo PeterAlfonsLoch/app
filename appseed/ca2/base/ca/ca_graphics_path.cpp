@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
    graphics_path::graphics_path()
@@ -9,7 +9,7 @@ namespace ca
 
       m_bUpdated     = false;
       m_bFill        = false;
-      m_efillmode    = ::ca::fill_mode_winding;
+      m_efillmode    = ::ca2::fill_mode_winding;
       m_bHasPoint    = false;
 
    }
@@ -122,7 +122,7 @@ namespace ca
    }
 
 
-   bool graphics_path::begin_figure(bool bFill, ::ca::e_fill_mode efillmode)
+   bool graphics_path::begin_figure(bool bFill, ::ca2::e_fill_mode efillmode)
    {
 
       m_bFill = bFill;
@@ -227,7 +227,7 @@ namespace ca
    }
 
    
-} // namespace ca
+} // namespace ca2
 
 
 

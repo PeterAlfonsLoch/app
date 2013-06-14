@@ -11,7 +11,7 @@ public:
    
 
 
-   simple_combo_box(sp(::ca::application) papp);
+   simple_combo_box(sp(::ca2::application) papp);
    virtual ~simple_combo_box();
 
    
@@ -20,7 +20,7 @@ public:
    
 
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ca2::graphics * pdc);
 
    virtual void _001GetListText(index iSel, string & str) const;
    virtual index _001FindListText(const string & str) const;

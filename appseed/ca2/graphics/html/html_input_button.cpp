@@ -11,7 +11,7 @@ namespace html
       {
          m_iFont = -1;
          m_pbutton = new ::user::button(pdata->get_app());
-         m_pbutton->m_ulFlags &= ~::ca::ca::flag_auto_delete;
+         m_pbutton->m_ulFlags &= ~::ca2::ca2::flag_auto_delete;
       }
 
       input_button::~input_button()

@@ -4,7 +4,7 @@
 #undef new
 
 
-namespace ca
+namespace ca2
 {
 
    template < class TYPE >
@@ -74,13 +74,13 @@ namespace ca
    template < class TYPE >
    composite<TYPE>::composite()
    {
-      m_pptr = ::ca::alloc<TYPE>();
+      m_pptr = ::ca2::alloc<TYPE>();
    }
 
    template < class TYPE >
    composite<TYPE>::composite(TYPE & t)
    {
-      m_pptr = ::ca::alloc<TYPE>();
+      m_pptr = ::ca2::alloc<TYPE>();
    }
 
    template < class TYPE >
@@ -130,7 +130,7 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 #define new DEBUG_NEW

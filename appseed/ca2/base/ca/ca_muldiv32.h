@@ -5,11 +5,11 @@
 *  Description:
 *      math routines for 32 bit signed and unsiged numbers.
 *
-*      MulDiv32(a,b,c) = (a * b) / c         (round down, signed)
+*      MulDiv32(a,b,ca) = (a * b) / ca         (round down, signed)
 *
-*      MulDivRD(a,b,c) = (a * b) / c         (round down, uint32_t)
-*      MulDivRN(a,b,c) = (a * b + c/2) / c   (round nearest, uint32_t)
-*      MulDivRU(a,b,c) = (a * b + c-1) / c   (round up, uint32_t)
+*      MulDivRD(a,b,ca) = (a * b) / ca         (round down, uint32_t)
+*      MulDivRN(a,b,ca) = (a * b + ca/2) / ca   (round nearest, uint32_t)
+*      MulDivRU(a,b,ca) = (a * b + ca-1) / ca   (round up, uint32_t)
 *
 *****************************************************************************/
 
@@ -37,22 +37,22 @@
                         // it prolog/verbatim/epilog.
                         // So use the Windows function for now
         #if 0
-        INLINE LONG MulDiv32(LONG a,LONG b,LONG c)
+        INLINE LONG MulDiv32(LONG a,LONG b,LONG ca)
         {
             _asm     mov     eax,dword ptr a  //  mov  eax, a
             _asm     mov     ebx,dword ptr b  //  mov  ebx, b
-            _asm     mov     ecx,dword ptr c  //  mov  ecx, c
+            _asm     mov     ecx,dword ptr ca  //  mov  ecx, ca
             _asm     imul    ebx              //  imul ebx
             _asm     idiv    ecx              //  idiv ecx
             _asm    shld    edx, eax, 16     //  shld edx, eax, 16
 
         } // MulDiv32()
 
-        INLINE uint32_t MulDivRN(uint32_t a,uint32_t b,uint32_t c)
+        INLINE uint32_t MulDivRN(uint32_t a,uint32_t b,uint32_t ca)
         {
             _asm     mov     eax,dword ptr a  //  mov  eax, a
             _asm     mov     ebx,dword ptr b  //  mov  ebx, b
-            _asm     mov     ecx,dword ptr c  //  mov  ecx, c
+            _asm     mov     ecx,dword ptr ca  //  mov  ecx, ca
             _asm     mul     ebx              //  mul  ebx
             _asm     mov     ebx,ecx          //  mov  ebx,ecx
             _asm     shr     ebx,1            //  sar  ebx,1
@@ -63,11 +63,11 @@
 
         } // MulDiv32()
 
-        INLINE uint32_t MulDivRU(uint32_t a,uint32_t b,uint32_t c)
+        INLINE uint32_t MulDivRU(uint32_t a,uint32_t b,uint32_t ca)
         {
             _asm     mov     eax,dword ptr a  //  mov  eax, a
             _asm     mov     ebx,dword ptr b  //  mov  ebx, b
-            _asm     mov     ecx,dword ptr c  //  mov  ecx, c
+            _asm     mov     ecx,dword ptr ca  //  mov  ecx, ca
             _asm     mul     ebx              //  mul  ebx
             _asm     mov     ebx,ecx          //  mov  ebx,ecx
             _asm     dec     ebx              //  dec  ebx
@@ -78,11 +78,11 @@
 
         } // MulDivRU32()
 
-        INLINE uint32_t MulDivRD(uint32_t a,uint32_t b,uint32_t c)
+        INLINE uint32_t MulDivRD(uint32_t a,uint32_t b,uint32_t ca)
         {
             _asm     mov     eax,dword ptr a  //  mov  eax, a
             _asm     mov     ebx,dword ptr b  //  mov  ebx, b
-            _asm     mov     ecx,dword ptr c  //  mov  ecx, c
+            _asm     mov     ecx,dword ptr ca  //  mov  ecx, ca
             _asm     mul     ebx              //  mul  ebx
             _asm     div     ecx              //  div  ecx
             _asm     shld    edx, eax, 16     //  shld edx, eax, 16
@@ -106,27 +106,27 @@
         //  Use C9 int64_t support for Daytona RISC platforms.
         //
 
-        INLINE LONG MulDiv32( LONG a, LONG b, LONG c )
+        INLINE LONG MulDiv32( LONG a, LONG b, LONG ca )
         {
-            return (LONG)( Int32x32To64(a,b) / c );
+            return (LONG)( Int32x32To64(a,b) / ca );
         }
 
 
-        INLINE uint32_t MulDivRD( uint32_t a, uint32_t b, uint32_t c )
+        INLINE uint32_t MulDivRD( uint32_t a, uint32_t b, uint32_t ca )
         {
-            return (uint32_t)( UInt32x32To64(a,b) / c );
+            return (uint32_t)( UInt32x32To64(a,b) / ca );
         }
 
 
-        INLINE uint32_t MulDivRN( uint32_t a, uint32_t b, uint32_t c )
+        INLINE uint32_t MulDivRN( uint32_t a, uint32_t b, uint32_t ca )
         {
-            return (uint32_t)( (UInt32x32To64(a,b)+c/2) / c );
+            return (uint32_t)( (UInt32x32To64(a,b)+ca/2) / ca );
         }
 
 
-        INLINE uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
+        INLINE uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t ca )
         {
-            return (uint32_t)( (UInt32x32To64(a,b)+c-1) / c );
+            return (uint32_t)( (UInt32x32To64(a,b)+ca-1) / ca );
         }
 
     #endif
@@ -134,25 +134,25 @@
 
 #elif defined(LINUX) || defined(MACOS)
 
-inline int32_t MulDiv32(int32_t a, int32_t b, int32_t c)
+inline int32_t MulDiv32(int32_t a, int32_t b, int32_t ca)
 {
-    return (int32_t) (((int64_t) a * (int64_t) b) / (int64_t) c);
+    return (int32_t) (((int64_t) a * (int64_t) b) / (int64_t) ca);
 }
 
-inline uint32_t MulDivRD(uint32_t a, uint32_t b, uint32_t c)
+inline uint32_t MulDivRD(uint32_t a, uint32_t b, uint32_t ca)
 {
-    return (uint32_t) (((uint64_t) a * (uint64_t) b) / (uint64_t) c);
+    return (uint32_t) (((uint64_t) a * (uint64_t) b) / (uint64_t) ca);
 }
 
-inline uint32_t MulDivRN( uint32_t a, uint32_t b, uint32_t c )
+inline uint32_t MulDivRN( uint32_t a, uint32_t b, uint32_t ca )
 {
-    return (uint32_t) ((((uint64_t) a * (uint64_t) b)+(uint64_t)c/2) / (uint64_t)c );
+    return (uint32_t) ((((uint64_t) a * (uint64_t) b)+(uint64_t)ca/2) / (uint64_t)ca );
 }
 
 
-inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
+inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t ca )
 {
-    return (uint32_t) ((((uint64_t) a * (uint64_t) b)+(uint64_t)c-1) / (uint64_t)c );
+    return (uint32_t) ((((uint64_t) a * (uint64_t) b)+(uint64_t)ca-1) / (uint64_t)ca );
 }
 
 
@@ -171,11 +171,11 @@ inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
     //       to get 32-bit instructions.
     //
 
-    inline LONG MulDiv32(LONG a,LONG b,LONG c)
+    inline LONG MulDiv32(LONG a,LONG b,LONG ca)
     {
         _asm _emit 0x66 _asm    mov     ax,uint16_t ptr a   //  mov  eax, a
         _asm _emit 0x66 _asm    mov     bx,uint16_t ptr b   //  mov  ebx, b
-        _asm _emit 0x66 _asm    mov     cx,uint16_t ptr c   //  mov  ecx, c
+        _asm _emit 0x66 _asm    mov     cx,uint16_t ptr ca   //  mov  ecx, ca
         _asm _emit 0x66 _asm    imul    bx              //  imul ebx
         _asm _emit 0x66 _asm    idiv    cx              //  idiv ecx
         _asm _emit 0x66                                 //  shld edx, eax, 16
@@ -186,11 +186,11 @@ inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
 
     } // MulDiv32()
 
-    INLINE uint32_t MulDivRN(uint32_t a,uint32_t b,uint32_t c)
+    INLINE uint32_t MulDivRN(uint32_t a,uint32_t b,uint32_t ca)
     {
         _asm _emit 0x66 _asm    mov     ax,uint16_t ptr a   //  mov  eax, a
         _asm _emit 0x66 _asm    mov     bx,uint16_t ptr b   //  mov  ebx, b
-        _asm _emit 0x66 _asm    mov     cx,uint16_t ptr c   //  mov  ecx, c
+        _asm _emit 0x66 _asm    mov     cx,uint16_t ptr ca   //  mov  ecx, ca
         _asm _emit 0x66 _asm    mul     bx              //  mul  ebx
         _asm _emit 0x66 _asm    mov     bx,cx           //  mov  ebx,ecx
         _asm _emit 0x66 _asm    shr     bx,1            //  sar  ebx,1
@@ -205,11 +205,11 @@ inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
 
     } // MulDiv32()
 
-    INLINE uint32_t MulDivRU(uint32_t a,uint32_t b,uint32_t c)
+    INLINE uint32_t MulDivRU(uint32_t a,uint32_t b,uint32_t ca)
     {
         _asm _emit 0x66 _asm    mov     ax,uint16_t ptr a   //  mov  eax, a
         _asm _emit 0x66 _asm    mov     bx,uint16_t ptr b   //  mov  ebx, b
-        _asm _emit 0x66 _asm    mov     cx,uint16_t ptr c   //  mov  ecx, c
+        _asm _emit 0x66 _asm    mov     cx,uint16_t ptr ca   //  mov  ecx, ca
         _asm _emit 0x66 _asm    mul     bx              //  mul  ebx
         _asm _emit 0x66 _asm    mov     bx,cx           //  mov  ebx,ecx
         _asm _emit 0x66 _asm    dec     bx              //  dec  ebx
@@ -225,11 +225,11 @@ inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
     } // MulDivRU32()
 
 
-    INLINE uint32_t MulDivRD(uint32_t a,uint32_t b,uint32_t c)
+    INLINE uint32_t MulDivRD(uint32_t a,uint32_t b,uint32_t ca)
     {
         _asm _emit 0x66 _asm    mov     ax,uint16_t ptr a   //  mov  eax, a
         _asm _emit 0x66 _asm    mov     bx,uint16_t ptr b   //  mov  ebx, b
-        _asm _emit 0x66 _asm    mov     cx,uint16_t ptr c   //  mov  ecx, c
+        _asm _emit 0x66 _asm    mov     cx,uint16_t ptr ca   //  mov  ecx, ca
         _asm _emit 0x66 _asm    mul     bx              //  mul  ebx
         _asm _emit 0x66 _asm    div     cx              //  div  ecx
         _asm _emit 0x66                                 //  shld edx, eax, 16
@@ -249,9 +249,9 @@ inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
 //  some code references these by other names.
 //
 
-CLASS_DECL_ca2 inline int32_t muldiv32(int32_t a, int32_t b, int32_t c)
+CLASS_DECL_ca2 inline int32_t muldiv32(int32_t a, int32_t b, int32_t ca)
 {
-   return (int32_t) ::MulDiv((int32_t) a, (int32_t) b, (int32_t) c);
+   return (int32_t) ::MulDiv((int32_t) a, (int32_t) b, (int32_t) ca);
 }
 
 

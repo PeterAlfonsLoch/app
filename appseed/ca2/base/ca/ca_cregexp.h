@@ -67,7 +67,7 @@ enum EOps
   ReSymbolOps,
   ReEmpty,
   ReMetaSymb,         // \W \s \d ...
-  ReSymb,             // a b c ...
+  ReSymb,             // a b ca ...
   ReWord,             // uint16_t...
   ReEnum,             // []
   ReNEnum,            // [^]
@@ -102,7 +102,7 @@ enum EMetaSymbols
   ReNUCase,           // \l
   ReWBound,           // \b
   ReNWBound,          // \B
-  RePreNW,            // \c
+  RePreNW,            // \ca
 #ifdef COLORERMODE
   ReStart,            // \m
   ReEnd,              // \M
@@ -141,7 +141,7 @@ public:
     EMetaSymbols metaSymbol;
     string *symbol;
     string *uint16_t;
-    ::ca::ch_class *charclass;
+    ::ca2::ch_class *charclass;
     SRegInfo *param;
   }un;
   string namedata;
@@ -211,7 +211,7 @@ public:
     @ingroup cregexp
 */
 class CLASS_DECL_ca2 cregexp :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
   /**
@@ -220,7 +220,7 @@ public:
   */
   cregexp();
   /**
-    Constructs regular expression and compile it with @c text pattern.
+    Constructs regular expression and compile it with @ca text pattern.
   */
   cregexp(string text);
   ~cregexp();
@@ -259,10 +259,10 @@ public:
     previous structures.
   */
   bool setRE(string re);
-  /** Runs RE parser against input string @c str
+  /** Runs RE parser against input string @ca str
   */
   bool parse(string str, SMatches *mtch, SMatchHash *nmtch = NULL);
-  /** Runs RE parser against input string @c str
+  /** Runs RE parser against input string @ca str
   */
   bool parse(string str, strsize pos, strsize eol, SMatches *mtch, SMatchHash *nmtch = NULL, int32_t soscheme = 0, int32_t moves = -1);
 

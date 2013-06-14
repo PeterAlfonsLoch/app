@@ -6,13 +6,13 @@ class FileSystemSizeWnd;
 
 
 class CLASS_DECL_ca2 file_size_table :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
 
 
    class get_fs_size :
-      public ::ca::byte_serializable
+      public ::ca2::byte_serializable
    {
    public:
 
@@ -31,15 +31,15 @@ public:
       get_fs_size & operator = (const get_fs_size & getfssize);
 
 
-      virtual void write(::ca::byte_output_stream & ostream);
-      virtual void read(::ca::byte_input_stream & istream);
+      virtual void write(::ca2::byte_output_stream & ostream);
+      virtual void read(::ca2::byte_input_stream & istream);
 
 
    };
 
 
    class item :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 
@@ -58,15 +58,15 @@ public:
       item();
 
 
-      void update_size(sp(::ca::application) papp, index & iIteration);
-      void update_size_recursive(sp(::ca::application) papp, index & iIteration);
+      void update_size(sp(::ca2::application) papp, index & iIteration);
+      void update_size_recursive(sp(::ca2::application) papp, index & iIteration);
 
-      item * FindItem(sp(::ca::application) papp, const char * pszPath, index & iIteration);
-      index FindName(sp(::ca::application) papp, const char * pszName, index & iIteration);
+      item * FindItem(sp(::ca2::application) papp, const char * pszPath, index & iIteration);
+      index FindName(sp(::ca2::application) papp, const char * pszName, index & iIteration);
 
       string path();
 
-      void ls(sp(::ca::application) papp, index & iIteration);
+      void ls(sp(::ca2::application) papp, index & iIteration);
    };
 
 
@@ -85,7 +85,7 @@ public:
 
 
 
-   file_size_table(sp(::ca::application) papp);
+   file_size_table(sp(::ca2::application) papp);
    ~file_size_table();
 
    bool check_map();
@@ -95,7 +95,7 @@ public:
 
 
 class CLASS_DECL_ca2 DBFileSystemSizeSet :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
 
@@ -104,7 +104,7 @@ public:
    index                     m_iMaxIteration;
 
 
-   DBFileSystemSizeSet(sp(::ca::application) papp);
+   DBFileSystemSizeSet(sp(::ca2::application) papp);
    ~DBFileSystemSizeSet();
 
 
@@ -123,11 +123,11 @@ public:
 
 
 class CLASS_DECL_ca2 FileSystemSizeServerThread :
-   virtual public ::ca::thread
+   virtual public ::ca2::thread
 {
 public:
 
-   FileSystemSizeServerThread(sp(::ca::application) papp);
+   FileSystemSizeServerThread(sp(::ca2::application) papp);
 
    bool initialize_instance();
 
@@ -137,8 +137,8 @@ public:
 
 
 class CLASS_DECL_ca2 FileSystemSizeWnd :
-   public ::ca::window_sp,
-   public ::ca::signalizable
+   public ::ca2::window_sp,
+   public ::ca2::signalizable
 {
 public:
 
@@ -160,7 +160,7 @@ public:
    size_map                         m_map;
 
 
-   FileSystemSizeWnd(sp(::ca::application) papp);
+   FileSystemSizeWnd(sp(::ca2::application) papp);
 
    bool CreateClient();
    bool CreateServer();
@@ -170,7 +170,7 @@ public:
    void ClientStartServer();
    bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);
 
-   void install_message_handling(::ca::message::dispatch * pinterface);
+   void install_message_handling(::ca2::message::dispatch * pinterface);
 
    DECL_GEN_SIGNAL(_001OnCopyData)
    DECL_GEN_SIGNAL(_001OnTimer)

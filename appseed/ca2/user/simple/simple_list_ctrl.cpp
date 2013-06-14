@@ -1,7 +1,7 @@
 #include "framework.h"
 
-simple_list_control::simple_list_control(sp(::ca::application) papp) :
-   ca(papp),
+simple_list_control::simple_list_control(sp(::ca2::application) papp) :
+   ca2(papp),
    m_headerctrl(papp),
    
    ::user::scroll_view(papp),
@@ -99,7 +99,7 @@ bool simple_list_control::remove_item(range & range)
 }
 
 
-void simple_list_control::install_message_handling(::ca::message::dispatch * pinterface)
+void simple_list_control::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    UNREFERENCED_PARAMETER(pinterface);
 }

@@ -6,7 +6,7 @@ namespace userfs
 
 
    class CLASS_DECL_ca2 list_item_array :
-      virtual ::ca::object
+      virtual ::ca2::object
    {
    public:
 
@@ -25,7 +25,7 @@ namespace userfs
    public:
 
 
-      list_item_array(sp(::ca::application) papp);
+      list_item_array(sp(::ca2::application) papp);
       virtual ~list_item_array();
 
 

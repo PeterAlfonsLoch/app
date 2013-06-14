@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 session :
-      virtual public ::ca::application
+      virtual public ::ca2::application
    {
    public:
 
@@ -21,6 +21,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

@@ -230,18 +230,18 @@ inline string_data * string_manager::GetNilString()
 
 
 
-namespace ca
+namespace ca2
 {
    namespace str
    {
       CLASS_DECL_ca2 inline void copy(char * pszDest, const char * pszSrc) { strcpy(pszDest, pszSrc); }
       CLASS_DECL_ca2 inline void copy(wchar_t * pszDest, const wchar_t * pszSrc) { wcscpy_dup(pszDest, pszSrc); }
    } // namespace str
-} // namespace ca
+} // namespace ca2
 
 
 
-/*namespace ca
+/*namespace ca2
 {
 
    namespace international
@@ -362,9 +362,9 @@ static_string& operator=( const static_string& str ) NOTHROW;
 
 
 
-#define _ST( psz ) ::ca::static_string< char, sizeof( _T( psz ) ) >( _T( psz ) )
-#define _SA( psz ) ::ca::static_string< char, sizeof( psz ) >( psz )
-#define _SW( psz ) ::ca::static_string< wchar_t, sizeof( L##psz ) >( L##psz )
+#define _ST( psz ) ::ca2::static_string< char, sizeof( _T( psz ) ) >( _T( psz ) )
+#define _SA( psz ) ::ca2::static_string< char, sizeof( psz ) >( psz )
+#define _SW( psz ) ::ca2::static_string< wchar_t, sizeof( L##psz ) >( L##psz )
 #define _SO( psz ) _SW( psz )
 
 class CLASS_DECL_ca2 char_traits_base
@@ -461,7 +461,7 @@ public:
       ENSURE( pstringmanager != NULL );
 
       if(pchSrc == NULL && nLength != 0)
-         throw invalid_argument_exception(::ca::get_thread_app());
+         throw invalid_argument_exception(::ca2::get_thread_app());
 
       if(nLength < 0)
          nLength = (strsize) strlen(pchSrc);
@@ -563,7 +563,7 @@ public:
       //ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
 
       if( (iChar < 0) || (iChar > get_length()) )
-         throw invalid_argument_exception(::ca::get_thread_app());
+         throw invalid_argument_exception(::ca2::get_thread_app());
 
       return ( m_pszData[iChar] );
    }
@@ -708,7 +708,7 @@ public:
    {
       ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
       if( (iChar < 0) || (iChar > get_length()) )
-         throw invalid_argument_exception(::ca::get_thread_app());
+         throw invalid_argument_exception(::ca2::get_thread_app());
 
       return( m_pszData[iChar] );
    }
@@ -743,7 +743,7 @@ public:
    }
    void get_string(char * psz) const NOTHROW
    {
-      ::ca::str::copy(psz, (const char *) *this);
+      ::ca2::str::copy(psz, (const char *) *this);
    }
    void set_string(const char * psz) NOTHROW
    {
@@ -815,7 +815,7 @@ public:
       ASSERT( (iChar >= 0) && (iChar < get_length()) );
 
       if( (iChar < 0) || (iChar >= get_length()) )
-         throw invalid_argument_exception(::ca::get_thread_app());
+         throw invalid_argument_exception(::ca2::get_thread_app());
 
       strsize nLength = get_length();
       char * pszBuffer = GetBuffer();
@@ -851,7 +851,7 @@ public:
          // into the newly allocated buffer instead.
 
          if(pszSrc == NULL)
-            throw invalid_argument_exception(::ca::get_thread_app());
+            throw invalid_argument_exception(::ca2::get_thread_app());
 
          uint_ptr nOldLength = (uint_ptr) get_length();
          uint_ptr nOffset = (uint_ptr) (pszSrc - GetString());
@@ -979,7 +979,7 @@ protected:
 
    NOINLINE DECLSPEC_NO_RETURN static void __cdecl ThrowMemoryException()
    {
-      throw hresult_exception(::ca::get_thread_app(), E_OUTOFMEMORY);
+      throw hresult_exception(::ca2::get_thread_app(), E_OUTOFMEMORY);
    }
 
    // Implementation
@@ -1075,9 +1075,9 @@ private:
    {
 
       if(nLength < 0 )
-         throw error_exception(::ca::get_thread_app(), "simple_string::set_length nLength < 0");
+         throw error_exception(::ca2::get_thread_app(), "simple_string::set_length nLength < 0");
       if(nLength > get_data()->nAllocLength)
-         throw error_exception(::ca::get_thread_app(), "simple_string::set_length nLength > get_data()->nAllocLength");
+         throw error_exception(::ca2::get_thread_app(), "simple_string::set_length nLength > get_data()->nAllocLength");
 
       get_data()->nDataLength = nLength;
       m_pszData[nLength] = 0;
@@ -1179,7 +1179,7 @@ public:
       ASSERT( nLength <= m_nBufferLength );
 
       if( nLength < 0 )
-         throw invalid_argument_exception(::ca::get_thread_app());
+         throw invalid_argument_exception(::ca2::get_thread_app());
 
       m_nLength = nLength;
    }

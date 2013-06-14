@@ -16,7 +16,7 @@ namespace user
       menu_item *          m_pitemContainer;
 
 
-      menu_button_cmd_ui(sp(::ca::application) papp);
+      menu_button_cmd_ui(sp(::ca2::application) papp);
 
 
       virtual void Enable(bool bOn);
@@ -31,7 +31,7 @@ namespace user
       public button
    {
    public:
-      menu_button(sp(::ca::application) papp);
+      menu_button(sp(::ca2::application) papp);
    public:
       virtual ~menu_button();
 
@@ -40,9 +40,9 @@ namespace user
 
       virtual void _001Layout();
 
-      virtual void _001DrawCheck(::ca::graphics * pdc);
+      virtual void _001DrawCheck(::ca2::graphics * pdc);
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
    };
 
 } // namespace user

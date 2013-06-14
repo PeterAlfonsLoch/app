@@ -1,7 +1,7 @@
 #include "framework.h"
 
-calendar_interface::calendar_interface(sp(::ca::application) papp) :
-   ca(papp)
+calendar_interface::calendar_interface(sp(::ca2::application) papp) :
+   ca2(papp)
 {
    ::datetime::time time = ::datetime::time::get_current_time();
    m_iYear = time.GetYear();
@@ -9,7 +9,7 @@ calendar_interface::calendar_interface(sp(::ca::application) papp) :
    m_bRange = false;
 }
 
-void calendar_interface::_001OnDraw(::ca::graphics * pdc)
+void calendar_interface::_001OnDraw(::ca2::graphics * pdc)
 {
    UNREFERENCED_PARAMETER(pdc);
 }

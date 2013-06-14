@@ -19,8 +19,8 @@ namespace xml
       sp(::xml::node)         m_pnode;
 
 
-      input_tree(sp(::ca::application) papp);
-      input_tree(sp(::ca::application) papp, tree_schema * pschema);
+      input_tree(sp(::ca2::application) papp);
+      input_tree(sp(::ca2::application) papp, tree_schema * pschema);
       virtual ~input_tree();
 
 

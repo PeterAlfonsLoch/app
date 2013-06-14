@@ -75,7 +75,7 @@ namespace user
    frame_window::frame_window()
    {
 
-      m_nWindow = -1;                 // unknown ::ca::window ID
+      m_nWindow = -1;                 // unknown ::ca2::window ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
       m_lpfnCloseProc = NULL;
       m_hMenuDefault = NULL;
@@ -132,7 +132,7 @@ namespace user
       ASSERT(m_hAccelTable == NULL);  // only do once
       ASSERT(lpszResourceName != NULL);
 
-      /*   HINSTANCE hInst = ::ca::FindResourceHandle(lpszResourceName, RT_ACCELERATOR);
+      /*   HINSTANCE hInst = ::ca2::FindResourceHandle(lpszResourceName, RT_ACCELERATOR);
       m_hAccelTable = ::LoadAccelerators(hInst, lpszResourceName);*/
       return (m_hAccelTable != NULL);
    }
@@ -149,7 +149,7 @@ namespace user
       return hAccelTable;
    }
 
-   void frame_window::pre_translate_message(::ca::signal_object * pobj)
+   void frame_window::pre_translate_message(::ca2::signal_object * pobj)
    {
       ENSURE_ARG(pobj != NULL);
       // check for special cancel modes for combo boxes
@@ -210,7 +210,7 @@ namespace user
       VERIFY(::PostMessage(get_handle(), WM_EXITHELPMODE, 0, 0));
       }
 
-      // release capture if this ::ca::window has it
+      // release capture if this ::ca2::window has it
       if (System.get_capture_uie() == get_handle())
       System.release_capture_uie();
 
@@ -354,7 +354,7 @@ namespace user
       /*   oswindow oswindow = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
       while (oswindow != NULL)
       {
-      sp(::ca::window) pWnd = ::ca::window::FromHandlePermanent(oswindow);
+      sp(::ca2::window) pWnd = ::ca2::window::FromHandlePermanent(oswindow);
       if (pWnd != NULL && get_handle() != oswindow && __is_descendant(this, pWnd))
       {
       uint32_t dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
@@ -381,7 +381,7 @@ namespace user
       if (bEnable && (m_nFlags & WF_STAYDISABLED))
       {
 
-         // Work around for MAPI support. This makes sure the main ::ca::window
+         // Work around for MAPI support. This makes sure the main ::ca2::window
          // remains disabled even when the mail system is booting.
 
          EnableWindow(FALSE);
@@ -444,7 +444,7 @@ namespace user
 
    }
 
-   bool frame_window::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, const char * lpszMenuName, uint32_t dwExStyle, sp(::ca::create_context) pContext)
+   bool frame_window::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, const char * lpszMenuName, uint32_t dwExStyle, sp(::ca2::create_context) pContext)
    {
 
       UNREFERENCED_PARAMETER(lpszMenuName);
@@ -454,7 +454,7 @@ namespace user
       if(!::user::interaction::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id(), pContext))
       {
 
-         TRACE(::ca::trace::category_AppMsg, 0, "Warning: failed to create frame_window.\n");
+         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: failed to create frame_window.\n");
 
          return FALSE;
 
@@ -465,7 +465,7 @@ namespace user
    }
 
    /*
-   sp(::user::interaction) frame_window::CreateView(sp(::ca::create_context) pContext, UINT nID)
+   sp(::user::interaction) frame_window::CreateView(sp(::ca2::create_context) pContext, UINT nID)
    {
    // trans   ASSERT(get_handle() != NULL);
    ASSERT(IsWindow());
@@ -476,7 +476,7 @@ namespace user
    sp(::user::interaction) pview =  (System.alloc(pContext->m_typeinfoNewView));
    if (pview == NULL)
    {
-   TRACE(::ca::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::view type %hs failed.\n",
+   TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::view type %hs failed.\n",
    pContext->m_typeinfoNewView.name());
    return NULL;
    }
@@ -486,7 +486,7 @@ namespace user
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
    rect(0,0,0,0), this, nID, pContext))
    {
-   TRACE(::ca::trace::category_AppMsg, 0, "Warning: could not create ::user::view for frame.\n");
+   TRACE(::ca2::trace::category_AppMsg, 0, "Warning: could not create ::user::view for frame.\n");
    return NULL;        // can't continue without a ::user::view
    }
 
@@ -501,7 +501,7 @@ namespace user
    }
    */
 
-   bool frame_window::OnCreateClient(LPCREATESTRUCT, sp(::ca::create_context) pContext)
+   bool frame_window::OnCreateClient(LPCREATESTRUCT, sp(::ca2::create_context) pContext)
    {
       // default create client will create a ::user::view if asked for it
       if (pContext != NULL &&
@@ -514,10 +514,10 @@ namespace user
       return TRUE;
    }
 
-   void frame_window::_001OnCreate(::ca::signal_object * pobj)
+   void frame_window::_001OnCreate(::ca2::signal_object * pobj)
    {
 
-      ::ca::thread * pappthread = System.GetThread()->get_app_thread();
+      ::ca2::thread * pappthread = System.GetThread()->get_app_thread();
       if(pappthread != NULL)
       {
          if(pappthread->GetMainWnd() == NULL)
@@ -533,20 +533,20 @@ namespace user
       if(pobj->previous())
          return;
 
-      SCAST_PTR(::ca::message::create, pcreate, pobj)
+      SCAST_PTR(::ca2::message::create, pcreate, pobj)
          ENSURE_ARG(pcreate->m_lpcreatestruct != NULL);
-      sp(::ca::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
+      sp(::ca2::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
       pcreate->set_lresult(OnCreateHelper(pcreate->m_lpcreatestruct, pContext));
       pcreate->m_bRet = pcreate->get_lresult() == -1;
    }
 
-   int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, sp(::ca::create_context) pContext)
+   int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, sp(::ca2::create_context) pContext)
    {
 
       // create special children first
       if (!OnCreateClient(lpcs, pContext))
       {
-         TRACE(::ca::trace::category_AppMsg, 0, "Failed to create client pane/::user::view for frame.\n");
+         TRACE(::ca2::trace::category_AppMsg, 0, "Failed to create client pane/::user::view for frame.\n");
          return -1;
       }
 
@@ -561,7 +561,7 @@ namespace user
 
 
    bool frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle,
-      sp(::user::interaction) pParentWnd, sp(::ca::create_context) pContext)
+      sp(::user::interaction) pParentWnd, sp(::ca2::create_context) pContext)
    {
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(dwDefaultStyle);
@@ -580,7 +580,7 @@ namespace user
 
       VERIFY(__defer_register_class(__WNDFRAMEORVIEW_REG));
 
-      // attempt to create the ::ca::window
+      // attempt to create the ::ca2::window
       const char * lpszClass = GetIconWndClass(dwDefaultStyle, nIDResource);
       string strTitle = m_strTitle;
       if (!CreateEx(0, lpszClass, strTitle, dwDefaultStyle, rectDefault,
@@ -655,9 +655,9 @@ namespace user
             pview->OnActivateFrame(WA_INACTIVE, this);
 
          // finally, activate the frame
-         // (send the default show command unless the main desktop ::ca::window)
+         // (send the default show command unless the main desktop ::ca2::window)
          int32_t nCmdShow = -1;      // default
-         ::ca::application* pApp = &System;
+         ::ca2::application* pApp = &System;
          if (pApp != NULL && pApp->GetMainWnd() == this)
          {
             nCmdShow = pApp->m_nCmdShow; // use the parameter from WinMain
@@ -763,7 +763,7 @@ namespace user
 
 
       // there are cases where destroying the documents may destroy the
-      //  main ::ca::window of the application.
+      //  main ::ca2::window of the application.
       if (!afxContextIsDLL && pApp->GetMainWnd() == NULL)
       {
       __post_quit_message(0);
@@ -793,15 +793,15 @@ namespace user
       return;
       }
 
-      // allow the ::user::document_interface to cleanup before the ::ca::window is destroyed
+      // allow the ::user::document_interface to cleanup before the ::ca2::window is destroyed
       pdocument->pre_close_frame(this);
       }
 
-      // then destroy the ::ca::window
+      // then destroy the ::ca2::window
       DestroyWindow();*/
    }
 
-   void frame_window::_001OnDestroy(::ca::signal_object * pobj)
+   void frame_window::_001OnDestroy(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // reset menu to default before final shutdown
@@ -811,11 +811,11 @@ namespace user
       ASSERT(::GetMenu(get_handle()) == m_hMenuDefault);
       } */
 
-      // Automatically quit when the main ::ca::window is destroyed.
+      // Automatically quit when the main ::ca2::window is destroyed.
       /* trans application* pApp = &System;
       if (pApp != NULL && pApp->GetMainWnd() == this && pApp->m_eHelpType == afxWinHelp)
       {
-      // closing the main application ::ca::window
+      // closing the main application ::ca2::window
       ::WinHelp(get_handle(), NULL, HELP_QUIT, 0L);
 
       // will call PostQuitMessage in user::frame_window_interface::OnNcDestroy
@@ -826,7 +826,7 @@ namespace user
 
    /////////////////////////////////////////////////////////////////////////////
    // frame_window command/message routing
-   void frame_window::install_message_handling(::ca::message::dispatch * pinterface)
+   void frame_window::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       frame_window_interface::install_message_handling(pinterface);
@@ -868,7 +868,7 @@ namespace user
          return TRUE;
 
       // last but not least, pump through cast
-      ::ca::application* pApp = get_app();
+      ::ca2::application* pApp = get_app();
       if (pApp != NULL && pApp->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 
@@ -918,7 +918,7 @@ namespace user
 
 
       // deactivate current active ::user::view
-      ::ca::thread *pThread = System.GetThread();
+      ::ca2::thread *pThread = System.GetThread();
       ASSERT(pThread);
       if (pThread->GetMainWnd() == this)
       {
@@ -935,16 +935,16 @@ namespace user
       return 0;
    }
 
-   void frame_window::_001OnActivate(::ca::signal_object * pobj)
+   void frame_window::_001OnActivate(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::activate, pactivate, pobj);
+      SCAST_PTR(::ca2::message::activate, pactivate, pobj);
 
       sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther.m_p : this);
 
       pobj->previous();
 
-      // get top level frame unless this is a child ::ca::window
-      // determine if ::ca::window should be active or not
+      // get top level frame unless this is a child ::ca2::window
+      // determine if ::ca2::window should be active or not
       sp(::user::frame_window) pTopLevel = (GetStyle() & WS_CHILD) ? this : GetTopLevelFrame().m_p;
 
       if(pTopLevel == NULL)
@@ -984,14 +984,14 @@ namespace user
       }
    }
 
-   void frame_window::_001OnNcActivate(::ca::signal_object * pobj)
+   void frame_window::_001OnNcActivate(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::nc_activate, pncactivate, pobj)
+      SCAST_PTR(::ca2::message::nc_activate, pncactivate, pobj)
          // stay active if WF_STAYACTIVE bit is on
          if (m_nFlags & WF_STAYACTIVE)
             pncactivate->m_bActive = TRUE;
 
-      // but do not stay active if the ::ca::window is disabled
+      // but do not stay active if the ::ca2::window is disabled
       if (!IsWindowEnabled())
          pncactivate->m_bActive = FALSE;
 
@@ -1052,7 +1052,7 @@ namespace user
          char szFileName[_MAX_PATH];
          ::DragQueryFile(hDropInfo, iFile, szFileName, _MAX_PATH);
 
-         sp(::ca::create_context) createcontext(allocer());
+         sp(::ca2::create_context) createcontext(allocer());
          createcontext->m_spCommandLine->m_varFile = szFileName;
 
          puser->open_document_file(createcontext);
@@ -1067,7 +1067,7 @@ namespace user
    // query end session for main frame will attempt to close it all down
    bool frame_window::OnQueryEndSession()
    {
-      ::ca::application* pApp = &System;
+      ::ca2::application* pApp = &System;
       if (pApp != NULL && pApp->GetMainWnd() == this)
          return pApp->save_all_modified();
 
@@ -1080,7 +1080,7 @@ namespace user
       if (!bEnding)
          return;
 
-      ::ca::application* pApp = &System;
+      ::ca2::application* pApp = &System;
       if (pApp != NULL && pApp->GetMainWnd() == this)
       {
          pApp->close_all_documents(TRUE);
@@ -1099,7 +1099,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      ::ca::application* pApp = &System;
+      ::ca2::application* pApp = &System;
       if (pApp != NULL &&
          LOWORD(lParam) != 0 && HIWORD(lParam) != 0 &&
          (ATOM)LOWORD(lParam) == pApp->m_atomApp &&
@@ -1163,10 +1163,10 @@ namespace user
          ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
          (UINT)0x8000, (uint_ptr)hData));
 
-      // don't execute the command when the ::ca::window is disabled
+      // don't execute the command when the ::ca2::window is disabled
       if (!IsWindowEnabled())
       {
-         TRACE(::ca::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because ::ca::window is disabled.\n",
+         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because ::ca2::window is disabled.\n",
             strCommand.GetString());
          return 0;
       }
@@ -1174,7 +1174,7 @@ namespace user
       // execute the command
       LPTSTR lpszCommand = strCommand.GetBuffer();
       if (!System.OnDDECommand(lpszCommand))
-         TRACE(::ca::trace::category_AppMsg, 0, "Error: failed to execute DDE command '%s'.\n", lpszCommand);
+         TRACE(::ca2::trace::category_AppMsg, 0, "Error: failed to execute DDE command '%s'.\n", lpszCommand);
       strCommand.ReleaseBuffer();
 
 #else
@@ -1235,7 +1235,7 @@ namespace user
       if (pViewOld != NULL)
          pViewOld->OnActivateView(FALSE, pViewNew, pViewOld);
 
-      // if the OnActivateView moves the active ::ca::window,
+      // if the OnActivateView moves the active ::ca2::window,
       //    that will veto this change
       if (m_pViewActive != NULL)
          return;     // already set
@@ -1285,7 +1285,7 @@ namespace user
       // load appropriate string
       throw not_implemented(get_app());
       /*   LPTSTR lpsz = rMessage.GetBuffer(255);
-      if (::ca::LoadString(nID, lpsz) != 0)
+      if (::ca2::LoadString(nID, lpsz) != 0)
       {
       // first newline terminates actual string
       lpsz = _tcschr(lpsz, '\n');
@@ -1295,7 +1295,7 @@ namespace user
       else
       {
       // not found
-      TRACE(::ca::trace::category_AppMsg, 0, "Warning: no message line prompt for ID 0x%04X.\n", nID);
+      TRACE(::ca2::trace::category_AppMsg, 0, "Warning: no message line prompt for ID 0x%04X.\n", nID);
       }
       rMessage.ReleaseBuffer();*/
    }
@@ -1391,7 +1391,7 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Setting title of frame ::ca::window - UISG standard
+   // Setting title of frame ::ca2::window - UISG standard
 
    void frame_window::on_update_frame_title(bool bAddToTitle)
    {
@@ -1417,7 +1417,7 @@ namespace user
          {
             WindowText += lpszDocName;
 
-            // add current ::ca::window # if needed
+            // add current ::ca2::window # if needed
             if (m_nWindow > 0)
             {
 
@@ -1444,7 +1444,7 @@ namespace user
             WindowText += " - ";
             WindowText += lpszDocName;
 
-            // add current ::ca::window # if needed
+            // add current ::ca2::window # if needed
             if (m_nWindow > 0)
             {
 
@@ -1469,7 +1469,7 @@ namespace user
    void frame_window::OnSetPreviewMode(bool bPreview, CPrintPreviewState* pState)
    {
       ENSURE_ARG(pState != NULL);
-      // default implementation changes control bars, menu and main pane ::ca::window
+      // default implementation changes control bars, menu and main pane ::ca2::window
 
 
       // set visibility of standard ControlBars (only the first 32)
@@ -1639,7 +1639,7 @@ namespace user
          layout();
    }
 
-   bool frame_window::OnEraseBkgnd(::ca::graphics * pgraphics)
+   bool frame_window::OnEraseBkgnd(::ca2::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       if (m_pViewActive != NULL)
@@ -1705,7 +1705,7 @@ namespace user
 
       if (nCmdShow != -1)
       {
-         // show the ::ca::window as specified
+         // show the ::ca2::window as specified
          ShowWindow(nCmdShow);
 
          // and finally, bring to top after showing
@@ -1724,7 +1724,7 @@ namespace user
       if(get_parent() == NULL)
       {
 
-         // place the ::ca::window on top except for certain nCmdShow
+         // place the ::ca2::window on top except for certain nCmdShow
 
          if(
             nCmdShow != SW_HIDE
@@ -1806,12 +1806,12 @@ namespace user
 
 
 
-   void frame_window::_001OnSysCommand(::ca::signal_object * pobj)
+   void frame_window::_001OnSysCommand(::ca2::signal_object * pobj)
    {
 
 #ifdef WINDOWS
 
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       if(get_parent() == NULL)
       {
          if(pbase->m_wparam == SC_RESTORE)
@@ -1878,7 +1878,7 @@ namespace user
    {
       // trans ASSERT(get_handle() == NULL);
 
-      m_nWindow = -1;                 // unknown ::ca::window ID
+      m_nWindow = -1;                 // unknown ::ca2::window ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
       m_lpfnCloseProc = NULL;
       m_hMenuDefault = NULL;
@@ -1913,12 +1913,12 @@ namespace user
       ASSERT_VALID(this);
       // trans   ASSERT(get_handle() != NULL);
 
-      // get top level parent frame ::ca::window first unless this is a child ::ca::window
+      // get top level parent frame ::ca2::window first unless this is a child ::ca2::window
       sp(::user::frame_window) pParent = (GetStyle() & WS_CHILD) ? this : (GetTopLevelFrame().m_p);
       ASSERT(pParent != NULL);
       if (dwFlags & (FS_DEACTIVATE|FS_ACTIVATE))
       {
-         // update parent ::ca::window activation state
+         // update parent ::ca2::window activation state
          bool bActivate = !(dwFlags & FS_DEACTIVATE);
          bool bEnabled = pParent->IsWindowEnabled();
 
@@ -1970,7 +1970,7 @@ namespace user
 
 
 
-   //void frame_window::_001OnCreate(::ca::signal_object * pobj)
+   //void frame_window::_001OnCreate(::ca2::signal_object * pobj)
    //{
    //   UNREFERENCED_PARAMETER(pobj);
 
@@ -2004,9 +2004,9 @@ namespace user
 
 
    // query end session for main frame will attempt to close it all down
-   void frame_window::_001OnQueryEndSession(::ca::signal_object * pobj)
+   void frame_window::_001OnQueryEndSession(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       if (&System != NULL && System.GetMainWnd() == this)
       {
          pbase->set_lresult(System.save_all_modified());
@@ -2021,7 +2021,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Special ::user::view swapping/activation
 
-   void frame_window::_001OnSetFocus(::ca::signal_object * pobj)
+   void frame_window::_001OnSetFocus(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       if (m_pViewActive != NULL)
@@ -2051,7 +2051,7 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Setting title of frame ::ca::window - UISG standard
+   // Setting title of frame ::ca2::window - UISG standard
 
 
 
@@ -2061,7 +2061,7 @@ namespace user
    //   m_nIdleFlags |= idleMenu;
    //}
 
-   void frame_window::_001OnIdleUpdateCmdUI(::ca::signal_object * pobj)
+   void frame_window::_001OnIdleUpdateCmdUI(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // update menu if necessary
@@ -2090,10 +2090,10 @@ namespace user
 
 
 
-   void frame_window::_001OnSize(::ca::signal_object * pobj)
+   void frame_window::_001OnSize(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(::ca::message::size, psize, pobj)
+      //      SCAST_PTR(::ca2::message::size, psize, pobj)
    }
 
 
@@ -2183,7 +2183,7 @@ namespace user
 
 
 
-   void frame_window::_000OnDraw(::ca::graphics * pdc)
+   void frame_window::_000OnDraw(::ca2::graphics * pdc)
    {
       frame_window_interface::_000OnDraw(pdc);
    }

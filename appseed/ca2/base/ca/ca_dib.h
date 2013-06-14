@@ -4,7 +4,7 @@
 struct FIBITMAP;
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -16,8 +16,8 @@ namespace ca
 
 
    class CLASS_DECL_ca2 dib :
-      virtual public ::ca::object,
-      virtual public ::ca::byte_serializable
+      virtual public ::ca2::object,
+      virtual public ::ca2::byte_serializable
    {
    public:
 
@@ -31,9 +31,9 @@ namespace ca
       virtual ~dib();
 
 
-      virtual ::ca::graphics * get_graphics();
-      virtual ::ca::bitmap_sp get_bitmap();
-      virtual ::ca::bitmap_sp detach_bitmap();
+      virtual ::ca2::graphics * get_graphics();
+      virtual ::ca2::bitmap_sp get_bitmap();
+      virtual ::ca2::bitmap_sp detach_bitmap();
 
 
       virtual COLORREF * get_data();
@@ -46,12 +46,12 @@ namespace ca
 
       virtual bool dc_select(bool bSelect = true);
 
-      virtual bool from(::ca::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI);
+      virtual bool from(::ca2::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI);
 
       virtual COLORREF GetAverageColor();
       virtual bool blend(dib * pdib, dib * pdibRate);
       virtual bool Blend(dib *pdib, dib * pdibA, int32_t A);
-      virtual bool bitmap_blend(::ca::graphics * pgraphics, LPCRECT lprect);
+      virtual bool bitmap_blend(::ca2::graphics * pgraphics, LPCRECT lprect);
       virtual bool color_blend(COLORREF cr, BYTE bAlpha);
       virtual void BitBlt(dib * pdib, int32_t op);
       virtual int32_t cos(int32_t i, int32_t iAngle);
@@ -71,7 +71,7 @@ namespace ca
       virtual void GrayToARGB(COLORREF cr);
 
       virtual void from_alpha();
-      virtual void mult_alpha(::ca::dib * pdibWork, bool bPreserveAlpha = true);
+      virtual void mult_alpha(::ca2::dib * pdibWork, bool bPreserveAlpha = true);
 
       virtual void rotate(dib * pdib, LPCRECT lpcrect, double dAngle, double dScale);
       virtual void rotate(dib * pdib, double dAngle, double dScale);
@@ -79,7 +79,7 @@ namespace ca
 
 
       virtual void set_rgb(int32_t R, int32_t G, int32_t B);
-      virtual bool rgb_from(::ca::dib * pdib);
+      virtual bool rgb_from(::ca2::dib * pdib);
 
 
 
@@ -98,29 +98,29 @@ namespace ca
 
       virtual bool create(size);
       virtual bool create(int32_t iWidth, int32_t iHeight);
-      virtual bool create(::ca::graphics * pdc);
+      virtual bool create(::ca2::graphics * pdc);
       virtual bool Destroy();
 
-      virtual bool realize(::ca::graphics * pdc);
+      virtual bool realize(::ca2::graphics * pdc);
       virtual bool unrealize();
       virtual bool is_realized();
-      virtual bool defer_realize(::ca::graphics * pdc);
+      virtual bool defer_realize(::ca2::graphics * pdc);
 
 
       virtual void DivideRGB(int32_t iDivide);
       virtual void DivideARGB(int32_t iDivide);
       virtual void DivideA(int32_t iDivide);
 
-      virtual bool from(::ca::dib * pdib);
-      virtual bool from(::ca::graphics * pdc);
-      virtual bool from(point ptDst, ::ca::graphics * pdc, point ptSrc, size size);
+      virtual bool from(::ca2::dib * pdib);
+      virtual bool from(::ca2::graphics * pdc);
+      virtual bool from(point ptDst, ::ca2::graphics * pdc, point ptSrc, size size);
 
-      virtual bool to(::ca::graphics * pgraphics);
-      virtual bool to(::ca::graphics * pgraphics, point pt);
-      virtual bool to(::ca::graphics * pgraphics, size size);
-      virtual bool to(::ca::graphics * pgraphics, point pt, size size);
-      virtual bool to(::ca::graphics * pgraphics, LPCRECT lpcrect);
-      virtual bool to(::ca::graphics * pgraphics, point pt, size size, point ptSrc);
+      virtual bool to(::ca2::graphics * pgraphics);
+      virtual bool to(::ca2::graphics * pgraphics, point pt);
+      virtual bool to(::ca2::graphics * pgraphics, size size);
+      virtual bool to(::ca2::graphics * pgraphics, point pt, size size);
+      virtual bool to(::ca2::graphics * pgraphics, LPCRECT lpcrect);
+      virtual bool to(::ca2::graphics * pgraphics, point pt, size size, point ptSrc);
 
 
       virtual bool pixelate(int32_t iSize);
@@ -137,10 +137,10 @@ namespace ca
       virtual void Invert();
       virtual void channel_invert(visual::rgba::echannel echannel);
       virtual void channel_multiply(visual::rgba::echannel echannel, double dRate);
-      virtual void channel_multiply(visual::rgba::echannel echannel, ::ca::dib * pdib);
-      virtual void channel_lighten(visual::rgba::echannel echannel, ::ca::dib * pdib);
-      virtual void channel_darken(visual::rgba::echannel echannel, ::ca::dib * pdib);
-      virtual void channel_from(visual::rgba::echannel echannel, ::ca::dib * pdib);
+      virtual void channel_multiply(visual::rgba::echannel echannel, ::ca2::dib * pdib);
+      virtual void channel_lighten(visual::rgba::echannel echannel, ::ca2::dib * pdib);
+      virtual void channel_darken(visual::rgba::echannel echannel, ::ca2::dib * pdib);
+      virtual void channel_from(visual::rgba::echannel echannel, ::ca2::dib * pdib);
       virtual void channel_copy(visual::rgba::echannel echannelDst, visual::rgba::echannel echannelSrc);
 
       virtual void Map (int32_t ToRgb, int32_t FromRgb );
@@ -186,14 +186,14 @@ namespace ca
       virtual double pi();
       inline class size size() { return ::size(cx, cy); }
 
-      virtual void write(::ca::byte_output_stream & ostream);
-      virtual void read(::ca::byte_input_stream & istream);
+      virtual void write(::ca2::byte_output_stream & ostream);
+      virtual void read(::ca2::byte_input_stream & istream);
 
 
    };
 
    class CLASS_DECL_ca2 dib_sp :
-      public ::c::smart_pointer < dib >
+      public ::ca::smart_pointer < dib >
    {
    public:
 
@@ -201,32 +201,32 @@ namespace ca
       {
       }
 
-      dib_sp(const ::c::smart_pointer < dib > & p) :
-         ::c::smart_pointer < dib > (p)
+      dib_sp(const ::ca::smart_pointer < dib > & p) :
+         ::ca::smart_pointer < dib > (p)
       {
       }
 
       dib_sp(allocatorsp allocer) :
-         ::c::smart_pointer < dib > (allocer)
+         ::ca::smart_pointer < dib > (allocer)
       {
       }
 
    };
 
    class CLASS_DECL_ca2 dibmap :
-      virtual public map < size, size, ::ca::dib_sp, ::ca::dib_sp >
+      virtual public map < size, size, ::ca2::dib_sp, ::ca2::dib_sp >
    {
    public:
 
-      dibmap(sp(::ca::application) papp) :
-         ca(papp)
+      dibmap(sp(::ca2::application) papp) :
+         ca2(papp)
       {
       }
 
 
-      inline ::ca::dib_sp & operator[](class size key)
+      inline ::ca2::dib_sp & operator[](class size key)
       {
-         ::ca::dib_sp & dib = map < class size, class size, ::ca::dib_sp, ::ca::dib_sp >::operator [](key);
+         ::ca2::dib_sp & dib = map < class size, class size, ::ca2::dib_sp, ::ca2::dib_sp >::operator [](key);
          if(dib.is_null())
             dib.create(allocer());
          return dib;
@@ -235,7 +235,7 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

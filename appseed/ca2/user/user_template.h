@@ -49,7 +49,7 @@ namespace user
             public array < DispatchHandlerItemBase *, DispatchHandlerItemBase *>
          {
          public:
-            bool HasSignalizable(::ca::signalizable * psignalizable);
+            bool HasSignalizable(::ca2::signalizable * psignalizable);
          };
 
          class DispatchSignalPtrArray :

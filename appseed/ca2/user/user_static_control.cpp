@@ -54,8 +54,8 @@ namespace user
    }
 
 
-   static_control::static_control(sp(::ca::application) papp) :
-      ca(papp)
+   static_control::static_control(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       
       m_etype = type_text;
@@ -108,7 +108,7 @@ namespace user
    }
 
 
-   void static_control::set_bitmap(::ca::bitmap * pbitmap)
+   void static_control::set_bitmap(::ca2::bitmap * pbitmap)
    {
 
       
@@ -123,7 +123,7 @@ namespace user
    }
 
 
-   ::ca::bitmap * static_control::get_bitmap()
+   ::ca2::bitmap * static_control::get_bitmap()
    {
 
       return m_etype == type_bitmap ? m_pbitmap : NULL;

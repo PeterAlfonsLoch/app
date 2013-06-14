@@ -21,7 +21,7 @@ public:
    ::user::list * m_plistinterface;
 
 
-   simple_form_list_edit(sp(::ca::application) papp);
+   simple_form_list_edit(sp(::ca2::application) papp);
    virtual ~simple_form_list_edit();
 
 
@@ -29,7 +29,7 @@ public:
    ::user::list * GetBaseListInterface();
 
 
-   bool OnEraseBkgnd(::ca::graphics * pgraphics);
+   bool OnEraseBkgnd(::ca2::graphics * pgraphics);
    DECL_GEN_SIGNAL(_001OnCreate)
    void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
    void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);

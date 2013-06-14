@@ -104,7 +104,7 @@ namespace user
 #endif
       void layout(); // called for for delayed button layout
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
 
       //{{__MSG(tool_bar)
       DECL_GEN_SIGNAL(_001OnNcHitTest)
@@ -119,7 +119,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnNcCreate)
       LRESULT OnSetSizeHelper(size& size, LPARAM lParam);
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
 
    };

@@ -23,14 +23,14 @@ namespace user
 
 
    public:
-      step_slider(sp(::ca::application) papp);
+      step_slider(sp(::ca2::application) papp);
       virtual ~step_slider();
 
       bool create(sp(::user::interaction) pwndParent, id id);
 
-      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
       void GetStepHoverRect(int32_t iStep, LPRECT lprect);
       void GetStepRect(int32_t iStep, LPRECT lprect);
 

@@ -11,7 +11,7 @@ namespace userstack
 
    class CLASS_DECL_sphere frame : 
       public simple_frame_window,
-      public ::ca::message_window_simple_callback
+      public ::ca2::message_window_simple_callback
    {
    public:
       
@@ -30,12 +30,12 @@ namespace userstack
       sp(pane_view)                m_ppaneview;
 
 
-      frame(sp(::ca::application) papp);
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      frame(sp(::ca2::application) papp);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_001OnApp1);
       DECL_GEN_SIGNAL(_001OnMouseLeave);
-      virtual void _000OnMouse(::ca::message::mouse * pmouse);
+      virtual void _000OnMouse(::ca2::message::mouse * pmouse);
 
       void OnHoverAction();
 
@@ -50,15 +50,15 @@ namespace userstack
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      virtual void pre_translate_message(::ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca2::signal_object * pobj);
 
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnTimer)
       DECL_GEN_SIGNAL(_001OnApp2000)
 
-      virtual void message_handler(::ca::signal_object * pobj);
+      virtual void message_handler(::ca2::signal_object * pobj);
 
-      virtual void message_window_message_handler(::ca::signal_object * pobj);
+      virtual void message_window_message_handler(::ca2::signal_object * pobj);
 
 
    };

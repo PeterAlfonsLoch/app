@@ -5,9 +5,9 @@ namespace html
 {
 
 
-   html::html(::ca::application * papp) :
-      ::ca::ca(papp),
-      ::ca::section(papp),
+   html::html(::ca2::application * papp) :
+      ::ca2::ca2(papp),
+      ::ca2::section(papp),
       m_entityresolver(papp)
    {
    
@@ -20,10 +20,10 @@ namespace html
    }
 
 
-   void html::construct(sp(::ca::application) papp)
+   void html::construct(sp(::ca2::application) papp)
    {
 
-      ::ca::section::construct(papp);
+      ::ca2::section::construct(papp);
 
       m_clrInvalid = 0xffffffff;
       m_percentMax = USHRT_MAX;
@@ -225,7 +225,7 @@ namespace html
       string strChar;
       while(*psz != '\0')
       {
-         int32_t iChar = (int32_t) ::ca::ch::uni_index(psz);
+         int32_t iChar = (int32_t) ::ca2::ch::uni_index(psz);
          if(iChar == '&')
          {
             str += "&amp;";
@@ -255,7 +255,7 @@ namespace html
             strChar.Format("&#%d;", iChar);
             str += strChar;
          }
-         psz = ::ca::str::utf8_inc(psz);
+         psz = ::ca2::str::utf8_inc(psz);
       }
       return str;
    }

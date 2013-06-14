@@ -24,8 +24,8 @@ namespace user
       };
 
 
-      menu(sp(::ca::application) papp);
-      menu(sp(::ca::application) papp, menu_item * pitem);
+      menu(sp(::ca2::application) papp);
+      menu(sp(::ca2::application) papp, menu_item * pitem);
       virtual ~menu();
 
 
@@ -37,7 +37,7 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
 
-      void _001OnDraw(::ca::graphics *pdc);
+      void _001OnDraw(::ca2::graphics *pdc);
       DECL_GEN_SIGNAL(OnMessageDestroyWindow)
 
 
@@ -74,7 +74,7 @@ namespace user
       bool pre_create_window(CREATESTRUCT& cs);
       virtual void PostNcDestroy();
       ::user::front_end_schema::menu  * m_pschema;
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_001OnShowWindow)
    };

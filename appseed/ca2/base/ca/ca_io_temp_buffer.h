@@ -8,18 +8,18 @@
 
 #include "../IStream.h"*/
 
-namespace ca
+namespace ca2
 {
 
    class temp_io_buffer : 
-      virtual public ::ca::object
+      virtual public ::ca2::object
 
    {
    public:
       //NWindows::NFile::NDirectory::CTempFile _tempFile;
       //NWindows::NFile::NIO::COutFile _outFile;
-      ::ca::filesp                      _tempFile;
-      ::ca::filesp                      _outFile;
+      ::ca2::filesp                      _tempFile;
+      ::ca2::filesp                      _outFile;
       string                           _tempFileName;
       bool                             _tempFileCreated;
       uint32_t                           _crc;
@@ -32,7 +32,7 @@ namespace ca
       virtual ~temp_io_buffer();
 
       bool write_to_file(const void * data, ::primitive::memory_size size);
-      using ::ca::request_interface::create;
+      using ::ca2::request_interface::create;
       void create();
 
       void InitWriting();
@@ -57,4 +57,4 @@ namespace ca
       void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize);
    };
 
-} // namespace ca
+} // namespace ca2

@@ -158,66 +158,66 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
 #ifdef WINDOWS
 
 
-#define DEFINE_C_NUMBER(e, c, T) \
-   class e c : \
+#define DEFINE_C_NUMBER(e, ca, T) \
+   class e ca : \
       public c_number < T > \
    { \
    public: \
-      c() \
+      ca() \
       { \
       } \
       \
-      c(const c & c) : \
-         c_number < T > ((const c_number < T > &) c) \
+      ca(const ca & ca) : \
+         c_number < T > ((const c_number < T > &) ca) \
       { \
       } \
       \
-      c(char ch) : \
+      ca(char ch) : \
          c_number < T > (throw_cast < T > (ch)) \
       { \
       } \
       \
-      c(uchar uch) : \
+      ca(uchar uch) : \
          c_number < T > (throw_cast < T > (uch)) \
       { \
       } \
       \
-      c(int16_t sh) : \
+      ca(int16_t sh) : \
          c_number < T > (throw_cast < T > (sh)) \
       { \
       } \
       \
-      c(uint16_t uint16_t) : \
+      ca(uint16_t uint16_t) : \
          c_number < T > (throw_cast < T > (uint16_t)) \
       { \
       } \
       \
-      c(int32_t i) : \
+      ca(int32_t i) : \
          c_number < T > (throw_cast < T > (i)) \
       { \
       } \
       \
-      c(uint32_t ui) : \
+      ca(uint32_t ui) : \
          c_number < T > (throw_cast < T > (ui)) \
       { \
       } \
       \
-      c(int64_t i64) : \
+      ca(int64_t i64) : \
          c_number < T > (throw_cast < T > (i64)) \
       { \
       } \
       \
-      c(uint64_t ui64) : \
+      ca(uint64_t ui64) : \
          c_number < T > (throw_cast < T > (ui64)) \
       { \
       } \
       \
-      c(float f) : \
+      ca(float f) : \
          c_number < T > (throw_cast < T > (f)) \
       { \
       } \
       \
-      c(double d) : \
+      ca(double d) : \
          c_number < T > (throw_cast < T > (d)) \
       { \
       } \
@@ -226,66 +226,66 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
 
 #else
 
-#define DEFINE_C_NUMBER(e, c, T) \
-   class e c : \
+#define DEFINE_C_NUMBER(e, ca, T) \
+   class e ca : \
       public c_number < T > \
    { \
    public: \
-      c() \
+      ca() \
       { \
       } \
       \
-      c(const c & c) : \
-         c_number < T > ((const c_number < T > &) c) \
+      ca(const ca & ca) : \
+         c_number < T > ((const c_number < T > &) ca) \
       { \
       } \
       \
-      c(char ch) : \
+      ca(char ch) : \
          c_number < T > (throw_cast < T > (ch)) \
       { \
       } \
       \
-      c(uchar uch) : \
+      ca(uchar uch) : \
          c_number < T > (throw_cast < T > (uch)) \
       { \
       } \
       \
-      c(int16_t i) : \
+      ca(int16_t i) : \
          c_number < T > (throw_cast < T > (i)) \
       { \
       } \
       \
-      c(uint16_t ui) : \
+      ca(uint16_t ui) : \
          c_number < T > (throw_cast < T > (ui)) \
       { \
       } \
       \
-      c(int32_t i) : \
+      ca(int32_t i) : \
          c_number < T > (throw_cast < T > (i)) \
       { \
       } \
       \
-      c(uint32_t ui) : \
+      ca(uint32_t ui) : \
          c_number < T > (throw_cast < T > (ui)) \
       { \
       } \
       \
-      c(int64_t i) : \
+      ca(int64_t i) : \
          c_number < T > (throw_cast < T > (i)) \
       { \
       } \
       \
-      c(uint64_t ui) : \
+      ca(uint64_t ui) : \
          c_number < T > (throw_cast < T > (ui)) \
       { \
       } \
       \
-      c(float f) : \
+      ca(float f) : \
          c_number < T > (throw_cast < T > (f)) \
       { \
       } \
       \
-      c(double d) : \
+      ca(double d) : \
          c_number < T > (throw_cast < T > (d)) \
       { \
       } \

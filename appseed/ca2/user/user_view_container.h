@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 view_container :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 

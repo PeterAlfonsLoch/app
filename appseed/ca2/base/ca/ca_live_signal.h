@@ -3,11 +3,11 @@
 
 
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 live_signal :
-      virtual public ::ca::live_object,
+      virtual public ::ca2::live_object,
       virtual protected ::comparable_array < live_object * >
    {
    public:
@@ -25,6 +25,6 @@ namespace ca
 
    };
 
-} // namespace ca
+} // namespace ca2
 
 

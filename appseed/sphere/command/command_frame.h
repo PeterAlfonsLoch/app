@@ -7,7 +7,7 @@ namespace command
 
    class CLASS_DECL_sphere frame : 
       public simple_frame_window,
-      public ::ca::message_window_simple_callback
+      public ::ca2::message_window_simple_callback
    {
    public:
 
@@ -22,10 +22,10 @@ namespace command
       bool                    m_bMoveDrag;
       bool                    m_bLControl;
 
-	   frame(sp(::ca::application) papp);
+	   frame(sp(::ca2::application) papp);
       virtual ~frame();
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
 	   void ShowControlBars(bool bShow);
 	   void AnimateStatusBar();
@@ -57,7 +57,7 @@ namespace command
       DECL_GEN_SIGNAL(_001OnApp2000)
 
 
-      virtual void message_window_message_handler(::ca::signal_object * pobj);
+      virtual void message_window_message_handler(::ca2::signal_object * pobj);
    };
 
 

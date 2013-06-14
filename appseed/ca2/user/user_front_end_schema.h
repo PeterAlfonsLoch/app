@@ -6,7 +6,7 @@ namespace user
    class button;
 
    class CLASS_DECL_ca2 front_end_schema :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -15,16 +15,16 @@ namespace user
       class CLASS_DECL_ca2 system_menu
       {
       public:
-         system_menu(sp(::ca::application) papp);
-         ::ca::font_sp    m_fontMarlett;
+         system_menu(sp(::ca2::application) papp);
+         ::ca2::font_sp    m_fontMarlett;
       };
 
       class CLASS_DECL_ca2 menu
       {
       public:
-         menu(sp(::ca::application) papp);
+         menu(sp(::ca2::application) papp);
          ~menu();
-         ::ca::font_sp     m_font;
+         ::ca2::font_sp     m_font;
          button *          m_pschemaSysMenuButton;
          button *          m_pschemaItemButton;
          button *          m_pschemaPopupButton;
@@ -33,7 +33,7 @@ namespace user
       class CLASS_DECL_ca2 button
       {
       public:
-         button(sp(::ca::application) papp);
+         button(sp(::ca2::application) papp);
          COLORREF          m_crTextNormal;
          COLORREF          m_crTextHover;
          COLORREF          m_crTextPress;
@@ -42,7 +42,7 @@ namespace user
          COLORREF          m_crBkHover;
          COLORREF          m_crBkPress;
          COLORREF          m_crBkDisabled;
-         ::ca::font_sp     m_font;
+         ::ca2::font_sp     m_font;
          bool              m_bBorder;
       };
 
@@ -54,10 +54,10 @@ namespace user
       button         m_buttonBaseWndMenuItemPopup;
       
 
-      front_end_schema(sp(::ca::application) app);
+      front_end_schema(sp(::ca2::application) app);
       ~front_end_schema();
 
-      virtual void DrawCheck(check::check echeck, LPCRECT lpcrect, ::ca::graphics * pdc);
+      virtual void DrawCheck(check::check echeck, LPCRECT lpcrect, ::ca2::graphics * pdc);
 
       
 

@@ -22,7 +22,7 @@ namespace visual
       byte_array     m_uchaDiv;
 
 
-      fastblur(::ca::allocatorsp allocer);
+      fastblur(::ca2::allocatorsp allocer);
 
 
       bool initialize(int32_t cx, int32_t cy, int32_t iRadius);

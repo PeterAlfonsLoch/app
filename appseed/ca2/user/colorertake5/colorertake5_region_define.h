@@ -21,7 +21,7 @@ public:
   virtual void assignParent(const RegionDefine *parent) = 0;
 
   /**
-   * Direct assign of all passed @c rd values.
+   * Direct assign of all passed @ca rd values.
    * Copies all information from passed definition into
    * this region.
    */

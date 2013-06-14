@@ -36,7 +36,7 @@ public:
    ::user::menu     m_menu;
 
 
-   simple_menu_bar(sp(::ca::application) papp);
+   simple_menu_bar(sp(::ca2::application) papp);
    virtual ~simple_menu_bar();
 
 
@@ -65,7 +65,7 @@ public:
         );
 
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
-   virtual void pre_translate_message(::ca::signal_object * pobj);
+   virtual void pre_translate_message(::ca2::signal_object * pobj);
    protected:
    virtual bool pre_create_window(CREATESTRUCT& cs);
 
@@ -76,11 +76,11 @@ public:
    //int32_t _001GetHoverItem();
    //void _001Hover(point pt);
    //void _001Hover();
-   //void _001DrawItem(::ca::graphics * pdc, int32_t iItem);
+   //void _001DrawItem(::ca2::graphics * pdc, int32_t iItem);
    //int32_t _001HitTest(const POINT * point);
    //bool _001CheckItem(int32_t iItem, bool bCheck);
    //bool _001GetItemRect(int32_t iItem, LPRECT lprect, EElement eelement);
-   //virtual void _001OnDraw(::ca::graphics * pdc);
+   //virtual void _001OnDraw(::ca2::graphics * pdc);
    bool ReloadMenuBar();
    virtual void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler);
    void RemoveAllButtons();
@@ -89,7 +89,7 @@ public:
       sp(image_list) pimagelist,
       sp(image_list) pimagelistDisabled,
       int_int_spreadset * prel,
-      ::ca::font * pfont);
+      ::ca2::font * pfont);
 
    //size CalcLayout(uint32_t dwMode, int32_t nLength);
 
@@ -116,7 +116,7 @@ public:
 
    DECL_GEN_SIGNAL(_001OnAppLanguage)
 
-   virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+   virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
 
 };

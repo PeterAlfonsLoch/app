@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-FileManagerPathView::FileManagerPathView(sp(::ca::application) papp) :
-   ca(papp),
+FileManagerPathView::FileManagerPathView(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::interaction(papp),
    
    ::user::scroll_view(papp),
@@ -14,7 +14,7 @@ FileManagerPathView::FileManagerPathView(sp(::ca::application) papp) :
 
 }
 
-void FileManagerPathView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
+void FileManagerPathView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != NULL)

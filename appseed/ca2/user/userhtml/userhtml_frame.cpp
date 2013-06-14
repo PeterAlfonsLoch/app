@@ -33,8 +33,8 @@
    ID_INDICATOR_SCRL,
 };*/
 
-html_frame::html_frame(sp(::ca::application) papp) :
-   ca(papp),
+html_frame::html_frame(sp(::ca2::application) papp) :
+   ca2(papp),
    simple_frame_window(papp)
 {
    m_pimagelist = NULL;
@@ -51,7 +51,7 @@ html_frame::~html_frame()
 {
 }
 
-void html_frame::_001OnCreate(::ca::signal_object * pobj)
+void html_frame::_001OnCreate(::ca2::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 

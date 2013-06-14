@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   tree_window::tree_window(sp(::ca::application) papp) :
-      ca(papp),
+   tree_window::tree_window(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::user::tree(papp)
@@ -17,7 +17,7 @@ namespace user
    {
    }
 
-   void tree_window::install_message_handling(::ca::message::dispatch * pinterface)
+   void tree_window::install_message_handling(::ca2::message::dispatch * pinterface)
    {
 
 

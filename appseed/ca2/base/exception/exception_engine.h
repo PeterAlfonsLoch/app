@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2001 - 2002
+ Copyright (ca) 2001 - 2002
  Author: Konstantin Boukreev
  E-mail: konstantin@mail.primorye.ru
  Created: 25.12.2001 19:41:00
@@ -42,7 +42,7 @@ namespace exception
 
 
    class CLASS_DECL_ca2 engine :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 
@@ -69,7 +69,7 @@ namespace exception
 
 
 
-      engine(sp(::ca::application) papp);
+      engine(sp(::ca2::application) papp);
       ~engine();
 
 

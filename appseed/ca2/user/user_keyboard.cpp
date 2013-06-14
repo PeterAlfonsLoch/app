@@ -3,8 +3,8 @@
 namespace user
 {
 
-   keyboard::keyboard(sp(::ca::application) papp) :
-      ca(papp)
+   keyboard::keyboard(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
 
@@ -111,7 +111,7 @@ namespace user
 
       ::user::e_key ekey;
 
-      sp(::ca::type_info) typeinfoKey = System.type_info < ::user::e_key > ();
+      sp(::ca2::type_info) typeinfoKey = System.type_info < ::user::e_key > ();
 
       string str = Application.file().as_string(pszPath);
 
@@ -161,7 +161,7 @@ namespace user
       return *m_playout;
    }
 
-   void keyboard::process_escape(sp(::xml::node) pnode, ::ca::property_set & set)
+   void keyboard::process_escape(sp(::xml::node) pnode, ::ca2::property_set & set)
    {
       m_playout->process_escape(pnode, set);
    }
@@ -331,9 +331,9 @@ namespace user
          string strHkl = straHkl[i];
          HKL hkl;
          strHkl.trim();
-         if(::ca::str::begins_eat_ci(strHkl, "0x"))
+         if(::ca2::str::begins_eat_ci(strHkl, "0x"))
          {
-            hkl = (HKL) ::ca::hex::to_uint(strHkl);
+            hkl = (HKL) ::ca2::hex::to_uint(strHkl);
          }
          else
          {
@@ -355,7 +355,7 @@ namespace user
 
    }
 
-   void keyboard::translate_os_key_message(::ca::message::key * pkey)
+   void keyboard::translate_os_key_message(::ca2::message::key * pkey)
    {
 
       pkey->m_ekey = m_mapKey[(int32_t) pkey->m_nChar];

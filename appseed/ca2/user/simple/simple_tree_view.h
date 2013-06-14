@@ -8,10 +8,10 @@ class CLASS_DECL_ca2 simple_tree_view :
 public:
 
    
-   simple_tree_view(sp(::ca::application) papp);   
+   simple_tree_view(sp(::ca2::application) papp);   
    virtual ~simple_tree_view();
 
-   virtual void install_message_handling(::ca::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
 
    DECL_GEN_SIGNAL(_001OnCreate)

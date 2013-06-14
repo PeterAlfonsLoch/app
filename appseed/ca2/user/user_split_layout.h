@@ -35,7 +35,7 @@ namespace user
 
 
       class CLASS_DECL_ca2 Pane :
-         virtual public ::ca::ca
+         virtual public ::ca2::ca2
       {
       public:
          
@@ -47,7 +47,7 @@ namespace user
          sp(::user::place_holder)    m_pholder;
 
 
-         Pane(sp(::ca::application) papp);
+         Pane(sp(::ca2::application) papp);
 
 
       };
@@ -65,7 +65,7 @@ namespace user
       int32_t                                      m_cyBorder;
 
 
-      split_layout(sp(::ca::application) papp);
+      split_layout(sp(::ca2::application) papp);
       virtual ~split_layout();
 
 

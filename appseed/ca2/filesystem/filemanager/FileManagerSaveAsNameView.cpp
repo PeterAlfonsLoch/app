@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-FileManagerSaveAsView::FileManagerSaveAsView(sp(::ca::application) papp) :
-   ca(papp),
+FileManagerSaveAsView::FileManagerSaveAsView(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::edit_plain_text_view(papp),
    ::user::interaction(papp),
    
@@ -13,7 +13,7 @@ FileManagerSaveAsView::FileManagerSaveAsView(sp(::ca::application) papp) :
 
 }
 
-void FileManagerSaveAsView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
+void FileManagerSaveAsView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != NULL)

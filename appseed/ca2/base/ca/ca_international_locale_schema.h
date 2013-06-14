@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -10,7 +10,7 @@ namespace ca
 
 
       class CLASS_DECL_ca2 locale_schema : 
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
       public:
 
@@ -30,7 +30,7 @@ namespace ca
          comparable_array < id >    m_idaSchema;
 
 
-         locale_schema(sp(::ca::application) papp);
+         locale_schema(sp(::ca2::application) papp);
          locale_schema(const locale_schema & ls);
          virtual ~locale_schema();
 
@@ -78,7 +78,7 @@ namespace ca
    }  // namespace international
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

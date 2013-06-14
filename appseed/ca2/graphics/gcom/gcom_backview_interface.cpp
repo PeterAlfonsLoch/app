@@ -7,8 +7,8 @@ namespace gcom
    namespace backview
    {
 
-      Interface::Interface(sp(::ca::application) papp) :
-         ca(papp)
+      Interface::Interface(sp(::ca2::application) papp) :
+         ca2(papp)
       {
          m_bTransferVoid   = false;
          m_dwTimerStep      = 0;
@@ -26,7 +26,7 @@ namespace gcom
       }
 
 
-      void Interface::install_message_handling(::ca::message::dispatch * pinterface)
+      void Interface::install_message_handling(::ca2::message::dispatch * pinterface)
       {
          IGUI_WIN_MSG_LINK(MessageBackView, pinterface, this, &Interface::OnBackViewMessage);
          IGUI_WIN_MSG_LINK(MessageBackViewDequeue, pinterface, this, &Interface::OnDequeueMessage);
@@ -48,9 +48,9 @@ namespace gcom
 
       uint32_t d_dwLastBackViewUpdate;
 
-      void Interface::OnBackViewMessage(::ca::signal_object * pobj)
+      void Interface::OnBackViewMessage(::ca2::signal_object * pobj)
       {
-         SCAST_PTR(::ca::message::base, pbase, pobj)
+         SCAST_PTR(::ca2::message::base, pbase, pobj)
          switch(pbase->m_wparam)
          {
          case BackViewWparamImageChangeEvent:
@@ -73,23 +73,23 @@ namespace gcom
          pbase->set_lresult(0);
       }
 
-      void Interface::OnDequeueMessage(::ca::signal_object * pobj)
+      void Interface::OnDequeueMessage(::ca2::signal_object * pobj)
       {
-         SCAST_PTR(::ca::message::base, pbase, pobj)
+         SCAST_PTR(::ca2::message::base, pbase, pobj)
          GetMain().OnDequeueMessage(pbase->m_wparam, pbase->m_lparam);
          pbase->set_lresult(0);
       }
 
-      void Interface::OnWndSize(::ca::signal_object * pobj)
+      void Interface::OnWndSize(::ca2::signal_object * pobj)
       {
-         SCAST_PTR(::ca::message::base, pbase, pobj)
+         SCAST_PTR(::ca2::message::base, pbase, pobj)
          GetMain().m_bPendingLayout = true;
          pbase->m_bRet = false;
       }
 
-      void Interface::OnWndTimer(::ca::signal_object * pobj)
+      void Interface::OnWndTimer(::ca2::signal_object * pobj)
       {
-         SCAST_PTR(::ca::message::timer, ptimer, pobj)
+         SCAST_PTR(::ca2::message::timer, ptimer, pobj)
          if(m_dwTimerStep > 0 && m_dwTimerStep == ptimer->m_nIDEvent)
          {
             ImageChangePostEvent(gcom::backview::event_timer);
@@ -105,9 +105,9 @@ namespace gcom
       }
 
 
-      void Interface::OnWndCreate(::ca::signal_object * pobj)
+      void Interface::OnWndCreate(::ca2::signal_object * pobj)
       {
-//         SCAST_PTR(::ca::message::create, pcreate, pobj)
+//         SCAST_PTR(::ca2::message::create, pcreate, pobj)
          if(pobj->previous())
             return;
          initialize_user_interaction();
@@ -154,7 +154,7 @@ namespace gcom
          return GetMain().LoadNextImage(bSynch);
       }
 
-      void Interface::OnImageLoaded(::ca::dib * pdib)
+      void Interface::OnImageLoaded(::ca2::dib * pdib)
       {
          GetMain().OnImageLoaded(pdib);
       }
@@ -187,7 +187,7 @@ namespace gcom
          GetMain().ImageChangePostEvent(eevent);
       }
 
-      ::ca::graphics & Interface::GetTransferDC()
+      ::ca2::graphics & Interface::GetTransferDC()
       {
          return GetMain().GetTransferDC();
       }
@@ -222,14 +222,14 @@ namespace gcom
          return GetMain().IsEnabled();
       }
 
-      void Interface::BackViewRender(::ca::graphics * pdc, LPCRECT lpcrect)
+      void Interface::BackViewRender(::ca2::graphics * pdc, LPCRECT lpcrect)
       {
          class rect rect(lpcrect);
          BackViewRender(pdc, rect.left, rect.top, rect.width(), rect.height());
       }
 
       void Interface::BackViewRender(
-         ::ca::graphics * pdc,
+         ::ca2::graphics * pdc,
          int32_t x, int32_t y,
          int32_t w, int32_t h)
       {
@@ -245,7 +245,7 @@ namespace gcom
 
          single_lock sl(&graphics.m_mutex4Transfer, TRUE);
 
-         ::ca::graphics & dcTransfer = graphics.GetTransferDC();
+         ::ca2::graphics & dcTransfer = graphics.GetTransferDC();
 
          if(&dcTransfer == NULL)
             return;
@@ -279,8 +279,8 @@ namespace gcom
       // background, this function call is a feedback requested by from some
       // transition effect or visual effect in order to display to the
       // the ::fontopus::user an intereactive effect. At first design, the only needed
-      // feedback is the final output ::ca::window screenshot.
-      void Interface::BackViewFeedback(::ca::graphics * pdc)
+      // feedback is the final output ::ca2::window screenshot.
+      void Interface::BackViewFeedback(::ca2::graphics * pdc)
       {
          UNREFERENCED_PARAMETER(pdc);
       }

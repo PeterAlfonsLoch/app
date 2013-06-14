@@ -34,7 +34,7 @@ namespace uinteraction
 
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -42,8 +42,8 @@ namespace ca
 
 
    class CLASS_DECL_ca2 library :
-      virtual public ::c::library,
-      virtual public ::ca::object
+      virtual public ::ca::library,
+      virtual public ::ca2::object
    {
    public:
 
@@ -57,7 +57,7 @@ namespace ca
       library(const char * pszRoot);
       virtual ~library();
 
-      virtual bool open(sp(::ca::application) papp, const char * pszPath, bool bAutoClose = true);
+      virtual bool open(sp(::ca2::application) papp, const char * pszPath, bool bAutoClose = true);
       virtual bool close();
 
 
@@ -73,7 +73,7 @@ namespace ca
 
 
       // impl
-      virtual sp(::ca::application) get_new_app(const char * pszId);
+      virtual sp(::ca2::application) get_new_app(const char * pszId);
       virtual void get_app_list(stringa & stra);
 
 
@@ -81,10 +81,10 @@ namespace ca
       virtual bool is_uinteraction_library();
 
 
-      virtual ::dynamic_source::script_manager * create_script_manager(sp(::ca::application) papp);
+      virtual ::dynamic_source::script_manager * create_script_manager(sp(::ca2::application) papp);
 
       virtual void get_script_list(stringa & stra);
-      virtual ::dynamic_source::script * create_script(sp(::ca::application) papp, const char * pszScript);
+      virtual ::dynamic_source::script * create_script(sp(::ca2::application) papp, const char * pszScript);
       virtual void do_default_script_registration(::dynamic_source::script_manager * pmanager);
 
       virtual string get_library_name();
@@ -94,7 +94,7 @@ namespace ca
 
    private:
 
-      using ::c::library::open;
+      using ::ca::library::open;
 
    };
 
@@ -105,16 +105,16 @@ namespace ca
    {
    public:
 
-      single_application_library(const char * pszRoot) : ::ca::library(pszRoot) {}
+      single_application_library(const char * pszRoot) : ::ca2::library(pszRoot) {}
 
       // impl
-      virtual sp(::ca::application) get_new_app(const char * pszAppId);
+      virtual sp(::ca2::application) get_new_app(const char * pszAppId);
 
 
    };
 
 
 
-} // namespace ca
+} // namespace ca2
 
 

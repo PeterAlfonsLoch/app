@@ -4,7 +4,7 @@ namespace user
 {
 
    class CLASS_DECL_ca2 tab_view_update_hint :
-      public ::ca::object  
+      public ::ca2::object  
    {
    public:
       enum e_type

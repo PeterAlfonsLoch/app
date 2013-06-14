@@ -7,12 +7,12 @@ namespace libcompress
 
 
    struct method :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
 
 
       method_id Id;
-      ::ca::property_set Props;
+      ::ca2::property_set Props;
 
 
    };
@@ -42,7 +42,7 @@ namespace libcompress
    };
 
 
-   CLASS_DECL_ca2 HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, sp(::ca::ca) coder);
+   CLASS_DECL_ca2 HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, sp(::ca2::ca2) coder);
 
 
 } // namespace libcompress

@@ -28,7 +28,7 @@ namespace sockets
 
 
    http_client_socket::http_client_socket(socket_handler_base& h) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -50,7 +50,7 @@ namespace sockets
 
 
    http_client_socket::http_client_socket(socket_handler_base & h, const string & strUrl) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -92,7 +92,7 @@ namespace sockets
    {
       if (!IsResponse())
       {
-         Handler().LogError(this, "OnFirst", 0, "Response expected but not received - aborting", ::ca::log::level_fatal);
+         Handler().LogError(this, "OnFirst", 0, "Response expected but not received - aborting", ::ca2::log::level_fatal);
          SetCloseAndDelete();
       }
       m_content = m_response.attr("http_version") + " " +
@@ -110,7 +110,7 @@ namespace sockets
 
       if (key == __id(content_length))
       {
-         m_content_length = ::ca::str::to_int_ptr(value);
+         m_content_length = ::ca2::str::to_int_ptr(value);
       }
       else if (key == __id(content_type))
       {
@@ -138,7 +138,7 @@ namespace sockets
 
       m_memoryfile.seek_to_begin();
       
-      string str = ::ca::str::from(m_content_length);
+      string str = ::ca2::str::from(m_content_length);
 
       if(m_content_length == 0)
       {
@@ -169,9 +169,9 @@ namespace sockets
       }
       m_memoryfile.write(buf, len);
       
-      string strLen = ::ca::str::from((uint64_t)len);
-      string strContentPtr = ::ca::str::from((uint64_t)m_content_ptr);
-      string strContentLength = ::ca::str::from(m_content_length);
+      string strLen = ::ca2::str::from((uint64_t)len);
+      string strContentPtr = ::ca2::str::from((uint64_t)m_content_ptr);
+      string strContentLength = ::ca2::str::from(m_content_length);
 
       m_content_ptr += len;
       if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))

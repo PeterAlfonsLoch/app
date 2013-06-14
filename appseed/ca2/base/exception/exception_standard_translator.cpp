@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2001
+Copyright (ca) 2001
 Author: Konstantin Boukreev
 E-mail: konstantin@mail.primorye.ru
 Created: 25.12.2001 15:18:21
@@ -78,7 +78,7 @@ namespace exception
       if(g_bExiting)
          return;
       UNREFERENCED_PARAMETER(uiCode);
-      sp(::ca::application) papp = ::ca::get_thread_app();
+      sp(::ca2::application) papp = ::ca2::get_thread_app();
       switch (ppointers->ExceptionRecord->ExceptionCode)
       {
 #ifdef WINDOWSEX
@@ -340,7 +340,7 @@ namespace exception
          str = "Microsoft C++ Exception";
          break;
       default:
-         str = "Unknown Exception (Not currently known by ca platform)";
+         str = "Unknown Exception (Not currently known by ca2 platform)";
          break;
       };
 

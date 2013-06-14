@@ -17,10 +17,10 @@ void CLASS_DECL_ca2 __cdecl _ca2_purecall_();
 
 void CLASS_DECL_ca2 __cdecl _ca2_purecall_()
 {
-    throw simple_exception(::ca::get_thread_app());
+    throw simple_exception(::ca2::get_thread_app());
 }
 
-namespace ca
+namespace ca2
 {
 
    extern HMODULE g_hmoduleOs;
@@ -84,7 +84,7 @@ namespace plugin
 
       string strMutex = m_phost->m_vssChannel;
 
-      ::ca::str::begins_eat_ci(strMutex, "\\ca2\\");
+      ::ca2::str::begins_eat_ci(strMutex, "\\ca2\\");
 
       m_pmutexBitmap = new simple_mutex("Global\\" + strMutex, false);
 
@@ -117,14 +117,14 @@ namespace plugin
 
          pinitmaindata->m_hInstance             = hInstance;
          pinitmaindata->m_hPrevInstance         = hPrevInstance;
-         pinitmaindata->m_vssCommandLine        = ::ca::international::unicode_to_utf8(::GetCommandLineW());
+         pinitmaindata->m_vssCommandLine        = ::ca2::international::unicode_to_utf8(::GetCommandLineW());
          pinitmaindata->m_nCmdShow              = nCmdShow;
 
 
          psystem->init_main_data(pinitmaindata);*/
 
 #ifdef WINDOWS
-         psystem->m_hInstance = ::GetModuleHandle("ca.dll");
+         psystem->m_hInstance = ::GetModuleHandle("ca2.dll");
 #endif
 
          if(!psystem->InitApplication())
@@ -151,7 +151,7 @@ namespace plugin
          m_psystem->m_pplugin = this;
 
 #ifdef WINDOWS
-         m_psystem->m_hInstance = ::GetModuleHandle("ca.dll");
+         m_psystem->m_hInstance = ::GetModuleHandle("ca2.dll");
 #endif
 
          if(!m_psystem->InitApplication())
@@ -252,7 +252,7 @@ namespace plugin
 
          m_dib->Fill(0, 0, 0, 0);
 
-//         ::ca::graphics_sp dc(get_app());
+//         ::ca2::graphics_sp dc(get_app());
 
          //dc->CreateCompatibleDC(NULL);
 
@@ -354,7 +354,7 @@ namespace plugin
    void plugin::ca2_login()
    {
 
-      ::ca::property_set set(m_psystem);
+      ::ca2::property_set set(m_psystem);
 
       set.parse_url_query(m_strCa2LoginRuri);
 
@@ -363,7 +363,7 @@ namespace plugin
       if(strLocation.is_empty())
          strLocation = m_strCa2LoginRuri;
 
-      ::ca::property_set setUri(m_psystem);
+      ::ca2::property_set setUri(m_psystem);
 
       setUri.parse_url_query(strLocation);
 
@@ -374,7 +374,7 @@ namespace plugin
 
       string strSessId = set["sessid"];
 
-      ::ca::property_set setLogin(get_app());
+      ::ca2::property_set setLogin(get_app());
 
       ::fontopus::user * puser = NULL;
 
@@ -409,7 +409,7 @@ namespace plugin
 
       m_psystem->m_pfontopus->logout();
 
-      ::ca::property_set set(m_psystem);
+      ::ca2::property_set set(m_psystem);
 
       set.parse_url_query(m_strCa2LogoutRuri);
 
@@ -451,7 +451,7 @@ namespace plugin
 
       keeper < bool > keepMainReady(&m_bMainReady, true, false, true);
 
-      xxdebug_box("ca plugin plugin", "ready_on_main_thread", 0);
+      xxdebug_box("ca2 plugin plugin", "ready_on_main_thread", 0);
 
       ::count iCount = get_memory_length();
 
@@ -476,10 +476,10 @@ namespace plugin
          {
             // remark alarm
             // STRESS : ms_get_dup
-            // in ca library normally System or Application.http() is used
+            // in ca2 library normally System or Application.http() is used
             string strPluginData;
 
-            ::ca::http::e_status estatus = ::ca::http::status_failed;
+            ::ca2::http::e_status estatus = ::ca2::http::status_failed;
 
             string strUrl = strPluginUrl;
 
@@ -490,18 +490,18 @@ namespace plugin
 
                //strPluginData = ms_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
 
-               ::ca::property_set post(get_app());
-               ::ca::property_set headers(get_app());
-               ::ca::property_set set(get_app());
+               ::ca2::property_set post(get_app());
+               ::ca2::property_set headers(get_app());
+               ::ca2::property_set set(get_app());
 
                Application.http().get(strUrl, strPluginData, post, headers, set, NULL, NULL, NULL, &estatus);
 
-               if(estatus == ::ca::http::status_ok)
+               if(estatus == ::ca2::http::status_ok)
                   break;
 
             }
 
-            if(estatus == ::ca::http::status_ok)
+            if(estatus == ::ca2::http::status_ok)
             {
 
                open_ca2_string(strPluginData);
@@ -512,7 +512,7 @@ namespace plugin
          else
          {
 
-            ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
+            ::ca2::application_bias * pbiasCreate = new ::ca2::application_bias;
             pbiasCreate->m_puiParent = m_puiHost;
             pbiasCreate->m_set["NativeWindowFocus"] = false;
             m_psystem->get_session(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
@@ -546,7 +546,7 @@ namespace plugin
          string strPluginScript = m_psystem->url().get_script(m_phost->m_strPluginUrl);
 
 
-         ::ca::property_set headers(m_psystem);
+         ::ca2::property_set headers(m_psystem);
 
          headers.parse_http_headers(m_phost->m_strPluginHeaders);
 
@@ -556,13 +556,13 @@ namespace plugin
 
          // TODO |) : Should parse Content-type:
          // ALSO: this case only happens if all file has been downloaded before the plugin has initialized
-         if(::ca::str::ends_ci(strPluginScript, ".mp3")
-         || ::ca::str::ends_ci(strPluginScript, ".mid")
-         || ::ca::str::ends_ci(strPluginScript, ".karaoke")
-         || ::ca::str::ends_ci(strPluginScript, ".st3"))
+         if(::ca2::str::ends_ci(strPluginScript, ".mp3")
+         || ::ca2::str::ends_ci(strPluginScript, ".mid")
+         || ::ca2::str::ends_ci(strPluginScript, ".karaoke")
+         || ::ca2::str::ends_ci(strPluginScript, ".st3"))
          {
             //m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
-            ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
+            ::ca2::application_bias * pbiasCreate = new ::ca2::application_bias;
             pbiasCreate->m_puiParent = m_puiHost;
             pbiasCreate->m_set["NativeWindowFocus"] = false;
             m_psystem->get_session(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
@@ -588,19 +588,19 @@ namespace plugin
             lpszStart = lpszEnd;
             for(; (lpszEnd - lpszAlloc) <= iCount; i++)
             {
-               if(*lpszEnd == '\0' || !::ca::ch::is_whitespace(lpszEnd))
+               if(*lpszEnd == '\0' || !::ca2::ch::is_whitespace(lpszEnd))
                   break;
-               lpszEnd = (char *) ::ca::str::utf8_inc(lpszEnd);
+               lpszEnd = (char *) ::ca2::str::utf8_inc(lpszEnd);
             }
             lpszStart = lpszEnd;
             for(; (lpszEnd - lpszAlloc) <= iCount; i++)
             {
-               if(*lpszEnd == '\0' || ::ca::ch::is_space_char(lpszEnd) || (lpszEnd - lpszAlloc) == iCount)
+               if(*lpszEnd == '\0' || ::ca2::ch::is_space_char(lpszEnd) || (lpszEnd - lpszAlloc) == iCount)
                {
                   str2 = string(lpszStart, lpszEnd - lpszStart);
                   break;
                }
-               lpszEnd = (char *) ::ca::str::utf8_inc(lpszEnd);
+               lpszEnd = (char *) ::ca2::str::utf8_inc(lpszEnd);
             }
 
             string strId = str2;
@@ -609,7 +609,7 @@ namespace plugin
             {
                strId = strId.Left(iFind);
             }
-            ::ca::property_set set(get_app());
+            ::ca2::property_set set(get_app());
             set.parse_url_query(str2);
 
             string strBuildNumber =  set["build_number"];
@@ -811,7 +811,7 @@ namespace plugin
                         //Sleep(15 * 1000);
    //                     m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
                         xxdebug_box("plugin", "open_ca2_string", 0);
-                        ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
+                        ::ca2::application_bias * pbiasCreate = new ::ca2::application_bias;
                         pbiasCreate->m_set["NativeWindowFocus"] = false;
                         pbiasCreate->m_puiParent = m_puiHost;
                         m_psystem->post_fork_uri(str2, pbiasCreate);
@@ -871,7 +871,7 @@ namespace plugin
       try
       {
 
-         ::ca::thread * pthread = m_psystem->::ca::thread::m_p;
+         ::ca2::thread * pthread = m_psystem->::ca2::thread::m_p;
 
          if(pthread->get_run())
          {
@@ -916,7 +916,7 @@ namespace plugin
       {
          try
          {
-            if(!::FreeLibrary(::ca::g_hmoduleOs))
+            if(!::FreeLibrary(::ca2::g_hmoduleOs))
             {
                break;
             }
@@ -960,13 +960,13 @@ namespace plugin
          if(uiMessage == WM_MOUSEMOVE)
          {
 
-            sp(::ca::window) pwindow = m_puiHost->m_pimpl;
+            sp(::ca2::window) pwindow = m_puiHost->m_pimpl;
 
             pwindow->m_bMouseHover = true; // avoids tracking mouse leave;
 
          }
 
-         sp(::ca::window) pwindow = m_puiHost->m_pimpl;
+         sp(::ca2::window) pwindow = m_puiHost->m_pimpl;
 
          oswindow oswindow = pwindow->get_handle();
 
@@ -975,7 +975,7 @@ namespace plugin
          if(bIsWindow)
          {
 
-            ::c::smart_pointer < ::ca::message::base > spbase;
+            ::ca::smart_pointer < ::ca2::message::base > spbase;
 
             spbase = m_puiHost->get_base(m_puiHost, uiMessage, wparam, lparam);
 

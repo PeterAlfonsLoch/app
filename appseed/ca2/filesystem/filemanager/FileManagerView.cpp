@@ -2,8 +2,8 @@
 
 
 
-FileManagerAView::FileManagerAView(sp(::ca::application) papp) :
-   ca(papp),
+FileManagerAView::FileManagerAView(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::split_layout(papp),
    
    ::user::split_view(papp),
@@ -29,7 +29,7 @@ void FileManagerAView::dump(dump_context & dumpcontext) const
 #endif //DEBUG
 
 
-void FileManagerAView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
+void FileManagerAView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != NULL)
@@ -48,7 +48,7 @@ void FileManagerAView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::o
             {
                string str;
                str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-               sp(FileManagerFrame) pframe = ((sp(::ca::window)) GetParentFrame());
+               sp(FileManagerFrame) pframe = ((sp(::ca2::window)) GetParentFrame());
                if(pframe != NULL)
                {
                   pframe->m_dataid = str;
@@ -91,7 +91,7 @@ void FileManagerAView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::o
             {
                if(!base < FileManagerSaveAsView >::bases(get_pane_window(0)))
                {
-                  //::ca::create_context cc;
+                  //::ca2::create_context cc;
                   //cc.m_usercreatecontext.m_pCurrentDoc = get_document();
                   //cc.m_usercreatecontext.m_typeinfoNewView =  System.type_info < FileManagerSaveAsView > ();
                   //cc.m_usercreatecontext.m_pCurrentFrame = this;
@@ -235,8 +235,8 @@ void FileManagerAView::CreateViews()
 
 
 
-FileManagerView::FileManagerView(sp(::ca::application) papp) :
-   ca(papp),
+FileManagerView::FileManagerView(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::split_layout(papp),
    
    ::user::split_view(papp),
@@ -273,7 +273,7 @@ void FileManagerView::dump(dump_context & dumpcontext) const
 
 
 
-void FileManagerView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
+void FileManagerView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != NULL)
@@ -292,7 +292,7 @@ void FileManagerView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::ob
             {
                string str;
                str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-               sp(FileManagerFrame) pframe = ((sp(::ca::window)) GetParentFrame());
+               sp(FileManagerFrame) pframe = ((sp(::ca2::window)) GetParentFrame());
                if(pframe != NULL)
                {
                   pframe->m_dataid = str;
@@ -313,7 +313,7 @@ void FileManagerView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::ob
                GetParentFrame()->ActivateFrame(SW_SHOW);
                OnActivateView(TRUE, this, this);
                RedrawWindow();
-               sp(FileManagerFrame) pframe = ((sp(::ca::window)) GetParentFrame());
+               sp(FileManagerFrame) pframe = ((sp(::ca2::window)) GetParentFrame());
                if(pframe != NULL)
                {
    //xxx               pframe->WindowDataLoadWindowRect();
@@ -322,7 +322,7 @@ void FileManagerView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::ob
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypeCreateBars))
             {
-               sp(FileManagerFrame) pframe = ((sp(::ca::window)) GetParentFrame());
+               sp(FileManagerFrame) pframe = ((sp(::ca2::window)) GetParentFrame());
                if(pframe != NULL)
                {
                   ASSERT(pframe != NULL);
@@ -335,7 +335,7 @@ void FileManagerView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::ob
                {
                   pmainframe->CreateBars();
                }
-               sp(FileManagerChildFrame) pchildframe = ((sp(::ca::window)) GetParentFrame());
+               sp(FileManagerChildFrame) pchildframe = ((sp(::ca2::window)) GetParentFrame());
                if(pchildframe != NULL)
                {
                   ASSERT(pchildframe != NULL);

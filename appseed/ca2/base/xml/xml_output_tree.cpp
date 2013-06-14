@@ -3,16 +3,16 @@
 namespace xml
 {
 
-   output_tree::output_tree(sp(::ca::application) papp) :
-      ca(papp),
+   output_tree::output_tree(sp(::ca2::application) papp) :
+      ca2(papp),
       tree_base(papp)
    {
       m_pdocument = NULL;
       m_pnode = NULL;
    }
 
-   output_tree::output_tree(sp(::ca::application) papp, tree_schema * pschema) :
-      ca(papp),
+   output_tree::output_tree(sp(::ca2::application) papp, tree_schema * pschema) :
+      ca2(papp),
       tree_base(papp, pschema)
    {
       m_pdocument = NULL;

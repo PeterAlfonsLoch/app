@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -19,8 +19,8 @@ namespace ca
       simple_tree_item_data();
       virtual ~simple_tree_item_data();
 
-      virtual string get_text(sp(::ca::tree) ptree);
-      virtual index get_image(sp(::ca::tree) ptree);
+      virtual string get_text(sp(::ca2::tree) ptree);
+      virtual index get_image(sp(::ca2::tree) ptree);
 
       /*#undef new
       void * operator new(size_t i, const char * lpszFileName, int32_t iLine);
@@ -33,6 +33,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

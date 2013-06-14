@@ -45,7 +45,7 @@ namespace filehandler
          this,
          "html/frame",
          System.type_info < document > (),
-         System.type_info < frame > (),       // main SDI frame ::ca::window
+         System.type_info < frame > (),       // main SDI frame ::ca2::window
          System.type_info < pane_view > ());
       user()->add_document_template(pdoctemplate);
       m_ptemplateMenu = pdoctemplate;
@@ -76,7 +76,7 @@ namespace filehandler
 
    }
 
-   void application::on_request(sp(::ca::create_context) pcreatecontext)
+   void application::on_request(sp(::ca2::create_context) pcreatecontext)
    {
 
       if(m_ppaneview == NULL)

@@ -5,8 +5,8 @@ namespace colorertake5
 {
 
 
-   TextHRDMapper::TextHRDMapper(sp(::ca::application) papp) :
-      ca(papp),
+   TextHRDMapper::TextHRDMapper(sp(::ca2::application) papp) :
+      ca2(papp),
       RegionMapperImpl(papp)
    {
    }
@@ -18,7 +18,7 @@ namespace colorertake5
    /** Loads region definitions from HRD spfile->
    Multiple files could be loaded.
    */
-   void TextHRDMapper::loadRegionMappings(::ca::byte_input_stream & is)
+   void TextHRDMapper::loadRegionMappings(::ca2::byte_input_stream & is)
    {
 
       string str;
@@ -71,7 +71,7 @@ namespace colorertake5
    XML spfile-> Note, that this method writes all loaded
    defines from all loaded HRD files.
    */
-   void TextHRDMapper::saveRegionMappings(::ca::byte_output_stream & writer) const
+   void TextHRDMapper::saveRegionMappings(::ca2::byte_output_stream & writer) const
    {
       writer << string("<?xml version=\"1.0\"?>\n\
                        <!DOCTYPE hrd SYSTEM \"../hrd.dtd\">\n\n\

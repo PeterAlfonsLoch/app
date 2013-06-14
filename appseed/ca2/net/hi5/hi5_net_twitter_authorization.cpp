@@ -4,7 +4,7 @@
 //#include <openssl/err.h>
 
 
-//typedef string ( *SALT)(sp(::ca::application), const char * , stringa &);
+//typedef string ( *SALT)(sp(::ca2::application), const char * , stringa &);
 
 namespace hi5
 {
@@ -15,8 +15,8 @@ namespace hi5
       namespace twitter
       {
 
-         authorization::authorization(sp(::ca::application) papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
-            ca(papp)
+         authorization::authorization(sp(::ca2::application) papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
+            ca2(papp)
          {
             m_strAuthorizationUrl=pszAuthorizationUrl;
             m_bInteractive    = bInteractive;
@@ -56,9 +56,9 @@ namespace hi5
          {
             if(m_pdoc != NULL)
                return;
-            sp(::ca::create_context) createcontext(allocer());
+            sp(::ca2::create_context) createcontext(allocer());
             createcontext->m_bMakeVisible = false;
-            createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca < ::user::interaction > ();
+            createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca2 < ::user::interaction > ();
             createcontext->m_bOuterPopupAlertLike = true;
             
             m_pdoc = (m_ptemplatePane->open_document_file(createcontext));
@@ -153,7 +153,7 @@ namespace hi5
             m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
          }
 
-         void authorization::pageMessage(const char * pszMatter, ::ca::property_set & set)
+         void authorization::pageMessage(const char * pszMatter, ::ca2::property_set & set)
          {
             ensure_main_document();
             m_pdocAuth->get_html_data()->m_propertyset = set;

@@ -167,7 +167,7 @@ void string_array::copy(const int64_array & src)
 
    for(int32_t i = 0; i < m_nSize; i++)
    {
-      m_pData[i] = ::ca::str::from(src[i]);
+      m_pData[i] = ::ca2::str::from(src[i]);
    }
 
 }
@@ -322,7 +322,7 @@ void string_array::insert_at(index nStartIndex, const string_array & NewArray)
 {
    ASSERT_VALID(this);
 
-   ::ca::object::Serialize(ar);
+   ::ca2::object::Serialize(ar);
 
    if (ar.IsStoring())
    {
@@ -344,7 +344,7 @@ void string_array::insert_at(index nStartIndex, const string_array & NewArray)
 
 void string_array::dump(dump_context & dumpcontext) const
 {
-   ::ca::object::dump(dumpcontext);
+   ::ca2::object::dump(dumpcontext);
 
    dumpcontext << "with " << m_nSize << " elements";
    if (dumpcontext.GetDepth() > 0)
@@ -358,7 +358,7 @@ void string_array::dump(dump_context & dumpcontext) const
 
 void string_array::assert_valid() const
 {
-   ::ca::object::assert_valid();
+   ::ca2::object::assert_valid();
 
    if (m_pData == NULL)
    {
@@ -563,7 +563,7 @@ string_array string_array::slice(index start, ::count count)
 }
 
 
-// IMPLEMENT_SERIAL(string_array, ::ca::object, 0)
+// IMPLEMENT_SERIAL(string_array, ::ca2::object, 0)
 
 
 string_array & string_array::operator =(const string_array & tokena)
@@ -609,7 +609,7 @@ index string_array::add(const char * psz)
 index string_array::add(const wchar_t * pwsz)
 {
    index nIndex = m_nSize;
-   set_at_grow(nIndex, ::ca::international::unicode_to_utf8(pwsz));
+   set_at_grow(nIndex, ::ca2::international::unicode_to_utf8(pwsz));
    return nIndex;
 }
 
@@ -662,9 +662,9 @@ void string_array::add(const var & var)
    {
       add(var.stra());
    }
-   else if(var.ca < string_array >() != NULL)
+   else if(var.ca2 < string_array >() != NULL)
    {
-      add(*var.ca < string_array >());
+      add(*var.ca2 < string_array >());
    }
    else if(var.get_type() == var::type_vara)
    {
@@ -677,7 +677,7 @@ void string_array::add(const var & var)
    {
       for(int32_t i = 0; i < var.inta().get_count(); i++)
       {
-         add(::ca::str::from(var.inta()[i]));
+         add(::ca2::str::from(var.inta()[i]));
       }
    }
    else if(var.get_type() == var::type_propset)
@@ -693,7 +693,7 @@ void string_array::add(const var & var)
    }
 }
 
-void string_array::add(const ::ca::property & prop)
+void string_array::add(const ::ca2::property & prop)
 {
    add(prop.get_value());
 }

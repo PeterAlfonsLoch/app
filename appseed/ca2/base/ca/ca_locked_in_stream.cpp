@@ -2,13 +2,13 @@
 
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
    ::primitive::memory_size locked_in_stream::read(file_position startPos, void *data, ::primitive::memory_size size)
    {
       single_lock sl(&_criticalSection, TRUE);
-      _stream->seek((file_offset) startPos, ::ca::seek_begin);
+      _stream->seek((file_offset) startPos, ::ca2::seek_begin);
       return _stream->read(data, size);
    }
 
@@ -19,4 +19,4 @@ namespace ca
       return realProcessedSize;
    }
 
-} // namespace ca
+} // namespace ca2

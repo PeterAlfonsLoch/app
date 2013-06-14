@@ -19,7 +19,7 @@ namespace user
    }
 
 
-   void combo_list::install_message_handling(::ca::message::dispatch * pdispatch)
+   void combo_list::install_message_handling(::ca2::message::dispatch * pdispatch)
    {
 
       ::user::control::install_message_handling(pdispatch);
@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnDraw(::ca::graphics * pdc)
+   void combo_list::_001OnDraw(::ca2::graphics * pdc)
    {
 
       if(m_pcombo == NULL)
@@ -57,10 +57,10 @@ namespace user
 
    }
 
-   void combo_list::_001OnDrawVerisimple(::ca::graphics * pdc)
+   void combo_list::_001OnDrawVerisimple(::ca2::graphics * pdc)
    {
 
-      ::count c = m_pcombo->_001GetListCount();
+      ::count ca = m_pcombo->_001GetListCount();
 
       string strItem;
 
@@ -68,7 +68,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca::brush_sp br(allocer());
+      ::ca2::brush_sp br(allocer());
 
       br->create_solid(ARGB(230, 255, 255, 255));
 
@@ -93,12 +93,12 @@ namespace user
       int32_t dSize = (int32_t) ( _001GetItemHeight() * 0.7);
 
       pdc->m_fontxyz.m_dFontSize = dSize;
-      pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
+      pdc->m_fontxyz.m_eunitFontSize = ::ca2::unit_pixel;
       pdc->m_fontxyz.m_bUpdated = false;
 
       pdc->SelectObject(br);
 
-      for(index i = 0; i < c; i++)
+      for(index i = 0; i < ca; i++)
       {
          rectItem.top = rectItem.bottom;
          rectItem.bottom = rectItem.top + _001GetItemHeight();
@@ -106,7 +106,7 @@ namespace user
          {
             if(rectItem.contains(ptCursor))
             {
-               ::ca::pen_sp pen(allocer());
+               ::ca2::pen_sp pen(allocer());
                pen->create_solid(pdc, m_iItemHeight / 8, ARGB(230, 77, 184, 63));
                pdc->SelectObject(pen);
                pdc->DrawRectangle(rectItem);
@@ -140,10 +140,10 @@ namespace user
    }
 
 
-   void combo_list::_001OnDrawSimply(::ca::graphics * pdc)
+   void combo_list::_001OnDrawSimply(::ca2::graphics * pdc)
    {
 
-      ::count c = m_pcombo->_001GetListCount();
+      ::count ca = m_pcombo->_001GetListCount();
 
       string strItem;
 
@@ -151,7 +151,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca::brush_sp br(allocer());
+      ::ca2::brush_sp br(allocer());
 
       br->create_solid(ARGB(230, 255, 255, 255));
 
@@ -176,12 +176,12 @@ namespace user
       int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
 
       pdc->m_fontxyz.m_dFontSize = dSize;
-      pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
+      pdc->m_fontxyz.m_eunitFontSize = ::ca2::unit_pixel;
       pdc->m_fontxyz.m_bUpdated = false;
 
       pdc->SelectObject(br);
 
-      for(index i = 0; i < c; i++)
+      for(index i = 0; i < ca; i++)
       {
          rectItem.top = rectItem.bottom;
          rectItem.bottom = rectItem.top + _001GetItemHeight();
@@ -189,7 +189,7 @@ namespace user
          {
             if(rectItem.contains(ptCursor))
             {
-               ::ca::pen_sp pen(allocer());
+               ::ca2::pen_sp pen(allocer());
                pen->create_solid(pdc, m_iItemHeight / 8, ARGB(230, 77, 184, 63));
                pdc->SelectObject(pen);
                pdc->DrawRectangle(rectItem);
@@ -225,12 +225,12 @@ namespace user
    void combo_list::query_full_size(LPSIZE lpsize) const
    {
 
-      ::ca::graphics_sp pdc(((combo_list *) this)->allocer());
+      ::ca2::graphics_sp pdc(((combo_list *) this)->allocer());
 
 
       pdc->CreateCompatibleDC(NULL);
 
-      ::ca::dib_sp tameshi(((combo_list *) this)->allocer());
+      ::ca2::dib_sp tameshi(((combo_list *) this)->allocer());
 
       tameshi->create(100, 100);
 
@@ -240,7 +240,7 @@ namespace user
 
       pdc->m_fontxyz.m_dFontSize = dSize;
 
-      pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
+      pdc->m_fontxyz.m_eunitFontSize = ::ca2::unit_pixel;
 
       pdc->m_fontxyz.m_bUpdated = false;
 
@@ -250,9 +250,9 @@ namespace user
 
       lpsize->cx = 0;
 
-      ::count c = m_pcombo->_001GetListCount();
+      ::count ca = m_pcombo->_001GetListCount();
 
-      for(index i = 0; i < c; i++)
+      for(index i = 0; i < ca; i++)
       {
 
          m_pcombo->_001GetListText(i, strItem);
@@ -301,17 +301,17 @@ namespace user
       return TRUE;
    }
 
-   void combo_list::_001OnKillFocus(::ca::signal_object * pobj)
+   void combo_list::_001OnKillFocus(::ca2::signal_object * pobj)
    {
 
 
 
    }
 
-   void combo_list::_001OnActivate(::ca::signal_object * pobj)
+   void combo_list::_001OnActivate(::ca2::signal_object * pobj)
    {
 
-      SCAST_PTR(::ca::message::activate, pactivate, pobj);
+      SCAST_PTR(::ca2::message::activate, pactivate, pobj);
 
       sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther.m_p : this);
 
@@ -332,12 +332,12 @@ namespace user
          }
 
 
-         sp(::user::interaction) pframe = oprop("deactivate_together").ca < ::user::interaction >();
+         sp(::user::interaction) pframe = oprop("deactivate_together").ca2 < ::user::interaction >();
 
          if(pActive != pframe)
          {
 
-            ::uinteraction::frame::WorkSet * pset = oprop("deactivate_together_set").ca < ::uinteraction::frame::WorkSet > ();
+            ::uinteraction::frame::WorkSet * pset = oprop("deactivate_together_set").ca2 < ::uinteraction::frame::WorkSet > ();
 
             pset->SetActiveFlag(FALSE);
 
@@ -353,18 +353,18 @@ namespace user
 
    }
 
-   void combo_list::_001OnMouseActivate(::ca::signal_object * pobj)
+   void combo_list::_001OnMouseActivate(::ca2::signal_object * pobj)
    {
 
-//      SCAST_PTR(::ca::message::mouse_activate, pactivate, pobj);
+//      SCAST_PTR(::ca2::message::mouse_activate, pactivate, pobj);
 
 
    }
 
-   void combo_list::_001OnLButtonDown(::ca::signal_object * pobj)
+   void combo_list::_001OnLButtonDown(::ca2::signal_object * pobj)
    {
 
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
       point pt = pmouse->m_pt;
 
@@ -396,10 +396,10 @@ namespace user
 
    }
 
-   void combo_list::_001OnMButtonDown(::ca::signal_object * pobj)
+   void combo_list::_001OnMButtonDown(::ca2::signal_object * pobj)
    {
 
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
       point pt = pmouse->m_pt;
 
@@ -422,10 +422,10 @@ namespace user
 
    }
 
-   void combo_list::_001OnRButtonDown(::ca::signal_object * pobj)
+   void combo_list::_001OnRButtonDown(::ca2::signal_object * pobj)
    {
 
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
       point pt = pmouse->m_pt;
 
@@ -449,10 +449,10 @@ namespace user
    }
 
 
-   void combo_list::_001OnMouseMove(::ca::signal_object * pobj)
+   void combo_list::_001OnMouseMove(::ca2::signal_object * pobj)
    {
 
-//      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
       pobj->m_bRet = true;
 
@@ -460,7 +460,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnClose(::ca::signal_object * pobj)
+   void combo_list::_001OnClose(::ca2::signal_object * pobj)
    {
 
       post_message(WM_DESTROY);
@@ -471,7 +471,7 @@ namespace user
    index combo_list::hit_test(point pt, e_element & eelement)
    {
 
-      ::count c = m_pcombo->_001GetListCount();
+      ::count ca = m_pcombo->_001GetListCount();
 
       rect rectClient;
 
@@ -481,7 +481,7 @@ namespace user
 
       rectItem = rectClient;
 
-      for(int32_t i = 0; i < c; i++)
+      for(int32_t i = 0; i < ca; i++)
       {
 
          rectItem.top = rectClient.top + (_001GetItemHeight() * (1 + i));

@@ -29,24 +29,24 @@ namespace user
 
       sp(combo_list)              m_plist;
 
-      sp(::ca::type_info)            m_typeComboList;
+      sp(::ca2::type_info)            m_typeComboList;
 
       e_style                    m_estyle;
 
       bool                       m_bEdit;
 
 
-      combo_box(sp(::ca::application) papp);
+      combo_box(sp(::ca2::application) papp);
       virtual ~combo_box();
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
-      virtual void _001OnDrawVerisimple(::ca::graphics * pdc);
-      virtual void _001OnDrawSimply(::ca::graphics * pdc);
-      virtual void _001OnDrawStaticText(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDrawVerisimple(::ca2::graphics * pdc);
+      virtual void _001OnDrawSimply(::ca2::graphics * pdc);
+      virtual void _001OnDrawStaticText(::ca2::graphics * pdc);
 
 
       virtual void _001SetCurSel(index iSel);
@@ -83,7 +83,7 @@ namespace user
 
       virtual void _001OnAfterChangeText();
 
-      virtual void _001OnInitialUpdate(::ca::signal_object * pobj);
+      virtual void _001OnInitialUpdate(::ca2::signal_object * pobj);
 
 
 

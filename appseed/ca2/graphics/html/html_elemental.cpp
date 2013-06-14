@@ -102,10 +102,10 @@ namespace html
          return sqrt(dx * dx + dy * dy);
       }
 
-      void elemental::OnLButtonDown(::ca::signal_object * pobj)
+      void elemental::OnLButtonDown(::ca2::signal_object * pobj)
       {
          SCAST_PTR(::html::signal, phtml, pobj);
-         SCAST_PTR(::ca::message::mouse, pmouse, phtml->m_psignal);
+         SCAST_PTR(::ca2::message::mouse, pmouse, phtml->m_psignal);
          if(has_link())
          {
             pmouse->m_bRet = true;
@@ -113,17 +113,17 @@ namespace html
          }
       }
 
-      void elemental::OnMouseMove(::ca::signal_object * pobj)
+      void elemental::OnMouseMove(::ca2::signal_object * pobj)
       {
          SCAST_PTR(::html::signal, phtml, pobj);
-         SCAST_PTR(::ca::message::mouse, pmouse, phtml->m_psignal);
+         SCAST_PTR(::ca2::message::mouse, pmouse, phtml->m_psignal);
          if(has_link())
          {
             pmouse->m_ecursor = ::visual::cursor_hand;
          }
       }
 
-      void elemental::OnLButtonUp(::ca::signal_object * pobj)
+      void elemental::OnLButtonUp(::ca2::signal_object * pobj)
       {
          SCAST_PTR(::html::signal, phtml, pobj);
          if(has_link())
@@ -275,7 +275,7 @@ namespace html
             {
                point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                point p2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-               ::ca::pen_sp pen(pdata->get_app()->allocer());
+               ::ca2::pen_sp pen(pdata->get_app()->allocer());
                pen->create_solid(pdata->m_pdc, m_border.left, m_border.crLeft);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
@@ -287,7 +287,7 @@ namespace html
                pa[1] = ::pointd(bIn.left, bIn.top);
                pa[2] = ::pointd(bIn.left, bIn.bottom);
                pa[3] = ::pointd(bOut.left, bOut.bottom);
-               ::ca::brush_sp brush(pdata->get_app()->allocer());
+               ::ca2::brush_sp brush(pdata->get_app()->allocer());
                brush->create_solid(m_border.crLeft);
                pdata->m_pdc->SelectObject(brush);
                pdata->m_pdc->fill_polygon(pa, 4);
@@ -299,7 +299,7 @@ namespace html
             {
                point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-               ::ca::pen_sp pen(pdata->get_app()->allocer());
+               ::ca2::pen_sp pen(pdata->get_app()->allocer());
                pen->create_solid(pdata->m_pdc, m_border.top, m_border.crTop);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
@@ -311,7 +311,7 @@ namespace html
                pa[1] = ::pointd(bOut.right, bOut.top);
                pa[2] = ::pointd(bIn.right, bIn.top);
                pa[3] = ::pointd(bIn.left, bIn.top);
-               ::ca::brush_sp brush(pdata->get_app()->allocer());
+               ::ca2::brush_sp brush(pdata->get_app()->allocer());
                brush->create_solid(m_border.crTop);
                pdata->m_pdc->SelectObject(brush);
                pdata->m_pdc->fill_polygon(pa, 4);
@@ -323,7 +323,7 @@ namespace html
             {
                point p1(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-               ::ca::pen_sp pen(pdata->get_app()->allocer());
+               ::ca2::pen_sp pen(pdata->get_app()->allocer());
                pen->create_solid(pdata->m_pdc, m_border.right, m_border.crRight);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
@@ -335,7 +335,7 @@ namespace html
                pa[1] = ::pointd(bOut.right, bOut.bottom);
                pa[2] = ::pointd(bIn.right, bIn.bottom);
                pa[3] = ::pointd(bIn.right, bIn.top);
-               ::ca::brush_sp brush(pdata->get_app()->allocer());
+               ::ca2::brush_sp brush(pdata->get_app()->allocer());
                brush->create_solid(m_border.crRight);
                pdata->m_pdc->SelectObject(brush);
                pdata->m_pdc->fill_polygon(pa, 4);
@@ -347,7 +347,7 @@ namespace html
             {
                point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-               ::ca::pen_sp pen(pdata->get_app()->allocer());
+               ::ca2::pen_sp pen(pdata->get_app()->allocer());
                pen->create_solid(pdata->m_pdc, m_border.bottom, m_border.crBottom);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
@@ -359,7 +359,7 @@ namespace html
                pa[1] = ::pointd(bIn.right, bIn.bottom);
                pa[2] = ::pointd(bOut.right, bOut.bottom);
                pa[3] = ::pointd(bOut.left, bOut.bottom);
-               ::ca::brush_sp brush(pdata->get_app()->allocer());
+               ::ca2::brush_sp brush(pdata->get_app()->allocer());
                brush->create_solid(m_border.crBottom);
                pdata->m_pdc->SelectObject(brush);
                pdata->m_pdc->fill_polygon(pa, 4);
@@ -712,7 +712,7 @@ namespace html
 
    elemental::~elemental()
    {
-      ::ca::data::writing writing(m_pdata);
+      ::ca2::data::writing writing(m_pdata);
       delete m_pimpl;
       for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
       {
@@ -724,7 +724,7 @@ namespace html
    void elemental::implement(data * pdata)
    {
       m_pdata = pdata;
-      ::ca::data::writing writing(pdata);
+      ::ca2::data::writing writing(pdata);
       implement_phase1(pdata);
       implement_phase2(pdata);
    }
@@ -1415,7 +1415,7 @@ namespace html
          return;
       if(pbase == NULL)
          return;
-      ::ca::data::writing writing(pdata);
+      ::ca2::data::writing writing(pdata);
 
       m_pbase = pbase;
       m_elementalptra.remove_all();
@@ -1676,17 +1676,17 @@ namespace html
       return pelemental;
    }
 
-   void elemental::OnLButtonDown(::ca::signal_object * pobj)
+   void elemental::OnLButtonDown(::ca2::signal_object * pobj)
    {
       m_pimpl->OnLButtonDown(pobj);
    }
 
-   void elemental::OnMouseMove(::ca::signal_object * pobj)
+   void elemental::OnMouseMove(::ca2::signal_object * pobj)
    {
       m_pimpl->OnMouseMove(pobj);
    }
 
-   void elemental::OnLButtonUp(::ca::signal_object * pobj)
+   void elemental::OnLButtonUp(::ca2::signal_object * pobj)
    {
       m_pimpl->OnLButtonUp(pobj);
    }

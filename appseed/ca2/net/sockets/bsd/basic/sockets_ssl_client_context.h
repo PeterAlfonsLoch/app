@@ -14,7 +14,7 @@ typedef struct ssl_session_st SSL_SESSION;
 
 
       class CLASS_DECL_ca2 ssl_client_context :
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
       public:
 
@@ -24,7 +24,7 @@ typedef struct ssl_session_st SSL_SESSION;
          int32_t               m_iRetry;
 
 
-         ssl_client_context(sp(::ca::application) papp, const SSL_METHOD * pmethod = NULL);
+         ssl_client_context(sp(::ca2::application) papp, const SSL_METHOD * pmethod = NULL);
          virtual ~ssl_client_context();
 
 

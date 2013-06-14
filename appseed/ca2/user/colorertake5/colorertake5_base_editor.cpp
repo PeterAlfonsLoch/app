@@ -10,8 +10,8 @@ namespace colorertake5
 
 
 
-   base_editor::base_editor(sp(::ca::application) papp) :
-   ca(papp)
+   base_editor::base_editor(sp(::ca2::application) papp) :
+   ca2(papp)
    {
       textParser = NULL;
       lrSupport = NULL;
@@ -430,7 +430,7 @@ namespace colorertake5
          CLR_TRACE("base_editor", "lrSize != wSize*2");
       }
 
-      /* Fixes ::ca::window position according to line number */
+      /* Fixes ::ca2::window position according to line number */
       if (lno < wStart || lno > wStart+wSize){
          wStart = lno;
          //if enable, introduces heavy delays on pair searching

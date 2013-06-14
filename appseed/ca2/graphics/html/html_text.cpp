@@ -9,8 +9,8 @@ namespace html
    {
 
 
-      text::text(sp(::ca::application) papp) :
-         ca(papp),
+      text::text(sp(::ca2::application) papp) :
+         ca2(papp),
          user::scroll_view(papp),
          user::edit_plain_text(papp)
       {
@@ -31,7 +31,7 @@ namespace html
       void text::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
 
-         ::ca::data::writing writing(pdata);
+         ::ca2::data::writing writing(pdata);
 
          ::html::impl::elemental::implement_phase1(pdata, pelemental);
          string strTag;
@@ -67,7 +67,7 @@ namespace html
          || pelemental->m_propertyset["PropertyBody"].is_empty())
             return;
 
-         ::ca::graphics * pdc = pdata->m_pdc;
+         ::ca2::graphics * pdc = pdata->m_pdc;
          if(pdc == NULL)
             return;
          font * pfont = pdata->get_font(m_pelemental);
@@ -165,7 +165,7 @@ namespace html
          {
 //            int32_t iIndex = -1;
 
-            ::ca::graphics * pdc = pdata->m_pdc;
+            ::ca2::graphics * pdc = pdata->m_pdc;
             if(pdc == NULL)
                return;
             if(pdata->m_layoutstate.m_cy <= 0)
@@ -201,7 +201,7 @@ namespace html
          {
 //            int32_t iIndex = -1;
 
-            ::ca::graphics * pdc = pdata->m_pdc;
+            ::ca2::graphics * pdc = pdata->m_pdc;
             if(pdc == NULL)
                return;
             pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
@@ -414,7 +414,7 @@ namespace html
          if(m_pelemental->m_elementalptra.get_size() > 0
          || m_pelemental->m_propertyset["PropertyBody"].is_empty())
             return;
-         ::ca::graphics * pdc = pdata->m_pdc;
+         ::ca2::graphics * pdc = pdata->m_pdc;
          ::html::impl::elemental::_001OnDraw(pdata);
 
 
@@ -656,7 +656,7 @@ namespace html
 
       }
 
-      void text::OnLButtonDown(::ca::signal_object * pobj)
+      void text::OnLButtonDown(::ca2::signal_object * pobj)
       {
          SCAST_PTR(::html::signal, phtml, pobj);
          if(m_pelemental->m_pdata->m_bEdit)
@@ -672,7 +672,7 @@ namespace html
          }
       }
 
-      void text::OnLButtonUp(::ca::signal_object * pobj)
+      void text::OnLButtonUp(::ca2::signal_object * pobj)
       {
          SCAST_PTR(::html::signal, phtml, pobj);
          if(m_pelemental->m_pdata->m_bEdit)
@@ -688,7 +688,7 @@ namespace html
          }
       }
 
-      void text::OnMouseMove(::ca::signal_object * pobj)
+      void text::OnMouseMove(::ca2::signal_object * pobj)
       {
          SCAST_PTR(::html::signal, phtml, pobj);
          if(!m_bHoverEvaluated)
@@ -725,7 +725,7 @@ namespace html
             m_bHasHover = bHasHover;
             m_bHoverEvaluated = true;
          }
-         SCAST_PTR(::ca::message::mouse, pmouse, phtml->m_psignal);
+         SCAST_PTR(::ca2::message::mouse, pmouse, phtml->m_psignal);
          ::point pt = pmouse->m_pt;
          phtml->m_pui->ScreenToClient(&pt);
          bool bHover = hit_test(phtml->m_pdata, pt) != 0;
@@ -745,7 +745,7 @@ namespace html
          }
       }
 
-      strsize text::char_hit_test(::ca::graphics * pdc, int32_t px, int32_t py)
+      strsize text::char_hit_test(::ca2::graphics * pdc, int32_t px, int32_t py)
       {
          string strTag;
          if(m_pelemental->m_propertyset.is_new_or_null("PropertyTag"))
@@ -785,7 +785,7 @@ namespace html
                   size = pdc->GetTextExtent(string(lpszStart, lpszEnd - lpszStart));
                   if(*lpszEnd == '\0')
                      break;
-                  lpszEnd = ::ca::str::utf8_inc(lpszEnd);
+                  lpszEnd = ::ca2::str::utf8_inc(lpszEnd);
                   iChar++;
                }
                iFind = iChar;
@@ -803,7 +803,7 @@ namespace html
       {
       }
 
-      void text::_001OnDraw(::ca::graphics * pgraphics)
+      void text::_001OnDraw(::ca2::graphics * pgraphics)
       {
          UNREFERENCED_PARAMETER(pgraphics);
       }

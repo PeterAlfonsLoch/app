@@ -11,7 +11,7 @@ namespace userfs
    }
 
 
-   index tree_item_data::CompareArrangeByName(sp(::ca::tree_item) & item1, sp(::ca::tree_item) & item2)
+   index tree_item_data::CompareArrangeByName(sp(::ca2::tree_item) & item1, sp(::ca2::tree_item) & item2)
    {
       
       if(item1->m_ptreedata == item2->m_ptreedata)
@@ -37,13 +37,13 @@ namespace userfs
 
 
 
-   string tree_item_data::get_text(sp(::ca::tree) ptree)
+   string tree_item_data::get_text(sp(::ca2::tree) ptree)
    {
       UNREFERENCED_PARAMETER(ptree);
 		return m_strName;
    }
 
-   index tree_item_data::get_image(sp(::ca::tree) ptree)
+   index tree_item_data::get_image(sp(::ca2::tree) ptree)
    {
       if(ptree->is_tree_item_data_selected(this))
       {

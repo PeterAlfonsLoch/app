@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -137,7 +137,7 @@ namespace ca
       if(m_spreader.is_set())
       {
          m_spreader->close();
-         ::c::release(m_spreader.m_p);
+         ::ca::release(m_spreader.m_p);
       }
    }
 
@@ -166,7 +166,7 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

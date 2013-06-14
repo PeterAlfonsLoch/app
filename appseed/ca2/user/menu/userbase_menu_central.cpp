@@ -2,8 +2,8 @@
 
 
 
-BaseMenuCentral::BaseMenuCentral(sp(::ca::application) papp) :
-   ca(papp),
+BaseMenuCentral::BaseMenuCentral(sp(::ca2::application) papp) :
+   ca2(papp),
    m_fontMenu(allocer())
 {
 
@@ -30,7 +30,7 @@ BaseMenuCentral::~BaseMenuCentral()
 {
 }
 
-BaseMenuCentral * BaseMenuCentral::GetMenuCentral(sp(::ca::application) papp)
+BaseMenuCentral * BaseMenuCentral::GetMenuCentral(sp(::ca2::application) papp)
 {
    return App(papp).user()->get_menucentral();
 }
@@ -50,7 +50,7 @@ BaseMenuCentral * BaseMenuCentral::GetMenuCentral(sp(::ca::application) papp)
       user++;
    }
 
-   ::ca::graphics_sp spgraphics(allocer());
+   ::ca2::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(NULL);
 
    System.visual().imaging().CreateHueImageList(
@@ -94,7 +94,7 @@ bool BaseMenuCentral::MenuV033AddImageMap(sp(::xml::node) lpnode)
    }
 
 
-   ::ca::graphics_sp spgraphics(allocer());
+   ::ca2::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(NULL);
 
    class imaging & imaging = System.visual().imaging();
@@ -125,12 +125,12 @@ bool BaseMenuCentral::MenuV033AddImageMap(sp(::xml::node) lpnode)
 
 
 
-::ca::font * BaseMenuCentral::MenuV033GetFont()
+::ca2::font * BaseMenuCentral::MenuV033GetFont()
 {
    return GetMenuFont();
 }
 
-::ca::font * BaseMenuCentral::GetMenuFont()
+::ca2::font * BaseMenuCentral::GetMenuFont()
 {
    return m_fontMenu;
 }
@@ -231,7 +231,7 @@ BaseMenuCentral * BaseMenuCentralContainer::get_menucentral()
    return m_pmenucentral;
 }
 
-bool BaseMenuCentralContainer::initialize_central_container(sp(::ca::application) papp)
+bool BaseMenuCentralContainer::initialize_central_container(sp(::ca2::application) papp)
 {
    m_pmenucentral = new BaseMenuCentral(papp);
    if(!m_pmenucentral)

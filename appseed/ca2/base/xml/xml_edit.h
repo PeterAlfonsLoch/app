@@ -16,7 +16,7 @@ namespace xml
 
 
    class CLASS_DECL_ca2 edit_item :
-      public ::ca::byte_serializable
+      public ::ca2::byte_serializable
    {
    public:
 
@@ -27,7 +27,7 @@ namespace xml
       string         m_strValue;
 
 
-      edit_item(sp(::ca::application) papp);
+      edit_item(sp(::ca2::application) papp);
 
 
       void set_name(const sp(::xml::node) pnode);
@@ -36,15 +36,15 @@ namespace xml
       void add_attr(const sp(::xml::node) pnode, const attr * pattr);
 
 
-      virtual void write(::ca::byte_output_stream & ostream);
-      virtual void read(::ca::byte_input_stream & istream);
+      virtual void write(::ca2::byte_output_stream & ostream);
+      virtual void read(::ca2::byte_input_stream & istream);
 
       
    };
 
    class CLASS_DECL_ca2 edit :
-      public ::ca::edit < ::xml::document >,
-      public ::ca::byte_serializable_pointer_array < spa(edit_item) >
+      public ::ca2::edit < ::xml::document >,
+      public ::ca2::byte_serializable_pointer_array < spa(edit_item) >
    {
    public:
 
@@ -53,7 +53,7 @@ namespace xml
       index       m_iEdit;
 
 
-      edit(sp(::ca::application) papp);
+      edit(sp(::ca2::application) papp);
       virtual ~edit();
 
 
@@ -67,7 +67,7 @@ namespace xml
 
 
       edit(const edit &) :
-         ::ca::edit < ::xml::document >(NULL)
+         ::ca2::edit < ::xml::document >(NULL)
       {
       }
 

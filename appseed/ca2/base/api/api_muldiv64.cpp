@@ -45,23 +45,23 @@
 
 void mul64(uint64_t v1, uint64_t v2, uint64_t & hi, uint64_t & lo)
 {
-  register uint64_t a, c;
+  register uint64_t a, ca;
   register uint64_t b, d;
   register uint64_t x, y;
 
   a = (v1 >> 32) & 0xffffffff;
   b = v1 & 0xffffffff;
-  c = (v2 >> 32) & 0xffffffff;
+  ca = (v2 >> 32) & 0xffffffff;
   d = v2 & 0xffffffff;
 
   lo = b * d;                   /* BD */
-  x = a * d + c * b;            /* AD + CB */
+  x = a * d + ca * b;            /* AD + CB */
   y = ((lo >> 32) & 0xffffffff) + x;
 
   lo = (lo & 0xffffffff) | ((y & 0xffffffff) << 32);
   hi = (y >> 32) & 0xffffffff;
 
-  hi += a * c;                  /* AC */
+  hi += a * ca;                  /* AC */
 }
 
 void mul64(int64_t v1, int64_t v2, int64_t & hi, uint64_t & lo)
@@ -159,17 +159,17 @@ int64_t div128_64(int64_t hi, uint64_t lo, int64_t div, uint64_t & remainder)
 
   a = (v1 >> 32) & 0xffffffff;
   b = v1 & 0xffffffff;
-  c = (v2 >> 32) & 0xffffffff;
+  ca = (v2 >> 32) & 0xffffffff;
   d = v2 & 0xffffffff;
 
   lo = b * d;                   /* BD */
-  /*x = a * d + c * b;            /* AD + CB */
+  /*x = a * d + ca * b;            /* AD + CB */
   /*y = ((lo >> 32) & 0xffffffff) + x;
 
   lo = (lo & 0xffffffff) | ((y & 0xffffffff) << 32);
   hi = (y >> 32) & 0xffffffff;
 
-  hi += a * c;                  /* AC */
+  hi += a * ca;                  /* AC */
 //}
 
 

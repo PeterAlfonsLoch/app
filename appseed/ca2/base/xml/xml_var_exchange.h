@@ -6,7 +6,7 @@ namespace xml
    class var_exchange :
       public exportable,
       public importable,
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
    
@@ -14,7 +14,7 @@ namespace xml
       var * m_pvar;
 
 
-      var_exchange(sp(::ca::application) papp);
+      var_exchange(sp(::ca2::application) papp);
       virtual ~var_exchange();
 
 

@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
    
-   os::os(sp(::ca::application) papp) :
-      ca(papp)
+   os::os(sp(::ca2::application) papp) :
+      ca2(papp)
    {
    }
 
@@ -282,14 +282,14 @@ namespace ca
 
    }
 
-   void os::set_file_status(const char * lpszFileName, const ::ca::file_status& status)
+   void os::set_file_status(const char * lpszFileName, const ::ca2::file_status& status)
    {
 
       throw interface_only_exception(get_app());
 
    }
 
-} // namespace ca
+} // namespace ca2
 
 
 

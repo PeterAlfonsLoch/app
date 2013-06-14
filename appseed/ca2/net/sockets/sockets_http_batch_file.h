@@ -10,7 +10,7 @@ namespace sockets
 
 
       class CLASS_DECL_ca2 batch_file : 
-         virtual public ::ca::file
+         virtual public ::ca2::file
       {
       public:
 
@@ -19,7 +19,7 @@ namespace sockets
 
 
 
-         batch_file(sp(::ca::application) papp);
+         batch_file(sp(::ca2::application) papp);
 
          virtual bool open(const char * lpszFileName, UINT nOpenFlags);
          virtual void close();

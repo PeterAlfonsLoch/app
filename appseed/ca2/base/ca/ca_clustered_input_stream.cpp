@@ -3,7 +3,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -64,5 +64,5 @@ namespace ca
       return newVirtPos;
    }
 
-} // namespace ca
+} // namespace ca2
 

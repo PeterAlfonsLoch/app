@@ -878,11 +878,11 @@ void CScriptVar::removeLink(CScriptVarLink *link) {
 }
 
 void CScriptVar::removeAllChildren() {
-    CScriptVarLink *c = firstChild;
-    while (c) {
-        CScriptVarLink *t = c->nextSibling;
-        delete c;
-        c = t;
+    CScriptVarLink *ca = firstChild;
+    while (ca) {
+        CScriptVarLink *t = ca->nextSibling;
+        delete ca;
+        ca = t;
     }
     firstChild = 0;
     lastChild = 0;
@@ -1173,7 +1173,7 @@ void CScriptVar::trace(string indentStr, const string &name) {
         name.c_str(),
         getString().c_str(),
         getFlagsAsString().c_str());
-   ::OutputDebugStringW(::ca::international::utf8_to_unicode(str));
+   ::OutputDebugStringW(::ca2::international::utf8_to_unicode(str));
     string indent = indentStr+" ";
     CScriptVarLink *link = firstChild;
     while (link) {
@@ -1280,8 +1280,8 @@ int32_t CScriptVar::getRefs() {
 
 // ----------------------------------------------------------------------------------- CSCRIPT
 
-tinyjs::tinyjs(sp(::ca::application) papp) :
-   ca(papp)
+tinyjs::tinyjs(sp(::ca2::application) papp) :
+   ca2(papp)
 {
     l = 0;
     root = (new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref();
@@ -1328,7 +1328,7 @@ void tinyjs::execute(const string &code) {
         msg += "Error " + e->text;
 #ifdef TINYJS_CALL_STACK
         for (int32_t i=(int32_t)call_stack.size()-1;i>=0;i--)
-          msg += string("\n") + ::ca::str::from(i) + ": " + call_stack[i];
+          msg += string("\n") + ::ca2::str::from(i) + ": " + call_stack[i];
 #endif
         msg += " at " + l->getPosition();
         delete l;
@@ -1364,7 +1364,7 @@ CScriptVarLink tinyjs::evaluateComplex(const string &code) {
       msg += "Error " + e->text;
 #ifdef TINYJS_CALL_STACK
       for (int32_t i=(int32_t)call_stack.size()-1;i>=0;i--)
-        msg += "\n" + ::ca::str::from(i) + ": " + call_stack[i];
+        msg += "\n" + ::ca2::str::from(i) + ": " + call_stack[i];
 #endif
       msg += " at " + l->getPosition();
       delete l;

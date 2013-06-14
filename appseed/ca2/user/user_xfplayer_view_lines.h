@@ -3,7 +3,7 @@
 
 class CLASS_DECL_ca2 XfplayerViewLines :
    virtual public spa(XfplayerViewLine),
-   virtual public ::ca::signalizable
+   virtual public ::ca2::signalizable
 {
 public:
 
@@ -14,12 +14,12 @@ public:
    index                        m_iLastVisible;
 
 
-   XfplayerViewLines(sp(::ca::application) papp);
+   XfplayerViewLines(sp(::ca2::application) papp);
 
 
    void SetBlend(double dBlend);
    index FindLine(XfplayerViewLine * pline);
-   void SetRenderWindow(sp(::ca::window) pWnd);
+   void SetRenderWindow(sp(::ca2::window) pWnd);
    void SetEffect(int32_t iEffect);
    void set_user_interaction(sp(::user::interaction) pinteraction);
    void Prepare(XfplayerViewLine * lpViewLine);
@@ -31,7 +31,7 @@ public:
 
    user::e_line_hit hit_test(POINT &ptCursor, strsize &iLine, strsize &iChar);
 
-   void InstallMessageHandling(::ca::message::dispatch *pinterface);
+   void InstallMessageHandling(::ca2::message::dispatch *pinterface);
 
    virtual ~XfplayerViewLines();
 

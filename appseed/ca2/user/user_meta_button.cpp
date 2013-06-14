@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-MetaButton::MetaButton(sp(::ca::application) papp) :
-   ca(papp),
+MetaButton::MetaButton(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::button(papp),
    m_spregion(allocer())
 {
@@ -23,10 +23,10 @@ bool MetaButton::pre_create_window(CREATESTRUCT& cs)
 }
 
 void MetaButton::SetEllipseBrushs(
-   ::ca::brush * pbrush,
-   ::ca::brush * pbrushSel,
-   ::ca::brush * pbrushFocus,
-   ::ca::brush * pbrushDisabled)
+   ::ca2::brush * pbrush,
+   ::ca2::brush * pbrushSel,
+   ::ca2::brush * pbrushFocus,
+   ::ca2::brush * pbrushDisabled)
 {
 
    ASSERT(pbrush != NULL);
@@ -42,10 +42,10 @@ void MetaButton::SetEllipseBrushs(
 }
 
 void MetaButton::SetEllipsePens(
-   ::ca::pen * ppen,
-   ::ca::pen * ppenSel,
-   ::ca::pen * ppenFocus,
-   ::ca::pen * ppenDisabled)
+   ::ca2::pen * ppen,
+   ::ca2::pen * ppenSel,
+   ::ca2::pen * ppenFocus,
+   ::ca2::pen * ppenDisabled)
 {
 
    ASSERT(ppen != NULL);
@@ -76,7 +76,7 @@ void MetaButton::SetTextColors(
 }
 
 
-void MetaButton::_001OnDraw(::ca::graphics * pdc)
+void MetaButton::_001OnDraw(::ca2::graphics * pdc)
 {
 
    //return;
@@ -128,7 +128,7 @@ void MetaButton::_001OnDraw(::ca::graphics * pdc)
 
    rectEllipse.deflate(0, 0, 2, 2);
 
-   pdc->set_alpha_mode(::ca::alpha_mode_blend);
+   pdc->set_alpha_mode(::ca2::alpha_mode_blend);
    pdc->DrawEllipse(rectEllipse);
    pdc->FillEllipse(rectEllipse);
 
@@ -137,27 +137,27 @@ void MetaButton::_001OnDraw(::ca::graphics * pdc)
 
    pdc->set_font(GetFont());
    pdc->set_color(crText);
-   pdc->set_alpha_mode(::ca::alpha_mode_set);
+   pdc->set_alpha_mode(::ca2::alpha_mode_set);
    pdc->draw_text(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
 
 }
 
-void MetaButton::_001OnShowWindow(::ca::signal_object * pobj)
+void MetaButton::_001OnShowWindow(::ca2::signal_object * pobj)
 {
 
    UNREFERENCED_PARAMETER(pobj);
 
 }
 
-void MetaButton::_001OnLButtonDown(::ca::signal_object * pobj)
+void MetaButton::_001OnLButtonDown(::ca2::signal_object * pobj)
 {
 
    UNREFERENCED_PARAMETER(pobj);
 
 }
 
-void MetaButton::_001OnLButtonUp(::ca::signal_object * pobj)
+void MetaButton::_001OnLButtonUp(::ca2::signal_object * pobj)
 {
 
    UNREFERENCED_PARAMETER(pobj);
@@ -196,9 +196,9 @@ void MetaButton::layout()
 }
 
 
-void MetaButton::_001OnTimer(::ca::signal_object * pobj)
+void MetaButton::_001OnTimer(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::timer, ptimer, pobj)
+   SCAST_PTR(::ca2::message::timer, ptimer, pobj)
       // TODO: add your message handler code here and/or call default
       if(ptimer->m_nIDEvent == TimerCheckFocus)
       {
@@ -247,7 +247,7 @@ void MetaButton::UpdateWndRgn()
 
 }
 
-void MetaButton::install_message_handling(::ca::message::dispatch *pinterface)
+void MetaButton::install_message_handling(::ca2::message::dispatch *pinterface)
 {
    ::user::button::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &MetaButton::_001OnShowWindow);

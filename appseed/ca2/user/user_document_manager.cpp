@@ -157,7 +157,7 @@ namespace user
    if (::RegSetValue(HKEY_CLASSES_ROOT, lpszKey, REG_SZ,
    lpszValue, lstrlen(lpszValue) * sizeof(char)) != ERROR_SUCCESS)
    {
-   //         TRACE(::ca::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n",
+   //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n",
    //          lpszKey);
    return FALSE;
    }
@@ -175,13 +175,13 @@ namespace user
    if(::RegCloseKey(hKey) == ERROR_SUCCESS && lResult == ERROR_SUCCESS)
    return TRUE;
    }
-   //TRACE(::ca::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n", lpszKey);
+   //TRACE(::ca2::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n", lpszKey);
    return FALSE;
    }
    }
    */
-   document_manager::document_manager(sp(::ca::application) papp) :
-      ca(papp)
+   document_manager::document_manager(sp(::ca2::application) papp) :
+      ca2(papp)
    {
    }
 
@@ -432,7 +432,7 @@ namespace user
    }
 
    /*
-   __STATIC void _::ca::AppendFilterSuffix(string & filter, OPENFILENAME& ofn,
+   __STATIC void _::ca2::AppendFilterSuffix(string & filter, OPENFILENAME& ofn,
    sp(document_template) ptemplate, string* pstrDefaultExt)
    {
    ENSURE_VALID(ptemplate);
@@ -563,22 +563,22 @@ namespace user
       // open format is "[open("%s")]" - no whitespace allowed, one per line
       // print format is "[print("%s")]" - no whitespace allowed, one per line
       // print to format is "[printto("%s","%s","%s","%s")]" - no whitespace allowed, one per line
-      ::ca::command & cmdInfo = System.command();
-      command.m_nShellCommand = ::ca::command_line::FileDDE;
+      ::ca2::command & cmdInfo = System.command();
+      command.m_nShellCommand = ::ca2::command_line::FileDDE;
 
       if (strCommand.Left(7) == _T("[open(\""))
       {
-      cmdInfo.m_nShellCommand = ::ca::command_line::FileOpen;
+      cmdInfo.m_nShellCommand = ::ca2::command_line::FileOpen;
       strCommand = strCommand.Right(strCommand.get_length() - 7);
       }
       else if (strCommand.Left(8) == _T("[print(\""))
       {
-      cmdInfo.m_nShellCommand = ::ca::command_line::FilePrint;
+      cmdInfo.m_nShellCommand = ::ca2::command_line::FilePrint;
       strCommand = strCommand.Right(strCommand.get_length() - 8);
       }
       else if (strCommand.Left(10) == _T("[printto(\""))
       {
-      cmdInfo.m_nShellCommand = ::ca::command_line::FilePrintTo;\
+      cmdInfo.m_nShellCommand = ::ca2::command_line::FilePrintTo;\
       strCommand = strCommand.Right(strCommand.get_length() - 10);
       }
       else
@@ -591,15 +591,15 @@ namespace user
       cmdInfo.m_varFile = strCommand.Left(i);
       strCommand = strCommand.Right(strCommand.get_length() - i);
 
-      //::ca::command_line* pOldInfo = NULL;
+      //::ca2::command_line* pOldInfo = NULL;
       bool bRetVal = TRUE;
 
       // // If we were started up for DDE retrieve the Show state
       //   System.command_line() = cmdInfo;
 
-      if (cmdInfo.m_nShellCommand == ::ca::command_line::FileOpen)
+      if (cmdInfo.m_nShellCommand == ::ca2::command_line::FileOpen)
       {
-      // show the application ::ca::window
+      // show the application ::ca2::window
       sp(::user::interaction) pMainWnd = System.GetMainWnd();
       int32_t nCmdShow = System.m_nCmdShow;
       if (nCmdShow == -1 || nCmdShow == SW_SHOWNORMAL)
@@ -617,12 +617,12 @@ namespace user
       /*System.open_document_file(cmdInfo.m_varFile);
 
 
-      // next time, show the ::ca::window as default
+      // next time, show the ::ca2::window as default
       System.m_nCmdShow = -1;
       goto RestoreAndReturn;
       }
 
-      if (cmdInfo.m_nShellCommand == ::ca::command_line::FilePrintTo)
+      if (cmdInfo.m_nShellCommand == ::ca2::command_line::FilePrintTo)
       {
       if (strCommand.Left(3) != _T("\",\""))
       {
@@ -715,7 +715,7 @@ namespace user
    {
    if (m_templateptra.is_empty())
    {
-   TRACE(::ca::trace::category_AppMsg, 0, "Error: no document templates registered with application.\n");
+   TRACE(::ca2::trace::category_AppMsg, 0, "Error: no document templates registered with application.\n");
    // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
    System.simple_message_box(NULL, "Failed to create document");
    return;
@@ -743,7 +743,7 @@ namespace user
    {
       // prompt the ::fontopus::user (with all document templates)
 
-      sp(::ca::create_context) createcontext(allocer());
+      sp(::ca2::create_context) createcontext(allocer());
 
       if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))
          return; // open cancelled
@@ -755,7 +755,7 @@ namespace user
 
    void document_manager::assert_valid() const
    {
-      ::ca::object::assert_valid();
+      ::ca2::object::assert_valid();
 
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
@@ -767,7 +767,7 @@ namespace user
 
    void document_manager::dump(dump_context & dumpcontext) const
    {
-      ::ca::object::dump(dumpcontext);
+      ::ca2::object::dump(dumpcontext);
 
       if (dumpcontext.GetDepth() != 0)
       {
@@ -786,7 +786,7 @@ namespace user
 
 
 
-   void document_manager::request(sp(::ca::create_context) pcreatecontext)
+   void document_manager::request(sp(::ca2::create_context) pcreatecontext)
    {
 
       if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())
@@ -805,21 +805,21 @@ namespace user
       char szTemp[_MAX_PATH];
       if (lpszFileName[0] == '\"')
       ++lpszFileName;
-      ::ca::tcsncpy_s(szTemp, _countof(szTemp), varFileName, _TRUNCATE);
+      ::ca2::tcsncpy_s(szTemp, _countof(szTemp), varFileName, _TRUNCATE);
       LPTSTR lpszLast = _tcsrchr(szTemp, '\"');
       if (lpszLast != NULL)
       *lpszLast = 0;*/
 
-      //if( ::ca::FullPath(szPath, szTemp) == FALSE )
+      //if( ::ca2::FullPath(szPath, szTemp) == FALSE )
       //{
       //   ASSERT(FALSE);
-      //   return NULL; // We won't open the file. ca API requires paths with
+      //   return NULL; // We won't open the file. ca2 API requires paths with
       // length < _MAX_PATH
       //}
 
       /*   char szLinkName[_MAX_PATH];
-      if (::ca::ResolveShortcut(System.GetMainWnd(), szPath, szLinkName, _MAX_PATH))
-      ::ca::tcscpy_s(szPath, _countof(szPath), szLinkName);
+      if (::ca2::ResolveShortcut(System.GetMainWnd(), szPath, szLinkName, _MAX_PATH))
+      ::ca2::tcscpy_s(szPath, _countof(szPath), szLinkName);
       */
 
       for(index index = 0; index < count; index++)
@@ -848,7 +848,7 @@ namespace user
             sp(::user::frame_window) pFrame = pview->GetParentFrame();
 
             if (pFrame == NULL)
-               TRACE(::ca::trace::category_AppMsg, 0, "Error: Can not find a frame for document to activate.\n");
+               TRACE(::ca2::trace::category_AppMsg, 0, "Error: Can not find a frame for document to activate.\n");
             else
             {
                pFrame->ActivateFrame();
@@ -865,7 +865,7 @@ namespace user
             }
          }
          else
-            TRACE(::ca::trace::category_AppMsg, 0, "Error: Can not find a ::user::view for document to activate.\n");
+            TRACE(::ca2::trace::category_AppMsg, 0, "Error: Can not find a ::user::view for document to activate.\n");
 
          pcreatecontext->m_spCommandLine->m_varQuery["document"] = pOpenDocument;
       }

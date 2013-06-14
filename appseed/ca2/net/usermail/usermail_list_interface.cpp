@@ -5,16 +5,16 @@ namespace usermail
 {
 
 
-   list_interface::data::data(sp(::ca::application) papp) :
-      ca(papp),
+   list_interface::data::data(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::list_data(papp)
    {
    }
 
 
 
-   list_interface::list_interface(sp(::ca::application) papp) :
-      ca(papp),
+   list_interface::list_interface(sp(::ca2::application) papp) :
+      ca2(papp),
       
       ::user::scroll_view(papp),
       ::user::list(papp)

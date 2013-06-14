@@ -28,7 +28,7 @@ struct PROCESS_INFO_t
 };
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -37,8 +37,8 @@ namespace ca
          string stra(lpszFilPathA);
          string wstrb(lpszFilPathB);
 
-      //   ::ca::international::ACPToUnicode(stra, lpszFilPathA);
-      //   ::ca::international::ACPToUnicode(wstrb, lpszFilPathB);
+      //   ::ca2::international::ACPToUnicode(stra, lpszFilPathA);
+      //   ::ca2::international::ACPToUnicode(wstrb, lpszFilPathB);
          if(stra == wstrb)
             return true;
 
@@ -161,7 +161,7 @@ namespace ca
 
          WIN32_FILE_ATTRIBUTE_DATA data;
 
-         if(!GetFileAttributesExW(::ca::international::utf8_to_unicode(pszPath), GetFileExInfoStandard, &data))
+         if(!GetFileAttributesExW(::ca2::international::utf8_to_unicode(pszPath), GetFileExInfoStandard, &data))
          {
             varRet.set_type(var::type_null);
          }
@@ -190,19 +190,19 @@ namespace ca
       }
 
 
-      string file_system::time_square(sp(::ca::application) papp, const char * pszPrefix, const char * pszSuffix)
+      string file_system::time_square(sp(::ca2::application) papp, const char * pszPrefix, const char * pszSuffix)
       {
          string str;
          System.dir().time_square(str);
          return time(papp, str, 25, pszPrefix, pszSuffix);
       }
 
-      string file_system::time_log(sp(::ca::application) papp, const char * pszId)
+      string file_system::time_log(sp(::ca2::application) papp, const char * pszId)
       {
          return time(papp, System.dir().time_log(pszId), 9);
       }
 
-      string file_system::time(sp(::ca::application) papp, const char * psz, int32_t iMaxLevel, const char * pszPrefix, const char * pszSuffix)
+      string file_system::time(sp(::ca2::application) papp, const char * psz, int32_t iMaxLevel, const char * pszPrefix, const char * pszSuffix)
       {
          mutex_lock lockMachineEvent(
             (&System.machine_event_central() != NULL) ?
@@ -289,7 +289,7 @@ namespace ca
          for(int32_t i = 0; i < stra.get_size(); i++)
          {
             string str = stra[i];
-            if(::ca::str::begins_eat_ci(str, pszPrefix))
+            if(::ca2::str::begins_eat_ci(str, pszPrefix))
             {
                if(str.get_length() < 2)
                {
@@ -314,12 +314,12 @@ namespace ca
       // fail if exists, create if not exists
       bool file_system::mk_time(const char * lpcszCandidate)
       {
-         ::ca::filesp spfile(allocer());
+         ::ca2::filesp spfile(allocer());
          if(System.file().exists(lpcszCandidate, get_app()))
             return false;
          try
          {
-            if(!spfile->open(lpcszCandidate, ::ca::file::mode_create | ::ca::file::type_binary))
+            if(!spfile->open(lpcszCandidate, ::ca2::file::mode_create | ::ca2::file::type_binary))
                return false;
          }
          catch(...)
@@ -329,23 +329,23 @@ namespace ca
          return true;
       }
 
-      string file_system::as_string(var varFile, sp(::ca::application) papp)
+      string file_system::as_string(var varFile, sp(::ca2::application) papp)
       {
           var varQuery;
           return as_string(varFile, varQuery, papp);
       }
 
-      string file_system::as_string(var varFile, var & varQuery, sp(::ca::application) papp)
+      string file_system::as_string(var varFile, var & varQuery, sp(::ca2::application) papp)
       {
          primitive::memory storage;
-         if(varFile.ca < ::ca::file > () != NULL)
+         if(varFile.ca2 < ::ca2::file > () != NULL)
          {
-            storage.FullLoad(*varFile.ca < ::ca::file >());
+            storage.FullLoad(*varFile.ca2 < ::ca2::file >());
          }
          else
          {
             string strFilePath(varFile);
-            if(papp->m_bZipIsDir && (::ca::str::find_ci(".zip:", strFilePath) >= 0))
+            if(papp->m_bZipIsDir && (::ca2::str::find_ci(".zip:", strFilePath) >= 0))
             {
                if(!exists(strFilePath, papp))
                   return "";
@@ -356,25 +356,25 @@ namespace ca
                if(!infile.dump(&memfile))
                   return "";
             }
-            else if(::ca::str::begins_eat_ci(strFilePath, "file:///"))
+            else if(::ca2::str::begins_eat_ci(strFilePath, "file:///"))
             {
                if(!exists(strFilePath, papp))
                   return "";
                as_memory(strFilePath, storage, papp);
             }
-            else if(::ca::str::begins_eat_ci(strFilePath, "file:\\\\\\"))
+            else if(::ca2::str::begins_eat_ci(strFilePath, "file:\\\\\\"))
             {
                if(!exists(strFilePath, papp))
                   return "";
                as_memory(strFilePath, storage, papp);
             }
-            else if(::ca::str::begins_ci(strFilePath, "http://")
-            || ::ca::str::begins_ci(strFilePath, "https://"))
+            else if(::ca2::str::begins_ci(strFilePath, "http://")
+            || ::ca2::str::begins_ci(strFilePath, "https://"))
             {
                if(!exists(strFilePath, &varQuery, papp))
                   return "";
-               ::ca::property_set post;
-               ::ca::property_set headers;
+               ::ca2::property_set post;
+               ::ca2::property_set headers;
 
                ::url_domain domain;
 
@@ -401,7 +401,7 @@ namespace ca
                {
                   try
                   {
-                     storage.FullLoad(App(papp).file().get_file(strFilePath, ::ca::file::type_binary | ::ca::file::mode_read));
+                     storage.FullLoad(App(papp).file().get_file(strFilePath, ::ca2::file::type_binary | ::ca2::file::mode_read));
                   }
                   catch(...)
                   {
@@ -423,7 +423,7 @@ namespace ca
          && storage.get_data()[0] == 255
          && storage.get_data()[1] == 60)
          {
-            ::ca::international::unicode_to_utf8(strResult, (const wchar_t *) &storage.get_data()[2], (int32_t)(storage.get_size() - 2));
+            ::ca2::international::unicode_to_utf8(strResult, (const wchar_t *) &storage.get_data()[2], (int32_t)(storage.get_size() - 2));
          }
          else if(storage.get_size() >= 3
          && storage.get_data()[0] == 0xef
@@ -440,7 +440,7 @@ namespace ca
          return strResult;
       }
 
-      void file_system::as_memory(var varFile, primitive::memory_base & mem, sp(::ca::application) papp)
+      void file_system::as_memory(var varFile, primitive::memory_base & mem, sp(::ca2::application) papp)
       {
 
          mem.allocate(0);
@@ -453,7 +453,7 @@ namespace ca
             if(strPath.is_empty())
             {
 
-               TRACE("::ca::file::file_system::as_memory varFile is a empty file name!!");
+               TRACE("::ca2::file::file_system::as_memory varFile is a empty file name!!");
 
                return;
 
@@ -461,7 +461,7 @@ namespace ca
 
             strPath.trim("\"'");
 
-            if((::ca::str::begins(strPath, "http://") || ::ca::str::begins(strPath, "https://")))
+            if((::ca2::str::begins(strPath, "http://") || ::ca2::str::begins(strPath, "https://")))
             {
 
                App(papp).http().get(strPath, mem, &AppUser(papp));
@@ -472,12 +472,12 @@ namespace ca
 
          }
 
-         ::ca::filesp spfile;
+         ::ca2::filesp spfile;
 
          try
          {
 
-            spfile = App(papp).file().get_file(varFile, ::ca::file::type_binary | ::ca::file::mode_read | ::ca::file::shareDenyNone);
+            spfile = App(papp).file().get_file(varFile, ::ca2::file::type_binary | ::ca2::file::mode_read | ::ca2::file::shareDenyNone);
 
             if(spfile.is_null())
                return;
@@ -493,14 +493,14 @@ namespace ca
 
       }
 
-      void file_system::lines(stringa & stra, var varFile, sp(::ca::application) papp)
+      void file_system::lines(stringa & stra, var varFile, sp(::ca2::application) papp)
       {
          UNREFERENCED_PARAMETER(papp);
-         ::ca::text_file_sp spfile(allocer());
+         ::ca2::text_file_sp spfile(allocer());
 
          try
          {
-            if(!spfile->open(varFile, ::ca::file::type_text | ::ca::file::mode_read))
+            if(!spfile->open(varFile, ::ca2::file::type_text | ::ca2::file::mode_read))
             {
                return;
             }
@@ -517,12 +517,12 @@ namespace ca
 
       }
 
-      bool file_system::put_contents(var varFile, const void * pvoidContents, ::count count, sp(::ca::application) papp)
+      bool file_system::put_contents(var varFile, const void * pvoidContents, ::count count, sp(::ca2::application) papp)
       {
 
-         ::ca::filesp spfile;
+         ::ca2::filesp spfile;
 
-         spfile = App(papp).file().get_file(varFile, ::ca::file::type_binary | ::ca::file::mode_write | ::ca::file::mode_create | ::ca::file::shareDenyNone | ::ca::file::defer_create_directory);
+         spfile = App(papp).file().get_file(varFile, ::ca2::file::type_binary | ::ca2::file::mode_write | ::ca2::file::mode_create | ::ca2::file::shareDenyNone | ::ca2::file::defer_create_directory);
 
          if(spfile.is_null())
             return false;
@@ -533,7 +533,7 @@ namespace ca
 
       }
 
-      bool file_system::put_contents(var varFile, const char * lpcszContents, sp(::ca::application) papp)
+      bool file_system::put_contents(var varFile, const char * lpcszContents, sp(::ca2::application) papp)
       {
          if(lpcszContents == NULL)
          {
@@ -545,10 +545,10 @@ namespace ca
          }
       }
 
-      bool file_system::put_contents(var varFile, ::ca::file & file, sp(::ca::application) papp)
+      bool file_system::put_contents(var varFile, ::ca2::file & file, sp(::ca2::application) papp)
       {
-         ::ca::filesp spfile;
-         spfile = App(papp).file().get_file(varFile, ::ca::file::type_binary | ::ca::file::mode_write | ::ca::file::mode_create | ::ca::file::shareDenyNone | ::ca::file::defer_create_directory);
+         ::ca2::filesp spfile;
+         spfile = App(papp).file().get_file(varFile, ::ca2::file::type_binary | ::ca2::file::mode_write | ::ca2::file::mode_create | ::ca2::file::shareDenyNone | ::ca2::file::defer_create_directory);
          if(spfile.is_null())
             return false;
          primitive::memory mem;
@@ -561,18 +561,18 @@ namespace ca
          return true;
       }
 
-      bool file_system::put_contents(var varFile, primitive::memory & mem, sp(::ca::application) papp)
+      bool file_system::put_contents(var varFile, primitive::memory & mem, sp(::ca2::application) papp)
       {
          return put_contents(varFile, mem.get_data(), (count) mem.get_size(), papp);
       }
 
-      bool file_system::put_contents_utf8(var varFile, const char * lpcszContents, sp(::ca::application) papp)
+      bool file_system::put_contents_utf8(var varFile, const char * lpcszContents, sp(::ca2::application) papp)
       {
-         ::ca::filesp spfile;
-         spfile = App(papp).file().get_file(varFile, ::ca::file::type_binary | ::ca::file::mode_write | ::ca::file::mode_create | ::ca::file::shareDenyNone | ::ca::file::defer_create_directory);
+         ::ca2::filesp spfile;
+         spfile = App(papp).file().get_file(varFile, ::ca2::file::type_binary | ::ca2::file::mode_write | ::ca2::file::mode_create | ::ca2::file::shareDenyNone | ::ca2::file::defer_create_directory);
          if(spfile.is_null())
             return false;
-         ::ca::byte_output_stream(spfile) << "\xef\xbb\xbf";
+         ::ca2::byte_output_stream(spfile) << "\xef\xbb\xbf";
          spfile->write(lpcszContents, strlen(lpcszContents));
          return true;
       }
@@ -619,9 +619,9 @@ namespace ca
 
          string str(path);
 
-         while(::ca::str::ends_eat(str, "\\"));
+         while(::ca2::str::ends_eat(str, "\\"));
 
-         while(::ca::str::ends_eat(str, "/"));
+         while(::ca2::str::ends_eat(str, "/"));
 
          strsize iPos;
 
@@ -691,14 +691,14 @@ namespace ca
 
       }
 
-      void file_system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, sp(::ca::application) papp)
+      void file_system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, sp(::ca2::application) papp)
       {
          if(bFailIfExists)
          {
             if(exists(pszNew, papp))
                throw "Failed to copy file";
          }
-         if(System.dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::ca::str::ends_ci(psz, ".zip"))))
+         if(System.dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::ca2::str::ends_ci(psz, ".zip"))))
          {
             stringa straPath;
             System.dir().rls(papp, psz, &straPath);
@@ -706,7 +706,7 @@ namespace ca
             string strSrc;
             string strDirSrc(psz);
             string strDirDst(pszNew);
-            if(papp->m_bZipIsDir && (::ca::str::ends(strDirSrc, ".zip")))
+            if(papp->m_bZipIsDir && (::ca2::str::ends(strDirSrc, ".zip")))
             {
                strDirSrc += ":";
             }
@@ -714,11 +714,11 @@ namespace ca
             {
                strSrc = straPath[i];
                strDst = strSrc;
-               ::ca::str::begins_eat_ci(strDst, strDirSrc);
+               ::ca2::str::begins_eat_ci(strDst, strDirSrc);
                strDst = System.dir().path(strDirDst, strDst);
                if(System.dir().is(strSrc, papp))
                {
-                  if((eextract == extract_first || eextract == extract_none) && (::ca::str::ends_ci(psz, ".zip")))
+                  if((eextract == extract_first || eextract == extract_none) && (::ca2::str::ends_ci(psz, ".zip")))
                   {
                   }
                   else
@@ -750,8 +750,8 @@ namespace ca
                strNew = pszNew;
             }
 
-            ::ca::filesp ofile;
-            ofile = App(papp).file().get_file(strNew, ::ca::file::mode_write | ::ca::file::type_binary | ::ca::file::mode_create | ::ca::file::defer_create_directory | ::ca::file::shareDenyWrite);
+            ::ca2::filesp ofile;
+            ofile = App(papp).file().get_file(strNew, ::ca2::file::mode_write | ::ca2::file::type_binary | ::ca2::file::mode_create | ::ca2::file::defer_create_directory | ::ca2::file::shareDenyWrite);
             if(ofile.is_null())
             {
                string strError;
@@ -759,8 +759,8 @@ namespace ca
                throw strError;
             }
 
-            ::ca::filesp ifile;
-            ifile = App(papp).file().get_file(psz, ::ca::file::mode_read | ::ca::file::type_binary | ::ca::file::shareDenyNone);
+            ::ca2::filesp ifile;
+            ifile = App(papp).file().get_file(psz, ::ca2::file::mode_read | ::ca2::file::type_binary | ::ca2::file::shareDenyNone);
             if(ifile.is_null())
             {
                string strError;
@@ -775,7 +775,7 @@ namespace ca
             bool bOutputFail = false;
             bool bInputFail = false;
             bool bStatusFail = false;
-            ::ca::file_status st;
+            ::ca2::file_status st;
 
             try
             {
@@ -864,8 +864,8 @@ namespace ca
       {
 #ifdef WINDOWSEX
          if(!::MoveFileW(
-            ::ca::international::utf8_to_unicode(psz),
-            ::ca::international::utf8_to_unicode(pszNew)))
+            ::ca2::international::utf8_to_unicode(psz),
+            ::ca2::international::utf8_to_unicode(pszNew)))
          {
             uint32_t dwError = ::GetLastError();
             string strError;
@@ -923,7 +923,7 @@ namespace ca
       void file_system::del(const char * psz)
       {
 #ifdef WINDOWS
-         if(!::DeleteFileW(::ca::international::utf8_to_unicode(string("\\\\?\\") + psz)))
+         if(!::DeleteFileW(::ca2::international::utf8_to_unicode(string("\\\\?\\") + psz)))
          {
             uint32_t dwError = ::GetLastError();
             if(dwError == 2) // the file does not exist, so delete "failed"
@@ -945,7 +945,7 @@ namespace ca
       }
 
 
-      string file_system::copy(const char * psz, sp(::ca::application) papp)
+      string file_system::copy(const char * psz, sp(::ca2::application) papp)
       {
          string strCopy("copy");
          string strNew;
@@ -986,7 +986,7 @@ namespace ca
       }
 
 
-      bool file_system::exists(const char * pszPath, sp(::ca::application) papp)
+      bool file_system::exists(const char * pszPath, sp(::ca2::application) papp)
       {
 
          return exists(pszPath, NULL, papp);
@@ -994,14 +994,14 @@ namespace ca
       }
 
 
-      bool file_system::exists(const char * pszPath, var * pvarQuery, sp(::ca::application) papp)
+      bool file_system::exists(const char * pszPath, var * pvarQuery, sp(::ca2::application) papp)
       {
 
-         if(::ca::str::begins_ci_iws(pszPath, "uifs://"))
+         if(::ca2::str::begins_ci_iws(pszPath, "uifs://"))
          {
             return AppUser(papp).m_pifs->file_exists(pszPath);
          }
-         else if(::ca::str::begins_ci_iws(pszPath, "http://") || ::ca::str::begins_ci_iws(pszPath, "https://"))
+         else if(::ca2::str::begins_ci_iws(pszPath, "http://") || ::ca2::str::begins_ci_iws(pszPath, "https://"))
          {
             return App(papp).http().exists(pszPath, pvarQuery, papp->get_safe_user());
          }
@@ -1009,7 +1009,7 @@ namespace ca
          if(papp->m_bZipIsDir)
          {
 
-            strsize iFind = ::ca::str::find_ci(".zip:", pszPath);
+            strsize iFind = ::ca2::str::find_ci(".zip:", pszPath);
 
             zip::Util ziputil;
 
@@ -1026,7 +1026,7 @@ namespace ca
 
          return file_exists_dup(pszPath);
 
-         //return ::GetFileAttributesW(::ca::international::utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
+         //return ::GetFileAttributesW(::ca2::international::utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
 
 #else
 
@@ -1042,7 +1042,7 @@ namespace ca
       }
 
 
-      bool file_system::exists(const string & strPath, sp(::ca::application) papp)
+      bool file_system::exists(const string & strPath, sp(::ca2::application) papp)
       {
 
          return exists(strPath, NULL, papp);
@@ -1050,16 +1050,16 @@ namespace ca
       }
 
 
-      bool file_system::exists(const string & strPath, var * pvarQuery, sp(::ca::application) papp)
+      bool file_system::exists(const string & strPath, var * pvarQuery, sp(::ca2::application) papp)
       {
 
-         if(::ca::str::begins_ci_iws(strPath, "uifs://"))
+         if(::ca2::str::begins_ci_iws(strPath, "uifs://"))
          {
             return AppUser(papp).m_pifs->file_exists(strPath);
          }
 
-         if(::ca::str::begins_ci_iws(strPath, "http://")
-         || ::ca::str::begins_ci_iws(strPath, "https://"))
+         if(::ca2::str::begins_ci_iws(strPath, "http://")
+         || ::ca2::str::begins_ci_iws(strPath, "https://"))
          {
             return App(papp).http().exists(strPath, pvarQuery, papp->get_safe_user());
          }
@@ -1068,7 +1068,7 @@ namespace ca
          if(papp->m_bZipIsDir)
          {
 
-            strsize iFind = ::ca::str::find_ci(".zip:", strPath);
+            strsize iFind = ::ca2::str::find_ci(".zip:", strPath);
 
             zip::Util ziputil;
 
@@ -1095,7 +1095,7 @@ namespace ca
            // return true;
 
          //return App(papp).m_spfsdata->file_exists(strPath);
-         //return ::GetFileAttributesW(::ca::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
+         //return ::GetFileAttributesW(::ca2::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
 
 #else
 
@@ -1110,7 +1110,7 @@ namespace ca
 
       }
 
-      string file_system::paste(const char * pszLocation, const char * path, sp(::ca::application) papp)
+      string file_system::paste(const char * pszLocation, const char * path, sp(::ca2::application) papp)
       {
          string strDir = System.dir().name(path);
          string strDest = System.dir().path(pszLocation, "");
@@ -1127,7 +1127,7 @@ namespace ca
          }
       }
 
-      void file_system::trash_that_is_not_trash(stringa & stra, sp(::ca::application) papp)
+      void file_system::trash_that_is_not_trash(stringa & stra, sp(::ca2::application) papp)
       {
 
          if(stra.get_size() <= 0)
@@ -1148,7 +1148,7 @@ namespace ca
 
       }
 
-      void file_system::trash_that_is_not_trash(const char * psz, sp(::ca::application) papp)
+      void file_system::trash_that_is_not_trash(const char * psz, sp(::ca2::application) papp)
       {
 
          string strDir = System.dir().trash_that_is_not_trash(psz);
@@ -1164,7 +1164,7 @@ namespace ca
 
       }
 
-      void file_system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, sp(::ca::application) papp)
+      void file_system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, sp(::ca2::application) papp)
       {
          stringa straTitle;
          System.dir().ls(papp, pszContext, NULL, &straTitle);
@@ -1180,8 +1180,8 @@ namespace ca
             {
 #ifdef WINDOWS
 //               ::MoveFileW(
-  //                ::ca::international::utf8_to_unicode(System.dir().path(pszContext, strOld)),
-    //              ::ca::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
+  //                ::ca2::international::utf8_to_unicode(System.dir().path(pszContext, strOld)),
+    //              ::ca2::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
                try
                {
                move(System.dir().path(pszContext, strNew), System.dir().path(pszContext, strOld));
@@ -1208,7 +1208,7 @@ namespace ca
 
 #ifdef WINDOWSEX
 
-         uint32_t dwAttrib = GetFileAttributesW(::ca::international::utf8_to_unicode(psz));
+         uint32_t dwAttrib = GetFileAttributesW(::ca2::international::utf8_to_unicode(psz));
          if(dwAttrib & FILE_ATTRIBUTE_READONLY)
             return true;
          return false;
@@ -1230,12 +1230,12 @@ namespace ca
 
       }
 
-      string file_system::sys_temp(const char * pszName, const char * pszExtension, sp(::ca::application) papp)
+      string file_system::sys_temp(const char * pszName, const char * pszExtension, sp(::ca2::application) papp)
       {
 
          string strTempDir = get_sys_temp_path();
 
-         if(!::ca::str::ends(strTempDir, "\\") && !::ca::str::ends(strTempDir, "/"))
+         if(!::ca2::str::ends(strTempDir, "\\") && !::ca2::str::ends(strTempDir, "/"))
          {
 
             strTempDir += "\\";
@@ -1272,22 +1272,22 @@ namespace ca
 
       }
 
-      ::ca::filesp file_system::time_square_file(sp(::ca::application) papp, const char * pszPrefix, const char * pszSuffix)
+      ::ca2::filesp file_system::time_square_file(sp(::ca2::application) papp, const char * pszPrefix, const char * pszSuffix)
       {
 
          return get(time_square(papp, pszPrefix, pszSuffix), papp);
 
       }
 
-      ::ca::filesp file_system::get(const char * name, sp(::ca::application) papp)
+      ::ca2::filesp file_system::get(const char * name, sp(::ca2::application) papp)
       {
 
          System.dir().mk(System.dir().name(name), papp);
 
-         ::ca::filesp fileOut = App(papp).file().get_file(name, ::ca::file::mode_create | ::ca::file::type_binary | ::ca::file::mode_write);
+         ::ca2::filesp fileOut = App(papp).file().get_file(name, ::ca2::file::mode_create | ::ca2::file::type_binary | ::ca2::file::mode_write);
 
          if(fileOut.is_null())
-            throw ::ca::file_exception(papp, -1, ::ca::file_exception::none, name);
+            throw ::ca2::file_exception(papp, -1, ::ca2::file_exception::none, name);
 
          return fileOut;
 
@@ -1305,7 +1305,7 @@ namespace ca
          strsize iEnd = strFile.reverse_find('.');
          if(iEnd < 0)
             iEnd = strFile.get_length();
-         strFile = strFile.Left(iEnd) + ::ca::str::has_char(pszExtension, ".");
+         strFile = strFile.Left(iEnd) + ::ca2::str::has_char(pszExtension, ".");
       }
 
    void file_system::normalize(string & str)
@@ -1331,7 +1331,7 @@ namespace ca
 
 
 
-      bool file_system::path::rename(const char *pszNew, const char *psz, sp(::ca::application) papp)
+      bool file_system::path::rename(const char *pszNew, const char *psz, sp(::ca2::application) papp)
    {
       string strDir = System.dir().name(psz);
       string strDirNew = System.dir().name(pszNew);
@@ -1342,7 +1342,7 @@ namespace ca
       throw not_implemented(get_app());
       //if(!System.file_as_string().move(psz, pszNew))
       {
-         ::ca::property_set propertyset;
+         ::ca2::property_set propertyset;
          System.message_box("err\\::fontopus::user\\file_system\\could_not_rename_file.xml", propertyset);
          return false;
       }
@@ -1352,14 +1352,14 @@ namespace ca
    string file_system::md5(const char * psz)
    {
 
-      ::ca::filesp spfile(allocer());
+      ::ca2::filesp spfile(allocer());
 
       try
       {
-         if(!spfile->open(psz, ::ca::file::type_binary | ::ca::file::mode_read))
+         if(!spfile->open(psz, ::ca2::file::type_binary | ::ca2::file::mode_read))
             return "";
       }
-      catch(::ca::file_exception &)
+      catch(::ca2::file_exception &)
       {
          return "";
       }
@@ -1387,7 +1387,7 @@ namespace ca
    }
 
 
-   void file_system::dtf(const char * pszFile, const char * pszDir, sp(::ca::application) papp)
+   void file_system::dtf(const char * pszFile, const char * pszDir, sp(::ca2::application) papp)
    {
       stringa stra;
       stringa straRelative;
@@ -1395,10 +1395,10 @@ namespace ca
       dtf(pszFile, stra, straRelative, papp);
    }
 
-   void file_system::dtf(const char * pszFile, stringa & stra, stringa & straRelative, sp(::ca::application) papp)
+   void file_system::dtf(const char * pszFile, stringa & stra, stringa & straRelative, sp(::ca2::application) papp)
    {
 
-      ::ca::filesp spfile = App(papp).file().get_file(pszFile, ::ca::file::mode_create | ::ca::file::mode_write  | ::ca::file::type_binary);
+      ::ca2::filesp spfile = App(papp).file().get_file(pszFile, ::ca2::file::mode_create | ::ca2::file::mode_write  | ::ca2::file::type_binary);
 
       if(spfile.is_null())
          throw "failed";
@@ -1411,7 +1411,7 @@ namespace ca
 
       write_gen_string(spfile, NULL, strVersion);
 
-      ::ca::filesp file2(allocer());
+      ::ca2::filesp file2(allocer());
 
       ::primitive::memory_size iBufSize = 1024 * 1024;
 
@@ -1427,7 +1427,7 @@ namespace ca
 
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
-         if(::ca::str::ends_ci(stra[i], ".zip"))
+         if(::ca2::str::ends_ci(stra[i], ".zip"))
          {
          }
          else if(System.dir().is(stra[i], get_app()))
@@ -1437,7 +1437,7 @@ namespace ca
          write_gen_string(spfile, NULL, strMd5);
          ctx.reset();
          write_gen_string(spfile, &ctx, straRelative[i]);
-         if(!file2->open(stra[i], ::ca::file::mode_read | ::ca::file::type_binary))
+         if(!file2->open(stra[i], ::ca2::file::mode_read | ::ca2::file::type_binary))
             throw "failed";
          write_n_number(spfile, &ctx, (int32_t) file2->get_length());
          while((uiRead = file2->read(buf, iBufSize)) > 0)
@@ -1445,7 +1445,7 @@ namespace ca
             spfile->write(buf, uiRead);
             ctx.update(buf, uiRead);
          }
-         spfile->seek(iPos, ::ca::seek_begin);
+         spfile->seek(iPos, ::ca2::seek_begin);
          strMd5 = ctx.to_hex();
          write_gen_string(spfile, NULL, strMd5);
          spfile->seek_to_end();
@@ -1454,10 +1454,10 @@ namespace ca
       write_n_number(spfile, NULL, 2);
    }
 
-   void file_system::ftd(const char * pszDir, const char * pszFile, sp(::ca::application) papp)
+   void file_system::ftd(const char * pszDir, const char * pszFile, sp(::ca2::application) papp)
    {
       string strVersion;
-      ::ca::filesp spfile = App(papp).file().get_file(pszFile, ::ca::file::mode_read  | ::ca::file::type_binary);
+      ::ca2::filesp spfile = App(papp).file().get_file(pszFile, ::ca2::file::mode_read  | ::ca2::file::type_binary);
       if(spfile.is_null())
          throw "failed";
       read_gen_string(spfile, NULL, strVersion);
@@ -1470,7 +1470,7 @@ namespace ca
       buf.allocate(iBufSize);
       int64_t iLen;
       ::crypto::md5::context ctx(get_app());
-      ::ca::filesp file2(get_app());
+      ::ca2::filesp file2(get_app());
       ::primitive::memory_size uiRead;
       if(strVersion == "fileset v1")
       {
@@ -1484,7 +1484,7 @@ namespace ca
             read_gen_string(spfile, &ctx, strRelative);
             string strPath = System.dir().path(pszDir, strRelative);
             App(papp).dir().mk(System.dir().name(strPath));
-            if(!file2->open(strPath, ::ca::file::mode_create | ::ca::file::type_binary | ::ca::file::mode_write))
+            if(!file2->open(strPath, ::ca2::file::mode_create | ::ca2::file::type_binary | ::ca2::file::mode_write))
                throw "failed";
             read_n_number(spfile, &ctx, iLen);
             while(iLen > 0)
@@ -1504,7 +1504,7 @@ namespace ca
       }
    }
 
-   void file_system::write_n_number(sp(::ca::file) pfile, ::crypto::md5::context * pctx, int64_t iNumber)
+   void file_system::write_n_number(sp(::ca2::file) pfile, ::crypto::md5::context * pctx, int64_t iNumber)
    {
 
       string str;
@@ -1522,7 +1522,7 @@ namespace ca
 
    }
 
-   void file_system::read_n_number(sp(::ca::file) pfile, ::crypto::md5::context * pctx, int64_t & iNumber)
+   void file_system::read_n_number(sp(::ca2::file) pfile, ::crypto::md5::context * pctx, int64_t & iNumber)
    {
 
       uint64_t uiRead;
@@ -1554,11 +1554,11 @@ namespace ca
          pctx->update(&ch, 1);
       }
 
-      iNumber = ::ca::str::to_int64(str);
+      iNumber = ::ca2::str::to_int64(str);
 
    }
 
-   void file_system::write_gen_string(sp(::ca::file) pfile, ::crypto::md5::context * pctx, string & str)
+   void file_system::write_gen_string(sp(::ca2::file) pfile, ::crypto::md5::context * pctx, string & str)
    {
       ::count iLen = str.get_length();
       write_n_number(pfile, pctx, iLen);
@@ -1569,7 +1569,7 @@ namespace ca
       }
    }
 
-   void file_system::read_gen_string(sp(::ca::file) pfile, ::crypto::md5::context * pctx, string & str)
+   void file_system::read_gen_string(sp(::ca2::file) pfile, ::crypto::md5::context * pctx, string & str)
    {
       int64_t iLen;
       read_n_number(pfile, pctx, iLen);
@@ -1592,7 +1592,7 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 
@@ -1621,10 +1621,10 @@ HANDLE OnlyGetDrv()
 {
 
 
-        HMODULE hModule = GetModuleHandle(_T("ca.dll"));
+        HMODULE hModule = GetModuleHandle(_T("ca2.dll"));
         if( !hModule )
         {
-            OutputDebugStringW( L"GetModuleHandle(_T(\"ca.dll\")); failed" );
+            OutputDebugStringW( L"GetModuleHandle(_T(\"ca2.dll\")); failed" );
             return 0;
         }
         string csFilePath;
@@ -1841,7 +1841,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pU
 				continue;
 			}
 			int32_t nCmpStart = 4;
-			string csFileName( ::ca::international::unicode_to_utf8(&ThreadParams.lpPath[nCmpStart]));
+			string csFileName( ::ca2::international::unicode_to_utf8(&ThreadParams.lpPath[nCmpStart]));
 			csFileName.make_lower();
          if(csFileName.find("vs11_dp_ctp") >= 0)
          {
@@ -1854,7 +1854,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pU
 			OF_INFO_t stOFInfo;
 			stOFInfo.dwPID = pSysHandleInformation->Handles[g_CurrentIndex - 1].dwProcessId;
          wstring wstrCallback;
-         wstrCallback = ::ca::international::utf8_to_unicode(csFileName);
+         wstrCallback = ::ca2::international::utf8_to_unicode(csFileName);
 			stOFInfo.lpFile = wstrCallback;
 			stOFInfo.hFile  = (HANDLE)pSysHandleInformation->Handles[g_CurrentIndex - 1].wValue;
 			CallBackProc( stOFInfo, pUserContext );
@@ -1959,7 +1959,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pU
 		OF_INFO_t stOFInfo;
 		stOFInfo.dwPID = sh.dwProcessId;
       wstring wstrCallback;
-      wstrCallback = ::ca::international::utf8_to_unicode(csFileName);
+      wstrCallback = ::ca2::international::utf8_to_unicode(csFileName);
 		stOFInfo.lpFile = wstrCallback;
 		stOFInfo.hFile  = (HANDLE)sh.wValue;
 		CallBackProc( stOFInfo, pUserContext );
@@ -2065,7 +2065,7 @@ void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uint_ptr 
 				stOFInfo.dwPID = pDwId[nIdx];
             wstring wstrCallback;
 
-            wstrCallback = ::ca::international::utf8_to_unicode(csModule);
+            wstrCallback = ::ca2::international::utf8_to_unicode(csModule);
 
 				stOFInfo.lpFile = wstrCallback;
 				CallBackProc( stOFInfo, pUserContext );

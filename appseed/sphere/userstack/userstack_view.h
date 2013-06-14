@@ -39,7 +39,7 @@ namespace userstack
       oswindow                  m_oswindowBergedge;
 
 
-      ::ca::font_sp m_font;
+      ::ca2::font_sp m_font;
       stringa m_straImagePath;
       string m_strCurrentImagePath;
       bool m_bDestroy;
@@ -49,7 +49,7 @@ namespace userstack
       mutex m_mutexDraw;
 
 
-      view(sp(::ca::application) papp);
+      view(sp(::ca2::application) papp);
       virtual ~view();
 
    #ifdef DEBUG
@@ -62,15 +62,15 @@ namespace userstack
          TimerBackView = 1000,
       };
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
 
 
-      virtual void pre_translate_message(::ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca2::signal_object * pobj);
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
-      virtual void OnDraw(::ca::graphics * pgraphics);
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void OnDraw(::ca2::graphics * pgraphics);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
 
       sp(::user::document) get_document();
 
@@ -98,7 +98,7 @@ namespace userstack
 
       static UINT c_cdecl ThreadProcShowWindow(LPVOID lpparam);
       
-      void _000OnMouse(::ca::message::mouse * pmouse);
+      void _000OnMouse(::ca2::message::mouse * pmouse);
 
    };
 

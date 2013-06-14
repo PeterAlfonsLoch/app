@@ -5,7 +5,7 @@ class CLASS_DECL_ca2 FileManagerFrame :
    public simple_frame_window
 {
 public:
-   FileManagerFrame(sp(::ca::application) papp);
+   FileManagerFrame(sp(::ca2::application) papp);
 
    simple_menu_bar           m_menubar;
      simple_toolbar           m_toolbar;
@@ -17,7 +17,7 @@ public:
 
    bool DestroyBars();
 
-   virtual void install_message_handling(::ca::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
    
    DECL_GEN_SIGNAL(_001OnSetText)

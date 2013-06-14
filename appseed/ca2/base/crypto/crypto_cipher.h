@@ -8,7 +8,7 @@
  */
 /*
  *   
- * Copyright (c) 2001-2006, Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006, Cisco Systems, Inc.
  * 
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -169,30 +169,30 @@ typedef struct cipher_t {
 
 /* some syntactic sugar on these function types */
 
-#define cipher_type_alloc(ct, c, klen) ((ct)->alloc((c), (klen)))
+#define cipher_type_alloc(ct, ca, klen) ((ct)->alloc((ca), (klen)))
 
-#define cipher_dealloc(c) (((c)->type)->dealloc(c))
+#define cipher_dealloc(ca) (((ca)->type)->dealloc(ca))
 
-#define cipher_init(c, k, dir) (((c)->type)->init(((c)->state), (k), (dir)))
+#define cipher_init(ca, k, dir) (((ca)->type)->init(((ca)->state), (k), (dir)))
 
-#define cipher_encrypt(c, buf, len) \
-        (((c)->type)->encrypt(((c)->state), (buf), (len)))
+#define cipher_encrypt(ca, buf, len) \
+        (((ca)->type)->encrypt(((ca)->state), (buf), (len)))
 
-#define cipher_decrypt(c, buf, len) \
-        (((c)->type)->decrypt(((c)->state), (buf), (len)))
+#define cipher_decrypt(ca, buf, len) \
+        (((ca)->type)->decrypt(((ca)->state), (buf), (len)))
 
-#define cipher_set_iv(c, n)                           \
-  ((c) ? (((c)->type)->set_iv(((cipher_pointer_t)(c)->state), (n))) :   \
+#define cipher_set_iv(ca, n)                           \
+  ((ca) ? (((ca)->type)->set_iv(((cipher_pointer_t)(ca)->state), (n))) :   \
                                 err_status_no_such_op)  
 
 err_status_t
-cipher_output(cipher_t *c, uint8_t *buffer, int32_t num_octets_to_output);
+cipher_output(cipher_t *ca, uint8_t *buffer, int32_t num_octets_to_output);
 
 
 /* some bookkeeping functions */
 
 int32_t
-cipher_get_key_length(const cipher_t *c);
+cipher_get_key_length(const cipher_t *ca);
 
 
 /* 
@@ -206,10 +206,10 @@ cipher_type_self_test(const cipher_type_t *ct);
 
 
 /*
- * cipher_bits_per_second(c, l, t) computes (and estimate of) the
+ * cipher_bits_per_second(ca, l, t) computes (and estimate of) the
  * number of bits that a cipher implementation can encrypt in a second
  * 
- * c is a cipher (which MUST be allocated and initialized already), l
+ * ca is a cipher (which MUST be allocated and initialized already), l
  * is the length in octets of the test data to be encrypted, and t is
  * the number of trials
  *
@@ -217,7 +217,7 @@ cipher_type_self_test(const cipher_type_t *ct);
  */
 
 uint64_t
-cipher_bits_per_second(cipher_t *c, int32_t octets_in_buffer, int32_t num_trials);
+cipher_bits_per_second(cipher_t *ca, int32_t octets_in_buffer, int32_t num_trials);
 
 #endif /* CIPHER_H */
 

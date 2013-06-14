@@ -3,8 +3,8 @@
 namespace platform
 {
 
-   pane_view::pane_view(sp(::ca::application) papp) :
-      ca(papp),
+   pane_view::pane_view(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::tab(papp),
       
       ::user::tab_view(papp),
@@ -73,9 +73,9 @@ namespace platform
    /////////////////////////////////////////////////////////////////////////////
    // pane_view message handlers
 
-   void pane_view::_001OnCreate(::ca::signal_object * pobj)
+   void pane_view::_001OnCreate(::ca2::signal_object * pobj)
    {
-//      SCAST_PTR(::ca::message::create, pcreate, pobj)
+//      SCAST_PTR(::ca2::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
 
@@ -169,7 +169,7 @@ namespace platform
       }
    }
 
-   void pane_view::install_message_handling(::ca::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::userex::pane_tab_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);

@@ -3,8 +3,8 @@
 namespace mail
 {
 
-   simple_pop3::simple_pop3(sp(::ca::application) papp) :
-      ca(papp),
+   simple_pop3::simple_pop3(sp(::ca2::application) papp) :
+      ca2(papp),
       pop3(papp)
    {
 

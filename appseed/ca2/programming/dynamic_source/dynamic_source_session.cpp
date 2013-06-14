@@ -6,7 +6,7 @@ namespace dynamic_source
 
 
    session::session(const string & strId, ::dynamic_source::script_manager * pmanager) :
-      ca(pmanager->get_app()),
+      ca2(pmanager->get_app()),
       m_pmanager(pmanager),
       m_mutex(pmanager->get_app()),
       m_strId(strId)
@@ -15,7 +15,7 @@ namespace dynamic_source
 
    session::~session()
    {
-      ::ca::international::locale_schema * pls = m_set["locale_schema"].ca < ::ca::international::locale_schema > ();
+      ::ca2::international::locale_schema * pls = m_set["locale_schema"].ca2 < ::ca2::international::locale_schema > ();
       if(pls != NULL)
       {
          ::output_debug_string("locale_schema.m_idLocale=" + pls->m_idLocale.str());
@@ -32,7 +32,7 @@ namespace dynamic_source
       if(get_ref_count() == 0)
       {
          
-         ::c::c::add_ref();
+         ::ca::ca::add_ref();
 
          single_lock sl(&m_pmanager->m_mutexSession, true);
          
@@ -46,7 +46,7 @@ namespace dynamic_source
       else
       {
       
-         return ::c::c::add_ref();
+         return ::ca::ca::add_ref();
 
       }
 
@@ -70,7 +70,7 @@ namespace dynamic_source
 
       }
 
-      return ::c::c::dec_ref();
+      return ::ca::ca::dec_ref();
 
    }
 

@@ -1,7 +1,7 @@
 // Common/DynamicBuffer.h
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    template <class T> class dynamic_buffer: public buffer<T>
@@ -23,7 +23,7 @@ namespace ca
      }
    public:
      dynamic_buffer(): buffer<T>() {};
-     dynamic_buffer(const dynamic_buffer &buffer): ::ca::buffer<T>(buffer) {};
+     dynamic_buffer(const dynamic_buffer &buffer): ::ca2::buffer<T>(buffer) {};
      dynamic_buffer(size_t size): buffer<T>(size) {};
      dynamic_buffer& operator=(const dynamic_buffer &buffer)
      {
@@ -46,4 +46,4 @@ namespace ca
    typedef dynamic_buffer < wchar_t > wchar_dynamic_buffer;
    typedef dynamic_buffer < byte >     byte_dynamic_buffer;
 
-} // namespace ca
+} // namespace ca2

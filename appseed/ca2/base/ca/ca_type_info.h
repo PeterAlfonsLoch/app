@@ -4,12 +4,12 @@
 class factory_item_base;
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 type_info :
-      virtual public ca
+      virtual public ca2
    {
    public:
 
@@ -57,15 +57,15 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 
-CLASS_DECL_ca2 bool operator == (const std_type_info & info1, const sp(::ca::type_info) info2);
-CLASS_DECL_ca2 bool operator != (const std_type_info & info1, const sp(::ca::type_info) info2);
+CLASS_DECL_ca2 bool operator == (const std_type_info & info1, const sp(::ca2::type_info) info2);
+CLASS_DECL_ca2 bool operator != (const std_type_info & info1, const sp(::ca2::type_info) info2);
 
 
 template<>
-inline UINT HashKey(sp(::ca::type_info) key)
+inline UINT HashKey(sp(::ca2::type_info) key)
 {
 	// default identity hash - works for most primitive values
 	return HashKey(key->name());

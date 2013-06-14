@@ -129,7 +129,7 @@ namespace user
 /////////////////////////////////////////////////////////////////////////////
 // frame_window - base class for SDI and other frame windows
 
-// Frame ::ca::window styles
+// Frame ::ca2::window styles
 #define FWS_ADDTOTITLE  0x00008000L // modify title based on content
 #define FWS_PREFIXTITLE 0x00004000L // show document name before cast name
 #define FWS_SNAPTOBARS  0x00002000L // snap size to size of contained bars
@@ -161,7 +161,7 @@ class CDockState;           // forward reference (see afxpriv.h)
 /////////////////////////////////////////////////////////////////////////////
 // CMiniFrameWnd
 
-// MiniFrame ::ca::window styles
+// MiniFrame ::ca2::window styles
 #define MFS_SYNCACTIVE      0x00000100L // syncronize activation w/ parent
 #define MFS_4THICKFRAME     0x00000200L // thick frame all around (no tiles)
 #define MFS_THICKFRAME      0x00000400L // use instead of WS_THICKFRAME
@@ -224,7 +224,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 message :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       
@@ -237,7 +237,7 @@ namespace user
 
       LRESULT send();
       static UINT ThreadProcSendMessage(LPVOID lp);
-      static void post(sp(::user::interaction) puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca::e_thread_priority epriority = ::get_thread_priority_normal());
+      static void post(sp(::user::interaction) puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca2::e_thread_priority epriority = ::get_thread_priority_normal());
 
    };
 

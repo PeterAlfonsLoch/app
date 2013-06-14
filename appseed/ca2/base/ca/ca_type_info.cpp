@@ -20,7 +20,7 @@ string demangle (const char* name)
 #endif
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -116,7 +116,7 @@ namespace ca
    }
 
 
-   bool type_info::operator == (const ::ca::type_info & info) const
+   bool type_info::operator == (const ::ca2::type_info & info) const
    {
 
       return m_id == info.m_id;
@@ -148,7 +148,7 @@ namespace ca
    }
 
 
-   bool type_info::operator != (const ::ca::type_info & info) const
+   bool type_info::operator != (const ::ca2::type_info & info) const
    {
 
       return m_id != info.m_id;
@@ -203,10 +203,10 @@ namespace ca
    }
 
 
-} //  namespace ca
+} //  namespace ca2
 
 
-CLASS_DECL_ca2 bool operator == (const std_type_info & info1, const sp(::ca::type_info) info2)
+CLASS_DECL_ca2 bool operator == (const std_type_info & info1, const sp(::ca2::type_info) info2)
 {
 
 #ifdef WINDOWS
@@ -221,7 +221,7 @@ CLASS_DECL_ca2 bool operator == (const std_type_info & info1, const sp(::ca::typ
 
 }
 
-CLASS_DECL_ca2 bool operator != (const std_type_info & info1, const sp(::ca::type_info) info2)
+CLASS_DECL_ca2 bool operator != (const std_type_info & info1, const sp(::ca2::type_info) info2)
 {
 
    return !operator == (info1, info2);

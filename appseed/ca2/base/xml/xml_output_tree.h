@@ -16,8 +16,8 @@ namespace xml
       sp(node)                m_pnode;
 
 
-      output_tree(sp(::ca::application) papp, tree_schema * pschema);
-      output_tree(sp(::ca::application) papp);
+      output_tree(sp(::ca2::application) papp, tree_schema * pschema);
+      output_tree(sp(::ca2::application) papp);
       virtual ~output_tree();
 
 

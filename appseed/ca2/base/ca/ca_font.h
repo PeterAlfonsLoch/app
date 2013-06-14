@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
    enum e_unit
@@ -72,10 +72,10 @@ namespace ca
    };
    
    
-   typedef ::c::smart_pointer < font > font_sp;
+   typedef ::ca::smart_pointer < font > font_sp;
 
    
-} // namespace ca
+} // namespace ca2
 
 
 

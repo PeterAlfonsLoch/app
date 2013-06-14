@@ -6,7 +6,7 @@ namespace primitive
 
 
    class CLASS_DECL_ca2 memory_container :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    protected:
 
@@ -18,9 +18,9 @@ namespace primitive
 
    public:
 
-      memory_container(sp(::ca::application) papp);
-      memory_container(sp(::ca::application) papp, void * pMemory, memory_size dwSize);
-      memory_container(sp(::ca::application) papp, memory_base * pmemory);
+      memory_container(sp(::ca2::application) papp);
+      memory_container(sp(::ca2::application) papp, void * pMemory, memory_size dwSize);
+      memory_container(sp(::ca2::application) papp, memory_base * pmemory);
       memory_container(const memory_container & container);
       virtual ~memory_container();
 
@@ -41,7 +41,7 @@ namespace primitive
       void to_string(string & str);
 
       void FullLoad(memory_base *pmemorystorage);
-      void FullLoad(::ca::file & file);
+      void FullLoad(::ca2::file & file);
 
       void keep_pointer(void **ppvoid);
       void offset_kept_pointers(memory_offset iOffset);

@@ -17,7 +17,7 @@ namespace sqlite
       database::result_set exec_res;
 
 
-      set(sp(::ca::application) papp);
+      set(sp(::ca2::application) papp);
       set(base *newDb);
       ~set();
 

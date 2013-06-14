@@ -28,7 +28,7 @@ namespace platform
          this,
          "system/form",
          System.type_info < document > (),
-         System.type_info < frame > (),       // main SDI frame ::ca::window
+         System.type_info < frame > (),       // main SDI frame ::ca2::window
          System.type_info < pane_view > ());
       user()->add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;
@@ -69,10 +69,10 @@ namespace platform
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
    {
-      return ::ca::application::_001OnCmdMsg(pcmdmsg);
+      return ::ca2::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::ca::application * application::get_app() const
+   ::ca2::application * application::get_app() const
    {
       return m_papp;
    }

@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
    http_get_socket::http_get_socket(::sockets::socket_handler & handler, const string & url) :
-      ::ca::ca(handler.get_app()),
+      ::ca2::ca2(handler.get_app()),
       ::sockets::socket(handler),
       ::sockets::stream_socket(handler),
       ::sockets::tcp_socket(handler),
@@ -21,7 +21,7 @@ namespace ca
 
       
    http_get_socket::http_get_socket(::sockets::socket_handler & handler, const string & host, port_t port, const string & url) :
-      ::ca::ca(handler.get_app()),
+      ::ca2::ca2(handler.get_app()),
       ::sockets::socket(handler),
       ::sockets::stream_socket(handler),
       ::sockets::tcp_socket(handler),
@@ -65,11 +65,11 @@ namespace ca
 
    string http_get_socket::MyUseragent()
    {
-	   return "ca-sockets/10.0.2";
+	   return "ca2-sockets/10.0.2";
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

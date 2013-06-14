@@ -6,7 +6,7 @@ namespace user
    class menu_item;
 
    class CLASS_DECL_ca2 menu_base :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       
@@ -14,7 +14,7 @@ namespace user
       sp(menu_item)  m_pitem;
 
 
-      menu_base(sp(::ca::application) papp);
+      menu_base(sp(::ca2::application) papp);
       virtual ~menu_base();
 
 

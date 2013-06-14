@@ -12,8 +12,8 @@
 namespace plugin
 {
 
-   host_interaction::host_interaction(sp(::ca::application) papp) :
-      ::ca::ca(papp)
+   host_interaction::host_interaction(sp(::ca2::application) papp) :
+      ::ca2::ca2(papp)
    {
       m_pframe = NULL;
    }
@@ -32,7 +32,7 @@ namespace plugin
       }
    }
 
-   void host_interaction::install_message_handling(::ca::message::dispatch * pinterface)
+   void host_interaction::install_message_handling(::ca2::message::dispatch * pinterface)
    {
 
       ::user::interaction::install_message_handling(pinterface);
@@ -54,20 +54,20 @@ namespace plugin
 
    }
 
-   void host_interaction::_001OnMouseMove(::ca::signal_object * pobj)
+   void host_interaction::_001OnMouseMove(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void host_interaction::_001OnCreate(::ca::signal_object * pobj)
+   void host_interaction::_001OnCreate(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       Application.m_bSessionSynchronizedCursor = false;
    }
 
-   void host_interaction::_001OnCheck(::ca::signal_object * pobj)
+   void host_interaction::_001OnCheck(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       if(pbase->m_wparam == 0)
       {
          if(pbase->m_lparam != 0)
@@ -79,7 +79,7 @@ namespace plugin
       {
          vsstring * pstrLink = (vsstring *) pbase->m_lparam.m_lparam;
          string strLink(*pstrLink);
-         ::ca::property_set setQuery(get_app());
+         ::ca2::property_set setQuery(get_app());
          //setQuery.parse_url_query(strLink);
          if(setQuery.has_property("karfile_url"))
          {
@@ -95,9 +95,9 @@ namespace plugin
       }
    }
 
-   void host_interaction::_001OnTimer(::ca::signal_object * pobj)
+   void host_interaction::_001OnTimer(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 19841115)
       {
          KillTimer(19841115);
@@ -107,7 +107,7 @@ namespace plugin
 
 
 
-   void host_interaction::_000OnDraw(::ca::graphics * pdc)
+   void host_interaction::_000OnDraw(::ca2::graphics * pdc)
    {
 
       //rect rectWindow;
@@ -190,7 +190,7 @@ namespace plugin
    }
 
 
-   bool host_interaction::RedrawWindow(LPCRECT lpRectUpdate, ::ca::region* prgnUpdate, UINT flags)
+   bool host_interaction::RedrawWindow(LPCRECT lpRectUpdate, ::ca2::region* prgnUpdate, UINT flags)
    {
 
       UNREFERENCED_PARAMETER(lpRectUpdate);
@@ -206,7 +206,7 @@ namespace plugin
       return Application.window_from_os_data(m_pplugin->get_host_window());
    }
 
-   void host_interaction::_user_message_handler(::ca::signal_object * pobj)
+   void host_interaction::_user_message_handler(::ca2::signal_object * pobj)
    {
       ::user::interaction::_user_message_handler(pobj);
       pobj->m_bRet = true;
@@ -215,20 +215,20 @@ namespace plugin
    void host_interaction::_on_start_user_message_handler()
    {
       ::user::interaction::_on_start_user_message_handler();
-      m_pfnDispatchWindowProc = reinterpret_cast < void (::ca::message::dispatch::*)(::ca::signal_object * pobj) > (&host_interaction::_user_message_handler);
+      m_pfnDispatchWindowProc = reinterpret_cast < void (::ca2::message::dispatch::*)(::ca2::signal_object * pobj) > (&host_interaction::_user_message_handler);
    }
 
 
-   void host_interaction::on_ignore_message(::ca::signal_object * pobj)
+   void host_interaction::on_ignore_message(::ca2::signal_object * pobj)
    {
       // avoid host interaction call DefWindowProc for certain Windows messages
-//      SCAST_PTR(::ca::message::base, pbase, pobj);
+//      SCAST_PTR(::ca2::message::base, pbase, pobj);
 
       pobj->m_bRet = true;
    }
 
 
-   void host_interaction::_000OnMouse(::ca::message::mouse * pmouse)
+   void host_interaction::_000OnMouse(::ca2::message::mouse * pmouse)
    {
       if(&Session != NULL)
       {

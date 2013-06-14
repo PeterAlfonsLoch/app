@@ -10,8 +10,8 @@ namespace filemanager
       namespace simple
       {
 
-         view::view(sp(::ca::application) papp) :
-            ca(papp),
+         view::view(sp(::ca2::application) papp) :
+            ca2(papp),
             ::user::split_layout(papp),
             
             ::user::split_view(papp),
@@ -27,7 +27,7 @@ namespace filemanager
              //  delete m_pinetsession;
          }
 
-         void view::install_message_handling(::ca::message::dispatch * pinterface)
+         void view::install_message_handling(::ca2::message::dispatch * pinterface)
          {
             ::user::split_view::install_message_handling(pinterface);
          }
@@ -87,9 +87,9 @@ namespace filemanager
 
          }
 
-         void view::on_request_response(::ca::signal_object * pobj)
+         void view::on_request_response(::ca2::signal_object * pobj)
          {
-            SCAST_PTR(::ca::http::signal, psignal, pobj);
+            SCAST_PTR(::ca2::http::signal, psignal, pobj);
 
             string strResponse;
 
@@ -103,14 +103,14 @@ namespace filemanager
          void view::open_folder(int64_t iFolder)
          {
          
-            ::ca::http::signal * psignal = new ::ca::http::signal;
+            ::ca2::http::signal * psignal = new ::ca2::http::signal;
 
             (*psignal)()["request"] = "";
             psignal->m_strUrl.Format("http://file.veriwell.net/ifs/ls?id=%I64d", iFolder); 
 
             psignal->m_puser = &ApplicationUser;
 
-            ::ca::emit(get_app(), this, &view::on_request_response, &Application.http(), &::ca::http::application::get, psignal);
+            ::ca2::emit(get_app(), this, &view::on_request_response, &Application.http(), &::ca2::http::application::get, psignal);
 
          }
 
@@ -127,7 +127,7 @@ namespace filemanager
 
          }
 
-         void view::set_request_interface(::ca::request_interface * prequestinterface)
+         void view::set_request_interface(::ca2::request_interface * prequestinterface)
          {
             m_prequestinterface = prequestinterface;
          }

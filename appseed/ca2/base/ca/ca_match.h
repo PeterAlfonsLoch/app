@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
    
 
@@ -10,7 +10,7 @@ namespace ca
 
 
       class CLASS_DECL_ca2 item :
-         virtual public ::ca::ca
+         virtual public ::ca2::ca2
       {
       public:
          item() {}
@@ -142,5 +142,5 @@ namespace ca
    } // namespace match
 
 
-} // namespace ca
+} // namespace ca2
 

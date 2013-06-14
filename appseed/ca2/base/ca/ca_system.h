@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 system :
-      virtual public ::ca::application
+      virtual public ::ca2::application
       #ifdef LINUX
       , virtual public ::exception::translator
       #endif
@@ -22,8 +22,8 @@ namespace ca
 
       friend class application;
 
-      virtual sp(::ca::ca) clone(sp(::ca::ca) pobj);
-      virtual void discard_to_factory(sp(::ca::ca) pca);
+      virtual sp(::ca2::ca2) clone(sp(::ca2::ca2) pobj);
+      virtual void discard_to_factory(sp(::ca2::ca2) pca);
 
 
       static id_space                            s_idspace;
@@ -33,10 +33,10 @@ namespace ca
 
 
 
-      virtual void on_allocation_error(sp(::ca::application) papp, sp(::ca::type_info) info);
-      sp(::ca::ca) alloc(sp(::ca::application) papp, sp(::ca::type_info) info);
-      sp(::ca::ca) alloc(sp(::ca::application) papp, const std_type_info & info);
-      virtual sp(::ca::ca) on_alloc(sp(::ca::application) papp, sp(::ca::type_info) info);
+      virtual void on_allocation_error(sp(::ca2::application) papp, sp(::ca2::type_info) info);
+      sp(::ca2::ca2) alloc(sp(::ca2::application) papp, sp(::ca2::type_info) info);
+      sp(::ca2::ca2) alloc(sp(::ca2::application) papp, const std_type_info & info);
+      virtual sp(::ca2::ca2) on_alloc(sp(::ca2::application) papp, sp(::ca2::type_info) info);
 
 
       static inline class id id(const ::std_type_info & info);
@@ -45,7 +45,7 @@ namespace ca
       static inline class id id(int64_t i);
       static inline class id_space & id();
       inline class id id(const var & var);
-      inline class id id(const ::ca::property & prop);
+      inline class id id(const ::ca2::property & prop);
 
    };
 
@@ -54,9 +54,9 @@ namespace ca
       return ::id((const char *) (class var &) var);
    }
 
-   inline id system::id(const ::ca::property & prop)
+   inline id system::id(const ::ca2::property & prop)
    {
-      return ::id((const string &) (::ca::property &) prop);
+      return ::id((const string &) (::ca2::property &) prop);
    }
 
 
@@ -89,23 +89,23 @@ namespace ca
       return s_idspace;
    }
 
-} // namespace ca
+} // namespace ca2
 
 
 
 inline id::id(const char * psz)
 {
-   operator = (::ca::system::id(psz));
+   operator = (::ca2::system::id(psz));
 }
 
 #if defined(_LP64) || defined(_AMD64_)
 inline id & id::operator = (int32_t i)
 {
-   return operator = (::ca::system::id(::ca::str::from(i)));
+   return operator = (::ca2::system::id(::ca2::str::from(i)));
 }
 #endif
 
 inline id & id::operator = (int_ptr i)
 {
-   return operator = (::ca::system::id(::ca::str::from(i)));
+   return operator = (::ca2::system::id(::ca2::str::from(i)));
 }

@@ -1,5 +1,5 @@
 /*
- * ut_sim.c
+ * ut_sim.ca
  *
  * an unreliable transport simulator
  * (for testing replay databases and suchlike)
@@ -10,7 +10,7 @@
 
 /*
  *
- * Copyright (c) 2001-2006, Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006, Cisco Systems, Inc.
  *
  *
  * Redistribution and use in source and binary forms, with or without

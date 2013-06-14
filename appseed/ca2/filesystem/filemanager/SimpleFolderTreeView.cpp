@@ -9,8 +9,8 @@ namespace filemanager
 {
 
 
-   SimpleFolderTreeView::SimpleFolderTreeView(sp(::ca::application) papp) :
-      ca(papp),
+   SimpleFolderTreeView::SimpleFolderTreeView(sp(::ca2::application) papp) :
+      ca2(papp),
       
       ::user::scroll_view(papp),
       SimpleFolderTreeInterface(papp),
@@ -40,7 +40,7 @@ namespace filemanager
    #endif //DEBUG
 
 
-   void SimpleFolderTreeView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void SimpleFolderTreeView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);
       if(phint != NULL)
@@ -93,7 +93,7 @@ namespace filemanager
    }
 
 
-   void SimpleFolderTreeView::_001OnLButtonDblClk(::ca::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnLButtonDblClk(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //   int32_t iItem;
@@ -167,9 +167,9 @@ namespace filemanager
 
    }*/
 
-   void SimpleFolderTreeView::_001OnContextMenu(::ca::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnContextMenu(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
    //   int32_t iItem;
    //   HRESULT hr;
       point ptClient = pcontextmenu->GetPoint();
@@ -210,7 +210,7 @@ namespace filemanager
 
             pPopup->TrackPopupMenu(
                point.x, point.y,
-               (sp(::ca::window)) pframe);
+               (sp(::ca2::window)) pframe);
          }
       }
       else
@@ -223,7 +223,7 @@ namespace filemanager
             sp(::user::frame_window) pframe = GetTopLevelFrame();
             pPopup->TrackPopupMenu(
                point.x, point.y,
-               (sp(::ca::window)) pframe);
+               (sp(::ca2::window)) pframe);
          }
       }*/
    }
@@ -237,9 +237,9 @@ namespace filemanager
    }
 
 
-   void SimpleFolderTreeView::_001OnTimer(::ca::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnTimer(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::timer, ptimer, pobj)
+      SCAST_PTR(::ca2::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == 1234567)
       {
          m_iAnimate += 2;
@@ -271,9 +271,9 @@ namespace filemanager
       return SimpleFolderTreeInterface::_001OnCmdMsg(pcmdmsg);
    }
 
-   void SimpleFolderTreeView::_001OnShellCommand(::ca::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnShellCommand(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::command, pcommand, pobj)
+      SCAST_PTR(::ca2::message::command, pcommand, pobj)
       m_contextmenu.OnCommand(pcommand->GetId());
    }
 
@@ -283,7 +283,7 @@ namespace filemanager
 
    }
 
-   void SimpleFolderTreeView::_001OnCreate(::ca::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnCreate(::ca2::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -291,7 +291,7 @@ namespace filemanager
    }
 
 
-   void SimpleFolderTreeView::install_message_handling(::ca::message::dispatch * pinterface)
+   void SimpleFolderTreeView::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       SimpleFolderTreeInterface::install_message_handling(pinterface);
 

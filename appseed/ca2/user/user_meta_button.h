@@ -14,47 +14,47 @@ public:
    };
 
 
-   ::ca::brush       m_brushEllipse;
-   ::ca::pen         m_penEllipse;
+   ::ca2::brush       m_brushEllipse;
+   ::ca2::pen         m_penEllipse;
    COLORREF          m_crText;
-   ::ca::brush       m_brushEllipseSel;
-   ::ca::pen         m_penEllipseSel;
+   ::ca2::brush       m_brushEllipseSel;
+   ::ca2::pen         m_penEllipseSel;
    COLORREF          m_crTextSel;
-   ::ca::brush       m_brushEllipseFocus;
-   ::ca::pen         m_penEllipseFocus;
+   ::ca2::brush       m_brushEllipseFocus;
+   ::ca2::pen         m_penEllipseFocus;
    COLORREF          m_crTextFocus;
-   ::ca::brush       m_brushEllipseDisabled;
-   ::ca::pen         m_penEllipseDisabled;
+   ::ca2::brush       m_brushEllipseDisabled;
+   ::ca2::pen         m_penEllipseDisabled;
    COLORREF          m_crTextDisabled;
    oswindow              m_oswindowPreviousFocus;
 
-   ::ca::region_sp   m_spregion;
+   ::ca2::region_sp   m_spregion;
 
    //bool              m_bFocus;
 
 
-   MetaButton(sp(::ca::application) papp);
+   MetaButton(sp(::ca2::application) papp);
    virtual ~MetaButton();
 
 
    virtual index hit_test(point point, e_element & eelement);
 
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ca2::graphics * pdc);
    virtual bool pre_create_window(CREATESTRUCT& cs);
 
-   virtual void install_message_handling(::ca::message::dispatch *pinterface);
+   virtual void install_message_handling(::ca2::message::dispatch *pinterface);
    void UpdateWndRgn();
    void SetEllipsePens(
-        ::ca::pen * ppen,
-        ::ca::pen * ppenSel = NULL,
-        ::ca::pen * ppenFocus = NULL,
-        ::ca::pen * ppenDisabled = NULL);
+        ::ca2::pen * ppen,
+        ::ca2::pen * ppenSel = NULL,
+        ::ca2::pen * ppenFocus = NULL,
+        ::ca2::pen * ppenDisabled = NULL);
    void SetEllipseBrushs(
-        ::ca::brush * pbrush,
-        ::ca::brush * pbrushSel = NULL,
-        ::ca::brush * pbrushFocus = NULL,
-        ::ca::brush * pbrushDisabled = NULL);
+        ::ca2::brush * pbrush,
+        ::ca2::brush * pbrushSel = NULL,
+        ::ca2::brush * pbrushFocus = NULL,
+        ::ca2::brush * pbrushDisabled = NULL);
    void SetTextColors(
         COLORREF cr,
         COLORREF crSel,

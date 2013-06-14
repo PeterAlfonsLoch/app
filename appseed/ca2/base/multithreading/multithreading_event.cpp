@@ -7,12 +7,12 @@
 #endif
 
 
-event::event(sp(::ca::application) papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
-   ca(papp)
+event::event(sp(::ca2::application) papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
+   ca2(papp)
 {
 
    //if(papp == NULL)
-      //throw invalid_argument_exception(::ca::get_thread_app());
+      //throw invalid_argument_exception(::ca2::get_thread_app());
 
 #ifdef WINDOWSEX
 
@@ -39,7 +39,7 @@ event::event(sp(::ca::application) papp, bool bInitiallyOwn, bool bManualReset, 
 
    }
 
-   m_object = ::CreateEventEx(lpsaAttribute, ::ca::international::utf8_to_unicode(pstrName), dwFlags, DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
+   m_object = ::CreateEventEx(lpsaAttribute, ::ca2::international::utf8_to_unicode(pstrName), dwFlags, DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
 
    if(m_object == NULL)
       throw resource_exception(papp);
@@ -225,7 +225,7 @@ void event::wait ()
 
 
 	if ( ::WaitForSingleObjectEx(item(), INFINITE, FALSE) != WAIT_OBJECT_0 )
-		throw runtime_error(get_app(), "::ca::pal::Event::wait: failure");
+		throw runtime_error(get_app(), "::ca2::pal::Event::wait: failure");
 
 #else
 

@@ -5571,6 +5571,9 @@
     <ClCompile Include="OpenEXR\Imath\ImathVec.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\appseed\c\c.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\zlib\_ca2zlib.vcxproj">
       <Project>{9ffc2cf6-737c-43db-a1ee-383f7bfdb05b}</Project>
     </ProjectReference>

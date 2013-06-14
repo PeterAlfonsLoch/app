@@ -27,7 +27,7 @@
 */
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -54,9 +54,9 @@ namespace ca
       CLASS_DECL_ca2  int64_t uni_index(const char * pszUtf8, const char * pszEnd);
 
 
-      inline bool is_legal_uni_index(int64_t c)
+      inline bool is_legal_uni_index(int64_t ca)
       {
-         return c >= ((uint64_t) 0xffff) ? false : true;
+         return ca >= ((uint64_t) 0xffff) ? false : true;
       }
 
       inline bool is_space_char(wchar_t wch)
@@ -67,10 +67,10 @@ namespace ca
                   ) >> CHAR_CATEGORY(CHAR_PROP(wch))) & 1) != 0;
       }
 
-      inline bool is_space_char(int64_t c)
+      inline bool is_space_char(int64_t ca)
       {
-         if(!is_legal_uni_index(c)) return false;
-         return is_space_char((wchar_t) c);
+         if(!is_legal_uni_index(ca)) return false;
+         return is_space_char((wchar_t) ca);
       }
 
       inline wchar_t to_lower_case(wchar_t wch)
@@ -81,10 +81,10 @@ namespace ca
         return wchar_t(wch - (c1>>16));
       }
 
-      inline int64_t to_lower_case(int64_t c)
+      inline int64_t to_lower_case(int64_t ca)
       {
-         if(!is_legal_uni_index(c)) return false;
-         return (int64_t) to_lower_case((wchar_t) c);
+         if(!is_legal_uni_index(ca)) return false;
+         return (int64_t) to_lower_case((wchar_t) ca);
       }
 
       inline wchar_t to_upper_case(wchar_t wch)
@@ -95,20 +95,20 @@ namespace ca
         return wchar_t(wch - (c1>>16));
       }
 
-      inline int64_t to_upper_case(int64_t c)
+      inline int64_t to_upper_case(int64_t ca)
       {
-         if(!is_legal_uni_index(c)) return false;
-         return (int64_t) to_upper_case((wchar_t) c);
+         if(!is_legal_uni_index(ca)) return false;
+         return (int64_t) to_upper_case((wchar_t) ca);
       }
 
       inline bool to_numeric_value(const char * pszUtf8Char, float *f)
       {
-         int64_t c = uni_index(pszUtf8Char);
-         if(!is_legal_uni_index(c))
+         int64_t ca = uni_index(pszUtf8Char);
+         if(!is_legal_uni_index(ca))
             return false;
-        uint32_t c1 = CHAR_PROP(c);
+        uint32_t c1 = CHAR_PROP(ca);
         if (!NUMBER(c1)) return false;
-        *f = CHAR_PROP2(c);
+        *f = CHAR_PROP2(ca);
         return true;
       }
 
@@ -143,7 +143,7 @@ namespace ca
 
    }
 
-} // namespace ca
+} // namespace ca2
 
 /* ***** BEGIN LICENSE BLOCK *****
  * Version: MPL 1.1/GPL 2.0/LGPL 2.1

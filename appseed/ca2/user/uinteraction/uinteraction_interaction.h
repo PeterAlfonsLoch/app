@@ -6,15 +6,15 @@ namespace uinteraction
 
 
    class CLASS_DECL_ca2 interaction :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
 
-      ::ca::property_set       m_set;
+      ::ca2::property_set       m_set;
 
 
-      interaction(sp(::ca::application) papp);
+      interaction(sp(::ca2::application) papp);
       virtual ~interaction();
 
       virtual void update();

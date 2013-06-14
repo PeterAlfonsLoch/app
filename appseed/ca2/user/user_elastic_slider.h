@@ -8,12 +8,12 @@ namespace user
 
    {
    public:
-      elastic_slider(sp(::ca::application) papp);
+      elastic_slider(sp(::ca2::application) papp);
    public:
       virtual ~elastic_slider();
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnTimer)
@@ -49,7 +49,7 @@ namespace user
       void CalcTension();
 
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
 
    protected:
       EScalar m_escalar;

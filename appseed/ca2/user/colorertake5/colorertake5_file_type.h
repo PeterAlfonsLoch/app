@@ -63,7 +63,7 @@ public:
 
   /** Returns parameter's default value of this file type.
       Default values are the values, explicitly pointed with
-      \c value attribute.
+      \ca value attribute.
       @param name Parameter's name
       @return Default value of this parameter
   */

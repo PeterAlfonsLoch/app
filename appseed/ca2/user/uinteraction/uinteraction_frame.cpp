@@ -9,7 +9,7 @@ namespace uinteraction
    {
 
 
-      frame::frame(sp(::ca::application) papp)
+      frame::frame(sp(::ca2::application) papp)
       {
       }
 
@@ -58,7 +58,7 @@ namespace uinteraction
       }
 
 
-      void frame::_001OnDraw(::ca::graphics * pca)
+      void frame::_001OnDraw(::ca2::graphics * pca)
       {
 
          UNREFERENCED_PARAMETER(pca);
@@ -162,7 +162,7 @@ namespace uinteraction
       }
 
 
-      bool frame::_000OnLButtonDown(::ca::message::mouse * pmouse)
+      bool frame::_000OnLButtonDown(::ca2::message::mouse * pmouse)
       {
 
          UNREFERENCED_PARAMETER(pmouse);
@@ -171,7 +171,7 @@ namespace uinteraction
 
       }
 
-      bool frame::_000OnLButtonUp(::ca::message::mouse * pmouse)
+      bool frame::_000OnLButtonUp(::ca2::message::mouse * pmouse)
       {
 
          UNREFERENCED_PARAMETER(pmouse);
@@ -180,7 +180,7 @@ namespace uinteraction
 
       }
 
-      bool frame::_000OnMouseMove(::ca::message::mouse * pmouse)
+      bool frame::_000OnMouseMove(::ca2::message::mouse * pmouse)
       {
 
          UNREFERENCED_PARAMETER(pmouse);
@@ -189,7 +189,7 @@ namespace uinteraction
 
       }
 
-      bool frame::_000OnNcLButtonDown(::ca::message::mouse * pmouse)
+      bool frame::_000OnNcLButtonDown(::ca2::message::mouse * pmouse)
       {
 
          UNREFERENCED_PARAMETER(pmouse);
@@ -198,7 +198,7 @@ namespace uinteraction
 
       }
 
-      bool frame::_000OnNcLButtonUp(::ca::message::mouse * pmouse)
+      bool frame::_000OnNcLButtonUp(::ca2::message::mouse * pmouse)
       {
 
          UNREFERENCED_PARAMETER(pmouse);
@@ -207,7 +207,7 @@ namespace uinteraction
 
       }
 
-      bool frame::_000OnNcMouseMove(::ca::message::mouse * pmouse)
+      bool frame::_000OnNcMouseMove(::ca2::message::mouse * pmouse)
       {
 
          UNREFERENCED_PARAMETER(pmouse);

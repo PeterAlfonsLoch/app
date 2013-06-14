@@ -5,8 +5,8 @@
 namespace filemanager
 {
 
-   SimpleFileListInterface::SimpleFileListInterface(sp(::ca::application) papp) :
-      ca(papp),
+   SimpleFileListInterface::SimpleFileListInterface(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::interaction(papp),
       ::user::form(papp),
       ::user::form_list(papp),
@@ -233,9 +233,9 @@ namespace filemanager
       string wstrItemExtra;
 
       int32_t iFind;
-      ::ca::filesp spfile(allocer());
+      ::ca2::filesp spfile(allocer());
 
-      //spfile->open(szPath, ::ca::file::mode_read | ::ca::file::type_binary);
+      //spfile->open(szPath, ::ca2::file::mode_read | ::ca2::file::type_binary);
 
       array < ::primitive::memory_file, ::primitive::memory_file & > filea;
       _vmszipFile zipfile;
@@ -346,8 +346,8 @@ namespace filemanager
       }
    }
 
-   SimpleFileListInterface::create_image_list_thread::create_image_list_thread(sp(::ca::application) papp) :
-      ca(papp),
+   SimpleFileListInterface::create_image_list_thread::create_image_list_thread(sp(::ca2::application) papp) :
+      ca2(papp),
       thread(papp)
    {
    }
@@ -500,7 +500,7 @@ namespace filemanager
       control.set_data_type(user::control::DataTypeString);
       control.add_function(user::control::function_vms_data_edit);
       //control.m_typeinfo = System.type_info < simple_edit_plain_text > ();
-      control.m_typeinfo = sp(::ca::type_info)();
+      control.m_typeinfo = sp(::ca2::type_info)();
       control.m_iSubItem = i;
       control.m_id = 1000 + i;
       index iControl =  _001AddControl(control);
@@ -697,7 +697,7 @@ namespace filemanager
 
          stringa stra;
 
-         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
+         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca2::system::idEmpty, stra);
 
          for(int32_t i = 0; i < stra.get_size(); i++)
          {
@@ -773,9 +773,9 @@ namespace filemanager
 
    }*/
 
-   void SimpleFileListInterface::_001OnMainPostMessage(::ca::signal_object * pobj)
+   void SimpleFileListInterface::_001OnMainPostMessage(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj)
+      SCAST_PTR(::ca2::message::base, pbase, pobj)
       switch(pbase->m_wparam)
       {
       case MessageMainPostCreateImageListItemStepSetRedraw:
@@ -815,7 +815,7 @@ namespace filemanager
 
       }
 
-      ::ca::data::writing writing(m_pdata);
+      ::ca2::data::writing writing(m_pdata);
       
       _001HideEditingControls();
 
@@ -823,7 +823,7 @@ namespace filemanager
 
    }
 
-   void SimpleFileListInterface::install_message_handling(::ca::message::dispatch *pinterface)
+   void SimpleFileListInterface::install_message_handling(::ca2::message::dispatch *pinterface)
    {
       ::user::form_list::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageMainPost, pinterface,  this, &SimpleFileListInterface::_001OnMainPostMessage);
@@ -833,7 +833,7 @@ namespace filemanager
 
    }
 
-   void SimpleFileListInterface::_001OnDraw(::ca::graphics *pdc)
+   void SimpleFileListInterface::_001OnDraw(::ca2::graphics *pdc)
    {
       if(m_iAnimate <= 0)
       {
@@ -1098,15 +1098,15 @@ namespace filemanager
       }
    }
 
-   void SimpleFileListInterface::_001OnVScroll(::ca::signal_object * pobj)
+   void SimpleFileListInterface::_001OnVScroll(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::scroll, pscroll, pobj)
+      SCAST_PTR(::ca2::message::scroll, pscroll, pobj)
       m_iCreateImageListStep = pscroll->m_nPos;
       m_bRestartCreateImageList = true;
       pobj->m_bRet = false;
    }
 
-   void SimpleFileListInterface::_001OnHScroll(::ca::signal_object * pobj)
+   void SimpleFileListInterface::_001OnHScroll(::ca2::signal_object * pobj)
    {
       pobj->m_bRet = false;
    }
@@ -1151,7 +1151,7 @@ namespace filemanager
       return NULL;
    }
 
-   void SimpleFileListInterface::_001OnFileRename(::ca::signal_object * pobj)
+   void SimpleFileListInterface::_001OnFileRename(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       sp(::user::control) pcontrol = _001GetControlBySubItem(m_iNameSubItem);
@@ -1163,7 +1163,7 @@ namespace filemanager
       }
    }
 
-   void SimpleFileListInterface::_001OnUpdateFileRename(::ca::signal_object * pobj)
+   void SimpleFileListInterface::_001OnUpdateFileRename(::ca2::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       range range;
@@ -1174,10 +1174,10 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
-   void SimpleFileListInterface::_001OnShowWindow(::ca::signal_object * pobj)
+   void SimpleFileListInterface::_001OnShowWindow(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca::message::show_window, pshow, pobj)
+//      SCAST_PTR(::ca2::message::show_window, pshow, pobj)
 
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
       if(pcentral == NULL)

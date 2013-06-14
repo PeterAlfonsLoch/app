@@ -3,8 +3,8 @@
 namespace html
 {
 
-   data::image::image(sp(::ca::application) papp) :
-      ca(papp),
+   data::image::image(sp(::ca2::application) papp) :
+      ca2(papp),
       m_spdib(allocer())
    {
    }
@@ -15,9 +15,9 @@ namespace html
    }
 
 
-   data::data(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::data(papp),
+   data::data(sp(::ca2::application) papp) :
+      ca2(papp),
+      ::ca2::data(papp),
       m_imagea(papp),
       m_uiptra(papp),
       m_elemental(NULL)
@@ -135,7 +135,7 @@ namespace html
 
    void data::delete_contents()
    {
-      ::ca::data::writing writing(this);
+      ::ca2::data::writing writing(this);
       m_elemental.m_propertyset.clear();
       m_elemental.m_pbase = NULL;
       delete m_elemental.m_pimpl;
@@ -177,7 +177,7 @@ namespace html
       m_elemental.load(this, m_ptag);
    }
 
-   void data::implement(::ca::graphics * pdc)
+   void data::implement(::ca2::graphics * pdc)
    {
       int32_t iCount = 24;
       while(m_bImplement && iCount >= 0)
@@ -196,10 +196,10 @@ namespace html
    }
 
 
-   void data::_001OnKeyDown(::ca::signal_object * pobj)
+   void data::_001OnKeyDown(::ca2::signal_object * pobj)
    {
 
-      SCAST_PTR(::ca::message::key, pkey, pobj)
+      SCAST_PTR(::ca2::message::key, pkey, pobj)
 
       if(pkey->m_ekey == ::user::key_tab)
       {
@@ -221,7 +221,7 @@ namespace html
    }
 
 
-   void data::layout(::ca::graphics * pdc)
+   void data::layout(::ca2::graphics * pdc)
    {
 
 
@@ -244,7 +244,7 @@ namespace html
       m_elemental.layout(this);
    }
 
-   void data::_001OnDraw(::ca::graphics * pdc)
+   void data::_001OnDraw(::ca2::graphics * pdc)
    {
       if(m_bImplement || m_bLayout)
          return;
@@ -288,8 +288,8 @@ namespace html
       else if(strUrl[0] == '\\')
       {
       }
-      else if(::ca::str::begins(m_strPathName, "http://") ||
-         ::ca::str::begins(m_strPathName, "https://"))
+      else if(::ca2::str::begins(m_strPathName, "http://") ||
+         ::ca2::str::begins(m_strPathName, "https://"))
       {
          strUrl = System.url().path(m_strPathName, strUrl);
       }
@@ -404,7 +404,7 @@ namespace html
 
 restart:
 
-      ::ca::data::writing writing(this);
+      ::ca2::data::writing writing(this);
 
       string strPathName;
 
@@ -412,7 +412,7 @@ restart:
       {
          strPathName = varFile.propset()["url"];
       }
-      else if(varFile.ca < ::ca::file > () != NULL)
+      else if(varFile.ca2 < ::ca2::file > () != NULL)
       {
          strPathName = System.datetime().international().get_gmt_date_time() + ".html";
       }
@@ -440,9 +440,9 @@ restart:
          ::fontopus::user * puser = m_puser != NULL ? m_puser : &ApplicationUser;
          ASSERT(puser != NULL);
          string data;
-         ::ca::property_set post;
-         ::ca::property_set headers;
-         ::ca::property_set set = m_propset["http_propset"].propset();
+         ::ca2::property_set post;
+         ::ca2::property_set headers;
+         ::ca2::property_set set = m_propset["http_propset"].propset();
 
          post["entered_login"] = m_strUser;
          post["entered_password"] = m_strPassword;
@@ -562,7 +562,7 @@ restart:
    void data::implement_and_layout(html_form * pform)
    {
 
-      ::ca::memory_graphics pdc(allocer());
+      ::ca2::memory_graphics pdc(allocer());
 
       m_pguie  = pform;
 

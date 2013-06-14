@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
-   command_thread::command_thread(sp(::ca::application) papp) :
-      ca(papp),
+   command_thread::command_thread(sp(::ca2::application) papp) :
+      ca2(papp),
       m_mutex(papp)
    {
       m_varTopicQuery.propset().set_app(papp);
@@ -20,7 +20,7 @@ namespace ca
    var command_thread::run()
    {
       single_lock sl(&m_mutex);
-      sp(::ca::create_context) pcreatecontext;
+      sp(::ca2::create_context) pcreatecontext;
       sp(command) spcommand;
       while(m_ptra.get_size() > 0)
       {
@@ -61,7 +61,7 @@ namespace ca
                throw e;
 
             }
-            catch(::ca::exception & e)
+            catch(::ca2::exception & e)
             {
 
                if(!Application.on_run_exception(e))
@@ -89,13 +89,13 @@ namespace ca
       return true;
    }
 
-   void command_thread::request_create(sp(::ca::create_context) pline)
+   void command_thread::request_create(sp(::ca2::create_context) pline)
    {
       single_lock sl(&m_mutex, TRUE);
       m_ptra.add(pline);
    }
 
-   void command_thread::on_request(sp(::ca::create_context) pline)
+   void command_thread::on_request(sp(::ca2::create_context) pline)
    {
       try
       {
@@ -107,7 +107,7 @@ namespace ca
          throw e;
 
       }
-      catch(::ca::exception & e)
+      catch(::ca2::exception & e)
       {
 
          if(!Application.on_run_exception(e))
@@ -119,7 +119,7 @@ namespace ca
       }
    }
 
-   void command_thread::consolidate(sp(::ca::create_context) pcreatecontext)
+   void command_thread::consolidate(sp(::ca2::create_context) pcreatecontext)
    {
       if(!pcreatecontext->m_spCommandLine->m_varFile.is_empty())
       {
@@ -135,7 +135,7 @@ namespace ca
       m_varTopicQuery.propset().merge(pcreatecontext->m_spCommandLine->m_varQuery.propset());
    }
 
-   void command_thread::consolidate(sp(::ca::command_thread) pthread)
+   void command_thread::consolidate(sp(::ca2::command_thread) pthread)
    {
 
       if(pthread == NULL || pthread == this)

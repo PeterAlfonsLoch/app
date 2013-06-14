@@ -92,7 +92,7 @@ string::string(const wchar_t* pch,strsize nLength ) :
    {
       ASSERT(__is_valid_address( pch, nLength*sizeof( wchar_t ), FALSE ) );
       if(pch == NULL)
-         throw invalid_argument_exception(::ca::get_thread_app());
+         throw invalid_argument_exception(::ca2::get_thread_app());
 
       strsize nDestLength = string_trait::GetcharLength( pch, nLength );
       char * pszBuffer = GetBuffer( nDestLength );
@@ -109,7 +109,7 @@ string::string(const wchar_t* pch,strsize nLength,string_manager * pstringmanage
    {
       ASSERT( __is_valid_address( pch, nLength*sizeof( wchar_t ), FALSE ) );
       if(pch == NULL)
-         throw invalid_argument_exception(::ca::get_thread_app());
+         throw invalid_argument_exception(::ca2::get_thread_app());
 
       strsize nDestLength = string_trait::GetcharLength( pch, nLength );
       char * pszBuffer = GetBuffer( nDestLength );
@@ -126,7 +126,7 @@ void fixed_string_log::OnAllocateSpill(strsize nActualChars,strsize nFixedChars,
 ()nActualChars;
 ()nFixedChars;
 ()pData;
-//   TRACE(::ca::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
+//   TRACE(::ca2::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
 ::OutputDebugStringA("fixed_string_log::OnAllocateSpill");
 }
 
@@ -135,7 +135,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ()nActualChars;
 ()nFixedChars;
 ()pData;
-//   TRACE(::ca::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
+//   TRACE(::ca2::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
 ::OutputDebugStringA("fixed_string_log::OnReallocateSpill");
 }
 
@@ -144,19 +144,19 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 
 char* __cdecl crt_char_traits::CharNext(const char* p ) throw()
 {
-   return const_cast< char* >( ::ca::str::utf8_inc(p) );
+   return const_cast< char* >( ::ca2::str::utf8_inc(p) );
 }
 
 
 
 int32_t __cdecl crt_char_traits::IsDigit(const char * pch ) throw()
 {
-   return ::ca::ch::is_digit(pch) ? 1 : 0;
+   return ::ca2::ch::is_digit(pch) ? 1 : 0;
 }
 
 int32_t __cdecl crt_char_traits::IsSpace(const char * pch ) throw()
 {
-   return ::ca::ch::is_whitespace( pch ) ? 1 : 0;
+   return ::ca2::ch::is_whitespace( pch ) ? 1 : 0;
 }
 
 
@@ -271,11 +271,11 @@ const char * __cdecl crt_char_traits::StringScanSet(const char * pszBlock,const 
 #endif
    /*while(*pszMatch != '\0')
    {
-      string strUtf8Char = ::ca::str::get_utf8_char(pszMatch);
+      string strUtf8Char = ::ca2::str::get_utf8_char(pszMatch);
       const char * psz = strstr(pszBlock, strUtf8Char);
       if(psz != NULL)
          return psz;
-      pszMatch = ::ca::str::utf8_inc(pszMatch);
+      pszMatch = ::ca2::str::utf8_inc(pszMatch);
    }
    return NULL;*/
    //return reinterpret_cast< const char * >( _mbspbrk( reinterpret_cast< const uchar* >( pszBlock ),
@@ -296,7 +296,7 @@ strsize __cdecl crt_char_traits::StringSpanIncluding(const char * pszBlock,const
    if(pszLast == NULL)
       return 0;
    else
-      return pszBlock - pszLast + ::ca::str::get_utf8_char(pszLast).get_length();
+      return pszBlock - pszLast + ::ca2::str::get_utf8_char(pszLast).get_length();
    //return (strsize)_mbsspn( reinterpret_cast< const uchar* >( pszBlock ), reinterpret_cast< const uchar* >( pszSet ) );
 }
 
@@ -326,8 +326,8 @@ _INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringUppe
    string strFinal;
    while(*p)
    {
-      strFinal += ::ca::ch::to_upper_case(p);
-      p = (char *) ::ca::str::utf8_inc(p);
+      strFinal += ::ca2::ch::to_upper_case(p);
+      p = (char *) ::ca2::str::utf8_inc(p);
    }
    strcpy(p, strFinal);
    return psz;
@@ -350,8 +350,8 @@ _INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringLowe
    string strFinal;
    while(*p)
    {
-      strFinal += ::ca::ch::to_lower_case(p);
-      p = (char *) ::ca::str::utf8_inc(p);
+      strFinal += ::ca2::ch::to_lower_case(p);
+      p = (char *) ::ca2::str::utf8_inc(p);
    }
    strcpy(p, strFinal);
    return psz;
@@ -363,7 +363,7 @@ _INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringLowe
 char * __cdecl crt_char_traits::StringUppercase(char * psz,size_t size ) throw()
 {
 
-   ::ca::strupr_s(psz, size);
+   ::ca2::strupr_s(psz, size);
 
    return psz;
 
@@ -372,7 +372,7 @@ char * __cdecl crt_char_traits::StringUppercase(char * psz,size_t size ) throw()
 char * __cdecl crt_char_traits::StringLowercase(char * psz,size_t size ) throw()
 {
 
-   ::ca::strlwr_s(psz, size);
+   ::ca2::strlwr_s(psz, size);
 
    return psz;
 
@@ -384,9 +384,9 @@ char * __cdecl crt_char_traits::StringReverse( char * psz ) throw()
       return NULL;
    string strRev;
    char * p = psz + strlen(psz);
-   while((p = (char*) ::ca::str::utf8_dec(psz, p))!= NULL)
+   while((p = (char*) ::ca2::str::utf8_dec(psz, p))!= NULL)
    {
-      strRev += ::ca::str::get_utf8_char(p);
+      strRev += ::ca2::str::get_utf8_char(p);
    }
    strcpy(psz, strRev);
    return psz;
@@ -459,7 +459,7 @@ void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, 
 {
    if (nSrcLength == -1) { nSrcLength=1 + GetcharLength(pszSrc); }
    // nLen is in XCHARs
-   ::ca::memcpy_s( pszDest, nDestLength*sizeof( char ),
+   ::ca2::memcpy_s( pszDest, nDestLength*sizeof( char ),
       pszSrc, nSrcLength*sizeof( char ) );
 }
 
@@ -583,7 +583,7 @@ strsize __cdecl crt_char_traits::GetCharLen(const wchar_t* pch ) throw()
 strsize __cdecl crt_char_traits::GetCharLen(const char* pch ) throw()
 {
    // returns char length
-   return  ::ca::str::get_utf8_char(pch).get_length();
+   return  ::ca2::str::get_utf8_char(pch).get_length();
 }
 
 uint32_t __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar, char * pszBuffer,uint32_t dwSize )
@@ -591,7 +591,7 @@ uint32_t __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar, ch
 
 #ifdef METROWIN
 
-   throw todo(::ca::get_thread_app());
+   throw todo(::ca2::get_thread_app());
 
 #elif defined(WINDOWSEX)
 
@@ -614,13 +614,13 @@ void crt_char_traits::ConvertToAnsi(char* pstrString,size_t size)
    if(size>UINT_MAX)
    {
       // API only allows uint32_t size
-      throw invalid_argument_exception(::ca::get_thread_app());
+      throw invalid_argument_exception(::ca2::get_thread_app());
    }
    uint32_t dwSize=static_cast<uint32_t>(size);
    bool fSuccess=::OemToCharBuffA(pstrString, pstrString, dwSize) != 0;
    if(!fSuccess)
    {
-      throw last_error_exception(::ca::get_thread_app());
+      throw last_error_exception(::ca2::get_thread_app());
    }
 
 #endif
@@ -636,13 +636,13 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    if(size>UINT_MAX)
    {
       // API only allows uint32_t size
-      throw invalid_argument_exception(::ca::get_thread_app());
+      throw invalid_argument_exception(::ca2::get_thread_app());
    }
    uint32_t dwSize=static_cast<uint32_t>(size);
    bool fSuccess=::CharToOemBuffA(pstrString, pstrString, dwSize) != 0;
    if(!fSuccess)
    {
-      throw last_error_exception(::ca::get_thread_app());
+      throw last_error_exception(::ca2::get_thread_app());
    }
 
 #endif
@@ -1019,29 +1019,29 @@ string & string::assign(const char * s)
    return operator = (s);
 }
 
-string & string::assign(strsize n, char c)
+string & string::assign(strsize n, char ca)
 {
-   return operator = (string(c, n));
+   return operator = (string(ca, n));
 }
 
-string & string::assign(int32_t n, int32_t c)
+string & string::assign(int32_t n, int32_t ca)
 {
-   return assign((uint64_t) n, (uint64_t) c);
+   return assign((uint64_t) n, (uint64_t) ca);
 }
 
-string & string::assign(int64_t n, int64_t c)
+string & string::assign(int64_t n, int64_t ca)
 {
-   return assign((uint64_t) n, (uint64_t) c);
+   return assign((uint64_t) n, (uint64_t) ca);
 }
 
-string & string::assign(uint32_t n, uint32_t c)
+string & string::assign(uint32_t n, uint32_t ca)
 {
-   return assign((uint64_t) n, (uint64_t) c);
+   return assign((uint64_t) n, (uint64_t) ca);
 }
 
-string & string::assign(uint64_t n, uint64_t c)
+string & string::assign(uint64_t n, uint64_t ca)
 {
-   string strChar = ::ca::str::uni_to_utf8(c);
+   string strChar = ::ca2::str::uni_to_utf8(ca);
    while(n > 0)
    {
       *this += strChar;
@@ -1134,12 +1134,12 @@ bool string::contains(char ch, strsize iStart, strsize nCount)
 
 bool string::contains(wchar_t wch, strsize iStart, strsize nCount)
 {
-   return find_w(::ca::str::uni_to_utf8(wch), iStart, nCount) >= 0;
+   return find_w(::ca2::str::uni_to_utf8(wch), iStart, nCount) >= 0;
 }
 
 bool string::contains(int32_t i, strsize iStart, strsize nCount) // utf8 char index
 {
-   return find_w(::ca::str::uni_to_utf8(i), iStart, nCount) >= 0;
+   return find_w(::ca2::str::uni_to_utf8(i), iStart, nCount) >= 0;
 }
 
 bool string::contains(const char * psz, strsize iStart, strsize nCount)
@@ -1159,12 +1159,12 @@ bool string::contains_ci(char ch, strsize iStart, strsize nCount)
 
 bool string::contains_ci(wchar_t wch, strsize iStart, strsize nCount)
 {
-   return find_wci(::ca::str::uni_to_utf8(wch), iStart, nCount) >= 0;
+   return find_wci(::ca2::str::uni_to_utf8(wch), iStart, nCount) >= 0;
 }
 
 bool string::contains_ci(int32_t i, strsize iStart, strsize nCount) // utf8 char index
 {
-   return find_wci(::ca::str::uni_to_utf8(i), iStart, nCount) >= 0;
+   return find_wci(::ca2::str::uni_to_utf8(i), iStart, nCount) >= 0;
 }
 
 bool string::contains_ci(const char * psz, strsize iStart, strsize nCount)
@@ -1179,12 +1179,12 @@ bool string::contains_ci(const string & str, strsize iStart, strsize nCount)
 
 bool string::contains_wci(wchar_t wch, strsize iStart, strsize nCount)
 {
-   return find_wci(::ca::str::uni_to_utf8(wch), iStart, nCount) >= 0;
+   return find_wci(::ca2::str::uni_to_utf8(wch), iStart, nCount) >= 0;
 }
 
 bool string::contains_wci(int32_t i, strsize iStart, strsize nCount) // utf8 char index
 {
-   return find_wci(::ca::str::uni_to_utf8(i), iStart, nCount) >= 0;
+   return find_wci(::ca2::str::uni_to_utf8(i), iStart, nCount) >= 0;
 }
 
 bool string::contains_wci(const char * psz, strsize iStart, strsize nCount)
@@ -1227,7 +1227,7 @@ strsize string::Delete(strsize iIndex,strsize nCount)
    if(nCount < 0)
       return get_length();
 
-   if( (::ca::add_throw(nCount, iIndex)) > nLength )
+   if( (::ca2::add_throw(nCount, iIndex)) > nLength )
    {
       nCount = nLength-iIndex;
    }
@@ -1236,7 +1236,7 @@ strsize string::Delete(strsize iIndex,strsize nCount)
       strsize nNewLength = nLength-nCount;
       strsize nXCHARsToCopy = nLength-(iIndex+nCount)+1;
       char * pszBuffer = GetBuffer();
-      ::ca::memmove_s( pszBuffer+iIndex, nXCHARsToCopy*sizeof( char ),
+      ::ca2::memmove_s( pszBuffer+iIndex, nXCHARsToCopy*sizeof( char ),
          pszBuffer+iIndex+nCount, nXCHARsToCopy*sizeof( char ) );
       ReleaseBufferSetLength( nNewLength );
    }
@@ -1258,7 +1258,7 @@ strsize string::Insert(strsize iIndex,char ch )
    char * pszBuffer = GetBuffer( nNewLength );
 
    // move existing bytes down
-   ::ca::memmove_s( pszBuffer+iIndex+1, (nNewLength-iIndex)*sizeof( char ),
+   ::ca2::memmove_s( pszBuffer+iIndex+1, (nNewLength-iIndex)*sizeof( char ),
       pszBuffer+iIndex, (nNewLength-iIndex)*sizeof( char ) );
    pszBuffer[iIndex] = ch;
 
@@ -1286,9 +1286,9 @@ strsize string::Insert(strsize iIndex,const char * psz )
 
       char * pszBuffer = GetBuffer( nNewLength );
       // move existing bytes down
-      ::ca::memmove_s( pszBuffer+iIndex+nInsertLength, (nNewLength-iIndex-nInsertLength+1)*sizeof( char ),
+      ::ca2::memmove_s( pszBuffer+iIndex+nInsertLength, (nNewLength-iIndex-nInsertLength+1)*sizeof( char ),
          pszBuffer+iIndex, (nNewLength-iIndex-nInsertLength+1)*sizeof( char ) );
-      ::ca::memcpy_s( pszBuffer+iIndex, nInsertLength*sizeof( char ),
+      ::ca2::memcpy_s( pszBuffer+iIndex, nInsertLength*sizeof( char ),
          psz, nInsertLength*sizeof( char ) );
       ReleaseBufferSetLength( nNewLength );
    }
@@ -1377,9 +1377,9 @@ strsize string::replace(const char * pszOld, const char * pszNew, strsize iStart
          while( (pszTarget = string_trait::StringFindString( pszStart, pszOld ) ) != NULL )
          {
             strsize nBalance = nOldLength-strsize(pszTarget-pszBuffer+nSourceLen);
-            ::ca::memmove_s( pszTarget+nReplacementLen, nBalance*sizeof( char ),
+            ::ca2::memmove_s( pszTarget+nReplacementLen, nBalance*sizeof( char ),
                pszTarget+nSourceLen, nBalance*sizeof( char ) );
-            ::ca::memcpy_s( pszTarget, nReplacementLen*sizeof( char ),
+            ::ca2::memcpy_s( pszTarget, nReplacementLen*sizeof( char ),
                pszNew, nReplacementLen*sizeof( char ) );
             pszStart = pszTarget+nReplacementLen;
             pszTarget[nReplacementLen+nBalance] = 0;
@@ -1446,7 +1446,7 @@ string string::Tokenize(const char * pszTokens, strsize& iStart ) const
    ASSERT( iStart >= 0 );
 
    if(iStart < 0)
-      throw invalid_argument_exception(::ca::get_thread_app());
+      throw invalid_argument_exception(::ca2::get_thread_app());
 
    if( (pszTokens == NULL) || (*pszTokens == (char)0) )
    {
@@ -1681,13 +1681,13 @@ strsize string::find_w(const char * pszSub,strsize iStart, strsize nCount) const
       const char * pszSub2 = pszSub;
       while(*psz2 != '\0' && *pszSub2 != '\0')
       {
-         if(::ca::str::get_utf8_char(psz2) != ::ca::str::get_utf8_char(pszSub2))
+         if(::ca2::str::get_utf8_char(psz2) != ::ca2::str::get_utf8_char(pszSub2))
          {
             bFound = false;
             break;
          }
-         psz2 = ::ca::str::utf8_inc(psz2);
-         pszSub2 = ::ca::str::utf8_inc(pszSub2);
+         psz2 = ::ca2::str::utf8_inc(psz2);
+         pszSub2 = ::ca2::str::utf8_inc(pszSub2);
       }
       if(bFound)
       {
@@ -1731,13 +1731,13 @@ strsize string::find_wci(const char * pszSub,strsize iStart, strsize nCount) con
       const char * pszSub2 = pszSub;
       while(*psz2 != '\0' && *pszSub2 != '\0')
       {
-         if(::ca::ch::to_lower_case(psz2) != ::ca::ch::to_lower_case(pszSub2))
+         if(::ca2::ch::to_lower_case(psz2) != ::ca2::ch::to_lower_case(pszSub2))
          {
             bFound = false;
             break;
          }
-         psz2 = ::ca::str::utf8_inc(psz2);
-         pszSub2 = ::ca::str::utf8_inc(pszSub2);
+         psz2 = ::ca2::str::utf8_inc(psz2);
+         pszSub2 = ::ca2::str::utf8_inc(pszSub2);
       }
       if(bFound)
       {
@@ -1797,14 +1797,14 @@ strsize string::find_first_not_of(const char* s, strsize pos) const
    return find_first_not_of(s, pos, strlen(s));
 }
 
-strsize string::find_first_not_of(char c, strsize pos) const
+strsize string::find_first_not_of(char ca, strsize pos) const
 {
    strsize nLength = get_length();
 
    if(pos < 0 || pos >= nLength)
       return -1;
    const char * psz = &GetString()[pos];
-   while(*psz != '\0' && *psz == c)
+   while(*psz != '\0' && *psz == ca)
    {
       psz++;
    }
@@ -1835,7 +1835,7 @@ strsize string::find_first_not_of(const char* s, strsize pos, strsize n ) const
 
 
 // find the first occurrence of any of the characters in string 'pszCharSet'
-strsize string::find_last_of(char c, strsize pos) const RELEASENOTHROW
+strsize string::find_last_of(char ca, strsize pos) const RELEASENOTHROW
 {
    strsize nLength = get_length();
    // nLength is in XCHARs
@@ -1846,7 +1846,7 @@ strsize string::find_last_of(char c, strsize pos) const RELEASENOTHROW
       return( -1 );
    }
    const char * psz = GetString();
-   while(pos >= 0 && psz[pos] != c)
+   while(pos >= 0 && psz[pos] != ca)
    {
       pos--;
    }
@@ -1884,7 +1884,7 @@ strsize string::find_last_of(const string & strCharSet, strsize pos) const RELEA
 
 
 // find the first occurrence of any of the characters in string 'pszCharSet'
-strsize string::find_last_not_of(char c, strsize pos) const RELEASENOTHROW
+strsize string::find_last_not_of(char ca, strsize pos) const RELEASENOTHROW
 {
    strsize nLength = get_length();
    // nLength is in XCHARs
@@ -1895,7 +1895,7 @@ strsize string::find_last_not_of(char c, strsize pos) const RELEASENOTHROW
       return( -1 );
    }
    const char * psz = GetString();
-   while(pos >= 0 && psz[pos] == c)
+   while(pos >= 0 && psz[pos] == ca)
    {
       pos--;
    }
@@ -2001,12 +2001,12 @@ string& string::trim_right()
    {
       while(true)
       {
-         psz = ::ca::str::utf8_dec(GetString(), psz);
+         psz = ::ca2::str::utf8_dec(GetString(), psz);
          if(psz < GetString())
             break;
          if(!string_trait::IsSpace(psz))
          {
-            pszLast = ::ca::str::__utf8_inc(psz);
+            pszLast = ::ca2::str::__utf8_inc(psz);
             break;
          }
       }
@@ -2046,7 +2046,7 @@ string& string::trim_left()
       char * pszBuffer = GetBuffer( get_length() );
       psz = pszBuffer+iFirst;
       strsize nDataLength = get_length()-iFirst;
-      ::ca::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
+      ::ca2::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
          psz, (nDataLength+1)*sizeof( char ) );
       ReleaseBufferSetLength( nDataLength );
    }
@@ -2168,7 +2168,7 @@ string& string::trim_left(char chTarget )
       char * pszBuffer = GetBuffer( get_length() );
       psz = pszBuffer+iFirst;
       strsize nDataLength = get_length()-iFirst;
-      ::ca::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
+      ::ca2::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
          psz, (nDataLength+1)*sizeof( char ) );
       ReleaseBufferSetLength( nDataLength );
    }
@@ -2198,7 +2198,7 @@ string& string::trim_left(const char * pszTargets )
       char * pszBuffer = GetBuffer( get_length() );
       psz = pszBuffer+iFirst;
       strsize nDataLength = get_length()-iFirst;
-      ::ca::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
+      ::ca2::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
          psz, (nDataLength+1)*sizeof( char ) );
       ReleaseBufferSetLength( nDataLength );
    }
@@ -2378,7 +2378,7 @@ string string::Mid(strsize iFirst,strsize nCount ) const
    if(nCount < 0)
       return "";
 
-   if( (::ca::add_throw(iFirst,nCount)) > get_length() )
+   if( (::ca2::add_throw(iFirst,nCount)) > get_length() )
    {
       nCount = get_length()-iFirst;
    }
@@ -2445,7 +2445,7 @@ string string::SpanIncluding(const char * pszCharSet ) const
 {
    ASSERT( __is_valid_string( pszCharSet ) );
    if(pszCharSet == NULL)
-      throw invalid_argument_exception(::ca::get_thread_app());
+      throw invalid_argument_exception(::ca2::get_thread_app());
 
    return( Left( string_trait::StringSpanIncluding( GetString(), pszCharSet ) ) );
 }
@@ -2455,7 +2455,7 @@ string string::SpanExcluding(const char * pszCharSet ) const
 {
    ASSERT( __is_valid_string( pszCharSet ) );
    if(pszCharSet == NULL)
-      throw invalid_argument_exception(::ca::get_thread_app());
+      throw invalid_argument_exception(::ca2::get_thread_app());
 
    return( Left( string_trait::StringSpanExcluding( GetString(), pszCharSet ) ) );
 }
@@ -2487,7 +2487,7 @@ void string::FormatV(const char * pszFormat, va_list args )
    ASSERT( __is_valid_string( pszFormat ) );
 
    if(pszFormat == NULL)
-      throw invalid_argument_exception(::ca::get_thread_app());
+      throw invalid_argument_exception(::ca2::get_thread_app());
 
   strsize nLength = string_trait::GetFormattedLength( pszFormat, args );
    char * pszBuffer = GetBuffer( nLength );
@@ -2665,7 +2665,7 @@ void __cdecl string::AppendFormat(const char * pszFormat, ... )
 void __cdecl string::format_message(const char * pszFormat, ... )
 {
    if(pszFormat == NULL)
-      throw invalid_argument_exception(::ca::get_thread_app());
+      throw invalid_argument_exception(::ca2::get_thread_app());
 
    va_list argList;
    va_start( argList, pszFormat );
@@ -2677,7 +2677,7 @@ void __cdecl string::format_message(const char * pszFormat, ... )
 
 #endif
 
-bool string::load_string(sp(::ca::application) papp, id id)
+bool string::load_string(sp(::ca2::application) papp, id id)
 {
    return App(papp).load_string(*this, id);
 }
@@ -2744,14 +2744,14 @@ string string::utf8_substr(strsize iFirst, strsize nCount) const
    if(nCount <= 0)
       return "";
 
-   ::count c = 0;
+   ::count ca = 0;
 
-   while(c < iFirst && *pchStart != '\0')
+   while(ca < iFirst && *pchStart != '\0')
    {
 
-      pchStart = ::ca::str::__utf8_inc(pchStart);
+      pchStart = ::ca2::str::__utf8_inc(pchStart);
 
-      c++;
+      ca++;
 
    }
 
@@ -2760,14 +2760,14 @@ string string::utf8_substr(strsize iFirst, strsize nCount) const
 
    const char * pchEnd = pchStart;
 
-   c = 0;
+   ca = 0;
 
-   while(c < nCount && *pchEnd != '\0')
+   while(ca < nCount && *pchEnd != '\0')
    {
 
-      pchEnd = ::ca::str::__utf8_inc(pchEnd);
+      pchEnd = ::ca2::str::__utf8_inc(pchEnd);
 
-      c++;
+      ca++;
 
    }
 
@@ -2784,18 +2784,18 @@ string string::utf8_substr(strsize iFirst, strsize nCount) const
    if(pch == NULL)
       return 0;
 
-   ::count c = 0;
+   ::count ca = 0;
 
    while(*pch != '\0')
    {
 
-      pch = ::ca::str::__utf8_inc(pch);
+      pch = ::ca2::str::__utf8_inc(pch);
 
-      c++;
+      ca++;
 
    }
 
-   return c;
+   return ca;
 
 }
 
@@ -2803,5 +2803,5 @@ string string::utf8_substr(strsize iFirst, strsize nCount) const
 
 bool string::begins_ci(const char * s) const
 {
-   return ::ca::str::begins_ci(*this, s);
+   return ::ca2::str::begins_ci(*this, s);
 }

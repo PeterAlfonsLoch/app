@@ -3,8 +3,8 @@
 namespace user
 {
 
-   tab_view::tab_view(sp(::ca::application) papp) :
-      ca(papp),
+   tab_view::tab_view(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::tab(papp),
       place_holder_container(papp)
    {
@@ -32,15 +32,15 @@ namespace user
    #endif //DEBUG
 
 
-   void tab_view::_001OnCreate(::ca::signal_object * pobj)
+   void tab_view::_001OnCreate(::ca2::signal_object * pobj)
    {
-//      SCAST_PTR(::ca::message::create, pcreate, pobj)
+//      SCAST_PTR(::ca2::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
    }
 
 
-   void tab_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
+   void tab_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint)
    {
 
       if(m_pviewcreator != NULL)
@@ -54,7 +54,7 @@ namespace user
 
    }
 
-   void tab_view::_001OnSetFocus(::ca::signal_object * pobj)
+   void tab_view::_001OnSetFocus(::ca2::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -92,16 +92,16 @@ namespace user
 
    }
 
-   void tab_view::_001OnMenuMessage(::ca::signal_object * pobj)
+   void tab_view::_001OnMenuMessage(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj)
+      SCAST_PTR(::ca2::message::base, pbase, pobj)
       if(pbase->m_wparam == 0 && pbase->m_lparam == 0)
       {
          set_cur_tab_by_id(m_pviewdataOld->m_id);
       }
    }
 
-   void tab_view::install_message_handling(::ca::message::dispatch * pinterface)
+   void tab_view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       view::install_message_handling(pinterface);
       ::user::tab::install_message_handling(pinterface);
@@ -398,7 +398,7 @@ namespace user
    id tab_view::get_view_id()
    {
       if(m_pviewdata == NULL)
-         return ::ca::system::idEmpty;
+         return ::ca2::system::idEmpty;
       return m_pviewdata->m_id;
    }
 
@@ -426,7 +426,7 @@ namespace user
       return m_pviewdata->m_pdoc;
    }
 
-   void tab_view::_000OnDraw(::ca::graphics * pdc)
+   void tab_view::_000OnDraw(::ca2::graphics * pdc)
    {
       if(!m_bVisible)
          return;
@@ -462,7 +462,7 @@ namespace user
    }
 
    tab_drop_target_window::tab_drop_target_window(::user::tab * ptab, int32_t iPane) :
-      ca(ptab->get_app())
+      ca2(ptab->get_app())
    {
       m_ptab            = ptab;
       m_iPane           = iPane;
@@ -472,13 +472,13 @@ namespace user
    {
    }
 
-   void tab_drop_target_window::install_message_handling(::ca::message::dispatch * pinterface)
+   void tab_drop_target_window::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &tab_drop_target_window::_001OnLButtonUp);
    }
 
-   void tab_drop_target_window::_001OnDraw(::ca::graphics * pdc)
+   void tab_drop_target_window::_001OnDraw(::ca2::graphics * pdc)
    {
       class imaging & imaging = System.visual().imaging();
 
@@ -567,9 +567,9 @@ namespace user
 
    }
 
-   void tab_drop_target_window::_001OnLButtonUp(::ca::signal_object * pobj)
+   void tab_drop_target_window::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
       e_position eposition = m_ptab->DragHitTest(pmouse->m_pt);
 

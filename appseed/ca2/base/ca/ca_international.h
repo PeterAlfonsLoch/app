@@ -4,7 +4,7 @@
 class var;
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -142,7 +142,7 @@ namespace ca
    } // namespace international
 
 
-} // namespace ca
+} // namespace ca2
 
 
-#define unitext(text) (::ca::international::unicode_to_utf8(L##text))
+#define unitext(text) (::ca2::international::unicode_to_utf8(L##text))

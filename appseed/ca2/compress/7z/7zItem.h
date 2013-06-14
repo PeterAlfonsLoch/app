@@ -14,10 +14,10 @@ namespace n7z
    const CNum kNumNoIndex = 0xFFFFFFFF;
 
    struct CCoderInfo :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
       ::libcompress::method_id MethodID;
-      ::ca::byte_buffer Props;
+      ::ca2::byte_buffer Props;
       CNum NumInStreams;
       CNum NumOutStreams;
       bool IsSimpleCoder() const { return (NumInStreams == 1) && (NumOutStreams == 1); }
@@ -30,7 +30,7 @@ namespace n7z
    };
 
    struct CFolder :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
       spa(CCoderInfo) Coders;
       array<CBindPair> BindPairs;
@@ -140,7 +140,7 @@ namespace n7z
    };
 
    struct CFileItem :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
       file_size get_count;
       uint32_t Attrib;

@@ -18,7 +18,7 @@ namespace filemanager
             FolderTypeArtist,
          };
          class Folder :
-            virtual public ::ca::ca
+            virtual public ::ca2::ca2
          {
          public:
             int64_t        m_iFolder;
@@ -48,22 +48,22 @@ namespace filemanager
             sp(::filemanager::fs::simple::view)    m_pserver;
             FolderArray                            m_foldera; 
             int64_t                                m_iParentFolder;
-            sp(::ca::simple_tree_data)             m_spdataFs;
+            sp(::ca2::simple_tree_data)             m_spdataFs;
 
 
-            tree_view(sp(::ca::application) papp);
+            tree_view(sp(::ca2::application) papp);
 
-            virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+            virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
 
 
-            void _001OnItemExpand(sp(::ca::tree_item)pitem);
+            void _001OnItemExpand(sp(::ca2::tree_item)pitem);
 
 
             void parse(const char * lpszSource);
 
-            sp(::ca::tree_item) FindTreeItem(int64_t iFolder);
-            index _001GetItemImage(sp(::ca::tree_item) pitem, bool bSelected);
+            sp(::ca2::tree_item) FindTreeItem(int64_t iFolder);
+            index _001GetItemImage(sp(::ca2::tree_item) pitem, bool bSelected);
 
 
             virtual ~tree_view();

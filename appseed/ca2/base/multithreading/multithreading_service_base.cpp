@@ -26,8 +26,8 @@ service_base* service_base::s_pservice = 0;
 //                      service_base class.
 //
 //*****************************************************************************
-service_base::service_base(sp(::ca::application) papp, uint32_t controlsAccepted) :
-   ca(papp),
+service_base::service_base(sp(::ca2::application) papp, uint32_t controlsAccepted) :
+   ca2(papp),
    m_bStopping(false),
    m_stopped(papp)
 #ifdef WINDOWSEx

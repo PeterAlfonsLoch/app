@@ -136,7 +136,7 @@ inline id & id::operator = (const var & var)
    
 }
 
-inline id & id::operator = (const ::ca::property & prop)
+inline id & id::operator = (const ::ca2::property & prop)
 {
 
    return operator = (prop.m_var);

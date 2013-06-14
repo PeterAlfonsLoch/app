@@ -14,7 +14,7 @@ bool optca_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, uint
 namespace visual
 {
 
-   fastblur::fastblur(::ca::allocatorsp allocer) :
+   fastblur::fastblur(::ca2::allocatorsp allocer) :
       dib_sp(allocer)
    {
       m_iRadius = 0;

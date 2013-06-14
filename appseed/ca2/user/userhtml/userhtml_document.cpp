@@ -1,9 +1,9 @@
 ﻿#include "framework.h"
 
 
-html_document::html_document(sp(::ca::application) papp) :
-   ca(papp),
-   ::ca::data_container_base(papp),
+html_document::html_document(sp(::ca2::application) papp) :
+   ca2(papp),
+   ::ca2::data_container_base(papp),
    
    ::user::document(papp)
 {
@@ -60,7 +60,7 @@ void html_document::dump(dump_context & dumpcontext) const
 }
 */
 
-void html_document::data_on_after_change(::ca::signal_object * pobj)
+void html_document::data_on_after_change(::ca2::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 }
@@ -79,7 +79,7 @@ void html_document::OnBeforeNavigate2(html::data * pdata, var & varFile, uint32_
 bool html_document::on_open_document(var varFile)
 {
 
-   ::ca::data::writing writing(get_html_data());
+   ::ca2::data::writing writing(get_html_data());
 
 
 
@@ -120,7 +120,7 @@ bool html_document::on_open_document(var varFile)
 
 void html_document::soft_reload()
 {
-   ::ca::data::writing writing(get_html_data());
+   ::ca2::data::writing writing(get_html_data());
    string str = get_html_data()->m_strSource;
    //if(m_propset["bReplaceEx1"])
    {
@@ -162,7 +162,7 @@ bool html_document::_001OnCommand(id id)
    if(id == "viewindefaultbrowser")
    {
 
-      ::ca::property_set propertyset;
+      ::ca2::property_set propertyset;
 
       System.message_box("html_reader\\going_to_open_in_default_browser.xml", propertyset);
 

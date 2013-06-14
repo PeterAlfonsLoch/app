@@ -11,7 +11,7 @@ namespace frame
 
 
    class CLASS_DECL_ca2 UpDownTarget :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 

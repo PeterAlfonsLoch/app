@@ -1,7 +1,7 @@
 #include "framework.h"
 
-XfplayerViewLines::XfplayerViewLines(sp(::ca::application) papp) :
-   ca(papp)
+XfplayerViewLines::XfplayerViewLines(sp(::ca2::application) papp) :
+   ca2(papp)
 {
     m_iFirstVisible = -1;
     m_iLastVisible = -1;
@@ -90,7 +90,7 @@ void XfplayerViewLines::SetEffect(int32_t iEffect)
     }
 }
 
-void XfplayerViewLines::SetRenderWindow(sp(::ca::window) pWnd)
+void XfplayerViewLines::SetRenderWindow(sp(::ca2::window) pWnd)
 {
    UNREFERENCED_PARAMETER(pWnd);
 }
@@ -120,7 +120,7 @@ index XfplayerViewLines::FindLine(XfplayerViewLine * pline)
 
 }
 
-void XfplayerViewLines::InstallMessageHandling(::ca::message::dispatch *pinterface)
+void XfplayerViewLines::InstallMessageHandling(::ca2::message::dispatch *pinterface)
 {
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,    pinterface, this, &XfplayerViewLines::OnMouseMove);
    IGUI_WIN_MSG_LINK(WM_SETCURSOR,    pinterface, this, &XfplayerViewLines::OnSetCursor);
@@ -129,7 +129,7 @@ void XfplayerViewLines::InstallMessageHandling(::ca::message::dispatch *pinterfa
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP,    pinterface, this, &XfplayerViewLines::OnLButtonUp);
 }
 
-void XfplayerViewLines::OnMouseMove(::ca::signal_object * pobj)
+void XfplayerViewLines::OnMouseMove(::ca2::signal_object * pobj)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
@@ -141,7 +141,7 @@ void XfplayerViewLines::OnMouseMove(::ca::signal_object * pobj)
    }
 }
 
-void XfplayerViewLines::OnLButtonDown(::ca::signal_object * pobj)
+void XfplayerViewLines::OnLButtonDown(::ca2::signal_object * pobj)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
@@ -153,7 +153,7 @@ void XfplayerViewLines::OnLButtonDown(::ca::signal_object * pobj)
    }
 }
 
-void XfplayerViewLines::OnLButtonUp(::ca::signal_object * pobj)
+void XfplayerViewLines::OnLButtonUp(::ca2::signal_object * pobj)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
@@ -163,7 +163,7 @@ void XfplayerViewLines::OnLButtonUp(::ca::signal_object * pobj)
    }
 }
 
-void XfplayerViewLines::OnTimer(::ca::signal_object * pobj)
+void XfplayerViewLines::OnTimer(::ca2::signal_object * pobj)
 {
 
    for(int32_t i = 0; i < this->get_size(); i++)
@@ -174,7 +174,7 @@ void XfplayerViewLines::OnTimer(::ca::signal_object * pobj)
    }
 }
 
-void XfplayerViewLines::OnSetCursor(::ca::signal_object * pobj)
+void XfplayerViewLines::OnSetCursor(::ca2::signal_object * pobj)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {

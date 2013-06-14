@@ -5,8 +5,8 @@ namespace visual
 {
 
 
-   api::api(sp(::ca::application) papp) :
-      ca(papp)
+   api::api(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
    }
@@ -19,7 +19,7 @@ namespace visual
 
 
    void api::DrawBeziers(
-      ::ca::graphics                     *pdc,
+      ::ca2::graphics                     *pdc,
       LPPOINT             lppoints,
       int32_t                  iCount,
       double               dRateX,
@@ -48,7 +48,7 @@ namespace visual
    }
 
    void api::DrawAndFillBeziers(
-      ::ca::graphics                     *pdc,
+      ::ca2::graphics                     *pdc,
       LPPOINT             lppoints,
       int32_t                  iCount,
       double               dRateX,
@@ -77,7 +77,7 @@ namespace visual
    }
 
    void api::DrawAndFillBeziers(
-      ::ca::graphics                     *pdc,
+      ::ca2::graphics                     *pdc,
       array<point_array, point_array &> *
                             lpglyph,
       double               dRateX,
@@ -106,7 +106,7 @@ namespace visual
    }
 
    void api::EmbossedTextOut(
-      ::ca::graphics *             pdc,
+      ::ca2::graphics *             pdc,
       LPCRECT            lpcrect,
       double            dRateX,
       double            dHeight,
@@ -119,7 +119,7 @@ namespace visual
 
    //      int32_t iOldMapMode = ::GetMapMode(pdc->m_hDC);
    //      point viewportOrg;
-   //      ::ca::font * pfont = pdc->GetCurrentFont();
+   //      ::ca2::font * pfont = pdc->GetCurrentFont();
    //      ASSERT(pfont != NULL);
    //      VERIFY(::GetViewportOrgEx(pdc->m_hDC, &viewportOrg));
 
@@ -152,7 +152,7 @@ namespace visual
 
 
    void api::EmbossedTextOut(
-      ::ca::graphics *          pdc,
+      ::ca2::graphics *          pdc,
       const char *   psz,
       int32_t            iLeft,
       int32_t            iTop,
@@ -165,7 +165,7 @@ namespace visual
 
    //      int32_t iOldMapMode = ::GetMapMode(pdc->m_hDC);
    //      point viewportOrg;
-   //      ::ca::font * pfont = pdc->GetCurrentFont();
+   //      ::ca2::font * pfont = pdc->GetCurrentFont();
    //      ASSERT(pfont != NULL);
    //      VERIFY(::GetViewportOrgEx(pdc->m_hDC, &viewportOrg));
 
@@ -182,7 +182,7 @@ namespace visual
    //      VERIFY(::SelectObject(pdc->m_hDC, pfont->m_hObject));
 
          string str;
-         str = ::ca::international::utf8_to_unicode(psz);
+         str = ::ca2::international::utf8_to_unicode(psz);
 
 #ifdef WINDOWSEX
          ::SetTextColor((HDC)pdc->get_os_data(), crOutline);
@@ -212,7 +212,7 @@ namespace visual
    }
 
    void api::SimpleTextOut(
-      ::ca::graphics *          pdc,
+      ::ca2::graphics *          pdc,
       LPCRECT        lpcrect,
       double         dRateX,
       double         dHeight,
@@ -231,12 +231,12 @@ namespace visual
       return;
 
       string str;
-      str = ::ca::international::utf8_to_unicode(psz);
+      str = ::ca2::international::utf8_to_unicode(psz);
       ::TextOutU((HDC)pdc->get_os_data(), lpcrect->left, lpcrect->top, str, (int32_t) str.get_length());
    }
 
 
-   void api::EmbossedTextOut(::ca::graphics * pdc, LPCRECT lpcrect, double dHeight, double dRateX, const char * psz)
+   void api::EmbossedTextOut(::ca2::graphics * pdc, LPCRECT lpcrect, double dHeight, double dRateX, const char * psz)
    {
          pdc->TextOut(lpcrect->left, lpcrect->top, psz);
          pdc->BeginPath();

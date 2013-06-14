@@ -35,7 +35,7 @@ namespace datetime
 
 
    class CLASS_DECL_ca2 scanner :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       
@@ -47,7 +47,7 @@ namespace datetime
       ::user::str_context *   m_pstrcontext;
 
 
-      scanner(sp(::ca::application) papp, ::user::str_context * pstrcontext);
+      scanner(sp(::ca2::application) papp, ::user::str_context * pstrcontext);
       virtual ~scanner();
 
       void initialize(const char * psz);

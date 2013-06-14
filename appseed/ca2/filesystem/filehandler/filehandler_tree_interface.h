@@ -6,12 +6,12 @@ namespace filehandler
 
 
    class CLASS_DECL_ca2 tree_interface :
-      virtual public ::ca::tree
+      virtual public ::ca2::tree
    {
    public:
       
 
-      tree_interface(sp(::ca::application) papp);
+      tree_interface(sp(::ca2::application) papp);
       virtual ~tree_interface();
 
 

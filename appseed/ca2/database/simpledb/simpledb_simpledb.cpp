@@ -8,9 +8,9 @@ namespace simpledb
 {
 
 
-   simpledb::simpledb(::ca::application * papp) :
-      ca(papp),
-      ::ca::section(papp)
+   simpledb::simpledb(::ca2::application * papp) :
+      ca2(papp),
+      ::ca2::section(papp)
    {
 
       m_pserver      = NULL;
@@ -132,7 +132,7 @@ namespace simpledb
 
       ::database::client::initialize_data_client(m_pserver);
 
-//      ::ca::application_request * prequest = System.get_application_request();
+//      ::ca2::application_request * prequest = System.get_application_request();
 
 
       m_papp->m_pappThis->fill_locale_schema(*m_papp->m_pappThis->str_context()->m_plocaleschema);

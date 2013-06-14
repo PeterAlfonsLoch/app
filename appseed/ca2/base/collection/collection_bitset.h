@@ -1,7 +1,7 @@
 // bitset standard header
 #pragma once
 
-/*namespace ca
+/*namespace ca2
 {
    class input_stream;
    class output_stream;
@@ -27,7 +27,7 @@ template<size_t _Bits>
 			: _Bits <= 16 ? 2
 			: _Bits <= 32 ? 4
 			: 8>,
-virtual public ::ca::object
+virtual public ::ca2::object
 {	// store fixed-length sequence of Boolean elements
 public:
 
@@ -494,9 +494,9 @@ template<size_t _Bits> inline
 		return (_Ans ^= _Right);
 		}
 
-   /*inline ::ca::output_stream & operator << (::ca::output_stream2 & _Ostr, const bitset<_Bits>& _Right);
+   /*inline ::ca2::output_stream & operator << (::ca2::output_stream2 & _Ostr, const bitset<_Bits>& _Right);
 
-	inline ::ca::input_stream & operator>>(::ca::input_stream  _Istr, bitset<_Bits>& _Right);
+	inline ::ca2::input_stream & operator>>(::ca2::input_stream  _Istr, bitset<_Bits>& _Right);
 
 #if _HAS_CPP0X
 template<class _Kty>
@@ -520,7 +520,7 @@ public:
  //#pragma pack(pop)
 
 //
-// Copyright (c) 1992-2009 by P.J. Plauger.  ALL RIGHTS RESERVED.
+// Copyright (ca) 1992-2009 by P.J. Plauger.  ALL RIGHTS RESERVED.
 // Consult your license regarding permissions and restrictions.
 // V5.20:0009
 

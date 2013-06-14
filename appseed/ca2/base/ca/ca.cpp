@@ -9,7 +9,7 @@
 CLASS_DECL_ca2 vsstring g_strNote;
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -41,7 +41,7 @@ namespace ca
          }
          else
          {
-            pchSrc = ::ca::str::utf8_inc_slide(&nTotalLen, pchSrc);
+            pchSrc = ::ca2::str::utf8_inc_slide(&nTotalLen, pchSrc);
          }
       }
 
@@ -62,14 +62,14 @@ namespace ca
             pchSrc += 2;
             if (i >= nString)
             {
-               //               TRACE(::ca::trace::category_AppMsg, 0, "Error: illegal string index requested %d.\n", i);
+               //               TRACE(::ca2::trace::category_AppMsg, 0, "Error: illegal string index requested %d.\n", i);
                *pchDest++ = '?';
                nTotalLen--;
             }
             else if (rglpsz[i] != NULL)
             {
                size_t nLen = strlen(rglpsz[i]);
-               ::ca::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
+               ::ca2::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
                nTotalLen -= nLen;
                pchDest += nLen;
             }
@@ -77,7 +77,7 @@ namespace ca
          else
          {
 
-            ::ca::str::utf8_inc_copy_slide_back(&nTotalLen, pchDest, pchSrc);
+            ::ca2::str::utf8_inc_copy_slide_back(&nTotalLen, pchDest, pchSrc);
 
          }
 
@@ -108,7 +108,7 @@ namespace ca
 
       ASSERT(nLen >= 0);
 
-      ::ca::memcpy_s(rString.GetBufferSetLength(nLen), nLen*sizeof(char), lpszFullString, nLen*sizeof(char));
+      ::ca2::memcpy_s(rString.GetBufferSetLength(nLen), nLen*sizeof(char), lpszFullString, nLen*sizeof(char));
 
       rString.ReleaseBuffer();   // Need to call ReleaseBuffer after calling GetBufferSetLength
 
@@ -116,7 +116,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

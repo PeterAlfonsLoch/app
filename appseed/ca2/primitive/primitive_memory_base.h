@@ -29,8 +29,8 @@ namespace primitive
 
 
    class CLASS_DECL_ca2 memory_base :
-      public ::ca::object,
-      public ::ca::byte_serializable
+      public ::ca2::object,
+      public ::ca2::byte_serializable
    {
    public:
 
@@ -62,12 +62,12 @@ namespace primitive
 
       virtual void remove_offset();
 
-      virtual void FullLoad(::ca::file &file);
+      virtual void FullLoad(::ca2::file &file);
 
-      inline ::primitive::memory_size read(::ca::file & file);
+      inline ::primitive::memory_size read(::ca2::file & file);
 
-      void write(::ca::byte_output_stream & ostream);
-      void read(::ca::byte_input_stream & ostream);
+      void write(::ca2::byte_output_stream & ostream);
+      void read(::ca2::byte_input_stream & ostream);
 
       inline  void allocate_add_up(memory_size dwAddUp);
 
@@ -543,7 +543,7 @@ namespace primitive
    inline void memory_base::from_string(const wchar_t * pwsz)
    {
 
-      from_string(::ca::international::unicode_to_utf8(pwsz));
+      from_string(::ca2::international::unicode_to_utf8(pwsz));
 
    }
 

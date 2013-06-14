@@ -14,14 +14,14 @@ namespace command
       strsize m_iCompromised;
 
 
-      primary_view(sp(::ca::application) papp);
+      primary_view(sp(::ca2::application) papp);
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
 
       virtual void _001OnAfterChangeText();
-      void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint);
+      void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint);
 
 
       DECL_GEN_SIGNAL(_001OnUpdateEditCopy)

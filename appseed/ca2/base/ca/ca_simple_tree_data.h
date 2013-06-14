@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -11,7 +11,7 @@ namespace ca
    public:
 
 
-      simple_tree_data(sp(::ca::application) papp);
+      simple_tree_data(sp(::ca2::application) papp);
 
 
       virtual sp(tree_item_data) on_allocate_item();
@@ -21,7 +21,7 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

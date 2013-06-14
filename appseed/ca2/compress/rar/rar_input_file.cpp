@@ -31,7 +31,7 @@ namespace rar
       throw input_file_exception(get_app(), cause);
    }
 
-   HRESULT input_file::Open(::ca::byte_input_stream *inStream, const file_position *searchHeaderSizeLimit)
+   HRESULT input_file::Open(::ca2::byte_input_stream *inStream, const file_position *searchHeaderSizeLimit)
    {
       try
       {
@@ -75,12 +75,12 @@ namespace rar
       return processed == size;
    }
 
-   HRESULT input_file::Open2(::ca::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
+   HRESULT input_file::Open2(::ca2::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
    {
       m_CryptoMode = false;
       try
       {
-         m_StreamStartPosition = stream->seek(0, ::ca::seek_begin);
+         m_StreamStartPosition = stream->seek(0, ::ca2::seek_begin);
       }
       catch(...)
       {
@@ -95,7 +95,7 @@ namespace rar
       m_Position = arcStartPos + header::kMarkerSize;
       try
       {
-         stream->seek(m_Position, ::ca::seek_begin);
+         stream->seek(m_Position, ::ca2::seek_begin);
       }
       catch(...)
       {
@@ -215,7 +215,7 @@ namespace rar
                _unicodeNameBuffer.EnsureCapacity(unicodeNameSizeMax + 1);
                DecodeUnicodeFileName(buffer, (const byte *)buffer + mainLen + 1,
                   nameSize - (mainLen + 1), _unicodeNameBuffer, unicodeNameSizeMax);
-               item.Name = ::ca::international::unicode_to_utf8(_unicodeNameBuffer);
+               item.Name = ::ca2::international::unicode_to_utf8(_unicodeNameBuffer);
             }
          }
       }
@@ -361,16 +361,16 @@ namespace rar
                // Password
             string password;
             RINOK(getTextPassword->CryptoGetTextPassword(password))
-            wstring unicodePassword = ::ca::international::utf8_to_unicode(password);
+            wstring unicodePassword = ::ca2::international::utf8_to_unicode(password);
 
-            ::ca::byte_buffer buffer;
+            ::ca2::byte_buffer buffer;
             const uint32_t sizeInBytes = (const uint32_t) (unicodePassword.get_length() * 2);
             buffer.SetCapacity(sizeInBytes);
             for (int32_t i = 0; i < unicodePassword.get_length(); i++)
             {
-               wchar_t c = unicodePassword[i];
-               ((byte *)buffer)[i * 2] = (byte)c;
-               ((byte *)buffer)[i * 2 + 1] = (byte)(c >> 8);
+               wchar_t ca = unicodePassword[i];
+               ((byte *)buffer)[i * 2] = (byte)ca;
+               ((byte *)buffer)[i * 2 + 1] = (byte)(ca >> 8);
             }
 
             RINOK(m_RarAESSpec->CryptoSetPassword((const byte *)buffer, sizeInBytes));
@@ -474,13 +474,13 @@ namespace rar
 
    void input_file::SeekInArchive(file_position position)
    {
-      m_Stream->seek((file_offset) position, ::ca::seek_begin);
+      m_Stream->seek((file_offset) position, ::ca2::seek_begin);
    }
 
-   ::ca::reader* input_file::CreateLimitedStream(file_position position, file_size size)
+   ::ca2::reader* input_file::CreateLimitedStream(file_position position, file_size size)
    {
-      ::ca::limited_reader *streamSpec = new ::ca::limited_reader;
-      ::ca::reader * inStream = streamSpec;
+      ::ca2::limited_reader *streamSpec = new ::ca2::limited_reader;
+      ::ca2::reader * inStream = streamSpec;
       SeekInArchive(position);
       streamSpec->SetStream(m_Stream);
       streamSpec->Init(size);

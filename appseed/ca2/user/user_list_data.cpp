@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   simple_list_data::simple_list_data(sp(::ca::application) papp) :
-      ca(papp),
+   simple_list_data::simple_list_data(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::list_data(papp)
    {
       m_bEnable = true;

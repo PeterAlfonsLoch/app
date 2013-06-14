@@ -37,7 +37,7 @@ namespace crypto
                ((byte *)data)[i] = M[i];
 
          // Wipe variables
-         // a = b = c = d = e = 0;
+         // a = b = ca = d = e = 0;
       }
 
 

@@ -1,4 +1,4 @@
-/* zip.c -- IO on .zip files using zlib
+/* zip.ca -- IO on .zip files using zlib
    Version 1.00, September 10th, 2003
 
    Copyright (C) 1998-2003 Gilles Vollant
@@ -304,11 +304,11 @@ local int32_t ziplocal_getByte(
     voidpf filestream,
     int32_t *pi)
 {
-    uchar c;
-    int32_t err = (int32_t)ZREAD(*pzlib_filefunc_def,filestream,&c,1);
+    uchar ca;
+    int32_t err = (int32_t)ZREAD(*pzlib_filefunc_def,filestream,&ca,1);
     if (err==1)
     {
-        *pi = (int32_t)c;
+        *pi = (int32_t)ca;
         return ZIP_OK;
     }
     else

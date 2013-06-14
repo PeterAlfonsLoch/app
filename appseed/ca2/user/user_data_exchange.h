@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 data_exchange :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 

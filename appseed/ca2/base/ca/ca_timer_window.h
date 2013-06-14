@@ -1,13 +1,13 @@
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    /////////////////////////////////////////////////////////////////////////////
-   // TimerWnd ::ca::window
+   // TimerWnd ::ca2::window
    class TimerCallback;
 
-   class CLASS_DECL_ca2 TimerWnd : public ::ca::window
+   class CLASS_DECL_ca2 TimerWnd : public ::ca2::window
    {
    // Construction
    public:
@@ -45,5 +45,5 @@ namespace ca
       LRESULT OnUserMessage(WPARAM wparam, LPARAM lparam);
    };
 
-} // namespace ca
+} // namespace ca2
 

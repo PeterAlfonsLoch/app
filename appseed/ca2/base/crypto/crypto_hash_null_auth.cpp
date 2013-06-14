@@ -1,5 +1,5 @@
 /*
- * null_auth.c
+ * null_auth.ca
  *
  * implements the do-nothing auth algorithm
  *
@@ -10,7 +10,7 @@
 
 /*
  *   
- * Copyright (c) 2001-2006, Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006, Cisco Systems, Inc.
  * 
  * 
  * Redistribution and use in source and binary forms, with or without

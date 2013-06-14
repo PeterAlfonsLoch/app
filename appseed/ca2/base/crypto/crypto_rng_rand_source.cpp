@@ -1,5 +1,5 @@
 /*
- * rand_source.c
+ * rand_source.ca
  *
  * implements a random source based on /dev/random
  *
@@ -8,7 +8,7 @@
  */
 /*
  *
- * Copyright(c) 2001-2006 Cisco Systems, Inc.
+ * Copyright(ca) 2001-2006 Cisco Systems, Inc.
  *
  *
  * Redistribution and use in source and binary forms, with or without

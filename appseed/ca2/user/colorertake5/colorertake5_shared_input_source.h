@@ -16,7 +16,7 @@ class SharedInputSource : input_source
 
 public:
 
-  static SharedInputSource *getInputSource(string path, ::ca::byte_input_stream & base);
+  static SharedInputSource *getInputSource(string path, ::ca2::byte_input_stream & base);
 
   /** Increments reference counter */
   int32_t addref(){
@@ -60,12 +60,12 @@ public:
 
 private:
 
-  SharedInputSource(::ca::byte_input_stream & source);
+  SharedInputSource(::ca2::byte_input_stream & source);
   ~SharedInputSource();
 
   static Hashtable<SharedInputSource*> *isHash;
 
-  ::ca::byte_input_stream & is;
+  ::ca2::byte_input_stream & is;
   const byte *stream;
   int32_t ref_count;
 };

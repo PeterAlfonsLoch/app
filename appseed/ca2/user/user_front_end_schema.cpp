@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   front_end_schema::front_end_schema(sp(::ca::application) papp) :
-      ca(papp),
+   front_end_schema::front_end_schema(sp(::ca2::application) papp) :
+      ca2(papp),
       m_menu(papp),
       m_sysmenu(papp),
       m_button(papp),
@@ -15,7 +15,7 @@ namespace user
       m_buttonBaseWndMenuItemPopup(papp)
    {
 
-      ::ca::graphics_sp spgraphics(papp->allocer());
+      ::ca2::graphics_sp spgraphics(papp->allocer());
       spgraphics->CreateCompatibleDC(NULL);
 
       m_button.m_font->create_point_font("Arial", 11.0);
@@ -100,16 +100,16 @@ namespace user
    {
    }
 
-   front_end_schema::system_menu::system_menu(sp(::ca::application) papp) :
+   front_end_schema::system_menu::system_menu(sp(::ca2::application) papp) :
       m_fontMarlett(papp->allocer())
    {
-      ::ca::graphics_sp spgraphics(papp->allocer());
+      ::ca2::graphics_sp spgraphics(papp->allocer());
       spgraphics->CreateCompatibleDC(NULL);
 
       m_fontMarlett->create_point_font("Marlett", 11.0);
    }
 
-   front_end_schema::menu::menu(sp(::ca::application) papp) :
+   front_end_schema::menu::menu(sp(::ca2::application) papp) :
       m_font(papp->allocer())
    {
       //m_pschemaSysMenuButton = new button();
@@ -125,7 +125,7 @@ namespace user
       //}
    }
 
-   void front_end_schema::DrawCheck(check::check echeck, LPCRECT lpcrect, ::ca::graphics * pdc)
+   void front_end_schema::DrawCheck(check::check echeck, LPCRECT lpcrect, ::ca2::graphics * pdc)
    {
       if(echeck == check::checked)
       {
@@ -146,14 +146,14 @@ namespace user
 
    }
 
-   front_end_schema::button::button(sp(::ca::application) papp) :
+   front_end_schema::button::button(sp(::ca2::application) papp) :
       m_font(papp->allocer())
    {
       m_bBorder = true;
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

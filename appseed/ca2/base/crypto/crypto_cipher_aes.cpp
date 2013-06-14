@@ -1,5 +1,5 @@
 /*
- * aes.c
+ * aes.ca
  *
  * An implemnetation of the AES block cipher.
  *
@@ -9,7 +9,7 @@
 
 /*
  *   
- * Copyright (c) 2001-2006, Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006, Cisco Systems, Inc.
  * 
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -1783,7 +1783,7 @@ aes_inv_final_round(v128_t *state, const v128_t *round_key) {
 static inline void
 aes_round(v128_t *state, const v128_t *round_key) {
   uint32_t column0, column1, column2, column3;
-  uint16_t c
+  uint16_t ca
   /* compute the columns of the output square in terms of the octets
      of state, using the tables T0, T1, T2, T3 */
 

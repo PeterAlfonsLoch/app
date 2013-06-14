@@ -8,12 +8,12 @@
 #define CA4_CRYPT_V5_SALT_BYTES (CA4_CRYPT_V5_FINAL_HASH_BYTES - NESSIE_DIGESTBYTES)
 
 
-namespace ca
+namespace ca2
 {
 
 
-   crypt::crypt(sp(::ca::application) papp) :
-      ca(papp)
+   crypt::crypt(sp(::ca2::application) papp) :
+      ca2(papp)
    {
    }
 
@@ -76,7 +76,7 @@ namespace ca
 
    /**
    AES encryption/decryption demo program using OpenSSL EVP apis
-   gcc -Wall openssl_aes.c -lcrypto
+   gcc -Wall openssl_aes.ca -lcrypto
 
    this is public domain code.
 
@@ -643,7 +643,7 @@ namespace ca
    }
 
 
-   bool crypt::file_set(var varFile, const char * pszData, const char * pszSalt, sp(::ca::application) papp)
+   bool crypt::file_set(var varFile, const char * pszData, const char * pszSalt, sp(::ca2::application) papp)
    {
       primitive::memory memoryEncrypt;
       encrypt(memoryEncrypt, pszData, pszSalt);
@@ -651,7 +651,7 @@ namespace ca
       return true;
    }
 
-   bool crypt::file_get(var varFile, string & str, const char * pszSalt, sp(::ca::application) papp)
+   bool crypt::file_get(var varFile, string & str, const char * pszSalt, sp(::ca2::application) papp)
    {
       primitive::memory memoryEncrypt;
       App(papp).file().as_memory(varFile, memoryEncrypt);
@@ -733,7 +733,7 @@ namespace ca
       string str(pszPassword);
       if(str.get_length() < 6)
          return false;
-      return ::ca::str::has_all_v1(pszPassword);
+      return ::ca2::str::has_all_v1(pszPassword);
    }
 
    string crypt::v5_get_password_hash(const char * pszPassword, int32_t iOrder)
@@ -806,7 +806,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

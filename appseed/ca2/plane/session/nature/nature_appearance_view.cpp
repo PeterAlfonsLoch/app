@@ -4,8 +4,8 @@
 namespace nature
 {
 
-   appearance_view::appearance_view(sp(::ca::application) papp) :
-      ca(papp),
+   appearance_view::appearance_view(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::tab(papp),
 
       ::user::tab_view(papp),
@@ -20,7 +20,7 @@ namespace nature
    {
    }
 
-   void appearance_view::install_message_handling(::ca::message::dispatch * pinterface)
+   void appearance_view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::userex::pane_tab_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &appearance_view::_001OnCreate);
@@ -41,7 +41,7 @@ namespace nature
    }
 #endif //DEBUG
 
-   void appearance_view::_001OnCreate(::ca::signal_object * pobj)
+   void appearance_view::_001OnCreate(::ca2::signal_object * pobj)
    {
 
       if(pobj->previous())
@@ -54,7 +54,7 @@ namespace nature
    }
 
 
-   void appearance_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
+   void appearance_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -72,7 +72,7 @@ namespace nature
    }
 
 
-   void appearance_view::_001OnSize(::ca::signal_object * pobj)
+   void appearance_view::_001OnSize(::ca2::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -125,14 +125,14 @@ namespace nature
       pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
    }
 
-   void appearance_view::_001OnEditAdd(::ca::signal_object * pobj)
+   void appearance_view::_001OnEditAdd(::ca2::signal_object * pobj)
    {
       sp(folder_selection_list_view) pview =  (get_view_uie().m_p);
       pview->FolderAdd();
       pobj->m_bRet = true;
    }
 
-   void appearance_view::_001OnEditRemove(::ca::signal_object * pobj)
+   void appearance_view::_001OnEditRemove(::ca2::signal_object * pobj)
    {
       sp(folder_selection_list_view) pview =  (get_view_uie().m_p);
       pview->FolderRemove();

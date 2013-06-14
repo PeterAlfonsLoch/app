@@ -4,7 +4,7 @@
 #include "ca_byte_stream.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -13,7 +13,7 @@ namespace ca
 
 
    class CLASS_DECL_ca2 byte_serializable :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 
@@ -115,7 +115,7 @@ namespace ca
    public:
 
 
-      byte_serializable_map(::ca::application * papp = NULL, ::count nBlockSize = 10);
+      byte_serializable_map(::ca2::application * papp = NULL, ::count nBlockSize = 10);
       byte_serializable_map(const byte_serializable_map & map);
 
 
@@ -129,7 +129,7 @@ namespace ca
    };
 
    template < class type_map >
-   byte_serializable_map < type_map >::byte_serializable_map(::ca::application * papp, ::count nBlockSize) :
+   byte_serializable_map < type_map >::byte_serializable_map(::ca2::application * papp, ::count nBlockSize) :
       type_map(papp, nBlockSize)
    {
    }

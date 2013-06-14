@@ -21,7 +21,7 @@ namespace user
 
       union
       {
-         ::ca::bitmap *             m_pbitmap;
+         ::ca2::bitmap *             m_pbitmap;
          ::visual::icon *           m_picon;
          ::visual::cursor *         m_pcursor;
       };
@@ -30,7 +30,7 @@ namespace user
       e_type                         m_etype;
 
 
-      static_control(sp(::ca::application) papp);
+      static_control(sp(::ca2::application) papp);
       virtual ~static_control();
 
 
@@ -41,8 +41,8 @@ namespace user
       HENHMETAFILE GetEnhMetaFile();
       void set_icon(::visual::icon * picon);
       ::visual::icon * get_icon();
-      void set_bitmap(::ca::bitmap * pbitmap);
-      ::ca::bitmap * get_bitmap();
+      void set_bitmap(::ca2::bitmap * pbitmap);
+      ::ca2::bitmap * get_bitmap();
       void set_cursor(::visual::cursor * pcursor);
       ::visual::cursor * get_cursor();
 

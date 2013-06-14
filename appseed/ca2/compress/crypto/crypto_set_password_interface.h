@@ -6,10 +6,10 @@ namespace crypto
 {
 
    class CLASS_DECL_ca2 set_password_interface :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
-     virtual ::ca::HRes CryptoSetPassword(const byte *data, uint32_t size) = 0;
+     virtual ::ca2::HRes CryptoSetPassword(const byte *data, uint32_t size) = 0;
    };
 
 } // namespace crypto

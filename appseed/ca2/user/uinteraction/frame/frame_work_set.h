@@ -19,7 +19,7 @@ namespace frame
 
    class CLASS_DECL_ca2 WorkSet :
       virtual public ::database::client,
-      virtual public ::ca::signalizable
+      virtual public ::ca2::signalizable
    {
    public:
       friend class appearance;
@@ -79,7 +79,7 @@ namespace frame
 
 
       void AttachFrameSchema(sp(::uinteraction::frame::frame) pframeschema);
-      void _001InstallEventHandling(::ca::message::dispatch * pdispatch);
+      void _001InstallEventHandling(::ca2::message::dispatch * pdispatch);
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
          DECL_GEN_SIGNAL(_001OnMouseMove)
@@ -104,8 +104,8 @@ namespace frame
       void UpdateApperanceMode(bool bFullScreen);
       //void UpdateControlBox();
       void SetDownUpInterface(CWorkSetDownUpInterface *pinterface);
-      void WindowProcBefore(sp(::user::interaction) pwnd, ::ca::signal_object * pobj);
-      void WindowProcHover(sp(::user::interaction) pwnd, ::ca::signal_object * pobj);
+      void WindowProcBefore(sp(::user::interaction) pwnd, ::ca2::signal_object * pobj);
+      void WindowProcHover(sp(::user::interaction) pwnd, ::ca2::signal_object * pobj);
       DECL_GEN_SIGNAL(_001OnActivate)
          DECL_GEN_SIGNAL(_001OnCommand)
          DECL_GEN_SIGNAL(_001OnNcActivate)
@@ -123,7 +123,7 @@ namespace frame
       void EnableDock(bool bEnable = true);
       void layout();
       bool Hover(bool bHoverActive);
-      void hover_relay_event(::ca::signal_object * pobj);
+      void hover_relay_event(::ca2::signal_object * pobj);
       void ChildWnd(sp(::user::interaction) pwnd, sp(::user::interaction) pwndParent);
       void FrameWnd(sp(::user::interaction) pwnd);
       bool Start();
@@ -151,10 +151,10 @@ namespace frame
       void GetRegionClientRect(LPRECT lprect);
       void GetDrawClientRect(LPRECT lprect);
       //void SetWindow(sp(::user::interaction) pwnd);
-      void relay_event(::ca::signal_object * pobj);
-      void message_handler(::ca::signal_object * pobj);
+      void relay_event(::ca2::signal_object * pobj);
+      void message_handler(::ca2::signal_object * pobj);
 
-      void _001OnDraw(::ca::graphics * pdc);
+      void _001OnDraw(::ca2::graphics * pdc);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

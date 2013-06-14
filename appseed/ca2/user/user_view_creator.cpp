@@ -85,7 +85,7 @@ namespace user
             throw e;
 
          }
-         catch(::ca::exception & e)
+         catch(::ca2::exception & e)
          {
             
             if(!Application.on_run_exception(e))
@@ -108,7 +108,7 @@ namespace user
             throw e;
 
          }
-         catch(::ca::exception & e)
+         catch(::ca2::exception & e)
          {
             
             if(!Application.on_run_exception(e))
@@ -138,7 +138,7 @@ namespace user
          throw e;
 
       }
-      catch(::ca::exception & e)
+      catch(::ca2::exception & e)
       {
             
          if(!Application.on_run_exception(e))
@@ -175,7 +175,7 @@ namespace user
       {
          return m_pviewcontainer->get_view_id();
       }
-      return ::ca::system::idEmpty;
+      return ::ca2::system::idEmpty;
    }
 
    void view_creator::hide_all_except(id id)
@@ -218,7 +218,7 @@ namespace user
    }
 
 
-   void view_creator::on_update(sp(::user::document_interface) pdocument, sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
+   void view_creator::on_update(sp(::user::document_interface) pdocument, sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint)
    {
       
       POSITION pos = m_viewmap.get_start_position();

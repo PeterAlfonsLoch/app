@@ -15,7 +15,7 @@ static geoipv6_t IPV6_NULL;
 
 #endif
 
-int32_t GeoIP_db_avail(::ca::application * m_papp, int32_t type);
+int32_t GeoIP_db_avail(::ca2::application * m_papp, int32_t type);
 char *_get_name_v6 (GeoIP* gi, geoipv6_t ipnum);
 char *_GeoIP_num_to_addr (GeoIP* gi, uint32_t ipnum);
 
@@ -302,7 +302,7 @@ void _GeoIP_setup_dbfilename() {
 }
 
 
-int32_t GeoIP_db_avail(::ca::application * m_papp, int32_t type) {
+int32_t GeoIP_db_avail(::ca2::application * m_papp, int32_t type) {
    const char * filePath;
    if (type < 0 || type >= NUM_DB_TYPES) {
       return 0;
@@ -643,13 +643,13 @@ uint32_t _GeoIP_seek_record (GeoIP *gi, uint32_t ipnum) {
 uint32_t
 _GeoIP_addr_to_num(const char *addr)
 {
-   uint32_t    c, octet, t;
+   uint32_t    ca, octet, t;
    uint32_t   ipnum;
    int32_t             i = 3;
 
    octet = ipnum = 0;
-   while ((c = *addr++)) {
-      if (c == '.') {
+   while ((ca = *addr++)) {
+      if (ca == '.') {
          if (octet > 255)
             return 0;
          ipnum <<= 8;
@@ -661,10 +661,10 @@ _GeoIP_addr_to_num(const char *addr)
          octet <<= 3;
          octet += t;
          octet += t;
-         c -= '0';
-         if (c > 9)
+         ca -= '0';
+         if (ca > 9)
             return 0;
-         octet += c;
+         octet += ca;
       }
    }
    if ((octet > 255) || (i != 0))
@@ -913,7 +913,7 @@ _GeoIP_lookupaddress_v6(const char *host)
    return ipnum;
 #else
 
-   throw todo(::ca::get_thread_app());
+   throw todo(::ca2::get_thread_app());
 
 #endif
 
@@ -1163,7 +1163,7 @@ void GeoIP_assign_region_by_inetaddr(GeoIP* gi, uint32_t inetaddr, GeoIPRegion *
       seek_region -= STATE_BEGIN_REV1;
       if (seek_region < US_OFFSET) {
          /* Unknown */
-         /* we don't need to do anything here b/c we memset region to 0 */
+         /* we don't need to do anything here b/ca we memset region to 0 */
       } else if (seek_region < CANADA_OFFSET) {
          /* USA State */
          region->country_code[0] = 'U';
@@ -1208,7 +1208,7 @@ void GeoIP_assign_region_by_inetaddr_v6(GeoIP* gi, geoipv6_t inetaddr, GeoIPRegi
       seek_region -= STATE_BEGIN_REV1;
       if (seek_region < US_OFFSET) {
          /* Unknown */
-         /* we don't need to do anything here b/c we memset region to 0 */
+         /* we don't need to do anything here b/ca we memset region to 0 */
       } else if (seek_region < CANADA_OFFSET) {
          /* USA State */
          region->country_code[0] = 'U';

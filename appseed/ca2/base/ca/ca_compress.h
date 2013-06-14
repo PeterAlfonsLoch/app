@@ -1,42 +1,42 @@
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 compress :
-      public ::ca::object
+      public ::ca2::object
    {
    public:
 
 
-      bool ungz(sp(::ca::application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed);
-      bool gz(sp(::ca::application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed);
+      bool ungz(sp(::ca2::application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed);
+      bool gz(sp(::ca2::application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed);
 
-      bool ungz(::ca::writer & ostreamUncompressed, const char * lpcszGzFileCompressed);
-      bool gz(::ca::writer & ostreamGzFileCompressed, const char * lpcszUncompressed);
+      bool ungz(::ca2::writer & ostreamUncompressed, const char * lpcszGzFileCompressed);
+      bool gz(::ca2::writer & ostreamGzFileCompressed, const char * lpcszUncompressed);
 
       bool ungz(::primitive::memory_file & memoryfile);
 
-      bool unbz(sp(::ca::application) papp, const char * lpcszUncompressed, const char * lpcszBzFileCompressed);
-      bool bz(sp(::ca::application) papp, const char * lpcszBzFileCompressed, const char * lpcszUncompressed);
+      bool unbz(sp(::ca2::application) papp, const char * lpcszUncompressed, const char * lpcszBzFileCompressed);
+      bool bz(sp(::ca2::application) papp, const char * lpcszBzFileCompressed, const char * lpcszUncompressed);
 
-      bool unbz(::ca::writer & ostreamUncompressed, const char * lpcszBzFileCompressed);
-      bool bz(::ca::writer & ostreamBzFileCompressed, const char * lpcszUncompressed);
+      bool unbz(::ca2::writer & ostreamUncompressed, const char * lpcszBzFileCompressed);
+      bool bz(::ca2::writer & ostreamBzFileCompressed, const char * lpcszUncompressed);
 
-      bool bz_stream(::ca::writer & ostreamBzFileCompressed, ::ca::reader & istreamFileUncompressed);
+      bool bz_stream(::ca2::writer & ostreamBzFileCompressed, ::ca2::reader & istreamFileUncompressed);
 
       bool _compress(class primitive::memory & memory, void * pdata, ::primitive::memory_size ulSizeUncompressed);
       bool _uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, ::primitive::memory_size ulSizeUncompressed);
 
 
-      bool null(::ca::writer & ostream, ::ca::reader & istream);
+      bool null(::ca2::writer & ostream, ::ca2::reader & istream);
 
 
-      void extract_all(const char * pszFile, sp(::ca::application) papp);
+      void extract_all(const char * pszFile, sp(::ca2::application) papp);
 
 
-      void zip(const char * pszZip, const char * psz, sp(::ca::application) papp);
-      void zip(const char * psz, sp(::ca::application) papp);
+      void zip(const char * pszZip, const char * psz, sp(::ca2::application) papp);
+      void zip(const char * psz, sp(::ca2::application) papp);
 
 
       friend class application;
@@ -44,7 +44,7 @@ namespace ca
 
    };
 
-} // namespace ca
+} // namespace ca2
 
 
 

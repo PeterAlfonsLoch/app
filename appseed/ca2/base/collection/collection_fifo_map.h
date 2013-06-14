@@ -4,9 +4,9 @@
 #undef new
 
 
-template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE = ::ca::compare < KEY > >
+template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE = ::ca2::compare < KEY > >
 class fifo_map :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
 
@@ -776,7 +776,7 @@ VALUE fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE > ::
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
 void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::dump(dump_context & dumpcontext) const
 {
-   ::ca::object::dump(dumpcontext);
+   ::ca2::object::dump(dumpcontext);
 
    dumpcontext << "with " << m_ptra.get_count() << " elements";
    if (dumpcontext.GetDepth() > 0)
@@ -801,7 +801,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::assert_valid() const
 {
 
-   ::ca::object::assert_valid();
+   ::ca2::object::assert_valid();
 
 }
 
@@ -893,7 +893,7 @@ bool fifo_attrib_map < type_map >::operator == (const fifo_attrib_map & attribma
 }
 
 
-template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::ca::compare < string > >
+template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::ca2::compare < string > >
 class fifo_string_map :
    virtual public fifo_attrib_map < fifo_map < string, const string &, VALUE, ARG_VALUE, COMPARE > >
 {
@@ -936,7 +936,7 @@ fifo_string_map < VALUE, ARG_VALUE, COMPARE > & fifo_string_map < VALUE, ARG_VAL
 
 }
 
-template < class VALUE, class ARG_VALUE = const VALUE & , class COMPARE = ::ca::strid_compare  >
+template < class VALUE, class ARG_VALUE = const VALUE & , class COMPARE = ::ca2::strid_compare  >
 class fifo_strid_map :
    virtual public fifo_attrib_map < fifo_map < id, const id &, VALUE, ARG_VALUE, COMPARE > >
 {
@@ -978,7 +978,7 @@ fifo_strid_map < VALUE, ARG_VALUE, COMPARE > & fifo_strid_map < VALUE, ARG_VALUE
 
 }
 
-template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::ca::compare < int32_t > >
+template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::ca2::compare < int32_t > >
 class fifo_int_map :
    virtual public fifo_attrib_map < fifo_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > >
 {

@@ -4,7 +4,7 @@
 
 //#include "../IStream.h"
 
-namespace ca
+namespace ca2
 {
 
    namespace bitl

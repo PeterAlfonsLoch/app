@@ -1,7 +1,7 @@
 #include "framework.h"
 
-font_central::font_central(sp(::ca::application) papp) :
-   ca(papp),
+font_central::font_central(sp(::ca2::application) papp) :
+   ca2(papp),
    m_fontCaption(allocer()),
    m_fontMenu(allocer()),
    m_fontStandard(allocer()),
@@ -45,7 +45,7 @@ bool font_central::Initialize()
    if(IsInitialized())
       return false;
 
-   ::ca::graphics_sp spgraphics(allocer());
+   ::ca2::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(NULL);
 
    m_fontMenu->create_point_font(FONTFACENAME_MENU, 9);
@@ -107,7 +107,7 @@ void font_central::Finalize()
 }
 
 
-::ca::font * font_central::GetStandartFont()
+::ca2::font * font_central::GetStandartFont()
 {
     return m_fontMenu;
 }
@@ -175,14 +175,14 @@ visual::font * font_central::GetSongListFont()
     return m_lpSongListFont;
 }
 
-::ca::font * font_central::GetMenuFont()
+::ca2::font * font_central::GetMenuFont()
 {
     return m_fontMenu;
 }
 
 void font_central::CreateLyricViewFonts()
 {
-   ::ca::graphics_sp spgraphics(allocer());
+   ::ca2::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(NULL);
 
 
@@ -272,12 +272,12 @@ void font_central::CreateLyricViewFonts()
 
 }
 
-::ca::font * font_central::GetCaptionFont()
+::ca2::font * font_central::GetCaptionFont()
 {
    return m_fontCaption;
 }
 
-::ca::font * font_central::GetListCtrlFont()
+::ca2::font * font_central::GetListCtrlFont()
 {
    return m_fontListCtrl;
 }

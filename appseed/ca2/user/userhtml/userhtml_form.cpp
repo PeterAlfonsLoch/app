@@ -1,8 +1,8 @@
 ﻿#include "framework.h"
 
 
-html_form::html_form(sp(::ca::application) papp) :
-   ca(papp),
+html_form::html_form(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),
    ::user::form(papp)
@@ -18,7 +18,7 @@ html_form::~html_form()
 
 
 
-void html_form::_001OnDraw(::ca::graphics * pdc)
+void html_form::_001OnDraw(::ca2::graphics * pdc)
 {
 
    ::user::interaction::_001OnDraw(pdc);
@@ -46,7 +46,7 @@ void html_form::_001OnDraw(::ca::graphics * pdc)
 }
 
 
-void html_form::_001DrawChildren(::ca::graphics *pdc)
+void html_form::_001DrawChildren(::ca2::graphics *pdc)
 {
 
    if(m_pguie != NULL && m_pguie != this)
@@ -74,7 +74,7 @@ void html_form::_001DrawChildren(::ca::graphics *pdc)
 }
 
 
-void html_form::_001OnImageLoaded(::ca::signal_object * pobj)
+void html_form::_001OnImageLoaded(::ca2::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    if(get_html_data() != NULL)
@@ -89,9 +89,9 @@ void html_form::_001OnImageLoaded(::ca::signal_object * pobj)
 
          get_html_data()->m_box = rectClient;
 
-         ::ca::data::writing writing(get_html_data());
+         ::ca2::data::writing writing(get_html_data());
 
-         ::ca::memory_graphics pdc(allocer());
+         ::ca2::memory_graphics pdc(allocer());
          get_html_data()->delete_implementation();
          get_html_data()->layout(pdc);
 
@@ -101,7 +101,7 @@ void html_form::_001OnImageLoaded(::ca::signal_object * pobj)
 }
 
 
-void html_form::install_message_handling(::ca::message::dispatch * pinterface)
+void html_form::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::form::install_message_handling(pinterface);
 
@@ -164,9 +164,9 @@ void html_form::layout()
 }
 
 
-void html_form::_001OnCreate(::ca::signal_object * pobj)
+void html_form::_001OnCreate(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::create, pcreate, pobj)
+   SCAST_PTR(::ca2::message::create, pcreate, pobj)
    if(pobj->previous())
       return;
    get_html_data()->m_pform = this;
@@ -188,9 +188,9 @@ void html_form::_001OnCreate(::ca::signal_object * pobj)
 
 
 
-void html_form::_001OnLButtonDown(::ca::signal_object * pobj)
+void html_form::_001OnLButtonDown(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+   SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
    point pt;
    pt = pmouse->m_pt;
    ScreenToClient(&pt);
@@ -205,9 +205,9 @@ void html_form::_001OnLButtonDown(::ca::signal_object * pobj)
    pmouse->m_bRet = true;
    pmouse->set_lresult(1);
 }
-   /*void html_form::_001OnMouseMove(::ca::signal_object * pobj)
+   /*void html_form::_001OnMouseMove(::ca2::signal_object * pobj)
 {
-SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
    point pt;
    pt = pmouse->m_pt;
    ScreenToClient(&pt);
@@ -220,9 +220,9 @@ SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       pelemental->OnMouseMove(&signal);
    }*/
 
-void html_form::_001OnMouseMove(::ca::signal_object * pobj)
+void html_form::_001OnMouseMove(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+   SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
    point pt(pmouse->m_pt);
    ScreenToClient(&pt);
    html::elemental * pelemental = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
@@ -258,9 +258,9 @@ void html_form::_001OnMouseMove(::ca::signal_object * pobj)
 
 }
 
-void html_form::_001OnLButtonUp(::ca::signal_object * pobj)
+void html_form::_001OnLButtonUp(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+   SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
    point pt(pmouse->m_pt);
    ScreenToClient(&pt);
    html::elemental * pelemental = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
@@ -290,7 +290,7 @@ bool html_form::open_document(var varFile)
    {
       strPathName = varFile.propset()["url"];
    }
-   else if(varFile.ca < ::ca::file > () != NULL)
+   else if(varFile.ca2 < ::ca2::file > () != NULL)
    {
       strPathName = System.datetime().international().get_gmt_date_time() + "." + get_document()->get_document_template()->m_set["default_extension"];
    }
@@ -346,9 +346,9 @@ const ::html::data * html_form::get_html_data() const
    return m_sphtmldata;
 }
 
-void html_form::_001OnKeyDown(::ca::signal_object * pobj)
+void html_form::_001OnKeyDown(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::key, pkey, pobj);
+   SCAST_PTR(::ca2::message::key, pkey, pobj);
    if(pkey->m_ekey == ::user::key_tab)
    {
       pkey->m_bRet = true;
@@ -368,7 +368,7 @@ void html_form::defer_implement()
    if(get_html_data()->m_box.area() <= 0.f)
       return;
 
-   ::ca::memory_graphics pdc(allocer());
+   ::ca2::memory_graphics pdc(allocer());
 
    get_html_data()->m_pguie = this;
    get_html_data()->m_pform = this;
@@ -389,7 +389,7 @@ void html_form::defer_layout()
    if(get_html_data()->m_box.area() <= 0.f)
       return;
 
-   ::ca::memory_graphics pdc(allocer());
+   ::ca2::memory_graphics pdc(allocer());
 
    get_html_data()->m_pguie = this;
    get_html_data()->m_pform = this;

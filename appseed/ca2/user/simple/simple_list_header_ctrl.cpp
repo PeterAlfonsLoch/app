@@ -2,8 +2,8 @@
 
 const int32_t simple_list_header_control::s_iDividerWidth = 4;
 
-simple_list_header_control::simple_list_header_control(sp(::ca::application) papp) :
-   ca(papp),
+simple_list_header_control::simple_list_header_control(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::list_header(papp)
 {
    AddMessageHandling(this);
@@ -16,7 +16,7 @@ simple_list_header_control::~simple_list_header_control()
 
 
 
-void simple_list_header_control::install_message_handling(::ca::message::dispatch * pinterface)
+void simple_list_header_control::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::interaction::install_message_handling(pinterface);
    ::user::list_header::install_message_handling(pinterface);
@@ -49,10 +49,10 @@ void simple_list_header_control::install_message_handling(::ca::message::dispatc
 
 }*/
 
-void simple_list_header_control::_001OnEndTrack(::ca::signal_object * pobj)
+void simple_list_header_control::_001OnEndTrack(::ca2::signal_object * pobj)
 {
 #ifdef WINDOWSEX
-   SCAST_PTR(::ca::message::notify, pnotify, pobj)
+   SCAST_PTR(::ca2::message::notify, pnotify, pobj)
 #else
    throw todo(get_app());
 #endif
@@ -76,10 +76,10 @@ void simple_list_header_control::_001OnEndTrack(::ca::signal_object * pobj)
 #endif
 }
 
-void simple_list_header_control::_001OnTrack(::ca::signal_object * pobj)
+void simple_list_header_control::_001OnTrack(::ca2::signal_object * pobj)
 {
 #ifdef WINDOWSEX
-   SCAST_PTR(::ca::message::notify, pnotify, pobj)
+   SCAST_PTR(::ca2::message::notify, pnotify, pobj)
 #else
    throw todo(get_app());
 #endif
@@ -105,9 +105,9 @@ void simple_list_header_control::_001OnTrack(::ca::signal_object * pobj)
 }
 
 
-void simple_list_header_control::_001OnCreate(::ca::signal_object * pobj) 
+void simple_list_header_control::_001OnCreate(::ca2::signal_object * pobj) 
 {
-   SCAST_PTR(::ca::message::create, pcreate, pobj)
+   SCAST_PTR(::ca2::message::create, pcreate, pobj)
 //   LOGFONT lf;
 
    ::user::list_header::m_font->operator = (*System.visual().font_central().GetListCtrlFont());
@@ -116,10 +116,10 @@ void simple_list_header_control::_001OnCreate(::ca::signal_object * pobj)
 }
 
 
-void simple_list_header_control::_001OnEndDrag(::ca::signal_object * pobj)
+void simple_list_header_control::_001OnEndDrag(::ca2::signal_object * pobj)
 {
 #ifdef WINDOWSEX
-   SCAST_PTR(::ca::message::notify, pnotify, pobj)
+   SCAST_PTR(::ca2::message::notify, pnotify, pobj)
 #else
    throw todo(get_app());
 #endif
@@ -214,9 +214,9 @@ bool simple_list_header_control::create(UINT nStyle, LPCRECT lpcrect, sp(::user:
 }
 
 
-void simple_list_header_control::_001OnMove(::ca::signal_object * pobj) 
+void simple_list_header_control::_001OnMove(::ca2::signal_object * pobj) 
 {
-   SCAST_PTR(::ca::message::move, pmove, pobj)
+   SCAST_PTR(::ca2::message::move, pmove, pobj)
    point point(pmove->m_pt.x, pmove->m_pt.y);
    pmove->m_bRet = false;
 }

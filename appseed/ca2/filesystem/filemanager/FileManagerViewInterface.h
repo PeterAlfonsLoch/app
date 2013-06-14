@@ -20,5 +20,5 @@ public:
    virtual sp(FileManagerInterface) GetFileManager();
    virtual sp(::filemanager::document) GetFileManagerDoc();
 
-   void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+   void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
 };

@@ -21,7 +21,7 @@ namespace user
       ::user::view_creator *                 m_pviewcreator;
 
 
-      tab_view(sp(::ca::application) papp);
+      tab_view(sp(::ca2::application) papp);
       virtual ~tab_view();
 
 
@@ -33,7 +33,7 @@ namespace user
       virtual sp(::user::document_interface) get_view_document();
 
 
-      void _000OnDraw(::ca::graphics * pdc);
+      void _000OnDraw(::ca2::graphics * pdc);
 
       void _001OnDropTab(int32_t iPane, e_position eposition);
       
@@ -57,12 +57,12 @@ namespace user
 
       virtual void _001OnShowTab(::user::tab * ptab);
       virtual void on_show_view();
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       void _001OnTabClick(int32_t iTab);
 
 
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
       DECL_GEN_SIGNAL(_001OnMenuMessage)
@@ -91,9 +91,9 @@ namespace user
       virtual ~tab_drop_target_window();
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
-      void _001OnDraw(::ca::graphics * pdc);
+      void _001OnDraw(::ca2::graphics * pdc);
 
       DECL_GEN_SIGNAL(_001OnLButtonUp)
 

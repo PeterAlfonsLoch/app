@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 base64 :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    protected:
 
@@ -22,22 +22,22 @@ namespace ca
       virtual ~base64();
 
 
-      void encode(::ca::plain_text_output_stream & ostreamBase64, ::ca::byte_input_stream & istreamBinary);
+      void encode(::ca2::plain_text_output_stream & ostreamBase64, ::ca2::byte_input_stream & istreamBinary);
       string encode(primitive::memory_base & storageBinary);
-      string encode(byte * p, ::count c);
+      string encode(byte * p, ::count ca);
       string encode(const char * psz);
-      string serialize(::ca::byte_serializable & serializable);
+      string serialize(::ca2::byte_serializable & serializable);
 
-      void decode(::ca::byte_output_stream & ostreamBinary, ::ca::plain_text_input_stream & istreamBase64);
+      void decode(::ca2::byte_output_stream & ostreamBinary, ::ca2::plain_text_input_stream & istreamBase64);
       void decode(primitive::memory & storageBinary, const char * pszBase64);
       string decode(const char * psz);
-      void unserialize(::ca::byte_serializable & serializable, const char * pszBase64);
+      void unserialize(::ca2::byte_serializable & serializable, const char * pszBase64);
 
    
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

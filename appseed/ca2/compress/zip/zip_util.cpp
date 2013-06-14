@@ -15,18 +15,18 @@ namespace zip
 
    }
 
-   void Util::ls(sp(::ca::application) papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize, e_extract eextract)
+   void Util::ls(sp(::ca2::application) papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize, e_extract eextract)
    {
       string strZip;
       string strRemain;
       string strLastZip;
-      if(::ca::str::ends_ci(lpszFileName, ".zip"))
+      if(::ca2::str::ends_ci(lpszFileName, ".zip"))
       {
          strZip = lpszFileName;
          strLastZip = strZip;
          strZip += ":";
       }
-      else if(::ca::str::find_ci(".zip:", lpszFileName) >= 0)
+      else if(::ca2::str::find_ci(".zip:", lpszFileName) >= 0)
       {
          strZip = lpszFileName;
          strRemain = strZip.Mid(strZip.reverse_find(".zip:") + strlen(".zip:"));
@@ -48,10 +48,10 @@ namespace zip
       stringa wstraFolder;
 
       strRemain.replace("\\", "/");
-      ::ca::str::begins_eat(strRemain, "/");
+      ::ca2::str::begins_eat(strRemain, "/");
       if(strRemain.has_char())
       {
-         if(!::ca::str::ends(strRemain, "/"))
+         if(!::ca2::str::ends(strRemain, "/"))
             strRemain += "/";
       }
 
@@ -78,7 +78,7 @@ namespace zip
             string strTitle(szTitle);
             if(strRemain != strTitle && ((strRemain.is_empty() &&
                (strTitle.find("/") < 0  || strTitle.find("/") == (strTitle.get_length() - 1)))
-            || (strRemain.has_char() && ::ca::str::begins_eat_ci(strTitle, strRemain))))
+            || (strRemain.has_char() && ::ca2::str::begins_eat_ci(strTitle, strRemain))))
             {
                if(bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
                {
@@ -96,9 +96,9 @@ namespace zip
                   }
                   if(pbaIsDir != NULL)
                   {
-                     pbaIsDir->add(::ca::str::ends(szTitle, "/")
-                                || ::ca::str::ends(szTitle, "\\")
-                                || ::ca::str::ends(szTitle, ".zip"));
+                     pbaIsDir->add(::ca2::str::ends(szTitle, "/")
+                                || ::ca2::str::ends(szTitle, "\\")
+                                || ::ca2::str::ends(szTitle, ".zip"));
                   }
                   if(piaSize != NULL)
                   {
@@ -114,7 +114,7 @@ namespace zip
       }
    }
 
-   void Util::ls_dir(sp(::ca::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   void Util::ls_dir(sp(::ca2::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
       stringa straPath;
       stringa straTitle;
@@ -148,15 +148,15 @@ namespace zip
 
 
 
-   bool Util::HasSubFolder(sp(::ca::application) papp, const char * lpszFileName)
+   bool Util::HasSubFolder(sp(::ca2::application) papp, const char * lpszFileName)
    {
       string strZip;
-      if(::ca::str::ends_ci(lpszFileName, ".zip"))
+      if(::ca2::str::ends_ci(lpszFileName, ".zip"))
       {
          strZip = lpszFileName;
          strZip += ":";
       }
-      else if(::ca::str::find_ci(".zip:", lpszFileName) > 0)
+      else if(::ca2::str::find_ci(".zip:", lpszFileName) > 0)
       {
          strZip = lpszFileName;
       }
@@ -166,7 +166,7 @@ namespace zip
       InFile infile(papp);
 
       strZip.replace("\\", "/");
-      if(!::ca::str::ends_ci(strZip, "/"))
+      if(!::ca2::str::ends_ci(strZip, "/"))
       {
          strZip += "/";
       }
@@ -271,12 +271,12 @@ namespace zip
       return false;
    }
 
-   bool Util::exists(sp(::ca::application) papp, const char * pszPath)
+   bool Util::exists(sp(::ca2::application) papp, const char * pszPath)
    {
       return extract(papp, pszPath, NULL);
    }
 
-   bool Util::extract(sp(::ca::application) papp, const char * lpszFileName, const char * lpszExtractFileName)
+   bool Util::extract(sp(::ca2::application) papp, const char * lpszFileName, const char * lpszExtractFileName)
    {
 
       InFile infile(papp);
@@ -289,7 +289,7 @@ namespace zip
       if(lpszExtractFileName == NULL)
          return true;
 
-      ::ca::filesp spfile = App(papp).file().get_file(lpszExtractFileName, ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::defer_create_directory);
+      ::ca2::filesp spfile = App(papp).file().get_file(lpszExtractFileName, ::ca2::file::mode_create | ::ca2::file::mode_write | ::ca2::file::defer_create_directory);
 
       if(spfile.is_set())
       {
@@ -302,7 +302,7 @@ namespace zip
 
    }
 
-   bool Util::extract_all(const char * pszDir, sp(::ca::file) pfile)
+   bool Util::extract_all(const char * pszDir, sp(::ca2::file) pfile)
    {
 
       InFile infile(pfile->get_app());
@@ -336,15 +336,15 @@ namespace zip
                NULL, // comment
                0);
             string strTitle(szTitle);
-            if(::ca::str::ends(szTitle, "/") || ::ca::str::ends(szTitle, "\\"))
+            if(::ca2::str::ends(szTitle, "/") || ::ca2::str::ends(szTitle, "\\"))
             {
             }
             else if(infile.locate(strTitle))
             {
 
-               ::ca::filesp spfile = App(pfile->get_app()).file().get_file(
+               ::ca2::filesp spfile = App(pfile->get_app()).file().get_file(
                   Sys(pfile->get_app()).dir().path(pszDir, strTitle),
-                  ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::defer_create_directory);
+                  ::ca2::file::mode_create | ::ca2::file::mode_write | ::ca2::file::defer_create_directory);
 
 
                if(spfile.is_set())
@@ -367,7 +367,7 @@ namespace zip
 
    }
 
-   bool Util::IsUnzipable(sp(::ca::application) papp, const char * lpszFileName)
+   bool Util::IsUnzipable(sp(::ca2::application) papp, const char * lpszFileName)
    {
       string str(lpszFileName);
       if(str.get_length() < 4)

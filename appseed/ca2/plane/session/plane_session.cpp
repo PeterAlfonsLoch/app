@@ -60,7 +60,7 @@ namespace plane
       }
 
       string strId;
-      sp(::ca::application) pcaapp;
+      sp(::ca2::application) pcaapp;
 
       while(pos != NULL)
       {
@@ -70,7 +70,7 @@ namespace plane
 
          m_mapApplication.get_next_assoc(pos, strId, pcaapp);
 
-         sp(::ca::application) papp = (pcaapp);
+         sp(::ca2::application) papp = (pcaapp);
 
          papp->post_thread_message(WM_QUIT);
       }
@@ -92,7 +92,7 @@ namespace plane
       }
       */
       //      string strId;
-      sp(::ca::application) papp;
+      sp(::ca2::application) papp;
 
 
       //      POSITION pos = m_mapApplication.get_start_position();
@@ -119,7 +119,7 @@ namespace plane
       m_strBaseSupportId   = "ca2_bergedge";
       m_strInstallToken    = "session";
       m_bLicense           = false;
-      m_eexclusiveinstance = ::ca::ExclusiveInstanceNone;
+      m_eexclusiveinstance = ::ca2::ExclusiveInstanceNone;
 
    }
 
@@ -173,10 +173,10 @@ namespace plane
 
       if(Session.is_remote_session())
       {
-         /*Session.savings().save(::ca::resource_display_bandwidth);
-         Session.savings().save(::ca::resource_blur_background);
-         Session.savings().save(::ca::resource_blurred_text_embossing);
-         Session.savings().save(::ca::resource_translucent_background);*/
+         /*Session.savings().save(::ca2::resource_display_bandwidth);
+         Session.savings().save(::ca2::resource_blur_background);
+         Session.savings().save(::ca2::resource_blurred_text_embossing);
+         Session.savings().save(::ca2::resource_translucent_background);*/
       }
 
       /*      if(System.directrix()->m_varTopicQuery.has_property("install")
@@ -259,20 +259,20 @@ namespace plane
    bool session::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
    {
-      return ::ca::application::_001OnCmdMsg(pcmdmsg);
+      return ::ca2::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::ca::application * session::get_app() const
+   ::ca2::application * session::get_app() const
    {
       return ::plane::application::get_app();
    }
 
    void session::load_string_table()
    {
-      ::ca::application::load_string_table();
-      ::ca::application::load_string_table("plane", "");
-      ::ca::application::load_string_table();
-      ::ca::application::load_string_table("platform", "");
+      ::ca2::application::load_string_table();
+      ::ca2::application::load_string_table("plane", "");
+      ::ca2::application::load_string_table();
+      ::ca2::application::load_string_table("platform", "");
 
 
    }
@@ -291,7 +291,7 @@ namespace plane
 
 
 
-   bool session::create_bergedge(sp(::ca::create_context) pcreatecontext)
+   bool session::create_bergedge(sp(::ca2::create_context) pcreatecontext)
    {
       //m_psession->m_pbergedge = this;
       //m_psession->m_pbergedgeInterface = this;
@@ -300,7 +300,7 @@ namespace plane
       if(m_pbergedgedocument == NULL)
       {
 
-         sp(::ca::create_context) createcontextBergedge(allocer());
+         sp(::ca2::create_context) createcontextBergedge(allocer());
          createcontextBergedge.oattrib(pcreatecontext);
          createcontextBergedge->m_spCommandLine->m_varFile.set_type(var::type_empty);
          createcontextBergedge->m_bMakeVisible = false;
@@ -314,7 +314,7 @@ namespace plane
          if(m_pplatformdocument == NULL)
          {
 
-            sp(::ca::create_context) createcontextPlatform;
+            sp(::ca2::create_context) createcontextPlatform;
             createcontextPlatform.oattrib(pcreatecontext);
             createcontextPlatform->m_spCommandLine->m_varFile.set_type(var::type_empty);
             createcontextPlatform->m_bMakeVisible = true;
@@ -357,7 +357,7 @@ namespace plane
 
       pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] = 1;
 
-      sp(::ca::application) pcaapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      sp(::ca2::application) pcaapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
 
       sp(::plane::session) papp = pcaapp;
 
@@ -391,10 +391,10 @@ namespace plane
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void session::on_request(sp(::ca::create_context) pcreatecontext)
+   void session::on_request(sp(::ca2::create_context) pcreatecontext)
    {
 
-      TRACE("::plane::session::on_request(sp(::ca::create_context))");
+      TRACE("::plane::session::on_request(sp(::ca2::create_context))");
 
 
       if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1
@@ -505,7 +505,7 @@ namespace plane
                if(strType.is_empty())
                   strType = "application";
 
-               sp(::ca::application) papp = (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+               sp(::ca2::application) papp = (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
                if(papp == NULL)
                   return;
 
@@ -661,7 +661,7 @@ namespace plane
    }
 
 
-   sp(::plane::application) session::start_application(const char * pszType, const char * pszAppId, sp(::ca::create_context) pcreatecontext)
+   sp(::plane::application) session::start_application(const char * pszType, const char * pszAppId, sp(::ca2::create_context) pcreatecontext)
    {
 
       string strApp(pszAppId);
@@ -739,10 +739,10 @@ namespace plane
    */
 
 
-   bool session::open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate)
+   bool session::open_by_file_extension(const char * pszPathName, ::ca2::application_bias * pbiasCreate)
    {
 
-      sp(::ca::create_context) cc(allocer());
+      sp(::ca2::create_context) cc(allocer());
 
       cc->m_spCommandLine->m_varFile = pszPathName;
 
@@ -756,7 +756,7 @@ namespace plane
    }
 
 
-   bool session::open_by_file_extension(::ca::create_context * pcreatecontext)
+   bool session::open_by_file_extension(::ca2::create_context * pcreatecontext)
    {
 
       string strId;
@@ -778,7 +778,7 @@ namespace plane
 
       }
 
-      if(::ca::str::ends_ci(strPathName, ".cgcl"))
+      if(::ca2::str::ends_ci(strPathName, ".cgcl"))
       {
 
       }
@@ -792,7 +792,7 @@ namespace plane
 
          string str = System.url().get_object(strPathName);
 
-         ::ca::str::begins_eat(str, "/");
+         ::ca2::str::begins_eat(str, "/");
 
          pcreatecontext->m_spCommandLine->m_varFile = str;
 
@@ -822,7 +822,7 @@ namespace plane
       if(papp == NULL)
          return false;
 
-      papp->::ca::request_interface::create(pcreatecontext);
+      papp->::ca2::request_interface::create(pcreatecontext);
 
       return true;
 
@@ -836,10 +836,10 @@ namespace plane
       m_puiParent = NULL;
    }
 
-   //   void session::on_exclusive_instance_conflict(::ca::EExclusiveInstance eexclusive)
+   //   void session::on_exclusive_instance_conflict(::ca2::EExclusiveInstance eexclusive)
    //   {
    //
-   //      if(eexclusive == ::ca::ExclusiveInstanceLocalId)
+   //      if(eexclusive == ::ca2::ExclusiveInstanceLocalId)
    //      {
    //         /*
    //         ::primitive::memory_file file(get_app());
@@ -848,7 +848,7 @@ namespace plane
    //         data.dwData = 1984;
    //         data.cbData = (uint32_t) file.get_length();
    //         data.lpData = file.get_data();
-   //         oswindow oswindow = ::FindWindowA(NULL, "::ca::fontopus::message_wnd::session::");
+   //         oswindow oswindow = ::FindWindowA(NULL, "::ca2::fontopus::message_wnd::session::");
    //
    //         ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);*/
    //
@@ -856,7 +856,7 @@ namespace plane
    //
    //         small_ipc_tx_channel channel;
    //
-   //         if(channel.open("::ca::fontopus::message_wnd::session::"))
+   //         if(channel.open("::ca2::fontopus::message_wnd::session::"))
    //         {
    //            channel.send(command()->m_varTopicFile, false);
    //            channel.close();
@@ -874,7 +874,7 @@ namespace plane
    //   }
    //
 
-   void session::request_create(sp(::ca::create_context) pcreatecontext)
+   void session::request_create(sp(::ca2::create_context) pcreatecontext)
    {
 
       //      if(m_pbergedgeInterface != NULL)
@@ -889,7 +889,7 @@ namespace plane
                get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
             }
             App(m_pappCurrent).request_create(pcreatecontext);
-            if(pcreatecontext->m_spCommandLine->m_varQuery["document"].ca < ::user::document_interface > () == NULL)
+            if(pcreatecontext->m_spCommandLine->m_varQuery["document"].ca2 < ::user::document_interface > () == NULL)
             {
                goto alt1;
             }
@@ -900,11 +900,11 @@ namespace plane
 alt1:
             if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
             {
-               if(::ca::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca"))
+               if(::ca2::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
                {
                   string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
-                  if(::ca::str::begins_eat(strCommand, "ca2prompt\r")
-                     || ::ca::str::begins_eat(strCommand, "ca2prompt\n"))
+                  if(::ca2::str::begins_eat(strCommand, "ca2prompt\r")
+                     || ::ca2::str::begins_eat(strCommand, "ca2prompt\n"))
                   {
                      strCommand.trim();
                      command()->add_fork_uri(strCommand);
@@ -943,11 +943,11 @@ alt1:
 
       if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
       {
-         if(::ca::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca"))
+         if(::ca2::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
          {
             string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
-            if(::ca::str::begins_eat(strCommand, "ca2prompt\r")
-               || ::ca::str::begins_eat(strCommand, "ca2prompt\n"))
+            if(::ca2::str::begins_eat(strCommand, "ca2prompt\r")
+               || ::ca2::str::begins_eat(strCommand, "ca2prompt\n"))
             {
                strCommand.trim();
                command()->add_fork_uri(strCommand);
@@ -988,10 +988,10 @@ alt1:
       request_file(m_varTopicFile);
    }
 
-   /*void session::request_application(const char * pszId, var varFile, var varQuery, ::ca::application_bias * pbiasCreate)
+   /*void session::request_application(const char * pszId, var varFile, var varQuery, ::ca2::application_bias * pbiasCreate)
    {
 
-   ::ca::application_request request;
+   ::ca2::application_request request;
 
    request.m_iEdge         = m_iEdge;
    request.m_strApp        = pszId;
@@ -1003,9 +1003,9 @@ alt1:
 
    }*/
    /*
-   sp(::ca::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   sp(::ca2::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca2::application_bias * pbiasCreate)
    {
-   sp(::ca::application) papp = NULL;
+   sp(::ca2::application) papp = NULL;
 
    if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
    return papp;
@@ -1029,7 +1029,7 @@ alt1:
    throw e;
 
    }
-   catch(::ca::exception & e)
+   catch(::ca2::exception & e)
    {
 
    if(!Application.on_run_exception(e))
@@ -1056,7 +1056,7 @@ alt1:
       return true;
    }
 
-   sp(::ca::application) session::get_current_application()
+   sp(::ca2::application) session::get_current_application()
    {
       return m_pappCurrent;
    }
@@ -1072,14 +1072,14 @@ alt1:
    }*/
    //   
    //
-   //   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcreatecontext)
+   //   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca2::create_context) pcreatecontext)
    //   {
    //
    //
    //      sp(::user::interaction) puiParent = NULL;
    //
-   //      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >() != NULL)
-   //         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >();
+   //      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca2 < ::user::interaction >() != NULL)
+   //         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca2 < ::user::interaction >();
    //
    //      if(puiParent == NULL && pcreatecontext->m_puiParent != NULL)
    //      {
@@ -1159,7 +1159,7 @@ alt1:
    //
    //   }
    //
-   /*   ::user::place_holder_ptra session::get_place_holder(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
+   /*   ::user::place_holder_ptra session::get_place_holder(sp(::user::main_frame) pmainframe, sp(::ca2::create_context) pcreatecontext)
    {
 
    UNREFERENCED_PARAMETER(pcreatecontext);
@@ -1191,7 +1191,7 @@ alt1:
    }*/
 
    /*
-   bool session::place(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
+   bool session::place(sp(::user::main_frame) pmainframe, sp(::ca2::create_context) pcreatecontext)
    {
 
    get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
@@ -1212,7 +1212,7 @@ alt1:
 
       strSentinelPath = System.dir().ca2("stage/x86/app-sentinel.exe");
 
-      System.os().local_machine_set_run("ca app-sentinel", "\"" + strSentinelPath + "\"");
+      System.os().local_machine_set_run("ca2 app-sentinel", "\"" + strSentinelPath + "\"");
 
 
       System.os().defer_register_ca2_plugin_for_mozilla();
@@ -1379,7 +1379,7 @@ alt1:
 
 
 
-   void session::on_app_request_bergedge_callback(sp(::ca::application) papp)
+   void session::on_app_request_bergedge_callback(sp(::ca2::application) papp)
    {
       if(&App(papp) != NULL)
       {
@@ -1479,9 +1479,9 @@ alt1:
 
    }
 
-   void session::on_exclusive_instance_conflict(::ca::EExclusiveInstance eexclusive)
+   void session::on_exclusive_instance_conflict(::ca2::EExclusiveInstance eexclusive)
    {
-      if(eexclusive == ::ca::ExclusiveInstanceLocalId)
+      if(eexclusive == ::ca2::ExclusiveInstanceLocalId)
       {
 #ifdef WINDOWSEX
          ::primitive::memory_file file(get_app());
@@ -1490,7 +1490,7 @@ alt1:
          data.dwData = 1984;
          data.cbData = (uint32_t) file.get_length();
          data.lpData = file.get_data();
-         ::oswindow oswindow = ::FindWindowA(NULL, "::ca::fontopus::message_wnd::bergedge::");
+         ::oswindow oswindow = ::FindWindowA(NULL, "::ca2::fontopus::message_wnd::bergedge::");
 
 
          ::SendMessage(oswindow, WM_COPYDATA, 0, (LPARAM) &data);
@@ -1505,10 +1505,10 @@ alt1:
    }
 
 
-   /*void session::request_application(const char * pszId, var varFile, var varQuery, ::ca::application_bias * pbiasCreate)
+   /*void session::request_application(const char * pszId, var varFile, var varQuery, ::ca2::application_bias * pbiasCreate)
    {
 
-   ::ca::application_request request;
+   ::ca2::application_request request;
 
    request.m_iEdge         = m_iEdge;
    request.m_strApp        = pszId;
@@ -1520,9 +1520,9 @@ alt1:
 
    }*/
 
-   sp(::ca::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   sp(::ca2::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca2::application_bias * pbiasCreate)
    {
-      sp(::ca::application) papp = NULL;
+      sp(::ca2::application) papp = NULL;
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
          return papp;
@@ -1541,7 +1541,7 @@ alt1:
             throw e;
 
          }
-         catch(::ca::exception & e)
+         catch(::ca2::exception & e)
          {
 
             if(!App(this).on_run_exception(e))
@@ -1582,14 +1582,14 @@ alt1:
       }
    }
 
-   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcreatecontext)
+   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca2::create_context) pcreatecontext)
    {
 
 
       sp(::user::interaction) puiParent = NULL;
 
-      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >() != NULL)
-         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >();
+      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca2 < ::user::interaction >() != NULL)
+         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca2 < ::user::interaction >();
 
       if(puiParent == NULL && pcreatecontext->m_puiParent != NULL)
       {
@@ -1679,7 +1679,7 @@ alt1:
 
    }
 
-   ::user::place_holder_ptra session::get_place_holder(sp(::user::frame_window) pmainframe, sp(::ca::create_context) pcreatecontext)
+   ::user::place_holder_ptra session::get_place_holder(sp(::user::frame_window) pmainframe, sp(::ca2::create_context) pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -1710,7 +1710,7 @@ alt1:
 
    }
 
-   bool session::place(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
+   bool session::place(sp(::user::main_frame) pmainframe, sp(::ca2::create_context) pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
@@ -1736,7 +1736,7 @@ alt1:
    void session::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
-      sp(::ca::application) papp = NULL;
+      sp(::ca2::application) papp = NULL;
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {

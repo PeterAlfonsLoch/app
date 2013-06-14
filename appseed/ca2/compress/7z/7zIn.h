@@ -86,7 +86,7 @@ namespace n7z
    };
 
    class CInByte2 :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
       const byte *_buffer;
       size_t _size;
@@ -114,11 +114,11 @@ namespace n7z
    const uint32_t kHeaderSize = 32;
 
    class CInArchive :
-      virtual ::ca::object
+      virtual ::ca2::object
    {
       friend class CStreamSwitch;
 
-      sp(::ca::byte_input_stream) _stream;
+      sp(::ca2::byte_input_stream) _stream;
 
       spa(CInByte2) _inByteVector;
       CInByte2 *_inByteBack;
@@ -143,7 +143,7 @@ namespace n7z
       }
 
    private:
-      HRESULT FindAndReadSignature(::ca::byte_input_stream *stream, const file_position *searchHeaderSizeLimit);
+      HRESULT FindAndReadSignature(::ca2::byte_input_stream *stream, const file_position *searchHeaderSizeLimit);
 
       void ReadBytes(byte *data, size_t size) { _inByteBack->ReadBytes(data, size); }
       byte ReadByte() { return _inByteBack->ReadByte(); }
@@ -168,7 +168,7 @@ namespace n7z
          array<uint32_t> &packCRCs);
 
       void ReadUnpackInfo(
-         const smart_pointer_array < ::ca::byte_buffer >  *dataVector,
+         const smart_pointer_array < ::ca2::byte_buffer >  *dataVector,
          smart_pointer_array < CFolder > &folders);
 
       void ReadSubStreamsInfo(
@@ -179,7 +179,7 @@ namespace n7z
          array<uint32_t> &digests);
 
       void ReadStreamsInfo(
-         const smart_pointer_array < ::ca::byte_buffer >  *dataVector,
+         const smart_pointer_array < ::ca2::byte_buffer >  *dataVector,
          file_position &dataOffset,
          array<file_size> &packSizes,
          bool_array &packCRCsDefined,
@@ -193,11 +193,11 @@ namespace n7z
 
       void ReadBoolVector(int32_t numItems, bool_array &v);
       void ReadBoolVector2(int32_t numItems, bool_array &v);
-      void ReadUInt64DefVector(const smart_pointer_array < ::ca::byte_buffer > &dataVector, CUInt64DefVector &v, int32_t numFiles);
+      void ReadUInt64DefVector(const smart_pointer_array < ::ca2::byte_buffer > &dataVector, CUInt64DefVector &v, int32_t numFiles);
       HRESULT ReadAndDecodePackedStreams(
          ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
          file_position baseOffset, file_position &dataOffset,
-         smart_pointer_array < ::ca::byte_buffer > &dataVector,
+         smart_pointer_array < ::ca2::byte_buffer > &dataVector,
          ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
          );
       HRESULT ReadHeader(
@@ -212,10 +212,10 @@ namespace n7z
          );
    public:
 
-      CInArchive(sp(::ca::application) papp);
+      CInArchive(sp(::ca2::application) papp);
       virtual ~CInArchive();
 
-      HRESULT Open(::ca::byte_input_stream *stream, const file_position *searchHeaderSizeLimit); // S_FALSE means is not archive
+      HRESULT Open(::ca2::byte_input_stream *stream, const file_position *searchHeaderSizeLimit); // S_FALSE means is not archive
       void Close();
 
       HRESULT ReadDatabase(

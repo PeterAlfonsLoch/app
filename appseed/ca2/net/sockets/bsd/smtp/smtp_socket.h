@@ -1,10 +1,10 @@
 #pragma once
 
 class CLASS_DECL_ca2 email :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
-   email(sp(::ca::application) papp);
+   email(sp(::ca2::application) papp);
 
    class CLASS_DECL_ca2 address
    {

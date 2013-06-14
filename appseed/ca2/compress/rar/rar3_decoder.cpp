@@ -20,7 +20,7 @@ namespace libcompress
 
       static void *SzBigAlloc(void *, size_t size) { return BigAlloc(size); }
       static void SzBigFree(void *, void *address) { BigFree(address); }
-      static ::ca::ISzAlloc g_BigAlloc = { SzBigAlloc, SzBigFree };
+      static ::ca2::ISzAlloc g_BigAlloc = { SzBigAlloc, SzBigFree };
 
       static const uint32_t kNumAlignReps = 15;
 
@@ -461,13 +461,13 @@ namespace libcompress
                   return S_OK;
                }
             }
-            int32_t c = DecodePpmSymbol();
-            if (c < 0)
+            int32_t ca = DecodePpmSymbol();
+            if (ca < 0)
             {
                PpmError = true;
                return S_FALSE;
             }
-            if (c == PpmEscChar)
+            if (ca == PpmEscChar)
             {
                int32_t nextCh = DecodePpmSymbol();
                if (nextCh < 0)
@@ -496,24 +496,24 @@ namespace libcompress
                   {
                      for (int32_t i = 0; i < 3; i++)
                      {
-                        int32_t c = DecodePpmSymbol();
-                        if (c < 0)
+                        int32_t ca = DecodePpmSymbol();
+                        if (ca < 0)
                         {
                            PpmError = true;
                            return S_FALSE;
                         }
-                        distance = (distance << 8) + (byte)c;
+                        distance = (distance << 8) + (byte)ca;
                      }
                      distance++;
                      length += 28;
                   }
-                  int32_t c = DecodePpmSymbol();
-                  if (c < 0)
+                  int32_t ca = DecodePpmSymbol();
+                  if (ca < 0)
                   {
                      PpmError = true;
                      return S_FALSE;
                   }
-                  length += c;
+                  length += ca;
                   if (distance >= _lzSize)
                      return S_FALSE;
                   CopyBlock(distance, length);
@@ -521,7 +521,7 @@ namespace libcompress
                   continue;
                }
             }
-            PutByte((byte)c);
+            PutByte((byte)ca);
             num--;
          }
          while (num >= 0);
@@ -847,7 +847,7 @@ namespace libcompress
          return S_OK;
       }
 
-      ::ca::HRes decoder::Code(::ca::reader *inStream, ::ca::writer *outStream,
+      ::ca2::HRes decoder::Code(::ca2::reader *inStream, ::ca2::writer *outStream,
          const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress)
       {
          try
@@ -883,13 +883,13 @@ namespace libcompress
             _unpackSize = *outSize;
             return CodeReal(progress);
          }
-         catch(const ::ca::in_buffer_exception &e)  { return e.ErrorCode; }
+         catch(const ::ca2::in_buffer_exception &e)  { return e.ErrorCode; }
          catch(...) { return S_FALSE; }
          // CNewException is possible here. But probably CNewException is caused
          // by error in data stream.
       }
 
-      ::ca::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
+      ::ca2::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
       {
          if (size < 1)
             return E_INVALIDARG;

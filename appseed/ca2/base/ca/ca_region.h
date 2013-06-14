@@ -3,7 +3,7 @@
 
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -47,9 +47,9 @@ namespace ca
       LPPOINT              m_lppoints;
       LPINT                m_lppolycounts;
       int32_t                  m_nCount;
-      ::ca::e_fill_mode    m_efillmode;
-      ::ca::region *       m_pregion1;
-      ::ca::region *       m_pregion2;
+      ::ca2::e_fill_mode    m_efillmode;
+      ::ca2::region *       m_pregion1;
+      ::ca2::region *       m_pregion2;
       e_combine            m_ecombine;
 
 
@@ -62,16 +62,16 @@ namespace ca
       virtual bool create_rect(LPCRECT lpRect);
       virtual bool create_oval(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool create_oval(LPCRECT lpRect);
-      virtual bool create_polygon(LPPOINT lpPoints, int32_t nCount, ::ca::e_fill_mode efillmode);
-      virtual bool create_poly_polygon(LPPOINT lpPoints, LPINT lpPolyCounts, int32_t nCount, ::ca::e_fill_mode efillmode);
+      virtual bool create_polygon(LPPOINT lpPoints, int32_t nCount, ::ca2::e_fill_mode efillmode);
+      virtual bool create_poly_polygon(LPPOINT lpPoints, LPINT lpPolyCounts, int32_t nCount, ::ca2::e_fill_mode efillmode);
       //virtual bool add_round_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3);
-//      virtual bool add_path(::ca::graphics_path * ppath);
+//      virtual bool add_path(::ca2::graphics_path * ppath);
 
 //      virtual void SetRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
 //      virtual void SetRectRgn(LPCRECT lpRect);
-      virtual bool combine(const ::ca::region * prgn1, const ::ca::region * prgn2, e_combine ecombine);
-      //virtual int32_t CopyRgn(const ::ca::region* pRgnSrc);
-      //virtual bool EqualRgn(const ::ca::region* pRgn) const;
+      virtual bool combine(const ::ca2::region * prgn1, const ::ca2::region * prgn2, e_combine ecombine);
+      //virtual int32_t CopyRgn(const ::ca2::region* pRgnSrc);
+      //virtual bool EqualRgn(const ::ca2::region* pRgn) const;
       virtual bool translate(int32_t x, int32_t y);
       virtual bool translate(POINT point);
       virtual bool get_bounding_box(LPRECT lpRect) const;
@@ -93,13 +93,13 @@ namespace ca
 
       virtual bool destroy();
 
-      region & operator = (const ::ca::region & regionSrc);
+      region & operator = (const ::ca2::region & regionSrc);
 
    };
 
 
    class CLASS_DECL_ca2 region_sp :
-      public ::c::smart_pointer < region >
+      public ::ca::smart_pointer < region >
    {
    public:
 
@@ -107,13 +107,13 @@ namespace ca
       {
       }
 
-      region_sp(const ::c::smart_pointer < region > & p) :
-         ::c::smart_pointer < region > (p)
+      region_sp(const ::ca::smart_pointer < region > & p) :
+         ::ca::smart_pointer < region > (p)
       {
       }
 
       region_sp(allocatorsp allocer) :
-         ::c::smart_pointer < region > (allocer)
+         ::ca::smart_pointer < region > (allocer)
       {
       }
 
@@ -121,7 +121,7 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

@@ -9,11 +9,11 @@ namespace fs
 
 
    class CLASS_DECL_ca2 data :
-      virtual public ::ca::data
+      virtual public ::ca2::data
    {
    public:
 
-      data(sp(::ca::application) papp);
+      data(sp(::ca2::application) papp);
 
 
       // optional if ls_dir is implemented
@@ -34,8 +34,8 @@ namespace fs
 
       virtual bool file_move(const char * pszDst, const char * pszSrc);
 
-      virtual ::ca::filesp get_file(var varFile, UINT nOpenFlags);
-      virtual ::ca::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
+      virtual ::ca2::filesp get_file(var varFile, UINT nOpenFlags);
+      virtual ::ca2::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
 
       virtual bool fast_has_subdir(const char * pszPath);

@@ -5,8 +5,8 @@ namespace userex
 {
 
 
-   minute_list_view::minute_list_view(sp(::ca::application) papp) :
-      ca(papp),
+   minute_list_view::minute_list_view(sp(::ca2::application) papp) :
+      ca2(papp),
       user::scroll_view(papp),
       user::form(papp),
       user::list(papp),
@@ -43,7 +43,7 @@ namespace userex
 
 
 
-   void minute_list_view::install_message_handling(::ca::message::dispatch * pinterface)
+   void minute_list_view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       simple_list_view::install_message_handling(pinterface);
       USER_MESSAGE_LINK(message_create, pinterface, this, &minute_list_view::_001OnCreate);
@@ -71,7 +71,7 @@ namespace userex
 
    }
 
-   void minute_list_view::_001OnCreate(::ca::signal_object * pobj)
+   void minute_list_view::_001OnCreate(::ca2::signal_object * pobj)
    {
       pobj->previous();
       if(pobj->m_bRet)

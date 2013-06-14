@@ -1,21 +1,21 @@
 
 
-namespace ca
+namespace ca2
 {
 
 
    class create_context;
 
 
-} // namespace ca
+} // namespace ca2
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 command_thread :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -30,14 +30,14 @@ namespace ca
       var                              m_varTopicQuery; // accumulatted, reset, set, or clear as command_thread history passes
 
 
-      command_thread(sp(::ca::application) papp);
+      command_thread(sp(::ca2::application) papp);
       virtual ~command_thread();
 
       virtual var run();
 
-      virtual void request_create(sp(::ca::create_context) pcreationcontext);
+      virtual void request_create(sp(::ca2::create_context) pcreationcontext);
 
-      virtual void on_request(sp(::ca::create_context) pcreationcontext);
+      virtual void on_request(sp(::ca2::create_context) pcreationcontext);
 
 
       // should transform the following command in a "command_line", a command line can/should/must/shall/ought to be virtually anything
@@ -47,8 +47,8 @@ namespace ca
 
       virtual bool is_thread();
 
-      virtual void consolidate(sp(::ca::create_context) pcreatecontext);
-      virtual void consolidate(sp(::ca::command_thread) pthread);
+      virtual void consolidate(sp(::ca2::create_context) pcreatecontext);
+      virtual void consolidate(sp(::ca2::command_thread) pthread);
 
       virtual var & property(const char * pszKey);
       virtual bool has_property(const char * pszKey);

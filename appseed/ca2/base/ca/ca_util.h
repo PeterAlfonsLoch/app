@@ -13,7 +13,7 @@ CLASS_DECL_ca2 ::user::menu *  FindPopupMenuFromID(::user::menu * pMenu, UINT nI
 CLASS_DECL_ca2 ::user::menu *  FindPopupMenuFromID(::user::menu * pMenu, UINT nID);
 
 
-namespace ca
+namespace ca2
 {
 //   string CLASS_DECL_ca2 file_as_string(const char * lpcsz);
 //   bool CLASS_DECL_ca2 file_put_contents(const char * lpcszFileNmae, const char * lpcszContents);
@@ -23,6 +23,6 @@ namespace ca
 //   bool CLASS_DECL_ca2 is_dir(const char * lpcszCandidate);
 
    
-} //namespace ca
+} //namespace ca2
 
 #endif // _UTIL__UTIL_

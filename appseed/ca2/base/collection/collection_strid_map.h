@@ -1,13 +1,13 @@
 #pragma once
 
 
-template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ::ca::strid_hash, class EQUALS = ::ca::strid_equals  >
+template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ::ca2::strid_hash, class EQUALS = ::ca2::strid_equals  >
 class strid_map :
    virtual public attrib_map < map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > >
 {
 public:
 
-   strid_map(::ca::application * papp = NULL, ::count nBlockSize = 256);
+   strid_map(::ca2::application * papp = NULL, ::count nBlockSize = 256);
    strid_map(const strid_map & map);
 
 
@@ -18,8 +18,8 @@ public:
 
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(::ca::application * papp, ::count nBlockSize) :
-   ::ca::ca(papp), 
+strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(::ca2::application * papp, ::count nBlockSize) :
+   ::ca2::ca2(papp), 
    map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > (papp, nBlockSize)
 {
 }
@@ -27,7 +27,7 @@ strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(::ca::application * papp
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(const strid_map & map) :
-   ::ca::ca(map.get_app()),
+   ::ca2::ca2(map.get_app()),
    attrib_map < ::map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > > (map)
 {
 }
@@ -108,5 +108,5 @@ public:
 
 
 
-#define stridsp(c) strid_map < sp(c) >
+#define stridsp(ca) strid_map < sp(ca) >
 

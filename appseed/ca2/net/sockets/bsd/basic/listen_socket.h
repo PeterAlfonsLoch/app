@@ -148,7 +148,7 @@ namespace sockets
       \param h socket_handler_base reference
       \param use_creator Optional use of creator (default true) */
       listen_socket(socket_handler_base& h,bool use_creator = true) : 
-         ::ca::ca(h.get_app()), 
+         ::ca2::ca2(h.get_app()), 
          socket(h),
          listen_socket_base(h),
          m_bHasCreate(false),

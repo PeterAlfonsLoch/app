@@ -4,7 +4,7 @@
 
 
 
-namespace ca
+namespace ca2
 {
 
    const char * psz_empty_app_id = "";
@@ -33,7 +33,7 @@ namespace ca
 
    }
 
-   bool library::open(sp(::ca::application) papp, const char * pszPath, bool bAutoClose)
+   bool library::open(sp(::ca2::application) papp, const char * pszPath, bool bAutoClose)
    {
 
       set_app(papp);
@@ -46,7 +46,7 @@ namespace ca
       try
       {
 
-         if(!::c::library::open(strCa2Name))
+         if(!::ca::library::open(strCa2Name))
             return false;
 
       }
@@ -132,7 +132,7 @@ namespace ca
 
          strPrefix += "_";
 
-         ::ca::str::begins_eat_ci(strName, strPrefix);
+         ::ca2::str::begins_eat_ci(strName, strPrefix);
 
          return strName;
 
@@ -173,7 +173,7 @@ namespace ca
          try
          {
 
-            if(!::c::library::close())
+            if(!::ca::library::close())
                bOk = false;
 
          }
@@ -215,16 +215,16 @@ namespace ca
          strLibraryName = "ca2";
 
       }
-      else if(!::ca::str::begins_eat(strLibraryName, "libca2"))
+      else if(!::ca2::str::begins_eat(strLibraryName, "libca2"))
       {
 
-         ::ca::str::begins_eat(strLibraryName, "lib");
+         ::ca2::str::begins_eat(strLibraryName, "lib");
 
       }
 
 #elif defined(METROWIN)
 
-//      ::ca::str::begins_eat_ci(strLibraryName, "m_");
+//      ::ca2::str::begins_eat_ci(strLibraryName, "m_");
 
 #endif
 
@@ -265,16 +265,16 @@ namespace ca
          strLibraryName = "ca2";
 
       }
-      else if(!::ca::str::begins_eat(strLibraryName, "libca2"))
+      else if(!::ca2::str::begins_eat(strLibraryName, "libca2"))
       {
 
-         ::ca::str::begins_eat(strLibraryName, "lib");
+         ::ca2::str::begins_eat(strLibraryName, "lib");
 
       }
 
 #elif defined(METROWIN)
 
-//      ::ca::str::begins_eat_ci(strLibraryName, "m_");
+//      ::ca2::str::begins_eat_ci(strLibraryName, "m_");
 
 #endif
 
@@ -284,7 +284,7 @@ namespace ca
 
       strPrefix += "/";
 
-      ::ca::str::begins_eat(strAppName, strPrefix);
+      ::ca2::str::begins_eat(strAppName, strPrefix);
 
       if(!contains_app(strAppName))
       {
@@ -295,7 +295,7 @@ namespace ca
 
          strPrefix += "/";
 
-         ::ca::str::begins_eat(strAppName, strPrefix);
+         ::ca2::str::begins_eat(strAppName, strPrefix);
 
          if(!contains_app(strAppName))
             return "";
@@ -306,7 +306,7 @@ namespace ca
    }
 
 
-   sp(::ca::application) library::get_new_app(const char * pszAppId)
+   sp(::ca2::application) library::get_new_app(const char * pszAppId)
    {
 
       try
@@ -320,7 +320,7 @@ namespace ca
             if(strAppName.is_empty())
                return NULL;
 
-            sp(::ca::application) papp = m_pca2library->get_new_app(strAppName);
+            sp(::ca2::application) papp = m_pca2library->get_new_app(strAppName);
 
             if(papp == NULL)
                return NULL;
@@ -362,7 +362,7 @@ namespace ca
 
 #if defined(LINUX) || defined(MACOS)
 
-         ::ca::str::begins_eat(strAppId, "lib");
+         ::ca2::str::begins_eat(strAppId, "lib");
 
 #elif defined(METROWIN)
 
@@ -374,7 +374,7 @@ namespace ca
 
          strPrefix += "_";
 
-         if(::ca::str::begins_eat_ci(strAppId, strPrefix))
+         if(::ca2::str::begins_eat_ci(strAppId, strPrefix))
          {
 
             stra.add(strAppId);
@@ -488,7 +488,7 @@ namespace ca
    }
 
 
-   ::dynamic_source::script_manager * library::create_script_manager(sp(::ca::application) papp)
+   ::dynamic_source::script_manager * library::create_script_manager(sp(::ca2::application) papp)
    {
 
       if(m_pca2library != NULL)
@@ -511,7 +511,7 @@ namespace ca
 
    }
 
-   ::dynamic_source::script * library::create_script(sp(::ca::application) papp, const char * pszScript)
+   ::dynamic_source::script * library::create_script(sp(::ca2::application) papp, const char * pszScript)
    {
 
       if(m_pca2library != NULL)
@@ -535,6 +535,6 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 

@@ -7,11 +7,11 @@ namespace platform
       virtual public ::userex::pane_tab_view
    {
    public:
-      pane_view(sp(::ca::application) papp); 
+      pane_view(sp(::ca2::application) papp); 
 
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       virtual ~pane_view();
    #ifdef DEBUG

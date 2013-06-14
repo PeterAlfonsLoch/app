@@ -8,13 +8,13 @@ class CLASS_DECL_ca2 file_manager_operation_list_view :
 {
 public:
 
-   file_manager_operation_list_view(sp(::ca::application) papp);
+   file_manager_operation_list_view(sp(::ca2::application) papp);
 
-   virtual void install_message_handling(::ca::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
    void _001InsertColumns();
 
-   virtual void OnDraw(::ca::graphics * pdc);
+   virtual void OnDraw(::ca2::graphics * pdc);
 
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnTimer)
@@ -33,7 +33,7 @@ public:
 
    
 
-   void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object * pHint);
+   void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object * pHint);
    sp(file_manager_operation_document) get_document();
 };
       

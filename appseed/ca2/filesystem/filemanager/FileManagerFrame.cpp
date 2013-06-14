@@ -2,8 +2,8 @@
 #include "FileManagerFrame.h"
 
 
-FileManagerFrame::FileManagerFrame(sp(::ca::application) papp) :
-   ca(papp),
+FileManagerFrame::FileManagerFrame(sp(::ca2::application) papp) :
+   ca2(papp),
    simple_frame_window(papp),
    m_toolbar(papp),
    m_menubar(papp)
@@ -24,7 +24,7 @@ FileManagerFrame::~FileManagerFrame()
 /////////////////////////////////////////////////////////////////////////////
 // FileManagerFrame message handlers
 
-void FileManagerFrame::_001OnCreate(::ca::signal_object * pobj) 
+void FileManagerFrame::_001OnCreate(::ca2::signal_object * pobj) 
 {
    
    pobj->previous();
@@ -110,7 +110,7 @@ bool FileManagerFrame::CreateBars()
 }
 
 
-void FileManagerFrame::install_message_handling(::ca::message::dispatch * pinterface)
+void FileManagerFrame::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    simple_frame_window::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_SETTEXT, pinterface, this, &FileManagerFrame::_001OnSetText);
@@ -118,9 +118,9 @@ void FileManagerFrame::install_message_handling(::ca::message::dispatch * pinter
 }
 
 
-void FileManagerFrame::_001OnSetText(::ca::signal_object * pobj)
+void FileManagerFrame::_001OnSetText(::ca2::signal_object * pobj)
 {
-//   SCAST_PTR(::ca::message::base, pbase, pobj)
+//   SCAST_PTR(::ca2::message::base, pbase, pobj)
 
    pobj->previous();
 

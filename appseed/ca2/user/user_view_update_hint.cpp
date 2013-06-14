@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   view_update_hint::view_update_hint(sp(::ca::application) papp) :
-      ca(papp)
+   view_update_hint::view_update_hint(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
    }

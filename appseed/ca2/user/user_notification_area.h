@@ -18,7 +18,7 @@ namespace user
 
 
    struct CLASS_DECL_ca2 TrayItemInfo :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
       oswindow    m_oswindow;
       UINT        uID;
@@ -36,7 +36,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 notification_area :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -53,7 +53,7 @@ namespace user
       notification_area();
       virtual ~notification_area();
 
-      virtual void Initialize(sp(::ca::application) papp);
+      virtual void Initialize(sp(::ca2::application) papp);
 
       void ListTrayIcons(int32_t defindex = 0);
       void EditCopy(int32_t iItem);

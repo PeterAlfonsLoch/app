@@ -3,7 +3,7 @@
 
 
 FileManagerTemplate::FileManagerTemplate(::filemanager::filemanager * pfilemanager) :
-   ca(pfilemanager->get_app())
+   ca2(pfilemanager->get_app())
 {
 
    m_pfilemanager = pfilemanager;
@@ -30,7 +30,7 @@ FileManagerTemplate::~FileManagerTemplate()
    }
 }
 
-sp(::filemanager::document) FileManagerTemplate::open(sp(::ca::create_context) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata)
+sp(::filemanager::document) FileManagerTemplate::open(sp(::ca2::create_context) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata)
 {
    sp(::filemanager::document) pdoc =  (m_pdoctemplateMain->open_document_file(pcreatecontext));
    if(pdoc != NULL)
@@ -80,7 +80,7 @@ sp(::filemanager::document) FileManagerTemplate::create_new_document(
 
 sp(::filemanager::document) FileManagerTemplate::OpenChild(bool bMakeVisible, bool bTransparentBackground, sp(::user::interaction) pwndParent, filemanager::data * pfilemanagerdata)
 {
-   sp(::ca::create_context) createcontext(allocer());
+   sp(::ca2::create_context) createcontext(allocer());
    createcontext->m_bMakeVisible = false;
    createcontext->m_puiParent = pwndParent;
    sp(::filemanager::document) pdoc =  (m_pdoctemplateChild->open_document_file(createcontext));
@@ -112,7 +112,7 @@ sp(::filemanager::document) FileManagerTemplate::OpenChild(bool bMakeVisible, bo
 sp(::filemanager::document) FileManagerTemplate::open_child_list(bool bMakeVisible, bool bTransparentBackground, sp(::user::interaction) pwndParent, ::filemanager::data * pfilemanagerdata)
 {
    UNREFERENCED_PARAMETER(bMakeVisible);
-   sp(::ca::create_context) createcontext(allocer());
+   sp(::ca2::create_context) createcontext(allocer());
    createcontext->m_bMakeVisible = false;
    createcontext->m_puiParent = pwndParent;
    sp(::filemanager::document) pdoc =  (m_pdoctemplateChildList->open_document_file(createcontext));
@@ -148,7 +148,7 @@ void FileManagerTemplate::Initialize(int32_t iTemplate, const char * pszMatter)
       get_app(),
       pszMatter,
       System.type_info < ::filemanager::document > (),
-      System.type_info < FileManagerMainFrame > (),       // main SDI frame ::ca::window
+      System.type_info < FileManagerMainFrame > (),       // main SDI frame ::ca2::window
       System.type_info < FileManagerTabView > ());
 
    m_pdoctemplate = new ::user::multiple_document_template(

@@ -5,12 +5,12 @@
 
 class CLASS_DECL_ca2 stringa :
    virtual public string_array,
-   virtual public ::ca::byte_serializable
+   virtual public ::ca2::byte_serializable
 {
 public:
 
 
-   stringa(sp(::ca::application) papp = NULL);
+   stringa(sp(::ca2::application) papp = NULL);
    stringa(const char * psz);
    stringa(const string & str);
    stringa(const var & var);
@@ -44,10 +44,10 @@ public:
    string pop_random_element();
 
    string pop(index i = -1);
-   void slice(stringa & stra, index index, ::count c = -1);
+   void slice(stringa & stra, index index, ::count ca = -1);
    void remove(index index, ::count count);
-   void splice(const stringa & stra, index index, ::count c = -1);
-   void splice(const stringa & stra, index index, stringa & straRemoved, ::count c = -1);
+   void splice(const stringa & stra, index index, ::count ca = -1);
+   void splice(const stringa & stra, index index, stringa & straRemoved, ::count ca = -1);
 
 
    // if string is found, move it to specified position
@@ -121,8 +121,8 @@ public:
 
    void replace(const char * lpszSearch, const char * lpszReplace);
 
-   void write(::ca::byte_output_stream & ostream);
-   void read(::ca::byte_input_stream & istream);
+   void write(::ca2::byte_output_stream & ostream);
+   void read(::ca2::byte_input_stream & istream);
 
 
    void get_format_string(string & str, const char * lpcszSeparator) const;

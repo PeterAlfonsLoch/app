@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
    interlocked_long_pulse::interlocked_long_pulse(interlocked_long * plockedlong, long lLevel)
@@ -22,4 +22,4 @@ namespace ca
       }
    }
 
-} // namespace ca
+} // namespace ca2

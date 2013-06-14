@@ -83,17 +83,17 @@
          /** Transfer coding 'chunked' */
          bool IsChunked() { return m_b_chunked; }
 
-         ::ca::property & inattr(id idName);
-         ::ca::property_set & inattrs();
+         ::ca2::property & inattr(id idName);
+         ::ca2::property_set & inattrs();
 
-         ::ca::property & inheader(id idName);
-         ::ca::property_set & inheaders();
+         ::ca2::property & inheader(id idName);
+         ::ca2::property_set & inheaders();
 
-         ::ca::property & outattr(id idName);
-         ::ca::property_set & outattrs();
+         ::ca2::property & outattr(id idName);
+         ::ca2::property_set & outattrs();
 
-         ::ca::property & outheader(id idName);
-         ::ca::property_set & outheaders();
+         ::ca2::property & outheader(id idName);
+         ::ca2::property_set & outheaders();
 
          http::request & request();
          http::response & response();
@@ -123,42 +123,42 @@
          return m_response;
       }
 
-      inline ::ca::property & http_socket::inattr(id idName)
+      inline ::ca2::property & http_socket::inattr(id idName)
       {
          return m_request.attr(idName);
       }
 
-      inline ::ca::property_set & http_socket::inattrs()
+      inline ::ca2::property_set & http_socket::inattrs()
       {
          return m_request.attrs();
       }
 
-      inline ::ca::property & http_socket::outattr(id idName)
+      inline ::ca2::property & http_socket::outattr(id idName)
       {
          return m_response.attr(idName);
       }
 
-      inline ::ca::property_set & http_socket::outattrs()
+      inline ::ca2::property_set & http_socket::outattrs()
       {
          return m_response.attrs();
       }
 
-      inline ::ca::property & http_socket::inheader(id idName)
+      inline ::ca2::property & http_socket::inheader(id idName)
       {
          return m_request.header(idName);
       }
 
-      inline ::ca::property_set & http_socket::inheaders()
+      inline ::ca2::property_set & http_socket::inheaders()
       {
          return m_request.headers();
       }
 
-      inline ::ca::property & http_socket::outheader(id idName)
+      inline ::ca2::property & http_socket::outheader(id idName)
       {
          return m_response.header(idName);
       }
 
-      inline ::ca::property_set & http_socket::outheaders()
+      inline ::ca2::property_set & http_socket::outheaders()
       {
          return m_response.headers();
       }

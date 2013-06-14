@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2001 
+ Copyright (ca) 2001 
  Author: Konstantin Boukreev 
  E-mail: konstantin@mail.primorye.ru 
  Created: 25.12.2001 14:47:20
@@ -29,7 +29,7 @@
 
 class translator :
    public aux_thunk < translator >,
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {      
  public:
    translator();

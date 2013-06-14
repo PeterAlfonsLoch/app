@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
    /////////////////////////////////////////////////////////////////////////////
@@ -99,11 +99,11 @@ namespace ca
       if(!m_bUpdated)
       {
 
-         const_cast < ::ca::graphics_object * > (this)->destroy();
+         const_cast < ::ca2::graphics_object * > (this)->destroy();
          
-         const_cast < ::ca::graphics_object * > (this)->create();
+         const_cast < ::ca2::graphics_object * > (this)->create();
          
-         const_cast < ::ca::graphics_object * > (this)->m_bUpdated = true;
+         const_cast < ::ca2::graphics_object * > (this)->m_bUpdated = true;
          
       }
       
@@ -126,7 +126,7 @@ namespace ca
    }
 
    
-} // namespace ca
+} // namespace ca2
 
 
 

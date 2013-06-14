@@ -3,8 +3,8 @@
 namespace user
 {
 
-   buffer::buffer(sp(::ca::application) papp) :
-      ca(papp),
+   buffer::buffer(sp(::ca2::application) papp) :
+      ca2(papp),
       m_spdib(allocer())
    {
    }
@@ -48,17 +48,17 @@ namespace user
       return &m_semaphoreBuffer;
    }
 
-   ::ca::graphics * buffer::GetBuffer()
+   ::ca2::graphics * buffer::GetBuffer()
    {
       return m_spdib->get_graphics();
    }
 
-   void buffer::InstallMessageHandling(::ca::message::dispatch *pinterface)
+   void buffer::InstallMessageHandling(::ca2::message::dispatch *pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
    }
 
-   void buffer::BitBlt(::ca::graphics * pdc)
+   void buffer::BitBlt(::ca2::graphics * pdc)
    {
       pdc->BitBlt(
          0, 0, 
@@ -69,7 +69,7 @@ namespace user
          SRCCOPY);
    }
 
-   void buffer::BitBlt(LPRECT lprect, ::ca::graphics * pdc)
+   void buffer::BitBlt(LPRECT lprect, ::ca2::graphics * pdc)
    {
       pdc->BitBlt(
          lprect->left, lprect->top, 

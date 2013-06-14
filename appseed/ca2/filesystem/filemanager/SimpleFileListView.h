@@ -36,7 +36,7 @@ namespace filemanager
 
 
 
-      SimpleFileListView(sp(::ca::application) papp);
+      SimpleFileListView(sp(::ca2::application) papp);
 
 
 
@@ -54,7 +54,7 @@ namespace filemanager
       void FileSize();
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
       bool _001OnUpdateCmdUi(cmd_ui * pcmdui);
@@ -99,7 +99,7 @@ namespace filemanager
 
       virtual void _001OnAfterSort();
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
 
    };

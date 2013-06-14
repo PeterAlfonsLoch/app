@@ -8,7 +8,7 @@
  */
 /*
  *   
- * Copyright(c) 2001-2006 Cisco Systems, Inc.
+ * Copyright(ca) 2001-2006 Cisco Systems, Inc.
  * 
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -96,7 +96,7 @@ typedef struct kernel_debug_module {
  * crypto_kernel_t is the data structure for the crypto kernel
  *
  * note that there is *exactly one* instance of this data type,
- * a global var defined in crypto_kernel.c
+ * a global var defined in crypto_kernel.ca
  */
 
 typedef struct {

@@ -5,8 +5,8 @@ namespace userex // ca8 + cube
 {
 
 
-   keyboard_layout::keyboard_layout(sp(::ca::application) papp) :
-      ca(papp),
+   keyboard_layout::keyboard_layout(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::list_data(papp),
       ::user::split_layout(papp),
       
@@ -117,7 +117,7 @@ namespace userex // ca8 + cube
          ptext->_001SetText(strProxy);
          pguie = m_pview->get_child_by_name("port");
          ptext =  (pguie);
-         ptext->_001SetText(::ca::str::from(iProxyPort));
+         ptext->_001SetText(::ca2::str::from(iProxyPort));
       }*/
    }
 

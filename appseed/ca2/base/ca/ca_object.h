@@ -17,7 +17,7 @@ namespace visual
 } // namespace visual
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -26,13 +26,13 @@ namespace ca
    class property_set;
 
 
-} // namespace ca
+} // namespace ca2
 
 
 // a bit of the eternal jealousy/envy : javas capability of locking/synching on any object
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -42,7 +42,7 @@ namespace ca
    public:
 
 
-      ::ca::property_set *     m_psetObject;
+      ::ca2::property_set *     m_psetObject;
 
 
       object();
@@ -55,9 +55,9 @@ namespace ca
       bool IsSerializable() const;
 
 
-      virtual ::ca::property & oprop(const char * psz);
-      virtual ::ca::property & oprop(const char * psz) const;
-      virtual ::ca::property_set & propset();
+      virtual ::ca2::property & oprop(const char * psz);
+      virtual ::ca2::property & oprop(const char * psz) const;
+      virtual ::ca2::property_set & propset();
 
 
       virtual ::visual::icon * set_icon(::visual::icon * picon, bool bBigIcon);
@@ -90,14 +90,14 @@ namespace ca
       object & operator = (const object & objectSrc);       // no implementation
 
 
-      virtual sp(::ca::command_thread) command_thread();
+      virtual sp(::ca2::command_thread) command_thread();
 
    };
 
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
    /*
@@ -9,7 +9,7 @@ namespace ca
       public ::win::registry
    {
    public:
-      file_association(sp(::ca::application) papp);
+      file_association(sp(::ca2::application) papp);
       virtual ~file_association();
 
    protected:
@@ -22,7 +22,7 @@ namespace ca
    };
    */
 
-} // namespace ca
+} // namespace ca2
 
 
 

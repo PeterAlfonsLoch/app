@@ -5,8 +5,8 @@ namespace userfs
 {
 
 
-   list_interface::list_interface(sp(::ca::application) papp) :
-      ca(papp),
+   list_interface::list_interface(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
       user::form(papp),
@@ -100,7 +100,7 @@ namespace userfs
    void list_interface::_017UpdateList(const char * lpcsz)
    {
 
-      ::ca::data::writing writing(get_fs_list_data());
+      ::ca2::data::writing writing(get_fs_list_data());
 
       UNREFERENCED_PARAMETER(lpcsz);
       //UNREFERENCED_PARAMETER(lpsz);
@@ -268,14 +268,14 @@ namespace userfs
    {
 
 
-      ::ca::data::writing writing(m_pdata);
+      ::ca2::data::writing writing(m_pdata);
       _001HideEditingControls();
       _017UpdateList(get_document()->m_strFolder);
 
 
    }
 
-   void list_interface::install_message_handling(::ca::message::dispatch *pinterface)
+   void list_interface::install_message_handling(::ca2::message::dispatch *pinterface)
    {
 
 
@@ -287,7 +287,7 @@ namespace userfs
 
    }
 
-   void list_interface::_001OnDraw(::ca::graphics *pdc)
+   void list_interface::_001OnDraw(::ca2::graphics *pdc)
    {
 /*         if(m_iAnimate <= 0)
       {*/
@@ -550,15 +550,15 @@ namespace userfs
       }
    }
 
-   void list_interface::_001OnVScroll(::ca::signal_object * pobj)
+   void list_interface::_001OnVScroll(::ca2::signal_object * pobj)
    {
-//      SCAST_PTR(::ca::message::scroll, pscroll, pobj)
+//      SCAST_PTR(::ca2::message::scroll, pscroll, pobj)
       //m_iCreateImageListStep = pscroll->m_nPos;
       //m_bRestartCreateImageList = true;
       pobj->m_bRet = false;
    }
 
-   void list_interface::_001OnHScroll(::ca::signal_object * pobj)
+   void list_interface::_001OnHScroll(::ca2::signal_object * pobj)
    {
       pobj->m_bRet = false;
    }
@@ -591,7 +591,7 @@ namespace userfs
       return NULL;
    }
 
-   void list_interface::_001OnFileRename(::ca::signal_object * pobj)
+   void list_interface::_001OnFileRename(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       sp(::user::control) pcontrol = _001GetControlBySubItem(get_fs_list_data()->m_iNameSubItem);
@@ -603,7 +603,7 @@ namespace userfs
       }
    }
 
-   void list_interface::_001OnUpdateFileRename(::ca::signal_object * pobj)
+   void list_interface::_001OnUpdateFileRename(::ca2::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       range range;
@@ -614,10 +614,10 @@ namespace userfs
       pobj->m_bRet = true;
    }
 
-   void list_interface::_001OnShowWindow(::ca::signal_object * pobj)
+   void list_interface::_001OnShowWindow(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca::message::show_window, pshow, pobj)
+//      SCAST_PTR(::ca2::message::show_window, pshow, pobj)
 
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
       if(pcentral == NULL)
@@ -763,8 +763,8 @@ namespace userfs
       }*/
    }
 
-/*   list_interface::create_image_list_thread::create_image_list_thread(sp(::ca::application) papp) :
-      ca(papp),
+/*   list_interface::create_image_list_thread::create_image_list_thread(sp(::ca2::application) papp) :
+      ca2(papp),
       thread(papp)
    {
    }
@@ -824,7 +824,7 @@ namespace userfs
          item.m_iImage = System.user()->shellimageset().GetImage(
             _GetWnd()->GetTopLevelParent()->get_handle(),
             item.m_strPath,
-            ::ca::international::utf8_to_unicode(item.m_strExtra),
+            ::ca2::international::utf8_to_unicode(item.m_strExtra),
             _shell::IconNormal);
 
          m_iCreateImageListStep++;

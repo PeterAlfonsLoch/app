@@ -1,7 +1,7 @@
 #include "framework.h"
 
-file_manager_form_view::file_manager_form_view(sp(::ca::application) papp) :
-   ca(papp),
+file_manager_form_view::file_manager_form_view(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::interaction(papp),
    
    ::user::scroll_view(papp),
@@ -12,7 +12,7 @@ file_manager_form_view::file_manager_form_view(sp(::ca::application) papp) :
 {
 }
 
-void file_manager_form_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint) 
+void file_manager_form_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint) 
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    sp(::filemanager::document) pdoc =  (GetFileManager());
@@ -50,13 +50,13 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          if(m_strPath == "filemanager_add_location_lfs.xhtml")
          {
             stringa stra;
-            GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
+            GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca2::system::idEmpty, stra);
             sp(::user::interaction) pguie = get_child_by_name("lfs");
             sp(text_interface) ptext =  (pguie.m_p);
             string str;
             ptext->_001GetText(str);
             stra.add_unique(str);
-            GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
+            GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca2::system::idEmpty, stra);
 
          }
          else if(m_strPath == "filemanager_add_location_ftp.xhtml")

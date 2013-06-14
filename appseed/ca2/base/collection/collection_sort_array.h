@@ -27,7 +27,7 @@ class sort_array :
 public:
 
    class sort_index :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -82,7 +82,7 @@ public:
 
    void quick_sort(index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
 
-   void set_size(::count c);
+   void set_size(::count ca);
 
    const TYPE & element_at (::index i, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE) const;
 
@@ -189,11 +189,11 @@ template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPA
 add(const array < TYPE, ARG_TYPE > & a, index ( * fCompare ) (TYPE *, TYPE *))
 {
 
-   ::count c = sort_add(a, fCompare, defer_update(fCompare));
+   ::count ca = sort_add(a, fCompare, defer_update(fCompare));
 
    m_indexmap.mark_dirty();
 
-   return c;
+   return ca;
 
 }
 
@@ -202,11 +202,11 @@ template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPA
 remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 {
 
-   ::count c = this->sort_remove(t, fCompare, defer_update(fCompare));
+   ::count ca = this->sort_remove(t, fCompare, defer_update(fCompare));
 
    m_indexmap.mark_dirty();
 
-   return c;
+   return ca;
 
 }
 

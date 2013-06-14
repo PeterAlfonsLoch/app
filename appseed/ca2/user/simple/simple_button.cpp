@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-simple_button::simple_button(sp(::ca::application) papp) :
-   ca(papp),
+simple_button::simple_button(sp(::ca2::application) papp) :
+   ca2(papp),
    
    ::user::button(papp),
    m_brushBkg(allocer())
@@ -18,12 +18,12 @@ simple_button::~simple_button()
 
 
 
-void simple_button::_001OnDraw(::ca::graphics *pdc)
+void simple_button::_001OnDraw(::ca2::graphics *pdc)
 {
    ::user::button::_001OnDraw(pdc);
 }
 
-void simple_button::install_message_handling(::ca::message::dispatch * pinterface)
+void simple_button::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::button::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_SETFOCUS, pinterface, this, &simple_button::_001OnSetFocus);
@@ -38,9 +38,9 @@ void simple_button::pre_subclass_window()
    // trans ::user::button::pre_subclass_window();
 }
 
-void simple_button::_001OnCtlColor(::ca::signal_object * pobj)
+void simple_button::_001OnCtlColor(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::ctl_color, pctlcolor, pobj)
+   SCAST_PTR(::ca2::message::ctl_color, pctlcolor, pobj)
    if(m_bTransparent)
    {
       pctlcolor->m_pdc->SetBkMode(TRANSPARENT);
@@ -56,7 +56,7 @@ void simple_button::_001OnCtlColor(::ca::signal_object * pobj)
 
 void simple_button::ResizeToFit()
 {
-   ::ca::client_graphics pdc(this);
+   ::ca2::client_graphics pdc(this);
 
    pdc->SelectObject(GetFont());
 
@@ -73,9 +73,9 @@ void simple_button::ResizeToFit()
 
 }
 
-void simple_button::_001OnSetFocus(::ca::signal_object * pobj)
+void simple_button::_001OnSetFocus(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::set_focus, psetfocus, pobj)
+   SCAST_PTR(::ca2::message::set_focus, psetfocus, pobj)
  //  if(!m_bFocus)
    //{
      // pOldWnd->SetFocus();

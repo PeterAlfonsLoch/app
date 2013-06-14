@@ -4,7 +4,7 @@
 class image_list;
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -12,7 +12,7 @@ namespace ca
 
 
    class CLASS_DECL_ca2 tree :
-      virtual public ::ca::data_container
+      virtual public ::ca2::data_container
    {
    public:
 
@@ -22,15 +22,15 @@ namespace ca
       sp(tree_item)              m_pitemHover;
 
 
-      tree(sp(::ca::application) papp);
+      tree(sp(::ca2::application) papp);
       virtual ~tree();
 
 
       sp(tree_data) get_tree_data();
 
 
-      sp(tree_item) allocate_branch_item(sp(::ca::tree_data) pdata);
-      sp(tree_item) allocate_item(sp(::ca::tree_data) pdata);
+      sp(tree_item) allocate_branch_item(sp(::ca2::tree_data) pdata);
+      sp(tree_item) allocate_item(sp(::ca2::tree_data) pdata);
 
 
       virtual void remove_all();
@@ -83,12 +83,12 @@ namespace ca
 
       virtual sp(tree_item) get_base_item();
 
-      virtual sp(tree_item) insert_item_data(sp(::ca::tree_data) ptreedata, sp(tree_item_data) pitemdataNew, ERelative erelativeNewItem, sp(tree_item) pitemRelative);
-      virtual sp(tree_item) create_item(sp(::ca::tree_data) ptreedata, sp(tree_item) pitemRelative, ERelative erelativeNewItem);
-      virtual bool insert_item(sp(::ca::tree_data) ptreedata, sp(tree_item) pitemNew, ERelative erelativeNewItem, sp(tree_item) pitemRelative);
+      virtual sp(tree_item) insert_item_data(sp(::ca2::tree_data) ptreedata, sp(tree_item_data) pitemdataNew, ERelative erelativeNewItem, sp(tree_item) pitemRelative);
+      virtual sp(tree_item) create_item(sp(::ca2::tree_data) ptreedata, sp(tree_item) pitemRelative, ERelative erelativeNewItem);
+      virtual bool insert_item(sp(::ca2::tree_data) ptreedata, sp(tree_item) pitemNew, ERelative erelativeNewItem, sp(tree_item) pitemRelative);
 
 
    };
 
 
-} // namespace ca
+} // namespace ca2

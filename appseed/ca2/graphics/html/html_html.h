@@ -12,7 +12,7 @@ namespace html
 
 
    class CLASS_DECL_ca2 html :
-      public ::ca::section
+      public ::ca2::section
    {
    public:
 
@@ -26,10 +26,10 @@ namespace html
       LiteHTMLEntityResolver     m_entityresolver;
 
 
-      html(::ca::application * papp);
+      html(::ca2::application * papp);
       virtual ~html();
 
-      virtual void construct(sp(::ca::application) papp);
+      virtual void construct(sp(::ca2::application) papp);
 
 
       virtual bool initialize();

@@ -6,7 +6,7 @@
 
 #include "InBuffer.h"*/
 
-namespace ca
+namespace ca2
 {
 
    in_buffer::in_buffer():
@@ -87,4 +87,4 @@ namespace ca
       return *_buffer++;
    }
 
-} // namespace ca
+} // namespace ca2

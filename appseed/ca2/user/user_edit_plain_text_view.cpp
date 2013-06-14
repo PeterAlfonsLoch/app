@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   edit_plain_text_view::edit_plain_text_view(sp(::ca::application) papp) :
-      ca(papp),
+   edit_plain_text_view::edit_plain_text_view(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::interaction(papp),
       
       ::user::scroll_view(papp),
@@ -14,7 +14,7 @@ namespace user
    {
    }
 
-   void edit_plain_text_view::install_message_handling(::ca::message::dispatch * pinterface)
+   void edit_plain_text_view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       
       

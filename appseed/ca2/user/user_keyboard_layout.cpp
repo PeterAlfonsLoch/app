@@ -76,13 +76,13 @@ namespace user
       return true;
    }
 
-   keyboard_layout::keyboard_layout(sp(::ca::application) papp) :
-      ca(papp)
+   keyboard_layout::keyboard_layout(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
    }
 
-   void keyboard_layout::process_escape(sp(::xml::node) pnode, ::ca::property_set & set)
+   void keyboard_layout::process_escape(sp(::xml::node) pnode, ::ca2::property_set & set)
    {
       for(int32_t i = 0; i < pnode->get_children_count(); i++)
       {
@@ -105,7 +105,7 @@ namespace user
    bool keyboard_layout::load(const char * pszPath)
    {
 
-      sp(::ca::type_info) typeinfoKey = System.type_info < ::user::e_key > ();
+      sp(::ca2::type_info) typeinfoKey = System.type_info < ::user::e_key > ();
 
       int32_t iMap;
       int32_t iCode;
@@ -181,7 +181,7 @@ namespace user
       {
          str = (char) (iCode & 0xff);
       }
-      if(::ca::str::begins_eat(str, "escape="))
+      if(::ca2::str::begins_eat(str, "escape="))
       {
          return process_escape(str);
       }
@@ -198,7 +198,7 @@ namespace user
       {
          stringa stra;
          stra.explode(";", m_strEscape);
-         ::ca::property_set * pset = &m_setEscape;
+         ::ca2::property_set * pset = &m_setEscape;
          for(int32_t i = 0; i < stra.get_size(); i++)
          {
             if(pset->has_property(stra[i]))

@@ -21,7 +21,7 @@ namespace command
          OpUpdateCurrentArea,
       };
 
-	   view(sp(::ca::application) papp);
+	   view(sp(::ca2::application) papp);
 	   virtual ~view();
 
 
@@ -33,18 +33,18 @@ namespace command
 
       void GetDateTime(string & strDateTime);
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
-	   virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
+	   virtual void OnDraw(::ca2::graphics * pgraphics);      // overridden to draw this ::view
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
       DECL_GEN_SIGNAL(_001OnLButtonDown)
       DECL_GEN_SIGNAL(_001OnLButtonUp)
       DECL_GEN_SIGNAL(_001OnTimer)
       DECL_GEN_SIGNAL(_001OnRButtonUp)
-	   virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+	   virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
 
       sp(::user::document) get_document();
 

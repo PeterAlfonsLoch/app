@@ -52,7 +52,7 @@ namespace n7z
    };
 
    class COutArchive :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       uint64_t _prefixHeaderPos;
@@ -61,7 +61,7 @@ namespace n7z
 
       uint64_t GetPos() const;
       void WriteBytes(const void *data, size_t size);
-      void WriteBytes(const ::ca::byte_buffer &data) { WriteBytes(data, data.GetCapacity()); }
+      void WriteBytes(const ::ca2::byte_buffer &data) { WriteBytes(data, data.GetCapacity()); }
       void WriteByte(byte b);
       void WriteUInt32(uint32_t value);
       void WriteUInt64(uint64_t value);
@@ -96,7 +96,7 @@ namespace n7z
 
       HRESULT EncodeStream(
          ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
-         CEncoder &encoder, const ::ca::byte_buffer &data,
+         CEncoder &encoder, const ::ca2::byte_buffer &data,
          array<file_size> &packSizes, smart_pointer_array<CFolder> &folders);
       void WriteHeader(
          const CArchiveDatabase &db,
@@ -107,7 +107,7 @@ namespace n7z
       bool _writeToStream;
       size_t _countSize;
       uint32_t _crc;
-      ::ca::out_buffer _outByte;
+      ::ca2::out_buffer _outByte;
       CWriteBufferLoc _outByte2;
 
       bool _endMarker;
@@ -116,11 +116,11 @@ namespace n7z
       HRESULT WriteFinishSignature();
       HRESULT WriteStartHeader(const CStartHeader &h);
       HRESULT WriteFinishHeader(const CFinishHeader &h);
-      ::c::smart_pointer < ::ca::byte_output_stream > Stream;
+      ::ca::smart_pointer < ::ca2::byte_output_stream > Stream;
 
-      COutArchive(sp(::ca::application) papp);
-      ::c::smart_pointer < ::ca::writer > SeqStream;
-      HRESULT Create(::ca::writer *stream, bool endMarker);
+      COutArchive(sp(::ca2::application) papp);
+      ::ca::smart_pointer < ::ca2::writer > SeqStream;
+      HRESULT Create(::ca2::writer *stream, bool endMarker);
       void Close();
       HRESULT SkipPrefixArchiveHeader();
       HRESULT WriteDatabase(

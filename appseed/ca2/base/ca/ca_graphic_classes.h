@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
    class graphics_object;
    class pen;
@@ -12,7 +12,7 @@ namespace ca
    class palette;
    class rgn;
    class igui;
-} // namespace ca
+} // namespace ca2
 
 #include "ca_graphics_object.h"
 #include "ca_pen.h"

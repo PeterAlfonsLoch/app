@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 data_container :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -18,7 +18,7 @@ namespace ca
       virtual ~data_container();
 
 
-      virtual bool set_data(::ca::data * pdata);
+      virtual bool set_data(::ca2::data * pdata);
       data * get_data();
 
       virtual bool is_data_in_use() const;
@@ -28,7 +28,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca2 data_container_base :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -36,12 +36,12 @@ namespace ca
       spa(data)       m_spadata;
 
       
-      data_container_base(sp(::ca::application) papp);
+      data_container_base(sp(::ca2::application) papp);
       virtual ~data_container_base();
 
 
-      bool add_data(::ca::data * pdata);
-      bool remove_data(::ca::data * pdata);
+      bool add_data(::ca2::data * pdata);
+      bool remove_data(::ca2::data * pdata);
       data * get_data(index i);
       ::count get_count() const;
 
@@ -89,7 +89,7 @@ namespace ca
 
 
       template < class TYPE >
-      bool replace_data(::c::smart_pointer < TYPE > & data)
+      bool replace_data(::ca::smart_pointer < TYPE > & data)
       {
          
          return replace_data(data.m_p);
@@ -101,6 +101,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

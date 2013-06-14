@@ -51,7 +51,7 @@ public:
    mapsp(id, id, ::user::interaction)    m_toolbarmap;
 
 
-   simple_frame_window(sp(::ca::application) papp);
+   simple_frame_window(sp(::ca2::application) papp);
    virtual ~simple_frame_window();
 
 
@@ -63,11 +63,11 @@ public:
             sp(::user::interaction) pParentWnd = NULL,        // != NULL for popups
             const char * lpszMenuName = NULL,
             uint32_t dwExStyle = 0,
-            sp(::ca::create_context) pContext = NULL);
+            sp(::ca2::create_context) pContext = NULL);
 
 
 
-   virtual void install_message_handling(::ca::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
    virtual void on_set_parent(sp(::user::interaction) pguieParent);
 
@@ -91,12 +91,12 @@ public:
 
    virtual sp(::uinteraction::frame::frame) create_frame_schema();
 
-   virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, sp(::user::interaction) pParentWnd = NULL, sp(::ca::create_context) pContext = NULL);
+   virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, sp(::user::interaction) pParentWnd = NULL, sp(::ca2::create_context) pContext = NULL);
 
    DECL_GEN_SIGNAL(_001OnNcActivate);
    DECL_GEN_SIGNAL(_001OnDisplayChange);
 
-   void _001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc);
+   void _001OnDeferPaintLayeredWindowBackground(::ca2::graphics * pdc);
 
 
 
@@ -112,12 +112,12 @@ public:
    sp(::user::interaction) WindowDataGetWnd();
    virtual void layout();
    virtual void ActivateFrame(int32_t nCmdShow = -1);
-   virtual bool OnCreateClient(LPCREATESTRUCT lpcs, sp(::ca::create_context) pContext);
+   virtual bool OnCreateClient(LPCREATESTRUCT lpcs, sp(::ca2::create_context) pContext);
    virtual bool pre_create_window(CREATESTRUCT& cs);
-   virtual void pre_translate_message(::ca::signal_object * pobj);
+   virtual void pre_translate_message(::ca2::signal_object * pobj);
 
-   virtual void _000OnDraw(::ca::graphics * pdc);
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _000OnDraw(::ca2::graphics * pdc);
+   virtual void _001OnDraw(::ca2::graphics * pdc);
 
 
 

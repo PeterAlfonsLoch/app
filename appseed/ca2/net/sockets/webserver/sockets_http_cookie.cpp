@@ -101,10 +101,10 @@ http::cookie & cookies::cookie(const char * name)
    index iFind = find_cookie(name);
    if(iFind < 0)
    {
-      sp(class cookie) c(canew(class cookie));
-      c->m_strName = name;
-      c->m_strNameLow = name;
-      add(c);
+      sp(class cookie) ca(canew(class cookie));
+      ca->m_strName = name;
+      ca->m_strNameLow = name;
+      add(ca);
       iFind = find_cookie(name);
       if(iFind < 0)
       {
@@ -120,10 +120,10 @@ http::cookie & cookies::lowcookie(const char * name)
    index iFind = lowfind_cookie(name);
    if(iFind < 0)
    {
-      class cookie c;
-      c.m_strName = name;
-      c.m_strNameLow = name;
-      add(canew(class cookie(c)));
+      class cookie ca;
+      ca.m_strName = name;
+      ca.m_strNameLow = name;
+      add(canew(class cookie(ca)));
       iFind = find_cookie(name);
       if(iFind < 0)
       {
@@ -314,7 +314,7 @@ void cookies::parse_header(const char * psz)
    const char * pszParam = psz;
    const char * pszParamEnd;
    const char * pszKeyEnd;
-   class cookie c;
+   class cookie ca;
    while(true)
    {
       while(*pszParam != '\0' && isspace((uchar ) *pszParam))
@@ -329,19 +329,19 @@ void cookies::parse_header(const char * psz)
       {
          if(pszKeyEnd == NULL)
          {
-            c.m_strName = string(pszParam);
-            c.m_strNameLow = c.m_strName;
-            c.m_strNameLow.make_lower();
-            c.m_varValue.set_type(var::type_empty);
-            add(canew(class cookie(c)));
+            ca.m_strName = string(pszParam);
+            ca.m_strNameLow = ca.m_strName;
+            ca.m_strNameLow.make_lower();
+            ca.m_varValue.set_type(var::type_empty);
+            add(canew(class cookie(ca)));
          }
          else
          {
-            c.m_strName = string(pszParam, pszKeyEnd - pszParam);
-            c.m_strNameLow = c.m_strName;
-            c.m_strNameLow.make_lower();
-            c.m_varValue = string(pszKeyEnd + 1);
-            add(canew(class cookie(c)));
+            ca.m_strName = string(pszParam, pszKeyEnd - pszParam);
+            ca.m_strNameLow = ca.m_strName;
+            ca.m_strNameLow.make_lower();
+            ca.m_varValue = string(pszKeyEnd + 1);
+            add(canew(class cookie(ca)));
          }
          return;
       }
@@ -349,19 +349,19 @@ void cookies::parse_header(const char * psz)
       {
          if(pszKeyEnd == NULL || pszKeyEnd > pszParamEnd)
          {
-            c.m_strName = string(pszParam, pszParamEnd - pszKeyEnd);
-            c.m_strNameLow = c.m_strName;
-            c.m_strNameLow.make_lower();
-            c.m_varValue.set_type(var::type_empty);
-            add(canew(class cookie(c)));
+            ca.m_strName = string(pszParam, pszParamEnd - pszKeyEnd);
+            ca.m_strNameLow = ca.m_strName;
+            ca.m_strNameLow.make_lower();
+            ca.m_varValue.set_type(var::type_empty);
+            add(canew(class cookie(ca)));
          }
          else
          {
-            c.m_strName = string(pszParam, pszKeyEnd - pszParam);
-            c.m_strNameLow = c.m_strName;
-            c.m_strNameLow.make_lower();
-            c.m_varValue = string(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
-            add(canew(class cookie(c)));
+            ca.m_strName = string(pszParam, pszKeyEnd - pszParam);
+            ca.m_strNameLow = ca.m_strName;
+            ca.m_strNameLow.make_lower();
+            ca.m_varValue = string(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
+            add(canew(class cookie(ca)));
          }
       }
       pszParam = pszParamEnd + 1;

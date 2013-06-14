@@ -12,7 +12,7 @@ namespace filemanager
    public:
 
 
-      folder_list_data(sp(::ca::application) papp);
+      folder_list_data(sp(::ca2::application) papp);
       virtual ~folder_list_data();
 
 

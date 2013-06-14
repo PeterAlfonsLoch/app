@@ -9,12 +9,12 @@
 // CREATED: 2003-01-13
 // UPDATED: 2006-01-13
 //
-// Copyright (c) 2003 Song Ho Ahn
+// Copyright (ca) 2003 Song Ho Ahn
 //////////////////////////////////////////////////////////////////////////////
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
    ///////////////////////////////////////////////////////////////////////////////
@@ -182,7 +182,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

@@ -23,15 +23,15 @@ namespace platform
          string                  m_strApp;
          string                  m_strQuery;
          sp(view)                  m_pview;
-         sp(::ca::application)     m_papp;
+         sp(::ca2::application)     m_papp;
          bool                    m_bMakeVisible;
       };
 
       class link :
-         virtual public ::ca::ca
+         virtual public ::ca2::ca2
       {
       public:
-         link(sp(::ca::application) papp);
+         link(sp(::ca2::application) papp);
          int32_t                     m_iId;
          run *                   m_prun;
          string                  m_strName;
@@ -76,13 +76,13 @@ namespace platform
       spa(link)                  m_linka;
 
       int32_t                    m_iScreen;
-      ::ca::font_sp              m_font1;
-      ::ca::font_sp              m_font2;
-      ::ca::font_sp              m_font3;
-      ::ca::brush_sp             m_brushBk;
-      ::ca::brush_sp             m_brushProgress3;
-      ::ca::brush_sp             m_brushProgress2;
-      ::ca::brush_sp             m_brushProgress1;
+      ::ca2::font_sp              m_font1;
+      ::ca2::font_sp              m_font2;
+      ::ca2::font_sp              m_font3;
+      ::ca2::brush_sp             m_brushBk;
+      ::ca2::brush_sp             m_brushProgress3;
+      ::ca2::brush_sp             m_brushProgress2;
+      ::ca2::brush_sp             m_brushProgress1;
       visual::dib_sp             m_dibBk;
       visual::dib_sp             m_dibBkImage;
       double                     m_dProgress;
@@ -93,7 +93,7 @@ namespace platform
 
 
       
-      view(sp(::ca::application) papp);
+      view(sp(::ca2::application) papp);
       virtual ~view();
 
    #ifdef DEBUG
@@ -103,19 +103,19 @@ namespace platform
 
       void SetScreen(int32_t iScreen);
 
-      virtual void open_document_file(sp(::ca::create_context) pcreatecontext);
+      virtual void open_document_file(sp(::ca2::create_context) pcreatecontext);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
 
       virtual sp(::database::user::interaction) BackViewGetWnd();
       virtual sp(::user::interaction) get_guie();
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
 
       sp(::user::document) get_document();
 

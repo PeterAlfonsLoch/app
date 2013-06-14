@@ -1,4 +1,4 @@
-; sphere.def from ca.def : Declares the module parameters for the DLL.
+; sphere.def from ca2.def : Declares the module parameters for the DLL.
 
 LIBRARY  "sphere"
 ; For Win32 DLLs, only EXPORTs really required.

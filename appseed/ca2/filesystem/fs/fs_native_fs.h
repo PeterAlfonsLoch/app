@@ -13,7 +13,7 @@ namespace fs
    {
    public:
 
-      native(sp(::ca::application) papp);
+      native(sp(::ca2::application) papp);
 
 
       // optional if ls_dir is implemented
@@ -33,7 +33,7 @@ namespace fs
 
       virtual bool file_move(const char * pszDst, const char * pszSrc);
 
-      virtual ::ca::filesp get_file(var varFile, UINT nOpenFlags);
+      virtual ::ca2::filesp get_file(var varFile, UINT nOpenFlags);
 
    };
 

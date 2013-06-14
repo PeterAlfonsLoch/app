@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
    section_container_base::section_container_base()
@@ -12,10 +12,10 @@ namespace ca
    {
    }
 
-   ::ca::application * section_container_base::get_section_app()
+   ::ca2::application * section_container_base::get_section_app()
    {
       
-      ::ca::application * papp = dynamic_cast < ::ca::application * > (this);
+      ::ca2::application * papp = dynamic_cast < ::ca2::application * > (this);
       
       if(papp != NULL)
          return papp;
@@ -24,4 +24,4 @@ namespace ca
 
    }
 
-} // namespace ca
+} // namespace ca2

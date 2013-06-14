@@ -44,10 +44,10 @@ namespace dynamic_source
    }
 
 
-   script_manager::script_manager(sp(::ca::application) papp) :
-      ca(papp),
+   script_manager::script_manager(sp(::ca2::application) papp) :
+      ca2(papp),
       thread(papp),
-      ::ca::message_window_simple_callback(papp),
+      ::ca2::message_window_simple_callback(papp),
       m_mutexIncludeMatches(papp),
       m_mutexIncludeHasScript(papp),
       m_mutexIncludeExpandMd5(papp),
@@ -139,7 +139,7 @@ namespace dynamic_source
 
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
-         if(::ca::str::begins_ci(straTitle[i], "net-"))
+         if(::ca2::str::begins_ci(straTitle[i], "net-"))
          {
             clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch();
             pwatch->m_pmanager = this;
@@ -195,7 +195,7 @@ namespace dynamic_source
             string str;
             e.get_error_message(str);
             pinstance->dprint("str");
-            TRACE0("Error: ::ca::exception at script_manager::handle run");
+            TRACE0("Error: ::ca2::exception at script_manager::handle run");
             TRACE0(str);
          }
          catch(base_exception * pe)
@@ -204,7 +204,7 @@ namespace dynamic_source
             pe->get_error_message(str);
             pinstance->dprint("str");
 
-            TRACE0("Error: ::ca::exception * at script_manager::handle run");
+            TRACE0("Error: ::ca2::exception * at script_manager::handle run");
             TRACE0(str);
 
             delete pe;
@@ -217,9 +217,9 @@ namespace dynamic_source
          {
             pinstance->main_finalize();
          }
-         catch(const ::ca::exception &)
+         catch(const ::ca2::exception &)
          {
-            TRACE0("Error: ::ca::exception at script_manager::handle main_finalize");
+            TRACE0("Error: ::ca2::exception at script_manager::handle main_finalize");
          }
          catch(...)
          {
@@ -229,9 +229,9 @@ namespace dynamic_source
          {
             pinstance->destroy();
          }
-         catch(const ::ca::exception &)
+         catch(const ::ca2::exception &)
          {
-            TRACE0("Error: ::ca::exception at script_manager::handle destroy pinstance");
+            TRACE0("Error: ::ca2::exception at script_manager::handle destroy pinstance");
          }
          catch(...)
          {
@@ -241,9 +241,9 @@ namespace dynamic_source
          {
             pinstance.release();
          }
-         catch(const ::ca::exception &)
+         catch(const ::ca2::exception &)
          {
-            TRACE0("Error: ::ca::exception at script_manager::handle destroy pinstance");
+            TRACE0("Error: ::ca2::exception at script_manager::handle destroy pinstance");
          }
          catch(...)
          {
@@ -255,7 +255,7 @@ namespace dynamic_source
 
    bool script_manager::get_output_internal(::dynamic_source::script_interface * & pinstance, ::dynamic_source::script_interface * pinstanceParent, const string & strNameParam)
    {
-      string strName = ::ca::str::get_word(strNameParam, "?");
+      string strName = ::ca2::str::get_word(strNameParam, "?");
       if(strName.is_empty())
       {
          if(pinstanceParent != NULL)
@@ -416,9 +416,9 @@ namespace dynamic_source
       return strBuildLog;
    }
 
-   void script_manager::message_window_message_handler(::ca::signal_object * pobj)
+   void script_manager::message_window_message_handler(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_APP + 13)
       {
          //if(wparam == 0)
@@ -937,11 +937,11 @@ namespace dynamic_source
    bool script_manager::extract_image_size(const string & strFile, ::size * psize)
    {
 
-      ::ca::filesp f;
+      ::ca2::filesp f;
 
       try
       {
-         f = Application.file().get_file(strFile, ::ca::file::type_binary | ::ca::file::mode_read | ::ca::file::shareDenyWrite);
+         f = Application.file().get_file(strFile, ::ca2::file::type_binary | ::ca2::file::mode_read | ::ca2::file::shareDenyWrite);
       }
       catch(...)
       {
@@ -984,7 +984,7 @@ namespace dynamic_source
             if(i >= len)
                return false;   //Check to protect against segmentation faults
 
-            f->seek(i, ::ca::seek_begin);
+            f->seek(i, ::ca2::seek_begin);
 
             if(f->read(buf, 4) < 4)
                return false;

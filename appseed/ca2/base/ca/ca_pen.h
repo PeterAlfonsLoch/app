@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -9,7 +9,7 @@ namespace ca
 
 
    class CLASS_DECL_ca2 pen :
-      virtual public ::ca::graphics_object
+      virtual public ::ca2::graphics_object
    {
    public:
 
@@ -47,7 +47,7 @@ namespace ca
 
 
       virtual bool create_null();
-      virtual bool create_solid(::ca::graphics * pgraphics, double dWidth, COLORREF crColor);
+      virtual bool create_solid(::ca2::graphics * pgraphics, double dWidth, COLORREF crColor);
 
       virtual e_end_cap get_end_cap();
       virtual bool set_end_cap(e_end_cap eendcap);
@@ -65,7 +65,7 @@ namespace ca
 
 
    class CLASS_DECL_ca2 pen_sp :
-      virtual public ::c::smart_pointer < pen >
+      virtual public ::ca::smart_pointer < pen >
    {
    public:
 
@@ -73,21 +73,21 @@ namespace ca
       {
       }
 
-      pen_sp(const ::c::smart_pointer < pen > & p) :
-         ::c::smart_pointer < pen > (p)
+      pen_sp(const ::ca::smart_pointer < pen > & p) :
+         ::ca::smart_pointer < pen > (p)
       {
       }
 
       pen_sp(allocatorsp allocer) :
-         ::c::smart_pointer < pen > (allocer)
+         ::ca::smart_pointer < pen > (allocer)
       {
       }
 
-      pen_sp(::ca::graphics * pgraphics, double dWidth, COLORREF crColor);
+      pen_sp(::ca2::graphics * pgraphics, double dWidth, COLORREF crColor);
 /*
-      pen_sp(sp(::ca::application) papp, int32_t nPenStyle, int32_t nWidth, const LOGBRUSH* pLogBrush,
+      pen_sp(sp(::ca2::application) papp, int32_t nPenStyle, int32_t nWidth, const LOGBRUSH* pLogBrush,
          int32_t nStyleCount = 0, const uint32_t* lpStyle = NULL) :
-         ::c::smart_pointer < pen > (papp)
+         ::ca::smart_pointer < pen > (papp)
       {
          m_p->construct(nPenStyle, nWidth, pLogBrush, nStyleCount, lpStyle);
       }
@@ -102,4 +102,4 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2

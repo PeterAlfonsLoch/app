@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   split_bar::split_bar(sp(::ca::application) papp) :
-      ca(papp)
+   split_bar::split_bar(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
       m_pparent                                 = NULL;
@@ -52,7 +52,7 @@ namespace user
    }
 
 
-   void split_bar::_001OnDraw(::ca::graphics *pdc)
+   void split_bar::_001OnDraw(::ca2::graphics *pdc)
    {
 
       UNREFERENCED_PARAMETER(pdc);
@@ -68,7 +68,7 @@ namespace user
    }
 
 
-   void split_bar::install_message_handling(::ca::message::dispatch * pinterface)
+   void split_bar::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       //IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &split_bar::_001OnCreate);
@@ -78,9 +78,9 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &split_bar::_001OnMouseMove);
    }
 
-   void split_bar::_001OnLButtonDown(::ca::signal_object * pobj)
+   void split_bar::_001OnLButtonDown(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
       single_lock sl(&m_pparent->m_mutex, TRUE);
       m_pparent->m_iIndex = m_iIndex;
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count()
@@ -93,9 +93,9 @@ namespace user
       }
    }
 
-   void split_bar::_001OnLButtonUp(::ca::signal_object * pobj)
+   void split_bar::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
       single_lock sl(&m_pparent->m_mutex, TRUE);
       if(m_pparent->m_iIndex == m_iIndex)
       {
@@ -106,10 +106,10 @@ namespace user
       }
    }
 
-   void split_bar::_001OnMouseMove(::ca::signal_object * pobj)
+   void split_bar::_001OnMouseMove(::ca2::signal_object * pobj)
    {
 
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
       single_lock sl(&m_pparent->m_mutex, TRUE);
 

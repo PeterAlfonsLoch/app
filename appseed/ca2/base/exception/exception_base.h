@@ -8,14 +8,14 @@ class string;
 
 
 class CLASS_DECL_ca2 base_exception :
-   virtual public ::ca::exception,
+   virtual public ::ca2::exception,
    virtual public call_stack
 {
 public:
 
 
-   base_exception(sp(::ca::application) papp, uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
-   explicit base_exception(sp(::ca::application) papp, bool bAutoDelete, uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
+   base_exception(sp(::ca2::application) papp, uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
+   explicit base_exception(sp(::ca2::application) papp, bool bAutoDelete, uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
    // Implementation (setting m_bAutoDelete to FALSE is advanced)
    virtual ~base_exception();
 

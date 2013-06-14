@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 thread :
-      virtual public ::ca::thread
+      virtual public ::ca2::thread
    {
    public:
 
@@ -15,7 +15,7 @@ namespace user
       ::user::interaction::timer_array *  m_ptimera;
 
 
-      thread(sp(::ca::application) papp);
+      thread(sp(::ca2::application) papp);
       virtual ~thread();
 
 

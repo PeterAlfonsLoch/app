@@ -21,8 +21,8 @@ namespace nature
       application();
       virtual ~application();
 
-      using ::ca::thread::construct;
-      using ::ca::application::construct;
+      using ::ca2::thread::construct;
+      using ::ca2::application::construct;
 
       virtual void construct();
 

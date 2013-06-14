@@ -7,7 +7,7 @@ var::var(const char * psz)
    set_string(psz);
 }
 
-var::var(::ca::ca * pca2)
+var::var(::ca2::ca2 * pca2)
 {
    m_etype = type_new;
    operator = (pca2);
@@ -125,19 +125,19 @@ var::var(const var_array & var)
    operator = (var);
 }
 
-var::var(const ::ca::property_set & set)
+var::var(const ::ca2::property_set & set)
 {
    m_etype  = type_new;
    operator = (set);
 }
 
-var::var(const ::ca::pair_set_interface & set)
+var::var(const ::ca2::pair_set_interface & set)
 {
    m_etype  = type_new;
    operator = (set);
 }
 
-var::var(const ::ca::str_str_interface & set)
+var::var(const ::ca2::str_str_interface & set)
 {
    m_etype  = type_new;
    operator = (set);
@@ -155,7 +155,7 @@ var::var(class var * pvar)
    operator = (pvar);
 }
 
-var::var(const ::ca::property & prop)
+var::var(const ::ca2::property & prop)
 {
    m_etype = type_new;
    operator = (prop);
@@ -191,7 +191,7 @@ strsize var::get_length() const
 void var::get_string(char * psz) const
 {
 
-   ::ca::str::copy(psz, get_string());
+   ::ca2::str::copy(psz, get_string());
 
 }
 
@@ -291,12 +291,12 @@ void var::unset()
 
 bool var::ok() const
 {
-   return get_type() != type_parareturn || ::ca::ok(m_parareturn);
+   return get_type() != type_parareturn || ::ca2::ok(m_parareturn);
 }
 
 bool var::failed() const
 {
-   return get_type() == type_parareturn && !::ca::ok(m_parareturn);
+   return get_type() == type_parareturn && !::ca2::ok(m_parareturn);
 }
 
 void var::set_string(const char * psz)
@@ -333,7 +333,7 @@ void var::set_id(const id & id)
    }
 }
 
-class var & var::operator = (::ca::para_return & eret)
+class var & var::operator = (::ca2::para_return & eret)
 {
    set_type(type_parareturn, false);
    m_parareturn = eret;
@@ -516,13 +516,13 @@ class var & var::operator = (const char * psz)
 
 class var & var::operator = (const wchar_t * lpcsz)
 {
-   set_string(::ca::international::unicode_to_utf8(lpcsz));
+   set_string(::ca2::international::unicode_to_utf8(lpcsz));
    return *this;
 }
 
-class var & var::operator = (const ::ca::property & prop)
+class var & var::operator = (const ::ca2::property & prop)
 {
-   operator = (((::ca::property &)prop).get_value());
+   operator = (((::ca2::property &)prop).get_value());
    return *this;
 }
 
@@ -640,19 +640,19 @@ class var & var::operator = (const var_array & varaParam)
    return *this;
 }
 
-class var & var::operator = (const ::ca::property_set & propsetParam)
+class var & var::operator = (const ::ca2::property_set & propsetParam)
 {
    propset() = propsetParam;
    return *this;
 }
 
-class var & var::operator = (const ::ca::pair_set_interface & propsetParam)
+class var & var::operator = (const ::ca2::pair_set_interface & propsetParam)
 {
    propset() = propsetParam;
    return *this;
 }
 
-class var & var::operator = (const ::ca::str_str_interface & propsetParam)
+class var & var::operator = (const ::ca2::str_str_interface & propsetParam)
 {
    propset() = propsetParam;
    return *this;
@@ -809,7 +809,7 @@ bool var::is_new_or_null() const
    return is_new() || is_null();
 }
 
-void var::read(::ca::byte_input_stream & is)
+void var::read(::ca2::byte_input_stream & is)
 {
    int32_t i;
    is >> i;
@@ -872,21 +872,21 @@ void var::read(::ca::byte_input_stream & is)
       break;
    case type_ca2:
       {
-         sp(::ca::type_info) info;
+         sp(::ca2::type_info) info;
          is >> info;
          m_sp = Sys(is.get_app()).alloc(info);
          if(m_sp.is_null())
          {
             throw "object allocation is not implemented";
          }
-         sp(::ca::byte_serializable) pserializable = m_sp;
+         sp(::ca2::byte_serializable) pserializable = m_sp;
          if(pserializable != NULL)
          {
             pserializable->read(is);
          }
          else
          {
-            sp(::ca::plain_text_serializable) pserializable = m_sp;
+            sp(::ca2::plain_text_serializable) pserializable = m_sp;
             if(pserializable != NULL)
             {
                pserializable->read(is.m_spreader);
@@ -903,7 +903,7 @@ void var::read(::ca::byte_input_stream & is)
    }
 }
 
-void var::write(::ca::byte_output_stream & ostream)
+void var::write(::ca2::byte_output_stream & ostream)
 {
    int32_t i = get_type();
    ostream << i;
@@ -949,16 +949,16 @@ void var::write(::ca::byte_output_stream & ostream)
       break;
    case type_ca2:
       {
-         sp(::ca::type_info) info(Sys(ostream.get_app()).get_type_info(typeid(*m_sp.m_p)));
+         sp(::ca2::type_info) info(Sys(ostream.get_app()).get_type_info(typeid(*m_sp.m_p)));
          ostream << info;
-         sp(::ca::byte_serializable) pserializable = m_sp;
+         sp(::ca2::byte_serializable) pserializable = m_sp;
          if(pserializable != NULL)
          {
             pserializable->write(ostream);
          }
          else
          {
-            sp(::ca::plain_text_serializable) pserializable = m_sp;
+            sp(::ca2::plain_text_serializable) pserializable = m_sp;
             if(pserializable != NULL)
             {
                pserializable->write(ostream.m_spwriter);
@@ -1423,11 +1423,11 @@ string var::get_string(const char * pszOnNull) const
       }
       else if(m_etype == var::type_int32)
       {
-         str = ::ca::str::from(m_i32);
+         str = ::ca2::str::from(m_i32);
       }
       else if(m_etype == var::type_uint32)
       {
-         str = ::ca::str::from( m_ui32);
+         str = ::ca2::str::from( m_ui32);
       }
       else if(m_etype == var::type_int64)
       {
@@ -1435,11 +1435,11 @@ string var::get_string(const char * pszOnNull) const
       }
       else if(m_etype == var::type_uint64)
       {
-         str = ::ca::str::from(m_ui64);
+         str = ::ca2::str::from(m_ui64);
       }
       else if(m_etype == var::type_double)
       {
-         str = ::ca::str::from(m_d);
+         str = ::ca2::str::from(m_d);
       }
       else if(m_etype == var::type_id)
       {
@@ -1592,13 +1592,13 @@ int32_t var::int32(int32_t iDefault) const
    case type_id:
    {
       if(!is32integer((int64_t) m_id))
-         throw overflow_error(::ca::get_thread_app(), "var contains id that does not fit 32 bit integer");
+         throw overflow_error(::ca2::get_thread_app(), "var contains id that does not fit 32 bit integer");
       return (int32_t) (int64_t) m_id;
    }
    case type_pid:
    {
       if(!is32integer((int64_t) *m_pid))
-         throw overflow_error(::ca::get_thread_app(), "var contains id that does not fit 32 bit integer");
+         throw overflow_error(::ca2::get_thread_app(), "var contains id that does not fit 32 bit integer");
       return (int32_t) (int64_t) *m_pid;
    }
    default:
@@ -1918,16 +1918,16 @@ var_array var::vara() const
    return *m_pvara;
 }
 
-::ca::property_set & var::propset(sp(::ca::application) papp)
+::ca2::property_set & var::propset(sp(::ca2::application) papp)
 {
-   ::ca::property_set * pset;
+   ::ca2::property_set * pset;
    if(m_etype == type_pvar)
    {
       pset = &m_pvar->propset();
    }
    else if(m_etype != type_propset)
    {
-      ::ca::property_set * ppropset = canew(::ca::property_set());
+      ::ca2::property_set * ppropset = canew(::ca2::property_set());
       for(int32_t i = 0; i < array_get_count(); i++)
       {
          ppropset->add(id(), at(i));
@@ -1940,7 +1940,7 @@ var_array var::vara() const
    }
    else if(m_sp.is_null())
    {
-      pset = canew(::ca::property_set());
+      pset = canew(::ca2::property_set());
       m_sp = pset;
       m_pset = pset;
    }
@@ -1955,13 +1955,13 @@ var_array var::vara() const
    return *pset;
 }
 
-::ca::property_set var::propset() const
+::ca2::property_set var::propset() const
 {
    var varTime = *this;
    return varTime.propset();
 }
 
-::ca::property & var::prop()
+::ca2::property & var::prop()
 {
    if(m_etype != type_prop)
    {
@@ -1969,20 +1969,20 @@ var_array var::vara() const
    }
    if(m_sp.is_null())
    {
-      m_pprop = canew(::ca::property());
+      m_pprop = canew(::ca2::property());
       m_sp = m_pprop;
    }
-   return *dynamic_cast < ::ca::property * > (m_sp.m_p);
+   return *dynamic_cast < ::ca2::property * > (m_sp.m_p);
 }
 
-::ca::property var::prop() const
+::ca2::property var::prop() const
 {
    if(get_type() != type_prop)
    {
       var varTime = *this;
       return varTime.prop();
    }
-   return *dynamic_cast < const ::ca::property * > (m_sp.m_p);
+   return *dynamic_cast < const ::ca2::property * > (m_sp.m_p);
 }
 
 string var::implode(const char * pszGlue) const
@@ -2529,9 +2529,9 @@ var CLASS_DECL_ca2 operator / (uint64_t ul, const class var & var)
    switch(var.m_etype)
    {
    case ::var::type_null:
-      throw simple_exception(::ca::get_thread_app(), "division by zero");
+      throw simple_exception(::ca2::get_thread_app(), "division by zero");
    case ::var::type_empty:
-      throw simple_exception(::ca::get_thread_app(), "division by zero");
+      throw simple_exception(::ca2::get_thread_app(), "division by zero");
    case ::var::type_int32:
       return (int_ptr) ul / var.m_i32;
    case ::var::type_uint32:
@@ -2549,7 +2549,7 @@ var CLASS_DECL_ca2 operator / (uint64_t ul, const class var & var)
    case ::var::type_pvar:
       return operator / (ul, *var.m_pvar);
    default:
-      throw simple_exception(::ca::get_thread_app(), "division by zero");
+      throw simple_exception(::ca2::get_thread_app(), "division by zero");
    }
 
 }
@@ -3415,7 +3415,7 @@ bool var::has_property(const char * pszName) const
 {
    if(get_type() == type_propset)
    {
-      return dynamic_cast < const ::ca::property_set * > (m_sp.m_p)->has_property(pszName);
+      return dynamic_cast < const ::ca2::property_set * > (m_sp.m_p)->has_property(pszName);
    }
    else if(get_type() == type_pvar)
    {
@@ -3423,13 +3423,13 @@ bool var::has_property(const char * pszName) const
    }
    else if(get_type() == type_ca2)
    {
-      if(ca < ::ca::property_set >() != NULL)
+      if(ca2 < ::ca2::property_set >() != NULL)
       {
-         return ca < ::ca::property_set >()->has_property(pszName);
+         return ca2 < ::ca2::property_set >()->has_property(pszName);
       }
-      else if(ca < ::ca::property >() != NULL)
+      else if(ca2 < ::ca2::property >() != NULL)
       {
-         return ca < ::ca::property >()->name().CompareNoCase(pszName) == 0;
+         return ca2 < ::ca2::property >()->name().CompareNoCase(pszName) == 0;
       }
       else
       {
@@ -3463,7 +3463,7 @@ void var::consume_number(const char * & psz, const char * pszEnd)
    const char * pszParse = psz;
    bool bSigned = false;
    bool bFloat = false;
-   ::ca::str::consume_spaces(pszParse, 0, pszEnd);
+   ::ca2::str::consume_spaces(pszParse, 0, pszEnd);
    const char * pszStart = pszParse;
    if(*pszParse == '-')
    {
@@ -3551,14 +3551,14 @@ void var::parse_json(const char * & pszJson)
 
 void var::parse_json(const char * & pszJson, const char * pszEnd)
 {
-   ::ca::str::consume_spaces(pszJson, 0, pszEnd);
+   ::ca2::str::consume_spaces(pszJson, 0, pszEnd);
    if(*pszJson == '{')
    {
       propset().parse_json(pszJson, pszEnd);
    }
    else if(*pszJson == '\"')
    {
-      operator = (::ca::str::consume_quoted_value(pszJson, pszEnd));
+      operator = (::ca2::str::consume_quoted_value(pszJson, pszEnd));
    }
    else if(isdigit(*pszJson) || *pszJson == '-'  || *pszJson == '.')
    {
@@ -3642,7 +3642,7 @@ bool var::is_numeric() const
          return false;
 
       default:
-         throw not_implemented(::ca::get_thread_app());
+         throw not_implemented(::ca2::get_thread_app());
 
    };
 

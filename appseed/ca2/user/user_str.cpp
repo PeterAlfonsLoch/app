@@ -5,12 +5,12 @@ namespace user
 {
 
 
-   str_context::str_context(sp(::ca::application) papp) :
-      ca(papp)
+   str_context::str_context(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       
 
-      m_plocaleschema = canew(::ca::international::locale_schema(papp));
+      m_plocaleschema = canew(::ca2::international::locale_schema(papp));
 
 
       m_pstr = NULL;
@@ -145,8 +145,8 @@ namespace user
 
    }
 
-   str::str(sp(::ca::application) papp) :
-      ca(papp)
+   str::str(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
       InitHashTable(64);
@@ -194,9 +194,9 @@ namespace user
             for(int32_t iPath = 0; iPath < straPath.get_count(); iPath++)
             {
                string strPath = straPath[iPath];
-               if(::ca::str::ends_ci(strPath, "\\.svn"))
+               if(::ca2::str::ends_ci(strPath, "\\.svn"))
                   continue;
-               if(::ca::str::find_ci("\\.svn\\", strPath) >= 0)
+               if(::ca2::str::find_ci("\\.svn\\", strPath) >= 0)
                   continue;
                if(Application.dir().is(strPath))
                   continue;
@@ -417,7 +417,7 @@ namespace user
             const char * psz = str;
             while(isspace(*psz))
                psz++;
-            string strRoot = ::ca::str::consume_quoted_value(psz);
+            string strRoot = ::ca2::str::consume_quoted_value(psz);
             while(isspace(*psz))
                psz++;
             if(*psz != '=')
@@ -425,7 +425,7 @@ namespace user
             psz++;
             while(isspace(*psz))
                psz++;
-            string strBody = ::ca::str::consume_quoted_value(psz);
+            string strBody = ::ca2::str::consume_quoted_value(psz);
             set(
                strRoot,
                pszLang,
@@ -533,7 +533,7 @@ namespace user
          {
             
             str = (*pcontext->m_pschema)[id];
-            if(str.has_char() && ::ca::str::begins_ci(pszTopic, str))
+            if(str.has_char() && ::ca2::str::begins_ci(pszTopic, str))
                return true;
 
          }
@@ -541,7 +541,7 @@ namespace user
          if(pcontext->m_pschemaLocale != NULL)
          {
             str = (*pcontext->m_pschemaLocale)[id];
-            if(str.has_char() && ::ca::str::begins_ci(pszTopic, str))
+            if(str.has_char() && ::ca2::str::begins_ci(pszTopic, str))
                return true;
          }
 
@@ -549,7 +549,7 @@ namespace user
          {
             
             str = (*pcontext->m_schemaptra[i])[id];
-            if(str.has_char() && ::ca::str::begins_ci(pszTopic, str))
+            if(str.has_char() && ::ca2::str::begins_ci(pszTopic, str))
                return true;
 
          }
@@ -560,20 +560,20 @@ namespace user
       {
 
          str = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
-         if(str.has_char() && ::ca::str::begins_ci(pszTopic, str))
+         if(str.has_char() && ::ca2::str::begins_ci(pszTopic, str))
             return true;
 
       }
 
       str = (*m_pschemaEn)[id]; // lang=en style=en
-      if(str.has_char() && ::ca::str::begins_ci(pszTopic, str))
+      if(str.has_char() && ::ca2::str::begins_ci(pszTopic, str))
          return true;
 
       if(pcontext != NULL && pcontext->m_pschemaSchemaStd != NULL)
       {
 
          str = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
-         if(str.has_char() && ::ca::str::begins_ci(pszTopic, str))
+         if(str.has_char() && ::ca2::str::begins_ci(pszTopic, str))
             return true;
 
       }
@@ -601,7 +601,7 @@ namespace user
          {
             
             str = (*pcontext->m_pschema)[id];
-            if(str.has_char() && ::ca::str::begins_eat_ci(strTopic, str))
+            if(str.has_char() && ::ca2::str::begins_eat_ci(strTopic, str))
                return true;
 
          }
@@ -609,7 +609,7 @@ namespace user
          if(pcontext->m_pschemaLocale != NULL)
          {
             str = (*pcontext->m_pschemaLocale)[id];
-            if(str.has_char() && ::ca::str::begins_eat_ci(strTopic, str))
+            if(str.has_char() && ::ca2::str::begins_eat_ci(strTopic, str))
                return true;
          }
 
@@ -617,7 +617,7 @@ namespace user
          {
             
             str = (*pcontext->m_schemaptra[i])[id];
-            if(str.has_char() && ::ca::str::begins_eat_ci(strTopic, str))
+            if(str.has_char() && ::ca2::str::begins_eat_ci(strTopic, str))
                return true;
 
          }
@@ -628,20 +628,20 @@ namespace user
       {
 
          str = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
-            if(str.has_char() && ::ca::str::begins_eat_ci(strTopic, str))
+            if(str.has_char() && ::ca2::str::begins_eat_ci(strTopic, str))
                return true;
 
       }
 
       str = (*m_pschemaEn)[id]; // lang=en style=en
-      if(str.has_char() && ::ca::str::begins_eat_ci(strTopic, str))
+      if(str.has_char() && ::ca2::str::begins_eat_ci(strTopic, str))
          return true;
 
       if(pcontext != NULL && pcontext->m_pschemaSchemaStd != NULL)
       {
 
          str = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
-         if(str.has_char() && ::ca::str::begins_eat_ci(strTopic, str))
+         if(str.has_char() && ::ca2::str::begins_eat_ci(strTopic, str))
             return true;
 
       }

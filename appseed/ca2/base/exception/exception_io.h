@@ -7,8 +7,8 @@ class CLASS_DECL_ca2 io_exception :
 public:
 
 
-   io_exception(sp(::ca::application) papp);
-   io_exception(sp(::ca::application) papp, const char * pszMessage);
+   io_exception(sp(::ca2::application) papp);
+   io_exception(sp(::ca2::application) papp, const char * pszMessage);
    virtual ~io_exception();
 
 

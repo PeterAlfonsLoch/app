@@ -9,8 +9,8 @@
 #define ITEMCHECKEDPADRIGHT 2
 #define ITEMCHECKEDPADBOTTOM 2
 
-simple_menu_bar::simple_menu_bar(sp(::ca::application) papp) :
-   ca(papp),
+simple_menu_bar::simple_menu_bar(sp(::ca2::application) papp) :
+   ca2(papp),
    simple_toolbar(papp),
    m_menu(papp)
 {
@@ -18,7 +18,7 @@ simple_menu_bar::simple_menu_bar(sp(::ca::application) papp) :
    m_iTopMenuCount = 0;
    m_iTracking = -1;
 
-   IGUI_WIN_MSG_LINK(::ca::application::APPM_LANGUAGE, this, this, &simple_menu_bar::_001OnAppLanguage);
+   IGUI_WIN_MSG_LINK(::ca2::application::APPM_LANGUAGE, this, this, &simple_menu_bar::_001OnAppLanguage);
 
 }
 
@@ -26,7 +26,7 @@ simple_menu_bar::~simple_menu_bar()
 {
 }
 
-void simple_menu_bar::install_message_handling(::ca::message::dispatch * pdispatch)
+void simple_menu_bar::install_message_handling(::ca2::message::dispatch * pdispatch)
 {
    simple_toolbar::install_message_handling(pdispatch);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE      , pdispatch, this, &simple_menu_bar::_001OnMouseMove);
@@ -131,9 +131,9 @@ bool simple_menu_bar::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 }
 
 
-void simple_menu_bar::_001OnMouseMove(::ca::signal_object * pobj)
+void simple_menu_bar::_001OnMouseMove(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
    _001Hover(pmouse->m_pt);
    pobj->previous();
 }
@@ -166,16 +166,16 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(int32_t iItem)
     return VMSR_SUCCESS;
 }
 
-void simple_menu_bar::_001OnNcMouseMove(::ca::signal_object * pobj)
+void simple_menu_bar::_001OnNcMouseMove(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
    _001Hover(pmouse->m_pt);
 // trans   simple_toolbar::OnNcMouseMove(pmouse->m_nFlags, pmouse->m_pt);
 }
 
-void simple_menu_bar::pre_translate_message(::ca::signal_object * pobj)
+void simple_menu_bar::pre_translate_message(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::base, pbase, pobj);
+   SCAST_PTR(::ca2::message::base, pbase, pobj);
    if(pbase->m_uiMessage == WM_USER && pbase->m_pwnd == this)
    {
       if(pbase->m_wparam == 33)
@@ -187,9 +187,9 @@ void simple_menu_bar::pre_translate_message(::ca::signal_object * pobj)
    return simple_toolbar::pre_translate_message(pobj);
 }
 
-void simple_menu_bar::_001OnCreate(::ca::signal_object * pobj)
+void simple_menu_bar::_001OnCreate(::ca2::signal_object * pobj)
 {
-//   SCAST_PTR(::ca::message::create, pcreate, pobj)
+//   SCAST_PTR(::ca2::message::create, pcreate, pobj)
    if(pobj->previous())
       return;
 
@@ -265,7 +265,7 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(point point)
 
 }
 
-void simple_menu_bar::_001OnKeyDown(::ca::signal_object * pobj)
+void simple_menu_bar::_001OnKeyDown(::ca2::signal_object * pobj)
 {
    // TODO: add your message handler code here and/or call default
 
@@ -304,7 +304,7 @@ VMSRESULT simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size & size)
 
 
 
-void simple_menu_bar::_001OnDestroy(::ca::signal_object * pobj)
+void simple_menu_bar::_001OnDestroy(::ca2::signal_object * pobj)
 {
    pobj->previous();
 
@@ -320,7 +320,7 @@ bool simple_menu_bar::Initialize(
    sp(image_list)   pimagelist,
    sp(image_list)   pimagelistDisabled,
    int_int_spreadset * prel,
-   ::ca::font *        pfont)
+   ::ca2::font *        pfont)
 {
 
 //   m_menuhook.Initialize(
@@ -343,7 +343,7 @@ void simple_menu_bar::RemoveAllButtons()
    m_itema.remove_all();
 }
 
-void simple_menu_bar::_001OnMenuChar(::ca::signal_object * pobj)
+void simple_menu_bar::_001OnMenuChar(::ca2::signal_object * pobj)
 {
    pobj->previous();
 }
@@ -406,7 +406,7 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }
 
-/*void simple_menu_bar::_001OnDraw(::ca::graphics *pdc)
+/*void simple_menu_bar::_001OnDraw(::ca2::graphics *pdc)
 {
    rect rectClient;
    GetClientRect(rectClient);
@@ -507,7 +507,7 @@ int32_t simple_menu_bar::_001HitTest(const POINT *lppoint)
 
 /*void simple_menu_bar::_001Layout()
 {
-   ::ca::client_graphics pdc(this);;
+   ::ca2::client_graphics pdc(this);;
    pdc->SelectObject(System.visual().font_central().GetMenuFont());
 
    size size;
@@ -560,7 +560,7 @@ bool simple_menu_bar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCt
    dwStyle |= dwCtrlStyle;
 
 //   ASSERT(gen_ComCtlVersion != -1);
-//   _::ca::GetDropDownWidth();
+//   _::ca2::GetDropDownWidth();
 //   ASSERT(gen_DropDownWidth != -1);
 
    // create the oswindow
@@ -575,9 +575,9 @@ bool simple_menu_bar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCt
    return TRUE;
 }
 
-void simple_menu_bar::_001OnLButtonDown(::ca::signal_object * pobj)
+void simple_menu_bar::_001OnLButtonDown(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
    int32_t iItem = _001HitTest(pmouse->m_pt);
    if(iItem >= 0)
    {
@@ -624,7 +624,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 }
 */
 
-/*void simple_menu_bar::_001DrawItem(::ca::graphics *pdc, int32_t iItem)
+/*void simple_menu_bar::_001DrawItem(::ca2::graphics *pdc, int32_t iItem)
 {
    rect rectItem;
    rect rectText;
@@ -659,14 +659,14 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       rect rectShadow;
       _001GetItemRect(iItem, rectShadow, ElementItem);
 
-      ::ca::pen_sp penShadow(get_app(), PS_SOLID, 1, RGB(127, 127, 127));
-      ::ca::brush_sp brushShadow(get_app(), RGB(127, 127, 127));
-      ::ca::pen * ppenOld = pdc->SelectObject(penShadow);
-      ::ca::brush * pbrushOld = pdc->SelectObject(brushShadow);
+      ::ca2::pen_sp penShadow(get_app(), PS_SOLID, 1, RGB(127, 127, 127));
+      ::ca2::brush_sp brushShadow(get_app(), RGB(127, 127, 127));
+      ::ca2::pen * ppenOld = pdc->SelectObject(penShadow);
+      ::ca2::brush * pbrushOld = pdc->SelectObject(brushShadow);
       pdc->Rectangle(rectShadow);
 
-      ::ca::pen_sp pen(get_app(), PS_SOLID, 1, RGB(92, 92, 92));
-      ::ca::brush_sp brush(get_app(), RGB(255, 255, 255));
+      ::ca2::pen_sp pen(get_app(), PS_SOLID, 1, RGB(92, 92, 92));
+      ::ca2::brush_sp brush(get_app(), RGB(255, 255, 255));
       pdc->SelectObject(pen);
       pdc->SelectObject(brush);
       pdc->Rectangle(rectItem);
@@ -733,9 +733,9 @@ void simple_menu_bar::_001Hover()
    _001Hover(pt);
 }*/
 
-void simple_menu_bar::_001OnTimer(::ca::signal_object * pobj)
+void simple_menu_bar::_001OnTimer(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::timer, ptimer, pobj)
+   SCAST_PTR(::ca2::message::timer, ptimer, pobj)
    if(ptimer->m_nIDEvent == TIMER_HOVER)
    {
       _001Hover();
@@ -745,7 +745,7 @@ void simple_menu_bar::_001OnTimer(::ca::signal_object * pobj)
 }
 
 /*
-bool simple_menu_bar::OnEraseBkgnd(::ca::graphics * pgraphics)
+bool simple_menu_bar::OnEraseBkgnd(::ca2::graphics * pgraphics)
 {
    return TRUE;
 }
@@ -787,9 +787,9 @@ int32_t simple_menu_bar::_001GetHoverItem()
    }
 }
 
-void simple_menu_bar::_001OnAppLanguage(::ca::signal_object * pobj)
+void simple_menu_bar::_001OnAppLanguage(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::base, pbase, pobj)
+   SCAST_PTR(::ca2::message::base, pbase, pobj)
    send_message(WM_CANCELMODE);
    LoadMenuBar(m_uiResourceID);
    _001RedrawWindow();

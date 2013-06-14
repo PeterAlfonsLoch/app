@@ -16,7 +16,7 @@ by Chien-Chung, Chung (Jim Chung) <jimchung1221@gmail.com>
 
 /*
  *   
- * Copyright (c) 2001-2006, Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006, Cisco Systems, Inc.
  * 
  * 
  * Redistribution and use in source and binary forms, with or without

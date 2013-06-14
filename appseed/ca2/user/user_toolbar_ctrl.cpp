@@ -20,7 +20,7 @@ namespace user
 #endif
    }
 
-   int32_t tool_bar_control::AddBitmap(int32_t nNumButtons, ::ca::bitmap* pBitmap)
+   int32_t tool_bar_control::AddBitmap(int32_t nNumButtons, ::ca2::bitmap* pBitmap)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow());
@@ -59,7 +59,7 @@ namespace user
 #endif
 
 
-   void tool_bar_control::_001OnCreate(::ca::signal_object * pobj)
+   void tool_bar_control::_001OnCreate(::ca2::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -102,7 +102,7 @@ namespace user
    ASSERT(lpszResourceName != NULL);
 
    // determine location of the bitmap in resource fork
-   HINSTANCE hInst = ::ca::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
+   HINSTANCE hInst = ::ca2::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
    HRSRC hRsrc = ::FindResource(hInst, lpszResourceName, RT_TOOLBAR);
    if (hRsrc == NULL)
    return FALSE;

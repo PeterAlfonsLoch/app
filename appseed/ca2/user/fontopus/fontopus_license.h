@@ -6,7 +6,7 @@ namespace fontopus
 
 
    class CLASS_DECL_ca2 license :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -19,7 +19,7 @@ namespace fontopus
 
       string_map < info >  m_mapInfo;
 
-      license(sp(::ca::application) papp);
+      license(sp(::ca2::application) papp);
       virtual ~license();
 
       bool has(const char * pszId, bool bInteractive = true);

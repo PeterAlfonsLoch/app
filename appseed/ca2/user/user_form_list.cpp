@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   form_list::form_list(sp(::ca::application) papp) :
-      ca(papp),
+   form_list::form_list(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::interaction(papp),
       ::user::form(papp),
       ::user::scroll_view(papp),
@@ -34,7 +34,7 @@ namespace user
       list::_001GetSelection(key, selection);
    }
 
-   void form_list::install_message_handling( ::ca::message::dispatch *pinterface)
+   void form_list::install_message_handling( ::ca2::message::dispatch *pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &form_list::_001OnKeyDown);
 
@@ -75,7 +75,7 @@ namespace user
 
                m_iControlItem             = iItem;
 
-               send_message(::ca::message_event, 0, (LPARAM) &ev);
+               send_message(::ca2::message_event, 0, (LPARAM) &ev);
 
             }
          }
@@ -164,9 +164,9 @@ namespace user
       return m_pcontrolEdit;
    }
 
-   void form_list::_001OnVScroll(::ca::signal_object * pobj)
+   void form_list::_001OnVScroll(::ca2::signal_object * pobj)
    {
-      //SCAST_PTR(::ca::message::scroll, pscroll, pobj);
+      //SCAST_PTR(::ca2::message::scroll, pscroll, pobj);
       pobj->previous();
 
 
@@ -178,7 +178,7 @@ namespace user
       }
    }
 
-   void form_list::_001OnHScroll(::ca::signal_object * pobj)
+   void form_list::_001OnHScroll(::ca2::signal_object * pobj)
    {
       pobj->previous();
       if(pobj->m_bRet)
@@ -193,7 +193,7 @@ namespace user
 
    }
 
-   bool form_list::_001OnMouseActivate(sp(::ca::window) pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult)
+   bool form_list::_001OnMouseActivate(sp(::ca2::window) pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult)
    {
       UNREFERENCED_PARAMETER(pDesktopWnd);
       UNREFERENCED_PARAMETER(nHitTest);
@@ -202,17 +202,17 @@ namespace user
       return false;
    }
 
-   void form_list::_001OnNotify(::ca::signal_object * pobj)
+   void form_list::_001OnNotify(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void form_list::_001OnTimer(::ca::signal_object * pobj)
+   void form_list::_001OnTimer(::ca2::signal_object * pobj)
    {
       list::_001OnTimer(pobj);
    }
 
-   void form_list::_001OnMessageNotify(::ca::signal_object * pobj)
+   void form_list::_001OnMessageNotify(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // linux na verdade revamp
@@ -277,7 +277,7 @@ namespace user
       }
    }
 
-   void form_list::_001OnDraw(::ca::graphics *pdc)
+   void form_list::_001OnDraw(::ca2::graphics *pdc)
    {
       list::_001OnDraw(pdc);
       form::_001OnDraw(pdc);
@@ -310,9 +310,9 @@ namespace user
    }
 
 
-   void form_list::_001OnKeyDown(::ca::signal_object * pobj)
+   void form_list::_001OnKeyDown(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::key, pkey, pobj)
+      SCAST_PTR(::ca2::message::key, pkey, pobj)
 
       if(pkey->m_ekey == ::user::key_return)
       {
@@ -419,7 +419,7 @@ namespace user
       }
    }
 
-   void form_list::_000OnMouse(::ca::message::mouse * pmouse)
+   void form_list::_000OnMouse(::ca2::message::mouse * pmouse)
    {
 
       point pt = pmouse->m_pt;
@@ -501,7 +501,7 @@ namespace user
       }
       try
       {
-         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca::signal_object * > (pmouse));
+         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca2::signal_object * > (pmouse));
          if(pmouse->get_lresult() != 0)
             return;
       }

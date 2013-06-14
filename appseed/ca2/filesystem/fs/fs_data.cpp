@@ -3,9 +3,9 @@
 namespace fs
 {
 
-   data::data(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::data(papp)
+   data::data(sp(::ca2::application) papp) :
+      ca2(papp),
+      ::ca2::data(papp)
    {
    }
 
@@ -110,7 +110,7 @@ namespace fs
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
          str += stra[i];
-         if(i != 0 || !::ca::str::ends(str, "//"))
+         if(i != 0 || !::ca2::str::ends(str, "//"))
          {
             str += "/";
          }
@@ -129,7 +129,7 @@ namespace fs
          if(straParam[i].is_empty())
          {
             straParam.remove_at(i);
-            if(i == 1 && ::ca::str::ends(straParam[0], ":"))
+            if(i == 1 && ::ca2::str::ends(straParam[0], ":"))
             {
                straParam[0] = straParam[0] + "//";
             }
@@ -141,16 +141,16 @@ namespace fs
       }
    }
 
-   ::ca::filesp data::get_file(var varFile, UINT nOpenFlags)
+   ::ca2::filesp data::get_file(var varFile, UINT nOpenFlags)
    {
       UNREFERENCED_PARAMETER(varFile);
       UNREFERENCED_PARAMETER(nOpenFlags);
       return NULL;
    }
 
-   ::ca::byte_stream data::get_byte_stream(var varFile, UINT nOpenFlags)
+   ::ca2::byte_stream data::get_byte_stream(var varFile, UINT nOpenFlags)
    {
-      return ::ca::byte_stream(get_file(varFile, nOpenFlags));
+      return ::ca2::byte_stream(get_file(varFile, nOpenFlags));
    }
 
    bool data::file_exists(const char * pszPath)

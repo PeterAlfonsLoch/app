@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
-   transfer_file::transfer_file(sp(::ca::application) papp, mutex * pmutex) :
-      ca(papp)
+   transfer_file::transfer_file(sp(::ca2::application) papp, mutex * pmutex) :
+      ca2(papp)
    {
 
       if(pmutex == NULL)
@@ -23,7 +23,7 @@ namespace ca
       m_pmemoryfileOut = new ::primitive::memory_file(papp, m_pmemory.m_p);
 
       // (uint64_t) -1 - initially unknown size
-      m_ptimeoutfile = new ::ca::timeout_file(papp, m_pmemoryfileOut, (uint64_t) -1);
+      m_ptimeoutfile = new ::ca2::timeout_file(papp, m_pmemoryfileOut, (uint64_t) -1);
       m_ptimeoutfile->m_spmutex = m_spmutex;
 
       m_spreader = m_ptimeoutfile;
@@ -35,8 +35,8 @@ namespace ca
 
    // it is not currently designed to call open.
    //
-   transfer_file::transfer_file(sp(::ca::application) papp, ::primitive::memory_file * pmemoryfileIn) :
-      ca(papp)
+   transfer_file::transfer_file(sp(::ca2::application) papp, ::primitive::memory_file * pmemoryfileIn) :
+      ca2(papp)
    {
 
       if(pmemoryfileIn->get_memory()->m_spmutex.is_null())
@@ -49,7 +49,7 @@ namespace ca
 
       m_pmemoryfileOut = new ::primitive::memory_file(papp, m_pmemory.m_p);
 
-      m_ptimeoutfile = new ::ca::timeout_file(papp, m_pmemoryfileOut);
+      m_ptimeoutfile = new ::ca2::timeout_file(papp, m_pmemoryfileOut);
       m_ptimeoutfile->m_spmutex = m_spmutex;
 
       m_spreader = m_ptimeoutfile;
@@ -65,7 +65,7 @@ namespace ca
 
    }
 
-   file_position transfer_file::seek(file_offset lOff, ::ca::e_seek nFrom)
+   file_position transfer_file::seek(file_offset lOff, ::ca2::e_seek nFrom)
    {
       return m_ptimeoutfile->seek(lOff, nFrom);
    }
@@ -76,5 +76,5 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 

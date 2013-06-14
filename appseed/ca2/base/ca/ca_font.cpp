@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -11,7 +11,7 @@ namespace ca
       m_strFontFamilyName  = "Times New Roman";
       m_dFontSize          = 17.0;
       m_dFontWidth         = 1.0;
-      m_eunitFontSize      = ::ca::unit_point;
+      m_eunitFontSize      = ::ca2::unit_point;
       m_iFontWeight        = 400;
       m_bItalic            = false;
       m_bUnderline         = false;
@@ -32,7 +32,7 @@ namespace ca
       m_strFontFamilyName     = lpszFacename;
       m_dFontSize             = dSize;
       m_dFontWidth            = 1.0;
-      m_eunitFontSize         = ::ca::unit_pixel;
+      m_eunitFontSize         = ::ca2::unit_pixel;
       m_iFontWeight           = 400;
       m_bItalic               = bItalic;
       m_bUnderline            = bUnderline;
@@ -49,7 +49,7 @@ namespace ca
       m_strFontFamilyName     = lpszFacename;
       m_dFontSize             = dSize;
       m_dFontWidth            = 1.0;
-      m_eunitFontSize         = ::ca::unit_point;
+      m_eunitFontSize         = ::ca2::unit_point;
       m_iFontWeight           = 400;
       m_bItalic               = bItalic;
       m_bUnderline            = bUnderline;
@@ -142,6 +142,6 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 

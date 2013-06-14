@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 html_view_update_hint : public ::ca::object
+class CLASS_DECL_ca2 html_view_update_hint : public ::ca2::object
 {
    
 public:

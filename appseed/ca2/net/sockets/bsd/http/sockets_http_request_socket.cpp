@@ -35,7 +35,7 @@ namespace sockets
 
 
    http_request_socket::http_request_socket(socket_handler_base& h) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -47,7 +47,7 @@ namespace sockets
 
 
    http_request_socket::http_request_socket(socket_handler_base & h, const char * pszRequest, const string & url_in) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -62,7 +62,7 @@ namespace sockets
 
 
    http_request_socket::http_request_socket(socket_handler_base & h, const char * pszRequest, const string & host, port_t port, const string & url_in) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -94,7 +94,7 @@ namespace sockets
       outheader(__id(user_agent)) = MyUseragent();
 
       if (GetUrlPort() != 80 && GetUrlPort() != 443)
-         outheader("Host") = GetUrlHost() + ":" + ::ca::str::from(GetUrlPort());
+         outheader("Host") = GetUrlHost() + ":" + ::ca2::str::from(GetUrlPort());
       else
          outheader("Host") = GetUrlHost();
       SendRequest();

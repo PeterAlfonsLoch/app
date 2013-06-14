@@ -3,7 +3,7 @@
 
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -138,7 +138,7 @@ namespace ca
       byte b;
 
       if(read(&b, sizeof(b)) < sizeof(b))
-         throw io_exception(get_app(), "ca::byte_input_stream::read_arbitrary : unexpected end of stream, cannot read header byte");
+         throw io_exception(get_app(), "ca2::byte_input_stream::read_arbitrary : unexpected end of stream, cannot read header byte");
 
       if(b == 0)
       {
@@ -151,10 +151,10 @@ namespace ca
       int len = b & 0x3f;
 
       if(len > sizeof(uiRead) || len > nMax)
-         throw io_exception(get_app(), "ca::byte_input_stream::read_arbitrary : overflow");
+         throw io_exception(get_app(), "ca2::byte_input_stream::read_arbitrary : overflow");
 
       if(read(&uiRead, len) != len)
-         throw io_exception(get_app(), "ca::byte_input_stream::read_arbitrary : unexpected end of stream, cannot read number body");
+         throw io_exception(get_app(), "ca2::byte_input_stream::read_arbitrary : unexpected end of stream, cannot read number body");
 
       if(b & 0x40)
       {
@@ -196,7 +196,7 @@ namespace ca
       return *this;
    }
 
-   byte_input_stream & byte_input_stream::operator >> (sp(::ca::type_info) info)
+   byte_input_stream & byte_input_stream::operator >> (sp(::ca2::type_info) info)
    {
       {
          int32_t iLen;
@@ -507,7 +507,7 @@ namespace ca
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (sp(::ca::type_info) info)
+   byte_output_stream & byte_output_stream::operator << (sp(::ca2::type_info) info)
    {
       strsize iLen = strlen(info->name());
       write(&iLen, sizeof(iLen));
@@ -597,7 +597,7 @@ namespace ca
    }
 
    byte_stream::byte_stream(const byte_stream & stream) :
-      ::ca::stream(stream),
+      ::ca2::stream(stream),
       byte_input_stream(stream),
       byte_output_stream(stream)
    {
@@ -624,7 +624,7 @@ namespace ca
 
    static const ::primitive::memory_size kBlockSize = ((uint32_t)1 << 31);
 
-   HRESULT ReadStream(::ca::reader * stream, void * data, ::primitive::memory_size * processedSize)
+   HRESULT ReadStream(::ca2::reader * stream, void * data, ::primitive::memory_size * processedSize)
    {
       ::primitive::memory_size size = *processedSize;
       *processedSize = 0;
@@ -684,4 +684,4 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2

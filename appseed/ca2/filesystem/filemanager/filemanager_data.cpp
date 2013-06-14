@@ -5,8 +5,8 @@ namespace filemanager
 {
 
 
-   data::data(sp(::ca::application) papp) :
-      ca(papp),
+   data::data(sp(::ca2::application) papp) :
+      ca2(papp),
       ::userfs::tree_data(papp),
       ::userfs::list_data(papp)
    {

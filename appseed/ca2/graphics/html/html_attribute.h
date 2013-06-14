@@ -6,7 +6,7 @@ namespace html
 
 
    class attribute :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 

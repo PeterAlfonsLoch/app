@@ -3,8 +3,8 @@
 namespace bergedge
 {
 
-   view::view(sp(::ca::application) papp) :
-      ca(papp),
+   view::view(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::user::place_holder(papp),
@@ -36,7 +36,7 @@ namespace bergedge
    {
    }
 
-   void view::install_message_handling(::ca::message::dispatch * pinterface)
+   void view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::user::view::install_message_handling(pinterface);
       ::user::place_holder::install_message_handling(pinterface);
@@ -55,7 +55,7 @@ namespace bergedge
    /////////////////////////////////////////////////////////////////////////////
    // ::user::view drawing
 
-   void view::OnDraw(::ca::graphics * pdcScreen)
+   void view::OnDraw(::ca2::graphics * pdcScreen)
    {
       UNREFERENCED_PARAMETER(pdcScreen);
    }
@@ -91,7 +91,7 @@ namespace bergedge
       cs.style &= ~WS_EX_CLIENTEDGE;
       return ::user::view::pre_create_window(cs);
    }
-   void view::_001OnInitialUpdate(::ca::signal_object * pobj)
+   void view::_001OnInitialUpdate(::ca2::signal_object * pobj)
    {
       ::user::view::_001OnInitialUpdate(pobj);
 
@@ -99,7 +99,7 @@ namespace bergedge
 
    }
 
-   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -107,7 +107,7 @@ namespace bergedge
 
    }
 
-   void view::_001OnDestroy(::ca::signal_object * pobj)
+   void view::_001OnDestroy(::ca2::signal_object * pobj)
    {
       ::user::view::_001OnDestroy(pobj);
 
@@ -115,7 +115,7 @@ namespace bergedge
 
 
 
-   void view::_001OnPaint(::ca::signal_object * pobj)
+   void view::_001OnPaint(::ca2::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -123,7 +123,7 @@ namespace bergedge
    }
 
 
-   void view:: _001OnDraw(::ca::graphics * pdc)
+   void view:: _001OnDraw(::ca2::graphics * pdc)
    {
 
       if(gcom::backview::Interface::IsEnabled())
@@ -139,7 +139,7 @@ namespace bergedge
          if(main.IsInitialized())
          {
 
-            ::ca::region_sp rgn(allocer());
+            ::ca2::region_sp rgn(allocer());
 //            rect rectFinal(graphics.m_rectFinalPlacement);
 /*            ClientToScreen(rect);
             rgn->create_rect(rect);
@@ -153,7 +153,7 @@ namespace bergedge
 
    }
 
-   void view::_001OnCreate(::ca::signal_object * pobj)
+   void view::_001OnCreate(::ca2::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -209,9 +209,9 @@ namespace bergedge
 
    }
 
-   void view::_001OnContextMenu(::ca::signal_object * pobj)
+   void view::_001OnContextMenu(::ca2::signal_object * pobj)
    {
-//      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
 //      point point = pcontextmenu->GetPoint();
 
    }
@@ -224,10 +224,10 @@ namespace bergedge
       }
    }
 
-   void view::_001OnSetCursor(::ca::signal_object * pobj)
+   void view::_001OnSetCursor(::ca2::signal_object * pobj)
    {
 
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
       
       pmouse->m_ecursor = ::visual::cursor_arrow;
 
@@ -235,7 +235,7 @@ namespace bergedge
 
    }
 
-   void view::pre_translate_message(::ca::signal_object * pobj)
+   void view::pre_translate_message(::ca2::signal_object * pobj)
    {
       ::user::view::pre_translate_message(pobj);
    }
@@ -245,9 +245,9 @@ namespace bergedge
       return  (::user::scroll_view::get_document());
    }
 
-   void view::_001OnTimer(::ca::signal_object * pobj)
+   void view::_001OnTimer(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::timer, ptimer, pobj)
+      SCAST_PTR(::ca2::message::timer, ptimer, pobj)
       switch(ptimer->m_nIDEvent)
       {
       case TimerBackView:
@@ -381,9 +381,9 @@ namespace bergedge
    }
 
 
-   void view::_001OnLButtonUp(::ca::signal_object * pobj)
+   void view::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       pmouse->set_lresult(1);
       KillTimer(5432180);
       point pt = pmouse->m_pt;
@@ -404,11 +404,11 @@ namespace bergedge
       {
          return;
       }
-      m_oswindowWinservice1       =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winservice_1");
-      m_oswindowWinactionarea     =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winactionarea");
-      m_oswindowCommand           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::command");
-      m_oswindowWinutil           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winutil");
-      m_oswindowBergedge          =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::bergedge");
+      m_oswindowWinservice1       =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::winservice_1");
+      m_oswindowWinactionarea     =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::winactionarea");
+      m_oswindowCommand           =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::command");
+      m_oswindowWinutil           =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::winutil");
+      m_oswindowBergedge          =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::bergedge");
 #endif
    }
 
@@ -472,7 +472,7 @@ namespace bergedge
       gcom::backview::user::interaction::layout();
    }*/
 
-   void view::_000OnMouse(::ca::message::mouse * pmouse)
+   void view::_000OnMouse(::ca2::message::mouse * pmouse)
    {
       try
       {
@@ -539,7 +539,7 @@ namespace bergedge
       {
          if(m_pimpl == NULL)
             return;
-         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca::signal_object * > (pmouse));
+         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca2::signal_object * > (pmouse));
          if(pmouse->get_lresult() != 0)
             return;
       }

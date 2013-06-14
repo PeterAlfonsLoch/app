@@ -17,7 +17,7 @@ namespace colorertake5
    */
    class CLASS_DECL_ca2 base_editor :
       public RegionHandler,
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       /**
@@ -29,7 +29,7 @@ namespace colorertake5
       *        text data in line-separated form. Can't be NULL.
       */
 
-      base_editor(sp(::ca::application) papp);
+      base_editor(sp(::ca2::application) papp);
       ~base_editor();
 
       void initialize(line_source * plinesource);
@@ -169,7 +169,7 @@ namespace colorertake5
       * This method can be called periodically in background thread
       * to make possible background parsing process.
       * @param lno Line number, for which validation is requested.
-      *   If this number is in the current visible ::ca::window range,
+      *   If this number is in the current visible ::ca2::window range,
       *   the part of text is validated, which is required
       *   for visual repaint.
       *   If this number is equals to -1, all the text is validated.
@@ -255,7 +255,7 @@ namespace colorertake5
       comparable_array<EditorListener*> editorListeners;
 
       int32_t backParse;
-      // ::ca::window area
+      // ::ca2::window area
       index wStart;
       ::count wSize;
       // line count

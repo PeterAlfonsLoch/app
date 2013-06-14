@@ -8,11 +8,11 @@ namespace visual
    class CLASS_DECL_ca2 visual
    {
    public:
-      visual(::ca::graphics * pdc);
+      visual(::ca2::graphics * pdc);
 
       virtual void Polygon(const point_array & pointa);
 
-      ::ca::graphics * m_pdc;
+      ::ca2::graphics * m_pdc;
 
    public:
       virtual ~visual();
@@ -31,7 +31,7 @@ namespace visual
 
 
    class CLASS_DECL_ca2 visual  :
-      virtual public ::ca::section
+      virtual public ::ca2::section
    {
    public:
 
@@ -42,11 +42,11 @@ namespace visual
 
 
 
-      visual(::ca::application * papp);
+      visual(::ca2::application * papp);
       virtual ~visual();
 
 
-      virtual void construct(sp(::ca::application) papp);
+      virtual void construct(sp(::ca2::application) papp);
 
       virtual bool process_initialize();
       

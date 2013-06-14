@@ -10,7 +10,7 @@ namespace primitive
 
 } // namespace primitive
 
-namespace ca
+namespace ca2
 {
    enum para_return
    {
@@ -23,7 +23,7 @@ namespace ca
 
 class var_array;
 
-namespace ca
+namespace ca2
 {
    class property;
    class property;
@@ -77,7 +77,7 @@ struct CLASS_DECL_ca2 var_data
    union
    {
       void               * m_p;
-      ::ca::para_return     m_parareturn;
+      ::ca2::para_return     m_parareturn;
       bool                 m_b;
       bool *               m_pb;
       int32_t              m_i32;
@@ -99,12 +99,12 @@ struct CLASS_DECL_ca2 var_data
       stringa *            m_pstra;
       int64_array *        m_pia64;
       var_array *          m_pvara;
-      ::ca::property_set *  m_pset;
-      ::ca::property *      m_pprop;
+      ::ca2::property_set *  m_pset;
+      ::ca2::property *      m_pprop;
       uchar        m_uch;
       char                 m_ch;
    };
-   sp(::ca::ca)                     m_sp;
+   sp(::ca2::ca2)                     m_sp;
    string                           m_str;
    id                               m_id;
 
@@ -162,15 +162,15 @@ public:
    var(const SYSTEMTIME & time);
    var(string * pstr);
    var(var * pvar);
-   var(::ca::ca * pca2);
+   var(::ca2::ca2 * pca2);
    var(const stringa & var);
    var(const int_array & var);
    var(const var_array & var);
-   var(const ::ca::property_set & set);
+   var(const ::ca2::property_set & set);
    var(const var & var);
-   var(const ::ca::property & prop);
-   var(const ::ca::pair_set_interface & set);
-   var(const ::ca::str_str_interface & set);
+   var(const ::ca2::property & prop);
+   var(const ::ca2::pair_set_interface & set);
+   var(const ::ca2::str_str_interface & set);
    var(const string_composite & composite);
    inline var(var && v);
    template < class T >
@@ -204,15 +204,15 @@ public:
    int_array &                      inta();
    int64_array &                    int64a();
    var_array &                      vara();
-   ::ca::property_set &              propset(sp(::ca::application) papp = NULL);
-   ::ca::property &                  prop();
+   ::ca2::property_set &              propset(sp(::ca2::application) papp = NULL);
+   ::ca2::property &                  prop();
    const class primitive::memory &  memory() const;
    stringa                          stra() const;
    int_array                        inta() const;
    int64_array                      int64a() const;
    var_array                        vara()  const;
-   ::ca::property_set                propset() const;
-   ::ca::property                prop() const;
+   ::ca2::property_set                propset() const;
+   ::ca2::property                prop() const;
 
    bool is_scalar() const;
    inline bool is_array() const;
@@ -304,14 +304,14 @@ public:
       return *this;
    }
 */
-   inline var & operator = (::ca::ca * p)
+   inline var & operator = (::ca2::ca2 * p)
    {
       set_type(type_ca2, false);
       m_sp = p;
       return *this;
    }
 
-   var & operator = (::ca::para_return & eret);
+   var & operator = (::ca2::para_return & eret);
    var & operator = (bool b);
    var & operator = (bool * pb);
    var & operator = (int32_t i);
@@ -335,15 +335,15 @@ public:
    var & operator = (var * pvar);
    var & operator = (const char * psz);
    var & operator = (const wchar_t * lpcsz);
-   var & operator = (const ::ca::property & prop);
+   var & operator = (const ::ca2::property & prop);
    var & operator = (const var & var);
    var & operator = (const int_array & ia);
    var & operator = (const stringa & stra);
    var & operator = (const class primitive::memory & memory);
    var & operator = (const var_array & vara);
-   var & operator = (const ::ca::property_set & propset);
-   var & operator = (const ::ca::pair_set_interface & propset);
-   var & operator = (const ::ca::str_str_interface & propset);
+   var & operator = (const ::ca2::property_set & propset);
+   var & operator = (const ::ca2::pair_set_interface & propset);
+   var & operator = (const ::ca2::str_str_interface & propset);
    var & operator = (const string_composite & composite);
    var & operator = (const id & id);
    var & operator = (id * pid);
@@ -356,17 +356,17 @@ public:
    }
 
    template < class T >
-   sp(T) ca()
+   sp(T) ca2()
    {
       if(m_etype == type_pvar && m_pvar != NULL)
-         return m_pvar->ca < T > ();
+         return m_pvar->ca2 < T > ();
       if(m_etype != type_ca2)
          return NULL;
       return m_sp;
    }
 
    template < class T >
-   const sp(T) ca() const
+   const sp(T) ca2() const
    {
       if(m_etype != type_ca2)
          return NULL;
@@ -441,8 +441,8 @@ public:
    bool operator > (int32_t i) const;
    bool operator > (bool b) const;
 
-   void write(::ca::byte_output_stream & ostream);
-   void read(::ca::byte_input_stream & ostream);
+   void write(::ca2::byte_output_stream & ostream);
+   void read(::ca2::byte_input_stream & ostream);
 
    string implode(const char * pszGlue) const;
    var explode(const char * pszGlue, bool bAddEmpty = true) const;
@@ -584,7 +584,7 @@ public:
 
 };
 
-namespace ca
+namespace ca2
 {
 
 
@@ -603,7 +603,7 @@ namespace ca
    } // namespace str
 
 
-} // namespace ca
+} // namespace ca2
 
 
 inline string CLASS_DECL_ca2 operator+ (const char * psz, const var & var)

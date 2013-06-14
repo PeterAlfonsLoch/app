@@ -110,8 +110,8 @@ string ParserFactory::searchPath()
    return Application.dir().matter("colorer.zip:catalog.xml");
 };
 
-ParserFactory::ParserFactory(sp(::ca::application) papp) :
-   ca(papp)
+ParserFactory::ParserFactory(sp(::ca2::application) papp) :
+   ca2(papp)
 {
 
   fileErrorHandler = NULL;
@@ -124,8 +124,8 @@ ParserFactory::ParserFactory(sp(::ca::application) papp) :
 
 }
 
-ParserFactory::ParserFactory(sp(::ca::application) papp, string catalogPath) :
-   ca(papp)
+ParserFactory::ParserFactory(sp(::ca2::application) papp, string catalogPath) :
+   ca2(papp)
 {
 
    fileErrorHandler = NULL;
@@ -178,9 +178,9 @@ HRCParser* ParserFactory::getHRCParser()
          {
             path = System.dir().path(System.dir().name(catalogPath), relPath);
             string path2del = path;
-            ::ca::str::begins_eat(path, "file://");
-            ::ca::str::begins_eat(path, "file:/");
-            ::ca::str::begins_eat(path, "file:");
+            ::ca2::str::begins_eat(path, "file://");
+            ::ca2::str::begins_eat(path, "file:/");
+            ::ca2::str::begins_eat(path, "file:");
          }
          else
          {
@@ -194,7 +194,7 @@ HRCParser* ParserFactory::getHRCParser()
             }
             stringa straPath;
             System.dir().rls(get_app(), path, &straPath);
-            ::ca::filesp spfile(allocer());
+            ::ca2::filesp spfile(allocer());
             for(int32_t i = 0; i < straPath.get_count(); i++)
             {
                if(!Application.dir().is(straPath[i]))
@@ -283,7 +283,7 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
 
           strPath = System.dir().path(strDir, hrdLocV->element_at(idx));
 
-          ::ca::byte_stream spfile(Application.file().get_byte_stream(strPath, ::ca::file::mode_read | ::ca::file::type_binary));
+          ::ca2::byte_stream spfile(Application.file().get_byte_stream(strPath, ::ca2::file::mode_read | ::ca2::file::type_binary));
 
           if(spfile.is_reader_set())
           {
@@ -325,7 +325,7 @@ TextHRDMapper *ParserFactory::createTextMapper(string nameID){
     {
        try
        {
-          ::ca::byte_stream stream(Application.file().get_byte_stream(hrdLocV->element_at(idx), ::ca::file::mode_read |::ca::file::type_binary));
+          ::ca2::byte_stream stream(Application.file().get_byte_stream(hrdLocV->element_at(idx), ::ca2::file::mode_read |::ca2::file::type_binary));
           if(stream.is_reader_set())
           {
                mapper->loadRegionMappings(stream);

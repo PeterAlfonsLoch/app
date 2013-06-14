@@ -31,7 +31,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "framework.h"
 
 
-namespace ca {
+namespace ca2 {
 
 
 /* implementation of class parse */
@@ -96,10 +96,10 @@ namespace ca {
 
    #define C ((pa_the_ptr<pa_the_str.get_length()) ? ((const char *) pa_the_str)[pa_the_ptr] : 0)
 
-   int16_t parse::issplit(const char c)
+   int16_t parse::issplit(const char ca)
    {
       for (int32_t i = 0; i < pa_splits.get_length(); i++)
-         if (pa_splits[i] == c)
+         if (pa_splits[i] == ca)
             return 1;
       return 0;
    }
@@ -249,9 +249,9 @@ namespace ca {
       return atol(pa_ord);
    }
 
-   void parse::setbreak(const char c)
+   void parse::setbreak(const char ca)
    {
-      pa_breakchar = c;
+      pa_breakchar = ca;
    }
 
    int32_t parse::getwordlen()
@@ -308,6 +308,6 @@ namespace ca {
       s = pa_ord;
    }
 
-} // namespace ca
+} // namespace ca2
 
 

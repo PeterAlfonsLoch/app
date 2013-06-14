@@ -8,8 +8,8 @@ namespace colorertake5
    /** HRD files reader.
    HRD Files format contains mappings of HRC syntax regions into
    real coloring information. Each record in HRD (RegionDefine) can contain
-   information about region color (@c fore, @c back) and about it's style
-   (@c style).
+   information about region color (@ca fore, @ca back) and about it's style
+   (@ca style).
 
    @ingroup colorer_handlers
    */
@@ -18,20 +18,20 @@ namespace colorertake5
    public:
       
       
-      StyledHRDMapper(sp(::ca::application) papp);
+      StyledHRDMapper(sp(::ca2::application) papp);
       ~StyledHRDMapper();
 
       
-      /** Loads region defines from @c is input_source
+      /** Loads region defines from @ca is input_source
       */
-      void loadRegionMappings(::ca::byte_input_stream & istream);
-      /** Saves all loaded region defines into @c writer.
+      void loadRegionMappings(::ca2::byte_input_stream & istream);
+      /** Saves all loaded region defines into @ca writer.
       Note, that result document would not be equal
       to input one, because there could be multiple input
       documents.
       */
-      void saveRegionMappings(::ca::byte_output_stream & ostream) const;
-      /** Changes specified region definition to @c rdnew
+      void saveRegionMappings(::ca2::byte_output_stream & ostream) const;
+      /** Changes specified region definition to @ca rdnew
       @param region region full qualified name.
       @param rdnew  New region definition to replace old one
       */

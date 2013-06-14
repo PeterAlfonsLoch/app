@@ -4,12 +4,12 @@
 #ifndef METROWIN
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 process_section :
-      public ::ca::section
+      public ::ca2::section
    {
    public:
 
@@ -19,12 +19,12 @@ namespace ca
       public:
 
 
-         ::ca::process           m_process;
+         ::ca2::process           m_process;
          string                  m_strRead;
          manual_reset_event      m_evReady;
 
 
-         process_thread(sp(::ca::application) papp);
+         process_thread(sp(::ca2::application) papp);
          int32_t run();
 
 
@@ -42,7 +42,7 @@ namespace ca
       };
 
 
-      process_section(::ca::application * papp);
+      process_section(::ca2::application * papp);
       virtual ~process_section();
 
 
@@ -60,7 +60,7 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 
 #endif

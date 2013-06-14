@@ -19,20 +19,20 @@ namespace user
       UNREFERENCED_PARAMETER(iTimer);
    }
 
-   void keyboard_focus::keyboard_focus_OnChar(::ca::signal_object * pobj)
+   void keyboard_focus::keyboard_focus_OnChar(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void keyboard_focus::keyboard_focus_OnSysChar(::ca::signal_object * pobj)
+   void keyboard_focus::keyboard_focus_OnSysChar(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void keyboard_focus::keyboard_focus_OnKeyDown(::ca::signal_object * pobj)
+   void keyboard_focus::keyboard_focus_OnKeyDown(::ca2::signal_object * pobj)
    {
 
-      SCAST_PTR(::ca::message::key, pkey, pobj)
+      SCAST_PTR(::ca2::message::key, pkey, pobj)
 
       if(pkey->m_ekey == ::user::key_tab)
       {
@@ -46,7 +46,7 @@ namespace user
 
    }
 
-   void keyboard_focus::keyboard_focus_OnKeyUp(::ca::signal_object * pobj)
+   void keyboard_focus::keyboard_focus_OnKeyUp(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }

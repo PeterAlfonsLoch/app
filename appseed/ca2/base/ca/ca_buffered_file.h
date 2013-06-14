@@ -1,17 +1,17 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 buffered_file : 
-      public ::ca::file
+      public ::ca2::file
    {
    public:
 
 
-      ::ca::filesp                m_pfile;
+      ::ca2::filesp                m_pfile;
 
       ::primitive::memory_size   m_uiBufferSize;
       file_position              m_uiPosition;
@@ -23,12 +23,12 @@ namespace ca
       primitive::memory          m_storage;
 
 
-      buffered_file(sp(::ca::application) papp, ::ca::filesp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
+      buffered_file(sp(::ca2::application) papp, ::ca2::filesp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
       virtual ~buffered_file();
 
 
       virtual bool IsValid() const;
-      file_position seek(file_offset lOff, ::ca::e_seek nFrom);
+      file_position seek(file_offset lOff, ::ca2::e_seek nFrom);
       file_position get_position() const;
       file_size get_length() const;
 
@@ -43,6 +43,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

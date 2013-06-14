@@ -25,7 +25,7 @@ namespace platform
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
          
 
-      virtual ::ca::application * get_app() const;
+      virtual ::ca2::application * get_app() const;
       void OnFileManagerOpenFile(
          ::filemanager::data * pdata, 
          ::fs::item_array & itema);

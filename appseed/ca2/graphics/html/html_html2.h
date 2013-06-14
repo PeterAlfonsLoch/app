@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    namespace html
@@ -25,4 +25,4 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2

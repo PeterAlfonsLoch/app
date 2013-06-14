@@ -18,7 +18,7 @@ public:
 #endif
 
 
-   condition(sp(::ca::application) papp);
+   condition(sp(::ca2::application) papp);
    virtual ~condition();
 
 

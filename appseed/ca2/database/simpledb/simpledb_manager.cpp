@@ -5,10 +5,10 @@ namespace simpledb
 {
 
 
-   manager::manager(sp(::ca::application) papp) :
-      ca(papp),
+   manager::manager(sp(::ca2::application) papp) :
+      ca2(papp),
       thread(papp),
-      ::ca::message_window_simple_callback(papp),
+      ::ca2::message_window_simple_callback(papp),
       m_mutexSession(papp),
       m_mutexTagId(papp),
       m_mutexTagName(papp)
@@ -47,7 +47,7 @@ namespace simpledb
          return false;
       }
       psocket->response().file().write(memory.get_data(), memory.get_size());
-      psocket->outheader(__id(content_type)) = "application/x-ca-var";
+      psocket->outheader(__id(content_type)) = "application/x-ca2-var";
       return true;
    }
 
@@ -60,9 +60,9 @@ namespace simpledb
 
 
 
-   void manager::message_window_message_handler(::ca::signal_object * pobj)
+   void manager::message_window_message_handler(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_APP + 13)
       {
          //if(wparam == 0)

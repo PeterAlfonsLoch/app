@@ -47,7 +47,7 @@
 
 
 #ifndef __cplusplus
-#include "ca/ca_c.h"
+#include "ca2/ca_c.h"
 #endif
 
 #ifdef __cplusplus
@@ -117,7 +117,7 @@ typedef const char* zipcharpc;
 extern zipFile CLASS_DECL_ca2 zipOpen OF((const char *pathname, int32_t append));
 /*
   create a zipfile.
-     pathname contain on Windows XP a filename like "c:\\zlib\\zlib113.zip" or on
+     pathname contain on Windows XP a filename like "ca:\\zlib\\zlib113.zip" or on
        an Unix computer "zlib/zlib113.zip".
      if the file pathname exist and append==APPEND_STATUS_CREATEAFTER, the zip
        will be created at the end of the spfile->

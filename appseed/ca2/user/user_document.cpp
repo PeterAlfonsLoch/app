@@ -5,9 +5,9 @@ namespace user
 {
 
 
-   document::document(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::data_container_base(papp)
+   document::document(sp(::ca2::application) papp) :
+      ca2(papp),
+      ::ca2::data_container_base(papp)
    {
    
       m_pdocumentemplate = NULL;
@@ -26,7 +26,7 @@ namespace user
 
 
 
-   bool document::set_data(::ca::data * pdata)
+   bool document::set_data(::ca2::data * pdata)
    {
 
       if(m_spdata.is_set())
@@ -36,7 +36,7 @@ namespace user
 
       }
 
-      ::ca::data_container::set_data(pdata);
+      ::ca2::data_container::set_data(pdata);
 
       if(pdata != NULL)
       {
@@ -70,7 +70,7 @@ namespace user
 
    void document::dump(dump_context & dumpcontext) const
    {
-      ::ca::object::dump(dumpcontext);
+      ::ca2::object::dump(dumpcontext);
 
       dumpcontext << "m_wstrTitle = " << m_strTitle;
       dumpcontext << "\nm_wstrPathName = " << m_strPathName;
@@ -92,7 +92,7 @@ namespace user
 
    void document::assert_valid() const
    {
-      ::ca::object::assert_valid();
+      ::ca2::object::assert_valid();
 
       ::count count = get_view_count();
       for(index index = 0; index < count; index++)
@@ -103,7 +103,7 @@ namespace user
    }
 
 
-   void document::on_alloc(sp(::ca::application) papp)
+   void document::on_alloc(sp(::ca2::application) papp)
    {
 
       //::user::document::on_alloc(papp);

@@ -15,7 +15,7 @@ namespace nature
    public:
 
 
-      document(sp(::ca::application) papp);
+      document(sp(::ca2::application) papp);
       virtual ~document();
 
       sp(::user::view)     get_nature_view();

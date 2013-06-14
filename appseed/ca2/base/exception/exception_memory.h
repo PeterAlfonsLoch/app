@@ -7,8 +7,8 @@ class CLASS_DECL_ca2 memory_exception :
 public:
 
 
-   memory_exception(sp(::ca::application) papp);
-   memory_exception(sp(::ca::application) papp, const char * pszMessage);
+   memory_exception(sp(::ca2::application) papp);
+   memory_exception(sp(::ca2::application) papp, const char * pszMessage);
    virtual ~memory_exception();
 
 

@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 live_object :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 
@@ -24,4 +24,4 @@ namespace ca
 
    };
 
-} // namespace ca
+} // namespace ca2

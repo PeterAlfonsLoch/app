@@ -4,7 +4,7 @@ namespace visual
 {
 
    class CLASS_DECL_ca2 font :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -25,18 +25,18 @@ namespace visual
       //uint32_t         m_dwSize;
       //uint32_t         m_dwAllocation;
       //int32_t            m_iUsedGlyphs;
-      ::ca::graphics *         m_pDC;
+      ::ca2::graphics *         m_pDC;
       //static mutex m_mutex;
 
       glyph_set      m_glyphset;
 
-      ::ca::font_sp        m_spfont;
-      ::ca::font *         m_pfontOld;
+      ::ca2::font_sp        m_spfont;
+      ::ca2::font *         m_pfontOld;
 
       LPBYTE         m_lpBitmap;
 
 
-      font(sp(::ca::application) papp);
+      font(sp(::ca2::application) papp);
       virtual ~font();
 
       glyph * GetGlyph(WCHAR wchar);
@@ -60,16 +60,16 @@ namespace visual
       void UnselectFont();
       void ClearDC();
       void SelectFont();
-      void SetDC(::ca::graphics * pgraphics);
+      void SetDC(::ca2::graphics * pgraphics);
       void EmbossedTextOut(
-         ::ca::graphics                  * pgraphics,
+         ::ca2::graphics                  * pgraphics,
          LPCRECT               lpcrect,
          double               dRateX,
          double               dHeight,
          string                 &str);
 
       void EmbossedTextOut(
-         ::ca::graphics                     *pdc,
+         ::ca2::graphics                     *pdc,
          LPCRECT               lpcrect,
          double               dRateX,
          double               dHeight,
@@ -79,7 +79,7 @@ namespace visual
          int32_t                  iOffset);
 
       void SimpleTextOut(
-         ::ca::graphics                     *pdc,
+         ::ca2::graphics                     *pdc,
          int32_t                     x,
          int32_t                     y,
          string                 &str,
@@ -87,7 +87,7 @@ namespace visual
          int32_t                     iCharsPositions);
 
       void TextOutEx(
-         ::ca::graphics                  *pdc,
+         ::ca2::graphics                  *pdc,
          LPCRECT               lpcrect,
          double               dRateX,
          double               dHeight,
@@ -97,7 +97,7 @@ namespace visual
          int32_t                  iOffset,
          int32_t                  iEffect);
 
-      ::ca::font * GetFont();
+      ::ca2::font * GetFont();
       void clear();
 
    };

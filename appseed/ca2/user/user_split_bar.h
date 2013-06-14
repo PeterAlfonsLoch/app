@@ -22,13 +22,13 @@ namespace user
 
 
 
-      split_bar(sp(::ca::application) papp);
+      split_bar(sp(::ca2::application) papp);
       virtual ~split_bar();
 
 
-      void install_message_handling(::ca::message::dispatch * pinterface);
+      void install_message_handling(::ca2::message::dispatch * pinterface);
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
 
       using ::user::interaction::create;
       bool create(split_layout * pparent);

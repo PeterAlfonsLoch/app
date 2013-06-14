@@ -3,7 +3,7 @@
 class form_view;
 
 class CLASS_DECL_ca2 form_update_hint : 
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
    

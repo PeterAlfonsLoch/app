@@ -9,7 +9,7 @@
 
 /*
  *   
- * Copyright (c) 2001-2006, Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006, Cisco Systems, Inc.
  * 
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -86,7 +86,7 @@ typedef err_status_t (*auth_start_func)(void *state);
 
 #define auth_start(a)(((a)->type)->start((a)->state))
 
-#define auth_dealloc(c) (((c)->type)->dealloc(c))
+#define auth_dealloc(ca) (((ca)->type)->dealloc(ca))
 
 /* functions to get information about a particular auth_t */
 

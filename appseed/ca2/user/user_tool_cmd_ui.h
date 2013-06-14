@@ -10,7 +10,7 @@ namespace user
    public: // re-implementations only
 
 
-      tool_cmd_ui(sp(::ca::application) papp);
+      tool_cmd_ui(sp(::ca2::application) papp);
       virtual ~tool_cmd_ui();
 
       virtual void Enable(bool bOn);
@@ -61,6 +61,6 @@ class CToolTipCtrl;
 class ::user::control_bar;
 
 
-CLASS_DECL_ca2 UINT _::ca::GetMouseScrollLines();
+CLASS_DECL_ca2 UINT _::ca2::GetMouseScrollLines();
 
 */

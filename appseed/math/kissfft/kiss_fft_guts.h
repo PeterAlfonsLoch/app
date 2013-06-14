@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2003-2004, Mark Borgerding
+Copyright (ca) 2003-2004, Mark Borgerding
 
 
 
@@ -36,7 +36,7 @@ struct kiss_fft_state{
   Explanation of macros dealing with complex math:
 
    C_MUL(m,a,b)         : m = a*b
-   C_FIXDIV( c , div )  : if a fixed point impl., c /= div. noop otherwise
+   C_FIXDIV( ca , div )  : if a fixed point impl., ca /= div. noop otherwise
    C_SUB( res, a,b)     : res = a - b
    C_SUBFROM( res , a)  : res -= a
    C_ADDTO( res , a)    : res += a
@@ -52,12 +52,12 @@ struct kiss_fft_state{
       do{ (m).r = sround( smul((a).r,(b).r) - smul((a).i,(b).i) ); \
           (m).i = sround( smul((a).r,(b).i) + smul((a).i,(b).r) ); }while(0)
 
-#   define C_FIXDIV(c,div) \
-    do{ (c).r /= div; (c).i /=div; }while(0)
+#   define C_FIXDIV(ca,div) \
+    do{ (ca).r /= div; (ca).i /=div; }while(0)
 
-#   define C_MULBYSCALAR( c, s ) \
-    do{ (c).r =  sround( smul( (c).r , s ) ) ;\
-        (c).i =  sround( smul( (c).i , s ) ) ; }while(0)
+#   define C_MULBYSCALAR( ca, s ) \
+    do{ (ca).r =  sround( smul( (ca).r , s ) ) ;\
+        (ca).i =  sround( smul( (ca).i , s ) ) ; }while(0)
 
 #else  /* not FIXED_POINT*/
 
@@ -65,10 +65,10 @@ struct kiss_fft_state{
 #define C_MUL(m,a,b) \
     do{ (m).r = (a).r*(b).r - (a).i*(b).i;\
         (m).i = (a).r*(b).i + (a).i*(b).r; }while(0)
-#   define C_FIXDIV(c,div) /* NOOP */
-#   define C_MULBYSCALAR( c, s ) \
-    do{ (c).r *= (s);\
-        (c).i *= (s); }while(0)
+#   define C_FIXDIV(ca,div) /* NOOP */
+#   define C_MULBYSCALAR( ca, s ) \
+    do{ (ca).r *= (s);\
+        (ca).i *= (s); }while(0)
 #endif
 
 #define  C_ADD( res, a,b)\
@@ -83,5 +83,5 @@ struct kiss_fft_state{
 void kf_cexp(kiss_fft_cpx * x,double phase); /* returns e ** (j*phase)   */
 
 /* a debugging function */
-#define pcpx(c)\
-    fprintf(stderr,"%g + %gi\n",(double)((c)->r),(double)((c)->i) )
+#define pcpx(ca)\
+    fprintf(stderr,"%g + %gi\n",(double)((ca)->r),(double)((ca)->i) )

@@ -32,8 +32,8 @@ namespace user
       m_bBackgroundBypass        = false;
    }
 
-   window_interface::window_interface(sp(::ca::application) papp) :
-      ca(papp),
+   window_interface::window_interface(sp(::ca2::application) papp) :
+      ca2(papp),
       command_target_interface(papp),
       m_rectParentClient(0, 0, 0, 0)
    {
@@ -48,9 +48,9 @@ namespace user
    {
    }
 
-   void window_interface::install_message_handling(::ca::message::dispatch * pinterface)
+   void window_interface::install_message_handling(::ca2::message::dispatch * pinterface)
    {
-      ::ca::message::dispatch::install_message_handling(pinterface);
+      ::ca2::message::dispatch::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(
          MessageBaseWndGetProperty,
@@ -71,10 +71,10 @@ namespace user
          &window_interface::_001OnBaseWndGetProperty);
    }
 
-   // draw the background of a ::ca::window
+   // draw the background of a ::ca2::window
    // can be used for trasparency
    // the rectangle must be in client coordinates.
-   void window_interface::_001DrawBackground(::ca::graphics *pdc, LPRECT lprect)
+   void window_interface::_001DrawBackground(::ca2::graphics *pdc, LPRECT lprect)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(lprect);
@@ -83,7 +83,7 @@ namespace user
 
 
    /*bool window_interface::TwfRender(
-      ::ca::graphics *          pdc,
+      ::ca2::graphics *          pdc,
       oswindow           oswindowExclude,
       LPCRECT        lpcrectUpdate,
       user::oswindow_tree::Array & oswindowtreea,
@@ -106,7 +106,7 @@ namespace user
             else
                continue;
          }
-         sp(::ca::window) pwndChild = ::ca::window::from_handle(oswindowChild);
+         sp(::ca2::window) pwndChild = ::ca2::window::from_handle(oswindowChild);
          oswindow oswindowParent = ::get_parent(oswindowChild);
          ::GetClientRect(oswindowChild, rectChild);
          ::ClientToScreen(oswindowChild, &rectChild.top_left());
@@ -122,7 +122,7 @@ namespace user
 
 
    bool window_interface::TwfRender(
-      ::ca::graphics *          pdc,
+      ::ca2::graphics *          pdc,
       oswindow           oswindowExclude,
       LPCRECT        lpcrectUpdate,
       user::oswindow_tree & oswindowtree,
@@ -159,7 +159,7 @@ namespace user
       }
 
 
-      sp(::ca::window) pwnd = ::ca::window::FromHandlePermanent(oswindowParam);
+      sp(::ca2::window) pwnd = ::ca2::window::FromHandlePermanent(oswindowParam);
 
       if((::GetWindowLong((oswindowParam), GWL_STYLE) & WS_VISIBLE) == 0)
       {
@@ -221,7 +221,7 @@ namespace user
       else
       {
          bool bWin4 = FALSE;
-      //_::ca::FillPSOnStack();
+      //_::ca2::FillPSOnStack();
          ::DefWindowProc(
             oswindowParam,
             (bWin4 ? WM_PRINT : WM_PAINT),
@@ -285,9 +285,9 @@ namespace user
       }
    }
 
-   void window_interface::_001OnBaseWndGetProperty(::ca::signal_object * pobj)
+   void window_interface::_001OnBaseWndGetProperty(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj)
+      SCAST_PTR(::ca2::message::base, pbase, pobj)
       pbase->set_lresult(_001BaseWndGetProperty((EProperty) pbase->m_wparam, pbase->m_lparam));
    }
 
@@ -310,14 +310,14 @@ namespace user
 
 
 
-   // The first ::ca::window handle in the array must belong
-   // to the higher z order ::ca::window.
+   // The first ::ca2::window handle in the array must belong
+   // to the higher z order ::ca2::window.
    // The rectangle must contain all update region.
    // It must be in screen coordinates.
 
    // This optimization eliminates top level windows
    // that are lower z order siblings of a higher z order
-   // top level ::ca::window that contains all
+   // top level ::ca2::window that contains all
    // the update region in a opaque area.
    // It doesn´t eliminates from the update parent windows
    // obscured by opaque children.
@@ -326,7 +326,7 @@ namespace user
       user::oswindow_tree::Array & oswindowtreea,
       LPCRECT lpcrect)
    {
-      ::ca::region rgn;
+      ::ca2::region rgn;
 
       rgn.create_rect(lpcrect);
 
@@ -391,9 +391,9 @@ namespace user
          ::ClientToScreen(oswindow, &rectClient.top_left());
          ::ClientToScreen(oswindow, &rectClient.bottom_right());
 
-         ::ca::region rgn;
+         ::ca2::region rgn;
          rgn.create_rect(rectClient);
-         int32_t iCombine = ::CombineRgn(hrgn, hrgn, rgn, ::ca::region::combine_exclude);
+         int32_t iCombine = ::CombineRgn(hrgn, hrgn, rgn, ::ca2::region::combine_exclude);
          if(iCombine == NULLREGION)
          {
             ASSERT(TRUE);
@@ -480,9 +480,9 @@ namespace user
 
 
 
-   void window_interface::_001OnCreate(::ca::signal_object * pobj)
+   void window_interface::_001OnCreate(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::create, pcreate, pobj)
+      SCAST_PTR(::ca2::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
       pcreate->set_lresult(0);
@@ -510,7 +510,7 @@ namespace user
       return NULL;
    }
 #else
-   sp(::ca::window) window_interface::get_wnd() const
+   sp(::ca2::window) window_interface::get_wnd() const
    {
       return NULL;
    }
@@ -533,7 +533,7 @@ namespace user
       _001BaseWndInterfaceMap();
    }
 
-   void window_interface::_000OnDraw(::ca::graphics * pdc)
+   void window_interface::_000OnDraw(::ca2::graphics * pdc)
    {
       _001OnDraw(pdc);
    }
@@ -561,13 +561,13 @@ namespace user
       return true;
    }
 
-   bool window_interface::Redraw(LPCRECT lprect, ::ca::region * prgn)
+   bool window_interface::Redraw(LPCRECT lprect, ::ca2::region * prgn)
    {
       get_wnd()->RedrawWindow(lprect, prgn, RDW_INVALIDATE);
       return true;
    }
 
-   bool window_interface::Redraw(::ca::graphics * pdc)
+   bool window_interface::Redraw(::ca2::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
       get_wnd()->RedrawWindow();

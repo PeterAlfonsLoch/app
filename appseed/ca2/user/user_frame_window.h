@@ -45,7 +45,7 @@
 #define CBRS_BOTTOM         (CBRS_ALIGN_BOTTOM|CBRS_BORDER_TOP)
 
 
-// Frame ::ca::window styles
+// Frame ::ca2::window styles
 #define FWS_ADDTOTITLE  0x00008000L // modify title based on content
 #define FWS_PREFIXTITLE 0x00004000L // show document name before cast name
 #define FWS_SNAPTOBARS  0x00002000L // snap size to size of contained bars
@@ -78,7 +78,7 @@ namespace user
    // All fields are optional and may be NULL
    {
    // for creating new views
-   sp(::ca::type_info) m_typeinfoNewView; // runtime class of ::user::view to create or NULL
+   sp(::ca2::type_info) m_typeinfoNewView; // runtime class of ::user::view to create or NULL
    sp(::user::document) m_pCurrentDoc;
 
    // for creating MDI children (mdi_child_window::LoadFrame)
@@ -106,8 +106,8 @@ namespace user
       ::id           m_idHelp;         // xxx mrs
 
 
-      int32_t m_nWindow;  // general purpose ::ca::window number - display as ":n"
-      // -1 => unknown, 0 => only ::ca::window viewing ::user::document_interface
+      int32_t m_nWindow;  // general purpose ::ca2::window number - display as ":n"
+      // -1 => unknown, 0 => only ::ca2::window viewing ::user::document_interface
       // 1 => first of many windows viewing ::user::document_interface, 2=> second
 
       HMENU m_hMenuDefault;       // default menu resource for this frame
@@ -118,7 +118,7 @@ namespace user
       rect m_rectBorder;         // for OLE border space negotiation
 
       pointer_list m_listControlBars; // array of all control bars that have this
-      // ::ca::window as their dock site
+      // ::ca2::window as their dock site
       int32_t m_nShowDelay;           // SW_ command for delay show/hide
 
       bool m_bFrameMoveEnable;
@@ -134,7 +134,7 @@ namespace user
       HMENU m_hMenuAlt;           // menu to update to (NULL means default)
       string m_strTitle;         // default title (original)
       bool m_bInRecalcLayout;     // avoid recursion in layout
-      sp(::ca::type_info) m_pFloatingFrameClass;
+      sp(::ca2::type_info) m_pFloatingFrameClass;
       static const uint32_t dwDockBarMap[4][2];
 
 
@@ -152,13 +152,13 @@ namespace user
          sp(::user::interaction) pParentWnd = NULL,        // != NULL for popups
          const char * lpszMenuName = NULL,
          uint32_t dwExStyle = 0,
-         sp(::ca::create_context) pContext = NULL);
+         sp(::ca2::create_context) pContext = NULL);
 
       // dynamic creation - load frame and associated resources
       virtual bool LoadFrame(const char * pszMatter,
          uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
          sp(::user::interaction) pParentWnd = NULL,
-         sp(::ca::create_context) pContext = NULL);
+         sp(::ca2::create_context) pContext = NULL);
 
       virtual bool ShowWindow(int32_t nCmdShow);
 
@@ -196,7 +196,7 @@ namespace user
 
       ::user::control_bar* GetControlBar(UINT nID);
 
-      // frame ::ca::window based modality
+      // frame ::ca2::window based modality
       virtual void BeginModalState();
       virtual void EndModalState();
       bool InModalState() const;
@@ -210,7 +210,7 @@ namespace user
       // border space negotiation
       enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
       virtual bool NegotiateBorderSpace(UINT nBorderCmd, LPRECT lpRectBorder);
-      virtual bool OnCreateClient(LPCREATESTRUCT lpcs, sp(::ca::create_context) pContext);
+      virtual bool OnCreateClient(LPCREATESTRUCT lpcs, sp(::ca2::create_context) pContext);
       void OnContextHelp();   // for Shift+F1 help
       void OnUpdateControlBarMenu(cmd_ui* pCmdUI);
       bool OnBarCheck(UINT nID);
@@ -230,7 +230,7 @@ namespace user
       virtual void on_update_frame_title(bool bAddToTitle);
       virtual void OnUpdateFrameMenu(HMENU hMenuAlt);
       virtual HACCEL GetDefaultAccelerator();
-      virtual void pre_translate_message(::ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca2::signal_object * pobj);
 
       // idle update of frame ::fontopus::user interface
       enum IdleFlags
@@ -249,9 +249,9 @@ namespace user
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
       virtual void PostNcDestroy();   // default to delete this.
-      int32_t OnCreateHelper(LPCREATESTRUCT lpcs, sp(::ca::create_context) pContext);
+      int32_t OnCreateHelper(LPCREATESTRUCT lpcs, sp(::ca2::create_context) pContext);
       void BringToTop(int32_t nCmdShow);
-      // bring ::ca::window to top for SW_ commands which affect z-order
+      // bring ::ca2::window to top for SW_ commands which affect z-order
 
       // implementation helpers for Shift+F1 help mode
       bool ProcessHelpMsg(MESSAGE & msg, uint32_t * pContext);
@@ -261,10 +261,10 @@ namespace user
       void AddFrameWnd();
       void RemoveFrameWnd();
 
-      friend class ::ca::window;  // for access to m_bModalDisable
+      friend class ::ca2::window;  // for access to m_bModalDisable
       friend class CReBar; // for access to m_bInRecalcLayout
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnDestroy);
@@ -279,7 +279,7 @@ namespace user
       void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
       void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
       void OnSize(UINT nType, int32_t cx, int32_t cy);
-      bool OnEraseBkgnd(::ca::graphics * pgraphics);
+      bool OnEraseBkgnd(::ca2::graphics * pgraphics);
       //void OnActivate(UINT nState, sp(::user::interaction) pWndOther, bool bMinimized);
       DECL_GEN_SIGNAL(_001OnActivate)
          DECL_GEN_SIGNAL(_001OnNcActivate)
@@ -315,7 +315,7 @@ namespace user
 
 
 
-      virtual void _000OnDraw(::ca::graphics * pdc);
+      virtual void _000OnDraw(::ca2::graphics * pdc);
 
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
@@ -325,7 +325,7 @@ namespace user
 
 //      void OnUpdateControlBarMenu(cmd_ui * pcmdui);
 //      bool OnBarCheck(UINT nID);
-//      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+//      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       using ::uinteraction::frame::WorkSetListener::attach;
 

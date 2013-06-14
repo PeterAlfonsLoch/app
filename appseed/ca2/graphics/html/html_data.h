@@ -9,21 +9,21 @@ namespace html
 
 
    class CLASS_DECL_ca2 data :
-      virtual public ::ca::signalizable,
-      public ::ca::data
+      virtual public ::ca2::signalizable,
+      public ::ca2::data
    {
    public:
 
 
       class CLASS_DECL_ca2 image :
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
       public:
          index      m_iIndex;
          string   m_strPath;
          ::visual::dib_sp      m_spdib;
 
-         image(sp(::ca::application) papp);
+         image(sp(::ca2::application) papp);
          virtual bool load_image();
       };
 
@@ -62,7 +62,7 @@ namespace html
 
       ::user::form_callback *    m_pcallback;
       sp(::user::interaction)      m_pguie;
-      ::ca::graphics *           m_pdc;
+      ::ca2::graphics *           m_pdc;
       box                        m_box;
       string                     m_strTitle;
       layout_state               m_layoutstate;
@@ -97,8 +97,8 @@ namespace html
       string                     m_strPassword;
       string                     m_strLicense;
 
-      ::ca::property_set          m_propertyset;
-      ::ca::property_set          m_propset;
+      ::ca2::property_set          m_propertyset;
+      ::ca2::property_set          m_propset;
       string                     m_strSource;
 
       sp(::html_form)              m_pform;
@@ -108,7 +108,7 @@ namespace html
 
 
 
-      data(sp(::ca::application) papp);
+      data(sp(::ca2::application) papp);
       virtual ~data();
 
       virtual bool open_document(var varFile);
@@ -123,9 +123,9 @@ namespace html
       //virtual bool is_in_use();
 
       void load(const char *);
-      void implement(::ca::graphics * pdc);
-      void layout(::ca::graphics * pdc);
-      void _001OnDraw(::ca::graphics * pdc);
+      void implement(::ca2::graphics * pdc);
+      void layout(::ca2::graphics * pdc);
+      void _001OnDraw(::ca2::graphics * pdc);
 
       void implement_and_layout(html_form * pform);
 
@@ -162,7 +162,7 @@ namespace html
 
 
       data(const data & ) :
-         ::ca::data(NULL),
+         ::ca2::data(NULL),
          m_elemental(NULL),
          m_uiptra(NULL)
       {

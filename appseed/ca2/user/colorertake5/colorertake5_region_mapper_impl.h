@@ -7,22 +7,22 @@ namespace colorertake5
     @ingroup colorer_handlers
 */
 class RegionMapperImpl : public RegionMapper,
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
-  RegionMapperImpl(sp(::ca::application) papp) : ca(papp){};
+  RegionMapperImpl(sp(::ca2::application) papp) : ca2(papp){};
   ~RegionMapperImpl(){};
 
-  /** Loads region defines from @c is input_source
+  /** Loads region defines from @ca is input_source
   */
-  virtual void  loadRegionMappings(::ca::byte_input_stream & reader) = 0;
-  /** Saves all loaded region defines into @c writer.
+  virtual void  loadRegionMappings(::ca2::byte_input_stream & reader) = 0;
+  /** Saves all loaded region defines into @ca writer.
       Note, that result document would not be equal
       to input one, because there could be multiple input
       documents.
   */
-  virtual void  saveRegionMappings(::ca::byte_output_stream & writer) const = 0;
-  /** Changes specified region definition to @c rdnew
+  virtual void  saveRegionMappings(::ca2::byte_output_stream & writer) const = 0;
+  /** Changes specified region definition to @ca rdnew
       @param region region full qualified name.
       @param rdnew  New region definition to replace old one
   */

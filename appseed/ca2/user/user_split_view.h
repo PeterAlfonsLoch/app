@@ -12,12 +12,12 @@ namespace user
    public:
 
 
-      split_view(sp(::ca::application) papp);
+      split_view(sp(::ca2::application) papp);
       virtual ~split_view();
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
       virtual bool pre_create_window(CREATESTRUCT& cs);
    #ifdef DEBUG
       virtual void assert_valid() const;

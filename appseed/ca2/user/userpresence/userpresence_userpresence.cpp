@@ -5,9 +5,9 @@ namespace userpresence
 {
 
 
-   userpresence::userpresence(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::section(papp),
+   userpresence::userpresence(sp(::ca2::application) papp) :
+      ca2(papp),
+      ::ca2::section(papp),
       message_window_simple_callback(papp)
    {
 
@@ -161,15 +161,15 @@ namespace userpresence
    }
 
 
-   void userpresence::message_window_message_handler(::ca::signal_object * pobj)
+   void userpresence::message_window_message_handler(::ca2::signal_object * pobj)
    {
 
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
 
       if(pbase->m_uiMessage == WM_TIMER)
       {
 
-         SCAST_PTR(::ca::message::timer, ptimer, pobj);
+         SCAST_PTR(::ca2::message::timer, ptimer, pobj);
 
          if(&ApplicationUser != NULL)
          {

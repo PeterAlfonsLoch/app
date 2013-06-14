@@ -7,7 +7,7 @@ namespace user
    class menu_item_ptra;
 
    class CLASS_DECL_ca2 menu_item :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -22,7 +22,7 @@ namespace user
       menu_base *          m_pbase;
 
 
-      menu_item(sp(::ca::application) papp);
+      menu_item(sp(::ca2::application) papp);
       virtual ~menu_item();
 
 

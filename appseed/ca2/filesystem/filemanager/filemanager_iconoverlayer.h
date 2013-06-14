@@ -5,10 +5,10 @@ namespace filemanager
 {
 
    class CLASS_DECL_ca2 iconoverlayer :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
-      iconoverlayer(sp(::ca::application) papp);
+      iconoverlayer(sp(::ca2::application) papp);
       virtual ~iconoverlayer();
 
       virtual bool initialize() = 0;
@@ -18,7 +18,7 @@ namespace filemanager
       // give a chance to cache and optimize
       virtual void on_open_directory(const char * pszPath) = 0;
 
-      virtual void overlay(const char * pszPath, ::ca::graphics * pgraphics, LPCRECT lpcrect) = 0;
+      virtual void overlay(const char * pszPath, ::ca2::graphics * pgraphics, LPCRECT lpcrect) = 0;
 
    };
 

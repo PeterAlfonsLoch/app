@@ -2,7 +2,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 output_stream_flush_interface
@@ -11,4 +11,4 @@ namespace ca
       virtual void flush() = 0;
    };
 
-} // namespace ca
+} // namespace ca2

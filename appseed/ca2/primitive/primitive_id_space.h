@@ -50,7 +50,7 @@ public:
 
 
 class CLASS_DECL_ca2 strid_array :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 protected:
 

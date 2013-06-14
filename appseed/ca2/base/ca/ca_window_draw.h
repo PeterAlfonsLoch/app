@@ -12,11 +12,11 @@ namespace user
    class window_interface;
 }
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 window_draw :
-      virtual public ::ca::thread
+      virtual public ::ca2::thread
    {
    public:
 
@@ -27,7 +27,7 @@ namespace ca
       event                m_eventFree;
 
 
-      window_draw(sp(::ca::application) papp);
+      window_draw(sp(::ca2::application) papp);
 
       virtual bool UpdateBuffer();
       virtual bool ScreenOutput();
@@ -44,6 +44,6 @@ namespace ca
 
 
 
-   typedef ::c::smart_pointer < window_draw > window_draw_sp;
+   typedef ::ca::smart_pointer < window_draw > window_draw_sp;
 
-} // namespace ca
+} // namespace ca2

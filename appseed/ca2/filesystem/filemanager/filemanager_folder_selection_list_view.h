@@ -26,7 +26,7 @@ public:
    sp(filemanager::data)                  m_pdata;
 
 
-   folder_selection_list_view(sp(::ca::application) papp);
+   folder_selection_list_view(sp(::ca2::application) papp);
    ~folder_selection_list_view();
 
 
@@ -37,7 +37,7 @@ public:
    DECL_GEN_SIGNAL(_001OnAdd)
    DECL_GEN_SIGNAL(_001OnRemove)
 
-   void install_message_handling(::ca::message::dispatch * pinterface);
+   void install_message_handling(::ca2::message::dispatch * pinterface);
 
    void CreateViews();
 

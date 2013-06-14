@@ -5,29 +5,29 @@ namespace primitive
 {
 
 
-   memory_container ::memory_container(sp(::ca::application) papp) :
-      ca(papp)
+   memory_container ::memory_container(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_dwAllocationAddUp = 1024;
    }
 
 
-   memory_container ::memory_container(sp(::ca::application) papp, void * pmemory, memory_size dwSize) :
-      ca(papp)
+   memory_container ::memory_container(sp(::ca2::application) papp, void * pmemory, memory_size dwSize) :
+      ca2(papp)
    {
       m_spmemory = new primitive::memory(this, pmemory, dwSize);
    }
 
 
-   memory_container ::memory_container(sp(::ca::application) papp, memory_base * pmemory) :
-      ca(papp)
+   memory_container ::memory_container(sp(::ca2::application) papp, memory_base * pmemory) :
+      ca2(papp)
    {
       m_spmemory = pmemory;
    }
 
 
    memory_container ::memory_container(const memory_container & container) :
-      ::ca::object(container)
+      ::ca2::object(container)
    {
       operator = (container);
    }
@@ -138,7 +138,7 @@ namespace primitive
    }
 
 
-   void memory_container ::FullLoad(::ca::file & file)
+   void memory_container ::FullLoad(::ca2::file & file)
    {
       if(m_spmemory.is_null())
       {

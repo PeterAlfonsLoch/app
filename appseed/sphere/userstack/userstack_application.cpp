@@ -32,7 +32,7 @@ namespace userstack
       m_strBaseSupportId   = "ca2_userstack";
       m_strInstallToken    = "userstack";
       m_bLicense           = false;
-      m_eexclusiveinstance = ::ca::ExclusiveInstanceNone;
+      m_eexclusiveinstance = ::ca2::ExclusiveInstanceNone;
 
    }
 
@@ -67,7 +67,7 @@ namespace userstack
       }
 
       string strId;
-      sp(::ca::application) pcaapp;
+      sp(::ca2::application) pcaapp;
 
       POSITION pos = m_mapApplication.get_start_position();
 
@@ -79,7 +79,7 @@ namespace userstack
 
          m_mapApplication.get_next_assoc(pos, strId, pcaapp);
 
-         sp(::ca::application) papp =  (pcaapp);
+         sp(::ca2::application) papp =  (pcaapp);
 
          papp->post_thread_message(WM_QUIT);
       }
@@ -106,10 +106,10 @@ namespace userstack
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
    {
-      return ::ca::application::_001OnCmdMsg(pcmdmsg);
+      return ::ca2::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::ca::application * application::get_app() const
+   ::ca2::application * application::get_app() const
    {
       return ::asphere::application::get_app();
    }
@@ -170,7 +170,7 @@ namespace userstack
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void application::on_request(sp(::ca::create_context) pcreatecontext)
+   void application::on_request(sp(::ca2::create_context) pcreatecontext)
    {
 
 
@@ -179,9 +179,9 @@ namespace userstack
    }
 
 
-   void application::on_exclusive_instance_conflict(::ca::EExclusiveInstance eexclusive)
+   void application::on_exclusive_instance_conflict(::ca2::EExclusiveInstance eexclusive)
    {
-      if(eexclusive == ::ca::ExclusiveInstanceLocalId)
+      if(eexclusive == ::ca2::ExclusiveInstanceLocalId)
       {
 #ifdef WINDOWSEX
          ::primitive::memory_file file(get_app());
@@ -190,7 +190,7 @@ namespace userstack
          data.dwData = 1984;
          data.cbData = (uint32_t) file.get_length();
          data.lpData = file.get_data();
-         ::oswindow oswindow = ::FindWindowA(NULL, "::ca::fontopus::message_wnd::application::");
+         ::oswindow oswindow = ::FindWindowA(NULL, "::ca2::fontopus::message_wnd::application::");
 
          ::SendMessage(oswindow, WM_COPYDATA, (WPARAM) 0, (LPARAM) &data);
 #else
@@ -200,7 +200,7 @@ namespace userstack
    }
 
 
-/*   void application::request(sp(::ca::create_context) pcreatecontext)
+/*   void application::request(sp(::ca2::create_context) pcreatecontext)
    {
 
       if(m_pappCurrent != NULL && m_pappCurrent != this
@@ -212,7 +212,7 @@ namespace userstack
             get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
          }
          App(m_pappCurrent).request(pcreatecontext);
-         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].ca < ::user::document_interface > () == NULL)
+         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].ca2 < ::user::document_interface > () == NULL)
          {
             goto alt1;
          }
@@ -223,11 +223,11 @@ namespace userstack
          alt1:
          if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
          {
-            if(::ca::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca"))
+            if(::ca2::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
             {
                string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
-               if(::ca::str::begins_eat(strCommand, "ca2prompt\r")
-               || ::ca::str::begins_eat(strCommand, "ca2prompt\n"))
+               if(::ca2::str::begins_eat(strCommand, "ca2prompt\r")
+               || ::ca2::str::begins_eat(strCommand, "ca2prompt\n"))
                {
                   strCommand.trim();
                   command()->add_fork_uri(strCommand);
@@ -264,9 +264,9 @@ namespace userstack
    }
 
 
-   sp(::ca::application) application::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   sp(::ca2::application) application::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca2::application_bias * pbiasCreate)
    {
-      sp(::ca::application) papp = NULL;
+      sp(::ca2::application) papp = NULL;
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
          return papp;
@@ -302,7 +302,7 @@ namespace userstack
       }
    }
 
-   sp(::ca::application) application::get_current_application()
+   sp(::ca2::application) application::get_current_application()
    {
       return m_pappCurrent;
    }
@@ -317,21 +317,21 @@ namespace userstack
       }
    }
 
-/*   sp(::user::interaction) application::get_request_parent_ui(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
+/*   sp(::user::interaction) application::get_request_parent_ui(sp(::user::main_frame) pmainframe, sp(::ca2::create_context) pcreatecontext)
    {
 
       return get_request_parent_ui((sp(::user::interaction) ) pmainframe, pcreatecontext);
 
    }
 
-   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcreatecontext)
+   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca2::create_context) pcreatecontext)
    {
 
 
       sp(::user::interaction) puiParent = NULL;
 
-      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >() != NULL)
-         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >();
+      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca2 < ::user::interaction >() != NULL)
+         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca2 < ::user::interaction >();
 
       if(puiParent == NULL && pcreatecontext->m_puiParent != NULL)
       {
@@ -411,7 +411,7 @@ namespace userstack
 
    }
 
-   ::user::place_holder_ptra application::get_place_holder(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
+   ::user::place_holder_ptra application::get_place_holder(sp(::user::main_frame) pmainframe, sp(::ca2::create_context) pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -442,7 +442,7 @@ namespace userstack
 
    }
 
-   bool application::place(sp(::user::main_frame) pmainframe, sp(::ca::create_context) pcreatecontext)
+   bool application::place(sp(::user::main_frame) pmainframe, sp(::ca2::create_context) pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
@@ -474,7 +474,7 @@ namespace userstack
 
       strSentinelPath = System.dir().ca2("stage/x86/app-sentinel.exe");
 
-      System.os().local_machine_set_run("ca app-sentinel", "\"" + strSentinelPath + "\"");
+      System.os().local_machine_set_run("ca2 app-sentinel", "\"" + strSentinelPath + "\"");
 
       return ::asphere::application::on_install();
    }
@@ -483,7 +483,7 @@ namespace userstack
    void application::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
-      sp(::ca::application) papp = NULL;
+      sp(::ca2::application) papp = NULL;
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {

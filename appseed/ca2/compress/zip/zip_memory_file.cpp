@@ -4,7 +4,7 @@
 namespace zip
 {
 
-   memory_file::memory_file(sp(::ca::application) papp) :
+   memory_file::memory_file(sp(::ca2::application) papp) :
       ::primitive::memory_file(papp),
       ::primitive::memory_container(papp)
    {
@@ -59,7 +59,7 @@ namespace zip
    {
       UNREFERENCED_PARAMETER(stream);
       memory_file * pfile = (memory_file *) opaque;
-      if(pfile->seek(offset, (::ca::e_seek) origin) == 0xffffffff)
+      if(pfile->seek(offset, (::ca2::e_seek) origin) == 0xffffffff)
          return -1;
       else
          return 0;

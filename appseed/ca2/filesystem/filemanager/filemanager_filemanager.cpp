@@ -10,9 +10,9 @@ namespace filemanager
 {
 
 
-   filemanager::filemanager(::ca::application * papp) :
-      ca(papp),
-      ::ca::section(papp)
+   filemanager::filemanager(::ca2::application * papp) :
+      ca2(papp),
+      ::ca2::section(papp)
    {
       m_ptemplateStd       = NULL;
 
@@ -144,7 +144,7 @@ namespace filemanager
       }
 
 
-      sp(::ca::create_context) cc(allocer());
+      sp(::ca2::create_context) cc(allocer());
       cc->m_spCommandLine->m_varFile = itema[0].m_strPath;
       request_create(cc);
 
@@ -208,7 +208,7 @@ namespace filemanager
 
       string strPath;
 
-      if(data_get(dataid, "InitialBrowsePath", ::ca::system::idEmpty, strPath))
+      if(data_get(dataid, "InitialBrowsePath", ::ca2::system::idEmpty, strPath))
       {
 
          App(get_app()).dir().mk(strPath);
@@ -235,7 +235,7 @@ namespace filemanager
 
       }
 
-      if(data_set(dataid, "InitialBrowsePath", ::ca::system::idEmpty, strPath))
+      if(data_set(dataid, "InitialBrowsePath", ::ca2::system::idEmpty, strPath))
       {
 
          return strPath;
@@ -247,7 +247,7 @@ namespace filemanager
    }
 
 
-   void filemanager::on_request(sp(::ca::create_context) pcreatecontext)
+   void filemanager::on_request(sp(::ca2::create_context) pcreatecontext)
    {
       FileManagerCallbackInterface::on_request(pcreatecontext);
    }

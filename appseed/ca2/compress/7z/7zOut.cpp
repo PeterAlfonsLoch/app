@@ -11,7 +11,7 @@
 
 #include "7zOut.h"
 */
-static HRESULT WriteBytes(::ca::writer *stream, const void *data, ::primitive::memory_size size)
+static HRESULT WriteBytes(::ca2::writer *stream, const void *data, ::primitive::memory_size size)
 {
    while (size > 0)
    {
@@ -29,8 +29,8 @@ static HRESULT WriteBytes(::ca::writer *stream, const void *data, ::primitive::m
 
 namespace n7z
 {
-   COutArchive::COutArchive(sp(::ca::application) papp) :
-      ca(papp)
+   COutArchive::COutArchive(sp(::ca2::application) papp) :
+      ca2(papp)
    {
      _outByte.create(1 << 16);
    }
@@ -102,7 +102,7 @@ namespace n7z
    }
 #endif
 
-   HRESULT COutArchive::Create(::ca::writer *stream, bool endMarker)
+   HRESULT COutArchive::Create(::ca2::writer *stream, bool endMarker)
    {
       Close();
 #ifdef _7Z_VOL
@@ -112,7 +112,7 @@ namespace n7z
       SeqStream = stream;
       if (!endMarker)
       {
-         Stream = dynamic_cast < ::ca::byte_output_stream * > (SeqStream.m_p);
+         Stream = dynamic_cast < ::ca2::byte_output_stream * > (SeqStream.m_p);
          if (!Stream)
          {
             return E_NOTIMPL;
@@ -136,15 +136,15 @@ namespace n7z
          if (!Stream)
             return E_FAIL;
          RINOK(WriteSignature());
-         _prefixHeaderPos = Stream->seek(0, ::ca::seek_current);
+         _prefixHeaderPos = Stream->seek(0, ::ca2::seek_current);
       }
       return S_OK;
    }
 
    void COutArchive::Close()
    {
-      ::c::release(SeqStream.m_p);
-      ::c::release(Stream.m_p);
+      ::ca::release(SeqStream.m_p);
+      ::ca::release(Stream.m_p);
    }
 
    HRESULT COutArchive::SkipPrefixArchiveHeader()
@@ -153,7 +153,7 @@ namespace n7z
       if (_endMarker)
          return S_OK;
 #endif
-      Stream->seek(24, ::ca::seek_current);
+      Stream->seek(24, ::ca2::seek_current);
       return S_OK;
    }
 
@@ -554,7 +554,7 @@ namespace n7z
       ::libcompress::codecs_info_interface * codecsInfo,
       const array < ::libcompress::codec_info_ex > * externalCodecs,
       CEncoder & encoder,
-      const ::ca::byte_buffer & data,
+      const ::ca2::byte_buffer & data,
       array < file_size > & packSizes,
       smart_pointer_array < CFolder > & folders)
    {
@@ -564,7 +564,7 @@ namespace n7z
       UNREFERENCED_PARAMETER(packSizes);
       throw "implement below";
       //CBufInStream *streamSpec = new CBufInStream;
-      //::c::smart_pointer<::ca::reader> stream = streamSpec;
+      //::ca::smart_pointer<::ca2::reader> stream = streamSpec;
       //streamSpec->Init(data, data.GetCapacity());
       CFolder & folderItem = folders.add_new();
       folderItem.UnpackCRCDefined = true;
@@ -716,9 +716,9 @@ namespace n7z
                const string &name = db.Files[i].Name;
                for (int32_t t = 0; t <= name.get_length(); t++)
                {
-                  wchar_t c = name[t];
-                  WriteByte((byte)c);
-                  WriteByte((byte)(c >> 8));
+                  wchar_t ca = name[t];
+                  WriteByte((byte)ca);
+                  WriteByte((byte)(ca >> 8));
                }
             }
          }
@@ -796,7 +796,7 @@ namespace n7z
 
          if (encodeHeaders)
          {
-            ::ca::byte_buffer buf;
+            ::ca2::byte_buffer buf;
             buf.SetCapacity(_countSize);
             _outByte2.Init((byte *)buf, _countSize);
 
@@ -856,7 +856,7 @@ namespace n7z
          h.NextHeaderSize = headerSize;
          h.NextHeaderCRC = headerCRC;
          h.NextHeaderOffset = headerOffset;
-         Stream->seek(_prefixHeaderPos, ::ca::seek_begin);
+         Stream->seek(_prefixHeaderPos, ::ca2::seek_begin);
          return WriteStartHeader(h);
       }
    }

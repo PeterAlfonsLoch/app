@@ -26,7 +26,7 @@ namespace filemanager
 
 
       class create_image_list_thread :
-         public ::ca::thread
+         public ::ca2::thread
       {
       public:
 
@@ -34,7 +34,7 @@ namespace filemanager
          SimpleFileListInterface * m_plist;
 
 
-         create_image_list_thread(sp(::ca::application) papp);
+         create_image_list_thread(sp(::ca2::application) papp);
 
          virtual int32_t run();
 
@@ -84,7 +84,7 @@ namespace filemanager
       public:
 
 
-         ItemArray(sp(::ca::application) papp);
+         ItemArray(sp(::ca2::application) papp);
 
 
          void add_item(Item & item);
@@ -153,7 +153,7 @@ namespace filemanager
          index         m_iImage;
       };*/
 
-      SimpleFileListInterface(sp(::ca::application) papp);
+      SimpleFileListInterface(sp(::ca2::application) papp);
       virtual ~SimpleFileListInterface();
       virtual void file_size_add_request(bool bClear);
 
@@ -163,7 +163,7 @@ namespace filemanager
       //virtual void schedule_file_size(const char * psz) = 0;
    // Attributes
       virtual void _017Synchronize();
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       sp(image_list) GetActionButtonImageList(index i);
 
@@ -184,7 +184,7 @@ namespace filemanager
       void _017PreSynchronize();
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
       ::fs::item & GetFileManagerItem();
       DECL_GEN_SIGNAL(_001OnMainPostMessage)
       void _017UpdateList();

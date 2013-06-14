@@ -15,7 +15,7 @@ namespace database
       {
       }
 
-      void interaction::install_message_handling(::ca::message::dispatch * pinterface)
+      void interaction::install_message_handling(::ca2::message::dispatch * pinterface)
       {
          ::user::interaction::install_message_handling(pinterface);
          IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &interaction::_001OnCreate);
@@ -24,7 +24,7 @@ namespace database
          IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &interaction::_001OnShowWindow);
       }
 
-      void interaction::_001OnCreate(::ca::signal_object * pobj)
+      void interaction::_001OnCreate(::ca2::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
 
@@ -44,20 +44,20 @@ namespace database
 
 
 
-      void interaction::_001OnMove(::ca::signal_object * pobj)
+      void interaction::_001OnMove(::ca2::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
       }
 
-      void interaction::_001OnSize(::ca::signal_object * pobj)
+      void interaction::_001OnSize(::ca2::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
       }
 
-      void interaction::_001OnShowWindow(::ca::signal_object * pobj)
+      void interaction::_001OnShowWindow(::ca2::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
-         //         SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
+         //         SCAST_PTR(::ca2::message::show_window, pshowwindow, pobj)
          if(get_parent() == NULL)
          {
 #if !core_level_1 && !core_level_2 && defined(WINDOWS)
@@ -151,7 +151,7 @@ namespace database
       bool interaction::LoadWindowRect_(::database::id key, ::database::id idIndex, sp(::user::interaction) pWnd, bool bForceRestore)
       {
 
-         ::ca::byte_stream_memory_file memstream(get_app());
+         ::ca2::byte_stream_memory_file memstream(get_app());
 
          if(!data_get(key, idIndex, memstream))
             return false;
@@ -276,8 +276,8 @@ namespace database
       {
          //WINDOWPLACEMENT wp;
          //pWnd->GetWindowPlacement(&wp);
-         ::ca::byte_stream_memory_file memstream(get_app());
-         ::ca::byte_stream_memory_file memstreamGet(get_app());
+         ::ca2::byte_stream_memory_file memstream(get_app());
+         ::ca2::byte_stream_memory_file memstreamGet(get_app());
          bool bGet = data_get(
             key,
             idIndex,

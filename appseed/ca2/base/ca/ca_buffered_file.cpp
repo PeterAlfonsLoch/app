@@ -1,10 +1,10 @@
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
-   buffered_file::buffered_file(sp(::ca::application) papp, ::ca::filesp pfile, ::primitive::memory_size iBufferSize) :
-      ca(papp)
+   buffered_file::buffered_file(sp(::ca2::application) papp, ::ca2::filesp pfile, ::primitive::memory_size iBufferSize) :
+      ca2(papp)
    {
       m_storage.allocate(iBufferSize);
       m_pfile              = pfile;
@@ -61,26 +61,26 @@ namespace ca
    {
    }*/
 
-   file_position buffered_file::seek(file_offset lOff, ::ca::e_seek nFrom)
+   file_position buffered_file::seek(file_offset lOff, ::ca2::e_seek nFrom)
    {
       uint64_t uiBegBufPosition = m_uiBufLPos;
       uint64_t uiEndBufPosition = m_uiBufUPos;
       uint64_t uiNewPos;
-      if(nFrom == ::ca::seek_begin)
+      if(nFrom == ::ca2::seek_begin)
       {
          uiNewPos = lOff;
       }
-      else if(nFrom == ::ca::seek_end)
+      else if(nFrom == ::ca2::seek_end)
       {
          uiNewPos = m_pfile->get_length() + lOff;
       }
-      else if(nFrom == ::ca::seek_current)
+      else if(nFrom == ::ca2::seek_current)
       {
          uiNewPos = m_uiPosition + lOff;
       }
       else
       {
-         throw invalid_argument_exception(get_app(), "::ca::buffered_file::seek invalid seek option");
+         throw invalid_argument_exception(get_app(), "::ca2::buffered_file::seek invalid seek option");
       }
 
       if(uiNewPos >= uiBegBufPosition
@@ -218,4 +218,4 @@ namespace ca
       m_pfile->set_length(dwNewLen);
    }
 
-} // namespace ca
+} // namespace ca2

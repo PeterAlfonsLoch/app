@@ -9,7 +9,7 @@ class mutex;
 
 
 class CLASS_DECL_ca2 factory_allocator :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
 
@@ -20,8 +20,8 @@ public:
    id                            m_idType;
 
 
-   factory_allocator(sp(::ca::application) papp, int32_t iCount, UINT uiAllocSize, id idType) :
-      ca(papp),
+   factory_allocator(sp(::ca2::application) papp, int32_t iCount, UINT uiAllocSize, id idType) :
+      ca2(papp),
       m_iCount(iCount),
       m_uiAllocSize(uiAllocSize),
       m_idType(idType)
@@ -42,7 +42,7 @@ public:
    }
 
 
-   virtual void discard(::ca::ca * pca) = 0;
+   virtual void discard(::ca2::ca2 * pca) = 0;
 
 };
 
@@ -53,18 +53,18 @@ class factory_allocator_impl :
 public:
 
 #ifdef WINDOWS
-   factory_allocator_impl(sp(::ca::application) papp, int32_t iCount) :
+   factory_allocator_impl(sp(::ca2::application) papp, int32_t iCount) :
       factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name())
    {
    }
 #else
-   factory_allocator_impl(sp(::ca::application) papp, int32_t iCount) :
+   factory_allocator_impl(sp(::ca2::application) papp, int32_t iCount) :
       factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name())
    {
    }
 #endif
 
-   virtual void discard(::ca::ca * pca)
+   virtual void discard(::ca2::ca2 * pca)
    {
       TYPE * ptype = (TYPE *) pca->m_pthis;
       if(ptype == NULL)
@@ -90,16 +90,16 @@ public:
 
 
 class CLASS_DECL_ca2 factory_item_base :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
 
    sp(factory_allocator)    m_pallocator;
 
-   inline factory_item_base(sp(::ca::application) papp, sp(factory_allocator) pallocator) : ca(papp), m_pallocator(pallocator) {}
+   inline factory_item_base(sp(::ca2::application) papp, sp(factory_allocator) pallocator) : ca2(papp), m_pallocator(pallocator) {}
 
-   virtual sp(::ca::ca) create(sp(::ca::application) papp) = 0;
-   virtual sp(::ca::ca) clone(sp(::ca::ca) pobject) = 0;
+   virtual sp(::ca2::ca2) create(sp(::ca2::application) papp) = 0;
+   virtual sp(::ca2::ca2) clone(sp(::ca2::ca2) pobject) = 0;
 
 };
 
@@ -109,9 +109,9 @@ class creatable_factory_item :
 {
 public:
 
-   inline creatable_factory_item(sp(::ca::application) papp, sp(factory_allocator) pallocator) : ca(papp), factory_item_base(papp, pallocator) {}
+   inline creatable_factory_item(sp(::ca2::application) papp, sp(factory_allocator) pallocator) : ca2(papp), factory_item_base(papp, pallocator) {}
 
-   virtual sp(::ca::ca) create(sp(::ca::application) papp)
+   virtual sp(::ca2::ca2) create(sp(::ca2::application) papp)
    {
 
       if(m_pallocator == NULL)
@@ -121,14 +121,14 @@ public:
 #undef new
       CREATABLE_TYPE * pt = ::new (pv) CREATABLE_TYPE(papp);
 #define new DEBUG_NEW
-      ::c::dereference_no_delete(pt);
-      pt->::ca::ca::set_ca_flag(::ca::ca::flag_discard_to_factory);
+      ::ca::dereference_no_delete(pt);
+      pt->::ca2::ca2::set_ca_flag(::ca2::ca2::flag_discard_to_factory);
       pt->m_pfactoryitembase = this;
       pt->m_pthis = pt;
       return pt;
    }
 
-   virtual sp(::ca::ca) clone(sp(::ca::ca) pobject)
+   virtual sp(::ca2::ca2) clone(sp(::ca2::ca2) pobject)
    {
       UNREFERENCED_PARAMETER(pobject);
       throw not_implemented(get_app());
@@ -142,17 +142,17 @@ class cloneable_factory_item :
 {
 public:
 
-   inline cloneable_factory_item(sp(::ca::application) papp, sp(factory_allocator) pallocator) : ::ca::ca(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
+   inline cloneable_factory_item(sp(::ca2::application) papp, sp(factory_allocator) pallocator) : ::ca2::ca2(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
 
-   virtual sp(::ca::ca) clone(sp(::ca::ca) pobject)
+   virtual sp(::ca2::ca2) clone(sp(::ca2::ca2) pobject)
    {
       const CLONEABLE_TYPE * ptSrc = dynamic_cast < const CLONEABLE_TYPE * > (pobject.m_p);
       void * pv = this->m_pallocator->alloc();
 #undef new
       CLONEABLE_TYPE * pt = ::new (pv) CLONEABLE_TYPE(*ptSrc);
 #define new DEBUG_NEW
-      ::c::dereference_no_delete(pt);
-      pt->::ca::ca::set_ca_flag(::ca::ca::flag_discard_to_factory);
+      ::ca::dereference_no_delete(pt);
+      pt->::ca2::ca2::set_ca_flag(::ca2::ca2::flag_discard_to_factory);
       pt->m_pfactoryitembase = this;
       pt->m_pthis = pt;
       return pt;
@@ -161,22 +161,22 @@ public:
 };
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 factory :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
 
       bool                             m_bSimpleFactoryRequest;
-      spa(::ca::type_info)             m_typeinfoptraSimpleFactoryRequest;
+      spa(::ca2::type_info)             m_typeinfoptraSimpleFactoryRequest;
 
 
 
-      factory(sp(::ca::application) papp);
+      factory(sp(::ca2::application) papp);
       virtual ~factory();
 
 
@@ -205,25 +205,25 @@ namespace ca
       }
 
       template < class T >
-      void creatable_small(sp(::ca::type_info) info, bool bOverwrite = false)
+      void creatable_small(sp(::ca2::type_info) info, bool bOverwrite = false)
       {
          creatable < T > (info, 32, bOverwrite);
       }
 
       template < class T >
-      void cloneable_small(sp(::ca::type_info) info, bool bOverwrite = false)
+      void cloneable_small(sp(::ca2::type_info) info, bool bOverwrite = false)
       {
          cloneable < T > (info, 32, bOverwrite);
       }
 
       template < class T >
-      void creatable_large(sp(::ca::type_info) info, bool bOverwrite = false)
+      void creatable_large(sp(::ca2::type_info) info, bool bOverwrite = false)
       {
          creatable < T > (info, 1024, bOverwrite);
       }
 
       template < class T >
-      void cloneable_large(sp(::ca::type_info) info, bool bOverwrite = false)
+      void cloneable_large(sp(::ca2::type_info) info, bool bOverwrite = false)
       {
          cloneable < T > (info, 1024, bOverwrite);
       }
@@ -235,21 +235,21 @@ namespace ca
       void cloneable(int32_t iCount, bool bOverwrite = false);
 
       template < class T >
-      void creatable(sp(::ca::type_info) info, int32_t iCount, bool bOverwrite = false)
+      void creatable(sp(::ca2::type_info) info, int32_t iCount, bool bOverwrite = false)
       {
          if(bOverwrite || !is_set(info->name()))
             set_at(info->name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
       }
 
       template < class T >
-      void cloneable(sp(::ca::type_info)  info, int32_t iCount, bool bOverwrite = false)
+      void cloneable(sp(::ca2::type_info)  info, int32_t iCount, bool bOverwrite = false)
       {
          if(bOverwrite || !is_set(info->name()))
             set_at(info->name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
       }
 
-      virtual sp(::ca::ca) create(sp(::ca::application) papp, sp(::ca::type_info) info);
-      virtual sp(::ca::ca) base_clone(sp(::ca::ca) pobject);
+      virtual sp(::ca2::ca2) create(sp(::ca2::application) papp, sp(::ca2::type_info) info);
+      virtual sp(::ca2::ca2) base_clone(sp(::ca2::ca2) pobject);
       template < class T >
       sp(T) clone(sp(T) pobject)
       {
@@ -267,7 +267,7 @@ namespace ca
 
       sp(factory_allocator) get_allocator(const char * pszType);
 
-      void discard(sp(::ca::ca) pobject);
+      void discard(sp(::ca2::ca2) pobject);
 
       void enable_simple_factory_request(bool bEnable = true);
 
@@ -283,5 +283,5 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 

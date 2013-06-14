@@ -2,12 +2,12 @@
 
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 file_manager_interface :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -18,14 +18,14 @@ namespace ca
       
       virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::document_template) ptemplate, sp(::user::document_interface) pdocument);
 
-      bool initialize(sp(::ca::application) papp);
+      bool initialize(sp(::ca2::application) papp);
 
 
    };
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

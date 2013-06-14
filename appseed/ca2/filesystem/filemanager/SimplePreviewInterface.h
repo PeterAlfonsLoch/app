@@ -18,11 +18,11 @@ namespace filemanager
       int32_t         m_iCurFile;
 
 
-      SimplePreviewInterface(sp(::ca::application) papp);
+      SimplePreviewInterface(sp(::ca2::application) papp);
       virtual ~SimplePreviewInterface();
 
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
 
    };
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
    window::window()
@@ -13,7 +13,7 @@ namespace ca
    {
    }
 
-   bool window::create_message_window(const char * pszName, ::ca::window_callback * pcallback)
+   bool window::create_message_window(const char * pszName, ::ca2::window_callback * pcallback)
    {
       UNREFERENCED_PARAMETER(pszName);
       UNREFERENCED_PARAMETER(pcallback);
@@ -56,7 +56,7 @@ namespace ca
 
 #if !defined(LINUX) && !defined(MACOS)
 
-   sp(::ca::window) window::GetAncestor(UINT gaFlags) const
+   sp(::ca2::window) window::GetAncestor(UINT gaFlags) const
    {
       UNREFERENCED_PARAMETER(gaFlags);
       throw interface_only_exception(get_app());
@@ -87,8 +87,8 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::UpdateLayeredWindow(::ca::graphics * pDCDst, POINT * pptDst, SIZE * psize,
-      ::ca::graphics * pDCSrc, POINT * pptSrc, COLORREF crKey, BLENDFUNCTION * pblend, uint32_t dwFlags)
+   bool window::UpdateLayeredWindow(::ca2::graphics * pDCDst, POINT * pptDst, SIZE * psize,
+      ::ca2::graphics * pDCSrc, POINT * pptSrc, COLORREF crKey, BLENDFUNCTION * pblend, uint32_t dwFlags)
    {
       UNREFERENCED_PARAMETER(pDCDst);
       UNREFERENCED_PARAMETER(pptDst);
@@ -109,7 +109,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::PrintWindow(::ca::graphics * pgraphics, UINT nFlags) const
+   bool window::PrintWindow(::ca2::graphics * pgraphics, UINT nFlags) const
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nFlags);
@@ -128,7 +128,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   sp(::ca::window) window::from_os_data(void * pdata)
+   sp(::ca2::window) window::from_os_data(void * pdata)
    {
       UNREFERENCED_PARAMETER(pdata);
       throw interface_only_exception(get_app());
@@ -182,7 +182,7 @@ namespace ca
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT & rect,
       sp(::user::interaction) pParentWnd, id id,
-      sp(::ca::create_context) pContext)
+      sp(::ca2::create_context) pContext)
    {
       UNREFERENCED_PARAMETER(lpszClassName);
       UNREFERENCED_PARAMETER(lpszWindowName);
@@ -194,26 +194,26 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::install_message_handling(::ca::message::dispatch * pinterface)
+   void window::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
       throw interface_only_exception(get_app());
    }
 
-   void window::_001OnDestroy(::ca::signal_object * pobj)
+   void window::_001OnDestroy(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
    }
 
-   void window::_001OnCaptureChanged(::ca::signal_object * pobj)
+   void window::_001OnCaptureChanged(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
    }
 
    // WM_NCDESTROY is the absolute LAST message sent.
-   void window::_001OnNcDestroy(::ca::signal_object * pobj)
+   void window::_001OnNcDestroy(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -260,7 +260,7 @@ namespace ca
 
 
 
-   void window::pre_translate_message(::ca::signal_object * pobj)
+   void window::pre_translate_message(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -378,7 +378,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::_002OnDraw(::ca::signal_object * pobj)
+   void window::_002OnDraw(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -387,7 +387,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // main message_handler implementation
 
-   void window::message_handler(::ca::signal_object * pobj)
+   void window::message_handler(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -559,7 +559,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::WalkPreTranslateTree(sp(::user::interaction) puiStop, ::ca::signal_object * pobj)
+   void window::WalkPreTranslateTree(sp(::user::interaction) puiStop, ::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(puiStop);
       UNREFERENCED_PARAMETER(pobj);
@@ -598,7 +598,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnSetFocus(sp(::ca::window))
+   void window::OnSetFocus(sp(::ca2::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -663,36 +663,36 @@ namespace ca
    }
    */
 
-   void window::_001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc)
+   void window::_001OnDeferPaintLayeredWindowBackground(::ca2::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
       throw interface_only_exception(get_app());
    }
 
-   void window::_001DeferPaintLayeredWindowBackground(::ca::graphics * pdc)
+   void window::_001DeferPaintLayeredWindowBackground(::ca2::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
       throw interface_only_exception(get_app());
    }
 
-   void window::_001OnPaint(::ca::signal_object * pobj)
+   void window::_001OnPaint(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
    }
 
-   void window::_001OnPrint(::ca::signal_object * pobj)
+   void window::_001OnPrint(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
    }
 
-   void window::OnEnterIdle(UINT /*nWhy*/, sp(::ca::window) /*pWho*/)
+   void window::OnEnterIdle(UINT /*nWhy*/, sp(::ca2::window) /*pWho*/)
    {
       throw interface_only_exception(get_app());
    }
 
-   HBRUSH window::OnCtlColor(::ca::graphics *, sp(::ca::window) pWnd, UINT)
+   HBRUSH window::OnCtlColor(::ca2::graphics *, sp(::ca2::window) pWnd, UINT)
    {
       UNREFERENCED_PARAMETER(pWnd);
       throw interface_only_exception(get_app());
@@ -745,7 +745,7 @@ namespace ca
    }
 
 
-/*   id window::RunModalLoop(uint32_t dwFlags, ::ca::live_object * pliveobject)
+/*   id window::RunModalLoop(uint32_t dwFlags, ::ca2::live_object * pliveobject)
    {
       UNREFERENCED_PARAMETER(dwFlags);
       UNREFERENCED_PARAMETER(pliveobject);
@@ -779,7 +779,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::SubclassDlgItem(UINT nID, sp(::ca::window) pParent)
+   bool window::SubclassDlgItem(UINT nID, sp(::ca2::window) pParent)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(pParent);
@@ -997,14 +997,14 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::SetFont(::ca::font * pfont, bool bRedraw)
+   void window::SetFont(::ca2::font * pfont, bool bRedraw)
    {
       UNREFERENCED_PARAMETER(pfont);
       UNREFERENCED_PARAMETER(bRedraw);
       throw interface_only_exception(get_app());
    }
 
-   ::ca::font* window::GetFont()
+   ::ca2::font* window::GetFont()
    {
       throw interface_only_exception(get_app());
    }
@@ -1055,7 +1055,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::MapWindowPoints(sp(::ca::window) pwndTo, LPPOINT lpPoint, UINT nCount)
+   void window::MapWindowPoints(sp(::ca2::window) pwndTo, LPPOINT lpPoint, UINT nCount)
    {
       UNREFERENCED_PARAMETER(pwndTo);
       UNREFERENCED_PARAMETER(lpPoint);
@@ -1063,24 +1063,24 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::MapWindowPoints(sp(::ca::window) pwndTo, LPRECT lpRect)
+   void window::MapWindowPoints(sp(::ca2::window) pwndTo, LPRECT lpRect)
    {
       UNREFERENCED_PARAMETER(pwndTo);
       UNREFERENCED_PARAMETER(lpRect);
       throw interface_only_exception(get_app());
    }
 
-   ::ca::graphics * window::GetDC()
+   ::ca2::graphics * window::GetDC()
    {
       throw interface_only_exception(get_app());
    }
 
-   ::ca::graphics * window::GetWindowDC()
+   ::ca2::graphics * window::GetWindowDC()
    {
       throw interface_only_exception(get_app());
    }
 
-   bool window::ReleaseDC(::ca::graphics * pgraphics)
+   bool window::ReleaseDC(::ca2::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       throw interface_only_exception(get_app());
@@ -1104,7 +1104,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int32_t window::GetUpdateRgn(::ca::region* pRgn, bool bErase)
+   int32_t window::GetUpdateRgn(::ca2::region* pRgn, bool bErase)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(bErase);
@@ -1124,7 +1124,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::InvalidateRgn(::ca::region* pRgn, bool bErase)
+   void window::InvalidateRgn(::ca2::region* pRgn, bool bErase)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(bErase);
@@ -1137,7 +1137,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::ValidateRgn(::ca::region* pRgn)
+   void window::ValidateRgn(::ca2::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception(get_app());
@@ -1170,7 +1170,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::ca::graphics * window::GetDCEx(::ca::region * prgnClip, uint32_t flags)
+   ::ca2::graphics * window::GetDCEx(::ca2::region * prgnClip, uint32_t flags)
    {
       UNREFERENCED_PARAMETER(prgnClip);
       UNREFERENCED_PARAMETER(flags);
@@ -1187,7 +1187,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::RedrawWindow(LPCRECT lpRectUpdate, ::ca::region * prgnUpdate, UINT flags)
+   bool window::RedrawWindow(LPCRECT lpRectUpdate, ::ca2::region * prgnUpdate, UINT flags)
    {
       UNREFERENCED_PARAMETER(lpRectUpdate);
       UNREFERENCED_PARAMETER(prgnUpdate);
@@ -1210,7 +1210,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::DrawCaption(::ca::graphics * pgraphics, LPCRECT lprc, UINT uFlags)
+   bool window::DrawCaption(::ca2::graphics * pgraphics, LPCRECT lprc, UINT uFlags)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(lprc);
@@ -1329,14 +1329,14 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   sp(::ca::window) window::GetNextDlgGroupItem(sp(::ca::window) pWndCtl, bool bPrevious) const
+   sp(::ca2::window) window::GetNextDlgGroupItem(sp(::ca2::window) pWndCtl, bool bPrevious) const
    {
       UNREFERENCED_PARAMETER(pWndCtl);
       UNREFERENCED_PARAMETER(bPrevious);
       throw interface_only_exception(get_app());
    }
 
-   sp(::ca::window) window::GetNextDlgTabItem(sp(::ca::window) pWndCtl, bool bPrevious) const
+   sp(::ca2::window) window::GetNextDlgTabItem(sp(::ca2::window) pWndCtl, bool bPrevious) const
    {
       UNREFERENCED_PARAMETER(pWndCtl);
       UNREFERENCED_PARAMETER(bPrevious);
@@ -1375,7 +1375,7 @@ namespace ca
 
    int32_t window::ScrollWindowEx(int32_t dx, int32_t dy,
       LPCRECT lpRectScroll, LPCRECT lpRectClip,
-      ::ca::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags)
+      ::ca2::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags)
    {
       UNREFERENCED_PARAMETER(dx);
       UNREFERENCED_PARAMETER(dy);
@@ -1429,7 +1429,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   sp(::ca::window) window::set_parent(sp(::ca::window) pWndNewParent)
+   sp(::ca2::window) window::set_parent(sp(::ca2::window) pWndNewParent)
    {
       UNREFERENCED_PARAMETER(pWndNewParent);
       throw interface_only_exception(get_app());
@@ -1459,7 +1459,7 @@ namespace ca
    }
 
 
-   void window::CreateCaret(::ca::bitmap* pBitmap)
+   void window::CreateCaret(::ca2::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
       throw interface_only_exception(get_app());
@@ -1506,14 +1506,14 @@ namespace ca
 
    // Win4
 
-   void window::Print(::ca::graphics * pgraphics, uint32_t dwFlags) const
+   void window::Print(::ca2::graphics * pgraphics, uint32_t dwFlags) const
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(dwFlags);
       throw interface_only_exception(get_app());
    }
 
-   void window::PrintClient(::ca::graphics * pgraphics, uint32_t dwFlags) const
+   void window::PrintClient(::ca2::graphics * pgraphics, uint32_t dwFlags) const
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(dwFlags);
@@ -1537,7 +1537,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnActivate(UINT, sp(::ca::window), bool)
+   void window::OnActivate(UINT, sp(::ca2::window), bool)
    {
       throw interface_only_exception(get_app());
    }
@@ -1557,7 +1557,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnContextMenu(sp(::ca::window), point)
+   void window::OnContextMenu(sp(::ca2::window), point)
    {
       throw interface_only_exception(get_app());
    }
@@ -1565,7 +1565,7 @@ namespace ca
 
 #ifdef WINDOWSEX
 
-   bool window::OnCopyData(sp(::ca::window), COPYDATASTRUCT*)
+   bool window::OnCopyData(sp(::ca2::window), COPYDATASTRUCT*)
    {
       throw interface_only_exception(get_app());
    }
@@ -1573,7 +1573,7 @@ namespace ca
 #endif
 
 
-   void window::_001OnCreate(::ca::signal_object * pobj)
+   void window::_001OnCreate(::ca2::signal_object * pobj)
    {
       throw interface_only_exception(get_app());
    }
@@ -1588,7 +1588,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::OnEraseBkgnd(::ca::graphics *)
+   bool window::OnEraseBkgnd(::ca2::graphics *)
    {
       throw interface_only_exception(get_app());
    }
@@ -1608,12 +1608,12 @@ namespace ca
 #endif
 
 
-   void window::OnIconEraseBkgnd(::ca::graphics *)
+   void window::OnIconEraseBkgnd(::ca2::graphics *)
    {
       throw interface_only_exception(get_app());
    }
 
-   void window::OnKillFocus(sp(::ca::window))
+   void window::OnKillFocus(sp(::ca2::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -1652,7 +1652,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::OnSetCursor(sp(::ca::window), UINT, UINT)
+   bool window::OnSetCursor(sp(::ca2::window), UINT, UINT)
    {
       throw interface_only_exception(get_app());
    }
@@ -1703,7 +1703,7 @@ namespace ca
 #endif
 
 
-   void window::OnPaletteIsChanging(sp(::ca::window))
+   void window::OnPaletteIsChanging(sp(::ca2::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -1828,7 +1828,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnPaletteChanged(sp(::ca::window))
+   void window::OnPaletteChanged(sp(::ca2::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -1893,7 +1893,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int32_t window::OnMouseActivate(sp(::ca::window), UINT, UINT)
+   int32_t window::OnMouseActivate(sp(::ca2::window), UINT, UINT)
    {
       throw interface_only_exception(get_app());
    }
@@ -1969,12 +1969,12 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnHScrollClipboard(sp(::ca::window), UINT, UINT)
+   void window::OnHScrollClipboard(sp(::ca2::window), UINT, UINT)
    {
       throw interface_only_exception(get_app());
    }
 
-   void window::OnPaintClipboard(sp(::ca::window), HGLOBAL)
+   void window::OnPaintClipboard(sp(::ca2::window), HGLOBAL)
    {
       throw interface_only_exception(get_app());
    }
@@ -1989,12 +1989,12 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnSizeClipboard(sp(::ca::window), HGLOBAL)
+   void window::OnSizeClipboard(sp(::ca2::window), HGLOBAL)
    {
       throw interface_only_exception(get_app());
    }
 
-   void window::OnVScrollClipboard(sp(::ca::window), UINT, UINT)
+   void window::OnVScrollClipboard(sp(::ca2::window), UINT, UINT)
    {
       throw interface_only_exception(get_app());
    }
@@ -2006,7 +2006,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnMDIActivate(bool, sp(::ca::window), sp(::ca::window))
+   void window::OnMDIActivate(bool, sp(::ca2::window), sp(::ca2::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -2055,7 +2055,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnCaptureChanged(sp(::ca::window))
+   void window::OnCaptureChanged(sp(::ca2::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -2116,7 +2116,7 @@ namespace ca
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::ca::window command handling
+   // ::ca2::window command handling
 
    bool window::OnCommand(WPARAM wParam, LPARAM lParam)
       // return TRUE if command invocation was attempted
@@ -2141,7 +2141,7 @@ namespace ca
       _001OnCommand(nID, CN_UPDATE_COMMAND_UI, &state, NULL);
       if (!state.m_bEnabled)
       {
-      TRACE(::ca::trace::category_AppMsg, 0, "Warning: not executing disabled command %d\n", nID);
+      TRACE(::ca2::trace::category_AppMsg, 0, "Warning: not executing disabled command %d\n", nID);
       return TRUE;
       }
 
@@ -2156,7 +2156,7 @@ namespace ca
       if (gen_ThreadState->m_hLockoutNotifyWindow == get_handle())
       return TRUE;        // locked out - ignore control notification
 
-      // reflect notification to child ::ca::window control
+      // reflect notification to child ::ca2::window control
       if (ReflectLastMsg(oswindow_Ctrl))
       return TRUE;    // eaten by child
 
@@ -2167,7 +2167,7 @@ namespace ca
 
       #ifdef DEBUG
       if (nCode < 0 && nCode != (int32_t)0x8000)
-      TRACE(::ca::trace::category_AppMsg, 0, "Implementation Warning: control notification = $%X.\n",
+      TRACE(::ca2::trace::category_AppMsg, 0, "Implementation Warning: control notification = $%X.\n",
       nCode);
       #endif
 
@@ -2190,18 +2190,18 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::WalkPreTranslateTree(::ca::signal_object * pobj)
+   void window::WalkPreTranslateTree(::ca2::signal_object * pobj)
    {
       return WalkPreTranslateTree(m_pguie, pobj);
    }
 
 
    ////////////////////////////////////////////////////////////////////////////
-   // UI related ::ca::window functions
+   // UI related ::ca2::window functions
    /*
    oswindow window::get_safe_owner(oswindow hParent, oswindow* pWndTop)
    {
-      // get ::ca::window to start with
+      // get ::ca2::window to start with
       oswindow oswindow = hParent;
       if (oswindow == NULL)
       {
@@ -2212,11 +2212,11 @@ namespace ca
             oswindow = System.GetMainWnd()->GetSafeoswindow_();
       }
 
-      // a popup ::ca::window cannot be owned by a child ::ca::window
+      // a popup ::ca2::window cannot be owned by a child ::ca2::window
       while (oswindow != NULL && (::GetWindowLong(oswindow, GWL_STYLE) & WS_CHILD))
          oswindow = ::GetParent;
 
-      // determine toplevel ::ca::window to disable as well
+      // determine toplevel ::ca2::window to disable as well
       ::oswindow oswindow_Top = oswindow;
       ::oswindow oswindow_Temp = oswindow;
       for (;;)
@@ -2232,7 +2232,7 @@ namespace ca
       if (hParent == NULL && oswindow != NULL)
          oswindow = ::GetLastActivePopup;
 
-      // disable and store top level parent ::ca::window if specified
+      // disable and store top level parent ::ca2::window if specified
       if (pWndTop != NULL)
       {
          if (oswindow_Top != NULL && ::IsWindowEnabled(oswindow_Top) && oswindow_Top != oswindow)
@@ -2257,11 +2257,11 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
-CTestCmdUI::CTestCmdUI(sp(::ca::application) papp) :
-ca(papp),
+CTestCmdUI::CTestCmdUI(sp(::ca2::application) papp) :
+ca2(papp),
    cmd_ui(papp)
 {
    m_bEnabled = TRUE;  // assume it is enabled
@@ -2292,13 +2292,13 @@ void CTestCmdUI::SetText(const char *)
 
 
 
-guie_message_wnd::guie_message_wnd(sp(::ca::application) papp) :
-ca(papp)
+guie_message_wnd::guie_message_wnd(sp(::ca2::application) papp) :
+ca2(papp)
 {
    m_pguieForward = NULL;
 }
 
-void guie_message_wnd::message_handler(::ca::signal_object * pobj)
+void guie_message_wnd::message_handler(::ca2::signal_object * pobj)
 {
    if(m_pguieForward != NULL)
    {

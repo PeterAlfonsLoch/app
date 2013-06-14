@@ -55,13 +55,13 @@ void sync_object::dump(dump_context & dumpcontext) const
 
    dumpcontext << " named " << m_strName << "\n";
 
-   ::ca::object::dump(dumpcontext);
+   ::ca2::object::dump(dumpcontext);
 
 }
 
 void sync_object::assert_valid() const
 {
-   ::ca::object::assert_valid();
+   ::ca2::object::assert_valid();
 }
 
 #ifdef WINDOWS

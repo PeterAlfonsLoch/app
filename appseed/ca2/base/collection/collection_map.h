@@ -5,9 +5,9 @@
 
 
 
-template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = ::ca::hash < ARG_KEY > , class EQUALS = ::ca::equals_type_arg_type < KEY, ARG_KEY > >
+template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = ::ca2::hash < ARG_KEY > , class EQUALS = ::ca2::equals_type_arg_type < KEY, ARG_KEY > >
 class map :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
 
@@ -201,7 +201,7 @@ public:
    }
 
    void construct(::count nBlockSize = 10);
-   map(::ca::application * papp = NULL, ::count nBlockSize = 10);
+   map(::ca2::application * papp = NULL, ::count nBlockSize = 10);
    map(pair pairs[], int32_t iCount);
 
    ::count get_count() const;
@@ -417,8 +417,8 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::construct(::count nBlo
 }
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::map(::ca::application * papp, ::count nBlockSize) :
-   ::ca::ca(papp)
+map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::map(::ca2::application * papp, ::count nBlockSize) :
+   ::ca2::ca2(papp)
 {
    construct(nBlockSize);
 }
@@ -880,7 +880,7 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::Serialize(CArchive& ar
 {
 ASSERT_VALID(this);
 
-::ca::object::Serialize(ar);
+::ca2::object::Serialize(ar);
 
 if (ar.IsStoring())
 {
@@ -927,7 +927,7 @@ set_at(newKey[0], newValue[0]);
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::dump(dump_context & dumpcontext) const
 {
-   ::ca::object::dump(dumpcontext);
+   ::ca2::object::dump(dumpcontext);
 
    dumpcontext << "with " << m_nCount << " elements";
    if (dumpcontext.GetDepth() > 0)
@@ -951,7 +951,7 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::dump(dump_context & du
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assert_valid() const
 {
-   ::ca::object::assert_valid();
+   ::ca2::object::assert_valid();
 
    ASSERT(m_nHashTableSize > 0);
    ASSERT(m_nCount == 0 || m_ppassocHash != NULL);

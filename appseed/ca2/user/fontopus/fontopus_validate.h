@@ -20,7 +20,7 @@ namespace fontopus
    };
 
    class CLASS_DECL_ca2 login_thread_callback :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       virtual void on_login_thread_response(e_result iAuth, const char * pszResponse);
@@ -32,12 +32,12 @@ namespace fontopus
 
 
    class CLASS_DECL_ca2 http_execute :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
       string                  m_strUrl;
-      ::ca::property_set       m_propertysetPost;
-      ::ca::property_set       m_propertysetHeaders;
+      ::ca2::property_set       m_propertysetPost;
+      ::ca2::property_set       m_propertysetHeaders;
       string                  m_strResponse;
    };
 
@@ -82,12 +82,12 @@ namespace fontopus
 
 
 
-      login_thread(sp(::ca::application) papp);
+      login_thread(sp(::ca2::application) papp);
       virtual ~login_thread();
 
       virtual int32_t run();
-      virtual string Login(::ca::http::e_status * pestatus);
-      virtual string NetLogin(::ca::http::e_status * pestatus);
+      virtual string Login(::ca2::http::e_status * pestatus);
+      virtual string NetLogin(::ca2::http::e_status * pestatus);
       void execute();
    };
 
@@ -139,7 +139,7 @@ namespace fontopus
       void *                                    m_pvOldWindow;
 
 
-      validate(sp(::ca::application) papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
+      validate(sp(::ca2::application) papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
       virtual ~validate();
 
 
@@ -158,7 +158,7 @@ namespace fontopus
       virtual void ensure_main_document();
       virtual void display_main_frame();
       virtual void page1(const stringa & straMatter = stringa());
-      virtual void pageMessage(const stringa & straMatter, ::ca::property_set & set);
+      virtual void pageMessage(const stringa & straMatter, ::ca2::property_set & set);
 
       virtual ::fontopus::user * get_user(const char * pszHost = NULL, const char * pszSessid = NULL);
       virtual auth * get_auth();
@@ -176,7 +176,7 @@ namespace fontopus
 
       virtual bool get_defer_registration();
 
-//         validate(sp(::ca::application) papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
+//         validate(sp(::ca2::application) papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
   //       virtual ~validate();
 
 
@@ -195,7 +195,7 @@ namespace fontopus
     //     virtual void ensure_main_document();
       //   virtual void display_main_frame();
         // virtual void page1(const stringa & straMatter = stringa());
-         //virtual void pageMessage(const stringa & stra, ::ca::property_set & set);
+         //virtual void pageMessage(const stringa & stra, ::ca2::property_set & set);
 
          //virtual ::fontopus::user * get_user(const char * pszHost = NULL, const char * pszSessid = NULL);
          //virtual auth * get_auth();

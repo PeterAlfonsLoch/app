@@ -16,7 +16,7 @@ namespace user
       databaseuser::list_data          m_datainterface;
 
 
-      tree_view(::ca::application * papp);
+      tree_view(::ca2::application * papp);
       virtual ~tree_view();
 
       virtual void _017OpenFolder(FileManagerItem & item);
@@ -30,12 +30,12 @@ namespace user
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
       // ::user::tree
-      virtual void _001OnOpenItem(::ca::tree_item * pitem);
-      virtual void _001OnItemExpand(::ca::tree_item * pitem);
-      virtual void _001OnItemCollapse(::ca::tree_item * pitem);
+      virtual void _001OnOpenItem(::ca2::tree_item * pitem);
+      virtual void _001OnItemExpand(::ca2::tree_item * pitem);
+      virtual void _001OnItemCollapse(::ca2::tree_item * pitem);
 
-      virtual bool _001GetItemText(::ca::tree_item * pitem, string & strItem);
-      virtual index _001GetItemImage(::ca::tree_item * pitem, bool bSelected);
+      virtual bool _001GetItemText(::ca2::tree_item * pitem, string & strItem);
+      virtual index _001GetItemImage(::ca2::tree_item * pitem, bool bSelected);
 
 
 
@@ -50,8 +50,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnShellCommand)
 
-      ::ca::tree_item * allocate_item();
-      void delete_item(::ca::tree_item * pitem);
+      ::ca2::tree_item * allocate_item();
+      void delete_item(::ca2::tree_item * pitem);
 
    private:
       tree_view(const tree_view & tree);

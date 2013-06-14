@@ -11,7 +11,7 @@ namespace html
       {
          m_iFont = -1;
          m_pedit = new ::user::edit_plain_text(pdata->get_app());
-         m_pedit->m_ulFlags &= ~::ca::ca::flag_auto_delete;
+         m_pedit->m_ulFlags &= ~::ca2::ca2::flag_auto_delete;
          m_pedit->m_bMultiLine      = false;
       }
 
@@ -41,7 +41,7 @@ namespace html
          elemental::implement_phase1(pdata, pelemental);
          if(!m_pedit->IsWindow())
          {
-            m_pedit->oprop("parent_lock_data") = (::ca::data *) pdata;
+            m_pedit->oprop("parent_lock_data") = (::ca2::data *) pdata;
             m_pedit->create(pdata->m_pguie, 100);
             pdata->on_create_interaction(m_pedit);
             m_pedit->m_bPassword = pelemental->m_propertyset["type"].compare_value_ci("password") == 0;

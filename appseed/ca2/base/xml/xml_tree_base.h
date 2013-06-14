@@ -4,7 +4,7 @@ namespace xml
 {
 
    class CLASS_DECL_ca2 tree_base :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    protected:
 
@@ -19,8 +19,8 @@ namespace xml
       tree_schema * m_pschema;
 
 
-      tree_base(sp(::ca::application) papp, tree_schema * pschema);
-      tree_base(sp(::ca::application) papp);
+      tree_base(sp(::ca2::application) papp, tree_schema * pschema);
+      tree_base(sp(::ca2::application) papp);
       virtual ~tree_base();
 
       string get_node_name(int32_t iNameIndex);

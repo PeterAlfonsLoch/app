@@ -5,8 +5,8 @@ namespace primitive
 {
 
 
-   memory_file::memory_file(sp(::ca::application) papp, ::primitive::memory_size iSize) :
-      ca(papp),
+   memory_file::memory_file(sp(::ca2::application) papp, ::primitive::memory_size iSize) :
+      ca2(papp),
       memory_container (papp)
    {
 
@@ -20,8 +20,8 @@ namespace primitive
    }
 
 
-   memory_file::memory_file(sp(::ca::application) papp, void * pMemory, ::primitive::memory_size dwSize) :
-      ca(papp),
+   memory_file::memory_file(sp(::ca2::application) papp, void * pMemory, ::primitive::memory_size dwSize) :
+      ca2(papp),
       memory_container(papp, pMemory, dwSize)
    {
 
@@ -30,8 +30,8 @@ namespace primitive
    }
 
 
-   memory_file::memory_file(sp(::ca::application) papp, const memory_file & memoryfile) :
-      ca(papp),
+   memory_file::memory_file(sp(::ca2::application) papp, const memory_file & memoryfile) :
+      ca2(papp),
       memory_container (papp, ((memory_file &) memoryfile).get_memory())
    {
 
@@ -40,8 +40,8 @@ namespace primitive
    }
 
 
-   memory_file::memory_file(sp(::ca::application) papp, memory_base * pmemory) :
-      ca(papp),
+   memory_file::memory_file(sp(::ca2::application) papp, memory_base * pmemory) :
+      ca2(papp),
       memory_container (papp, pmemory)
    {
 
@@ -149,26 +149,26 @@ namespace primitive
    }
 
 
-   file_position memory_file::seek(file_offset lOff, ::ca::e_seek nFrom)
+   file_position memory_file::seek(file_offset lOff, ::ca2::e_seek nFrom)
    {
 
       single_lock sl(get_memory()->m_spmutex, TRUE);
 
       ASSERT(IsValid());
-      ASSERT(nFrom == ::ca::seek_begin || nFrom == ::ca::seek_end || nFrom == ::ca::seek_current);
-      //ASSERT(::ca::seek_begin == FILE_BEGIN && ::ca::seek_end == FILE_END && ::ca::seek_current == FILE_CURRENT);
+      ASSERT(nFrom == ::ca2::seek_begin || nFrom == ::ca2::seek_end || nFrom == ::ca2::seek_current);
+      //ASSERT(::ca2::seek_begin == FILE_BEGIN && ::ca2::seek_end == FILE_END && ::ca2::seek_current == FILE_CURRENT);
 
       ::primitive::memory_position dwNew = (::primitive::memory_position) -1;
 
       switch(nFrom)
       {
-      case ::ca::seek_begin:
+      case ::ca2::seek_begin:
          dwNew = (::primitive::memory_position) lOff;
          break;
-      case ::ca::seek_end:
+      case ::ca2::seek_end:
          dwNew = (::primitive::memory_position) (get_length() - lOff);
          break;
-      case ::ca::seek_current:
+      case ::ca2::seek_current:
          if(lOff < 0)
          {
             dwNew = (::primitive::memory_position) (m_dwPosition + lOff);
@@ -308,8 +308,8 @@ namespace primitive
 
       primitive::memory storage;
       storage.allocate(1024 * 1024 * 8);
-      ::ca::filesp spfile(allocer());
-      if(!spfile->open(psz, ::ca::file::type_binary | ::ca::file::mode_read | ::ca::file::shareDenyNone))
+      ::ca2::filesp spfile(allocer());
+      if(!spfile->open(psz, ::ca2::file::type_binary | ::ca2::file::mode_read | ::ca2::file::shareDenyNone))
          return;
       else
       {

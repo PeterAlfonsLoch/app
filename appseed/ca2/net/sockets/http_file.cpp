@@ -20,7 +20,7 @@ namespace http
             }
             else
             {
-               seek(-1, ::ca::seek_current);
+               seek(-1, ::ca2::seek_current);
             }
          }
          else if(ch == '\r')
@@ -35,7 +35,7 @@ namespace http
       return str.has_char();
    }
 
-   file & file::operator << (::ca::file & file)
+   file & file::operator << (::ca2::file & file)
       {
          uint_ptr nRead;
          primitive::memory mem;

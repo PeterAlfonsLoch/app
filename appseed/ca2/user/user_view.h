@@ -58,15 +58,15 @@ namespace user
       sp(::user::document_interface) get_document() const;
 
       template < class DOCUMENT >
-      ::ca::data * get_data();
+      ::ca2::data * get_data();
 
       template < class DOCUMENT >
       DOCUMENT * get_typed_document();
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
-      virtual bool IsSelected(const ::ca::object* pDocItem) const; // support for OLE
+      virtual bool IsSelected(const ::ca2::object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
       virtual bool OnScroll(UINT nScrollCode, UINT nPos, bool bDoScroll = TRUE);
@@ -84,7 +84,7 @@ namespace user
       DROPEFFECT dropDefault, DROPEFFECT dropList, point point);
       virtual DROPEFFECT OnDragScroll(uint32_t dwKeyState, point point);*/
 
-      virtual void OnPrepareDC(::ca::graphics * pgraphics, CPrintInfo* pInfo = NULL);
+      virtual void OnPrepareDC(::ca2::graphics * pgraphics, CPrintInfo* pInfo = NULL);
 
       //virtual void OnInitialUpdate(); // called first time after construct
       DECL_GEN_VSIGNAL(_001OnInitialUpdate) // called first time after construct
@@ -96,15 +96,15 @@ namespace user
       virtual void OnActivateFrame(UINT nState, sp(::user::frame_window) pFrameWnd);
 
       // General drawing/updating
-      virtual void on_update(sp(view) pSender, LPARAM lHint, ::ca::object* pHint);
-      virtual void _001OnDraw(::ca::graphics * pgraphics);
+      virtual void on_update(sp(view) pSender, LPARAM lHint, ::ca2::object* pHint);
+      virtual void _001OnDraw(::ca2::graphics * pgraphics);
       virtual void OnViewUpdateHint(sp(view) pSender, LPARAM lHint, ::user::view_update_hint * pHint);
 
 
 
-      sp(::user::interaction) create_view(::ca::type_info * info, sp(::user::document_interface) pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
-      static sp(::user::interaction) s_create_view(::ca::type_info * info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast = NULL);
-      static sp(::user::interaction) s_create_view(::ca::create_context * pContext, sp(::user::interaction) pwndParent, id id);
+      sp(::user::interaction) create_view(::ca2::type_info * info, sp(::user::document_interface) pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
+      static sp(::user::interaction) s_create_view(::ca2::type_info * info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast = NULL);
+      static sp(::user::interaction) s_create_view(::ca2::create_context * pContext, sp(::user::interaction) pwndParent, id id);
 
       template < class VIEW >
       sp(VIEW) create_view(::user::document_interface * pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
@@ -123,16 +123,16 @@ namespace user
 
       // Advanced: for implementing custom print preview
       /*   bool DoPrintPreview(UINT nIDResource, sp(view) pPrintView,
-      sp(::ca::type_info) pPreviewViewClass, CPrintPreviewState* pState);*/
+      sp(::ca2::type_info) pPreviewViewClass, CPrintPreviewState* pState);*/
 
       virtual void CalcWindowRect(LPRECT lpClientRect,
          UINT nAdjustType = adjustBorder);
       virtual CScrollBar* GetScrollBarCtrl(int32_t nBar) const;
 
 
-      virtual void on_draw_view_nc(::ca::graphics * pdc);
-      virtual void on_draw_view(::ca::graphics * pdc, spa(::ca::data) spadata);
-      virtual void defer_draw_view(::ca::graphics * pdc);
+      virtual void on_draw_view_nc(::ca2::graphics * pdc);
+      virtual void on_draw_view(::ca2::graphics * pdc, spa(::ca2::data) spadata);
+      virtual void defer_draw_view(::ca2::graphics * pdc);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
@@ -143,7 +143,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnCreate)
          DECL_GEN_SIGNAL(_001OnDestroy)
          void OnPaint();
-      //int32_t OnMouseActivate(sp(::ca::window) pDesktopWnd, UINT nHitTest, UINT message);
+      //int32_t OnMouseActivate(sp(::ca2::window) pDesktopWnd, UINT nHitTest, UINT message);
       // commands
       void OnUpdateSplitCmd(cmd_ui* pCmdUI);
       bool OnSplitCmd(UINT nID);
@@ -155,8 +155,8 @@ namespace user
       void OnFilePrintPreview();
 
       // TODO: could return a kind of - also TODO - JOB object in case of assynchronous call
-      virtual void collaborate(::ca::job * pjob);
-      virtual int32_t  get_total_page_count(::ca::job * pjob);
+      virtual void collaborate(::ca2::job * pjob);
+      virtual int32_t  get_total_page_count(::ca2::job * pjob);
 
       DECL_GEN_SIGNAL(_001OnView)
          DECL_GEN_SIGNAL(_001OnLButtonDown)
@@ -165,7 +165,7 @@ namespace user
 
          virtual ::user::interaction::e_type get_window_type();
 
-      virtual void on_simple_view_update_hint(sp(::user::view) pviewSender, e_hint ehint, ::ca::object * phint);
+      virtual void on_simple_view_update_hint(sp(::user::view) pviewSender, e_hint ehint, ::ca2::object * phint);
 
 
 
@@ -174,7 +174,7 @@ namespace user
       // each view can display one or more documents but has only one document interface
       //sp(::user::document) get_document() const;
 
-//      virtual bool IsSelected(const ::ca::object* pDocItem) const; // support for OLE
+//      virtual bool IsSelected(const ::ca2::object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
 //      virtual bool OnScroll(UINT nScrollCode, UINT nPos, bool bDoScroll = TRUE);
@@ -197,7 +197,7 @@ namespace user
       //virtual void OnActivateView(bool bActivate, sp(::user::view) pActivateView, sp(::user::view) pDeactiveView);
       //virtual void OnActivateFrame(UINT nState, sp(::user::frame_window) pFrameWnd);
 
-      //virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      //virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
 
 //      virtual void dump(dump_context &) const;
   //    virtual void assert_valid() const;
@@ -222,11 +222,11 @@ namespace user
 //         DECL_GEN_SIGNAL(_001OnLButtonDown)
          DECL_GEN_SIGNAL(_001OnMButtonDown)
 
-//         virtual void install_message_handling(::ca::message::dispatch * pinterface);
+//         virtual void install_message_handling(::ca2::message::dispatch * pinterface);
    };
 
    class view_update_hint :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       enum etype
@@ -234,7 +234,7 @@ namespace user
          TypeOpenDocument,
       };
    public:
-      view_update_hint(sp(::ca::application) papp);
+      view_update_hint(sp(::ca2::application) papp);
       etype m_etype;
    };
 

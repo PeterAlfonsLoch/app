@@ -2,11 +2,11 @@
 
 namespace constraint
 {
-   template <class CLASS > void constraint_min(CLASS & c, const CLASS & cMin)
+   template <class CLASS > void constraint_min(CLASS & ca, const CLASS & cMin)
    {
-      if(c < cMin)
+      if(ca < cMin)
       {
-         c = cMin;
+         ca = cMin;
       }
    }
 }

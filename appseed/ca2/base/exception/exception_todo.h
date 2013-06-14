@@ -7,7 +7,7 @@ class CLASS_DECL_ca2 todo :
 public:
 
 
-   todo(sp(::ca::application) papp, const char * pszTip = NULL);
+   todo(sp(::ca2::application) papp, const char * pszTip = NULL);
    todo(const todo & e);
    virtual ~todo();
 

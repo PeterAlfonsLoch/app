@@ -22,9 +22,9 @@ retry_multi_lock::retry_multi_lock(sync_object_ptra syncobjectptra, duration dur
    // get list of handles from array of objects passed
    for (index i = 0; i < m_syncobjectptra.get_count(); i++)
    {
-      //ASSERT_VALID(dynamic_cast < ::ca::request_interface * > (m_syncobjectptra[i]));
+      //ASSERT_VALID(dynamic_cast < ::ca2::request_interface * > (m_syncobjectptra[i]));
       if(m_syncobjectptra(i).is_null())
-         throw invalid_argument_exception(::ca::get_thread_app());
+         throw invalid_argument_exception(::ca2::get_thread_app());
 
       ASSERT(base < waitable >::bases (m_syncobjectptra(i)));
 
@@ -65,7 +65,7 @@ wait_result retry_multi_lock::lock(bool bWaitForAll, uint32_t dwWakeMask /* = 0 
          iResult = ::WaitForMultipleObjectsEx((uint32_t) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, m_durationLock.os_lock_duration(), FALSE);
 #ifdef METROWIN
       else
-         throw not_supported_exception(::ca::get_thread_app());
+         throw not_supported_exception(::ca2::get_thread_app());
 #else
       else
          iResult = ::MsgWaitForMultipleObjects((uint32_t) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, m_durationLock.os_lock_duration(), dwWakeMask);

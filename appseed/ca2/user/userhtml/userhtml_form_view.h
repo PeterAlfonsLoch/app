@@ -9,7 +9,7 @@ public:
    html::elemental * m_pelementalLButtonDown;
 
 
-   html_form_view(sp(::ca::application) papp);
+   html_form_view(sp(::ca2::application) papp);
    virtual ~html_form_view();
 
 
@@ -22,10 +22,10 @@ public:
 
    virtual void on_document_complete(const char * pszUrl);
 
-   virtual void install_message_handling(::ca::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
    virtual bool pre_create_window(CREATESTRUCT& cs);
-   virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::user::view
-   virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+   virtual void OnDraw(::ca2::graphics * pgraphics);      // overridden to draw this ::user::view
+   virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
 
 
    DECL_GEN_SIGNAL(_001OnInitialUpdate)

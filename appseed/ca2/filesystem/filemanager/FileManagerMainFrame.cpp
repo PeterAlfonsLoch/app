@@ -2,8 +2,8 @@
 #include "FileManagerMainFrame.h"
 
 
-FileManagerMainFrame::FileManagerMainFrame(sp(::ca::application) papp) :
-   ca(papp),
+FileManagerMainFrame::FileManagerMainFrame(sp(::ca2::application) papp) :
+   ca2(papp),
    simple_frame_window(papp),
    m_menubar(papp),
    m_toolbar(papp)
@@ -16,7 +16,7 @@ FileManagerMainFrame::~FileManagerMainFrame()
 
 
 
-void FileManagerMainFrame::_001OnCreate(::ca::signal_object * pobj)
+void FileManagerMainFrame::_001OnCreate(::ca2::signal_object * pobj)
 {
 
    UNREFERENCED_PARAMETER(pobj);

@@ -32,7 +32,7 @@ namespace sockets
 {
 
    class CLASS_DECL_ca2 SSLInitializer :
-      public ::ca::ca
+      public ::ca2::ca2
    {
    public:
       /**
@@ -40,7 +40,7 @@ namespace sockets
          bio_err
          create random file
       */
-      SSLInitializer(sp(::ca::application) papp);
+      SSLInitializer(sp(::ca2::application) papp);
 
       /**
          remove random file

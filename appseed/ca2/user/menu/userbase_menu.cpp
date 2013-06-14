@@ -7,8 +7,8 @@ namespace user
    const int32_t BaseWndMenuCmdUi = 117;
    const int32_t BaseWndMenuTiming = 200;
 
-   menu::menu(sp(::ca::application) papp) :
-      ca(papp),
+   menu::menu(sp(::ca2::application) papp) :
+      ca2(papp),
       menu_base(papp),
       m_buttonClose(papp)
    {
@@ -25,8 +25,8 @@ namespace user
 
    }
 
-   menu::menu(sp(::ca::application) papp, menu_item * pitem) :
-      ca(papp),
+   menu::menu(sp(::ca2::application) papp, menu_item * pitem) :
+      ca2(papp),
       menu_base(papp),
       m_buttonClose(papp)
    {
@@ -129,7 +129,7 @@ namespace user
 
    void menu::layout()
    {
-      ::ca::client_graphics pdc(this);
+      ::ca2::client_graphics pdc(this);
       pdc->SelectObject(m_pschema->m_font);
       size size = pdc->GetTextExtent("XXXMMM");
       int32_t iMaxHeight = size.cy;
@@ -206,7 +206,7 @@ namespace user
    }
 
 
-   void menu::_001OnDraw(::ca::graphics *pdc)
+   void menu::_001OnDraw(::ca2::graphics *pdc)
    {
 //      bool bEnabled = IsWindowEnabled();
       rect rectClient;
@@ -273,7 +273,7 @@ namespace user
 
 
 
-   void menu::_001OnDestroy(::ca::signal_object * pobj)
+   void menu::_001OnDestroy(::ca2::signal_object * pobj)
    {
       System.remove_frame(this);
       if(m_pmenuParent != NULL)
@@ -299,13 +299,13 @@ namespace user
          delete_this();
    }
 
-   void menu::_001OnLButtonDown(::ca::signal_object * pobj)
+   void menu::_001OnLButtonDown(::ca2::signal_object * pobj)
    {
       pobj->previous();
    }
 
 
-   void menu::OnMessageDestroyWindow(::ca::signal_object * pobj)
+   void menu::OnMessageDestroyWindow(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       DestroyWindow();
@@ -330,7 +330,7 @@ namespace user
             menu_item * pitem = m_pitem->m_spitema->find(pevent->m_puie->m_id);
             if(pitem != NULL && !pitem->m_bPopup)
             {
-               if(::ca::str::begins((const char *) pevent->m_puie->m_id, "syscommand::"))
+               if(::ca2::str::begins((const char *) pevent->m_puie->m_id, "syscommand::"))
                {
                   m_oswindowParent->_001SendCommand(pevent->m_puie->m_id);
                }
@@ -403,9 +403,9 @@ namespace user
       return true;
    }
 
-   void menu::_001OnTimer(::ca::signal_object * pobj)
+   void menu::_001OnTimer(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == BaseWndMenuTimer)
       {
          KillTimer(BaseWndMenuTimer);
@@ -457,7 +457,7 @@ namespace user
       pobj->m_bRet = false;
    }
 
-   void menu::install_message_handling(::ca::message::dispatch * pinterface)
+   void menu::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageDestroyWindow, pinterface, this, &menu::OnMessageDestroyWindow);
@@ -471,20 +471,20 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW       , pinterface, this, &menu::_001OnShowWindow);
    }
 
-   void menu::_001OnCreate(::ca::signal_object * pobj)
+   void menu::_001OnCreate(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca::message::create, pcreate, pobj);
+//      SCAST_PTR(::ca2::message::create, pcreate, pobj);
       m_pschema            = &::user::GetUfeSchema(get_app())->m_menu;
       return;
    }
 
 
 
-   void menu::_001OnIdleUpdateCmdUI(::ca::signal_object * pobj)
+   void menu::_001OnIdleUpdateCmdUI(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca::message::base, pbase, pobj)
+//      SCAST_PTR(::ca2::message::base, pbase, pobj)
       if(m_pitem->m_spitema != NULL)
       {
          menu_button_cmd_ui cmdui(get_app());
@@ -515,23 +515,23 @@ namespace user
    }
 
 
-   void menu::_001OnEnable(::ca::signal_object * pobj)
+   void menu::_001OnEnable(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca::message::enable, penable, pobj);
+//      SCAST_PTR(::ca2::message::enable, penable, pobj);
    }
 
 
-   void menu::_001OnNcActivate(::ca::signal_object * pobj)
+   void menu::_001OnNcActivate(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       pbase->m_bRet = true;
       pbase->set_lresult(DefWindowProc(WM_NCACTIVATE, pbase->m_wparam, -1));
    }
 
-   void menu::_001OnNcCalcSize(::ca::signal_object * pobj)
+   void menu::_001OnNcCalcSize(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
 
       if(pbase->m_wparam == TRUE)
       {
@@ -563,9 +563,9 @@ namespace user
    }
 
 
-   void menu::_001OnShowWindow(::ca::signal_object * pobj)
+   void menu::_001OnShowWindow(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::show_window, pshow, pobj)
+      SCAST_PTR(::ca2::message::show_window, pshow, pobj)
       TRACE("menu::_001OnShowWindow bShow = %d", pshow->m_bShow);
    }
 

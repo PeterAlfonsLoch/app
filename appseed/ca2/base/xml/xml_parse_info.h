@@ -24,7 +24,7 @@ namespace xml
 
       sp(::xml::document)        m_pdoc;
 
-      parse_info(sp(::ca::application) papp);
+      parse_info(sp(::ca2::application) papp);
    };
 
    CLASS_DECL_ca2 char * LoadOtherNodes( node * node, bool* pbRet, const char * pszXml, parse_info * pi = NULL);

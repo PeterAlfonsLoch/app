@@ -6,12 +6,12 @@ namespace usermail
 
 
    class CLASS_DECL_ca2 usermail : 
-      virtual public ::ca::section
+      virtual public ::ca2::section
    {
    public:
       
 
-      usermail(::ca::application * papp);
+      usermail(::ca2::application * papp);
       virtual ~usermail();
 
 

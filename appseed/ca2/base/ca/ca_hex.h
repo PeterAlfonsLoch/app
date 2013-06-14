@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -21,7 +21,7 @@ namespace ca
    } // namespace hex
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

@@ -3,7 +3,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
    class limited_writer:
@@ -30,4 +30,4 @@ namespace ca
       uint64_t GetRem() const { return _size; }
    };
 
-} // namespace ca
+} // namespace ca2

@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 graphics_object :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -36,8 +36,8 @@ namespace ca
       virtual UINT GetObjectType() const;
       virtual bool CreateStockObject(int32_t nIndex);
       virtual bool UnrealizeObject();
-      virtual bool operator==(const ::ca::graphics_object& obj) const;
-      virtual bool operator!=(const ::ca::graphics_object& obj) const;
+      virtual bool operator==(const ::ca2::graphics_object& obj) const;
+      virtual bool operator!=(const ::ca2::graphics_object& obj) const;
 
       virtual void dump(dump_context & dumpcontext) const;
       virtual void assert_valid() const;
@@ -46,7 +46,7 @@ namespace ca
    };
 
    
-} // namespace ca
+} // namespace ca2
 
 
 

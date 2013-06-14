@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
    str_stream_base_impl::str_stream_base_impl()
@@ -30,6 +30,6 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 

@@ -7,8 +7,8 @@ namespace filemanager
 {
 
 
-   SimpleFolderListView::SimpleFolderListView(sp(::ca::application) papp) :
-      ca(papp),
+   SimpleFolderListView::SimpleFolderListView(sp(::ca2::application) papp) :
+      ca2(papp),
       m_headerctrl(papp),
       
       ::user::scroll_view(papp),
@@ -29,7 +29,7 @@ namespace filemanager
    }
 
 
-   void SimpleFolderListView::install_message_handling(::ca::message::dispatch * pinterface)
+   void SimpleFolderListView::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::user::view::install_message_handling(pinterface);
       SimpleFolderListInterface::install_message_handling(pinterface);
@@ -50,7 +50,7 @@ namespace filemanager
    /////////////////////////////////////////////////////////////////////////////
    // SimpleFolderListView drawing
 
-   void SimpleFolderListView::OnDraw(::ca::graphics * pgraphics)
+   void SimpleFolderListView::OnDraw(::ca2::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       //sp(::user::document) pDoc = get_document();
@@ -72,7 +72,7 @@ namespace filemanager
    }
 #endif //DEBUG
 
-   void SimpleFolderListView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object * phint) 
+   void SimpleFolderListView::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object * phint) 
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);  
       if(phint != NULL)
@@ -103,9 +103,9 @@ namespace filemanager
       }
    }
 
-   void SimpleFolderListView::_001OnLButtonDblClk(::ca::signal_object * pobj) 
+   void SimpleFolderListView::_001OnLButtonDblClk(::ca2::signal_object * pobj) 
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
          index iItem;
       if(_001HitTest_(pmouse->m_pt, iItem))
       {
@@ -113,7 +113,7 @@ namespace filemanager
       }
    }
 
-   void SimpleFolderListView::_001OnCancelMode(::ca::signal_object * pobj) 
+   void SimpleFolderListView::_001OnCancelMode(::ca2::signal_object * pobj) 
    {
       UNREFERENCED_PARAMETER(pobj);
       // trans   ::user::view::OnCancelMode();

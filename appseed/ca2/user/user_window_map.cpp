@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   window_map::window_map(sp(::ca::application) papp) :
-      ca(papp)
+   window_map::window_map(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
    }

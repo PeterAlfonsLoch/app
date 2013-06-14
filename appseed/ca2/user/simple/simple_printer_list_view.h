@@ -11,11 +11,11 @@ public:
    sp(::user::view)                   m_pview;
 
 
-   simple_printer_list_view(sp(::ca::application) papp);
+   simple_printer_list_view(sp(::ca2::application) papp);
    virtual ~simple_printer_list_view();
 
 
-   virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+   virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
    virtual void _001OnClick(UINT nFlags, point point);
 

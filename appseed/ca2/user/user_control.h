@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca2 Ex1FormInterfaceComboBox :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
 
@@ -102,7 +102,7 @@ namespace user
       };
 
       class CLASS_DECL_ca2 descriptor :
-         virtual public ::ca::ca
+         virtual public ::ca2::ca2
       {
       public:
 
@@ -123,7 +123,7 @@ namespace user
          sp(control)             m_pcontrol;
          id                      m_id;
          id                      m_uiText;
-         sp(::ca::type_info)     m_typeinfo;
+         sp(::ca2::type_info)     m_typeinfo;
          index                   m_iSubItem;
          id                      m_idPrivateDataSection;
          bool                    m_bTransparent;
@@ -191,7 +191,7 @@ namespace user
       virtual ~control();
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
       virtual bool create_control(class control::descriptor * pdescriptor);
 
@@ -205,10 +205,10 @@ namespace user
 
       class descriptor & descriptor();
 
-      virtual void _003CallCustomDraw(::ca::graphics * pdc, ::user::draw_context * pitem);
+      virtual void _003CallCustomDraw(::ca2::graphics * pdc, ::user::draw_context * pitem);
       virtual bool _003CallCustomWindowProc(sp(::user::interaction) pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-      virtual void _003OnCustomDraw(::ca::graphics * pdc, ::user::draw_context * pitem);
-      virtual void _003CustomWindowProc(::ca::signal_object * pobj);
+      virtual void _003OnCustomDraw(::ca2::graphics * pdc, ::user::draw_context * pitem);
+      virtual void _003CustomWindowProc(::ca2::signal_object * pobj);
 
       virtual form * get_form();
       //virtual form_list * get_form_list();
@@ -253,7 +253,7 @@ namespace user
    {
    public:
 
-      control_cmd_ui(::ca::signal * psignal);
+      control_cmd_ui(::ca2::signal * psignal);
 
 
       map < id, id, id, id > m_mapControlCommand;
@@ -264,7 +264,7 @@ namespace user
    };
 
    class control_view_impl :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 

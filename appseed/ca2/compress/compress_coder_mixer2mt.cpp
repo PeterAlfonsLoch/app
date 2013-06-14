@@ -8,8 +8,8 @@ namespace libcompress
    namespace coder_mixer
    {
 
-      CCoder2::CCoder2(sp(::ca::application) papp, uint32_t numInStreams, uint32_t numOutStreams):
-               ca(papp),
+      CCoder2::CCoder2(sp(::ca2::application) papp, uint32_t numInStreams, uint32_t numOutStreams):
+               ca2(papp),
             thread(papp),
          CCoderInfo2(numInStreams, numOutStreams)
       {
@@ -77,7 +77,7 @@ namespace libcompress
       //////////////////////////////////////
       // CCoderMixer2MT
 
-      ::ca::HRes CCoderMixer2MT::SetBindInfo(const CBindInfo &bindInfo)
+      ::ca2::HRes CCoderMixer2MT::SetBindInfo(const CBindInfo &bindInfo)
       {
          _bindInfo = bindInfo;
          _streamBinders.remove_all();
@@ -91,8 +91,8 @@ namespace libcompress
 
       void CCoderMixer2MT::AddCoderCommon()
       {
-         const CCoderStreamsInfo &c = _bindInfo.Coders[_coders.get_count()];
-         sp(CCoder2) threadCoderInfo(canew(CCoder2(get_app(), c.NumInStreams, c.NumOutStreams)));
+         const CCoderStreamsInfo &ca = _bindInfo.Coders[_coders.get_count()];
+         sp(CCoder2) threadCoderInfo(canew(CCoder2(get_app(), ca.NumInStreams, ca.NumOutStreams)));
          _coders.add(threadCoderInfo);
       }
 
@@ -115,13 +115,13 @@ namespace libcompress
             _streamBinders[i].ReInit();
       }
 
-      CCoderMixer2MT::CCoderMixer2MT(sp(::ca::application) papp) :
-         ca(papp),
+      CCoderMixer2MT::CCoderMixer2MT(sp(::ca2::application) papp) :
+         ca2(papp),
          _streamBinders(papp)
       {
       }
 
-      HRESULT CCoderMixer2MT::Init(spa(::ca::reader) & inStreams, spa(::ca::writer) & outStreams)
+      HRESULT CCoderMixer2MT::Init(spa(::ca2::reader) & inStreams, spa(::ca2::writer) & outStreams)
       {
          /*
          if (_coders.get_count() != _bindInfo.Coders.get_count())
@@ -153,7 +153,7 @@ namespace libcompress
                                             _coders[outCoderIndex].OutStreams(outCoderStreamIndex));
 
             throw "implement below";
-            /*::c::smart_pointer<::libcompress::set_buffer_size_interface> inSetSize, outSetSize;
+            /*::ca::smart_pointer<::libcompress::set_buffer_size_interface> inSetSize, outSetSize;
             inSetSize = dynamic_cast < ::libcompress::set_buffer_size_interface * > (_coders[inCoderIndex].m_p);
             outSetSize = dynamic_cast < ::libcompress::set_buffer_size_interface * > (_coders[outCoderIndex].m_p);
             if (inSetSize && outSetSize)
@@ -188,9 +188,9 @@ namespace libcompress
          return S_OK;
       }
 
-      ::ca::HRes CCoderMixer2MT::Code(spa(::ca::reader) & inStreams,
+      ::ca2::HRes CCoderMixer2MT::Code(spa(::ca2::reader) & inStreams,
          const file_size ** /* inSizes */,
-         spa(::ca::writer) & outStreams,
+         spa(::ca2::writer) & outStreams,
          const file_size ** /* outSizes */,
          ::libcompress::progress_info_interface *progress)
       {

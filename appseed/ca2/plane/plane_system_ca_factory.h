@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    template < class T >
@@ -40,5 +40,5 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 

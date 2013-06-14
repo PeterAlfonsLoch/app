@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -15,7 +15,7 @@ namespace ca
    } // namespace international
 
 
-} // namespace ca
+} // namespace ca2
 
 
 
@@ -74,7 +74,7 @@ namespace user
       
 
 
-      str(sp(::ca::application) papp);
+      str(sp(::ca2::application) papp);
 
 
       inline str_locale * get_locale(const ::id & idLocale)
@@ -109,13 +109,13 @@ namespace user
 
 
    class CLASS_DECL_ca2 str_context :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       
       
       
-      sp(::ca::international::locale_schema)    m_plocaleschema;
+      sp(::ca2::international::locale_schema)    m_plocaleschema;
       
       
       sp(str)                                   m_pstr;
@@ -133,7 +133,7 @@ namespace user
       
 
 
-      str_context(sp(::ca::application) papp);
+      str_context(sp(::ca2::application) papp);
       virtual ~str_context();
 
 
@@ -148,7 +148,7 @@ namespace user
       
       void prepare();
 
-      inline ::ca::international::locale_schema & localeschema()
+      inline ::ca2::international::locale_schema & localeschema()
       {
          return *m_plocaleschema;
       }

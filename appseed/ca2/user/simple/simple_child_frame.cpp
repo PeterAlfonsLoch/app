@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-simple_child_frame::simple_child_frame(sp(::ca::application) papp) :
-   ca(papp),
+simple_child_frame::simple_child_frame(sp(::ca2::application) papp) :
+   ca2(papp),
    simple_frame_window(papp)
 {
 

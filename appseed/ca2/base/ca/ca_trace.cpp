@@ -21,7 +21,7 @@ category traceSocket("socket");
 //extern CLASS_DECL_ca2 fixed_alloc_array * g_pfixedallocaWstring;
 
 
-namespace ca
+namespace ca2
 {
 
    namespace trace
@@ -33,8 +33,8 @@ namespace ca
       /*   category::category( const char * pszCategoryName, UINT nStartingLevel ) throw() :
       m_dwCategory( 0 )
       {
-      m_dwCategory = ::ca::CTrace::s_trace.RegisterCategory( pszCategoryName );
-      ::ca::CTrace::s_trace.ChangeCategory( m_dwCategory, nStartingLevel, TRACESTATUS_INHERIT);
+      m_dwCategory = ::ca2::CTrace::s_trace.RegisterCategory( pszCategoryName );
+      ::ca2::CTrace::s_trace.ChangeCategory( m_dwCategory, nStartingLevel, TRACESTATUS_INHERIT);
       }*/
 
       void trace::TraceV(const char *pszFileName, int32_t nLine, uint_ptr dwCategory, UINT nLevel, const char * pszFormat, va_list args) const
@@ -50,7 +50,7 @@ namespace ca
          category & category = ((trace *) this)->m_map[(uint32_t ) dwCategory];
 
          //if(ShouldTraceOutput(dwModule, dwCategory, nLevel, &pCategory, &pmodule))
-         if(category.m_estatus == ::ca::trace::status_disabled || nLevel > category.m_uiLevel)
+         if(category.m_estatus == ::ca2::trace::status_disabled || nLevel > category.m_uiLevel)
             return;
          /*      if (nLen >= 0 && nLen < nCount)
          {
@@ -85,7 +85,7 @@ namespace ca
 
          str.FormatV(pszFormat, args);
 
-         ::OutputDebugStringW(::ca::international::utf8_to_unicode(str));
+         ::OutputDebugStringW(::ca2::international::utf8_to_unicode(str));
 
          /*if(pmodule != NULL)
          pmodule->DebugReport(_CRT_WARN, NULL, 0, NULL, pszFormat, ptr);
@@ -141,7 +141,7 @@ namespace ca
 
          string str;
          str.FormatV(pszFmt, args);
-         ::OutputDebugStringW(::ca::international::utf8_to_unicode(str));
+         ::OutputDebugStringW(::ca2::international::utf8_to_unicode(str));
       }
 
       /*CLASS_DECL_ca2 void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args)
@@ -152,4 +152,4 @@ namespace ca
 
    } // namespace trace
 
-}  // namespace ca
+}  // namespace ca2

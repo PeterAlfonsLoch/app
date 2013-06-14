@@ -11,7 +11,7 @@ namespace calculator
       virtual public ::user::view
    {
    public:
-      view(sp(::ca::application) papp);
+      view(sp(::ca2::application) papp);
       virtual ~view();
 
 #ifdef DEBUG
@@ -22,13 +22,13 @@ namespace calculator
       virtual sp(::user::interaction) BackViewGetWnd();
       virtual sp(::user::interaction) get_guie();
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
-         virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+         virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
 
       sp(::user::document) get_document();
 

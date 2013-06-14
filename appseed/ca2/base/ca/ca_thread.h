@@ -42,17 +42,17 @@
 class event;
 
 
-namespace ca
+namespace ca2
 {
 
 
    class thread;
 
 
-} // namespace ca
+} // namespace ca2
 
 
-namespace ca
+namespace ca2
 {
 
 #ifdef WINDOWS
@@ -206,11 +206,11 @@ namespace ca
          return false;
       }
 
-      /*inline void set_heap_alloc(sp(::ca::ca) pca)
+      /*inline void set_heap_alloc(sp(::ca2::ca2) pca)
       {
          if(find(pca, true))
          {
-            pca->m_ulFlags |= ::ca::ca::flag_heap_alloc;
+            pca->m_ulFlags |= ::ca2::ca2::flag_heap_alloc;
          }
       }*/
 
@@ -231,17 +231,17 @@ namespace ca
    class thread;
 
 
-   typedef ::c::smart_pointer < thread > thread_sp;
+   typedef ::ca::smart_pointer < thread > thread_sp;
 
 
    class CLASS_DECL_ca2 thread :
-      virtual public ::ca::thread_base,
+      virtual public ::ca2::thread_base,
       virtual public command_target,
       #ifdef WINDOWS
       virtual public ::exception::translator,
       #endif
       virtual public spa(::user::interaction),
-      virtual public ::ca::live_object,
+      virtual public ::ca2::live_object,
       virtual public event_base
    {
    public:
@@ -255,7 +255,7 @@ namespace ca
       static bool    s_bAllocReady;
       mutex          m_mutex;
 
-      ::ca::thread_sp                     m_p;
+      ::ca2::thread_sp                     m_p;
       bool                                m_bRun;
       sp(user::interaction_ptr_array)     m_puiptra;
       sp(user::interaction::timer_array)  m_ptimera;
@@ -263,17 +263,17 @@ namespace ca
       uint_ptr                            m_dwAlive;
       bool                                m_bReady;
       int32_t                             m_iReturnCode;
-      sp(::ca::application)                 m_pappDelete;
+      sp(::ca2::application)                 m_pappDelete;
       sp(::user::interaction)             m_puiMain;           // main window (usually same System.GetMainWnd())
       sp(::user::interaction)             m_puiActive;         // active main window (may not be GetMainWnd())
       bool *                              m_pbReady;
-      ::ca::property_set                  m_set;
+      ::ca2::property_set                  m_set;
       string                              m_strWorkUrl;
 
 
       thread();
-      thread(sp(::ca::application) papp);
-      thread(sp(::ca::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam);
+      thread(sp(::ca2::application) papp);
+      thread(sp(::ca2::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam);
       virtual ~thread();
 
 		///  \brief		starts thread on first call
@@ -286,7 +286,7 @@ namespace ca
       virtual HTHREAD get_os_handle() const;
 
 
-      virtual void set_p(::ca::thread * p);
+      virtual void set_p(::ca2::thread * p);
 
 
       virtual void set_os_data(void * pvoidOsData);
@@ -302,12 +302,12 @@ namespace ca
 
       virtual void CommonConstruct();
 
-//      virtual bool begin(::ca::e_thread_priority epriority = thread_priority_normal, uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+//      virtual bool begin(::ca2::e_thread_priority epriority = thread_priority_normal, uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-//      virtual bool create_thread(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+//      virtual bool create_thread(::ca2::e_thread_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-//      virtual ::ca::e_thread_priority get_thread_priority();
-  //    virtual bool set_thread_priority(::ca::e_thread_priority epriority);
+//      virtual ::ca2::e_thread_priority get_thread_priority();
+  //    virtual bool set_thread_priority(::ca2::e_thread_priority epriority);
 
       //virtual uint32_t SuspendThread();
 //      virtual uint32_t ResumeThread();
@@ -318,7 +318,7 @@ namespace ca
 
       // called when occurs an standard_exception exception in run
       // return true to call run again
-  //    virtual bool on_run_exception(::ca::exception & e);
+  //    virtual bool on_run_exception(::ca2::exception & e);
 
    // Overridables
       // thread initialization
@@ -328,23 +328,23 @@ namespace ca
 
       virtual int32_t exit();
 
-      //virtual ::ca::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
+      //virtual ::ca2::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
       // running and idle processing
 //      virtual int32_t run();
-//      virtual void pre_translate_message(::ca::signal_object * pobj);
+//      virtual void pre_translate_message(::ca2::signal_object * pobj);
 //      virtual bool pump_message();     // low level message pump
 //      virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-//      virtual bool is_idle_message(::ca::signal_object * pobj);  // checks for special messages
+//      virtual bool is_idle_message(::ca2::signal_object * pobj);  // checks for special messages
 
       // thread termination
 //      virtual int32_t exit_instance(); // default will 'delete this'
 
       // Advanced: exception handling
-//      virtual void ProcessWndProcException(base_exception * e, ::ca::signal_object * pobj);
+//      virtual void ProcessWndProcException(base_exception * e, ::ca2::signal_object * pobj);
 
       // Advanced: handling messages sent to message filter hook
-//      virtual void ProcessMessageFilter(int32_t code, ::ca::signal_object * pobj);
+//      virtual void ProcessMessageFilter(int32_t code, ::ca2::signal_object * pobj);
 
       // Advanced: virtual access to GetMainWnd()
 //      virtual sp(::user::interaction) GetMainWnd();
@@ -364,7 +364,7 @@ namespace ca
 ////      virtual void set_run(bool bRun = true);
 //      virtual event & get_finish_event();
 //      virtual bool get_run();
-//      virtual ::ca::thread * get_app_thread();
+//      virtual ::ca2::thread * get_app_thread();
 //      virtual sp(::user::interaction) get_active_ui();
 //      virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);
 //      virtual void step_timer();
@@ -379,7 +379,7 @@ namespace ca
 //      virtual void Delete();
          // 'delete this' only if m_bAutoDelete == TRUE
 
-//      virtual void DispatchThreadMessageEx(::ca::signal_object * pobj);  // helper
+//      virtual void DispatchThreadMessageEx(::ca2::signal_object * pobj);  // helper
 
       virtual void on_keep_alive();
       virtual bool is_alive();
@@ -462,12 +462,12 @@ namespace ca
 
 
 
-      virtual bool begin(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+      virtual bool begin(::ca2::e_thread_priority epriority = ::get_thread_priority_normal(), uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-      virtual bool create_thread(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+      virtual bool create_thread(::ca2::e_thread_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-      virtual ::ca::e_thread_priority get_thread_priority();
-      virtual bool set_thread_priority(::ca::e_thread_priority epriority);
+      virtual ::ca2::e_thread_priority get_thread_priority();
+      virtual bool set_thread_priority(::ca2::e_thread_priority epriority);
 
 //      virtual uint32_t SuspendThread();
       virtual uint32_t ResumeThread();
@@ -478,29 +478,29 @@ namespace ca
 
       // called when occurs an standard_exception exception in run
       // return true to call run again
-      virtual bool on_run_exception(::ca::exception & e);
+      virtual bool on_run_exception(::ca2::exception & e);
 
       // Overridables
       // thread initialization
       virtual bool initialize_instance();
 
-      virtual ::ca::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
+      virtual ::ca2::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
       // running and idle processing
       virtual int32_t run();
-      virtual void pre_translate_message(::ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca2::signal_object * pobj);
       virtual bool pump_message();     // low level message pump
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-      virtual bool is_idle_message(::ca::signal_object * pobj);  // checks for special messages
+      virtual bool is_idle_message(::ca2::signal_object * pobj);  // checks for special messages
 
       // thread termination
       virtual int32_t exit_instance(); // default will 'delete this'
 
       // Advanced: exception handling
-      virtual void ProcessWndProcException(base_exception* e, ::ca::signal_object * pobj);
+      virtual void ProcessWndProcException(base_exception* e, ::ca2::signal_object * pobj);
 
       // Advanced: handling messages sent to message filter hook
-      virtual void ProcessMessageFilter(int32_t code, ::ca::signal_object * pobj);
+      virtual void ProcessMessageFilter(int32_t code, ::ca2::signal_object * pobj);
 
       // Advanced: virtual access to GetMainWnd()
       virtual sp(::user::interaction) GetMainWnd();
@@ -517,7 +517,7 @@ namespace ca
       virtual void set_run(bool bRun = true);
       virtual event & get_finish_event();
       virtual bool get_run();
-      virtual ::ca::thread * get_app_thread();
+      virtual ::ca2::thread * get_app_thread();
       virtual sp(::user::interaction) get_active_ui();
       virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);
       virtual void step_timer();
@@ -528,7 +528,7 @@ namespace ca
       virtual void Delete();
       // 'delete this' only if m_bAutoDelete == TRUE
 
-      virtual void DispatchThreadMessageEx(::ca::signal_object * pobj);  // helper
+      virtual void DispatchThreadMessageEx(::ca2::signal_object * pobj);  // helper
 
       virtual int32_t main();
 
@@ -560,7 +560,7 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

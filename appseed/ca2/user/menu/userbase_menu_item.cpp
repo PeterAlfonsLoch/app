@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   menu_item::menu_item(sp(::ca::application) papp) :
-      ca(papp),
+   menu_item::menu_item(sp(::ca2::application) papp) :
+      ca2(papp),
       m_button(papp)
    {
       m_spitema = new menu_item_ptra(this);
@@ -51,7 +51,7 @@ namespace user
             pitemNewChild->m_button._001SetButtonText(strCommandTitle);
          }
          add_item(pitemNewChild);
-         ::c::release(pitemNewChild);
+         ::ca::release(pitemNewChild);
       }
 
       return iItemCount > 0;
@@ -102,7 +102,7 @@ namespace user
             }
          }
          add_item(pitemNewChild);
-         ::c::release(pitemNewChild);
+         ::ca::release(pitemNewChild);
       }
 
       return true;
@@ -114,7 +114,7 @@ namespace user
    }
 
    menu_item_ptra::menu_item_ptra(menu_item * pitemContainer) :
-      ca(pitemContainer->get_app())
+      ca2(pitemContainer->get_app())
    {
       m_pitemContainer = pitemContainer;
    }

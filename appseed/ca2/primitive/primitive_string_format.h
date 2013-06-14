@@ -27,7 +27,7 @@ The format tags follow this prototype:
 %[flags][width][.precision][length]specifier
 Where specifier is the most significant one and defines the type and the interpretation of the value of the coresponding argument:
 specifier	Output	Example
-c	Character	a
+ca	Character	a
 d or i	Signed decimal integer	392
 e	Scientific notation (mantissa/exponent) using e character	3.9265e+2
 E	Scientific notation (mantissa/exponent) using E character	3.9265E+2
@@ -63,13 +63,13 @@ width	description
 For e, E and f specifiers: this is the number of digits to be printed after the decimal point.
 For g and G specifiers: This is the maximum number of significant digits to be printed.
 For s: this is the maximum number of characters to be printed. By default all characters are printed until the ending NULL character is encountered.
-For c type: it has no effect.
+For ca type: it has no effect.
 When no precision is specified, the default is 1. If the period is specified without an explicit value for precision, 0 is assumed.
 .*	The precision is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted.
 
 length	description
 h	The argument is interpreted as a short int32_t or unsigned short int32_t (only applies to integer specifiers: i, d, o, u, x and X).
-l	The argument is interpreted as a long int32_t or unsigned long int32_t for integer specifiers (i, d, o, u, x and X), and as a wide character or wide character string for specifiers c and s.
+l	The argument is interpreted as a long int32_t or unsigned long int32_t for integer specifiers (i, d, o, u, x and X), and as a wide character or wide character string for specifiers ca and s.
 L	The argument is interpreted as a long double (only applies to floating point specifiers: e, E, f, g and G).
 
 additional arguments
@@ -196,7 +196,7 @@ public:
          if(!parse(s))
          {
 
-            ::ca::str::format(this, value);
+            ::ca2::str::format(this, value);
 
             printf(s, args...);
 
@@ -233,7 +233,7 @@ public:
          if(!parse(s))
          {
 
-            ::ca::str::format(this, value);
+            ::ca2::str::format(this, value);
 
             printf(s, args...);
 
@@ -271,7 +271,7 @@ public:
       {
 
          if(*s == '%' && *(++s) != '%')
-            throw simple_exception(::ca::get_thread_app(), "invalid format string: missing arguments");
+            throw simple_exception(::ca2::get_thread_app(), "invalid format string: missing arguments");
 
          append(*s++);
 
@@ -301,7 +301,7 @@ public:
 
       }
 
-      throw simple_exception(::ca::get_thread_app(), "extra arguments provided to printf");
+      throw simple_exception(::ca2::get_thread_app(), "extra arguments provided to printf");
 
    }
 

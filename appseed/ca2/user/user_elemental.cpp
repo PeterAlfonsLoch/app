@@ -8,12 +8,12 @@ namespace user
       return NULL;
    }
 
-   ::ca::graphics * elemental::_001GetDC()
+   ::ca2::graphics * elemental::_001GetDC()
    {
       return get_guie()->GetDC();
    }
 
-   void elemental::_001ReleaseDC(::ca::graphics * pdc)
+   void elemental::_001ReleaseDC(::ca2::graphics * pdc)
    {
       get_guie()->ReleaseDC(pdc);
    }
@@ -22,7 +22,7 @@ namespace user
    {
    }
 
-   void elemental::pre_translate_message(::ca::signal_object * pobj)
+   void elemental::pre_translate_message(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }

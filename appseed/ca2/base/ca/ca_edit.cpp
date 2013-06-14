@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
-   base_edit::base_edit(sp(::ca::application) papp) :
-      ca(papp)
+   base_edit::base_edit(sp(::ca2::application) papp) :
+      ca2(papp)
    {
    }
 
@@ -27,7 +27,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

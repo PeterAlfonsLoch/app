@@ -17,8 +17,8 @@
 namespace sockets
 {
 
-   net::net(sp(::ca::application) papp) :
-      ca(papp),
+   net::net(sp(::ca2::application) papp) :
+      ca2(papp),
       m_mutexCache(papp)
    {
 
@@ -51,10 +51,10 @@ namespace sockets
             }
             else
             {
-               uchar c = static_cast<uchar>(src[i]);
+               uchar ca = static_cast<uchar>(src[i]);
                dst += '%';
-               dst += hex[c / 16];
-               dst += hex[c % 16];
+               dst += hex[ca / 16];
+               dst += hex[ca % 16];
             }
       }
       return dst;
@@ -131,7 +131,7 @@ namespace sockets
       {
          return false;
       }
-      ::ca::parse pa(str,":.");
+      ::ca2::parse pa(str,":.");
       string tmp = pa.getword();
       while (tmp.get_length())
       {
@@ -183,7 +183,7 @@ namespace sockets
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
       {
-         ::ca::parse pa((const char *)host, ".");
+         ::ca2::parse pa((const char *)host, ".");
          union {
             struct {
                uchar b1;
@@ -452,14 +452,14 @@ namespace sockets
          struct sockaddr_in6 *sa6 = (struct sockaddr_in6 *)sa;
          string tmp;
          convert(tmp, sa6 -> sin6_addr);
-         return tmp + ":" + ::ca::str::from(ntohs(sa6 -> sin6_port));
+         return tmp + ":" + ::ca2::str::from(ntohs(sa6 -> sin6_port));
       }
       if (sa -> sa_family == AF_INET)
       {
          struct sockaddr_in *sa4 = (struct sockaddr_in *)sa;
          string tmp;
          convert(tmp, sa4 -> sin_addr);
-         return tmp + ":" + ::ca::str::from(ntohs(sa4 -> sin_port));
+         return tmp + ":" + ::ca2::str::from(ntohs(sa4 -> sin_port));
       }
       return "";
    }
@@ -502,7 +502,7 @@ namespace sockets
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
       {
-         ::ca::parse pa((const char *)host, ".");
+         ::ca2::parse pa((const char *)host, ".");
          union {
             struct {
                uchar b1;
@@ -878,8 +878,8 @@ namespace sockets
    int32_t net::service_port(const string & str, int32_t flags)
    {
 
-      if(::ca::str::is_simple_natural(str))
-         return ::ca::str::to_int(str);
+      if(::ca2::str::is_simple_natural(str))
+         return ::ca2::str::to_int(str);
 
       if(str.CompareNoCase("http"))
       {

@@ -6,7 +6,7 @@ namespace html
 
 
    class CLASS_DECL_ca2 file :
-      virtual public ::ca::object
+      virtual public ::ca2::object
 #if defined(LINUX) || defined(MACOS)
       , public string_format_printer
 #endif

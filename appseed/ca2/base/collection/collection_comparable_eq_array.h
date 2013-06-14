@@ -119,17 +119,17 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 ::count comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::add_unique(const ARRAY_TYPE & a)
 {
       
-   ::count c = 0;
+   ::count ca = 0;
 
    ::count cAdd = a.get_count();
 
    for(int32_t i = 0; i < cAdd; i++)
    {
       if(add_unique(a[i]))
-         c++;
+         ca++;
    }
 
-   return c;
+   return ca;
 
 }
 

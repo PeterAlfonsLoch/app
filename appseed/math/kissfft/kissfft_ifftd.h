@@ -6,7 +6,7 @@ namespace kissfft
 
 
    class CLASS_DECL_CA2_MATH ifftd :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 

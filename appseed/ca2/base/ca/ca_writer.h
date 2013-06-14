@@ -1,21 +1,21 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class writer;
 
    class CLASS_DECL_ca2 out_stream_flush :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       virtual void flush() = 0;
    };
 
 
-   typedef ::c::smart_pointer < writer > writer_sp;
+   typedef ::ca::smart_pointer < writer > writer_sp;
 
 
    class CLASS_DECL_ca2 writer :
@@ -54,6 +54,6 @@ namespace ca
 
    typedef writer writable;
 
-} // namespace ca
+} // namespace ca2
 
 

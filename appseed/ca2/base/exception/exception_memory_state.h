@@ -8,7 +8,7 @@ struct CLASS_DECL_ca2 memory_state
    enum blockUsage
    {
       freeBlock,    // primitive::memory not used
-      objectBlock,  // contains a ::ca::object derived class object
+      objectBlock,  // contains a ::ca2::object derived class object
       bitBlock,     // contains ::operator new data
       crtBlock,
       ignoredBlock,

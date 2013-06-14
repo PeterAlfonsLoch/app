@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
    circular_buffer::circular_buffer(size_t size) :
@@ -160,5 +160,5 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 

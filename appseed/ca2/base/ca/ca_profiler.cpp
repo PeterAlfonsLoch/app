@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -66,7 +66,7 @@ namespace ca
    } // namespace profiler
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

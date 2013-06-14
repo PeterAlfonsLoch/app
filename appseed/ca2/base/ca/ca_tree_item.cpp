@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
 /*   #define ROUND(x,y) (((x)+(y-1))&~(y-1))
@@ -149,9 +149,9 @@ namespace ca
    ::count tree_item::remove_tree_item()
    {
 
-      ::count c = 1; // this
+      ::count ca = 1; // this
 
-      c += remove_tree_item_descendants();
+      ca += remove_tree_item_descendants();
 
       if(m_pnext != NULL)
       {
@@ -180,7 +180,7 @@ namespace ca
 
       }
 
-      return c;
+      return ca;
 
    }
 
@@ -188,16 +188,16 @@ namespace ca
    ::count tree_item::remove_tree_item_descendants()
    {
       
-      ::count c = 0;
+      ::count ca = 0;
 
       while(m_pchild.is_set())
       {
 
-         c += m_pchild->remove_tree_item();
+         ca += m_pchild->remove_tree_item();
 
       }
 
-      return c;
+      return ca;
 
    }
 
@@ -305,7 +305,7 @@ namespace ca
       case TreeNavigationExpandedForward:
          return get_next(true, true, pindexLevel);
       case TreeNavigationProperForward:
-         return get_next((m_dwState & ::ca::tree_item_state_expanded) != 0, true, pindexLevel);
+         return get_next((m_dwState & ::ca2::tree_item_state_expanded) != 0, true, pindexLevel);
       default:
          // Not Expected
          ASSERT(FALSE);
@@ -502,4 +502,4 @@ namespace ca
       return iCount;
    }
 
-} // namespace ca
+} // namespace ca2

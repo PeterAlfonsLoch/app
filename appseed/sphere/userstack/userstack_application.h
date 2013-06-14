@@ -18,8 +18,8 @@ namespace userstack
                                                                      
       bool                                                           m_bShowPlatform;
                                                                      
-      sp(::ca::application)                                            m_pappCurrent;
-      string_map < sp(::ca::application) >               m_mapApplication;
+      sp(::ca2::application)                                            m_pappCurrent;
+      string_map < sp(::ca2::application) >               m_mapApplication;
                                                                      
       
       sp(::user::single_document_template)                         m_ptemplate_main;
@@ -47,7 +47,7 @@ namespace userstack
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-      virtual ::ca::application * get_app() const;
+      virtual ::ca2::application * get_app() const;
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
@@ -63,7 +63,7 @@ namespace userstack
 
       virtual void check_topic_file_change();
 
-      void on_exclusive_instance_conflict(::ca::EExclusiveInstance eexclusive);
+      void on_exclusive_instance_conflict(::ca2::EExclusiveInstance eexclusive);
       
       void launch_app(const char * psz);
       void install_app(const char * psz);
@@ -82,11 +82,11 @@ namespace userstack
 
       virtual service_base * allocate_new_service();
 
-      void on_request(sp(::ca::create_context) pcreatecontext);
+      void on_request(sp(::ca2::create_context) pcreatecontext);
 
-      sp(::ca::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      sp(::ca2::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca2::application_bias * pbiasCreate = NULL);
 
-      sp(::ca::application) get_current_application();
+      sp(::ca2::application) get_current_application();
 
       virtual void get_screen_rect(LPRECT lprect);
 

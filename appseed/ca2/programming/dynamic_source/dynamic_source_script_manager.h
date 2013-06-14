@@ -28,8 +28,8 @@ namespace dynamic_source
 
 
    class CLASS_DECL_ca2 script_manager :
-      virtual public ::ca::thread,
-      virtual public ::ca::message_window_simple_callback
+      virtual public ::ca2::thread,
+      virtual public ::ca2::message_window_simple_callback
    {
    public:
 
@@ -52,7 +52,7 @@ namespace dynamic_source
       
 
       class CLASS_DECL_ca2 plugin_map_item :
-         virtual public ::ca::ca
+         virtual public ::ca2::ca2
       {
       public:
 
@@ -162,7 +162,7 @@ namespace dynamic_source
       string                                    m_strSeed;
 
 
-      script_manager(sp(::ca::application) papp);
+      script_manager(sp(::ca2::application) papp);
       ~script_manager();
 
       bool initialize_instance();
@@ -178,7 +178,7 @@ namespace dynamic_source
 
 
       script_instance * get(const string & strName);
-      using ::ca::thread::handle;
+      using ::ca2::thread::handle;
       virtual void handle(::dynamic_source::httpd_socket * psocket);
       bool get_output_internal(::dynamic_source::script_interface * & pinstance, ::dynamic_source::script_interface * pinstanceParent, const string & strName);
       using thread::run;
@@ -190,7 +190,7 @@ namespace dynamic_source
 
 
 
-      virtual void message_window_message_handler(::ca::signal_object * pobj);
+      virtual void message_window_message_handler(::ca2::signal_object * pobj);
 
       void clear_include_matches();
       static UINT c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure

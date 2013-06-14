@@ -5,8 +5,8 @@ namespace command
 {
 
 
-   view::view(sp(::ca::application) papp) :
-      ca(papp),
+   view::view(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::interaction(papp)
    {
    }
@@ -15,7 +15,7 @@ namespace command
    {
    }
 
-   void view::install_message_handling(::ca::message::dispatch * pinterface)
+   void view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::user::view::install_message_handling(pinterface);
 
@@ -46,7 +46,7 @@ namespace command
    /////////////////////////////////////////////////////////////////////////////
    // view drawing
 
-   void view::OnDraw(::ca::graphics * pdcScreen)
+   void view::OnDraw(::ca2::graphics * pdcScreen)
    {
       UNREFERENCED_PARAMETER(pdcScreen);
    }
@@ -87,13 +87,13 @@ namespace command
    }
 
 
-   void view::_001OnInitialUpdate(::ca::signal_object * pobj)
+   void view::_001OnInitialUpdate(::ca2::signal_object * pobj)
    {
       ::user::view::_001OnInitialUpdate(pobj);
    }
 
 
-   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);
@@ -104,15 +104,15 @@ namespace command
 
    }
 
-   void view::_001OnDestroy(::ca::signal_object * pobj)
+   void view::_001OnDestroy(::ca2::signal_object * pobj)
    {
 	   ::user::view::_001OnDestroy(pobj);
    }
 
-   void view::_001OnSize(::ca::signal_object * pobj)
+   void view::_001OnSize(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-   //   SCAST_PTR(::ca::message::size, psize, pobj)
+   //   SCAST_PTR(::ca2::message::size, psize, pobj)
 
       rect rectDesktop;
       Application.get_screen_rect(rectDesktop);
@@ -135,18 +135,18 @@ namespace command
       }
    }
 
-   void view::_001OnPaint(::ca::signal_object * pobj)
+   void view::_001OnPaint(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
-   void view:: _001OnDraw(::ca::graphics * pdc)
+   void view:: _001OnDraw(::ca2::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
    }
 
-   void view::_001OnCreate(::ca::signal_object * pobj)
+   void view::_001OnCreate(::ca2::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -154,9 +154,9 @@ namespace command
    }
 
 
-   void view::_001OnContextMenu(::ca::signal_object * pobj)
+   void view::_001OnContextMenu(::ca2::signal_object * pobj)
    {
-//      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
 //      point point = pcontextmenu->GetPoint();
 
 
@@ -171,10 +171,10 @@ namespace command
       }
    }
 
-   void view::_001OnSetCursor(::ca::signal_object * pobj)
+   void view::_001OnSetCursor(::ca2::signal_object * pobj)
    {
    
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
    
       pmouse->m_ecursor = ::visual::cursor_arrow;
 
@@ -189,39 +189,39 @@ namespace command
 
 
 
-   void view::_001OnLButtonDown(::ca::signal_object * pobj)
+   void view::_001OnLButtonDown(::ca2::signal_object * pobj)
    {
-   //   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+   //   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       UNREFERENCED_PARAMETER(pobj);
 
    }
 
-   void view::_001OnLButtonUp(::ca::signal_object * pobj)
+   void view::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
-      //SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      //SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       UNREFERENCED_PARAMETER(pobj);
       KillTimer(5432180);
 
 
    }
 
-   void view::_001OnRButtonUp(::ca::signal_object * pobj)
+   void view::_001OnRButtonUp(::ca2::signal_object * pobj)
    {
-      //SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      //SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       UNREFERENCED_PARAMETER(pobj);
 
    }
 
-   void view::_001OnOp(::ca::signal_object * pobj)
+   void view::_001OnOp(::ca2::signal_object * pobj)
    {
-      //SCAST_PTR(::ca::message::base, pbase, pobj)
+      //SCAST_PTR(::ca2::message::base, pbase, pobj)
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
-   void view::_001OnTimer(::ca::signal_object * pobj)
+   void view::_001OnTimer(::ca2::signal_object * pobj)
    {
-      //SCAST_PTR(::ca::message::timer, ptimer, pobj)
+      //SCAST_PTR(::ca2::message::timer, ptimer, pobj)
       UNREFERENCED_PARAMETER(pobj);
    }
 
@@ -267,9 +267,9 @@ namespace command
       strDateTime.Format("%s %s %s", strDate, strWeekDay, strTime);
    }
 
-   void view::_001OnShowWindow(::ca::signal_object * pobj)
+   void view::_001OnShowWindow(::ca2::signal_object * pobj)
    {
-   //   SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
+   //   SCAST_PTR(::ca2::message::show_window, pshowwindow, pobj)
       UNREFERENCED_PARAMETER(pobj);
    }
 

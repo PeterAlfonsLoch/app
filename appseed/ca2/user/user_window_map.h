@@ -24,7 +24,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 window_map :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -32,7 +32,7 @@ namespace user
       map < int_ptr, int_ptr, ::user::window_interface *, ::user::window_interface * > m_map;
 
 
-      window_map(sp(::ca::application) papp);
+      window_map(sp(::ca2::application) papp);
       virtual ~window_map();
 
       

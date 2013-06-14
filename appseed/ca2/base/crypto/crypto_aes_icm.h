@@ -23,31 +23,31 @@ typedef struct {
 
 
 err_status_t
-aes_icm_context_init(aes_icm_ctx_t *c,
+aes_icm_context_init(aes_icm_ctx_t *ca,
            const uchar *key); 
 
 err_status_t
-aes_icm_set_iv(aes_icm_ctx_t *c, void *iv);
+aes_icm_set_iv(aes_icm_ctx_t *ca, void *iv);
 
 err_status_t
-aes_icm_encrypt(aes_icm_ctx_t *c,
+aes_icm_encrypt(aes_icm_ctx_t *ca,
       uchar *buf, uint32_t *bytes_to_encr);
 
 err_status_t
-aes_icm_output(aes_icm_ctx_t *c,
+aes_icm_output(aes_icm_ctx_t *ca,
           uchar *buf, int32_t bytes_to_output);
 
 err_status_t 
-aes_icm_dealloc(cipher_t *c);
+aes_icm_dealloc(cipher_t *ca);
  
 err_status_t 
-aes_icm_encrypt_ismacryp(aes_icm_ctx_t *c, 
+aes_icm_encrypt_ismacryp(aes_icm_ctx_t *ca, 
           uchar *buf, 
           uint32_t *enc_len, 
           int32_t forIsmacryp);
  
 err_status_t 
-aes_icm_alloc_ismacryp(cipher_t **c, 
+aes_icm_alloc_ismacryp(cipher_t **ca, 
              int32_t key_len, 
              int32_t forIsmacryp);
 

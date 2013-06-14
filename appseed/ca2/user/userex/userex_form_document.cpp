@@ -1,9 +1,9 @@
 #include "framework.h"
 
 
-form_document::form_document(sp(::ca::application) papp) :
-   ca(papp),
-   ::ca::data_container_base(papp),
+form_document::form_document(sp(::ca2::application) papp) :
+   ca2(papp),
+   ::ca2::data_container_base(papp),
    
    html_document(papp)
 {
@@ -14,7 +14,7 @@ void form_document::OnBeforeNavigate2(html::data * pdata, var & varFile, uint32_
 
    UNREFERENCED_PARAMETER(pdata);
    string strUrl(varFile);
-   if(::ca::str::begins_eat(strUrl, "ext://"))
+   if(::ca2::str::begins_eat(strUrl, "ext://"))
    {
       Application.open_link(strUrl, lpszTargetFrameName);
 /*         simple_shell_launcher launcher(NULL, "open", strUrl, "", "", SW_SHOWNORMAL);
@@ -23,7 +23,7 @@ void form_document::OnBeforeNavigate2(html::data * pdata, var & varFile, uint32_
       *pbCancel = true;
       return;
    }
-   if(::ca::str::begins_eat(strUrl, "hist://"))
+   if(::ca2::str::begins_eat(strUrl, "hist://"))
    {
       System.hist().hist(strUrl);
       *pbCancel = true;

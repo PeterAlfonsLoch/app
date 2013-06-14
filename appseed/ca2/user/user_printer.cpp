@@ -4,8 +4,8 @@
 namespace user
 {
 
-   printer::printer(sp(::ca::application) papp) :
-      ca(papp)
+   printer::printer(sp(::ca2::application) papp) :
+      ca2(papp)
    {
    }
 
@@ -20,7 +20,7 @@ namespace user
       return false;
    }
 
-   ::ca::graphics * printer::create_graphics()
+   ::ca2::graphics * printer::create_graphics()
    {
       return NULL;
    }

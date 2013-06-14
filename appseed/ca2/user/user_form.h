@@ -19,7 +19,7 @@ namespace user
       form_callback *            m_pcallback;
 
 
-      form(sp(::ca::application) papp);
+      form(sp(::ca2::application) papp);
       virtual ~form();
 
 
@@ -61,9 +61,9 @@ namespace user
       DECL_GEN_VSIGNAL(_000OnPosCreate)
       DECL_GEN_SIGNAL(_001OnCreate)
 
-      virtual void install_message_handling(::ca::message::dispatch *pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch *pinterface);
       virtual void _001InitializeFormPreData();
-      virtual void _001OnUpdate(sp(::user::view) pviewSender, LPARAM lhint, ::ca::object* phint);
+      virtual void _001OnUpdate(sp(::user::view) pviewSender, LPARAM lhint, ::ca2::object* phint);
       virtual void _001Update(sp(control) pcontrol);
       virtual void _001UpdateCheckBox(sp(control) pcontrol);
       virtual void _001UpdateComboBox(sp(control) pcontrol);
@@ -95,10 +95,10 @@ namespace user
 
 
       virtual void OnBeforeNavigate2(var & varFile, uint32_t nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel);
-//        form_view(sp(::ca::application) papp);
+//        form_view(sp(::ca2::application) papp);
   //    virtual ~form_view();
 
-      //virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      //virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
 //      DECL_GEN_SIGNAL(_001OnCreate);
 

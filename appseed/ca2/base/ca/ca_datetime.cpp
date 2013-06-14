@@ -1,13 +1,13 @@
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
 
 
 
-   datetime::datetime(sp(::ca::application) papp) :
-      ca(papp),
+   datetime::datetime(sp(::ca2::application) papp) :
+      ca2(papp),
       m_international(papp),
       m_str(papp)
    {
@@ -95,12 +95,12 @@ namespace ca
       return val.get_time().get_time();
    }
 
-   datetime::international::international(sp(::ca::application) papp) :
-      ca(papp)
+   datetime::international::international(sp(::ca2::application) papp) :
+      ca2(papp)
    {
    }
 
-   void datetime::international::parse_str(const char * psz, ::ca::property_set & set)
+   void datetime::international::parse_str(const char * psz, ::ca2::property_set & set)
    {
         string src(psz);
       src.trim();
@@ -196,7 +196,7 @@ namespace ca
       return get_local_date_time(time);
    }
 
-   datetime::str::str(sp(::ca::application) papp)
+   datetime::str::str(sp(::ca2::application) papp)
    {
       UNREFERENCED_PARAMETER(papp);
       m_pdatetime = NULL;
@@ -226,17 +226,17 @@ namespace ca
 
    string datetime::get_week_day_str(user::str_context * pcontext, int32_t iWeekDay) // 1 - domingo
    {
-      return System.str().get(pcontext, "datetimestr_weekday_long[" + ::ca::str::from(iWeekDay - 1) + "]");
+      return System.str().get(pcontext, "datetimestr_weekday_long[" + ::ca2::str::from(iWeekDay - 1) + "]");
    }
 
    string datetime::get_tiny_week_day_str(user::str_context * pcontext, int32_t iWeekDay) // 1 - domingo
    {
-      return System.str().get(pcontext, "datetimestr_weekday_tiny[" + ::ca::str::from(iWeekDay - 1) + "]");
+      return System.str().get(pcontext, "datetimestr_weekday_tiny[" + ::ca2::str::from(iWeekDay - 1) + "]");
    }
 
    string datetime::get_month_str(user::str_context * pcontext, int32_t iMonth)
    {
-      return System.str().get(pcontext, "datetimestr_month[" + ::ca::str::from(iMonth - 1) + "]");
+      return System.str().get(pcontext, "datetimestr_month[" + ::ca2::str::from(iMonth - 1) + "]");
    }
 
    ::datetime::time datetime::from_gmt_date_time(int32_t iYear, int32_t iMonth, int32_t iDay, int32_t iHour, int32_t iMinute, int32_t iSecond)
@@ -464,4 +464,4 @@ int32_t datetime::ISO_WN(int32_t  y, int32_t m, int32_t d )
    }
 
 
-} // namespace ca
+} // namespace ca2

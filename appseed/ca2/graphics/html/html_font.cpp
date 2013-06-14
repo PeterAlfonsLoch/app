@@ -15,7 +15,7 @@ namespace html
       m_strTextDecoration     = font.m_strTextDecoration;
    }
 
-   bool font::create(sp(::ca::application) papp)
+   bool font::create(sp(::ca2::application) papp)
    {
       m_font.create(papp);
 
@@ -76,7 +76,7 @@ namespace html
       }
       
       
-      bool bUnderline = ::ca::str::find_ci("underline", m_strTextDecoration) >= 0;
+      bool bUnderline = ::ca2::str::find_ci("underline", m_strTextDecoration) >= 0;
 
       m_font->create_point_font(strName, dSize, iWeight, false, bUnderline);
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -11,7 +11,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool palette::CreateHalftonePalette(::ca::graphics * pgraphics)
+   bool palette::CreateHalftonePalette(::ca2::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       throw interface_only_exception(get_app());
@@ -59,7 +59,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

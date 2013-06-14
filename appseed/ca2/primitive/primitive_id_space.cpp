@@ -4,7 +4,7 @@
 
 id_space::id_space()
 {
-   m_pmutex = new mutex(::ca::get_thread_app());
+   m_pmutex = new mutex(::ca2::get_thread_app());
 }
 
 // id_space is static, it goes aways only and with the application
@@ -69,7 +69,7 @@ id id_space::operator()(const string & str)
 id id_space::operator()(int64_t i)
 {
 
-   return id_space::operator()(::ca::str::from(i));
+   return id_space::operator()(::ca2::str::from(i));
 
 
    
@@ -254,7 +254,7 @@ strid_array::strid_array(bool bSynch)
    if(bSynch)
    {
     
-      m_pmutex = canew(mutex(::ca::get_thread_app()));
+      m_pmutex = canew(mutex(::ca2::get_thread_app()));
 
    }
 

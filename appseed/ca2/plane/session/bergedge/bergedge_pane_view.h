@@ -22,7 +22,7 @@ namespace bergedge
 
 
 
-      pane_view(sp(::ca::application) papp);
+      pane_view(sp(::ca2::application) papp);
       virtual ~pane_view();
 
       using ::user::tab_view::on_show_view;
@@ -33,7 +33,7 @@ namespace bergedge
       void on_create_view(::user::view_creator_data * pcreatordata);
       void on_show_view();
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       void check_3click_dir(const char * psz);
       void check_menu_dir(const char * psz);
@@ -48,11 +48,11 @@ namespace bergedge
       virtual void OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema);
       virtual void OnFileManagerOpenContextMenu(::filemanager::data * pdata);
 
-      void _001OnDraw(::ca::graphics * pdc);
+      void _001OnDraw(::ca2::graphics * pdc);
 
       virtual void set_display(int32_t iDisplay);
 
-      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
    #ifdef DEBUG

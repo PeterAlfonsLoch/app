@@ -12,15 +12,15 @@ namespace user
    class CLASS_DECL_ca2 edit_plain_text :
       virtual public scroll_view,
       public colorertake5::base_editor,
-      public ::ca::data_listener,
-      public ::ca::tree
+      public ::ca2::data_listener,
+      public ::ca2::tree
    {
    public:
 
 
       //WPARAM                        m_dwLastKeyWparam;
       //LPARAM                        m_dwLastKeyLparam;
-      ::ca::message::key            m_keymessageLast;
+      ::ca2::message::key            m_keymessageLast;
 
 
 
@@ -72,12 +72,12 @@ namespace user
 
 
 
-      edit_plain_text(sp(::ca::application) papp);
+      edit_plain_text(sp(::ca2::application) papp);
 
       virtual ~edit_plain_text();
 
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
 
 
 
@@ -120,12 +120,12 @@ namespace user
 
 
 
-      virtual void pre_translate_message(::ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca2::signal_object * pobj);
 
-      void key_to_char(::ca::message::key * pkey);
+      void key_to_char(::ca2::message::key * pkey);
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
-      virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::user::view
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void OnDraw(::ca2::graphics * pgraphics);      // overridden to draw this ::user::view
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
 
 
@@ -145,12 +145,12 @@ namespace user
 
 
 
-      virtual void on_updata_data(::ca::data * pdata, int32_t iHint);
+      virtual void on_updata_data(::ca2::data * pdata, int32_t iHint);
 
 
       virtual bool create_control(class ::user::control::descriptor * pdescriptor);
 
-      virtual strsize char_hit_test(::ca::graphics * pdc, int32_t x, int32_t y);
+      virtual strsize char_hit_test(::ca2::graphics * pdc, int32_t x, int32_t y);
 
       colorertake5::file_type * colorer_select_type();
 
@@ -165,8 +165,8 @@ namespace user
 
       bool should_load_full_file();
 
-      void _001OnCalcLayout(::ca::graphics * pdc);
-      void _001OnCalcLayoutProc(::user::elemental * pview, ::ca::graphics * pdc);
+      void _001OnCalcLayout(::ca2::graphics * pdc);
+      void _001OnCalcLayoutProc(::user::elemental * pview, ::ca2::graphics * pdc);
 
       void FileSave();
       void OnFileUpdate();
@@ -201,7 +201,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnSetCursor)
 
 
-      virtual sp(::ca::tree_item_data) on_allocate_item();
+      virtual sp(::ca2::tree_item_data) on_allocate_item();
 
 
    };

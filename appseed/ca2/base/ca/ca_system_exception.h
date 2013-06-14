@@ -2,7 +2,7 @@
 // from 7-zip on 2012-12-23, dawn
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 system_exception :
@@ -10,8 +10,8 @@ namespace ca
    {
    public:
       HRESULT ErrorCode;
-      system_exception(sp(::ca::application) papp, HRESULT errorCode) :
-         ca(papp),
+      system_exception(sp(::ca2::application) papp, HRESULT errorCode) :
+         ca2(papp),
          ::call_stack(papp),
          ::base_exception(papp),
          ::simple_exception(papp),
@@ -20,4 +20,4 @@ namespace ca
       }
    };
 
-} // namespace ca
+} // namespace ca2

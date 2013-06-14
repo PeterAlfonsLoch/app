@@ -2,8 +2,8 @@
 #include "simple_tab_control.h"
 
 
-simple_tab_control::simple_tab_control(sp(::ca::application) papp):
-   ca(papp),
+simple_tab_control::simple_tab_control(sp(::ca2::application) papp):
+   ca2(papp),
    ::user::interaction(papp),
    
    ::user::tab(papp),
@@ -18,7 +18,7 @@ simple_tab_control::~simple_tab_control()
 
 
 
-void simple_tab_control::_001OnDraw(::ca::graphics *pdc)
+void simple_tab_control::_001OnDraw(::ca2::graphics *pdc)
 {
    ::user::tab::_001OnDraw(pdc);
 }
@@ -31,7 +31,7 @@ void simple_tab_control::pre_subclass_window()
 }
 
 
-void simple_tab_control::install_message_handling(::ca::message::dispatch * pinterface)
+void simple_tab_control::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::interaction::install_message_handling(pinterface);
    ::user::window_interface::install_message_handling(pinterface);

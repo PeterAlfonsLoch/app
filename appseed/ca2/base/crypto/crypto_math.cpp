@@ -1,5 +1,5 @@
 /**
- * math.c
+ * math.ca
  *
  * crypto math operations and data types
  *
@@ -8,7 +8,7 @@
  */
 /**
  *	
- * Copyright (c) 2001-2006 Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006 Cisco Systems, Inc.
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -277,7 +277,7 @@ v128_bit_string(v128_t *x) {
 uint8_t
 nibble_to_hex_char(uint8_t nibble) {
   char buf[16] = {'0', '1', '2', '3', '4', '5', '6', '7',
-		  '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+		  '8', '9', 'a', 'b', 'ca', 'd', 'e', 'f' };
   return buf[nibble & 0xF];
 }
 
@@ -379,8 +379,8 @@ char_to_hex_string(char *x, int32_t num_char) {
 }
 
 int32_t
-hex_char_to_nibble(uint8_t c) {
-  switch(c) {
+hex_char_to_nibble(uint8_t ca) {
+  switch(ca) {
   case ('0'): return 0x0;
   case ('1'): return 0x1;
   case ('2'): return 0x2;
@@ -395,7 +395,7 @@ hex_char_to_nibble(uint8_t c) {
   case ('A'): return 0xa;
   case ('b'): return 0xb;
   case ('B'): return 0xb;
-  case ('c'): return 0xc;
+  case ('ca'): return 0xc;
   case ('C'): return 0xc;
   case ('d'): return 0xd;
   case ('D'): return 0xd;

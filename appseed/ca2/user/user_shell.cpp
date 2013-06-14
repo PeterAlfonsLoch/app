@@ -307,7 +307,7 @@ namespace filemanager
          ULONG ulEaten;
          ULONG dwAttrib = SFGAO_FOLDER;
 
-         wstring wstr = ::ca::international::utf8_to_unicode(lpcsz);
+         wstring wstr = ::ca2::international::utf8_to_unicode(lpcsz);
 
          try
          {
@@ -339,7 +339,7 @@ namespace filemanager
       lpmalloc->Release();
    }
 
-   bool _017HasSubFolder(sp(::ca::application) papp, LPITEMIDLIST lpiidl, const char * lpcszExtra)
+   bool _017HasSubFolder(sp(::ca2::application) papp, LPITEMIDLIST lpiidl, const char * lpcszExtra)
    {
 
       WCHAR szPath[_MAX_PATH * 10];
@@ -359,7 +359,7 @@ namespace filemanager
 
          string wstrPath;
 
-         ::ca::international::unicode_to_utf8(wstrPath, szPath);
+         ::ca2::international::unicode_to_utf8(wstrPath, szPath);
 
          string wstrExtra(lpcszExtra);
 
@@ -376,7 +376,7 @@ namespace filemanager
 
          stringa stra;
 
-         App(papp).dir().ls(::ca::international::unicode_to_utf8(szPath), &stra);
+         App(papp).dir().ls(::ca2::international::unicode_to_utf8(szPath), &stra);
 
          for(int32_t i = 0; i < stra.get_size(); i++)
          {
@@ -396,17 +396,17 @@ namespace filemanager
 
 #endif
 
-   EFolder GetFolderType(sp(::ca::application) papp, const char * lpcsz)
+   EFolder GetFolderType(sp(::ca2::application) papp, const char * lpcsz)
    {
-      return GetFolderType(papp, ::ca::international::utf8_to_unicode(lpcsz));
+      return GetFolderType(papp, ::ca2::international::utf8_to_unicode(lpcsz));
    }
 
-   EFolder GetFolderType(sp(::ca::application) papp, const wchar_t * lpcszPath)
+   EFolder GetFolderType(sp(::ca2::application) papp, const wchar_t * lpcszPath)
    {
 
       string strPath;
 
-      ::ca::international::unicode_to_utf8(strPath, lpcszPath);
+      ::ca2::international::unicode_to_utf8(strPath, lpcszPath);
 
       if(dir::is(strPath))
       {
@@ -450,7 +450,7 @@ namespace filemanager
       }
       string wstrMask(wstrBase);
       wstrMask += "*.*";
-      wstring wstr = ::ca::international::utf8_to_unicode(lpcszPath);
+      wstring wstr = ::ca2::international::utf8_to_unicode(lpcszPath);
       HANDLE h = ::FindFirstFileExW(wstr, FindExInfoStandard, &fd, FindExSearchNameMatch, NULL, 0);
 
       if(h == NULL)
@@ -458,7 +458,7 @@ namespace filemanager
 
       while(true)
       {
-         stra.add(::ca::international::unicode_to_utf8(fd.cFileName));
+         stra.add(::ca2::international::unicode_to_utf8(fd.cFileName));
          if(!FindNextFileW(h, &fd))
             break;
       }
@@ -499,8 +499,8 @@ namespace filemanager
 
 
 
-   ImageSet::ImageSet(sp(::ca::application) papp) :
-      ca(papp),
+   ImageSet::ImageSet(sp(::ca2::application) papp) :
+      ca2(papp),
       m_mutex(papp)
    {
       m_pil16 = new image_list(papp);
@@ -645,7 +645,7 @@ namespace filemanager
       string strPathEx(strFilePath);
       string strExtra;
 
-      ::ca::international::unicode_to_utf8(strExtra, lpcszExtra);
+      ::ca2::international::unicode_to_utf8(strExtra, lpcszExtra);
 
       if(strExtra.get_length() > 0)
       {
@@ -674,7 +674,7 @@ namespace filemanager
          int32_t iFind = item.m_strExtra.reverse_find(L'.');
          if(iFind >= 0)
          {
-            ::ca::international::UnicodeToOEM(strName, item.m_strExtra);
+            ::ca2::international::UnicodeToOEM(strName, item.m_strExtra);
             iFind = strName.reverse_find('.');
 
             iconkey.m_iIcon         = 0x80000000;
@@ -722,7 +722,7 @@ namespace filemanager
          if(System.os().resolve_link(strTarget, strFilePath, NULL))
          {
 
-            wstring wstr = ::ca::international::utf8_to_unicode(strTarget);
+            wstring wstr = ::ca2::international::utf8_to_unicode(strTarget);
 
             LPITEMIDLIST lpiidl2 = NULL;
 
@@ -1210,7 +1210,7 @@ namespace filemanager
       string strPathEx(strFilePath);
       string strExtra;
 
-      ::ca::international::unicode_to_utf8(strExtra, lpcszExtra);
+      ::ca2::international::unicode_to_utf8(strExtra, lpcszExtra);
 
       if(strExtra.get_length() > 0)
       {
@@ -1239,7 +1239,7 @@ namespace filemanager
          int32_t iFind = item.m_strExtra.reverse_find(L'.');
          if(iFind >= 0)
          {
-            ::ca::international::UnicodeToOEM(strName, item.m_strExtra);
+            ::ca2::international::UnicodeToOEM(strName, item.m_strExtra);
             iFind = strName.reverse_find('.');
 
             iconkey.m_iIcon         = 0x80000000;
@@ -1280,7 +1280,7 @@ namespace filemanager
             }
          }
       }
-         if(Application.dir().is(::ca::international::unicode_to_utf8(szFilePath)))
+         if(Application.dir().is(::ca2::international::unicode_to_utf8(szFilePath)))
          {
             if(imagekey.m_iIcon == 0x80000000)
             {
@@ -1484,10 +1484,10 @@ namespace filemanager
 
       int32_t iImage = 0x80000000;
 
-      if(::ca::str::ends_ci(strPath, ".ca"))
+      if(::ca2::str::ends_ci(strPath, ".ca2"))
       {
          string str = Application.file().as_string(strPath);
-         if(::ca::str::begins_eat_ci(str, "ca2prompt\r\n"))
+         if(::ca2::str::begins_eat_ci(str, "ca2prompt\r\n"))
          {
             str.trim();
 #ifdef WINDOWSEX
@@ -1506,7 +1506,7 @@ namespace filemanager
       }
       // try to find "uifs:// http:// ftp:// like addresses"
       // then should show icon by extension or if is folder
-      strsize iFind = ::ca::str::find_ci("://", strPath);
+      strsize iFind = ::ca2::str::find_ci("://", strPath);
       if(iFind >= 0)
       {
          string strProtocol = strPath.Left(iFind);

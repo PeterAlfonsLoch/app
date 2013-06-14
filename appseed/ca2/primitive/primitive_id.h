@@ -8,7 +8,7 @@ class string_interface;
 class id_space;
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -106,7 +106,7 @@ public:
 
    id & operator = (const string_interface & str);
    id & operator = (const var & var);
-   id & operator = (const ::ca::property & prop);
+   id & operator = (const ::ca2::property & prop);
 
 
    inline operator int64_t() const;

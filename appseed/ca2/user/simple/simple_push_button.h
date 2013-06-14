@@ -28,11 +28,11 @@ public:
 
    ColorSchema *    m_pcolorschema;
 
-   SimplePushButton(sp(::ca::application) papp);
+   SimplePushButton(sp(::ca2::application) papp);
    virtual ~SimplePushButton();
 
 
-   virtual void install_message_handling(::ca::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
 #ifdef WINDOWSEX
    virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
@@ -46,7 +46,7 @@ public:
    void push(bool bPush = true);
    void Hover(bool bHover = true);
    void UpdateHover();
-   void _001OnDraw(::ca::graphics * pdc);
+   void _001OnDraw(::ca2::graphics * pdc);
 
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnDestroy)

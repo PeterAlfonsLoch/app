@@ -10,8 +10,8 @@ namespace filemanager
       namespace simple
       {
 
-         list_view::list_view(sp(::ca::application) papp) :
-         ca(papp),
+         list_view::list_view(sp(::ca2::application) papp) :
+         ca2(papp),
             ::user::scroll_view(papp),
             ::user::list(papp),
             ::user::form(papp),
@@ -44,7 +44,7 @@ namespace filemanager
          {
          }
 
-         void list_view::install_message_handling(::ca::message::dispatch * pinterface)
+         void list_view::install_message_handling(::ca2::message::dispatch * pinterface)
          {
             simple_list_view::install_message_handling(pinterface);
             IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &list_view::_001OnLButtonDblClk);
@@ -186,7 +186,7 @@ namespace filemanager
          }
 
 
-         void list_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
+         void list_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
          {
             UNREFERENCED_PARAMETER(pSender);
             UNREFERENCED_PARAMETER(lHint);
@@ -201,9 +201,9 @@ namespace filemanager
 
          }
 
-         void list_view::_001OnLButtonDblClk(::ca::signal_object * pobj)
+         void list_view::_001OnLButtonDblClk(::ca2::signal_object * pobj)
          {
-            SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+            SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
                index iItem;
 
             if(_001HitTest_(pmouse->m_pt, iItem))
@@ -357,9 +357,9 @@ namespace filemanager
             return 0;
          }
 
-         void list_view::_001OnTimer(::ca::signal_object * pobj)
+         void list_view::_001OnTimer(::ca2::signal_object * pobj)
          {
-            SCAST_PTR(::ca::message::timer, ptimer, pobj)
+            SCAST_PTR(::ca2::message::timer, ptimer, pobj)
                if(ptimer->m_nIDEvent == 123654)
                {
                   KillTimer(123654);
@@ -501,7 +501,7 @@ namespace filemanager
             m_iDisplayItemCount  = -1;
          }
 
-         void list_view::_001OnSize(::ca::signal_object * pobj)
+         void list_view::_001OnSize(::ca2::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
             //m_buildhelper.m_iDisplayItemCount = _001GetDisplayItemCount();
@@ -528,9 +528,9 @@ namespace filemanager
          {
          }*/
 
-         void list_view::_001OnFillTaskResponse(::ca::signal_object * pobj)
+         void list_view::_001OnFillTaskResponse(::ca2::signal_object * pobj)
          {
-            SCAST_PTR(::ca::message::base, pbase, pobj)
+            SCAST_PTR(::ca2::message::base, pbase, pobj)
                m_bKickActive = true;
             if(pbase->m_wparam == 0)
             {
@@ -585,10 +585,10 @@ namespace filemanager
 
          }
 
-         void list_view::_001OnContextMenu(::ca::signal_object * pobj)
+         void list_view::_001OnContextMenu(::ca2::signal_object * pobj)
          {
 
-            SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
+            SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
                //int32_t iItem;
                point point = pcontextmenu->GetPoint();
             class point ptClient = point;
@@ -602,7 +602,7 @@ namespace filemanager
             ASSERT(pPopup != NULL);
             sp(::user::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(point.x, point.y,
-            (sp(::ca::window)) pframe);
+            (sp(::ca2::window)) pframe);
             }
             }
             else
@@ -615,7 +615,7 @@ namespace filemanager
             sp(::user::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(
             point.x, point.y,
-            (sp(::ca::window)) pframe);
+            (sp(::ca2::window)) pframe);
             }
             }*/
          }
@@ -740,9 +740,9 @@ namespace filemanager
                m_etype == ItemTypeArtist;
          }
 
-         void list_view::_001OnEraseBkgnd(::ca::signal_object * pobj)
+         void list_view::_001OnEraseBkgnd(::ca2::signal_object * pobj)
          {
-            SCAST_PTR(::ca::message::erase_bkgnd, perasebkgnd, pobj)
+            SCAST_PTR(::ca2::message::erase_bkgnd, perasebkgnd, pobj)
                perasebkgnd->m_bRet = true;
             perasebkgnd->set_result(TRUE);
          }

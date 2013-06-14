@@ -6,7 +6,7 @@ namespace dynamic_source
 
 
    httpd_socket::httpd_socket(::sockets::socket_handler_base& h) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -18,7 +18,7 @@ namespace dynamic_source
    }
 
    httpd_socket::httpd_socket(const httpd_socket& s) :
-      ::ca::ca(s.get_app()),
+      ::ca2::ca2(s.get_app()),
       socket(s.m_handler),
       stream_socket(s),
       tcp_socket(s),

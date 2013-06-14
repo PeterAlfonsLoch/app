@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 edit_file :
-      public ::ca::filesp,
-      public ::ca::tree,
-      public ::ca::tree_data
+      public ::ca2::filesp,
+      public ::ca2::tree,
+      public ::ca2::tree_data
    {
    public:
 
@@ -161,25 +161,25 @@ namespace ca
 
       //ItemPtrArray         m_itemptra;
       //tree_data            m_tree;
-      sp(::ca::tree_item)   m_ptreeitem;
-      sp(::ca::tree_item)   m_ptreeitemFlush;
+      sp(::ca2::tree_item)   m_ptreeitem;
+      sp(::ca2::tree_item)   m_ptreeitemFlush;
       ::primitive::memory_offset              m_iBranch;
-      sp(::ca::file)          m_pfile;
+      sp(::ca2::file)          m_pfile;
       GroupItem *          m_pgroupitem;
       bool                 m_bRootDirection;
 
-      void SetFile(sp(::ca::file) pfile);
+      void SetFile(sp(::ca2::file) pfile);
 
       void FillFilePosition(sp(Item) pitem);
 
-      edit_file(sp(::ca::application) papp);
+      edit_file(sp(::ca2::application) papp);
       virtual ~edit_file();
 
       virtual bool IsValid() const;
       //void load_string(string & str);
       //void create(::primitive::memory_offset iSize = -1);
       //void seek_to_begin();
-      file_position seek(file_offset lOff, ::ca::e_seek  nFrom);
+      file_position seek(file_offset lOff, ::ca2::e_seek  nFrom);
       file_position get_position() const;
 
       //virtual string GetFilePath() const;
@@ -195,9 +195,9 @@ namespace ca
 
 
       void flush();
-      bool SaveTo(::ca::byte_output_stream & file);
-      bool Save(::ca::file & file);
-      bool Save_N_to_CRLF(::ca::file & file);
+      bool SaveTo(::ca2::byte_output_stream & file);
+      bool Save(::ca2::file & file);
+      bool Save_N_to_CRLF(::ca2::file & file);
 
 
       void Insert(DeleteItem * pitem);
@@ -212,8 +212,8 @@ namespace ca
       void MacroEnd();
 
 
-      sp(::ca::tree_item) get_previous(sp(::ca::tree_item) pitem);
-      sp(::ca::tree_item) get_next(sp(::ca::tree_item) pitem, bool bChild = true);
+      sp(::ca2::tree_item) get_previous(sp(::ca2::tree_item) pitem);
+      sp(::ca2::tree_item) get_next(sp(::ca2::tree_item) pitem, bool bChild = true);
 
       virtual sp(tree_item_data) on_allocate_item();
       //virtual void on_delete_item(sp(tree_item_data) pitem);
@@ -230,8 +230,8 @@ namespace ca
 
 
       edit_file(const edit_file & ) :
-         ::ca::tree(NULL),
-         ::ca::tree_data(NULL)
+         ::ca2::tree(NULL),
+         ::ca2::tree_data(NULL)
       {
       }
 
@@ -239,6 +239,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

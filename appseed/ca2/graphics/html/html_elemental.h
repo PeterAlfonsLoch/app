@@ -148,7 +148,7 @@ namespace html
       elemental(data * pdoc, elemental * pparent = NULL);
       virtual ~elemental();
       // always present property?! "text"
-      ::ca::property_set     m_propertyset;
+      ::ca2::property_set     m_propertyset;
 
       virtual void _001SetText(const char * psz);
 

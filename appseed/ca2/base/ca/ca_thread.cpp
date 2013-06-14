@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -19,8 +19,8 @@ namespace ca
 
    }
 
-   thread::thread(sp(::ca::application) papp) :
-      ca(papp),
+   thread::thread(sp(::ca2::application) papp) :
+      ca2(papp),
       m_set(papp),
       m_mutex(papp)
    {
@@ -32,20 +32,20 @@ namespace ca
       set_app(papp);
       if(!s_bAllocReady)
          return;
-      ::ca::thread::m_p.create(allocer());
+      ::ca2::thread::m_p.create(allocer());
       m_p->m_p = this;
       m_p->construct();
 
    }
 
-   thread::thread(sp(::ca::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
-      ca(papp),
+   thread::thread(sp(::ca2::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
+      ca2(papp),
       m_mutex(papp)
    {
 
       construct();
 
-      ::ca::thread::m_p.create(allocer());
+      ::ca2::thread::m_p.create(allocer());
       m_p->set_p(this);
       m_p->construct(pfnThreadProc, pParam);
 
@@ -68,7 +68,7 @@ namespace ca
    }
 
 
-   sp(::ca::application) get_thread_app()
+   sp(::ca2::application) get_thread_app()
    {
 
       thread * pthread = get_thread();
@@ -88,7 +88,7 @@ namespace ca
       return g_pfn_get_thread_state();
    }
 
-   void thread::set_p(::ca::thread * p)
+   void thread::set_p(::ca2::thread * p)
    {
       UNREFERENCED_PARAMETER(p);
       throw interface_only_exception(get_app());
@@ -175,7 +175,7 @@ namespace ca
    }
 
 
-   bool thread::begin(::ca::e_thread_priority epriority, uint_ptr nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::begin(::ca2::e_thread_priority epriority, uint_ptr nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
 
       if(m_p == NULL)
@@ -186,7 +186,7 @@ namespace ca
    }
 
 
-   bool thread::create_thread(::ca::e_thread_priority epriority, uint32_t dwCreateFlags, uint_ptr nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::create_thread(::ca2::e_thread_priority epriority, uint32_t dwCreateFlags, uint_ptr nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
 
       if(m_p == NULL)
@@ -227,7 +227,7 @@ namespace ca
       {
          if(!finalize())
          {
-            TRACE("There occurred errors durring ::ca::application::finalize virtual member function");
+            TRACE("There occurred errors durring ::ca2::application::finalize virtual member function");
          }
       }
       catch(...)
@@ -244,7 +244,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool thread::is_idle_message(::ca::signal_object * pobj)
+   bool thread::is_idle_message(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -261,32 +261,32 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::ca::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
+   ::ca2::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
    {
       UNREFERENCED_PARAMETER(uiMessage);
       UNREFERENCED_PARAMETER(uiCode);
       throw interface_only_exception(get_app());
    }
 
-   void thread::DispatchThreadMessageEx(::ca::signal_object * pobj)
+   void thread::DispatchThreadMessageEx(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
    }*/
 
-/*   void thread::pre_translate_message(::ca::signal_object * pobj)
+/*   void thread::pre_translate_message(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }*
 
-/*   void thread::ProcessWndProcException(base_exception* e, ::ca::signal_object * pobj)
+/*   void thread::ProcessWndProcException(base_exception* e, ::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(e);
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
    }*/
 
-/*   void thread::ProcessMessageFilter(int32_t code, ::ca::signal_object * pobj)
+/*   void thread::ProcessMessageFilter(int32_t code, ::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(code);
       UNREFERENCED_PARAMETER(pobj);
@@ -332,7 +332,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool thread::on_run_exception(::ca::exception & e)
+   bool thread::on_run_exception(::ca2::exception & e)
    {
 
       UNREFERENCED_PARAMETER(e);
@@ -342,7 +342,7 @@ namespace ca
    }*/
 
 
-   ::ca::e_thread_priority thread::get_thread_priority()
+   ::ca2::e_thread_priority thread::get_thread_priority()
    {
 
       return m_p->get_thread_priority();
@@ -350,7 +350,7 @@ namespace ca
    }
 
 
-   bool thread::set_thread_priority(::ca::e_thread_priority epriority)
+   bool thread::set_thread_priority(::ca2::e_thread_priority epriority)
    {
 
       return m_p->set_thread_priority(epriority);
@@ -432,7 +432,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::ca::thread * thread::get_app_thread()
+   ::ca2::thread * thread::get_app_thread()
    {
       throw interface_only_exception(get_app());
    }
@@ -532,7 +532,7 @@ namespace ca
 
    CLASS_DECL_ca2 void thread_alloc_ready(bool bReady)
    {
-      ::ca::thread::s_bAllocReady = bReady;
+      ::ca2::thread::s_bAllocReady = bReady;
    }
 
 
@@ -545,7 +545,7 @@ namespace ca
 
 
 
-   void thread::ProcessMessageFilter(int32_t code, ::ca::signal_object * pobj)
+   void thread::ProcessMessageFilter(int32_t code, ::ca2::signal_object * pobj)
    {
       return  m_p->ProcessMessageFilter(code, pobj);
    }
@@ -569,7 +569,7 @@ namespace ca
 
    // called when occurs an standard_exception exception in run
    // return true to call run again
-   bool thread::on_run_exception(::ca::exception & e)
+   bool thread::on_run_exception(::ca2::exception & e)
    {
 
       try
@@ -587,7 +587,7 @@ namespace ca
          return false;
 
       }
-      catch(::ca::exception & e)
+      catch(::ca2::exception & e)
       {
 
          throw e;
@@ -609,7 +609,7 @@ namespace ca
       return m_p->initialize_instance();
    }
 
-   ::ca::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
+   ::ca2::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
    {
       return m_p->GetMessagePrototype(uiMessage, uiCode);
    }
@@ -620,7 +620,7 @@ namespace ca
       return m_p->run();
    }
 
-   void thread::pre_translate_message(::ca::signal_object * pobj)
+   void thread::pre_translate_message(::ca2::signal_object * pobj)
    {
       if(m_p == NULL)
          return;
@@ -637,7 +637,7 @@ namespace ca
       return m_p->on_idle(lCount);
    }
 
-   bool thread::is_idle_message(::ca::signal_object * pobj)  // checks for special messages
+   bool thread::is_idle_message(::ca2::signal_object * pobj)  // checks for special messages
    {
       return m_p->is_idle_message(pobj);
    }
@@ -654,7 +654,7 @@ namespace ca
    }
 
    // Advanced: exception handling
-   void thread::ProcessWndProcException(base_exception* e, ::ca::signal_object * pobj)
+   void thread::ProcessWndProcException(base_exception* e, ::ca2::signal_object * pobj)
    {
       return m_p->ProcessWndProcException(e, pobj);
    }
@@ -830,7 +830,7 @@ namespace ca
    }
 
 
-   ::ca::thread * thread::get_app_thread()
+   ::ca2::thread * thread::get_app_thread()
    {
 
       if(m_p == NULL)
@@ -899,7 +899,7 @@ namespace ca
    }
 
 
-   void thread::DispatchThreadMessageEx(::ca::signal_object * pobj)  // helper
+   void thread::DispatchThreadMessageEx(::ca2::signal_object * pobj)  // helper
    {
       return m_p->DispatchThreadMessageEx(pobj);
    }
@@ -939,17 +939,17 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 
 
-::ca::thread* __begin_thread(sp(::ca::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+::ca2::thread* __begin_thread(sp(::ca2::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca2::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    ASSERT(pfnThreadProc != NULL);
 
-   ::ca::thread* pThread = new ::ca::thread(papp, pfnThreadProc, pParam);
+   ::ca2::thread* pThread = new ::ca2::thread(papp, pfnThreadProc, pParam);
    ASSERT_VALID(pThread);
 
    if (!pThread->create_thread(epriority, dwCreateFlags, nStackSize, lpSecurityAttrs))

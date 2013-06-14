@@ -31,8 +31,8 @@ namespace nature
    /////////////////////////////////////////////////////////////////////////////
    // frame construction/destruction
 
-   frame::frame(sp(::ca::application) papp) :
-      ca(papp),
+   frame::frame(sp(::ca2::application) papp) :
+      ca2(papp),
       simple_frame_window(papp)
    {
       m_iFrameData = 10;
@@ -52,7 +52,7 @@ namespace nature
    {
    }
 
-   void frame::_001OnCreate(::ca::signal_object * pobj)
+   void frame::_001OnCreate(::ca2::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);

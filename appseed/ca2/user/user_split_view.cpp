@@ -3,8 +3,8 @@
 namespace user
 {
 
-   split_view::split_view(sp(::ca::application) papp) :
-      ca(papp),
+   split_view::split_view(sp(::ca2::application) papp) :
+      ca2(papp),
       
       split_layout(papp),
       place_holder_container(papp)
@@ -15,7 +15,7 @@ namespace user
    {
    }
 
-   void split_view::install_message_handling(::ca::message::dispatch * pinterface)
+   void split_view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &split_view::_001OnSize);
@@ -40,9 +40,9 @@ namespace user
    #endif //DEBUG
 
 
-   void split_view::_001OnSize(::ca::signal_object * pobj)
+   void split_view::_001OnSize(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::size, psize, pobj)
+      SCAST_PTR(::ca2::message::size, psize, pobj)
       psize->previous();
       //layout();
    }
@@ -54,14 +54,14 @@ namespace user
       return view::pre_create_window(cs);
    }
 
-   void split_view::_001OnDraw(::ca::graphics *pdc)
+   void split_view::_001OnDraw(::ca2::graphics *pdc)
    {
 
       int32_t i;
       rect rect;
       COLORREF cr = ARGB(184, 92, 92, 80);
       //COLORREF crBack = ARGB(77, 230, 230, 210);
-      //pdc->set_alpha_mode(::ca::alpha_mode_blend);
+      //pdc->set_alpha_mode(::ca2::alpha_mode_blend);
       for(i = 0; i < get_pane_count(); i++)
       {
          CalcPaneRect(i, &rect);
@@ -104,9 +104,9 @@ namespace user
    }
 
 
-   void split_view::_001OnShowWindow(::ca::signal_object * pobj)
+   void split_view::_001OnShowWindow(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
+      SCAST_PTR(::ca2::message::show_window, pshowwindow, pobj)
       pshowwindow->previous();
       layout();
    }

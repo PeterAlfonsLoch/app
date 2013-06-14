@@ -10,7 +10,7 @@ namespace primitive
    public:
 
 
-      virtual_memory(sp(::ca::application) papp);
+      virtual_memory(sp(::ca2::application) papp);
       virtual_memory(const void *, memory_size iCount);
       virtual_memory(const memory_base & memory);
       virtual_memory(const char * psz);

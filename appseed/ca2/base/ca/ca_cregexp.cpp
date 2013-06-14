@@ -85,7 +85,7 @@ cregexp::~cregexp()
 EError cregexp::setRELow(const char * expr)
 {
 
-   strsize len = ::ca::str::ilen(expr);
+   strsize len = ::ca2::str::ilen(expr);
 
   if (!len) return EERROR;
 
@@ -95,7 +95,7 @@ EError cregexp::setRELow(const char * expr)
   cMatch = 0;
   endChange = startChange = false;
   int32_t start = 0;
-  while(::ca::ch::is_whitespace(&expr[start])) start++;
+  while(::ca2::ch::is_whitespace(&expr[start])) start++;
   if (expr[start] == '/') start++;
   else return ESYNTAX;
 
@@ -169,13 +169,13 @@ EError cregexp::setStructs(SRegInfo *&re, const char * expr, strsize &retPos)
 SRegInfo *next, *temp;
 
   retPos = 0;
-  if (!::ca::str::ilen(expr)) return EOK;
+  if (!::ca2::str::ilen(expr)) return EOK;
   retPos = -1;
 
   next = re;
-  for(strsize i = 0; i < ::ca::str::ilen(expr); i++){
+  for(strsize i = 0; i < ::ca2::str::ilen(expr); i++){
     // simple character
-    if (extend && ::ca::ch::is_whitespace(&expr[i])) continue;
+    if (extend && ::ca2::ch::is_whitespace(&expr[i])) continue;
     // context return
     if (expr[i] == ')'){
       retPos = i;
@@ -245,7 +245,7 @@ SRegInfo *next, *temp;
           next->op = ReMetaSymb;
           next->un.metaSymbol = ReNWBound;
           break;
-        case 'c':
+        case 'ca':
           next->op = ReMetaSymb;
           next->un.metaSymbol = RePreNW;
           break;
@@ -262,7 +262,7 @@ SRegInfo *next, *temp;
 
         case 'p':  // \p{name}
           next->op = ReBkBrackName;
-          if (!::ca::str::get_curly_content(&((const char *)expr)[i+2], br_name)) return ESYNTAX;
+          if (!::ca2::str::get_curly_content(&((const char *)expr)[i+2], br_name)) return ESYNTAX;
           blen = br_name.get_length();
           if(br_name.get_length() && namedMatches && !namedMatches->getItem(br_name)){
 //            delete br_name;
@@ -275,14 +275,14 @@ SRegInfo *next, *temp;
           break;
         default:
           next->op = ReBkBrack;
-          next->param0 = (int32_t) ::ca::hex::from_char(&expr[i+1]);
+          next->param0 = (int32_t) ::ca2::hex::from_char(&expr[i+1]);
           if (next->param0 < 0 || next->param0 > 9){
             index retEnd;
             next->op = ReSymb;
             next->un.symbol =
                new string(
-                  ::ca::str::uni_to_utf8(
-                     ::ca::str::get_escaped_char(expr, i+1, retEnd)));
+                  ::ca2::str::uni_to_utf8(
+                     ::ca2::str::get_escaped_char(expr, i+1, retEnd)));
             if (next->un.symbol->is_empty()) return ESYNTAX;
             i += next->un.symbol->get_length() - 1;
           };
@@ -318,23 +318,23 @@ SRegInfo *next, *temp;
     next->un.param = 0;
     next->param0 = 0;
 
-    if (::ca::str::ilen(expr) > i+2){
+    if (::ca2::str::ilen(expr) > i+2){
       if (expr[i] == '?' && expr[i+1] == '#' &&
           expr[i+2] >= '0' && expr[i+2] <= '9'){
         next->op = ReBehind;
-        next->param0 = (int32_t) ::ca::hex::from_char(&expr[i+2]);
+        next->param0 = (int32_t) ::ca2::hex::from_char(&expr[i+2]);
         i += 2;
         continue;
       };
       if (expr[i] == '?' && expr[i+1] == '~' &&
           expr[i+2]>='0' && expr[i+2]<='9'){
         next->op = ReNBehind;
-        next->param0 = (int32_t) ::ca::hex::from_char(&expr[i+2]);
+        next->param0 = (int32_t) ::ca2::hex::from_char(&expr[i+2]);
         i += 2;
         continue;
       };
     };
-    if (::ca::str::ilen(expr) > i+1){
+    if (::ca2::str::ilen(expr) > i+1){
       if (expr[i] == '*' && expr[i+1] == '?'){
         next->op = ReNGRangeN;
         next->s = 0;
@@ -394,8 +394,8 @@ SRegInfo *next, *temp;
       strsize comma = -1;
       bool nonGreedy = false;
       strsize j;
-      for (j = i; j < ::ca::str::ilen(expr); j++){
-        if (::ca::str::ilen(expr) > j+1 && expr[j] == '}' && expr[j+1] == '?'){
+      for (j = i; j < ::ca2::str::ilen(expr); j++){
+        if (::ca2::str::ilen(expr) > j+1 && expr[j] == '}' && expr[j+1] == '?'){
           en = j;
           nonGreedy = true;
           j++;
@@ -424,17 +424,17 @@ SRegInfo *next, *temp;
     if (expr[i] == '('){
       bool namedBracket = false;
       // perl-like "uncaptured" brackets
-      if (::ca::str::ilen(expr) >= i+2 && expr[i+1] == '?' && expr[i+2] == ':'){
+      if (::ca2::str::ilen(expr) >= i+2 && expr[i+1] == '?' && expr[i+2] == ':'){
         next->op = ReNamedBrackets;
         next->param0 = -1;
         namedBracket = true;
         i += 3;
-      } else if (::ca::str::ilen(expr) > i+2 && expr[i+1] == '?' && expr[i+2] == '{'){
+      } else if (::ca2::str::ilen(expr) > i+2 && expr[i+1] == '?' && expr[i+2] == '{'){
         // named bracket
         next->op = ReNamedBrackets;
         namedBracket = true;
         string br_name;
-        if(!::ca::str::get_curly_content(&((const char *)expr)[i+2], br_name)) return EBRACKETS;
+        if(!::ca2::str::get_curly_content(&((const char *)expr)[i+2], br_name)) return EBRACKETS;
 
         strsize blen = br_name.get_length();
         if (blen == 0){
@@ -466,7 +466,7 @@ SRegInfo *next, *temp;
       next->un.param->parent = next;
       strsize endPos;
       EError err = setStructs(next->un.param, string(&((const char *)expr)[i]), endPos);
-      if (endPos == ::ca::str::ilen(expr)-i) return EBRACKETS;
+      if (endPos == ::ca2::str::ilen(expr)-i) return EBRACKETS;
       if (err) return err;
       i += endPos;
       continue;
@@ -476,7 +476,7 @@ SRegInfo *next, *temp;
     if (expr[i] == '[')
     {
       strsize endPos;
-      ::ca::ch_class *cc = ::ca::ch_class::createCharClass(expr, i, &endPos);
+      ::ca2::ch_class *cc = ::ca2::ch_class::createCharClass(expr, i, &endPos);
       if (cc == NULL) return EENUM;
 //      next->op = (exprn[i] == ReEnumS) ? ReEnum : ReNEnum;
       next->op = ReEnum;
@@ -486,7 +486,7 @@ SRegInfo *next, *temp;
     };
     if (expr[i] == ')' || expr[i] == ']' || expr[i] == '}') return EBRACKETS;
     next->op = ReSymb;
-    next->un.symbol = new string(::ca::str::get_utf8_char(&((const char *)expr)[i]));
+    next->un.symbol = new string(::ca2::str::get_utf8_char(&((const char *)expr)[i]));
     i += next->un.symbol->get_length() - 1;
   };
 
@@ -590,7 +590,7 @@ SRegInfo *next, *temp;
     };
     next = next->next;
   };
-  if (retPos == -1) retPos = ::ca::str::ilen(expr);
+  if (retPos == -1) retPos = ::ca2::str::ilen(expr);
   return EOK;
 };
 
@@ -607,9 +607,9 @@ bool cregexp::isWordBoundary(strsize &toParse)
 {
   strsize before = 0;
   strsize after  = 0;
-  if (toParse < end && (::ca::ch::is_letter_or_digit(&((const char *)global_pattern)[toParse]) ||
+  if (toParse < end && (::ca2::ch::is_letter_or_digit(&((const char *)global_pattern)[toParse]) ||
       ((const char *)global_pattern)[toParse] == '_')) after = 1;
-  if (toParse > 0 && (::ca::ch::is_letter_or_digit(&((const char *)global_pattern)[toParse-1]) ||
+  if (toParse > 0 && (::ca2::ch::is_letter_or_digit(&((const char *)global_pattern)[toParse-1]) ||
       ((const char *)global_pattern)[toParse-1] == '_')) before = 1;
   return before+after == 1;
 };
@@ -659,37 +659,37 @@ const string &pattern = global_pattern;
       };
       return (end == toParse);
     case ReDigit:
-      if (toParse >= end || !::ca::ch::is_digit(&((const char *)pattern)[toParse])) return false;
+      if (toParse >= end || !::ca2::ch::is_digit(&((const char *)pattern)[toParse])) return false;
       toParse++;
       return true;
     case ReNDigit:
-      if (toParse >= end || ::ca::ch::is_digit(&((const char *)pattern)[toParse])) return false;
+      if (toParse >= end || ::ca2::ch::is_digit(&((const char *)pattern)[toParse])) return false;
       toParse++;
       return true;
     case ReWordSymb:
-      if (toParse >= end || !(::ca::ch::is_letter_or_digit(&((const char *)pattern)[toParse])
+      if (toParse >= end || !(::ca2::ch::is_letter_or_digit(&((const char *)pattern)[toParse])
           || ((const char *)pattern)[toParse] == '_')) return false;
       toParse++;
       return true;
     case ReNWordSymb:
-      if (toParse >= end || ::ca::ch::is_letter_or_digit(&((const char *)pattern)[toParse])
+      if (toParse >= end || ::ca2::ch::is_letter_or_digit(&((const char *)pattern)[toParse])
           || ((const char *)pattern)[toParse] == '_') return false;
       toParse++;
       return true;
     case ReWSpace:
-      if (toParse >= end || !::ca::ch::is_whitespace(&((const char *)pattern)[toParse])) return false;
+      if (toParse >= end || !::ca2::ch::is_whitespace(&((const char *)pattern)[toParse])) return false;
       toParse++;
       return true;
     case ReNWSpace:
-      if (toParse >= end || ::ca::ch::is_whitespace(&((const char *)pattern)[toParse])) return false;
+      if (toParse >= end || ::ca2::ch::is_whitespace(&((const char *)pattern)[toParse])) return false;
       toParse++;
       return true;
     case ReUCase:
-      if (toParse >= end || !::ca::ch::is_upper_case(&((const char *)pattern)[toParse])) return false;
+      if (toParse >= end || !::ca2::ch::is_upper_case(&((const char *)pattern)[toParse])) return false;
       toParse++;
       return true;
     case ReNUCase:
-      if (toParse >= end || !::ca::ch::is_lower_case(&((const char *)pattern)[toParse])) return false;
+      if (toParse >= end || !::ca2::ch::is_lower_case(&((const char *)pattern)[toParse])) return false;
       toParse++;
       return true;
     case ReWBound:
@@ -698,7 +698,7 @@ const string &pattern = global_pattern;
       return isNWordBoundary(toParse);
     case RePreNW:
       if (toParse >= end) return true;
-      return toParse == 0 || !::ca::ch::is_letter(&((const char *)pattern)[toParse-1]);
+      return toParse == 0 || !::ca2::ch::is_letter(&((const char *)pattern)[toParse-1]);
 #ifdef COLORERMODE
     case ReSoScheme:
       return (schemeStart == toParse);
@@ -755,10 +755,10 @@ const string pattern = global_pattern;
       case ReSymb:
         if (toParse >= end) return false;
         if (ignoreCase){
-          if (::ca::ch::to_lower_case(&((const char *)pattern)[toParse]) != ::ca::ch::to_lower_case(*re->un.symbol) &&
-             ::ca::ch::to_upper_case(&((const char *)pattern)[toParse]) != ::ca::ch::to_upper_case(*re->un.symbol))
+          if (::ca2::ch::to_lower_case(&((const char *)pattern)[toParse]) != ::ca2::ch::to_lower_case(*re->un.symbol) &&
+             ::ca2::ch::to_upper_case(&((const char *)pattern)[toParse]) != ::ca2::ch::to_upper_case(*re->un.symbol))
             return false;
-        }else if (::ca::str::get_utf8_char(&((const char *)pattern)[toParse]) != *re->un.symbol) return false;
+        }else if (::ca2::str::get_utf8_char(&((const char *)pattern)[toParse]) != *re->un.symbol) return false;
         toParse++;
         break;
       case ReMetaSymb:
@@ -803,7 +803,7 @@ const string pattern = global_pattern;
         sv = re->param0;
         if (backStr.has_char() || !backTrace || sv == -1) return false;
         for (i = backTrace->s[sv]; i < backTrace->e[sv]; i++){
-          if (toParse >= end || ::ca::ch::to_lower_case(&((const char *)pattern)[toParse]) != ::ca::ch::to_lower_case(&((const char *)backStr)[i])) return false;
+          if (toParse >= end || ::ca2::ch::to_lower_case(&((const char *)pattern)[toParse]) != ::ca2::ch::to_lower_case(&((const char *)backStr)[i])) return false;
           toParse++;
         };
         break;
@@ -955,7 +955,7 @@ inline bool cregexp::quickCheck(strsize toParse)
   if (firstChar != -1){
     if (toParse >= end) return false;
     if (ignoreCase){
-      if (::ca::ch::to_lower_case(&((const char *)global_pattern)[toParse]) != ::ca::ch::to_lower_case(firstChar)) return false;
+      if (::ca2::ch::to_lower_case(&((const char *)global_pattern)[toParse]) != ::ca2::ch::to_lower_case(firstChar)) return false;
     }else
       if (&((const char *)global_pattern)[toParse] != firstChar) return false;
     return true;

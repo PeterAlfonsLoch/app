@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
    history::history()
@@ -8,8 +8,8 @@ namespace ca
       m_phistory = NULL;
    }
    
-   history::history(sp(::ca::application) papp) :
-      ca(papp)
+   history::history(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_phistory = NULL;
    }
@@ -24,6 +24,6 @@ namespace ca
       return false;
    }
 
-} // namespace ca
+} // namespace ca2
 
 

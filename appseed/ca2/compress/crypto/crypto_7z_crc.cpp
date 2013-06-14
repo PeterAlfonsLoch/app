@@ -1,4 +1,4 @@
-/* 7zCrc.c -- CRC32 calculation
+/* 7zCrc.ca -- CRC32 calculation
 2009-11-23 : Igor Pavlov : Public domain */
 // from 7-zip on 2010-12-19
 #include "framework.h"

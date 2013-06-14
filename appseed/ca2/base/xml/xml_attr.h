@@ -6,11 +6,11 @@ namespace xml
    class node;
 
 
-   typedef ::ca::property attr;
+   typedef ::ca2::property attr;
 
 
    class CLASS_DECL_ca2 attr_array :
-      public ::ca::property_set
+      public ::ca2::property_set
    {
    protected:
 
@@ -25,7 +25,7 @@ namespace xml
    public:
 
 
-      attr_array(sp(::ca::application) papp);
+      attr_array(sp(::ca2::application) papp);
 
 
    };

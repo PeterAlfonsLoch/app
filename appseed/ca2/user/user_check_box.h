@@ -8,7 +8,7 @@ namespace user
       virtual public check_interface
    {
    public:
-      check_box(sp(::ca::application) papp);
+      check_box(sp(::ca2::application) papp);
       virtual ~check_box();
 
    protected:
@@ -16,11 +16,11 @@ namespace user
       bool  m_bMouseDown;
 
    public:
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
       virtual check::e_check _001GetCheck();
       virtual void _001SetCheck(check::e_check check, bool bUser);
 
-      void install_message_handling(::ca::message::dispatch * pinterface);
+      void install_message_handling(::ca2::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
       DECL_GEN_SIGNAL(_001OnLButtonUp)

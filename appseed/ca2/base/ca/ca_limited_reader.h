@@ -8,7 +8,7 @@
 #include "../IStream.h"*/
 
 
-namespace ca
+namespace ca2
 {
 
    class limited_reader:
@@ -36,4 +36,4 @@ namespace ca
       bool WasFinished() const { return _wasFinished; }
    };
 
-} // namespace ca
+} // namespace ca2

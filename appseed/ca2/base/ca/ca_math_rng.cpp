@@ -10,7 +10,7 @@
 #define TWIST(b,i,j)   ((b)[i] & UMASK) | ((b)[j] & LMASK)
 #define MAGIC_TWIST(s) (((s) & 1) * MATRIX_A)
 
-namespace ca
+namespace ca2
 {
    namespace math
    {
@@ -60,4 +60,4 @@ namespace ca
 
    } // namespace rng
 
-} // namespace ca
+} // namespace ca2

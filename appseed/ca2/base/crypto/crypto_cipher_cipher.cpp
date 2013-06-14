@@ -1,5 +1,5 @@
 /*
- * cipher.c
+ * cipher.ca
  *
  * cipher meta-functions
  *
@@ -10,7 +10,7 @@
 
 /*
  *   
- * Copyright (c) 2001-2006, Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006, Cisco Systems, Inc.
  * 
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -52,20 +52,20 @@ debug_module_t mod_cipher = {
 };
 
 err_status_t
-cipher_output(cipher_t *c, uint8_t *buffer, int32_t num_octets_to_output) {
+cipher_output(cipher_t *ca, uint8_t *buffer, int32_t num_octets_to_output) {
   
   /* zeroize the buffer */
   octet_string_set_to_zero(buffer, num_octets_to_output);
   
   /* exor keystream into buffer */
-  return cipher_encrypt(c, buffer, (uint32_t *) &num_octets_to_output);
+  return cipher_encrypt(ca, buffer, (uint32_t *) &num_octets_to_output);
 }
 
 /* some bookkeeping functions */
 
 int32_t
-cipher_get_key_length(const cipher_t *c) {
-  return c->key_len;
+cipher_get_key_length(const cipher_t *ca) {
+  return ca->key_len;
 }
 
 /* 
@@ -81,7 +81,7 @@ cipher_get_key_length(const cipher_t *c) {
 err_status_t
 cipher_type_self_test(const cipher_type_t *ct) {
   const cipher_test_case_t *test_case = ct->test_data;
-  cipher_t *c;
+  cipher_t *ca;
   err_status_t status;
   uint8_t buffer[SELF_TEST_BUF_OCTETS];
   uint8_t buffer2[SELF_TEST_BUF_OCTETS];
@@ -105,7 +105,7 @@ cipher_type_self_test(const cipher_type_t *ct) {
   while (test_case != NULL) {
 
     /* allocate cipher */
-    status = cipher_type_alloc(ct, &c, test_case->key_length_octets);
+    status = cipher_type_alloc(ct, &ca, test_case->key_length_octets);
     if (status)
       return status;
     
@@ -115,15 +115,15 @@ cipher_type_self_test(const cipher_type_t *ct) {
     debug_print(mod_cipher, "testing encryption", NULL);    
     
     /* initialize cipher */
-    status = cipher_init(c, test_case->key, direction_encrypt);
+    status = cipher_init(ca, test_case->key, direction_encrypt);
     if (status) {
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return status;
     }
     
     /* copy plaintext into test buffer */
     if (test_case->ciphertext_length_octets > SELF_TEST_BUF_OCTETS) {
-      cipher_dealloc(c);    
+      cipher_dealloc(ca);    
       return err_status_bad_param;
     }
     for (i=0; i < test_case->plaintext_length_octets; i++)
@@ -134,17 +134,17 @@ cipher_type_self_test(const cipher_type_t *ct) {
                  test_case->plaintext_length_octets));
 
     /* set the initialization vector */
-    status = cipher_set_iv(c, test_case->idx);
+    status = cipher_set_iv(ca, test_case->idx);
     if (status) {
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return status;
     } 
     
     /* encrypt */
     len = test_case->plaintext_length_octets;
-    status = cipher_encrypt(c, buffer, &len);
+    status = cipher_encrypt(ca, buffer, &len);
     if (status) {
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return status;
     }
     
@@ -165,14 +165,14 @@ cipher_type_self_test(const cipher_type_t *ct) {
       }
     if (status) {
 
-      debug_print(mod_cipher, "c computed: %s",
+      debug_print(mod_cipher, "ca computed: %s",
         octet_string_hex_string(buffer,
         2*test_case->plaintext_length_octets));
-      debug_print(mod_cipher, "c expected: %s",
+      debug_print(mod_cipher, "ca expected: %s",
         octet_string_hex_string(test_case->ciphertext,
            2*test_case->plaintext_length_octets));
 
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return err_status_algo_fail;
     }
 
@@ -182,15 +182,15 @@ cipher_type_self_test(const cipher_type_t *ct) {
     debug_print(mod_cipher, "testing decryption", NULL);    
 
     /* re-initialize cipher for decryption */
-    status = cipher_init(c, test_case->key, direction_decrypt);
+    status = cipher_init(ca, test_case->key, direction_decrypt);
     if (status) {
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return status;
     }
 
     /* copy ciphertext into test buffer */
     if (test_case->ciphertext_length_octets > SELF_TEST_BUF_OCTETS) {
-      cipher_dealloc(c);    
+      cipher_dealloc(ca);    
       return err_status_bad_param;
     }
     for (i=0; i < test_case->ciphertext_length_octets; i++)
@@ -201,17 +201,17 @@ cipher_type_self_test(const cipher_type_t *ct) {
                test_case->plaintext_length_octets));
 
     /* set the initialization vector */
-    status = cipher_set_iv(c, test_case->idx);
+    status = cipher_set_iv(ca, test_case->idx);
     if (status) {
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return status;
     } 
     
     /* decrypt */
     len = test_case->ciphertext_length_octets;
-    status = cipher_decrypt(c, buffer, &len);
+    status = cipher_decrypt(ca, buffer, &len);
     if (status) {
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return status;
     }
     
@@ -238,12 +238,12 @@ cipher_type_self_test(const cipher_type_t *ct) {
         octet_string_hex_string(test_case->plaintext,
            2*test_case->plaintext_length_octets));
 
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return err_status_algo_fail;
     }
 
     /* deallocate the cipher */
-    status = cipher_dealloc(c);
+    status = cipher_dealloc(ca);
     if (status)
       return status;
     
@@ -259,7 +259,7 @@ cipher_type_self_test(const cipher_type_t *ct) {
 
   /* allocate cipher, using paramaters from the first test case */
   test_case = ct->test_data;
-  status = cipher_type_alloc(ct, &c, test_case->key_length_octets);
+  status = cipher_type_alloc(ct, &ca, test_case->key_length_octets);
   if (status)
       return status;
   
@@ -295,24 +295,24 @@ cipher_type_self_test(const cipher_type_t *ct) {
     if (status) return status;
         
     /* initialize cipher */
-    status = cipher_init(c, key, direction_encrypt);
+    status = cipher_init(ca, key, direction_encrypt);
     if (status) {
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return status;
     }
 
     /* set initialization vector */
-    status = cipher_set_iv(c, test_case->idx);
+    status = cipher_set_iv(ca, test_case->idx);
     if (status) {
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return status;
     } 
 
     /* encrypt buffer with cipher */
     plaintext_len = length;
-    status = cipher_encrypt(c, buffer, &length);
+    status = cipher_encrypt(ca, buffer, &length);
     if (status) {
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return status;
     }
     debug_print(mod_cipher, "ciphertext:   %s",
@@ -322,19 +322,19 @@ cipher_type_self_test(const cipher_type_t *ct) {
      * re-initialize cipher for decryption, re-set the iv, then
      * decrypt the ciphertext
      */
-    status = cipher_init(c, key, direction_decrypt);
+    status = cipher_init(ca, key, direction_decrypt);
     if (status) {
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return status;
     }
-    status = cipher_set_iv(c, test_case->idx);
+    status = cipher_set_iv(ca, test_case->idx);
     if (status) {
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return status;
     } 
-    status = cipher_decrypt(c, buffer, &length);
+    status = cipher_decrypt(ca, buffer, &length);
     if (status) {
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return status;
     }    
 
@@ -352,7 +352,7 @@ cipher_type_self_test(const cipher_type_t *ct) {
    debug_print(mod_cipher, "(failure at byte %d)", i);
       }
     if (status) {
-      cipher_dealloc(c);
+      cipher_dealloc(ca);
       return err_status_algo_fail;
     }
         
@@ -363,10 +363,10 @@ cipher_type_self_test(const cipher_type_t *ct) {
 
 
 /*
- * cipher_bits_per_second(c, l, t) computes (an estimate of) the
+ * cipher_bits_per_second(ca, l, t) computes (an estimate of) the
  * number of bits that a cipher implementation can encrypt in a second
  * 
- * c is a cipher (which MUST be allocated and initialized already), l
+ * ca is a cipher (which MUST be allocated and initialized already), l
  * is the length in octets of the test data to be encrypted, and t is
  * the number of trials
  *
@@ -374,7 +374,7 @@ cipher_type_self_test(const cipher_type_t *ct) {
  */
 
 uint64_t
-cipher_bits_per_second(cipher_t *c, int32_t octets_in_buffer, int32_t num_trials) {
+cipher_bits_per_second(cipher_t *ca, int32_t octets_in_buffer, int32_t num_trials) {
   int32_t i;
   v128_t nonce;
   clock_t timer;
@@ -389,8 +389,8 @@ cipher_bits_per_second(cipher_t *c, int32_t octets_in_buffer, int32_t num_trials
   v128_set_to_zero(&nonce);
   timer = clock();
   for(i=0; i < num_trials; i++, nonce.v32[3] = i) {
-    cipher_set_iv(c, &nonce);
-    cipher_encrypt(c, enc_buf, &len);
+    cipher_set_iv(ca, &nonce);
+    cipher_encrypt(ca, enc_buf, &len);
   }
   timer = clock() - timer;
 

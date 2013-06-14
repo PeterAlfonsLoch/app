@@ -4,8 +4,8 @@
 namespace simpledb
 {
 
-   session::session(sp(::ca::application) papp) :
-      ::ca::ca(papp)
+   session::session(sp(::ca2::application) papp) :
+      ::ca2::ca2(papp)
    {
       m_pserver = NULL;
    }
@@ -42,7 +42,7 @@ namespace simpledb
    bool session::query(const char * pszQuery, var & var)
    {
       stringa stra;
-      ::ca::property_set set(get_app());
+      ::ca2::property_set set(get_app());
       set.parse_url_query(pszQuery);
       if(set["command"] == "open")
       {

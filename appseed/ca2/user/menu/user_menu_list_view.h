@@ -12,12 +12,12 @@ namespace user
       ::user::interaction   * m_pguieNotify;
 
 
-      menu_list_view(sp(::ca::application) papp);
+      menu_list_view(sp(::ca2::application) papp);
       virtual ~menu_list_view();
 
-      void install_message_handling(::ca::message::dispatch * pinterface);
+      void install_message_handling(::ca2::message::dispatch * pinterface);
 
-      virtual void GuieProc(::ca::signal_object * pobj);
+      virtual void GuieProc(::ca2::signal_object * pobj);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 

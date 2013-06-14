@@ -1,10 +1,10 @@
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 text_file : 
-      virtual public ::ca::file
+      virtual public ::ca2::file
    {
    public:
       text_file();
@@ -21,6 +21,6 @@ namespace ca
       }
    };
 
-   typedef ::c::smart_pointer < text_file > text_file_sp;
+   typedef ::ca::smart_pointer < text_file > text_file_sp;
 
-} // namespace ca
+} // namespace ca2

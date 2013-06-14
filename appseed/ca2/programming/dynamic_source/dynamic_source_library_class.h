@@ -25,7 +25,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_ca2 library_class :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -35,7 +35,7 @@ namespace dynamic_source
       stringa                                m_straSourcePath;
       stringa                                m_straCppPath;
       string                                 m_strLibraryPath;
-      ::c::library                           m_library;
+      ::ca::library                           m_library;
 
       array < __time_t, __time_t & >    m_ftaCreation;
       array < __time_t, __time_t & >    m_ftaAccess;
@@ -45,7 +45,7 @@ namespace dynamic_source
 
 
 
-      library_class(sp(::ca::application) papp);
+      library_class(sp(::ca2::application) papp);
       ~library_class();
 
 
@@ -59,7 +59,7 @@ namespace dynamic_source
 
 
 
-      ::ca::application * get_app() const;
+      ::ca2::application * get_app() const;
 
    };
 

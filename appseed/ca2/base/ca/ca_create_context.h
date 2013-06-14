@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/ca/ca_command.h"
+#include "base/ca2/ca_command.h"
 #include "user/user_create_context.h"
 
 
@@ -56,13 +56,13 @@ public:
 
 
 
-namespace ca
+namespace ca2
 {
 
    class command_line;
 
    class CLASS_DECL_ca2 command_line_sp :
-      public ::c::smart_pointer < command_line >
+      public ::ca::smart_pointer < command_line >
    {
    public:
 
@@ -71,25 +71,25 @@ namespace ca
       command_line_sp(allocatorsp allocer);
 
 
-      using ::c::smart_pointer < command_line >::operator =;
+      using ::ca::smart_pointer < command_line >::operator =;
       inline command_line_sp & operator = (command_line * p)
       {
-         ::c::smart_pointer < command_line >::operator =(p);
+         ::ca::smart_pointer < command_line >::operator =(p);
          return *this;
       }
 
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 create_context :
-      virtual public ::ca::command
+      virtual public ::ca2::command
    {
    public:
 
@@ -102,15 +102,15 @@ namespace ca
       sp(::user::interaction)               m_puiParent;
       sp(::user::view)                            m_pviewAlloc;
       sp(application_bias)                 m_spApplicationBias;
-      ::ca::command_line_sp              m_spCommandLine;
+      ::ca2::command_line_sp              m_spCommandLine;
       stack < ::user::create_context >    m_user;
-      sp(::ca::command_thread)               m_pthreadParent;
+      sp(::ca2::command_thread)               m_pthreadParent;
 
 
 
-      create_context(sp(::ca::application) papp);
-      create_context(sp(::ca::command_thread) pthreadParent);
-      create_context(sp(::ca::command_thread) pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::interaction) puiParent = NULL);
+      create_context(sp(::ca2::application) papp);
+      create_context(sp(::ca2::command_thread) pthreadParent);
+      create_context(sp(::ca2::command_thread) pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::interaction) puiParent = NULL);
       create_context(const create_context & createcontext);
       virtual ~create_context();
 
@@ -121,6 +121,6 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 
 

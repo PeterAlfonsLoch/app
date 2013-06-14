@@ -461,7 +461,7 @@ namespace visual
    //  int32_t ox, oy;
      int32_t dx, dy;
      int32_t x, y;
-     uint32_t c;
+     uint32_t ca;
 
      int32_t offset=m_iWidth + 1;
 
@@ -476,20 +476,20 @@ namespace visual
 
         //Shading = dx;?
         // Water draw method?
-   //      c = BkGdImage[offset + WATERWID*(dy>>3) + (dx>>3)];
-        c = pSrcImage[offset + m_iWidth*(dy>>3) + (dx>>3)];
+   //      ca = BkGdImage[offset + WATERWID*(dy>>3) + (dx>>3)];
+        ca = pSrcImage[offset + m_iWidth*(dy>>3) + (dx>>3)];
 
         // If anyone knows a better/faster way to do this, please tell me...
-   //      temp[offset] = (c < 0) ? 0 : (c > 255) ? 255 : c;
-        pTargetImage[offset] = c;
+   //      temp[offset] = (ca < 0) ? 0 : (ca > 255) ? 255 : ca;
+        pTargetImage[offset] = ca;
 
          offset++;
          dx = ptr[offset] - ptr[offset+1];
          dy = ptr[offset] - ptr[offset+m_iWidth];
-   //    c = BkGdImage[offset + m_iWidth*(dy>>3) + (dx>>3)];
-        c = pSrcImage[offset + m_iWidth*(dy>>3) + (dx>>3)];
-        pTargetImage[offset] = c;
-   //      temp[offset] = (c < 0) ? 0 : (c > 255) ? 255 : c;
+   //    ca = BkGdImage[offset + m_iWidth*(dy>>3) + (dx>>3)];
+        ca = pSrcImage[offset + m_iWidth*(dy>>3) + (dx>>3)];
+        pTargetImage[offset] = ca;
+   //      temp[offset] = (ca < 0) ? 0 : (ca > 255) ? 255 : ca;
     
        }
      }
@@ -502,7 +502,7 @@ namespace visual
    //  int32_t ox, oy;
      int32_t dx, dy;
      int32_t x, y;
-     uint32_t c;
+     uint32_t ca;
 
      int32_t offset=m_iWidth + 1;
      long lIndex;
@@ -521,12 +521,12 @@ namespace visual
         lIndex = offset + m_iWidth*(dy>>3) + (dx>>3);
         if(lIndex < lBreak && lIndex > 0)
         {
-           c = pSrcImage[lIndex];// - (dx>>LightModifier);
+           ca = pSrcImage[lIndex];// - (dx>>LightModifier);
            // Now we shift it by the dx component...
            // 
-           c = GetShiftedColor(c,dx);
+           ca = GetShiftedColor(ca,dx);
 
-            pTargetImage[offset] = c;
+            pTargetImage[offset] = ca;
          }
 
          offset++;
@@ -536,10 +536,10 @@ namespace visual
         lIndex = offset + m_iWidth*(dy>>3) + (dx>>3);
         if(lIndex < lBreak && lIndex > 0)
         {
-           c = pSrcImage[lIndex];// - (dx>>LightModifier);
-           c = GetShiftedColor(c,dx);
-      //      temp[offset] = (c < 0) ? 0 : (c > 255) ? 255 : c;
-           pTargetImage[offset] = c;
+           ca = pSrcImage[lIndex];// - (dx>>LightModifier);
+           ca = GetShiftedColor(ca,dx);
+      //      temp[offset] = (ca < 0) ? 0 : (ca > 255) ? 255 : ca;
+           pTargetImage[offset] = ca;
         }
     
        }

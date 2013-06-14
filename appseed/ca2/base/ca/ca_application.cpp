@@ -14,11 +14,11 @@
 
 
 
-typedef  void (* PFN_ca2_factory_exchange)(sp(::ca::application) papp);
+typedef  void (* PFN_ca2_factory_exchange)(sp(::ca2::application) papp);
 
 
 
-namespace ca
+namespace ca2
 {
 
    mutex g_mutexStr(NULL);
@@ -40,9 +40,9 @@ namespace ca
 
 
    application::application() :
-      ca(this), // start m_papp as this for constructor referencing this app
+      ca2(this), // start m_papp as this for constructor referencing this app
       m_mutex(this),
-      ::ca::thread(NULL),
+      ::ca2::thread(NULL),
       m_mutexMatterLocator(this),
       m_allocer(this),
       OAUTHLIB_CONSUMERKEY_KEY      ("oauth_consumer_key"),
@@ -138,7 +138,7 @@ namespace ca
    {
 
 
-      m_psignal = new ::ca::signal();
+      m_psignal = new ::ca2::signal();
 
       if(m_papp.is_null())
       {
@@ -148,7 +148,7 @@ namespace ca
       m_bInitializeProDevianMode = true;
 
       // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
-      ::c::add_ref(this);
+      ::ca::add_ref(this);
 
       //_setmbcp(CP_UTF8);
 //      uint32_t dw = ::_getmbcp();
@@ -170,9 +170,9 @@ namespace ca
          //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", NULL);
          m_iResourceId              = 8001;
          m_psavings                 = new class savings(this);
-         m_pcommandthread           = new ::ca::command_thread(this);
+         m_pcommandthread           = new ::ca2::command_thread(this);
 
-      ::ca::profiler::initialize();
+      ::ca2::profiler::initialize();
 
       m_pszRegistryKey              = NULL;
       m_pszHelpFilePath             = NULL;
@@ -196,9 +196,9 @@ namespace ca
 
       m_pinitmaindata = NULL;
 
-      m_psignal->connect(this, &::ca::application::on_application_signal);
+      m_psignal->connect(this, &::ca2::application::on_application_signal);
 
-      m_eexclusiveinstance       = ::ca::ExclusiveInstanceNone;
+      m_eexclusiveinstance       = ::ca2::ExclusiveInstanceNone;
       m_peventReady              = NULL;
       m_pmapKeyPressed           = NULL;
       m_bLicense                 = true;
@@ -227,9 +227,9 @@ namespace ca
       UNREFERENCED_PARAMETER(pszId);
    }
 
-   ::ca::application * application::get_app() const
+   ::ca2::application * application::get_app() const
    {
-      return (::ca::application *) this;
+      return (::ca2::application *) this;
    }
 
 
@@ -240,7 +240,7 @@ namespace ca
 
       try
       {
-         ::ca::thread::exit();
+         ::ca2::thread::exit();
       }
       catch(...)
       {
@@ -312,7 +312,7 @@ namespace ca
          System.factory().cloneable_large < stringa > ();
          System.factory().cloneable_large < ::primitive::memory > ();
          System.factory().cloneable_large < int_array > ();
-         //System.factory().cloneable_large < ::ca::property > ();
+         //System.factory().cloneable_large < ::ca2::property > ();
       }
 
       m_pframea = new ::user::interaction_ptr_array(this);
@@ -322,23 +322,23 @@ namespace ca
          Ex1OnFactoryExchange();
       }
 
-      ::ca::thread::s_bAllocReady = true;
+      ::ca2::thread::s_bAllocReady = true;
 
-      if(::ca::thread::m_p == NULL)
+      if(::ca2::thread::m_p == NULL)
       {
 
-         ::ca::thread::m_p.create(allocer());
-         ::ca::thread::m_p->m_p = this;
+         ::ca2::thread::m_p.create(allocer());
+         ::ca2::thread::m_p->m_p = this;
 
       }
 
-      ::ca::application_base::m_p.create(allocer());
-      ::ca::application_base::m_p->construct();
-      ::ca::application_base::m_p->::ca::application_base::m_p = this;
+      ::ca2::application_base::m_p.create(allocer());
+      ::ca2::application_base::m_p->construct();
+      ::ca2::application_base::m_p->::ca2::application_base::m_p = this;
 
-      if(::ca::get_thread() == NULL)
+      if(::ca2::get_thread() == NULL)
       {
-         set_thread(dynamic_cast < ::ca::thread * > (this));
+         set_thread(dynamic_cast < ::ca2::thread * > (this));
       }
 
       if(!update_module_paths())
@@ -358,7 +358,7 @@ namespace ca
       if(!ca_process_initialize())
          return false;
 
-      if(!::ca::application_base::m_p->process_initialize())
+      if(!::ca2::application_base::m_p->process_initialize())
          return false;
 
       return true;
@@ -372,10 +372,10 @@ namespace ca
       if(is_system())
       {
       
-         if(!::ca::application_base::m_p->update_module_paths())
+         if(!::ca2::application_base::m_p->update_module_paths())
             return false;
 
-         ::ca::application * pappOs = dynamic_cast < ::ca::application * > (::ca::application_base::m_p.m_p);
+         ::ca2::application * pappOs = dynamic_cast < ::ca2::application * > (::ca2::application_base::m_p.m_p);
 
          if(pappOs->m_strCa2ModuleFolder.is_empty())
             pappOs->m_strCa2ModuleFolder = pappOs->m_strModuleFolder;
@@ -576,7 +576,7 @@ namespace ca
 
 
 
-      if(!::ca::application_base::m_p->initialize1())
+      if(!::ca2::application_base::m_p->initialize1())
          return false;
 
       return true;
@@ -587,10 +587,10 @@ namespace ca
    bool application::initialize2()
    {
 
-      if(!::ca::application_base::m_p->initialize2())
+      if(!::ca2::application_base::m_p->initialize2())
          return false;
 
-      application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize2);
+      application_signal_object signal(this, m_psignal, ::ca2::application_signal_initialize2);
       m_psignal->emit(&signal);
       return signal.m_bOk;
 
@@ -600,12 +600,12 @@ namespace ca
    bool application::initialize3()
    {
 
-      application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize3);
+      application_signal_object signal(this, m_psignal, ::ca2::application_signal_initialize3);
       m_psignal->emit(&signal);
       if(!signal.m_bOk)
          return false;
 
-      if(!::ca::application_base::m_p->initialize3())
+      if(!::ca2::application_base::m_p->initialize3())
          return false;
 
       return true;
@@ -633,9 +633,9 @@ namespace ca
    void application::Ex1OnFactoryExchange()
    {
 
-      System.factory().creatable_large < ::ca::file_exception > ();
+      System.factory().creatable_large < ::ca2::file_exception > ();
 
-      ::c::library library;
+      ::ca::library library;
 
       if(!library.open("os"))
          throw "failed to do factory exchange";
@@ -647,10 +647,10 @@ namespace ca
    }
 
 
-   void application::on_request(sp(::ca::create_context) pcreatecontext)
+   void application::on_request(sp(::ca2::create_context) pcreatecontext)
    {
 
-      ::ca::request_interface::on_request(pcreatecontext);
+      ::ca2::request_interface::on_request(pcreatecontext);
 
    }
 
@@ -671,7 +671,7 @@ namespace ca
    }
 
 
-   ::ca::savings & application::savings()
+   ::ca2::savings & application::savings()
    {
 
       return *m_psavings;
@@ -687,7 +687,7 @@ namespace ca
    }
 
 
-   class ::ca::base64 & application::base64()
+   class ::ca2::base64 & application::base64()
    {
 
       return m_base64;
@@ -751,10 +751,10 @@ namespace ca
          return false;
       }
 
-      if(!::ca::application_base::m_p->initialize2())
+      if(!::ca2::application_base::m_p->initialize2())
          return false;
 
-      return ::ca::application::initialize2();
+      return ::ca2::application::initialize2();
 
    }
 
@@ -842,7 +842,7 @@ namespace ca
          TRACE("Could not finalize message window");
       }
 
-      ::ca::application_signal_object signal(this, m_psignal, ::ca::application_signal_exit_instance);
+      ::ca2::application_signal_object signal(this, m_psignal, ::ca2::application_signal_exit_instance);
       try
       {
          m_psignal->emit(&signal);
@@ -864,7 +864,7 @@ namespace ca
 
       /*try
       {
-         ::c::release(::c::smart_pointer <::ca::thread>::m_p);
+         ::ca::release(::ca::smart_pointer <::ca2::thread>::m_p);
       }
       catch(...)
       {
@@ -878,7 +878,7 @@ namespace ca
   //       {
     //        if(m_spfilesystem.m_p != NULL)
       //      {
-        //       ::ca::del(m_spfilesystem.m_p);
+        //       ::ca2::del(m_spfilesystem.m_p);
           //  }
 //         }
   //       catch(...)
@@ -891,7 +891,7 @@ namespace ca
       try
       {
 
-         ::ca::thread         * pthread      = ::ca::thread::m_p.detach();
+         ::ca2::thread         * pthread      = ::ca2::thread::m_p.detach();
 
          if(pthread != NULL)
          {
@@ -925,7 +925,7 @@ namespace ca
       try
       {
 
-         ::ca::application_base   * papp         = ::ca::application_base::m_p.detach();
+         ::ca2::application_base   * papp         = ::ca2::application_base::m_p.detach();
 
          if(papp != NULL && papp != this && !papp->is_system())
          {
@@ -976,7 +976,7 @@ namespace ca
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpcszType);
       UNREFERENCED_PARAMETER(lpcszFilePath);
-/*      HINSTANCE hinst = ::ca::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
+/*      HINSTANCE hinst = ::ca2::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
       if(hinst == NULL)
          return false;
       HRSRC hrsrc = ::FindResource(
@@ -996,9 +996,9 @@ namespace ca
            try
            {
               // create the .mdb file
-              ::ca::filesp f(get_app());
+              ::ca2::filesp f(get_app());
 
-              if(f->open(lpcszFilePath, ::ca::file::mode_create | ::ca::file::mode_write ))
+              if(f->open(lpcszFilePath, ::ca2::file::mode_create | ::ca2::file::mode_write ))
               {
                  // write the ::fontopus::user-defined resource to the .mdb file
                  f->write(lpnRes, dwResSize);
@@ -1011,7 +1011,7 @@ namespace ca
                #endif
               }
            }
-           catch(::ca::file_exception_sp * pe)
+           catch(::ca2::file_exception_sp * pe)
            {
          #ifdef DEBUG
    //         g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";
@@ -1047,7 +1047,7 @@ namespace ca
 
 #endif
 
-   void application::OnAppLanguage(::ca::signal_object * pobj)
+   void application::OnAppLanguage(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       m_signalAppLanguageChange.emit();
@@ -1068,7 +1068,7 @@ namespace ca
 
       char lpszModuleFilePath[MAX_PATH + 1];
 
-      if(GetModuleFileName(::GetModuleHandleA("ca.dll"), lpszModuleFilePath, MAX_PATH + 1))
+      if(GetModuleFileName(::GetModuleHandleA("ca2.dll"), lpszModuleFilePath, MAX_PATH + 1))
       {
 
          strModuleFileName = lpszModuleFilePath;
@@ -1085,7 +1085,7 @@ namespace ca
 
       {
 
-         void * handle = dlopen("ca.so", 0);
+         void * handle = dlopen("ca2.so", 0);
 
          if(handle == NULL)
             return false;
@@ -1112,20 +1112,20 @@ namespace ca
 
          free(pszCurDir);
 
-         if(App(this).file().exists(System.dir().path(strCurDir, "ca.dylib")))
+         if(App(this).file().exists(System.dir().path(strCurDir, "ca2.dylib")))
          {
             m_strCa2ModuleFolder = strCurDir;
             goto finishedCa2Module;
          }
 
 
-         if(App(this).file().exists(System.dir().path(m_strModuleFolder, "ca.dylib")))
+         if(App(this).file().exists(System.dir().path(m_strModuleFolder, "ca2.dylib")))
          {
             m_strCa2ModuleFolder = m_strModuleFolder;
             goto finishedCa2Module;
          }
 
-         strModuleFileName = App(this).dir().pathfind(getenv("LD_LIBRARY_PATH"), "ca.dylib", "rfs"); // readable - normal file - non zero sized
+         strModuleFileName = App(this).dir().pathfind(getenv("LD_LIBRARY_PATH"), "ca2.dylib", "rfs"); // readable - normal file - non zero sized
 
       }
 
@@ -1296,7 +1296,7 @@ namespace ca
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpcszType);
       UNREFERENCED_PARAMETER(storage);
-/*      HINSTANCE hinst = ::ca::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
+/*      HINSTANCE hinst = ::ca2::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
 
       if(hinst == NULL)
          return false;
@@ -1322,7 +1322,7 @@ namespace ca
          {
             storage.set_data(lpnRes, dwResSize);
          }
-         catch(::ca::file_exception_sp * pe)
+         catch(::ca2::file_exception_sp * pe)
          {
             #ifdef DEBUG
    //            g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";
@@ -1364,15 +1364,15 @@ namespace ca
       UNUSED(bEnable);
    #endif
 
-      // no-op if main ::ca::window is NULL or not a frame_window_interface
+      // no-op if main ::ca2::window is NULL or not a frame_window_interface
 /*      sp(::user::interaction) pMainWnd = System.GetMainWnd();
       if (pMainWnd == NULL || !pMainWnd->is_frame_window())
          return;*/
 
    #ifndef ___NO_OLE_SUPPORT
       // check if notify hook installed
-   /*   ::ca::frame_window_interface* pFrameWnd =
-         dynamic_cast < ::ca::frame_window_interface * > (pMainWnd);
+   /*   ::ca2::frame_window_interface* pFrameWnd =
+         dynamic_cast < ::ca2::frame_window_interface * > (pMainWnd);
       ASSERT(pFrameWnd != NULL);
       if (pFrameWnd->GetNotifyHook() != NULL)
          pFrameWnd->GetNotifyHook()->OnEnableModeless(bEnable);*/
@@ -1404,14 +1404,14 @@ namespace ca
    // Main running routine until application exits
    int32_t application::run()
    {
-   /*   if (GetMainWnd() == NULL) // may be a service or console application ::ca::window
+   /*   if (GetMainWnd() == NULL) // may be a service or console application ::ca2::window
       {
-         // Not launched /Embedding or /Automation, but has no main ::ca::window!
-         TRACE(::ca::trace::category_AppMsg, 0, "Warning: GetMainWnd() is NULL in application::run - quitting application.\n");
+         // Not launched /Embedding or /Automation, but has no main ::ca2::window!
+         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: GetMainWnd() is NULL in application::run - quitting application.\n");
          __post_quit_message(0);
       }*/
-//      return ::ca::application::run();
-      return ::ca::thread::run();
+//      return ::ca2::application::run();
+      return ::ca2::thread::run();
    }
 
 
@@ -1446,11 +1446,11 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // Special exception handling
 
-   void application::ProcessWndProcException(base_exception* e, ::ca::signal_object * pobj)
+   void application::ProcessWndProcException(base_exception* e, ::ca2::signal_object * pobj)
    {
       ENSURE_ARG(e != NULL);
       ENSURE_ARG(pobj != NULL);
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       // handle certain messages in thread
       switch (pbase->m_uiMessage)
       {
@@ -1586,27 +1586,27 @@ namespace ca
       strHex.ReleaseBuffer(count * 2);
    }
 
-   sp(::ca::command_thread) application::command_central()
+   sp(::ca2::command_thread) application::command_central()
    {
       return m_pcommandthread;
    }
 
-   sp(::ca::command_thread) application::command()
+   sp(::ca2::command_thread) application::command()
    {
       return m_pcommandthread;
    }
 
-   sp(::ca::command_thread) application::guideline()
+   sp(::ca2::command_thread) application::guideline()
    {
       return m_pcommandthread;
    }
 
-   sp(::ca::command_thread) application::directrix()
+   sp(::ca2::command_thread) application::directrix()
    {
       return m_pcommandthread;
    }
 
-   sp(::ca::command_thread) application::axiom()
+   sp(::ca2::command_thread) application::axiom()
    {
       return m_pcommandthread;
    }
@@ -1617,12 +1617,12 @@ namespace ca
       return true;
    }
 
-   sp(::ca::command_thread) application::creation()
+   sp(::ca2::command_thread) application::creation()
    {
       return m_pcommandthread;
    }
 
-} // namespace ca
+} // namespace ca2
 
 
 
@@ -1813,7 +1813,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 
 */
 
-namespace ca
+namespace ca2
 {
 
    bool application::LoadSysPolicies()
@@ -1954,13 +1954,13 @@ namespace ca
                {
                   if (pThread->GetMainWnd() != NULL)
                   {
-                     TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                     TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                      pThread->GetMainWnd()->DestroyWindow();
                   }
                   goto InitFailure;
                }
             }
-            catch(const ::ca::exception &)
+            catch(const ::ca2::exception &)
             {
                if (pThread->GetMainWnd() != NULL)
                {
@@ -1975,39 +1975,39 @@ namespace ca
                {
                   if (pThread->GetMainWnd() != NULL)
                   {
-                     TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                     TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                      pThread->GetMainWnd()->DestroyWindow();
                   }
                   pThread->exit_instance();
                   goto InitFailure;
                }
             }
-            catch(const ::ca::exception & e)
+            catch(const ::ca2::exception & e)
             {
-               if(pThread->on_run_exception((::ca::exception &) e))
+               if(pThread->on_run_exception((::ca2::exception &) e))
                   goto run;
                if (pThread->GetMainWnd() != NULL)
                {
-                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                  TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                   try
                   {
                      pThread->GetMainWnd()->DestroyWindow();
                   }
-                  catch(::ca::exception &)
+                  catch(::ca2::exception &)
                   {
                   }
                   pThread->SetMainWnd(NULL);
                }
-               if(pApp->final_handle_exception((::ca::exception &) e))
+               if(pApp->final_handle_exception((::ca2::exception &) e))
                   goto run;
                if (pThread->GetMainWnd() != NULL)
                {
-                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                  TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                   try
                   {
                      pThread->GetMainWnd()->DestroyWindow();
                   }
-                  catch(::ca::exception &)
+                  catch(::ca2::exception &)
                   {
                   }
                   pThread->SetMainWnd(NULL);
@@ -2265,7 +2265,7 @@ namespace ca
 
 
 
-   bool application::on_run_exception(::ca::exception & e)
+   bool application::on_run_exception(::ca2::exception & e)
    {
 
       TRACE("An unexpected error has occurred and no special exception handling is available.");
@@ -2334,14 +2334,14 @@ namespace ca
 
    bool application::ca_process_initialize()
    {
-      application_signal_object signal(this, m_psignal, ::ca::application_signal_process_initialize);
+      application_signal_object signal(this, m_psignal, ::ca2::application_signal_process_initialize);
       m_psignal->emit(&signal);
       return true;
    }
 
    bool application::ca_initialize1()
    {
-      application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize1);
+      application_signal_object signal(this, m_psignal, ::ca2::application_signal_initialize1);
       m_psignal->emit(&signal);
       return signal.m_bOk;
    }
@@ -2350,7 +2350,7 @@ namespace ca
 
    bool application::ca_finalize()
    {
-      application_signal_object signal(this, m_psignal, ::ca::application_signal_finalize);
+      application_signal_object signal(this, m_psignal, ::ca2::application_signal_finalize);
       try
       {
          m_psignal->emit(&signal);
@@ -2367,7 +2367,7 @@ namespace ca
 
 
 
-   bool application::final_handle_exception(::ca::exception & e)
+   bool application::final_handle_exception(::ca2::exception & e)
    {
       UNREFERENCED_PARAMETER(e);
 //linux      exit(-1);
@@ -2376,7 +2376,7 @@ namespace ca
       {
 
                // get_app() may be it self, it is ok...
-         if(Sys(get_app()).final_handle_exception((::ca::exception & ) e))
+         if(Sys(get_app()).final_handle_exception((::ca2::exception & ) e))
             return true;
 
 
@@ -2637,7 +2637,7 @@ namespace ca
 
    }
 
-   // This is ca API library.
+   // This is ca2 API library.
    //
    //
    //
@@ -2674,7 +2674,7 @@ namespace ca
       return FALSE;
    }
 
-   // This is ca API library.
+   // This is ca2 API library.
    //
    //
    //
@@ -2687,12 +2687,12 @@ namespace ca
 
 
 
-   /*void ::ca::FormatString1(string & rString, UINT nIDS, const char * lpsz1)
+   /*void ::ca2::FormatString1(string & rString, UINT nIDS, const char * lpsz1)
    {
       __format_strings(rString, nIDS, &lpsz1, 1);
    }
 
-   void ::ca::FormatString2(string & rString, UINT nIDS, const char * lpsz1,
+   void ::ca2::FormatString2(string & rString, UINT nIDS, const char * lpsz1,
          const char * lpsz2)
    {
       const char * rglpsz[2];
@@ -2705,7 +2705,7 @@ namespace ca
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Basic Help support (for backward compatibility to ca API 2.0)
+   // Basic Help support (for backward compatibility to ca2 API 2.0)
 
    void application::OnHelp()  // use context to derive help context
    {
@@ -2717,8 +2717,8 @@ namespace ca
          return;
       }
 
-      // otherwise, use ::ca::window::OnHelp implementation
-      /* trans sp(::ca::window) pWnd = System.GetMainWnd();
+      // otherwise, use ::ca2::window::OnHelp implementation
+      /* trans sp(::ca2::window) pWnd = System.GetMainWnd();
       ENSURE_VALID(pWnd);
       if (!pWnd->is_frame_window())
          pWnd->OnHelp();
@@ -2764,7 +2764,7 @@ namespace ca
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Context Help Mode support (backward compatibility to ca API 2.0)
+   // Context Help Mode support (backward compatibility to ca2 API 2.0)
 
    void application::OnContextHelp()
    {
@@ -2781,7 +2781,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
 
 
-   // This is ca API library.
+   // This is ca2 API library.
    //
    //
    //
@@ -2842,12 +2842,12 @@ namespace ca
       }*/
    }
 
-   ::ca::graphics * application::CreatePrinterDC()
+   ::ca2::graphics * application::CreatePrinterDC()
    {
 //      UNREFERENCED_PARAMETER(spgraphics);
       throw not_implemented(get_app());
       /*
-      HDC hDC = ::ca::CreateDC(m_hDevNames, m_hDevMode);
+      HDC hDC = ::ca2::CreateDC(m_hDevNames, m_hDevMode);
       if (hDC != NULL)
       {
          spgraphics->DeleteDC();
@@ -2861,7 +2861,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
 
 
-   // This is ca API library.
+   // This is ca2 API library.
    //
    //
    //
@@ -2879,7 +2879,7 @@ namespace ca
    void application::OnAppExit()
    {
 
-      // same as double-clicking on main ::ca::window close box
+      // same as double-clicking on main ::ca2::window close box
 
       ASSERT(GetMainWnd() != NULL);
 
@@ -2899,7 +2899,7 @@ namespace ca
          GetMainWnd()->ShowWindow(SW_HIDE);
       // trans    GetMainWnd()->ShowOwnedPopups(FALSE);
 
-         // put the ::ca::window at the bottom of zorder, so it isn't activated
+         // put the ::ca2::window at the bottom of zorder, so it isn't activated
          GetMainWnd()->SetWindowPos(ZORDER_BOTTOM, 0, 0, 0, 0,
             SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE);
       }
@@ -2960,10 +2960,10 @@ namespace ca
    void application::ShowWaitCursor(bool bShow)
    {
 
-      if(::ca::application_base::m_p == NULL)
+      if(::ca2::application_base::m_p == NULL)
          return;
 
-      ::ca::application_base::m_p->ShowWaitCursor(bShow);
+      ::ca2::application_base::m_p->ShowWaitCursor(bShow);
 
    }
 
@@ -3005,7 +3005,7 @@ namespace ca
       UNUSED(bEnable);
    #endif
 
-      // no-op if main ::ca::window is NULL or not a frame_window
+      // no-op if main ::ca2::window is NULL or not a frame_window
    /*   sp(::user::interaction) pMainWnd = System.GetMainWnd();
       if (pMainWnd == NULL || !pMainWnd->is_frame_window())
          return;*/
@@ -3077,9 +3077,9 @@ namespace ca
       // disable windows for modal dialog
       DoEnableModeless(FALSE);
       ::oswindow oswindow_Top;
-      ::oswindow oswindow = ::ca::window::get_safe_owner(NULL, &oswindow_Top);
+      ::oswindow oswindow = ::ca2::window::get_safe_owner(NULL, &oswindow_Top);
 
-      // re-enable the parent ::ca::window, so that focus is restored
+      // re-enable the parent ::ca2::window, so that focus is restored
       // correctly when the dialog is dismissed.
       if (oswindow != oswindow_Top)
          EnableWindow(oswindow, TRUE);
@@ -3143,7 +3143,7 @@ namespace ca
 
    #ifdef DEBUG
   //    if ((nType & MB_ICONMASK) == 0)
-//         TRACE(::ca::trace::category_AppMsg, 0, "Warning: no icon specified for message box.\n");
+//         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: no icon specified for message box.\n");
    #endif
 
       char szAppName[_MAX_PATH];
@@ -3161,7 +3161,7 @@ namespace ca
             szAppName[_MAX_PATH - 1] = '\0';
 #else
 
-         throw not_implemented(::ca::get_thread_app());
+         throw not_implemented(::ca2::get_thread_app());
 
 #endif
       }
@@ -3191,7 +3191,7 @@ namespace ca
    }
 
 
-   /* int32_t ::ca::MessageBox(const char * lpszText, UINT nType, UINT nIDHelp)
+   /* int32_t ::ca2::MessageBox(const char * lpszText, UINT nType, UINT nIDHelp)
    {
       application* papp = &System;
       if (papp != NULL)
@@ -3210,7 +3210,7 @@ namespace ca
       string string;
       if (!string.load_string(nIDPrompt))
       {
-         TRACE(::ca::trace::category_AppMsg, 0, "Error: failed to load message box prompt string 0x%04x.\n",
+         TRACE(::ca2::trace::category_AppMsg, 0, "Error: failed to load message box prompt string 0x%04x.\n",
             nIDPrompt);
          ASSERT(FALSE);
       }
@@ -3252,7 +3252,7 @@ namespace ca
 
 #elif defined(WINDOWSEX) || defined(LINUX)
 
-      sp(::ca::window) pwnd = System.window_from_os_data_permanent(::GetFocus());
+      sp(::ca2::window) pwnd = System.window_from_os_data_permanent(::GetFocus());
       if(pwnd != NULL)
       {
          if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
@@ -3311,7 +3311,7 @@ namespace ca
             bResult = FALSE;
          break;
 
-         // If the ::fontopus::user wanted to print, hide our main ::ca::window and
+         // If the ::fontopus::user wanted to print, hide our main ::ca2::window and
          // fire a message to ourselves to start the printing
 
       case CCommandLineInfo::FilePrintTo:
@@ -3543,7 +3543,7 @@ namespace ca
    }
 
 
-   // This is ca API library.
+   // This is ca2 API library.
    //
    //
    //
@@ -3577,7 +3577,7 @@ namespace ca
       ASSERT(m_pszRegistryKey == NULL);
     throw not_implemented(get_app());
       /*char szRegistryKey[256];
-      VERIFY(::ca::LoadString(nIDRegistryKey, szRegistryKey));
+      VERIFY(::ca2::LoadString(nIDRegistryKey, szRegistryKey));
       SetRegistryKey(szRegistryKey);*/
    }
 
@@ -3732,7 +3732,7 @@ namespace ca
 
          // ensure destruction
 
-         // linux ::ca::CRegKey rkSecKey(hSecKey);
+         // linux ::ca2::CRegKey rkSecKey(hSecKey);
 
          uint32_t dwType=0;
          uint32_t dwCount=0;
@@ -3886,13 +3886,13 @@ namespace ca
 
 
 
-/*   ::ca::property_set & application::propset(::ca::object * pobject)
+/*   ::ca2::property_set & application::propset(::ca2::object * pobject)
    {
       single_lock sl(&m_mapObjectSet, TRUE);
       return m_mapObjectSet[pobject];
    }
 
-   ::ca::property_set * application::existing_propset(::ca::object * pobject)
+   ::ca2::property_set * application::existing_propset(::ca2::object * pobject)
    {
       single_lock sl(&m_mapObjectSet, TRUE);
       auto p = m_mapObjectSet.PLookup(pobject);
@@ -4072,7 +4072,7 @@ namespace ca
       oswindow oswindowCapture = ::GetCapture();
       if(oswindowCapture == NULL)
          return NULL;
-      return System.window_from_os_data(oswindowCapture).cast < ::ca::window >()->get_capture();
+      return System.window_from_os_data(oswindowCapture).cast < ::ca2::window >()->get_capture();
 
 #else
 
@@ -4082,7 +4082,7 @@ namespace ca
       if(oswindowCapture == NULL)
          return NULL;
 
-      return ::GetCapture()->get_user_interaction()->m_pimpl.cast < ::ca::window >()->get_capture();
+      return ::GetCapture()->get_user_interaction()->m_pimpl.cast < ::ca2::window >()->get_capture();
 
 #endif
 
@@ -4164,12 +4164,12 @@ namespace ca
    // Temporary map management (locks temp map on current thread)
    void application::LockTempMaps()
    {
-      ::ca::application_base::m_p->LockTempMaps();
+      ::ca2::application_base::m_p->LockTempMaps();
    }
 
    bool application::UnlockTempMaps(bool bDeleteTemp)
    {
-      return ::ca::application_base::m_p->UnlockTempMaps(bDeleteTemp);
+      return ::ca2::application_base::m_p->UnlockTempMaps(bDeleteTemp);
    }
 
    void application::TermThread(HINSTANCE hInstTerm)
@@ -4177,7 +4177,7 @@ namespace ca
       UNREFERENCED_PARAMETER(hInstTerm);
    }
 
-/*   ::ca::graphics * application::graphics_from_os_data(void * pdata)
+/*   ::ca2::graphics * application::graphics_from_os_data(void * pdata)
    {
       UNREFERENCED_PARAMETER(pdata);
       return NULL;
@@ -4186,39 +4186,39 @@ namespace ca
 #ifdef METROWIN
    sp(::user::interaction) application::window_from_os_data(void * pdata)
    {
-      return ::ca::application_base::m_p->window_from_os_data(pdata);
+      return ::ca2::application_base::m_p->window_from_os_data(pdata);
    }
 
    sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)
    {
-      return ::ca::application_base::m_p->window_from_os_data_permanent(pdata);
+      return ::ca2::application_base::m_p->window_from_os_data_permanent(pdata);
    }
 #else
-   sp(::ca::window) application::window_from_os_data(void * pdata)
+   sp(::ca2::window) application::window_from_os_data(void * pdata)
    {
 
-      if(::ca::application_base::m_p == NULL)
+      if(::ca2::application_base::m_p == NULL)
          return NULL;
 
-      return ::ca::application_base::m_p->window_from_os_data(pdata);
+      return ::ca2::application_base::m_p->window_from_os_data(pdata);
 
    }
 
-   sp(::ca::window) application::window_from_os_data_permanent(void * pdata)
+   sp(::ca2::window) application::window_from_os_data_permanent(void * pdata)
    {
-      return ::ca::application_base::m_p->window_from_os_data_permanent(pdata);
+      return ::ca2::application_base::m_p->window_from_os_data_permanent(pdata);
    }
 #endif
 
 
-   sp(::ca::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   sp(::ca2::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
-      return ::ca::application_base::m_p->FindWindow(lpszClassName, lpszWindowName);
+      return ::ca2::application_base::m_p->FindWindow(lpszClassName, lpszWindowName);
    }
 
-   sp(::ca::window) application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
+   sp(::ca2::window) application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
    {
-      return ::ca::application_base::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
+      return ::ca2::application_base::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
    }
 
    string application::get_local_mutex_name(const char * pszAppName)
@@ -4272,9 +4272,9 @@ namespace ca
    }
 
 
-   application_signal_object::application_signal_object(sp(::ca::application) papp, ::ca::signal * psignal, ::ca::e_application_signal esignal) :
-      ca(papp),
-      ::ca::signal_object(psignal)
+   application_signal_object::application_signal_object(sp(::ca2::application) papp, ::ca2::signal * psignal, ::ca2::e_application_signal esignal) :
+      ca2(papp),
+      ::ca2::signal_object(psignal)
    {
 
       m_esignal         = esignal;
@@ -4283,12 +4283,12 @@ namespace ca
    }
 
 
-   sp(::ca::ca) application::alloc(sp(::ca::type_info) info)
+   sp(::ca2::ca2) application::alloc(sp(::ca2::type_info) info)
    {
       return System.alloc(this, info);
    }
 
-   sp(::ca::ca) application::alloc(const  id & idType)
+   sp(::ca2::ca2) application::alloc(const  id & idType)
    {
       return System.alloc(this, idType);
    }
@@ -4307,7 +4307,7 @@ namespace ca
 
       try
       {
-         ::ca::thread::finalize();
+         ::ca2::thread::finalize();
       }
       catch(...)
       {
@@ -4359,7 +4359,7 @@ namespace ca
    */
 
 
-   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca::create_context) pcreatecontext)
+   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca2::create_context) pcreatecontext)
    {
 
       sp(::user::interaction) puiParent = NULL;
@@ -4393,7 +4393,7 @@ namespace ca
    }
 
 
-   void application::_001OnFileNew(::ca::signal_object * pobj)
+   void application::_001OnFileNew(::ca2::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -4405,14 +4405,14 @@ namespace ca
 
       request_file_query(varFile, varQuery);
 
-      //::ca::application_base::m_p->_001OnFileNew();
+      //::ca2::application_base::m_p->_001OnFileNew();
    }
 
 
    sp(::user::document_interface) application::_001OpenDocumentFile(var varFile)
    {
 
-      return ::ca::application_base::m_p->_001OpenDocumentFile(varFile);
+      return ::ca2::application_base::m_p->_001OpenDocumentFile(varFile);
 
    }
 
@@ -4420,7 +4420,7 @@ namespace ca
    void application::_001EnableShellOpen()
    {
 
-      ::ca::application_base::m_p->_001EnableShellOpen();
+      ::ca2::application_base::m_p->_001EnableShellOpen();
 
    }
 
@@ -4428,10 +4428,10 @@ namespace ca
    bool application::_001OnDDECommand(const char * lpcsz)
    {
       throw not_implemented(get_app());
-      //return ::ca::application_base::m_p->_001OnDDECommand(lpcsz);
+      //return ::ca2::application_base::m_p->_001OnDDECommand(lpcsz);
    }
 
-//   ::ca::file_system & application::file_system()
+//   ::ca2::file_system & application::file_system()
   // {
     //  return m_spfilesystem;
    //}
@@ -4442,7 +4442,7 @@ namespace ca
 
    string application::get_version()
    {
-      return ::ca::application_base::m_p->get_version();
+      return ::ca2::application_base::m_p->get_version();
    }
 
 
@@ -4457,30 +4457,30 @@ namespace ca
    }
 
 
-   ::ca::thread * application::GetThread()
+   ::ca2::thread * application::GetThread()
    {
 
-      if(::ca::application_base::m_p == NULL)
+      if(::ca2::application_base::m_p == NULL)
          return NULL;
 
-      return ::ca::application_base::m_p->GetThread();
+      return ::ca2::application_base::m_p->GetThread();
 
    }
 
 
-   void application::set_thread(::ca::thread * pthread)
+   void application::set_thread(::ca2::thread * pthread)
    {
-      ::ca::application_base::m_p->set_thread(pthread);
+      ::ca2::application_base::m_p->set_thread(pthread);
    }
 
-/*   ::ca::graphics * application::graphics_from_os_data(void * pdata)
+/*   ::ca2::graphics * application::graphics_from_os_data(void * pdata)
    {
-      return ::ca::application_base::m_p->graphics_from_os_data(pdata);
+      return ::ca2::application_base::m_p->graphics_from_os_data(pdata);
    }*/
 
 
 
-   sp(::ca::window) application::get_desktop_window()
+   sp(::ca2::window) application::get_desktop_window()
    {
 #if defined(METROWIN) || defined(MACOS)
       throw todo(this);
@@ -4504,7 +4504,7 @@ namespace ca
 
    void application::SetCurrentHandles()
    {
-      ::ca::application_base::m_p->SetCurrentHandles();
+      ::ca2::application_base::m_p->SetCurrentHandles();
    }
 
 
@@ -4512,24 +4512,24 @@ namespace ca
 
    void application::get_time(timeval *p)
    {
-      ::ca::application_base::m_p->get_time(p);
+      ::ca2::application_base::m_p->get_time(p);
    }
 
 #endif
 
    void application::set_env_var(const string & var,const string & value)
    {
-      ::ca::application_base::m_p->set_env_var(var, value);
+      ::ca2::application_base::m_p->set_env_var(var, value);
    }
 
    uint32_t application::get_thread_id()
    {
-      return ::ca::application_base::m_p->get_thread_id();
+      return ::ca2::application_base::m_p->get_thread_id();
    }
 
-   bool application::set_main_init_data(::ca::main_init_data * pdata)
+   bool application::set_main_init_data(::ca2::main_init_data * pdata)
    {
-      return ::ca::application_base::m_p->set_main_init_data(pdata);
+      return ::ca2::application_base::m_p->set_main_init_data(pdata);
    }
 
 
@@ -4596,7 +4596,7 @@ namespace ca
       dumpcontext << "\n";
    }
 
-} // namespace ca
+} // namespace ca2
 
 
 
@@ -4612,7 +4612,7 @@ void __post_quit_message(int32_t nExitCode)
 
 #else
 
-   throw not_implemented(::ca::get_thread_app());
+   throw not_implemented(::ca2::get_thread_app());
 
 #endif
 
@@ -4622,15 +4622,15 @@ void __post_quit_message(int32_t nExitCode)
 #include "framework.h"
 
 
-namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube)]
+namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cube)]
 {
 
 
 
-   void application::install_message_handling(::ca::message::dispatch * pdispatch)
+   void application::install_message_handling(::ca2::message::dispatch * pdispatch)
    {
-      ::ca::thread::install_message_handling(pdispatch);
-      IGUI_WIN_MSG_LINK(WM_APP + 2043, pdispatch, this, &::ca::application::_001OnApplicationRequest);
+      ::ca2::thread::install_message_handling(pdispatch);
+      IGUI_WIN_MSG_LINK(WM_APP + 2043, pdispatch, this, &::ca2::application::_001OnApplicationRequest);
    }
 
 
@@ -4709,13 +4709,13 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
    bool application::base_support()
    {
 
-      //if(!::ca::application::base_support())
+      //if(!::ca2::application::base_support())
         // return false;
 
       if(m_strBaseSupportId.is_empty())
       {
 
-         ::ca::property_set propertyset;
+         ::ca2::property_set propertyset;
 
          message_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
 
@@ -4726,7 +4726,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       return true;
    }
 
-   string application::message_box(const string & pszMatter, ::ca::property_set & propertyset)
+   string application::message_box(const string & pszMatter, ::ca2::property_set & propertyset)
    {
       UNREFERENCED_PARAMETER(propertyset);
       UNREFERENCED_PARAMETER(pszMatter);
@@ -4836,27 +4836,27 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       {
          if(guideline()->m_varTopicQuery.propset().has_property("save_processing"))
          {
-            System.savings().save(::ca::resource_processing);
+            System.savings().save(::ca2::resource_processing);
          }
          if(guideline()->m_varTopicQuery.propset().has_property("save_blur_back"))
          {
-            System.savings().save(::ca::resource_blur_background);
+            System.savings().save(::ca2::resource_blur_background);
          }
          if(guideline()->m_varTopicQuery.propset().has_property("save_transparent_back"))
          {
-            System.savings().save(::ca::resource_translucent_background);
+            System.savings().save(::ca2::resource_translucent_background);
          }
       }
 
       if(directrix()->m_varTopicQuery.propset().has_property("install"))
       {
-         // ca level app install
+         // ca2 level app install
          if(!Ex2OnAppInstall())
             return false;
       }
       else if(directrix()->m_varTopicQuery.propset().has_property("uninstall"))
       {
-         // ca level app uninstall
+         // ca2 level app uninstall
          if(!Ex2OnAppUninstall())
             return false;
       }
@@ -4926,7 +4926,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
       m_pfilemanager =canew(::filemanager::filemanager(this));
 
-      ::ca::application::m_pfilemanager = m_pfilemanager;
+      ::ca2::application::m_pfilemanager = m_pfilemanager;
 
       m_pfilemanager->construct(this);
 
@@ -4961,16 +4961,16 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
       ensure_app_interest();
 
-      application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize);
+      application_signal_object signal(this, m_psignal, ::ca2::application_signal_initialize);
       m_psignal->emit(&signal);
       if(!signal.m_bOk)
          return false;
       return true;
    }
 
-   void application::pre_translate_message(::ca::signal_object * pobj)
+   void application::pre_translate_message(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_USER + 124 && pbase->m_pwnd == NULL)
       {
    /*      OnMachineEvent((flags < machine_event::e_flag> *) pmsg->lParam);
@@ -4978,19 +4978,19 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          pbase->m_bRet = true;
          return;
       }
-      return ::ca::thread::pre_translate_message(pobj);
+      return ::ca2::thread::pre_translate_message(pobj);
    }
 
-   void application::_001OnApplicationRequest(::ca::signal_object * pobj)
+   void application::_001OnApplicationRequest(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       if(pbase->m_wparam == 2)
       {
-         // when wparam == 2 lparam is a pointer to a ::ca::command_fork
-         // that should be treated as ::ca::command_line on request, i.e.,
+         // when wparam == 2 lparam is a pointer to a ::ca2::command_fork
+         // that should be treated as ::ca2::command_line on request, i.e.,
          // a fork whose Forking part has been done, now
          // the parameters are going to be passed to this new application
-         sp(::ca::create_context) pcreatecontext(pbase->m_lparam);
+         sp(::ca2::create_context) pcreatecontext(pbase->m_lparam);
          try
          {
             on_request(pcreatecontext);
@@ -5008,7 +5008,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          catch(...)
          {
          }
-         sp(::plane::session) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].ca < ::plane::session >();
+         sp(::plane::session) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].ca2 < ::plane::session >();
          // todobergedge
          /*if(pbergedge != NULL)
          {
@@ -5296,16 +5296,16 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       return NULL;
    }
 
-   void application::message_window_message_handler(::ca::signal_object * pobj)
+   void application::message_window_message_handler(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_TIMER)
       {
-         SCAST_PTR(::ca::message::timer, ptimer, pobj);
+         SCAST_PTR(::ca2::message::timer, ptimer, pobj);
          if(ptimer->m_nIDEvent == 123)
          {
             m_spuiMessage->KillTimer(ptimer->m_nIDEvent);
-            frames().send_message_to_descendants(::ca::application::APPM_LANGUAGE);
+            frames().send_message_to_descendants(::ca2::application::APPM_LANGUAGE);
             System.appa_load_string_table();
          }
       }
@@ -5450,7 +5450,7 @@ ret:
       }
    }
 
-   bool application::start_application(bool bSynch, ::ca::application_bias * pbias)
+   bool application::start_application(bool bSynch, ::ca2::application_bias * pbias)
    {
 /*      try
       {
@@ -5485,9 +5485,9 @@ ret:
          peventReady->ResetEvent();
       }
 
-      ::ca::thread::m_p.create(allocer());
-      //dynamic_cast < ::ca::thread * > (papp->::ca::thread::m_p)->m_p = papp->::ca::thread::m_p;
-      ::ca::thread::m_p->m_p = this;
+      ::ca2::thread::m_p.create(allocer());
+      //dynamic_cast < ::ca2::thread * > (papp->::ca2::thread::m_p)->m_p = papp->::ca2::thread::m_p;
+      ::ca2::thread::m_p->m_p = this;
       if(pbias != NULL)
       {
          m_biasCalling = *pbias;
@@ -5545,7 +5545,7 @@ ret:
 
 
 
-   void application::on_application_signal(::ca::signal_object * pobj)
+   void application::on_application_signal(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(signal_object, psignal, pobj);
@@ -5570,7 +5570,7 @@ ret:
    ::user::printer * application::get_printer(const char * pszDeviceName)
    {
 
-      return ::ca::application_base::m_p->get_printer(pszDeviceName);
+      return ::ca2::application_base::m_p->get_printer(pszDeviceName);
 
    }
 
@@ -5616,7 +5616,7 @@ ret:
 
    }
 
-   string application::message_box(const char * pszMatter, ::ca::property_set & propertyset)
+   string application::message_box(const char * pszMatter, ::ca2::property_set & propertyset)
    {
       ::userex::message_box box(this);
       box.show(pszMatter, &propertyset);
@@ -5707,9 +5707,9 @@ ret:
 
 
       // there are cases where destroying the documents may destroy the
-      //  main ::ca::window of the application.
-      //bool b::ca::ContextIsDll = afxContextIsDLL;
-      //if (!b::ca::ContextIsDll && papp->GetVisibleFrameCount() <= 0)
+      //  main ::ca2::window of the application.
+      //bool b::ca2::ContextIsDll = afxContextIsDLL;
+      //if (!b::ca2::ContextIsDll && papp->GetVisibleFrameCount() <= 0)
       if(Application.user()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
       {
 
@@ -5778,7 +5778,7 @@ ret:
    }
 
 
-} //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube)]
+} //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cube)]
 
 
 

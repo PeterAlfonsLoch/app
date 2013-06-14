@@ -6,8 +6,8 @@
 /// This class represents a collection of waitable items. A collection can be mixed
 /// of any kind of waitable items (threads, events, semaphores, ...).
 ///  \brief		default constructor
-event_collection::event_collection(sp(::ca::application) papp) :
-   ca(papp),
+event_collection::event_collection(sp(::ca2::application) papp) :
+   ca2(papp),
    callback_cnt(0)
 {
 

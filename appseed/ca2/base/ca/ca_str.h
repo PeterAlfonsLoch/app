@@ -17,7 +17,7 @@ namespace calculator
 } // namespace calculator
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -81,9 +81,9 @@ namespace ca
       bool CLASS_DECL_ca2 begins_eat(var & var, const char * lpcszPrefix);
       bool CLASS_DECL_ca2 begins_eat_ci(var & var, const char * lpcszPrefix); // case insensitive
       bool CLASS_DECL_ca2 begins_eat_ci(var & var, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
-      bool CLASS_DECL_ca2 begins_eat(::ca::property & property, const char * lpcszPrefix);
-      bool CLASS_DECL_ca2 begins_eat_ci(::ca::property & property, const char * lpcszPrefix); // case insensitive
-      bool CLASS_DECL_ca2 begins_eat_ci(::ca::property & property, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
+      bool CLASS_DECL_ca2 begins_eat(::ca2::property & property, const char * lpcszPrefix);
+      bool CLASS_DECL_ca2 begins_eat_ci(::ca2::property & property, const char * lpcszPrefix); // case insensitive
+      bool CLASS_DECL_ca2 begins_eat_ci(::ca2::property & property, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
       bool CLASS_DECL_ca2 while_begins_with_chars_eat(string & str, const char * lpcszChars);
       bool CLASS_DECL_ca2 while_begins_with_chars_eat_ci(string & str, const char * lpcszChars); // case insensitive
       bool CLASS_DECL_ca2 ends(const char * lpcsz, const char * lpcszSuffix);
@@ -96,7 +96,7 @@ namespace ca
       string CLASS_DECL_ca2 replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
       string CLASS_DECL_ca2 replace_ci(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
 
-      string CLASS_DECL_ca2 random_replace(sp(::ca::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
+      string CLASS_DECL_ca2 random_replace(sp(::ca2::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
 
       strsize CLASS_DECL_ca2 find_first(const stringa & straSearch, index & iFound, const string & str, index iStart = 0);
 
@@ -137,7 +137,7 @@ namespace ca
       CLASS_DECL_ca2  string         utf8_previous_char(const char * pszBeg, const char *psz, strsize i = 0);
       CLASS_DECL_ca2  string         uni_to_utf8(int64_t ch);
 
-      CLASS_DECL_ca2  const char *   utf8_dec(::ca::utf8_char * pchar, const char * pszBeg, const char * psz);
+      CLASS_DECL_ca2  const char *   utf8_dec(::ca2::utf8_char * pchar, const char * pszBeg, const char * psz);
 
 
       CLASS_DECL_ca2  bool           to(const char * psz, int32_t & i);
@@ -291,13 +291,13 @@ namespace ca
    } // namespace str
 
 
-} // namespace ca
+} // namespace ca2
 
 
 template < typename T >
 inline c_number < T > & c_number < T >::from(const string & str)
 {
-   ::ca::str::to(str, m_number);
+   ::ca2::str::to(str, m_number);
    return *this;
 }
 

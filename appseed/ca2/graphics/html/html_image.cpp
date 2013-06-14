@@ -15,7 +15,7 @@ namespace html
          if(m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
 
-            pdata->m_pdc->set_alpha_mode(::ca::alpha_mode_blend);
+            pdata->m_pdc->set_alpha_mode(::ca2::alpha_mode_blend);
 
             pdata->m_imagea[m_iImage].m_spdib->defer_realize(pdata->m_pdc);
 

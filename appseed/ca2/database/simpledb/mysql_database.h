@@ -13,7 +13,7 @@ namespace mysql
 
 
    class CLASS_DECL_ca2 database :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
 
 
@@ -32,7 +32,7 @@ namespace mysql
       int64_t m_iLastUsedTime;
 
 
-      database(sp(::ca::application) papp);
+      database(sp(::ca2::application) papp);
       virtual ~database();
 
 
@@ -65,7 +65,7 @@ namespace mysql
 
          MYSQL_ROW row;
 
-         ::count c = 0;
+         ::count ca = 0;
 
          while((row = (MYSQL_ROW) presult->fetch_row()) != NULL)
          {
@@ -76,7 +76,7 @@ namespace mysql
             }
             else
             {
-               a1.add(::ca::str::from_string < TYPE1 > (row[0]));
+               a1.add(::ca2::str::from_string < TYPE1 > (row[0]));
             }
 
             if(row[1] == NULL)
@@ -85,7 +85,7 @@ namespace mysql
             }
             else
             {
-               a2.add(::ca::str::from_string < TYPE2 > (row[1]));
+               a2.add(::ca2::str::from_string < TYPE2 > (row[1]));
             }
 
             if(row[2] == NULL)
@@ -94,14 +94,14 @@ namespace mysql
             }
             else
             {
-               a3.add(::ca::str::from_string < TYPE3 > (row[2]));
+               a3.add(::ca2::str::from_string < TYPE3 > (row[2]));
             }
 
-            c++;
+            ca++;
 
          }
 
-         return c;
+         return ca;
 
       }
 

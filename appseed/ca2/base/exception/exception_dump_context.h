@@ -2,10 +2,10 @@
 
 
 class CLASS_DECL_ca2 dump_context :
-   virtual public ::ca::ca
+   virtual public ::ca2::ca2
 {
 public:
-   dump_context(sp(::ca::file) pFile = NULL);
+   dump_context(sp(::ca2::file) pFile = NULL);
 
 // Attributes
    int32_t GetDepth() const;      // 0 => this object, 1 => children objects
@@ -16,8 +16,8 @@ public:
    dump_context & operator<<(const wchar_t * lpsz); // automatically thinned
    dump_context & operator<<(const string & str);
    dump_context & operator<<(const void * lp);
-   dump_context & operator<<(const ::ca::object* pOb);
-   dump_context & operator<<(const ::ca::object& ob);
+   dump_context & operator<<(const ::ca2::object* pOb);
+   dump_context & operator<<(const ::ca2::object& ob);
    dump_context & operator<<(int8_t i);
    dump_context & operator<<(uint8_t ui);
    dump_context & operator<<(int16_t i);
@@ -58,6 +58,6 @@ protected:
    int32_t m_nDepth;
 
 public:
-   sp(::ca::file) m_pfile;
+   sp(::ca2::file) m_pfile;
 };
 

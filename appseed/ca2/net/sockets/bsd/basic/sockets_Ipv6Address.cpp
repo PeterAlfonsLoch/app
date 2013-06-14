@@ -26,8 +26,8 @@ namespace sockets
 {
 
 
-   ipv6_address::ipv6_address(sp(::ca::application) papp, port_t port) :
-      ca(papp),
+   ipv6_address::ipv6_address(sp(::ca2::application) papp, port_t port) :
+      ca2(papp),
       m_bValid(true)
    {
       memset(&m_addr, 0, sizeof(m_addr));
@@ -36,8 +36,8 @@ namespace sockets
    }
 
 
-   ipv6_address::ipv6_address(sp(::ca::application) papp, const in6_addr& a,port_t port) :
-      ca(papp),
+   ipv6_address::ipv6_address(sp(::ca2::application) papp, const in6_addr& a,port_t port) :
+      ca2(papp),
       m_bValid(true)
    {
       memset(&m_addr, 0, sizeof(m_addr));
@@ -47,7 +47,7 @@ namespace sockets
    }
 
    ipv6_address::ipv6_address(const ipv6_address & addr) :
-      ::ca::ca(addr.get_app())
+      ::ca2::ca2(addr.get_app())
    {
       memset(&m_addr, 0, sizeof(m_addr));
       m_addr.sin6_family = AF_INET6;
@@ -56,8 +56,8 @@ namespace sockets
    }
 
 
-   ipv6_address::ipv6_address(sp(::ca::application) papp, const string & host, port_t port) :
-      ca(papp),
+   ipv6_address::ipv6_address(sp(::ca2::application) papp, const string & host, port_t port) :
+      ca2(papp),
       m_bValid(false)
    {
       memset(&m_addr, 0, sizeof(m_addr));
@@ -74,8 +74,8 @@ namespace sockets
    }
 
 
-   ipv6_address::ipv6_address(sp(::ca::application) papp, const sockaddr_in6 & sa) :
-      ca(papp)
+   ipv6_address::ipv6_address(sp(::ca2::application) papp, const sockaddr_in6 & sa) :
+      ca2(papp)
    {
       m_addr = sa;
       m_bValid = sa.sin6_family == AF_INET6;
@@ -112,7 +112,7 @@ namespace sockets
    }
 
 
-/*   bool ipv6_address::Resolve(sp(::ca::application) papp, const string & hostname,struct in6_addr& a)
+/*   bool ipv6_address::Resolve(sp(::ca2::application) papp, const string & hostname,struct in6_addr& a)
    {
       if(Sys(papp->m_psystem).net().isipv6(hostname))
       {
@@ -126,7 +126,7 @@ namespace sockets
    }
 
 
-   bool ipv6_address::Reverse(sp(::ca::application) papp, in6_addr& a,string & name)
+   bool ipv6_address::Reverse(sp(::ca2::application) papp, in6_addr& a,string & name)
    {
       struct sockaddr_in6 sa;
       memset(&sa, 0, sizeof(sa));
@@ -139,12 +139,12 @@ namespace sockets
    string ipv6_address::Convert(bool include_port)
    {
       if (include_port)
-         return Convert(get_app(), m_addr.sin6_addr) + ":" + ::ca::str::from(GetPort());
+         return Convert(get_app(), m_addr.sin6_addr) + ":" + ::ca2::str::from(GetPort());
       return Convert(get_app(), m_addr.sin6_addr);
    }*/
 
 
-/*   string ipv6_address::Convert(sp(::ca::application) papp, struct in6_addr& a,bool mixed)
+/*   string ipv6_address::Convert(sp(::ca2::application) papp, struct in6_addr& a,bool mixed)
    {
       char slask[100]; // l2ip temporary
       *slask = 0;

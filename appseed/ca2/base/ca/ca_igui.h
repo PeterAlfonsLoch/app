@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ca
+namespace ca2
 {
    class graphics;
 
@@ -18,4 +18,4 @@ namespace ca
        uint_ptr     itemData;
    };
 
-} // namespace ca
+} // namespace ca2

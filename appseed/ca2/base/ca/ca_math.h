@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -14,7 +14,7 @@ namespace ca
 
 
       class CLASS_DECL_ca2 math :
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
       private:
 
@@ -38,7 +38,7 @@ namespace ca
          mutex          m_mutex;
 
 
-         math(sp(::ca::application) papp);
+         math(sp(::ca2::application) papp);
          virtual ~math();
 
 
@@ -99,6 +99,6 @@ namespace ca
    } // namespace math
 
 
-} // namespace ca
+} // namespace ca2
 
 

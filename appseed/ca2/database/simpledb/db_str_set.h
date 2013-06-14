@@ -16,7 +16,7 @@ public:
    };
 
    class CLASS_DECL_ca2 queue_item :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 
@@ -47,7 +47,7 @@ public:
 
       smart_pointer_array < queue_item >               m_itema;
 
-      sync_queue(sp(::ca::application) papp);
+      sync_queue(sp(::ca2::application) papp);
       virtual ~sync_queue();
 
 

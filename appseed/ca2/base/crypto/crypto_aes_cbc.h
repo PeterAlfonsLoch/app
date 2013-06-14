@@ -22,28 +22,28 @@ typedef struct {
 } aes_cbc_ctx_t;
 
 err_status_t
-aes_cbc_set_key(aes_cbc_ctx_t *c,
+aes_cbc_set_key(aes_cbc_ctx_t *ca,
       const uchar *key); 
 
 err_status_t
-aes_cbc_encrypt(aes_cbc_ctx_t *c, 
+aes_cbc_encrypt(aes_cbc_ctx_t *ca, 
       uchar *buf, 
       uint32_t  *bytes_in_data);
 
 err_status_t
-aes_cbc_context_init(aes_cbc_ctx_t *c, const uint8_t *key, 
+aes_cbc_context_init(aes_cbc_ctx_t *ca, const uint8_t *key, 
            cipher_direction_t dir);
 
 err_status_t
-aes_cbc_set_iv(aes_cbc_ctx_t *c, void *iv);
+aes_cbc_set_iv(aes_cbc_ctx_t *ca, void *iv);
 
 err_status_t
-aes_cbc_nist_encrypt(aes_cbc_ctx_t *c,
+aes_cbc_nist_encrypt(aes_cbc_ctx_t *ca,
            uchar *data, 
            uint32_t *bytes_in_data);
 
 err_status_t
-aes_cbc_nist_decrypt(aes_cbc_ctx_t *c,
+aes_cbc_nist_decrypt(aes_cbc_ctx_t *ca,
            uchar *data, 
            uint32_t *bytes_in_data);
 

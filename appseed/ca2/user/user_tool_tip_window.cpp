@@ -3,8 +3,8 @@
 namespace user
 {
 
-   tool_tip_window::tool_tip_window(sp(::ca::application) papp) :
-      ca(papp),
+   tool_tip_window::tool_tip_window(sp(::ca2::application) papp) :
+      ca2(papp),
       m_font(allocer())
    {
       m_ealignDefault = (EAlign) (AlignRight | AlignTop);
@@ -18,11 +18,11 @@ namespace user
    {
    }
 
-   void tool_tip_window::relay_event(::user::tool_tip_tool * ptool, ::ca::signal_object * pobj)
+   void tool_tip_window::relay_event(::user::tool_tip_tool * ptool, ::ca2::signal_object * pobj)
    {
       if(IsWindow())
          return;
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       switch(pbase->m_uiMessage)
       {
       case WM_MOUSEMOVE:
@@ -73,7 +73,7 @@ namespace user
       SetTimer(1, 5000, NULL);
 
       rect rect;
-      ::ca::client_graphics pdc(this);
+      ::ca2::client_graphics pdc(this);
 
       GetToolRect(iTool, rect);
 
@@ -174,7 +174,7 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   bool tool_tip_window::CalcRect(::ca::graphics * pdc, LPRECT lprect, LPCRECT lprectTool, const char * lpcsz)
+   bool tool_tip_window::CalcRect(::ca2::graphics * pdc, LPRECT lprect, LPCRECT lprectTool, const char * lpcsz)
    {
       pdc->SelectObject(m_font);
       size size = pdc->GetTextExtent(lpcsz);
@@ -212,7 +212,7 @@ namespace user
    // WM_PAINT message handler.
    //
    // Output:
-   // See ca API documentation.
+   // See ca2 API documentation.
    //
    //
    ///////////////////////////////////////////////////////////
@@ -220,7 +220,7 @@ namespace user
    {
       throw not_implemented(get_app());
        /*CPaintDC spgraphics(this);
-      ::ca::graphics * pdc = &spgraphics;
+      ::ca2::graphics * pdc = &spgraphics;
       pdc->SelectObject(m_font);
       rect rectClient;
       GetClientRect(rectClient);
@@ -301,7 +301,7 @@ namespace user
          break;
       }
 
-       ::ca::window::OnTimer(nIDEvent);
+       ::ca2::window::OnTimer(nIDEvent);
    }
 
 
@@ -342,7 +342,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnSize(UINT nType, int32_t cx, int32_t cy)
    {
-       ::ca::window::OnSize(nType, cx, cy);
+       ::ca2::window::OnSize(nType, cx, cy);
 
       UpdateDrawingObjects();
    }
@@ -421,7 +421,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnDestroy()
    {
-   //    ::ca::window::OnDestroy();
+   //    ::ca2::window::OnDestroy();
    }
 
    ///////////////////////////////////////////////////////////
@@ -456,7 +456,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::UpdateDrawingObjects()
    {
-      /*::ca::region rgn;
+      /*::ca2::region rgn;
       rect rectClient;
       GetClientRect(rectClient);
       rect rectWindow;
@@ -578,7 +578,7 @@ namespace user
    }
 
 
-   void tool_tip_window::SetPositionHint(sp(::ca::window) pwnd, e_position eposition)
+   void tool_tip_window::SetPositionHint(sp(::ca2::window) pwnd, e_position eposition)
    {
       rect rect;
       pwnd->GetWindowRect(rect);

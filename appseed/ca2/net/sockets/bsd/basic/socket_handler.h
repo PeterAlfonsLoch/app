@@ -47,12 +47,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       public:
          /** socket_handler constructor.
          \param log Optional log class pointer */
-         socket_handler(sp(::ca::application) papp, StdLog *log = NULL);
+         socket_handler(sp(::ca2::application) papp, StdLog *log = NULL);
 
          /** socket_handler threadsafe constructor.
          \param mutex Externally declared mutex var
          \param log Optional log class pointer */
-         socket_handler(sp(::ca::application) papp, mutex & mutex,StdLog *log = NULL);
+         socket_handler(sp(::ca2::application) papp, mutex & mutex,StdLog *log = NULL);
 
          ~socket_handler();
 
@@ -64,7 +64,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void RegStdLog(StdLog *log);
 
          /** Log error to log class for print out / storage. */
-         void LogError(socket *p,const string & user_text,int32_t err,const string & sys_err, ::ca::log::e_level elevel = ::ca_get_level_warning());
+         void LogError(socket *p,const string & user_text,int32_t err,const string & sys_err, ::ca2::log::e_level elevel = ::ca_get_level_warning());
 
          /** add socket instance to socket map. Removal is always automatic. */
          void add(socket *);

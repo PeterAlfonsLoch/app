@@ -7,27 +7,27 @@ class CLASS_DECL_ca2 simple_scroll_bar :
 public:
 
 
-   //::ca::brush_sp       m_brushNull;
-   ::ca::pen_sp         m_penDraw;
+   //::ca2::brush_sp       m_brushNull;
+   ::ca2::pen_sp         m_penDraw;
    point                m_ptTrackOffset;
    point                m_ptaA[4]; // pontos da primeira seta
    point                m_ptaB[4]; // pontos da segunda seta
-   ::ca::region_sp         m_rgnA; // região da primeira seta
-   ::ca::region_sp         m_rgnB; // região da segunda seta
+   ::ca2::region_sp         m_rgnA; // região da primeira seta
+   ::ca2::region_sp         m_rgnB; // região da segunda seta
    UINT                 m_uiTimer;
 
 
-   simple_scroll_bar(sp(::ca::application) papp);
+   simple_scroll_bar(sp(::ca2::application) papp);
    virtual ~simple_scroll_bar();
 
 
 
-   virtual void pre_translate_message(::ca::signal_object * pobj);
+   virtual void pre_translate_message(::ca2::signal_object * pobj);
    using ::user::scroll_bar::create;
-   virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, UINT nID, sp(::ca::create_context) pContext = NULL);
-   virtual void install_message_handling(::ca::message::dispatch * pinterface);
+   virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, UINT nID, sp(::ca2::create_context) pContext = NULL);
+   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ca2::graphics * pdc);
 
    void UpdateDrawingObjects();
 
@@ -41,7 +41,7 @@ public:
    bool GetPageBRect(LPRECT lpRectClient, LPRECT lpRectTrack,  LPRECT lpRect);
    void UpdateBitmaps();
    void OnDisplayChange(int32_t iBitsPerPixel, size sizeScreen);
-   //virtual void OnDraw(::ca::graphics * pgraphics);
+   //virtual void OnDraw(::ca2::graphics * pgraphics);
    virtual int32_t _001GetScrollPos();
    virtual int32_t _001SetScrollPos(int32_t iPos);
    virtual bool _001GetScrollInfo(::user::scroll_info * psi);

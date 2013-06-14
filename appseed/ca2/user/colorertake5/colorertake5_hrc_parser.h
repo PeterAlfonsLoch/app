@@ -13,8 +13,8 @@ namespace colorertake5
    {
    public:
 
-      HRCParserException(sp(::ca::application) papp) :
-         ca(papp),
+      HRCParserException(sp(::ca2::application) papp) :
+         ca2(papp),
          ::call_stack(papp),
          ::base_exception(papp),
          ::colorertake5::exception(papp)
@@ -23,8 +23,8 @@ namespace colorertake5
       }
 
 
-      HRCParserException(sp(::ca::application) papp, const string & msg) :
-         ca(papp),
+      HRCParserException(sp(::ca2::application) papp, const string & msg) :
+         ca2(papp),
          ::call_stack(papp),
          ::base_exception(papp),
          ::colorertake5::exception(papp)
@@ -42,7 +42,7 @@ namespace colorertake5
    @ingroup colorer
    */
    class CLASS_DECL_ca2 HRCParser :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       /** Error Handler, used to inform application about different error conditions

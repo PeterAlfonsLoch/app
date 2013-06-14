@@ -16,7 +16,7 @@ namespace userfs
 
 
 
-      list_interface(sp(::ca::application) appp);
+      list_interface(sp(::ca2::application) appp);
       virtual ~list_interface();
 
       virtual void _001InsertColumns();
@@ -30,7 +30,7 @@ namespace userfs
       void add_item(const char * pszPath, const char * pszTitle);
       //virtual void schedule_file_size(const char * psz) = 0;
       virtual void _017Synchronize();
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       sp(image_list) GetActionButtonImageList(index i);
 
@@ -52,7 +52,7 @@ namespace userfs
       void _017PreSynchronize();
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
       void _017UpdateList();
       void GetSelectedFilePath(stringa & array);
       virtual void _001CreateImageList();

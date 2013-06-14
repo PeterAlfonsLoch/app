@@ -1,18 +1,18 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    template < class T >
    class smart_pointer_query :
-      virtual ::ca::object
+      virtual ::ca2::object
    {
    public:
 
 
-      ::c::smart_pointer < T > * m_psp;
+      ::ca::smart_pointer < T > * m_psp;
 
       T * m_p;
 
@@ -39,7 +39,7 @@ namespace ca
       }
 
 
-      smart_pointer_query(::c::smart_pointer < T > & sp)
+      smart_pointer_query(::ca::smart_pointer < T > & sp)
       {
 
          m_psp    = &sp;
@@ -70,16 +70,16 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 
 
 
 
 template < class T >
-inline ::ca::smart_pointer_query < T > ca_smart_pointer_query(::c::smart_pointer < T > & sp)
+inline ::ca2::smart_pointer_query < T > ca_smart_pointer_query(::ca::smart_pointer < T > & sp)
 {
-   return ::ca::smart_pointer_query < T > (sp);
+   return ::ca2::smart_pointer_query < T > (sp);
 }
 
 

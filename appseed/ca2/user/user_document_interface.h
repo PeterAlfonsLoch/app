@@ -10,8 +10,8 @@ namespace user
 
    class CLASS_DECL_ca2 document_interface :
       virtual public command_target,
-      virtual public ::ca::data_container_base,
-      virtual public ::ca::byte_serializable
+      virtual public ::ca2::data_container_base,
+      virtual public ::ca2::byte_serializable
    {
    public:
 
@@ -34,7 +34,7 @@ namespace user
 
       virtual void update_title();
 
-      virtual void on_alloc(sp(::ca::application) papp);
+      virtual void on_alloc(sp(::ca2::application) papp);
 
       const string & get_title() const;
       virtual void set_title(const char * lpszTitle);
@@ -88,7 +88,7 @@ namespace user
          return NULL;
       }
 
-      virtual sp(::user::view) get_typed_view(sp(::ca::type_info) info, index indexFind = 0);
+      virtual sp(::user::view) get_typed_view(sp(::ca2::type_info) info, index indexFind = 0);
 
       virtual void show_all_frames(UINT nCmdShow);
 
@@ -98,15 +98,15 @@ namespace user
       public:
          sp(::user::view)         m_pSender;
          LPARAM         m_lHint;
-         ::ca::object *  m_pHint;
+         ::ca2::object *  m_pHint;
       };
 
       // Update Views (simple update - DAG only)
       void update_all_views(sp(::user::view) pSender, LPARAM lHint = 0L,
-         ::ca::object* pHint = NULL);
+         ::ca2::object* pHint = NULL);
 
       void send_update(sp(::user::view) pSender, LPARAM lHint = 0L,
-         ::ca::object* pHint = NULL);
+         ::ca2::object* pHint = NULL);
 
    // Overridables
       // Special notifications
@@ -146,8 +146,8 @@ namespace user
 
       friend class document_template;
 
-      virtual void write(::ca::byte_output_stream & ostream);
-      virtual void read(::ca::byte_input_stream & istream);
+      virtual void write(::ca2::byte_output_stream & ostream);
+      virtual void read(::ca2::byte_input_stream & istream);
 
 
    protected:

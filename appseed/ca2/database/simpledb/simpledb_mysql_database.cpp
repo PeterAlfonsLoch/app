@@ -5,8 +5,8 @@
 namespace mysql
 {
 
-   database::database(sp(::ca::application) papp) :
-      ca(papp)
+   database::database(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_pmysql = NULL;
    }
@@ -125,7 +125,7 @@ namespace mysql
       pres = mysql_store_result ((MYSQL *) m_pmysql);
       if(pres) /* a result set was returned */
       {
-         m_iLastUsedTime = ::ca::profiler::micros();
+         m_iLastUsedTime = ::ca2::profiler::micros();
          return new result(this, true, pres);
       }
       else /* no result set was returned */
@@ -140,7 +140,7 @@ namespace mysql
             * statement generated no result set (it was not a SELECT,
             * SHOW, DESCRIBE, etc.); just report rows-affected value.
             */
-            m_iLastUsedTime = ::ca::profiler::micros();
+            m_iLastUsedTime = ::ca2::profiler::micros();
             TRACE("Number of rows affected: %lu\n", (uint32_t) mysql_affected_rows ((MYSQL *) m_pmysql));
             return new result(this, true, NULL);
          }
@@ -194,9 +194,9 @@ namespace mysql
       while((row = (MYSQL_ROW) presult->fetch_row()) != NULL)
       {
          if(row[0] == NULL)
-            a.propset().add(::ca::str::from(i), ::var(::var::type_null));
+            a.propset().add(::ca2::str::from(i), ::var(::var::type_null));
          else
-            a.propset().add(::ca::str::from(i), var(row[0]));
+            a.propset().add(::ca2::str::from(i), var(row[0]));
          i++;
       }
       return a;
@@ -214,9 +214,9 @@ namespace mysql
       for(int32_t j = 0; j < iNumFields; j++)
       {
          if(row[j] == NULL)
-            a.propset().add(::ca::str::from(j), ::var(::var::type_null));
+            a.propset().add(::ca2::str::from(j), ::var(::var::type_null));
          else
-            a.propset().add(::ca::str::from(j), var(row[j]));
+            a.propset().add(::ca2::str::from(j), var(row[j]));
       }
       return a;
    }
@@ -286,7 +286,7 @@ namespace mysql
          }
          else
          {
-            ::ca::str::increment_digit_letter(strId);
+            ::ca2::str::increment_digit_letter(strId);
          }
          strSql = "INSERT INTO " + strTable + "(`id`, `value`) VALUES('" + strId + "', '" + strAgent + "')";
          if(!query(strSql))

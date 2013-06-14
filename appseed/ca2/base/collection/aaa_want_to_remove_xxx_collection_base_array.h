@@ -9,7 +9,7 @@ class index_array;
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class aaa_base_array :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
 
@@ -203,7 +203,7 @@ public:
    };
 
 
-   aaa_base_array(sp(::ca::application) papp = NULL);
+   aaa_base_array(sp(::ca2::application) papp = NULL);
    aaa_base_array(const aaa_base_array <TYPE, ARG_TYPE> & a);
    aaa_base_array(::count n, const TYPE & t = TYPE());
    aaa_base_array(TYPE * ptypea, ::count n)
@@ -326,7 +326,7 @@ public:
    ::count get_array(ARRAY & a, index iStart = 0, ::count nCount = -1)
    {
 
-      ::count c = 0;
+      ::count ca = 0;
 
       index iEnd;
 
@@ -339,11 +339,11 @@ public:
       {
             
          a.add(element_at(i));
-         c++;
+         ca++;
 
       }
 
-      return c;
+      return ca;
 
    }
 
@@ -716,8 +716,8 @@ inline TYPE& aaa_base_array<TYPE, ARG_TYPE>::operator[](index nIndex)
 // aaa_base_array<TYPE, ARG_TYPE> out-of-line functions
 
 template<class TYPE, class ARG_TYPE>
-aaa_base_array<TYPE, ARG_TYPE>::aaa_base_array(sp(::ca::application) papp) :
-   ca(papp)
+aaa_base_array<TYPE, ARG_TYPE>::aaa_base_array(sp(::ca2::application) papp) :
+   ca2(papp)
 {
    m_pData = NULL;
    m_nSize = m_nMaxSize = m_nGrowBy = 0;
@@ -830,7 +830,7 @@ template<class TYPE, class ARG_TYPE>
 #define new DEBUG_NEW
 
       // copy new data from old
-      ::ca::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
+      ::ca2::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
          m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
@@ -875,7 +875,7 @@ void aaa_base_array<TYPE, ARG_TYPE>::free_extra()
          pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
 #define new DEBUG_NEW
          // copy new data from old
-         ::ca::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
+         ::ca2::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
             m_pData, m_nSize * sizeof(TYPE));
       }
 
@@ -946,7 +946,7 @@ index aaa_base_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElemen
       for(i = 0; i < nCount; i++ )
          (m_pData + nOldSize + i)->~TYPE();
       // shift old data up to fill gap
-      ::ca::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
+      ::ca2::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
          m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
 
       // re-init slots we copied from
@@ -985,7 +985,7 @@ index aaa_base_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
       (m_pData + nIndex + i)->~TYPE();
    if (nMoveCount)
    {
-      ::ca::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
+      ::ca2::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
          m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
    }
    m_nSize -= nCount;
@@ -1077,7 +1077,7 @@ void aaa_base_array<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
 {
    ASSERT_VALID(this);
 
-   ::ca::object::Serialize(ar);
+   ::ca2::object::Serialize(ar);
    if (ar.IsStoring())
    {
       ar.WriteCount(m_nSize);
@@ -1094,7 +1094,7 @@ void aaa_base_array<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
 template<class TYPE, class ARG_TYPE>
 void aaa_base_array<TYPE, ARG_TYPE>::assert_valid() const
 {
-   ::ca::object::assert_valid();
+   ::ca2::object::assert_valid();
 
    if (m_pData == NULL)
    {
@@ -1147,7 +1147,7 @@ void aaa_base_array<TYPE, ARG_TYPE>::copy(const aaa_base_array& src)
 template<class TYPE, class ARG_TYPE>
 void aaa_base_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 {
-   ::ca::object::dump(dumpcontext);
+   ::ca2::object::dump(dumpcontext);
 
    dumpcontext << "with " << m_nSize << " elements";
    if (dumpcontext.GetDepth() > 0)

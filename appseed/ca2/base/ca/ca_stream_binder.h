@@ -3,11 +3,11 @@
 
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 stream_binder :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       
@@ -20,10 +20,10 @@ namespace ca
       uint_ptr            ProcessedSize;
 
 
-      stream_binder(sp(::ca::application) papp);
+      stream_binder(sp(::ca2::application) papp);
       HRes CreateEvents();
 
-      virtual void CreateStreams(sp(::ca::reader) & inStream, sp(::ca::writer) & outStream);
+      virtual void CreateStreams(sp(::ca2::reader) & inStream, sp(::ca2::writer) & outStream);
 
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
       virtual void CloseRead();
@@ -34,5 +34,5 @@ namespace ca
       virtual void ReInit();
    };
 
-} // namespace ca
+} // namespace ca2
 

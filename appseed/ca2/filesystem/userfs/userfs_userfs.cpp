@@ -5,9 +5,9 @@ namespace userfs
 {
 
 
-   userfs::userfs(::ca::application * papp) :
-      ca(papp),
-      ::ca::section(papp)
+   userfs::userfs(::ca2::application * papp) :
+      ca2(papp),
+      ::ca2::section(papp)
    {
 
    }
@@ -29,7 +29,7 @@ namespace userfs
       }
 
 
-      if(!::ca::section::initialize())
+      if(!::ca2::section::initialize())
          return false;
 
 
@@ -39,7 +39,7 @@ namespace userfs
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

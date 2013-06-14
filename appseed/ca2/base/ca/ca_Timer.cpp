@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
    const UINT Timer::ID_HOVER = 16381;
@@ -16,4 +16,4 @@ namespace ca
    }
 
 
-}  // namespace ca
+}  // namespace ca2

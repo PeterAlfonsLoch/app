@@ -1,5 +1,5 @@
 /*
- * stats.c
+ * stats.ca
  *
  * statistical tests for randomness (FIPS 140-2, Section 4.9)
  * 

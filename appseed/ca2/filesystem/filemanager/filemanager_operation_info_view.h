@@ -8,11 +8,11 @@ public:
 
    double m_dAnime;
 
-   file_manager_operation_info_view(sp(::ca::application) papp);
+   file_manager_operation_info_view(sp(::ca2::application) papp);
 
-   virtual void OnDraw(::ca::graphics * pdc);
+   virtual void OnDraw(::ca2::graphics * pdc);
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ca2::graphics * pdc);
 
    sp(file_manager_operation_document) get_document();
 
@@ -20,7 +20,7 @@ public:
 
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnTimer)
-   virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+   virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
    void assert_valid() const;
    void dump(dump_context & context) const;

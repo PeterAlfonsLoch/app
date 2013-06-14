@@ -7,7 +7,7 @@ namespace dynamic_source
    class script;
 
    class CLASS_DECL_ca2 script_cache :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -17,7 +17,7 @@ namespace dynamic_source
       sp(script_manager)   m_pmanager;
 
 
-      script_cache(sp(::ca::application) papp);
+      script_cache(sp(::ca2::application) papp);
       ~script_cache();
 
       script_instance * create_instance(const char * lpcszName);

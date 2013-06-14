@@ -13,9 +13,9 @@ namespace primitive
    public:
 
 #ifdef WINDOWS
-      shared_file(sp(::ca::application) papp, UINT nGrowBytes = 4096, UINT nAllocFlags = GMEM_MOVEABLE);
+      shared_file(sp(::ca2::application) papp, UINT nGrowBytes = 4096, UINT nAllocFlags = GMEM_MOVEABLE);
 #else
-    shared_file(sp(::ca::application) papp, UINT nGrowBytes = 4096, UINT nAllocFlags = 0);
+    shared_file(sp(::ca2::application) papp, UINT nGrowBytes = 4096, UINT nAllocFlags = 0);
 #endif
 
       virtual HGLOBAL detach_storage();

@@ -35,8 +35,8 @@ namespace user
 
    }
 
-   interaction::interaction(sp(::ca::application) papp) :
-      ca(papp),
+   interaction::interaction(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::window_interface(papp)
    {
 
@@ -70,7 +70,7 @@ namespace user
          {
             if(m_pthread != NULL)
             {
-               m_pthread->m_pthread->::ca::thread::remove(this);
+               m_pthread->m_pthread->::ca2::thread::remove(this);
             }
          }
          catch(...)
@@ -83,7 +83,7 @@ namespace user
          catch(...)
          {
          }
-         ::ca::object * pobjTwf = NULL;
+         ::ca2::object * pobjTwf = NULL;
          if(m_papp != NULL && &System != NULL)
          {
             pobjTwf = System.get_twf();
@@ -92,7 +92,7 @@ namespace user
    /*      if(GetTopLevelParent() != NULL
          && GetTopLevelParent() != this)
          {
-            sp(::ca::window) pwnd = GetTopLevelParent()->get_wnd();
+            sp(::ca2::window) pwnd = GetTopLevelParent()->get_wnd();
             if(pwnd != NULL)
             {
 
@@ -134,7 +134,7 @@ namespace user
 
    }
 
-   ::ca::graphics * interaction::GetDC()
+   ::ca2::graphics * interaction::GetDC()
    {
      if(m_pimpl == NULL)
          return FALSE;
@@ -142,7 +142,7 @@ namespace user
          return m_pimpl->GetDC();
    }
 
-   bool interaction::ReleaseDC(::ca::graphics * pdc)
+   bool interaction::ReleaseDC(::ca2::graphics * pdc)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -219,7 +219,7 @@ namespace user
 
             m_pimpl->set_parent(NULL);
 
-            sp(::ca::window) pimplNew = Application.alloc(System.type_info < ::ca::window > ());
+            sp(::ca2::window) pimplNew = Application.alloc(System.type_info < ::ca2::window > ());
 
             pimplNew->m_pguie = this;
 
@@ -416,7 +416,7 @@ namespace user
          return m_pimpl->GetDlgCtrlId();
    }
 
-   void interaction::install_message_handling(::ca::message::dispatch * pinterface)
+   void interaction::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_CREATE               , pinterface, this, &interaction::_001OnCreate);
       if(m_bMessageWindow)
@@ -436,12 +436,12 @@ namespace user
       IGUI_WIN_MSG_LINK(message_simple_command  , pinterface, this, &interaction::_001OnSimpleCommand);
    }
 
-   void interaction::_001OnNcCalcSize(::ca::signal_object * pobj)
+   void interaction::_001OnNcCalcSize(::ca2::signal_object * pobj)
    {
       pobj->m_bRet = true; // avoid any Microsoft-Window-concept-of-non-client-area
    }
 
-   void interaction::_001OnDestroy(::ca::signal_object * pobj)
+   void interaction::_001OnDestroy(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 
@@ -511,17 +511,17 @@ namespace user
 
 
 
-   void interaction::_001OnSize(::ca::signal_object * pobj)
+   void interaction::_001OnSize(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_001OnMove(::ca::signal_object * pobj)
+   void interaction::_001OnMove(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::set_view_port_org(::ca::graphics * pgraphics)
+   void interaction::set_view_port_org(::ca2::graphics * pgraphics)
    {
       if(m_pimpl == NULL)
          return;
@@ -535,7 +535,7 @@ namespace user
 */
    }
 
-   void interaction::_001DrawThis(::ca::graphics * pgraphics)
+   void interaction::_001DrawThis(::ca2::graphics * pgraphics)
    {
       if(m_pguie != NULL)
       {
@@ -565,7 +565,7 @@ namespace user
       }
    }
 
-   void interaction::_001DrawChildren(::ca::graphics *pdc)
+   void interaction::_001DrawChildren(::ca2::graphics *pdc)
    {
 
       if(m_pguie != NULL && m_pguie != this)
@@ -610,7 +610,7 @@ namespace user
       }
    }
 
-   void interaction::_001Print(::ca::graphics * pgraphics)
+   void interaction::_001Print(::ca2::graphics * pgraphics)
    {
 
       point ptViewport(0, 0);
@@ -648,7 +648,7 @@ namespace user
          ::visual::cursor * pcursor = Session.get_cursor();
          if(pcursor != NULL)
          {
-            pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::ca2::alpha_mode_blend);
             pcursor->to(pgraphics, ptCursor);
          }
       }
@@ -656,7 +656,7 @@ namespace user
    }
 
 
-   void interaction::_000OnDraw(::ca::graphics *pdc)
+   void interaction::_000OnDraw(::ca2::graphics *pdc)
    {
       if(!m_bVisible)
          return;
@@ -672,7 +672,7 @@ namespace user
    }
 
 
-   void interaction::_001OnDraw(::ca::graphics *pdc)
+   void interaction::_001OnDraw(::ca2::graphics *pdc)
    {
 
       draw_control_background(pdc);
@@ -680,7 +680,7 @@ namespace user
    }
 
 
-   void interaction::draw_control_background(::ca::graphics *pdc)
+   void interaction::draw_control_background(::ca2::graphics *pdc)
    {
 
       rect rectClient;
@@ -698,14 +698,14 @@ namespace user
       else
       {
          pdc->SelectClipRgn(NULL);
-         pdc->set_alpha_mode(::ca::alpha_mode_set);
+         pdc->set_alpha_mode(::ca2::alpha_mode_set);
          pdc->FillSolidRect(rectClient, (255 << 24) | (get_background_color() & 0xffffff));
       }
 
    }
 
 
-   void interaction::_001OnCreate(::ca::signal_object * pobj)
+   void interaction::_001OnCreate(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 
@@ -719,7 +719,7 @@ namespace user
       if(GetFont() != NULL)
       {
          GetFont()->m_dFontSize = 12.0;
-         GetFont()->m_eunitFontSize = ::ca::unit_point;
+         GetFont()->m_eunitFontSize = ::ca2::unit_point;
          GetFont()->m_strFontFamilyName = "Times New Roman";
       }
 
@@ -734,7 +734,7 @@ namespace user
 
 
 
-   void interaction::_000OnMouse(::ca::message::mouse * pmouse)
+   void interaction::_000OnMouse(::ca2::message::mouse * pmouse)
    {
       try
       {
@@ -785,7 +785,7 @@ namespace user
       {
          if(m_pimpl == NULL)
             return;
-         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca::signal_object * > (pmouse));
+         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca2::signal_object * > (pmouse));
          if(pmouse->get_lresult() != 0)
             return;
       }
@@ -794,7 +794,7 @@ namespace user
       }
    }
 
-   void interaction::_000OnKey(::ca::message::key * pkey)
+   void interaction::_000OnKey(::ca2::message::key * pkey)
    {
       point ptCursor;
       System.get_cursor_pos(&ptCursor);
@@ -834,7 +834,7 @@ namespace user
          }
          try
          {
-            (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca::signal_object * > (pkey));
+            (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca2::signal_object * > (pkey));
             if(pkey->get_lresult() != 0)
                return;
          }
@@ -844,7 +844,7 @@ namespace user
       }
    }
 
-   void interaction::_001OnMouseEnter(::ca::signal_object * pobj)
+   void interaction::_001OnMouseEnter(::ca2::signal_object * pobj)
    {
       /*
       for(int32_t i = 0; i < m_uiptra.get_size(); i++)
@@ -862,7 +862,7 @@ namespace user
    }
 
 
-   void interaction::_001OnMouseLeave(::ca::signal_object * pobj)
+   void interaction::_001OnMouseLeave(::ca2::signal_object * pobj)
    {
 
       sp(interaction) pui = get_top_child();
@@ -911,7 +911,7 @@ namespace user
       return rect.contains(pt);
    }
 
-   void interaction::_001OnKeyDown(::ca::signal_object * pobj)
+   void interaction::_001OnKeyDown(::ca2::signal_object * pobj)
    {
       if(Application.user()->get_keyboard_focus() != this
       && Application.user()->get_keyboard_focus() != NULL)
@@ -920,7 +920,7 @@ namespace user
       }
    }
 
-   void interaction::_001OnKeyUp(::ca::signal_object * pobj)
+   void interaction::_001OnKeyUp(::ca2::signal_object * pobj)
    {
       if(Application.user()->get_keyboard_focus() != this
       && Application.user()->get_keyboard_focus() != NULL)
@@ -929,7 +929,7 @@ namespace user
       }
    }
 
-   void interaction::_001OnChar(::ca::signal_object * pobj)
+   void interaction::_001OnChar(::ca2::signal_object * pobj)
    {
       if(Application.user()->get_keyboard_focus() != this
       && Application.user()->get_keyboard_focus() != NULL)
@@ -938,11 +938,11 @@ namespace user
       }
    }
 
-   void interaction::_001OnTimer(::ca::signal_object * pobj)
+   void interaction::_001OnTimer(::ca2::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca::message::timer, ptimer, pobj)
+//      SCAST_PTR(::ca2::message::timer, ptimer, pobj)
 
    }
 
@@ -1009,7 +1009,7 @@ namespace user
    }
 
    /*
-   void interaction::_001SetWindowPos(const sp(::ca::window) pWndInsertAfter, int32_t x, int32_t y,
+   void interaction::_001SetWindowPos(const sp(::ca2::window) pWndInsertAfter, int32_t x, int32_t y,
                int32_t cx, int32_t cy, UINT nFlags)
    {
       SetWindowPos(pWndInsertAfter, x, y, cx, cy, nFlags);
@@ -1034,42 +1034,42 @@ namespace user
 
 
 
-   void interaction::_002OnLButtonDown(::ca::signal_object * pobj)
+   void interaction::_002OnLButtonDown(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_002OnLButtonUp(::ca::signal_object * pobj)
+   void interaction::_002OnLButtonUp(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_002OnMouseMove(::ca::signal_object * pobj)
+   void interaction::_002OnMouseMove(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_002OnMouseEnter(::ca::signal_object * pobj)
+   void interaction::_002OnMouseEnter(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_002OnMouseLeave(::ca::signal_object * pobj)
+   void interaction::_002OnMouseLeave(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_002OnKeyDown(::ca::signal_object * pobj)
+   void interaction::_002OnKeyDown(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_002OnKeyUp(::ca::signal_object * pobj)
+   void interaction::_002OnKeyUp(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_002OnTimer(::ca::signal_object * pobj)
+   void interaction::_002OnTimer(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -1078,7 +1078,7 @@ namespace user
    // pbase object should be allocated with new in
    // base or derived object and will be delete after
    // handling
-   LRESULT interaction::send(::ca::message::base * pbase)
+   LRESULT interaction::send(::ca2::message::base * pbase)
    {
       
       message_handler(pbase);
@@ -1091,7 +1091,7 @@ namespace user
    // pbase object should be allocated with new in
    // base or derived object and will be delete after
    // handling
-   bool interaction::post(::ca::message::base * pbase)
+   bool interaction::post(::ca2::message::base * pbase)
    {
       
       return post_message(WM_APP + 2014, 1, (LPARAM) pbase);
@@ -1198,7 +1198,7 @@ namespace user
    }
 
 
-   void interaction::pre_translate_message(::ca::signal_object * pobj)
+   void interaction::pre_translate_message(::ca2::signal_object * pobj)
    {
       if(m_pimpl == NULL)
          return;
@@ -1232,7 +1232,7 @@ namespace user
       return NULL;
 
 #else
-      sp(::ca::window) pwnd = NULL;
+      sp(::ca2::window) pwnd = NULL;
 
       try
       {
@@ -1271,9 +1271,9 @@ namespace user
 
       sp(interaction) pimplOld = m_pimpl;
 
-      sp(::ca::window) pimplNew = NULL;
+      sp(::ca2::window) pimplNew = NULL;
 
-      pimplNew = (Application.alloc(System.type_info < ::ca::window > ()));
+      pimplNew = (Application.alloc(System.type_info < ::ca2::window > ()));
 
       pimplNew->m_pguie = this;
 
@@ -1294,7 +1294,7 @@ namespace user
 
             pimplOld->_001ClearMessageHandling();
 
-            sp(::ca::window) pwindowOld = pimplOld;
+            sp(::ca2::window) pwindowOld = pimplOld;
 
             if(pwindowOld != NULL)
             {
@@ -1328,7 +1328,7 @@ namespace user
    oswindow interaction::unsubclass_window()
    {
 
-      sp(::ca::window) pwindow = m_pimpl;
+      sp(::ca2::window) pwindow = m_pimpl;
 
       if(pwindow != NULL)
       {
@@ -1340,14 +1340,14 @@ namespace user
 
 #ifdef METROWIN
 
-   bool interaction::initialize(Windows::UI::Core::CoreWindow ^ window, ::ca::system_window ^ pwindow)
+   bool interaction::initialize(Windows::UI::Core::CoreWindow ^ window, ::ca2::system_window ^ pwindow)
    {
       if(IsWindow())
       {
          DestroyWindow();
       }
       m_signalptra.remove_all();
-      m_pimpl = (Application.alloc(System.type_info < ::ca::window > ()));
+      m_pimpl = (Application.alloc(System.type_info < ::ca2::window > ()));
       m_pimpl->m_pguie = this;
       m_pguie = this;
       if(!m_pimpl->initialize(window, pwindow))
@@ -1382,7 +1382,7 @@ namespace user
       return true;
    }
 
-   bool interaction::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(interaction) pParentWnd, id id, sp(::ca::create_context) pContext)
+   bool interaction::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(interaction) pParentWnd, id id, sp(::ca2::create_context) pContext)
    {
 
       if(IsWindow())
@@ -1396,7 +1396,7 @@ namespace user
 
       sp(interaction) pimplNew = NULL;
 
-      pimplNew = (Application.alloc(System.type_info < ::ca::window > ()));
+      pimplNew = (Application.alloc(System.type_info < ::ca2::window > ()));
 
       pimplNew->m_pguie = this;
 
@@ -1418,7 +1418,7 @@ namespace user
 
             pimplOld->_001ClearMessageHandling();
 
-            sp(::ca::window) pwindowOld = (pimplOld.m_p);
+            sp(::ca2::window) pwindowOld = (pimplOld.m_p);
 
             if(pwindowOld != NULL)
             {
@@ -1449,7 +1449,7 @@ namespace user
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         sp(::ca::create_context) pContext)
+         sp(::ca2::create_context) pContext)
    {
       //if(IsWindow())
       //{
@@ -1465,7 +1465,7 @@ namespace user
       if(pParentWnd == NULL)
 #endif
       {
-         pimplNew = (Application.alloc(System.type_info < ::ca::window > ()));
+         pimplNew = (Application.alloc(System.type_info < ::ca2::window > ()));
          pimplNew->m_pguie = this;
          m_pimpl = pimplNew;
          if(!pimplNew->create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, pContext))
@@ -1489,7 +1489,7 @@ namespace user
          {
             pimplOld->m_pguie = NULL;
             pimplOld->_001ClearMessageHandling();
-            sp(::ca::window) pwindowOld = (pimplOld.m_p);
+            sp(::ca2::window) pwindowOld = (pimplOld.m_p);
             if(pwindowOld != NULL)
             {
                pwindowOld->install_message_handling(pimplOld);
@@ -1524,7 +1524,7 @@ namespace user
          DestroyWindow();
       }
       m_signalptra.remove_all();
-      m_pimpl = (Application.alloc(System.type_info < ::ca::window > ()));
+      m_pimpl = (Application.alloc(System.type_info < ::ca2::window > ()));
       m_pimpl->m_pguie = this;
       if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
       {
@@ -1550,7 +1550,7 @@ namespace user
 #ifndef METROWIN
       if(pParentWnd == NULL)
       {
-         m_pimpl = (Application.alloc(System.type_info < ::ca::window > ()));
+         m_pimpl = (Application.alloc(System.type_info < ::ca2::window > ()));
          m_pimpl->m_pguie = this;
          dwStyle &= ~WS_CHILD;
          if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
@@ -1629,7 +1629,7 @@ namespace user
 
 
    bool interaction::RedrawWindow(LPCRECT lpRectUpdate,
-         ::ca::region* prgnUpdate,
+         ::ca2::region* prgnUpdate,
          UINT flags)
    {
       if(m_pimpl == NULL)
@@ -1813,14 +1813,14 @@ namespace user
          return m_pimpl->GetWindowTextLength();
    }
 
-   void interaction::SetFont(::ca::font* pFont, bool bRedraw)
+   void interaction::SetFont(::ca2::font* pFont, bool bRedraw)
    {
       if(m_pimpl == NULL)
          return;
       else
          m_pimpl->SetFont(pFont, bRedraw);
    }
-   ::ca::font* interaction::GetFont()
+   ::ca2::font* interaction::GetFont()
    {
       if(m_pimpl == NULL)
          return NULL;
@@ -2166,7 +2166,7 @@ namespace user
    }
 
 
-   void interaction::message_handler(::ca::signal_object * pobj)
+   void interaction::message_handler(::ca2::signal_object * pobj)
    {
       if(m_pimpl == NULL || m_pimpl == this)
          return;
@@ -2258,7 +2258,7 @@ namespace user
          return m_pimpl->GetUpdateRect(lpRect, bErase);
    }
 
-   int32_t interaction::GetUpdateRgn(::ca::region* pRgn, bool bErase)
+   int32_t interaction::GetUpdateRgn(::ca2::region* pRgn, bool bErase)
    {
       if(m_pimpl == NULL)
          return 0;
@@ -2283,7 +2283,7 @@ namespace user
          m_pimpl->InvalidateRect(lpRect, bErase);
    }
 
-   void interaction::InvalidateRgn(::ca::region* pRgn, bool bErase)
+   void interaction::InvalidateRgn(::ca2::region* pRgn, bool bErase)
    {
       if(m_pimpl == NULL)
          return;
@@ -2298,7 +2298,7 @@ namespace user
       else
          m_pimpl->ValidateRect(lpRect);
    }
-   void interaction::ValidateRgn(::ca::region* pRgn)
+   void interaction::ValidateRgn(::ca2::region* pRgn)
    {
       if(m_pimpl == NULL)
          return;
@@ -2344,7 +2344,7 @@ namespace user
    }
 
 
-   id interaction::RunModalLoop(uint32_t dwFlags, ::ca::live_object * pliveobject)
+   id interaction::RunModalLoop(uint32_t dwFlags, ::ca2::live_object * pliveobject)
    {
 
       // for tracking the idle time state
@@ -2355,14 +2355,14 @@ namespace user
       m_iModal = m_iModalCount;
       int32_t iLevel = m_iModal;
       sp(::user::interaction) puieParent = get_parent();
-      oprop(string("RunModalLoop.thread(") + ::ca::str::from(iLevel) + ")") = System.GetThread();
+      oprop(string("RunModalLoop.thread(") + ::ca2::str::from(iLevel) + ")") = System.GetThread();
       m_iModalCount++;
 
       //bool bAttach = AttachThreadInput(get_wnd()->m_pthread->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
-      m_iaModalThread.add(::ca::get_thread()->get_os_int());
-      sp(::ca::application) pappThis1 = (m_pthread->m_pthread->m_p);
-      sp(::ca::application) pappThis2 = (m_pthread->m_pthread);
+      m_iaModalThread.add(::ca2::get_thread()->get_os_int());
+      sp(::ca2::application) pappThis1 = (m_pthread->m_pthread->m_p);
+      sp(::ca2::application) pappThis2 = (m_pthread->m_pthread);
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
 
@@ -2563,7 +2563,7 @@ ExitModal:
          System.GetThread()->post_thread_message(WM_NULL);
          for(int32_t i = iLevel; i >= 0; i--)
          {
-            ::ca::thread * pthread = oprop(string("RunModalLoop.thread(") + ::ca::str::from(i) + ")").ca < ::ca::thread > ();
+            ::ca2::thread * pthread = oprop(string("RunModalLoop.thread(") + ::ca2::str::from(i) + ")").ca2 < ::ca2::thread > ();
             try
             {
                pthread->post_thread_message(WM_NULL);
@@ -2686,7 +2686,7 @@ ExitModal:
    {
       m_eappearance = appearance_zoomed;
       rect rectDesktop;
-      sp(::ca::window) pwndDesktop = System.get_desktop_window();
+      sp(::ca2::window) pwndDesktop = System.get_desktop_window();
       pwndDesktop->GetWindowRect(rectDesktop);
       SetWindowPos(ZORDER_TOP, 0, 0, rectDesktop.width(),
          rectDesktop.height(), SWP_SHOWWINDOW);
@@ -2701,12 +2701,12 @@ ExitModal:
    }
 
 
-   void interaction::GuieProc(::ca::signal_object * pobj)
+   void interaction::GuieProc(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_001DeferPaintLayeredWindowBackground(::ca::graphics * pdc)
+   void interaction::_001DeferPaintLayeredWindowBackground(::ca2::graphics * pdc)
    {
       if(m_pimpl != NULL)
       {
@@ -2714,7 +2714,7 @@ ExitModal:
       }
    }
 
-   void interaction::_001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc)
+   void interaction::_001OnDeferPaintLayeredWindowBackground(::ca2::graphics * pdc)
    {
 
       _001DeferPaintLayeredWindowBackground(pdc);
@@ -2757,7 +2757,7 @@ ExitModal:
    }
 
 
-   bool interaction::create_message_window(const char * pszName, ::ca::window_callback * pcallback)
+   bool interaction::create_message_window(const char * pszName, ::ca2::window_callback * pcallback)
    {
 
       UNREFERENCED_PARAMETER(pcallback);
@@ -2771,7 +2771,7 @@ ExitModal:
 
       m_signalptra.remove_all();
 
-      m_pimpl = (Application.alloc(System.type_info < ::ca::window > ()));
+      m_pimpl = (Application.alloc(System.type_info < ::ca2::window > ()));
 
       if(m_pimpl == NULL)
          return false;
@@ -2794,17 +2794,17 @@ ExitModal:
 
    }
 
-   void interaction::WalkPreTranslateTree(::ca::signal_object * pobj)
+   void interaction::WalkPreTranslateTree(::ca2::signal_object * pobj)
    {
       WalkPreTranslateTree(this, pobj);
    }
 
-   void interaction::WalkPreTranslateTree(sp(::user::interaction) puiStop, ::ca::signal_object * pobj)
+   void interaction::WalkPreTranslateTree(sp(::user::interaction) puiStop, ::ca2::signal_object * pobj)
    {
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
 
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       // walk from the target window up to the oswindow_Stop window checking
       //  if any window wants to translate this message
 
@@ -2839,9 +2839,9 @@ ExitModal:
       m_ecursor = ecursor;
    }
 
-   void interaction::_001OnMouseMove(::ca::signal_object * pobj)
+   void interaction::_001OnMouseMove(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
       pmouse->m_ecursor = get_cursor();
    }
 
@@ -3013,8 +3013,8 @@ ExitModal:
    }
 
 
-   interaction::timer_array::timer_array(sp(::ca::application) papp) :
-      ca(papp),
+   interaction::timer_array::timer_array(sp(::ca2::application) papp) :
+      ca2(papp),
       m_mutex(papp)
    {
    }
@@ -3064,7 +3064,7 @@ ExitModal:
 
    }
 
-   void interaction::timer_array::transfer(sp(::ca::window) pwindow, sp(interaction) pguie)
+   void interaction::timer_array::transfer(sp(::ca2::window) pwindow, sp(interaction) pguie)
    {
 
 
@@ -3279,9 +3279,9 @@ restart:
       }
    }
 
-   void interaction::_001OnUser184(::ca::signal_object * pobj)
+   void interaction::_001OnUser184(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       if(pbase->m_wparam == 0 &&
          pbase->m_lparam == 0)
       {
@@ -3303,12 +3303,12 @@ restart:
 #ifdef METROWIN
    sp(::user::interaction) interaction::get_wnd() const
 #else
-   sp(::ca::window) interaction::get_wnd() const
+   sp(::ca2::window) interaction::get_wnd() const
 #endif
    {
       if(m_pimpl != NULL)
       {
-         sp(::ca::window) pwnd = (m_pimpl.m_p);
+         sp(::ca2::window) pwnd = (m_pimpl.m_p);
          if(pwnd != NULL)
             return pwnd;
       }
@@ -3413,7 +3413,7 @@ restart:
    }
 
 
-   void interaction::_001OnClose(::ca::signal_object * pobj)
+   void interaction::_001OnClose(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       if(!IsWindow())
@@ -3487,10 +3487,10 @@ restart:
 
    }
 
-   void interaction::_001OnSimpleCommand(::ca::signal_object * pobj)
+   void interaction::_001OnSimpleCommand(::ca2::signal_object * pobj)
    {
 
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
 
       LRESULT lresult = 0;
 

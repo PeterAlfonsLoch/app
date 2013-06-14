@@ -6,16 +6,16 @@ namespace fontopus
 
 
    class CLASS_DECL_ca2 fontopus :
-      virtual public ::ca::section
+      virtual public ::ca2::section
    {
    public:
 
 
-      ::ca::thread * m_pthreadCreatingUser;
+      ::ca2::thread * m_pthreadCreatingUser;
       user *         m_puser;
 
 
-      fontopus(::ca::application * papp);
+      fontopus(::ca2::application * papp);
       virtual ~fontopus();
 
 
@@ -23,7 +23,7 @@ namespace fontopus
       virtual user * create_system_user(const string & strSystemUserName);
       virtual user * allocate_user();
       virtual user * create_current_user();
-      virtual user * login(::ca::property_set & set);
+      virtual user * login(::ca2::property_set & set);
 
       virtual void logout();
 
@@ -41,7 +41,7 @@ namespace fontopus
 
       virtual void on_user_login(::fontopus::user * puser);
 
-      virtual void on_request(sp(::ca::create_context) pcreatecontext);
+      virtual void on_request(sp(::ca2::create_context) pcreatecontext);
 
    };
 

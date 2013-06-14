@@ -6,6 +6,6 @@ class CLASS_DECL_ca2 mini_dock_frame_window :
 {
 public:
 
-   mini_dock_frame_window(sp(::ca::application) papp);
+   mini_dock_frame_window(sp(::ca2::application) papp);
 
 };

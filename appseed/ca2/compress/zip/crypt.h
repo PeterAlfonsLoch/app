@@ -27,7 +27,7 @@
    Encryption is not supported.
 */
 
-#define CRC32(c, b) ((*(pcrc_32_tab+(((int32_t)(c) ^ (b)) & 0xff))) ^ ((c) >> 8))
+#define CRC32(ca, b) ((*(pcrc_32_tab+(((int32_t)(ca) ^ (b)) & 0xff))) ^ ((ca) >> 8))
 
 /***********************************************************************
  * Return the next byte in the pseudo-random sequence
@@ -45,16 +45,16 @@ static int32_t decrypt_byte(uint32_t  * pkeys, const uint32_t * pcrc_32_tab)
 /***********************************************************************
  * Update the encryption keys with the next byte of plain text
  */
-static int32_t update_keys(uint32_t * pkeys,const uint32_t * pcrc_32_tab,int32_t c)
+static int32_t update_keys(uint32_t * pkeys,const uint32_t * pcrc_32_tab,int32_t ca)
 {
-    (*(pkeys+0)) = CRC32((*(pkeys+0)), c);
+    (*(pkeys+0)) = CRC32((*(pkeys+0)), ca);
     (*(pkeys+1)) += (*(pkeys+0)) & 0xff;
     (*(pkeys+1)) = (*(pkeys+1)) * 134775813L + 1;
     {
       register int32_t keyshift = (int32_t)((*(pkeys+1)) >> 24);
       (*(pkeys+2)) = CRC32((*(pkeys+2)), keyshift);
     }
-    return c;
+    return ca;
 }
 
 
@@ -73,11 +73,11 @@ static void init_keys(const char* passwd, uint32_t * pkeys,const uint32_t * pcrc
     }
 }
 
-#define zdecode(pkeys,pcrc_32_tab,c) \
-    (update_keys(pkeys,pcrc_32_tab,c ^= decrypt_byte(pkeys,pcrc_32_tab)))
+#define zdecode(pkeys,pcrc_32_tab,ca) \
+    (update_keys(pkeys,pcrc_32_tab,ca ^= decrypt_byte(pkeys,pcrc_32_tab)))
 
-#define zencode(pkeys,pcrc_32_tab,c,t) \
-    (t=decrypt_byte(pkeys,pcrc_32_tab), update_keys(pkeys,pcrc_32_tab,c), t^(c))
+#define zencode(pkeys,pcrc_32_tab,ca,t) \
+    (t=decrypt_byte(pkeys,pcrc_32_tab), update_keys(pkeys,pcrc_32_tab,ca), t^(ca))
 
 #ifdef INCLUDECRYPTINGCODE_IFCRYPTALLOWED
 
@@ -97,7 +97,7 @@ static int32_t crypthead(
 {
     int32_t n;                       /* index in random header */
     int32_t t;                       /* temporary */
-    int32_t c;                       /* random byte */
+    int32_t ca;                       /* random byte */
     uchar header[RAND_HEAD_LEN-2]; /* random header */
     static uint32_t calls = 0;   /* ensure different random header each time */
 
@@ -115,8 +115,8 @@ static int32_t crypthead(
     init_keys(passwd, pkeys, pcrc_32_tab);
     for (n = 0; n < RAND_HEAD_LEN-2; n++)
     {
-        c = (rand() >> 7) & 0xff;
-        header[n] = (uchar)zencode(pkeys, pcrc_32_tab, c, t);
+        ca = (rand() >> 7) & 0xff;
+        header[n] = (uchar)zencode(pkeys, pcrc_32_tab, ca, t);
     }
     /* Encrypt random header (last two bytes is high uint16_t of crc) */
     init_keys(passwd, pkeys, pcrc_32_tab);

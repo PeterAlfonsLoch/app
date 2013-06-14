@@ -5,8 +5,8 @@ namespace simpledb
 {
 
 
-   base::base(sp(::ca::application) papp) :
-      ca(papp),
+   base::base(sp(::ca2::application) papp) :
+      ca2(papp),
       m_spfileMeta(papp),
       m_xmldocumentMeta(papp)
    {
@@ -20,7 +20,7 @@ namespace simpledb
 
       try
       {
-         if(!m_spfileMeta->open(strMetaPath, ::ca::file::type_binary | ::ca::file::mode_read_write | ::ca::file::shareExclusive))
+         if(!m_spfileMeta->open(strMetaPath, ::ca2::file::type_binary | ::ca2::file::mode_read_write | ::ca2::file::shareExclusive))
             return DB_ERROR;
       }
       catch(...)
@@ -28,7 +28,7 @@ namespace simpledb
          strMetaPath = System.dir().appdata("database/" + db, "meta.xml");
          try
          {
-            if(!m_spfileMeta->open(strMetaPath, ::ca::file::type_binary | ::ca::file::mode_read_write | ::ca::file::shareExclusive))
+            if(!m_spfileMeta->open(strMetaPath, ::ca2::file::type_binary | ::ca2::file::mode_read_write | ::ca2::file::shareExclusive))
                return DB_ERROR;
          }
          catch(...)

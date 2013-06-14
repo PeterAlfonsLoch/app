@@ -1,11 +1,11 @@
 #pragma once
 
 class CLASS_DECL_ca2 os_history :
-   virtual public ::ca::history
+   virtual public ::ca2::history
 {
 public:
 
-   os_history(sp(::ca::application) papp);
+   os_history(sp(::ca2::application) papp);
          
    
    virtual bool hist(const char *psz);

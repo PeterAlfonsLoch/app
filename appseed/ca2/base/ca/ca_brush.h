@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -40,7 +40,7 @@ namespace ca
       virtual bool create_solid(COLORREF crColor);
       virtual bool CreateHatchBrush(int32_t nIndex, COLORREF crColor);
       virtual bool CreateBrushIndirect(const LOGBRUSH* lpLogBrush);
-      virtual bool CreatePatternBrush(::ca::bitmap* pBitmap);
+      virtual bool CreatePatternBrush(::ca2::bitmap* pBitmap);
 #ifdef WINDOWS
       virtual bool CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage);
 #endif
@@ -51,13 +51,13 @@ namespace ca
 
       virtual int32_t GetLogBrush(LOGBRUSH* pLogBrush);
 
-      brush & operator = (const ::ca::brush & brushSrc);
+      brush & operator = (const ::ca2::brush & brushSrc);
 
       virtual void dump(dump_context & dumpcontext) const;
    };
 
    class CLASS_DECL_ca2 brush_sp :
-      virtual public ::c::smart_pointer < brush >
+      virtual public ::ca::smart_pointer < brush >
    {
    public:
 
@@ -66,33 +66,33 @@ namespace ca
       {
       }
 
-      brush_sp(const ::c::smart_pointer < brush > & br) :
-         ::c::smart_pointer < brush > (br)
+      brush_sp(const ::ca::smart_pointer < brush > & br) :
+         ::ca::smart_pointer < brush > (br)
       {
       }
 
       brush_sp(allocatorsp allocer) :
-         ::c::smart_pointer < brush > (allocer)
+         ::ca::smart_pointer < brush > (allocer)
       {
       }
 
       // create_solid
       brush_sp(allocatorsp allocer, COLORREF crColor) :
-         ::c::smart_pointer < brush > (allocer)
+         ::ca::smart_pointer < brush > (allocer)
       {
          m_p->create_solid(crColor);
       }
 
 /*
       // CreateHatchBrush
-      brush_sp(sp(::ca::application) papp, int32_t nIndex, COLORREF crColor) :
-         ::c::smart_pointer < brush > (papp)
+      brush_sp(sp(::ca2::application) papp, int32_t nIndex, COLORREF crColor) :
+         ::ca::smart_pointer < brush > (papp)
       {
          m_p->construct(nIndex, crColor);
       }
       // CreatePatternBrush
-      brush_sp(sp(::ca::application) papp, bitmap * pbitmap) :
-         ::c::smart_pointer < brush > (papp)
+      brush_sp(sp(::ca2::application) papp, bitmap * pbitmap) :
+         ::ca::smart_pointer < brush > (papp)
       {
          m_p->construct(pbitmap);
       }
@@ -106,7 +106,7 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

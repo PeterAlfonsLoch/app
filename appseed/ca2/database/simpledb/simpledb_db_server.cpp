@@ -5,8 +5,8 @@
 int32_t g_idbchange;
 
 
-db_server::db_server(sp(::ca::application) papp) :
-   ca(papp)
+db_server::db_server(sp(::ca2::application) papp) :
+   ca2(papp)
 {
    m_pdb                = NULL;
    m_pSongsDirsSet      = NULL;
@@ -113,7 +113,7 @@ bool db_server::initialize()
    m_pStringSet = new db_str_set(&Application.m_simpledb.db());
 
    int32_t iBufferSize = 128 * 1024;
-   sp(::ca::command_thread) commandthread = System.command();
+   sp(::ca2::command_thread) commandthread = System.command();
 
    if(commandthread->m_varTopicQuery.has_property("filesizebuffer"))
    {
@@ -195,7 +195,7 @@ bool db_server::create_message_window()
 
    if(!IsWindow())
    {
-      string strName = "::ca::fontopus::message_wnd::simpledb::db_server";
+      string strName = "::ca2::fontopus::message_wnd::simpledb::db_server";
       if(!::user::interaction::create_message_window(strName))
       {
          return false;
@@ -221,9 +221,9 @@ bool db_server::destroy_message_window()
    return true;
 }
 
-void db_server::_001OnTimer(::ca::signal_object * pobj)
+void db_server::_001OnTimer(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::timer, ptimer, pobj);
+   SCAST_PTR(::ca2::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 1258477)
    {
       /*var varChange;
@@ -272,7 +272,7 @@ void db_server::close()
 }
 
 
-bool db_server::data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::ca::writable & writable, ::database::update_hint * phint)
+bool db_server::data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::ca2::writable & writable, ::database::update_hint * phint)
 {
    UNREFERENCED_PARAMETER(phint);
 //   single_lock sl(&m_csImplDatabase, TRUE);
@@ -281,7 +281,7 @@ bool db_server::data_server_load(::database::client * pclient, ::database::id id
    return true;
 }
 
-bool db_server::data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::ca::readable & readable, ::database::update_hint * phint)
+bool db_server::data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::ca2::readable & readable, ::database::update_hint * phint)
 {
    UNREFERENCED_PARAMETER(phint);
    single_lock sl(&m_csImplDatabase, TRUE);
@@ -332,7 +332,7 @@ bool db_server::load(const char * lpcszKey, string & str)
 
 
 
-bool db_server::load(const char * lpKey, ::ca::writable &  writable)
+bool db_server::load(const char * lpKey, ::ca2::writable &  writable)
 {
 //   single_lock sl(&m_csImplDatabase, TRUE);
    string str;
@@ -353,7 +353,7 @@ bool db_server::save(const char * lpcszKey, const char * lpcsz)
 }
 
 
-bool db_server::save(const char * lpKey, ::ca::readable & readable)
+bool db_server::save(const char * lpKey, ::ca2::readable & readable)
 {
    single_lock sl(&m_csImplDatabase, TRUE);
    string str;

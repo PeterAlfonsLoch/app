@@ -4,22 +4,22 @@
 #include "ca_graphics_object.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 bitmap :
-      virtual public ::ca::graphics_object
+      virtual public ::ca2::graphics_object
    {
    public:
 
 
-      virtual bool CreateBitmap(::ca::graphics * pdc, int32_t nWidth, int32_t nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, int32_t stride);
-      virtual bool CreateBitmapIndirect(::ca::graphics * pdc, LPBITMAP lpBitmap);
-      virtual bool CreateCompatibleBitmap(::ca::graphics * pgraphics, int32_t nWidth, int32_t nHeight);
-      virtual bool CreateDiscardableBitmap(::ca::graphics * pgraphics, int32_t nWidth, int32_t nHeight);
-      virtual bool CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, int * stride, HANDLE hSection, uint32_t offset);
-      virtual bool CreateDIBitmap(::ca::graphics * pdc, const BITMAPINFOHEADER *pbmih, uint32_t flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage);
+      virtual bool CreateBitmap(::ca2::graphics * pdc, int32_t nWidth, int32_t nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, int32_t stride);
+      virtual bool CreateBitmapIndirect(::ca2::graphics * pdc, LPBITMAP lpBitmap);
+      virtual bool CreateCompatibleBitmap(::ca2::graphics * pgraphics, int32_t nWidth, int32_t nHeight);
+      virtual bool CreateDiscardableBitmap(::ca2::graphics * pgraphics, int32_t nWidth, int32_t nHeight);
+      virtual bool CreateDIBSection(::ca2::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, int * stride, HANDLE hSection, uint32_t offset);
+      virtual bool CreateDIBitmap(::ca2::graphics * pdc, const BITMAPINFOHEADER *pbmih, uint32_t flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage);
 
       virtual bool attach(void * posdata);
       virtual void * detach();
@@ -41,8 +41,8 @@ namespace ca
    };
 
 
-   typedef ::c::smart_pointer < bitmap > bitmap_sp;
+   typedef ::ca::smart_pointer < bitmap > bitmap_sp;
 
 
-} // namespace ca
+} // namespace ca2
 

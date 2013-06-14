@@ -1,5 +1,5 @@
 /*
- * null_cipher.c
+ * null_cipher.ca
  *
  * A NULL cipher implementation.  This cipher leaves the plaintext
  * unchanged.
@@ -10,7 +10,7 @@
 
 /*
  *   
- * Copyright (c) 2001-2006, Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006, Cisco Systems, Inc.
  * 
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -51,16 +51,16 @@
 extern debug_module_t mod_cipher;
 
 err_status_t
-null_cipher_alloc(cipher_t **c, int32_t key_len);
+null_cipher_alloc(cipher_t **ca, int32_t key_len);
 
 err_status_t
-null_cipher_dealloc(cipher_t *c);
+null_cipher_dealloc(cipher_t *ca);
 
 err_status_t
-null_cipher_set_iv(null_cipher_ctx_t *c, void *iv);
+null_cipher_set_iv(null_cipher_ctx_t *ca, void *iv);
 
 err_status_t
-null_cipher_alloc(cipher_t **c, int32_t key_len) {
+null_cipher_alloc(cipher_t **ca, int32_t key_len) {
   extern cipher_type_t null_cipher;
   uint8_t *pointer;
   
@@ -73,12 +73,12 @@ null_cipher_alloc(cipher_t **c, int32_t key_len) {
     return err_status_alloc_fail;
 
   /* set pointers */
-  *c = (cipher_t *)pointer;
-  (*c)->type = &null_cipher;
-  (*c)->state = pointer + sizeof(cipher_t);
+  *ca = (cipher_t *)pointer;
+  (*ca)->type = &null_cipher;
+  (*ca)->state = pointer + sizeof(cipher_t);
 
   /* set key size */
-  (*c)->key_len = key_len;
+  (*ca)->key_len = key_len;
 
   /* increment ref_count */
   null_cipher.ref_count++;
@@ -88,15 +88,15 @@ null_cipher_alloc(cipher_t **c, int32_t key_len) {
 }
 
 err_status_t
-null_cipher_dealloc(cipher_t *c) {
+null_cipher_dealloc(cipher_t *ca) {
   extern cipher_type_t null_cipher;
 
   /* zeroize entire state*/
-  octet_string_set_to_zero((uint8_t *)c, 
+  octet_string_set_to_zero((uint8_t *)ca, 
             sizeof(null_cipher_ctx_t) + sizeof(cipher_t));
 
   /* free primitive::memory of type null_cipher */
-  crypto_free(c);
+  crypto_free(ca);
 
   /* decrement reference count */
   null_cipher.ref_count--;
@@ -114,12 +114,12 @@ null_cipher_init(null_cipher_ctx_t *ctx, const uint8_t *key) {
 }
 
 err_status_t
-null_cipher_set_iv(null_cipher_ctx_t *c, void *iv) { 
+null_cipher_set_iv(null_cipher_ctx_t *ca, void *iv) { 
   return err_status_ok;
 }
 
 err_status_t
-null_cipher_encrypt(null_cipher_ctx_t *c,
+null_cipher_encrypt(null_cipher_ctx_t *ca,
           uchar *buf, uint32_t *bytes_to_encr) {
   return err_status_ok;
 }

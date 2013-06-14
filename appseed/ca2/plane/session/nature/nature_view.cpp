@@ -5,8 +5,8 @@ namespace nature
 {
 
 
-   view::view(sp(::ca::application) papp) :
-      ca(papp),
+   view::view(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::interaction(papp),
       
       m_buttonKaraoke(papp),
@@ -20,7 +20,7 @@ namespace nature
    {
    }
 
-   void view::install_message_handling(::ca::message::dispatch * pinterface)
+   void view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::user::view::install_message_handling(pinterface);
 
@@ -61,7 +61,7 @@ namespace nature
       cs.style &= ~WS_EX_CLIENTEDGE;
       return ::user::view::pre_create_window(cs);
    }
-   void view::_001OnInitialUpdate(::ca::signal_object * pobj)
+   void view::_001OnInitialUpdate(::ca2::signal_object * pobj)
    {
       ::user::view::_001OnInitialUpdate(pobj);
 
@@ -74,7 +74,7 @@ namespace nature
       return this;
    }
 
-   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);
@@ -89,7 +89,7 @@ namespace nature
       return this;
    }
 
-   void view::_001OnDestroy(::ca::signal_object * pobj)
+   void view::_001OnDestroy(::ca2::signal_object * pobj)
    {
       ::user::view::_001OnDestroy(pobj);
 
@@ -97,10 +97,10 @@ namespace nature
 
 
 
-   void view::_001OnSize(::ca::signal_object * pobj)
+   void view::_001OnSize(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(::ca::message::size, psize, pobj)
+      //      SCAST_PTR(::ca2::message::size, psize, pobj)
 
 
       /*   pobj->previous();
@@ -128,26 +128,26 @@ namespace nature
       LayoutKaraokeBouncingBall();*/
    }
 
-   void view::_001OnPaint(::ca::signal_object * pobj)
+   void view::_001OnPaint(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
-   void view:: _001OnDraw(::ca::graphics * pdc)
+   void view:: _001OnDraw(::ca2::graphics * pdc)
    {
    }
 
-   void view::_001OnCreate(::ca::signal_object * pobj)
+   void view::_001OnCreate(::ca2::signal_object * pobj)
    {
       if(pobj->previous())
          return;
 
 
    }
-   void view::_001OnContextMenu(::ca::signal_object * pobj)
+   void view::_001OnContextMenu(::ca2::signal_object * pobj)
    {
-//      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
 //         point point = pcontextmenu->GetPoint();
 
    }
@@ -161,21 +161,21 @@ namespace nature
       }
    }
 
-   void view::_001OnWavePlayerEvent(::ca::signal_object * pobj)
+   void view::_001OnWavePlayerEvent(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::ca::message::base, pbase, pobj)
+      //SCAST_PTR(::ca2::message::base, pbase, pobj)
    }
 
-   void view::_001OnUpdateViewEncoding(::ca::signal_object * pobj)
+   void view::_001OnUpdateViewEncoding(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::ca::message::update_cmd_ui, pupdatecmdui, pobj)
+      //SCAST_PTR(::ca2::message::update_cmd_ui, pupdatecmdui, pobj)
    }
-   void view::_001OnViewEncoding(::ca::signal_object * pobj)
+   void view::_001OnViewEncoding(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::ca::message::command, pcommand, pobj)
+      //SCAST_PTR(::ca2::message::command, pcommand, pobj)
    }
 
 
@@ -189,10 +189,10 @@ namespace nature
    }*/
 
 
-   void view::_001OnSetCursor(::ca::signal_object * pobj)
+   void view::_001OnSetCursor(::ca2::signal_object * pobj)
    {
       
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
 
       pmouse->m_ecursor = ::visual::cursor_arrow;
 
@@ -201,9 +201,9 @@ namespace nature
    }
 
 
-   void view::_001OnEraseBkgnd(::ca::signal_object * pobj)
+   void view::_001OnEraseBkgnd(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::erase_bkgnd, perasebkgnd, pobj)
+      SCAST_PTR(::ca2::message::erase_bkgnd, perasebkgnd, pobj)
          perasebkgnd->m_bRet = true;
       perasebkgnd->set_result(TRUE);
    }

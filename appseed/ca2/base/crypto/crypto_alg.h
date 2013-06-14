@@ -8,7 +8,7 @@
  */
 /*
  *   
- * Copyright (c) 2001-2006 Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006 Cisco Systems, Inc.
  * 
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -120,7 +120,7 @@ typedef cryptoalg_ctx_t *cryptoalg_t;
 #define cryptoalg_get_auth_tag_len(cryptoalg) ((cryptoalg)->auth_tag_len)
 
 int32_t
-cryptoalg_get_id(cryptoalg_t c);
+cryptoalg_get_id(cryptoalg_t ca);
 
 cryptoalg_t 
 cryptoalg_find_by_id(int32_t id);

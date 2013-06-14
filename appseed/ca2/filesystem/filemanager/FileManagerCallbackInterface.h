@@ -15,8 +15,8 @@ namespace filemanager
 
 
 class CLASS_DECL_ca2 FileManagerCallbackInterface :
-//   virtual public ::ca::file_manager_interface,
-   virtual public ::ca::request_interface
+//   virtual public ::ca2::file_manager_interface,
+   virtual public ::ca2::request_interface
 {
 public:
 
@@ -25,7 +25,7 @@ public:
    virtual ~FileManagerCallbackInterface();
 
 
-   virtual void on_request(sp(::ca::create_context) pcreatecontext);
+   virtual void on_request(sp(::ca2::create_context) pcreatecontext);
 
 
    virtual void OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle);

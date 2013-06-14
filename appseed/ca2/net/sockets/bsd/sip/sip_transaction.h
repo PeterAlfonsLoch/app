@@ -4,14 +4,14 @@ namespace sip
 {
 
    class CLASS_DECL_ca2 transaction :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
-      transaction(sp(::ca::application) papp);
+      transaction(sp(::ca2::application) papp);
       transaction(const transaction & src);
       virtual ~transaction();
 
-      ::ca::property & header(const char * pszKey);
+      ::ca2::property & header(const char * pszKey);
 
       void SetAccept(const string & value);
       string Accept();
@@ -46,17 +46,17 @@ namespace sip
       void SetUserAgent(const string & value);
       string UserAgent();
 
-      ::ca::property_set & headers();
+      ::ca2::property_set & headers();
 
-      ::ca::property_set & attrs();
+      ::ca2::property_set & attrs();
 
-      ::ca::property & attr(const char * psz);
+      ::ca2::property & attr(const char * psz);
       http::cookies & cookies();
 
       virtual void clear();
 
-      ::ca::property_set m_propertysetHeader;
-      ::ca::property_set m_propertysetAttribute;
+      ::ca2::property_set m_propertysetHeader;
+      ::ca2::property_set m_propertysetAttribute;
       http::cookies m_cookies;
       string m_null;
 

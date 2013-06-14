@@ -9,7 +9,7 @@ namespace user
    {
    public:
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
 
    };
 

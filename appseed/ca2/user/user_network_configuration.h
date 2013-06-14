@@ -5,7 +5,7 @@ namespace user
 {
 
    class CLASS_DECL_ca2 network_configuration :
-      virtual public ::ca::object
+      virtual public ::ca2::object
 //      public ::user::form_callback,
   //    public ::user::view_creator
    {
@@ -16,7 +16,7 @@ namespace user
       sp(form_view)                   m_pview;*/
 
 
-      network_configuration(sp(::ca::application) papp);
+      network_configuration(sp(::ca2::application) papp);
       virtual ~network_configuration();
 
 

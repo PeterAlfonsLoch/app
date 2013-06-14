@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -21,7 +21,7 @@ namespace ca
       };
 
       class CLASS_DECL_ca2 geometry  :
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
       public:
          double rotate_y(double x, double y, double phi);
@@ -34,7 +34,7 @@ namespace ca
          void deflate(LPRECT lprect, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
 
          
-         geometry(sp(::ca::application) papp);
+         geometry(sp(::ca2::application) papp);
          virtual ~geometry();
 
       };
@@ -43,4 +43,4 @@ namespace ca
    } // namespace geometry
 
 
-} // namespace ca
+} // namespace ca2

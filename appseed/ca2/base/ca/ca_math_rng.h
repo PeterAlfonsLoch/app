@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ca
+namespace ca2
 {
    namespace math
    {
@@ -38,4 +38,4 @@ namespace ca
       // }
 
    } //namespace math
-} //namespace ca
+} //namespace ca2

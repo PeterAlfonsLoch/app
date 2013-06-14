@@ -3,9 +3,9 @@
 namespace user
 {
 
-   keyboard_layout_cfg::keyboard_layout_cfg(sp(::ca::application) papp) :
-      ca(papp)
-//      ::ca::data(papp)
+   keyboard_layout_cfg::keyboard_layout_cfg(sp(::ca2::application) papp) :
+      ca2(papp)
+//      ::ca2::data(papp)
 //      ::user::list_data(papp),
   //    ::user::split_layout(papp),
     //  
@@ -116,7 +116,7 @@ namespace user
          ptext->_001SetText(strProxy);
          pguie = m_pview->get_child_by_name("port");
          ptext =  (pguie);
-         ptext->_001SetText(::ca::str::from(iProxyPort));
+         ptext->_001SetText(::ca2::str::from(iProxyPort));
       }*/
    }
 

@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class ContextMenu  :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 

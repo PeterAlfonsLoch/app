@@ -9,7 +9,7 @@
  */
 /*
  *
- * Copyright(c) 2005 Ingate Systems AB
+ * Copyright(ca) 2005 Ingate Systems AB
  *
  *
  * Redistribution and use in source and binary forms, with or without

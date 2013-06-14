@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -15,13 +15,13 @@ namespace ca
 
    }
 
-   void plain_text_serializable::write(::ca::writer & writer)
+   void plain_text_serializable::write(::ca2::writer & writer)
    {
       plain_text_output_stream ostream(&writer);
       write(ostream);
    }
 
-   void plain_text_serializable::read(::ca::reader & reader)
+   void plain_text_serializable::read(::ca2::reader & reader)
    {
       plain_text_input_stream istream(&reader);
       read(istream);

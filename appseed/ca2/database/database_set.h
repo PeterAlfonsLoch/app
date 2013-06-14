@@ -9,7 +9,7 @@ namespace database
 
 
    class CLASS_DECL_ca2 set :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    protected:
    /*  char *Host     = ""; //WORK_HOST;

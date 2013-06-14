@@ -482,7 +482,7 @@ namespace visual
 
 #else
 
-      throw todo(::ca::get_thread_app());
+      throw todo(::ca2::get_thread_app());
 
 #endif
 
@@ -502,7 +502,7 @@ namespace visual
 
 #else
 
-      throw todo(::ca::get_thread_app());
+      throw todo(::ca2::get_thread_app());
 
 #endif
 
@@ -510,7 +510,7 @@ namespace visual
    }
 
 
-   void glyph::DrawGlyph(::ca::graphics * pdc, bool bFill, double dRateX, LPPOINT lppointOffset)
+   void glyph::DrawGlyph(::ca2::graphics * pdc, bool bFill, double dRateX, LPPOINT lppointOffset)
    {
 
       UNREFERENCED_PARAMETER(pdc);

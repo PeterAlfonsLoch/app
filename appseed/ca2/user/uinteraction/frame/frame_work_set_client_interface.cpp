@@ -394,7 +394,7 @@ namespace frame
       m_workset.EnableFullScreen(bEnable);
    }
 
-   void WorkSetClientInterface::_001OnDraw(::ca::graphics * pgraphics)
+   void WorkSetClientInterface::_001OnDraw(::ca2::graphics * pgraphics)
    {
       m_workset._001OnDraw(pgraphics);
    }

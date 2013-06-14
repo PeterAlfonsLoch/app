@@ -8,14 +8,14 @@ namespace user
    class tool_bar;
 
    class CLASS_DECL_ca2 image_manager :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       //void LoadToolbar(tool_bar & toolbar, UINT * user);
       //void LoadToolbar(simple_tool_bar & toolbar, UINT * user);
       image_list & GetImageList();
       image_list & GetImageListDisable();
-      bool Initialize(sp(::ca::application) papp, UINT uiaMenuV003Map [][2]);
+      bool Initialize(sp(::ca2::application) papp, UINT uiaMenuV003Map [][2]);
       image_manager();
       virtual ~image_manager();
 

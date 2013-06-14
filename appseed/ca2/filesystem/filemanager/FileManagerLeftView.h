@@ -12,14 +12,14 @@ class CLASS_DECL_ca2 FileManagerLeftView :
    virtual public FileManagerViewInterface
 {
 public:
-   FileManagerLeftView(sp(::ca::application) papp);
+   FileManagerLeftView(sp(::ca2::application) papp);
 
    void CreateViews();
    
    void FileManagerBrowse(const char * lpcwstr);
 
 
-   virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint);
+   virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
    virtual ~FileManagerLeftView();
 #ifdef DEBUG
    virtual void assert_valid() const;

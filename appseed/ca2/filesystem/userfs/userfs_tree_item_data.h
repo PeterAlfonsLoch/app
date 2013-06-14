@@ -6,7 +6,7 @@ namespace userfs
 
 
    class CLASS_DECL_ca2 tree_item_data :
-      virtual public ::ca::tree_item_data,
+      virtual public ::ca2::tree_item_data,
       virtual public ::fs::item
 
    {
@@ -23,10 +23,10 @@ namespace userfs
 
       tree_item_data();
 
-      string get_text(sp(::ca::tree) ptree);
-      index get_image(sp(::ca::tree) ptree);
+      string get_text(sp(::ca2::tree) ptree);
+      index get_image(sp(::ca2::tree) ptree);
 
-      static index CompareArrangeByName(sp(::ca::tree_item) & pitema, sp(::ca::tree_item) & pitemb);
+      static index CompareArrangeByName(sp(::ca2::tree_item) & pitema, sp(::ca2::tree_item) & pitemb);
       int32_t get_index() const;
       bool is_folder() const;
 

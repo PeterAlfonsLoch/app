@@ -4,7 +4,7 @@
  *   LiteHTMLEntityResolver.h - Defines LiteHTMLEntityResolver
  *   
  *   Written By Gurmeet S. Kochar <gomzygotit@hotmail.com>
- *   Copyright (c) 2004. 
+ *   Copyright (ca) 2004. 
  *
  *   This code may be used in compiled form in any way you desire 
  *   (including commercial use). The code may be redistributed 
@@ -47,7 +47,7 @@ private:
    class CharEntityRefs : public string_map < char, char >
    {
    public:
-      CharEntityRefs(::ca::application * papp);
+      CharEntityRefs(::ca2::application * papp);
    };
 
    CharEntityRefs m_CharEntityRefs;
@@ -55,7 +55,7 @@ private:
 
 // Constructors
 public:
-   LiteHTMLEntityResolver(::ca::application * papp) : m_CharEntityRefs(papp)  { }
+   LiteHTMLEntityResolver(::ca2::application * papp) : m_CharEntityRefs(papp)  { }
 
 // Operations
 public:

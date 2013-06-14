@@ -24,7 +24,7 @@ numbers:
 
 
    class CLASS_DECL_ca2 scanner :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       
@@ -34,7 +34,7 @@ numbers:
       class token * m_ptoken;
 
 
-      scanner(sp(::ca::application) papp);
+      scanner(sp(::ca2::application) papp);
       virtual ~scanner();
 
       

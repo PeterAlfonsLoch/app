@@ -19,20 +19,20 @@ namespace colorertake5
       @param lineRegions Linked list of LineRegion structures.
       Only region references are used there.
       */
-      static void tokenWrite(::ca::byte_output_stream & markupWriter, ::ca::byte_output_stream & textWriter, string_to_string_map * docLinkHash, const char  *line, LineRegion *lineRegions);
+      static void tokenWrite(::ca2::byte_output_stream & markupWriter, ::ca2::byte_output_stream & textWriter, string_to_string_map * docLinkHash, const char  *line, LineRegion *lineRegions);
 
       /** write specified line of text using list of LineRegion's.
       This method uses text fields of LineRegion class to enwrap each line
       region.
-      It uses two Writers - @c markupWriter and @c textWriter.
-      @c markupWriter is used to write markup elements of LineRegion,
-      and @c textWriter is used to write line content.
+      It uses two Writers - @ca markupWriter and @ca textWriter.
+      @ca markupWriter is used to write markup elements of LineRegion,
+      and @ca textWriter is used to write line content.
       @param markupWriter writer, used for markup output
       @param textWriter writer, used for text output
       @param line Line of text
       @param lineRegions Linked list of LineRegion structures
       */
-      static void markupWrite(::ca::byte_output_stream & markupWriter, ::ca::byte_output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions);
+      static void markupWrite(::ca2::byte_output_stream & markupWriter, ::ca2::byte_output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions);
 
 
       /** write specified line of text using list of LineRegion's.
@@ -44,19 +44,19 @@ namespace colorertake5
       @param line Line of text
       @param lineRegions Linked list of LineRegion structures
       */
-      static void htmlRGBWrite(::ca::byte_output_stream & markupWriter, ::ca::byte_output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions);
+      static void htmlRGBWrite(::ca2::byte_output_stream & markupWriter, ::ca2::byte_output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions);
 
-      static void writeStyle(::ca::byte_output_stream & writer, const StyledRegion *lr);
+      static void writeStyle(::ca2::byte_output_stream & writer, const StyledRegion *lr);
 
       /** Puts into stream starting HTML \<span> tag with requested style specification
       */
-      static void writeStart(::ca::byte_output_stream & writer, const StyledRegion *lr);
+      static void writeStart(::ca2::byte_output_stream & writer, const StyledRegion *lr);
 
       /** Puts into stream ending HTML \</span> tag
       */
-      static void writeEnd(::ca::byte_output_stream & writer, const StyledRegion *lr);
+      static void writeEnd(::ca2::byte_output_stream & writer, const StyledRegion *lr);
 
-      static void writeHref(::ca::byte_output_stream & writer, string_to_string_map *docLinkHash, const class scheme *scheme, const string &token, bool start);
+      static void writeHref(::ca2::byte_output_stream & writer, string_to_string_map *docLinkHash, const class scheme *scheme, const string &token, bool start);
 
    };
 

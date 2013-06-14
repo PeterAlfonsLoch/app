@@ -144,7 +144,7 @@ namespace n7z
 #endif
    }
 
-   ::ca::HRes handler::GetNumberOfProperties(uint32_t *numProperties)
+   ::ca2::HRes handler::GetNumberOfProperties(uint32_t *numProperties)
    {
 
       *numProperties = (uint32_t) _fileInfoPopIDs.get_count();
@@ -153,7 +153,7 @@ namespace n7z
 
    }
 
-   ::ca::HRes handler::GetPropertyInfo(uint32_t index, string & name, int32_t * propID, var::e_type *varType)
+   ::ca2::HRes handler::GetPropertyInfo(uint32_t index, string & name, int32_t * propID, var::e_type *varType)
    {
       if ((int32_t)index >= _fileInfoPopIDs.get_count())
          return E_INVALIDARG;

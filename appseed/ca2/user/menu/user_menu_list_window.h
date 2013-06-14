@@ -28,13 +28,13 @@ namespace user
       int32_t                                 m_iItemHeight;
       size                                m_size;
 
-      menu_list_window(sp(::ca::application) papp);
-      menu_list_window(sp(::ca::application) papp, menu_item * pitem);
+      menu_list_window(sp(::ca2::application) papp);
+      menu_list_window(sp(::ca2::application) papp, menu_item * pitem);
       virtual ~menu_list_window();
 
       void layout();
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
 
       virtual void clear();
@@ -47,7 +47,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnDestroy)
       DECL_GEN_SIGNAL(_001OnTimer)
 
-      void _001OnDraw(::ca::graphics *pdc);
+      void _001OnDraw(::ca2::graphics *pdc);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
 
@@ -55,7 +55,7 @@ namespace user
       bool _TrackPopupMenu(sp(::user::interaction) pwndParent, sp(::user::interaction) pwndNotify);
       void _CreateButtons(menu_item * pitem);
       void _UpdateCmdUi(menu_item * pitem);
-      void _CalcSize(menu_item * pitem, ::ca::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight);
+      void _CalcSize(menu_item * pitem, ::ca2::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight);
       void _LayoutButtons(menu_item * pitem, int32_t iMaxWidth, LPRECT lprect, LPCRECT lpcrectBound);
 
    };

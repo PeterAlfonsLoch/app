@@ -279,9 +279,9 @@ protected:
 };
 
 class tinyjs :
-   virtual public ::ca::object{
+   virtual public ::ca2::object{
 public:
-    tinyjs(sp(::ca::application) papp);
+    tinyjs(sp(::ca2::application) papp);
     ~tinyjs();
 
     void execute(const string &code);
@@ -298,14 +298,14 @@ public:
     /// add a native function to be called from TinyJS
     /** example:
        \code
-           void scRandInt(CScriptVar *c, void *userdata) { ... }
+           void scRandInt(CScriptVar *ca, void *userdata) { ... }
            tinyJS->addNative("function randInt(min, max)", scRandInt, 0);
        \endcode
 
        or
 
        \code
-           void scSubstring(CScriptVar *c, void *userdata) { ... }
+           void scSubstring(CScriptVar *ca, void *userdata) { ... }
            tinyJS->addNative("function String.substring(lo, hi)", scSubstring, 0);
        \endcode
     */

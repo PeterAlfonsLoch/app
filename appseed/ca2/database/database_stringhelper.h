@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2002, Leo Seib, Hannover
+ * Copyright (ca) 2002, Leo Seib, Hannover
  *
  * Project:SQLiteDataset C++ Dynamic Library
  * Module: CStringHelper class header file

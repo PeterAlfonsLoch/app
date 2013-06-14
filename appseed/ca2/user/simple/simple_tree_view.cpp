@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-simple_tree_view::simple_tree_view(sp(::ca::application) papp) :
-   ca(papp),
+simple_tree_view::simple_tree_view(sp(::ca2::application) papp) :
+   ca2(papp),
    
    ::user::scroll_view(papp),
    user::tree(papp)
@@ -13,7 +13,7 @@ simple_tree_view::~simple_tree_view()
 {
 }
 
-void simple_tree_view::install_message_handling(::ca::message::dispatch * pinterface)
+void simple_tree_view::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::view::install_message_handling(pinterface);
    ::user::tree::install_message_handling(pinterface);
@@ -36,10 +36,10 @@ void simple_tree_view::dump(dump_context & dumpcontext) const
 #endif //DEBUG
 
 
-void simple_tree_view::_001OnCreate(::ca::signal_object * pobj)
+void simple_tree_view::_001OnCreate(::ca2::signal_object * pobj)
 {
 
-   SCAST_PTR(::ca::message::create, pcreate, pobj);
+   SCAST_PTR(::ca2::message::create, pcreate, pobj);
 
    pcreate->previous();
 

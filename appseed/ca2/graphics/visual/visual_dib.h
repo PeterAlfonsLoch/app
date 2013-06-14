@@ -31,12 +31,12 @@ namespace visual
    };
 
    class CLASS_DECL_ca2 dib_sp :
-      public ::ca::dib_sp
+      public ::ca2::dib_sp
    {
    public:
 
       dib_sp();
-      dib_sp(::ca::allocatorsp allocer);
+      dib_sp(::ca2::allocatorsp allocer);
       virtual ~dib_sp();
 
 
@@ -45,11 +45,11 @@ namespace visual
 
       virtual bool load_from_file(var varFile);
       virtual bool load_from_matter(const char * pszMatter);
-      virtual bool read_from_file(sp(::ca::file) pfile);
+      virtual bool read_from_file(sp(::ca2::file) pfile);
 
 
       virtual bool save_to_file(var varFile, save_image * psaveimage = NULL);
-      virtual bool write_to_file(sp(::ca::file) pfile, save_image * psaveimage = NULL);
+      virtual bool write_to_file(sp(::ca2::file) pfile, save_image * psaveimage = NULL);
 
 
    };

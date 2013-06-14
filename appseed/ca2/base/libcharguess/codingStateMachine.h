@@ -29,7 +29,7 @@ typedef enum {
    eItsMe = 2 
 } nsSMState;
 
-#define GETCLASS(c) GETFROMPCK(((uchar)(c)), mModel->classTable)
+#define GETCLASS(ca) GETFROMPCK(((uchar)(ca)), mModel->classTable)
 
 //state machine model
 typedef struct 
@@ -47,9 +47,9 @@ public:
           mCurrentState = eStart;
           mModel = sm;
         };
-  nsSMState NextState(char c){
+  nsSMState NextState(char ca){
     //for each byte we get its class , if it is first byte, we also get byte length
-    uint32_t byteCls = GETCLASS(c);
+    uint32_t byteCls = GETCLASS(ca);
     if (mCurrentState == eStart)
     { 
       mCurrentBytePos = 0; 

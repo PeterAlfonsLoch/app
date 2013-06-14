@@ -13,8 +13,8 @@ namespace dynamic_source
 
 
 
-   script::script(sp(::ca::application) papp) :
-      ca(papp),
+   script::script(sp(::ca2::application) papp) :
+      ca2(papp),
       m_memfileError(papp),
       m_mutex(papp)
    {
@@ -38,8 +38,8 @@ namespace dynamic_source
      uint32_t dwReserved;    // must be zero
    } LOADPARMS32;
 
-   ds_script::ds_script(sp(::ca::application) papp) :
-      ca(papp),
+   ds_script::ds_script(sp(::ca2::application) papp) :
+      ca2(papp),
       script(papp),
       m_evCreationEnabled(papp)
    {
@@ -60,7 +60,7 @@ namespace dynamic_source
 #ifdef WINDOWS
       return System.dir().path("C:\\netnode\\stage\\x64\\", strPath);
 #else
-::ca::str::begins_eat(strPath, ".");
+::ca2::str::begins_eat(strPath, ".");
       return System.dir().path("/ca2/stage/x86/", "lib" + strPath);
 #endif
 
@@ -296,8 +296,8 @@ namespace dynamic_source
          #ifdef WINDOWS
          string str1 = m_strScriptPath;
          string str2 = strStagePath;
-         ::ca::str::ends_eat_ci(str1, ".dll");
-         ::ca::str::ends_eat_ci(str2, ".dll");
+         ::ca2::str::ends_eat_ci(str1, ".dll");
+         ::ca2::str::ends_eat_ci(str2, ".dll");
          str1 += ".pdb";
          str2 += ".pdb";
          ::file_copy_dup(str2, str1, true);
@@ -376,8 +376,8 @@ namespace dynamic_source
 
 #ifdef WINDOWSEX
 
-         HMODULE hmodule = ::GetModuleHandleW(::ca::international::utf8_to_unicode("\\\\?\\" + strStagePath));
-         bool b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, ::ca::international::utf8_to_unicode("\\\\?\\" + strStagePath), &hmodule) != FALSE;
+         HMODULE hmodule = ::GetModuleHandleW(::ca2::international::utf8_to_unicode("\\\\?\\" + strStagePath));
+         bool b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, ::ca2::international::utf8_to_unicode("\\\\?\\" + strStagePath), &hmodule) != FALSE;
          if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
             uint32_t dwError = ::GetLastError();
@@ -385,9 +385,9 @@ namespace dynamic_source
          }
          string strPdb;
          strPdb = strStagePath;
-         ::ca::str::ends_eat_ci(strPdb, ".dll");
+         ::ca2::str::ends_eat_ci(strPdb, ".dll");
          strPdb += ".pdb";
-         b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, ::ca::international::utf8_to_unicode("\\\\?\\" + strPdb), &hmodule) != FALSE;
+         b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, ::ca2::international::utf8_to_unicode("\\\\?\\" + strPdb), &hmodule) != FALSE;
          if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
             uint32_t dwError = ::GetLastError();
@@ -463,7 +463,7 @@ namespace dynamic_source
    }
 
 
-   ::ca::application * ds_script::get_app() const
+   ::ca2::application * ds_script::get_app() const
    {
       return m_pmanager->get_app();
    }

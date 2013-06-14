@@ -7,8 +7,8 @@ namespace user
    const int32_t g_base_menu_indent = 11;
 
 
-   menu_list_window::menu_list_window(sp(::ca::application) papp) :
-      ca(papp),
+   menu_list_window::menu_list_window(sp(::ca2::application) papp) :
+      ca2(papp),
       
       menu_base(papp),
       m_buttonClose(papp)
@@ -22,8 +22,8 @@ namespace user
       m_bAutoClose         = true;
    }
 
-   menu_list_window::menu_list_window(sp(::ca::application) papp, menu_item * pitem) :
-      ca(papp),
+   menu_list_window::menu_list_window(sp(::ca2::application) papp, menu_item * pitem) :
+      ca2(papp),
       
       menu_base(papp),
       m_buttonClose(papp)
@@ -42,7 +42,7 @@ namespace user
    {
    }
 
-   void menu_list_window::install_message_handling(::ca::message::dispatch * pinterface)
+   void menu_list_window::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       control::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &menu_list_window::_001OnCreate);
@@ -53,13 +53,13 @@ namespace user
    // // BEGIN_MESSAGE_MAP(menu_list_window, ::user::interaction)
    // // END_MESSAGE_MAP()
 
-   void menu_list_window::_001OnCreate(::ca::signal_object * pobj)
+   void menu_list_window::_001OnCreate(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       m_pschema            = &::user::GetUfeSchema(get_app())->m_menu;
    }
 
-   void menu_list_window::_001OnDestroy(::ca::signal_object * pobj)
+   void menu_list_window::_001OnDestroy(::ca2::signal_object * pobj)
    {
       pobj->m_bRet = false;
    }
@@ -198,9 +198,9 @@ namespace user
 
    }
 
-   void menu_list_window::_001OnTimer(::ca::signal_object * pobj)
+   void menu_list_window::_001OnTimer(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::timer, ptimer, pobj)
+      SCAST_PTR(::ca2::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == BaseWndMenuCmdUi)
       {
          _UpdateCmdUi(m_pitem);
@@ -209,7 +209,7 @@ namespace user
       pobj->m_bRet = false;
    }
 
-   void menu_list_window::_CalcSize(menu_item * pitemParent, ::ca::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight)
+   void menu_list_window::_CalcSize(menu_item * pitemParent, ::ca2::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight)
    {
       if(pitemParent->m_spitema == NULL)
          return;
@@ -236,7 +236,7 @@ namespace user
          return;
       rect rectClient;
       get_parent()->GetClientRect(rectClient);
-      ::ca::client_graphics pdc(this);
+      ::ca2::client_graphics pdc(this);
       pdc->SelectObject(m_pschema->m_font);
       size size = pdc->GetTextExtent("XXXMMM");
       int32_t iMaxHeight = size.cy;
@@ -304,7 +304,7 @@ namespace user
    }
 
 
-   void menu_list_window::_001OnDraw(::ca::graphics *pdc)
+   void menu_list_window::_001OnDraw(::ca2::graphics *pdc)
    {
       rect rectClient;
       GetClientRect(rectClient);

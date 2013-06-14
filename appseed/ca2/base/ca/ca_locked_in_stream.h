@@ -2,7 +2,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
    class locked_in_stream
@@ -24,7 +24,7 @@ namespace ca
    };
 
    class locked_reader :
-      virtual public ::ca::reader
+      virtual public ::ca2::reader
    {
    public:
 
@@ -43,4 +43,4 @@ namespace ca
 
    };
 
-} // namespace ca
+} // namespace ca2

@@ -14,21 +14,21 @@
 class id;
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 ptra :
-      virtual public spa(::ca::ca)
+      virtual public spa(::ca2::ca2)
    {
    public:
    };
 
-   typedef ::map < sp(::ca::ca), sp(::ca::ca), sp(::ca::ca), sp(::ca::ca) > map;
-   typedef ::map < sp(::ca::ca), sp(::ca::ca), ptra, ptra > map_many;
+   typedef ::map < sp(::ca2::ca2), sp(::ca2::ca2), sp(::ca2::ca2), sp(::ca2::ca2) > map;
+   typedef ::map < sp(::ca2::ca2), sp(::ca2::ca2), ptra, ptra > map_many;
 
 
-} // namespace ca
+} // namespace ca2
 
 
 #undef __id
@@ -315,12 +315,12 @@ namespace plane
          id_jp = "jp";
 
          id_fr = "fr";
-         id_fr_ca = "fr-ca";
-         id_ca = "ca";
+         id_fr_ca = "fr-ca2";
+         id_ca = "ca2";
 
          id_en = "en";
          id_en_us = "en-us";
-         id_en_ca = "en-ca";
+         id_en_ca = "en-ca2";
          id_std = "_std";
 
          id_pe = "pe";
@@ -385,7 +385,7 @@ namespace plane
 
    class CLASS_DECL_ca2 system :
       virtual public ::plane::application,
-      virtual public ::ca::system
+      virtual public ::ca2::system
    {
    public:
       //plane::session::run_start_installer *        m_prunstartinstaller;
@@ -396,7 +396,7 @@ namespace plane
       mutex                                        m_mutex;
 #ifdef METROWIN
       sp(::user::interaction)                      m_pui;
-      ::ca::system_window ^                        m_pwindow;
+      ::ca2::system_window ^                        m_pwindow;
       ID2D1DeviceContext *                       m_pdc;
       sp(mutex)                                    m_pmutexDc;
 #endif
@@ -407,32 +407,32 @@ namespace plane
 
       spa(service_base)                            m_serviceptra;
 
-      stridsp(::ca::type_info)                     m_typemap;
+      stridsp(::ca2::type_info)                     m_typemap;
 
       FT_Library                                   m_ftlibrary;
       mutex                                        m_mutexDelete;
-      ::ca::application_ptra                       m_appptra;
-      ::ca::file_system_sp                         m_spfile;
-      ::ca::dir::system_sp                         m_spdir;
-      class ::ca::stra                             m_stra;
-      class ::ca::url                              m_url;
+      ::ca2::application_ptra                       m_appptra;
+      ::ca2::file_system_sp                         m_spfile;
+      ::ca2::dir::system_sp                         m_spdir;
+      class ::ca2::stra                             m_stra;
+      class ::ca2::url                              m_url;
       sp(class ::xml::xml)                         m_pxml;
-      class ::ca::service                          m_service;
-      class ::ca::install                          m_install;
-      ::ca::os_sp                                  m_spos;
+      class ::ca2::service                          m_service;
+      class ::ca2::install                          m_install;
+      ::ca2::os_sp                                  m_spos;
 #ifndef METROWIN
-      class ::ca::process_section                  m_processsection;
+      class ::ca2::process_section                  m_processsection;
 #endif
-      sp(class ::ca::datetime)                     m_pdatetime;
+      sp(class ::ca2::datetime)                     m_pdatetime;
       class ::sockets::net                         m_net;
 
-      class ::ca::compress                         m_compress;
-      class ::ca::patch                            m_patch;
-      ::ca::crypt_sp                               m_spcrypt;
-      class ::ca::http::system                     m_http;
-      class ::ca::email                            m_email;
-      ::ca::copydesk_sp                            m_spcopydesk;
-      ::ca::port_forward_sp                        m_spportforward;
+      class ::ca2::compress                         m_compress;
+      class ::ca2::patch                            m_patch;
+      ::ca2::crypt_sp                               m_spcrypt;
+      class ::ca2::http::system                     m_http;
+      class ::ca2::email                            m_email;
+      ::ca2::copydesk_sp                            m_spcopydesk;
+      ::ca2::port_forward_sp                        m_spportforward;
       ::string_to_string_map                       m_mapAppLibrary;
       sp(colorertake5::ParserFactory)              m_pparserfactory;
 
@@ -445,12 +445,12 @@ namespace plane
       sp(::plane::session::map)                      m_pbergedgemap;
 
 
-      sp(class ::ca::log)                          m_plog;
-      sp(class ::ca::factory)                      m_pfactory;
-      sp(class ::ca::history)                      m_phistory;
-      sp(::ca::window_draw)                        m_ptwf;
+      sp(class ::ca2::log)                          m_plog;
+      sp(class ::ca2::factory)                      m_pfactory;
+      sp(class ::ca2::history)                      m_phistory;
+      sp(::ca2::window_draw)                        m_ptwf;
       //      ::sockets::net                               m_net;
-      //      sp(::ca::filehandler::handler)  m_spfilehandler;
+      //      sp(::ca2::filehandler::handler)  m_spfilehandler;
 
 
       fontopus::authentication_map                 m_authmap;
@@ -478,9 +478,9 @@ namespace plane
 
       bool                                          m_bDoNotExitIfNoApplications;
 
-      strid_map < ::ca::library * >  m_idmapCreateViewLibrary;
+      strid_map < ::ca2::library * >  m_idmapCreateViewLibrary;
 
-      comparable_array < ::ca::library * >         m_libraryptra;
+      comparable_array < ::ca2::library * >         m_libraryptra;
 
 #ifdef METROWIN
       Platform::Agile < Windows::UI::Core::CoreWindow > m_window;
@@ -488,7 +488,7 @@ namespace plane
 
       ::visual::visual                    m_visual;
 
-      system(sp(::ca::application) papp = NULL);
+      system(sp(::ca2::application) papp = NULL);
       virtual ~system();
 
       //virtual int32_t main();
@@ -507,10 +507,10 @@ namespace plane
       virtual bool finalize();
       virtual int32_t exit_instance();
 
-      virtual index get_new_bergedge(::ca::application_bias * pbiasCreation = NULL);
+      virtual index get_new_bergedge(::ca2::application_bias * pbiasCreation = NULL);
 
-      virtual void register_bergedge_application(sp(::ca::application) papp);
-      virtual void unregister_bergedge_application(sp(::ca::application) papp);
+      virtual void register_bergedge_application(sp(::ca2::application) papp);
+      virtual void unregister_bergedge_application(sp(::ca2::application) papp);
 
 
       virtual bool base_support();
@@ -520,20 +520,20 @@ namespace plane
 
 
       using ::plane::application::process;
-      bool set_history(::ca::history * phistory);
+      bool set_history(::ca2::history * phistory);
 
 
-      virtual sp(::plane::session)             get_session(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
-      virtual sp(::platform::document)             get_platform(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
-      virtual sp(::nature::document)               get_nature(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
+      virtual sp(::plane::session)             get_session(index iEdge, ::ca2::application_bias * pbiasCreation = NULL);
+      virtual sp(::platform::document)             get_platform(index iEdge, ::ca2::application_bias * pbiasCreation = NULL);
+      virtual sp(::nature::document)               get_nature(index iEdge, ::ca2::application_bias * pbiasCreation = NULL);
 
       virtual sp(::plane::session)             query_bergedge(index iEdge);
-      virtual void on_request(sp(::ca::create_context) pcreatecontext);
-      virtual sp(::ca::application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      virtual void on_request(sp(::ca2::create_context) pcreatecontext);
+      virtual sp(::ca2::application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca2::application_bias * pbiasCreate = NULL);
       virtual void open_by_file_extension(index iEdge, const char * pszPathName);
       virtual bool is_system();
 
-      virtual sp(::ca::command_thread) command_thread();
+      virtual sp(::ca2::command_thread) command_thread();
 
 
 
@@ -543,16 +543,16 @@ namespace plane
 
 
       using ::plane::application::alloc;
-      virtual sp(::ca::ca) alloc(sp(::ca::application) papp, sp(::ca::type_info) info);
-      virtual sp(::ca::ca) alloc(sp(::ca::application) papp, const class id & idType);
+      virtual sp(::ca2::ca2) alloc(sp(::ca2::application) papp, sp(::ca2::type_info) info);
+      virtual sp(::ca2::ca2) alloc(sp(::ca2::application) papp, const class id & idType);
 
-      virtual sp(::ca::ca) on_alloc(sp(::ca::application) papp, sp(::ca::type_info) info);
-      virtual sp(::ca::ca) clone();
-      virtual sp(::ca::ca) clone(sp(::ca::ca) pobj);
+      virtual sp(::ca2::ca2) on_alloc(sp(::ca2::application) papp, sp(::ca2::type_info) info);
+      virtual sp(::ca2::ca2) clone();
+      virtual sp(::ca2::ca2) clone(sp(::ca2::ca2) pobj);
       template < typename T >
       inline T * cast_clone(T * pt)
       {
-         return dynamic_cast < T * > (clone(dynamic_cast < sp(::ca::ca) > (pt)));
+         return dynamic_cast < T * > (clone(dynamic_cast < sp(::ca2::ca2) > (pt)));
       }
 
       virtual void appa_load_string_table();
@@ -576,52 +576,52 @@ namespace plane
 
       virtual bool assert_failed_line(const char * lpszFileName, int32_t iLine);
 
-      virtual void on_allocation_error(sp(::ca::application) papp, sp(::ca::type_info) info);
+      virtual void on_allocation_error(sp(::ca2::application) papp, sp(::ca2::type_info) info);
 
       // file & dir
-      virtual string matter_as_string(sp(::ca::application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
-      virtual string dir_matter(sp(::ca::application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual string matter_as_string(sp(::ca2::application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual string dir_matter(sp(::ca2::application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
       virtual bool is_inside_time_dir(const char * pszPath);
       virtual bool file_is_read_only(const char * pszPath);
-      virtual string file_as_string(sp(::ca::application) papp, const char * pszPath);
+      virtual string file_as_string(sp(::ca2::application) papp, const char * pszPath);
       virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = NULL);
       virtual string dir_name(const char * psz);
       virtual bool dir_mk(const char * psz);
       virtual string file_title(const char * psz);
       virtual string file_name(const char * psz);
 
-      class ::ca::factory                 & factory();
-      class ::ca::log                     & log();
+      class ::ca2::factory                 & factory();
+      class ::ca2::log                     & log();
 
-      sp(::ca::window_draw )              get_twf();
+      sp(::ca2::window_draw )              get_twf();
 
       FT_Library                          & ftlibrary();
 
-      ::ca::application_ptra              & appptra();
-      ::ca::datetime                      & datetime();
+      ::ca2::application_ptra              & appptra();
+      ::ca2::datetime                      & datetime();
 
-      inline ::ca::file_system            & file()    { return m_spfile; }
-      inline ::ca::dir::system            & dir()     { return m_spdir; }
-      ::ca::stra                          & stra();
-      inline ::ca::url                    & url()     { return m_url; }
+      inline ::ca2::file_system            & file()    { return m_spfile; }
+      inline ::ca2::dir::system            & dir()     { return m_spdir; }
+      ::ca2::stra                          & stra();
+      inline ::ca2::url                    & url()     { return m_url; }
       ::xml::xml                          & xml();
-      ::ca::install                       & install();
-      ::ca::service                       & service();
+      ::ca2::install                       & install();
+      ::ca2::service                       & service();
       class ::machine_event_central       & machine_event_central();
-      class ::ca::os                      & os();
+      class ::ca2::os                      & os();
 #ifndef METROWIN
-      ::ca::process_section               & process();
+      ::ca2::process_section               & process();
 #endif
       class ::sockets::net                & net();
 
-      ::ca::history                    & hist();
+      ::ca2::history                    & hist();
 
-      class ::ca::compress            & compress();
-      class ::ca::patch               & patch();
-      class ::ca::crypt               & crypt();
-      class ::ca::http::system        & http();
-      class ::ca::email               & email();
-      class ::ca::copydesk            & copydesk();
+      class ::ca2::compress            & compress();
+      class ::ca2::patch               & patch();
+      class ::ca2::crypt               & crypt();
+      class ::ca2::http::system        & http();
+      class ::ca2::email               & email();
+      class ::ca2::copydesk            & copydesk();
 
       ::fontopus::user_set             & userset();
 
@@ -652,36 +652,36 @@ namespace plane
 
 #endif
 
-      virtual void post_fork_uri(const char * pszUri, ::ca::application_bias * pbiasCreate);
+      virtual void post_fork_uri(const char * pszUri, ::ca2::application_bias * pbiasCreate);
 
 
-      //      sp(::plane::session) get_session(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
+      //      sp(::plane::session) get_session(index iEdge, ::ca2::application_bias * pbiasCreation = NULL);
       sp(::plane::session) query_session(index iEdge);
 
 
-      //static void register_delete(sp(::ca::ca) plistened, sp(::ca::ca) plistener);
-      //static void unregister_delete(sp(::ca::ca) plistened, sp(::ca::ca) plistenerOld);
+      //static void register_delete(sp(::ca2::ca2) plistened, sp(::ca2::ca2) plistener);
+      //static void unregister_delete(sp(::ca2::ca2) plistened, sp(::ca2::ca2) plistenerOld);
 
       virtual bool wait_twf(uint32_t dwTimeOut = INFINITE);
 
       template < class T >
-      sp(::ca::type_info) type_info()
+      sp(::ca2::type_info) type_info()
       {
          return get_type_info(typeid(T));
       }
 
-      virtual sp(::ca::type_info) get_type_info(const ::std_type_info & info);
-      sp(::ca::type_info) get_type_info(const class id & idType)
+      virtual sp(::ca2::type_info) get_type_info(const ::std_type_info & info);
+      sp(::ca2::type_info) get_type_info(const class id & idType)
       {
          return m_typemap[idType];
       }
 
-      void set_enum_name(sp(::ca::type_info) etype, int32_t i, const char * psz)
+      void set_enum_name(sp(::ca2::type_info) etype, int32_t i, const char * psz)
       {
          m_mapEnumToName[etype->name()][i] = psz;
          m_mapNameToEnum[etype->name()][psz] = i;
       }
-      string get_enum_name(sp(::ca::type_info) info, int32_t i)
+      string get_enum_name(sp(::ca2::type_info) info, int32_t i)
       {
          return m_mapEnumToName[info->name()].get(i, "");
       }
@@ -699,11 +699,11 @@ namespace plane
       }
 
       template < class ENUM >
-      ENUM enum_from_name(sp(::ca::type_info) info, const char * psz, int32_t iDefault = 0)
+      ENUM enum_from_name(sp(::ca2::type_info) info, const char * psz, int32_t iDefault = 0)
       {
          return (ENUM) m_mapNameToEnum[info->name()].get(psz, iDefault);
       }
-      int32_t enum_from_name(sp(::ca::type_info) info, const char * psz, int32_t iDefault = 0)
+      int32_t enum_from_name(sp(::ca2::type_info) info, const char * psz, int32_t iDefault = 0)
       {
          return m_mapNameToEnum[info->name()].get(psz, iDefault);
       }
@@ -717,12 +717,12 @@ namespace plane
       }
 
       template < class TYPE >
-      void set_enum_name(sp(::ca::type_info) etype, TYPE e, const char * psz)
+      void set_enum_name(sp(::ca2::type_info) etype, TYPE e, const char * psz)
       {
          set_enum_name(etype, (int32_t) e, psz);
       }
       template < class TYPE >
-      string get_enum_name(sp(::ca::type_info) etype, TYPE e)
+      string get_enum_name(sp(::ca2::type_info) etype, TYPE e)
       {
          return get_enum_name(etype, (int32_t) e);
       }
@@ -751,11 +751,11 @@ namespace plane
 
       virtual bool create_twf();
 
-      virtual void discard_to_factory(sp(::ca::ca) pca);
+      virtual void discard_to_factory(sp(::ca2::ca2) pca);
 
       virtual bool verb();
 
-      virtual sp(::ca::application) get_new_app(sp(::ca::application) pappNewApplicationParent, const char * pszType, const char * pszId);
+      virtual sp(::ca2::application) get_new_app(sp(::ca2::application) pappNewApplicationParent, const char * pszType, const char * pszId);
 
       virtual bool find_applications_from_cache();
       virtual bool find_applications_to_cache();
@@ -773,21 +773,21 @@ namespace plane
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
 
-      //virtual sp(::ca::command_thread) command_thread();
+      //virtual sp(::ca2::command_thread) command_thread();
 
 
       virtual bool on_install();
 
-      virtual string get_fontopus_server(const char * pszUrl, sp(::ca::application) papp, int32_t iRetry = -1);
+      virtual string get_fontopus_server(const char * pszUrl, sp(::ca2::application) papp, int32_t iRetry = -1);
 
       virtual string get_host_location_url();
 
-      virtual bool add_library(::ca::library * plibrary);
+      virtual bool add_library(::ca2::library * plibrary);
 
       virtual void get_cursor_pos(LPPOINT lppoint);
 
 
-      virtual bool set_main_init_data(::ca::main_init_data * pdata);
+      virtual bool set_main_init_data(::ca2::main_init_data * pdata);
 
 
       void enum_display_monitors();
@@ -812,26 +812,26 @@ namespace plane
 } // namespace cube
 
 
-namespace ca
+namespace ca2
 {
 
 
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 #if defined(LINUX) || defined(MACOS)
 
 
 template < class T >
-bool ::ca::file_system::output(sp(::ca::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, const char *), const char * lpszSource)
+bool ::ca2::file_system::output(sp(::ca2::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca2::writer &, const char *), const char * lpszSource)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
 
-   ::ca::filesp fileOut = App(papp).file().get_file(pszOutput, ::ca::file::mode_create | ::ca::file::type_binary | ::ca::file::mode_write);
+   ::ca2::filesp fileOut = App(papp).file().get_file(pszOutput, ::ca2::file::mode_create | ::ca2::file::type_binary | ::ca2::file::mode_write);
 
    if(fileOut.is_null())
       return false;
@@ -842,17 +842,17 @@ bool ::ca::file_system::output(sp(::ca::application) papp, const char * pszOutpu
 
 
 template < class T >
-bool ::ca::file_system::output(sp(::ca::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, ::ca::reader &), const char * lpszInput)
+bool ::ca2::file_system::output(sp(::ca2::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca2::writer &, ::ca2::reader &), const char * lpszInput)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
 
-   ::ca::filesp fileOut = App(papp).file().get_file(pszOutput, ::ca::file::mode_create | ::ca::file::type_binary | ::ca::file::mode_write);
+   ::ca2::filesp fileOut = App(papp).file().get_file(pszOutput, ::ca2::file::mode_create | ::ca2::file::type_binary | ::ca2::file::mode_write);
 
    if(fileOut.is_null())
       return false;
 
-   ::ca::filesp fileIn = App(papp).file().get_file(lpszInput, ::ca::file::type_binary | ::ca::file::mode_read);
+   ::ca2::filesp fileIn = App(papp).file().get_file(lpszInput, ::ca2::file::type_binary | ::ca2::file::mode_read);
 
    if(fileIn.is_null())
       return false;
@@ -941,7 +941,7 @@ namespace user
 
 
    template < class DOCUMENT >
-   ::ca::data * view::get_data()
+   ::ca2::data * view::get_data()
    {
       ASSERT(this != NULL);
       DOCUMENT * pdocument = get_typed_document < DOCUMENT > ();
@@ -964,7 +964,7 @@ namespace user
 namespace xml
 {
 
-   inline disp_option::disp_option(sp(::ca::application) papp)
+   inline disp_option::disp_option(sp(::ca2::application) papp)
    {
       newline = true;
       reference_value = true;

@@ -14,7 +14,7 @@ namespace uinteraction
 
       class CLASS_DECL_ca2 appearance :
          public CWorkSetDownUpInterface,
-         virtual public ::ca::signalizable
+         virtual public ::ca2::signalizable
       {
          friend class WorkSet;
       public:
@@ -23,35 +23,35 @@ namespace uinteraction
          virtual ~appearance();
 
          class CTool001 :
-            virtual public ::ca::object
+            virtual public ::ca2::object
          {
          public:
 
-            CTool001(sp(::ca::application) papp);
+            CTool001(sp(::ca2::application) papp);
 
-            void Update(::ca::graphics * pdc, LPCRECT lpcrect,
+            void Update(::ca2::graphics * pdc, LPCRECT lpcrect,
                COLORREF crHighlight,
                COLORREF crLight,
                COLORREF crBody,
                COLORREF crShadow,
                COLORREF crDkShadow);
-            void draw(::ca::graphics * pdc);
+            void draw(::ca2::graphics * pdc);
 
             class CColorBezier
             {
             public:
-               void draw(::ca::brush & brush, ::ca::graphics * pdc);
+               void draw(::ca2::brush & brush, ::ca2::graphics * pdc);
                point_array m_pointset;
-               ::ca::pen  *   m_ppen;
+               ::ca2::pen  *   m_ppen;
                void clear();
             };
          public:
-            ::ca::pen_sp      m_penHighlight;
-            ::ca::pen_sp      m_penLight;
-            ::ca::pen_sp      m_penShadow;
-            ::ca::pen_sp      m_penDkShadow;
-            ::ca::brush_sp      m_brushNull;
-            ::ca::brush_sp      m_brushBody;
+            ::ca2::pen_sp      m_penHighlight;
+            ::ca2::pen_sp      m_penLight;
+            ::ca2::pen_sp      m_penShadow;
+            ::ca2::pen_sp      m_penDkShadow;
+            ::ca2::brush_sp      m_brushNull;
+            ::ca2::brush_sp      m_brushBody;
 
             point_array m_pointsetBody;
             array < CColorBezier, CColorBezier & > m_colorbezieraOutsideBorder;

@@ -3,8 +3,8 @@
 namespace filemanager
 {
 
-   iconoverlayer::iconoverlayer(sp(::ca::application) papp) :
-      ca(papp)
+   iconoverlayer::iconoverlayer(sp(::ca2::application) papp) :
+      ca2(papp)
    {
    }
 

@@ -7,8 +7,8 @@
 #endif
 
 
-semaphore::semaphore(sp(::ca::application) papp, LONG lInitialCount, LONG lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttributes) :
-   ca(papp),
+semaphore::semaphore(sp(::ca2::application) papp, LONG lInitialCount, LONG lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttributes) :
+   ca2(papp),
    sync_object(pstrName)
 {
 
@@ -17,7 +17,7 @@ semaphore::semaphore(sp(::ca::application) papp, LONG lInitialCount, LONG lMaxCo
 
 #ifdef WINDOWS
 
-   m_object = ::CreateSemaphoreExW(lpsaAttributes, lInitialCount, lMaxCount, ::ca::international::utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
+   m_object = ::CreateSemaphoreExW(lpsaAttributes, lInitialCount, lMaxCount, ::ca2::international::utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
    if (m_object == NULL)
       throw resource_exception(papp);
 #else

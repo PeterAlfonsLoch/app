@@ -31,7 +31,7 @@ class index_array;
 #define ARRAY_MOVE_SEMANTICS(A) \
       \
    A(A && a) :  \
-   ca(a.get_app()) \
+   ca2(a.get_app()) \
    { \
     \
    m_nGrowBy      = a.m_nGrowBy; \
@@ -82,7 +82,7 @@ public:
 
    class_size(C * p) : m_p(p), m_c(-1) {}
 
-   class_size(C * p, ::count c) : m_p(NULL), m_c(c) {}
+   class_size(C * p, ::count ca) : m_p(NULL), m_c(ca) {}
 
    class_size(const class_size & size) : m_p(size.m_p), m_c(size.m_c) {}
 
@@ -142,19 +142,19 @@ public:
 
 
 
-   class class_size & operator +=(::count c)
+   class class_size & operator +=(::count ca)
    {
 
-      m_p->set_size(m_p->get_size() + c);
+      m_p->set_size(m_p->get_size() + ca);
 
       return *this;
 
    }
 
-   class class_size & operator -=(::count c)
+   class class_size & operator -=(::count ca)
    {
 
-      m_p->set_size(m_p->get_size() - c);
+      m_p->set_size(m_p->get_size() - ca);
 
       return *this;
 
@@ -178,7 +178,7 @@ public:
 #include "collection_comparable_raw_array.h"
 #include "collection_comparable_primitive_array.h"
 
-#include "base/ca/ca_byte_serializable.h"
+#include "base/ca2/ca_byte_serializable.h"
 
 #include "collection_primitive_array.h"
 #include "collection_numeric_array.h"
@@ -213,21 +213,21 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // Classes declared in this file
 
-//::ca::object
+//::ca2::object
    // Arrays
    class byte_array;           // array of BYTE
    class uint16_array;           // array of WORD
    class uint32_array;          // array of uint32_t
    class CUIntArray;           // array of UINT
    class CPtrArray;            // array of void *
-   class CObArray;             // array of ::ca::object*
+   class CObArray;             // array of ::ca2::object*
 
    // Lists
    class pointer_list;             // list of void *
-   class object_list;              // list of ::ca::object*
+   class object_list;              // list of ::ca2::object*
 
    // Maps (aka Dictionaries)
-   class CMapWordToOb;         // map from WORD to ::ca::object*
+   class CMapWordToOb;         // map from WORD to ::ca2::object*
    class CMapWordToPtr;        // map from WORD to void *
    class CMapPtrToWord;        // map from void * to WORD
    class map_ptr_to_ptr;         // map from void * to void *
@@ -235,7 +235,7 @@ public:
    // Special string variants
    class string_list;          // list of Strings
    class CMapStringToPtr;      // map from string to void *
-   class CMapStringToOb;       // map from string to ::ca::object*
+   class CMapStringToOb;       // map from string to ::ca2::object*
    class string_to_string_map;   // map from string to string
 
 
@@ -255,14 +255,14 @@ class CLASS_DECL_ca2 map_word_to_ptr :
    virtual public map < WORD, WORD, void *, void * >
 {
 public:
-   map_word_to_ptr(::ca::application * papp = NULL, ::count nBlockSize = 10);
+   map_word_to_ptr(::ca2::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 class CLASS_DECL_ca2 map_ptr_to_word :
    virtual public map < void *, void *, WORD, WORD >
 {
 public:
-   map_ptr_to_word(::ca::application * papp = NULL, ::count nBlockSize = 10);
+   map_ptr_to_word(::ca2::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 
@@ -270,14 +270,14 @@ class CLASS_DECL_ca2 map_ptr_to_ptr :
    virtual public map < void *, void *, void *, void * >
 {
 public:
-   map_ptr_to_ptr(::ca::application * papp = NULL, ::count nBlockSize = 10);
+   map_ptr_to_ptr(::ca2::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 class CLASS_DECL_ca2 map_word_to_ob :
-   virtual public map < WORD, WORD, ::ca::object *, ::ca::object * >
+   virtual public map < WORD, WORD, ::ca2::object *, ::ca2::object * >
 {
 public:
-   map_word_to_ob(::ca::application * papp = NULL, ::count nBlockSize = 10);
+   map_word_to_ob(::ca2::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 
@@ -285,14 +285,14 @@ class CLASS_DECL_ca2 map_string_to_ptr :
    virtual public map < string, const string &, void *, void * >
 {
 public:
-   map_string_to_ptr(::ca::application * papp = NULL, ::count nBlockSize = 10);
+   map_string_to_ptr(::ca2::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 class CLASS_DECL_ca2 map_string_to_ob :
-   virtual public map < string, const string &, ::ca::object *, ::ca::object * >
+   virtual public map < string, const string &, ::ca2::object *, ::ca2::object * >
 {
 public:
-   map_string_to_ob(::ca::application * papp = NULL, ::count nBlockSize = 10);
+   map_string_to_ob(::ca2::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 
@@ -303,22 +303,22 @@ public:
 #include "collection_bit_array.h"
 #include "collection_string_array.h"
 
-#include "base/ca/ca_variable_strict_compare.h"
+#include "base/ca2/ca_variable_strict_compare.h"
 
 #include "primitive/primitive_var.h"
 
 #include "collection_stringa.h"
 
 
-#include "base/ca/ca_var_array.h"
-#include "base/ca/ca_property.h"
+#include "base/ca2/ca_var_array.h"
+#include "base/ca2/ca_property.h"
 
 
 
 
-#include "base/ca/ca_signal.h"
-#include "base/ca/ca_property_set.h"
-#include "base/ca/ca_international2.h"
+#include "base/ca2/ca_signal.h"
+#include "base/ca2/ca_property_set.h"
+#include "base/ca2/ca_international2.h"
 
 
 #include "collection_point_array.h"

@@ -3,7 +3,7 @@
 
 void base_exception::operator delete(void * pbData)
 {
-   ::ca::object::operator delete(pbData);
+   ::ca2::object::operator delete(pbData);
 }
 
 void base_exception::operator delete(void * pbData,   const char * /* lpszFileName */, int32_t /* nLine */)
@@ -11,8 +11,8 @@ void base_exception::operator delete(void * pbData,   const char * /* lpszFileNa
    operator delete(pbData);
 }
 
-base_exception::base_exception(sp(::ca::application) papp, uint32_t uiSkip) :
-   ca(papp),
+base_exception::base_exception(sp(::ca2::application) papp, uint32_t uiSkip) :
+   ca2(papp),
    ::call_stack(papp, uiSkip)
 {
    // most exceptions are deleted when not needed
@@ -20,8 +20,8 @@ base_exception::base_exception(sp(::ca::application) papp, uint32_t uiSkip) :
    m_ulFlags &= ~flag_ready_for_delete;
 }
 
-base_exception::base_exception(sp(::ca::application) papp, bool bAutoDelete, uint32_t uiSkip) :
-   ca(papp),
+base_exception::base_exception(sp(::ca2::application) papp, bool bAutoDelete, uint32_t uiSkip) :
+   ca2(papp),
    ::call_stack(papp, uiSkip)
 {
    // for exceptions which are not auto-delete (usually)

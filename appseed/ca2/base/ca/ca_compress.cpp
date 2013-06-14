@@ -15,11 +15,11 @@
 #ifdef WINDOWS
 int32_t my_open(const char * psz, int32_t i)
 {
-   return _wopen(::ca::international::utf8_to_unicode(psz), i);
+   return _wopen(::ca2::international::utf8_to_unicode(psz), i);
 }
 FILE * my_fopen(const char * psz, const char * pszMode)
 {
-   return _wfopen(::ca::international::utf8_to_unicode(psz), ::ca::international::utf8_to_unicode(pszMode));
+   return _wfopen(::ca2::international::utf8_to_unicode(psz), ::ca2::international::utf8_to_unicode(pszMode));
 }
 #else
 
@@ -40,10 +40,10 @@ FILE * my_fopen(const char * psz, const char * pszMode)
 
 
 
-namespace ca
+namespace ca2
 {
 
-   bool compress::ungz(::ca::writer & ostreamUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::ungz(::ca2::writer & ostreamUncompressed, const char * lpcszGzFileCompressed)
    {
       int32_t fileUn = my_open(lpcszGzFileCompressed, _O_BINARY | _O_RDONLY);
       if (fileUn == -1)
@@ -128,7 +128,7 @@ namespace ca
    }
 
 
-   bool compress::gz(::ca::writer & ostreamCompressed, const char * lpcszUncompressed)
+   bool compress::gz(::ca2::writer & ostreamCompressed, const char * lpcszUncompressed)
    {
       string str(lpcszUncompressed);
       FILE * fileUn = my_fopen(lpcszUncompressed, "rb");
@@ -152,7 +152,7 @@ namespace ca
       return true;
    }
 
-   bool compress::null(::ca::writer & ostream, ::ca::reader & istream)
+   bool compress::null(::ca2::writer & ostream, ::ca2::reader & istream)
    {
       class primitive::memory memory;
       memory.allocate(1024 * 256);
@@ -164,17 +164,17 @@ namespace ca
       return true;
    }
 
-   bool compress::ungz(sp(::ca::application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::ungz(sp(::ca2::application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
    {
       return System.file().output(papp, lpcszUncompressed, this, &compress::ungz, lpcszGzFileCompressed);
    }
 
-   bool compress::gz(sp(::ca::application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
+   bool compress::gz(sp(::ca2::application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
    {
       return System.file().output(papp, lpcszGzFileCompressed, this, &compress::gz, lpcszUncompressed);
    }
 
-   bool compress::unbz(::ca::writer & ostreamUncompressed, const char * lpcszBzFileCompressed)
+   bool compress::unbz(::ca2::writer & ostreamUncompressed, const char * lpcszBzFileCompressed)
    {
       BZFILE * file = BZ2_bzopen(lpcszBzFileCompressed, "rb");
       if (file == NULL)
@@ -193,9 +193,9 @@ namespace ca
       return true;
    }
 
-   bool compress::bz(::ca::writer & ostreamBzFileCompressed, const char * lpcszUncompressed)
+   bool compress::bz(::ca2::writer & ostreamBzFileCompressed, const char * lpcszUncompressed)
    {
-      ::ca::filesp file = Application.file().get_file(lpcszUncompressed, ::ca::file::mode_read | ::ca::file::type_binary);
+      ::ca2::filesp file = Application.file().get_file(lpcszUncompressed, ::ca2::file::mode_read | ::ca2::file::type_binary);
       if(file.is_null())
       {
          return false;
@@ -203,7 +203,7 @@ namespace ca
       return bz_stream(ostreamBzFileCompressed, file);
    }
 
-   bool compress::bz_stream(::ca::writer & ostreamBzFileCompressed, ::ca::reader & istreamFileUncompressed)
+   bool compress::bz_stream(::ca2::writer & ostreamBzFileCompressed, ::ca2::reader & istreamFileUncompressed)
    {
       bzip bz(ostreamBzFileCompressed);
       class primitive::memory memory;
@@ -217,12 +217,12 @@ namespace ca
       return true;
    }
 
-   bool compress::unbz(sp(::ca::application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::unbz(sp(::ca2::application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
    {
       return System.file().output(papp, lpcszUncompressed, this, &compress::unbz, lpcszGzFileCompressed);
    }
 
-   bool compress::bz(sp(::ca::application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
+   bool compress::bz(sp(::ca2::application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
    {
       return System.file().output(papp, lpcszGzFileCompressed, this, &compress::bz, lpcszUncompressed);
    }
@@ -245,14 +245,14 @@ namespace ca
    }
 
 
-   void compress::extract_all(const char * pszFile, sp(::ca::application) papp)
+   void compress::extract_all(const char * pszFile, sp(::ca2::application) papp)
    {
       string strDir = pszFile;
-      ::ca::str::ends_eat_ci(strDir, ".zip");
+      ::ca2::str::ends_eat_ci(strDir, ".zip");
       App(papp).file().copy(strDir, pszFile, false);
    }
 
-   void compress::zip(const char * pszZip, const char * psz, sp(::ca::application) papp)
+   void compress::zip(const char * pszZip, const char * psz, sp(::ca2::application) papp)
    {
       zip::InFile infile(papp);
 
@@ -267,7 +267,7 @@ namespace ca
          stringa straPath;
          stringa straRelative;
          string strPath;
-         ::ca::filesp file;
+         ::ca2::filesp file;
          System.dir().rls(papp, psz, &straPath, NULL, &straRelative);
          for(int32_t i = 0; i < straPath.get_size(); i++)
          {
@@ -282,8 +282,8 @@ namespace ca
 
    }
 
-   void compress::zip(const char * psz, sp(::ca::application) papp)
+   void compress::zip(const char * psz, sp(::ca2::application) papp)
    {
    }
 
-} // namespace ca
+} // namespace ca2

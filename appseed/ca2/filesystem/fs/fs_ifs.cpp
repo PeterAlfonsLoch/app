@@ -1,9 +1,9 @@
 #include "framework.h"
 
 
-ifs::ifs(sp(::ca::application) papp, const char * pszRoot) :
-   ca(papp),
-   ::ca::data(papp),
+ifs::ifs(sp(::ca2::application) papp, const char * pszRoot) :
+   ca2(papp),
+   ::ca2::data(papp),
    ::fs::data(papp)
 {
    m_strRoot = pszRoot;
@@ -16,8 +16,8 @@ bool ifs::fast_has_subdir(const char * pszPath)
 
    string strDir(pszPath);
 
-   ::ca::str::ends_eat(strDir, "/");
-   ::ca::str::ends_eat(strDir, "\\");
+   ::ca2::str::ends_eat(strDir, "/");
+   ::ca2::str::ends_eat(strDir, "\\");
 
    if(m_maplsTimeout.Lookup(strDir, dwTimeout))
    {
@@ -42,8 +42,8 @@ bool ifs::has_subdir(const char * pszPath)
 
    string strDir(pszPath);
 
-   ::ca::str::ends_eat(strDir, "/");
-   ::ca::str::ends_eat(strDir, "\\");
+   ::ca2::str::ends_eat(strDir, "/");
+   ::ca2::str::ends_eat(strDir, "\\");
 
    if(m_maplsTimeout.Lookup(strDir, dwTimeout))
    {
@@ -91,8 +91,8 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
 
    string strDir(pszDir);
 
-   ::ca::str::ends_eat(strDir, "/");
-   ::ca::str::ends_eat(strDir, "\\");
+   ::ca2::str::ends_eat(strDir, "/");
+   ::ca2::str::ends_eat(strDir, "\\");
 
    if(m_maplsTimeout.Lookup(strDir, dwTimeout))
    {
@@ -257,8 +257,8 @@ bool ifs::is_dir(const char * pszPath)
 
    string strPath(pszPath);
 
-   ::ca::str::ends_eat(strPath, "/");
-   ::ca::str::ends_eat(strPath, "\\");
+   ::ca2::str::ends_eat(strPath, "/");
+   ::ca2::str::ends_eat(strPath, "\\");
 
 
    uint32_t dwTimeout;
@@ -304,7 +304,7 @@ string ifs::file_name(const char * pszPath)
 
    string strPath(pszPath);
 
-   if(!::ca::str::begins_eat_ci(strPath, "ifs://") && !::ca::str::begins_eat_ci(strPath, "uifs://"))
+   if(!::ca2::str::begins_eat_ci(strPath, "ifs://") && !::ca2::str::begins_eat_ci(strPath, "uifs://"))
    {
       return "";
    }
@@ -326,10 +326,10 @@ bool ifs::file_move(const char * pszDst, const char * pszSrc)
 }
 
 
-::ca::filesp ifs::get_file(var varFile, UINT nOpenFlags)
+::ca2::filesp ifs::get_file(var varFile, UINT nOpenFlags)
 {
    
-   ::ca::filesp spfile;
+   ::ca2::filesp spfile;
 
    spfile = new ifs_file(get_app(), varFile);
 
@@ -353,7 +353,7 @@ bool ifs::file_move(const char * pszDst, const char * pszSrc)
 
    if(!spfile->open(strUrl, nOpenFlags))
    {
-      throw new ::ca::file_exception(get_app(), ::ca::file_exception::none, 01, varFile.get_string());
+      throw new ::ca2::file_exception(get_app(), ::ca2::file_exception::none, 01, varFile.get_string());
    }
 
    return spfile;

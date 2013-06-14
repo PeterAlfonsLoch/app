@@ -11,11 +11,11 @@ namespace userex
    public:
 
 
-      hour_list_view(sp(::ca::application) papp);   
+      hour_list_view(sp(::ca2::application) papp);   
       virtual ~hour_list_view();
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       virtual void _001GetItemText(::user::list_item * pitem);
       virtual count _001GetItemCount();

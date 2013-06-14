@@ -30,7 +30,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 list_column :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 
@@ -90,7 +90,7 @@ namespace user
       list         *       m_plist;
 
 
-      list_column_array(sp(::ca::application) papp);
+      list_column_array(sp(::ca2::application) papp);
 
 
       void Initialize(list * plist);
@@ -147,7 +147,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 list_item :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -210,7 +210,7 @@ namespace user
       index                m_iListItemRectSubItem;
       index                m_iListItemRectListItem;
 
-      ::ca::font *         m_pfont;
+      ::ca2::font *         m_pfont;
       int32_t                  m_iDrawTextFlags;
 
       draw_list_item(list * plist);
@@ -359,7 +359,7 @@ namespace user
 
 
       class CLASS_DECL_ca2 list_layout :
-         virtual public ::ca::byte_serializable
+         virtual public ::ca2::byte_serializable
       {
       public:
          list_layout();
@@ -368,12 +368,12 @@ namespace user
          index_array   m_iaDisplayToStrict;
          int32_t            m_iWidth;
 
-         virtual void write(::ca::byte_output_stream & ostream);
-         virtual void read(::ca::byte_input_stream & istream);
+         virtual void write(::ca2::byte_output_stream & ostream);
+         virtual void read(::ca2::byte_input_stream & istream);
       };
 
       class CLASS_DECL_ca2 icon_layout :
-         virtual public ::ca::byte_serializable
+         virtual public ::ca2::byte_serializable
       {
       public:
          icon_layout();
@@ -382,8 +382,8 @@ namespace user
          index_biunique   m_iaDisplayToStrict;
          int32_t            m_iWidth;
 
-         virtual void write(::ca::byte_output_stream & ostream);
-         virtual void read(::ca::byte_input_stream & istream);
+         virtual void write(::ca2::byte_output_stream & ostream);
+         virtual void read(::ca2::byte_input_stream & istream);
       };
 
    public:
@@ -500,10 +500,10 @@ namespace user
       string                        m_strTopText;
       rect                          m_rectTopText;
       list_data *                   m_pdata;
-      ::ca::font_sp                 m_font;
-      ::ca::font_sp                 m_fontHover;
-      ::ca::pen_sp                  m_penFocused;
-      ::ca::pen_sp                  m_penHighlight;
+      ::ca2::font_sp                 m_font;
+      ::ca2::font_sp                 m_fontHover;
+      ::ca2::pen_sp                  m_penFocused;
+      ::ca2::pen_sp                  m_penHighlight;
       EView                         m_eview;
       flags < e_flag >              m_flags;
       icon_layout                   m_iconlayout;
@@ -532,28 +532,28 @@ namespace user
 
 
 
-      list(sp(::ca::application) papp);
+      list(sp(::ca2::application) papp);
       virtual ~list();
 
 
 
-      int32_t _001CalcItemWidth(::ca::graphics * pdc, index iItem, index iSubItem);
-      int32_t _001CalcItemWidth(::ca::graphics * pdc, ::ca::font * pfont, index iItem, index iSubItem);
+      int32_t _001CalcItemWidth(::ca2::graphics * pdc, index iItem, index iSubItem);
+      int32_t _001CalcItemWidth(::ca2::graphics * pdc, ::ca2::font * pfont, index iItem, index iSubItem);
 
 
 
 
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       list_data * GetDataInterface();
       void UpdateHover();
-      ::ca::font * _001GetFont();
-      ::ca::font * _001GetFontHover();
-      ::ca::pen * _001GetPenFocused();
-      ::ca::pen * _001GetPenHighlight();
+      ::ca2::font * _001GetFont();
+      ::ca2::font * _001GetFontHover();
+      ::ca2::pen * _001GetPenFocused();
+      ::ca2::pen * _001GetPenHighlight();
       virtual void PreSubClassWindow();
-      virtual void _OnDraw(::ca::graphics * pdc);
+      virtual void _OnDraw(::ca2::graphics * pdc);
       void _001MaximizeColumnWidth(index iColumn);
       int32_t _001CalcItemWidth(index iItem, index iSubItem);
       int32_t _001CalcColumnWidth(index iColumn);
@@ -615,7 +615,7 @@ namespace user
       void SetDataInterface(list_data * pinterface);
       void CacheHint();
       void SetCacheInterface(list_cache_interface * pinterface);
-      //void AddMessageHandling(::ca::message::dispatch * pinterface);
+      //void AddMessageHandling(::ca2::message::dispatch * pinterface);
       void _001ShowTopText(bool bShow = true);
       void _001LayoutTopText();
       void _001SetTopText(const wchar_t * lpcwsz);
@@ -637,7 +637,7 @@ namespace user
 
       bool CreateHeaderCtrl();
 
-      virtual void _001OnDraw(::ca::graphics *pdc);
+      virtual void _001OnDraw(::ca2::graphics *pdc);
 
       virtual void _001DrawGroups(draw_list_item * pdrawitem, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast);
 

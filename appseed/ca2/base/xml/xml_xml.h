@@ -6,7 +6,7 @@ namespace xml
 
 
    class CLASS_DECL_ca2 xml :
-      public ::ca::section
+      public ::ca2::section
    {
    public:
 
@@ -16,7 +16,7 @@ namespace xml
       parse_info *   m_pparseinfoDefault;
 
 
-      xml(::ca::application * papp);
+      xml(::ca2::application * papp);
       virtual ~xml();
 
       virtual bool initialize1();
@@ -31,6 +31,6 @@ namespace xml
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

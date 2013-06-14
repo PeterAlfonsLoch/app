@@ -90,7 +90,7 @@ void string_format::allocate_add_up(strsize iLenAddUp)
    }
 
    if(m_pszBuffer == NULL)
-      throw memory_exception(::ca::get_thread_app());
+      throw memory_exception(::ca2::get_thread_app());
 
    
    memset(&m_pszBuffer[m_iLength], 0, m_iSize - m_iLength);
@@ -130,7 +130,7 @@ bool string_format::parse(const char * & s)
       }
       if(*s == '\0')
       {
-         throw simple_exception(::ca::get_thread_app(), "unfineshed argument specifier");
+         throw simple_exception(::ca2::get_thread_app(), "unfineshed argument specifier");
       }
       const char * start = s;
       while(*s != '\0')
@@ -152,7 +152,7 @@ bool string_format::parse(const char * & s)
       }
       if(*s == '\0')
       {
-         throw simple_exception(::ca::get_thread_app(), "unfineshed argument specifier");
+         throw simple_exception(::ca2::get_thread_app(), "unfineshed argument specifier");
       }
       if(s > start)
       {
@@ -186,7 +186,7 @@ bool string_format::parse(const char * & s)
       }
       if(*s == '\0')
       {
-         throw simple_exception(::ca::get_thread_app(), "unfineshed argument specifier");
+         throw simple_exception(::ca2::get_thread_app(), "unfineshed argument specifier");
       }
       if(s > start)
       {
@@ -203,9 +203,9 @@ bool string_format::parse(const char * & s)
       }
       if(*s == '\0')
       {
-         throw simple_exception(::ca::get_thread_app(), "unfineshed argument specifier");
+         throw simple_exception(::ca2::get_thread_app(), "unfineshed argument specifier");
       }
-      if(*s == 'c' || *s == 'd' || *s == 'i'
+      if(*s == 'ca' || *s == 'd' || *s == 'i'
       || *s == 'e' || *s == 'E' || *s == 'f'
       || *s == 'g' || *s == 'G' || *s == 'o'
       || *s == 'g' || *s == 'G' || *s == 's'
@@ -217,7 +217,7 @@ bool string_format::parse(const char * & s)
       }
       else
       {
-         throw simple_exception(::ca::get_thread_app(), "unfineshed format specifier");
+         throw simple_exception(::ca2::get_thread_app(), "unfineshed format specifier");
       }
       return false;
    }

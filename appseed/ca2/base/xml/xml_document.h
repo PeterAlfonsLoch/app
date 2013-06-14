@@ -10,7 +10,7 @@ namespace xml
 
    class CLASS_DECL_ca2 document :
       public node,
-      public ::ca::data
+      public ::ca2::data
    {
    public:
 
@@ -23,7 +23,7 @@ namespace xml
       sp(::xml::edit)              m_pedit;
 
 
-      document(sp(::ca::application) papp, parse_info * pparseinfo = NULL);
+      document(sp(::ca2::application) papp, parse_info * pparseinfo = NULL);
       virtual ~document();
     
 
@@ -33,18 +33,18 @@ namespace xml
       node * get_root();
       
       bool load_location(const char * psz);
-      bool load(sp(::ca::file) pfile);
+      bool load(sp(::ca2::file) pfile);
       bool load(const char * psz);
 
       document & operator = (document & document);
 
 
-      virtual void edit(::ca::base_edit * pbaseedit);
+      virtual void edit(::ca2::base_edit * pbaseedit);
 
 
-      inline sp(::xml::edit) validate_edit(::ca::base_edit * pbaseedit)
+      inline sp(::xml::edit) validate_edit(::ca2::base_edit * pbaseedit)
       {
-         return ::ca::data::validate_edit < ::xml::edit > (pbaseedit);
+         return ::ca2::data::validate_edit < ::xml::edit > (pbaseedit);
       }
 
 

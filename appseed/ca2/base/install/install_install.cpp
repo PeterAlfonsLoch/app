@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -412,7 +412,7 @@ RetryBuildNumber:
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

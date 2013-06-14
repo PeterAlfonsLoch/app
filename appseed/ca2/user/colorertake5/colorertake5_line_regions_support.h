@@ -32,7 +32,7 @@ namespace colorertake5
       ~LineRegionsSupport();
 
       /**
-      * Resizes structures to mantain regions for @c lineCount lines.
+      * Resizes structures to mantain regions for @ca lineCount lines.
       */
       void resize(::count lineCount);
 
@@ -49,7 +49,7 @@ namespace colorertake5
       /**
       * Sets start line position of line structures.
       * This position tells, that first line structure refers
-      * not to first line of text, but to @c first parameter value.
+      * not to first line of text, but to @ca first parameter value.
       */
       void setFirstLine(index first);
 
@@ -60,7 +60,7 @@ namespace colorertake5
 
       /**
       * Background region define, which is used to
-      * fill transparent regions. If background is @c NULL,
+      * fill transparent regions. If background is @ca NULL,
       * then regions with transparent fields would leave these fields unfilled
       */
       void setBackground(RegionDefine* back);
@@ -79,8 +79,8 @@ namespace colorertake5
       void setRegionMapper(RegionMapper* rds);
 
       /**
-      * Returns LineRegion object for @c lno line number.
-      * This object is linked with all other stored @c LineRegion objects
+      * Returns LineRegion object for @ca lno line number.
+      * This object is linked with all other stored @ca LineRegion objects
       */
       LineRegion *getLineRegions(index lno) const;
 

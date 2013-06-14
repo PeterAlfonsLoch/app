@@ -10,7 +10,7 @@ namespace simpledb
 
 
    class CLASS_DECL_ca2 socket_thread : 
-      public ::ca::thread,
+      public ::ca2::thread,
       public ::sockets::socket_handler
    {
    public:
@@ -42,14 +42,14 @@ namespace simpledb
       socket *                m_psocket;
 
 
-      socket_thread(sp(::ca::application) papp);
+      socket_thread(sp(::ca2::application) papp);
       virtual ~socket_thread();
 
 
       virtual bool initialize_instance();
 
 
-      void install_message_handling(::ca::message::dispatch * pinterface);
+      void install_message_handling(::ca2::message::dispatch * pinterface);
 
 
       DECL_GEN_SIGNAL(OnApp)

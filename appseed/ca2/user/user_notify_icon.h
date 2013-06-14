@@ -28,7 +28,7 @@ namespace user
       notify_icon_listener * m_plistener;
 
 
-      notify_icon(sp(::ca::application) papp);
+      notify_icon(sp(::ca2::application) papp);
       virtual ~notify_icon();
 
 
@@ -43,7 +43,7 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnNotifyIconMessage)
 
-      void install_message_handling(::ca::message::dispatch * pinterface);
+      void install_message_handling(::ca2::message::dispatch * pinterface);
 
 
    };

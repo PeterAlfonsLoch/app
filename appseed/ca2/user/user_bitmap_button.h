@@ -8,16 +8,16 @@ namespace user
       public ::user::tool_tip_tool
    {
    public:
-      bitmap_button(sp(::ca::application) papp);
+      bitmap_button(sp(::ca2::application) papp);
 
       bool  m_bHover;            // set if cursor is over the button
       bool  m_bCommandEnable;    // set if command is enabled
 
-      ::ca::bitmap m_bitmap;          // not pressed default bitmap
-      ::ca::bitmap m_bitmapSel;       // pressed bitmap
-      ::ca::bitmap m_bitmapFocus;     // focus bitmap
-      ::ca::bitmap m_bitmapDisabled;  // disabled bitmap
-      ::ca::bitmap m_bitmapHover;     // hover bitmap
+      ::ca2::bitmap m_bitmap;          // not pressed default bitmap
+      ::ca2::bitmap m_bitmapSel;       // pressed bitmap
+      ::ca2::bitmap m_bitmapFocus;     // focus bitmap
+      ::ca2::bitmap m_bitmapDisabled;  // disabled bitmap
+      ::ca2::bitmap m_bitmapHover;     // hover bitmap
 
 #ifdef WINDOWS
       bool LoadBitmaps(UINT nIDBitmapResource,
@@ -39,12 +39,12 @@ namespace user
       virtual void BaseToolTipGetRect(LPRECT lprect);
       virtual int32_t BaseToolTipGetIndex();
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 #ifdef WINDOWSEX
       virtual void DrawItem(LPDRAWITEMSTRUCT lpDIS);
 #endif
-      virtual void pre_translate_message(::ca::signal_object * pobj);
-      virtual void message_handler(::ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca2::signal_object * pobj);
+      virtual void message_handler(::ca2::signal_object * pobj);
 
       void ResizeToFit();
       virtual ~bitmap_button();

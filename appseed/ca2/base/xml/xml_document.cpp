@@ -5,9 +5,9 @@ namespace xml
 {
 
 
-   document::document(sp(::ca::application) papp, parse_info * pparseinfo) :
-      ca(papp),
-      ::ca::data(papp),
+   document::document(sp(::ca2::application) papp, parse_info * pparseinfo) :
+      ca2(papp),
+      ::ca2::data(papp),
       node(papp)
    {
 
@@ -47,7 +47,7 @@ namespace xml
 
    }
 
-   bool document::load(sp(::ca::file) pfile)
+   bool document::load(sp(::ca2::file) pfile)
    {
 
       primitive::memory memory;
@@ -135,12 +135,12 @@ namespace xml
 
    string document::consume_entity_ref(const char * & pszXml, string & strName, bool useExtEnt, bool & bExt)
    {
-      ::ca::str::consume(pszXml, "&");
+      ::ca2::str::consume(pszXml, "&");
       strName.Empty();
       while(*pszXml != ';')
       {
          strName += *pszXml;
-         pszXml = ::ca::str::utf8_inc(pszXml);
+         pszXml = ::ca2::str::utf8_inc(pszXml);
       }
       pszXml++;
       string ent = entitiesHash[strName];
@@ -204,7 +204,7 @@ namespace xml
    }
 
 
-   void document::edit(::ca::base_edit * pbaseedit)
+   void document::edit(::ca2::base_edit * pbaseedit)
    {
 
       sp(::xml::edit) pedit = validate_edit(pbaseedit);

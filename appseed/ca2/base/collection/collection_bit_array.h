@@ -15,9 +15,9 @@ public:
   bit_array();
   ~bit_array();
 
-  /** Sets bit at position @c pos */
+  /** Sets bit at position @ca pos */
   void set_bit(int32_t pos);
-  /** Clears bit at position @c pos */
+  /** Clears bit at position @ca pos */
   void clear_bit(int32_t pos);
   /** Sets bit range */
   void add_range(int32_t s, int32_t e);
@@ -36,7 +36,7 @@ public:
   void add_bit_array(char*, int32_t);
   /** Clears bit array from the passed byte stream. */
   void clear_bit_array(char*, int32_t);
-  /** Returns bit value at position @c pos. */
+  /** Returns bit value at position @ca pos. */
   bool get_bit(int32_t pos) const;
 
 

@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 job :
-      virtual public ::ca::thread
+      virtual public ::ca2::thread
    {
    public:
 
@@ -14,7 +14,7 @@ namespace ca
       bool        m_bCancel;
 
 
-      job(sp(::ca::application) papp);
+      job(sp(::ca2::application) papp);
       virtual ~job();
 
 
@@ -24,6 +24,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

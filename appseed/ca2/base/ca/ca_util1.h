@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ca
+namespace ca2
 {
    template < class t > inline void swap(t &t1, t &t2)
    {
@@ -17,5 +17,5 @@ namespace ca
             swap(t1, t2);
       }
    }
-} // namespace ca
+} // namespace ca2
 

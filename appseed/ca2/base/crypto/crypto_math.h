@@ -8,7 +8,7 @@
  */
 /*
  *   
- * Copyright (c) 2001-2006 Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006 Cisco Systems, Inc.
  * 
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -79,7 +79,7 @@ char *
 v64_hex_string(const v64_t *x);
 
 int32_t
-hex_char_to_nibble(uint8_t c);
+hex_char_to_nibble(uint8_t ca);
 
 int32_t
 is_hex_string(char *s);

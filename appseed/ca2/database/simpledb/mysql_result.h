@@ -9,7 +9,7 @@ namespace mysql
    class database;
 
    class CLASS_DECL_ca2 result :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       virtual ~result();

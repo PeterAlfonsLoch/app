@@ -2,8 +2,8 @@
 
 
 
-index_array::index_array(sp(::ca::application) papp) :
-   ca(papp)
+index_array::index_array(sp(::ca2::application) papp) :
+   ca2(papp)
 {
 }
 
@@ -34,8 +34,8 @@ index_array index_array::operator + (const index_array & indexa) const
 
 
 
-count_array::count_array(sp(::ca::application) papp) :
-   ca(papp)
+count_array::count_array(sp(::ca2::application) papp) :
+   ca2(papp)
 {
 }
 
@@ -64,8 +64,8 @@ count_array count_array::operator + (const count_array & counta) const
 }
 
 
-int_array::int_array(sp(::ca::application) papp) :
-   ca(papp)
+int_array::int_array(sp(::ca2::application) papp) :
+   ca2(papp)
 {
 }
 
@@ -100,8 +100,8 @@ int_array int_array::operator + (const int_array & inta) const
 
 
 
-int64_array::int64_array(sp(::ca::application) papp) :
-   ca(papp)
+int64_array::int64_array(sp(::ca2::application) papp) :
+   ca2(papp)
 {
 }
 
@@ -155,8 +155,8 @@ int64_array int64_array::operator + (const int64_array & inta) const
 
 
 
-uint64_array::uint64_array(sp(::ca::application) papp) :
-   ca(papp)
+uint64_array::uint64_array(sp(::ca2::application) papp) :
+   ca2(papp)
 {
 }
 
@@ -226,13 +226,13 @@ uint64_array uint64_array::operator + (const uint64_array & inta) const
 
 
 
-unique_int_sort_array::unique_int_sort_array(sp(::ca::application) papp) :
-   ca(papp)
+unique_int_sort_array::unique_int_sort_array(sp(::ca2::application) papp) :
+   ca2(papp)
 {
 }
 
 unique_int_sort_array::unique_int_sort_array(const unique_int_sort_array & array) :
-   ::ca::ca(array.get_app())
+   ::ca2::ca2(array.get_app())
 {
    operator = (array);
 }
@@ -306,13 +306,13 @@ unique_int_sort_array unique_int_sort_array::operator + (const unique_int_sort_a
 
 
 
-unique_index_sort_array::unique_index_sort_array(sp(::ca::application) papp) :
-   ca(papp)
+unique_index_sort_array::unique_index_sort_array(sp(::ca2::application) papp) :
+   ca2(papp)
 {
 }
 
 unique_index_sort_array::unique_index_sort_array(const unique_index_sort_array & array) :
-   ::ca::ca(array.get_app())
+   ::ca2::ca2(array.get_app())
 {
    operator = (array);
 }
@@ -427,12 +427,12 @@ double_array::~double_array()
 
 int64_t double_array::add_ref()
 {
-   return c::add_ref();
+   return ca::add_ref();
 }
 
 int64_t double_array::release()
 {
-   return c::release();
+   return ca::release();
 }
 
 

@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
-   bool bitmap::CreateBitmap(::ca::graphics * pdc, int32_t nWidth, int32_t nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, int32_t stride)
+   bool bitmap::CreateBitmap(::ca2::graphics * pdc, int32_t nWidth, int32_t nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, int32_t stride)
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
@@ -15,13 +15,13 @@ namespace ca
       throw not_implemented(get_app());
    }
 
-   bool bitmap::CreateBitmapIndirect(::ca::graphics * pdc, LPBITMAP lpBitmap)
+   bool bitmap::CreateBitmapIndirect(::ca2::graphics * pdc, LPBITMAP lpBitmap)
    {
       UNREFERENCED_PARAMETER(lpBitmap);
       throw not_implemented(get_app());
    }
 
-   bool bitmap::CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, int * stride, HANDLE hSection, uint32_t offset)
+   bool bitmap::CreateDIBSection(::ca2::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, int * stride, HANDLE hSection, uint32_t offset)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(lpbmi);
@@ -32,7 +32,7 @@ namespace ca
       UNREFERENCED_PARAMETER(offset);
       throw not_implemented(get_app());
    }
-   bool bitmap::CreateDIBitmap(::ca::graphics * pdc, const BITMAPINFOHEADER *pbmih, uint32_t flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
+   bool bitmap::CreateDIBitmap(::ca2::graphics * pdc, const BITMAPINFOHEADER *pbmih, uint32_t flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(pbmih);
@@ -56,14 +56,14 @@ namespace ca
       throw not_implemented(get_app());
    }
 
-   bool bitmap::CreateCompatibleBitmap(::ca::graphics * pgraphics, int32_t nWidth, int32_t nHeight)
+   bool bitmap::CreateCompatibleBitmap(::ca2::graphics * pgraphics, int32_t nWidth, int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
       throw not_implemented(get_app());
    }
-   bool bitmap::CreateDiscardableBitmap(::ca::graphics * pgraphics, int32_t nWidth, int32_t nHeight)
+   bool bitmap::CreateDiscardableBitmap(::ca2::graphics * pgraphics, int32_t nWidth, int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nWidth);
@@ -71,7 +71,7 @@ namespace ca
       throw not_implemented(get_app());
    }
 
-   void ::ca::bitmap::dump(dump_context & dumpcontext) const
+   void ::ca2::bitmap::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
       throw interface_only_exception(get_app());
@@ -137,4 +137,4 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2

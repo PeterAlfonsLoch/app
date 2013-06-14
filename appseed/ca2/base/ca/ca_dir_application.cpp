@@ -5,7 +5,7 @@ namespace zip
    class Util;
 }
 
-namespace ca
+namespace ca2
 {
 
    namespace dir
@@ -79,7 +79,7 @@ namespace ca
             strFile.replace("\\\\", "\\", 2);
             if(Application.file().exists(strFile))
                return strFile;
-            System.file().output(get_app(), strFile, &System.compress(), &::ca::compress::null, strPath);
+            System.file().output(get_app(), strFile, &System.compress(), &::ca2::compress::null, strPath);
             return strFile;
          }
          else
@@ -238,6 +238,6 @@ namespace ca
    } // namespace dir
 
 
-} // namespace ca
+} // namespace ca2
 
 

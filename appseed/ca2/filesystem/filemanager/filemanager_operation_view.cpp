@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-file_manager_operation_view::file_manager_operation_view(sp(::ca::application) papp) :
-   ca(papp),
+file_manager_operation_view::file_manager_operation_view(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::split_layout(papp),
    
    ::user::split_view(papp),
@@ -15,7 +15,7 @@ file_manager_operation_view::~file_manager_operation_view()
 }
 
 
-void file_manager_operation_view::_001OnCreate(::ca::signal_object * pobj)
+void file_manager_operation_view::_001OnCreate(::ca2::signal_object * pobj)
 {
    pobj->previous();
 
@@ -46,7 +46,7 @@ void file_manager_operation_view::_001OnCreate(::ca::signal_object * pobj)
 
 }
 
-void file_manager_operation_view::install_message_handling(::ca::message::dispatch * pinterface)
+void file_manager_operation_view::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::split_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_view::_001OnCreate);
@@ -59,9 +59,9 @@ sp(file_manager_operation_document) file_manager_operation_view::get_document()
    return  (::user::view::get_document());
 }
 
-void file_manager_operation_view::_001OnMainPostMessage(::ca::signal_object * pobj)
+void file_manager_operation_view::_001OnMainPostMessage(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::base, pbase, pobj)
+   SCAST_PTR(::ca2::message::base, pbase, pobj)
    if(pbase->m_wparam == MessageMainPostFileOperation)
    {
       m_pinfoview->OnFileOperationStep((int32_t) pbase->m_lparam, false);
@@ -74,7 +74,7 @@ void file_manager_operation_view::_001OnMainPostMessage(::ca::signal_object * po
    }
 }
 
-void file_manager_operation_view::_001OnDestroy(::ca::signal_object *pobj)
+void file_manager_operation_view::_001OnDestroy(::ca2::signal_object *pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 }

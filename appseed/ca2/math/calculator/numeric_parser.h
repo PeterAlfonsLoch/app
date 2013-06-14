@@ -4,7 +4,7 @@ namespace calculator
 {
 
    class CLASS_DECL_ca2 parser :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -13,7 +13,7 @@ namespace calculator
       spa(element)      m_elementa;
 
 
-      parser(sp(::ca::application) papp);
+      parser(sp(::ca2::application) papp);
       virtual ~parser();
 
 

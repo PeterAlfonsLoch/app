@@ -26,8 +26,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
-   ipv4_address::ipv4_address(sp(::ca::application) papp, port_t port) :
-      ca(papp),
+   ipv4_address::ipv4_address(sp(::ca2::application) papp, port_t port) :
+      ca2(papp),
       m_bValid(true)
    {
       memset(&m_addr, 0, sizeof(m_addr));
@@ -36,7 +36,7 @@ namespace sockets
    }
 
 
-/*   ipv4_address::ipv4_address(sp(::ca::application) papp, ipaddr_t a,port_t port) : ca(papp), m_bValid(true)
+/*   ipv4_address::ipv4_address(sp(::ca2::application) papp, ipaddr_t a,port_t port) : ca2(papp), m_bValid(true)
    {
       memset(&m_addr, 0, sizeof(m_addr));
       m_addr.sin_family = AF_INET;
@@ -45,7 +45,7 @@ namespace sockets
    }*/
 
 
-   ipv4_address::ipv4_address(sp(::ca::application) papp, const in_addr& a,port_t port) : ca(papp), m_bValid(true)
+   ipv4_address::ipv4_address(sp(::ca2::application) papp, const in_addr& a,port_t port) : ca2(papp), m_bValid(true)
    {
       memset(&m_addr, 0, sizeof(m_addr));
       m_addr.sin_family = AF_INET;
@@ -55,7 +55,7 @@ namespace sockets
    }
 
 
-   ipv4_address::ipv4_address(sp(::ca::application) papp, const string & host,port_t port) : ca(papp), m_bValid(false)
+   ipv4_address::ipv4_address(sp(::ca2::application) papp, const string & host,port_t port) : ca2(papp), m_bValid(false)
    {
       memset(&m_addr, 0, sizeof(m_addr));
       m_addr.sin_family = AF_INET;
@@ -71,14 +71,14 @@ namespace sockets
    }
 
 
-   ipv4_address::ipv4_address(sp(::ca::application) papp, const sockaddr_in& sa) : ca(papp)
+   ipv4_address::ipv4_address(sp(::ca2::application) papp, const sockaddr_in& sa) : ca2(papp)
    {
       m_addr = sa;
       m_bValid = sa.sin_family == AF_INET;
    }
 
    ipv4_address::ipv4_address(const ipv4_address & addr) :
-      ::ca::ca(addr.get_app())
+      ::ca2::ca2(addr.get_app())
    {
       memset(&m_addr, 0, sizeof(m_addr));
       m_addr.sin_family = AF_INET;
@@ -116,7 +116,7 @@ namespace sockets
    }
 
 
-/*   bool ipv4_address::Resolve(sp(::ca::application) papp, const string & hostname, in_addr& a)
+/*   bool ipv4_address::Resolve(sp(::ca2::application) papp, const string & hostname, in_addr& a)
    {
       if(Sys(papp->m_psystem).net().isipv4(hostname))
       {
@@ -130,7 +130,7 @@ namespace sockets
    }
 
 
-   bool ipv4_address::Reverse(sp(::ca::application) papp, in_addr& a,string & name)
+   bool ipv4_address::Reverse(sp(::ca2::application) papp, in_addr& a,string & name)
    {
       return Sys(papp->m_psystem).net().reverse(a, name);
    }
@@ -139,13 +139,13 @@ namespace sockets
    string ipv4_address::Convert(bool include_port)
    {
       if (include_port)
-         return Convert(get_app(), m_addr.sin_addr) + ":" + ::ca::str::from(GetPort());
+         return Convert(get_app(), m_addr.sin_addr) + ":" + ::ca2::str::from(GetPort());
       return Convert(get_app(), m_addr.sin_addr);
    }
    */
 
    /*
-   string ipv4_address::Convert(sp(::ca::application) papp, struct in_addr& a)
+   string ipv4_address::Convert(sp(::ca2::application) papp, struct in_addr& a)
    {
       struct sockaddr_in sa;
       memset(&sa, 0, sizeof(sa));

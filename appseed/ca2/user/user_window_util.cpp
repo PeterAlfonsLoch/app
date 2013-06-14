@@ -8,7 +8,7 @@ namespace user
       window_util::SortByZOrder(*this);
    }
 
-   // This function sort the ::ca::window array
+   // This function sort the ::ca2::window array
    // by ascending z order.
 
    // This implementation relays in the fact
@@ -65,29 +65,29 @@ namespace user
 
    }
 
-   // This function sort the ::ca::window array
+   // This function sort the ::ca2::window array
    // by ascending z order.
 
    // This implementation relays in the fact
    // that all windows are siblings,
-   // have a permanent ::ca::window associated object
-   // and that all ::ca::window array pointers
+   // have a permanent ::ca2::window associated object
+   // and that all ::ca2::window array pointers
    // are pointers to permanent objects.
-   /*void window_util::SortByZOrder(Carray < sp(::ca::window), sp(::ca::window) > & wndpa)
+   /*void window_util::SortByZOrder(Carray < sp(::ca2::window), sp(::ca2::window) > & wndpa)
    {
    if(wndpa.get_size() <= 0)
    return;
 
-   Carray < sp(::ca::window), sp(::ca::window) > wndpa2;
+   Carray < sp(::ca2::window), sp(::ca2::window) > wndpa2;
 
-   sp(::ca::window) pwnd = wndpa[0];
+   sp(::ca2::window) pwnd = wndpa[0];
 
-   sp(::ca::window) pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
+   sp(::ca2::window) pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
 
    while(pwndChild != NULL
    && ::IsWindow(pwndChild->GetSafeoswindow_()))
    {
-   pwnd = ::ca::window::FromHandlePermanent(pwndChild->GetSafeoswindow_());
+   pwnd = ::ca2::window::FromHandlePermanent(pwndChild->GetSafeoswindow_());
    if(pwnd == NULL)
    {
    CTransparentWndInterface * ptwi = NULL;
@@ -112,8 +112,8 @@ namespace user
    pwndChild = pwndChild->GetWindow(GW_HWNDNEXT);
    }
 
-   Carray < sp(::ca::window), sp(::ca::window) > wndpa3;
-   Carray < sp(::ca::window), sp(::ca::window) > wndpa4;
+   Carray < sp(::ca2::window), sp(::ca2::window) > wndpa3;
+   Carray < sp(::ca2::window), sp(::ca2::window) > wndpa4;
 
    for(int32_t i = 0; i < wndpa2.get_size(); i++)
    {
@@ -135,13 +135,13 @@ namespace user
 
    }*/
 
-   // This function sort the ::ca::window array
+   // This function sort the ::ca2::window array
    // by ascending z order.
 
    // This implementation relays in the fact
    // that all windows are siblings,
-   // have a permanent ::ca::window associated object
-   // and that all ::ca::window array pointers
+   // have a permanent ::ca2::window associated object
+   // and that all ::ca2::window array pointers
    // are pointers to permanent objects.
    /*void window_util::SortByZOrder(Carray < oswindow, oswindow > & oswindowa)
    {
@@ -216,7 +216,7 @@ namespace user
    ::ScreenToClient(oswindow, &rectChild.bottom_right());
    rectChild.offset(ptOffset);
    HRGN hrgnChild = ::create_rect(rectChild);
-   ::CombineRgn(hrgn, hrgn, hrgnChild, ::ca::region::combine_exclude);
+   ::CombineRgn(hrgn, hrgn, hrgnChild, ::ca2::region::combine_exclude);
    ::DeleteObject(hrgnChild);
    }
 
@@ -268,7 +268,7 @@ namespace user
 
 #else
 
-      throw not_implemented(::ca::get_thread_app());
+      throw not_implemented(::ca2::get_thread_app());
 
 #endif
 
@@ -373,15 +373,15 @@ namespace user
 
 
    // This function get all child windows of
-   // the ::ca::window pointed by pwnd and add it
-   // to the ::ca::window array wndpa. The top
+   // the ::ca2::window pointed by pwnd and add it
+   // to the ::ca2::window array wndpa. The top
    // windows come first in the enumeration.
 
-   /*void window_util::EnumChildren(sp(::ca::window) pwnd, interaction_ptr_array & wndpa)
+   /*void window_util::EnumChildren(sp(::ca2::window) pwnd, interaction_ptr_array & wndpa)
    {
    if(!::IsWindow(pwnd->GetSafeoswindow_()))
    return;
-   sp(::ca::window) pwndChild = pwnd->GetTopWindow();
+   sp(::ca2::window) pwndChild = pwnd->GetTopWindow();
    while(pwndChild != NULL)
    {
    wndpa.add(pwndChild);
@@ -390,8 +390,8 @@ namespace user
    }*/
 
    // This function get all child windows of
-   // the ::ca::window pointed by pwnd and add it
-   // to the ::ca::window array wndpa. The top
+   // the ::ca2::window pointed by pwnd and add it
+   // to the ::ca2::window array wndpa. The top
    // windows come first in the enumeration.
 
    void window_util::EnumChildren(oswindow oswindow, oswindow_array & oswindowa)
@@ -415,20 +415,20 @@ namespace user
 
 #else
 
-      throw todo(::ca::get_thread_app());
+      throw todo(::ca2::get_thread_app());
 
 #endif
 
    }
 
 
-   // This function sort the ::ca::window array
+   // This function sort the ::ca2::window array
    // by ascending z order.
 
    // This implementation relays in the fact
    // that all windows are siblings,
-   // have a permanent ::ca::window associated object
-   // and that all ::ca::window array pointers
+   // have a permanent ::ca2::window associated object
+   // and that all ::ca2::window array pointers
    // are pointers to permanent objects.
    /*void window_util::SortByZOrder(interaction_ptr_array & wndpa)
    {
@@ -437,13 +437,13 @@ namespace user
 
    interaction_ptr_array wndpa2;
 
-   sp(::ca::window) pwnd = wndpa[0];
+   sp(::ca2::window) pwnd = wndpa[0];
 
-   sp(::ca::window) pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
+   sp(::ca2::window) pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
 
    while(pwndChild != NULL)
    {
-   pwnd = ::ca::window::FromHandlePermanent(pwndChild->GetSafeoswindow_());
+   pwnd = ::ca2::window::FromHandlePermanent(pwndChild->GetSafeoswindow_());
    if(pwnd == NULL)
    {
    wndpa2.add(pwnd);
@@ -512,7 +512,7 @@ namespace user
 
 #else
 
-         throw todo(::ca::get_thread_app());
+         throw todo(::ca2::get_thread_app());
 
 #endif
 
@@ -542,7 +542,7 @@ namespace user
 
 #else
 
-      throw todo(::ca::get_thread_app());
+      throw todo(::ca2::get_thread_app());
 
 #endif
 
@@ -585,7 +585,7 @@ namespace user
 
 #else
 
-      throw todo(::ca::get_thread_app());
+      throw todo(::ca2::get_thread_app());
 
 #endif
 #endif
@@ -595,7 +595,7 @@ namespace user
    /*void window_util::SendMessageToDescendants(oswindow oswindow, UINT message,
    WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
    {
-   // walk through HWNDs to avoid creating temporary ::ca::window objects
+   // walk through HWNDs to avoid creating temporary ::ca2::window objects
    // unless we need to call this function recursively
    for (oswindow oswindow_Child = ::GetTopWindow; oswindow_Child != NULL;
    oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
@@ -603,10 +603,10 @@ namespace user
    // if bOnlyPerm is TRUE, don't send to non-permanent windows
    if (bOnlyPerm)
    {
-   sp(::ca::window) pWnd = ::ca::window::FromHandlePermanent(oswindow_Child);
+   sp(::ca2::window) pWnd = ::ca2::window::FromHandlePermanent(oswindow_Child);
    if (pWnd != NULL)
    {
-   // call ::ca::window proc directly since it is a C++ ::ca::window
+   // call ::ca2::window proc directly since it is a C++ ::ca2::window
    __call_window_procedure(pWnd, pWnd->m_oswindow_, message, wParam, lParam);
    }
    }
@@ -630,7 +630,7 @@ namespace user
 
 #if defined(WINDOWSEX)
 
-      // walk through HWNDs to avoid creating temporary ::ca::window objects
+      // walk through HWNDs to avoid creating temporary ::ca2::window objects
       // unless we need to call this function recursively
       for(::oswindow oswindow_Child = ::GetTopWindow(oswindow); oswindow_Child != NULL; oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
       {
@@ -664,13 +664,13 @@ namespace user
 
 #else
 
-      throw todo(::ca::get_thread_app());
+      throw todo(::ca2::get_thread_app());
 
 #endif
 
    }
 
-   // This function sort the ::ca::window array
+   // This function sort the ::ca2::window array
    // by ascending z order.
 
    // This implementation relays in the fact
@@ -739,7 +739,7 @@ namespace user
 
 #else
 
-      throw todo(::ca::get_thread_app());
+      throw todo(::ca2::get_thread_app());
 
 #endif
 
@@ -769,7 +769,7 @@ namespace user
 
 #else
 
-      throw todo(::ca::get_thread_app());
+      throw todo(::ca2::get_thread_app());
 
 #endif
 
@@ -818,7 +818,7 @@ namespace user
 
          HRGN hrgnChild = ::CreateRectRgnIndirect(rectChild);
 
-         ::CombineRgn(hrgn, hrgn, hrgnChild, ::ca::region::combine_exclude);
+         ::CombineRgn(hrgn, hrgn, hrgnChild, ::ca2::region::combine_exclude);
 
          ::DeleteObject(hrgnChild);
 
@@ -826,7 +826,7 @@ namespace user
 
 #else
 
-      throw todo(::ca::get_thread_app());
+      throw todo(::ca2::get_thread_app());
 
 #endif
 
@@ -857,7 +857,7 @@ namespace user
 
 #else
 
-      throw todo(::ca::get_thread_app());
+      throw todo(::ca2::get_thread_app());
 
 #endif
 
@@ -879,7 +879,7 @@ namespace user
 #endif
    }
 
-   sp(::user::interaction) interaction_ptr_array::find_first_typed(sp(::ca::type_info) info)
+   sp(::user::interaction) interaction_ptr_array::find_first_typed(sp(::ca2::type_info) info)
    {
       for(int32_t i = 0; i < this->get_size(); i++)
       {
@@ -908,8 +908,8 @@ namespace user
 
    }
 
-   interaction_ptr_array::interaction_ptr_array(sp(::ca::application) papp) :
-      ca(papp)
+   interaction_ptr_array::interaction_ptr_array(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
    }

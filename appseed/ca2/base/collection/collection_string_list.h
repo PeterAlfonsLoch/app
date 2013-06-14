@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca2 string_list :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
 

@@ -6,7 +6,7 @@
 #ifndef METROWIN
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -43,7 +43,7 @@ namespace ca
       string read(bool bUntilExit = false);
    };
 
-} // namespace ca
+} // namespace ca2
 
 
 

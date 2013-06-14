@@ -11,13 +11,13 @@ class RegionMapper{
 public:
   /**
    * Searches mapped region define value.
-   * @return region define, associated with passed @c region
+   * @return region define, associated with passed @ca region
    * parameter, or NULL if nothing found
    */
   virtual RegionDefine *getRegionDefine(class region *region) = 0;
 
   /**
-   * Searches mapped region define value with qualified name @c name.
+   * Searches mapped region define value with qualified name @ca name.
    */
   virtual RegionDefine *getRegionDefine(const char * name) = 0;
 

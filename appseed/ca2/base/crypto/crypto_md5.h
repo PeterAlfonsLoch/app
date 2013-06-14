@@ -17,7 +17,7 @@ namespace crypto
 
 
       class CLASS_DECL_ca2 context :
-         public ::ca::object
+         public ::ca2::object
       {
       public:
 
@@ -35,7 +35,7 @@ namespace crypto
 
 #endif
       
-         context(sp(::ca::application) papp);
+         context(sp(::ca2::application) papp);
          virtual ~context();
 
          void update(const void * data, size_t size);

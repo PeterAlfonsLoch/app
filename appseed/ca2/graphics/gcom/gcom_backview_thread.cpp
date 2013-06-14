@@ -9,9 +9,9 @@ namespace gcom
       const UINT thread::MESSAGE_BACKVIEW = WM_APP + 123;
       const WPARAM thread::WPARAM_BACKVIEW_IMAGELOADED = 0;
 
-      thread::thread(sp(::ca::application) papp) :
-         ca(papp),
-         ::ca::thread(papp),
+      thread::thread(sp(::ca2::application) papp) :
+         ca2(papp),
+         ::ca2::thread(papp),
          m_evInitialized(papp, FALSE, TRUE),
          m_mutexBitmap(papp)
       {
@@ -32,10 +32,10 @@ namespace gcom
       {
          m_evInitialized.SetEvent();
          m_pbackviewinterface->Release();
-         return ::ca::thread::exit_instance();
+         return ::ca2::thread::exit_instance();
       }
 
-      void thread::install_message_handling(::ca::message::dispatch * pinterface)
+      void thread::install_message_handling(::ca2::message::dispatch * pinterface)
       {
          IGUI_WIN_MSG_LINK(WM_USER, pinterface, this, &thread::OnUserMessage);
          IGUI_WIN_MSG_LINK(MESSAGE_BACKVIEW, pinterface, this, &thread::OnBackViewMessage);
@@ -70,7 +70,7 @@ namespace gcom
          CSavings & savings = CSavings::AppGetSavings();
       //    if(iEconoMode != CVMSApp::SaveMemory)
         //  {
-         ::ca::bitmap * pbmpOld = graphics.m_dcBackViewSource.SelectObject(graphics.m_bmpBackViewSource);
+         ::ca2::bitmap * pbmpOld = graphics.m_dcBackViewSource.SelectObject(graphics.m_bmpBackViewSource);
           if(pbmpOld != NULL)
           {
               if(hBitmapOld != NULL)
@@ -118,7 +118,7 @@ namespace gcom
       }*/
 
       long thread::OnImageStretched(
-         ::ca::bitmap * pbitmap,
+         ::ca2::bitmap * pbitmap,
          long cx,
          long cy,
          long iUserData)
@@ -180,7 +180,7 @@ namespace gcom
          return 0;
       }
 
-      /*::ca::bitmap & thread::GetBitmap()
+      /*::ca2::bitmap & thread::GetBitmap()
       {
          return m_bitmap;
       }*/
@@ -189,9 +189,9 @@ namespace gcom
       /////////////////////////////////////////////////////////////////////////////
       // thread message handlers
 
-      void thread::OnBackViewMessage(::ca::signal_object * pobj)
+      void thread::OnBackViewMessage(::ca2::signal_object * pobj)
       {
-         SCAST_PTR(::ca::message::base, pbase, pobj);
+         SCAST_PTR(::ca2::message::base, pbase, pobj);
          switch(pbase->m_wparam)
          {
          case WPARAM_BACKVIEW_IMAGELOADED:
@@ -209,9 +209,9 @@ namespace gcom
             break;
          }
       }
-      void thread::OnUserMessage(::ca::signal_object * pobj)
+      void thread::OnUserMessage(::ca2::signal_object * pobj)
       {
-         SCAST_PTR(::ca::message::base, pbase, pobj);
+         SCAST_PTR(::ca2::message::base, pbase, pobj);
           ASSERT(GetMainWnd() == NULL);
          if(pbase->m_wparam == 1) //&& m_pImageLoader != NULL)
          {
@@ -311,9 +311,9 @@ namespace gcom
 
       }
 
-      void thread::OnCommandMessage(::ca::signal_object * pobj)
+      void thread::OnCommandMessage(::ca2::signal_object * pobj)
       {
-         SCAST_PTR(::ca::message::base, pbase, pobj);
+         SCAST_PTR(::ca2::message::base, pbase, pobj);
          switch(pbase->m_wparam)
          {
          case CommandLoadImage:
@@ -386,7 +386,7 @@ namespace gcom
       void thread::LoadImageAsync(const load_image & loadimage)
       {
          load_image * lploadimage = new load_image(loadimage);
-         ::ca::connect(lploadimage->m_signalImageLoaded,  m_pbackviewinterface, &backview::Main::_001OnImageLoaded);
+         ::ca2::connect(lploadimage->m_signalImageLoaded,  m_pbackviewinterface, &backview::Main::_001OnImageLoaded);
 
          post_thread_message(
             MessageCommand,
@@ -463,7 +463,7 @@ namespace gcom
       }
 
 
-      load_image::load_image(::ca::dib * pdib, thread * pbackviewthread, backview::Main * pbackviewinterface, const char * lpcwszImagePath) :
+      load_image::load_image(::ca2::dib * pdib, thread * pbackviewthread, backview::Main * pbackviewinterface, const char * lpcwszImagePath) :
          m_pdib(pdib),
          thread_dispatch(pbackviewthread),
          m_strImagePath(lpcwszImagePath),
@@ -491,7 +491,7 @@ namespace gcom
 
       void load_image::OnImageLoaded()
       {
-         ::ca::signal_object obj(&m_signalImageLoaded);
+         ::ca2::signal_object obj(&m_signalImageLoaded);
          obj()["dib"] = m_pdib;
          m_signalImageLoaded.emit(&obj);
       }

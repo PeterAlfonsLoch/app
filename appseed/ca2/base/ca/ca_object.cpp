@@ -1,17 +1,17 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
    /////////////////////////////////////////////////////////////////////////////
    // Runtime Typing
 
    // special runtime-class structure for ::object (no base class)
-   /*const struct sp(::ca::type_info) object::classbase_object =
+   /*const struct sp(::ca2::type_info) object::classbase_object =
    { "::object", sizeof(::object), 0xffff, NULL, NULL, NULL };*/
    /*
-   sp(::ca::type_info) object::GetRuntimeClass() const
+   sp(::ca2::type_info) object::GetRuntimeClass() const
    {
    return _RUNTIME_CLASS(::object);
    }
@@ -21,9 +21,9 @@ namespace ca
    { 
 /*      try
       {
-         if(::ca::get_thread_state() != NULL)
+         if(::ca2::get_thread_state() != NULL)
          {
-            ::ca::get_thread_state()->m_heapitema.set_heap_alloc(this);
+            ::ca2::get_thread_state()->m_heapitema.set_heap_alloc(this);
          }
       }
       catch(...)
@@ -39,9 +39,9 @@ namespace ca
 
       /*try
       {
-         if(::ca::get_thread_state() != NULL)
+         if(::ca2::get_thread_state() != NULL)
          {
-            ::ca::get_thread_state()->m_heapitema.set_heap_alloc(this);
+            ::ca2::get_thread_state()->m_heapitema.set_heap_alloc(this);
          }
       }
       catch(...)
@@ -89,7 +89,7 @@ namespace ca
          if(m_psetObject == NULL)
          {
             
-            m_psetObject = new ::ca::property_set(get_app());
+            m_psetObject = new ::ca2::property_set(get_app());
 
          }
 
@@ -125,13 +125,13 @@ namespace ca
       if(bBigIcon)
       {
 
-         oprop("big_icon").operator =((sp(::ca::ca)) picon);
+         oprop("big_icon").operator =((sp(::ca2::ca2)) picon);
 
       }
       else
       {
 
-         oprop("small_icon").operator =((sp(::ca::ca)) picon);
+         oprop("small_icon").operator =((sp(::ca2::ca2)) picon);
 
       }
 
@@ -146,20 +146,20 @@ namespace ca
       if(bBigIcon)
       {
 
-         return const_cast < object * > (this)->oprop("big_icon").ca < ::visual::icon >();
+         return const_cast < object * > (this)->oprop("big_icon").ca2 < ::visual::icon >();
 
       }
       else
       {
 
-         return const_cast < object * > (this)->oprop("small_icon").ca < ::visual::icon >();
+         return const_cast < object * > (this)->oprop("small_icon").ca2 < ::visual::icon >();
 
       }
 
    }
 
 
-   ::ca::property & object::oprop(const char * psz)
+   ::ca2::property & object::oprop(const char * psz)
    {
 
       return propset()[psz];
@@ -167,7 +167,7 @@ namespace ca
    }
 
 
-   ::ca::property & object::oprop(const char * psz) const 
+   ::ca2::property & object::oprop(const char * psz) const 
    {
 
       return const_cast < object * > (this)->propset()[psz];
@@ -175,13 +175,13 @@ namespace ca
    }
 
 
-   ::ca::property_set & object::propset()
+   ::ca2::property_set & object::propset()
    {
 
       if(m_psetObject == NULL)
       {
 
-         m_psetObject = new ::ca::property_set(get_app());
+         m_psetObject = new ::ca2::property_set(get_app());
 
       }
 
@@ -210,38 +210,38 @@ namespace ca
 //void * object::operator new(size_t nSize)
   // { return ::operator new(nSize); }
 // DEBUG versions in objcore.cpp
-//void ::ca::object::AssertValid() const
+//void ::ca2::object::AssertValid() const
 //   { /* no asserts in release builds */ }
-//void ::ca::object::Dump(dump_context &) const
+//void ::ca2::object::Dump(dump_context &) const
 //   { /* no dumping in release builds */ }
 #endif //!DEBUG
 
 
-   sp(::ca::command_thread) object::command_thread()
+   sp(::ca2::command_thread) object::command_thread()
    {
       return Application.command();
    }
 
 
-} //  namespace ca
+} //  namespace ca2
 
 
 /////////////////////////////////////////////////////////////////////////////
 // Diagnostic Support
 
 //#ifdef DEBUG
-void assert_valid_object(const ::ca::object * pOb, const char * lpszFileName, int32_t nLine)
+void assert_valid_object(const ::ca2::object * pOb, const char * lpszFileName, int32_t nLine)
 {
    if (pOb == NULL)
    {
-//      TRACE(::ca::trace::category_AppMsg, 0, "ASSERT_VALID fails with NULL pointer.\n");
+//      TRACE(::ca2::trace::category_AppMsg, 0, "ASSERT_VALID fails with NULL pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          __debug_break();
       return;     // quick escape
    }
-   if (!__is_valid_address(pOb, sizeof(::ca::object)))
+   if (!__is_valid_address(pOb, sizeof(::ca2::object)))
    {
-      ///TRACE(::ca::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
+      ///TRACE(::ca2::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          __debug_break();
       return;     // quick escape
@@ -252,7 +252,7 @@ void assert_valid_object(const ::ca::object * pOb, const char * lpszFileName, in
    //   if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
    if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
    {
-//      TRACE(::ca::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal vtable pointer.\n");
+//      TRACE(::ca2::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal vtable pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          __debug_break();
       return;     // quick escape
@@ -260,7 +260,7 @@ void assert_valid_object(const ::ca::object * pOb, const char * lpszFileName, in
 
    /*if (!__is_valid_address(pOb, typeid(pOb->GetRuntimeClass()->m_nObjectSize, FALSE))
    {
-   TRACE(::ca::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
+   TRACE(::ca2::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
    if (__assert_failed_line(lpszFileName, nLine))
    __debug_break();
    return;     // quick escape

@@ -1097,9 +1097,6 @@ DLL_API FIBITMAP *DLL_CALLCONV FreeImage_MultigridPoissonSolver(FIBITMAP *Laplac
 #endif
 
 
-#ifdef ANDROID
-void swab(const void *from, void*to, ssize_t n);
-#endif
 
 #ifdef __cplusplus
 }

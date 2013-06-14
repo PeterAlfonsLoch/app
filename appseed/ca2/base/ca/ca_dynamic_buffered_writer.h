@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -44,10 +44,10 @@ namespace ca
          _size += addSize; 
       }
 
-      using ::ca::writer::write;
+      using ::ca2::writer::write;
       void write(const void *data, uint_ptr size, uint_ptr *processedSize);
 
 
    };
 
-} // namespace ca
+} // namespace ca2

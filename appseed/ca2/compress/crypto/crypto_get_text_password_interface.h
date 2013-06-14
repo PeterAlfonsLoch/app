@@ -15,10 +15,10 @@ namespace crypto
    #define PASSWORD_INTERFACE(i, x) DECL_INTERFACE(i, 5, x)*/
 
    class CLASS_DECL_ca2 get_text_password_interface :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
-      virtual ::ca::HRes CryptoGetTextPassword(string & str) = 0;
+      virtual ::ca2::HRes CryptoGetTextPassword(string & str) = 0;
    };
 
 } // namespace crypto

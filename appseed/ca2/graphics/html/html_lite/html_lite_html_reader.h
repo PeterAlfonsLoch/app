@@ -100,7 +100,7 @@ public:
         there is only one.
  */
 class CLASS_DECL_ca2 lite_html_reader :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
 
@@ -192,8 +192,8 @@ public:
 
 // Construction/Destruction
 
-   lite_html_reader(sp(::ca::application) papp)  :
-      ca(papp)
+   lite_html_reader(sp(::ca2::application) papp)  :
+      ca2(papp)
    {
       m_bResolveEntities = true;   // entities are resolved, by default
       m_dwAppData = 0L;   // reasonable default!

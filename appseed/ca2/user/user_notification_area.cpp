@@ -32,7 +32,7 @@ namespace user
 #endif
    }
 
-   void notification_area::Initialize(sp(::ca::application) papp)
+   void notification_area::Initialize(sp(::ca2::application) papp)
    {
 #ifdef WINDOWSEX
       LOGFONT lf = {0};
@@ -115,7 +115,7 @@ namespace user
          else
             wcscpy(sTip,L"[Hidden icon]");
 
-         info.sTip = ::ca::international::unicode_to_utf8(sTip);
+         info.sTip = ::ca2::international::unicode_to_utf8(sTip);
 
          info.m_oswindow = tray.m_oswindow;
          info.uCallbackMessage = tray.uCallbackMessage;
@@ -250,7 +250,7 @@ namespace user
          d++;
       }
 #else
-      throw todo(::ca::get_thread_app());
+      throw todo(::ca2::get_thread_app());
 #endif
 
       return '\0';

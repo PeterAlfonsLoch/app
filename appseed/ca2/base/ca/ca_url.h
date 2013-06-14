@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -9,7 +9,7 @@ namespace ca
 
 
    class CLASS_DECL_ca2 url :
-      public ::ca::object
+      public ::ca2::object
    {
    public:
       // Example: http://veriwell.com.br:443/page?id=1
@@ -25,14 +25,14 @@ namespace ca
       void set_param(string & strUrl, const char * pszUrl, const char * pszKey, const string & strParam);
       string string_set(string & strUrl, const char * pszKey, var var);
       var & var_set(var & varUrl, const char * pszKey, var var);
-      ::ca::property & property_set(::ca::property & propUrl, const char * pszKey, var var);
+      ::ca2::property & property_set(::ca2::property & propUrl, const char * pszKey, var var);
       string set_script(const char * pszUrl, const char * pszScript);
       string override_if_empty(const char * pszDest, const char * pszSrc, bool bOverrideQuery = false);
       string override_if_set_at_source(const char * pszDest, const char * pszSrc);
       string remove_key(const char * pszUrl, const char * pszKey);
       string string_remove(string & strUrl, const char * pszKey);
       var & var_remove(var & varUrl, const char * pszKey);
-      ::ca::property & property_remove(::ca::property & propUrl, const char * pszKey);
+      ::ca2::property & property_remove(::ca2::property & propUrl, const char * pszKey);
       // Example: page?id=1
       string object_get_script(const char *); // page
       string object_get_query(const char *); // id=1
@@ -84,6 +84,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

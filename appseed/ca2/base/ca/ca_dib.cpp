@@ -6,7 +6,7 @@
 #include <math.h>
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -28,7 +28,7 @@ namespace ca
    }
 
 
-   ::ca::graphics * dib::get_graphics()
+   ::ca2::graphics * dib::get_graphics()
    {
 
       throw interface_only_exception(get_app());
@@ -36,7 +36,7 @@ namespace ca
    }
 
 
-   ::ca::bitmap_sp dib::get_bitmap()
+   ::ca2::bitmap_sp dib::get_bitmap()
    {
 
       throw interface_only_exception(get_app());
@@ -44,7 +44,7 @@ namespace ca
    }
 
 
-   ::ca::bitmap_sp dib::detach_bitmap()
+   ::ca2::bitmap_sp dib::detach_bitmap()
    {
 
       throw interface_only_exception(get_app());
@@ -71,7 +71,7 @@ namespace ca
    }
 
 
-   bool dib::realize(::ca::graphics * pdc)
+   bool dib::realize(::ca2::graphics * pdc)
    {
 
       UNREFERENCED_PARAMETER(pdc);
@@ -95,7 +95,7 @@ namespace ca
 
    }
 
-   bool dib::defer_realize(::ca::graphics * pdc)
+   bool dib::defer_realize(::ca2::graphics * pdc)
    {
 
       if(is_realized())
@@ -122,9 +122,9 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool dib::create(::ca::graphics * pdc)
+   bool dib::create(::ca2::graphics * pdc)
    {
-      ::ca::bitmap & bitmap = pdc->GetCurrentBitmap();
+      ::ca2::bitmap & bitmap = pdc->GetCurrentBitmap();
       if(&bitmap == NULL)
          return FALSE;
 
@@ -145,33 +145,33 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool dib::to(::ca::graphics * pgraphics)
+   bool dib::to(::ca2::graphics * pgraphics)
    {
       return to(pgraphics, null_point(), size());
    }
 
-   bool dib::to(::ca::graphics * pgraphics, point pt)
+   bool dib::to(::ca2::graphics * pgraphics, point pt)
    {
       return to(pgraphics, pt, size());
    }
 
-   bool dib::to(::ca::graphics * pgraphics, class size size)
+   bool dib::to(::ca2::graphics * pgraphics, class size size)
    {
       return to(pgraphics, null_point(), size);
    }
 
-   bool dib::to(::ca::graphics * pgraphics, LPCRECT lpcrect)
+   bool dib::to(::ca2::graphics * pgraphics, LPCRECT lpcrect)
    {
       class rect rect(lpcrect);
       return to(pgraphics, rect.top_left(), rect.size());
    }
 
-   bool dib::to(::ca::graphics * pgraphics, point pt, class size size)
+   bool dib::to(::ca2::graphics * pgraphics, point pt, class size size)
    {
       return to(pgraphics, pt, size, point(0, 0));
    }
 
-   bool dib::to(::ca::graphics * pgraphics, point pt, class size size, point ptSrc)
+   bool dib::to(::ca2::graphics * pgraphics, point pt, class size size, point ptSrc)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(pt);
@@ -180,7 +180,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool dib::from(::ca::dib * pdib)
+   bool dib::from(::ca2::dib * pdib)
    {
 
       if(!create(pdib->size()))
@@ -199,13 +199,13 @@ namespace ca
       return true;
    }
 
-   bool dib::from(::ca::graphics * pdc)
+   bool dib::from(::ca2::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
       throw interface_only_exception(get_app());
    }
 
-   bool dib::from(point ptDst, ::ca::graphics * pdc, point ptSrc, class size size)
+   bool dib::from(point ptDst, ::ca2::graphics * pdc, point ptSrc, class size size)
    {
       return get_graphics()->from(ptDst, size, pdc, ptSrc, SRCCOPY) != FALSE;
    }
@@ -306,7 +306,7 @@ namespace ca
       }
    }
 
-   void dib::mult_alpha(::ca::dib * pdib, bool bPreserveAlpha)
+   void dib::mult_alpha(::ca2::dib * pdib, bool bPreserveAlpha)
    {
       UNREFERENCED_PARAMETER(pdib);
       UNREFERENCED_PARAMETER(bPreserveAlpha);
@@ -522,7 +522,7 @@ fill_last:
       }
    }
 
-   void dib::channel_multiply(visual::rgba::echannel echannel, ::ca::dib * pdib)
+   void dib::channel_multiply(visual::rgba::echannel echannel, ::ca2::dib * pdib)
    {
       register int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
@@ -537,7 +537,7 @@ fill_last:
       }
    }
 
-   void dib::channel_darken(visual::rgba::echannel echannel, ::ca::dib * pdib)
+   void dib::channel_darken(visual::rgba::echannel echannel, ::ca2::dib * pdib)
    {
       register int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
@@ -552,7 +552,7 @@ fill_last:
       }
    }
 
-   void dib::channel_lighten(visual::rgba::echannel echannel, ::ca::dib * pdib)
+   void dib::channel_lighten(visual::rgba::echannel echannel, ::ca2::dib * pdib)
    {
       register int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
@@ -567,7 +567,7 @@ fill_last:
       }
    }
 
-   void dib::channel_from(visual::rgba::echannel echannel, ::ca::dib * pdib)
+   void dib::channel_from(visual::rgba::echannel echannel, ::ca2::dib * pdib)
    {
       map();
       pdib->map();
@@ -717,7 +717,7 @@ fill_last:
 
    }
 
-   bool dib::bitmap_blend(::ca::graphics * pgraphics, LPCRECT lprect)
+   bool dib::bitmap_blend(::ca2::graphics * pgraphics, LPCRECT lprect)
    {
       rect rect(lprect);
 
@@ -1361,11 +1361,11 @@ fill_last:
 
    void dib::Line ( int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t R, int32_t G, int32_t B )
    {
-      int32_t d, x, y, ca, ay, sx, sy, dx, dy;
+      int32_t d, x, y, ca2, ay, sx, sy, dx, dy;
       COLORREF color=RGB ( B, G, R );
 
       dx=x2-x1;
-      ca=abs ( dx )<<1;
+      ca2=abs ( dx )<<1;
       sx=(dx<0) ? -1 : 1;
       dy=y2-y1;
       ay=abs ( dy )<<1;
@@ -1373,16 +1373,16 @@ fill_last:
       x=x1;
       y=y1;
 
-      if ( ca>ay )
+      if ( ca2>ay )
       {
-         d=ay-(ca>>1);
+         d=ay-(ca2>>1);
          while ( x!=x2 )
          {
             get_data()[y*cx+x]=color;
             if ( d>=0 )
             {
                y+=sy;
-               d-=ca;
+               d-=ca2;
             }
             x+=sx;
             d+=ay;
@@ -1390,7 +1390,7 @@ fill_last:
       }
       else
       {
-         d=ca-(ay>>1);
+         d=ca2-(ay>>1);
          while ( y!=y2 )
          {
             get_data()[y*cx+x]=color;
@@ -1400,19 +1400,19 @@ fill_last:
                d-=ay;
             }
             y+=sy;
-            d+=ca;
+            d+=ca2;
          }
       }
    }
 
    void dib::LineGlass ( int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t R, int32_t G, int32_t B, int32_t A )
    {
-      int32_t d, x, y, ca, ay, sx, sy, dx, dy;
+      int32_t d, x, y, ca2, ay, sx, sy, dx, dy;
 //      COLORREF color=RGB ( B, G, R );
       BYTE *dst=(BYTE *)get_data();
 
       dx=x2-x1;
-      ca=abs ( dx )<<1;
+      ca2=abs ( dx )<<1;
       sx=(dx<0) ? -1 : 1;
       dy=y2-y1;
       ay=abs ( dy )<<1;
@@ -1420,9 +1420,9 @@ fill_last:
       x=x1;
       y=y1;
 
-      if ( ca>ay )
+      if ( ca2>ay )
       {
-         d=ay-(ca>>1);
+         d=ay-(ca2>>1);
          while ( x!=x2 )
          {
             dst[(y*cx+x)<<2]=(BYTE)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
@@ -1431,7 +1431,7 @@ fill_last:
             if ( d>=0 )
             {
                y+=sy;
-               d-=ca;
+               d-=ca2;
             }
             x+=sx;
             d+=ay;
@@ -1439,7 +1439,7 @@ fill_last:
       }
       else
       {
-         d=ca-(ay>>1);
+         d=ca2-(ay>>1);
          while ( y!=y2 )
          {
             dst[(y*cx+x)<<2]=(BYTE)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
@@ -1451,7 +1451,7 @@ fill_last:
                d-=ay;
             }
             y+=sy;
-            d+=ca;
+            d+=ca2;
          }
       }
    }
@@ -1871,7 +1871,7 @@ fill_last:
 #endif
 
       // Black blend dib
-      ::ca::dib_sp spdib2(allocer());
+      ::ca2::dib_sp spdib2(allocer());
 
 
       throw todo(get_app());
@@ -1957,7 +1957,7 @@ fill_last:
 
    void dib::rotate(dib * pdib, double dAngle, double dScale)
    {
-      // ::ca::dib_sp spdib(allocer());
+      // ::ca2::dib_sp spdib(allocer());
       //   spdib->Paste(this);
 
       int32_t l = max(cx, cy);
@@ -2108,7 +2108,7 @@ fill_last:
 
    void dib::rotate(dib * pdib, LPCRECT lpcrect, double dAngle, double dScale)
    {
-      // ::ca::dib_sp spdib(allocer());
+      // ::ca2::dib_sp spdib(allocer());
       //   spdib->Paste(this);
 
 
@@ -2634,7 +2634,7 @@ fill_last:
       }
    }
 
-   void dib::write(::ca::byte_output_stream & ostream)
+   void dib::write(::ca2::byte_output_stream & ostream)
    {
       ostream << (int32_t) cx;
       ostream << (int32_t) cy;
@@ -2647,7 +2647,7 @@ fill_last:
       }
    }
 
-   void dib::read(::ca::byte_input_stream & istream)
+   void dib::read(::ca2::byte_input_stream & istream)
    {
       int32_t width;
       int32_t height;
@@ -2676,7 +2676,7 @@ fill_last:
       throw not_implemented(get_app());
    }
 
-   bool dib::rgb_from(::ca::dib * pdib)
+   bool dib::rgb_from(::ca2::dib * pdib)
    {
       if(!create(pdib->size()))
          return false;
@@ -2702,7 +2702,7 @@ fill_last:
       return true;
    }
 
-   bool dib::from(::ca::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI)
+   bool dib::from(::ca2::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI)
    {
       throw interface_only_exception(get_app());
       return false;
@@ -3004,4 +3004,4 @@ fill_last:
    }
 
 
-} // namespace ca
+} // namespace ca2

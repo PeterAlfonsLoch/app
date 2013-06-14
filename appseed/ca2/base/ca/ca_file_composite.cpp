@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -82,14 +82,14 @@ namespace ca
 
    }
 
-   sp(::ca::file) file_composite::Duplicate() const
+   sp(::ca2::file) file_composite::Duplicate() const
    {
 
       return m_spfile->Duplicate();
 
    }
 
-   file_position file_composite::seek(file_offset lOff, ::ca::e_seek  nFrom)
+   file_position file_composite::seek(file_offset lOff, ::ca2::e_seek  nFrom)
    {
 
       return m_spfile->seek(lOff, nFrom);
@@ -274,5 +274,5 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 

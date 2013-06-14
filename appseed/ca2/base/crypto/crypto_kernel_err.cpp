@@ -1,5 +1,5 @@
 /*
- * err.c
+ * err.ca
  *
  * error status reporting functions
  *
@@ -8,7 +8,7 @@
  */
 /*
  *
- * Copyright(c) 2001-2006 Cisco Systems, Inc.
+ * Copyright(ca) 2001-2006 Cisco Systems, Inc.
  *
  *
  * Redistribution and use in source and binary forms, with or without

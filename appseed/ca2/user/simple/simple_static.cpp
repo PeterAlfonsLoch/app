@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-simple_static::simple_static(sp(::ca::application) papp) :
-   ca(papp),
+simple_static::simple_static(sp(::ca2::application) papp) :
+   ca2(papp),
    
    ::user::static_control(papp),
    m_brushBkg(allocer())
@@ -16,7 +16,7 @@ simple_static::~simple_static()
 {
 }
 
-void simple_static::_001OnDraw(::ca::graphics *pdc)
+void simple_static::_001OnDraw(::ca2::graphics *pdc)
 {
    if(get_type() == type_icon)
    {

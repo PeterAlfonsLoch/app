@@ -3,7 +3,7 @@
 
 
 db_long_set::db_long_set(db_server * pserver) :
-   ca(pserver->get_app()),
+   ca2(pserver->get_app()),
    db_set(pserver, "integertable"),
    m_handler(pserver->get_app()),
    m_mutex(pserver->get_app())
@@ -48,8 +48,8 @@ db_long_set::queue_item & db_long_set::queue_item::operator = (const queue_item 
    return *this;
 }
 
-db_long_set::sync_queue::sync_queue(sp(::ca::application) papp) :
-   ca(papp),
+db_long_set::sync_queue::sync_queue(sp(::ca2::application) papp) :
+   ca2(papp),
    thread(papp),
    simple_thread(papp),
    m_handler(papp),
@@ -93,11 +93,11 @@ repeat:;
           }
 
 
-          ::ca::property_set post(get_app());
-          ::ca::property_set headers(get_app());
-          ::ca::property_set set(get_app());
+          ::ca2::property_set post(get_app());
+          ::ca2::property_set headers(get_app());
+          ::ca2::property_set set(get_app());
 
-          ::ca::http::e_status estatus;
+          ::ca2::http::e_status estatus;
 
           string strUrl;
 
@@ -106,7 +106,7 @@ repeat:;
           strUrl = "https://api.ca2.cc/account/long_set_save?key=";
           strUrl += System.url().url_encode(m_itema[0].m_strKey);
           strUrl += "&value=";
-          strUrl += ::ca::str::from(m_itema[0].m_l);
+          strUrl += ::ca2::str::from(m_itema[0].m_l);
 
           m_itema.remove_at(0);
 
@@ -115,7 +115,7 @@ repeat:;
 
           m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-          if(m_phttpsession == NULL || estatus != ::ca::http::status_ok)
+          if(m_phttpsession == NULL || estatus != ::ca2::http::status_ok)
           {
              Sleep(1984);
              goto repeat;
@@ -161,11 +161,11 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 
 
 
-      ::ca::property_set post(get_app());
-      ::ca::property_set headers(get_app());
-      ::ca::property_set set(get_app());
+      ::ca2::property_set post(get_app());
+      ::ca2::property_set headers(get_app());
+      ::ca2::property_set set(get_app());
 
-      ::ca::http::e_status estatus;
+      ::ca2::http::e_status estatus;
 
       string strUrl;
 
@@ -177,12 +177,12 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       //m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
       m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, NULL, NULL, &estatus);
 
-      if(m_phttpsession == NULL || estatus != ::ca::http::status_ok)
+      if(m_phttpsession == NULL || estatus != ::ca2::http::status_ok)
       {
          return false;
       }
 
-      *plValue = ::ca::str::to_int64(string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(), m_phttpsession->m_memoryfile.get_memory()->get_size()));
+      *plValue = ::ca2::str::to_int64(string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(), m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
       longitem.m_dwTimeout = get_tick_count() + 23 * (1984 + 1977);
       longitem.m_l = *plValue;
@@ -280,7 +280,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
    else if(m_pmysqldbUser != NULL)
    {
 
-      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_strUser + "', '" + m_pmysqldbUser->real_escape_string(lpKey) + "', " + ::ca::str::from(lValue) + ")";
+      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_strUser + "', '" + m_pmysqldbUser->real_escape_string(lpKey) + "', " + ::ca2::str::from(lValue) + ")";
 
       TRACE(strSql);
 
@@ -483,7 +483,7 @@ bool db_long_set::save(const char * lpKey, LPCRECT lpRect)
    return true;
 
 }
-bool db_long_set::MoveWindow_(const char * lpKey, sp(::ca::window)pWnd)
+bool db_long_set::MoveWindow_(const char * lpKey, sp(::ca2::window)pWnd)
 {
    rect rect;
    if(!load(lpKey, &rect))
@@ -492,7 +492,7 @@ bool db_long_set::MoveWindow_(const char * lpKey, sp(::ca::window)pWnd)
    return true;
 }
 
-bool db_long_set::SaveWindowRect_(const char * lpKey, sp(::ca::window)pWnd)
+bool db_long_set::SaveWindowRect_(const char * lpKey, sp(::ca2::window)pWnd)
 {
 
 #ifdef WINDOWSEX
@@ -503,7 +503,7 @@ bool db_long_set::SaveWindowRect_(const char * lpKey, sp(::ca::window)pWnd)
 
 #else
 
-   throw todo(::ca::get_thread_app());
+   throw todo(::ca2::get_thread_app());
 
 #endif
 
@@ -645,7 +645,7 @@ return hr;
 
 //}
 
-bool db_long_set::SetWindowPlacement(const char * lpKey, sp(::ca::window)pWnd)
+bool db_long_set::SetWindowPlacement(const char * lpKey, sp(::ca2::window)pWnd)
 {
 
 #ifdef WINDOWSEX
@@ -676,13 +676,13 @@ bool db_long_set::SetWindowPlacement(const char * lpKey, sp(::ca::window)pWnd)
 
 #else
 
-   throw todo(::ca::get_thread_app());
+   throw todo(::ca2::get_thread_app());
 
 #endif
 
 }
 
-bool db_long_set::SaveWindowPlacement(const char * lpKey, sp(::ca::window)pWnd)
+bool db_long_set::SaveWindowPlacement(const char * lpKey, sp(::ca2::window)pWnd)
 {
 
 #ifdef WINDOWSEX
@@ -713,7 +713,7 @@ bool db_long_set::SaveWindowPlacement(const char * lpKey, sp(::ca::window)pWnd)
 
 #else
 
-   throw todo(::ca::get_thread_app());
+   throw todo(::ca2::get_thread_app());
 
 #endif
 

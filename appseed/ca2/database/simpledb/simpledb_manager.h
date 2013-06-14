@@ -4,8 +4,8 @@ namespace simpledb
 {
 
    class CLASS_DECL_ca2 manager :
-      virtual public ::ca::thread,
-      virtual public ::ca::message_window_simple_callback
+      virtual public ::ca2::thread,
+      virtual public ::ca2::message_window_simple_callback
    {
    public:
 
@@ -32,7 +32,7 @@ namespace simpledb
       string_map < session * >      m_mapSession;
 
 
-      manager(sp(::ca::application) papp);
+      manager(sp(::ca2::application) papp);
       ~manager();
 
       bool initialize_instance();
@@ -41,11 +41,11 @@ namespace simpledb
       session * & get_session(const char * pszId);
 
 
-      using ::ca::thread::handle;
+      using ::ca2::thread::handle;
       bool handle(socket * psocket);
       bool get_output_internal(const char * lpcszGet, primitive::memory & memeory);
 
-      virtual void message_window_message_handler(::ca::signal_object * pobj);
+      virtual void message_window_message_handler(::ca2::signal_object * pobj);
 
    };
 

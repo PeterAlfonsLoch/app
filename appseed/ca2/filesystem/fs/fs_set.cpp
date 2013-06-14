@@ -5,9 +5,9 @@ namespace fs
 {
 
 
-   set::set(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::data(papp),
+   set::set(sp(::ca2::application) papp) :
+      ca2(papp),
+      ::ca2::data(papp),
       ::fs::data(papp)
    {
 
@@ -59,7 +59,7 @@ namespace fs
       while(pos != NULL)
       {
          m_fsdatamap.get_next_assoc(pos, strRoot, pdata);
-         if(::ca::str::begins_ci(psz, strRoot))
+         if(::ca2::str::begins_ci(psz, strRoot))
          {
             return pdata;
          }

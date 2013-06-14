@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-simple_form_list_view::simple_form_list_view(sp(::ca::application) papp) :
-   ca(papp),
+simple_form_list_view::simple_form_list_view(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::interaction(papp), 
    ::user::form(papp), 
    ::user::form_list(papp),
@@ -20,7 +20,7 @@ simple_form_list_view::~simple_form_list_view()
 {
 }
 
-void simple_form_list_view::install_message_handling(::ca::message::dispatch * pinterface)
+void simple_form_list_view::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::view::install_message_handling(pinterface);
    ::user::form_list::install_message_handling(pinterface);

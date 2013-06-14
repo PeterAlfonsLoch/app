@@ -4,7 +4,7 @@ namespace database
 {
 
    class CLASS_DECL_ca2 field_definition_item : 
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 

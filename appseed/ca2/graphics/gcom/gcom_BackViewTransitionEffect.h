@@ -231,7 +231,7 @@ namespace gcom
 
          index                  m_iVisual;
 
-         ::ca::thread *    m_pthreadRunStep;
+         ::ca2::thread *    m_pthreadRunStep;
    //      ETransitionEffect               m_etype;
    //      ETransitionEffect               m_etypeNew;
 
@@ -272,7 +272,7 @@ namespace gcom
          void RenderBuffer(rect_array & rectaUpdate);
       
       
-         ::ca::thread * CreateRunStepThread();
+         ::ca2::thread * CreateRunStepThread();
          void Initialize();
          void _Final();
          void _Init();

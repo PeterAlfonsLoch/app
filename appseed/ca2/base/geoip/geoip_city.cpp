@@ -237,29 +237,29 @@ void GeoIPRecord_delete (GeoIPRecord *gir) {
 char * _iso_8859_1__utf8(const char * iso)
 {
 
-   signed char c;
+   signed char ca;
    char k;
    char * p;
    char * t = (char *)iso;
    strsize len = 0;
-   while ( ( c = *t++) )
+   while ( ( ca = *t++) )
    {
-      if ( c < 0 )
+      if ( ca < 0 )
          len++;
    }
    len += t - iso;
    t = p = (char *) malloc( len );
 
    if ( p ){
-      while ( ( c = *iso++ ) ) {
-         if (c < 0 ) {
+      while ( ( ca = *iso++ ) ) {
+         if (ca < 0 ) {
             k = '\xc2';
-            if (c >= -64 )
+            if (ca >= -64 )
                k++;
             *t++ = k;
-            c &= ~0x40;
+            ca &= ~0x40;
          }
-         *t++ = c;
+         *t++ = ca;
       }
       *t++ = 0x00;
    }

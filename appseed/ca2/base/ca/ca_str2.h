@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -64,7 +64,7 @@ namespace ca
       // *** empty log message ***
       //
       // Revision 1.6  2005/07/05 12:13:11  GB
-      // added function ::ca::str::strprintf
+      // added function ::ca2::str::strprintf
       //
       // Revision 1.5  2005/06/30 09:15:25  GB
       // + copy
@@ -193,10 +193,10 @@ namespace ca
       { return compare_ignore_case(left,right,len) == 0; }
 
 
-      inline CLASS_DECL_ca2  string  from(char c)
+      inline CLASS_DECL_ca2  string  from(char ca)
       {
          string str;
-         from(str, c);
+         from(str, ca);
          return str;
       }
 
@@ -278,7 +278,7 @@ namespace ca
    } // namespace str
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

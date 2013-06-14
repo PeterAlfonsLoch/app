@@ -1,4 +1,4 @@
-// This is ca API library.
+// This is ca2 API library.
 //
 //
 //
@@ -13,7 +13,7 @@
 
    // like ON_MESSAGE but no return value
    /*#define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, ::ca::Sig_vv, \
+   { message, 0, 0, 0, ::ca2::Sig_vv, \
    (__PMSG)(__PMSGW)(void (__MSG_CALL ::user::interaction::*)())&memberFxn },*/
    // IMPLEMENT_DYNAMIC(::user::view, ::user::interaction)
 
@@ -53,7 +53,7 @@ namespace user
    view::view()
    {
 
-      m_ulFlags         |= ::ca::ca::flag_auto_delete;
+      m_ulFlags         |= ::ca2::ca2::flag_auto_delete;
 
    }
 
@@ -64,7 +64,7 @@ namespace user
          m_spdocument->remove_view(this);
    }
 
-   void view::install_message_handling(::ca::message::dispatch * pinterface)
+   void view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_VIEW, pinterface, this, &view::_001OnView);
@@ -137,16 +137,16 @@ namespace user
    }
 
 
-   void view::_001OnCreate(::ca::signal_object * pobj)
+   void view::_001OnCreate(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::create, pcreate, pobj);
+      SCAST_PTR(::ca2::message::create, pcreate, pobj);
 
       if(pcreate->previous())
          return;
 
       // if ok, wire in the current ::user::document_interface
       ASSERT(::user::view::get_document() == NULL);
-      sp(::ca::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
+      sp(::ca2::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
 
       // A ::user::view should be created in a given context!
       if (pContext != NULL && pContext->m_user->m_pCurrentDoc != NULL)
@@ -156,13 +156,13 @@ namespace user
       }
       else
       {
-         TRACE(::ca::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document_interface.\n");
+         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document_interface.\n");
       }
 
       pcreate->set_lresult(0);
    }
 
-   void view::_001OnDestroy(::ca::signal_object * pobj)
+   void view::_001OnDestroy(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       sp(::user::frame_window) pFrame = GetParentFrame();
@@ -175,7 +175,7 @@ namespace user
    void view::PostNcDestroy()
    {
       ::user::interaction::PostNcDestroy();
-      if(is_set_ca_flag(::ca::ca::flag_auto_delete))
+      if(is_set_ca_flag(::ca2::ca2::flag_auto_delete))
       {
          // default for views is to allocate them on the heap
          //  the default post-cleanup is to 'delete this'.
@@ -279,13 +279,13 @@ namespace user
       return pview->get_document();
    }
 
-   void view::_001OnInitialUpdate(::ca::signal_object * pobj)
+   void view::_001OnInitialUpdate(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       on_update(NULL, 0, NULL);        // initial update
    }
 
-   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
+   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint)
    {
       if(pHint != NULL)
       {
@@ -306,7 +306,7 @@ namespace user
       //Invalidate(TRUE);
    }
 
-   void view::on_simple_view_update_hint(sp(::user::view) pviewSender, e_hint ehint, ::ca::object * phint)
+   void view::on_simple_view_update_hint(sp(::user::view) pviewSender, e_hint ehint, ::ca2::object * phint)
    {
 
       switch(ehint)
@@ -333,7 +333,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::view selection support
 
-   bool view::IsSelected(const ::ca::object* pDocItem) const
+   bool view::IsSelected(const ::ca2::object* pDocItem) const
    {
       ASSERT_VALID(pDocItem);
       UNUSED(pDocItem);    // unused in release builds
@@ -360,7 +360,7 @@ namespace user
    }
 
    /* trans
-   int32_t view::OnMouseActivate(sp(::ca::window) pDesktopWnd, UINT nHitTest, UINT message)
+   int32_t view::OnMouseActivate(sp(::ca2::window) pDesktopWnd, UINT nHitTest, UINT message)
    {
    int32_t nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
@@ -507,7 +507,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Printing support virtual functions (others in viewpr.cpp)
 
-   void view::OnPrepareDC(::ca::graphics * pgraphics, CPrintInfo* pInfo)
+   void view::OnPrepareDC(::ca2::graphics * pgraphics, CPrintInfo* pInfo)
    {
       UNREFERENCED_PARAMETER(pInfo);
       ASSERT_VALID(pgraphics);
@@ -541,9 +541,9 @@ namespace user
 
 
 
-   void view::_001OnView(::ca::signal_object * pobj)
+   void view::_001OnView(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj)
+      SCAST_PTR(::ca2::message::base, pbase, pobj)
          if(pbase->m_wparam == 0)
          {
             ::user::document_interface::update * pupdate = (::user::document_interface::update *) pbase->m_lparam.m_lparam;
@@ -552,12 +552,12 @@ namespace user
    }
 
 
-   sp(::user::interaction) view::create_view(::ca::type_info * pinfo, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+   sp(::user::interaction) view::create_view(::ca2::type_info * pinfo, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
    {
 
-      sp(::ca::type_info) info(pinfo);
+      sp(::ca2::type_info) info(pinfo);
 
-      sp(::ca::create_context) cacc(allocer());
+      sp(::ca2::create_context) cacc(allocer());
 
       stacker < ::user::create_context > cc(cacc->m_user);
 
@@ -591,12 +591,12 @@ namespace user
    }
 
 
-   sp(::user::interaction) view::s_create_view(::ca::type_info * pinfo, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+   sp(::user::interaction) view::s_create_view(::ca2::type_info * pinfo, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
    {
 
-      sp(::ca::type_info) info(pinfo);
+      sp(::ca2::type_info) info(pinfo);
 
-      sp(::ca::create_context) cacc(pdoc->allocer());
+      sp(::ca2::create_context) cacc(pdoc->allocer());
 
       stacker < ::user::create_context > cc(cacc->m_user);
 
@@ -610,7 +610,7 @@ namespace user
 
    }
 
-   sp(::user::interaction) view::s_create_view(::ca::create_context * pContext, sp(::user::interaction) pwndParent, id id)
+   sp(::user::interaction) view::s_create_view(::ca2::create_context * pContext, sp(::user::interaction) pwndParent, id id)
    {
 
       // trans   ASSERT(pwndParent->get_handle() != NULL);
@@ -621,7 +621,7 @@ namespace user
       ASSERT(pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != NULL);
 
 
-      sp(::ca::application) papp = pwndParent->get_app();
+      sp(::ca2::application) papp = pwndParent->get_app();
 
       sp(::user::interaction) pguie;
 
@@ -694,10 +694,10 @@ namespace user
    }
 
 
-   void view::_001OnLButtonDown(::ca::signal_object * pobj)
+   void view::_001OnLButtonDown(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //   SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      //   SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
       if(GetParentFrame() != NULL)
       {
@@ -708,16 +708,16 @@ namespace user
 
    }
 
-   void view::_001OnLButtonUp(::ca::signal_object * pobj)
+   void view::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      //SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
    }
 
-   void view::_001OnMouseMove(::ca::signal_object * pobj)
+   void view::_001OnMouseMove(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //   SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      //   SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
    }
 
 
@@ -728,7 +728,7 @@ namespace user
    }
 
 
-   void view::collaborate(::ca::job * pjob)
+   void view::collaborate(::ca2::job * pjob)
    {
       {
          ::user::job * puserjob = (dynamic_cast < ::user::job * > (pjob));
@@ -741,7 +741,7 @@ namespace user
 
 
 
-   int32_t view::get_total_page_count(::ca::job * pjob)
+   int32_t view::get_total_page_count(::ca2::job * pjob)
    {
       UNREFERENCED_PARAMETER(pjob);
       return 1;
@@ -754,14 +754,14 @@ namespace user
    }
 
 
-   void view::on_draw_view_nc(::ca::graphics * pdc)
+   void view::on_draw_view_nc(::ca2::graphics * pdc)
    {
 
       UNREFERENCED_PARAMETER(pdc);
 
    }
 
-   void view::on_draw_view(::ca::graphics * pdc, spa(::ca::data) spadata)
+   void view::on_draw_view(::ca2::graphics * pdc, spa(::ca2::data) spadata)
    {
 
       UNREFERENCED_PARAMETER(pdc);
@@ -769,13 +769,13 @@ namespace user
 
    }
 
-   void view::defer_draw_view(::ca::graphics * pdc)
+   void view::defer_draw_view(::ca2::graphics * pdc)
    {
 
       if(get_document() == NULL)
          return;
 
-      spa(::ca::data) spadata;
+      spa(::ca2::data) spadata;
 
       spadata.add(get_document()->m_spadata);
 
@@ -800,7 +800,7 @@ namespace user
 
    }
 
-   void view::_001OnDraw(::ca::graphics * pdc)
+   void view::_001OnDraw(::ca2::graphics * pdc)
    {
 
       on_draw_view_nc(pdc);
@@ -841,12 +841,12 @@ retry:
    // ::user::view drawing support
 
 
-   /*void view::_001OnInitialUpdate(::ca::signal_object * pobj)
+   /*void view::_001OnInitialUpdate(::ca2::signal_object * pobj)
    {
    on_update(NULL, 0, NULL);        // initial update
    }*/
 
-/*   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object * pHint)
+/*   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object * pHint)
    {
       ::user::view::on_update(pSender, lHint, pHint);
    }
@@ -854,7 +854,7 @@ retry:
    /////////////////////////////////////////////////////////////////////////////
    // ::user::view selection support
 
-/*   bool view::IsSelected(const ::ca::object* pDocItem) const
+/*   bool view::IsSelected(const ::ca2::object* pDocItem) const
    {
       ASSERT_VALID(pDocItem);
       //      UNUSED(pDocItem);    // unused in release builds
@@ -863,9 +863,9 @@ retry:
    }*/
 
 
-   void view::_001OnMouseActivate(::ca::signal_object * pobj)
+   void view::_001OnMouseActivate(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse_activate, pmouseactivate, pobj);
+      SCAST_PTR(::ca2::message::mouse_activate, pmouseactivate, pobj);
       pobj->previous();
       //int32_t nResult = pmouseactivate->get_lresult();
 
@@ -971,22 +971,22 @@ retry:
 
 
 
-   void view::_001OnUpdateSplitCmd(::ca::signal_object * pobj)
+   void view::_001OnUpdateSplitCmd(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void view::_001OnSplitCmd(::ca::signal_object * pobj)
+   void view::_001OnSplitCmd(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void view::_001OnUpdateNextPaneMenu(::ca::signal_object * pobj)
+   void view::_001OnUpdateNextPaneMenu(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void view::_001OnNextPaneCmd(::ca::signal_object * pobj)
+   void view::_001OnNextPaneCmd(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -1003,13 +1003,13 @@ retry:
    /////////////////////////////////////////////////////////////////////////////
    // ::user::view's OnPrintPreview.  Here to force linkage
 
-   void view::_001OnFilePrintPreview(::ca::signal_object * pobj)
+   void view::_001OnFilePrintPreview(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
-   void view::_001OnFilePrint(::ca::signal_object * pobj)
+   void view::_001OnFilePrint(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -1017,7 +1017,7 @@ retry:
 
 
    /*
-   sp(::user::interaction) view::CreateView(sp(::ca::create_context) pContext, UINT nID)
+   sp(::user::interaction) view::CreateView(sp(::ca2::create_context) pContext, UINT nID)
    {
    ASSERT(IsWindow());
    ASSERT(pContext != NULL);
@@ -1035,7 +1035,7 @@ retry:
 
    // views are always created with a border!
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
-   rect(0,0,0,0), this, nID, (sp(::ca::create_context)) pContext))
+   rect(0,0,0,0), this, nID, (sp(::ca2::create_context)) pContext))
    {
    TRACE0("Warning: could not create ::user::view for frame.\n");
    return NULL;        // can't continue without a ::user::view
@@ -1054,25 +1054,25 @@ retry:
    }*/
 
 
-   /*sp(::user::interaction) view::CreateView(sp(::ca::create_context) pContext, UINT nID, ::user::interaction  * pwndParent)
+   /*sp(::user::interaction) view::CreateView(sp(::ca2::create_context) pContext, UINT nID, ::user::interaction  * pwndParent)
    {
    ASSERT(pwndParent->IsWindow());
    ASSERT(pContext != NULL);
    ASSERT(pContext->m_typeinfoNewView != NULL);
 
-   // Note: can be a ::ca::window with PostNcDestroy self cleanup
-   sp(::ca::window) pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
+   // Note: can be a ::ca2::window with PostNcDestroy self cleanup
+   sp(::ca2::window) pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
    if (pview == NULL)
    {
    TRACE1("Warning: Dynamic create of ::user::view type %hs failed.\n",
    pContext->m_typeinfoNewView.name());
    return NULL;
    }
-   ASSERT_KINDOF(::ca::window, pview);
+   ASSERT_KINDOF(::ca2::window, pview);
 
    // views are always created with a border!
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
-   rect(0,0,0,0), pwndParent, nID, (sp(::ca::create_context)) pContext))
+   rect(0,0,0,0), pwndParent, nID, (sp(::ca2::create_context)) pContext))
    {
    TRACE0("Warning: could not create ::user::view for frame.\n");
    return NULL;        // can't continue without a ::user::view
@@ -1090,18 +1090,18 @@ retry:
    //}
 
 
-   void view::_001OnRButtonDown(::ca::signal_object * pobj)
+   void view::_001OnRButtonDown(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      //SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
       GetParentFrame()->SetActiveView( (this));
    }
 
-   void view::_001OnMButtonDown(::ca::signal_object * pobj)
+   void view::_001OnMButtonDown(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      //      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
       GetParentFrame()->SetActiveView( (this));
    }

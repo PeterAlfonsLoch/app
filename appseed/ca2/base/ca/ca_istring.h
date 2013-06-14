@@ -6,7 +6,7 @@ class CLASS_DECL_ca2 istring
 protected:
 
 
-   sp(::ca::application)  m_papp;
+   sp(::ca2::application)  m_papp;
    string               m_str;
    string               m_strTemplate;
 
@@ -14,7 +14,7 @@ protected:
 public:
 
 
-   istring(sp(::ca::application) papp);
+   istring(sp(::ca2::application) papp);
    ~istring();
 
 

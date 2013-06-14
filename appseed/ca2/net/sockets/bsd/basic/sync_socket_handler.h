@@ -7,7 +7,7 @@
    {
 
       class CLASS_DECL_ca2 sync_socket_handler : 
-         virtual public ::ca::object,
+         virtual public ::ca2::object,
          public socket::callback
       {
       public:
@@ -18,7 +18,7 @@
          socket_handler       m_handler;
          int32_t                  m_iDefaultTimeout;
 
-         sync_socket_handler(sp(::ca::application) papp, StdLog *log = NULL);
+         sync_socket_handler(sp(::ca2::application) papp, StdLog *log = NULL);
          virtual ~sync_socket_handler();
 
 

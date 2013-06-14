@@ -22,7 +22,7 @@ namespace fs
       string_map < uint32_t >   m_mapfileTimeout;
 
 
-      remote_native(sp(::ca::application) papp, const char * pszRoot);
+      remote_native(sp(::ca2::application) papp, const char * pszRoot);
       virtual ~remote_native();
 
    
@@ -37,7 +37,7 @@ namespace fs
 
       virtual bool file_move(const char * pszDst, const char * pszSrc);
 
-      virtual ::ca::filesp get_file(var varFile, UINT nOpenFlags);
+      virtual ::ca2::filesp get_file(var varFile, UINT nOpenFlags);
 
       virtual bool file_exists(const char * pszPath);
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -32,7 +32,7 @@ namespace ca
    bool file_application::exists(const char * pszPath)
    {
 
-      if(::ca::str::begins_ci(pszPath, "uifs://"))
+      if(::ca2::str::begins_ci(pszPath, "uifs://"))
       {
          return AppUser(m_papp).m_pifs->file_exists(pszPath);
       }
@@ -45,7 +45,7 @@ namespace ca
    bool file_application::exists(const string & strPath)
    {
 
-      if(::ca::str::begins_ci_iws(strPath, "uifs://"))
+      if(::ca2::str::begins_ci_iws(strPath, "uifs://"))
       {
          ::fontopus::user & user = AppUser(m_papp);
          return user.m_pifs->file_exists(strPath);
@@ -60,7 +60,7 @@ namespace ca
 
       const string & strPath = var.get_string();
 
-      if(::ca::str::begins_ci_iws(strPath, "uifs://"))
+      if(::ca2::str::begins_ci_iws(strPath, "uifs://"))
       {
          return AppUser(m_papp).m_pifs->file_exists(strPath);
       }
@@ -84,12 +84,12 @@ namespace ca
       return m_papp->m_psystem->m_spfile->time_log(m_papp, pszId);
    }
 
-   ::ca::filesp file_application::time_square_file(const char * pszPrefix, const char * pszSuffix)
+   ::ca2::filesp file_application::time_square_file(const char * pszPrefix, const char * pszSuffix)
    {
       return m_papp->m_psystem->m_spfile->time_square_file(m_papp, pszPrefix, pszSuffix);
    }
 
-   ::ca::filesp file_application::get(const char * name)
+   ::ca2::filesp file_application::get(const char * name)
    {
       return m_papp->m_psystem->m_spfile->get(name, m_papp);
    }
@@ -124,7 +124,7 @@ namespace ca
       return m_papp->m_psystem->m_spfile->put_contents(varFile, lpcszContents, m_papp);
    }
 
-   bool file_application::put_contents(var varFile, ::ca::file & file)
+   bool file_application::put_contents(var varFile, ::ca2::file & file)
    {
       return m_papp->m_psystem->m_spfile->put_contents(varFile, file, m_papp);
    }
@@ -145,7 +145,7 @@ namespace ca
    }
 
 
-   ::ca::filesp file_application::friendly_get_file(var varFile, UINT nOpenFlags)
+   ::ca2::filesp file_application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
       try
       {
@@ -157,10 +157,10 @@ namespace ca
       }
    }
 
-   ::ca::filesp file_application::get_file(var varFile, UINT nOpenFlags)
+   ::ca2::filesp file_application::get_file(var varFile, UINT nOpenFlags)
    {
 
-      ::ca::filesp spfile;
+      ::ca2::filesp spfile;
 
       string strPath;
 
@@ -199,13 +199,13 @@ namespace ca
 
       }
 
-      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].ca < ::ca::file >() != NULL)
+      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].ca2 < ::ca2::file >() != NULL)
       {
 
-         spfile = varFile.propset()["file"].ca < ::ca::file >();
+         spfile = varFile.propset()["file"].ca2 < ::ca2::file >();
 
       }
-      else if(::ca::str::find_ci(".zip:", strPath) >= 0)
+      else if(::ca2::str::find_ci(".zip:", strPath) >= 0)
       {
 
          zip::InFile * pinfile = new zip::InFile(get_app());
@@ -227,29 +227,29 @@ namespace ca
          spfile = pinfile;
 
       }
-      else if(::ca::str::begins(strPath, "http://") || ::ca::str::begins(strPath, "https://"))
+      else if(::ca2::str::begins(strPath, "http://") || ::ca2::str::begins(strPath, "https://"))
       {
 
          ::url_domain domain;
 
          domain.create(System.url().get_server(strPath));
 
-         if(domain.m_strRadix == "ca2" && ::ca::str::begins(System.url().get_object(strPath), "/matter/"))
+         if(domain.m_strRadix == "ca2" && ::ca2::str::begins(System.url().get_object(strPath), "/matter/"))
          {
 
             string strFile(strPath);
 
-            if(::ca::str::ends(strPath, "en_us_international.xml"))
+            if(::ca2::str::ends(strPath, "en_us_international.xml"))
             {
                TRACE("Debug Here");
             }
 
-            if(::ca::str::ends(strPath, "text_select.xml"))
+            if(::ca2::str::ends(strPath, "text_select.xml"))
             {
                TRACE("Debug Here");
             }
 
-            if(::ca::str::ends(strPath, "arialuni.ttf"))
+            if(::ca2::str::ends(strPath, "arialuni.ttf"))
             {
                TRACE("Debug Here : arialuni.ttf");
             }
@@ -312,7 +312,7 @@ namespace ca
                   try
                   {
 
-                     System.file().output(m_papp, strFile, &System.compress(), &::ca::compress::null, *spfile.m_p);
+                     System.file().output(m_papp, strFile, &System.compress(), &::ca2::compress::null, *spfile.m_p);
 
                   }
                   catch(...)
@@ -343,7 +343,7 @@ namespace ca
          }
 
       }
-      else if(::ca::str::begins(strPath, "ifs://") || ::ca::str::begins(strPath, "uifs://"))
+      else if(::ca2::str::begins(strPath, "ifs://") || ::ca2::str::begins(strPath, "uifs://"))
       {
 
          if(&AppUser(m_papp) == NULL)
@@ -360,7 +360,7 @@ namespace ca
          }
 
       }
-      else if(::ca::str::begins(strPath, "fs://"))
+      else if(::ca2::str::begins(strPath, "fs://"))
       {
 
          if(&Session == NULL)
@@ -377,10 +377,10 @@ namespace ca
          }
 
       }
-      else if(::ca::str::begins_eat_ci(strPath, "matter://"))
+      else if(::ca2::str::begins_eat_ci(strPath, "matter://"))
       {
 
-         sp(::ca::application) papp = NULL;
+         sp(::ca2::application) papp = NULL;
 
          if(System.url().get_server("matter://" + strPath) == m_papp->m_pappThis->m_strAppName)
          {
@@ -420,7 +420,7 @@ namespace ca
             return spfile;
          }
 
-         if((nOpenFlags & ::ca::file::mode_create) == 0 && !exists(strPath))
+         if((nOpenFlags & ::ca2::file::mode_create) == 0 && !exists(strPath))
          {
             TRACE("plane::file_application::file does not exist!!");
             return spfile;
@@ -440,7 +440,7 @@ namespace ca
       if(spfile.is_null())
       {
 
-         throw ::ca::file_exception(m_papp, ::ca::file_exception::none, -1, strPath);
+         throw ::ca2::file_exception(m_papp, ::ca2::file_exception::none, -1, strPath);
 
       }
 
@@ -448,17 +448,17 @@ namespace ca
 
    }
 
-   ::ca::byte_stream file_application::get_byte_stream(var varFile, UINT nOpenFlags)
+   ::ca2::byte_stream file_application::get_byte_stream(var varFile, UINT nOpenFlags)
    {
 
-      return ::ca::byte_stream(get_file(varFile, nOpenFlags));
+      return ::ca2::byte_stream(get_file(varFile, nOpenFlags));
 
    }
 
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

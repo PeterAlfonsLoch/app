@@ -6,9 +6,9 @@ namespace sphere
 
 
    library::library() :
-      ::ca::single_application_library < application > ("app"),
+      ::ca2::single_application_library < application > ("app"),
       ::filehandler::menu_library(),
-      ::ca::library("app")
+      ::ca2::library("app")
    {
    }
 
@@ -51,27 +51,27 @@ namespace sphere
    }
 
 
-/*   sp(::ca::application) library::get_new_app(const char * pszAppId)
+/*   sp(::ca2::application) library::get_new_app(const char * pszAppId)
    {
 
-      if(::ca::str::equals_ci(pszAppId, "calculator"))
+      if(::ca2::str::equals_ci(pszAppId, "calculator"))
       {
          return new ::calculator::application();
       }
-      else if(::ca::str::equals_ci(pszAppId, "command"))
+      else if(::ca2::str::equals_ci(pszAppId, "command"))
       {
          return new ::command::application();
       }
-      else if(::ca::str::equals_ci(pszAppId, "userstack"))
+      else if(::ca2::str::equals_ci(pszAppId, "userstack"))
       {
          return new ::userstack::application();
       }
-      else if(::ca::str::equals_ci(pszAppId, "default_file_handler"))
+      else if(::ca2::str::equals_ci(pszAppId, "default_file_handler"))
       {
          return new ::filehandler::application();
       }
 
-      return ::ca::single_application_library < application >::get_new_app(pszAppId);
+      return ::ca2::single_application_library < application >::get_new_app(pszAppId);
 
    }*/
 
@@ -82,7 +82,7 @@ namespace sphere
 #ifndef _WIN32
 extern "C"
 #endif
-::ca::library * get_new_library()
+::ca2::library * get_new_library()
 {
    return new ::sphere::library();
 }

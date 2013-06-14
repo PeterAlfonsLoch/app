@@ -57,16 +57,16 @@ typedef struct nsPkgInt {
 
 #define PCK16BITS(a,b)            ((uint32_t)(((b) << 16) | (a)))
 
-#define PCK8BITS(a,b,c,d)         PCK16BITS( ((uint32_t)(((b) << 8) | (a))),  \
-                                             ((uint32_t)(((d) << 8) | (c))))
+#define PCK8BITS(a,b,ca,d)         PCK16BITS( ((uint32_t)(((b) << 8) | (a))),  \
+                                             ((uint32_t)(((d) << 8) | (ca))))
 
-#define PCK4BITS(a,b,c,d,e,f,g,h) PCK8BITS(  ((uint32_t)(((b) << 4) | (a))), \
-                                             ((uint32_t)(((d) << 4) | (c))), \
+#define PCK4BITS(a,b,ca,d,e,f,g,h) PCK8BITS(  ((uint32_t)(((b) << 4) | (a))), \
+                                             ((uint32_t)(((d) << 4) | (ca))), \
                                              ((uint32_t)(((f) << 4) | (e))), \
                                              ((uint32_t)(((h) << 4) | (g))) )
 
-#define GETFROMPCK(i, c) \
- (((((c).data)[(i)>>(c).idxsft])>>(((i)&(c).sftmsk)<<(c).bitsft))&(c).unitmsk)
+#define GETFROMPCK(i, ca) \
+ (((((ca).data)[(i)>>(ca).idxsft])>>(((i)&(ca).sftmsk)<<(ca).bitsft))&(ca).unitmsk)
 
 #endif /* nsPkgInt_h__ */
 

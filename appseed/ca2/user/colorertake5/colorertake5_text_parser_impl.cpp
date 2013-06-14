@@ -302,9 +302,9 @@ namespace colorertake5
             bool badbound = false;
             if (!node->kwList->kwList[pos].isSymbol){
                if (!node->worddiv){
-                  if (gx && (::ca::ch::is_letter_or_digit(&((const char *)str)[gx-1]) || ((const char *)str)[gx-1] == '_')) badbound = true;
+                  if (gx && (::ca2::ch::is_letter_or_digit(&((const char *)str)[gx-1]) || ((const char *)str)[gx-1] == '_')) badbound = true;
                   if (gx + kwlen < lowlen &&
-                     (::ca::ch::is_letter_or_digit(&((const char *)str)[gx + kwlen]) || ((const char *)str)[gx + kwlen] == '_')) badbound = true;
+                     (::ca2::ch::is_letter_or_digit(&((const char *)str)[gx + kwlen]) || ((const char *)str)[gx + kwlen] == '_')) badbound = true;
                }else{
                   // custom check for uint16_t bound
                   if (gx && !node->worddiv->in_class(&((const char *)str)[gx-1])) badbound = true;
@@ -511,7 +511,7 @@ namespace colorertake5
             clearLine = gy;
             str = lineSource->getLine(gy);
             /*if (str == NULL){
-               throw exception(string("NULL string passed into the parser: ")+::ca::str::from(gy));
+               throw exception(string("NULL string passed into the parser: ")+::ca2::str::from(gy));
                gy = gy2;
                break;
             };*/

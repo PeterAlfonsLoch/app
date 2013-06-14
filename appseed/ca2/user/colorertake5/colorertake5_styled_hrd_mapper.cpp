@@ -8,8 +8,8 @@ const int32_t StyledRegion::RD_ITALIC = 2;
 const int32_t StyledRegion::RD_UNDERLINE = 4;
 const int32_t StyledRegion::RD_STRIKEOUT = 8;
 
-StyledHRDMapper::StyledHRDMapper(sp(::ca::application) papp) :
-   ca(papp),
+StyledHRDMapper::StyledHRDMapper(sp(::ca2::application) papp) :
+   ca2(papp),
    RegionMapperImpl(papp)
 {
 }
@@ -21,7 +21,7 @@ StyledHRDMapper::~StyledHRDMapper()
 //  delete rd;
 };
 
-void StyledHRDMapper::loadRegionMappings(::ca::byte_input_stream & istream)
+void StyledHRDMapper::loadRegionMappings(::ca2::byte_input_stream & istream)
 {
 //  DocumentBuilder docbuilder;
 
@@ -70,7 +70,7 @@ void StyledHRDMapper::loadRegionMappings(::ca::byte_input_stream & istream)
     XML spfile-> Note, that this method writes all loaded
     defines from all loaded HRD files.
 */
-void StyledHRDMapper::saveRegionMappings(::ca::byte_output_stream & writer) const
+void StyledHRDMapper::saveRegionMappings(::ca2::byte_output_stream & writer) const
 {
    UNREFERENCED_PARAMETER(writer);
 

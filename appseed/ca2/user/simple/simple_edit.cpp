@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-simple_edit::simple_edit(sp(::ca::application) papp) :
-   ca(papp),
+simple_edit::simple_edit(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::interaction(papp),
    
    ::user::scroll_view(papp),
@@ -16,7 +16,7 @@ simple_edit::~simple_edit()
 }
 
 
-void simple_edit::_001OnDraw(::ca::graphics *pdc)
+void simple_edit::_001OnDraw(::ca2::graphics *pdc)
 {
    ::user::edit_plain_text::_001OnDraw(pdc);
 }
@@ -27,7 +27,7 @@ void simple_edit::pre_subclass_window()
    PreSubClassWindow();   
 }
 
-void simple_edit::install_message_handling(::ca::message::dispatch * pinterface)
+void simple_edit::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::edit_plain_text::install_message_handling(pinterface);
 }

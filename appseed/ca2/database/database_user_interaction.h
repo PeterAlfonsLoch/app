@@ -25,7 +25,7 @@ namespace database
          interaction();
          virtual ~interaction();
 
-         void install_message_handling(::ca::message::dispatch * pinterface);
+         void install_message_handling(::ca2::message::dispatch * pinterface);
 
          DECL_GEN_SIGNAL(_001OnCreate)
          DECL_GEN_SIGNAL(_001OnSize)

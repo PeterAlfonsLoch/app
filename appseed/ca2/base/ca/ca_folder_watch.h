@@ -1,10 +1,10 @@
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 folder_watch :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -35,6 +35,6 @@ namespace ca
    };
 
 
-   typedef ::c::smart_pointer < folder_watch > folder_watch_sp;
+   typedef ::ca::smart_pointer < folder_watch > folder_watch_sp;
 
-} // namespace ca
+} // namespace ca2

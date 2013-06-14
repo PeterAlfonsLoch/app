@@ -4,7 +4,7 @@ namespace simpledb
 {
 
    socket::socket(::sockets::socket_handler_base & h) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       ::sockets::socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -37,7 +37,7 @@ namespace simpledb
    void socket::send_response()
    {
 
-      if(::ca::str::begins(inattr("request_uri"), "/passthrough/"))
+      if(::ca2::str::begins(inattr("request_uri"), "/passthrough/"))
       {
       }
       else
@@ -52,9 +52,9 @@ namespace simpledb
          {
       //      __debug_break();
          }
-         if(strHost == "ca.am")
+         if(strHost == "ca2.am")
          {
-            TRACE("simpledb::socket::send_response ca.am");
+            TRACE("simpledb::socket::send_response ca2.am");
 //            uint32_t dw = ::get_tick_count();
           //  __debug_break();
          }
@@ -227,8 +227,8 @@ namespace simpledb
       {
          outheader(__id(content_type)) = "application/x-jar";
       }
-      ::ca::filesp spfile(allocer());
-      if(!spfile->open(lpcsz, ::ca::file::type_binary | ::ca::file::mode_read | ::ca::file::shareDenyNone))
+      ::ca2::filesp spfile(allocer());
+      if(!spfile->open(lpcsz, ::ca2::file::type_binary | ::ca2::file::mode_read | ::ca2::file::shareDenyNone))
       {
          return false;
       }
@@ -251,7 +251,7 @@ namespace simpledb
                if(iStart >= natural(iLen))
                   continue;
                // iEnd > iLen is not verified because file may be growing
-               spfile->seek(iStart, ::ca::seek_begin);
+               spfile->seek(iStart, ::ca2::seek_begin);
                primitive::memory_size uiRead;
                ::primitive::memory_file memfile(get_app());
                primitive::memory_position iPos = iStart;
@@ -267,7 +267,7 @@ namespace simpledb
                   continue;
                }
                response().file() << "--THIS_STRING_SEPARATES\r\n\r\n";
-               response().file() << "Content-range: bytes " + ::ca::str::from(iStart) + "-" + ::ca::str::from(iEnd) + "/" + ::ca::str::from(iLen) + "\r\n";
+               response().file() << "Content-range: bytes " + ::ca2::str::from(iStart) + "-" + ::ca2::str::from(iEnd) + "/" + ::ca2::str::from(iLen) + "\r\n";
                response().file() << "Content-Transfer-Encoding: base64";
                response().file() << "\r\n";
                while(true)
@@ -304,7 +304,7 @@ namespace simpledb
             if(iStart < natural(iLen))
             {
                // iEnd > iLen is not verified because file may be growing
-               spfile->seek(iStart, ::ca::seek_begin);
+               spfile->seek(iStart, ::ca2::seek_begin);
                primitive::memory_size uiRead;
                ::primitive::memory_file memfile(get_app());
                primitive::memory_position iPos = iStart;
@@ -339,11 +339,11 @@ namespace simpledb
             outattr("http_status") = "Partial Content";
             if(iEnd == -1)
             {
-               outheader("Content-range") = "bytes " + ::ca::str::from(iStart) + "-" + ::ca::str::from(iEnd) + "/*";
+               outheader("Content-range") = "bytes " + ::ca2::str::from(iStart) + "-" + ::ca2::str::from(iEnd) + "/*";
             }
             else
             {
-               outheader("Content-range") = "bytes " + ::ca::str::from(iStart) + "-" + ::ca::str::from(iEnd) + "/" + ::ca::str::from(iLen);
+               outheader("Content-range") = "bytes " + ::ca2::str::from(iStart) + "-" + ::ca2::str::from(iEnd) + "/" + ::ca2::str::from(iLen);
             }
 
          }

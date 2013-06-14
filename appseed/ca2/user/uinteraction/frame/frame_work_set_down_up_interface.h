@@ -10,7 +10,7 @@ namespace uinteraction
       class UpDownTarget;
 
       class CLASS_DECL_ca2 CWorkSetDownUpInterface:
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
       public:
 

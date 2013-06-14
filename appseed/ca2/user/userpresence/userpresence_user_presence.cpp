@@ -5,8 +5,8 @@ namespace userpresence
 {
 
 
-   presence::presence(sp(::ca::application) papp) :
-      ca(papp)
+   presence::presence(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_iShortStatusWayTag = status_online;
    }
@@ -66,7 +66,7 @@ namespace userpresence
       }
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";
-      System.url().string_set(strUrl, "short_status", ::ca::str::from(m_iShortStatusWayTag));
+      System.url().string_set(strUrl, "short_status", ::ca2::str::from(m_iShortStatusWayTag));
       System.url().string_set(strUrl, "long_status", m_strLongStatus);
       Application.http().get(strUrl);
    }

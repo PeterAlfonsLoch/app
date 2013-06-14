@@ -10,13 +10,13 @@ namespace sockets
 
 
       class CLASS_DECL_ca2 file : 
-         virtual public ::ca::transfer_file
+         virtual public ::ca2::transfer_file
       {
       public:
 
          
-         file(sp(::ca::application) papp, mutex * pmutex = NULL);
-         file(sp(::ca::application) papp, ::primitive::memory_file * pmemoryfileIn);
+         file(sp(::ca2::application) papp, mutex * pmutex = NULL);
+         file(sp(::ca2::application) papp, ::primitive::memory_file * pmemoryfileIn);
          virtual ~file();
 
 

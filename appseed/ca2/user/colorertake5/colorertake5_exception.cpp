@@ -6,7 +6,7 @@ namespace colorertake5
 
 
    exception::exception(const exception &e) :
-      ca(e.get_app()),
+      ca2(e.get_app()),
       ::call_stack(e.get_app()),
       ::base_exception(e.get_app())
    {
@@ -15,16 +15,16 @@ namespace colorertake5
 
    }
 
-   exception::exception(sp(::ca::application) papp) :
-      ca(papp),
+   exception::exception(sp(::ca2::application) papp) :
+      ca2(papp),
       ::call_stack(papp),
       ::base_exception(papp)
    {
 
    }
 
-   exception::exception(sp(::ca::application) papp, const string &msg) :
-      ca(papp),
+   exception::exception(sp(::ca2::application) papp, const string &msg) :
+      ca2(papp),
       ::call_stack(papp),
       ::base_exception(papp)
    {
@@ -38,13 +38,13 @@ namespace colorertake5
       return message;
    };
 
-/*   InputSourceException::InputSourceException(sp(::ca::application) papp)
-         ca(papp),
+/*   InputSourceException::InputSourceException(sp(::ca2::application) papp)
+         ca2(papp),
       ::call_stack(papp),
       ::base_exception(papp)
 
    {};
-   InputSourceException::InputSourceException(sp(::ca::application) pappconst string & msg){
+   InputSourceException::InputSourceException(sp(::ca2::application) pappconst string & msg){
       message += "InputSourceException: " + msg;
    };
 

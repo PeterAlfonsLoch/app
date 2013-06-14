@@ -2,11 +2,11 @@
 
 template < class T, class T_to_T = attrib_map < map < T, T, T, T > > >
 class  biunique :
-   public ::ca::object,
-   public ::ca::byte_serializable
+   public ::ca2::object,
+   public ::ca2::byte_serializable
 {
 public:
-   biunique(sp(::ca::application) papp = NULL);
+   biunique(sp(::ca2::application) papp = NULL);
 
    bool has_a(T a) const;
    bool has_b(T b) const;
@@ -53,8 +53,8 @@ public:
 
    void copy_data(const biunique & ia);
 
-   virtual void write(::ca::byte_output_stream & ostream);
-   virtual void read(::ca::byte_input_stream & ostream);
+   virtual void write(::ca2::byte_output_stream & ostream);
+   virtual void read(::ca2::byte_input_stream & ostream);
 
    biunique & operator = (const biunique & ia);
 
@@ -73,8 +73,8 @@ protected:
 
 
 template < class T, class T_to_T >
-biunique < T, T_to_T > ::biunique(sp(::ca::application) papp) :
-   ca(papp)
+biunique < T, T_to_T > ::biunique(sp(::ca2::application) papp) :
+   ca2(papp)
 {
    m_bBiunivoca = true;
    m_iEmptyA = -1;
@@ -241,9 +241,9 @@ T biunique < T, T_to_T > ::add_b_in_first_free_a_mod_w(T b, T w, T mod)
       return add_b_in_first_free_a(b);
    if(w <= 0)
       return add_b_in_first_free_a(b);
-   T c = get_max_a() + 1;
+   T ca = get_max_a() + 1;
    T a;
-   for(a = 0; a < c ; a++)
+   for(a = 0; a < ca ; a++)
    {
       if((a % mod) >= w)
       {
@@ -342,7 +342,7 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 
 
 template < class t1, class t2, class t3, class t4 >
-void serialize_write(::ca::byte_output_stream & ostream, map < t1, t2, t3, t4 > & m)
+void serialize_write(::ca2::byte_output_stream & ostream, map < t1, t2, t3, t4 > & m)
 {
    ::count count = m.get_count();
    typename map < t1, t2, t3, t4 >::pair * ppair = m.PGetFirstAssoc();
@@ -356,7 +356,7 @@ void serialize_write(::ca::byte_output_stream & ostream, map < t1, t2, t3, t4 > 
 }
 
 template < class t1, class t2, class t3, class t4 >
-void serialize_read(::ca::byte_input_stream & istream, map < t1, t2, t3, t4 > & m)
+void serialize_read(::ca2::byte_input_stream & istream, map < t1, t2, t3, t4 > & m)
 {
    try
    {
@@ -382,7 +382,7 @@ void serialize_read(::ca::byte_input_stream & istream, map < t1, t2, t3, t4 > & 
 }
 
 template < class T, class T_to_T >
-void biunique < T, T_to_T > ::write(::ca::byte_output_stream & ostream)
+void biunique < T, T_to_T > ::write(::ca2::byte_output_stream & ostream)
 {
    ostream << m_bBiunivoca;
    ostream << m_iMaxA;
@@ -401,7 +401,7 @@ void biunique < T, T_to_T > ::write(::ca::byte_output_stream & ostream)
 }
 
 template < class T, class T_to_T >
-void biunique < T, T_to_T > ::read(::ca::byte_input_stream & istream)
+void biunique < T, T_to_T > ::read(::ca2::byte_input_stream & istream)
 {
    try
    {
@@ -476,14 +476,14 @@ class CLASS_DECL_ca2 index_biunique :
    public biunique < index >
 {
 public:
-   index_biunique(sp(::ca::application) papp = NULL);
+   index_biunique(sp(::ca2::application) papp = NULL);
 };
 
 class CLASS_DECL_ca2 int_biunique :
    public biunique < int32_t, int_to_int >
 {
 public:
-   int_biunique(sp(::ca::application) papp = NULL);
+   int_biunique(sp(::ca2::application) papp = NULL);
 
 };
 

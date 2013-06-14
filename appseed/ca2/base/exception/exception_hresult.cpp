@@ -2,8 +2,8 @@
 
 
 
-hresult_exception::hresult_exception(sp(::ca::application) papp, HRESULT hr) :
-   ca(papp),
+hresult_exception::hresult_exception(sp(::ca2::application) papp, HRESULT hr) :
+   ca2(papp),
    ::call_stack(papp),
    ::base_exception(papp)
 {

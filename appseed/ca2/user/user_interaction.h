@@ -4,7 +4,7 @@
 #include "user/user_window_interface.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -21,7 +21,7 @@ namespace ca
 
 #endif
 
-} // namespace ca
+} // namespace ca2
 
 
 namespace user
@@ -68,7 +68,7 @@ namespace user
 
 
       class CLASS_DECL_ca2 timer_item :
-         virtual public ::ca::ca
+         virtual public ::ca2::ca2
       {
       public:
 
@@ -94,7 +94,7 @@ namespace user
          index                               m_iItem;
 
 
-         timer_array(sp(::ca::application) papp);
+         timer_array(sp(::ca2::application) papp);
 
 
          uint_ptr set(sp(interaction) pguie, uint_ptr uiId, UINT uiElapse);
@@ -102,8 +102,8 @@ namespace user
          bool unset(sp(interaction) pguie, uint_ptr uiId);
          void unset(sp(interaction) pguie);
          void detach(spa(timer_item) & timera, sp(interaction) pguie);
-         void transfer(sp(::ca::window) pwindow, sp(interaction) pguie);
-         sp(interaction) find(sp(::ca::ca) pca);
+         void transfer(sp(::ca2::window) pwindow, sp(interaction) pguie);
+         sp(interaction) find(sp(::ca2::ca2) pca);
          index find(sp(interaction) pguie, uint_ptr uiId);
          index find_from(sp(interaction) pguie, index iStart);
 
@@ -114,9 +114,9 @@ namespace user
 
 
 
-      virtual bool create_message_window(const char * pszName, ::ca::window_callback * pcallback = NULL);
+      virtual bool create_message_window(const char * pszName, ::ca2::window_callback * pcallback = NULL);
 #ifdef METROWIN
-      virtual bool initialize(Windows::UI::Core::CoreWindow ^ window, ::ca::system_window ^ pwindow);
+      virtual bool initialize(Windows::UI::Core::CoreWindow ^ window, ::ca2::system_window ^ pwindow);
 #endif
 
 
@@ -155,13 +155,13 @@ namespace user
 
 #endif
 
-      id                                  m_idModalResult; // for return values from ::ca::window::RunModalLoop
+      id                                  m_idModalResult; // for return values from ::ca2::window::RunModalLoop
       COLORREF                            m_crDefaultBackgroundColor;
 
 
 
       interaction();
-      interaction(sp(::ca::application) papp);
+      interaction(sp(::ca2::application) papp);
       virtual ~interaction();
 
 
@@ -205,7 +205,7 @@ namespace user
       // dialog support
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       virtual void CenterWindow(sp(interaction) pAlternateOwner = NULL);
-      virtual id   RunModalLoop(uint32_t dwFlags = 0, ::ca::live_object * pliveobject = NULL);
+      virtual id   RunModalLoop(uint32_t dwFlags = 0, ::ca2::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
@@ -271,13 +271,13 @@ namespace user
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         sp(::ca::create_context) pContext = NULL);
-      using ::ca::request_interface::create;
+         sp(::ca2::create_context) pContext = NULL);
+      using ::ca2::request_interface::create;
       virtual bool create(const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         sp(::ca::create_context) pContext = NULL);
+         sp(::ca2::create_context) pContext = NULL);
       virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
@@ -300,28 +300,28 @@ namespace user
 
 #ifdef WINDOWS
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
-         ::ca::region* prgnUpdate = NULL,
+         ::ca2::region* prgnUpdate = NULL,
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
 #else
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
-         ::ca::region* prgnUpdate = NULL,
+         ::ca2::region* prgnUpdate = NULL,
          UINT flags = 0);
 #endif
 
 
-   virtual void set_view_port_org(::ca::graphics * pgraphics);
+   virtual void set_view_port_org(::ca2::graphics * pgraphics);
 
 
 
       virtual void UpdateWindow();
       virtual void SetRedraw(bool bRedraw = TRUE);
       virtual bool GetUpdateRect(LPRECT lpRect, bool bErase = FALSE);
-      virtual int32_t GetUpdateRgn(::ca::region* pRgn, bool bErase = FALSE);
+      virtual int32_t GetUpdateRgn(::ca2::region* pRgn, bool bErase = FALSE);
       virtual void Invalidate(bool bErase = TRUE);
       virtual void InvalidateRect(LPCRECT lpRect, bool bErase = TRUE);
-      virtual void InvalidateRgn(::ca::region* pRgn, bool bErase = TRUE);
+      virtual void InvalidateRgn(::ca2::region* pRgn, bool bErase = TRUE);
       virtual void ValidateRect(LPCRECT lpRect);
-      virtual void ValidateRgn(::ca::region* pRgn);
+      virtual void ValidateRgn(::ca2::region* pRgn);
       virtual void ShowOwnedPopups(bool bShow = TRUE);
 
 
@@ -329,8 +329,8 @@ namespace user
       virtual uint32_t GetExStyle();
       virtual LRESULT Default();
 
-      virtual LRESULT send(::ca::message::base * pbase);
-      virtual bool post(::ca::message::base * pbase);
+      virtual LRESULT send(::ca2::message::base * pbase);
+      virtual bool post(::ca2::message::base * pbase);
       virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = NULL);
 
 #ifdef LINUX
@@ -355,15 +355,15 @@ namespace user
       virtual bool IsWindowEnabled();
       virtual bool EnableWindow(bool bEnable = TRUE);
 
-      virtual void _001Print(::ca::graphics * pdc);
-      virtual void _000OnDraw(::ca::graphics *pdc);
-      virtual void _001DrawThis(::ca::graphics *pdc);
-      virtual void _001DrawChildren(::ca::graphics *pdc);
-      virtual void _001OnDraw(::ca::graphics *pdc);
-      virtual void draw_control_background(::ca::graphics *pdc);
+      virtual void _001Print(::ca2::graphics * pdc);
+      virtual void _000OnDraw(::ca2::graphics *pdc);
+      virtual void _001DrawThis(::ca2::graphics *pdc);
+      virtual void _001DrawChildren(::ca2::graphics *pdc);
+      virtual void _001OnDraw(::ca2::graphics *pdc);
+      virtual void draw_control_background(::ca2::graphics *pdc);
 
-      virtual ::ca::graphics * GetDC();
-      virtual bool ReleaseDC(::ca::graphics *);
+      virtual ::ca2::graphics * GetDC();
+      virtual bool ReleaseDC(::ca2::graphics *);
 
       virtual bool IsChild(sp(interaction)  pWnd);
       virtual window_interface * window_interface_get_parent() const;
@@ -387,8 +387,8 @@ namespace user
       virtual sp(interaction) GetActiveWindow();
       virtual sp(interaction) SetActiveWindow();
 
-      virtual void WalkPreTranslateTree(::ca::signal_object * pobj);
-      virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop, ::ca::signal_object * pobj);
+      virtual void WalkPreTranslateTree(::ca2::signal_object * pobj);
+      virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop, ::ca2::signal_object * pobj);
 
       virtual sp(interaction) GetDescendantWindow(id id);
 
@@ -396,14 +396,14 @@ namespace user
       virtual strsize GetWindowText(LPTSTR lpszStringBuf, int32_t nMaxCount);
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();
-      virtual void SetFont(::ca::font* pFont, bool bRedraw = TRUE);
-      virtual ::ca::font* GetFont();
+      virtual void SetFont(::ca2::font* pFont, bool bRedraw = TRUE);
+      virtual ::ca2::font* GetFont();
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
       virtual bool IsWindowVisible();
 
-      virtual void _000OnMouse(::ca::message::mouse * pmouse);
-      virtual void _000OnKey(::ca::message::key * pkey);
+      virtual void _000OnMouse(::ca2::message::mouse * pmouse);
+      virtual void _000OnKey(::ca2::message::key * pkey);
       DECL_GEN_SIGNAL(_001OnMouseMove)
       DECL_GEN_SIGNAL(_001OnMouseEnter)
       DECL_GEN_SIGNAL(_001OnMouseLeave)
@@ -446,7 +446,7 @@ namespace user
       virtual sp(interaction) EnsureTopLevelParent();
       virtual sp(::user::frame_window) GetTopLevelFrame();
       virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = NULL, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
-      virtual void pre_translate_message(::ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca2::signal_object * pobj);
 
 
       virtual int32_t get_descendant_level(sp(::user::interaction) pui);
@@ -456,7 +456,7 @@ namespace user
 #ifdef METROWIN
       virtual sp(::user::interaction) get_wnd() const;
 #else
-      virtual sp(::ca::window) get_wnd() const;
+      virtual sp(::ca2::window) get_wnd() const;
 #endif
 
       enum RepositionFlags
@@ -497,13 +497,13 @@ namespace user
       virtual void PostNcDestroy();
 
       virtual LRESULT DefWindowProc(UINT uiMessage, WPARAM wparam, lparam lparam);
-      virtual void message_handler(::ca::signal_object * pobj);
+      virtual void message_handler(::ca2::signal_object * pobj);
       virtual LRESULT message_handler(LPMESSAGE lpmessage);
-      virtual void GuieProc(::ca::signal_object * pobj);
+      virtual void GuieProc(::ca2::signal_object * pobj);
 
-      virtual void _001DeferPaintLayeredWindowBackground(::ca::graphics * pdc);
+      virtual void _001DeferPaintLayeredWindowBackground(::ca2::graphics * pdc);
 
-      virtual void _001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc);
+      virtual void _001OnDeferPaintLayeredWindowBackground(::ca2::graphics * pdc);
 
 
       oswindow get_safe_handle() const;
@@ -570,7 +570,7 @@ namespace user
 } // namespace user
 
 CLASS_DECL_ca2 sp(::user::interaction) WINAPI CreateGuieEx(
-   sp(::ca::application) papp,
+   sp(::ca2::application) papp,
     uint32_t dwExStyle,
     const char * lpClassName,
     const char * lpWindowName,

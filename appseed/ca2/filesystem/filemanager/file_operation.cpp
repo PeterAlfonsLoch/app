@@ -1,7 +1,7 @@
 #include "framework.h"
 
-file_operation::file_operation(sp(::ca::application) papp) :
-   ca(papp),
+file_operation::file_operation(sp(::ca2::application) papp) :
+   ca2(papp),
    m_fileSrc(papp),
    m_fileDst(papp)
 {
@@ -88,12 +88,12 @@ bool file_operation::set_delete(stringa & stra)
 
 bool file_operation::open_src_dst(const char * pszSrc, const char * pszDst)
 {
-   if(Application.dir().is(pszSrc) && !::ca::str::ends_ci(pszSrc, ".zip"))
+   if(Application.dir().is(pszSrc) && !::ca2::str::ends_ci(pszSrc, ".zip"))
    {
       Application.dir().mk(System.dir().name(pszDst));
       return false;
    }
-   if(!m_fileSrc->open(pszSrc, ::ca::file::mode_read | ::ca::file::type_binary | ::ca::file::shareDenyWrite))
+   if(!m_fileSrc->open(pszSrc, ::ca2::file::mode_read | ::ca2::file::type_binary | ::ca2::file::shareDenyWrite))
    {
       TRACE("\n Could not open source file(%d)=%s", m_iFile, pszSrc);
       return false;
@@ -102,7 +102,7 @@ bool file_operation::open_src_dst(const char * pszSrc, const char * pszDst)
    {
 /*      if(System.file().exists(pszDst))
       {
-         ::ca::property_set propertyset;
+         ::ca2::property_set propertyset;
          propertyset["srcfile"].get_value().set_string(pszSrc);
          propertyset["dstfile"].get_value().set_string(pszDst);
          System.message_box("filemanager\\do_you_want_to_replace_the_file.xml", propertyset);
@@ -110,10 +110,10 @@ bool file_operation::open_src_dst(const char * pszSrc, const char * pszDst)
       }*/
    }
    Application.dir().mk(System.dir().name(pszDst));
-   if(!m_fileDst->open(pszDst, ::ca::file::mode_write | ::ca::file::type_binary | ::ca::file::mode_create))
+   if(!m_fileDst->open(pszDst, ::ca2::file::mode_write | ::ca2::file::type_binary | ::ca2::file::mode_create))
    {
       TRACE("\n Could not open dest file(%d)=%s", m_iFile, pszDst);
-      ::ca::property_set propertyset;
+      ::ca2::property_set propertyset;
       propertyset["filepath"] = pszDst;
       System.message_box("filemanager\\not_accessible_destination_file.xhtml", propertyset);
       return false;
@@ -184,13 +184,13 @@ bool file_operation::step()
             {
                string strDestPath = m_fileDst->GetFilePath();
                m_fileDst->close();
-               ::ca::file_status st;
+               ::ca2::file_status st;
                m_fileSrc->GetStatus(st);
                System.os().set_file_status(strDestPath, st);
                m_fileSrc->close();
             }
             m_iFile++;
-            while(m_iFile < m_stra.get_size() && Application.dir().is(m_stra[m_iFile]) && !::ca::str::ends_ci(m_stra[m_iFile], ".zip"))
+            while(m_iFile < m_stra.get_size() && Application.dir().is(m_stra[m_iFile]) && !::ca2::str::ends_ci(m_stra[m_iFile], ".zip"))
             {
                m_iFile++;
             }
@@ -284,7 +284,7 @@ bool file_operation::initialize()
    var varLen;
    for(int32_t i = 0; i < m_stra.get_size(); i++)
    {
-      if(Application.dir().is(m_stra[i]) && !::ca::str::ends_ci(m_stra[i], ".zip"))
+      if(Application.dir().is(m_stra[i]) && !::ca2::str::ends_ci(m_stra[i], ".zip"))
       {
          m_daSize.add(0.0);
          m_daRead.add(0.0);
@@ -373,7 +373,7 @@ void file_operation::expand(stringa & straExpanded, stringa & straExpand)
 {
    for(int32_t i = 0; i < straExpand.get_size(); i++)
    {
-      if(Application.dir().is(straExpand[i]) && !::ca::str::ends_ci(m_stra[i], ".zip"))
+      if(Application.dir().is(straExpand[i]) && !::ca2::str::ends_ci(m_stra[i], ".zip"))
       {
          Application.dir().rls(straExpand[i], &straExpanded);
       }

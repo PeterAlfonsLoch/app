@@ -19,7 +19,7 @@ namespace uinteraction
    {
 
 
-      // implemented in ca
+      // implemented in ca2
       class WorkSet;
 
       enum EHitTest
@@ -40,8 +40,8 @@ namespace uinteraction
 
 
       class CLASS_DECL_ca2 frame : 
-         virtual public ::ca::signalizable,
-         virtual public ::ca::object
+         virtual public ::ca2::signalizable,
+         virtual public ::ca2::object
       {
       public:
 
@@ -60,7 +60,7 @@ namespace uinteraction
 
 
 
-         sp(::ca::type_info)                                             m_typeinfoControlBoxButton;
+         sp(::ca2::type_info)                                             m_typeinfoControlBoxButton;
 
          map < e_button, e_button, id, id >            m_mapButtonId;
          map < id, id, e_button, e_button >            m_mapIdButton;
@@ -72,7 +72,7 @@ namespace uinteraction
 
 
 
-         frame(sp(::ca::application) papp);
+         frame(sp(::ca2::application) papp);
          virtual ~frame();
 
 
@@ -95,7 +95,7 @@ namespace uinteraction
          virtual void OnMove(sp(::user::interaction) pwnd);
 
 
-         virtual void _001OnDraw(::ca::graphics * pca);
+         virtual void _001OnDraw(::ca2::graphics * pca);
 
          virtual void GetWndClientRect(LPRECT lprect);
          virtual size GetMinSize();
@@ -109,12 +109,12 @@ namespace uinteraction
          virtual COLORREF get_border_main_body_color();
 
          virtual EHitTest _000HitTest(point pt) = 0;
-         virtual bool _000OnLButtonDown(::ca::message::mouse * pmouse);
-         virtual bool _000OnLButtonUp(::ca::message::mouse * pmouse);
-         virtual bool _000OnMouseMove(::ca::message::mouse * pmouse);
-         virtual bool _000OnNcLButtonDown(::ca::message::mouse * pmouse);
-         virtual bool _000OnNcLButtonUp(::ca::message::mouse * pmouse);
-         virtual bool _000OnNcMouseMove(::ca::message::mouse * pmouse);
+         virtual bool _000OnLButtonDown(::ca2::message::mouse * pmouse);
+         virtual bool _000OnLButtonUp(::ca2::message::mouse * pmouse);
+         virtual bool _000OnMouseMove(::ca2::message::mouse * pmouse);
+         virtual bool _000OnNcLButtonDown(::ca2::message::mouse * pmouse);
+         virtual bool _000OnNcLButtonUp(::ca2::message::mouse * pmouse);
+         virtual bool _000OnNcMouseMove(::ca2::message::mouse * pmouse);
          virtual bool _000OnNcHitTest(point pt, LRESULT & nHitTest);
          virtual bool _000OnTimer(UINT nIDEvent);
          virtual bool _000OnSize(UINT nType, int32_t cx, int32_t cy);

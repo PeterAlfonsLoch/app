@@ -21,7 +21,7 @@ namespace sockets
    \ingroup basic
    */
    class CLASS_DECL_ca2 address :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -31,11 +31,11 @@ namespace sockets
       string            m_strServiceName;
 
 
-      address(sp(::ca::application) papp, const in_addr & a, int32_t iPort = 0);
-      address(sp(::ca::application) papp, const in6_addr & a, int32_t iPort = 0);
-      address(sp(::ca::application) papp, const sockaddr & sa, int32_t sa_len);
-      address(sp(::ca::application) papp, const string & strAddress = "", const string & strServiceName = "");
-      address(sp(::ca::application) papp, const string & strAddress, int32_t iPort);
+      address(sp(::ca2::application) papp, const in_addr & a, int32_t iPort = 0);
+      address(sp(::ca2::application) papp, const in6_addr & a, int32_t iPort = 0);
+      address(sp(::ca2::application) papp, const sockaddr & sa, int32_t sa_len);
+      address(sp(::ca2::application) papp, const string & strAddress = "", const string & strServiceName = "");
+      address(sp(::ca2::application) papp, const string & strAddress, int32_t iPort);
       address(const address & address);
       virtual ~address();
 

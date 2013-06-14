@@ -12,7 +12,7 @@
 #pragma once
 
 class CLASS_DECL_ca2 service_base :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
 
@@ -39,11 +39,11 @@ public:
 
 #ifdef WINDOWSEX
 
-   service_base(sp(::ca::application) papp, uint32_t controlsAccepted = SERVICE_ACCEPT_PAUSE_CONTINUE | SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SHUTDOWN);
+   service_base(sp(::ca2::application) papp, uint32_t controlsAccepted = SERVICE_ACCEPT_PAUSE_CONTINUE | SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SHUTDOWN);
 
 #else
 
-   service_base(sp(::ca::application) papp, uint32_t controlsAccepted = 0);
+   service_base(sp(::ca2::application) papp, uint32_t controlsAccepted = 0);
 
 #endif
 

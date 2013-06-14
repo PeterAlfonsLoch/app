@@ -12,7 +12,7 @@ namespace usermail
    public:
       
    
-      tree_interface(sp(::ca::application) papp);
+      tree_interface(sp(::ca2::application) papp);
       virtual ~tree_interface();
 
 

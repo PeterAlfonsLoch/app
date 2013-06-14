@@ -5,9 +5,9 @@ namespace user
 {
 
 
-   user::user(::ca::application * papp) :
-      ca(papp),
-      ::ca::section(papp)
+   user::user(::ca2::application * papp) :
+      ca2(papp),
+      ::ca2::section(papp)
    {
       
       
@@ -18,8 +18,8 @@ namespace user
       m_pufe            = NULL;
 
 
-      //::ca::user * papp = dynamic_cast <::ca::user *>(System.GetThread()->m_pAppThread);
-      //::ca::connect(papp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
+      //::ca2::user * papp = dynamic_cast <::ca2::user *>(System.GetThread()->m_pAppThread);
+      //::ca2::connect(papp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
 
       m_pkeyboard = NULL;
       //m_pwindowmap = NULL;
@@ -61,7 +61,7 @@ namespace user
 
       m_pshellimageset = new filemanager::_shell::ImageSet(m_papp);
 
-      if(!::ca::section::initialize1())
+      if(!::ca2::section::initialize1())
          return false;
 
       return true;
@@ -74,7 +74,7 @@ namespace user
 
 
 
-      if(!::ca::section::initialize())
+      if(!::ca2::section::initialize())
          return false;
 
 
@@ -221,7 +221,7 @@ retry_license:
          return false;
 
 
-      if(!::ca::section::initialize())
+      if(!::ca2::section::initialize())
          return false;
 
       return true;
@@ -235,7 +235,7 @@ retry_license:
    {
 
 
-      if(!::ca::section::initialize2())
+      if(!::ca2::section::initialize2())
          return false;
 
       m_ptemplateForm = new ::user::multiple_document_template(
@@ -270,7 +270,7 @@ retry_license:
    {
       try
       {
-         ::ca::section::finalize();
+         ::ca2::section::finalize();
       }
       catch(...)
       {
@@ -321,7 +321,7 @@ retry_license:
       return *m_pshellimageset;
    }
 
-   string user::message_box(const char * pszMatter, ::ca::property_set & propertyset)
+   string user::message_box(const char * pszMatter, ::ca2::property_set & propertyset)
    { 
          class ::userex::message_box box(get_app());
 
@@ -341,7 +341,7 @@ retry_license:
 
       class message_box box(get_app());
 
-      ::ca::property_set propertyset;
+      ::ca2::property_set propertyset;
       propertyset["message"] = pszMessage;
 
       string strMatter;
@@ -401,7 +401,7 @@ retry_license:
 
       class message_box box(get_app());
 
-      ::ca::property_set propertyset;
+      ::ca2::property_set propertyset;
       propertyset["message"] = pszMessage;
       propertyset["simple_message_box_timeout_ms"] = iTimeout;
 
@@ -497,7 +497,7 @@ retry_license:
       return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size, pszPath, bPending);
    }
 
-   void user::data_on_after_change(::ca::signal_object * pobj)
+   void user::data_on_after_change(::ca2::signal_object * pobj)
    {
       SCAST_PTR(::database::change_event, pchange, pobj);
       if(pchange->m_key.m_idKey == "ca2")
@@ -657,10 +657,10 @@ retry_license:
    }
 
 
-   sp(::ca::type_info) user::controltype_to_typeinfo(::user::control::e_type e_type)
+   sp(::ca2::type_info) user::controltype_to_typeinfo(::user::control::e_type e_type)
    {
 
-      return sp(::ca::type_info)();
+      return sp(::ca2::type_info)();
 
    }
 
@@ -705,7 +705,7 @@ retry_license:
    sp(::user::document) user::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
    {
       ASSERT(Application.m_pdocmanager != NULL);
-      sp(::ca::create_context) cc(allocer());
+      sp(::ca2::create_context) cc(allocer());
       cc->m_spCommandLine->m_varFile = lpszFileName;
       return (Application.m_pdocmanager->open_document_file(cc));
    }
@@ -735,12 +735,12 @@ retry_license:
    }
 
 
-   ::user::front_end_schema * GetUfeSchema(sp(::ca::application) papp)
+   ::user::front_end_schema * GetUfeSchema(sp(::ca2::application) papp)
    {
       return App(papp).user()->GetUfeSchema();
    }
 
-   ::user::front_end * GetUfe(sp(::ca::application) papp)
+   ::user::front_end * GetUfe(sp(::ca2::application) papp)
    {
       return App(papp).user()->GetUfe();
    }
@@ -831,9 +831,9 @@ retry_license:
          return iCount;
       }
 
-      void user::VmsGuiiOnAppLanguage(::ca::signal_object * pobject)
+      void user::VmsGuiiOnAppLanguage(::ca2::signal_object * pobject)
       {
-         SendMessageToWindows(::ca::application::APPM_LANGUAGE, 0, (LPARAM) pobject);
+         SendMessageToWindows(::ca2::application::APPM_LANGUAGE, 0, (LPARAM) pobject);
       }
 
 
@@ -842,7 +842,7 @@ retry_license:
       sp(::form_document) pdoc;
       if(m_ptemplateForm == NULL)
          return NULL;
-      sp(::ca::create_context) createcontext(allocer());
+      sp(::ca2::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       createcontext->m_pviewAlloc                     = pview;
@@ -868,7 +868,7 @@ retry_license:
       sp(::form_document) pdoc;
       if(m_ptemplateForm == NULL)
          return NULL;
-      sp(::ca::create_context) createcontext(allocer());
+      sp(::ca2::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       if(var.get_type() == var::type_propset && var.has_property("hold") && !(bool) var["hold"])
@@ -889,7 +889,7 @@ retry_license:
       sp(::form_document) pdoc;
       if(m_ptemplateChildForm == NULL)
          return NULL;
-      sp(::ca::create_context) createcontext(allocer());
+      sp(::ca2::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       createcontext->m_pviewAlloc                     = pview;
@@ -915,7 +915,7 @@ retry_license:
       if(m_ptemplateChildForm == NULL)
          return NULL;
       sp(::form_document) pdoc;
-      sp(::ca::create_context) createcontext(allocer());
+      sp(::ca2::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       pdoc = (m_ptemplateChildForm->open_document_file(createcontext));
@@ -929,7 +929,7 @@ retry_license:
    sp(::user::document) user::hold(sp(::user::interaction) pui)
    {
 
-      sp(::ca::create_context) createcontext(allocer());
+      sp(::ca2::create_context) createcontext(allocer());
 
       createcontext->m_bMakeVisible    = false;
       createcontext->m_bHold           = false;

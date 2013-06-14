@@ -23,12 +23,12 @@ class BaseDockState;
 
 
 
-// Standard control bars (IDW = ::ca::window ID)
+// Standard control bars (IDW = ::ca2::window ID)
 #define __IDW_CONTROLBAR_FIRST        0xE800
 #define __IDW_CONTROLBAR_LAST         0xE8FF
 
-#define __IDW_TOOLBAR                 0xE800  // main Toolbar for ::ca::window
-//#define "status_bar"              0xE801  // Status bar ::ca::window
+#define __IDW_TOOLBAR                 0xE800  // main Toolbar for ::ca2::window
+//#define "status_bar"              0xE801  // Status bar ::ca2::window
 #define __IDW_PREVIEW_BAR             0xE802  // PrintPreview Dialog Bar
 #define __IDW_RESIZE_BAR              0xE803  // OLE in-place resize bar
 #define __IDW_REBAR                   0xE804  // COMCTL32 "rebar" Bar
@@ -79,7 +79,7 @@ public:
    bool m_bFloating;   // whether floating or not
    bool m_bHorz;       // orientation of floating dockbar
    bool m_bDockBar;    // TRUE if a dockbar
-   point m_pointPos;  // topleft point of ::ca::window
+   point m_pointPos;  // topleft point of ::ca2::window
 
    UINT m_nMRUWidth;   // MRUWidth for Dynamic Toolbars
    bool m_bDocking;    // TRUE if this bar has a DockContext
@@ -133,8 +133,8 @@ namespace user
 
    // Implementation
    public:
-      virtual void _001OnDraw(::ca::graphics * pdc);
-      virtual void message_handler(::ca::signal_object * pobj);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void message_handler(::ca2::signal_object * pobj);
       virtual ~control_bar();
    #ifdef DEBUG
       virtual void assert_valid() const;
@@ -172,13 +172,13 @@ namespace user
       BaseDockContext* m_pDockContext;   // used during dragging
       uint32_t m_dwCtrlStyle;
 
-      virtual void pre_translate_message(::ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca2::signal_object * pobj);
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual void PostNcDestroy();
 
-      virtual void DoPaint(::ca::graphics * pgraphics);
-      void DrawBorders(::ca::graphics * pgraphics, rect& rect);
-      void DrawGripper(::ca::graphics * pgraphics, const rect& rect);
+      virtual void DoPaint(::ca2::graphics * pgraphics);
+      void DrawBorders(::ca2::graphics * pgraphics, rect& rect);
+      void DrawGripper(::ca2::graphics * pgraphics, const rect& rect);
 
       // implementation helpers
       void CalcInsideRect(rect& rect, bool bHorz) const; // adjusts borders etc
@@ -186,7 +186,7 @@ namespace user
       virtual bool SetStatusText(int32_t nHit);
       void ResetTimer(UINT nEvent, UINT nTime);
       void EraseNonClient();
-      void EraseNonClient(::ca::graphics * pdc);
+      void EraseNonClient(::ca2::graphics * pdc);
 
       void GetBarInfo(BaseControlBarInfo* pInfo);
       void SetBarInfo(BaseControlBarInfo* pInfo, sp(::user::frame_window) pFrameWnd);
@@ -209,9 +209,9 @@ namespace user
       //DECL_GEN_SIGNAL(_001OnCancelMode)
 
    //   DECL_GEN_SIGNAL(_001OnPaint)
-   //   virtual void _001OnDraw(::ca::graphics * pdc);
+   //   virtual void _001OnDraw(::ca2::graphics * pdc);
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       friend class ::user::frame_window;
       friend class BaseDockBar;

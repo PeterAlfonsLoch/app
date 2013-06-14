@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 stream_base :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -36,4 +36,4 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2

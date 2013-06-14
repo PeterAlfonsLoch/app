@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   combo_box::combo_box(sp(::ca::application) papp) :
-      ca(papp),
+   combo_box::combo_box(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::scroll_view(papp),
       ::user::edit_plain_text(papp)
    {
@@ -24,7 +24,7 @@ namespace user
    }
 
 
-   void combo_box::install_message_handling(::ca::message::dispatch * pdispatch)
+   void combo_box::install_message_handling(::ca2::message::dispatch * pdispatch)
    {
 
       if(m_bEdit)
@@ -47,7 +47,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnDrawStaticText(::ca::graphics * pdc)
+   void combo_box::_001OnDrawStaticText(::ca2::graphics * pdc)
    {
 
       string strText;
@@ -58,7 +58,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca::brush_sp br(allocer());
+      ::ca2::brush_sp br(allocer());
 
       br->create_solid(ARGB(84, 255, 255, 255));
 
@@ -86,10 +86,10 @@ namespace user
 
 
 
-   void combo_box::_001OnDrawVerisimple(::ca::graphics * pdc)
+   void combo_box::_001OnDrawVerisimple(::ca2::graphics * pdc)
    {
 
-      pdc->set_alpha_mode(::ca::alpha_mode_blend);
+      pdc->set_alpha_mode(::ca2::alpha_mode_blend);
 
       if(m_bEdit)
       {
@@ -108,7 +108,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca::brush_sp br(allocer());
+      ::ca2::brush_sp br(allocer());
 
 //      int32_t iMargin = rectClient.height() / 8;
 
@@ -122,7 +122,7 @@ namespace user
 
       pdc->FillRectangle(rectDropDown);
 
-      ::ca::graphics_path_sp path(allocer());
+      ::ca2::graphics_path_sp path(allocer());
 
       point_array pointa;
 
@@ -154,10 +154,10 @@ namespace user
 
    }
 
-   void combo_box::_001OnDrawSimply(::ca::graphics * pdc)
+   void combo_box::_001OnDrawSimply(::ca2::graphics * pdc)
    {
 
-      pdc->set_alpha_mode(::ca::alpha_mode_blend);
+      pdc->set_alpha_mode(::ca2::alpha_mode_blend);
 
       if(m_bEdit)
       {
@@ -176,7 +176,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca::brush_sp br(allocer());
+      ::ca2::brush_sp br(allocer());
 
       rect rectDropDown;
 
@@ -204,35 +204,35 @@ namespace user
          {
             if(i == 0)
             {
-               COLORREF c(ARGB(230, 130, 130, 120));
-               g.draw_round_top_left(r, c, radius, 1);
+               COLORREF ca(ARGB(230, 130, 130, 120));
+               g.draw_round_top_left(r, ca, radius, 1);
             }
             else if(i == 1)
             {
-               COLORREF c(ARGB(230, 210, 210, 200));
-               g.draw_round_top_left(r, c, radius, 1);
+               COLORREF ca(ARGB(230, 210, 210, 200));
+               g.draw_round_top_left(r, ca, radius, 1);
             }
             else
             {
-               COLORREF c(ARGB(230, 230 - iColorRate, 230 - iColorRate, 220 - iColorRate));
-               g.draw_round_top_left(r, c, radius, 1);
+               COLORREF ca(ARGB(230, 230 - iColorRate, 230 - iColorRate, 220 - iColorRate));
+               g.draw_round_top_left(r, ca, radius, 1);
             }
          }
          {
             if(i == 0)
             {
-               COLORREF c(ARGB(230, 130, 130, 120));
-               g.draw_round_bottom_right(r, c, radius, 1);
+               COLORREF ca(ARGB(230, 130, 130, 120));
+               g.draw_round_bottom_right(r, ca, radius, 1);
             }
             else if(i == 1)
             {
-               COLORREF c(ARGB(230, 210, 210, 200));
-               g.draw_round_bottom_right(r, c, radius, 1);
+               COLORREF ca(ARGB(230, 210, 210, 200));
+               g.draw_round_bottom_right(r, ca, radius, 1);
             }
             else
             {
-               COLORREF c(ARGB(230, 190 + iColorRate, 190 + iColorRate, 180 + iColorRate));
-               g.draw_round_bottom_right(r, c, radius, 1);
+               COLORREF ca(ARGB(230, 190 + iColorRate, 190 + iColorRate, 180 + iColorRate));
+               g.draw_round_bottom_right(r, ca, radius, 1);
             }
          }
 
@@ -258,7 +258,7 @@ namespace user
       br->create_solid(ARGB(210, 77, 184, 49));
 
 
-      ::ca::graphics_path_sp path(allocer());
+      ::ca2::graphics_path_sp path(allocer());
 
       point_array pointa;
 
@@ -295,7 +295,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnDraw(::ca::graphics * pdc)
+   void combo_box::_001OnDraw(::ca2::graphics * pdc)
    {
 
       //if(m_estyle == style_simply)
@@ -386,11 +386,11 @@ namespace user
    index combo_box::_001FindListText(const string & str) const
    {
 
-      ::count c = _001GetListCount();
+      ::count ca = _001GetListCount();
 
       string strItem;
 
-      for(index i = 0; i < c; i++)
+      for(index i = 0; i < ca; i++)
       {
 
          _001GetListText(i, strItem);
@@ -522,10 +522,10 @@ namespace user
 
    }
 
-   void combo_box::_001OnLButtonDown(::ca::signal_object * pobj)
+   void combo_box::_001OnLButtonDown(::ca2::signal_object * pobj)
    {
 
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
       point pt = pmouse->m_pt;
 
@@ -541,17 +541,17 @@ namespace user
    }
 
 
-   void combo_box::_001OnLButtonUp(::ca::signal_object * pobj)
+   void combo_box::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
 
-//      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
    }
 
-   void combo_box::_001OnSetFocus(::ca::signal_object * pobj)
+   void combo_box::_001OnSetFocus(::ca2::signal_object * pobj)
    {
 
-//      SCAST_PTR(::ca::message::set_focus, pfocus, pobj);
+//      SCAST_PTR(::ca2::message::set_focus, pfocus, pobj);
 
    }
 
@@ -688,7 +688,7 @@ namespace user
       if(m_plist == NULL)
       {
 
-         sp(::ca::ca) pca = Application.alloc(m_typeComboList);
+         sp(::ca2::ca2) pca = Application.alloc(m_typeComboList);
 
          m_plist =  (pca);
 
@@ -754,14 +754,14 @@ namespace user
       }
 
 
-      ::ca::font_sp fontxyz(allocer());
+      ::ca2::font_sp fontxyz(allocer());
 
       rect rectClient;
 
       GetClientRect(rectClient);
 
       fontxyz->m_dFontSize = rectClient.height() * 0.4;
-      fontxyz->m_eunitFontSize = ::ca::unit_pixel;
+      fontxyz->m_eunitFontSize = ::ca2::unit_pixel;
       fontxyz->m_bUpdated = false;
 
       SetFont(fontxyz);
@@ -793,7 +793,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnInitialUpdate(::ca::signal_object * pobj)
+   void combo_box::_001OnInitialUpdate(::ca2::signal_object * pobj)
    {
 
       if(m_bEdit)

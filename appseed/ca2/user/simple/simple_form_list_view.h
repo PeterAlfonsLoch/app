@@ -10,14 +10,14 @@ public:
    simple_list_header_control   m_headerctrl;
 
 
-   simple_form_list_view(sp(::ca::application) papp);
+   simple_form_list_view(sp(::ca2::application) papp);
    virtual ~simple_form_list_view();
 
 
    virtual bool pre_create_window(CREATESTRUCT& cs);
 
 
-   virtual void install_message_handling(::ca::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
 
 #ifdef DEBUG

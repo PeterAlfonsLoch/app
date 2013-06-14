@@ -5,9 +5,9 @@ namespace userfs
 {
 
 
-   document::document(sp(::ca::application) papp) :
-      ::ca::ca(papp),
-      ::ca::data_container_base(papp),
+   document::document(sp(::ca2::application) papp) :
+      ::ca2::ca2(papp),
+      ::ca2::data_container_base(papp),
       
       user::document(papp),
       m_fsset(papp)

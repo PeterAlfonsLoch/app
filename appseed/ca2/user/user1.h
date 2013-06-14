@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/ca/ca.h"
+#include "ca2/ca2/ca2.h"
 
 
 namespace user
@@ -30,8 +30,8 @@ namespace user
 #include "database/database1.h"
 
 
-#include "ca/ca_window.h"
-#include "ca/ca_window_draw.h"
+#include "ca2/ca_window.h"
+#include "ca2/ca_window_draw.h"
 
 #include "gen/gen_timer.h"
 #include "gen/gen_timer_callback.h"

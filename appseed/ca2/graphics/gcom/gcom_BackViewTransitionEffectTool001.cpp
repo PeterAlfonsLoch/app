@@ -10,7 +10,7 @@ namespace gcom
 
 
       TransitionEffect::Tool001::Tool001(Main & viewinterface) :
-         ::ca::ca(viewinterface.get_app()),
+         ::ca2::ca2(viewinterface.get_app()),
          Helper(viewinterface)
       {
       }
@@ -345,12 +345,12 @@ namespace gcom
 
                int32_t c1 = max(cx, cy) * 3 / 2;
                int32_t dim = 1;
-               int32_t c = 0;
+               int32_t ca = 0;
                while(dim < c1)
                {
                   m_pointa.add(point(dim, 50));
-                  dim += m_data.m_radialunveil.m_iRadiusIncrement + c;
-                  c += 10;
+                  dim += m_data.m_radialunveil.m_iRadiusIncrement + ca;
+                  ca += 10;
                }
                m_iStepCount = m_pointa.get_size();
                m_iStepRepeatCount = 1;

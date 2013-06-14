@@ -4,8 +4,8 @@ namespace sqlite
 {
    extern int32_t callback(void * res_ptr,int32_t ncol, char** reslt,char** cols);
 
-   set::set(sp(::ca::application) papp) :
-      ca(papp),
+   set::set(sp(::ca2::application) papp) :
+      ca2(papp),
       ::database::set()
    {
       errmsg      = NULL;
@@ -15,7 +15,7 @@ namespace sqlite
 
 
    set::set(base * newDb) :
-      ca(newDb->get_app()),
+      ca2(newDb->get_app()),
       ::database::set(newDb)
    {
       errmsg      = NULL;
@@ -487,7 +487,7 @@ namespace sqlite
 
 
    /**********************************************************************
-   * Copyright (c) 2002, Leo Seib, Hannover
+   * Copyright (ca) 2002, Leo Seib, Hannover
    *
    * Project:CSQLiteDataset C++ Dynamic Library
    * Module: CSQLiteDataset class realisation file
@@ -573,7 +573,7 @@ namespace sqlite
                //else
                //{
                // string str;
-               //::ca::international::utf8_to_unicode(str, reslt[i]);
+               //::ca2::international::utf8_to_unicode(str, reslt[i]);
                v = reslt[i];
                //}
             }

@@ -18,12 +18,12 @@ namespace zip
 }
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 path :
-      virtual public ::ca::object
+      virtual public ::ca2::object
 
    {
    public:
@@ -36,7 +36,7 @@ namespace ca
 
 
       class CLASS_DECL_ca2 system :
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
       public:
 
@@ -65,7 +65,7 @@ namespace ca
             uint32_t             m_dwTimeOut;
 
 
-            is_dir_map(sp(::ca::application) papp);
+            is_dir_map(sp(::ca2::application) papp);
 
 
             bool lookup(const string & strPath, bool &bIsDir, uint32_t & dwLastError);
@@ -83,7 +83,7 @@ namespace ca
          mutex             m_mutex;
 
 
-         system(sp(::ca::application) papp);
+         system(sp(::ca2::application) papp);
          virtual ~system();
 
 
@@ -106,28 +106,28 @@ namespace ca
 
 
          virtual string relpath(const char * lpcszSource, const char * lpcszRelative, const char * lpcsz2 = NULL);
-         virtual void  ls_pattern(sp(::ca::application) papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, array < bool, bool > * pbaIsDir = NULL, array < int64_t, int64_t > * piaSize = NULL);
-         virtual void  ls(sp(::ca::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, array < bool, bool > * pbaIsDir = NULL, array < int64_t, int64_t > * piaSize = NULL);
-         virtual void  rls_pattern(sp(::ca::application) papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, array < bool, bool > * pbaIsDir = NULL, array < int64_t, int64_t > * piaSize = NULL, e_extract eextract = extract_first);
-         virtual void  rls(sp(::ca::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, e_extract eextract = extract_first);
-         virtual void  rls_dir(sp(::ca::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL);
-         virtual void  ls_dir(sp(::ca::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
-         virtual bool  has_subdir(sp(::ca::application) papp, const char * lpcsz);
-         virtual void  ls_file(sp(::ca::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
+         virtual void  ls_pattern(sp(::ca2::application) papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, array < bool, bool > * pbaIsDir = NULL, array < int64_t, int64_t > * piaSize = NULL);
+         virtual void  ls(sp(::ca2::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, array < bool, bool > * pbaIsDir = NULL, array < int64_t, int64_t > * piaSize = NULL);
+         virtual void  rls_pattern(sp(::ca2::application) papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, array < bool, bool > * pbaIsDir = NULL, array < int64_t, int64_t > * piaSize = NULL, e_extract eextract = extract_first);
+         virtual void  rls(sp(::ca2::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, e_extract eextract = extract_first);
+         virtual void  rls_dir(sp(::ca2::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL);
+         virtual void  ls_dir(sp(::ca2::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
+         virtual bool  has_subdir(sp(::ca2::application) papp, const char * lpcsz);
+         virtual void  ls_file(sp(::ca2::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
 
-         virtual bool  is(const char * lpcsz, sp(::ca::application) papp);
-         virtual bool  is(const string & str, sp(::ca::application) papp);
-         virtual bool  is(const var & var, sp(::ca::application) papp);
+         virtual bool  is(const char * lpcsz, sp(::ca2::application) papp);
+         virtual bool  is(const string & str, sp(::ca2::application) papp);
+         virtual bool  is(const var & var, sp(::ca2::application) papp);
 
-         virtual bool  name_is(const char * lpcsz, sp(::ca::application) papp);
-         virtual bool  name_is(const string & str, sp(::ca::application) papp);
-         virtual bool  name_is(const var & var, sp(::ca::application) papp);
+         virtual bool  name_is(const char * lpcsz, sp(::ca2::application) papp);
+         virtual bool  name_is(const string & str, sp(::ca2::application) papp);
+         virtual bool  name_is(const var & var, sp(::ca2::application) papp);
 
-         virtual bool  is_inside(const char * lpcszDir, const char * lpcszPath, sp(::ca::application) papp);
-         virtual bool  is_inside_time(const char * lpcsz, sp(::ca::application) papp);
-         virtual void  root_ones(stringa & stra, sp(::ca::application) papp);
-         virtual bool  mk(const char * lpcsz, sp(::ca::application) papp);
-         virtual bool  rm(sp(::ca::application) papp, const char * psz, bool bRecursive = true);
+         virtual bool  is_inside(const char * lpcszDir, const char * lpcszPath, sp(::ca2::application) papp);
+         virtual bool  is_inside_time(const char * lpcsz, sp(::ca2::application) papp);
+         virtual void  root_ones(stringa & stra, sp(::ca2::application) papp);
+         virtual bool  mk(const char * lpcsz, sp(::ca2::application) papp);
+         virtual bool  rm(sp(::ca2::application) papp, const char * psz, bool bRecursive = true);
 
          virtual string name(const char * psz);
 
@@ -148,29 +148,29 @@ namespace ca
          virtual void time_square(string &str);
          virtual string time_log(const char * pszId);
 
-         virtual string locale_schema(sp(::ca::application) papp, const string & strLocale, const string & strStyle);
-         virtual string locale_schema_matter(sp(::ca::application) papp, const string & strLocale, const string & strStyle);
+         virtual string locale_schema(sp(::ca2::application) papp, const string & strLocale, const string & strStyle);
+         virtual string locale_schema_matter(sp(::ca2::application) papp, const string & strLocale, const string & strStyle);
          virtual string locale_schema_matter(const string & strLocator, const string & strLocale, const string & strStyle);
-         virtual string matter(sp(::ca::application) papp, const stringa & stra, bool bDir = false);
-         virtual string matter(sp(::ca::application) papp, const string & str, const string & str2, bool bDir = false);
-         virtual string matter(sp(::ca::application) papp, const string & str, const char * psz, bool bDir = false);
-         virtual string matter(sp(::ca::application) papp, const char * psz, const string & str, bool bDir = false);
-         virtual string matter(sp(::ca::application) papp, const char * psz, const char * psz2, bool bDir = false);
-         virtual string matter(sp(::ca::application) papp, const string & str, bool bDir = false);
-         virtual string matter(sp(::ca::application) papp, const char * psz, bool bDir = false);
+         virtual string matter(sp(::ca2::application) papp, const stringa & stra, bool bDir = false);
+         virtual string matter(sp(::ca2::application) papp, const string & str, const string & str2, bool bDir = false);
+         virtual string matter(sp(::ca2::application) papp, const string & str, const char * psz, bool bDir = false);
+         virtual string matter(sp(::ca2::application) papp, const char * psz, const string & str, bool bDir = false);
+         virtual string matter(sp(::ca2::application) papp, const char * psz, const char * psz2, bool bDir = false);
+         virtual string matter(sp(::ca2::application) papp, const string & str, bool bDir = false);
+         virtual string matter(sp(::ca2::application) papp, const char * psz, bool bDir = false);
 
-         virtual void   matter_ls(sp(::ca::application) papp, const string & str, stringa & stra);
-         virtual void   matter_ls_file(sp(::ca::application) papp, const string & str, stringa & stra);
+         virtual void   matter_ls(sp(::ca2::application) papp, const string & str, stringa & stra);
+         virtual void   matter_ls_file(sp(::ca2::application) papp, const string & str, stringa & stra);
 
-         virtual string matter(sp(::ca::application) papp);
+         virtual string matter(sp(::ca2::application) papp);
 
          virtual string matter_from_locator(::user::str_context * pcontext, const string & strLocator);
          virtual string matter_from_locator(::user::str_context * pcontext, const string & strLocator, const string & str);
          virtual string matter_from_locator(::user::str_context * pcontext, const string & strLocator, const string & str, const string & str2);
-         virtual void appmatter_locators(string & strRoot, string & strDomain, sp(::ca::application) papp);
+         virtual void appmatter_locators(string & strRoot, string & strDomain, sp(::ca2::application) papp);
          virtual void appmatter_locators(string & strRoot, string & strDomain, const string & strLibraryName, const string & strAppName);
          virtual void appmatter_locators(string & strRoot, string & strDomain, const string & strAppName);
-         virtual string appmatter_locator(sp(::ca::application) papp);
+         virtual string appmatter_locator(sp(::ca2::application) papp);
          virtual string appmatter_locator(const string & strLibraryName, const string & strAppName);
          virtual string appmatter_locator(const string & strAppName);
          virtual string base_appmatter_locator(const string & strBase, const string & strLibraryName, const string & strAppName);
@@ -182,28 +182,28 @@ namespace ca
 
          virtual string appdata(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
 
-         virtual string usersystemappdata(sp(::ca::application) papp, const char * lpcszPrefix, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
-         virtual string userappdata(sp(::ca::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
-         virtual string userdata(sp(::ca::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
-         virtual string userfolder(sp(::ca::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
-         virtual string default_os_user_path_prefix(sp(::ca::application) papp);
-         virtual string default_userappdata(sp(::ca::application) papp, const char * lpcszPrefix, const char * lpcszLogin , const char * pszRelativePath = NULL);
-         virtual string default_userdata(sp(::ca::application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath = NULL);
-         virtual string default_userfolder(sp(::ca::application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath = NULL);
-         virtual string userquicklaunch(sp(::ca::application) papp, const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
-         virtual string userprograms(sp(::ca::application) papp, const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
+         virtual string usersystemappdata(sp(::ca2::application) papp, const char * lpcszPrefix, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+         virtual string userappdata(sp(::ca2::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+         virtual string userdata(sp(::ca2::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+         virtual string userfolder(sp(::ca2::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+         virtual string default_os_user_path_prefix(sp(::ca2::application) papp);
+         virtual string default_userappdata(sp(::ca2::application) papp, const char * lpcszPrefix, const char * lpcszLogin , const char * pszRelativePath = NULL);
+         virtual string default_userdata(sp(::ca2::application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath = NULL);
+         virtual string default_userfolder(sp(::ca2::application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath = NULL);
+         virtual string userquicklaunch(sp(::ca2::application) papp, const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
+         virtual string userprograms(sp(::ca2::application) papp, const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
 
          virtual string commonprograms(const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
 
-         virtual string pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, sp(::ca::application) papp);
+         virtual string pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, sp(::ca2::application) papp);
 
          virtual bool initialize();
       };
 
-      typedef ::c::smart_pointer < system > system_sp;
+      typedef ::ca::smart_pointer < system > system_sp;
 
 
    } // namespace dir
 
 
-} // namespace ca
+} // namespace ca2

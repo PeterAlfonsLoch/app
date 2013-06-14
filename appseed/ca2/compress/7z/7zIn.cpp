@@ -126,7 +126,7 @@ public:
   CInArchiveException(CCauseType cause): Cause(cause) {};
 };
 
-static void ThrowException(CInArchiveException::CCauseType c) { throw CInArchiveException(c); }
+static void ThrowException(CInArchiveException::CCauseType ca) { throw CInArchiveException(ca); }
 static void ThrowEndOfData()   { ThrowException(CInArchiveException::kEndOfData); }
 static void ThrowUnsupported() { ThrowException(CInArchiveException::kUnsupported); }
 static void ThrowIncorrect()   { ThrowException(CInArchiveException::kIncorrect); }
@@ -142,8 +142,8 @@ public:
   ~CStreamSwitch() { Remove(); }
   void Remove();
   void set(CInArchive *archive, const byte *data, size_t size);
-  void set(CInArchive *archive, const ::ca::byte_buffer &byteBuffer);
-  void set(CInArchive *archive, const smart_pointer_array < ::ca::byte_buffer > *dataVector);
+  void set(CInArchive *archive, const ::ca2::byte_buffer &byteBuffer);
+  void set(CInArchive *archive, const smart_pointer_array < ::ca2::byte_buffer > *dataVector);
 };
 
 void CStreamSwitch::Remove()
@@ -163,12 +163,12 @@ void CStreamSwitch::set(CInArchive *archive, const byte *data, size_t size)
   _needRemove = true;
 }
 
-void CStreamSwitch::set(CInArchive *archive, const ::ca::byte_buffer &byteBuffer)
+void CStreamSwitch::set(CInArchive *archive, const ::ca2::byte_buffer &byteBuffer)
 {
   set(archive, byteBuffer, byteBuffer.GetCapacity());
 }
 
-void CStreamSwitch::set(CInArchive *archive, const smart_pointer_array < ::ca::byte_buffer > *dataVector)
+void CStreamSwitch::set(CInArchive *archive, const smart_pointer_array < ::ca2::byte_buffer > *dataVector)
 {
   Remove();
   byte external = archive->ReadByte();
@@ -273,7 +273,7 @@ void CInByte2::ReadString(string &s)
   int32_t len = (int32_t)(rem / 2);
   if (len < 0 || (size_t)len * 2 != rem)
     ThrowUnsupported();
-  s = ::ca::international::unicode_to_utf8(wstring((wchar_t *) buf, len));
+  s = ::ca2::international::unicode_to_utf8(wstring((wchar_t *) buf, len));
   _pos += rem + 2;
 }
 
@@ -303,14 +303,14 @@ static inline bool TestSignature2(const byte *p)
 #define TestSignature2(p) TestSignature(p)
 #endif
 
-HRESULT CInArchive::FindAndReadSignature(::ca::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
+HRESULT CInArchive::FindAndReadSignature(::ca2::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
 {
   RINOK(ReadStream_FALSE(stream, _header, kHeaderSize));
 
   if (TestSignature2(_header))
     return S_OK;
 
-  ::ca::byte_buffer byteBuffer;
+  ::ca2::byte_buffer byteBuffer;
   const uint32_t kBufferSize = (1 << 16);
   byteBuffer.SetCapacity(kBufferSize);
   byte *buffer = byteBuffer;
@@ -343,7 +343,7 @@ HRESULT CInArchive::FindAndReadSignature(::ca::byte_input_stream *stream, const 
         memcpy(_header, buffer + pos, kHeaderSize);
         curTestPos += pos;
         _arhiveBeginStreamPosition = curTestPos;
-        stream->seek(curTestPos + kHeaderSize, ::ca::seek_begin);
+        stream->seek(curTestPos + kHeaderSize, ::ca2::seek_begin);
         return S_OK;
       }
     }
@@ -354,8 +354,8 @@ HRESULT CInArchive::FindAndReadSignature(::ca::byte_input_stream *stream, const 
   return S_FALSE;
 }
 
-      CInArchive::CInArchive(sp(::ca::application) papp) :
-         ca(papp)
+      CInArchive::CInArchive(sp(::ca2::application) papp) :
+         ca2(papp)
       {
       }
       CInArchive::~CInArchive()
@@ -363,11 +363,11 @@ HRESULT CInArchive::FindAndReadSignature(::ca::byte_input_stream *stream, const 
       }
 
 // S_FALSE means that file is not archive
-HRESULT CInArchive::Open(::ca::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
+HRESULT CInArchive::Open(::ca2::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
 {
   HeadersSize = 0;
   Close();
-  _arhiveBeginStreamPosition = stream->seek(0, ::ca::seek_current);
+  _arhiveBeginStreamPosition = stream->seek(0, ::ca2::seek_current);
   RINOK(FindAndReadSignature(stream, searchHeaderSizeLimit));
   _stream = stream;
   return S_OK;
@@ -375,7 +375,7 @@ HRESULT CInArchive::Open(::ca::byte_input_stream *stream, const file_position *s
 
 void CInArchive::Close()
 {
-  ::c::release(_stream.m_p);
+  ::ca::release(_stream.m_p);
 }
 
 void CInArchive::ReadArchiveProperties(CInArchiveInfo & /* archiveInfo */)
@@ -535,7 +535,7 @@ void CInArchive::ReadPackInfo(
 }
 
 void CInArchive::ReadUnpackInfo(
-    const smart_pointer_array < ::ca::byte_buffer > *dataVector,
+    const smart_pointer_array < ::ca2::byte_buffer > *dataVector,
     smart_pointer_array < CFolder > &folders)
 {
   WaitAttribute(NID::kFolder);
@@ -690,7 +690,7 @@ void CInArchive::ReadSubStreamsInfo(
 }
 
 void CInArchive::ReadStreamsInfo(
-    const smart_pointer_array < ::ca::byte_buffer > * dataVector,
+    const smart_pointer_array < ::ca2::byte_buffer > * dataVector,
     file_position & dataOffset,
     array < file_size > & packSizes,
     bool_array & packCRCsDefined,
@@ -764,7 +764,7 @@ void CInArchive::ReadBoolVector2(int32_t numItems, bool_array &v)
     v.add(true);
 }
 
-void CInArchive::ReadUInt64DefVector(const smart_pointer_array < ::ca::byte_buffer > & dataVector, CUInt64DefVector & v, int32_t numFiles)
+void CInArchive::ReadUInt64DefVector(const smart_pointer_array < ::ca2::byte_buffer > & dataVector, CUInt64DefVector & v, int32_t numFiles)
 {
   ReadBoolVector2(numFiles, v.Defined);
 
@@ -786,7 +786,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
     const array < ::libcompress::codec_info_ex > *externalCodecs,
     file_position baseOffset,
     file_position & dataOffset,
-    smart_pointer_array < ::ca::byte_buffer > &dataVector
+    smart_pointer_array < ::ca2::byte_buffer > &dataVector
     #ifndef _NO_CRYPTO
     , ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
     #endif
@@ -833,8 +833,8 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
   for (int32_t i = 0; i < folders.get_count(); i++)
   {
     const CFolder &folder = folders[i];
-    dataVector.add(new ::ca::byte_buffer());
-    ::ca::byte_buffer &data = dataVector.last_element();
+    dataVector.add(new ::ca2::byte_buffer());
+    ::ca2::byte_buffer &data = dataVector.last_element();
     uint64_t unpackSize64 = folder.GetUnpackSize();
     size_t unpackSize = (size_t)unpackSize64;
     if (unpackSize != unpackSize64)
@@ -843,7 +843,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
 
     throw "should implement below";
     /*CBufPtrSeqOutStream *outStreamSpec = new CBufPtrSeqOutStream;
-    ::c::smart_pointer<::ca::writer> outStream = outStreamSpec;
+    ::ca::smart_pointer<::ca2::writer> outStream = outStreamSpec;
     outStreamSpec->Init(data, unpackSize);
 
     HRESULT result = decoder.Decode(
@@ -889,7 +889,7 @@ HRESULT CInArchive::ReadHeader(
     type = ReadID();
   }
 
-  smart_pointer_array < ::ca::byte_buffer > dataVector;
+  smart_pointer_array < ::ca2::byte_buffer > dataVector;
 
   if (type == NID::kAdditionalStreamsInfo)
   {
@@ -1174,14 +1174,14 @@ HRESULT CInArchive::ReadDatabase2(
   if (crcFromArchive == 0 && nextHeaderOffset == 0 && nextHeaderSize == 0 && nextHeaderCRC == 0)
   {
     uint64_t cur, cur2;
-    cur = _stream->seek(0, ::ca::seek_current);
+    cur = _stream->seek(0, ::ca2::seek_current);
     const int32_t kCheckSize = 500;
     byte buf[kCheckSize];
-    cur2 = _stream->seek(0, ::ca::seek_end);
+    cur2 = _stream->seek(0, ::ca2::seek_end);
     int32_t checkSize = kCheckSize;
     if (cur2 - cur < kCheckSize)
       checkSize = (int32_t)(cur2 - cur);
-    cur2 = _stream->seek(-checkSize, ::ca::seek_end);
+    cur2 = _stream->seek(-checkSize, ::ca2::seek_end);
 
     RINOK(ReadStream_FALSE(_stream, buf, (size_t)checkSize));
 
@@ -1194,7 +1194,7 @@ HRESULT CInArchive::ReadDatabase2(
     nextHeaderSize = checkSize - i;
     nextHeaderOffset = cur2 - cur + i;
     nextHeaderCRC = crc_calc(buf + i, (size_t)nextHeaderSize);
-    _stream->seek(cur,::ca::seek_current);
+    _stream->seek(cur,::ca2::seek_current);
   }
   else
   #endif
@@ -1214,9 +1214,9 @@ HRESULT CInArchive::ReadDatabase2(
   if ((int64_t)nextHeaderOffset < 0)
     return S_FALSE;
 
-  _stream->seek(nextHeaderOffset, ::ca::seek_current); // RINOK
+  _stream->seek(nextHeaderOffset, ::ca2::seek_current); // RINOK
 
-  ::ca::byte_buffer buffer2;
+  ::ca2::byte_buffer buffer2;
   buffer2.SetCapacity((size_t)nextHeaderSize);
 
   RINOK(ReadStream_FALSE(_stream, buffer2, (size_t)nextHeaderSize));
@@ -1229,7 +1229,7 @@ HRESULT CInArchive::ReadDatabase2(
   CStreamSwitch streamSwitch;
   streamSwitch.set(this, buffer2);
 
-  smart_pointer_array < ::ca::byte_buffer > dataVector;
+  smart_pointer_array < ::ca2::byte_buffer > dataVector;
 
   uint64_t type = ReadID();
   if (type != NID::kHeader)

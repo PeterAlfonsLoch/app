@@ -3,8 +3,8 @@
 namespace xml
 {
 
-   property_set_exchange::property_set_exchange(sp(::ca::application) papp) :
-      ca(papp)
+   property_set_exchange::property_set_exchange(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_ppropertyset = NULL;
    }
@@ -23,7 +23,7 @@ namespace xml
       var_exchange varexchange(get_app());
       for(int32_t i = 0; i < m_ppropertyset->m_propertya.get_size(); i++)
       {
-         ::ca::property & property = m_ppropertyset->m_propertya[i];
+         ::ca2::property & property = m_ppropertyset->m_propertya[i];
          varexchange.m_pvar = &property.get_value();
          xmlot.export_node(property.name(), varexchange);
       }
@@ -37,7 +37,7 @@ namespace xml
       var_exchange varexchange(get_app());
       for(int32_t i = 0; i < m_ppropertyset->m_propertya.get_size(); i++)
       {
-         ::ca::property & property = m_ppropertyset->m_propertya[i];
+         ::ca2::property & property = m_ppropertyset->m_propertya[i];
          varexchange.m_pvar = &property.get_value();
          xmlit.import_node(property.name(), varexchange);
       }

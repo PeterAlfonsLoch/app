@@ -14,16 +14,16 @@ namespace plane
 
 
    class CLASS_DECL_ca2 application : 
-      virtual public ::ca::application,
+      virtual public ::ca2::application,
       virtual public ::database::client
 
    {
    public:
 
       sp(service_base)                    m_pservice;
-      class ::ca::dir::application        m_dir;
-      class ::ca::file_application        m_file;
-      class ::ca::http::application       m_http;
+      class ::ca2::dir::application        m_dir;
+      class ::ca2::file_application        m_file;
+      class ::ca2::http::application       m_http;
 
       sp(class ::fontopus::license)       m_splicense;
       sp(class ::fs::data)                m_spfsdata;
@@ -66,7 +66,7 @@ namespace plane
       virtual bool stop_service();
 
 
-      virtual void on_service_request(sp(::ca::create_context) pcreatecontext);
+      virtual void on_service_request(sp(::ca2::create_context) pcreatecontext);
 
 
 
@@ -74,9 +74,9 @@ namespace plane
       virtual int32_t exit_instance();
 
 
-      inline class ::ca::dir::application       & dir()        { return m_dir          ; }
-      inline class ::ca::file_application       & file()       { return m_file         ; }
-      inline class ::ca::http::application      & http()       { return m_http         ; }
+      inline class ::ca2::dir::application       & dir()        { return m_dir          ; }
+      inline class ::ca2::file_application       & file()       { return m_file         ; }
+      inline class ::ca2::http::application      & http()       { return m_http         ; }
       inline class ::fontopus::license          & license()    { return m_splicense    ; }
       inline sp(class ::fs::data)               fs()           { return m_spfsdata     ; }
       inline sp(class ::user::user)             user()         { return m_spuser       ; }
@@ -104,13 +104,13 @@ namespace plane
       virtual bool os_native_bergedge_start();
 
 
-      virtual sp(::ca::application) instantiate_application(const char * pszType, const char * pszId, ::ca::application_bias * pbias);
-      virtual sp(::ca::application) create_application(const char * pszType, const char * pszId, bool bSynch, ::ca::application_bias * pbias);
+      virtual sp(::ca2::application) instantiate_application(const char * pszType, const char * pszId, ::ca2::application_bias * pbias);
+      virtual sp(::ca2::application) create_application(const char * pszType, const char * pszId, bool bSynch, ::ca2::application_bias * pbias);
 
 
       virtual bool is_licensed(const char * pszId, bool bInteractive = true);
 
-      //virtual sp(::user::interaction) get_request_parent_ui(sp(::ca::command_line) pline);
+      //virtual sp(::user::interaction) get_request_parent_ui(sp(::ca2::command_line) pline);
 
       virtual bool initial_check_directrix();
 
@@ -143,14 +143,14 @@ namespace plane
       virtual sp(::bergedge::document) get_document();
 
 
-      virtual void fill_locale_schema(::ca::international::locale_schema & localeschema);
-      virtual void fill_locale_schema(::ca::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema);
+      virtual void fill_locale_schema(::ca2::international::locale_schema & localeschema);
+      virtual void fill_locale_schema(::ca2::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema);
 
       virtual bool update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession, const char * pszRoot, const char * pszRelative);
       virtual bool update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession, const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle);
 
 
-      virtual bool add_library(::ca::library * plibrary);
+      virtual bool add_library(::ca2::library * plibrary);
 
       virtual bool system_add_app_install(const char * pszId);
 
@@ -174,11 +174,11 @@ namespace plane
       virtual void _001OnFileNew();
 
 
-      virtual void on_request(sp(::ca::create_context) pcreatecontext);
+      virtual void on_request(sp(::ca2::create_context) pcreatecontext);
 
       sp(::user::document_interface) _001OpenDocumentFile(var varFile);
 
-      sp(::ca::application) get_system();
+      sp(::ca2::application) get_system();
 
       virtual sp(::plane::application) assert_running(const char * pszAppdId);
 
@@ -190,7 +190,7 @@ namespace plane
       
 
 
-      // ::c::smart_pointer < ::cubebase::application >::oattrib
+      // ::ca::smart_pointer < ::cubebase::application >::oattrib
       // or any function needing it
       application & operator = (const application & app)
       {
@@ -204,10 +204,10 @@ namespace plane
       }
 
       // get a file and if there are exceptions, should show end user friendly messages
-      virtual ::ca::filesp friendly_get_file(var varFile, UINT nOpenFlags);
+      virtual ::ca2::filesp friendly_get_file(var varFile, UINT nOpenFlags);
 
 
-      virtual void data_on_after_change(::ca::signal_object * pobj);
+      virtual void data_on_after_change(::ca2::signal_object * pobj);
 
 
 
@@ -218,7 +218,7 @@ namespace plane
 
    CLASS_DECL_ca2 UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-   typedef sp(::ca::application) (* LPFN_instantiate_application)(sp(::ca::application) pappParent, const char * pszId);
+   typedef sp(::ca2::application) (* LPFN_instantiate_application)(sp(::ca2::application) pappParent, const char * pszId);
 
    extern CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application;
 

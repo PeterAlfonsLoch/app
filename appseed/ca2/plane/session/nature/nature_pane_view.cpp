@@ -3,8 +3,8 @@
 namespace nature
 {
 
-   pane_view::pane_view(sp(::ca::application) papp) :
-      ca(papp),
+   pane_view::pane_view(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::tab(papp),
       
       ::user::tab_view(papp),
@@ -40,9 +40,9 @@ namespace nature
 #endif //DEBUG
 
 
-   void pane_view::_001OnCreate(::ca::signal_object * pobj)
+   void pane_view::_001OnCreate(::ca2::signal_object * pobj)
    {
-      //SCAST_PTR(::ca::message::create, pcreate, pobj)
+      //SCAST_PTR(::ca2::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
 
@@ -156,7 +156,7 @@ namespace nature
 
    }
 
-   void pane_view::install_message_handling(::ca::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       ::userex::pane_tab_view::install_message_handling(pinterface);
 
@@ -177,7 +177,7 @@ namespace nature
       }
    }
 
-   void pane_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* pHint)
+   void pane_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);

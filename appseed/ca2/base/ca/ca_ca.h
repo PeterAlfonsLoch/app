@@ -11,15 +11,15 @@ class factory_item_base;
 
 
 
-namespace ca
+namespace ca2
 {
 
 
-   class ca;
+   class ca2;
    class ptra;
 
 
-} // namespace ca
+} // namespace ca2
 
 
 namespace plane
@@ -47,7 +47,7 @@ namespace plane
 class fixed_alloc_no_sync;
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -55,8 +55,8 @@ namespace ca
    class system;
 
 
-   class CLASS_DECL_ca2 ca :
-      virtual public ::c::c
+   class CLASS_DECL_ca2 ca2 :
+      virtual public ::ca::ca
    {
    public:
 
@@ -72,54 +72,54 @@ namespace ca
       };
 
       uint32_t                m_ulFlags;
-      sp(::ca::application)     m_papp;
-      //::ca::ptra *            m_pptraListener;
-      //::ca::ptra *            m_pptraListened;
+      sp(::ca2::application)     m_papp;
+      //::ca2::ptra *            m_pptraListener;
+      //::ca2::ptra *            m_pptraListened;
       factory_item_base *     m_pfactoryitembase;
       void *                  m_pthis;
 
 
-      ca();
-      ca(const ca & o);
-      ca(sp(::ca::application) papp);
-      virtual ~ca();
+      ca2();
+      ca2(const ca2 & o);
+      ca2(sp(::ca2::application) papp);
+      virtual ~ca2();
 
       virtual void delete_this();
 
 
-      virtual sp(::ca::ca) clone();
+      virtual sp(::ca2::ca2) clone();
 
 
       static void system(const char * pszProjectName);
 
       inline allocatorsp allocer();
 
-      virtual ::ca::application * get_app() const;
-      virtual void set_app(::ca::application * papp);
+      virtual ::ca2::application * get_app() const;
+      virtual void set_app(::ca2::application * papp);
 
-      inline bool is_set_ca_flag(::ca::ca::flag eflag)
+      inline bool is_set_ca_flag(::ca2::ca2::flag eflag)
       {
          return (m_ulFlags & ((uint32_t) eflag)) == (uint32_t) eflag;
       }
 
-      inline void clear_ca_flag(::ca::ca::flag eflag)
+      inline void clear_ca_flag(::ca2::ca2::flag eflag)
       {
          m_ulFlags &= ~eflag;
       }
 
-      inline void set_ca_flag(::ca::ca::flag eflag)
+      inline void set_ca_flag(::ca2::ca2::flag eflag)
       {
          m_ulFlags |= eflag;
       }
 
 
-      ca & operator = (const ca & o);
+      ca2 & operator = (const ca2 & o);
 
    };
 
 
    class CLASS_DECL_ca2 allocator :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 
@@ -140,7 +140,7 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

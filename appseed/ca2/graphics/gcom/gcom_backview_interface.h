@@ -26,7 +26,7 @@ namespace gcom
 
 
       class CLASS_DECL_ca2 Interface :
-         virtual public ::ca::signalizable
+         virtual public ::ca2::signalizable
       {
       public:
 
@@ -51,30 +51,30 @@ namespace gcom
          uint32_t                m_dwTimerStep;
 
 
-         ::ca::file_set_sp     m_spfilesetBackgroundImage;
+         ::ca2::file_set_sp     m_spfilesetBackgroundImage;
 
 
 
-         Interface(sp(::ca::application) papp);
+         Interface(sp(::ca2::application) papp);
          virtual ~Interface();
 
          void Shutdown();
 
-         void install_message_handling(::ca::message::dispatch * pinterface);
+         void install_message_handling(::ca2::message::dispatch * pinterface);
 
          virtual COLORREF GetBackgroundColor();
-         void BackViewRender(::ca::graphics * pdc, int32_t x, int32_t y, int32_t w, int32_t h);
-         void BackViewRender(::ca::graphics * pdc, LPCRECT lpcrect);
+         void BackViewRender(::ca2::graphics * pdc, int32_t x, int32_t y, int32_t w, int32_t h);
+         void BackViewRender(::ca2::graphics * pdc, LPCRECT lpcrect);
          void Enable(bool bEnable);
          bool IsEnabled();
          void GetCurrentImagePath(string & str);
          void SetCurrentImagePlacement(EImagePlacement eplacement);
          EImagePlacement GetCurrentImagePlacement();
          ::mutex & GetTransferMutex();
-         ::ca::graphics & GetTransferDC();
+         ::ca2::graphics & GetTransferDC();
          void SetBackgroundImageChangeInterval(uint32_t dwMillis);
          Main & GetMain();
-         void OnImageLoaded(::ca::dib * pdib);
+         void OnImageLoaded(::ca2::dib * pdib);
          void UpdateDrawingObjects();
          void OnDestroy();
 
@@ -84,7 +84,7 @@ namespace gcom
          thread *     GetIdleThread();
          thread *     GetHighestThread();
 
-         virtual void BackViewFeedback(::ca::graphics * pdc);
+         virtual void BackViewFeedback(::ca2::graphics * pdc);
          virtual void BackViewGetClientRect(LPRECT lprect);
          virtual void BackViewClientToScreen(LPRECT lprect);
          virtual void BackViewPostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam);

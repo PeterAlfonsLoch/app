@@ -10,7 +10,7 @@ namespace gcom
 
 
       Graphics::Graphics(Main & main) :
-         ::ca::ca(main.get_app()),
+         ::ca2::ca2(main.get_app()),
          Helper(main),
          m_mutgenBack(main.get_app()),
          m_mutgenBuffer(main.get_app()),
@@ -26,64 +26,64 @@ namespace gcom
       {
       }
 
-      ::ca::graphics & Graphics::GetScreenDC()
+      ::ca2::graphics & Graphics::GetScreenDC()
       {
          return m_dcScreen;
       }
 
-      ::ca::graphics & Graphics::GetBackDC()
+      ::ca2::graphics & Graphics::GetBackDC()
       {
          return *GetDib(_graphics::DibBack)->get_graphics();
       }
 
-      ::ca::graphics & Graphics::GetTransferDC()
+      ::ca2::graphics & Graphics::GetTransferDC()
       {
          GetDib(_graphics::DibTransfer)->dc_select();
          return *GetDib(_graphics::DibTransfer)->get_graphics();
       }
 
-      ::ca::graphics & Graphics::GetFrame1DC()
+      ::ca2::graphics & Graphics::GetFrame1DC()
       {
          return *GetDib(_graphics::DibFrame1)->get_graphics();
       }
 
-      ::ca::graphics & Graphics::GetBufferDC()
+      ::ca2::graphics & Graphics::GetBufferDC()
       {
          return *GetDib(_graphics::DibBuffer)->get_graphics();
       }
 
-      ::ca::graphics & Graphics::GetSourceDC()
+      ::ca2::graphics & Graphics::GetSourceDC()
       {
          return *GetDib(_graphics::DibSource)->get_graphics();
       }
 
-      ::ca::bitmap & Graphics::GetBackBitmap()
+      ::ca2::bitmap & Graphics::GetBackBitmap()
       {
          return *GetDib(_graphics::DibBack)->get_bitmap();
       }
 
-      ::ca::bitmap & Graphics::GetTransferBitmap()
+      ::ca2::bitmap & Graphics::GetTransferBitmap()
       {
          return *GetDib(_graphics::DibTransfer)->get_bitmap();
       }
 
-      ::ca::bitmap & Graphics::GetFrame1Bitmap()
+      ::ca2::bitmap & Graphics::GetFrame1Bitmap()
       {
          return *GetDib(_graphics::DibFrame1)->get_bitmap();
       }
 
-      ::ca::bitmap & Graphics::GetBufferBitmap()
+      ::ca2::bitmap & Graphics::GetBufferBitmap()
       {
          return *GetDib(_graphics::DibBuffer)->get_bitmap();
 
       }
 
-      ::ca::bitmap & Graphics::GetSourceBitmap()
+      ::ca2::bitmap & Graphics::GetSourceBitmap()
       {
          return *GetDib(_graphics::DibSource)->get_bitmap();
       }
 
-//      ::ca::draw_dib & Graphics::GetDrawDib()
+//      ::ca2::draw_dib & Graphics::GetDrawDib()
 //      {
 //         return m_spdrawdib;
 //      }
@@ -100,21 +100,21 @@ namespace gcom
          int32_t cy = rectClient.height();
 
          single_lock sl1Back(&m_mutgenBack, TRUE);
-         ::ca::graphics & dcBack = GetBackDC();
+         ::ca2::graphics & dcBack = GetBackDC();
          GetDib(_graphics::DibBack)->create(cx, cy);
          dcBack.FillSolidRect(0, 0, cx, cy, ARGB(0, 0, 0, 0));
          sl1Back.unlock();
       }
 
 
-      void Graphics::OnImageLoaded(::ca::dib * pdib)
+      void Graphics::OnImageLoaded(::ca2::dib * pdib)
       {
 
          single_lock sl3Source(&m_mutex3Source, TRUE);
 
          Main & main = HelperGetMain();
 
-         //         ::ca::savings & savings = System.savings();
+         //         ::ca2::savings & savings = System.savings();
 
          bool bOk = false;
          // 2004-08-24
@@ -167,16 +167,16 @@ namespace gcom
 
          //HelperGetMain().DeferCheckLayout();
 
-         //         ::ca::graphics & dcScreen = GetScreenDC();
-         ::ca::graphics & dcBuffer = GetBufferDC();
-         ::ca::graphics & dcSource = GetSourceDC();
-         //         ::ca::bitmap & bmpBuffer = GetBufferBitmap();
+         //         ::ca2::graphics & dcScreen = GetScreenDC();
+         ::ca2::graphics & dcBuffer = GetBufferDC();
+         ::ca2::graphics & dcSource = GetSourceDC();
+         //         ::ca2::bitmap & bmpBuffer = GetBufferBitmap();
 
 
          //dcSource.FillSolidRect(200, 200, 500, 500, ARGB(255, 255, 0, 0));
 
 
-         //         ::ca::dib * pdibSource = GetDib(_graphics::DibSource);
+         //         ::ca2::dib * pdibSource = GetDib(_graphics::DibSource);
 
          if(dcSource.get_os_data() == NULL)
             return false;
@@ -249,7 +249,7 @@ namespace gcom
 #endif
 
             //sl3Source.lock();
-            ::ca::bitmap & bmpSource = GetSourceBitmap();
+            ::ca2::bitmap & bmpSource = GetSourceBitmap();
 
             if(bmpSource.get_os_data() != NULL 
                && GetDib(_graphics::DibSource)->area() > 0)
@@ -409,7 +409,7 @@ namespace gcom
          single_lock sl3Source(&m_mutex3Source, TRUE);
 
 
-         ::ca::graphics & spgraphicsScreen    = GetScreenDC();
+         ::ca2::graphics & spgraphicsScreen    = GetScreenDC();
 
          if(spgraphicsScreen.get_os_data() != NULL)
          {
@@ -438,7 +438,7 @@ namespace gcom
 
 #ifdef WINDOWSEX
 
-         ::ca::bitmap & bmpSource = GetSourceBitmap();
+         ::ca2::bitmap & bmpSource = GetSourceBitmap();
 
          class size size = bmpSource.get_size();
 
@@ -462,19 +462,19 @@ namespace gcom
 
       }
 
-      ::ca::dib * Graphics::GetDib(int32_t iIndex)
+      ::ca2::dib * Graphics::GetDib(int32_t iIndex)
       {
-         ::ca::dib * pdib;
+         ::ca2::dib * pdib;
          if(m_mapDib.Lookup(iIndex, pdib))
          {
             return pdib;
          }
          else
          {
-            ::ca::dib_sp spdib(allocer());
+            ::ca2::dib_sp spdib(allocer());
             OnCreateDib(spdib, iIndex);
             m_mapDib.set_at(iIndex, spdib);
-            ::c::add_ref(spdib.m_p);
+            ::ca::add_ref(spdib.m_p);
             return spdib;
          }
       }
@@ -501,7 +501,7 @@ namespace gcom
          GetDib(_graphics::DibTransfer)->copy(GetDib(_graphics::DibBack));
 
       }
-      void Graphics::OnCreateDib(::ca::dib *pdib, int32_t iIndex)
+      void Graphics::OnCreateDib(::ca2::dib *pdib, int32_t iIndex)
       {
          switch(iIndex)
          {

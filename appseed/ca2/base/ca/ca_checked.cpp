@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -38,7 +38,7 @@ namespace ca
 #endif
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

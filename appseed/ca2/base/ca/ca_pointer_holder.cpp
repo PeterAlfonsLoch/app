@@ -1,8 +1,8 @@
 #include "framework.h"
 
 /*
-raw_pointer::raw_pointer(sp(::ca::application) papp) :
-   ::ca::ca(papp)
+raw_pointer::raw_pointer(sp(::ca2::application) papp) :
+   ::ca2::ca2(papp)
 {
 
    m_pca = NULL;
@@ -10,15 +10,15 @@ raw_pointer::raw_pointer(sp(::ca::application) papp) :
 }
 
 raw_pointer::raw_pointer(const raw_pointer & holder) :
-   ::ca::ca(holder.get_app())
+   ::ca2::ca2(holder.get_app())
 {
 
    m_pca = holder.m_pca;
 
 }
 
-raw_pointer::raw_pointer(sp(::ca::ca) pca) :
-   ::ca::ca(pca != NULL ? pca->get_app() : NULL)
+raw_pointer::raw_pointer(sp(::ca2::ca2) pca) :
+   ::ca2::ca2(pca != NULL ? pca->get_app() : NULL)
 {
 
    m_pca = pca;

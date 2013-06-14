@@ -1,11 +1,11 @@
 #pragma once
 
 
-#include "base/ca/ca_opened_files.h"
+#include "base/ca2/ca_opened_files.h"
 
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -54,7 +54,7 @@ namespace ca
       {
       }
 
-      file_exception(sp(::ca::application) papp, int32_t cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
+      file_exception(sp(::ca2::application) papp, int32_t cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 
       virtual void Construct(int32_t cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 
@@ -80,7 +80,7 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

@@ -66,7 +66,7 @@ namespace database
 
 
    class CLASS_DECL_ca2 field_properties :
-      virtual public ::ca::byte_serializable
+      virtual public ::ca2::byte_serializable
    {
    public:
 
@@ -87,8 +87,8 @@ namespace database
       field_properties & operator = (const field_properties & field_properties);
 
 
-      virtual void write(::ca::byte_output_stream & ostream);
-      virtual void read(::ca::byte_input_stream & istream);
+      virtual void write(::ca2::byte_output_stream & ostream);
+      virtual void read(::ca2::byte_input_stream & istream);
 
    };
 
@@ -125,16 +125,16 @@ namespace database
    };
 
    class CLASS_DECL_ca2 query_data :
-      public ::ca::byte_serializable_array < array < record, record & > >
+      public ::ca2::byte_serializable_array < array < record, record & > >
    {
    };
 
    typedef array <field, field &> CFields;
-   typedef ::ca::byte_serializable_array < array < field_properties, field_properties & > > record_properties;
+   typedef ::ca2::byte_serializable_array < array < field_properties, field_properties & > > record_properties;
 
    class CLASS_DECL_ca2 result_set :
-      public ::ca::object,
-      public ::ca::byte_serializable
+      public ::ca2::object,
+      public ::ca2::byte_serializable
    {
    public:
 
@@ -144,12 +144,12 @@ namespace database
 
 
       result_set();
-      result_set(sp(::ca::application) papp);
+      result_set(sp(::ca2::application) papp);
       result_set(const result_set & set);
 
 
-      virtual void write(::ca::byte_output_stream & ostream);
-      virtual void read(::ca::byte_input_stream & istream);
+      virtual void write(::ca2::byte_output_stream & ostream);
+      virtual void read(::ca2::byte_input_stream & istream);
 
 
       result_set & operator = (const result_set & set);

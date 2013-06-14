@@ -6,7 +6,7 @@ namespace datetime
 
 
    class CLASS_DECL_ca2 parser :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -15,7 +15,7 @@ namespace datetime
       spa(element)                  m_elementa;
 
 
-      parser(sp(::ca::application) papp, ::user::str_context * pcontext);
+      parser(sp(::ca2::application) papp, ::user::str_context * pcontext);
       virtual ~parser();
 
 

@@ -9,16 +9,16 @@ namespace sockets
    {
 
 
-      file::file(sp(::ca::application) papp, mutex * pmutex) :
-         ca(papp),
+      file::file(sp(::ca2::application) papp, mutex * pmutex) :
+         ca2(papp),
          transfer_file(papp, pmutex)
       {
       }
 
       // it is not currently designed to call open.
       //
-      file::file(sp(::ca::application) papp, ::primitive::memory_file * pmemoryfileIn) :
-         ca(papp),
+      file::file(sp(::ca2::application) papp, ::primitive::memory_file * pmemoryfileIn) :
+         ca2(papp),
          transfer_file(papp, pmemoryfileIn)
       {
       }
@@ -34,16 +34,16 @@ namespace sockets
 //         if(!Application.file().exists(lpszFileName))
   //          return false;
 
-         ::ca::http::signal * psignal = new ::ca::http::signal;
+         ::ca2::http::signal * psignal = new ::ca2::http::signal;
 
-         psignal->m_set["file"]       = (sp(::ca::ca)) m_pmemoryfileIn;
-         psignal->m_set["file_out"]   = (sp(::ca::ca)) m_ptimeoutfile;
+         psignal->m_set["file"]       = (sp(::ca2::ca2)) m_pmemoryfileIn;
+         psignal->m_set["file_out"]   = (sp(::ca2::ca2)) m_ptimeoutfile;
 
          psignal->m_strUrl = lpszFileName; 
          //psignal->m_set["optional_ca2_login"] = true;
          psignal->m_set["noclose"] = false;
 
-         if((nOpenFlags & ::ca::file::hint_unknown_length_supported) != 0)
+         if((nOpenFlags & ::ca2::file::hint_unknown_length_supported) != 0)
          {
             m_ptimeoutfile->m_uiExpectedSize = (uint64_t) -2;
          }
@@ -52,11 +52,11 @@ namespace sockets
             m_ptimeoutfile->m_uiExpectedSize = (uint64_t) -1;
          }
 
-         ::ca::emit(get_app(), this, &file::on_http_request_response, &Application.http(), &::ca::http::application::get, psignal);
+         ::ca2::emit(get_app(), this, &file::on_http_request_response, &Application.http(), &::ca2::http::application::get, psignal);
          return TRUE;
       }
 
-      void file::on_http_request_response(::ca::signal_object * pobj)
+      void file::on_http_request_response(::ca2::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
       }

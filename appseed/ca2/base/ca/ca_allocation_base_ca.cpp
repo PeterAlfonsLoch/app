@@ -25,7 +25,7 @@ void * base_ca2_alloc(size_t size)
    byte * p = (byte *) ca2_heap_alloc(size + 4 + 32);
    if(p == NULL)
    {
-      throw memory_exception(::ca::get_thread_app());
+      throw memory_exception(::ca2::get_thread_app());
    }
    p[0] = 0;
    *((size_t *) &p[1]) = size;
@@ -42,7 +42,7 @@ void * base_ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileNa
    byte * p = (byte *) ca2_heap_alloc_dbg(nSize + 4 + 32, nBlockUse, szFileName, nLine);
    if(p == NULL)
    {
-      throw memory_exception(::ca::get_thread_app());
+      throw memory_exception(::ca2::get_thread_app());
    }
    p[0] = 1;
    *((size_t *) &p[1]) = nSize;
@@ -80,12 +80,12 @@ void * base_ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const cha
    {
       // todo: rethrow free exception
       {
-         throw memory_exception(::ca::get_thread_app());
+         throw memory_exception(::ca2::get_thread_app());
       }
    }
    if(p == NULL)
    {
-      throw memory_exception(::ca::get_thread_app());
+      throw memory_exception(::ca2::get_thread_app());
    }
    *((size_t *) &p[1]) = nSize;
    return p + 4 + 16;
@@ -231,7 +231,7 @@ __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnNewHook)
 }
 
 // This can be set to TRUE to override all __enable_memory_tracking calls,
-// allowing all allocations, even ca API internal allocations to be tracked.
+// allowing all allocations, even ca2 API internal allocations to be tracked.
 bool gen_MemoryLeakOverride = FALSE;
 
 bool __enable_memory_leak_override(bool bEnable)
@@ -312,11 +312,11 @@ void memory_state::dumpAllObjectsSince() const
 __STATIC void __do_for_all_objects_proxy(void * pObject, void * pContext)
 {
    ___ENUM_CONTEXT* p = (___ENUM_CONTEXT*)pContext;
-   (*p->m_pfn)((::ca::object*)pObject, p->m_pContext);
+   (*p->m_pfn)((::ca2::object*)pObject, p->m_pContext);
 }
 
 void _API
-__do_for_all_objects(void (c_cdecl *pfn)(::ca::object*, void *), void * pContext)
+__do_for_all_objects(void (c_cdecl *pfn)(::ca2::object*, void *), void * pContext)
 {
    if (pfn == NULL)
    {

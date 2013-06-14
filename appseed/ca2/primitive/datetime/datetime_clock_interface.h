@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_ca2 clock_interface :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 protected:
 
@@ -25,7 +25,7 @@ public:
    };
 
 
-   clock_interface(sp(::ca::application) papp);
+   clock_interface(sp(::ca2::application) papp);
 
 
    virtual void GetRect(LPRECT lprect, enum EElement eelement);
@@ -34,7 +34,7 @@ public:
    virtual void set_time(const ::datetime::time & time);
    virtual void get_time(::datetime::time & time);
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ca2::graphics * pdc);
 
 
    virtual void previous_minute();

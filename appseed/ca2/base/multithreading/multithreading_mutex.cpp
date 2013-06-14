@@ -7,13 +7,13 @@
 #endif
 
 
-mutex::mutex(sp(::ca::application) papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
+mutex::mutex(sp(::ca2::application) papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
    sync_object(pstrName)
 {
 
 #ifdef _WIN32
 
-   m_object = ::CreateMutexExW(lpsaAttribute, pstrName == NULL ? NULL : (const wchar_t *) ::ca::international::utf8_to_unicode(pstrName), bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);
+   m_object = ::CreateMutexExW(lpsaAttribute, pstrName == NULL ? NULL : (const wchar_t *) ::ca2::international::utf8_to_unicode(pstrName), bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);
 
    if(m_object == NULL)
    {
@@ -27,7 +27,7 @@ mutex::mutex(sp(::ca::application) papp, bool bInitiallyOwn, const char * pstrNa
       else
       {
 
-         m_object = ::OpenMutexW(SYNCHRONIZE, TRUE, ::ca::international::utf8_to_unicode(pstrName));
+         m_object = ::OpenMutexW(SYNCHRONIZE, TRUE, ::ca2::international::utf8_to_unicode(pstrName));
 
          if(m_object == NULL)
          {
@@ -93,8 +93,8 @@ mutex::mutex(sp(::ca::application) papp, bool bInitiallyOwn, const char * pstrNa
 
 #ifdef WINDOWS
 
-mutex::mutex(sp(::ca::application) papp, const char * pstrName, HANDLE h) :
-   ca(papp),
+mutex::mutex(sp(::ca2::application) papp, const char * pstrName, HANDLE h) :
+   ca2(papp),
    sync_object(pstrName)
 {
 
@@ -323,12 +323,12 @@ bool mutex::unlock()
 
 
 
-mutex * mutex::open_mutex(sp(::ca::application) papp,  const char * pstrName)
+mutex * mutex::open_mutex(sp(::ca2::application) papp,  const char * pstrName)
 {
 
 #ifdef WINDOWS
 
-   HANDLE h = ::OpenMutexW(SYNCHRONIZE, FALSE, ::ca::international::utf8_to_unicode(pstrName));
+   HANDLE h = ::OpenMutexW(SYNCHRONIZE, FALSE, ::ca2::international::utf8_to_unicode(pstrName));
 
    if(h == NULL || h == INVALID_HANDLE_VALUE)
       return NULL;

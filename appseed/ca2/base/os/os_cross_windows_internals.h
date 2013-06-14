@@ -891,8 +891,8 @@ typedef enum
 {
     INVALID_PATH = 0,
     UNC_PATH,              /* "//foo" */
-    ABSOLUTE_DRIVE_PATH,   /* "c:/foo" */
-    RELATIVE_DRIVE_PATH,   /* "c:foo" */
+    ABSOLUTE_DRIVE_PATH,   /* "ca:/foo" */
+    RELATIVE_DRIVE_PATH,   /* "ca:foo" */
     ABSOLUTE_PATH,         /* "/foo" */
     RELATIVE_PATH,         /* "foo" */
     DEVICE_PATH,           /* "//./foo" */

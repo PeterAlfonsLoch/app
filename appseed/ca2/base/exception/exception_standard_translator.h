@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2001
+ Copyright (ca) 2001
  Author: Konstantin Boukreev
  E-mail: konstantin@mail.primorye.ru
  Created: 25.12.2001 14:47:20
@@ -33,7 +33,7 @@ namespace exception
 
 
    class CLASS_DECL_ca2 translator :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 

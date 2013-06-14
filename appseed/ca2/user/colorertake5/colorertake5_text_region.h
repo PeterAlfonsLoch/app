@@ -47,7 +47,7 @@ public:
   static const TextRegion *cast(const RegionDefine *rd){
     if (rd == NULL) return NULL;
     const TextRegion *tr = (const TextRegion *)(rd);
-    if (tr == NULL)  throw exception(::ca::get_thread_app(), string("Bad type cast exception into TextRegion"));
+    if (tr == NULL)  throw exception(::ca2::get_thread_app(), string("Bad type cast exception into TextRegion"));
     return tr;
   }
 
@@ -69,7 +69,7 @@ public:
   }
 
   /**
-   * Direct assign of all passed @c rd values.
+   * Direct assign of all passed @ca rd values.
    * Do not assign region reference.
    */
   void setValues(const RegionDefine *_rd){

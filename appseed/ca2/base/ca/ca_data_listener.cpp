@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
-   data_listener::data_listener(sp(::ca::application) papp) :
-      ca(papp)
+   data_listener::data_listener(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
    }
@@ -72,7 +72,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

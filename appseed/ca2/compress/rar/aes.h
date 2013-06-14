@@ -21,16 +21,16 @@ namespace crypto
 
          byte               _salt[8];
          bool               _thereIsSalt;
-         ::ca::byte_buffer   buffer;
+         ::ca2::byte_buffer   buffer;
          byte               aesKey[kRarAesKeySize];
          byte               _aesInit[AES_BLOCK_SIZE];
          bool               _needCalculate;
          bool               _rar350Mode;
 
          void Calculate();
-         ::ca::HRes Init();
-         ::ca::HRes CryptoSetPassword(const byte *aData, uint32_t aSize);
-         ::ca::HRes SetDecoderProperties2(const byte *data, uint32_t size);
+         ::ca2::HRes Init();
+         ::ca2::HRes CryptoSetPassword(const byte *aData, uint32_t aSize);
+         ::ca2::HRes SetDecoderProperties2(const byte *data, uint32_t size);
 
          decoder();
          void SetRar350Mode(bool rar350Mode) { _rar350Mode = rar350Mode; }

@@ -8,7 +8,7 @@
 
 template<class TYPE, class ARG_TYPE = const TYPE &>
 class array :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
 
@@ -298,7 +298,7 @@ public:
 
 
 
-   array(sp(::ca::application) papp = NULL, ::count nGrowBy = 32);
+   array(sp(::ca2::application) papp = NULL, ::count nGrowBy = 32);
    array(const array <TYPE, ARG_TYPE> & a);
    array(::count n);
    array(ARG_TYPE t, ::count n = 1);
@@ -416,7 +416,7 @@ public:
    ::count get_array(ARRAY & a, index iStart = 0, ::count nCount = -1)
    {
 
-      ::count c = 0;
+      ::count ca = 0;
 
       index iEnd;
 
@@ -429,11 +429,11 @@ public:
       {
 
          a.add(element_at(i));
-         c++;
+         ca++;
 
       }
 
-      return c;
+      return ca;
 
    }
 
@@ -456,7 +456,7 @@ public:
    void assert_valid() const;
 
    array(array && a) :
-   ca(a.get_app())
+   ca2(a.get_app())
    {
 
    m_nGrowBy      = a.m_nGrowBy;
@@ -768,8 +768,8 @@ inline array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator = (const array & 
 // out-of-line functions
 
 template<class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE>::array(sp(::ca::application) papp, ::count nGrowBy) :
-ca(papp)
+array<TYPE, ARG_TYPE>::array(sp(::ca2::application) papp, ::count nGrowBy) :
+ca2(papp)
 {
    m_nGrowBy = max(0, nGrowBy);
    m_pData = NULL;
@@ -778,7 +778,7 @@ ca(papp)
 
 template<class TYPE, class ARG_TYPE>
 array<TYPE, ARG_TYPE>::array(const array <TYPE, ARG_TYPE> & a) :
-ca(a.get_app())
+ca2(a.get_app())
 {
    m_nGrowBy = 32;
    m_pData = NULL;
@@ -954,7 +954,7 @@ template<class TYPE, class ARG_TYPE>
 #define new DEBUG_NEW
 
       // copy new data from old
-      ::ca::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
+      ::ca2::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
          m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
@@ -1017,7 +1017,7 @@ void array<TYPE, ARG_TYPE>::free_extra()
       {
          pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
          // copy new data from old
-         ::ca::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
+         ::ca2::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
             m_pData, m_nSize * sizeof(TYPE));
       }
 
@@ -1088,7 +1088,7 @@ index array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::coun
       set_size(m_nSize + nCount, -1);  // grow it to new size
       // destroy intial data before copying over it
       // shift old data up to fill gap
-      ::ca::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
+      ::ca2::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
          m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
 
       // re-init slots we copied from
@@ -1129,7 +1129,7 @@ inline index array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
 
    if (nMoveCount)
    {
-      ::ca::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
+      ::ca2::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
          m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
    }
    m_nSize -= nCount;
@@ -1163,7 +1163,7 @@ index array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, array * pNewArray)
 template<class TYPE, class ARG_TYPE>
 void array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 {
-   ::ca::object::dump(dumpcontext);
+   ::ca2::object::dump(dumpcontext);
 
    dumpcontext << "with " << m_nSize << " elements";
    if (dumpcontext.GetDepth() > 0)
@@ -1178,7 +1178,7 @@ void array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 template<class TYPE, class ARG_TYPE>
 void array<TYPE, ARG_TYPE>::assert_valid() const
 {
-   ::ca::object::assert_valid();
+   ::ca2::object::assert_valid();
 
    if (m_pData == NULL)
    {

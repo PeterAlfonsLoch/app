@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   address::address(sp(::ca::application) papp, const in_addr & a, int32_t iPort)
+   address::address(sp(::ca2::application) papp, const in_addr & a, int32_t iPort)
    {
 
       m_pipv4 = canew(ipv4_address(papp, a, iPort));
@@ -13,7 +13,7 @@ namespace sockets
    }
 
 
-   address::address(sp(::ca::application) papp, const in6_addr & a, int32_t iPort)
+   address::address(sp(::ca2::application) papp, const in6_addr & a, int32_t iPort)
    {
 
       m_pipv6 = canew(ipv6_address(papp, a, iPort));
@@ -21,7 +21,7 @@ namespace sockets
    }
 
 
-   address::address(sp(::ca::application) papp, const sockaddr & sa, int32_t sa_len)
+   address::address(sp(::ca2::application) papp, const sockaddr & sa, int32_t sa_len)
    {
 
       if (sa_len == sizeof(struct sockaddr_in6))
@@ -52,8 +52,8 @@ namespace sockets
    }
 
 
-   address::address(sp(::ca::application) papp, const string & strAddress, const string & strServiceName) :
-      ca(papp)
+   address::address(sp(::ca2::application) papp, const string & strAddress, const string & strServiceName) :
+      ca2(papp)
    {
 
 
@@ -64,12 +64,12 @@ namespace sockets
    }
 
 
-   address::address(sp(::ca::application) papp, const string & strAddress, int32_t iPort) :
-      ca(papp)
+   address::address(sp(::ca2::application) papp, const string & strAddress, int32_t iPort) :
+      ca2(papp)
    {
 
 
-      m_strServiceName = ::ca::str::from(iPort);
+      m_strServiceName = ::ca2::str::from(iPort);
 
       if(!create_address(strAddress))
          throw "failed to create socket address";
@@ -217,8 +217,8 @@ namespace sockets
 
       string strService = m_strServiceName;
 
-      if(::ca::str::is_simple_natural(strService))
-         return service_number_to_name(::ca::str::to_int(strService));
+      if(::ca2::str::is_simple_natural(strService))
+         return service_number_to_name(::ca2::str::to_int(strService));
       else
          return strService;
 
@@ -230,10 +230,10 @@ namespace sockets
 
       string strService = m_strServiceName;
 
-      if(::ca::str::is_simple_natural(strService))
+      if(::ca2::str::is_simple_natural(strService))
          return service_name_to_number(strService);
       else
-         return ::ca::str::to_int(strService);
+         return ::ca2::str::to_int(strService);
 
    }
 

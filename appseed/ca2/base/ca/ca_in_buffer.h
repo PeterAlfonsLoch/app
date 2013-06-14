@@ -6,15 +6,15 @@
 #include "../../Common/MyCom.h"
 #include "../../Common/MyException.h"*/
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 in_buffer_exception : 
       virtual public system_exception
    {
    public:
-      in_buffer_exception(sp(::ca::application) papp, HRESULT errorCode) :
-         ca(papp),
+      in_buffer_exception(sp(::ca2::application) papp, HRESULT errorCode) :
+         ca2(papp),
          ::call_stack(papp),
          ::base_exception(papp),
          ::simple_exception(papp),
@@ -24,7 +24,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca2 in_buffer :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
      byte *_buffer;
      byte *_bufferLimit;
@@ -89,4 +89,4 @@ namespace ca
      bool WasFinished() const { return _wasFinished; }
    };
 
-} // namespace ca
+} // namespace ca2

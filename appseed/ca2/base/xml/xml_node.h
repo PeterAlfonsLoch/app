@@ -9,8 +9,8 @@ namespace xml
 
 
    class CLASS_DECL_ca2 node :
-      virtual public ::ca::object,
-      virtual public ::ca::byte_serializable
+      virtual public ::ca2::object,
+      virtual public ::ca2::byte_serializable
    {
    public:
 
@@ -21,7 +21,7 @@ namespace xml
       public:
 
 
-         array(sp(::ca::application) papp);
+         array(sp(::ca2::application) papp);
 
 
       };
@@ -49,7 +49,7 @@ namespace xml
    protected:
 
 
-      node(::ca::application * papp);
+      node(::ca2::application * papp);
       node(::xml::node * pnodeParent);
 
 
@@ -206,8 +206,8 @@ namespace xml
       void close();
 
 
-      virtual void write(::ca::byte_output_stream & ostream);
-      virtual void read(::ca::byte_input_stream & istream);
+      virtual void write(::ca2::byte_output_stream & ostream);
+      virtual void read(::ca2::byte_input_stream & istream);
 
 
    };

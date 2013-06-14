@@ -10,8 +10,8 @@ namespace visual
    {
    }
 
-   dib_sp::dib_sp(::ca::allocatorsp allocer) :
-      ::ca::dib_sp(allocer)
+   dib_sp::dib_sp(::ca2::allocatorsp allocer) :
+      ::ca2::dib_sp(allocer)
    {
    }
 
@@ -40,7 +40,7 @@ namespace visual
          {
             try
             {
-               ::ca::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary);
+               ::ca2::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::ca2::file::mode_read | ::ca2::file::shareDenyWrite | ::ca2::file::type_binary);
                m_p->read(stream);
                return true;
             }
@@ -54,7 +54,7 @@ namespace visual
       try
       {
 
-         if(!read_from_file(App(m_p->m_papp).file().get_file(varFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary)))
+         if(!read_from_file(App(m_p->m_papp).file().get_file(varFile, ::ca2::file::mode_read | ::ca2::file::shareDenyWrite | ::ca2::file::type_binary)))
             return false;
 
       }
@@ -71,7 +71,7 @@ namespace visual
       {
          try
          {
-            ::ca::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::type_binary | ::ca::file::defer_create_directory);
+            ::ca2::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::ca2::file::mode_create | ::ca2::file::mode_write | ::ca2::file::type_binary | ::ca2::file::defer_create_directory);
             m_p->write(stream);
          }
          catch(...)
@@ -86,12 +86,12 @@ namespace visual
       return load_from_file(App(m_p->m_papp).dir().matter(pszMatter));
    }
 
-   bool dib_sp::read_from_file(sp(::ca::file) pfile)
+   bool dib_sp::read_from_file(sp(::ca2::file) pfile)
    {
       FIBITMAP * pfi = Sys(m_p->m_papp).visual().imaging().LoadImageFile(pfile);
       if(pfi == NULL)
          return false;
-      ::ca::graphics_sp spgraphics(m_p->m_papp->allocer());
+      ::ca2::graphics_sp spgraphics(m_p->m_papp->allocer());
       spgraphics->CreateCompatibleDC(NULL);
       if(!m_p->from(spgraphics, pfi, true))
          return false;
@@ -100,14 +100,14 @@ namespace visual
 
    bool dib_sp::save_to_file(var varFile, save_image * psaveimage)
    {
-      ::ca::filesp spfile;
-      spfile = App(m_p->m_papp).file().get_file(varFile, ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::type_binary);
+      ::ca2::filesp spfile;
+      spfile = App(m_p->m_papp).file().get_file(varFile, ::ca2::file::mode_create | ::ca2::file::mode_write | ::ca2::file::type_binary);
       if(spfile.is_null())
          return false;
       return write_to_file(spfile, psaveimage);
    }
 
-   bool dib_sp::write_to_file(sp(::ca::file) pfile, save_image * psaveimage)
+   bool dib_sp::write_to_file(sp(::ca2::file) pfile, save_image * psaveimage)
    {
       save_image saveimageDefault;
       if(psaveimage == NULL)

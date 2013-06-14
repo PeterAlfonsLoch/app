@@ -13,7 +13,7 @@ inline UINT HashKey(ARG_KEY key)
 }
 
 
-namespace ca
+namespace ca2
 {
 
    template < class ARG_KEY >
@@ -62,7 +62,7 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 
 
@@ -103,5 +103,5 @@ template<> inline UINT HashKey<const char *> (const char * key)
 template <> inline UINT HashKey(const id & id)
 {
    // default identity hash - works for most primitive values
-   return ::ca::strid_hash::HashKey(id);
+   return ::ca2::strid_hash::HashKey(id);
 }

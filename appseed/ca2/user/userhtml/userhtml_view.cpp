@@ -21,8 +21,8 @@ ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::user::view::OnFilePrintPreview)
 // // END_MESSAGE_MAP()
 
 
-html_view::html_view(sp(::ca::application) papp) :
-   ca(papp),
+html_view::html_view(sp(::ca2::application) papp) :
+   ca2(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),
    ::user::form(papp),
@@ -34,7 +34,7 @@ html_view::~html_view()
 {
 }
 
-void html_view::install_message_handling(::ca::message::dispatch * pinterface)
+void html_view::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::view::install_message_handling(pinterface);
 
@@ -81,14 +81,14 @@ bool html_view::pre_create_window(CREATESTRUCT& cs)
    cs.style &= ~WS_EX_CLIENTEDGE;
    return ::user::view::pre_create_window(cs);
 }
-void html_view::_001OnInitialUpdate(::ca::signal_object * pobj) 
+void html_view::_001OnInitialUpdate(::ca2::signal_object * pobj) 
 {
 
    ::user::view::_001OnInitialUpdate(pobj);
 
 }
 
-void html_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint) 
+void html_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint) 
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);
@@ -114,7 +114,7 @@ void html_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* 
 
 }
 
-void html_view::_001OnDestroy(::ca::signal_object * pobj) 
+void html_view::_001OnDestroy(::ca2::signal_object * pobj) 
 {
    ::user::view::_001OnDestroy(pobj);
 
@@ -124,7 +124,7 @@ void html_view::_001OnDestroy(::ca::signal_object * pobj)
 
 
 
-void html_view::_001OnCreate(::ca::signal_object * pobj) 
+void html_view::_001OnCreate(::ca2::signal_object * pobj) 
 {
    if(pobj->previous())
       return;
@@ -135,19 +135,19 @@ void html_view::_001OnCreate(::ca::signal_object * pobj)
 
 
 }
-void html_view::_001OnContextMenu(::ca::signal_object * pobj) 
+void html_view::_001OnContextMenu(::ca2::signal_object * pobj) 
 {
-   //   SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
+   //   SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
    //   point point = pcontextmenu->GetPoint();
 
 }
 
 
 
-void html_view::_001OnSetCursor(::ca::signal_object * pobj) 
+void html_view::_001OnSetCursor(::ca2::signal_object * pobj) 
 {
 
-   SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+   SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
    pmouse->m_ecursor = ::visual::cursor_arrow;
 

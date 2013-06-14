@@ -13,9 +13,9 @@ namespace user
 
       
       
-      edit_plain_text_view(sp(::ca::application) papp);
+      edit_plain_text_view(sp(::ca2::application) papp);
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       virtual void _001OnSetText();
       virtual void _001OnUpdate();

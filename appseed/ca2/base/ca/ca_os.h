@@ -2,17 +2,17 @@
 
 
 
-namespace ca
+namespace ca2
 {
 
 
    class CLASS_DECL_ca2 os :
-      public ::ca::object
+      public ::ca2::object
    {
    public:
 
 
-      os(sp(::ca::application) papp);
+      os(sp(::ca2::application) papp);
       virtual ~os();
 
 
@@ -72,15 +72,15 @@ namespace ca
       virtual void post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam);
 
 
-      virtual void set_file_status(const char * lpszFileName, const ::ca::file_status& status);
+      virtual void set_file_status(const char * lpszFileName, const ::ca2::file_status& status);
 
    };
 
 
-   typedef ::c::smart_pointer < os > os_sp;
+   typedef ::ca::smart_pointer < os > os_sp;
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

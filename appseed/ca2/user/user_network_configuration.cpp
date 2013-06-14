@@ -3,8 +3,8 @@
 namespace user
 {
 
-   network_configuration::network_configuration(sp(::ca::application) papp) :
-      ca(papp)
+   network_configuration::network_configuration(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 //      m_pdoc   = NULL;
   //    m_pview  = NULL;
@@ -56,7 +56,7 @@ namespace user
          ptext->_001SetText(strProxy);
          pguie = m_pview->get_child_by_name("port");
          ptext =  (pguie);
-         ptext->_001SetText(::ca::str::from(iProxyPort));
+         ptext->_001SetText(::ca2::str::from(iProxyPort));
       }*/
    }
 

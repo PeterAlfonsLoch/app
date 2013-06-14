@@ -1,15 +1,15 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
    
    namespace geometry
    {
 
 
-      geometry::geometry(sp(::ca::application) papp) :
-         ca(papp)
+      geometry::geometry(sp(::ca2::application) papp) :
+         ca2(papp)
       {
 
       }
@@ -104,4 +104,4 @@ namespace ca
 
    } // namespace geometry
 
-} // namespace ca
+} // namespace ca2

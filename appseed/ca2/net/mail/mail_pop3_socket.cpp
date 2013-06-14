@@ -16,7 +16,7 @@ namespace mail
 
 
    pop3_socket::pop3_socket(::sockets::socket_handler & h) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -90,27 +90,27 @@ namespace mail
          stra.add_tokens(strLine, " ", TRUE);
          if(stra.get_size() > 0 && stra[0] == "+OK")
          {
-            if(::ca::str::begins_ci(m_ppop3->get_transaction(), "UIDL"))
+            if(::ca2::str::begins_ci(m_ppop3->get_transaction(), "UIDL"))
             {
                m_estate = state_listmessages_start;
             }
-            else if(::ca::str::begins_ci(m_ppop3->get_transaction(), "STAT"))
+            else if(::ca2::str::begins_ci(m_ppop3->get_transaction(), "STAT"))
             {
                m_estate = state_stat_start;
             }
-            else if(::ca::str::begins_ci(m_ppop3->get_transaction(), "TOP"))
+            else if(::ca2::str::begins_ci(m_ppop3->get_transaction(), "TOP"))
             {
                m_estate = state_top_start;
             }
-            else if(::ca::str::begins_ci(m_ppop3->get_transaction(), "RETR"))
+            else if(::ca2::str::begins_ci(m_ppop3->get_transaction(), "RETR"))
             {
                m_estate = state_retr_start;
             }
-            else if(::ca::str::begins_ci(m_ppop3->get_transaction(), "LIST") && m_ppop3->get_transaction().get_length() >= 6)
+            else if(::ca2::str::begins_ci(m_ppop3->get_transaction(), "LIST") && m_ppop3->get_transaction().get_length() >= 6)
             {
                m_estate = state_receive_list;
             }
-            else if(::ca::str::begins_ci(m_ppop3->get_transaction(), "RETRHD"))
+            else if(::ca2::str::begins_ci(m_ppop3->get_transaction(), "RETRHD"))
             {
                m_estate = state_retr_only_headers_start;
                Send("RETR\r\n");
@@ -326,7 +326,7 @@ namespace mail
                {
                  m_ppop3->m_setHeaders[m_strKey] = m_strValue;
                }
-               ::ca::parse pa(strLine,":");
+               ::ca2::parse pa(strLine,":");
                m_strKey = pa.getword();
                m_strValue = pa.getrest();
             }

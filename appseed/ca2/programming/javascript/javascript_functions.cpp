@@ -44,19 +44,19 @@
 #	define UNUSED(x) x
 #endif*/
 
-void scIsInNet(CScriptVar *c, void *data);
+void scIsInNet(CScriptVar *ca, void *data);
 bool is_only_digits(const char * psz);
-void scIsPlainHostName(CScriptVar *c, void *data);
-void scMyIpAddress(CScriptVar *c, void *data);
+void scIsPlainHostName(CScriptVar *ca, void *data);
+void scMyIpAddress(CScriptVar *ca, void *data);
 
 
 
-void scIsInNet(CScriptVar *c, void *data)
+void scIsInNet(CScriptVar *ca, void *data)
 {
 	tinyjs *tinyJS = (tinyjs *)data;
-	string host = c->getParameter("host")->getString();
-   string addr = c->getParameter("addr")->getString();
-   string mask = c->getParameter("mask")->getString();
+	string host = ca->getParameter("host")->getString();
+   string addr = ca->getParameter("addr")->getString();
+   string mask = ca->getParameter("mask")->getString();
 
    strsize iFind = host.reverse_find(':');
    if(iFind >= 0)
@@ -66,19 +66,19 @@ void scIsInNet(CScriptVar *c, void *data)
 /*   ipaddr_t l_host;
    if (!Sys(tinyJS->m_psystem).net().u2ip(host, l_host))
    {
-   	c->getReturnVar()->setInt(FALSE);
+   	ca->getReturnVar()->setInt(FALSE);
       return;
    }
    ipaddr_t l_addr;
    if (!Sys(tinyJS->m_psystem).net().u2ip(addr, l_addr))
    {
-   	c->getReturnVar()->setInt(FALSE);
+   	ca->getReturnVar()->setInt(FALSE);
       return;
    }
    ipaddr_t l_mask;
    if (!Sys(tinyJS->m_psystem).net().u2ip(mask, l_mask))
    {
-   	c->getReturnVar()->setInt(FALSE);
+   	ca->getReturnVar()->setInt(FALSE);
       return;
    }*/
 
@@ -87,7 +87,7 @@ void scIsInNet(CScriptVar *c, void *data)
    ::sockets::address ad_mask(tinyJS->get_app(), mask, 0);
 
 
-	c->getReturnVar()->setInt(ad_host.is_in_net(ad_addr, ad_mask));
+	ca->getReturnVar()->setInt(ad_host.is_in_net(ad_addr, ad_mask));
 
 }
 
@@ -107,13 +107,13 @@ bool is_only_digits(const char * psz)
          
 }
 
-void scIsPlainHostName(CScriptVar *c, void *data)
+void scIsPlainHostName(CScriptVar *ca, void *data)
 {
 //	tinyjs *tinyJS = (tinyjs *)data;
 
 //   App(tinyJS->m_papp);
 
-   string str = c->getParameter("host")->getString();
+   string str = ca->getParameter("host")->getString();
 
    stringa stra;
 
@@ -134,24 +134,24 @@ void scIsPlainHostName(CScriptVar *c, void *data)
 
    if(bIpv4)
    {
-      c->getReturnVar()->setInt(0);
+      ca->getReturnVar()->setInt(0);
       return;
    }
 
    
-   c->getReturnVar()->setInt(str.find(".") > 0);
+   ca->getReturnVar()->setInt(str.find(".") > 0);
 
 }
 
 
-void scMyIpAddress(CScriptVar *c, void *data)
+void scMyIpAddress(CScriptVar *ca, void *data)
 {
 //	tinyjs *tinyJS = (tinyjs *)data;
 
 //   App(tinyJS->m_papp);
 
 
-   c->getReturnVar()->setString("127.0.0.1");
+   ca->getReturnVar()->setString("127.0.0.1");
 
 }
 

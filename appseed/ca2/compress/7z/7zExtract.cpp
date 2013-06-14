@@ -16,7 +16,7 @@ namespace n7z
 {
 
    struct CExtractFolderInfo :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
      #ifdef _7Z_VOL
      int32_t VolumeIndex;
@@ -45,11 +45,11 @@ namespace n7z
      };
    };
 
-   ::ca::HRes handler::Extract(const uint32_t *indices, uint32_t numItems,
+   ::ca2::HRes handler::Extract(const uint32_t *indices, uint32_t numItems,
        int32_t testModeSpec, ::libcompress::archive_extract_callback_interface *extractCallbackSpec)
    {
      bool testMode = (testModeSpec != 0);
-     ::c::smart_pointer < ::libcompress::archive_extract_callback_interface > extractCallback = extractCallbackSpec;
+     ::ca::smart_pointer < ::libcompress::archive_extract_callback_interface > extractCallback = extractCallbackSpec;
      uint64_t importantTotalUnpacked = 0;
 
      bool allFilesMode = (numItems == (uint32_t)-1);
@@ -154,7 +154,7 @@ namespace n7z
      uint64_t curPacked, curUnpacked;
 
      ::libcompress::local_progress *lps = new ::libcompress::local_progress;
-     ::c::smart_pointer < ::libcompress::progress_info_interface > progress = lps;
+     ::ca::smart_pointer < ::libcompress::progress_info_interface > progress = lps;
      lps->Init(extractCallback, false);
 
      for (int32_t i = 0;; i++, totalUnpacked += curUnpacked, totalPacked += curPacked)
@@ -171,7 +171,7 @@ namespace n7z
        curPacked = 0;
 
        CFolderOutStream *folderOutStream = new CFolderOutStream;
-       ::c::smart_pointer < ::ca::writer > outStream(folderOutStream);
+       ::ca::smart_pointer < ::ca2::writer > outStream(folderOutStream);
 
        #ifdef _7Z_VOL
        const CVolume &volume = _volumes[efi.VolumeIndex];
@@ -209,7 +209,7 @@ namespace n7z
        uint64_t folderStartPackPos = db.GetFolderStreamPos(folderIndex, 0);
 
        #ifndef _NO_CRYPTO
-       ::c::smart_pointer < ::crypto::get_text_password_interface > getTextPassword;
+       ::ca::smart_pointer < ::crypto::get_text_password_interface > getTextPassword;
        if (extractCallback)
        {
 

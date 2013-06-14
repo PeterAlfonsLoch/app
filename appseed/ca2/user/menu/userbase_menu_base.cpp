@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   menu_base::menu_base(sp(::ca::application) papp):
-      ca(papp)
+   menu_base::menu_base(sp(::ca2::application) papp):
+      ca2(papp)
    {
 
       m_pitem = new menu_item(papp);

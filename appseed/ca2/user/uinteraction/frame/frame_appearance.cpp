@@ -10,13 +10,13 @@ namespace uinteraction
    {
 
 
-      appearance::CTool001::CTool001(sp(::ca::application) papp) :
-         ca(papp)
+      appearance::CTool001::CTool001(sp(::ca2::application) papp) :
+         ca2(papp)
       {
       }
 
       appearance::appearance(WorkSet * pworkset) :
-         ::ca::ca(pworkset->get_app())
+         ::ca2::ca2(pworkset->get_app())
       {
          m_ptool001 = new CTool001(get_app());
          m_bAutomaticModeSwitching = true;
@@ -234,7 +234,7 @@ namespace uinteraction
 
       }
 
-      void appearance::CTool001::Update(::ca::graphics * pdc, LPCRECT lpcrect,
+      void appearance::CTool001::Update(::ca2::graphics * pdc, LPCRECT lpcrect,
          COLORREF crHighlight,
          COLORREF crLight,
          COLORREF crBody,
@@ -346,12 +346,12 @@ namespace uinteraction
 
       }
 
-      void appearance::CTool001::draw(::ca::graphics * pdc)
+      void appearance::CTool001::draw(::ca2::graphics * pdc)
       {
 
          pdc->SelectObject(m_brushBody);
 
-         ::ca::pen_sp pen(allocer());
+         ::ca2::pen_sp pen(allocer());
 
          pen->create_solid(pdc, 0, RGB(255, 255, 255));
 
@@ -374,7 +374,7 @@ namespace uinteraction
 
       }
 
-      void appearance::CTool001::CColorBezier::draw(::ca::brush & brush, ::ca::graphics * pdc)
+      void appearance::CTool001::CColorBezier::draw(::ca2::brush & brush, ::ca2::graphics * pdc)
       {
          pdc->SelectObject(&brush);
          pdc->SelectObject(m_ppen);

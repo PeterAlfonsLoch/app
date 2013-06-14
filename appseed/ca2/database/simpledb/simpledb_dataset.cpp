@@ -114,7 +114,7 @@ namespace simpledb
             //else
             //{
               // string str;
-               //::ca::international::utf8_to_unicode(str, reslt[i]);
+               //::ca2::international::utf8_to_unicode(str, reslt[i]);
             v = reslt[i];
             //}
          }
@@ -197,7 +197,7 @@ namespace simpledb
             //else
             //{
               // string str;
-               //::ca::international::utf8_to_unicode(str, reslt[i]);
+               //::ca2::international::utf8_to_unicode(str, reslt[i]);
             v = reslt[i];
             //}
          }
@@ -217,11 +217,11 @@ namespace simpledb
       string str;
 
 
-      ::ca::str::consume_spaces(pszSql, 0);
+      ::ca2::str::consume_spaces(pszSql, 0);
 
-      if(::ca::str::begins_consume(pszSql, "*"))
+      if(::ca2::str::begins_consume(pszSql, "*"))
       {
-         ::ca::str::consume_spaces(pszSql, 0);
+         ::ca2::str::consume_spaces(pszSql, 0);
       }
       else
       {
@@ -235,7 +235,7 @@ namespace simpledb
             straField.add(str);
             try
             {
-               ::ca::str::consume(pszSql, ",");
+               ::ca2::str::consume(pszSql, ",");
             }
             catch(...)
             {
@@ -258,7 +258,7 @@ namespace simpledb
          straTable.add("table:" + str);
          try
          {
-            ::ca::str::consume(pszSql, ",");
+            ::ca2::str::consume(pszSql, ",");
          }
          catch(...)
          {
@@ -313,14 +313,14 @@ namespace simpledb
       if(straTable.get_count() == 1)
       {
          string strTable = straTable[0];
-         if(::ca::str::begins_eat_ci(strTable, "table:"))
+         if(::ca2::str::begins_eat_ci(strTable, "table:"))
          {
             ::simpledb::table table(dynamic_cast < ::simpledb::base * > (db), strTable);
             ::simpledb::record_row recrow;
             recrow.m_ptable = &table;
             file_position posEnd = (file_position) table.m_spfileFixed->get_length();
             table.m_spfileFixed->seek_to_begin();
-            ::ca::byte_stream stream(table.m_spfileFixed);
+            ::ca2::byte_stream stream(table.m_spfileFixed);
             while(true)
             {
                if(table.m_spfileFixed->get_position() >= posEnd)
@@ -365,12 +365,12 @@ namespace simpledb
          if(str != "values")
             return false;
 
-         ::ca::str::consume_spaces(pszSql, 0);
+         ::ca2::str::consume_spaces(pszSql, 0);
 
-         if(!::ca::str::begins_consume(pszSql, "("))
+         if(!::ca2::str::begins_consume(pszSql, "("))
             return false;
 
-         ::ca::str::consume_spaces(pszSql, 0);
+         ::ca2::str::consume_spaces(pszSql, 0);
 
          stringa straValue;
          for(;;)
@@ -384,10 +384,10 @@ namespace simpledb
                break;
             }
             straValue.add(str);
-            ::ca::str::consume_spaces(pszSql, 0);
-            if(::ca::str::begins_consume(pszSql, ")"))
+            ::ca2::str::consume_spaces(pszSql, 0);
+            if(::ca2::str::begins_consume(pszSql, ")"))
                break;
-            if(!::ca::str::begins_consume(pszSql, ","))
+            if(!::ca2::str::begins_consume(pszSql, ","))
                return false;
 
          }
@@ -402,7 +402,7 @@ namespace simpledb
          rec.m_ptable = &table;
          rec.m_var = straValue;
          table.m_spfileFixed->seek_to_end();
-         ::ca::byte_stream stream(table.m_spfileFixed);
+         ::ca2::byte_stream stream(table.m_spfileFixed);
          rec.write(stream);
 
          {
@@ -426,7 +426,7 @@ namespace simpledb
    string set::consume_quoted_value(const char * & pszXml)
    {
       const char * psz = pszXml;
-      string qc = ::ca::str::get_utf8_char(psz);
+      string qc = ::ca2::str::get_utf8_char(psz);
       if(qc != "\'")
       {
          throw "Quote character is required here";
@@ -434,9 +434,9 @@ namespace simpledb
       string str;
       while(true)
       {
-         psz = ::ca::str::utf8_inc(psz);
-         string qc2 = ::ca::str::get_utf8_char(psz);
-         //string str = ::ca::international::utf8_to_unicode(qc2);
+         psz = ::ca2::str::utf8_inc(psz);
+         string qc2 = ::ca2::str::get_utf8_char(psz);
+         //string str = ::ca2::international::utf8_to_unicode(qc2);
          if(qc2.is_empty())
          {
             throw "Quote character is required here, premature end";
@@ -445,14 +445,14 @@ namespace simpledb
             break;
          str += qc2;
       }
-      psz = ::ca::str::utf8_inc(psz);
+      psz = ::ca2::str::utf8_inc(psz);
       pszXml = psz;
       return str;
    }
 
    string set::sql_consume_value(const char * & pszSql)
    {
-      ::ca::str::consume_spaces(pszSql, 0);
+      ::ca2::str::consume_spaces(pszSql, 0);
       string str = consume_quoted_value(pszSql);
       str.make_lower();
       return str;
@@ -460,22 +460,22 @@ namespace simpledb
 
    string set::sql_consume_keyword(const char * & pszSql)
    {
-      ::ca::str::consume_spaces(pszSql, 0);
-      string str = ::ca::str::consume_nc_name(pszSql);
+      ::ca2::str::consume_spaces(pszSql, 0);
+      string str = ::ca2::str::consume_nc_name(pszSql);
       str.make_lower();
       return str;
    }
 
    string set::sql_consume_field(const char * & pszSql)
    {
-      ::ca::str::consume_spaces(pszSql, 0);
-      return ::ca::str::consume_nc_name(pszSql);
+      ::ca2::str::consume_spaces(pszSql, 0);
+      return ::ca2::str::consume_nc_name(pszSql);
    }
 
    string set::sql_consume_table(const char * & pszSql)
    {
-      ::ca::str::consume_spaces(pszSql, 0);
-      return ::ca::str::consume_nc_name(pszSql);
+      ::ca2::str::consume_spaces(pszSql, 0);
+      return ::ca2::str::consume_nc_name(pszSql);
    }
 
    string set::sql_consume_join_on(const char * & pszSql)
@@ -909,7 +909,7 @@ namespace simpledb
 
 
    /**********************************************************************
-   * Copyright (c) 2002, Leo Seib, Hannover
+   * Copyright (ca) 2002, Leo Seib, Hannover
    *
    * Project:CSQLiteDataset C++ Dynamic Library
    * Module: CSQLiteDataset class realisation file
@@ -996,7 +996,7 @@ namespace simpledb
                //else
                //{
                // string str;
-               //::ca::international::utf8_to_unicode(str, reslt[i]);
+               //::ca2::international::utf8_to_unicode(str, reslt[i]);
                v = reslt[i];
                //}
             }

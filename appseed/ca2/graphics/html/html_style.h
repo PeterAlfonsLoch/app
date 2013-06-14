@@ -14,7 +14,7 @@ namespace html
    };*/
 
    class CLASS_DECL_ca2 style :
-      virtual public ::ca::ca
+      virtual public ::ca2::ca2
    {
    public:
 
@@ -23,7 +23,7 @@ namespace html
       string               m_strName;
       string               m_strSubClass;
 
-      ::ca::property_set    m_propertyset;
+      ::ca2::property_set    m_propertyset;
 
       //edisplay             m_edisplay;
 

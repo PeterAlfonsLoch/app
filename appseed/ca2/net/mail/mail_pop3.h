@@ -8,7 +8,7 @@ namespace mail
    class pop3_socket;
 
    class CLASS_DECL_ca2 pop3 :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -34,7 +34,7 @@ namespace mail
       string                        m_id;
       string                        m_strHeaders;
       string                        m_strBody;
-      ::ca::property_set             m_setHeaders;
+      ::ca2::property_set             m_setHeaders;
 
       int32_t                           m_iHeaderLine;
 
@@ -42,7 +42,7 @@ namespace mail
 
 
 
-      pop3(sp(::ca::application) papp);
+      pop3(sp(::ca2::application) papp);
 
       virtual void update_lists();
 

@@ -4,13 +4,13 @@ namespace visual
 {
 
    class buffered_graphics : 
-      public ::ca::graphics_sp  
+      public ::ca2::graphics_sp  
    {
    public:
 
       
-      ::ca::bitmap_sp   m_spbitmap;
-      ::ca::bitmap_sp   m_spbitmapBlend;
+      ::ca2::bitmap_sp   m_spbitmap;
+      ::ca2::bitmap_sp   m_spbitmapBlend;
 
 
       buffered_graphics();

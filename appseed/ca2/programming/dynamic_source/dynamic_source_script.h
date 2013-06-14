@@ -12,7 +12,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_ca2 script :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -25,7 +25,7 @@ namespace dynamic_source
       spa(script_instance)                      m_scriptinstanceptra;
 
 
-      script(sp(::ca::application) papp);
+      script(sp(::ca2::application) papp);
       virtual ~script();
 
 
@@ -42,7 +42,7 @@ namespace dynamic_source
    public:
 
 
-      ::c::library                     m_library;
+      ::ca::library                     m_library;
 
 
 #ifdef WINDOWS
@@ -71,7 +71,7 @@ namespace dynamic_source
 
 
 
-      ds_script(sp(::ca::application) papp);
+      ds_script(sp(::ca2::application) papp);
       ~ds_script();
 
 
@@ -94,7 +94,7 @@ namespace dynamic_source
       string get_stage_path();
 
 
-      ::ca::application * get_app() const;
+      ::ca2::application * get_app() const;
 
       script_instance * create_instance();
 
@@ -108,8 +108,8 @@ namespace dynamic_source
    public:
 
 
-      t_script(sp(::ca::application) papp) : 
-         ca(papp),
+      t_script(sp(::ca2::application) papp) : 
+         ca2(papp),
          script(papp)
       {
       };

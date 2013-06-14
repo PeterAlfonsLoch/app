@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
-   ip_enum::ip_enum(sp(::ca::application) papp) :
-      ca(papp)
+   ip_enum::ip_enum(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
    }
@@ -30,7 +30,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

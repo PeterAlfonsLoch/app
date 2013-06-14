@@ -9,18 +9,18 @@ namespace zip
 {
 
    class CLASS_DECL_ca2 File : 
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
-      ::ca::filesp              m_pfile;
-      ::ca::filesp              m_pbuffile1;
-      ::ca::filesp              m_pbuffile2;
+      ::ca2::filesp              m_pfile;
+      ::ca2::filesp              m_pbuffile1;
+      ::ca2::filesp              m_pbuffile2;
       unzFile                    m_pfUnzip;
       zipFile                    m_pfZip;
       zlib_filefunc_def_s        m_filefuncdef;
       bool                       m_bOwnFile;
 
-      File(sp(::ca::application) papp);
+      File(sp(::ca2::application) papp);
       virtual ~File();
       static voidpf     open_file_func (voidpf opaque, const char* filename, int32_t mode);
       static uint_ptr      read_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size);
@@ -30,13 +30,13 @@ namespace zip
       static int32_t        close_file_func (voidpf opaque, voidpf stream);
       static int32_t        testerror_file_func (voidpf opaque, voidpf stream);
 
-      void write_to_file(sp(::ca::file) pfile, const wchar_t * lpcsz);
+      void write_to_file(sp(::ca2::file) pfile, const wchar_t * lpcsz);
 
       bool unzip_open(const char * lpcwsz);
-      bool unzip_open(::ca::filesp pfile);
+      bool unzip_open(::ca2::filesp pfile);
 
       bool zip_open(const char * lpcwsz);
-      bool zip_open(::ca::filesp pfile);
+      bool zip_open(::ca2::filesp pfile);
 
    };
 

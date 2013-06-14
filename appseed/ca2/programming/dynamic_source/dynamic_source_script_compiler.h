@@ -9,7 +9,7 @@ namespace dynamic_source
    class script_instance;
 
    class script_compiler :
-      virtual public ::ca::object,
+      virtual public ::ca2::object,
       virtual public ::file_watcher::listener_thread
    {
    public:
@@ -40,7 +40,7 @@ namespace dynamic_source
       string                     m_strDynamicSourceConfiguration;
 
 
-      ::c::library               m_libraryLib;
+      ::ca::library               m_libraryLib;
 
 
       array < __time_t >    m_ftaLibCreation;
@@ -65,7 +65,7 @@ namespace dynamic_source
       string                     m_strTime;
 
 
-      script_compiler(sp(::ca::application) papp);
+      script_compiler(sp(::ca2::application) papp);
       virtual ~script_compiler();
 
       void initialize();

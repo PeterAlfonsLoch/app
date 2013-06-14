@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
    interlocked_long::interlocked_long()
@@ -54,4 +54,4 @@ namespace ca
       return *m_plong == i;
    }
 
-} // namespace ca
+} // namespace ca2

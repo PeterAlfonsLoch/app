@@ -4,7 +4,7 @@
 class image_list;
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -14,7 +14,7 @@ namespace ca
 
 
    class CLASS_DECL_ca2 tree_item_data :
-      virtual public ::c::c
+      virtual public ::ca::ca
    {
    public:
 
@@ -44,6 +44,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

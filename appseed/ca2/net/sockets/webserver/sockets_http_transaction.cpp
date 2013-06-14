@@ -5,14 +5,14 @@ namespace http
 {
 
 
-   transaction::transaction(sp(::ca::application) papp) :
-      ca(papp)
+   transaction::transaction(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
    }
 
    transaction::transaction(const transaction & src) :
-      ::ca::ca(((class request&) src).get_app()),
+      ::ca2::ca2(((class request&) src).get_app()),
       m_propertysetAttribute(src.m_propertysetAttribute),
       m_propertysetHeader(src.m_propertysetHeader)
    {

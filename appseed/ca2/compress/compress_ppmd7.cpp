@@ -1,4 +1,4 @@
-/* Ppmd7.c -- PPMdH codec
+/* Ppmd7.ca -- PPMdH codec
 2010-03-12 : Igor Pavlov : Public domain
 This code is based on PPMd var.H (2001): Dmitry Shkarin : Public domain */
 // from 7-zip on 2012-12-23, dawn
@@ -84,14 +84,14 @@ void Ppmd7_Construct(CPpmd7 *p)
   memset(p->HB2Flag + 0x40, 8, 0x100 - 0x40);
 }
 
-void Ppmd7_Free(CPpmd7 *p, ::ca::ISzAlloc *alloc)
+void Ppmd7_Free(CPpmd7 *p, ::ca2::ISzAlloc *alloc)
 {
   alloc->Free(alloc, p->Base);
   p->Size = 0;
   p->Base = 0;
 }
 
-bool Ppmd7_Alloc(CPpmd7 *p, uint32_t size, ::ca::ISzAlloc *alloc)
+bool Ppmd7_Alloc(CPpmd7 *p, uint32_t size, ::ca2::ISzAlloc *alloc)
 {
   if (p->Base == 0 || p->Size != size)
   {
@@ -339,7 +339,7 @@ void Ppmd7_Init(CPpmd7 *p, uint32_t maxOrder)
 static CTX_PTR CreateSuccessors(CPpmd7 *p, int32_t skip)
 {
   CPpmd_State upState;
-  CTX_PTR c = p->MinContext;
+  CTX_PTR ca = p->MinContext;
   CPpmd_Byte_Ref upBranch = (CPpmd_Byte_Ref)SUCCESSOR(p->FoundState);
   CPpmd_State *ps[PPMD7_MAX_ORDER];
   uint32_t numPs = 0;
@@ -347,23 +347,23 @@ static CTX_PTR CreateSuccessors(CPpmd7 *p, int32_t skip)
   if (!skip)
     ps[numPs++] = p->FoundState;
   
-  while (c->Suffix)
+  while (ca->Suffix)
   {
     CPpmd_Void_Ref successor;
     CPpmd_State *s;
-    c = SUFFIX(c);
-    if (c->NumStats != 1)
+    ca = SUFFIX(ca);
+    if (ca->NumStats != 1)
     {
-      for (s = STATS(c); s->Symbol != p->FoundState->Symbol; s++);
+      for (s = STATS(ca); s->Symbol != p->FoundState->Symbol; s++);
     }
     else
-      s = ONE_STATE(c);
+      s = ONE_STATE(ca);
     successor = SUCCESSOR(s);
     if (successor != upBranch)
     {
-      c = CTX(successor);
+      ca = CTX(successor);
       if (numPs == 0)
-        return c;
+        return ca;
       break;
     }
     ps[numPs++] = s;
@@ -372,15 +372,15 @@ static CTX_PTR CreateSuccessors(CPpmd7 *p, int32_t skip)
   upState.Symbol = *(const byte *)Ppmd7_GetPtr(p, upBranch);
   SetSuccessor(&upState, upBranch + 1);
   
-  if (c->NumStats == 1)
-    upState.Freq = ONE_STATE(c)->Freq;
+  if (ca->NumStats == 1)
+    upState.Freq = ONE_STATE(ca)->Freq;
   else
   {
     uint32_t cf, s0;
     CPpmd_State *s;
-    for (s = STATS(c); s->Symbol != upState.Symbol; s++);
+    for (s = STATS(ca); s->Symbol != upState.Symbol; s++);
     cf = s->Freq - 1;
-    s0 = c->SummFreq - c->NumStats - cf;
+    s0 = ca->SummFreq - ca->NumStats - cf;
     upState.Freq = (byte)(1 + ((2 * cf <= s0) ? (5 * cf > s0) : ((2 * cf + 3 * s0 - 1) / (2 * s0))));
   }
 
@@ -400,13 +400,13 @@ static CTX_PTR CreateSuccessors(CPpmd7 *p, int32_t skip)
     }
     c1->NumStats = 1;
     *ONE_STATE(c1) = upState;
-    c1->Suffix = REF(c);
+    c1->Suffix = REF(ca);
     SetSuccessor(ps[--numPs], REF(c1));
-    c = c1;
+    ca = c1;
   }
   while (numPs != 0);
   
-  return c;
+  return ca;
 }
 
 static void SwapStates(CPpmd_State *t1, CPpmd_State *t2)
@@ -419,22 +419,22 @@ static void SwapStates(CPpmd_State *t1, CPpmd_State *t2)
 static void UpdateModel(CPpmd7 *p)
 {
   CPpmd_Void_Ref successor, fSuccessor = SUCCESSOR(p->FoundState);
-  CTX_PTR c;
+  CTX_PTR ca;
   uint32_t s0, ns;
   
   if (p->FoundState->Freq < MAX_FREQ / 4 && p->MinContext->Suffix != 0)
   {
-    c = SUFFIX(p->MinContext);
+    ca = SUFFIX(p->MinContext);
     
-    if (c->NumStats == 1)
+    if (ca->NumStats == 1)
     {
-      CPpmd_State *s = ONE_STATE(c);
+      CPpmd_State *s = ONE_STATE(ca);
       if (s->Freq < 32)
         s->Freq++;
     }
     else
     {
-      CPpmd_State *s = STATS(c);
+      CPpmd_State *s = STATS(ca);
       if (s->Symbol != p->FoundState->Symbol)
       {
         do { s++; } while (s->Symbol != p->FoundState->Symbol);
@@ -447,7 +447,7 @@ static void UpdateModel(CPpmd7 *p)
       if (s->Freq < MAX_FREQ - 9)
       {
         s->Freq += 2;
-        c->SummFreq += 2;
+        ca->SummFreq += 2;
       }
     }
   }
@@ -498,11 +498,11 @@ static void UpdateModel(CPpmd7 *p)
   
   s0 = p->MinContext->SummFreq - (ns = p->MinContext->NumStats) - (p->FoundState->Freq - 1);
   
-  for (c = p->MaxContext; c != p->MinContext; c = SUFFIX(c))
+  for (ca = p->MaxContext; ca != p->MinContext; ca = SUFFIX(ca))
   {
     uint32_t ns1;
     uint32_t cf, sf;
-    if ((ns1 = c->NumStats) != 1)
+    if ((ns1 = ca->NumStats) != 1)
     {
       if ((ns1 & 1) == 0)
       {
@@ -518,13 +518,13 @@ static void UpdateModel(CPpmd7 *p)
             RestartModel(p);
             return;
           }
-          oldPtr = STATS(c);
+          oldPtr = STATS(ca);
           MyMem12Cpy(ptr, oldPtr, oldNU);
           InsertNode(p, oldPtr, i);
-          c->Stats = STATS_REF(ptr);
+          ca->Stats = STATS_REF(ptr);
         }
       }
-      c->SummFreq = (uint16_t)(c->SummFreq + (2 * ns1 < ns) + 2 * ((4 * ns1 <= ns) & (c->SummFreq <= 8 * ns1)));
+      ca->SummFreq = (uint16_t)(ca->SummFreq + (2 * ns1 < ns) + 2 * ((4 * ns1 <= ns) & (ca->SummFreq <= 8 * ns1)));
     }
     else
     {
@@ -534,32 +534,32 @@ static void UpdateModel(CPpmd7 *p)
         RestartModel(p);
         return;
       }
-      *s = *ONE_STATE(c);
-      c->Stats = REF(s);
+      *s = *ONE_STATE(ca);
+      ca->Stats = REF(s);
       if (s->Freq < MAX_FREQ / 4 - 1)
         s->Freq <<= 1;
       else
         s->Freq = MAX_FREQ - 4;
-      c->SummFreq = (uint16_t)(s->Freq + p->InitEsc + (ns > 3));
+      ca->SummFreq = (uint16_t)(s->Freq + p->InitEsc + (ns > 3));
     }
-    cf = 2 * (uint32_t)p->FoundState->Freq * (c->SummFreq + 6);
-    sf = (uint32_t)s0 + c->SummFreq;
+    cf = 2 * (uint32_t)p->FoundState->Freq * (ca->SummFreq + 6);
+    sf = (uint32_t)s0 + ca->SummFreq;
     if (cf < 6 * sf)
     {
       cf = 1 + (cf > sf) + (cf >= 4 * sf);
-      c->SummFreq += 3;
+      ca->SummFreq += 3;
     }
     else
     {
       cf = 4 + (cf >= 9 * sf) + (cf >= 12 * sf) + (cf >= 15 * sf);
-      c->SummFreq = (uint16_t)(c->SummFreq + cf);
+      ca->SummFreq = (uint16_t)(ca->SummFreq + cf);
     }
     {
-      CPpmd_State *s = STATS(c) + ns1;
+      CPpmd_State *s = STATS(ca) + ns1;
       SetSuccessor(s, successor);
       s->Symbol = p->FoundState->Symbol;
       s->Freq = (byte)cf;
-      c->NumStats = (uint16_t)(ns1 + 1);
+      ca->NumStats = (uint16_t)(ns1 + 1);
     }
   }
   p->MaxContext = p->MinContext = CTX(fSuccessor);
@@ -656,9 +656,9 @@ CPpmd_See *Ppmd7_MakeEscFreq(CPpmd7 *p, uint32_t numMasked, uint32_t *escFreq)
 
 static void NextContext(CPpmd7 *p)
 {
-  CTX_PTR c = CTX(SUCCESSOR(p->FoundState));
-  if (p->OrderFall == 0 && (byte *)c > p->Text)
-    p->MinContext = p->MaxContext = c;
+  CTX_PTR ca = CTX(SUCCESSOR(p->FoundState));
+  if (p->OrderFall == 0 && (byte *)ca > p->Text)
+    p->MinContext = p->MaxContext = ca;
   else
     UpdateModel(p);
 }

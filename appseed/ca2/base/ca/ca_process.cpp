@@ -18,7 +18,7 @@ extern char * const * environ;
 
 
 
-namespace ca
+namespace ca2
 {
 
    process::process() :
@@ -139,7 +139,7 @@ namespace ca
 
 #elif defined(METROWIN)
 
-      throw todo(::ca::get_thread_app());
+      throw todo(::ca2::get_thread_app());
 
 #else
 
@@ -287,7 +287,7 @@ namespace ca
 
 #elif defined(METROWIN)
 
-      throw todo(::ca::get_thread_app());
+      throw todo(::ca2::get_thread_app());
 
 #else
       int32_t iExitCode;
@@ -344,7 +344,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

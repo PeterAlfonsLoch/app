@@ -8,37 +8,37 @@ namespace colorertake5
    /** HRD files reader.
    HRD Files format contains mappings of HRC syntax regions into
    text indention information.
-   For example, HTML indention (@c stext, @c sback, @c etext, @c eback)
+   For example, HTML indention (@ca stext, @ca sback, @ca etext, @ca eback)
    allows to create colorized HTML code.
 
    @ingroup colorer_handlers
    */
    class TextHRDMapper : 
       public RegionMapperImpl,
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
    
       
-      TextHRDMapper(sp(::ca::application) papp);
+      TextHRDMapper(sp(::ca2::application) papp);
       ~TextHRDMapper();
 
 
       /**
-      * Loads region defines from @c is input_source
+      * Loads region defines from @ca is input_source
       */
-      void  loadRegionMappings(::ca::byte_input_stream & istream);
+      void  loadRegionMappings(::ca2::byte_input_stream & istream);
 
       /**
-      * Saves all loaded region defines into @c writer.
+      * Saves all loaded region defines into @ca writer.
       * Note, that result document would not be equal
       * to input one, because there could be multiple input
       * documents.
       */
-      void  saveRegionMappings(::ca::byte_output_stream & ostream) const;
+      void  saveRegionMappings(::ca2::byte_output_stream & ostream) const;
 
       /**
-      * Changes specified region definition to @c rdnew
+      * Changes specified region definition to @ca rdnew
       * @param region region full qualified name.
       * @param rdnew  New region definition to replace old one
       */

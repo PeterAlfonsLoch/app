@@ -9,8 +9,8 @@
 namespace user
 {
 
-   tool_cmd_ui::tool_cmd_ui(sp(::ca::application) papp) :
-      ca(papp),
+   tool_cmd_ui::tool_cmd_ui(sp(::ca2::application) papp) :
+      ca2(papp),
       cmd_ui(papp)
    {
    }

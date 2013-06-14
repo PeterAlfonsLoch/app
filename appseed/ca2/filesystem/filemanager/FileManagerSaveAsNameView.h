@@ -8,7 +8,7 @@ class CLASS_DECL_ca2 FileManagerSaveAsView :
 public:
 
 
-   FileManagerSaveAsView(sp(::ca::application) papp);
+   FileManagerSaveAsView(sp(::ca2::application) papp);
 
 
    virtual void _001OnAfterChangeText();
@@ -17,7 +17,7 @@ public:
    bool m_bVoidSync;
 
    void _017Synchronize();
-   void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint);
+   void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint);
 
 
 };

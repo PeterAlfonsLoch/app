@@ -3,11 +3,11 @@
 
 #include "framework.h"
 
-namespace ca
+namespace ca2
 {
 
    class reader_for_binder:
-      public ::ca::reader
+      public ::ca2::reader
    {
    public:
 
@@ -29,7 +29,7 @@ namespace ca
    }
 
    class writer_for_binder:
-      public ::ca::writer
+      public ::ca2::writer
    {
    public:
 
@@ -72,8 +72,8 @@ namespace ca
 
 
 
-   stream_binder::stream_binder(sp(::ca::application) papp) :
-      ca(papp),
+   stream_binder::stream_binder(sp(::ca2::application) papp) :
+      ca2(papp),
       _allBytesAreWritenEvent(papp),
       _thereAreBytesToReadEvent(papp),
       _readStreamIsClosedEvent(papp)
@@ -81,7 +81,7 @@ namespace ca
    }
 
 
-   void stream_binder::CreateStreams(sp(::ca::reader) & inStream, sp(::ca::writer) & outStream)
+   void stream_binder::CreateStreams(sp(::ca2::reader) & inStream, sp(::ca2::writer) & outStream)
    {
       
       reader_for_binder * inStreamSpec = new reader_for_binder;
@@ -154,4 +154,4 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2

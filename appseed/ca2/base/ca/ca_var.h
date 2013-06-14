@@ -4,7 +4,7 @@
 class var_array;
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -29,7 +29,7 @@ namespace ca
    } // namespace str
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

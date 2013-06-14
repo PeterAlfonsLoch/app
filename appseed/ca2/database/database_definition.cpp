@@ -126,13 +126,13 @@ namespace database
    {
    }
 
-   result_set::result_set(sp(::ca::application) papp) :
-   ca(papp)
+   result_set::result_set(sp(::ca2::application) papp) :
+   ca2(papp)
    {
    }
 
    result_set::result_set(const result_set & set) :
-   ca(set.get_app())
+   ca2(set.get_app())
    {
       operator = (set);
    }
@@ -149,19 +149,19 @@ namespace database
 
    }
 
-   void result_set::write(::ca::byte_output_stream & ostream)
+   void result_set::write(::ca2::byte_output_stream & ostream)
    {
       record_header.write(ostream);
       records.write(ostream);
    }
 
-   void result_set::read(::ca::byte_input_stream & istream)
+   void result_set::read(::ca2::byte_input_stream & istream)
    {
       record_header.read(istream);
       records.read(istream);
    }
 
-   void field_properties::write(::ca::byte_output_stream & ostream)
+   void field_properties::write(::ca2::byte_output_stream & ostream)
    {
       ostream << name;
       ostream << display_name;
@@ -173,7 +173,7 @@ namespace database
       ostream << idx;
    }
 
-   void field_properties::read(::ca::byte_input_stream & istream)
+   void field_properties::read(::ca2::byte_input_stream & istream)
    {
       istream >> name;
       istream >> display_name;

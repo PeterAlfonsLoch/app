@@ -5,9 +5,9 @@ namespace platform
 {
 
 
-   document::document(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::data_container_base(papp),
+   document::document(sp(::ca2::application) papp) :
+      ca2(papp),
+      ::ca2::data_container_base(papp),
       
       form_document(papp)
    {
@@ -61,7 +61,7 @@ namespace platform
    }
    */
 
-   void document::data_on_after_change(::ca::signal_object * pobj)
+   void document::data_on_after_change(::ca2::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);

@@ -7,13 +7,13 @@
     @ingroup colorer_handlers
 */
 class ErrorHandlerWriter : public ErrorHandler,
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
   /** Creates ErrorHandler instance.
       @param writer writer, which is used to output error logs.
   */
-   ErrorHandlerWriter(sp(::ca::application) papp);
+   ErrorHandlerWriter(sp(::ca2::application) papp);
   ~ErrorHandlerWriter();
 
   void fatalError(const string &msg);

@@ -26,7 +26,7 @@ namespace libcompress
       ::MidFree(_buffer);
    }
 
-   HRESULT filter_coder::WriteWithLimit(::ca::writer *outStream, uint32_t size)
+   HRESULT filter_coder::WriteWithLimit(::ca2::writer *outStream, uint32_t size)
    {
       if (_outSizeIsDefined)
       {
@@ -39,7 +39,7 @@ namespace libcompress
       return S_OK;
    }
 
-   ::ca::HRes filter_coder::Code(::ca::reader *inStream, ::ca::writer *outStream, const file_size * /* inSize */, const file_size *outSize, progress_info_interface *progress)
+   ::ca2::HRes filter_coder::Code(::ca2::reader *inStream, ::ca2::writer *outStream, const file_size * /* inSize */, const file_size *outSize, progress_info_interface *progress)
    {
       RINOK(Init());
       uint32_t bufferPos = 0;
@@ -83,14 +83,14 @@ namespace libcompress
       return S_OK;
    }
 
-   ::ca::HRes filter_coder::SetOutStream(::ca::writer *outStream)
+   ::ca2::HRes filter_coder::SetOutStream(::ca2::writer *outStream)
    {
       _bufferPos = 0;
       _outStream = outStream;
       return Init();
    }
 
-   ::ca::HRes filter_coder::ReleaseOutStream()
+   ::ca2::HRes filter_coder::ReleaseOutStream()
    {
       //_outStream.Release();
       return S_OK;
@@ -147,20 +147,20 @@ namespace libcompress
             throw "E_FAIL";
          _bufferPos = 0;
       }
-      ::ca::output_stream_flush_interface * pflush = dynamic_cast < ::ca::output_stream_flush_interface * > (_outStream) ;
+      ::ca2::output_stream_flush_interface * pflush = dynamic_cast < ::ca2::output_stream_flush_interface * > (_outStream) ;
       if(pflush)
          return pflush->flush();
    }
 
 
-   ::ca::HRes filter_coder::SetInStream(::ca::reader *inStream)
+   ::ca2::HRes filter_coder::SetInStream(::ca2::reader *inStream)
    {
       _convertedPosBegin = _convertedPosEnd = _bufferPos = 0;
       _inStream = inStream;
       return Init();
    }
 
-   ::ca::HRes filter_coder::ReleaseInStream()
+   ::ca2::HRes filter_coder::ReleaseInStream()
    {
       //_inStream.Release();
       return S_OK;
@@ -207,34 +207,34 @@ namespace libcompress
       return processedSize;
    }
 
-   ::ca::HRes filter_coder::CryptoSetPassword(const byte *data, uint32_t size)
+   ::ca2::HRes filter_coder::CryptoSetPassword(const byte *data, uint32_t size)
    {
       return _setPassword->CryptoSetPassword(data, size);
    }
 
-   ::ca::HRes filter_coder::SetCoderProperties(const int32_t  * propIDs, const var *properties, uint32_t numProperties)
+   ::ca2::HRes filter_coder::SetCoderProperties(const int32_t  * propIDs, const var *properties, uint32_t numProperties)
    {
       return _SetCoderProperties->SetCoderProperties(propIDs, properties, numProperties);
    }
 
-   ::ca::HRes filter_coder::WriteCoderProperties(::ca::writer *outStream)
+   ::ca2::HRes filter_coder::WriteCoderProperties(::ca2::writer *outStream)
    {
       return _writeCoderProperties->WriteCoderProperties(outStream);
    }
 
    /*
-   ::ca::HRes filter_coder::ResetSalt()
+   ::ca2::HRes filter_coder::ResetSalt()
    {
    return _CryptoResetSalt->ResetSalt();
    }
    */
 
-   ::ca::HRes filter_coder::ResetInitVector()
+   ::ca2::HRes filter_coder::ResetInitVector()
    {
       return _CryptoResetInitVector->ResetInitVector();
    }
 
-   ::ca::HRes filter_coder::SetDecoderProperties2(const byte *data, uint32_t size)
+   ::ca2::HRes filter_coder::SetDecoderProperties2(const byte *data, uint32_t size)
    {
       return _setDecoderProperties->SetDecoderProperties2(data, size);
    }

@@ -9,8 +9,8 @@ namespace crypto
    {
 
 
-      context::context(sp(::ca::application) papp) :
-         ca(papp),
+      context::context(sp(::ca2::application) papp) :
+         ca2(papp),
          m_memoryDigest(papp)
       {
 

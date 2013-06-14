@@ -17,16 +17,16 @@ public:
 
 
 
-   html_form(sp(::ca::application) papp);
+   html_form(sp(::ca2::application) papp);
    virtual ~html_form();
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
-   virtual void _001DrawChildren(::ca::graphics *pdc);
+   virtual void _001OnDraw(::ca2::graphics * pdc);
+   virtual void _001DrawChildren(::ca2::graphics *pdc);
 
    //virtual void layout(::html::data * phtmldata);
    virtual void layout();
 
-   virtual void install_message_handling(::ca::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
    virtual string get_path();
 

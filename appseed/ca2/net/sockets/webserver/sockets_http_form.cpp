@@ -10,8 +10,8 @@ namespace http
 
 #define TMPSIZE 32000
 
-   form::form(sp(::ca::application) papp) :
-      ca(papp),
+   form::form(sp(::ca2::application) papp) :
+      ca2(papp),
       m_setGet(papp),
       m_setPost(papp)
    {
@@ -30,7 +30,7 @@ namespace http
 
       if (content_type.get_length() >= 19 && content_type.Mid(0, 19) == "multipart/form-data")
       {
-         ::ca::parse pa(content_type,";=");
+         ::ca2::parse pa(content_type,";=");
          char *tempcmp = NULL;
          size_t tc = 0;
          strsize iBoundaryLength = 0;
@@ -70,7 +70,7 @@ namespace http
                      slask.trim();
                      if(slask.is_empty())
                         break;
-                     ::ca::parse pa(slask,";");
+                     ::ca2::parse pa(slask,";");
                      string h = pa.getword();
                      if(!stricmp(h,"Content-type:"))
                      {
@@ -86,7 +86,7 @@ namespace http
                            h = pa.getword();
                            while(h.has_char())
                            {
-                              ::ca::parse pa2(h,"=");
+                              ::ca2::parse pa2(h,"=");
                               string name = pa2.getword();
                               h = pa2.getrest();
                               if (!strcmp(name,"name"))
@@ -149,18 +149,18 @@ namespace http
                      // read until m_strBoundary...
 //                     FILE *fil;
                      int32_t out = 0;
-                     char c;
+                     char ca;
                      string strTempFile = System.file().time_square(get_app());
-                     ::ca::filesp spfile(Application.file().get_file(strTempFile, ::ca::file::type_binary | ::ca::file::mode_create | ::ca::file::mode_write));
+                     ::ca2::filesp spfile(Application.file().get_file(strTempFile, ::ca2::file::type_binary | ::ca2::file::mode_create | ::ca2::file::mode_write));
                      if(spfile.is_set())
                      {
-                        while (infil -> read(&c,1))
+                        while (infil -> read(&ca,1))
                         {
                            if (out)
                            {
-                              spfile->write(&tempcmp[tc], 1); // %! ??? should we write value of 'c' here?
+                              spfile->write(&tempcmp[tc], 1); // %! ??? should we write value of 'ca' here?
                            }
-                           tempcmp[tc] = c;
+                           tempcmp[tc] = ca;
                            tc++;
                            if (tc >= iBoundaryLength + extra)
                            {
@@ -223,15 +223,15 @@ namespace http
          m_setPost.parse_url_query(str);
    /*      bool got_name = false; // tnx to FatherNitwit
          int32_t cl = (int32_t)content_length;
-         char c,chigh,clow;
+         char ca,chigh,clow;
          string slask;
    //      m_current = m_cgi.end();
          string name;
 
          cl--;
-         while (cl >= 0 && infil -> read(&c, 1))
+         while (cl >= 0 && infil -> read(&ca, 1))
          {
-            switch (c)
+            switch (ca)
             {
                case '=': /* end of name */
    /*               name = slask;
@@ -242,7 +242,7 @@ namespace http
    /*               if (got_name)
                   {
    //                  cgi = new CGI(name,slask);
-                     if(::ca::str::ends_eat(name, "[]"))
+                     if(::ca2::str::ends_eat(name, "[]"))
                      {
                         m_setPost[name].vara().add(slask);
                      }
@@ -273,7 +273,7 @@ namespace http
                   slask += (char)(chigh * 16 + clow);
                   break;
                default: /* just another char */
-   /*               slask += c;
+   /*               slask += ca;
                   break;
             }
             //
@@ -282,7 +282,7 @@ namespace http
          if (got_name)
          {
    //                  cgi = new CGI(name,slask);
-            if(::ca::str::ends_eat(name, "[]"))
+            if(::ca2::str::ends_eat(name, "[]"))
             {
                m_setPost[name].vara().add(slask);
             }
@@ -309,7 +309,7 @@ namespace http
       return;
       string slask;
       string name;
-      char c,chigh,clow;
+      char ca,chigh,clow;
       size_t ptr = 0;
       bool got_name = false;
 
@@ -317,8 +317,8 @@ namespace http
       ptr = 0;
       while (ptr < l)
       {
-         c = buffer.operator[](ptr++);
-         switch (c)
+         ca = buffer.operator[](ptr++);
+         switch (ca)
          {
             case '=': /* end of name */
   /*             name = slask;
@@ -351,7 +351,7 @@ namespace http
                slask += (char)(chigh * 16 + clow);
                break;
             default: /* just another char */
-          /*     slask += c;
+          /*     slask += ca;
                break;
          }
       }

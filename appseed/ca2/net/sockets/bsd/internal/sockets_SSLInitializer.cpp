@@ -90,8 +90,8 @@ void ssl_sigpipe_handle( int x ) {
    }
 
 
-   SSLInitializer::SSLInitializer(sp(::ca::application) papp) :
-      ca(papp)
+   SSLInitializer::SSLInitializer(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
 
@@ -168,9 +168,9 @@ void ssl_sigpipe_handle( int x ) {
    //TRACE("SSLInitializer: no random file generated\n");
    //   }
 
-      ::ca::filesp spfile(allocer());
+      ::ca2::filesp spfile(allocer());
 
-      spfile->open(m_rand_file, ::ca::file::type_binary | ::ca::file::mode_read);
+      spfile->open(m_rand_file, ::ca2::file::type_binary | ::ca2::file::mode_read);
 
 
       //memstorage.FullLoad(spfile);
@@ -216,7 +216,7 @@ void ssl_sigpipe_handle( int x ) {
       mutex * pmutex;
       if(!mmap.Lookup(n, pmutex))
       {
-         mmap[n] = new mutex(::ca::get_thread_app());
+         mmap[n] = new mutex(::ca2::get_thread_app());
       }
       if (mode & CRYPTO_LOCK)
       {

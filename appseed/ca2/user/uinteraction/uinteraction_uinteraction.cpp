@@ -5,9 +5,9 @@ namespace uinteraction
 {
 
 
-   uinteraction::uinteraction(::ca::application * papp) :
-      ca(papp),
-      ::ca::section(papp)
+   uinteraction::uinteraction(::ca2::application * papp) :
+      ca2(papp),
+      ::ca2::section(papp)
    {
 
    }
@@ -45,7 +45,7 @@ namespace uinteraction
 
 #endif
 
-      ::ca::library library(NULL);
+      ::ca2::library library(NULL);
 
       string strLibrary(strId);
 

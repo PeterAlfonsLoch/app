@@ -33,7 +33,7 @@ namespace sockets
 {
 
    http_put_socket::http_put_socket(socket_handler_base& h) : 
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -46,7 +46,7 @@ namespace sockets
 
 
    http_put_socket::http_put_socket(socket_handler_base& h,const string & url_in) : 
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -72,7 +72,7 @@ namespace sockets
       }
       else
       {
-         Handler().LogError(this, "SetFile", Errno, StrError(Errno), ::ca::log::level_fatal);
+         Handler().LogError(this, "SetFile", Errno, StrError(Errno), ::ca2::log::level_fatal);
          SetCloseAndDelete();
       }
    }

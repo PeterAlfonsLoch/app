@@ -4,14 +4,14 @@
 #include "ca_seekable.h"
 
 
-namespace ca
+namespace ca2
 {
 
    class writer;
    class reader;
 
 
-   typedef ::c::smart_pointer < reader > reader_sp;
+   typedef ::ca::smart_pointer < reader > reader_sp;
 
 
    class CLASS_DECL_ca2 reader :
@@ -20,7 +20,7 @@ namespace ca
    public:
 
 
-      ::ca::reader_sp       m_spreader;
+      ::ca2::reader_sp       m_spreader;
 
 
       reader();
@@ -48,6 +48,6 @@ namespace ca
 
    typedef reader readable;
 
-} // namespace ca
+} // namespace ca2
 
 

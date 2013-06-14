@@ -6,7 +6,7 @@ namespace usermail
 
 
    class CLASS_DECL_ca2 account :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       
@@ -21,7 +21,7 @@ namespace usermail
       db_pop3              m_pop3;
 
 
-      account(sp(::ca::application) papp);
+      account(sp(::ca2::application) papp);
 
 
    };

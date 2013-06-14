@@ -31,105 +31,105 @@
 #include "framework.h"
 
 
-void scTrace(CScriptVar *c, void *userdata);
-void scObjectDump(CScriptVar *c, void *);
-void scObjectClone(CScriptVar *c, void *);
-void scMathRand(CScriptVar *c, void *);
-void scMathRandInt(CScriptVar *c, void *);
-void scCharToInt(CScriptVar *c, void *);
-void scStringIndexOf(CScriptVar *c, void *);
-void scStringSubstring(CScriptVar *c, void *);
-void scStringCharAt(CScriptVar *c, void *);
-void scStringCharCodeAt(CScriptVar *c, void *);
-void scStringSplit(CScriptVar *c, void *);
-void scStringFromCharCode(CScriptVar *c, void *);
-void scIntegerParseInt(CScriptVar *c, void *);
-void scIntegerValueOf(CScriptVar *c, void *);
-void scJSONStringify(CScriptVar *c, void *);
-void scExec(CScriptVar *c, void *data);
-void scEval(CScriptVar *c, void *data);
-void scArrayContains(CScriptVar *c, void *data);
-void scArrayRemove(CScriptVar *c, void *data);
-void scArrayJoin(CScriptVar *c, void *data);
+void scTrace(CScriptVar *ca, void *userdata);
+void scObjectDump(CScriptVar *ca, void *);
+void scObjectClone(CScriptVar *ca, void *);
+void scMathRand(CScriptVar *ca, void *);
+void scMathRandInt(CScriptVar *ca, void *);
+void scCharToInt(CScriptVar *ca, void *);
+void scStringIndexOf(CScriptVar *ca, void *);
+void scStringSubstring(CScriptVar *ca, void *);
+void scStringCharAt(CScriptVar *ca, void *);
+void scStringCharCodeAt(CScriptVar *ca, void *);
+void scStringSplit(CScriptVar *ca, void *);
+void scStringFromCharCode(CScriptVar *ca, void *);
+void scIntegerParseInt(CScriptVar *ca, void *);
+void scIntegerValueOf(CScriptVar *ca, void *);
+void scJSONStringify(CScriptVar *ca, void *);
+void scExec(CScriptVar *ca, void *data);
+void scEval(CScriptVar *ca, void *data);
+void scArrayContains(CScriptVar *ca, void *data);
+void scArrayRemove(CScriptVar *ca, void *data);
+void scArrayJoin(CScriptVar *ca, void *data);
 
 
 // ----------------------------------------------- Actual Functions
-void scTrace(CScriptVar *c, void *userdata) {
+void scTrace(CScriptVar *ca, void *userdata) {
     tinyjs *js = (tinyjs*)userdata;
     js->root->trace();
 }
 
-void scObjectDump(CScriptVar *c, void *) {
-    c->getParameter("this")->trace("> ");
+void scObjectDump(CScriptVar *ca, void *) {
+    ca->getParameter("this")->trace("> ");
 }
 
-void scObjectClone(CScriptVar *c, void *) {
-    CScriptVar *obj = c->getParameter("this");
-    c->getReturnVar()->copyValue(obj);
+void scObjectClone(CScriptVar *ca, void *) {
+    CScriptVar *obj = ca->getParameter("this");
+    ca->getReturnVar()->copyValue(obj);
 }
 
-void scMathRand(CScriptVar *c, void *) {
-    c->getReturnVar()->setDouble((double)rand()/RAND_MAX);
+void scMathRand(CScriptVar *ca, void *) {
+    ca->getReturnVar()->setDouble((double)rand()/RAND_MAX);
 }
 
-void scMathRandInt(CScriptVar *c, void *) {
-    int32_t min = c->getParameter("min")->getInt();
-    int32_t max = c->getParameter("max")->getInt();
+void scMathRandInt(CScriptVar *ca, void *) {
+    int32_t min = ca->getParameter("min")->getInt();
+    int32_t max = ca->getParameter("max")->getInt();
     int32_t val = min + (int32_t)((long)rand()*(1+max-min)/RAND_MAX);
     if (val>max) val=max;
-    c->getReturnVar()->setInt(val);
+    ca->getReturnVar()->setInt(val);
 }
 
-void scCharToInt(CScriptVar *c, void *) {
-    string str = c->getParameter("ch")->getString();;
+void scCharToInt(CScriptVar *ca, void *) {
+    string str = ca->getParameter("ch")->getString();;
     int32_t val = 0;
     if (str.length()>0)
         val = (int32_t)str.c_str()[0];
-    c->getReturnVar()->setInt(val);
+    ca->getReturnVar()->setInt(val);
 }
 
-void scStringIndexOf(CScriptVar *c, void *) {
-    string str = c->getParameter("this")->getString();
-    string search = c->getParameter("search")->getString();
+void scStringIndexOf(CScriptVar *ca, void *) {
+    string str = ca->getParameter("this")->getString();
+    string search = ca->getParameter("search")->getString();
     strsize p = str.find(search);
     int32_t val = (int32_t) ((p < 0) ? -1 : p);
-    c->getReturnVar()->setInt(val);
+    ca->getReturnVar()->setInt(val);
 }
 
-void scStringSubstring(CScriptVar *c, void *) {
-    string str = c->getParameter("this")->getString();
-    int32_t lo = c->getParameter("lo")->getInt();
-    int32_t hi = c->getParameter("hi")->getInt();
+void scStringSubstring(CScriptVar *ca, void *) {
+    string str = ca->getParameter("this")->getString();
+    int32_t lo = ca->getParameter("lo")->getInt();
+    int32_t hi = ca->getParameter("hi")->getInt();
 
     int32_t l = hi-lo;
     if (l>0 && lo>=0 && lo+l<=(int32_t)str.length())
-      c->getReturnVar()->setString(str.substr(lo, l));
+      ca->getReturnVar()->setString(str.substr(lo, l));
     else
-      c->getReturnVar()->setString("");
+      ca->getReturnVar()->setString("");
 }
 
-void scStringCharAt(CScriptVar *c, void *) {
-    string str = c->getParameter("this")->getString();
-    int32_t p = c->getParameter("pos")->getInt();
+void scStringCharAt(CScriptVar *ca, void *) {
+    string str = ca->getParameter("this")->getString();
+    int32_t p = ca->getParameter("pos")->getInt();
     if (p>=0 && p<(int32_t)str.length())
-      c->getReturnVar()->setString(str.substr(p, 1));
+      ca->getReturnVar()->setString(str.substr(p, 1));
     else
-      c->getReturnVar()->setString("");
+      ca->getReturnVar()->setString("");
 }
 
-void scStringCharCodeAt(CScriptVar *c, void *) {
-    string str = c->getParameter("this")->getString();
-    int32_t p = c->getParameter("pos")->getInt();
+void scStringCharCodeAt(CScriptVar *ca, void *) {
+    string str = ca->getParameter("this")->getString();
+    int32_t p = ca->getParameter("pos")->getInt();
     if (p>=0 && p<(int32_t)str.length())
-      c->getReturnVar()->setInt(str[p]);
+      ca->getReturnVar()->setInt(str[p]);
     else
-      c->getReturnVar()->setInt(0);
+      ca->getReturnVar()->setInt(0);
 }
 
-void scStringSplit(CScriptVar *c, void *) {
-    string str = c->getParameter("this")->getString();
-    string sep = c->getParameter("separator")->getString();
-    CScriptVar *result = c->getReturnVar();
+void scStringSplit(CScriptVar *ca, void *) {
+    string str = ca->getParameter("this")->getString();
+    string sep = ca->getParameter("separator")->getString();
+    CScriptVar *result = ca->getReturnVar();
     result->setArray();
     int32_t length = 0;
 
@@ -144,49 +144,49 @@ void scStringSplit(CScriptVar *c, void *) {
       result->setArrayIndex(length++, new CScriptVar(str));
 }
 
-void scStringFromCharCode(CScriptVar *c, void *) {
+void scStringFromCharCode(CScriptVar *ca, void *) {
     char str[2];
-    str[0] = c->getParameter("char")->getInt();
+    str[0] = ca->getParameter("char")->getInt();
     str[1] = 0;
-    c->getReturnVar()->setString(str);
+    ca->getReturnVar()->setString(str);
 }
 
-void scIntegerParseInt(CScriptVar *c, void *) {
-    string str = c->getParameter("str")->getString();
+void scIntegerParseInt(CScriptVar *ca, void *) {
+    string str = ca->getParameter("str")->getString();
     int32_t val = (int32_t) strtol(str.c_str(),0,0);
-    c->getReturnVar()->setInt(val);
+    ca->getReturnVar()->setInt(val);
 }
 
-void scIntegerValueOf(CScriptVar *c, void *) {
-    string str = c->getParameter("str")->getString();
+void scIntegerValueOf(CScriptVar *ca, void *) {
+    string str = ca->getParameter("str")->getString();
 
     int32_t val = 0;
     if (str.length()==1)
       val = str[0];
-    c->getReturnVar()->setInt(val);
+    ca->getReturnVar()->setInt(val);
 }
 
-void scJSONStringify(CScriptVar *c, void *) {
+void scJSONStringify(CScriptVar *ca, void *) {
     string result;
-    c->getParameter("obj")->getJSON(result);
-    c->getReturnVar()->setString(result);
+    ca->getParameter("obj")->getJSON(result);
+    ca->getReturnVar()->setString(result);
 }
 
-void scExec(CScriptVar *c, void *data) {
+void scExec(CScriptVar *ca, void *data) {
     tinyjs *tinyJS = (tinyjs *)data;
-    string str = c->getParameter("jsCode")->getString();
+    string str = ca->getParameter("jsCode")->getString();
     tinyJS->execute(str);
 }
 
-void scEval(CScriptVar *c, void *data) {
+void scEval(CScriptVar *ca, void *data) {
     tinyjs *tinyJS = (tinyjs *)data;
-    string str = c->getParameter("jsCode")->getString();
-    c->setReturnVar(tinyJS->evaluateComplex(str).var);
+    string str = ca->getParameter("jsCode")->getString();
+    ca->setReturnVar(tinyJS->evaluateComplex(str).var);
 }
 
-void scArrayContains(CScriptVar *c, void *data) {
-  CScriptVar *obj = c->getParameter("obj");
-  CScriptVarLink *v = c->getParameter("this")->firstChild;
+void scArrayContains(CScriptVar *ca, void *data) {
+  CScriptVar *obj = ca->getParameter("obj");
+  CScriptVarLink *v = ca->getParameter("this")->firstChild;
 
   bool contains = false;
   while (v) {
@@ -197,15 +197,15 @@ void scArrayContains(CScriptVar *c, void *data) {
       v = v->nextSibling;
   }
 
-  c->getReturnVar()->setInt(contains);
+  ca->getReturnVar()->setInt(contains);
 }
 
-void scArrayRemove(CScriptVar *c, void *data) {
-  CScriptVar *obj = c->getParameter("obj");
+void scArrayRemove(CScriptVar *ca, void *data) {
+  CScriptVar *obj = ca->getParameter("obj");
   int_array removedIndices;
   CScriptVarLink *v;
   // remove
-  v = c->getParameter("this")->firstChild;
+  v = ca->getParameter("this")->firstChild;
   while (v) {
       if (v->var->equals(obj)) {
         removedIndices.push_back(v->getIntName());
@@ -213,7 +213,7 @@ void scArrayRemove(CScriptVar *c, void *data) {
       v = v->nextSibling;
   }
   // renumber
-  v = c->getParameter("this")->firstChild;
+  v = ca->getParameter("this")->firstChild;
   while (v) {
       int32_t n = v->getIntName();
       int32_t newn = n;
@@ -226,9 +226,9 @@ void scArrayRemove(CScriptVar *c, void *data) {
   }
 }
 
-void scArrayJoin(CScriptVar *c, void *data) {
-  string sep = c->getParameter("separator")->getString();
-  CScriptVar *arr = c->getParameter("this");
+void scArrayJoin(CScriptVar *ca, void *data) {
+  string sep = ca->getParameter("separator")->getString();
+  CScriptVar *arr = ca->getParameter("this");
 
   string sstr;
   int32_t l = arr->getArrayLength();
@@ -237,7 +237,7 @@ void scArrayJoin(CScriptVar *c, void *data) {
     sstr += arr->getArrayIndex(i)->getString();
   }
 
-  c->getReturnVar()->setString(sstr);
+  ca->getReturnVar()->setString(sstr);
 }
 
 // ----------------------------------------------- Register Functions

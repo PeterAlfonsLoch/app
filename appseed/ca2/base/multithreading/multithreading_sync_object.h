@@ -10,7 +10,7 @@
 **/
 
 class CLASS_DECL_ca2 sync_object :
-   public ::ca::object
+   public ::ca2::object
 {
 public:
 
@@ -27,10 +27,10 @@ public:
 
    operator HANDLE() const;
 
-   using ::ca::object::lock;
+   using ::ca2::object::lock;
    virtual bool lock(const duration & durationTimeout);
 
-   using ::ca::object::wait;
+   using ::ca2::object::wait;
    virtual wait_result wait(const duration & durationTimeout);
 
    virtual bool unlock() = 0;

@@ -33,7 +33,7 @@ namespace colorertake5
  * @ingroup colorer
  */
    class CLASS_DECL_ca2 ParserFactory :
-      virtual public ::ca::object
+      virtual public ::ca2::object
 {
 public:
 
@@ -42,7 +42,7 @@ public:
    * Searches for catalog.xml in the set of predefined locations
    * @throw ParserFactoryException If can't find catalog at any of standard locations.
    */
-   ParserFactory(sp(::ca::application) papp);
+   ParserFactory(sp(::ca2::application) papp);
 
   /**
    * ParserFactory Constructor with explicit catalog path.
@@ -50,7 +50,7 @@ public:
    *        standard search method is used.
    * @throw ParserFactoryException If can't load specified catalog.
    */
-  ParserFactory(sp(::ca::application) papp, string catalogPath);
+  ParserFactory(sp(::ca2::application) papp, string catalogPath);
   virtual ~ParserFactory();
 
   static const char *getVersion();
@@ -115,7 +115,7 @@ private:
   string searchPath();
 
   string catalogPath;
-  ::ca::byte_input_stream * catalogFIS;
+  ::ca2::byte_input_stream * catalogFIS;
   ErrorHandler *fileErrorHandler;
   stringa hrcLocations;
   string_map < string_map < stringa >, const string_map < stringa > & > hrdLocations;

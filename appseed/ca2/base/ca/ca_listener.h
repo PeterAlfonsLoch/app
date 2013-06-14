@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 listener :
@@ -10,4 +10,4 @@ namespace ca
 
    };
 
-}// namespace ca
+}// namespace ca2

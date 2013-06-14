@@ -1,5 +1,5 @@
 /*
- * aes_cbc.c
+ * aes_cbc.ca
  *
  * AES Cipher Block Chaining Mode
  *
@@ -9,7 +9,7 @@
 
 /*
  *   
- * Copyright (c) 2001-2006, Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006, Cisco Systems, Inc.
  * 
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -52,14 +52,14 @@ debug_module_t mod_aes_cbc = {
 };
 
 
-err_status_t aes_cbc_alloc(cipher_t ** c, int32_t key_len);
-err_status_t aes_cbc_dealloc(cipher_t * c);
-err_status_t aes_cbc_decrypt(aes_cbc_ctx_t * c, uchar *data, uint32_t *bytes_in_data);
+err_status_t aes_cbc_alloc(cipher_t ** ca, int32_t key_len);
+err_status_t aes_cbc_dealloc(cipher_t * ca);
+err_status_t aes_cbc_decrypt(aes_cbc_ctx_t * ca, uchar *data, uint32_t *bytes_in_data);
 
 
 
 err_status_t
-aes_cbc_alloc(cipher_t **c, int32_t key_len)
+aes_cbc_alloc(cipher_t **ca, int32_t key_len)
 {
   extern cipher_type_t aes_cbc;
   uint8_t *pointer;
@@ -78,31 +78,31 @@ aes_cbc_alloc(cipher_t **c, int32_t key_len)
     return err_status_alloc_fail;
 
   /* set pointers */
-  *c = (cipher_t *)pointer;
-  (*c)->type = &aes_cbc;
-  (*c)->state = pointer + sizeof(cipher_t);
+  *ca = (cipher_t *)pointer;
+  (*ca)->type = &aes_cbc;
+  (*ca)->state = pointer + sizeof(cipher_t);
 
   /* increment ref_count */
   aes_cbc.ref_count++;
 
   /* set key size        */
-  (*c)->key_len = key_len;
+  (*ca)->key_len = key_len;
 
   return err_status_ok;  
 }
 
 err_status_t
-aes_cbc_dealloc(cipher_t *c)
+aes_cbc_dealloc(cipher_t *ca)
 {
 
    extern cipher_type_t aes_cbc;
 
   /* zeroize entire state*/
-  octet_string_set_to_zero((uint8_t *)c, 
+  octet_string_set_to_zero((uint8_t *)ca, 
             sizeof(aes_cbc_ctx_t) + sizeof(cipher_t));
 
   /* free primitive::memory */
-  crypto_free(c);
+  crypto_free(ca);
 
   /* decrement ref_count */
   aes_cbc.ref_count--;
@@ -112,7 +112,7 @@ aes_cbc_dealloc(cipher_t *c)
 }
 
 err_status_t
-aes_cbc_context_init(aes_cbc_ctx_t *c, const uint8_t *key, 
+aes_cbc_context_init(aes_cbc_ctx_t *ca, const uint8_t *key, 
            cipher_direction_t dir) {
   v128_t tmp_key;
 
@@ -125,10 +125,10 @@ aes_cbc_context_init(aes_cbc_ctx_t *c, const uint8_t *key,
   /* expand key for the appropriate direction */
   switch (dir) {
   case (direction_encrypt):
-    aes_expand_encryption_key(&tmp_key, c->expanded_key);
+    aes_expand_encryption_key(&tmp_key, ca->expanded_key);
     break;
   case (direction_decrypt):
-    aes_expand_decryption_key(&tmp_key, c->expanded_key);
+    aes_expand_decryption_key(&tmp_key, ca->expanded_key);
     break;
   default:
     return err_status_bad_param;
@@ -140,22 +140,22 @@ aes_cbc_context_init(aes_cbc_ctx_t *c, const uint8_t *key,
 
 
 err_status_t
-aes_cbc_set_iv(aes_cbc_ctx_t *c, void *iv) {
+aes_cbc_set_iv(aes_cbc_ctx_t *ca, void *iv) {
   int32_t i;
 /*   v128_t *input = iv; */
   uint8_t *input = (uint8_t*) iv;
  
   /* set state and 'previous' block to iv */
   for (i=0; i < 16; i++) 
-    c->previous.v8[i] = c->state.v8[i] = input[i];
+    ca->previous.v8[i] = ca->state.v8[i] = input[i];
 
-  debug_print(mod_aes_cbc, "setting iv: %s", v128_hex_string(&c->state)); 
+  debug_print(mod_aes_cbc, "setting iv: %s", v128_hex_string(&ca->state)); 
 
   return err_status_ok;
 }
 
 err_status_t
-aes_cbc_encrypt(aes_cbc_ctx_t *c,
+aes_cbc_encrypt(aes_cbc_ctx_t *ca,
       uchar *data, 
       uint32_t *bytes_in_data) {
   int32_t i;
@@ -174,7 +174,7 @@ aes_cbc_encrypt(aes_cbc_ctx_t *c,
    * been set, e.g. by calling aes_cbc_set_iv()
    */
   debug_print(mod_aes_cbc, "iv: %s", 
-         v128_hex_string(&c->state));
+         v128_hex_string(&ca->state));
   
   /*
    * loop over plaintext blocks, exoring state into plaintext then
@@ -184,19 +184,19 @@ aes_cbc_encrypt(aes_cbc_ctx_t *c,
     
     /* exor plaintext into state */
     for (i=0; i < 16; i++)
-      c->state.v8[i] ^= *input++;
+      ca->state.v8[i] ^= *input++;
 
     debug_print(mod_aes_cbc, "inblock:  %s", 
-         v128_hex_string(&c->state));
+         v128_hex_string(&ca->state));
 
-    aes_encrypt(&c->state, c->expanded_key);
+    aes_encrypt(&ca->state, ca->expanded_key);
 
     debug_print(mod_aes_cbc, "outblock: %s", 
-         v128_hex_string(&c->state));
+         v128_hex_string(&ca->state));
 
     /* copy ciphertext to output */
     for (i=0; i < 16; i++)
-      *output++ = c->state.v8[i];
+      *output++ = ca->state.v8[i];
 
     bytes_to_encr -= 16;
   }
@@ -205,7 +205,7 @@ aes_cbc_encrypt(aes_cbc_ctx_t *c,
 }
 
 err_status_t
-aes_cbc_decrypt(aes_cbc_ctx_t *c,
+aes_cbc_decrypt(aes_cbc_ctx_t *ca,
       uchar *data, 
       uint32_t *bytes_in_data)
 {
@@ -225,7 +225,7 @@ aes_cbc_decrypt(aes_cbc_ctx_t *c,
 
   /* set 'previous' block to iv*/
   for (i=0; i < 16; i++) {
-    previous.v8[i] = c->previous.v8[i];
+    previous.v8[i] = ca->previous.v8[i];
   }
 
   debug_print(mod_aes_cbc, "iv: %s", 
@@ -246,7 +246,7 @@ aes_cbc_decrypt(aes_cbc_ctx_t *c,
          v128_hex_string(&state));
     
     /* decrypt state */
-    aes_decrypt(&state, c->expanded_key);
+    aes_decrypt(&state, ca->expanded_key);
 
     debug_print(mod_aes_cbc, "outblock: %s", 
          v128_hex_string(&state));
@@ -271,7 +271,7 @@ aes_cbc_decrypt(aes_cbc_ctx_t *c,
 
 
 err_status_t
-aes_cbc_nist_encrypt(aes_cbc_ctx_t *c,
+aes_cbc_nist_encrypt(aes_cbc_ctx_t *ca,
            uchar *data, 
            uint32_t *bytes_in_data) {
   int32_t i;
@@ -298,7 +298,7 @@ aes_cbc_nist_encrypt(aes_cbc_ctx_t *c,
   /*
    * now cbc encrypt the padded data 
    */
-  status = aes_cbc_encrypt(c, data, bytes_in_data);
+  status = aes_cbc_encrypt(ca, data, bytes_in_data);
   if (status) 
     return status;
 
@@ -307,7 +307,7 @@ aes_cbc_nist_encrypt(aes_cbc_ctx_t *c,
 
 
 err_status_t
-aes_cbc_nist_decrypt(aes_cbc_ctx_t *c,
+aes_cbc_nist_decrypt(aes_cbc_ctx_t *ca,
            uchar *data, 
            uint32_t *bytes_in_data) {
   uchar *pad_end;
@@ -317,7 +317,7 @@ aes_cbc_nist_decrypt(aes_cbc_ctx_t *c,
   /*
    * cbc decrypt the padded data 
    */
-  status = aes_cbc_decrypt(c, data, bytes_in_data);
+  status = aes_cbc_decrypt(ca, data, bytes_in_data);
   if (status) 
     return status;
 

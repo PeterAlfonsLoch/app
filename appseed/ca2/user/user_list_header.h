@@ -42,7 +42,7 @@ namespace user
       };
 
 
-      ::ca::font_sp                 m_font;
+      ::ca2::font_sp                 m_font;
       string                        m_strBuffer;
       visual::graphics_extension    m_dcextension;
 
@@ -57,14 +57,14 @@ namespace user
       list *                        m_plistctrlinterface;
 
 
-      list_header(sp(::ca::application) papp);
+      list_header(sp(::ca2::application) papp);
       virtual ~list_header();
 
-      void AddMessageHandling(::ca::message::dispatch * pinterface);
+      void AddMessageHandling(::ca2::message::dispatch * pinterface);
       void SetBaseListCtrlInterface(list * pinterface);
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
-      virtual void DrawItem(::ca::draw_item * pdrawitem);
+      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void DrawItem(::ca2::draw_item * pdrawitem);
 
 
       virtual bool DIDDXColumn(bool bSave, index iColumn);

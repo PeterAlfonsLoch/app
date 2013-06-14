@@ -12,7 +12,7 @@ namespace gcom
       class thread;
 
       class CLASS_DECL_ca2 Main :
-         virtual public ::ca::signalizable
+         virtual public ::ca2::signalizable
       {
       protected:
 
@@ -37,7 +37,7 @@ namespace gcom
          bool                       m_bPendingLayout;
 
       public:
-         Main(sp(::ca::application) papp, Interface * pbackviewinterface);
+         Main(sp(::ca2::application) papp, Interface * pbackviewinterface);
          virtual ~Main();
 
          void AddRef();
@@ -54,9 +54,9 @@ namespace gcom
          EImagePlacement GetCurrentImagePlacement();
          bool GetNextImagePath(string & str);
          ::mutex & GetTransferMutex();
-         ::ca::graphics & GetTransferDC();
+         ::ca2::graphics & GetTransferDC();
          void SetBackgroundImageChangeInterval(uint32_t dwMillis);
-         void OnImageLoaded(::ca::dib * pdib);
+         void OnImageLoaded(::ca2::dib * pdib);
          void UpdateDrawingObjects();
          void OnDestroy();
          void OnResize();

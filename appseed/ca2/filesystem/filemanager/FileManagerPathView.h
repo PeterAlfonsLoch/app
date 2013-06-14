@@ -11,14 +11,14 @@ public:
 
 
 
-   FileManagerPathView(sp(::ca::application) papp);
+   FileManagerPathView(sp(::ca2::application) papp);
 
    
    virtual void _001OnAfterChangeText();
 
 
    void _017Synchronize();
-   void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint);
+   void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint);
 
 
 };

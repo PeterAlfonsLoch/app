@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
-   output_file_stream::output_file_stream(sp(::ca::application) papp, const char * pszFileName, uint32_t dwFlags)
+   output_file_stream::output_file_stream(sp(::ca2::application) papp, const char * pszFileName, uint32_t dwFlags)
    {
 
       m_spfile = App(papp).file().get_file(pszFileName, dwFlags);
@@ -18,6 +18,6 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 
 

@@ -5,9 +5,9 @@ namespace usermail
 {
 
 
-   usermail::usermail(::ca::application * papp) : 
-      ca(papp),
-      ::ca::section(papp)
+   usermail::usermail(::ca2::application * papp) : 
+      ca2(papp),
+      ::ca2::section(papp)
    {
    }
 
@@ -19,7 +19,7 @@ namespace usermail
    bool usermail::initialize_instance()
    {
 
-      if(!::ca::section::initialize_instance())
+      if(!::ca2::section::initialize_instance())
          return FALSE;
 
 
@@ -30,7 +30,7 @@ namespace usermail
    {
       try
       {
-         ::ca::section::exit_instance();
+         ::ca2::section::exit_instance();
       }
       catch(...)
       {

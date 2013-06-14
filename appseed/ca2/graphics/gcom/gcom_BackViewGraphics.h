@@ -33,11 +33,11 @@ namespace gcom
       {
       public:
 
-         ::ca::graphics_sp               m_dcScreen;
+         ::ca2::graphics_sp               m_dcScreen;
          rect             m_rectFinalPlacement;
 
-         map < int32_t, int32_t, ::ca::dib *, ::ca::dib * > m_mapDib;
-//         ::ca::draw_dib_sp         m_spdrawdib;
+         map < int32_t, int32_t, ::ca2::dib *, ::ca2::dib * > m_mapDib;
+//         ::ca2::draw_dib_sp         m_spdrawdib;
 
          mutex   m_mutgenBack;
          mutex   m_mutgenBuffer;
@@ -50,7 +50,7 @@ namespace gcom
          virtual ~Graphics();
          void UpdateObjects();
          void OnDestroy();
-         void OnImageLoaded(::ca::dib * pdib);
+         void OnImageLoaded(::ca2::dib * pdib);
          void LayoutBackBitmap(BITMAP * lpbmBack);
          EImagePlacement GetDefaultPlacement();
          // buffer Level 2 consists of m_dcBackView2,
@@ -61,50 +61,50 @@ namespace gcom
          // and the final background buffer.
          bool RenderBufferLevel2();
 
-         ::ca::graphics & GetTransferDC(); // m_dcBackView2
-         ::ca::graphics & GetFrame1DC(); // m_dcBackView2
-         ::ca::graphics & GetBufferDC(); // m_dcBackView2
-         ::ca::graphics & GetSourceDC(); // m_dcBackViewSource
-         ::ca::graphics & GetScreenDC(); // m_dcBackViewSource
+         ::ca2::graphics & GetTransferDC(); // m_dcBackView2
+         ::ca2::graphics & GetFrame1DC(); // m_dcBackView2
+         ::ca2::graphics & GetBufferDC(); // m_dcBackView2
+         ::ca2::graphics & GetSourceDC(); // m_dcBackViewSource
+         ::ca2::graphics & GetScreenDC(); // m_dcBackViewSource
 
-         ::ca::dib * GetDib(int32_t iIndex);
-//         ::ca::draw_dib & GetDrawDib();
+         ::ca2::dib * GetDib(int32_t iIndex);
+//         ::ca2::draw_dib & GetDrawDib();
 
-         ::ca::bitmap & GetTransferBitmap(); // m_bmpBackView2
-         ::ca::bitmap & GetFrame1Bitmap(); // m_bmpBackView2
-         ::ca::bitmap & GetBufferBitmap(); // m_bmpBackView2
-         ::ca::bitmap & GetSourceBitmap(); // m_bmpBackViewSource
+         ::ca2::bitmap & GetTransferBitmap(); // m_bmpBackView2
+         ::ca2::bitmap & GetFrame1Bitmap(); // m_bmpBackView2
+         ::ca2::bitmap & GetBufferBitmap(); // m_bmpBackView2
+         ::ca2::bitmap & GetSourceBitmap(); // m_bmpBackViewSource
 
-         virtual void OnCreateDib(::ca::dib * pdib, int32_t iIndex);
+         virtual void OnCreateDib(::ca2::dib * pdib, int32_t iIndex);
          
 
-         ::ca::bitmap & GetBackBitmap(); // m_bmpBackView
-         ::ca::graphics & GetBackDC(); // m_dcBackView
+         ::ca2::bitmap & GetBackBitmap(); // m_bmpBackView
+         ::ca2::graphics & GetBackDC(); // m_dcBackView
          
 //         // Back tools keep the current background snapshot
-//         ::ca::graphics_sp               m_dcBack;
-//         ::ca::bitmap            m_bmpBack;
-//         ::ca::bitmap            m_bmpBackOld;
+//         ::ca2::graphics_sp               m_dcBack;
+//         ::ca2::bitmap            m_bmpBack;
+//         ::ca2::bitmap            m_bmpBackOld;
 
          // Back tools keep the final ::user::view background snapshot
-//         ::ca::graphics_sp               m_dcBuffer;
-//         ::ca::bitmap            m_bmpBuffer;
-//         ::ca::bitmap            m_bmpBufferOld;
+//         ::ca2::graphics_sp               m_dcBuffer;
+//         ::ca2::bitmap            m_bmpBuffer;
+//         ::ca2::bitmap            m_bmpBufferOld;
 
          // Used for fast buffer transfer
-//         ::ca::graphics_sp               m_dcTransfer;
-//         ::ca::bitmap            m_bmpTransfer;
-//         ::ca::bitmap            m_bmpTransferOld;
+//         ::ca2::graphics_sp               m_dcTransfer;
+//         ::ca2::bitmap            m_bmpTransfer;
+//         ::ca2::bitmap            m_bmpTransferOld;
 
          // Source tools keep the original bitmap int32_t its original size
-//         ::ca::graphics_sp               m_dcSource;
-//         ::ca::bitmap            m_bmpSource;
-//         ::ca::bitmap            m_bmpSourceOld;
+//         ::ca2::graphics_sp               m_dcSource;
+//         ::ca2::bitmap            m_bmpSource;
+//         ::ca2::bitmap            m_bmpSourceOld;
 
          // Source tools keep the original bitmap int32_t its original size
-//         ::ca::graphics_sp               m_dcFrame1;
-//         ::ca::bitmap            m_bmpFrame1;
-//       ::ca::bitmap            m_bmpFrame1Old;
+//         ::ca2::graphics_sp               m_dcFrame1;
+//         ::ca2::bitmap            m_bmpFrame1;
+//       ::ca2::bitmap            m_bmpFrame1Old;
 
          void GetFinalPlacement(LPRECT lprect);
          void BackToTransfer();

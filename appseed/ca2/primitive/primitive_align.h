@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ca
+namespace ca2
 {
    enum Alignment
    {
@@ -13,4 +13,4 @@ namespace ca
       AlignTop                = 8,
       AlignBottom             = 12,
    };
-} // namespace ca
+} // namespace ca2

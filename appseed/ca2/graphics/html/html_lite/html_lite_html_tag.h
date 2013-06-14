@@ -4,7 +4,7 @@
  *   lite_html_tag.h - Defines lite_html_tag
  *
  *   Written By Gurmeet S. Kochar <gomzygotit@hotmail.com>
- *   Copyright (c) 2004. 
+ *   Copyright (ca) 2004. 
  *
  *   This code may be used in compiled form in any way you desire 
  *   (including commercial use). The code may be redistributed 

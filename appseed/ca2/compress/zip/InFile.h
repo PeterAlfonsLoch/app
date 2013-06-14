@@ -4,18 +4,18 @@
 #ifdef LINUX
 
 
-namespace ca
+namespace ca2
 {
 
 
     class file;
 
 
-} // namespace ca
+} // namespace ca2
 
 
 
-typedef ::ca::file * HFILE;
+typedef ::ca2::file * HFILE;
 
 
 #endif
@@ -27,7 +27,7 @@ namespace zip
    class File;
 
    class CLASS_DECL_ca2 InFile :
-      public ::ca::file
+      public ::ca2::file
    {
    public:
 
@@ -50,7 +50,7 @@ namespace zip
       string                              m_strZipFile;
 
 
-      InFile(sp(::ca::application) papp);
+      InFile(sp(::ca2::application) papp);
       virtual ~InFile();
 
 
@@ -62,7 +62,7 @@ namespace zip
       virtual bool zip_open(const char *,UINT);
       virtual bool zip_open(File * pzfile, const char * lpcszFileName);
 
-      virtual bool unzip_open(sp(::ca::file) pfile);
+      virtual bool unzip_open(sp(::ca2::file) pfile);
       virtual bool unzip_open(const char *,UINT);
       virtual bool unzip_open(File * pzfile, const char * lpcszFileName);
 
@@ -70,14 +70,14 @@ namespace zip
 
       virtual void add_file(const char * pszDir, const char * pszRelative);
 
-      bool dump(sp(::ca::file) pfile);
+      bool dump(sp(::ca2::file) pfile);
 
-      virtual sp(::ca::file) Duplicate() const;
+      virtual sp(::ca2::file) Duplicate() const;
 
       File * get_zip_file();
       const File * get_zip_file() const;
 
-      virtual file_position seek(file_offset lOff, ::ca::e_seek  nFrom);
+      virtual file_position seek(file_offset lOff, ::ca2::e_seek  nFrom);
       virtual void set_length(file_size dwNewLen);
       virtual file_size get_length() const;
 
@@ -101,7 +101,7 @@ namespace zip
 
 
    private:
-      using ::ca::file::open;
+      using ::ca2::file::open;
 
    };
 

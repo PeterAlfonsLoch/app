@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
    void fs_interface::ls_dir(const char * pszPath, stringa & straName)
@@ -34,4 +34,4 @@ namespace ca
       return false;
    }
 
-} // namespace ca
+} // namespace ca2

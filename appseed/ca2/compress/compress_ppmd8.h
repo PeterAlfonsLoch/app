@@ -63,8 +63,8 @@ typedef struct
   uint32_t Low;
   union
   {
-    ::ca::IByteIn *In;
-    ::ca::IByteOut *Out;
+    ::ca2::IByteIn *In;
+    ::ca2::IByteOut *Out;
   } Stream;
 
   byte Indx2Units[PPMD_NUM_INDEXES];
@@ -78,8 +78,8 @@ typedef struct
 } CPpmd8;
 
 void Ppmd8_Construct(CPpmd8 *p);
-bool Ppmd8_Alloc(CPpmd8 *p, uint32_t size, ::ca::ISzAlloc *alloc);
-void Ppmd8_Free(CPpmd8 *p, ::ca::ISzAlloc *alloc);
+bool Ppmd8_Alloc(CPpmd8 *p, uint32_t size, ::ca2::ISzAlloc *alloc);
+void Ppmd8_Free(CPpmd8 *p, ::ca2::ISzAlloc *alloc);
 void Ppmd8_Init(CPpmd8 *p, uint32_t maxOrder, uint32_t restoreMethod);
 #define Ppmd8_WasAllocated(p) ((p)->Base != NULL)
 

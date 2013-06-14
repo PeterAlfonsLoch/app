@@ -9,7 +9,7 @@ namespace user
 
 
    class tool_tip_tool :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
       tool_tip_tool();
@@ -19,7 +19,7 @@ namespace user
       void BaseToolTipSetHandler(tool_tip_window * phandler);
 
       // Message handling
-      void BaseToolTipRelayEvent(::ca::signal_object * pobj);
+      void BaseToolTipRelayEvent(::ca2::signal_object * pobj);
 
       // Overridables
       virtual void BaseToolTipGetRect(LPRECT lprect);

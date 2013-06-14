@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
    class CLASS_DECL_ca2 interlocked_long
@@ -24,4 +24,4 @@ namespace ca
 
    };
 
-} // namespace ca
+} // namespace ca2

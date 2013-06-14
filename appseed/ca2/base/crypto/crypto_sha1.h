@@ -17,7 +17,7 @@
  *      single character names, were used because those were the names
  *      used in the publication.
  *
- *      Please read the file sha1.c for more information.
+ *      Please read the file sha1.ca for more information.
  *
  */
 #pragma once

@@ -10,7 +10,7 @@
 
 /*
  *   
- * Copyright (c) 2001-2006, Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006, Cisco Systems, Inc.
  * 
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -63,19 +63,19 @@ typedef struct {
  */
 
 err_status_t
-null_cipher_init(null_cipher_ctx_t *c, const uint8_t *key);
+null_cipher_init(null_cipher_ctx_t *ca, const uint8_t *key);
 
 err_status_t
-null_cipher_set_segment(null_cipher_ctx_t *c,
+null_cipher_set_segment(null_cipher_ctx_t *ca,
          uint32_t index);
 
 err_status_t
-null_cipher_encrypt(null_cipher_ctx_t *c,
+null_cipher_encrypt(null_cipher_ctx_t *ca,
           uchar *buf, uint32_t *bytes_to_encr);
 
 
 err_status_t
-null_cipher_encrypt_aligned(null_cipher_ctx_t *c,
+null_cipher_encrypt_aligned(null_cipher_ctx_t *ca,
              uchar *buf, int32_t bytes_to_encr);
 
 #endif /* NULL_CIPHER_H */

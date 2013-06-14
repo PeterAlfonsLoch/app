@@ -183,7 +183,7 @@ namespace user
 
    }
 
-   void control::install_message_handling(::ca::message::dispatch * pdispatch)
+   void control::install_message_handling(::ca2::message::dispatch * pdispatch)
    {
 
       ::user::view::install_message_handling(pdispatch);
@@ -203,7 +203,7 @@ namespace user
    }
 
 
-   void control::_003OnCustomDraw(::ca::graphics *pdc, ::user::draw_context * pdrawcontext)
+   void control::_003OnCustomDraw(::ca2::graphics *pdc, ::user::draw_context * pdrawcontext)
    {
       pdc->chain(pdrawcontext);
       _001OnDraw(pdc);
@@ -216,7 +216,7 @@ namespace user
    }
 
 
-   void control::_003CallCustomDraw(::ca::graphics *pdc, ::user::draw_context * pdrawcontext)
+   void control::_003CallCustomDraw(::ca2::graphics *pdc, ::user::draw_context * pdrawcontext)
    {
       _003OnCustomDraw(pdc, pdrawcontext);
    }
@@ -225,12 +225,12 @@ namespace user
    {
       m_pwndCustomWindowProc = pwnd;
       keeper <bool> keepOnCustomMessage(&m_bCustomWindowProc, true, false, true);
-      ::ca::message::base base(get_app(), pwnd, message, wparam, lparam, lresult);
+      ::ca2::message::base base(get_app(), pwnd, message, wparam, lparam, lresult);
       _003CustomWindowProc(&base);
       return base.m_bRet;
    }
 
-   void control::_003CustomWindowProc(::ca::signal_object * pobj)
+   void control::_003CustomWindowProc(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -464,7 +464,7 @@ namespace user
       m_bControlExCommandEnabled    = true;
       m_pform                       = NULL;
       m_pformcallback               = NULL;
-      m_ulFlags                     &= ~::ca::ca::flag_auto_delete;
+      m_ulFlags                     &= ~::ca2::ca2::flag_auto_delete;
    }
 
 
@@ -715,9 +715,9 @@ namespace user
    }
 
 
-   void control::_001OnMouseMove(::ca::signal_object * pobj)
+   void control::_001OnMouseMove(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 
       index iHover = hit_test(pmouse->m_pt, m_eelementHover);
 
@@ -736,7 +736,7 @@ namespace user
    }
 
 
-   void control::_001OnMouseLeave(::ca::signal_object * pobj)
+   void control::_001OnMouseLeave(::ca2::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -777,7 +777,7 @@ namespace user
    }
 
 
-   control_cmd_ui::control_cmd_ui(::ca::signal * psignal) :
+   control_cmd_ui::control_cmd_ui(::ca2::signal * psignal) :
       base_cmd_ui(psignal)
    {
    }
@@ -790,4 +790,4 @@ namespace user
 
 
 
-} // namespace ca
+} // namespace ca2

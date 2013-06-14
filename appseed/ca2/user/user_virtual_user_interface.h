@@ -10,21 +10,21 @@ public:
    size                       m_size;
    string                     m_strWindowText;
    bool                       m_bEnabled;
-   ::ca::font_sp              m_spfont;
+   ::ca2::font_sp              m_spfont;
    bool                       m_bCreate;
    sp(::user::interaction)    m_pparent;
    sp(::user::interaction)    m_pguieMessage;
 
 
    virtual_user_interface();
-   virtual_user_interface(sp(::ca::application) papp);
+   virtual_user_interface(sp(::ca2::application) papp);
    virtual ~virtual_user_interface();
 
-   virtual void message_handler(::ca::signal_object * pobj);
-   virtual ::ca::graphics * GetDC();
+   virtual void message_handler(::ca2::signal_object * pobj);
+   virtual ::ca2::graphics * GetDC();
    sp(::user::interaction) set_parent(sp(::user::interaction) pguieParent);
    bool ShowWindow(int32_t nCmdShow);
-   virtual bool ReleaseDC(::ca::graphics *);
+   virtual bool ReleaseDC(::ca2::graphics *);
    virtual sp(::user::interaction) get_parent() const;
 
    virtual void _001WindowMaximize();
@@ -49,7 +49,7 @@ public:
    void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch);
 
 
-   //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::ca::live_object * pliveobject = NULL);
+   //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::ca2::live_object * pliveobject = NULL);
 
 
    virtual bool DestroyWindow();
@@ -58,8 +58,8 @@ public:
    virtual uint32_t GetExStyle();
    virtual LRESULT Default();
 
-   virtual void SetFont(::ca::font* pFont, bool bRedraw = TRUE);
-   virtual ::ca::font* GetFont();
+   virtual void SetFont(::ca2::font* pFont, bool bRedraw = TRUE);
+   virtual ::ca2::font* GetFont();
 
    virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = NULL);
 
@@ -69,10 +69,10 @@ public:
 
 #endif
 
-   // as hosting ::ca::window
-   virtual void install_message_handling(::ca::message::dispatch * pinterface);
-   // as virtual ::ca::window
-   virtual void _002InstallMessageHandling(::ca::message::dispatch * pinterface);
+   // as hosting ::ca2::window
+   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+   // as virtual ::ca2::window
+   virtual void _002InstallMessageHandling(::ca2::message::dispatch * pinterface);
 
 
    bool create_message_window();
@@ -93,7 +93,7 @@ public:
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       sp(::user::interaction) pParentWnd, id id,
-      sp(::ca::create_context) pContext = NULL);
+      sp(::ca2::create_context) pContext = NULL);
    virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
@@ -122,7 +122,7 @@ public:
 
    virtual bool post_message(UINT uiMessage, WPARAM wparam, lparam lparam);
 
-   virtual void set_view_port_org(::ca::graphics * pgraphics);
+   virtual void set_view_port_org(::ca2::graphics * pgraphics);
 
 
 };

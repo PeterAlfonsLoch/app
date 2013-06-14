@@ -11,7 +11,7 @@ class DibPal
 public:
    DibPal();
 
-   void create(::ca::dib * pdib);
+   void create(::ca2::dib * pdib);
 
 
    HPALETTE m_hpalette;

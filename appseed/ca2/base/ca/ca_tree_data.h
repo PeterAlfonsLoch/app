@@ -4,7 +4,7 @@
 class image_list;
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -13,7 +13,7 @@ namespace ca
 
 
    class CLASS_DECL_ca2 tree_data :
-      public ::ca::data
+      public ::ca2::data
    {
    public:
 
@@ -22,7 +22,7 @@ namespace ca
       sp(image_list)                      m_pimagelist;
 
 
-      tree_data(sp(::ca::application) papp);
+      tree_data(sp(::ca2::application) papp);
       virtual ~tree_data();
 
 
@@ -46,6 +46,6 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 

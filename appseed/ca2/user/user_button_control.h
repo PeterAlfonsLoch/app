@@ -17,21 +17,21 @@ public:
    int32_t               m_iImageSubItemHover;
 
 
-   BaseButtonControl(sp(::ca::application) papp);
+   BaseButtonControl(sp(::ca2::application) papp);
    virtual ~BaseButtonControl();
 
 
-   virtual void _003CustomWindowProc(::ca::signal_object * pobj);
+   virtual void _003CustomWindowProc(::ca2::signal_object * pobj);
 
 
    virtual bool pre_create_window(CREATESTRUCT& cs);
    
 
-   virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+   virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
    void UpdateDrawingObjects();
    void UpdateWndRgn();
-   void _001OnDraw(::ca::graphics * pdc);
+   void _001OnDraw(::ca2::graphics * pdc);
 
    
 

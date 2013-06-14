@@ -11,14 +11,14 @@ void itemswap(void * pswaparg, index i1, index i2)
    pitemptra->swap(i1, i2);
 }
 
-namespace ca
+namespace ca2
 {
 
 
    bool is_safe_set(void * p);
 
-   factory::factory(sp(::ca::application) papp) :
-      ca(papp)
+   factory::factory(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_pmutex = new mutex(papp);
       m_pstrida = new strid_array(true);
@@ -86,7 +86,7 @@ namespace ca
 
    }
 
-   void factory::discard(sp(::ca::ca) pobject)
+   void factory::discard(sp(::ca2::ca2) pobject)
    {
       single_lock sl(m_pmutex, TRUE);
       sp(factory_allocator) pallocator = get_allocator(typeid(*pobject).name());
@@ -164,7 +164,7 @@ namespace ca
 
 
 
-   sp(::ca::ca) factory::create(sp(::ca::application) papp, sp(::ca::type_info) info)
+   sp(::ca2::ca2) factory::create(sp(::ca2::application) papp, sp(::ca2::type_info) info)
    {
       
       if(info->m_spmutex.is_null())
@@ -204,7 +204,7 @@ namespace ca
 
 
 
-   sp(::ca::ca) factory::base_clone(sp(::ca::ca) pobject)
+   sp(::ca2::ca2) factory::base_clone(sp(::ca2::ca2) pobject)
    {
 
       single_lock sl(m_pmutex, TRUE);
@@ -224,7 +224,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

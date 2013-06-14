@@ -7,12 +7,12 @@
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))
 #define ROUND16(x) ROUND(x, 16)
 
-void prop_id_debug(sp(::ca::application) papp);
+void prop_id_debug(sp(::ca2::application) papp);
 
 
 
 
-namespace ca
+namespace ca2
 {
 
    pair_set_interface::pair_set_interface()
@@ -154,8 +154,8 @@ namespace ca
       return empty_string();
    }
 
-   property::property(::ca::application * papp) :
-      ::ca::ca(papp)
+   property::property(::ca2::application * papp) :
+      ::ca2::ca2(papp)
    {
    }
 
@@ -281,11 +281,11 @@ namespace ca
 
    void property::parse_json(const char * & pszJson, const char * pszEnd)
    {
-      ::ca::str::consume_spaces(pszJson, 0, pszEnd);
-      string str = ::ca::str::consume_quoted_value(pszJson, pszEnd);
+      ::ca2::str::consume_spaces(pszJson, 0, pszEnd);
+      string str = ::ca2::str::consume_quoted_value(pszJson, pszEnd);
       str.make_lower();
       m_idName = str;
-      ::ca::str::consume(pszJson, ":", 1, pszEnd);
+      ::ca2::str::consume(pszJson, ":", 1, pszEnd);
       get_value().parse_json(pszJson, pszEnd);
    }
 
@@ -369,13 +369,13 @@ namespace ca
       return this->element_at(iIndex);
    }
 
-   void property::write(::ca::byte_output_stream & ostream)
+   void property::write(::ca2::byte_output_stream & ostream)
    {
       ostream << m_idName;
       ostream << get_value();
    }
 
-   void property::read(::ca::byte_input_stream & istream)
+   void property::read(::ca2::byte_input_stream & istream)
    {
       istream >> m_idName;
       istream >> get_value();
@@ -1340,8 +1340,8 @@ namespace ca
       InitHashTable(64);
    }
 
-   property_array::property_array(sp(::ca::application) papp) :
-      ::ca::ca(papp)
+   property_array::property_array(sp(::ca2::application) papp) :
+      ::ca2::ca2(papp)
    {
       set_size(0, 64);
    }
@@ -1494,7 +1494,7 @@ namespace ca
       m_map.remove_all();
    }
 
-   void property_set::write(::ca::byte_output_stream & ostream)
+   void property_set::write(::ca2::byte_output_stream & ostream)
    {
       ostream << m_bAutoAdd;
       ostream << m_bMultiValue;
@@ -1502,7 +1502,7 @@ namespace ca
       ostream << m_propertya;
    }
 
-   void property_set::read(::ca::byte_input_stream & istream)
+   void property_set::read(::ca2::byte_input_stream & istream)
    {
       istream >> m_bAutoAdd;
       istream >> m_bMultiValue;
@@ -1750,8 +1750,8 @@ namespace ca
 
 
 
-   relation_set::relation_set(sp(::ca::application) papp) :
-      ca(papp),
+   relation_set::relation_set(sp(::ca2::application) papp) :
+      ca2(papp),
       property_set(papp, true, true)
    {
    }
@@ -1763,16 +1763,16 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 
-void prop_id_debug(sp(::ca::application) papp)
+void prop_id_debug(sp(::ca2::application) papp)
 {
 
    comparable_array < ::id > idaSchema;
 
-   ::ca::property_set set(papp);
+   ::ca2::property_set set(papp);
 
    idaSchema.add(set["prop1"]);
 
@@ -1794,13 +1794,13 @@ void prop_id_debug(sp(::ca::application) papp)
 
 
 
-string CLASS_DECL_ca2 operator + (const char * psz, const ::ca::property & prop)
+string CLASS_DECL_ca2 operator + (const char * psz, const ::ca2::property & prop)
 {
    return psz + prop.get_value();
 }
 
 
-string CLASS_DECL_ca2 operator + (const string & str, const ::ca::property & prop)
+string CLASS_DECL_ca2 operator + (const string & str, const ::ca2::property & prop)
 {
    return str + prop.get_value();
 }
@@ -1820,43 +1820,43 @@ string CLASS_DECL_ca2 operator + (const string & str, const ::ca::property & pro
 
 
 
-var CLASS_DECL_ca2 operator - (int32_t i, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator - (int32_t i, const ::ca2::property & prop)
 {
    return i - prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator - (uint32_t user, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator - (uint32_t user, const ::ca2::property & prop)
 {
    return user - prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator - (int64_t l, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator - (int64_t l, const ::ca2::property & prop)
 {
    return l - prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator - (uint64_t ul, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator - (uint64_t ul, const ::ca2::property & prop)
 {
    return ul - prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator - (double d, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator - (double d, const ::ca2::property & prop)
 {
    return d - prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator - (const var & var, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator - (const var & var, const ::ca2::property & prop)
 {
    return var - prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator - (const ::ca::property & prop1, const ::ca::property & prop2)
+var CLASS_DECL_ca2 operator - (const ::ca2::property & prop1, const ::ca2::property & prop2)
 {
    return prop1.get_value() - prop2.get_value();
 }
@@ -1876,43 +1876,43 @@ var CLASS_DECL_ca2 operator - (const ::ca::property & prop1, const ::ca::propert
 
 
 
-var CLASS_DECL_ca2 operator + (int32_t i, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator + (int32_t i, const ::ca2::property & prop)
 {
    return i + prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator + (uint32_t user, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator + (uint32_t user, const ::ca2::property & prop)
 {
    return user + prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator + (int64_t l, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator + (int64_t l, const ::ca2::property & prop)
 {
    return l + prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator + (uint64_t ul, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator + (uint64_t ul, const ::ca2::property & prop)
 {
    return ul + prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator + (double d, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator + (double d, const ::ca2::property & prop)
 {
    return d + prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator + (const var & var, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator + (const var & var, const ::ca2::property & prop)
 {
    return var + prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator + (const ::ca::property & prop1, const ::ca::property & prop2)
+var CLASS_DECL_ca2 operator + (const ::ca2::property & prop1, const ::ca2::property & prop2)
 {
    return prop1.get_value() + prop2.get_value();
 }
@@ -1932,43 +1932,43 @@ var CLASS_DECL_ca2 operator + (const ::ca::property & prop1, const ::ca::propert
 
 
 
-var CLASS_DECL_ca2 operator / (int32_t i, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator / (int32_t i, const ::ca2::property & prop)
 {
    return i / prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator / (uint32_t user, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator / (uint32_t user, const ::ca2::property & prop)
 {
    return user / prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator / (int64_t l, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator / (int64_t l, const ::ca2::property & prop)
 {
    return l / prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator / (uint64_t ul, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator / (uint64_t ul, const ::ca2::property & prop)
 {
    return ul / prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator / (double d, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator / (double d, const ::ca2::property & prop)
 {
    return d / prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator / (const var & var, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator / (const var & var, const ::ca2::property & prop)
 {
    return var / prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator / (const ::ca::property & prop1, const ::ca::property & prop2)
+var CLASS_DECL_ca2 operator / (const ::ca2::property & prop1, const ::ca2::property & prop2)
 {
    return prop1.get_value() / prop2.get_value();
 }
@@ -1988,43 +1988,43 @@ var CLASS_DECL_ca2 operator / (const ::ca::property & prop1, const ::ca::propert
 
 
 
-var CLASS_DECL_ca2 operator * (int32_t i, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator * (int32_t i, const ::ca2::property & prop)
 {
    return i * prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator * (uint32_t user, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator * (uint32_t user, const ::ca2::property & prop)
 {
    return user * prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator * (int64_t l, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator * (int64_t l, const ::ca2::property & prop)
 {
    return l * prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator * (uint64_t ul, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator * (uint64_t ul, const ::ca2::property & prop)
 {
    return ul * prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator * (double d, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator * (double d, const ::ca2::property & prop)
 {
    return d * prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator * (const var & var, const ::ca::property & prop)
+var CLASS_DECL_ca2 operator * (const var & var, const ::ca2::property & prop)
 {
    return var * prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator * (const ::ca::property & prop1, const ::ca::property & prop2)
+var CLASS_DECL_ca2 operator * (const ::ca2::property & prop1, const ::ca2::property & prop2)
 {
    return prop1.get_value() * prop2.get_value();
 }

@@ -22,10 +22,10 @@ namespace filemanager
 } // namespace filemanager
 
 class file_operation :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
-   file_operation(sp(::ca::application) papp);
+   file_operation(sp(::ca2::application) papp);
    virtual filemanager::eoperation operation();
    
    virtual bool set_copy(stringa & stra, const char * pszDestBase, const char * pszSrcBase, bool bExpand);
@@ -63,8 +63,8 @@ public:
    string            m_strBase;
    double            m_dSize;
    double            m_dRead;
-   ::ca::filesp           m_fileSrc;
-   ::ca::filesp           m_fileDst;
+   ::ca2::filesp           m_fileSrc;
+   ::ca2::filesp           m_fileDst;
    int32_t               m_iFile;
    bool              m_bReplaceAll;
    char *            m_pchBuffer;

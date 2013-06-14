@@ -28,7 +28,7 @@ namespace libcompress
       {
       public:
          ::libcompress::lz_out_window        m_OutWindowStream;
-         ::ca::bitm::in_buffer_decoder   m_InBitStream;
+         ::ca2::bitm::in_buffer_decoder   m_InBitStream;
 
          uint32_t m_RepDists[kNumRepDists];
          uint32_t m_RepDistPtr;
@@ -61,7 +61,7 @@ namespace libcompress
 
          void InitStructures();
 
-         HRESULT CodeReal(::ca::reader *inStream, ::ca::writer *outStream, const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress);
+         HRESULT CodeReal(::ca2::reader *inStream, ::ca2::writer *outStream, const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress);
 
       public:
          decoder();
@@ -74,9 +74,9 @@ namespace libcompress
             m_InBitStream.ReleaseStream();
          }
 
-         virtual ::ca::HRes Code(::ca::reader *inStream, ::ca::writer *outStream, const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress);
+         virtual ::ca2::HRes Code(::ca2::reader *inStream, ::ca2::writer *outStream, const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress);
 
-         virtual ::ca::HRes SetDecoderProperties2(const byte *data, uint32_t size);
+         virtual ::ca2::HRes SetDecoderProperties2(const byte *data, uint32_t size);
 
       };
 

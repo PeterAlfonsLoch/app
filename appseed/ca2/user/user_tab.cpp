@@ -8,9 +8,9 @@
 namespace user
 {
 
-   tab::data::data(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::data(papp),
+   tab::data::data(sp(::ca2::application) papp) :
+      ca2(papp),
+      ::ca2::data(papp),
       m_imagelist(papp),
       m_pen(allocer()),
       m_font(allocer()),
@@ -39,8 +39,8 @@ namespace user
       return m_panea.get_visible_count();
    }
 
-   tab::tab(sp(::ca::application) papp) :
-      ca(papp),
+   tab::tab(sp(::ca2::application) papp) :
+      ca2(papp),
       place_holder_container(papp),
       m_dcextension(papp)
    {
@@ -66,7 +66,7 @@ namespace user
       //m_rectBorder.set(7, 1, 7, 0);
 
 
-      ::ca::graphics_sp spgraphics(allocer());
+      ::ca2::graphics_sp spgraphics(allocer());
       spgraphics->CreateCompatibleDC(NULL);
 
 
@@ -241,7 +241,7 @@ namespace user
       }
    }
 
-   void tab::_001OnDraw(::ca::graphics * pdc)
+   void tab::_001OnDraw(::ca2::graphics * pdc)
    {
 
       
@@ -256,11 +256,11 @@ namespace user
    }
 
 
-   void tab::_001OnDrawStandard(::ca::graphics * pdc)
+   void tab::_001OnDrawStandard(::ca2::graphics * pdc)
    {
 
 
-      pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
+      pdc->set_text_rendering(::ca2::text_rendering_anti_alias_grid_fit);
 
 
       if(m_bNoTabs)
@@ -319,13 +319,13 @@ namespace user
 
 //      class imaging & imaging = System.visual().imaging();
 
-      pdc->set_alpha_mode(::ca::alpha_mode_blend);
+      pdc->set_alpha_mode(::ca2::alpha_mode_blend);
 
       pdc->FillSolidRect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
 
             //pdc->SetBkMode(OPAQUE);
 
-      pdc->set_alpha_mode(::ca::alpha_mode_set);
+      pdc->set_alpha_mode(::ca2::alpha_mode_set);
 
       int32_t iVisiblePane = 0;
 
@@ -353,7 +353,7 @@ namespace user
          {
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
-               pdc->set_alpha_mode(::ca::alpha_mode_blend);
+               pdc->set_alpha_mode(::ca2::alpha_mode_blend);
                pane.m_dib->bitmap_blend(pdc, rectIcon);
             }
 
@@ -401,7 +401,7 @@ namespace user
 
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
-               pdc->set_alpha_mode(::ca::alpha_mode_blend);
+               pdc->set_alpha_mode(::ca2::alpha_mode_blend);
                pane.m_dib->bitmap_blend(pdc, rectIcon);
             }
 
@@ -473,10 +473,10 @@ namespace user
 
    }
 
-   void tab::_001OnDrawSchema01(::ca::graphics * pdc)
+   void tab::_001OnDrawSchema01(::ca2::graphics * pdc)
    {
 
-      pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
+      pdc->set_text_rendering(::ca2::text_rendering_anti_alias_grid_fit);
 
 
       if(m_bNoTabs)
@@ -537,13 +537,13 @@ namespace user
 
 //      class imaging & imaging = System.visual().imaging();
 
-      pdc->set_alpha_mode(::ca::alpha_mode_blend);
+      pdc->set_alpha_mode(::ca2::alpha_mode_blend);
 
       //pdc->FillSolidRect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
 
             //pdc->SetBkMode(OPAQUE);
 
-      //pdc->set_alpha_mode(::ca::alpha_mode_set);
+      //pdc->set_alpha_mode(::ca2::alpha_mode_set);
 
       int32_t iVisiblePane = 0;
 
@@ -574,11 +574,11 @@ namespace user
          {
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
-               pdc->set_alpha_mode(::ca::alpha_mode_blend);
+               pdc->set_alpha_mode(::ca2::alpha_mode_blend);
                pane.m_dib->bitmap_blend(pdc, rectIcon);
             }
 
-            ::ca::graphics_path_sp path(allocer());
+            ::ca2::graphics_path_sp path(allocer());
 
             if(get_data()->m_iaSel.contains(iPane))
             {
@@ -593,7 +593,7 @@ namespace user
 
                //path->close_figure();
 
-               ::ca::brush_sp br(allocer());
+               ::ca2::brush_sp br(allocer());
 
                br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
 
@@ -649,7 +649,7 @@ namespace user
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
 
-                  ::ca::brush_sp br(allocer());
+                  ::ca2::brush_sp br(allocer());
 
                   br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
 
@@ -670,7 +670,7 @@ namespace user
                else
                {
 
-                  ::ca::brush_sp br(allocer());
+                  ::ca2::brush_sp br(allocer());
 
                   br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
 
@@ -700,18 +700,18 @@ namespace user
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
                
-               pdc->set_alpha_mode(::ca::alpha_mode_blend);
+               pdc->set_alpha_mode(::ca2::alpha_mode_blend);
                
                pane.m_dib->bitmap_blend(pdc, rectIcon);
                
             }
 
-            ::ca::graphics_path_sp path(allocer());
+            ::ca2::graphics_path_sp path(allocer());
 
             if(get_data()->m_iaSel.contains(iPane))
             {
 
-               //path->begin_figure(true, ::ca::fill_mode_winding);
+               //path->begin_figure(true, ::ca2::fill_mode_winding);
 
                path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
                
@@ -723,7 +723,7 @@ namespace user
 
                path->end_figure(false);
 
-               ::ca::brush_sp br(allocer());
+               ::ca2::brush_sp br(allocer());
 
                br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
 
@@ -745,7 +745,7 @@ namespace user
             else
             {
 
-               //path->begin_figure(true, ::ca::fill_mode_winding);
+               //path->begin_figure(true, ::ca2::fill_mode_winding);
 
                path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
                
@@ -760,7 +760,7 @@ namespace user
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
 
-                  ::ca::brush_sp br(allocer());
+                  ::ca2::brush_sp br(allocer());
 
                   br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
 
@@ -782,7 +782,7 @@ namespace user
                else
                {
 
-                  ::ca::brush_sp br(allocer());
+                  ::ca2::brush_sp br(allocer());
 
                   br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
 
@@ -869,7 +869,7 @@ namespace user
          int32_t iTabHeight = 8;
          int32_t cx;
          int32_t cy;
-         ::ca::memory_graphics pdc(allocer());
+         ::ca2::memory_graphics pdc(allocer());
          pdc->SelectObject(get_data()->m_fontBold);
          for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
@@ -953,9 +953,9 @@ namespace user
       {
          int32_t iTabHeight = 16;
          int32_t cy;
-         ::ca::graphics_sp graphics(allocer());
+         ::ca2::graphics_sp graphics(allocer());
          graphics->CreateCompatibleDC(NULL);
-         ::ca::graphics * pdc = graphics;
+         ::ca2::graphics * pdc = graphics;
          pdc->SelectObject(get_data()->m_fontBold);
          for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
@@ -1059,9 +1059,9 @@ namespace user
 
    }
 
-   void tab::_001OnLButtonDown(::ca::signal_object * pobj)
+   void tab::_001OnLButtonDown(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
 
       index iPane = hit_test(point, m_eelement);
@@ -1087,9 +1087,9 @@ namespace user
    }
 
 
-   void tab::_001OnLButtonUp(::ca::signal_object * pobj)
+   void tab::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
 
       e_element eelement;
@@ -1116,9 +1116,9 @@ namespace user
       }
    }
 
-   void tab::_001OnMouseMove(::ca::signal_object * pobj)
+   void tab::_001OnMouseMove(::ca2::signal_object * pobj)
    {
-//      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
 //      class point point = pmouse->m_pt;
       if(get_data()->m_iDragTab >= 0)
       {
@@ -1143,9 +1143,9 @@ namespace user
    }
 
 
-   void tab::_001OnMouseLeave(::ca::signal_object * pobj)
+   void tab::_001OnMouseLeave(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       m_iHover = -1;
       //get_parent()->_001RedrawWindow();
       pbase->set_lresult(0);
@@ -1216,7 +1216,7 @@ namespace user
       {
          ASSERT(iTabParam >= 0);
          ASSERT(iTabParam < GetTabCount());
-         ::ca::memory_graphics pdc(allocer());
+         ::ca2::memory_graphics pdc(allocer());
          rect rect = get_data()->m_rectTab;
          rect.bottom = rect.top;
 
@@ -1243,14 +1243,14 @@ namespace user
       {
          ASSERT(iTabParam >= 0);
          ASSERT(iTabParam < GetTabCount());
-         ::ca::graphics_sp graphics(allocer());
+         ::ca2::graphics_sp graphics(allocer());
          graphics->CreateCompatibleDC(NULL);
 
          //HDC hdc = ::CreateCompatibleDC(NULL);
          //Gdiplus::Graphics * pg = new Gdiplus::Graphics(hdc);
          //delete pg;
          //::DeleteDC(hdc);
-         ::ca::graphics * pdc = graphics;
+         ::ca2::graphics * pdc = graphics;
          rect rect = get_data()->m_rectTab;
          rect.right = rect.left;
          int32_t ixAdd;
@@ -1330,13 +1330,13 @@ namespace user
       return -1;
    }
 
-   sp(::ca::window) tab::GetNotifyWnd()
+   sp(::ca2::window) tab::GetNotifyWnd()
    {
 #ifdef METROWIN
       return NULL;
 
 #else
-      sp(::ca::window) pwnd;
+      sp(::ca2::window) pwnd;
    //   if((pwnd = m_pguie->get_owner()) != NULL)
      //    return pwnd;
       if((pwnd = m_pguie->get_parent()->get_wnd()) != NULL)
@@ -1358,10 +1358,10 @@ namespace user
    }
    */
 
-   void tab::_001OnCreate(::ca::signal_object * pobj)
+   void tab::_001OnCreate(::ca2::signal_object * pobj)
    {
       
-      SCAST_PTR(::ca::message::base, pbase, pobj);
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
       
       if(pobj->previous())
          return;
@@ -1377,12 +1377,12 @@ namespace user
    }
    
 
-   void tab::_011OnCreate(::ca::signal_object * pobj)
+   void tab::_011OnCreate(::ca2::signal_object * pobj)
    {
       
       UNREFERENCED_PARAMETER(pobj);
       
-//      SCAST_PTR(::ca::message::base, pbase, pobj);
+//      SCAST_PTR(::ca2::message::base, pbase, pobj);
 
       keeper < bool > keepRestoringTabs(&m_bRestoringTabs, true, false, true);
       
@@ -1402,7 +1402,7 @@ namespace user
 
    }
 
-   void tab::install_message_handling(::ca::message::dispatch *pinterface)
+   void tab::install_message_handling(::ca2::message::dispatch *pinterface)
    {
       ::user::control::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN , pinterface, this, &tab::_001OnLButtonDown);
@@ -1411,13 +1411,13 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE  , pinterface, this, &tab::_001OnMouseLeave);
       IGUI_WIN_MSG_LINK(WM_CREATE      , pinterface, this, &tab::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_USER + 1342 , pinterface, this, &tab::_011OnCreate);
-      IGUI_WIN_MSG_LINK(::ca::application::APPM_LANGUAGE, pinterface, this, &tab::_001OnAppLanguage);
+      IGUI_WIN_MSG_LINK(::ca2::application::APPM_LANGUAGE, pinterface, this, &tab::_001OnAppLanguage);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tab::_001OnTimer);
    }
 
    void tab::_001SetSel(::index iSel)
    {
-      ::ca::data::writing writing(get_data());
+      ::ca2::data::writing writing(get_data());
       get_data()->m_iaSel.remove_all();
       get_data()->m_iaSel.add(iSel);
       on_change_pane_count();
@@ -1426,7 +1426,7 @@ namespace user
 
    void tab::_001AddSel(::index iSel)
    {
-      ::ca::data::writing writing(get_data());
+      ::ca2::data::writing writing(get_data());
       get_data()->m_iaSel.add(iSel);
       on_change_pane_count();
    }
@@ -1436,8 +1436,8 @@ namespace user
    {
    }
 
-   tab::pane::pane(sp(::ca::application) papp) :
-      ca(papp),
+   tab::pane::pane(sp(::ca2::application) papp) :
+      ca2(papp),
       m_istrTitleEx(papp)
    {
       m_bVisible     = true;
@@ -1446,7 +1446,7 @@ namespace user
    }
 
    tab::pane::pane(const pane & pane) :
-      ca(pane.get_app()),
+      ca2(pane.get_app()),
       m_istrTitleEx(pane.get_app())
    {
       operator = (pane);
@@ -1481,8 +1481,8 @@ namespace user
    }
 
 
-   tab::pane_array::pane_array(sp(::ca::application) papp) :
-      ca(papp)
+   tab::pane_array::pane_array(sp(::ca2::application) papp) :
+      ca2(papp)
    {
    }
 
@@ -1520,7 +1520,7 @@ namespace user
       return count;
    }
 
-   void tab::_001OnAppLanguage(::ca::signal_object * pobj)
+   void tab::_001OnAppLanguage(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       layout();
@@ -1715,7 +1715,7 @@ namespace user
       }
    }
 
-   void tab::_001ConnectParent(::ca::message::dispatch * pinterface)
+   void tab::_001ConnectParent(::ca2::message::dispatch * pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
    }
@@ -1766,7 +1766,7 @@ namespace user
       }
    }
 
-   void tab::set_cur_tab_by_id(id id, sp(::ca::create_context) pcreatecontext)
+   void tab::set_cur_tab_by_id(id id, sp(::ca2::create_context) pcreatecontext)
    {
       try
       {
@@ -1787,7 +1787,7 @@ namespace user
          throw e;
 
       }
-      catch(::ca::exception & e)
+      catch(::ca2::exception & e)
       {
 
          if(!Application.on_run_exception(e))
@@ -1798,7 +1798,7 @@ namespace user
       {
       }
 
-      m_spcreatecontext = (sp(::ca::create_context)) NULL;
+      m_spcreatecontext = (sp(::ca2::create_context)) NULL;
 
    }
 
@@ -1893,9 +1893,9 @@ namespace user
       return get_cur_tab_id();
    }
 
-   void tab::_001OnTimer(::ca::signal_object * pobj)
+   void tab::_001OnTimer(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 5432187)
       {
          get_data()->m_bDrag = true;
@@ -1907,7 +1907,7 @@ namespace user
       }
    }
 
-   void tab::_000OnMouse(::ca::message::mouse * pmouse)
+   void tab::_000OnMouse(::ca2::message::mouse * pmouse)
    {
       if(m_bShowTabs)
       {
@@ -1916,7 +1916,7 @@ namespace user
          // to debug, enable catch exceptions in debugger
          try
          {
-            (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca::signal_object * > (pmouse));
+            (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca2::signal_object * > (pmouse));
             if(pmouse->get_lresult() != 0)
                return;
          }
@@ -2054,9 +2054,9 @@ namespace user
       {
          pane & pane = panea[i];
          strPath = pane.m_id;
-         if(strPrefix.is_empty() || ::ca::str::begins_ci(strPath, strPrefix))
+         if(strPrefix.is_empty() || ::ca2::str::begins_ci(strPath, strPrefix))
          {
-            if(strSuffix.is_empty() || ::ca::str::ends_ci(strPath, strSuffix))
+            if(strSuffix.is_empty() || ::ca2::str::ends_ci(strPath, strSuffix))
             {
                stra.add(strPath);
             }
@@ -2084,9 +2084,9 @@ namespace user
       {
          pane & pane = panea[i];
          strPath = pane.m_id;
-         if(strPrefix.is_empty() || ::ca::str::begins_ci(strPath, strPrefix))
+         if(strPrefix.is_empty() || ::ca2::str::begins_ci(strPath, strPrefix))
          {
-            if(strSuffix.is_empty() || ::ca::str::ends_ci(strPath, strSuffix))
+            if(strSuffix.is_empty() || ::ca2::str::ends_ci(strPath, strSuffix))
             {
                stra.add(strPath);
             }
@@ -2096,7 +2096,7 @@ namespace user
 
    void tab::get_restore_tab(var_array & vara)
    {
-      ::ca::match::any  & matchany = get_data()->m_matchanyRestore;
+      ::ca2::match::any  & matchany = get_data()->m_matchanyRestore;
       if(matchany.get_count() == 0)
          return;
       var varId;
@@ -2113,7 +2113,7 @@ namespace user
 
    bool tab::has_restore_tab()
    {
-      ::ca::match::any  & matchany = get_data()->m_matchanyRestore;
+      ::ca2::match::any  & matchany = get_data()->m_matchanyRestore;
       if(matchany.get_count() == 0)
          return false;
       var varId;
@@ -2151,6 +2151,6 @@ namespace user
       remove_tab_by_id(get_id_by_tab(iTab));
    }
 
-} // namespace ca
+} // namespace ca2
 
 

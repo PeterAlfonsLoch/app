@@ -31,7 +31,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    // Splits a string whatever way you want.
@@ -57,14 +57,14 @@ namespace ca
       int32_t getwordlen();
       int32_t getrestlen();
    
-      void enablebreak(const char c)
+      void enablebreak(const char ca)
       {
-         pa_enable = c;
+         pa_enable = ca;
       }
    
-      void disablebreak(const char c)
+      void disablebreak(const char ca)
       {
-         pa_disable = c;
+         pa_disable = ca;
       }
       void getline();
       void getline(string &);
@@ -84,4 +84,4 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2

@@ -16,8 +16,8 @@ namespace userfs
       return this->element_at(i, fCompare);
    }
 
-   list_item_array::list_item_array(sp(::ca::application) papp) :
-      ca(papp)
+   list_item_array::list_item_array(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_itema.set_app(papp);
       m_pfnCompare = &BaseNullCompare < sp(list_item) >;

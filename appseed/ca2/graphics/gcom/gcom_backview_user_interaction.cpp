@@ -13,8 +13,8 @@ namespace gcom
       {
 
 
-         interaction::interaction(sp(::ca::application) papp) :
-            ca(papp),
+         interaction::interaction(sp(::ca2::application) papp) :
+            ca2(papp),
             
             Interface(papp)
          {
@@ -106,7 +106,7 @@ namespace gcom
                
                string strCurrentImagePath;
                
-               data_get("gcom::backview::CurrentBackgroundImagePath", ::ca::system::idEmpty, strCurrentImagePath);
+               data_get("gcom::backview::CurrentBackgroundImagePath", ::ca2::system::idEmpty, strCurrentImagePath);
                
                return m_spfilesetBackgroundImage->get_next_file(strCurrentImagePath);
                
@@ -120,7 +120,7 @@ namespace gcom
          void interaction::BackViewSetCurrentBackgroundImagePath(const char * psz)
          {
             
-            data_set("gcom::backview::CurrentBackgroundImagePath", ::ca::system::idEmpty, psz);
+            data_set("gcom::backview::CurrentBackgroundImagePath", ::ca2::system::idEmpty, psz);
             
          }
          
@@ -144,14 +144,14 @@ namespace gcom
             sp(::simple_frame_window) pframe = GetTypedParent < ::simple_frame_window > ();
             if(pframe != NULL && pframe->m_workset.m_pframeschema != NULL)
             {
-               color c;
-               c.set_rgb(pframe->m_workset.m_pframeschema->get_border_main_body_color());
+               color ca;
+               ca.set_rgb(pframe->m_workset.m_pframeschema->get_border_main_body_color());
                color::hls hls;
                hls.m_dH = 1.0;
                hls.m_dL = 0.5;
                hls.m_dS = 0.5;
-               c.hls_mult(hls);
-               m_colorBackground.set_rgb(c.get_rgb() | (0xff << 24));
+               ca.hls_mult(hls);
+               m_colorBackground.set_rgb(ca.get_rgb() | (0xff << 24));
             }
          }
 

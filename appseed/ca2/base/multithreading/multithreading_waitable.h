@@ -22,7 +22,7 @@ Thank you Thomas Hoefer!!
 /// This class represents an item which can be waited for. Items can be threads, events, sockets,
 /// files, semaphores and so on.
 class CLASS_DECL_ca2 waitable :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
 	///  \brief		destructor
@@ -39,7 +39,7 @@ public:
 */
 
 class CLASS_DECL_ca2 waitable :
-   virtual public ::ca::request_interface
+   virtual public ::ca2::request_interface
 {
 public:
 
@@ -103,7 +103,7 @@ public:
 
 
 // generic
-namespace ca
+namespace ca2
 {
 
 
@@ -118,6 +118,6 @@ namespace ca
    } // namespace pal - platform abstraction layer
 
 
-} // namespace ca - generic
+} // namespace ca2 - generic
 
 

@@ -20,14 +20,14 @@ namespace platform
       m_plink = NULL;
    }
 
-   view::link::link(sp(::ca::application) papp) :
+   view::link::link(sp(::ca2::application) papp) :
       m_button(papp)
    {
       m_prun = NULL;
    }
 
-   view::view(sp(::ca::application) papp) :
-      ca(papp),
+   view::view(sp(::ca2::application) papp) :
+      ca2(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       
@@ -89,7 +89,7 @@ namespace platform
    {
    }
 
-   void view::install_message_handling(::ca::message::dispatch * pinterface)
+   void view::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       form_view::install_message_handling(pinterface);
 
@@ -105,7 +105,7 @@ namespace platform
 
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &view::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &view::_001OnLButtonUp);
-      IGUI_WIN_MSG_LINK(::ca::application::APPM_LANGUAGE, pinterface, this, &view::_001OnAppLanguage);
+      IGUI_WIN_MSG_LINK(::ca2::application::APPM_LANGUAGE, pinterface, this, &view::_001OnAppLanguage);
 
    }
 
@@ -137,7 +137,7 @@ namespace platform
    /////////////////////////////////////////////////////////////////////////////
    // ::user::view printing
 
-   void view::_001OnInitialUpdate(::ca::signal_object * pobj)
+   void view::_001OnInitialUpdate(::ca2::signal_object * pobj)
    {
       form_view::_001OnInitialUpdate(pobj);
       load_links();
@@ -158,7 +158,7 @@ namespace platform
       return this;
    }
 
-   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
+   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);
@@ -172,7 +172,7 @@ namespace platform
    {
       return this;
    }
-   void view::_001OnDestroy(::ca::signal_object * pobj)
+   void view::_001OnDestroy(::ca2::signal_object * pobj)
    {
       form_view::_001OnDestroy(pobj);
 
@@ -181,14 +181,14 @@ namespace platform
 
 
 
-   void view::_001OnPaint(::ca::signal_object * pobj)
+   void view::_001OnPaint(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
 
-   void view::_001OnCreate(::ca::signal_object * pobj)
+   void view::_001OnCreate(::ca2::signal_object * pobj)
    {
 
       if(pobj->previous())
@@ -199,12 +199,12 @@ namespace platform
 
       //FIBITMAP * pfi;
 
-      //::ca::client_graphics pdc(this);;
+      //::ca2::client_graphics pdc(this);;
 
       m_dibBkImage.load_from_matter("casweden1.png");
 
       m_dibBk->create(1280, 1024);
-      //::ca::savings & savings = System.savings();
+      //::ca2::savings & savings = System.savings();
       //if(
 
       const char * pszSessionName = NULL;
@@ -256,9 +256,9 @@ namespace platform
       System.visual().imaging().color_blend(m_dibBk->get_graphics(), 0, 0, 1280, 1024, ARGB(255, 235, 245, 255), 31);
 
    }
-   void view::_001OnContextMenu(::ca::signal_object * pobj)
+   void view::_001OnContextMenu(::ca2::signal_object * pobj)
    {
-//      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
 //         point point = pcontextmenu->GetPoint();
 
    }
@@ -295,9 +295,9 @@ namespace platform
             {
                SetScreen(1);
                string strApp = m_linka[i].m_strSrc;
-               ::ca::str::ends_eat_ci(strApp, ".dll");
+               ::ca2::str::ends_eat_ci(strApp, ".dll");
 
-               sp(::ca::create_context) cc(Application.command_central());
+               sp(::ca2::create_context) cc(Application.command_central());
 
                cc->m_spCommandLine->m_strApp   = strApp;
                cc->m_spCommandLine->m_varFile  = Session.m_varTopicFile;
@@ -324,7 +324,7 @@ namespace platform
 
 
 
-   void view:: _001OnDraw(::ca::graphics * pdc)
+   void view:: _001OnDraw(::ca2::graphics * pdc)
    {
       form_view::_001OnDraw(pdc);
       //      sp(::user::document) pdoc = get_document();
@@ -350,14 +350,14 @@ namespace platform
       rectDesktop.top = 0;
       rectDesktop.bottom = ::GetSystemMetrics(SM_CYSCREEN);
       }*/
-      if(System.savings().is_trying_to_save(::ca::resource_processing))
+      if(System.savings().is_trying_to_save(::ca2::resource_processing))
       {
          pdc->FillRect(&rectClient, m_brushBk);
       }
       else
       {
-         ::ca::dib_sp spdib(allocer());
-         ::ca::dib_sp spdib2(allocer());
+         ::ca2::dib_sp spdib(allocer());
+         ::ca2::dib_sp spdib2(allocer());
          if(!spdib->create(rectClient.width(), rectClient.height()))
             return;
          if(!spdib2->create(rectClient.width(), rectClient.height()))
@@ -381,14 +381,14 @@ namespace platform
          Session.get_document()->get_bergedge_view()->GetWindowRect(rectThumb);
          if(rectThumb.area() > 0)
          {
-            ::ca::dib_sp dib(allocer());
+            ::ca2::dib_sp dib(allocer());
             dib->create(1920, 1080);
             keeper < bool > keepOnDraw(&GetParentFrame().cast < ::platform::frame > ()->m_bOnDraw, true, false, true);
             Session.get_document()->get_bergedge_view()->_000OnDraw(dib->get_graphics());
             dib->get_graphics()->SetViewportOrg(0, 0);
             keepOnDraw.KeepAway();
 
-            ::ca::dib_sp dibThumb(allocer());
+            ::ca2::dib_sp dibThumb(allocer());
             double dRate = 184.0 / rectThumb.width();
             dibThumb->create((int32_t) (dRate * rectThumb.width()), (int32_t) (dRate * rectThumb.height()));
             dibThumb->get_graphics()->SetStretchBltMode(HALFTONE);
@@ -455,7 +455,7 @@ namespace platform
 
    }
 
-   void view::open_document_file(sp(::ca::create_context) pcreatecontext)
+   void view::open_document_file(sp(::ca2::create_context) pcreatecontext)
    {
       try
       {
@@ -481,11 +481,11 @@ namespace platform
       {
          return;
       }
-      m_oswindowWinservice1       =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winservice_1");
-      m_oswindowWinactionarea     =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winactionarea");
-      m_oswindowCommand           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::command");
-      m_oswindowWinutil           =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::winutil");
-      m_oswindowBergedge          =  ::FindWindow(NULL, "::ca::fontopus::message_wnd::bergedge");
+      m_oswindowWinservice1       =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::winservice_1");
+      m_oswindowWinactionarea     =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::winactionarea");
+      m_oswindowCommand           =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::command");
+      m_oswindowWinutil           =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::winutil");
+      m_oswindowBergedge          =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::bergedge");
 #endif
    }
 
@@ -525,10 +525,10 @@ namespace platform
       return 0;
    }
 
-   void view::_001OnAppLanguage(::ca::signal_object * pobj)
+   void view::_001OnAppLanguage(::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(::ca::message::base, pbase, pobj);
+      //      SCAST_PTR(::ca2::message::base, pbase, pobj);
       load_links();
    }
 
@@ -549,7 +549,7 @@ namespace platform
          ::ShowWindow(m_oswindow, m_iShow);
       }
 #else
-      throw todo(::ca::get_thread_app());
+      throw todo(::ca2::get_thread_app());
 #endif
    }
 
@@ -557,7 +557,7 @@ namespace platform
    void view::mt_show_window(oswindow oswindow, int32_t iShow)
    {
 
-      __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(oswindow, iShow), ::ca::thread_priority_highest);
+      __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(oswindow, iShow), ::ca2::thread_priority_highest);
 
    }
 
@@ -568,10 +568,10 @@ namespace platform
       m_iShow  = iShow;
    }
 
-   void view::_001OnTimer(::ca::signal_object * pobj)
+   void view::_001OnTimer(::ca2::signal_object * pobj)
    {
 
-      SCAST_PTR(::ca::message::timer, ptimer, pobj)
+      SCAST_PTR(::ca2::message::timer, ptimer, pobj)
 
          if(ptimer->m_nIDEvent == 21977)
          {
@@ -607,9 +607,9 @@ namespace platform
       }
    }
 
-   void view::_001OnLButtonUp(::ca::signal_object * pobj)
+   void view::_001OnLButtonUp(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
          pmouse->set_lresult(1);
       KillTimer(5432180);
       point pt = pmouse->m_pt;
@@ -870,9 +870,9 @@ namespace platform
       */
    }
 
-   void view::_001OnMouseMove(::ca::signal_object * pobj)
+   void view::_001OnMouseMove(::ca2::signal_object * pobj)
    {
-      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
          pmouse->set_lresult(1);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -923,7 +923,7 @@ namespace platform
 
             string strAttr             = doc.get_root()->child_at(i)->attr("icon");
 
-            if(::ca::str::begins_eat(strAttr, "matter://"))
+            if(::ca2::str::begins_eat(strAttr, "matter://"))
             {
                plink->m_button.m_dib.load_from_matter(strAttr);
             }

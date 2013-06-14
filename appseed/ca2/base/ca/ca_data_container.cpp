@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
    data_container::data_container()
@@ -12,7 +12,7 @@ namespace ca
    {
    }
 
-   bool data_container::set_data(::ca::data * pdata)
+   bool data_container::set_data(::ca2::data * pdata)
    {
       m_spdata = pdata;
       return true;
@@ -34,7 +34,7 @@ namespace ca
    }
 
 
-   data_container_base::data_container_base(sp(::ca::application) papp)
+   data_container_base::data_container_base(sp(::ca2::application) papp)
    {
    }
 
@@ -43,7 +43,7 @@ namespace ca
    }
 
 
-   bool data_container_base::add_data(::ca::data * pdata)
+   bool data_container_base::add_data(::ca2::data * pdata)
    {
       
       for(index i = 0; i < m_spadata.get_count(); i++)
@@ -60,7 +60,7 @@ namespace ca
 
    }
 
-   bool data_container_base::remove_data(::ca::data * pdata)
+   bool data_container_base::remove_data(::ca2::data * pdata)
    {
 
       ::count cRemove = 0;
@@ -114,7 +114,7 @@ namespace ca
 
    }
 
-} // namespace ca
+} // namespace ca2
 
 
 

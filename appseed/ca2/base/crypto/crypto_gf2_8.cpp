@@ -1,5 +1,5 @@
 /*
- * gf2_8.c
+ * gf2_8.ca
  *
  * GF(256) finite field implementation, with the representation used
  * in the AES cipher.
@@ -10,7 +10,7 @@
 
 /*
  *   
- * Copyright (c) 2001-2006, Cisco Systems, Inc.
+ * Copyright (ca) 2001-2006, Cisco Systems, Inc.
  * 
  * 
  * Redistribution and use in source and binary forms, with or without

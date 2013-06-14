@@ -399,7 +399,7 @@ void string_list::Serialize(CArchive& ar)
 {
    ASSERT_VALID(this);
 
-   ::ca::object::Serialize(ar);
+   ::ca2::object::Serialize(ar);
 
    if (ar.IsStoring())
    {
@@ -425,7 +425,7 @@ void string_list::Serialize(CArchive& ar)
 
 void string_list::dump(dump_context & dumpcontext) const
 {
-   ::ca::object::dump(dumpcontext);
+   ::ca2::object::dump(dumpcontext);
 
    dumpcontext << "with " << m_nCount << " elements";
    if (dumpcontext.GetDepth() > 0)
@@ -440,7 +440,7 @@ void string_list::dump(dump_context & dumpcontext) const
 
 void string_list::assert_valid() const
 {
-   ::ca::object::assert_valid();
+   ::ca2::object::assert_valid();
 
    if (m_nCount == 0)
    {

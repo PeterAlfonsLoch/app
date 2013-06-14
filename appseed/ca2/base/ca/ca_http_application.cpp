@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -20,9 +20,9 @@ namespace ca
       ::sockets::http_client_socket * application::get(
          ::sockets::socket_handler & handler, 
          const char * pszUrl, 
-         ::ca::property_set & post, 
-         ::ca::property_set & headers, 
-         ::ca::property_set & set, 
+         ::ca2::property_set & post, 
+         ::ca2::property_set & headers, 
+         ::ca2::property_set & set, 
          ::http::cookies * pcookies, 
          ::fontopus::user * puser, 
          const char * pszVersion, 
@@ -36,7 +36,7 @@ namespace ca
          return System.http().get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
       }
 
-      void application::get(::ca::signal_object * pobj)
+      void application::get(::ca2::signal_object * pobj)
       {
          SCAST_PTR(signal, psignal, pobj);
 
@@ -44,7 +44,7 @@ namespace ca
 
          domain.create(System.url().get_server(psignal->m_strUrl));
 
-         if(domain.m_strRadix == "ca2" && ::ca::str::begins(System.url().get_object(psignal->m_strUrl), "/matter/"))
+         if(domain.m_strRadix == "ca2" && ::ca2::str::begins(System.url().get_object(psignal->m_strUrl), "/matter/"))
          {
 
             if(!exists(psignal->m_strUrl))
@@ -80,9 +80,9 @@ namespace ca
       bool application::get(
          const char * pszUrl,
          string & str, 
-         ::ca::property_set & post, 
-         ::ca::property_set & headers,
-         ::ca::property_set & set, 
+         ::ca2::property_set & post, 
+         ::ca2::property_set & headers,
+         ::ca2::property_set & set, 
          ::http::cookies * pcookies, 
          ::fontopus::user * puser, 
          const char * pszVersion,
@@ -108,9 +108,9 @@ namespace ca
       bool application::get(
          const char * pszUrl,
          primitive::memory_base & memory, 
-         ::ca::property_set & post, 
-         ::ca::property_set & headers,
-         ::ca::property_set & set, 
+         ::ca2::property_set & post, 
+         ::ca2::property_set & headers,
+         ::ca2::property_set & set, 
          ::http::cookies * pcookies, 
          ::fontopus::user * puser, 
          const char * pszVersion,
@@ -136,11 +136,11 @@ namespace ca
 
       string application::get(const char * pszUrl, ::fontopus::user * puser)
       {
-         if(puser == NULL && ::ca::str::find_ci("/matter.ca2.cc/", pszUrl) < 0 && ::ca::str::find_ci("-matter.ca2.cc/", pszUrl) < 0)
+         if(puser == NULL && ::ca2::str::find_ci("/matter.ca2.cc/", pszUrl) < 0 && ::ca2::str::find_ci("-matter.ca2.cc/", pszUrl) < 0)
          {
-            if(::ca::get_thread() != NULL)
+            if(::ca2::get_thread() != NULL)
             {
-               keeper < string > keepWorkUrl(&::ca::get_thread()->m_strWorkUrl, pszUrl, ::ca::get_thread()->m_strWorkUrl, true);
+               keeper < string > keepWorkUrl(&::ca2::get_thread()->m_strWorkUrl, pszUrl, ::ca2::get_thread()->m_strWorkUrl, true);
                puser = &ApplicationUser;
             }
             else
@@ -208,9 +208,9 @@ namespace ca
          const char * pszRequest,
          const char * pszUrl,
          string & str, 
-         ::ca::property_set & post, 
-         ::ca::property_set & headers,
-         ::ca::property_set & set, 
+         ::ca2::property_set & post, 
+         ::ca2::property_set & headers,
+         ::ca2::property_set & set, 
          ::http::cookies * pcookies, 
          ::fontopus::user * puser, 
          const char * pszVersion,
@@ -255,9 +255,9 @@ namespace ca
       bool application::download(
          const char * pszUrl,
          const char * pszFile, 
-         ::ca::property_set & post, 
-         ::ca::property_set & headers, 
-         ::ca::property_set & set,
+         ::ca2::property_set & post, 
+         ::ca2::property_set & headers, 
+         ::ca2::property_set & set,
          ::http::cookies * pcookies, 
          ::fontopus::user * puser, 
          const char * pszVersion)
@@ -273,7 +273,7 @@ namespace ca
          const char * pszUrl,
          const char * pszFile, 
          const char * pszPost, 
-         ::ca::property_set & headers,
+         ::ca2::property_set & headers,
          ::http::cookies * pcookies,
          ::fontopus::user * puser,
          const char * pszVersion)
@@ -304,7 +304,7 @@ namespace ca
          return System.http().put(pszUrl, memory, puser);
       }
 
-      bool application::put(const char * pszUrl, sp(::ca::file) pfile, ::fontopus::user * puser)
+      bool application::put(const char * pszUrl, sp(::ca2::file) pfile, ::fontopus::user * puser)
       {
          if(puser == NULL)
          {
@@ -323,7 +323,7 @@ namespace ca
          return System.http().put(strResponse, pszUrl, memory, puser);
       }
 
-      bool application::put(string & strResponse, const char * pszUrl, sp(::ca::file) pfile, ::fontopus::user * puser)
+      bool application::put(string & strResponse, const char * pszUrl, sp(::ca2::file) pfile, ::fontopus::user * puser)
       {
          if(puser == NULL)
          {
@@ -337,5 +337,5 @@ namespace ca
    } // namespace http
 
 
-} // namespace ca
+} // namespace ca2
 

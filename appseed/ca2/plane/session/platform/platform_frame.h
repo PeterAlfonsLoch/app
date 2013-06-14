@@ -19,15 +19,15 @@ namespace platform
       bool                       m_bOnDraw;
       uint32_t                      m_dwLastSuperDock;
 
-      frame(sp(::ca::application) papp);
+      frame(sp(::ca2::application) papp);
       virtual ~frame();
 
-      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
 
-      virtual void _000OnDraw(::ca::graphics * pgraphics);
+      virtual void _000OnDraw(::ca2::graphics * pgraphics);
 
 
 

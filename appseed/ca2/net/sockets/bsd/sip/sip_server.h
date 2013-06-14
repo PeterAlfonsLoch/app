@@ -6,7 +6,7 @@ namespace sockets
 
 
    class CLASS_DECL_ca2 sip_server :
-      public ::ca::thread,
+      public ::ca2::thread,
       public sip_base
    {
    public:
@@ -16,7 +16,7 @@ namespace sockets
       int32_t      m_iPort;
 
 
-      sip_server(sp(::ca::application) papp);
+      sip_server(sp(::ca2::application) papp);
    
 
       virtual int32_t run();

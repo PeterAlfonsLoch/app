@@ -2,8 +2,8 @@
 
 
 
-file_manager_operation_list_view::file_manager_operation_list_view(sp(::ca::application) papp) :
-   ca(papp),
+file_manager_operation_list_view::file_manager_operation_list_view(sp(::ca2::application) papp) :
+   ca2(papp),
    m_headerctrl(papp),
    
    ::user::scroll_view(papp),
@@ -15,7 +15,7 @@ file_manager_operation_list_view::file_manager_operation_list_view(sp(::ca::appl
    m_pheaderctrl->SetBaseListCtrlInterface(this);
 }
 
-void file_manager_operation_list_view::install_message_handling(::ca::message::dispatch * pinterface)
+void file_manager_operation_list_view::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    ::user::view::install_message_handling(pinterface);
    ::user::list::install_message_handling(pinterface);
@@ -23,7 +23,7 @@ void file_manager_operation_list_view::install_message_handling(::ca::message::d
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_list_view::_001OnCreate);
 }
 
-void file_manager_operation_list_view::OnDraw(::ca::graphics * pdc)
+void file_manager_operation_list_view::OnDraw(::ca2::graphics * pdc)
 {
    UNREFERENCED_PARAMETER(pdc);
 }
@@ -71,7 +71,7 @@ void file_manager_operation_list_view::_001InsertColumns()
    _001AddColumn(column);
 
 }
-void file_manager_operation_list_view::_001OnInitialUpdate(::ca::signal_object * pobj)
+void file_manager_operation_list_view::_001OnInitialUpdate(::ca2::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    m_dataid = "file_manager_operation_list_view";
@@ -79,7 +79,7 @@ void file_manager_operation_list_view::_001OnInitialUpdate(::ca::signal_object *
 }
 
 
-void file_manager_operation_list_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object * pHint)
+void file_manager_operation_list_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object * pHint)
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(pHint);
@@ -95,14 +95,14 @@ void file_manager_operation_list_view::on_update(sp(::user::view) pSender, LPARA
    }
 }
 
-void file_manager_operation_list_view::_001OnCreate(::ca::signal_object * pobj)
+void file_manager_operation_list_view::_001OnCreate(::ca2::signal_object * pobj)
 {
    pobj->previous();
    SetTimer(123, 500, NULL);
 }
-void file_manager_operation_list_view::_001OnTimer(::ca::signal_object * pobj)
+void file_manager_operation_list_view::_001OnTimer(::ca2::signal_object * pobj)
 {
-   SCAST_PTR(::ca::message::timer, ptimer, pobj);
+   SCAST_PTR(::ca2::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 123)
    {
        /*if(::get_tick_count() - m_dwLast123Update > 500)

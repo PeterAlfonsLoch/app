@@ -4,11 +4,11 @@
 namespace user
 {
 
-   print_job::print_job(sp(::ca::application) papp) :
-      ca(papp),
-      ::ca::print_job(papp),
-      ::ca::job(papp),
-      ::ca::thread(papp),
+   print_job::print_job(sp(::ca2::application) papp) :
+      ca2(papp),
+      ::ca2::print_job(papp),
+      ::ca2::job(papp),
+      ::ca2::thread(papp),
       ::user::job(papp)
    {
    }
@@ -34,7 +34,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      ::ca::graphics * pgraphics = m_phprinter->create_graphics();
+      ::ca2::graphics * pgraphics = m_phprinter->create_graphics();
       
       
       DOCINFO docinfo;

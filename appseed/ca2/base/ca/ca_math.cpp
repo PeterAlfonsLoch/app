@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -28,8 +28,8 @@ namespace ca
 
 
 
-      math::math(sp(::ca::application) papp) :
-         ca(papp),
+      math::math(sp(::ca2::application) papp) :
+         ca2(papp),
          m_mutex(papp)
       {
          // initial rng seed
@@ -234,7 +234,7 @@ namespace ca
          else
          {
 
-            ::ca::microtimer timer;
+            ::ca2::microtimer timer;
 
             double d1 = timer.getTimeInMicroSec();
 
@@ -252,8 +252,8 @@ namespace ca
     //        GetSystemTimes(&fta[0], &fta[1], &fta[2]);
       //      int64_t v1 = tick.QuadPart;
         //    int64_t v2 = time(NULL);
-          //  int64_t v3 = ::ca::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
-            //int64_t v4 = ::ca::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
+          //  int64_t v3 = ::ca2::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
+            //int64_t v4 = ::ca2::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
 
             int32_t v1 = (int32_t) timer.getTimeInMicroSec();
 
@@ -443,11 +443,11 @@ namespace ca
    } // namespace math
 
 
-} // namespace ca
+} // namespace ca2
 
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -483,6 +483,6 @@ namespace ca
    } // lemon
 
 
-} // ca
+} // ca2
 
 

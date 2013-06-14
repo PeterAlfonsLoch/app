@@ -1,11 +1,11 @@
 #include "framework.h"
 #include "signal.h"
 
-namespace ca
+namespace ca2
 {
 
-   signal_object::signal_object(sp(::ca::application) papp) :
-      ca(papp)
+   signal_object::signal_object(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_iParam    = 0;
       m_psignal   = NULL;
@@ -33,11 +33,11 @@ namespace ca
    }
 
 
-   ::ca::property_set & signal_object::operator()()
+   ::ca2::property_set & signal_object::operator()()
    {
       if(m_pset == NULL)
       {
-         m_pset = new ::ca::property_set(get_app());
+         m_pset = new ::ca2::property_set(get_app());
       }
       return *m_pset;
    }
@@ -93,7 +93,7 @@ namespace ca
       }
    }
 
-   void signalizable::unregister_target(::ca::signalizable * psignalizable)
+   void signalizable::unregister_target(::ca2::signalizable * psignalizable)
    {
       for(int32_t i = 0; i < m_signalptra.get_size();)
       {
@@ -109,7 +109,7 @@ namespace ca
       }
    }
 
-   void signalizable::filter_target(::ca::signalizable * psignalizable)
+   void signalizable::filter_target(::ca2::signalizable * psignalizable)
    {
       for(int32_t i = 0; i < m_signalptra.get_size();)
       {
@@ -276,4 +276,4 @@ namespace ca
       }
 
 
-} // namespace ca
+} // namespace ca2

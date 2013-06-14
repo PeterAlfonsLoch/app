@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-namespace ca
+namespace ca2
 {
 
 
-   copydesk::copydesk(sp(::ca::application) papp) :
-      ca(papp)
+   copydesk::copydesk(sp(::ca2::application) papp) :
+      ca2(papp)
    {
    }
 
@@ -71,7 +71,7 @@ namespace ca
 
    }
 
-   bool copydesk::desk_to_dib(::ca::dib * pdib)
+   bool copydesk::desk_to_dib(::ca2::dib * pdib)
    {
 
       UNREFERENCED_PARAMETER(pdib);
@@ -80,6 +80,6 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 

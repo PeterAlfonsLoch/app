@@ -123,7 +123,7 @@ namespace sockets
       int16_t     server_port   = get_integer(buf, ptr);
       bool      is_ssl        = get_boolean(buf, ptr);
 
-      string method_str = ::ca::str::from( method );
+      string method_str = ::ca2::str::from( method );
       Application.sockets().m_pajpbasesocketinit->Method.Lookup(method, method_str);
       m_request.attr("http_method") = method_str;
       m_request.attr("http_protocol") = protocol;

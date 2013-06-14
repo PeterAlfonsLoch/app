@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -87,7 +87,7 @@ namespace ca
 
       simple_array < element >      m_elementa;
       bool                          m_bFill;
-      ::ca::e_fill_mode             m_efillmode;
+      ::ca2::e_fill_mode             m_efillmode;
       bool                          m_bHasPoint;
       point                         m_pt;
       bool                          m_bUpdated;
@@ -102,7 +102,7 @@ namespace ca
 
 
 
-      virtual bool begin_figure(bool bFill, ::ca::e_fill_mode efillmode);
+      virtual bool begin_figure(bool bFill, ::ca2::e_fill_mode efillmode);
       virtual bool end_figure(bool bClose);
 
 
@@ -133,7 +133,7 @@ namespace ca
 
 
    class CLASS_DECL_ca2 graphics_path_sp :
-      public ::c::smart_pointer < graphics_path >
+      public ::ca::smart_pointer < graphics_path >
    {
    public:
 
@@ -141,20 +141,20 @@ namespace ca
       {
       }
 
-      graphics_path_sp(const ::c::smart_pointer < graphics_path > & p) :
-         ::c::smart_pointer < graphics_path > (p)
+      graphics_path_sp(const ::ca::smart_pointer < graphics_path > & p) :
+         ::ca::smart_pointer < graphics_path > (p)
       {
       }
 
       graphics_path_sp(allocatorsp allocer) :
-         ::c::smart_pointer < graphics_path > (allocer)
+         ::ca::smart_pointer < graphics_path > (allocer)
       {
       }
 
    };
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-void _123abc_debug_gen_array_randomize(sp(::ca::application) papp);
+void _123abc_debug_gen_array_randomize(sp(::ca2::application) papp);
 void ___arrayStdSortTest();
 
 
-void _123abc_debug_gen_array_randomize(sp(::ca::application) papp)
+void _123abc_debug_gen_array_randomize(sp(::ca2::application) papp)
 {
    int_array a;
    a.add_unique(1);
@@ -16,8 +16,8 @@ void _123abc_debug_gen_array_randomize(sp(::ca::application) papp)
 namespace lemon
 {
 
-   array::array(sp(::ca::application) papp) :
-      ca(papp)
+   array::array(sp(::ca2::application) papp) :
+      ca2(papp)
    {
    }
 
@@ -30,7 +30,7 @@ namespace lemon
 void ___arrayStdSortTest()
 {
    array<int32_t, int32_t> ia;
-   /*::ca::_sort::quick_sort(
+   /*::ca2::_sort::quick_sort(
       ia,
       sort::CompareAscending < int32_t >);*/
 

@@ -1,13 +1,13 @@
 #pragma once
 
 
-namespace ca
+namespace ca2
 {
 
    // property set key is case insensitive
    class CLASS_DECL_ca2 property_set :
-      public ::ca::object,
-      public ::ca::byte_serializable
+      public ::ca2::object,
+      public ::ca2::byte_serializable
    {
    public:
 
@@ -20,7 +20,7 @@ namespace ca
 
 
 
-      property_set(::ca::application * papp = NULL, bool bAutoAdd = true, bool bMultiValue = false);
+      property_set(::ca2::application * papp = NULL, bool bAutoAdd = true, bool bMultiValue = false);
       property_set(const property_set & set);
       property_set(const pair_set_interface & set);
       property_set(const str_str_interface & set);
@@ -142,8 +142,8 @@ namespace ca
       void parse_http_headers(const char * pszHeaders);
       string get_http_post();
 
-      virtual void write(::ca::byte_output_stream & ostream);
-      virtual void read(::ca::byte_input_stream & ostream);
+      virtual void write(::ca2::byte_output_stream & ostream);
+      virtual void read(::ca2::byte_input_stream & ostream);
 
       virtual string implode(const char * pszGlue) const;
       ::count get_count() const;
@@ -168,7 +168,7 @@ namespace ca
    public:
 
 
-      relation_set(sp(::ca::application) papp = NULL);
+      relation_set(sp(::ca2::application) papp = NULL);
       virtual ~relation_set();
 
 
@@ -250,12 +250,12 @@ namespace ca
          m_ppair = NULL;
       }
 
-      ::ca::property * operator ->()
+      ::ca2::property * operator ->()
       {
          return &m_set.m_propertya[m_ppair->m_element2];
       }
 
-      const ::ca::property * operator ->() const
+      const ::ca2::property * operator ->() const
       {
          return &m_set.m_propertya[m_ppair->m_element2];
       }
@@ -295,12 +295,12 @@ namespace ca
          m_ppair = NULL;
       }
 
-      const ::ca::property * operator ->()
+      const ::ca2::property * operator ->()
       {
          return &m_set.m_propertya[m_ppair->m_element2];
       }
 
-      const ::ca::property * operator ->() const
+      const ::ca2::property * operator ->() const
       {
          return &m_set.m_propertya[m_ppair->m_element2];
       }
@@ -363,12 +363,12 @@ namespace ca
 
    inline property & property_set::operator[](index iIndex)
    {
-      return operator[](::ca::str::from(iIndex));
+      return operator[](::ca2::str::from(iIndex));
    }
 
    inline property property_set::operator[](index iIndex) const
    {
-      return operator[](::ca::str::from(iIndex));
+      return operator[](::ca2::str::from(iIndex));
    }
 
    inline property & property_set::operator[](const var & var)
@@ -407,7 +407,7 @@ namespace ca
 
    inline index property_set::find_index(id idName) const
    {
-      const ::ca::property_map::pair * ppair = m_map.PLookup(idName);
+      const ::ca2::property_map::pair * ppair = m_map.PLookup(idName);
       if(ppair == NULL)
          return -1;
       return ppair->m_element2;
@@ -437,7 +437,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 
@@ -507,14 +507,14 @@ inline var & var::operator[] (string strKey)
    return propset().operator[](strKey).get_value();
 }
 
-inline ::ca::property_set ca_property_set()
+inline ::ca2::property_set ca_property_set()
 {
-   return ::ca::property_set();
+   return ::ca2::property_set();
 }
 
 
 
-inline string & operator += (string & str, const ::ca::property & property)
+inline string & operator += (string & str, const ::ca2::property & property)
 {
 
    str += property.get_string();

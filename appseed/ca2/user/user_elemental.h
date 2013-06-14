@@ -13,11 +13,11 @@ namespace user
    public:
 
       virtual sp(::user::interaction) get_guie();
-      virtual ::ca::graphics * _001GetDC();
-      virtual void _001ReleaseDC(::ca::graphics * pdc);
+      virtual ::ca2::graphics * _001GetDC();
+      virtual void _001ReleaseDC(::ca2::graphics * pdc);
       virtual void _001RedrawWindow();
 
-      virtual void pre_translate_message(::ca::signal_object * pobj);
+      virtual void pre_translate_message(::ca2::signal_object * pobj);
    };
 
 } // namespace user

@@ -5,7 +5,7 @@ namespace user
 {
 
    class CLASS_DECL_ca2 job :
-      virtual public ::ca::job
+      virtual public ::ca2::job
    {
    public:
 
@@ -16,7 +16,7 @@ namespace user
       // to be deleted while the job is not finished or canceled.
       sp(::user::view)        m_pview;
 
-      job(sp(::ca::application) papp);
+      job(sp(::ca2::application) papp);
       virtual ~job();
 
 

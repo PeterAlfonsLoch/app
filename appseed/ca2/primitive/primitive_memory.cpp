@@ -4,8 +4,8 @@
 namespace primitive
 {
 
-   memory::memory(sp(::ca::application) papp) :
-      ca(papp)
+   memory::memory(sp(::ca2::application) papp) :
+      ca2(papp)
    {
 
       m_pbStorage          = NULL;

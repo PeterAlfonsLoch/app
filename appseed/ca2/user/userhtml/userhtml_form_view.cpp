@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-html_form_view::html_form_view(sp(::ca::application) papp) :
-   ca(papp),
+html_form_view::html_form_view(sp(::ca2::application) papp) :
+   ca2(papp),
    html_form(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),
@@ -18,7 +18,7 @@ html_form_view::~html_form_view()
 }
 
 
-void html_form_view::install_message_handling(::ca::message::dispatch * pinterface)
+void html_form_view::install_message_handling(::ca2::message::dispatch * pinterface)
 {
 
    html_form::install_message_handling(pinterface);
@@ -47,7 +47,7 @@ void html_form_view::install_message_handling(::ca::message::dispatch * pinterfa
 /////////////////////////////////////////////////////////////////////////////
 // html_form_view drawing
 
-void html_form_view::OnDraw(::ca::graphics * pdcScreen)
+void html_form_view::OnDraw(::ca2::graphics * pdcScreen)
 {
    UNREFERENCED_PARAMETER(pdcScreen);
 }
@@ -77,7 +77,7 @@ bool html_form_view::pre_create_window(CREATESTRUCT& cs)
    cs.style &= ~WS_EX_CLIENTEDGE;
    return html_form::pre_create_window(cs);
 }
-void html_form_view::_001OnInitialUpdate(::ca::signal_object * pobj)
+void html_form_view::_001OnInitialUpdate(::ca2::signal_object * pobj)
 {
 
    html_form::_001OnInitialUpdate(pobj);
@@ -85,7 +85,7 @@ void html_form_view::_001OnInitialUpdate(::ca::signal_object * pobj)
 }
 
 
-void html_form_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca::object* phint)
+void html_form_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);
@@ -157,7 +157,7 @@ void html_form_view::on_document_complete(const char * pszUrl)
 }
 
 
-void html_form_view::_001OnSetFocus(::ca::signal_object * pobj)
+void html_form_view::_001OnSetFocus(::ca2::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    if(get_html_data()->m_focusptra.get_size() > 0)
@@ -166,7 +166,7 @@ void html_form_view::_001OnSetFocus(::ca::signal_object * pobj)
    }
 }
 
-void html_form_view::_001OnKillFocus(::ca::signal_object * pobj)
+void html_form_view::_001OnKillFocus(::ca2::signal_object * pobj)
 {
 
    UNREFERENCED_PARAMETER(pobj);

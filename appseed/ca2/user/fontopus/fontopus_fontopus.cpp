@@ -5,9 +5,9 @@ namespace fontopus
 {
 
 
-   fontopus::fontopus(::ca::application * papp) :
-      ca(papp),
-      ::ca::section(papp)
+   fontopus::fontopus(::ca2::application * papp) :
+      ca2(papp),
+      ::ca2::section(papp)
    {
    
       m_puser                    = NULL;
@@ -42,7 +42,7 @@ namespace fontopus
 
    user * fontopus::create_current_user()
    {
-      ::ca::property_set set(get_app());
+      ::ca2::property_set set(get_app());
       if(m_puser == NULL)
       {
          int32_t iRetry = 3;
@@ -73,9 +73,9 @@ namespace fontopus
 
 
          if(m_puser != NULL 
-            && !::ca::str::begins(m_puser->m_strLogin, "system")
+            && !::ca2::str::begins(m_puser->m_strLogin, "system")
             && m_papp->m_pappThis->m_strAppId != "app-core/deepfish"
-            && !::ca::str::begins(m_papp->m_pappThis->m_strAppName, "app-core/deepfish_")
+            && !::ca2::str::begins(m_papp->m_pappThis->m_strAppName, "app-core/deepfish_")
             && !m_papp->m_pappThis->is_serviceable())
          {
 
@@ -89,7 +89,7 @@ namespace fontopus
       return m_puser;
    }
 
-   user * fontopus::login(::ca::property_set & set)
+   user * fontopus::login(::ca2::property_set & set)
    {
 
       user * puser = NULL;
@@ -116,7 +116,7 @@ namespace fontopus
 
    bool fontopus::get_auth(const char * psz, string & strUsername, string & strPassword)
    {
-          /*::ca::fontopus * papp;
+          /*::ca2::fontopus * papp;
       if(m_puiInitialPlaceHolderContainer != NULL)
       {
       papp = m_puiInitialPlaceHolderContainer->m_papp;
@@ -221,7 +221,7 @@ namespace fontopus
       {
          if(m_puser == NULL)
          {
-            if(m_pthreadCreatingUser == ::ca::get_thread())
+            if(m_pthreadCreatingUser == ::ca2::get_thread())
                return NULL;
             if(m_pthreadCreatingUser != NULL)
             {
@@ -233,7 +233,7 @@ namespace fontopus
                   return m_puser;
                return NULL;
             }
-            keeper < ::ca::thread * > keepCreatingUser(&m_pthreadCreatingUser, ::ca::get_thread(), NULL, true);
+            keeper < ::ca2::thread * > keepCreatingUser(&m_pthreadCreatingUser, ::ca2::get_thread(), NULL, true);
             user * puser = create_current_user();
             if(!puser->initialize())
             {
@@ -291,9 +291,9 @@ namespace fontopus
          && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
       {
 
-         sp(::ca::create_context) spcreatecontext(allocer());
+         sp(::ca2::create_context) spcreatecontext(allocer());
 
-         sp(::ca::application) papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
+         sp(::ca2::application) papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
 
          if(papp == NULL)
          {
@@ -312,14 +312,14 @@ namespace fontopus
 
 
 
-   void fontopus::on_request(sp(::ca::create_context) pcreatecontext)
+   void fontopus::on_request(sp(::ca2::create_context) pcreatecontext)
    {
 
       if(pcreatecontext->m_spCommandLine.is_set()
          && pcreatecontext->m_spCommandLine->m_varFile == "ca2login")
       {
          //Sleep(15 * 1000);
-         ::ca::property_set setLogin(get_app());
+         ::ca2::property_set setLogin(get_app());
          if(pcreatecontext->m_spCommandLine->m_varQuery["ruri"].is_set())
          {
             setLogin["ruri"] = pcreatecontext->m_spCommandLine->m_varQuery["ruri"];

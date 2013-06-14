@@ -193,8 +193,8 @@ namespace libcompress
       m.Props[propID] = value;
    }
 
-   out_handler::out_handler(sp(::ca::application) papp) :
-      ca(papp)
+   out_handler::out_handler(sp(::ca2::application) papp) :
+      ca2(papp)
    {
    }
 
@@ -303,14 +303,14 @@ namespace libcompress
          return;
       for (int32_t i = 0; i < len; i++)
       {
-         char c = srcString[i];
-         if (c == L':')
+         char ca = srcString[i];
+         if (ca == L':')
          {
             subStrings.add(name);
             name.Empty();
          }
          else
-            name += c;
+            name += ca;
       }
       subStrings.add(name);
    }
@@ -326,8 +326,8 @@ namespace libcompress
       }
       for(strsize i = 0; i < param.get_length(); i++)
       {
-         char c = param[i];
-         if (c >= '0' && c <= '9')
+         char ca = param[i];
+         if (ca >= '0' && ca <= '9')
          {
             name = param.Left(i);
             value = param.Mid(i);
@@ -337,14 +337,14 @@ namespace libcompress
       name = param;
    }
 
-   ::ca::HRes out_handler::SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value)
+   ::ca2::HRes out_handler::SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value)
    {
-      ::ca::property prop;
+      ::ca2::property prop;
       int32_t index = FindPropIdExact(name);
       if (index < 0)
          return E_INVALIDARG;
       const CNameToPropID &nameToPropID = g_NameToPropID[index];
-      prop.set_name(::ca::str::from(nameToPropID.PropID));
+      prop.set_name(::ca2::str::from(nameToPropID.PropID));
 
       if (atoi(prop.name()) == NCoderPropID::kBlockSize ||
          atoi(prop.name()) == NCoderPropID::kDictionarySize ||
@@ -387,7 +387,7 @@ namespace libcompress
       return S_OK;
    }
 
-   ::ca::HRes out_handler::SetParams(COneMethodInfo &oneMethodInfo, const string &srcString)
+   ::ca2::HRes out_handler::SetParams(COneMethodInfo &oneMethodInfo, const string &srcString)
    {
       stringa params;
       SplitParams(srcString, params);
@@ -403,7 +403,7 @@ namespace libcompress
       return S_OK;
    }
 
-   ::ca::HRes out_handler::SetSolidSettings(const string &s)
+   ::ca2::HRes out_handler::SetSolidSettings(const string &s)
    {
       string s2 = s;
       s2.make_upper();
@@ -422,8 +422,8 @@ namespace libcompress
          i += (int32_t)(end - start);
          if (i == s2.get_length())
             return E_INVALIDARG;
-         char c = s2[i++];
-         switch(c)
+         char ca = s2[i++];
+         switch(ca)
          {
          case 'F':
             if (v < 1)
@@ -453,7 +453,7 @@ namespace libcompress
       return S_OK;
    }
 
-   ::ca::HRes out_handler::SetSolidSettings(var value)
+   ::ca2::HRes out_handler::SetSolidSettings(var value)
    {
       bool isSolid;
       switch(value.get_type())
@@ -515,7 +515,7 @@ namespace libcompress
       _crcSize = 4;
    }
 
-   ::ca::HRes out_handler::SetProperty(const char *nameSpec, var value)
+   ::ca2::HRes out_handler::SetProperty(const char *nameSpec, var value)
    {
       string name = nameSpec;
       name.make_upper();
@@ -610,8 +610,8 @@ namespace libcompress
          if (index < 0)
             return E_INVALIDARG;
          const CNameToPropID &nameToPropID = g_NameToPropID[index];
-         ::ca::property prop;
-         prop.set_name(::ca::str::from(nameToPropID.PropID));
+         ::ca2::property prop;
+         prop.set_name(::ca2::str::from(nameToPropID.PropID));
 
          if (atoi(prop.name()) == NCoderPropID::kBlockSize ||
             atoi(prop.name()) == NCoderPropID::kDictionarySize ||
@@ -630,7 +630,7 @@ namespace libcompress
             if (index < 0)
                return E_INVALIDARG;
             const CNameToPropID &nameToPropID = g_NameToPropID[index];
-            prop.set_name(::ca::str::from(nameToPropID.PropID));
+            prop.set_name(::ca2::str::from(nameToPropID.PropID));
             throw not_implemented(get_app());
             //if (!ConvertProperty(value, nameToPropID.VarType, prop.get_value()))
               // return E_INVALIDARG;

@@ -13,8 +13,8 @@ namespace filemanager
       {
 
 
-         tree_view::tree_view(sp(::ca::application) papp) :
-            ca(papp),
+         tree_view::tree_view(sp(::ca2::application) papp) :
+            ca2(papp),
             
             ::user::scroll_view(papp),
             ::user::tree(papp)
@@ -22,9 +22,9 @@ namespace filemanager
 
             m_etranslucency = TranslucencyPresent;
 
-            m_spdataFs = new ::ca::simple_tree_data(get_app());
+            m_spdataFs = new ::ca2::simple_tree_data(get_app());
 
-            ::ca::data_container::m_spdata = m_spdataFs;
+            ::ca2::data_container::m_spdata = m_spdataFs;
 
          }
 
@@ -64,8 +64,8 @@ namespace filemanager
 
             m_iParentFolder = doc.get_root()->attr("id");
 
-            sp(::ca::tree_item) pdataitemParent;
-            sp(::ca::tree_item) pdataitemChild;
+            sp(::ca2::tree_item) pdataitemParent;
+            sp(::ca2::tree_item) pdataitemChild;
 
             pdataitemParent = FindTreeItem(m_iParentFolder);
             if(pdataitemParent == NULL)
@@ -136,15 +136,15 @@ namespace filemanager
 
                if(pdataitemChild == NULL)
                {
-                  pdataitemChild = create_item(m_spdataFs, pdataitemParent, ::ca::RelativeLastChild);
+                  pdataitemChild = create_item(m_spdataFs, pdataitemParent, ::ca2::RelativeLastChild);
                }
 
                if(pdataitemChild->m_pitemdata == NULL)
                {
-                  pdataitemChild->m_pitemdata = new ::ca::simple_tree_item_data();
+                  pdataitemChild->m_pitemdata = new ::ca2::simple_tree_item_data();
                }
 
-               ((::ca::simple_tree_item_data *) pdataitemChild->m_pitemdata.m_p)->m_str = folder.m_strName;
+               ((::ca2::simple_tree_item_data *) pdataitemChild->m_pitemdata.m_p)->m_str = folder.m_strName;
                pdataitemChild->m_dwUser = iNewItem;
 
          //      else
@@ -162,7 +162,7 @@ namespace filemanager
          }
 
 
-         sp(::ca::tree_item) tree_view::FindTreeItem(int64_t iFolder)
+         sp(::ca2::tree_item) tree_view::FindTreeItem(int64_t iFolder)
          {
             int32_t iUser;
 
@@ -190,7 +190,7 @@ namespace filemanager
 
 
          index tree_view::_001GetItemImage(
-            sp(::ca::tree_item) pitem,
+            sp(::ca2::tree_item) pitem,
             bool bSelected
             )
          {
@@ -204,19 +204,19 @@ namespace filemanager
             }
          }
 
-         void tree_view::_001OnItemExpand(sp(::ca::tree_item)pitem)
+         void tree_view::_001OnItemExpand(sp(::ca2::tree_item)pitem)
          {
             m_pserver->open_folder(m_foldera[pitem->m_dwUser].m_iFolder);
          }
 
-         void tree_view::install_message_handling(::ca::message::dispatch * pdispatch)
+         void tree_view::install_message_handling(::ca2::message::dispatch * pdispatch)
          {
             ::user::view::install_message_handling(pdispatch);
             ::user::tree::install_message_handling(pdispatch);
          }
 
 
-         void tree_view::_001OnCreate(::ca::signal_object * pobj)
+         void tree_view::_001OnCreate(::ca2::signal_object * pobj)
          {
             pobj->previous();
             m_iIconFolderNormal = m_spdataFs->m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_normal.ico");

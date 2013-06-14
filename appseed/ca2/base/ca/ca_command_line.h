@@ -11,7 +11,7 @@ namespace fs
 } // namespace fs
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -19,7 +19,7 @@ namespace ca
 
 
    class CLASS_DECL_ca2 command_line :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -53,17 +53,17 @@ namespace ca
       var                           m_varQuery;
       ::fs::item_array *            m_pitema;
 
-      sp(::ca::application)           m_pappFork;
+      sp(::ca2::application)           m_pappFork;
       string                        m_strApp;
       string                        m_strAppType;
       sp(::user::interaction)         m_puiParent;
       index                         m_iEdge;
       manual_reset_event            m_eventReady;
-      ::ca::application_bias *      m_pbiasCreate;
+      ::ca2::application_bias *      m_pbiasCreate;
 
 
 
-      command_line(sp(::ca::application) papp);
+      command_line(sp(::ca2::application) papp);
       ~command_line();
 
       void common_construct();
@@ -89,5 +89,5 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace ca2
 

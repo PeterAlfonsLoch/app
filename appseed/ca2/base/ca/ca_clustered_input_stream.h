@@ -2,7 +2,7 @@
 // from 7-zip on 2012-12-23, lunch time
 #pragma once
 
-namespace ca
+namespace ca2
 {
 
    class clustered_input_stream:
@@ -41,4 +41,4 @@ namespace ca
    };
 
 
-} // namespace ca
+} // namespace ca2

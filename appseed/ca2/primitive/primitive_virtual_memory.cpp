@@ -5,8 +5,8 @@ namespace primitive
 {
 
 
-   virtual_memory::virtual_memory(sp(::ca::application) papp) :
-      ca(papp)
+   virtual_memory::virtual_memory(sp(::ca2::application) papp) :
+      ca2(papp)
    {
       m_pbStorage = NULL;
       m_pbComputed = NULL;
@@ -34,7 +34,7 @@ namespace primitive
    }
 
    virtual_memory::virtual_memory(primitive::memory_container * pcontainer, void * pmemory, memory_size dwSize) :
-      ca(pcontainer->get_app())
+      ca2(pcontainer->get_app())
    {
       m_pbStorage          = NULL;
       m_pbComputed = NULL;

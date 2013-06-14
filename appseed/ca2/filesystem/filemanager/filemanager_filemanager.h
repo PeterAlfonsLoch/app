@@ -7,7 +7,7 @@ namespace filemanager
 
 
    class CLASS_DECL_ca2 filemanager :
-      virtual public ::ca::section,
+      virtual public ::ca2::section,
       virtual public FileManagerCallbackInterface,
       virtual public FileManagerFileListCallback,
       virtual public ::database::client
@@ -24,7 +24,7 @@ namespace filemanager
       id                                           m_idFileManager;
 
 
-      filemanager(::ca::application * papp);
+      filemanager(::ca2::application * papp);
       virtual ~filemanager();
 
       bool initialize();
@@ -48,7 +48,7 @@ namespace filemanager
       string get_initial_browse_path(const char * pszDefault = NULL);
 
 
-      virtual void on_request(sp(::ca::create_context) pcreatecontext);
+      virtual void on_request(sp(::ca2::create_context) pcreatecontext);
 
 
    };

@@ -3,8 +3,8 @@
 namespace user
 {
 
-   bitmap_button::bitmap_button(sp(::ca::application) papp) :
-      ca(papp),
+   bitmap_button::bitmap_button(sp(::ca2::application) papp) :
+      ca2(papp),
       
       ::user::button(papp)
    {
@@ -16,7 +16,7 @@ namespace user
    {
    }
 
-   void bitmap_button::install_message_handling(::ca::message::dispatch * pinterface)
+   void bitmap_button::install_message_handling(::ca2::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &bitmap_button::_001OnMouseMove);
    }
@@ -77,7 +77,7 @@ namespace user
 
    }
 
-   void bitmap_button::_001OnMouseMove(::ca::signal_object * pobj)
+   void bitmap_button::_001OnMouseMove(::ca2::signal_object * pobj)
    {
       UpdateHover();
       pobj->previous();
@@ -95,7 +95,7 @@ namespace user
       UpdateHover();
 
        // use the main bitmap for up, the selected bitmap for down
-       ::ca::bitmap* pBitmap = &m_bitmap;
+       ::ca2::bitmap* pBitmap = &m_bitmap;
        UINT state = lpDIS->itemState;
       if(!IsControlCommandEnabled())
          state = ODS_DISABLED;
@@ -111,10 +111,10 @@ namespace user
 
        throw not_implemented(get_app());
        // draw the whole button
-       /*::ca::graphics * pgraphics = ::ca::graphics_sp::from_handle(lpDIS->hDC);
-       ::ca::graphics_sp memDC;
+       /*::ca2::graphics * pgraphics = ::ca2::graphics_sp::from_handle(lpDIS->hDC);
+       ::ca2::graphics_sp memDC;
        memDC.CreateCompatibleDC(pgraphics);
-       ::ca::bitmap* pOld = memDC.SelectObject(pBitmap);
+       ::ca2::bitmap* pOld = memDC.SelectObject(pBitmap);
        if (pOld == NULL)
            return;     // destructors will clean up
 
@@ -171,7 +171,7 @@ namespace user
 
    }
 
-   void bitmap_button::pre_translate_message(::ca::signal_object * pobj)
+   void bitmap_button::pre_translate_message(::ca2::signal_object * pobj)
    {
       // Relay events from this button to the tool tip tool handler
       BaseToolTipRelayEvent(pobj);
@@ -181,18 +181,18 @@ namespace user
 
    void bitmap_button::BaseToolTipGetRect(LPRECT lprect)
    {
-      // use ::ca::window client rect as the tool rect
+      // use ::ca2::window client rect as the tool rect
       GetClientRect(lprect);
    }
 
    int32_t bitmap_button::BaseToolTipGetIndex()
    {
-      // use ::ca::window dialog control id as the index
+      // use ::ca2::window dialog control id as the index
       return (int32_t) GetDlgCtrlId();
    }
 
 
-   void bitmap_button::message_handler(::ca::signal_object * pobj)
+   void bitmap_button::message_handler(::ca2::signal_object * pobj)
    {
       if(pobj->m_bRet)
          return;

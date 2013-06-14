@@ -1,13 +1,13 @@
 #include "framework.h"
 
-message_box::message_box(sp(::ca::application) papp) :
-   ca(papp)/*,
+message_box::message_box(sp(::ca2::application) papp) :
+   ca2(papp)/*,
    dialog(allocer())*/,
    wait_message_dialog(allocer())
 {
 }
 
-void message_box::on_show(const char * pszMatter, ::ca::property_set & propertyset)
+void message_box::on_show(const char * pszMatter, ::ca2::property_set & propertyset)
 {
    if(!propertyset.has_property("application_name"))
       propertyset["application_name"] = System.m_strAppName;

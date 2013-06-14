@@ -9,7 +9,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 #endif
 
 
-namespace ca
+namespace ca2
 {
 
    //typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
@@ -97,9 +97,9 @@ namespace ca
       {
       public:
 
-         sp(::ca::application) m_papp;
+         sp(::ca2::application) m_papp;
 
-         trace(sp(::ca::application) papp)
+         trace(sp(::ca2::application) papp)
          {
             m_papp = papp;
          }
@@ -182,7 +182,7 @@ namespace ca
 
 #endif
 
-#define DECLARE_NOUIASSERT() ::ca::CNoUIAssertHook _g_NoUIAssertHook;
+#define DECLARE_NOUIASSERT() ::ca2::CNoUIAssertHook _g_NoUIAssertHook;
 
 #endif  // _NO_DEBUG_CRT
 
@@ -191,9 +191,9 @@ namespace ca
       CLASS_DECL_ca2 void __cdecl __trace(const wchar_t * pszFormat, ...);
       CLASS_DECL_ca2 void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const char * pszFormat, ...);
       CLASS_DECL_ca2 void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const wchar_t * pszFormat, ...);
-#define TRACENOTIMPL(funcname)  do { TRACE(::ca::atlTraceNotImpl, 0, "ca: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
+#define TRACENOTIMPL(funcname)  do { TRACE(::ca2::atlTraceNotImpl, 0, "ca2: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
    } // namespace trace
     
 
-};  // namespace ca
+};  // namespace ca2
 

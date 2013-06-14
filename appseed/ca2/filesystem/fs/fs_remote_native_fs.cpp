@@ -5,9 +5,9 @@ namespace fs
 {
 
 
-   remote_native::remote_native(sp(::ca::application) papp, const char * pszRoot) :
-      ca(papp),
-      ::ca::data(papp),
+   remote_native::remote_native(sp(::ca2::application) papp, const char * pszRoot) :
+      ca2(papp),
+      ::ca2::data(papp),
       ::fs::data(papp)
    {
 
@@ -259,7 +259,7 @@ namespace fs
 
       string strPath(pszPath);
 
-      if(!::ca::str::begins_eat_ci(strPath, "fs://"))
+      if(!::ca2::str::begins_eat_ci(strPath, "fs://"))
       {
          return "";
       }
@@ -281,16 +281,16 @@ namespace fs
    }
 
 
-   ::ca::filesp remote_native::get_file(var varFile, UINT nOpenFlags)
+   ::ca2::filesp remote_native::get_file(var varFile, UINT nOpenFlags)
    {
 
-      ::ca::filesp spfile;
+      ::ca2::filesp spfile;
 
       spfile = new remote_native_file(get_app(), varFile);
 
       if(!spfile->open(varFile.get_string(), nOpenFlags))
       {
-         throw ::ca::file_exception(get_app(), ::ca::file_exception::none, -1, varFile.get_string());
+         throw ::ca2::file_exception(get_app(), ::ca2::file_exception::none, -1, varFile.get_string());
       }
 
       return spfile;

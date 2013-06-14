@@ -9,7 +9,7 @@
 #endif
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -247,7 +247,7 @@ namespace ca
       {
          m_pchBuf = (char *) malloc(1025);
          if(m_pchBuf == NULL)
-            throw memory_exception(::ca::get_thread_app());
+            throw memory_exception(::ca2::get_thread_app());
       }
       memset(&m_overlapped, 0, sizeof(m_overlapped));
       m_overlapped.m_ppipe = this;
@@ -291,7 +291,7 @@ namespace ca
       return true;
    }
 
-} // namespace ca
+} // namespace ca2
 
 
 #endif
