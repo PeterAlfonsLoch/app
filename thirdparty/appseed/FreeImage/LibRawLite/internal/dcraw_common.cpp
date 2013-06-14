@@ -30,6 +30,12 @@ it under the terms of the one of three licenses as you choose:
 #include "internal/defines.h"
 #include "internal/var_defines.h"
 
+
+#ifdef ANDROID
+extern "C" void swab(const void *from, void*to, ssize_t n);
+#endif
+
+
 #ifndef __GLIBC__
 char *my_memmem (char *haystack, size_t haystacklen,
 	      char *needle, size_t needlelen)
@@ -115,7 +121,7 @@ void CLASS read_shorts (ushort *pixel, int count)
 {
   if (fread (pixel, 2, count, ifp) < count) derror();
   if ((order == 0x4949) == (ntohs(0x1234) == 0x1234))
-#ifdef _WIN32
+#if defined(_WIN32)
      _swab ((char*)pixel, (char*)pixel, count*2);
 #else
      swab ((char*)pixel, (char*)pixel, count*2);

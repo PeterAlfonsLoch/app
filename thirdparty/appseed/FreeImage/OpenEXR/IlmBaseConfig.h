@@ -3,7 +3,7 @@
 // and you want OpenEXR to use it for multithreaded file I/O.
 //
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) || defined(ANDROID)
 #define HAVE_PTHREAD 1
 #else
 #undef HAVE_PTHREAD		// currently disabled in FreeImage
@@ -15,7 +15,7 @@
 // own semaphore implementation.
 //
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) || defined(ANDROID)
 #define HAVE_POSIX_SEMAPHORES 1
 #else
 #undef HAVE_POSIX_SEMAPHORES

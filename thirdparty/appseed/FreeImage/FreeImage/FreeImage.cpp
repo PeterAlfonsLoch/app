@@ -219,3 +219,42 @@ FreeImage_OutputMessageProc(int fif, const char *fmt, ...) {
 			freeimage_outputmessagestdcall_proc((FREE_IMAGE_FORMAT)fif, message); 
 	}
 }
+
+
+#ifdef ANDROID
+
+extern "C"
+{
+
+   #include <stdint.h>
+   #include <asm/byteorder.h>
+
+   void swab(const void *from, void*to, ssize_t n)
+   {
+     ssize_t i;
+
+     if (n < 0)
+       return;
+
+     for (i = 0; i < (n/2)*2; i += 2)
+       *((uint16_t*)to+i) = __arch__swab16(*((uint16_t*)from+i));
+   }
+
+    // used deep inside FreeImage
+    void* lfind( const void * key, const void * base, size_t num, size_t width, int (*fncomparison)(const void *, const void * ) )
+    {
+        char* Ptr = (char*)base;
+
+        for ( size_t i = 0; i != num; i++, Ptr+=width )
+        {
+            if ( fncomparison( key, Ptr ) == 0 ) return Ptr;
+        }
+
+        return NULL;
+    }
+
+
+} // extern "C"
+
+
+#endif

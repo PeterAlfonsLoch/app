@@ -38,6 +38,8 @@
 //
 //-----------------------------------------------------------------------------
 
+#ifdef WINDOWS
+
 #include "IlmThreadMutex.h"
 #include "Iex.h"
 
@@ -71,3 +73,6 @@ Mutex::unlock () const
 
 
 } // namespace IlmThread
+
+
+#endif // defined(WINDOWS)

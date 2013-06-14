@@ -38,6 +38,9 @@
 //
 //-----------------------------------------------------------------------------
 
+
+#ifdef WINDOWS
+
 #include "IlmThreadSemaphore.h"
 #include "Iex.h"
 #include <string>
@@ -144,3 +147,6 @@ Semaphore::value() const
 }
 
 } // namespace IlmThread
+
+
+#endif // defined(WINDOWS)

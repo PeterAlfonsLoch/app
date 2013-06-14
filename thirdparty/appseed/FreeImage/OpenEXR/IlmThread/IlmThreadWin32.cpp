@@ -39,6 +39,8 @@
 //-----------------------------------------------------------------------------
 
 
+#ifdef WINDOWS
+
 #include "IlmThread.h"
 #include "Iex.h"
 #include <iostream>
@@ -93,3 +95,6 @@ Thread::start ()
 
 
 } // namespace IlmThread
+
+
+#endif
