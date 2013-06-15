@@ -1,3 +1,7 @@
+
+#include "c/c/c.h"
+
+
 /* FreeImage libtiff config */
 
 #ifndef _TIFFCONF_

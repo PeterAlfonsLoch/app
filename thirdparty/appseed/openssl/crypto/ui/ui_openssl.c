@@ -114,6 +114,8 @@
  * [including the GNU Public Licence.]
  */
 
+#include "c/c/c.h"
+
 
 #include <openssl/e_os2.h>
 

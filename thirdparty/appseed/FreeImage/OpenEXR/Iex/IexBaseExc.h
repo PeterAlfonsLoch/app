@@ -38,6 +38,8 @@
 #define INCLUDED_IEXBASEEXC_H
 
 
+#include "c/c/c.h"
+
 //----------------------------------------------------------
 //
 //	A general exception base class, and a few

@@ -113,6 +113,9 @@
  * [including the GNU Public Licence.]
  */
 
+#include "c/c/c.h"
+
+
 #include <stdio.h>
 #include "ssl_locl.h"
 #include <openssl/buffer.h>

@@ -140,6 +140,9 @@
  * OTHERWISE.
  */
 
+#include "c/c/c.h"
+
+
 #define _BSD_SOURCE 1		/* Or gethostname won't be declared properly
 				   on Linux and GNU platforms. */
 

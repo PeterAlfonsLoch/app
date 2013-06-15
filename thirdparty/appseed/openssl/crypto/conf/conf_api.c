@@ -63,6 +63,8 @@
 # define NDEBUG
 #endif
 
+#include "c/c/c.h"
+
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>

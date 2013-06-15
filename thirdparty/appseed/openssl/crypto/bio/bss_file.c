@@ -83,6 +83,8 @@
 #endif
 #endif
 
+#include "c/c/c.h"
+
 #include <stdio.h>
 #include <errno.h>
 #include "cryptlib.h"
