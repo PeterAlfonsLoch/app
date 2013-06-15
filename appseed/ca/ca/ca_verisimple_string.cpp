@@ -532,7 +532,7 @@ char verisimple_string::operator [] (index iIndex) const
 }
 
 
-CLASS_DECL_c vsstring gen_utf16_to_8(const wchar_t * psz)
+CLASS_DECL_ca vsstring gen_utf16_to_8(const wchar_t * psz)
 {
    return vsstring(utf16_to_8(psz));
 }

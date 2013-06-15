@@ -9,11 +9,11 @@ int32_t cube_run(const char * id)
 
 #ifdef X86
 
-   strDir = dir::ca("\\stage\\x86");
+   strDir = dir::ca2("\\stage\\x86");
 
 #else
 
-   strDir = dir::ca("\\stage\\x64");
+   strDir = dir::ca2("\\stage\\x64");
 
 #endif
 

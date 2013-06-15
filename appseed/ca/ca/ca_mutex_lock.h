@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c mutex_lock
+class CLASS_DECL_ca mutex_lock
 {
 public:
 

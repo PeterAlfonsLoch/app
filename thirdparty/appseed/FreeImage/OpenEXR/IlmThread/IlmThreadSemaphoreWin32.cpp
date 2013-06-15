@@ -39,10 +39,13 @@
 //-----------------------------------------------------------------------------
 
 
-#ifdef WINDOWS
-
 #include "IlmThreadSemaphore.h"
 #include "Iex.h"
+
+
+#ifdef WINDOWS
+
+
 #include <string>
 #include <assert.h>
 #include <iostream>

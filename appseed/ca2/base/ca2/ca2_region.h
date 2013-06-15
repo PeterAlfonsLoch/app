@@ -37,20 +37,20 @@ namespace ca2
       };
 
 
-      e_type               m_etype;
-      int32_t                  m_x1;
-      int32_t                  m_y1;
-      int32_t                  m_x2;
-      int32_t                  m_y2;
-      int32_t                  m_x3;
-      int32_t                  m_y3;
-      LPPOINT              m_lppoints;
-      LPINT                m_lppolycounts;
-      int32_t                  m_nCount;
-      ::ca2::e_fill_mode    m_efillmode;
-      ::ca2::region *       m_pregion1;
-      ::ca2::region *       m_pregion2;
-      e_combine            m_ecombine;
+      e_type                  m_etype;
+      int32_t                 m_x1;
+      int32_t                 m_y1;
+      int32_t                 m_x2;
+      int32_t                 m_y2;
+      int32_t                 m_x3;
+      int32_t                 m_y3;
+      LPPOINT                 m_lppoints;
+      LPINT                   m_lppolycounts;
+      int32_t                 m_nCount;
+      ::ca2::e_fill_mode      m_efillmode;
+      ::ca2::region *         m_pregion1;
+      ::ca2::region *         m_pregion2;
+      e_combine               m_ecombine;
 
 
       region();

@@ -49,3 +49,7 @@ END_EXTERN_C
 #endif
 
 
+#include "nodeapp/operational_system/c.h"
+
+
+

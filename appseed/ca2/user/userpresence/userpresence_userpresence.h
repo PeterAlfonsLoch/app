@@ -6,8 +6,8 @@ namespace userpresence
 
 
    class CLASS_DECL_ca2 userpresence :
-      virtual public ::ca::section,
-      virtual public ::ca::message_window_simple_callback
+      virtual public ::ca2::section,
+      virtual public ::ca2::message_window_simple_callback
    {
    public:
 
@@ -15,7 +15,7 @@ namespace userpresence
       bool                    m_bUserPresenceFeatureRequired;
 
 
-      userpresence(sp(::ca::application) papp);
+      userpresence(sp(::ca2::application) papp);
       virtual ~userpresence();
 
 
@@ -27,7 +27,7 @@ namespace userpresence
       virtual bool defer_finalize_user_presence();
 
 
-      virtual void message_window_message_handler(::ca::signal_object * pobj);
+      virtual void message_window_message_handler(::ca2::signal_object * pobj);
 
       virtual bool is_initialized();
 

@@ -6,22 +6,22 @@ bool g_bAdmin = false;
 vsstring * g_pstrId = NULL;
 
 
-CLASS_DECL_c bool spa_get_admin()
+CLASS_DECL_ca bool spa_get_admin()
 {
    return g_bAdmin;
 }
 
-CLASS_DECL_c void spa_set_admin(bool bSet)
+CLASS_DECL_ca void spa_set_admin(bool bSet)
 {
    g_bAdmin = bSet;
 }
 
-CLASS_DECL_c vsstring spa_get_id()
+CLASS_DECL_ca vsstring spa_get_id()
 {
    return *g_pstrId;
 }
 
-CLASS_DECL_c void spa_set_id(const char * psz)
+CLASS_DECL_ca void spa_set_id(const char * psz)
 {
    if(g_pstrId == NULL)
    {
@@ -31,7 +31,7 @@ CLASS_DECL_c void spa_set_id(const char * psz)
 }
 
 
-CLASS_DECL_c vsstring spa_get_platform()
+CLASS_DECL_ca vsstring spa_get_platform()
 {
 #ifdef X86
    return "x86";
@@ -150,7 +150,7 @@ static simple_string_to_string g_strmapLatestBuildNumber;
 
 uint32_t g_dwLatestBuildNumberLastFetch = 0;
 
-CLASS_DECL_c vsstring get_latest_build_number(const char * pszVersion)
+CLASS_DECL_ca vsstring get_latest_build_number(const char * pszVersion)
 {
 
    vsstring strLatestBuildNumber = g_strmapLatestBuildNumber[pszVersion];
@@ -162,7 +162,7 @@ CLASS_DECL_c vsstring get_latest_build_number(const char * pszVersion)
 
 }
 
-CLASS_DECL_c vsstring fetch_latest_build_number(const char * pszVersion)
+CLASS_DECL_ca vsstring fetch_latest_build_number(const char * pszVersion)
 {
 
    vsstring strBuildNumber;

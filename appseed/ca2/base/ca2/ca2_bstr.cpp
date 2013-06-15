@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "ca_bstr.h"
+#include "ca2_bstr.h"
 
 #ifdef WINDOWS
 

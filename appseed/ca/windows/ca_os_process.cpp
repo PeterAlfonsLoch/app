@@ -3,7 +3,7 @@
 #include <string.h>
 
 
-CLASS_DECL_c int32_t call_async(
+CLASS_DECL_ca int32_t call_async(
    const char * pszPath, 
    const char * pszParam, 
    const char * pszDir,
@@ -28,7 +28,7 @@ CLASS_DECL_c int32_t call_async(
 
 
 
-CLASS_DECL_c uint32_t call_sync(
+CLASS_DECL_ca uint32_t call_sync(
    const char * pszPath, 
    const char * pszParam, 
    const char * pszDir,

@@ -2,7 +2,7 @@
 #include <windows.h>
 
 
-namespace c
+namespace ca
 {
 
 
@@ -72,9 +72,9 @@ namespace c
          strPath += ".dll";
 
 #ifdef _M_X64
-      ::SetDllDirectory(dir::ca("stage\\x64") + "\\");
+      ::SetDllDirectory(dir::ca2("stage\\x64") + "\\");
 #else
-      ::SetDllDirectory(dir::ca("stage\\x86") + "\\");
+      ::SetDllDirectory(dir::ca2("stage\\x86") + "\\");
 #endif
 
 
@@ -161,9 +161,9 @@ namespace ca
       if(str[0] == '/')
          return FALSE;
    #ifdef _M_X64
-      ::SetDllDirectory(dir::ca("stage\\x64") + "\\");
+      ::SetDllDirectory(dir::ca2("stage\\x64") + "\\");
    #else
-      ::SetDllDirectory(dir::ca("stage\\x86") + "\\");
+      ::SetDllDirectory(dir::ca2("stage\\x86") + "\\");
    #endif*/
       return LoadLibrary(psz);
    }

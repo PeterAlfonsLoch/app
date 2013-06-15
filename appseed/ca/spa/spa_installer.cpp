@@ -540,17 +540,17 @@ RetryHost:
          simple_uint_array dwa;
 #ifndef METROWIN
 #ifdef X86
-         dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x86\\c.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x86\\ca.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x86\\ca.dll"));
-         //dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x86\\npca2.dll"));
-         //dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x86\\iexca2.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\c.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\ca.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\ca.dll"));
+         //dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\npca2.dll"));
+         //dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\iexca2.dll"));
 #else
-         dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x64\\c.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x64\\ca.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x64\\ca.dll"));
-         //dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x64\\npca2.dll"));
-         //dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x64\\iexca2.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\c.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\ca.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\ca.dll"));
+         //dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\npca2.dll"));
+         //dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\iexca2.dll"));
 #endif
          // TODO: simular virtualmente a cópia dos arquivos também, se tiver aquivo travado, também retornar
 #endif
@@ -1069,7 +1069,7 @@ RetryHost:
       vsstring file2;
       vsstring dir;
       vsstring dir2;
-      dir = dir::ca();
+      dir = dir::ca2();
       if(dir.substr(dir.size() - 1, 1) != "\\")
       {
          dir += "\\";
@@ -1154,7 +1154,7 @@ RetryHost:
 
       vsstring dir3;
 
-      dir = dir::ca();
+      dir = dir::ca2();
 
       if(dir.substr(dir.size() - 1, 1) != "\\")
       {
@@ -1514,7 +1514,7 @@ RetryHost:
       vsstring dir;
       vsstring url;
       vsstring file;
-      dir = dir::ca();
+      dir = dir::ca2();
       if(dir.substr(dir.size() - 1, 1) != "\\")
       {
          dir += "\\";
@@ -1682,7 +1682,7 @@ RetryHost:
       vsstring dir;
       vsstring url;
       vsstring file;
-      dir = dir::ca();
+      dir = dir::ca2();
       if(dir.substr(dir.size() - 1, 1) != "\\")
       {
          dir += "\\";
@@ -2303,7 +2303,7 @@ RetryHost:
       if(strExec.substr(0, 15) == "install_service")
       {
          vsstring strStage;
-         strStage = dir::path(dir::ca(),strExec.substr(16));
+         strStage = dir::path(dir::ca2(),strExec.substr(16));
 
 #ifdef METROWIN
 
@@ -2328,7 +2328,7 @@ RetryHost:
          vsstring str2 = strExec.substr(11);
          index iPos = str2.find(" ");
          vsstring str3 = str2.substr(iPos + 1);
-         strStage = dir::ca();
+         strStage = dir::ca2();
          strStage = dir::path(strStage, str3);
 
 #ifdef METROWIN
@@ -2348,7 +2348,7 @@ RetryHost:
    }
 
 
-   CLASS_DECL_c void send_spaboot_install_post(int32_t a, int32_t b)
+   CLASS_DECL_ca void send_spaboot_install_post(int32_t a, int32_t b)
    {
 
 #ifdef METROWIN
@@ -3504,18 +3504,18 @@ RetryHost:
       vsstring strPlatform = spa_get_platform();
 
 #ifdef WINDOWS
-      ::SetDllDirectory(dir::path(dir::ca(), "stage\\" + strPlatform));
+      ::SetDllDirectory(dir::path(dir::ca2(), "stage\\" + strPlatform));
 #endif
 
-      ::c::library libraryOs;
+      ::ca::library libraryOs;
 
-      libraryOs.open(dir::path(dir::ca(), "stage\\" + strPlatform + "\\os"));
+      libraryOs.open(dir::path(dir::ca2(), "stage\\" + strPlatform + "\\os"));
 
       CA2MAIN pfn_ca2_main = (CA2MAIN) libraryOs.raw_get("ca2_main");
 
       vsstring strFullCommandLine;
 
-      strFullCommandLine = dir::path(dir::ca(), ("stage\\" + strPlatform + "\\app.exe"));
+      strFullCommandLine = dir::path(dir::ca2(), ("stage\\" + strPlatform + "\\app.exe"));
 
       strFullCommandLine = "\"" + strFullCommandLine + "\" ";
 

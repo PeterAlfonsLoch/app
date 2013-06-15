@@ -1,17 +1,17 @@
 #pragma once
 
 
-#define sp(TYPE) ::c::smart_pointer < TYPE >
+#define sp(TYPE) ::ca::smart_pointer < TYPE >
 
 
-namespace ca
+namespace ca2
 {
 
 
       class allocatorsp;
 
 
-} // namespace ca
+} // namespace ca2
 
 
 // ::ca::null_class back link to operational system oswindow.h
@@ -22,7 +22,7 @@ namespace ca
 // operational system NULL/void itself to a windowing service
 //
 // Curitiba, inha-metro-win-ubuntu-mountain-lion-macos 4 de novembro de 2012
-namespace c
+namespace ca
 {
 
 
@@ -50,22 +50,22 @@ namespace c
       smart_pointer(lparam lparam);
       smart_pointer(const smart_pointer < T > & t);
       smart_pointer(smart_pointer < T > && t);
-      smart_pointer(const ::ca::allocatorsp & t);
-      smart_pointer(::ca::allocatorsp && t);
+      smart_pointer(const ::ca2::allocatorsp & t);
+      smart_pointer(::ca2::allocatorsp && t);
       smart_pointer(T * p);
       smart_pointer(void * p);
       template < class T2 >
       smart_pointer(T2 * p)
       {
          m_p = dynamic_cast < T * > (p);
-         if(m_p != NULL) ::c::add_ref(p);
+         if(m_p != NULL) ::ca::add_ref(p);
       }
 
       template < class T2 >
       smart_pointer(const T2 * p)
       {
          m_p = dynamic_cast < T * > ((T2 *) p);
-         if(m_p != NULL) ::c::add_ref(p);
+         if(m_p != NULL) ::ca::add_ref(p);
       }
 
       template < class T2 >
@@ -147,7 +147,7 @@ namespace c
          }
          if(pOld != NULL)
          {
-            ::c::release(pOld);
+            ::ca::release(pOld);
          }
          return *this;
       }
@@ -184,7 +184,7 @@ namespace c
 
 
       sp(T) clone() const;
-      void create(const ::ca::allocatorsp & allocer);
+      void create(const ::ca2::allocatorsp & allocer);
 
 
 
@@ -192,7 +192,7 @@ namespace c
    };
 
 
-} // namespace c
+} // namespace ca
 
 
 

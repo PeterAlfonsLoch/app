@@ -62,7 +62,7 @@ static const uchar index_hex[256] = {
 * or 0 if the input is not a valid IPv6 address string.
 * (Same as inet_pton(AF_INET6, string, addr).)
 */
-CLASS_DECL_c bool from_string(in6_addr * addr, const char * string)
+CLASS_DECL_ca bool from_string(in6_addr * addr, const char * string)
 {
    const uchar *s = (const uchar *)string;
    int32_t section = 0;        /* index of the current section (a 16-bit
@@ -178,7 +178,7 @@ static const char *basis_hex = "0123456789abcdef";
 * (Same as inet_ntop(AF_INET6, addr, buf, size), except that errno
 * is not set on failure.)
 */
-CLASS_DECL_c vsstring to_vsstring(const in6_addr * addr)
+CLASS_DECL_ca vsstring to_vsstring(const in6_addr * addr)
 {
 
    vsstring str;
@@ -291,7 +291,7 @@ struct c_in_addr
    } S_un;
 };
 
-CLASS_DECL_c bool from_string(in_addr * addrParam, const char * string)
+CLASS_DECL_ca bool from_string(in_addr * addrParam, const char * string)
 {
 
    c_in_addr * addr = (c_in_addr *) addrParam;
@@ -339,7 +339,7 @@ CLASS_DECL_c bool from_string(in_addr * addrParam, const char * string)
 }
 
 
-CLASS_DECL_c vsstring to_vsstring(const in_addr * addrParam)
+CLASS_DECL_ca vsstring to_vsstring(const in_addr * addrParam)
 {
 
    c_in_addr * paddr = (c_in_addr *) addrParam;
@@ -369,7 +369,7 @@ CLASS_DECL_c vsstring to_vsstring(const in_addr * addrParam)
 }
 
 
-CLASS_DECL_c int32_t c_inet_pton(int32_t af, const char *src, void *dst)
+CLASS_DECL_ca int32_t c_inet_pton(int32_t af, const char *src, void *dst)
 {
 
    if(af == AF_INET)
@@ -404,7 +404,7 @@ CLASS_DECL_c int32_t c_inet_pton(int32_t af, const char *src, void *dst)
 }
 
 
-CLASS_DECL_c vsstring c_inet_ntop(int32_t af, const void *src)
+CLASS_DECL_ca vsstring c_inet_ntop(int32_t af, const void *src)
 {
 
    vsstring str;
@@ -430,7 +430,7 @@ CLASS_DECL_c vsstring c_inet_ntop(int32_t af, const void *src)
 
 }
 
-CLASS_DECL_c const char * c_inet_ntop(int32_t af, const void *src, char *dst, int32_t cnt)
+CLASS_DECL_ca const char * c_inet_ntop(int32_t af, const void *src, char *dst, int32_t cnt)
 {
 
    if(dst == NULL)
@@ -452,7 +452,7 @@ CLASS_DECL_c const char * c_inet_ntop(int32_t af, const void *src, char *dst, in
 
 #define C_INADDR_NONE ((uint32_t) -1)
 
-CLASS_DECL_c uint32_t c_inet_addr(const char * src)
+CLASS_DECL_ca uint32_t c_inet_addr(const char * src)
 {
 
    stra_dup stra;
@@ -547,7 +547,7 @@ CLASS_DECL_c uint32_t c_inet_addr(const char * src)
 
 }
 
-CLASS_DECL_c vsstring c_gethostbyname(const char * hostname)
+CLASS_DECL_ca vsstring c_gethostbyname(const char * hostname)
 {
 
 #ifdef BSD_STYLE_SOCKETS

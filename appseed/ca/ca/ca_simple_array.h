@@ -336,27 +336,27 @@ void simple_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, simple_array* pN
 
 
 
-class CLASS_DECL_c simple_int_array :
+class CLASS_DECL_ca simple_int_array :
    virtual public simple_array < int32_t >
 {
 public:
 };
 
 
-class CLASS_DECL_c simple_uint_array :
+class CLASS_DECL_ca simple_uint_array :
    virtual public simple_array < uint32_t >
 {
 public:
 };
 
-class CLASS_DECL_c simple_int64_array :
+class CLASS_DECL_ca simple_int64_array :
    virtual public simple_array < int64_t >
 {
 public:
 };
 
 
-class CLASS_DECL_c simple_uint64_array :
+class CLASS_DECL_ca simple_uint64_array :
    virtual public simple_array < uint64_t >
 {
 public:
@@ -364,7 +364,7 @@ public:
 
 
 
-class CLASS_DECL_c simple_double_array :
+class CLASS_DECL_ca simple_double_array :
    virtual public simple_array < double >
 {
 public:

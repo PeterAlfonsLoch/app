@@ -226,7 +226,7 @@ vsstring key_to_char(WPARAM wparam, LPARAM lparam)
 
 }
 
-CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError)
+CLASS_DECL_ca vsstring get_system_error_message(uint32_t dwError)
 {
 
    LPWSTR lpBuffer;

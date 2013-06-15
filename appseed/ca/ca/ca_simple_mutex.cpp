@@ -284,7 +284,7 @@ void simple_mutex::unlock()
 
 
 
-CLASS_DECL_c void wait_until_mutex_does_not_exist(const char * pszName)
+CLASS_DECL_ca void wait_until_mutex_does_not_exist(const char * pszName)
 {
    simple_mutex * pmutex = new simple_mutex("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
    if(::GetLastError() == ERROR_ALREADY_EXISTS)

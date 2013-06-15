@@ -1394,7 +1394,7 @@ namespace ca2
 
       if(idLocale == __id(mx)
       || idLocale == __id(us)
-      || idLocale == __id(ca2))
+      || idLocale == __id(ca))
       {
          return true;
       }

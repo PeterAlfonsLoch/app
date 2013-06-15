@@ -1,3 +1,6 @@
+#include "c/c/c.h"
+
+
 //
 // Define and set to 1 if the target system has POSIX thread support
 // and you want OpenEXR to use it for multithreaded file I/O.

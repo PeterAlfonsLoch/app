@@ -35,13 +35,13 @@ namespace hi5
             bool                                      m_bLicense;
             bool                                      m_bInteractive;
 
-            authorization(sp(::ca::application) papp,const char * pszAuthorizationUrl, const char * pszForm, bool bAuth = false, bool bInteractive = true);
+            authorization(sp(::ca2::application) papp,const char * pszAuthorizationUrl, const char * pszForm, bool bAuth = false, bool bInteractive = true);
             virtual ~authorization();
 
             void ensure_main_document();
             void display_main_frame();
             void page1();
-            void pageMessage(const char * pszMatter, ::ca::property_set & set);
+            void pageMessage(const char * pszMatter, ::ca2::property_set & set);
 
             string get_pin();
 

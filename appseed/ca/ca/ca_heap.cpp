@@ -2,17 +2,17 @@
 
 
 #ifdef WINDOWS
-CLASS_DECL_c void * (*g_pfnca2_alloc)(size_t size) = NULL;
-CLASS_DECL_c void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = NULL;
-CLASS_DECL_c void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = NULL;
-CLASS_DECL_c void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType) = NULL;
-CLASS_DECL_c size_t (*g_pfnca2_msize)(void * pvoid, int32_t iBlockType) = NULL;
+CLASS_DECL_ca void * (*g_pfnca2_alloc)(size_t size) = NULL;
+CLASS_DECL_ca void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = NULL;
+CLASS_DECL_ca void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = NULL;
+CLASS_DECL_ca void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType) = NULL;
+CLASS_DECL_ca size_t (*g_pfnca2_msize)(void * pvoid, int32_t iBlockType) = NULL;
 #else
-CLASS_DECL_c void * (*g_pfnca2_alloc)(size_t size) = &::_ca_alloc;
-CLASS_DECL_c void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = &::_ca_alloc_dbg;
-CLASS_DECL_c void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = &::_ca_realloc;
-CLASS_DECL_c void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType) = &::_ca_free;
-CLASS_DECL_c size_t (*g_pfnca2_msize)(void * pvoid, int32_t iBlockType) = &::_ca_msize;
+CLASS_DECL_ca void * (*g_pfnca2_alloc)(size_t size) = &::_ca_alloc;
+CLASS_DECL_ca void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = &::_ca_alloc_dbg;
+CLASS_DECL_ca void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = &::_ca_realloc;
+CLASS_DECL_ca void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType) = &::_ca_free;
+CLASS_DECL_ca size_t (*g_pfnca2_msize)(void * pvoid, int32_t iBlockType) = &::_ca_msize;
 #endif
 
 
@@ -212,35 +212,35 @@ void finalize_primitive_heap()
 
 BEGIN_EXTERN_C
 
-   CLASS_DECL_c void * c_alloc(size_t size)
+   CLASS_DECL_ca void * c_alloc(size_t size)
 {
    return ca2_alloc(size);
 }
-   CLASS_DECL_c void * c_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+   CLASS_DECL_ca void * c_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
    return ca2_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
 }
-   CLASS_DECL_c void * c_realloc(void * pvoid, size_t nSize)
+   CLASS_DECL_ca void * c_realloc(void * pvoid, size_t nSize)
 {
    return ca2_realloc(pvoid, nSize);
 }
-   CLASS_DECL_c void * c_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+   CLASS_DECL_ca void * c_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
    return ca2_realloc_dbg(pvoid, nSize, nBlockUse, szFileName, nLine);
 }
-   CLASS_DECL_c void   c_free(void * pvoid)
+   CLASS_DECL_ca void   c_free(void * pvoid)
 {
    return ca2_free(pvoid);
 }
-   CLASS_DECL_c void   c_free_dbg(void * pvoid, int32_t iBlockType)
+   CLASS_DECL_ca void   c_free_dbg(void * pvoid, int32_t iBlockType)
    {
       return ca2_free_dbg(pvoid, iBlockType);
    }
-   CLASS_DECL_c size_t c_msize(void * p)
+   CLASS_DECL_ca size_t c_msize(void * p)
 {
    return ca2_msize(p);
 }
-   CLASS_DECL_c size_t c_msize_dbg(void * p, int32_t iBlockType)
+   CLASS_DECL_ca size_t c_msize_dbg(void * p, int32_t iBlockType)
 {
    return ca2_msize_dbg(p, iBlockType);
 }

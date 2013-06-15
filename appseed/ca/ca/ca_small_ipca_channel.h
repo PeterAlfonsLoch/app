@@ -7,11 +7,11 @@ typedef __key_t key_t;
 #elif defined(ANDROID)
 typedef __key_t key_t;
 #else
-#include "c_simple_mutex.h"
+#include "ca_simple_mutex.h"
 #endif
 
 
-class CLASS_DECL_c small_ipc_channel_base
+class CLASS_DECL_ca small_ipc_channel_base
 {
 public:
 
@@ -41,7 +41,7 @@ public:
 
 
 
-class CLASS_DECL_c small_ipc_tx_channel :
+class CLASS_DECL_ca small_ipc_tx_channel :
    virtual public  small_ipc_channel_base
 {
 public:
@@ -62,12 +62,12 @@ public:
 
 
 
-class CLASS_DECL_c small_ipc_rx_channel :
+class CLASS_DECL_ca small_ipc_rx_channel :
    virtual public  small_ipc_channel_base
 {
 public:
 
-   class CLASS_DECL_c receiver
+   class CLASS_DECL_ca receiver
    {
    public:
 
@@ -124,7 +124,7 @@ public:
 
 
 
-class CLASS_DECL_c small_ipc_channel :
+class CLASS_DECL_ca small_ipc_channel :
    virtual public small_ipc_tx_channel,
    virtual public small_ipc_rx_channel::receiver
 {

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_c void sprint_hex(char * sz, int32_t iValue)
+CLASS_DECL_ca void sprint_hex(char * sz, int32_t iValue)
 {
    int32_t i = 8;
    sz[i] = '\0';
@@ -12,7 +12,7 @@ CLASS_DECL_c void sprint_hex(char * sz, int32_t iValue)
    }
 }
 
-CLASS_DECL_c bool file_put_contents_dup(const char * path, const simple_memory & memory)
+CLASS_DECL_ca bool file_put_contents_dup(const char * path, const simple_memory & memory)
 {
 
    return file_put_contents_dup(path, memory.m_psz, memory.m_iSize);
@@ -20,7 +20,7 @@ CLASS_DECL_c bool file_put_contents_dup(const char * path, const simple_memory &
 }
 
 
-CLASS_DECL_c bool get_temp_file_name_dup(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension)
+CLASS_DECL_ca bool get_temp_file_name_dup(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension)
 {
    return get_temp_file_name_template(szRet, iBufferSize, pszName, pszExtension, NULL);
 }

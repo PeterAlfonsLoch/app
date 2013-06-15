@@ -293,7 +293,7 @@ bool simple_ui::is_visible()
 void simple_ui::draw_this(simple_graphics & g)
 {
 
-   g.set_alpha_mode(::ca::alpha_mode_blend);
+   g.set_alpha_mode(::ca2::alpha_mode_blend);
 
    //Gdiplus::Color crOut(0, 255, 255, 233);
 
@@ -341,7 +341,7 @@ void simple_ui::draw_this(simple_graphics & g)
 void simple_ui::draw_focus_rect(simple_graphics & g)
 {
 
-   g.set_alpha_mode(::ca::alpha_mode_blend);
+   g.set_alpha_mode(::ca2::alpha_mode_blend);
 
    int32_t iStyle = 1;
 
@@ -372,7 +372,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
          
             simple_path pathRound;
 
-            pathRound.begin_figure(true, ::ca::fill_mode_winding);
+            pathRound.begin_figure(true, ::ca2::fill_mode_winding);
             
             pathRound.add_round_rect(rect, 1 * 2);
 
@@ -393,7 +393,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             simple_path pathRound;
 
-            pathRound.begin_figure(true, ::ca::fill_mode_winding);
+            pathRound.begin_figure(true, ::ca2::fill_mode_winding);
             
             pathRound.add_round_rect(rect, 1 * 2);
 
@@ -414,7 +414,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             simple_path pathRound;
 
-            pathRound.begin_figure(true, ::ca::fill_mode_winding);
+            pathRound.begin_figure(true, ::ca2::fill_mode_winding);
             
             pathRound.add_round_rect(rect, 1 * 2);
 
@@ -436,7 +436,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             simple_path pathRound;
 
-            pathRound.begin_figure(true, ::ca::fill_mode_winding);
+            pathRound.begin_figure(true, ::ca2::fill_mode_winding);
             
             pathRound.add_round_rect(rect, 1 * 2);
 
@@ -459,7 +459,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             simple_path pathRound;
 
-            pathRound.begin_figure(true, ::ca::fill_mode_winding);
+            pathRound.begin_figure(true, ::ca2::fill_mode_winding);
             
             pathRound.add_round_rect(rect, 1 * 2);
 
@@ -484,7 +484,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             simple_path pathRound;
 
-            pathRound.begin_figure(true, ::ca::fill_mode_winding);
+            pathRound.begin_figure(true, ::ca2::fill_mode_winding);
             
             pathRound.add_round_rect(rect, 1 * 2);
 

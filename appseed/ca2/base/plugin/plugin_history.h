@@ -4,7 +4,7 @@ namespace plugin
 {
 
    class CLASS_DECL_ca2 history :
-      virtual public ::ca::history
+      virtual public ::ca2::history
    {
    public:
 
@@ -12,7 +12,7 @@ namespace plugin
       plugin * m_pplugin;
 
 
-      history(sp(::ca::application) papp, plugin * pplugin);
+      history(sp(::ca2::application) papp, plugin * pplugin);
          
    
       virtual bool hist(const char *pszUrl);

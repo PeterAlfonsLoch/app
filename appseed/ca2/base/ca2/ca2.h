@@ -41,13 +41,13 @@ namespace plane
 #endif
 
 
-#include "ca_enum.h"
-#include "ca_ca.h"
-#include "ca_live_object.h"
-#include "ca_log.h"
+#include "ca2_enum.h"
+#include "ca2_ca2.h"
+#include "ca2_live_object.h"
+#include "ca2_log.h"
 
 
-#include "ca_main_init_data.h"
+#include "ca2_main_init_data.h"
 
 
 
@@ -237,33 +237,33 @@ class dump_context;
 
 
 #include "primitive/primitive_numeric_info.h"
-#include "ca_c_number.h"
+#include "ca2_c_number.h"
 
 #include "base/multithreading/multithreading_wait_result.h"
 #include "primitive/datetime/datetime_duration.h"
-#include "ca_request_interface.h"
+#include "ca2_request_interface.h"
 #include "base/multithreading/multithreading_waitable.h"
 #include "primitive/primitive.h"
 
 
-#include "ca_object.h"
+#include "ca2_object.h"
 
 
-#include "ca_definition.h"
-#include "ca_common.h"
-#include "ca_core.h"
+#include "ca2_definition.h"
+#include "ca2_common.h"
+#include "ca2_core.h"
 
 
-#include "ca_heap.h"
-#include "ca_plex_heap.h"
-#include "ca_fixed_alloc.h"
+#include "ca2_heap.h"
+#include "ca2_plex_heap.h"
+#include "ca2_fixed_alloc.h"
 
 #include "primitive/primitive_simple_string.h"
 
-#include "ca_ch.h"
-#include "ca_str.h"
-#include "ca_strn.h"
-#include "ca_hex.h"
+#include "ca2_ch.h"
+#include "ca2_str.h"
+#include "ca2_strn.h"
+#include "ca2_hex.h"
 
 
 #include "primitive/primitive_id.h"
@@ -278,20 +278,20 @@ class dump_context;
 #include "primitive/primitive.h"
 
 
-#include "ca_object.h"
+#include "ca2_object.h"
 
-#include "ca_hash.h"
-#include "ca_equals.h"
-#include "ca_compare.h"
-#include "ca_less.h"
-
-
-#include "ca_template.h"
+#include "ca2_hash.h"
+#include "ca2_equals.h"
+#include "ca2_compare.h"
+#include "ca2_less.h"
 
 
+#include "ca2_template.h"
 
 
-#include "ca_smart_pointer_query.h"
+
+
+#include "ca2_smart_pointer_query.h"
 
 
 
@@ -325,32 +325,32 @@ class dump_context;
 
 
 
-#include "ca_allocate.h"
-#include "ca_plex.h"
+#include "ca2_allocate.h"
+#include "ca2_plex.h"
 
 #include "base/collection/collection.h"
 
 
-#include "ca_plex_heap.h"
+#include "ca2_plex_heap.h"
 
 
 
-#include "ca_base.h"
+#include "ca2_base.h"
 
 
-#include "ca_interlocked_long.h"
-#include "ca_interlocked_long_pulse.h"
+#include "ca2_interlocked_long.h"
+#include "ca2_interlocked_long_pulse.h"
 
 #include "base/multithreading/multithreading.h"
 
-#include "ca_data.h"
-#include "ca_data_container.h"
-#include "ca_data_listener.h"
+#include "ca2_data.h"
+#include "ca2_data_container.h"
+#include "ca2_data_listener.h"
 
-#include "ca_edit.h"
+#include "ca2_edit.h"
 
-#include "ca_type_info.h"
-#include "ca_factory.h"
+#include "ca2_type_info.h"
+#include "ca2_factory.h"
 
 
 #include "user/user_str.h"
@@ -461,8 +461,8 @@ typedef struct tag_TimerCallbackCreateTimer
 #define WM_VIEW (WM_USER + 1023)
 
 
-#include "ca_base.h"
-#include "ca_constraint.h"
+#include "ca2_base.h"
+#include "ca2_constraint.h"
 
 #ifdef WINDOWS
 #ifndef _INC_SHELLAPI
@@ -626,21 +626,21 @@ CLASS_DECL_ca2 void __get_dithered_bitmap(sp(::ca2::application) papp, const ::c
 CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(::ca2::application) papp, ::ca2::graphics * pgraphics, int32_t x, int32_t y, const ::ca2::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
 
 
-#include "ca_graphic_classes.h"
+#include "ca2_graphic_classes.h"
 
 
 
-#include "ca_fixed_alloc.h"
-#include "ca_request_signal.h"
+#include "ca2_fixed_alloc.h"
+#include "ca2_request_signal.h"
 
 #include "graphics/visual/visual_const.h"
 
-#include "ca_var_array.h"
+#include "ca2_var_array.h"
 
 
 
-#include "ca_command.h"
-#include "ca_command_target.h"
+#include "ca2_command.h"
+#include "ca2_command_target.h"
 
 
 typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
@@ -749,7 +749,7 @@ struct __system_policies
    __system_policy_data *pData;
 };
 
-//#include "ca_file_manager_interface.h"
+//#include "ca2_file_manager_interface.h"
 
 
 
@@ -762,7 +762,7 @@ namespace user
 } // namespace user
 
 
-#include "ca_graphics.h"
+#include "ca2_graphics.h"
 
 
 //#include "user_element_2d.h"
@@ -791,8 +791,8 @@ namespace user
 #include "database/database_update_hint.h"
 
 
-#include "ca_window.h"
-#include "ca_message_window.h"
+#include "ca2_window.h"
+#include "ca2_message_window.h"
 
 
 
@@ -802,30 +802,30 @@ namespace user
 
 
 
-#include "ca_profiler.h"
-#include "ca_timer.h"
-#include "ca_timer_callback.h"
-#include "ca_timer_window.h"
-#include "ca_timer_listener.h"
-#include "ca_live_signal.h"
-#include "ca_thread.h"
-#include "ca_window_draw.h"
-#include "ca_history.h"
-#include "ca_application_bias.h"
-#include "ca_create_context.h"
-#include "ca_job.h"
-#include "ca_print_job.h"
+#include "ca2_profiler.h"
+#include "ca2_timer.h"
+#include "ca2_timer_callback.h"
+#include "ca2_timer_window.h"
+#include "ca2_timer_listener.h"
+#include "ca2_live_signal.h"
+#include "ca2_thread.h"
+#include "ca2_window_draw.h"
+#include "ca2_history.h"
+#include "ca2_application_bias.h"
+#include "ca2_create_context.h"
+#include "ca2_job.h"
+#include "ca2_print_job.h"
 
 
 
 
-#include "ca_section.h"
-#include "ca_section_container.h"
+#include "ca2_section.h"
+#include "ca2_section_container.h"
 
 
 // former ca2
 
-#include "ca_os_history.h"
+#include "ca2_os_history.h"
 
 
 namespace windows
@@ -846,10 +846,10 @@ namespace windows
 #include "primitive/primitive_id_space.h"
 
 
-#include "ca_international_locale_schema.h"
+#include "ca2_international_locale_schema.h"
 
 
-#include "ca_wait_cursor.h"
+#include "ca2_wait_cursor.h"
 
 
 
@@ -905,41 +905,41 @@ namespace ca2
 #endif
 
 
-#include "ca_fixed_alloc.h"
-#include "ca_process_data.h"
+#include "ca2_fixed_alloc.h"
+#include "ca2_process_data.h"
 
 
-#include "ca_exception.h"
+#include "ca2_exception.h"
 
-#include "ca_request_interface.h"
+#include "ca2_request_interface.h"
 
-#include "ca_tree_item_data.h"
-#include "ca_tree_item.h"
-#include "ca_tree_data.h"
-#include "ca_tree.h"
+#include "ca2_tree_item_data.h"
+#include "ca2_tree_item.h"
+#include "ca2_tree_data.h"
+#include "ca2_tree.h"
 
-#include "ca_fs_interface.h"
+#include "ca2_fs_interface.h"
 
-#include "ca_stream_base.h"
+#include "ca2_stream_base.h"
 
-#include "ca_seekable.h"
+#include "ca2_seekable.h"
 
-#include "ca_reader.h"
-#include "ca_writer.h"
-#include "ca_stream.h"
+#include "ca2_reader.h"
+#include "ca2_writer.h"
+#include "ca2_stream.h"
 
-#include "ca_byte_serializable.h"
-#include "ca_byte_stream.h"
-#include "ca_plain_text_serializable.h"
+#include "ca2_byte_serializable.h"
+#include "ca2_byte_stream.h"
+#include "ca2_plain_text_serializable.h"
 
-#include "ca_base_enum.h"
-
-
+#include "ca2_base_enum.h"
 
 
-#include "ca_plain_text_stream.h"
-#include "ca_output_stream_flush_interface.h"
-#include "ca_stream2.h"
+
+
+#include "ca2_plain_text_stream.h"
+#include "ca2_output_stream_flush_interface.h"
+#include "ca2_stream2.h"
 
 
 namespace primitive
@@ -963,16 +963,16 @@ namespace ca2
 } // namespace ca2
 
 
-#include "ca_file.h"
-#include "ca_file_composite.h"
-#include "ca_file_exception.h"
-#include "ca_file_status.h"
+#include "ca2_file.h"
+#include "ca2_file_composite.h"
+#include "ca2_file_exception.h"
+#include "ca2_file_status.h"
 
 
 
-#include "ca_plain_text_string_stream.h"
+#include "ca2_plain_text_string_stream.h"
 
-#include "ca_file_stream.h"
+#include "ca2_file_stream.h"
 
 
 // memory primitives
@@ -998,7 +998,7 @@ namespace ca2
 
 
 // Implementation structures
-struct __SIZEPARENTPARAMS;    // control bar implementationproperca_property.h
+struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
 
 // Classes declared in this file
 
@@ -1342,92 +1342,92 @@ CLASS_DECL_ca2 char * ::ca2::TaskStringW2A(const wchar_t * lpw);
 
 
 
-#include "ca_definition.h"
-#include "ca_types.h"
+#include "ca2_definition.h"
+#include "ca2_types.h"
 
-#include "ca_match.h"
+#include "ca2_match.h"
 
 // interfaces
-#include "ca_progress_interface.h"
+#include "ca2_progress_interface.h"
 
 
 // from 7-zip
-#include "ca_system_exception.h"
-#include "ca_buffer.h"
-#include "ca_dynamic_buffer.h"
-#include "ca_in_buffer.h"
-#include "ca_out_buffer.h"
-#include "ca_circular_buffer.h"
-#include "ca_bitl_decoder.h"
-#include "ca_bitl_encoder.h"
-#include "ca_bitm_decoder.h"
-#include "ca_bitm_encoder.h"
-#include "ca_limited_reader.h"
-#include "ca_limited_input_stream.h"
-#include "ca_clustered_input_stream.h"
-#include "ca_limited_writer.h"
+#include "ca2_system_exception.h"
+#include "ca2_buffer.h"
+#include "ca2_dynamic_buffer.h"
+#include "ca2_in_buffer.h"
+#include "ca2_out_buffer.h"
+#include "ca2_circular_buffer.h"
+#include "ca2_bitl_decoder.h"
+#include "ca2_bitl_encoder.h"
+#include "ca2_bitm_decoder.h"
+#include "ca2_bitm_encoder.h"
+#include "ca2_limited_reader.h"
+#include "ca2_limited_input_stream.h"
+#include "ca2_clustered_input_stream.h"
+#include "ca2_limited_writer.h"
 
-#include "ca_stream_binder.h"
-#include "ca_locked_in_stream.h"
-#include "ca_io_temp_buffer.h"
-#include "ca_size_count_writer.h"
-#include "ca_dynamic_buffered_writer.h"
+#include "ca2_stream_binder.h"
+#include "ca2_locked_in_stream.h"
+#include "ca2_io_temp_buffer.h"
+#include "ca2_size_count_writer.h"
+#include "ca2_dynamic_buffered_writer.h"
 
 
-#include "ca_buffered_file.h"
-#include "ca_timeout_file.h"
-#include "ca_edit_file.h"
-#include "ca_text_file.h"
-//#include "ca_file_system.h"
-#include "ca_resource.h"
+#include "ca2_buffered_file.h"
+#include "ca2_timeout_file.h"
+#include "ca2_edit_file.h"
+#include "ca2_text_file.h"
+//#include "ca2_file_system.h"
+#include "ca2_resource.h"
 
-#include "ca_simple_tree_item_data.h"
-#include "ca_simple_tree_data.h"
+#include "ca2_simple_tree_item_data.h"
+#include "ca2_simple_tree_data.h"
 
 
 
 // former ca2 start - former before concatenation of ca2 + ca2 + ca2 + ca2
 
-#include "ca_debug.h"
+#include "ca2_debug.h"
 
 #include "math/math_math.h"
 
-#include "ca_math_rng.h"
-#include "ca_math.h"
-#include "ca_geometry.h"
+#include "ca2_math_rng.h"
+#include "ca2_math.h"
+#include "ca2_geometry.h"
 
-#include "ca_equals.h"
+#include "ca2_equals.h"
 
-#include "ca_iterator.h"
-#include "ca_insert_iterator.h"
-#include "ca_back_insert_iterator.h"
-#include "ca_std_pair.h"
-
-
-#include "ca_c_number.h"
+#include "ca2_iterator.h"
+#include "ca2_insert_iterator.h"
+#include "ca2_back_insert_iterator.h"
+#include "ca2_std_pair.h"
 
 
+#include "ca2_c_number.h"
 
 
-#include "ca_muldiv32.h"
+
+
+#include "ca2_muldiv32.h"
 
 #define EX1ASSERT_VALID(pobj) ASSERT(pobj->Ex1IsObjValid())
 
 
-#include "ca_simple_thread.h"
-#include "ca_go_thread.h"
+#include "ca2_simple_thread.h"
+#include "ca2_go_thread.h"
 
 
 
-//#include "ca_scoped_ptr.h"
-#include "ca_logic.h"
+//#include "ca2_scoped_ptr.h"
+#include "ca2_logic.h"
 
 
 
-#include "ca_parse.h"
+#include "ca2_parse.h"
 
 
-#include "ca_template.h"
+#include "ca2_template.h"
 
 
 #include "base/collection/collection_base_2array.h"
@@ -1436,32 +1436,32 @@ CLASS_DECL_ca2 char * ::ca2::TaskStringW2A(const wchar_t * lpw);
 #include "base/collection/collection_stringl.h"
 #include "base/collection/collection_string_sort_array.h"
 
-#include "ca_string_tokenizer.h"
+#include "ca2_string_tokenizer.h"
 
 
-#include "ca_base_enum.h"
-#include "ca_base_enum.h"
-//#include "ca_raw_pointer.h"
-//#include "ca_full_pointer.h"
-//#include "ca_time.h"
-#include "ca_byte_serializable.h"
+#include "ca2_base_enum.h"
+#include "ca2_base_enum.h"
+//#include "ca2_raw_pointer.h"
+//#include "ca2_full_pointer.h"
+//#include "ca2_time.h"
+#include "ca2_byte_serializable.h"
 #include "base/collection/collection_stringa.h"
-#include "ca_var.h"
-#include "ca_var_array.h"
+#include "ca2_var.h"
+#include "ca2_var_array.h"
 
-#include "ca_pipe.h"
-#include "ca_process.h"
+#include "ca2_pipe.h"
+#include "ca2_process.h"
 
 
-#include "ca_savings.h"
+#include "ca2_savings.h"
 
-#include "ca_command.h"
-#include "ca_command_line.h"
-#include "ca_command_thread.h"
+#include "ca2_command.h"
+#include "ca2_command_line.h"
+#include "ca2_command_thread.h"
 
-#include "ca_base64.h"
+#include "ca2_base64.h"
 
-#include "ca_util1.h"
+#include "ca2_util1.h"
 
 
 
@@ -1469,11 +1469,11 @@ CLASS_DECL_ca2 char * ::ca2::TaskStringW2A(const wchar_t * lpw);
 #include "primitive/primitive_int_biunique.h"
 
 
-//#include "ca_memory_file.h"
-#include "ca_byte_stream_memory_file.h"
+//#include "ca2_memory_file.h"
+#include "ca2_byte_stream_memory_file.h"
 
 
-#include "ca_microtimer.h"
+#include "ca2_microtimer.h"
 
 template <class TYPE>
 inline bool is_null(const TYPE & ref)
@@ -1488,31 +1488,31 @@ CLASS_DECL_ca2 ::ca2::byte_input_stream &  operator >>(::ca2::byte_input_stream 
 CLASS_DECL_ca2 ::ca2::byte_output_stream &  operator <<(::ca2::byte_output_stream & ostream, const string & string);
 
 #ifdef WIN32
-#include "ca_file_association.h"
+#include "ca2_file_association.h"
 #endif
 
 
-#include "ca_signal_thread.h"
+#include "ca2_signal_thread.h"
 
-#include "ca_international_locale_schema.h"
+#include "ca2_international_locale_schema.h"
 
-#include "ca_timer.h"
+#include "ca2_timer.h"
 
-#include "ca_istring.h"
-
-
-#include "ca_cregexp.h"
-#include "ca_cregexp_util.h"
+#include "ca2_istring.h"
 
 
+#include "ca2_cregexp.h"
+#include "ca2_cregexp_util.h"
 
 
 
-#include "ca_file_set.h"
 
-#include "ca_folder_watch.h"
 
-#include "ca_transfer_file.h"
+#include "ca2_file_set.h"
+
+#include "ca2_folder_watch.h"
+
+#include "ca2_transfer_file.h"
 
 
 class document_interface;
@@ -1595,7 +1595,7 @@ namespace lemon
 
 
 
-#include "ca_trace.h"
+#include "ca2_trace.h"
 
 
 
@@ -1607,8 +1607,8 @@ namespace lemon
 #include "graphics/html/html.h"
 
 
-#include "ca_definition.h"
-#include "ca_debug.h"
+#include "ca2_definition.h"
+#include "ca2_debug.h"
 
 
 
@@ -1625,35 +1625,35 @@ namespace ca2
 #include "base/crypto/crypto.h"
 
 
-#include "ca_file_application.h"
-#include "ca_file_system.h"
-#include "ca_dir_application.h"
-#include "ca_dir_system.h"
-#include "ca_edit_file.h"
-#include "ca_stra.h"
-#include "ca_url_domain.h"
-#include "ca_url.h"
+#include "ca2_file_application.h"
+#include "ca2_file_system.h"
+#include "ca2_dir_application.h"
+#include "ca2_dir_system.h"
+#include "ca2_edit_file.h"
+#include "ca2_stra.h"
+#include "ca2_url_domain.h"
+#include "ca2_url.h"
 
 
-#include "ca_service.h"
-#include "ca_machine_event_central.h"
+#include "ca2_service.h"
+#include "ca2_machine_event_central.h"
 
 
 #include "base/install/install.h"
 
 
-#include "ca_os.h"
+#include "ca2_os.h"
 
 
 
 
 
-#include "ca_datetime.h"
+#include "ca2_datetime.h"
 
 
 
 
-#include "ca_library.h"
+#include "ca2_library.h"
 
 
 #include "base/xml/xml_data.h"
@@ -1681,23 +1681,23 @@ namespace ca2
 
 
 
-#include "ca_compress.h"
-#include "ca_patch.h"
-#include "ca_copydesk.h"
-#include "ca_crypt.h"
-#include "ca_email.h"
-#include "ca_http.h"
-#include "ca_http_application.h"
-#include "ca_http_system.h"
-#include "ca_http_get_socket.h"
-#include "ca_ip_enum.h"
-#include "ca_port_forward.h"
+#include "ca2_compress.h"
+#include "ca2_patch.h"
+#include "ca2_copydesk.h"
+#include "ca2_crypt.h"
+#include "ca2_email.h"
+#include "ca2_http.h"
+#include "ca2_http_application.h"
+#include "ca2_http_system.h"
+#include "ca2_http_get_socket.h"
+#include "ca2_ip_enum.h"
+#include "ca2_port_forward.h"
 
 
-#include "ca_oauth.h"
-#include "ca_twit.h"
+#include "ca2_oauth.h"
+#include "ca2_twit.h"
 
-#include "ca_process_section.h"
+#include "ca2_process_section.h"
 
 
 
@@ -1724,12 +1724,12 @@ namespace ca2
 
 #include "net/hi5/hi5_net.h"
 
-#include "ca_application.h"
+#include "ca2_application.h"
 
 
 
 
-#include "ca_session.h"
-#include "ca_system.h"
+#include "ca2_session.h"
+#include "ca2_system.h"
 
 

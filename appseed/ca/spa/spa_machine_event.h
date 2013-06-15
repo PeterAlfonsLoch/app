@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c machine_event
+class CLASS_DECL_ca machine_event
 {
 public:
 

@@ -86,7 +86,7 @@ typedef struct _tagParseInfo
 	LPXDoc		doc;
 	_tagParseInfo() { trim_value = false; entity_value = true; force_parse = false; entitys = xmllite_default_entities(); xml = NULL; erorr_occur = false; error_pointer = NULL; error_code = PIE_PARSE_WELFORMED; escape_value = '\\'; }
 }PARSEINFO,*LPPARSEINFO;
-CLASS_DECL_c PARSEINFO * xmllite_get_default_parse_info();
+CLASS_DECL_ca PARSEINFO * xmllite_get_default_parse_info();
 
 // display optional environment
 typedef struct  _tagDispOption
@@ -99,7 +99,7 @@ typedef struct  _tagDispOption
 	int32_t tab_base;			// internal usage
 	_tagDispOption() { newline = true; reference_value = true; entitys = xmllite_default_entities(); tab_base = 0; value_quotation_mark = '"'; }
 }DISP_OPT, *LPDISP_OPT;
-CLASS_DECL_c extern  DISP_OPT  * poptDefault;
+CLASS_DECL_ca extern  DISP_OPT  * poptDefault;
 
 // XAttr : Attribute Implementation
 typedef struct _tagXMLAttr
@@ -125,7 +125,7 @@ typedef enum
 #pragma warning(disable : 4251)
 
 // XMLNode structure
-typedef  struct CLASS_DECL_c _tagXMLNode
+typedef  struct CLASS_DECL_ca _tagXMLNode
 {
 	// name and value
 	vsstring name;

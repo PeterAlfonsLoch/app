@@ -18,11 +18,11 @@ namespace hotplugin
 
 #ifdef _M_IX86
 
-      return dir::ca("stage/x86/ca2plugin-container.exe");
+      return dir::ca2("stage/x86/ca2plugin-container.exe");
 
 #else
 
-      return dir::ca("stage/x64/ca2plugin-container.exe");
+      return dir::ca2("stage/x64/ca2plugin-container.exe");
 
 #endif
 

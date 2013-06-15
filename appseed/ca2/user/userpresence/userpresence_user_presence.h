@@ -6,7 +6,7 @@ namespace userpresence
 
 
    class CLASS_DECL_ca2 presence :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -23,7 +23,7 @@ namespace userpresence
       string         m_strLongStatus;
 
 
-      presence(sp(::ca::application) papp);
+      presence(sp(::ca2::application) papp);
       virtual ~presence();
 
       virtual void report_activity();

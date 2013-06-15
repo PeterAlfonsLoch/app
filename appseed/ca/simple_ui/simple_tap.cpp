@@ -109,7 +109,7 @@ void simple_tap::draw_simple(simple_graphics & g)
 
    {
 
-      g.set_alpha_mode(::ca::alpha_mode_blend);
+      g.set_alpha_mode(::ca2::alpha_mode_blend);
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
@@ -140,7 +140,7 @@ void simple_tap::draw_volume(simple_graphics & g)
 
       
 
-      g.set_alpha_mode(::ca::alpha_mode_blend);
+      g.set_alpha_mode(::ca2::alpha_mode_blend);
 
       COLORREF crOut;
 
@@ -234,7 +234,7 @@ void simple_tap::draw_volume(simple_graphics & g)
 void simple_tap::draw_text(simple_graphics & g)
 {
 
-   g.set_alpha_mode(::ca::alpha_mode_blend);
+   g.set_alpha_mode(::ca2::alpha_mode_blend);
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
    

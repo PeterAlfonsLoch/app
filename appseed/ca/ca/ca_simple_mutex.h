@@ -10,7 +10,7 @@ typedef __key_t key_t;
 
 
 
-class CLASS_DECL_c simple_mutex
+class CLASS_DECL_ca simple_mutex
 {
 public:
 
@@ -40,4 +40,4 @@ public:
 
 
 
-CLASS_DECL_c void wait_until_mutex_does_not_exist(const char * pszName);
+CLASS_DECL_ca void wait_until_mutex_does_not_exist(const char * pszName);

@@ -1,7 +1,7 @@
 #pragma
 
 
-class CLASS_DECL_c simple_password :
+class CLASS_DECL_ca simple_password :
    public simple_edit_box
 {
 public:

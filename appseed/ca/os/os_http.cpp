@@ -1,6 +1,6 @@
 #include "framework.h"
 
-CLASS_DECL_c vsstring defer_ls_get(const char * pszUrl, const char * pszLocale, const char * pszSchema)
+CLASS_DECL_ca vsstring defer_ls_get(const char * pszUrl, const char * pszLocale, const char * pszSchema)
 {
    
    vsstring str;

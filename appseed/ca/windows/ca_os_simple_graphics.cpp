@@ -352,7 +352,7 @@ bool os_simple_graphics::blend_bitmap_data(int32_t x, int32_t y, int32_t cx, int
    
       Gdiplus::Bitmap b(cx, cy, cx *4 , PixelFormat32bppARGB, (BYTE *) pdata);
 
-      set_alpha_mode(::ca::alpha_mode_blend);
+      set_alpha_mode(::ca2::alpha_mode_blend);
 
       m_pgraphics->SetCompositingQuality(Gdiplus::CompositingQualityHighQuality);
 
@@ -457,16 +457,16 @@ bool os_simple_graphics::set_text_color(COLORREF cr)
 
 }
 
-bool os_simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
+bool os_simple_graphics::set_alpha_mode(::ca2::e_alpha_mode emode)
 {
 
    switch(emode)
    {
-   case ::ca::alpha_mode_blend:
+   case ::ca2::alpha_mode_blend:
 
       return m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver) == Gdiplus::Ok;
 
-   case ::ca::alpha_mode_set:
+   case ::ca2::alpha_mode_set:
 
       return m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceCopy) == Gdiplus::Ok;
 
@@ -537,7 +537,7 @@ bool os_simple_graphics::text_out(int32_t x, int32_t y, const char * pszUtf8, st
 }
 
 
-bool os_simple_graphics::fill_polygon(POINT * p, int32_t iCount, ::ca::e_fill_mode)
+bool os_simple_graphics::fill_polygon(POINT * p, int32_t iCount, ::ca2::e_fill_mode)
 {
 
    if(m_brush.m_pbrush == NULL)

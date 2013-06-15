@@ -1,6 +1,7 @@
 #pragma once
 
-#include "c/os/os.h"
+
+#include "ca/os/os.h"
 
 
 int32_t spaboot_start(const char * pszVersion, const char * pszId);
@@ -17,7 +18,7 @@ namespace spa
    };
 
 
-   class CLASS_DECL_c plugin :
+   class CLASS_DECL_ca plugin :
       virtual public ::hotplugin::plugin,
       virtual public ::simple_ui,
       virtual public ::spa_login::callback
@@ -25,7 +26,7 @@ namespace spa
    public:
 
 
-      class CLASS_DECL_c thread_start_ca2 :
+      class CLASS_DECL_ca thread_start_ca2 :
          public thread_layer
       {
       public:

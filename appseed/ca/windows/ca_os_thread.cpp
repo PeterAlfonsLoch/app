@@ -233,7 +233,7 @@ void thread_layer::wait_thread(uint32_t dwMillis)
 static HANDLE g_hMainThread = NULL;
 static UINT g_uiMainThread = -1;
 
-CLASS_DECL_c void set_main_thread(HANDLE hThread)
+CLASS_DECL_ca void set_main_thread(HANDLE hThread)
 {
    
    MSG msg;
@@ -244,7 +244,7 @@ CLASS_DECL_c void set_main_thread(HANDLE hThread)
 
 }
 
-CLASS_DECL_c void set_main_thread_id(UINT uiThread)
+CLASS_DECL_ca void set_main_thread_id(UINT uiThread)
 {
    
    MSG msg;
@@ -256,18 +256,18 @@ CLASS_DECL_c void set_main_thread_id(UINT uiThread)
 }
 
 
-CLASS_DECL_c HANDLE get_main_thread()
+CLASS_DECL_ca HANDLE get_main_thread()
 {
    return g_hMainThread;
 
 }
-CLASS_DECL_c UINT   get_main_thread_id()
+CLASS_DECL_ca UINT   get_main_thread_id()
 {
    return g_uiMainThread;
 }
 
 
-CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach)
+CLASS_DECL_ca void attach_thread_input_to_main_thread(bool bAttach)
 {
 
    MSG msg;
@@ -289,12 +289,12 @@ uint32_t thread_layer::proc(void * lp)
 }
 
 
-namespace ca
+namespace ca2
 {
 
 	///  \brief		global function to set thread priority for current thread
 	///  \param		new priority
-	CLASS_DECL_c bool set_thread_priority(int32_t priority)
+	CLASS_DECL_ca bool set_thread_priority(int32_t priority)
 	{
 
       return ( ::SetThreadPriority(::GetCurrentThread(), priority) != 0 );
@@ -304,13 +304,13 @@ namespace ca
 	///  \brief		global function to get thread priority for current thread
 	///  \return	priority of current thread
 
-	CLASS_DECL_c int32_t thread_priority()
+	CLASS_DECL_ca int32_t thread_priority()
 	{
       return ::GetThreadPriority(::GetCurrentThread());
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

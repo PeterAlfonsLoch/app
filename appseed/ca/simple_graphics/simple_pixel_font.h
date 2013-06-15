@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c simple_pixel_font :
+class CLASS_DECL_ca simple_pixel_font :
    public simple_font
 {
 public:

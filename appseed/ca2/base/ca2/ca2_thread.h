@@ -235,7 +235,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca2 thread :
-      virtual public ::ca2::thread_base,
+      virtual public ::ca::thread_base,
       virtual public command_target,
       #ifdef WINDOWS
       virtual public ::exception::translator,

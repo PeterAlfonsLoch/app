@@ -2,6 +2,7 @@
 #pragma once
 #endif
 
+#include "c/c/c.h"
 
 #include <ImfAcesFile.h>
 #include <ImfRgbaFile.h>

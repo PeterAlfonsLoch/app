@@ -31,10 +31,10 @@ inline UINT simple_HashKey(oswindow key)
 
 #endif
 
-template<> CLASS_DECL_c bool simple_CompareElements(const wstring * pElement1, const wstring * pElement2);
+template<> CLASS_DECL_ca bool simple_CompareElements(const wstring * pElement1, const wstring * pElement2);
 
 
-template<> CLASS_DECL_c UINT simple_HashKey<const wchar_t *> (const wchar_t * key);
-template<> CLASS_DECL_c UINT simple_HashKey<const char *> (const char * key);
-template<> CLASS_DECL_c UINT simple_HashKey<verisimple_string> (verisimple_string key);
-template<> CLASS_DECL_c UINT simple_HashKey<verisimple_wstring> (verisimple_wstring key);
+template<> CLASS_DECL_ca UINT simple_HashKey<const wchar_t *> (const wchar_t * key);
+template<> CLASS_DECL_ca UINT simple_HashKey<const char *> (const char * key);
+template<> CLASS_DECL_ca UINT simple_HashKey<verisimple_string> (verisimple_string key);
+template<> CLASS_DECL_ca UINT simple_HashKey<verisimple_wstring> (verisimple_wstring key);

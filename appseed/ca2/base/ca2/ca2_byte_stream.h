@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "ca_reader.h"
-#include "ca_writer.h"
-#include "ca_stream.h"
+#include "ca2_reader.h"
+#include "ca2_writer.h"
+#include "ca2_stream.h"
 
 
 namespace ca2

@@ -34,7 +34,7 @@
 
 #else
 
-#include "c/windows/c_os.h"
+#include "ca/windows/ca_os.h"
 
 #define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL
@@ -54,7 +54,7 @@
 
 
 
-CLASS_DECL_c void output_debug_string(const char * psz);
+CLASS_DECL_ca void output_debug_string(const char * psz);
 
 
 

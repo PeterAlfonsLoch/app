@@ -12,7 +12,7 @@ namespace primitive
 }
 
 
-namespace ca
+namespace ca2
 {
    class file;
 }
@@ -33,7 +33,7 @@ namespace plugin
 
    class CLASS_DECL_ca2 plugin :
       virtual public hotplugin::plugin,
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 

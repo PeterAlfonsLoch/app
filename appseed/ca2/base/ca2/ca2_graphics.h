@@ -2,13 +2,13 @@
 
 
 #include "user/user_draw_context.h"
-#include "ca_bitmap.h"
-#include "ca_pen.h"
-#include "ca_brush.h"
-#include "ca_font.h"
-#include "ca_region.h"
-#include "ca_palette.h"
-#include "ca_graphics_path.h"
+#include "ca2_bitmap.h"
+#include "ca2_pen.h"
+#include "ca2_brush.h"
+#include "ca2_font.h"
+#include "ca2_region.h"
+#include "ca2_palette.h"
+#include "ca2_graphics_path.h"
 
 
 /*#ifdef UNICODE

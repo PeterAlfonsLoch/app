@@ -3,13 +3,13 @@
 
 #if !defined(METROWIN)
 
-CLASS_DECL_c int32_t call_async(
+CLASS_DECL_ca int32_t call_async(
    const char * pszPath,
    const char * pszParam,
    const char * pszDir,
    int32_t iShow);
 
-CLASS_DECL_c uint32_t call_sync(
+CLASS_DECL_ca uint32_t call_sync(
    const char * pszPath,
    const char * pszParam,
    const char * pszDir,
@@ -24,27 +24,27 @@ CLASS_DECL_c uint32_t call_sync(
 
 #if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
 
-CLASS_DECL_c int32_t get_current_processor_index();
+CLASS_DECL_ca int32_t get_current_processor_index();
 
-CLASS_DECL_c int32_t get_current_process_maximum_affinity();
+CLASS_DECL_ca int32_t get_current_process_maximum_affinity();
 
-CLASS_DECL_c int32_t get_current_process_affinity_order();
+CLASS_DECL_ca int32_t get_current_process_affinity_order();
 
 #endif
 
 
 
 
-CLASS_DECL_c vsstring consume_param(const char * pszCommandLine, const char ** pszEndPtr);
-CLASS_DECL_c vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam, const char * pszIfParamValue, const char * pszReplaceParam);
-CLASS_DECL_c vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam);
+CLASS_DECL_ca vsstring consume_param(const char * pszCommandLine, const char ** pszEndPtr);
+CLASS_DECL_ca vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam, const char * pszIfParamValue, const char * pszReplaceParam);
+CLASS_DECL_ca vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam);
 
 
-CLASS_DECL_c bool os_initialize();
-CLASS_DECL_c bool os_finalize();
+CLASS_DECL_ca bool os_initialize();
+CLASS_DECL_ca bool os_finalize();
 
 
-CLASS_DECL_c bool main_initialize();
-CLASS_DECL_c bool main_finalize();
+CLASS_DECL_ca bool main_initialize();
+CLASS_DECL_ca bool main_finalize();
 
 

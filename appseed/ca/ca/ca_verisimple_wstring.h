@@ -7,15 +7,15 @@ class verisimple_wstring;
 typedef verisimple_wstring wstring;
 
 
-CLASS_DECL_c verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimple_wstring & wstr2);
-CLASS_DECL_c verisimple_wstring operator + (const verisimple_wstring & str, const wchar_t * psz);
-CLASS_DECL_c verisimple_wstring operator + (const wchar_t * psz, const verisimple_wstring & str);
+CLASS_DECL_ca verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimple_wstring & wstr2);
+CLASS_DECL_ca verisimple_wstring operator + (const verisimple_wstring & str, const wchar_t * psz);
+CLASS_DECL_ca verisimple_wstring operator + (const wchar_t * psz, const verisimple_wstring & str);
 
 
-CLASS_DECL_c wstring gen_utf8_to_16(const char * psz);
+CLASS_DECL_ca wstring gen_utf8_to_16(const char * psz);
 
 
-class CLASS_DECL_c wstring_data
+class CLASS_DECL_ca wstring_data
 {
 protected:
 
@@ -74,7 +74,7 @@ public:
 };
 
 
-class CLASS_DECL_c verisimple_wstring
+class CLASS_DECL_ca verisimple_wstring
 {
 protected:
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-// plugin - ca plugin
+// plugin - ca2 plugin
 // simple hotplugin implementation for NPAPI
 
 

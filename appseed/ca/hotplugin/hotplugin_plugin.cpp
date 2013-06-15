@@ -591,7 +591,7 @@ namespace hotplugin
       rectClip1.right   = rectClip1.left + cx - iBorder1 * 2;
       rectClip1.bottom  = rectClip1.top + cy - iBorder1 * 2;
 
-      pathClip1.begin_figure(true, ::ca::fill_mode_winding);
+      pathClip1.begin_figure(true, ::ca2::fill_mode_winding);
 
       pathClip1.add_round_rect(rectClip1, iBorder1 * 2);
 
@@ -634,7 +634,7 @@ namespace hotplugin
       rectClip.bottom   = rectClip.top + iBarHeight + iBorder * 2;
 
 
-      pathClip.begin_figure(true, ::ca::fill_mode_winding);
+      pathClip.begin_figure(true, ::ca2::fill_mode_winding);
 
       pathClip.add_round_rect(rectClip, iBorder);
 
@@ -675,7 +675,7 @@ namespace hotplugin
             pa[3].x = lprect->left + x - mcy;
             pa[3].y = lprect->top + mcy;
 
-            g.fill_polygon(pa, 4, ::ca::fill_mode_winding);
+            g.fill_polygon(pa, 4, ::ca2::fill_mode_winding);
 
             pa[0].x = lprect->left + x - mcy - iBarHeight;
             pa[0].y = lprect->top + mcy;
@@ -689,7 +689,7 @@ namespace hotplugin
             pa[3].x = lprect->left + x - cy - iBarHeight;
             pa[3].y = lprect->top + cy;
 
-            g.fill_polygon(pa, 4, ::ca::fill_mode_winding);
+            g.fill_polygon(pa, 4, ::ca2::fill_mode_winding);
 
 
          }

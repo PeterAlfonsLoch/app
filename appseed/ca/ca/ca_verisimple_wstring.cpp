@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_c wchar_t * wstring_data::get_nil()
+CLASS_DECL_ca wchar_t * wstring_data::get_nil()
 {
 
    static wstring_data s_nil;
@@ -216,7 +216,7 @@ verisimple_wstring operator + (const wchar_t * wpsz, const verisimple_wstring & 
 }
 
 
-CLASS_DECL_c wstring gen_utf8_to_16(const char * psz)
+CLASS_DECL_ca wstring gen_utf8_to_16(const char * psz)
 {
 
    wstring wstr;
@@ -271,7 +271,7 @@ verisimple_wstring verisimple_wstring::substr(::index iStart, ::count count)
 }
 
 
-template<> CLASS_DECL_c bool simple_CompareElements(const wstring * pElement1, const wstring * pElement2)
+template<> CLASS_DECL_ca bool simple_CompareElements(const wstring * pElement1, const wstring * pElement2)
 {
    return pElement1->Compare(*pElement2) != FALSE;
 }

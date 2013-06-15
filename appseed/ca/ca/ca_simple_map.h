@@ -482,7 +482,7 @@ simple_map< KEY,  VALUE >::PGetNextAssoc(const typename simple_map< KEY,  VALUE 
 template<class KEY,  class VALUE>
 void simple_map< KEY,  VALUE >::Serialize(CArchive& ar)
 {
-   ::ca::object::Serialize(ar);
+   ::ca2::object::Serialize(ar);
 
    if (ar.IsStoring())
    {
@@ -1032,7 +1032,7 @@ simple_string_map < VALUE >::PGetNextAssoc(const typename simple_string_map < VA
 template < class VALUE>
 void simple_string_map < VALUE >::Serialize(CArchive& ar)
 {
-   ::ca::object::Serialize(ar);
+   ::ca2::object::Serialize(ar);
 
    if (ar.IsStoring())
    {
@@ -1199,27 +1199,27 @@ simple_attrib_map< KEY,  VALUE > & simple_attrib_map< KEY,  VALUE >::operator = 
 }
 
 
-class CLASS_DECL_c simple_int_to_string :
+class CLASS_DECL_ca simple_int_to_string :
    virtual public simple_attrib_map < int32_t, vsstring >
 {
 public:
 };
 
 
-class CLASS_DECL_c simple_string_to_pointer :
+class CLASS_DECL_ca simple_string_to_pointer :
    virtual public simple_string_map < void * >
 {
 public:
 };
 
 
-class CLASS_DECL_c simple_string_to_intptr :
+class CLASS_DECL_ca simple_string_to_intptr :
    virtual public simple_string_map < int_ptr >
 {
 public:
 };
 
-class CLASS_DECL_c simple_string_to_string :
+class CLASS_DECL_ca simple_string_to_string :
    virtual public simple_string_map < vsstring >
 {
 public:

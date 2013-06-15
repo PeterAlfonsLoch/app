@@ -2,7 +2,7 @@
 
 
 
-CLASS_DECL_c int32_t ___()
+CLASS_DECL_ca int32_t ___()
 {
 
    MessageBox(NULL, "___ library of ca", "___ library of ca", MB_ICONINFORMATION | MB_OK);
@@ -12,7 +12,7 @@ CLASS_DECL_c int32_t ___()
 }
 
 
-CLASS_DECL_c dword get_tick_count()
+CLASS_DECL_ca dword get_tick_count()
 {
 
 #ifdef METROWIN

@@ -92,11 +92,11 @@ inline void byte_to_hi_hex(char * sz, byte b)
 }
 
 
-CLASS_DECL_c int32_t nibble_to_low_hex(byte nibble);
+CLASS_DECL_ca int32_t nibble_to_low_hex(byte nibble);
 
 
-CLASS_DECL_c char to_upper(int32_t ch);
-CLASS_DECL_c char * to_upper(char * pchParam);
+CLASS_DECL_ca char to_upper(int32_t ch);
+CLASS_DECL_ca char * to_upper(char * pchParam);
 
 // sz buffer should have twice size of s (p)
 inline void lo_hex_from(char * sz, void * p, size_t s)

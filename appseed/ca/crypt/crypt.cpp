@@ -5,9 +5,9 @@
 #include <openssl/err.h>
 #endif
 
-CLASS_DECL_c int32_t crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & key);
+CLASS_DECL_ca int32_t crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & key);
 
-CLASS_DECL_c int32_t crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & key);
+CLASS_DECL_ca int32_t crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & key);
 
 bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, const char * pszSalt)
 {
@@ -87,7 +87,7 @@ bool crypt_file_set(const char * pszFile, const char * pszData, const char * psz
 
 
 #ifndef METROWIN
-CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
+CLASS_DECL_ca vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 {
 
 #ifdef MACOS

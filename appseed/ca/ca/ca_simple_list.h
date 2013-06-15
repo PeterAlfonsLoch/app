@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // simple_list (simple/small subset of list)
 
-class CLASS_DECL_c base_simple_list
+class CLASS_DECL_ca base_simple_list
 {
 public:
    base_simple_list(int32_t nNextOffset = 0);

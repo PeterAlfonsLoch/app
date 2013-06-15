@@ -28,7 +28,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-class CLASS_DECL_c simple_graphics :
+class CLASS_DECL_ca simple_graphics :
    public os_simple_graphics
 {
 public:

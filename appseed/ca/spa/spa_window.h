@@ -9,14 +9,14 @@ namespace spa
    class window;
 
 
-   class CLASS_DECL_c window_map :
+   class CLASS_DECL_ca window_map :
       public simple_map < oswindow, window * >
    {
 
 
    };
 
-   class CLASS_DECL_c window
+   class CLASS_DECL_ca window
    {
    public:
 

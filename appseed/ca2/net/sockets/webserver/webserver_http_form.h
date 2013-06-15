@@ -8,10 +8,10 @@ namespace http
    /** Parse/store a http query_string/form-data body. 
       \ingroup webserver */
    class CLASS_DECL_ca2 form :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
-      form(sp(::ca::application) papp);
+      form(sp(::ca2::application) papp);
       /**
        * Default constructor (used in POST operations).
        * Input is read from stdin. Number of characters to read
@@ -33,9 +33,9 @@ namespace http
       void strcpyval(string &,const char *) const;
 
       /* get value */
-      ::ca::relation_set & get();
-      ::ca::relation_set & post();
-      ::ca::relation_set & request();
+      ::ca2::relation_set & get();
+      ::ca2::relation_set & post();
+      ::ca2::relation_set & request();
 
       string & boundary();
 
@@ -44,25 +44,25 @@ namespace http
       form(const form& ) {}
       form& operator=(const form& ) { return *this; }
    protected:
-      ::ca::relation_set m_setGet;
-      ::ca::relation_set m_setPost;
-      ::ca::relation_set m_setRequest;
+      ::ca2::relation_set m_setGet;
+      ::ca2::relation_set m_setPost;
+      ::ca2::relation_set m_setRequest;
       string m_strBoundary;
       bool m_bRaw;
    };
 
 
-   inline ::ca::relation_set & form::get()
+   inline ::ca2::relation_set & form::get()
    {
       return m_setGet;
    }
 
-   inline ::ca::relation_set & form::post()
+   inline ::ca2::relation_set & form::post()
    {
       return m_setPost;
    }
 
-   inline ::ca::relation_set & form::request()
+   inline ::ca2::relation_set & form::request()
    {
       return m_setRequest;
    }

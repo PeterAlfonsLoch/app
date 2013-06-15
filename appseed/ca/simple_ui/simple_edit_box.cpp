@@ -41,7 +41,7 @@ bool simple_edit_box::is_focusable()
 
 
 
-CLASS_DECL_c char to_upper(int32_t ch)
+CLASS_DECL_ca char to_upper(int32_t ch)
 {
 if(ch >= 'a' && ch <= 'z')
 {
@@ -51,7 +51,7 @@ return ch;
 }
 
 
-CLASS_DECL_c char * to_upper(char * pchParam)
+CLASS_DECL_ca char * to_upper(char * pchParam)
 {
 char * pch = pchParam;
 while(*pch == '\0')
@@ -69,7 +69,7 @@ return pchParam;
 void simple_edit_box::draw_this(simple_graphics & g)
 {
 
-   g.set_alpha_mode(::ca::alpha_mode_blend);
+   g.set_alpha_mode(::ca2::alpha_mode_blend);
 
    simple_brush br;
 

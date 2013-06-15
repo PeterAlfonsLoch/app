@@ -24,7 +24,7 @@
 #ifdef WINDOWSEX
 
 
-bool CLASS_DECL_c SHGetSpecialFolderPath(oswindow oswindow, vsstring &str, int32_t csidl, bool fCreate)
+bool CLASS_DECL_ca SHGetSpecialFolderPath(oswindow oswindow, vsstring &str, int32_t csidl, bool fCreate)
 {
 
    return ::SHGetSpecialFolderPathW(oswindow, wstringtovss(str, MAX_PATH * 8), csidl, fCreate) != FALSE;
@@ -301,7 +301,7 @@ vsstring ca2_module_folder_dup()
 
 }
 
-vsstring dir::ca(const char * path1, const char * path2, const char * path3, const char * path4)
+vsstring dir::ca2(const char * path1, const char * path2, const char * path3, const char * path4)
 {
 
 #ifdef WINDOWS
@@ -344,7 +344,7 @@ vsstring dir::ca(const char * path1, const char * path2, const char * path3, con
    else
    {
 
-      return dir::path(ca(), path1, path2, path3, path4);
+      return dir::path(ca2(), path1, path2, path3, path4);
 
    }
 
@@ -845,7 +845,7 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
 #endif
 
    vsstring strRelative;
-   strRelative = ca();
+   strRelative = ca2();
    index iFind = strRelative.find(':');
    if(iFind >= 0)
    {

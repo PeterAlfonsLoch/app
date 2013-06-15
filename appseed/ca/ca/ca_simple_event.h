@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_c simple_event
+class CLASS_DECL_ca simple_event
 {
 public:
 

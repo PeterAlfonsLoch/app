@@ -43,14 +43,14 @@ typedef int32_t   memory_offset;
 
 
 
-CLASS_DECL_c void * memset_dup(void * p, int32_t i, size_t iSize);
-CLASS_DECL_c void * memand_dup(void * p, const void * p1, const void * p2, size_t iSize);
-CLASS_DECL_c void * memcpy_dup(void * dst, const void * src, size_t iSize);
-CLASS_DECL_c void * memmov_dup(void * dst, const void * src, size_t iSize);
-CLASS_DECL_c int32_t  memcmp_dup(const void * sz1, const void * sz2, size_t iSize);
-CLASS_DECL_c wchar_t * wmemcpy_dup(wchar_t * dst, const wchar_t * src, size_t iSize);
+CLASS_DECL_ca void * memset_dup(void * p, int32_t i, size_t iSize);
+CLASS_DECL_ca void * memand_dup(void * p, const void * p1, const void * p2, size_t iSize);
+CLASS_DECL_ca void * memcpy_dup(void * dst, const void * src, size_t iSize);
+CLASS_DECL_ca void * memmov_dup(void * dst, const void * src, size_t iSize);
+CLASS_DECL_ca int32_t  memcmp_dup(const void * sz1, const void * sz2, size_t iSize);
+CLASS_DECL_ca wchar_t * wmemcpy_dup(wchar_t * dst, const wchar_t * src, size_t iSize);
 
-CLASS_DECL_c void * mem_reverse(void * p, size_t iSize);
+CLASS_DECL_ca void * mem_reverse(void * p, size_t iSize);
 
 inline void * zero_memory_dup(void * p, size_t iSize) { memset(p, 0, iSize); return p; }
 inline void * zeroe_dup(void * p, size_t iSize) { memset(p, 0, iSize); return p; }

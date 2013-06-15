@@ -1,9 +1,9 @@
 #include "framework.h"
 
-CLASS_DECL_c bool send_short_message_to_installer(const char * psz, bool bLaunch);
-CLASS_DECL_c void installer_call_sync(const char * path, const char * param);
+CLASS_DECL_ca bool send_short_message_to_installer(const char * psz, bool bLaunch);
+CLASS_DECL_ca void installer_call_sync(const char * path, const char * param);
 
-CLASS_DECL_c char * szSpabootInstall = NULL;
+CLASS_DECL_ca char * szSpabootInstall = NULL;
 
 
 int32_t installer(const char * param)
@@ -40,7 +40,7 @@ void installer_call_sync(const char * path, const char * param)
 
 
 
-CLASS_DECL_c bool send_short_message_to_installer(const char * psz, bool bLaunch)
+CLASS_DECL_ca bool send_short_message_to_installer(const char * psz, bool bLaunch)
 {
 
    

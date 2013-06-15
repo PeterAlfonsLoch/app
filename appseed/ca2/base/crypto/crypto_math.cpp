@@ -277,7 +277,7 @@ v128_bit_string(v128_t *x) {
 uint8_t
 nibble_to_hex_char(uint8_t nibble) {
   char buf[16] = {'0', '1', '2', '3', '4', '5', '6', '7',
-		  '8', '9', 'a', 'b', 'ca', 'd', 'e', 'f' };
+		  '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
   return buf[nibble & 0xF];
 }
 

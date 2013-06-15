@@ -907,13 +907,13 @@ namespace ca2
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
 #include "base/x/x_charcategory.h"
-#include "base/ca2/ca_bit.h"
+#include "base/ca2/ca2_bit.h"
 #include "base/collection/collection_bit_array.h"
 
-#include "base/ca2/ca_ch.h"
-#include "base/ca2/ca_ch_class.h"
-#include "base/ca2/ca_international.h"
-#include "base/ca2/ca_str.h"
+#include "base/ca2/ca2_ch.h"
+#include "base/ca2/ca2_ch_class.h"
+#include "base/ca2/ca2_international.h"
+#include "base/ca2/ca2_str.h"
 
 inline bool id::operator == (const string & str) const
 {
@@ -1074,7 +1074,7 @@ simple_string( string_trait::GetDefaultManager() )
 }
 
 
-#include "base/ca2/ca_str2.h"
+#include "base/ca2/ca2_str2.h"
 
 
 

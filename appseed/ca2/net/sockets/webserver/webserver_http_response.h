@@ -1,12 +1,21 @@
 #pragma once
 
+
 namespace http
 {
+
 
    class CLASS_DECL_ca2 response : public http::transaction
    {
    public:
-      response(sp(::ca::application) papp, const string & version = "HTTP/1.0");
+
+
+      //Utility::ncmap<string> m_cookie;
+      http::memory_file m_memfileBody;
+   
+
+
+      response(sp(::ca2::application) papp, const string & version = "HTTP/1.0");
       response(const response& src);
       ~response();
 
@@ -25,14 +34,11 @@ namespace http
 
       void clear();
 
-   protected:
-   
-      //Utility::ncmap<string> m_cookie;
-      http::memory_file m_memfileBody;
-   
-
    }; // end of class
 
+
 } // namespace http
+
+
 
 

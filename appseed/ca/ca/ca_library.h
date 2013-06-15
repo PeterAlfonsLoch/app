@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace c
+namespace ca
 {
 
 
-   class CLASS_DECL_c library
+   class CLASS_DECL_ca library
    {
    public:
 
@@ -35,7 +35,7 @@ namespace c
 
    };
 
-   class CLASS_DECL_c ca2_library :
+   class CLASS_DECL_ca ca2_library :
       virtual public library
    {
    public:
@@ -49,7 +49,7 @@ namespace c
    };
 
 
-} // namespace ca
+} // namespace caa
 
 
 
@@ -57,7 +57,7 @@ namespace ca
 {
 
 
-   CLASS_DECL_c void * open_ca2_library(const char * psz);
+   CLASS_DECL_ca void * open_ca2_library(const char * psz);
 
 
 } // namespace ca

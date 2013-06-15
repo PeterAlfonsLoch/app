@@ -683,7 +683,7 @@ install:
 
       DWORD dwRead;
 
-      HANDLE hfile = ::create_file(dir::ca("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      HANDLE hfile = ::create_file(dir::ca2("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
       double dRate = 0.0;
 

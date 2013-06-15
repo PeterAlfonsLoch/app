@@ -19,7 +19,7 @@ void on_trace(vsstring & str, vsstring & str2);
 
 void ensure_trace_file()
 {
-   dir::mk(dir::ca());
+   dir::mk(dir::ca2());
    if(g_ftrace != INVALID_HANDLE_VALUE)
    {
       // best really determination that g_ftrace is valid, if it is valid, it is not necessary to create or open it
@@ -31,7 +31,7 @@ void ensure_trace_file()
          return;
       }
    }
-   g_ftrace = ::create_file(dir::ca("install.log"), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+   g_ftrace = ::create_file(dir::ca2("install.log"), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
    ::SetFilePointer(g_ftrace, 0, NULL, FILE_END);
 }
 
@@ -137,7 +137,7 @@ void on_trace(vsstring & str, vsstring & str2)
 
 
 
-CLASS_DECL_c void trace_progress(double dRate)
+CLASS_DECL_ca void trace_progress(double dRate)
 {
    if(dRate < 0.0)
       dRate = 1.0;
@@ -155,7 +155,7 @@ CLASS_DECL_c void trace_progress(double dRate)
 
 
 
-CLASS_DECL_c bool initialize_primitive_trace()
+CLASS_DECL_ca bool initialize_primitive_trace()
 {
    
    g_pstraTrace = new stra_dup();
@@ -168,7 +168,7 @@ CLASS_DECL_c bool initialize_primitive_trace()
 }
 
 
-CLASS_DECL_c void finalize_primitive_trace()
+CLASS_DECL_ca void finalize_primitive_trace()
 {
 
    if(g_pstraTrace != NULL)

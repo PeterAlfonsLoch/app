@@ -24,7 +24,7 @@ static const XENTITY x_EntityTable[] = {
 		{ '>', _T("&gt;"), 4 }
 	};
 
-CLASS_DECL_c PARSEINFO  * piDefault = NULL;
+CLASS_DECL_ca PARSEINFO  * piDefault = NULL;
 DISP_OPT * poptDefault;
 XENTITYS * pentityDefault;
 //////////////////////////////////////////////////////////////////////

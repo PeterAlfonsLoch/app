@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca_stream_base.h"
+#include "ca2_stream_base.h"
 
 
 namespace ca2

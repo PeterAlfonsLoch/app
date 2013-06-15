@@ -6,7 +6,7 @@
 
 vsstring dir::afterca2()
 {
-   return ca();
+   return ca2();
 }
 
 vsstring dir::appdata(const char * lpcsz)
@@ -43,7 +43,7 @@ vsstring dir::appdata(const char * lpcsz)
 
 #endif
    
-   vsstring strCa2 = dir::ca();
+   vsstring strCa2 = dir::ca2();
    
    index iFind = strCa2.find(':');
    
@@ -96,7 +96,7 @@ vsstring dir::userappdata(const char * lpcsz)
 
 #endif
    
-   vsstring strCa2 = dir::ca();
+   vsstring strCa2 = dir::ca2();
    
    index iFind = strCa2.find(':');
    

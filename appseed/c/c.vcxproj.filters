@@ -31,15 +31,15 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="framework.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="c\c.cpp">
+    <ClCompile Include="c\c.c">
       <Filter>Source Files\c</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="c.def">
+    <None Include="_c.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

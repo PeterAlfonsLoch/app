@@ -11,14 +11,17 @@ namespace ca
 } // namespace ca
 
 
+
+
+
 class hthread :
-    virtual public ::c::c
+    virtual public ::ca::ca
 {
 public:
 
 
-   simple_event             * m_pevent;
-   ::ca::thread_base        * m_pthread;
+   simple_event               * m_pevent;
+   ::ca::thread_base          * m_pthread;
 
 
    hthread();
@@ -45,19 +48,24 @@ public:
 #endif
 
 
+namespace ca2
+{
+
+   class thread;
+
+}
+
+
 namespace ca
 {
 
 
-   class thread;
-
-
-   class CLASS_DECL_c thread_base
+   class CLASS_DECL_ca thread_base
    {
    public:
 
 
-      ::ca::thread      * m_pthread;
+      ::ca2::thread      * m_pthread;
 
 
       thread_base();
@@ -85,8 +93,8 @@ namespace user
    class interaction;
 
 
-    class CLASS_DECL_c interaction_base :
-        virtual public ::c::c
+    class CLASS_DECL_ca interaction_base :
+        virtual public ::ca::ca
    {
    public:
 
@@ -110,5 +118,5 @@ namespace user
 } // namespace user
 
 
-CLASS_DECL_c simple_mutex & user_mutex();
+CLASS_DECL_ca simple_mutex & user_mutex();
 

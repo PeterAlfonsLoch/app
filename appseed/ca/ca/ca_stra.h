@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c stra_dup :
+class CLASS_DECL_ca stra_dup :
    virtual public simple_array < vsstring >
 {
 public:

@@ -1,7 +1,7 @@
 #pragma
 
 
-class CLASS_DECL_c simple_tap :
+class CLASS_DECL_ca simple_tap :
    public simple_ui
 {
 public:

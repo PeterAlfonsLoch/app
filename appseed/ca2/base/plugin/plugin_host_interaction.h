@@ -29,12 +29,12 @@ namespace plugin
 
       
 
-      host_interaction(sp(::ca::application) papp);
+      host_interaction(sp(::ca2::application) papp);
       virtual ~host_interaction();
 
-      void install_message_handling(::ca::message::dispatch * pmessage);
+      void install_message_handling(::ca2::message::dispatch * pmessage);
 
-      virtual void _000OnDraw(::ca::graphics * pgraphics);
+      virtual void _000OnDraw(::ca2::graphics * pgraphics);
 
       virtual bool defer_check(e_check echeck);
       virtual void layout();
@@ -47,14 +47,14 @@ namespace plugin
       DECL_GEN_SIGNAL(_001OnCheck)
       DECL_GEN_SIGNAL(_001OnCreate)
 
-      virtual bool RedrawWindow(LPCRECT lpRectUpdate, ::ca::region* prgnUpdate, UINT flags);
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate, ::ca2::region* prgnUpdate, UINT flags);
 
       sp(::user::interaction) get_os_focus_uie();
 
       void _on_start_user_message_handler();
-      void _user_message_handler(::ca::signal_object * pobj);
+      void _user_message_handler(::ca2::signal_object * pobj);
 
-      virtual void _000OnMouse(::ca::message::mouse * pmouse);
+      virtual void _000OnMouse(::ca2::message::mouse * pmouse);
 
       DECL_GEN_SIGNAL(on_ignore_message)
       DECL_GEN_SIGNAL(_001OnTimer)

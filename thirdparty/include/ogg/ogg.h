@@ -17,7 +17,7 @@
 #ifndef _OGG_H
 #define _OGG_H
 
-#include "c/c/c.h"
+#include "ca/ca/ca.h"
 
 #include <string.h>
 #include <stdlib.h>

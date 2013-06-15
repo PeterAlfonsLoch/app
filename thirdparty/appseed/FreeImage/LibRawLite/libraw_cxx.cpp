@@ -19,6 +19,7 @@ it under the terms of the one of three licenses as you choose:
 
  */
 
+#include "c/c/c.h"
 #include <math.h>
 #include <errno.h>
 #include <float.h>

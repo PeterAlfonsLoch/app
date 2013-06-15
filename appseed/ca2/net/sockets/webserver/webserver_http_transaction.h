@@ -6,10 +6,18 @@ namespace http
 
 
    class CLASS_DECL_ca2 transaction :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
-      transaction(sp(::ca::application) papp);
+
+
+      ::ca2::property_set m_propertysetHeader;
+      ::ca2::property_set m_propertysetAttribute;
+      http::cookies m_cookies;
+      string m_null;
+
+
+      transaction(sp(::ca2::application) papp);
       transaction(const transaction & src);
       virtual ~transaction();
 
@@ -48,40 +56,36 @@ namespace http
       void SetUserAgent(const string & value);
       string UserAgent();
 
-      ::ca::property_set & headers();
-      ::ca::property & header(id idKey);
+      ::ca2::property_set & headers();
+      ::ca2::property & header(id idKey);
       
-      ::ca::property_set & attrs();
-      ::ca::property & attr(id idKey);
+      ::ca2::property_set & attrs();
+      ::ca2::property & attr(id idKey);
 
 
       http::cookies & cookies();
 
       virtual void clear();
 
-      ::ca::property_set m_propertysetHeader;
-      ::ca::property_set m_propertysetAttribute;
-      http::cookies m_cookies;
-      string m_null;
 
    }; // end of class
 
-   inline ::ca::property_set & transaction::attrs()
+   inline ::ca2::property_set & transaction::attrs()
    {
       return m_propertysetAttribute;
    }
 
-   inline ::ca::property & transaction::attr(id idKey)
+   inline ::ca2::property & transaction::attr(id idKey)
    {
       return m_propertysetAttribute[idKey];
    }
 
-   inline ::ca::property_set & transaction::headers()
+   inline ::ca2::property_set & transaction::headers()
    {
       return m_propertysetHeader;
    }
 
-   inline ::ca::property & transaction::header(id idKey)
+   inline ::ca2::property & transaction::header(id idKey)
    {
       return m_propertysetHeader[idKey];
    }

@@ -953,14 +953,14 @@ int64_t wtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int32_t iBase)
 }
 
 
-CLASS_DECL_c int64_t wtoi64_dup(const wchar_t * sz, const wchar_t ** pszEnd)
+CLASS_DECL_ca int64_t wtoi64_dup(const wchar_t * sz, const wchar_t ** pszEnd)
 {
 
    return wtoi64_dup(sz, NULL, 10);
 
 }
 
-CLASS_DECL_c int64_t wtoi64_dup(const wchar_t * sz)
+CLASS_DECL_ca int64_t wtoi64_dup(const wchar_t * sz)
 {
 
    return wtoi64_dup(sz, NULL);

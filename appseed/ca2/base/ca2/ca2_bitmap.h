@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca_graphics_object.h"
+#include "ca2_graphics_object.h"
 
 
 namespace ca2

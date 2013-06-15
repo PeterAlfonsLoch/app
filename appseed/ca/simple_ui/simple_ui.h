@@ -4,7 +4,7 @@
 class simple_ui;
 
 
-class CLASS_DECL_c simple_ui_ptra : 
+class CLASS_DECL_ca simple_ui_ptra : 
    public simple_array < simple_ui * >
 {
 public:
@@ -13,7 +13,7 @@ public:
 };
 
 
-class CLASS_DECL_c simple_ui
+class CLASS_DECL_ca simple_ui
 {
 public:
 

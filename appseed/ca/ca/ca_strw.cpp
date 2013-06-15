@@ -22,19 +22,19 @@
 
 }
 
-CLASS_DECL_c int32_t iswalpha_dup(int32_t ch)
+CLASS_DECL_ca int32_t iswalpha_dup(int32_t ch)
 {
    return (ch >= L'A' && ch <= L'Z') || (ch >= L'a' && ch <= L'z');
 }
 
 
-CLASS_DECL_c int32_t iswdigit_dup(int32_t ch)
+CLASS_DECL_ca int32_t iswdigit_dup(int32_t ch)
 {
    return ch >= L'0' && ch <= L'9';
 }
 
 
-CLASS_DECL_c int32_t iswspace_dup(int32_t ch)
+CLASS_DECL_ca int32_t iswspace_dup(int32_t ch)
 {
    return ch == L' ' || ch == L'\t' || ch == L'\r' || ch == L'\n' || ch == L'\t';
 }
@@ -93,7 +93,7 @@ int32_t wcscmp_dup(const wchar_t * sz1, const wchar_t * sz2)
 
 
 
-CLASS_DECL_c errno_t wcslwr_s_dup(wchar_t * sz, size_t size)
+CLASS_DECL_ca errno_t wcslwr_s_dup(wchar_t * sz, size_t size)
 {
 
         while(size > 0 && *sz != L'\0')
@@ -109,7 +109,7 @@ CLASS_DECL_c errno_t wcslwr_s_dup(wchar_t * sz, size_t size)
 }
 
 
-CLASS_DECL_c errno_t wcsupr_s_dup(wchar_t * sz, size_t size)
+CLASS_DECL_ca errno_t wcsupr_s_dup(wchar_t * sz, size_t size)
 {
 
         while(size > 0 && *sz != L'\0')
@@ -125,7 +125,7 @@ CLASS_DECL_c errno_t wcsupr_s_dup(wchar_t * sz, size_t size)
 }
 
 
-CLASS_DECL_c int32_t iswalnum_dup(int32_t wch)
+CLASS_DECL_ca int32_t iswalnum_dup(int32_t wch)
 {
    if(wch >= 256 || wch <= -128)
       return 0;
@@ -133,7 +133,7 @@ CLASS_DECL_c int32_t iswalnum_dup(int32_t wch)
 }
 
 
-CLASS_DECL_c wchar_t * wcschr_dup(const wchar_t * sz, wchar_t ch)
+CLASS_DECL_ca wchar_t * wcschr_dup(const wchar_t * sz, wchar_t ch)
 {
    if(sz == NULL)
       return NULL;

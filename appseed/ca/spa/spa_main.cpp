@@ -3,7 +3,7 @@
 
 
 
-CLASS_DECL_c int32_t spalib_main(HINSTANCE hInstance,
+CLASS_DECL_ca int32_t spalib_main(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
                      LPSTR    lpCmdLine,
                      int32_t       nCmdShow)

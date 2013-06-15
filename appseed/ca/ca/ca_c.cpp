@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-namespace c
+namespace ca
 {
    
-   c::c()
+   ca::ca()
    {
 
       m_countReference  = 1;
@@ -12,12 +12,12 @@ namespace c
 
    }
 
-   c::~c()
+   ca::~ca()
    {
    }
 
 
-   int64_t c::add_ref()
+   int64_t ca::add_ref()
    {
          #ifdef WINDOWS
       return InterlockedIncrement64(&m_countReference);
@@ -26,7 +26,7 @@ namespace c
       #endif
    }
 
-   int64_t c::dec_ref()
+   int64_t ca::dec_ref()
    {
       #ifdef WINDOWS
       int64_t i = InterlockedDecrement64(&m_countReference);
@@ -36,7 +36,7 @@ namespace c
       return i;
    }
 
-   int64_t c::release()
+   int64_t ca::release()
    {
       int64_t i = dec_ref();
       if(i == 0)
@@ -48,7 +48,7 @@ namespace c
 
 
 
-  void c::delete_this()
+  void ca::delete_this()
   {
 
      // quite verisimple default implementation
@@ -58,7 +58,7 @@ namespace c
 
 
   
-} // namespace c
+} // namespace ca
 
 
 

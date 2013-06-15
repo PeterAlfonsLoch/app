@@ -104,7 +104,7 @@ typedef
 #endif
 
 #define BZ_API(func)  func
-#define BZ_EXTERN CLASS_DECL_c
+#define BZ_EXTERN CLASS_DECL_ca
 
 
 /*-- Core (low-level) library functions --*/

@@ -19,7 +19,7 @@ class hthread;
 * \file		src/lib/pal/linux/thread_linux.hpp
 */
 
-namespace ca
+namespace ca2
 {
 
 
@@ -42,26 +42,26 @@ namespace ca
 
 	///  \brief		global function to set thread priority for current thread
 	///  \param		new priority
-	CLASS_DECL_c bool set_thread_priority(int32_t priority);
+	CLASS_DECL_ca bool set_thread_priority(int32_t priority);
 
 	///  \brief		global function to get thread priority for current thread
 	///  \return	priority of current thread
-	CLASS_DECL_c int32_t thread_priority();
+	CLASS_DECL_ca int32_t thread_priority();
 
 
-} // namespace ca
+} // namespace ca2
 
 
-inline ::ca::e_thread_priority get_thread_priority_normal()
+inline ::ca2::e_thread_priority get_thread_priority_normal()
 {
 
-      return ::ca::thread_priority_normal;
+      return ::ca2::thread_priority_normal;
 
 }
 
 
 
-class CLASS_DECL_c os_thread
+class CLASS_DECL_ca os_thread
 {
 public:
 
@@ -108,12 +108,12 @@ public:
 
 
 
-CLASS_DECL_c HTHREAD start_thread(uint32_t (*)(void *), void * pv, int32_t iPriority = 0);
+CLASS_DECL_ca HTHREAD start_thread(uint32_t (*)(void *), void * pv, int32_t iPriority = 0);
 
-CLASS_DECL_c HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (*)(void *), void * pv, uint32_t uiFlags, uint32_t * puiId);
+CLASS_DECL_ca HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (*)(void *), void * pv, uint32_t uiFlags, uint32_t * puiId);
 
 
-class CLASS_DECL_c thread_layer
+class CLASS_DECL_ca thread_layer
 {
 public:
 
@@ -143,8 +143,8 @@ public:
 
 
 
-CLASS_DECL_c HTHREAD get_current_thread();
-CLASS_DECL_c DWORD get_current_thread_id();
+CLASS_DECL_ca HTHREAD get_current_thread();
+CLASS_DECL_ca DWORD get_current_thread_id();
 
 
 

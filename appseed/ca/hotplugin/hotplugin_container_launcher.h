@@ -5,7 +5,7 @@ namespace hotplugin
 {
 
 
-   class CLASS_DECL_c container_launcher :
+   class CLASS_DECL_ca container_launcher :
       virtual public ::launcher
    {
    public:

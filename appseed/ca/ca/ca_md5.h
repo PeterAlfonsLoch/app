@@ -64,7 +64,7 @@ namespace md5
 {
 
 
-	class CLASS_DECL_c md5
+	class CLASS_DECL_ca md5
 	{
 	public:
 

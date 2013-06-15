@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_c simple_solid_brush :
+class CLASS_DECL_ca simple_solid_brush :
    public simple_brush
 {
 public:

@@ -38,10 +38,12 @@
 //
 //-----------------------------------------------------------------------------
 
-#ifdef WINDOWS
-
 #include "IlmThreadMutex.h"
 #include "Iex.h"
+
+
+#ifdef WINDOWS
+
 
 namespace IlmThread {
 

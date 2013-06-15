@@ -9,7 +9,7 @@ namespace spa
 } // namespace spa
 
 
-class CLASS_DECL_c spa_login :
+class CLASS_DECL_ca spa_login :
    public simple_ui
 {
 public:
@@ -24,7 +24,7 @@ public:
       result_registration_deferred,
    };
 
-   class CLASS_DECL_c callback
+   class CLASS_DECL_ca callback
    {
    public:
 

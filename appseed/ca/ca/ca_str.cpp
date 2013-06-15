@@ -729,7 +729,7 @@ void __cdecl parse_cmdline(char *cmdstart, char **argv, char *args, int32_t * nu
 
 
 
-CLASS_DECL_c char * strchr_dup(const char * sz, char ch)
+CLASS_DECL_ca char * strchr_dup(const char * sz, char ch)
 {
    if(sz == NULL)
       return NULL;
@@ -771,7 +771,7 @@ int32_t isspace_dup(int32_t ch)
 
 
 
-CLASS_DECL_c char * strpbrk_dup(char * sz, const char * szFind)
+CLASS_DECL_ca char * strpbrk_dup(char * sz, const char * szFind)
 {
    char * pszRet = NULL;
    while(*szFind != '\0')
@@ -797,21 +797,21 @@ vsstring str_replace_dup(const char * psz, const char * pszFind, const char * ps
 }
 
 
-CLASS_DECL_c vsstring itoa_dup(int64_t i)
+CLASS_DECL_ca vsstring itoa_dup(int64_t i)
 {
    char sz[256];
    itoa_dup(sz, i, 10);
    return vsstring(sz);
 }
 
-CLASS_DECL_c vsstring itohex_dup(int64_t i)
+CLASS_DECL_ca vsstring itohex_dup(int64_t i)
 {
    char sz[256];
    itoa_dup(sz, i, 16);
    return vsstring(sz);
 }
 
-CLASS_DECL_c vsstring itohexpad_dup(int64_t i, int32_t iPad)
+CLASS_DECL_ca vsstring itohexpad_dup(int64_t i, int32_t iPad)
 {
    vsstring str = itohex_dup(i);
    while(iPad > str.length())
@@ -819,7 +819,7 @@ CLASS_DECL_c vsstring itohexpad_dup(int64_t i, int32_t iPad)
    return str;
 }
 
-/*CLASS_DECL_c vsstring i64toa_dup(int64_t i)
+/*CLASS_DECL_ca vsstring i64toa_dup(int64_t i)
 {
    char sz[512];
    i64toa_dup(sz, i);
@@ -865,7 +865,7 @@ vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszTyp
 #endif
 
 
-CLASS_DECL_c char * strtok_r_dup(char *s1, const char *s2, char **lasts)
+CLASS_DECL_ca char * strtok_r_dup(char *s1, const char *s2, char **lasts)
 {
   char *ret;
 
@@ -891,7 +891,7 @@ CLASS_DECL_c char * strtok_r_dup(char *s1, const char *s2, char **lasts)
 
 #if !defined(WINDOWS)
 
-CLASS_DECL_c char * strlwr(char * pszParam)
+CLASS_DECL_ca char * strlwr(char * pszParam)
 {
 
    char * psz = pszParam;
@@ -912,7 +912,7 @@ CLASS_DECL_c char * strlwr(char * pszParam)
 
 }
 
-CLASS_DECL_c char * strupr(char * pszParam)
+CLASS_DECL_ca char * strupr(char * pszParam)
 {
 
    char * psz = pszParam;
@@ -937,7 +937,7 @@ CLASS_DECL_c char * strupr(char * pszParam)
 
 
 
-CLASS_DECL_c void zero_pad(vsstring & str, ::count iPad)
+CLASS_DECL_ca void zero_pad(vsstring & str, ::count iPad)
 {
 
    while(str.length() < iPad)

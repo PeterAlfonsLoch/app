@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_c simple_memory
+class CLASS_DECL_ca simple_memory
 {
 public:
 

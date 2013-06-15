@@ -17,7 +17,7 @@ namespace plugin
       plugin * m_pplugin;
 
 
-      system(sp(::ca::application) papp);
+      system(sp(::ca2::application) papp);
 
 
       virtual bool open_link(const string & pszLink, const string & pszTarget);

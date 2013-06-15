@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c vsstringtow :
+class CLASS_DECL_ca vsstringtow :
    public vsstring
 {
 public:

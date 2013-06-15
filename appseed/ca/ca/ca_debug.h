@@ -2,7 +2,7 @@
 
 
 
-CLASS_DECL_c int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags); 
+CLASS_DECL_ca int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags); 
 inline int32_t FUNCTION_XXDEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags)
 {
    return 0;

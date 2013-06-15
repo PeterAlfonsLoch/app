@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_c base64
+class CLASS_DECL_ca base64
 {
 protected:
 

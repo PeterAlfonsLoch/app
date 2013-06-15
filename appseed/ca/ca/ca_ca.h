@@ -2,12 +2,12 @@
 
 
 
-namespace c
+namespace ca
 {
 
 
 
-   class CLASS_DECL_c c
+   class CLASS_DECL_ca ca
    {
    public:
 
@@ -16,8 +16,8 @@ namespace c
       bool                       m_bHeap;
 
 
-      c();
-      virtual ~c();
+      ca();
+      virtual ~ca();
 
 
       virtual void delete_this();
@@ -93,10 +93,10 @@ namespace c
    }
 
 
-} // namespace c
+} // namespace ca
 
 
 
 
 
-#define canew(x) ::c::dereference_no_delete(new x)
+#define canew(x) ::ca::dereference_no_delete(new x)

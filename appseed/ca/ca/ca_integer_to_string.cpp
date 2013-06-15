@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_c vsstring i64toa_dup(int64_t i, int32_t iBase)
+CLASS_DECL_ca vsstring i64toa_dup(int64_t i, int32_t iBase)
 {
 
    char sz[128 + 64];
@@ -48,7 +48,7 @@ CLASS_DECL_c vsstring i64toa_dup(int64_t i, int32_t iBase)
 }
 
 
-CLASS_DECL_c vsstring i64toa_dup(int64_t i)
+CLASS_DECL_ca vsstring i64toa_dup(int64_t i)
 {
 
    return i64toa_dup(i, 10);
@@ -57,7 +57,7 @@ CLASS_DECL_c vsstring i64toa_dup(int64_t i)
 
 
 
-CLASS_DECL_c vsstring ui64toa_dup(int64_t i, int32_t iBase)
+CLASS_DECL_ca vsstring ui64toa_dup(int64_t i, int32_t iBase)
 {
 
    char sz[128 + 64];
@@ -93,7 +93,7 @@ CLASS_DECL_c vsstring ui64toa_dup(int64_t i, int32_t iBase)
 }
 
 
-CLASS_DECL_c vsstring ui64toa_dup(int64_t i)
+CLASS_DECL_ca vsstring ui64toa_dup(int64_t i)
 {
 
    return ui64toa_dup(i, 10);

@@ -13,7 +13,7 @@ int32_t _fltused = 0;
 #endif
 
 
-CLASS_DECL_c int32_t abs_dup(int32_t i)
+CLASS_DECL_ca int32_t abs_dup(int32_t i)
 {
    if(i < 0)
       return -i;
@@ -21,7 +21,7 @@ CLASS_DECL_c int32_t abs_dup(int32_t i)
       return i;
 }
 
-CLASS_DECL_c double fabs_dup(double f)
+CLASS_DECL_ca double fabs_dup(double f)
 {
    if(f < 0.0)
       return -f;
@@ -30,7 +30,7 @@ CLASS_DECL_c double fabs_dup(double f)
 }
 
 #ifdef SUPORTA_MATEMATICA_AVANCADA
-CLASS_DECL_c double atan_dup(double d)
+CLASS_DECL_ca double atan_dup(double d)
 {
 #ifdef X86
     _asm
@@ -45,17 +45,17 @@ CLASS_DECL_c double atan_dup(double d)
 #endif
 }
 
-CLASS_DECL_c double asin_dup(double d)
+CLASS_DECL_ca double asin_dup(double d)
 {
    return 2.0 * atan_dup(d / (1.0 + sqrt_dup(1.0 - d * d)));
 }
 
-CLASS_DECL_c double acos_dup(double d)
+CLASS_DECL_ca double acos_dup(double d)
 {
    return 2.0 * atan_dup(sqrt_dup(1.0 - d * d) / (1.0 + d));
 }
 
-CLASS_DECL_c double sqrt_dup(double d)
+CLASS_DECL_ca double sqrt_dup(double d)
 {
 #ifdef X86
     _asm
@@ -70,18 +70,18 @@ CLASS_DECL_c double sqrt_dup(double d)
 #endif
 }
 
-CLASS_DECL_c double pow_dup(double base, double e)
+CLASS_DECL_ca double pow_dup(double base, double e)
 {
    return exp_dup(e * log_dup(base));
 }
 
 
-CLASS_DECL_c double fmod_dup(double x, double y)
+CLASS_DECL_ca double fmod_dup(double x, double y)
 {
    return fmod(x, y);
 }
 
-CLASS_DECL_c double exp_dup(double d)
+CLASS_DECL_ca double exp_dup(double d)
 {
 #ifdef X86
     _asm
@@ -96,7 +96,7 @@ CLASS_DECL_c double exp_dup(double d)
 #endif
 }
 
-CLASS_DECL_c double log_dup(double d)
+CLASS_DECL_ca double log_dup(double d)
 {
 #ifdef X86
     _asm
@@ -111,7 +111,7 @@ CLASS_DECL_c double log_dup(double d)
 #endif
 }
 
-CLASS_DECL_c double tan_dup(double d)
+CLASS_DECL_ca double tan_dup(double d)
 {
 #ifdef X86
     _asm
@@ -126,7 +126,7 @@ CLASS_DECL_c double tan_dup(double d)
 #endif
 }
 
-CLASS_DECL_c double sin_dup(double d)
+CLASS_DECL_ca double sin_dup(double d)
 {
 #ifdef X86
     _asm
@@ -141,7 +141,7 @@ CLASS_DECL_c double sin_dup(double d)
 #endif
 }
 
-CLASS_DECL_c double cos_dup(double d)
+CLASS_DECL_ca double cos_dup(double d)
 {
 #ifdef X86
     _asm
@@ -158,12 +158,12 @@ CLASS_DECL_c double cos_dup(double d)
 
 #endif
 
-CLASS_DECL_c void srand_dup(uint32_t seed)
+CLASS_DECL_ca void srand_dup(uint32_t seed)
 {
 	lastrand = seed;
 }
 
-CLASS_DECL_c  int32_t rand_dup()
+CLASS_DECL_ca  int32_t rand_dup()
 {
 	return (((lastrand = lastrand * 214013L + 2531011L) >> 16) & 0x7FFF);
 }

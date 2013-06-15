@@ -19,6 +19,7 @@ it under the terms of the one of three licenses as you choose:
    (See file LICENSE.LibRaw.pdf provided in LibRaw distribution archive for details).
  */
 
+#include "c/c/c.h"
 #include <math.h>
 #include <errno.h>
 #include "libraw/libraw.h"

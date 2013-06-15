@@ -20,12 +20,12 @@ const char * get_starter_version()
 
 const char * get_version()
 {
-   return file_as_string_dup(dir::ca("appdata", spa_get_platform(), "build.txt"));
+   return file_as_string_dup(dir::ca2("appdata", spa_get_platform(), "build.txt"));
 }
 
 const char * get_ca2_version()
 {
-   return file_as_string_dup(dir::ca("appdata", spa_get_platform(), "ca2_build.txt"));
+   return file_as_string_dup(dir::ca2("appdata", spa_get_platform(), "ca2_build.txt"));
 }
 
 void update_ca2_installed(bool bUnloadIfNotInstalled)
@@ -40,7 +40,7 @@ void update_ca2_installed(bool bUnloadIfNotInstalled)
    }
 
 
-   vsstring strStage(dir::ca("stage", spa_get_platform()));
+   vsstring strStage(dir::ca2("stage", spa_get_platform()));
 
 #ifdef WINDOWSEX
    ::SetDllDirectoryA(strStage);
@@ -49,11 +49,11 @@ void update_ca2_installed(bool bUnloadIfNotInstalled)
    g_bCa2Installed = true;
    if(g_bCa2Installed)
    {
-      ::c::library libraryOs;
+      ::ca::library libraryOs;
       g_bCa2Installed = libraryOs.open(dir::path(strStage, "os"));
       if(g_bCa2Installed)
       {
-         ::c::library libraryCa2;
+         ::ca::library libraryCa2;
          g_bCa2Installed = libraryCa2.open(dir::path(strStage, "ca"));
          if(!bUnloadIfNotInstalled && g_bCa2Installed)
          {
@@ -271,13 +271,13 @@ uint32_t _ca2_starter_start(void * pvoid)
 
 void set_ca2_updated(const char * pszBuild)
 {
-   dir::mk(dir::ca() + "\\appdata\\" + spa_get_platform());
-   file_put_contents_dup(dir::ca() + "\\appdata\\" + spa_get_platform() + "\\ca2_build.txt", pszBuild);
+   dir::mk(dir::ca2() + "\\appdata\\" + spa_get_platform());
+   file_put_contents_dup(dir::ca2() + "\\appdata\\" + spa_get_platform() + "\\ca2_build.txt", pszBuild);
 }
 
 
 void set_updated(const char * pszBuild)
 {
-   dir::mk(dir::ca() + "\\appdata\\" + spa_get_platform());
-   file_put_contents_dup(dir::ca() + "\\appdata\\" + spa_get_platform() + "\\build.txt", pszBuild);
+   dir::mk(dir::ca2() + "\\appdata\\" + spa_get_platform());
+   file_put_contents_dup(dir::ca2() + "\\appdata\\" + spa_get_platform() + "\\build.txt", pszBuild);
 }
