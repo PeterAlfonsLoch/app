@@ -1,13 +1,17 @@
 #pragma once
 
+
 namespace sip
 {
+
 
    class CLASS_DECL_ca2 response :
       virtual public transaction
    {
    public:
-      response(::ca::application * papp, const string & version = "HTTP/1.0");
+
+
+      response(::ca2::application * papp, const string & version = "HTTP/1.0");
       response(const response& src);
       ~response();
 
@@ -33,6 +37,7 @@ namespace sip
 
 
    }; // end of class
+
 
 } // namespace http
 

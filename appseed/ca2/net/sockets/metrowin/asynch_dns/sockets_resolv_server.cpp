@@ -1,10 +1,12 @@
 #include "framework.h"
 
+
 namespace sockets
 {
 
-   resolv_server::resolv_server(::ca::application * papp, port_t port) :
-      ca(papp),
+
+   resolv_server::resolv_server(::ca2::application * papp, port_t port) :
+      ca2(papp),
       thread(papp),
       simple_thread(papp),
       go_thread(papp),
@@ -12,15 +14,19 @@ namespace sockets
       m_port(port),
       m_ready(false)
    {
+
       start();
+
    }
 
+
    resolv_server::resolv_server(const resolv_server& s) : 
-      ::ca::ca(((resolv_server&)s).get_app()),
+      ::ca2::ca2(((resolv_server&)s).get_app()),
       thread(((resolv_server&)s).get_app()),
       simple_thread(((resolv_server&)s).get_app()),
       go_thread(((resolv_server&)s).get_app())
    {
+
    }
 
 

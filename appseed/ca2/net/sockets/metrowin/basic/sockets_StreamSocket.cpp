@@ -5,7 +5,7 @@ namespace sockets
 {
 
    stream_socket::stream_socket(socket_handler_base& h) : 
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h)
    ,m_bConnecting(false)
    ,m_connect_timeout(5)

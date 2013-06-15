@@ -4,7 +4,7 @@
 
 
 
-class CLASS_DECL_c os_simple_path
+class CLASS_DECL_ca os_simple_path
 {
 public:
 
@@ -12,14 +12,14 @@ public:
    ID2D1PathGeometry *        m_ppath;
    ID2D1GeometrySink *        m_psink;
    bool                       m_bFill;
-   ::ca::e_fill_mode          m_efillmode;
+   ::ca2::e_fill_mode         m_efillmode;
    
 
    os_simple_path();
    ~os_simple_path();
 
    
-   bool begin_figure(bool bFill, ::ca::e_fill_mode);
+   bool begin_figure(bool bFill, ::ca2::e_fill_mode);
    bool end_figure(bool bClose);
 
 

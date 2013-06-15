@@ -13,7 +13,7 @@ namespace sockets
    /** socket base class.
    \ingroup basic */
    class CLASS_DECL_ca2 socket :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -28,7 +28,7 @@ namespace sockets
       /** Detached socket run thread.
       \ingroup internal */
       class CLASS_DECL_ca2 socket_thread :
-         virtual public ::ca::thread
+         virtual public ::ca2::thread
       {
       public:
          socket_thread(socket * psocket);
@@ -83,7 +83,7 @@ namespace sockets
       bool                    m_bClose; ///< close and delete flag
       socket *                m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       address                 m_addressRemoteClient; ///< Address of last connect()
-      ::ca::file *             m_pfileTrafficMonitor;
+      ::ca2::file *           m_pfileTrafficMonitor;
       time_t                  m_timeTimeoutStart; ///< Set by SetTimeout
       time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
@@ -182,7 +182,6 @@ namespace sockets
       * needs to be used for the socket class. Note: the socket class still needs
       * the "default" constructor with one socket_handler_base& as input parameter.
       */
-      using ::ca::request_interface::create;
       virtual socket *create() { return NULL; }
 
       /** Returns reference to sockethandler that owns the socket.
@@ -684,9 +683,9 @@ namespace sockets
       //@}
 
       /** write traffic to an IFile. socket will not delete this object. */
-      void SetTrafficMonitor(::ca::file *p) { m_pfileTrafficMonitor = p; }
+      void SetTrafficMonitor(::ca2::file *p) { m_pfileTrafficMonitor = p; }
       /** All traffic will be written to this IFile, if set. */
-      ::ca::file *GetTrafficMonitor() { return m_pfileTrafficMonitor; }
+      ::ca2::file *GetTrafficMonitor() { return m_pfileTrafficMonitor; }
 
       /** \name Triggers */
       //@{

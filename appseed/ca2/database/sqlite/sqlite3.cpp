@@ -7796,7 +7796,7 @@ namespace sqlite3
    */
 #define SQLITE_AFF_TEXT     'a'
 #define SQLITE_AFF_NONE     'b'
-#define SQLITE_AFF_NUMERIC  'ca'
+#define SQLITE_AFF_NUMERIC  'c'
 #define SQLITE_AFF_INTEGER  'd'
 #define SQLITE_AFF_REAL     'e'
 
@@ -13768,7 +13768,7 @@ zulu_time:
       {  'q',  0, 4, etSQLESCAPE,  0,  0 },
       {  'Q',  0, 4, etSQLESCAPE2, 0,  0 },
       {  'w',  0, 4, etSQLESCAPE3, 0,  0 },
-      {  'ca',  0, 0, etCHARX,      0,  0 },
+      {  'c',  0, 0, etCHARX,      0,  0 },
       {  'o',  8, 0, etRADIX,      0,  2 },
       {  'u', 10, 0, etRADIX,      0,  0 },
       {  'x', 16, 0, etRADIX,      16, 1 },
@@ -75604,10 +75604,10 @@ abort_parse:
       static const char misuseBe [] = {
          0, 'l', 0, 'i', 0, 'b', 0, 'r', 0, 'a', 0, 'r', 0, 'y', 0, ' ',
          0, 'r', 0, 'o', 0, 'u', 0, 't', 0, 'i', 0, 'n', 0, 'e', 0, ' ',
-         0, 'ca', 0, 'a', 0, 'l', 0, 'l', 0, 'e', 0, 'd', 0, ' ',
+         0, 'c', 0, 'a', 0, 'l', 0, 'l', 0, 'e', 0, 'd', 0, ' ',
          0, 'o', 0, 'u', 0, 't', 0, ' ',
          0, 'o', 0, 'f', 0, ' ',
-         0, 's', 0, 'e', 0, 'q', 0, 'u', 0, 'e', 0, 'n', 0, 'ca', 0, 'e', 0, 0, 0
+         0, 's', 0, 'e', 0, 'q', 0, 'u', 0, 'e', 0, 'n', 0, 'c', 0, 'e', 0, 0, 0
       };
 
       const void *z;

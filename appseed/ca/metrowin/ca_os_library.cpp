@@ -2,7 +2,7 @@
 #include <windows.h>
 
 
-namespace c
+namespace ca
 {
 
 
@@ -131,17 +131,17 @@ namespace c
 
    bool ca2_library::open(const char * pszPath)
    {
-      m_plibrary = ::ca::open_ca2_library(pszPath);
+      m_plibrary = ::ca2::open_ca2_library(pszPath);
       return m_plibrary != NULL;
    }
 
 
 
 
-} // namespace c
+} // namespace ca
 
 
-namespace ca
+namespace ca2
 {
 
    void * open_ca2_library(const char * psz)
@@ -165,5 +165,5 @@ namespace ca
       return LoadPackagedLibrary(wstring(psz), 0);
    }
 
-}
+} // namespace ca2
 

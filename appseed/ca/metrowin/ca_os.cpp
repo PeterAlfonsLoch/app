@@ -6,7 +6,7 @@ extern CLASS_DECL_THREAD os_thread * t_posthread;
 extern CLASS_DECL_THREAD HTHREAD currentThread;
 
 /*
-CLASS_DECL_c Platform::String ^ rtstr(const char * psz)
+CLASS_DECL_ca Platform::String ^ rtstr(const char * psz)
 {
    if(psz == NULL)
       return ref new Platform::String(L"");
@@ -17,7 +17,7 @@ CLASS_DECL_c Platform::String ^ rtstr(const char * psz)
 
 
 
-CLASS_DECL_c int MessageBox(oswindow window, const char * pszMessage, const char * pszTitle, int iFlags)
+CLASS_DECL_ca int MessageBox(oswindow window, const char * pszMessage, const char * pszTitle, int iFlags)
 {
   
 
@@ -51,7 +51,7 @@ CLASS_DECL_c int MessageBox(oswindow window, const char * pszMessage, const char
 }
 
 
-CLASS_DECL_c VOID WINAPI Sleep(DWORD dwMilliseconds)
+CLASS_DECL_ca VOID WINAPI Sleep(DWORD dwMilliseconds)
 {
    static HANDLE singletonEvent = nullptr;
 
@@ -252,10 +252,10 @@ bool main_finalize()
 }
 
 
-CLASS_DECL_c int g_iMouse = -1;
+CLASS_DECL_ca int g_iMouse = -1;
 
 
-CLASS_DECL_c WINBOOL GetCursorPos(LPPOINT lppoint)
+CLASS_DECL_ca WINBOOL GetCursorPos(LPPOINT lppoint)
 {
    
    lppoint->x = 0;
@@ -292,7 +292,7 @@ CLASS_DECL_c WINBOOL GetCursorPos(LPPOINT lppoint)
 }
 
 
-CLASS_DECL_c vsstring normalize_path(const char * lpcszPath)
+CLASS_DECL_ca vsstring normalize_path(const char * lpcszPath)
 {
 
    if(lpcszPath == NULL)
@@ -374,7 +374,7 @@ vsstring key_to_char(WPARAM wparam, LPARAM lparam)
 
 
 
-CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError)
+CLASS_DECL_ca vsstring get_system_error_message(uint32_t dwError)
 {
    wstring wstr;
    wstr.alloc(64 * 1024 / sizeof(wchar_t));
@@ -391,7 +391,7 @@ CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError)
 }
 
 
-CLASS_DECL_c WINBOOL IsWindow(oswindow oswindow)
+CLASS_DECL_ca WINBOOL IsWindow(oswindow oswindow)
 {
 
    if(((void *) oswindow) == NULL)
@@ -404,7 +404,7 @@ CLASS_DECL_c WINBOOL IsWindow(oswindow oswindow)
 
 
 
-CLASS_DECL_c void output_debug_string(const char * psz)
+CLASS_DECL_ca void output_debug_string(const char * psz)
 {
    
    ::OutputDebugString(wstring(psz));

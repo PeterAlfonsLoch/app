@@ -6,7 +6,7 @@ namespace sockets
 
 
    http_session::http_session(socket_handler_base & h, const string & protocol, const string & host) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),

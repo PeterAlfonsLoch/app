@@ -4,11 +4,19 @@
 namespace sip
 {
 
+
    class CLASS_DECL_ca2 request :
       virtual public transaction
    {
    public:
-      request(::ca::application * papp);
+
+
+      string               m_null;
+      http::memory_file    m_file;
+      http::form           m_form;
+
+
+      request(::ca2::application * papp);
       request(const request& src);
       ~request();
 
@@ -33,12 +41,12 @@ namespace sip
 
       virtual void clear();
 
-   private:
-      string m_null;
-      http::memory_file m_file;
-      http::form m_form;
-
 
    }; // end of class
 
+
 } // namespace http
+
+
+
+

@@ -641,19 +641,19 @@ bool os_simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
 }
 */
 
-bool os_simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
+bool os_simple_graphics::set_alpha_mode(::ca2::e_alpha_mode emode)
 {
 
    switch(emode)
    {
    
-   case ::ca::alpha_mode_blend:
+   case ::ca2::alpha_mode_blend:
    
       m_pdc->SetPrimitiveBlend(D2D1_PRIMITIVE_BLEND_SOURCE_OVER);
 
       break;
 
-   case ::ca::alpha_mode_set:
+   case ::ca2::alpha_mode_set:
    
       m_pdc->SetPrimitiveBlend(D2D1_PRIMITIVE_BLEND_COPY);
 
@@ -701,12 +701,12 @@ bool os_simple_graphics::fill_path(simple_path & path, simple_brush & brush)
 
 }
 
-bool os_simple_graphics::fill_polygon(LPPOINT lpa, int iCount, ::ca::e_fill_mode emode)
+bool os_simple_graphics::fill_polygon(LPPOINT lpa, int iCount, ::ca2::e_fill_mode emode)
 {
 
    simple_path path;
 
-   path.begin_figure(true, ::ca::fill_mode_winding);
+   path.begin_figure(true, ::ca2::fill_mode_winding);
 
    path.add_lines(lpa, iCount);
 
@@ -779,7 +779,7 @@ bool os_simple_graphics::replace_clip(const RECT & rect)
 
    simple_path path;
 
-   path.begin_figure(true, ::ca::fill_mode_winding);
+   path.begin_figure(true, ::ca2::fill_mode_winding);
 
    path.add_rect(rect);
 

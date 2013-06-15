@@ -85,12 +85,12 @@ namespace ca2
 
       };
 
+
       simple_array < element >      m_elementa;
       bool                          m_bFill;
       ::ca2::e_fill_mode             m_efillmode;
       bool                          m_bHasPoint;
       point                         m_pt;
-      bool                          m_bUpdated;
 
 
       graphics_path();

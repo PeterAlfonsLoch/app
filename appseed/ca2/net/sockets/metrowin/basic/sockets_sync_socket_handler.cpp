@@ -3,8 +3,8 @@
 namespace sockets
 {
 
-   sync_socket_handler::sync_socket_handler(::ca::application * papp, StdLog * plog) :
-      ca(papp),
+   sync_socket_handler::sync_socket_handler(::ca2::application * papp, StdLog * plog) :
+      ca2(papp),
       m_handler(papp, plog),
       m_file(papp)
    {
@@ -82,7 +82,7 @@ namespace sockets
             }
             else
             {
-               m_file.seek(-1, ::ca::seek_current);
+               m_file.seek(-1, ::ca2::seek_current);
                return str;
             }
          }

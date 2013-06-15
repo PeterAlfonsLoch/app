@@ -1,42 +1,45 @@
 #pragma once
 
 
-   namespace sockets
+namespace sockets
+{
+
+
+   class CLASS_DECL_ca2 sockets :
+      virtual public ::ca2::section
    {
+   public:
 
-
-      class CLASS_DECL_ca2 sockets :
-         virtual public ::ca::section
-      {
-      public:
 
 #ifdef HAVE_OPENSSL
-         ssl_client_context_map                       m_clientcontextmap;
+      ssl_client_context_map                       m_clientcontextmap;
 #endif
-         AjpBaseSocket::Initializer *                 m_pajpbasesocketinit;
 
-         count                                        m_countHttpPostBoundary;
-         mutex                                        m_mutexHttpPostBoundary;
+      AjpBaseSocket::Initializer *                 m_pajpbasesocketinit;
 
-         resolv_socket::cache_t                       m_resolvcache;
-         resolv_socket::timeout_t                     m_resolvtimeout;
-         mutex                                        m_mutexResolvCache;
+      count                                        m_countHttpPostBoundary;
+      mutex                                        m_mutexHttpPostBoundary;
 
-
-
-         sockets(sp(::ca::application) papp);
+      resolv_socket::cache_t                       m_resolvcache;
+      resolv_socket::timeout_t                     m_resolvtimeout;
+      mutex                                        m_mutexResolvCache;
 
 
-         bool initialize1();
-         bool finalize();
+
+      sockets(sp(::ca2::application) papp);
 
 
-         virtual void http_config_proxy(const char * pszUrl, http_tunnel * psocket);
+      bool initialize1();
+      bool finalize();
 
 
-      };
+      virtual void http_config_proxy(const char * pszUrl, http_tunnel * psocket);
 
 
-   } // namespace sockets
+   };
+
+
+} // namespace sockets
+
 
 

@@ -53,13 +53,13 @@ namespace ca
 
 
 
-namespace ca
+namespace ca2
 {
 
 
    CLASS_DECL_ca void * open_ca2_library(const char * psz);
 
 
-} // namespace ca
+} // namespace ca2
 
 

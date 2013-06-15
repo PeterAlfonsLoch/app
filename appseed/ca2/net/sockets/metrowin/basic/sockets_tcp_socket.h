@@ -282,7 +282,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          void OnConnected(::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status);
 
-         ::ca::circular_buffer ibuf; ///< Circular input buffer
+         ::ca2::circular_buffer ibuf; ///< Circular input buffer
       public:
 
          virtual string get_url();

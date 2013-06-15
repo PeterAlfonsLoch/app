@@ -4,7 +4,7 @@
 void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, vsstring & str);
 
 
-CLASS_DECL_c void ensure_file_size(HANDLE h, int64_t iSize)
+CLASS_DECL_ca void ensure_file_size(HANDLE h, int64_t iSize)
 {
 
    DWORD dwHi;
@@ -20,7 +20,7 @@ CLASS_DECL_c void ensure_file_size(HANDLE h, int64_t iSize)
 
 }
 
-CLASS_DECL_c DWORD SetFilePointer(HANDLE h, LONG lMove, PLONG plHi, DWORD dwMeth)
+CLASS_DECL_ca DWORD SetFilePointer(HANDLE h, LONG lMove, PLONG plHi, DWORD dwMeth)
 {
 
    LARGE_INTEGER liMove;
@@ -61,7 +61,7 @@ CLASS_DECL_c DWORD SetFilePointer(HANDLE h, LONG lMove, PLONG plHi, DWORD dwMeth
 
 }
 
-CLASS_DECL_c DWORD GetFileSize(HANDLE h, LPDWORD lpdwHi)
+CLASS_DECL_ca DWORD GetFileSize(HANDLE h, LPDWORD lpdwHi)
 {
 
    FILE_STANDARD_INFO info;
@@ -79,7 +79,7 @@ CLASS_DECL_c DWORD GetFileSize(HANDLE h, LPDWORD lpdwHi)
 }
 
 
-CLASS_DECL_c DWORD GetFileAttributes(const wchar_t * psz)
+CLASS_DECL_ca DWORD GetFileAttributes(const wchar_t * psz)
 {
 
    WIN32_FILE_ATTRIBUTE_DATA data;
@@ -99,7 +99,7 @@ CLASS_DECL_c DWORD GetFileAttributes(const wchar_t * psz)
 
 
 
-CLASS_DECL_c HANDLE FindFirstFile(const wchar_t * pwsz, WIN32_FIND_DATA * pdata)
+CLASS_DECL_ca HANDLE FindFirstFile(const wchar_t * pwsz, WIN32_FIND_DATA * pdata)
 {
 
    return FindFirstFileEx(pwsz, FindExInfoStandard, pdata, FindExSearchNameMatch, NULL, 0);
@@ -107,7 +107,7 @@ CLASS_DECL_c HANDLE FindFirstFile(const wchar_t * pwsz, WIN32_FIND_DATA * pdata)
 }
 
 
-CLASS_DECL_c BOOL FileTimeToLocalFileTime(const FILETIME * lpFileTime, LPFILETIME lpLocalFileTime)
+CLASS_DECL_ca BOOL FileTimeToLocalFileTime(const FILETIME * lpFileTime, LPFILETIME lpLocalFileTime)
 {
 
    SYSTEMTIME st;
@@ -136,7 +136,7 @@ CLASS_DECL_c BOOL FileTimeToLocalFileTime(const FILETIME * lpFileTime, LPFILETIM
 
 
 
-CLASS_DECL_c HANDLE create_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile)
+CLASS_DECL_ca HANDLE create_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
 
    CREATEFILE2_EXTENDED_PARAMETERS ps;
@@ -154,13 +154,13 @@ CLASS_DECL_c HANDLE create_file(const char * lpcszFileName, dword dwDesiredAcces
 
 }
 
-CLASS_DECL_c bool close_handle(handle h)
+CLASS_DECL_ca bool close_handle(handle h)
 {
    return ::CloseHandle(h) != FALSE;
 }
 
 
-CLASS_DECL_c ::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName)
+CLASS_DECL_ca ::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName)
 {
 
    return wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(vsstring(lpcszDirName)));
@@ -168,7 +168,7 @@ CLASS_DECL_c ::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcs
 }
 
 
-CLASS_DECL_c ::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile)
+CLASS_DECL_ca ::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
 
 /*
@@ -261,7 +261,7 @@ CLASS_DECL_c ::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFil
 }
 
 
-CLASS_DECL_c bool get_file_time(::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime)
+CLASS_DECL_ca bool get_file_time(::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime)
 {
 
    if(lpCreationTime != NULL)
@@ -689,7 +689,7 @@ bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
 
 
 
-CLASS_DECL_c bool file_is_equal_path(const char * psz1, const char * psz2)
+CLASS_DECL_ca bool file_is_equal_path(const char * psz1, const char * psz2)
 {
 
    return normalize_path(psz1).CompareNoCase(normalize_path(psz2)) == 0;
@@ -697,7 +697,7 @@ CLASS_DECL_c bool file_is_equal_path(const char * psz1, const char * psz2)
 }
 
 
-CLASS_DECL_c vsstring file_get_mozilla_firefox_plugin_container_path()
+CLASS_DECL_ca vsstring file_get_mozilla_firefox_plugin_container_path()
 {
 
    throw " todo ";

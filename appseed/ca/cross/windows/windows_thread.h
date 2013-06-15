@@ -37,18 +37,18 @@
 
 #define HTHREAD hthread *
 
-CLASS_DECL_c HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr unusedStackSize, uint32_t (* lpStartAddress)(void *) , void * lpParameter, uint32_t uiCreationFlags, uint32_t * puiId);
-CLASS_DECL_c DWORD WINAPI ResumeThread(HTHREAD hThread);
-CLASS_DECL_c WINBOOL WINAPI SetThreadPriority(HTHREAD hThread, int32_t nPriority);
-CLASS_DECL_c int32_t WINAPI GetThreadPriority(HTHREAD hThread);
+CLASS_DECL_ca HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr unusedStackSize, uint32_t (* lpStartAddress)(void *) , void * lpParameter, uint32_t uiCreationFlags, uint32_t * puiId);
+CLASS_DECL_ca DWORD WINAPI ResumeThread(HTHREAD hThread);
+CLASS_DECL_ca WINBOOL WINAPI SetThreadPriority(HTHREAD hThread, int32_t nPriority);
+CLASS_DECL_ca int32_t WINAPI GetThreadPriority(HTHREAD hThread);
 
 
-CLASS_DECL_c VOID WINAPI Sleep(DWORD dwMilliseconds);
+CLASS_DECL_ca VOID WINAPI Sleep(DWORD dwMilliseconds);
 
-CLASS_DECL_c DWORD WINAPI TlsAlloc();
-CLASS_DECL_c WINBOOL WINAPI TlsFree(DWORD dwTlsIndex);
-CLASS_DECL_c LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex);
-CLASS_DECL_c WINBOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
+CLASS_DECL_ca DWORD WINAPI TlsAlloc();
+CLASS_DECL_ca WINBOOL WINAPI TlsFree(DWORD dwTlsIndex);
+CLASS_DECL_ca LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex);
+CLASS_DECL_ca WINBOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
 
 void WINAPI TlsShutdown();
 
@@ -63,12 +63,12 @@ interface ID3D11DeviceContext;
 interface ID3D11Device1;
 interface IDXGIDevice;
 
-CLASS_DECL_c IDWriteFactory * TlsGetWriteFactory();
-CLASS_DECL_c ID2D1Factory1 * GetD2D1Factory1();
-CLASS_DECL_c ID3D11Device * TlsGetD3D11Device();
-CLASS_DECL_c ID3D11DeviceContext * TlsGetD3D11DeviceContext();
-CLASS_DECL_c ID3D11Device1 * TlsGetD3D11Device1();
-CLASS_DECL_c IDXGIDevice * TlsGetDXGIDevice();
+CLASS_DECL_ca IDWriteFactory * TlsGetWriteFactory();
+CLASS_DECL_ca ID2D1Factory1 * GetD2D1Factory1();
+CLASS_DECL_ca ID3D11Device * TlsGetD3D11Device();
+CLASS_DECL_ca ID3D11DeviceContext * TlsGetD3D11DeviceContext();
+CLASS_DECL_ca ID3D11Device1 * TlsGetD3D11Device1();
+CLASS_DECL_ca IDXGIDevice * TlsGetDXGIDevice();
 
 #define TLS_WRITE_FACTORY     12
 #define TLS_D2D1_FACTORY1     13

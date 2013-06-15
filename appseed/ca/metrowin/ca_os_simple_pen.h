@@ -9,7 +9,7 @@
 #pragma once
 
 
-class CLASS_DECL_c simple_pen
+class CLASS_DECL_ca simple_pen
 {
 public:
    

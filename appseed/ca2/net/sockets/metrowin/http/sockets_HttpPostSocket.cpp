@@ -36,7 +36,7 @@ namespace sockets
 
 
    http_post_socket::http_post_socket(socket_handler_base& h) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -50,7 +50,7 @@ namespace sockets
 
 
    http_post_socket::http_post_socket(socket_handler_base& h,const string & url_in) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -70,7 +70,7 @@ namespace sockets
             c = System.sockets().m_countHttpPostBoundary++ % 128;
          m_boundary += c;
       }
-      m_boundary += "__" + ::ca::str::from(System.sockets().m_countHttpPostBoundary++);
+      m_boundary += "__" + ::ca2::str::from(System.sockets().m_countHttpPostBoundary++);
    }
 
 
@@ -102,7 +102,7 @@ namespace sockets
       }
       else
       {
-         Handler().LogError(this, "AddFile", Errno, StrError(Errno), ::ca::log::level_fatal);
+         Handler().LogError(this, "AddFile", Errno, StrError(Errno), ::ca2::log::level_fatal);
          SetCloseAndDelete();
       }
    }
@@ -121,7 +121,7 @@ namespace sockets
 
          if(m_fields.has_property("xml") && m_fields["xml"].get_value().get_type() == var::type_ca2)
          {
-            ::xml::node * pnode = m_fields["xml"].ca < ::xml::node >();
+            ::xml::node * pnode = m_fields["xml"].ca2 < ::xml::node >();
             body = pnode->get_xml();
             body.trim();
             if(inheader(__id(content_type)).get_string().find_ci("application/xml") < 0)
@@ -284,8 +284,8 @@ namespace sockets
                "\r\n";
             Send( tmp );
             {
-               ::ca::filesp file(get_app());
-               if(file->open(filename, ::ca::file::type_binary | ::ca::file::mode_read))
+               ::ca2::filesp file(get_app());
+               if(file->open(filename, ::ca2::file::type_binary | ::ca2::file::mode_read))
                {
                   primitive::memory mem;
                   mem.FullLoad(file);

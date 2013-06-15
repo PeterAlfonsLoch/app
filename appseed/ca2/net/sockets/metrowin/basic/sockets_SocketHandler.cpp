@@ -42,8 +42,8 @@ namespace sockets
    #endif
 
 
-   socket_handler::socket_handler(::ca::application * papp, StdLog *p) :
-   ca(papp),
+   socket_handler::socket_handler(::ca2::application * papp, StdLog *p) :
+   ca2(papp),
    m_stdlog(p),
    m_mutex(m_mutex),
    m_b_use_mutex(false)
@@ -68,8 +68,8 @@ namespace sockets
    }
 
 
-   socket_handler::socket_handler(::ca::application * papp, mutex& mutex, StdLog *p) :
-   ca(papp),
+   socket_handler::socket_handler(::ca2::application * papp, mutex& mutex, StdLog *p) :
+   ca2(papp),
    m_stdlog(p)
    ,m_mutex(mutex)
    ,m_b_use_mutex(true)
@@ -167,7 +167,7 @@ namespace sockets
    }
 
 
-   void socket_handler::LogError(socket *p,const string & user_text,int err,const string & sys_err,::ca::log::e_level t)
+   void socket_handler::LogError(socket *p,const string & user_text,int err,const string & sys_err,::ca2::log::e_level t)
    {
       if (m_stdlog)
       {
@@ -180,7 +180,7 @@ namespace sockets
    {
       if (p -> GetSocket() == INVALID_SOCKET)
       {
-         LogError(p, "add", -1, "Invalid socket", ::ca::log::level_warning);
+         LogError(p, "add", -1, "Invalid socket", ::ca2::log::level_warning);
          if (p -> CloseAndDelete())
          {
             m_delete.add_tail(p);
@@ -190,7 +190,7 @@ namespace sockets
       socket * plookup;
       if (m_add.Lookup(p -> GetSocket(), plookup))
       {
-         LogError(p, "add", (int)p -> GetSocket(), "Attempt to add socket already in add queue", ::ca::log::level_fatal);
+         LogError(p, "add", (int)p -> GetSocket(), "Attempt to add socket already in add queue", ::ca2::log::level_fatal);
          m_delete.add_tail(p);
          return;
       }
@@ -433,7 +433,7 @@ namespace sockets
       //System.net().convert(local, "127.0.0.1");
       if (!resolv -> open(local))
       {
-         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca::log::level_fatal);
+         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca2::log::level_fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -451,7 +451,7 @@ namespace sockets
       ::sockets::address local(get_app(), "127.0.0.1", m_resolver_port);
       if (!resolv -> open(local))
       {
-         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca::log::level_fatal);
+         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca2::log::level_fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -469,7 +469,7 @@ namespace sockets
       ::sockets::address local(get_app(), "127.0.0.1", m_resolver_port);
       if (!resolv -> open(local))
       {
-         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca::log::level_fatal);
+         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca2::log::level_fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -487,7 +487,7 @@ namespace sockets
       ::sockets::address local(get_app(), "127.0.0.1", m_resolver_port);
       if (!resolv -> open(local))
       {
-         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca::log::level_fatal);
+         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca2::log::level_fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -600,7 +600,7 @@ namespace sockets
       {
          if(ppair->m_element2 == p)
          {
-            LogError(p, "remove", -1, "socket destructor called while still in use", ::ca::log::level_warning);
+            LogError(p, "remove", -1, "socket destructor called while still in use", ::ca2::log::level_warning);
             m_sockets.remove_key(ppair->m_element1);
             return;
          }
@@ -611,7 +611,7 @@ namespace sockets
       {
          if (ppair2->m_element2 == p)
          {
-            LogError(p, "remove", -2, "socket destructor called while still in use", ::ca::log::level_warning);
+            LogError(p, "remove", -2, "socket destructor called while still in use", ::ca2::log::level_warning);
             m_add.remove_key(ppair2->m_element1);
             return;
          }
@@ -619,7 +619,7 @@ namespace sockets
       }
       if(m_delete.remove(p) > 0)
       {
-         LogError(p, "remove", -3, "socket destructor called while still in use", ::ca::log::level_warning);
+         LogError(p, "remove", -3, "socket destructor called while still in use", ::ca2::log::level_warning);
          return;
       }
    }
@@ -716,10 +716,10 @@ namespace sockets
             m_trigger_dst[id][dst] = true;
             return true;
          }
-         LogError(dst, "Subscribe", id, "Already subscribed", ::ca::log::level_info);
+         LogError(dst, "Subscribe", id, "Already subscribed", ::ca2::log::level_info);
          return false;
       }
-      LogError(dst, "Subscribe", id, "Trigger id not found", ::ca::log::level_info);
+      LogError(dst, "Subscribe", id, "Trigger id not found", ::ca2::log::level_info);
       return false;
    }
 
@@ -733,10 +733,10 @@ namespace sockets
             m_trigger_dst[id].remove_key(dst);
             return true;
          }
-         LogError(dst, "Unsubscribe", id, "Not subscribed", ::ca::log::level_info);
+         LogError(dst, "Unsubscribe", id, "Not subscribed", ::ca2::log::level_info);
          return false;
       }
-      LogError(dst, "Unsubscribe", id, "Trigger id not found", ::ca::log::level_info);
+      LogError(dst, "Unsubscribe", id, "Trigger id not found", ::ca2::log::level_info);
       return false;
    }
 
@@ -764,7 +764,7 @@ namespace sockets
       }
       else
       {
-         LogError(NULL, "Trigger", id, "Trigger id not found", ::ca::log::level_info);
+         LogError(NULL, "Trigger", id, "Trigger id not found", ::ca2::log::level_info);
       }
    }
 

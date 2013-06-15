@@ -1,10 +1,11 @@
 #pragma once
 
+
 class CLASS_DECL_ca2 email :
-   virtual public ::ca::object
+   virtual public ::ca2::object
 {
 public:
-   email(::ca::application * papp);
+
 
    class CLASS_DECL_ca2 address
    {
@@ -38,13 +39,20 @@ public:
    string m_strHeaders;
    string m_strBody;
 
-   void prepare_headers();
-};
 
+   email(::ca2::application * papp);
+
+
+   void prepare_headers();
+
+
+};
 
 
 namespace sockets
 {
+
+
    /** Smtp server base class. */
    class CLASS_DECL_ca2 smtp_socket : public tcp_socket
    {

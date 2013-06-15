@@ -106,14 +106,14 @@ Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window(oswindow window)
 static oswindow g_oswindowFocus;
 
 
-CLASS_DECL_c oswindow WINAPI GetFocus()
+CLASS_DECL_ca oswindow WINAPI GetFocus()
 {
 
    return g_oswindowFocus;
 
 }
 
-CLASS_DECL_c oswindow WINAPI SetFocus(oswindow __oswindow)
+CLASS_DECL_ca oswindow WINAPI SetFocus(oswindow __oswindow)
 {
    
    ::oswindow oswindowOldFocus = g_oswindowFocus;
@@ -133,14 +133,14 @@ CLASS_DECL_c oswindow WINAPI SetFocus(oswindow __oswindow)
 static oswindow g_oswindowCapture;
 
 
-CLASS_DECL_c oswindow WINAPI GetCapture()
+CLASS_DECL_ca oswindow WINAPI GetCapture()
 {
 
    return g_oswindowCapture;
 
 }
 
-CLASS_DECL_c oswindow WINAPI SetCapture(oswindow __oswindow)
+CLASS_DECL_ca oswindow WINAPI SetCapture(oswindow __oswindow)
 {
    
    ::oswindow oswindowOldCapture = g_oswindowCapture;
@@ -156,7 +156,7 @@ CLASS_DECL_c oswindow WINAPI SetCapture(oswindow __oswindow)
 }
 
 
-CLASS_DECL_c oswindow WINAPI ReleaseCapture()
+CLASS_DECL_ca oswindow WINAPI ReleaseCapture()
 {
    
    ::oswindow oswindowOldCapture = g_oswindowCapture;

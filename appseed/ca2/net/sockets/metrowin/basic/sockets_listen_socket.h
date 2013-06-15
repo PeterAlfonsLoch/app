@@ -35,7 +35,7 @@
          /** Constructor.
          \param h socket_handler_base reference
          \param use_creator Optional use of creator (default true) */
-         listen_socket(socket_handler_base& h,bool use_creator = true) : ::ca::ca(h.get_app()), socket(h), m_depth(0), m_creator(NULL)
+         listen_socket(socket_handler_base& h,bool use_creator = true) : ::ca2::ca2(h.get_app()), socket(h), m_depth(0), m_creator(NULL)
             ,m_bHasCreate(false), m_bDetach(false)
          {
             if (use_creator)
@@ -149,7 +149,7 @@
 
             //SOCKET s;
             //m_iBindPort = ad.GetPort();
-            m_listener->BindEndpointAsync(ad.m_hostname, ::ca::str::from(ad.get_service_number()));
+            m_listener->BindEndpointAsync(ad.m_hostname, ::ca2::str::from(ad.get_service_number()));
 /*            {
                return -1;
             }

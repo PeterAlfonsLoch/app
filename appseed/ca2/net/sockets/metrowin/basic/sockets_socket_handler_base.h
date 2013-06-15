@@ -51,7 +51,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       /** socket container class, event generator.
       \ingroup basic */
       class socket_handler_base : 
-         virtual public ::ca::object
+         virtual public ::ca2::object
       {
          friend class socket;
 
@@ -67,7 +67,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
 
             void OnRead() {
-               Handler().LogError(this, "OnRead", 0, "data on hibernating socket", ::ca::log::level_fatal);
+               Handler().LogError(this, "OnRead", 0, "data on hibernating socket", ::ca2::log::level_fatal);
                SetCloseAndDelete();
             }
             void OnOptions(int,int,int,SOCKET) {}
@@ -90,7 +90,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          virtual void RegStdLog(StdLog *log) = 0;
 
          /** Log error to log class for print out / storage. */
-         virtual void LogError(socket *p,const string & user_text,int err,const string & sys_err, ::ca::log::e_level elevel = ::ca_get_level_warning()) = 0;
+         virtual void LogError(socket *p,const string & user_text,int err,const string & sys_err, ::ca2::log::e_level elevel = ::ca_get_level_warning()) = 0;
 
          // -------------------------------------------------------------------------
          // socket stuff

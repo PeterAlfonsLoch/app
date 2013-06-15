@@ -12,9 +12,9 @@
       {
       public:
 
-         mutex                   m_mutexData;
-         ::primitive::memory_file        m_memoryfile;
-         ::ca::file *             m_pfile;
+         mutex                         m_mutexData;
+         ::primitive::memory_file      m_memoryfile;
+         ::ca2::file *                 m_pfile;
 
 
          //primitive::memory    m_memoryData; ///< Ptr to buffer where to store response

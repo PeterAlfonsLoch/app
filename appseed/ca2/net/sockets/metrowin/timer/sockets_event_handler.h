@@ -53,15 +53,15 @@ namespace sockets
       port_t                        m_port;
 
 
-      EventHandler(::ca::application * papp, const EventHandler& ) : ca(papp), socket_handler(papp) {} // copy constructor
+      EventHandler(::ca2::application * papp, const EventHandler& ) : ca2(papp), socket_handler(papp) {} // copy constructor
       EventHandler& operator=(const EventHandler& ) { return *this; } // assignment operator
 
 
    public:
 
 
-      EventHandler(::ca::application * papp, StdLog * = NULL);
-      EventHandler(::ca::application * papp, mutex &,StdLog * = NULL);
+      EventHandler(::ca2::application * papp, StdLog * = NULL);
+      EventHandler(::ca2::application * papp, mutex &,StdLog * = NULL);
       ~EventHandler();
 
       bool GetTimeUntilNextEvent(struct timeval *tv);

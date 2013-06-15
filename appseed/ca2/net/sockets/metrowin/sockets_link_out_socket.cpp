@@ -25,7 +25,7 @@ namespace sockets
 
 
    link_out_socket::link_out_socket(socket_handler_base & h) : 
-      ca(h.get_app()),
+      ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h, 32000, 32000),

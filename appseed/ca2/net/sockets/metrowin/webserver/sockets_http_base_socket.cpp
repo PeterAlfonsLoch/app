@@ -11,7 +11,7 @@ namespace sockets
 
 
    http_base_socket::http_base_socket(socket_handler_base& h) :
-      ::ca::ca(h.get_app()),
+      ::ca2::ca2(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -20,7 +20,7 @@ namespace sockets
    }
 
    http_base_socket::http_base_socket(const http_base_socket& s) :
-      ::ca::ca(((http_socket&) s).get_app()),
+      ::ca2::ca2(((http_socket&) s).get_app()),
       socket(s.m_handler),
       stream_socket(s),
       tcp_socket(s),
@@ -109,7 +109,7 @@ namespace sockets
       //TRACE("http version: %s\n", m_request.attr("http_version").get_string());
       //TRACE("connection: %s\n", m_request.header("connection").get_string());
       //TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
-   /*   if(::ca::str::ends(m_request.attr("http_version").get_string(), "/1.1")
+   /*   if(::ca2::str::ends(m_request.attr("http_version").get_string(), "/1.1")
          && m_request.header("connection").get_string().CompareNoCase("close") != 0)
       {
          m_b_keepalive = true;

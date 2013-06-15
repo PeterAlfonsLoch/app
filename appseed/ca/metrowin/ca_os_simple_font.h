@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c os_simple_font
+class CLASS_DECL_ca os_simple_font
 {
 public:
 
@@ -27,8 +27,8 @@ public:
 
 };
 
-CLASS_DECL_c float point_dpi(float points);
-CLASS_DECL_c float dpiy(float y);
-CLASS_DECL_c float dpix(float y);
-CLASS_DECL_c float y_dpi(float y);
-CLASS_DECL_c float x_dpi(float y);
+CLASS_DECL_ca float point_dpi(float points);
+CLASS_DECL_ca float dpiy(float y);
+CLASS_DECL_ca float dpix(float y);
+CLASS_DECL_ca float y_dpi(float y);
+CLASS_DECL_ca float x_dpi(float y);

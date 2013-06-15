@@ -50,7 +50,7 @@ namespace sockets
          const string & user_text,
          int err,
          const string & sys_err,
-         ::ca::log::e_level elevel = ::ca::log::level_warning) = 0;
+         ::ca2::log::e_level elevel = ::ca2::log::level_warning) = 0;
    };
 
 

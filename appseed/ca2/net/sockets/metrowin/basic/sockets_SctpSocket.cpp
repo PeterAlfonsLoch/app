@@ -64,7 +64,7 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::ca::log::level_error);
+         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::ca2::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
@@ -76,7 +76,7 @@ namespace sockets
          int n = bind(GetSocket(), ad, ad);
          if (n == -1)
          {
-            Handler().LogError(this, "SctpSocket", -1, "bind() failed", ::ca::log::level_error);
+            Handler().LogError(this, "SctpSocket", -1, "bind() failed", ::ca2::log::level_error);
    #ifdef ENABLE_EXCEPTIONS
             throw Exception("bind() failed for SctpSocket, port: " + Utility::l2string(ad.GetPort()));
    #endif
@@ -107,18 +107,18 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::ca::log::level_error);
+         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::ca2::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
       {
-         Handler().LogError(this, "SctpSocket", -1, "AddAddress called with invalid file descriptor", ::ca::log::level_error);
+         Handler().LogError(this, "SctpSocket", -1, "AddAddress called with invalid file descriptor", ::ca2::log::level_error);
          return -1;
       }
       int n = sctp_bindx(GetSocket(), ad, ad, SCTP_BINDX_ADD_ADDR);
       if (n == -1)
       {
-         Handler().LogError(this, "SctpSocket", -1, "sctp_bindx() failed", ::ca::log::level_error);
+         Handler().LogError(this, "SctpSocket", -1, "sctp_bindx() failed", ::ca2::log::level_error);
       }
       return n;
    }
@@ -144,18 +144,18 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::ca::log::level_error);
+         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::ca2::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
       {
-         Handler().LogError(this, "SctpSocket", -1, "RemoveAddress called with invalid file descriptor", ::ca::log::level_error);
+         Handler().LogError(this, "SctpSocket", -1, "RemoveAddress called with invalid file descriptor", ::ca2::log::level_error);
          return -1;
       }
       int n = sctp_bindx(GetSocket(), ad, ad, SCTP_BINDX_REM_ADDR);
       if (n == -1)
       {
-         Handler().LogError(this, "SctpSocket", -1, "sctp_bindx() failed", ::ca::log::level_error);
+         Handler().LogError(this, "SctpSocket", -1, "sctp_bindx() failed", ::ca2::log::level_error);
       }
       return n;
    }
@@ -181,7 +181,7 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::ca::log::level_error);
+         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::ca2::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
@@ -204,12 +204,12 @@ namespace sockets
             if (Errno == EINPROGRESS)
    #endif
             {
-               Handler().LogError(this, "connect: connection pending", Errno, StrError(Errno), ::ca::log::level_info);
+               Handler().LogError(this, "connect: connection pending", Errno, StrError(Errno), ::ca2::log::level_info);
                SetConnecting( true ); // this flag will control fd_set's
             }
             else
             {
-               Handler().LogError(this, "SctpSocket", -1, "connect() failed", ::ca::log::level_error);
+               Handler().LogError(this, "SctpSocket", -1, "connect() failed", ::ca2::log::level_error);
             }
          }
          return n;
@@ -239,18 +239,18 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::ca::log::level_error);
+         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::ca2::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
       {
-         Handler().LogError(this, "SctpSocket", -1, "AddConnection called with invalid file descriptor", ::ca::log::level_error);
+         Handler().LogError(this, "SctpSocket", -1, "AddConnection called with invalid file descriptor", ::ca2::log::level_error);
          return -1;
       }
       int n = sctp_connectx(GetSocket(), ad, ad);
       if (n == -1)
       {
-         Handler().LogError(this, "SctpSocket", -1, "sctp_connectx() failed", ::ca::log::level_error);
+         Handler().LogError(this, "SctpSocket", -1, "sctp_connectx() failed", ::ca2::log::level_error);
       }
       else
       {
@@ -267,7 +267,7 @@ namespace sockets
       int n = sctp_getpaddrs(GetSocket(), id, &p);
       if (!n || n == -1)
       {
-         Handler().LogError(this, "SctpSocket", -1, "sctp_getpaddrs failed", ::ca::log::level_warning);
+         Handler().LogError(this, "SctpSocket", -1, "sctp_getpaddrs failed", ::ca2::log::level_warning);
          return n;
       }
       for (int i = 0; i < n; i++)
@@ -285,7 +285,7 @@ namespace sockets
       int n = sctp_getladdrs(GetSocket(), id, &p);
       if (!n || n == -1)
       {
-         Handler().LogError(this, "SctpSocket", -1, "sctp_getladdrs failed", ::ca::log::level_warning);
+         Handler().LogError(this, "SctpSocket", -1, "sctp_getladdrs failed", ::ca2::log::level_warning);
          return n;
       }
       for (int i = 0; i < n; i++)
@@ -302,7 +302,7 @@ namespace sockets
       int n = sctp_peeloff(GetSocket(), id);
       if (n == -1)
       {
-         Handler().LogError(this, "SctpSocket", -1, "PeelOff failed", ::ca::log::level_warning);
+         Handler().LogError(this, "SctpSocket", -1, "PeelOff failed", ::ca2::log::level_warning);
          return -1;
       }
       socket *p = create();
@@ -339,7 +339,7 @@ namespace sockets
       int n = sctp_recvmsg(GetSocket(), m_buf, SCTP_BUFSIZE_READ, &sa, &sa_len, &sinfo, &flags);
       if (n == -1)
       {
-         Handler().LogError(this, "SctpSocket", Errno, StrError(Errno), ::ca::log::level_fatal);
+         Handler().LogError(this, "SctpSocket", Errno, StrError(Errno), ::ca2::log::level_fatal);
          SetCloseAndDelete();
       }
       else
@@ -369,7 +369,7 @@ namespace sockets
             SetCallOnConnect();
             return;
          }
-         Handler().LogError(this, "sctp: connect failed", err, StrError(err), ::ca::log::level_fatal);
+         Handler().LogError(this, "sctp: connect failed", err, StrError(err), ::ca2::log::level_fatal);
          Set(false, false); // no more monitoring because connection failed
 
          // failed
@@ -400,7 +400,7 @@ namespace sockets
 
    void SctpSocket::OnConnectTimeout()
    {
-      Handler().LogError(this, "connect", -1, "connect timeout", ::ca::log::level_fatal);
+      Handler().LogError(this, "connect", -1, "connect timeout", ::ca2::log::level_fatal);
    #ifdef ENABLE_SOCKS4
       if (Socks4())
       {
@@ -466,7 +466,7 @@ namespace sockets
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int err = SoError();
-      Handler().LogError(this, "exception on select", err, StrError(err), ::ca::log::level_fatal);
+      Handler().LogError(this, "exception on select", err, StrError(err), ::ca2::log::level_fatal);
       SetCloseAndDelete();
    }
    #endif // _WIN32

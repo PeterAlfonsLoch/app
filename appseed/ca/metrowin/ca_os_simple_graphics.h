@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c os_simple_graphics
+class CLASS_DECL_ca os_simple_graphics
 {
 public:
 
@@ -48,12 +48,12 @@ public:
    SIZE get_text_extent(const char * psz, int iLen = -1);
 //   bool set_text_color(COLORREF cr);
 
-   bool set_alpha_mode(::ca::e_alpha_mode emode);
+   bool set_alpha_mode(::ca2::e_alpha_mode emode);
 
    bool draw_line(int x1, int y1, int x2, int y2, simple_pen & pen);
    bool draw_rect(LPCRECT lpcrect, simple_pen & pen);
    bool fill_rect(LPCRECT lpcrect, simple_brush & brush);
-   bool fill_polygon(LPPOINT lpa, int iCount, ::ca::e_fill_mode emode);
+   bool fill_polygon(LPPOINT lpa, int iCount, ::ca2::e_fill_mode emode);
    bool replace_clip(simple_path & path);
    bool exclude_clip(simple_path & path);
    bool replace_clip(const RECT & rect);

@@ -804,7 +804,7 @@ void thread_layer::wait_thread(uint32_t dwMillis)
 static HTHREAD g_hMainThread = NULL;
 static UINT g_uiMainThread = -1;
 
-CLASS_DECL_c void set_main_thread(HTHREAD hThread)
+CLASS_DECL_ca void set_main_thread(HTHREAD hThread)
 {
 
    //   MSG msg;
@@ -817,7 +817,7 @@ CLASS_DECL_c void set_main_thread(HTHREAD hThread)
 
 }
 
-CLASS_DECL_c void set_main_thread_id(UINT uiThread)
+CLASS_DECL_ca void set_main_thread_id(UINT uiThread)
 {
 
    //   MSG msg;
@@ -831,18 +831,18 @@ CLASS_DECL_c void set_main_thread_id(UINT uiThread)
 }
 
 
-CLASS_DECL_c HTHREAD get_main_thread()
+CLASS_DECL_ca HTHREAD get_main_thread()
 {
    return g_hMainThread;
 
 }
-CLASS_DECL_c UINT   get_main_thread_id()
+CLASS_DECL_ca UINT   get_main_thread_id()
 {
    return g_uiMainThread;
 }
 
 
-CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach)
+CLASS_DECL_ca void attach_thread_input_to_main_thread(bool bAttach)
 {
    return;
    //   MSG msg;
@@ -909,7 +909,7 @@ mq * get_mq(HTHREAD h)
 }
 
 
-CLASS_DECL_c WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax)
+CLASS_DECL_ca WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax)
 {
 
    mq * pmq = get_mq();
@@ -966,7 +966,7 @@ restart:
 }
 
 
-CLASS_DECL_c BOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+CLASS_DECL_ca BOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
 {
 
    mq * pmq = get_mq();
@@ -999,7 +999,7 @@ CLASS_DECL_c BOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT w
 
 
 
-CLASS_DECL_c DWORD WINAPI get_thread_id(HTHREAD Thread)
+CLASS_DECL_ca DWORD WINAPI get_thread_id(HTHREAD Thread)
 {
 
    mutex_lock mlThreadId(threadIdLock);
@@ -1014,7 +1014,7 @@ CLASS_DECL_c DWORD WINAPI get_thread_id(HTHREAD Thread)
 
 }
 
-CLASS_DECL_c HTHREAD WINAPI get_thread_handle(DWORD dw)
+CLASS_DECL_ca HTHREAD WINAPI get_thread_handle(DWORD dw)
 {
 
    mutex_lock mlThreadIdHandle(threadIdHandleLock);
@@ -1030,7 +1030,7 @@ CLASS_DECL_c HTHREAD WINAPI get_thread_handle(DWORD dw)
 }
 
 
-CLASS_DECL_c BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT message, WPARAM wparam, LPARAM lparam)
+CLASS_DECL_ca BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT message, WPARAM wparam, LPARAM lparam)
 {
 
    HTHREAD h = ::get_thread_handle(idThread);
@@ -1069,7 +1069,7 @@ CLASS_DECL_c BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT message, WPARAM
 
 ///  \brief		global function to set thread priority for current thread
 	///  \param		new priority
-	CLASS_DECL_c bool set_thread_priority(int32_t priority)
+	CLASS_DECL_ca bool set_thread_priority(int32_t priority)
 	{
       return ( ::SetThreadPriority(::get_current_thread(), priority) != 0 );
 
@@ -1079,7 +1079,7 @@ CLASS_DECL_c BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT message, WPARAM
 	///  \brief		global function to get thread priority for current thread
 	///  \return	priority of current thread
 
-	CLASS_DECL_c int32_t thread_priority()
+	CLASS_DECL_ca int32_t thread_priority()
 	{
 
       return ::GetThreadPriority(::get_current_thread());

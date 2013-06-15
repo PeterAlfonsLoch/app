@@ -5,8 +5,8 @@ namespace sockets
 {
 
 
-   address::address(::ca::application * papp, const string & strAddress, const string & strServiceName) :
-      ca(papp)
+   address::address(::ca2::application * papp, const string & strAddress, const string & strServiceName) :
+      ca2(papp)
    {
 
       if(strAddress.is_empty())
@@ -19,8 +19,8 @@ namespace sockets
    }
 
 
-   address::address(::ca::application * papp, const string & strAddress, int iPort) :
-      ca(papp)
+   address::address(::ca2::application * papp, const string & strAddress, int iPort) :
+      ca2(papp)
    {
 
       try
@@ -95,8 +95,8 @@ namespace sockets
 
       string strService = m_strService;
 
-      if(::ca::str::is_simple_natural(strService))
-         return service_number_to_name(::ca::str::to_int(strService));
+      if(::ca2::str::is_simple_natural(strService))
+         return service_number_to_name(::ca2::str::to_int(strService));
       else
          return strService;
 
@@ -108,8 +108,8 @@ namespace sockets
 
       string strService = m_strService;
 
-      if(::ca::str::is_simple_natural(strService))
-         return ::ca::str::to_int(strService);
+      if(::ca2::str::is_simple_natural(strService))
+         return ::ca2::str::to_int(strService);
       else
          return service_name_to_number(strService);
          

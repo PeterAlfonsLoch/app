@@ -40,13 +40,13 @@ bool os_simple_path::prepare(D2D1_POINT_2F pt)
 
       m_psink->BeginFigure(pt, m_bFill ? D2D1_FIGURE_BEGIN_FILLED : D2D1_FIGURE_BEGIN_HOLLOW);
 
-      if(m_efillmode == ::ca::fill_mode_winding)
+      if(m_efillmode == ::ca2::fill_mode_winding)
       {
 
          m_psink->SetFillMode(D2D1_FILL_MODE_WINDING);
 
       }
-      else if(m_efillmode == ::ca::fill_mode_alternate)
+      else if(m_efillmode == ::ca2::fill_mode_alternate)
       {
 
          m_psink->SetFillMode(D2D1_FILL_MODE_ALTERNATE);
@@ -189,7 +189,7 @@ bool os_simple_path::get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, cons
 
 }
 
-bool os_simple_path::begin_figure(bool bFill, ::ca::e_fill_mode efillmode)
+bool os_simple_path::begin_figure(bool bFill, ::ca2::e_fill_mode efillmode)
 {
 
    m_bFill        = true;

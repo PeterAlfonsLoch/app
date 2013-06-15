@@ -134,7 +134,7 @@ bool os_simple_font::create_pixel_bold(simple_graphics & g, int nPixelSize, cons
 }
 
 
-CLASS_DECL_c IDWriteFactory * TlsGetWriteFactory()
+CLASS_DECL_ca IDWriteFactory * TlsGetWriteFactory()
 {
 
    IDWriteFactory * pfactory = (IDWriteFactory *) TlsGetValue(TLS_WRITE_FACTORY);
@@ -156,7 +156,7 @@ CLASS_DECL_c IDWriteFactory * TlsGetWriteFactory()
 
 
 
-CLASS_DECL_c float point_dpi(float points)
+CLASS_DECL_ca float point_dpi(float points)
 {
 
    FLOAT dpiX, dpiY;
@@ -167,7 +167,7 @@ CLASS_DECL_c float point_dpi(float points)
 
 }
 
-CLASS_DECL_c float dpiy(float y)
+CLASS_DECL_ca float dpiy(float y)
 {
    
    FLOAT dpiX, dpiY;
@@ -178,7 +178,7 @@ CLASS_DECL_c float dpiy(float y)
 
 }
 
-CLASS_DECL_c float dpix(float x)
+CLASS_DECL_ca float dpix(float x)
 {
    
    FLOAT dpiX, dpiY;
@@ -190,7 +190,7 @@ CLASS_DECL_c float dpix(float x)
 }
 
 
-CLASS_DECL_c float y_dpi(float y)
+CLASS_DECL_ca float y_dpi(float y)
 {
    
    FLOAT dpiX, dpiY;
@@ -201,7 +201,7 @@ CLASS_DECL_c float y_dpi(float y)
 
 }
 
-CLASS_DECL_c float x_dpi(float x)
+CLASS_DECL_ca float x_dpi(float x)
 {
    
    FLOAT dpiX, dpiY;

@@ -21,7 +21,7 @@ namespace sockets
    \ingroup basic
    */
    class address :
-      virtual public ::ca::object
+      virtual public ::ca2::object
    {
    public:
 
@@ -30,8 +30,8 @@ namespace sockets
       ::Platform::String ^                   m_strService;
       
 
-      address(::ca::application * papp, const string & strAddress = "", const string & pszServiceName = "");
-      address(::ca::application * papp, const string & strAddress, int iPort);
+      address(::ca2::application * papp, const string & strAddress = "", const string & pszServiceName = "");
+      address(::ca2::application * papp, const string & strAddress, int iPort);
       address(const address & address);
       virtual ~address();
 

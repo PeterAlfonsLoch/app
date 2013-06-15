@@ -28,7 +28,7 @@
 
 #elif defined(METROWIN)
 
-#include "c/metrowin/c_os.h"
+#include "ca/metrowin/ca_os.h"
 
 #define BYESHYTOULA_STYLE_SOCKS
 

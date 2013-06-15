@@ -40,21 +40,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          public go_thread
       {
       public:
-         resolv_server(::ca::application * papp, port_t);
+
+
+         bool m_quit;
+         port_t m_port;
+         bool m_ready;
+
+
+         resolv_server(::ca2::application * papp, port_t);
          ~resolv_server();
+
 
          virtual void go();
          void Quit();
 
          bool Ready();
 
-      private:
          resolv_server(const resolv_server& s);  // copy constructor
          resolv_server& operator=(const resolv_server& ) { return *this; } // assignment operator
 
-         bool m_quit;
-         port_t m_port;
-         bool m_ready;
       };
 
    } // namespace sockets

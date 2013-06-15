@@ -2,16 +2,16 @@
 
 
 /*
-CLASS_DECL_c _Use_decl_annotations_ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, SIZE_T unusedStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD unusedThreadId);
-CLASS_DECL_c _Use_decl_annotations_ DWORD WINAPI ResumeThread(HANDLE hThread);
-CLASS_DECL_c _Use_decl_annotations_ BOOL WINAPI SetThreadPriority(HANDLE hThread, int nPriority);
-CLASS_DECL_c _Use_decl_annotations_ VOID WINAPI Sleep(DWORD dwMilliseconds);
-CLASS_DECL_c DWORD WINAPI TlsAlloc();
-CLASS_DECL_c _Use_decl_annotations_ BOOL WINAPI TlsFree(DWORD dwTlsIndex);
-CLASS_DECL_c _Use_decl_annotations_ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex);
-CLASS_DECL_c _Use_decl_annotations_ BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
-CLASS_DECL_c void WINAPI TlsShutdown();
-CLASS_DECL_c int WINAPI GetThreadPriority(_In_ HANDLE hThread);
+CLASS_DECL_ca _Use_decl_annotations_ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, SIZE_T unusedStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD unusedThreadId);
+CLASS_DECL_ca _Use_decl_annotations_ DWORD WINAPI ResumeThread(HANDLE hThread);
+CLASS_DECL_ca _Use_decl_annotations_ BOOL WINAPI SetThreadPriority(HANDLE hThread, int nPriority);
+CLASS_DECL_ca _Use_decl_annotations_ VOID WINAPI Sleep(DWORD dwMilliseconds);
+CLASS_DECL_ca DWORD WINAPI TlsAlloc();
+CLASS_DECL_ca _Use_decl_annotations_ BOOL WINAPI TlsFree(DWORD dwTlsIndex);
+CLASS_DECL_ca _Use_decl_annotations_ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex);
+CLASS_DECL_ca _Use_decl_annotations_ BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
+CLASS_DECL_ca void WINAPI TlsShutdown();
+CLASS_DECL_ca int WINAPI GetThreadPriority(_In_ HANDLE hThread);
 */
 
 /*template < typename T >
@@ -224,12 +224,12 @@ typedef struct tagMESSAGE {
 #endif
 } MESSAGE, *PMESSAGE, NEAR *NPMESSAGE, FAR *LPMESSAGE;
 
-class CLASS_DECL_c message_array :
+class CLASS_DECL_ca message_array :
    public simple_array < MESSAGE >
 {
 };
 
-class CLASS_DECL_c mq
+class CLASS_DECL_ca mq
 {
 public:
 
@@ -243,18 +243,18 @@ public:
 
 };
 
-CLASS_DECL_c mq * get_mq(HTHREAD h);
+CLASS_DECL_ca mq * get_mq(HTHREAD h);
 
-CLASS_DECL_c WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
+CLASS_DECL_ca WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
 #define GetMessage GetMessageW
 
-CLASS_DECL_c WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax,UINT wRemoveMsg);
+CLASS_DECL_ca WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax,UINT wRemoveMsg);
 
 #define PeekMessage PeekMessageW
 
-CLASS_DECL_c DWORD WINAPI get_thread_id(HTHREAD Thread);
+CLASS_DECL_ca DWORD WINAPI get_thread_id(HTHREAD Thread);
 
 #define PostThreadMessage  PostThreadMessageW
 
-CLASS_DECL_c WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam);
+CLASS_DECL_ca WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam);

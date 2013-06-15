@@ -40,17 +40,17 @@
 LONG TIME_GetBias(void);
 
 
-#ifdef _WIN32
-#ifdef __C__LIB
-   #define CLASS_DECL_c
-#elif defined(__C__DLL)
-   #define CLASS_DECL_c  _declspec(dllexport)
+/*#ifdef _WIN32
+#ifdef __CA__STATIC
+   #define CLASS_DECL_ca
+#elif defined(__CA__LIBRARY)
+   #define CLASS_DECL_ca  _declspec(dllexport)
 #else
-   #define CLASS_DECL_c  _declspec(dllimport)
+   #define CLASS_DECL_ca  _declspec(dllimport)
 #endif
 #else
-   #define CLASS_DECL_c
-#endif
+   #define CLASS_DECL_ca
+#endif*/
 
 
 /*#ifdef _WIN32
@@ -76,9 +76,9 @@ LONG TIME_GetBias(void);
 
 #include "os_cross_windows_internals.h"
 //#define CLASS_DECL_c
-#include "c/c/c_verisimple_string.h"
-#include "c/c/c_simple_mutex.h"
-#include "c/c/c_mutex_lock.h"
+#include "ca/ca/ca_verisimple_string.h"
+#include "ca/ca/ca_simple_mutex.h"
+#include "ca/ca/ca_mutex_lock.h"
 
 
 

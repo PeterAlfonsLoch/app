@@ -152,6 +152,11 @@
     <ClCompile Include="uncompr.c" />
     <ClCompile Include="zutil.c" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\appseed\c\m_c.vcxproj">
+      <Project>{5487686f-8a2f-401a-a38e-fda8900ebb72}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
