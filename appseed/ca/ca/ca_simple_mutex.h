@@ -4,6 +4,7 @@
 #ifdef WINDOWS
 #elif defined(MACOS)
 #include <sys/sem.h>
+#elif defined(ANDROID)
 #else
 typedef __key_t key_t;
 #endif

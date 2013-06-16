@@ -72,10 +72,7 @@
     <Filter Include="Source Files\ca">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\android">
-      <UniqueIdentifier>{3317aa86-fa14-40ae-a177-fcd3712f6093}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\android">
+    <Filter Include="Source Files\NewFilter1">
       <UniqueIdentifier>{08d46f5e-1932-4b6b-9620-8b7de1ac5337}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -458,12 +455,6 @@
     <ClInclude Include="ca\ca_ca.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="android\ca_os_internal.h">
-      <Filter>Header Files\android</Filter>
-    </ClInclude>
-    <ClInclude Include="android\ca_os.h">
-      <Filter>Header Files\android</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -834,9 +825,6 @@
     </ClCompile>
     <ClCompile Include="ca\ca.cpp">
       <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os.cpp">
-      <Filter>Source Files\android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

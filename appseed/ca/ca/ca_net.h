@@ -15,7 +15,7 @@ CLASS_DECL_ca vsstring c_inet_ntop(int32_t af, const void *src);
 
 CLASS_DECL_ca vsstring c_gethostbyname(const char * hostname);
 
-#ifndef MACOS
+#if !defined(MACOS) && !defined(ANDROID)
 
 #if BYTE_ORDER == BIG_ENDIAN
 

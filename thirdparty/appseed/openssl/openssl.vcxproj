@@ -1106,6 +1106,7 @@
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AndroidSystemLibs>c;m;log;gcc;_c</AndroidSystemLibs>
     </Link>
     <PostBuildEvent>
       <Command>

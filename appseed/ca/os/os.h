@@ -32,13 +32,25 @@
 
 #define BYESHYTOULA_STYLE_SOCKS
 
-#else
+#elif defined(WINDOWSEX)
 
 #include "ca/windows/ca_os.h"
 
 #define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL
 #define HAVE_OPENSSL
+
+#elif defined(ANDROID)
+
+#include "ca/android/ca_os.h"
+
+#define BSD_STYLE_SOCKETS
+#define HAVE_MYSQL
+#define HAVE_OPENSSL
+
+#else
+
+#error Not supported operating system
 
 #endif
 

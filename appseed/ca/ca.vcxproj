@@ -1017,6 +1017,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="android\ca_os.h" />
+    <ClInclude Include="android\ca_os_internal.h" />
     <ClInclude Include="bsdiff\bsdiff.h" />
     <ClInclude Include="bsdiff\bsdiff_private.h" />
     <ClInclude Include="bsdiff\bzlib.h" />
@@ -1126,25 +1128,60 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="spa\spa_window.h" />
     <ClInclude Include="version\version.config.h" />
     <ClInclude Include="version\version.h" />
-    <ClInclude Include="windows\ca_os.h" />
-    <ClInclude Include="windows\ca_os_file.h" />
-    <ClInclude Include="windows\ca_os_file_watcher.h" />
-    <ClInclude Include="windows\ca_os_gdi.h" />
-    <ClInclude Include="windows\ca_os_graphics_round_rect.h" />
-    <ClInclude Include="windows\ca_os_http.h" />
-    <ClInclude Include="windows\ca_os_internal.h" />
-    <ClInclude Include="windows\ca_os_process.h" />
-    <ClInclude Include="windows\ca_os_registry.h" />
-    <ClInclude Include="windows\ca_os_simple_bitmap.h" />
-    <ClInclude Include="windows\ca_os_simple_brush.h" />
-    <ClInclude Include="windows\ca_os_simple_font.h" />
-    <ClInclude Include="windows\ca_os_simple_graphics.h" />
-    <ClInclude Include="windows\ca_os_simple_hold_handle.h" />
-    <ClInclude Include="windows\ca_os_simple_path.h" />
-    <ClInclude Include="windows\ca_os_simple_pen.h" />
-    <ClInclude Include="windows\ca_os_thread.h" />
+    <ClInclude Include="windows\ca_os.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_file.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_file_watcher.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_gdi.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_graphics_round_rect.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_http.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_internal.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_process.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_registry.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_simple_bitmap.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_simple_brush.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_simple_font.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_simple_graphics.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_simple_hold_handle.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_simple_path.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_simple_pen.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="windows\ca_os_thread.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="android\ca_os.cpp" />
     <ClCompile Include="bsdiff\blocksort.cpp" />
     <ClCompile Include="bsdiff\bsdiff.cpp" />
     <ClCompile Include="bsdiff\bspatch.cpp" />
@@ -1272,30 +1309,78 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="spa\spa_starter_start.cpp" />
     <ClCompile Include="spa\spa_trace.cpp" />
     <ClCompile Include="spa\spa_window.cpp" />
-    <ClCompile Include="windows\ca_os.cpp" />
-    <ClCompile Include="windows\ca_os_ca_dll.cpp" />
-    <ClCompile Include="windows\ca_os_file.cpp" />
-    <ClCompile Include="windows\ca_os_file_std.cpp" />
-    <ClCompile Include="windows\ca_os_file_watcher.cpp" />
-    <ClCompile Include="windows\ca_os_http.cpp" />
-    <ClCompile Include="windows\ca_os_launcher.cpp" />
-    <ClCompile Include="windows\ca_os_library.cpp" />
-    <ClCompile Include="windows\ca_os_lock.cpp" />
-    <ClCompile Include="windows\ca_os_message_loop.cpp" />
-    <ClCompile Include="windows\ca_os_process.cpp" />
-    <ClCompile Include="windows\ca_os_registry.cpp" />
-    <ClCompile Include="windows\ca_os_simple_app.cpp" />
-    <ClCompile Include="windows\ca_os_simple_bitmap.cpp" />
-    <ClCompile Include="windows\ca_os_simple_brush.cpp" />
-    <ClCompile Include="windows\ca_os_simple_font.cpp" />
-    <ClCompile Include="windows\ca_os_simple_graphics.cpp" />
-    <ClCompile Include="windows\ca_os_simple_path.cpp" />
-    <ClCompile Include="windows\ca_os_simple_pen.cpp" />
-    <ClCompile Include="windows\ca_os_simple_shell_launcher.cpp" />
-    <ClCompile Include="windows\ca_os_small_ipca_channel.cpp" />
-    <ClCompile Include="windows\ca_os_thread.cpp" />
-    <ClCompile Include="windows\ca_os_time.cpp" />
-    <ClCompile Include="windows\crypt\ca_os_crypt.cpp" />
+    <ClCompile Include="windows\ca_os.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_ca_dll.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_file.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_file_std.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_file_watcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_http.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_launcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_library.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_lock.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_message_loop.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_process.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_registry.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_simple_app.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_simple_bitmap.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_simple_brush.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_simple_font.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_simple_graphics.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_simple_path.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_simple_pen.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_simple_shell_launcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_small_ipca_channel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_thread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_time.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="windows\crypt\ca_os_crypt.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\thirdparty\appseed\openssl\openssl.vcxproj">

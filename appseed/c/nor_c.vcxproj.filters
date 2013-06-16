@@ -15,18 +15,6 @@
     <Filter Include="Source Files\c">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\android">
-      <UniqueIdentifier>{35caf055-bd72-42c2-ac5b-2bbc068ac15e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\windows">
-      <UniqueIdentifier>{7f5b990b-08b4-425e-847d-3a6e90f89fbe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\android">
-      <UniqueIdentifier>{4ccb1b0f-1033-4f02-bb2b-bcc8e610b600}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\windows">
-      <UniqueIdentifier>{a22a4034-5452-4e71-94f4-59a3c75da33f}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -41,12 +29,6 @@
     <ClInclude Include="c\c_c.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
-    <ClInclude Include="android\c_os_internal.h">
-      <Filter>Header Files\android</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\c_os_internal.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.c">
@@ -54,12 +36,6 @@
     </ClCompile>
     <ClCompile Include="c\c.c">
       <Filter>Source Files\c</Filter>
-    </ClCompile>
-    <ClCompile Include="android\c_os_internal.c">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_internal.c">
-      <Filter>Source Files\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

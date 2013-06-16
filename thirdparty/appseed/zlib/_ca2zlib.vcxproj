@@ -352,6 +352,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
+      <AndroidSystemLibs>c;m;log;gcc;_c</AndroidSystemLibs>
     </Link>
     <PostBuildEvent>
       <Command>

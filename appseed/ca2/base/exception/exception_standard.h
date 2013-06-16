@@ -19,7 +19,9 @@
 
 #pragma once
 
-#ifdef WINDOWS
+#if defined(ANDROID)
+
+#elif WINDOWS
 
 #include <eh.h>
 

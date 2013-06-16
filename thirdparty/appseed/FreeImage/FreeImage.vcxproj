@@ -317,7 +317,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
-      <AndroidSystemLibs>c;m;log;gcc;_ca2zlib</AndroidSystemLibs>
+      <AndroidSystemLibs>c;m;log;gcc;;_c;_ca2zlib</AndroidSystemLibs>
     </Link>
     <PostBuildEvent>
       <Command>
