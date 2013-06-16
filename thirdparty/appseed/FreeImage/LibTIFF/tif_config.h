@@ -7,6 +7,10 @@
 #ifndef _TIFFCONF_
 #define _TIFFCONF_
 
+
+#include "c/c/c.h"
+
+
 /* Define as 0 or 1 according to the floating point format suported by the
    machine */
 #define HAVE_IEEEFP 1

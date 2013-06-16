@@ -37,6 +37,10 @@
 #ifndef INCLUDED_IEXTHROWERRNOEXC_H
 #define INCLUDED_IEXTHROWERRNOEXC_H
 
+
+#include "c/c/c.h"
+
+
 //----------------------------------------------------------
 //
 //	A function which throws ExcErrno exceptions
