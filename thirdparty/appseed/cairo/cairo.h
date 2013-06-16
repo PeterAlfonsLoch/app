@@ -38,6 +38,10 @@
 #ifndef CAIRO_H
 #define CAIRO_H
 
+
+#define HAVE_CONFIG_H 1
+
+
 #include "cairo-version.h"
 #include "cairo-features.h"
 #include "cairo-deprecated.h"
@@ -997,7 +1001,7 @@ typedef struct _cairo_rectangle {
  * @status: Error status of the rectangle list
  * @rectangles: Array containing the rectangles
  * @num_rectangles: Number of rectangles in this list
- * 
+ *
  * A data structure for holding a dynamically allocated
  * array of rectangles.
  *
