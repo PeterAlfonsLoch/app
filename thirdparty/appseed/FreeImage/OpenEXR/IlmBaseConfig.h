@@ -6,7 +6,7 @@
 // and you want OpenEXR to use it for multithreaded file I/O.
 //
 
-#if defined(__APPLE__) || defined(ANDROID)
+#if defined(__APPLE__) || defined(ANDROID) || defined(LINUX)
 #define HAVE_PTHREAD 1
 #else
 #undef HAVE_PTHREAD		// currently disabled in FreeImage

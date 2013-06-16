@@ -7,26 +7,26 @@
  * Cisco Systems, Inc.
  */
 /**
- *	
+ *
  * Copyright (ca) 2001-2006 Cisco Systems, Inc.
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- * 
+ *
  *   Redistributions of source code must retain the above copyright
  *   notice, this list of conditions and the following disclaimer.
- * 
+ *
  *   Redistributions in binary form must reproduce the above
  *   copyright notice, this list of conditions and the following
  *   disclaimer in the documentation and/or other materials provided
  *   with the distribution.
- * 
+ *
  *   Neither the name of the Cisco Systems, Inc. nor the names of its
  *   contributors may be used to endorse or promote products derived
  *   from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -46,7 +46,7 @@
 int32_t
 v32_low_bit(v32_t *w);
 
-int32_t 
+int32_t
 octet_weight[256] = {
   0, 1, 1, 2, 1, 2, 2, 3,
   1, 2, 2, 3, 2, 3, 3, 4,
@@ -160,17 +160,17 @@ octet_get_weight(uint8_t octet) {
   extern int32_t octet_weight[256];
 
   return octet_weight[octet];
-}  
+}
 
 uchar
 v32_weight(v32_t a) {
   uint32_t wt = 0;
-  
+
   wt += octet_weight[a.v8[0]];  /** note: endian-ness makes no difference */
   wt += octet_weight[a.v8[1]];
   wt += octet_weight[a.v8[2]];
   wt += octet_weight[a.v8[3]];
-  
+
   return wt;
 }
 
@@ -259,7 +259,7 @@ char *
 v128_bit_string(v128_t *x) {
   int32_t j, index;
   uint32_t mask;
-  
+
   for (j=index=0; j < 4; j++) {
     for (mask=0x80000000; mask > 0; mask >>= 1) {
       if (x->v32[j] & mask)
@@ -286,7 +286,7 @@ octet_hex_string(uint8_t x) {
 
   bit_string[0]  = nibble_to_hex_char(x >> 4);
   bit_string[1]  = nibble_to_hex_char(x & 0xF);
-  
+
   bit_string[2] = 0; /** NULL terminate string */
   return bit_string;
 }
@@ -295,14 +295,14 @@ char *
 octet_string_hex_string(const void *str, int32_t length) {
   const uint8_t *s = (byte *) str;
   int32_t i;
-  
+
   /** double length, since one octet takes two hex characters */
   length *= 2;
 
   /** truncate string if it would be too long */
   if (length > MAX_STRING_LENGTH)
     length = MAX_STRING_LENGTH-1;
-  
+
   for (i=0; i < length; i+=2) {
     bit_string[i]   = nibble_to_hex_char(*s >> 4);
     bit_string[i+1] = nibble_to_hex_char(*s++ & 0xF);
@@ -319,7 +319,7 @@ v16_hex_string(v16_t x) {
     bit_string[j++]  = nibble_to_hex_char(x.v8[i] >> 4);
     bit_string[j++]  = nibble_to_hex_char(x.v8[i] & 0xF);
   }
-  
+
   bit_string[j] = 0; /** NULL terminate string */
   return bit_string;
 }
@@ -332,7 +332,7 @@ v32_hex_string(v32_t x) {
     bit_string[j++]  = nibble_to_hex_char(x.v8[i] >> 4);
     bit_string[j++]  = nibble_to_hex_char(x.v8[i] & 0xF);
   }
-  
+
   bit_string[j] = 0; /** NULL terminate string */
   return bit_string;
 }
@@ -345,7 +345,7 @@ v64_hex_string(const v64_t *x) {
     bit_string[j++]  = nibble_to_hex_char(x->v8[i] >> 4);
     bit_string[j++]  = nibble_to_hex_char(x->v8[i] & 0xF);
   }
-  
+
   bit_string[j] = 0; /** NULL terminate string */
   return bit_string;
 }
@@ -358,7 +358,7 @@ v128_hex_string(v128_t *x) {
     bit_string[j++]  = nibble_to_hex_char(x->v8[i] >> 4);
     bit_string[j++]  = nibble_to_hex_char(x->v8[i] & 0xF);
   }
-  
+
   bit_string[j] = 0; /** NULL terminate string */
   return bit_string;
 }
@@ -373,7 +373,7 @@ char_to_hex_string(char *x, int32_t num_char) {
     bit_string[j++]  = nibble_to_hex_char(x[i] >> 4);
     bit_string[j++]  = nibble_to_hex_char(x[i] & 0xF);
   }
-  
+
   bit_string[j] = 0; /** NULL terminate string */
   return bit_string;
 }
@@ -395,7 +395,7 @@ hex_char_to_nibble(uint8_t ca) {
   case ('A'): return 0xa;
   case ('b'): return 0xb;
   case ('B'): return 0xb;
-  case ('ca'): return 0xc;
+  case ('c'): return 0xc;
   case ('C'): return 0xc;
   case ('d'): return 0xd;
   case ('D'): return 0xd;
@@ -423,7 +423,7 @@ hex_string_to_octet(char *s) {
 
   x = (hex_char_to_nibble(s[0]) << 4)
     | hex_char_to_nibble(s[1] & 0xFF);
-  
+
   return x;
 }
 
@@ -506,16 +506,16 @@ hex_string_to_v128(char *s) {
 
 
 
-/** 
+/**
  * the matrix A[] is stored in column format, i.e., A[i] is the ith
- * column of the matrix 
+ * column of the matrix
  */
 
-uint8_t 
+uint8_t
 A_times_x_plus_b(uint8_t A[8], uint8_t x, uint8_t b) {
   int32_t index = 0;
   uint32_t mask;
-  
+
   for (mask=1; mask < 256; mask *= 2) {
     if (x & mask)
       b^= A[index];
@@ -587,7 +587,7 @@ v128_copy(v128_t *x, const v128_t *y) {
 void
 v128_xor(v128_t *z, v128_t *x, v128_t *y) {
   _v128_xor(z, x, y);
-} 
+}
 
 void
 v128_and(v128_t *z, v128_t *x, v128_t *y) {
@@ -617,12 +617,12 @@ v128_get_bit(const v128_t *x, int32_t i) {
 void
 v128_set_bit(v128_t *x, int32_t i) {
   _v128_set_bit(x, i);
-}     
+}
 
 void
 v128_clear_bit(v128_t *x, int32_t i){
   _v128_clear_bit(x, i);
-}    
+}
 
 void
 v128_set_bit_to(v128_t *x, int32_t i, int32_t y){
@@ -642,11 +642,11 @@ v128_left_shift2(v128_t *x, int32_t num_bits) {
   for (i=0; i < (4-word_shift); i++) {
     x->v32[i] = x->v32[i+word_shift] << bit_shift;
   }
-  
+
   for (   ; i < word_shift; i++) {
     x->v32[i] = 0;
   }
-  
+
 }
 
 void
@@ -655,7 +655,7 @@ v128_right_shift(v128_t *x, int32_t index) {
   const int32_t bit_index = index & 31;
   int32_t i, from;
   uint32_t b;
-    
+
   if (index > 127) {
     v128_set_to_zero(x);
     return;
@@ -665,11 +665,11 @@ v128_right_shift(v128_t *x, int32_t index) {
 
     /** copy each uint16_t from left size to right side */
     x->v32[4-1] = x->v32[4-1-base_index];
-    for (i=4-1; i > base_index; i--) 
+    for (i=4-1; i > base_index; i--)
       x->v32[i-1] = x->v32[i-1-base_index];
 
   } else {
-    
+
     /** set each uint16_t to the "or" of the two bit-shifted words */
     for (i = 4; i > base_index; i--) {
       from = i-1 - base_index;
@@ -678,13 +678,13 @@ v128_right_shift(v128_t *x, int32_t index) {
         b |= x->v32[from-1] >> (32-bit_index);
       x->v32[i-1] = b;
     }
-    
+
   }
 
   /** now wrap up the final portion */
-  for (i=0; i < base_index; i++) 
+  for (i=0; i < base_index; i++)
     x->v32[i] = 0;
-  
+
 }
 
 void
@@ -696,8 +696,8 @@ v128_left_shift(v128_t *x, int32_t index) {
   if (index > 127) {
     v128_set_to_zero(x);
     return;
-  } 
-  
+  }
+
   if (bit_index == 0) {
     for (i=0; i < 4 - base_index; i++)
       x->v32[i] = x->v32[i+base_index];
@@ -709,7 +709,7 @@ v128_left_shift(v128_t *x, int32_t index) {
   }
 
   /** now wrap up the final portion */
-  for (i = 4 - base_index; i < 4; i++) 
+  for (i = 4 - base_index; i < 4; i++)
     x->v32[i] = 0;
 
 }
@@ -722,36 +722,36 @@ v128_add(v128_t *z, v128_t *x, v128_t *y) {
 
 #ifdef WORDS_BIGENDIAN
   uint64_t tmp;
-    
+
   tmp = x->v32[3] + y->v32[3];
   z->v32[3] = (uint32_t) tmp;
-  
+
   tmp =  x->v32[2] + y->v32[2] + (tmp >> 32);
   z->v32[2] = (uint32_t) tmp;
 
   tmp =  x->v32[1] + y->v32[1] + (tmp >> 32);
   z->v32[1] = (uint32_t) tmp;
-  
+
   tmp =  x->v32[0] + y->v32[0] + (tmp >> 32);
   z->v32[0] = (uint32_t) tmp;
 
 #else /** assume little endian architecture */
   uint64_t tmp;
-  
+
   tmp = htonl(x->v32[3]) + htonl(y->v32[3]);
   z->v32[3] = ntohl((uint32_t) tmp);
-  
+
   tmp =  htonl(x->v32[2]) + htonl(y->v32[2]) + htonl(tmp >> 32);
   z->v32[2] = ntohl((uint32_t) tmp);
 
   tmp =  htonl(x->v32[1]) + htonl(y->v32[1]) + htonl(tmp >> 32);
   z->v32[1] = ntohl((uint32_t) tmp);
-  
+
   tmp =  htonl(x->v32[0]) + htonl(y->v32[0]) + htonl(tmp >> 32);
   z->v32[0] = ntohl((uint32_t) tmp);
 
 #endif /** WORDS_BIGENDIAN */
-  
+
 }
 #endif
 
@@ -771,7 +771,7 @@ octet_string_set_to_zero(uint8_t *s, int32_t len) {
   do {
     *s = 0;
   } while (++s < end);
-  
+
 }
 
 

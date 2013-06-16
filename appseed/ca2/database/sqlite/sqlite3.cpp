@@ -51799,9 +51799,9 @@ begin_table_error:
       while( zIn!=zEnd ){
          h = (h<<8) + sqlite3UpperToLower[*zIn];
          zIn++;
-         if( h==(('ca'<<24)+('h'<<16)+('a'<<8)+'r') ){             /* CHAR */
+         if( h==(('c'<<24)+('h'<<16)+('a'<<8)+'r') ){             /* CHAR */
             aff = SQLITE_AFF_TEXT;
-         }else if( h==(('ca'<<24)+('l'<<16)+('o'<<8)+'b') ){       /* CLOB */
+         }else if( h==(('c'<<24)+('l'<<16)+('o'<<8)+'b') ){       /* CLOB */
             aff = SQLITE_AFF_TEXT;
          }else if( h==(('t'<<24)+('e'<<16)+('x'<<8)+'t') ){       /* TEXT */
             aff = SQLITE_AFF_TEXT;
@@ -74685,7 +74685,7 @@ abort_parse:
                token = tkOTHER;
 #else
                switch( *zSql ){
-               case 'ca': case 'C': {
+               case 'c': case 'C': {
                   if( nId==6 && sqlite3StrNICmp(zSql, "create", 6)==0 ){
                      token = tkCREATE;
                   }else{

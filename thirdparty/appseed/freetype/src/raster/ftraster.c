@@ -305,6 +305,9 @@
   typedef long            Long, *PLong;
 
   typedef unsigned char   Byte, *PByte;
+  #ifdef Bool
+  #undef Bool
+  #endif
   typedef char            Bool;
 
 

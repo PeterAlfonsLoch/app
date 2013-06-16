@@ -85,6 +85,8 @@
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
+			<Add option="-lpthread" />
+			<Add option="-l_ca2c" />
 			<Add option="-l_ca2zlib" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
@@ -874,15 +876,12 @@
 		<Unit filename="OpenEXR/IlmImf/ImfZipCompressor.cpp" />
 		<Unit filename="OpenEXR/IlmImf/ImfZipCompressor.h" />
 		<Unit filename="OpenEXR/IlmImf/b44ExpLogTable.h" />
-		<Unit filename="OpenEXR/IlmThread/IlmThread.cpp" />
 		<Unit filename="OpenEXR/IlmThread/IlmThread.h" />
-		<Unit filename="OpenEXR/IlmThread/IlmThreadMutex.cpp" />
 		<Unit filename="OpenEXR/IlmThread/IlmThreadMutex.h" />
 		<Unit filename="OpenEXR/IlmThread/IlmThreadMutexPosix.cpp" />
 		<Unit filename="OpenEXR/IlmThread/IlmThreadPool.cpp" />
 		<Unit filename="OpenEXR/IlmThread/IlmThreadPool.h" />
 		<Unit filename="OpenEXR/IlmThread/IlmThreadPosix.cpp" />
-		<Unit filename="OpenEXR/IlmThread/IlmThreadSemaphore.cpp" />
 		<Unit filename="OpenEXR/IlmThread/IlmThreadSemaphore.h" />
 		<Unit filename="OpenEXR/IlmThread/IlmThreadSemaphorePosix.cpp" />
 		<Unit filename="OpenEXR/IlmThread/IlmThreadSemaphorePosixCompat.cpp" />

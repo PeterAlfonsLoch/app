@@ -1,4 +1,4 @@
-/* 
+/*
   Copyright 2008-2010 LibRaw LLC (info@libraw.org)
 
 LibRaw is free software; you can redistribute it and/or modify
@@ -20,9 +20,6 @@ it under the terms of the one of three licenses as you choose:
    Look into dcraw homepage (probably http://cybercom.net/~dcoffin/dcraw/)
    for more information
 */
-
-
-#include "c/c/c.h"
 
 
 #include <math.h>
@@ -830,15 +827,15 @@ void CLASS lossless_jpeg_load_raw()
           // not sliced
           slicesW[slicesWcnt++] = raw_width; // safe fallback
       }
-       
+
   slices = slicesWcnt * jh.high;
   offset = (unsigned*)calloc(slices+1,sizeof(offset[0]));
-  
+
   for(slice=0;slice<slices;slice++)
       {
           offset[slice] = (t_x + t_y * raw_width)| (t_s<<28);
           if((offset[slice] & 0x0fffffff) >= (unsigned) (raw_width * raw_height))
-              throw LIBRAW_EXCEPTION_IO_BADFILE; 
+              throw LIBRAW_EXCEPTION_IO_BADFILE;
           t_y++;
           if(t_y == jh.high)
               {
@@ -986,7 +983,7 @@ void CLASS canon_sraw_load_raw()
      }
 	  else
      {
-      ip[col][c] = (ip[col-width][c] + ip[col+width][c] + 1) >> 1;  
+      ip[col][c] = (ip[col-width][c] + ip[col+width][c] + 1) >> 1;
      }
    }
     for (col=1; col < width; col+=2)
@@ -1007,7 +1004,7 @@ void CLASS canon_sraw_load_raw()
       pix[1] = rp[0] + ((-5640*rp[1] - 11751*rp[2]) >> 14);
       pix[2] = rp[0] + ((29040*rp[1] -   101*rp[2]) >> 14);
     }
-    FORC3 { 
+    FORC3 {
 #ifdef LIBRAW_LIBRARY_BUILD
         ushort val = CLIP(pix[c] * sraw_mul[c] >> 10);
         rp[c] = val;
@@ -1207,7 +1204,7 @@ void CLASS pentax_load_raw()
           ushort *dfp = get_masked_pointer(row,col);
           if(dfp) *dfp = val;
         }
-      
+
 #endif
       if (val >> tiff_bps) derror();
     }
@@ -1795,7 +1792,7 @@ unsigned CLASS ph1_bithuff (int nbits, ushort *huff)
 {
 #ifndef LIBRAW_NOTHREADS
 #define bitbuf tls->ph1_bits.bitbuf
-#define vbits  tls->ph1_bits.vbits    
+#define vbits  tls->ph1_bits.vbits
 #else
   static UINT64 bitbuf=0;
   static int vbits=0;
@@ -1907,7 +1904,7 @@ void CLASS phase_one_load_raw_c()
             // top-bottom fields
             for (col=0; col < raw_width; col++) {
                 i = (pixel[col] << 2);
-                if (i > 0) 
+                if (i > 0)
                     {
                         ushort *dfp = get_masked_pointer(row,col);
                         if(dfp) *dfp = i;
@@ -1997,7 +1994,7 @@ void CLASS leaf_hdr_load_raw()
                   }
               else
                   if(channel_maximum[c] < pixel[col]) channel_maximum[c] = pixel[col];
-#endif              
+#endif
           }
     }
   free (pixel);
@@ -2146,7 +2143,7 @@ void CLASS unpacked_load_raw()
     for (col=0; col < raw_width; col++)
         {
             ushort *dfp = get_masked_pointer(row,col);
-            if(dfp) 
+            if(dfp)
                 *dfp = pixel[col] >> load_flags;
             else
                 {
@@ -2183,7 +2180,7 @@ void CLASS nokia_load_raw()
             for(col=0;col<width;col++)
                 {
                     ushort *dfp = get_masked_pointer(row,col);
-                    if(dfp) 
+                    if(dfp)
                         *dfp = pixel[col];
                     black += pixel[c];
                 }
@@ -2209,7 +2206,7 @@ unsigned CLASS pana_bits (int nbits)
 {
 #ifndef LIBRAW_NOTHREADS
 #define buf tls->pana_bits.buf
-#define vbits tls->pana_bits.vbits   
+#define vbits tls->pana_bits.vbits
 #else
   static uchar buf[0x4000];
   static int vbits;
@@ -3046,7 +3043,7 @@ void CLASS sony_load_raw()
 #else
       if ((BAYER(row,col) = ntohs(pixel[col+left_margin])) >> 14)
 	derror();
-#endif    
+#endif
   }
   free (pixel);
   if (left_margin > 9)
@@ -3070,7 +3067,7 @@ void CLASS sony_arw_load_raw()
       buf = ifp->make_byte_buffer(data_size);
   else
       getbits(-1);
-      
+
   LibRaw_bit_buffer bits;
   bits.reset();
 #else
@@ -3621,7 +3618,7 @@ void CLASS wavelet_denoise()
   temp = fimg + size*3;
   if ((nc = colors) == 3 && filters) nc++;
 #ifdef LIBRAW_LIBRARY_BUILD
-#pragma omp parallel default(shared) private(i,col,row,thold,lev,lpass,hpass,temp,c) firstprivate(scale,size) 
+#pragma omp parallel default(shared) private(i,col,row,thold,lev,lpass,hpass,temp,c) firstprivate(scale,size)
 #endif
   {
       temp = (float*)malloc( (iheight + iwidth) * sizeof *fimg);
@@ -3881,7 +3878,7 @@ skip_block: ;
 	  if (uc > (unsigned) (iwidth-2)) continue;
 	  fc -= uc;
 	  pix = img + ur*iwidth + uc;
-	  image[row*iwidth+col][c] = (ushort) 
+	  image[row*iwidth+col][c] = (ushort)
 	    ((pix[     0]*(1-fc) + pix[       1]*fc) * (1-fr) +
 	    (pix[iwidth]*(1-fc) + pix[iwidth+1]*fc) * fr);
 	}
@@ -4494,7 +4491,7 @@ void CLASS ahd_interpolate()
 #ifdef LIBRAW_USE_OPENMP
         if(0== omp_get_thread_num())
 #endif
-           if(callbacks.progress_cb) {                                     
+           if(callbacks.progress_cb) {
                int rr = (*callbacks.progress_cb)(callbacks.progresscb_data,LIBRAW_PROGRESS_INTERPOLATE,top-2,height-7);
                if(rr)
                    terminate_flag = 1;
@@ -4509,7 +4506,7 @@ void CLASS ahd_interpolate()
     }
     free (buffer);
   }
-#ifdef LIBRAW_LIBRARY_BUILD 
+#ifdef LIBRAW_LIBRARY_BUILD
   if(terminate_flag)
       throw LIBRAW_EXCEPTION_CANCELLED_BY_CALLBACK;
 #endif
@@ -6012,7 +6009,7 @@ void CLASS parse_external_jpeg()
     }
   }
 #else
-  if (strcmp (jname, ifname)) 
+  if (strcmp (jname, ifname))
       {
           if(!ifp->subfile_open(jname))
               {

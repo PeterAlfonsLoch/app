@@ -58,7 +58,7 @@ public:
    bool offset(int32_t x, int32_t y);
 
 
-   bool set_alpha_mode(::ca::e_alpha_mode emode);
+   bool set_alpha_mode(::ca2::e_alpha_mode emode);
 
    bool draw_path(simple_path & path, simple_pen & pen);
    bool fill_path(simple_path & path, simple_brush & brush);
@@ -67,7 +67,7 @@ public:
    bool draw_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2, simple_pen & pen);
    bool draw_rect(LPCRECT lpcrect, simple_pen & pen);
    bool fill_rect(LPCRECT lpcrect, simple_brush & brush);
-   bool fill_polygon(LPPOINT lpa, int32_t iCount, ::ca::e_fill_mode emode);
+   bool fill_polygon(LPPOINT lpa, int32_t iCount, ::ca2::e_fill_mode emode);
 
    bool replace_clip(simple_path & path);
    bool exclude_clip(simple_path & path);

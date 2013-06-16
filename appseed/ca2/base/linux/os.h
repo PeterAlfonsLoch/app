@@ -12,17 +12,17 @@ DWORD GetTickCount();
 void RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, const ulong_ptr *lpArguments);
 
 
-namespace ca
+namespace ca2
 {
 
 
    class file;
 
 
-} // namespaceca
+} // namespace ca2
 
 
-typedef ::ca::file * HFILE;
+typedef ::ca2::file * HFILE;
 
 
 

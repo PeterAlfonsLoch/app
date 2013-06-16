@@ -79,29 +79,7 @@ FI_STRUCT (FREEIMAGEHEADER) {
 //  Memory allocation on a specified alignment boundary
 // ----------------------------------------------------------
 
-#if (defined(_WIN32) || defined(_WIN64)) && !defined(__MINGW32__)
-
-void* FreeImage_Aligned_Malloc(size_t amount, size_t alignment) {
-	assert(alignment == FIBITMAP_ALIGNMENT);
-	return _aligned_malloc(amount, alignment);
-}
-
-void FreeImage_Aligned_Free(void* mem) {
-	_aligned_free(mem);
-}
-
-#elif defined (__MINGW32__)
-
-void* FreeImage_Aligned_Malloc(size_t amount, size_t alignment) {
-	assert(alignment == FIBITMAP_ALIGNMENT);
-	return __mingw_aligned_malloc (amount, alignment);
-}
-
-void FreeImage_Aligned_Free(void* mem) {
-	__mingw_aligned_free (mem);
-}
-
-#else
+#if defined(ANDROID) || defined(MACOS) || defined(LINUX)
 
 void* FreeImage_Aligned_Malloc(size_t amount, size_t alignment) {
 	assert(alignment == FIBITMAP_ALIGNMENT);
@@ -130,6 +108,28 @@ void* FreeImage_Aligned_Malloc(size_t amount, size_t alignment) {
 
 void FreeImage_Aligned_Free(void* mem) {
 	free((void*)*((long*)mem - 1));
+}
+
+#elif (defined(_WIN32) || defined(_WIN64)) && !defined(__MINGW32__)
+
+void* FreeImage_Aligned_Malloc(size_t amount, size_t alignment) {
+	assert(alignment == FIBITMAP_ALIGNMENT);
+	return _aligned_malloc(amount, alignment);
+}
+
+void FreeImage_Aligned_Free(void* mem) {
+	_aligned_free(mem);
+}
+
+#elif defined (__MINGW32__)
+
+void* FreeImage_Aligned_Malloc(size_t amount, size_t alignment) {
+	assert(alignment == FIBITMAP_ALIGNMENT);
+	return __mingw_aligned_malloc (amount, alignment);
+}
+
+void FreeImage_Aligned_Free(void* mem) {
+	__mingw_aligned_free (mem);
 }
 
 #endif // _WIN32 || _WIN64

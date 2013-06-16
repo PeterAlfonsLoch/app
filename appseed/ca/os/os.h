@@ -18,9 +18,9 @@
 
 #elif defined(LINUX)
 
-#include "c/ansios/ansios.h"
+#include "ca/ansios/ansios.h"
 #include "os_binreloc.h"
-#include "c/linux/c_os.h"
+#include "ca/linux/ca_os.h"
 
 #define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL

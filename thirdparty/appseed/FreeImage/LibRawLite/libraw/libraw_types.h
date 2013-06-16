@@ -30,10 +30,10 @@ it under the terms of the one of three licenses as you choose:
 #endif
 #include <stdio.h>
 
-#if defined (_OPENMP) 
+#if defined (_OPENMP)
 
-#if defined(WIN32) 
-# if defined (_MSC_VER) && (_MSC_VER >= 1600) 
+#if defined(WIN32)
+# if defined (_MSC_VER) && (_MSC_VER >= 1600)
 /* VS2010+ : OpenMP works OK */
 #   define LIBRAW_USE_OPENMP
 #elif defined (__INTEL_COMPILER) && (__INTEL_COMPILER >=910)
@@ -45,7 +45,7 @@ it under the terms of the one of three licenses as you choose:
 // Not Win32
 # elif (defined(__APPLE__) || defined(__MACOSX__)) && defined(_REENTRANT)
 #   undef LIBRAW_USE_OPENMP
-# else 
+# else
 #   define LIBRAW_USE_OPENMP
 # endif
 #endif
@@ -74,8 +74,10 @@ extern "C" {
 typedef __int64 INT64;
 typedef unsigned __int64 UINT64;
 #else
+#ifndef _BASETSD_H_
 typedef long long INT64;
 typedef unsigned long long UINT64;
+#endif
 #endif
 
 typedef unsigned char uchar;
@@ -122,13 +124,13 @@ typedef struct
 
 typedef struct
 {
-    enum LibRaw_image_formats type; 
+    enum LibRaw_image_formats type;
     ushort      height,
                 width,
                 colors,
                 bits;
-    unsigned int  data_size; 
-    unsigned char data[1]; 
+    unsigned int  data_size;
+    unsigned char data[1];
 }libraw_processed_image_t;
 
 
@@ -142,25 +144,25 @@ typedef struct
     unsigned    is_foveon;
     int         colors;
 
-    unsigned    filters; 
+    unsigned    filters;
     char        cdesc[5];
 
 }libraw_iparams_t;
 
 typedef struct
 {
-    ushort      raw_height, 
-                raw_width, 
-                height, 
-                width, 
-                top_margin, 
+    ushort      raw_height,
+                raw_width,
+                height,
+                width,
+                top_margin,
                 left_margin;
     ushort      iheight,
                 iwidth;
     double      pixel_aspect;
     int         flip;
 
-    ushort      right_margin,bottom_margin; 
+    ushort      right_margin,bottom_margin;
 
 } libraw_image_sizes_t;
 
@@ -184,20 +186,20 @@ typedef struct
 typedef struct
 {
     color_data_state_t   color_flags;
-    ushort      white[8][8];  
-    float       cam_mul[4]; 
-    float       pre_mul[4]; 
-    float       cmatrix[3][4]; 
-    float       rgb_cam[3][4]; 
-    float       cam_xyz[4][3]; 
-    ushort      curve[0x10000]; 
+    ushort      white[8][8];
+    float       cam_mul[4];
+    float       pre_mul[4];
+    float       cmatrix[3][4];
+    float       rgb_cam[3][4];
+    float       cam_xyz[4][3];
+    ushort      curve[0x10000];
     unsigned    black;
     unsigned    cblack[8];
     unsigned    maximum;
     unsigned    channel_maximum[4];
     struct ph1_t       phase_one_data;
-    float       flash_used; 
-    float       canon_ev; 
+    float       flash_used;
+    float       canon_ev;
     char        model2[64];
     void        *profile;
     unsigned    profile_length;
@@ -206,21 +208,21 @@ typedef struct
 typedef struct
 {
     enum LibRaw_thumbnail_formats tformat;
-    ushort      twidth, 
+    ushort      twidth,
                 theight;
     unsigned    tlength;
     int         tcolors;
-    
+
     char       *thumb;
 }libraw_thumbnail_t;
 
 typedef struct
 {
-    float       iso_speed; 
+    float       iso_speed;
     float       shutter;
     float       aperture;
     float       focal_len;
-    time_t      timestamp; 
+    time_t      timestamp;
     unsigned    shot_order;
     unsigned    gpsdata[32];
     char        desc[512],
@@ -257,19 +259,19 @@ typedef struct
     int         user_sat;       /* -S */
 
     int         med_passes;     /* -m */
-    float       auto_bright_thr; 
+    float       auto_bright_thr;
     float       adjust_maximum_thr;
     int         no_auto_bright; /* -W */
     int         use_fuji_rotate;/* -j */
     int         green_matching;
-    enum LibRaw_filtering    filtering_mode; 
+    enum LibRaw_filtering    filtering_mode;
 #if 0
     /* AFD noise suppression parameters, disabled for now */
     int         afd_noise_att;
     int         afd_noise_thres;
     int         afd_luminance_passes;
     int         afd_chrominance_method;
-    int         afd_luminance_only; 
+    int         afd_luminance_only;
 #endif
     /* DCB parameters */
     int         dcb_iterations;
@@ -296,16 +298,16 @@ typedef struct
 
 typedef struct
 {
-    ushort  *buffer; 
-    ushort  *tl;     
-    ushort  *top;    
-    ushort  *tr;    
-    ushort  *left;  
-    ushort  *right; 
-    ushort  *bl;     
-    ushort  *bottom; 
-    ushort  *br;     
-    ushort  (*ph1_black)[2]; 
+    ushort  *buffer;
+    ushort  *tl;
+    ushort  *top;
+    ushort  *tr;
+    ushort  *left;
+    ushort  *right;
+    ushort  *bl;
+    ushort  *bottom;
+    ushort  *br;
+    ushort  (*ph1_black)[2];
 }libraw_masked_t;
 
 typedef struct
@@ -320,7 +322,7 @@ typedef struct
     libraw_masked_t             masked_pixels;
     ushort                      (*image)[4] ;
     libraw_output_params_t     params;
-    void                *parent_class;      
+    void                *parent_class;
 } libraw_data_t;
 
 

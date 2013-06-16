@@ -2,14 +2,14 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="c" />
+		<Option title="ca" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libca2c.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libca2ca.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/c" />
+				<Option object_output="../../../time/intermediate/app/ca" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -74,6 +74,7 @@
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
 			<Add option="-lX11" />
+			<Add option="-l_ca2c" />
 			<Add option="-l_ca2openssl" />
 			<Add option="-lcairo" />
 			<Add option="-Wl,-z,defs" />

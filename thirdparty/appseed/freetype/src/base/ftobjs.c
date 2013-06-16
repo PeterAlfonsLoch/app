@@ -2046,13 +2046,13 @@
         error = open_face( driver, stream, face_index,
                            num_params, params, &face );
         if ( !error )
-          goto Success;
+          goto ContSuccess;
       }
       else
         error = FT_Err_Invalid_Handle;
 
       FT_Stream_Free( stream, external_stream );
-      goto Fail;
+      goto ContFail;
     }
     else
     {
@@ -2082,7 +2082,7 @@
           error = open_face( driver, stream, face_index,
                              num_params, params, &face );
           if ( !error )
-            goto Success;
+            goto ContSuccess;
 
 #ifdef FT_CONFIG_OPTION_MAC_FONTS
           if ( ft_strcmp( cur[0]->clazz->module_name, "truetype" ) == 0 &&
@@ -2142,10 +2142,10 @@
 
   Fail2:
       FT_Stream_Free( stream, external_stream );
-      goto Fail;
+      goto ContFail;
     }
 
-  Success:
+  ContSuccess:
     FT_TRACE4(( "FT_Open_Face: New face object, adding to list\n" ));
 
     /* set the FT_FACE_FLAG_EXTERNAL_STREAM bit for FT_Done_Face */
@@ -2154,7 +2154,7 @@
 
     /* add the face object to its driver's list */
     if ( FT_NEW( node ) )
-      goto Fail;
+      goto ContFail;
 
     node->data = face;
     /* don't assume driver is the same as face->driver, so use */
@@ -2168,7 +2168,7 @@
     {
       error = FT_New_GlyphSlot( face, NULL );
       if ( error )
-        goto Fail;
+        goto ContFail;
 
       /* finally, allocate a size object for the face */
       {
@@ -2179,7 +2179,7 @@
 
         error = FT_New_Size( face, &size );
         if ( error )
-          goto Fail;
+          goto ContFail;
 
         face->size = size;
       }
@@ -2238,7 +2238,7 @@
 
     goto Exit;
 
-  Fail:
+  ContFail:
     FT_Done_Face( face );
 
   Exit:

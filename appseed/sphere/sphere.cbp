@@ -78,8 +78,8 @@
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
 			<Add option="-Wl,-E" />
 			<Add option="-lFreeImage" />
-			<Add option="-lca2c" />
-			<Add option="-lca2optca" />
+			<Add option="-l_ca2c" />
+			<Add option="-lca2ca" />
 			<Add option="-lca2" />
 			<Add directory="../../../stage/x86" />
 		</Linker>

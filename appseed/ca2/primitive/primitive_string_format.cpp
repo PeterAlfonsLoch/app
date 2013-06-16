@@ -68,33 +68,33 @@ void string_format::allocate_add_up(strsize iLenAddUp)
       }
 
    }
-   
+
    if(iNewSize != m_iSize)
    {
-      
+
       if(m_pszBuffer == NULL)
       {
 
          m_pszBuffer = (char *) ca2_alloc(iNewSize);
-         
+
       }
       else
       {
-         
+
          m_pszBuffer = (char *) ca2_realloc(m_pszBuffer, iNewSize);
-         
+
       }
-      
+
       m_iSize = iNewSize;
-      
+
    }
 
    if(m_pszBuffer == NULL)
       throw memory_exception(::ca2::get_thread_app());
 
-   
+
    memset(&m_pszBuffer[m_iLength], 0, m_iSize - m_iLength);
-   
+
 }
 
 
@@ -205,7 +205,7 @@ bool string_format::parse(const char * & s)
       {
          throw simple_exception(::ca2::get_thread_app(), "unfineshed argument specifier");
       }
-      if(*s == 'ca' || *s == 'd' || *s == 'i'
+      if(*s == 'c' || *s == 'd' || *s == 'i'
       || *s == 'e' || *s == 'E' || *s == 'f'
       || *s == 'g' || *s == 'G' || *s == 'o'
       || *s == 'g' || *s == 'G' || *s == 's'
