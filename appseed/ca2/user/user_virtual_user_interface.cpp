@@ -1289,18 +1289,26 @@ void virtual_user_interface::SetFont(::ca2::font* pFont, bool bRedraw)
    return m_spfont;
 }
 
-uint_ptr virtual_user_interface::SetTimer(uint_ptr nIDEvent, UINT nElapse,
-      void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t))
+
+uint_ptr virtual_user_interface::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t))
 {
+
    UNREFERENCED_PARAMETER(lpfnTimer);
+
    m_pguie->m_pthread->m_pthread->set_timer(m_pguie, nIDEvent, nElapse);
+
    return nIDEvent;
+
 }
+
 
 bool virtual_user_interface::KillTimer(uint_ptr nIDEvent)
 {
+
    m_pguie->m_pthread->m_pthread->unset_timer(m_pguie, nIDEvent);
+
    return TRUE;
+
 }
 
 
