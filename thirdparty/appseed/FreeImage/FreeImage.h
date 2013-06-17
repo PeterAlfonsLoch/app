@@ -150,8 +150,6 @@ typedef unsigned long DWORD;
 typedef long LONG;
 #endif // _MSC_VER
 
-#if !defined(LINUX)
-
 #if (defined(_WIN32) || defined(__WIN32__))
 #pragma pack(push, 1)
 #else
@@ -214,7 +212,6 @@ typedef struct tagBITMAPINFO {
 
 #endif
 
-#endif // _WINDOWS_
 
 
 // Types used in the library (specific to FreeImage) ------------------------
