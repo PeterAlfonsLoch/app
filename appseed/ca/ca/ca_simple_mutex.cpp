@@ -69,7 +69,7 @@ simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)
    }
    else
    {
-      vsstring str = _c_get_file_name(dir::path("/var/lib/ca", pszName), true);
+      vsstring str = _ca_get_file_name(dir::path("/var/lib/ca", pszName), true);
 
       m_key = ftok(".", 'c');
 
@@ -159,12 +159,12 @@ void simple_mutex::lock()
 
 int pthread_mutex_timedlock(pthread_mutex_t * mutex, const struct timespec * abs_timeout)
 {
-   
+
    if(abs_timeout == NULL || (abs_timeout->tv_sec == 0 && abs_timeout->tv_nsec == 0))
    {
-      
+
       return pthread_mutex_lock(mutex);
-      
+
    }
    else
    {
@@ -179,7 +179,7 @@ int pthread_mutex_timedlock(pthread_mutex_t * mutex, const struct timespec * abs
          timespec ts;
          ts.tv_sec = 0;
          ts.tv_sec = 10000000;
-         
+
          /* Sleep for 10,000,000 nanoseconds before trying again. */
          int status = -1;
          while (status == -1)
@@ -189,7 +189,7 @@ int pthread_mutex_timedlock(pthread_mutex_t * mutex, const struct timespec * abs
          return result;
    }
    while(get_tick_count() - ui < uiTimeout);
-   
+
       return ETIMEDOUT;
    }
 }

@@ -245,7 +245,7 @@ SRegInfo *next, *temp;
           next->op = ReMetaSymb;
           next->un.metaSymbol = ReNWBound;
           break;
-        case 'ca':
+        case 'c':
           next->op = ReMetaSymb;
           next->un.metaSymbol = RePreNW;
           break;

@@ -8,7 +8,7 @@
 		<Option extended_obj_names="1" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../../stage/x86/lib_ca2freeimage.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../../stage/x86/lib_ca2pixman.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../../stage/x86/" />
 				<Option object_output="../../../../time/intermediate/app/_ca2freeimage" />
 				<Option type="3" />
@@ -67,6 +67,7 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add option="-DRAW_LINUX" />
+			<Add option="-DHAVE_CONFIG_H" />
 			<Add directory="OpenEXR/IlmImf" />
 			<Add directory="OpenEXR/Imath" />
 			<Add directory="OpenEXR/Iex" />
@@ -81,6 +82,7 @@
 			<Add directory="../../../appseed" />
 			<Add directory="../../appseed" />
 			<Add directory="FreeImage" />
+			<Add directory="../../include" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -91,6 +93,7 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>
+		<Unit filename="config.h" />
 		<Unit filename="loongson-mmintrin.h" />
 		<Unit filename="pixman-access-accessors.c">
 			<Option compilerVar="CC" />
@@ -101,13 +104,7 @@
 		<Unit filename="pixman-accessor.h" />
 		<Unit filename="pixman-arm-common.h" />
 		<Unit filename="pixman-arm-neon-asm.h" />
-		<Unit filename="pixman-arm-neon.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="pixman-arm-simd-asm.h" />
-		<Unit filename="pixman-arm-simd.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="pixman-arm.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -161,9 +158,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="pixman-mips-dspr2-asm.h" />
-		<Unit filename="pixman-mips-dspr2.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="pixman-mips-dspr2.h" />
 		<Unit filename="pixman-mips.c">
 			<Option compilerVar="CC" />
@@ -179,9 +173,6 @@
 		</Unit>
 		<Unit filename="pixman-private.h" />
 		<Unit filename="pixman-radial-gradient.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman-region.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="pixman-region16.c">
@@ -206,9 +197,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="pixman-version.h" />
-		<Unit filename="pixman-vmx.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="pixman-x86.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -184,7 +184,7 @@ namespace ca2
                         }
                      }
                   }
-                  else if(ch1 == 'ca')
+                  else if(ch1 == 'c')
                   {
                      if(ch2 == 'n')
                      {
@@ -210,7 +210,7 @@ namespace ca2
                            return __id(es);
                         }
                      }
-                     else if(ch2 == 'ca')
+                     else if(ch2 == 'c')
                      {
                         if(iLen == 2)
                         {
@@ -368,7 +368,7 @@ namespace ca2
                      defer_add_locale(__id(es), idSchema);
                   }
                }
-               else if(ch1 == 'ca')
+               else if(ch1 == 'c')
                {
                   if(ch2 == 'n')
                   {
@@ -400,7 +400,7 @@ namespace ca2
                      defer_add_locale(__id(pt_br), idSchema);
                      defer_add_locale(__id(pt), idSchema);
                   }
-                  else if(ch2 == 'ca')
+                  else if(ch2 == 'c')
                   {
                      defer_add_locale(__id(es), idSchema);
                      defer_add_locale(__id(br), idSchema);
@@ -700,7 +700,7 @@ restart:
       {
          return ::ca2::object::add_ref();
       }
-       
+
       int64_t locale_schema::release()
       {
          return ::ca2::object::release();

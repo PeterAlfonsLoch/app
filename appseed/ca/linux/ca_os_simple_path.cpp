@@ -6,7 +6,7 @@ os_simple_path::os_simple_path()
 {
 
    m_bFill        = false;
-   m_efillmode    = ::ca::fill_mode_winding;
+   m_efillmode    = ::ca2::fill_mode_winding;
 
 }
 
@@ -55,7 +55,7 @@ bool os_simple_path::add_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 
 }
 
-bool os_simple_path::begin_figure(bool bFill, ::ca::e_fill_mode efillmode)
+bool os_simple_path::begin_figure(bool bFill, ::ca2::e_fill_mode efillmode)
 {
 
    m_bFill = bFill;

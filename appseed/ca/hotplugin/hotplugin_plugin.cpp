@@ -11,7 +11,7 @@
 
 
 #ifdef LINUX
-#include "c/linux/c_os_cross_win_gdi_internal.h"
+#include "ca/linux/ca_os_cross_win_gdi_internal.h"
 #endif
 
 #ifdef WINDOWSEX

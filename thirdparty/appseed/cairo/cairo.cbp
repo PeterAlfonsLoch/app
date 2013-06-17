@@ -8,7 +8,7 @@
 		<Option extended_obj_names="1" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../../stage/x86/lib_ca2freeimage.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../../stage/x86/lib_ca2cairo.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../../stage/x86/" />
 				<Option object_output="../../../../time/intermediate/app/_ca2freeimage" />
 				<Option type="3" />
@@ -87,10 +87,14 @@
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
 			<Add option="-lpthread" />
+			<Add option="-lX11" />
+			<Add option="-lXrender" />
+			<Add option="-lXext" />
 			<Add option="-l_ca2c" />
 			<Add option="-l_ca2zlib" />
 			<Add option="-l_ca2freetype" />
 			<Add option="-l_ca2pixman" />
+			<Add option="-l_ca2freeimage" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>

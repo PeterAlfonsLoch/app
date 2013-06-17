@@ -2,7 +2,7 @@
 
 
 
-#include "linux/c_os_cross_win_gdi_internal.h"
+#include "linux/ca_os_cross_win_gdi_internal.h"
 
 extern cairo_surface_t *  g_cairosurface;
 extern cairo_t *  g_cairo;
@@ -620,14 +620,14 @@ bool os_simple_graphics::text_out(int32_t x, int32_t y, const char * pszUtf8, in
 
 
 
-bool os_simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
+bool os_simple_graphics::set_alpha_mode(::ca2::e_alpha_mode emode)
 {
    switch(emode)
    {
-    case ::ca::alpha_mode_set:
+    case ::ca2::alpha_mode_set:
          cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
          return true;
-   case ::ca::alpha_mode_blend:
+   case ::ca2::alpha_mode_blend:
          cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
          default:;
 
@@ -700,7 +700,7 @@ bool os_simple_graphics::set(simple_path & path)
 
    }
 
-   if(path.m_efillmode == ::ca::fill_mode_alternate)
+   if(path.m_efillmode == ::ca2::fill_mode_alternate)
    {
 
       cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_EVEN_ODD);
@@ -801,7 +801,7 @@ bool os_simple_graphics::replace_clip(const RECT & rect)
 
 }
 
-bool os_simple_graphics::fill_polygon(POINT * p, int32_t iCount, ::ca::e_fill_mode)
+bool os_simple_graphics::fill_polygon(POINT * p, int32_t iCount, ::ca2::e_fill_mode)
 {
 
       return true;

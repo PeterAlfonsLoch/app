@@ -4,7 +4,7 @@
 #ifndef NO_VARIADIC_TEMPLATE
 
 
-namespace ca
+namespace ca2
 {
 
 
@@ -18,7 +18,7 @@ namespace ca
          if(pformat->m_chLength == 'X')
          {
 
-            string str = ::ca::hex::hi_from((void *) &ch, 1);
+            string str = ::ca2::hex::hi_from((void *) &ch, 1);
 
             while(pformat->m_iWidth > str.get_length())
             {
@@ -49,7 +49,7 @@ namespace ca
       void format(string_format * pformat, int16_t const & sh)
       {
 
-         pformat->append(::ca::str::from((int32_t) sh));
+         pformat->append(::ca2::str::from((int32_t) sh));
 
       }
 
@@ -57,7 +57,7 @@ namespace ca
       void format(string_format * pformat, uint16_t const & ush)
       {
 
-         pformat->append(::ca::str::from((uint32_t) ush));
+         pformat->append(::ca2::str::from((uint32_t) ush));
 
       }
 
@@ -65,7 +65,7 @@ namespace ca
       void format(string_format * pformat, int32_t const & i)
       {
          // TODO: use specs
-         string str = ::ca::str::from(i);
+         string str = ::ca2::str::from(i);
          if(pformat->m_bZeroPadding)
          {
             while(str.get_length() < pformat->m_iWidth)
@@ -80,28 +80,28 @@ namespace ca
       void format(string_format * pformat, uint32_t const & ui)
       {
          // TODO: use specs
-         pformat->append(::ca::str::from(ui));
+         pformat->append(::ca2::str::from(ui));
 
       }
 
       void format(string_format * pformat, int64_t const & i)
       {
          // TODO: use specs
-         pformat->append(::ca::str::from(i));
+         pformat->append(::ca2::str::from(i));
 
       }
 
       void format(string_format * pformat, uint64_t const & i)
       {
          // TODO: use specs
-         pformat->append(::ca::str::from(i));
+         pformat->append(::ca2::str::from(i));
 
       }
 
       void format(string_format * pformat, float const & f)
       {
          // TODO: use specs
-         pformat->append(::ca::str::from(f));
+         pformat->append(::ca2::str::from(f));
 
       }
 
@@ -115,7 +115,7 @@ namespace ca
          {
              if(fcvt_r(d, pformat->m_iPrecision, &decimal_point, &negative, sz, sizeof(sz)) == -1)
              {
-                pformat->append(::ca::str::from(d));
+                pformat->append(::ca2::str::from(d));
                 return;
              }
              string str(sz);
@@ -146,7 +146,7 @@ namespace ca
          {
              if(ecvt_r(d, sizeof(sz), &decimal_point, &negative, sz, sizeof(sz)) == -1)
              {
-                pformat->append(::ca::str::from(d));
+                pformat->append(::ca2::str::from(d));
                 return;
              }
              string str(sz);
@@ -183,14 +183,14 @@ namespace ca
       void format(string_format * pformat, const void * const & p)
       {
          // TODO: use specs
-         pformat->append(::ca::str::from((uint_ptr)p));
+         pformat->append(::ca2::str::from((uint_ptr)p));
 
       }
 
       void format(string_format * pformat, void * const & p)
       {
          // TODO: use specs
-         pformat->append(::ca::str::from((uint_ptr)p));
+         pformat->append(::ca2::str::from((uint_ptr)p));
 
       }
 
@@ -228,14 +228,14 @@ namespace ca
       void format(string_format * pformat, lparam const & lparam)
       {
 
-          ::ca::str::format(pformat, lparam.m_lparam);
+          ::ca2::str::format(pformat, lparam.m_lparam);
 
       }
 
    } // namespace str
 
 
-} // namespace gen
+} // namespace ca2
 
 
 #endif

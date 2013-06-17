@@ -154,7 +154,7 @@ void url_domain_base::create(const char * pszServerName)
          m_iLenPrefix   = (pszPreTopLevel3 - 1) - psz;
       }
    }
-   else if(m_iLenTopLevel == 2 
+   else if(m_iLenTopLevel == 2
       && m_pszTopLevel[0] == 'a'
       && m_pszTopLevel[1] == 'm'
       && iLenPreTopLevel == 5
@@ -358,9 +358,9 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
       a4 = '\0';
    }
 
-   if(alen == 3 && a1 == 'ca' && a2 == 'o' && a3 == 'm')
+   if(alen == 3 && a1 == 'c' && a2 == 'o' && a3 == 'm')
       return true;
-   if(alen == 2 && a1 == 'ca' && a2 == 'o')
+   if(alen == 2 && a1 == 'c' && a2 == 'o')
       return true;
    if(blen == 2)
    {
@@ -373,7 +373,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
          {
             if(alen == 2)
             {
-               if(a1 == 'ca' && a2 == 'o')
+               if(a1 == 'c' && a2 == 'o')
                {
                   return true;
                }
@@ -397,13 +397,13 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             }
             else if(alen == 3)
             {
-               if(a1 == 'ca' && a2 == 'o' && a3 == 'm')
+               if(a1 == 'c' && a2 == 'o' && a3 == 'm')
                {
                   return true;
                }
                else if(a1 == 'e')
                {
-                  if(a2 == 'ca' && a3 == 'o')
+                  if(a2 == 'c' && a3 == 'o')
                   {
                      return true;
                   }
@@ -415,7 +415,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
                   {
                      return true;
                   }
-                  else if(a2 == 't' && a3 == 'ca')
+                  else if(a2 == 't' && a3 == 'c')
                   {
                      return true;
                   }
@@ -484,17 +484,17 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             }
          }
       }
-      else if(b1 == 'ca')
+      else if(b1 == 'c')
       {
-         if(b2 == 'ca')
+         if(b2 == 'c')
          {
             if(alen == 2)
             {
-               if(a1 == 'ca' && a2 == 'ca')
+               if(a1 == 'c' && a2 == 'c')
                {
                   return true;
                }
-               else if(a1 == 'ca' && a2 == 'o')
+               else if(a1 == 'c' && a2 == 'o')
                {
                   return true;
                }
@@ -504,7 +504,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
          {
             if(alen == 3)
             {
-               if(a1 == 'ca' && a2 == 'o' && a3 == 'm')
+               if(a1 == 'c' && a2 == 'o' && a3 == 'm')
                {
                   return true;
                }
@@ -522,7 +522,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
          {
             if(alen == 3)
             {
-               if(a1 == 'ca' && a2 == 'o' && a3 == 'm')
+               if(a1 == 'c' && a2 == 'o' && a3 == 'm')
                {
                   return true;
                }
@@ -548,7 +548,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // es
             if(alen == 3)
             {
-               if(a1 == 'ca' && a2 == 'o' && a3 == 'm')
+               if(a1 == 'c' && a2 == 'o' && a3 == 'm')
                {
                   return true;
                }
@@ -571,14 +571,14 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // ee
             if(alen == 2)
             {
-               if(a1 == 'ca' && a2 == 'o')
+               if(a1 == 'c' && a2 == 'o')
                {
                   return true;
                }
             }
             else if(alen == 3)
             {
-               if(a1 == 'ca' && a2 == 'o' && a3 == 'm')
+               if(a1 == 'c' && a2 == 'o' && a3 == 'm')
                {
                   return true;
                }
@@ -592,7 +592,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // gt
             if(alen == 3)
             {
-               if(a1 == 'ca' && a2 == 'o' && a3 == 'm')
+               if(a1 == 'c' && a2 == 'o' && a3 == 'm')
                {
                   return true;
                }
@@ -606,7 +606,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // ht
             if(alen == 3)
             {
-               if(a1 == 'ca' && a2 == 'o' && a3 == 'm')
+               if(a1 == 'c' && a2 == 'o' && a3 == 'm')
                {
                   return true;
                }
@@ -617,7 +617,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // hu
             if(alen == 2)
             {
-               if(a1 == 'ca' && a2 == 'o')
+               if(a1 == 'c' && a2 == 'o')
                {
                   return true;
                }
@@ -631,7 +631,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // il
             if(alen == 2)
             {
-               if(a1 == 'ca' && a2 == 'o')
+               if(a1 == 'c' && a2 == 'o')
                {
                   return true;
                }
@@ -649,7 +649,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // in
             if(alen == 2)
             {
-               if(a1 == 'ca' && a2 == 'o')
+               if(a1 == 'c' && a2 == 'o')
                {
                   return true;
                }
@@ -689,7 +689,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // jp
             if(alen == 2)
             {
-               if(a1 == 'ca' && a2 == 'o')
+               if(a1 == 'c' && a2 == 'o')
                {
                   return true;
                }
@@ -715,7 +715,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // lv
             if(alen == 3)
             {
-               if(a1 == 'ca' && a2 == 'o' && a3 == 'm')
+               if(a1 == 'c' && a2 == 'o' && a3 == 'm')
                {
                   return true;
                }
@@ -737,7 +737,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // mx
             if(alen == 3)
             {
-               if(a1 == 'ca' && a2 == 'o' && a3 == 'm')
+               if(a1 == 'c' && a2 == 'o' && a3 == 'm')
                {
                   return true;
                }
@@ -751,7 +751,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // nl
             if(alen == 2)
             {
-               if(a1 == 'ca' && a2 == 'o')
+               if(a1 == 'c' && a2 == 'o')
                {
                   return true;
                }
@@ -762,7 +762,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // nz
             if(alen == 2)
             {
-               if(a1 == 'ca' && a2 == 'o')
+               if(a1 == 'c' && a2 == 'o')
                {
                   return true;
                }
@@ -776,7 +776,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // pt
             if(alen == 3)
             {
-               if(a1 == 'ca' && a2 == 'o' && a3 == 'm')
+               if(a1 == 'c' && a2 == 'o' && a3 == 'm')
                {
                   return true;
                }
@@ -787,7 +787,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // pl
             if(alen == 3)
             {
-               if(a1 == 'ca' && a2 == 'o' && a3 == 'm')
+               if(a1 == 'c' && a2 == 'o' && a3 == 'm')
                {
                   return true;
                }
@@ -901,7 +901,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             }
             else if(alen == 3)
             {
-               if(a1 == 'ca' && a2 == 'o' && a3 == 'm')
+               if(a1 == 'c' && a2 == 'o' && a3 == 'm')
                {
                   return true;
                }
@@ -916,7 +916,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // tw
             if(alen == 3)
             {
-               if(a1 == 'ca' && a2 == 'o' && a3 == 'm')
+               if(a1 == 'c' && a2 == 'o' && a3 == 'm')
                {
                   return true;
                }
@@ -930,14 +930,14 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // ua
             if(alen == 2)
             {
-               if(a1 == 'ca' && a2 == 'o')
+               if(a1 == 'c' && a2 == 'o')
                {
                   return true;
                }
             }
             else if(alen == 3)
             {
-               if(a1 == 'ca' && a2 == 'o' && a3 == 'm')
+               if(a1 == 'c' && a2 == 'o' && a3 == 'm')
                {
                   return true;
                }
@@ -948,7 +948,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             // uk
             if(alen == 2)
             {
-               if(a1 == 'ca' && a2 == 'o')
+               if(a1 == 'c' && a2 == 'o')
                {
                   return true;
                }
@@ -969,7 +969,7 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
    }
    else if(blen == 3)
    {
-      if(b1 == 'ca')
+      if(b1 == 'c')
       {
          if(b2 == 'o')
          {

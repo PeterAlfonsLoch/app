@@ -1710,6 +1710,9 @@
 		<Unit filename="plane/plane_system.cpp" />
 		<Unit filename="plane/plane_system.h" />
 		<Unit filename="plane/plane_system_allocate.h" />
+		<Unit filename="plane/plane_system_ca2_factory.h" />
+		<Unit filename="plane/plane_system_ca2_str.h" />
+		<Unit filename="plane/plane_system_ca2_template.h" />
 		<Unit filename="plane/plane_system_ca_factory.h" />
 		<Unit filename="plane/plane_system_ca_str.h" />
 		<Unit filename="plane/plane_system_ca_template.h" />

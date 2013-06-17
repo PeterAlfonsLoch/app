@@ -1,4 +1,4 @@
-#include "c/c.h"
+#include "ca/ca.h"
 
 
 #include <fcntl.h>
@@ -27,7 +27,7 @@ int32_t _c_lock(const char * pszName, void ** pdata)
 
    int32_t fd;
 
-   _c_get_file_name(dir::path("/var/lib/ca2/", pszName), true, &fd);
+   _ca_get_file_name(dir::path("/var/lib/ca2/", pszName), true, &fd);
 
    if(fd == -1)
       return 0;
@@ -81,7 +81,7 @@ int32_t _c_unlock(void ** pdata)
 
 
 
-vsstring _c_get_file_name(const char * pszName, bool bCreate, int32_t * pfd)
+vsstring _ca_get_file_name(const char * pszName, bool bCreate, int32_t * pfd)
 {
 
    vsstring str(pszName);
