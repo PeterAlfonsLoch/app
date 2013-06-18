@@ -1,4 +1,4 @@
-#import "macos/c_os_graphics_mm.h"
+#import "macos/ca_os_graphics_mm.h"
 #include <math.h>
 
 
@@ -100,12 +100,12 @@ bool os_simple_path::add_line(int x1, int y1, int x2, int y2)
 
 }
 
-bool os_simple_path::begin_figure(bool bFill, ::ca::e_fill_mode efillmode)
+bool os_simple_path::begin_figure(bool bFill, ::ca2::e_fill_mode efillmode)
 {
    
    m_bFill = bFill;
    
-   if(m_efillmode == ::ca::fill_mode_alternate)
+   if(m_efillmode == ::ca2::fill_mode_alternate)
    {
       [m_nspath setWindingRule:NSEvenOddWindingRule];
    }

@@ -13,7 +13,7 @@ class simple_graphics;
 
 
 
-class CLASS_DECL_c simple_bitmap
+class CLASS_DECL_ca simple_bitmap
 {
 public:
    

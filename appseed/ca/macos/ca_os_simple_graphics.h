@@ -11,7 +11,7 @@
 typedef CGRect NSRect;
 #endif
 
-class CLASS_DECL_c os_simple_graphics
+class CLASS_DECL_ca os_simple_graphics
 {
 public:
    
@@ -73,7 +73,7 @@ public:
    
    
    bool is_null();
-   bool set_alpha_mode(::ca::e_alpha_mode emode);
+   bool set_alpha_mode(::ca2::e_alpha_mode emode);
 
    
    
@@ -85,7 +85,7 @@ public:
    void fill_solid_rect(LPCRECT lpRect, COLORREF clr);
 
 
-   bool fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode);
+   bool fill_polygon(POINT * p, int iCount, ::ca2::e_fill_mode);
    
    
    bool draw_path(simple_path & path, simple_pen & pen);

@@ -7,9 +7,9 @@
 
 #if defined(MACOS)
 
-#include "c/ansios/ansios.h"
+#include "ca/ansios/ansios.h"
 #include "os_binreloc.h"
-#include "c/macos/c_os.h"
+#include "ca/macos/ca_os.h"
 
 #define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL

@@ -19,20 +19,15 @@
 #endif
 
 
-
-
 #define __MM
 
-#ifdef _WIN32
-#ifdef __C__LIB
-#define CLASS_DECL_c
-#elif defined(__C__DLL)
-#define CLASS_DECL_c  _declspec(dllexport)
+
+#ifdef __CA__STATIC
+#define CLASS_DECL_ca
+#elif defined(__CA__LIBRARY)
+#define CLASS_DECL_ca  CLASS_DECL_EXPORT
 #else
-#define CLASS_DECL_c  _declspec(dllimport)
-#endif
-#else
-#define CLASS_DECL_c
+#define CLASS_DECL_ca  CLASS_DECL_IMPORT
 #endif
 
 
@@ -48,18 +43,20 @@ namespace ca
 
 
 #include "nodeapp/operational_system/_.h"
+#include "nodeapp/operational_system/_c.h"
+#include "nodeapp/operational_system/_ca.h"
 
 
-#include "c/vms/vms.h"
+#include "ca/vms/vms.h"
 
 
-#include "c/version/version.h"
+#include "ca/version/version.h"
 
 
-#include "c_types.h"
+#include "ca_types.h"
 
 
-#include "c_natural.h"
+#include "ca_natural.h"
 
 
 #define GetAValue(rgb)      (LOBYTE((rgb)>>24))
@@ -70,47 +67,47 @@ namespace ca
 extern "C"
 {
    
-#include "c_cpu_architecture.h"
+#include "ca_cpu_architecture.h"
    
 }
 
 
-#include "c_libc.h"
+#include "ca_libc.h"
 
 
-#include "c_count.h"
-#include "c_index.h"
-#include "c_keep_true.h"
+#include "ca_count.h"
+#include "ca_index.h"
+#include "ca_keep_true.h"
 
 
-#include "c_debug.h"
-
-
-
-
-#include "c_printf.h"
-#include "c_sprintf.h"
-#include "c_str.h"
-#include "c_conv.h"
+#include "ca_debug.h"
 
 
 
-#include "c_heap.h"
-#include "c_math.h"
 
-#include "c_geometric_types.h"
-
-
-#include "c_verisimple_string.h"
-#include "c_verisimple_wstring.h"
-#include "c_vsstringtow.h"
-#include "c_wstringtovss.h"
-
-#include "c_dir.h"
-#include "c_md5.h"
+#include "ca_printf.h"
+#include "ca_sprintf.h"
+#include "ca_str.h"
+#include "ca_conv.h"
 
 
-#include "c_simple_memory.h"
+
+#include "ca_heap.h"
+#include "ca_math.h"
+
+#include "ca_geometric_types.h"
+
+
+#include "ca_verisimple_string.h"
+#include "ca_verisimple_wstring.h"
+#include "ca_vsstringtow.h"
+#include "ca_wstringtovss.h"
+
+#include "ca_dir.h"
+#include "ca_md5.h"
+
+
+#include "ca_simple_memory.h"
 
 
 

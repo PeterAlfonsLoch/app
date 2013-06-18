@@ -164,7 +164,7 @@ public:
 
 #include "ca_math.h"
 
-#include "ca_geometrica_types.h"
+#include "ca_geometric_types.h"
 
 
 #include "ca_verisimple_string.h"

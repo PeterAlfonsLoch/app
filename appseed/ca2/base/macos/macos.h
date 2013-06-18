@@ -31,17 +31,17 @@ void RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumber
 
 
 
-namespace ex1
+namespace ca2
 {
 
 
    class file;
 
 
-} // namespace ex1
+} // namespace ca2
 
 
-typedef ::ca::file * HFILE;
+typedef ::ca2::file * HFILE;
 
 
 
