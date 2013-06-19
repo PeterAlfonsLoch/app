@@ -517,27 +517,40 @@ namespace user
    void frame_window::_001OnCreate(::ca2::signal_object * pobj)
    {
 
-      ::ca2::thread * pappthread = System.GetThread()->get_app_thread();
+      ::ca2::thread * pappthread = m_pthread->m_pthread;
+      
       if(pappthread != NULL)
       {
+         
          if(pappthread->GetMainWnd() == NULL)
          {
+            
             pappthread->SetMainWnd(this);
+            
          }
+         
       }
+      
       if(Application.GetMainWnd() == NULL)
       {
+         
          Application.SetMainWnd(this);
+         
       }
 
       if(pobj->previous())
          return;
 
       SCAST_PTR(::ca2::message::create, pcreate, pobj)
-         ENSURE_ARG(pcreate->m_lpcreatestruct != NULL);
+      
+      ENSURE_ARG(pcreate->m_lpcreatestruct != NULL);
+      
       sp(::ca2::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
+      
       pcreate->set_lresult(OnCreateHelper(pcreate->m_lpcreatestruct, pContext));
+      
       pcreate->m_bRet = pcreate->get_lresult() == -1;
+      
    }
 
    int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, sp(::ca2::create_context) pContext)

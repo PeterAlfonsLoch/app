@@ -1826,6 +1826,7 @@
 		9A6F20F31761F92900C33206 /* webserver_http_request.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6F20E91761F92900C33206 /* webserver_http_request.h */; };
 		9A6F20F41761F92900C33206 /* webserver_http_response.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6F20EA1761F92900C33206 /* webserver_http_response.h */; };
 		9A6F20F51761F92900C33206 /* webserver_http_transaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6F20EB1761F92900C33206 /* webserver_http_transaction.h */; };
+		9A98A6251771D77A000AE16E /* lib_ca2c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A98A6241771D77A000AE16E /* lib_ca2c.dylib */; };
 		9AC494181770CD6800DC2349 /* _ca2_2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4927C1770CD6700DC2349 /* _ca2_2.h */; };
 		9AC494191770CD6800DC2349 /* aaa_want_to_remove_ca2_file_manager_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4927D1770CD6700DC2349 /* aaa_want_to_remove_ca2_file_manager_interface.h */; };
 		9AC4941A1770CD6800DC2349 /* aaa_want_to_remove_ca2_raw_pointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4927E1770CD6700DC2349 /* aaa_want_to_remove_ca2_raw_pointer.h */; };
@@ -2240,7 +2241,6 @@
 		9ACA78D316F7CAAC00AA1CEE /* lib_ca2freetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA5E6E216F7C7E2005C45CE /* lib_ca2freetype.dylib */; };
 		9ACA78D416F7CAAC00AA1CEE /* lib_ca2openssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA5E6E316F7C7E2005C45CE /* lib_ca2openssl.dylib */; };
 		9ACA78D516F7CAAC00AA1CEE /* lib_ca2zlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA5E6E416F7C7E2005C45CE /* lib_ca2zlib.dylib */; };
-		9ACA78D616F7CAAC00AA1CEE /* libca2c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA5E6DB16F7C75E005C45CE /* libca2c.dylib */; };
 		9ACA78D816F7CAAC00AA1CEE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A58847D16A20D5E0061C610 /* Security.framework */; };
 		9ACA78D916F7CAAC00AA1CEE /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A58847B16A20D480061C610 /* Carbon.framework */; };
 		9ACA78DA16F7CAAC00AA1CEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A58847916A20D360061C610 /* Foundation.framework */; };
@@ -4113,6 +4113,7 @@
 		9A6F20EA1761F92900C33206 /* webserver_http_response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webserver_http_response.h; sourceTree = "<group>"; };
 		9A6F20EB1761F92900C33206 /* webserver_http_transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webserver_http_transaction.h; sourceTree = "<group>"; };
 		9A8916841751D72100E531ED /* libca2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libca2.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A98A6241771D77A000AE16E /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
 		9AA5E6DB16F7C75E005C45CE /* libca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libca2c.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libca2c.dylib"; sourceTree = "<group>"; };
 		9AA5E6E116F7C7E1005C45CE /* lib_ca2freeimage.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2freeimage.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2freeimage.dylib"; sourceTree = "<group>"; };
 		9AA5E6E216F7C7E2005C45CE /* lib_ca2freetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2freetype.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2freetype.dylib"; sourceTree = "<group>"; };
@@ -4544,11 +4545,11 @@
 				9ACA78DA16F7CAAC00AA1CEE /* Foundation.framework in Frameworks */,
 				9ACA78DB16F7CAAC00AA1CEE /* AppKit.framework in Frameworks */,
 				9ADEA47E176669D400D4CF1F /* libmysql.16.dylib in Frameworks */,
+				9A98A6251771D77A000AE16E /* lib_ca2c.dylib in Frameworks */,
 				9ACA78D516F7CAAC00AA1CEE /* lib_ca2zlib.dylib in Frameworks */,
 				9ACA78D216F7CAAC00AA1CEE /* lib_ca2freeimage.dylib in Frameworks */,
 				9ACA78D316F7CAAC00AA1CEE /* lib_ca2freetype.dylib in Frameworks */,
 				9ACA78D416F7CAAC00AA1CEE /* lib_ca2openssl.dylib in Frameworks */,
-				9ACA78D616F7CAAC00AA1CEE /* libca2c.dylib in Frameworks */,
 				9AC495B21770D16E00DC2349 /* libca2ca.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7456,6 +7457,7 @@
 		9A8897AB14C2C8DB006B4023 = {
 			isa = PBXGroup;
 			children = (
+				9A98A6241771D77A000AE16E /* lib_ca2c.dylib */,
 				9AC495B11770D16E00DC2349 /* libca2ca.dylib */,
 				9ADEA47D176669D400D4CF1F /* libmysql.16.dylib */,
 				9AA5E6E416F7C7E2005C45CE /* lib_ca2zlib.dylib */,

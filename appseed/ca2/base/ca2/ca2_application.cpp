@@ -4053,16 +4053,25 @@ namespace ca2
          return NULL;
       return System.window_from_os_data(oswindowCapture)->release_capture();
 
+#elif defined(MACOS)
+      
+      oswindow oswindowCapture = ::GetCapture();
+      if(oswindowCapture == NULL)
+         return NULL;
+      return oswindowCapture->get_user_interaction()->release_capture();
+      
 #else
 
       throw not_implemented(get_app());
+      
 #endif
 
    }
 
+   
    sp(::user::interaction) application::get_capture_uie()
    {
-
+      
 #ifdef METROWIN
 
       return ::GetCapture()->window();
@@ -4070,8 +4079,10 @@ namespace ca2
 #elif defined(WINDOWS)
 
       oswindow oswindowCapture = ::GetCapture();
+
       if(oswindowCapture == NULL)
          return NULL;
+      
       return System.window_from_os_data(oswindowCapture).cast < ::ca2::window >()->get_capture();
 
 #else
@@ -4079,6 +4090,7 @@ namespace ca2
 //      throw not_implemented(get_app());
 
       oswindow oswindowCapture = ::GetCapture();
+      
       if(oswindowCapture == NULL)
          return NULL;
 
@@ -4088,10 +4100,14 @@ namespace ca2
 
    }
 
+   
    ::user::str_context * application::str_context()
    {
+      
       return m_puserstrcontext;
+      
    }
+   
 
    void application::get_cursor_pos(LPPOINT lppoint)
    {

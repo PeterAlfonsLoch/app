@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A98A6171771D6F3000AE16E /* lib_ca2c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A98A6161771D6F3000AE16E /* lib_ca2c.dylib */; };
 		9AA5E4C416F7C61B005C45CE /* BitmapAccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C0B816E7F5FF008420D3 /* BitmapAccess.cpp */; };
 		9AA5E4C516F7C61B005C45CE /* CacheFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C0B916E7F5FF008420D3 /* CacheFile.cpp */; };
 		9AA5E4C616F7C61B005C45CE /* ColorLookup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C0BA16E7F5FF008420D3 /* ColorLookup.cpp */; };
@@ -1078,6 +1079,7 @@
 		9A86C4C516E7F601008420D3 /* ToneMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToneMapping.h; sourceTree = "<group>"; };
 		9A86C4C616E7F601008420D3 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		9A86CBCB16E8260D008420D3 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
+		9A98A6161771D6F3000AE16E /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
 		9AA5E6D616F7C61B005C45CE /* lib_ca2freeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = lib_ca2freeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEB7ABB16F7BEB20085103B /* lib_ca2zlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2zlib.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2zlib.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1087,6 +1089,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A98A6171771D6F3000AE16E /* lib_ca2c.dylib in Frameworks */,
 				9AA5E5FD16F7C61B005C45CE /* lib_ca2zlib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1097,6 +1100,7 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A98A6161771D6F3000AE16E /* lib_ca2c.dylib */,
 				9AEB7ABB16F7BEB20085103B /* lib_ca2zlib.dylib */,
 				9AEB768616F7BAA50085103B /* Products */,
 				9A86C0B716E7F5FF008420D3 /* FreeImage */,
@@ -2455,6 +2459,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
+				);
 				PRODUCT_NAME = _ca2freeimage;
 			};
 			name = Debug;
@@ -2463,6 +2471,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
+				);
 				PRODUCT_NAME = _ca2freeimage;
 			};
 			name = Release;

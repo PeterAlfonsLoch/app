@@ -820,6 +820,7 @@
 		9A1B491016A4747900875A94 /* tb_rand.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B48F216A4747900875A94 /* tb_rand.c */; };
 		9A1B491116A4747900875A94 /* tb_rsa.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B48F316A4747900875A94 /* tb_rsa.c */; };
 		9A1B491216A4747900875A94 /* tb_store.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B48F416A4747900875A94 /* tb_store.c */; };
+		9A98A61B1771D708000AE16E /* lib_ca2c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A98A61A1771D708000AE16E /* lib_ca2c.dylib */; };
 		9AEB754916F778640085103B /* aes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEB74FE16F778590085103B /* aes.h */; };
 		9AEB754A16F778640085103B /* asn1_mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEB74FF16F7785A0085103B /* asn1_mac.h */; };
 		9AEB754B16F778640085103B /* asn1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEB750016F7785A0085103B /* asn1.h */; };
@@ -1770,6 +1771,7 @@
 		9A1B48F216A4747900875A94 /* tb_rand.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tb_rand.c; path = engine/tb_rand.c; sourceTree = "<group>"; };
 		9A1B48F316A4747900875A94 /* tb_rsa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tb_rsa.c; path = engine/tb_rsa.c; sourceTree = "<group>"; };
 		9A1B48F416A4747900875A94 /* tb_store.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tb_store.c; path = engine/tb_store.c; sourceTree = "<group>"; };
+		9A98A61A1771D708000AE16E /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
 		9AEB74FE16F778590085103B /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aes.h; path = ../../../include/openssl/aes.h; sourceTree = "<group>"; };
 		9AEB74FF16F7785A0085103B /* asn1_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asn1_mac.h; path = ../../../include/openssl/asn1_mac.h; sourceTree = "<group>"; };
 		9AEB750016F7785A0085103B /* asn1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asn1.h; path = ../../../include/openssl/asn1.h; sourceTree = "<group>"; };
@@ -1853,6 +1855,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A98A61B1771D708000AE16E /* lib_ca2c.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1862,6 +1865,7 @@
 		9A1B398816A332AE00875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A98A61A1771D708000AE16E /* lib_ca2c.dylib */,
 				9AEB74FD16F778320085103B /* include */,
 				9A1B3A2C16A43C8600875A94 /* crypto */,
 				9A1B40CC16A43C8D00875A94 /* engines */,
@@ -4318,6 +4322,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -4326,6 +4334,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -1030,6 +1030,8 @@ namespace user
       }
 
       layout_pane(_001GetSel());
+      
+      _001RedrawWindow();
 
    }
 

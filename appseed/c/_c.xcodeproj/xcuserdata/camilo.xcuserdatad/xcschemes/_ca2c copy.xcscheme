@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A16FC971770D55400759432"
+               BlueprintIdentifier = "9A98A6031771D67E000AE16E"
                BuildableName = "lib_ca2c copy.dylib"
-               BlueprintName = "_ca2c copy"
+               BlueprintName = "_ca2c"
                ReferencedContainer = "container:_c.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

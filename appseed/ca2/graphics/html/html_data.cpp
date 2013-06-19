@@ -139,10 +139,10 @@ namespace html
       m_elemental.m_propertyset.clear();
       m_elemental.m_pbase = NULL;
       delete m_elemental.m_pimpl;
-      for(int32_t i = 0; i < m_elemental.m_elementalptra.get_size(); i++)
-      {
-         delete m_elemental.m_elementalptra[i];
-      }
+//      for(int32_t i = 0; i < m_elemental.m_elementalptra.get_size(); i++)
+  //    {
+    //     delete m_elemental.m_elementalptra[i];
+      //}
       m_elemental.m_elementalptra.remove_all();
       m_elemental.m_pimpl = NULL;
       m_bImplemented = false;

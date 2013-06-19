@@ -190,15 +190,27 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
       DestroyWindow();
    }
 
+   m_pthread = ::ca2::get_thread();
+   
+   if(m_pthread == NULL)
+      m_pthread = get_app();
+   
+   if(m_pthread == NULL)
+      return false;
+   
+   m_pthread->m_pthread->add(this);
+
+   m_pguie->m_pthread = m_pthread;
+   
+   m_pguie->m_pthread->m_pthread->add(m_pguie);
+
    m_bCreate = true;
+   
    if(!create_message_window())
-      return FALSE;
+      return false;
+   
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
 
-   m_pthread = ::ca2::get_thread();
-   m_pthread->m_pthread->add(this);
-   m_pguie->m_pthread = m_pthread;
-   m_pguie->m_pthread->m_pthread->add(m_pguie);
 
 
    //m_pguie = this;
@@ -299,18 +311,35 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
 bool virtual_user_interface::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,  const RECT& rect, sp(::user::interaction)  pparent, id id, sp(::ca2::create_context) pContext)
 {
+
    if(m_bCreate)
    {
+      
       DestroyWindow();
+      
    }
+   
+   m_pthread = ::ca2::get_thread();
+   
+   if(m_pthread == NULL)
+      m_pthread = get_app();
+   
+   if(m_pthread == NULL)
+      return false;
+   
    m_bCreate = true;
+   
    if(!create_message_window())
       return FALSE;
-   m_pthread = ::ca2::get_thread();
+   
    m_pthread->m_pthread->add(this);
+   
    m_pguie->m_pthread = m_pthread;
+   
    m_pguie->m_pthread->m_pthread->add(m_pguie);
+   
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
+   
    //m_pguie = this;
 //   m_oswindow = pparent->get_handle();
 //   sp(::ca2::window) pwndThis = (this);
@@ -406,20 +435,37 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 }
 
 
-bool virtual_user_interface::create(sp(::user::interaction)pparent, id id)
+bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
 {
+   
    if(m_bCreate)
    {
+   
       DestroyWindow();
+      
    }
-   m_bCreate = true;
+   
+   m_pthread = ::ca2::get_thread();
+
+   if(m_pthread == NULL)
+      m_pthread = get_app();
+   
+   if(m_pthread == NULL)
+      return false;
+   
    if(!create_message_window())
       return false;
-   m_pthread = ::ca2::get_thread();
+   
+   m_bCreate = true;
+   
    m_pthread->m_pthread->add(this);
+   
    m_pguie->m_pthread = m_pthread;
+   
    m_pguie->m_pthread->m_pthread->add(m_pguie);
+   
    m_bVisible = true;
+   
    //m_pguie = this;
 //   m_oswindow = pparent->get_handle();
 //   sp(::ca2::window) pwndThis = (this);

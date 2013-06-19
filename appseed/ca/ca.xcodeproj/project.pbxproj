@@ -59,6 +59,7 @@
 		9A1B357916A2D0EC00875A94 /* windows_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07159397167396C800D7190F /* windows_user.cpp */; };
 		9A6F20DF1761C7D400C33206 /* windows_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6F20DE1761C7D400C33206 /* windows_thread.cpp */; };
 		9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
+		9A98A6231771D770000AE16E /* lib_ca2c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A98A6221771D770000AE16E /* lib_ca2c.dylib */; };
 		9AC29ED0168CC84800DA3F3F /* ansios_cross_win_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC29ECE168CC84800DA3F3F /* ansios_cross_win_file.cpp */; };
 		9AC29ED1168CC84800DA3F3F /* ansios_cross_win.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC29ECF168CC84800DA3F3F /* ansios_cross_win.cpp */; };
 		9AC4447F1770BB8300DC2349 /* _initterm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4440D1770BB8200DC2349 /* _initterm.cpp */; };
@@ -343,6 +344,7 @@
 		9A6F20DE1761C7D400C33206 /* windows_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = windows_thread.cpp; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A88B4F514C2CBF8006B4023 /* libca2ca.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libca2ca.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A98A6221771D770000AE16E /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
 		9AC29ECE168CC84800DA3F3F /* ansios_cross_win_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ansios_cross_win_file.cpp; path = ansios/ansios_cross_win_file.cpp; sourceTree = "<group>"; };
 		9AC29ECF168CC84800DA3F3F /* ansios_cross_win.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ansios_cross_win.cpp; path = ansios/ansios_cross_win.cpp; sourceTree = "<group>"; };
 		9AC4440D1770BB8200DC2349 /* _initterm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = _initterm.cpp; path = ca/_initterm.cpp; sourceTree = SOURCE_ROOT; };
@@ -580,6 +582,7 @@
 				9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */,
 				CE931715155F1599005F90F6 /* Carbon.framework in Frameworks */,
 				073EDDE2164E968100818801 /* Security.framework in Frameworks */,
+				9A98A6231771D770000AE16E /* lib_ca2c.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -829,6 +832,7 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
+				9A98A6221771D770000AE16E /* lib_ca2c.dylib */,
 				073EDDE4164E96DA00818801 /* SecurityFoundation.framework */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
 				CE931714155F1599005F90F6 /* Carbon.framework */,
@@ -1425,6 +1429,10 @@
 					MACOS_CLASSIC,
 					_DEBIG,
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
+				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1450,6 +1458,10 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_CPU_X64,
 					MACOS_CLASSIC,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
 				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRELINK_LIBS = "";

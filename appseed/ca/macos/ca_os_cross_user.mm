@@ -1,6 +1,9 @@
 #import "ca_mm.h"
 
 
+WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect);
+
+
 bool oswindow_data::is_window_visible()
 {
    
@@ -35,11 +38,12 @@ WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
 
    NSRect rect;
    
+   NSRect frame = [[NSScreen mainScreen] frame];
+   
    rect.origin.x     = lpcrect->left;
-   rect.origin.y     = lpcrect->top;
+   rect.origin.y     = frame.size.height  -     lpcrect->bottom;
    rect.size.width   = lpcrect->right     -     lpcrect->left;
    rect.size.height  = lpcrect->bottom    -     lpcrect->top;
-   
    
    [hwnd->window() setFrame : rect display : iDisplay];
    
@@ -52,10 +56,14 @@ WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
 WINBOOL move_nswindow(oswindow hwnd, int x, int y)
 {
    
+   RECT rect;
+   
+   get_nswindow_rect(hwnd, &rect);
+   
    NSPoint point;
    
    point.x = x;
-   point.y = y;
+   point.y = [[NSScreen mainScreen] frame].size.height - rect.top;
    
    [hwnd->window() setFrameTopLeftPoint : point];
    

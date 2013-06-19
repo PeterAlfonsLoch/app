@@ -60,6 +60,19 @@ namespace ca2
       }
 
    };
+   
+   
+   template < >
+   class CLASS_DECL_ca2 hash < id >
+   {
+   public:
+      
+      inline static UINT HashKey (const id & key)
+      {
+         return strid_hash::HashKey(key);
+      }
+      
+   };
 
 
 } // namespace ca2

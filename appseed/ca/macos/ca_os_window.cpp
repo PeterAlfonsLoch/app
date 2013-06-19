@@ -263,6 +263,8 @@ oswindow SetCapture(oswindow window)
    if(window->window() == NULL)
       return NULL;
    
+   g_oswindowCapture = window;
+   
 /*   if(XGrabPointer(window.display(), window.window(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync, GrabModeAsync, None, None, 8CurrentTime) == GrabSuccess)
    {
       

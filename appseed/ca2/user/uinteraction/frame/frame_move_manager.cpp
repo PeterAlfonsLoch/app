@@ -91,15 +91,23 @@ namespace uinteraction
             return false;
          pmouse->m_bRet = true;
          sp(::user::interaction) puieCapture = System.get_capture_uie();
+         
          if(puieCapture == NULL)
          {
+            
 #ifdef LINUX
+            
             // for safety in Linux
             ::ReleaseCapture();
+            
 #endif
+            
             m_bMoving = false;
+            
             return false;
+            
          }
+         
          sp(::user::interaction) puieEventWindow = GetEventWindow();
          if(puieCapture != puieEventWindow)
          {

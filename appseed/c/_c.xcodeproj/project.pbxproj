@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		073EDDE2164E968100818801 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073EDDE1164E968100818801 /* Security.framework */; };
-		07A6E1EE173C45B0009E6FB8 /* c_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6E1EA173C45B0009E6FB8 /* c_c.h */; };
-		07A81DC81633E0A000ADF7D6 /* c.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A81D601633E09F00ADF7D6 /* c.h */; };
-		07BD556D16210BD4008E31F0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
-		9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
-		9AC444031770A95B00DC2349 /* c_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC444011770A95B00DC2349 /* c_mm.h */; };
-		9AC444041770A95B00DC2349 /* c.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AC444021770A95B00DC2349 /* c.c */; };
-		CE4BB20F156B8B2600DD13ED /* framework.c in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB20D156B8B2600DD13ED /* framework.c */; };
-		CE4BB210156B8B2600DD13ED /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = CE4BB20E156B8B2600DD13ED /* framework.h */; };
-		CE931715155F1599005F90F6 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
-		CEBB9C6F1466609600912AFA /* c_os_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = CEBB9C6E1466609600912AFA /* c_os_internal.h */; };
+		9A98A6051771D67E000AE16E /* framework.c in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB20D156B8B2600DD13ED /* framework.c */; };
+		9A98A6061771D67E000AE16E /* c.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AC444021770A95B00DC2349 /* c.c */; };
+		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
+		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
+		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
+		9A98A60B1771D67E000AE16E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073EDDE1164E968100818801 /* Security.framework */; };
+		9A98A60D1771D67E000AE16E /* c_os_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = CEBB9C6E1466609600912AFA /* c_os_internal.h */; };
+		9A98A60E1771D67E000AE16E /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = CE4BB20E156B8B2600DD13ED /* framework.h */; };
+		9A98A60F1771D67E000AE16E /* c.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A81D601633E09F00ADF7D6 /* c.h */; };
+		9A98A6101771D67E000AE16E /* c_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6E1EA173C45B0009E6FB8 /* c_c.h */; };
+		9A98A6111771D67E000AE16E /* c_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC444011770A95B00DC2349 /* c_mm.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		07A81D601633E09F00ADF7D6 /* c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c.h; sourceTree = "<group>"; };
 		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
-		9A88B4F514C2CBF8006B4023 /* libca2c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libca2c.dylib; path = lib_ca2c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A98A6151771D67E000AE16E /* lib_ca2c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = lib_ca2c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC444011770A95B00DC2349 /* c_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_mm.h; sourceTree = "<group>"; };
 		9AC444021770A95B00DC2349 /* c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = c.c; sourceTree = "<group>"; };
 		CE4BB20D156B8B2600DD13ED /* framework.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = framework.c; sourceTree = SOURCE_ROOT; };
@@ -37,14 +37,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		CEA754C114411F2B007E04DE /* Frameworks */ = {
+		9A98A6071771D67E000AE16E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07BD556D16210BD4008E31F0 /* AppKit.framework in Frameworks */,
-				9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */,
-				CE931715155F1599005F90F6 /* Carbon.framework in Frameworks */,
-				073EDDE2164E968100818801 /* Security.framework in Frameworks */,
+				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
+				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
+				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,
+				9A98A60B1771D67E000AE16E /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,7 +65,6 @@
 		07740C7F16AD57A20065CE47 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A88B4F514C2CBF8006B4023 /* libca2c.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +82,7 @@
 				07740C7F16AD57A20065CE47 /* Products */,
 				CE4BB20D156B8B2600DD13ED /* framework.c */,
 				CE4BB20E156B8B2600DD13ED /* framework.h */,
+				9A98A6151771D67E000AE16E /* lib_ca2c.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,28 +97,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		CEA754C214411F2B007E04DE /* Headers */ = {
+		9A98A60C1771D67E000AE16E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEBB9C6F1466609600912AFA /* c_os_internal.h in Headers */,
-				CE4BB210156B8B2600DD13ED /* framework.h in Headers */,
-				07A81DC81633E0A000ADF7D6 /* c.h in Headers */,
-				07A6E1EE173C45B0009E6FB8 /* c_c.h in Headers */,
-				9AC444031770A95B00DC2349 /* c_mm.h in Headers */,
+				9A98A60D1771D67E000AE16E /* c_os_internal.h in Headers */,
+				9A98A60E1771D67E000AE16E /* framework.h in Headers */,
+				9A98A60F1771D67E000AE16E /* c.h in Headers */,
+				9A98A6101771D67E000AE16E /* c_c.h in Headers */,
+				9A98A6111771D67E000AE16E /* c_mm.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		CEA754C314411F2B007E04DE /* _ca2c */ = {
+		9A98A6031771D67E000AE16E /* _ca2c */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CEA754D214411F2C007E04DE /* Build configuration list for PBXNativeTarget "_ca2c" */;
+			buildConfigurationList = 9A98A6121771D67E000AE16E /* Build configuration list for PBXNativeTarget "_ca2c" */;
 			buildPhases = (
-				CEA754C014411F2B007E04DE /* Sources */,
-				CEA754C114411F2B007E04DE /* Frameworks */,
-				CEA754C214411F2B007E04DE /* Headers */,
+				9A98A6041771D67E000AE16E /* Sources */,
+				9A98A6071771D67E000AE16E /* Frameworks */,
+				9A98A60C1771D67E000AE16E /* Headers */,
 			);
 			buildRules = (
 			);
@@ -126,7 +126,7 @@
 			);
 			name = _ca2c;
 			productName = c;
-			productReference = 9A88B4F514C2CBF8006B4023 /* libca2c.dylib */;
+			productReference = 9A98A6151771D67E000AE16E /* lib_ca2c.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -150,24 +150,79 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CEA754C314411F2B007E04DE /* _ca2c */,
+				9A98A6031771D67E000AE16E /* _ca2c */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CEA754C014411F2B007E04DE /* Sources */ = {
+		9A98A6041771D67E000AE16E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE4BB20F156B8B2600DD13ED /* framework.c in Sources */,
-				9AC444041770A95B00DC2349 /* c.c in Sources */,
+				9A98A6051771D67E000AE16E /* framework.c in Sources */,
+				9A98A6061771D67E000AE16E /* c.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		9A98A6131771D67E000AE16E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					TARGET_CPU_X64,
+					MACOS_CLASSIC,
+					_DEBIG,
+				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				PRELINK_LIBS = "";
+				PRODUCT_NAME = _ca2c;
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca2";
+				WARNING_CFLAGS = (
+					"-Wno-comment",
+					"-Wno-unused-value",
+					"-Wno-c++11-extensions",
+				);
+			};
+			name = Debug;
+		};
+		9A98A6141771D67E000AE16E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					TARGET_CPU_X64,
+					MACOS_CLASSIC,
+				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				PRELINK_LIBS = "";
+				PRODUCT_NAME = _ca2c;
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca2";
+				WARNING_CFLAGS = (
+					"-Wno-comment",
+					"-Wno-unused-value",
+					"-Wno-c++11-extensions",
+				);
+			};
+			name = Release;
+		};
 		CEA754D014411F2C007E04DE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -250,78 +305,23 @@
 			};
 			name = Release;
 		};
-		CEA754D314411F2C007E04DE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					TARGET_CPU_X64,
-					MACOS_CLASSIC,
-					_DEBIG,
-				);
-				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
-				PRELINK_LIBS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca2";
-				WARNING_CFLAGS = (
-					"-Wno-comment",
-					"-Wno-unused-value",
-					"-Wno-c++11-extensions",
-				);
-			};
-			name = Debug;
-		};
-		CEA754D414411F2C007E04DE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					TARGET_CPU_X64,
-					MACOS_CLASSIC,
-				);
-				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
-				PRELINK_LIBS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca2";
-				WARNING_CFLAGS = (
-					"-Wno-comment",
-					"-Wno-unused-value",
-					"-Wno-c++11-extensions",
-				);
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9A98A6121771D67E000AE16E /* Build configuration list for PBXNativeTarget "_ca2c" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A98A6131771D67E000AE16E /* Debug */,
+				9A98A6141771D67E000AE16E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CEA754BE14411F2B007E04DE /* Build configuration list for PBXProject "_c" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEA754D014411F2C007E04DE /* Debug */,
 				CEA754D114411F2C007E04DE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CEA754D214411F2C007E04DE /* Build configuration list for PBXNativeTarget "_ca2c" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CEA754D314411F2C007E04DE /* Debug */,
-				CEA754D414411F2C007E04DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
