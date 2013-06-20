@@ -1035,7 +1035,9 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="android\c_os_internal.h" />
+    <ClInclude Include="android\c_os_internal.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="c\c.h" />
     <ClInclude Include="c\c_c.h" />
     <ClInclude Include="c\c_mm.h" />
@@ -1045,7 +1047,9 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="android\c_os_internal.c" />
+    <ClCompile Include="android\c_os_internal.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="c\c.c" />
     <ClCompile Include="framework.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>

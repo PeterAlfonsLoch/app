@@ -21,7 +21,7 @@
 
 #if defined(ANDROID)
 
-#elif WINDOWS
+#elif defined(WINDOWS)
 
 #include <eh.h>
 
