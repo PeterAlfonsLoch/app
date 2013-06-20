@@ -70,11 +70,11 @@
 			<Add option="-DLINUX" />
 			<Add option="-DOPENSSL_OPT_LIBRARY" />
 			<Add option="-DOPENSSL_NO_ASM" />
-			<Add directory="../../../../../ca2" />
+			<Add directory="../../include" />
+			<Add directory="../../../.." />
 			<Add directory="../../../appseed/c" />
 			<Add directory="../../../appseed" />
 			<Add directory="../../appseed" />
-			<Add directory="../../include" />
 			<Add directory="crypto" />
 			<Add directory="ssl" />
 			<Add directory="crypto/asn1" />

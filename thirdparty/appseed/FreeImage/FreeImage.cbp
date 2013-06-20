@@ -67,6 +67,7 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add option="-DRAW_LINUX" />
+			<Add directory="../../include" />
 			<Add directory="OpenEXR/IlmImf" />
 			<Add directory="OpenEXR/Imath" />
 			<Add directory="OpenEXR/Iex" />
@@ -76,7 +77,7 @@
 			<Add directory="LibJPEG" />
 			<Add directory="LibRawLite" />
 			<Add directory="LibRawLite/libraw" />
-			<Add directory="../../../../../ca2" />
+			<Add directory="../../../.." />
 			<Add directory="../../../appseed/c" />
 			<Add directory="../../../appseed" />
 			<Add directory="../../appseed" />
@@ -529,8 +530,7 @@
 		<Unit filename="LibPNG/png.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="LibPNG/png.h" />
-		<Unit filename="LibPNG/pngconf.h" />
+		<Unit filename="LibPNG/png_framework.h" />
 		<Unit filename="LibPNG/pngerror.c">
 			<Option compilerVar="CC" />
 		</Unit>

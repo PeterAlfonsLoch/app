@@ -66,13 +66,12 @@
 			<Add option="-Wno-pointer-arith" />
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
-			<Add option="-DLINUX" />
 			<Add option="-DFT2_BUILD_LIBRARY" />
-			<Add directory="../../../../../ca2" />
+			<Add directory="../../include" />
+			<Add directory="../../../.." />
 			<Add directory="../../../appseed/c" />
 			<Add directory="../../../appseed" />
 			<Add directory="../../appseed" />
-			<Add directory="../../include" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />

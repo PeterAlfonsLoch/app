@@ -1255,7 +1255,7 @@ CLASS_DECL_c UINT GetCurrentThreadId()
 }
 
 
-namespace ca
+namespace ca2
 {
 
 	///  \brief		global function to set thread priority for current thread
@@ -1276,7 +1276,7 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ca2
 
 
 

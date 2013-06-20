@@ -30,9 +30,9 @@
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="../../../stage/x86/libca2c.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libca2ca.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/c" />
+				<Option object_output="../../../time/intermediate/app/ca" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -132,7 +132,7 @@
 		<Unit filename="ca/ca_file_watcher_listener_thread.h" />
 		<Unit filename="ca/ca_file_watcher_thread.cpp" />
 		<Unit filename="ca/ca_file_watcher_thread.h" />
-		<Unit filename="ca/ca_geometrica_types.cpp" />
+		<Unit filename="ca/ca_geometric_types.cpp" />
 		<Unit filename="ca/ca_geometrica_types.h" />
 		<Unit filename="ca/ca_heap.cpp" />
 		<Unit filename="ca/ca_heap.h" />

@@ -351,7 +351,6 @@
 #ifndef PNG_H
 #define PNG_H
 
-#include "c/c/c.h"
 
 /* This is not the place to learn how to use libpng.  The file libpng.txt
  * describes how to use libpng, and the file example.c summarizes it
