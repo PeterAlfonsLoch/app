@@ -734,6 +734,9 @@
     <ClInclude Include="OpenEXR\IlmImf\ImfFramework.h">
       <Filter>Header Files\OpenEXR\IImImf</Filter>
     </ClInclude>
+    <ClInclude Include="LibRawLite\libraw\libraw_types.h">
+      <Filter>Header Files\LibRawLite\internal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Todo.txt" />

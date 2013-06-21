@@ -649,9 +649,6 @@
     <ClCompile Include="ca\ca_file_watcher_thread.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_geometrica_types.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_heap.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
@@ -837,6 +834,9 @@
     </ClCompile>
     <ClCompile Include="android\ca_os.cpp">
       <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_geometric_types.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

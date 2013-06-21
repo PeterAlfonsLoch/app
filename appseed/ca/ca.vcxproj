@@ -827,7 +827,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>MEMDLEAK;__C__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MEMDLEAK;__CA__LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -862,9 +862,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcp110d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcr110d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -1181,7 +1180,9 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="android\ca_os.cpp" />
+    <ClCompile Include="android\ca_os.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="bsdiff\blocksort.cpp" />
     <ClCompile Include="bsdiff\bsdiff.cpp" />
     <ClCompile Include="bsdiff\bspatch.cpp" />
@@ -1206,7 +1207,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="ca\ca_file_watcher_impl.cpp" />
     <ClCompile Include="ca\ca_file_watcher_listener_thread.cpp" />
     <ClCompile Include="ca\ca_file_watcher_thread.cpp" />
-    <ClCompile Include="ca\ca_geometrica_types.cpp" />
+    <ClCompile Include="ca\ca_geometric_types.cpp" />
     <ClCompile Include="ca\ca_heap.cpp" />
     <ClCompile Include="ca\ca_integer_to_string.cpp" />
     <ClCompile Include="ca\ca_international.cpp" />
