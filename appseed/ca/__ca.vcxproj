@@ -672,7 +672,7 @@
     <ClInclude Include="ca\ca_file_watcher_impl.h" />
     <ClInclude Include="ca\ca_file_watcher_listener_thread.h" />
     <ClInclude Include="ca\ca_file_watcher_thread.h" />
-    <ClInclude Include="ca\ca_geometrica_types.h" />
+    <ClInclude Include="ca\ca_geometric_types.h" />
     <ClInclude Include="ca\ca_heap.h" />
     <ClInclude Include="ca\ca_index.h" />
     <ClInclude Include="ca\ca_integer_to_string.h" />
@@ -805,7 +805,7 @@
     <ClCompile Include="ca\ca_file_watcher_impl.cpp" />
     <ClCompile Include="ca\ca_file_watcher_listener_thread.cpp" />
     <ClCompile Include="ca\ca_file_watcher_thread.cpp" />
-    <ClCompile Include="ca\ca_geometrica_types.cpp" />
+    <ClCompile Include="ca\ca_geometric_types.cpp" />
     <ClCompile Include="ca\ca_heap.cpp" />
     <ClCompile Include="ca\ca_integer_to_string.cpp" />
     <ClCompile Include="ca\ca_international.cpp" />

@@ -257,9 +257,6 @@
     <ClInclude Include="ca\ca_file_watcher_thread.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_geometrica_types.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_heap.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -463,6 +460,9 @@
     </ClInclude>
     <ClInclude Include="android\ca_os.h">
       <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_geometric_types.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

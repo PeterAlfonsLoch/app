@@ -35,7 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D9E0A96E-C666-45C1-AABE-609DDC85EC33}</ProjectGuid>
+    <ProjectGuid>{832A80B8-64DB-4AB3-A697-D21AF6B13047}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>_</RootNamespace>

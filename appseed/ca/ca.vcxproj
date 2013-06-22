@@ -1016,8 +1016,12 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="android\ca_os.h" />
-    <ClInclude Include="android\ca_os_internal.h" />
+    <ClInclude Include="android\ca_os.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\ca_os_internal.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="bsdiff\bsdiff.h" />
     <ClInclude Include="bsdiff\bsdiff_private.h" />
     <ClInclude Include="bsdiff\bzlib.h" />
@@ -1036,7 +1040,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="ca\ca_file_watcher_impl.h" />
     <ClInclude Include="ca\ca_file_watcher_listener_thread.h" />
     <ClInclude Include="ca\ca_file_watcher_thread.h" />
-    <ClInclude Include="ca\ca_geometrica_types.h" />
+    <ClInclude Include="ca\ca_geometric_types.h" />
     <ClInclude Include="ca\ca_heap.h" />
     <ClInclude Include="ca\ca_index.h" />
     <ClInclude Include="ca\ca_integer_to_string.h" />
@@ -1182,6 +1186,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
   <ItemGroup>
     <ClCompile Include="android\ca_os.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="bsdiff\blocksort.cpp" />
     <ClCompile Include="bsdiff\bsdiff.cpp" />

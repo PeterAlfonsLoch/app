@@ -254,9 +254,6 @@
     <ClInclude Include="ca\ca_file_watcher_thread.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_geometrica_types.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_heap.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -445,6 +442,9 @@
     </ClInclude>
     <ClInclude Include="windows\ca_os_thread.h">
       <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_geometric_types.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -643,9 +643,6 @@
     <ClCompile Include="ca\ca_file_watcher_thread.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_geometrica_types.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_heap.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
@@ -825,6 +822,9 @@
     </ClCompile>
     <ClCompile Include="windows\ca_os_time.cpp">
       <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_geometric_types.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
