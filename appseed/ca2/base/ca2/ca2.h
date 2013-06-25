@@ -352,7 +352,7 @@ class dump_context;
 #include "ca2_type_info.h"
 #include "ca2_factory.h"
 
-
+#include "ca2_string_buffer.h"
 #include "user/user_str.h"
 
 

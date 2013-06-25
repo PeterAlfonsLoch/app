@@ -145,6 +145,9 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
       goto LUpdateAndExit;
    }
 
+   while (::isspace(*lpszEnd))
+      lpszEnd++;
+
    // tag contains attribute/value pairs?
    if (*lpszEnd != '>')
    {
@@ -152,8 +155,6 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
       lpszEnd = NULL;
 
       // skip white-space characters after tag name
-      while (::isspace(*lpszBegin))
-         lpszBegin++;
 
       nTemp = 0U;
       if (bParseAttrib)   // parse attribute/value pairs?

@@ -4115,6 +4115,9 @@
     <ClInclude Include="base\plugin\plugin.h">
       <Filter>Header Files\base\plugin</Filter>
     </ClInclude>
+    <ClInclude Include="base\ca2\ca2_string_buffer.h">
+      <Filter>Header Files\base\ca2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive_scalar.cpp">

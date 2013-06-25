@@ -506,7 +506,7 @@ bool lite_html_reader::getEventNotify(uint32_t dwEvent) const
 
 bool lite_html_reader::isWhiteSpace(char ch) const
 {
-   return ::isspace(ch) ? true : false;
+   return ::isspace(static_cast < unsigned char > (ch)) ? true : false;
 }
 
 

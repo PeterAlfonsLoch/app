@@ -422,6 +422,13 @@ namespace dynamic_source
          return NULL;
       if(ShouldBuild())
       {
+         try
+         {
+            ::ca2::set_thread_priority(THREAD_PRIORITY_HIGHEST);
+         }
+         catch(...)
+         {
+         }
          string str;
          int32_t iRetry = 0;
          do
@@ -446,6 +453,14 @@ namespace dynamic_source
          m_bCalcHasTempError = true;
          m_bHasTempError = false;
          // don't bother with sleeps if not compiling even if there are errors
+         try
+         {
+            ::ca2::set_thread_priority(THREAD_PRIORITY_NORMAL);
+         }
+         catch(...)
+         {
+         }
+
       }
 
       script_instance * pinstance;

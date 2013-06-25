@@ -61,7 +61,7 @@ namespace ca2
    }
 
 
-   bool process::create_child_process(const char * pszCmdLine, bool bPiped, const char * pszDir)
+   bool process::create_child_process(const char * pszCmdLine, bool bPiped, const char * pszDir, DWORD dwPriorityClass)
    {
       string szCmdline = pszCmdLine;
 
@@ -117,7 +117,7 @@ namespace ca2
          NULL,          // process security attributes
          NULL,          // primary thread security attributes
          TRUE,          // handles are inherited
-         CREATE_NEW_CONSOLE,             // creation flags
+         CREATE_NEW_CONSOLE | dwPriorityClass,             // creation flags
          NULL,          // use parent's environment
          pszDir,
          &m_si,  // STARTUPINFO pointer

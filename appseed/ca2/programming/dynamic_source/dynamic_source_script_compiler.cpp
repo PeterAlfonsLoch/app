@@ -471,7 +471,7 @@ namespace dynamic_source
 
       ::ca2::process process;
 
-      process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat));
+      process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat), HIGH_PRIORITY_CLASS);
 
       uint32_t dwStart = ::get_tick_count();
       uint32_t dwExitCode;
@@ -962,7 +962,7 @@ namespace dynamic_source
 #ifndef METROWIN
          ::ca2::process process;
 
-         process.create_child_process(strCmd, false, System.dir().ca2("stage\\front"));
+         process.create_child_process(strCmd, false, System.dir().ca2("stage\\front"), HIGH_PRIORITY_CLASS);
 
 
          uint32_t dwExitCode;
@@ -1038,7 +1038,7 @@ namespace dynamic_source
       ::ca2::process process;
 
 
-      process.create_child_process(strCmd, false, System.dir().name(strCmd));
+      process.create_child_process(strCmd, false, System.dir().name(strCmd), HIGH_PRIORITY_CLASS);
 
       uint32_t dwExitCode;
       while(true)
