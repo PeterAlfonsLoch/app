@@ -339,7 +339,7 @@ oswindow GetFocus()
 
 
 
-static oswindow g_oswindowActive;
+static oswindow g_oswindowActive = NULL;
 
 
 oswindow GetActiveWindow()
@@ -355,7 +355,7 @@ oswindow SetActiveWindow(oswindow window)
    if(window->window() == NULL)
       return NULL;
    
-   g_oswindowCapture = window;
+   g_oswindowActive = window;
    
    return windowOld;
    

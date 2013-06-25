@@ -145,7 +145,7 @@ namespace user
       sp(::plane::session)                  m_psession;
       bool                                m_bMessageWindow;
 
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(LINUX) || defined(MACOS)
 
       comparable_array < int_ptr >        m_iaModalThread;
 

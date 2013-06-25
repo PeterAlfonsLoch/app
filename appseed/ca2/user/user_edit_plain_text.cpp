@@ -1423,8 +1423,11 @@ namespace user
 
    void edit_plain_text::_001OnChar(::ca2::signal_object * pobj)
    {
+      
+      {
       ::ca2::data::writing writing(m_pdata);
-#if defined(WINDOWS) || defined(LINUX)
+      
+
       _009OnChar(pobj);
       if(pobj->m_bRet)
          return;
@@ -1693,15 +1696,8 @@ namespace user
       }
       m_dwLastCaret = ::get_tick_count();
       m_bCaretOn = true;
+      }
       _001RedrawWindow();
-
-
-#else
-
-   throw todo(get_app());
-
-#endif
-
 
 
    }

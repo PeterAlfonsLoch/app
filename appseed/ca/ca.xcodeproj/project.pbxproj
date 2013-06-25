@@ -58,6 +58,8 @@
 		9A1B353416A2C4E300875A94 /* windows_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B353116A2C4E300875A94 /* windows_types.h */; };
 		9A1B357916A2D0EC00875A94 /* windows_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07159397167396C800D7190F /* windows_user.cpp */; };
 		9A6F20DF1761C7D400C33206 /* windows_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6F20DE1761C7D400C33206 /* windows_thread.cpp */; };
+		9A73212A177899DE00896A90 /* ansios_crypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A732129177899DE00896A90 /* ansios_crypt.cpp */; };
+		9A73212C17789AA900896A90 /* lib_ca2openssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A73212B17789AA800896A90 /* lib_ca2openssl.dylib */; };
 		9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A6231771D770000AE16E /* lib_ca2c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A98A6221771D770000AE16E /* lib_ca2c.dylib */; };
 		9AC29ED0168CC84800DA3F3F /* ansios_cross_win_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC29ECE168CC84800DA3F3F /* ansios_cross_win_file.cpp */; };
@@ -342,6 +344,8 @@
 		9A1B353016A2C4E300875A94 /* windows_ole_automation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_ole_automation.h; sourceTree = "<group>"; };
 		9A1B353116A2C4E300875A94 /* windows_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_types.h; sourceTree = "<group>"; };
 		9A6F20DE1761C7D400C33206 /* windows_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = windows_thread.cpp; sourceTree = "<group>"; };
+		9A732129177899DE00896A90 /* ansios_crypt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_crypt.cpp; sourceTree = "<group>"; };
+		9A73212B17789AA800896A90 /* lib_ca2openssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2openssl.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2openssl.dylib"; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A88B4F514C2CBF8006B4023 /* libca2ca.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libca2ca.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A98A6221771D770000AE16E /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
@@ -583,6 +587,7 @@
 				CE931715155F1599005F90F6 /* Carbon.framework in Frameworks */,
 				073EDDE2164E968100818801 /* Security.framework in Frameworks */,
 				9A98A6231771D770000AE16E /* lib_ca2c.dylib in Frameworks */,
+				9A73212C17789AA900896A90 /* lib_ca2openssl.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +798,7 @@
 		07AB206116061BD600CD4EE2 /* ansios */ = {
 			isa = PBXGroup;
 			children = (
+				9A732128177899DE00896A90 /* crypto */,
 				07AB205D16061BB200CD4EE2 /* ansios.h */,
 				9AC29ECF168CC84800DA3F3F /* ansios_cross_win.cpp */,
 				9AC29ECE168CC84800DA3F3F /* ansios_cross_win_file.cpp */,
@@ -814,6 +820,15 @@
 			name = version;
 			sourceTree = "<group>";
 		};
+		9A732128177899DE00896A90 /* crypto */ = {
+			isa = PBXGroup;
+			children = (
+				9A732129177899DE00896A90 /* ansios_crypt.cpp */,
+			);
+			name = crypto;
+			path = ansios/crypto;
+			sourceTree = "<group>";
+		};
 		A10D34E215131BCC004FD312 /* os */ = {
 			isa = PBXGroup;
 			children = (
@@ -833,6 +848,7 @@
 			isa = PBXGroup;
 			children = (
 				9A98A6221771D770000AE16E /* lib_ca2c.dylib */,
+				9A73212B17789AA800896A90 /* lib_ca2openssl.dylib */,
 				073EDDE4164E96DA00818801 /* SecurityFoundation.framework */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
 				CE931714155F1599005F90F6 /* Carbon.framework */,
@@ -1325,6 +1341,7 @@
 				9AC4454B1770BC7900DC2349 /* ca_os_win_base.cpp in Sources */,
 				9AC4454C1770BC7900DC2349 /* ca_os_window.cpp in Sources */,
 				9AC4454D1770BC7900DC2349 /* ca_os.cpp in Sources */,
+				9A73212A177899DE00896A90 /* ansios_crypt.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

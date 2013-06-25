@@ -753,7 +753,7 @@ namespace fontopus
          strPass = m_strPasshash;
       }
 
-#ifdef MACOS
+#ifdef MACOS_DEPRECATED
 
       CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 
@@ -1031,6 +1031,8 @@ namespace fontopus
             post["entered_passhash"] = strHex;
          }
          string strCrypt;
+         
+         string strUsername = m_strUsername;
 
          post["entered_login"] = m_strUsername;
          if(m_strLicense.has_char())

@@ -98,11 +98,17 @@ namespace ca2
       }
 */
 
-      brush_sp & operator = (brush * pbrush)
+      
+      brush_sp & operator = (::ca2::brush * pbrush)
       {
-         m_p = pbrush;
+
+         ::ca::smart_pointer < brush >::operator = (pbrush);
+         
          return *this;
+         
       }
+      
+      
    };
 
 

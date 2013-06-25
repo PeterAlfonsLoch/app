@@ -9,6 +9,10 @@
 #include "ca_mm.h"
 
 
+oswindow SetActiveWindow(oswindow window);
+
+
+
 CGContextRef get_nswindow_cgcontext(oswindow oswindow)
 {
 
@@ -54,6 +58,8 @@ WINBOOL SetForegroundWindow(oswindow window)
    
    [window->window() orderFrontRegardless];
    
+   SetActiveWindow(window);
+   
    return TRUE;
    
 }
@@ -66,6 +72,8 @@ WINBOOL BringWindowToTop(oswindow window)
       return FALSE;
    
    [window->window() orderFrontRegardless];
+   
+   SetActiveWindow(window);
    
    return TRUE;
    

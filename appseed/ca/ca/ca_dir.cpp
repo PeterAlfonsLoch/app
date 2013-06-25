@@ -354,7 +354,7 @@ vsstring dir::ca2(const char * path1, const char * path2, const char * path3, co
 
    eat_end_level_dup(strRelative, 2, "/");
 
-   vsstring str = path(getenv("HOME"), ".ca/appdata");
+   vsstring str = path(getenv("HOME"), ".ca2/appdata");
 
    return path(path(str, "ca2", strRelative), path1, path2, path3, path4);
 
@@ -557,7 +557,7 @@ vsstring dir::name(const char * path1)
    vsstring str;
 
    str = path1;
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
    index iPos = str.rfind('/');
 #else
    index iPos = str.rfind('\\');

@@ -77,12 +77,12 @@
 				CE931714155F1599005F90F6 /* Carbon.framework */,
 				9A8897A514C24736006B4023 /* Foundation.framework */,
 				073EDDE1164E968100818801 /* Security.framework */,
+				9A98A6151771D67E000AE16E /* lib_ca2c.dylib */,
 				07237E6315F99D310018B75F /* c */,
 				CEC9A23D144B818900FEA8E6 /* macos */,
 				07740C7F16AD57A20065CE47 /* Products */,
 				CE4BB20D156B8B2600DD13ED /* framework.c */,
 				CE4BB20E156B8B2600DD13ED /* framework.h */,
-				9A98A6151771D67E000AE16E /* lib_ca2c.dylib */,
 			);
 			sourceTree = "<group>";
 		};

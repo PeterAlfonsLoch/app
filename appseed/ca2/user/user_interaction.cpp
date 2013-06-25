@@ -2486,15 +2486,15 @@ namespace user
 
 ExitModal:
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
       m_iaModalThread.remove_first(::GetCurrentThreadId());
 
-#else
+//#else
 
-      m_iaModalThread.remove_first(::pthread_self());
+  //    m_iaModalThread.remove_first(::pthread_self());
 
-#endif
+//#endif
 
       m_iModal = m_iModalCount;
 

@@ -4,7 +4,7 @@
 HANDLE
 WINAPI
 create_file(
-            LPCSTR lpFileName,
+            char const * lpFileName,
             DWORD dwDesiredAccess,
             DWORD dwShareMode,
             LPSECURITY_ATTRIBUTES lpSecurityAttributes,

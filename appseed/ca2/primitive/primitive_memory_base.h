@@ -822,7 +822,7 @@ namespace primitive
             throw invalid_argument_exception(get_app());
         if(pos + size > get_size())
             size = get_size() - pos;
-        return CFDataCreate(kCFAllocatorNull, (const UInt8 *) &get_data()[pos], (CFIndex) size);
+        return CFDataCreate(kCFAllocatorDefault, (const UInt8 *) &get_data()[pos], (CFIndex) size);
     }
 
     inline void memory_base::set_os_cf_data(CFDataRef data, memory_position pos, memory_size size)

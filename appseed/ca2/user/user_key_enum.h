@@ -6,6 +6,7 @@ namespace user
 
    enum e_key
    {
+      key_none,
       key_0,
       key_1,
       key_2,

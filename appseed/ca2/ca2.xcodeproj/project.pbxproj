@@ -4114,7 +4114,6 @@
 		9A6F20EB1761F92900C33206 /* webserver_http_transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webserver_http_transaction.h; sourceTree = "<group>"; };
 		9A8916841751D72100E531ED /* libca2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libca2.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A98A6241771D77A000AE16E /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
-		9AA5E6DB16F7C75E005C45CE /* libca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libca2c.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libca2c.dylib"; sourceTree = "<group>"; };
 		9AA5E6E116F7C7E1005C45CE /* lib_ca2freeimage.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2freeimage.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2freeimage.dylib"; sourceTree = "<group>"; };
 		9AA5E6E216F7C7E2005C45CE /* lib_ca2freetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2freetype.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2freetype.dylib"; sourceTree = "<group>"; };
 		9AA5E6E316F7C7E2005C45CE /* lib_ca2openssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2openssl.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2openssl.dylib"; sourceTree = "<group>"; };
@@ -7457,14 +7456,13 @@
 		9A8897AB14C2C8DB006B4023 = {
 			isa = PBXGroup;
 			children = (
-				9A98A6241771D77A000AE16E /* lib_ca2c.dylib */,
-				9AC495B11770D16E00DC2349 /* libca2ca.dylib */,
 				9ADEA47D176669D400D4CF1F /* libmysql.16.dylib */,
-				9AA5E6E416F7C7E2005C45CE /* lib_ca2zlib.dylib */,
+				9A98A6241771D77A000AE16E /* lib_ca2c.dylib */,
 				9AA5E6E116F7C7E1005C45CE /* lib_ca2freeimage.dylib */,
 				9AA5E6E216F7C7E2005C45CE /* lib_ca2freetype.dylib */,
 				9AA5E6E316F7C7E2005C45CE /* lib_ca2openssl.dylib */,
-				9AA5E6DB16F7C75E005C45CE /* libca2c.dylib */,
+				9AA5E6E416F7C7E2005C45CE /* lib_ca2zlib.dylib */,
+				9AC495B11770D16E00DC2349 /* libca2ca.dylib */,
 				9A58847D16A20D5E0061C610 /* Security.framework */,
 				9A58847B16A20D480061C610 /* Carbon.framework */,
 				9A58847916A20D360061C610 /* Foundation.framework */,

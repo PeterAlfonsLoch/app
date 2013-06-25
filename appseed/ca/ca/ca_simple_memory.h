@@ -89,7 +89,7 @@ public:
     
     inline CFDataRef get_os_cf_data() const
     {
-        return CFDataCreate(kCFAllocatorNull, (const UInt8 *) m_psz, (CFIndex) m_iSize);
+        return CFDataCreate(kCFAllocatorDefault, (const UInt8 *) m_psz, (CFIndex) m_iSize);
     }
     
     inline void set_os_cf_data(CFDataRef data)

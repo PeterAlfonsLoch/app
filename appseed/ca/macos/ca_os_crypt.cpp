@@ -7,6 +7,7 @@
 //
 #include "framework.h"
 
+/*
 
 int crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & memKeyDataParam)
 {
@@ -85,7 +86,7 @@ int crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageD
     
    unsigned char iv[8] = {1,2,3,4,5,6,7,8};
     
-   CFDataRef dataIv = CFDataCreate(kCFAllocatorNull, (const UInt8 *) iv, sizeof(iv));
+   CFDataRef dataIv = CFDataCreate(kCFAllocatorDefault, (const UInt8 *) iv, sizeof(iv));
  
    SecTransformSetAttribute(transform, kSecIVKey, dataIv, &error);
                              
@@ -135,7 +136,7 @@ int crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageD
     
    /* Encrypt the data. */
                             
-   CFDataRef data = (CFDataRef) SecTransformExecute(transform, &error);
+ /*  CFDataRef data = (CFDataRef) SecTransformExecute(transform, &error);
                              
    if(error != NULL)
    {
@@ -257,7 +258,7 @@ int crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageE
    
    unsigned char iv[8] = {1,2,3,4,5,6,7,8};
    
-   CFDataRef dataIv = CFDataCreate(kCFAllocatorNull, (const UInt8 *) iv, sizeof(iv));
+   CFDataRef dataIv = CFDataCreate(kCFAllocatorDefault, (const UInt8 *) iv, sizeof(iv));
    
    SecTransformSetAttribute(transform, kSecIVKey, dataIv, &error);
    
@@ -307,7 +308,7 @@ int crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageE
    
    /* Decrypt the data. */
    
-   CFDataRef data = (CFDataRef) SecTransformExecute(transform, &error);
+/*   CFDataRef data = (CFDataRef) SecTransformExecute(transform, &error);
    
    if(error != NULL)
    {
@@ -352,4 +353,4 @@ int crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageE
    
 }
 
-
+*/

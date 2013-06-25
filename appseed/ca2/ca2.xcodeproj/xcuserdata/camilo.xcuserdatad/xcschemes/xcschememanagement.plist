@@ -7,12 +7,12 @@
 		<key>ca.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>4</integer>
 		</dict>
-		<key>ca2ca copy.xcscheme</key>
+		<key>ca2.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>10</integer>
 		</dict>
 		<key>libca2 copy.xcscheme</key>
 		<dict>
