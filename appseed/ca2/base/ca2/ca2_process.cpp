@@ -60,16 +60,46 @@ namespace ca2
 
    }
 
+#ifdef WINDOWSEX
 
-   bool process::create_child_process(const char * pszCmdLine, bool bPiped, const char * pszDir, DWORD dwPriorityClass)
+   DWORD get_os_priority_class(int iCa2Priority)
    {
+
+      if(iCa2Priority == ::ca2::priority_class_none)
+         return 0;
+
+      if(iCa2Priority <= ::ca2::priority_class_idle)
+         return PRIORITY_CLASS_IDLE;
+
+      if(iCa2Priority <= ::ca2::priority_class_lowest)
+         return PRIORITY_CLASS_LOWEST;
+
+      if(iCa2Priority <= ::ca2::priority_class_below_normal)
+         return PRIORITY_CLASS_BELOW_NORMAL;
+
+      if(iCa2Priority <= ::ca2::priority_class_normal)
+         return PRIORITY_CLASS_NORMAL;
+
+      if(iCa2Priority <= ::ca2::priority_class_above_normal)
+         return PRIORITY_CLASS_ABOVE_NORMAL;
+
+      if(iCa2Priority <= ::ca2::priority_class_highest)
+         return PRIORITY_CLASS_HIGHEST;
+
+      return PRIORITY_CLASS_REAL_TIME;
+
+   }
+
+#endif
+
+
+   bool process::create_child_process(const char * pszCmdLine, bool bPiped, const char * pszDir, int32_t iCa2Priority)
+   {
+
+
       string szCmdline = pszCmdLine;
 
-
-
-// set up members of the PROCESS_INFORMATION structure.
-
-
+      // set up members of the PROCESS_INFORMATION structure.
 
       if(bPiped)
       {
@@ -145,8 +175,34 @@ namespace ca2
 
     char * argv[] = {(char *) pszCmdLine, 0};
 
+    posix_spawnattr_t attr;
+
+    posix_spawnattr_init(&attr);
+
+    if(iCa2Priority != (int32_t) ::ca2::scheduling_priority_none)
+    {
+
+      int32_t iPolicy = SCHED_OTHER;
+
+      sched_param schedparam;
+
+
+      schedparam.sched_priority = 0;
+
+    get_os_priority(&iPolicy, &schedparam, iCa2Priority);
+
+    posix_spawnattr_setschedpolicy(&attr, iPolicy);
+
+    posix_spawnattr_setschedparam(&attr, &schedparam);
+
+   }
 
     int status = posix_spawn(&m_iPid, pszCmdLine, NULL, NULL, argv, environ);
+
+    posix_spawnattr_destroy(&attr);
+
+
+
 
     return status == 0;
 

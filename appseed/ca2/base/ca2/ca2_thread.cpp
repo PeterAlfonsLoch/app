@@ -175,7 +175,7 @@ namespace ca2
    }
 
 
-   bool thread::begin(::ca2::e_thread_priority epriority, uint_ptr nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::begin(::ca2::e_scheduling_priority epriority, uint_ptr nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
 
       if(m_p == NULL)
@@ -186,7 +186,7 @@ namespace ca2
    }
 
 
-   bool thread::create_thread(::ca2::e_thread_priority epriority, uint32_t dwCreateFlags, uint_ptr nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::create_thread(::ca2::e_scheduling_priority epriority, uint32_t dwCreateFlags, uint_ptr nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
 
       if(m_p == NULL)
@@ -342,7 +342,7 @@ namespace ca2
    }*/
 
 
-   ::ca2::e_thread_priority thread::get_thread_priority()
+   ::ca2::e_scheduling_priority thread::get_thread_priority()
    {
 
       return m_p->get_thread_priority();
@@ -350,7 +350,7 @@ namespace ca2
    }
 
 
-   bool thread::set_thread_priority(::ca2::e_thread_priority epriority)
+   bool thread::set_thread_priority(::ca2::e_scheduling_priority epriority)
    {
 
       return m_p->set_thread_priority(epriority);
@@ -944,7 +944,7 @@ namespace ca2
 
 
 
-::ca2::thread* __begin_thread(sp(::ca2::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca2::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+::ca2::thread* __begin_thread(sp(::ca2::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca2::e_scheduling_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    ASSERT(pfnThreadProc != NULL);

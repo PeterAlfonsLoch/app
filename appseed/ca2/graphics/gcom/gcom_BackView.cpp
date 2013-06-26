@@ -33,7 +33,7 @@ namespace gcom
 
          m_pthreadHighestPriority   = new thread(get_app());
          m_pthreadHighestPriority->SetMain(this);
-         m_pthreadHighestPriority->begin(::ca2::thread_priority_highest);
+         m_pthreadHighestPriority->begin(::ca2::scheduling_priority_highest);
 
          m_bPendingLayout = true;
 

@@ -648,13 +648,13 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 
 
-CLASS_DECL_ca2 ::ca2::thread* __begin_thread(sp(::ca2::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca2::e_thread_priority epriority = ::ca2::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+CLASS_DECL_ca2 ::ca2::thread* __begin_thread(sp(::ca2::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca2::e_scheduling_priority epriority = ::ca2::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_ca2 thread* __begin_thread(sp(::ca2::type_info) pThreadClass,
    int32_t nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
    uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
 template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread (sp(::ca2::application) papp, ::ca2::e_thread_priority epriority = ::ca2::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
+THREAD_TYPE * __begin_thread (sp(::ca2::application) papp, ::ca2::e_scheduling_priority epriority = ::ca2::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
 {
    THREAD_TYPE * pthread = new THREAD_TYPE(papp);
    pthread->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);

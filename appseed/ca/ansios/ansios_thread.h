@@ -49,3 +49,5 @@ CLASS_DECL_c HTHREAD GetCurrentThread();
 
 CLASS_DECL_c UINT GetCurrentThreadId();
 
+CLASS_DECL_ca void get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
+

@@ -173,6 +173,70 @@ static int32_t GetWorkItemPriority(int32_t nPriority)
 }
 
 
+void get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t nCa2Priority)
+{
+
+   int iOsPolicy;
+
+   int iCa2Min;
+
+   int iCa2Max;
+
+   if(nCa2Priority == ::ca2::scheduling_priority_normal)
+   {
+
+      iOsPolicy = SCHED_OTHER;
+
+      iCa2Min = (int) ::ca2::scheduling_priority_normal;
+
+      iCa2Max = (int) ::ca2::scheduling_priority_normal;
+
+   }
+   else if(nCa2Priority > ::ca2::scheduling_priority_normal)
+   {
+
+      iOsPolicy = SCHED_RR;
+
+      iCa2Min = (int) ::ca2::scheduling_priority_normal;
+
+      iCa2Max = 99;
+
+   }
+   else
+   {
+
+      iOsPolicy = SCHED_IDLE;
+
+      iCa2Min = 0;
+
+      iCa2Max = (int) ::ca2::scheduling_priority_normal;
+
+   }
+
+   int iOsMax = sched_get_priority_max(iOsPolicy);
+
+   int iOsMin = sched_get_priority_min(iOsPolicy);
+
+   int iOsPriority;
+
+   if(iCa2Min == iCa2Max)
+   {
+      iOsPriority = 0;
+   }
+   else
+   {
+      iOsPriority = (((nCa2Priority - iCa2Min)  * (iOsMax - iOsMin)) / (iCa2Max - iCa2Min)) + iOsMin;
+   }
+
+   iOsPriority = max(iOsMin, min(iOsMax, iOsPriority));
+
+   *piPolicy = iOsPolicy;
+
+   pparam->sched_priority = iOsPriority;
+
+}
+
+
 // Helper shared between CreateThread and ResumeThread.
 static os_thread * StartThread(LPTHREAD_START_ROUTINE pfn, LPVOID pv, HTHREAD hthread, int32_t nPriority, SIZE_T cbStack)
 {
@@ -181,26 +245,34 @@ static os_thread * StartThread(LPTHREAD_START_ROUTINE pfn, LPVOID pv, HTHREAD ht
 
    pthread->m_hthread = hthread;
 
-   pthread_t thread;
+   hthread->m_posthread = pthread;
+
+   pthread_t & thread = pthread->m_pthread;
 
    pthread_attr_t threadAttr;
 
-//   struct sched_param param;  // scheduling priority
-
-   // initialize the thread attribute
    pthread_attr_init(&threadAttr);
 
    if(cbStack > 0)
    {
-      // Set the stack size of the thread
-      pthread_attr_setstacksize(&threadAttr, 120*1024);
+
+      pthread_attr_setstacksize(&threadAttr, 120 * 1024); // Set the stack size of the thread
+
    }
 
-   // Set thread to detached state. No need for pthread_join
-   pthread_attr_setdetachstate(&threadAttr, PTHREAD_CREATE_DETACHED);
+   int iPolicy;
 
-   // Create the thread
-   pthread_create(&thread, &threadAttr, &::os_thread::thread_proc, (LPVOID) pthread);
+   sched_param schedparam; // scheduling priority
+
+   get_os_priority(&iPolicy, &schedparam, nPriority);
+
+   pthread_attr_setschedpolicy(&threadAttr, iPolicy);
+
+   pthread_attr_setschedparam(&threadAttr, &schedparam);
+
+   pthread_attr_setdetachstate(&threadAttr, PTHREAD_CREATE_DETACHED); // Set thread to detached state. No need for pthread_join
+
+   pthread_create(&thread, &threadAttr, &::os_thread::thread_proc, (LPVOID) pthread); // Create the thread
 
    return pthread;
 
@@ -340,8 +412,9 @@ DWORD WINAPI ResumeThread(HTHREAD hThread)
 }
 
 
-WINBOOL WINAPI SetThreadPriority(HTHREAD hThread, int32_t nPriority)
+WINBOOL WINAPI SetThreadPriority(HTHREAD hThread, int32_t nCa2Priority)
 {
+
    mutex_lock lock(pendingThreadsLock);
 
    // Look up the requested thread.
@@ -349,13 +422,21 @@ WINBOOL WINAPI SetThreadPriority(HTHREAD hThread, int32_t nPriority)
 
    if (threadInfo == NULL)
    {
-      // Can only set priority on threads while they are in CREATE_SUSPENDED state.
-      //assert(false);
-      return false;
+
+      int32_t iPolicy;
+
+      sched_param schedparam;
+
+      get_os_priority(&iPolicy, &schedparam, nCa2Priority);
+
+      pthread_setschedparam(hThread->m_posthread->m_pthread, iPolicy, &schedparam);
+
+      return TRUE;
+
    }
 
    // Store the new priority.
-   threadInfo->m_element2.nPriority = nPriority;
+   threadInfo->m_element2.nPriority = nCa2Priority;
 
    return TRUE;
 }
@@ -1274,6 +1355,25 @@ namespace ca2
 	{
       return ::GetThreadPriority(::GetCurrentThread());
    }
+
+
+	CLASS_DECL_ca bool set_priority_class(int32_t priority)
+	{
+
+      int32_t iPolicy = SCHED_OTHER;
+
+      sched_param schedparam;
+
+      schedparam.sched_priority = 0;
+
+      get_os_priority(&iPolicy, &schedparam, priority);
+
+      sched_setscheduler(0, iPolicy, &schedparam);
+
+      return true;
+
+	}
+
 
 
 } // namespace ca2

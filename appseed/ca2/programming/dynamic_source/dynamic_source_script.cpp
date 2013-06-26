@@ -424,7 +424,7 @@ namespace dynamic_source
       {
          try
          {
-            ::ca2::set_thread_priority(THREAD_PRIORITY_HIGHEST);
+            ::ca2::set_thread_priority(::ca2::scheduling_priority_highest);
          }
          catch(...)
          {
@@ -455,7 +455,7 @@ namespace dynamic_source
          // don't bother with sleeps if not compiling even if there are errors
          try
          {
-            ::ca2::set_thread_priority(THREAD_PRIORITY_NORMAL);
+            ::ca2::set_thread_priority(::ca2::scheduling_priority_normal);
          }
          catch(...)
          {
@@ -473,7 +473,7 @@ namespace dynamic_source
          pinstance = m_lpfnCreateInstance(this);
       }
       pinstance->m_dwCreate = get_tick_count();
-      
+
       return pinstance;
    }
 

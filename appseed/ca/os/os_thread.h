@@ -23,39 +23,38 @@ namespace ca2
 {
 
 
-//namespace ca { namespace pal {
-
-
-	/// An enum representing thread priorities.
-	enum e_thread_priority
+	// An enum representing thread priorities.
+	enum e_scheduling_priority
    {
 
-		thread_priority_idle 	= 1,
-		thread_priority_lowest 	= 48,
-		thread_priority_below_normal,
-		thread_priority_normal,
-		thread_priority_above_normal,
-		thread_priority_highest,
-		thread_priority_time_critical = 99
+      scheduling_priority_none    = -1,
+		scheduling_priority_idle 	= 1,
+		scheduling_priority_lowest 	= 48,
+		scheduling_priority_below_normal,
+		scheduling_priority_normal,
+		scheduling_priority_above_normal,
+		scheduling_priority_highest,
+		scheduling_priority_time_critical = 99
 
 	};
 
-	///  \brief		global function to set thread priority for current thread
-	///  \param		new priority
+	//  \brief		global function to set thread priority for current thread
+	//  \param		new priority
 	CLASS_DECL_ca bool set_thread_priority(int32_t priority);
+	CLASS_DECL_ca bool set_priority_class(int32_t priority);
 
-	///  \brief		global function to get thread priority for current thread
-	///  \return	priority of current thread
+	//  \brief		global function to get thread priority for current thread
+	//  \return	priority of current thread
 	CLASS_DECL_ca int32_t thread_priority();
 
 
 } // namespace ca2
 
 
-inline ::ca2::e_thread_priority get_thread_priority_normal()
+inline ::ca2::e_scheduling_priority get_thread_priority_normal()
 {
 
-      return ::ca2::thread_priority_normal;
+      return ::ca2::scheduling_priority_normal;
 
 }
 
@@ -73,6 +72,7 @@ public:
 #if defined(LINUX) || defined(MACOS)
 
    HTHREAD                                m_hthread;
+   pthread_t                              m_pthread;
 
 #endif
 

@@ -398,13 +398,13 @@ namespace gcom
          single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
 
          single_lock sl2Buffer(&graphics.m_mutgenBuffer, FALSE);
-         
+
          if(!sl1Back.lock(millis(184)))
             return;
-         
+
          if(!sl2Buffer.lock(millis(184)))
             return;
- 
+
          ::ca2::graphics & dcBack = graphics.GetBackDC();
 
          ::ca2::graphics & dcBuffer = graphics.GetBufferDC();
@@ -1823,7 +1823,7 @@ namespace gcom
       ::ca2::thread * TransitionEffect::CreateRunStepThread()
       {
 
-         return __begin_thread(get_app(), ThreadProcRunStep, this, ::ca2::thread_priority_normal, 0, 0, NULL);
+         return __begin_thread(get_app(), ThreadProcRunStep, this, ::ca2::scheduling_priority_normal, 0, 0, NULL);
 
       }
 

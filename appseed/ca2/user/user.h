@@ -63,7 +63,7 @@ namespace user
       line_hit_none,
       line_hit_normal,
       line_hit_link,
-   }; 
+   };
 }
 
 
@@ -227,8 +227,8 @@ namespace user
       virtual public ::ca2::object
    {
    public:
-      
-      
+
+
       sp(::user::interaction)    m_pguie;
       UINT                       m_uiMessage;
       WPARAM                     m_wparam;
@@ -237,7 +237,7 @@ namespace user
 
       LRESULT send();
       static UINT ThreadProcSendMessage(LPVOID lp);
-      static void post(sp(::user::interaction) puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca2::e_thread_priority epriority = ::get_thread_priority_normal());
+      static void post(sp(::user::interaction) puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca2::e_scheduling_priority epriority = ::get_thread_priority_normal());
 
    };
 

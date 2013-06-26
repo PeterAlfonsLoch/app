@@ -100,7 +100,7 @@ namespace visual
 
       if(m_pimaging == NULL)
          throw memory_exception(get_app());
-      
+
       return true;
 
    }
@@ -126,9 +126,7 @@ namespace visual
       if(!::ca2::section::initialize())
          return false;
 
-      __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::ca2::thread_priority_highest);
-
-      
+      __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::ca2::scheduling_priority_highest);
 
       return true;
 
@@ -136,7 +134,7 @@ namespace visual
 
    uint32_t c_cdecl visual::thread_proc_parallel_initialize(void * pparamThis)
    {
-      
+
       visual * pvisual = (visual *) pparamThis;
 
       pvisual->set_cursor_set_from_matter("cursor/antialiased-classic");
@@ -165,7 +163,7 @@ namespace visual
       }
 
       return bOk;
-      
+
    }
 
 
@@ -353,7 +351,7 @@ namespace visual
    {
 
       int32_t iExitCode = 0;
-      
+
       try
       {
 
@@ -362,7 +360,7 @@ namespace visual
       }
       catch(...)
       {
-         
+
          iExitCode = -1;
 
       }

@@ -30,7 +30,7 @@ namespace platform
       ca2(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
-      
+
       ::user::form(papp),
       html_form(papp),
       html_form_view(papp),
@@ -557,7 +557,7 @@ namespace platform
    void view::mt_show_window(oswindow oswindow, int32_t iShow)
    {
 
-      __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(oswindow, iShow), ::ca2::thread_priority_highest);
+      __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(oswindow, iShow), ::ca2::scheduling_priority_highest);
 
    }
 
