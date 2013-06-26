@@ -6,11 +6,11 @@ class hthread;
 
 #ifdef WINDOWSEX
 
-#define HTHREAD HANDLE
+typedef HANDLE HTHREAD;
 
 #else
 
-#define HTHREAD hthread *
+typedef hthread * HTHREAD;
 
 #endif
 

@@ -236,6 +236,59 @@ void get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t nCa2Prior
 
 }
 
+int32_t get_scheduling_priority(int32_t iOsPolicy, const sched_param * pparam)
+{
+
+   int iCa2Min;
+
+   int iCa2Max;
+
+
+   if(iOsPolicy == SCHED_RR)
+   {
+
+      iCa2Min = (int) ::ca2::scheduling_priority_normal;
+
+      iCa2Max = 99;
+
+   }
+   else if(iOsPolicy == SCHED_IDLE)
+   {
+
+      iCa2Min = 0;
+
+      iCa2Max = (int) ::ca2::scheduling_priority_normal;
+
+   }
+   else
+   {
+
+      iCa2Min = (int) ::ca2::scheduling_priority_normal;
+
+      iCa2Max = (int) ::ca2::scheduling_priority_normal;
+
+   }
+
+   int iOsMax = sched_get_priority_max(iOsPolicy);
+
+   int iOsMin = sched_get_priority_min(iOsPolicy);
+
+   int iCa2Priority;
+
+   if(iOsMax == iOsMin)
+   {
+      iCa2Priority = (int32_t) ::ca2::scheduling_priority_normal;
+   }
+   else
+   {
+      iCa2Priority = (((pparam->sched_priority - iOsMin)  * (iCa2Max - iCa2Min)) / (iOsMax - iOsMin)) + iCa2Min;
+   }
+
+   iCa2Priority = max(iCa2Min, min(iCa2Max, iCa2Priority));
+
+   return iCa2Priority;
+
+}
 
 // Helper shared between CreateThread and ResumeThread.
 static os_thread * StartThread(LPTHREAD_START_ROUTINE pfn, LPVOID pv, HTHREAD hthread, int32_t nPriority, SIZE_T cbStack)
@@ -674,18 +727,26 @@ void WINAPI TlsShutdown()
 
 
 
-int32_t WINAPI GetThreadPriority(HTHREAD  hThread)
+int32_t WINAPI GetThreadPriority(HTHREAD  hthread)
 {
 
    mutex_lock lock(pendingThreadsLock);
 
    // Look up the requested thread.
-   simple_map < HTHREAD, PendingThreadInfo >::pair * threadInfo = pendingThreads().PLookup(hThread);
+   simple_map < HTHREAD, PendingThreadInfo >::pair * threadInfo = pendingThreads().PLookup(hthread);
 
    if (threadInfo == NULL)
    {
 
-      return 0x80000000;
+      int iOsPolicy = SCHED_OTHER;
+
+      sched_param schedparam;
+
+      schedparam.sched_priority = 0;
+
+      pthread_getschedparam(hthread->m_posthread->m_pthread, &iOsPolicy, &schedparam);
+
+      return get_scheduling_priority(iOsPolicy, &schedparam);
 
    }
 

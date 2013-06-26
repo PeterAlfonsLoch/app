@@ -35,7 +35,7 @@
 #endif
 
 
-#define HTHREAD hthread *
+typedef hthread * HTHREAD;
 
 CLASS_DECL_ca HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr unusedStackSize, uint32_t (* lpStartAddress)(void *) , void * lpParameter, uint32_t uiCreationFlags, uint32_t * puiId);
 CLASS_DECL_ca DWORD WINAPI ResumeThread(HTHREAD hThread);

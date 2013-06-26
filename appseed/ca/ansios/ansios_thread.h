@@ -51,3 +51,5 @@ CLASS_DECL_c UINT GetCurrentThreadId();
 
 CLASS_DECL_ca void get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
 
+CLASS_DECL_ca int32_t get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+

@@ -38,13 +38,13 @@ public:
 
 #ifdef WINDOWSEX
 
-   #define HTHREAD HANDLE
+typedef HANDLE HTHREAD;
 
 #else
 
-   class simple_event;
+class simple_event;
 
-   #define HTHREAD hthread *
+typedef hthread * HTHREAD;
 
 #endif
 
