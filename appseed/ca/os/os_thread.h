@@ -51,7 +51,15 @@ namespace ca2
 } // namespace ca2
 
 
-inline ::ca2::e_scheduling_priority get_thread_priority_normal()
+inline int32_t get_scheduling_priority_none()
+{
+
+      return ::ca2::scheduling_priority_none;
+
+}
+
+
+inline int32_t get_scheduling_priority_normal()
 {
 
       return ::ca2::scheduling_priority_normal;

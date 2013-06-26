@@ -12,6 +12,7 @@
 #include "ca_os_file.h"
 #include "ca_os_file_watcher.h"
 #include "ca_os_graphics_round_rect.h"
+#include "ca_os_thread.h"
 
 
 #define GetAValue(rgb)      (LOBYTE((rgb)>>24))

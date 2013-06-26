@@ -60,38 +60,6 @@ namespace ca2
 
    }
 
-#ifdef WINDOWSEX
-
-   DWORD get_os_priority_class(int iCa2Priority)
-   {
-
-      if(iCa2Priority == ::ca2::priority_class_none)
-         return 0;
-
-      if(iCa2Priority <= ::ca2::priority_class_idle)
-         return PRIORITY_CLASS_IDLE;
-
-      if(iCa2Priority <= ::ca2::priority_class_lowest)
-         return PRIORITY_CLASS_LOWEST;
-
-      if(iCa2Priority <= ::ca2::priority_class_below_normal)
-         return PRIORITY_CLASS_BELOW_NORMAL;
-
-      if(iCa2Priority <= ::ca2::priority_class_normal)
-         return PRIORITY_CLASS_NORMAL;
-
-      if(iCa2Priority <= ::ca2::priority_class_above_normal)
-         return PRIORITY_CLASS_ABOVE_NORMAL;
-
-      if(iCa2Priority <= ::ca2::priority_class_highest)
-         return PRIORITY_CLASS_HIGHEST;
-
-      return PRIORITY_CLASS_REAL_TIME;
-
-   }
-
-#endif
-
 
    bool process::create_child_process(const char * pszCmdLine, bool bPiped, const char * pszDir, int32_t iCa2Priority)
    {
@@ -115,8 +83,8 @@ namespace ca2
       bool bSuccess = FALSE;
 
 
-// set up members of the STARTUPINFO structure.
-// This structure specifies the STDIN and STDOUT handles for redirection.
+      // set up members of the STARTUPINFO structure.
+      // This structure specifies the STDIN and STDOUT handles for redirection.
 
 
       m_si.cb = sizeof(STARTUPINFO);
@@ -128,19 +96,22 @@ namespace ca2
          m_si.dwFlags |= STARTF_USESTDHANDLES;
 
       }
-        /* STARTUPINFO si;
-         PROCESS_INFORMATION pi;
-         memset(&si, 0, sizeof(si));
-         memset(&pi, 0, sizeof(pi));
-         si.cb = sizeof(si);
-         si.dwFlags = STARTF_USESHOWWINDOW;
-         si.wShowWindow = SW_HIDE; */
-//         if(!::CreateProcess(NULL, (LPTSTR) (const char *) System.dir().appdata("production\\build.bat"), NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &si, &pi))
+      /* STARTUPINFO si;
+      PROCESS_INFORMATION pi;
+      memset(&si, 0, sizeof(si));
+      memset(&pi, 0, sizeof(pi));
+      si.cb = sizeof(si);
+      si.dwFlags = STARTF_USESHOWWINDOW;
+      si.wShowWindow = SW_HIDE; */
+      //         if(!::CreateProcess(NULL, (LPTSTR) (const char *) System.dir().appdata("production\\build.bat"), NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &si, &pi))
       m_si.dwFlags |= STARTF_USESHOWWINDOW;
       m_si.wShowWindow = SW_HIDE;
 
 
-// create the child process.
+      DWORD dwPriorityClass = ::get_os_priority_class(iCa2Priority);
+
+
+      // create the child process.
 
       bSuccess = CreateProcess(NULL,
          (char *)(const char *) szCmdline,     // command line
@@ -173,59 +144,59 @@ namespace ca2
 
 #else
 
-    char * argv[] = {(char *) pszCmdLine, 0};
+      char * argv[] = {(char *) pszCmdLine, 0};
 
-    posix_spawnattr_t attr;
+      posix_spawnattr_t attr;
 
-    posix_spawnattr_init(&attr);
+      posix_spawnattr_init(&attr);
 
-    if(iCa2Priority != (int32_t) ::ca2::scheduling_priority_none)
-    {
+      if(iCa2Priority != (int32_t) ::ca2::scheduling_priority_none)
+      {
 
-      int32_t iPolicy = SCHED_OTHER;
+         int32_t iPolicy = SCHED_OTHER;
 
-      sched_param schedparam;
-
-
-      schedparam.sched_priority = 0;
-
-    get_os_priority(&iPolicy, &schedparam, iCa2Priority);
-
-    posix_spawnattr_setschedpolicy(&attr, iPolicy);
-
-    posix_spawnattr_setschedparam(&attr, &schedparam);
-
-   }
-
-    int status = posix_spawn(&m_iPid, pszCmdLine, NULL, NULL, argv, environ);
-
-    posix_spawnattr_destroy(&attr);
+         sched_param schedparam;
 
 
+         schedparam.sched_priority = 0;
+
+         get_os_priority(&iPolicy, &schedparam, iCa2Priority);
+
+         posix_spawnattr_setschedpolicy(&attr, iPolicy);
+
+         posix_spawnattr_setschedparam(&attr, &schedparam);
+
+      }
+
+      int status = posix_spawn(&m_iPid, pszCmdLine, NULL, NULL, argv, environ);
+
+      posix_spawnattr_destroy(&attr);
 
 
-    return status == 0;
 
-/*
-   char *	cmd_line;
 
-   cmd_line = (char *) ca2_alloc(strlen(pszCmdLine ) + 1 );
+      return status == 0;
 
-   if(cmd_line == NULL)
-            return 0;
+      /*
+      char *	cmd_line;
 
-   strcpy_dup(cmd_line, pszCmdLine);
+      cmd_line = (char *) ca2_alloc(strlen(pszCmdLine ) + 1 );
 
-   char *   exec_path_name = cmd_line;
+      if(cmd_line == NULL)
+      return 0;
 
-   if((m_iPid = fork()) == 0)
-   {
+      strcpy_dup(cmd_line, pszCmdLine);
+
+      char *   exec_path_name = cmd_line;
+
+      if((m_iPid = fork()) == 0)
+      {
 
       if(bPiped)
       {
-         dup2(m_pipe.m_pipeOut.m_fd[1] , STDOUT_FILENO);
-         dup2(m_pipe.m_pipeOut.m_fd[1] , STDERR_FILENO);
-         dup2(m_pipe.m_pipeIn.m_fd[0]  , STDIN_FILENO);
+      dup2(m_pipe.m_pipeOut.m_fd[1] , STDOUT_FILENO);
+      dup2(m_pipe.m_pipeOut.m_fd[1] , STDERR_FILENO);
+      dup2(m_pipe.m_pipeIn.m_fd[0]  , STDIN_FILENO);
       }
 
 
@@ -234,39 +205,39 @@ namespace ca2
       char		*argv[1024 + 1];
       int32_t		 argc;
       if( ( pArg = strrchr_dup( exec_path_name, '/' ) ) != NULL )
-         pArg++;
+      pArg++;
       else
-         pArg = exec_path_name;
+      pArg = exec_path_name;
       argv[0] = pArg;
       argc = 1;
 
       if( cmd_line != NULL && *cmd_line != '\0' )
       {
-         pArg = strtok_r_dup(cmd_line, " ", &pPtr);
-         while( pArg != NULL )
-         {
-            argv[argc] = pArg;
-            argc++;
-            if( argc >= 1024 )
-               break;
-            pArg = strtok_r_dup(NULL, " ", &pPtr);
-         }
+      pArg = strtok_r_dup(cmd_line, " ", &pPtr);
+      while( pArg != NULL )
+      {
+      argv[argc] = pArg;
+      argc++;
+      if( argc >= 1024 )
+      break;
+      pArg = strtok_r_dup(NULL, " ", &pPtr);
+      }
       }
       argv[argc] = NULL;
 
       execv(exec_path_name, argv);
       free(cmd_line);
       exit( -1 );
-   }
-   else if(m_iPid == -1)
-   {
+      }
+      else if(m_iPid == -1)
+      {
       // in parent, but error
       m_iPid = 0;
       free(cmd_line);
       return 0;
-   }
-   // in parent, success
-   return 1;*/
+      }
+      // in parent, success
+      return 1;*/
 
 
 #endif
@@ -337,7 +308,7 @@ namespace ca2
       if(puiExitCode != NULL)
       {
 
-      *puiExitCode = dwExitCode;
+         *puiExitCode = dwExitCode;
       }
       return bExited;
 
@@ -347,40 +318,40 @@ namespace ca2
 
 #else
       int32_t iExitCode;
-//      bool bExited;
+      //      bool bExited;
 
       int32_t wpid = waitpid(m_iPid, &iExitCode, WNOHANG
-              #ifdef WCONTINUED
-              | WCONTINUED
-              #endif
-              );
+#ifdef WCONTINUED
+         | WCONTINUED
+#endif
+         );
 
-        if(wpid == -1)
-        return true;
+      if(wpid == -1)
+         return true;
 
       if(WIFEXITED(iExitCode))
       {
-          if(puiExitCode != NULL)
-          {
-         *puiExitCode = WEXITSTATUS(iExitCode);
+         if(puiExitCode != NULL)
+         {
+            *puiExitCode = WEXITSTATUS(iExitCode);
 
-          }
+         }
          return false;
       }
       else if(WIFSIGNALED(iExitCode))
       {
-          if(puiExitCode != NULL)
-          {
-         *puiExitCode = WTERMSIG(iExitCode);
-          }
+         if(puiExitCode != NULL)
+         {
+            *puiExitCode = WTERMSIG(iExitCode);
+         }
          return false;
       }
       else if(WIFSTOPPED(iExitCode))
       {
-          if(puiExitCode != NULL)
-          {
-         *puiExitCode = WSTOPSIG(iExitCode);
-          }
+         if(puiExitCode != NULL)
+         {
+            *puiExitCode = WSTOPSIG(iExitCode);
+         }
          return false;
       }
 #ifdef WIFCONTINUED

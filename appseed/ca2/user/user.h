@@ -237,7 +237,7 @@ namespace user
 
       LRESULT send();
       static UINT ThreadProcSendMessage(LPVOID lp);
-      static void post(sp(::user::interaction) puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca2::e_scheduling_priority epriority = ::get_thread_priority_normal());
+      static void post(sp(::user::interaction) puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, int32_t epriority = ::get_scheduling_priority_normal());
 
    };
 

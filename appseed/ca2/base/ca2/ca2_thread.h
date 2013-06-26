@@ -302,12 +302,12 @@ namespace ca2
 
       virtual void CommonConstruct();
 
-//      virtual bool begin(::ca2::e_thread_priority epriority = thread_priority_normal, uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+//      virtual bool begin(int32_t epriority = scheduling_priority_normal, uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-//      virtual bool create_thread(::ca2::e_thread_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+//      virtual bool create_thread(int32_t epriority = ::get_scheduling_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-//      virtual ::ca2::e_thread_priority get_thread_priority();
-  //    virtual bool set_thread_priority(::ca2::e_thread_priority epriority);
+//      virtual int32_t get_thread_priority();
+  //    virtual bool set_thread_priority(int32_t epriority);
 
       //virtual uint32_t SuspendThread();
 //      virtual uint32_t ResumeThread();
@@ -462,12 +462,12 @@ namespace ca2
 
 
 
-      virtual bool begin(::ca2::e_scheduling_priority epriority = ::get_thread_priority_normal(), uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+      virtual bool begin(int32_t epriority = ::get_scheduling_priority_normal(), uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-      virtual bool create_thread(::ca2::e_scheduling_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+      virtual bool create_thread(int32_t epriority = ::get_scheduling_priority_normal(), uint32_t dwCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-      virtual ::ca2::e_scheduling_priority get_thread_priority();
-      virtual bool set_thread_priority(::ca2::e_scheduling_priority epriority);
+      virtual int32_t get_thread_priority();
+      virtual bool set_thread_priority(int32_t epriority);
 
 //      virtual uint32_t SuspendThread();
       virtual uint32_t ResumeThread();

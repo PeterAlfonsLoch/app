@@ -297,9 +297,14 @@ namespace ca2
 	CLASS_DECL_ca bool set_thread_priority(int32_t priority)
 	{
 
-      return ( ::SetThreadPriority(::GetCurrentThread(), priority) != 0 );
+      return ( ::SetThreadPriority(::GetCurrentThread(), get_os_thread_priority(priority)) != 0 );
 	}
 
+	CLASS_DECL_ca bool set_priority_class(int32_t priority)
+	{
+
+      return ( ::SetPriorityClass(::GetCurrentProcess(), get_os_priority_class(priority)) != 0 );
+	}
 
 	///  \brief		global function to get thread priority for current thread
 	///  \return	priority of current thread
@@ -325,3 +330,148 @@ DWORD get_current_thread_id()
 {
    return ::GetCurrentThreadId();
 }
+
+
+
+
+
+
+CLASS_DECL_ca int32_t get_os_thread_priority(int32_t iCa2Priority)
+{
+   
+   if(iCa2Priority <= (int) ::ca2::scheduling_priority_none)
+      return THREAD_PRIORITY_NORMAL;
+
+   if(iCa2Priority <= (int) ::ca2::scheduling_priority_idle)
+      return THREAD_PRIORITY_IDLE;
+
+   if(iCa2Priority <= (int) ::ca2::scheduling_priority_lowest)
+      return THREAD_PRIORITY_LOWEST;
+
+   if(iCa2Priority <= (int) ::ca2::scheduling_priority_below_normal)
+      return THREAD_PRIORITY_BELOW_NORMAL;
+
+   if(iCa2Priority <= (int) ::ca2::scheduling_priority_normal)
+      return THREAD_PRIORITY_NORMAL;
+
+   if(iCa2Priority <= (int) ::ca2::scheduling_priority_above_normal)
+      return THREAD_PRIORITY_ABOVE_NORMAL;
+
+   if(iCa2Priority <= (int) ::ca2::scheduling_priority_highest)
+      return THREAD_PRIORITY_HIGHEST;
+
+   return THREAD_PRIORITY_TIME_CRITICAL;
+
+}
+
+
+
+CLASS_DECL_ca int32_t get_os_priority_class(int32_t iCa2Priority)
+{
+
+   if(iCa2Priority <= (int) ::ca2::scheduling_priority_none)
+      return 0;
+
+   if(iCa2Priority <= (int) ::ca2::scheduling_priority_idle)
+      return IDLE_PRIORITY_CLASS;
+
+   if(iCa2Priority <= (int) ::ca2::scheduling_priority_lowest)
+      return BELOW_NORMAL_PRIORITY_CLASS;
+
+   if(iCa2Priority <= (int) ::ca2::scheduling_priority_below_normal)
+      return BELOW_NORMAL_PRIORITY_CLASS;
+
+   if(iCa2Priority <= (int) ::ca2::scheduling_priority_normal)
+      return NORMAL_PRIORITY_CLASS;
+
+   if(iCa2Priority <= (int) ::ca2::scheduling_priority_above_normal)
+      return ABOVE_NORMAL_PRIORITY_CLASS;
+
+   if(iCa2Priority <= (int) ::ca2::scheduling_priority_highest)
+      return HIGH_PRIORITY_CLASS;
+
+   return REALTIME_PRIORITY_CLASS;
+
+}
+
+
+
+
+
+
+
+CLASS_DECL_ca int32_t get_os_thread_scheduling_priority(int32_t nPriority)
+{
+
+   int32_t iCa2Priority;
+
+   if(nPriority <= THREAD_PRIORITY_IDLE)
+   {
+      iCa2Priority = ::ca2::scheduling_priority_idle;
+   }
+   else if(nPriority <= THREAD_PRIORITY_LOWEST)
+   {
+      iCa2Priority = ::ca2::scheduling_priority_lowest;
+   }
+   else if(nPriority <= THREAD_PRIORITY_BELOW_NORMAL)
+   {
+      iCa2Priority = ::ca2::scheduling_priority_below_normal;
+   }
+   else if(nPriority <= THREAD_PRIORITY_NORMAL)
+   {
+      iCa2Priority = ::ca2::scheduling_priority_normal;
+   }
+   else if(nPriority <= THREAD_PRIORITY_ABOVE_NORMAL)
+   {
+      iCa2Priority = ::ca2::scheduling_priority_above_normal;
+   }
+   else if(nPriority <= THREAD_PRIORITY_HIGHEST)
+   {
+      iCa2Priority = ::ca2::scheduling_priority_highest;
+   }
+   else
+   {
+      iCa2Priority = ::ca2::scheduling_priority_time_critical;
+   }
+
+   return iCa2Priority;
+
+}
+
+
+CLASS_DECL_ca int32_t get_os_class_scheduling_priority(int32_t nPriority)
+{
+
+   int32_t iCa2Priority;
+
+   if(nPriority <= IDLE_PRIORITY_CLASS)
+   {
+      iCa2Priority = ::ca2::scheduling_priority_idle;
+   }
+   else if(nPriority <= BELOW_NORMAL_PRIORITY_CLASS)
+   {
+      iCa2Priority = ::ca2::scheduling_priority_below_normal;
+   }
+   else if(nPriority <= NORMAL_PRIORITY_CLASS)
+   {
+      iCa2Priority = ::ca2::scheduling_priority_normal;
+   }
+   else if(nPriority <= ABOVE_NORMAL_PRIORITY_CLASS)
+   {
+      iCa2Priority = ::ca2::scheduling_priority_above_normal;
+   }
+   else if(nPriority <= HIGH_PRIORITY_CLASS)
+   {
+      iCa2Priority = ::ca2::scheduling_priority_highest;
+   }
+   else
+   {
+      iCa2Priority = ::ca2::scheduling_priority_time_critical;
+   }
+
+   return iCa2Priority;
+
+}
+
+
+
