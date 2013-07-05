@@ -3,7 +3,7 @@
 #endif
 
 #ifdef __OBJC__
-#include "macos/ca_mm.h"
+#import "macos/ca_mm.h"
 #else
 #include "ca/ca.h"
 #endif

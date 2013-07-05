@@ -1353,7 +1353,7 @@ bool virtual_user_interface::KillTimer(uint_ptr nIDEvent)
 
    m_pguie->m_pthread->m_pthread->unset_timer(m_pguie, nIDEvent);
 
-   return TRUE;
+   return true;
 
 }
 

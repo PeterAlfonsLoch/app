@@ -650,7 +650,7 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 CLASS_DECL_ca2 ::ca2::thread* __begin_thread(sp(::ca2::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority = ::ca2::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_ca2 thread* __begin_thread(sp(::ca2::type_info) pThreadClass,
-   int32_t nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
+   int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
    uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
 template < class THREAD_TYPE >

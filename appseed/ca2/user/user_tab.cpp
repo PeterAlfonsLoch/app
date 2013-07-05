@@ -245,9 +245,6 @@ namespace user
    {
 
       
-      //return;
-
-
       get_data()->m_pen->create_solid(pdc, 1, RGB(32, 32, 32));
 
 

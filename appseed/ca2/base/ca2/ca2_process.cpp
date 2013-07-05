@@ -149,6 +149,8 @@ namespace ca2
       posix_spawnattr_t attr;
 
       posix_spawnattr_init(&attr);
+      
+#ifdef LINUX
 
       if(iCa2Priority != (int32_t) ::ca2::scheduling_priority_none)
       {
@@ -156,7 +158,6 @@ namespace ca2
          int32_t iPolicy = SCHED_OTHER;
 
          sched_param schedparam;
-
 
          schedparam.sched_priority = 0;
 
@@ -167,8 +168,23 @@ namespace ca2
          posix_spawnattr_setschedparam(&attr, &schedparam);
 
       }
+      
+#endif
 
-      int status = posix_spawn(&m_iPid, pszCmdLine, NULL, NULL, argv, environ);
+      int status = posix_spawn(&m_iPid, pszCmdLine, NULL, &attr, argv, environ);
+      
+#ifdef MACOS
+      
+      if(iCa2Priority != (int32_t) ::ca2::scheduling_priority_none)
+      {
+         
+         int32_t iOsPriority = process_get_os_priority(iCa2Priority);
+         
+         setpriority(PRIO_PROCESS, m_iPid, iOsPriority);
+         
+      }
+      
+#endif
 
       posix_spawnattr_destroy(&attr);
 

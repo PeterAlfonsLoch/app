@@ -44,6 +44,12 @@ WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
    rect.origin.y     = frame.size.height  -     lpcrect->bottom;
    rect.size.width   = lpcrect->right     -     lpcrect->left;
    rect.size.height  = lpcrect->bottom    -     lpcrect->top;
+
+//   rect.origin.x     = 500;
+//   rect.origin.y     = 400;
+//   rect.size.width   = 500;
+//   rect.size.height  = 500;
+   
    
    [hwnd->window() setFrame : rect display : iDisplay];
    

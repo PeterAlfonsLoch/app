@@ -4,7 +4,6 @@
 // Tip: Multiple invovations of this filter with a small
 // radius will approximate a gaussian blur quite well.
 //
-
 #include "framework.h"
 
 
@@ -14,33 +13,37 @@ bool optca_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, uint
 namespace visual
 {
 
+   
    fastblur::fastblur(::ca2::allocatorsp allocer) :
       dib_sp(allocer)
    {
+      
       m_iRadius = 0;
       m_size.cx = 0;
       m_size.cy = 0;
+      
    }
 
 
    bool fastblur::initialize(int32_t cx, int32_t cy, int32_t radius)
    {
+      
       if(is_null())
          return false;
+      
       if(!m_p->create(cx, cy))
          return false;
-//      int32_t w       = cx;
-      int32_t h       = cy;
-//      int32_t wh      = w * h;
-      int32_t scan    = m_p->scan;
-      int32_t div     = radius + radius + 1;
-      m_iRadius   = radius;
+
+      int32_t h         = cy;
+      int32_t scan      = m_p->scan;
+      int32_t div       = radius + radius + 1;
+      m_iRadius         = radius;
       m_ucha.set_size(scan * h);
       m_uchaDiv.set_size(256 * div);
-      byte * dv   = m_uchaDiv.get_data();
+      byte * dv         = m_uchaDiv.get_data();
 
-      m_size.cx   = cx;
-      m_size.cy   = cy;
+      m_size.cx         = cx;
+      m_size.cy         = cy;
 
 
       for(int32_t i = 0; i < m_uchaDiv.get_count(); i++)
@@ -49,11 +52,14 @@ namespace visual
       }
 
       return true;
+      
    }
 
    bool fastblur::initialize(size sz, int32_t iRadius)
    {
+      
       return initialize(sz.cx, sz.cy, iRadius);
+      
    }
 
 

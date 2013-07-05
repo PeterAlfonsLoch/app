@@ -53,10 +53,10 @@ namespace ca
 #include "ca/version/version.h"
 
 
-#include "ca_types.h"
+#include "ca/ca_types.h"
 
 
-#include "ca_natural.h"
+#include "ca/ca_natural.h"
 
 
 #define GetAValue(rgb)      (LOBYTE((rgb)>>24))
@@ -67,47 +67,51 @@ namespace ca
 extern "C"
 {
    
-#include "ca_cpu_architecture.h"
+   #include "ca/ca_cpu_architecture.h"
    
 }
 
-
-#include "ca_libc.h"
-
-
-#include "ca_count.h"
-#include "ca_index.h"
-#include "ca_keep_true.h"
-
-
-#include "ca_debug.h"
+#import "NSObject+DDExtensions.h"
+#import "DDInvocationGrabber.h"
 
 
 
-
-#include "ca_printf.h"
-#include "ca_sprintf.h"
-#include "ca_str.h"
-#include "ca_conv.h"
+#include "ca/ca_libc.h"
 
 
-
-#include "ca_heap.h"
-#include "ca_math.h"
-
-#include "ca_geometric_types.h"
+#include "ca/ca_count.h"
+#include "ca/ca_index.h"
+#include "ca/ca_keep_true.h"
 
 
-#include "ca_verisimple_string.h"
-#include "ca_verisimple_wstring.h"
-#include "ca_vsstringtow.h"
-#include "ca_wstringtovss.h"
-
-#include "ca_dir.h"
-#include "ca_md5.h"
+#include "ca/ca_debug.h"
 
 
-#include "ca_simple_memory.h"
+
+
+#include "ca/ca_printf.h"
+#include "ca/ca_sprintf.h"
+#include "ca/ca_str.h"
+#include "ca/ca_conv.h"
+
+
+
+#include "ca/ca_heap.h"
+#include "ca/ca_math.h"
+
+#include "ca/ca_geometric_types.h"
+
+
+#include "ca/ca_verisimple_string.h"
+#include "ca/ca_verisimple_wstring.h"
+#include "ca/ca_vsstringtow.h"
+#include "ca/ca_wstringtovss.h"
+
+#include "ca/ca_dir.h"
+#include "ca/ca_md5.h"
+
+
+#include "ca/ca_simple_memory.h"
 
 
 

@@ -57,7 +57,7 @@ namespace ca2
 
          if(iSize + 1 > m_iAlloc)
          {
-            strsize oldAlloc = m_iAlloc;
+//            strsize oldAlloc = m_iAlloc;
             m_iAlloc = iSize + 1024;
             if(m_psz == NULL)
             {
