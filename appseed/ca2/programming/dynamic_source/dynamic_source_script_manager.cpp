@@ -84,7 +84,7 @@ namespace dynamic_source
 
       calc_rsa_key();
 
-      m_strNamespace             = "netnodelite"; // default namespace is linked to outer project app_core_netnodelite
+      m_strNamespace             = "netnode"; // default namespace is linked to outer project netnode
       #ifdef LINUX
       m_strNetnodePath           = "/netnodenet/";
       m_strNetseedPath           = "/netnodenet/net/netseed/";

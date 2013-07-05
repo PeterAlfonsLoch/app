@@ -238,20 +238,20 @@ namespace dynamic_source
       //#ifdef DEBUG
 #ifdef LINUX
       pscript->m_strBuildBat.Format(System.dir().stage("front\\dynamic_source\\BuildBat\\%s%s.bat"), System.file().name_(strTransformName), strTransformName);
-      strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script\\%s\\%s.o", false), strTransformName, System.file().name_(strTransformName));
+      strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\%s.o", false), strTransformName, System.file().name_(strTransformName));
       pscript->m_strScriptPath = System.dir().path(System.dir().stage(m_strPlatform+"\\dynamic_source"), System.dir().path(System.dir().name(strTransformName), strScript + ".so", false));
 #else
       pscript->m_strBuildBat.Format(System.dir().stage("front\\dynamic_source\\BuildBat\\%s\\%s.bat"), System.file().name_(strTransformName), strTransformName);
-      strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script\\%s\\%s.obj", false), strTransformName, System.file().name_(strTransformName));
+      strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\%s.obj", false), strTransformName, System.file().name_(strTransformName));
       strP.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.pdb"), System.dir().path(System.dir().name(strTransformName), strScript, false));
       strL.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.lib"), System.dir().path(System.dir().name(strTransformName), strScript, false));
       strE.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.exp"), System.dir().path(System.dir().name(strTransformName), strScript, false));
-      strDVI.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script\\%s\\vc" + m_strSdk1 + ".idb", false), strTransformName);
-      strDVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script\\%s\\vc" + m_strSdk1 + ".pdb", false), strTransformName);
-      strDPCH.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script\\%s\\" + m_pmanager->m_strNamespace + "_script.pch", false), strTransformName);
-      strSVI.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script\\vc" + m_strSdk1 + ".idb", false), strTransformName);
-      strSVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script\\vc" + m_strSdk1 + ".pdb", false), strTransformName);
-      strSPCH.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script\\" + m_pmanager->m_strNamespace + "_script.pch", false), strTransformName);
+      strDVI.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\vc" + m_strSdk1 + ".idb", false), strTransformName);
+      strDVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\vc" + m_strSdk1 + ".pdb", false), strTransformName);
+      strDPCH.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_pmanager->m_strNamespace + "_dynamic_source_script.pch", false), strTransformName);
+      strSVI.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\vc" + m_strSdk1 + ".idb", false), strTransformName);
+      strSVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\vc" + m_strSdk1 + ".pdb", false), strTransformName);
+      strSPCH.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\" + m_pmanager->m_strNamespace + "_dynamic_source_script.pch", false), strTransformName);
       pscript->m_strScriptPath = System.dir().path(System.dir().stage(m_strPlatform+"\\dynamic_source"), System.dir().path(System.dir().name(strTransformName), strScript + ".dll", false));
 #endif
       //#else
@@ -420,7 +420,7 @@ namespace dynamic_source
 
       Application.dir().mk(System.dir().name(pscript->m_strScriptPath));
       Application.dir().mk(System.dir().name(strL));
-      Application.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script", false), strTransformName));
+      Application.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script", false), strTransformName));
 
       cppize(pscript);
 
@@ -681,19 +681,19 @@ namespace dynamic_source
       iPosId = strDest.get_length();
       strDest += "\r\n";
       strDest += "\r\n";
-      strDest += "class " + m_pmanager->m_strNamespace + "_script : virtual public ::" + m_pmanager->m_strNamespace + "::script_instance\r\n";
+      strDest += "class " + m_pmanager->m_strNamespace + "_dynamic_source_script : virtual public ::" + m_pmanager->m_strNamespace + "::script_instance\r\n";
       strDest += "{\r\n";
       strDest += "public:\r\n";
-      strDest += "   " + m_pmanager->m_strNamespace + "_script(dynamic_source::script * pscript) : ca2(pscript->get_app()), dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";
+      strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script(dynamic_source::script * pscript) : ca2(pscript->get_app()), dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";
       strDest += "   virtual void run();\r\n";
       strDest += "};\r\n";
       strDest += "\r\n";
       strDest += "extern \"C\" dynamic_source::script_instance * __cdecl create_dynamic_source_script_instance (dynamic_source::script * pscript)\r\n";
       strDest += "{\r\n";
-      strDest += "   return dynamic_cast < dynamic_source::script_instance * > (canew(" + m_pmanager->m_strNamespace + "_script(pscript)));\r\n";
+      strDest += "   return dynamic_cast < dynamic_source::script_instance * > (canew(" + m_pmanager->m_strNamespace + "_dynamic_source_script(pscript)));\r\n";
       strDest += "}\r\n";
       strDest += "\r\n";
-      strDest += "void " + m_pmanager->m_strNamespace + "_script::run()\r\n";
+      strDest += "void " + m_pmanager->m_strNamespace + "_dynamic_source_script::run()\r\n";
       strDest += "{\r\n";
       strDest += "//Start parsed user script\r\n";
       straId.remove_all();
@@ -891,7 +891,7 @@ namespace dynamic_source
       //#endif
 
       Application.dir().mk(System.dir().name(m_strLibraryPath));
-      Application.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_library\\library", false), System.dir().name(strName), false));
+      Application.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\library", false), System.dir().name(strName), false));
 
       for(int32_t i = 0; i < m_straLibIncludePath.get_size(); i++)
       {
@@ -927,7 +927,7 @@ namespace dynamic_source
          str.replace("%LIBPLATFORM%", m_strLibPlatform);
          str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
          str.replace("%SDK1%", m_strSdk1);
-         Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_library\\" + System.dir().name(str1)));
+         Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\" + System.dir().name(str1)));
          Application.dir().mk(System.dir().path(m_strTime, "library\\" + m_strPlatform + "\\" + System.dir().name(str1), false));
 #ifdef LINUX
          strCmd = System.dir().ca2("stage\\front\\libc1.bash");
@@ -993,7 +993,7 @@ namespace dynamic_source
          string strRel = m_straLibSourceRelPath[i];
          ::ca2::str::ends_eat_ci(strRel, ".ds");
          strObjs += System.dir().path(
-            System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_library\\library\\source", false),
+            System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\library\\source", false),
 #ifdef LINUX
             strRel + ".o", false);
 #else

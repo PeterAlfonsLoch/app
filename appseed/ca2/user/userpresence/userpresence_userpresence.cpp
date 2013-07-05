@@ -77,6 +77,9 @@ namespace userpresence
       if(Application.command()->m_varTopicQuery["app"] == "app-core/netnodecfg")
          return true;
 
+      if(Application.command()->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server_cfg")
+         return true;
+
       // it may not be initialized, due
       // licensing for example
       if(!Application.is_licensed("user_presence", m_bUserPresenceFeatureRequired))
