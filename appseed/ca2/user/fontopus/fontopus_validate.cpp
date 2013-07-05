@@ -251,7 +251,10 @@ namespace fontopus
          || strLicense == "mydns"
          || Application.command()->m_varTopicQuery.has_property("install")
          || Application.command()->m_varTopicQuery.has_property("uninstall")
+         || strLicense == "netnode"
+         || strLicense == "netnode_dynamic_web_server"
          || strLicense == "app-core/netnodecfg"
+         || strLicense == "app-core/netnode_dynamic_web_server"
          || strLicense == "app-core/netnode_dynamic_web_server_cfg")
       {
          return true;
@@ -1034,7 +1037,7 @@ namespace fontopus
             post["entered_passhash"] = strHex;
          }
          string strCrypt;
-         
+
          string strUsername = m_strUsername;
 
          post["entered_login"] = m_strUsername;
@@ -1420,7 +1423,7 @@ namespace fontopus
 
 
 
-  
+
    bool validate::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
    {
       UNREFERENCED_PARAMETER(pview);

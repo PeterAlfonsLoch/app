@@ -53,7 +53,7 @@ namespace userpresence
          {
            // m_spuiMessage = canew(::user::interaction());
          }
-   
+
          if(!initialize_message_window("ca5::user::userpresence::message_window"))
             return false;
 
@@ -80,6 +80,8 @@ namespace userpresence
       if(Application.command()->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server_cfg")
          return true;
 
+      if(Application.command()->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server")
+         return true;
       // it may not be initialized, due
       // licensing for example
       if(!Application.is_licensed("user_presence", m_bUserPresenceFeatureRequired))
@@ -128,7 +130,7 @@ namespace userpresence
 
       if(m_spuiMessage.is_set() && m_spuiMessage->IsWindow())
       {
-      
+
          m_spuiMessage->KillTimer(1984);
 
       }
