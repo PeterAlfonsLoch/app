@@ -61,6 +61,7 @@ namespace ca2
 
       virtual void map(); // some implementations may requrire to map to m_pcolorref before manipulate it
       virtual void unmap(); // some implementations may require to unmap from m_pcolorref to update *os* bitmap
+      virtual void set_mapped();
 
 
       virtual bool is_rgb_black();

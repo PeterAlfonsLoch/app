@@ -2999,8 +2999,16 @@ fill_last:
 
    }
 
+   
    void dib::unmap()
    {
+      
+   }
+   
+   
+   void dib::set_mapped()
+   {
+      
    }
 
 
