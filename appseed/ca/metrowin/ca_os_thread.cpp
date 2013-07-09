@@ -1065,7 +1065,8 @@ CLASS_DECL_ca BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT message, WPARA
 }
 
 
-
+namespace ca2
+{
 
 ///  \brief		global function to set thread priority for current thread
 	///  \param		new priority
@@ -1087,7 +1088,7 @@ CLASS_DECL_ca BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT message, WPARA
    }
 
 
-
+} // namespace ca2
 
 
 HTHREAD get_current_thread()

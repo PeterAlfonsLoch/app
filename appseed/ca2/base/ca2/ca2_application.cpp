@@ -4074,7 +4074,7 @@ namespace ca2
       
 #ifdef METROWIN
 
-      return ::GetCapture()->window();
+      return ::GetCapture()->window()->get_capture();
 
 #elif defined(WINDOWS)
 

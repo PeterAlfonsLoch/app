@@ -67,7 +67,7 @@ namespace ca2
             {
                if(m_iAlloc > 1024 * 1024)
                {
-                  ::OutputDebugString("strange string buffer usage");
+                  ::output_debug_string("strange string buffer usage");
                }
                m_psz = (char *) ca2_realloc(m_psz, m_iAlloc);
             }
