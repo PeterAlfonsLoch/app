@@ -803,6 +803,10 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
                {
                   return true;
                }
+               else if(a1 == 'w' && a2 == 'a' && a3 == 'w')
+               {
+                  return true;
+               }
             }
             else if(alen == 4)
             {
@@ -993,6 +997,13 @@ bool CLASS_DECL_ca2 server_is_top_domain(const char * pszTop1, strsize blen, con
             }
          }
       }
+   }
+   else if(blen == 10)
+   {
+        if(strncmp(pszTop1, "xn--fiqs8s", 10))
+        {
+            return true;
+        }
    }
    return false;
 }
