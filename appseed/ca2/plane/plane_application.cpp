@@ -1651,10 +1651,14 @@ exit_application:
    {
 
       string strId(pszId);
+      string strSystemLocale = System.m_strLocale;
+      string strSystemSchema = System.m_strSchema;
       string strLocale = command()->m_varTopicQuery["locale"];
       string strSchema = command()->m_varTopicQuery["schema"];
 
       System.install().remove_spa_start(m_strInstallType, strId);
+      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strSystemLocale, m_strSchema);
+      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strSystemLocale, strSystemSchema);
       System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, m_strSchema);
       System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, strSchema);
       System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, m_strSchema);

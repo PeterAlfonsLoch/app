@@ -1999,12 +1999,11 @@ namespace xml
    node * node::GetChildByAllAttr(const char * pszName, stringa & straAttrName, stringa & straAttrValue)
    {
       string strValue;
-      bool bAll;
       for(int32_t i = 0; i < m_nodea.get_size(); i++)
       {
          if(m_nodea[i].m_strName == pszName)
          {
-            bAll = true;
+            bool bAll = true;
             for(int32_t j = 0; j < straAttrName.get_size(); j++)
             {
                if(!m_nodea[i].get_attr(straAttrName[j], strValue) || _stricmp(strValue, straAttrValue[j]) != 0)
