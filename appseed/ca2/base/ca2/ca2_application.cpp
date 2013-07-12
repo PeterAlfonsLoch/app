@@ -4074,7 +4074,17 @@ namespace ca2
       
 #ifdef METROWIN
 
-      return ::GetCapture()->window()->get_capture();
+      oswindow oswindowCapture = ::GetCapture();
+
+      if(oswindowCapture == NULL)
+         return NULL;
+
+      ::user::interaction * pui = oswindowCapture->window();
+
+      if(pui == NULL)
+         return NULL;
+
+      return pui->get_capture();
 
 #elif defined(WINDOWS)
 
