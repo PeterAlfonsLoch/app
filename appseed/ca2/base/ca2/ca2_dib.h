@@ -4,6 +4,12 @@
 struct FIBITMAP;
 
 
+#include <ft2build.h>
+
+
+#include FT_FREETYPE_H
+
+
 namespace ca2
 {
 
@@ -189,6 +195,11 @@ namespace ca2
 
       virtual void write(::ca2::byte_output_stream & ostream);
       virtual void read(::ca2::byte_input_stream & istream);
+       
+       
+       
+      virtual void draw_bitmap(int32_t dx, int32_t dy, FT_Bitmap * bitmap, FT_Int x, FT_Int y);
+
 
 
    };
