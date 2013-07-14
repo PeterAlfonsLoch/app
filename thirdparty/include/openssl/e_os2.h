@@ -264,7 +264,8 @@ extern "C" {
 #define CLASS_DECL_OPENSSL OPENSSL_EXPORT
 #define CLASS_IMPL_OPENSSL OPENSSL_EXPORT
 #else
-#define CLASS_DECL_OPENSSL OPENSSL_IMPORT
+#define CLASS_DECL_OPENSSL
+#define CLASS_IMPL_OPENSSL
 #endif
 #else
 # define OPENSSL_EXPORT extern
@@ -276,6 +277,7 @@ extern "C" {
 #define CLASS_IMPL_OPENSSL
 #else
 #define CLASS_DECL_OPENSSL extern
+#define CLASS_IMPL_OPENSSL
 #endif
 
 #endif
