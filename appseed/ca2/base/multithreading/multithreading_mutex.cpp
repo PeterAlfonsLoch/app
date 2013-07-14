@@ -11,6 +11,16 @@ mutex::mutex(sp(::ca2::application) papp, bool bInitiallyOwn, const char * pstrN
    sync_object(pstrName)
 {
 
+    static exception::translator * p = NULL;
+
+    if(p == NULL)
+    {
+
+                    p = new ::exception::translator();
+                    p->attach();
+
+    }
+
 #ifdef _WIN32
 
    m_object = ::CreateMutexExW(lpsaAttribute, pstrName == NULL ? NULL : (const wchar_t *) ::ca2::international::utf8_to_unicode(pstrName), bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);

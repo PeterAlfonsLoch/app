@@ -340,16 +340,16 @@ namespace plane
          }
 
       }
-      catch(::exit_exception & e)
+      catch(const ::exit_exception & e)
       {
 
          throw e;
 
       }
-      catch(::ca2::exception & e)
+      catch(const ::ca2::exception & e)
       {
 
-         if(!Application.on_run_exception(e))
+         if(!Application.on_run_exception((::ca2::exception &) e))
             throw exit_exception(get_app());
 
       }
@@ -1147,22 +1147,22 @@ exit_application:
 
       if(strId.CompareNoCase("session") == 0)
       {
-         
+
          ::plane::session * psession = new ::plane::session();
-         
+
          papp = psession;
-         
+
          psession->construct();
-         
+
          if(m_psystem != NULL && m_psystem->m_psession == NULL)
          {
-            
+
             m_psystem->m_psession = psession;
-            
+
          }
-         
+
          psession->m_strAppId = "session";
-         
+
       }
       else
       {
@@ -1197,14 +1197,14 @@ exit_application:
 
          /*if(pcaapp->m_bService)
          {
-          
+
             App(pcaapp).m_puiInitialPlaceHolderContainer  = NULL;
-         
+
          }*/
-         
+
          if(m_psystem != NULL && m_psystem->m_psession == NULL)
          {
-         
+
             m_psystem->m_psession = m_psession;
 
          }
@@ -1240,13 +1240,13 @@ exit_application:
 
       if(pbias != NULL)
       {
-      
+
          papp->propset().merge(pbias->m_set);
-      
+
       }
       else
       {
-      
+
          papp->oprop("SessionSynchronizedInput")   = true;
          papp->oprop("NativeWindowFocus")          = true;
 
@@ -1276,7 +1276,7 @@ exit_application:
       }
 
       return papp;
-      
+
    }
 
 
@@ -2001,7 +2001,11 @@ exit_application:
          if(System.appptra().get_count() <= 1)
          {
 
-            System.post_thread_message(WM_QUIT);
+             if(System.::ca2::thread::get_os_data() != NULL)
+              {
+              System.post_thread_message(WM_QUIT);
+
+              }
 
          }
 

@@ -37,7 +37,7 @@ namespace crypto
       {
          for (int32_t i = 0; i < 16; i += 4)
             for (int32_t j = 0; j < 4; j++)
-               Keys[j] ^= g_CrcTable[data[i + j]];
+               Keys[j] ^= g_pCrcTable[data[i + j]];
       }
 
       static void Swap(byte *b1, byte *b2)
@@ -62,8 +62,8 @@ namespace crypto
          for (uint32_t j = 0; j < 256; j++)
             for (uint32_t i = 0; i < passwordLen; i += 2)
             {
-               uint32_t n2 = (byte)g_CrcTable[(psw[i + 1] + j) & 0xFF];
-               uint32_t n1 = (byte)g_CrcTable[(psw[i] - j) & 0xFF];
+               uint32_t n2 = (byte)g_pCrcTable[(psw[i + 1] + j) & 0xFF];
+               uint32_t n1 = (byte)g_pCrcTable[(psw[i] - j) & 0xFF];
                for (uint32_t k = 1; (n1 & 0xFF) != n2; n1++, k++)
                   Swap(&SubstTable[n1 & 0xFF], &SubstTable[(n1 + i + k) & 0xFF]);
             }

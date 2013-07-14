@@ -5,6 +5,8 @@
 
 #ifdef WINDOWS
 #include <intrin.h>
+#elif defined(LINUX)
+#include <cpuid.h>
 #endif
 
 
@@ -55,7 +57,7 @@ static uint32_t CheckFlag(uint32_t flag)
 
 static void MyCPUID(uint32_t function, uint32_t *a, uint32_t *b, uint32_t *c, uint32_t *d)
 {
-  #if defined(USE_ASM) && !defined(WINDOWS)
+  #if defined(USE_ASM) && !defined(WINDOWS) && !defined(LINUX)
 
   /*#ifdef _MSC_VER
 
@@ -102,6 +104,10 @@ static void MyCPUID(uint32_t function, uint32_t *a, uint32_t *b, uint32_t *c, ui
     : "0" (function)) ;*/
 
   //#endif
+
+  #elif defined(LINUX)
+
+  __cpuid(function, *a, *b, *c, *d);
 
   #else
 
