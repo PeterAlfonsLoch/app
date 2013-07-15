@@ -47,7 +47,7 @@ namespace ca2
 
       bool CLASS_DECL_ca2 begins(const char * psz, const char * lpcszPrefix);
       bool CLASS_DECL_ca2 begins(const string & str, const char * lpcszPrefix);
-      inline bool CLASS_DECL_ca2 begins(const id & id, const char * lpcszPrefix) { return begins((const string &) id, lpcszPrefix); }
+      inline bool CLASS_DECL_ca2 begins(const id & id, const char * lpcszPrefix);
       bool CLASS_DECL_ca2 begins_with(const char * psz, const char * lpcszPrefix);
       bool CLASS_DECL_ca2 begins_with(const string & str, const char * lpcszPrefix);
 

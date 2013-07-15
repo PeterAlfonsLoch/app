@@ -177,3 +177,23 @@ inline id & id::operator = (const id & id)
    return *this;
 }
 
+
+namespace ca2
+{
+
+
+   namespace str
+   {
+
+
+      inline bool CLASS_DECL_ca2 begins(const id & id, const char * lpcszPrefix) { return begins(*id.m_pstr, lpcszPrefix); }
+
+
+   } // namespace str
+
+
+} // namespace ca2
+
+
+
+
