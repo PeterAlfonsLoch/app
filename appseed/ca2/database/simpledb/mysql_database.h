@@ -15,20 +15,13 @@ namespace mysql
    class CLASS_DECL_ca2 database :
       virtual public ::ca2::object
    {
-
-
       friend class result;
-
-   protected:
+   public:
 
 
       comparable_array < result * > m_resultptra;
       void * m_pmysql; // MYSQL *
-
-
-   public:
-
-
+	  string m_strLastError;
       int64_t m_iLastUsedTime;
 
 

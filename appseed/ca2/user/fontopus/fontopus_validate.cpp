@@ -96,7 +96,8 @@ namespace fontopus
          //|| command_thread()->property("app") == "veriwell_mplite"      // churrasco 2011 m_strLicense
          || command_thread()->property("app") == "app-core/netnodecfg"
          || command_thread()->property("app") == "app-core/netnode_dynamic_web_server"
-         || command_thread()->property("app") == "app-core/netnode_dynamic_web_server_cfg")
+         || command_thread()->property("app") == "app-core/netnode_dynamic_web_server_cfg"
+		 || command_thread()->property("app") == "app-gtech/alarm")
       {
          m_puser = Application.m_pfontopus->allocate_user();
          m_puser->m_strPathPrefix = "system" + ::ca2::str::has_char(Application.command()->m_varTopicQuery["systemid"], "-");
@@ -255,7 +256,8 @@ namespace fontopus
          || strLicense == "netnode_dynamic_web_server"
          || strLicense == "app-core/netnodecfg"
          || strLicense == "app-core/netnode_dynamic_web_server"
-         || strLicense == "app-core/netnode_dynamic_web_server_cfg")
+         || strLicense == "app-core/netnode_dynamic_web_server_cfg"
+		 || strLicense == "app-gtech/alarm")
       {
          return true;
       }

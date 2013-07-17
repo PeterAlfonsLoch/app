@@ -97,11 +97,13 @@ namespace mysql
 
    void database::trace_error1(const char * pszPrefix)
    {
-      TRACE0(error1(pszPrefix));
+	   m_strLastError += error1(pszPrefix);
+      TRACE0(m_strLastError);
    }
 
    result * database::query(const char * pszSql)
    {
+	   m_strLastError = "";
       MYSQL_RES * pres;
      if(m_pmysql == NULL)
      {
