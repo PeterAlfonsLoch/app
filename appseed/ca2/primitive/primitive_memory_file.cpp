@@ -144,7 +144,8 @@ namespace primitive
 
    file_position memory_file::get_position() const
    {
-      ASSERT(IsValid());
+      if(!IsValid())
+         throw io_exception(get_app());
       return (file_position) m_dwPosition;
    }
 
