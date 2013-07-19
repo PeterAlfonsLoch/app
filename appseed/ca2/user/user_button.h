@@ -32,7 +32,6 @@ namespace user
    public:
 
       state::state                        m_state;
-      index                               m_iHover;
       index                               m_iClick;
       ::user::front_end_schema::button *  m_pschema;
 

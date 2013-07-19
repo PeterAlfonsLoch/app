@@ -54,13 +54,14 @@ namespace user
 
       m_buttonBaseWndMenuItem.m_font->create_point_font("Lucida Sans Unicode", 9.0);
 
-      m_buttonBaseWndMenuItem.m_crTextNormal = ARGB(255, 0, 0, 0);
-      m_buttonBaseWndMenuItem.m_crTextHover  = color | (0xff << 24);
-      m_buttonBaseWndMenuItem.m_crTextNormal = ARGB(255, 0, 0, 0);
-      m_buttonBaseWndMenuSysMenu.m_crBkNormal    = Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);        
-      m_buttonBaseWndMenuSysMenu.m_crBkPress  = Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);           
-      m_buttonBaseWndMenuSysMenu.m_crBkDisabled    = Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);      
-      m_buttonBaseWndMenuSysMenu.m_crBkHover     = Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);        
+      m_buttonBaseWndMenuItem.m_crTextNormal             = ARGB(255, 0, 0, 0);
+      m_buttonBaseWndMenuItem.m_crTextPress              = color | (0xff << 24);
+      m_buttonBaseWndMenuItem.m_crTextDisabled           = ARGB(255, 108, 108, 108);
+      m_buttonBaseWndMenuItem.m_crTextHover              = color | (0xff << 24);
+      m_buttonBaseWndMenuItem.m_crBkNormal               = Session.get_default_color(COLOR_3DFACE) | (0xff << 24);        
+      m_buttonBaseWndMenuItem.m_crBkPress                = Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);           
+      m_buttonBaseWndMenuItem.m_crBkDisabled             = Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);      
+      m_buttonBaseWndMenuItem.m_crBkHover                = Session.get_default_color(COLOR_3DLIGHT) | (0xff << 24);        
 
       //m_buttonBaseWndMenuItem.m_crBk         = Session.get_default_color(COLOR_3DHIGHLIGHT);
       m_buttonBaseWndMenuItem.m_crTextDisabled = RGB(127, 127, 127) | (0xff << 24);

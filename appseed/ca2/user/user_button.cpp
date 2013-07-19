@@ -26,8 +26,8 @@ namespace user
 
    void button::install_message_handling(::ca2::message::dispatch * pinterface)
    {
-      ::user::window_interface::install_message_handling(pinterface);
-      ::user::interaction::install_message_handling(pinterface);
+      //::user::window_interface::install_message_handling(pinterface);
+      ::user::control::install_message_handling(pinterface);
       //::user::button::install_message_handling(pinterface);
 
       //   IGUI_WIN_MSG_LINK(WM_SIZE                    , pinterface, this, &button::OnParentSize);
