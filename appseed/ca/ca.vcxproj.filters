@@ -464,6 +464,24 @@
     <ClInclude Include="ca\ca_geometric_types.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
+    <ClInclude Include="android\ca_os_simple_bitmap.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="android\ca_os_simple_brush.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="android\ca_os_simple_font.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="android\ca_os_simple_graphics.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="android\ca_os_simple_path.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="android\ca_os_simple_pen.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -837,6 +855,24 @@
     </ClCompile>
     <ClCompile Include="ca\ca_geometric_types.cpp">
       <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_simple_bitmap.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_simple_brush.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_simple_font.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_simple_graphics.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_simple_path.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_simple_pen.cpp">
+      <Filter>Source Files\android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

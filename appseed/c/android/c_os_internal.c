@@ -13,19 +13,39 @@ void swab(const void *from, void*to, ssize_t n)
 }
 
 // used deep inside FreeImage
-void* lfind( const void * key, const void * base, size_t num, size_t width, int (*fncomparison)(const void *, const void * ) )
+void* lfind( const void * key, const void * base, size_t * num, size_t width, int (*fncomparison)(const void *, const void * ) )
 {
 
    char * Ptr = (char *) base;
 
    size_t i;
 
-   for(i = 0; i != num; i++, Ptr += width)
+   for(i = 0; i != *num; i++, Ptr += width)
    {
       if(fncomparison(key, Ptr) == 0)
          return Ptr;
    }
 
    return NULL;
+
+}
+
+
+void* lsearch( const void * key, const void * base, size_t * num, size_t width, int (*fncomparison)(const void *, const void * ) )
+{
+
+   char * Ptr = (char *) base;
+
+   size_t i;
+
+   for(i = 0; i != *num; i++, Ptr += width)
+   {
+      if(fncomparison(key, Ptr) == 0)
+         return Ptr;
+   }
+
+   *num = i;
+
+   return Ptr;
 
 }

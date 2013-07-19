@@ -71,6 +71,7 @@
     <CLRSupport>false</CLRSupport>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>arm-linux-androideabi-4.7</PlatformToolset>
+    <AndroidStlType>gnustl_dynamic</AndroidStlType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -1024,6 +1025,12 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="android\ca_os_simple_bitmap.h" />
+    <ClInclude Include="android\ca_os_simple_brush.h" />
+    <ClInclude Include="android\ca_os_simple_font.h" />
+    <ClInclude Include="android\ca_os_simple_graphics.h" />
+    <ClInclude Include="android\ca_os_simple_path.h" />
+    <ClInclude Include="android\ca_os_simple_pen.h" />
     <ClInclude Include="bsdiff\bsdiff.h" />
     <ClInclude Include="bsdiff\bsdiff_private.h" />
     <ClInclude Include="bsdiff\bzlib.h" />
@@ -1191,6 +1198,12 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="android\ca_os_simple_bitmap.cpp" />
+    <ClCompile Include="android\ca_os_simple_brush.cpp" />
+    <ClCompile Include="android\ca_os_simple_font.cpp" />
+    <ClCompile Include="android\ca_os_simple_graphics.cpp" />
+    <ClCompile Include="android\ca_os_simple_path.cpp" />
+    <ClCompile Include="android\ca_os_simple_pen.cpp" />
     <ClCompile Include="bsdiff\blocksort.cpp" />
     <ClCompile Include="bsdiff\bsdiff.cpp" />
     <ClCompile Include="bsdiff\bspatch.cpp" />
