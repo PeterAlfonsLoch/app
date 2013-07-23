@@ -4927,7 +4927,8 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
       if(is_system()
          && command_thread()->m_varTopicQuery["app"] != "core_netnodelite"
          && command_thread()->m_varTopicQuery["app"] != "app-core/netnode_dynamic_web_server"
-		 && command_thread()->m_varTopicQuery["app"] != "app-gtech/alarm")
+		   && command_thread()->m_varTopicQuery["app"] != "app-gtech/alarm"
+         && command_thread()->m_varTopicQuery["app"] != "app-gtech/alarm_monitor")
       {
          System.http().defer_auto_initialize_proxy_configuration();
       }
