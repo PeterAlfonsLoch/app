@@ -343,7 +343,7 @@ namespace database
 
       }
 
-      bool interaction::on_simple_command(e_simple_command ecommand, LPARAM lparam, LRESULT & lresult)
+      bool interaction::on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult)
       {
 
          if(::user::interaction::on_simple_command(ecommand, lparam, lresult))

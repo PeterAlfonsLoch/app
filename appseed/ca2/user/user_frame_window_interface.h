@@ -60,7 +60,7 @@ namespace user
       virtual ::user::interaction::e_type get_window_type();
 
       
-      virtual bool on_simple_command(e_simple_command ecommand, LPARAM lparam, LRESULT & lresult);
+      virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
       virtual void _000OnDraw(::ca2::graphics * pdc);
       virtual void _001OnDraw(::ca2::graphics * pdc);
       virtual void install_message_handling(::ca2::message::dispatch * pinterface);

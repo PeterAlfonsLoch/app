@@ -46,7 +46,7 @@ namespace database
          virtual bool SaveWindowRect_(class id key, class id idIndex, sp(::user::interaction) pWnd);
         
          
-         virtual bool on_simple_command(e_simple_command ecommand, LPARAM lparam, LRESULT & lresult);
+         virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
 
 
       };

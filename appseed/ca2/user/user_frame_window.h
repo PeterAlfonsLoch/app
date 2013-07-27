@@ -303,7 +303,7 @@ namespace user
       LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
 
 
-      virtual bool on_simple_command(e_simple_command ecommand, LPARAM lparam, LRESULT & lresult);
+      virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
 
 
 
