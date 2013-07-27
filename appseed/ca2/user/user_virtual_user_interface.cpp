@@ -190,10 +190,22 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
       DestroyWindow();
    }
 
-   m_pthread = ::ca2::get_thread();
+   // great change :
+   // From the thread where the window is created, the window attach to this thread.
+   // But this thread can be just a temporary worker thread, and just after its initial action,
+   // it can stop dispatching messages to any created window, because it finishes.
+   // So, it would be better to use the main stream bias of using just one main thread for the
+   // windows (user interface thread).
+   // It is contrary to assume to polically correct main stream bias, it would be better to
+   // stay at the extreme oposite.
+   // But the need, and it seems good, to use application thread where window is created.
+   // Application thread englobes window lifetime. While possibly worker threads not.
    
-   if(m_pthread == NULL)
-      m_pthread = get_app();
+//   m_pthread = ::ca2::get_thread();
+   
+//   if(m_pthread == NULL)
+
+   m_pthread = get_app();
    
    if(m_pthread == NULL)
       return false;
@@ -319,10 +331,22 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
       
    }
    
-   m_pthread = ::ca2::get_thread();
+   // great change :
+   // From the thread where the window is created, the window attach to this thread.
+   // But this thread can be just a temporary worker thread, and just after its initial action,
+   // it can stop dispatching messages to any created window, because it finishes.
+   // So, it would be better to use the main stream bias of using just one main thread for the
+   // windows (user interface thread).
+   // It is contrary to assume to polically correct main stream bias, it would be better to
+   // stay at the extreme oposite.
+   // But the need, and it seems good, to use application thread where window is created.
+   // Application thread englobes window lifetime. While possibly worker threads not.
    
-   if(m_pthread == NULL)
-      m_pthread = get_app();
+//   m_pthread = ::ca2::get_thread();
+   
+//   if(m_pthread == NULL)
+
+   m_pthread = get_app();
    
    if(m_pthread == NULL)
       return false;
@@ -445,10 +469,22 @@ bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
       
    }
    
-   m_pthread = ::ca2::get_thread();
+   // great change :
+   // From the thread where the window is created, the window attach to this thread.
+   // But this thread can be just a temporary worker thread, and just after its initial action,
+   // it can stop dispatching messages to any created window, because it finishes.
+   // So, it would be better to use the main stream bias of using just one main thread for the
+   // windows (user interface thread).
+   // It is contrary to assume to polically correct main stream bias, it would be better to
+   // stay at the extreme oposite.
+   // But the need, and it seems good, to use application thread where window is created.
+   // Application thread englobes window lifetime. While possibly worker threads not.
+   
+//   m_pthread = ::ca2::get_thread();
+   
+//   if(m_pthread == NULL)
 
-   if(m_pthread == NULL)
-      m_pthread = get_app();
+   m_pthread = get_app();
    
    if(m_pthread == NULL)
       return false;
