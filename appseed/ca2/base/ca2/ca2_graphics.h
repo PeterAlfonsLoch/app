@@ -630,17 +630,6 @@ namespace ca2
 
    };
 
-   class CLASS_DECL_ca2 client_graphics :
-      virtual public graphics_sp
-   {
-   public:
-
-      sp(::user::interaction) m_pui;
-
-      client_graphics(sp(::user::interaction) pui);
-      virtual ~client_graphics();
-
-   };
 
    class CLASS_DECL_ca2 window_graphics :
       virtual public graphics_sp

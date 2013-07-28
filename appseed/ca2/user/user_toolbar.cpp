@@ -290,7 +290,7 @@ namespace user
       // load the bitmap
       HBITMAP hbmImageWell;
    //   hbmImageWell = ::ca2::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
-      ::ca2::client_graphics pdc(this);
+      ::ca2::memory_graphics pdc(this);
       hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
 
 
@@ -635,8 +635,11 @@ namespace user
 
    int32_t tool_bar::WrapToolBar(TBBUTTON* pData, int32_t nCount, int32_t nWidth)
    {
+
       ASSERT(pData != NULL && nCount > 0);
-      ::ca2::client_graphics pdc(this);
+
+      ::ca2::memory_graphics pdc(allocer());
+
       int32_t nResult = 0;
       int32_t x = 0;
       string str;
@@ -887,7 +890,7 @@ namespace user
                }
             }
 
-               //::ca2::client_graphics pdc(this);
+               //::ca2::memory_graphics pdc(this);
             string str;
             if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
                m_nMRUWidth = sizeResult.cx;

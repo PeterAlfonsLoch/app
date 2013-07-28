@@ -507,7 +507,7 @@ int32_t simple_menu_bar::_001HitTest(const POINT *lppoint)
 
 /*void simple_menu_bar::_001Layout()
 {
-   ::ca2::client_graphics pdc(this);;
+   ::ca2::memory_graphics pdc(this);;
    pdc->SelectObject(System.visual().font_central().GetMenuFont());
 
    size size;

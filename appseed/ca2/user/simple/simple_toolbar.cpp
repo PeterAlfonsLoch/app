@@ -1148,7 +1148,7 @@ return FALSE;
 // load the bitmap
 HBITMAP hbmImageWell;
 //   hbmImageWell = ::ca2::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
-::ca2::client_graphics pdc(this);;
+::ca2::memory_graphics pdc(this);;
 hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
 
 
@@ -1929,7 +1929,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
             }
          }
 
-         //::ca2::client_graphics pdc(this);
+         //::ca2::memory_graphics pdc(this);
          string str;
          if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
             m_nMRUWidth = sizeResult.cx;

@@ -536,7 +536,7 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          class pen;
          class brush;
          class window;            // a window
-         class client_graphics;         // ::ca2::graphics_sp for client of ::ca2::window
+         class memory_graphics;         // ::ca2::graphics_sp for client of ::ca2::window
          class window_graphics;         // ::ca2::graphics_sp for entire ::ca2::window
          class paint_graphics;          // embeddable BeginPaint struct helper
       }

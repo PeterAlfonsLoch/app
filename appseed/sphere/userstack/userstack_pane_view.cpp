@@ -445,7 +445,7 @@ namespace userstack
          }
          FIBITMAP * pfi;
 
-         ::ca2::client_graphics pdc(this);
+         ::ca2::memory_graphics pdc(this);
 
          pfi = System.visual().imaging().LoadImageFile(strWallpaper);
 

@@ -163,12 +163,17 @@ namespace filehandler
 
    void view::layout()
    {
-      ::ca2::client_graphics pdc(this);
+
+      ::ca2::memory_graphics pdc(allocer());
+
       rect rectClient;
+
       GetClientRect(rectClient);
+
       m_drawlist.layout(rectClient, &m_list);
       
    }
+
 
    void view::_001OnDraw(::ca2::graphics * pdc)
    {

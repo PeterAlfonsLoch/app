@@ -129,7 +129,9 @@ namespace user
 
    void menu::layout()
    {
-      ::ca2::client_graphics pdc(this);
+
+      ::ca2::memory_graphics pdc(allocer());
+
       pdc->SelectObject(m_pschema->m_font);
       size size = pdc->GetTextExtent("XXXMMM");
       int32_t iMaxHeight = size.cy;

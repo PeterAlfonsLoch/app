@@ -73,7 +73,8 @@ namespace user
       SetTimer(1, 5000, NULL);
 
       rect rect;
-      ::ca2::client_graphics pdc(this);
+
+      ::ca2::memory_graphics pdc(allocer());
 
       GetToolRect(iTool, rect);
 

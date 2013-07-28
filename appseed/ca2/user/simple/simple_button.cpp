@@ -56,7 +56,7 @@ void simple_button::_001OnCtlColor(::ca2::signal_object * pobj)
 
 void simple_button::ResizeToFit()
 {
-   ::ca2::client_graphics pdc(this);
+   ::ca2::memory_graphics pdc(allocer());
 
    pdc->SelectObject(GetFont());
 

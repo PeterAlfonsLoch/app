@@ -2480,17 +2480,17 @@ namespace ca2
 
    }
 
-   client_graphics::client_graphics(sp(::user::interaction) pui)
+/*   memory_graphics::memory_graphics(sp(::user::interaction) pui)
    {
       m_pui = pui;
       throw "prefer not to use";
       //::ca2::graphics_sp::operator = (pui->GetDC());
    }
 
-   client_graphics::~client_graphics()
+   memory_graphics::~memory_graphics()
    {
       m_pui->ReleaseDC(m_p);
-   }
+   }*/
 
    window_graphics::window_graphics(sp(::ca2::window) pwindow)
    {

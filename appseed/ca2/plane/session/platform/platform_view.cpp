@@ -199,7 +199,7 @@ namespace platform
 
       //FIBITMAP * pfi;
 
-      //::ca2::client_graphics pdc(this);;
+      //::ca2::memory_graphics pdc(this);;
 
       m_dibBkImage.load_from_matter("casweden1.png");
 
