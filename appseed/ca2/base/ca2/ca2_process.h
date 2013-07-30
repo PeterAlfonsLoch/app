@@ -21,7 +21,7 @@ namespace ca2
 #ifdef WINDOWSEX
 
       PROCESS_INFORMATION     m_pi;
-      STARTUPINFO             m_si;
+      STARTUPINFOW             m_si;
 
 #else
 

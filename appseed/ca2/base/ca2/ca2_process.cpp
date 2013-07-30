@@ -86,7 +86,6 @@ namespace ca2
       // set up members of the STARTUPINFO structure.
       // This structure specifies the STDIN and STDOUT handles for redirection.
 
-
       m_si.cb = sizeof(STARTUPINFO);
       if(bPiped)
       {
@@ -113,17 +112,41 @@ namespace ca2
 
       // create the child process.
 
-      bSuccess = CreateProcess(NULL,
-         (char *)(const char *) szCmdline,     // command line
+
+      if(::ca2::str::ends_ci(szCmdline, ".bat"))
+      {
+         string strCmd;
+
+         strCmd = "";
+         strCmd += szCmdline;
+         strCmd += "";
+
+         wstring wstr = strCmd;
+
+      bSuccess = CreateProcessW(NULL,
+         (wchar_t *)(const wchar_t *) wstr,     // command line
+         NULL,          // process security attributes
+         NULL,          // primary thread security attributes
+         TRUE,          // handles are inherited
+         CREATE_NEW_CONSOLE | CREATE_UNICODE_ENVIRONMENT | dwPriorityClass,             // creation flags
+         NULL,          // use parent's environment
+         wstring(pszDir),
+         &m_si,  // STARTUPINFO pointer
+         &m_pi) != FALSE;  // receives PROCESS_INFORMATION
+      }
+      else
+      {
+      bSuccess = CreateProcessW(NULL,
+         (wchar_t *)(const wchar_t *) wstring(szCmdline),     // command line
          NULL,          // process security attributes
          NULL,          // primary thread security attributes
          TRUE,          // handles are inherited
          CREATE_NEW_CONSOLE | dwPriorityClass,             // creation flags
          NULL,          // use parent's environment
-         pszDir,
+         wstring(pszDir),
          &m_si,  // STARTUPINFO pointer
          &m_pi) != FALSE;  // receives PROCESS_INFORMATION
-
+      }
       // If an error occurs, exit the application.
       if ( ! bSuccess )
          return false;

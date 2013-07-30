@@ -1288,6 +1288,7 @@ namespace dynamic_source
                   {
                      strResult += ":*<invalid-syntax>*:"; // fatal;
                      break;
+                     break;
                      //throw simple_exception(get_app(), "invalid syntax.");
                   }
                }
