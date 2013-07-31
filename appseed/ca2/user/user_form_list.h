@@ -67,7 +67,7 @@ namespace user
 
       void _001HideEditingControls();
       void _001HideControl(sp(control) pcontrol);
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual LRESULT _001BaseWndGetProperty(EProperty eprop, LPARAM lparam);
       virtual sp(::user::interaction) _GetWnd();
       void _001UpdateColumns();

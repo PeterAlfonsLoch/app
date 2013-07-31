@@ -279,7 +279,7 @@ namespace user
       void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
       void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
       void OnSize(UINT nType, int32_t cx, int32_t cy);
-      bool OnEraseBkgnd(::ca2::graphics * pgraphics);
+      bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
       //void OnActivate(UINT nState, sp(::user::interaction) pWndOther, bool bMinimized);
       DECL_GEN_SIGNAL(_001OnActivate)
          DECL_GEN_SIGNAL(_001OnNcActivate)
@@ -315,7 +315,7 @@ namespace user
 
 
 
-      virtual void _000OnDraw(::ca2::graphics * pdc);
+      virtual void _000OnDraw(::draw2d::graphics * pdc);
 
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);

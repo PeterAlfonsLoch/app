@@ -33,12 +33,12 @@ namespace visual
       return load_from_file(Application.dir().matter(pszMatter));
    }
 
-   bool cursor::to(::ca2::graphics * pgraphics, int32_t x, int32_t y)
+   bool cursor::to(::draw2d::graphics * pgraphics, int32_t x, int32_t y)
    {
       if(&System.visual().imaging() == NULL)
          return false;
 
-      pgraphics->set_alpha_mode(::ca2::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       return System.visual().imaging().color_blend(
          pgraphics,
@@ -50,7 +50,7 @@ namespace visual
          m_dibWork2); 
    }
 
-   bool cursor::to(::ca2::graphics * pgraphics, point pt)
+   bool cursor::to(::draw2d::graphics * pgraphics, point pt)
    {
       return to(pgraphics, pt.x, pt.y); 
    }

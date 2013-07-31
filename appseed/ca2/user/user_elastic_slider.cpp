@@ -188,7 +188,7 @@ namespace user
    }
 
 
-   void elastic_slider::_001OnDraw(::ca2::graphics * pdc)
+   void elastic_slider::_001OnDraw(::draw2d::graphics * pdc)
    {
       rect rectClient;
       GetClientRect(rectClient);

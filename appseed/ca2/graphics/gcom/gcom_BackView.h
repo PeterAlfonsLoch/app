@@ -54,9 +54,9 @@ namespace gcom
          EImagePlacement GetCurrentImagePlacement();
          bool GetNextImagePath(string & str);
          ::mutex & GetTransferMutex();
-         ::ca2::graphics & GetTransferDC();
+         ::draw2d::graphics & GetTransferDC();
          void SetBackgroundImageChangeInterval(uint32_t dwMillis);
-         void OnImageLoaded(::ca2::dib * pdib);
+         void OnImageLoaded(::draw2d::dib * pdib);
          void UpdateDrawingObjects();
          void OnDestroy();
          void OnResize();

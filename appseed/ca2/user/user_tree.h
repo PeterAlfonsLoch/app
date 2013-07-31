@@ -15,7 +15,7 @@ namespace user
    {
    public:
       sp(::ca2::tree_item)      m_pitem;
-      ::ca2::graphics *        m_pdc;
+      ::draw2d::graphics *        m_pdc;
       index                   m_iItem;
       index                   m_iIndentation;
       index                   m_iItemHeight;
@@ -77,8 +77,8 @@ namespace user
       tree(sp(::ca2::application) papp);
       virtual ~tree();
 
-      virtual void _001OnDrawBackground(::ca2::graphics * pdc);
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDrawBackground(::draw2d::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual void _001DrawItem(tree_draw_item & data);
 
       void layout();

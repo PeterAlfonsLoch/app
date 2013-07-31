@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca2
+namespace draw2d
 {
 
 
-   class CLASS_DECL_ca2 graphics_path :
-      virtual public graphics_object
+   class CLASS_DECL_ca2 path :
+      virtual public ::draw2d::object
    {
    public:
 
@@ -88,13 +88,13 @@ namespace ca2
 
       simple_array < element >      m_elementa;
       bool                          m_bFill;
-      ::ca2::e_fill_mode             m_efillmode;
+      ::draw2d::e_fill_mode             m_efillmode;
       bool                          m_bHasPoint;
       point                         m_pt;
 
 
-      graphics_path();
-      virtual ~graphics_path();
+      path();
+      virtual ~path();
 
 
       virtual bool has_current_point();
@@ -102,7 +102,7 @@ namespace ca2
 
 
 
-      virtual bool begin_figure(bool bFill, ::ca2::e_fill_mode efillmode);
+      virtual bool begin_figure(bool bFill, ::draw2d::e_fill_mode efillmode);
       virtual bool end_figure(bool bClose);
 
 
@@ -132,29 +132,29 @@ namespace ca2
    };
 
 
-   class CLASS_DECL_ca2 graphics_path_sp :
-      public ::ca::smart_pointer < graphics_path >
+   class CLASS_DECL_ca2 path_sp :
+      public ::ca::smart_pointer < path >
    {
    public:
 
-      graphics_path_sp()
+      path_sp()
       {
       }
 
-      graphics_path_sp(const ::ca::smart_pointer < graphics_path > & p) :
-         ::ca::smart_pointer < graphics_path > (p)
+      path_sp(const ::ca::smart_pointer < path > & p) :
+         ::ca::smart_pointer < path > (p)
       {
       }
 
-      graphics_path_sp(allocatorsp allocer) :
-         ::ca::smart_pointer < graphics_path > (allocer)
+      path_sp(::ca2::allocatorsp allocer) :
+         ::ca::smart_pointer < path > (allocer)
       {
       }
 
    };
 
 
-} // namespace ca2
+} // namespace draw2d
 
 
 

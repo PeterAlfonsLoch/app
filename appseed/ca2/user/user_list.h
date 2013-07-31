@@ -210,7 +210,7 @@ namespace user
       index                m_iListItemRectSubItem;
       index                m_iListItemRectListItem;
 
-      ::ca2::font *         m_pfont;
+      ::draw2d::font *         m_pfont;
       int32_t                  m_iDrawTextFlags;
 
       draw_list_item(list * plist);
@@ -500,10 +500,10 @@ namespace user
       string                        m_strTopText;
       rect                          m_rectTopText;
       list_data *                   m_pdata;
-      ::ca2::font_sp                 m_font;
-      ::ca2::font_sp                 m_fontHover;
-      ::ca2::pen_sp                  m_penFocused;
-      ::ca2::pen_sp                  m_penHighlight;
+      ::draw2d::font_sp                 m_font;
+      ::draw2d::font_sp                 m_fontHover;
+      ::draw2d::pen_sp                  m_penFocused;
+      ::draw2d::pen_sp                  m_penHighlight;
       EView                         m_eview;
       flags < e_flag >              m_flags;
       icon_layout                   m_iconlayout;
@@ -537,8 +537,8 @@ namespace user
 
 
 
-      int32_t _001CalcItemWidth(::ca2::graphics * pdc, index iItem, index iSubItem);
-      int32_t _001CalcItemWidth(::ca2::graphics * pdc, ::ca2::font * pfont, index iItem, index iSubItem);
+      int32_t _001CalcItemWidth(::draw2d::graphics * pdc, index iItem, index iSubItem);
+      int32_t _001CalcItemWidth(::draw2d::graphics * pdc, ::draw2d::font * pfont, index iItem, index iSubItem);
 
 
 
@@ -548,12 +548,12 @@ namespace user
 
       list_data * GetDataInterface();
       void UpdateHover();
-      ::ca2::font * _001GetFont();
-      ::ca2::font * _001GetFontHover();
-      ::ca2::pen * _001GetPenFocused();
-      ::ca2::pen * _001GetPenHighlight();
+      ::draw2d::font * _001GetFont();
+      ::draw2d::font * _001GetFontHover();
+      ::draw2d::pen * _001GetPenFocused();
+      ::draw2d::pen * _001GetPenHighlight();
       virtual void PreSubClassWindow();
-      virtual void _OnDraw(::ca2::graphics * pdc);
+      virtual void _OnDraw(::draw2d::graphics * pdc);
       void _001MaximizeColumnWidth(index iColumn);
       int32_t _001CalcItemWidth(index iItem, index iSubItem);
       int32_t _001CalcColumnWidth(index iColumn);
@@ -637,7 +637,7 @@ namespace user
 
       bool CreateHeaderCtrl();
 
-      virtual void _001OnDraw(::ca2::graphics *pdc);
+      virtual void _001OnDraw(::draw2d::graphics *pdc);
 
       virtual void _001DrawGroups(draw_list_item * pdrawitem, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast);
 

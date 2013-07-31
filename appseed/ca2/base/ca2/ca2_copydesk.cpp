@@ -71,7 +71,7 @@ namespace ca2
 
    }
 
-   bool copydesk::desk_to_dib(::ca2::dib * pdib)
+   bool copydesk::desk_to_dib(::draw2d::dib * pdib)
    {
 
       UNREFERENCED_PARAMETER(pdib);

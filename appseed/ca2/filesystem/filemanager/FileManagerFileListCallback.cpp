@@ -20,7 +20,7 @@ bool FileManagerFileListCallback::initialize()
    m_pimagelistItemHover      = new image_list(papp);
    m_pimagelistNormal         = new image_list(papp);
 
-   ::ca2::graphics_sp spgraphics(allocer());
+   ::draw2d::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(NULL);
 
    m_pimagelistSubItemHover->create(16, 16, 0,  10, 10);

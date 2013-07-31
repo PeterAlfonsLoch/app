@@ -10,9 +10,9 @@ public:
 
    file_manager_operation_info_view(sp(::ca2::application) papp);
 
-   virtual void OnDraw(::ca2::graphics * pdc);
+   virtual void OnDraw(::draw2d::graphics * pdc);
 
-   virtual void _001OnDraw(::ca2::graphics * pdc);
+   virtual void _001OnDraw(::draw2d::graphics * pdc);
 
    sp(file_manager_operation_document) get_document();
 

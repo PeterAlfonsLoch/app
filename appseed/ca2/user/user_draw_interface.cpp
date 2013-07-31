@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   void draw_interface::_001OnDraw(::ca2::graphics * pdc)
+   void draw_interface::_001OnDraw(::draw2d::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
    }

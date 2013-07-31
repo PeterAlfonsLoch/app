@@ -15,7 +15,7 @@ public:
 
    virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
-   virtual void _001OnDraw(::ca2::graphics * pdc);
+   virtual void _001OnDraw(::draw2d::graphics * pdc);
 
 };
 

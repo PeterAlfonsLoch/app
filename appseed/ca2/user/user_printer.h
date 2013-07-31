@@ -17,7 +17,7 @@ namespace user
       virtual ~printer();
 
       virtual bool open(const char * pszDeviceName);
-      virtual ::ca2::graphics * create_graphics();
+      virtual ::draw2d::graphics * create_graphics();
       virtual bool is_opened();
       virtual bool close();
 

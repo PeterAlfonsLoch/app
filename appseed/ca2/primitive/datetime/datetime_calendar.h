@@ -26,10 +26,10 @@ protected:
 public:
 
    
-   ::ca2::font_sp    m_font;
-   ::ca2::font_sp    m_fontYear;
-   ::ca2::font_sp    m_fontMonth;
-   ::ca2::font_sp    m_fontSpin;
+   ::draw2d::font_sp    m_font;
+   ::draw2d::font_sp    m_fontYear;
+   ::draw2d::font_sp    m_fontMonth;
+   ::draw2d::font_sp    m_fontSpin;
 
 
    calendar(sp(::ca2::application) papp);
@@ -39,7 +39,7 @@ public:
    virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, LPRECT lprect);
    virtual void GetRect(LPRECT lprect, enum EElement eelement);
 
-   void _001OnDraw(::ca2::graphics * pdc);
+   void _001OnDraw(::draw2d::graphics * pdc);
    void _001GetHtml(sp(::html::file) pfile);
 
    void set_pos(point pt, size sz);

@@ -26,7 +26,7 @@ namespace frame
       sp(::user::interaction) WfiGetWindow();
 
 
-      virtual void _001OnDraw(::ca2::graphics * pca);
+      virtual void _001OnDraw(::draw2d::graphics * pca);
 
 
       void WfiEnableFullScreen(bool bEnable = true);

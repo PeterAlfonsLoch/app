@@ -87,7 +87,7 @@ namespace ca2
          virtual ~system();
 
 
-         virtual class path & path();
+         virtual class ::ca2::path & path();
 
 
          virtual string path(const string & strFolder, const string & strRelative, bool bUrl);

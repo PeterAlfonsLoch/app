@@ -47,7 +47,7 @@ namespace user
    }
 
 
-   void check_box::_001OnDraw(::ca2::graphics * pdc)
+   void check_box::_001OnDraw(::draw2d::graphics * pdc)
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -68,7 +68,7 @@ namespace user
          if(m_echeck == check::tristate
          || m_echeck == check::checked)
          {
-            ::ca2::pen_sp pen(allocer());
+            ::draw2d::pen_sp pen(allocer());
             pen->create_solid(pdc, 1, m_echeck == check::checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
             pdc->SelectObject(pen);
             pdc->MoveTo(2, 8);

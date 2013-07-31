@@ -15,7 +15,7 @@ namespace user
       m_buttonBaseWndMenuItemPopup(papp)
    {
 
-      ::ca2::graphics_sp spgraphics(papp->allocer());
+      ::draw2d::graphics_sp spgraphics(papp->allocer());
       spgraphics->CreateCompatibleDC(NULL);
 
       m_button.m_font->create_point_font("Arial", 11.0);
@@ -104,7 +104,7 @@ namespace user
    front_end_schema::system_menu::system_menu(sp(::ca2::application) papp) :
       m_fontMarlett(papp->allocer())
    {
-      ::ca2::graphics_sp spgraphics(papp->allocer());
+      ::draw2d::graphics_sp spgraphics(papp->allocer());
       spgraphics->CreateCompatibleDC(NULL);
 
       m_fontMarlett->create_point_font("Marlett", 11.0);
@@ -126,7 +126,7 @@ namespace user
       //}
    }
 
-   void front_end_schema::DrawCheck(check::check echeck, LPCRECT lpcrect, ::ca2::graphics * pdc)
+   void front_end_schema::DrawCheck(check::check echeck, LPCRECT lpcrect, ::draw2d::graphics * pdc)
    {
       if(echeck == check::checked)
       {

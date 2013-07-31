@@ -3,10 +3,9 @@
 //   Date : 09-04-98
 //////////////////////////////////////////////////////////////////////
 #include "framework.h"
-#include <math.h>
 
 
-namespace ca2
+namespace draw2d
 {
 
 
@@ -28,7 +27,7 @@ namespace ca2
    }
 
 
-   ::ca2::graphics * dib::get_graphics()
+   ::draw2d::graphics * dib::get_graphics()
    {
 
       throw interface_only_exception(get_app());
@@ -36,7 +35,7 @@ namespace ca2
    }
 
 
-   ::ca2::bitmap_sp dib::get_bitmap()
+   ::draw2d::bitmap_sp dib::get_bitmap()
    {
 
       throw interface_only_exception(get_app());
@@ -44,7 +43,7 @@ namespace ca2
    }
 
 
-   ::ca2::bitmap_sp dib::detach_bitmap()
+   ::draw2d::bitmap_sp dib::detach_bitmap()
    {
 
       throw interface_only_exception(get_app());
@@ -71,7 +70,7 @@ namespace ca2
    }
 
 
-   bool dib::realize(::ca2::graphics * pdc)
+   bool dib::realize(::draw2d::graphics * pdc)
    {
 
       UNREFERENCED_PARAMETER(pdc);
@@ -95,7 +94,7 @@ namespace ca2
 
    }
 
-   bool dib::defer_realize(::ca2::graphics * pdc)
+   bool dib::defer_realize(::draw2d::graphics * pdc)
    {
 
       if(is_realized())
@@ -122,9 +121,9 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool dib::create(::ca2::graphics * pdc)
+   bool dib::create(::draw2d::graphics * pdc)
    {
-      ::ca2::bitmap & bitmap = pdc->GetCurrentBitmap();
+      ::draw2d::bitmap & bitmap = pdc->GetCurrentBitmap();
       if(&bitmap == NULL)
          return FALSE;
 
@@ -145,33 +144,33 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool dib::to(::ca2::graphics * pgraphics)
+   bool dib::to(::draw2d::graphics * pgraphics)
    {
       return to(pgraphics, null_point(), size());
    }
 
-   bool dib::to(::ca2::graphics * pgraphics, point pt)
+   bool dib::to(::draw2d::graphics * pgraphics, point pt)
    {
       return to(pgraphics, pt, size());
    }
 
-   bool dib::to(::ca2::graphics * pgraphics, class size size)
+   bool dib::to(::draw2d::graphics * pgraphics, class size size)
    {
       return to(pgraphics, null_point(), size);
    }
 
-   bool dib::to(::ca2::graphics * pgraphics, LPCRECT lpcrect)
+   bool dib::to(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
    {
       class rect rect(lpcrect);
       return to(pgraphics, rect.top_left(), rect.size());
    }
 
-   bool dib::to(::ca2::graphics * pgraphics, point pt, class size size)
+   bool dib::to(::draw2d::graphics * pgraphics, point pt, class size size)
    {
       return to(pgraphics, pt, size, point(0, 0));
    }
 
-   bool dib::to(::ca2::graphics * pgraphics, point pt, class size size, point ptSrc)
+   bool dib::to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(pt);
@@ -180,7 +179,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool dib::from(::ca2::dib * pdib)
+   bool dib::from(::draw2d::dib * pdib)
    {
 
       if(!create(pdib->size()))
@@ -199,13 +198,13 @@ namespace ca2
       return true;
    }
 
-   bool dib::from(::ca2::graphics * pdc)
+   bool dib::from(::draw2d::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
       throw interface_only_exception(get_app());
    }
 
-   bool dib::from(point ptDst, ::ca2::graphics * pdc, point ptSrc, class size size)
+   bool dib::from(point ptDst, ::draw2d::graphics * pdc, point ptSrc, class size size)
    {
       return get_graphics()->from(ptDst, size, pdc, ptSrc, SRCCOPY) != FALSE;
    }
@@ -306,7 +305,7 @@ namespace ca2
       }
    }
 
-   void dib::mult_alpha(::ca2::dib * pdib, bool bPreserveAlpha)
+   void dib::mult_alpha(::draw2d::dib * pdib, bool bPreserveAlpha)
    {
       UNREFERENCED_PARAMETER(pdib);
       UNREFERENCED_PARAMETER(bPreserveAlpha);
@@ -522,7 +521,7 @@ fill_last:
       }
    }
 
-   void dib::channel_multiply(visual::rgba::echannel echannel, ::ca2::dib * pdib)
+   void dib::channel_multiply(visual::rgba::echannel echannel, ::draw2d::dib * pdib)
    {
       register int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
@@ -537,7 +536,7 @@ fill_last:
       }
    }
 
-   void dib::channel_darken(visual::rgba::echannel echannel, ::ca2::dib * pdib)
+   void dib::channel_darken(visual::rgba::echannel echannel, ::draw2d::dib * pdib)
    {
       register int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
@@ -552,7 +551,7 @@ fill_last:
       }
    }
 
-   void dib::channel_lighten(visual::rgba::echannel echannel, ::ca2::dib * pdib)
+   void dib::channel_lighten(visual::rgba::echannel echannel, ::draw2d::dib * pdib)
    {
       register int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
@@ -567,7 +566,7 @@ fill_last:
       }
    }
 
-   void dib::channel_from(visual::rgba::echannel echannel, ::ca2::dib * pdib)
+   void dib::channel_from(visual::rgba::echannel echannel, ::draw2d::dib * pdib)
    {
       map();
       pdib->map();
@@ -717,7 +716,7 @@ fill_last:
 
    }
 
-   bool dib::bitmap_blend(::ca2::graphics * pgraphics, LPCRECT lprect)
+   bool dib::bitmap_blend(::draw2d::graphics * pgraphics, LPCRECT lprect)
    {
       rect rect(lprect);
 
@@ -1871,7 +1870,7 @@ fill_last:
 #endif
 
       // Black blend dib
-      ::ca2::dib_sp spdib2(allocer());
+      ::draw2d::dib_sp spdib2(allocer());
 
 
       throw todo(get_app());
@@ -1957,7 +1956,7 @@ fill_last:
 
    void dib::rotate(dib * pdib, double dAngle, double dScale)
    {
-      // ::ca2::dib_sp spdib(allocer());
+      // ::draw2d::dib_sp spdib(allocer());
       //   spdib->Paste(this);
 
       int32_t l = max(cx, cy);
@@ -2108,7 +2107,7 @@ fill_last:
 
    void dib::rotate(dib * pdib, LPCRECT lpcrect, double dAngle, double dScale)
    {
-      // ::ca2::dib_sp spdib(allocer());
+      // ::draw2d::dib_sp spdib(allocer());
       //   spdib->Paste(this);
 
 
@@ -2676,7 +2675,7 @@ fill_last:
       throw not_implemented(get_app());
    }
 
-   bool dib::rgb_from(::ca2::dib * pdib)
+   bool dib::rgb_from(::draw2d::dib * pdib)
    {
       if(!create(pdib->size()))
          return false;
@@ -2702,7 +2701,7 @@ fill_last:
       return true;
    }
 
-   bool dib::from(::ca2::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI)
+   bool dib::from(::draw2d::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI)
    {
       throw interface_only_exception(get_app());
       return false;
@@ -3037,4 +3036,8 @@ fill_last:
     }
     
     
-} // namespace ca2
+} // namespace draw2d
+
+
+
+

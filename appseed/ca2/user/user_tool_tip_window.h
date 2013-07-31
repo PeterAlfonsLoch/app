@@ -59,7 +59,7 @@ namespace user
       string                     m_strTip;         // tip string
       int32_t                        m_iEventTool;     // item selected
       int32_t                        m_iTool;          // item where the tip will be showed
-      ::ca2::font_sp              m_font;           // tip string font
+      ::draw2d::font_sp              m_font;           // tip string font
       point                      m_ptOffset;       // tip point offset
       size                       m_sizeArrow;      // arrow size
       bool                       m_bTipEnable;     // set if the tip is enabled
@@ -80,7 +80,7 @@ namespace user
       void EnableTip(bool bEnable = true);
       bool HideTip();
       virtual bool create(sp(::user::interaction) pwnd, id id);
-      bool CalcRect(::ca2::graphics * pdc, LPRECT lprect, LPCRECT lprectToolScreen, const char * lpcsz);
+      bool CalcRect(::draw2d::graphics * pdc, LPRECT lprect, LPCRECT lprectToolScreen, const char * lpcsz);
       void ShowTip(int32_t iTool, bool bForce = false);
       void SetPositionHint(sp(::ca2::window) pwnd, e_position eposition);
       void relay_event(tool_tip_tool * pwnd, ::ca2::signal_object * pobj);

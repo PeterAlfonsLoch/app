@@ -16,7 +16,7 @@ simple_edit::~simple_edit()
 }
 
 
-void simple_edit::_001OnDraw(::ca2::graphics *pdc)
+void simple_edit::_001OnDraw(::draw2d::graphics *pdc)
 {
    ::user::edit_plain_text::_001OnDraw(pdc);
 }

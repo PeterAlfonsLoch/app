@@ -510,7 +510,7 @@ namespace visual
    }
 
 
-   void glyph::DrawGlyph(::ca2::graphics * pdc, bool bFill, double dRateX, LPPOINT lppointOffset)
+   void glyph::DrawGlyph(::draw2d::graphics * pdc, bool bFill, double dRateX, LPPOINT lppointOffset)
    {
 
       UNREFERENCED_PARAMETER(pdc);

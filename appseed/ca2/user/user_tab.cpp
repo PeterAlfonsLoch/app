@@ -66,7 +66,7 @@ namespace user
       //m_rectBorder.set(7, 1, 7, 0);
 
 
-      ::ca2::graphics_sp spgraphics(allocer());
+      ::draw2d::graphics_sp spgraphics(allocer());
       spgraphics->CreateCompatibleDC(NULL);
 
 
@@ -241,7 +241,7 @@ namespace user
       }
    }
 
-   void tab::_001OnDraw(::ca2::graphics * pdc)
+   void tab::_001OnDraw(::draw2d::graphics * pdc)
    {
 
       
@@ -253,11 +253,11 @@ namespace user
    }
 
 
-   void tab::_001OnDrawStandard(::ca2::graphics * pdc)
+   void tab::_001OnDrawStandard(::draw2d::graphics * pdc)
    {
 
 
-      pdc->set_text_rendering(::ca2::text_rendering_anti_alias_grid_fit);
+      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
 
       if(m_bNoTabs)
@@ -316,13 +316,13 @@ namespace user
 
 //      class imaging & imaging = System.visual().imaging();
 
-      pdc->set_alpha_mode(::ca2::alpha_mode_blend);
+      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       pdc->FillSolidRect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
 
             //pdc->SetBkMode(OPAQUE);
 
-      pdc->set_alpha_mode(::ca2::alpha_mode_set);
+      pdc->set_alpha_mode(::draw2d::alpha_mode_set);
 
       int32_t iVisiblePane = 0;
 
@@ -350,7 +350,7 @@ namespace user
          {
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
-               pdc->set_alpha_mode(::ca2::alpha_mode_blend);
+               pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
                pane.m_dib->bitmap_blend(pdc, rectIcon);
             }
 
@@ -398,7 +398,7 @@ namespace user
 
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
-               pdc->set_alpha_mode(::ca2::alpha_mode_blend);
+               pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
                pane.m_dib->bitmap_blend(pdc, rectIcon);
             }
 
@@ -470,10 +470,10 @@ namespace user
 
    }
 
-   void tab::_001OnDrawSchema01(::ca2::graphics * pdc)
+   void tab::_001OnDrawSchema01(::draw2d::graphics * pdc)
    {
 
-      pdc->set_text_rendering(::ca2::text_rendering_anti_alias_grid_fit);
+      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
 
       if(m_bNoTabs)
@@ -534,13 +534,13 @@ namespace user
 
 //      class imaging & imaging = System.visual().imaging();
 
-      pdc->set_alpha_mode(::ca2::alpha_mode_blend);
+      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       //pdc->FillSolidRect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
 
             //pdc->SetBkMode(OPAQUE);
 
-      //pdc->set_alpha_mode(::ca2::alpha_mode_set);
+      //pdc->set_alpha_mode(::draw2d::alpha_mode_set);
 
       int32_t iVisiblePane = 0;
 
@@ -571,11 +571,11 @@ namespace user
          {
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
-               pdc->set_alpha_mode(::ca2::alpha_mode_blend);
+               pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
                pane.m_dib->bitmap_blend(pdc, rectIcon);
             }
 
-            ::ca2::graphics_path_sp path(allocer());
+            ::draw2d::path_sp path(allocer());
 
             if(get_data()->m_iaSel.contains(iPane))
             {
@@ -590,7 +590,7 @@ namespace user
 
                //path->close_figure();
 
-               ::ca2::brush_sp br(allocer());
+               ::draw2d::brush_sp br(allocer());
 
                br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
 
@@ -646,7 +646,7 @@ namespace user
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
 
-                  ::ca2::brush_sp br(allocer());
+                  ::draw2d::brush_sp br(allocer());
 
                   br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
 
@@ -667,7 +667,7 @@ namespace user
                else
                {
 
-                  ::ca2::brush_sp br(allocer());
+                  ::draw2d::brush_sp br(allocer());
 
                   br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
 
@@ -697,18 +697,18 @@ namespace user
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
                
-               pdc->set_alpha_mode(::ca2::alpha_mode_blend);
+               pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
                
                pane.m_dib->bitmap_blend(pdc, rectIcon);
                
             }
 
-            ::ca2::graphics_path_sp path(allocer());
+            ::draw2d::path_sp path(allocer());
 
             if(get_data()->m_iaSel.contains(iPane))
             {
 
-               //path->begin_figure(true, ::ca2::fill_mode_winding);
+               //path->begin_figure(true, ::draw2d::fill_mode_winding);
 
                path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
                
@@ -720,7 +720,7 @@ namespace user
 
                path->end_figure(false);
 
-               ::ca2::brush_sp br(allocer());
+               ::draw2d::brush_sp br(allocer());
 
                br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
 
@@ -742,7 +742,7 @@ namespace user
             else
             {
 
-               //path->begin_figure(true, ::ca2::fill_mode_winding);
+               //path->begin_figure(true, ::draw2d::fill_mode_winding);
 
                path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
                
@@ -757,7 +757,7 @@ namespace user
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
 
-                  ::ca2::brush_sp br(allocer());
+                  ::draw2d::brush_sp br(allocer());
 
                   br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
 
@@ -779,7 +779,7 @@ namespace user
                else
                {
 
-                  ::ca2::brush_sp br(allocer());
+                  ::draw2d::brush_sp br(allocer());
 
                   br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
 
@@ -866,7 +866,7 @@ namespace user
          int32_t iTabHeight = 8;
          int32_t cx;
          int32_t cy;
-         ::ca2::memory_graphics pdc(allocer());
+         ::draw2d::memory_graphics pdc(allocer());
          pdc->SelectObject(get_data()->m_fontBold);
          for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
@@ -950,9 +950,9 @@ namespace user
       {
          int32_t iTabHeight = 16;
          int32_t cy;
-         ::ca2::graphics_sp graphics(allocer());
+         ::draw2d::graphics_sp graphics(allocer());
          graphics->CreateCompatibleDC(NULL);
-         ::ca2::graphics * pdc = graphics;
+         ::draw2d::graphics * pdc = graphics;
          pdc->SelectObject(get_data()->m_fontBold);
          for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
@@ -1215,7 +1215,7 @@ namespace user
       {
          ASSERT(iTabParam >= 0);
          ASSERT(iTabParam < GetTabCount());
-         ::ca2::memory_graphics pdc(allocer());
+         ::draw2d::memory_graphics pdc(allocer());
          rect rect = get_data()->m_rectTab;
          rect.bottom = rect.top;
 
@@ -1242,14 +1242,14 @@ namespace user
       {
          ASSERT(iTabParam >= 0);
          ASSERT(iTabParam < GetTabCount());
-         ::ca2::graphics_sp graphics(allocer());
+         ::draw2d::graphics_sp graphics(allocer());
          graphics->CreateCompatibleDC(NULL);
 
          //HDC hdc = ::CreateCompatibleDC(NULL);
          //Gdiplus::Graphics * pg = new Gdiplus::Graphics(hdc);
          //delete pg;
          //::DeleteDC(hdc);
-         ::ca2::graphics * pdc = graphics;
+         ::draw2d::graphics * pdc = graphics;
          rect rect = get_data()->m_rectTab;
          rect.right = rect.left;
          int32_t ixAdd;

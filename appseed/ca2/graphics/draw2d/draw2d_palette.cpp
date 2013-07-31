@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace draw2d
 {
 
 
@@ -11,7 +11,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool palette::CreateHalftonePalette(::ca2::graphics * pgraphics)
+   bool palette::CreateHalftonePalette(::draw2d::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       throw interface_only_exception(get_app());
@@ -59,7 +59,7 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace draw2d
 
 
 

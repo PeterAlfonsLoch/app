@@ -33,7 +33,7 @@ bool BaseButtonControl::pre_create_window(CREATESTRUCT& cs)
 
 
 
-void BaseButtonControl::_001OnDraw(::ca2::graphics * pdc)
+void BaseButtonControl::_001OnDraw(::draw2d::graphics * pdc)
 {
    rect rectClient;
    bool bItemHover;

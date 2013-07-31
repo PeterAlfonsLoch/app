@@ -50,7 +50,7 @@ BaseMenuCentral * BaseMenuCentral::GetMenuCentral(sp(::ca2::application) papp)
       user++;
    }
 
-   ::ca2::graphics_sp spgraphics(allocer());
+   ::draw2d::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(NULL);
 
    System.visual().imaging().CreateHueImageList(
@@ -94,7 +94,7 @@ bool BaseMenuCentral::MenuV033AddImageMap(sp(::xml::node) lpnode)
    }
 
 
-   ::ca2::graphics_sp spgraphics(allocer());
+   ::draw2d::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(NULL);
 
    class imaging & imaging = System.visual().imaging();
@@ -125,12 +125,12 @@ bool BaseMenuCentral::MenuV033AddImageMap(sp(::xml::node) lpnode)
 
 
 
-::ca2::font * BaseMenuCentral::MenuV033GetFont()
+::draw2d::font * BaseMenuCentral::MenuV033GetFont()
 {
    return GetMenuFont();
 }
 
-::ca2::font * BaseMenuCentral::GetMenuFont()
+::draw2d::font * BaseMenuCentral::GetMenuFont()
 {
    return m_fontMenu;
 }

@@ -76,13 +76,13 @@ namespace platform
       spa(link)                  m_linka;
 
       int32_t                    m_iScreen;
-      ::ca2::font_sp              m_font1;
-      ::ca2::font_sp              m_font2;
-      ::ca2::font_sp              m_font3;
-      ::ca2::brush_sp             m_brushBk;
-      ::ca2::brush_sp             m_brushProgress3;
-      ::ca2::brush_sp             m_brushProgress2;
-      ::ca2::brush_sp             m_brushProgress1;
+      ::draw2d::font_sp              m_font1;
+      ::draw2d::font_sp              m_font2;
+      ::draw2d::font_sp              m_font3;
+      ::draw2d::brush_sp             m_brushBk;
+      ::draw2d::brush_sp             m_brushProgress3;
+      ::draw2d::brush_sp             m_brushProgress2;
+      ::draw2d::brush_sp             m_brushProgress1;
       visual::dib_sp             m_dibBk;
       visual::dib_sp             m_dibBkImage;
       double                     m_dProgress;
@@ -110,7 +110,7 @@ namespace platform
       virtual sp(::database::user::interaction) BackViewGetWnd();
       virtual sp(::user::interaction) get_guie();
 
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
 
 
       virtual void install_message_handling(::ca2::message::dispatch * pinterface);

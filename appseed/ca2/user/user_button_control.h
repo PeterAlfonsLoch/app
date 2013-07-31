@@ -31,7 +31,7 @@ public:
 
    void UpdateDrawingObjects();
    void UpdateWndRgn();
-   void _001OnDraw(::ca2::graphics * pdc);
+   void _001OnDraw(::draw2d::graphics * pdc);
 
    
 

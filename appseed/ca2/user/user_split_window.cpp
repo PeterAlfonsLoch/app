@@ -19,7 +19,7 @@ bool BaseSplitWnd::pre_create_window(CREATESTRUCT& cs)
    return ::user::interaction::pre_create_window(cs);
 }
 
-void BaseSplitWnd::_001OnDraw(::ca2::graphics *pdc)
+void BaseSplitWnd::_001OnDraw(::draw2d::graphics *pdc)
 {
    
    int32_t i;

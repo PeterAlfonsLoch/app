@@ -34,7 +34,7 @@ namespace plugin
 
       void install_message_handling(::ca2::message::dispatch * pmessage);
 
-      virtual void _000OnDraw(::ca2::graphics * pgraphics);
+      virtual void _000OnDraw(::draw2d::graphics * pgraphics);
 
       virtual bool defer_check(e_check echeck);
       virtual void layout();
@@ -47,7 +47,7 @@ namespace plugin
       DECL_GEN_SIGNAL(_001OnCheck)
       DECL_GEN_SIGNAL(_001OnCreate)
 
-      virtual bool RedrawWindow(LPCRECT lpRectUpdate, ::ca2::region* prgnUpdate, UINT flags);
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region* prgnUpdate, UINT flags);
 
       sp(::user::interaction) get_os_focus_uie();
 

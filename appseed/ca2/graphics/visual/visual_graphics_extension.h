@@ -13,12 +13,12 @@ namespace visual
       
       graphics_extension(sp(::ca2::application) papp);
       virtual ~graphics_extension();
-      void GetTextExtent(::ca2::graphics * pdc, const char * lpcwsz, array < size > & sizea);
-      void GetTextExtent(::ca2::graphics * pdc, const char * lpcwsz, size & size);
-      void GetTextExtent(::ca2::graphics * pdc, const char * lpcwsz, strsize iCount, size & size);
+      void GetTextExtent(::draw2d::graphics * pdc, const char * lpcwsz, array < size > & sizea);
+      void GetTextExtent(::draw2d::graphics * pdc, const char * lpcwsz, size & size);
+      void GetTextExtent(::draw2d::graphics * pdc, const char * lpcwsz, strsize iCount, size & size);
 
-      bool TextOut(::ca2::graphics * pdc, int32_t x, int32_t y, const char * lpcwsz, strsize iCount);
-      int32_t _DrawText(::ca2::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca2::font * pfontUnderline = NULL);
+      bool TextOut(::draw2d::graphics * pdc, int32_t x, int32_t y, const char * lpcwsz, strsize iCount);
+      int32_t _DrawText(::draw2d::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::draw2d::font * pfontUnderline = NULL);
       
       strsize _EncodeV033(string & str);
 

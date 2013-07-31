@@ -55,7 +55,7 @@ void SimplePushButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 }
 #endif
 
-void SimplePushButton::_001OnDraw(::ca2::graphics *pdc)
+void SimplePushButton::_001OnDraw(::draw2d::graphics *pdc)
 {
 
    int32_t iOriginalBkMode = pdc->GetBkMode();
@@ -170,7 +170,7 @@ void SimplePushButton::_001OnDraw(::ca2::graphics *pdc)
    rect.left = x1;
    rect.right = x2;
    rect.bottom = rect.top + 5;
-   ::ca2::pen_sp pen(pdc, 1, colorExt1TL);
+   ::draw2d::pen_sp pen(pdc, 1, colorExt1TL);
    pdc->SelectObject(pen);
    imaging.color_blend_3dRect(pdc, rect, colorExt1TL, 220, colorExt1BR, 220);
 

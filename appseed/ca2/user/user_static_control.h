@@ -21,7 +21,7 @@ namespace user
 
       union
       {
-         ::ca2::bitmap *             m_pbitmap;
+         ::draw2d::bitmap *             m_pbitmap;
          ::visual::icon *           m_picon;
          ::visual::cursor *         m_pcursor;
       };
@@ -41,8 +41,8 @@ namespace user
       HENHMETAFILE GetEnhMetaFile();
       void set_icon(::visual::icon * picon);
       ::visual::icon * get_icon();
-      void set_bitmap(::ca2::bitmap * pbitmap);
-      ::ca2::bitmap * get_bitmap();
+      void set_bitmap(::draw2d::bitmap * pbitmap);
+      ::draw2d::bitmap * get_bitmap();
       void set_cursor(::visual::cursor * pcursor);
       ::visual::cursor * get_cursor();
 

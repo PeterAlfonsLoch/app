@@ -206,7 +206,7 @@ size simple_toolbar::CalcSimpleLayout()
    return sizeResult;
 }
 
-void simple_toolbar::_001OnDraw(::ca2::graphics *pdc)
+void simple_toolbar::_001OnDraw(::draw2d::graphics *pdc)
 {
 
    if(m_bDelayedButtonLayout)
@@ -224,7 +224,7 @@ void simple_toolbar::_001OnDraw(::ca2::graphics *pdc)
 }
 
 /*
-bool simple_toolbar::OnEraseBkgnd(::ca2::graphics * pgraphics)
+bool simple_toolbar::OnEraseBkgnd(::draw2d::graphics * pgraphics)
 {
 return true;
 }
@@ -236,7 +236,7 @@ void simple_toolbar::SetTransparentBackground(bool bSet)
    m_bTransparentBackground = bSet;
 }
 
-void simple_toolbar::TransparentEraseNonClient(::ca2::graphics * pdc)
+void simple_toolbar::TransparentEraseNonClient(::draw2d::graphics * pdc)
 {
 
    m_dibDraft->get_graphics()->BitBlt(0, 0, 7, 7, pdc, 0, 0, SRCCOPY);
@@ -555,7 +555,7 @@ bool simple_toolbar::_001SetItem(int32_t iItem, simple_toolbar_item *pitem)
 }
 
 
-void simple_toolbar::_001DrawItem(::ca2::graphics * pdc, int32_t iItem)
+void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
 {
    rect rectItem;
    rect rectImage;
@@ -681,14 +681,14 @@ void simple_toolbar::_001DrawItem(::ca2::graphics * pdc, int32_t iItem)
             if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               ::ca2::pen_sp penShadow(pdc, 1, ARGB(255, 127, 127, 127));
-               ::ca2::brush_sp brushShadow(allocer(), ARGB(255, 127, 127, 127));
-               ::ca2::pen * ppenOld = pdc->SelectObject(penShadow);
-               ::ca2::brush * pbrushOld = pdc->SelectObject(brushShadow);
+               ::draw2d::pen_sp penShadow(pdc, 1, ARGB(255, 127, 127, 127));
+               ::draw2d::brush_sp brushShadow(allocer(), ARGB(255, 127, 127, 127));
+               ::draw2d::pen * ppenOld = pdc->SelectObject(penShadow);
+               ::draw2d::brush * pbrushOld = pdc->SelectObject(brushShadow);
                pdc->Rectangle(rectShadow);
 
-               ::ca2::pen_sp pen(pdc, 1, ARGB(255, 92, 92, 92));
-               ::ca2::brush_sp brush(allocer(), ARGB(255, 255, 255, 255));
+               ::draw2d::pen_sp pen(pdc, 1, ARGB(255, 92, 92, 92));
+               ::draw2d::brush_sp brush(allocer(), ARGB(255, 255, 255, 255));
                pdc->SelectObject(pen);
                pdc->SelectObject(brush);
                pdc->Rectangle(rectItem);
@@ -720,10 +720,10 @@ void simple_toolbar::_001DrawItem(::ca2::graphics * pdc, int32_t iItem)
          if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
          {
 
-            ::ca2::pen_sp pen(pdc, 1, ARGB(255, 92, 92, 92));
-            ::ca2::brush_sp brush(allocer(), ARGB(255, 255, 255, 255));
-            ::ca2::pen * ppenOld = pdc->SelectObject(pen);
-            ::ca2::brush * pbrushOld = pdc->SelectObject(brush);
+            ::draw2d::pen_sp pen(pdc, 1, ARGB(255, 92, 92, 92));
+            ::draw2d::brush_sp brush(allocer(), ARGB(255, 255, 255, 255));
+            ::draw2d::pen * ppenOld = pdc->SelectObject(pen);
+            ::draw2d::brush * pbrushOld = pdc->SelectObject(brush);
             pdc->Rectangle(rectItem);
             pdc->SelectObject(ppenOld);
             pdc->SelectObject(pbrushOld);
@@ -1148,7 +1148,7 @@ return FALSE;
 // load the bitmap
 HBITMAP hbmImageWell;
 //   hbmImageWell = ::ca2::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
-::ca2::memory_graphics pdc(this);;
+::draw2d::memory_graphics pdc(this);;
 hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
 
 
@@ -1215,7 +1215,7 @@ void simple_toolbar::layout()
    rect  rectClient;
    GetClientRect(rectClient);
    class size sizeText;
-   ::ca2::graphics_sp spgraphics(allocer());
+   ::draw2d::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(NULL);
    spgraphics->SelectObject(System.visual().font_central().GetMenuFont());
    for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)
@@ -1518,7 +1518,7 @@ void simple_toolbar::_001OnImageListAttrib()
    {
    m_pimagelistHue = new image_list();
    }
-   ::ca2::graphics_sp spgraphics(allocer());
+   ::draw2d::graphics_sp spgraphics(allocer());
    spgraphics->CreateDC("DISPLAY", NULL, NULL, NULL);
    System.visual().imaging().CreateHueImageList(
    &spgraphics,
@@ -1685,7 +1685,7 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
    int32_t nResult = 0;
 #if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
    ASSERT(nCount > 0);
-   ::ca2::memory_graphics pdc(allocer());
+   ::draw2d::memory_graphics pdc(allocer());
     int32_t x = 0;
    string str;
    for (int32_t i = 0; i < nCount; i++)
@@ -1929,7 +1929,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
             }
          }
 
-         //::ca2::memory_graphics pdc(this);
+         //::draw2d::memory_graphics pdc(this);
          string str;
          if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
             m_nMRUWidth = sizeResult.cx;

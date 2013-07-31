@@ -34,7 +34,7 @@ public:
    virtual void set_time(const ::datetime::time & time);
    virtual void get_time(::datetime::time & time);
 
-   virtual void _001OnDraw(::ca2::graphics * pdc);
+   virtual void _001OnDraw(::draw2d::graphics * pdc);
 
 
    virtual void previous_minute();

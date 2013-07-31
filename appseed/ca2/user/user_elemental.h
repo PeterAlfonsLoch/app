@@ -13,8 +13,8 @@ namespace user
    public:
 
       virtual sp(::user::interaction) get_guie();
-      virtual ::ca2::graphics * _001GetDC();
-      virtual void _001ReleaseDC(::ca2::graphics * pdc);
+      virtual ::draw2d::graphics * _001GetDC();
+      virtual void _001ReleaseDC(::draw2d::graphics * pdc);
       virtual void _001RedrawWindow();
 
       virtual void pre_translate_message(::ca2::signal_object * pobj);

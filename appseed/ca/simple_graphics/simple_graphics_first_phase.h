@@ -2,7 +2,7 @@
 
 
 
-namespace ca2
+namespace draw2d
 {
 
    // backlink from ca.dll on 2012-10-14 11:04 Alameda Princesa Izabel, 3000 - CWB-PR-Brasil
@@ -20,7 +20,7 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace draw2d
 
 
 class simple_brush;

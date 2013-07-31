@@ -485,7 +485,7 @@ namespace ca2
 
 
             on_draw(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
-            ::ca2::graphics * m_pdc;
+            ::draw2d::graphics * m_pdc;
          };
 
          class CLASS_DECL_ca2 erase_bkgnd : public base
@@ -493,7 +493,7 @@ namespace ca2
          public:
 
 
-            ::ca2::graphics * m_pdc;
+            ::draw2d::graphics * m_pdc;
 
 
             erase_bkgnd(sp(::ca2::application) papp);
@@ -592,7 +592,7 @@ namespace ca2
 
             ctl_color(sp(::ca2::application) papp) : ca2(papp), ::ca2::message::base(papp) {}
             HBRUSH      m_hbrush;
-            ::ca2::graphics *       m_pdc;
+            ::draw2d::graphics *       m_pdc;
             sp(::ca2::window)      m_pwnd;
             UINT        m_nCtlType;
          };

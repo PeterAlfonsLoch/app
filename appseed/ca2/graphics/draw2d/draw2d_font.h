@@ -1,17 +1,12 @@
 #pragma once
 
 
-namespace ca2
+namespace draw2d
 {
 
-   enum e_unit
-   {
-      unit_pixel,
-      unit_point,
-   };
 
    class CLASS_DECL_ca2 font :
-      virtual public graphics_object
+      virtual public ::draw2d::object
    {
    public:
 
@@ -75,7 +70,7 @@ namespace ca2
    typedef ::ca::smart_pointer < font > font_sp;
 
    
-} // namespace ca2
+} // namespace draw2d
 
 
 

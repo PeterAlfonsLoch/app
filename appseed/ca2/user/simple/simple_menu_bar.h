@@ -76,11 +76,11 @@ public:
    //int32_t _001GetHoverItem();
    //void _001Hover(point pt);
    //void _001Hover();
-   //void _001DrawItem(::ca2::graphics * pdc, int32_t iItem);
+   //void _001DrawItem(::draw2d::graphics * pdc, int32_t iItem);
    //int32_t _001HitTest(const POINT * point);
    //bool _001CheckItem(int32_t iItem, bool bCheck);
    //bool _001GetItemRect(int32_t iItem, LPRECT lprect, EElement eelement);
-   //virtual void _001OnDraw(::ca2::graphics * pdc);
+   //virtual void _001OnDraw(::draw2d::graphics * pdc);
    bool ReloadMenuBar();
    virtual void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler);
    void RemoveAllButtons();
@@ -89,7 +89,7 @@ public:
       sp(image_list) pimagelist,
       sp(image_list) pimagelistDisabled,
       int_int_spreadset * prel,
-      ::ca2::font * pfont);
+      ::draw2d::font * pfont);
 
    //size CalcLayout(uint32_t dwMode, int32_t nLength);
 

@@ -1652,7 +1652,7 @@ namespace user
          layout();
    }
 
-   bool frame_window::OnEraseBkgnd(::ca2::graphics * pgraphics)
+   bool frame_window::OnEraseBkgnd(::draw2d::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       if (m_pViewActive != NULL)
@@ -2196,7 +2196,7 @@ namespace user
 
 
 
-   void frame_window::_000OnDraw(::ca2::graphics * pdc)
+   void frame_window::_000OnDraw(::draw2d::graphics * pdc)
    {
       frame_window_interface::_000OnDraw(pdc);
    }

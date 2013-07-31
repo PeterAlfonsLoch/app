@@ -17,7 +17,7 @@ simple_combo_box::~simple_combo_box()
 }
 
 
-void simple_combo_box::_001OnDraw(::ca2::graphics *pdc)
+void simple_combo_box::_001OnDraw(::draw2d::graphics *pdc)
 {
 
    ::user::combo_box::_001OnDraw(pdc);

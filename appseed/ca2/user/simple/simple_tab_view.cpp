@@ -62,7 +62,7 @@ void simple_tab_view::_001OnCreate(::ca2::signal_object * pobj)
    }
 }
 
-void simple_tab_view::_001OnDraw(::ca2::graphics * pdc)
+void simple_tab_view::_001OnDraw(::draw2d::graphics * pdc)
 {
    ::user::tab::_001OnDraw(pdc);
 }

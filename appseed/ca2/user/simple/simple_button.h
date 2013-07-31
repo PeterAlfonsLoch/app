@@ -8,7 +8,7 @@ public:
    
    
    bool                 m_bTransparent;
-   ::ca2::brush_sp       m_brushBkg;
+   ::draw2d::brush_sp       m_brushBkg;
    bool                 m_bFocus;
 
 
@@ -20,7 +20,7 @@ public:
    virtual void pre_subclass_window();
    virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
-   virtual void _001OnDraw(::ca2::graphics * pdc);
+   virtual void _001OnDraw(::draw2d::graphics * pdc);
 
    virtual void ResizeToFit();
 

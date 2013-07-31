@@ -93,7 +93,7 @@ namespace user
       bool PressButton(int32_t nID, bool bPress = TRUE);
       bool HideButton(int32_t nID, bool bHide = TRUE);
       bool Indeterminate(int32_t nID, bool bIndeterminate = TRUE);
-      int32_t AddBitmap(int32_t nNumButtons, ::ca2::bitmap* pBitmap);
+      int32_t AddBitmap(int32_t nNumButtons, ::draw2d::bitmap* pBitmap);
 #ifdef WINDOWSEX
       bool AddButtons(int32_t nNumButtons, LPTBBUTTON lpButtons);
       bool InsertButton(int32_t nIndex, LPTBBUTTON lpButton);

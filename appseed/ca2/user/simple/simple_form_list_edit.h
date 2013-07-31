@@ -29,7 +29,7 @@ public:
    ::user::list * GetBaseListInterface();
 
 
-   bool OnEraseBkgnd(::ca2::graphics * pgraphics);
+   bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
    DECL_GEN_SIGNAL(_001OnCreate)
    void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
    void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);

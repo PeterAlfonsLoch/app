@@ -1,15 +1,12 @@
 #pragma once
 
 
-namespace ca2
+namespace draw2d
 {
 
 
-   class graphics;
-
-
    class CLASS_DECL_ca2 pen :
-      virtual public ::ca2::graphics_object
+      virtual public ::draw2d::object
    {
    public:
 
@@ -47,7 +44,7 @@ namespace ca2
 
 
       virtual bool create_null();
-      virtual bool create_solid(::ca2::graphics * pgraphics, double dWidth, COLORREF crColor);
+      virtual bool create_solid(::draw2d::graphics * pgraphics, double dWidth, COLORREF crColor);
 
       virtual e_end_cap get_end_cap();
       virtual bool set_end_cap(e_end_cap eendcap);
@@ -78,12 +75,12 @@ namespace ca2
       {
       }
 
-      pen_sp(allocatorsp allocer) :
+      pen_sp(::ca2::allocatorsp allocer) :
          ::ca::smart_pointer < pen > (allocer)
       {
       }
 
-      pen_sp(::ca2::graphics * pgraphics, double dWidth, COLORREF crColor);
+      pen_sp(::draw2d::graphics * pgraphics, double dWidth, COLORREF crColor);
 /*
       pen_sp(sp(::ca2::application) papp, int32_t nPenStyle, int32_t nWidth, const LOGBRUSH* pLogBrush,
          int32_t nStyleCount = 0, const uint32_t* lpStyle = NULL) :
@@ -102,4 +99,9 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace draw2d
+
+
+
+
+

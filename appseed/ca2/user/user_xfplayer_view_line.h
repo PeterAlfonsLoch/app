@@ -60,10 +60,10 @@ protected:
    //int32_t
 
    // 08, May 2004 attributes
-   ::ca2::graphics_sp                m_dc1;
-   ::ca2::bitmap_sp                  m_bmp1;
-   ::ca2::font_sp                    m_font;
-   ::ca2::font_sp                    m_fontLink;
+   ::draw2d::graphics_sp                m_dc1;
+   ::draw2d::bitmap_sp                  m_bmp1;
+   ::draw2d::font_sp                    m_font;
+   ::draw2d::font_sp                    m_fontLink;
    COLORREF                         m_cr;
    COLORREF                         m_crOutline;
    rect                             m_rectClient;
@@ -72,7 +72,7 @@ protected:
 
 
    // 09, Sept 2004 attributes with change inApril 2010 from dcMain/bmpMain to dibMain
-   ::ca2::dib_sp                     m_dibMain;
+   ::draw2d::dib_sp                     m_dibMain;
    bool                             m_bEnhancedEmboss;
    bool                             m_bCacheEmboss;
    string                           m_wstrCache;
@@ -91,10 +91,10 @@ protected:
    double                           m_dAnimateProgress;
    double                           m_dAnimateProgressIncrement;
    int32_t                              m_iTextEffect;
-   ::ca2::pen *                      m_lpPenEmboss;
+   ::draw2d::pen *                      m_lpPenEmboss;
    COLORREF                         m_crForeground;
-   ::ca2::pen *                      m_ppenLyricLeft;
-   ::ca2::pen *                      m_ppenLyricRight;
+   ::draw2d::pen *                      m_ppenLyricLeft;
+   ::draw2d::pen *                      m_ppenLyricRight;
    size                             m_sizeLyricMargin;
    COLORREF                         m_crLyricLeft;
    COLORREF                         m_crLyricRight;
@@ -108,7 +108,7 @@ public:
    
    
    void SetBlend(double d);
-   ::ca2::font * GetFont();
+   ::draw2d::font * GetFont();
    bool CalcChar(point pt, strsize &iChar);
    index GetCharLink(strsize iChar);
    bool GetCharLink(string & str, strsize iChar);
@@ -120,26 +120,26 @@ public:
    void UpdateHover(point & ptCursor);
    void PrepareURLLinks();
    void SetFont(visual::font * pfont);
-   void SetFont(::ca2::font * pfont);
+   void SetFont(::draw2d::font * pfont);
    void GetLogFont(LOGFONT & lf);
 
    user::e_line_hit hit_test(const POINT &ptCursorParam, strsize &iChar);
 
 
 /*   void CalcCharsPositions(
-      ::ca2::graphics * pdcForeground,
+      ::draw2d::graphics * pdcForeground,
       visual::font * pFont,
       LPCRECT lpcrect);*/
 
    void CalcCharsPositions(
-      ::ca2::graphics * pdcForeground,
+      ::draw2d::graphics * pdcForeground,
       LPCRECT lpcrect);
 
    void SetColors(COLORREF cr, COLORREF crOutline);
 
    void EmbossedTextOut(
       sp(::ca2::application) papp,
-      ::ca2::graphics * pdc,
+      ::draw2d::graphics * pdc,
       const char * lpcsz,
       int32_t left,
       int32_t top,
@@ -151,8 +151,8 @@ public:
 
    void EmbossedTextOut(
       sp(::ca2::application) papp,
-      ::ca2::graphics * pdc,
-      ::ca2::dib * pdibCache,
+      ::draw2d::graphics * pdc,
+      ::draw2d::dib * pdibCache,
       const char * lpcsz,
       int32_t iLeft,
       int32_t iTop,
@@ -165,10 +165,10 @@ public:
    
    void CacheEmboss(
       sp(::ca2::application) papp,
-      ::ca2::graphics * pdc, 
+      ::draw2d::graphics * pdc, 
       const char * lpcsz, 
       strsize iLen, 
-      ::ca2::dib * pdibCache);
+      ::draw2d::dib * pdibCache);
 
 
    bool IsVisible();
@@ -178,19 +178,19 @@ public:
    //int32_t GetVmsFontCount();
    void SetPlacement(LPCRECT lpcrect);
    int32_t SetLyricColors(COLORREF crLeft, COLORREF crRight);
-   int32_t SetLyricPens(::ca2::pen * ppenLeft, ::ca2::pen * ppenRight);
+   int32_t SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight);
    void SetRenderCriticalSection(::critical_section *pcs);
    void SetAnimateIncrement(double dIncrement);
    int32_t MapToFontEffect(int32_t iLineEffect);
     
    
    void SetForegroundColor(COLORREF cr);
-   void SetEmbossPen(::ca2::pen * lpPen);
+   void SetEmbossPen(::draw2d::pen * lpPen);
    void SetTextEffect(int32_t iTextEffect);
 
    void SetAnimateType(int32_t iAnimateType);
 
-   void OnTimerAnimate(::ca2::graphics * pdc, rect_array &   rectaModified);
+   void OnTimerAnimate(::draw2d::graphics * pdc, rect_array &   rectaModified);
 
    void Show(bool bShow = true);
    virtual XfplayerViewLine & operator = (const XfplayerViewLine & src);
@@ -207,13 +207,13 @@ public:
 // Operations
    
    bool PrepareLine(
-      ::ca2::graphics * pdc,
+      ::draw2d::graphics * pdc,
       const char * lpcsz,
       int32_t flags,
       LPRECT pRect);
 
    /*bool PrepareLine(
-      ::ca2::graphics * pdcForeground,
+      ::draw2d::graphics * pdcForeground,
       const wchar_t * lpcsz,
       int32_t flags,
       visual::font *pFont,
@@ -232,7 +232,7 @@ public:
    
    bool to(
       sp(::ca2::application) papp,
-      ::ca2::graphics *                  pdc,
+      ::draw2d::graphics *                  pdc,
       bool                  bDraw,
       LPRECT               lpRect,
       rect_array &      rectaModified,
@@ -240,14 +240,14 @@ public:
 
    bool to(
       sp(::ca2::application) papp,
-      ::ca2::graphics *                  pdcForeground,
+      ::draw2d::graphics *                  pdcForeground,
       bool                  bDraw,
       LPRECT               lpRect,
       rect_array &      rectaModified,
       strsize   *               count,
       bool                  bRecalcLayout,
       COLORREF               crColor,
-      ::ca2::pen      &            pen);
+      ::draw2d::pen      &            pen);
 
 
    DECL_GEN_SIGNAL(OnMouseMove)

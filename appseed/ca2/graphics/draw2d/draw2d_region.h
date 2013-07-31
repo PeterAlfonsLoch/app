@@ -1,14 +1,12 @@
 #pragma once
 
 
-
-
-namespace ca2
+namespace draw2d
 {
 
 
    class CLASS_DECL_ca2 region :
-      virtual public graphics_object
+      virtual public object
    {
    public:
 
@@ -47,9 +45,9 @@ namespace ca2
       LPPOINT                 m_lppoints;
       LPINT                   m_lppolycounts;
       int32_t                 m_nCount;
-      ::ca2::e_fill_mode      m_efillmode;
-      ::ca2::region *         m_pregion1;
-      ::ca2::region *         m_pregion2;
+      ::draw2d::e_fill_mode      m_efillmode;
+      ::draw2d::region *      m_pregion1;
+      ::draw2d::region *      m_pregion2;
       e_combine               m_ecombine;
 
 
@@ -62,16 +60,16 @@ namespace ca2
       virtual bool create_rect(LPCRECT lpRect);
       virtual bool create_oval(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool create_oval(LPCRECT lpRect);
-      virtual bool create_polygon(LPPOINT lpPoints, int32_t nCount, ::ca2::e_fill_mode efillmode);
-      virtual bool create_poly_polygon(LPPOINT lpPoints, LPINT lpPolyCounts, int32_t nCount, ::ca2::e_fill_mode efillmode);
+      virtual bool create_polygon(LPPOINT lpPoints, int32_t nCount, ::draw2d::e_fill_mode efillmode);
+      virtual bool create_poly_polygon(LPPOINT lpPoints, LPINT lpPolyCounts, int32_t nCount, ::draw2d::e_fill_mode efillmode);
       //virtual bool add_round_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3);
-//      virtual bool add_path(::ca2::graphics_path * ppath);
+//      virtual bool add_path(::draw2d::path * ppath);
 
 //      virtual void SetRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
 //      virtual void SetRectRgn(LPCRECT lpRect);
-      virtual bool combine(const ::ca2::region * prgn1, const ::ca2::region * prgn2, e_combine ecombine);
-      //virtual int32_t CopyRgn(const ::ca2::region* pRgnSrc);
-      //virtual bool EqualRgn(const ::ca2::region* pRgn) const;
+      virtual bool combine(const ::draw2d::region * prgn1, const ::draw2d::region * prgn2, e_combine ecombine);
+      //virtual int32_t CopyRgn(const ::draw2d::region* pRgnSrc);
+      //virtual bool EqualRgn(const ::draw2d::region* pRgn) const;
       virtual bool translate(int32_t x, int32_t y);
       virtual bool translate(POINT point);
       virtual bool get_bounding_box(LPRECT lpRect) const;
@@ -93,7 +91,7 @@ namespace ca2
 
       virtual bool destroy();
 
-      region & operator = (const ::ca2::region & regionSrc);
+      region & operator = (const ::draw2d::region & regionSrc);
 
    };
 
@@ -112,16 +110,19 @@ namespace ca2
       {
       }
 
-      region_sp(allocatorsp allocer) :
+      region_sp(::ca2::allocatorsp allocer) :
          ::ca::smart_pointer < region > (allocer)
       {
       }
 
+
    };
 
 
+} // namespace draw2d
 
-} // namespace ca2
+
+
 
 
 

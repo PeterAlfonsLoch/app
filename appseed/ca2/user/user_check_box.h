@@ -16,7 +16,7 @@ namespace user
       bool  m_bMouseDown;
 
    public:
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual check::e_check _001GetCheck();
       virtual void _001SetCheck(check::e_check check, bool bUser);
 

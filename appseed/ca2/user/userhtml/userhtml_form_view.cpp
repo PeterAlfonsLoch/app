@@ -47,7 +47,7 @@ void html_form_view::install_message_handling(::ca2::message::dispatch * pinterf
 /////////////////////////////////////////////////////////////////////////////
 // html_form_view drawing
 
-void html_form_view::OnDraw(::ca2::graphics * pdcScreen)
+void html_form_view::OnDraw(::draw2d::graphics * pdcScreen)
 {
    UNREFERENCED_PARAMETER(pdcScreen);
 }

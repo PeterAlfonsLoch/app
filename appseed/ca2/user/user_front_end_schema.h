@@ -16,7 +16,7 @@ namespace user
       {
       public:
          system_menu(sp(::ca2::application) papp);
-         ::ca2::font_sp    m_fontMarlett;
+         ::draw2d::font_sp    m_fontMarlett;
       };
 
       class CLASS_DECL_ca2 menu
@@ -24,7 +24,7 @@ namespace user
       public:
          menu(sp(::ca2::application) papp);
          ~menu();
-         ::ca2::font_sp     m_font;
+         ::draw2d::font_sp     m_font;
          button *          m_pschemaSysMenuButton;
          button *          m_pschemaItemButton;
          button *          m_pschemaPopupButton;
@@ -42,7 +42,7 @@ namespace user
          COLORREF          m_crBkHover;
          COLORREF          m_crBkPress;
          COLORREF          m_crBkDisabled;
-         ::ca2::font_sp     m_font;
+         ::draw2d::font_sp     m_font;
          bool              m_bBorder;
       };
 
@@ -57,7 +57,7 @@ namespace user
       front_end_schema(sp(::ca2::application) app);
       ~front_end_schema();
 
-      virtual void DrawCheck(check::check echeck, LPCRECT lpcrect, ::ca2::graphics * pdc);
+      virtual void DrawCheck(check::check echeck, LPCRECT lpcrect, ::draw2d::graphics * pdc);
 
       
 

@@ -234,7 +234,7 @@ namespace uinteraction
 
       }
 
-      void appearance::CTool001::Update(::ca2::graphics * pdc, LPCRECT lpcrect,
+      void appearance::CTool001::Update(::draw2d::graphics * pdc, LPCRECT lpcrect,
          COLORREF crHighlight,
          COLORREF crLight,
          COLORREF crBody,
@@ -346,12 +346,12 @@ namespace uinteraction
 
       }
 
-      void appearance::CTool001::draw(::ca2::graphics * pdc)
+      void appearance::CTool001::draw(::draw2d::graphics * pdc)
       {
 
          pdc->SelectObject(m_brushBody);
 
-         ::ca2::pen_sp pen(allocer());
+         ::draw2d::pen_sp pen(allocer());
 
          pen->create_solid(pdc, 0, RGB(255, 255, 255));
 
@@ -374,7 +374,7 @@ namespace uinteraction
 
       }
 
-      void appearance::CTool001::CColorBezier::draw(::ca2::brush & brush, ::ca2::graphics * pdc)
+      void appearance::CTool001::CColorBezier::draw(::draw2d::brush & brush, ::draw2d::graphics * pdc)
       {
          pdc->SelectObject(&brush);
          pdc->SelectObject(m_ppen);

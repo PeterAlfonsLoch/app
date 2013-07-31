@@ -3,15 +3,17 @@
 #include "include/freeimage.h"
 #endif
 
+
 namespace visual
 {
+
 
    dib_sp::dib_sp()
    {
    }
 
    dib_sp::dib_sp(::ca2::allocatorsp allocer) :
-      ::ca2::dib_sp(allocer)
+      ::draw2d::dib_sp(allocer)
    {
    }
 
@@ -91,7 +93,7 @@ namespace visual
       FIBITMAP * pfi = Sys(m_p->m_papp).visual().imaging().LoadImageFile(pfile);
       if(pfi == NULL)
          return false;
-      ::ca2::graphics_sp spgraphics(m_p->m_papp->allocer());
+      ::draw2d::graphics_sp spgraphics(m_p->m_papp->allocer());
       spgraphics->CreateCompatibleDC(NULL);
       if(!m_p->from(spgraphics, pfi, true))
          return false;

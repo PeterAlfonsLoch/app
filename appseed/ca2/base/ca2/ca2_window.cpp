@@ -87,8 +87,8 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool window::UpdateLayeredWindow(::ca2::graphics * pDCDst, POINT * pptDst, SIZE * psize,
-      ::ca2::graphics * pDCSrc, POINT * pptSrc, COLORREF crKey, BLENDFUNCTION * pblend, uint32_t dwFlags)
+   bool window::UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT * pptDst, SIZE * psize,
+      ::draw2d::graphics * pDCSrc, POINT * pptSrc, COLORREF crKey, BLENDFUNCTION * pblend, uint32_t dwFlags)
    {
       UNREFERENCED_PARAMETER(pDCDst);
       UNREFERENCED_PARAMETER(pptDst);
@@ -109,7 +109,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool window::PrintWindow(::ca2::graphics * pgraphics, UINT nFlags) const
+   bool window::PrintWindow(::draw2d::graphics * pgraphics, UINT nFlags) const
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nFlags);
@@ -663,13 +663,13 @@ namespace ca2
    }
    */
 
-   void window::_001OnDeferPaintLayeredWindowBackground(::ca2::graphics * pdc)
+   void window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
       throw interface_only_exception(get_app());
    }
 
-   void window::_001DeferPaintLayeredWindowBackground(::ca2::graphics * pdc)
+   void window::_001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
       throw interface_only_exception(get_app());
@@ -692,7 +692,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   HBRUSH window::OnCtlColor(::ca2::graphics *, sp(::ca2::window) pWnd, UINT)
+   HBRUSH window::OnCtlColor(::draw2d::graphics *, sp(::ca2::window) pWnd, UINT)
    {
       UNREFERENCED_PARAMETER(pWnd);
       throw interface_only_exception(get_app());
@@ -997,14 +997,14 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::SetFont(::ca2::font * pfont, bool bRedraw)
+   void window::SetFont(::draw2d::font * pfont, bool bRedraw)
    {
       UNREFERENCED_PARAMETER(pfont);
       UNREFERENCED_PARAMETER(bRedraw);
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::font* window::GetFont()
+   ::draw2d::font* window::GetFont()
    {
       throw interface_only_exception(get_app());
    }
@@ -1070,17 +1070,17 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::graphics * window::GetDC()
+   ::draw2d::graphics * window::GetDC()
    {
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::graphics * window::GetWindowDC()
+   ::draw2d::graphics * window::GetWindowDC()
    {
       throw interface_only_exception(get_app());
    }
 
-   bool window::ReleaseDC(::ca2::graphics * pgraphics)
+   bool window::ReleaseDC(::draw2d::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       throw interface_only_exception(get_app());
@@ -1104,7 +1104,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   int32_t window::GetUpdateRgn(::ca2::region* pRgn, bool bErase)
+   int32_t window::GetUpdateRgn(::draw2d::region* pRgn, bool bErase)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(bErase);
@@ -1124,7 +1124,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::InvalidateRgn(::ca2::region* pRgn, bool bErase)
+   void window::InvalidateRgn(::draw2d::region* pRgn, bool bErase)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(bErase);
@@ -1137,7 +1137,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::ValidateRgn(::ca2::region* pRgn)
+   void window::ValidateRgn(::draw2d::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception(get_app());
@@ -1170,7 +1170,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::graphics * window::GetDCEx(::ca2::region * prgnClip, uint32_t flags)
+   ::draw2d::graphics * window::GetDCEx(::draw2d::region * prgnClip, uint32_t flags)
    {
       UNREFERENCED_PARAMETER(prgnClip);
       UNREFERENCED_PARAMETER(flags);
@@ -1187,7 +1187,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool window::RedrawWindow(LPCRECT lpRectUpdate, ::ca2::region * prgnUpdate, UINT flags)
+   bool window::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region * prgnUpdate, UINT flags)
    {
       UNREFERENCED_PARAMETER(lpRectUpdate);
       UNREFERENCED_PARAMETER(prgnUpdate);
@@ -1210,7 +1210,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool window::DrawCaption(::ca2::graphics * pgraphics, LPCRECT lprc, UINT uFlags)
+   bool window::DrawCaption(::draw2d::graphics * pgraphics, LPCRECT lprc, UINT uFlags)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(lprc);
@@ -1375,7 +1375,7 @@ namespace ca2
 
    int32_t window::ScrollWindowEx(int32_t dx, int32_t dy,
       LPCRECT lpRectScroll, LPCRECT lpRectClip,
-      ::ca2::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags)
+      ::draw2d::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags)
    {
       UNREFERENCED_PARAMETER(dx);
       UNREFERENCED_PARAMETER(dy);
@@ -1459,7 +1459,7 @@ namespace ca2
    }
 
 
-   void window::CreateCaret(::ca2::bitmap* pBitmap)
+   void window::CreateCaret(::draw2d::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
       throw interface_only_exception(get_app());
@@ -1506,14 +1506,14 @@ namespace ca2
 
    // Win4
 
-   void window::Print(::ca2::graphics * pgraphics, uint32_t dwFlags) const
+   void window::Print(::draw2d::graphics * pgraphics, uint32_t dwFlags) const
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(dwFlags);
       throw interface_only_exception(get_app());
    }
 
-   void window::PrintClient(::ca2::graphics * pgraphics, uint32_t dwFlags) const
+   void window::PrintClient(::draw2d::graphics * pgraphics, uint32_t dwFlags) const
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(dwFlags);
@@ -1588,7 +1588,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool window::OnEraseBkgnd(::ca2::graphics *)
+   bool window::OnEraseBkgnd(::draw2d::graphics *)
    {
       throw interface_only_exception(get_app());
    }
@@ -1608,7 +1608,7 @@ namespace ca2
 #endif
 
 
-   void window::OnIconEraseBkgnd(::ca2::graphics *)
+   void window::OnIconEraseBkgnd(::draw2d::graphics *)
    {
       throw interface_only_exception(get_app());
    }

@@ -77,7 +77,7 @@ namespace user
    public:
 
 
-      ::ca2::graphics *     m_pgraphics;
+      ::draw2d::graphics *     m_pgraphics;
       rect                 m_rectClient;
       bool                 m_bListItemHover;
       bool                 m_bListSubItemHover;

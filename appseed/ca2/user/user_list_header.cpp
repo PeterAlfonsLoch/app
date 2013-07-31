@@ -26,10 +26,10 @@ namespace user
       m_plistctrlinterface = pinterface;
    }
 
-   void list_header::DrawItem(::ca2::draw_item * pdrawitem)
+   void list_header::DrawItem(::draw2d::item * pdrawitem)
    {
 
-      ::ca2::graphics * pdc = pdrawitem->m_pgraphics;
+      ::draw2d::graphics * pdc = pdrawitem->m_pgraphics;
 
       rect rectColumn = pdrawitem->rcItem;
 
@@ -498,7 +498,7 @@ namespace user
       pmouse->m_bRet = false;
    }
 
-   void list_header::_001OnDraw(::ca2::graphics *pdc)
+   void list_header::_001OnDraw(::draw2d::graphics *pdc)
    {
 
       rect rectClient;
@@ -522,7 +522,7 @@ namespace user
 
       imaging.color_blend(pdc, rectUpdate, RGB(127, 127, 117), 128);
 
-      ::ca2::draw_item drawitem;
+      ::draw2d::item drawitem;
       drawitem.m_pgraphics = pdc;
       list * plist = m_plistctrlinterface;
       rect rectDivider;

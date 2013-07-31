@@ -20,7 +20,7 @@ void simple_combo_list::install_message_handling(::ca2::message::dispatch * pdis
 }
 
 
-void simple_combo_list::_001OnDraw(::ca2::graphics * pdc)
+void simple_combo_list::_001OnDraw(::draw2d::graphics * pdc)
 {
 
    ::user::combo_list::_001OnDraw(pdc);

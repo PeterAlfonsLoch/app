@@ -861,7 +861,7 @@ namespace ca2
       void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = TRUE);
 
       // create a DC for the system default printer.
-      ::ca2::graphics * CreatePrinterDC();
+      ::draw2d::graphics * CreatePrinterDC();
 
 
       //   bool GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg);
@@ -1036,7 +1036,7 @@ namespace ca2
       virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
       virtual void TermThread(HINSTANCE hInstTerm);
 
-      //virtual ::ca2::graphics * graphics_from_os_data(void * pdata);
+      //virtual ::draw2d::graphics * graphics_from_os_data(void * pdata);
 
 #ifdef METROWIN
       virtual sp(::user::interaction) window_from_os_data(void * pdata);
@@ -1254,8 +1254,6 @@ namespace ca2
 } // namespace ca2
 
 
-
-#include "base/ca2/ca2_font.h"
 
 
 

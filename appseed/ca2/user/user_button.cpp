@@ -42,7 +42,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_CREATE                  , pinterface, this, &button::_001OnCreate);
    }
 
-   void button::_001OnDraw(::ca2::graphics * pdc)
+   void button::_001OnDraw(::draw2d::graphics * pdc)
    {
       
       string strText(m_istrButtonText);
@@ -234,7 +234,7 @@ namespace user
 
    void button::ResizeToFit()
    {
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pdc(allocer());
 
       if(pdc.is_null())
          return;
@@ -346,11 +346,11 @@ namespace user
       m_rectText = rect;
 
 
-      /*::ca2::font font;
+      /*::draw2d::font font;
 
       font.m_strFontFamilyName = "Calibri";
       font.m_dFontSize = rect.height() * 0.7;
-      font.m_eunitFontSize = ::ca2::unit_pixel;
+      font.m_eunitFontSize = ::draw2d::unit_pixel;
 
       SetFont(&font);*/
 
@@ -404,14 +404,14 @@ namespace user
    }
 
 
-   ::ca2::font * button::_001GetFont()
+   ::draw2d::font * button::_001GetFont()
    {
       if(m_pschema == NULL)
          return GetFont();
       return m_pschema->m_font;
    }
 
-   void button::_002OnDraw(::ca2::graphics * pdc)
+   void button::_002OnDraw(::draw2d::graphics * pdc)
    {
 
       if(m_pschema == NULL)

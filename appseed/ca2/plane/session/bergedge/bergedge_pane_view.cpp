@@ -556,7 +556,7 @@ namespace bergedge
    }
 
 
-   void pane_view::_001OnDraw(::ca2::graphics * pdc)
+   void pane_view::_001OnDraw(::draw2d::graphics * pdc)
    {
 
       if(m_iNewArea != m_iArea)
@@ -584,7 +584,7 @@ namespace bergedge
          }
          FIBITMAP * pfi;
 
-         ::ca2::memory_graphics pdc(this);
+         ::draw2d::memory_graphics pdc(this);
 
          pfi = System.visual().imaging().LoadImageFile(strWallpaper);
 

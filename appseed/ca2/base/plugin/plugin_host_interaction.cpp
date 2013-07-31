@@ -107,7 +107,7 @@ namespace plugin
 
 
 
-   void host_interaction::_000OnDraw(::ca2::graphics * pdc)
+   void host_interaction::_000OnDraw(::draw2d::graphics * pdc)
    {
 
       //rect rectWindow;
@@ -190,7 +190,7 @@ namespace plugin
    }
 
 
-   bool host_interaction::RedrawWindow(LPCRECT lpRectUpdate, ::ca2::region* prgnUpdate, UINT flags)
+   bool host_interaction::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
    {
 
       UNREFERENCED_PARAMETER(lpRectUpdate);

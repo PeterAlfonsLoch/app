@@ -300,28 +300,28 @@ namespace user
 
 #ifdef WINDOWS
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
-         ::ca2::region* prgnUpdate = NULL,
+         ::draw2d::region* prgnUpdate = NULL,
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
 #else
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
-         ::ca2::region* prgnUpdate = NULL,
+         ::draw2d::region* prgnUpdate = NULL,
          UINT flags = 0);
 #endif
 
 
-   virtual void set_view_port_org(::ca2::graphics * pgraphics);
+   virtual void set_view_port_org(::draw2d::graphics * pgraphics);
 
 
 
       virtual void UpdateWindow();
       virtual void SetRedraw(bool bRedraw = TRUE);
       virtual bool GetUpdateRect(LPRECT lpRect, bool bErase = FALSE);
-      virtual int32_t GetUpdateRgn(::ca2::region* pRgn, bool bErase = FALSE);
+      virtual int32_t GetUpdateRgn(::draw2d::region* pRgn, bool bErase = FALSE);
       virtual void Invalidate(bool bErase = TRUE);
       virtual void InvalidateRect(LPCRECT lpRect, bool bErase = TRUE);
-      virtual void InvalidateRgn(::ca2::region* pRgn, bool bErase = TRUE);
+      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = TRUE);
       virtual void ValidateRect(LPCRECT lpRect);
-      virtual void ValidateRgn(::ca2::region* pRgn);
+      virtual void ValidateRgn(::draw2d::region* pRgn);
       virtual void ShowOwnedPopups(bool bShow = TRUE);
 
 
@@ -355,15 +355,15 @@ namespace user
       virtual bool IsWindowEnabled();
       virtual bool EnableWindow(bool bEnable = TRUE);
 
-      virtual void _001Print(::ca2::graphics * pdc);
-      virtual void _000OnDraw(::ca2::graphics *pdc);
-      virtual void _001DrawThis(::ca2::graphics *pdc);
-      virtual void _001DrawChildren(::ca2::graphics *pdc);
-      virtual void _001OnDraw(::ca2::graphics *pdc);
-      virtual void draw_control_background(::ca2::graphics *pdc);
+      virtual void _001Print(::draw2d::graphics * pdc);
+      virtual void _000OnDraw(::draw2d::graphics *pdc);
+      virtual void _001DrawThis(::draw2d::graphics *pdc);
+      virtual void _001DrawChildren(::draw2d::graphics *pdc);
+      virtual void _001OnDraw(::draw2d::graphics *pdc);
+      virtual void draw_control_background(::draw2d::graphics *pdc);
 
-      virtual ::ca2::graphics * GetDC();
-      virtual bool ReleaseDC(::ca2::graphics *);
+      virtual ::draw2d::graphics * GetDC();
+      virtual bool ReleaseDC(::draw2d::graphics *);
 
       virtual bool IsChild(sp(interaction)  pWnd);
       virtual window_interface * window_interface_get_parent() const;
@@ -396,8 +396,8 @@ namespace user
       virtual strsize GetWindowText(LPTSTR lpszStringBuf, int32_t nMaxCount);
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();
-      virtual void SetFont(::ca2::font* pFont, bool bRedraw = TRUE);
-      virtual ::ca2::font* GetFont();
+      virtual void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
+      virtual ::draw2d::font* GetFont();
 
       virtual void install_message_handling(::ca2::message::dispatch * pinterface);
       virtual bool IsWindowVisible();
@@ -501,9 +501,9 @@ namespace user
       virtual LRESULT message_handler(LPMESSAGE lpmessage);
       virtual void GuieProc(::ca2::signal_object * pobj);
 
-      virtual void _001DeferPaintLayeredWindowBackground(::ca2::graphics * pdc);
+      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
 
-      virtual void _001OnDeferPaintLayeredWindowBackground(::ca2::graphics * pdc);
+      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
 
 
       oswindow get_safe_handle() const;

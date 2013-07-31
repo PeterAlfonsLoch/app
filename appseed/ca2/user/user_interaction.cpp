@@ -134,7 +134,7 @@ namespace user
 
    }
 
-   ::ca2::graphics * interaction::GetDC()
+   ::draw2d::graphics * interaction::GetDC()
    {
      if(m_pimpl == NULL)
          return FALSE;
@@ -142,7 +142,7 @@ namespace user
          return m_pimpl->GetDC();
    }
 
-   bool interaction::ReleaseDC(::ca2::graphics * pdc)
+   bool interaction::ReleaseDC(::draw2d::graphics * pdc)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -521,7 +521,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::set_view_port_org(::ca2::graphics * pgraphics)
+   void interaction::set_view_port_org(::draw2d::graphics * pgraphics)
    {
       if(m_pimpl == NULL)
          return;
@@ -535,7 +535,7 @@ namespace user
 */
    }
 
-   void interaction::_001DrawThis(::ca2::graphics * pgraphics)
+   void interaction::_001DrawThis(::draw2d::graphics * pgraphics)
    {
       if(m_pguie != NULL)
       {
@@ -565,7 +565,7 @@ namespace user
       }
    }
 
-   void interaction::_001DrawChildren(::ca2::graphics *pdc)
+   void interaction::_001DrawChildren(::draw2d::graphics *pdc)
    {
 
       if(m_pguie != NULL && m_pguie != this)
@@ -610,7 +610,7 @@ namespace user
       }
    }
 
-   void interaction::_001Print(::ca2::graphics * pgraphics)
+   void interaction::_001Print(::draw2d::graphics * pgraphics)
    {
 
       point ptViewport(0, 0);
@@ -648,7 +648,7 @@ namespace user
          ::visual::cursor * pcursor = Session.get_cursor();
          if(pcursor != NULL)
          {
-            pgraphics->set_alpha_mode(::ca2::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
             pcursor->to(pgraphics, ptCursor);
          }
       }
@@ -656,7 +656,7 @@ namespace user
    }
 
 
-   void interaction::_000OnDraw(::ca2::graphics *pdc)
+   void interaction::_000OnDraw(::draw2d::graphics *pdc)
    {
       if(!m_bVisible)
          return;
@@ -672,7 +672,7 @@ namespace user
    }
 
 
-   void interaction::_001OnDraw(::ca2::graphics *pdc)
+   void interaction::_001OnDraw(::draw2d::graphics *pdc)
    {
 
       draw_control_background(pdc);
@@ -680,7 +680,7 @@ namespace user
    }
 
 
-   void interaction::draw_control_background(::ca2::graphics *pdc)
+   void interaction::draw_control_background(::draw2d::graphics *pdc)
    {
 
       rect rectClient;
@@ -698,7 +698,7 @@ namespace user
       else
       {
          pdc->SelectClipRgn(NULL);
-         pdc->set_alpha_mode(::ca2::alpha_mode_set);
+         pdc->set_alpha_mode(::draw2d::alpha_mode_set);
          pdc->FillSolidRect(rectClient, (255 << 24) | (get_background_color() & 0xffffff));
       }
 
@@ -719,7 +719,7 @@ namespace user
       if(GetFont() != NULL)
       {
          GetFont()->m_dFontSize = 12.0;
-         GetFont()->m_eunitFontSize = ::ca2::unit_point;
+         GetFont()->m_eunitFontSize = ::draw2d::unit_point;
          GetFont()->m_strFontFamilyName = "Times New Roman";
       }
 
@@ -1629,7 +1629,7 @@ namespace user
 
 
    bool interaction::RedrawWindow(LPCRECT lpRectUpdate,
-         ::ca2::region* prgnUpdate,
+         ::draw2d::region* prgnUpdate,
          UINT flags)
    {
       if(m_pimpl == NULL)
@@ -1813,14 +1813,14 @@ namespace user
          return m_pimpl->GetWindowTextLength();
    }
 
-   void interaction::SetFont(::ca2::font* pFont, bool bRedraw)
+   void interaction::SetFont(::draw2d::font* pFont, bool bRedraw)
    {
       if(m_pimpl == NULL)
          return;
       else
          m_pimpl->SetFont(pFont, bRedraw);
    }
-   ::ca2::font* interaction::GetFont()
+   ::draw2d::font* interaction::GetFont()
    {
       if(m_pimpl == NULL)
          return NULL;
@@ -2258,7 +2258,7 @@ namespace user
          return m_pimpl->GetUpdateRect(lpRect, bErase);
    }
 
-   int32_t interaction::GetUpdateRgn(::ca2::region* pRgn, bool bErase)
+   int32_t interaction::GetUpdateRgn(::draw2d::region* pRgn, bool bErase)
    {
       if(m_pimpl == NULL)
          return 0;
@@ -2283,7 +2283,7 @@ namespace user
          m_pimpl->InvalidateRect(lpRect, bErase);
    }
 
-   void interaction::InvalidateRgn(::ca2::region* pRgn, bool bErase)
+   void interaction::InvalidateRgn(::draw2d::region* pRgn, bool bErase)
    {
       if(m_pimpl == NULL)
          return;
@@ -2298,7 +2298,7 @@ namespace user
       else
          m_pimpl->ValidateRect(lpRect);
    }
-   void interaction::ValidateRgn(::ca2::region* pRgn)
+   void interaction::ValidateRgn(::draw2d::region* pRgn)
    {
       if(m_pimpl == NULL)
          return;
@@ -2706,7 +2706,7 @@ ExitModal:
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_001DeferPaintLayeredWindowBackground(::ca2::graphics * pdc)
+   void interaction::_001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
    {
       if(m_pimpl != NULL)
       {
@@ -2714,7 +2714,7 @@ ExitModal:
       }
    }
 
-   void interaction::_001OnDeferPaintLayeredWindowBackground(::ca2::graphics * pdc)
+   void interaction::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
    {
 
       _001DeferPaintLayeredWindowBackground(pdc);

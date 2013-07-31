@@ -48,12 +48,12 @@ namespace user
 
       virtual void ResizeToFit();
 
-      virtual ::ca2::font * _001GetFont();
+      virtual ::draw2d::font * _001GetFont();
 
       virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
-      virtual void _001OnDraw(::ca2::graphics * pdc);
-      virtual void _002OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _002OnDraw(::draw2d::graphics * pdc);
 
       DECL_GEN_SIGNAL(_001OnCreate)
       virtual bool _001IsWindowEnabled();
@@ -66,7 +66,7 @@ namespace user
       virtual bool _001IsPressed();
 
 
-//      void _002OnDraw(::ca2::graphics * pdc);
+//      void _002OnDraw(::draw2d::graphics * pdc);
 
       virtual index get_hover();
 
@@ -78,7 +78,7 @@ namespace user
 
       virtual index hit_test(point pt, e_element & eelement);
 
-//      virtual ::ca2::font * _001GetFont();
+//      virtual ::draw2d::font * _001GetFont();
       void _001SetButtonText(const char * lpcszText);
       void _001SetButtonTextId(const char * lpcszText);
       string _001GetButtonText();

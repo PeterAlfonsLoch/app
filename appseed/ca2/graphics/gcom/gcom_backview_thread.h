@@ -39,7 +39,7 @@ namespace gcom
             //   VARIANT varInfoHeader;
             //   VARIANT varBits;
             //   VARIANT varUserData;
-            ::ca2::bitmap     m_pbitmap;
+            ::draw2d::bitmap     m_pbitmap;
             int32_t         m_iUserData;
             int32_t      cx;
             int32_t      cy;
@@ -56,7 +56,7 @@ namespace gcom
             //   uint32_t   m_dwEventsCount;
             //   LPSTREAM m_lpStreamImageLoader;
             //   LPSTREAM m_lpStreamImageLoaderCP;
-            ::ca2::bitmap * m_pbitmap;
+            ::draw2d::bitmap * m_pbitmap;
 
          } ONLOADIMAGESTRUCTURE, *LPONLOADIMAGESTRUCTURE;
 
@@ -66,7 +66,7 @@ namespace gcom
             //   VARIANT varBits;
             //   VARIANT varUserData;
             //HBITMAP      m_hBitmap;
-            ::ca2::bitmap *  m_pbitmap;
+            ::draw2d::bitmap *  m_pbitmap;
             int32_t          m_cx;
             int32_t          m_cy;
             int32_t          m_iUserData;
@@ -95,9 +95,9 @@ namespace gcom
          static uint32_t ThreadProcLoadImage(void * lpParameter);
 
          //void OnImageLoaded(HBITMAP hbitmap);
-         long OnImageStretched(::ca2::bitmap * pbitmap, long cx, long cy, long iUserData);
+         long OnImageStretched(::draw2d::bitmap * pbitmap, long cx, long cy, long iUserData);
 
-         //   ::ca2::bitmap & GetBitmap();
+         //   ::draw2d::bitmap & GetBitmap();
 
          //void OnLyricViewSize(int32_t iType);
          void LoadImageAsync(const load_image & loadimage);
@@ -140,10 +140,10 @@ namespace gcom
          string                  m_strImagePath;
          backview::Main *        m_pbackviewinterface;
          ::ca2::signal             m_signalImageLoaded;
-         ::ca2::dib *             m_pdib;
+         ::draw2d::dib *             m_pdib;
 
 
-         load_image(::ca2::dib * pdib, gcom::backview::thread * pbackviewthread, backview::Main * pbackviewinterface, const char * lpcwszImagePath);
+         load_image(::draw2d::dib * pdib, gcom::backview::thread * pbackviewthread, backview::Main * pbackviewinterface, const char * lpcwszImagePath);
          load_image(const load_image & loadimage);
          void OnImageLoaded();
 

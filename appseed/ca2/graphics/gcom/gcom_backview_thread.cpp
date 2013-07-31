@@ -70,7 +70,7 @@ namespace gcom
          CSavings & savings = CSavings::AppGetSavings();
       //    if(iEconoMode != CVMSApp::SaveMemory)
         //  {
-         ::ca2::bitmap * pbmpOld = graphics.m_dcBackViewSource.SelectObject(graphics.m_bmpBackViewSource);
+         ::draw2d::bitmap * pbmpOld = graphics.m_dcBackViewSource.SelectObject(graphics.m_bmpBackViewSource);
           if(pbmpOld != NULL)
           {
               if(hBitmapOld != NULL)
@@ -118,7 +118,7 @@ namespace gcom
       }*/
 
       long thread::OnImageStretched(
-         ::ca2::bitmap * pbitmap,
+         ::draw2d::bitmap * pbitmap,
          long cx,
          long cy,
          long iUserData)
@@ -180,7 +180,7 @@ namespace gcom
          return 0;
       }
 
-      /*::ca2::bitmap & thread::GetBitmap()
+      /*::draw2d::bitmap & thread::GetBitmap()
       {
          return m_bitmap;
       }*/
@@ -463,7 +463,7 @@ namespace gcom
       }
 
 
-      load_image::load_image(::ca2::dib * pdib, thread * pbackviewthread, backview::Main * pbackviewinterface, const char * lpcwszImagePath) :
+      load_image::load_image(::draw2d::dib * pdib, thread * pbackviewthread, backview::Main * pbackviewinterface, const char * lpcwszImagePath) :
          m_pdib(pdib),
          thread_dispatch(pbackviewthread),
          m_strImagePath(lpcwszImagePath),

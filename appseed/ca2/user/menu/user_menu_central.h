@@ -28,10 +28,10 @@ public:
    sp(image_list)    m_pilHue;
    sp(image_list)    m_pilBlend;
    sp(image_list)    m_pilHueLight;
-   ::ca2::font_sp          m_fontMenu;
+   ::draw2d::font_sp          m_fontMenu;
 
-   ::ca2::font * MenuV033GetFont();
-   ::ca2::font * GetMenuFont();
+   ::draw2d::font * MenuV033GetFont();
+   ::draw2d::font * GetMenuFont();
 
 };
 

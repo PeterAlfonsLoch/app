@@ -14,7 +14,7 @@ struct __SIZEPARENTPARAMS;    // control bar implementationpropergen_property.h
 
 // Classes declared in this file
 
-   //::ca2::graphics_sp
+   //::draw2d::graphics_sp
       class preview_dc;               // Virtual DC for print preview
 
    //command_target

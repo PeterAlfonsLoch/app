@@ -176,7 +176,7 @@ namespace user
 
 
       // create a DC for the system default printer.
-      bool CreatePrinterDC(::ca2::graphics_sp& spgraphics);
+      bool CreatePrinterDC(::draw2d::graphics_sp& spgraphics);
 
 
    bool GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg);

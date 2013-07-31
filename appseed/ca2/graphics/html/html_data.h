@@ -62,7 +62,7 @@ namespace html
 
       ::user::form_callback *    m_pcallback;
       sp(::user::interaction)      m_pguie;
-      ::ca2::graphics *           m_pdc;
+      ::draw2d::graphics *           m_pdc;
       box                        m_box;
       string                     m_strTitle;
       layout_state               m_layoutstate;
@@ -123,9 +123,9 @@ namespace html
       //virtual bool is_in_use();
 
       void load(const char *);
-      void implement(::ca2::graphics * pdc);
-      void layout(::ca2::graphics * pdc);
-      void _001OnDraw(::ca2::graphics * pdc);
+      void implement(::draw2d::graphics * pdc);
+      void layout(::draw2d::graphics * pdc);
+      void _001OnDraw(::draw2d::graphics * pdc);
 
       void implement_and_layout(html_form * pform);
 

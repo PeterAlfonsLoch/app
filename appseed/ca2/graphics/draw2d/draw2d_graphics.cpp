@@ -1,8 +1,10 @@
 #include "framework.h"
 #include <math.h>
 
-namespace ca2
+
+namespace draw2d
 {
+
 
    graphics::graphics()
    {
@@ -91,7 +93,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::CreateCompatibleDC(::ca2::graphics * pgraphics)
+   bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       throw interface_only_exception(get_app());
@@ -135,13 +137,13 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::bitmap* graphics::SelectObject(::ca2::bitmap* pBitmap)
+   ::draw2d::bitmap* graphics::SelectObject(::draw2d::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::graphics_object* graphics::SelectObject(::ca2::graphics_object* pObject)
+   ::draw2d::object* graphics::SelectObject(::draw2d::object* pObject)
    {
       UNREFERENCED_PARAMETER(pObject);
       throw interface_only_exception(get_app());
@@ -154,7 +156,7 @@ namespace ca2
    }*/
 
 
-   bool graphics::SelectFont(::ca2::font * pfont)
+   bool graphics::SelectFont(::draw2d::font * pfont)
    {
       // SIOOT - Should implemennt one of them
       // OASOWO - otherwise a stack overflow will occur
@@ -167,27 +169,27 @@ namespace ca2
       return true;
    }
 
-   bool graphics::selectFont(::ca2::font * pfont)
+   bool graphics::selectFont(::draw2d::font * pfont)
    {
       return SelectFont(pfont);
    }
 
-   bool graphics::select_font(::ca2::font * pfont)
+   bool graphics::select_font(::draw2d::font * pfont)
    {
       return selectFont(pfont);
    }
 
-   bool graphics::SetFont(::ca2::font * pfont)
+   bool graphics::SetFont(::draw2d::font * pfont)
    {
       return select_font(pfont);
    }
 
-   bool graphics::setFont(::ca2::font * pfont)
+   bool graphics::setFont(::draw2d::font * pfont)
    {
       return SetFont(pfont);
    }
 
-   bool graphics::set_font(::ca2::font * pfont)
+   bool graphics::set_font(::draw2d::font * pfont)
    {
       return setFont(pfont);
    }
@@ -333,14 +335,14 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::FillRgn(::ca2::region* pRgn, ::ca2::brush* pBrush)
+   bool graphics::FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(pBrush);
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::FrameRgn(::ca2::region* pRgn, ::ca2::brush* pBrush, int32_t nWidth, int32_t nHeight)
+   bool graphics::FrameRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush, int32_t nWidth, int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(pBrush);
@@ -349,13 +351,13 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::InvertRgn(::ca2::region* pRgn)
+   bool graphics::InvertRgn(::draw2d::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::PaintRgn(::ca2::region* pRgn)
+   bool graphics::PaintRgn(::draw2d::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception(get_app());
@@ -454,14 +456,14 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void graphics::FillRect(LPCRECT lpRect, ::ca2::brush* pBrush)
+   void graphics::FillRect(LPCRECT lpRect, ::draw2d::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(pBrush);
       throw interface_only_exception(get_app());
    }
 
-   void graphics::FrameRect(LPCRECT lpRect, ::ca2::brush* pBrush)
+   void graphics::FrameRect(LPCRECT lpRect, ::draw2d::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(pBrush);
@@ -512,7 +514,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::DrawState(point pt, size size, ::ca2::bitmap* pBitmap, UINT nFlags, ::ca2::brush* pBrush)
+   bool graphics::DrawState(point pt, size size, ::draw2d::bitmap* pBitmap, UINT nFlags, ::draw2d::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
@@ -534,7 +536,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::DrawState(point pt, size size, HICON hIcon, UINT nFlags, ::ca2::brush* pBrush)
+   bool graphics::DrawState(point pt, size size, HICON hIcon, UINT nFlags, ::draw2d::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
@@ -558,7 +560,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::DrawState(point pt, size size, const char * lpszText, UINT nFlags, bool bPrefixText, int32_t nTextLen, ::ca2::brush* pBrush)
+   bool graphics::DrawState(point pt, size size, const char * lpszText, UINT nFlags, bool bPrefixText, int32_t nTextLen, ::draw2d::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
@@ -583,7 +585,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, ::ca2::brush* pBrush)
+   bool graphics::DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, ::draw2d::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
@@ -820,7 +822,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, uint32_t dwRop)
+   bool graphics::BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, uint32_t dwRop)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -833,7 +835,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop)
+   bool graphics::StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -1008,7 +1010,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::GrayString(::ca2::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int32_t), LPARAM lpData, int32_t nCount, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight)
+   bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int32_t), LPARAM lpData, int32_t nCount, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(pBrush);
       UNREFERENCED_PARAMETER(lpfnOutput);
@@ -1105,7 +1107,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::ScrollDC(int32_t dx, int32_t dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::ca2::region * pRgnUpdate, LPRECT lpRectUpdate)
+   bool graphics::ScrollDC(int32_t dx, int32_t dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::draw2d::region * pRgnUpdate, LPRECT lpRectUpdate)
    {
       UNREFERENCED_PARAMETER(dx);
       UNREFERENCED_PARAMETER(dy);
@@ -1126,7 +1128,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   // ::ca2::graphics_sp 3.1 Specific functions
+   // ::draw2d::graphics_sp 3.1 Specific functions
    UINT graphics::SetBoundsRect(LPCRECT lpRectBounds, UINT flags)
    {
       UNREFERENCED_PARAMETER(lpRectBounds);
@@ -1235,8 +1237,8 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::MaskBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca2::graphics * pgraphicsSrc,
-      int32_t xSrc, int32_t ySrc, ::ca2::bitmap& maskBitmap, int32_t xMask, int32_t yMask, uint32_t dwRop)
+   bool graphics::MaskBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
+      int32_t xSrc, int32_t ySrc, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask, uint32_t dwRop)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -1252,8 +1254,8 @@ namespace ca2
 
       throw interface_only_exception(get_app());
    }
-   bool graphics::PlgBlt(LPPOINT lpPoint, ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc,
-      int32_t nWidth, int32_t nHeight, ::ca2::bitmap& maskBitmap, int32_t xMask, int32_t yMask)
+   bool graphics::PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc,
+      int32_t nWidth, int32_t nHeight, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask)
    {
       UNREFERENCED_PARAMETER(lpPoint);
       UNREFERENCED_PARAMETER(pgraphicsSrc);
@@ -1324,27 +1326,27 @@ namespace ca2
 
 #endif
 
-   ::ca2::pen & graphics::GetCurrentPen() const
+   ::draw2d::pen & graphics::GetCurrentPen() const
    {
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::brush & graphics::GetCurrentBrush() const
+   ::draw2d::brush & graphics::GetCurrentBrush() const
    {
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::palette & graphics::GetCurrentPalette() const
+   ::draw2d::palette & graphics::GetCurrentPalette() const
    {
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::font & graphics::GetCurrentFont() const
+   ::draw2d::font & graphics::GetCurrentFont() const
    {
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::bitmap & graphics::GetCurrentBitmap() const
+   ::draw2d::bitmap & graphics::GetCurrentBitmap() const
    {
       throw interface_only_exception(get_app());
    }
@@ -1459,7 +1461,7 @@ namespace ca2
    }
 
 
-   bool graphics::draw_path(::ca2::graphics_path * ppath)
+   bool graphics::draw_path(::draw2d::path * ppath)
    {
 
       throw interface_only_exception(get_app());
@@ -1467,14 +1469,14 @@ namespace ca2
    }
 
 
-   bool graphics::fill_path(::ca2::graphics_path * ppath)
+   bool graphics::fill_path(::draw2d::path * ppath)
    {
 
       throw interface_only_exception(get_app());
 
    }
 
-   bool graphics::path(::ca2::graphics_path * ppath)
+   bool graphics::path(::draw2d::path * ppath)
    {
 
       bool bOk1 = fill_path(ppath);
@@ -1505,7 +1507,7 @@ namespace ca2
 #endif
 
    bool graphics::TransparentBlt(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
-      ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, UINT crTransparent)
+      ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, UINT crTransparent)
    {
       UNREFERENCED_PARAMETER(xDest);
       UNREFERENCED_PARAMETER(yDest);
@@ -1621,14 +1623,14 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::brush * graphics::GetHalftoneBrush()
+   ::draw2d::brush * graphics::GetHalftoneBrush()
    {
       throw interface_only_exception(get_app());
    }
 
    // top of windows implementation
 
-   void graphics::DrawDragRect(LPCRECT lpRect, SIZE size, LPCRECT lpRectLast, SIZE sizeLast, ::ca2::brush* pBrush, ::ca2::brush* pBrushLast)
+   void graphics::DrawDragRect(LPCRECT lpRect, SIZE size, LPCRECT lpRectLast, SIZE sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(size);
@@ -1683,7 +1685,7 @@ namespace ca2
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::ca2::graphics_sp
+   // ::draw2d::graphics_sp
 
    void graphics::assert_valid() const
    {
@@ -1724,37 +1726,37 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::graphics_object* graphics::SelectStockObject(int32_t nIndex)
+   ::draw2d::object* graphics::SelectStockObject(int32_t nIndex)
    {
       UNREFERENCED_PARAMETER(nIndex);
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::pen* graphics::SelectObject(::ca2::pen * pPen)
+   ::draw2d::pen* graphics::SelectObject(::draw2d::pen * pPen)
    {
       UNREFERENCED_PARAMETER(pPen);
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::brush* graphics::SelectObject(::ca2::brush * pBrush)
+   ::draw2d::brush* graphics::SelectObject(::draw2d::brush * pBrush)
    {
       UNREFERENCED_PARAMETER(pBrush);
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::font* graphics::SelectObject(::ca2::font * pFont)
+   ::draw2d::font* graphics::SelectObject(::draw2d::font * pFont)
    {
       UNREFERENCED_PARAMETER(pFont);
       throw interface_only_exception(get_app());
    }
 
-   int32_t graphics::SelectObject(::ca2::region * pRgn)
+   int32_t graphics::SelectObject(::draw2d::region * pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::palette* graphics::SelectPalette(::ca2::palette * pPalette, bool bForceBackground)
+   ::draw2d::palette* graphics::SelectPalette(::draw2d::palette * pPalette, bool bForceBackground)
    {
       UNREFERENCED_PARAMETER(pPalette);
       UNREFERENCED_PARAMETER(bForceBackground);
@@ -1904,7 +1906,7 @@ namespace ca2
       return iClip;
    }
 
-   int32_t graphics::SelectClipRgn(::ca2::region* pRgn)
+   int32_t graphics::SelectClipRgn(::draw2d::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception(get_app());
@@ -2073,7 +2075,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   int32_t graphics::SelectClipRgn(::ca2::region* pRgn, int32_t nMode)
+   int32_t graphics::SelectClipRgn(::draw2d::region* pRgn, int32_t nMode)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(nMode);
@@ -2205,22 +2207,22 @@ namespace ca2
 #endif
 
 
-   bool graphics::from(point ptDst, size size, ::ca2::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop)
+   bool graphics::from(point ptDst, size size, ::draw2d::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop)
    {
       return BitBlt(ptDst.x, ptDst.y, size.cx, size.cy, pgraphicsSrc, ptSrc.x, ptSrc.y, dwRop) != FALSE;
    }
 
-   bool graphics::from(size size, ::ca2::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop)
+   bool graphics::from(size size, ::draw2d::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop)
    {
       return from(null_point(), size, pgraphicsSrc, ptSrc, dwRop);
    }
 
-   bool graphics::from(size size, ::ca2::graphics * pgraphicsSrc, uint32_t dwRop)
+   bool graphics::from(size size, ::draw2d::graphics * pgraphicsSrc, uint32_t dwRop)
    {
       return from(size, pgraphicsSrc, null_point(), dwRop);
    }
 
-   bool graphics::alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity)
+   bool graphics::alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity)
    {
       UNREFERENCED_PARAMETER(xDest);
       UNREFERENCED_PARAMETER(yDest);
@@ -2235,27 +2237,27 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::alpha_blend(point ptDst, size szDst,::ca2::graphics * pgraphicsSrc, point ptSrc, size szSrc, double dOpacity)
+   bool graphics::alpha_blend(point ptDst, size szDst,::draw2d::graphics * pgraphicsSrc, point ptSrc, size szSrc, double dOpacity)
    {
       return alpha_blend(ptDst.x, ptDst.y, szDst.cx, szDst.cy, pgraphicsSrc, ptSrc.x, ptSrc.y, szSrc.cx, szSrc.cy, dOpacity);
    }
 
-   bool graphics::alpha_blend(point ptDst, size size,::ca2::graphics * pgraphicsSrc, point ptSrc, double dOpacity)
+   bool graphics::alpha_blend(point ptDst, size size,::draw2d::graphics * pgraphicsSrc, point ptSrc, double dOpacity)
    {
       return alpha_blend(ptDst, size, pgraphicsSrc, ptSrc, size, dOpacity);
    }
 
-   bool graphics::alpha_blend(point ptDst, size size,::ca2::graphics * pgraphicsSrc, double dOpacity)
+   bool graphics::alpha_blend(point ptDst, size size,::draw2d::graphics * pgraphicsSrc, double dOpacity)
    {
       return alpha_blend(ptDst, size, pgraphicsSrc, null_point(), dOpacity);
    }
 
-   bool graphics::alpha_blend(size size,::ca2::graphics * pgraphicsSrc, point ptSrc, double dOpacity)
+   bool graphics::alpha_blend(size size,::draw2d::graphics * pgraphicsSrc, point ptSrc, double dOpacity)
    {
       return alpha_blend(null_point(), size, pgraphicsSrc, ptSrc, dOpacity);
    }
 
-   bool graphics::alpha_blend(size size,::ca2::graphics * pgraphicsSrc, double dOpacity)
+   bool graphics::alpha_blend(size size,::draw2d::graphics * pgraphicsSrc, double dOpacity)
    {
       return alpha_blend(size, pgraphicsSrc, null_point(), dOpacity);
    }
@@ -2263,7 +2265,7 @@ namespace ca2
 
 /*
    bool graphics::alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
-      ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, BLENDFUNCTION blend)
+      ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, BLENDFUNCTION blend)
    {
       UNREFERENCED_PARAMETER(xDest);
       UNREFERENCED_PARAMETER(yDest);
@@ -2278,27 +2280,27 @@ namespace ca2
       throw interface_only_exception(get_app());
    }*/
 
-/*   bool graphics::alpha_blend(point ptDst, size szDst,::ca2::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend)
+/*   bool graphics::alpha_blend(point ptDst, size szDst,::draw2d::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend)
    {
       return alpha_blend(ptDst.x, ptDst.y, szDst.cx, szDst.cy, pgraphicsSrc, ptSrc.x, ptSrc.y, szSrc.cx, szSrc.cy, blend);
    }
 
-   bool graphics::alpha_blend(point ptDst, size size,::ca2::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend)
+   bool graphics::alpha_blend(point ptDst, size size,::draw2d::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend)
    {
       return alpha_blend(ptDst, size, pgraphicsSrc, ptSrc, size, blend);
    }
 
-   bool graphics::alpha_blend(point ptDst, size size,::ca2::graphics * pgraphicsSrc, BLENDFUNCTION blend)
+   bool graphics::alpha_blend(point ptDst, size size,::draw2d::graphics * pgraphicsSrc, BLENDFUNCTION blend)
    {
       return alpha_blend(ptDst, size, pgraphicsSrc, null_point(),blend);
    }
 
-   bool graphics::alpha_blend(size size,::ca2::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend)
+   bool graphics::alpha_blend(size size,::draw2d::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend)
    {
       return alpha_blend(null_point(), size, pgraphicsSrc, ptSrc, blend);
    }
 
-   bool graphics::alpha_blend(size size,::ca2::graphics * pgraphicsSrc, BLENDFUNCTION blend)
+   bool graphics::alpha_blend(size size,::draw2d::graphics * pgraphicsSrc, BLENDFUNCTION blend)
    {
       return alpha_blend(size, pgraphicsSrc, null_point(), blend);
    }*/
@@ -2328,7 +2330,7 @@ namespace ca2
       m_penxyz.m_bUpdated     = false;
 
       m_brushxyz.m_cr         = crColor;
-      m_brushxyz.m_etype      = ::ca2::brush::type_solid;
+      m_brushxyz.m_etype      = ::draw2d::brush::type_solid;
       m_brushxyz.m_bUpdated   = false;
 
 
@@ -2470,9 +2472,9 @@ namespace ca2
    }
 
    memory_graphics::memory_graphics(::ca2::allocatorsp allocer) :
-      ::ca2::graphics_sp(allocer)
+      ::draw2d::graphics_sp(allocer)
    {
-      ::ca2::graphics_sp::m_p->CreateCompatibleDC(NULL);
+      ::draw2d::graphics_sp::m_p->CreateCompatibleDC(NULL);
    }
 
    memory_graphics::~memory_graphics()
@@ -2484,7 +2486,7 @@ namespace ca2
    {
       m_pui = pui;
       throw "prefer not to use";
-      //::ca2::graphics_sp::operator = (pui->GetDC());
+      //::draw2d::graphics_sp::operator = (pui->GetDC());
    }
 
    memory_graphics::~memory_graphics()
@@ -2538,7 +2540,7 @@ namespace ca2
 
 
 
-} // namespace ca2
+} // namespace draw2d
 
 
 dump_context & operator<<(dump_context & dumpcontext, SIZE size)
@@ -2556,3 +2558,5 @@ dump_context & operator<<(dump_context & dumpcontext, const RECT& rect)
    return dumpcontext << "(L " << rect.left << ", T " << rect.top << ", R " <<
       rect.right << ", B " << rect.bottom << ")";
 }
+
+

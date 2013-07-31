@@ -203,7 +203,7 @@ namespace user
    }
 
 
-   void control::_003OnCustomDraw(::ca2::graphics *pdc, ::user::draw_context * pdrawcontext)
+   void control::_003OnCustomDraw(::draw2d::graphics *pdc, ::user::draw_context * pdrawcontext)
    {
       pdc->chain(pdrawcontext);
       _001OnDraw(pdc);
@@ -216,7 +216,7 @@ namespace user
    }
 
 
-   void control::_003CallCustomDraw(::ca2::graphics *pdc, ::user::draw_context * pdrawcontext)
+   void control::_003CallCustomDraw(::draw2d::graphics *pdc, ::user::draw_context * pdrawcontext)
    {
       _003OnCustomDraw(pdc, pdrawcontext);
    }

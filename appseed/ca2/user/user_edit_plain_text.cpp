@@ -110,7 +110,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // edit_plain_text drawing
 
-   void edit_plain_text::OnDraw(::ca2::graphics * pdcScreen)
+   void edit_plain_text::OnDraw(::draw2d::graphics * pdcScreen)
    {
       UNREFERENCED_PARAMETER(pdcScreen);
    }
@@ -122,7 +122,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
       _001OnUpdate();
 
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pdc(allocer());
       _001OnCalcLayout(pdc);
 
 
@@ -143,7 +143,7 @@ namespace user
    {
       _001OnUpdate();
 
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pdc(allocer());
       _001OnCalcLayout(pdc);
 
 
@@ -180,10 +180,10 @@ namespace user
 
 
 
-   void edit_plain_text::_001OnDraw(::ca2::graphics * pdc)
+   void edit_plain_text::_001OnDraw(::draw2d::graphics * pdc)
    {
 
-      pdc->set_text_rendering(::ca2::text_rendering_anti_alias);
+      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
       COLORREF crBk;
       COLORREF crBkSel;
@@ -304,7 +304,7 @@ namespace user
          pdc->OffsetViewportOrg(-m_scrollinfo.m_ptScroll.x, -(m_scrollinfo.m_ptScroll.y % m_iLineHeight));
       }
 
-      ::ca2::region_sp rgn(allocer());
+      ::draw2d::region_sp rgn(allocer());
 
       rectClient.deflate(2, 2);
 
@@ -328,7 +328,7 @@ namespace user
       strsize iSelEnd;
       strsize lim = 0;
 
-      ::ca2::pen_sp penCaret(allocer());
+      ::draw2d::pen_sp penCaret(allocer());
 
 
       penCaret->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
@@ -813,9 +813,9 @@ namespace user
       edit_plain_text * pview = (edit_plain_text *) lpvoid;
       ::ca2::data::writing writing(pview->m_pdata);
 
-      ::ca2::graphics_sp graphics(pview->allocer());
+      ::draw2d::graphics_sp graphics(pview->allocer());
       graphics->CreateCompatibleDC(NULL);
-      ::ca2::graphics * pdc = graphics;
+      ::draw2d::graphics * pdc = graphics;
       pview->_001OnCalcLayoutProc(pview, pdc);
 
       pview->_001OnUpdate();
@@ -906,7 +906,7 @@ namespace user
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pdc(allocer());
       if(pdc.is_null())
          return;
       m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
@@ -924,7 +924,7 @@ namespace user
       SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pdc(allocer());
       m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
       m_iColumn = SelToColumn(m_iSelEnd);
 
@@ -941,7 +941,7 @@ namespace user
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pdc(allocer());
       m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
       m_iSelEnd = m_iSelStart;
 
@@ -957,7 +957,7 @@ namespace user
       SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pdc(allocer());
       m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
       m_iColumn = SelToColumn(m_iSelEnd);
 
@@ -973,7 +973,7 @@ namespace user
       pmouse->m_bRet = true;
    }
 
-   void edit_plain_text::_001OnCalcLayoutProc(::user::elemental * pview, ::ca2::graphics * pdc)
+   void edit_plain_text::_001OnCalcLayoutProc(::user::elemental * pview, ::draw2d::graphics * pdc)
    {
       ::ca2::data::writing writing(m_pdata);
 
@@ -981,7 +981,7 @@ namespace user
       pdc->SelectObject(GetFont());
       int32_t y = 0;
 ///      int32_t i = 1;
-      pdc->set_text_rendering(::ca2::text_rendering_anti_alias_grid_fit);
+      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
       size size3 = pdc->GetTextExtent(unitext("gqYALﾍ"));
 
       rect rectClient;
@@ -1000,7 +1000,7 @@ namespace user
      //    m_size);
    }
 
-   void edit_plain_text::_001OnCalcLayout(::ca2::graphics * pdc)
+   void edit_plain_text::_001OnCalcLayout(::draw2d::graphics * pdc)
    {
 
       pdc->SelectObject(GetFont());
@@ -1014,7 +1014,7 @@ namespace user
 //      bool bFound = false;
       string strLine;
       sized size3;
-      pdc->set_text_rendering(::ca2::text_rendering_anti_alias_grid_fit);
+      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
       pdc->GetTextExtent(size3, unitext("gqYALﾍWM"));
       sized size;
       m_scrollinfo.m_sizeTotal.cx = 0;
@@ -1071,10 +1071,10 @@ namespace user
          if(iSel >= i1
             && iSel < i2)
          {
-            ::ca2::memory_graphics pgraphics(allocer());
+            ::draw2d::memory_graphics pgraphics(allocer());
 
             pgraphics->SelectObject(GetFont());
-            pgraphics->set_text_rendering(::ca2::text_rendering_anti_alias_grid_fit);
+            pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
             size size1 = pgraphics->GetTextExtent(straLines[i], (int32_t) straLines[i].length(), (int32_t) (iSel - i1));
             size size2 = pgraphics->GetTextExtent(straLines[i], (int32_t) iSel - i1);
 
@@ -1135,10 +1135,10 @@ namespace user
    strsize edit_plain_text::LineXToSel(index iLine, int32_t x)
    {
 
-      ::ca2::memory_graphics pgraphics(allocer());
+      ::draw2d::memory_graphics pgraphics(allocer());
 
       pgraphics->SelectObject(GetFont());
-      pgraphics->set_text_rendering(::ca2::text_rendering_anti_alias_grid_fit);
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
       size size3 = pgraphics->GetTextExtent(unitext("gqYALﾍWM"));
 
       int32_t iLineHeight = size3.cy;
@@ -1208,7 +1208,7 @@ namespace user
       return -1;
    }
 
-   strsize edit_plain_text::char_hit_test(::ca2::graphics * pdc, int32_t px, int32_t py)
+   strsize edit_plain_text::char_hit_test(::draw2d::graphics * pdc, int32_t px, int32_t py)
    {
       pdc->SelectObject(GetFont());
       rect rectClient;
@@ -1310,7 +1310,7 @@ namespace user
 
       if(m_bMouseDown)
       {
-         ::ca2::memory_graphics pdc(allocer());
+         ::draw2d::memory_graphics pdc(allocer());
          m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
 
        //  _001RedrawWindow();
@@ -1869,7 +1869,7 @@ namespace user
       m_bGetTextNeedUpdate = 1;
       CreateLineIndex();
       m_y = -1;
-      ::ca2::graphics_sp dc(allocer());
+      ::draw2d::graphics_sp dc(allocer());
       dc->CreateCompatibleDC(NULL);
       _001OnCalcLayout(dc);
       lineCountEvent(m_lines.lines.get_count());

@@ -29,29 +29,29 @@ namespace uinteraction
 
             CTool001(sp(::ca2::application) papp);
 
-            void Update(::ca2::graphics * pdc, LPCRECT lpcrect,
+            void Update(::draw2d::graphics * pdc, LPCRECT lpcrect,
                COLORREF crHighlight,
                COLORREF crLight,
                COLORREF crBody,
                COLORREF crShadow,
                COLORREF crDkShadow);
-            void draw(::ca2::graphics * pdc);
+            void draw(::draw2d::graphics * pdc);
 
             class CColorBezier
             {
             public:
-               void draw(::ca2::brush & brush, ::ca2::graphics * pdc);
+               void draw(::draw2d::brush & brush, ::draw2d::graphics * pdc);
                point_array m_pointset;
-               ::ca2::pen  *   m_ppen;
+               ::draw2d::pen  *   m_ppen;
                void clear();
             };
          public:
-            ::ca2::pen_sp      m_penHighlight;
-            ::ca2::pen_sp      m_penLight;
-            ::ca2::pen_sp      m_penShadow;
-            ::ca2::pen_sp      m_penDkShadow;
-            ::ca2::brush_sp      m_brushNull;
-            ::ca2::brush_sp      m_brushBody;
+            ::draw2d::pen_sp      m_penHighlight;
+            ::draw2d::pen_sp      m_penLight;
+            ::draw2d::pen_sp      m_penShadow;
+            ::draw2d::pen_sp      m_penDkShadow;
+            ::draw2d::brush_sp      m_brushNull;
+            ::draw2d::brush_sp      m_brushBody;
 
             point_array m_pointsetBody;
             array < CColorBezier, CColorBezier & > m_colorbezieraOutsideBorder;

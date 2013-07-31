@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace draw2d
 {
 
 
-   pen_sp::pen_sp(::ca2::graphics * pgraphics, double dWidth, COLORREF crColor) :
+   pen_sp::pen_sp(::draw2d::graphics * pgraphics, double dWidth, COLORREF crColor) :
       ::ca::smart_pointer < pen > (pgraphics->allocer())
    {
       m_p->create_solid(pgraphics, dWidth, crColor);
@@ -46,7 +46,7 @@ namespace ca2
 
    }
 
-   bool pen::create_solid(::ca2::graphics * pdc, double dWidth, COLORREF crColor)
+   bool pen::create_solid(::draw2d::graphics * pdc, double dWidth, COLORREF crColor)
    {
 
       UNREFERENCED_PARAMETER(pdc);
@@ -109,7 +109,7 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace draw2d
 
 
 

@@ -40,9 +40,9 @@ namespace user
 
       virtual void _001Layout();
 
-      virtual void _001DrawCheck(::ca2::graphics * pdc);
+      virtual void _001DrawCheck(::draw2d::graphics * pdc);
 
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
    };
 
 } // namespace user

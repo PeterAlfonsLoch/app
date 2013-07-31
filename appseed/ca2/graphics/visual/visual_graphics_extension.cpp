@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   void word_break(::ca2::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2);
+   void word_break(::draw2d::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2);
 
 
    graphics_extension::graphics_extension(sp(::ca2::application) papp) :
@@ -19,13 +19,13 @@ namespace visual
 
    }
 
-   bool graphics_extension::TextOut(::ca2::graphics * pdc, int32_t x, int32_t y, const char * lpcsz, strsize iCount)
+   bool graphics_extension::TextOut(::draw2d::graphics * pdc, int32_t x, int32_t y, const char * lpcsz, strsize iCount)
    {
       return pdc->TextOut(x, y, string(lpcsz, iCount));
       //return ::TextOutU((HDC)pdc->get_os_data(), x, y, lpcsz, iCount);
    }
 
-   void word_break(::ca2::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2)
+   void word_break(::draw2d::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2)
    {
 
       string str;
@@ -93,7 +93,7 @@ namespace visual
    }
 
 
-   void graphics_extension::GetTextExtent(::ca2::graphics *pdc, const char * lpcsz, array < size > & sizea)
+   void graphics_extension::GetTextExtent(::draw2d::graphics *pdc, const char * lpcsz, array < size > & sizea)
    {
       string str(lpcsz);
       strsize iLen = str.get_length();
@@ -113,7 +113,7 @@ namespace visual
 
    }
 
-   void graphics_extension::GetTextExtent(::ca2::graphics *pdc, const char * lpsz, size & size)
+   void graphics_extension::GetTextExtent(::draw2d::graphics *pdc, const char * lpsz, size & size)
    {
       /*string str(lpwsz);
       if(pdc == NULL)
@@ -128,7 +128,7 @@ namespace visual
 
    }
 
-   void graphics_extension::GetTextExtent(::ca2::graphics *pdc, const char * lpcsz, strsize iCount, size & size)
+   void graphics_extension::GetTextExtent(::draw2d::graphics *pdc, const char * lpcsz, strsize iCount, size & size)
    {
       /*::GetTextExtentPoint32U(
          (HDC)pdc->get_os_data(),
@@ -275,7 +275,7 @@ namespace visual
 namespace visual
 {
 
-   int32_t graphics_extension::_DrawText(::ca2::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca2::font * pfontUnderline)
+   int32_t graphics_extension::_DrawText(::draw2d::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::draw2d::font * pfontUnderline)
    {
 
 
@@ -406,8 +406,8 @@ namespace visual
          return 0;
 
 
-      ::ca2::font_sp fontUnderline;
-//      ::ca2::font * pfont;
+      ::draw2d::font_sp fontUnderline;
+//      ::draw2d::font * pfont;
 
 
       if(iUnderline >= 0)
@@ -458,7 +458,7 @@ namespace visual
       if(iUnderline >= 0 && iUnderline < str.get_length())
       {
 
-         ::ca2::font * pfontOld;
+         ::draw2d::font * pfontOld;
 
          pdc->TextOut(rect.left, rect.top, str, (int32_t) min(iUnderline, str.get_length()));
          /*::TextOutU(
@@ -469,7 +469,7 @@ namespace visual
             min(iUnderline, str.get_length()));*/
          if(iUnderline <= str.get_length())
          {
-            ::ca2::font fPrevious = pdc->GetCurrentFont();
+            ::draw2d::font fPrevious = pdc->GetCurrentFont();
             pfontOld = pdc->SelectObject(pfontUnderline);
             /*::GetTextExtentPoint32U(
                (HDC)pdc->get_os_data(),

@@ -37,7 +37,7 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
 
-      void _001OnDraw(::ca2::graphics *pdc);
+      void _001OnDraw(::draw2d::graphics *pdc);
       DECL_GEN_SIGNAL(OnMessageDestroyWindow)
 
 

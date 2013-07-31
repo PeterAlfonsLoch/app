@@ -74,7 +74,7 @@ namespace user
    // draw the background of a ::ca2::window
    // can be used for trasparency
    // the rectangle must be in client coordinates.
-   void window_interface::_001DrawBackground(::ca2::graphics *pdc, LPRECT lprect)
+   void window_interface::_001DrawBackground(::draw2d::graphics *pdc, LPRECT lprect)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(lprect);
@@ -83,7 +83,7 @@ namespace user
 
 
    /*bool window_interface::TwfRender(
-      ::ca2::graphics *          pdc,
+      ::draw2d::graphics *          pdc,
       oswindow           oswindowExclude,
       LPCRECT        lpcrectUpdate,
       user::oswindow_tree::Array & oswindowtreea,
@@ -122,7 +122,7 @@ namespace user
 
 
    bool window_interface::TwfRender(
-      ::ca2::graphics *          pdc,
+      ::draw2d::graphics *          pdc,
       oswindow           oswindowExclude,
       LPCRECT        lpcrectUpdate,
       user::oswindow_tree & oswindowtree,
@@ -326,7 +326,7 @@ namespace user
       user::oswindow_tree::Array & oswindowtreea,
       LPCRECT lpcrect)
    {
-      ::ca2::region rgn;
+      ::draw2d::region rgn;
 
       rgn.create_rect(lpcrect);
 
@@ -391,9 +391,9 @@ namespace user
          ::ClientToScreen(oswindow, &rectClient.top_left());
          ::ClientToScreen(oswindow, &rectClient.bottom_right());
 
-         ::ca2::region rgn;
+         ::draw2d::region rgn;
          rgn.create_rect(rectClient);
-         int32_t iCombine = ::CombineRgn(hrgn, hrgn, rgn, ::ca2::region::combine_exclude);
+         int32_t iCombine = ::CombineRgn(hrgn, hrgn, rgn, ::draw2d::region::combine_exclude);
          if(iCombine == NULLREGION)
          {
             ASSERT(TRUE);
@@ -533,7 +533,7 @@ namespace user
       _001BaseWndInterfaceMap();
    }
 
-   void window_interface::_000OnDraw(::ca2::graphics * pdc)
+   void window_interface::_000OnDraw(::draw2d::graphics * pdc)
    {
       _001OnDraw(pdc);
    }
@@ -561,13 +561,13 @@ namespace user
       return true;
    }
 
-   bool window_interface::Redraw(LPCRECT lprect, ::ca2::region * prgn)
+   bool window_interface::Redraw(LPCRECT lprect, ::draw2d::region * prgn)
    {
       get_wnd()->RedrawWindow(lprect, prgn, RDW_INVALIDATE);
       return true;
    }
 
-   bool window_interface::Redraw(::ca2::graphics * pdc)
+   bool window_interface::Redraw(::draw2d::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
       get_wnd()->RedrawWindow();

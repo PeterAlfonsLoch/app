@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca2
+namespace draw2d
 {
 
 
    class CLASS_DECL_ca2 brush :
-      virtual public graphics_object
+      virtual public ::draw2d::object
    {
    public:
 
@@ -40,7 +40,7 @@ namespace ca2
       virtual bool create_solid(COLORREF crColor);
       virtual bool CreateHatchBrush(int32_t nIndex, COLORREF crColor);
       virtual bool CreateBrushIndirect(const LOGBRUSH* lpLogBrush);
-      virtual bool CreatePatternBrush(::ca2::bitmap* pBitmap);
+      virtual bool CreatePatternBrush(::draw2d::bitmap* pBitmap);
 #ifdef WINDOWS
       virtual bool CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage);
 #endif
@@ -51,7 +51,7 @@ namespace ca2
 
       virtual int32_t GetLogBrush(LOGBRUSH* pLogBrush);
 
-      brush & operator = (const ::ca2::brush & brushSrc);
+      brush & operator = (const ::draw2d::brush & brushSrc);
 
       virtual void dump(dump_context & dumpcontext) const;
    };
@@ -71,13 +71,13 @@ namespace ca2
       {
       }
 
-      brush_sp(allocatorsp allocer) :
+      brush_sp(::ca2::allocatorsp allocer) :
          ::ca::smart_pointer < brush > (allocer)
       {
       }
 
       // create_solid
-      brush_sp(allocatorsp allocer, COLORREF crColor) :
+      brush_sp(::ca2::allocatorsp allocer, COLORREF crColor) :
          ::ca::smart_pointer < brush > (allocer)
       {
          m_p->create_solid(crColor);
@@ -99,7 +99,7 @@ namespace ca2
 */
 
       
-      brush_sp & operator = (::ca2::brush * pbrush)
+      brush_sp & operator = (::draw2d::brush * pbrush)
       {
 
          ::ca::smart_pointer < brush >::operator = (pbrush);
@@ -112,7 +112,7 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace draw2d
 
 
 

@@ -1,81 +1,39 @@
 #pragma once
 
 
-#include "user/user_draw_context.h"
-#include "ca2_bitmap.h"
-#include "ca2_pen.h"
-#include "ca2_brush.h"
-#include "ca2_font.h"
-#include "ca2_region.h"
-#include "ca2_palette.h"
-#include "ca2_graphics_path.h"
-
-
-/*#ifdef UNICODE
-#define ___FUNCNAME(_Name) _Name##W
-#else
-#define ___FUNCNAME(_Name) _Name##A
-#endif*/
-
-
-namespace user
+namespace draw2d
 {
 
-
-   class str_context;
-
-
-}
-
-
-namespace ca2
-{
-
-   class dib;
-   class job;
-
-   enum e_text_rendering
-   {
-      text_rendering_anti_alias,
-      text_rendering_anti_alias_grid_fit,
-      text_rendering_single_bit_per_pixel,
-      text_rendering_clear_type_grid_fit,
-   };
 
    class CLASS_DECL_ca2 graphics :
       virtual public ::ca2::simple_chain < ::user::draw_context >
    {
    public:
 
+      ::user::str_context *         m_puistrcontext;
+      ::user::draw_context *        m_pdrawcontext;
+      ::draw2d::dib *               m_pdibAlphaBlend;
+      point                         m_ptAlphaBlend;
+      ::ca2::job *                  m_pjob;
 
+      ::draw2d::bitmap_sp           m_spbitmap;
+      ::draw2d::pen_sp              m_sppen;
+      ::draw2d::brush_sp            m_spbrush;
+      ::draw2d::font_sp             m_spfont;
+      ::draw2d::region_sp           m_spregion;
 
-      ::user::str_context *      m_puistrcontext;
+      ::draw2d::pen                 m_penxyz;
+      ::draw2d::brush               m_brushxyz;
+      ::draw2d::font                m_fontxyz;
+      ::draw2d::region              m_regionxyz;
 
-      ::user::draw_context *     m_pdrawcontext;
+      COLORREF                      m_crColor;
+      double                        m_x;
+      double                        m_y;
 
-      ::ca2::dib *                m_pdibAlphaBlend;
-      point                      m_ptAlphaBlend;
-      ::ca2::job *                m_pjob;
-
-      ::ca2::bitmap_sp            m_bitmap;
-
-      ::ca2::pen_sp               m_sppen;
-      ::ca2::brush_sp             m_spbrush;
-      ::ca2::font_sp              m_spfont;
-      ::ca2::region_sp            m_spregion;
-
-      ::ca2::pen                  m_penxyz;
-      ::ca2::brush                m_brushxyz;
-      ::ca2::font                 m_fontxyz;
-      ::ca2::region               m_regionxyz;
-
-      COLORREF                   m_crColor;
-      double                     m_x;
-      double                     m_y;
-
-      e_alpha_mode               m_ealphamode;
-      e_text_rendering           m_etextrendering;
-      double                     m_dFontFactor;
+      e_alpha_mode                  m_ealphamode;
+      e_text_rendering              m_etextrendering;
+      double                        m_dFontFactor;
 
 
       graphics();
@@ -106,11 +64,11 @@ namespace ca2
 
       virtual bool IsPrinting() const;            // TRUE if being used for printing
 
-      virtual ::ca2::pen & GetCurrentPen() const;
-      virtual ::ca2::brush & GetCurrentBrush() const;
-      virtual ::ca2::palette & GetCurrentPalette() const;
-      virtual ::ca2::font & GetCurrentFont() const;
-      virtual ::ca2::bitmap & GetCurrentBitmap() const;
+      virtual ::draw2d::pen & GetCurrentPen() const;
+      virtual ::draw2d::brush & GetCurrentBrush() const;
+      virtual ::draw2d::palette & GetCurrentPalette() const;
+      virtual ::draw2d::font & GetCurrentFont() const;
+      virtual ::draw2d::bitmap & GetCurrentBitmap() const;
 
       // for bidi and mirrored localization
       virtual uint32_t GetLayout() const;
@@ -121,7 +79,7 @@ namespace ca2
          const char * lpszOutput, const void * lpInitData);
       virtual bool CreateIC(const char * lpszDriverName, const char * lpszDeviceName,
          const char * lpszOutput, const void * lpInitData);
-      virtual bool CreateCompatibleDC(::ca2::graphics * pgraphics);
+      virtual bool CreateCompatibleDC(::draw2d::graphics * pgraphics);
 
       virtual bool DeleteDC();
 
@@ -145,18 +103,18 @@ namespace ca2
 
    // Type-safe selection helpers
    public:
-      virtual ::ca2::graphics_object* SelectStockObject(int32_t nIndex);
-      virtual ::ca2::pen* SelectObject(::ca2::pen* pPen);
-      virtual ::ca2::brush* SelectObject(::ca2::brush* pBrush);
-      virtual ::ca2::font* SelectObject(::ca2::font* pFont);
-      virtual ::ca2::bitmap* SelectObject(::ca2::bitmap* pBitmap);
-      virtual int32_t SelectObject(::ca2::region* pRgn);       // special return for regions
-      virtual ::ca2::graphics_object* SelectObject(::ca2::graphics_object* pObject);
-         // ::ca2::graphics_object* provided so compiler doesn't use SelectObject(HGDIOBJ)
+      virtual ::draw2d::object* SelectStockObject(int32_t nIndex);
+      virtual ::draw2d::pen* SelectObject(::draw2d::pen* pPen);
+      virtual ::draw2d::brush* SelectObject(::draw2d::brush* pBrush);
+      virtual ::draw2d::font* SelectObject(::draw2d::font* pFont);
+      virtual ::draw2d::bitmap* SelectObject(::draw2d::bitmap* pBitmap);
+      virtual int32_t SelectObject(::draw2d::region* pRgn);       // special return for regions
+      virtual ::draw2d::object* SelectObject(::draw2d::object* pObject);
+         // ::draw2d::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
    // color and color Palette Functions
       virtual COLORREF GetNearestColor(COLORREF crColor) const;
-      virtual ::ca2::palette* SelectPalette(::ca2::palette* pPalette, bool bForceBackground);
+      virtual ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground);
       virtual UINT RealizePalette();
       virtual void UpdateColors();
 
@@ -254,10 +212,10 @@ namespace ca2
       virtual void HIMETRICtoLP(LPSIZE lpSize) const;
 
    // Region Functions
-      virtual bool FillRgn(::ca2::region* pRgn, ::ca2::brush* pBrush);
-      virtual bool FrameRgn(::ca2::region* pRgn, ::ca2::brush* pBrush, int32_t nWidth, int32_t nHeight);
-      virtual bool InvertRgn(::ca2::region* pRgn);
-      virtual bool PaintRgn(::ca2::region* pRgn);
+      virtual bool FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush);
+      virtual bool FrameRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush, int32_t nWidth, int32_t nHeight);
+      virtual bool InvertRgn(::draw2d::region* pRgn);
+      virtual bool PaintRgn(::draw2d::region* pRgn);
 
    // Clipping Functions
       virtual int32_t GetClipBox(LPRECT lpRect) const;
@@ -265,7 +223,7 @@ namespace ca2
       virtual bool PtVisible(int32_t x, int32_t y) const;
       virtual bool PtVisible(POINT point) const;
       virtual bool RectVisible(LPCRECT lpRect) const;
-      virtual int32_t SelectClipRgn(::ca2::region* pRgn);
+      virtual int32_t SelectClipRgn(::draw2d::region* pRgn);
       virtual int32_t ExcludeClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual int32_t ExcludeClipRect(LPCRECT lpRect);
       virtual int32_t ExcludeUpdateRgn(sp(::ca2::window) pWnd);
@@ -273,7 +231,7 @@ namespace ca2
       virtual int32_t IntersectClipRect(LPCRECT lpRect);
       virtual int32_t OffsetClipRgn(int32_t x, int32_t y);
       virtual int32_t OffsetClipRgn(SIZE size);
-      virtual int32_t SelectClipRgn(::ca2::region* pRgn, int32_t nMode);
+      virtual int32_t SelectClipRgn(::draw2d::region* pRgn, int32_t nMode);
 
    // Line-Output Functions
 
@@ -317,31 +275,31 @@ namespace ca2
       virtual bool PolyBezierTo(const POINT* lpPoints, int32_t nCount);
 
    // Simple Drawing Functions
-      virtual void FillRect(LPCRECT lpRect, ::ca2::brush* pBrush);
-      virtual void FrameRect(LPCRECT lpRect, ::ca2::brush* pBrush);
+      virtual void FillRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
+      virtual void FrameRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
       virtual void InvertRect(LPCRECT lpRect);
       virtual bool DrawIcon(int32_t x, int32_t y, ::visual::icon * picon);
       virtual bool DrawIcon(POINT point, ::visual::icon * picon);
       virtual bool DrawIcon(int32_t x, int32_t y, ::visual::icon * picon, int32_t cx, int32_t cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags);
       virtual bool DrawState(point pt, size size, HBITMAP hBitmap, UINT nFlags,
          HBRUSH hBrush = NULL);
-      virtual bool DrawState(point pt, size size, ::ca2::bitmap* pBitmap, UINT nFlags,
-         ::ca2::brush* pBrush = NULL);
+      virtual bool DrawState(point pt, size size, ::draw2d::bitmap* pBitmap, UINT nFlags,
+         ::draw2d::brush* pBrush = NULL);
 #ifdef WINDOWS
       virtual bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
          HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
-         ::ca2::brush* pBrush = NULL);
+         ::draw2d::brush* pBrush = NULL);
 #endif
       virtual bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
          bool bPrefixText = TRUE, int32_t nTextLen = 0, HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
-         bool bPrefixText = TRUE, int32_t nTextLen = 0, ::ca2::brush* pBrush = NULL);
+         bool bPrefixText = TRUE, int32_t nTextLen = 0, ::draw2d::brush* pBrush = NULL);
 #ifdef WINDOWSEX
       virtual bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
          LPARAM lData, UINT nFlags, HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
-         LPARAM lData, UINT nFlags, ::ca2::brush* pBrush = NULL);
+         LPARAM lData, UINT nFlags, ::draw2d::brush* pBrush = NULL);
 #endif
    // Ellipse and Polygon Functions
       virtual bool Chord(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3,
@@ -371,13 +329,13 @@ namespace ca2
       virtual bool RoundRect(LPCRECT lpRect, POINT point);
 
    // Bitmap Functions
-      virtual bool from(point ptDst, size size, ::ca2::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop);
-      virtual bool from(size size, ::ca2::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop);
-      virtual bool from(size size, ::ca2::graphics * pgraphicsSrc, uint32_t dwRop);
+      virtual bool from(point ptDst, size size, ::draw2d::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop);
+      virtual bool from(size size, ::draw2d::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop);
+      virtual bool from(size size, ::draw2d::graphics * pgraphicsSrc, uint32_t dwRop);
       virtual bool PatBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, uint32_t dwRop);
-      virtual bool BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca2::graphics * pgraphicsSrc,
+      virtual bool BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
          int32_t xSrc, int32_t ySrc, uint32_t dwRop);
-      virtual bool StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca2::graphics * pgraphicsSrc,
+      virtual bool StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
          int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop);
       virtual COLORREF GetPixel(int32_t x, int32_t y) const;
       virtual COLORREF GetPixel(POINT point) const;
@@ -385,34 +343,34 @@ namespace ca2
       virtual COLORREF SetPixel(POINT point, COLORREF crColor);
       virtual bool FloodFill(int32_t x, int32_t y, COLORREF crColor);
       virtual bool ExtFloodFill(int32_t x, int32_t y, COLORREF crColor, UINT nFillType);
-      virtual bool MaskBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca2::graphics * pgraphicsSrc,
-         int32_t xSrc, int32_t ySrc, ::ca2::bitmap& maskBitmap, int32_t xMask, int32_t yMask,
+      virtual bool MaskBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
+         int32_t xSrc, int32_t ySrc, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask,
          uint32_t dwRop);
-      virtual bool PlgBlt(LPPOINT lpPoint, ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc,
-         int32_t nWidth, int32_t nHeight, ::ca2::bitmap& maskBitmap, int32_t xMask, int32_t yMask);
+      virtual bool PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc,
+         int32_t nWidth, int32_t nHeight, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask);
       virtual bool SetPixelV(int32_t x, int32_t y, COLORREF crColor);
       virtual bool SetPixelV(POINT point, COLORREF crColor);
       virtual bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
         void * pMesh, ULONG nMeshElements, uint32_t dwMode);
       virtual bool TransparentBlt(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
-        ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
+        ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
         UINT clrTransparent);
 
-      virtual bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity);
-      virtual bool alpha_blend(point ptDst, size szDst,::ca2::graphics * pgraphicsSrc, point ptSrc, size szSrc, double dOpacity);
-      virtual bool alpha_blend(point ptDst, size sz,::ca2::graphics * pgraphicsSrc, point ptSrc, double dOpacity);
-      virtual bool alpha_blend(point ptDst, size sz,::ca2::graphics * pgraphicsSrc, double dOpacity);
-      virtual bool alpha_blend(size sz,::ca2::graphics * pgraphicsSrc, point ptSrc, double dOpacity);
-      virtual bool alpha_blend(size sz,::ca2::graphics * pgraphicsSrc, double dOpacity);
+      virtual bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity);
+      virtual bool alpha_blend(point ptDst, size szDst,::draw2d::graphics * pgraphicsSrc, point ptSrc, size szSrc, double dOpacity);
+      virtual bool alpha_blend(point ptDst, size sz,::draw2d::graphics * pgraphicsSrc, point ptSrc, double dOpacity);
+      virtual bool alpha_blend(point ptDst, size sz,::draw2d::graphics * pgraphicsSrc, double dOpacity);
+      virtual bool alpha_blend(size sz,::draw2d::graphics * pgraphicsSrc, point ptSrc, double dOpacity);
+      virtual bool alpha_blend(size sz,::draw2d::graphics * pgraphicsSrc, double dOpacity);
 
 /*      virtual bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
-        ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
+        ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
         BLENDFUNCTION blend);*/
-/*      virtual bool alpha_blend(point ptDst, size szDst,::ca2::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend);
-      virtual bool alpha_blend(point ptDst, size sz,::ca2::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend);
-      virtual bool alpha_blend(point ptDst, size sz,::ca2::graphics * pgraphicsSrc, BLENDFUNCTION blend);
-      virtual bool alpha_blend(size sz,::ca2::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend);
-      virtual bool alpha_blend(size sz,::ca2::graphics * pgraphicsSrc, BLENDFUNCTION blend);*/
+/*      virtual bool alpha_blend(point ptDst, size szDst,::draw2d::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend);
+      virtual bool alpha_blend(point ptDst, size sz,::draw2d::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend);
+      virtual bool alpha_blend(point ptDst, size sz,::draw2d::graphics * pgraphicsSrc, BLENDFUNCTION blend);
+      virtual bool alpha_blend(size sz,::draw2d::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend);
+      virtual bool alpha_blend(size sz,::draw2d::graphics * pgraphicsSrc, BLENDFUNCTION blend);*/
 
    // Text Functions
       virtual bool TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount);
@@ -449,7 +407,7 @@ namespace ca2
       virtual size GetTabbedTextExtent(const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions) const;
       virtual size GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, int32_t nTabPositions, LPINT lpnTabStopPositions) const;
       virtual size GetOutputTabbedTextExtent(const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions) const;
-      virtual bool GrayString(::ca2::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int32_t), LPARAM lpData, int32_t nCount, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight);
+      virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int32_t), LPARAM lpData, int32_t nCount, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight);
       virtual UINT GetTextAlign() const;
       virtual UINT SetTextAlign(UINT nFlags);
       virtual int32_t GetTextFace(int32_t nCount, LPTSTR lpszFacename) const;
@@ -486,7 +444,7 @@ namespace ca2
 
    // Scrolling Functions
       virtual bool ScrollDC(int32_t dx, int32_t dy, LPCRECT lpRectScroll, LPCRECT lpRectClip,
-         ::ca2::region* pRgnUpdate, LPRECT lpRectUpdate);
+         ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate);
 
    // font Functions
       virtual bool GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;
@@ -567,15 +525,15 @@ namespace ca2
       virtual bool SelectClipPath(int32_t nMode);
 
 
-      virtual bool draw_path(::ca2::graphics_path * ppath);
-      virtual bool fill_path(::ca2::graphics_path * ppath);
-      virtual bool path(::ca2::graphics_path * ppath);
+      virtual bool draw_path(::draw2d::path * ppath);
+      virtual bool fill_path(::draw2d::path * ppath);
+      virtual bool path(::draw2d::path * ppath);
 
    // Misc Helper Functions
-      virtual ::ca2::brush * GetHalftoneBrush();
+      virtual ::draw2d::brush * GetHalftoneBrush();
       virtual void DrawDragRect(LPCRECT lpRect, SIZE size,
          LPCRECT lpRectLast, SIZE sizeLast,
-         ::ca2::brush* pBrush = NULL, ::ca2::brush* pBrushLast = NULL);
+         ::draw2d::brush* pBrush = NULL, ::draw2d::brush* pBrushLast = NULL);
       virtual void FillSolidRect(const __rect64 * lpRect, COLORREF clr);
       virtual void FillSolidRect(LPCRECT lpRect, COLORREF clr);
       virtual void FillSolidRect(int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr);
@@ -590,12 +548,12 @@ namespace ca2
       bool m_bPrinting;
       //virtual HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
 
-      virtual bool SelectFont(::ca2::font * pfont);
-      virtual bool selectFont(::ca2::font * pfont);
-      virtual bool select_font(::ca2::font * pfont);
-      virtual bool SetFont(::ca2::font * pfont);
-      virtual bool setFont(::ca2::font * pfont);
-      virtual bool set_font(::ca2::font * pfont);
+      virtual bool SelectFont(::draw2d::font * pfont);
+      virtual bool selectFont(::draw2d::font * pfont);
+      virtual bool select_font(::draw2d::font * pfont);
+      virtual bool SetFont(::draw2d::font * pfont);
+      virtual bool setFont(::draw2d::font * pfont);
+      virtual bool set_font(::draw2d::font * pfont);
 
    };
 
@@ -613,7 +571,7 @@ namespace ca2
       {
       }
 
-      graphics_sp(allocatorsp allocer) :
+      graphics_sp(::ca2::allocatorsp allocer) :
          ::ca::smart_pointer < graphics > (allocer)
       {
       }
@@ -625,7 +583,7 @@ namespace ca2
    {
    public:
 
-      memory_graphics(allocatorsp allocer);
+      memory_graphics(::ca2::allocatorsp allocer);
       virtual ~memory_graphics();
 
    };

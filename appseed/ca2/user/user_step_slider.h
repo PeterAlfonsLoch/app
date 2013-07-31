@@ -30,7 +30,7 @@ namespace user
 
       virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
       void GetStepHoverRect(int32_t iStep, LPRECT lprect);
       void GetStepRect(int32_t iStep, LPRECT lprect);
 

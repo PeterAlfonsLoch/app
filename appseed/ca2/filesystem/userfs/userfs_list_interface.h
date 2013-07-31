@@ -52,7 +52,7 @@ namespace userfs
       void _017PreSynchronize();
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
       void _017UpdateList();
       void GetSelectedFilePath(stringa & array);
       virtual void _001CreateImageList();

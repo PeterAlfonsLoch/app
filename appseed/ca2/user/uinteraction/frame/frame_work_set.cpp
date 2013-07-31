@@ -132,7 +132,7 @@ namespace frame
 
    }
 
-   void WorkSet::_001OnDraw(::ca2::graphics *pdc)
+   void WorkSet::_001OnDraw(::draw2d::graphics *pdc)
    {
       if(IsAppearanceEnabled() && m_pframeschema != NULL)
       {
@@ -569,7 +569,7 @@ namespace frame
             || lpmsg->message == WM_CONTEXTMENU) )
          {
             point ptCursor = lpmsg->pt;
-            ::ca2::region rgn;
+            ::draw2d::region rgn;
             rect rectWindow;
             rect rect;
             rgn.create_rect(0, 0, 0, 0);

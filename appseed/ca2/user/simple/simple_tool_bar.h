@@ -74,9 +74,9 @@ public:
    //bool           m_bInternalImageList;
    int32_t              m_iButtonPressItem;
    bool             m_bDelayedButtonLayout;
-   ::ca2::dib_sp     m_dibDraft;
+   ::draw2d::dib_sp     m_dibDraft;
 
-   ::ca2::font_sp    m_font;
+   ::draw2d::font_sp    m_font;
 
 
 
@@ -133,7 +133,7 @@ public:
    void layout();
 
 
-   void _001DrawItem(::ca2::graphics * pdc, int32_t iItem);
+   void _001DrawItem(::draw2d::graphics * pdc, int32_t iItem);
    bool _001GetItemRect(int32_t iItem, LPRECT lprect);
    bool _001GetItemRect(int32_t iItem, LPRECT lprect, EElement eelement);
    bool _001SetItem(int32_t iItem, simple_toolbar_item * pitem);
@@ -159,9 +159,9 @@ public:
    void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler);
 
 
-   void TransparentEraseNonClient(::ca2::graphics * pdc);
+   void TransparentEraseNonClient(::draw2d::graphics * pdc);
    void SetTransparentBackground(bool bSet);
-   virtual void _001OnDraw(::ca2::graphics * pdc);
+   virtual void _001OnDraw(::draw2d::graphics * pdc);
    size CalcSimpleLayout();
 
    void _001OnImageListAttrib();

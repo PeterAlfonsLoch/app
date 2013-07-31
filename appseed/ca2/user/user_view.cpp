@@ -507,7 +507,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Printing support virtual functions (others in viewpr.cpp)
 
-   void view::OnPrepareDC(::ca2::graphics * pgraphics, CPrintInfo* pInfo)
+   void view::OnPrepareDC(::draw2d::graphics * pgraphics, CPrintInfo* pInfo)
    {
       UNREFERENCED_PARAMETER(pInfo);
       ASSERT_VALID(pgraphics);
@@ -754,14 +754,14 @@ namespace user
    }
 
 
-   void view::on_draw_view_nc(::ca2::graphics * pdc)
+   void view::on_draw_view_nc(::draw2d::graphics * pdc)
    {
 
       UNREFERENCED_PARAMETER(pdc);
 
    }
 
-   void view::on_draw_view(::ca2::graphics * pdc, spa(::ca2::data) spadata)
+   void view::on_draw_view(::draw2d::graphics * pdc, spa(::ca2::data) spadata)
    {
 
       UNREFERENCED_PARAMETER(pdc);
@@ -769,7 +769,7 @@ namespace user
 
    }
 
-   void view::defer_draw_view(::ca2::graphics * pdc)
+   void view::defer_draw_view(::draw2d::graphics * pdc)
    {
 
       if(get_document() == NULL)
@@ -800,7 +800,7 @@ namespace user
 
    }
 
-   void view::_001OnDraw(::ca2::graphics * pdc)
+   void view::_001OnDraw(::draw2d::graphics * pdc)
    {
 
       on_draw_view_nc(pdc);

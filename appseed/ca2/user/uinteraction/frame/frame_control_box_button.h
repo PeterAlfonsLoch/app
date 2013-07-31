@@ -19,15 +19,15 @@ namespace uinteraction
 
          virtual void UpdateWndRgn() = 0;
          virtual void SetEllipsePens(
-            ::ca2::pen * ppen,
-            ::ca2::pen * ppenSel = NULL,
-            ::ca2::pen * ppenFocus = NULL,
-            ::ca2::pen * ppenDisabled = NULL) = 0;
+            ::draw2d::pen * ppen,
+            ::draw2d::pen * ppenSel = NULL,
+            ::draw2d::pen * ppenFocus = NULL,
+            ::draw2d::pen * ppenDisabled = NULL) = 0;
          virtual void SetEllipseBrushs(
-            ::ca2::brush * pbrush,
-            ::ca2::brush * pbrushSel = NULL,
-            ::ca2::brush * pbrushFocus = NULL,
-            ::ca2::brush * pbrushDisabled = NULL) = 0;
+            ::draw2d::brush * pbrush,
+            ::draw2d::brush * pbrushSel = NULL,
+            ::draw2d::brush * pbrushFocus = NULL,
+            ::draw2d::brush * pbrushDisabled = NULL) = 0;
          virtual void SetTextColors(
             COLORREF cr,
             COLORREF crSel,

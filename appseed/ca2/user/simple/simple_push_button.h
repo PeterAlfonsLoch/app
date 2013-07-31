@@ -46,7 +46,7 @@ public:
    void push(bool bPush = true);
    void Hover(bool bHover = true);
    void UpdateHover();
-   void _001OnDraw(::ca2::graphics * pdc);
+   void _001OnDraw(::draw2d::graphics * pdc);
 
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnDestroy)

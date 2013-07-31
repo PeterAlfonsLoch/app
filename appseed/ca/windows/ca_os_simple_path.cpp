@@ -7,7 +7,7 @@ os_simple_path::os_simple_path()
 {
 
    m_bFill        = false;
-   m_efillmode    = ::ca2::fill_mode_winding;
+   m_efillmode    = ::draw2d::fill_mode_winding;
    m_ppath        = new Gdiplus::GraphicsPath();
 
 }
@@ -49,14 +49,14 @@ bool os_simple_path::add_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 
 }
 
-bool os_simple_path::begin_figure(bool bFill, ::ca2::e_fill_mode efillmode)
+bool os_simple_path::begin_figure(bool bFill, ::draw2d::e_fill_mode efillmode)
 {
    
    m_bFill = bFill;
 
    m_efillmode = efillmode;
 
-   if(efillmode == ::ca2::fill_mode_alternate)
+   if(efillmode == ::draw2d::fill_mode_alternate)
    {
       
       return m_ppath->SetFillMode(Gdiplus::FillModeAlternate) == Gdiplus::Ok;

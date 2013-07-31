@@ -290,7 +290,7 @@ namespace user
       // load the bitmap
       HBITMAP hbmImageWell;
    //   hbmImageWell = ::ca2::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
-      ::ca2::memory_graphics pdc(this);
+      ::draw2d::memory_graphics pdc(this);
       hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
 
 
@@ -638,7 +638,7 @@ namespace user
 
       ASSERT(pData != NULL && nCount > 0);
 
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pdc(allocer());
 
       int32_t nResult = 0;
       int32_t x = 0;
@@ -890,7 +890,7 @@ namespace user
                }
             }
 
-               //::ca2::memory_graphics pdc(this);
+               //::draw2d::memory_graphics pdc(this);
             string str;
             if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
                m_nMRUWidth = sizeResult.cx;
@@ -1130,7 +1130,7 @@ throw todo(get_app());
 
 
    /*
-   bool tool_bar::OnEraseBkgnd(::ca2::graphics *)
+   bool tool_bar::OnEraseBkgnd(::draw2d::graphics *)
    {
       return (bool)Default();
    }
@@ -1231,7 +1231,7 @@ throw todo(get_app());
    */
 
 
-   void tool_bar::_001OnDraw(::ca2::graphics * pdc)
+   void tool_bar::_001OnDraw(::draw2d::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
       if (m_bDelayedButtonLayout)

@@ -30,14 +30,14 @@ virtual_user_interface::~virtual_user_interface()
 {
 }
 
-::ca2::graphics * virtual_user_interface::GetDC()
+::draw2d::graphics * virtual_user_interface::GetDC()
 {
-   ::ca2::graphics_sp g(allocer());
+   ::draw2d::graphics_sp g(allocer());
    g->CreateCompatibleDC(NULL);
    return g.detach();
 }
 
-bool virtual_user_interface::ReleaseDC(::ca2::graphics * pdc)
+bool virtual_user_interface::ReleaseDC(::draw2d::graphics * pdc)
 {
    return pdc->DeleteDC();
 }
@@ -1336,7 +1336,7 @@ bool virtual_user_interface::ShowWindow(int32_t nCmdShow)
 }
 
 
-void virtual_user_interface::SetFont(::ca2::font* pFont, bool bRedraw)
+void virtual_user_interface::SetFont(::draw2d::font* pFont, bool bRedraw)
 {
 
    if(pFont == NULL)
@@ -1364,7 +1364,7 @@ void virtual_user_interface::SetFont(::ca2::font* pFont, bool bRedraw)
 }
 
 
-::ca2::font* virtual_user_interface::GetFont()
+::draw2d::font* virtual_user_interface::GetFont()
 {
    if(m_spfont.is_null())
       m_spfont.create(allocer());
@@ -1565,7 +1565,7 @@ bool virtual_user_interface::post_message(UINT uiMessage, WPARAM wparam, lparam 
 }
 
 
-   void virtual_user_interface::set_view_port_org(::ca2::graphics * pgraphics)
+   void virtual_user_interface::set_view_port_org(::draw2d::graphics * pgraphics)
    {
       // graphics will be already set its view port to the window for linux - cairo with xlib
 

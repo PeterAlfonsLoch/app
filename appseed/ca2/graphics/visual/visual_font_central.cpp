@@ -45,7 +45,7 @@ bool font_central::Initialize()
    if(IsInitialized())
       return false;
 
-   ::ca2::graphics_sp spgraphics(allocer());
+   ::draw2d::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(NULL);
 
    m_fontMenu->create_point_font(FONTFACENAME_MENU, 9);
@@ -107,7 +107,7 @@ void font_central::Finalize()
 }
 
 
-::ca2::font * font_central::GetStandartFont()
+::draw2d::font * font_central::GetStandartFont()
 {
     return m_fontMenu;
 }
@@ -175,14 +175,14 @@ visual::font * font_central::GetSongListFont()
     return m_lpSongListFont;
 }
 
-::ca2::font * font_central::GetMenuFont()
+::draw2d::font * font_central::GetMenuFont()
 {
     return m_fontMenu;
 }
 
 void font_central::CreateLyricViewFonts()
 {
-   ::ca2::graphics_sp spgraphics(allocer());
+   ::draw2d::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(NULL);
 
 
@@ -272,12 +272,12 @@ void font_central::CreateLyricViewFonts()
 
 }
 
-::ca2::font * font_central::GetCaptionFont()
+::draw2d::font * font_central::GetCaptionFont()
 {
    return m_fontCaption;
 }
 
-::ca2::font * font_central::GetListCtrlFont()
+::draw2d::font * font_central::GetListCtrlFont()
 {
    return m_fontListCtrl;
 }

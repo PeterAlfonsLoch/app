@@ -10,7 +10,7 @@ public:
    size                       m_size;
    string                     m_strWindowText;
    bool                       m_bEnabled;
-   ::ca2::font_sp              m_spfont;
+   ::draw2d::font_sp              m_spfont;
    bool                       m_bCreate;
    sp(::user::interaction)    m_pparent;
    sp(::user::interaction)    m_pguieMessage;
@@ -21,10 +21,10 @@ public:
    virtual ~virtual_user_interface();
 
    virtual void message_handler(::ca2::signal_object * pobj);
-   virtual ::ca2::graphics * GetDC();
+   virtual ::draw2d::graphics * GetDC();
    sp(::user::interaction) set_parent(sp(::user::interaction) pguieParent);
    bool ShowWindow(int32_t nCmdShow);
-   virtual bool ReleaseDC(::ca2::graphics *);
+   virtual bool ReleaseDC(::draw2d::graphics *);
    virtual sp(::user::interaction) get_parent() const;
 
    virtual void _001WindowMaximize();
@@ -58,8 +58,8 @@ public:
    virtual uint32_t GetExStyle();
    virtual LRESULT Default();
 
-   virtual void SetFont(::ca2::font* pFont, bool bRedraw = TRUE);
-   virtual ::ca2::font* GetFont();
+   virtual void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
+   virtual ::draw2d::font* GetFont();
 
    virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = NULL);
 
@@ -122,7 +122,7 @@ public:
 
    virtual bool post_message(UINT uiMessage, WPARAM wparam, lparam lparam);
 
-   virtual void set_view_port_org(::ca2::graphics * pgraphics);
+   virtual void set_view_port_org(::draw2d::graphics * pgraphics);
 
 
 };

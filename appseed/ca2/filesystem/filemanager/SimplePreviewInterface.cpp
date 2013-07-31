@@ -18,7 +18,7 @@ namespace filemanager
    }
 
 
-   void SimplePreviewInterface::_001OnDraw(::ca2::graphics * pdc)
+   void SimplePreviewInterface::_001OnDraw(::draw2d::graphics * pdc)
    {
       rect rectClient;
       GetClientRect(rectClient);

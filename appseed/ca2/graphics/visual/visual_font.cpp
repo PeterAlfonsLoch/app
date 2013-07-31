@@ -22,12 +22,12 @@ namespace visual
       m_glyphset.remove_all();
    }
 
-   ::ca2::font * font::GetFont()
+   ::draw2d::font * font::GetFont()
    {
       return m_spfont;
    }
 
-   void font::EmbossedTextOut(::ca2::graphics * pdc, LPCRECT lpcrect, double dRateX, double dHeight, string & str)
+   void font::EmbossedTextOut(::draw2d::graphics * pdc, LPCRECT lpcrect, double dRateX, double dHeight, string & str)
    {
 
 
@@ -77,7 +77,7 @@ namespace visual
 
    }
 
-   void font::EmbossedTextOut(::ca2::graphics * pdc, LPCRECT lpcrect, double dRateX, double dHeight, string & str, LPINT lpiCharsPositions, int32_t iCharsPositions, int32_t iOffset)
+   void font::EmbossedTextOut(::draw2d::graphics * pdc, LPCRECT lpcrect, double dRateX, double dHeight, string & str, LPINT lpiCharsPositions, int32_t iCharsPositions, int32_t iOffset)
    {
 
       System.visual().api().EmbossedTextOut(pdc, lpcrect, dRateX, dHeight, str, lpiCharsPositions, iCharsPositions, iOffset);
@@ -139,7 +139,7 @@ namespace visual
       ClearDC();*/
    }
 
-   void font::SimpleTextOut(::ca2::graphics * pgraphics, int32_t x, int32_t y, string & str, LPINT lpiCharsPositions, int32_t iCharsPositions)
+   void font::SimpleTextOut(::draw2d::graphics * pgraphics, int32_t x, int32_t y, string & str, LPINT lpiCharsPositions, int32_t iCharsPositions)
    {
       UNREFERENCED_PARAMETER(lpiCharsPositions);
       UNREFERENCED_PARAMETER(iCharsPositions);
@@ -247,7 +247,7 @@ namespace visual
 
    }
 
-   void font::SetDC(::ca2::graphics * pgraphics)
+   void font::SetDC(::draw2d::graphics * pgraphics)
    {
       ASSERT(m_pDC == NULL);
       ASSERT(pgraphics != NULL);
@@ -356,7 +356,7 @@ namespace visual
    }
 
    void font::TextOutEx(
-      ::ca2::graphics                     * pgraphics,
+      ::draw2d::graphics                     * pgraphics,
        LPCRECT               lpcrect,
       double               dRateX,
       double               dHeight,
@@ -417,11 +417,11 @@ namespace visual
    void font::OnUpdateFont()
    {
 
-      ::ca2::graphics_sp spgraphics(allocer());
+      ::draw2d::graphics_sp spgraphics(allocer());
 
       spgraphics->CreateCompatibleDC(NULL);
 
-      ::ca2::font * pFontOld = spgraphics->SelectObject(m_spfont);
+      ::draw2d::font * pFontOld = spgraphics->SelectObject(m_spfont);
 
       spgraphics->get_text_metrics(&m_tm);
 

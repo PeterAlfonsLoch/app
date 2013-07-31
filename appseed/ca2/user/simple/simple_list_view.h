@@ -17,7 +17,7 @@ public:
    sp(::user::interaction) OnDrawInterfaceGetWnd();
    virtual sp(::user::interaction) _GetWnd();
 
-   virtual void OnDraw(::ca2::graphics * pgraphics);     
+   virtual void OnDraw(::draw2d::graphics * pgraphics);     
    virtual bool pre_create_window(CREATESTRUCT& cs);
    
    

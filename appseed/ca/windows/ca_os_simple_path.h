@@ -11,14 +11,14 @@ public:
    
    Gdiplus::GraphicsPath *       m_ppath;
    bool                          m_bFill;
-   ::ca2::e_fill_mode            m_efillmode;
+   ::draw2d::e_fill_mode         m_efillmode;
    
 
    os_simple_path();
    ~os_simple_path();
 
 
-   bool begin_figure(bool bFill, ::ca2::e_fill_mode efillmode);
+   bool begin_figure(bool bFill, ::draw2d::e_fill_mode efillmode);
    bool end_figure(bool bClose);
 
 

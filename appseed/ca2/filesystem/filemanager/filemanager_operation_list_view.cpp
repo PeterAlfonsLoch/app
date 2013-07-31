@@ -23,7 +23,7 @@ void file_manager_operation_list_view::install_message_handling(::ca2::message::
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_list_view::_001OnCreate);
 }
 
-void file_manager_operation_list_view::OnDraw(::ca2::graphics * pdc)
+void file_manager_operation_list_view::OnDraw(::draw2d::graphics * pdc)
 {
    UNREFERENCED_PARAMETER(pdc);
 }

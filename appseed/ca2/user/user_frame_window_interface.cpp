@@ -146,7 +146,7 @@ namespace user
       IGUI_MSG_LINK(::ca2::message_frame_initial_update, pinterface, this, &frame_window_interface::_guserbaseOnInitialUpdate);
    }
 
-   void frame_window_interface::_000OnDraw(::ca2::graphics * pdc)
+   void frame_window_interface::_000OnDraw(::draw2d::graphics * pdc)
    {
       if(!m_bVisible)
          return;
@@ -189,7 +189,7 @@ namespace user
       }
    }
 
-   void frame_window_interface::_001OnDraw(::ca2::graphics *pdc)
+   void frame_window_interface::_001OnDraw(::draw2d::graphics *pdc)
    {
       if((m_bWindowFrame
          || m_etranslucency == TranslucencyTotal

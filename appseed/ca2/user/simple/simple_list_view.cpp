@@ -28,7 +28,7 @@ void simple_list_view::install_message_handling(::ca2::message::dispatch * pinte
 /////////////////////////////////////////////////////////////////////////////
 // simple_list_view drawing
 
-void simple_list_view::OnDraw(::ca2::graphics * pgraphics)
+void simple_list_view::OnDraw(::draw2d::graphics * pgraphics)
 {
    UNREFERENCED_PARAMETER(pgraphics);
    ASSERT(FALSE);

@@ -209,7 +209,7 @@ namespace user
       pobj->m_bRet = false;
    }
 
-   void menu_list_window::_CalcSize(menu_item * pitemParent, ::ca2::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight)
+   void menu_list_window::_CalcSize(menu_item * pitemParent, ::draw2d::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight)
    {
       if(pitemParent->m_spitema == NULL)
          return;
@@ -236,7 +236,7 @@ namespace user
          return;
       rect rectClient;
       get_parent()->GetClientRect(rectClient);
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pdc(allocer());
       pdc->SelectObject(m_pschema->m_font);
       size size = pdc->GetTextExtent("XXXMMM");
       int32_t iMaxHeight = size.cy;
@@ -304,7 +304,7 @@ namespace user
    }
 
 
-   void menu_list_window::_001OnDraw(::ca2::graphics *pdc)
+   void menu_list_window::_001OnDraw(::draw2d::graphics *pdc)
    {
       rect rectClient;
       GetClientRect(rectClient);

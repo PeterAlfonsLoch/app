@@ -84,7 +84,7 @@ namespace user
       DROPEFFECT dropDefault, DROPEFFECT dropList, point point);
       virtual DROPEFFECT OnDragScroll(uint32_t dwKeyState, point point);*/
 
-      virtual void OnPrepareDC(::ca2::graphics * pgraphics, CPrintInfo* pInfo = NULL);
+      virtual void OnPrepareDC(::draw2d::graphics * pgraphics, CPrintInfo* pInfo = NULL);
 
       //virtual void OnInitialUpdate(); // called first time after construct
       DECL_GEN_VSIGNAL(_001OnInitialUpdate) // called first time after construct
@@ -97,7 +97,7 @@ namespace user
 
       // General drawing/updating
       virtual void on_update(sp(view) pSender, LPARAM lHint, ::ca2::object* pHint);
-      virtual void _001OnDraw(::ca2::graphics * pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       virtual void OnViewUpdateHint(sp(view) pSender, LPARAM lHint, ::user::view_update_hint * pHint);
 
 
@@ -130,9 +130,9 @@ namespace user
       virtual CScrollBar* GetScrollBarCtrl(int32_t nBar) const;
 
 
-      virtual void on_draw_view_nc(::ca2::graphics * pdc);
-      virtual void on_draw_view(::ca2::graphics * pdc, spa(::ca2::data) spadata);
-      virtual void defer_draw_view(::ca2::graphics * pdc);
+      virtual void on_draw_view_nc(::draw2d::graphics * pdc);
+      virtual void on_draw_view(::draw2d::graphics * pdc, spa(::ca2::data) spadata);
+      virtual void defer_draw_view(::draw2d::graphics * pdc);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 

@@ -50,7 +50,7 @@ namespace filemanager
    /////////////////////////////////////////////////////////////////////////////
    // SimpleFolderListView drawing
 
-   void SimpleFolderListView::OnDraw(::ca2::graphics * pgraphics)
+   void SimpleFolderListView::OnDraw(::draw2d::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       //sp(::user::document) pDoc = get_document();

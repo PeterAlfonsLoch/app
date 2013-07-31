@@ -20,35 +20,35 @@ namespace visual
       bool close();
 
       void DrawAndFillBeziers(
-         ::ca2::graphics                     *pdc,
+         ::draw2d::graphics                     *pdc,
          LPPOINT             lppoints,
          int32_t                  iCount,
          double               dRateX,
          LPPOINT               lppointOffset);
 
       void DrawBeziers(
-         ::ca2::graphics                     *pdc,
+         ::draw2d::graphics                     *pdc,
          LPPOINT             lppoints,
          int32_t                  iCount,
          double               dRateX,
          LPPOINT               lppointOffset);
 
       void DrawAndFillBeziers(
-         ::ca2::graphics                     *pdc,
+         ::draw2d::graphics                     *pdc,
          array<point_array, point_array &> *
                             lpglyph,
          double               dRateX,
          LPPOINT               lppointOffset);
 
       void EmbossedTextOut(
-            ::ca2::graphics *                pdc,
+            ::draw2d::graphics *                pdc,
             LPCRECT               lpcrect,
             double               dRateX,
             double               dHeight,
             const char *         psz);
 
       void EmbossedTextOut(
-         ::ca2::graphics *                pdc,
+         ::draw2d::graphics *                pdc,
          LPCRECT               lpcrect,
          double               dRateX,
          double               dHeight,
@@ -58,7 +58,7 @@ namespace visual
          int32_t                  iOffset);
 
       void EmbossedTextOut(
-         ::ca2::graphics *             pdc,
+         ::draw2d::graphics *             pdc,
          const char *      lpcsz,
          int32_t               iLeft,
          int32_t               iTop,
@@ -69,7 +69,7 @@ namespace visual
 
 
       void SimpleTextOut(
-         ::ca2::graphics               *pdc,
+         ::draw2d::graphics               *pdc,
          LPCRECT            lpcrect,
          double            dRateX,
          double            dHeight,

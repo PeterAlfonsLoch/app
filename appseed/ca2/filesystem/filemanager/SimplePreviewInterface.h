@@ -22,7 +22,7 @@ namespace filemanager
       virtual ~SimplePreviewInterface();
 
 
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
 
    };
 

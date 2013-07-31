@@ -1066,7 +1066,7 @@ namespace ca2
                   erase_bkgnd erasebkgnd(get_app());
                   erasebkgnd.m_psignal = psignal;
                   erasebkgnd.set(message, wparam, lparam, lresult);
-   //               erasebkgnd.m_pdc = ::ca2::graphics_sp::from_handle(reinterpret_cast<HDC>(wparam));
+   //               erasebkgnd.m_pdc = ::draw2d::graphics_sp::from_handle(reinterpret_cast<HDC>(wparam));
                   psignal->emit(&erasebkgnd);
                   if(erasebkgnd.m_bRet)
                      return true;
@@ -1149,7 +1149,7 @@ namespace ca2
                   // special case for OnCtlColor to avoid too many temporary objects
                   ASSERT(message == WM_CTLCOLOR);
                   myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
-                  ::ca2::graphics_sp dcTemp;
+                  ::draw2d::graphics_sp dcTemp;
    //               dcTemp.set_handle1(pCtl->hDC);
                   ::ca2::window wndTemp;
    //               wndTemp.set_handle(pCtl->oswindow);
@@ -1182,7 +1182,7 @@ namespace ca2
                {         // special case for CtlColor to avoid too many temporary objects
                   ASSERT(message == WM_REFLECT_BASE+WM_CTLCOLOR);
                   myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
-                  ::ca2::graphics_sp dcTemp;
+                  ::draw2d::graphics_sp dcTemp;
    //               dcTemp.set_handle1(pCtl->hDC);
                   UINT nCtlType = pCtl->nCtlType;
                   ctl_color ctlcolor(get_app());

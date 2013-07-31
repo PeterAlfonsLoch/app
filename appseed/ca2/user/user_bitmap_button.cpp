@@ -95,7 +95,7 @@ namespace user
       UpdateHover();
 
        // use the main bitmap for up, the selected bitmap for down
-       ::ca2::bitmap* pBitmap = &m_bitmap;
+       ::draw2d::bitmap* pBitmap = &m_bitmap;
        UINT state = lpDIS->itemState;
       if(!IsControlCommandEnabled())
          state = ODS_DISABLED;
@@ -111,10 +111,10 @@ namespace user
 
        throw not_implemented(get_app());
        // draw the whole button
-       /*::ca2::graphics * pgraphics = ::ca2::graphics_sp::from_handle(lpDIS->hDC);
-       ::ca2::graphics_sp memDC;
+       /*::draw2d::graphics * pgraphics = ::draw2d::graphics_sp::from_handle(lpDIS->hDC);
+       ::draw2d::graphics_sp memDC;
        memDC.CreateCompatibleDC(pgraphics);
-       ::ca2::bitmap* pOld = memDC.SelectObject(pBitmap);
+       ::draw2d::bitmap* pOld = memDC.SelectObject(pBitmap);
        if (pOld == NULL)
            return;     // destructors will clean up
 

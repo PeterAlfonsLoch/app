@@ -115,10 +115,10 @@ namespace gcom
       }
       void Main::_001OnImageLoaded(::ca2::signal_object * pobj)
       {
-         OnImageLoaded((*pobj)()["dib"].ca2 < ::ca2::dib > ());
+         OnImageLoaded((*pobj)()["dib"].ca2 < ::draw2d::dib > ());
       }
 
-      void Main::OnImageLoaded(::ca2::dib * pdib)
+      void Main::OnImageLoaded(::draw2d::dib * pdib)
       {
 
          InterfaceData data;
@@ -475,7 +475,7 @@ namespace gcom
          GetImageChange().SetBackgroundUpdateMillis(1000);
       }
 
-      ::ca2::graphics & Main::GetTransferDC()
+      ::draw2d::graphics & Main::GetTransferDC()
       {
          return GetGraphics().GetTransferDC();
       }

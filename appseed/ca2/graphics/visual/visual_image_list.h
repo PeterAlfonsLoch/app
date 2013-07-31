@@ -11,7 +11,7 @@ public:
 
 
       rect           m_rect;
-      ::ca2::dib *    m_pdib;
+      ::draw2d::dib *    m_pdib;
 
    };
 
@@ -21,12 +21,12 @@ protected:
    int32_t            m_iSize;
    int32_t            m_iGrow;
 public:
-   ::ca2::dib_sp   m_spdib;
+   ::draw2d::dib_sp   m_spdib;
 
 
-   ::ca2::dib_sp   m_spdibWork;
-   ::ca2::dib_sp   m_spdibWork2;
-   ::ca2::dib_sp   m_spdibWork3;
+   ::draw2d::dib_sp   m_spdibWork;
+   ::draw2d::dib_sp   m_spdibWork2;
+   ::draw2d::dib_sp   m_spdibWork3;
 
 
 protected:
@@ -37,7 +37,7 @@ public:
 
    using ::ca2::request_interface::create;
    bool create(int32_t cx, int32_t cy, UINT nFlags, int32_t nInitial, int32_t nGrow);
-   bool realize(::ca2::graphics * pdc);
+   bool realize(::draw2d::graphics * pdc);
     //bool create(const char * lpszBitmapID, int32_t cx, int32_t nGrow, COLORREF crMask);
 
    int32_t add(::visual::icon * picon);
@@ -48,9 +48,9 @@ public:
    int32_t add_matter(const char * lpcsz, sp(::ca2::application) papp = NULL);
    int32_t add_std_matter(const char * lpcsz);
 
-   bool draw(::ca2::graphics * pdc, int32_t iImage, point pt, int32_t iFlag);
-   bool draw(::ca2::graphics * pdc, int32_t iImage, point pt, int32_t iFlag, BYTE alpha);
-   bool draw(::ca2::graphics * pdc, int32_t iImage, point pt, size sz, point ptOffset, int32_t iFlag);
+   bool draw(::draw2d::graphics * pdc, int32_t iImage, point pt, int32_t iFlag);
+   bool draw(::draw2d::graphics * pdc, int32_t iImage, point pt, int32_t iFlag, BYTE alpha);
+   bool draw(::draw2d::graphics * pdc, int32_t iImage, point pt, size sz, point ptOffset, int32_t iFlag);
    int32_t get_image_count() const;
    bool create(sp(image_list) pimagelist);
    image_list(sp(::ca2::application) papp);

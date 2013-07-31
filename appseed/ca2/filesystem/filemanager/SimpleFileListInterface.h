@@ -184,7 +184,7 @@ namespace filemanager
       void _017PreSynchronize();
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
       ::fs::item & GetFileManagerItem();
       DECL_GEN_SIGNAL(_001OnMainPostMessage)
       void _017UpdateList();

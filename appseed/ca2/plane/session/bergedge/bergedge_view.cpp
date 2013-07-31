@@ -55,7 +55,7 @@ namespace bergedge
    /////////////////////////////////////////////////////////////////////////////
    // ::user::view drawing
 
-   void view::OnDraw(::ca2::graphics * pdcScreen)
+   void view::OnDraw(::draw2d::graphics * pdcScreen)
    {
       UNREFERENCED_PARAMETER(pdcScreen);
    }
@@ -123,7 +123,7 @@ namespace bergedge
    }
 
 
-   void view:: _001OnDraw(::ca2::graphics * pdc)
+   void view:: _001OnDraw(::draw2d::graphics * pdc)
    {
 
       if(gcom::backview::Interface::IsEnabled())
@@ -139,7 +139,7 @@ namespace bergedge
          if(main.IsInitialized())
          {
 
-            ::ca2::region_sp rgn(allocer());
+            ::draw2d::region_sp rgn(allocer());
 //            rect rectFinal(graphics.m_rectFinalPlacement);
 /*            ClientToScreen(rect);
             rgn->create_rect(rect);

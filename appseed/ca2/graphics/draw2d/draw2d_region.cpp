@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace draw2d
 {
 
 
@@ -192,7 +192,7 @@ namespace ca2
 
    }
 
-   bool region::CreateFromPath(::ca2::graphics * pgraphics)
+   bool region::CreateFromPath(::draw2d::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       throw interface_only_exception(get_app());
@@ -386,7 +386,7 @@ namespace ca2
 
    }
 
-   bool region::create_polygon(LPPOINT lppoints, int32_t nCount, ::ca2::e_fill_mode efillmode)
+   bool region::create_polygon(LPPOINT lppoints, int32_t nCount, ::draw2d::e_fill_mode efillmode)
    {
 
       if(m_etype != type_none)
@@ -406,7 +406,7 @@ namespace ca2
       return true;
    }
 
-   bool region::create_poly_polygon(LPPOINT lppoints, LPINT lppolycounts, int32_t nCount, ::ca2::e_fill_mode efillmode)
+   bool region::create_poly_polygon(LPPOINT lppoints, LPINT lppolycounts, int32_t nCount, ::draw2d::e_fill_mode efillmode)
    {
 
       if(m_etype != type_none)
@@ -434,11 +434,11 @@ namespace ca2
 
    }
    //virtual bool add_round_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3);
-//      virtual bool add_path(::ca2::graphics_path * ppath);
+//      virtual bool add_path(::draw2d::path * ppath);
 
 //      virtual void SetRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
 //      virtual void SetRectRgn(LPCRECT lpRect);
-   bool region::combine(const ::ca2::region * prgn1, const ::ca2::region * prgn2, e_combine ecombine)
+   bool region::combine(const ::draw2d::region * prgn1, const ::draw2d::region * prgn2, e_combine ecombine)
    {
 
       if(m_etype != type_none)
@@ -450,9 +450,9 @@ namespace ca2
 
       m_etype = type_combine;
 
-      m_pregion1 = new ::ca2::region(*prgn1);
+      m_pregion1 = new ::draw2d::region(*prgn1);
 
-      m_pregion2 = new ::ca2::region(*prgn2);
+      m_pregion2 = new ::draw2d::region(*prgn2);
 
       m_ecombine  = ecombine;
 
@@ -460,7 +460,7 @@ namespace ca2
 
    }
 
-   region & region::operator = (const ::ca2::region & regionSrc)
+   region & region::operator = (const ::draw2d::region & regionSrc)
    {
 
       if(this == &regionSrc)
@@ -516,8 +516,8 @@ namespace ca2
          m_y3 = regionSrc.m_y3;
          return *this;
       case type_combine:
-         m_pregion1 = new ::ca2::region(*regionSrc.m_pregion1);
-         m_pregion2 = new ::ca2::region(*regionSrc.m_pregion2);
+         m_pregion1 = new ::draw2d::region(*regionSrc.m_pregion1);
+         m_pregion2 = new ::draw2d::region(*regionSrc.m_pregion2);
          m_ecombine = regionSrc.m_ecombine;
          return *this;
       default:
@@ -687,7 +687,7 @@ namespace ca2
    bool region::internal_combine_contains(LPPOINT lppt)
    {
 
-      if(m_ecombine == ::ca2::region::combine_add)
+      if(m_ecombine == ::draw2d::region::combine_add)
       {
          if(m_pregion1->internal_contains(lppt))
             return true;
@@ -695,7 +695,7 @@ namespace ca2
             return true;
          return false;
       }
-      else if(m_ecombine == ::ca2::region::combine_exclude)
+      else if(m_ecombine == ::draw2d::region::combine_exclude)
       {
          if(m_pregion2->internal_contains(lppt))
             return false;
@@ -703,7 +703,7 @@ namespace ca2
             return true;
          return false;
       }
-      else if(m_ecombine == ::ca2::region::combine_intersect)
+      else if(m_ecombine == ::draw2d::region::combine_intersect)
       {
          if(m_pregion1->internal_contains(lppt))
          {
@@ -717,8 +717,13 @@ namespace ca2
          return false;
       }
 
+
    }
 
 
+} // namespace draw2d
 
-} // namespace ca2
+
+
+
+

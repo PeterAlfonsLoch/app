@@ -18,7 +18,7 @@ simple_password::~simple_password()
 void simple_password::draw_this(simple_graphics & g)
 {
 
-   g.set_alpha_mode(::ca2::alpha_mode_blend);
+   g.set_alpha_mode(::draw2d::alpha_mode_blend);
 
    simple_brush br;
    

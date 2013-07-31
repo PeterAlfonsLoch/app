@@ -47,7 +47,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnDrawStaticText(::ca2::graphics * pdc)
+   void combo_box::_001OnDrawStaticText(::draw2d::graphics * pdc)
    {
 
       string strText;
@@ -58,7 +58,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca2::brush_sp br(allocer());
+      ::draw2d::brush_sp br(allocer());
 
       br->create_solid(ARGB(84, 255, 255, 255));
 
@@ -86,10 +86,10 @@ namespace user
 
 
 
-   void combo_box::_001OnDrawVerisimple(::ca2::graphics * pdc)
+   void combo_box::_001OnDrawVerisimple(::draw2d::graphics * pdc)
    {
 
-      pdc->set_alpha_mode(::ca2::alpha_mode_blend);
+      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       if(m_bEdit)
       {
@@ -108,7 +108,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca2::brush_sp br(allocer());
+      ::draw2d::brush_sp br(allocer());
 
 //      int32_t iMargin = rectClient.height() / 8;
 
@@ -122,7 +122,7 @@ namespace user
 
       pdc->FillRectangle(rectDropDown);
 
-      ::ca2::graphics_path_sp path(allocer());
+      ::draw2d::path_sp path(allocer());
 
       point_array pointa;
 
@@ -154,10 +154,10 @@ namespace user
 
    }
 
-   void combo_box::_001OnDrawSimply(::ca2::graphics * pdc)
+   void combo_box::_001OnDrawSimply(::draw2d::graphics * pdc)
    {
 
-      pdc->set_alpha_mode(::ca2::alpha_mode_blend);
+      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       if(m_bEdit)
       {
@@ -176,7 +176,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca2::brush_sp br(allocer());
+      ::draw2d::brush_sp br(allocer());
 
       rect rectDropDown;
 
@@ -258,7 +258,7 @@ namespace user
       br->create_solid(ARGB(210, 77, 184, 49));
 
 
-      ::ca2::graphics_path_sp path(allocer());
+      ::draw2d::path_sp path(allocer());
 
       point_array pointa;
 
@@ -295,7 +295,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnDraw(::ca2::graphics * pdc)
+   void combo_box::_001OnDraw(::draw2d::graphics * pdc)
    {
 
       //if(m_estyle == style_simply)
@@ -754,14 +754,14 @@ namespace user
       }
 
 
-      ::ca2::font_sp fontxyz(allocer());
+      ::draw2d::font_sp fontxyz(allocer());
 
       rect rectClient;
 
       GetClientRect(rectClient);
 
       fontxyz->m_dFontSize = rectClient.height() * 0.4;
-      fontxyz->m_eunitFontSize = ::ca2::unit_pixel;
+      fontxyz->m_eunitFontSize = ::draw2d::unit_pixel;
       fontxyz->m_bUpdated = false;
 
       SetFont(fontxyz);

@@ -31,7 +31,7 @@ namespace visual
    };
 
    class CLASS_DECL_ca2 dib_sp :
-      public ::ca2::dib_sp
+      public ::draw2d::dib_sp
    {
    public:
 

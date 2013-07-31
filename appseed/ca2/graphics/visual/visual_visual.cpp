@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   visual::visual(::ca2::graphics * pdc)
+   visual::visual(::draw2d::graphics * pdc)
    {
       m_pdc = pdc;
    }

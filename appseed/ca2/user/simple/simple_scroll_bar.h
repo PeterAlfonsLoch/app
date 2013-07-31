@@ -7,13 +7,13 @@ class CLASS_DECL_ca2 simple_scroll_bar :
 public:
 
 
-   //::ca2::brush_sp       m_brushNull;
-   ::ca2::pen_sp         m_penDraw;
+   //::draw2d::brush_sp       m_brushNull;
+   ::draw2d::pen_sp         m_penDraw;
    point                m_ptTrackOffset;
    point                m_ptaA[4]; // pontos da primeira seta
    point                m_ptaB[4]; // pontos da segunda seta
-   ::ca2::region_sp         m_rgnA; // região da primeira seta
-   ::ca2::region_sp         m_rgnB; // região da segunda seta
+   ::draw2d::region_sp         m_rgnA; // região da primeira seta
+   ::draw2d::region_sp         m_rgnB; // região da segunda seta
    UINT                 m_uiTimer;
 
 
@@ -27,7 +27,7 @@ public:
    virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, UINT nID, sp(::ca2::create_context) pContext = NULL);
    virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
-   virtual void _001OnDraw(::ca2::graphics * pdc);
+   virtual void _001OnDraw(::draw2d::graphics * pdc);
 
    void UpdateDrawingObjects();
 
@@ -41,7 +41,7 @@ public:
    bool GetPageBRect(LPRECT lpRectClient, LPRECT lpRectTrack,  LPRECT lpRect);
    void UpdateBitmaps();
    void OnDisplayChange(int32_t iBitsPerPixel, size sizeScreen);
-   //virtual void OnDraw(::ca2::graphics * pgraphics);
+   //virtual void OnDraw(::draw2d::graphics * pgraphics);
    virtual int32_t _001GetScrollPos();
    virtual int32_t _001SetScrollPos(int32_t iPos);
    virtual bool _001GetScrollInfo(::user::scroll_info * psi);

@@ -252,7 +252,7 @@ namespace plugin
 
          m_dib->Fill(0, 0, 0, 0);
 
-//         ::ca2::graphics_sp dc(get_app());
+//         ::draw2d::graphics_sp dc(get_app());
 
          //dc->CreateCompatibleDC(NULL);
 

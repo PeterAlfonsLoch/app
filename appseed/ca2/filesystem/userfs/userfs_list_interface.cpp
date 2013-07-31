@@ -287,7 +287,7 @@ namespace userfs
 
    }
 
-   void list_interface::_001OnDraw(::ca2::graphics *pdc)
+   void list_interface::_001OnDraw(::draw2d::graphics *pdc)
    {
 /*         if(m_iAnimate <= 0)
       {*/

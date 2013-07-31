@@ -101,7 +101,7 @@ namespace user
       //if (lpIDArray != NULL)
       //{
 //         HFONT hFont = (HFONT)send_message(WM_GETFONT);
-         ::ca2::graphics_sp spgraphicsScreen(allocer());
+         ::draw2d::graphics_sp spgraphicsScreen(allocer());
 
          throw todo(get_app());
 /*         HGDIOBJ hOldFont = NULL;
@@ -591,7 +591,7 @@ namespace user
    }
    */
 
-   void status_bar::_001OnDraw(::ca2::graphics * pdc)
+   void status_bar::_001OnDraw(::draw2d::graphics * pdc)
    {
 
       UNREFERENCED_PARAMETER(pdc);

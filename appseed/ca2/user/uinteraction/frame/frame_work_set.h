@@ -154,7 +154,7 @@ namespace frame
       void relay_event(::ca2::signal_object * pobj);
       void message_handler(::ca2::signal_object * pobj);
 
-      void _001OnDraw(::ca2::graphics * pdc);
+      void _001OnDraw(::draw2d::graphics * pdc);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

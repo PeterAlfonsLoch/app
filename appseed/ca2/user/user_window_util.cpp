@@ -216,7 +216,7 @@ namespace user
    ::ScreenToClient(oswindow, &rectChild.bottom_right());
    rectChild.offset(ptOffset);
    HRGN hrgnChild = ::create_rect(rectChild);
-   ::CombineRgn(hrgn, hrgn, hrgnChild, ::ca2::region::combine_exclude);
+   ::CombineRgn(hrgn, hrgn, hrgnChild, ::draw2d::region::combine_exclude);
    ::DeleteObject(hrgnChild);
    }
 
@@ -818,7 +818,7 @@ namespace user
 
          HRGN hrgnChild = ::CreateRectRgnIndirect(rectChild);
 
-         ::CombineRgn(hrgn, hrgn, hrgnChild, ::ca2::region::combine_exclude);
+         ::CombineRgn(hrgn, hrgn, hrgnChild, ::draw2d::region::combine_exclude);
 
          ::DeleteObject(hrgnChild);
 

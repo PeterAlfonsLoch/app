@@ -95,7 +95,7 @@ namespace uinteraction
          virtual void OnMove(sp(::user::interaction) pwnd);
 
 
-         virtual void _001OnDraw(::ca2::graphics * pca);
+         virtual void _001OnDraw(::draw2d::graphics * pca);
 
          virtual void GetWndClientRect(LPRECT lprect);
          virtual size GetMinSize();

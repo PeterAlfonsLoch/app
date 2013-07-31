@@ -91,7 +91,7 @@ namespace user
 
    //}
 
-   void tree::_001OnDrawBackground(::ca2::graphics *pdc)
+   void tree::_001OnDrawBackground(::draw2d::graphics *pdc)
    {
 
       rect rectClient;
@@ -134,7 +134,7 @@ namespace user
       return RGB(200, 255, 255);
    }
 
-   void tree::_001OnDraw(::ca2::graphics *pdc)
+   void tree::_001OnDraw(::draw2d::graphics *pdc)
    {
 
       rect rectClient;
@@ -195,7 +195,7 @@ namespace user
       }
       //      ::ca2::savings & savings = System.savings();
 
-      ///      ::ca2::graphics * pDCBuffer = pdc;
+      ///      ::draw2d::graphics * pDCBuffer = pdc;
 
       //      point ptOriginalViewportOrg = pdc->GetViewportOrg();
       //
@@ -229,7 +229,7 @@ namespace user
          //      if(m_pgdibuffer != NULL
          //         && !TwiHasTranslucency())
          {
-            /*         ::ca2::graphics * pdcBack = m_pgdibuffer->GetBuffer();
+            /*         ::draw2d::graphics * pdcBack = m_pgdibuffer->GetBuffer();
             if(pdcBack != NULL)
             {
             pdc->BitBlt(
@@ -261,7 +261,7 @@ namespace user
             }*/
             /*         if(m_pgdibuffer != NULL)
             {
-            ::ca2::graphics * pdcBack = m_pgdibuffer->GetBuffer();
+            ::draw2d::graphics * pdcBack = m_pgdibuffer->GetBuffer();
             if(pdcBack != NULL)
             {
             pdcBack->BitBlt(
@@ -476,7 +476,7 @@ namespace user
 
       if(strItem.has_char() && _001GetItemElementRect(rect, data, tree_element_text))
       {
-         ::ca2::font_sp font(allocer());
+         ::draw2d::font_sp font(allocer());
          font->operator=(*System.visual().font_central().GetListCtrlFont());
          font->set_bold();
          data.m_pdc->set_font(font);

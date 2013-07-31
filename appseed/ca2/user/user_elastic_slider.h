@@ -49,7 +49,7 @@ namespace user
       void CalcTension();
 
 
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
 
    protected:
       EScalar m_escalar;

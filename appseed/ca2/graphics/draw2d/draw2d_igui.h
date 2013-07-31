@@ -1,10 +1,11 @@
 #pragma once
 
-namespace ca2
-{
-   class graphics;
 
-   class CLASS_DECL_ca2 draw_item
+namespace draw2d
+{
+
+
+   class CLASS_DECL_ca2 item
    {
    public:
        UINT          CtlType;
@@ -18,4 +19,8 @@ namespace ca2
        uint_ptr     itemData;
    };
 
-} // namespace ca2
+
+} // namespace draw2d
+
+
+

@@ -77,7 +77,7 @@ namespace user
       virtual ~edit_plain_text();
 
 
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
 
 
 
@@ -125,7 +125,7 @@ namespace user
       void key_to_char(::ca2::message::key * pkey);
 
       virtual void install_message_handling(::ca2::message::dispatch * pinterface);
-      virtual void OnDraw(::ca2::graphics * pgraphics);      // overridden to draw this ::user::view
+      virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::user::view
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
 
 
@@ -150,7 +150,7 @@ namespace user
 
       virtual bool create_control(class ::user::control::descriptor * pdescriptor);
 
-      virtual strsize char_hit_test(::ca2::graphics * pdc, int32_t x, int32_t y);
+      virtual strsize char_hit_test(::draw2d::graphics * pdc, int32_t x, int32_t y);
 
       colorertake5::file_type * colorer_select_type();
 
@@ -165,8 +165,8 @@ namespace user
 
       bool should_load_full_file();
 
-      void _001OnCalcLayout(::ca2::graphics * pdc);
-      void _001OnCalcLayoutProc(::user::elemental * pview, ::ca2::graphics * pdc);
+      void _001OnCalcLayout(::draw2d::graphics * pdc);
+      void _001OnCalcLayoutProc(::user::elemental * pview, ::draw2d::graphics * pdc);
 
       void FileSave();
       void OnFileUpdate();

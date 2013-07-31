@@ -83,7 +83,7 @@ namespace user
    }
 
 
-   void step_slider::_001OnDraw(::ca2::graphics * pdc)
+   void step_slider::_001OnDraw(::draw2d::graphics * pdc)
    {
       
       if(m_pscalar == NULL)

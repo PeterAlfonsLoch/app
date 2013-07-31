@@ -108,7 +108,7 @@ namespace user
    }
 
 
-   void static_control::set_bitmap(::ca2::bitmap * pbitmap)
+   void static_control::set_bitmap(::draw2d::bitmap * pbitmap)
    {
 
       
@@ -123,7 +123,7 @@ namespace user
    }
 
 
-   ::ca2::bitmap * static_control::get_bitmap()
+   ::draw2d::bitmap * static_control::get_bitmap()
    {
 
       return m_etype == type_bitmap ? m_pbitmap : NULL;

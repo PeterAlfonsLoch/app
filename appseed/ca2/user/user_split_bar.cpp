@@ -52,7 +52,7 @@ namespace user
    }
 
 
-   void split_bar::_001OnDraw(::ca2::graphics *pdc)
+   void split_bar::_001OnDraw(::draw2d::graphics *pdc)
    {
 
       UNREFERENCED_PARAMETER(pdc);

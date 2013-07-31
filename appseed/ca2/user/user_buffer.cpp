@@ -48,7 +48,7 @@ namespace user
       return &m_semaphoreBuffer;
    }
 
-   ::ca2::graphics * buffer::GetBuffer()
+   ::draw2d::graphics * buffer::GetBuffer()
    {
       return m_spdib->get_graphics();
    }
@@ -58,7 +58,7 @@ namespace user
       UNREFERENCED_PARAMETER(pinterface);
    }
 
-   void buffer::BitBlt(::ca2::graphics * pdc)
+   void buffer::BitBlt(::draw2d::graphics * pdc)
    {
       pdc->BitBlt(
          0, 0, 
@@ -69,7 +69,7 @@ namespace user
          SRCCOPY);
    }
 
-   void buffer::BitBlt(LPRECT lprect, ::ca2::graphics * pdc)
+   void buffer::BitBlt(LPRECT lprect, ::draw2d::graphics * pdc)
    {
       pdc->BitBlt(
          lprect->left, lprect->top, 

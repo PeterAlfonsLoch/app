@@ -833,7 +833,7 @@ namespace filemanager
 
    }
 
-   void SimpleFileListInterface::_001OnDraw(::ca2::graphics *pdc)
+   void SimpleFileListInterface::_001OnDraw(::draw2d::graphics *pdc)
    {
       if(m_iAnimate <= 0)
       {

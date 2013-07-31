@@ -18,7 +18,7 @@ simple_tab_control::~simple_tab_control()
 
 
 
-void simple_tab_control::_001OnDraw(::ca2::graphics *pdc)
+void simple_tab_control::_001OnDraw(::draw2d::graphics *pdc)
 {
    ::user::tab::_001OnDraw(pdc);
 }

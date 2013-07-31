@@ -199,7 +199,7 @@ namespace platform
 
       //FIBITMAP * pfi;
 
-      //::ca2::memory_graphics pdc(this);;
+      //::draw2d::memory_graphics pdc(this);;
 
       m_dibBkImage.load_from_matter("casweden1.png");
 
@@ -324,7 +324,7 @@ namespace platform
 
 
 
-   void view:: _001OnDraw(::ca2::graphics * pdc)
+   void view:: _001OnDraw(::draw2d::graphics * pdc)
    {
       form_view::_001OnDraw(pdc);
       //      sp(::user::document) pdoc = get_document();
@@ -356,8 +356,8 @@ namespace platform
       }
       else
       {
-         ::ca2::dib_sp spdib(allocer());
-         ::ca2::dib_sp spdib2(allocer());
+         ::draw2d::dib_sp spdib(allocer());
+         ::draw2d::dib_sp spdib2(allocer());
          if(!spdib->create(rectClient.width(), rectClient.height()))
             return;
          if(!spdib2->create(rectClient.width(), rectClient.height()))
@@ -381,14 +381,14 @@ namespace platform
          Session.get_document()->get_bergedge_view()->GetWindowRect(rectThumb);
          if(rectThumb.area() > 0)
          {
-            ::ca2::dib_sp dib(allocer());
+            ::draw2d::dib_sp dib(allocer());
             dib->create(1920, 1080);
             keeper < bool > keepOnDraw(&GetParentFrame().cast < ::platform::frame > ()->m_bOnDraw, true, false, true);
             Session.get_document()->get_bergedge_view()->_000OnDraw(dib->get_graphics());
             dib->get_graphics()->SetViewportOrg(0, 0);
             keepOnDraw.KeepAway();
 
-            ::ca2::dib_sp dibThumb(allocer());
+            ::draw2d::dib_sp dibThumb(allocer());
             double dRate = 184.0 / rectThumb.width();
             dibThumb->create((int32_t) (dRate * rectThumb.width()), (int32_t) (dRate * rectThumb.height()));
             dibThumb->get_graphics()->SetStretchBltMode(HALFTONE);

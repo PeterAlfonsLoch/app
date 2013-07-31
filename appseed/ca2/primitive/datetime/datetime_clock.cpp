@@ -8,20 +8,20 @@ clock::clock(sp(::ca2::application) papp) :
 //   ::datetime::time time = ::datetime::time::get_current_time();
 }
 
-void clock::_001OnDraw(::ca2::graphics * pdc)
+void clock::_001OnDraw(::draw2d::graphics * pdc)
 {
    ::datetime::time timeNow = ::datetime::time::get_current_time() + m_timespan;
 
    rect rect;
    GetRect(&rect, ElementClock);
-   ::ca2::pen_sp pen(pdc, 1, ARGB(255, 0, 0, 0));
+   ::draw2d::pen_sp pen(pdc, 1, ARGB(255, 0, 0, 0));
    pdc->SelectObject(pen);
    pdc->DrawEllipse(&rect);
 
    point ptCenter(rect.center());
 
-   ::ca2::pen_sp penHour(pdc, 5, ARGB(255, 0, 0, 0));
-   ::ca2::pen_sp penMinute(pdc, 1, ARGB(255, 0, 0, 0));
+   ::draw2d::pen_sp penHour(pdc, 5, ARGB(255, 0, 0, 0));
+   ::draw2d::pen_sp penMinute(pdc, 1, ARGB(255, 0, 0, 0));
 
    double dRIntH = rect.width() * 57  / 128;
    double dRIntM = rect.width() * 59  / 128;
@@ -54,7 +54,7 @@ void clock::_001OnDraw(::ca2::graphics * pdc)
    double dRMinute = rect.width() * 15  / 32;
    double dRSecond = rect.width() * 16 / 32;
 
-   ::ca2::pen_sp penHM(pdc, 2, ARGB(255, 0, 0, 0));
+   ::draw2d::pen_sp penHM(pdc, 2, ARGB(255, 0, 0, 0));
    pdc->SelectObject(penHM);
 
    pdc->MoveTo(ptCenter);
@@ -71,7 +71,7 @@ void clock::_001OnDraw(::ca2::graphics * pdc)
       ptMinute.offset(ptCenter);
       pdc->LineTo(ptMinute);
    }
-   ::ca2::pen_sp penRed(pdc, 1, ARGB(255, 200, 0, 0));
+   ::draw2d::pen_sp penRed(pdc, 1, ARGB(255, 200, 0, 0));
    pdc->SelectObject(penRed);
    pdc->MoveTo(ptCenter);
    {

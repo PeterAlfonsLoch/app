@@ -10,7 +10,7 @@ struct FIBITMAP;
 #include FT_FREETYPE_H
 
 
-namespace ca2
+namespace draw2d
 {
 
 
@@ -37,9 +37,9 @@ namespace ca2
       virtual ~dib();
 
 
-      virtual ::ca2::graphics * get_graphics();
-      virtual ::ca2::bitmap_sp get_bitmap();
-      virtual ::ca2::bitmap_sp detach_bitmap();
+      virtual ::draw2d::graphics * get_graphics();
+      virtual ::draw2d::bitmap_sp get_bitmap();
+      virtual ::draw2d::bitmap_sp detach_bitmap();
 
 
       virtual COLORREF * get_data();
@@ -52,12 +52,12 @@ namespace ca2
 
       virtual bool dc_select(bool bSelect = true);
 
-      virtual bool from(::ca2::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI);
+      virtual bool from(::draw2d::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI);
 
       virtual COLORREF GetAverageColor();
       virtual bool blend(dib * pdib, dib * pdibRate);
       virtual bool Blend(dib *pdib, dib * pdibA, int32_t A);
-      virtual bool bitmap_blend(::ca2::graphics * pgraphics, LPCRECT lprect);
+      virtual bool bitmap_blend(::draw2d::graphics * pgraphics, LPCRECT lprect);
       virtual bool color_blend(COLORREF cr, BYTE bAlpha);
       virtual void BitBlt(dib * pdib, int32_t op);
       virtual int32_t cos(int32_t i, int32_t iAngle);
@@ -78,7 +78,7 @@ namespace ca2
       virtual void GrayToARGB(COLORREF cr);
 
       virtual void from_alpha();
-      virtual void mult_alpha(::ca2::dib * pdibWork, bool bPreserveAlpha = true);
+      virtual void mult_alpha(::draw2d::dib * pdibWork, bool bPreserveAlpha = true);
 
       virtual void rotate(dib * pdib, LPCRECT lpcrect, double dAngle, double dScale);
       virtual void rotate(dib * pdib, double dAngle, double dScale);
@@ -86,7 +86,7 @@ namespace ca2
 
 
       virtual void set_rgb(int32_t R, int32_t G, int32_t B);
-      virtual bool rgb_from(::ca2::dib * pdib);
+      virtual bool rgb_from(::draw2d::dib * pdib);
 
 
 
@@ -105,29 +105,29 @@ namespace ca2
 
       virtual bool create(size);
       virtual bool create(int32_t iWidth, int32_t iHeight);
-      virtual bool create(::ca2::graphics * pdc);
+      virtual bool create(::draw2d::graphics * pdc);
       virtual bool Destroy();
 
-      virtual bool realize(::ca2::graphics * pdc);
+      virtual bool realize(::draw2d::graphics * pdc);
       virtual bool unrealize();
       virtual bool is_realized();
-      virtual bool defer_realize(::ca2::graphics * pdc);
+      virtual bool defer_realize(::draw2d::graphics * pdc);
 
 
       virtual void DivideRGB(int32_t iDivide);
       virtual void DivideARGB(int32_t iDivide);
       virtual void DivideA(int32_t iDivide);
 
-      virtual bool from(::ca2::dib * pdib);
-      virtual bool from(::ca2::graphics * pdc);
-      virtual bool from(point ptDst, ::ca2::graphics * pdc, point ptSrc, size size);
+      virtual bool from(::draw2d::dib * pdib);
+      virtual bool from(::draw2d::graphics * pdc);
+      virtual bool from(point ptDst, ::draw2d::graphics * pdc, point ptSrc, size size);
 
-      virtual bool to(::ca2::graphics * pgraphics);
-      virtual bool to(::ca2::graphics * pgraphics, point pt);
-      virtual bool to(::ca2::graphics * pgraphics, size size);
-      virtual bool to(::ca2::graphics * pgraphics, point pt, size size);
-      virtual bool to(::ca2::graphics * pgraphics, LPCRECT lpcrect);
-      virtual bool to(::ca2::graphics * pgraphics, point pt, size size, point ptSrc);
+      virtual bool to(::draw2d::graphics * pgraphics);
+      virtual bool to(::draw2d::graphics * pgraphics, point pt);
+      virtual bool to(::draw2d::graphics * pgraphics, size size);
+      virtual bool to(::draw2d::graphics * pgraphics, point pt, size size);
+      virtual bool to(::draw2d::graphics * pgraphics, LPCRECT lpcrect);
+      virtual bool to(::draw2d::graphics * pgraphics, point pt, size size, point ptSrc);
 
 
       virtual bool pixelate(int32_t iSize);
@@ -144,10 +144,10 @@ namespace ca2
       virtual void Invert();
       virtual void channel_invert(visual::rgba::echannel echannel);
       virtual void channel_multiply(visual::rgba::echannel echannel, double dRate);
-      virtual void channel_multiply(visual::rgba::echannel echannel, ::ca2::dib * pdib);
-      virtual void channel_lighten(visual::rgba::echannel echannel, ::ca2::dib * pdib);
-      virtual void channel_darken(visual::rgba::echannel echannel, ::ca2::dib * pdib);
-      virtual void channel_from(visual::rgba::echannel echannel, ::ca2::dib * pdib);
+      virtual void channel_multiply(visual::rgba::echannel echannel, ::draw2d::dib * pdib);
+      virtual void channel_lighten(visual::rgba::echannel echannel, ::draw2d::dib * pdib);
+      virtual void channel_darken(visual::rgba::echannel echannel, ::draw2d::dib * pdib);
+      virtual void channel_from(visual::rgba::echannel echannel, ::draw2d::dib * pdib);
       virtual void channel_copy(visual::rgba::echannel echannelDst, visual::rgba::echannel echannelSrc);
 
       virtual void Map (int32_t ToRgb, int32_t FromRgb );
@@ -218,7 +218,7 @@ namespace ca2
       {
       }
 
-      dib_sp(allocatorsp allocer) :
+      dib_sp(::ca2::allocatorsp allocer) :
          ::ca::smart_pointer < dib > (allocer)
       {
       }
@@ -226,7 +226,7 @@ namespace ca2
    };
 
    class CLASS_DECL_ca2 dibmap :
-      virtual public map < size, size, ::ca2::dib_sp, ::ca2::dib_sp >
+      virtual public map < size, size, ::draw2d::dib_sp, ::draw2d::dib_sp >
    {
    public:
 
@@ -236,9 +236,9 @@ namespace ca2
       }
 
 
-      inline ::ca2::dib_sp & operator[](class size key)
+      inline ::draw2d::dib_sp & operator[](class size key)
       {
-         ::ca2::dib_sp & dib = map < class size, class size, ::ca2::dib_sp, ::ca2::dib_sp >::operator [](key);
+         ::draw2d::dib_sp & dib = map < class size, class size, ::draw2d::dib_sp, ::draw2d::dib_sp >::operator [](key);
          if(dib.is_null())
             dib.create(allocer());
          return dib;
@@ -247,7 +247,8 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace draw2d
+
 
 
 

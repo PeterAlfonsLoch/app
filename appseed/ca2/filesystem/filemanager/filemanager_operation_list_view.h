@@ -14,7 +14,7 @@ public:
 
    void _001InsertColumns();
 
-   virtual void OnDraw(::ca2::graphics * pdc);
+   virtual void OnDraw(::draw2d::graphics * pdc);
 
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnTimer)

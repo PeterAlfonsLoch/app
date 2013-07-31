@@ -8,12 +8,12 @@ namespace user
       return NULL;
    }
 
-   ::ca2::graphics * elemental::_001GetDC()
+   ::draw2d::graphics * elemental::_001GetDC()
    {
       return get_guie()->GetDC();
    }
 
-   void elemental::_001ReleaseDC(::ca2::graphics * pdc)
+   void elemental::_001ReleaseDC(::draw2d::graphics * pdc)
    {
       get_guie()->ReleaseDC(pdc);
    }

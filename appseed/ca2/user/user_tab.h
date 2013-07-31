@@ -68,10 +68,10 @@ namespace user
       public:
 
          int32_t                              m_iHeightAddUp;
-         ::ca2::pen_sp                     m_pen;
-         ::ca2::font_sp                    m_font;
-         ::ca2::font_sp                    m_fontUnderline;
-         ::ca2::font_sp                    m_fontBold;
+         ::draw2d::pen_sp                     m_pen;
+         ::draw2d::font_sp                    m_font;
+         ::draw2d::font_sp                    m_fontUnderline;
+         ::draw2d::font_sp                    m_fontBold;
          bool                             m_bCreated;
          int32_t                              m_iTabHeight;
          int32_t                              m_iTabWidth;
@@ -217,11 +217,11 @@ namespace user
 
 
 
-      void _001OnDraw(::ca2::graphics * pdc);
+      void _001OnDraw(::draw2d::graphics * pdc);
 
 
-      void _001OnDrawStandard(::ca2::graphics * pdc);
-      void _001OnDrawSchema01(::ca2::graphics * pdc);
+      void _001OnDrawStandard(::draw2d::graphics * pdc);
+      void _001OnDrawSchema01(::draw2d::graphics * pdc);
 
 
 

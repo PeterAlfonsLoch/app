@@ -27,7 +27,7 @@ namespace platform
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
 
-      virtual void _000OnDraw(::ca2::graphics * pgraphics);
+      virtual void _000OnDraw(::draw2d::graphics * pgraphics);
 
 
 

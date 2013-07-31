@@ -18,7 +18,7 @@ simple_button::~simple_button()
 
 
 
-void simple_button::_001OnDraw(::ca2::graphics *pdc)
+void simple_button::_001OnDraw(::draw2d::graphics *pdc)
 {
    ::user::button::_001OnDraw(pdc);
 }
@@ -56,7 +56,7 @@ void simple_button::_001OnCtlColor(::ca2::signal_object * pobj)
 
 void simple_button::ResizeToFit()
 {
-   ::ca2::memory_graphics pdc(allocer());
+   ::draw2d::memory_graphics pdc(allocer());
 
    pdc->SelectObject(GetFont());
 

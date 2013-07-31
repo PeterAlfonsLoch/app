@@ -17,11 +17,11 @@ public:
    virtual ~font_central();
 
 protected:
-   ::ca2::font_sp           m_fontCaption;
-   ::ca2::font_sp           m_fontMenu;
-   ::ca2::font_sp           m_fontStandard;
-   ::ca2::font_sp           m_font;
-   ::ca2::font_sp           m_fontListCtrl;
+   ::draw2d::font_sp           m_fontCaption;
+   ::draw2d::font_sp           m_fontMenu;
+   ::draw2d::font_sp           m_fontStandard;
+   ::draw2d::font_sp           m_font;
+   ::draw2d::font_sp           m_fontListCtrl;
    visual::font *               m_lpSongLabelFont;
    visual::font *             m_lpSongListFont;
    visual::font *             m_pfontLyric;
@@ -31,9 +31,9 @@ protected:
    CVmsGdiFontPtrArray *   m_pSubTitleFonts;
    bool                    m_bInitialized;
 public:
-   ::ca2::font * GetListCtrlFont();
-   ::ca2::font * GetCaptionFont();
-   ::ca2::font * GetStandartFont();
+   ::draw2d::font * GetListCtrlFont();
+   ::draw2d::font * GetCaptionFont();
+   ::draw2d::font * GetStandartFont();
    void Finalize();
    bool Initialize();
    visual::font * GetSongListFont();
@@ -41,7 +41,7 @@ public:
    visual::font * GetTitleFont();
    visual::font * GetSubTitleFont();
    visual::font * GetMidiTrackNameFont();
-   ::ca2::font * GetMenuFont();
+   ::draw2d::font * GetMenuFont();
    void CreateLyricViewFonts();
    visual::font * GetLyricViewFont();
    visual::font * GetLyricViewCompactFont();

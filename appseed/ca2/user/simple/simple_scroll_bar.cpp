@@ -496,8 +496,8 @@ void simple_scroll_bar::_001OnSize(::ca2::signal_object * pobj)
       ASSERT(FALSE);
    }
 
-   m_rgnA->create_polygon(m_ptaA, 4, ::ca2::fill_mode_winding);
-   m_rgnB->create_polygon(m_ptaB, 4, ::ca2::fill_mode_winding);
+   m_rgnA->create_polygon(m_ptaA, 4, ::draw2d::fill_mode_winding);
+   m_rgnB->create_polygon(m_ptaB, 4, ::draw2d::fill_mode_winding);
 
 
 //   psize->m_bRet = false;
@@ -661,7 +661,7 @@ int32_t simple_scroll_bar::ScrollPageB()
    return true;
 }
 
-//void simple_scroll_bar::OnDraw(::ca2::graphics * pgraphics)
+//void simple_scroll_bar::OnDraw(::draw2d::graphics * pgraphics)
 //{
 /*    if(GetExStyle() & WS_EX_TRANSPARENT)
 {
@@ -807,7 +807,7 @@ void simple_scroll_bar::UpdateDrawingObjects()
 }
 
 
-void simple_scroll_bar::_001OnDraw(::ca2::graphics * pdc)
+void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 {
 
    m_penDraw->create_solid(pdc, 1, ARGB(255, 0, 0, 0));

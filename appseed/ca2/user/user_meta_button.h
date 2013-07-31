@@ -14,21 +14,21 @@ public:
    };
 
 
-   ::ca2::brush       m_brushEllipse;
-   ::ca2::pen         m_penEllipse;
+   ::draw2d::brush       m_brushEllipse;
+   ::draw2d::pen         m_penEllipse;
    COLORREF          m_crText;
-   ::ca2::brush       m_brushEllipseSel;
-   ::ca2::pen         m_penEllipseSel;
+   ::draw2d::brush       m_brushEllipseSel;
+   ::draw2d::pen         m_penEllipseSel;
    COLORREF          m_crTextSel;
-   ::ca2::brush       m_brushEllipseFocus;
-   ::ca2::pen         m_penEllipseFocus;
+   ::draw2d::brush       m_brushEllipseFocus;
+   ::draw2d::pen         m_penEllipseFocus;
    COLORREF          m_crTextFocus;
-   ::ca2::brush       m_brushEllipseDisabled;
-   ::ca2::pen         m_penEllipseDisabled;
+   ::draw2d::brush       m_brushEllipseDisabled;
+   ::draw2d::pen         m_penEllipseDisabled;
    COLORREF          m_crTextDisabled;
    oswindow              m_oswindowPreviousFocus;
 
-   ::ca2::region_sp   m_spregion;
+   ::draw2d::region_sp   m_spregion;
 
    //bool              m_bFocus;
 
@@ -40,21 +40,21 @@ public:
    virtual index hit_test(point point, e_element & eelement);
 
 
-   virtual void _001OnDraw(::ca2::graphics * pdc);
+   virtual void _001OnDraw(::draw2d::graphics * pdc);
    virtual bool pre_create_window(CREATESTRUCT& cs);
 
    virtual void install_message_handling(::ca2::message::dispatch *pinterface);
    void UpdateWndRgn();
    void SetEllipsePens(
-        ::ca2::pen * ppen,
-        ::ca2::pen * ppenSel = NULL,
-        ::ca2::pen * ppenFocus = NULL,
-        ::ca2::pen * ppenDisabled = NULL);
+        ::draw2d::pen * ppen,
+        ::draw2d::pen * ppenSel = NULL,
+        ::draw2d::pen * ppenFocus = NULL,
+        ::draw2d::pen * ppenDisabled = NULL);
    void SetEllipseBrushs(
-        ::ca2::brush * pbrush,
-        ::ca2::brush * pbrushSel = NULL,
-        ::ca2::brush * pbrushFocus = NULL,
-        ::ca2::brush * pbrushDisabled = NULL);
+        ::draw2d::brush * pbrush,
+        ::draw2d::brush * pbrushSel = NULL,
+        ::draw2d::brush * pbrushFocus = NULL,
+        ::draw2d::brush * pbrushDisabled = NULL);
    void SetTextColors(
         COLORREF cr,
         COLORREF crSel,

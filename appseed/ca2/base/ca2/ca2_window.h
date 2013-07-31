@@ -28,7 +28,7 @@ namespace ca2
 #endif
 
 
-      ::ca2::font * m_pfont;
+      ::draw2d::font * m_pfont;
 
 
 
@@ -157,8 +157,8 @@ namespace ca2
       virtual strsize GetWindowText(char * lpszStringBuf, int32_t nMaxCount);
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();
-      virtual void SetFont(::ca2::font* pFont, bool bRedraw = TRUE);
-      virtual ::ca2::font* GetFont();
+      virtual void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
+      virtual ::draw2d::font* GetFont();
 
 
    // Window size and position Functions
@@ -184,35 +184,35 @@ namespace ca2
       virtual void MapWindowPoints(sp(::ca2::window) pwndTo, LPRECT lpRect);
 
    // Update/Painting Functions
-      virtual ::ca2::graphics * GetDC();
-      virtual ::ca2::graphics * GetWindowDC();
-      virtual bool ReleaseDC(::ca2::graphics * pgraphics);
-      virtual void Print(::ca2::graphics * pgraphics, uint32_t dwFlags) const;
-      virtual void PrintClient(::ca2::graphics * pgraphics, uint32_t dwFlags) const;
+      virtual ::draw2d::graphics * GetDC();
+      virtual ::draw2d::graphics * GetWindowDC();
+      virtual bool ReleaseDC(::draw2d::graphics * pgraphics);
+      virtual void Print(::draw2d::graphics * pgraphics, uint32_t dwFlags) const;
+      virtual void PrintClient(::draw2d::graphics * pgraphics, uint32_t dwFlags) const;
 
       virtual void UpdateWindow();
       virtual void SetRedraw(bool bRedraw = TRUE);
       virtual bool GetUpdateRect(LPRECT lpRect, bool bErase = FALSE);
-      virtual int32_t GetUpdateRgn(::ca2::region* pRgn, bool bErase = FALSE);
+      virtual int32_t GetUpdateRgn(::draw2d::region* pRgn, bool bErase = FALSE);
       virtual void Invalidate(bool bErase = TRUE);
       virtual void InvalidateRect(LPCRECT lpRect, bool bErase = TRUE);
-      virtual void InvalidateRgn(::ca2::region* pRgn, bool bErase = TRUE);
+      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = TRUE);
       virtual void ValidateRect(LPCRECT lpRect);
-      virtual void ValidateRgn(::ca2::region* pRgn);
+      virtual void ValidateRgn(::draw2d::region* pRgn);
       virtual bool ShowWindow(int32_t nCmdShow);
       virtual void _001WindowMaximize();
       virtual void _001WindowRestore();
       virtual bool IsWindowVisible();
       virtual void ShowOwnedPopups(bool bShow = TRUE);
 
-      virtual ::ca2::graphics * GetDCEx(::ca2::region* prgnClip, uint32_t flags);
+      virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, uint32_t flags);
       virtual bool LockWindowUpdate();
       virtual void UnlockWindowUpdate();
 
 #ifdef WINDOWS
-      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL, ::ca2::region* prgnUpdate = NULL, UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL, ::draw2d::region* prgnUpdate = NULL, UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
 #else
-      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL, ::ca2::region* prgnUpdate = NULL, UINT flags = 0);
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL, ::draw2d::region* prgnUpdate = NULL, UINT flags = 0);
 #endif
 
 
@@ -223,7 +223,7 @@ namespace ca2
 #endif
 
       virtual bool DrawAnimatedRects(int32_t idAni, CONST RECT *lprcFrom, CONST RECT *lprcTo);
-      virtual bool DrawCaption(::ca2::graphics * pgraphics, LPCRECT lprc, UINT uFlags);
+      virtual bool DrawCaption(::draw2d::graphics * pgraphics, LPCRECT lprc, UINT uFlags);
 
    #if(WINVER >= 0x0500)
 
@@ -233,7 +233,7 @@ namespace ca2
 
    #if(_WIN32_WINNT >= 0x0501)
 
-      virtual bool PrintWindow(::ca2::graphics * pgraphics, UINT nFlags) const;
+      virtual bool PrintWindow(::draw2d::graphics * pgraphics, UINT nFlags) const;
 
    #endif   // _WIN32_WINNT >= 0x0501
 
@@ -242,7 +242,7 @@ namespace ca2
    #if(_WIN32_WINNT >= 0x0500)
 
       virtual bool SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, uint32_t dwFlags);
-      virtual bool UpdateLayeredWindow(::ca2::graphics * pDCDst, POINT *pptDst, SIZE *psize, ::ca2::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, uint32_t dwFlags);
+      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT *pptDst, SIZE *psize, ::draw2d::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, uint32_t dwFlags);
 
    #endif   // _WIN32_WINNT >= 0x0500
 
@@ -320,7 +320,7 @@ namespace ca2
       //virtual CScrollBar* GetScrollBarCtrl(int32_t nBar) const;
             // return sibling scrollbar control (or NULL if none)
 
-      virtual int32_t ScrollWindowEx(int32_t dx, int32_t dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::ca2::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags);
+      virtual int32_t ScrollWindowEx(int32_t dx, int32_t dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::draw2d::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags);
 
 
 #ifdef WINDOWSEX
@@ -372,7 +372,7 @@ namespace ca2
       virtual bool OpenClipboard();
 
    // Caret Functions
-      virtual void CreateCaret(::ca2::bitmap* pBitmap);
+      virtual void CreateCaret(::draw2d::bitmap* pBitmap);
       virtual void CreateSolidCaret(int32_t nWidth, int32_t nHeight);
       virtual void CreateGrayCaret(int32_t nWidth, int32_t nHeight);
       virtual void HideCaret();
@@ -442,13 +442,13 @@ namespace ca2
       DECL_GEN_SIGNAL(_001OnCreate)
 
 
-      HBRUSH OnCtlColor(::ca2::graphics * pgraphics, sp(::ca2::window) pWnd, UINT nCtlColor);
+      HBRUSH OnCtlColor(::draw2d::graphics * pgraphics, sp(::ca2::window) pWnd, UINT nCtlColor);
 
       DECL_GEN_SIGNAL(_001OnDestroy);
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       void OnEnterIdle(UINT nWhy, sp(::ca2::window) pWho);
-      bool OnEraseBkgnd(::ca2::graphics * pgraphics);
+      bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
 
 
 #ifdef WINDOWSEX
@@ -457,7 +457,7 @@ namespace ca2
 #endif
 
 
-      void OnIconEraseBkgnd(::ca2::graphics * pgraphics);
+      void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
       void OnKillFocus(sp(::ca2::window) pNewWnd);
       LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
@@ -669,9 +669,9 @@ namespace ca2
       LRESULT OnDisplayChange(WPARAM, LPARAM);
       LRESULT OnDragList(WPARAM, LPARAM);
 
-      virtual void _001DeferPaintLayeredWindowBackground(::ca2::graphics * pdc);
+      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
 
-      virtual void _001OnDeferPaintLayeredWindowBackground(::ca2::graphics * pdc);
+      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
 
       virtual LONG GetWindowLong(int32_t nIndex);
       virtual LONG SetWindowLong(int32_t nIndex, LONG lValue);

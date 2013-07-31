@@ -20,7 +20,7 @@ public:
    
 
 
-   virtual void _001OnDraw(::ca2::graphics * pdc);
+   virtual void _001OnDraw(::draw2d::graphics * pdc);
 
    virtual void _001GetListText(index iSel, string & str) const;
    virtual index _001FindListText(const string & str) const;

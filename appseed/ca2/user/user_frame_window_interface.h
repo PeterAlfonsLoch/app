@@ -61,8 +61,8 @@ namespace user
 
       
       virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
-      virtual void _000OnDraw(::ca2::graphics * pdc);
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _000OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual void install_message_handling(::ca2::message::dispatch * pinterface);
       DECL_GEN_VSIGNAL(_guserbaseOnInitialUpdate);
 

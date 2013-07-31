@@ -133,7 +133,7 @@ namespace user
 
    // Implementation
    public:
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual void message_handler(::ca2::signal_object * pobj);
       virtual ~control_bar();
    #ifdef DEBUG
@@ -176,9 +176,9 @@ namespace user
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual void PostNcDestroy();
 
-      virtual void DoPaint(::ca2::graphics * pgraphics);
-      void DrawBorders(::ca2::graphics * pgraphics, rect& rect);
-      void DrawGripper(::ca2::graphics * pgraphics, const rect& rect);
+      virtual void DoPaint(::draw2d::graphics * pgraphics);
+      void DrawBorders(::draw2d::graphics * pgraphics, rect& rect);
+      void DrawGripper(::draw2d::graphics * pgraphics, const rect& rect);
 
       // implementation helpers
       void CalcInsideRect(rect& rect, bool bHorz) const; // adjusts borders etc
@@ -186,7 +186,7 @@ namespace user
       virtual bool SetStatusText(int32_t nHit);
       void ResetTimer(UINT nEvent, UINT nTime);
       void EraseNonClient();
-      void EraseNonClient(::ca2::graphics * pdc);
+      void EraseNonClient(::draw2d::graphics * pdc);
 
       void GetBarInfo(BaseControlBarInfo* pInfo);
       void SetBarInfo(BaseControlBarInfo* pInfo, sp(::user::frame_window) pFrameWnd);
@@ -209,7 +209,7 @@ namespace user
       //DECL_GEN_SIGNAL(_001OnCancelMode)
 
    //   DECL_GEN_SIGNAL(_001OnPaint)
-   //   virtual void _001OnDraw(::ca2::graphics * pdc);
+   //   virtual void _001OnDraw(::draw2d::graphics * pdc);
 
       virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 

@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-void DoBar(::ca2::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_t cy, double dAnime);
+void DoBar(::draw2d::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_t cy, double dAnime);
 
 
-void DoBar(::ca2::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_t cy, double dAnime)
+void DoBar(::draw2d::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_t cy, double dAnime)
 {
    int32_t iDeltaDark = 23;
       int32_t iDeltaVermelho = 77;
@@ -43,12 +43,12 @@ file_manager_operation_info_view::file_manager_operation_info_view(sp(::ca2::app
 }
 
 
-void file_manager_operation_info_view::OnDraw(::ca2::graphics * pdc)
+void file_manager_operation_info_view::OnDraw(::draw2d::graphics * pdc)
 {
    UNREFERENCED_PARAMETER(pdc);
 }
 
-void file_manager_operation_info_view::_001OnDraw(::ca2::graphics * pdc)
+void file_manager_operation_info_view::_001OnDraw(::draw2d::graphics * pdc)
 {
       /*::FillRect(hdc, &rectProgress, g_hbrushProgress3);
       rectProgress.left++;

@@ -1,16 +1,18 @@
 #pragma once
 
+
 namespace visual
 {
 
+
    class buffered_graphics : 
-      public ::ca2::graphics_sp  
+      public ::draw2d::graphics_sp  
    {
    public:
 
       
-      ::ca2::bitmap_sp   m_spbitmap;
-      ::ca2::bitmap_sp   m_spbitmapBlend;
+      ::draw2d::bitmap_sp   m_spbitmap;
+      ::draw2d::bitmap_sp   m_spbitmapBlend;
 
 
       buffered_graphics();
@@ -22,4 +24,10 @@ namespace visual
 
    };
 
+
 } // namespace vis
+
+
+
+
+

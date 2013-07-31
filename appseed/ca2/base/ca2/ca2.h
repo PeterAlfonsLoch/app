@@ -525,20 +525,25 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          class user_exception;    // Message Box alert and stop operation
 
 
-      namespace ca2
+      namespace draw2d
       {
          class graphics;                   // a Display Context / HDC wrapper
-         class graphics_object;            // ::ca2::graphics_sp drawing tool
+         class object;            // ::draw2d::graphics_sp drawing tool
          class bitmap;           // a bitmap
          class palette;          // a palette
-         class rgn;
+         class region;
          class font;
          class pen;
          class brush;
-         class window;            // a window
-         class memory_graphics;         // ::ca2::graphics_sp for client of ::ca2::window
-         class window_graphics;         // ::ca2::graphics_sp for entire ::ca2::window
+         class memory_graphics;         // ::draw2d::graphics_sp for client of ::ca2::window
+         class window_graphics;         // ::draw2d::graphics_sp for entire ::ca2::window
          class paint_graphics;          // embeddable BeginPaint struct helper
+      }
+
+      namespace ca2
+      {
+         class window;            // a window
+         class job;
       }
 
    class command_target;            // a target for ::fontopus::user commands
@@ -620,13 +625,13 @@ CLASS_DECL_ca2 CArchive& operator>>(CArchive& ar, RECT& rect);
 
 
 
-CLASS_DECL_ca2 void __get_gray_bitmap(sp(::ca2::application) papp, const ::ca2::bitmap &rSrc, ::ca2::bitmap *pDest, COLORREF crBackground);
-CLASS_DECL_ca2 void __draw_gray_bitmap(sp(::ca2::application) papp, ::ca2::graphics * pgraphics, int32_t x, int32_t y, const ::ca2::bitmap &rSrc, COLORREF crBackground);
-CLASS_DECL_ca2 void __get_dithered_bitmap(sp(::ca2::application) papp, const ::ca2::bitmap &rSrc, ::ca2::bitmap *pDest, COLORREF cr1, COLORREF cr2);
-CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(::ca2::application) papp, ::ca2::graphics * pgraphics, int32_t x, int32_t y, const ::ca2::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca2 void __get_gray_bitmap(sp(::ca2::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
+CLASS_DECL_ca2 void __draw_gray_bitmap(sp(::ca2::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
+CLASS_DECL_ca2 void __get_dithered_bitmap(sp(::ca2::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(::ca2::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
 
 
-#include "ca2_graphic_classes.h"
+#include "graphics/draw2d/draw2d.h"
 
 
 
@@ -760,9 +765,6 @@ namespace user
 
 
 } // namespace user
-
-
-#include "ca2_graphics.h"
 
 
 //#include "user_element_2d.h"
@@ -1002,7 +1004,7 @@ struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
 
 // Classes declared in this file
 
-   //::ca2::graphics_sp
+   //::draw2d::graphics_sp
       class preview_dc;               // Virtual DC for print preview
 
    //command_target

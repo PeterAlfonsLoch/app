@@ -320,7 +320,7 @@ bool simple_menu_bar::Initialize(
    sp(image_list)   pimagelist,
    sp(image_list)   pimagelistDisabled,
    int_int_spreadset * prel,
-   ::ca2::font *        pfont)
+   ::draw2d::font *        pfont)
 {
 
 //   m_menuhook.Initialize(
@@ -406,7 +406,7 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }
 
-/*void simple_menu_bar::_001OnDraw(::ca2::graphics *pdc)
+/*void simple_menu_bar::_001OnDraw(::draw2d::graphics *pdc)
 {
    rect rectClient;
    GetClientRect(rectClient);
@@ -507,7 +507,7 @@ int32_t simple_menu_bar::_001HitTest(const POINT *lppoint)
 
 /*void simple_menu_bar::_001Layout()
 {
-   ::ca2::memory_graphics pdc(this);;
+   ::draw2d::memory_graphics pdc(this);;
    pdc->SelectObject(System.visual().font_central().GetMenuFont());
 
    size size;
@@ -624,7 +624,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 }
 */
 
-/*void simple_menu_bar::_001DrawItem(::ca2::graphics *pdc, int32_t iItem)
+/*void simple_menu_bar::_001DrawItem(::draw2d::graphics *pdc, int32_t iItem)
 {
    rect rectItem;
    rect rectText;
@@ -659,14 +659,14 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       rect rectShadow;
       _001GetItemRect(iItem, rectShadow, ElementItem);
 
-      ::ca2::pen_sp penShadow(get_app(), PS_SOLID, 1, RGB(127, 127, 127));
-      ::ca2::brush_sp brushShadow(get_app(), RGB(127, 127, 127));
-      ::ca2::pen * ppenOld = pdc->SelectObject(penShadow);
-      ::ca2::brush * pbrushOld = pdc->SelectObject(brushShadow);
+      ::draw2d::pen_sp penShadow(get_app(), PS_SOLID, 1, RGB(127, 127, 127));
+      ::draw2d::brush_sp brushShadow(get_app(), RGB(127, 127, 127));
+      ::draw2d::pen * ppenOld = pdc->SelectObject(penShadow);
+      ::draw2d::brush * pbrushOld = pdc->SelectObject(brushShadow);
       pdc->Rectangle(rectShadow);
 
-      ::ca2::pen_sp pen(get_app(), PS_SOLID, 1, RGB(92, 92, 92));
-      ::ca2::brush_sp brush(get_app(), RGB(255, 255, 255));
+      ::draw2d::pen_sp pen(get_app(), PS_SOLID, 1, RGB(92, 92, 92));
+      ::draw2d::brush_sp brush(get_app(), RGB(255, 255, 255));
       pdc->SelectObject(pen);
       pdc->SelectObject(brush);
       pdc->Rectangle(rectItem);
@@ -745,7 +745,7 @@ void simple_menu_bar::_001OnTimer(::ca2::signal_object * pobj)
 }
 
 /*
-bool simple_menu_bar::OnEraseBkgnd(::ca2::graphics * pgraphics)
+bool simple_menu_bar::OnEraseBkgnd(::draw2d::graphics * pgraphics)
 {
    return TRUE;
 }

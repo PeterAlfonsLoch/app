@@ -67,7 +67,7 @@ namespace html
          || pelemental->m_propertyset["PropertyBody"].is_empty())
             return;
 
-         ::ca2::graphics * pdc = pdata->m_pdc;
+         ::draw2d::graphics * pdc = pdata->m_pdc;
          if(pdc == NULL)
             return;
          font * pfont = pdata->get_font(m_pelemental);
@@ -165,7 +165,7 @@ namespace html
          {
 //            int32_t iIndex = -1;
 
-            ::ca2::graphics * pdc = pdata->m_pdc;
+            ::draw2d::graphics * pdc = pdata->m_pdc;
             if(pdc == NULL)
                return;
             if(pdata->m_layoutstate.m_cy <= 0)
@@ -201,7 +201,7 @@ namespace html
          {
 //            int32_t iIndex = -1;
 
-            ::ca2::graphics * pdc = pdata->m_pdc;
+            ::draw2d::graphics * pdc = pdata->m_pdc;
             if(pdc == NULL)
                return;
             pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
@@ -414,7 +414,7 @@ namespace html
          if(m_pelemental->m_elementalptra.get_size() > 0
          || m_pelemental->m_propertyset["PropertyBody"].is_empty())
             return;
-         ::ca2::graphics * pdc = pdata->m_pdc;
+         ::draw2d::graphics * pdc = pdata->m_pdc;
          ::html::impl::elemental::_001OnDraw(pdata);
 
 
@@ -745,7 +745,7 @@ namespace html
          }
       }
 
-      strsize text::char_hit_test(::ca2::graphics * pdc, int32_t px, int32_t py)
+      strsize text::char_hit_test(::draw2d::graphics * pdc, int32_t px, int32_t py)
       {
          string strTag;
          if(m_pelemental->m_propertyset.is_new_or_null("PropertyTag"))
@@ -803,7 +803,7 @@ namespace html
       {
       }
 
-      void text::_001OnDraw(::ca2::graphics * pgraphics)
+      void text::_001OnDraw(::draw2d::graphics * pgraphics)
       {
          UNREFERENCED_PARAMETER(pgraphics);
       }

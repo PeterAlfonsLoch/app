@@ -154,7 +154,7 @@ namespace gcom
          return GetMain().LoadNextImage(bSynch);
       }
 
-      void Interface::OnImageLoaded(::ca2::dib * pdib)
+      void Interface::OnImageLoaded(::draw2d::dib * pdib)
       {
          GetMain().OnImageLoaded(pdib);
       }
@@ -187,7 +187,7 @@ namespace gcom
          GetMain().ImageChangePostEvent(eevent);
       }
 
-      ::ca2::graphics & Interface::GetTransferDC()
+      ::draw2d::graphics & Interface::GetTransferDC()
       {
          return GetMain().GetTransferDC();
       }
@@ -222,14 +222,14 @@ namespace gcom
          return GetMain().IsEnabled();
       }
 
-      void Interface::BackViewRender(::ca2::graphics * pdc, LPCRECT lpcrect)
+      void Interface::BackViewRender(::draw2d::graphics * pdc, LPCRECT lpcrect)
       {
          class rect rect(lpcrect);
          BackViewRender(pdc, rect.left, rect.top, rect.width(), rect.height());
       }
 
       void Interface::BackViewRender(
-         ::ca2::graphics * pdc,
+         ::draw2d::graphics * pdc,
          int32_t x, int32_t y,
          int32_t w, int32_t h)
       {
@@ -245,7 +245,7 @@ namespace gcom
 
          single_lock sl(&graphics.m_mutex4Transfer, TRUE);
 
-         ::ca2::graphics & dcTransfer = graphics.GetTransferDC();
+         ::draw2d::graphics & dcTransfer = graphics.GetTransferDC();
 
          if(&dcTransfer == NULL)
             return;
@@ -280,7 +280,7 @@ namespace gcom
       // transition effect or visual effect in order to display to the
       // the ::fontopus::user an intereactive effect. At first design, the only needed
       // feedback is the final output ::ca2::window screenshot.
-      void Interface::BackViewFeedback(::ca2::graphics * pdc)
+      void Interface::BackViewFeedback(::draw2d::graphics * pdc)
       {
          UNREFERENCED_PARAMETER(pdc);
       }

@@ -38,7 +38,7 @@ namespace bergedge
       oswindow                  m_oswindowBergedge;
 
 
-      ::ca2::font_sp m_font;
+      ::draw2d::font_sp m_font;
       stringa m_straImagePath;
       string m_strCurrentImagePath;
       bool m_bDestroy;
@@ -61,14 +61,14 @@ namespace bergedge
          TimerBackView = 1000,
       };
 
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
 
 
       virtual void pre_translate_message(::ca2::signal_object * pobj);
 
       virtual void install_message_handling(::ca2::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
-      virtual void OnDraw(::ca2::graphics * pgraphics);
+      virtual void OnDraw(::draw2d::graphics * pgraphics);
       virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
 
       sp(::user::document) get_document();

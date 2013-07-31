@@ -164,7 +164,7 @@ namespace user
    }
 
 
-   void list::_001OnDraw(::ca2::graphics *pdc)
+   void list::_001OnDraw(::draw2d::graphics *pdc)
    {
 
       if(m_pdata != NULL)
@@ -181,7 +181,7 @@ namespace user
 
       m_penHighlight->create_solid(pdc, 2, ARGB(255, 0, 255, 255));
 
-      pdc->set_text_rendering(::ca2::text_rendering_anti_alias_grid_fit);
+      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
       if(m_bLockViewUpdate)
          return;
@@ -330,7 +330,7 @@ namespace user
       GetClientRect(rectClient);
 
       bool bHoverFont = false;
-      ::ca2::font  * pfont = _001GetFont();
+      ::draw2d::font  * pfont = _001GetFont();
       pdrawitem->m_pgraphics->SelectObject(pfont);
 
       m_pdrawlistitem->m_pfont = pfont;
@@ -457,7 +457,7 @@ namespace user
       }
 
       bool bHoverFont = false;
-      ::ca2::font  * pfont = _001GetFont();
+      ::draw2d::font  * pfont = _001GetFont();
       pdrawitem->m_pgraphics->SelectObject(pfont);
 
       pdrawitem->m_pfont = pfont;
@@ -534,7 +534,7 @@ namespace user
          (m_eview != ViewIcon ||
          ((m_iconlayout.m_iaDisplayToStrict.get_a(m_iItemHover) >= 0 && m_iconlayout.m_iaDisplayToStrict.get_a(m_iItemHover) < m_nItemCount)));
 
-      ::ca2::font * pfont;
+      ::draw2d::font * pfont;
       if(pdrawitem->m_bListItemHover)
       {
          System.visual().imaging().color_blend(pdrawitem->m_pgraphics, pdrawitem->m_rectItem, RGB(255, 255, 255), 128);
@@ -618,8 +618,8 @@ namespace user
       }
       if(rangeHighlight.has_item(pdrawitem->m_iDisplayItem))
       {
-         ::ca2::pen_sp penHighlight(allocer());
-         ::ca2::pen * ppenHighlight = _001GetPenHighlight();
+         ::draw2d::pen_sp penHighlight(allocer());
+         ::draw2d::pen * ppenHighlight = _001GetPenHighlight();
          class rect rectHighlight(pdrawitem->m_rectItem);
          rectHighlight.deflate(2, 2);
          pdrawitem->m_pgraphics->SelectObject(ppenHighlight);
@@ -1129,8 +1129,8 @@ namespace user
          }
       }
 
-      ::ca2::font * pfont = _001GetFont();
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::font * pfont = _001GetFont();
+      ::draw2d::memory_graphics pdc(allocer());
       pdc->SelectObject(pfont);
       size size;
       size = pdc->GetTextExtent("Ap");
@@ -3819,8 +3819,8 @@ namespace user
 
    void list::_001LayoutTopText()
    {
-      ::ca2::font * pfont = _001GetFont();
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::font * pfont = _001GetFont();
+      ::draw2d::memory_graphics pdc(allocer());
       pdc->SelectObject(pfont);
       array < size > sizea;
       m_dcextension.GetTextExtent(pdc, m_strTopText, sizea);
@@ -3973,21 +3973,21 @@ namespace user
 
    int32_t list::_001CalcItemWidth(index iItem, index iSubItem)
    {
-      ::ca2::memory_graphics pdc(allocer());
-      ::ca2::font * pfont = _001GetFont();
+      ::draw2d::memory_graphics pdc(allocer());
+      ::draw2d::font * pfont = _001GetFont();
       index cx = _001CalcItemWidth(pdc, pfont, iItem, iSubItem);
 
       return (int32_t) cx;
 
    }
 
-   int32_t list::_001CalcItemWidth(::ca2::graphics * pdc, ::ca2::font * pfont, index iItem, index iSubItem)
+   int32_t list::_001CalcItemWidth(::draw2d::graphics * pdc, ::draw2d::font * pfont, index iItem, index iSubItem)
    {
       pdc->SelectObject(pfont);
       return _001CalcItemWidth(pdc, iItem, iSubItem);
    }
 
-   int32_t list::_001CalcItemWidth(::ca2::graphics * pdc, index iItem, index iSubItem)
+   int32_t list::_001CalcItemWidth(::draw2d::graphics * pdc, index iItem, index iSubItem)
    {
 #ifdef WINDOWSEX
       ::image_list::info ii;
@@ -4676,8 +4676,8 @@ namespace user
    int32_t list::_001CalcColumnWidth(index iColumn)
    {
       UNREFERENCED_PARAMETER(iColumn);
-      ::ca2::memory_graphics pdc(allocer());
-      ::ca2::font * pfont = _001GetFont();
+      ::draw2d::memory_graphics pdc(allocer());
+      ::draw2d::font * pfont = _001GetFont();
       pdc->SelectObject(pfont);
       int32_t iMaxWidth = 0;
       ::count iCount = m_nItemCount;
@@ -4701,7 +4701,7 @@ namespace user
       _001SetColumnWidth(iColumn, _001CalcColumnWidth(iColumn));
    }
 
-   void list::_OnDraw(::ca2::graphics *pdc)
+   void list::_OnDraw(::draw2d::graphics *pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
    }
@@ -4736,23 +4736,23 @@ namespace user
 
 
 
-   ::ca2::pen * list::_001GetPenHighlight()
+   ::draw2d::pen * list::_001GetPenHighlight()
    {
       return m_penHighlight;
    }
 
-   ::ca2::pen * list::_001GetPenFocused()
+   ::draw2d::pen * list::_001GetPenFocused()
    {
       return m_penFocused;
 
    }
 
-   ::ca2::font * list::_001GetFont()
+   ::draw2d::font * list::_001GetFont()
    {
       return m_font;
    }
 
-   ::ca2::font * list::_001GetFontHover()
+   ::draw2d::font * list::_001GetFontHover()
    {
       return m_fontHover;
    }
@@ -5276,13 +5276,13 @@ namespace user
          visual::icon * picon;
          if(m_pcolumn->m_mapIcon.Lookup((int32_t)m_iImage, picon))
          {
-            m_pgraphics->set_alpha_mode(::ca2::alpha_mode_blend);
+            m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
             return m_pgraphics->DrawIcon(m_rectImage.top_left(), picon) != FALSE;
          }
       }
       else
       {
-         m_pgraphics->set_alpha_mode(::ca2::alpha_mode_blend);
+         m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
          return get_image_list()->draw(m_pgraphics, (int32_t) m_iImage, m_rectImage.top_left(), m_rectImage.size(), point(0,0), 0);
       }
       return false;
@@ -5342,11 +5342,11 @@ namespace user
             size.cx += 4;
             size.cy += 4;
 
-            ::ca2::dib_sp dib(m_plist->allocer());
+            ::draw2d::dib_sp dib(m_plist->allocer());
             dib->create(size.cx, size.cy);
             dib->Fill(0, 0, 0, 0);
             dib->get_graphics()->SetTextColor(ARGB(255, 255, 255, 255));
-            ::ca2::dib_sp dib2(m_plist->allocer());
+            ::draw2d::dib_sp dib2(m_plist->allocer());
             dib2->create(size.cx, size.cy);
             dib2->Fill(0, 0, 0, 0);
 

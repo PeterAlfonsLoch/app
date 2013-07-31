@@ -23,10 +23,10 @@ bool MetaButton::pre_create_window(CREATESTRUCT& cs)
 }
 
 void MetaButton::SetEllipseBrushs(
-   ::ca2::brush * pbrush,
-   ::ca2::brush * pbrushSel,
-   ::ca2::brush * pbrushFocus,
-   ::ca2::brush * pbrushDisabled)
+   ::draw2d::brush * pbrush,
+   ::draw2d::brush * pbrushSel,
+   ::draw2d::brush * pbrushFocus,
+   ::draw2d::brush * pbrushDisabled)
 {
 
    ASSERT(pbrush != NULL);
@@ -42,10 +42,10 @@ void MetaButton::SetEllipseBrushs(
 }
 
 void MetaButton::SetEllipsePens(
-   ::ca2::pen * ppen,
-   ::ca2::pen * ppenSel,
-   ::ca2::pen * ppenFocus,
-   ::ca2::pen * ppenDisabled)
+   ::draw2d::pen * ppen,
+   ::draw2d::pen * ppenSel,
+   ::draw2d::pen * ppenFocus,
+   ::draw2d::pen * ppenDisabled)
 {
 
    ASSERT(ppen != NULL);
@@ -76,7 +76,7 @@ void MetaButton::SetTextColors(
 }
 
 
-void MetaButton::_001OnDraw(::ca2::graphics * pdc)
+void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
 {
 
    //return;
@@ -128,7 +128,7 @@ void MetaButton::_001OnDraw(::ca2::graphics * pdc)
 
    rectEllipse.deflate(0, 0, 2, 2);
 
-   pdc->set_alpha_mode(::ca2::alpha_mode_blend);
+   pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
    pdc->DrawEllipse(rectEllipse);
    pdc->FillEllipse(rectEllipse);
 
@@ -137,7 +137,7 @@ void MetaButton::_001OnDraw(::ca2::graphics * pdc)
 
    pdc->set_font(GetFont());
    pdc->set_color(crText);
-   pdc->set_alpha_mode(::ca2::alpha_mode_set);
+   pdc->set_alpha_mode(::draw2d::alpha_mode_set);
    pdc->draw_text(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
 

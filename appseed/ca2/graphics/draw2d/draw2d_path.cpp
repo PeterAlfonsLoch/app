@@ -1,33 +1,34 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace draw2d
 {
 
-   graphics_path::graphics_path()
+
+   path::path()
    {
 
       m_bUpdated     = false;
       m_bFill        = false;
-      m_efillmode    = ::ca2::fill_mode_winding;
+      m_efillmode    = ::draw2d::fill_mode_winding;
       m_bHasPoint    = false;
 
    }
 
-   graphics_path::~graphics_path()
+   path::~path()
    {
 
    }
 
 
-   bool graphics_path::has_current_point()
+   bool path::has_current_point()
    {
 
       return m_bHasPoint;
 
    }
 
-   point graphics_path::last_point()
+   point path::last_point()
    {
 
       if(!m_bHasPoint)
@@ -39,7 +40,7 @@ namespace ca2
 
 
 
-   bool graphics_path::add_arc(const RECT & rect, int32_t iStart, int32_t iAngle)
+   bool path::add_arc(const RECT & rect, int32_t iStart, int32_t iAngle)
    {
 
       if(width(rect) <= 0 || height(rect) <= 0)
@@ -67,7 +68,7 @@ namespace ca2
 
    }
 
-   bool graphics_path::add_move(int32_t x, int32_t y)
+   bool path::add_move(int32_t x, int32_t y)
    {
 
       element e;
@@ -89,7 +90,7 @@ namespace ca2
 
    }
 
-   bool graphics_path::add_line(int32_t x, int32_t y)
+   bool path::add_line(int32_t x, int32_t y)
    {
 
       element e;
@@ -110,7 +111,7 @@ namespace ca2
 
    }
 
-   bool graphics_path::add_line(int32_t x, int32_t y, int32_t x2, int32_t y2)
+   bool path::add_line(int32_t x, int32_t y, int32_t x2, int32_t y2)
    {
 
       bool bOk1 = add_line(x, y);
@@ -122,7 +123,7 @@ namespace ca2
    }
 
 
-   bool graphics_path::begin_figure(bool bFill, ::ca2::e_fill_mode efillmode)
+   bool path::begin_figure(bool bFill, ::draw2d::e_fill_mode efillmode)
    {
 
       m_bFill = bFill;
@@ -137,7 +138,7 @@ namespace ca2
 
    }
 
-   bool graphics_path::end_figure(bool bClose)
+   bool path::end_figure(bool bClose)
    {
 
 
@@ -161,7 +162,7 @@ namespace ca2
 
 
 
-   bool graphics_path::add_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
+   bool path::add_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
       
       rect rect;
@@ -175,28 +176,28 @@ namespace ca2
 
    }
 
-   bool graphics_path::add_rect(LPCRECT lpcrect)
+   bool path::add_rect(LPCRECT lpcrect)
    {
 
       return add_rect(lpcrect->left, lpcrect->top, lpcrect->right, lpcrect->bottom);
 
    }
 
-   bool graphics_path::add_line(point p1, point p2)
+   bool path::add_line(point p1, point p2)
    {
 
       return add_line(p1.x, p1.y, p2.x, p2.y);
 
    }
 
-   bool graphics_path::add_line(point p)
+   bool path::add_line(point p)
    {
 
       return add_line(p.x, p.y);
 
    }
 
-   bool graphics_path::add_lines(const POINT * lppoint, int32_t nCount)
+   bool path::add_lines(const POINT * lppoint, int32_t nCount)
    {
 
       bool bOk = true;
@@ -212,14 +213,14 @@ namespace ca2
 
    }
 
-   bool graphics_path::add_move(point p)
+   bool path::add_move(point p)
    {
 
       return add_move(p.x, p.y);
 
    }
 
-   void * graphics_path::detach()
+   void * path::detach()
    {
 
       throw interface_only_exception(get_app());
@@ -227,7 +228,7 @@ namespace ca2
    }
 
    
-} // namespace ca2
+} // namespace draw2d
 
 
 

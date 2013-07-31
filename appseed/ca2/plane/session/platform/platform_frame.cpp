@@ -299,7 +299,7 @@ namespace platform
 
    }
 
-   void frame::_000OnDraw(::ca2::graphics * pgraphics)
+   void frame::_000OnDraw(::draw2d::graphics * pgraphics)
    {
       if(m_bOnDraw)
          return;

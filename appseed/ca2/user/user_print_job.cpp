@@ -34,7 +34,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      ::ca2::graphics * pgraphics = m_phprinter->create_graphics();
+      ::draw2d::graphics * pgraphics = m_phprinter->create_graphics();
       
       
       DOCINFO docinfo;

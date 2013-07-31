@@ -63,18 +63,18 @@ namespace gcom
          void install_message_handling(::ca2::message::dispatch * pinterface);
 
          virtual COLORREF GetBackgroundColor();
-         void BackViewRender(::ca2::graphics * pdc, int32_t x, int32_t y, int32_t w, int32_t h);
-         void BackViewRender(::ca2::graphics * pdc, LPCRECT lpcrect);
+         void BackViewRender(::draw2d::graphics * pdc, int32_t x, int32_t y, int32_t w, int32_t h);
+         void BackViewRender(::draw2d::graphics * pdc, LPCRECT lpcrect);
          void Enable(bool bEnable);
          bool IsEnabled();
          void GetCurrentImagePath(string & str);
          void SetCurrentImagePlacement(EImagePlacement eplacement);
          EImagePlacement GetCurrentImagePlacement();
          ::mutex & GetTransferMutex();
-         ::ca2::graphics & GetTransferDC();
+         ::draw2d::graphics & GetTransferDC();
          void SetBackgroundImageChangeInterval(uint32_t dwMillis);
          Main & GetMain();
-         void OnImageLoaded(::ca2::dib * pdib);
+         void OnImageLoaded(::draw2d::dib * pdib);
          void UpdateDrawingObjects();
          void OnDestroy();
 
@@ -84,7 +84,7 @@ namespace gcom
          thread *     GetIdleThread();
          thread *     GetHighestThread();
 
-         virtual void BackViewFeedback(::ca2::graphics * pdc);
+         virtual void BackViewFeedback(::draw2d::graphics * pdc);
          virtual void BackViewGetClientRect(LPRECT lprect);
          virtual void BackViewClientToScreen(LPRECT lprect);
          virtual void BackViewPostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam);

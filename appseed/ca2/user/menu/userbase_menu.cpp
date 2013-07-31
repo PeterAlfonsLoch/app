@@ -130,7 +130,7 @@ namespace user
    void menu::layout()
    {
 
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pdc(allocer());
 
       pdc->SelectObject(m_pschema->m_font);
       size size = pdc->GetTextExtent("XXXMMM");
@@ -208,7 +208,7 @@ namespace user
    }
 
 
-   void menu::_001OnDraw(::ca2::graphics *pdc)
+   void menu::_001OnDraw(::draw2d::graphics *pdc)
    {
 //      bool bEnabled = IsWindowEnabled();
       rect rectClient;

@@ -17,15 +17,15 @@ namespace user
    }
 
 
-   void menu_button::_001OnDraw(::ca2::graphics * pdc)
+   void menu_button::_001OnDraw(::draw2d::graphics * pdc)
    {
       button::_001OnDraw(pdc);
       rect rectClient;
       m_pguie->GetClientRect(rectClient);
       if(m_pitem != NULL && m_pitem->m_bPopup)
       {
-         ::ca2::brush_sp br(allocer(), RGB(0, 0, 0));
-         ::ca2::pen_sp pen(allocer());
+         ::draw2d::brush_sp br(allocer(), RGB(0, 0, 0));
+         ::draw2d::pen_sp pen(allocer());
          pen->create_solid(pdc, 1, RGB(0, 0, 0));
          pdc->SelectObject(pen);
          pdc->SelectObject(br);
@@ -66,7 +66,7 @@ namespace user
    }
 
 
-   void menu_button::_001DrawCheck(::ca2::graphics * pdc)
+   void menu_button::_001DrawCheck(::draw2d::graphics * pdc)
    {
       UINT uiImage = 0xffffffffu;
       if(m_pitem != NULL)

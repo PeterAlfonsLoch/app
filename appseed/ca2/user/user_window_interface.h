@@ -70,7 +70,7 @@ namespace user
 
       virtual bool _001IsWindowEnabled();
       virtual void _001EnableWindow(bool bEnable = true);
-      virtual void _000OnDraw(::ca2::graphics * pdc);
+      virtual void _000OnDraw(::draw2d::graphics * pdc);
 
       //window_interface * _001GetParent() const;
       //virtual bool _001IsFrameWnd();
@@ -127,13 +127,13 @@ namespace user
       virtual void UpdateWindow();
       virtual void Invalidate(bool bErase = TRUE);
       /*void InvalidateRect(LPCRECT lprect, bool bErase = TRUE);
-      void InvalidateRgn(::ca2::region* prgn, bool bErase = TRUE);
+      void InvalidateRgn(::draw2d::region* prgn, bool bErase = TRUE);
       void ValidateRect(LPCRECT lprect);
-      void ValidateRgn(::ca2::region* prgn);
+      void ValidateRgn(::draw2d::region* prgn);
       bool ShowWindow(int32_t iCmdShow);
       bool IsWindowVisible() const;
       bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
-         ::ca2::region* prgnUpdate = NULL,
+         ::draw2d::region* prgnUpdate = NULL,
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
       bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, UINT, uint32_t));
       bool KillTimer(int32_t nIDEvent);
@@ -163,7 +163,7 @@ namespace user
 
 
       virtual void _001RedrawWindow();
-      virtual void _001DrawBackground(::ca2::graphics * pdc, LPRECT lprect);
+      virtual void _001DrawBackground(::draw2d::graphics * pdc, LPRECT lprect);
 
 
       DECL_GEN_SIGNAL(_001OnCreate)
@@ -214,8 +214,8 @@ namespace user
       void TwfGetWndArray(::user::oswindow_array & oswindowa);
 
       virtual bool Redraw(rect_array & recta);
-      virtual bool Redraw(LPCRECT lprect = NULL, ::ca2::region * prgn = NULL);
-      virtual bool Redraw(::ca2::graphics * pdc);
+      virtual bool Redraw(LPCRECT lprect = NULL, ::draw2d::region * prgn = NULL);
+      virtual bool Redraw(::draw2d::graphics * pdc);
 
       void _001BaseWndInterfaceMap();
 

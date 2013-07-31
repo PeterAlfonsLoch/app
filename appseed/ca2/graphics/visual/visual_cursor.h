@@ -13,8 +13,8 @@ namespace visual
 
       e_cursor             m_ecursor;
       ::visual::dib_sp     m_dib;
-      ::ca2::dib_sp         m_dibWork;
-      ::ca2::dib_sp         m_dibWork2;
+      ::draw2d::dib_sp         m_dibWork;
+      ::draw2d::dib_sp         m_dibWork2;
       point                m_ptHotspot;
 
 
@@ -22,8 +22,8 @@ namespace visual
 
       bool load_from_file(const char * psz);
       bool load_from_matter(const char * pszMatter);
-      bool to(::ca2::graphics * pgraphics, int32_t x, int32_t y);
-      bool to(::ca2::graphics * pgraphics, point pt);
+      bool to(::draw2d::graphics * pgraphics, int32_t x, int32_t y);
+      bool to(::draw2d::graphics * pgraphics, point pt);
 
 
    };

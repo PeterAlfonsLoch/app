@@ -862,7 +862,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 }
 
 
-void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::ca2::graphics * pdc)
+void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
 {
    if(System.savings().is_trying_to_save(::ca2::resource_processing)
    || System.savings().is_trying_to_save(::ca2::resource_translucent_background))
@@ -878,7 +878,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::ca2::graphic
    }
 }
 
-void simple_frame_window::_000OnDraw(::ca2::graphics * pdc)
+void simple_frame_window::_000OnDraw(::draw2d::graphics * pdc)
 {
    if(!m_bVisible)
       return;
@@ -923,7 +923,7 @@ void simple_frame_window::_000OnDraw(::ca2::graphics * pdc)
 }
 
 
-void simple_frame_window::_001OnDraw(::ca2::graphics * pdc)
+void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
 {
 
    single_lock sl(m_pmutex, true);

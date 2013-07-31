@@ -20,7 +20,7 @@ namespace user
       return false;
    }
 
-   ::ca2::graphics * printer::create_graphics()
+   ::draw2d::graphics * printer::create_graphics()
    {
       return NULL;
    }

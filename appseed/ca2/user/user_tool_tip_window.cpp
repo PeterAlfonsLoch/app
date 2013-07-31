@@ -74,7 +74,7 @@ namespace user
 
       rect rect;
 
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pdc(allocer());
 
       GetToolRect(iTool, rect);
 
@@ -175,7 +175,7 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   bool tool_tip_window::CalcRect(::ca2::graphics * pdc, LPRECT lprect, LPCRECT lprectTool, const char * lpcsz)
+   bool tool_tip_window::CalcRect(::draw2d::graphics * pdc, LPRECT lprect, LPCRECT lprectTool, const char * lpcsz)
    {
       pdc->SelectObject(m_font);
       size size = pdc->GetTextExtent(lpcsz);
@@ -221,7 +221,7 @@ namespace user
    {
       throw not_implemented(get_app());
        /*CPaintDC spgraphics(this);
-      ::ca2::graphics * pdc = &spgraphics;
+      ::draw2d::graphics * pdc = &spgraphics;
       pdc->SelectObject(m_font);
       rect rectClient;
       GetClientRect(rectClient);
@@ -457,7 +457,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::UpdateDrawingObjects()
    {
-      /*::ca2::region rgn;
+      /*::draw2d::region rgn;
       rect rectClient;
       GetClientRect(rectClient);
       rect rectWindow;

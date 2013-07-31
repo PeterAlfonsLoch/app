@@ -58,7 +58,7 @@ namespace uinteraction
       }
 
 
-      void frame::_001OnDraw(::ca2::graphics * pca)
+      void frame::_001OnDraw(::draw2d::graphics * pca)
       {
 
          UNREFERENCED_PARAMETER(pca);

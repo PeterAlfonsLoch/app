@@ -13,7 +13,7 @@ calendar::calendar(sp(::ca2::application) papp) :
    m_iMonth = time.GetMonth();
 }
 
-void calendar::_001OnDraw(::ca2::graphics * pdc)
+void calendar::_001OnDraw(::draw2d::graphics * pdc)
 {
    pdc->SelectObject(m_font);
    ::datetime::time timeNow = ::datetime::time::get_current_time();

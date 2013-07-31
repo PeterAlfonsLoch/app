@@ -43,10 +43,10 @@ namespace user
       virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 
 
-      virtual void _001OnDraw(::ca2::graphics * pdc);
-      virtual void _001OnDrawVerisimple(::ca2::graphics * pdc);
-      virtual void _001OnDrawSimply(::ca2::graphics * pdc);
-      virtual void _001OnDrawStaticText(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnDrawVerisimple(::draw2d::graphics * pdc);
+      virtual void _001OnDrawSimply(::draw2d::graphics * pdc);
+      virtual void _001OnDrawStaticText(::draw2d::graphics * pdc);
 
 
       virtual void _001SetCurSel(index iSel);

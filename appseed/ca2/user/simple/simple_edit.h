@@ -12,7 +12,7 @@ public:
 
    virtual void pre_subclass_window();
 
-   virtual void _001OnDraw(::ca2::graphics * pdc);
+   virtual void _001OnDraw(::draw2d::graphics * pdc);
 
    virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 

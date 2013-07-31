@@ -1,18 +1,18 @@
 #pragma once
 
 
-namespace ca2
+namespace draw2d
 {
 
 
    class CLASS_DECL_ca2 palette :
-      virtual public ::ca2::graphics_object
+      virtual public ::draw2d::object
    {
    public:
 
 
       virtual bool CreatePalette(LPLOGPALETTE lpLogPalette);
-      virtual bool CreateHalftonePalette(::ca2::graphics * pgraphics);
+      virtual bool CreateHalftonePalette(::draw2d::graphics * pgraphics);
 
 
       virtual int32_t GetEntryCount();
@@ -34,7 +34,7 @@ namespace ca2
    typedef ::ca::smart_pointer < palette > palette_sp;
 
 
-} // namespace ca2
+} // namespace draw2d
 
 
 

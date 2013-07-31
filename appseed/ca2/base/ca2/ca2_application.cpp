@@ -2842,7 +2842,7 @@ namespace ca2
       }*/
    }
 
-   ::ca2::graphics * application::CreatePrinterDC()
+   ::draw2d::graphics * application::CreatePrinterDC()
    {
 //      UNREFERENCED_PARAMETER(spgraphics);
       throw not_implemented(get_app());
@@ -4203,7 +4203,7 @@ namespace ca2
       UNREFERENCED_PARAMETER(hInstTerm);
    }
 
-/*   ::ca2::graphics * application::graphics_from_os_data(void * pdata)
+/*   ::draw2d::graphics * application::graphics_from_os_data(void * pdata)
    {
       UNREFERENCED_PARAMETER(pdata);
       return NULL;
@@ -4499,7 +4499,7 @@ namespace ca2
       ::ca2::application_base::m_p->set_thread(pthread);
    }
 
-/*   ::ca2::graphics * application::graphics_from_os_data(void * pdata)
+/*   ::draw2d::graphics * application::graphics_from_os_data(void * pdata)
    {
       return ::ca2::application_base::m_p->graphics_from_os_data(pdata);
    }*/

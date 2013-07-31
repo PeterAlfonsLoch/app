@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace ca2
+namespace draw2d
 {
 
 
-   class CLASS_DECL_ca2 graphics_object :
+   class CLASS_DECL_ca2 object :
       virtual public ::ca2::object
    {
    public:
@@ -14,7 +14,7 @@ namespace ca2
       bool  m_bUpdated;
 
 
-      virtual ~graphics_object();
+      virtual ~object();
 
 
       virtual bool is_set();
@@ -36,8 +36,8 @@ namespace ca2
       virtual UINT GetObjectType() const;
       virtual bool CreateStockObject(int32_t nIndex);
       virtual bool UnrealizeObject();
-      virtual bool operator==(const ::ca2::graphics_object& obj) const;
-      virtual bool operator!=(const ::ca2::graphics_object& obj) const;
+      virtual bool operator==(const ::draw2d::object & obj) const;
+      virtual bool operator!=(const ::draw2d::object & obj) const;
 
       virtual void dump(dump_context & dumpcontext) const;
       virtual void assert_valid() const;
@@ -46,7 +46,7 @@ namespace ca2
    };
 
    
-} // namespace ca2
+} // namespace draw2d
 
 
 

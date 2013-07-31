@@ -25,13 +25,13 @@ namespace visual
       //uint32_t         m_dwSize;
       //uint32_t         m_dwAllocation;
       //int32_t            m_iUsedGlyphs;
-      ::ca2::graphics *         m_pDC;
+      ::draw2d::graphics *         m_pDC;
       //static mutex m_mutex;
 
       glyph_set      m_glyphset;
 
-      ::ca2::font_sp        m_spfont;
-      ::ca2::font *         m_pfontOld;
+      ::draw2d::font_sp        m_spfont;
+      ::draw2d::font *         m_pfontOld;
 
       LPBYTE         m_lpBitmap;
 
@@ -60,16 +60,16 @@ namespace visual
       void UnselectFont();
       void ClearDC();
       void SelectFont();
-      void SetDC(::ca2::graphics * pgraphics);
+      void SetDC(::draw2d::graphics * pgraphics);
       void EmbossedTextOut(
-         ::ca2::graphics                  * pgraphics,
+         ::draw2d::graphics                  * pgraphics,
          LPCRECT               lpcrect,
          double               dRateX,
          double               dHeight,
          string                 &str);
 
       void EmbossedTextOut(
-         ::ca2::graphics                     *pdc,
+         ::draw2d::graphics                     *pdc,
          LPCRECT               lpcrect,
          double               dRateX,
          double               dHeight,
@@ -79,7 +79,7 @@ namespace visual
          int32_t                  iOffset);
 
       void SimpleTextOut(
-         ::ca2::graphics                     *pdc,
+         ::draw2d::graphics                     *pdc,
          int32_t                     x,
          int32_t                     y,
          string                 &str,
@@ -87,7 +87,7 @@ namespace visual
          int32_t                     iCharsPositions);
 
       void TextOutEx(
-         ::ca2::graphics                  *pdc,
+         ::draw2d::graphics                  *pdc,
          LPCRECT               lpcrect,
          double               dRateX,
          double               dHeight,
@@ -97,7 +97,7 @@ namespace visual
          int32_t                  iOffset,
          int32_t                  iEffect);
 
-      ::ca2::font * GetFont();
+      ::draw2d::font * GetFont();
       void clear();
 
    };

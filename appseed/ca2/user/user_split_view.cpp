@@ -54,14 +54,14 @@ namespace user
       return view::pre_create_window(cs);
    }
 
-   void split_view::_001OnDraw(::ca2::graphics *pdc)
+   void split_view::_001OnDraw(::draw2d::graphics *pdc)
    {
 
       int32_t i;
       rect rect;
       COLORREF cr = ARGB(184, 92, 92, 80);
       //COLORREF crBack = ARGB(77, 230, 230, 210);
-      //pdc->set_alpha_mode(::ca2::alpha_mode_blend);
+      //pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
       for(i = 0; i < get_pane_count(); i++)
       {
          CalcPaneRect(i, &rect);

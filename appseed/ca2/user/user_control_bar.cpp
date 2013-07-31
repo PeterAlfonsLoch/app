@@ -6,7 +6,7 @@ namespace user
 {
    
    
-   void DrawGripperElement001(::ca2::graphics * pdc, int32_t ix, int32_t iy);
+   void DrawGripperElement001(::draw2d::graphics * pdc, int32_t ix, int32_t iy);
    
 
    control_bar::control_bar()
@@ -456,7 +456,7 @@ namespace user
       return;
    }
 
-   void control_bar::_001OnDraw(::ca2::graphics * pdc)
+   void control_bar::_001OnDraw(::draw2d::graphics * pdc)
    {
       // background is already filled in gray
       //CPaintDC spgraphics(this);
@@ -492,7 +492,7 @@ namespace user
       DrawGripper(&spgraphics, rectWindow);*/
    }
 
-   void control_bar::EraseNonClient(::ca2::graphics * pdc)
+   void control_bar::EraseNonClient(::draw2d::graphics * pdc)
    {
       // get ::ca2::window DC that is clipped to the non-client area
       rect rectClient;
@@ -765,7 +765,7 @@ namespace user
       return FALSE;
    }
 
-   void control_bar::DoPaint(::ca2::graphics * pgraphics)
+   void control_bar::DoPaint(::draw2d::graphics * pgraphics)
    {
       ASSERT_VALID(this);
       ASSERT_VALID(pgraphics);
@@ -777,7 +777,7 @@ namespace user
       DrawGripper(pgraphics, rect);
    }
 
-   void control_bar::DrawBorders(::ca2::graphics * pdc, rect& rect)
+   void control_bar::DrawBorders(::draw2d::graphics * pdc, rect& rect)
    {
       ASSERT_VALID(this);
       ASSERT_VALID(pdc);
@@ -850,8 +850,8 @@ namespace user
 
          if(dwStyle & CBRS_GRIPPER)
          {
-            ::ca2::pen_sp pen(pdc, 1, clr);
-            ::ca2::pen * ppenOld = pdc->SelectObject(pen);
+            ::draw2d::pen_sp pen(pdc, 1, clr);
+            ::draw2d::pen * ppenOld = pdc->SelectObject(pen);
             pdc->MoveTo(0, 7);
             pdc->LineTo(7, 0);
             pdc->SelectObject(ppenOld);
@@ -915,7 +915,7 @@ namespace user
    #define CX_BORDER_GRIPPER 2
    #define CY_BORDER_GRIPPER 2
 
-   void DrawGripperElement001(::ca2::graphics * pdc, int32_t ix, int32_t iy)
+   void DrawGripperElement001(::draw2d::graphics * pdc, int32_t ix, int32_t iy)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(ix);
@@ -929,7 +929,7 @@ namespace user
       pdc->SetPixel(ix + 2, iy + 3, afxData.clrBtnShadow);*/
    }
 
-   void control_bar::DrawGripper(::ca2::graphics * pdc, const rect& rect)
+   void control_bar::DrawGripper(::draw2d::graphics * pdc, const rect& rect)
    {
       // only draw the gripper if not floating and gripper is specified
       if ((m_dwStyle & (CBRS_GRIPPER|CBRS_FLOATING)) == CBRS_GRIPPER)

@@ -38,7 +38,7 @@ public:
    bool set_text_color(COLORREF cr);
 
    bool is_null();
-   bool set_alpha_mode(::ca2::e_alpha_mode emode);
+   bool set_alpha_mode(::draw2d::e_alpha_mode emode);
    
    bool rectangle(LPCRECT lpcrect);
    bool draw_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2, simple_pen & pen);
@@ -47,7 +47,7 @@ public:
    void fill_solid_rect(LPCRECT lpRect, COLORREF clr);
 
 
-   bool fill_polygon(POINT * p, int32_t iCount, ::ca2::e_fill_mode);
+   bool fill_polygon(POINT * p, int32_t iCount, ::draw2d::e_fill_mode);
 
 
    bool draw_path(simple_path & path, simple_pen & pen);

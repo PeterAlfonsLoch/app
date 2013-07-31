@@ -20,7 +20,7 @@ namespace user
 #endif
    }
 
-   int32_t tool_bar_control::AddBitmap(int32_t nNumButtons, ::ca2::bitmap* pBitmap)
+   int32_t tool_bar_control::AddBitmap(int32_t nNumButtons, ::draw2d::bitmap* pBitmap)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow());

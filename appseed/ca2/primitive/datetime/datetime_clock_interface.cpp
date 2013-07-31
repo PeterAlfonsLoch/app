@@ -5,7 +5,7 @@ clock_interface::clock_interface(sp(::ca2::application) papp) :
 {
 }
 
-void clock_interface::_001OnDraw(::ca2::graphics * pdc)
+void clock_interface::_001OnDraw(::draw2d::graphics * pdc)
 {
    UNREFERENCED_PARAMETER(pdc);
 }

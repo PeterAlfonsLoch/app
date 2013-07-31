@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnDraw(::ca2::graphics * pdc)
+   void combo_list::_001OnDraw(::draw2d::graphics * pdc)
    {
 
       if(m_pcombo == NULL)
@@ -57,7 +57,7 @@ namespace user
 
    }
 
-   void combo_list::_001OnDrawVerisimple(::ca2::graphics * pdc)
+   void combo_list::_001OnDrawVerisimple(::draw2d::graphics * pdc)
    {
 
       ::count ca = m_pcombo->_001GetListCount();
@@ -68,7 +68,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca2::brush_sp br(allocer());
+      ::draw2d::brush_sp br(allocer());
 
       br->create_solid(ARGB(230, 255, 255, 255));
 
@@ -93,7 +93,7 @@ namespace user
       int32_t dSize = (int32_t) ( _001GetItemHeight() * 0.7);
 
       pdc->m_fontxyz.m_dFontSize = dSize;
-      pdc->m_fontxyz.m_eunitFontSize = ::ca2::unit_pixel;
+      pdc->m_fontxyz.m_eunitFontSize = ::draw2d::unit_pixel;
       pdc->m_fontxyz.m_bUpdated = false;
 
       pdc->SelectObject(br);
@@ -106,7 +106,7 @@ namespace user
          {
             if(rectItem.contains(ptCursor))
             {
-               ::ca2::pen_sp pen(allocer());
+               ::draw2d::pen_sp pen(allocer());
                pen->create_solid(pdc, m_iItemHeight / 8, ARGB(230, 77, 184, 63));
                pdc->SelectObject(pen);
                pdc->DrawRectangle(rectItem);
@@ -140,7 +140,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnDrawSimply(::ca2::graphics * pdc)
+   void combo_list::_001OnDrawSimply(::draw2d::graphics * pdc)
    {
 
       ::count ca = m_pcombo->_001GetListCount();
@@ -151,7 +151,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      ::ca2::brush_sp br(allocer());
+      ::draw2d::brush_sp br(allocer());
 
       br->create_solid(ARGB(230, 255, 255, 255));
 
@@ -176,7 +176,7 @@ namespace user
       int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
 
       pdc->m_fontxyz.m_dFontSize = dSize;
-      pdc->m_fontxyz.m_eunitFontSize = ::ca2::unit_pixel;
+      pdc->m_fontxyz.m_eunitFontSize = ::draw2d::unit_pixel;
       pdc->m_fontxyz.m_bUpdated = false;
 
       pdc->SelectObject(br);
@@ -189,7 +189,7 @@ namespace user
          {
             if(rectItem.contains(ptCursor))
             {
-               ::ca2::pen_sp pen(allocer());
+               ::draw2d::pen_sp pen(allocer());
                pen->create_solid(pdc, m_iItemHeight / 8, ARGB(230, 77, 184, 63));
                pdc->SelectObject(pen);
                pdc->DrawRectangle(rectItem);
@@ -225,12 +225,12 @@ namespace user
    void combo_list::query_full_size(LPSIZE lpsize) const
    {
 
-      ::ca2::graphics_sp pdc(((combo_list *) this)->allocer());
+      ::draw2d::graphics_sp pdc(((combo_list *) this)->allocer());
 
 
       pdc->CreateCompatibleDC(NULL);
 
-      ::ca2::dib_sp tameshi(((combo_list *) this)->allocer());
+      ::draw2d::dib_sp tameshi(((combo_list *) this)->allocer());
 
       tameshi->create(100, 100);
 
@@ -240,7 +240,7 @@ namespace user
 
       pdc->m_fontxyz.m_dFontSize = dSize;
 
-      pdc->m_fontxyz.m_eunitFontSize = ::ca2::unit_pixel;
+      pdc->m_fontxyz.m_eunitFontSize = ::draw2d::unit_pixel;
 
       pdc->m_fontxyz.m_bUpdated = false;
 

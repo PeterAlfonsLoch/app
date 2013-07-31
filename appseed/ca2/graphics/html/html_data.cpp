@@ -177,7 +177,7 @@ namespace html
       m_elemental.load(this, m_ptag);
    }
 
-   void data::implement(::ca2::graphics * pdc)
+   void data::implement(::draw2d::graphics * pdc)
    {
       int32_t iCount = 24;
       while(m_bImplement && iCount >= 0)
@@ -221,7 +221,7 @@ namespace html
    }
 
 
-   void data::layout(::ca2::graphics * pdc)
+   void data::layout(::draw2d::graphics * pdc)
    {
 
 
@@ -244,7 +244,7 @@ namespace html
       m_elemental.layout(this);
    }
 
-   void data::_001OnDraw(::ca2::graphics * pdc)
+   void data::_001OnDraw(::draw2d::graphics * pdc)
    {
       if(m_bImplement || m_bLayout)
          return;
@@ -562,7 +562,7 @@ restart:
    void data::implement_and_layout(html_form * pform)
    {
 
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pdc(allocer());
 
       m_pguie  = pform;
 

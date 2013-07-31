@@ -96,7 +96,7 @@ public:
    DECL_GEN_SIGNAL(_001OnNcActivate);
    DECL_GEN_SIGNAL(_001OnDisplayChange);
 
-   void _001OnDeferPaintLayeredWindowBackground(::ca2::graphics * pdc);
+   void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
 
 
 
@@ -116,8 +116,8 @@ public:
    virtual bool pre_create_window(CREATESTRUCT& cs);
    virtual void pre_translate_message(::ca2::signal_object * pobj);
 
-   virtual void _000OnDraw(::ca2::graphics * pdc);
-   virtual void _001OnDraw(::ca2::graphics * pdc);
+   virtual void _000OnDraw(::draw2d::graphics * pdc);
+   virtual void _001OnDraw(::draw2d::graphics * pdc);
 
 
 

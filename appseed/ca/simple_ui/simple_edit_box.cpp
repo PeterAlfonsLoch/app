@@ -69,7 +69,7 @@ return pchParam;
 void simple_edit_box::draw_this(simple_graphics & g)
 {
 
-   g.set_alpha_mode(::ca2::alpha_mode_blend);
+   g.set_alpha_mode(::draw2d::alpha_mode_blend);
 
    simple_brush br;
 

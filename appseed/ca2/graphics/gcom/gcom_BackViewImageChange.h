@@ -26,7 +26,7 @@ namespace gcom
          string                     m_wstrCurrentImagePath;
          uint32_t                      m_dwLoadStartTime;
 
-         ::ca2::dib_sp               m_spdib;
+         ::draw2d::dib_sp               m_spdib;
 
          struct NO_PRECISION_TIMER
          {

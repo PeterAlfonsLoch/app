@@ -13,11 +13,11 @@ namespace user
       bool  m_bHover;            // set if cursor is over the button
       bool  m_bCommandEnable;    // set if command is enabled
 
-      ::ca2::bitmap m_bitmap;          // not pressed default bitmap
-      ::ca2::bitmap m_bitmapSel;       // pressed bitmap
-      ::ca2::bitmap m_bitmapFocus;     // focus bitmap
-      ::ca2::bitmap m_bitmapDisabled;  // disabled bitmap
-      ::ca2::bitmap m_bitmapHover;     // hover bitmap
+      ::draw2d::bitmap m_bitmap;          // not pressed default bitmap
+      ::draw2d::bitmap m_bitmapSel;       // pressed bitmap
+      ::draw2d::bitmap m_bitmapFocus;     // focus bitmap
+      ::draw2d::bitmap m_bitmapDisabled;  // disabled bitmap
+      ::draw2d::bitmap m_bitmapHover;     // hover bitmap
 
 #ifdef WINDOWS
       bool LoadBitmaps(UINT nIDBitmapResource,

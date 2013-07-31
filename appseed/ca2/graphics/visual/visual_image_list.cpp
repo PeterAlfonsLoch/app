@@ -55,7 +55,7 @@ bool image_list::create(int32_t cx, int32_t cy, UINT nFlags, int32_t nInitial, i
 }
 
 
-bool image_list::realize(::ca2::graphics * pdc)
+bool image_list::realize(::draw2d::graphics * pdc)
 {
 
    return m_spdib->realize(pdc);
@@ -77,7 +77,7 @@ bool image_list::create(sp(image_list) pimagelist)
 
 /*bool image_list::create(const char * lpszBitmapID, int32_t cx, int32_t nGrow, COLORREF crMask)
 {
-   ::ca2::bitmap bitmap;
+   ::draw2d::bitmap bitmap;
    if(!bitmap.LoadBitmap(lpszBitmapID))
       return false;
 
@@ -87,7 +87,7 @@ bool image_list::create(sp(image_list) pimagelist)
 
    m_spdib->create(bm.bmWidth, bm.bmHeight);
 
-   ::ca2::graphics_sp spgraphics(allocer());
+   ::draw2d::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(NULL);
    spgraphics->SelectObject(bitmap);
    m_spdib->from(spgraphics);
@@ -107,7 +107,7 @@ int32_t image_list::get_image_count() const
 
 }
 
-bool image_list::draw(::ca2::graphics *pdc, int32_t iImage, point pt, int32_t iFlag)
+bool image_list::draw(::draw2d::graphics *pdc, int32_t iImage, point pt, int32_t iFlag)
 {
 
    UNREFERENCED_PARAMETER(iFlag);
@@ -117,7 +117,7 @@ bool image_list::draw(::ca2::graphics *pdc, int32_t iImage, point pt, int32_t iF
 }
 
 
-bool image_list::draw(::ca2::graphics *pdc, int32_t iImage, point pt, int32_t iFlag, BYTE alpha)
+bool image_list::draw(::draw2d::graphics *pdc, int32_t iImage, point pt, int32_t iFlag, BYTE alpha)
 {
 
    UNREFERENCED_PARAMETER(iFlag);
@@ -129,7 +129,7 @@ bool image_list::draw(::ca2::graphics *pdc, int32_t iImage, point pt, int32_t iF
 
 }
 
-bool image_list::draw(::ca2::graphics * pdc, int32_t iImage, point pt, size sz, point ptOffset, int32_t iFlag)
+bool image_list::draw(::draw2d::graphics * pdc, int32_t iImage, point pt, size sz, point ptOffset, int32_t iFlag)
 {
 
    UNREFERENCED_PARAMETER(iFlag);
@@ -157,8 +157,8 @@ int32_t image_list::add(::visual::icon * picon)
       _grow();
    }
 
-   ::ca2::brush_sp brush(allocer(), RGB(192, 192, 192));
-   m_spdib->get_graphics()->set_alpha_mode(::ca2::alpha_mode_set);
+   ::draw2d::brush_sp brush(allocer(), RGB(192, 192, 192));
+   m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
    m_spdib->get_graphics()->FillSolidRect(iItem * m_size.cx, 0, m_size.cx, m_size.cy, 0);
    //COLORREF crMask = m_spdib->get_graphics()->GetPixel(iItem * m_size.cx, 0);
 
@@ -169,13 +169,13 @@ int32_t image_list::add(::visual::icon * picon)
    m_spdib->get_graphics()->DrawIcon(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, NULL, DI_IMAGE);
 #endif
 
-   //::ca2::dib_sp dibAlpha(get_app());
+   //::draw2d::dib_sp dibAlpha(get_app());
    //dibAlpha->create(m_size.cx, m_size.cy);
 
    //dibAlpha->Fill(255, 255, 255);
    //dibAlpha->SetIconMask(picon, m_size.cx, m_size.cy);
 
- //  ::ca2::graphics_sp dcAlpha;
+ //  ::draw2d::graphics_sp dcAlpha;
 //   dcAlpha.CreateCompatibleDC(NULL);
 //   dcAlpha.SelectObject(dibAlpha->m_hbitmap);
 
@@ -187,9 +187,9 @@ int32_t image_list::add(::visual::icon * picon)
       SRCCOPY);*/
 
 
-   /*::ca2::dib_sp dibIcon;
+   /*::draw2d::dib_sp dibIcon;
    dibIcon.create(m_size.cx, m_size.cy);
-   ::ca2::graphics_sp dcIcon;
+   ::draw2d::graphics_sp dcIcon;
    dcIcon.CreateCompatibleDC(NULL);
    dcIcon.SelectObject(dibIcon.m_hbitmap);
 
@@ -256,7 +256,7 @@ int32_t image_list::add_file(const char * lpcsz)
 
    //m_spdib->get_graphics()->FillSolidRect(iItem * m_size.cx, 0, m_size.cx, m_size.cy, RGB(192, 192, 192));
 
-   m_spdib->get_graphics()->set_alpha_mode(::ca2::alpha_mode_set);
+   m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
    m_spdib->get_graphics()->BitBlt(iItem * m_size.cx, 0, m_size.cx, m_size.cy, dib->get_graphics(), 0, 0, SRCCOPY);
 
@@ -302,8 +302,8 @@ bool image_list::_grow()
    }
    else
    {
-      ::ca2::dib_sp spdib(allocer());
-      ::ca2::dib_sp dibAlpha(allocer());
+      ::draw2d::dib_sp spdib(allocer());
+      ::draw2d::dib_sp dibAlpha(allocer());
 
       spdib->Paste(m_spdib);
 
@@ -311,7 +311,7 @@ bool image_list::_grow()
 
       m_spdib->defer_realize(spdib->get_graphics());
 
-      m_spdib->get_graphics()->set_alpha_mode(::ca2::alpha_mode_set);
+      m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
       m_spdib->get_graphics()->BitBlt(0, 0, spdib->cx, spdib->cy, spdib->get_graphics(), 0, 0, SRCCOPY);
 
@@ -335,10 +335,10 @@ bool image_list::get_image_info(int32_t nImage, info * pinfo) const
       if(m_spdib.is_null())
          return FALSE;
 
-      if(const_cast < ::ca2::dib_sp & > (m_spdib)->get_bitmap().is_null())
+      if(const_cast < ::draw2d::dib_sp & > (m_spdib)->get_bitmap().is_null())
          return FALSE;
 
-      if((HBITMAP) const_cast < ::ca2::dib_sp & > (m_spdib)->get_bitmap()->get_os_data() == NULL)
+      if((HBITMAP) const_cast < ::draw2d::dib_sp & > (m_spdib)->get_bitmap()->get_os_data() == NULL)
          return FALSE;
 
       pinfo->m_rect.left      = nImage * m_size.cx;
