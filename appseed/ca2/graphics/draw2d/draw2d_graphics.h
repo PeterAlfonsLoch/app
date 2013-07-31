@@ -35,6 +35,9 @@ namespace draw2d
       e_text_rendering              m_etextrendering;
       double                        m_dFontFactor;
 
+      // advanced use and implementation
+      bool                          m_bPrinting;
+      //virtual HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
 
       graphics();
 
@@ -544,9 +547,6 @@ namespace draw2d
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
-      // advanced use and implementation
-      bool m_bPrinting;
-      //virtual HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
 
       virtual bool SelectFont(::draw2d::font * pfont);
       virtual bool selectFont(::draw2d::font * pfont);
@@ -554,6 +554,10 @@ namespace draw2d
       virtual bool SetFont(::draw2d::font * pfont);
       virtual bool setFont(::draw2d::font * pfont);
       virtual bool set_font(::draw2d::font * pfont);
+
+      virtual bool create_client_dc(::ca2::window * pwnd);
+      virtual bool create_window_dc(::ca2::window * pwnd);
+      virtual bool release_dc(::ca2::window * pwnd);
 
    };
 

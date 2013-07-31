@@ -358,6 +358,11 @@ namespace ca2
       if(!ca_process_initialize())
          return false;
 
+      if(is_system())
+      {
+         draw2d_factory_exchange();
+      }
+
       if(!::ca2::application_base::m_p->process_initialize())
          return false;
 
@@ -646,6 +651,38 @@ namespace ca2
 
    }
 
+
+   void application::draw2d_factory_exchange()
+   {
+
+      string strLibrary = draw2d_get_default_library_name();
+
+      if(strLibrary.is_empty())
+         strLibrary = "draw2d_cairo";
+
+      ::ca::library & library = m_libraryDraw2d;
+
+      if(!library.open(strLibrary))
+      {
+         if(strLibrary != "draw2d_cairo")
+         {
+            if(!library.open("draw2d_cairo"))
+            {
+               throw "failed to do draw2d factory exchange";
+            }
+         }
+         else
+         {
+            throw "failed to do draw2d factory exchange";
+         }
+      }
+         
+
+      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange > ("ca2_factory_exchange");
+
+      pfn_ca2_factory_exchange(this);
+
+   }
 
    void application::on_request(sp(::ca2::create_context) pcreatecontext)
    {
@@ -5803,6 +5840,17 @@ ret:
       //throw todo(get_app());
 
 #endif
+
+   }
+
+
+   string application::draw2d_get_default_library_name()
+   {
+
+      if(::ca2::application_base::m_p == NULL)
+         return "draw2d_cairo";
+
+      return ::ca2::application_base::m_p->draw2d_get_default_library_name();
 
    }
 

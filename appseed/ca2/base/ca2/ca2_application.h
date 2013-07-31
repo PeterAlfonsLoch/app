@@ -216,7 +216,7 @@ namespace ca2
 
       virtual bool update_module_paths() = 0;
 
-
+      virtual string draw2d_get_default_library_name() = 0;
 
    };
 
@@ -443,6 +443,9 @@ namespace ca2
       sp(::user::interaction_ptr_array) m_pframea;
 
 
+      ::ca::library m_libraryDraw2d;
+
+
       //CCommandLineInfo* m_pCmdInfo;
 
       ATOM m_atomApp, m_atomSystemTopic;   // for DDE open
@@ -660,6 +663,7 @@ namespace ca2
 
 
       virtual void Ex1OnFactoryExchange();
+      virtual void draw2d_factory_exchange();
 
       // open named file, trying to match a regsitered
       // document template to it.
@@ -1194,9 +1198,9 @@ namespace ca2
       virtual int32_t send_simple_command(const char * psz, void * osdataSender);
       virtual int32_t send_simple_command(void * osdata, const char * psz, void * osdataSender);
 
-            virtual ::user::printer * get_printer(const char * pszDeviceName);
+      virtual ::user::printer * get_printer(const char * pszDeviceName);
 
-
+      virtual string draw2d_get_default_library_name();
 
 
 

@@ -200,6 +200,8 @@ namespace draw2d
        
       virtual void draw_bitmap(int32_t dx, int32_t dy, FT_Bitmap * bitmap, FT_Int x, FT_Int y);
 
+      virtual bool update_window(::ca2::window * pwnd, ::ca2::signal_object * pobj);
+      virtual bool print_window(::ca2::window * pwnd, ::ca2::signal_object * pobj);
 
 
    };

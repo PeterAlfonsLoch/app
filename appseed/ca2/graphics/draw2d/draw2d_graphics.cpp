@@ -2539,6 +2539,32 @@ namespace draw2d
    }
 
 
+   bool graphics::create_client_dc(::ca2::window * pwnd)
+   { 
+      
+      UNREFERENCED_PARAMETER(pwnd);
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   bool graphics::create_window_dc(::ca2::window * pwnd)
+   {
+
+      UNREFERENCED_PARAMETER(pwnd);
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   bool graphics::release_dc(::ca2::window * pwnd)
+   { 
+
+      UNREFERENCED_PARAMETER(pwnd);
+      throw interface_only_exception(get_app());
+
+   }
+
 
 } // namespace draw2d
 

@@ -3035,6 +3035,19 @@ fill_last:
         
     }
     
+   bool dib::update_window(::ca2::window * pwnd, ::ca2::signal_object * pobj)
+   {
+      UNREFERENCED_PARAMETER(pwnd);
+      UNREFERENCED_PARAMETER(pobj);
+      throw interface_only_exception(get_app());
+   }
+
+   bool dib::print_window(::ca2::window * pwnd, ::ca2::signal_object * pobj)
+   {
+      UNREFERENCED_PARAMETER(pwnd);
+      UNREFERENCED_PARAMETER(pobj);
+      throw interface_only_exception(get_app());
+   }
     
 } // namespace draw2d
 
