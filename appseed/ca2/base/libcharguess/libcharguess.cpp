@@ -53,9 +53,17 @@ uint32_t LibCharGuess::GuessCodePage(const char * lpsz)
    {
       return 950;
    }
+   else if(!stricmp_dup(lpszCharset, "gb18030"))
+   {
+      return 936;
+   }
    else if(!stricmp_dup(lpszCharset, "windows-1252"))
    {
       return 1252;
+   }
+   else if(!stricmp_dup(lpszCharset, "UTF-8"))
+   {
+      return CP_UTF8;
    }
    else
    {

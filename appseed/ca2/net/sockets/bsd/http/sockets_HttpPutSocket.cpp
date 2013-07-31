@@ -133,10 +133,10 @@ namespace sockets
          }
       }
 
-      /*if(!m_bNoClose)
+      if(!m_bNoClose)
       {
          SetCloseAndDelete();
-      }*/
+      }
       
    }
 

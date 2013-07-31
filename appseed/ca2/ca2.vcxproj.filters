@@ -5512,9 +5512,6 @@
     <ClCompile Include="net\mail\mail_pop3_socket.cpp">
       <Filter>Source Files\net\mail</Filter>
     </ClCompile>
-    <ClCompile Include="net\mail\mail_simple_pop3.cpp">
-      <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
     </ClCompile>
@@ -6990,6 +6987,9 @@
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_ca2.cpp">
       <Filter>Source Files\base\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_simple_pop3.cpp">
+      <Filter>Source Files\net\sockets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
