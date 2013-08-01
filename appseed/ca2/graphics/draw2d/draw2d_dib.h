@@ -28,9 +28,10 @@ namespace draw2d
    public:
 
 
-      int32_t         cx;
-      int32_t         cy;
-      int32_t         scan;
+      COLORREF *        m_pcolorref;
+      int32_t           cx;
+      int32_t           cy;
+      int32_t           scan;
 
 
       dib();

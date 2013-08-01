@@ -60,7 +60,7 @@ namespace draw2d_cairo
 
 /*
 
-   WINBOOL palette::CreateHalftonePalette(::ca2::graphics * pgraphics)
+   WINBOOL palette::CreateHalftonePalette(::draw2d::graphics * pgraphics)
    {
 
       //ASSERT(pgraphics != NULL && (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1() != NULL);

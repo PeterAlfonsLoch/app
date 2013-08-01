@@ -811,7 +811,7 @@ _cairo_svg_document_emit_bitmap_glyph_data (cairo_svg_document_t	*document,
 
     for (y = 0, row = image->data, rows = image->height; rows; row += image->stride, rows--, y++) {
 	for (x = 0, byte = row, cols = (image->width + 7) / 8; cols; byte++, cols--) {
-	    uint8_t output_byte = CAIRO_BITSWAP8_IF_LITTLE_ENDIAN (*byte);
+	    uint8_t output_byte = (uint8_t) CAIRO_BITSWAP8_IF_LITTLE_ENDIAN (*byte);
 	    for (bit = 7; bit >= 0 && x < image->width; bit--, x++) {
 		if (output_byte & (1 << bit)) {
 		    _cairo_output_stream_printf (document->xml_node_glyphs,
@@ -2239,8 +2239,8 @@ _cairo_svg_surface_get_extents (void		        *abstract_surface,
      * mention the arbitrary limitation of width to a short(!). We
      * may need to come up with a better interface for get_size.
      */
-    rectangle->width  = ceil (surface->width);
-    rectangle->height = ceil (surface->height);
+    rectangle->width  = (int) ceil (surface->width);
+    rectangle->height = (int) ceil (surface->height);
 
     return TRUE;
 }

@@ -962,6 +962,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="draw2d_cairo.def" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\thirdparty\appseed\cairo\_ca2cairo.vcxproj">
       <Project>{e6c58c82-71e5-48e6-98ed-1b505d6f10c2}</Project>
     </ProjectReference>
@@ -970,6 +973,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </ProjectReference>
     <ProjectReference Include="..\..\thirdparty\appseed\freetype\freetype.vcxproj">
       <Project>{771f4b49-cad1-438f-b272-20f3eb8e88f1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\pixman\_ca2pixman.vcxproj">
+      <Project>{63108f1c-eaa8-4c49-a591-13f813a76b05}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\thirdparty\appseed\zlib\_ca2zlib.vcxproj">
       <Project>{9ffc2cf6-737c-43db-a1ee-383f7bfdb05b}</Project>
@@ -983,9 +989,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ProjectReference Include="..\c\c.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="draw2d_cairo.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

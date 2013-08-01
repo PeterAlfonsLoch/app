@@ -49,7 +49,7 @@ encode_coordinate (unsigned char *p, double c)
 {
     uint32_t f;
 
-    f = c;
+    f = (uint32_t) c;
     *p++ = f >> 24;
     *p++ = (f >> 16) & 0xff;
     *p++ = (f >> 8)  & 0xff;

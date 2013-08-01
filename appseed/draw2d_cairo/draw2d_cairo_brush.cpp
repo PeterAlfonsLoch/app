@@ -41,7 +41,7 @@ namespace draw2d_cairo
        //return Attach(::CreateBrushIndirect(lpLogBrush));
     //   return FALSE;
     //}
-    //bool brush::CreatePatternBrush(::ca2::bitmap* pBitmap)
+    //bool brush::CreatePatternBrush(::draw2d::bitmap* pBitmap)
     //{
     //   //return Attach(::CreatePatternBrush((HBITMAP)pBitmap->get_os_data()));
     //   return FALSE;
@@ -77,7 +77,7 @@ namespace draw2d_cairo
 //      //   throw resource_exception();
 //   }
 //
-//   void brush::construct(::ca2::bitmap* pBitmap)
+//   void brush::construct(::draw2d::bitmap* pBitmap)
 //   {
 //      //ASSERT_VALID(pBitmap);
 //

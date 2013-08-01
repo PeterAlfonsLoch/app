@@ -1,6 +1,4 @@
 #include "framework.h"
-extern cairo_surface_t *  g_cairosurface;
-extern cairo_t *  g_cairo;
 
 
 namespace draw2d_cairo
@@ -27,7 +25,7 @@ namespace draw2d_cairo
 
    }
 
-   bool bitmap::CreateBitmap(::ca2::graphics * pdc, int32_t cx, int32_t cy, UINT nPlanes, UINT nBitcount, const void * pdata)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pdc, int32_t cx, int32_t cy, UINT nPlanes, UINT nBitcount, const void * pdata)
    {
 
       cy = abs(cy);
@@ -87,13 +85,13 @@ namespace draw2d_cairo
 
    }
 
-   bool bitmap::CreateBitmapIndirect(::ca2::graphics * pdc, LPBITMAP lpBitmap)
+   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pdc, LPBITMAP lpBitmap)
    {
       return FALSE;
    }
 
 
-   bool bitmap::CreateDIBSection(::ca2::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void ** ppdata, int * pstride, HANDLE hSection, DWORD offset)
+   bool bitmap::CreateDIBSection(::draw2d::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void ** ppdata, int * pstride, HANDLE hSection, uint32_t offset)
    {
 
       int cy = abs(lpbmi->bmiHeader.biHeight);
@@ -175,7 +173,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::CreateDIBitmap(::ca2::graphics * pdc, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
+   bool bitmap::CreateDIBitmap(::draw2d::graphics * pdc, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
    {
       return FALSE;
    }
@@ -234,7 +232,7 @@ namespace draw2d_cairo
       //return Attach(::LoadBitmap(NULL, MAKEINTRESOURCE(nIDBitmap)));
       return FALSE;
    }
-   bool bitmap::CreateCompatibleBitmap(::ca2::graphics * pgraphics, int32_t cx, int32_t cy)
+   bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int32_t cx, int32_t cy)
    {
 
       m_mem.allocate(cx * cy * 4);
@@ -272,7 +270,7 @@ namespace draw2d_cairo
 //      return TRUE;
 
    }
-   bool bitmap::CreateDiscardableBitmap(::ca2::graphics * pgraphics, int32_t nWidth, int32_t nHeight)
+   bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int32_t nWidth, int32_t nHeight)
    {
 
       return CreateCompatibleBitmap(pgraphics, nWidth, nHeight);
@@ -348,7 +346,7 @@ namespace draw2d_cairo
 	}
 
 
-   bool bitmap::Attach(void * psurface)
+   bool bitmap::attach(void * psurface)
    {
 
       if(m_psurface != 0)
@@ -375,7 +373,7 @@ namespace draw2d_cairo
       if(m_psurface == NULL)
          return true;
 
-      if(m_psurface == g_cairosurface)
+      if(m_psurface == cairo_keep::g_cairosurface)
       {
          printf("123");
       }

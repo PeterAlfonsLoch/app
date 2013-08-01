@@ -1073,6 +1073,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="ca\ca_async.h" />
     <ClInclude Include="ca\ca_base64.h" />
     <ClInclude Include="ca\ca_ca.h" />
+    <ClInclude Include="ca\ca_cairo_keep.h" />
     <ClInclude Include="ca\ca_conv.h" />
     <ClInclude Include="ca\ca_count.h" />
     <ClInclude Include="ca\ca_cpu_architecture.h" />
@@ -1282,6 +1283,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="ca\ca_argcargv.cpp" />
     <ClCompile Include="ca\ca_base64.cpp" />
     <ClCompile Include="ca\ca_c.cpp" />
+    <ClCompile Include="ca\ca_cairo_keep.cpp" />
     <ClCompile Include="ca\ca_conv.cpp" />
     <ClCompile Include="ca\ca_cpu_architecture.cpp" />
     <ClCompile Include="ca\ca_debug.cpp" />
@@ -1470,6 +1472,9 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\thirdparty\appseed\cairo\_ca2cairo.vcxproj">
+      <Project>{e6c58c82-71e5-48e6-98ed-1b505d6f10c2}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\thirdparty\appseed\openssl\openssl.vcxproj">
       <Project>{ac98b756-e84c-4a70-9cdb-e9812fef9b98}</Project>
     </ProjectReference>

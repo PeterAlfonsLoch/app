@@ -186,7 +186,9 @@ typedef struct _cairo_page_media {
 static void
 _cairo_ps_surface_emit_header (cairo_ps_surface_t *surface)
 {
+#ifdef HAVE_CTIME_R
     char ctime_buf[26];
+#endif
     time_t now;
     char **comments;
     int i, num_comments;
@@ -559,7 +561,7 @@ _cairo_ps_emit_imagemask (cairo_image_surface_t *image,
 				 "   /DataSource {<\n   ");
     for (row = image->data, rows = image->height; rows; row += image->stride, rows--) {
 	for (byte = row, cols = (image->width + 7) / 8; cols; byte++, cols--) {
-	    uint8_t output_byte = CAIRO_BITSWAP8_IF_LITTLE_ENDIAN (*byte);
+	    uint8_t output_byte = (uint8_t) CAIRO_BITSWAP8_IF_LITTLE_ENDIAN (*byte);
 	    _cairo_output_stream_printf (stream, "%02x ", output_byte);
 	}
 	_cairo_output_stream_printf (stream, "\n   ");
@@ -1011,8 +1013,8 @@ _cairo_ps_surface_create_for_stream_internal (cairo_output_stream_t *stream,
 
     surface->page_bbox.x = 0;
     surface->page_bbox.y = 0;
-    surface->page_bbox.width  = width;
-    surface->page_bbox.height = height;
+    surface->page_bbox.width  = (int) width;
+    surface->page_bbox.height = (int) height;
 
     _cairo_surface_clipper_init (&surface->clipper,
 				 _cairo_ps_surface_clipper_intersect_clip_path);
@@ -1353,8 +1355,8 @@ cairo_ps_surface_set_size (cairo_surface_t	*surface,
     _cairo_pdf_operators_set_cairo_to_pdf_matrix (&ps_surface->pdf_operators,
 						  &ps_surface->cairo_to_ps);
     status = _cairo_paginated_surface_set_size (ps_surface->paginated_surface,
-						width_in_points,
-						height_in_points);
+						(int) width_in_points,
+						(int) height_in_points);
     if (status)
 	status = _cairo_surface_set_error (surface, status);
 }
@@ -2985,8 +2987,8 @@ _cairo_ps_surface_emit_recording_subsurface (cairo_ps_surface_t *surface,
 #endif
 
     surface->page_bbox.x = surface->page_bbox.y = 0;
-    surface->page_bbox.width = surface->width  = extents->width;
-    surface->page_bbox.height = surface->height = extents->height;
+    surface->page_bbox.width = (int) surface->width  = extents->width;
+    surface->page_bbox.height = (int) surface->height = extents->height;
 
     surface->current_pattern_is_solid_color = FALSE;
     _cairo_pdf_operators_reset (&surface->pdf_operators);
@@ -3749,8 +3751,8 @@ _cairo_ps_surface_emit_gradient (cairo_ps_surface_t       *surface,
     {
 	int repeat_begin, repeat_end;
 
-	repeat_begin = floor (domain[0]);
-	repeat_end = ceil (domain[1]);
+	repeat_begin = (int) floor (domain[0]);
+	repeat_end = (int) ceil (domain[1]);
 
 	status = _cairo_ps_surface_emit_repeating_function (surface,
 							    pattern,
@@ -4094,8 +4096,8 @@ _cairo_ps_surface_get_extents (void		       *abstract_surface,
      * mention the aribitray limitation of width to a short(!). We
      * may need to come up with a better interface for get_extents.
      */
-    rectangle->width  = ceil (surface->width);
-    rectangle->height = ceil (surface->height);
+    rectangle->width  = (int) ceil (surface->width);
+    rectangle->height = (int) ceil (surface->height);
 
     return TRUE;
 }
@@ -4505,10 +4507,10 @@ _cairo_ps_surface_set_bounding_box (void		*abstract_surface,
     cairo_bool_t has_page_media, has_page_bbox;
     const char *page_media;
 
-    x1 = floor (_cairo_fixed_to_double (bbox->p1.x));
-    y1 = floor (surface->height - _cairo_fixed_to_double (bbox->p2.y));
-    x2 = ceil (_cairo_fixed_to_double (bbox->p2.x));
-    y2 = ceil (surface->height - _cairo_fixed_to_double (bbox->p1.y));
+    x1 = (int) floor (_cairo_fixed_to_double (bbox->p1.x));
+    y1 = (int) floor (surface->height - _cairo_fixed_to_double (bbox->p2.y));
+    x2 = (int) ceil (_cairo_fixed_to_double (bbox->p2.x));
+    y2 = (int) ceil (surface->height - _cairo_fixed_to_double (bbox->p1.y));
 
     surface->page_bbox.x = x1;
     surface->page_bbox.y = y1;

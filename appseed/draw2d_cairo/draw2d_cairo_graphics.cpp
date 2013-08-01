@@ -1,7 +1,5 @@
 #include "framework.h"
 #include <math.h>
-extern cairo_surface_t *  g_cairosurface;
-extern cairo_t *  g_cairo;
 
 
 namespace draw2d_cairo
@@ -19,7 +17,7 @@ namespace draw2d_cairo
       m_ppath           = NULL;
       m_ppathPaint      = NULL;
       */
-      m_etextrendering  = ::ca2::text_rendering_anti_alias_grid_fit;
+      m_etextrendering  = ::draw2d::text_rendering_anti_alias_grid_fit;
 
       m_spfont.create(allocer());
       m_spfont->m_strFontFamilyName = "Helvetica";
@@ -39,7 +37,7 @@ namespace draw2d_cairo
       m_hdc             = NULL;
       m_ppath           = NULL;
       m_ppathPaint      = NULL;*/
-      m_etextrendering  = ::ca2::text_rendering_anti_alias_grid_fit;
+      m_etextrendering  = ::draw2d::text_rendering_anti_alias_grid_fit;
 
 
       m_nStretchBltMode = HALFTONE;
@@ -80,7 +78,7 @@ namespace draw2d_cairo
 
       if(m_pdc != NULL)
       {
-	if(m_pdc ==  g_cairo)
+	if(m_pdc ==  cairo_keep::g_cairo)
 	{
          printf("123");
 
@@ -127,12 +125,12 @@ namespace draw2d_cairo
       //return Attach(::CreateIC(lpszDriverName, lpszDeviceName, lpszOutput, (const DEVMODE*) lpInitData));
    }
 
-   bool graphics::CreateCompatibleDC(::ca2::graphics * pgraphics)
+   bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
 
       if(m_pdc != NULL)
       {
-	if(m_pdc ==  g_cairo)
+	if(m_pdc ==  cairo_keep::g_cairo)
 	{
          printf("123");
 
@@ -154,7 +152,7 @@ namespace draw2d_cairo
 
          m_pdc = cairo_create(psurface);
 
-if(psurface == g_cairosurface)
+if(psurface == cairo_keep::g_cairosurface)
 {
    printf("123");
 }         cairo_surface_destroy(psurface);
@@ -165,7 +163,7 @@ if(psurface == g_cairosurface)
       else
       {
 
-         cairo_surface_t * psurface = cairo_get_target(LNX_DC(pgraphics)->m_pdc);
+         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphics->get_os_data());
 
          if(cairo_surface_status(psurface) != CAIRO_STATUS_SUCCESS)
             return false;
@@ -174,7 +172,7 @@ if(psurface == g_cairosurface)
 
          if(psurfaceNew == NULL)
             return false;
-if(psurfaceNew == g_cairosurface)
+if(psurfaceNew == cairo_keep::g_cairosurface)
 {
    printf("123");
 }
@@ -265,7 +263,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   ::ca2::bitmap* graphics::SelectObject(::ca2::bitmap* pbitmap)
+   ::draw2d::bitmap* graphics::SelectObject(::draw2d::bitmap* pbitmap)
    {
 
 
@@ -276,10 +274,10 @@ if(psurfaceNew == g_cairosurface)
          return NULL;
       if(pbitmap == NULL)
          return NULL;
-      return dynamic_cast < ::ca2::bitmap* > (SelectGdiObject(get_app(), get_handle1(), pbitmap->get_os_data()));*/
+      return dynamic_cast < ::draw2d::bitmap* > (SelectGdiObject(get_app(), get_handle1(), pbitmap->get_os_data()));*/
       if(m_pdc != NULL)
       {
-	if(m_pdc ==  g_cairo)
+	if(m_pdc ==  cairo_keep::g_cairo)
 	{
          printf("123");
 
@@ -289,11 +287,11 @@ if(psurfaceNew == g_cairosurface)
 
       m_pdc = cairo_create((cairo_surface_t *) pbitmap->get_os_data());
 
-      set_text_rendering(::ca2::text_rendering_anti_alias_grid_fit);
+      set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
-      m_bitmap = pbitmap;
+      m_spbitmap = pbitmap;
 
-      return m_bitmap;
+      return m_spbitmap;
    }
 
 
@@ -316,22 +314,22 @@ if(psurfaceNew == g_cairosurface)
 
          HBITMAP hbitmap = (HBITMAP) hObject;
 
-         if(m_bitmap.is_null())
-            m_bitmap.create(get_app());
+         if(m_spbitmap.is_null())
+            m_spbitmap.create(get_app());
 
-         if(m_bitmap.is_null())
+         if(m_spbitmap.is_null())
             return NULL;
 
-         (dynamic_cast < ::win::bitmap * > (m_bitmap.m_p))->m_pbitmap = new Gdiplus::Bitmap(hbitmap, NULL);
+         (dynamic_cast < ::win::bitmap * > (m_spbitmap.m_p))->m_pbitmap = new Gdiplus::Bitmap(hbitmap, NULL);
 
          if(m_pgraphics != NULL)
          {
             delete m_pgraphics;
          }
 
-         m_pgraphics = new Gdiplus::Graphics((Gdiplus::Bitmap *) m_bitmap->get_os_data());
+         m_pgraphics = new Gdiplus::Graphics((Gdiplus::Bitmap *) m_spbitmap->get_os_data());
 
-         set_text_rendering(::ca2::text_rendering_anti_alias_grid_fit);
+         set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
          return hbitmap;
 
@@ -376,7 +374,7 @@ if(psurfaceNew == g_cairosurface)
    int32_t graphics::GetPolyFillMode() const
    {
       //return ::GetPolyFillMode(get_handle2());
-      return cairo_get_fill_rule(m_pdc) == CAIRO_FILL_RULE_WINDING ? ::ca2::fill_mode_winding : ::ca2::fill_mode_alternate;
+      return cairo_get_fill_rule(m_pdc) == CAIRO_FILL_RULE_WINDING ? ::draw2d::fill_mode_winding : ::draw2d::fill_mode_alternate;
    }
 
    int32_t graphics::GetROP2() const
@@ -454,8 +452,8 @@ if(psurfaceNew == g_cairosurface)
       //return SetViewportOrg(point.x, point.y);
       cairo_matrix_t m;
       cairo_get_matrix(m_pdc, &m);
-      int xOld = m.x0;
-      int yOld = m.y0;
+      int xOld = (int) m.x0;
+      int yOld = (int) m.y0;
       m.x0 = point.x;
       m.y0 = point.y;
       cairo_set_matrix(m_pdc, &m);
@@ -500,7 +498,7 @@ if(psurfaceNew == g_cairosurface)
       //::LPtoDP(get_handle2(), (LPPOINT)lpRect, 2);
    }
 
-   bool graphics::FillRgn(::ca2::region* pRgn, ::ca2::brush* pBrush)
+   bool graphics::FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush)
    {
 
       throw not_implemented(get_app());
@@ -509,7 +507,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   bool graphics::FrameRgn(::ca2::region* pRgn, ::ca2::brush* pBrush, int32_t nWidth, int32_t nHeight)
+   bool graphics::FrameRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush, int32_t nWidth, int32_t nHeight)
    {
 
 //      return ::FrameRgn(get_handle1(), (HRGN)pRgn->get_os_data(), (HBRUSH)pBrush->get_os_data(), nWidth, nHeight) != FALSE;
@@ -518,7 +516,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   bool graphics::InvertRgn(::ca2::region* pRgn)
+   bool graphics::InvertRgn(::draw2d::region* pRgn)
    {
 
   //    ASSERT(get_handle1() != NULL);
@@ -530,7 +528,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   bool graphics::PaintRgn(::ca2::region* pRgn)
+   bool graphics::PaintRgn(::draw2d::region* pRgn)
    {
 
 //      ASSERT(get_handle1() != NULL);
@@ -642,7 +640,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   void graphics::FillRect(LPCRECT lpRect, ::ca2::brush* pBrush)
+   void graphics::FillRect(LPCRECT lpRect, ::draw2d::brush* pBrush)
    {
 
       throw not_implemented(get_app());
@@ -651,7 +649,7 @@ if(psurfaceNew == g_cairosurface)
 //      ASSERT(get_handle1() != NULL); ::FillRect(get_handle1(), lpRect, (HBRUSH)pBrush->get_os_data());
 
    }
-   void graphics::FrameRect(LPCRECT lpRect, ::ca2::brush* pBrush)
+   void graphics::FrameRect(LPCRECT lpRect, ::draw2d::brush* pBrush)
    {
 
       throw not_implemented(get_app());
@@ -781,7 +779,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   bool graphics::DrawState(point pt, size size, ::ca2::bitmap* pBitmap, UINT nFlags, ::ca2::brush* pBrush)
+   bool graphics::DrawState(point pt, size size, ::draw2d::bitmap* pBitmap, UINT nFlags, ::draw2d::brush* pBrush)
    {
 
       throw not_implemented(get_app());
@@ -802,7 +800,7 @@ if(psurfaceNew == g_cairosurface)
    }
 
 
-   bool graphics::DrawState(point pt, size size, HICON hIcon, UINT nFlags, ::ca2::brush* pBrush)
+   bool graphics::DrawState(point pt, size size, HICON hIcon, UINT nFlags, ::draw2d::brush* pBrush)
    {
 
       throw not_implemented(get_app());
@@ -822,7 +820,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   bool graphics::DrawState(point pt, size size, const char * lpszText, UINT nFlags, bool bPrefixText, int32_t nTextLen, ::ca2::brush* pBrush)
+   bool graphics::DrawState(point pt, size size, const char * lpszText, UINT nFlags, bool bPrefixText, int32_t nTextLen, ::draw2d::brush* pBrush)
    {
 
       throw not_implemented(get_app());
@@ -845,7 +843,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   bool graphics::DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, ::ca2::brush* pBrush)
+   bool graphics::DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, ::draw2d::brush* pBrush)
    {
 
       throw not_implemented(get_app());
@@ -1176,7 +1174,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   bool graphics::PatBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, DWORD dwRop)
+   bool graphics::PatBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, uint32_t dwRop)
    {
 
 //      ASSERT(get_handle1() != NULL);
@@ -1189,7 +1187,7 @@ if(psurfaceNew == g_cairosurface)
    }
 
 
-   bool graphics::BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, DWORD dwRop)
+   bool graphics::BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, uint32_t dwRop)
    {
 
 
@@ -1200,10 +1198,10 @@ if(psurfaceNew == g_cairosurface)
          /*rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
 
 
-         ::ca2::dib * pdibWork = NULL;
-         ::ca2::dib * pdibWork2 = NULL;
-//         ::ca2::dib * pdibWork3 = NULL;
-         ::ca2::dib * pdibWork4 = NULL;
+         ::draw2d::dib * pdibWork = NULL;
+         ::draw2d::dib * pdibWork2 = NULL;
+//         ::draw2d::dib * pdibWork3 = NULL;
+         ::draw2d::dib * pdibWork4 = NULL;
 
 
          class point ptSrc(xSrc, ySrc);
@@ -1212,7 +1210,7 @@ if(psurfaceNew == g_cairosurface)
 
 
 
-         ::ca2::dib_sp spdib;
+         ::draw2d::dib_sp spdib;
          if(pdibWork == NULL)
          {
             spdib.create(get_app());
@@ -1233,7 +1231,7 @@ if(psurfaceNew == g_cairosurface)
 
 
 
-         ::ca2::dib_sp spdib2;
+         ::draw2d::dib_sp spdib2;
          if(pdibWork2 == NULL)
          {
             spdib2.create(get_app());
@@ -1241,7 +1239,7 @@ if(psurfaceNew == g_cairosurface)
          }
 
 
-         ::ca2::dib_sp spdib4;
+         ::draw2d::dib_sp spdib4;
          if(pdibWork4 == NULL)
          {
             spdib4.create(get_app());
@@ -1269,7 +1267,7 @@ if(psurfaceNew == g_cairosurface)
             m_pdibAlphaBlend->get_graphics(), point(max(0, x - m_ptAlphaBlend.x), max(0, y - m_ptAlphaBlend.y)),
                                class size(max(0, size.cx - max(0, x - m_ptAlphaBlend.x)), max(0, size.cy - max(0, y - m_ptAlphaBlend.y))));*/
 
-         //keeper < ::ca2::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+         //keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
 
          /*Gdiplus::CompositingMode mode = m_pgraphics->GetCompositingMode();
 
@@ -1350,7 +1348,7 @@ if(psurfaceNew == g_cairosurface)
    }
 
 
-   bool graphics::StretchBlt(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, DWORD dwRop)
+   bool graphics::StretchBlt(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop)
    {
 
       if(pgraphicsSrc == NULL)
@@ -1507,7 +1505,7 @@ if(psurfaceNew == g_cairosurface)
             rect rectText(point(x, y), GetTextExtent(str));
             if(rectIntersect.intersect(rectIntersect, rectText))
             {
-               /*::ca2::dib_sp dib0(get_app());
+               /*::draw2d::dib_sp dib0(get_app());
                dib0->create(rectText.size());
                dib0->Fill(0, 0, 0, 0);
                dib0->get_graphics()->SetTextColor(ARGB(255, 255, 255, 255));
@@ -1515,7 +1513,7 @@ if(psurfaceNew == g_cairosurface)
                dib0->get_graphics()->SetBkMode(TRANSPARENT);
                dib0->get_graphics()->TextOut(0, 0, str);
                dib0->ToAlpha(0);*/
-  /*             ::ca2::dib_sp dib1(get_app());
+  /*             ::draw2d::dib_sp dib1(get_app());
                dib1->create(rectText.size());
                dib1->Fill(0, 0, 0, 0);
                dib1->get_graphics()->set_color(m_crColor);
@@ -1523,7 +1521,7 @@ if(psurfaceNew == g_cairosurface)
                dib1->get_graphics()->SetBkMode(TRANSPARENT);
                dib1->get_graphics()->TextOut(0, 0, str);
                //dib1->channel_from(visual::rgba::channel_alpha, dib0);
-               ::ca2::dib_sp dib2(get_app());
+               ::draw2d::dib_sp dib2(get_app());
                dib2->create(rectText.size());
                dib2->Fill(255, 0, 0, 0);
                dib2->get_graphics()->set_alpha_mode(::ca2::alpha_mode_set);
@@ -1532,10 +1530,10 @@ if(psurfaceNew == g_cairosurface)
                   size(max(0, m_pdibAlphaBlend->width()-max(0, x - m_ptAlphaBlend.x)),
                         max(0, m_pdibAlphaBlend->height()-max(0, y - m_ptAlphaBlend.y))));
                dib1->channel_multiply(visual::rgba::channel_alpha, dib2);
-               /*::ca2::dib_sp dib3(get_app());
+               /*::draw2d::dib_sp dib3(get_app());
                dib1->mult_alpha(dib3);*/
 
-    /*           keeper < ::ca2::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+    /*           keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
 
                return System.imaging().true_blend(this, point(x, y), rectText.size(), dib1->get_graphics(), null_point());
 
@@ -1568,30 +1566,30 @@ if(psurfaceNew == g_cairosurface)
             rect rectText(point((int64_t) x, (int64_t) y), GetTextExtent(str));
             if(rectIntersect.intersect(rectIntersect, rectText))
             {
-               ::ca2::dib_sp dib0(allocer());
+               ::draw2d::dib_sp dib0(allocer());
                dib0->create(rectText.size());
                dib0->get_graphics()->SetTextColor(RGB(255, 255, 255));
                dib0->get_graphics()->SelectObject(&GetCurrentFont());
                dib0->get_graphics()->SetBkMode(TRANSPARENT);
                dib0->get_graphics()->TextOut(0, 0, str);
                dib0->ToAlpha(0);
-               ::ca2::dib_sp dib1(allocer());
+               ::draw2d::dib_sp dib1(allocer());
                dib1->create(rectText.size());
                dib1->get_graphics()->SetTextColor(GetTextColor());
                dib1->get_graphics()->SelectObject(&GetCurrentFont());
                dib1->get_graphics()->SetBkMode(TRANSPARENT);
                dib1->get_graphics()->TextOut(0, 0, str);
                dib1->channel_from(visual::rgba::channel_alpha, dib0);
-               ::ca2::dib_sp dib2(allocer());
+               ::draw2d::dib_sp dib2(allocer());
                dib2->create(rectText.size());
                dib2->Fill(255, 0, 0, 0);
                dib2->from(point((int64_t) max(0, m_ptAlphaBlend.x - x), (int64_t) max(0, m_ptAlphaBlend.y - y)),
                m_pdibAlphaBlend->get_graphics(), point((int64_t) max(0, x - m_ptAlphaBlend.x), (int64_t) max(0, y - m_ptAlphaBlend.y)), rectText.size());
                dib1->channel_multiply(visual::rgba::channel_alpha, dib2.m_p);
-               /*::ca2::dib_sp dib3(get_app());
+               /*::draw2d::dib_sp dib3(get_app());
                dib1->mult_alpha(dib3);*/
 
-               keeper < ::ca2::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+               keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
 
                return System.visual().imaging().true_blend(this, point((int64_t) x, (int64_t) y), rectText.size(), dib1->get_graphics(), null_point());
 
@@ -1702,7 +1700,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   bool graphics::GrayString(::ca2::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int32_t), LPARAM lpData, int32_t nCount,int32_t x, int32_t y, int32_t nWidth, int32_t nHeight)
+   bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int32_t), LPARAM lpData, int32_t nCount,int32_t x, int32_t y, int32_t nWidth, int32_t nHeight)
    {
 
       throw not_implemented(get_app());
@@ -1864,7 +1862,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   DWORD graphics::GetFontLanguageInfo() const
+   uint32_t graphics::GetFontLanguageInfo() const
    {
 
       throw not_implemented(get_app());
@@ -1877,7 +1875,7 @@ if(psurfaceNew == g_cairosurface)
 
 /*
 
-   DWORD graphics::GetCharacterPlacement(const char * lpString, int32_t nCount, int32_t nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const
+   uint32_t graphics::GetCharacterPlacement(const char * lpString, int32_t nCount, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
    {
 
       throw not_implemented(get_app());
@@ -1888,7 +1886,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   DWORD graphics::GetCharacterPlacement(string & str, int32_t nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const
+   uint32_t graphics::GetCharacterPlacement(string & str, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
    {
 
       throw not_implemented(get_app());
@@ -1915,7 +1913,7 @@ if(psurfaceNew == g_cairosurface)
    }
 
 
-   bool graphics::ScrollDC(int32_t dx, int32_t dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::ca2::region* pRgnUpdate, LPRECT lpRectUpdate)
+   bool graphics::ScrollDC(int32_t dx, int32_t dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate)
    {
 
       throw not_implemented(get_app());
@@ -1998,7 +1996,7 @@ if(psurfaceNew == g_cairosurface)
 
 */
 
-   DWORD graphics::GetFontData(DWORD dwTable, DWORD dwOffset, LPVOID lpData, DWORD cbData) const
+   uint32_t graphics::GetFontData(uint32_t dwTable, uint32_t dwOffset, LPVOID lpData, uint32_t cbData) const
    {
 
       throw not_implemented(get_app());
@@ -2022,7 +2020,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   DWORD graphics::GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm, DWORD cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
+   uint32_t graphics::GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm, uint32_t cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
    {
 
       throw not_implemented(get_app());
@@ -2106,7 +2104,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   bool graphics::MaskBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, ::ca2::bitmap& maskBitmap, int32_t xMask, int32_t yMask, DWORD dwRop)
+   bool graphics::MaskBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask, uint32_t dwRop)
    {
 
       throw not_implemented(get_app());
@@ -2117,7 +2115,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   bool graphics::PlgBlt(LPPOINT lpPoint, ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nWidth, int32_t nHeight, ::ca2::bitmap& maskBitmap, int32_t xMask, int32_t yMask)
+   bool graphics::PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nWidth, int32_t nHeight, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask)
    {
 
       throw not_implemented(get_app());
@@ -2183,7 +2181,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   bool graphics::PolyPolyline(const POINT* lpPoints, const DWORD* lpPolyPoints, int32_t nCount)
+   bool graphics::PolyPolyline(const POINT* lpPoints, const uint32_t* lpPolyPoints, int32_t nCount)
    {
 
       throw not_implemented(get_app());
@@ -2209,39 +2207,39 @@ if(psurfaceNew == g_cairosurface)
 
 */
 
-   ::ca2::pen & graphics::GetCurrentPen() const
+   ::draw2d::pen & graphics::GetCurrentPen() const
    {
 
       return *m_sppen.m_p;
 
    }
 
-   ::ca2::brush & graphics::GetCurrentBrush() const
+   ::draw2d::brush & graphics::GetCurrentBrush() const
    {
 
       return *m_spbrush.m_p;
 
    }
 
-   ::ca2::palette & graphics::GetCurrentPalette() const
+   ::draw2d::palette & graphics::GetCurrentPalette() const
    {
 
-      return *(::ca2::palette *)NULL;
+      return *(::draw2d::palette *)NULL;
 
    }
 
-   ::ca2::font & graphics::GetCurrentFont() const
+   ::draw2d::font & graphics::GetCurrentFont() const
    {
 
-      return (::ca2::font &) m_fontxyz;
+      return (::draw2d::font &) m_fontxyz;
 
    }
 
 
-   ::ca2::bitmap & graphics::GetCurrentBitmap() const
+   ::draw2d::bitmap & graphics::GetCurrentBitmap() const
    {
 
-      return *m_bitmap.m_p;
+      return *m_spbitmap.m_p;
 
    }
 
@@ -2457,7 +2455,7 @@ if(psurfaceNew == g_cairosurface)
    }
 
 
-   bool graphics::draw_path(::ca2::path * ppath)
+   bool graphics::draw_path(::draw2d::path * ppath)
    {
 
       if(!set(ppath))
@@ -2467,7 +2465,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   bool graphics::fill_path(::ca2::path * ppath)
+   bool graphics::fill_path(::draw2d::path * ppath)
    {
 
       if(!set(ppath))
@@ -2563,7 +2561,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 // India India
 // Member
 
-   bool graphics::alpha_blend(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dRate)
+   bool graphics::alpha_blend(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dRate)
    {
 
       if(m_pdibAlphaBlend != NULL)
@@ -2575,10 +2573,10 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
 
 
-         ::ca2::dib * pdibWork = NULL;
-         ::ca2::dib * pdibWork2 = NULL;
-//         ::ca2::dib * pdibWork3 = NULL;
-         ::ca2::dib * pdibWork4 = NULL;
+         ::draw2d::dib * pdibWork = NULL;
+         ::draw2d::dib * pdibWork2 = NULL;
+//         ::draw2d::dib * pdibWork3 = NULL;
+         ::draw2d::dib * pdibWork4 = NULL;
 
 
          class point ptSrc(xSrc, ySrc);
@@ -2587,7 +2585,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
 
 
-         ::ca2::dib_sp spdib;
+         ::draw2d::dib_sp spdib;
          if(pdibWork == NULL)
          {
             spdib.create(get_app());
@@ -2603,7 +2601,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
 
 
-         ::ca2::dib_sp spdib2;
+         ::draw2d::dib_sp spdib2;
          if(pdibWork2 == NULL)
          {
             spdib2.create(get_app());
@@ -2611,7 +2609,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          }
 
 
-         ::ca2::dib_sp spdib4;
+         ::draw2d::dib_sp spdib4;
          if(pdibWork4 == NULL)
          {
             spdib4.create(get_app());
@@ -2631,7 +2629,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
 
 
-         keeper < ::ca2::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+         keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
 
 
          return System.imaging().true_blend(this, ptDest, size, pdibWork->get_graphics(), ptSrc);
@@ -2670,7 +2668,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
 
    /*bool graphics::alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
-      ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, BLENDFUNCTION blend)
+      ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, BLENDFUNCTION blend)
    {
 
       throw not_implemented(get_app());
@@ -2685,10 +2683,10 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
 
 
-         ::ca2::dib * pdibWork = NULL;
-         ::ca2::dib * pdibWork2 = NULL;
-//         ::ca2::dib * pdibWork3 = NULL;
-         ::ca2::dib * pdibWork4 = NULL;
+         ::draw2d::dib * pdibWork = NULL;
+         ::draw2d::dib * pdibWork2 = NULL;
+//         ::draw2d::dib * pdibWork3 = NULL;
+         ::draw2d::dib * pdibWork4 = NULL;
 
 
          class point ptSrc(xSrc, ySrc);
@@ -2697,7 +2695,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
 
 
-         ::ca2::dib_sp spdib;
+         ::draw2d::dib_sp spdib;
          if(pdibWork == NULL)
          {
             spdib.create(get_app());
@@ -2713,7 +2711,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
 
 
-         ::ca2::dib_sp spdib2;
+         ::draw2d::dib_sp spdib2;
          if(pdibWork2 == NULL)
          {
             spdib2.create(get_app());
@@ -2721,7 +2719,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          }
 
 
-         ::ca2::dib_sp spdib4;
+         ::draw2d::dib_sp spdib4;
          if(pdibWork4 == NULL)
          {
             spdib4.create(get_app());
@@ -2741,7 +2739,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
 
 
-         keeper < ::ca2::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+         keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
 
 
          return System.imaging().true_blend(this, ptDest, size, pdibWork->get_graphics(), ptSrc);
@@ -2755,7 +2753,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    }*/
 
 
-   bool graphics::TransparentBlt(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, UINT crTransparent)
+   bool graphics::TransparentBlt(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, UINT crTransparent)
    {
 
       throw not_implemented(get_app());
@@ -2766,7 +2764,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    }
 
-   bool graphics::GradientFill(TRIVERTEX* pVertices, ULONG nVertices, void * pMesh, ULONG nMeshElements, DWORD dwMode)
+   bool graphics::GradientFill(TRIVERTEX* pVertices, ULONG nVertices, void * pMesh, ULONG nMeshElements, uint32_t dwMode)
    {
 
       throw not_implemented(get_app());
@@ -2789,7 +2787,6 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    // Always Inline. Functions only in Win98/Win2K or later
 
-/*
 
    COLORREF graphics::GetDCBrushColor() const
    {
@@ -2834,6 +2831,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    }
 
+
+
    bool graphics::GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) const
    {
 
@@ -2855,7 +2854,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 //      return ::GetCharWidthI(get_handle1(), giFirst, cgi, pgi, lpBuffer) != FALSE;
 
    }
-
+   
    bool graphics::GetTextExtentExPointI(LPWORD pgiIn, int32_t cgi, int32_t nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE lpSize) const
    {
 
@@ -2867,6 +2866,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 //      return ::GetTextExtentExPointI(get_handle1(), pgiIn, cgi, nMaxExtent, lpnFit, alpDx, lpSize) != FALSE;
 
    }
+
+   
    bool graphics::GetTextExtentPointI(LPWORD pgiIn, int32_t cgi, LPSIZE lpSize) const
    {
 
@@ -2880,7 +2881,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    }
 
 
-*/
+
 
 
    /////////////////////////////////////////////////////////////////////////////
@@ -2900,9 +2901,9 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       if (this != NULL && (nMapMode = GetMapMode()) < MM_ISOTROPIC && nMapMode != MM_TEXT)
       {
          // when using a constrained ::collection::map mode, ::collection::map against physical inch
-         ((::ca2::graphics *)this)->SetMapMode(MM_HIMETRIC);
+         ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
          DPtoLP(lpSize);
-         ((::ca2::graphics *)this)->SetMapMode(nMapMode);
+         ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
       }
       else
       {
@@ -2941,9 +2942,9 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          nMapMode != MM_TEXT)
       {
          // when using a constrained ::collection::map mode, ::collection::map against physical inch
-         ((::ca2::graphics *)this)->SetMapMode(MM_HIMETRIC);
+         ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
          LPtoDP(lpSize);
-         ((::ca2::graphics *)this)->SetMapMode(nMapMode);
+         ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
       }
       else
       {
@@ -2989,7 +2990,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::ca2::brush* PASCAL graphics::GetHalftoneBrush(sp(::ca2::application) papp)
+   ::draw2d::brush* PASCAL graphics::GetHalftoneBrush(sp(::ca2::application) papp)
    {
 /*      ::ca2::LockGlobals(CRIT_HALFTONEBRUSH);
       if (gen_HalftoneBrush == NULL)
@@ -3012,7 +3013,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       return NULL;
    }
 
-   void graphics::DrawDragRect(LPCRECT lpRect, SIZE size, LPCRECT lpRectLast, SIZE sizeLast, ::ca2::brush* pBrush, ::ca2::brush* pBrushLast)
+   void graphics::DrawDragRect(LPCRECT lpRect, SIZE size, LPCRECT lpRectLast, SIZE sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
    {
 
       throw not_implemented(get_app());
@@ -3023,8 +3024,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          __is_valid_address(lpRectLast, sizeof(RECT), FALSE));
 
       // first, determine the update region and select it
-      ::ca2::region rgnNew;
-      ::ca2::region rgnOutside, rgnInside;
+      ::draw2d::region rgnNew;
+      ::draw2d::region rgnOutside, rgnInside;
       rgnOutside.CreateRectRgnIndirect(lpRect);
       rect rect = *lpRect;
       rect.inflate(-size.cx, -size.cy);
@@ -3033,7 +3034,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       rgnNew.CreateRectRgn(0, 0, 0, 0);
       rgnNew.CombineRgn(&rgnOutside, &rgnInside, RGN_XOR);
 
-      ::ca2::brush* pBrushOld = NULL;
+      ::draw2d::brush* pBrushOld = NULL;
       if (pBrush == NULL)
       {
          pBrush = graphics::GetHalftoneBrush(get_app());
@@ -3046,7 +3047,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          pBrushLast = pBrush;
       }
 
-      ::ca2::region rgnLast, rgnUpdate;
+      ::draw2d::region rgnLast, rgnUpdate;
       if (lpRectLast != NULL)
       {
          // find difference between new region and old region
@@ -3136,11 +3137,11 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
 
 
-   //::ca2::graphics * PASCAL ::win::graphics::from_handle(HDC hDC)
+   //::draw2d::graphics * PASCAL ::win::graphics::from_handle(HDC hDC)
    //{
       //hdc_map* pMap = afxMapHDC(TRUE); //create ::collection::map if not exist
       //ASSERT(pMap != NULL);
-//      ::ca2::graphics * pgraphics = (::ca2::graphics *)pMap->from_handle(hDC);
+//      ::draw2d::graphics * pgraphics = (::draw2d::graphics *)pMap->from_handle(hDC);
   //    ASSERT(pgraphics == NULL || (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1() == hDC);
     //  return pgraphics;
      // return NULL;
@@ -3167,7 +3168,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
          m_pgraphics = new ::Gdiplus::Graphics(hdc);
 
-         set_text_rendering(::ca2::text_rendering_anti_alias_grid_fit);
+         set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
          m_hdc = hdc;
 
@@ -3218,7 +3219,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       if(m_pdc == NULL)
          return true;
 
-	if(m_pdc ==  g_cairo)
+	if(m_pdc ==  cairo_keep::g_cairo)
 	{
          printf("123");
 
@@ -3329,7 +3330,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 //      return ::win::object::from_handle(papp, ::SelectObject(hDC, h));
    //}
 
-   ::ca2::object* graphics::SelectStockObject(int32_t nIndex)
+   ::draw2d::object* graphics::SelectStockObject(int32_t nIndex)
    {
 /*      HGDIOBJ hObject = ::GetStockObject(nIndex);
       HGDIOBJ hOldObj = NULL;
@@ -3343,7 +3344,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       return NULL;
    }
 
-   ::ca2::pen* graphics::SelectObject(::ca2::pen* pPen)
+   ::draw2d::pen* graphics::SelectObject(::draw2d::pen* pPen)
    {
       /*HGDIOBJ hOldObj = NULL;
       if(pPen == NULL)
@@ -3357,7 +3358,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       return &m_penxyz;
    }
 
-   ::ca2::brush* graphics::SelectObject(::ca2::brush* pBrush)
+   ::draw2d::brush* graphics::SelectObject(::draw2d::brush* pBrush)
    {
 /*      HGDIOBJ hOldObj = NULL;
       if(pBrush == NULL)
@@ -3366,13 +3367,13 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          hOldObj = ::SelectObject(get_handle1(), pBrush->get_os_data());
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pBrush->get_os_data());
-      return dynamic_cast < ::ca2::brush * > (::win::object::from_handle(get_app(), hOldObj));*/
+      return dynamic_cast < ::draw2d::brush * > (::win::object::from_handle(get_app(), hOldObj));*/
       m_brushxyz = *pBrush;
       return &m_brushxyz;
 
    }
 
-   ::ca2::font* graphics::SelectObject(::ca2::font* pfont)
+   ::draw2d::font* graphics::SelectObject(::draw2d::font* pfont)
    {
 /*      HGDIOBJ hOldObj = NULL;
       if(pFont == NULL)
@@ -3381,7 +3382,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          hOldObj = ::SelectObject(get_handle1(), pFont->get_os_data());
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pFont->get_os_data());
-      return dynamic_cast < ::ca2::font * > (::win::object::from_handle(get_app(), hOldObj));*/
+      return dynamic_cast < ::draw2d::font * > (::win::object::from_handle(get_app(), hOldObj));*/
 
       /*ASSERT(pFont != NULL);
 
@@ -3398,7 +3399,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    }
 
-   int32_t graphics::SelectObject(::ca2::region* pRgn)
+   int32_t graphics::SelectObject(::draw2d::region* pRgn)
    {
 
       throw not_implemented(get_app());
@@ -3415,10 +3416,10 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    }
 
-   ::ca2::palette* graphics::SelectPalette(::ca2::palette* pPalette, bool bForceBackground)
+   ::draw2d::palette* graphics::SelectPalette(::draw2d::palette* pPalette, bool bForceBackground)
    {
       return NULL;
-//      return dynamic_cast < ::ca2::palette * > (::win::object::from_handle(get_app(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
+//      return dynamic_cast < ::draw2d::palette * > (::win::object::from_handle(get_app(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
    }
 
    COLORREF graphics::SetBkColor(COLORREF crColor)
@@ -3559,7 +3560,7 @@ return 1;
 
    }
 
-   bool graphics::ModifyWorldTransform(const XFORM* pXform,DWORD iMode)
+   bool graphics::ModifyWorldTransform(const XFORM* pXform,uint32_t iMode)
    {
 
       throw not_implemented(get_app());
@@ -3584,7 +3585,7 @@ return 1;
    int32_t graphics::SetMapMode(int32_t nMapMode)
    {
 
-      throw not_implemented(get_app());
+      //throw not_implemented(get_app());
       return 0;
 
 
@@ -3769,7 +3770,7 @@ return 1;
 /*      return ::GetClipBox(get_handle1(), lpRect);*/
    }
 
-   int32_t graphics::SelectClipRgn(::ca2::region * pregion)
+   int32_t graphics::SelectClipRgn(::draw2d::region * pregion)
    {
 
       if(pregion == NULL)
@@ -3914,8 +3915,8 @@ return 1;
 
          cairo_get_current_point(m_pdc, &dx, &dy);
 
-         point.x = dx;
-         point.y = dy;
+         point.x = (LONG) dx;
+         point.y = (LONG) dy;
 
       }
 
@@ -4007,7 +4008,7 @@ return 1;
 
    }
 
-   DWORD graphics::SetMapperFlags(DWORD dwFlag)
+   uint32_t graphics::SetMapperFlags(uint32_t dwFlag)
    {
 
       throw not_implemented(get_app());
@@ -4015,7 +4016,7 @@ return 1;
 
 /*
       ASSERT(get_handle1() != NULL);
-      DWORD dwRetVal = GDI_ERROR;
+      uint32_t dwRetVal = GDI_ERROR;
       if(get_handle1() != NULL && get_handle1() != get_handle2())
          dwRetVal = ::SetMapperFlags(get_handle1(), dwFlag);
       if(get_handle2() != NULL)
@@ -4025,10 +4026,10 @@ return 1;
 
    }
 
-//   typedef DWORD (CALLBACK* __GDIGETLAYOUTPROC)(HDC);
-//   typedef DWORD (CALLBACK* __GDISETLAYOUTPROC)(HDC, DWORD);
+//   typedef uint32_t (CALLBACK* __GDIGETLAYOUTPROC)(HDC);
+//   typedef uint32_t (CALLBACK* __GDISETLAYOUTPROC)(HDC, uint32_t);
 
-   DWORD graphics::GetLayout() const
+   uint32_t graphics::GetLayout() const
    {
 
       throw not_implemented(get_app());
@@ -4037,7 +4038,7 @@ return 1;
 /*
       HINSTANCE hInst = ::GetModuleHandleA("GDI32.DLL");
       ASSERT(hInst != NULL);
-      DWORD dwGetLayout = LAYOUT_LTR;
+      uint32_t dwGetLayout = LAYOUT_LTR;
       __GDIGETLAYOUTPROC pfn;
       pfn = (__GDIGETLAYOUTPROC) GetProcaddress(hInst, "GetLayout");
       // if they API is available, just call it. If it is not
@@ -4054,7 +4055,7 @@ return 1;
 
    }
 
-   DWORD graphics::SetLayout(DWORD dwSetLayout)
+   uint32_t graphics::SetLayout(uint32_t dwSetLayout)
    {
 
       throw not_implemented(get_app());
@@ -4063,7 +4064,7 @@ return 1;
 /*
       HINSTANCE hInst = ::GetModuleHandleA("GDI32.DLL");
       ASSERT(hInst != NULL);
-      DWORD dwGetLayout = LAYOUT_LTR;
+      uint32_t dwGetLayout = LAYOUT_LTR;
       __GDISETLAYOUTPROC pfn;
       pfn = (__GDISETLAYOUTPROC) GetProcaddress(hInst, "SetLayout");
       // If the API is availalbe, just call it. If it's not available,
@@ -4250,7 +4251,7 @@ return 1;
 
    }
 
-   int32_t graphics::SelectClipRgn(::ca2::region* pRgn, int32_t nMode)
+   int32_t graphics::SelectClipRgn(::draw2d::region* pRgn, int32_t nMode)
    {
 
       throw not_implemented(get_app());
@@ -4273,7 +4274,7 @@ return 1;
    int32_t CALLBACK __enum_meta_file_procedure(HDC hDC,
       HANDLETABLE* pHandleTable, METARECORD* pMetaRec, int32_t nHandles, LPARAM lParam)
    {
-      ::ca2::graphics * pgraphics = (::ca2::graphics *)lParam;
+      ::draw2d::graphics * pgraphics = (::draw2d::graphics *)lParam;
       ASSERT_VALID(pgraphics);
 
       switch (pMetaRec->rdFunction)
@@ -4353,7 +4354,7 @@ return 1;
             }
             else if (nObjType == OBJ_FONT)
             {
-               // play back as graphics::SelectObject(::ca2::font*)
+               // play back as graphics::SelectObject(::draw2d::font*)
 //               (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
                throw not_implemented(::ca2::get_thread_app());
                break;  // don't play the default record
@@ -4463,19 +4464,19 @@ return 1;
 
          switch(m_etextrendering)
          {
-         case ::ca2::text_rendering_anti_alias:
+         case ::draw2d::text_rendering_anti_alias:
             m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
             m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
             break;
-         case ::ca2::text_rendering_anti_alias_grid_fit:
+         case ::draw2d::text_rendering_anti_alias_grid_fit:
             m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
             m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAliasGridFit);
             break;
-         case ::ca2::text_rendering_single_bit_per_pixel:
+         case ::draw2d::text_rendering_single_bit_per_pixel:
             m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
             m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintSingleBitPerPixel);
             break;
-         case ::ca2::text_rendering_clear_type_grid_fit:
+         case ::draw2d::text_rendering_clear_type_grid_fit:
             m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
             m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
             break;
@@ -4650,9 +4651,9 @@ return 1;
 
 	SIZE size;
 
-	size.cx = ex.width;
+	size.cx = (LONG) ex.width;
 
-	size.cy = ex.height;
+	size.cy = (LONG) ex.height;
 
    return size;
 
@@ -4766,9 +4767,9 @@ return 1;
 
 	SIZE size;
 
-	size.cx = ex.width;
+	size.cx = (LONG) ex.width;
 
-	size.cy = ex.height;
+	size.cy = (LONG) ex.height;
 
    return size;
 
@@ -4892,7 +4893,7 @@ return 1;
 
       size.cy = ex.height;
 
-      return size;
+      return true;
 
 
 
@@ -5035,7 +5036,7 @@ return 1;
 
 	size.cy = ex.height;
 
-   return size;
+   return true;
 
 
 /*      wstring wstr = ::ca2::international::utf8_to_unicode(lpszString, nCount);
@@ -5205,11 +5206,11 @@ return 1;
    // IMPLEMENT_DYNCREATE(::ca2::object, ::ca2::object)
 
    // IMPLEMENT_DYNAMIC(pen, ::ca2::object)
-   // IMPLEMENT_DYNAMIC(::ca2::brush, ::ca2::object)
-   // IMPLEMENT_DYNAMIC(::ca2::font, ::ca2::object)
-   // IMPLEMENT_DYNAMIC(::ca2::bitmap, ::ca2::object)
-   // IMPLEMENT_DYNAMIC(::ca2::palette, ::ca2::object)
-   // IMPLEMENT_DYNAMIC(::ca2::region, ::ca2::object)
+   // IMPLEMENT_DYNAMIC(::draw2d::brush, ::ca2::object)
+   // IMPLEMENT_DYNAMIC(::draw2d::font, ::ca2::object)
+   // IMPLEMENT_DYNAMIC(::draw2d::bitmap, ::ca2::object)
+   // IMPLEMENT_DYNAMIC(::draw2d::palette, ::ca2::object)
+   // IMPLEMENT_DYNAMIC(::draw2d::region, ::ca2::object)
 
 
    void graphics::FillSolidRect(LPCRECT lpRect, COLORREF clr)
@@ -5284,19 +5285,19 @@ return 1;
 
          switch(m_etextrendering)
          {
-         case ::ca2::text_rendering_anti_alias:
+         case ::draw2d::text_rendering_anti_alias:
             m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
             m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
             break;
-         case ::ca2::text_rendering_anti_alias_grid_fit:
+         case ::draw2d::text_rendering_anti_alias_grid_fit:
             m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
             m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAliasGridFit);
             break;
-         case ::ca2::text_rendering_single_bit_per_pixel:
+         case ::draw2d::text_rendering_single_bit_per_pixel:
             m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
             m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintSingleBitPerPixel);
             break;
-         case ::ca2::text_rendering_clear_type_grid_fit:
+         case ::draw2d::text_rendering_clear_type_grid_fit:
             m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
             m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
             break;
@@ -5420,16 +5421,16 @@ return true;
 
          switch(m_etextrendering)
          {
-         case ::ca2::text_rendering_anti_alias:
+         case ::draw2d::text_rendering_anti_alias:
             m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
             break;
-         case ::ca2::text_rendering_anti_alias_grid_fit:
+         case ::draw2d::text_rendering_anti_alias_grid_fit:
             m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAliasGridFit);
             break;
-         case ::ca2::text_rendering_single_bit_per_pixel:
+         case ::draw2d::text_rendering_single_bit_per_pixel:
             m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintSingleBitPerPixel);
             break;
-         case ::ca2::text_rendering_clear_type_grid_fit:
+         case ::draw2d::text_rendering_clear_type_grid_fit:
             m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
             m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintClearTypeGridFit);
             break;
@@ -5542,7 +5543,7 @@ return true;
    }
 
 
-   void graphics::set_alpha_mode(::ca2::e_alpha_mode ealphamode)
+   void graphics::set_alpha_mode(::draw2d::e_alpha_mode ealphamode)
    {
 
       try
@@ -5551,12 +5552,12 @@ return true;
          if(m_pdc == NULL)
             return;
 
-         ::ca2::graphics::set_alpha_mode(ealphamode);
-         if(m_ealphamode == ::ca2::alpha_mode_blend)
+         ::draw2d::graphics::set_alpha_mode(ealphamode);
+         if(m_ealphamode == ::draw2d::alpha_mode_blend)
          {
             cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
          }
-         else if(m_ealphamode == ::ca2::alpha_mode_set)
+         else if(m_ealphamode == ::draw2d::alpha_mode_set)
          {
             cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
          }
@@ -5570,7 +5571,7 @@ return true;
    }
 
 
-   void graphics::set_text_rendering(::ca2::e_text_rendering etextrendering)
+   void graphics::set_text_rendering(::draw2d::e_text_rendering etextrendering)
    {
       m_etextrendering = etextrendering;
 
@@ -5605,7 +5606,7 @@ return true;
 
       if(m_pdc != NULL)
       {
-	if(m_pdc ==  g_cairo)
+	if(m_pdc ==  cairo_keep::g_cairo)
 	{
          printf("123");
 
@@ -5670,7 +5671,7 @@ return true;
 
 //   ::ca2::e_fill_mode graphics::gdiplus_get_fill_mode()
   // {
-//      return ::ca2::fill_mode_winding;
+//      return ::draw2d::fill_mode_winding;
   // }
 
 void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
@@ -5717,12 +5718,12 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
             // blur step.
             pix = dst + (int32_t)radius * width * 4 + (int32_t)radius * 4 + channel;
-            for (y=radius;y<height-radius;y++) {
-                for (x=radius;x<width-radius;x++) {
-                    int32_t l = x < radius ? 0 : x - radius;
-                    int32_t t = y < radius ? 0 : y - radius;
-                    int32_t r = x + radius >= width ? width - 1 : x + radius;
-                    int32_t b = y + radius >= height ? height - 1 : y + radius;
+            for (y=(int32_t) radius;y<height-radius;y++) {
+                for (x=(int32_t) radius;x<width-radius;x++) {
+                    int32_t l = (int32_t) (x < radius ? 0 : x - radius);
+                    int32_t t = (int32_t) (y < radius ? 0 : y - radius);
+                    int32_t r = (int32_t) (x + radius >= width ? width - 1 : x + radius);
+                    int32_t b = (int32_t) (y + radius >= height ? height - 1 : y + radius);
                     int32_t tot = precalc[r+b*width] + precalc[l+t*width] -
                         precalc[l+b*width] - precalc[r+t*width];
                     *pix=(unsigned char)(tot*mul);
@@ -5773,10 +5774,10 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    }
 
 
-   bool graphics::set(const ::ca2::brush * pbrush)
+   bool graphics::set(const ::draw2d::brush * pbrush)
    {
 
-      if(pbrush->m_etype == ::ca2::brush::type_linear_gradient_point_color)
+      if(pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
       {
 
          cairo_pattern_t * ppattern = cairo_pattern_create_linear(pbrush->m_pt1.x, pbrush->m_pt1.y, pbrush->m_pt2.x, pbrush->m_pt2.y);
@@ -5795,27 +5796,31 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
          cairo_set_source_rgba(m_pdc, GetRValue(pbrush->m_cr) / 255.0, GetGValue(pbrush->m_cr) / 255.0, GetBValue(pbrush->m_cr) / 255.0, GetAValue(pbrush->m_cr) / 255.0);
 
-
       }
+
+      return true;
 
    }
 
 
-   bool graphics::set(const ::ca2::pen * ppen)
+   bool graphics::set(const ::draw2d::pen * ppen)
    {
 
       cairo_set_source_rgba(m_pdc, GetRValue(ppen->m_cr) / 255.0, GetGValue(ppen->m_cr) / 255.0, GetBValue(ppen->m_cr) / 255.0, GetAValue(ppen->m_cr) / 255.0);
 
       cairo_set_line_width(m_pdc, ppen->m_dWidth);
 
+      return true;
+
    }
 
-   bool graphics::set(const ::ca2::font * pfont)
+
+   bool graphics::set(const ::draw2d::font * pfont)
    {
 
       cairo_select_font_face(m_pdc, pfont->m_strFontFamilyName, pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
 
-      if(pfont->m_eunitFontSize == ::ca2::unit_pixel)
+      if(pfont->m_eunitFontSize == ::draw2d::unit_pixel)
       {
 
          cairo_set_font_size(m_pdc, pfont->m_dFontSize);
@@ -5828,16 +5833,19 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
       }
 
+      return true;
+
    }
+
 
    bool graphics::fill_and_draw()
    {
 
-      bool bPen = m_penxyz.m_etype != ::ca2::pen::type_null;
+      bool bPen = m_penxyz.m_etype != ::draw2d::pen::type_null;
 
       cairo_keep keep(m_pdc);
 
-      if(m_brushxyz.m_etype != ::ca2::brush::type_null)
+      if(m_brushxyz.m_etype != ::draw2d::brush::type_null)
       {
 
          set(&m_brushxyz);
@@ -5874,10 +5882,10 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    }
 
 
-   bool graphics::fill(::ca2::brush * pbrush)
+   bool graphics::fill(::draw2d::brush * pbrush)
    {
 
-      if(pbrush == NULL || pbrush->m_etype == ::ca2::brush::type_null)
+      if(pbrush == NULL || pbrush->m_etype == ::draw2d::brush::type_null)
          return true;
 
       cairo_keep keep(m_pdc);
@@ -5886,12 +5894,15 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
       cairo_fill(m_pdc);
 
+      return true;
+
    }
 
-   bool graphics::draw(::ca2::pen * ppen)
+
+   bool graphics::draw(::draw2d::pen * ppen)
    {
 
-      if(ppen == NULL || ppen->m_etype == ::ca2::pen::type_null)
+      if(ppen == NULL || ppen->m_etype == ::draw2d::pen::type_null)
          return true;
 
       cairo_keep keep(m_pdc);
@@ -5900,17 +5911,19 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
       cairo_stroke(m_pdc);
 
+      return true;
+
    }
 
 
-   bool graphics::set(const ::ca2::path * ppathParam)
+   bool graphics::set(const ::draw2d::path * ppathParam)
    {
 
       cairo_keep keep(m_pdc);
 
       cairo_new_sub_path(m_pdc);
 
-      ::draw2d_cairo::path * ppath = dynamic_cast < ::draw2d_cairo::path * > ((::ca2::path *) ppathParam);
+      ::draw2d_cairo::path * ppath = dynamic_cast < ::draw2d_cairo::path * > ((::draw2d::path *) ppathParam);
 
       for(int32_t i = 0; i < ppath->m_elementa.get_count(); i++)
       {
@@ -5919,7 +5932,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
       }
 
-      if(ppath->m_efillmode == ::ca2::fill_mode_alternate)
+      if(ppath->m_efillmode == ::draw2d::fill_mode_alternate)
       {
 
          cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_EVEN_ODD);
@@ -5942,16 +5955,16 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
       switch(e.m_etype)
       {
-      case ::ca2::path::element::type_arc:
+      case ::draw2d::path::element::type_arc:
          set(e.m_arc);
          break;
-      case ::ca2::path::element::type_line:
+      case ::draw2d::path::element::type_line:
          set(e.m_line);
          break;
-      case ::ca2::path::element::type_move:
+      case ::draw2d::path::element::type_move:
          set(e.m_move);
          break;
-      case ::ca2::path::element::type_end:
+      case ::draw2d::path::element::type_end:
          {
 
             if(e.m_end.m_bClose)

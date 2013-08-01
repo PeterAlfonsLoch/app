@@ -1190,8 +1190,8 @@ _cairo_matrix_to_pixman_matrix_offset (const cairo_matrix_t	*matrix,
 
 	    tx = floor (tx);
 	    ty = floor (ty);
-	    *x_offset = -tx;
-	    *y_offset = -ty;
+	    *x_offset = (int) (-tx);
+	    *y_offset = (int) (-ty);
 	    cairo_matrix_translate (&m, tx, ty);
 	} else {
 	    *x_offset = 0;

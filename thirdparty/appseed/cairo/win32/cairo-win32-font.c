@@ -437,7 +437,7 @@ _win32_scaled_font_get_scaled_hfont (cairo_win32_scaled_font_t *scaled_font,
 {
     if (!scaled_font->scaled_hfont) {
 	LOGFONTW logfont = scaled_font->logfont;
-	logfont.lfHeight = -scaled_font->logical_size;
+	logfont.lfHeight = (LONG) (-scaled_font->logical_size);
 	logfont.lfWidth = 0;
 	logfont.lfEscapement = 0;
 	logfont.lfOrientation = 0;
@@ -776,7 +776,7 @@ _cairo_win32_scaled_font_text_to_glyphs (void		*abstract_font,
     gcp_results.lpCaretPos = NULL;
     gcp_results.lpClass = NULL;
 
-    buffer_size = MAX (n16 * 1.2, 16);		/* Initially guess number of chars plus a few */
+    buffer_size = (unsigned int) (MAX (n16 * 1.2, 16));		/* Initially guess number of chars plus a few */
     if (buffer_size > INT_MAX) {
 	status = _cairo_error (CAIRO_STATUS_NO_MEMORY);
 	goto FAIL1;
@@ -1204,7 +1204,7 @@ _add_glyph (cairo_glyph_state_t *state,
     cairo_status_t status;
     double user_x = device_x;
     double user_y = device_y;
-    WCHAR glyph_index = index;
+    WCHAR glyph_index = (WCHAR) index;
     int logical_x, logical_y;
 
     cairo_matrix_transform_point (&state->scaled_font->device_to_logical, &user_x, &user_y);

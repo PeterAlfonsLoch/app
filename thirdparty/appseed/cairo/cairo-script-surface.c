@@ -1264,7 +1264,7 @@ _write_image_surface (cairo_output_stream_t *output,
 	for (row = image->height; row--; ) {
 	    int col;
 	    for (col = 0; col < (width + 7)/8; col++)
-		rowdata[col] = CAIRO_BITSWAP8 (data[col]);
+		rowdata[col] =(uint8_t)  CAIRO_BITSWAP8 (data[col]);
 	    _cairo_output_stream_write (output, rowdata, (width+7)/8);
 	    data += stride;
 	}
@@ -2099,8 +2099,8 @@ _cairo_script_surface_source (void                    *abstract_surface,
 
     if (extents) {
 	extents->x = extents->y = 0;
-	extents->width  = surface->width;
-	extents->height = surface->height;
+	extents->width  = (int) surface->width;
+	extents->height = (int) surface->height;
     }
 
     return &surface->base;
@@ -3441,7 +3441,7 @@ _cairo_script_surface_show_text_glyphs (void			    *abstract_surface,
 	    uint8_t c;
 
 	    if (font_private->has_sfnt)
-		c = glyphs[n].index;
+		c = (uint8_t) glyphs[n].index;
 	    else
 		c = (uint8_t) (long unsigned) scaled_glyph->dev_private;
 
@@ -3557,8 +3557,8 @@ _cairo_script_surface_get_extents (void *abstract_surface,
 
     rectangle->x = 0;
     rectangle->y = 0;
-    rectangle->width = surface->width;
-    rectangle->height = surface->height;
+    rectangle->width = (int) surface->width;
+    rectangle->height = (int) surface->height;
 
     return TRUE;
 }

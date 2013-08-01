@@ -1344,7 +1344,7 @@ _cairo_path_fixed_stroke_to_polygon (const cairo_path_fixed_t	*path,
     _cairo_contour_init (&stroker.ccw.contour, -1);
     tolerance *= CAIRO_FIXED_ONE;
     tolerance *= tolerance;
-    stroker.contour_tolerance = tolerance;
+    stroker.contour_tolerance = (cairo_uint64_t) tolerance;
     stroker.polygon = polygon;
 
     status = _cairo_path_fixed_interpret (path,

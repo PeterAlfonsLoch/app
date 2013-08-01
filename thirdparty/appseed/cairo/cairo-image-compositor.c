@@ -1572,7 +1572,7 @@ _cairo_image_spans (void *abstract_renderer,
     do {
 	len = spans[1].x - spans[0].x;
 	if (spans[0].coverage) {
-	    *row++ = r->opacity * spans[0].coverage;
+	    *row++ = (uint8_t) (r->opacity * spans[0].coverage);
 	    if (--len)
 		memset (row, row[-1], len);
 	}
@@ -1622,7 +1622,7 @@ _cairo_image_spans_and_zero (void *abstract_renderer,
 
 	do {
 	    len = spans[1].x - spans[0].x;
-	    *row++ = r->opacity * spans[0].coverage;
+	    *row++ = (uint8_t) (r->opacity * spans[0].coverage);
 	    if (len > 1) {
 		memset (row, row[-1], --len);
 		row += len;
@@ -2960,7 +2960,7 @@ span_renderer_init (cairo_abstract_span_renderer_t	*_r,
 
     r->opacity = 1.0;
     if (composite->mask_pattern.base.type == CAIRO_PATTERN_TYPE_SOLID) {
-	r->opacity = composite->mask_pattern.solid.color.alpha;
+	r->opacity = (float) (composite->mask_pattern.solid.color.alpha);
     } else {
 	pixman_image_t *mask;
 	int mask_x, mask_y;
@@ -2993,7 +2993,8 @@ span_renderer_init (cairo_abstract_span_renderer_t	*_r,
 
     r->u.mask.extents = composite->unbounded;
     r->u.mask.stride = (r->u.mask.extents.width + 3) & ~3;
-    if (r->u.mask.extents.height * r->u.mask.stride > (int)sizeof (r->_buf)) {
+    if (r->u.mask.extents.height * r->u.mask.stride > SZ_BUF) {
+       //(int)sizeof (r->_buf)) {
 	r->mask = pixman_image_create_bits (PIXMAN_a8,
 					    r->u.mask.extents.width,
 					    r->u.mask.extents.height,

@@ -45,13 +45,21 @@ typedef LPCREATESTRUCTA LPCREATESTRUCT;
 class cmd_ui;
 
 
+namespace draw2d
+{
+
+
+   class graphics;
+
+
+} // namespace draw2d
+
 
 namespace ca2
 {
 
 
    class window;
-   class graphics;
 
 
 } // namespace ca2

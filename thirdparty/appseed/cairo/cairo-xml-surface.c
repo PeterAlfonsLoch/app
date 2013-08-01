@@ -366,8 +366,8 @@ _cairo_xml_surface_get_extents (void *abstract_surface,
 
     rectangle->x = 0;
     rectangle->y = 0;
-    rectangle->width  = surface->width;
-    rectangle->height = surface->height;
+    rectangle->width  = (int) surface->width;
+    rectangle->height = (int) surface->height;
 
     return TRUE;
 }

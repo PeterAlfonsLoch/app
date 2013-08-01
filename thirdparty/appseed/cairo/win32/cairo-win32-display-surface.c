@@ -496,8 +496,8 @@ _cairo_win32_display_surface_unmap_image (void                    *abstract_surf
     if (surface->fallback) {
 	cairo_rectangle_int_t r;
 
-	r.x = image->base.device_transform_inverse.x0;
-	r.y = image->base.device_transform_inverse.y0;
+	r.x = (int) image->base.device_transform_inverse.x0;
+	r.y = (int) image->base.device_transform_inverse.y0;
 	r.width  = image->width;
 	r.height = image->height;
 

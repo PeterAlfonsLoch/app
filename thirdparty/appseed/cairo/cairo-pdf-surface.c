@@ -677,8 +677,8 @@ cairo_pdf_surface_set_size (cairo_surface_t	*surface,
 					  width_in_points,
 					  height_in_points);
     status = _cairo_paginated_surface_set_size (pdf_surface->paginated_surface,
-						width_in_points,
-						height_in_points);
+						(int) width_in_points,
+						(int) height_in_points);
     if (status)
 	status = _cairo_surface_set_error (surface, status);
 }
@@ -1055,8 +1055,8 @@ _cairo_pdf_surface_create_smask_group (cairo_pdf_surface_t	    *surface,
     } else {
 	group->extents.x = 0;
 	group->extents.y = 0;
-	group->extents.width = surface->width;
-	group->extents.height = surface->height;
+	group->extents.width = (int) surface->width;
+	group->extents.height = (int) surface->height;
     }
     group->extents = *extents;
 
@@ -1519,8 +1519,8 @@ _cairo_pdf_surface_add_pdf_pattern_or_shading (cairo_pdf_surface_t	   *surface,
     } else {
 	pdf_pattern.extents.x = 0;
 	pdf_pattern.extents.y = 0;
-	pdf_pattern.extents.width  = surface->width;
-	pdf_pattern.extents.height = surface->height;
+	pdf_pattern.extents.width  = (int) surface->width;
+	pdf_pattern.extents.height = (int) surface->height;
     }
 
     *pattern_res = pdf_pattern.pattern_res;
@@ -3653,8 +3653,8 @@ _cairo_pdf_surface_emit_gradient (cairo_pdf_surface_t    *surface,
     {
 	int repeat_begin, repeat_end;
 
-	repeat_begin = floor (domain[0]);
-	repeat_end = ceil (domain[1]);
+	repeat_begin = (int) floor (domain[0]);
+	repeat_end = (int) ceil (domain[1]);
 
 	status = _cairo_pdf_surface_emit_repeating_function (surface,
 							     pattern,
@@ -4281,8 +4281,8 @@ _cairo_pdf_surface_get_extents (void		        *abstract_surface,
      * mention the arbitrary limitation of width to a short(!). We
      * may need to come up with a better interface for get_size.
      */
-    rectangle->width  = ceil (surface->width);
-    rectangle->height = ceil (surface->height);
+    rectangle->width  = (int) ceil (surface->width);
+    rectangle->height = (int) ceil (surface->height);
 
     return TRUE;
 }
@@ -4517,7 +4517,7 @@ _create_font_subset_tag (cairo_scaled_font_subset_t	*font_subset,
     for (i = 0; i < 6; i++) {
 	d = ldiv (numerator, 26);
 	numerator = d.quot;
-        tag[i] = 'A' + d.rem;
+        tag[i] = (char) ('A' + d.rem);
     }
     tag[i] = 0;
 }
@@ -5311,7 +5311,7 @@ _cairo_pdf_emit_imagemask (cairo_image_surface_t *image,
     for (row = 0; row < image->height; row++) {
 	byte = image->data + row * image->stride;
 	for (col = 0; col < num_cols; col++) {
-	    output_byte = CAIRO_BITSWAP8_IF_LITTLE_ENDIAN (*byte);
+	    output_byte = (uint8_t)  CAIRO_BITSWAP8_IF_LITTLE_ENDIAN (*byte);
 	    _cairo_output_stream_write (stream, &output_byte, 1);
 	    byte++;
 	}
@@ -6006,8 +6006,8 @@ _cairo_pdf_surface_write_page (cairo_pdf_surface_t *surface)
 
 	extents.x = 0;
 	extents.y = 0;
-	extents.width = ceil (surface->width);
-	extents.height = ceil (surface->height);
+	extents.width = (int) ceil (surface->width);
+	extents.height = (int) ceil (surface->height);
 	_get_bbox_from_extents (surface->height, &extents, &bbox);
 	status = _cairo_pdf_surface_open_knockout_group (surface, &bbox);
 	if (unlikely (status))

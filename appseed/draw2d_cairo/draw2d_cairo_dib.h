@@ -10,7 +10,7 @@ namespace draw2d_cairo
    //////////////////////////////////////////////////////////////////////
 
    class CLASS_DECL_DRAW2D_CAIRO dib :
-      virtual public ::ca2::dib
+      virtual public ::draw2d::dib
    {
    public:
 
@@ -24,12 +24,15 @@ namespace draw2d_cairo
       static double dPi;
 
 
-      COLORREF *           m_pcolorref;
-      BITMAPINFO           m_info;
-      ::ca2::bitmap_sp      m_spbitmap;
-      ::ca2::graphics_sp    m_spgraphics;
-      bool                 m_bMapped;
-      //HBITMAP              m_hbitmapOriginal;
+      BITMAPINFO              m_info;
+      ::draw2d::bitmap_sp     m_spbitmap;
+      ::draw2d::graphics_sp   m_spgraphics;
+      bool                    m_bMapped;
+      //HBITMAP               m_hbitmapOriginal;
+      HBITMAP                    m_hbitmap;
+      class size64                       m_sizeWnd;
+      BITMAPINFO           m_bitmapinfo;
+
 
 
 
@@ -40,16 +43,16 @@ namespace draw2d_cairo
 
 
 
-      virtual ::ca2::graphics * get_graphics();
-      virtual ::ca2::bitmap_sp get_bitmap();
-      virtual ::ca2::bitmap_sp detach_bitmap();
+      virtual ::draw2d::graphics * get_graphics();
+      virtual ::draw2d::bitmap_sp get_bitmap();
+      virtual ::draw2d::bitmap_sp detach_bitmap();
 
 
       virtual COLORREF * get_data();
 
 
       static void s_initialize();
-      void stretch_dib(::ca2::dib * pdib);
+      void stretch_dib(::draw2d::dib * pdib);
 
       void map();
       void unmap();
@@ -57,28 +60,28 @@ namespace draw2d_cairo
       bool dc_select(bool bSelect = true);
 
       COLORREF GetAverageColor();
-      bool Blend(::ca2::dib *pdib, ::ca2::dib * pdibA, int32_t A);
+      bool Blend(::draw2d::dib *pdib, ::draw2d::dib * pdibA, int32_t A);
       bool color_blend(COLORREF cr, BYTE bAlpha);
-      void BitBlt(::ca2::dib * pdib, int32_t op);
+      void BitBlt(::draw2d::dib * pdib, int32_t op);
       int32_t cos(int32_t i, int32_t iAngle);
       int32_t sin(int32_t i, int32_t iAngle);
       int32_t cos10(int32_t i, int32_t iAngle);
       int32_t sin10(int32_t i, int32_t iAngle);
 
       bool is_rgb_black();
-      void _xor(::ca2::dib * pdib);
+      void _xor(::draw2d::dib * pdib);
 
       void ToAlpha(int32_t i);
       void ToAlphaAndFill(int32_t i, COLORREF cr);
       void GrayToARGB(COLORREF cr);
 
       void from_alpha();
-      void mult_alpha(::ca2::dib * pdibWork, bool bPreserveAlpha = true);
+      void mult_alpha(::draw2d::dib * pdibWork, bool bPreserveAlpha = true);
       void set_rgb(int32_t R, int32_t G, int32_t B);
 
-      void rotate(::ca2::dib * pdib, LPCRECT lpcrect, double dAngle, double dScale);
-      void rotate(::ca2::dib * pdib, double dAngle, double dScale);
-      void Rotate034(::ca2::dib * pdib, double dAngle, double dScale);
+      void rotate(::draw2d::dib * pdib, LPCRECT lpcrect, double dAngle, double dScale);
+      void rotate(::draw2d::dib * pdib, double dAngle, double dScale);
+      void Rotate034(::draw2d::dib * pdib, double dAngle, double dScale);
 
 
       void SetIconMask(::visual::icon * picon, int32_t cx, int32_t cy);
@@ -88,7 +91,7 @@ namespace draw2d_cairo
          BYTE a2, BYTE r2, BYTE g2, BYTE b2, // border colors
          int32_t x, int32_t y, int32_t iRadius);
 
-      DWORD GetPixel(int32_t x, int32_t y);
+      uint32_t GetPixel(int32_t x, int32_t y);
       void Mask(COLORREF crMask, COLORREF crInMask, COLORREF crOutMask);
       void channel_mask(BYTE uchFind, BYTE uchSet, BYTE uchUnset, visual::rgba::echannel echannel);
       void transparent_color(color color);
@@ -96,7 +99,7 @@ namespace draw2d_cairo
 
       bool create(class size size);
       bool create(int32_t iWidth, int32_t iHeight);
-      bool create(::ca2::graphics * pdc);
+      bool create(::draw2d::graphics * pdc);
       bool Destroy();
 
 
@@ -104,10 +107,10 @@ namespace draw2d_cairo
       void DivideARGB(int32_t iDivide);
       void DivideA(int32_t iDivide);
 
-      bool from(::ca2::graphics * pdc);
-      bool from(point ptDest, ::ca2::graphics * pdc, point pt, class size sz);
+      bool from(::draw2d::graphics * pdc);
+      bool from(point ptDest, ::draw2d::graphics * pdc, point pt, class size sz);
 
-      bool to(::ca2::graphics * pgraphics, point pt, class size size, point ptSrc);
+      bool to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc);
 
       virtual void fill_channel(int32_t C, visual::rgba::echannel echannel);
       void Fill (int32_t A, int32_t R, int32_t G, int32_t B );
@@ -120,29 +123,29 @@ namespace draw2d_cairo
 
       void Map (int32_t ToRgb, int32_t FromRgb );
 
-      void copy( ::ca2::dib *dib );
-      void Paste ( ::ca2::dib *dib );
+      void copy( ::draw2d::dib *dib );
+      void Paste ( ::draw2d::dib *dib );
 
-      void Blend ( ::ca2::dib *dib, int32_t A );
-      void Darken ( ::ca2::dib *dib );
-      void Difference ( ::ca2::dib *dib );
-      void Lighten ( ::ca2::dib *dib );
-      void Multiply ( ::ca2::dib *dib );
-      void Screen ( ::ca2::dib *dib );
+      void Blend ( ::draw2d::dib *dib, int32_t A );
+      void Darken ( ::draw2d::dib *dib );
+      void Difference ( ::draw2d::dib *dib );
+      void Lighten ( ::draw2d::dib *dib );
+      void Multiply ( ::draw2d::dib *dib );
+      void Screen ( ::draw2d::dib *dib );
 
-      void copy ( ::ca2::dib *dib, int32_t x, int32_t y );
-      void PasteRect ( ::ca2::dib *dib, int32_t x, int32_t y );
+      void copy ( ::draw2d::dib *dib, int32_t x, int32_t y );
+      void PasteRect ( ::draw2d::dib *dib, int32_t x, int32_t y );
 
       void FillRect ( int32_t x, int32_t y, int32_t w, int32_t h, int32_t R, int32_t G, int32_t B );
       void FillGlassRect ( int32_t x, int32_t y, int32_t w, int32_t h, int32_t R, int32_t G, int32_t B, int32_t A );
       void FillStippledGlassRect ( int32_t x, int32_t y, int32_t w, int32_t h, int32_t R, int32_t G, int32_t B );
 
-      void BlendRect ( ::ca2::dib *dib, int32_t x, int32_t y, int32_t A );
-      void DarkenRect ( ::ca2::dib *dib, int32_t x, int32_t y );
-      void DifferenceRect ( ::ca2::dib *dib, int32_t x, int32_t y );
-      void LightenRect ( ::ca2::dib *dib, int32_t x, int32_t y );
-      void MultiplyRect ( ::ca2::dib *dib, int32_t x, int32_t y );
-      void ScreenRect ( ::ca2::dib *dib, int32_t x, int32_t y );
+      void BlendRect ( ::draw2d::dib *dib, int32_t x, int32_t y, int32_t A );
+      void DarkenRect ( ::draw2d::dib *dib, int32_t x, int32_t y );
+      void DifferenceRect ( ::draw2d::dib *dib, int32_t x, int32_t y );
+      void LightenRect ( ::draw2d::dib *dib, int32_t x, int32_t y );
+      void MultiplyRect ( ::draw2d::dib *dib, int32_t x, int32_t y );
+      void ScreenRect ( ::draw2d::dib *dib, int32_t x, int32_t y );
 
       void Line ( int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t R, int32_t G, int32_t B );
       void LineGlass ( int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t R, int32_t G, int32_t B, int32_t A );
@@ -158,7 +161,11 @@ namespace draw2d_cairo
       int32_t height();
       double pi();
 
-      virtual bool from(::ca2::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI);
+      virtual bool from(::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI);
+
+
+      bool update_window(::ca2::window * pwnd, ::ca2::signal_object * pobj);
+      bool print_window(::ca2::window * pwnd, ::ca2::signal_object * pobj);
 
    };
 

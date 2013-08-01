@@ -100,7 +100,7 @@ _cairo_time_1s (void)
 
     QueryPerformanceFrequency (&freq);
 
-    return freq.QuadPart;
+    return (double) freq.QuadPart;
 }
 
 #ifndef HAVE_UINT64_T

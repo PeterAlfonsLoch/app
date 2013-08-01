@@ -21,7 +21,7 @@ namespace draw2d_cairo
    void font::dump(dump_context & dumpcontext) const
    {
 
-      ::ca2::font::dump(dumpcontext);
+      ::draw2d::font::dump(dumpcontext);
 
    }
 

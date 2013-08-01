@@ -96,17 +96,17 @@ namespace draw2d_cairo
       // IMPLEMENT_DYNAMIC(user_exception, base_exception)
       //user_exception _simpleUserException(FALSE, __IDS_USER_EXCEPTION);
 
-      // IMPLEMENT_DYNCREATE(::ca2::graphics_sp, ::ca2::object)
-      // IMPLEMENT_DYNAMIC(CClientDC, ::ca2::graphics_sp)
-      // IMPLEMENT_DYNAMIC(CWindowDC, ::ca2::graphics_sp)
-      // IMPLEMENT_DYNAMIC(CPaintDC, ::ca2::graphics_sp)
+      // IMPLEMENT_DYNCREATE(::draw2d::graphics_sp, ::ca2::object)
+      // IMPLEMENT_DYNAMIC(CClientDC, ::draw2d::graphics_sp)
+      // IMPLEMENT_DYNAMIC(CWindowDC, ::draw2d::graphics_sp)
+      // IMPLEMENT_DYNAMIC(CPaintDC, ::draw2d::graphics_sp)
       // IMPLEMENT_DYNCREATE(::ca2::object, ::ca2::object)
 
       // IMPLEMENT_DYNAMIC(pen, ::ca2::object)
-      // IMPLEMENT_DYNAMIC(::ca2::brush, ::ca2::object)
-      // IMPLEMENT_DYNAMIC(::ca2::font, ::ca2::object)
-      // IMPLEMENT_DYNAMIC(::ca2::bitmap, ::ca2::object)
-      // IMPLEMENT_DYNAMIC(::ca2::palette, ::ca2::object)
+      // IMPLEMENT_DYNAMIC(::draw2d::brush, ::ca2::object)
+      // IMPLEMENT_DYNAMIC(::draw2d::font, ::ca2::object)
+      // IMPLEMENT_DYNAMIC(::draw2d::bitmap, ::ca2::object)
+      // IMPLEMENT_DYNAMIC(::draw2d::palette, ::ca2::object)
       // IMPLEMENT_DYNAMIC(::ca2::rgn, ::ca2::object)
 
       /////////////////////////////////////////////////////////////////////////////

@@ -9,9 +9,9 @@ namespace draw2d_cairo
    class font;
 
    class CLASS_DECL_DRAW2D_CAIRO graphics :
-      virtual public ::ca2::graphics
+      virtual public ::draw2d::graphics
    {
-      // // DECLARE_DYNCREATE(::ca2::graphics_sp)
+      // // DECLARE_DYNCREATE(::draw2d::graphics_sp)
    public:
 
 
@@ -48,7 +48,7 @@ namespace draw2d_cairo
 
       //::ca2::window * GetWindow() const;
 
-      //static ::ca2::graphics * PASCAL from_handle(HDC hDC);
+      //static ::draw2d::graphics * PASCAL from_handle(HDC hDC);
       //static void PASCAL DeleteTempMap();
       //bool Attach(HDC hdc);   // Attach/Detach affects only the Output DC
       //HDC Detach();
@@ -63,11 +63,11 @@ namespace draw2d_cairo
 
       bool IsPrinting() const;            // TRUE if being used for printing
 
-      ::ca2::pen & GetCurrentPen() const;
-      ::ca2::brush & GetCurrentBrush() const;
-      ::ca2::palette & GetCurrentPalette() const;
-      ::ca2::font & GetCurrentFont() const;
-      ::ca2::bitmap & GetCurrentBitmap() const;
+      ::draw2d::pen & GetCurrentPen() const;
+      ::draw2d::brush & GetCurrentBrush() const;
+      ::draw2d::palette & GetCurrentPalette() const;
+      ::draw2d::font & GetCurrentFont() const;
+      ::draw2d::bitmap & GetCurrentBitmap() const;
 
 
       //pen *       lnx_pen();
@@ -75,8 +75,8 @@ namespace draw2d_cairo
       //font *      lnx_font();
 
       // for bidi and mirrored localization
-      DWORD GetLayout() const;
-      DWORD SetLayout(DWORD dwLayout);
+      uint32_t GetLayout() const;
+      uint32_t SetLayout(uint32_t dwLayout);
 
 
       virtual double get_dpix() const;
@@ -84,7 +84,7 @@ namespace draw2d_cairo
    // Constructors
       bool CreateDC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData);
       bool CreateIC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData);
-      bool CreateCompatibleDC(::ca2::graphics * pgraphics);
+      bool CreateCompatibleDC(::draw2d::graphics * pgraphics);
 
       bool DeleteDC();
 
@@ -105,18 +105,18 @@ namespace draw2d_cairo
 
    // Type-safe selection helpers
    public:
-      virtual ::ca2::object* SelectStockObject(int32_t nIndex);
-      ::ca2::pen* SelectObject(::ca2::pen* pPen);
-      ::ca2::brush* SelectObject(::ca2::brush* pBrush);
-      virtual ::ca2::font* SelectObject(::ca2::font* pFont);
-      ::ca2::bitmap* SelectObject(::ca2::bitmap* pBitmap);
-      int32_t SelectObject(::ca2::region* pRgn);       // special return for regions
+      virtual ::draw2d::object* SelectStockObject(int32_t nIndex);
+      ::draw2d::pen* SelectObject(::draw2d::pen* pPen);
+      ::draw2d::brush* SelectObject(::draw2d::brush* pBrush);
+      virtual ::draw2d::font* SelectObject(::draw2d::font* pFont);
+      ::draw2d::bitmap* SelectObject(::draw2d::bitmap* pBitmap);
+      int32_t SelectObject(::draw2d::region* pRgn);       // special return for regions
       ::ca2::object* SelectObject(::ca2::object* pObject);
          // ::ca2::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
    // color and color Palette Functions
       COLORREF GetNearestColor(COLORREF crColor) const;
-      ::ca2::palette* SelectPalette(::ca2::palette* pPalette, bool bForceBackground);
+      ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground);
       UINT RealizePalette();
       void UpdateColors();
 
@@ -154,7 +154,7 @@ namespace draw2d_cairo
 
       // World transform
       bool SetWorldTransform(const XFORM* pXform);
-      bool ModifyWorldTransform(const XFORM* pXform,DWORD iMode);
+      bool ModifyWorldTransform(const XFORM* pXform,uint32_t iMode);
       bool GetWorldTransform(XFORM* pXform) const;
 
       // Mapping Functions
@@ -199,17 +199,17 @@ namespace draw2d_cairo
       void HIMETRICtoLP(LPSIZE lpSize) const;
 
    // Region Functions
-      bool FillRgn(::ca2::region* pRgn, ::ca2::brush* pBrush);
-      bool FrameRgn(::ca2::region* pRgn, ::ca2::brush* pBrush, int32_t nWidth, int32_t nHeight);
-      bool InvertRgn(::ca2::region* pRgn);
-      bool PaintRgn(::ca2::region* pRgn);
+      bool FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush);
+      bool FrameRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush, int32_t nWidth, int32_t nHeight);
+      bool InvertRgn(::draw2d::region* pRgn);
+      bool PaintRgn(::draw2d::region* pRgn);
 
    // Clipping Functions
       virtual int32_t GetClipBox(LPRECT lpRect) const;
       virtual bool PtVisible(int32_t x, int32_t y) const;
             bool PtVisible(POINT point) const;
       virtual bool RectVisible(LPCRECT lpRect) const;
-            int32_t SelectClipRgn(::ca2::region* pRgn);
+            int32_t SelectClipRgn(::draw2d::region* pRgn);
             int32_t ExcludeClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
             int32_t ExcludeClipRect(LPCRECT lpRect);
             int32_t ExcludeUpdateRgn(::ca2::window * pWnd);
@@ -217,7 +217,7 @@ namespace draw2d_cairo
             int32_t IntersectClipRect(LPCRECT lpRect);
             int32_t OffsetClipRgn(int32_t x, int32_t y);
             int32_t OffsetClipRgn(SIZE size);
-      int32_t SelectClipRgn(::ca2::region* pRgn, int32_t nMode);
+      int32_t SelectClipRgn(::draw2d::region* pRgn, int32_t nMode);
 
    // Line-Output Functions
       point GetCurrentPosition() const;
@@ -239,34 +239,34 @@ namespace draw2d_cairo
       bool PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, int32_t nCount);
       bool PolylineTo(const POINT* lpPoints, int32_t nCount);
       bool PolyPolyline(const POINT* lpPoints,
-         const DWORD* lpPolyPoints, int32_t nCount);
+         const uint32_t* lpPolyPoints, int32_t nCount);
 
       bool PolyBezier(const POINT* lpPoints, int32_t nCount);
       bool PolyBezierTo(const POINT* lpPoints, int32_t nCount);
 
    // Simple Drawing Functions
-      void FillRect(LPCRECT lpRect, ::ca2::brush* pBrush);
-      void FrameRect(LPCRECT lpRect, ::ca2::brush* pBrush);
+      void FillRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
+      void FrameRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
       void InvertRect(LPCRECT lpRect);
       bool DrawIcon(int32_t x, int32_t y, ::visual::icon * picon);
       bool DrawIcon(POINT point, ::visual::icon * picon);
       bool DrawIcon(int32_t x, int32_t y, ::visual::icon * picon, int32_t cx, int32_t cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags);
       bool DrawState(point pt, size size, HBITMAP hBitmap, UINT nFlags,
          HBRUSH hBrush = NULL);
-      bool DrawState(point pt, size size, ::ca2::bitmap* pBitmap, UINT nFlags,
-         ::ca2::brush* pBrush = NULL);
+      bool DrawState(point pt, size size, ::draw2d::bitmap* pBitmap, UINT nFlags,
+         ::draw2d::brush* pBrush = NULL);
       bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
          HBRUSH hBrush = NULL);
       bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
-         ::ca2::brush* pBrush = NULL);
+         ::draw2d::brush* pBrush = NULL);
       bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
          bool bPrefixText = TRUE, int32_t nTextLen = 0, HBRUSH hBrush = NULL);
       bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
-         bool bPrefixText = TRUE, int32_t nTextLen = 0, ::ca2::brush* pBrush = NULL);
+         bool bPrefixText = TRUE, int32_t nTextLen = 0, ::draw2d::brush* pBrush = NULL);
 //xxx      bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
 //xxx         LPARAM lData, UINT nFlags, HBRUSH hBrush = NULL);
 //xxx      bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
-//xxx         LPARAM lData, UINT nFlags, ::ca2::brush* pBrush = NULL);
+//xxx         LPARAM lData, UINT nFlags, ::draw2d::brush* pBrush = NULL);
 
    // Ellipse and Polygon Functions
       bool Chord(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3,
@@ -293,34 +293,34 @@ namespace draw2d_cairo
       bool RoundRect(LPCRECT lpRect, POINT point);
 
    // Bitmap Functions
-      bool PatBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, DWORD dwRop);
-      bool BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca2::graphics * pgraphicsSrc,
-         int32_t xSrc, int32_t ySrc, DWORD dwRop);
-      bool StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca2::graphics * pgraphicsSrc,
-         int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, DWORD dwRop);
+      bool PatBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, uint32_t dwRop);
+      bool BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
+         int32_t xSrc, int32_t ySrc, uint32_t dwRop);
+      bool StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
+         int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop);
       COLORREF GetPixel(int32_t x, int32_t y) const;
       COLORREF GetPixel(POINT point) const;
       COLORREF SetPixel(int32_t x, int32_t y, COLORREF crColor);
       COLORREF SetPixel(POINT point, COLORREF crColor);
       bool FloodFill(int32_t x, int32_t y, COLORREF crColor);
       bool ExtFloodFill(int32_t x, int32_t y, COLORREF crColor, UINT nFillType);
-      bool MaskBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca2::graphics * pgraphicsSrc,
-         int32_t xSrc, int32_t ySrc, ::ca2::bitmap& maskBitmap, int32_t xMask, int32_t yMask,
-         DWORD dwRop);
-      bool PlgBlt(LPPOINT lpPoint, ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc,
-         int32_t nWidth, int32_t nHeight, ::ca2::bitmap& maskBitmap, int32_t xMask, int32_t yMask);
+      bool MaskBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
+         int32_t xSrc, int32_t ySrc, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask,
+         uint32_t dwRop);
+      bool PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc,
+         int32_t nWidth, int32_t nHeight, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask);
       bool SetPixelV(int32_t x, int32_t y, COLORREF crColor);
       bool SetPixelV(POINT point, COLORREF crColor);
       bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
-        void * pMesh, ULONG nMeshElements, DWORD dwMode);
+        void * pMesh, ULONG nMeshElements, uint32_t dwMode);
       bool TransparentBlt(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
-        ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
+        ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
         UINT clrTransparent);
 
-      virtual bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity);
+      virtual bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity);
 
       /*bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
-        ::ca2::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
+        ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
         BLENDFUNCTION blend);*/
 
    // Text Functions
@@ -355,7 +355,7 @@ namespace draw2d_cairo
       size GetTabbedTextExtent(const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions) const;
       size GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, int32_t nTabPositions, LPINT lpnTabStopPositions) const;
       size GetOutputTabbedTextExtent(const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions) const;
-      virtual bool GrayString(::ca2::brush* pBrush,
+      virtual bool GrayString(::draw2d::brush* pBrush,
          bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int32_t), LPARAM lpData,
             int32_t nCount, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight);
       UINT GetTextAlign() const;
@@ -368,8 +368,8 @@ namespace draw2d_cairo
       int32_t GetTextCharacterExtra() const;
       int32_t SetTextCharacterExtra(int32_t nCharExtra);
 
-//xxx      DWORD GetCharacterPlacement(const char * lpString, int32_t nCount, int32_t nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
-//xxx      DWORD GetCharacterPlacement(string & str, int32_t nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
+//xxx      uint32_t GetCharacterPlacement(const char * lpString, int32_t nCount, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const;
+//xxx      uint32_t GetCharacterPlacement(string & str, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const;
 
    #if (_WIN32_WINNT >= 0x0500)
 
@@ -386,27 +386,27 @@ namespace draw2d_cairo
 
    // Scrolling Functions
       bool ScrollDC(int32_t dx, int32_t dy, LPCRECT lpRectScroll, LPCRECT lpRectClip,
-         ::ca2::region* pRgnUpdate, LPRECT lpRectUpdate);
+         ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate);
 
    // font Functions
       bool GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;
       bool GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;
-      DWORD SetMapperFlags(DWORD dwFlag);
+      uint32_t SetMapperFlags(uint32_t dwFlag);
       size GetAspectRatioFilter() const;
 
 //xxx      bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) const;
-      DWORD GetFontData(DWORD dwTable, DWORD dwOffset, LPVOID lpData, DWORD cbData) const;
+      uint32_t GetFontData(uint32_t dwTable, uint32_t dwOffset, LPVOID lpData, uint32_t cbData) const;
 //xxx      int32_t GetKerningPairs(int32_t nPairs, LPKERNINGPAIR lpkrnpair) const;
 //xxx      UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const;
-//xxx      DWORD GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,
-     //xxx    DWORD cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
+//xxx      uint32_t GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,
+     //xxx    uint32_t cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
 
 //xxx      bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar,
 //xxx         LPABCFLOAT lpABCF) const;
       bool GetCharWidth(UINT nFirstChar, UINT nLastChar,
          float* lpFloatBuffer) const;
 
-      DWORD GetFontLanguageInfo() const;
+      uint32_t GetFontLanguageInfo() const;
 
    #if (_WIN32_WINNT >= 0x0500)
 
@@ -446,8 +446,8 @@ namespace draw2d_cairo
       bool StrokePath();
       bool WidenPath();
 
-      bool draw_path(::ca2::path * ppath);
-      bool fill_path(::ca2::path * ppath);
+      bool draw_path(::draw2d::path * ppath);
+      bool fill_path(::draw2d::path * ppath);
 
 
       float GetMiterLimit() const;
@@ -456,10 +456,10 @@ namespace draw2d_cairo
       bool SelectClipPath(int32_t nMode);
 
    // Misc Helper Functions
-      static ::ca2::brush* PASCAL GetHalftoneBrush(sp(::ca2::application) papp);
+      static ::draw2d::brush* PASCAL GetHalftoneBrush(sp(::ca2::application) papp);
       void DrawDragRect(LPCRECT lpRect, SIZE size,
          LPCRECT lpRectLast, SIZE sizeLast,
-         ::ca2::brush* pBrush = NULL, ::ca2::brush* pBrushLast = NULL);
+         ::draw2d::brush* pBrush = NULL, ::draw2d::brush* pBrushLast = NULL);
       void FillSolidRect(const __rect64 * lpRect, COLORREF clr);
       void FillSolidRect(LPCRECT lpRect, COLORREF clr);
       void FillSolidRect(int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr);
@@ -477,9 +477,9 @@ namespace draw2d_cairo
 
 //      HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
 
-      virtual void set_alpha_mode(::ca2::e_alpha_mode ealphamode);
+      virtual void set_alpha_mode(::draw2d::e_alpha_mode ealphamode);
 
-      virtual void set_text_rendering(::ca2::e_text_rendering etextrendering);
+      virtual void set_text_rendering(::draw2d::e_text_rendering etextrendering);
 
       virtual void * get_os_data() const;
 //      virtual HDC get_handle() const;
@@ -500,17 +500,17 @@ namespace draw2d_cairo
 
       // platform-specific or platform-internals
       bool set_os_color(COLORREF cr);
-      bool set(const ::ca2::brush * pbrush);
-      bool set(const ::ca2::pen * ppen);
-      bool set(const ::ca2::font * pfont);
-      bool set(const ::ca2::path * ppath);
-      bool set(const ::draw2d_cairo::path::element & e);
-      bool set(const ::draw2d_cairo::path::arc & arc);
-      bool set(const ::draw2d_cairo::path::move & move);
-      bool set(const ::draw2d_cairo::path::line & line);
-      bool fill_and_draw(::ca2::brush * pbrush, ::ca2::pen * ppen);
-      bool fill(::ca2::brush * pbrush);
-      bool draw(::ca2::pen * ppen);
+      bool set(const ::draw2d::brush * pbrush);
+      bool set(const ::draw2d::pen * ppen);
+      bool set(const ::draw2d::font * pfont);
+      bool set(const ::draw2d::path * ppath);
+      bool set(const ::draw2d::path::element & e);
+      bool set(const ::draw2d::path::arc & arc);
+      bool set(const ::draw2d::path::move & move);
+      bool set(const ::draw2d::path::line & line);
+      bool fill_and_draw(::draw2d::brush * pbrush, ::draw2d::pen * ppen);
+      bool fill(::draw2d::brush * pbrush);
+      bool draw(::draw2d::pen * ppen);
       bool fill_and_draw();
       bool fill();
       bool draw();

@@ -475,10 +475,10 @@ cairo_surface_create_for_rectangle (cairo_surface_t *target,
 			 target->content);
 
     /* XXX forced integer alignment */
-    surface->extents.x = ceil (x);
-    surface->extents.y = ceil (y);
-    surface->extents.width = floor (x + width) - surface->extents.x;
-    surface->extents.height = floor (y + height) - surface->extents.y;
+    surface->extents.x = (int) ceil (x);
+    surface->extents.y = (int) ceil (y);
+    surface->extents.width = (int) (floor (x + width) - surface->extents.x);
+    surface->extents.height = (int) (floor (y + height) - surface->extents.y);
     if ((surface->extents.width | surface->extents.height) < 0)
 	surface->extents.width = surface->extents.height = 0;
 
@@ -523,8 +523,8 @@ _cairo_surface_create_for_rectangle_int (cairo_surface_t *target,
 			 target->content);
 
     surface->extents = *extents;
-    surface->extents.x += target->device_transform.x0;
-    surface->extents.y += target->device_transform.y0;
+    surface->extents.x += (int) target->device_transform.x0;
+    surface->extents.y += (int) target->device_transform.y0;
 
     surface->target = cairo_surface_reference (target);
     surface->base.type = surface->target->type;

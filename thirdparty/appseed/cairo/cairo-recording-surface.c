@@ -402,10 +402,10 @@ cairo_recording_surface_create (cairo_content_t		 content,
 	surface->extents_pixels = *extents;
 
 	/* XXX check for overflow */
-	surface->extents.x = floor (extents->x);
-	surface->extents.y = floor (extents->y);
-	surface->extents.width = ceil (extents->x + extents->width) - surface->extents.x;
-	surface->extents.height = ceil (extents->y + extents->height) - surface->extents.y;
+	surface->extents.x = (int) floor (extents->x);
+	surface->extents.y = (int) floor (extents->y);
+	surface->extents.width = (int) (ceil (extents->x + extents->width) - surface->extents.x);
+	surface->extents.height = (int) (ceil (extents->y + extents->height) - surface->extents.y);
 
 	surface->unbounded = FALSE;
     }

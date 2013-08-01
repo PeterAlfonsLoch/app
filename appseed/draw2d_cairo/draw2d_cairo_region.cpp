@@ -41,7 +41,7 @@ namespace draw2d_cairo
    { return Attach(::CreatePolyPolygonRgn(lpPoints, lpPolyCounts, nCount, nPolyFillMode)); }
    WINBOOL region::CreateRoundRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3)
    { return Attach(::CreateRoundRectRgn(x1, y1, x2, y2, x3, y3)); }
-   WINBOOL region::CreateFromPath(::ca2::graphics * pgraphics)
+   WINBOOL region::CreateFromPath(::draw2d::graphics * pgraphics)
    { ASSERT(pgraphics != NULL); return Attach(::PathToRegion((dynamic_cast<::win::graphics * >(pgraphics))->get_handle1())); }
    WINBOOL region::CreateFromData(const XFORM* lpXForm, int32_t nCount, const RGNDATA* pRgnData)
    { return Attach(::ExtCreateRegion(lpXForm, nCount, pRgnData)); }
@@ -55,12 +55,12 @@ namespace draw2d_cairo
       ::SetRectRgn((HRGN)get_os_data(), lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
    }
 
-   int32_t region::CombineRgn(const ::ca2::region* pRgn1, const ::ca2::region* pRgn2, int32_t nCombineMode)
+   int32_t region::CombineRgn(const ::draw2d::region* pRgn1, const ::draw2d::region* pRgn2, int32_t nCombineMode)
    { ASSERT(get_os_data() != NULL); return ::CombineRgn((HRGN)get_os_data(), (HRGN)pRgn1->get_os_data(),
    (HRGN)pRgn2->get_os_data(), nCombineMode); }
-   int32_t region::CopyRgn(const ::ca2::region* pRgnSrc)
+   int32_t region::CopyRgn(const ::draw2d::region* pRgnSrc)
    { ASSERT(get_os_data() != NULL); return ::CombineRgn((HRGN)get_os_data(), (HRGN)pRgnSrc->get_os_data(), NULL, RGN_COPY); }
-   WINBOOL region::EqualRgn(const ::ca2::region* pRgn) const
+   WINBOOL region::EqualRgn(const ::draw2d::region* pRgn) const
    { ASSERT(get_os_data() != NULL); return ::EqualRgn((HRGN)get_os_data(), (HRGN)pRgn->get_os_data()); }
    int32_t region::OffsetRgn(int32_t x, int32_t y)
    { ASSERT(get_os_data() != NULL); return ::OffsetRgn((HRGN)get_os_data(), x, y); }
@@ -167,7 +167,7 @@ namespace draw2d_cairo
    bool region::get_poly_polygon(cairo_t * pdc)
    {
 
-      int32_t n;
+      int32_t n = 0;
 
       for(int32_t i = 0; i < m_nCount; i++)
       {
@@ -207,15 +207,15 @@ namespace draw2d_cairo
 
       cairo_pop_group_to_source(pdc);
 
-      if(m_ecombine == ::ca2::region::combine_add)
+      if(m_ecombine == ::draw2d::region::combine_add)
       {
          cairo_set_operator(pdc, CAIRO_OPERATOR_SOURCE);
       }
-      else if(m_ecombine == ::ca2::region::combine_exclude)
+      else if(m_ecombine == ::draw2d::region::combine_exclude)
       {
          cairo_set_operator(pdc, CAIRO_OPERATOR_CLEAR);
       }
-      else if(m_ecombine == ::ca2::region::combine_intersect)
+      else if(m_ecombine == ::draw2d::region::combine_intersect)
       {
          cairo_set_operator(pdc, CAIRO_OPERATOR_IN);
       }
@@ -225,6 +225,8 @@ namespace draw2d_cairo
       }
 
       cairo_paint(pdc);
+
+      return true;
 
    }
 

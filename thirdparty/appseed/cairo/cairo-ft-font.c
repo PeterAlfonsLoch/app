@@ -1166,7 +1166,7 @@ _get_bitmap_surface (FT_Bitmap		     *bitmap,
 	    int count = stride * height;
 
 	    while (count--) {
-		*d = CAIRO_BITSWAP8 (*d);
+		*d = (uint8_t) CAIRO_BITSWAP8 (*d);
 		d++;
 	    }
 	}
@@ -1499,18 +1499,18 @@ _transform_glyph_bitmap (cairo_matrix_t         * shape,
       cairo_matrix_transform_point (&original_to_transformed,
 				    &x[i], &y[i]);
 
-    x_min = floor (x[0]);   y_min = floor (y[0]);
-    x_max =  ceil (x[0]);   y_max =  ceil (y[0]);
+    x_min = (int32_t) floor (x[0]);   y_min = (int32_t) floor (y[0]);
+    x_max =  (int32_t) ceil (x[0]);   y_max =  (int32_t) ceil (y[0]);
 
     for (i = 1; i < 4; i++) {
 	if (x[i] < x_min)
-	    x_min = floor (x[i]);
+	    x_min = (int32_t) floor (x[i]);
 	else if (x[i] > x_max)
-	    x_max = ceil (x[i]);
+	    x_max = (int32_t) ceil (x[i]);
 	if (y[i] < y_min)
-	    y_min = floor (y[i]);
+	    y_min = (int32_t) floor (y[i]);
 	else if (y[i] > y_max)
-	    y_max = ceil (y[i]);
+	    y_max = (int32_t) ceil (y[i]);
     }
 
     /* Adjust the transform so that the bounding box starts at 0,0 ...
@@ -2006,11 +2006,11 @@ _conic_to (FT_Vector *control, FT_Vector *to, void *closure)
     x3 = _cairo_fixed_from_26_6 (to->x);
     y3 = _cairo_fixed_from_26_6 (to->y);
 
-    x1 = x0 + 2.0/3.0 * (conic.x - x0);
-    y1 = y0 + 2.0/3.0 * (conic.y - y0);
+    x1 = (cairo_fixed_t) (x0 + 2.0/3.0 * (conic.x - x0));
+    y1 = (cairo_fixed_t) (y0 + 2.0/3.0 * (conic.y - y0));
 
-    x2 = x3 + 2.0/3.0 * (conic.x - x3);
-    y2 = y3 + 2.0/3.0 * (conic.y - y3);
+    x2 = (cairo_fixed_t) (x3 + 2.0/3.0 * (conic.x - x3));
+    y2 = (cairo_fixed_t) (y3 + 2.0/3.0 * (conic.y - y3));
 
     if (_cairo_path_fixed_curve_to (path,
 				    x1, y1,
@@ -2389,7 +2389,9 @@ _cairo_ft_load_truetype_table (void	       *abstract_font,
 {
     cairo_ft_scaled_font_t *scaled_font = abstract_font;
     cairo_ft_unscaled_font_t *unscaled = scaled_font->unscaled;
+#if HAVE_FT_LOAD_SFNT_TABLE
     FT_Face face;
+#endif
     cairo_status_t status = CAIRO_INT_STATUS_UNSUPPORTED;
 
     /* We don't support the FreeType feature of loading a table

@@ -332,7 +332,7 @@ charstring_encrypt (cairo_array_t *data)
 	p = *d;
 	c = p ^ (r >> 8);
 	r = (c + r) * CAIRO_TYPE1_ENCRYPT_C1 + CAIRO_TYPE1_ENCRYPT_C2;
-        *d++ = c;
+        *d++ = (unsigned char) c;
     }
 }
 
@@ -384,7 +384,7 @@ cairo_type1_font_create_charstring (cairo_type1_font_t      *font,
         if (metrics->y_bearing + metrics->height > font->y_max)
             font->y_max = metrics->y_bearing + metrics->height;
     }
-    font->widths[subset_index] = metrics->x_advance;
+    font->widths[subset_index] = (int) metrics->x_advance;
 
     status = _cairo_array_grow_by (data, 30);
     if (unlikely (status))
@@ -575,7 +575,7 @@ cairo_type1_write_stream_encrypted (void                *closure,
 		_cairo_output_stream_write (font->output, digits, 2);
 	    }
 	} else {
-	    digits[0] = c;
+	    digits[0] = (char) c;
 	    _cairo_output_stream_write (font->output, digits, 1);
 	}
     }

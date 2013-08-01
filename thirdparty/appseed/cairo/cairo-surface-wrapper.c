@@ -662,10 +662,10 @@ _cairo_surface_wrapper_get_target_extents (cairo_surface_wrapper_t *wrapper,
 
 	_cairo_matrix_transform_bounding_box (&m, &x1, &y1, &x2, &y2, NULL);
 
-	clip.x = floor (x1);
-	clip.y = floor (y1);
-	clip.width  = ceil (x2) - clip.x;
-	clip.height = ceil (y2) - clip.y;
+	clip.x = (int) floor (x1);
+	clip.y = (int) floor (y1);
+	clip.width  = (int) (ceil (x2) - clip.x);
+	clip.height = (int) (ceil (y2) - clip.y);
     }
 
     if (has_clip) {

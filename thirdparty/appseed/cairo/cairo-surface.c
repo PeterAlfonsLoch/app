@@ -702,8 +702,8 @@ _cairo_surface_unmap_image (cairo_surface_t       *surface,
 				 image->base.device_transform.y0);
 
     /* And we also have to clip the operation to the image's extents */
-    extents.x = image->base.device_transform_inverse.x0;
-    extents.y = image->base.device_transform_inverse.y0;
+    extents.x = (int) image->base.device_transform_inverse.x0;
+    extents.y = (int) image->base.device_transform_inverse.y0;
     extents.width  = image->width;
     extents.height = image->height;
     clip = _cairo_clip_intersect_rectangle (NULL, &extents);
@@ -1606,8 +1606,8 @@ cairo_surface_mark_dirty_rectangle (cairo_surface_t *surface,
 	 * we avoid this since device_transfom scaling is not exported
 	 * publicly and mark_dirty is not used internally. */
 	status = surface->backend->mark_dirty_rectangle (surface,
-                                                         x + surface->device_transform.x0,
-                                                         y + surface->device_transform.y0,
+                                                         (int) (x + surface->device_transform.x0),
+                                                         (int) (y + surface->device_transform.y0),
 							 width, height);
 
 	if (unlikely (status))

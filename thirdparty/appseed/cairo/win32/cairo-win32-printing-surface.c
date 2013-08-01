@@ -436,10 +436,10 @@ _cairo_win32_printing_surface_paint_recording_pattern (cairo_win32_printing_surf
 	return status;
 
     if (extend == CAIRO_EXTEND_REPEAT || extend == CAIRO_EXTEND_REFLECT) {
-	left = floor (clip.left / _cairo_fixed_to_double (bbox.p2.x - bbox.p1.x));
-	right = ceil (clip.right / _cairo_fixed_to_double (bbox.p2.x - bbox.p1.x));
-	top = floor (clip.top / _cairo_fixed_to_double (bbox.p2.y - bbox.p1.y));
-	bottom = ceil (clip.bottom / _cairo_fixed_to_double (bbox.p2.y - bbox.p1.y));
+	left = (int) floor (clip.left / _cairo_fixed_to_double (bbox.p2.x - bbox.p1.x));
+	right = (int) ceil (clip.right / _cairo_fixed_to_double (bbox.p2.x - bbox.p1.x));
+	top = (int) floor (clip.top / _cairo_fixed_to_double (bbox.p2.y - bbox.p1.y));
+	bottom = (int) ceil (clip.bottom / _cairo_fixed_to_double (bbox.p2.y - bbox.p1.y));
     } else {
 	left = 0;
 	right = 1;
@@ -739,10 +739,10 @@ _cairo_win32_printing_surface_paint_image_pattern (cairo_win32_printing_surface_
 
     GetClipBox (surface->win32.dc, &clip);
     if (extend == CAIRO_EXTEND_REPEAT || extend == CAIRO_EXTEND_REFLECT) {
-	left = floor ( clip.left / (double) opaque_image->width);
-	right = ceil (clip.right / (double) opaque_image->width);
-	top = floor (clip.top / (double) opaque_image->height);
-	bottom = ceil (clip.bottom / (double) opaque_image->height);
+	left = (int) floor ( clip.left / (double) opaque_image->width);
+	right = (int) ceil (clip.right / (double) opaque_image->width);
+	top = (int) floor (clip.top / (double) opaque_image->height);
+	bottom = (int) ceil (clip.bottom / (double) opaque_image->height);
     } else {
 	left = 0;
 	right = 1;
@@ -859,8 +859,8 @@ _cairo_win32_printing_surface_paint_linear_pattern (cairo_win32_printing_surface
     GetClipBox (surface->win32.dc, &clip);
 
     if (extend == CAIRO_EXTEND_REPEAT || extend == CAIRO_EXTEND_REFLECT) {
-	range_start = floor (clip.left / d);
-	range_stop = ceil (clip.right / d);
+	range_start = (int) floor (clip.left / d);
+	range_stop = (int) ceil (clip.right / d);
     } else {
 	range_start = 0;
 	range_stop = 1;
@@ -1328,7 +1328,7 @@ _cairo_win32_printing_surface_stroke (void			*abstract_surface,
     pen_style |= _cairo_win32_line_cap (style->line_cap);
     pen_style |= _cairo_win32_line_join (style->line_join);
     pen = ExtCreatePen(pen_style,
-		       scale * style->line_width,
+		       (DWORD) (scale * style->line_width),
 		       &brush,
 		       style->num_dashes,
 		       dash_array);

@@ -824,7 +824,7 @@ cairo_type1_font_subset_parse_charstring (cairo_type1_font_subset_t *font,
 		if (font->subset_subrs && font->build_stack.sp > 0) {
 		    double int_val;
 		    if (modf(font->build_stack.stack[--font->build_stack.sp], &int_val) == 0.0) {
-			int subr_num = int_val;
+			int subr_num = (int) int_val;
 			if (subr_num >= 0 && subr_num < font->num_subrs) {
 			    font->subrs[subr_num].used = TRUE;
 			    status = cairo_type1_font_subset_parse_charstring (
@@ -873,11 +873,11 @@ cairo_type1_font_subset_parse_charstring (cairo_type1_font_subset_t *font,
 			goto cleanup;
 		    }
 
-		    status = use_standard_encoding_glyph (font, font->build_stack.stack[3]);
+		    status = use_standard_encoding_glyph (font, (int) font->build_stack.stack[3]);
 		    if (unlikely (status))
 			goto cleanup;
 
-		    status = use_standard_encoding_glyph (font, font->build_stack.stack[4]);
+		    status = use_standard_encoding_glyph (font, (int) font->build_stack.stack[4]);
 		    if (unlikely (status))
 			goto cleanup;
 
@@ -919,7 +919,7 @@ cairo_type1_font_subset_parse_charstring (cairo_type1_font_subset_t *font,
 		    font->build_stack.sp--;
 		    font->ps_stack.sp = 0;
 		    while (font->build_stack.sp)
-			font->ps_stack.stack[font->ps_stack.sp++] = font->build_stack.stack[--font->build_stack.sp];
+			font->ps_stack.stack[font->ps_stack.sp++] = (int) font->build_stack.stack[--font->build_stack.sp];
 
                     break;
 

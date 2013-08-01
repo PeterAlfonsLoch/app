@@ -33,8 +33,3 @@
 #pragma comment(lib, "Msimg32.lib") 
 
 
-#define GDIPLUS_GRAPHICS(pgraphics) (dynamic_cast < ::draw2d_cairo::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))
-#define SP_DC(pgraphics) (dynamic_cast < ::draw2d_cairo::graphics * > (( ::draw2d::graphics * )(pgraphics)))
-#define GDIPLUS_HDC(pgraphics) ((dynamic_cast < ::draw2d_cairo::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))->get_handle())
-#define SP_HDC(pgraphics) ((dynamic_cast < ::draw2d_cairo::graphics * > ((::draw2d::graphics *)(pgraphics)))->get_handle())
-#define GDIPLUS_DIB(pdib) (dynamic_cast < ::draw2d_cairo::dib * > (dynamic_cast < ::draw2d::dib * >(pdib)))

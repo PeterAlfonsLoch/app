@@ -1,13 +1,13 @@
 #pragma once
 
 
-namespace ca2
+namespace draw2d
 {
 
    class graphics;
 
 
-} // namespace ca2
+} // namespace draw2d
 
 
 namespace ca2

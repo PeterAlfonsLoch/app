@@ -6,7 +6,7 @@ namespace draw2d_cairo
 
    class CLASS_DECL_DRAW2D_CAIRO palette :
       virtual public ::draw2d_cairo::object,
-      virtual public ::ca2::palette
+      virtual public ::draw2d::palette
    {
    public:
 
@@ -15,7 +15,7 @@ namespace draw2d_cairo
 
 
 //      bool CreatePalette(LPLOGPALETTE lpLogPalette);
-//      bool CreateHalftonePalette(::ca2::graphics * pgraphics);
+//      bool CreateHalftonePalette(::draw2d::graphics * pgraphics);
 
    // Attributes
       operator HPALETTE() const;

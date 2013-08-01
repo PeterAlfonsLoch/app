@@ -292,8 +292,8 @@ void
 _cairo_rectangle_int_from_double (cairo_rectangle_int_t *recti,
 				  const cairo_rectangle_t *rectf)
 {
-	recti->x = floor (rectf->x);
-	recti->y = floor (rectf->y);
-	recti->width  = ceil (rectf->x + rectf->width) - floor (rectf->x);
-	recti->height = ceil (rectf->y + rectf->height) - floor (rectf->y);
+	recti->x = (int) floor (rectf->x);
+	recti->y = (int) floor (rectf->y);
+	recti->width  = (int) (ceil (rectf->x + rectf->width) - floor (rectf->x));
+	recti->height = (int) (ceil (rectf->y + rectf->height) - floor (rectf->y));
 }

@@ -7,6 +7,9 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{60fea25f-3fbf-4fb1-8b72-f157308a6eb1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\win32">
+      <UniqueIdentifier>{57d1a18b-53cb-4fc2-8e38-9443d9de128f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\appseed\draw2d_cairo\framework.h">
@@ -339,6 +342,9 @@
     <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="win32\cairo-win32-private.h">
+      <Filter>Source Files\win32</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cairo.c">
@@ -419,9 +425,6 @@
     <ClCompile Include="cairo-damage.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cairo-debug.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cairo-default-context.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -429,9 +432,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cairo-device.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cairo-error.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cairo-fallback-compositor.c">
@@ -706,6 +706,36 @@
     </ClCompile>
     <ClCompile Include="cairo-xml-surface.c">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cairo-errorcairo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cairo-debug.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-debug.c">
+      <Filter>Source Files\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-device.c">
+      <Filter>Source Files\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-display-surface.c">
+      <Filter>Source Files\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-font.c">
+      <Filter>Source Files\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-gdi-compositor.c">
+      <Filter>Source Files\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-printing-surface.c">
+      <Filter>Source Files\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-surface.c">
+      <Filter>Source Files\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-system.c">
+      <Filter>Source Files\win32</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

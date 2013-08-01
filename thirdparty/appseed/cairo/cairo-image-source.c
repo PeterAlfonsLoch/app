@@ -733,10 +733,10 @@ _pixman_image_for_recording (cairo_image_surface_t *dst,
 	    _cairo_matrix_transform_bounding_box (&matrix,
 						  &x1, &y1, &x2, &y2, NULL);
 
-	    limit.x = floor (x1);
-	    limit.y = floor (y1);
-	    limit.width  = ceil (x2) - limit.x;
-	    limit.height = ceil (y2) - limit.y;
+	    limit.x = (int) floor (x1);
+	    limit.y = (int) floor (y1);
+	    limit.width  = (int) (ceil (x2) - limit.x);
+	    limit.height = (int) (ceil (y2) - limit.y);
 	}
     }
     tx = limit.x;

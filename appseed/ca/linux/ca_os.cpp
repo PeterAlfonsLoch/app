@@ -1,7 +1,5 @@
 #include "framework.h"
 
-cairo_surface_t *  g_cairosurface;
-cairo_t *  g_cairo;
 
 
 DWORD GetTickCount()
@@ -53,68 +51,6 @@ void Sleep(DWORD dwMillis)
 
 
 
-cairo_keep::cairo_keep(cairo_t * pdc, bool bSave)
-{
-
-   m_pdc = pdc;
-
-   m_bSave = false;
-
-   if(bSave)
-      save();
-
-
-}
-
-
-cairo_keep::~cairo_keep()
-{
-
-   if(m_bSave)
-   {
-
-      restore();
-
-   }
-
-}
-
-
-
-void cairo_keep::save()
-{
-
-   if(m_bSave)
-      return;
-
-   cairo_save(m_pdc);
-
-   m_bSave = true;
-
-}
-
-
-void cairo_keep::restore()
-{
-
-   if(!m_bSave)
-      return;
-
-   cairo_restore(m_pdc);
-
-   m_bSave = false;
-
-}
-
-
-void cairo_keep::pulse()
-{
-
-   save();
-
-   restore();
-
-}
 
 
 void output_debug_string(const char * psz)

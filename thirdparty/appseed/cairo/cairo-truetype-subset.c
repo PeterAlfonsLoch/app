@@ -823,7 +823,7 @@ cairo_truetype_font_write_loca_table (cairo_truetype_font_t *font,
     if (be16_to_cpu (header.index_to_loc_format) == 0)
     {
 	for (i = 0; i < font->base.num_glyphs + 1; i++)
-	    cairo_truetype_font_write_be16 (font, font->glyphs[i].location / 2);
+	    cairo_truetype_font_write_be16 (font, (uint16_t) (font->glyphs[i].location / 2));
     } else {
 	for (i = 0; i < font->base.num_glyphs + 1; i++)
 	    cairo_truetype_font_write_be32 (font, font->glyphs[i].location);
@@ -1118,7 +1118,7 @@ cairo_truetype_subset_init_internal (cairo_truetype_subset_t     *truetype_subse
 	return status;
 
     for (i = 0; i < font->scaled_font_subset->num_glyphs; i++) {
-	unsigned short parent_glyph = font->scaled_font_subset->glyphs[i];
+	unsigned short parent_glyph = (unsigned short) font->scaled_font_subset->glyphs[i];
 	status = cairo_truetype_font_use_glyph (font, parent_glyph, &parent_glyph);
 	if (unlikely (status))
 	    goto fail1;
@@ -1292,7 +1292,7 @@ _cairo_truetype_reverse_cmap (cairo_scaled_font_t *scaled_font,
 
     /* search for glyph in segments with rangeOffset=0 */
     for (i = 0; i < num_segments; i++) {
-	c = index - be16_to_cpu (delta[i]);
+	c = (uint16_t) (index - be16_to_cpu (delta[i]));
 	if (range_offset[i] == 0 &&
 	    c >= be16_to_cpu (start_code[i]) &&
 	    c <= be16_to_cpu (end_code[i]))
@@ -1307,7 +1307,7 @@ _cairo_truetype_reverse_cmap (cairo_scaled_font_t *scaled_font,
 	if (range_offset[i] != 0) {
 	    uint16_t *glyph_ids = &range_offset[i] + be16_to_cpu (range_offset[i])/2;
 	    int range_size = be16_to_cpu (end_code[i]) - be16_to_cpu (start_code[i]) + 1;
-	    uint16_t g_id_be = cpu_to_be16 (index);
+	    uint16_t g_id_be = cpu_to_be16 ((uint16_t) index);
 	    int j;
 
 	    if (range_size > 0) {

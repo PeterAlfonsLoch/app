@@ -3410,22 +3410,22 @@ _cairo_pattern_sampled_area (const cairo_pattern_t *pattern,
 					  &x1, &y1, &x2, &y2,
 					  NULL);
     if (x1 > CAIRO_RECT_INT_MIN)
-	sample->x = floor (x1 - pad);
+	sample->x = (int) floor (x1 - pad);
     else
 	sample->x = CAIRO_RECT_INT_MIN;
 
     if (y1 > CAIRO_RECT_INT_MIN)
-	sample->y = floor (y1 - pad);
+	sample->y = (int) floor (y1 - pad);
     else
 	sample->y = CAIRO_RECT_INT_MIN;
 
     if (x2 < CAIRO_RECT_INT_MAX)
-	sample->width = ceil (x2 + pad);
+	sample->width = (int) ceil (x2 + pad);
     else
 	sample->width = CAIRO_RECT_INT_MAX;
 
     if (y2 < CAIRO_RECT_INT_MAX)
-	sample->height = ceil (y2 + pad);
+	sample->height = (int) ceil (y2 + pad);
     else
 	sample->height = CAIRO_RECT_INT_MAX;
 
@@ -3637,8 +3637,8 @@ _cairo_pattern_get_extents (const cairo_pattern_t         *pattern,
     if (y2 > CAIRO_RECT_INT_MAX)
 	y2 = CAIRO_RECT_INT_MAX;
 
-    extents->x = x1; extents->width  = x2 - x1;
-    extents->y = y1; extents->height = y2 - y1;
+    extents->x = (int) x1; extents->width  = (int)(x2 - x1);
+    extents->y = (int) y1; extents->height = (int) (y2 - y1);
     return;
 
   UNBOUNDED:

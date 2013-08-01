@@ -6,7 +6,7 @@ namespace draw2d_cairo
 
 
    class CLASS_DECL_DRAW2D_CAIRO brush :
-      virtual public ::ca2::brush
+      virtual public ::draw2d::brush
    {
    public:
 
@@ -18,7 +18,7 @@ namespace draw2d_cairo
       brush(sp(::ca2::application) papp);
       //virtual void construct(COLORREF crColor);                // CreateSolidBrush
       //virtual void construct(int32_t nIndex, COLORREF crColor);    // CreateHatchBrush
-      //virtual void construct(::ca2::bitmap * pbitmap);                // CreatePatternBrush
+      //virtual void construct(::draw2d::bitmap * pbitmap);                // CreatePatternBrush
       virtual ~brush();
 
 
@@ -27,7 +27,7 @@ namespace draw2d_cairo
 
       //bool CreateSolidBrush(COLORREF crColor);
       //bool CreateHatchBrush(int32_t nIndex, COLORREF crColor);
-      //bool CreatePatternBrush(::ca2::bitmap* pBitmap);
+      //bool CreatePatternBrush(::draw2d::bitmap* pBitmap);
       //bool CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage);
       //bool CreateDIBPatternBrush(const void * lpPackedDIB, UINT nUsage);
       //bool CreateSysColorBrush(int32_t nIndex);

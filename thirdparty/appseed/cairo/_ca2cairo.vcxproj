@@ -263,6 +263,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>Msimg32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -713,23 +714,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\appseed\c\c.vcxproj">
-      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\FreeImage\FreeImage.vcxproj">
-      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\freetype\freetype.vcxproj">
-      <Project>{771f4b49-cad1-438f-b272-20f3eb8e88f1}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\pixman\_ca2pixman.vcxproj">
-      <Project>{63108f1c-eaa8-4c49-a591-13f813a76b05}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\zlib\_ca2zlib.vcxproj">
-      <Project>{9ffc2cf6-737c-43db-a1ee-383f7bfdb05b}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\..\appseed\draw2d_cairo\framework.h" />
     <ClInclude Include="cairo-analysis-surface-private.h" />
     <ClInclude Include="cairo-arc-private.h" />
@@ -840,6 +824,7 @@
     <ClInclude Include="cairo.h" />
     <ClInclude Include="cairoint.h" />
     <ClInclude Include="config.h" />
+    <ClInclude Include="win32\cairo-win32-private.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cairo-analysis-surface.c" />
@@ -871,7 +856,7 @@
     <ClCompile Include="cairo-default-context.c" />
     <ClCompile Include="cairo-deflate-stream.c" />
     <ClCompile Include="cairo-device.c" />
-    <ClCompile Include="cairo-error.c" />
+    <ClCompile Include="cairo-errorcairo.c" />
     <ClCompile Include="cairo-fallback-compositor.c" />
     <ClCompile Include="cairo-fixed.c" />
     <ClCompile Include="cairo-font-face-twin-data.c" />
@@ -964,6 +949,31 @@
     <ClCompile Include="cairo-wideint.c" />
     <ClCompile Include="cairo-xml-surface.c" />
     <ClCompile Include="cairo.c" />
+    <ClCompile Include="win32\cairo-win32-debug.c" />
+    <ClCompile Include="win32\cairo-win32-device.c" />
+    <ClCompile Include="win32\cairo-win32-display-surface.c" />
+    <ClCompile Include="win32\cairo-win32-font.c" />
+    <ClCompile Include="win32\cairo-win32-gdi-compositor.c" />
+    <ClCompile Include="win32\cairo-win32-printing-surface.c" />
+    <ClCompile Include="win32\cairo-win32-surface.c" />
+    <ClCompile Include="win32\cairo-win32-system.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\appseed\c\c.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\FreeImage\FreeImage.vcxproj">
+      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\freetype\freetype.vcxproj">
+      <Project>{771f4b49-cad1-438f-b272-20f3eb8e88f1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\pixman\_ca2pixman.vcxproj">
+      <Project>{63108f1c-eaa8-4c49-a591-13f813a76b05}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\zlib\_ca2zlib.vcxproj">
+      <Project>{9ffc2cf6-737c-43db-a1ee-383f7bfdb05b}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

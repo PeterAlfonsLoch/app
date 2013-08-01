@@ -2321,10 +2321,10 @@ _cairo_scaled_font_glyph_approximate_extents (cairo_scaled_font_t	 *scaled_font,
 	      scaled_font->fs_extents.height);
     pad *= scaled_font->max_scale;
 
-    extents->x = floor (x0 - pad);
-    extents->width = ceil (x1 + pad) - extents->x;
-    extents->y = floor (y0 - pad);
-    extents->height = ceil (y1 + pad) - extents->y;
+    extents->x = (int) floor (x0 - pad);
+    extents->width = (int) (ceil (x1 + pad) - extents->x);
+    extents->y = (int) floor (y0 - pad);
+    extents->height = (int) (ceil (y1 + pad) - extents->y);
     return TRUE;
 }
 
@@ -2607,7 +2607,7 @@ _trace_mask_to_path (cairo_image_surface_t *mask,
 		continue;
 	    }
 
-	    byte = CAIRO_BITSWAP8_IF_LITTLE_ENDIAN (byte);
+	    byte = (uint8_t) CAIRO_BITSWAP8_IF_LITTLE_ENDIAN (byte);
 	    for (bit = 1 << 7; bit && x < mask->width; bit >>= 1, x++) {
 		if (byte & bit) {
 		    px = _cairo_fixed_from_int (x);

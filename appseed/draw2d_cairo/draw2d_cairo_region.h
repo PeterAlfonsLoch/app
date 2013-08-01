@@ -6,7 +6,7 @@ namespace draw2d_cairo
 
 
    class CLASS_DECL_DRAW2D_CAIRO region :
-      virtual public ::ca2::region
+      virtual public ::draw2d::region
    {
    public:
 
@@ -34,16 +34,16 @@ namespace draw2d_cairo
       bool CreatePolyPolygonRgn(LPPOINT lpPoints, LPINT lpPolyCounts,
             int32_t nCount, int32_t nPolyFillMode);
       bool CreateRoundRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3);
-      bool CreateFromPath(::ca2::graphics * pgraphics);
+      bool CreateFromPath(::draw2d::graphics * pgraphics);
       bool CreateFromData(const XFORM* lpXForm, int32_t nCount,
          const RGNDATA* pRgnData);*/
 
    // Operations
       //void SetRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       //void SetRectRgn(LPCRECT lpRect);
-      //int32_t CombineRgn(const ::ca2::region* pRgn1, const ::ca2::region* pRgn2, int32_t nCombineMode);
-      //int32_t CopyRgn(const ::ca2::region* pRgnSrc);
-      //bool EqualRgn(const ::ca2::region* pRgn) const;
+      //int32_t CombineRgn(const ::draw2d::region* pRgn1, const ::draw2d::region* pRgn2, int32_t nCombineMode);
+      //int32_t CopyRgn(const ::draw2d::region* pRgnSrc);
+      //bool EqualRgn(const ::draw2d::region* pRgn) const;
       //int32_t OffsetRgn(int32_t x, int32_t y);
       //int32_t OffsetRgn(POINT point);
       //int32_t GetRgnBox(LPRECT lpRect) const;

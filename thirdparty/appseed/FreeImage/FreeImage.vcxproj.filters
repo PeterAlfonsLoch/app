@@ -1689,4 +1689,9 @@
       <Filter>Source Files\OpenEXR\IImThread</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="_ca2freeimage.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
