@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
 
-   class CLASS_DECL_lnx region :
+   class CLASS_DECL_DRAW2D_CAIRO region :
       virtual public ::ca2::region
    {
    public:
@@ -67,6 +67,6 @@ namespace lnx
    };
 
 
-} // namespace lnx
+} // namespace draw2d_cairo
 
 

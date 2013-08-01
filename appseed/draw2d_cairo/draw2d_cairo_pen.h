@@ -2,13 +2,13 @@
 
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
 
-   class CLASS_DECL_lnx pen :
-      virtual public ::lnx::graphics_object,
-      virtual public ::ca2::pen
+   class CLASS_DECL_DRAW2D_CAIRO pen :
+      virtual public ::draw2d_cairo::object,
+      virtual public ::draw2d::pen
    {
    public:
 
@@ -36,7 +36,7 @@ namespace lnx
    };
 
 
-} // namespace lnx
+} // namespace draw2d_cairo
 
 
 

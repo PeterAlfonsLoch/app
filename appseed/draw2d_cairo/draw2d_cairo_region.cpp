@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
 
@@ -25,7 +25,7 @@ namespace lnx
    }
    region* PASCAL region::from_handle(sp(::ca2::application) papp, HRGN hRgn)
    {
-      return dynamic_cast < region * > (::win::graphics_object::from_handle(papp, hRgn));
+      return dynamic_cast < region * > (::win::object::from_handle(papp, hRgn));
    }
    WINBOOL region::CreateRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    { return Attach(::CreateRectRgn(x1, y1, x2, y2)); }
@@ -195,7 +195,7 @@ namespace lnx
 
       cairo_push_group( pdc);
 
-      dynamic_cast < ::lnx::region * >(m_pregion1)->get( pdc);
+      dynamic_cast < ::draw2d_cairo::region * >(m_pregion1)->get( pdc);
 
       cairo_pop_group_to_source(pdc);
 
@@ -203,7 +203,7 @@ namespace lnx
 
       cairo_push_group(pdc);
 
-      dynamic_cast < ::lnx::region * >(m_pregion2)->get( pdc);
+      dynamic_cast < ::draw2d_cairo::region * >(m_pregion2)->get( pdc);
 
       cairo_pop_group_to_source(pdc);
 
@@ -241,7 +241,7 @@ namespace lnx
 
    }
 
-} // namespace lnx
+} // namespace draw2d_cairo
 
 
 

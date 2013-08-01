@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
 
@@ -34,7 +34,7 @@ namespace lnx
    palette* PASCAL palette::from_handle(sp(::ca2::application) papp, HPALETTE hPalette)
    {
 
-      //return dynamic_cast < palette * > (::win::graphics_object::from_handle(papp, hPalette));
+      //return dynamic_cast < palette * > (::win::object::from_handle(papp, hPalette));
 
       return NULL;
 

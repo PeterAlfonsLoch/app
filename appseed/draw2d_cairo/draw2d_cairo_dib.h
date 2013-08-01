@@ -1,6 +1,6 @@
 #pragma once
 
-namespace lnx
+namespace draw2d_cairo
 {
 
    //////////////////////////////////////////////////////////////////////
@@ -9,7 +9,7 @@ namespace lnx
    //   Date : 09-04-98
    //////////////////////////////////////////////////////////////////////
 
-   class CLASS_DECL_lnx dib :
+   class CLASS_DECL_DRAW2D_CAIRO dib :
       virtual public ::ca2::dib
    {
    public:
@@ -163,7 +163,7 @@ namespace lnx
    };
 
 
-} // namespace lnx
+} // namespace draw2d_cairo
 
 
 

@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Helper functions
 
-__STATIC long CLASS_DECL_lnx _AfxMultMultDivDiv(
+__STATIC long CLASS_DECL_DRAW2D_CAIRO _AfxMultMultDivDiv(
    int32_t factor, int32_t num1, int32_t num2,
    int32_t den1, int32_t den2)
 {
@@ -237,7 +237,7 @@ void preview_dc::MirrorAttributes()
    }
 }
 
-::ca2::graphics_object* preview_dc::SelectStockObject(int32_t nIndex)
+::ca2::object* preview_dc::SelectStockObject(int32_t nIndex)
 {
    ASSERT(get_handle2() != NULL);
 
@@ -254,7 +254,7 @@ void preview_dc::MirrorAttributes()
    case DEFAULT_GUI_FONT:
       // Handle the stock fonts correctly
       {
-         ::ca2::graphics_object* pObject = ::lnx::graphics_object::from_handle(
+         ::ca2::object* pObject = ::draw2d_cairo::object::from_handle(
                      ::SelectObject(get_handle2(), hObj));
 
          // Don't re-mirror screen font if this is the same font.
@@ -272,7 +272,7 @@ void preview_dc::MirrorAttributes()
    default:
       if (get_os_data() != NULL)
          ::SelectObject(get_os_data(), hObj);
-      return ::lnx::graphics_object::from_handle(::SelectObject(get_handle2(), hObj));
+      return ::draw2d_cairo::object::from_handle(::SelectObject(get_handle2(), hObj));
    }
 }
 
@@ -374,7 +374,7 @@ void preview_dc::MirrorFont()
    ASSERT(get_handle2() != NULL);
    ASSERT_VALID(pFont);
 
-   ::ca2::font* pOldFont = (::ca2::font*) ::lnx::graphics_object::from_handle(
+   ::ca2::font* pOldFont = (::ca2::font*) ::draw2d_cairo::object::from_handle(
             ::SelectObject(get_handle2(), pFont->get_handle()));
 
    // If same as already selected, don't re-mirror screen font
@@ -475,7 +475,7 @@ size preview_dc::ScaleWindowExt(int32_t xNum, int32_t xDenom, int32_t yNum, int3
 
 // private helpers for TextOut functions
 
-__STATIC int32_t CLASS_DECL_lnx _AfxComputeNextTab(int32_t x, UINT nTabStops, LPINT lpnTabStops, int32_t nTabOrigin, int32_t nTabWidth)
+__STATIC int32_t CLASS_DECL_DRAW2D_CAIRO _AfxComputeNextTab(int32_t x, UINT nTabStops, LPINT lpnTabStops, int32_t nTabOrigin, int32_t nTabWidth)
 {
    ENSURE(nTabWidth!=0);
    x -= nTabOrigin;        // normalize position to tab origin
@@ -986,7 +986,7 @@ void preview_dc::PrinterDPtoScreenDP(LPPOINT lpPoint) const
 ////////////////////////////////////////////////////////////////////////////
 // AfxCreateDC
 
-HDC CLASS_DECL_lnx AfxCreateDC(HGLOBAL hDevNames, HGLOBAL hDevMode)
+HDC CLASS_DECL_DRAW2D_CAIRO AfxCreateDC(HGLOBAL hDevNames, HGLOBAL hDevMode)
 {
    if (hDevNames == NULL)
       return NULL;

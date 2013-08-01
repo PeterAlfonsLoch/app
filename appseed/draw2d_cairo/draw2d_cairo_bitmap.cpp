@@ -3,7 +3,7 @@ extern cairo_surface_t *  g_cairosurface;
 extern cairo_t *  g_cairo;
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
 
@@ -293,7 +293,7 @@ namespace lnx
 
       void bitmap::dump(dump_context & dumpcontext) const
       {
-         ::ca2::graphics_object::dump(dumpcontext);
+         ::ca2::object::dump(dumpcontext);
 
 /*         if (get_handle() == NULL)
             return;
@@ -389,7 +389,7 @@ namespace lnx
    }
 
 
-} // namespace lnx
+} // namespace draw2d_cairo
 
 
 

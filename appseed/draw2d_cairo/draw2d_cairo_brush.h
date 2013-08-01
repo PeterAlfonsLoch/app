@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
 
-   class CLASS_DECL_lnx brush :
+   class CLASS_DECL_DRAW2D_CAIRO brush :
       virtual public ::ca2::brush
    {
    public:
@@ -39,5 +39,5 @@ namespace lnx
    };
 
 
-} // namespace lnx
+} // namespace draw2d_cairo
 

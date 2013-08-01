@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
 
-   class CLASS_DECL_lnx font :
+   class CLASS_DECL_DRAW2D_CAIRO font :
       virtual public ::ca2::font
    {
    public:
@@ -23,7 +23,7 @@ namespace lnx
    };
 
 
-} // namespace lnx
+} // namespace draw2d_cairo
 
 
 

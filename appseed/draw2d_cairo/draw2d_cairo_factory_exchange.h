@@ -1,10 +1,10 @@
 #pragma once
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
-   class CLASS_DECL_lnx factory_exchange :
+   class CLASS_DECL_DRAW2D_CAIRO factory_exchange :
       virtual public ::ca2::object
    {
    public:
@@ -13,5 +13,5 @@ namespace lnx
    };
 
 
-} // namespace lnx
+} // namespace draw2d_cairo
 

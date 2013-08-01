@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
 
-   class CLASS_DECL_lnx bitmap :
-      virtual public ::ca2::bitmap
+   class CLASS_DECL_DRAW2D_CAIRO bitmap :
+      virtual public ::draw2d::bitmap
    {
    public:
 
@@ -57,6 +57,6 @@ namespace lnx
    };
 
 
-} // namespace lnx
+} // namespace draw2d_cairo
 
 

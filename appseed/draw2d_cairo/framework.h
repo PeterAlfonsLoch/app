@@ -3,6 +3,5 @@
 #endif
 
 
-#include "lnx.h"
-#include "lnx_internal.h"
+#include "draw2d_cairo.h"
 

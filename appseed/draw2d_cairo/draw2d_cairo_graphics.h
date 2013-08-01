@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
    class brush;
    class pen;
    class font;
 
-   class CLASS_DECL_lnx graphics :
+   class CLASS_DECL_DRAW2D_CAIRO graphics :
       virtual public ::ca2::graphics
    {
       // // DECLARE_DYNCREATE(::ca2::graphics_sp)
@@ -105,14 +105,14 @@ namespace lnx
 
    // Type-safe selection helpers
    public:
-      virtual ::ca2::graphics_object* SelectStockObject(int32_t nIndex);
+      virtual ::ca2::object* SelectStockObject(int32_t nIndex);
       ::ca2::pen* SelectObject(::ca2::pen* pPen);
       ::ca2::brush* SelectObject(::ca2::brush* pBrush);
       virtual ::ca2::font* SelectObject(::ca2::font* pFont);
       ::ca2::bitmap* SelectObject(::ca2::bitmap* pBitmap);
       int32_t SelectObject(::ca2::region* pRgn);       // special return for regions
-      ::ca2::graphics_object* SelectObject(::ca2::graphics_object* pObject);
-         // ::ca2::graphics_object* provided so compiler doesn't use SelectObject(HGDIOBJ)
+      ::ca2::object* SelectObject(::ca2::object* pObject);
+         // ::ca2::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
    // color and color Palette Functions
       COLORREF GetNearestColor(COLORREF crColor) const;
@@ -446,8 +446,8 @@ namespace lnx
       bool StrokePath();
       bool WidenPath();
 
-      bool draw_path(::ca2::graphics_path * ppath);
-      bool fill_path(::ca2::graphics_path * ppath);
+      bool draw_path(::ca2::path * ppath);
+      bool fill_path(::ca2::path * ppath);
 
 
       float GetMiterLimit() const;
@@ -495,7 +495,7 @@ namespace lnx
 
    //protected:
       // used for implementation of non-virtual SelectObject calls
-      //static ::ca2::graphics_object* PASCAL SelectGdiObject(sp(::ca2::application) papp, HDC hDC, HGDIOBJ h);
+      //static ::ca2::object* PASCAL SelectGdiObject(sp(::ca2::application) papp, HDC hDC, HGDIOBJ h);
 
 
       // platform-specific or platform-internals
@@ -503,11 +503,11 @@ namespace lnx
       bool set(const ::ca2::brush * pbrush);
       bool set(const ::ca2::pen * ppen);
       bool set(const ::ca2::font * pfont);
-      bool set(const ::ca2::graphics_path * ppath);
-      bool set(const ::lnx::graphics_path::element & e);
-      bool set(const ::lnx::graphics_path::arc & arc);
-      bool set(const ::lnx::graphics_path::move & move);
-      bool set(const ::lnx::graphics_path::line & line);
+      bool set(const ::ca2::path * ppath);
+      bool set(const ::draw2d_cairo::path::element & e);
+      bool set(const ::draw2d_cairo::path::arc & arc);
+      bool set(const ::draw2d_cairo::path::move & move);
+      bool set(const ::draw2d_cairo::path::line & line);
       bool fill_and_draw(::ca2::brush * pbrush, ::ca2::pen * ppen);
       bool fill(::ca2::brush * pbrush);
       bool draw(::ca2::pen * ppen);

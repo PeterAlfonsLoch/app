@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
 
@@ -18,7 +18,7 @@ namespace lnx
    }*/
 /*   pen* PASCAL pen::from_handle(sp(::ca2::application) papp, HPEN hPen)
    {
-      return dynamic_cast < pen* > (::win::graphics_object::from_handle(papp, hPen));
+      return dynamic_cast < pen* > (::win::object::from_handle(papp, hPen));
    }*/
 /*   WINBOOL pen::CreatePen(int32_t nPenStyle, int32_t nWidth, COLORREF crColor)
    { return Attach(::CreatePen(nPenStyle, nWidth, crColor)); }*/
@@ -63,7 +63,7 @@ namespace lnx
    void pen::dump(dump_context & dumpcontext) const
    {
 
-      ::ca2::graphics_object::dump(dumpcontext);
+      ::ca2::object::dump(dumpcontext);
 //
   //    if (get_handle() == NULL)
     //     return;
@@ -100,21 +100,21 @@ namespace lnx
       // IMPLEMENT_DYNAMIC(CClientDC, ::ca2::graphics_sp)
       // IMPLEMENT_DYNAMIC(CWindowDC, ::ca2::graphics_sp)
       // IMPLEMENT_DYNAMIC(CPaintDC, ::ca2::graphics_sp)
-      // IMPLEMENT_DYNCREATE(::ca2::graphics_object, ::ca2::object)
+      // IMPLEMENT_DYNCREATE(::ca2::object, ::ca2::object)
 
-      // IMPLEMENT_DYNAMIC(pen, ::ca2::graphics_object)
-      // IMPLEMENT_DYNAMIC(::ca2::brush, ::ca2::graphics_object)
-      // IMPLEMENT_DYNAMIC(::ca2::font, ::ca2::graphics_object)
-      // IMPLEMENT_DYNAMIC(::ca2::bitmap, ::ca2::graphics_object)
-      // IMPLEMENT_DYNAMIC(::ca2::palette, ::ca2::graphics_object)
-      // IMPLEMENT_DYNAMIC(::ca2::rgn, ::ca2::graphics_object)
+      // IMPLEMENT_DYNAMIC(pen, ::ca2::object)
+      // IMPLEMENT_DYNAMIC(::ca2::brush, ::ca2::object)
+      // IMPLEMENT_DYNAMIC(::ca2::font, ::ca2::object)
+      // IMPLEMENT_DYNAMIC(::ca2::bitmap, ::ca2::object)
+      // IMPLEMENT_DYNAMIC(::ca2::palette, ::ca2::object)
+      // IMPLEMENT_DYNAMIC(::ca2::rgn, ::ca2::object)
 
       /////////////////////////////////////////////////////////////////////////////
       // Standard exception processing
 
 
 
-} // namespace lnx
+} // namespace draw2d_cairo
 
 
 

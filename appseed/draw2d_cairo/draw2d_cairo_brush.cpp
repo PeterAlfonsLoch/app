@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
 
@@ -99,7 +99,7 @@ namespace lnx
 
    void brush::dump(dump_context & dumpcontext) const
    {
-      ::ca2::graphics_object::dump(dumpcontext);
+      ::ca2::object::dump(dumpcontext);
 
       //if (get_os_data() == NULL)
         // return;
@@ -156,7 +156,7 @@ namespace lnx
    }
 
 
-} // namespace lnx
+} // namespace draw2d_cairo
 
 
 

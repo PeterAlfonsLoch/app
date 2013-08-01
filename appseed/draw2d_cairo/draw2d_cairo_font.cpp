@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
 
@@ -36,7 +36,7 @@ namespace lnx
    }
 
 
-} // namespace lnx
+} // namespace draw2d_cairo
 
 
 

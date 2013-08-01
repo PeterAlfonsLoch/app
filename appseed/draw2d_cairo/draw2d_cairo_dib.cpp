@@ -3,7 +3,7 @@
 #include "include/freeimage.h"
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
 
@@ -55,7 +55,7 @@ namespace lnx
    }
 
 
-   CLASS_DECL_lnx void dib::s_initialize()
+   CLASS_DECL_DRAW2D_CAIRO void dib::s_initialize()
    {
       double dCos;
       double dSin;
@@ -180,7 +180,7 @@ namespace lnx
 
    bool dib::create(::ca2::graphics * pdc)
    {
-      ::ca2::bitmap * pbitmap = & (dynamic_cast < ::lnx::graphics * > (pdc))->GetCurrentBitmap();
+      ::ca2::bitmap * pbitmap = & (dynamic_cast < ::draw2d_cairo::graphics * > (pdc))->GetCurrentBitmap();
       if(pbitmap == NULL)
          return FALSE;
       ::size size = pbitmap->get_size();
@@ -413,7 +413,7 @@ namespace lnx
      if(m_spbitmap.m_p == NULL)
          return;
 
-     cairo_surface_t * surface = dynamic_cast < ::lnx::bitmap * > (m_spbitmap.m_p)->m_psurface;
+     cairo_surface_t * surface = dynamic_cast < ::draw2d_cairo::bitmap * > (m_spbitmap.m_p)->m_psurface;
 
      if(surface == NULL)
          return;
@@ -460,7 +460,7 @@ namespace lnx
       if(m_spbitmap.m_p == NULL)
          return;
 
-      cairo_surface_t * surface = dynamic_cast < ::lnx::bitmap * > (m_spbitmap.m_p)->m_psurface;
+      cairo_surface_t * surface = dynamic_cast < ::draw2d_cairo::bitmap * > (m_spbitmap.m_p)->m_psurface;
 
       if(surface == NULL)
          return;
@@ -2631,7 +2631,7 @@ namespace lnx
 
 
       //memset(m_pcolorref, 0x7f, cy * bx);
-      /*cairo_surface_t * surface = dynamic_cast < ::lnx::bitmap * > (m_spbitmap.m_p)->m_psurface;
+      /*cairo_surface_t * surface = dynamic_cast < ::draw2d_cairo::bitmap * > (m_spbitmap.m_p)->m_psurface;
 
      cairo_surface_flush (surface);
 
@@ -2680,4 +2680,4 @@ namespace lnx
 #define new DEBUG_NEW
 
 
-} // namespace lnx
+} // namespace draw2d_cairo

@@ -4,7 +4,7 @@ extern cairo_surface_t *  g_cairosurface;
 extern cairo_t *  g_cairo;
 
 
-namespace lnx
+namespace draw2d_cairo
 {
 
 
@@ -297,7 +297,7 @@ if(psurfaceNew == g_cairosurface)
    }
 
 
-   ::ca2::graphics_object* graphics::SelectObject(::ca2::graphics_object* pObject)
+   ::ca2::object* graphics::SelectObject(::ca2::object* pObject)
    {
    /*      ASSERT(get_handle1() != NULL);
       if(pObject == NULL)
@@ -1766,7 +1766,7 @@ if(psurfaceNew == g_cairosurface)
 
       //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
 
-      ((::lnx::graphics *) this)->set(&m_fontxyz);
+      ((::draw2d_cairo::graphics *) this)->set(&m_fontxyz);
 
       cairo_font_extents_t e;
 
@@ -2457,7 +2457,7 @@ if(psurfaceNew == g_cairosurface)
    }
 
 
-   bool graphics::draw_path(::ca2::graphics_path * ppath)
+   bool graphics::draw_path(::ca2::path * ppath)
    {
 
       if(!set(ppath))
@@ -2467,7 +2467,7 @@ if(psurfaceNew == g_cairosurface)
 
    }
 
-   bool graphics::fill_path(::ca2::graphics_path * ppath)
+   bool graphics::fill_path(::ca2::path * ppath)
    {
 
       if(!set(ppath))
@@ -3324,12 +3324,12 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    }
 
-//   ::ca2::graphics_object* PASCAL graphics::SelectGdiObject(sp(::ca2::application) papp, HDC hDC, HGDIOBJ h)
+//   ::ca2::object* PASCAL graphics::SelectGdiObject(sp(::ca2::application) papp, HDC hDC, HGDIOBJ h)
   // {
-//      return ::win::graphics_object::from_handle(papp, ::SelectObject(hDC, h));
+//      return ::win::object::from_handle(papp, ::SelectObject(hDC, h));
    //}
 
-   ::ca2::graphics_object* graphics::SelectStockObject(int32_t nIndex)
+   ::ca2::object* graphics::SelectStockObject(int32_t nIndex)
    {
 /*      HGDIOBJ hObject = ::GetStockObject(nIndex);
       HGDIOBJ hOldObj = NULL;
@@ -3338,7 +3338,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          hOldObj = ::SelectObject(get_handle1(), hObject);
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), hObject);
-      return ::win::graphics_object::from_handle(get_app(), hOldObj);*/
+      return ::win::object::from_handle(get_app(), hOldObj);*/
 
       return NULL;
    }
@@ -3352,7 +3352,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          hOldObj = ::SelectObject(get_handle1(), pPen->get_os_data());
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pPen->get_os_data());
-      return dynamic_cast < pen * > (::win::graphics_object::from_handle(get_app(), hOldObj));*/
+      return dynamic_cast < pen * > (::win::object::from_handle(get_app(), hOldObj));*/
       m_penxyz = *pPen;
       return &m_penxyz;
    }
@@ -3366,7 +3366,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          hOldObj = ::SelectObject(get_handle1(), pBrush->get_os_data());
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pBrush->get_os_data());
-      return dynamic_cast < ::ca2::brush * > (::win::graphics_object::from_handle(get_app(), hOldObj));*/
+      return dynamic_cast < ::ca2::brush * > (::win::object::from_handle(get_app(), hOldObj));*/
       m_brushxyz = *pBrush;
       return &m_brushxyz;
 
@@ -3381,7 +3381,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          hOldObj = ::SelectObject(get_handle1(), pFont->get_os_data());
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pFont->get_os_data());
-      return dynamic_cast < ::ca2::font * > (::win::graphics_object::from_handle(get_app(), hOldObj));*/
+      return dynamic_cast < ::ca2::font * > (::win::object::from_handle(get_app(), hOldObj));*/
 
       /*ASSERT(pFont != NULL);
 
@@ -3418,7 +3418,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    ::ca2::palette* graphics::SelectPalette(::ca2::palette* pPalette, bool bForceBackground)
    {
       return NULL;
-//      return dynamic_cast < ::ca2::palette * > (::win::graphics_object::from_handle(get_app(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
+//      return dynamic_cast < ::ca2::palette * > (::win::object::from_handle(get_app(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
    }
 
    COLORREF graphics::SetBkColor(COLORREF crColor)
@@ -5202,14 +5202,14 @@ return 1;
    // IMPLEMENT_DYNAMIC(CClientDC, graphics)
    // IMPLEMENT_DYNAMIC(CWindowDC, graphics)
    // IMPLEMENT_DYNAMIC(CPaintDC, graphics)
-   // IMPLEMENT_DYNCREATE(::ca2::graphics_object, ::ca2::object)
+   // IMPLEMENT_DYNCREATE(::ca2::object, ::ca2::object)
 
-   // IMPLEMENT_DYNAMIC(pen, ::ca2::graphics_object)
-   // IMPLEMENT_DYNAMIC(::ca2::brush, ::ca2::graphics_object)
-   // IMPLEMENT_DYNAMIC(::ca2::font, ::ca2::graphics_object)
-   // IMPLEMENT_DYNAMIC(::ca2::bitmap, ::ca2::graphics_object)
-   // IMPLEMENT_DYNAMIC(::ca2::palette, ::ca2::graphics_object)
-   // IMPLEMENT_DYNAMIC(::ca2::region, ::ca2::graphics_object)
+   // IMPLEMENT_DYNAMIC(pen, ::ca2::object)
+   // IMPLEMENT_DYNAMIC(::ca2::brush, ::ca2::object)
+   // IMPLEMENT_DYNAMIC(::ca2::font, ::ca2::object)
+   // IMPLEMENT_DYNAMIC(::ca2::bitmap, ::ca2::object)
+   // IMPLEMENT_DYNAMIC(::ca2::palette, ::ca2::object)
+   // IMPLEMENT_DYNAMIC(::ca2::region, ::ca2::object)
 
 
    void graphics::FillSolidRect(LPCRECT lpRect, COLORREF clr)
@@ -5903,14 +5903,14 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    }
 
 
-   bool graphics::set(const ::ca2::graphics_path * ppathParam)
+   bool graphics::set(const ::ca2::path * ppathParam)
    {
 
       cairo_keep keep(m_pdc);
 
       cairo_new_sub_path(m_pdc);
 
-      ::lnx::graphics_path * ppath = dynamic_cast < ::lnx::graphics_path * > ((::ca2::graphics_path *) ppathParam);
+      ::draw2d_cairo::path * ppath = dynamic_cast < ::draw2d_cairo::path * > ((::ca2::path *) ppathParam);
 
       for(int32_t i = 0; i < ppath->m_elementa.get_count(); i++)
       {
@@ -5937,21 +5937,21 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    }
 
 
-   bool graphics::set(const ::lnx::graphics_path::element & e)
+   bool graphics::set(const ::draw2d_cairo::path::element & e)
    {
 
       switch(e.m_etype)
       {
-      case ::ca2::graphics_path::element::type_arc:
+      case ::ca2::path::element::type_arc:
          set(e.m_arc);
          break;
-      case ::ca2::graphics_path::element::type_line:
+      case ::ca2::path::element::type_line:
          set(e.m_line);
          break;
-      case ::ca2::graphics_path::element::type_move:
+      case ::ca2::path::element::type_move:
          set(e.m_move);
          break;
-      case ::ca2::graphics_path::element::type_end:
+      case ::ca2::path::element::type_end:
          {
 
             if(e.m_end.m_bClose)
@@ -5968,7 +5968,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    }
 
-   bool graphics::set(const ::lnx::graphics_path::arc & a)
+   bool graphics::set(const ::draw2d_cairo::path::arc & a)
    {
 
       cairo_keep keep(m_pdc);
@@ -5983,7 +5983,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    }
 
-   bool graphics::set(const ::lnx::graphics_path::line & l)
+   bool graphics::set(const ::draw2d_cairo::path::line & l)
    {
 
       if(!cairo_has_current_point(m_pdc))
@@ -6004,7 +6004,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    }
 
 
-   bool graphics::set(const ::lnx::graphics_path::move & p)
+   bool graphics::set(const ::draw2d_cairo::path::move & p)
    {
 
       cairo_move_to(m_pdc, p.m_x + 0.5, p.m_y + 0.5);
@@ -6048,7 +6048,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
     }
 
-} // namespace lnx
+} // namespace draw2d_cairo
 
 
 
