@@ -2229,10 +2229,10 @@ PREFIX (_translate) (region_type_t *region, int x, int y)
     box_type_t * pbox;
 
     GOOD (region);
-    region->extents.x1 = x1 = region->extents.x1 + x;
-    region->extents.y1 = y1 = region->extents.y1 + y;
-    region->extents.x2 = x2 = region->extents.x2 + x;
-    region->extents.y2 = y2 = region->extents.y2 + y;
+    region->extents.x1 = (int32_t) x1 = region->extents.x1 + x;
+    region->extents.y1 = (int32_t) y1 = region->extents.y1 + y;
+    region->extents.x2 = (int32_t) x2 = region->extents.x2 + x;
+    region->extents.y2 = (int32_t) y2 = region->extents.y2 + y;
     
     if (((x1 - PIXMAN_REGION_MIN) | (y1 - PIXMAN_REGION_MIN) | (PIXMAN_REGION_MAX - x2) | (PIXMAN_REGION_MAX - y2)) >= 0)
     {
@@ -2274,10 +2274,10 @@ PREFIX (_translate) (region_type_t *region, int x, int y)
 
         for (pbox_out = pbox = PIXREGION_BOXPTR (region); nbox--; pbox++)
         {
-            pbox_out->x1 = x1 = pbox->x1 + x;
-            pbox_out->y1 = y1 = pbox->y1 + y;
-            pbox_out->x2 = x2 = pbox->x2 + x;
-            pbox_out->y2 = y2 = pbox->y2 + y;
+            pbox_out->x1 = (int32_t) x1 = pbox->x1 + x;
+            pbox_out->y1 = (int32_t) y1 = pbox->y1 + y;
+            pbox_out->x2 = (int32_t) x2 = pbox->x2 + x;
+            pbox_out->y2 = (int32_t) y2 = pbox->y2 + y;
 
             if (((x2 - PIXMAN_REGION_MIN) | (y2 - PIXMAN_REGION_MIN) |
                  (PIXMAN_REGION_MAX - x1) | (PIXMAN_REGION_MAX - y1)) <= 0)

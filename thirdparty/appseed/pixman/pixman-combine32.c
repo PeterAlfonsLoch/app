@@ -785,7 +785,7 @@ blend_soft_light (uint32_t dca_org,
     {
 	rca = dca * sa + (sqrt (dca * da) - dca) * (2 * sca - sa);
     }
-    return rca * MASK + 0.5;
+    return (uint32_t) (rca * MASK + 0.5);
 }
 
 PDF_SEPARABLE_BLEND_MODE (soft_light)
@@ -1032,9 +1032,9 @@ set_lum (uint32_t dest[3], uint32_t src[3], uint32_t sa, uint32_t lum)
 	}
     }
 
-    dest[0] = tmp[0] * MASK + 0.5;
-    dest[1] = tmp[1] * MASK + 0.5;
-    dest[2] = tmp[2] * MASK + 0.5;
+    dest[0] = (uint32_t) (tmp[0] * MASK + 0.5);
+    dest[1] = (uint32_t) (tmp[1] * MASK + 0.5);
+    dest[2] = (uint32_t) (tmp[2] * MASK + 0.5);
 }
 
 static void
@@ -1373,7 +1373,7 @@ combine_disjoint_over_u (pixman_implementation_t *imp,
 	if (s != 0x00)
 	{
 	    uint32_t d = *(dest + i);
-	    a = combine_disjoint_out_part (d >> A_SHIFT, a);
+	    a = (uint16_t) combine_disjoint_out_part (d >> A_SHIFT, (uint8_t) a);
 	    UN8x4_MUL_UN8_ADD_UN8x4 (d, a, s);
 
 	    *(dest + i) = d;

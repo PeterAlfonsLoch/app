@@ -6340,52 +6340,23 @@ sse2_fetch_a8 (pixman_iter_t *iter, const uint32_t *mask)
     return iter->buffer;
 }
 
-typedef struct
-{
-    pixman_format_code_t	format;
-    pixman_iter_get_scanline_t	get_scanline;
-} fetcher_info_t;
-
-static const fetcher_info_t fetchers[] =
-{
-    { PIXMAN_x8r8g8b8,		sse2_fetch_x8r8g8b8 },
-    { PIXMAN_r5g6b5,		sse2_fetch_r5g6b5 },
-    { PIXMAN_a8,		sse2_fetch_a8 },
-    { PIXMAN_null }
-};
-
-static pixman_bool_t
-sse2_src_iter_init (pixman_implementation_t *imp, pixman_iter_t *iter)
-{
-    pixman_image_t *image = iter->image;
-
-#define FLAGS								\
+#define IMAGE_FLAGS							\
     (FAST_PATH_STANDARD_FLAGS | FAST_PATH_ID_TRANSFORM |		\
      FAST_PATH_BITS_IMAGE | FAST_PATH_SAMPLES_COVER_CLIP_NEAREST)
 
-    if ((iter->iter_flags & ITER_NARROW)			&&
-	(iter->image_flags & FLAGS) == FLAGS)
-    {
-	const fetcher_info_t *f;
-
-	for (f = &fetchers[0]; f->format != PIXMAN_null; f++)
-	{
-	    if (image->common.extended_format_code == f->format)
-	    {
-		uint8_t *b = (uint8_t *)image->bits.bits;
-		int s = image->bits.rowstride * 4;
-
-		iter->bits = b + s * iter->y + iter->x * PIXMAN_FORMAT_BPP (f->format) / 8;
-		iter->stride = s;
-
-		iter->get_scanline = f->get_scanline;
-		return TRUE;
-	    }
-	}
-    }
-
-    return FALSE;
-}
+static const pixman_iter_info_t sse2_iters[] = 
+{
+    { PIXMAN_x8r8g8b8, IMAGE_FLAGS, ITER_NARROW,
+      _pixman_iter_init_bits_stride, sse2_fetch_x8r8g8b8, NULL
+    },
+    { PIXMAN_r5g6b5, IMAGE_FLAGS, ITER_NARROW,
+      _pixman_iter_init_bits_stride, sse2_fetch_r5g6b5, NULL
+    },
+    { PIXMAN_a8, IMAGE_FLAGS, ITER_NARROW,
+      _pixman_iter_init_bits_stride, sse2_fetch_a8, NULL
+    },
+    { PIXMAN_null },
+};
 
 #if defined(__GNUC__) && !defined(__x86_64__) && !defined(__amd64__)
 __attribute__((__force_align_arg_pointer__))
@@ -6443,7 +6414,7 @@ _pixman_implementation_create_sse2 (pixman_implementation_t *fallback)
     imp->blt = sse2_blt;
     imp->fill = sse2_fill;
 
-    imp->src_iter_init = sse2_src_iter_init;
+    imp->iter_info = sse2_iters;
 
     return imp;
 }

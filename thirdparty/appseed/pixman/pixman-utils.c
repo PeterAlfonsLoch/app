@@ -81,7 +81,7 @@ float_to_unorm (float f, int n_bits)
     if (f < 0.0)
 	f = 0.0;
 
-    u = f * (1 << n_bits);
+    u = (uint32_t) (f * (1 << n_bits));
     u -= (u >> n_bits);
 
     return u;
@@ -199,10 +199,10 @@ pixman_contract_from_float (uint32_t     *dst,
     {
 	uint8_t a, r, g, b;
 
-	a = float_to_unorm (src[i].a, 8);
-	r = float_to_unorm (src[i].r, 8);
-	g = float_to_unorm (src[i].g, 8);
-	b = float_to_unorm (src[i].b, 8);
+	a = (uint8_t) float_to_unorm (src[i].a, 8);
+	r = (uint8_t) float_to_unorm (src[i].r, 8);
+	g = (uint8_t) float_to_unorm (src[i].g, 8);
+	b = (uint8_t) float_to_unorm (src[i].b, 8);
 
 	dst[i] = (a << 24) | (r << 16) | (g << 8) | (b << 0);
     }
@@ -212,6 +212,17 @@ uint32_t *
 _pixman_iter_get_scanline_noop (pixman_iter_t *iter, const uint32_t *mask)
 {
     return iter->buffer;
+}
+
+void
+_pixman_iter_init_bits_stride (pixman_iter_t *iter, const pixman_iter_info_t *info)
+{
+    pixman_image_t *image = iter->image;
+    uint8_t *b = (uint8_t *)image->bits.bits;
+    int s = image->bits.rowstride * 4;
+
+    iter->bits = b + s * iter->y + iter->x * PIXMAN_FORMAT_BPP (info->format) / 8;
+    iter->stride = s;
 }
 
 #define N_TMP_BOXES (16)

@@ -166,8 +166,8 @@ typedef enum
     ONE_MINUS_INV_SA_OVER_DA
 } combine_factor_t;
 
-#define CLAMP(f)					\
-    (((f) < 0)? 0 : (((f) > 1.0) ? 1.0 : (f)))
+#define FCLAMP(fValue)					\
+    (((fValue) < 0.f)? 0.f : (((fValue) > 1.f) ? 1.f : (fValue)))
 
 static force_inline float
 get_factor (combine_factor_t factor, float sa, float da)
@@ -204,56 +204,56 @@ get_factor (combine_factor_t factor, float sa, float da)
 	if (FLOAT_IS_ZERO (da))
 	    f = 1.0f;
 	else
-	    f = CLAMP (sa / da);
+	    f = FCLAMP (sa / da);
 	break;
 
     case DA_OVER_SA:
 	if (FLOAT_IS_ZERO (sa))
 	    f = 1.0f;
 	else
-	    f = CLAMP (da / sa);
+	    f = FCLAMP (da / sa);
 	break;
 
     case INV_SA_OVER_DA:
 	if (FLOAT_IS_ZERO (da))
 	    f = 1.0f;
 	else
-	    f = CLAMP ((1.0f - sa) / da);
+	    f = FCLAMP ((1.0f - sa) / da);
 	break;
 
     case INV_DA_OVER_SA:
 	if (FLOAT_IS_ZERO (sa))
 	    f = 1.0f;
 	else
-	    f = CLAMP ((1.0f - da) / sa);
+	    f = FCLAMP ((1.0f - da) / sa);
 	break;
 
     case ONE_MINUS_SA_OVER_DA:
 	if (FLOAT_IS_ZERO (da))
 	    f = 0.0f;
 	else
-	    f = CLAMP (1.0f - sa / da);
+	    f = FCLAMP (1.0f - sa / da);
 	break;
 
     case ONE_MINUS_DA_OVER_SA:
 	if (FLOAT_IS_ZERO (sa))
 	    f = 0.0f;
 	else
-	    f = CLAMP (1.0f - da / sa);
+	    f = FCLAMP (1.0f - da / sa);
 	break;
 
     case ONE_MINUS_INV_DA_OVER_SA:
 	if (FLOAT_IS_ZERO (sa))
 	    f = 0.0f;
 	else
-	    f = CLAMP (1.0f - (1.0f - da) / sa);
+	    f = FCLAMP (1.0f - (1.0f - da) / sa);
 	break;
 
     case ONE_MINUS_INV_SA_OVER_DA:
 	if (FLOAT_IS_ZERO (da))
 	    f = 0.0f;
 	else
-	    f = CLAMP (1.0f - (1.0f - sa) / da);
+	    f = FCLAMP (1.0f - (1.0f - sa) / da);
 	break;
     }
 

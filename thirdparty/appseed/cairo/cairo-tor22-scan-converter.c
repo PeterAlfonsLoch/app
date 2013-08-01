@@ -478,7 +478,7 @@ floored_muldivrem(int x, int a, int b)
 {
     struct quorem qr;
     long long xa = (long long)x*a;
-    qr.quo = xa/b;
+    qr.quo = (int32_t) (xa / b);
     qr.rem = xa%b;
     if ((xa>=0) != (b>=0) && qr.rem) {
 	qr.quo -= 1;
@@ -1336,10 +1336,10 @@ glitter_scan_converter_reset(
 #  define INPUT_TO_GRID_X(in, out) INPUT_TO_GRID_general(in, out, GRID_X)
 #endif
 
-#define INPUT_TO_GRID_general(in, out, grid_scale) do {		\
+#define INPUT_TO_GRID_general(cast, in, out, grid_scale) do {		\
     long long tmp__ = (long long)(grid_scale) * (in);	\
     tmp__ >>= GLITTER_INPUT_BITS;				\
-    (out) = tmp__;						\
+    (out) = (cast) (tmp__);						\
 } while (0)
 
 /* Add a new polygon edge from pixel (x1,y1) to (x2,y2) to the scan

@@ -1140,10 +1140,10 @@ cairo_cff_font_read_font_metrics (cairo_cff_font_t *font, cairo_hash_table_t  *t
         if (p < end)
             p = decode_number (p, &y_max);
     }
-    font->x_min = floor (x_min);
-    font->y_min = floor (y_min);
-    font->x_max = floor (x_max);
-    font->y_max = floor (y_max);
+    font->x_min = (int) floor (x_min);
+    font->y_min = (int) floor (y_min);
+    font->x_max = (int) floor (x_max);
+    font->y_max = (int) floor (y_max);
     font->ascent = font->y_max;
     font->descent = font->y_min;
 
@@ -1164,7 +1164,7 @@ cairo_cff_font_read_font_metrics (cairo_cff_font_t *font, cairo_hash_table_t  *t
             p = decode_number (p, &yy);
     }
     /* Freetype uses 1/yy to get units per EM */
-    font->units_per_em = _cairo_round(1.0/yy);
+    font->units_per_em = (int) _cairo_round(1.0/yy);
 }
 
 static cairo_int_status_t
@@ -1687,14 +1687,14 @@ cairo_cff_find_width_and_subroutines_used (cairo_cff_font_t  *font,
         if (font->is_cid) {
             fd = font->fdselect[glyph_id];
             if (font->type2_found_width)
-                width = font->fd_nominal_width[fd] + font->type2_width;
+                width = (int) (font->fd_nominal_width[fd] + font->type2_width);
             else
-                width = font->fd_default_width[fd];
+                width = (int) (font->fd_default_width[fd]);
         } else {
             if (font->type2_found_width)
-                width = font->nominal_width + font->type2_width;
+                width = (int) (font->nominal_width + font->type2_width);
             else
-                width = font->default_width;
+                width = (int) (font->default_width);
         }
         font->widths[subset_id] = width;
     }

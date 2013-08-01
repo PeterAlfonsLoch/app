@@ -557,7 +557,7 @@ _cairo_clip_transform (cairo_clip_t *clip, const cairo_matrix_t *m)
 	return clip;
 
     if (_cairo_matrix_is_translation (m))
-	return _cairo_clip_translate (clip, m->x0, m->y0);
+	return _cairo_clip_translate (clip, (int) m->x0, (int) m->y0);
 
     copy = _cairo_clip_create ();
 

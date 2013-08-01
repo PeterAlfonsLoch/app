@@ -323,8 +323,8 @@ _cairo_gstate_redirect_target (cairo_gstate_t *gstate, cairo_surface_t *child)
      * translate it into the child's backend coordinates. */
     _cairo_clip_destroy (gstate->clip);
     gstate->clip = _cairo_clip_copy_with_translation (gstate->next->clip,
-						      child->device_transform.x0 - gstate->parent_target->device_transform.x0,
-						      child->device_transform.y0 - gstate->parent_target->device_transform.y0);
+						     (int) (child->device_transform.x0 - gstate->parent_target->device_transform.x0),
+						     (int) (child->device_transform.y0 - gstate->parent_target->device_transform.y0));
 
     return CAIRO_STATUS_SUCCESS;
 }

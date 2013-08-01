@@ -44,6 +44,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\pixman-version.h" />
+    <ClInclude Include="..\..\include\pixman.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="loongson-mmintrin.h" />
     <ClInclude Include="pixman-accessor.h" />
@@ -59,8 +61,6 @@
   <ItemGroup>
     <ClCompile Include="pixman-access-accessors.c" />
     <ClCompile Include="pixman-access.c" />
-    <ClCompile Include="pixman-arm-neon.c" />
-    <ClCompile Include="pixman-arm-simd.c" />
     <ClCompile Include="pixman-arm.c" />
     <ClCompile Include="pixman-bits-image.c" />
     <ClCompile Include="pixman-combine-float.c" />
@@ -77,13 +77,11 @@
     <ClCompile Include="pixman-implementation.c" />
     <ClCompile Include="pixman-linear-gradient.c" />
     <ClCompile Include="pixman-matrix.c" />
-    <ClCompile Include="pixman-mips-dspr2.c" />
     <ClCompile Include="pixman-mips.c" />
     <ClCompile Include="pixman-mmx.c" />
     <ClCompile Include="pixman-noop.c" />
     <ClCompile Include="pixman-ppc.c" />
     <ClCompile Include="pixman-radial-gradient.c" />
-    <ClCompile Include="pixman-region.c" />
     <ClCompile Include="pixman-region16.c" />
     <ClCompile Include="pixman-region32.c" />
     <ClCompile Include="pixman-solid-fill.c" />
@@ -91,9 +89,14 @@
     <ClCompile Include="pixman-timer.c" />
     <ClCompile Include="pixman-trap.c" />
     <ClCompile Include="pixman-utils.c" />
-    <ClCompile Include="pixman-vmx.c" />
     <ClCompile Include="pixman-x86.c" />
     <ClCompile Include="pixman.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pixman-arm-detect-win32.asm" />
+    <None Include="pixman-arm-neon-asm-bilinear.S" />
+    <None Include="pixman-arm-simd-asm-scaled.S" />
+    <None Include="pixman-mips-memcpy-asm.S" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>_ca2pixman</ProjectName>

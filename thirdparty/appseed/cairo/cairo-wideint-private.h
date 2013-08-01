@@ -115,11 +115,11 @@ _cairo_uint64_divrem (cairo_uint64_t num, cairo_uint64_t den)
  * warning: cast from function call of type ‘#cairo_uint64_t’ to
  * non-matching type ‘double’
  */
-static cairo_always_inline cairo_const cairo_uint64_t _cairo_double_to_uint64 (double i) { return i; }
-static cairo_always_inline cairo_const double _cairo_uint64_to_double (cairo_uint64_t i) { return i; }
+static cairo_always_inline cairo_const cairo_uint64_t _cairo_double_to_uint64 (double i) { return (cairo_uint64_t) i; }
+static cairo_always_inline cairo_const double _cairo_uint64_to_double (cairo_uint64_t i) { return (double) i; }
 
-static cairo_always_inline cairo_int64_t I _cairo_double_to_int64 (double i) { return i; }
-static cairo_always_inline double I _cairo_int64_to_double (cairo_int64_t i) { return i; }
+static cairo_always_inline cairo_int64_t I _cairo_double_to_int64 (double i) { return (cairo_int64_t) i; }
+static cairo_always_inline double I _cairo_int64_to_double (cairo_int64_t i) { return (double) i; }
 
 #define			_cairo_uint32_to_uint64(i)  ((uint64_t) (i))
 #define			_cairo_uint64_to_uint32(i)  ((uint32_t) (i))
@@ -154,7 +154,7 @@ static cairo_always_inline double I _cairo_int64_to_double (cairo_int64_t i) { r
 #define			_cairo_int64_lsl(a,b)	    ((a) << (b))
 #define			_cairo_int64_rsl(a,b)	    ((int64_t) ((uint64_t) (a) >> (b)))
 #define			_cairo_int64_rsa(a,b)	    ((int64_t) (a) >> (b))
-#define			_cairo_int64_negate(a)	    (-(a))
+#define			_cairo_int64_negate(a)	    (-((int64_t)a))
 #define			_cairo_int64_negative(a)    ((a) < 0)
 #define			_cairo_int64_not(a)	    (~(a))
 
@@ -209,7 +209,7 @@ _cairo_int64_32_div (cairo_int64_t num, int32_t den)
     return _cairo_int64_to_int32
 	(_cairo_int64_divrem (num, _cairo_int32_to_int64 (den)).quo);
 #else
-    return num / den;
+    return (int32_t) (num / den);
 #endif
 }
 

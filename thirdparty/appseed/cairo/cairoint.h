@@ -46,6 +46,8 @@
 #ifndef _CAIROINT_H_
 #define _CAIROINT_H_
 
+#include "c/c/c.h"
+
 #if HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -720,7 +722,7 @@ _cairo_lround (double d) cairo_const;
 static inline int cairo_const
 _cairo_lround (double r)
 {
-    return _cairo_round (r);
+    return (int) _cairo_round (r);
 }
 #endif
 

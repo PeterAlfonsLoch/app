@@ -480,7 +480,7 @@ floored_muldivrem(int x, int a, int b)
 {
     struct quorem qr;
     long long xa = (long long)x*a;
-    qr.quo = xa/b;
+    qr.quo = (int32_t) (xa / b);
     qr.rem = xa%b;
     if ((xa>=0) != (b>=0) && qr.rem) {
 	qr.quo -= 1;
@@ -1471,7 +1471,7 @@ glitter_scan_converter_reset(
 #if !defined(INPUT_TO_GRID_Y) && defined(GRID_Y_BITS) && GRID_Y_BITS <= GLITTER_INPUT_BITS
 #  define INPUT_TO_GRID_Y(in, out) (out) = (in) >> (GLITTER_INPUT_BITS - GRID_Y_BITS)
 #else
-#  define INPUT_TO_GRID_Y(in, out) INPUT_TO_GRID_general(in, out, GRID_Y)
+#  define INPUT_TO_GRID_Y(cast, in, out) INPUT_TO_GRID_general(cast, in, out, GRID_Y)
 #endif
 
 #if !defined(INPUT_TO_GRID_X) && defined(GRID_X_BITS) && GRID_X_BITS <= GLITTER_INPUT_BITS
@@ -1480,10 +1480,10 @@ glitter_scan_converter_reset(
 #  define INPUT_TO_GRID_X(in, out) INPUT_TO_GRID_general(in, out, GRID_X)
 #endif
 
-#define INPUT_TO_GRID_general(in, out, grid_scale) do {		\
+#define INPUT_TO_GRID_general(cast, in, out, grid_scale) do {		\
     long long tmp__ = (long long)(grid_scale) * (in);	\
     tmp__ >>= GLITTER_INPUT_BITS;				\
-    (out) = tmp__;						\
+    (out) = (cast) (tmp__);						\
 } while (0)
 
 /* Add a new polygon edge from pixel (x1,y1) to (x2,y2) to the scan
@@ -1497,14 +1497,14 @@ glitter_scan_converter_add_edge (glitter_scan_converter_t *converter,
 {
     cairo_edge_t e;
 
-    INPUT_TO_GRID_Y (edge->top, e.top);
-    INPUT_TO_GRID_Y (edge->bottom, e.bottom);
+    INPUT_TO_GRID_Y (int, edge->top, e.top);
+    INPUT_TO_GRID_Y (int, edge->bottom, e.bottom);
     if (e.top >= e.bottom)
 	return;
 
     /* XXX: possible overflows if GRID_X/Y > 2**GLITTER_INPUT_BITS */
-    INPUT_TO_GRID_Y (edge->line.p1.y, e.line.p1.y);
-    INPUT_TO_GRID_Y (edge->line.p2.y, e.line.p2.y);
+    INPUT_TO_GRID_Y (cairo_fixed_t, edge->line.p1.y, e.line.p1.y);
+    INPUT_TO_GRID_Y (cairo_fixed_t, edge->line.p2.y, e.line.p2.y);
     if (e.line.p1.y == e.line.p2.y)
 	e.line.p2.y++; /* little fudge to prevent a div-by-zero */
 

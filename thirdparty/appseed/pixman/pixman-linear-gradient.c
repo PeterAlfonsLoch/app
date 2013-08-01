@@ -152,9 +152,10 @@ linear_get_scanline_narrow (pixman_iter_t  *iter,
 	    invden = pixman_fixed_1 * (double) pixman_fixed_1 /
 		(l * (double) v.vector[2]);
 	    v2 = v.vector[2] * (1. / pixman_fixed_1);
-	    t = ((dx * v.vector[0] + dy * v.vector[1]) - 
-		 (dx * linear->p1.x + dy * linear->p1.y) * v2) * invden;
-	    inc = (dx * unit.vector[0] + dy * unit.vector[1]) * invden;
+
+	    t = (pixman_fixed_32_32_t) ( ((dx * v.vector[0] + dy * v.vector[1]) - (dx * linear->p1.x + dy * linear->p1.y) * v2) * invden);
+
+	    inc = ((dx * unit.vector[0] + dy * unit.vector[1]) * invden);
 	}
 	next_inc = 0;
 
@@ -179,7 +180,7 @@ linear_get_scanline_narrow (pixman_iter_t  *iter,
 							     t + next_inc);
 		}
 		i++;
-		next_inc = inc * i;
+		next_inc = (pixman_fixed_32_32_t) (inc * i);
 		buffer++;
 	    }
 	}
@@ -206,7 +207,7 @@ linear_get_scanline_narrow (pixman_iter_t  *iter,
 			 (dx * linear->p1.x + dy * linear->p1.y) * v2) * invden;
 		}
 
-		*buffer = _pixman_gradient_walker_pixel (&walker, t);
+		*buffer = _pixman_gradient_walker_pixel (&walker, (pixman_fixed_48_16_t) t);
 	    }
 
 	    ++buffer;

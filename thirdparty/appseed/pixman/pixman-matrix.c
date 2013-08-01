@@ -105,7 +105,8 @@ rounded_sdiv_128_by_49 (int64_t   hi,
                         int64_t   div,
                         int64_t  *signed_result_hi)
 {
-    uint64_t result_lo, result_hi;
+    int64_t result_lo;
+    int64_t result_hi;
     int sign = 0;
     if (div < 0)
     {
@@ -117,7 +118,7 @@ rounded_sdiv_128_by_49 (int64_t   hi,
         if (lo != 0)
             hi++;
         hi = -hi;
-        lo = -lo;
+        lo = (uint64_t)(-(int64_t)lo);
         sign ^= 1;
     }
     result_lo = rounded_udiv_128_by_48 (hi, lo, div, &result_hi);
@@ -126,7 +127,7 @@ rounded_sdiv_128_by_49 (int64_t   hi,
         if (result_lo != 0)
             result_hi++;
         result_hi = -result_hi;
-        result_lo = -result_lo;
+        result_lo = (uint64_t)(-(int64_t)result_lo);
     }
     if (signed_result_hi)
     {
@@ -389,9 +390,9 @@ pixman_transform_point_3d (const struct pixman_transform *transform,
 
     pixman_transform_point_31_16_3d (transform, &tmp, &tmp);
 
-    vector->vector[0] = tmp.v[0];
-    vector->vector[1] = tmp.v[1];
-    vector->vector[2] = tmp.v[2];
+    vector->vector[0] = (pixman_fixed_t) tmp.v[0];
+    vector->vector[1] = (pixman_fixed_t) tmp.v[1];
+    vector->vector[2] = (pixman_fixed_t) tmp.v[2];
 
     return vector->vector[0] == tmp.v[0] &&
            vector->vector[1] == tmp.v[1] &&
@@ -410,9 +411,9 @@ pixman_transform_point (const struct pixman_transform *transform,
     if (!pixman_transform_point_31_16 (transform, &tmp, &tmp))
         return FALSE;
 
-    vector->vector[0] = tmp.v[0];
-    vector->vector[1] = tmp.v[1];
-    vector->vector[2] = tmp.v[2];
+    vector->vector[0] = (pixman_fixed_t) tmp.v[0];
+    vector->vector[1] = (pixman_fixed_t) tmp.v[1];
+    vector->vector[2] = (pixman_fixed_t) tmp.v[2];
 
     return vector->vector[0] == tmp.v[0] &&
            vector->vector[1] == tmp.v[1] &&
@@ -1036,10 +1037,10 @@ pixman_f_transform_bounds (const struct pixman_f_transform *t,
 	if (!pixman_f_transform_point (t, &v[i]))
 	    return FALSE;
 
-	x1 = floor (v[i].v[0]);
-	y1 = floor (v[i].v[1]);
-	x2 = ceil (v[i].v[0]);
-	y2 = ceil (v[i].v[1]);
+	x1 = (int32_t) floor (v[i].v[0]);
+	y1 = (int32_t) floor (v[i].v[1]);
+	x2 = (int32_t) ceil (v[i].v[0]);
+	y2 = (int32_t) ceil (v[i].v[1]);
 
 	if (i == 0)
 	{

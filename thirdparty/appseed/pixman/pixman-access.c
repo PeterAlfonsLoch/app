@@ -632,10 +632,10 @@ fetch_scanline_a2r10g10b10_float (pixman_image_t *image,
 	uint64_t g = (p >> 10) & 0x3ff;
 	uint64_t b = p & 0x3ff;
 
-	buffer->a = pixman_unorm_to_float (a, 2);
-	buffer->r = pixman_unorm_to_float (r, 10);
-	buffer->g = pixman_unorm_to_float (g, 10);
-	buffer->b = pixman_unorm_to_float (b, 10);
+	buffer->a = pixman_unorm_to_float ((uint16_t) a, 2);
+	buffer->r = pixman_unorm_to_float ((uint16_t) r, 10);
+	buffer->g = pixman_unorm_to_float ((uint16_t) g, 10);
+	buffer->b = pixman_unorm_to_float ((uint16_t) b, 10);
 
 	buffer++;
     }
@@ -663,9 +663,9 @@ fetch_scanline_x2r10g10b10_float (pixman_image_t *image,
 	uint64_t b = p & 0x3ff;
 
 	buffer->a = 1.0;
-	buffer->r = pixman_unorm_to_float (r, 10);
-	buffer->g = pixman_unorm_to_float (g, 10);
-	buffer->b = pixman_unorm_to_float (b, 10);
+	buffer->r = pixman_unorm_to_float ((uint16_t) r, 10);
+	buffer->g = pixman_unorm_to_float ((uint16_t) g, 10);
+	buffer->b = pixman_unorm_to_float ((uint16_t) b, 10);
 
 	buffer++;
     }
@@ -693,10 +693,10 @@ fetch_scanline_a2b10g10r10_float (pixman_image_t *image,
 	uint64_t g = (p >> 10) & 0x3ff;
 	uint64_t r = p & 0x3ff;
 
-	buffer->a = pixman_unorm_to_float (a, 2);
-	buffer->r = pixman_unorm_to_float (r, 10);
-	buffer->g = pixman_unorm_to_float (g, 10);
-	buffer->b = pixman_unorm_to_float (b, 10);
+	buffer->a = pixman_unorm_to_float ((uint16_t) a, 2);
+	buffer->r = pixman_unorm_to_float ((uint16_t) r, 10);
+	buffer->g = pixman_unorm_to_float ((uint16_t) g, 10);
+	buffer->b = pixman_unorm_to_float ((uint16_t) b, 10);
 
 	buffer++;
     }
@@ -724,9 +724,9 @@ fetch_scanline_x2b10g10r10_float (pixman_image_t *image,
 	uint64_t r = p & 0x3ff;
 
 	buffer->a = 1.0;
-	buffer->r = pixman_unorm_to_float (r, 10);
-	buffer->g = pixman_unorm_to_float (g, 10);
-	buffer->b = pixman_unorm_to_float (b, 10);
+	buffer->r = pixman_unorm_to_float ((uint16_t) r, 10);
+	buffer->g = pixman_unorm_to_float ((uint16_t) g, 10);
+	buffer->b = pixman_unorm_to_float ((uint16_t) b, 10);
 
 	buffer++;
     }
@@ -818,9 +818,9 @@ fetch_pixel_x2r10g10b10_float (bits_image_t *image,
     argb_t argb;
 
     argb.a = 1.0;
-    argb.r = pixman_unorm_to_float (r, 10);
-    argb.g = pixman_unorm_to_float (g, 10);
-    argb.b = pixman_unorm_to_float (b, 10);
+    argb.r = pixman_unorm_to_float ((uint16_t) r, 10);
+    argb.g = pixman_unorm_to_float ((uint16_t) g, 10);
+    argb.b = pixman_unorm_to_float ((uint16_t) b, 10);
 
     return argb;
 }
@@ -838,10 +838,10 @@ fetch_pixel_a2r10g10b10_float (bits_image_t *image,
     uint64_t b = p & 0x3ff;
     argb_t argb;
 
-    argb.a = pixman_unorm_to_float (a, 2);
-    argb.r = pixman_unorm_to_float (r, 10);
-    argb.g = pixman_unorm_to_float (g, 10);
-    argb.b = pixman_unorm_to_float (b, 10);
+    argb.a = pixman_unorm_to_float ((uint16_t) a, 2);
+    argb.r = pixman_unorm_to_float ((uint16_t) r, 10);
+    argb.g = pixman_unorm_to_float ((uint16_t) g, 10);
+    argb.b = pixman_unorm_to_float ((uint16_t) b, 10);
 
     return argb;
 }
@@ -859,10 +859,10 @@ fetch_pixel_a2b10g10r10_float (bits_image_t *image,
     uint64_t r = p & 0x3ff;
     argb_t argb;
 
-    argb.a = pixman_unorm_to_float (a, 2);
-    argb.r = pixman_unorm_to_float (r, 10);
-    argb.g = pixman_unorm_to_float (g, 10);
-    argb.b = pixman_unorm_to_float (b, 10);
+    argb.a = pixman_unorm_to_float ((uint16_t) a, 2);
+    argb.r = pixman_unorm_to_float ((uint16_t) r, 10);
+    argb.g = pixman_unorm_to_float ((uint16_t) g, 10);
+    argb.b = pixman_unorm_to_float ((uint16_t) b, 10);
 
     return argb;
 }
@@ -880,9 +880,9 @@ fetch_pixel_x2b10g10r10_float (bits_image_t *image,
     argb_t argb;
 
     argb.a = 1.0;
-    argb.r = pixman_unorm_to_float (r, 10);
-    argb.g = pixman_unorm_to_float (g, 10);
-    argb.b = pixman_unorm_to_float (b, 10);
+    argb.r = pixman_unorm_to_float ((uint16_t) r, 10);
+    argb.g = pixman_unorm_to_float ((uint16_t) g, 10);
+    argb.b = pixman_unorm_to_float ((uint16_t) b, 10);
 
     return argb;
 }
@@ -1080,10 +1080,10 @@ store_scanline_a8r8g8b8_sRGB_float (bits_image_t *  image,
     {
 	uint8_t a, r, g, b;
 
-	a = pixman_float_to_unorm (values[i].a, 8);
-	r = to_srgb (values[i].r);
-	g = to_srgb (values[i].g);
-	b = to_srgb (values[i].b);
+	a = (uint8_t) pixman_float_to_unorm (values[i].a, 8);
+	r = (uint8_t) to_srgb (values[i].r);
+	g = (uint8_t) to_srgb (values[i].g);
+	b = (uint8_t) to_srgb (values[i].b);
 
 	WRITE (image, pixel++,
 	       (a << 24) | (r << 16) | (g << 8) | b);
@@ -1160,9 +1160,9 @@ fetch_scanline_a8r8g8b8_32_sRGB (pixman_image_t *image,
 	g = (tmp >> 8) & 0xff;
 	b = (tmp >> 0) & 0xff;
 
-	r = to_linear[r] * 255.0f + 0.5f;
-	g = to_linear[g] * 255.0f + 0.5f;
-	b = to_linear[b] * 255.0f + 0.5f;
+	r = (uint8_t) (to_linear[r] * 255.0f + 0.5f);
+	g = (uint8_t) (to_linear[g] * 255.0f + 0.5f);
+	b = (uint8_t) (to_linear[b] * 255.0f + 0.5f);
 
 	*buffer++ = (a << 24) | (r << 16) | (g << 8) | (b << 0);
     }
@@ -1182,9 +1182,9 @@ fetch_pixel_a8r8g8b8_32_sRGB (bits_image_t *image,
     g = (tmp >> 8) & 0xff;
     b = (tmp >> 0) & 0xff;
 
-    r = to_linear[r] * 255.0f + 0.5f;
-    g = to_linear[g] * 255.0f + 0.5f;
-    b = to_linear[b] * 255.0f + 0.5f;
+    r = (uint8_t) (to_linear[r] * 255.0f + 0.5f);
+    g = (uint8_t) (to_linear[g] * 255.0f + 0.5f);
+    b = (uint8_t) (to_linear[b] * 255.0f + 0.5f);
 
     return (a << 24) | (r << 16) | (g << 8) | (b << 0);
 }

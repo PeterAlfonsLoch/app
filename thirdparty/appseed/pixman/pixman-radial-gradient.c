@@ -105,12 +105,12 @@ radial_compute_color (double                    a,
 	if (repeat == PIXMAN_REPEAT_NONE)
 	{
 	    if (0 <= t && t <= pixman_fixed_1)
-		return _pixman_gradient_walker_pixel (walker, t);
+		return _pixman_gradient_walker_pixel (walker, (pixman_fixed_48_16_t) t);
 	}
 	else
 	{
 	    if (t * dr >= mindr)
-		return _pixman_gradient_walker_pixel (walker, t);
+		return _pixman_gradient_walker_pixel (walker, (pixman_fixed_48_16_t) t);
 	}
 
 	return 0;
@@ -139,16 +139,16 @@ radial_compute_color (double                    a,
 	if (repeat == PIXMAN_REPEAT_NONE)
 	{
 	    if (0 <= t0 && t0 <= pixman_fixed_1)
-		return _pixman_gradient_walker_pixel (walker, t0);
+		return _pixman_gradient_walker_pixel (walker, (pixman_fixed_48_16_t) t0);
 	    else if (0 <= t1 && t1 <= pixman_fixed_1)
-		return _pixman_gradient_walker_pixel (walker, t1);
+		return _pixman_gradient_walker_pixel (walker, (pixman_fixed_48_16_t) t1);
 	}
 	else
 	{
 	    if (t0 * dr >= mindr)
-		return _pixman_gradient_walker_pixel (walker, t0);
+		return _pixman_gradient_walker_pixel (walker, (pixman_fixed_48_16_t) t0);
 	    else if (t1 * dr >= mindr)
-		return _pixman_gradient_walker_pixel (walker, t1);
+		return _pixman_gradient_walker_pixel (walker, (pixman_fixed_48_16_t) t1);
 	}
     }
 
@@ -330,7 +330,7 @@ radial_get_scanline_narrow (pixman_iter_t *iter, const uint32_t *mask)
 	{
 	    if (!mask || *mask++)
 	    {
-		*buffer = radial_compute_color (radial->a, b, c,
+		*buffer = radial_compute_color (radial->a, (double) b, (double) c,
 						radial->inva,
 						radial->delta.radius,
 						radial->mindr,
@@ -460,7 +460,7 @@ pixman_image_create_radial_gradient (const pixman_point_fixed_t *  inner,
 
     /* computed exactly, then cast to double -> every bit of the double
        representation is correct (53 bits) */
-    radial->a = dot (radial->delta.x, radial->delta.y, -radial->delta.radius,
+    radial->a = (double) dot (radial->delta.x, radial->delta.y, -radial->delta.radius,
 		     radial->delta.x, radial->delta.y, radial->delta.radius);
     if (radial->a != 0)
 	radial->inva = 1. * pixman_fixed_1 / radial->a;

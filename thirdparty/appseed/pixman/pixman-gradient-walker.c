@@ -74,7 +74,7 @@ gradient_walker_reset (pixman_gradient_walker_t *walker,
     }
     else
     {
-	x = pos;
+	x = (int32_t) pos;
     }
     
     for (n = 0; n < count; n++)
@@ -91,8 +91,8 @@ gradient_walker_reset (pixman_gradient_walker_t *walker,
 
     if (walker->repeat == PIXMAN_REPEAT_NORMAL)
     {
-	left_x  += (pos - x);
-	right_x += (pos - x);
+	left_x  += (int32_t) (pos - x);
+	right_x += (int32_t) (pos - x);
     }
     else if (walker->repeat == PIXMAN_REPEAT_REFLECT)
     {
@@ -111,8 +111,8 @@ gradient_walker_reset (pixman_gradient_walker_t *walker,
 
 	    x = 0x10000 - x;
 	}
-	left_x  += (pos - x);
-	right_x += (pos - x);
+	left_x  += (int32_t) (pos - x);
+	right_x += (int32_t) (pos - x);
     }
     else if (walker->repeat == PIXMAN_REPEAT_NONE)
     {
@@ -188,10 +188,10 @@ _pixman_gradient_walker_pixel (pixman_gradient_walker_t *walker,
     g = a * (walker->g_s * y + walker->g_b);
     b = a * (walker->b_s * y + walker->b_b);
 
-    a8 = a + 0.5f;
-    r8 = r + 0.5f;
-    g8 = g + 0.5f;
-    b8 = b + 0.5f;
+    a8 = (uint8_t) (a + 0.5f);
+    r8 = (uint8_t) (r + 0.5f);
+    g8 = (uint8_t) (g + 0.5f);
+    b8 = (uint8_t) (b + 0.5f);
 
     v = ((a8 << 24) & 0xff000000) |
         ((r8 << 16) & 0x00ff0000) |

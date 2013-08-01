@@ -28,7 +28,9 @@
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 #include "pixman-private.h"
 
 typedef double (* kernel_func_t) (double x);
@@ -228,7 +230,7 @@ create_1d_filter (int             *width,
     int i;
 
     size = scale * filters[sample].width + filters[reconstruct].width;
-    *width = ceil (size);
+    *width = (int32_t) ceil (size);
 
     p = params = malloc (*width * n_phases * sizeof (pixman_fixed_t));
     if (!params)
@@ -248,7 +250,7 @@ create_1d_filter (int             *width,
 	 * and sample positions.
 	 */
 
-	x1 = ceil (frac - *width / 2.0 - 0.5);
+	x1 = (int32_t) ceil (frac - *width / 2.0 - 0.5);
         x2 = x1 + *width;
 
 	total = 0;
@@ -282,7 +284,7 @@ create_1d_filter (int             *width,
         new_total = 0;
 	for (x = x1; x < x2; ++x)
 	{
-	    pixman_fixed_t t = (*p) * total + 0.5;
+	    pixman_fixed_t t = (pixman_fixed_t) ((*p) * total + 0.5);
 
 	    new_total += t;
 	    *p++ = t;

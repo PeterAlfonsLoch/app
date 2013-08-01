@@ -7,6 +7,12 @@
     <Filter Include="Header Files">
       <UniqueIdentifier>{ab842b3e-5e74-44f8-84c3-1db7e976ff76}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{7e5acba4-e3f7-41b2-8e99-0b8bca256e3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\asm">
+      <UniqueIdentifier>{522ef589-7263-4c56-805b-84c2b1928d85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -41,6 +47,12 @@
     </ClInclude>
     <ClInclude Include="pixman-version.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\pixman.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\pixman-version.h">
+      <Filter>Header Files\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -104,9 +116,6 @@
     <ClCompile Include="pixman-radial-gradient.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pixman-region.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="pixman-region16.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -134,16 +143,7 @@
     <ClCompile Include="pixman-access.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pixman-arm-neon.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pixman-arm-simd.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="pixman-arm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pixman-mips-dspr2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pixman-mips.c">
@@ -152,8 +152,19 @@
     <ClCompile Include="pixman-ppc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pixman-vmx.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pixman-mips-memcpy-asm.S">
+      <Filter>Source Files\asm</Filter>
+    </None>
+    <None Include="pixman-arm-simd-asm-scaled.S">
+      <Filter>Source Files\asm</Filter>
+    </None>
+    <None Include="pixman-arm-neon-asm-bilinear.S">
+      <Filter>Source Files\asm</Filter>
+    </None>
+    <None Include="pixman-arm-detect-win32.asm">
+      <Filter>Source Files\asm</Filter>
+    </None>
   </ItemGroup>
 </Project>

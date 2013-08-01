@@ -67,7 +67,9 @@
 #if HAVE_UNISTD_H
 #include <unistd.h>
 #else
+#ifndef access
 #define access(p, m) 0
+#endif
 #endif
 
 /* Fontconfig version older than 2.6 didn't have these options */
@@ -824,8 +826,8 @@ _cairo_ft_unscaled_font_set_scale (cairo_ft_unscaled_font_t *unscaled,
     FT_Set_Transform(unscaled->face, &mat, NULL);
 
     error = FT_Set_Char_Size (unscaled->face,
-			      sf.x_scale * 64.0 + .5,
-			      sf.y_scale * 64.0 + .5,
+			      (FT_F26Dot6) (sf.x_scale * 64.0 + .5),
+			      (FT_F26Dot6) (sf.y_scale * 64.0 + .5),
 			      0, 0);
     if (error)
       return _cairo_error (CAIRO_STATUS_NO_MEMORY);
