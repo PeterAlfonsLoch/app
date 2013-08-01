@@ -58,6 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pixman-access-accessors.c" />
+    <ClCompile Include="pixman-access.c" />
+    <ClCompile Include="pixman-arm-neon.c" />
+    <ClCompile Include="pixman-arm-simd.c" />
+    <ClCompile Include="pixman-arm.c" />
     <ClCompile Include="pixman-bits-image.c" />
     <ClCompile Include="pixman-combine-float.c" />
     <ClCompile Include="pixman-combine32.c" />
@@ -73,8 +77,11 @@
     <ClCompile Include="pixman-implementation.c" />
     <ClCompile Include="pixman-linear-gradient.c" />
     <ClCompile Include="pixman-matrix.c" />
+    <ClCompile Include="pixman-mips-dspr2.c" />
+    <ClCompile Include="pixman-mips.c" />
     <ClCompile Include="pixman-mmx.c" />
     <ClCompile Include="pixman-noop.c" />
+    <ClCompile Include="pixman-ppc.c" />
     <ClCompile Include="pixman-radial-gradient.c" />
     <ClCompile Include="pixman-region.c" />
     <ClCompile Include="pixman-region16.c" />
@@ -84,6 +91,7 @@
     <ClCompile Include="pixman-timer.c" />
     <ClCompile Include="pixman-trap.c" />
     <ClCompile Include="pixman-utils.c" />
+    <ClCompile Include="pixman-vmx.c" />
     <ClCompile Include="pixman-x86.c" />
     <ClCompile Include="pixman.c" />
   </ItemGroup>
@@ -292,7 +300,7 @@
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalOptions>-Zm1024 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Zm2000 /bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

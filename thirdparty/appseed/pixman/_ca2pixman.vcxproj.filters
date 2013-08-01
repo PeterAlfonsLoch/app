@@ -131,5 +131,29 @@
     <ClCompile Include="pixman-x86.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pixman-access.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman-arm-neon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman-arm-simd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman-arm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman-mips-dspr2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman-mips.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman-ppc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman-vmx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
