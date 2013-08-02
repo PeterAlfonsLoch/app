@@ -116,7 +116,7 @@ namespace fontopus
 
    bool fontopus::get_auth(const char * psz, string & strUsername, string & strPassword)
    {
-          /*::ca2::fontopus * papp;
+          /*::draw2d::fontopus * papp;
       if(m_puiInitialPlaceHolderContainer != NULL)
       {
       papp = m_puiInitialPlaceHolderContainer->m_papp;

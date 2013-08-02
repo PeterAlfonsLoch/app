@@ -404,11 +404,11 @@ namespace bergedge
       {
          return;
       }
-      m_oswindowWinservice1       =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::winservice_1");
-      m_oswindowWinactionarea     =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::winactionarea");
-      m_oswindowCommand           =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::command");
-      m_oswindowWinutil           =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::winutil");
-      m_oswindowBergedge          =  ::FindWindow(NULL, "::ca2::fontopus::message_wnd::bergedge");
+      m_oswindowWinservice1       =  ::FindWindow(NULL, "::draw2d::fontopus::message_wnd::winservice_1");
+      m_oswindowWinactionarea     =  ::FindWindow(NULL, "::draw2d::fontopus::message_wnd::winactionarea");
+      m_oswindowCommand           =  ::FindWindow(NULL, "::draw2d::fontopus::message_wnd::command");
+      m_oswindowWinutil           =  ::FindWindow(NULL, "::draw2d::fontopus::message_wnd::winutil");
+      m_oswindowBergedge          =  ::FindWindow(NULL, "::draw2d::fontopus::message_wnd::bergedge");
 #endif
    }
 

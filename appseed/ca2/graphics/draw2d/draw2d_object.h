@@ -27,6 +27,14 @@ namespace draw2d
 
 
       virtual void * get_os_data() const;
+      virtual void * get_os_data_ex(int i) const;
+
+      template < typename T >
+      T * get_typed_os_data(int i) const
+      {
+         return (T *) get_os_data_ex(i);
+      }
+
 
 /*   #pragma push_macro("GetObject")
    #undef GetObject

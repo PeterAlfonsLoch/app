@@ -169,7 +169,7 @@ bool virtual_user_interface::create_message_window()
    {
       /*guie_message_wnd * pwnd = new guie_message_wnd(get_app());
       pwnd->m_pguieForward = this;
-      string strName = "::ca2::fontopus::guie_message_wnd::";
+      string strName = "::draw2d::fontopus::guie_message_wnd::";
       strName += typeid(*m_pguie).name();
       if(!pwnd->::ca2::window::create(NULL, strName, 0,
       rect(0, 0, 0, 0), ::ca2::window::from_handle(HWND_MESSAGE), NULL))

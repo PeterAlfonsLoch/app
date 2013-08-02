@@ -396,8 +396,8 @@ namespace plane
       mutex                                        m_mutex;
 #ifdef METROWIN
       sp(::user::interaction)                      m_pui;
-      ::ca2::system_window ^                        m_pwindow;
-      ID2D1DeviceContext *                       m_pdc;
+      ::ca2::system_window ^                       m_pwindow;
+      ID2D1DeviceContext *                         m_pdevicecontext;
       sp(mutex)                                    m_pmutexDc;
 #endif
       sp(::filehandler::handler)                   m_spfilehandler;

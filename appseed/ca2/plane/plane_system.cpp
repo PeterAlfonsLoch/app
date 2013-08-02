@@ -1,5 +1,6 @@
 #include "framework.h"
 
+
 #ifdef WINDOWS
 #undef new
 #include <GdiPlus.h>
@@ -25,8 +26,9 @@ namespace plane
 #ifdef METROWIN
       m_window                                  = nullptr;
       m_pmutexDc                                = NULL;
-      m_pdc                                     = NULL;
+      m_pdevicecontext                          = NULL;
 #endif
+
       m_psystem                                 = this;
       set_app(this);
 
@@ -302,7 +304,7 @@ namespace plane
       System.factory().cloneable_large < ::draw2d::brush >();
       System.factory().cloneable_large < ::draw2d::pen_sp >();
       System.factory().cloneable_large < ::draw2d::bitmap_sp >();
-      System.factory().cloneable_large < ::ca2::palette_sp >();
+      System.factory().cloneable_large < ::draw2d::palette_sp >();
       System.factory().cloneable_large < ::draw2d::region_sp >();*/
       //      System.factory().cloneable_large < var >();
 //      System.factory().creatable < ::ca2::log >(System.type_info < ::ca2::log > (), 1);

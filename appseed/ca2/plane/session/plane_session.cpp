@@ -848,7 +848,7 @@ namespace plane
    //         data.dwData = 1984;
    //         data.cbData = (uint32_t) file.get_length();
    //         data.lpData = file.get_data();
-   //         oswindow oswindow = ::FindWindowA(NULL, "::ca2::fontopus::message_wnd::session::");
+   //         oswindow oswindow = ::FindWindowA(NULL, "::draw2d::fontopus::message_wnd::session::");
    //
    //         ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);*/
    //
@@ -856,7 +856,7 @@ namespace plane
    //
    //         small_ipc_tx_channel channel;
    //
-   //         if(channel.open("::ca2::fontopus::message_wnd::session::"))
+   //         if(channel.open("::draw2d::fontopus::message_wnd::session::"))
    //         {
    //            channel.send(command()->m_varTopicFile, false);
    //            channel.close();
@@ -1490,7 +1490,7 @@ alt1:
          data.dwData = 1984;
          data.cbData = (uint32_t) file.get_length();
          data.lpData = file.get_data();
-         ::oswindow oswindow = ::FindWindowA(NULL, "::ca2::fontopus::message_wnd::bergedge::");
+         ::oswindow oswindow = ::FindWindowA(NULL, "::draw2d::fontopus::message_wnd::bergedge::");
 
 
          ::SendMessage(oswindow, WM_COPYDATA, 0, (LPARAM) &data);

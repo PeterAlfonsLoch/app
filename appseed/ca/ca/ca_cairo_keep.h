@@ -2,8 +2,10 @@
 
 #ifdef XYZNODEF
 
-#include <cairo/cairo.h>
+#if !defined(METROWIN)
 
+
+#include <cairo/cairo.h>
 
 
 class CLASS_DECL_ca cairo_keep

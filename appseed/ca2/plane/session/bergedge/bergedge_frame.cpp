@@ -41,7 +41,7 @@ namespace bergedge
       if(pobj->previous())
          return;
 
-      if(!initialize_message_window("::ca2::fontopus::message_wnd::bergedge::" + System.get_local_mutex_id()))
+      if(!initialize_message_window("::draw2d::fontopus::message_wnd::bergedge::" + System.get_local_mutex_id()))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;

@@ -199,7 +199,7 @@ bool db_server::create_message_window()
 
    if(!IsWindow())
    {
-      string strName = "::ca2::fontopus::message_wnd::simpledb::db_server";
+      string strName = "::draw2d::fontopus::message_wnd::simpledb::db_server";
       if(!::user::interaction::create_message_window(strName))
       {
          return false;

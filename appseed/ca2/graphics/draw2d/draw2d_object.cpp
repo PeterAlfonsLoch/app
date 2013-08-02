@@ -84,6 +84,21 @@ namespace draw2d
       
    }
 
+   void * object::get_os_data_ex(int i) const
+   {
+
+      if(i == 0)
+      {
+         return get_os_data();
+      }
+      else
+      {
+         return NULL;
+      }
+
+   }
+
+
    
    bool object::is_set()
    {

@@ -98,11 +98,13 @@ namespace user
             pdc->SetTextColor(m_pschema->m_crTextNormal);
          }
 
-         pdc->selectFont(m_pschema->m_font);
+         *GetFont() = *m_pschema->m_font;
 
-         pdc->m_fontxyz.m_dFontSize = rectClient.height() * 0.5;
+         GetFont()->m_dFontSize = rectClient.height() * 0.5;
 
-         pdc->m_fontxyz.m_bUpdated = false;
+         GetFont()->m_bUpdated = false;
+
+         pdc->selectFont(GetFont());
 
       }
 

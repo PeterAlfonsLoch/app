@@ -92,9 +92,11 @@ namespace user
 
       int32_t dSize = (int32_t) ( _001GetItemHeight() * 0.7);
 
-      pdc->m_fontxyz.m_dFontSize = dSize;
-      pdc->m_fontxyz.m_eunitFontSize = ::draw2d::unit_pixel;
-      pdc->m_fontxyz.m_bUpdated = false;
+      GetFont()->m_dFontSize = dSize;
+      GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
+      GetFont()->m_bUpdated = false;
+
+      pdc->selectFont(GetFont());
 
       pdc->SelectObject(br);
 
@@ -175,9 +177,11 @@ namespace user
 
       int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
 
-      pdc->m_fontxyz.m_dFontSize = dSize;
-      pdc->m_fontxyz.m_eunitFontSize = ::draw2d::unit_pixel;
-      pdc->m_fontxyz.m_bUpdated = false;
+      GetFont()->m_dFontSize = dSize;
+      GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
+      GetFont()->m_bUpdated = false;
+
+      pdc->selectFont(GetFont());
 
       pdc->SelectObject(br);
 
@@ -238,11 +242,13 @@ namespace user
 
       int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
 
-      pdc->m_fontxyz.m_dFontSize = dSize;
+      ((combo_list *) this)->GetFont()->m_dFontSize = dSize;
 
-      pdc->m_fontxyz.m_eunitFontSize = ::draw2d::unit_pixel;
+      ((combo_list *) this)->GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
 
-      pdc->m_fontxyz.m_bUpdated = false;
+      ((combo_list *) this)->GetFont()->m_bUpdated = false;
+
+      pdc->selectFont(((combo_list *) this)->GetFont());
 
       string strItem;
 

@@ -56,12 +56,12 @@ file_size_table::file_size_table(sp(::ca2::application) papp) :
          // Make the security attributes point
          // to the security descriptor
          MutexAttributes.lpSecurityDescriptor = &SD;*/
-         //m_pmutex = new mutex(FALSE, "Global\\::ca2::fontopus::file_system_size::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
-         //m_pevExec = new event(FALSE, FALSE, "Global\\::ca2::fontopus::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
-         //m_pevDone = new event(FALSE, FALSE, "Global\\::ca2::fontopus::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
-         //m_pmutex = new mutex(FALSE, "Local\\::ca2::fontopus::file_system_size::7807e510-5579-11dd-ae16-0800200c7784");
-         //m_pevExec = new event(FALSE, FALSE, "Local\\::ca2::fontopus::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784");
-         //m_pevDone = new event(FALSE, FALSE, "Local\\::ca2::fontopus::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784");
+         //m_pmutex = new mutex(FALSE, "Global\\::draw2d::fontopus::file_system_size::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
+         //m_pevExec = new event(FALSE, FALSE, "Global\\::draw2d::fontopus::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
+         //m_pevDone = new event(FALSE, FALSE, "Global\\::draw2d::fontopus::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
+         //m_pmutex = new mutex(FALSE, "Local\\::draw2d::fontopus::file_system_size::7807e510-5579-11dd-ae16-0800200c7784");
+         //m_pevExec = new event(FALSE, FALSE, "Local\\::draw2d::fontopus::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784");
+         //m_pevDone = new event(FALSE, FALSE, "Local\\::draw2d::fontopus::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784");
 /*      }
    }*/
    m_pwnd  = new FileSystemSizeWnd(papp);
@@ -346,10 +346,10 @@ bool FileSystemSizeWnd::CreateClient()
 //#ifdef WINDOWS
 
    m_bServer = false;
-   return m_p->create_message_window("::ca2::fontopus::FileSystemSizeWnd::Client");
+   return m_p->create_message_window("::draw2d::fontopus::FileSystemSizeWnd::Client");
 /*  sp(::user::interaction) puiMessage = NULL;
    puiMessage = System.window_from_os_data(HWND_MESSAGE);
-   return m_p->create(NULL, "::ca2::fontopus::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;*/
+   return m_p->create(NULL, "::draw2d::fontopus::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;*/
 
 //#else
 
@@ -365,7 +365,7 @@ bool FileSystemSizeWnd::CreateServer()
 #ifdef WINDOWS
 
    m_bServer = true;
-   if(!m_p->create(NULL, "Local\\::ca2::fontopus::FileSystemSizeWnd::Server", 0,
+   if(!m_p->create(NULL, "Local\\::draw2d::fontopus::FileSystemSizeWnd::Server", 0,
       rect(0, 0, 0, 0), System.window_from_os_data(HWND_MESSAGE), id()))
       return false;
    m_p->SetTimer(100, 100, NULL);
@@ -544,7 +544,7 @@ void FileSystemSizeWnd::ClientStartServer()
 
    }
 
-   pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer = ::FindWindowEx(HWND_MESSAGE, NULL, NULL, "Local\\::ca2::fontopus::FileSystemSizeWnd::Server");
+   pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer = ::FindWindowEx(HWND_MESSAGE, NULL, NULL, "Local\\::draw2d::fontopus::FileSystemSizeWnd::Server");
 
 #else
 

@@ -12,14 +12,14 @@ public:
    ID2D1PathGeometry *        m_ppath;
    ID2D1GeometrySink *        m_psink;
    bool                       m_bFill;
-   ::ca2::e_fill_mode         m_efillmode;
+   ::draw2d::e_fill_mode         m_efillmode;
    
 
    os_simple_path();
    ~os_simple_path();
 
    
-   bool begin_figure(bool bFill, ::ca2::e_fill_mode);
+   bool begin_figure(bool bFill, ::draw2d::e_fill_mode);
    bool end_figure(bool bClose);
 
 

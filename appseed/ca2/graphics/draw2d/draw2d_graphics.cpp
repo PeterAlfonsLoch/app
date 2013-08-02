@@ -36,6 +36,19 @@ namespace draw2d
       throw interface_only_exception(get_app());
       return 0;
    }
+
+   void * graphics::get_os_data_ex(int i) const
+   {
+      if(i == 0)
+      {
+         return get_os_data();
+      }
+      else
+      {
+         return NULL;
+      }
+   }
+
    /*
 
    /*
@@ -162,11 +175,10 @@ namespace draw2d
       // OASOWO - otherwise a stack overflow will occur
       // BTAIOM - because these are interface only methods
 
-      m_fontxyz = *pfont;
-
-      m_fontxyz.m_dFontSize *= m_dFontFactor;
+      m_spfont = pfont;
 
       return true;
+
    }
 
    bool graphics::selectFont(::draw2d::font * pfont)
@@ -2325,14 +2337,6 @@ namespace draw2d
    {
 
       m_crColor               = crColor;
-
-      m_penxyz.m_cr           = crColor;
-      m_penxyz.m_bUpdated     = false;
-
-      m_brushxyz.m_cr         = crColor;
-      m_brushxyz.m_etype      = ::draw2d::brush::type_solid;
-      m_brushxyz.m_bUpdated   = false;
-
 
       return TRUE;
 

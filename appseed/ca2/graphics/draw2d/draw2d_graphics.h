@@ -22,10 +22,10 @@ namespace draw2d
       ::draw2d::font_sp             m_spfont;
       ::draw2d::region_sp           m_spregion;
 
-      ::draw2d::pen                 m_penxyz;
-      ::draw2d::brush               m_brushxyz;
-      ::draw2d::font                m_fontxyz;
-      ::draw2d::region              m_regionxyz;
+      //::draw2d::pen                 m_penxyz;
+      //::draw2d::brush               m_brushxyz;
+      //::draw2d::font                m_fontxyz;
+      //::draw2d::region              m_regionxyz;
 
       COLORREF                      m_crColor;
       double                        m_x;
@@ -44,6 +44,14 @@ namespace draw2d
       virtual bool is_set();
 
       virtual void * get_os_data() const;
+      virtual void * get_os_data_ex(int i) const;
+
+      template < typename T >
+      T * get_typed_os_data(int i) const
+      {
+         return (T *) get_os_data_ex(i);
+      }
+
       virtual bool attach(void * pdata);
       virtual bool attach(simple_graphics & g);
       virtual void * detach();

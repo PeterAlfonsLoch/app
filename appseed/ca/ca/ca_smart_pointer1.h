@@ -194,6 +194,7 @@ namespace ca
 
 
       void oattrib(const sp(T) & o);
+      void copy(T * po) { return oattrib(po); }
 
 
       sp(T) clone() const;

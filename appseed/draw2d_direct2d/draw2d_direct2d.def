@@ -1,0 +1,5 @@
+LIBRARY "draw2d_direct2d"
+
+EXPORTS
+ca2_factory_exchange
+

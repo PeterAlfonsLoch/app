@@ -441,6 +441,12 @@
     <Filter Include="Header Files\base\ca2">
       <UniqueIdentifier>{b25e29d8-f7a6-4f1d-b9f5-e558fba5624a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\graphics\draw2d">
+      <UniqueIdentifier>{bdf6a5f0-21c0-48f7-aa19-6163cbdb9025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\draw2d">
+      <UniqueIdentifier>{c1e989fb-3912-46f1-a99a-a50304df7ad3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -3404,9 +3410,6 @@
     <ClInclude Include="base\ca2\ca2_request_interface.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_region.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_reference.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
@@ -3461,16 +3464,10 @@
     <ClInclude Include="base\ca2\ca2_pipe.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_pen.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_patch.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_parse.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_palette.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_output_stream_flush_interface.h">
@@ -3635,18 +3632,6 @@
     <ClInclude Include="base\ca2\ca2_hash.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_graphics_path.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_graphics_object.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_graphics.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_graphic_classes.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_go_thread.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
@@ -3654,9 +3639,6 @@
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_fs_interface.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_font.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_folder_watch.h">
@@ -3833,12 +3815,6 @@
     <ClInclude Include="base\ca2\ca2_bstr.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_brush.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_bitmap.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_bitm_encoder.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
@@ -3886,6 +3862,42 @@
     </ClInclude>
     <ClInclude Include="base\ca2\ca2.h">
       <Filter>Header Files\base\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_bitmap.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_brush.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_dib.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_font.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_graphics.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_igui.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_object.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_palette.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_path.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_pen.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_region.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -6349,9 +6361,6 @@
     <ClCompile Include="base\ca2\ca2_request_interface.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="base\ca2\ca2_region.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="base\ca2\ca2_reader.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
@@ -6406,16 +6415,10 @@
     <ClCompile Include="base\ca2\ca2_pipe.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="base\ca2\ca2_pen.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="base\ca2\ca2_patch.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_parse.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_palette.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_output_string_stream.cpp">
@@ -6541,15 +6544,6 @@
     <ClCompile Include="base\ca2\ca2_hash.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="base\ca2\ca2_graphics_path.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_graphics_object.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_graphics.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="base\ca2\ca2_go_thread.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
@@ -6557,9 +6551,6 @@
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_fs_interface.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_font.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_folder_watch.cpp">
@@ -6617,9 +6608,6 @@
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_dir_application.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_dib.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_Debug.cpp">
@@ -6709,12 +6697,6 @@
     <ClCompile Include="base\ca2\ca2_bstr.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="base\ca2\ca2_brush.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_bitmap.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="base\ca2\ca2_bit.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
@@ -6747,6 +6729,36 @@
     </ClCompile>
     <ClCompile Include="base\ca2\ca2.cpp">
       <Filter>Source Files\base\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_brush.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_dib.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_font.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_graphics.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_object.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_palette.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_path.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_pen.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_region.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

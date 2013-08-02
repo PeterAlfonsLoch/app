@@ -1,10 +1,8 @@
 #include <ft2build.h>
 
-#include <Windows.h>
+#include <windows.h>
 
-#ifdef METROWIN
-[Platform::MTAThread]
-#endif
+
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 {
    
