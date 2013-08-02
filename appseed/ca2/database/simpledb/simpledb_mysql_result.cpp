@@ -10,11 +10,55 @@ namespace mysql
    result::result(database * pdatabase, bool bAutoDelete, void * pres) :
       m_pdatabase(pdatabase)
    {
+
       m_bAutoDelete = bAutoDelete;
       m_pdatabase->m_resultptra.add(this);
       m_pres = pres;
       m_iFieldCount = -1;
+
    }
+
+
+   result::~result()
+   {
+
+      free_result();
+
+   }
+
+
+   bool result::free_result()
+   {
+      
+      try
+      {
+         if(m_pres != NULL)
+         {
+            mysql_free_result((MYSQL_RES *) m_pres);
+         }
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
+
+         if(m_pdatabase != NULL)
+         {
+            m_pdatabase->m_resultptra.remove(this);
+         }
+
+      }
+      catch(...)
+      {
+      }
+
+      return true;
+
+   }
+
 
    void * result::fetch_row()
    {
@@ -48,23 +92,11 @@ namespace mysql
       return mysql_num_rows ((MYSQL_RES *) m_pres);
    }
 
-   result::~result()
-   {
-      free_result();
-   }
 
    /* process rows and then free the result set */
    //process_result_set (conn, res_set);
 
 
-   bool result::free_result()
-   {
-      if(m_pres != NULL)
-      {
-         mysql_free_result((MYSQL_RES *) m_pres);
-      }
-      return true;
-   }
 
 
 } // namespace mysql

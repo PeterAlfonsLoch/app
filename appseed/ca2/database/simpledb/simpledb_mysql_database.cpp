@@ -20,6 +20,13 @@ namespace mysql
    }
 
 
+   bool database::initialize()
+   {
+      
+      return true;
+
+   }
+
    bool database::connect(
       const char * pszHost,
       const char * pszUser,
@@ -103,28 +110,44 @@ namespace mysql
 
    result * database::query(const char * pszSql)
    {
-	   m_strLastError = "";
+	   
+      m_strLastError = "";
+      
       MYSQL_RES * pres;
-     if(m_pmysql == NULL)
-     {
-       trace_error1("Could not execute statement (0)");
-       return NULL;
-     }
-     try
-     {
-        if(mysql_query((MYSQL *) m_pmysql, pszSql) != 0) /* the statement failed */
-        {
-          trace_error1("Could not execute statement");
-          return NULL;
-        }
-     }
-     catch(...)
-     {
-       trace_error1("Could not execute statement (2)");
-       return NULL;
-     }
+      if(m_pmysql == NULL)
+      {
+         
+         if(!initialize() || m_pmysql == NULL)
+         {
+
+            trace_error1("Could not execute statement (0)");
+            return NULL;
+
+         }
+      }
+
+      try
+      {
+         if(mysql_query((MYSQL *) m_pmysql, pszSql) != 0) /* the statement failed */
+         {
+            if(!initialize() || mysql_query((MYSQL *) m_pmysql, pszSql) != 0) /* the statement failed */
+            {
+               trace_error1("Could not execute statement");
+               return NULL;
+            }
+         }
+      }
+      catch(...)
+      {
+         
+         trace_error1("Could not execute statement (2)");
+         return NULL;
+
+      }
+      
       /* the statement succeeded; determine whether it returned data */
       pres = mysql_store_result ((MYSQL *) m_pmysql);
+      
       if(pres) /* a result set was returned */
       {
          m_iLastUsedTime = ::ca2::profiler::micros();
