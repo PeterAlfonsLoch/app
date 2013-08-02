@@ -1073,7 +1073,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="ca\ca_async.h" />
     <ClInclude Include="ca\ca_base64.h" />
     <ClInclude Include="ca\ca_ca.h" />
-    <ClInclude Include="ca\ca_cairo_keep.h" />
     <ClInclude Include="ca\ca_conv.h" />
     <ClInclude Include="ca\ca_count.h" />
     <ClInclude Include="ca\ca_cpu_architecture.h" />
@@ -1283,7 +1282,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="ca\ca_argcargv.cpp" />
     <ClCompile Include="ca\ca_base64.cpp" />
     <ClCompile Include="ca\ca_c.cpp" />
-    <ClCompile Include="ca\ca_cairo_keep.cpp" />
     <ClCompile Include="ca\ca_conv.cpp" />
     <ClCompile Include="ca\ca_cpu_architecture.cpp" />
     <ClCompile Include="ca\ca_debug.cpp" />

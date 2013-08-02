@@ -50,6 +50,9 @@
     <ClInclude Include="draw2d_cairo_path.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="draw2d_cairo_keep.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="draw2d_cairo_bitmap.cpp">
@@ -89,6 +92,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="draw2d_cairo_path.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_cairo_keep.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

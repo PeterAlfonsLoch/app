@@ -937,6 +937,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="draw2d_cairo_factory_exchange.h" />
     <ClInclude Include="draw2d_cairo_font.h" />
     <ClInclude Include="draw2d_cairo_graphics.h" />
+    <ClInclude Include="draw2d_cairo_keep.h" />
     <ClInclude Include="draw2d_cairo_object.h" />
     <ClInclude Include="draw2d_cairo_path.h" />
     <ClInclude Include="draw2d_cairo_palette.h" />
@@ -951,6 +952,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="draw2d_cairo_factory_exchange.cpp" />
     <ClCompile Include="draw2d_cairo_font.cpp" />
     <ClCompile Include="draw2d_cairo_graphics.cpp" />
+    <ClCompile Include="draw2d_cairo_keep.cpp" />
     <ClCompile Include="draw2d_cairo_object.cpp" />
     <ClCompile Include="draw2d_cairo_path.cpp" />
     <ClCompile Include="draw2d_cairo_palette.cpp" />

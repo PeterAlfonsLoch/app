@@ -260,7 +260,6 @@ public:
 
 #include "ca/hotplugin/hotplugin.h"
 #include "ca/simple_ui/simple_ui.h"
-#include "ca/ca/ca_cairo_keep.h"
 #include "ca/crypt/crypt.h"
 #include "ca/spa/spa.h"
 
