@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef XYZNODEF
 
 #include <cairo/cairo.h>
 
@@ -27,3 +28,6 @@ public:
 
 
 };
+
+
+#endif

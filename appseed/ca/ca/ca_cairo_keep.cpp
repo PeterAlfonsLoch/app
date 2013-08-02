@@ -1,5 +1,8 @@
 #include "framework.h"
 
+#ifdef XYZNODEF
+
+
 cairo_surface_t *  cairo_keep::g_cairosurface = NULL;
 cairo_t *  cairo_keep::g_cairo = NULL;
 
@@ -65,3 +68,6 @@ void cairo_keep::pulse()
    restore();
 
 }
+
+
+#endif
