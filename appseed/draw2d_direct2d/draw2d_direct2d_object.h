@@ -12,7 +12,6 @@ namespace draw2d_direct2d
 
 
       graphics *     m_pgraphics;
-      void *         m_powner; // in a normal usage/flow I can change the object only if I am the owner, otherwise create another object
 
       enum e_data
       {
