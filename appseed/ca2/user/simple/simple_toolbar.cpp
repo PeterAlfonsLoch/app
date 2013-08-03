@@ -215,7 +215,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics *pdc)
    //DoPaint(pdc);
 
    pdc->SelectObject(System.visual().font_central().GetMenuFont());
-   pdc->SetBkMode(TRANSPARENT);
+//   pdc->SetBkMode(TRANSPARENT);
    for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
       _001DrawItem(pdc, iItem);
@@ -777,7 +777,10 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
    if(item.m_str.has_char())
    {
       rect rectText;
-      pdc->set_color(ARGB(255, 0, 0, 0));
+         ::draw2d::brush_sp brushText(allocer(), ARGB(255, 0, 0, 0));
+         
+         pdc->SelectObject(brushText);
+
       if(_001GetItemRect(iItem, rectText, ElementText) && rectText.right > 0)
       {
          visual::graphics_extension(get_app())._DrawText(pdc, item.m_str, rectText, DT_BOTTOM | DT_LEFT);

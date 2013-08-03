@@ -326,6 +326,8 @@ namespace user
 
       int32_t iVisiblePane = 0;
 
+      ::draw2d::brush_sp brushText(allocer());
+
       for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
 
@@ -356,9 +358,12 @@ namespace user
 
             if(get_data()->m_iaSel.contains(iPane))
             {
-               pdc->set_color(ARGB(255, 0, 0, 0));
-               pdc->set_solid_pen(1.0);
 
+               ::draw2d::pen_sp pen(allocer());
+
+               pen->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
+
+               pdc->SelectObject(pen);
 
                pdc->MoveTo(rectBorder.right, rectBorder.bottom);
                pdc->LineTo(rectBorder.left + 1, rectBorder.bottom);
@@ -368,11 +373,18 @@ namespace user
 
                pdc->set_font(get_data()->m_fontBold);
 
+               brushText->create_solid(ARGB(255, 0, 0, 0));
+
             }
             else
             {
-               pdc->set_color(ARGB(255, 0, 0, 0));
-               pdc->set_solid_pen(1.0);
+
+               ::draw2d::pen_sp pen(allocer());
+
+               pen->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
+
+               pdc->SelectObject(pen);
+
                pdc->MoveTo(rectBorder.right, rectBorder.bottom);
                pdc->LineTo(rectBorder.left + 1, rectBorder.bottom);
                pdc->LineTo(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
@@ -382,12 +394,12 @@ namespace user
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
                   pdc->set_font(get_data()->m_fontUnderline);
-                  pdc->SetTextColor(ARGB(255, 0, 127, 255));
+                  brushText->create_solid(ARGB(255, 0, 127, 255));
                }
                else
                {
                   pdc->set_font(get_data()->m_font);
-                  pdc->SetTextColor(ARGB(255, 0, 0, 0));
+                  brushText->create_solid(ARGB(255, 0, 0, 0));
                }
             }
 
@@ -404,8 +416,12 @@ namespace user
 
             if(get_data()->m_iaSel.contains(iPane))
             {
-               pdc->set_color(ARGB(255, 0, 0, 0));
-               pdc->set_solid_pen(1.0);
+
+               ::draw2d::pen_sp pen(allocer());
+
+               pen->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
+
+               pdc->SelectObject(pen);
 
                pdc->MoveTo(rectBorder.left, rectClient.bottom);
                //pdc->LineTo(rectBorder.left, rectText.bottom);
@@ -415,12 +431,16 @@ namespace user
                pdc->LineTo(rectBorder.right - 1, rectClient.bottom);
                //pdc->LineTo(rect.right, rectText.bottom);
                pdc->set_font(get_data()->m_fontBold);
-               pdc->set_color(ARGB(0xff, 0, 0, 0));
+               brushText->create_solid(ARGB(255, 0, 0, 0));
             }
             else
             {
-               pdc->set_color(ARGB(255, 0, 0, 0));
-               pdc->set_solid_pen(1.0);
+
+               ::draw2d::pen_sp pen(allocer());
+
+               pen->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
+
+               pdc->SelectObject(pen);
 
                //pdc->MoveTo(rect.left, rectBorder.bottom);
                //pdc->LineTo(rect.right, rectBorder.bottom);
@@ -434,31 +454,38 @@ namespace user
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
                   pdc->set_font(get_data()->m_fontUnderline);
-                  pdc->set_color(ARGB(0xff, 0, 127, 255));
+                  brushText->create_solid(ARGB(255, 0, 127, 255));
                }
                else
                {
                   pdc->set_font(get_data()->m_font);
-                  pdc->set_color(ARGB(0xff, 10, 10, 10));
+                  brushText->create_solid(ARGB(255, 10, 10, 10));
                }
             }
 
          }
+
          if(get_element_rect(iVisiblePane, rectText, element_text))
          {
+            
+            pdc->SelectObject(brushText);
+
             get_data()->m_dcextension._DrawText(pdc, pane.get_title(), rectText, DT_LEFT | DT_BOTTOM);
+
          }
+
          if(get_element_rect(iVisiblePane, rectClose, element_close_tab_button))
          {
             pdc->set_font(get_data()->m_fontBold);
             if(iVisiblePane == m_iHover && m_eelementHover == element_close_tab_button)
             {
-               pdc->set_color(ARGB(0xff, 255, 127, 0));
+               brushText->create_solid(ARGB(0xff, 255, 127, 0));
             }
             else
             {
-               pdc->set_color(ARGB(0xff, 0, 0, 0));
+               brushText->create_solid(ARGB(0xff, 0, 0, 0));
             }
+            pdc->SelectObject(brushText);
             pdc->draw_text("x", rectClose, DT_CENTER | DT_VCENTER);
          }
 
@@ -546,6 +573,9 @@ namespace user
 
       //return;
 
+      ::draw2d::brush_sp brushText(allocer());
+
+      ::draw2d::pen_sp pen(allocer());
 
       for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
@@ -598,14 +628,16 @@ namespace user
 
                pdc->fill_path(path);
 
-               pdc->set_color(ARGB(255, 0, 0, 0));
-               pdc->set_solid_pen(1.0);
+               pen->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
+
+               pdc->SelectObject(pen);
 
                pdc->draw_path(path);
 
                pdc->set_font(get_data()->m_font);
-               pdc->set_color(ARGB(255, 0, 0, 0));
 
+               brushText->create_solid(ARGB(255, 0, 0, 0));
+               //pdc->set_color(ARGB(255, 0, 0, 0));
 
             }
             else
@@ -654,14 +686,15 @@ namespace user
 
                   pdc->fill_path(path);
 
-                  pdc->set_color(ARGB(200, 100, 100, 100));
-                  pdc->set_solid_pen(1.0);
+                  pen->create_solid(pdc, 1.0, ARGB(200, 100, 100, 100));
+
+                  pdc->SelectObject(pen);
 
                   pdc->draw_path(path);
 
-
                   pdc->set_font(get_data()->m_fontUnderline);
-                  pdc->set_color(ARGB(255, 0, 0, 0));
+
+                  brushText->create_solid(ARGB(255, 0, 0, 0));
 
                }
                else
@@ -675,20 +708,19 @@ namespace user
 
                   pdc->fill_path(path);
 
-                  pdc->set_color(ARGB(200, 100, 100, 100));
-                  pdc->set_solid_pen(1.0);
+                  pen->create_solid(pdc, 1.0, ARGB(200, 100, 100, 100));
+
+                  pdc->SelectObject(pen);
 
                   pdc->draw_path(path);
 
-
                   pdc->set_font(get_data()->m_font);
-                  pdc->set_color(ARGB(255, 0, 0, 0));
+
+                  brushText->create_solid(ARGB(255, 0, 0, 0));
 
                }
 
-
             }
-
 
          }
          else
@@ -708,8 +740,6 @@ namespace user
             if(get_data()->m_iaSel.contains(iPane))
             {
 
-               //path->begin_figure(true, ::draw2d::fill_mode_winding);
-
                path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
                
                path->add_line(rectClient.right, rectBorder.top);
@@ -728,15 +758,15 @@ namespace user
 
                pdc->fill_path(path);
 
-               pdc->set_color(ARGB(255, 0, 0, 0));
-               
-               pdc->set_solid_pen(1.0);
+               pen->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
+
+               pdc->SelectObject(pen);
 
                pdc->draw_path(path);
 
                pdc->set_font(get_data()->m_font);
                
-               pdc->set_color(ARGB(255, 0, 0, 0));
+               brushText->create_solid(ARGB(255, 0, 0, 0));
                
             }
             else
@@ -765,15 +795,15 @@ namespace user
 
                   pdc->fill_path(path);
 
-                  pdc->set_color(ARGB(200, 100, 100, 100));
-                  
-                  pdc->set_solid_pen(1.0);
+                  pen->create_solid(pdc, 1.0, ARGB(200, 100, 100, 100));
+
+                  pdc->SelectObject(pen);
 
                   pdc->draw_path(path);
 
                   pdc->set_font(get_data()->m_fontUnderline);
 
-                  pdc->set_color(ARGB(255, 0, 0, 0));
+                  brushText->create_solid(ARGB(255, 0, 0, 0));
 
                }
                else
@@ -787,15 +817,15 @@ namespace user
 
                   pdc->fill_path(path);
 
-                  pdc->set_color(ARGB(200, 100, 100, 100));
-                  
-                  pdc->set_solid_pen(1.0);
+                  pen->create_solid(pdc, 1.0, ARGB(200, 100, 100, 100));
+
+                  pdc->SelectObject(pen);
 
                   pdc->draw_path(path);
 
                   pdc->set_font(get_data()->m_font);
                   
-                  pdc->set_color(ARGB(255, 0, 0, 0));
+                  brushText->create_solid(ARGB(255, 0, 0, 0));
 
                }
 
@@ -806,8 +836,8 @@ namespace user
          if(get_element_rect(iVisiblePane, rectText, element_text))
          {
             
-            pdc->set_color(ARGB(0xff, 0, 0, 0));
-            
+            pdc->SelectObject(brushText);
+
             get_data()->m_dcextension._DrawText(pdc, pane.get_title(), rectText, DT_LEFT | DT_BOTTOM);
             
          }
@@ -820,15 +850,17 @@ namespace user
             if(iVisiblePane == m_iHover && m_eelementHover == element_close_tab_button)
             {
                
-               pdc->set_color(ARGB(0xff, 255, 127, 0));
+               brushText->create_solid(ARGB(0xff, 255, 127, 0));
                
             }
             else
             {
                
-               pdc->set_color(ARGB(0xff, 0, 0, 0));
+               brushText->create_solid(ARGB(0xff, 0, 0, 0));
                
             }
+
+            pdc->SelectObject(brushText);
             
             pdc->draw_text("x", rectClose, DT_CENTER | DT_VCENTER);
             

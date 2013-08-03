@@ -58,8 +58,8 @@ void SimplePushButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 void SimplePushButton::_001OnDraw(::draw2d::graphics *pdc)
 {
 
-   int32_t iOriginalBkMode = pdc->GetBkMode();
-   pdc->SetBkMode(TRANSPARENT);
+//   int32_t iOriginalBkMode = pdc->GetBkMode();
+//   pdc->SetBkMode(TRANSPARENT);
    rect rectClient;
    GetClientRect(rectClient);
 
@@ -177,7 +177,7 @@ void SimplePushButton::_001OnDraw(::draw2d::graphics *pdc)
 
 
 
-   pdc->SetBkMode(iOriginalBkMode);
+//   pdc->SetBkMode(iOriginalBkMode);
 
 }
 

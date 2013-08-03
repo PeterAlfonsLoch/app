@@ -117,6 +117,7 @@ namespace draw2d_direct2d
    // Type-safe selection helpers
    public:
       virtual ::draw2d::object* SelectStockObject(int nIndex);
+      bool SelectFont(::draw2d::font * pfont);
       ::draw2d::pen* SelectObject(::draw2d::pen* pPen);
       ::draw2d::brush* SelectObject(::draw2d::brush* pBrush);
       virtual ::draw2d::font* SelectObject(::draw2d::font* pFont);
@@ -131,24 +132,14 @@ namespace draw2d_direct2d
       UINT RealizePalette();
       void UpdateColors();
 
-   // Drawing-Attribute Functions
-      COLORREF GetBkColor() const;
-      int GetBkMode() const;
       int GetPolyFillMode() const;
       int GetROP2() const;
       int GetStretchBltMode() const;
-      COLORREF GetTextColor() const;
 
-      virtual COLORREF SetBkColor(COLORREF crColor);
-      int SetBkMode(int nBkMode);
       int SetPolyFillMode(int nPolyFillMode);
       int SetROP2(int nDrawMode);
       int SetStretchBltMode(int nStretchMode);
-      virtual COLORREF SetTextColor(COLORREF crColor);
 
-
-      //bool GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const;
-      //bool SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust);
 
    #if (_WIN32_WINNT >= 0x0500)
 

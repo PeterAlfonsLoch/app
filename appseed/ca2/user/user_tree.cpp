@@ -432,27 +432,7 @@ namespace user
                rectUnion.width(), rectUnion.height(),
                crTranslucid, 127);
          }
-         if(bHover)
-         {
-            data.m_pdc->set_color(m_crTextSelectedHighlight);
-         }
-         else
-         {
-            data.m_pdc->set_color(m_crTextSelected);
-         }
       }
-      else
-      {
-         if(bHover)
-         {
-            data.m_pdc->set_color(m_crTextHighlight);
-         }
-         else
-         {
-            data.m_pdc->set_color(m_crText);
-         }
-      }
-
 
       if(pimagelistItem != NULL)
       {
@@ -476,12 +456,46 @@ namespace user
 
       if(strItem.has_char() && _001GetItemElementRect(rect, data, tree_element_text))
       {
+
+         ::draw2d::brush_sp brushText(allocer());
+
+         if(bSelected) // selected
+         {
+            if(bHover)
+            {
+               brushText->create_solid(m_crTextSelectedHighlight);
+            }
+            else
+            {
+               brushText->create_solid(m_crTextSelected);
+            }
+         }
+         else
+         {
+            if(bHover)
+            {
+               brushText->create_solid(m_crTextHighlight);
+            }
+            else
+            {
+               brushText->create_solid(m_crText);
+            }
+         }
+
+
+         data.m_pdc->SelectObject(brushText);
+
+
          ::draw2d::font_sp font(allocer());
+
+
          font->operator=(*System.visual().font_central().GetListCtrlFont());
          font->set_bold();
          data.m_pdc->set_font(font);
          m_dcextension._DrawText(data.m_pdc, strItem, &rect, DT_LEFT | DT_BOTTOM);
+
       }
+
    }
 
 

@@ -10,11 +10,13 @@ namespace draw2d
    {
    public:
 
+
       ::user::str_context *         m_puistrcontext;
       ::user::draw_context *        m_pdrawcontext;
       ::draw2d::dib *               m_pdibAlphaBlend;
       point                         m_ptAlphaBlend;
       ::ca2::job *                  m_pjob;
+
 
       ::draw2d::bitmap_sp           m_spbitmap;
       ::draw2d::pen_sp              m_sppen;
@@ -86,10 +88,8 @@ namespace draw2d
       virtual uint32_t SetLayout(uint32_t dwLayout);
 
    // Constructors
-      virtual bool CreateDC(const char * lpszDriverName, const char * lpszDeviceName,
-         const char * lpszOutput, const void * lpInitData);
-      virtual bool CreateIC(const char * lpszDriverName, const char * lpszDeviceName,
-         const char * lpszOutput, const void * lpInitData);
+      virtual bool CreateDC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData);
+      virtual bool CreateIC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData);
       virtual bool CreateCompatibleDC(::draw2d::graphics * pgraphics);
 
       virtual bool DeleteDC();
@@ -130,26 +130,23 @@ namespace draw2d
       virtual void UpdateColors();
 
    // Drawing-Attribute Functions
-      virtual COLORREF GetBkColor() const;
-      virtual int32_t GetBkMode() const;
       virtual int32_t GetPolyFillMode() const;
       virtual int32_t GetROP2() const;
       virtual int32_t GetStretchBltMode() const;
-      virtual COLORREF GetTextColor() const;
 
 
       virtual double get_dpix() const;
 
-      virtual COLORREF SetBkColor(COLORREF crColor);
-      virtual int32_t SetBkMode(int32_t nBkMode);
+      //virtual COLORREF SetBkColor(COLORREF crColor);
+      //virtual int32_t SetBkMode(int32_t nBkMode);
       virtual int32_t SetPolyFillMode(int32_t nPolyFillMode);
       virtual int32_t SetROP2(int32_t nDrawMode);
       virtual int32_t SetStretchBltMode(int32_t nStretchMode);
-      virtual COLORREF SetTextColor(COLORREF crColor);
+      //virtual COLORREF SetTextColor(COLORREF crColor);
 
-      virtual COLORREF SetColor(COLORREF crColor);
-      virtual COLORREF setColor(COLORREF crColor);
-      virtual COLORREF set_color(COLORREF crColor);
+      //virtual COLORREF SetColor(COLORREF crColor);
+      //virtual COLORREF setColor(COLORREF crColor);
+      //virtual COLORREF set_color(COLORREF crColor);
 
       virtual bool flush();
 

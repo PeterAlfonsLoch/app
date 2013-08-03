@@ -339,8 +339,8 @@ void EmbossedTextOut(
     ** system color for that one.
     */
 
-   COLORREF                crOld;
-   UINT                    uMode;
+//   COLORREF                crOld;
+//   UINT                    uMode;
    SIZE                    sizeText;
    RECT                    rcText;
 
@@ -352,8 +352,8 @@ void EmbossedTextOut(
 
    /* setup the DC, saving off the old values
    */
-   uMode = pdc->SetBkMode(OPAQUE);
-   crOld = pdc->SetTextColor(crShadow);
+   //uMode = pdc->SetBkMode(OPAQUE);
+   //crOld = pdc->SetTextColor(crShadow);
 
    /* draw the text at the desired offset using the
    ** shadow color, then again at the normal position
@@ -365,14 +365,14 @@ void EmbossedTextOut(
    rcText.left   = x;    rcText.right  = x+cx+sizeText.cx;
    rcText.top    = y;    rcText.bottom = y+cy+sizeText.cy;
    //ExtTextOut(hDC, x+cx, y+cy, ETO_OPAQUE, &rcText, lpsz, cb, NULL);
-   pdc->SetBkMode(TRANSPARENT);
+   //pdc->SetBkMode(TRANSPARENT);
    //ExtTextOut(hDC, x-cx, y+cy, NULL, &rcText, lpsz, cb, NULL);
    //ExtTextOut(hDC, x-cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
    //ExtTextOut(hDC, x+cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
    //ExtTextOut(hDC, x+cx, y+cy, NULL, &rcText, lpsz, cb, NULL);
    pdc->ExtTextOut(x+cx, y+cy, 0, NULL, lpcsz, (int) cb, NULL);
-   pdc->SetBkMode(TRANSPARENT);
-   pdc->SetTextColor(crText);
+   //pdc->SetBkMode(TRANSPARENT);
+   //pdc->SetTextColor(crText);
    if(!pdc->ExtTextOut(x, y, 0, NULL, lpcsz, (int) cb, NULL))
    {
       //      TRACE("Failed to ExtTextOut, GetLastError() -->%d\n", GetLastError());
@@ -380,8 +380,8 @@ void EmbossedTextOut(
 
    /* restore the DC
    */
-   pdc->SetTextColor(crOld);
-   pdc->SetBkMode(uMode);
+   //pdc->SetTextColor(crOld);
+   //pdc->SetBkMode(uMode);
 
 
 }
@@ -6917,13 +6917,16 @@ void imaging::AlphaTextOut(::draw2d::graphics *pdc, int32_t left, int32_t top, c
    string str(lpcsz, len);
    if(dBlend <= 0.0)
       return;
+   ::draw2d::brush_sp brushText(allocer());
    if(dBlend >= 1.0)
    {
-      pdc->SetTextColor(cr);
+      brushText->create_solid(cr);
+      pdc->SelectObject(brushText);
       pdc->TextOut(left, top, str);
       return;
    }
-   pdc->SetTextColor(ARGB((BYTE) (255 * dBlend), GetRValue(cr), GetGValue(cr), GetBValue(cr)));
+   brushText->create_solid(ARGB((BYTE) (255 * dBlend), GetRValue(cr), GetGValue(cr), GetBValue(cr)));
+   pdc->SelectObject(brushText);
    pdc->TextOut(left, top, str);
 }
 

@@ -455,18 +455,6 @@ namespace draw2d_direct2d
       //::UpdateColors(get_handle1()); 
    }
 
-   COLORREF graphics::GetBkColor() const
-   { 
-      throw todo(get_app());
-      //return ::GetBkColor(get_handle2()); 
-   }
-
-   int graphics::GetBkMode() const
-   { 
-      return TRANSPARENT;
-      //throw todo(get_app());
-      //return ::GetBkMode(get_handle2()); 
-   }
 
    int graphics::GetPolyFillMode() const
    { 
@@ -484,13 +472,6 @@ namespace draw2d_direct2d
    { 
       throw todo(get_app());
       //return ::GetStretchBltMode(get_handle2()); 
-   }
-
-   COLORREF graphics::GetTextColor() const
-   { 
-      return m_crColor;
-      //throw todo(get_app());
-      //return ::GetTextColor(get_handle2()); 
    }
 
    int graphics::GetMapMode() const
@@ -967,42 +948,68 @@ namespace draw2d_direct2d
    bool graphics::DrawEllipse(int x1, int y1, int x2, int y2)
    {
 
-      throw todo(get_app());
+      if(m_sppen.is_null())
+      {
+         
+         ((graphics *) this)->m_sppen.create(((graphics *) this)->allocer());
+         ((graphics *) this)->m_sppen->m_powner = (void *) (graphics *) this;
 
-      //return (m_prendertarget->DrawEllipse(direct2d_pen(), x1, y1, x2 - x1, y2 - y1)) == Gdiplus::Status::Ok;
+      }
+
+      if(m_sppen.is_null())
+         return false;
+
+      D2D1_ELLIPSE ellipse;
+
+      ellipse.point.x = ((FLOAT) x1 + (FLOAT) x2) / ((FLOAT) 2.0);
+      ellipse.point.y = ((FLOAT) y1 + (FLOAT) y2) / ((FLOAT) 2.0);
+      ellipse.radiusX = ((FLOAT) (x2 - x1)) / ((FLOAT) 2.0);
+      ellipse.radiusY = ((FLOAT) (y2 - y1)) / ((FLOAT) 2.0);
+
+      m_pdevicecontext->DrawEllipse(&ellipse, (dynamic_cast < ::draw2d_direct2d::pen * > (m_sppen.m_p))->get_os_pen_brush(this), (FLOAT) m_sppen->m_dWidth);
+
+      return true;
 
    }
 
-   bool graphics::DrawEllipse(LPCRECT lpRect)
+   bool graphics::DrawEllipse(LPCRECT lprect)
    { 
 
-      throw todo(get_app());
-
-      /*return ::Ellipse(get_handle1(), lpRect->left, lpRect->top,
-      lpRect->right, lpRect->bottom); */
-
-      //return (m_prendertarget->DrawEllipse(direct2d_pen(), lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top)) == Gdiplus::Status::Ok;
+      return DrawEllipse(lprect->left, lprect->top, lprect->right, lprect->bottom);
 
    }
 
    bool graphics::FillEllipse(int x1, int y1, int x2, int y2)
    {
 
-      throw todo(get_app());
+      if(m_spbrush.is_null())
+      {
+         
+         ((graphics *) this)->m_spbrush.create(((graphics *) this)->allocer());
+         ((graphics *) this)->m_spbrush->m_powner = (void *) (graphics *) this;
 
-      //return (m_prendertarget->FillEllipse(direct2d_brush(), x1, y1, x2 - x1, y2 - y1)) == Gdiplus::Status::Ok;
+      }
+
+      if(m_spbrush.is_null())
+         return false;
+
+      D2D1_ELLIPSE ellipse;
+
+      ellipse.point.x = ((FLOAT) x1 + (FLOAT) x2) / ((FLOAT) 2.0);
+      ellipse.point.y = ((FLOAT) y1 + (FLOAT) y2) / ((FLOAT) 2.0);
+      ellipse.radiusX = ((FLOAT) (x2 - x1)) / ((FLOAT) 2.0);
+      ellipse.radiusY = ((FLOAT) (y2 - y1)) / ((FLOAT) 2.0);
+
+      m_pdevicecontext->FillEllipse(&ellipse, (dynamic_cast < ::draw2d_direct2d::brush * > (m_spbrush.m_p))->get_os_brush((graphics *) this));
+
+      return true;
 
    }
 
-   bool graphics::FillEllipse(LPCRECT lpRect)
+   bool graphics::FillEllipse(LPCRECT lprect)
    { 
 
-      throw todo(get_app());
-
-      /*return ::Ellipse(get_handle1(), lpRect->left, lpRect->top,
-      lpRect->right, lpRect->bottom); */
-
-      //return (m_prendertarget->FillEllipse(direct2d_brush(), lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top)) == Gdiplus::Status::Ok;
+      return FillEllipse(lprect->left, lprect->top, lprect->right, lprect->bottom);
 
    }
 
@@ -1391,7 +1398,7 @@ namespace draw2d_direct2d
    { 
       if(m_pdibAlphaBlend != NULL)
       {
-         if(GetBkMode() == TRANSPARENT)
+//         if(GetBkMode() == TRANSPARENT)
          {
             //   return TRUE;
             rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
@@ -1400,17 +1407,21 @@ namespace draw2d_direct2d
             {
                ::draw2d::dib_sp dib0(allocer());
                dib0->create(rectText.size());
-               dib0->get_graphics()->SetTextColor(RGB(255, 255, 255));
+               ::draw2d::brush_sp brushText(allocer());
+               brushText->create_solid(ARGB(255, 255, 255, 255));
+               dib0->get_graphics()->SelectObject(brushText);
                dib0->get_graphics()->SelectObject(&GetCurrentFont());
-               dib0->get_graphics()->SetBkMode(TRANSPARENT);
+//               dib0->get_graphics()->SetBkMode(TRANSPARENT);
                dib0->get_graphics()->TextOut(0, 0, str);
                dib0->ToAlpha(0);
                ::draw2d::dib_sp dib1(allocer());
                dib1->create(rectText.size());
-               dib1->get_graphics()->SetTextColor(GetTextColor());
+
+               brushText->create_solid(m_spbrush->m_cr);
+               dib0->get_graphics()->SelectObject(brushText);
                dib1->get_graphics()->SelectObject(&GetCurrentFont());
-               dib1->get_graphics()->SetBkMode(TRANSPARENT);
                dib1->get_graphics()->TextOut(0, 0, str);
+
                dib1->channel_from(visual::rgba::channel_alpha, dib0);
                ::draw2d::dib_sp dib2(allocer());
                dib2->create(rectText.size());
@@ -1447,7 +1458,7 @@ namespace draw2d_direct2d
    { 
       if(m_pdibAlphaBlend != NULL)
       {
-         if(GetBkMode() == TRANSPARENT)
+//         if(GetBkMode() == TRANSPARENT)
          {
             //   return TRUE;
             rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
@@ -1456,16 +1467,19 @@ namespace draw2d_direct2d
             {
                ::draw2d::dib_sp dib0(allocer());
                dib0->create(rectText.size());
-               dib0->get_graphics()->SetTextColor(RGB(255, 255, 255));
+
+               ::draw2d::brush_sp brushText(allocer(), ARGB(255, 255, 255, 255));
+               dib0->get_graphics()->SelectObject(brushText);
                dib0->get_graphics()->SelectObject(&GetCurrentFont());
-               dib0->get_graphics()->SetBkMode(TRANSPARENT);
                dib0->get_graphics()->TextOut(0, 0, str);
                dib0->ToAlpha(0);
+
                ::draw2d::dib_sp dib1(allocer());
                dib1->create(rectText.size());
-               dib1->get_graphics()->SetTextColor(GetTextColor());
+               brushText->create_solid(m_spbrush->m_cr);
+               dib1->get_graphics()->SelectObject(brushText);
                dib1->get_graphics()->SelectObject(&GetCurrentFont());
-               dib1->get_graphics()->SetBkMode(TRANSPARENT);
+               //dib1->get_graphics()->SetBkMode(TRANSPARENT);
                dib1->get_graphics()->TextOut(0, 0, str);
                dib1->channel_from(visual::rgba::channel_alpha, dib0);
                ::draw2d::dib_sp dib2(allocer());
@@ -3165,33 +3179,36 @@ namespace draw2d_direct2d
    //      return ::draw2d_direct2d::object::from_handle(papp, ::SelectObject(hDC, h));
    //}
 
+
    ::draw2d::object* graphics::SelectStockObject(int nIndex)
    {
-      /*      HGDIOBJ hObject = ::GetStockObject(nIndex);
-      HGDIOBJ hOldObj = NULL;
-      ASSERT(hObject != NULL);
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-      hOldObj = ::SelectObject(get_handle1(), hObject);
-      if(get_handle2() != NULL)
-      hOldObj = ::SelectObject(get_handle2(), hObject);
-      return ::draw2d_direct2d::object::from_handle(get_app(), hOldObj);*/
 
       return NULL;
+
    }
+
+   bool graphics::SelectFont(::draw2d::font * pfont)
+   {
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+
+      m_spfont = pfont;
+
+      //if((::draw2d_direct2d::graphics *) m_spfont->get_os_data_ex(::draw2d_direct2d::object::data_graphics) != this)
+      //{
+        // m_spfont->m_bUpdated = false;
+      //}
+
+      return true;
+
+   }
+
 
    ::draw2d::pen* graphics::SelectObject(::draw2d::pen* pPen)
    {
-      /*HGDIOBJ hOldObj = NULL;
-      if(pPen == NULL)
-      return NULL;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-      hOldObj = ::SelectObject(get_handle1(), pPen->get_os_data());
-      if(get_handle2() != NULL)
-      hOldObj = ::SelectObject(get_handle2(), pPen->get_os_data());
-      return dynamic_cast < pen * > (::draw2d_direct2d::object::from_handle(get_app(), hOldObj));*/
 
       m_sppen = pPen;
-
 
       if((::draw2d_direct2d::graphics *) m_sppen->get_os_data_ex(::draw2d_direct2d::object::data_graphics) != this)
       {
@@ -3199,18 +3216,13 @@ namespace draw2d_direct2d
       }
 
       return m_sppen;
+
    }
+
 
    ::draw2d::brush* graphics::SelectObject(::draw2d::brush* pBrush)
    {
-      /*      HGDIOBJ hOldObj = NULL;
-      if(pBrush == NULL)
-      return NULL;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-      hOldObj = ::SelectObject(get_handle1(), pBrush->get_os_data());
-      if(get_handle2() != NULL)
-      hOldObj = ::SelectObject(get_handle2(), pBrush->get_os_data());
-      return dynamic_cast < ::draw2d::brush * > (::draw2d_direct2d::object::from_handle(get_app(), hOldObj));*/
+
       m_spbrush = pBrush;
 
       if((::draw2d_direct2d::graphics *) m_spbrush->get_os_data_ex(::draw2d_direct2d::object::data_graphics) != this)
@@ -3222,24 +3234,11 @@ namespace draw2d_direct2d
 
    }
 
+
+
+
    ::draw2d::font* graphics::SelectObject(::draw2d::font* pfont)
    {
-      /*      HGDIOBJ hOldObj = NULL;
-      if(pFont == NULL)
-      return NULL;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-      hOldObj = ::SelectObject(get_handle1(), pFont->get_os_data());
-      if(get_handle2() != NULL)
-      hOldObj = ::SelectObject(get_handle2(), pFont->get_os_data());
-      return dynamic_cast < ::draw2d::font * > (::draw2d_direct2d::object::from_handle(get_app(), hOldObj));*/
-
-      /*ASSERT(pFont != NULL);
-
-      if(pFont == NULL)
-      return NULL;
-
-      m_fontxyz = *pFont;
-      return &m_fontxyz;*/
 
       if(!select_font(pfont))
          return NULL;
@@ -3267,7 +3266,7 @@ namespace draw2d_direct2d
       //      return dynamic_cast < ::draw2d::palette * > (::draw2d_direct2d::object::from_handle(get_app(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
    }
 
-   COLORREF graphics::SetBkColor(COLORREF crColor)
+/*   COLORREF graphics::SetBkColor(COLORREF crColor)
    {
 
       
@@ -3282,12 +3281,12 @@ namespace draw2d_direct2d
       //if(get_handle2() != NULL)
       //   crRetVal = ::SetBkColor(get_handle2(), crColor);
       //return crRetVal;
-   }
+   }*/
 
-   int graphics::SetBkMode(int nBkMode)
-   {
+   //int graphics::SetBkMode(int nBkMode)
+   //{
 
-      return 0;
+     // return 0;
 
       /*      int nRetVal = 0;
       if(get_handle1() != NULL && get_handle1() != get_handle2())
@@ -3295,7 +3294,7 @@ namespace draw2d_direct2d
       if(get_handle2() != NULL)
       nRetVal = ::SetBkMode(get_handle2(), nBkMode);
       return nRetVal;*/
-   }
+   //}
 
    int graphics::SetPolyFillMode(int nPolyFillMode)
    {
@@ -3349,9 +3348,10 @@ namespace draw2d_direct2d
       return nRetVal;*/
    }
 
-   COLORREF graphics::SetTextColor(COLORREF crColor)
-   {
-      return set_color(crColor);
+
+  // COLORREF graphics::SetTextColor(COLORREF crColor)
+//   {
+    //  return set_color(crColor);
       //COLORREF crRetVal = m_crColor;
       //m_crColor = crColor;
       /*      COLORREF crRetVal = CLR_INVALID;
@@ -3360,7 +3360,7 @@ namespace draw2d_direct2d
       if(get_handle2() != NULL)
       crRetVal = ::SetTextColor(get_handle2(), crColor);*/
       //return crRetVal;
-   }
+   //}
 
    int graphics::SetGraphicsMode(int iMode)
    {
@@ -4997,6 +4997,8 @@ namespace draw2d_direct2d
       else
       {
 
+         br = brPrevious;
+
          br->create_solid(clr);
 
       }
@@ -5912,7 +5914,12 @@ namespace draw2d_direct2d
    {
 
       if(m_spfont.is_null())
+      {
+       
          ((graphics *) this)->m_spfont.create(((graphics *) this)->allocer());
+         ((graphics *) this)->m_spfont->m_powner = (void *) (graphics *) this;
+
+      }
 
       if(m_spfont.is_null())
          return NULL;
@@ -5925,7 +5932,10 @@ namespace draw2d_direct2d
    {
 
       if(m_spbrush.is_null())
+      {
          ((graphics *) this)->m_spbrush.create(((graphics *) this)->allocer());
+         ((graphics *) this)->m_spbrush->m_powner = (void *) (graphics *) this;
+      }
 
       if(m_spbrush.is_null())
          return NULL;
@@ -5938,7 +5948,12 @@ namespace draw2d_direct2d
    {
 
       if(m_sppen.is_null())
+      {
+         
          ((graphics *) this)->m_sppen.create(((graphics *) this)->allocer());
+         ((graphics *) this)->m_sppen->m_powner = (void *) (graphics *) this;
+
+      }
 
       if(m_sppen.is_null())
          return NULL;

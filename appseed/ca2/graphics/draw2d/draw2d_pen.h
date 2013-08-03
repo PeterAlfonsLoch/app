@@ -90,12 +90,17 @@ namespace draw2d
       }
 */
 
-      pen_sp & operator = (pen * ppen)
-      {
-         m_p = ppen;
-         return *this;
-      }
 
+      pen_sp & operator = (::draw2d::pen * ppen)
+      {
+
+         ::ca::smart_pointer < pen >::operator = (ppen);
+         
+         return *this;
+         
+      }
+      
+      
    };
 
 

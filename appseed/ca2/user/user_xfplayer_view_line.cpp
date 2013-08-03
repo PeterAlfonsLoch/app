@@ -186,7 +186,7 @@ bool XfplayerViewLine::to(
 
    pdc->SelectObject(m_font);
 
-   pdc->SetBkMode(TRANSPARENT);
+//   pdc->SetBkMode(TRANSPARENT);
 
    point iMargin;
    iMargin.x = 3;
@@ -431,7 +431,7 @@ bool XfplayerViewLine::to(
 
    pdc->set_font(m_font);
 
-   pdc->SetBkMode(TRANSPARENT);
+//   pdc->SetBkMode(TRANSPARENT);
 
    point iMargin;
    {
@@ -468,7 +468,13 @@ bool XfplayerViewLine::to(
          string strFinal;
          strFinal = m_str;
          pdc->SelectObject(&pen);
-         pdc->SetTextColor(crColor);
+
+         ::draw2d::brush_sp brushText(allocer(), crColor);
+         
+         pdc->SelectObject(brushText);
+
+         //pdc->SetTextColor(crColor);
+
          rect rectTextOut;
          GetPlacement(rectTextOut);
          if(bDraw)
@@ -505,7 +511,10 @@ bool XfplayerViewLine::to(
             iLeftOffset = iLeftDiff - (int32_t) m_dAnimateProgress;
 
            pdc->SelectObject(&pen);
-           pdc->SetTextColor(crColor);
+         ::draw2d::brush_sp brushText(allocer(), crColor);
+         
+         pdc->SelectObject(brushText);
+
            pdc->SelectObject(m_font);
          rect rectTextOut;
          GetPlacement(rectTextOut);
@@ -1451,7 +1460,10 @@ void XfplayerViewLine::EmbossedTextOut(
       pdc->SelectObject(ppenOld);
 
 
-      pdc->SetTextColor(cr);
+         ::draw2d::brush_sp brushText(allocer(), cr);
+         
+         pdc->SelectObject(brushText);
+
       pdc->TextOut(iLeft, iTop, string(lpcsz, iLen));
    }
    else
@@ -1526,7 +1538,10 @@ void XfplayerViewLine::CacheEmboss(sp(::ca2::application) papp, ::draw2d::graphi
    pdcCache->set_alpha_mode(::draw2d::alpha_mode_set);
    pdcCache->FillSolidRect(0, 0, size.cx,size.cy, ARGB(0, 0, 0, 0));
    pdcCache->set_alpha_mode(::draw2d::alpha_mode_blend);
-   pdcCache->SetTextColor(ARGB(84, 84, 84, 84));
+   draw2d::brush_sp brushText(allocer());
+   brushText->create_solid(ARGB(84, 84, 84, 84));
+   pdc->SelectObject(brushText);
+   //pdcCache->SetTextColor();
 
    m_dcextension.TextOut(pdcCache, (int32_t) (int32_t) ((max(2.0, m_floatRateX * 8.0)) / 2), (int32_t) 1 * (int32_t) ((max(2.0, m_floatRateX * 8.0)) / 2), lpcsz, iLen);
 

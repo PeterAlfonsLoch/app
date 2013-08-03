@@ -14,21 +14,21 @@ public:
    };
 
 
-   ::draw2d::brush       m_brushEllipse;
-   ::draw2d::pen         m_penEllipse;
-   COLORREF          m_crText;
-   ::draw2d::brush       m_brushEllipseSel;
-   ::draw2d::pen         m_penEllipseSel;
-   COLORREF          m_crTextSel;
-   ::draw2d::brush       m_brushEllipseFocus;
-   ::draw2d::pen         m_penEllipseFocus;
-   COLORREF          m_crTextFocus;
-   ::draw2d::brush       m_brushEllipseDisabled;
-   ::draw2d::pen         m_penEllipseDisabled;
-   COLORREF          m_crTextDisabled;
-   oswindow              m_oswindowPreviousFocus;
+   ::draw2d::brush_sp   m_brushEllipse;
+   ::draw2d::pen_sp     m_penEllipse;
+   COLORREF             m_crText;
+   ::draw2d::brush_sp   m_brushEllipseSel;
+   ::draw2d::pen_sp     m_penEllipseSel;
+   COLORREF             m_crTextSel;
+   ::draw2d::brush_sp   m_brushEllipseFocus;
+   ::draw2d::pen_sp     m_penEllipseFocus;
+   COLORREF             m_crTextFocus;
+   ::draw2d::brush_sp   m_brushEllipseDisabled;
+   ::draw2d::pen_sp     m_penEllipseDisabled;
+   COLORREF             m_crTextDisabled;
+   oswindow             m_oswindowPreviousFocus;
 
-   ::draw2d::region_sp   m_spregion;
+   ::draw2d::region_sp  m_spregion;
 
    //bool              m_bFocus;
 

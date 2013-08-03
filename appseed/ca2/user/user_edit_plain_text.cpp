@@ -330,6 +330,7 @@ namespace user
 
       ::draw2d::pen_sp penCaret(allocer());
 
+      ::draw2d::brush_sp brushText(allocer());
 
       penCaret->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
 
@@ -394,6 +395,7 @@ namespace user
                }
                if(len < 0)
                   continue;
+/*
                if(pregion->styled()->bfore)
                {
                   pdc->set_color(pregion->styled()->fore);
@@ -402,6 +404,8 @@ namespace user
                {
                   pdc->set_color(cr);
                }
+*/
+/*
                if(pregion->styled()->bback)
                {
                   pdc->SetBkMode(OPAQUE);
@@ -411,12 +415,27 @@ namespace user
                {
                   pdc->SetBkMode(TRANSPARENT);
                }
+*/
                string strExtent1;
                strExtent1 = strLine.Left(x);
                string strExtent2;
                strExtent2 = strLine.Mid(x, len);
                class size size1;
                visual::graphics_extension(get_app()).GetTextExtent(pdc, strExtent1, size1);
+               if(pregion->styled()->bback)
+               {
+                  pdc->FillSolidRect((int32_t) (left + size1.cx), y, size1.cx, size1.cy, pregion->styled()->back);
+               }
+               ::draw2d::brush_sp brushText(allocer());
+               if(pregion->styled()->bfore)
+               {
+                  brushText->create_solid(pregion->styled()->fore);
+               }
+               else
+               {
+                  brushText->create_solid(cr);
+               }
+               pdc->SelectObject(brushText);
                pdc->TextOut(left + size1.cx, y, strExtent2);
 
             }
@@ -448,28 +467,31 @@ namespace user
                str_fill(strExtent2, '*');
                str_fill(strExtent3, '*');
             }
-            pdc->SetBkMode(TRANSPARENT);
-            pdc->set_color(cr);
-            pdc->SetBkColor(crBkSel);
+         
+            brushText->create_solid(cr);
+            pdc->SelectObject(brushText);
             pdc->TextOut(left, y, strExtent1);
+
             sized size1(0.0, 0.0);
             pdc->GetTextExtent(size1, strLine, (int32_t) strLine.length(), (int32_t) iStart);
-            pdc->SetBkMode(OPAQUE);
             sized sizeb(0.0, 0.0);
             pdc->GetTextExtent(sizeb, strLine, iEnd);
             sized size2(0.0, 0.0);
             pdc->GetTextExtent(size2, strLine, (int32_t) strLine.length(), (int32_t) iEnd);
             size2.cx -= size1.cx;
+            
             if(iEnd > iStart)
             {
                pdc->FillSolidRect((int32_t) (left + size1.cx), (int32_t) y, (int32_t) size2.cx, (int32_t) size2.cy, ARGB(255, 120, 240, 180));
-               pdc->set_color(crSel);
+               brushText->create_solid(crSel);
+               pdc->SelectObject(brushText);
                pdc->TextOut(left + size1.cx, y, strExtent2);
             }
-            pdc->set_color(cr);
 
-            pdc->SetBkMode(TRANSPARENT);
+            brushText->create_solid(cr);
+            pdc->SelectObject(brushText);
             pdc->TextOut(left + size1.cx + size2.cx, y, strExtent3);
+
             //maxcy = max(size1.cy, size2.cy);
             //maxcy = max(maxcy, size3.cy);
             if(m_bFocus && m_bCaretOn && i3 == str1.get_length())

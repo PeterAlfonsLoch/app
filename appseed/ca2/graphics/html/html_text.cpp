@@ -419,44 +419,61 @@ namespace html
 
 
          COLORREF cr;
+         bool bOpaque;
+         COLORREF crBkColor;
          if(m_bHover && m_pelemental->m_style.get_color("background-color", "hover", pdata, m_pelemental, cr))
          {
-            pdc->SetBkMode(OPAQUE);
-            pdc->SetBkColor(cr);
+            bOpaque = true;
+            //pdc->SetBkMode(OPAQUE);
+            //pdc->SetBkColor(cr);
+            crBkColor = cr;
          }
          else if(has_link() && m_pelemental->m_style.get_color("background-color", "link", pdata, m_pelemental, cr))
          {
-            pdc->SetBkMode(OPAQUE);
-            pdc->SetBkColor(cr);
+            bOpaque = true;
+            //pdc->SetBkMode(OPAQUE);
+            //pdc->SetBkColor(cr);
+            crBkColor = cr;
          }
          else if(m_pelemental->m_style.get_color("background-color", NULL, pdata, m_pelemental, cr))
          {
-            pdc->SetBkMode(OPAQUE);
-            pdc->SetBkColor(cr);
+            bOpaque = true;
+            //pdc->SetBkMode(OPAQUE);
+            //pdc->SetBkColor(cr);
+            crBkColor = cr;
          }
          else
          {
-            pdc->SetBkMode(TRANSPARENT);
+            bOpaque = false;
+            //pdc->SetBkMode(TRANSPARENT);
          }
+         
+         ::draw2d::brush_sp brushText(allocer());
+
          if(m_bHover && m_pelemental->m_style.get_color("color", "hover", pdata, m_pelemental, cr))
          {
-            pdc->set_color(cr);
+//            pdc->set_color(cr);
+            brushText->create_solid(cr);
          }
          else if(has_link() && m_pelemental->m_style.get_color("color", "link", pdata, m_pelemental, cr))
          {
-            pdc->set_color(cr);
+//            pdc->set_color(cr);
+            brushText->create_solid(cr);
          }
          else if(has_link())
          {
-            pdc->set_color(ARGB(255, 127, 127, 255));
+//            pdc->set_color(ARGB(255, 127, 127, 255));
+            brushText->create_solid(ARGB(255, 127, 127, 255));
          }
          else if(m_pelemental->m_style.get_color("color", "", pdata, m_pelemental, cr))
          {
-            pdc->set_color(cr);
+//            pdc->set_color(cr);
+            brushText->create_solid(cr);
          }
          else
          {
-            pdc->set_color(ARGB(255, 0, 0, 0));
+//            pdc->set_color(ARGB(255, 0, 0, 0));
+            brushText->create_solid(ARGB(255, 0, 0, 0));
          }
 
          strsize iSelStart;
@@ -499,6 +516,9 @@ namespace html
          string strExtent2;
          string strExtent3;
          strsize lim = 0;
+
+         ::draw2d::brush_sp brushBackground(allocer());
+
         for(int32_t i = 0; i < m_straLines.get_size(); i++)
         {
          string strLine = m_straLines[i];
@@ -522,19 +542,31 @@ namespace html
             strExtent1.replace("\t", "   ");
             strExtent2.replace("\t", "   ");
             strExtent3.replace("\t", "   ");
-            pdc->SetBkMode(TRANSPARENT);
-            pdc->SetTextColor(cr);
-            pdc->SetBkColor(crBkSel);
+            //pdc->SetBkMode(TRANSPARENT);
+            brushText->create_solid(cr);
+            pdc->SelectObject(brushText);
+            //pdc->SetBkColor(crBkSel);
             pdc->TextOut(left, y, strExtent1);
             ::size size1 = pdc->GetTextExtent(strExtent1);
-            pdc->SetBkMode(OPAQUE);
-            pdc->SetTextColor(crSel);
-            pdc->TextOut(left + size1.cx, y, strExtent2);
+
+            brushBackground->create_solid(crBkSel);
+            //pdc->SetBkMode(OPAQUE);
+            pdc->SelectObject(brushBackground);
             ::size size2 = pdc->GetTextExtent(strExtent2);
-            pdc->SetTextColor(cr);
-            pdc->SetBkColor(RGB(120, 240, 180));
-            pdc->SetBkMode(TRANSPARENT);
+            pdc->FillSolidRect(left + size1.cx, y, size2.cx, size2.cy, crBkSel);
+
+            //pdc->SetTextColor(crSel);
+            brushText->create_solid(crSel);
+            pdc->SelectObject(brushText);
+            pdc->TextOut(left + size1.cx, y, strExtent2);
+
+//            pdc->SetTextColor(cr);
+            brushText->create_solid(cr);
+            pdc->SelectObject(brushText);
+            //pdc->SetBkColor(RGB(120, 240, 180));
+  //          pdc->SetBkMode(TRANSPARENT);
             pdc->TextOut(left + size1.cx + size2.cx, y, strExtent3);
+    
             maxcy = max(size1.cy, size2.cy);
             maxcy = max(maxcy, size3.cy);
             if(m_bFocus && m_bCaretOn && i3 == str1.get_length())
@@ -551,10 +583,7 @@ namespace html
          }
          else
          {
-            pdc->TextOut(
-               left,
-               top,
-               strLine);
+            pdc->TextOut(left, top, strLine);
          }
 
 

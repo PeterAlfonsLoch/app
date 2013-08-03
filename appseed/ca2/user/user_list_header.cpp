@@ -43,7 +43,7 @@ namespace user
 
       pdc->SelectObject(m_font);
 
-      pdc->SetBkMode(TRANSPARENT);
+//      pdc->SetBkMode(TRANSPARENT);
 
       m_dcextension._DrawText(pdc, str,  rectColumn, DT_TOP | DT_LEFT | DT_END_ELLIPSIS);
 

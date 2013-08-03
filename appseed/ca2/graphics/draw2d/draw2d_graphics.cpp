@@ -222,49 +222,46 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-   COLORREF graphics::GetBkColor() const
-   {
-      throw interface_only_exception(get_app());
-   }
-
-   int32_t graphics::GetBkMode() const
-   {
-      throw interface_only_exception(get_app());
-   }
 
    int32_t graphics::GetPolyFillMode() const
    {
+
       throw interface_only_exception(get_app());
+
    }
+
 
    int32_t graphics::GetROP2() const
    {
+   
       throw interface_only_exception(get_app());
+
    }
+
 
    int32_t graphics::GetStretchBltMode() const
    {
+   
       throw interface_only_exception(get_app());
+
    }
 
    
-   COLORREF graphics::GetTextColor() const
-   {
-      
-      return m_crColor;
-      
-   }
-   
-
    int32_t graphics::GetMapMode() const
    {
+
       throw interface_only_exception(get_app());
+
    }
+
 
    int32_t graphics::GetGraphicsMode() const
    {
+
       throw interface_only_exception(get_app());
+
    }
+
 
 #ifdef WINDOWS
 
@@ -1775,17 +1772,6 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-   COLORREF graphics::SetBkColor(COLORREF crColor)
-   {
-      UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception(get_app());
-   }
-
-   int32_t graphics::SetBkMode(int32_t nBkMode)
-   {
-      UNREFERENCED_PARAMETER(nBkMode);
-      throw interface_only_exception(get_app());
-   }
 
    int32_t graphics::SetPolyFillMode(int32_t nPolyFillMode)
    {
@@ -1805,14 +1791,6 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-
-   COLORREF graphics::SetTextColor(COLORREF crColor)
-   {
-      
-      return set_color(crColor);
-      
-   }
-   
 
    int32_t graphics::SetGraphicsMode(int32_t iMode)
    {
@@ -2333,30 +2311,6 @@ namespace draw2d
    }
 
 
-   COLORREF graphics::SetColor(COLORREF crColor)
-   {
-
-      m_crColor               = crColor;
-
-      return TRUE;
-
-   }
-
-   COLORREF graphics::setColor(COLORREF crColor)
-   {
-      // SIOOT - Should implemennt one of them
-      // OASOWO - otherwise a stack overflow will occur
-      // BTAIOM - because these are interface only methods
-      return SetColor(crColor);
-   }
-
-   COLORREF graphics::set_color(COLORREF crColor)
-   {
-      // SIOOT - Should implemennt one of them
-      // OASOWO - otherwise a stack overflow will occur
-      // BTAIOM - because these are interface only methods
-      return setColor(crColor);
-   }
 
    bool graphics::DrawLine(float x1, float y1, float x2, float y2)
    {

@@ -420,10 +420,13 @@ namespace platform
 
       if(m_iScreen == 1)
       {
-         pdc->SetTextColor(ARGB(255, 0, 108, 0));
+         ::draw2d::brush_sp brushText(allocer());
+         brushText->create_solid(ARGB(255, 0, 108, 0));
+         pdc->SelectObject(brushText);
          pdc->SelectObject(m_font2);
          pdc->TextOut(10, 110, m_strStatus1);
-         pdc->SetTextColor(ARGB(255, 0, 0, 108));
+         brushText->create_solid(ARGB(255, 0, 0, 108));
+         pdc->SelectObject(brushText);
          pdc->SelectObject(m_font3);
          pdc->TextOut(10, 170, m_strStatus2);
       }

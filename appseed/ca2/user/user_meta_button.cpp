@@ -7,7 +7,6 @@ MetaButton::MetaButton(sp(::ca2::application) papp) :
    m_spregion(allocer())
 {
 
-//   m_bFocus = false;
 
 }
 
@@ -34,10 +33,10 @@ void MetaButton::SetEllipseBrushs(
    if(pbrush == NULL)
       return;
 
-   m_brushEllipse             = *pbrush;
-   m_brushEllipseSel          = pbrushSel != NULL ? *pbrushSel : (pbrushFocus != NULL ? *pbrushFocus : *pbrush);
-   m_brushEllipseFocus        = pbrushFocus != NULL ? *pbrushFocus : (pbrushSel != NULL ? *pbrushSel : *pbrush);
-   m_brushEllipseDisabled     = pbrushDisabled != NULL ? *pbrushDisabled : *pbrush;
+   m_brushEllipse             = pbrush;
+   m_brushEllipseSel          = pbrushSel != NULL ? pbrushSel : (pbrushFocus != NULL ? pbrushFocus : pbrush);
+   m_brushEllipseFocus        = pbrushFocus != NULL ? pbrushFocus : (pbrushSel != NULL ? pbrushSel : pbrush);
+   m_brushEllipseDisabled     = pbrushDisabled != NULL ? pbrushDisabled : pbrush;
 
 }
 
@@ -53,10 +52,10 @@ void MetaButton::SetEllipsePens(
    if(ppen == NULL)
       return;
 
-   m_penEllipse               = *ppen;
-   m_penEllipseSel            = ppenSel != NULL ? *ppenSel : (ppenFocus != NULL ? *ppenFocus : *ppen);
-   m_penEllipseFocus          = ppenFocus != NULL ? *ppenFocus : (ppenSel != NULL ? *ppenSel : *ppen);
-   m_penEllipseDisabled       = ppenDisabled != NULL ? *ppenDisabled : *ppen;
+   m_penEllipse               = ppen;
+   m_penEllipseSel            = ppenSel != NULL ? ppenSel : (ppenFocus != NULL ? ppenFocus : ppen);
+   m_penEllipseFocus          = ppenFocus != NULL ? ppenFocus : (ppenSel != NULL ? ppenSel : ppen);
+   m_penEllipseDisabled       = ppenDisabled != NULL ? ppenDisabled : ppen;
 
 }
 
@@ -93,32 +92,32 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
    if(!IsWindowEnabled())
    {
 
-      pdc->SelectObject(&m_brushEllipseDisabled);
-      pdc->SelectObject(&m_penEllipseDisabled);
+      pdc->SelectObject(m_brushEllipseDisabled);
+      pdc->SelectObject(m_penEllipseDisabled);
       crText = m_crTextDisabled;
 
    }
    else if(m_iHover >= 0)
    {
 
-      pdc->SelectObject(&m_brushEllipseSel);
-      pdc->SelectObject(&m_penEllipseSel);
+      pdc->SelectObject(m_brushEllipseSel);
+      pdc->SelectObject(m_penEllipseSel);
       crText = m_crTextSel;
 
    }
-   /*else if(m_bFocus)
+   else if(System.get_focus_guie() == this)
    {
 
-      pdc->SelectObject(&m_brushEllipseFocus);
-      pdc->SelectObject(&m_penEllipseFocus);
+      pdc->SelectObject(m_brushEllipseFocus);
+      pdc->SelectObject(m_penEllipseFocus);
       crText = m_crTextFocus;
 
-   }*/
+   }
    else
    {
 
-      pdc->SelectObject(&m_brushEllipse);
-      pdc->SelectObject(&m_penEllipse);
+      pdc->SelectObject(m_brushEllipse);
+      pdc->SelectObject(m_penEllipse);
       crText = m_crText;
 
    }
@@ -135,8 +134,13 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
    string str;
    GetWindowText(str);
 
+   ::draw2d::brush_sp brushText(allocer());
+
+   brushText->create_solid(crText);
+
    pdc->set_font(GetFont());
-   pdc->set_color(crText);
+   pdc->SelectObject(brushText);
+   //pdc->set_color(crText);
    pdc->set_alpha_mode(::draw2d::alpha_mode_set);
    pdc->draw_text(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 

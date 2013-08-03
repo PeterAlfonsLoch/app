@@ -49,6 +49,11 @@ namespace user
 
       rect rectClient;
       GetClientRect(rectClient);
+
+
+      ::draw2d::brush_sp brushText(allocer());
+
+
       if(m_pschema == NULL)
       {
    
@@ -57,12 +62,12 @@ namespace user
          if(m_iHover == 0)
          {
             pdc->FillSolidRect(rectClient, ARGB(255, 127, 127, 127));
-            pdc->SetTextColor(ARGB(255, 0, 100, 255));
+            brushText->create_solid(ARGB(255, 0, 100, 255));
          }
          else
          {
             pdc->FillSolidRect(rectClient, ARGB(255, 127, 127, 127));
-            pdc->SetTextColor(ARGB(255, 0, 0, 0));
+            brushText->create_solid(ARGB(255, 0, 0, 0));
          }
       }
       else
@@ -80,7 +85,7 @@ namespace user
             //pdc->Draw3dRect(rectClient, crBorder, crBorder);
             //rectClient.deflate(1, 1);
             pdc->FillSolidRect(rectClient, m_pschema->m_crBkHover);
-            pdc->SetTextColor(m_pschema->m_crTextHover);
+            brushText->create_solid(m_pschema->m_crTextHover);
          }
          else
          {
@@ -95,7 +100,7 @@ namespace user
             //pdc->Draw3dRect(rectClient, crBorder, crBorder);
             //rectClient.deflate(1, 1);
             pdc->FillSolidRect(rectClient, m_pschema->m_crBkNormal);
-            pdc->SetTextColor(m_pschema->m_crTextNormal);
+            brushText->create_solid(m_pschema->m_crTextNormal);
          }
 
          *GetFont() = *m_pschema->m_font;
@@ -107,6 +112,8 @@ namespace user
          pdc->selectFont(GetFont());
 
       }
+
+      pdc->SelectObject(brushText);
 
       pdc->draw_text(strText, m_rectText, DT_LEFT | DT_TOP);
 
@@ -480,7 +487,7 @@ namespace user
          pdc->Draw3dRect(rectClient, crBorder, crBorder);
       }
 
-      pdc->SetBkMode(TRANSPARENT);
+//      pdc->SetBkMode(TRANSPARENT);
 
       rectClient.left   += 3;
       rectClient.top    += 3;
@@ -501,24 +508,32 @@ namespace user
          }
       }
 
+      
+      ::draw2d::brush_sp brushText(allocer());
+
 
       if(!_001IsWindowEnabled())
       {
-         pdc->SetTextColor(m_pschema->m_crTextDisabled);
+//         pdc->SetTextColor(m_pschema->m_crTextDisabled);
+         brushText->create_solid(m_pschema->m_crTextDisabled);
       }
       else if(_001IsPressed())
       {
-         pdc->SetTextColor(m_pschema->m_crTextPress);
+//         pdc->SetTextColor(m_pschema->m_crTextPress);
+         brushText->create_solid(m_pschema->m_crTextPress);
       }
       else if(m_iHover >= 0)
       {
-         pdc->SetTextColor(m_pschema->m_crTextHover);
+//         pdc->SetTextColor(m_pschema->m_crTextHover);
+         brushText->create_solid(m_pschema->m_crTextHover);
       }
       else
       {
-         pdc->SetTextColor(m_pschema->m_crTextNormal);
+//         pdc->SetTextColor(m_pschema->m_crTextNormal);
+         brushText->create_solid(m_pschema->m_crTextNormal);
       }
 
+      pdc->SelectObject(brushText);
 
       string strText(m_istrButtonText);
       pdc->SelectObject(m_pschema->m_font);

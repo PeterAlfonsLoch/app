@@ -43,7 +43,7 @@ void simple_button::_001OnCtlColor(::ca2::signal_object * pobj)
    SCAST_PTR(::ca2::message::ctl_color, pctlcolor, pobj)
    if(m_bTransparent)
    {
-      pctlcolor->m_pdc->SetBkMode(TRANSPARENT);
+//      pctlcolor->m_pdc->SetBkMode(TRANSPARENT);
       pctlcolor->m_hbrush = (HBRUSH) m_brushBkg->get_os_data();
    }
    else

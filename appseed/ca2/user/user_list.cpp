@@ -193,12 +193,18 @@ namespace user
       GetClientRect(rectClient);
 
 
-      pdc->SetBkMode(TRANSPARENT);
+//      pdc->SetBkMode(TRANSPARENT);
 
       if(m_bTopText)
       {
+         
+         ::draw2d::brush_sp brushText(allocer());
+
+         brushText->create_solid(m_crText);
+
          point ptViewportOrg = pdc->GetViewportOrg();
-         pdc->set_color(m_crText);
+         //pdc->set_color(m_crText);
+         pdc->SelectObject(brushText);
          array < size > sizea;
          m_dcextension.GetTextExtent(pdc, m_strTopText, sizea);
          index x = 0;
@@ -5327,7 +5333,9 @@ namespace user
 
    void draw_list_item::set_text_color()
    {
-      m_pgraphics->set_color(m_cr);
+      ::draw2d::brush_sp brushText(allocer());
+      brushText->create_solid(m_cr);
+      m_pgraphics->SelectObject(brushText);
    }
 
 
@@ -5345,7 +5353,9 @@ namespace user
             ::draw2d::dib_sp dib(m_plist->allocer());
             dib->create(size.cx, size.cy);
             dib->Fill(0, 0, 0, 0);
-            dib->get_graphics()->SetTextColor(ARGB(255, 255, 255, 255));
+            ::draw2d::brush_sp brushText(allocer());
+            brushText->create_solid(ARGB(255, 255, 255, 255));
+            dib->get_graphics()->SelectObject(brushText);
             ::draw2d::dib_sp dib2(m_plist->allocer());
             dib2->create(size.cx, size.cy);
             dib2->Fill(0, 0, 0, 0);
@@ -5369,13 +5379,17 @@ namespace user
             Sys(m_plist->get_app()).visual().imaging().color_blend(m_pgraphics, m_rectText, dib2->get_graphics(), point(1, 1), 0.50);
 
 
-            m_pgraphics->SetTextColor(ARGB(255, 255, 255, 255));
+            brushText->create_solid(ARGB(255, 255, 255, 255));
+            m_pgraphics->SelectObject(brushText);
             m_pgraphics->SelectObject(m_pfont);
             m_plist->m_dcextension._DrawText(m_pgraphics, m_strText, m_rectText, m_iDrawTextFlags);
          }
          else
          {
-            m_pgraphics->set_color(m_cr);
+//            m_pgraphics->set_color(m_cr);
+            ::draw2d::brush_sp brushText(allocer());
+            brushText->create_solid(m_cr);
+            m_pgraphics->SelectObject(brushText);
             m_plist->m_dcextension._DrawText(m_pgraphics, m_strText, m_rectText, m_iDrawTextFlags);
          }
       }
