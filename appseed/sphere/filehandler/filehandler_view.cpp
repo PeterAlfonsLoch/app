@@ -16,7 +16,7 @@ namespace filehandler
       m_document(papp)
    {
 
-      ::ca2::font_sp font(allocer());
+      ::draw2d::font_sp font(allocer());
 
       font->create_point_font("Geneva", 14.0);
 
@@ -82,7 +82,7 @@ namespace filehandler
 
    }
 
-   void view::draw_item::draw(sp(view) pview, ::ca2::graphics * pdc, list * plist, item * pitem)
+   void view::draw_item::draw(sp(view) pview, ::draw2d::graphics * pdc, list * plist, item * pitem)
    {
 
       UNREFERENCED_PARAMETER(plist);
@@ -120,7 +120,9 @@ namespace filehandler
       }
       pdc->Draw3dRect(m_rectItem, cr1, cr2);
       cr |= 0xff000000;
-      pdc->set_color(cr);
+      ::draw2d::brush_sp brushText(allocer());
+      brushText->create_solid(cr);
+      //pdc->set_color(cr);
       pdc->draw_text(pitem->m_strApp, m_rectName, DT_LEFT | DT_BOTTOM);
    }
 
@@ -152,7 +154,7 @@ namespace filehandler
       }
    }
 
-   void view::draw_list::draw(sp(view) pview, ::ca2::graphics * pdc, list * plist)
+   void view::draw_list::draw(sp(view) pview, ::draw2d::graphics * pdc, list * plist)
    {
       for(int32_t i = 0; i < get_count(); i++)
       {
@@ -164,7 +166,7 @@ namespace filehandler
    void view::layout()
    {
 
-      ::ca2::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pdc(allocer());
 
       rect rectClient;
 
@@ -175,7 +177,7 @@ namespace filehandler
    }
 
 
-   void view::_001OnDraw(::ca2::graphics * pdc)
+   void view::_001OnDraw(::draw2d::graphics * pdc)
    {
 
       pdc->set_font(GetFont());

@@ -470,7 +470,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ca2\m_ca2.vcxproj">
-      <Project>{99892e42-0f2f-4b0f-ac18-5abbc3968407}</Project>
+      <Project>{420d7aeb-cfca-45de-bb6e-95055df28b9b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ca\m_ca.vcxproj">
+      <Project>{5fd926e7-e8b9-4451-baac-81efa94d9d67}</Project>
     </ProjectReference>
     <ProjectReference Include="..\c\m_c.vcxproj">
       <Project>{5487686f-8a2f-401a-a38e-fda8900ebb72}</Project>

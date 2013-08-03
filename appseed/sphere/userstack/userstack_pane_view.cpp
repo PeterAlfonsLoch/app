@@ -417,7 +417,7 @@ namespace userstack
    }
 
 
-   void pane_view::_001OnDraw(::ca2::graphics * pdc)
+   void pane_view::_001OnDraw(::draw2d::graphics * pdc)
    {
 
       if(m_iNewArea != m_iArea)

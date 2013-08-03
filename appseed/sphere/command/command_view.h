@@ -33,12 +33,12 @@ namespace command
 
       void GetDateTime(string & strDateTime);
 
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
 
 
       virtual void install_message_handling(::ca2::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
-	   virtual void OnDraw(::ca2::graphics * pgraphics);      // overridden to draw this ::view
+	   virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::view
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
       DECL_GEN_SIGNAL(_001OnLButtonDown)
       DECL_GEN_SIGNAL(_001OnLButtonUp)

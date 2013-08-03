@@ -46,7 +46,7 @@ namespace filehandler
          rect        m_rectStatusImage;
          rect        m_rectName;
          
-         void draw(sp(view) pview, ::ca2::graphics * pdc, list * plist, item * pcontact);
+         void draw(sp(view) pview, ::draw2d::graphics * pdc, list * plist, item * pcontact);
 
       };
 
@@ -61,7 +61,7 @@ namespace filehandler
          draw_list();
 
          void layout(LPCRECT lpcrect, list * plist);
-         void draw(sp(view) pview, ::ca2::graphics * pdc, list * plist);
+         void draw(sp(view) pview, ::draw2d::graphics * pdc, list * plist);
 
       };
 
@@ -73,7 +73,7 @@ namespace filehandler
       view(sp(::ca2::application) papp);
 
 
-      virtual void _001OnDraw(::ca2::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
       
       virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 

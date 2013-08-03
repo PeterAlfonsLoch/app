@@ -123,7 +123,7 @@ namespace calculator
    }
 
 
-   void view:: _001OnDraw(::ca2::graphics * pdc)
+   void view:: _001OnDraw(::draw2d::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
    }
