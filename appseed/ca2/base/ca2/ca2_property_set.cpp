@@ -393,11 +393,11 @@ namespace ca2
       while(bRun)
       {
          bRun = bRun && *pszCmdLine != '\0';
-         if(!bStarted && !bQuote && *pszCmdLine != '\0' && ::ca2::ch::is_space_char(pszCmdLine))
-         {
-            pszStart = ::ca2::str::utf8_inc(pszCmdLine);
-            bStarted = true;
-         }
+//         if(!bStarted && !bQuote && *pszCmdLine != '\0' && ::ca2::ch::is_space_char(pszCmdLine))
+  //       {
+    //        pszStart = ::ca2::str::utf8_inc(pszCmdLine);
+      //      bStarted = true;
+        // }
          if(pszStart <= pszCmdLine && (((bApp || bFile) && ((!bQuote && isspace(*pszCmdLine)) || (bQuote && *pszCmdLine == '\"' && (*(pszCmdLine - 1)) != '\\') || !bRun)) || (!bTwoDots && !bQuote && *pszCmdLine == ':')))
          {
             if(!bTwoDots && !bQuote && *pszCmdLine == ':')

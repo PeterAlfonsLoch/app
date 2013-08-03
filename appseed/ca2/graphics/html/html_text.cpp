@@ -519,6 +519,13 @@ namespace html
 
          ::draw2d::brush_sp brushBackground(allocer());
 
+         if(!pdata->m_bEdit)
+         {
+            brushText->create_solid(cr);
+            pdc->SelectObject(brushText);
+         }
+
+
         for(int32_t i = 0; i < m_straLines.get_size(); i++)
         {
          string strLine = m_straLines[i];

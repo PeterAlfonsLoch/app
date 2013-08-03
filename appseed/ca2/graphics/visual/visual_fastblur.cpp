@@ -38,7 +38,6 @@ namespace visual
       int32_t scan      = m_p->scan;
       int32_t div       = radius + radius + 1;
       m_iRadius         = radius;
-      m_ucha.set_size(scan * h);
       m_uchaDiv.set_size(256 * div);
       byte * dv         = m_uchaDiv.get_data();
 
@@ -68,6 +67,7 @@ namespace visual
    {
 
       m_p->map();
+      m_ucha.set_size(m_p->scan * m_p->cy);
 
       bool b = false;
 

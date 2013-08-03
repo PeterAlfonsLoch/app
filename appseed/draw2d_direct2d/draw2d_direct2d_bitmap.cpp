@@ -116,6 +116,7 @@ namespace draw2d_direct2d
 
       m_pbitmap = m_pbitmap1;
 
+
       return true;
 
    }

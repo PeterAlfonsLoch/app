@@ -123,13 +123,16 @@ namespace ca2
    {
       if(!pcreatecontext->m_spCommandLine->m_varFile.is_empty())
       {
-         if(m_varTopicFile.is_empty())
+         if(m_varTopicFile != pcreatecontext->m_spCommandLine->m_varFile)
          {
-            m_varTopicFile = pcreatecontext->m_spCommandLine->m_varFile.is_empty();
-         }
-         else
-         {
-            m_varTopicFile.stra().add(pcreatecontext->m_spCommandLine->m_varFile.stra());
+            if(m_varTopicFile.is_empty())
+            {
+               m_varTopicFile = pcreatecontext->m_spCommandLine->m_varFile;
+            }
+            else
+            {
+               m_varTopicFile.stra().add(pcreatecontext->m_spCommandLine->m_varFile.stra());
+            }
          }
       }
       m_varTopicQuery.propset().merge(pcreatecontext->m_spCommandLine->m_varQuery.propset());

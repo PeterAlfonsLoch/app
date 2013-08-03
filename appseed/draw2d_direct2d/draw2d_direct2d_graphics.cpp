@@ -195,13 +195,13 @@ namespace draw2d_direct2d
       //else
 
 
-      ID2D1RenderTarget * prendertarget;
+      Microsoft::WRL::ComPtr<ID2D1RenderTarget> prendertarget;
 
       if(pgraphics == NULL || pgraphics->get_os_data() == NULL)
       {
          if(System.m_pdevicecontext == NULL)
          {
-            prendertarget = NULL;
+            prendertarget = nullptr;
          }
          else
          {
@@ -260,16 +260,8 @@ namespace draw2d_direct2d
 
       if(FAILED(hr))
       {
-         if(pgraphics == NULL || pgraphics->get_os_data() == NULL)
-         {
-            prendertarget->Release();
-         }
          m_pbitmaprendertarget = nullptr;
          return false;
-      }
-      if(pgraphics == NULL || pgraphics->get_os_data() == NULL)
-      {
-         prendertarget->Release();
       }
 
       hr = m_pbitmaprendertarget.As(&m_pdevicecontext);
