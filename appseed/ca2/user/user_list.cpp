@@ -5216,7 +5216,8 @@ namespace user
       return max(m_iGroupMinHeight, iListHeight);
    }
 
-   list_item::list_item(list * plist)
+   list_item::list_item(list * plist) :
+      ca2(plist->get_app())
    {
 
       m_plist           = plist;
@@ -5239,6 +5240,7 @@ namespace user
    }
 
    draw_list_item::draw_list_item(list * plist) :
+      ca2(plist->get_app()),
       list_item(plist)
    {
 
