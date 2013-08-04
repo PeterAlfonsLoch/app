@@ -1,10 +1,9 @@
 #include "framework.h"
 
-#ifdef XYZNODEF
-
 
 cairo_surface_t *  cairo_keep::g_cairosurface = NULL;
 cairo_t *  cairo_keep::g_cairo = NULL;
+
 
 cairo_keep::cairo_keep(cairo_t * pdc, bool bSave)
 {
@@ -70,4 +69,3 @@ void cairo_keep::pulse()
 }
 
 
-#endif

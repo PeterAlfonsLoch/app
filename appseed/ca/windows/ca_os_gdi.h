@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "ca_os_window_gdi.h"
+
+
 namespace Gdiplus
 {
 

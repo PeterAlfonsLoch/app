@@ -14,6 +14,7 @@
 
 
 #include "draw2d_cairo_factory_exchange.h"
+#include "draw2d_cairo_keep.h"
 
 
 #include "draw2d_cairo_object.h"

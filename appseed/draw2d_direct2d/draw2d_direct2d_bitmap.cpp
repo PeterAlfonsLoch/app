@@ -40,8 +40,11 @@ namespace draw2d_direct2d
 
       props.pixelFormat.alphaMode = D2D1_ALPHA_MODE_PREMULTIPLIED;
       props.pixelFormat.format = DXGI_FORMAT_B8G8R8A8_UNORM;
-      props.dpiX = ::Windows::Graphics::Display::DisplayProperties::LogicalDpi;
-      props.dpiY = ::Windows::Graphics::Display::DisplayProperties::LogicalDpi;
+
+      draw2d_direct2d::graphics * pgraphics2d = dynamic_cast < ::draw2d_direct2d::graphics * > (pgraphics);
+
+      pgraphics2d->m_prendertarget->GetDpi(&props.dpiX, &props.dpiY); // Thank you https://repo.anl-external.org/repos/BlueTBB/tbb41_20130314oss/examples/common/gui/d2dvideo.cpp
+
       //props.bitmapOptions = D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW;
       //props.colorContext = NULL;
 
@@ -92,12 +95,25 @@ namespace draw2d_direct2d
 
       D2D1_BITMAP_PROPERTIES1 props;
 
+//#ifdef WINDOWSEX
+  //    props.pixelFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
+    //  props.pixelFormat.format = DXGI_FORMAT_UNKNOWN;
+//#else
       props.pixelFormat.alphaMode = D2D1_ALPHA_MODE_PREMULTIPLIED;
       props.pixelFormat.format = DXGI_FORMAT_B8G8R8A8_UNORM;
-      props.dpiX = ::Windows::Graphics::Display::DisplayProperties::LogicalDpi;
-      props.dpiY = ::Windows::Graphics::Display::DisplayProperties::LogicalDpi;
-      props.bitmapOptions = D2D1_BITMAP_OPTIONS_CPU_READ | D2D1_BITMAP_OPTIONS_CANNOT_DRAW;
+//#endif
+
+      draw2d_direct2d::graphics * pgraphics2d = dynamic_cast < ::draw2d_direct2d::graphics * > (pgraphics);
+      
+      pgraphics2d->m_prendertarget->GetDpi(&props.dpiX, &props.dpiY); // Thank you again https://repo.anl-external.org/repos/BlueTBB/tbb41_20130314oss/examples/common/gui/d2dvideo.cpp      props.bitmapOptions = D2D1_BITMAP_OPTIONS_CPU_READ | D2D1_BITMAP_OPTIONS_CANNOT_DRAW;
+
       props.colorContext = NULL;
+
+      //props.bitmapOptions = D2D1_BITMAP_OPTIONS_NONE;
+
+      props.bitmapOptions = D2D1_BITMAP_OPTIONS_CPU_READ | D2D1_BITMAP_OPTIONS_CANNOT_DRAW;
+
+      //props.bitmapOptions = D2D1_BITMAP_OPTIONS_CPU_READ | D2D1_BITMAP_OPTIONS_CANNOT_DRAW;
 
       //m_memory.allocate(size.width * size.height * sizeof(COLORREF));
       HRESULT hr;
@@ -114,7 +130,29 @@ namespace draw2d_direct2d
       if(FAILED(hr) || m_pbitmap1 == NULL)
          return FALSE;
 
+      D2D1_MAPPED_RECT        map;
+
+      hr = m_pbitmap1->Map(D2D1_MAP_OPTIONS_READ, &map);
+
+      if(FAILED(hr) || map.bits == NULL)
+      {
+         destroy();
+         return false;
+      }
+
+
+      if(ppvBits != NULL)
+      {
+
+         *ppvBits = (COLORREF *) map.bits;
+
+      }
+
+
       m_pbitmap = m_pbitmap1;
+
+
+
 
 
       return true;
@@ -203,8 +241,11 @@ namespace draw2d_direct2d
 
       props.pixelFormat.alphaMode = D2D1_ALPHA_MODE_PREMULTIPLIED;
       props.pixelFormat.format = DXGI_FORMAT_B8G8R8A8_UNORM_SRGB;
-      props.dpiX = ::Windows::Graphics::Display::DisplayProperties::LogicalDpi;
-      props.dpiY = ::Windows::Graphics::Display::DisplayProperties::LogicalDpi;
+
+      draw2d_direct2d::graphics * pgraphics2d = dynamic_cast < ::draw2d_direct2d::graphics * > (pgraphics);
+      
+      pgraphics2d->m_prendertarget->GetDpi(&props.dpiX, &props.dpiY); // Thanks again and a third time https://repo.anl-external.org/repos/BlueTBB/tbb41_20130314oss/examples/common/gui/d2dvideo.cpp      props.bitmapOptions = D2D1_BITMAP_OPTIONS_CPU_READ | D2D1_BITMAP_OPTIONS_CANNOT_DRAW;
+
       props.bitmapOptions = D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CPU_READ;
 
       //if(ppdata != NULL)
@@ -262,8 +303,11 @@ namespace draw2d_direct2d
 
       props.pixelFormat.alphaMode = D2D1_ALPHA_MODE_PREMULTIPLIED;
       props.pixelFormat.format = DXGI_FORMAT_B8G8R8A8_UNORM_SRGB;
-      props.dpiX = ::Windows::Graphics::Display::DisplayProperties::LogicalDpi;
-      props.dpiY = ::Windows::Graphics::Display::DisplayProperties::LogicalDpi;
+
+      draw2d_direct2d::graphics * pgraphics2d = dynamic_cast < ::draw2d_direct2d::graphics * > (pgraphics);
+      
+      pgraphics2d->m_prendertarget->GetDpi(&props.dpiX, &props.dpiY); // One more time, Thank you very much https://repo.anl-external.org/repos/BlueTBB/tbb41_20130314oss/examples/common/gui/d2dvideo.cpp      props.bitmapOptions = D2D1_BITMAP_OPTIONS_CPU_READ | D2D1_BITMAP_OPTIONS_CANNOT_DRAW;
+
       props.bitmapOptions = D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CPU_READ;
 
       //if(ppdata != NULL)

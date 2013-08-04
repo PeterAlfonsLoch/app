@@ -5,6 +5,10 @@
 //#define INFINITE 0xffffffff
 //#endif
 
+#ifdef WINDOWS
+interface ID2D1DeviceContext;
+#endif
+
 #ifdef METROWIN
 
 #include <agile.h>
@@ -397,6 +401,8 @@ namespace plane
 #ifdef METROWIN
       sp(::user::interaction)                      m_pui;
       ::ca2::system_window ^                       m_pwindow;
+#endif
+#ifdef WINDOWS
       ID2D1DeviceContext *                         m_pdevicecontext;
       sp(mutex)                                    m_pmutexDc;
 #endif

@@ -231,7 +231,7 @@ public:
 #define VK_DELETE 6
 #define VK_SPACE 9
 #endif*/
-
+#include "ca_window_graphics.h"
 
 #include "ca/os/os.h"
 

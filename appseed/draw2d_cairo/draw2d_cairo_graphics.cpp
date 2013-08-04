@@ -359,18 +359,6 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    }
 
-   COLORREF graphics::GetBkColor() const
-   {
-      //return ::GetBkColor(get_handle2());
-      return 0;
-   }
-
-   int32_t graphics::GetBkMode() const
-   {
-      //return ::GetBkMode(get_handle2());
-      return 0;
-   }
-
    int32_t graphics::GetPolyFillMode() const
    {
       //return ::GetPolyFillMode(get_handle2());
@@ -386,12 +374,6 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    int32_t graphics::GetStretchBltMode() const
    {
       //return ::GetStretchBltMode(get_handle2());
-      return 0;
-   }
-
-   COLORREF graphics::GetTextColor() const
-   {
-      //return ::GetTextColor(get_handle2());
       return 0;
    }
 
@@ -930,7 +912,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
       keep.pulse();
 
-      set(&m_penxyz);
+      set(m_sppen);
 
       cairo_stroke(m_pdc);
 
@@ -1516,7 +1498,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
   /*             ::draw2d::dib_sp dib1(get_app());
                dib1->create(rectText.size());
                dib1->Fill(0, 0, 0, 0);
-               dib1->get_graphics()->set_color(m_crColor);
+//               dib1->get_graphics()->set_color(m_crColor);
                dib1->get_graphics()->SelectObject(&GetCurrentFont());
                dib1->get_graphics()->SetBkMode(TRANSPARENT);
                dib1->get_graphics()->TextOut(0, 0, str);
@@ -1559,7 +1541,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    {
       if(m_pdibAlphaBlend != NULL)
       {
-         if(GetBkMode() == TRANSPARENT)
+//         if(GetBkMode() == TRANSPARENT)
          {
          //   return TRUE;
             rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
@@ -1568,16 +1550,15 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
             {
                ::draw2d::dib_sp dib0(allocer());
                dib0->create(rectText.size());
-               dib0->get_graphics()->SetTextColor(RGB(255, 255, 255));
+               ::draw2d::brush_sp brush(allocer(),ARGB(255, 255, 255, 255));
                dib0->get_graphics()->SelectObject(&GetCurrentFont());
-               dib0->get_graphics()->SetBkMode(TRANSPARENT);
+               dib0->get_graphics()->SelectObject(brush);
                dib0->get_graphics()->TextOut(0, 0, str);
                dib0->ToAlpha(0);
                ::draw2d::dib_sp dib1(allocer());
                dib1->create(rectText.size());
-               dib1->get_graphics()->SetTextColor(GetTextColor());
+               brush->create_solid(m_spbrush->m_cr);
                dib1->get_graphics()->SelectObject(&GetCurrentFont());
-               dib1->get_graphics()->SetBkMode(TRANSPARENT);
                dib1->get_graphics()->TextOut(0, 0, str);
                dib1->channel_from(visual::rgba::channel_alpha, dib0);
                ::draw2d::dib_sp dib2(allocer());
@@ -1764,7 +1745,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
       //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
 
-      ((::draw2d_cairo::graphics *) this)->set(&m_fontxyz);
+      ((::draw2d_cairo::graphics *) this)->set(m_spfont);
 
       cairo_font_extents_t e;
 
@@ -1810,7 +1791,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
       /*wstr = L"";
       m_pgraphics->MeasureString(wstr.m_pwsz, -1, (Gdiplus::Font *) m_font->get_os_data(), origin, &rect2);*/
 
-      lpMetrics->tmAveCharWidth        = (LONG) (size.cx * m_fontxyz.m_dFontWidth / (double) str.get_length());
+      lpMetrics->tmAveCharWidth        = (LONG) (size.cx * m_spfont->m_dFontWidth / (double) str.get_length());
 
 
       return TRUE;
@@ -2231,7 +2212,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    ::draw2d::font & graphics::GetCurrentFont() const
    {
 
-      return (::draw2d::font &) m_fontxyz;
+      return (::draw2d::font &) *m_spfont;
 
    }
 
@@ -3344,7 +3325,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       return NULL;
    }
 
-   ::draw2d::pen* graphics::SelectObject(::draw2d::pen* pPen)
+   ::draw2d::pen* graphics::SelectObject(::draw2d::pen* ppen)
    {
       /*HGDIOBJ hOldObj = NULL;
       if(pPen == NULL)
@@ -3354,11 +3335,11 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pPen->get_os_data());
       return dynamic_cast < pen * > (::win::object::from_handle(get_app(), hOldObj));*/
-      m_penxyz = *pPen;
-      return &m_penxyz;
+      m_sppen = ppen;
+      return m_sppen;
    }
 
-   ::draw2d::brush* graphics::SelectObject(::draw2d::brush* pBrush)
+   ::draw2d::brush* graphics::SelectObject(::draw2d::brush* pbrush)
    {
 /*      HGDIOBJ hOldObj = NULL;
       if(pBrush == NULL)
@@ -3368,8 +3349,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pBrush->get_os_data());
       return dynamic_cast < ::draw2d::brush * > (::win::object::from_handle(get_app(), hOldObj));*/
-      m_brushxyz = *pBrush;
-      return &m_brushxyz;
+      m_spbrush = pbrush;
+      return m_spbrush;
 
    }
 
@@ -3390,12 +3371,12 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          return NULL;
 
       m_fontxyz = *pFont;
-      return &m_fontxyz;*/
+      return m_spfont;*/
 
       if(!select_font(pfont))
          return NULL;
 
-      return &m_fontxyz;
+      return m_spfont;
 
    }
 
@@ -3422,37 +3403,6 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 //      return dynamic_cast < ::draw2d::palette * > (::win::object::from_handle(get_app(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
    }
 
-   COLORREF graphics::SetBkColor(COLORREF crColor)
-   {
-
-//      throw not_implemented(get_app());
-      return set_color(crColor);
-      return 0;
-
-
-/*
-      COLORREF crRetVal = CLR_INVALID;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         crRetVal = ::SetBkColor(get_handle1(), crColor);
-      if(get_handle2() != NULL)
-         crRetVal = ::SetBkColor(get_handle2(), crColor);
-      return crRetVal;
-*/
-
-   }
-
-   int32_t graphics::SetBkMode(int32_t nBkMode)
-   {
-
-      return 0;
-
-/*      int32_t nRetVal = 0;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::SetBkMode(get_handle1(), nBkMode);
-      if(get_handle2() != NULL)
-         nRetVal = ::SetBkMode(get_handle2(), nBkMode);
-      return nRetVal;*/
-   }
 
    int32_t graphics::SetPolyFillMode(int32_t nPolyFillMode)
    {
@@ -3505,18 +3455,6 @@ return 1;
       return nRetVal;*/
    }
 
-   COLORREF graphics::SetTextColor(COLORREF crColor)
-   {
-      return set_color(crColor);
-      //COLORREF crRetVal = m_crColor;
-      //m_crColor = crColor;
-/*      COLORREF crRetVal = CLR_INVALID;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         crRetVal = ::SetTextColor(get_handle1(), crColor);
-      if(get_handle2() != NULL)
-         crRetVal = ::SetTextColor(get_handle2(), crColor);*/
-      //return crRetVal;
-   }
 
    int32_t graphics::SetGraphicsMode(int32_t iMode)
    {
@@ -4539,9 +4477,9 @@ return 1;
       Gdiplus::Matrix * pmNew = m.Clone();
 
       pmNew->Translate((Gdiplus::REAL) lpRect->left, (Gdiplus::REAL) lpRect->top);
-      pmNew->Scale((Gdiplus::REAL) m_fontxyz.m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
+      pmNew->Scale((Gdiplus::REAL) m_spfont->m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
 
-      Gdiplus::RectF rectf(0, 0, (Gdiplus::REAL) ((lpRect->right - lpRect->left) * m_fontxyz.m_dFontWidth), (Gdiplus::REAL) (lpRect->bottom - lpRect->top));
+      Gdiplus::RectF rectf(0, 0, (Gdiplus::REAL) ((lpRect->right - lpRect->left) * m_spfont->m_dFontWidth), (Gdiplus::REAL) (lpRect->bottom - lpRect->top));
 
       m_pgraphics->SetTransform(pmNew);
 
@@ -4589,9 +4527,9 @@ return 1;
 
       cairo_translate(m_pdc, lpRect->left + dx, lpRect->top + szBase.cy + dy);
 
-      cairo_scale(m_pdc, m_fontxyz.m_dFontWidth, 1.0);
+      cairo_scale(m_pdc, m_spfont->m_dFontWidth, 1.0);
 
-      set(&m_fontxyz);
+      set(m_spfont);
 
       set_os_color(m_crColor);
 
@@ -4643,7 +4581,7 @@ return 1;
 
    cairo_keep keep(m_pdc);
 
-   ((graphics *) this)->set(&m_fontxyz);
+   ((graphics *) this)->set(m_spfont);
 
    cairo_text_extents_t ex;
 
@@ -4747,7 +4685,7 @@ return 1;
 
       rectBound.GetSize(&size);
 
-      return class ::size((int64_t) (size.Width * m_fontxyz.m_dFontWidth), (int64_t) (size.Height));
+      return class ::size((int64_t) (size.Width * m_spfont->m_dFontWidth), (int64_t) (size.Height));
 */
    }
 
@@ -4759,7 +4697,7 @@ return 1;
    string str(lpszString, nCount);
 
 
-   ((graphics *) this)->set(&m_fontxyz);
+   ((graphics *) this)->set(m_spfont);
 
    cairo_text_extents_t ex;
 
@@ -4787,7 +4725,7 @@ return 1;
 
       m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, &strFormat,  &box);
 
-      return size((int64_t) (box.Width * m_fontxyz.m_dFontWidth), (int64_t) (box.Height));*/
+      return size((int64_t) (box.Width * m_spfont->m_dFontWidth), (int64_t) (box.Height));*/
 
       /*if(get_handle2() == NULL)
          return size(0, 0);
@@ -4842,7 +4780,7 @@ return 1;
          return size(0, 0);
       }
 
-      return size((int64_t) (box.Width * m_fontxyz.m_dFontWidth), (int64_t) box.Height);*/
+      return size((int64_t) (box.Width * m_spfont->m_dFontWidth), (int64_t) box.Height);*/
 
    }
 
@@ -4883,7 +4821,7 @@ return 1;
 
       string str(&lpszString[iIndex], nCount);
 
-      ((graphics *) this)->set(&m_fontxyz);
+      ((graphics *) this)->set(m_spfont);
 
       cairo_text_extents_t ex;
 
@@ -5010,7 +4948,7 @@ return 1;
 
       rectBound.GetSize(&sizef);
 
-      size.cx = sizef.Width * m_fontxyz.m_dFontWidth;
+      size.cx = sizef.Width * m_spfont->m_dFontWidth;
 
       size.cy = sizef.Height;
 
@@ -5026,7 +4964,7 @@ return 1;
    string str(lpszString, nCount);
 
 
-   ((graphics *) this)->set(&m_fontxyz);
+   ((graphics *) this)->set(m_spfont);
 
    cairo_text_extents_t ex;
 
@@ -5065,7 +5003,7 @@ return 1;
       if(!bOk)
          return false;
 
-      size.cx = box.Width * m_fontxyz.m_dFontWidth;
+      size.cx = box.Width * m_spfont->m_dFontWidth;
 
       size.cy = box.Height;
 
@@ -5262,7 +5200,7 @@ return 1;
 
       cairo_keep keep(m_pdc);
 
-      ((graphics *) this)->set(&m_fontxyz);
+      ((graphics *) this)->set(m_spfont);
 
       set_os_color(m_crColor);
 
@@ -5329,8 +5267,8 @@ return 1;
          pmNew = m.Clone();
       }
 
-      pmNew->Translate((Gdiplus::REAL)  (x / m_fontxyz.m_dFontWidth), (Gdiplus::REAL) y);
-      pmNew->Scale((Gdiplus::REAL) m_fontxyz.m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
+      pmNew->Translate((Gdiplus::REAL)  (x / m_spfont->m_dFontWidth), (Gdiplus::REAL) y);
+      pmNew->Scale((Gdiplus::REAL) m_spfont->m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
 
       Gdiplus::Status status;
 
@@ -5394,7 +5332,7 @@ return true;
 
       cairo_keep keep(m_pdc);
 
-      ((graphics *) this)->set(&m_fontxyz);
+      ((graphics *) this)->set(m_spfont);
 
       set_os_color(m_crColor);
 
@@ -5462,8 +5400,8 @@ return true;
          pmNew = m.Clone();
       }
 
-      pmNew->Translate((Gdiplus::REAL)  (x / m_fontxyz.m_dFontWidth), (Gdiplus::REAL) y);
-      pmNew->Scale((Gdiplus::REAL) m_fontxyz.m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
+      pmNew->Translate((Gdiplus::REAL)  (x / m_spfont->m_dFontWidth), (Gdiplus::REAL) y);
+      pmNew->Scale((Gdiplus::REAL) m_spfont->m_dFontWidth, (Gdiplus::REAL) 1.0, Gdiplus::MatrixOrderAppend);
 
       Gdiplus::Status status;
 
@@ -5630,9 +5568,9 @@ return true;
          m_spfont.create(get_app());
          m_spfont->operator=(m_fontxyz);
       }
-      else if(!m_fontxyz.m_bUpdated)
+      else if(!m_spfont->m_bUpdated)
       {
-         m_fontxyz.m_bUpdated = true;
+         m_spfont->m_bUpdated = true;
          m_spfont->operator=(m_fontxyz);
       }
       return (Gdiplus::Font *) m_spfont->get_os_data();
@@ -5645,9 +5583,9 @@ return true;
          m_spbrush.create(get_app());
          m_spbrush->operator=(m_brushxyz);
       }
-      else if(!m_brushxyz.m_bUpdated)
+      else if(!m_spbrush->m_bUpdated)
       {
-         m_brushxyz.m_bUpdated = true;
+         m_spbrush->m_bUpdated = true;
          m_spbrush->operator=(m_brushxyz);
       }
       return (Gdiplus::Brush *) m_spbrush->get_os_data();
@@ -5660,9 +5598,9 @@ return true;
          m_sppen.create(get_app());
          m_sppen->operator=(m_penxyz);
       }
-      else if(!m_penxyz.m_bUpdated)
+      else if(!m_sppen->m_bUpdated)
       {
-         m_penxyz.m_bUpdated = true;
+         m_sppen->m_bUpdated = true;
          m_sppen->operator=(m_penxyz);
       }
       return (Gdiplus::Pen *) m_sppen->get_os_data();
@@ -5841,14 +5779,14 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    bool graphics::fill_and_draw()
    {
 
-      bool bPen = m_penxyz.m_etype != ::draw2d::pen::type_null;
+      bool bPen = m_sppen->m_etype != ::draw2d::pen::type_null;
 
       cairo_keep keep(m_pdc);
 
-      if(m_brushxyz.m_etype != ::draw2d::brush::type_null)
+      if(m_spbrush->m_etype != ::draw2d::brush::type_null)
       {
 
-         set(&m_brushxyz);
+         set(m_spbrush);
 
          if(bPen)
          {
@@ -5870,7 +5808,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
       if(bPen)
       {
 
-         set(&m_penxyz);
+         set(m_sppen);
 
          cairo_stroke(m_pdc);
 
@@ -6031,14 +5969,14 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    bool graphics::fill()
    {
 
-      return fill(&m_brushxyz);
+      return fill(m_spbrush);
 
    }
 
    bool graphics::draw()
    {
 
-      return draw(&m_penxyz);
+      return draw(m_sppen);
 
    }
 

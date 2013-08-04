@@ -627,10 +627,10 @@ namespace user
          _001OnDeferPaintLayeredWindowBackground(pgraphics);
       }
 
-
       pgraphics->SelectClipRgn(NULL);
       pgraphics->SetViewportOrg(ptViewport);
 
+      //pgraphics->FillSolidRect(200, 200, 100, 100, ARGB(127, 0, 0, 127));
 
       _000OnDraw(pgraphics);
 
@@ -652,6 +652,8 @@ namespace user
             pcursor->to(pgraphics, ptCursor);
          }
       }
+
+      //pgraphics->FillSolidRect(300, 300, 100, 100, ARGB(127, 127, 127, 0));
 
    }
 

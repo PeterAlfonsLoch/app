@@ -4,6 +4,19 @@
 #include "ca2.h"
 
 
+#include <winapifamily.h>
+#include <windows.h>
+#include <shlwapi.h>
+#include <wrl/client.h>
+#include <D2d1_1.h>
+#include <DXGI1_2.h>
+#include <Dwrite.h>
+#include <D3D11.h>
+#include <D3D11_1.h>
+
+
+
+
 #ifdef _CA2_DRAW2D_DIRECT2D_LIBRARY
     #define CLASS_DECL_DRAW2D_DIRECT2D  _declspec(dllexport)
 #else
@@ -31,6 +44,9 @@ namespace draw2d_direct2d
 } // namespace draw2d_direct2d
 
 
+#ifdef WINDOWSEX
+#include "draw2d_direct2d_win_tls.h"
+#endif
 #include "draw2d_direct2d_factory_exchange.h"
 
 

@@ -29,6 +29,7 @@ namespace ca2
 
 
       ::draw2d::font * m_pfont;
+      window_graphics *             m_pgraphics;
 
 
 

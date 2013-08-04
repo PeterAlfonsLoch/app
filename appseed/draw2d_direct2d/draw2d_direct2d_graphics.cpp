@@ -1,5 +1,4 @@
 #include "framework.h"
-#include <math.h>
 
 
 #define d2d1_fax_options D2D1_FACTORY_OPTIONS // fax of merde
@@ -128,7 +127,7 @@ namespace draw2d_direct2d
    ::ca2::window * graphics::GetWindow() const
    { 
 #ifdef WINDOWSEX
-      ASSERT(get_handle1() != NULL); return ::draw2d_direct2d::window::from_handle(::WindowFromDC(get_handle1())); 
+      throw todo(get_app());
 #else
       throw todo(get_app());
 #endif
@@ -154,7 +153,7 @@ namespace draw2d_direct2d
 
    bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    { 
-      
+
       single_lock sl(System.m_pmutexDc, true);
 
       if(m_iType != 0)
@@ -213,6 +212,8 @@ namespace draw2d_direct2d
          prendertarget = pgraphics->get_typed_os_data < ID2D1RenderTarget > (data_render_target);
       }
 
+
+
       if(prendertarget == NULL)
       {
 
@@ -237,10 +238,13 @@ namespace draw2d_direct2d
             return false;
          }
 
+         prendertarget = m_prendertarget.Get();
+
 
          m_iType = 3;
 
          return true;         
+
       }
 
       D2D1_SIZE_U sizeu = D2D1::SizeU(1, 1);
@@ -352,8 +356,8 @@ namespace draw2d_direct2d
       if(pBitmap == NULL)
          return NULL;
 
-      if(m_pdevicecontext == NULL)
-         return NULL;
+//      if(m_pdevicecontext == NULL)
+  //       return NULL;
 
       /*      if(get_handle1() == NULL)
       return NULL;
@@ -861,6 +865,7 @@ namespace draw2d_direct2d
 
 #ifdef WINDOWSEX
 
+   /*
    bool graphics::DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, HBRUSH hBrush)
    {
 
@@ -878,7 +883,7 @@ namespace draw2d_direct2d
       //ASSERT(get_handle1() != NULL); return ::DrawState(get_handle1(), (HBRUSH)pBrush->get_os_data(), lpDrawProc, lData, 0, pt.x, pt.y, size.cx, size.cy, nFlags|DST_COMPLEX) != FALSE; 
 
    }
-
+   */
 #endif
 
 
@@ -1248,7 +1253,7 @@ namespace draw2d_direct2d
             m_prendertarget->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->GetCurrentBitmap().get_os_data(), &rectDst, 1.0, m_bitmapinterpolationmode, &rectSrc);
          }
 
-         //hr = m_prendertarget->Flush();
+         hr = m_prendertarget->Flush();
 
          ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->BeginDraw();
 
@@ -1827,7 +1832,7 @@ namespace draw2d_direct2d
 
 #ifdef WINDOWSEX
 
-   uint32_t graphics::GetCharacterPlacement(const char * lpString, int nCount, int nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
+/*   uint32_t graphics::GetCharacterPlacement(const char * lpString, int nCount, int nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
    {
       
       throw todo(get_app());
@@ -1848,7 +1853,7 @@ namespace draw2d_direct2d
       //return ::GetCharacterPlacement(get_handle1(), (const char *)str, (int) str.get_length(), nMaxExtent, lpResults, dwFlags);
 
    }
-
+   */
 #endif
 
    size graphics::GetAspectRatioFilter() const
@@ -1923,7 +1928,7 @@ namespace draw2d_direct2d
 
 #ifdef WINDOWSEX
 
-   UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const
+/*   UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const
    {
       
       throw todo(get_app());
@@ -1944,7 +1949,7 @@ namespace draw2d_direct2d
       //return ::GetCharABCWidths(get_handle2(), nFirstChar, nLastChar, lpabc) != FALSE;
 
    }
-
+   */
 #endif
 
    uint32_t graphics::GetFontData(uint32_t dwTable, uint32_t dwOffset, LPVOID lpData, uint32_t cbData) const
@@ -1960,6 +1965,7 @@ namespace draw2d_direct2d
 
 #ifdef WINDOWSEX
 
+   /*
    int graphics::GetKerningPairs(int nPairs, LPKERNINGPAIR lpkrnpair) const
    {
       
@@ -1993,7 +1999,7 @@ namespace draw2d_direct2d
       //return ::StartDoc(get_handle1(), lpDocInfo);
 
    }
-
+   */
 #endif
 
    int graphics::StartPage()
@@ -2147,7 +2153,7 @@ namespace draw2d_direct2d
    }
 
 #ifdef WINDOWSEX
-
+/*
    bool graphics::GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const
    {
       
@@ -2158,7 +2164,7 @@ namespace draw2d_direct2d
       //return ::GetColorAdjustment(get_handle2(), lpColorAdjust) != FALSE;
 
    }
-
+   */
 #endif
 
    ::draw2d::pen & graphics::GetCurrentPen() const
@@ -2232,7 +2238,7 @@ namespace draw2d_direct2d
 
 
 #ifdef WINDOWSEX
-
+/*
    bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT lpABCF) const
    { 
       
@@ -2243,7 +2249,7 @@ namespace draw2d_direct2d
       //return ::GetCharABCWidthsFloat(get_handle2(), nFirstChar, nLastChar, lpABCF) != FALSE; 
 
    }
-
+   */
 #endif
 
    bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, float* lpFloatBuffer) const
@@ -2522,7 +2528,7 @@ namespace draw2d_direct2d
 
          //hr = m_prendertarget->Flush();
 
-         //((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->BeginDraw();
+         ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->BeginDraw();
 
          return true;
 
@@ -2702,7 +2708,7 @@ namespace draw2d_direct2d
    }
 
 #ifdef WINDOWSEX
-
+/*
    inline bool graphics::GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) const
    {
       
@@ -2713,7 +2719,7 @@ namespace draw2d_direct2d
       //return ::GetCharABCWidthsI(get_handle1(), giFirst, cgi, pgi, lpabc) != FALSE;
 
    }
-
+   */
 #endif
 
    inline bool graphics::GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) const
@@ -3833,7 +3839,7 @@ namespace draw2d_direct2d
    }
 
 #ifdef WINDOWSEX
-
+/*
    bool graphics::SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust)
    {
       ASSERT(get_handle1() != NULL);
@@ -3844,7 +3850,7 @@ namespace draw2d_direct2d
          bResult = ::SetColorAdjustment(get_handle2(), lpColorAdjust) != FALSE;
       return bResult;
    }
-
+   */
 #endif
 
    bool graphics::PolyBezierTo(const POINT* lpPoints, int nCount)
@@ -3955,10 +3961,16 @@ namespace draw2d_direct2d
          (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->RestoreDC((int)(short)pMetaRec->rdParm[0]);
          break;
       case META_SETBKCOLOR:
-         (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SetBkColor(*(UNALIGNED COLORREF*)&pMetaRec->rdParm[0]);
+         {
+            ::draw2d::brush_sp brush(pgraphics->allocer(), *(UNALIGNED COLORREF*)&pMetaRec->rdParm[0]);
+            (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(brush);
+         }
          break;
       case META_SETTEXTCOLOR:
-         (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SetTextColor(*(UNALIGNED COLORREF*)&pMetaRec->rdParm[0]);
+         {
+            ::draw2d::brush_sp brush(pgraphics->allocer(), *(UNALIGNED COLORREF*)&pMetaRec->rdParm[0]);
+            (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(brush);
+         }
          break;
 
          // need to watch out for SelectObject(HFONT), for custom font mapping
@@ -3975,7 +3987,7 @@ namespace draw2d_direct2d
                if (hObjOld == hStockFont)
                {
                   // got the stock object back, so must be selecting a font
-                  throw not_implemented_exception();
+                  throw not_implemented(pgraphics->get_app());
                   //                  (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
                   break;  // don't play the default record
                }
@@ -3991,7 +4003,7 @@ namespace draw2d_direct2d
             {
                // play back as graphics::SelectObject(::draw2d::font*)
                //               (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
-               throw not_implemented_exception();
+               throw not_implemented(pgraphics->get_app());
                break;  // don't play the default record
             }
          }
@@ -4175,6 +4187,7 @@ namespace draw2d_direct2d
 
 #ifdef WINDOWSEX
 
+   /*
    int graphics::draw_text_ex(LPTSTR lpszString, int nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
    { 
       if(get_handle1() == NULL)
@@ -4195,7 +4208,7 @@ namespace draw2d_direct2d
       wstring wstr = ::ca2::international::utf8_to_unicode(str);
       return ::DrawTextExW(get_handle1(), const_cast<wchar_t *>((const wchar_t *)wstr), (int)wcslen(wstr), lpRect, nFormat, lpDTParams); 
    }
-
+   */
 
 #endif
 
@@ -4992,6 +5005,8 @@ namespace draw2d_direct2d
          br = brPrevious;
 
          br->create_solid(clr);
+
+         SelectObject(br);
 
       }
 
@@ -5832,7 +5847,6 @@ namespace draw2d_direct2d
    {
 
       single_lock sl(System.m_pmutexDc, true);
-
 
       if(m_player != NULL)
       {

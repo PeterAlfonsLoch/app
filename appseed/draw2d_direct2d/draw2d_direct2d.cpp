@@ -2,8 +2,9 @@
 
 #undef new
 
-
+#ifdef METROWIN
 #include <wrl/module.h>
+#endif
 
 #ifdef METROWIN
 [Platform::MTAThread]
@@ -15,7 +16,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 
    if (dwReason == DLL_PROCESS_ATTACH)
    {
-      ::OutputDebugString(L"::ca2:: draw2d_direct2d.dll :: initializing!\n");
+      ::OutputDebugStringW(L"::ca2:: draw2d_direct2d.dll :: initializing!\n");
       
 
 
@@ -35,7 +36,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 
 
 
-
+#ifdef METROWIN
 
 
 //
@@ -121,4 +122,7 @@ extern "C" __declspec(allocate(".CRT$XIY")) void* __abi__initialize = Platform::
 #pragma comment(lib, "runtimeobject.lib")
 #ifndef _CORESYS
 #pragma comment(lib, "ole32.lib")
+#endif
+
+
 #endif

@@ -1,14 +1,6 @@
 #pragma once
 
-#ifdef XYZNODEF
-
-#if !defined(METROWIN)
-
-
-#include <cairo/cairo.h>
-
-
-class CLASS_DECL_ca cairo_keep
+class CLASS_DECL_DRAW2D_CAIRO cairo_keep
 {
 public:
 
@@ -32,4 +24,3 @@ public:
 };
 
 
-#endif

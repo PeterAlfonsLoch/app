@@ -31,6 +31,8 @@ namespace draw2d_direct2d
       ::draw2d::graphics_sp    m_spgraphicsMap;
       //class size           m_size;
       bool                 m_bMapped;
+
+
       //HBITMAP              m_hbitmapOriginal;
 
       virtual ::draw2d::graphics * get_graphics();
@@ -59,7 +61,7 @@ namespace draw2d_direct2d
       int sin10(int i, int iAngle);
 
 
-      virtual void map(); // some implementations may requrire to map to m_pcolorref before manipulate it
+      virtual void map(bool bApplyAlphaTransform = true); // some implementations may requrire to map to m_pcolorref before manipulate it
       virtual void unmap(); // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
       bool is_rgb_black();
@@ -162,6 +164,9 @@ namespace draw2d_direct2d
 
       virtual bool from(::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI);
 
+
+      bool update_window(::ca2::window * pwnd, ::ca2::signal_object * pobj);
+      bool print_window(::ca2::window * pwnd, ::ca2::signal_object * pobj);
 
    };
 

@@ -203,7 +203,6 @@ namespace user
          brushText->create_solid(m_crText);
 
          point ptViewportOrg = pdc->GetViewportOrg();
-         //pdc->set_color(m_crText);
          pdc->SelectObject(brushText);
          array < size > sizea;
          m_dcextension.GetTextExtent(pdc, m_strTopText, sizea);
@@ -5388,7 +5387,6 @@ namespace user
          }
          else
          {
-//            m_pgraphics->set_color(m_cr);
             ::draw2d::brush_sp brushText(allocer());
             brushText->create_solid(m_cr);
             m_pgraphics->SelectObject(brushText);

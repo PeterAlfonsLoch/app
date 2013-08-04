@@ -482,6 +482,12 @@
     <ClInclude Include="android\ca_os_simple_pen.h">
       <Filter>Header Files\android</Filter>
     </ClInclude>
+    <ClInclude Include="windows\ca_os_window_gdi.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_window_graphics.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -873,6 +879,12 @@
     </ClCompile>
     <ClCompile Include="android\ca_os_simple_pen.cpp">
       <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_window_gdi.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_window_graphics.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

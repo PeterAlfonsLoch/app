@@ -54,7 +54,7 @@ namespace draw2d_cairo
       static void s_initialize();
       void stretch_dib(::draw2d::dib * pdib);
 
-      void map();
+      void map(bool bApplyAlphaTransform = true);
       void unmap();
 
       bool dc_select(bool bSelect = true);

@@ -7,10 +7,17 @@ namespace ca2
    {
       m_bOSNativeMouseMessagePosition     = true;
       m_bTranslateMouseMessageCursor      = true;
+      m_pgraphics                         = NULL;
    }
 
    window::~window()
    {
+
+      if(m_pgraphics != NULL)
+      {
+         delete m_pgraphics;
+      }
+
    }
 
    bool window::create_message_window(const char * pszName, ::ca2::window_callback * pcallback)

@@ -2,8 +2,10 @@
 #include <math.h>
 #include "include/FreeImage.h"
 
+
 namespace draw2d_direct2d
 {
+
 
    //   Creator : El Barto (ef00@luc.ac.be)
    //   Location : http://www.luc.ac.be/~ef00/ebgfx
@@ -22,16 +24,19 @@ namespace draw2d_direct2d
 
    double dib::dPi;
 
+
    dib::dib(::ca2::application * papp) :
       ca2(papp),
       m_spbitmap(allocer()),
       m_spgraphics(allocer())
    {
+
       m_pcolorref          = NULL;
       cx                   = 0;
       cy                   = 0;
       scan                 = 0;
       m_bMapped            = false;
+
    }
 
    COLORREF * dib::get_data()
@@ -56,7 +61,7 @@ namespace draw2d_direct2d
       double d32 = (1U << 31);
       dPi = atan(1.0) * 4.0;;
       int i;
-       for ( i=0; i<360; i++ )
+      for ( i=0; i<360; i++ )
       {
          dCos = ::cos ( i/180.0*dPi );
          dSin = ::sin ( i/180.0*dPi );
@@ -67,7 +72,7 @@ namespace draw2d_direct2d
       }
       d32 = (1U << 31);
       d32 *= 8;
-       for(i = 0; i < 10; i++)
+      for(i = 0; i < 10; i++)
       {
          dCos = ::cos ( i/180.0*dPi );
          dSin = ::sin ( i/180.0*dPi );
@@ -87,7 +92,7 @@ namespace draw2d_direct2d
 
    dib::~dib ()
    {
-//      Destroy ();
+      //      Destroy ();
    }
 
    bool dib::create(class size size)
@@ -98,9 +103,9 @@ namespace draw2d_direct2d
    bool dib::create(int width, int height)
    {
       if(m_spbitmap.is_set()
-      && m_spbitmap->get_os_data() != NULL 
-      && width == cx
-      && height == cy)
+         && m_spbitmap->get_os_data() != NULL 
+         && width == cx
+         && height == cy)
          return TRUE;
 
       Destroy();
@@ -125,19 +130,19 @@ namespace draw2d_direct2d
 
       if(m_spbitmap.m_p == NULL || m_spbitmapMap.is_null() || m_spgraphics.is_null() || m_spgraphicsMap.is_null())
       {
-         
+
          cx    = 0;
 
          cy    = 0;
 
          scan  = 0;
-         
+
          return false;
 
       }
 
       m_spgraphicsMap->CreateCompatibleDC(NULL);
-      
+
       if(!m_spbitmapMap->CreateDIBSection(m_spgraphicsMap, &m_info, DIB_RGB_COLORS, (void **) &m_pcolorref, &scan, NULL, NULL))
       {
 
@@ -160,13 +165,36 @@ namespace draw2d_direct2d
 
       }
 
-      m_spgraphics->SelectObject(m_spbitmapMap);
+      HRESULT hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 > (::draw2d_direct2d::bitmap::data_bitmap1)->Unmap();
 
       cx    = width;
-      
+
       cy    = height;
 
       scan  = width * sizeof(COLORREF);
+
+      realize(NULL);
+
+      if(!is_realized())
+      {
+
+         cx       = 0;
+
+         cy       = 0;
+
+         scan     = 0;
+
+         return false;
+
+      }
+
+
+      m_bMapped = false;
+
+
+      //realize(m_spgraphicsMap);
+
+      //((ID2D1DeviceContext *) m_spgraphics->get_os_data())->EndDraw();
 
       return true;
 
@@ -174,13 +202,13 @@ namespace draw2d_direct2d
 
    bool dib::dc_select(bool bSelect)
    {
-/*      if(bSelect)
+      /*      if(bSelect)
       {
-         return m_spgraphics->SelectObject(m_spbitmap) != NULL;
+      return m_spgraphics->SelectObject(m_spbitmap) != NULL;
       }
       else
       {
-         return m_spgraphics->SelectObject(m_hbitmapOriginal) != NULL;
+      return m_spgraphics->SelectObject(m_hbitmapOriginal) != NULL;
       }*/
       return true;
    }
@@ -210,13 +238,13 @@ namespace draw2d_direct2d
       m_spbitmap.release();
 
       m_spgraphics.release();
- 
+
       cx             = 0;
 
       cy             = 0;
 
       m_pcolorref    = NULL;
-      
+
       return TRUE;
    }
 
@@ -225,13 +253,13 @@ namespace draw2d_direct2d
 
       return pgraphics->BitBlt(pt.x, pt.y, size.cx, size.cy, get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY) != FALSE;
 
-    /*  return SetDIBitsToDevice(
-         (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->get_handle1(), 
-         pt.x, pt.y, 
-         size.cx, size.cy, 
-         ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y, 
-         m_pcolorref, &m_info, 0)
-            != FALSE; */
+      /*  return SetDIBitsToDevice(
+      (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->get_handle1(), 
+      pt.x, pt.y, 
+      size.cx, size.cy, 
+      ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y, 
+      m_pcolorref, &m_info, 0)
+      != FALSE; */
 
    }
 
@@ -266,7 +294,7 @@ namespace draw2d_direct2d
 
    void dib::Fill(int A, int R, int G, int B)
    {
-      
+
       map();
 
       COLORREF color = ARGB(A, B, G, R);
@@ -341,7 +369,7 @@ namespace draw2d_direct2d
 
    void dib::from_alpha()
    {
-      
+
       BYTE * dst = (BYTE*) m_pcolorref;
 
       int64_t size = cx * cy;
@@ -364,19 +392,19 @@ namespace draw2d_direct2d
       return ;
       /*
       if(area() <= 0)
-         return;
+      return;
 
       //return ::draw2d::dib::mult_alpha(NULL, true);
       ::draw2d::dib_sp dibWork;
 
       if(pdibWork == NULL)
       {
-         dibWork.create(get_app());
-         pdibWork = dibWork;
+      dibWork.create(get_app());
+      pdibWork = dibWork;
       }
 
       if(pdibWork->create(cx, cy))
-         return;
+      return;
 
       pdibWork->FillByte(0);
 
@@ -397,9 +425,9 @@ namespace draw2d_direct2d
       if(bPreserveAlpha)
       {
 
-         pdibWork->channel_invert(visual::rgba::channel_alpha);
+      pdibWork->channel_invert(visual::rgba::channel_alpha);
 
-         channel_from(visual::rgba::channel_alpha, pdibWork);
+      channel_from(visual::rgba::channel_alpha, pdibWork);
 
       }
 
@@ -428,7 +456,7 @@ namespace draw2d_direct2d
 
    void dib::ToAlphaAndFill(int i, COLORREF cr)
    {
-      
+
       BYTE * dst = (BYTE *) m_pcolorref;
 
       int size = cx * cy;
@@ -491,38 +519,38 @@ namespace draw2d_direct2d
          colorrefaN[0] = _colorrefN;
          colorrefaN[1] = _colorrefN;
 
-   #ifdef AMD64
+#ifdef AMD64
 
          //x64
-   #else
+#else
          _asm
          {
             emms
-            mov      eax, isize
-            mov      ebx, lpbitsDst
-            mov      ecx, lpbitsSrc
-            movq     mm0, colorrefa
-            movq     mm7, colorrefaN
-      fill_loop:
+               mov      eax, isize
+               mov      ebx, lpbitsDst
+               mov      ecx, lpbitsSrc
+               movq     mm0, colorrefa
+               movq     mm7, colorrefaN
+fill_loop:
             cmp      eax, 1
-            jle      fill_last
-            movq     mm1, [ebx]
+               jle      fill_last
+               movq     mm1, [ebx]
             movq     mm2, [ecx]
             pandn    mm1, mm0
-            pand     mm2, mm7
-            por      mm1, mm2
-            movq     [ebx], mm1
-            
-            sub      eax, 2
-            add      ebx, 8
-            add      ecx, 8
+               pand     mm2, mm7
+               por      mm1, mm2
+               movq     [ebx], mm1
 
-            jmp      fill_loop
+               sub      eax, 2
+               add      ebx, 8
+               add      ecx, 8
 
-      fill_last:
+               jmp      fill_loop
+
+fill_last:
             emms 
          }
-   #endif
+#endif
       }
 
    }
@@ -667,7 +695,7 @@ namespace draw2d_direct2d
       BYTE * dst = (BYTE *) m_pcolorref;
 
       int size = cx * cy;
-         
+
       while ( size-- )
       {
          dst[0]=(BYTE)(((B-dst[0])*A+(dst[0]<<8))>>8);
@@ -680,7 +708,7 @@ namespace draw2d_direct2d
 
    void dib::FillStippledGlass ( int R, int G, int B )
    {   
-      
+
       COLORREF color=RGB ( B, G, R );
 
       int w = cx;
@@ -729,11 +757,11 @@ namespace draw2d_direct2d
       DWORD dwB = rgba_get_b(cr);
       DWORD dwG = rgba_get_g(cr);
       DWORD dwR = rgba_get_r(cr);
-    
+
       DWORD dwB_ = dwB << 8;
       DWORD dwG_ = dwG << 8;
       DWORD dwR_ = dwR << 8;
-         
+
       while ( size-- )
       {
          dst[0]=(BYTE)(((dst[0]-dwB)*bAlpha+dwB_)>>8);
@@ -753,7 +781,7 @@ namespace draw2d_direct2d
       BYTE *src=(BYTE*)pdib->m_pcolorref;
       BYTE *dst=(BYTE*)m_pcolorref;
       int size=cx*cy;
-         
+
       while ( size-- )
       {
          dst[0]=(BYTE)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
@@ -766,7 +794,7 @@ namespace draw2d_direct2d
 
    bool dib::Blend(::draw2d::dib *pdib, ::draw2d::dib *pdibA, int A)
    {
-      
+
       if(size() != pdib->size() ||
          size() != pdibA->size())
          return false;
@@ -777,7 +805,7 @@ namespace draw2d_direct2d
       int size=cx*cy;
 
       A = 2 - A;
-         
+
       while ( size-- )
       {
          dst[0]=(BYTE)(((src[0]-dst[0])*alf[A]+(dst[0]<<8))>>8);
@@ -799,7 +827,7 @@ namespace draw2d_direct2d
       BYTE *src=(BYTE*)pdib->m_pcolorref;
       BYTE *dst=(BYTE*)m_pcolorref;
       int size=cx*cy;
-         
+
       while ( size-- )
       {
          dst[0]=(BYTE)((src[0]<dst[0]) ? src[0] : dst[0]);
@@ -818,7 +846,7 @@ namespace draw2d_direct2d
       BYTE *src=(BYTE*)pdib->m_pcolorref;
       BYTE *dst=(BYTE*)m_pcolorref;
       int size=cx*cy;
-         
+
       while ( size-- )
       {
          int Difference;
@@ -841,7 +869,7 @@ namespace draw2d_direct2d
       BYTE *src=(BYTE*)pdib->m_pcolorref;
       BYTE *dst=(BYTE*)m_pcolorref;
       int size=cx*cy;
-         
+
       while ( size-- )
       {
          dst[0]=(BYTE)((src[0]>dst[0]) ? src[0] : dst[0]);
@@ -861,7 +889,7 @@ namespace draw2d_direct2d
       BYTE *src=(BYTE*)pdib->m_pcolorref;
       BYTE *dst=(BYTE*)m_pcolorref;
       int size=cx*cy;
-         
+
       while ( size-- )
       {
          dst[0]=(BYTE)(((src[0])*(dst[0]))>>8);
@@ -880,7 +908,7 @@ namespace draw2d_direct2d
       BYTE *src=(BYTE*)pdib->m_pcolorref;
       BYTE *dst=(BYTE*)m_pcolorref;
       int size=cx*cy;
-         
+
       while ( size-- )
       {
          dst[0]=(BYTE)(255-(((255-src[0])*(255-dst[0]))>>8));
@@ -1257,40 +1285,40 @@ namespace draw2d_direct2d
 
    /*void dib::Line ( int x1, int y1, int x2, int y2, int R, int G, int B )
    {
-      int dx, dy, k1, k2, d, x, y;
-      COLORREF color=RGB ( B, G, R );
+   int dx, dy, k1, k2, d, x, y;
+   COLORREF color=RGB ( B, G, R );
 
-      dx=x2-x1;
-      dy=y2-y1;
-      d=(dy<<1)-dx;
-      k1=dy<<1;
-      k2=(dy-dx)<<1;
-      x=x1;
-      y=y1;
+   dx=x2-x1;
+   dy=y2-y1;
+   d=(dy<<1)-dx;
+   k1=dy<<1;
+   k2=(dy-dx)<<1;
+   x=x1;
+   y=y1;
 
-      m_pcolorref[y*cx+x]=color;
-      while (x<dx) 
-      {
-         if (d<=0) 
-         {
-            d+=k1;
-            x++;
-         } 
-         else 
-         {
-            d+=k2;
-            x++;
-            y++;
-         }
-         m_pcolorref[y*cx+x]=color;
-      }
+   m_pcolorref[y*cx+x]=color;
+   while (x<dx) 
+   {
+   if (d<=0) 
+   {
+   d+=k1;
+   x++;
+   } 
+   else 
+   {
+   d+=k2;
+   x++;
+   y++;
+   }
+   m_pcolorref[y*cx+x]=color;
+   }
    }*/
 
    void dib::Line ( int x1, int y1, int x2, int y2, int R, int G, int B )
    {
       int d, x, y, ax, ay, sx, sy, dx, dy;
       COLORREF color=RGB ( B, G, R );
-      
+
       dx=x2-x1;
       ax=abs ( dx )<<1;
       sx=(dx<0) ? -1 : 1;
@@ -1299,7 +1327,7 @@ namespace draw2d_direct2d
       sy=(dy<0) ? -1 : 1;
       x=x1;
       y=y1;
-      
+
       if ( ax>ay )
       {
          d=ay-(ax>>1);
@@ -1335,9 +1363,9 @@ namespace draw2d_direct2d
    void dib::LineGlass ( int x1, int y1, int x2, int y2, int R, int G, int B, int A )
    {
       int d, x, y, ax, ay, sx, sy, dx, dy;
-//      COLORREF color=RGB ( B, G, R );
+      //      COLORREF color=RGB ( B, G, R );
       BYTE *dst=(BYTE *)m_pcolorref;
-      
+
       dx=x2-x1;
       ax=abs ( dx )<<1;
       sx=(dx<0) ? -1 : 1;
@@ -1346,7 +1374,7 @@ namespace draw2d_direct2d
       sy=(dy<0) ? -1 : 1;
       x=x1;
       y=y1;
-      
+
       if ( ax>ay )
       {
          d=ay-(ax>>1);
@@ -1444,84 +1472,84 @@ namespace draw2d_direct2d
          return;
       /*if(version == 0)
       {
-         
-         int iR = iRadius - 1;
 
-         int xL = xCenter - iR;
-         int xU = xCenter + iR;
-         int yL = yCenter - iR;
-         int yU = yCenter + iR;
+      int iR = iRadius - 1;
 
-
-         if(xL < 0) xL = 0;
-         if(xU >= cx) xU = cx - 1;
-         if(yL < 0) yL = 0;
-         if(yU >= cy) yU = cy - 1;
+      int xL = xCenter - iR;
+      int xU = xCenter + iR;
+      int yL = yCenter - iR;
+      int yU = yCenter + iR;
 
 
-         BYTE *dst = ((BYTE*)(m_pcolorref + xL + yL * cx));
-         DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
-         int size=cx*cy;
-         double iLevel;
+      if(xL < 0) xL = 0;
+      if(xU >= cx) xU = cx - 1;
+      if(yL < 0) yL = 0;
+      if(yU >= cy) yU = cy - 1;
 
-         int dx, dy;
-         int dx0, dy0;
-         int dx1, dy1;
-         int dx2, dy2;
-         int dx3, dy3;
-         int dx4, dy4;
-         int dx5, dy5;
-         int dx6, dy6;
-         int dx7, dy7;
-         int dx8, dy8;
-         int dx9, dy9;
-         int dxA, dyA;
-         int dxB, dyB;
-         int dxC, dyC;
-         int dxD, dyD;
-         int dxE, dyE;
-         int dxF, dyF;
 
-         unsigned long dr;
-         unsigned long dq;
-         unsigned long dr0, dq0;
-         unsigned long dr1, dq1;
-         unsigned long dr2, dq2;
-         unsigned long dr3, dq3;
-         unsigned long dr4, dq4;
-         unsigned long dr5, dq5;
-         unsigned long dr6, dq6;
-         unsigned long dr7, dq7;
-         unsigned long dr8, dq8;
-         unsigned long dr9, dq9;
-         unsigned long drA, dqA;
-         unsigned long drB, dqB;
-         unsigned long drC, dqC;
-         unsigned long drD, dqD;
-         unsigned long drE, dqE;
-         unsigned long drF, dqF;
-         int x, y;
+      BYTE *dst = ((BYTE*)(m_pcolorref + xL + yL * cx));
+      DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
+      int size=cx*cy;
+      double iLevel;
 
-         {
-            for(y = yL; y <= yU; y++)
-            {
-               for(x = xL; x <= xU; x++)
-               {
-                  dx = abs(x - xCenter);
-                  dy = abs(y - yCenter);
-                  isqrt((dx * dx) + (dy * dy), &dr, &dq);
-                  if(dr < iRadius)
-                  {
-                     iLevel = 1.0 - dr * 1.0 / iRadius;
-                     dst[0] = blue  * iLevel;
-                     dst[1] = green * iLevel;
-                     dst[2] = red   * iLevel;   
-                  }
-                  dst += 4;
-               }
-               dst += dwAdd;
-            }
-         }
+      int dx, dy;
+      int dx0, dy0;
+      int dx1, dy1;
+      int dx2, dy2;
+      int dx3, dy3;
+      int dx4, dy4;
+      int dx5, dy5;
+      int dx6, dy6;
+      int dx7, dy7;
+      int dx8, dy8;
+      int dx9, dy9;
+      int dxA, dyA;
+      int dxB, dyB;
+      int dxC, dyC;
+      int dxD, dyD;
+      int dxE, dyE;
+      int dxF, dyF;
+
+      unsigned long dr;
+      unsigned long dq;
+      unsigned long dr0, dq0;
+      unsigned long dr1, dq1;
+      unsigned long dr2, dq2;
+      unsigned long dr3, dq3;
+      unsigned long dr4, dq4;
+      unsigned long dr5, dq5;
+      unsigned long dr6, dq6;
+      unsigned long dr7, dq7;
+      unsigned long dr8, dq8;
+      unsigned long dr9, dq9;
+      unsigned long drA, dqA;
+      unsigned long drB, dqB;
+      unsigned long drC, dqC;
+      unsigned long drD, dqD;
+      unsigned long drE, dqE;
+      unsigned long drF, dqF;
+      int x, y;
+
+      {
+      for(y = yL; y <= yU; y++)
+      {
+      for(x = xL; x <= xU; x++)
+      {
+      dx = abs(x - xCenter);
+      dy = abs(y - yCenter);
+      isqrt((dx * dx) + (dy * dy), &dr, &dq);
+      if(dr < iRadius)
+      {
+      iLevel = 1.0 - dr * 1.0 / iRadius;
+      dst[0] = blue  * iLevel;
+      dst[1] = green * iLevel;
+      dst[2] = red   * iLevel;   
+      }
+      dst += 4;
+      }
+      dst += dwAdd;
+      }
+      }
       }
       else if(version == 1)*/
       {
@@ -1533,7 +1561,7 @@ namespace draw2d_direct2d
          int x, y;
          int b;
 
-//         int r2 = iRadius * iRadius;
+         //         int r2 = iRadius * iRadius;
 
          for(y = 0; y < iRadius; y++)
          {
@@ -1545,13 +1573,13 @@ namespace draw2d_direct2d
                else
                   b = 255 - b;
 
-               
+
                lpb[x + y * iRadius] = (byte) b;
                lpb[y + x * iRadius] = (byte) b;
             }
          }
 
-         
+
          int iR = iRadius - 1;
 
          int xL = xCenter - iR;
@@ -1564,12 +1592,12 @@ namespace draw2d_direct2d
          if(xU >= cx) xU = cx - 1;
          if(yL < 0) yL = 0;
          if(yU >= cy) yU = cy - 1;
-      
+
 
          BYTE *dst = ((BYTE*)(m_pcolorref + xL + yL * cx));
          DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
-//         int size=cx*cy;
-      
+         //         int size=cx*cy;
+
          int dx, dy;
 
          // Top Left
@@ -1604,84 +1632,84 @@ namespace draw2d_direct2d
          return;
       /*if(version == 0)
       {
-         
-         int iR = iRadius - 1;
 
-         int xL = xCenter - iR;
-         int xU = xCenter + iR;
-         int yL = yCenter - iR;
-         int yU = yCenter + iR;
+      int iR = iRadius - 1;
 
-
-         if(xL < 0) xL = 0;
-         if(xU >= cx) xU = cx - 1;
-         if(yL < 0) yL = 0;
-         if(yU >= cy) yU = cy - 1;
+      int xL = xCenter - iR;
+      int xU = xCenter + iR;
+      int yL = yCenter - iR;
+      int yU = yCenter + iR;
 
 
-         BYTE *dst = ((BYTE*)(m_pcolorref + xL + yL * cx));
-         DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
-         int size=cx*cy;
-         double iLevel;
+      if(xL < 0) xL = 0;
+      if(xU >= cx) xU = cx - 1;
+      if(yL < 0) yL = 0;
+      if(yU >= cy) yU = cy - 1;
 
-         int dx, dy;
-         int dx0, dy0;
-         int dx1, dy1;
-         int dx2, dy2;
-         int dx3, dy3;
-         int dx4, dy4;
-         int dx5, dy5;
-         int dx6, dy6;
-         int dx7, dy7;
-         int dx8, dy8;
-         int dx9, dy9;
-         int dxA, dyA;
-         int dxB, dyB;
-         int dxC, dyC;
-         int dxD, dyD;
-         int dxE, dyE;
-         int dxF, dyF;
 
-         unsigned long dr;
-         unsigned long dq;
-         unsigned long dr0, dq0;
-         unsigned long dr1, dq1;
-         unsigned long dr2, dq2;
-         unsigned long dr3, dq3;
-         unsigned long dr4, dq4;
-         unsigned long dr5, dq5;
-         unsigned long dr6, dq6;
-         unsigned long dr7, dq7;
-         unsigned long dr8, dq8;
-         unsigned long dr9, dq9;
-         unsigned long drA, dqA;
-         unsigned long drB, dqB;
-         unsigned long drC, dqC;
-         unsigned long drD, dqD;
-         unsigned long drE, dqE;
-         unsigned long drF, dqF;
-         int x, y;
+      BYTE *dst = ((BYTE*)(m_pcolorref + xL + yL * cx));
+      DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
+      int size=cx*cy;
+      double iLevel;
 
-         {
-            for(y = yL; y <= yU; y++)
-            {
-               for(x = xL; x <= xU; x++)
-               {
-                  dx = abs(x - xCenter);
-                  dy = abs(y - yCenter);
-                  isqrt((dx * dx) + (dy * dy), &dr, &dq);
-                  if(dr < iRadius)
-                  {
-                     iLevel = 1.0 - dr * 1.0 / iRadius;
-                     dst[0] = blue  * iLevel;
-                     dst[1] = green * iLevel;
-                     dst[2] = red   * iLevel;   
-                  }
-                  dst += 4;
-               }
-               dst += dwAdd;
-            }
-         }
+      int dx, dy;
+      int dx0, dy0;
+      int dx1, dy1;
+      int dx2, dy2;
+      int dx3, dy3;
+      int dx4, dy4;
+      int dx5, dy5;
+      int dx6, dy6;
+      int dx7, dy7;
+      int dx8, dy8;
+      int dx9, dy9;
+      int dxA, dyA;
+      int dxB, dyB;
+      int dxC, dyC;
+      int dxD, dyD;
+      int dxE, dyE;
+      int dxF, dyF;
+
+      unsigned long dr;
+      unsigned long dq;
+      unsigned long dr0, dq0;
+      unsigned long dr1, dq1;
+      unsigned long dr2, dq2;
+      unsigned long dr3, dq3;
+      unsigned long dr4, dq4;
+      unsigned long dr5, dq5;
+      unsigned long dr6, dq6;
+      unsigned long dr7, dq7;
+      unsigned long dr8, dq8;
+      unsigned long dr9, dq9;
+      unsigned long drA, dqA;
+      unsigned long drB, dqB;
+      unsigned long drC, dqC;
+      unsigned long drD, dqD;
+      unsigned long drE, dqE;
+      unsigned long drF, dqF;
+      int x, y;
+
+      {
+      for(y = yL; y <= yU; y++)
+      {
+      for(x = xL; x <= xU; x++)
+      {
+      dx = abs(x - xCenter);
+      dy = abs(y - yCenter);
+      isqrt((dx * dx) + (dy * dy), &dr, &dq);
+      if(dr < iRadius)
+      {
+      iLevel = 1.0 - dr * 1.0 / iRadius;
+      dst[0] = blue  * iLevel;
+      dst[1] = green * iLevel;
+      dst[2] = red   * iLevel;   
+      }
+      dst += 4;
+      }
+      dst += dwAdd;
+      }
+      }
       }
       else if(version == 1)*/
       {
@@ -1693,7 +1721,7 @@ namespace draw2d_direct2d
          int x, y;
          int b;
 
-//         int r2 = iRadius * iRadius;
+         //         int r2 = iRadius * iRadius;
 
          for(y = 0; y < iRadius; y++)
          {
@@ -1705,13 +1733,13 @@ namespace draw2d_direct2d
                else
                   b = ~b;
 
-               
+
                lpb[x + y * iRadius] = (byte) b;
                lpb[y + x * iRadius] = (byte) b;
             }
          }
 
-         
+
          int iR = iRadius - 1;
 
          int xL = xCenter - iR;
@@ -1724,12 +1752,12 @@ namespace draw2d_direct2d
          if(xU >= cx) xU = cx - 1;
          if(yL < 0) yL = 0;
          if(yU >= cy) yU = cy - 1;
-      
+
 
          BYTE *dst = ((BYTE*)(m_pcolorref + xL + yL * cx));
          DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
-//         int size=cx*cy;
-      
+         //         int size=cx*cy;
+
          int dx, dy;
 
          BYTE bComp;
@@ -1764,8 +1792,8 @@ namespace draw2d_direct2d
       if(cx <= 0 || cy <= 0)
          return;
 
-    
-    
+
+
 
       // White blend dib
       dib dib1(get_app());
@@ -1787,7 +1815,7 @@ namespace draw2d_direct2d
       throw todo(get_app());
 
 #endif
-    
+
       // Black blend dib
       ::draw2d::dib_sp spdib2(allocer());
       spdib2->create(cx, cy);
@@ -1822,57 +1850,57 @@ namespace draw2d_direct2d
          0,
          NULL,
          0);
-//         DI_MASK);
-    
+      //         DI_MASK);
+
       BYTE * r1=(BYTE*)dib1.m_pcolorref;
       BYTE * r2=(BYTE*)spdib2->get_data();
       BYTE * srcM=(BYTE*)dibM.m_pcolorref;
       BYTE * dest=(BYTE*)m_pcolorref;
       int iSize = cx*cy;
-    
+
       BYTE b;
       BYTE bMax;
-         while ( iSize-- > 0)
+      while ( iSize-- > 0)
+      {
+         if(srcM[0] == 255)
          {
-            if(srcM[0] == 255)
-            {
-               bMax = 0;
-            }
-            else
-            {
-               bMax = 0;
-               b =(BYTE)(r1[0]  - r2[0]);
-               bMax = max(b, bMax);
-               b =(BYTE)(r1[1]  - r2[1]);
-               bMax = max(b, bMax);
-               b =(BYTE)(r1[2]  - r2[2]); 
-               bMax = max(b, bMax);
-               bMax = 255 - bMax;
-            }
-            dest[0]  =  bMax;
-            dest[1]  =  bMax;
-            dest[2]  =  bMax;
-            dest     += 4;
-            srcM     += 4;
-            r1       += 4;
-            r2       += 4;
+            bMax = 0;
          }
-      
-    
-    
+         else
+         {
+            bMax = 0;
+            b =(BYTE)(r1[0]  - r2[0]);
+            bMax = max(b, bMax);
+            b =(BYTE)(r1[1]  - r2[1]);
+            bMax = max(b, bMax);
+            b =(BYTE)(r1[2]  - r2[2]); 
+            bMax = max(b, bMax);
+            bMax = 255 - bMax;
+         }
+         dest[0]  =  bMax;
+         dest[1]  =  bMax;
+         dest[2]  =  bMax;
+         dest     += 4;
+         srcM     += 4;
+         r1       += 4;
+         r2       += 4;
+      }
+
+
+
    }
 
    void dib::rotate(::draw2d::dib * pdib, double dAngle, double dScale)
    {
-     // ::draw2d::dib_sp spdib(get_app());
-   //   spdib->Paste(this);
+      // ::draw2d::dib_sp spdib(get_app());
+      //   spdib->Paste(this);
 
-/*      int cx = cx;
+      /*      int cx = cx;
       int cy = cy; */
 
       int l = max(cx, cy);
 
-      
+
       int jmax = min(l, cy / 2);
       int jmin = - jmax;
       int imax = min(l, cx / 2);
@@ -1887,20 +1915,20 @@ namespace draw2d_direct2d
       //int iAngle = 1;
       //int k = 0;
 
-   /*     for ( int j=jmin; j<jmax; j++ )
+      /*     for ( int j=jmin; j<jmax; j++ )
       {
-         for ( int i=imin; i<imax; i++ )
-         {
-            int x, y;
+      for ( int i=imin; i<imax; i++ )
+      {
+      int x, y;
 
-            // A Combination of a 2d Translation/rotation/Scale Matrix
-            x=int(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
-            y=int(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
-            m_pcolorref[(j+joff)*cx+(i+ioff)]=
-               spdib->m_pcolorref[abs(y%cy)*cx+abs(x%cx)];
-            //k++;
-         }
-         (j+joff)*cx+(i+ioff)
+      // A Combination of a 2d Translation/rotation/Scale Matrix
+      x=int(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
+      y=int(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
+      m_pcolorref[(j+joff)*cx+(i+ioff)]=
+      spdib->m_pcolorref[abs(y%cy)*cx+abs(x%cx)];
+      //k++;
+      }
+      (j+joff)*cx+(i+ioff)
       }*/
 
       int k = 0;
@@ -1908,7 +1936,7 @@ namespace draw2d_direct2d
       double dSin = ::sin(dAngle * dPi / 180.0) * dScale;
       int cx1 = cx - 1;
       int cy1 = cy - 1;
-        for ( int j=jmin; j<jmax; j++ )
+      for ( int j=jmin; j<jmax; j++ )
       {
          for ( int i=imin; i<imax; i++ )
          {
@@ -1940,7 +1968,7 @@ namespace draw2d_direct2d
             }
 
 
-            
+
             m_pcolorref[(j+joff)*cx+(i+ioff)]=
                pdib->m_pcolorref[y * cx + x];
             k++;
@@ -1951,13 +1979,13 @@ namespace draw2d_direct2d
 
    void dib::Rotate034(::draw2d::dib * pdib, double dAngle, double dScale)
    {
-     
-/*      int cx = cx;
+
+      /*      int cx = cx;
       int cy = cy;*/
 
       int l = max(cx, cy);
 
-      
+
       int jmax = min(l, cy / 2);
       int jmin = - jmax;
       int imax = min(l, cx / 2);
@@ -1969,17 +1997,17 @@ namespace draw2d_direct2d
 
       if((cx % 2) == 1)
          imax++;
-      
+
       int joff = cy / 2;
       int ioff = cx / 2;
 
-      
+
       int k = 0;
       double dCos = ::cos(dAngle * dPi / 180.0) * dScale;
       double dSin = ::sin(dAngle * dPi / 180.0) * dScale;
       int cx1 = cx - 1;
       int cy1 = cy - 1;
-        for ( int j=jmin; j<jmax; j++ )
+      for ( int j=jmin; j<jmax; j++ )
       {
          for ( int i=imin; i<imax; i++ )
          {
@@ -2011,7 +2039,7 @@ namespace draw2d_direct2d
             }
 
 
-            
+
             m_pcolorref[(j+joff)*cx+(i+ioff)]=
                pdib->m_pcolorref[y * cx + x];
             k++;
@@ -2021,8 +2049,8 @@ namespace draw2d_direct2d
 
    void dib::rotate(::draw2d::dib * pdib, LPCRECT lpcrect, double dAngle, double dScale)
    {
-     // ::draw2d::dib_sp spdib(get_app());
-   //   spdib->Paste(this);
+      // ::draw2d::dib_sp spdib(get_app());
+      //   spdib->Paste(this);
 
 
 
@@ -2032,7 +2060,7 @@ namespace draw2d_direct2d
       int cy = rect.height();
 
       int l = max(cx, cy);
-      
+
       int jmax = min(l, cy / 2);
       int jmin = - jmax;
       int imax = min(l, cx / 2);
@@ -2047,20 +2075,20 @@ namespace draw2d_direct2d
       //int iAngle = 1;
       //int k = 0;
 
-   /*     for ( int j=jmin; j<jmax; j++ )
+      /*     for ( int j=jmin; j<jmax; j++ )
       {
-         for ( int i=imin; i<imax; i++ )
-         {
-            int x, y;
+      for ( int i=imin; i<imax; i++ )
+      {
+      int x, y;
 
-            // A Combination of a 2d Translation/rotation/Scale Matrix
-            x=int(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
-            y=int(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
-            m_pcolorref[(j+joff)*cx+(i+ioff)]=
-               spdib->m_pcolorref[abs(y%cy)*cx+abs(x%cx)];
-            //k++;
-         }
-         (j+joff)*cx+(i+ioff)
+      // A Combination of a 2d Translation/rotation/Scale Matrix
+      x=int(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
+      y=int(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
+      m_pcolorref[(j+joff)*cx+(i+ioff)]=
+      spdib->m_pcolorref[abs(y%cy)*cx+abs(x%cx)];
+      //k++;
+      }
+      (j+joff)*cx+(i+ioff)
       }*/
 
       int k = 0;
@@ -2068,7 +2096,7 @@ namespace draw2d_direct2d
       double dSin = ::sin(dAngle * dPi / 180.0) * dScale;
       int cx1 = this->cx - 1;
       int cy1 = this->cy - 1;
-        for ( int j=jmin; j<jmax; j++ )
+      for ( int j=jmin; j<jmax; j++ )
       {
          for ( int i=imin; i<imax; i++ )
          {
@@ -2100,7 +2128,7 @@ namespace draw2d_direct2d
             }
 
 
-            
+
             m_pcolorref[(j+joff)*cx+(i+ioff)]=
                pdib->m_pcolorref[y * cx + x];
             k++;
@@ -2110,12 +2138,12 @@ namespace draw2d_direct2d
 
    /*int dib::cos(int i, int iAngle)
    {
-      return (int) (((_int64) i * CosN[iAngle]) >> 32);
+   return (int) (((_int64) i * CosN[iAngle]) >> 32);
    }
 
    int dib::sin(int i, int iAngle)
    {
-      return (int) (((_int64) i * SinN[iAngle]) >> 32);
+   return (int) (((_int64) i * SinN[iAngle]) >> 32);
    }*/
 
 
@@ -2123,56 +2151,56 @@ namespace draw2d_direct2d
 
    /*void dib::Fill (int A, int R, int G, int B )
    {
-      COLORREF color = RGB ( B, G, R ) | (A << 24);
-      int size=stride*cy;
+   COLORREF color = RGB ( B, G, R ) | (A << 24);
+   int size=stride*cy;
 
-      COLORREF * pcr;
+   COLORREF * pcr;
 
-      map();
+   map();
 
-      int iSize32 = size / 32;
-      int i;
-      for (i=0; i < iSize32; i+=32 )
-      {
-         pcr = &m_pcolorref[i];
-         pcr[0] = color;
-         pcr[1] = color;
-         pcr[2] = color;
-         pcr[3] = color;
-         pcr[4] = color;
-         pcr[5] = color;
-         pcr[6] = color;
-         pcr[7] = color;
-         pcr[8] = color;
-         pcr[9] = color;
-         pcr[10] = color;
-         pcr[11] = color;
-         pcr[12] = color;
-         pcr[13] = color;
-         pcr[14] = color;
-         pcr[15] = color;
-         pcr[16] = color;
-         pcr[17] = color;
-         pcr[18] = color;
-         pcr[19] = color;
-         pcr[20] = color;
-         pcr[21] = color;
-         pcr[22] = color;
-         pcr[23] = color;
-         pcr[24] = color;
-         pcr[25] = color;
-         pcr[26] = color;
-         pcr[27] = color;
-         pcr[28] = color;
-         pcr[29] = color;
-         pcr[30] = color;
-         pcr[31] = color;
-      }
+   int iSize32 = size / 32;
+   int i;
+   for (i=0; i < iSize32; i+=32 )
+   {
+   pcr = &m_pcolorref[i];
+   pcr[0] = color;
+   pcr[1] = color;
+   pcr[2] = color;
+   pcr[3] = color;
+   pcr[4] = color;
+   pcr[5] = color;
+   pcr[6] = color;
+   pcr[7] = color;
+   pcr[8] = color;
+   pcr[9] = color;
+   pcr[10] = color;
+   pcr[11] = color;
+   pcr[12] = color;
+   pcr[13] = color;
+   pcr[14] = color;
+   pcr[15] = color;
+   pcr[16] = color;
+   pcr[17] = color;
+   pcr[18] = color;
+   pcr[19] = color;
+   pcr[20] = color;
+   pcr[21] = color;
+   pcr[22] = color;
+   pcr[23] = color;
+   pcr[24] = color;
+   pcr[25] = color;
+   pcr[26] = color;
+   pcr[27] = color;
+   pcr[28] = color;
+   pcr[29] = color;
+   pcr[30] = color;
+   pcr[31] = color;
+   }
 
-      for (i=0; i<size; i++ )
-      {
-         m_pcolorref[i]=color;
-      }
+   for (i=0; i<size; i++ )
+   {
+   m_pcolorref[i]=color;
+   }
 
    }*/
 
@@ -2214,14 +2242,14 @@ namespace draw2d_direct2d
       {
          return 0;
       }
-      
+
    }
 
 
    void dib::xor(::draw2d::dib * pdib)
    {
       if(cx != pdib->cx
-      || cy != pdib->cy)
+         || cy != pdib->cy)
       {
          return;
       }
@@ -2261,9 +2289,9 @@ namespace draw2d_direct2d
          lpDestLine = &lpDest[y * cx];
          for(int x = 0; x < iFrameWidth; x++)
          {
-             *lpDestLine = *lpSrc;
-             lpDestLine++;
-             lpSrc++;
+            *lpDestLine = *lpSrc;
+            lpDestLine++;
+            lpSrc++;
          }
       }
    }
@@ -2287,9 +2315,9 @@ namespace draw2d_direct2d
          lpDestLine = &lpDest[y * cx];
          for(int x = 0; x < iFrameWidth; x++)
          {
-             *lpDestLine = *lpSrc;
-             lpDestLine++;
-             lpSrc++;
+            *lpDestLine = *lpSrc;
+            lpDestLine++;
+            lpSrc++;
          }
       }
    }
@@ -2313,9 +2341,9 @@ namespace draw2d_direct2d
          lpDestLine = &lpDest[y * cx];
          for(int x = 0; x < iFrameWidth; x++)
          {
-             *lpDestLine ^= *lpSrc;
-             lpDestLine++;
-             lpSrc++;
+            *lpDestLine ^= *lpSrc;
+            lpDestLine++;
+            lpSrc++;
          }
       }
    }
@@ -2335,9 +2363,9 @@ namespace draw2d_direct2d
          lpSrcLine = &lpSrc[y * cx];
          for(int x = 0; x < iFrameWidth; x++)
          {
-             *lpDest = *lpSrcLine;
-             lpDest++;
-             lpSrcLine++;
+            *lpDest = *lpSrcLine;
+            lpDest++;
+            lpSrcLine++;
          }
       }
    }
@@ -2455,15 +2483,15 @@ namespace draw2d_direct2d
 
       /*
       ::StretchDIBits(
-         SP_HDC(m_spgraphics),
-         0, 0,
-         cx, cy,
-         0, 0, 
-         pdib->cx, pdib->cy,
-         pdib->m_pcolorref,
-         &pdib->m_info,
-         DIB_RGB_COLORS,
-         SRCCOPY);*/
+      SP_HDC(m_spgraphics),
+      0, 0,
+      cx, cy,
+      0, 0, 
+      pdib->cx, pdib->cy,
+      pdib->m_pcolorref,
+      &pdib->m_info,
+      DIB_RGB_COLORS,
+      SRCCOPY);*/
 
    }
 
@@ -2480,7 +2508,7 @@ namespace draw2d_direct2d
 
    void dib::fill_channel(int intensity, visual::rgba::echannel echannel)
    {
-       int offset = ((int)echannel) % 4;
+      int offset = ((int)echannel) % 4;
       int size=cx*cy;
 
       BYTE * pb;
@@ -2528,7 +2556,7 @@ namespace draw2d_direct2d
       {
          *(((BYTE * ) &m_pcolorref[i]) + offset) = (byte) intensity;
       }
-  }
+   }
 
 
    int dib::cos(int i, int iAngle)
@@ -2551,7 +2579,7 @@ namespace draw2d_direct2d
       return (int) (((_int64) i * Sin10N[iAngle]) >> 34);
    }
 
-   void dib::map()
+   void dib::map(bool bApplyAlphaTransform)
    {
 
       if(m_bMapped)
@@ -2582,30 +2610,35 @@ namespace draw2d_direct2d
          throw "";
 
       m_pcolorref = (COLORREF *) pb->m_map.bits;
-      
+
       scan = pb->m_map.pitch;
 
       int compare_scan = cx * sizeof(COLORREF);
 
-      for(int y = 0; y < cy; y++)
+      if(bApplyAlphaTransform)
       {
-         byte * p = &((byte *) m_pcolorref)[scan * y];
-         for(int x = 0; x < cx; x++)
+
+         for(int y = 0; y < cy; y++)
          {
-            if(p[3] == 0)
+            byte * p = &((byte *) m_pcolorref)[scan * y];
+            for(int x = 0; x < cx; x++)
             {
-               p[0] = 255;
-               p[1] = 255;
-               p[2] = 255;
+               if(p[3] == 0)
+               {
+                  p[0] = 255;
+                  p[1] = 255;
+                  p[2] = 255;
+               }
+               else
+               {
+                  p[0] = (p[0] * 255 / p[3]);
+                  p[1] = (p[1] * 255 / p[3]);
+                  p[2] = (p[2] * 255 / p[3]);
+               }
+               p += 4;
             }
-            else
-            {
-               p[0] = (p[0] * 255 / p[3]);
-               p[1] = (p[1] * 255 / p[3]);
-               p[2] = (p[2] * 255 / p[3]);
-            }
-            p += 4;
          }
+
       }
 
       m_bMapped = true;
@@ -2669,12 +2702,14 @@ namespace draw2d_direct2d
 
       if(FAILED(hr))
       {
-         
+
          m_bMapped = false;
-         
+
          throw "";
 
       }
+
+      m_spgraphics->SelectObject(m_spbitmap);
 
       ((ID2D1DeviceContext *) m_spgraphics->get_os_data())->BeginDraw();
 
@@ -2682,14 +2717,14 @@ namespace draw2d_direct2d
 
    }
 
-/*   int dib::cx
+   /*   int dib::cx
    {
-      return cx;
+   return cx;
    }
 
    int dib::cy
    {
-      return cy;
+   return cy;
    }*/
 
 #undef new
@@ -2698,7 +2733,7 @@ namespace draw2d_direct2d
    {
 
       if(pfibitmap == NULL)
-           return false;
+         return false;
 
 
 
@@ -2715,27 +2750,27 @@ namespace draw2d_direct2d
 
       if(hbitmap == NULL)
       {
-         Destroy();
-         return false;
+      Destroy();
+      return false;
       }
 
       HDC hdc = ::CreateCompatibleDC(NULL);
 
       if(pbi->bmiHeader.biHeight != SetDIBits(
-         hdc,
-         hbitmap,
-         0,
-         pbi->bmiHeader.biHeight,
-         pdata,
-         pbi,
-         DIB_RGB_COLORS))
+      hdc,
+      hbitmap,
+      0,
+      pbi->bmiHeader.biHeight,
+      pdata,
+      pbi,
+      DIB_RGB_COLORS))
       {
-         Destroy();
-         if(bUnloadFI)
-         {
-            FreeImage_Unload(pfibitmap);
-         }
-         return false;
+      Destroy();
+      if(bUnloadFI)
+      {
+      FreeImage_Unload(pfibitmap);
+      }
+      return false;
       }*/
 
       map();
@@ -2749,18 +2784,18 @@ namespace draw2d_direct2d
       //memcpy(m_pcolorref, pdata, (size_t) (area() * sizeof(COLORREF)));
 
 
-//      RGBQUAD bkcolor;
+      //      RGBQUAD bkcolor;
 
       /*if(pbi->bmiHeader.biBitCount == 32)
       {
       }
       else if(pbi->bmiHeader.biBitCount <= 24 && FreeImage_GetTransparencyCount(pfibitmap) <= 0)
       {
-         fill_channel(0xff, ::visual::rgba::channel_alpha);
+      fill_channel(0xff, ::visual::rgba::channel_alpha);
       }
       else if(FreeImage_GetBackgroundColor(pfibitmap, &bkcolor))
       {
-         transparent_color(bkcolor);
+      transparent_color(bkcolor);
       }*/
 
       FreeImage_Unload(pfiNew);
@@ -2779,7 +2814,7 @@ namespace draw2d_direct2d
 
    bool dib::defer_realize(::draw2d::graphics * pgraphics)
    {
-      
+
       if(is_realized())
       {
          ((ID2D1DeviceContext *) m_spgraphics->get_os_data())->BeginDraw();
@@ -2798,7 +2833,7 @@ namespace draw2d_direct2d
 
       if(is_realized())
          return false;
-      
+
       m_spbitmap.create(allocer());
       m_spgraphics.create(allocer());
 
@@ -2823,7 +2858,11 @@ namespace draw2d_direct2d
       pixelformat.alphaMode = D2D1_ALPHA_MODE_PREMULTIPLIED;
       pixelformat.format = DXGI_FORMAT_B8G8R8A8_UNORM;
 
-      HRESULT hr = pgraphicsSrc->m_prendertarget->CreateCompatibleRenderTarget(NULL, &sizeu, &pixelformat, D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_NONE, &pgraphicsDst->m_pbitmaprendertarget);
+      Microsoft::WRL::ComPtr < ID2D1RenderTarget > t;
+
+      System.m_pdevicecontext->QueryInterface(IID_PPV_ARGS(&t));
+
+      HRESULT hr = t->CreateCompatibleRenderTarget(NULL, &sizeu, &pixelformat, D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_NONE, &pgraphicsDst->m_pbitmaprendertarget);
 
       if(pgraphicsDst->m_pbitmaprendertarget == NULL)
          return false;
@@ -2898,7 +2937,7 @@ namespace draw2d_direct2d
       HRESULT hr = ((ID2D1Bitmap *) m_spbitmapMap->get_os_data())->CopyFromBitmap(&p, ((ID2D1Bitmap *) m_spbitmapMap->get_os_data()), &srcRect);
 
       m_spgraphics.release();
-      
+
       return true;
 
    }
@@ -2907,20 +2946,134 @@ namespace draw2d_direct2d
    bool dib::is_realized()
    {
 
-      if(m_spgraphics->get_os_data() == NULL)
+      if(m_spgraphics.is_null() || m_spgraphics->get_os_data() == NULL)
          return false;
 
       return true;
 
    }
 
-/*   int dib::scan()
+   /*   int dib::scan()
    {
-      
-      return scan;
+
+   return scan;
 
    }*/
 
+#if defined(WINDOWSEX)
 
-}
+   bool dib::update_window(::ca2::window * pwnd, ::ca2::signal_object * pobj)
+   {
+
+      rect64 rectWindow;
+
+      rectWindow = pwnd->m_rectParentClient;
+
+      m_spgraphics->SetViewportOrg(0, 0);
+
+      map(false);
+
+      rect rect(rectWindow);
+
+      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect);
+
+      return true;
+
+   }
+
+   bool dib::print_window(::ca2::window * pwnd, ::ca2::signal_object * pobj)
+   {
+
+
+      SCAST_PTR(::ca2::message::base, pbase, pobj);
+
+      if(pbase->m_wparam == NULL)
+         return false;
+
+      m_spgraphics->attach((HDC) pbase->m_wparam);
+
+      rect rectx;
+
+      ::draw2d::bitmap * pbitmap = &m_spgraphics->GetCurrentBitmap();
+
+      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
+
+      //      uint32_t dw = ::GetLastError();
+      class size size = pbitmap->get_size();
+
+      rectx.left = 0;
+      rectx.top = 0;
+      rectx.right = size.cx;
+      rectx.bottom = size.cy;
+
+      try
+      {
+
+         rect rectWindow;
+
+         pwnd->GetWindowRect(rectWindow);
+
+         ::draw2d::dib_sp dib(allocer());
+
+         if(!dib->create(rectWindow.bottom_right()))
+            return false;
+
+         ::draw2d::graphics * pdc = dib->get_graphics();
+
+         if(pdc->get_os_data() == NULL)
+            return false;
+
+         rect rectPaint;
+         rect rectUpdate;
+         rectUpdate = rectWindow;
+         rectPaint = rectWindow;
+         rectPaint.offset(-rectPaint.top_left());
+         m_spgraphics->SelectClipRgn(NULL);
+         if(pwnd->m_pguie != NULL && pwnd->m_pguie != this)
+         {
+            pwnd->m_pguie->_001OnDeferPaintLayeredWindowBackground(pdc);
+         }
+         else
+         {
+            pwnd->_001OnDeferPaintLayeredWindowBackground(pdc);
+         }
+         m_spgraphics->SelectClipRgn(NULL);
+         m_spgraphics-> SetViewportOrg(point(0, 0));
+         pwnd->_000OnDraw(pdc);
+         m_spgraphics->SetViewportOrg(point(0, 0));
+         //(dynamic_cast<::win::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+         m_spgraphics->SelectClipRgn(NULL);
+         m_spgraphics->SetViewportOrg(point(0, 0));
+
+         m_spgraphics->SelectClipRgn( NULL);
+         m_spgraphics->BitBlt(rectPaint.left, rectPaint.top, 
+            rectPaint.width(), rectPaint.height(),
+            pdc, rectUpdate.left, rectUpdate.top,
+            SRCCOPY);
+
+         m_spgraphics->TextOut(0, 0, "Te Amo CGCL", 11);
+      }
+      catch(...)
+      {
+      }
+      m_spgraphics->FillSolidRect(rectx, RGB(255, 255, 255));
+      pobj->m_bRet = true;
+      pbase->set_lresult(0);
+
+      return true;
+   }
+
+
+#endif
+
+
+} // namespace draw2d_direct2d
+
+
+
+
+
+
+
+
 

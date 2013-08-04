@@ -401,7 +401,7 @@ namespace draw2d_cairo
    }
 
 
-   void dib::map()
+   void dib::map(bool bApplyAlphaTransform)
    {
 
       if(m_bMapped)
@@ -431,18 +431,21 @@ namespace draw2d_cairo
 
       pdata = (byte *) m_pcolorref;
 
-/*      int size = scan * cy / sizeof(COLORREF);
-      while(size > 0)
+      if(!bApplyAlphaTransform)
       {
-         if(pdata[3] != 0)
+         int size = scan * cy / sizeof(COLORREF);
+         while(size > 0)
          {
-            pdata[0] = pdata[0] * 255 / pdata[3];
-            pdata[1] = pdata[1] * 255 / pdata[3];
-            pdata[2] = pdata[2] * 255 / pdata[3];
+            if(pdata[3] != 0)
+            {
+               pdata[0] = pdata[0] * 255 / pdata[3];
+               pdata[1] = pdata[1] * 255 / pdata[3];
+               pdata[2] = pdata[2] * 255 / pdata[3];
+            }
+            pdata += 4;
+            size--;
          }
-         pdata += 4;
-         size--;
-      }*/
+      }
 
       m_bMapped = true;
 
@@ -2679,332 +2682,31 @@ namespace draw2d_cairo
 
 #define new DEBUG_NEW
 
+#if defined(WINDOWS)
 
    bool dib::update_window(::ca2::window * pwnd, ::ca2::signal_object * pobj)
    {
 
-   #if defined(WINDOWS)
 
-      oswindow oswindowParam = pwnd->get_handle();
-
-      HDC hdcScreen = ::GetDCEx(oswindowParam, NULL,  DCX_CLIPSIBLINGS | DCX_WINDOW);
-
-      if(hdcScreen == NULL)
-      {
-         // If it has failed to get ::ca2::window
-         // owned device context, try to get
-         // a device context from the cache.
-         hdcScreen = ::GetDCEx(oswindowParam, NULL, DCX_CACHE | DCX_CLIPSIBLINGS | DCX_WINDOW);
-
-         // If no device context could be retrieved,
-         // nothing can be drawn at the screen.
-         // The function failed.
-         if(hdcScreen == NULL)
-            return false;
-      }
-
-      ::SelectClipRgn(hdcScreen, NULL);
       rect64 rectWindow;
+
       rectWindow = pwnd->m_rectParentClient;
-
-
-      if(m_sizeWnd != rectWindow.size())
-      {
-
-         //m_spg.release();
-
-         //m_spb.release();
-
-         //if(m_pbitmap != NULL)
-         //{
-         // delete m_pbitmap;
-         //}
-
-         if(m_hbitmap != NULL)
-            ::DeleteObject(m_hbitmap);
-
-         m_sizeWnd = rectWindow.size();
-
-         ZeroMemory(&m_bitmapinfo, sizeof (BITMAPINFO));
-
-         int32_t iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, (int) m_sizeWnd.cx);
-
-         m_bitmapinfo.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
-         m_bitmapinfo.bmiHeader.biWidth         = (LONG) m_sizeWnd.cx;
-         m_bitmapinfo.bmiHeader.biHeight        = (LONG) -m_sizeWnd.cy;
-         m_bitmapinfo.bmiHeader.biPlanes        = 1;
-         m_bitmapinfo.bmiHeader.biBitCount      = 32; 
-         m_bitmapinfo.bmiHeader.biCompression   = BI_RGB;
-         m_bitmapinfo.bmiHeader.biSizeImage     = (LONG) (iStride * m_sizeWnd.cy);
-
-
-         m_hbitmap = CreateDIBSection(NULL, &m_bitmapinfo, DIB_RGB_COLORS, (void **) &m_pcolorref, NULL, 0);
-
-
-         
-         m_spbitmap->attach(cairo_image_surface_create_for_data((unsigned char *) m_pcolorref, CAIRO_FORMAT_ARGB32, cx, cy, iStride));
-
-//#undef new
-  //       m_spbitmap->attach(new  Gdiplus::Bitmap(m_sizeWnd.cx, m_sizeWnd.cy, m_sizeWnd.cx *4 , PixelFormat32bppARGB, (BYTE *) m_pcolorref));
-//#define new DEBUG_NEW
-
-         cx = (int32_t) m_sizeWnd.cx;
-         cy = (int32_t) m_sizeWnd.cy;
-         scan = iStride;
-
-
-         m_spgraphics.create(allocer());
-
-         m_spgraphics->SelectObject(m_spbitmap);
-
-    //     m_spb.create(allocer());
-
-      //   m_spb->attach(m_pbitmap);
-
-        // m_spg->SelectObject(m_spb);
-
-      }//
-
-
-
-
-
-
-      ////////////////////////////////////////
-      //
-      // Routine:
-      // Preparation for the
-      // bit blitting screen output.
-      //
-      ////////////////////////////////////////
-
-      // get the update region bound box.
-      // rect rectUpdate;
-      // rgnUpdate.get_bounding_box(rectUpdate);
-
-      // get the ::ca2::window client area box
-      // in screen coordinates.
-
-      // Output rectangle receive the intersection
-      // of ::ca2::window box and update box.
-      //rect rectOutput;
-      //rectOutput.intersect(rectWnd, rectUpdate);
-
-      // OutputClient rectangle receive the Output
-      // rectangle in client coordinates.
-      //rect rectOutputClient(rectOutput);
-      //rectOutputClient -= rectWnd.top_left();
-   //   ::ScreenToClient(oswindowParam, &rectOutputClient.top_left());
-   //   ::ScreenToClient(oswindowParam, &rectOutputClient.bottom_right());
-
-      rect64 rectOutputClient(rectWindow);
-      rectOutputClient -= rectWindow.top_left();
-
-      // The ::ca2::window owned device context is clipped
-      // with the update region in screen coordinates
-      // translated to ::ca2::window client coordinates.
-      //::draw2d::region_sp rgnClip(allocer());
-      //rgnClip->create_rect(0, 0, 0, 0);
-      //rgnClip->CopyRgn(&rgnUpdate);
-      //rgnClip->translate( - rectWnd.top_left());
-
-   //   ::SelectClipRgn(hdcScreen, rgnClip);
-      
-      // Debug
-   #ifdef DEBUG
-      //rect rectClip;
-      //rgnClip->GetRgnBox(rectClip);
-   #endif
 
       m_spgraphics->SetViewportOrg(0, 0);
 
-      point pt(0, 0);
+      map(false);
 
-      ::SetViewportOrgEx(hdcScreen, 0, 0, &pt);
+      rect rect(rectWindow);
 
-
-      if(pwnd->GetExStyle() & WS_EX_LAYERED)
-      {
-         map();
-         BYTE *dst=(BYTE*)get_data();
-         int64_t size = area();
-
-
-         // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
-
-
-         while (size >= 8)
-         {
-            dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3])>> 8);
-            dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3])>> 8);
-            dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3])>> 8);
-
-            dst[4+0] = LOBYTE(((int32_t)dst[4+0] * (int32_t)dst[4+3])>> 8);
-            dst[4+1] = LOBYTE(((int32_t)dst[4+1] * (int32_t)dst[4+3])>> 8);
-            dst[4+2] = LOBYTE(((int32_t)dst[4+2] * (int32_t)dst[4+3])>> 8);
-
-            dst[8+0] = LOBYTE(((int32_t)dst[8+0] * (int32_t)dst[8+3])>> 8);
-            dst[8+1] = LOBYTE(((int32_t)dst[8+1] * (int32_t)dst[8+3])>> 8);
-            dst[8+2] = LOBYTE(((int32_t)dst[8+2] * (int32_t)dst[8+3])>> 8);
-
-            dst[12+0] = LOBYTE(((int32_t)dst[12+0] * (int32_t)dst[12+3])>> 8);
-            dst[12+1] = LOBYTE(((int32_t)dst[12+1] * (int32_t)dst[12+3])>> 8);
-            dst[12+2] = LOBYTE(((int32_t)dst[12+2] * (int32_t)dst[12+3])>> 8);
-
-            dst[16+0] = LOBYTE(((int32_t)dst[16+0] * (int32_t)dst[16+3])>> 8);
-            dst[16+1] = LOBYTE(((int32_t)dst[16+1] * (int32_t)dst[16+3])>> 8);
-            dst[16+2] = LOBYTE(((int32_t)dst[16+2] * (int32_t)dst[16+3])>> 8);
-
-            dst[20+0] = LOBYTE(((int32_t)dst[20+0] * (int32_t)dst[20+3])>> 8);
-            dst[20+1] = LOBYTE(((int32_t)dst[20+1] * (int32_t)dst[20+3])>> 8);
-            dst[20+2] = LOBYTE(((int32_t)dst[20+2] * (int32_t)dst[20+3])>> 8);
-
-            dst[24+0] = LOBYTE(((int32_t)dst[24+0] * (int32_t)dst[24+3])>> 8);
-            dst[24+1] = LOBYTE(((int32_t)dst[24+1] * (int32_t)dst[24+3])>> 8);
-            dst[24+2] = LOBYTE(((int32_t)dst[24+2] * (int32_t)dst[24+3])>> 8);
-
-            dst[28+0] = LOBYTE(((int32_t)dst[28+0] * (int32_t)dst[28+3])>> 8);
-            dst[28+1] = LOBYTE(((int32_t)dst[28+1] * (int32_t)dst[28+3])>> 8);
-            dst[28+2] = LOBYTE(((int32_t)dst[28+2] * (int32_t)dst[28+3])>> 8);
-
-            dst += 4 * 8;
-            size -= 8;
-         }
-         while(size--)
-         {
-            dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3])>> 8);
-            dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3])>> 8);
-            dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3])>> 8);
-            dst += 4;
-         }
-
-
-      }
-      else
-      {
-
-
-      }
-
-
-      if(::GetWindowLong(oswindowParam, GWL_EXSTYLE) & WS_EX_LAYERED)
-      {
-         //BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
-
-         rect64 rectWindow;
-         rectWindow = pwnd->m_rectParentClient;
-
-         point pt(rectWindow.top_left());
-         ::size sz(rectWindow.size());
-
-         if(pt.x < 0)
-         {
-            pt.x = 0;
-            sz.cx += pt.x;
-         }
-
-         if(pt.y < 0)
-         {
-            pt.y = 0;
-            sz.cy += pt.y;
-         }
-
-         class rect rcMonitor;
-
-         System.get_monitor_rect(0, &rcMonitor);
-         
-         sz.cx = (LONG) min(rectWindow.right - pt.x, rcMonitor.right - pt.x);
-         sz.cy = (LONG) min(rectWindow.bottom - pt.y, rcMonitor.bottom - pt.y);
-
-//         m_pbuffer->m_spdib->fill_channel(0xc0, visual::rgba::channel_alpha);
-
-         HDC hdcMem = ::CreateCompatibleDC(NULL);
-
-         HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdcMem, m_hbitmap);
-
-         BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
-
-         POINT ptZero = { 0 };
-
-         point ptSrc(0, 0);
-
-
-         bool bOk = ::UpdateLayeredWindow(pwnd->get_handle(), hdcScreen, &pt, &sz, hdcMem, &ptSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA) != FALSE;
-
-         ::SelectObject(hdcMem, hbitmapOld);
-
-         ::DeleteDC(hdcMem);
-
-         class rect rectWin;
-
-         ::GetWindowRect(oswindowParam, rectWin);
-
-         if(rect(rectWindow) != rectWin || (pwnd->m_pguie != NULL && (bool) pwnd->m_pguie->oprop("pending_layout")))
-         {
-
-            if(pwnd->m_pguie != NULL && (bool) pwnd->m_pguie->oprop("pending_layout"))
-            {
-
-               ::oswindow oswindowZOrder = (oswindow) pwnd->m_pguie->oprop("pending_zorder").int32();
-
-               ::SetWindowPos(oswindowParam, HWND_TOPMOST, 
-                  (int32_t) rectWindow.left, (int32_t) rectWindow.top, (int32_t) rectWindow.width(), (int32_t) rectWindow.height(), SWP_SHOWWINDOW);
-               ::SetWindowPos(oswindowParam, HWND_NOTOPMOST, 
-                  (int32_t) rectWindow.left, (int32_t) rectWindow.top, (int32_t) rectWindow.width(), (int32_t) rectWindow.height(), SWP_SHOWWINDOW);
-               ::SetWindowPos(oswindowParam, oswindowZOrder, 
-                  (int32_t) rectWindow.left, (int32_t) rectWindow.top, (int32_t) rectWindow.width(), (int32_t) rectWindow.height(), SWP_SHOWWINDOW | SWP_FRAMECHANGED);
-               /*sp(simple_frame_window) pframe =  (pwnd->m_pguie);
-               if(pframe != NULL)
-               {
-                  pframe->ActivateFrame();
-               }*/
-               pwnd->m_pguie->oprop("pending_layout") = false;
-            }
-            else
-            {
-               ::SetWindowPos(oswindowParam, NULL, (int32_t) rectWindow.left, (int32_t) rectWindow.top, (int32_t) rectWindow.width(), (int32_t) rectWindow.height(), SWP_SHOWWINDOW);
-            }
-         }
-
-      }
-      else
-      {
-         ::BitBlt(
-         hdcScreen,
-         (int32_t) rectOutputClient.left,
-         (int32_t) rectOutputClient.top,
-         (int32_t) rectOutputClient.width(),
-         (int32_t) rectOutputClient.height(), 
-         (HDC) get_os_data(),
-         (int32_t) rectWindow.left,
-         (int32_t) rectWindow.top,
-         SRCCOPY);
-      }
-
-
-      /*::Rectangle(hdcScreen,
-         rectOutputClient.left,
-         rectOutputClient.top,
-         rectOutputClient.width(),
-         rectOutputClient.height());*/
-
-      ::ReleaseDC(oswindowParam, hdcScreen);
-
-//      DWORD dwTimeOut = get_tick_count();
-   //   TRACE("//\n");
-   //   TRACE("// window_draw::TwfOuputScreen\n");
-   //   TRACE("// TickCount = %d \n", dwTimeOut - dwTimeIn);
-   //   TRACE("//\n");
+      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect);
 
       return true;
-#endif
 
    }
-   
+
+
    bool dib::print_window(::ca2::window * pwnd, ::ca2::signal_object * pobj)
    {
-
-#if defined(WINDOWS)
 
       SCAST_PTR(::ca2::message::base, pbase, pobj);
 
@@ -3082,7 +2784,9 @@ namespace draw2d_cairo
       pbase->set_lresult(0);
 
       return true;
-#endif
    }
+
+#endif
+
 
 } // namespace draw2d_cairo

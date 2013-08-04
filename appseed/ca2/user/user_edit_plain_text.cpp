@@ -395,27 +395,6 @@ namespace user
                }
                if(len < 0)
                   continue;
-/*
-               if(pregion->styled()->bfore)
-               {
-                  pdc->set_color(pregion->styled()->fore);
-               }
-               else
-               {
-                  pdc->set_color(cr);
-               }
-*/
-/*
-               if(pregion->styled()->bback)
-               {
-                  pdc->SetBkMode(OPAQUE);
-                  pdc->SetBkColor(pregion->styled()->back);
-               }
-               else
-               {
-                  pdc->SetBkMode(TRANSPARENT);
-               }
-*/
                string strExtent1;
                strExtent1 = strLine.Left(x);
                string strExtent2;
@@ -424,7 +403,7 @@ namespace user
                visual::graphics_extension(get_app()).GetTextExtent(pdc, strExtent1, size1);
                if(pregion->styled()->bback)
                {
-                  pdc->FillSolidRect((int32_t) (left + size1.cx), y, size1.cx, size1.cy, pregion->styled()->back);
+                  pdc->FillSolidRect((int32_t) (left + size1.cx), (int32_t) y, size1.cx, size1.cy, pregion->styled()->back);
                }
                ::draw2d::brush_sp brushText(allocer());
                if(pregion->styled()->bfore)

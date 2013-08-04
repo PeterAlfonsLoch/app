@@ -137,16 +137,10 @@ namespace draw2d
 
       virtual double get_dpix() const;
 
-      //virtual COLORREF SetBkColor(COLORREF crColor);
-      //virtual int32_t SetBkMode(int32_t nBkMode);
       virtual int32_t SetPolyFillMode(int32_t nPolyFillMode);
       virtual int32_t SetROP2(int32_t nDrawMode);
       virtual int32_t SetStretchBltMode(int32_t nStretchMode);
-      //virtual COLORREF SetTextColor(COLORREF crColor);
 
-      //virtual COLORREF SetColor(COLORREF crColor);
-      //virtual COLORREF setColor(COLORREF crColor);
-      //virtual COLORREF set_color(COLORREF crColor);
 
       virtual bool flush();
 

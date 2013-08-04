@@ -7,6 +7,9 @@ namespace draw2d_direct2d
       virtual public ::ca2::object
    {
    public:
+
+      void draw2d_direct2d_initialize();
+
       factory_exchange(::ca2::application * papp);
       virtual ~factory_exchange();
    };

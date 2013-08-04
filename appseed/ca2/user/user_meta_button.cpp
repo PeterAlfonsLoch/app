@@ -140,7 +140,6 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
 
    pdc->set_font(GetFont());
    pdc->SelectObject(brushText);
-   //pdc->set_color(crText);
    pdc->set_alpha_mode(::draw2d::alpha_mode_set);
    pdc->draw_text(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 

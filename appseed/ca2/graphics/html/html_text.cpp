@@ -452,27 +452,22 @@ namespace html
 
          if(m_bHover && m_pelemental->m_style.get_color("color", "hover", pdata, m_pelemental, cr))
          {
-//            pdc->set_color(cr);
             brushText->create_solid(cr);
          }
          else if(has_link() && m_pelemental->m_style.get_color("color", "link", pdata, m_pelemental, cr))
          {
-//            pdc->set_color(cr);
             brushText->create_solid(cr);
          }
          else if(has_link())
          {
-//            pdc->set_color(ARGB(255, 127, 127, 255));
             brushText->create_solid(ARGB(255, 127, 127, 255));
          }
          else if(m_pelemental->m_style.get_color("color", "", pdata, m_pelemental, cr))
          {
-//            pdc->set_color(cr);
             brushText->create_solid(cr);
          }
          else
          {
-//            pdc->set_color(ARGB(255, 0, 0, 0));
             brushText->create_solid(ARGB(255, 0, 0, 0));
          }
 
@@ -560,7 +555,7 @@ namespace html
             //pdc->SetBkMode(OPAQUE);
             pdc->SelectObject(brushBackground);
             ::size size2 = pdc->GetTextExtent(strExtent2);
-            pdc->FillSolidRect(left + size1.cx, y, size2.cx, size2.cy, crBkSel);
+            pdc->FillSolidRect((int32_t ) ( left + size1.cx), (int32_t) y, size2.cx, size2.cy, crBkSel);
 
             //pdc->SetTextColor(crSel);
             brushText->create_solid(crSel);

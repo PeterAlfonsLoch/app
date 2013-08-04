@@ -2993,8 +2993,10 @@ fill_last:
    }
 
 
-   void dib::map()
+   void dib::map(bool bApplyAlphaTransform)
    {
+
+      UNREFERENCED_PARAMETER(bApplyAlphaTransform);
 
    }
 

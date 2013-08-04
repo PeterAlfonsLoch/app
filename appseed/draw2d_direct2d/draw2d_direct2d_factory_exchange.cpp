@@ -21,6 +21,9 @@ namespace draw2d_direct2d
       
 
       ::draw2d_direct2d::dib::s_initialize();
+
+      draw2d_direct2d_initialize();
+
    }
 
 

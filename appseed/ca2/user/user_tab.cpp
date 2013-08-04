@@ -637,30 +637,10 @@ namespace user
                pdc->set_font(get_data()->m_font);
 
                brushText->create_solid(ARGB(255, 0, 0, 0));
-               //pdc->set_color(ARGB(255, 0, 0, 0));
 
             }
             else
             {
-/*               pdc->set_color(ARGB(255, 0, 0, 0));
-               pdc->set_solid_pen(1.0);
-               pdc->MoveTo(rectBorder.right, rectBorder.bottom);
-               pdc->LineTo(rectBorder.left + 1, rectBorder.bottom);
-               pdc->LineTo(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
-               pdc->LineTo(rectText.left, rectBorder.top);
-               pdc->LineTo(rectBorder.right, rectBorder.top);
-               pdc->LineTo(rectBorder.right, rectBorder.bottom);
-               if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
-               {
-                  pdc->set_font(get_data()->m_fontUnderline);
-                  pdc->SetTextColor(ARGB(255, 0, 127, 255));
-               }
-               else
-               {
-                  pdc->set_font(get_data()->m_font);
-                  pdc->SetTextColor(ARGB(255, 0, 0, 0));
-               }
-               */
 
 
                //path->start_figure();
