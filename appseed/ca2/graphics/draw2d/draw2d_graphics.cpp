@@ -156,18 +156,6 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-   ::draw2d::object* graphics::SelectObject(::draw2d::object* pObject)
-   {
-      UNREFERENCED_PARAMETER(pObject);
-      throw interface_only_exception(get_app());
-   }
-
-/*   HGDIOBJ graphics::SelectObject(HGDIOBJ hObject) // Safe for NULL handles
-   {
-      UNREFERENCED_PARAMETER(hObject);
-      throw interface_only_exception(get_app());
-   }*/
-
 
    bool graphics::SelectFont(::draw2d::font * pfont)
    {
@@ -1050,13 +1038,13 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::get_text_metrics(LPTEXTMETRIC lpMetrics) const
+   bool graphics::get_text_metrics(LPTEXTMETRICW lpMetrics) const
    {
       UNREFERENCED_PARAMETER(lpMetrics);
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::get_output_text_metrics(LPTEXTMETRIC lpMetrics) const
+   bool graphics::get_output_text_metrics(LPTEXTMETRICW lpMetrics) const
    {
       UNREFERENCED_PARAMETER(lpMetrics);
       throw interface_only_exception(get_app());
@@ -1165,7 +1153,7 @@ namespace draw2d
 
 #ifdef WINDOWSEX
 
-   UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const
+   UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) const
    {
       UNREFERENCED_PARAMETER(cbData);
       UNREFERENCED_PARAMETER(lpotm);
@@ -2302,7 +2290,7 @@ namespace draw2d
 
    void graphics::set_text_rendering(e_text_rendering etextrendering)
    {
-      throw not_implemented(get_app());
+//      throw not_implemented(get_app());
    }
 
    bool graphics::blur(bool bExpand, double dRadius, LPCRECT lpcrect)

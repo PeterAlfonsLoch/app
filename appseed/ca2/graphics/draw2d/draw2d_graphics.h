@@ -18,11 +18,13 @@ namespace draw2d
       ::ca2::job *                  m_pjob;
 
 
+      ::draw2d::dib_sp              m_spdib;
       ::draw2d::bitmap_sp           m_spbitmap;
       ::draw2d::pen_sp              m_sppen;
       ::draw2d::brush_sp            m_spbrush;
       ::draw2d::font_sp             m_spfont;
       ::draw2d::region_sp           m_spregion;
+
 
       //::draw2d::pen                 m_penxyz;
       //::draw2d::brush               m_brushxyz;
@@ -39,7 +41,6 @@ namespace draw2d
 
       // advanced use and implementation
       bool                          m_bPrinting;
-      //virtual HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
 
       graphics();
 
@@ -120,8 +121,7 @@ namespace draw2d
       virtual ::draw2d::font* SelectObject(::draw2d::font* pFont);
       virtual ::draw2d::bitmap* SelectObject(::draw2d::bitmap* pBitmap);
       virtual int32_t SelectObject(::draw2d::region* pRgn);       // special return for regions
-      virtual ::draw2d::object* SelectObject(::draw2d::object* pObject);
-         // ::draw2d::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
+
 
    // color and color Palette Functions
       virtual COLORREF GetNearestColor(COLORREF crColor) const;
@@ -416,8 +416,8 @@ namespace draw2d
       virtual int32_t GetTextFace(string & rString) const;
 
 
-      virtual bool get_text_metrics(LPTEXTMETRIC lpMetrics) const;
-      virtual bool get_output_text_metrics(LPTEXTMETRIC lpMetrics) const;
+      virtual bool get_text_metrics(LPTEXTMETRICW lpMetrics) const;
+      virtual bool get_output_text_metrics(LPTEXTMETRICW lpMetrics) const;
 
 
       virtual int32_t SetTextJustification(int32_t nBreakExtra, int32_t nBreakCount);
@@ -465,7 +465,7 @@ namespace draw2d
 #ifdef WINDOWSEX
 
       virtual int32_t GetKerningPairs(int32_t nPairs, LPKERNINGPAIR lpkrnpair) const;
-      virtual UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const;
+      virtual UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) const;
       virtual uint32_t GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm, uint32_t cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
 
       virtual bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT lpABCF) const;

@@ -34,15 +34,20 @@ namespace user
 
    void notification_area::Initialize(sp(::ca2::application) papp)
    {
+
 #ifdef WINDOWSEX
-      LOGFONT lf = {0};
-      strcpy(lf.lfFaceName, "Arial");
+
+      LOGFONTW lf = {0};
+      wcscpy(lf.lfFaceName, L"Arial");
+
       lf.lfHeight = 16;
-      m_hfontRegular = CreateFontIndirect(&lf);
+      m_hfontRegular = CreateFontIndirectW(&lf);
+
       lf.lfItalic = TRUE;
-      m_hfontHidden = CreateFontIndirect(&lf);
+      m_hfontHidden = CreateFontIndirectW(&lf);
 
       m_oswindowTray = FindTrayToolbarWindow();
+
       m_pil16 = new image_list(papp);
       m_pil16->create(16,16,ILC_COLOR24,16,16);
 

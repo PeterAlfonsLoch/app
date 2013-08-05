@@ -108,7 +108,7 @@ void simple_list_header_control::_001OnTrack(::ca2::signal_object * pobj)
 void simple_list_header_control::_001OnCreate(::ca2::signal_object * pobj) 
 {
    SCAST_PTR(::ca2::message::create, pcreate, pobj)
-//   LOGFONT lf;
+//   LOGFONTW lf;
 
    ::user::list_header::m_font->operator = (*System.visual().font_central().GetListCtrlFont());
    

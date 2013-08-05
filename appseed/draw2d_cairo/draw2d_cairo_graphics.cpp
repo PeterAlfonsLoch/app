@@ -1726,7 +1726,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    }
 
-   bool graphics::get_text_metrics(LPTEXTMETRIC lpMetrics) const
+   bool graphics::get_text_metrics(LPTEXTMETRICW lpMetrics) const
    {
       //ASSERT(get_handle2() != NULL); return ::GetTextMetrics(get_handle2(), lpMetrics);
       /*wstring wstr(L"123AWZwmc");
@@ -1798,7 +1798,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    }
 
 
-   bool graphics::get_output_text_metrics(LPTEXTMETRIC lpMetrics) const
+   bool graphics::get_output_text_metrics(LPTEXTMETRICW lpMetrics) const
    {
 
       throw not_implemented(get_app());
@@ -1953,7 +1953,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    }
 
-   UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const
+   UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) const
    {
 
       throw not_implemented(get_app());

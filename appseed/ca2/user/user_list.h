@@ -452,7 +452,7 @@ namespace user
       list_cache_interface *        m_pcache;
       list_header *                 m_pheaderctrl;
 
-      LOGFONT                       m_logfont;
+      LOGFONTW                       m_logfont;
       visual::graphics_extension    m_dcextension;
 
       COLORREF                      m_crText;

@@ -16,7 +16,7 @@ namespace visual
       };
 
 //#ifdef WINDOWS
-      TEXTMETRIC      m_tm;
+      TEXTMETRICW      m_tm;
 //#endif
 
       int32_t            m_iFontHiHeight;

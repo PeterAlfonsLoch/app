@@ -467,7 +467,7 @@ namespace user
       ASSERT(IsWindow());
 
       // determinme size of font being used by the status bar
-//      TEXTMETRIC tm;
+//      TEXTMETRICW tm;
       {
          // os independence
          throw not_implemented(get_app());
@@ -491,7 +491,7 @@ namespace user
 
 #ifdef WINDOWSEX
       int32_t rgBorders[3];
-      TEXTMETRIC tm;
+      TEXTMETRICW tm;
       DefWindowProc(SB_GETBORDERS, 0, (LPARAM)&rgBorders);
 
       // determine size, including borders

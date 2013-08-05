@@ -17,6 +17,7 @@ namespace draw2d
          combine_add,
          combine_exclude,
          combine_intersect,
+         combine_xor,
 
       };
 

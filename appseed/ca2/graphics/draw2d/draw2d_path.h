@@ -94,6 +94,7 @@ namespace draw2d
 
 
       path();
+      path(::ca2::application * papp);
       virtual ~path();
 
 
@@ -129,6 +130,13 @@ namespace draw2d
       virtual void * detach();
 
 
+      void get_bounding_rect(LPRECT lprect);
+      void get_bounding_rect(LPRECT lprect, element & e);
+      void get_bounding_rect(LPRECT lprect, arc & a);
+      void get_bounding_rect(LPRECT lprect, move & m);
+      void get_bounding_rect(LPRECT lprect, line & l);
+
+
    };
 
 
@@ -150,6 +158,16 @@ namespace draw2d
          ::ca::smart_pointer < path > (allocer)
       {
       }
+
+      path_sp & operator = (::draw2d::path * ppath)
+      {
+
+         ::ca::smart_pointer < path >::operator = (ppath);
+         
+         return *this;
+         
+      }
+
 
    };
 

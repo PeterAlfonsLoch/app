@@ -750,7 +750,7 @@ void XfplayerViewLine::CalcCharsPositions(
    }
 
 //   pdc->SelectObject(fontOriginal);
-   TEXTMETRIC tm;
+   TEXTMETRICW tm;
    pdc->get_text_metrics(&tm);
   // lf.lfWidth = (long) (tm.tmAveCharWidth * m_floatRateX - 1);
 
@@ -876,10 +876,10 @@ void XfplayerViewLine::CalcCharsPositions(
    }
 
    m_font->delete_object();
-   LOGFONT lf;
+   LOGFONTW lf;
    pfont->GetFont()->GetLogFont(&lf);
    pdc->SelectObject(pfont->GetFont());
-   TEXTMETRIC tm;
+   TEXTMETRICW tm;
    pdc->GetTextMetrics(&tm);
    lf.lfWidth = (long) (tm.tmAveCharWidth * m_floatRateX - 1);
    m_font->CreateFontIndirect(&lf);
@@ -1503,7 +1503,7 @@ void XfplayerViewLine::SetColors(COLORREF cr, COLORREF crOutline)
 
 
 
-void XfplayerViewLine::GetLogFont(LOGFONT &lf)
+void XfplayerViewLine::GetLogFont(LOGFONTW &lf)
 {
    lf = m_logfont;
 }

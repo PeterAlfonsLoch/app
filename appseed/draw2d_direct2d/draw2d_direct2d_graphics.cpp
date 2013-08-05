@@ -1646,7 +1646,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::get_text_metrics(LPTEXTMETRIC lpMetrics) const
+   bool graphics::get_text_metrics(LPTEXTMETRICW lpMetrics) const
    { 
 
 
@@ -1773,7 +1773,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::get_output_text_metrics(LPTEXTMETRIC lpMetrics) const
+   bool graphics::get_output_text_metrics(LPTEXTMETRICW lpMetrics) const
    {
       
       throw todo(get_app());
@@ -1928,7 +1928,7 @@ namespace draw2d_direct2d
 
 #ifdef WINDOWSEX
 
-/*   UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const
+/*   UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) const
    {
       
       throw todo(get_app());
@@ -5224,7 +5224,7 @@ namespace draw2d_direct2d
 
       m_prendertarget->SetTransform(pmNew);*/
 
-      TEXTMETRIC metrics;
+      TEXTMETRICW metrics;
 
       get_text_metrics(&metrics);
 

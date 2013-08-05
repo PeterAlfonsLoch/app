@@ -28,10 +28,46 @@ namespace draw2d
    public:
 
 
+      enum e_type
+      {
+
+         type_complex,
+         type_plain_color,
+
+      };
+
+      class descriptor
+      {
+      public:
+
+         e_type            m_etype;
+         COLORREF          m_cr;
+
+         bool operator == (const descriptor & d) const
+         {
+            
+            if(m_etype != d.m_etype)
+               return false;
+
+            switch(m_etype)
+            {
+            case type_plain_color:
+               return m_cr == d.m_cr;
+            default:
+               return true;
+            };
+
+         }
+
+      };
+
+
       COLORREF *        m_pcolorref;
       int32_t           cx;
       int32_t           cy;
       int32_t           scan;
+
+      descriptor        m_descriptor;
 
 
       dib();
@@ -98,6 +134,13 @@ namespace draw2d
          BYTE a2, BYTE r2, BYTE g2, BYTE b2, // border colors
          int32_t x, int32_t y, int32_t iRadius);
 
+      virtual void gradient_fill(COLORREF clr1, COLORREF clr2, POINT pt1, POINT pt2);
+      virtual void gradient_horizontal_fill(COLORREF clr1, COLORREF clr2, int start, int end);
+      virtual void gradient_vertical_fill(COLORREF clr1, COLORREF clr2, int start, int end);
+      virtual void gradient_horizontal_fill(COLORREF clr1, COLORREF clr2);
+      virtual void gradient_vertical_fill(COLORREF clr1, COLORREF clr2);
+
+
       virtual uint32_t GetPixel(int32_t x, int32_t y);
       virtual void Mask(COLORREF crMask, COLORREF crInMask, COLORREF crOutMask);
       virtual void channel_mask(BYTE uchFind, BYTE uchSet, BYTE uchUnset, visual::rgba::echannel echannel);
@@ -122,6 +165,7 @@ namespace draw2d
       virtual bool from(::draw2d::dib * pdib);
       virtual bool from(::draw2d::graphics * pdc);
       virtual bool from(point ptDst, ::draw2d::graphics * pdc, point ptSrc, size size);
+      virtual bool from(point ptDst, ::draw2d::dib * pdc, point ptSrc, size size);
 
       virtual bool to(::draw2d::graphics * pgraphics);
       virtual bool to(::draw2d::graphics * pgraphics, point pt);
@@ -137,6 +181,7 @@ namespace draw2d
 
       virtual void fill_channel(int32_t C, visual::rgba::echannel echannel);
       virtual void FillByte(uchar uch);
+      virtual void Fill(int32_t level);
       virtual void Fill (int32_t A, int32_t R, int32_t G, int32_t B );
 //      virtual void Fill ( int32_t R, int32_t G, int32_t B );
       virtual void set ( int32_t R, int32_t G, int32_t B );
@@ -150,6 +195,7 @@ namespace draw2d
       virtual void channel_darken(visual::rgba::echannel echannel, ::draw2d::dib * pdib);
       virtual void channel_from(visual::rgba::echannel echannel, ::draw2d::dib * pdib);
       virtual void channel_copy(visual::rgba::echannel echannelDst, visual::rgba::echannel echannelSrc);
+      virtual void channel_copy(visual::rgba::echannel echannelDst, visual::rgba::echannel echannelSrc, ::draw2d::dib * pdib);
 
       virtual void Map (int32_t ToRgb, int32_t FromRgb );
 
@@ -226,6 +272,15 @@ namespace draw2d
       {
       }
 
+      dib_sp & operator = (::draw2d::dib * pdib)
+      {
+
+         ::ca::smart_pointer < dib >::operator = (pdib);
+         
+         return *this;
+         
+      }
+
    };
 
    class CLASS_DECL_ca2 dibmap :
@@ -243,12 +298,69 @@ namespace draw2d
       {
          ::draw2d::dib_sp & dib = map < class size, class size, ::draw2d::dib_sp, ::draw2d::dib_sp >::operator [](key);
          if(dib.is_null())
+         {
             dib.create(allocer());
+            dib->create(key);
+         }
          return dib;
+      }
+
+
+   };
+
+   
+} // namespace draw2d
+
+
+namespace ca2
+{
+
+   template < >
+   class CLASS_DECL_ca2 ::ca2::hash < const ::draw2d::dib::descriptor & >
+   {
+   public:
+
+      inline static UINT HashKey (const ::draw2d::dib::descriptor & key)
+      {
+         UINT ui = (UINT) key.m_etype;
+         if(key.m_etype == ::draw2d::dib::type_plain_color)
+         {
+            ui |= key.m_cr;
+         }
+         return ui;
       }
 
    };
 
+
+} // namespace ca2 - for class ::ca2::hash const < ::draw2d::dib::descriptor & >
+
+
+
+namespace draw2d
+{
+
+   class CLASS_DECL_ca2 dibmap_ex1 :
+      virtual public map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, sp(::draw2d::dibmap), sp(::draw2d::dibmap) >
+   {
+   public:
+
+      dibmap_ex1(sp(::ca2::application) papp) :
+         ca2(papp)
+      {
+      }
+
+
+      inline ::draw2d::dibmap & operator[](class ::draw2d::dib::descriptor key)
+      {
+         sp(::draw2d::dibmap) & dibmap = map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, sp(::draw2d::dibmap), sp(::draw2d::dibmap) >::operator [](key);
+         if(dibmap.is_null())
+            dibmap = canew(::draw2d::dibmap(get_app()));
+         return dibmap;
+      }
+
+
+   };
 
 } // namespace draw2d
 

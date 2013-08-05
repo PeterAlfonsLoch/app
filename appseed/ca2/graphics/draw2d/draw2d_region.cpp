@@ -712,6 +712,24 @@ namespace draw2d
          }
          return false;
       }
+      else if(m_ecombine == ::draw2d::region::combine_xor)
+      {
+         if(m_pregion1->internal_contains(lppt))
+         {
+            if(m_pregion2->internal_contains(lppt))
+               return false;
+            else 
+               return true;
+         }
+         else if(m_pregion2->internal_contains(lppt))
+         {
+            return true;
+         }
+         else
+         {
+            return false;
+         }
+      }
       else
       {
          return false;

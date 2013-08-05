@@ -68,7 +68,7 @@ protected:
    COLORREF                         m_crOutline;
    rect                             m_rectClient;
    double                           m_floatRateX;
-   LOGFONT                          m_logfont;
+   LOGFONTW                          m_logfont;
 
 
    // 09, Sept 2004 attributes with change inApril 2010 from dcMain/bmpMain to dibMain
@@ -78,7 +78,7 @@ protected:
    string                           m_wstrCache;
 
    // Link
-   LOGFONT                          m_logfontLink;
+   LOGFONTW                          m_logfontLink;
    stringa                          m_straLink;
    index_array                      m_iaLinkStart;
    index_array                      m_iaLinkEnd;
@@ -121,7 +121,7 @@ public:
    void PrepareURLLinks();
    void SetFont(visual::font * pfont);
    void SetFont(::draw2d::font * pfont);
-   void GetLogFont(LOGFONT & lf);
+   void GetLogFont(LOGFONTW & lf);
 
    user::e_line_hit hit_test(const POINT &ptCursorParam, strsize &iChar);
 

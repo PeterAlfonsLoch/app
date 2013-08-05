@@ -15,6 +15,17 @@ namespace draw2d
 
    }
 
+   path::path(::ca2::application * papp) :
+      ca2(papp)
+   {
+
+      m_bUpdated     = false;
+      m_bFill        = false;
+      m_efillmode    = ::draw2d::fill_mode_winding;
+      m_bHasPoint    = false;
+
+   }
+
    path::~path()
    {
 
@@ -92,6 +103,11 @@ namespace draw2d
 
    bool path::add_line(int32_t x, int32_t y)
    {
+
+      if(!has_current_point())
+      {
+         return add_move(x, y);
+      }
 
       element e;
 
@@ -226,6 +242,171 @@ namespace draw2d
       throw interface_only_exception(get_app());
 
    }
+
+
+   void path::get_bounding_rect(LPRECT lprect)
+   {
+
+      lprect->right     = 0x80000000;
+      lprect->left      = 0x7fffffff;
+      lprect->bottom    = 0x80000000;
+      lprect->top       = 0x7fffffff;
+
+
+      for(int i = 0; i < m_elementa.get_count(); i++)
+      {
+         get_bounding_rect(lprect, m_elementa[i]);
+      }
+
+   }
+
+   void path::get_bounding_rect(LPRECT lprect, element & e)
+   {
+
+      switch(e.m_etype)
+      {
+      case ::draw2d::path::element::type_arc:
+         get_bounding_rect(lprect, e.m_arc);
+         break;
+      case ::draw2d::path::element::type_line:
+         get_bounding_rect(lprect, e.m_line);
+         break;
+      case ::draw2d::path::element::type_move:
+         get_bounding_rect(lprect, e.m_move);
+         break;
+      case ::draw2d::path::element::type_end:
+         {
+
+         }
+         break;
+      default:
+         throw "unexpected simple os graphics element type";
+      }
+
+
+
+
+   }
+
+   void path::get_bounding_rect(LPRECT lprect, arc & a)
+   {
+
+      rect r;
+
+      r.left         = a.m_xCenter - a.m_dRadiusX;
+      r.right        = a.m_xCenter + a.m_dRadiusX;
+      r.top          = a.m_yCenter - a.m_dRadiusY;
+      r.bottom       = a.m_yCenter + a.m_dRadiusY;
+
+      POINT pt1;
+      
+      POINT pt2;
+
+      lprect->left   = min(a.m_xCenter, lprect->left);
+      lprect->top    = min(a.m_yCenter, lprect->top);
+      lprect->right  = max(a.m_xCenter, lprect->right);
+      lprect->bottom = max(a.m_yCenter, lprect->bottom);
+
+
+      if((pt1.y - a.m_yCenter) == 0) 
+         return;
+      
+      if((pt2.y - a.m_yCenter) == 0) 
+         return;
+
+      if((pt1.x - a.m_xCenter) == 0) 
+         return;
+      
+      if((pt2.x - a.m_xCenter) == 0) 
+         return;
+
+      double e = a.m_dRadiusY / a.m_dRadiusX;
+
+      double f1 = atan2(((double) pt1.y - a.m_yCenter) * a.m_dRadiusX, ((double) pt1.x - a.m_xCenter) * a.m_dRadiusY);
+      
+      double f2 = atan2(((double) pt2.y - a.m_yCenter) * a.m_dRadiusX, ((double) pt2.x - a.m_xCenter) * a.m_dRadiusY);
+      
+      f1 += System.math().GetPi();
+
+      f2 += System.math().GetPi();
+
+      pt1.x          = a.m_xCenter + a.m_dRadiusX * cos(f1);
+      pt1.y          = a.m_yCenter - a.m_dRadiusY * sin(f1);
+      pt2.x          = a.m_xCenter + a.m_dRadiusX * cos(f2);
+      pt2.y          = a.m_yCenter - a.m_dRadiusY * sin(f2);
+
+      lprect->left   = min(pt1.x       , lprect->left);
+      lprect->top    = min(pt1.y       , lprect->top);
+      lprect->right  = max(pt1.x       , lprect->right);
+      lprect->bottom = max(pt1.y       , lprect->bottom);
+
+      lprect->left   = min(pt2.x       , lprect->left);
+      lprect->top    = min(pt2.y       , lprect->top);
+      lprect->right  = max(pt2.x       , lprect->right);
+      lprect->bottom = max(pt2.y       , lprect->bottom);
+
+
+      //if(::GetArcDirection(m_hdc) == AD_CLOCKWISE)
+      {
+        // ::sort::swap(&f1, &f2);
+      }
+
+      if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
+      {
+         lprect->left   = min(r.right        , lprect->left);
+         lprect->right  = max(r.right        , lprect->right);
+      }
+
+      f1 -= System.math().GetPi() / 2.0;
+      f2 -= System.math().GetPi() / 2.0;
+
+      if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
+      {
+         lprect->top   = min(r.top        , lprect->top);
+         lprect->bottom  = max(r.top        , lprect->bottom);
+      }
+
+      f1 -= System.math().GetPi() / 2.0;
+      f2 -= System.math().GetPi() / 2.0;
+
+      if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
+      {
+         lprect->left   = min(r.left        , lprect->left);
+         lprect->right  = max(r.left        , lprect->right);
+      }
+
+      f1 -= System.math().GetPi() / 2.0;
+      f2 -= System.math().GetPi() / 2.0;
+
+      if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
+      {
+         lprect->top   = min(r.bottom        , lprect->top);
+         lprect->bottom  = max(r.bottom        , lprect->bottom);
+      }
+
+   }
+
+   void path::get_bounding_rect(LPRECT lprect, move & m)
+   {
+      
+      lprect->left   = min(m.m_x, lprect->left);
+      lprect->top    = min(m.m_y, lprect->top);
+      lprect->right  = max(m.m_x, lprect->right);
+      lprect->bottom = max(m.m_y, lprect->bottom);
+
+   }
+
+
+   void path::get_bounding_rect(LPRECT lprect, line & l)
+   {
+
+      lprect->left   = min(l.m_x, lprect->left);
+      lprect->top    = min(l.m_y, lprect->top);
+      lprect->right  = max(l.m_x, lprect->right);
+      lprect->bottom = max(l.m_y, lprect->bottom);
+
+   }
+
 
    
 } // namespace draw2d

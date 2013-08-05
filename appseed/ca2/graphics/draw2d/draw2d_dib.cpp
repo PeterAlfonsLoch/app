@@ -5,6 +5,15 @@
 #include "framework.h"
 
 
+byte byte_clip(double d)
+{
+   if(d >= 255.0)
+      return 255;
+   if(d <= 0.0)
+      return 0;
+   return (byte) d;
+}
+
 namespace draw2d
 {
 
@@ -65,7 +74,7 @@ namespace draw2d
    COLORREF * dib::get_data()
    {
 
-      return NULL;
+      return m_pcolorref;
 
    }
 
@@ -207,6 +216,67 @@ namespace draw2d
    bool dib::from(point ptDst, ::draw2d::graphics * pdc, point ptSrc, class size size)
    {
       return get_graphics()->from(ptDst, size, pdc, ptSrc, SRCCOPY) != FALSE;
+   }
+
+   bool dib::from(point ptDst, ::draw2d::dib * pdib, point ptSrc, class size size)
+   {
+
+      if(ptDst.x < 0)
+      {
+         size.cx += ptDst.x;
+         ptDst.x = 0;
+      }
+
+      if(size.cx < 0)
+         return true;
+      
+      if(ptDst.y < 0)
+      {
+         size.cy += ptDst.y;
+         ptDst.y = 0;
+      }
+
+      if(size.cy < 0)
+         return true;
+
+      int xEnd = min(size.cx, min(pdib->cx - ptSrc.x, cx - ptDst.x));
+      
+      int yEnd = min(size.cy, min(pdib->cy - ptSrc.y, cy - ptDst.y));
+
+      if(xEnd < 0)
+         return false;
+
+      if(yEnd < 0)
+         return false;
+
+      int32_t s1 = scan / sizeof(COLORREF);
+
+      int32_t s2 = pdib->scan / sizeof(COLORREF);
+
+      COLORREF * pdst = &m_pcolorref[s1 * ptDst.y];
+
+      COLORREF * psrc = &pdib->m_pcolorref[s2 * ptSrc.y];
+
+      for(int y = 0; y < yEnd; y++)
+      {
+
+         pdst = &m_pcolorref[s1 * y] + ptDst.x;
+
+         psrc = &pdib->m_pcolorref[s2 * y] + ptSrc.x;
+
+         for(int x = 0; x < xEnd; x++)
+         {
+
+            *pdst = *psrc;
+
+            pdst++;
+
+            psrc++;
+
+         }
+
+      }
+
    }
 
    void dib::set( int32_t R, int32_t G, int32_t B )
@@ -2215,6 +2285,19 @@ fill_last:
 
    }
 
+   void dib::Fill(int32_t level)
+   {
+
+      if(level == 0)
+      {
+         zero(m_pcolorref, (size_t) area() * sizeof(COLORREF));
+      }
+      else
+      {
+         FillMemory(m_pcolorref, (size_t) area() * sizeof(COLORREF), level);
+      }
+
+   }
 
    void dib::Fill (int32_t A, int32_t R, int32_t G, int32_t B )
    {
@@ -2611,14 +2694,59 @@ fill_last:
       if(echannelDst == echannelSrc)
          return;
 
-      byte * pdata = (byte *) get_data();
+      byte * pdataDst = (byte *) get_data() + ((int32_t)echannelDst);
+
+      byte * pdataSrc = (byte *) get_data() + ((int32_t)echannelSrc);
 
       for(int32_t y = 0; y < cy; y++)
       {
 
-         byte * pdst = &pdata[scan * y + ((int32_t)echannelDst)];
+         byte * pdst = &pdataDst[scan * y];
 
-         byte * psrc = &pdata[scan * y + ((int32_t)echannelDst)];
+         byte * psrc = &pdataSrc[scan * y];
+
+         for(int32_t x = 0; x < cx; x++)
+         {
+
+            *pdst = *psrc;
+
+            pdst += 4;
+
+            psrc += 4;
+
+         }
+      }
+   }
+
+   void dib::channel_copy(visual::rgba::echannel echannelDst, visual::rgba::echannel echannelSrc, draw2d::dib * pdib)
+   {
+
+      if(size() != pdib->size())
+         return;
+
+      map();
+
+      if(m_pcolorref == NULL)
+         return;
+
+      pdib->map();
+
+      if(pdib->m_pcolorref == NULL)
+         return;
+
+      echannelDst = (visual::rgba::echannel) (((int32_t) echannelDst) % 4);
+      echannelSrc = (visual::rgba::echannel) (((int32_t) echannelSrc) % 4);
+
+      byte * pdataDst = (byte *) get_data() + ((int32_t)echannelDst);
+
+      byte * pdataSrc = (byte *) pdib->get_data() + ((int32_t)echannelDst);
+
+      for(int32_t y = 0; y < cy; y++)
+      {
+
+         byte * pdst = &pdataDst[scan * y];
+
+         byte * psrc = &pdataSrc[pdib->scan * y];
 
          for(int32_t x = 0; x < cx; x++)
          {
@@ -3049,6 +3177,207 @@ fill_last:
       UNREFERENCED_PARAMETER(pwnd);
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
+   }
+
+
+   void dib::gradient_fill(COLORREF clr1, COLORREF clr2, POINT pt1, POINT pt2)
+   {
+
+      double dx = pt2.x - pt1.x;
+      
+      double dy = pt1.y - pt2.y;
+
+      if(dx == 0.0 && dy == 0.0)
+      {
+         Fill(
+            byte_clip(GetAValue(clr1) * 0.5 + GetAValue(clr2) * 0.5),
+            byte_clip(GetRValue(clr1) * 0.5 + GetRValue(clr2) * 0.5),
+            byte_clip(GetGValue(clr1) * 0.5 + GetGValue(clr2) * 0.5),
+            byte_clip(GetBValue(clr1) * 0.5 + GetBValue(clr2) * 0.5));
+      }
+      else if(dx == 0.0)
+      {
+
+         gradient_horizontal_fill(clr1, clr2, pt1.y, pt2.y);
+
+      }
+      else if(dy == 0.0)
+      {
+
+         gradient_vertical_fill(clr1, clr2, pt1.x, pt2.x);
+
+      }
+      else
+      {
+
+         int x1 = min(pt1.x, pt2.x);
+
+         int x2 = max(pt1.x, pt2.x);
+
+         int y1 = min(pt1.y, pt2.y);
+
+         int y2 = max(pt1.y, pt2.y);
+
+         int top = y1;
+
+         int left = x1;
+
+         int right = cx - x2;
+
+         int bottom = cy - y2;
+
+         int dim = max(cx, cy);
+
+         double angle = atan2(dy, dx);
+       
+         ::draw2d::dib_sp dib(allocer());
+
+         if(abs(dx) > abs(dy))
+         {
+            
+            double sin = ::sin(angle);
+            
+            dib->create((int32_t) (dim / sin), (int32_t) (dim / sin));
+
+            dib->gradient_horizontal_fill(clr1, clr2, pt1.y, pt2.y);
+
+            dib->rotate(this, -angle, 1.0);
+
+         }
+         else
+         {
+            
+            double cos = ::cos(angle);
+            
+            dib->create((int32_t) (dim / cos), (int32_t) (dim / cos));
+
+            dib->gradient_vertical_fill(clr1, clr2, pt1.x, pt2.x);
+
+            dib->rotate(this, System.math().GetPi() - angle, 1.0);
+
+         }
+
+      }
+
+
+   }
+
+   void dib::gradient_horizontal_fill(COLORREF clr1, COLORREF clr2, int start, int end)
+   {
+
+      if(end < start)
+      {
+         ::sort::swap(&start, &end);
+         ::sort::swap(&clr1, &clr2);
+      }
+
+      end = min(end, cy - 1);
+      COLORREF clr = clr1;
+      byte * pb = (byte *) m_pcolorref;
+      COLORREF * pdata;
+      int line = 0;
+      for(; line < start; line++)
+      {
+         pdata = (COLORREF *) &pb[scan * line];
+         for(int row = 0; row < cx; row++)
+         {
+            *pdata = clr;
+            pdata++;
+         }
+      }
+      double d;
+      for(; line < end; line++)
+      {
+         
+         d = ((double) (line - start)) / ((double) (end - start));
+         
+         clr = ARGB(
+                  byte_clip(GetAValue(clr1) * (1.0 - d) + GetAValue(clr2) * d),
+                  byte_clip(GetRValue(clr1) * (1.0 - d) + GetRValue(clr2) * d),
+                  byte_clip(GetGValue(clr1) * (1.0 - d) + GetGValue(clr2) * d),
+                  byte_clip(GetBValue(clr1) * (1.0 - d) + GetBValue(clr2) * d));
+
+         pdata = (COLORREF *) &pb[scan * line];
+         for(int row = 0; row < cx; row++)
+         {
+            *pdata = clr;
+            pdata++;
+         }
+      }
+      clr = clr2;
+      for(; line < cy; line++)
+      {
+         pdata = (COLORREF *) &pb[scan * line];
+         for(int row = 0; row < cx; row++)
+         {
+            *pdata = clr;
+            pdata++;
+         }
+      }
+   }
+
+   void dib::gradient_vertical_fill(COLORREF clr1, COLORREF clr2, int start, int end)
+   {
+      
+      if(end < start)
+      {
+         ::sort::swap(&start, &end);
+         ::sort::swap(&clr1, &clr2);
+      }
+
+      end = min(end, cx - 1);
+      COLORREF clr = clr1;
+      byte * pb = (byte *) m_pcolorref;
+      COLORREF * pdata;
+      int row = 0;
+      for(; row < start; row++)
+      {
+         pdata = (COLORREF *) &pb[sizeof(COLORREF) * row];
+         for(int line = 0; line < cy; line++)
+         {
+            *pdata = clr;
+            pdata+=scan;
+         }
+      }
+      double d;
+      for(; row < end; row++)
+      {
+         
+         d = ((double) (row - start)) / ((double) (end - start));
+         
+         clr = ARGB(
+                  byte_clip(GetAValue(clr1) * (1.0 - d) + GetAValue(clr2) * d),
+                  byte_clip(GetRValue(clr1) * (1.0 - d) + GetRValue(clr2) * d),
+                  byte_clip(GetGValue(clr1) * (1.0 - d) + GetGValue(clr2) * d),
+                  byte_clip(GetBValue(clr1) * (1.0 - d) + GetBValue(clr2) * d));
+
+         pdata = (COLORREF *) &pb[sizeof(COLORREF) * row];
+         for(int line = 0; line < cx; line++)
+         {
+            *pdata = clr;
+            pdata+=scan;
+         }
+      }
+      clr = clr2;
+      for(; row < cx; row++)
+      {
+         pdata = (COLORREF *) &pb[sizeof(COLORREF) * row];
+         for(int line = 0; line < cx; line++)
+         {
+            *pdata = clr;
+            pdata+=scan;
+         }
+      }
+   }
+
+   void dib::gradient_horizontal_fill(COLORREF clr1, COLORREF clr2)
+   {
+      gradient_horizontal_fill(clr1, clr2, 0, cy - 1);
+   }
+
+   void dib::gradient_vertical_fill(COLORREF clr1, COLORREF clr2)
+   {
+      gradient_vertical_fill(clr1, clr2, 0, cx - 1);
    }
     
 } // namespace draw2d

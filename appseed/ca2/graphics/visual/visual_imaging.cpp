@@ -410,7 +410,7 @@ void EmbossedTextOut(
    int32_t                     anPosX[],
    int32_t*                    nPosY)
 {
-   LOGFONT                 lf;
+   LOGFONTW                 lf;
    HFONT                   hFont;
    HFONT                   h;
    LONG                    FormatWidth;
@@ -510,9 +510,9 @@ void GetMultiLineTextExtent(HDC hDC, stringa * pArray, LPSIZE lpSize)
 
 #ifdef WINDOWSEX
 
-   TEXTMETRIC tm;
+   TEXTMETRICW tm;
 
-   GetTextMetrics(hDC,&tm);
+   GetTextMetricsW(hDC,&tm);
 
    index nIndex;
    ::count nSize;
@@ -548,9 +548,9 @@ void DrawMultiLineText(HDC hDC, stringa * pArray)
 
 #ifdef WINDOWSEX
 
-   TEXTMETRIC tm;
+   TEXTMETRICW tm;
 
-   GetTextMetrics(hDC, &tm);
+   GetTextMetricsW(hDC, &tm);
 
    index nIndex;
    ::count nSize;
