@@ -293,95 +293,102 @@ namespace draw2d
 
       rect r;
 
-      r.left         = a.m_xCenter - a.m_dRadiusX;
-      r.right        = a.m_xCenter + a.m_dRadiusX;
-      r.top          = a.m_yCenter - a.m_dRadiusY;
-      r.bottom       = a.m_yCenter + a.m_dRadiusY;
+      r.left         = (LONG) (a.m_xCenter - a.m_dRadiusX);
+
+      r.right        = (LONG) (a.m_xCenter + a.m_dRadiusX);
+
+      r.top          = (LONG) (a.m_yCenter - a.m_dRadiusY);
+
+      r.bottom       = (LONG) (a.m_yCenter + a.m_dRadiusY);
 
       POINT pt1;
       
       POINT pt2;
 
-      lprect->left   = min(a.m_xCenter, lprect->left);
-      lprect->top    = min(a.m_yCenter, lprect->top);
-      lprect->right  = max(a.m_xCenter, lprect->right);
-      lprect->bottom = max(a.m_yCenter, lprect->bottom);
+      lprect->left   = (LONG) min(a.m_xCenter, lprect->left);
 
+      lprect->top    = (LONG) min(a.m_yCenter, lprect->top);
 
-      if((pt1.y - a.m_yCenter) == 0) 
-         return;
-      
-      if((pt2.y - a.m_yCenter) == 0) 
-         return;
+      lprect->right  = (LONG) max(a.m_xCenter, lprect->right);
 
-      if((pt1.x - a.m_xCenter) == 0) 
-         return;
-      
-      if((pt2.x - a.m_xCenter) == 0) 
-         return;
+      lprect->bottom = (LONG) max(a.m_yCenter, lprect->bottom);
 
       double e = a.m_dRadiusY / a.m_dRadiusX;
 
-      double f1 = atan2(((double) pt1.y - a.m_yCenter) * a.m_dRadiusX, ((double) pt1.x - a.m_xCenter) * a.m_dRadiusY);
+      double f1 = a.m_dAngle1;
       
-      double f2 = atan2(((double) pt2.y - a.m_yCenter) * a.m_dRadiusX, ((double) pt2.x - a.m_xCenter) * a.m_dRadiusY);
+      double f2 = a.m_dAngle2;
       
-      f1 += System.math().GetPi();
+      pt1.x          = (LONG) (a.m_xCenter + a.m_dRadiusX * cos(f1));
 
-      f2 += System.math().GetPi();
+      pt1.y          = (LONG) (a.m_yCenter - a.m_dRadiusY * sin(f1));
 
-      pt1.x          = a.m_xCenter + a.m_dRadiusX * cos(f1);
-      pt1.y          = a.m_yCenter - a.m_dRadiusY * sin(f1);
-      pt2.x          = a.m_xCenter + a.m_dRadiusX * cos(f2);
-      pt2.y          = a.m_yCenter - a.m_dRadiusY * sin(f2);
+      pt2.x          = (LONG) (a.m_xCenter + a.m_dRadiusX * cos(f2));
 
-      lprect->left   = min(pt1.x       , lprect->left);
-      lprect->top    = min(pt1.y       , lprect->top);
-      lprect->right  = max(pt1.x       , lprect->right);
-      lprect->bottom = max(pt1.y       , lprect->bottom);
+      pt2.y          = (LONG) (a.m_yCenter - a.m_dRadiusY * sin(f2));
 
-      lprect->left   = min(pt2.x       , lprect->left);
-      lprect->top    = min(pt2.y       , lprect->top);
-      lprect->right  = max(pt2.x       , lprect->right);
-      lprect->bottom = max(pt2.y       , lprect->bottom);
+      lprect->left   = (LONG) min(pt1.x       , lprect->left);
 
+      lprect->top    = (LONG) min(pt1.y       , lprect->top);
 
-      //if(::GetArcDirection(m_hdc) == AD_CLOCKWISE)
-      {
-        // ::sort::swap(&f1, &f2);
-      }
+      lprect->right  = (LONG) max(pt1.x       , lprect->right);
+
+      lprect->bottom = (LONG) max(pt1.y       , lprect->bottom);
+
+      lprect->left   = (LONG) min(pt2.x       , lprect->left);
+
+      lprect->top    = (LONG) min(pt2.y       , lprect->top);
+
+      lprect->right  = (LONG) max(pt2.x       , lprect->right);
+
+      lprect->bottom = (LONG) max(pt2.y       , lprect->bottom);
 
       if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
       {
-         lprect->left   = min(r.right        , lprect->left);
-         lprect->right  = max(r.right        , lprect->right);
+
+         lprect->left   = (LONG) min(r.right        , lprect->left);
+
+         lprect->right  = (LONG) max(r.right        , lprect->right);
+
       }
 
       f1 -= System.math().GetPi() / 2.0;
+
       f2 -= System.math().GetPi() / 2.0;
 
       if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
       {
-         lprect->top   = min(r.top        , lprect->top);
-         lprect->bottom  = max(r.top        , lprect->bottom);
+
+         lprect->top    = (LONG) min(r.top        , lprect->top);
+
+         lprect->bottom = (LONG) max(r.top        , lprect->bottom);
+
       }
 
       f1 -= System.math().GetPi() / 2.0;
+
       f2 -= System.math().GetPi() / 2.0;
 
       if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
       {
-         lprect->left   = min(r.left        , lprect->left);
-         lprect->right  = max(r.left        , lprect->right);
+
+         lprect->left   = (LONG) min(r.left        , lprect->left);
+
+         lprect->right  = (LONG) max(r.left        , lprect->right);
+
       }
 
       f1 -= System.math().GetPi() / 2.0;
+
       f2 -= System.math().GetPi() / 2.0;
 
       if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
       {
-         lprect->top   = min(r.bottom        , lprect->top);
-         lprect->bottom  = max(r.bottom        , lprect->bottom);
+
+         lprect->top    = (LONG) min(r.bottom        , lprect->top);
+
+         lprect->bottom = (LONG) max(r.bottom        , lprect->bottom);
+
       }
 
    }
@@ -389,10 +396,13 @@ namespace draw2d
    void path::get_bounding_rect(LPRECT lprect, move & m)
    {
       
-      lprect->left   = min(m.m_x, lprect->left);
-      lprect->top    = min(m.m_y, lprect->top);
-      lprect->right  = max(m.m_x, lprect->right);
-      lprect->bottom = max(m.m_y, lprect->bottom);
+      lprect->left   = (LONG) min(m.m_x, lprect->left);
+
+      lprect->top    = (LONG) min(m.m_y, lprect->top);
+
+      lprect->right  = (LONG) max(m.m_x, lprect->right);
+
+      lprect->bottom = (LONG) max(m.m_y, lprect->bottom);
 
    }
 
@@ -400,10 +410,13 @@ namespace draw2d
    void path::get_bounding_rect(LPRECT lprect, line & l)
    {
 
-      lprect->left   = min(l.m_x, lprect->left);
-      lprect->top    = min(l.m_y, lprect->top);
-      lprect->right  = max(l.m_x, lprect->right);
-      lprect->bottom = max(l.m_y, lprect->bottom);
+      lprect->left   = (LONG) min(l.m_x, lprect->left);
+
+      lprect->top    = (LONG) min(l.m_y, lprect->top);
+
+      lprect->right  = (LONG) max(l.m_x, lprect->right);
+
+      lprect->bottom = (LONG) max(l.m_y, lprect->bottom);
 
    }
 

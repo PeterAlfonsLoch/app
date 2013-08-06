@@ -215,7 +215,7 @@ namespace draw2d_direct2d
 
    bool dib::create(::draw2d::graphics * pgraphics)
    {
-      ::draw2d::bitmap * pbitmap = &(dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->GetCurrentBitmap();
+      ::draw2d::bitmap * pbitmap = dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics)->get_current_bitmap();
       if(pbitmap == NULL)
          return FALSE;
       class size size = pbitmap->get_size();
@@ -2994,7 +2994,7 @@ fill_last:
 
       rect rectx;
 
-      ::draw2d::bitmap * pbitmap = &m_spgraphics->GetCurrentBitmap();
+      ::draw2d::bitmap * pbitmap = m_spgraphics->get_current_bitmap();
 
       ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
 

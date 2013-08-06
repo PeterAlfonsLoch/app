@@ -1233,10 +1233,10 @@ namespace draw2d_direct2d
          if(pgraphicsSrc == NULL)
             return FALSE;
 
-         if(&pgraphicsSrc->GetCurrentBitmap() == NULL)
+         if(&pgraphicsSrc->get_current_bitmap() == NULL)
             return FALSE;
 
-         if(pgraphicsSrc->GetCurrentBitmap().get_os_data() == NULL)
+         if(pgraphicsSrc->get_current_bitmap()->get_os_data() == NULL)
             return FALSE;
 
          D2D1_RECT_F rectDst = D2D1::RectF((float) x, (float) y, (float) (x + nWidth), (float) (y + nHeight));
@@ -1246,11 +1246,11 @@ namespace draw2d_direct2d
 
          if(m_pdevicecontext != NULL)
          {
-            m_pdevicecontext->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->GetCurrentBitmap().get_os_data(), rectDst, 1.0, m_interpolationmode, rectSrc);
+            m_pdevicecontext->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), rectDst, 1.0, m_interpolationmode, rectSrc);
          }
          else
          {
-            m_prendertarget->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->GetCurrentBitmap().get_os_data(), &rectDst, 1.0, m_bitmapinterpolationmode, &rectSrc);
+            m_prendertarget->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), &rectDst, 1.0, m_bitmapinterpolationmode, &rectSrc);
          }
 
          hr = m_prendertarget->Flush();
@@ -1279,10 +1279,10 @@ namespace draw2d_direct2d
          if(pgraphicsSrc == NULL)
             return FALSE;
 
-         if(&pgraphicsSrc->GetCurrentBitmap() == NULL)
+         if(&pgraphicsSrc->get_current_bitmap() == NULL)
             return FALSE;
 
-         if(pgraphicsSrc->GetCurrentBitmap().get_os_data() == NULL)
+         if(pgraphicsSrc->get_current_bitmap()->get_os_data() == NULL)
             return FALSE;
 
          D2D1_RECT_F rectDst = D2D1::RectF((float) xDst, (float) yDst, (float) (xDst + nDstWidth), (float) (yDst + nDstHeight));
@@ -1292,11 +1292,11 @@ namespace draw2d_direct2d
 
          if(m_pdevicecontext != NULL)
          {
-            m_pdevicecontext->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->GetCurrentBitmap().get_os_data(), rectDst, 1.0, m_interpolationmode, rectSrc);
+            m_pdevicecontext->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), rectDst, 1.0, m_interpolationmode, rectSrc);
          }
          else
          {
-            m_prendertarget->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->GetCurrentBitmap().get_os_data(), &rectDst, 1.0, m_bitmapinterpolationmode,& rectSrc);
+            m_prendertarget->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), &rectDst, 1.0, m_bitmapinterpolationmode,& rectSrc);
          }
 
          ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->BeginDraw();
@@ -1407,7 +1407,7 @@ namespace draw2d_direct2d
                ::draw2d::brush_sp brushText(allocer());
                brushText->create_solid(ARGB(255, 255, 255, 255));
                dib0->get_graphics()->SelectObject(brushText);
-               dib0->get_graphics()->SelectObject(&GetCurrentFont());
+               dib0->get_graphics()->SelectObject(get_current_font());
 //               dib0->get_graphics()->SetBkMode(TRANSPARENT);
                dib0->get_graphics()->TextOut(0, 0, str);
                dib0->ToAlpha(0);
@@ -1416,7 +1416,7 @@ namespace draw2d_direct2d
 
                brushText->create_solid(m_spbrush->m_cr);
                dib0->get_graphics()->SelectObject(brushText);
-               dib1->get_graphics()->SelectObject(&GetCurrentFont());
+               dib1->get_graphics()->SelectObject(get_current_font());
                dib1->get_graphics()->TextOut(0, 0, str);
 
                dib1->channel_from(visual::rgba::channel_alpha, dib0);
@@ -1467,7 +1467,7 @@ namespace draw2d_direct2d
 
                ::draw2d::brush_sp brushText(allocer(), ARGB(255, 255, 255, 255));
                dib0->get_graphics()->SelectObject(brushText);
-               dib0->get_graphics()->SelectObject(&GetCurrentFont());
+               dib0->get_graphics()->SelectObject(get_current_font());
                dib0->get_graphics()->TextOut(0, 0, str);
                dib0->ToAlpha(0);
 
@@ -1475,7 +1475,7 @@ namespace draw2d_direct2d
                dib1->create(rectText.size());
                brushText->create_solid(m_spbrush->m_cr);
                dib1->get_graphics()->SelectObject(brushText);
-               dib1->get_graphics()->SelectObject(&GetCurrentFont());
+               dib1->get_graphics()->SelectObject(get_current_font());
                //dib1->get_graphics()->SetBkMode(TRANSPARENT);
                dib1->get_graphics()->TextOut(0, 0, str);
                dib1->channel_from(visual::rgba::channel_alpha, dib0);
@@ -1766,7 +1766,7 @@ namespace draw2d_direct2d
       ///*wstr = L"";
       //m_prendertarget->MeasureString(wstr.m_pwsz, -1, (Gdiplus::Font *) m_font->get_os_data(), origin, &rect2);*/
 
-      //lpMetrics->tmAveCharWidth        = (LONG) (rect.Width * GetCurrentFont().m_dFontWidth / (double) wstr.get_length());
+      //lpMetrics->tmAveCharWidth        = (LONG) (rect.Width * get_current_font().m_dFontWidth / (double) wstr.get_length());
       //
 
       return TRUE;
@@ -2167,38 +2167,38 @@ namespace draw2d_direct2d
    */
 #endif
 
-   ::draw2d::pen & graphics::GetCurrentPen() const
+   ::draw2d::pen_sp graphics::get_current_pen() const
    {
 
-      return *m_sppen.m_p;
+      return m_sppen;
 
    }
 
-   ::draw2d::brush & graphics::GetCurrentBrush() const
+   ::draw2d::brush_sp graphics::get_current_brush() const
    {
 
-      return *m_spbrush.m_p;
+      return m_spbrush;
 
    }
 
-   ::draw2d::palette & graphics::GetCurrentPalette() const
+   ::draw2d::palette_sp graphics::get_current_palette() const
    {
 
-      return *(::draw2d::palette *)NULL;
+      return (::draw2d::palette *)NULL;
 
    }
 
-   ::draw2d::font & graphics::GetCurrentFont() const
+   ::draw2d::font_sp graphics::get_current_font() const
    {
 
-      return *m_spfont.m_p;
+      return m_spfont;
 
    }
 
-   ::draw2d::bitmap & graphics::GetCurrentBitmap() const
+   ::draw2d::bitmap_sp graphics::get_current_bitmap() const
    {
 
-      return *m_spbitmap.m_p;
+      return m_spbitmap;
 
    }
 
@@ -2497,7 +2497,7 @@ namespace draw2d_direct2d
 
       Gdiplus::RectF dstRect((Gdiplus::REAL) xDest, (Gdiplus::REAL) yDest, (Gdiplus::REAL) nDestWidth, (Gdiplus::REAL) nDestHeight);
 
-      m_prendertarget->DrawImage((Gdiplus::Bitmap *) pgraphicsSrc->GetCurrentBitmap().get_os_data(), dstRect, 
+      m_prendertarget->DrawImage((Gdiplus::Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), dstRect, 
          (Gdiplus::REAL) xSrc, (Gdiplus::REAL) ySrc, (Gdiplus::REAL) nSrcWidth, (Gdiplus::REAL) nSrcHeight, Gdiplus::UnitPixel, &attributes);*/
 
       try
@@ -2506,10 +2506,10 @@ namespace draw2d_direct2d
          if(pgraphicsSrc == NULL)
             return FALSE;
 
-         if(&pgraphicsSrc->GetCurrentBitmap() == NULL)
+         if(&pgraphicsSrc->get_current_bitmap() == NULL)
             return FALSE;
 
-         if(pgraphicsSrc->GetCurrentBitmap().get_os_data() == NULL)
+         if(pgraphicsSrc->get_current_bitmap()->get_os_data() == NULL)
             return FALSE;
 
          D2D1_RECT_F rectDst = D2D1::RectF((float) xDst, (float) yDst, (float) (xDst + nDstWidth), (float) (yDst + nDstHeight));
@@ -2519,11 +2519,11 @@ namespace draw2d_direct2d
 
          if(m_pdevicecontext != NULL)
          {
-            m_pdevicecontext->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->GetCurrentBitmap().get_os_data(), rectDst, (float) dRate, m_interpolationmode, rectSrc);
+            m_pdevicecontext->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), rectDst, (float) dRate, m_interpolationmode, rectSrc);
          }
          else
          {
-            m_prendertarget->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->GetCurrentBitmap().get_os_data(), rectDst, (float) dRate, m_bitmapinterpolationmode, rectSrc);
+            m_prendertarget->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), rectDst, (float) dRate, m_bitmapinterpolationmode, rectSrc);
          }
 
          //hr = m_prendertarget->Flush();

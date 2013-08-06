@@ -473,7 +473,7 @@ bool XfplayerViewLine::to(
          
          pdc->SelectObject(brushText);
 
-         //pdc->SetTextColor(crColor);
+         //pdc->set_text_color(crColor);
 
          rect rectTextOut;
          GetPlacement(rectTextOut);
@@ -726,7 +726,7 @@ void XfplayerViewLine::CalcCharsPositions(
    if(m_str.get_length() <= 0)
       return;
 
-//   ::draw2d::font * pfontOld = pdc->GetCurrentFont();
+//   ::draw2d::font * pfontOld = pdc->get_current_font();
 
    int32_t i;
    size size;
@@ -845,7 +845,7 @@ void XfplayerViewLine::CalcCharsPositions(
    m_bCacheEmboss = false;
    if(m_str.get_length() <= 0)
       return;
-    ::draw2d::font * pfontOriginal = pdcForeground->GetCurrentFont();
+    ::draw2d::font * pfontOriginal = pdcForeground->get_current_font();
    pdcForeground->SelectObject(pFont->GetFont());
    int32_t i, iLeft, iRight, iMaxExtent;
    size size;
@@ -1357,7 +1357,7 @@ void XfplayerViewLine::EmbossedTextOut(
       m_dc1.CreateCompatibleDC(pdc);
 
    }
-   m_dc1.SelectObject(pdc->GetCurrentFont());
+   m_dc1.SelectObject(pdc->get_current_font());
 
    if(m_bmp1.get_os_data() == NULL)
    {

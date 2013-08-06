@@ -236,7 +236,7 @@ namespace user
          pdc->FillSolidRect(rectArrow, RGB(0, 120, 180));
          pdc->FillSolidRect(rectClient, RGB(220, 240, 250));
          pdc->Draw3dRect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
-         pdc->SetTextColor(RGB(0, 60, 90));
+         pdc->set_text_color(RGB(0, 60, 90));
          rectText = rectClient;
          rectText.deflate(2, 2, 2, 2);
          pdc->draw_text(m_strTip, rectText, DT_LEFT | DT_BOTTOM | DT_END_ELLIPSIS);
@@ -250,7 +250,7 @@ namespace user
          pdc->FillSolidRect(rectArrow, RGB(0, 120, 180));
          pdc->FillSolidRect(rectClient, RGB(220, 240, 250));
          pdc->Draw3dRect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
-         pdc->SetTextColor(RGB(0, 60, 90));
+         pdc->set_text_color(RGB(0, 60, 90));
          rectText = rectClient;
          rectText.deflate(2, 2, 2, 2);
          pdc->draw_text(m_strTip, rectText, DT_LEFT | DT_BOTTOM | DT_END_ELLIPSIS);
@@ -263,7 +263,7 @@ namespace user
          pdc->FillSolidRect(rectArrow, RGB(0, 120, 180));
          pdc->FillSolidRect(rectClient, RGB(220, 240, 250));
          pdc->Draw3dRect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
-         pdc->SetTextColor(RGB(0, 60, 90));
+         pdc->set_text_color(RGB(0, 60, 90));
          rectText = rectClient;
          rectText.deflate(2, 2, 2, 2);
          pdc->draw_text(m_strTip, rectText, DT_LEFT | DT_BOTTOM | DT_END_ELLIPSIS);

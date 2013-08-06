@@ -129,6 +129,15 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
+   void graphics::set_text_color(COLORREF clr)
+   {
+      
+      ::draw2d::brush_sp brush(allocer(), clr);
+
+      SelectObject(brush);
+
+   }
+
    point graphics::SetBrushOrg(int32_t x, int32_t y)
    {
       UNREFERENCED_PARAMETER(x);
@@ -920,10 +929,7 @@ namespace draw2d
 
    bool graphics::TextOut(double x, double y, const string & str)
    {
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(str);
-      throw interface_only_exception(get_app());
+      return TextOut((int32_t) x, (int32_t) y, str);
    }
 
 
@@ -1323,27 +1329,27 @@ namespace draw2d
 
 #endif
 
-   ::draw2d::pen & graphics::GetCurrentPen() const
+   ::draw2d::pen_sp graphics::get_current_pen() const
    {
       throw interface_only_exception(get_app());
    }
 
-   ::draw2d::brush & graphics::GetCurrentBrush() const
+   ::draw2d::brush_sp graphics::get_current_brush() const
    {
       throw interface_only_exception(get_app());
    }
 
-   ::draw2d::palette & graphics::GetCurrentPalette() const
+   ::draw2d::palette_sp graphics::get_current_palette() const
    {
       throw interface_only_exception(get_app());
    }
 
-   ::draw2d::font & graphics::GetCurrentFont() const
+   ::draw2d::font_sp graphics::get_current_font() const
    {
       throw interface_only_exception(get_app());
    }
 
-   ::draw2d::bitmap & graphics::GetCurrentBitmap() const
+   ::draw2d::bitmap_sp graphics::get_current_bitmap() const
    {
       throw interface_only_exception(get_app());
    }
@@ -1946,9 +1952,9 @@ namespace draw2d
 
    bool graphics::LineTo(double x, double y)
    {
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception(get_app());
+      
+      return LineTo((int32_t) x, (int32_t) y);
+
    }
 
    UINT graphics::SetTextAlign(UINT nFlags)
@@ -2087,10 +2093,9 @@ namespace draw2d
 
    size graphics::GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const
    {
-      UNREFERENCED_PARAMETER(lpszString);
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(iIndex);
-      throw interface_only_exception(get_app());
+      
+      return GetTextExtent(lpszString, iIndex);
+
    }
 
    size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
@@ -2108,26 +2113,38 @@ namespace draw2d
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, int32_t iIndex) const
    {
-      UNREFERENCED_PARAMETER(size);
-      UNREFERENCED_PARAMETER(lpszString);
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(iIndex);
-      throw interface_only_exception(get_app());
+      
+      ::size sz = GetTextExtent(string(lpszString), iIndex);
+
+      size.cx = sz.cx;
+      size.cy = sz.cy;
+
+      return true;
+
    }
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount) const
    {
-      UNREFERENCED_PARAMETER(size);
-      UNREFERENCED_PARAMETER(lpszString);
-      UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      
+      ::size sz = GetTextExtent(string(lpszString), nCount);
+
+      size.cx = sz.cx;
+      size.cy = sz.cy;
+
+      return true;
+
    }
 
    bool graphics::GetTextExtent(sized & size, const string & str) const
    {
-      UNREFERENCED_PARAMETER(size);
-      UNREFERENCED_PARAMETER(str);
-      throw interface_only_exception(get_app());
+      
+      ::size sz = GetTextExtent(str);
+
+      size.cx = sz.cx;
+      size.cy = sz.cy;
+      
+      return true;
+
    }
 
    size graphics::GetOutputTextExtent(const char * lpszString, strsize nCount) const

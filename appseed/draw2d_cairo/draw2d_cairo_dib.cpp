@@ -180,7 +180,7 @@ namespace draw2d_cairo
 
    bool dib::create(::draw2d::graphics * pdc)
    {
-      ::draw2d::bitmap * pbitmap = & (dynamic_cast < ::draw2d_cairo::graphics * > (pdc))->GetCurrentBitmap();
+      ::draw2d::bitmap * pbitmap = (dynamic_cast < ::draw2d_cairo::graphics * > (pdc))->get_current_bitmap();
       if(pbitmap == NULL)
          return FALSE;
       ::size size = pbitmap->get_size();
@@ -2717,7 +2717,7 @@ namespace draw2d_cairo
 
       rect rectx;
 
-      ::draw2d::bitmap * pbitmap = &m_spgraphics->GetCurrentBitmap();
+      ::draw2d::bitmap * pbitmap = m_spgraphics->get_current_bitmap();
 
       ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
 

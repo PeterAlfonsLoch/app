@@ -240,7 +240,7 @@ namespace user
       /*int32_t iMaxHeight = 0;
       int32_t iMaxWidth = 0;
       rect rect(4, m_iHeaderHeight + 4, m_size.cx - 8, 4);
-      pdc->SetTextColor(RGB(0, 0, 0));
+      pdc->set_text_color(RGB(0, 0, 0));
       pdc->SetBkMode(TRANSPARENT);
       pdc->SelectObject(m_pschema->m_font);
       string str;

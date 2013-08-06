@@ -119,7 +119,7 @@ namespace visual
 
    //      int32_t iOldMapMode = ::GetMapMode(pdc->m_hDC);
    //      point viewportOrg;
-   //      ::draw2d::font * pfont = pdc->GetCurrentFont();
+   //      ::draw2d::font * pfont = pdc->get_current_font();
    //      ASSERT(pfont != NULL);
    //      VERIFY(::GetViewportOrgEx(pdc->m_hDC, &viewportOrg));
 
@@ -165,7 +165,7 @@ namespace visual
 
    //      int32_t iOldMapMode = ::GetMapMode(pdc->m_hDC);
    //      point viewportOrg;
-   //      ::draw2d::font * pfont = pdc->GetCurrentFont();
+   //      ::draw2d::font * pfont = pdc->get_current_font();
    //      ASSERT(pfont != NULL);
    //      VERIFY(::GetViewportOrgEx(pdc->m_hDC, &viewportOrg));
 

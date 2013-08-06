@@ -557,12 +557,12 @@ namespace html
             ::size size2 = pdc->GetTextExtent(strExtent2);
             pdc->FillSolidRect((int32_t ) ( left + size1.cx), (int32_t) y, size2.cx, size2.cy, crBkSel);
 
-            //pdc->SetTextColor(crSel);
+            //pdc->set_text_color(crSel);
             brushText->create_solid(crSel);
             pdc->SelectObject(brushText);
             pdc->TextOut(left + size1.cx, y, strExtent2);
 
-//            pdc->SetTextColor(cr);
+//            pdc->set_text_color(cr);
             brushText->create_solid(cr);
             pdc->SelectObject(brushText);
             //pdc->SetBkColor(RGB(120, 240, 180));

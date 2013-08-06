@@ -353,7 +353,7 @@ void EmbossedTextOut(
    /* setup the DC, saving off the old values
    */
    //uMode = pdc->SetBkMode(OPAQUE);
-   //crOld = pdc->SetTextColor(crShadow);
+   //crOld = pdc->set_text_color(crShadow);
 
    /* draw the text at the desired offset using the
    ** shadow color, then again at the normal position
@@ -372,7 +372,7 @@ void EmbossedTextOut(
    //ExtTextOut(hDC, x+cx, y+cy, NULL, &rcText, lpsz, cb, NULL);
    pdc->ExtTextOut(x+cx, y+cy, 0, NULL, lpcsz, (int) cb, NULL);
    //pdc->SetBkMode(TRANSPARENT);
-   //pdc->SetTextColor(crText);
+   //pdc->set_text_color(crText);
    if(!pdc->ExtTextOut(x, y, 0, NULL, lpcsz, (int) cb, NULL))
    {
       //      TRACE("Failed to ExtTextOut, GetLastError() -->%d\n", GetLastError());
@@ -380,7 +380,7 @@ void EmbossedTextOut(
 
    /* restore the DC
    */
-   //pdc->SetTextColor(crOld);
+   //pdc->set_text_color(crOld);
    //pdc->SetBkMode(uMode);
 
 
@@ -600,7 +600,7 @@ bool imaging::GrayVRCP(
 
    /*   ::draw2d::graphics * pdc = ::draw2d::graphics_sp::from_handle(hdc);
 
-   ::draw2d::bitmap * pbitmap = pdc->GetCurrentBitmap();
+   ::draw2d::bitmap * pbitmap = pdc->get_current_bitmap();
 
    ::draw2d::bitmap bitmapLocal;
 
@@ -861,7 +861,7 @@ bool imaging::Createcolor_blend_ImageList(
 
 #endif
 
-      //::draw2d::bitmap * pbitmapOld = spgraphics->GetCurrentBitmap();
+      //::draw2d::bitmap * pbitmapOld = spgraphics->get_current_bitmap();
 
       color_blend(pil->m_spdib->get_graphics(), null_point(), pil->m_spdib->size(), cr, bAlpha);
 
@@ -1367,7 +1367,7 @@ int32_t y = 0;
 int32_t cx = -1;
 int32_t cy = -1;
 
-::draw2d::bitmap * pbmpOld = pdc->GetCurrentBitmap();
+::draw2d::bitmap * pbmpOld = pdc->get_current_bitmap();
 if(pbmpOld == NULL)
 {
 return false;
@@ -4880,7 +4880,8 @@ bool imaging::alpha_spread_R2(::draw2d::graphics *pdcDst, point ptDst, size size
 
 #ifdef WINDOWSEX
 
-   ::draw2d::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
+   ::draw2d::bitmap * pbmpOld = pdcDst->get_current_bitmap();
+
    if(pbmpOld == NULL)
    {
       ::draw2d::graphics_sp graphicsMem(allocer());
@@ -5041,7 +5042,8 @@ bool imaging::alpha_spread(::draw2d::graphics *pdcDst, point ptDst, size size, :
 
 #ifdef WINDOWSEX
 
-   ::draw2d::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
+   ::draw2d::bitmap * pbmpOld = pdcDst->get_current_bitmap();
+
    if(pbmpOld == NULL)
    {
       ::draw2d::graphics_sp graphicsMem(allocer());
@@ -6052,7 +6054,8 @@ bool imaging::pixelate(::draw2d::graphics *pdcDst, int32_t xDest, int32_t yDest,
 
 #ifdef WINDOWSEX
 
-   ::draw2d::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
+   ::draw2d::bitmap * pbmpOld = pdcDst->get_current_bitmap();
+
    if(pbmpOld == NULL)
    {
       ::draw2d::graphics_sp graphicsMem(allocer());
@@ -6515,7 +6518,8 @@ bool imaging::alpha_pixelate(
 
 #ifdef WINDOWSEX
 
-   ::draw2d::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
+   ::draw2d::bitmap * pbmpOld = pdcDst->get_current_bitmap();
+
    if(pbmpOld == NULL)
    {
       ::draw2d::graphics_sp graphicsMem(allocer());

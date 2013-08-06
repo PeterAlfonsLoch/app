@@ -675,14 +675,14 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
       rect rect;
       _001GetItemRect(iItem, rect, ElementText);
-      pdc->SetTextColor(RGB(192, 192, 192));
+      pdc->set_text_color(RGB(192, 192, 192));
       visual::graphics_extension::_DrawText(pdc,
          button.m_wstr,
          rect,
          DT_VCENTER | DT_LEFT);
    }
 
-   pdc->SetTextColor(RGB(0, 0, 0));
+   pdc->set_text_color(RGB(0, 0, 0));
    visual::graphics_extension::_DrawText(pdc,
       button.m_wstr,
       rectText,

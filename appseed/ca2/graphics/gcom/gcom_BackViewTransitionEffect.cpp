@@ -1855,7 +1855,7 @@ namespace gcom
             dcFrame1.BitBlt(0, 0, cx, cy, &dcTransfer, 0, 0, SRCCOPY);
          }
          sl.unlock();
-         //graphics.GetDib(_graphics::DibFrame1)->from(dcBack, (HBITMAP) *dcBack.GetCurrentBitmap());
+         //graphics.GetDib(_graphics::DibFrame1)->from(dcBack, (HBITMAP) *dcBack.get_current_bitmap());
 
          m_tool001.m_iStep = 1;
          m_tool001.m_iStepCount = -1;

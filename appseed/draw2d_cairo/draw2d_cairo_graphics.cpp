@@ -1205,7 +1205,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
          pdibWork->Fill(0, 0, 0, 0);
 
-         pdibWork->get_graphics()->set_alpha_mode(::ca2::alpha_mode_set);
+         pdibWork->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
          if(!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
             return false;
@@ -1235,7 +1235,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
          pdibWork4->Fill(255, 0, 0, 0);
 
-         pdibWork4->get_graphics()->set_alpha_mode(::ca2::alpha_mode_set);
+         pdibWork4->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
          pdibWork4->from(point(max(0, m_ptAlphaBlend.x - x), max(0, m_ptAlphaBlend.y - y)),
             m_pdibAlphaBlend->get_graphics(), point(max(0, x - m_ptAlphaBlend.x), max(0, y - m_ptAlphaBlend.y)),
@@ -1243,7 +1243,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
          pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
 
-         /*pdibWork->get_graphics()->set_alpha_mode(::ca2::alpha_mode_blend);
+         /*pdibWork->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
          pdibWork->from(point(max(0, m_ptAlphaBlend.x - x), max(0, m_ptAlphaBlend.y - y)),
             m_pdibAlphaBlend->get_graphics(), point(max(0, x - m_ptAlphaBlend.x), max(0, y - m_ptAlphaBlend.y)),
@@ -1256,7 +1256,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
          //m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
          bool bOk = m_pgraphics->DrawImage(
-            (Gdiplus::Bitmap *) pdibWork->get_graphics()->GetCurrentBitmap().get_os_data(),
+            (Gdiplus::Bitmap *) pdibWork->get_graphics()->get_current_bitmap()->get_os_data(),
             x, y , 0, 0, nWidth, nHeight, Gdiplus::UnitPixel) == Gdiplus::Status::Ok;
 
 
@@ -1491,7 +1491,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
                dib0->create(rectText.size());
                dib0->Fill(0, 0, 0, 0);
                dib0->get_graphics()->SetTextColor(ARGB(255, 255, 255, 255));
-               dib0->get_graphics()->SelectObject(&GetCurrentFont());
+               dib0->get_graphics()->SelectObject(&get_current_font());
                dib0->get_graphics()->SetBkMode(TRANSPARENT);
                dib0->get_graphics()->TextOut(0, 0, str);
                dib0->ToAlpha(0);*/
@@ -1499,14 +1499,14 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
                dib1->create(rectText.size());
                dib1->Fill(0, 0, 0, 0);
 //               dib1->get_graphics()->set_color(m_crColor);
-               dib1->get_graphics()->SelectObject(&GetCurrentFont());
+               dib1->get_graphics()->SelectObject(&get_current_font());
                dib1->get_graphics()->SetBkMode(TRANSPARENT);
                dib1->get_graphics()->TextOut(0, 0, str);
                //dib1->channel_from(visual::rgba::channel_alpha, dib0);
                ::draw2d::dib_sp dib2(get_app());
                dib2->create(rectText.size());
                dib2->Fill(255, 0, 0, 0);
-               dib2->get_graphics()->set_alpha_mode(::ca2::alpha_mode_set);
+               dib2->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
                dib2->from(point(max(0, m_ptAlphaBlend.x - x), max(0, m_ptAlphaBlend.y - y)),
                   m_pdibAlphaBlend->get_graphics(), point(max(0, x - m_ptAlphaBlend.x), max(0, y - m_ptAlphaBlend.y)),
                   size(max(0, m_pdibAlphaBlend->width()-max(0, x - m_ptAlphaBlend.x)),
@@ -1551,14 +1551,14 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
                ::draw2d::dib_sp dib0(allocer());
                dib0->create(rectText.size());
                ::draw2d::brush_sp brush(allocer(),ARGB(255, 255, 255, 255));
-               dib0->get_graphics()->SelectObject(&GetCurrentFont());
+               dib0->get_graphics()->SelectObject(get_current_font());
                dib0->get_graphics()->SelectObject(brush);
                dib0->get_graphics()->TextOut(0, 0, str);
                dib0->ToAlpha(0);
                ::draw2d::dib_sp dib1(allocer());
                dib1->create(rectText.size());
                brush->create_solid(m_spbrush->m_cr);
-               dib1->get_graphics()->SelectObject(&GetCurrentFont());
+               dib1->get_graphics()->SelectObject(get_current_font());
                dib1->get_graphics()->TextOut(0, 0, str);
                dib1->channel_from(visual::rgba::channel_alpha, dib0);
                ::draw2d::dib_sp dib2(allocer());
@@ -2188,39 +2188,39 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
 */
 
-   ::draw2d::pen & graphics::GetCurrentPen() const
+   ::draw2d::pen_sp graphics::get_current_pen() const
    {
 
-      return *m_sppen.m_p;
+      return m_sppen;
 
    }
 
-   ::draw2d::brush & graphics::GetCurrentBrush() const
+   ::draw2d::brush_sp graphics::get_current_brush() const
    {
 
-      return *m_spbrush.m_p;
+      return m_spbrush;
 
    }
 
-   ::draw2d::palette & graphics::GetCurrentPalette() const
+   ::draw2d::palette_sp graphics::get_current_palette() const
    {
 
-      return *(::draw2d::palette *)NULL;
+      return (::draw2d::palette *)NULL;
 
    }
 
-   ::draw2d::font & graphics::GetCurrentFont() const
+   ::draw2d::font_sp graphics::get_current_font() const
    {
 
-      return (::draw2d::font &) *m_spfont;
+      return m_spfont;
 
    }
 
 
-   ::draw2d::bitmap & graphics::GetCurrentBitmap() const
+   ::draw2d::bitmap_sp graphics::get_current_bitmap() const
    {
 
-      return *m_spbitmap.m_p;
+      return m_spbitmap;
 
    }
 

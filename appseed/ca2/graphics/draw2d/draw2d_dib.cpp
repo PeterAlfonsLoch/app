@@ -132,7 +132,7 @@ namespace draw2d
 
    bool dib::create(::draw2d::graphics * pdc)
    {
-      ::draw2d::bitmap & bitmap = pdc->GetCurrentBitmap();
+      ::draw2d::bitmap & bitmap = pdc->get_current_bitmap();
       if(&bitmap == NULL)
          return FALSE;
 
@@ -276,6 +276,8 @@ namespace draw2d
          }
 
       }
+
+      return true;
 
    }
 

@@ -78,11 +78,11 @@ namespace draw2d
 
       virtual bool IsPrinting() const;            // TRUE if being used for printing
 
-      virtual ::draw2d::pen & GetCurrentPen() const;
-      virtual ::draw2d::brush & GetCurrentBrush() const;
-      virtual ::draw2d::palette & GetCurrentPalette() const;
-      virtual ::draw2d::font & GetCurrentFont() const;
-      virtual ::draw2d::bitmap & GetCurrentBitmap() const;
+      virtual ::draw2d::pen_sp      get_current_pen() const;
+      virtual ::draw2d::brush_sp    get_current_brush() const;
+      virtual ::draw2d::palette_sp  get_current_palette() const;
+      virtual ::draw2d::font_sp     get_current_font() const;
+      virtual ::draw2d::bitmap_sp   get_current_bitmap() const;
 
       // for bidi and mirrored localization
       virtual uint32_t GetLayout() const;
@@ -112,6 +112,9 @@ namespace draw2d
       virtual point SetBrushOrg(POINT point);
       virtual int32_t EnumObjects(int32_t nObjectType,
             int32_t (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData);
+
+
+      virtual void set_text_color(COLORREF clr);
 
    // Type-safe selection helpers
    public:

@@ -514,22 +514,22 @@ namespace user
 
       if(!_001IsWindowEnabled())
       {
-//         pdc->SetTextColor(m_pschema->m_crTextDisabled);
+//         pdc->set_text_color(m_pschema->m_crTextDisabled);
          brushText->create_solid(m_pschema->m_crTextDisabled);
       }
       else if(_001IsPressed())
       {
-//         pdc->SetTextColor(m_pschema->m_crTextPress);
+//         pdc->set_text_color(m_pschema->m_crTextPress);
          brushText->create_solid(m_pschema->m_crTextPress);
       }
       else if(m_iHover >= 0)
       {
-//         pdc->SetTextColor(m_pschema->m_crTextHover);
+//         pdc->set_text_color(m_pschema->m_crTextHover);
          brushText->create_solid(m_pschema->m_crTextHover);
       }
       else
       {
-//         pdc->SetTextColor(m_pschema->m_crTextNormal);
+//         pdc->set_text_color(m_pschema->m_crTextNormal);
          brushText->create_solid(m_pschema->m_crTextNormal);
       }
 
