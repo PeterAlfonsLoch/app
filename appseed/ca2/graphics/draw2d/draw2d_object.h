@@ -15,6 +15,7 @@ namespace draw2d
       void *         m_powner; // in a normal usage/flow I can change the object only if I am the owner, otherwise create another object
 
 
+
       virtual ~object();
 
 

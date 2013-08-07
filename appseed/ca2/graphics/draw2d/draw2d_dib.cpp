@@ -285,6 +285,82 @@ namespace draw2d
 
    }
 
+   bool dib::from_ignore_alpha(point ptDst, ::draw2d::dib * pdib, point ptSrc, class size size)
+   {
+
+      if(ptDst.x < 0)
+      {
+         size.cx += ptDst.x;
+         ptDst.x = 0;
+      }
+
+      if(size.cx < 0)
+         return true;
+      
+      if(ptDst.y < 0)
+      {
+         size.cy += ptDst.y;
+         ptDst.y = 0;
+      }
+
+      if(size.cy < 0)
+         return true;
+
+      int xEnd = min(size.cx, min(pdib->cx - ptSrc.x, cx - ptDst.x));
+      
+      int yEnd = min(size.cy, min(pdib->cy - ptSrc.y, cy - ptDst.y));
+
+      if(xEnd < 0)
+         return false;
+
+      if(yEnd < 0)
+         return false;
+
+      int32_t s1 = scan / sizeof(COLORREF);
+
+      int32_t s2 = pdib->scan / sizeof(COLORREF);
+
+      COLORREF * pdst = &m_pcolorref[s1 * ptDst.y] + ptDst.x;
+
+      COLORREF * psrc = &pdib->m_pcolorref[s2 * ptSrc.y] + ptSrc.x;
+
+      COLORREF * pdst2;
+
+      COLORREF * psrc2;
+
+      int i = 0;
+
+      for(int y = 0; y < yEnd; y++)
+      {
+
+         pdst2 = &pdst[s1 * y];
+
+         psrc2 = &psrc[s2 * y];
+
+         for(int x = 0; x < xEnd; x++)
+         {
+
+            if(GetAValue(*psrc2) == 0)
+            {
+               i++;
+            }
+            else 
+            {
+               *pdst2 = *psrc2;
+            }
+
+            pdst2++;
+
+            psrc2++;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
    void dib::set( int32_t R, int32_t G, int32_t B )
    {
       int32_t size=cx*cy;

@@ -42,6 +42,9 @@ namespace draw2d
       // advanced use and implementation
       bool                          m_bPrinting;
 
+      
+
+
       graphics();
 
       virtual bool is_set();

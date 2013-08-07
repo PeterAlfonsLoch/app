@@ -42,11 +42,15 @@ namespace draw2d
 
          e_type            m_etype;
          COLORREF          m_cr;
+         size              m_size;
 
          bool operator == (const descriptor & d) const
          {
             
             if(m_etype != d.m_etype)
+               return false;
+
+            if(m_size != d.m_size)
                return false;
 
             switch(m_etype)
@@ -57,6 +61,11 @@ namespace draw2d
                return true;
             };
 
+         }
+
+         bool operator != (const descriptor & d) const
+         {
+            return !operator ==(d);
          }
 
       };
@@ -169,6 +178,7 @@ namespace draw2d
       virtual bool from(::draw2d::graphics * pdc);
       virtual bool from(point ptDst, ::draw2d::graphics * pdc, point ptSrc, size size);
       virtual bool from(point ptDst, ::draw2d::dib * pdc, point ptSrc, size size);
+      virtual bool from_ignore_alpha(point ptDst, ::draw2d::dib * pdc, point ptSrc, size size);
 
       virtual bool to(::draw2d::graphics * pgraphics);
       virtual bool to(::draw2d::graphics * pgraphics, point pt);
@@ -344,22 +354,63 @@ namespace draw2d
 {
 
    class CLASS_DECL_ca2 dibmap_ex1 :
-      virtual public map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, sp(::draw2d::dibmap), sp(::draw2d::dibmap) >
+      virtual public map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, ::draw2d::dib_sp, ::draw2d::dib_sp >
    {
    public:
 
-      dibmap_ex1(sp(::ca2::application) papp) :
+      
+      int32_t m_iLimitCount;
+
+
+      dibmap_ex1(sp(::ca2::application) papp, int32_t iLimitCount = 100) :
          ca2(papp)
       {
+
+         m_iLimitCount = iLimitCount;
+
       }
 
 
-      inline ::draw2d::dibmap & operator[](class ::draw2d::dib::descriptor key)
+      inline ::draw2d::dib_sp & operator[](class ::draw2d::dib::descriptor key)
       {
-         sp(::draw2d::dibmap) & dibmap = map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, sp(::draw2d::dibmap), sp(::draw2d::dibmap) >::operator [](key);
-         if(dibmap.is_null())
-            dibmap = canew(::draw2d::dibmap(get_app()));
-         return dibmap;
+         while(get_count() > m_iLimitCount)
+         {
+            remove_bigger();
+         }
+         ::draw2d::dib_sp & dib = map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, ::draw2d::dib_sp, ::draw2d::dib_sp >::operator [](key);
+         if(dib.is_null())
+         {
+            dib.create(allocer());
+            dib->create(key.m_size);
+         }
+         return dib;
+      }
+
+
+      void remove_bigger()
+      {
+
+         ::draw2d::dib::descriptor keyFind;
+         int64_t iAreaMax = 0;
+         assoc * passoc = PGetFirstAssoc();
+         while(passoc != NULL)
+         {
+            if(passoc->m_element2->area() > iAreaMax)
+            {
+               iAreaMax = passoc->m_element2->area();
+               keyFind = passoc->m_element1;
+            }
+            passoc = passoc->m_pnext;
+         }
+
+         if(iAreaMax > 0)
+         {
+            remove_key(keyFind);
+         }
+         else
+         {
+            remove_key(PGetFirstAssoc()->m_element1);
+         }
       }
 
 
