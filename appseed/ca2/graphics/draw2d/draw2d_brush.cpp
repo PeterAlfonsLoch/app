@@ -17,6 +17,13 @@ namespace draw2d
 
    }
 
+
+   brush::~brush()
+   {
+
+   }
+
+
 /*
    void brush::construct(COLORREF crColor)
    {

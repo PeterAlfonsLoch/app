@@ -25,10 +25,6 @@ namespace draw2d
 
    region::~region()
    {
-      if(m_etype != type_none)
-      {
-         destroy();
-      }
    }
 
    bool region::destroy()

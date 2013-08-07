@@ -30,6 +30,7 @@ namespace draw2d
 
 
       brush();
+      virtual ~brush();
 
 
       //virtual void construct(COLORREF crColor);                // create_solid

@@ -11,6 +11,10 @@ namespace draw2d
    public:
 
 
+      bitmap();
+      virtual ~bitmap();
+
+
       virtual bool CreateBitmap(::draw2d::graphics * pdc, int32_t nWidth, int32_t nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, int32_t stride);
       virtual bool CreateBitmapIndirect(::draw2d::graphics * pdc, LPBITMAP lpBitmap);
       virtual bool CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int32_t nWidth, int32_t nHeight);

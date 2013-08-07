@@ -22,6 +22,7 @@ namespace draw2d
 
 
       font();
+      virtual ~font();
 
 
 

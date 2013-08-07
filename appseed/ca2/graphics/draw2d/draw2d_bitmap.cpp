@@ -5,6 +5,19 @@ namespace draw2d
 {
 
 
+   bitmap::bitmap()
+   {
+
+
+   }
+
+
+   bitmap::~bitmap()
+   {
+
+   }
+
+
    bool bitmap::CreateBitmap(::draw2d::graphics * pdc, int32_t nWidth, int32_t nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, int32_t stride)
    {
       UNREFERENCED_PARAMETER(nWidth);

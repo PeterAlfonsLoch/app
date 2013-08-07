@@ -19,6 +19,13 @@ namespace draw2d
 
    }
 
+
+   font::~font()
+   {
+
+   }
+
+
    void font::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);

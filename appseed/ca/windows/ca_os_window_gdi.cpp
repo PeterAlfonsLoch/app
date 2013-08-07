@@ -111,64 +111,30 @@ void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lp
 
    memcpy(m_pcolorref, pcolorref, (cx * cy) * sizeof(COLORREF));
 
-   POINT pt = { 0 };
 
-   ::SetViewportOrgEx(hdcScreen, 0, 0, &pt);
+   ::SetViewportOrgEx(hdcScreen, 0, 0, NULL);
 
    if(bLayered)
    {
 
-      POINT ptSrc = { 0 };
 
       POINT pt;
-      
-      pt.x = rectWindow.left;
 
-      pt.y = rectWindow.top;
+      pt.x = lpcrect->left;
+      
+      pt.y = lpcrect->top;
 
       SIZE sz;
 
       sz.cx = width(&rectWindow);
 
       sz.cy = height(&rectWindow);
+      
+      POINT ptSrc = { 0 };
 
-      if(pt.x < 0)
-      {
+      BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
 
-         pt.x = 0;
-
-         sz.cx += pt.x;
-
-         ptSrc.x -= pt.x;
-
-      }
-
-      if(pt.y < 0)
-      {
-
-         pt.y = 0;
-
-         sz.cy += pt.y;
-
-         ptSrc.y -= pt.y;
-
-      }
-
-      RECT rectScreen;
-
-      ::GetWindowRect(::GetDesktopWindow(), &rectScreen);
-
-      sz.cx = min(sz.cx, rectScreen.right - pt.x);
-      sz.cy = min(sz.cy, rectScreen.bottom - pt.y);
-
-      if(sz.cx > 0 && sz.cy > 0)
-      {
-
-         BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
-
-         bool bOk = ::UpdateLayeredWindow(window, hdcScreen, &pt, &sz, m_hdc, &ptSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA) != FALSE;
-
-      }
+      bool bOk = ::UpdateLayeredWindow(window, hdcScreen, &pt, &sz, m_hdc, &ptSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA) != FALSE;
 
 
    }
