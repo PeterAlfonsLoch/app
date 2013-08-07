@@ -117,6 +117,9 @@ namespace draw2d
       virtual void from_alpha();
       virtual void mult_alpha(::draw2d::dib * pdibWork, bool bPreserveAlpha = true);
 
+      virtual void mult_alpha();
+      virtual void div_alpha();
+
       virtual void rotate(dib * pdib, LPCRECT lpcrect, double dAngle, double dScale);
       virtual void rotate(dib * pdib, double dAngle, double dScale);
       virtual void Rotate034(dib * pdib, double dAngle, double dScale);

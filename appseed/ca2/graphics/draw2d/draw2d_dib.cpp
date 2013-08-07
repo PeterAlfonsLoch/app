@@ -439,6 +439,131 @@ namespace draw2d
       }
    }
 
+   void dib::mult_alpha()
+   {
+
+      BYTE *dst=(BYTE*)get_data();
+      int64_t size = area();
+
+
+      //  / 255 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
+
+
+      while (size >= 8)
+      {
+         dst[0] = byte_clip(((int32_t)dst[0] * (int32_t)dst[3]) / 255);
+         dst[1] = byte_clip(((int32_t)dst[1] * (int32_t)dst[3]) / 255);
+         dst[2] = byte_clip(((int32_t)dst[2] * (int32_t)dst[3]) / 255);
+
+         dst[4+0] = byte_clip(((int32_t)dst[4+0] * (int32_t)dst[4+3]) / 255);
+         dst[4+1] = byte_clip(((int32_t)dst[4+1] * (int32_t)dst[4+3]) / 255);
+         dst[4+2] = byte_clip(((int32_t)dst[4+2] * (int32_t)dst[4+3]) / 255);
+
+         dst[8+0] = byte_clip(((int32_t)dst[8+0] * (int32_t)dst[8+3]) / 255);
+         dst[8+1] = byte_clip(((int32_t)dst[8+1] * (int32_t)dst[8+3]) / 255);
+         dst[8+2] = byte_clip(((int32_t)dst[8+2] * (int32_t)dst[8+3]) / 255);
+
+         dst[12+0] = byte_clip(((int32_t)dst[12+0] * (int32_t)dst[12+3]) / 255);
+         dst[12+1] = byte_clip(((int32_t)dst[12+1] * (int32_t)dst[12+3]) / 255);
+         dst[12+2] = byte_clip(((int32_t)dst[12+2] * (int32_t)dst[12+3]) / 255);
+
+         dst[16+0] = byte_clip(((int32_t)dst[16+0] * (int32_t)dst[16+3]) / 255);
+         dst[16+1] = byte_clip(((int32_t)dst[16+1] * (int32_t)dst[16+3]) / 255);
+         dst[16+2] = byte_clip(((int32_t)dst[16+2] * (int32_t)dst[16+3]) / 255);
+
+         dst[20+0] = byte_clip(((int32_t)dst[20+0] * (int32_t)dst[20+3]) / 255);
+         dst[20+1] = byte_clip(((int32_t)dst[20+1] * (int32_t)dst[20+3]) / 255);
+         dst[20+2] = byte_clip(((int32_t)dst[20+2] * (int32_t)dst[20+3]) / 255);
+
+         dst[24+0] = byte_clip(((int32_t)dst[24+0] * (int32_t)dst[24+3]) / 255);
+         dst[24+1] = byte_clip(((int32_t)dst[24+1] * (int32_t)dst[24+3]) / 255);
+         dst[24+2] = byte_clip(((int32_t)dst[24+2] * (int32_t)dst[24+3]) / 255);
+
+         dst[28+0] = byte_clip(((int32_t)dst[28+0] * (int32_t)dst[28+3]) / 255);
+         dst[28+1] = byte_clip(((int32_t)dst[28+1] * (int32_t)dst[28+3]) / 255);
+         dst[28+2] = byte_clip(((int32_t)dst[28+2] * (int32_t)dst[28+3]) / 255);
+
+         dst += 4 * 8;
+         size -= 8;
+      }
+      while(size--)
+      {
+         dst[0] = byte_clip(((int32_t)dst[0] * (int32_t)dst[3]) / 255);
+         dst[1] = byte_clip(((int32_t)dst[1] * (int32_t)dst[3]) / 255);
+         dst[2] = byte_clip(((int32_t)dst[2] * (int32_t)dst[3]) / 255);
+         dst += 4;
+      }
+   }
+
+
+   void dib::div_alpha()
+   {
+
+      BYTE *dst=(BYTE*)get_data();
+      int64_t size = area();
+
+
+      // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
+
+
+/*      while (size >= 8)
+      {
+         dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3])>> 8);
+         dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3])>> 8);
+         dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3])>> 8);
+
+         dst[4+0] = LOBYTE(((int32_t)dst[4+0] * (int32_t)dst[4+3])>> 8);
+         dst[4+1] = LOBYTE(((int32_t)dst[4+1] * (int32_t)dst[4+3])>> 8);
+         dst[4+2] = LOBYTE(((int32_t)dst[4+2] * (int32_t)dst[4+3])>> 8);
+
+         dst[8+0] = LOBYTE(((int32_t)dst[8+0] * (int32_t)dst[8+3])>> 8);
+         dst[8+1] = LOBYTE(((int32_t)dst[8+1] * (int32_t)dst[8+3])>> 8);
+         dst[8+2] = LOBYTE(((int32_t)dst[8+2] * (int32_t)dst[8+3])>> 8);
+
+         dst[12+0] = LOBYTE(((int32_t)dst[12+0] * (int32_t)dst[12+3])>> 8);
+         dst[12+1] = LOBYTE(((int32_t)dst[12+1] * (int32_t)dst[12+3])>> 8);
+         dst[12+2] = LOBYTE(((int32_t)dst[12+2] * (int32_t)dst[12+3])>> 8);
+
+         dst[16+0] = LOBYTE(((int32_t)dst[16+0] * (int32_t)dst[16+3])>> 8);
+         dst[16+1] = LOBYTE(((int32_t)dst[16+1] * (int32_t)dst[16+3])>> 8);
+         dst[16+2] = LOBYTE(((int32_t)dst[16+2] * (int32_t)dst[16+3])>> 8);
+
+         dst[20+0] = LOBYTE(((int32_t)dst[20+0] * (int32_t)dst[20+3])>> 8);
+         dst[20+1] = LOBYTE(((int32_t)dst[20+1] * (int32_t)dst[20+3])>> 8);
+         dst[20+2] = LOBYTE(((int32_t)dst[20+2] * (int32_t)dst[20+3])>> 8);
+
+         dst[24+0] = LOBYTE(((int32_t)dst[24+0] * (int32_t)dst[24+3])>> 8);
+         dst[24+1] = LOBYTE(((int32_t)dst[24+1] * (int32_t)dst[24+3])>> 8);
+         dst[24+2] = LOBYTE(((int32_t)dst[24+2] * (int32_t)dst[24+3])>> 8);
+
+         dst[28+0] = LOBYTE(((int32_t)dst[28+0] * (int32_t)dst[28+3])>> 8);
+         dst[28+1] = LOBYTE(((int32_t)dst[28+1] * (int32_t)dst[28+3])>> 8);
+         dst[28+2] = LOBYTE(((int32_t)dst[28+2] * (int32_t)dst[28+3])>> 8);
+
+         dst += 4 * 8;
+         size -= 8;
+      }*/
+      while(size--)
+      {
+         if(dst[3] == 0)
+         {
+            dst[0] = 0;
+            dst[1] = 0;
+            dst[2] = 0;
+         }
+         else
+         {
+            dst[0] = byte_clip((int32_t) dst[0] * 255 / (int32_t) dst[3]);
+            dst[1] = byte_clip((int32_t) dst[1] * 255 / (int32_t) dst[3]);
+            dst[2] = byte_clip((int32_t) dst[2] * 255 / (int32_t) dst[3]);
+         }
+
+         dst += 4;
+
+      }
+
+   }
+
    void dib::Map(int32_t ToRgb, int32_t FromRgb)
    {
       byte * dst= (byte *) get_data();
