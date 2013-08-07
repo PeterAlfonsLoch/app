@@ -117,6 +117,9 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
    {
 
       pdc->SelectObject(m_brushEllipse);
+
+      //m_brushEllipse->m_cr = ARGB(127, 0, 255, 0);
+
       pdc->SelectObject(m_penEllipse);
       crText = m_crText;
 
@@ -128,8 +131,8 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
    rectEllipse.deflate(0, 0, 2, 2);
 
    pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
-   pdc->DrawEllipse(rectEllipse);
    pdc->FillEllipse(rectEllipse);
+   pdc->DrawEllipse(rectEllipse);
 
    string str;
    GetWindowText(str);
@@ -140,7 +143,7 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
 
    pdc->set_font(GetFont());
    pdc->SelectObject(brushText);
-   pdc->set_alpha_mode(::draw2d::alpha_mode_set);
+   //pdc->set_alpha_mode(::draw2d::alpha_mode_set);
    pdc->draw_text(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
 

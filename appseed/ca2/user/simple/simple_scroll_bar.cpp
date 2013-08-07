@@ -5,6 +5,7 @@ simple_scroll_bar::simple_scroll_bar(sp(::ca2::application) papp) :
    ca2(papp),
    ::user::interaction(papp),
    m_penDraw(allocer()),
+   m_brushDraw(allocer()),
    m_rgnA(allocer()), // região da primeira seta
    m_rgnB(allocer()) // região da segunda seta
 {
@@ -812,6 +813,8 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
    m_penDraw->create_solid(pdc, 1, ARGB(255, 0, 0, 0));
 
+   m_brushDraw->m_etype = ::draw2d::brush::type_null;
+
    pdc->SelectClipRgn(NULL);
 
    rect rectClient;
@@ -846,6 +849,8 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
    GetWindowRect(rectWindow);
 
    pdc->DrawRectangle(rectTrack);
+
+   pdc->SelectObject(m_brushDraw);
    pdc->Polygon(m_ptaA, 4);
    pdc->Polygon(m_ptaB, 4);
 

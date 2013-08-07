@@ -9,6 +9,7 @@ public:
 
    //::draw2d::brush_sp       m_brushNull;
    ::draw2d::pen_sp         m_penDraw;
+   ::draw2d::brush_sp         m_brushDraw;
    point                m_ptTrackOffset;
    point                m_ptaA[4]; // pontos da primeira seta
    point                m_ptaB[4]; // pontos da segunda seta

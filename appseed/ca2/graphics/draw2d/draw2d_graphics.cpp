@@ -14,6 +14,7 @@ namespace draw2d
       m_pjob                  = NULL;
       m_crColor               = RGB(0, 0, 0);
       m_dFontFactor           = 1.0;
+      m_pdib                  = NULL;
    }
 
    ::user::str_context * graphics::str_context()

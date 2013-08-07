@@ -253,25 +253,29 @@ namespace draw2d
 
       int32_t s2 = pdib->scan / sizeof(COLORREF);
 
-      COLORREF * pdst = &m_pcolorref[s1 * ptDst.y];
+      COLORREF * pdst = &m_pcolorref[s1 * ptDst.y] + ptDst.x;
 
-      COLORREF * psrc = &pdib->m_pcolorref[s2 * ptSrc.y];
+      COLORREF * psrc = &pdib->m_pcolorref[s2 * ptSrc.y] + ptSrc.x;
+
+      COLORREF * pdst2;
+
+      COLORREF * psrc2;
 
       for(int y = 0; y < yEnd; y++)
       {
 
-         pdst = &m_pcolorref[s1 * y] + ptDst.x;
+         pdst2 = &pdst[s1 * y];
 
-         psrc = &pdib->m_pcolorref[s2 * y] + ptSrc.x;
+         psrc2 = &psrc[s2 * y];
 
          for(int x = 0; x < xEnd; x++)
          {
 
-            *pdst = *psrc;
+            *pdst2 = *psrc2;
 
-            pdst++;
+            pdst2++;
 
-            psrc++;
+            psrc2++;
 
          }
 

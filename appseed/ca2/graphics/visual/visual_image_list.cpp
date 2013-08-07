@@ -303,17 +303,19 @@ bool image_list::_grow()
    else
    {
       ::draw2d::dib_sp spdib(allocer());
-      ::draw2d::dib_sp dibAlpha(allocer());
+      //::draw2d::dib_sp dibAlpha(allocer());
 
       spdib->Paste(m_spdib);
 
       m_spdib->create(cx * iAllocSize, cy);
 
-      m_spdib->defer_realize(spdib->get_graphics());
+      m_spdib->from(point(0, 0), spdib, point(0, 0), spdib->size());
 
-      m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+      //m_spdib->defer_realize(spdib->get_graphics());
 
-      m_spdib->get_graphics()->BitBlt(0, 0, spdib->cx, spdib->cy, spdib->get_graphics(), 0, 0, SRCCOPY);
+      //m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+
+      //m_spdib->get_graphics()->BitBlt(0, 0, spdib->cx, spdib->cy, spdib->get_graphics(), 0, 0, SRCCOPY);
 
    }
 

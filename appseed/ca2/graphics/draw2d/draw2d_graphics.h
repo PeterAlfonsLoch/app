@@ -18,7 +18,7 @@ namespace draw2d
       ::ca2::job *                  m_pjob;
 
 
-      ::draw2d::dib_sp              m_spdib;
+      ::draw2d::dib *               m_pdib;
       ::draw2d::bitmap_sp           m_spbitmap;
       ::draw2d::pen_sp              m_sppen;
       ::draw2d::brush_sp            m_spbrush;
