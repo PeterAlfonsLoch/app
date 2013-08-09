@@ -362,7 +362,7 @@ namespace draw2d
       int32_t m_iLimitCount;
 
 
-      dibmap_ex1(sp(::ca2::application) papp, int32_t iLimitCount = 100) :
+      dibmap_ex1(sp(::ca2::application) papp, int32_t iLimitCount = 500) :
          ca2(papp)
       {
 

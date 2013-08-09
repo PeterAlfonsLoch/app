@@ -221,6 +221,18 @@ namespace draw2d
    bool dib::from(point ptDst, ::draw2d::dib * pdib, point ptSrc, class size size)
    {
 
+      if(ptSrc.x < 0)
+      {
+         ptDst.x -= ptSrc.x;
+         ptSrc.x = 0;
+      }
+
+      if(ptSrc.y < 0)
+      {
+         ptDst.y -= ptSrc.y;
+         ptSrc.y = 0;
+      }
+
       if(ptDst.x < 0)
       {
          size.cx += ptDst.x;

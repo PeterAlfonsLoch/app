@@ -66,6 +66,8 @@ namespace visual
    bool fastblur::blur()
    {
 
+      mutex_lock ml(user_mutex());
+
       m_p->map();
       m_ucha.set_size(m_p->scan * m_p->cy);
 

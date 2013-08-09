@@ -107,9 +107,11 @@ namespace draw2d_cairo
    {
       if(m_spbitmap.is_set()
       && m_spbitmap->get_os_data() != NULL
+      && m_spgraphics.is_set()
+      && m_spgraphics->get_os_data() != NULL
       && width == cx
       && height == cy)
-         return TRUE;
+         return true;
 
       Destroy();
 
