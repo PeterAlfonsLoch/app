@@ -1324,6 +1324,50 @@ fill_last:
       }
    }
 
+   void dib::FillRect ( int32_t x, int32_t y, int32_t w, int32_t h, int32_t A, int32_t R, int32_t G, int32_t B )
+   {
+      // Clip Rect
+      int32_t px = x;
+      if(w < 0)
+      {
+         px += w;
+         w = -w;
+      }
+      
+      px=(px>=0) ? px : 0;
+      int32_t py = y;
+      if(h < 0)
+      {
+         py += h;
+         h = -h;
+      }
+      py = (py>=0) ? py : 0;
+      int32_t dx;
+      dx =((px+w)<cx) ? w : cx-px;
+      int32_t dy;
+      dy =((py+h)<cy) ? h : cy-py;
+      dx=(px>=0) ? dx : dx + x;
+      dy=(py>=0) ? dy : dy + y;
+
+      // If Nothing to Fill return
+      if ( (dx<=0) || (dy<=0) )
+         return;
+
+      // Prepare buffer Address
+      COLORREF *dst=get_data()+(py*cx)+px;
+      COLORREF color=ARGB (A, B, G, R );
+
+      // Do Fill
+      while ( dy-- )
+      {
+         for ( int32_t i=0; i<dx; i++ )
+         {
+            dst[i]=color;
+         }
+         dst+=cx;
+      }
+   }
+
    void dib::FillGlassRect ( int32_t x, int32_t y, int32_t w, int32_t h, int32_t R, int32_t G, int32_t B, int32_t A )
    {
       // Clip Rect
