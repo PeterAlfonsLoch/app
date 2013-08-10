@@ -54,6 +54,9 @@
     <ClCompile Include="draw2d_direct2d_path.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="draw2d_direct2d_directx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -96,6 +99,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="draw2d_direct2d_path.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_direct2d_directx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

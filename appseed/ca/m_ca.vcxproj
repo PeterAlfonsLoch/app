@@ -456,6 +456,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile Include="hotplugin\hotplugin_plugin.cpp" />
     <ClCompile Include="metrowin\ca_os.cpp" />
     <ClCompile Include="metrowin\ca_os_ca_dll.cpp" />
+    <ClCompile Include="metrowin\ca_os_direct2d_tls.cpp" />
     <ClCompile Include="metrowin\ca_os_file.cpp" />
     <ClCompile Include="metrowin\ca_os_file_std.cpp" />
     <ClCompile Include="metrowin\ca_os_file_watcher.cpp" />

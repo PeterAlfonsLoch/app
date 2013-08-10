@@ -30,16 +30,6 @@ namespace draw2d_direct2d
 
    class graphics;
 
-   inline void throw_if_failed(HRESULT hr)
-   {
-
-      if(FAILED(hr))
-         throw hresult_exception(::ca2::get_thread_app(), hr);
-      //if(FAILED(hr))
-      // throw hr;
-
-   }
-
 
 } // namespace draw2d_direct2d
 

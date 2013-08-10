@@ -134,83 +134,9 @@ bool os_simple_font::create_pixel_bold(simple_graphics & g, int nPixelSize, cons
 }
 
 
-CLASS_DECL_ca IDWriteFactory * TlsGetWriteFactory()
-{
-
-   IDWriteFactory * pfactory = (IDWriteFactory *) TlsGetValue(TLS_WRITE_FACTORY);
-
-   if(pfactory != NULL)
-      return pfactory;
-
-   HRESULT hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), reinterpret_cast<IUnknown**>(&pfactory));
-
-   TlsSetValue(TLS_WRITE_FACTORY, pfactory);
-
-   if(FAILED(hr))
-      return NULL;
-
-   return pfactory;
-
-}
 
 
 
-
-CLASS_DECL_ca float point_dpi(float points)
-{
-
-   FLOAT dpiX, dpiY;
-
-   GetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
-
-	return points * dpiY / 72.f;
-
-}
-
-CLASS_DECL_ca float dpiy(float y)
-{
-   
-   FLOAT dpiX, dpiY;
-
-   GetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
-
-   return y * dpiY / 96.f;
-
-}
-
-CLASS_DECL_ca float dpix(float x)
-{
-   
-   FLOAT dpiX, dpiY;
-
-   GetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
-
-   return x * dpiX / 96.f;
-
-}
-
-
-CLASS_DECL_ca float y_dpi(float y)
-{
-   
-   FLOAT dpiX, dpiY;
-
-   GetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
-
-   return y / dpiY;
-
-}
-
-CLASS_DECL_ca float x_dpi(float x)
-{
-   
-   FLOAT dpiX, dpiY;
-
-   GetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
-
-   return x / dpiX;
-
-}
 
 
 

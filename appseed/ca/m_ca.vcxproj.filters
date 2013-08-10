@@ -462,6 +462,9 @@
     <ClCompile Include="ca\ca_geometric_types.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
+    <ClCompile Include="metrowin\ca_os_direct2d_tls.cpp">
+      <Filter>Source Files\metrowin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
