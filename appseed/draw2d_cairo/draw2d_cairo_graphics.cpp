@@ -65,6 +65,8 @@ namespace draw2d_cairo
    graphics::~graphics()
    {
 
+      mutex_lock ml(user_mutex());
+
 /*      HDC hdc = Detach();
 
       if(hdc != NULL)
@@ -127,6 +129,8 @@ namespace draw2d_cairo
 
    bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
+
+      mutex_lock ml(user_mutex());
 
       if(m_pdc != NULL)
       {
@@ -684,16 +688,18 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    bool graphics::DrawIcon(int32_t x, int32_t y, ::visual::icon * picon, int32_t cx, int32_t cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags)
    {
 
-      return false;
-
-/*      try
+      try
       {
-
+      
          if(picon == NULL)
             return FALSE;
 
-         if(m_pgraphics == NULL)
+         if(m_pdc == NULL)
             return FALSE;
+
+         if(cx <= 0 || cx <= 0)
+            return false;
+
 
          bool bOk = FALSE;
 
@@ -706,11 +712,11 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
          info.bmiHeader.biWidth         = cx;
          info.bmiHeader.biHeight        = - cy;
          info.bmiHeader.biPlanes        = 1;
-         info.bmiHeader.biBitCount      = 32;
+         info.bmiHeader.biBitCount      = 32; 
          info.bmiHeader.biCompression   = BI_RGB;
          info.bmiHeader.biSizeImage     = cx * cy * 4;
 
-         HBITMAP hbitmap = ::CreateDIBSection(NULL, &info, DIB_RGB_COLORS, (void **) &pcolorref, NULL, NULL);
+         HBITMAP hbitmap = ::CreateDIBSection(NULL, &info, DIB_RGB_COLORS, (void **) &pcolorref, NULL, 0);
 
          HDC hdc = ::CreateCompatibleDC(NULL);
 
@@ -724,10 +730,47 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
             try
             {
 
-               Gdiplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (BYTE *) pcolorref);
+               //Gdiplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (BYTE *) pcolorref);
 
-               bOk = m_pgraphics->DrawImage(&b, x, y, 0, 0, cx, cy, Gdiplus::UnitPixel) == Gdiplus::Ok;
+               ::draw2d::bitmap_sp b(allocer());
 
+               b->CreateBitmap(this, cx, cy, 1, 32, pcolorref, cx * sizeof(COLORREF));
+
+               cairo_surface_t * psurface = (cairo_surface_t *) b->get_os_data();
+
+               if(psurface == NULL)
+                  return false;
+
+               cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
+
+               if(ppattern == NULL)
+                  return false;
+
+               cairo_matrix_t matrix;
+
+               cairo_matrix_t matrixOld;
+
+               cairo_keep keep(m_pdc);
+
+               cairo_translate(m_pdc, x, y);
+
+               cairo_pattern_get_matrix(ppattern, &matrixOld);
+
+               cairo_matrix_init_translate(&matrix, 0, 0);
+
+               cairo_pattern_set_matrix(ppattern, &matrix);
+
+               cairo_rectangle(m_pdc, 0, 0, cx, cy);
+
+               cairo_clip(m_pdc);
+
+               cairo_set_source(m_pdc, ppattern);
+
+               cairo_paint(m_pdc);
+
+               cairo_pattern_set_matrix(ppattern, &matrixOld);
+
+               cairo_pattern_destroy(ppattern);
             }
             catch(...)
             {
@@ -744,11 +787,9 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
       }
       catch(...)
       {
-         return FALSE;
       }
-*/
-      //return ::DrawIconEx(get_handle1(), x, y, picon->m_hicon, cx, cy, istepIfAniCur, hbrFlickerFreeDraw, diFlags);
 
+      return false;
    }
 
    bool graphics::DrawState(point pt, size size, HBITMAP hBitmap, UINT nFlags, HBRUSH hBrush)
@@ -1172,6 +1213,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    bool graphics::BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, uint32_t dwRop)
    {
 
+      mutex_lock ml(user_mutex());
 
       if(m_pdibAlphaBlend != NULL)
       {
@@ -1332,6 +1374,8 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    bool graphics::StretchBlt(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop)
    {
+
+      mutex_lock ml(user_mutex());
 
       if(pgraphicsSrc == NULL)
          return false;
@@ -2545,6 +2589,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::alpha_blend(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dRate)
    {
 
+      mutex_lock ml(user_mutex());
+
       if(m_pdibAlphaBlend != NULL)
       {
 
@@ -3197,6 +3243,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::DeleteDC()
    {
 
+      mutex_lock ml(user_mutex());
+
       if(m_pdc == NULL)
          return true;
 
@@ -3540,6 +3588,8 @@ return 1;
 
    point graphics::GetViewportOrg() const
    {
+
+      mutex_lock ml(user_mutex());
       //POINT point;
       //::GetViewportOrgEx(get_handle2(), &point);
 
@@ -3555,6 +3605,8 @@ return 1;
 
    point graphics::SetViewportOrg(int32_t x, int32_t y)
    {
+
+      mutex_lock ml(user_mutex());
       /*point point(0, 0);
       if(get_handle1() != NULL && get_handle1() != get_handle2())
          ::SetViewportOrgEx(get_handle1(), x, y, &point);
@@ -3579,6 +3631,7 @@ return 1;
    point graphics::OffsetViewportOrg(int32_t nWidth, int32_t nHeight)
    {
 
+      mutex_lock ml(user_mutex());
       point point = GetViewportOrg();
 
 
@@ -3711,6 +3764,7 @@ return 1;
    int32_t graphics::SelectClipRgn(::draw2d::region * pregion)
    {
 
+      mutex_lock ml(user_mutex());
       if(pregion == NULL)
       {
 
@@ -3843,6 +3897,9 @@ return 1;
 
    point graphics::MoveTo(int32_t x, int32_t y)
    {
+
+      mutex_lock ml(user_mutex());
+
       point point(0, 0);
 
       if(cairo_has_current_point(m_pdc))
@@ -3869,6 +3926,9 @@ return 1;
 
    pointd graphics::MoveTo(double x, double y)
    {
+
+      mutex_lock ml(user_mutex());
+
       pointd point(0., 0.);
 
       if(cairo_has_current_point(m_pdc))
@@ -4385,6 +4445,8 @@ return 1;
    int32_t graphics::draw_text(const string & str, LPRECT lpRect, UINT nFormat)
    {
 
+      mutex_lock ml(user_mutex());
+
       /*if(get_handle1() == NULL)
          return -1;
       // these flags would modify the string
@@ -4576,6 +4638,7 @@ return 1;
    size graphics::GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const
    {
 
+      mutex_lock ml(user_mutex());
 
    string str(&lpszString[iIndex], nCount);
 
@@ -4741,6 +4804,8 @@ return 1;
 
    size graphics::GetTextExtent(const string & str) const
    {
+
+      mutex_lock ml(user_mutex());
 /*      if(get_handle2() == NULL)
          return size(0, 0);
       SIZE size;
@@ -4818,6 +4883,7 @@ return 1;
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, int32_t iIndex) const
    {
+      mutex_lock ml(user_mutex());
 
       string str(&lpszString[iIndex], nCount);
 
@@ -4960,6 +5026,7 @@ return 1;
 
       //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
 
+      mutex_lock ml(user_mutex());
 
    string str(lpszString, nCount);
 
@@ -5154,6 +5221,8 @@ return 1;
    void graphics::FillSolidRect(LPCRECT lpRect, COLORREF clr)
    {
 
+      mutex_lock ml(user_mutex());
+
       //g.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
       //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
@@ -5182,6 +5251,8 @@ return 1;
       if(cx <= 0 || cy <= 0)
          return;
 
+      mutex_lock ml(user_mutex());
+
       set_os_color(clr);
 
       cairo_rectangle(m_pdc, x, y, cx, cy);
@@ -5194,6 +5265,14 @@ return 1;
    bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
    {
 
+      mutex_lock ml(user_mutex());
+
+      if(m_spbrush.is_null())
+         return true;
+
+      if(m_spbrush->m_cr == 0)
+         return true;
+
       string str(lpszString, nCount);
 
       size sz = GetTextExtent("Pqgy");
@@ -5202,7 +5281,7 @@ return 1;
 
       ((graphics *) this)->set(m_spfont);
 
-      set_os_color(m_crColor);
+      set_os_color(m_spbrush->m_cr);
 
       cairo_move_to(m_pdc, x, y + sz.cy);
 
@@ -5323,6 +5402,8 @@ return true;
 
    bool graphics::TextOut(double x, double y, const char * lpszString, int32_t nCount)
    {
+
+      mutex_lock ml(user_mutex());
 
       string str(lpszString, nCount);
 
@@ -5458,6 +5539,8 @@ return true;
    bool graphics::LineTo(double x, double y)
    {
 
+      mutex_lock ml(user_mutex());
+
 //      ::Gdiplus::Pen pen(::Gdiplus::Color(GetAValue(m_crColor), GetRValue(m_crColor), GetGValue(m_crColor), GetBValue(m_crColor)), m_dPenWidth);
 
       //gdiplus_pen()->SetAlignment(Gdiplus::PenAlignment::PenAlignmentCenter);
@@ -5483,6 +5566,8 @@ return true;
 
    void graphics::set_alpha_mode(::draw2d::e_alpha_mode ealphamode)
    {
+      
+      mutex_lock ml(user_mutex());
 
       try
       {

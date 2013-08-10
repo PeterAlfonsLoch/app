@@ -25,7 +25,7 @@ namespace draw2d_cairo
 
    }
 
-   bool bitmap::CreateBitmap(::draw2d::graphics * pdc, int32_t cx, int32_t cy, UINT nPlanes, UINT nBitcount, const void * pdata)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pdc, int32_t cx, int32_t cy, UINT nPlanes, UINT nBitcount, const void * pdata, int32_t iStrideParam)
    {
 
       cy = abs(cy);
@@ -49,7 +49,7 @@ namespace draw2d_cairo
 
       m_mem.allocate(iStride * cy);
 
-      if(cx * 4 != iStride)
+      if(iStrideParam != iStride)
       {
 
          int32_t iW = cx * 4;
@@ -57,7 +57,7 @@ namespace draw2d_cairo
          for(int32_t i = 0; i < cy; i++)
          {
 
-            memcpy(&((byte *) m_mem.get_data())[iStride * i], &((byte *) pdata)[iW * i], iW);
+            memcpy(&((byte *) m_mem.get_data())[iStride * i], &((byte *) pdata)[iStrideParam * i], iW);
 
          }
 
@@ -239,7 +239,7 @@ namespace draw2d_cairo
 
       memset(m_mem.get_data(), 0, m_mem.get_size());
 
-      if(!CreateBitmap(pgraphics, cx, cy, 1, 32, (COLORREF *) m_mem.get_data()))
+      if(!CreateBitmap(pgraphics, cx, cy, 1, 32, (COLORREF *) m_mem.get_data(), cx * sizeof(COLORREF)))
       {
 
          m_mem.allocate(0);

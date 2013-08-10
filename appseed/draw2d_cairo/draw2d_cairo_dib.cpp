@@ -2696,11 +2696,11 @@ namespace draw2d_cairo
 
       m_spgraphics->SetViewportOrg(0, 0);
 
-      map(false);
+      map(true);
 
       rect rect(rectWindow);
 
-      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect);
+      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect, scan);
 
       return true;
 

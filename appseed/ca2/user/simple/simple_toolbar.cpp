@@ -1185,6 +1185,8 @@ void simple_toolbar::layout()
 {
    //ASSERT(m_bDelayedButtonLayout);
 
+   mutex_lock ml(user_mutex());
+
    m_bDelayedButtonLayout = false;
 
    bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
