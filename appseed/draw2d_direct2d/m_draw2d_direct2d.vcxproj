@@ -263,7 +263,6 @@
     <ClCompile Include="draw2d_direct2d_bitmap.cpp" />
     <ClCompile Include="draw2d_direct2d_brush.cpp" />
     <ClCompile Include="draw2d_direct2d_dib.cpp" />
-    <ClCompile Include="draw2d_direct2d_directx.cpp" />
     <ClCompile Include="draw2d_direct2d_factory_exchange.cpp" />
     <ClCompile Include="draw2d_direct2d_font.cpp" />
     <ClCompile Include="draw2d_direct2d_graphics.cpp" />

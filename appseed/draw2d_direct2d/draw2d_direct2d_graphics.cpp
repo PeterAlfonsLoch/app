@@ -735,6 +735,14 @@ namespace draw2d_direct2d
 
    bool graphics::DrawIcon(int x, int y, ::visual::icon * picon, int cx, int cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags)
    { 
+
+#ifdef METROWIN
+
+      //throw not_implemented(get_app());
+      return false;
+
+#else
+
       try
       {
       
@@ -807,6 +815,8 @@ namespace draw2d_direct2d
       }
 
       return false;
+
+#endif
 
    }
 
@@ -1242,7 +1252,7 @@ namespace draw2d_direct2d
          if(pgraphicsSrc == NULL)
             return FALSE;
 
-         if(&pgraphicsSrc->get_current_bitmap() == NULL)
+         if(pgraphicsSrc->get_current_bitmap() == NULL)
             return FALSE;
 
          if(pgraphicsSrc->get_current_bitmap()->get_os_data() == NULL)

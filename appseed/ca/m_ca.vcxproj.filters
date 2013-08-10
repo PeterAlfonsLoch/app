@@ -465,6 +465,9 @@
     <ClCompile Include="metrowin\ca_os_direct2d_tls.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
+    <ClCompile Include="ca\ca_window_graphics.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -852,6 +855,9 @@
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_cairo_keep.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_window_graphics.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
   </ItemGroup>

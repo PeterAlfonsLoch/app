@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 class CLASS_DECL_ca window_graphics
 {
 public:
@@ -28,3 +27,6 @@ public:
 
 
 };
+
+
+

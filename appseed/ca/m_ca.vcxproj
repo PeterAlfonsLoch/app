@@ -316,6 +316,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClInclude Include="ca\ca_verisimple_string.h" />
     <ClInclude Include="ca\ca_verisimple_wstring.h" />
     <ClInclude Include="ca\ca_vsstringtow.h" />
+    <ClInclude Include="ca\ca_window_graphics.h" />
     <ClInclude Include="ca\ca_wstringtovss.h" />
     <ClInclude Include="ca\ca_xmlite.h" />
     <ClInclude Include="cross\cross.h" />
@@ -441,6 +442,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile Include="ca\ca_verisimple_wstring.cpp" />
     <ClCompile Include="ca\ca_version.cpp" />
     <ClCompile Include="ca\ca_vsstringtow.cpp" />
+    <ClCompile Include="ca\ca_window_graphics.cpp" />
     <ClCompile Include="ca\ca_wstringtovss.cpp" />
     <ClCompile Include="ca\ca_xmlite.cpp" />
     <ClCompile Include="cross\windows\windows_user.cpp" />

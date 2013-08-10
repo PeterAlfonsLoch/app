@@ -29,16 +29,24 @@ namespace draw2d_direct2d
 
    factory_exchange::~factory_exchange()
    {
+
+   }
+
+
+   void factory_exchange::draw2d_direct2d_initialize()
+   {
+
    }
 
 
 } // namespace draw2d_direct2d
 
 
-
 void ca2_factory_exchange(sp(::ca2::application) papp)
 {
+
    draw2d_direct2d::factory_exchange factoryexchange(papp);
+
 }
 
 

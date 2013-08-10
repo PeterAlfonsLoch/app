@@ -243,6 +243,8 @@ int32_t image_list::add_matter_icon(const char * pszMatter)
 int32_t image_list::add_file(const char * lpcsz)
 {
 
+   mutex_lock ml(user_mutex());
+
    ::visual::dib_sp dib(allocer());
 
    if(!dib.load_from_file(lpcsz))

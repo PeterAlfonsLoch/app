@@ -8,10 +8,14 @@ namespace draw2d_direct2d
    {
    public:
 
-      void draw2d_direct2d_initialize();
 
       factory_exchange(::ca2::application * papp);
       virtual ~factory_exchange();
+
+
+      void draw2d_direct2d_initialize();
+
+
    };
 
 } // namespace draw2d_direct2d

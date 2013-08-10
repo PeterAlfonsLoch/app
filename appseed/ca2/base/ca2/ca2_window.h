@@ -33,7 +33,6 @@ namespace ca2
 
 
 
-
       window();
 
 

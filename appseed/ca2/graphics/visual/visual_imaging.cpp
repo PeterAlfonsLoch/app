@@ -806,7 +806,7 @@ return true;
 
 bool imaging::CreateHueImageList(::draw2d::graphics * pdc, sp(image_list) pilGray, sp(image_list) pilParam, COLORREF crHue, double dCompress)
 {
-
+   mutex_lock ml(user_mutex());
    sp(image_list) pil = pilGray;
 
    if(!pil->create(pilParam))
