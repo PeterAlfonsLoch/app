@@ -149,6 +149,7 @@ void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lp
       }
    }
 
+   ::GdiFlush();
 
    ::SetViewportOrgEx(hdcScreen, 0, 0, NULL);
 

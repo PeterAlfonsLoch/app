@@ -4754,7 +4754,7 @@ return 1;
 
    size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
    {
-
+      mutex_lock ml(user_mutex());
       //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
 
    string str(lpszString, nCount);

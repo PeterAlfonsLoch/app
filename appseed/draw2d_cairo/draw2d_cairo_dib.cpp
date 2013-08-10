@@ -490,6 +490,8 @@ namespace draw2d_cairo
 
       cairo_surface_mark_dirty (surface);
 
+      m_spgraphics->SelectObject(m_spbitmap);
+
       m_bMapped = false;
 
    }
