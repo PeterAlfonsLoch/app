@@ -33,10 +33,14 @@ namespace draw2d_direct2d
    }
 
 
+#if defined(METROWIN)
+
    void factory_exchange::draw2d_direct2d_initialize()
    {
 
    }
+
+#endif
 
 
 } // namespace draw2d_direct2d
