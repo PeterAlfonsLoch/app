@@ -16,9 +16,9 @@ public:
    window_gdi();
    virtual ~window_gdi();
 
-   virtual void create(int64_t cx, int64_t cy);
+   virtual void create(int64_t cx, int64_t cy, int iStride = -1);
    virtual void destroy();
 
-   virtual void update_window(oswindow window, COLORREF * pcolorref, LPCRECT lpcrect);
+   virtual void update_window(oswindow window, COLORREF * pcolorref, LPCRECT lpcrect, int iStride = -1);
 
 };

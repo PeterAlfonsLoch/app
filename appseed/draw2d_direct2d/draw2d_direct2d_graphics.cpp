@@ -154,7 +154,9 @@ namespace draw2d_direct2d
    bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    { 
 
-      single_lock sl(System.m_pmutexDc, true);
+      //single_lock sl(System.m_pmutexDc, true);
+
+      mutex_lock ml(user_mutex());
 
       if(m_iType != 0)
          destroy();
@@ -733,71 +735,78 @@ namespace draw2d_direct2d
 
    bool graphics::DrawIcon(int x, int y, ::visual::icon * picon, int cx, int cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags)
    { 
+      try
+      {
+      
+         if(picon == NULL)
+            return FALSE;
+
+         if(m_prendertarget == NULL)
+            return FALSE;
+
+         bool bOk = FALSE;
+
+         BITMAPINFO info;
+         COLORREF * pcolorref;
+
+         ZeroMemory(&info, sizeof (BITMAPINFO));
+
+         info.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
+         info.bmiHeader.biWidth         = cx;
+         info.bmiHeader.biHeight        = - cy;
+         info.bmiHeader.biPlanes        = 1;
+         info.bmiHeader.biBitCount      = 32; 
+         info.bmiHeader.biCompression   = BI_RGB;
+         info.bmiHeader.biSizeImage     = cx * cy * 4;
+
+         HBITMAP hbitmap = ::CreateDIBSection(NULL, &info, DIB_RGB_COLORS, (void **) &pcolorref, NULL, 0);
+
+         HDC hdc = ::CreateCompatibleDC(NULL);
+
+         HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdc, hbitmap);
+
+         if(::DrawIconEx(hdc, 0, 0, (HICON) picon->m_picon, cx, cy, istepIfAniCur, NULL, DI_IMAGE | DI_MASK))
+         {
+
+            ::SelectObject(hdc, hbitmapOld);
+
+            try
+            {
+
+               //Gdiplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (BYTE *) pcolorref);
+
+               ::draw2d::bitmap_sp b(allocer());
+
+               b->CreateBitmap(this, cx, cy, 1, 32, pcolorref, cx * sizeof(COLORREF));
+
+               D2D1_RECT_F r;
+
+               r.left = x;
+               r.top = y;
+               r.right = r.left + cx;
+               r.bottom = r.top + cy;
+
+               m_prendertarget->DrawBitmap((ID2D1Bitmap *) b->get_os_data(), &r);
+
+            }
+            catch(...)
+            {
+            }
+
+         }
+
+         ::DeleteDC(hdc);
+
+         ::DeleteObject(hbitmap);
+
+         return bOk;
+
+      }
+      catch(...)
+      {
+      }
+
       return false;
-
-      throw todo(get_app());
-      //try
-      //{
-
-      //   if(picon == NULL)
-      //      return FALSE;
-
-      //   if(m_prendertarget == NULL)
-      //      return FALSE;
-
-      //   bool bOk = FALSE;
-
-      //   BITMAPINFO info;
-      //   COLORREF * pcolorref;
-
-      //   ZeroMemory(&info, sizeof (BITMAPINFO));
-
-      //   info.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
-      //   info.bmiHeader.biWidth         = cx;
-      //   info.bmiHeader.biHeight        = - cy;
-      //   info.bmiHeader.biPlanes        = 1;
-      //   info.bmiHeader.biBitCount      = 32; 
-      //   info.bmiHeader.biCompression   = BI_RGB;
-      //   info.bmiHeader.biSizeImage     = cx * cy * 4;
-
-      //   HBITMAP hbitmap = ::CreateDIBSection(NULL, &info, DIB_RGB_COLORS, (void **) &pcolorref, NULL, NULL);
-
-      //   HDC hdc = ::CreateCompatibleDC(NULL);
-
-      //   HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdc, hbitmap);
-
-      //   if(::DrawIconEx(hdc, 0, 0, picon->m_hicon, cx, cy, istepIfAniCur, NULL, DI_IMAGE | DI_MASK))
-      //   {
-
-      //      ::SelectObject(hdc, hbitmapOld);
-
-      //      try
-      //      {
-
-      //         Gdiplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (BYTE *) pcolorref);
-
-      //         bOk = m_prendertarget->DrawImage(&b, x, y, 0, 0, cx, cy, Gdiplus::UnitPixel) == Gdiplus::Ok;
-
-      //      }
-      //      catch(...)
-      //      {
-      //      }
-
-      //   }
-
-      //   ::DeleteDC(hdc);
-
-      //   ::DeleteObject(hbitmap);
-
-      //   return bOk;
-
-      //}
-      //catch(...)
-      //{
-      //   return FALSE;
-      //}
-
-      //return ::DrawIconEx(get_handle1(), x, y, picon->m_hicon, cx, cy, istepIfAniCur, hbrFlickerFreeDraw, diFlags); 
 
    }
 
@@ -5896,7 +5905,17 @@ namespace draw2d_direct2d
 
       ppath->m_bUpdated = false;
 
-      m_prendertarget->FillGeometry((ID2D1PathGeometry *) ppath->get_os_data(), get_os_brush());
+      ID2D1Brush * pbrush = get_os_brush();
+
+      if(pbrush == NULL)
+         return false;
+
+      ID2D1PathGeometry * pgeometry = (ID2D1PathGeometry *) ppath->get_os_data();
+      
+      if(pgeometry == NULL)
+         return false;
+
+      m_prendertarget->FillGeometry(pgeometry, pbrush);
 
       //HRESULT hr = m_prendertarget->Flush();
 

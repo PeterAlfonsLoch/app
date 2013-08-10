@@ -43,6 +43,9 @@ namespace draw2d_direct2d
    bool graphics_path::internal_end_figure(bool bClose)
    {
 
+      if(m_psink == NULL)
+         return true;
+
       if(bClose)
       {
 
@@ -106,7 +109,7 @@ namespace draw2d_direct2d
    bool graphics_path::internal_add_move(int x, int y)
    {
 
-      end_figure(false);
+      internal_end_figure(false);
 
       D2D1_POINT_2F pt;
 

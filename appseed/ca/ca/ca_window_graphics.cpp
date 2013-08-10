@@ -18,11 +18,12 @@ window_graphics::~window_graphics()
 }
 
 
-void window_graphics::create(int64_t cxParam, int64_t cyParam)
+void window_graphics::create(int64_t cxParam, int64_t cyParam, int iStride)
 {
 
-   cx = (int32_t) cxParam;
-   cy = (int32_t) cyParam;
+   cx       = (int32_t) cxParam;
+   cy       = (int32_t) cyParam;
+   scan     = (int32_t) iStride;
 
 }
 
@@ -36,7 +37,7 @@ void window_graphics::destroy()
 }
 
 
-void window_graphics::update_window(window_graphics * & pdata, oswindow window, COLORREF * pcolorref, LPCRECT lpcrect)
+void window_graphics::update_window(window_graphics * & pdata, oswindow window, COLORREF * pcolorref, LPCRECT lpcrect, int iStride)
 {
 
    if(pdata == NULL || (pdata->cx != width(lpcrect) || pdata->cy != height(lpcrect)))
@@ -56,7 +57,7 @@ void window_graphics::update_window(window_graphics * & pdata, oswindow window, 
       if(pdata != NULL)
       {
          
-         pdata->create(width(lpcrect), height(lpcrect));
+         pdata->create(width(lpcrect), height(lpcrect), iStride);
 
       }
 
@@ -66,17 +67,19 @@ void window_graphics::update_window(window_graphics * & pdata, oswindow window, 
    if(pdata != NULL)
    {
 
-      pdata->update_window(window, pcolorref, lpcrect);
+      pdata->update_window(window, pcolorref, lpcrect, iStride);
 
    }
 
 }
 
 
-void window_graphics::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lpcrect)
+void window_graphics::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lpcrect, int iStride)
 {
 
    UNREFERENCED_PARAMETER(window);
    UNREFERENCED_PARAMETER(pcolorref);
+   UNREFERENCED_PARAMETER(lpcrect);
+   UNREFERENCED_PARAMETER(iStride);
 
 }

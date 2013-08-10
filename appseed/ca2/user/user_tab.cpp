@@ -715,6 +715,9 @@ namespace user
                
             }
 
+            if(true)
+            {
+
             ::draw2d::path_sp path(allocer());
 
             if(get_data()->m_iaSel.contains(iPane))
@@ -813,6 +816,7 @@ namespace user
 
          }
          
+            }
          if(get_element_rect(iVisiblePane, rectText, element_text))
          {
             

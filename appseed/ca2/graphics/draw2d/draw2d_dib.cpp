@@ -3031,9 +3031,10 @@ fill_last:
       if(area() <= 0)
          return;
       map();
+      int wc = cx * sizeof(COLORREF);
       for(int32_t i = 0; i < cy; i++)
       {
-         ostream.write(&((byte *) get_data())[scan * i], scan);
+         ostream.write(&((byte *) get_data())[scan * i], wc);
       }
    }
 
@@ -3052,9 +3053,10 @@ fill_last:
       if(!create(width, height))
          throw 0;
       map();
+      int wc = width * sizeof(COLORREF);
       for(int32_t i = 0; i < cy; i++)
       {
-         istream.read(&((byte *) get_data())[scan * i], scan);
+         istream.read(&((byte *) get_data())[scan * i], wc);
       }
    }
 

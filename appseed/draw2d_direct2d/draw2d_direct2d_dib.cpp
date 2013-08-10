@@ -2625,9 +2625,9 @@ fill_last:
             {
                if(p[3] == 0)
                {
-                  p[0] = 255;
-                  p[1] = 255;
-                  p[2] = 255;
+                  p[0] = 0;
+                  p[1] = 0;
+                  p[2] = 0;
                }
                else
                {
@@ -2975,7 +2975,7 @@ fill_last:
 
       rect rect(rectWindow);
 
-      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect);
+      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect, scan);
 
       return true;
 
