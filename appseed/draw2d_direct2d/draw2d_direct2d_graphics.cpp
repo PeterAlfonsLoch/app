@@ -5247,7 +5247,17 @@ namespace draw2d_direct2d
       wstring wstr(string(lpszString, nCount));
 
 
-      m_prendertarget->DrawText(wstr, wstr.get_length(), get_os_font(), &rect, get_os_brush());
+      ID2D1Brush * pbrush = get_os_brush();
+
+      if(pbrush == NULL)
+         return false;
+
+      IDWriteTextFormat * pfont = get_os_font();
+
+      if(pfont == NULL)
+         return false;
+
+      m_prendertarget->DrawText(wstr, wstr.get_length(), pfont, &rect, pbrush);
 
       return true;
 
