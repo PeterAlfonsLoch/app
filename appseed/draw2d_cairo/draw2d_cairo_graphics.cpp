@@ -5873,6 +5873,8 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
          set(m_spbrush);
 
+         set_alpha_mode(m_ealphamode);
+
          if(bPen)
          {
 
@@ -5894,6 +5896,8 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
       {
 
          set(m_sppen);
+
+         set_alpha_mode(m_ealphamode);
 
          cairo_stroke(m_pdc);
 
