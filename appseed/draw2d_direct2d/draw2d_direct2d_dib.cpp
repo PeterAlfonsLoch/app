@@ -2582,6 +2582,8 @@ fill_last:
    void dib::map(bool bApplyAlphaTransform)
    {
 
+      mutex_lock ml(user_mutex());
+
       if(m_bMapped)
          return;
 
@@ -2647,6 +2649,8 @@ fill_last:
 
    void dib::unmap()
    {
+
+      mutex_lock ml(user_mutex());
 
       if(!m_bMapped)
          return;
