@@ -823,12 +823,11 @@ bool imaging::CreateHueImageList(::draw2d::graphics * pdc, sp(image_list) pilGra
 
 }
 
-bool imaging::Createcolor_blend_ImageList(
-   sp(image_list) pilGray,
-   sp(image_list) pilParam,
-   COLORREF cr,
-   BYTE bAlpha)
+
+bool imaging::Createcolor_blend_ImageList(sp(image_list) pilGray, sp(image_list) pilParam, COLORREF cr, BYTE bAlpha)
 {
+
+   mutex_lock ml(user_mutex());
 
    try
    {

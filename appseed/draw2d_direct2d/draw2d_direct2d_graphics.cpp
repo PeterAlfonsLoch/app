@@ -86,6 +86,8 @@ namespace draw2d_direct2d
    graphics::~graphics()
    {
 
+      mutex_lock ml(user_mutex());
+
       if(m_prendertarget != NULL)
       {
 
