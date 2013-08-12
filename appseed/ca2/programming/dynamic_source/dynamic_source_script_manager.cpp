@@ -539,6 +539,13 @@ namespace dynamic_source
       UNREFERENCED_PARAMETER(eaction);
 
       m_pmanager->clear_include_matches();
+      try
+      {
+         m_pmanager->m_pcompiler->run_persistent();
+      }
+      catch(...)
+      {
+      }
 
    }
 
