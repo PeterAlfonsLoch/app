@@ -243,6 +243,8 @@
 		<Unit filename="hotplugin/hotplugin_plugin.h" />
 		<Unit filename="linux/ca_os.cpp" />
 		<Unit filename="linux/ca_os.h" />
+		<Unit filename="linux/ca_os_cairo_keep.cpp" />
+		<Unit filename="linux/ca_os_cairo_keep.h" />
 		<Unit filename="linux/ca_os_cross_win_file.cpp" />
 		<Unit filename="linux/ca_os_cross_win_file.h" />
 		<Unit filename="linux/ca_os_cross_win_gdi.cpp" />

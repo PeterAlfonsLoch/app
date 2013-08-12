@@ -215,7 +215,7 @@
 		<Unit filename="cairo-drm.h" />
 		<Unit filename="cairo-error-inline.h" />
 		<Unit filename="cairo-error-private.h" />
-		<Unit filename="cairo-error.c">
+		<Unit filename="cairo-errorcairo.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="cairo-fallback-compositor.c">

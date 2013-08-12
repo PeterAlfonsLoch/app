@@ -8,7 +8,7 @@ namespace command
    pane_view::pane_view(sp(::ca2::application) papp) :
       ca2(papp),
       ::user::tab(papp),
-      
+
       ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),
       place_holder_container(papp)
@@ -160,7 +160,9 @@ namespace command
                   sp(::user::frame_window) pframe =  (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
+                  #ifdef WINDOWSEX
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
+                     #endif
                      pframe->set_parent(this);
                      pcreatordata->m_pdoc = pdoc;
                      pcreatordata->m_pwnd = pframe;
@@ -195,7 +197,9 @@ namespace command
                   sp(::user::frame_window) pframe =  (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
+                  #ifdef WINDOWSEX
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
+                     #endif
                      pframe->set_parent(this);
                      pcreatordata->m_pdoc = pdoc;
                      pcreatordata->m_pwnd = pframe;
@@ -226,7 +230,9 @@ namespace command
                   sp(::user::frame_window) pframe =  (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
+                  #ifdef WINDOWSEX
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
+                     #endif
                      pframe->set_parent(this);
                      pcreatordata->m_pdoc = pdoc;
                      pcreatordata->m_pwnd = pframe;
