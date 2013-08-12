@@ -46,7 +46,7 @@ namespace draw2d
 
          bool operator == (const descriptor & d) const
          {
-            
+
             if(m_etype != d.m_etype)
                return false;
 
@@ -256,9 +256,9 @@ namespace draw2d
 
       virtual void write(::ca2::byte_output_stream & ostream);
       virtual void read(::ca2::byte_input_stream & istream);
-       
-       
-       
+
+
+
       virtual void draw_bitmap(int32_t dx, int32_t dy, FT_Bitmap * bitmap, FT_Int x, FT_Int y);
 
       virtual bool update_window(::ca2::window * pwnd, ::ca2::signal_object * pobj);
@@ -290,9 +290,9 @@ namespace draw2d
       {
 
          ::ca::smart_pointer < dib >::operator = (pdib);
-         
+
          return *this;
-         
+
       }
 
    };
@@ -322,15 +322,16 @@ namespace draw2d
 
    };
 
-   
+
 } // namespace draw2d
 
 
 namespace ca2
 {
 
+
    template < >
-   class CLASS_DECL_ca2 ::ca2::hash < const ::draw2d::dib::descriptor & >
+   class CLASS_DECL_ca2 hash < const ::draw2d::dib::descriptor & >
    {
    public:
 
@@ -359,7 +360,7 @@ namespace draw2d
    {
    public:
 
-      
+
       int32_t m_iLimitCount;
 
 

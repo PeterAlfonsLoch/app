@@ -718,13 +718,14 @@ void message_box_paint(cairo_surface_t * cs, stra_dup & stra, simple_array < boo
 	cairo_show_page(c);
 
 
-	if(c ==  g_cairo)
+	if(c ==  ::ca_cairo_keep::g_cairo)
 	{
          printf("123");
 
 	}
 
 	cairo_destroy(c);
+
 }
 
 void message_box_show_xlib(const char * lpText, const char * lpCaption)
@@ -830,12 +831,18 @@ void message_box_show_xlib(const char * lpText, const char * lpCaption)
 			message_box_paint(cs, stra, baTab, ya, &sz);
 		} else if(e.type==ButtonPress) break;
 	}
-if(cs == g_cairosurface)
-{
-   printf("123");
-}
+
+   if(cs == ::ca_cairo_keep::g_cairosurface)
+   {
+
+      printf("123");
+
+   }
+
 	cairo_surface_destroy(cs);
+
 	XCloseDisplay(dpy);
+
 }
 
 

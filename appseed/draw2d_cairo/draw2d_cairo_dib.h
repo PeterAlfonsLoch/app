@@ -165,7 +165,9 @@ namespace draw2d_cairo
 
 
       bool update_window(::ca2::window * pwnd, ::ca2::signal_object * pobj);
+#if defined(WINDOWS)
       bool print_window(::ca2::window * pwnd, ::ca2::signal_object * pobj);
+#endif
 
    };
 

@@ -109,7 +109,7 @@
 
 /**
  * CAIRO_HAS_PS_SURFACE:
- * 
+ *
  * Defined if the PostScript surface backend is available.
  * This macro can be used to conditionally compile backend-specific code.
  *
@@ -2987,8 +2987,8 @@ _cairo_ps_surface_emit_recording_subsurface (cairo_ps_surface_t *surface,
 #endif
 
     surface->page_bbox.x = surface->page_bbox.y = 0;
-    surface->page_bbox.width = (int) surface->width  = extents->width;
-    surface->page_bbox.height = (int) surface->height = extents->height;
+    surface->page_bbox.width = ((int) (surface->width  = extents->width));
+    surface->page_bbox.height = ((int) (surface->height = extents->height));
 
     surface->current_pattern_is_solid_color = FALSE;
     _cairo_pdf_operators_reset (&surface->pdf_operators);

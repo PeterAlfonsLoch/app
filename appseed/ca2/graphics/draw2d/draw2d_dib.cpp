@@ -241,7 +241,7 @@ namespace draw2d
 
       if(size.cx < 0)
          return true;
-      
+
       if(ptDst.y < 0)
       {
          size.cy += ptDst.y;
@@ -252,7 +252,7 @@ namespace draw2d
          return true;
 
       int xEnd = min(size.cx, min(pdib->cx - ptSrc.x, cx - ptDst.x));
-      
+
       int yEnd = min(size.cy, min(pdib->cy - ptSrc.y, cy - ptDst.y));
 
       if(xEnd < 0)
@@ -308,7 +308,7 @@ namespace draw2d
 
       if(size.cx < 0)
          return true;
-      
+
       if(ptDst.y < 0)
       {
          size.cy += ptDst.y;
@@ -319,7 +319,7 @@ namespace draw2d
          return true;
 
       int xEnd = min(size.cx, min(pdib->cx - ptSrc.x, cx - ptDst.x));
-      
+
       int yEnd = min(size.cy, min(pdib->cy - ptSrc.y, cy - ptDst.y));
 
       if(xEnd < 0)
@@ -356,7 +356,7 @@ namespace draw2d
             {
                i++;
             }
-            else 
+            else
             {
                *pdst2 = *psrc2;
             }
@@ -1333,7 +1333,7 @@ fill_last:
          px += w;
          w = -w;
       }
-      
+
       px=(px>=0) ? px : 0;
       int32_t py = y;
       if(h < 0)
@@ -2553,11 +2553,23 @@ fill_last:
 
       if(level == 0)
       {
+
          zero(m_pcolorref, (size_t) area() * sizeof(COLORREF));
+
       }
       else
       {
+
+#ifdef WINDOWS
+
          FillMemory(m_pcolorref, (size_t) area() * sizeof(COLORREF), level);
+
+#else
+
+         memset(m_pcolorref, level, (size_t) area() * sizeof(COLORREF));
+
+#endif
+
       }
 
    }
@@ -3393,43 +3405,43 @@ fill_last:
 
    }
 
-   
+
    void dib::unmap()
    {
-      
+
    }
-   
-   
+
+
    void dib::set_mapped()
    {
-      
+
    }
 
     void dib::draw_bitmap(int32_t dx, int32_t dy, FT_Bitmap * bitmap, FT_Int x, FT_Int y)
     {
-        
+
         FT_Int  i, j, p, q;
         FT_Int  x_max = x + bitmap->width;
         FT_Int  y_max = y + bitmap->rows;
-        
+
         map();
-        
+
         for ( i = x, p = 0; i < x_max; i++, p++ )
         {
             for ( j = y, q = 0; j < y_max; j++, q++ )
             {
                 if(i < 0 || j < 0 || i >= cx || j >= cy)
                     continue;
-                
+
                 int32_t a = bitmap->buffer[q * bitmap->width + p];
-                
+
                 *((COLORREF *)&((byte *)get_data())[(dy + j) * scan + (dx + i) * 4]) = ARGB(a, 0, 0, 0);
-                
+
             }
         }
-        
+
     }
-    
+
    bool dib::update_window(::ca2::window * pwnd, ::ca2::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pwnd);
@@ -3449,7 +3461,7 @@ fill_last:
    {
 
       double dx = pt2.x - pt1.x;
-      
+
       double dy = pt1.y - pt2.y;
 
       if(dx == 0.0 && dy == 0.0)
@@ -3494,14 +3506,14 @@ fill_last:
          int dim = max(cx, cy);
 
          double angle = atan2(dy, dx);
-       
+
          ::draw2d::dib_sp dib(allocer());
 
          if(abs(dx) > abs(dy))
          {
-            
+
             double sin = ::sin(angle);
-            
+
             dib->create((int32_t) (dim / sin), (int32_t) (dim / sin));
 
             dib->gradient_horizontal_fill(clr1, clr2, pt1.y, pt2.y);
@@ -3511,9 +3523,9 @@ fill_last:
          }
          else
          {
-            
+
             double cos = ::cos(angle);
-            
+
             dib->create((int32_t) (dim / cos), (int32_t) (dim / cos));
 
             dib->gradient_vertical_fill(clr1, clr2, pt1.x, pt2.x);
@@ -3553,9 +3565,9 @@ fill_last:
       double d;
       for(; line < end; line++)
       {
-         
+
          d = ((double) (line - start)) / ((double) (end - start));
-         
+
          clr = ARGB(
                   byte_clip(GetAValue(clr1) * (1.0 - d) + GetAValue(clr2) * d),
                   byte_clip(GetRValue(clr1) * (1.0 - d) + GetRValue(clr2) * d),
@@ -3583,7 +3595,7 @@ fill_last:
 
    void dib::gradient_vertical_fill(COLORREF clr1, COLORREF clr2, int start, int end)
    {
-      
+
       if(end < start)
       {
          ::sort::swap(&start, &end);
@@ -3607,9 +3619,9 @@ fill_last:
       double d;
       for(; row < end; row++)
       {
-         
+
          d = ((double) (row - start)) / ((double) (end - start));
-         
+
          clr = ARGB(
                   byte_clip(GetAValue(clr1) * (1.0 - d) + GetAValue(clr2) * d),
                   byte_clip(GetRValue(clr1) * (1.0 - d) + GetRValue(clr2) * d),
@@ -3644,7 +3656,7 @@ fill_last:
    {
       gradient_vertical_fill(clr1, clr2, 0, cx - 1);
    }
-    
+
 } // namespace draw2d
 
 

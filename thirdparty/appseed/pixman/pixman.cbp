@@ -196,7 +196,6 @@
 		<Unit filename="pixman-utils.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="pixman-version.h" />
 		<Unit filename="pixman-x86.c">
 			<Option compilerVar="CC" />
 		</Unit>

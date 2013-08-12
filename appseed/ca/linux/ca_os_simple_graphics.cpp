@@ -63,10 +63,14 @@ bool os_simple_graphics::create(os_simple_graphics * pgraphics)
          return false;
 
       m_pdc = cairo_create(psurface);
-if(psurface == g_cairosurface)
-{
-   printf("123");
-}
+
+      if(psurface == ::ca_cairo_keep::g_cairosurface)
+      {
+
+         printf("123");
+
+      }
+
       cairo_surface_destroy(psurface);
 
       m_iType = 1;
@@ -86,10 +90,14 @@ if(psurface == g_cairosurface)
 
       if(psurfaceNew == NULL)
          return false;
-if(psurfaceNew == g_cairosurface)
-{
-   printf("123");
-}
+
+      if(psurfaceNew == ::ca_cairo_keep::g_cairosurface)
+      {
+
+         printf("123");
+
+      }
+
       m_pdc = cairo_create(psurfaceNew);
 
       cairo_surface_destroy(psurfaceNew);
@@ -620,14 +628,14 @@ bool os_simple_graphics::text_out(int32_t x, int32_t y, const char * pszUtf8, in
 
 
 
-bool os_simple_graphics::set_alpha_mode(::ca2::e_alpha_mode emode)
+bool os_simple_graphics::set_alpha_mode(::draw2d::e_alpha_mode emode)
 {
    switch(emode)
    {
-    case ::ca2::alpha_mode_set:
+    case ::draw2d::alpha_mode_set:
          cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
          return true;
-   case ::ca2::alpha_mode_blend:
+   case ::draw2d::alpha_mode_blend:
          cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
          default:;
 
@@ -700,7 +708,7 @@ bool os_simple_graphics::set(simple_path & path)
 
    }
 
-   if(path.m_efillmode == ::ca2::fill_mode_alternate)
+   if(path.m_efillmode == ::draw2d::fill_mode_alternate)
    {
 
       cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_EVEN_ODD);
@@ -744,7 +752,7 @@ bool os_simple_graphics::set(simple_path::element & e)
 bool os_simple_graphics::set(simple_path::arc & a)
 {
 
-   cairo_keep keep(m_pdc);
+   ca_cairo_keep keep(m_pdc);
 
    cairo_translate(m_pdc, a.m_xCenter, a.m_yCenter);
 
@@ -801,7 +809,7 @@ bool os_simple_graphics::replace_clip(const RECT & rect)
 
 }
 
-bool os_simple_graphics::fill_polygon(POINT * p, int32_t iCount, ::ca2::e_fill_mode)
+bool os_simple_graphics::fill_polygon(POINT * p, int32_t iCount, ::draw2d::e_fill_mode)
 {
 
       return true;

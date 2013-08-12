@@ -6,9 +6,9 @@
 
 
 #ifdef _CA2_DRAW2D_CAIRO_LIBRARY
-    #define CLASS_DECL_DRAW2D_CAIRO  _declspec(dllexport)
+    #define CLASS_DECL_DRAW2D_CAIRO  CLASS_DECL_EXPORT
 #else
-    #define CLASS_DECL_DRAW2D_CAIRO  _declspec(dllimport)
+    #define CLASS_DECL_DRAW2D_CAIRO  CLASS_DECL_IMPORT
 #endif
 
 
@@ -31,6 +31,6 @@
 #include "draw2d_cairo_graphics.h"
 
 
-#pragma comment(lib, "Msimg32.lib") 
+#pragma comment(lib, "Msimg32.lib")
 
 

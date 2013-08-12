@@ -688,9 +688,12 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    bool graphics::DrawIcon(int32_t x, int32_t y, ::visual::icon * picon, int32_t cx, int32_t cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags)
    {
 
+
+   #ifdef WINDOWS
+
       try
       {
-      
+
          if(picon == NULL)
             return FALSE;
 
@@ -712,7 +715,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
          info.bmiHeader.biWidth         = cx;
          info.bmiHeader.biHeight        = - cy;
          info.bmiHeader.biPlanes        = 1;
-         info.bmiHeader.biBitCount      = 32; 
+         info.bmiHeader.biBitCount      = 32;
          info.bmiHeader.biCompression   = BI_RGB;
          info.bmiHeader.biSizeImage     = cx * cy * 4;
 
@@ -788,6 +791,8 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
       catch(...)
       {
       }
+
+      #endif
 
       return false;
    }
@@ -2802,15 +2807,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    }
 
-   // This is ca2 API library.
-   //
-   //
-   //
-   //
-   //
-   //
-   //
-   //
+      #if (_WIN32_WINNT >= 0x0500)
 
    // Always Inline. Functions only in Win98/Win2K or later
 
@@ -2858,7 +2855,9 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    }
 
+#endif
 
+   #if (_WIN32_WINNT >= 0x0500)
 
    bool graphics::GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) const
    {
@@ -2881,7 +2880,11 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 //      return ::GetCharWidthI(get_handle1(), giFirst, cgi, pgi, lpBuffer) != FALSE;
 
    }
-   
+
+   #endif
+
+   #if (_WIN32_WINNT >= 0x0500)
+
    bool graphics::GetTextExtentExPointI(LPWORD pgiIn, int32_t cgi, int32_t nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE lpSize) const
    {
 
@@ -2894,7 +2897,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    }
 
-   
+
    bool graphics::GetTextExtentPointI(LPWORD pgiIn, int32_t cgi, LPSIZE lpSize) const
    {
 
@@ -2908,7 +2911,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    }
 
 
-
+#endif
 
 
    /////////////////////////////////////////////////////////////////////////////
@@ -5566,7 +5569,7 @@ return true;
 
    void graphics::set_alpha_mode(::draw2d::e_alpha_mode ealphamode)
    {
-      
+
       mutex_lock ml(user_mutex());
 
       try

@@ -2735,9 +2735,9 @@ namespace draw2d_cairo
 
       try
       {
-         
+
          rect rectWindow;
-         
+
          pwnd->GetWindowRect(rectWindow);
 
          ::draw2d::dib_sp dib(allocer());
@@ -2773,7 +2773,7 @@ namespace draw2d_cairo
          m_spgraphics->SetViewportOrg(point(0, 0));
 
          m_spgraphics->SelectClipRgn( NULL);
-         m_spgraphics->BitBlt(rectPaint.left, rectPaint.top, 
+         m_spgraphics->BitBlt(rectPaint.left, rectPaint.top,
             rectPaint.width(), rectPaint.height(),
             pdc, rectUpdate.left, rectUpdate.top,
             SRCCOPY);
@@ -2789,6 +2789,49 @@ namespace draw2d_cairo
 
       return true;
    }
+
+
+#elif defined(LINUX)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   bool dib::update_window(::ca2::window * pwnd, ::ca2::signal_object * pobj)
+   {
+
+
+      rect64 rectWindow;
+
+      rectWindow = pwnd->m_rectParentClient;
+
+      m_spgraphics->SetViewportOrg(0, 0);
+
+      map(true);
+
+      rect rect(rectWindow);
+
+      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect, scan);
+
+      return true;
+
+
+      }
+
 
 #endif
 

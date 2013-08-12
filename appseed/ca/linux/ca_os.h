@@ -12,6 +12,8 @@
 #include "ca_os_cross_win_file.h"
 #include "ca_os_file.h"
 #include "ca_os_file_watcher.h"
+#include "ca_os_cairo_keep.h"
+#include "ca_os_window_cairo.h"
 
 
 

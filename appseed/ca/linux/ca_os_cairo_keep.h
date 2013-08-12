@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_DRAW2D_CAIRO cairo_keep
+class CLASS_DECL_c ca_cairo_keep
 {
 public:
 
@@ -13,8 +13,8 @@ public:
    static cairo_t *  g_cairo;
 
 
-   cairo_keep(cairo_t * pdc, bool bSave = true);
-   ~cairo_keep();
+   ca_cairo_keep(cairo_t * pdc, bool bSave = true);
+   ~ca_cairo_keep();
 
 
    void save();
@@ -23,5 +23,6 @@ public:
 
 
 };
+
 
 

@@ -22,17 +22,11 @@ void window_gdi::create(int64_t cxParam, int64_t cyParam, int iStride)
 
    destroy();
 
-   window_graphics::create(cxParam, cyParam);
 
    ZERO(m_bitmapinfo);
 
 
-   if(iStride <= 0)
-   {
-   }
-      iStride = (int32_t) (cx * sizeof(COLORREF));
-      {
-   }
+   int iStride = (int32_t) (cx * sizeof(COLORREF));
 
    m_bitmapinfo.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
    m_bitmapinfo.bmiHeader.biWidth         = (LONG) cx;
@@ -47,7 +41,8 @@ void window_gdi::create(int64_t cxParam, int64_t cyParam, int iStride)
    m_hdc = ::CreateCompatibleDC(NULL);
 
    m_hbitmapOld = (HBITMAP) ::SelectObject(m_hdc, m_hbitmap);
-         
+
+   window_graphics::create(cxParam, cyParam, iStride);
 
 }
 
@@ -115,39 +110,8 @@ void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lp
 
    bool bLayered = (::GetWindowLong(window, GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
 
-   if(iStride <= 0)
-   {
 
-      iStride = cx * sizeof(COLORREF);
-
-   }
-
-   int cw = cx * sizeof(COLORREF);
-
-   if(cw == iStride)
-   {
-      memcpy(m_pcolorref, pcolorref, cy * iStride);
-   }
-   else
-   {
-      
-      int wsrc = iStride / sizeof(COLORREF);
-      int wdst = cw / sizeof(COLORREF);
-
-      COLORREF * psrc = pcolorref;
-      COLORREF * pdst = m_pcolorref;
-
-      for(int i = 0; i < cy; i++)
-      {
-
-         memcpy(pdst, psrc, cw);
-         
-         pdst += wdst;
-
-         psrc += wsrc;
-
-      }
-   }
+copy_colorref(m_pcolorref, pcolorref, iStride);
 
    ::GdiFlush();
 

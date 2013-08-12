@@ -115,10 +115,13 @@ bool simple_bitmap::destroy()
    if(m_psurface == NULL)
       return true;
 
-if(m_psurface == g_cairosurface)
-{
-   printf("123");
-}
+   if(m_psurface == ::ca_cairo_keep::g_cairosurface)
+   {
+
+      printf("123");
+
+   }
+
    cairo_surface_destroy(m_psurface);
 
    return true;

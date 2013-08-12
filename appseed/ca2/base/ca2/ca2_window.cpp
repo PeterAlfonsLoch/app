@@ -8,6 +8,10 @@ namespace ca2
       m_bOSNativeMouseMessagePosition     = true;
       m_bTranslateMouseMessageCursor      = true;
       m_pgraphics                         = NULL;
+      m_bComposite                        = true;
+      m_bUpdateGraphics                   = false;
+      m_pmutexGraphics                    = NULL;
+      m_rectParentClient = ::null_rect();
    }
 
    window::~window()
@@ -2261,7 +2265,89 @@ namespace ca2
 
    void window::_001UpdateWindow()
    {
+
+      if(m_bUpdateGraphics)
+      {
+         update_graphics_resources();
+      }
+
+      if(m_spdib.is_null() || m_spdib->get_graphics() == NULL)
+         return;
+
+      m_spdib->map();
+
+      if(m_spdib->get_data() == NULL)
+         return;
+
+      rect64 rectWindow;
+
+      rectWindow = m_rectParentClient;
+
+      if(m_bComposite)
+      {
+         m_spdib->Fill(0, 0, 0, 0);
+      }
+      else
+      {
+         m_spdib->Fill(255, 184, 184, 177);
+      }
+
+      //m_spdib->get_graphics()->FillSolidRect(00, 00, 100, 100, ARGB(127, 0, 127, 0));
+      _001Print(m_spdib->get_graphics());
+      //m_spdib->get_graphics()->SetViewportOrg(0, 0);
+      //m_spdib->get_graphics()->FillSolidRect(100, 100, 100, 100, ARGB(127, 127, 0, 0));
+
+      m_spdib->update_window(this, NULL);
+
    }
+
+
+   void window::update_graphics_resources()
+   {
+
+      if(m_pmutexGraphics == NULL)
+      {
+
+         m_pmutexGraphics = new mutex(get_app());
+
+      }
+
+
+      single_lock sl(mutex_graphics(), false);
+
+      if(!sl.lock(millis(0)))
+      {
+         m_bUpdateGraphics = true;
+         return;
+      }
+
+      m_bUpdateGraphics = false;
+
+      rect rectWindow;
+
+      GetWindowRect(rectWindow);
+
+      m_pt = rectWindow.top_left();
+
+      if(rectWindow.area() <= 0)
+         return;
+
+      if(m_size != rectWindow.size())
+      {
+
+         if(m_spdib.is_null())
+            m_spdib.create(allocer());
+
+         m_spdib->create(rectWindow.size());
+
+         m_size = rectWindow.size();
+
+      }
+
+
+
+   }
+
 
 
 } // namespace ca2

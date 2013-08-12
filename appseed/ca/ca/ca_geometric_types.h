@@ -21,6 +21,17 @@ inline CLASS_DECL_ca LONG height(const RECT & rect)
    return height(&rect);
 }
 
+inline CLASS_DECL_ca LONG area(LPCRECT lpcrect)
+{
+   return width(lpcrect) * height(lpcrect);
+}
+
+inline CLASS_DECL_ca LONG area(const RECT & rect)
+{
+   return width(rect) * height(rect);
+}
+
+
 inline CLASS_DECL_ca RECT & inflate_rect(RECT & rect, LONG dleft, LONG dtop, LONG dright, LONG dbottom)
 {
    rect.left   -= dleft;

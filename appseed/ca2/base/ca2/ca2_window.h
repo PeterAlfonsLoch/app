@@ -21,6 +21,13 @@ namespace ca2
       bool                          m_bMouseHover;
       bool                          m_bOSNativeMouseMessagePosition;
       bool                          m_bTranslateMouseMessageCursor;
+      bool                          m_bComposite;
+      bool                          m_bUpdateGraphics;
+      mutex *                       m_pmutexGraphics;
+      point                         m_pt;
+      size                          m_size;
+
+
       //UINT m_nFlags;      // see WF_ flags above
 
 #ifdef METROWIN
@@ -30,6 +37,7 @@ namespace ca2
 
       ::draw2d::font * m_pfont;
       window_graphics *             m_pgraphics;
+      ::draw2d::dib_sp              m_spdib;
 
 
 
@@ -680,6 +688,13 @@ namespace ca2
 
 
       virtual void _001UpdateWindow();
+
+
+      virtual void update_graphics_resources();
+
+      inline mutex * mutex_graphics() { return m_pmutexGraphics; }
+
+
 
 
       //static oswindow get_safe_owner(oswindow hParent, oswindow* pWndTop);
