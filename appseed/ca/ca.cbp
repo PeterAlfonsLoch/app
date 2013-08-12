@@ -212,6 +212,8 @@
 		<Unit filename="ca/ca_version.cpp" />
 		<Unit filename="ca/ca_vsstringtow.cpp" />
 		<Unit filename="ca/ca_vsstringtow.h" />
+		<Unit filename="ca/ca_window_graphics.cpp" />
+		<Unit filename="ca/ca_window_graphics.h" />
 		<Unit filename="ca/ca_wstringtovss.cpp" />
 		<Unit filename="ca/ca_wstringtovss.h" />
 		<Unit filename="ca/ca_xmlite.cpp" />
@@ -285,6 +287,8 @@
 		<Unit filename="linux/ca_os_thread.cpp" />
 		<Unit filename="linux/ca_os_win_base.cpp" />
 		<Unit filename="linux/ca_os_window.cpp" />
+		<Unit filename="linux/ca_os_window_cairo.cpp" />
+		<Unit filename="linux/ca_os_window_cairo.h" />
 		<Unit filename="linux/linux_internal.h" />
 		<Unit filename="os/os.h" />
 		<Unit filename="os/os_binreloc.cpp" />
