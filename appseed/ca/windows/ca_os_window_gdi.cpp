@@ -26,15 +26,15 @@ void window_gdi::create(oswindow window, int64_t cxParam, int64_t cyParam, int i
    ZERO(m_bitmapinfo);
 
 
-   int iStride = (int32_t) (cx * sizeof(COLORREF));
+   int iStride = (int32_t) (cxParam * sizeof(COLORREF));
 
    m_bitmapinfo.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
-   m_bitmapinfo.bmiHeader.biWidth         = (LONG) cx;
-   m_bitmapinfo.bmiHeader.biHeight        = (LONG) -cy;
+   m_bitmapinfo.bmiHeader.biWidth         = (LONG) cxParam;
+   m_bitmapinfo.bmiHeader.biHeight        = (LONG) -cyParam;
    m_bitmapinfo.bmiHeader.biPlanes        = 1;
    m_bitmapinfo.bmiHeader.biBitCount      = 32; 
    m_bitmapinfo.bmiHeader.biCompression   = BI_RGB;
-   m_bitmapinfo.bmiHeader.biSizeImage     = (LONG) (iStride * cy);
+   m_bitmapinfo.bmiHeader.biSizeImage     = (LONG) (iStride * cyParam);
 
    m_hbitmap = CreateDIBSection(NULL, &m_bitmapinfo, DIB_RGB_COLORS, (void **) &m_pcolorref, NULL, 0);
 
