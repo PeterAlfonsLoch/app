@@ -17,7 +17,7 @@ window_gdi::~window_gdi()
 }
 
 
-void window_gdi::create(int64_t cxParam, int64_t cyParam, int iStride)
+void window_gdi::create(oswindow window, int64_t cxParam, int64_t cyParam, int iStrideParam)
 {
 
    destroy();
@@ -42,7 +42,7 @@ void window_gdi::create(int64_t cxParam, int64_t cyParam, int iStride)
 
    m_hbitmapOld = (HBITMAP) ::SelectObject(m_hdc, m_hbitmap);
 
-   window_graphics::create(cxParam, cyParam, iStride);
+   window_graphics::create(window, cxParam, cyParam, iStride);
 
 }
 
