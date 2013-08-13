@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "crypto_7z_crc.h"
 
+CLASS_DECL_ca2 uint32_t * CrcGetTable();
 
 struct CCRCTableInit
 {
@@ -66,7 +67,7 @@ uint32_t crc_calc(const void *data, ::primitive::memory_size size)
 
 void CrcGenerateTable()
 {
-    int iDebug = CRC_NUM_TABLES;
+    //   int iDebug = CRC_NUM_TABLES;
   g_pCrcTable = CrcGetTable();
   uint32_t i;
   for (i = 0; i < 256; i++)

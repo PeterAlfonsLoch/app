@@ -313,7 +313,7 @@ namespace draw2d
 
       lprect->bottom = (LONG) max(a.m_yCenter, lprect->bottom);
 
-      double e = a.m_dRadiusY / a.m_dRadiusX;
+//      double e = a.m_dRadiusY / a.m_dRadiusX;
 
       double f1 = a.m_dAngle1;
       

@@ -4,6 +4,8 @@
 //////////////////////////////////////////////////////////////////////
 #include "framework.h"
 
+byte byte_clip(double d);
+
 
 byte byte_clip(double d)
 {
@@ -3487,21 +3489,21 @@ fill_last:
       else
       {
 
-         int x1 = min(pt1.x, pt2.x);
+//         int x1 = min(pt1.x, pt2.x);
 
-         int x2 = max(pt1.x, pt2.x);
+  //       int x2 = max(pt1.x, pt2.x);
 
-         int y1 = min(pt1.y, pt2.y);
+    //     int y1 = min(pt1.y, pt2.y);
 
-         int y2 = max(pt1.y, pt2.y);
+      //   int y2 = max(pt1.y, pt2.y);
 
-         int top = y1;
-
-         int left = x1;
-
-         int right = cx - x2;
-
-         int bottom = cy - y2;
+//         int top = y1;
+//
+  //       int left = x1;
+//
+  //       int right = cx - x2;
+          //
+       //  int bottom = cy - y2;
 
          int dim = max(cx, cy);
 

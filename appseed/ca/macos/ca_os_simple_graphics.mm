@@ -49,14 +49,14 @@ os_simple_graphics::~os_simple_graphics()
 }
 
 
-bool os_simple_graphics::set_alpha_mode(::ca2::e_alpha_mode emode)
+bool os_simple_graphics::set_alpha_mode(::draw2d::e_alpha_mode emode)
 {
    
-   if(emode == ::ca2::alpha_mode_blend)
+   if(emode == ::draw2d::alpha_mode_blend)
    {
       [m_nsgc setCompositingOperation: NSCompositeSourceOver];
    }
-   else if(emode == ::ca2::alpha_mode_set)
+   else if(emode == ::draw2d::alpha_mode_set)
    {
       [m_nsgc setCompositingOperation: NSCompositeCopy];
    }
@@ -757,7 +757,7 @@ bool os_simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 
 
 
-bool os_simple_graphics::fill_polygon(POINT * p, int iCount, ::ca2::e_fill_mode)
+bool os_simple_graphics::fill_polygon(POINT * p, int iCount, ::draw2d::e_fill_mode)
 {
    
    if(m_brush.m_estyle == simple_brush::style_stock && m_brush.m_iStock == NULL_BRUSH)

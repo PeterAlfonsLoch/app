@@ -34,8 +34,8 @@ namespace visual
       if(!m_p->create(cx, cy))
          return false;
 
-      int32_t h         = cy;
-      int32_t scan      = m_p->scan;
+//      int32_t h         = cy;
+  //    int32_t scan      = m_p->scan;
       int32_t div       = radius + radius + 1;
       m_iRadius         = radius;
       m_uchaDiv.set_size(256 * div);

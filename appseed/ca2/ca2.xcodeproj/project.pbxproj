@@ -1823,6 +1823,28 @@
 		9A6F20F31761F92900C33206 /* webserver_http_request.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6F20E91761F92900C33206 /* webserver_http_request.h */; };
 		9A6F20F41761F92900C33206 /* webserver_http_response.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6F20EA1761F92900C33206 /* webserver_http_response.h */; };
 		9A6F20F51761F92900C33206 /* webserver_http_transaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6F20EB1761F92900C33206 /* webserver_http_transaction.h */; };
+		9A81FC4017B99D7B009E0FB3 /* draw2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81FC2A17B99D7B009E0FB3 /* draw2d.h */; };
+		9A81FC4117B99D7B009E0FB3 /* draw2d_bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81FC2B17B99D7B009E0FB3 /* draw2d_bitmap.cpp */; };
+		9A81FC4217B99D7B009E0FB3 /* draw2d_bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81FC2C17B99D7B009E0FB3 /* draw2d_bitmap.h */; };
+		9A81FC4317B99D7B009E0FB3 /* draw2d_brush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81FC2D17B99D7B009E0FB3 /* draw2d_brush.cpp */; };
+		9A81FC4417B99D7B009E0FB3 /* draw2d_brush.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81FC2E17B99D7B009E0FB3 /* draw2d_brush.h */; };
+		9A81FC4517B99D7B009E0FB3 /* draw2d_dib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81FC2F17B99D7B009E0FB3 /* draw2d_dib.cpp */; };
+		9A81FC4617B99D7B009E0FB3 /* draw2d_dib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81FC3017B99D7B009E0FB3 /* draw2d_dib.h */; };
+		9A81FC4717B99D7B009E0FB3 /* draw2d_font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81FC3117B99D7B009E0FB3 /* draw2d_font.cpp */; };
+		9A81FC4817B99D7B009E0FB3 /* draw2d_font.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81FC3217B99D7B009E0FB3 /* draw2d_font.h */; };
+		9A81FC4917B99D7B009E0FB3 /* draw2d_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81FC3317B99D7B009E0FB3 /* draw2d_graphics.cpp */; };
+		9A81FC4A17B99D7B009E0FB3 /* draw2d_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81FC3417B99D7B009E0FB3 /* draw2d_graphics.h */; };
+		9A81FC4B17B99D7B009E0FB3 /* draw2d_igui.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81FC3517B99D7B009E0FB3 /* draw2d_igui.h */; };
+		9A81FC4C17B99D7B009E0FB3 /* draw2d_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81FC3617B99D7B009E0FB3 /* draw2d_object.cpp */; };
+		9A81FC4D17B99D7B009E0FB3 /* draw2d_object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81FC3717B99D7B009E0FB3 /* draw2d_object.h */; };
+		9A81FC4E17B99D7B009E0FB3 /* draw2d_palette.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81FC3817B99D7B009E0FB3 /* draw2d_palette.cpp */; };
+		9A81FC4F17B99D7B009E0FB3 /* draw2d_palette.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81FC3917B99D7B009E0FB3 /* draw2d_palette.h */; };
+		9A81FC5017B99D7B009E0FB3 /* draw2d_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81FC3A17B99D7B009E0FB3 /* draw2d_path.cpp */; };
+		9A81FC5117B99D7B009E0FB3 /* draw2d_path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81FC3B17B99D7B009E0FB3 /* draw2d_path.h */; };
+		9A81FC5217B99D7B009E0FB3 /* draw2d_pen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81FC3C17B99D7B009E0FB3 /* draw2d_pen.cpp */; };
+		9A81FC5317B99D7B009E0FB3 /* draw2d_pen.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81FC3D17B99D7B009E0FB3 /* draw2d_pen.h */; };
+		9A81FC5417B99D7B009E0FB3 /* draw2d_region.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81FC3E17B99D7B009E0FB3 /* draw2d_region.cpp */; };
+		9A81FC5517B99D7B009E0FB3 /* draw2d_region.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81FC3F17B99D7B009E0FB3 /* draw2d_region.h */; };
 		9A98A6251771D77A000AE16E /* lib_ca2c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A98A6241771D77A000AE16E /* lib_ca2c.dylib */; };
 		9AC494181770CD6800DC2349 /* _ca2_2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4927C1770CD6700DC2349 /* _ca2_2.h */; };
 		9AC494191770CD6800DC2349 /* aaa_want_to_remove_ca2_file_manager_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4927D1770CD6700DC2349 /* aaa_want_to_remove_ca2_file_manager_interface.h */; };
@@ -1853,10 +1875,6 @@
 		9AC494321770CD6800DC2349 /* ca2_bitl_encoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC492961770CD6700DC2349 /* ca2_bitl_encoder.h */; };
 		9AC494331770CD6800DC2349 /* ca2_bitm_decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC492971770CD6700DC2349 /* ca2_bitm_decoder.h */; };
 		9AC494341770CD6800DC2349 /* ca2_bitm_encoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC492981770CD6700DC2349 /* ca2_bitm_encoder.h */; };
-		9AC494351770CD6800DC2349 /* ca2_bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC492991770CD6700DC2349 /* ca2_bitmap.cpp */; };
-		9AC494361770CD6800DC2349 /* ca2_bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4929A1770CD6700DC2349 /* ca2_bitmap.h */; };
-		9AC494371770CD6800DC2349 /* ca2_brush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4929B1770CD6700DC2349 /* ca2_brush.cpp */; };
-		9AC494381770CD6800DC2349 /* ca2_brush.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4929C1770CD6700DC2349 /* ca2_brush.h */; };
 		9AC494391770CD6800DC2349 /* ca2_bstr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4929D1770CD6700DC2349 /* ca2_bstr.cpp */; };
 		9AC4943A1770CD6800DC2349 /* ca2_bstr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4929E1770CD6700DC2349 /* ca2_bstr.h */; };
 		9AC4943B1770CD6800DC2349 /* ca2_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4929F1770CD6700DC2349 /* ca2_buffer.h */; };
@@ -1920,8 +1938,6 @@
 		9AC494751770CD6800DC2349 /* ca2_Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC492DA1770CD6700DC2349 /* ca2_Debug.cpp */; };
 		9AC494761770CD6800DC2349 /* ca2_debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC492DB1770CD6700DC2349 /* ca2_debug.h */; };
 		9AC494771770CD6800DC2349 /* ca2_definition.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC492DC1770CD6700DC2349 /* ca2_definition.h */; };
-		9AC494781770CD6800DC2349 /* ca2_dib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC492DD1770CD6700DC2349 /* ca2_dib.cpp */; };
-		9AC494791770CD6800DC2349 /* ca2_dib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC492DE1770CD6700DC2349 /* ca2_dib.h */; };
 		9AC4947A1770CD6800DC2349 /* ca2_dir_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC492DF1770CD6700DC2349 /* ca2_dir_application.cpp */; };
 		9AC4947B1770CD6800DC2349 /* ca2_dir_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC492E01770CD6700DC2349 /* ca2_dir_application.h */; };
 		9AC4947C1770CD6800DC2349 /* ca2_dir_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC492E11770CD6700DC2349 /* ca2_dir_system.cpp */; };
@@ -1964,21 +1980,12 @@
 		9AC494A11770CD6800DC2349 /* ca2_flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493061770CD6700DC2349 /* ca2_flags.h */; };
 		9AC494A21770CD6800DC2349 /* ca2_folder_watch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493071770CD6700DC2349 /* ca2_folder_watch.cpp */; };
 		9AC494A31770CD6800DC2349 /* ca2_folder_watch.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493081770CD6700DC2349 /* ca2_folder_watch.h */; };
-		9AC494A41770CD6800DC2349 /* ca2_font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493091770CD6700DC2349 /* ca2_font.cpp */; };
-		9AC494A51770CD6800DC2349 /* ca2_font.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4930A1770CD6700DC2349 /* ca2_font.h */; };
 		9AC494A61770CD6800DC2349 /* ca2_fs_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4930B1770CD6700DC2349 /* ca2_fs_interface.cpp */; };
 		9AC494A71770CD6800DC2349 /* ca2_fs_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4930C1770CD6700DC2349 /* ca2_fs_interface.h */; };
 		9AC494A81770CD6800DC2349 /* ca2_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4930D1770CD6700DC2349 /* ca2_geometry.cpp */; };
 		9AC494A91770CD6800DC2349 /* ca2_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4930E1770CD6700DC2349 /* ca2_geometry.h */; };
 		9AC494AA1770CD6800DC2349 /* ca2_go_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4930F1770CD6700DC2349 /* ca2_go_thread.cpp */; };
 		9AC494AB1770CD6800DC2349 /* ca2_go_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493101770CD6700DC2349 /* ca2_go_thread.h */; };
-		9AC494AC1770CD6800DC2349 /* ca2_graphic_classes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493111770CD6700DC2349 /* ca2_graphic_classes.h */; };
-		9AC494AD1770CD6800DC2349 /* ca2_graphics_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493121770CD6700DC2349 /* ca2_graphics_object.cpp */; };
-		9AC494AE1770CD6800DC2349 /* ca2_graphics_object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493131770CD6700DC2349 /* ca2_graphics_object.h */; };
-		9AC494AF1770CD6800DC2349 /* ca2_graphics_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493141770CD6700DC2349 /* ca2_graphics_path.cpp */; };
-		9AC494B01770CD6800DC2349 /* ca2_graphics_path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493151770CD6700DC2349 /* ca2_graphics_path.h */; };
-		9AC494B11770CD6800DC2349 /* ca2_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493161770CD6700DC2349 /* ca2_graphics.cpp */; };
-		9AC494B21770CD6800DC2349 /* ca2_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493171770CD6700DC2349 /* ca2_graphics.h */; };
 		9AC494B31770CD6800DC2349 /* ca2_hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493181770CD6700DC2349 /* ca2_hash.cpp */; };
 		9AC494B41770CD6800DC2349 /* ca2_hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493191770CD6700DC2349 /* ca2_hash.h */; };
 		9AC494B51770CD6800DC2349 /* ca2_heap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4931A1770CD6700DC2349 /* ca2_heap.h */; };
@@ -1994,7 +2001,6 @@
 		9AC494BF1770CD6800DC2349 /* ca2_http_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493241770CD6700DC2349 /* ca2_http_system.h */; };
 		9AC494C01770CD6800DC2349 /* ca2_http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493251770CD6700DC2349 /* ca2_http.cpp */; };
 		9AC494C11770CD6800DC2349 /* ca2_http.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493261770CD6700DC2349 /* ca2_http.h */; };
-		9AC494C21770CD6800DC2349 /* ca2_igui.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493271770CD6700DC2349 /* ca2_igui.h */; };
 		9AC494C31770CD6800DC2349 /* ca2_in_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493281770CD6700DC2349 /* ca2_in_buffer.cpp */; };
 		9AC494C41770CD6800DC2349 /* ca2_in_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493291770CD6700DC2349 /* ca2_in_buffer.h */; };
 		9AC494C51770CD6800DC2349 /* ca2_inline.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4932A1770CD6700DC2349 /* ca2_inline.h */; };
@@ -2074,14 +2080,10 @@
 		9AC4950F1770CD6800DC2349 /* ca2_out_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493741770CD6700DC2349 /* ca2_out_buffer.h */; };
 		9AC495101770CD6800DC2349 /* ca2_output_stream_flush_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493751770CD6700DC2349 /* ca2_output_stream_flush_interface.h */; };
 		9AC495111770CD6800DC2349 /* ca2_output_string_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493761770CD6700DC2349 /* ca2_output_string_stream.cpp */; };
-		9AC495121770CD6800DC2349 /* ca2_palette.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493771770CD6700DC2349 /* ca2_palette.cpp */; };
-		9AC495131770CD6800DC2349 /* ca2_palette.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493781770CD6700DC2349 /* ca2_palette.h */; };
 		9AC495141770CD6800DC2349 /* ca2_parse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493791770CD6700DC2349 /* ca2_parse.cpp */; };
 		9AC495151770CD6800DC2349 /* ca2_parse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4937A1770CD6700DC2349 /* ca2_parse.h */; };
 		9AC495161770CD6800DC2349 /* ca2_patch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4937B1770CD6700DC2349 /* ca2_patch.cpp */; };
 		9AC495171770CD6800DC2349 /* ca2_patch.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4937C1770CD6700DC2349 /* ca2_patch.h */; };
-		9AC495181770CD6800DC2349 /* ca2_pen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4937D1770CD6700DC2349 /* ca2_pen.cpp */; };
-		9AC495191770CD6800DC2349 /* ca2_pen.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC4937E1770CD6700DC2349 /* ca2_pen.h */; };
 		9AC4951A1770CD6800DC2349 /* ca2_pipe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4937F1770CD6700DC2349 /* ca2_pipe.cpp */; };
 		9AC4951B1770CD6800DC2349 /* ca2_pipe.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493801770CD6700DC2349 /* ca2_pipe.h */; };
 		9AC4951C1770CD6800DC2349 /* ca2_plain_text_serializable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493811770CD6700DC2349 /* ca2_plain_text_serializable.cpp */; };
@@ -2118,8 +2120,6 @@
 		9AC4953B1770CD6800DC2349 /* ca2_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493A01770CD6800DC2349 /* ca2_reader.cpp */; };
 		9AC4953C1770CD6800DC2349 /* ca2_reader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493A11770CD6800DC2349 /* ca2_reader.h */; };
 		9AC4953D1770CD6800DC2349 /* ca2_reference.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493A21770CD6800DC2349 /* ca2_reference.h */; };
-		9AC4953E1770CD6800DC2349 /* ca2_region.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493A31770CD6800DC2349 /* ca2_region.cpp */; };
-		9AC4953F1770CD6800DC2349 /* ca2_region.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493A41770CD6800DC2349 /* ca2_region.h */; };
 		9AC495401770CD6800DC2349 /* ca2_request_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493A51770CD6800DC2349 /* ca2_request_interface.cpp */; };
 		9AC495411770CD6800DC2349 /* ca2_request_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC493A61770CD6800DC2349 /* ca2_request_interface.h */; };
 		9AC495421770CD6800DC2349 /* ca2_request_signal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC493A71770CD6800DC2349 /* ca2_request_signal.cpp */; };
@@ -4106,6 +4106,28 @@
 		9A6F20E91761F92900C33206 /* webserver_http_request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webserver_http_request.h; sourceTree = "<group>"; };
 		9A6F20EA1761F92900C33206 /* webserver_http_response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webserver_http_response.h; sourceTree = "<group>"; };
 		9A6F20EB1761F92900C33206 /* webserver_http_transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webserver_http_transaction.h; sourceTree = "<group>"; };
+		9A81FC2A17B99D7B009E0FB3 /* draw2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d.h; sourceTree = "<group>"; };
+		9A81FC2B17B99D7B009E0FB3 /* draw2d_bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_bitmap.cpp; sourceTree = "<group>"; };
+		9A81FC2C17B99D7B009E0FB3 /* draw2d_bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_bitmap.h; sourceTree = "<group>"; };
+		9A81FC2D17B99D7B009E0FB3 /* draw2d_brush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_brush.cpp; sourceTree = "<group>"; };
+		9A81FC2E17B99D7B009E0FB3 /* draw2d_brush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_brush.h; sourceTree = "<group>"; };
+		9A81FC2F17B99D7B009E0FB3 /* draw2d_dib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_dib.cpp; sourceTree = "<group>"; };
+		9A81FC3017B99D7B009E0FB3 /* draw2d_dib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_dib.h; sourceTree = "<group>"; };
+		9A81FC3117B99D7B009E0FB3 /* draw2d_font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_font.cpp; sourceTree = "<group>"; };
+		9A81FC3217B99D7B009E0FB3 /* draw2d_font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_font.h; sourceTree = "<group>"; };
+		9A81FC3317B99D7B009E0FB3 /* draw2d_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_graphics.cpp; sourceTree = "<group>"; };
+		9A81FC3417B99D7B009E0FB3 /* draw2d_graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_graphics.h; sourceTree = "<group>"; };
+		9A81FC3517B99D7B009E0FB3 /* draw2d_igui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_igui.h; sourceTree = "<group>"; };
+		9A81FC3617B99D7B009E0FB3 /* draw2d_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_object.cpp; sourceTree = "<group>"; };
+		9A81FC3717B99D7B009E0FB3 /* draw2d_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_object.h; sourceTree = "<group>"; };
+		9A81FC3817B99D7B009E0FB3 /* draw2d_palette.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_palette.cpp; sourceTree = "<group>"; };
+		9A81FC3917B99D7B009E0FB3 /* draw2d_palette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_palette.h; sourceTree = "<group>"; };
+		9A81FC3A17B99D7B009E0FB3 /* draw2d_path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_path.cpp; sourceTree = "<group>"; };
+		9A81FC3B17B99D7B009E0FB3 /* draw2d_path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_path.h; sourceTree = "<group>"; };
+		9A81FC3C17B99D7B009E0FB3 /* draw2d_pen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_pen.cpp; sourceTree = "<group>"; };
+		9A81FC3D17B99D7B009E0FB3 /* draw2d_pen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_pen.h; sourceTree = "<group>"; };
+		9A81FC3E17B99D7B009E0FB3 /* draw2d_region.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_region.cpp; sourceTree = "<group>"; };
+		9A81FC3F17B99D7B009E0FB3 /* draw2d_region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_region.h; sourceTree = "<group>"; };
 		9A8916841751D72100E531ED /* libca2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libca2.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A98A6241771D77A000AE16E /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
 		9AA5E6E116F7C7E1005C45CE /* lib_ca2freeimage.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2freeimage.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2freeimage.dylib"; sourceTree = "<group>"; };
@@ -4141,10 +4163,6 @@
 		9AC492961770CD6700DC2349 /* ca2_bitl_encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_bitl_encoder.h; path = base/ca2/ca2_bitl_encoder.h; sourceTree = SOURCE_ROOT; };
 		9AC492971770CD6700DC2349 /* ca2_bitm_decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_bitm_decoder.h; path = base/ca2/ca2_bitm_decoder.h; sourceTree = SOURCE_ROOT; };
 		9AC492981770CD6700DC2349 /* ca2_bitm_encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_bitm_encoder.h; path = base/ca2/ca2_bitm_encoder.h; sourceTree = SOURCE_ROOT; };
-		9AC492991770CD6700DC2349 /* ca2_bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_bitmap.cpp; path = base/ca2/ca2_bitmap.cpp; sourceTree = SOURCE_ROOT; };
-		9AC4929A1770CD6700DC2349 /* ca2_bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_bitmap.h; path = base/ca2/ca2_bitmap.h; sourceTree = SOURCE_ROOT; };
-		9AC4929B1770CD6700DC2349 /* ca2_brush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_brush.cpp; path = base/ca2/ca2_brush.cpp; sourceTree = SOURCE_ROOT; };
-		9AC4929C1770CD6700DC2349 /* ca2_brush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_brush.h; path = base/ca2/ca2_brush.h; sourceTree = SOURCE_ROOT; };
 		9AC4929D1770CD6700DC2349 /* ca2_bstr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_bstr.cpp; path = base/ca2/ca2_bstr.cpp; sourceTree = SOURCE_ROOT; };
 		9AC4929E1770CD6700DC2349 /* ca2_bstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_bstr.h; path = base/ca2/ca2_bstr.h; sourceTree = SOURCE_ROOT; };
 		9AC4929F1770CD6700DC2349 /* ca2_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_buffer.h; path = base/ca2/ca2_buffer.h; sourceTree = SOURCE_ROOT; };
@@ -4209,8 +4227,6 @@
 		9AC492DA1770CD6700DC2349 /* ca2_Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_Debug.cpp; path = base/ca2/ca2_Debug.cpp; sourceTree = SOURCE_ROOT; };
 		9AC492DB1770CD6700DC2349 /* ca2_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_debug.h; path = base/ca2/ca2_debug.h; sourceTree = SOURCE_ROOT; };
 		9AC492DC1770CD6700DC2349 /* ca2_definition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_definition.h; path = base/ca2/ca2_definition.h; sourceTree = SOURCE_ROOT; };
-		9AC492DD1770CD6700DC2349 /* ca2_dib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_dib.cpp; path = base/ca2/ca2_dib.cpp; sourceTree = SOURCE_ROOT; };
-		9AC492DE1770CD6700DC2349 /* ca2_dib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_dib.h; path = base/ca2/ca2_dib.h; sourceTree = SOURCE_ROOT; };
 		9AC492DF1770CD6700DC2349 /* ca2_dir_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_dir_application.cpp; path = base/ca2/ca2_dir_application.cpp; sourceTree = SOURCE_ROOT; };
 		9AC492E01770CD6700DC2349 /* ca2_dir_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_dir_application.h; path = base/ca2/ca2_dir_application.h; sourceTree = SOURCE_ROOT; };
 		9AC492E11770CD6700DC2349 /* ca2_dir_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_dir_system.cpp; path = base/ca2/ca2_dir_system.cpp; sourceTree = SOURCE_ROOT; };
@@ -4253,21 +4269,12 @@
 		9AC493061770CD6700DC2349 /* ca2_flags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_flags.h; path = base/ca2/ca2_flags.h; sourceTree = SOURCE_ROOT; };
 		9AC493071770CD6700DC2349 /* ca2_folder_watch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_folder_watch.cpp; path = base/ca2/ca2_folder_watch.cpp; sourceTree = SOURCE_ROOT; };
 		9AC493081770CD6700DC2349 /* ca2_folder_watch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_folder_watch.h; path = base/ca2/ca2_folder_watch.h; sourceTree = SOURCE_ROOT; };
-		9AC493091770CD6700DC2349 /* ca2_font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_font.cpp; path = base/ca2/ca2_font.cpp; sourceTree = SOURCE_ROOT; };
-		9AC4930A1770CD6700DC2349 /* ca2_font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_font.h; path = base/ca2/ca2_font.h; sourceTree = SOURCE_ROOT; };
 		9AC4930B1770CD6700DC2349 /* ca2_fs_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_fs_interface.cpp; path = base/ca2/ca2_fs_interface.cpp; sourceTree = SOURCE_ROOT; };
 		9AC4930C1770CD6700DC2349 /* ca2_fs_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_fs_interface.h; path = base/ca2/ca2_fs_interface.h; sourceTree = SOURCE_ROOT; };
 		9AC4930D1770CD6700DC2349 /* ca2_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_geometry.cpp; path = base/ca2/ca2_geometry.cpp; sourceTree = SOURCE_ROOT; };
 		9AC4930E1770CD6700DC2349 /* ca2_geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_geometry.h; path = base/ca2/ca2_geometry.h; sourceTree = SOURCE_ROOT; };
 		9AC4930F1770CD6700DC2349 /* ca2_go_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_go_thread.cpp; path = base/ca2/ca2_go_thread.cpp; sourceTree = SOURCE_ROOT; };
 		9AC493101770CD6700DC2349 /* ca2_go_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_go_thread.h; path = base/ca2/ca2_go_thread.h; sourceTree = SOURCE_ROOT; };
-		9AC493111770CD6700DC2349 /* ca2_graphic_classes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_graphic_classes.h; path = base/ca2/ca2_graphic_classes.h; sourceTree = SOURCE_ROOT; };
-		9AC493121770CD6700DC2349 /* ca2_graphics_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_graphics_object.cpp; path = base/ca2/ca2_graphics_object.cpp; sourceTree = SOURCE_ROOT; };
-		9AC493131770CD6700DC2349 /* ca2_graphics_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_graphics_object.h; path = base/ca2/ca2_graphics_object.h; sourceTree = SOURCE_ROOT; };
-		9AC493141770CD6700DC2349 /* ca2_graphics_path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_graphics_path.cpp; path = base/ca2/ca2_graphics_path.cpp; sourceTree = SOURCE_ROOT; };
-		9AC493151770CD6700DC2349 /* ca2_graphics_path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_graphics_path.h; path = base/ca2/ca2_graphics_path.h; sourceTree = SOURCE_ROOT; };
-		9AC493161770CD6700DC2349 /* ca2_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_graphics.cpp; path = base/ca2/ca2_graphics.cpp; sourceTree = SOURCE_ROOT; };
-		9AC493171770CD6700DC2349 /* ca2_graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_graphics.h; path = base/ca2/ca2_graphics.h; sourceTree = SOURCE_ROOT; };
 		9AC493181770CD6700DC2349 /* ca2_hash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_hash.cpp; path = base/ca2/ca2_hash.cpp; sourceTree = SOURCE_ROOT; };
 		9AC493191770CD6700DC2349 /* ca2_hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_hash.h; path = base/ca2/ca2_hash.h; sourceTree = SOURCE_ROOT; };
 		9AC4931A1770CD6700DC2349 /* ca2_heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_heap.h; path = base/ca2/ca2_heap.h; sourceTree = SOURCE_ROOT; };
@@ -4283,7 +4290,6 @@
 		9AC493241770CD6700DC2349 /* ca2_http_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_http_system.h; path = base/ca2/ca2_http_system.h; sourceTree = SOURCE_ROOT; };
 		9AC493251770CD6700DC2349 /* ca2_http.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_http.cpp; path = base/ca2/ca2_http.cpp; sourceTree = SOURCE_ROOT; };
 		9AC493261770CD6700DC2349 /* ca2_http.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_http.h; path = base/ca2/ca2_http.h; sourceTree = SOURCE_ROOT; };
-		9AC493271770CD6700DC2349 /* ca2_igui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_igui.h; path = base/ca2/ca2_igui.h; sourceTree = SOURCE_ROOT; };
 		9AC493281770CD6700DC2349 /* ca2_in_buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_in_buffer.cpp; path = base/ca2/ca2_in_buffer.cpp; sourceTree = SOURCE_ROOT; };
 		9AC493291770CD6700DC2349 /* ca2_in_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_in_buffer.h; path = base/ca2/ca2_in_buffer.h; sourceTree = SOURCE_ROOT; };
 		9AC4932A1770CD6700DC2349 /* ca2_inline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_inline.h; path = base/ca2/ca2_inline.h; sourceTree = SOURCE_ROOT; };
@@ -4363,14 +4369,10 @@
 		9AC493741770CD6700DC2349 /* ca2_out_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_out_buffer.h; path = base/ca2/ca2_out_buffer.h; sourceTree = SOURCE_ROOT; };
 		9AC493751770CD6700DC2349 /* ca2_output_stream_flush_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_output_stream_flush_interface.h; path = base/ca2/ca2_output_stream_flush_interface.h; sourceTree = SOURCE_ROOT; };
 		9AC493761770CD6700DC2349 /* ca2_output_string_stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_output_string_stream.cpp; path = base/ca2/ca2_output_string_stream.cpp; sourceTree = SOURCE_ROOT; };
-		9AC493771770CD6700DC2349 /* ca2_palette.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_palette.cpp; path = base/ca2/ca2_palette.cpp; sourceTree = SOURCE_ROOT; };
-		9AC493781770CD6700DC2349 /* ca2_palette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_palette.h; path = base/ca2/ca2_palette.h; sourceTree = SOURCE_ROOT; };
 		9AC493791770CD6700DC2349 /* ca2_parse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_parse.cpp; path = base/ca2/ca2_parse.cpp; sourceTree = SOURCE_ROOT; };
 		9AC4937A1770CD6700DC2349 /* ca2_parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_parse.h; path = base/ca2/ca2_parse.h; sourceTree = SOURCE_ROOT; };
 		9AC4937B1770CD6700DC2349 /* ca2_patch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_patch.cpp; path = base/ca2/ca2_patch.cpp; sourceTree = SOURCE_ROOT; };
 		9AC4937C1770CD6700DC2349 /* ca2_patch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_patch.h; path = base/ca2/ca2_patch.h; sourceTree = SOURCE_ROOT; };
-		9AC4937D1770CD6700DC2349 /* ca2_pen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_pen.cpp; path = base/ca2/ca2_pen.cpp; sourceTree = SOURCE_ROOT; };
-		9AC4937E1770CD6700DC2349 /* ca2_pen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_pen.h; path = base/ca2/ca2_pen.h; sourceTree = SOURCE_ROOT; };
 		9AC4937F1770CD6700DC2349 /* ca2_pipe.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_pipe.cpp; path = base/ca2/ca2_pipe.cpp; sourceTree = SOURCE_ROOT; };
 		9AC493801770CD6700DC2349 /* ca2_pipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_pipe.h; path = base/ca2/ca2_pipe.h; sourceTree = SOURCE_ROOT; };
 		9AC493811770CD6700DC2349 /* ca2_plain_text_serializable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_plain_text_serializable.cpp; path = base/ca2/ca2_plain_text_serializable.cpp; sourceTree = SOURCE_ROOT; };
@@ -4407,8 +4409,6 @@
 		9AC493A01770CD6800DC2349 /* ca2_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_reader.cpp; path = base/ca2/ca2_reader.cpp; sourceTree = SOURCE_ROOT; };
 		9AC493A11770CD6800DC2349 /* ca2_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_reader.h; path = base/ca2/ca2_reader.h; sourceTree = SOURCE_ROOT; };
 		9AC493A21770CD6800DC2349 /* ca2_reference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_reference.h; path = base/ca2/ca2_reference.h; sourceTree = SOURCE_ROOT; };
-		9AC493A31770CD6800DC2349 /* ca2_region.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_region.cpp; path = base/ca2/ca2_region.cpp; sourceTree = SOURCE_ROOT; };
-		9AC493A41770CD6800DC2349 /* ca2_region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_region.h; path = base/ca2/ca2_region.h; sourceTree = SOURCE_ROOT; };
 		9AC493A51770CD6800DC2349 /* ca2_request_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_request_interface.cpp; path = base/ca2/ca2_request_interface.cpp; sourceTree = SOURCE_ROOT; };
 		9AC493A61770CD6800DC2349 /* ca2_request_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ca2_request_interface.h; path = base/ca2/ca2_request_interface.h; sourceTree = SOURCE_ROOT; };
 		9AC493A71770CD6800DC2349 /* ca2_request_signal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ca2_request_signal.cpp; path = base/ca2/ca2_request_signal.cpp; sourceTree = SOURCE_ROOT; };
@@ -4628,10 +4628,6 @@
 				9AC492961770CD6700DC2349 /* ca2_bitl_encoder.h */,
 				9AC492971770CD6700DC2349 /* ca2_bitm_decoder.h */,
 				9AC492981770CD6700DC2349 /* ca2_bitm_encoder.h */,
-				9AC492991770CD6700DC2349 /* ca2_bitmap.cpp */,
-				9AC4929A1770CD6700DC2349 /* ca2_bitmap.h */,
-				9AC4929B1770CD6700DC2349 /* ca2_brush.cpp */,
-				9AC4929C1770CD6700DC2349 /* ca2_brush.h */,
 				9AC4929D1770CD6700DC2349 /* ca2_bstr.cpp */,
 				9AC4929E1770CD6700DC2349 /* ca2_bstr.h */,
 				9AC4929F1770CD6700DC2349 /* ca2_buffer.h */,
@@ -4696,8 +4692,6 @@
 				9AC492DA1770CD6700DC2349 /* ca2_Debug.cpp */,
 				9AC492DB1770CD6700DC2349 /* ca2_debug.h */,
 				9AC492DC1770CD6700DC2349 /* ca2_definition.h */,
-				9AC492DD1770CD6700DC2349 /* ca2_dib.cpp */,
-				9AC492DE1770CD6700DC2349 /* ca2_dib.h */,
 				9AC492DF1770CD6700DC2349 /* ca2_dir_application.cpp */,
 				9AC492E01770CD6700DC2349 /* ca2_dir_application.h */,
 				9AC492E11770CD6700DC2349 /* ca2_dir_system.cpp */,
@@ -4740,21 +4734,12 @@
 				9AC493061770CD6700DC2349 /* ca2_flags.h */,
 				9AC493071770CD6700DC2349 /* ca2_folder_watch.cpp */,
 				9AC493081770CD6700DC2349 /* ca2_folder_watch.h */,
-				9AC493091770CD6700DC2349 /* ca2_font.cpp */,
-				9AC4930A1770CD6700DC2349 /* ca2_font.h */,
 				9AC4930B1770CD6700DC2349 /* ca2_fs_interface.cpp */,
 				9AC4930C1770CD6700DC2349 /* ca2_fs_interface.h */,
 				9AC4930D1770CD6700DC2349 /* ca2_geometry.cpp */,
 				9AC4930E1770CD6700DC2349 /* ca2_geometry.h */,
 				9AC4930F1770CD6700DC2349 /* ca2_go_thread.cpp */,
 				9AC493101770CD6700DC2349 /* ca2_go_thread.h */,
-				9AC493111770CD6700DC2349 /* ca2_graphic_classes.h */,
-				9AC493121770CD6700DC2349 /* ca2_graphics_object.cpp */,
-				9AC493131770CD6700DC2349 /* ca2_graphics_object.h */,
-				9AC493141770CD6700DC2349 /* ca2_graphics_path.cpp */,
-				9AC493151770CD6700DC2349 /* ca2_graphics_path.h */,
-				9AC493161770CD6700DC2349 /* ca2_graphics.cpp */,
-				9AC493171770CD6700DC2349 /* ca2_graphics.h */,
 				9AC493181770CD6700DC2349 /* ca2_hash.cpp */,
 				9AC493191770CD6700DC2349 /* ca2_hash.h */,
 				9AC4931A1770CD6700DC2349 /* ca2_heap.h */,
@@ -4770,7 +4755,6 @@
 				9AC493241770CD6700DC2349 /* ca2_http_system.h */,
 				9AC493251770CD6700DC2349 /* ca2_http.cpp */,
 				9AC493261770CD6700DC2349 /* ca2_http.h */,
-				9AC493271770CD6700DC2349 /* ca2_igui.h */,
 				9AC493281770CD6700DC2349 /* ca2_in_buffer.cpp */,
 				9AC493291770CD6700DC2349 /* ca2_in_buffer.h */,
 				9AC4932A1770CD6700DC2349 /* ca2_inline.h */,
@@ -4850,14 +4834,10 @@
 				9AC493741770CD6700DC2349 /* ca2_out_buffer.h */,
 				9AC493751770CD6700DC2349 /* ca2_output_stream_flush_interface.h */,
 				9AC493761770CD6700DC2349 /* ca2_output_string_stream.cpp */,
-				9AC493771770CD6700DC2349 /* ca2_palette.cpp */,
-				9AC493781770CD6700DC2349 /* ca2_palette.h */,
 				9AC493791770CD6700DC2349 /* ca2_parse.cpp */,
 				9AC4937A1770CD6700DC2349 /* ca2_parse.h */,
 				9AC4937B1770CD6700DC2349 /* ca2_patch.cpp */,
 				9AC4937C1770CD6700DC2349 /* ca2_patch.h */,
-				9AC4937D1770CD6700DC2349 /* ca2_pen.cpp */,
-				9AC4937E1770CD6700DC2349 /* ca2_pen.h */,
 				9AC4937F1770CD6700DC2349 /* ca2_pipe.cpp */,
 				9AC493801770CD6700DC2349 /* ca2_pipe.h */,
 				9AC493811770CD6700DC2349 /* ca2_plain_text_serializable.cpp */,
@@ -4894,8 +4874,6 @@
 				9AC493A01770CD6800DC2349 /* ca2_reader.cpp */,
 				9AC493A11770CD6800DC2349 /* ca2_reader.h */,
 				9AC493A21770CD6800DC2349 /* ca2_reference.h */,
-				9AC493A31770CD6800DC2349 /* ca2_region.cpp */,
-				9AC493A41770CD6800DC2349 /* ca2_region.h */,
 				9AC493A51770CD6800DC2349 /* ca2_request_interface.cpp */,
 				9AC493A61770CD6800DC2349 /* ca2_request_interface.h */,
 				9AC493A71770CD6800DC2349 /* ca2_request_signal.cpp */,
@@ -6118,6 +6096,7 @@
 		07A6D3CA173C27E8009E6FB8 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				9A81FC2917B99D7B009E0FB3 /* draw2d */,
 				07A6D3CB173C27E8009E6FB8 /* gcom */,
 				07A6D3EE173C27E8009E6FB8 /* html */,
 				07A6D432173C27E8009E6FB8 /* optca_fastblur.cpp */,
@@ -7444,6 +7423,35 @@
 			path = webserver;
 			sourceTree = "<group>";
 		};
+		9A81FC2917B99D7B009E0FB3 /* draw2d */ = {
+			isa = PBXGroup;
+			children = (
+				9A81FC2A17B99D7B009E0FB3 /* draw2d.h */,
+				9A81FC2B17B99D7B009E0FB3 /* draw2d_bitmap.cpp */,
+				9A81FC2C17B99D7B009E0FB3 /* draw2d_bitmap.h */,
+				9A81FC2D17B99D7B009E0FB3 /* draw2d_brush.cpp */,
+				9A81FC2E17B99D7B009E0FB3 /* draw2d_brush.h */,
+				9A81FC2F17B99D7B009E0FB3 /* draw2d_dib.cpp */,
+				9A81FC3017B99D7B009E0FB3 /* draw2d_dib.h */,
+				9A81FC3117B99D7B009E0FB3 /* draw2d_font.cpp */,
+				9A81FC3217B99D7B009E0FB3 /* draw2d_font.h */,
+				9A81FC3317B99D7B009E0FB3 /* draw2d_graphics.cpp */,
+				9A81FC3417B99D7B009E0FB3 /* draw2d_graphics.h */,
+				9A81FC3517B99D7B009E0FB3 /* draw2d_igui.h */,
+				9A81FC3617B99D7B009E0FB3 /* draw2d_object.cpp */,
+				9A81FC3717B99D7B009E0FB3 /* draw2d_object.h */,
+				9A81FC3817B99D7B009E0FB3 /* draw2d_palette.cpp */,
+				9A81FC3917B99D7B009E0FB3 /* draw2d_palette.h */,
+				9A81FC3A17B99D7B009E0FB3 /* draw2d_path.cpp */,
+				9A81FC3B17B99D7B009E0FB3 /* draw2d_path.h */,
+				9A81FC3C17B99D7B009E0FB3 /* draw2d_pen.cpp */,
+				9A81FC3D17B99D7B009E0FB3 /* draw2d_pen.h */,
+				9A81FC3E17B99D7B009E0FB3 /* draw2d_region.cpp */,
+				9A81FC3F17B99D7B009E0FB3 /* draw2d_region.h */,
+			);
+			path = draw2d;
+			sourceTree = "<group>";
+		};
 		9A8897AB14C2C8DB006B4023 = {
 			isa = PBXGroup;
 			children = (
@@ -8539,8 +8547,6 @@
 				9AC494321770CD6800DC2349 /* ca2_bitl_encoder.h in Headers */,
 				9AC494331770CD6800DC2349 /* ca2_bitm_decoder.h in Headers */,
 				9AC494341770CD6800DC2349 /* ca2_bitm_encoder.h in Headers */,
-				9AC494361770CD6800DC2349 /* ca2_bitmap.h in Headers */,
-				9AC494381770CD6800DC2349 /* ca2_brush.h in Headers */,
 				9AC4943A1770CD6800DC2349 /* ca2_bstr.h in Headers */,
 				9AC4943B1770CD6800DC2349 /* ca2_buffer.h in Headers */,
 				9AC4943D1770CD6800DC2349 /* ca2_buffered_file.h in Headers */,
@@ -8575,7 +8581,6 @@
 				9AC494741770CD6800DC2349 /* ca2_datetime.h in Headers */,
 				9AC494761770CD6800DC2349 /* ca2_debug.h in Headers */,
 				9AC494771770CD6800DC2349 /* ca2_definition.h in Headers */,
-				9AC494791770CD6800DC2349 /* ca2_dib.h in Headers */,
 				9AC4947B1770CD6800DC2349 /* ca2_dir_application.h in Headers */,
 				9AC4947D1770CD6800DC2349 /* ca2_dir_system.h in Headers */,
 				9AC4947E1770CD6800DC2349 /* ca2_dynamic_buffer.h in Headers */,
@@ -8599,14 +8604,9 @@
 				9AC4949F1770CD6800DC2349 /* ca2_fixed_alloc.h in Headers */,
 				9AC494A11770CD6800DC2349 /* ca2_flags.h in Headers */,
 				9AC494A31770CD6800DC2349 /* ca2_folder_watch.h in Headers */,
-				9AC494A51770CD6800DC2349 /* ca2_font.h in Headers */,
 				9AC494A71770CD6800DC2349 /* ca2_fs_interface.h in Headers */,
 				9AC494A91770CD6800DC2349 /* ca2_geometry.h in Headers */,
 				9AC494AB1770CD6800DC2349 /* ca2_go_thread.h in Headers */,
-				9AC494AC1770CD6800DC2349 /* ca2_graphic_classes.h in Headers */,
-				9AC494AE1770CD6800DC2349 /* ca2_graphics_object.h in Headers */,
-				9AC494B01770CD6800DC2349 /* ca2_graphics_path.h in Headers */,
-				9AC494B21770CD6800DC2349 /* ca2_graphics.h in Headers */,
 				9AC494B41770CD6800DC2349 /* ca2_hash.h in Headers */,
 				9AC494B51770CD6800DC2349 /* ca2_heap.h in Headers */,
 				9AC494B71770CD6800DC2349 /* ca2_hex.h in Headers */,
@@ -8615,7 +8615,6 @@
 				9AC494BD1770CD6800DC2349 /* ca2_http_get_socket.h in Headers */,
 				9AC494BF1770CD6800DC2349 /* ca2_http_system.h in Headers */,
 				9AC494C11770CD6800DC2349 /* ca2_http.h in Headers */,
-				9AC494C21770CD6800DC2349 /* ca2_igui.h in Headers */,
 				9AC494C41770CD6800DC2349 /* ca2_in_buffer.h in Headers */,
 				9AC494C51770CD6800DC2349 /* ca2_inline.h in Headers */,
 				9AC494C61770CD6800DC2349 /* ca2_insert_iterator.h in Headers */,
@@ -8661,10 +8660,8 @@
 				9AC4950D1770CD6800DC2349 /* ca2_os.h in Headers */,
 				9AC4950F1770CD6800DC2349 /* ca2_out_buffer.h in Headers */,
 				9AC495101770CD6800DC2349 /* ca2_output_stream_flush_interface.h in Headers */,
-				9AC495131770CD6800DC2349 /* ca2_palette.h in Headers */,
 				9AC495151770CD6800DC2349 /* ca2_parse.h in Headers */,
 				9AC495171770CD6800DC2349 /* ca2_patch.h in Headers */,
-				9AC495191770CD6800DC2349 /* ca2_pen.h in Headers */,
 				9AC4951B1770CD6800DC2349 /* ca2_pipe.h in Headers */,
 				9AC4951D1770CD6800DC2349 /* ca2_plain_text_serializable.h in Headers */,
 				9AC4951F1770CD6800DC2349 /* ca2_plain_text_stream.h in Headers */,
@@ -8683,7 +8680,6 @@
 				9AC4953A1770CD6800DC2349 /* ca2_raw_pointer.h in Headers */,
 				9AC4953C1770CD6800DC2349 /* ca2_reader.h in Headers */,
 				9AC4953D1770CD6800DC2349 /* ca2_reference.h in Headers */,
-				9AC4953F1770CD6800DC2349 /* ca2_region.h in Headers */,
 				9AC495411770CD6800DC2349 /* ca2_request_interface.h in Headers */,
 				9AC495431770CD6800DC2349 /* ca2_request_signal.h in Headers */,
 				9AC495451770CD6800DC2349 /* ca2_resource.h in Headers */,
@@ -8746,6 +8742,18 @@
 				9AC495AC1770CD6800DC2349 /* ca2_window.h in Headers */,
 				9AC495AE1770CD6800DC2349 /* ca2_writer.h in Headers */,
 				9AC495B01770CD6800DC2349 /* ca2.h in Headers */,
+				9A81FC4017B99D7B009E0FB3 /* draw2d.h in Headers */,
+				9A81FC4217B99D7B009E0FB3 /* draw2d_bitmap.h in Headers */,
+				9A81FC4417B99D7B009E0FB3 /* draw2d_brush.h in Headers */,
+				9A81FC4617B99D7B009E0FB3 /* draw2d_dib.h in Headers */,
+				9A81FC4817B99D7B009E0FB3 /* draw2d_font.h in Headers */,
+				9A81FC4A17B99D7B009E0FB3 /* draw2d_graphics.h in Headers */,
+				9A81FC4B17B99D7B009E0FB3 /* draw2d_igui.h in Headers */,
+				9A81FC4D17B99D7B009E0FB3 /* draw2d_object.h in Headers */,
+				9A81FC4F17B99D7B009E0FB3 /* draw2d_palette.h in Headers */,
+				9A81FC5117B99D7B009E0FB3 /* draw2d_path.h in Headers */,
+				9A81FC5317B99D7B009E0FB3 /* draw2d_pen.h in Headers */,
+				9A81FC5517B99D7B009E0FB3 /* draw2d_region.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9594,8 +9602,6 @@
 				9AC4942A1770CD6800DC2349 /* ca2_base_enum_static_debug.cpp in Sources */,
 				9AC4942D1770CD6800DC2349 /* ca2_base64.cpp in Sources */,
 				9AC4942F1770CD6800DC2349 /* ca2_bit.cpp in Sources */,
-				9AC494351770CD6800DC2349 /* ca2_bitmap.cpp in Sources */,
-				9AC494371770CD6800DC2349 /* ca2_brush.cpp in Sources */,
 				9AC494391770CD6800DC2349 /* ca2_bstr.cpp in Sources */,
 				9AC4943C1770CD6800DC2349 /* ca2_buffered_file.cpp in Sources */,
 				9AC4943E1770CD6800DC2349 /* ca2_byte_serializable.cpp in Sources */,
@@ -9625,7 +9631,6 @@
 				9AC494711770CD6800DC2349 /* ca2_data.cpp in Sources */,
 				9AC494731770CD6800DC2349 /* ca2_datetime.cpp in Sources */,
 				9AC494751770CD6800DC2349 /* ca2_Debug.cpp in Sources */,
-				9AC494781770CD6800DC2349 /* ca2_dib.cpp in Sources */,
 				9AC4947A1770CD6800DC2349 /* ca2_dir_application.cpp in Sources */,
 				9AC4947C1770CD6800DC2349 /* ca2_dir_system.cpp in Sources */,
 				9AC4947F1770CD6800DC2349 /* ca2_dynamic_buffered_writer.cpp in Sources */,
@@ -9645,13 +9650,9 @@
 				9AC4949E1770CD6800DC2349 /* ca2_fixed_alloc.cpp in Sources */,
 				9AC494A01770CD6800DC2349 /* ca2_flags.cpp in Sources */,
 				9AC494A21770CD6800DC2349 /* ca2_folder_watch.cpp in Sources */,
-				9AC494A41770CD6800DC2349 /* ca2_font.cpp in Sources */,
 				9AC494A61770CD6800DC2349 /* ca2_fs_interface.cpp in Sources */,
 				9AC494A81770CD6800DC2349 /* ca2_geometry.cpp in Sources */,
 				9AC494AA1770CD6800DC2349 /* ca2_go_thread.cpp in Sources */,
-				9AC494AD1770CD6800DC2349 /* ca2_graphics_object.cpp in Sources */,
-				9AC494AF1770CD6800DC2349 /* ca2_graphics_path.cpp in Sources */,
-				9AC494B11770CD6800DC2349 /* ca2_graphics.cpp in Sources */,
 				9AC494B31770CD6800DC2349 /* ca2_hash.cpp in Sources */,
 				9AC494B61770CD6800DC2349 /* ca2_hex.cpp in Sources */,
 				9AC494B81770CD6800DC2349 /* ca2_history.cpp in Sources */,
@@ -9693,10 +9694,8 @@
 				9AC4950C1770CD6800DC2349 /* ca2_os.cpp in Sources */,
 				9AC4950E1770CD6800DC2349 /* ca2_out_buffer.cpp in Sources */,
 				9AC495111770CD6800DC2349 /* ca2_output_string_stream.cpp in Sources */,
-				9AC495121770CD6800DC2349 /* ca2_palette.cpp in Sources */,
 				9AC495141770CD6800DC2349 /* ca2_parse.cpp in Sources */,
 				9AC495161770CD6800DC2349 /* ca2_patch.cpp in Sources */,
-				9AC495181770CD6800DC2349 /* ca2_pen.cpp in Sources */,
 				9AC4951A1770CD6800DC2349 /* ca2_pipe.cpp in Sources */,
 				9AC4951C1770CD6800DC2349 /* ca2_plain_text_serializable.cpp in Sources */,
 				9AC4951E1770CD6800DC2349 /* ca2_plain_text_stream.cpp in Sources */,
@@ -9715,7 +9714,6 @@
 				9AC495361770CD6800DC2349 /* ca2_property_set.cpp in Sources */,
 				9AC495381770CD6800DC2349 /* ca2_property.cpp in Sources */,
 				9AC4953B1770CD6800DC2349 /* ca2_reader.cpp in Sources */,
-				9AC4953E1770CD6800DC2349 /* ca2_region.cpp in Sources */,
 				9AC495401770CD6800DC2349 /* ca2_request_interface.cpp in Sources */,
 				9AC495421770CD6800DC2349 /* ca2_request_signal.cpp in Sources */,
 				9AC495441770CD6800DC2349 /* ca2_resource.cpp in Sources */,
@@ -9767,6 +9765,16 @@
 				9AC495AB1770CD6800DC2349 /* ca2_window.cpp in Sources */,
 				9AC495AD1770CD6800DC2349 /* ca2_writer.cpp in Sources */,
 				9AC495AF1770CD6800DC2349 /* ca2.cpp in Sources */,
+				9A81FC4117B99D7B009E0FB3 /* draw2d_bitmap.cpp in Sources */,
+				9A81FC4317B99D7B009E0FB3 /* draw2d_brush.cpp in Sources */,
+				9A81FC4517B99D7B009E0FB3 /* draw2d_dib.cpp in Sources */,
+				9A81FC4717B99D7B009E0FB3 /* draw2d_font.cpp in Sources */,
+				9A81FC4917B99D7B009E0FB3 /* draw2d_graphics.cpp in Sources */,
+				9A81FC4C17B99D7B009E0FB3 /* draw2d_object.cpp in Sources */,
+				9A81FC4E17B99D7B009E0FB3 /* draw2d_palette.cpp in Sources */,
+				9A81FC5017B99D7B009E0FB3 /* draw2d_path.cpp in Sources */,
+				9A81FC5217B99D7B009E0FB3 /* draw2d_pen.cpp in Sources */,
+				9A81FC5417B99D7B009E0FB3 /* draw2d_region.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
