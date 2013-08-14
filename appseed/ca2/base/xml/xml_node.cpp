@@ -957,7 +957,7 @@ namespace xml
                      }
                   }
                }
-               else if(*xml)  // Alone child Tag Loaded
+               else if(xml && *xml)  // Alone child Tag Loaded
                      // else ﾇﾘｾﾟﾇﾏｴﾂﾁ・ｸｻｾﾆｾﾟﾇﾏｴﾂﾁ・ﾀﾇｽﾉｰ｣ｴﾙ.
                {
 

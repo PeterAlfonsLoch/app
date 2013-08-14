@@ -15,6 +15,7 @@
          mutex                   m_mutexData;
          ::primitive::memory_file        m_memoryfile;
          sp(::ca2::file)             m_pfile;
+          int64_t           m_iFinalSize;
 
 
          //primitive::memory    m_memoryData; ///< Ptr to buffer where to store response

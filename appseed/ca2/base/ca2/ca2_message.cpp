@@ -266,9 +266,9 @@ namespace ca2
 
 #endif
 
-      dispatch::dispatch() :
-         m_pevOk(NULL),
-         m_pmutex(NULL)
+      dispatch::dispatch()// :
+//         m_pevOk(NULL),
+  //       m_pmutex(NULL)
       {
 
          m_pfnDispatchWindowProc    = &dispatch::_start_user_message_handler;
@@ -285,7 +285,7 @@ namespace ca2
       void dispatch::_user_message_handler(::ca2::signal_object * pobj)
       {
 
-         dispatch_event_ok()->wait();
+//         dispatch_event_ok()->wait();
 
          SignalPtrArray signalptra;
          SCAST_PTR(::ca2::message::base, pbase, pobj);
@@ -883,17 +883,40 @@ namespace ca2
 
       void dispatch::_start_user_message_handler(::ca2::signal_object * pobj)
       {
-         single_lock sl(dispatch_mutex(), true);
+         
+         
+         mutex_lock ml(user_mutex());
+         
+         if(m_pfnDispatchWindowProc == &dispatch::_user_message_handler)
+         {
+            
+            ml.unlock();
+            
+            _user_message_handler(pobj);
+            
+            return;
+            
+         }
+
+         m_pfnDispatchWindowProc = &dispatch::_user_message_handler;
+
          _on_start_user_message_handler();
+         
          install_message_handling(this);
+
          if(get_app() == NULL)
          {
+            
             set_app(calc_app());
+            
          }
-         dispatch_event_ok()->SetEvent();
-         sl.unlock();
+
+         ml.unlock();
+         
          return _user_message_handler(pobj);
+         
       }
+         
 
       void dispatch::install_message_handling(dispatch * pinterface)
       {
@@ -902,7 +925,6 @@ namespace ca2
 
       void dispatch::_on_start_user_message_handler()
       {
-         m_pfnDispatchWindowProc = &dispatch::_user_message_handler;
       }
 
       sp(::ca2::application) dispatch::calc_app()

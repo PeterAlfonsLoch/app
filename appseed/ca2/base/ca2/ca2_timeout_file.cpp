@@ -164,6 +164,7 @@ namespace ca2
    {
       single_lock sl(m_spmutex, TRUE);
       m_pfile->write(lpBuf, nCount);
+  //     m_uiExpectedSize = m_pfile->get_length();
    }
 
    void timeout_file::flush()

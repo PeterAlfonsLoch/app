@@ -474,6 +474,11 @@ namespace plane
       bool                                         m_bLibCharGuess;
 
       sp(::user::str)                              m_puserstr;
+       
+       ::ca::library m_libraryDraw2d;
+       
+       
+       
 
       string_map < int_map < string, string >, const int_map < string, string > & >
          m_mapEnumToName;
@@ -852,8 +857,12 @@ bool ::ca2::file_system::output(sp(::ca2::application) papp, const char * pszOut
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
+   
+   string strDownloading = pszOutput;
+   
+   strDownloading += ".downloading";
 
-   ::ca2::filesp fileOut = App(papp).file().get_file(pszOutput, ::ca2::file::mode_create | ::ca2::file::type_binary | ::ca2::file::mode_write);
+   ::ca2::filesp fileOut = App(papp).file().get_file(strDownloading, ::ca2::file::mode_create | ::ca2::file::type_binary | ::ca2::file::mode_write);
 
    if(fileOut.is_null())
       return false;
@@ -863,7 +872,16 @@ bool ::ca2::file_system::output(sp(::ca2::application) papp, const char * pszOut
    if(fileIn.is_null())
       return false;
 
-   return (p->*lpfnOuput)(fileOut, fileIn);
+   if(!(p->*lpfnOuput)(fileOut, fileIn))
+      return false;
+   
+   if(::rename(strDownloading, pszOutput) != 0)
+   {
+      del(strDownloading);
+      return false;
+   }
+   
+   return true;
 
 }
 

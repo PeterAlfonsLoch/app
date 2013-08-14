@@ -10,8 +10,8 @@ uint32_t simple_frame_window_save_window_rect(void * pvoidParam);
 
 simple_frame_window::simple_frame_window(sp(::ca2::application) papp) :
    ca2(papp),
-   m_dibBk(papp),
-   m_fastblur(papp)
+   m_dibBk(allocer()),
+   m_fastblur(allocer())
 {
 
    m_bblur_Background      = false;

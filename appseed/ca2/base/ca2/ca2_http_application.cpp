@@ -46,8 +46,17 @@ namespace ca2
 
          if(domain.m_strRadix == "ca2" && ::ca2::str::begins(System.url().get_object(psignal->m_strUrl), "/matter/"))
          {
-
-            if(!exists(psignal->m_strUrl))
+            
+            string strUrl(psignal->m_strUrl);
+            
+            string strFileDownloading(strUrl);
+            
+            strFileDownloading.replace(":", "_");
+            strFileDownloading.replace("//", "/");
+            strFileDownloading.replace("?", "%19");
+            strFileDownloading = System.dir().appdata("cache/" + strFileDownloading + ".local_copy.downloading");
+            
+            if(!Application.file().exists(strFileDownloading) && !exists(psignal->m_strUrl))
             {
 
                psignal->m_estatusRet = status_failed;

@@ -239,6 +239,8 @@ namespace ca2
 
             string strFile(strPath);
 
+            string strFileDownloading(strPath);
+            
             if(::ca2::str::ends(strPath, "en_us_international.xml"))
             {
                TRACE("Debug Here");
@@ -254,14 +256,21 @@ namespace ca2
                TRACE("Debug Here : arialuni.ttf");
             }
 
+#ifdef WINDOWS
             strFile.replace("://", "_\\");
-            strFile = System.dir().appdata("cache/" + strFile + ".local_copy");
+#else
+             strFile.replace("://", "_/");
+#endif
+            strFile = System.dir().appdata("cache/" + strFile);
+            
+            strFile = strFile + ".local_copy";
 
+            strFileDownloading = strFile + ".downloading";
 
-            if(m_papp->m_pappThis->m_file.exists(strFile))
+            if(m_papp->m_pappThis->m_file.exists(strFile) && !m_papp->m_pappThis->m_file.exists(strFileDownloading))
             {
 
-               spfile.create(m_papp);
+               spfile.create(allocer());
 
                try
                {
@@ -295,7 +304,7 @@ namespace ca2
 
             varQuery["disable_ca2_sessid"] = true;
 
-            if(m_papp->m_pappThis->m_http.exists(strPath, &varQuery))
+            if(m_papp->m_pappThis->m_file.exists(strFileDownloading) || m_papp->m_pappThis->m_http.exists(strPath, &varQuery))
             {
 
                spfile = new sockets::http::file(get_app());
@@ -306,9 +315,9 @@ namespace ca2
                   spfile.release();
 
                }
-               else
+               else if(!m_papp->m_pappThis->m_file.exists(strFileDownloading))
                {
-
+                  
                   try
                   {
 

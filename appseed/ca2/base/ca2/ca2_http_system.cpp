@@ -837,9 +837,9 @@ retry:
                }
                if(set["file_out"].ca2 < ::ca2::timeout_file >() != NULL)
                {
-                  if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::ca2::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
+                  if(psession->m_iFinalSize != -1 && set["file_out"].ca2 < ::ca2::timeout_file >()->m_uiExpectedSize != psession->m_iFinalSize)
                   {
-                     set["file_out"].ca2 < ::ca2::timeout_file >()->m_uiExpectedSize = psession->m_content_length;
+                     set["file_out"].ca2 < ::ca2::timeout_file >()->m_uiExpectedSize = psession->m_iFinalSize;
                   }
                }
                dw2 = ::get_tick_count();
@@ -849,9 +849,9 @@ retry:
 
             if(set["file_out"].ca2 < ::ca2::timeout_file >() != NULL)
             {
-               if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::ca2::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
+               if(psession->m_iFinalSize != -1 && set["file_out"].ca2 < ::ca2::timeout_file >()->m_uiExpectedSize != psession->m_iFinalSize)
                {
-                  set["file_out"].ca2 < ::ca2::timeout_file >()->m_uiExpectedSize = psession->m_content_length;
+                  set["file_out"].ca2 < ::ca2::timeout_file >()->m_uiExpectedSize = psession->m_iFinalSize;
                }
             }
 
@@ -1292,9 +1292,9 @@ retry:
             }
             if(set["file_out"].ca2 < ::ca2::timeout_file >() != NULL)
             {
-               if(psocket->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::ca2::timeout_file >()->m_uiExpectedSize != psocket->m_content_length)
+               if(psocket->m_iFinalSize != ((size_t) -1) && set["file_out"].ca2 < ::ca2::timeout_file >()->m_uiExpectedSize != psocket->m_iFinalSize)
                {
-                  set["file_out"].ca2 < ::ca2::timeout_file >()->m_uiExpectedSize = psocket->m_content_length;
+                  set["file_out"].ca2 < ::ca2::timeout_file >()->m_uiExpectedSize = psocket->m_iFinalSize;
                }
             }
             dw2 = ::get_tick_count();
@@ -1408,7 +1408,8 @@ retry:
             psignal->m_memoryRet.allocate(0);
          }
          psignal->m_setHeaders = psocket->outheaders();
-         psignal->m_bRet = true;
+         int32_t iStatusCode = psocket->outattr("http_status_code");
+         psignal->m_bRet = iStatusCode == 200;
          return;
       }
 

@@ -122,6 +122,9 @@ namespace ca2
       virtual public ::ca2::ca2
    {
    public:
+      
+
+      virtual ~allocator();
 
 
    };

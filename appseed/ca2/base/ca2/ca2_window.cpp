@@ -11,6 +11,7 @@ namespace ca2
       m_bComposite                        = true;
       m_bUpdateGraphics                   = false;
       m_pmutexGraphics                    = NULL;
+      m_pmutexDisplay                     = NULL;
       m_rectParentClient = ::null_rect();
    }
 
@@ -2265,12 +2266,14 @@ namespace ca2
 
    void window::_001UpdateWindow()
    {
-
+      
       if(m_bUpdateGraphics)
       {
          update_graphics_resources();
       }
 
+      single_lock sl(mutex_graphics(), true);
+      
       if(m_spdib.is_null() || m_spdib->get_graphics() == NULL)
          return;
 
@@ -2296,8 +2299,30 @@ namespace ca2
       _001Print(m_spdib->get_graphics());
       //m_spdib->get_graphics()->SetViewportOrg(0, 0);
       //m_spdib->get_graphics()->FillSolidRect(100, 100, 100, 100, ARGB(127, 127, 0, 0));
+      
+      
+      single_lock sl2(mutex_display(), true);
+      
+      rect rect;
+      
+      GetClientRect(rect);
+      
+      if(m_spdibFlip.is_null())
+         m_spdibFlip.create(allocer());
+      
+      if(m_spdibFlip.is_null())
+         return;
+      
+      m_spdibFlip->create(rect.size());
+      
+      if(m_spdibFlip->get_data() == NULL)
+         return;
+      
+      m_spdibFlip->Paste(m_spdib);
+      
+      sl.unlock();
 
-      m_spdib->update_window(this, NULL);
+      m_spdibFlip->update_window(this, NULL);
 
    }
 
@@ -2312,7 +2337,13 @@ namespace ca2
 
       }
 
-
+      if(m_pmutexDisplay == NULL)
+      {
+         
+         m_pmutexDisplay = new mutex(get_app());
+         
+      }
+      
       single_lock sl(mutex_graphics(), false);
 
       if(!sl.lock(millis(0)))
@@ -2321,6 +2352,14 @@ namespace ca2
          return;
       }
 
+      single_lock sl2(mutex_display(), false);
+      
+      if(!sl2.lock(millis(0)))
+      {
+         m_bUpdateGraphics = true;
+         return;
+      }
+  
       m_bUpdateGraphics = false;
 
       rect rectWindow;
@@ -2339,6 +2378,11 @@ namespace ca2
             m_spdib.create(allocer());
 
          m_spdib->create(rectWindow.size());
+
+         if(m_spdibFlip.is_null())
+            m_spdibFlip.create(allocer());
+         
+         m_spdibFlip->create(rectWindow.size());
 
          m_size = rectWindow.size();
 

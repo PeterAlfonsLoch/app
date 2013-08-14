@@ -292,8 +292,8 @@ namespace ca2
          int32_t                    m_iHandling;
          SignalArray                m_signala;
          ::ca2::signal               m_signalInstallMessageHandling;
-         sp(manual_reset_event)     m_pevOk;
-         sp(mutex)                  m_pmutex;
+//         sp(manual_reset_event)     m_pevOk;
+//         sp(mutex)                  m_pmutex;
 
          virtual void _start_user_message_handler(::ca2::signal_object * pobj);
 
@@ -308,8 +308,8 @@ namespace ca2
          virtual bool OnWndMsgPosCreate();
 
 
-         inline manual_reset_event * dispatch_event_ok() { if(m_pevOk != NULL) return m_pevOk; m_pevOk = canew(manual_reset_event(NULL)); return m_pevOk; }
-         inline mutex * dispatch_mutex() { if(m_pmutex != NULL) return m_pmutex; m_pmutex = canew(::mutex(NULL)); return m_pmutex; }
+//         inline manual_reset_event * dispatch_event_ok() { if(m_pevOk != NULL) return m_pevOk; m_pevOk = canew(manual_reset_event(NULL)); return m_pevOk; }
+//         inline mutex * dispatch_mutex() { if(m_pmutex != NULL) return m_pmutex; m_pmutex = canew(::mutex(NULL)); return m_pmutex; }
       };
 
 #undef new

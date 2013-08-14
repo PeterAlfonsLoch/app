@@ -222,11 +222,15 @@ namespace ca2
       return pitem->clone(pobject);
 
    }
-
-
+   
+   
 } // namespace ca2
 
 
+factory_item_base::~factory_item_base()
+{
+   
+}
 
 
 

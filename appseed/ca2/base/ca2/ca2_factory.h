@@ -97,6 +97,7 @@ public:
    sp(factory_allocator)    m_pallocator;
 
    inline factory_item_base(sp(::ca2::application) papp, sp(factory_allocator) pallocator) : ca2(papp), m_pallocator(pallocator) {}
+   virtual ~factory_item_base();
 
    virtual sp(::ca2::ca2) create(sp(::ca2::application) papp) = 0;
    virtual sp(::ca2::ca2) clone(sp(::ca2::ca2) pobject) = 0;

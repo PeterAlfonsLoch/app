@@ -660,7 +660,10 @@ namespace ca2
       if(strLibrary.is_empty())
          strLibrary = "draw2d_cairo";
 
-      ::ca::library & library = m_libraryDraw2d;
+      ::ca::library & library = System.m_libraryDraw2d;
+       
+       if(library.is_opened())
+           return;
 
       if(!library.open(strLibrary))
       {

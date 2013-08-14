@@ -4,6 +4,10 @@
 namespace ca2
 {
 
+   allocator::~allocator()
+   {
+      
+   }
 
 
 

@@ -75,6 +75,7 @@ namespace draw2d
       int32_t           cx;
       int32_t           cy;
       int32_t           scan;
+      bool              m_bMapped; // optionally used by implementation
 
       descriptor        m_descriptor;
 

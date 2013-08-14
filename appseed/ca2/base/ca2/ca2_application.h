@@ -443,9 +443,6 @@ namespace ca2
       sp(::user::interaction_ptr_array) m_pframea;
 
 
-      ::ca::library m_libraryDraw2d;
-
-
       //CCommandLineInfo* m_pCmdInfo;
 
       ATOM m_atomApp, m_atomSystemTopic;   // for DDE open

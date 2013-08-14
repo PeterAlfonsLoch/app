@@ -414,6 +414,12 @@ namespace plane
             || ::ca2::str::ends_eat_ci(strLibraryId, ".so")
             || ::ca2::str::ends_eat_ci(strLibraryId, ".dylib"))
          {
+            
+            if(::ca2::str::begins_ci(strLibraryId, "libdraw2d_")
+            || ::ca2::str::begins_ci(strLibraryId, "lib_ca2"))
+            {
+               continue;
+            }
 
             map_application_library(strLibraryId);
 

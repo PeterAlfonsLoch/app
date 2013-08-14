@@ -71,16 +71,31 @@ namespace ca2
 
          if(strPath.begins_ci("http://") || strPath.begins_ci("https://"))
          {
-            if(!Application.file().exists(strPath))
-               return strPath;
+            string strFileExists = strPath;
+            strFileExists.replace(":", "_");
+            strFileExists = System.dir().appdata("cache/" + strFileExists + ".exists_question");
+            strFileExists.replace("\\\\", "\\", 2);
             string strFile = strPath;
             strFile.replace(":", "_");
             strFile = System.dir().appdata("cache/" + strFile + ".local_copy");
             strFile.replace("\\\\", "\\", 2);
-            if(Application.file().exists(strFile))
+            if(Application.file().exists(strFileExists))
+            {
+               if(Application.file().as_string(strFileExists) == "yes")
+                  return strFile;
+               else
+                  return "";
+            }
+            if(System.file().output(get_app(), strFile, &System.compress(), &::ca2::compress::null, strPath))
+            {
+               Application.file().put_contents(strFileExists, "yes");
                return strFile;
-            System.file().output(get_app(), strFile, &System.compress(), &::ca2::compress::null, strPath);
-            return strFile;
+            }
+            else
+            {
+               Application.file().put_contents(strFileExists, "no");
+               return "";
+            }
          }
          else
          {

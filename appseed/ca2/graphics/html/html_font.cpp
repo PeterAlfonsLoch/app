@@ -15,12 +15,16 @@ namespace html
       m_strTextDecoration     = font.m_strTextDecoration;
    }
 
+   
    bool font::create(sp(::ca2::application) papp)
    {
-      m_font.create(papp);
-
+      
+      set_app(papp);
+      
+      m_font.create(allocer());
 
       int32_t iWeight;
+      
       if(m_strWeight.CompareNoCase("bold") == 0)
       {
          iWeight = 800;

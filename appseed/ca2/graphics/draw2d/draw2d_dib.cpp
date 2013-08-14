@@ -3444,12 +3444,22 @@ fill_last:
 
     }
 
+   
    bool dib::update_window(::ca2::window * pwnd, ::ca2::signal_object * pobj)
    {
+      
       UNREFERENCED_PARAMETER(pwnd);
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception(get_app());
+      
+      // default implementation does nothing, dib should be now updated (before calling update window)
+      // and ready to be queried if post queried
+      
+//      throw interface_only_exception(get_app());
+      
+      return true;
+      
    }
+   
 
    bool dib::print_window(::ca2::window * pwnd, ::ca2::signal_object * pobj)
    {

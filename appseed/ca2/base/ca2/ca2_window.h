@@ -24,6 +24,7 @@ namespace ca2
       bool                          m_bComposite;
       bool                          m_bUpdateGraphics;
       mutex *                       m_pmutexGraphics;
+      mutex *                       m_pmutexDisplay;
       point                         m_pt;
       size                          m_size;
 
@@ -38,6 +39,7 @@ namespace ca2
       ::draw2d::font * m_pfont;
       window_graphics *             m_pgraphics;
       ::draw2d::dib_sp              m_spdib;
+      ::draw2d::dib_sp              m_spdibFlip;
 
 
 
@@ -693,6 +695,7 @@ namespace ca2
       virtual void update_graphics_resources();
 
       inline mutex * mutex_graphics() { return m_pmutexGraphics; }
+      inline mutex * mutex_display() { return m_pmutexDisplay; }
 
 
 
