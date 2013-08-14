@@ -68,13 +68,22 @@ namespace mysql
    {
       if(m_pmysql == NULL)
          return false;
+
+
+//      m_resultptra.remove_all();
+
+      /*
+
       for(int32_t i = 0; i < m_resultptra.get_count(); i++)
       {
-         if(m_resultptra[i]->m_bAutoDelete)
+         if(m_resultptra(i)->m_bAutoDelete)
          {
             delete m_resultptra[i];
          }
       }
+
+      */
+
       mysql_close((MYSQL *) m_pmysql);
       m_pmysql = NULL;
       return true;
@@ -108,7 +117,7 @@ namespace mysql
       TRACE0(m_strLastError);
    }
 
-   result * database::query(const char * pszSql)
+   sp(result) database::query(const char * pszSql)
    {
 	   
       m_strLastError = "";
@@ -117,6 +126,7 @@ namespace mysql
       if(m_pmysql == NULL)
       {
          
+         Sleep(1984);
          if(!initialize() || m_pmysql == NULL)
          {
 
@@ -130,6 +140,7 @@ namespace mysql
       {
          if(mysql_query((MYSQL *) m_pmysql, pszSql) != 0) /* the statement failed */
          {
+            Sleep(1984);
             if(!initialize() || mysql_query((MYSQL *) m_pmysql, pszSql) != 0) /* the statement failed */
             {
                trace_error1("Could not execute statement");
@@ -151,7 +162,7 @@ namespace mysql
       if(pres) /* a result set was returned */
       {
          m_iLastUsedTime = ::ca2::profiler::micros();
-         return new result(this, true, pres);
+         return canew(result(this, pres));
       }
       else /* no result set was returned */
       {
@@ -161,13 +172,18 @@ namespace mysql
          */
          if (mysql_errno ((MYSQL *) m_pmysql) == 0)
          {
+           
             /*
             * statement generated no result set (it was not a SELECT,
             * SHOW, DESCRIBE, etc.); just report rows-affected value.
             */
+
             m_iLastUsedTime = ::ca2::profiler::micros();
+
             TRACE("Number of rows affected: %lu\n", (uint32_t) mysql_affected_rows ((MYSQL *) m_pmysql));
-            return new result(this, true, NULL);
+
+            return canew(result(this, NULL));
+
          }
          else /* an error occurred */
          {
@@ -179,7 +195,7 @@ namespace mysql
 
    var database::query_item(const char * pszSql, var varDefault)
    {
-      result * presult = query(pszSql);
+      sp(result) presult = query(pszSql);
       if(presult == NULL)
          return varDefault;
       MYSQL_ROW row = (MYSQL_ROW) presult->fetch_row();
@@ -192,7 +208,7 @@ namespace mysql
    }
    bool database::query_blob(primitive::memory_base & memory, const char * pszSql)
    {
-      result * presult = query(pszSql);
+      sp(result) presult = query(pszSql);
       if(presult == NULL)
          return false;
       MYSQL_ROW row = (MYSQL_ROW) presult->fetch_row();
@@ -210,7 +226,7 @@ namespace mysql
    }
    var database::query_items(const char * pszSql)
    {
-      result * presult = query(pszSql);
+      sp(result) presult = query(pszSql);
       if(presult == NULL)
          return ::var(::var::type_new);
       var a;
@@ -228,7 +244,7 @@ namespace mysql
    }
    var database::query_row(const char * pszSql)
    {
-      result * presult = query(pszSql);
+      sp(result) presult = query(pszSql);
       if(presult == NULL)
          return ::var(::var::type_new);
       MYSQL_ROW row = (MYSQL_ROW) presult->fetch_row();
@@ -247,7 +263,7 @@ namespace mysql
    }
    var database::query_rows(const char * pszSql)
    {
-      result * presult = query(pszSql);
+      sp(result) presult = query(pszSql);
       if(presult == NULL)
          return ::var(::var::type_new);
       MYSQL_ROW row;

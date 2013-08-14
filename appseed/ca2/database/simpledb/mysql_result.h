@@ -1,33 +1,42 @@
 #pragma once
 
+
 #ifndef METROWIN
+
+
+#include "mysql/mysql.h"
 
 
 namespace mysql
 {
 
+
    class database;
+
 
    class CLASS_DECL_ca2 result :
       virtual public ::ca2::object
    {
    public:
+
+
+      database *     m_pdatabase;
+      MYSQL_RES *    m_pres;
+      int32_t        m_iFieldCount;
+
+
+      result(database * pdatabase, MYSQL_RES * pres);
       virtual ~result();
 
-      void * fetch_row(); // MYSQL_ROW
-      unsigned long * fetch_lengths(); // MYSQL_ROW
+
+      MYSQL_ROW fetch_row();
+      unsigned long * fetch_lengths();
       int64_t num_rows();
       int32_t num_fields();
 
-      friend class database;
-   protected:
-      //result(database * pdatabase, bool bAutoDelete, MYSQL_RES * pres);
-      result(database * pdatabase, bool bAutoDelete, void * pres);
       bool free_result();
-      database * m_pdatabase;
-      void * m_pres; // MYSQL_RES
-      int32_t   m_iFieldCount;
-      bool m_bAutoDelete;
+
+
    };
 
 
@@ -35,3 +44,7 @@ namespace mysql
 
 
 #endif
+
+
+
+

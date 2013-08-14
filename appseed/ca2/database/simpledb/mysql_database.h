@@ -19,8 +19,8 @@ namespace mysql
    public:
 
 
-      comparable_array < result * > m_resultptra;
-      void * m_pmysql; // MYSQL *
+      //spa(result) m_esultptra;
+      MYSQL * m_pmysql; // MYSQL *
 	  string m_strLastError;
       int64_t m_iLastUsedTime;
 
@@ -42,7 +42,7 @@ namespace mysql
 
       virtual bool initialize();
 
-      virtual result * query(const char * pszSql);
+      virtual sp(result) query(const char * pszSql);
       virtual var query_item(const char * pszSql, var varDefault = false);
       virtual bool query_blob(primitive::memory_base & memory, const char * pszSql);
       virtual var query_items(const char * pszSql);
@@ -53,7 +53,7 @@ namespace mysql
       ::count query_rows(const char * pszSql, ARRAY1 & a1, ARRAY2 & a2, ARRAY3 & a3, TYPE1 t1null, TYPE2 t2null, TYPE3 t3null)
       {
 
-         result * presult = query(pszSql);
+         sp(result) presult = query(pszSql);
 
          if(presult == NULL)
             return 0;

@@ -7,12 +7,11 @@ namespace mysql
 {
 
 
-   result::result(database * pdatabase, bool bAutoDelete, void * pres) :
+   result::result(database * pdatabase, MYSQL_RES * pres) :
       m_pdatabase(pdatabase)
    {
 
-      m_bAutoDelete = bAutoDelete;
-      m_pdatabase->m_resultptra.add(this);
+//      m_pdatabase->m_resultptra.add(this);
       m_pres = pres;
       m_iFieldCount = -1;
 
@@ -47,7 +46,7 @@ namespace mysql
 
          if(m_pdatabase != NULL)
          {
-            m_pdatabase->m_resultptra.remove(this);
+//            m_pdatabase->m_resultptra.remove(this);
          }
 
       }
@@ -60,16 +59,27 @@ namespace mysql
    }
 
 
-   void * result::fetch_row()
+   MYSQL_ROW result::fetch_row()
    {
+
       MYSQL_ROW row;
+
       if(m_pres == NULL)
          return NULL;
+
       row = mysql_fetch_row((MYSQL_RES *) m_pres);
+
       if(mysql_errno ((MYSQL *) m_pdatabase->m_pmysql) != 0)
+      {
+
          m_pdatabase->trace_error1( "mysql_fetch_row() failed");
+
+      }
+
       return row;
+
    }
+
 
    unsigned long * result::fetch_lengths()
    {
