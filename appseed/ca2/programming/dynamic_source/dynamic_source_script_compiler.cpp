@@ -676,6 +676,35 @@ namespace dynamic_source
             iStart = iLastEnd;
          }
       }
+      string strDs;
+      if(strSource.Mid(iStart, 4) == "<?ds")
+      {
+         iStart +=4;
+         while(true)
+         {
+            int iMid = strSource.find("?>", iStart);
+            iLastEnd = strSource.find("ds?>", iStart);
+            if(iMid > 0 && iMid < iLastEnd)
+            {
+               strDs += cppize2(strSource.Mid(iStart, iMid - iStart), true, straId);
+               iStart = iMid + 2;
+               iMid = strSource.find("<?", iStart);
+               if(iMid < iLastEnd)
+               {
+                  strDs += get_ds_print(strSource.Mid(iStart, iMid - iStart));
+               }
+               iStart = iMid + 2;
+               continue;
+            }
+            if(iLastEnd > 0)
+            {
+               strDs += cppize2(strSource.Mid(iStart, iLastEnd - iStart), true, straId);
+               iStart = iLastEnd + 4;
+               iLastEnd = iStart;
+            }
+             break;
+         }
+      }
       strDest += "\r\n";
       strDest += "\r\n";
       iPosId = strDest.get_length();
@@ -686,6 +715,9 @@ namespace dynamic_source
       strDest += "public:\r\n";
       strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script(dynamic_source::script * pscript) : ca2(pscript->get_app()), dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";
       strDest += "   virtual void run();\r\n";
+      strDest += "   \r\n\r\n";
+      strDest += strDs;
+      strDest += "   \r\n\r\n\r\n";
       strDest += "};\r\n";
       strDest += "\r\n";
       strDest += "extern \"C\" dynamic_source::script_instance * __cdecl create_dynamic_source_script_instance (dynamic_source::script * pscript)\r\n";
