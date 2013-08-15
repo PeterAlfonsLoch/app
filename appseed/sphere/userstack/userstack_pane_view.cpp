@@ -7,10 +7,9 @@ namespace userstack
    pane_view::pane_view(sp(::ca2::application) papp) :
       ca2(papp),
       ::user::tab(papp),
-      
       ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),
-      m_dibBk(papp),
+      m_dibBk(allocer()),
       place_holder_container(papp)
    {
       m_iNewArea        = 0;

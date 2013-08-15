@@ -245,7 +245,7 @@ namespace command
          strWeekDay = "segunda-feira";
          break;
       case 3:
-         strWeekDay = "terça-feira";
+         strWeekDay = "ter√ßa-feira";
          break;
       case 4:
          strWeekDay = "quarta-feira";
@@ -257,7 +257,7 @@ namespace command
          strWeekDay = "sexta-feira";
          break;
       case 7:
-         strWeekDay = "sábado";
+         strWeekDay = "s√°bado";
          break;
       }
       strTime.Format("%02d:%02d:%02d",

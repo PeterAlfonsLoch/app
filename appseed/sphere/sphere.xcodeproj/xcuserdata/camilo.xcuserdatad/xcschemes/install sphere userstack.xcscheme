@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9A574B9716AAB906000CC4EF"
-               BuildableName = "libca2.dylib"
-               BlueprintName = "ca2"
-               ReferencedContainer = "container:ca2.xcodeproj">
+               BuildableName = "libsphere.dylib"
+               BlueprintName = "sphere"
+               ReferencedContainer = "container:sphere.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,6 +29,15 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9A5752B116AAE1D2000CC4EF"
+            BuildableName = "app.app"
+            BlueprintName = "app"
+            ReferencedContainer = "container:../../../nodeapp/appseed/app/app.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -39,6 +48,21 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9A5752B116AAE1D2000CC4EF"
+            BuildableName = "app.app"
+            BlueprintName = "app"
+            ReferencedContainer = "container:../../../nodeapp/appseed/app/app.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = ": app=app/sphere/userstack build_number=basis install"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

@@ -482,7 +482,7 @@ namespace plane
 
       string strLibrary(pszLibrary);
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
       if(strLibrary == "libca2")
       {

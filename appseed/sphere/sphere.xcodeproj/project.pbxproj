@@ -80,6 +80,23 @@
 		9ACABF9917BD15CC004C3F85 /* libca2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACABF9817BD15CC004C3F85 /* libca2.dylib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9AE6986D17BD2ECE009C817D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A1CFD778154F5EAA007447E2;
+			remoteInfo = draw2d_quartz2d;
+		};
+		9AE6986F17BD2ED7009C817D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A1CFD777154F5EAA007447E2;
+			remoteInfo = draw2d_quartz2d;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		9A574B9816AAB906000CC4EF /* libsphere.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsphere.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A574D2B16AAB99E000CC4EF /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
@@ -196,6 +213,7 @@
 		9ACABF9417BD15BC004C3F85 /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
 		9ACABF9617BD15C5004C3F85 /* libca2ca.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libca2ca.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libca2ca.dylib"; sourceTree = "<group>"; };
 		9ACABF9817BD15CC004C3F85 /* libca2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libca2.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libca2.dylib"; sourceTree = "<group>"; };
+		9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = ../../../nodeapp/appseed/draw2d_quartz2d/draw2d_quartz2d.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +233,7 @@
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
+				9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */,
 				9ACABF9817BD15CC004C3F85 /* libca2.dylib */,
 				9ACABF9617BD15C5004C3F85 /* libca2ca.dylib */,
 				9ACABF9417BD15BC004C3F85 /* lib_ca2c.dylib */,
@@ -405,6 +424,14 @@
 			path = userstack;
 			sourceTree = "<group>";
 		};
+		9AE6986A17BD2ECE009C817D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AE6986E17BD2ECE009C817D /* libdraw2d_quartz2d.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -467,6 +494,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AE6987017BD2ED7009C817D /* PBXTargetDependency */,
 			);
 			name = sphere;
 			productName = ca2;
@@ -492,12 +520,28 @@
 			mainGroup = 9A574B8D16AAB906000CC4EF;
 			productRefGroup = 9A574B9916AAB906000CC4EF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9AE6986A17BD2ECE009C817D /* Products */;
+					ProjectRef = 9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9A574B9716AAB906000CC4EF /* sphere */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9AE6986E17BD2ECE009C817D /* libdraw2d_quartz2d.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libdraw2d_quartz2d.dylib;
+			remoteRef = 9AE6986D17BD2ECE009C817D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9A574B9416AAB906000CC4EF /* Sources */ = {
@@ -538,6 +582,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9AE6987017BD2ED7009C817D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = draw2d_quartz2d;
+			targetProxy = 9AE6986F17BD2ED7009C817D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9A574B9A16AAB906000CC4EF /* Debug */ = {
