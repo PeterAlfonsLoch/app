@@ -6,10 +6,7 @@ device_context::device_context()
 {
 
 
-   m_display   = NULL;
-   m_d         = 0;
-   m_gc        = NULL;
-   m_hwnd      = NULL;
+   m_pdc = NULL;
 
 
 
@@ -20,13 +17,14 @@ device_context::device_context()
 HDC GetDC(oswindow hwnd)
 {
 
+   throw "not_implemented";
 
    HDC hdc = new device_context;
 
-   hdc->m_display    = XOpenDisplay(NULL);
+/*   hdc->m_display    = XOpenDisplay(NULL);
    hdc->m_hwnd       = hwnd;
    hdc->m_d          = (Drawable) (hwnd == NULL || hwnd->window() == NULL ? DefaultRootWindow(hdc->m_display) : hwnd->window());
-   hdc->m_gc         = XCreateGC(hdc->m_display, hdc->m_d, 0, 0);
+   hdc->m_gc         = XCreateGC(hdc->m_display, hdc->m_d, 0, 0);*/
 
    return hdc;
 
@@ -50,8 +48,8 @@ WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
    if(hdc == NULL)
       return FALSE;
 
-   XFreeGC(hdc->m_display, hdc->m_gc);
-   XCloseDisplay(hdc->m_display);
+   //XFreeGC(hdc->m_display, hdc->m_gc);
+   //XCloseDisplay(hdc->m_display);
 
    delete hdc;
    return TRUE;
@@ -64,11 +62,11 @@ WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
 
    mutex_lock sl(user_mutex(), true);
 
-   XWindowAttributes attrs;
+//   XWindowAttributes attrs;
 
    /* Fill attribute structure with information about root window */
 
-   if(XGetWindowAttributes(hwnd->display(), hwnd->window(), &attrs) == 0)
+/*   if(XGetWindowAttributes(hwnd->display(), hwnd->window(), &attrs) == 0)
    {
 
       return FALSE;
@@ -79,6 +77,7 @@ WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
    lprect->top       = 0;
    lprect->right     = lprect->left    + attrs.width;
    lprect->bottom    = lprect->top     + attrs.height;
+   */
 
    return TRUE;
 
@@ -97,7 +96,7 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 
 
    bool bDestroying = hwnd->m_bDestroying;
-   Display * pdisplay = hwnd->display();
+/*   Display * pdisplay = hwnd->display();
    Window window = hwnd->window();
 
 
@@ -109,9 +108,9 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 
    XSync(hwnd->display(), False);
 
-   /* Fill attribute structure with information about root window */
+   // Fill attribute structure with information about root window 
 
-   if(!XGetWindowAttributes(hwnd->display(), hwnd->window(), &attrs))
+   /*if(!XGetWindowAttributes(hwnd->display(), hwnd->window(), &attrs))
    {
       return FALSE;
    }
@@ -128,7 +127,7 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
    lprect->left      = x;
    lprect->top       = y;
    lprect->right     = x    + attrs.width;
-   lprect->bottom    = y    + attrs.height;
+   lprect->bottom    = y    + attrs.height;*/
 
    return TRUE;
 
@@ -142,7 +141,7 @@ int32_t FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
    mutex_lock sl(user_mutex(), true);
 
 
-   XFillRectangle(hdc->m_display, hdc->m_d, hdc->m_gc, lprc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
+   //XFillRectangle(hdc->m_display, hdc->m_d, hdc->m_gc, lprc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
    return 1;
 }
 
@@ -179,6 +178,7 @@ WINBOOL GetCursorPos(LPPOINT lpptCursor)
    int32_t win_y_return;
    uint32_t mask_return;
 
+   /*
    xdisplay display;
 
    display.open(NULL);
@@ -187,6 +187,7 @@ WINBOOL GetCursorPos(LPPOINT lpptCursor)
         return FALSE;
 
    XQueryPointer(display, display.default_root_window(), &root_return, &child_return, &lpptCursor->x, &lpptCursor->y, &win_x_return, &win_y_return, & mask_return);
+   */
 
    return TRUE;
 
@@ -199,7 +200,7 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int32_t x, int32_t
 
    mutex_lock sl(user_mutex(), true);
 
-
+   /*
    xdisplay display(hwnd->display());
 
 
@@ -249,14 +250,16 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int32_t x, int32_t
    }
 
    //XCloseDisplay(display);
+   */
 
    return 1;
 
 }
 
 
-
+/*
 int32_t _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 {
    return 0;
 }
+*/

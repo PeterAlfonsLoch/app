@@ -2,7 +2,7 @@
 #ifdef WINDOWS
 #include <gdiplus.h>
 #endif
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>

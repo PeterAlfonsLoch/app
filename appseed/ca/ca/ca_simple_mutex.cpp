@@ -1,11 +1,16 @@
 #include "framework.h"
 
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(ANDROID)
+
+
+#include <semaphore.h>
+
+
+#elif defined(LINUX) || defined(MACOS)
 
 
 #include <sys/ipc.h>
-#include <sys/sem.h>
 
 
 #ifdef MACOS
@@ -55,6 +60,38 @@ simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)
       m_hMutex = ::CreateMutexEx(NULL, pwszName, bInitialLock ?  CREATE_MUTEX_INITIAL_OWNER : 0, SYNCHRONIZE);
       _ca_free(pwszName, 0);
    }
+#elif defined(ANDROID)
+   if(m_strName.is_empty())
+   {
+      //pthread_mutexattr_t  attr;
+      //pthread_mutexattr_init(&attr);
+      //pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+      int32_t rc;
+      m_sem = new sem_t;
+      if(m_sem == NULL)
+         throw "RC_OBJECT_NOT_CREATED";
+      if((rc = sem_init(m_sem, 0, bInitialLock ? 0 : 1)) == -1)
+      {
+         throw "RC_OBJECT_NOT_CREATED";
+      }
+   }
+   else
+   {
+      vsstring str = _ca_get_file_name(dir::path("/var/lib/ca", pszName), true);
+
+      m_key = str;
+
+      unsigned int uiValue = bInitialLock ? 0 : 1;
+
+      m_sem = sem_open(m_key, O_CREAT, 0666, &uiValue);
+
+      if(m_sem == SEM_FAILED)
+      {
+         throw "RC_OBJECT_NOT_CREATED";
+      }
+
+   }
+
 #else
    if(m_strName.is_empty())
    {
@@ -104,6 +141,10 @@ simple_mutex::~simple_mutex()
 
 #ifdef WINDOWS
    ::CloseHandle(m_hMutex);
+#elif defined(ANDROID)
+   
+   sem_close(m_sem);
+
 #else
    if(m_strName.is_empty())
    {
@@ -126,6 +167,9 @@ void simple_mutex::lock()
    WaitForSingleObject(m_hMutex, INFINITE);
 #elif defined(METROWIN)
    WaitForSingleObjectEx(m_hMutex, INFINITE, FALSE);
+#elif defined(ANDROID)
+   if(sem_wait(m_sem) == -1)
+      throw "not_expected";
 #else
    if(m_strName.is_empty())
    {
@@ -216,6 +260,13 @@ bool simple_mutex::lock(uint32_t uiTimeout)
    return WaitForSingleObject(m_hMutex, uiTimeout) == WAIT_OBJECT_0;
 #elif defined(METROWIN)
    return WaitForSingleObjectEx(m_hMutex, uiTimeout, FALSE) == WAIT_OBJECT_0;
+#elif defined(ANDROID)
+      timespec spec;
+
+      spec.tv_sec = uiTimeout / 1000;
+
+      spec.tv_nsec = (uiTimeout % 1000) * 1000 * 1000;
+   return sem_timedwait(m_sem, &spec) == 0;
 #else
    if(m_strName.is_empty())
    {
@@ -267,6 +318,8 @@ void simple_mutex::unlock()
 {
 #ifdef WINDOWS
    ReleaseMutex(m_hMutex);
+#elif defined(ANDROID)
+   sem_post(m_sem);
 #else
    if(m_strName.is_empty())
    {

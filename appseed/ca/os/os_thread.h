@@ -77,7 +77,7 @@ public:
    LPVOID                                 m_pv;
    bool                                   m_bRun;
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
    HTHREAD                                m_hthread;
    pthread_t                              m_pthread;
@@ -92,7 +92,7 @@ public:
    virtual ~os_thread();
 
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
    static void * thread_proc(void * pparam);
 

@@ -2,9 +2,11 @@
 
 
 #ifdef WINDOWS
+#elif defined(ANDROID)
+#include <fcntl.h>
+#include <semaphore.h>
 #elif defined(MACOS)
 #include <sys/sem.h>
-#elif defined(ANDROID)
 #else
 typedef __key_t key_t;
 #endif
@@ -20,9 +22,12 @@ public:
 
 #ifdef WINDOWS
    HANDLE            m_hMutex;
+#elif ANDROID
+   vsstring          m_key;
+   sem_t *           m_sem;
 #else
-   int32_t               m_semid;
    key_t             m_key;
+   int32_t           m_semid;
    pthread_mutex_t   m_mutex;
 #endif
 

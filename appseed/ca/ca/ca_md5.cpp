@@ -34,12 +34,14 @@
 /////////////////////////////////////////////////////////////////////////
 #include "framework.h"
 
-#ifdef LINUX
+
+#if defined(LINUX ) || defined(ANDROID)
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
 #endif
+
 
 uchar PADDING[64] =
 {

@@ -1,7 +1,7 @@
 #include "framework.h"
-#include <math.h>
 
-#ifdef LINUX
+
+#if defined(LINUX) || defined(ANDROID)
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -9,15 +9,16 @@
 #endif
 
 
-
 #ifdef LINUX
 #include "ca/linux/ca_os_cross_win_gdi_internal.h"
+#elif defined(ANDROID)
+#include "ca/android/ca_os_cross_win_gdi_internal.h"
 #endif
+
 
 #ifdef WINDOWSEX
 #include <gdiplus.h>
 #endif
-
 
 
 void fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius);
@@ -57,7 +58,7 @@ namespace hotplugin
    plugin::~plugin()
    {
       free_memory();
-#if !defined(MACOS) && !defined(LINUX) && !defined(METROWIN)
+#if !defined(MACOS) && !defined(LINUX) && !defined(METROWIN) && !defined(ANDROID)
       if(m_pbitmap != NULL)
          delete (Gdiplus::Bitmap *) m_pbitmap;
       if(m_pcolorref != NULL)

@@ -52,6 +52,9 @@ static const uchar index_hex[256] = {
 #elif defined(LINUX)
 #define pr_s6_addr16 __in6_u.__u6_addr16
 #define pr_s6_addr __in6_u.__u6_addr8
+#elif defined(ANDROID)
+#define pr_s6_addr16 s6_addr16
+#define pr_s6_addr s6_addr
 #else
 #define pr_s6_addr16 u.Word
 #define pr_s6_addr u.Byte

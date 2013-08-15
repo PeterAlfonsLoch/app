@@ -31,7 +31,7 @@ struct CLASS_DECL_c gdi_object
 struct tag_WINDOW
 {
 
-   Window   m_window;
+   oswindow   m_window;
 
 };
 
@@ -40,11 +40,7 @@ class CLASS_DECL_c device_context
 public:
 
 
-   Display *   m_display;
-   Drawable    m_d;
-   GC          m_gc;
-   oswindow        m_hwnd;
-
+   cairo_t *      m_pdc;
 
    device_context();
 
