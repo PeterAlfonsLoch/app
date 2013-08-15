@@ -293,18 +293,20 @@ wait_result event::wait (const duration & durationTimeout)
       while(!m_bSignaled && iSignal == m_iSignalId)
       {
 
-         if(pthread_cond_timedwait(&m_cond, &m_mutex, &delay) != 0)
-        {
-
-
-         if(errno == ETIMEDOUT)
+         int error = pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
+         
+         if(error != 0)
          {
 
-            pthread_mutex_unlock(&m_mutex);
 
-            return wait_result(wait_result::Timeout);
+            if(error == ETIMEDOUT)
+            {
 
-         }
+               pthread_mutex_unlock(&m_mutex);
+
+               return wait_result(wait_result::Timeout);
+
+            }
 
          }
 

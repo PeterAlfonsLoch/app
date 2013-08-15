@@ -636,14 +636,26 @@ void stringa::write(::ca2::byte_output_stream & ostream)
 
 void stringa::read(::ca2::byte_input_stream & istream)
 {
+   
    ::count iSize;
+   
    istream.read_arbitrary(iSize);
 
-   set_size(iSize);
-   for(int32_t i = 0; i < this->get_size(); i++)
+   remove_all();
+   
+   for(int32_t i = 0; i < iSize; i++)
    {
+   
+      if(i >= this->get_size())
+         set_size(min(i + 1024, iSize));
+      
       istream >> this->element_at(i);
+      
    }
+   
+   if(this->get_size() != iSize)
+      throw io_exception(get_app());
+   
 }
 
 

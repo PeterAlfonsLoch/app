@@ -43,15 +43,25 @@ namespace ca2
 
    byte_input_stream & byte_input_stream::operator >> (char & ch)
    {
-      read(&ch, sizeof(ch));
+      
+      if(read(&ch, sizeof(ch)) != sizeof(ch))
+         throw io_exception(get_app());
+      
       return *this;
+      
    }
+   
 
    byte_input_stream & byte_input_stream::operator >> (uchar & uch)
    {
-      read(&uch, sizeof(uch));
+      
+      if(read(&uch, sizeof(uch)) != sizeof(uch))
+         throw io_exception(get_app());
+      
       return *this;
+      
    }
+   
 
    byte_input_stream & byte_input_stream::operator >> (int16_t & i)
    {

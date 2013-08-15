@@ -2072,8 +2072,6 @@ namespace user
             else if(pdrawitem->m_pcolumnSubItemRect->m_pil != NULL)
             {
 
-#if defined(WINDOWSEX) ||  defined(LINUX) || defined(METROWIN)
-
                ::image_list::info ii;
 
                _001GetItemImage(pdrawitem);
@@ -2098,13 +2096,6 @@ namespace user
                {
                   return_(pdrawitem->m_bOk, false);
                }
-
-#else
-
-               throw todo(get_app());
-
-#endif
-
 
             }
             else if(eelement == ::user::list::ElementImage)
@@ -3657,7 +3648,6 @@ namespace user
       }
       else if(ptimer->m_nIDEvent == 12321)
       {
-#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
          KillTimer(ptimer->m_nIDEvent);
          index iItemSel;
          index iSubItemSel;
@@ -3751,9 +3741,6 @@ namespace user
          }
          m_iSubItemEnter = -1;
          m_iItemEnter = -1;
-#else
-         throw todo(get_app());
-#endif
 
       }
 
