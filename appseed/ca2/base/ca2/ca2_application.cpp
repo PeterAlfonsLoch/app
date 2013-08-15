@@ -5316,7 +5316,23 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
       ASSERT(m_stringtablemap[strTableId] == pmapNew);
    }
 
+#if defined(MACOS)
+   
+   void openURL(const string &url_str);
 
+   
+   void openURL(const string &url_str) {
+      CFURLRef url = CFURLCreateWithBytes (
+                                           NULL,                        // allocator
+                                           (UInt8*)url_str.c_str(),     // URLBytes
+                                           url_str.length(),            // length
+                                           kCFStringEncodingASCII,      // encoding
+                                           NULL                         // baseURL
+                                           );
+      LSOpenCFURLRef(url,0);
+      CFRelease(url);
+   }
+#endif
 
    bool application::open_link(const string & strLink, const string & pszTarget)
    {
@@ -5336,6 +5352,9 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
 #elif defined(LINUX)
       ::system("xdg-open " + strLink);
       return true;
+#elif defined(MACOS)
+         openURL(strLink);
+         return true;
 #else
          throw not_implemented(get_app());
 #endif
