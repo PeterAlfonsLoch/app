@@ -9,6 +9,11 @@ namespace mysql
       ca2(papp)
    {
       m_pmysql = NULL;
+#ifdef WINDOWS
+      m_protocol = MYSQL_PROTOCOL_MEMORY;
+#else
+      m_protocol = MYSQL_PROTOCOL_DEFAULT;
+#endif
    }
 
    database::~database()
@@ -44,6 +49,14 @@ namespace mysql
        m_pmysql = NULL;
          return false;
       }
+#ifdef WINDOWS
+      if(stricmp(pszHost, "localhost") == 0)
+      {
+         m_protocol = MYSQL_PROTOCOL_MEMORY;
+         mysql_options(m_pmysql, MYSQL_OPT_PROTOCOL,  &m_protocol);
+         pszHost = NULL;
+      }
+#endif
       if(mysql_real_connect(
          (MYSQL *) m_pmysql,
          pszHost,
@@ -140,8 +153,22 @@ namespace mysql
       {
          if(mysql_query((MYSQL *) m_pmysql, pszSql) != 0) /* the statement failed */
          {
-            Sleep(1984);
-            if(!initialize() || mysql_query((MYSQL *) m_pmysql, pszSql) != 0) /* the statement failed */
+            if(m_pmysql == NULL
+            || mysql_errno(m_pmysql) == 2006) // MySQL server has gone away
+            {
+               Sleep(1984);
+               if(!initialize() || m_pmysql == NULL)
+               {
+                  trace_error1("Could not execute statement");
+                  return NULL;
+               }
+               if(mysql_query((MYSQL *) m_pmysql, pszSql) != 0) /* the statement failed */
+               {
+                  trace_error1("Could not execute statement");
+                  return NULL;
+               }
+            }
+            else
             {
                trace_error1("Could not execute statement");
                return NULL;

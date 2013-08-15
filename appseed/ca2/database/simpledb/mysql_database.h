@@ -24,6 +24,8 @@ namespace mysql
 	  string m_strLastError;
       int64_t m_iLastUsedTime;
 
+      mysql_protocol_type       m_protocol;
+
 
       database(sp(::ca2::application) papp);
       virtual ~database();
