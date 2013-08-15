@@ -524,6 +524,12 @@
     <ClInclude Include="android\ca_os_process.h">
       <Filter>Header Files\android</Filter>
     </ClInclude>
+    <ClInclude Include="android\ca_os_file.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="android\ca_os_file_watcher.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -959,6 +965,12 @@
       <Filter>Source Files\android</Filter>
     </ClCompile>
     <ClCompile Include="android\ca_os_process_pid.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_file.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_file_watcher.cpp">
       <Filter>Source Files\android</Filter>
     </ClCompile>
   </ItemGroup>

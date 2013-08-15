@@ -1026,6 +1026,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="android\ca_os_cross_win_file.h" />
     <ClInclude Include="android\ca_os_cross_win_gdi.h" />
     <ClInclude Include="android\ca_os_cross_win_gdi_internal.h" />
+    <ClInclude Include="android\ca_os_file.h" />
+    <ClInclude Include="android\ca_os_file_watcher.h" />
     <ClInclude Include="android\ca_os_graphics.h" />
     <ClInclude Include="android\ca_os_http.h" />
     <ClInclude Include="android\ca_os_http_lib.h" />
@@ -1247,6 +1249,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="android\ca_os_cairo_keep.cpp" />
     <ClCompile Include="android\ca_os_cross_win_file.cpp" />
     <ClCompile Include="android\ca_os_cross_win_gdi.cpp" />
+    <ClCompile Include="android\ca_os_file.cpp" />
+    <ClCompile Include="android\ca_os_file_watcher.cpp" />
     <ClCompile Include="android\ca_os_http.cpp" />
     <ClCompile Include="android\ca_os_http_lib.cpp" />
     <ClCompile Include="android\ca_os_process.cpp" />
