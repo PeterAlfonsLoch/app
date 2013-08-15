@@ -1,7 +1,4 @@
-#ifndef SSLOPT_VARS_INCLUDED
-#define SSLOPT_VARS_INCLUDED
-
-/* Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -16,17 +13,24 @@
    along with this program; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA */
 
-#if defined(HAVE_OPENSSL) && !defined(EMBEDDED_LIBRARY)
-static my_bool opt_use_ssl   = 0;
-static char *opt_ssl_ca      = 0;
-static char *opt_ssl_capath  = 0;
-static char *opt_ssl_cert    = 0;
-static char *opt_ssl_cipher  = 0;
-static char *opt_ssl_key     = 0;
-static char *opt_ssl_crl     = 0;
-static char *opt_ssl_crlpath = 0;
-#ifdef MYSQL_CLIENT
-static my_bool opt_ssl_verify_server_cert= 0;
+/*
+** Ask for a password from tty
+** This is an own file to avoid conflicts with curses
+*/
+
+#ifndef MYSQL_GET_PASSWORD_H_INCLUDED
+#define MYSQL_GET_PASSWORD_H_INCLUDED
+
+#ifdef __cplusplus
+extern "C" {
 #endif
+
+typedef char *(* strdup_handler_t)(const char *, int);
+char *get_tty_password_ext(const char *opt_message,
+                           strdup_handler_t strdup_function);
+
+#ifdef __cplusplus
+}
 #endif
-#endif /* SSLOPT_VARS_INCLUDED */
+
+#endif /* ! MYSQL_GET_PASSWORD_H_INCLUDED */

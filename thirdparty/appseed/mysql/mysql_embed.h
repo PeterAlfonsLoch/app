@@ -1,5 +1,5 @@
-#ifndef SSLOPT_VARS_INCLUDED
-#define SSLOPT_VARS_INCLUDED
+#ifndef MYSQL_EMBED_INCLUDED
+#define MYSQL_EMBED_INCLUDED
 
 /* Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
 
@@ -16,17 +16,14 @@
    along with this program; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA */
 
-#if defined(HAVE_OPENSSL) && !defined(EMBEDDED_LIBRARY)
-static my_bool opt_use_ssl   = 0;
-static char *opt_ssl_ca      = 0;
-static char *opt_ssl_capath  = 0;
-static char *opt_ssl_cert    = 0;
-static char *opt_ssl_cipher  = 0;
-static char *opt_ssl_key     = 0;
-static char *opt_ssl_crl     = 0;
-static char *opt_ssl_crlpath = 0;
-#ifdef MYSQL_CLIENT
-static my_bool opt_ssl_verify_server_cert= 0;
-#endif
-#endif
-#endif /* SSLOPT_VARS_INCLUDED */
+/* Defines that are unique to the embedded version of MySQL */
+
+#ifdef EMBEDDED_LIBRARY
+
+/* Things we don't need in the embedded version of MySQL */
+/* TODO HF add #undef HAVE_VIO if we don't want client in embedded library */
+
+#undef HAVE_DLOPEN				/* No udf functions */
+
+#endif /* EMBEDDED_LIBRARY */
+#endif /* MYSQL_EMBED_INCLUDED */
