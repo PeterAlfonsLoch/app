@@ -2,12 +2,13 @@
 
 
 
-#include "linux/ca_os_cross_win_gdi_internal.h"
+//#include "linux/ca_os_cross_win_gdi_internal.h"
 
 extern cairo_surface_t *  g_cairosurface;
 extern cairo_t *  g_cairo;
 
 
+/*
 void set(XColor & color, COLORREF cr)
 {
    color.pixel    = cr;
@@ -17,7 +18,7 @@ void set(XColor & color, COLORREF cr)
 }
 
 
-
+*/
 
 
 
@@ -744,7 +745,7 @@ bool os_simple_graphics::set(simple_path::element & e)
 bool os_simple_graphics::set(simple_path::arc & a)
 {
 
-   cairo_keep keep(m_pdc);
+   ca_cairo_keep keep(m_pdc);
 
    cairo_translate(m_pdc, a.m_xCenter, a.m_yCenter);
 

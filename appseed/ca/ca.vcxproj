@@ -397,8 +397,7 @@
       <FloatingPointModel>
       </FloatingPointModel>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <AdditionalOptions>-std=c++11 -Wno-conversion-null</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -1023,12 +1022,20 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="android\ca_os_cairo_keep.h" />
+    <ClInclude Include="android\ca_os_cross_win_file.h" />
+    <ClInclude Include="android\ca_os_cross_win_gdi.h" />
+    <ClInclude Include="android\ca_os_cross_win_gdi_internal.h" />
+    <ClInclude Include="android\ca_os_graphics.h" />
+    <ClInclude Include="android\ca_os_http.h" />
+    <ClInclude Include="android\ca_os_http_lib.h" />
     <ClInclude Include="android\ca_os_internal.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="android\ca_os_process.h" />
     <ClInclude Include="android\ca_os_simple_bitmap.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -1065,6 +1072,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="ansios\ansios.h" />
+    <ClInclude Include="ansios\ansios_thread.h" />
     <ClInclude Include="bsdiff\bsdiff.h" />
     <ClInclude Include="bsdiff\bsdiff_private.h" />
     <ClInclude Include="bsdiff\bzlib.h" />
@@ -1235,6 +1244,13 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="android\ca_os_cairo_keep.cpp" />
+    <ClCompile Include="android\ca_os_cross_win_file.cpp" />
+    <ClCompile Include="android\ca_os_cross_win_gdi.cpp" />
+    <ClCompile Include="android\ca_os_http.cpp" />
+    <ClCompile Include="android\ca_os_http_lib.cpp" />
+    <ClCompile Include="android\ca_os_process.cpp" />
+    <ClCompile Include="android\ca_os_process_pid.cpp" />
     <ClCompile Include="android\ca_os_simple_bitmap.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -1271,6 +1287,12 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="android\ca_os_thread.cpp" />
+    <ClCompile Include="ansios\ansios_cross_win.cpp" />
+    <ClCompile Include="ansios\ansios_cross_win_file.cpp" />
+    <ClCompile Include="ansios\ansios_file.cpp" />
+    <ClCompile Include="ansios\ansios_file_std.cpp" />
+    <ClCompile Include="ansios\ansios_thread.cpp" />
     <ClCompile Include="bsdiff\blocksort.cpp" />
     <ClCompile Include="bsdiff\bsdiff.cpp" />
     <ClCompile Include="bsdiff\bspatch.cpp" />

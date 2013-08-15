@@ -69,14 +69,14 @@ namespace ca2
       void * operator new(size_t nSize);
       void * operator new(size_t, void * p);
       void operator delete(void * p);
-#if _MSC_VER >= 1200 || defined(LINUX) || defined(MACOS)
+#if _MSC_VER >= 1200 || defined(LINUX) || defined(MACOS) || defined(ANDROID)
       void operator delete(void * p, void * pPlace);
 #endif
 
-#if defined(DEBUG) && !defined(___NO_DEBUG_CRT) || defined(LINUX) || defined(MACOS)
+#if defined(DEBUG) && !defined(___NO_DEBUG_CRT) || defined(LINUX) || defined(MACOS) || defined(ANDROID)
       // for file name/line number tracking using DEBUG_NEW
       void * operator new(size_t nSize, const char * lpszFileName, int32_t nLine);
-#if _MSC_VER >= 1200  || defined(LINUX) || defined(MACOS)
+#if _MSC_VER >= 1200  || defined(LINUX) || defined(MACOS) || defined(ANDROID)
       void operator delete(void *p, const char * lpszFileName, int32_t nLine);
 #endif
 #endif

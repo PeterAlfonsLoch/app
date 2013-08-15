@@ -42,6 +42,8 @@
 
 #elif defined(ANDROID)
 
+#include "ca/ansios/ansios.h"
+#include "os_binreloc.h"
 #include "ca/android/ca_os.h"
 
 #define BSD_STYLE_SOCKETS

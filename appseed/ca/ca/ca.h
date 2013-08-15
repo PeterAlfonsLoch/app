@@ -58,10 +58,15 @@ public:
       m_lparam = lparam;
    }
 
+
+#ifndef ANDROID
+
    lparam(int32_t i)
    {
       m_lparam = (LPARAM) i;
    }
+
+#endif
 
 #if !defined(LINUX) && !(defined(OS64BIT) && defined(WINDOWS)) && !defined(MACOS)
 

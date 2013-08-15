@@ -5,30 +5,30 @@ namespace ca2
 {
 
 
-   inline void __cdecl memcpy_s(void *_S1, size_t _S1max, const void *_S2, size_t _N)
+   inline void __cdecl memcpy_s(void *_S1, size_t _S1max, const void *_S2, size_t N)
    {
 #ifdef WINDOWS
-      C_RUNTIME_ERROR_CHECK(::memcpy_s(_S1, _S1max, _S2, _N));
+      C_RUNTIME_ERROR_CHECK(::memcpy_s(_S1, _S1max, _S2, N));
 #else
-      memcpy(_S1, _S2, _N);
+      memcpy(_S1, _S2, N);
 #endif
    }
 
-   inline void __cdecl wmemcpy_s(wchar_t *_S1, size_t _N1, const wchar_t *_S2, size_t _N)
+   inline void __cdecl wmemcpy_s(wchar_t *_S1, size_t _N1, const wchar_t *_S2, size_t N)
    {
 #ifdef WINDOWS
-      C_RUNTIME_ERROR_CHECK(::wmemcpy_s(_S1, _N1, _S2, _N));
+      C_RUNTIME_ERROR_CHECK(::wmemcpy_s(_S1, _N1, _S2, N));
 #else
-      memcpy(_S1, _S2, _N * sizeof(wchar_t));
+      memcpy(_S1, _S2, N * sizeof(wchar_t));
 #endif
    }
 
-   inline void __cdecl memmove_s(void *_S1, size_t _S1max, const void *_S2, size_t _N)
+   inline void __cdecl memmove_s(void *_S1, size_t _S1max, const void *_S2, size_t N)
    {
 #ifdef WINDOWS
-      C_RUNTIME_ERROR_CHECK(::memmove_s(_S1, _S1max, _S2, _N));
+      C_RUNTIME_ERROR_CHECK(::memmove_s(_S1, _S1max, _S2, N));
 #else
-      memmove(_S1, _S2, _N);
+      memmove(_S1, _S2, N);
 #endif
    }
 
@@ -88,39 +88,43 @@ namespace ca2
 #endif
    }
 
-   inline void __cdecl strlwr_s(char * _Str, size_t _SizeInChars)
+   inline void __cdecl strlwr_s(char * Str, size_t _SizeInChars)
    {
 #ifdef WINDOWS
-      C_RUNTIME_ERROR_CHECK(::_strlwr_s(_Str, _SizeInChars));
+      C_RUNTIME_ERROR_CHECK(::_strlwr_s(Str, _SizeInChars));
+#elif defined(ANDROID)
+      to_lower(Str);
 #else
-      strlwr(_Str);
+      strlwr(Str);
 #endif
    }
 
-   inline void __cdecl wcslwr_s(wchar_t * _Str, size_t _SizeInChars)
+   inline void __cdecl wcslwr_s(wchar_t * Str, size_t _SizeInChars)
    {
 #ifdef WINDOWS
-      C_RUNTIME_ERROR_CHECK(::_wcslwr_s(_Str, _SizeInChars));
+      C_RUNTIME_ERROR_CHECK(::_wcslwr_s(Str, _SizeInChars));
 #else
-      C_RUNTIME_ERROR_CHECK(::wcslwr_s_dup(_Str, _SizeInChars));
+      C_RUNTIME_ERROR_CHECK(::wcslwr_s_dup(Str, _SizeInChars));
 #endif
    }
 
-   inline void __cdecl strupr_s(char * _Str, size_t _SizeInChars)
+   inline void __cdecl strupr_s(char * Str, size_t _SizeInChars)
    {
 #ifdef WINDOWS
-      C_RUNTIME_ERROR_CHECK(::_strupr_s(_Str, _SizeInChars));
+      C_RUNTIME_ERROR_CHECK(::_strupr_s(Str, _SizeInChars));
+#elif defined(ANDROID)
+      to_upper(Str);
 #else
-      strupr(_Str);
+      strupr(Str);
 #endif
    }
 
-   inline void __cdecl wcsupr_s(wchar_t * _Str, size_t _SizeInChars)
+   inline void __cdecl wcsupr_s(wchar_t * Str, size_t _SizeInChars)
    {
 #ifdef WINDOWS
-      C_RUNTIME_ERROR_CHECK(::_wcsupr_s(_Str, _SizeInChars));
+      C_RUNTIME_ERROR_CHECK(::_wcsupr_s(Str, _SizeInChars));
 #else
-      C_RUNTIME_ERROR_CHECK(::wcsupr_s_dup(_Str, _SizeInChars));
+      C_RUNTIME_ERROR_CHECK(::wcsupr_s_dup(Str, _SizeInChars));
 #endif
    }
 
@@ -173,6 +177,8 @@ namespace ca2
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_gcvt_s(_Buffer, _SizeInChars, _Value, _Ndec));
+#elif defined(ANDROID)
+      //_gcvt(_Value, _Ndec, _Buffer);
 #else
       gcvt(_Value, _Ndec, _Buffer);
 #endif

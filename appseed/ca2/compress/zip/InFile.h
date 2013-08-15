@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
 
 
 namespace ca2

@@ -455,6 +455,7 @@ public:
    void dump(dump_context &) const;
    void assert_valid() const;
 
+#if defined(MOVE_SEMANTICS)
     raw_array(raw_array && a) :
    ca2(a.get_app())
    {
@@ -488,6 +489,7 @@ public:
    return *this;
    }
 
+#endif
 
 };
 

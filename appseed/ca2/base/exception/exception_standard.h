@@ -63,7 +63,9 @@ public:
 #else
    int32_t            m_iSignal;
    siginfo_t      m_siginfo;
+#ifndef ANDROID
    ucontext_t     m_ucontext;
+#endif
 #endif
 
 
@@ -77,9 +79,11 @@ public:
    uint32_t         code() const         { return m_siginfo.si_code; }
    void *               address() const      { return m_siginfo.si_addr; }
    const siginfo_t *    info() const         { return &m_siginfo; }
-   const ucontext_t *   context() const      { return &m_ucontext; }
    const char *         name() const         { return ::exception::translator::name(code()); }
    const char *         description() const  { return ::exception::translator::description(code()); }
+#ifndef ANDROID
+   const ucontext_t *   context() const      { return &m_ucontext; }
+#endif
 #endif
 
 
@@ -110,15 +114,21 @@ public:
       ::call_stack(papp),
       ::base_exception(papp),
       m_iSignal(iSignal),
-      m_siginfo(*psiginfo),
-      m_ucontext(*(ucontext_t *)pc) { /*_ASSERTE(psiginfo != 0);*/ }
+      m_siginfo(*psiginfo)
+#ifndef ANDROID
+      ,m_ucontext(*(ucontext_t *)pc)
+#endif
+       { /*_ASSERTE(psiginfo != 0);*/ }
    standard_exception(const standard_exception& se) :
       ca2(se),
       ::call_stack(se),
       ::base_exception(se),
       m_iSignal(se.m_iSignal),
-      m_siginfo(se.m_siginfo),
-      m_ucontext(se.m_ucontext) {}
+      m_siginfo(se.m_siginfo)
+#ifndef ANDROID
+      ,m_ucontext(se.m_ucontext)
+#endif
+       {}
 #endif
    virtual ~standard_exception()
    {
@@ -149,7 +159,15 @@ namespace exception
    {
       friend class translator;
    protected:
-   #if defined(LINUX) || defined(MACOS)
+   #if defined(ANDROID)
+      standard_access_violation (sp(::ca2::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
+         ca2(papp),
+         ::call_stack(papp),
+         ::base_exception(papp),
+         ::standard_exception(papp, signal, psiginfo, pc)
+         {}
+   public:
+   #elif defined(LINUX) || defined(MACOS)
       standard_access_violation (sp(::ca2::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
          ca2(papp),
 #ifdef LINUX
@@ -187,10 +205,25 @@ namespace exception
    public:
       bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
       uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
-   #endif
+   #endif 
+   };
+   #if defined(ANDROID)
+
+   class standard_sigfpe : public standard_exception
+   {
+      friend class translator;
+   protected:
+      standard_sigfpe (sp(::ca2::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+         ca2(papp),
+      ::call_stack(papp),
+         ::base_exception(papp),
+          standard_exception(papp, iSignal, psiginfo, pc) {}
+   public:
+   //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
+     // uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
    };
 
-   #if defined(LINUX) || defined(MACOS)
+   #elif defined(LINUX) || defined(MACOS)
 
    class standard_sigfpe : public standard_exception
    {

@@ -78,6 +78,12 @@
     <Filter Include="Source Files\android">
       <UniqueIdentifier>{08d46f5e-1932-4b6b-9620-8b7de1ac5337}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ansios">
+      <UniqueIdentifier>{a232c1bb-4e52-42e1-9bf5-e6c63a59181f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ansios">
+      <UniqueIdentifier>{cedce671-58fd-4162-bf1c-1c3c00dbd916}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hotplugin\hotplugin.h">
@@ -488,6 +494,36 @@
     <ClInclude Include="ca\ca_window_graphics.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
+    <ClInclude Include="android\ca_os_graphics.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="android\ca_os_cairo_keep.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="android\ca_os_http.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="android\ca_os_http_lib.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="ansios\ansios.h">
+      <Filter>Header Files\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="ansios\ansios_thread.h">
+      <Filter>Header Files\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="android\ca_os_cross_win_file.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="android\ca_os_cross_win_gdi.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="android\ca_os_cross_win_gdi_internal.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="android\ca_os_process.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -885,6 +921,45 @@
     </ClCompile>
     <ClCompile Include="ca\ca_window_graphics.cpp">
       <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_cairo_keep.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_http.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_http_lib.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_thread.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="ansios\ansios_cross_win.cpp">
+      <Filter>Source Files\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="ansios\ansios_cross_win_file.cpp">
+      <Filter>Source Files\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="ansios\ansios_file.cpp">
+      <Filter>Source Files\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="ansios\ansios_file_std.cpp">
+      <Filter>Source Files\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="ansios\ansios_thread.cpp">
+      <Filter>Source Files\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_cross_win_file.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_cross_win_gdi.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_process.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_process_pid.cpp">
+      <Filter>Source Files\android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

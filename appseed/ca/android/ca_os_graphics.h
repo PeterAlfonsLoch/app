@@ -4,6 +4,8 @@
 #include <cairo/cairo.h>
 
 
+#include "ca_os_cairo_keep.h"
+
 
 #include "ca_os_simple_brush.h"
 #include "ca_os_simple_bitmap.h"

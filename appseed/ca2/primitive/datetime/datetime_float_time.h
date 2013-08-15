@@ -147,10 +147,14 @@ namespace datetime
       float_time() RELEASENOTHROW;
 
       float_time(FLOAT_DATE dtSrc) RELEASENOTHROW;
-#ifndef MACOS
+#if defined(ANDROID)
+      float_time(time_t timeSrc) RELEASENOTHROW;
+#else
+#if !defined(MACOS) && !
       float_time(__time32_t timeSrc) RELEASENOTHROW;
 #endif
       float_time(__time64_t timeSrc) RELEASENOTHROW;
+#endif
 
       float_time(const SYSTEMTIME& systimeSrc) RELEASENOTHROW;
       float_time(const FILETIME& filetimeSrc) RELEASENOTHROW;
@@ -196,10 +200,14 @@ namespace datetime
 
       // Operations
       float_time& operator=(FLOAT_DATE dtSrc) RELEASENOTHROW;
+#if defined(ANDROID)
+      float_time& operator=(const time_t & timeSrc) RELEASENOTHROW;
+#else
 #ifndef MACOS
       float_time& operator=(const __time32_t& timeSrc) RELEASENOTHROW;
 #endif
       float_time& operator=(const __time64_t& timeSrc) RELEASENOTHROW;
+#endif
 
       float_time& operator=(const SYSTEMTIME& systimeSrc) RELEASENOTHROW;
       float_time& operator=(const FILETIME& filetimeSrc) RELEASENOTHROW;
@@ -536,7 +544,19 @@ namespace datetime
    inline float_time::float_time(FLOAT_DATE dtSrc) RELEASENOTHROW :
    m_dt( dtSrc ), m_status(valid)
    {
+
    }
+
+#if defined(ANDROID)
+
+   inline float_time::float_time(time_t timeSrc) RELEASENOTHROW :
+   m_dt( 0 ), m_status(valid)
+   {
+      *this = timeSrc;
+   }
+
+#else
+
 #ifndef MACOS
    inline float_time::float_time(__time32_t timeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_status(valid)
@@ -550,6 +570,8 @@ namespace datetime
    {
       *this = timeSrc;
    }
+
+#endif
 
    inline float_time::float_time(const SYSTEMTIME& systimeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_status(valid)
@@ -659,13 +681,102 @@ valid : invalid;
       return *this;
    }
 
+
+#if defined(ANDROID)
+   
+#ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
+   inline bool GetAsSystemTimeHelper(const time_t & timeSrc, SYSTEMTIME& timeDest);
+#endif
+
+   inline float_time& float_time::operator=(const time_t & timeSrc) RELEASENOTHROW
+   {
+
+
+#ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
+
+      SYSTEMTIME st;
+
+      m_status = GetAsSystemTimeHelper(timeSrc, st) && ConvertSystemTimeToFloatTime(st) ? valid : invalid;
+
+#else
+
+      SYSTEMTIME st;
+      CTime tmp(timeSrc);
+
+      m_status = tmp.GetAsSystemTime(st) && ConvertSystemTimeToFloatTime(st) ? valid : invalid;
+
+#endif // _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
+
+
+      return *this;
+
+   }
+#ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
+   inline bool GetAsSystemTimeHelper(const time_t & timeSrc, SYSTEMTIME& timeDest)
+   {
+      struct tm ttm;
+
+#ifdef WINDOWS
+      if (_localtime64_s(&ttm, &timeSrc) != 0)
+      {
+         return false;
+      }
+
+#else
+
+      ttm = *localtime(&timeSrc);
+
+      if(errno != 0)
+      {
+         return false;
+      }
+
+#endif
+
+      timeDest.wYear = (WORD) (1900 + ttm.tm_year);
+      timeDest.wMonth = (WORD) (1 + ttm.tm_mon);
+      timeDest.wDayOfWeek = (WORD) ttm.tm_wday;
+      timeDest.wDay = (WORD) ttm.tm_mday;
+      timeDest.wHour = (WORD) ttm.tm_hour;
+      timeDest.wMinute = (WORD) ttm.tm_min;
+      timeDest.wSecond = (WORD) ttm.tm_sec;
+      timeDest.wMilliseconds = 0;
+
+      return true;
+
+   }
+
+#endif // _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
+
+
+#else
 #ifndef MACOS
    inline float_time& float_time::operator=(const __time32_t& timeSrc) RELEASENOTHROW
    {
       return operator=(static_cast<__time64_t>(timeSrc));
    }
 #endif
+   inline float_time& float_time::operator=(const __time64_t& timeSrc) RELEASENOTHROW
+   {
 
+#ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
+
+      SYSTEMTIME st;
+
+      m_status = GetAsSystemTimeHelper(timeSrc, st) && ConvertSystemTimeToFloatTime(st) ? valid : invalid;
+
+#else
+
+      SYSTEMTIME st;
+      CTime tmp(timeSrc);
+
+      m_status = tmp.GetAsSystemTime(st) && ConvertSystemTimeToFloatTime(st) ? valid : invalid;
+
+#endif // _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
+
+      return *this;
+
+   }
 #ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
    inline bool GetAsSystemTimeHelper(const __time64_t& timeSrc, SYSTEMTIME& timeDest)
    {
@@ -703,28 +814,10 @@ valid : invalid;
 
 #endif // _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
 
+#endif
 
-   inline float_time& float_time::operator=(const __time64_t& timeSrc) RELEASENOTHROW
-   {
 
-#ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
 
-      SYSTEMTIME st;
-
-      m_status = GetAsSystemTimeHelper(timeSrc, st) && ConvertSystemTimeToFloatTime(st) ? valid : invalid;
-
-#else
-
-      SYSTEMTIME st;
-      CTime tmp(timeSrc);
-
-      m_status = tmp.GetAsSystemTime(st) && ConvertSystemTimeToFloatTime(st) ? valid : invalid;
-
-#endif // _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
-
-      return *this;
-
-   }
 
 
    inline float_time &float_time::operator=(const SYSTEMTIME &systimeSrc) RELEASENOTHROW

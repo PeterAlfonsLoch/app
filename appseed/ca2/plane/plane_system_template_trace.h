@@ -18,7 +18,7 @@ namespace ca2
       const int32_t               m_nLineNo;
       string                  m_str;
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
       class CLASS_DECL_ca2 category_level
       {

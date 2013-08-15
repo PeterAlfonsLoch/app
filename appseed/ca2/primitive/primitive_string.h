@@ -761,82 +761,82 @@ string & string::assign ( InputIterator first, InputIterator last )
 
 
 
-inline strsize string::find_first_in(const string & str, strsize pos) const
+inline strsize string::find_first_in(const string & str, strsize pos) const RELEASENOTHROW
 {
    return find_first_of(str, pos);
 }
 
-inline strsize string::find_first_in(const char * s, strsize pos, strsize n) const
+inline strsize string::find_first_in(const char * s, strsize pos, strsize n) const RELEASENOTHROW
 {
    return find_first_of(s, pos, n);
 }
 
-inline strsize string::find_first_in(const char * s, strsize pos) const
+inline strsize string::find_first_in(const char * s, strsize pos) const RELEASENOTHROW
 {
    return find_first_of(s, pos);
 }
 
-inline strsize string::find_first_in(char ca, strsize pos) const
+inline strsize string::find_first_in(char ca, strsize pos) const RELEASENOTHROW
 {
    return find_first_of(ca, pos);
 }
 
-inline strsize string::find_first_not_in(const string & str, strsize pos) const
+inline strsize string::find_first_not_in(const string & str, strsize pos) const RELEASENOTHROW
 {
    return find_first_not_of(str, pos);
 }
 
-inline strsize string::find_first_not_in(const char * s, strsize pos, strsize n) const
+inline strsize string::find_first_not_in(const char * s, strsize pos, strsize n) const RELEASENOTHROW
 {
    return find_first_not_of(s, pos, n);
 }
 
-inline strsize string::find_first_not_in(const char * s, strsize pos) const
+inline strsize string::find_first_not_in(const char * s, strsize pos) const RELEASENOTHROW
 {
    return find_first_not_of(s, pos);
 }
 
-inline strsize string::find_first_not_in(char ca, strsize pos) const
+inline strsize string::find_first_not_in(char ca, strsize pos) const RELEASENOTHROW
 {
    return find_first_not_of(ca, pos);
 }
 
-inline strsize string::find_last_not_in(const string & str, strsize pos) const
+inline strsize string::find_last_not_in(const string & str, strsize pos) const RELEASENOTHROW
 {
    return find_first_not_of(str, pos);
 }
 
-inline strsize string::find_last_not_in(const char * s, strsize pos, strsize n) const
+inline strsize string::find_last_not_in(const char * s, strsize pos, strsize n) const RELEASENOTHROW
 {
    return find_last_not_of(s, pos, n);
 }
 
-inline strsize string::find_last_not_in(const char * s, strsize pos) const
+inline strsize string::find_last_not_in(const char * s, strsize pos) const RELEASENOTHROW
 {
    return find_last_not_of(s, pos);
 }
 
-inline strsize string::find_last_not_in(char ca, strsize pos) const
+inline strsize string::find_last_not_in(char ca, strsize pos) const RELEASENOTHROW
 {
    return find_last_not_of(ca, pos);
 }
 
-inline strsize string::find_last_in(const string & str, strsize pos) const
+inline strsize string::find_last_in(const string & str, strsize pos) const RELEASENOTHROW
 {
    return find_last_of(str, pos);
 }
 
-inline strsize string::find_last_in(const char * s, strsize pos, strsize n) const
+inline strsize string::find_last_in(const char * s, strsize pos, strsize n) const RELEASENOTHROW
 {
    return find_last_of(s, pos, n);
 }
 
-inline strsize string::find_last_in(const char * s, strsize pos) const
+inline strsize string::find_last_in(const char * s, strsize pos) const RELEASENOTHROW
 {
    return find_last_of(s, pos);
 }
 
-inline strsize string::find_last_in(char ca, strsize pos) const
+inline strsize string::find_last_in(char ca, strsize pos) const RELEASENOTHROW
 {
    return find_last_of(ca, pos);
 }

@@ -6,7 +6,7 @@ class CLASS_DECL_ca2 condition :
 {
 public:
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
    int_ptr           m_object;
    bool              m_bManualEvent;
    bool              m_bSignaled;  // meaningful only when m_bManualEvent

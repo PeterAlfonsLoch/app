@@ -288,7 +288,7 @@ extern "C"
       virtual string_manager* Clone() = 0;
       };*/
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
    #define _gen_InterlockedIncrement(ptr) __sync_add_and_fetch(ptr, 1)
    #define _gen_InterlockedDecrement(ptr) __sync_sub_and_fetch(ptr, 1)
 #else
@@ -946,7 +946,7 @@ public:
    }
 #endif
 
-   NOINLINE static strsize __cdecl StringLength(const char * psz ) NOTHROW
+   static strsize __cdecl StringLength(const char * psz ) NOTHROW
    {
       strsize nLength = 0;
       if( psz != NULL )
@@ -977,7 +977,7 @@ protected:
       strResult.ReleaseBufferSetLength( nNewLength );
    }
 
-   NOINLINE DECLSPEC_NO_RETURN static void __cdecl ThrowMemoryException()
+   DECLSPEC_NO_RETURN static void __cdecl ThrowMemoryException()
    {
       throw hresult_exception(::ca2::get_thread_app(), E_OUTOFMEMORY);
    }
@@ -988,7 +988,7 @@ private:
    {
       m_pszData = static_cast< char * >( pData->data() );
    }
-   NOINLINE void Fork(strsize nLength )
+   void Fork(strsize nLength )
    {
       string_data* pOldData = get_data();
       strsize nOldLength = pOldData->nDataLength;
@@ -1023,7 +1023,7 @@ private:
 
       return( m_pszData );
    }
-   NOINLINE void PrepareWrite2(strsize nLength )
+   void PrepareWrite2(strsize nLength )
    {
       string_data * pOldData = get_data();
       if( pOldData->nDataLength > nLength )
@@ -1053,7 +1053,7 @@ private:
          Reallocate( nNewLength );
       }
    }
-   NOINLINE void Reallocate(strsize nLength )
+   void Reallocate(strsize nLength )
    {
       string_data* pOldData = get_data();
       ASSERT( pOldData->nAllocLength < nLength );

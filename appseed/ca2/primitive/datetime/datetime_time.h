@@ -61,8 +61,11 @@ namespace datetime
    {
    public:
 
-
+#if defined(ANDROID)
+      time_t         m_time;
+#else
       __time64_t m_time;
+#endif
 
 
       static time WINAPI get_current_time() NOTHROW;
@@ -310,6 +313,12 @@ namespace datetime
       struct tm ptmTemp;
       errno_t err = _localtime64_s(&ptmTemp, &m_time);
       if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, pszFormat, &ptmTemp))
+      {
+         szBuffer[0] = '\0';
+      }
+#elif defined(ANDROID)
+      struct tm* ptmTemp = localtime(&m_time);
+      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
       {
          szBuffer[0] = '\0';
       }

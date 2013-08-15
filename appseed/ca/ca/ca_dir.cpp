@@ -598,7 +598,7 @@ void dir::rls_dir(stra_dup & stra, const char *psz)
 void dir::ls(stra_dup & stra, const char *psz)
 {
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
    DIR * dirp = opendir(psz);
 
@@ -667,7 +667,7 @@ void dir::ls(stra_dup & stra, const char *psz)
 void dir::ls_dir(stra_dup & stra, const char *psz)
 {
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
    DIR * dirp = opendir(psz);
 
@@ -760,6 +760,10 @@ vsstring dir::default_os_user_path_prefix()
 
 #elif defined(METROWIN)
    vsstring str(Windows::System::UserProfile::UserInformation::GetDomainNameAsync()->GetResults()->Data());
+   return str;
+
+#elif defined(ANDROID)
+   vsstring str("ca2user");
    return str;
 
 #else

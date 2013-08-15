@@ -1,6 +1,6 @@
 #pragma once
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
 typedef void * HPALETTE;
 

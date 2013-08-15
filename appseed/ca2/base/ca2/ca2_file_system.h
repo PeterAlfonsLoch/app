@@ -72,7 +72,7 @@ namespace ca2
 
       template < class T >
       bool output(sp(::ca2::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca2::writer &, const char *), const char * lpszSource)
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
          ;
 #else
       {
@@ -86,7 +86,7 @@ namespace ca2
 
       template < class T >
       bool output(sp(::ca2::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca2::writer &, ::ca2::reader &), const char * lpszInput)
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
          ;
 #else
       {

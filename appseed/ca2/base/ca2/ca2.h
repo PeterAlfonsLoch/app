@@ -1134,7 +1134,7 @@ class CDockContext;                     // for dragging control bars
    { message, 0, 0, 0, ::ca2::Sig_vv, \
       (__PMSG)(__PMSGW)(void (__MSG_CALL ::ca2::window::*)())&memberFxn },
 
-#if defined(LINUX) || defined(MACOS) || defined(METROWIN)
+#if defined(LINUX) || defined(MACOS) || defined(METROWIN) || defined(ANDROID)
 
 typedef void * HDWP;
 
@@ -1566,7 +1566,7 @@ namespace geometry
 } // namespace geometry
 
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
 typedef ::visual::icon * HICON;
 
