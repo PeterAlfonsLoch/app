@@ -16,6 +16,7 @@ namespace ca2
 
       T * m_p;
 
+#if defined(MOVE_SEMANTICS)
       smart_pointer_query(smart_pointer_query && q)
       {
 
@@ -37,7 +38,7 @@ namespace ca2
          q.m_psp  = NULL;
 
       }
-
+#endif
 
       smart_pointer_query(::ca::smart_pointer < T > & sp)
       {

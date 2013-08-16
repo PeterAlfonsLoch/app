@@ -85,6 +85,7 @@
 #ifndef _HALF_H_
 #define _HALF_H_
 
+#include "c/c/c.h"
 #include <iostream>
 
 #if defined(OPENEXR_DLL)

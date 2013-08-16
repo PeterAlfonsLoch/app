@@ -320,7 +320,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
-      <AndroidSystemLibs>c;m;log;gcc;;_c;_ca2zlib</AndroidSystemLibs>
+      <AndroidSystemLibs>c;m;log;gcc;_c;_ca2zlib</AndroidSystemLibs>
       <ModuleDefinitionFile>_ca2freeimage.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>

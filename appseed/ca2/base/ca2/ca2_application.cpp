@@ -3080,7 +3080,7 @@ namespace ca2
       return MessageBoxW((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())),
          wstring(pszMessage), wstring(m_strAppName), fuStyle);
 
-#elif  defined(LINUX) || defined(MACOS)
+#elif  defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
       return MessageBox((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
 

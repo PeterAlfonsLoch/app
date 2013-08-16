@@ -565,7 +565,7 @@ namespace draw2d_cairo
          COLORREF colorrefaN[2];
          colorrefaN[0] = _colorrefN;
          colorrefaN[1] = _colorrefN;
-   #ifdef AMD64
+   #if defined(AMD64) || defined(ANDROID)
 
          //x64
    #else

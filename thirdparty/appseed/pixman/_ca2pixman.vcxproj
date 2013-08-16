@@ -85,7 +85,9 @@
     <ClCompile Include="pixman-region16.c" />
     <ClCompile Include="pixman-region32.c" />
     <ClCompile Include="pixman-solid-fill.c" />
-    <ClCompile Include="pixman-sse2.c" />
+    <ClCompile Include="pixman-sse2.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="pixman-timer.c" />
     <ClCompile Include="pixman-trap.c" />
     <ClCompile Include="pixman-utils.c" />

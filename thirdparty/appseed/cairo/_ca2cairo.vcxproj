@@ -300,7 +300,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <GccExceptionHandling>true</GccExceptionHandling>
-      <AdditionalOptions />
+      <AdditionalOptions>-Wno-attributes</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -319,7 +319,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
-      <AndroidSystemLibs>c;m;log;gcc;;_c;_ca2zlib</AndroidSystemLibs>
+      <AndroidSystemLibs>c;m;log;gcc;;_c;_ca2zlib;_ca2freetype;_ca2pixman;_ca2freeimage</AndroidSystemLibs>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -824,7 +824,9 @@
     <ClInclude Include="cairo.h" />
     <ClInclude Include="cairoint.h" />
     <ClInclude Include="config.h" />
-    <ClInclude Include="win32\cairo-win32-private.h" />
+    <ClInclude Include="win32\cairo-win32-private.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cairo-analysis-surface.c" />
@@ -949,14 +951,30 @@
     <ClCompile Include="cairo-wideint.c" />
     <ClCompile Include="cairo-xml-surface.c" />
     <ClCompile Include="cairo.c" />
-    <ClCompile Include="win32\cairo-win32-debug.c" />
-    <ClCompile Include="win32\cairo-win32-device.c" />
-    <ClCompile Include="win32\cairo-win32-display-surface.c" />
-    <ClCompile Include="win32\cairo-win32-font.c" />
-    <ClCompile Include="win32\cairo-win32-gdi-compositor.c" />
-    <ClCompile Include="win32\cairo-win32-printing-surface.c" />
-    <ClCompile Include="win32\cairo-win32-surface.c" />
-    <ClCompile Include="win32\cairo-win32-system.c" />
+    <ClCompile Include="win32\cairo-win32-debug.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-device.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-display-surface.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-font.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-gdi-compositor.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-printing-surface.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-surface.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="win32\cairo-win32-system.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\appseed\c\c.vcxproj">

@@ -172,7 +172,9 @@ public:
    var(const ::ca2::pair_set_interface & set);
    var(const ::ca2::str_str_interface & set);
    var(const string_composite & composite);
+#if defined(MOVE_SEMANTICS)
    inline var(var && v);
+#endif
    template < class T >
    var(const sp(T) & sp)
    {

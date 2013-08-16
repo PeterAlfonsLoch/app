@@ -10,6 +10,9 @@
     <Filter Include="Source Files\win32">
       <UniqueIdentifier>{57d1a18b-53cb-4fc2-8e38-9443d9de128f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\android">
+      <UniqueIdentifier>{53704e60-cb96-48bf-914a-28eebcc009f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\appseed\draw2d_cairo\framework.h">
