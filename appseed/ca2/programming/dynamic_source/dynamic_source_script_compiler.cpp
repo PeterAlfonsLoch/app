@@ -682,7 +682,7 @@ namespace dynamic_source
          iStart +=4;
          while(true)
          {
-            int iMid = strSource.find("?>", iStart);
+            strsize iMid = strSource.find("?>", iStart);
             iLastEnd = strSource.find("ds?>", iStart);
             if(iMid > 0 && iMid < iLastEnd)
             {
