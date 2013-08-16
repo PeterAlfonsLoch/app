@@ -69,8 +69,8 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add option="-Wno-conversion-null" />
-			<Add directory="../ca2" />
 			<Add directory="." />
+			<Add directory="../ca2" />
 			<Add directory="../../.." />
 		</Compiler>
 		<Linker>
@@ -86,6 +86,7 @@
 			<Add option="-l_ca2freetype" />
 			<Add option="-l_ca2openssl" />
 			<Add option="-lca2ca" />
+			<Add option="-lca2" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />
@@ -106,7 +107,6 @@
 		<Unit filename="kissfft/kissfft_fftd.h" />
 		<Unit filename="kissfft/kissfft_ifftd.cpp" />
 		<Unit filename="kissfft/kissfft_ifftd.h" />
-		<Unit filename="math/debug.cpp" />
 		<Unit filename="math/math.h" />
 		<Extensions>
 			<code_completion />

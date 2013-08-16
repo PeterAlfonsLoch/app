@@ -150,7 +150,7 @@ namespace datetime
 #if defined(ANDROID)
       float_time(time_t timeSrc) RELEASENOTHROW;
 #else
-#if !defined(MACOS) && !
+#if !defined(MACOS)
       float_time(__time32_t timeSrc) RELEASENOTHROW;
 #endif
       float_time(__time64_t timeSrc) RELEASENOTHROW;
@@ -683,7 +683,7 @@ valid : invalid;
 
 
 #if defined(ANDROID)
-   
+
 #ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
    inline bool GetAsSystemTimeHelper(const time_t & timeSrc, SYSTEMTIME& timeDest);
 #endif
@@ -745,11 +745,13 @@ valid : invalid;
       return true;
 
    }
-
-#endif // _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
+#endif
 
 
 #else
+#ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
+   inline bool GetAsSystemTimeHelper(const __time64_t & timeSrc, SYSTEMTIME& timeDest);
+#endif
 #ifndef MACOS
    inline float_time& float_time::operator=(const __time32_t& timeSrc) RELEASENOTHROW
    {
@@ -830,7 +832,7 @@ valid : invalid;
    }
 
 
-   
+
 
    inline WINBOOL float_time::ConvertSystemTimeToFloatTime(const SYSTEMTIME& systimeSrc)
    {
@@ -1074,9 +1076,9 @@ valid : invalid;
       m_status = valid;
       return true;
    }
-   
+
 #endif
-   
+
 
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
 
