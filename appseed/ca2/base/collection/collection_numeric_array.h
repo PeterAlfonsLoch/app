@@ -441,17 +441,17 @@ void numeric_array < TYPE >::CopySorted(
 {
    index i;
    TYPE tStart = tMin - tOffset;
-   set_size(a.get_size());
+   this->set_size(a.get_size());
    TYPE t;
    for(i = 0; i < a.get_size()
       && a.get_at(i) <= tStart; i++)
    {
-      set_at(i, tMin);
+      this->set_at(i, tMin);
    }
    for(; i < a.get_size(); i++)
    {
       t = a.get_at(i) + tOffset;
-      set_at(i, t);
+      this->set_at(i, t);
    }
 }
 template < class TYPE >
@@ -461,12 +461,12 @@ void numeric_array < TYPE >::Diff(
 {
    ASSERT(array1.get_size() == array2.get_size());
    index i;
-   set_size(array1.get_size());
+   this->set_size(array1.get_size());
    TYPE t;
    for(i = 0; i < array1.get_size(); i++)
    {
       t = array1.get_at(i) - array2.get_at(i);
-      set_at(i, t);
+      this->set_at(i, t);
    }
 }
 
@@ -478,7 +478,7 @@ void numeric_array < TYPE >::ElementDiff(
    index i;
    TYPE t;
    TYPE it;
-   set_size(a.get_size());
+   this->set_size(a.get_size());
    if(a.get_size() > 0)
    {
       TYPE tLast = a[0];
@@ -486,11 +486,11 @@ void numeric_array < TYPE >::ElementDiff(
       {
          t = a[i];
          it =  t - tLast;
-         set_at(i - 1, it);
+         this->set_at(i - 1, it);
          tLast = t;
       }
       it =  tMax - tLast;
-      set_at(i - 1, it);
+      this->set_at(i - 1, it);
    }
 }
 

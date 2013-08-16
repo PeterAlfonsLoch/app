@@ -231,7 +231,7 @@ do {                                           \
 /*#ifdef _DISABLE_FORCEINLINE
 #define FORCEINLINE
 #else
-#define FORCEINLINE __forceinline
+#define FORCEINLINE inline
 #endif*/
 
 #if defined(_DISABLE_NOINLINE) || defined(VC6) || defined(LINUX)

@@ -4,14 +4,10 @@
 #include "ca2.h"
 
 
-#pragma once
-
-#ifdef LINUX
-   #define CLASS_DECL_CA2_MATH
-#elif defined(_CA2_MATH_DLL)
-   #define CLASS_DECL_CA2_MATH  _declspec(dllexport)
+#if defined(_CA2_MATH_DLL)
+   #define CLASS_DECL_CA2_MATH  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_CA2_MATH  _declspec(dllimport)
+   #define CLASS_DECL_CA2_MATH  CLASS_DECL_IMPORT
 #endif
 
 

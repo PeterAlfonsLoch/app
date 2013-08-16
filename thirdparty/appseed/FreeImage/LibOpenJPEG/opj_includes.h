@@ -68,7 +68,7 @@ Most compilers implement their own version of this keyword ...
 */
 #ifndef INLINE
 	#if defined(_MSC_VER)
-		#define INLINE __forceinline
+		#define INLINE inline
 	#elif defined(__GNUC__)
 		#define INLINE __inline__
 	#elif defined(__MWERKS__)
