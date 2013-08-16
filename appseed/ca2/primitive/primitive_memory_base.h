@@ -64,7 +64,7 @@ namespace primitive
 
       virtual void FullLoad(::ca2::file &file);
 
-      inline ::primitive::memory_size read(::ca2::file & file);
+      ::primitive::memory_size read(::ca2::file & file);
 
       void write(::ca2::byte_output_stream & ostream);
       void read(::ca2::byte_input_stream & ostream);

@@ -7,7 +7,7 @@ namespace sqlite
 
    /* class 'set' does a query to SQLite-server */
 
-   class CLASS_DECL_ca2 set : 
+   class CLASS_DECL_ca2 set :
       public ::database::set
    {
    public:
@@ -73,13 +73,13 @@ namespace sqlite
       virtual void prev();
       virtual void next();
 
-      virtual bool find_first(char * fieldname, var & value);
+      virtual bool find_first(const char * fieldname, var & value);
       /* Go to record No (starting with 0) */
       virtual bool seek(index pos=0);
 
       virtual bool SetFieldValue(const char *f_name, const var &value);
       virtual bool SetFieldValue(index iFieldIndex, const var &value);
-      
+
       virtual var & FieldValueAt(index iFieldIndex);
       virtual int32_t GetFieldIndex(const char *f_name);
 

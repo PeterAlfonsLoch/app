@@ -433,20 +433,28 @@ namespace sqlite
       //  return false;
    }
 
+
    int32_t set::GetFieldIndex(const char *f_name)
    {
+
       for (int32_t i=0; i < fields_object.get_size(); i++)
       {
+
          if(result.record_header[i].name == f_name)
          {
+
             return i;
 
          }
+
       }
+
       return -1;
+
    }
 
-   bool set::find_first(char * fieldname, var & value)
+
+   bool set::find_first(const char * fieldname, var & value)
    {
       int32_t iFound = -1;
       if(ds_state == database::dsSelect)
