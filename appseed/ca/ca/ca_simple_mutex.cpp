@@ -11,6 +11,7 @@
 
 
 #include <sys/ipc.h>
+#include <sys/sem.h>
 
 
 #ifdef MACOS
@@ -142,7 +143,7 @@ simple_mutex::~simple_mutex()
 #ifdef WINDOWS
    ::CloseHandle(m_hMutex);
 #elif defined(ANDROID)
-   
+
    sem_close(m_sem);
 
 #else
@@ -212,42 +213,42 @@ int pthread_mutex_timedlock(pthread_mutex_t * mutex, const struct timespec * abs
    }
 
    uint64_t uiTimeout = abs_timeout->tv_sec * 1000 + (abs_timeout->tv_nsec / (1000 * 1000));
-   
+
    uint64_t ui = get_tick_count();
-   
+
    int result;
-   
+
    while(true)
    {
-      
+
       result = pthread_mutex_trylock(mutex);
-      
+
       if(result == EBUSY)
       {
-         
+
          if(get_tick_count() - ui > uiTimeout)
             return ETIMEDOUT;
-         
+
          timespec ts;
 
          ts.tv_sec = 0;
-         
+
          ts.tv_sec = 10000000;
 
          /* Sleep for 10,000,000 nanoseconds before trying again. */
-         
+
          nanosleep(&ts, &ts);
-         
+
       }
       else
       {
-         
+
          return result;
-         
+
       }
-      
+
    }
-   
+
 }
 
 
