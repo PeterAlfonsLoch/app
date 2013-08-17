@@ -302,14 +302,6 @@ namespace plane
       if(fontopus()->create_system_user("system") == NULL)
          return false;
 
-/*      System.factory().cloneable_large < ::draw2d::font >();
-      System.factory().cloneable_large < ::draw2d::brush >();
-      System.factory().cloneable_large < ::draw2d::pen_sp >();
-      System.factory().cloneable_large < ::draw2d::bitmap_sp >();
-      System.factory().cloneable_large < ::draw2d::palette_sp >();
-      System.factory().cloneable_large < ::draw2d::region_sp >();*/
-      //      System.factory().cloneable_large < var >();
-//      System.factory().creatable < ::ca2::log >(System.type_info < ::ca2::log > (), 1);
 
       m_puserstr = new ::user::str(this);
       if(m_puserstr == NULL)

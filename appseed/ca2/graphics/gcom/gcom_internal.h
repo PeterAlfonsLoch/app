@@ -1,8 +1,5 @@
 #pragma once
 
-#ifdef WINDOWS
-#include <mmsystem.h>
-#endif
 
 #pragma comment(lib, "winmm.lib")
 

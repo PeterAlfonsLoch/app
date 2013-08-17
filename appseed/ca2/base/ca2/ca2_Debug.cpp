@@ -15,8 +15,7 @@
 *
 *****************************************************************************/
 
-/*#include <windows.h>
-#include <mmsystem.h>  */
+/*#include <windows.h>*/
 
 #include "framework.h"
 

@@ -3,6 +3,8 @@
 
 #if defined(WINDOWS)
 
+#include <mmsystem.t.h>
+
 #define ID_MP3_SMALL_BELL			40000
 
 

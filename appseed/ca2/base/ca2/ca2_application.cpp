@@ -14,7 +14,6 @@
 
 
 
-typedef  void (* PFN_ca2_factory_exchange)(sp(::ca2::application) papp);
 
 
 
@@ -5864,6 +5863,17 @@ ret:
 #endif
 
    }
+
+   string application::multimedia_audio_get_default_library_name()
+   {
+
+      if(::ca2::application_base::m_p == NULL)
+         return "";
+
+      return ::ca2::application_base::m_p->multimedia_audio_get_default_library_name();
+
+   }
+
 
 
    string application::draw2d_get_default_library_name()

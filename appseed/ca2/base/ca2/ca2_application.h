@@ -30,6 +30,9 @@ namespace uinteraction
 }
 
 
+typedef  void (* PFN_ca2_factory_exchange)(sp(::ca2::application) papp);
+
+
 namespace plane
 {
 
@@ -217,6 +220,7 @@ namespace ca2
       virtual bool update_module_paths() = 0;
 
       virtual string draw2d_get_default_library_name() = 0;
+      virtual string multimedia_audio_get_default_library_name() = 0;
 
    };
 
@@ -1198,6 +1202,7 @@ namespace ca2
       virtual ::user::printer * get_printer(const char * pszDeviceName);
 
       virtual string draw2d_get_default_library_name();
+      virtual string multimedia_audio_get_default_library_name();
 
 
 

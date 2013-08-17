@@ -319,4 +319,3 @@ CLASS_DECL_ca WINBOOL IsWindow(oswindow oswindow);
 #include "ca_simple_app.h"
 
 
-
