@@ -5338,7 +5338,13 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
       if(is_system())
       {
 #ifdef WINDOWSEX
-         ::ShellExecuteA(NULL, "open", strLink, NULL, NULL, SW_SHOW);
+         string strUrl = strLink;
+         if(!::ca2::str::begins_ci(strUrl, "http://")
+         && !::ca2::str::begins_ci(strUrl, "https://"))
+         {
+            strUrl = "http://" + strUrl;
+         }
+         ::ShellExecuteA(NULL, "open", strUrl, NULL, NULL, SW_SHOW);
          return true;
 #elif defined METROWIN
 #pragma push_macro("System")
