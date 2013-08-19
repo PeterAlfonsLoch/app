@@ -8,6 +8,7 @@ namespace user
       ::user::interaction(papp)
    {
       m_daScalar.set_size(100);
+      m_daScalar.set(0.0);
 
       m_etranslucency = TranslucencyPresent;
 
@@ -38,20 +39,27 @@ namespace user
 
    void elastic_slider::_001OnTimer(::ca2::signal_object * pobj)
    {
-//      return; // xxxtimer
+
       SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+
       if(ptimer->m_nIDEvent == 1)
       {
-         if(m_bSlide || CalcScalar() > 0.0)
+         double dScalar = CalcScalar();
+
+         if(m_bSlide || dScalar > 0.001)
          {
+
             Slide();
+
          }
          else
          {
             UpdatePosition();
          }
       }
+
    }
+
 
    void elastic_slider::_001OnLButtonDown(::ca2::signal_object * pobj)
    {

@@ -222,6 +222,7 @@ namespace ca2
       virtual string draw2d_get_default_library_name() = 0;
       virtual string multimedia_audio_get_default_library_name() = 0;
       virtual string multimedia_audio_mixer_get_default_library_name() = 0;
+      virtual string veriwell_multimedia_music_midi_get_default_library_name() = 0;
 
    };
 
@@ -1205,6 +1206,7 @@ namespace ca2
       virtual string draw2d_get_default_library_name();
       virtual string multimedia_audio_get_default_library_name();
       virtual string multimedia_audio_mixer_get_default_library_name();
+      virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
 
 

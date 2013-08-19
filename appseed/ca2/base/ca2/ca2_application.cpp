@@ -5865,6 +5865,17 @@ ok:;
    }
 
 
+   string application::veriwell_multimedia_music_midi_get_default_library_name()
+   {
+
+      if(::ca2::application_base::m_p == NULL)
+         return "";
+
+      return ::ca2::application_base::m_p->veriwell_multimedia_music_midi_get_default_library_name();
+
+   }
+
+
 
    string application::multimedia_audio_mixer_get_default_library_name()
    {
