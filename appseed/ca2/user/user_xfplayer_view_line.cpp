@@ -770,6 +770,7 @@ void XfplayerViewLine::CalcCharsPositions(
    }
 
 
+   m_str.Truncate(min(84, m_str.length()));
 
    pdc->SelectObject(m_font);
 
@@ -1540,7 +1541,7 @@ void XfplayerViewLine::CacheEmboss(sp(::ca2::application) papp, ::draw2d::graphi
    pdcCache->set_alpha_mode(::draw2d::alpha_mode_blend);
    draw2d::brush_sp brushText(allocer());
    brushText->create_solid(ARGB(84, 84, 84, 84));
-   pdc->SelectObject(brushText);
+   pdcCache->SelectObject(brushText);
    //pdcCache->SetTextColor();
 
    m_dcextension.TextOut(pdcCache, (int32_t) (int32_t) ((max(2.0, m_floatRateX * 8.0)) / 2), (int32_t) 1 * (int32_t) ((max(2.0, m_floatRateX * 8.0)) / 2), lpcsz, iLen);
