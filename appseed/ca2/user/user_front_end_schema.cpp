@@ -93,7 +93,7 @@ namespace user
       m_menu.m_pschemaPopupButton = &m_buttonBaseWndMenuItemPopup;
 
 
-
+      m_crTextNormal = ARGB(255, 0, 0, 0);
 
    }
 

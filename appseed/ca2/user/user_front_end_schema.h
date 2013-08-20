@@ -52,6 +52,7 @@ namespace user
       button         m_buttonBaseWndMenuSysMenu;
       button         m_buttonBaseWndMenuItem;
       button         m_buttonBaseWndMenuItemPopup;
+      COLORREF       m_crTextNormal;
       
 
       front_end_schema(sp(::ca2::application) app);

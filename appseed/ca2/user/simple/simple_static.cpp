@@ -9,7 +9,8 @@ simple_static::simple_static(sp(::ca2::application) papp) :
 {
    m_pimagelist = NULL;
    m_bTransparent = false;
-   m_brushBkg->CreateStockObject(NULL_BRUSH);
+   m_brushBkg->m_etype = ::draw2d::brush::type_null;
+   m_brushBkg->m_bUpdated = false;
 }
 
 simple_static::~simple_static()
@@ -26,6 +27,23 @@ void simple_static::_001OnDraw(::draw2d::graphics *pdc)
          pdc->DrawIcon(null_point(), picon);
       }
    }
+   else if(get_type() == type_text)
+   {
+
+      pdc->SelectFont(GetFont());
+
+      ::draw2d::brush_sp brush(allocer(), Application.user()->GetUfeSchema()->m_crTextNormal);
+
+      pdc->SelectObject(brush);
+
+      string str;
+
+      GetWindowText(str);
+
+      pdc->TextOut(0, 0, str);
+
+   }
+
 }
 
 void simple_static::pre_subclass_window()
