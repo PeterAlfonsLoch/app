@@ -1,15 +1,22 @@
 #include "framework.h"
 
+
 file_operation::file_operation(sp(::ca2::application) papp) :
    ca2(papp),
-   m_fileSrc(papp),
-   m_fileDst(papp)
+   m_fileSrc(allocer()),
+   m_fileDst(allocer())
 {
+
    m_oswindowCallback = NULL;
+
    m_bReplaceAll = false;
+
    m_eoperation = filemanager::operation_none;
+
    m_iBufferSize = 1024 * 1024;
+
 }
+
 
 filemanager::eoperation file_operation::operation()
 {

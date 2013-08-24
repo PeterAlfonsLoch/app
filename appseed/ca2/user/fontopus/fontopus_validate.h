@@ -55,6 +55,7 @@ namespace fontopus
       user *                     m_puser;
 
       string                     m_strFontopusServerAuthUrl;
+      string                     m_strLoginUrl;
       string                     m_strRequestingServer;
       string                     m_strFontopusServer;
       string                     m_strUsername;

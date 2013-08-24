@@ -515,6 +515,7 @@ namespace fontopus
             System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
             m_puser->m_strLogin = m_strUsername;
             m_puser->m_strFontopusServerSessId = doc.get_root()->attr("sessid");
+            m_puser->set_sessid(m_puser->m_strFontopusServerSessId, m_strLoginUrl);
             m_puser->m_strRequestingServer = m_strRequestingServer;
             m_puser->m_strFunUserId = doc.get_root()->attr("secureuserid");
             m_strPasshash = doc.get_root()->attr("passhash");
@@ -677,7 +678,7 @@ namespace fontopus
 
       strApiServer.replace("account", "api");
 
-      string strLoginUrl("https://" + strApiServer + "/account/login");
+      m_strLoginUrl = "https://" + strApiServer + "/account/login";
 
       xml::document doc(get_app());
 
@@ -707,20 +708,20 @@ namespace fontopus
 
             if(strSessid.has_char())
             {
-               m_puser->set_sessid(strSessid, strLoginUrl);
+               m_puser->set_sessid(strSessid, m_strLoginUrl);
             }
             else if(m_puser->m_sessionidmap[m_strRequestingServer].get_length() > 16)
             {
-               m_puser->set_sessid(m_puser->m_sessionidmap[m_strRequestingServer], strLoginUrl);
+               m_puser->set_sessid(m_puser->m_sessionidmap[m_strRequestingServer], m_strLoginUrl);
             }
             else
             {
-               m_puser->set_sessid("not_auth", strLoginUrl);
+               m_puser->set_sessid("not_auth", m_strLoginUrl);
             }
 
             set["app"] = papp;
 
-            Application.http().get(strLoginUrl, strLogin, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
+            Application.http().get(m_strLoginUrl, strLogin, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
 
          }
          catch(...)
@@ -752,6 +753,7 @@ namespace fontopus
 
       if(strRsaModulus.is_empty())
          return "";
+
 
       string strPass;
       if(m_strPasshash.is_empty())
