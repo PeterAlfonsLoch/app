@@ -5,12 +5,10 @@
 window_cairo::window_cairo()
 {
 
-                 m_cairo = NULL;
-            m_cairosurface = NULL;
-/*            m_cairoSource = NULL;
-         m_cairosurfaceSource = NULL;
-                  m_cairoWork = NULL;
-        m_cairosurfaceWork = NULL;*/
+    m_cairo                = NULL;
+    m_cairosurface         = NULL;
+    m_cairoSource          = NULL;
+    m_cairosurfaceSource   = NULL;
 
 }
 
@@ -31,69 +29,46 @@ void window_cairo::create(oswindow window, int64_t cxParam, int64_t cyParam, int
 
    xdisplay d(window->display());
 
-/*    if(m_cairoWork != NULL)
-    {
-          cairo_destroy(m_cairoWork);
+   if(m_cairoSource != NULL)
+   {
 
-    }
+      cairo_destroy(m_cairoSource);
 
-     if(m_cairosurfaceWork != NULL)
-     {
+   }
 
-         cairo_surface_destroy(m_cairosurfaceWork);
+   if(m_cairosurfaceSource != NULL)
+   {
 
-     }*/
+      cairo_surface_destroy(m_cairosurfaceSource);
 
-     if(m_cairoSource != NULL)
-        {
-              cairo_destroy(m_cairoSource);
+   }
 
-            }
+   if(m_cairosurface == NULL)
+   {
 
-            if(m_cairosurfaceSource != NULL)
-            {
+      m_cairosurface = cairo_xlib_surface_create(window->display(), window->window(), window->visual(), cxParam, cyParam);
 
-       cairo_surface_destroy(m_cairosurfaceSource);
+      m_cairo = cairo_create(m_cairosurface);
 
-            }
+   }
+   else
+   {
 
-            if(m_cairosurface == NULL)
-            {
+      cairo_xlib_surface_set_size(m_cairosurface, cxParam, cyParam);
 
-               m_cairosurface = cairo_xlib_surface_create(window->display(), window->window(), window->visual(), cxParam, cyParam);
+   }
 
-               m_cairo = cairo_create(m_cairosurface);
+   int32_t iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cxParam);
 
-            }
-            else
-            {
+   m_mem.allocate(iStride * cyParam);
 
-               cairo_xlib_surface_set_size(m_cairosurface, cxParam, cyParam);
+   m_cairosurfaceSource = cairo_image_surface_create_for_data((unsigned char *) m_mem.get_data(), CAIRO_FORMAT_ARGB32, cxParam, cyParam, iStride);
 
-            }
-
-            int32_t iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cxParam);
-
-            m_mem.allocate(iStride * cyParam);
-
-            m_cairosurfaceSource = cairo_image_surface_create_for_data((unsigned char *) m_mem.get_data(), CAIRO_FORMAT_ARGB32, cxParam, cyParam, iStride);
-
-            m_cairoSource = cairo_create(m_cairosurfaceSource);
-
-/*
-            m_cairosurfaceWork = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, rectWindow.width(), rectWindow.height());
-
-            m_cairoWork = cairo_create(m_cairosurfaceWork);*/
-
+   m_cairoSource = cairo_create(m_cairosurfaceSource);
 
    window_graphics::create(window, cxParam, cyParam, iStride);
-         }
 
-
-//      }
-
-
-//}
+}
 
 
 
@@ -102,22 +77,6 @@ void window_cairo::create(oswindow window, int64_t cxParam, int64_t cyParam, int
 
 void window_cairo::destroy()
 {
-
-   /*if(m_hdc != NULL)
-   {
-
-      ::SelectObject(m_hdc, m_hbitmapOld);
-
-      ::DeleteDC(m_hdc);
-
-   }
-
-
-   if(m_hbitmap != NULL)
-   {
-      ::DeleteObject(m_hbitmap);
-
-   }*/
 
    window_graphics::destroy();
 
@@ -128,51 +87,9 @@ void window_cairo::destroy()
 void window_cairo::update_window(oswindow window, COLORREF * pOsBitmapData, LPCRECT lpcrect, int iStride)
 {
 
-
    copy_colorref((COLORREF *) m_mem.get_data(), pOsBitmapData, iStride);
 
    cairo_surface_mark_dirty(m_cairosurfaceSource);
-
-//   cairo_keep keepSource(m_cairoSource);
-
-/*   try
-   {
-
-      g->attach(m_cairoSource);
-
-      _000OnDraw(g);
-
-
-   }
-   catch(...)
-   {
-
-   }
-
-   try
-   {
-
-      g->detach();
-
-   }
-   catch(...)
-   {
-
-   }
-
-   try
-   {
-
-      keepSource.restore();
-
-   }
-   catch(...)
-   {
-
-   }*/
-
-
-   //XLockDisplay(m_oswindow->display());
 
    try
    {
@@ -206,10 +123,6 @@ void window_cairo::update_window(oswindow window, COLORREF * pOsBitmapData, LPCR
 
 
    }
-
-   //XUnlockDisplay(m_oswindow->display());
-
-
 
 }
 

@@ -6,6 +6,8 @@ class CLASS_DECL_ca window_cairo :
 public:
 
 
+   cairo_t *                     m_cairo;
+   cairo_surface_t *             m_cairosurface;
    cairo_t *                     m_cairoSource;
    cairo_surface_t *             m_cairosurfaceSource;
    simple_memory                 m_mem;
