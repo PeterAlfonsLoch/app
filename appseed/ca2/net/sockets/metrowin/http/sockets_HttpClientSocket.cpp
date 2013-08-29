@@ -189,6 +189,8 @@ namespace sockets
 
       OnDataArrived(buf, len);
 
+      m_content_ptr += len;
+
       if(m_pfile != NULL )
       {
          
@@ -220,8 +222,6 @@ namespace sockets
 
       m_memoryfile.write(buf, len);
 
-      m_content_ptr += len;
-
       if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
       {
 
@@ -241,15 +241,25 @@ namespace sockets
          {
             SetCloseAndDelete();
          }
+
+         m_bExpectResponse = false;
+
       }
       else
       {
+
+         m_event.ResetEvent();
+
          m_bExpectResponse = true;
+
       }
+
    }
+
 
    void http_client_socket::OnDataArrived(const char * buf, size_t len)
    {
+
       UNREFERENCED_PARAMETER(buf);
       UNREFERENCED_PARAMETER(len);
    }

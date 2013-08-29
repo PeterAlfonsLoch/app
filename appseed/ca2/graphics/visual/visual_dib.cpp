@@ -25,7 +25,7 @@ namespace visual
 
    bool dib_sp::load_from_file(var varFile)
    {
-
+      mutex_lock ml(user_mutex());
       // image cache load
       // cache of decompression time
       string strFile;
@@ -93,7 +93,9 @@ namespace visual
       FIBITMAP * pfi = Sys(m_p->m_papp).visual().imaging().LoadImageFile(pfile);
       if(pfi == NULL)
          return false;
+      mutex_lock ml(user_mutex());
       single_lock slDc(Sys(m_p->get_app()).m_pmutexDc, true);
+
       ::draw2d::graphics_sp spgraphics(m_p->m_papp->allocer());
       spgraphics->CreateCompatibleDC(NULL);
       if(!m_p->from(spgraphics, pfi, true))
