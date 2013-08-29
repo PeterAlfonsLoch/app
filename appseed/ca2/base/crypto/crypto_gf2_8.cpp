@@ -49,8 +49,12 @@
 
 /* gf2_8_shift() moved to gf2_8.h as an inline function */
 
+gf2_8
+gf2_8_multiply(gf2_8 x, gf2_8 y);
+
+
 inline gf2_8
-gf2_8_multiply(gf2_8 x, gf2_8 y) {
+inline_gf2_8_multiply(gf2_8 x, gf2_8 y) {
   gf2_8 z = 0;
 
   if (y &   1) z ^= x; x = gf2_8_shift(x);
@@ -64,6 +68,11 @@ gf2_8_multiply(gf2_8 x, gf2_8 y) {
   
   return z;
 }
+gf2_8
+gf2_8_multiply(gf2_8 x, gf2_8 y)
+{
+   return inline_gf2_8_multiply(x, y);
+}
 
 
 /* this should use the euclidean algorithm */
@@ -74,7 +83,7 @@ gf2_8_compute_inverse(gf2_8 x) {
 
   if (x == 0) return 0;    /* zero is a special case */
   for (i=0; i < 256; i++)
-    if (gf2_8_multiply((gf2_8) i, x) == 1)
+    if (inline_gf2_8_multiply((gf2_8) i, x) == 1)
       return (gf2_8) i;
 
     return 0;

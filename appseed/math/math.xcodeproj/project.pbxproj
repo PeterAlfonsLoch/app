@@ -23,8 +23,7 @@
 		9AD4FD8017BD5A480008F751 /* kissfft_fftd.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD7017BD5A480008F751 /* kissfft_fftd.h */; };
 		9AD4FD8117BD5A480008F751 /* kissfft_ifftd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD7117BD5A480008F751 /* kissfft_ifftd.cpp */; };
 		9AD4FD8217BD5A480008F751 /* kissfft_ifftd.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD7217BD5A480008F751 /* kissfft_ifftd.h */; };
-		9AD4FD8417BD5A480008F751 /* debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD7517BD5A480008F751 /* debug.cpp */; };
-		9AD4FD8517BD5A480008F751 /* math.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD7617BD5A480008F751 /* math.h */; };
+		9AD4FD8517BD5A480008F751 /* math_math.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD7617BD5A480008F751 /* math_math.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,8 +44,7 @@
 		9AD4FD7017BD5A480008F751 /* kissfft_fftd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kissfft_fftd.h; sourceTree = "<group>"; };
 		9AD4FD7117BD5A480008F751 /* kissfft_ifftd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kissfft_ifftd.cpp; sourceTree = "<group>"; };
 		9AD4FD7217BD5A480008F751 /* kissfft_ifftd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kissfft_ifftd.h; sourceTree = "<group>"; };
-		9AD4FD7517BD5A480008F751 /* debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = debug.cpp; sourceTree = "<group>"; };
-		9AD4FD7617BD5A480008F751 /* math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math.h; sourceTree = "<group>"; };
+		9AD4FD7617BD5A480008F751 /* math_math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_math.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +112,7 @@
 		9AD4FD7317BD5A480008F751 /* math */ = {
 			isa = PBXGroup;
 			children = (
-				9AD4FD7517BD5A480008F751 /* debug.cpp */,
-				9AD4FD7617BD5A480008F751 /* math.h */,
+				9AD4FD7617BD5A480008F751 /* math_math.h */,
 			);
 			path = math;
 			sourceTree = "<group>";
@@ -134,7 +131,7 @@
 				9AD4FD7E17BD5A480008F751 /* kissfft.h in Headers */,
 				9AD4FD8017BD5A480008F751 /* kissfft_fftd.h in Headers */,
 				9AD4FD8217BD5A480008F751 /* kissfft_ifftd.h in Headers */,
-				9AD4FD8517BD5A480008F751 /* math.h in Headers */,
+				9AD4FD8517BD5A480008F751 /* math_math.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +192,6 @@
 				9AD4FD7C17BD5A480008F751 /* kiss_ifft.cpp in Sources */,
 				9AD4FD7F17BD5A480008F751 /* kissfft_fftd.cpp in Sources */,
 				9AD4FD8117BD5A480008F751 /* kissfft_ifftd.cpp in Sources */,
-				9AD4FD8417BD5A480008F751 /* debug.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

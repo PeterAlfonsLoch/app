@@ -23,7 +23,7 @@ template <class ID_TYPE, class ARG_ID_TYPE, class ITEM_TYPE, class ARG_ITEM_TYPE
 void packset <ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY> ::
 pack(ARG_ID_TYPE id, ARG_ITEM_TYPE item)
 {
-   operator[](id).add(item);
+   this->operator[](id).add(item);
 }
 
 
