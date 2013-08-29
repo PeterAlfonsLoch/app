@@ -68,23 +68,23 @@ FIXME: documentation ???
 @param mqc MQC handle
 @return 
 */
-static INLINE int mqc_mpsexchange(opj_mqc_t *const mqc);
+static  int mqc_mpsexchange(opj_mqc_t *const mqc);
 /**
 FIXME: documentation ???
 @param mqc MQC handle
 @return 
 */
-static INLINE int mqc_lpsexchange(opj_mqc_t *const mqc);
+static  int mqc_lpsexchange(opj_mqc_t *const mqc);
 /**
 Input a byte
 @param mqc MQC handle
 */
-static INLINE void mqc_bytein(opj_mqc_t *const mqc);
+static  void mqc_bytein(opj_mqc_t *const mqc);
 /**
 Renormalize mqc->a and mqc->c while decoding
 @param mqc MQC handle
 */
-static INLINE void mqc_renormd(opj_mqc_t *const mqc);
+static  void mqc_renormd(opj_mqc_t *const mqc);
 /*@}*/
 
 /*@}*/
@@ -270,7 +270,7 @@ static void mqc_setbits(opj_mqc_t *mqc) {
 	}
 }
 
-static INLINE int mqc_mpsexchange(opj_mqc_t *const mqc) {
+static  int mqc_mpsexchange(opj_mqc_t *const mqc) {
 	int d;
 	if (mqc->a < (*mqc->curctx)->qeval) {
 		d = 1 - (*mqc->curctx)->mps;
@@ -283,7 +283,7 @@ static INLINE int mqc_mpsexchange(opj_mqc_t *const mqc) {
 	return d;
 }
 
-static INLINE int mqc_lpsexchange(opj_mqc_t *const mqc) {
+static  int mqc_lpsexchange(opj_mqc_t *const mqc) {
 	int d;
 	if (mqc->a < (*mqc->curctx)->qeval) {
 		mqc->a = (*mqc->curctx)->qeval;
@@ -299,7 +299,7 @@ static INLINE int mqc_lpsexchange(opj_mqc_t *const mqc) {
 }
 
 #ifdef MQC_PERF_OPT
-static INLINE void mqc_bytein(opj_mqc_t *const mqc) {
+static  void mqc_bytein(opj_mqc_t *const mqc) {
 	unsigned int i = *((unsigned int *) mqc->bp);
 	mqc->c += i & 0xffff00;
 	mqc->ct = i & 0x0f;
@@ -335,7 +335,7 @@ static void mqc_bytein(opj_mqc_t *const mqc) {
 }
 #endif
 
-static INLINE void mqc_renormd(opj_mqc_t *const mqc) {
+static  void mqc_renormd(opj_mqc_t *const mqc) {
 	do {
 		if (mqc->ct == 0) {
 			mqc_bytein(mqc);

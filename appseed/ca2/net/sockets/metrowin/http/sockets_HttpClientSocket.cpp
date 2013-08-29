@@ -127,6 +127,11 @@ namespace sockets
       if(m_content_length != ((size_t) (-1)))
       {
          m_memoryfile.allocate_internal(m_content_length);
+          if(outheader(__id(content_encoding)).compare_value_ci("gzip") != 0)
+          {
+              
+              m_iFinalSize = m_content_length;
+          }
       }
 
       m_memoryfile.seek_to_begin();
@@ -161,40 +166,67 @@ namespace sockets
 
    }
 
+
    void http_client_socket::OnDataComplete()
    {
+
       if(!m_bNoClose)
       {
+
          SetCloseAndDelete();
+
       }
+
       m_bExpectRequest = false;
+
       m_bExpectResponse = false;
+
    }
+
 
    void http_client_socket::OnData(const char *buf,size_t len)
    {
+
       OnDataArrived(buf, len);
 
-      if(m_pfile != NULL)
+      if(m_pfile != NULL )
       {
-         m_pfile->write(buf, len);
-         if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
+         
+         if(outheader(__id(content_encoding)).compare_value_ci("gzip") != 0)
          {
-            m_bExpectResponse = false;
+            
+            m_pfile->write(buf, len);
+
+            if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
+            {
+
+               m_bExpectResponse = false;
+
+            }
+            else
+            {
+
+               m_event.ResetEvent();
+
+               m_bExpectResponse = true;
+
+            }
+
+            return;
+            
          }
-         else
-         {
-            m_event.ResetEvent();
-            m_bExpectResponse = true;
-         }
-         return;
+         
       }
+
       m_memoryfile.write(buf, len);
 
       m_content_ptr += len;
+
       if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
       {
+
          m_b_complete = true;
+
          if(outheader(__id(content_encoding)).compare_value_ci("gzip") == 0)
          {
             System.compress().ungz(m_memoryfile);
@@ -202,6 +234,7 @@ namespace sockets
          if(m_pfile != NULL)
          {
             m_pfile->write(m_memoryfile.get_data(), m_memoryfile.get_size());
+            m_iFinalSize = m_pfile->get_length();
          }
          OnContent();
          if (m_b_close_when_complete)

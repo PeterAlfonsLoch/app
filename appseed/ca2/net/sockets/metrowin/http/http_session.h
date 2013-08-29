@@ -17,6 +17,7 @@
          string      m_strProtocol;
          string      m_strHost;
          bool        m_bRequestComplete;
+         
 
 
          http_session(socket_handler_base &, const string & protocol, const string & host);

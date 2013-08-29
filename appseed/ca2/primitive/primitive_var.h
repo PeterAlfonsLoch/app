@@ -764,6 +764,8 @@ inline string  & operator += (string & str, const var & var)
 
 }
 
+#ifdef MOVE_SEMANTICS
+
 inline var::var(var && v)
 {
    *((var_data *) this) = *((var_data*)&v);
@@ -771,6 +773,7 @@ inline var::var(var && v)
    v.m_str.m_pszData = NULL;
 }
 
+#endif
 
 inline var & var::operator = (var && v)
 {

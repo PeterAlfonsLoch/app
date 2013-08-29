@@ -17,6 +17,7 @@ namespace ca2
       T * m_p;
 
 #if defined(MOVE_SEMANTICS)
+
       smart_pointer_query(smart_pointer_query && q)
       {
 
@@ -38,7 +39,6 @@ namespace ca2
          q.m_psp  = NULL;
 
       }
-#endif
 
       smart_pointer_query(::ca::smart_pointer < T > & sp)
       {
@@ -48,6 +48,20 @@ namespace ca2
          m_p      = NULL;
 
       }
+
+#else
+
+      smart_pointer_query(const ::ca::smart_pointer < T > & sp)
+      {
+
+         m_psp    = &sp;
+
+         m_p      = NULL;
+
+      }
+
+#endif
+
 
       virtual ~smart_pointer_query()
       {
@@ -75,7 +89,7 @@ namespace ca2
 
 
 
-
+#if defined(MOVE_SEMANTICS)
 
 template < class T >
 inline ::ca2::smart_pointer_query < T > ca_smart_pointer_query(::ca::smart_pointer < T > & sp)
@@ -83,5 +97,14 @@ inline ::ca2::smart_pointer_query < T > ca_smart_pointer_query(::ca::smart_point
    return ::ca2::smart_pointer_query < T > (sp);
 }
 
+#else
+
+template < class T >
+inline ::ca2::smart_pointer_query < T > ca_smart_pointer_query(const ::ca::smart_pointer < T > & sp)
+{
+   return sp;
+}
+
+#endif
 
 #define spquery(sp) ::ca_smart_pointer_query(sp)

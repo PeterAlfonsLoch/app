@@ -39,9 +39,9 @@
 /** @name Local static functions */
 /*@{*/
 
-static INLINE char t1_getctxno_zc(int f, int orient);
+static  char t1_getctxno_zc(int f, int orient);
 static char t1_getctxno_sc(int f);
-static INLINE int t1_getctxno_mag(int f);
+static  int t1_getctxno_mag(int f);
 static char t1_getspb(int f);
 static short t1_getnmsedec_sig(int x, int bitpos);
 static short t1_getnmsedec_ref(int x, int bitpos);
@@ -62,20 +62,20 @@ static void t1_enc_sigpass_step(
 /**
 Decode significant pass
 */
-static INLINE void t1_dec_sigpass_step_raw(
+static  void t1_dec_sigpass_step_raw(
 		opj_t1_t *t1,
 		flag_t *flagsp,
 		int *datap,
 		int orient,
 		int oneplushalf,
 		int vsc);
-static INLINE void t1_dec_sigpass_step_mqc(
+static  void t1_dec_sigpass_step_mqc(
 		opj_t1_t *t1,
 		flag_t *flagsp,
 		int *datap,
 		int orient,
 		int oneplushalf);
-static INLINE void t1_dec_sigpass_step_mqc_vsc(
+static  void t1_dec_sigpass_step_mqc_vsc(
 		opj_t1_t *t1,
 		flag_t *flagsp,
 		int *datap,
@@ -123,20 +123,20 @@ static void t1_enc_refpass_step(
 /**
 Decode refinement pass
 */
-static void INLINE t1_dec_refpass_step_raw(
+static void  t1_dec_refpass_step_raw(
 		opj_t1_t *t1,
 		flag_t *flagsp,
 		int *datap,
 		int poshalf,
 		int neghalf,
 		int vsc);
-static void INLINE t1_dec_refpass_step_mqc(
+static void  t1_dec_refpass_step_mqc(
 		opj_t1_t *t1,
 		flag_t *flagsp,
 		int *datap,
 		int poshalf,
 		int neghalf);
-static void INLINE t1_dec_refpass_step_mqc_vsc(
+static void  t1_dec_refpass_step_mqc_vsc(
 		opj_t1_t *t1,
 		flag_t *flagsp,
 		int *datap,
@@ -373,7 +373,7 @@ static void t1_enc_sigpass_step(
 	}
 }
 
-static INLINE void t1_dec_sigpass_step_raw(
+static  void t1_dec_sigpass_step_raw(
 		opj_t1_t *t1,
 		flag_t *flagsp,
 		int *datap,
@@ -396,7 +396,7 @@ static INLINE void t1_dec_sigpass_step_raw(
 	}
 }				/* VSC and  BYPASS by Antonin */
 
-static INLINE void t1_dec_sigpass_step_mqc(
+static  void t1_dec_sigpass_step_mqc(
 		opj_t1_t *t1,
 		flag_t *flagsp,
 		int *datap,
@@ -420,7 +420,7 @@ static INLINE void t1_dec_sigpass_step_mqc(
 	}
 }				/* VSC and  BYPASS by Antonin */
 
-static INLINE void t1_dec_sigpass_step_mqc_vsc(
+static  void t1_dec_sigpass_step_mqc_vsc(
 		opj_t1_t *t1,
 		flag_t *flagsp,
 		int *datap,
@@ -596,7 +596,7 @@ static void t1_enc_refpass_step(
 	}
 }
 
-static INLINE void t1_dec_refpass_step_raw(
+static  void t1_dec_refpass_step_raw(
 		opj_t1_t *t1,
 		flag_t *flagsp,
 		int *datap,
@@ -617,7 +617,7 @@ static INLINE void t1_dec_refpass_step_raw(
 	}
 }				/* VSC and  BYPASS by Antonin  */
 
-static INLINE void t1_dec_refpass_step_mqc(
+static  void t1_dec_refpass_step_mqc(
 		opj_t1_t *t1,
 		flag_t *flagsp,
 		int *datap,
@@ -638,7 +638,7 @@ static INLINE void t1_dec_refpass_step_mqc(
 		}
 }				/* VSC and  BYPASS by Antonin  */
 
-static INLINE void t1_dec_refpass_step_mqc_vsc(
+static  void t1_dec_refpass_step_mqc_vsc(
 		opj_t1_t *t1,
 		flag_t *flagsp,
 		int *datap,
