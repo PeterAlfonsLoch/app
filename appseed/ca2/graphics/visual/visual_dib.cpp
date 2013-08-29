@@ -99,7 +99,7 @@ namespace visual
 
       mutex_lock ml(user_mutex());
 
-#if !defined(LINUX) && !defined(MACOS)
+#if defined(LINUX) && !defined(MACOS)
 
       single_lock slDc(Sys(m_p->get_app()).m_pmutexDc, true);
 

@@ -202,8 +202,8 @@ void simple_mutex::lock()
 #ifdef MACOS
 
 
-int pthread_mutex_timedlock(pthread_mutex_t * mutex, const struct timespec * abs_timeout)
-{
+int pthread_mutex_timedlock(pthread_mutex_t * mutex, const struct timespec * abs_timeout);
+/*{
 
    if(abs_timeout == NULL)
    {
@@ -235,7 +235,7 @@ int pthread_mutex_timedlock(pthread_mutex_t * mutex, const struct timespec * abs
 
          ts.tv_sec = 10000000;
 
-         /* Sleep for 10,000,000 nanoseconds before trying again. */
+         // Sleep for 10,000,000 nanoseconds before trying again.
 
          nanosleep(&ts, &ts);
 
@@ -250,7 +250,7 @@ int pthread_mutex_timedlock(pthread_mutex_t * mutex, const struct timespec * abs
    }
 
 }
-
+*/
 
 #endif
 
