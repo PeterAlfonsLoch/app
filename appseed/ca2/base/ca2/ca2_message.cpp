@@ -254,7 +254,7 @@ namespace ca2
       }
 
 
-#ifdef LINUX
+#if defined(LINUX)
 
       sp(base) dispatch::get_base(XEvent * pevent, sp(::user::interaction) pwnd)
       {
@@ -314,14 +314,14 @@ namespace ca2
 
    /////////////////////////////////////////////////////////////////////////////
    // WM_NOTIFY support
-
+#ifdef WINDOWS
    struct __NOTIFY
    {
       LRESULT* pResult;
       NMHDR* pNMHDR;
    };
 
-
+#endif
 
       //bool dispatch::_iguimessageDispatchCommandMessage(
          // BaseCommand * pcommand,

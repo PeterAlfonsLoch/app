@@ -1599,7 +1599,7 @@ namespace ca2
 
 
 
-#if !defined(LINUX) && !defined(MACOS) && !defined(METROWIN)
+#if !defined(LINUX) && !defined(MACOS) && !defined(METROWIN) && !defined(ANDROID)
 
 #include <Tlhelp32.h>
 #include <Psapi.h>

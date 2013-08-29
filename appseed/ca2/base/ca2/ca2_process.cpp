@@ -3,8 +3,10 @@
 
 #ifndef METROWIN
 
-
-#ifdef LINUX
+#if defined(ANDROID)
+#include <sys/wait.h>
+#include <unistd.h>
+#elif defined(LINUX)
 #include <sys/wait.h>
 #include <unistd.h>
 #include <spawn.h>
@@ -162,6 +164,10 @@ namespace ca2
       return true;
 
 #elif defined(METROWIN)
+
+      throw todo(::ca2::get_thread_app());
+
+#elif defined(ANDROID)
 
       throw todo(::ca2::get_thread_app());
 
@@ -359,7 +365,11 @@ namespace ca2
       int32_t iExitCode;
       //      bool bExited;
 
-      int32_t wpid = waitpid(m_iPid, &iExitCode, WNOHANG
+      int32_t wpid = waitpid(m_iPid, &iExitCode, 
+         0
+#ifdef WNOHANG
+         | WNOHANG
+#endif
 #ifdef WCONTINUED
          | WCONTINUED
 #endif

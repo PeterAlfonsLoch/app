@@ -3480,6 +3480,8 @@ RetryHost:
       uint32_t path_len = MAXPATHLEN;
       _NSGetExecutablePath(path, &path_len);
       char * psz = path;
+#elif defined(ANDROID)
+      char * psz = NULL;
 #else
       char * psz = br_find_exe("app-install");
 #endif

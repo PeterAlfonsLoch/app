@@ -405,13 +405,15 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
       </EntryPointSymbol>
+      <AndroidSystemLibs>c;m;log;gcc;_c;_ca2zlib;_ca2freeimage;_ca2freetype;_ca2cairo;_ca2openssl</AndroidSystemLibs>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -1312,6 +1314,10 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="android\ca_os_launcher.cpp" />
+    <ClCompile Include="android\ca_os_library.cpp" />
+    <ClCompile Include="android\ca_os_lock.cpp" />
+    <ClCompile Include="android\ca_os_message_loop.cpp" />
     <ClCompile Include="android\ca_os_process.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
@@ -1360,12 +1366,17 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="android\ca_os_simple_shell_launcher.cpp" />
+    <ClCompile Include="android\ca_os_small_ipca_channel.cpp" />
     <ClCompile Include="android\ca_os_thread.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="android\ca_os_window.cpp" />
+    <ClCompile Include="android\ca_os_window_android.cpp" />
+    <ClCompile Include="android\ca_os_win_base.cpp" />
     <ClCompile Include="ansios\ansios_cross_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
@@ -1604,8 +1615,20 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ProjectReference Include="..\..\thirdparty\appseed\cairo\_ca2cairo.vcxproj">
       <Project>{e6c58c82-71e5-48e6-98ed-1b505d6f10c2}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\FreeImage\FreeImage.vcxproj">
+      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\freetype\freetype.vcxproj">
+      <Project>{771f4b49-cad1-438f-b272-20f3eb8e88f1}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\thirdparty\appseed\openssl\openssl.vcxproj">
       <Project>{ac98b756-e84c-4a70-9cdb-e9812fef9b98}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\pixman\_ca2pixman.vcxproj">
+      <Project>{63108f1c-eaa8-4c49-a591-13f813a76b05}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\zlib\_ca2zlib.vcxproj">
+      <Project>{9ffc2cf6-737c-43db-a1ee-383f7bfdb05b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\c\c.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>

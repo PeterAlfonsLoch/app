@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
 bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow oswindow, bool bPeek);
 #endif
 
@@ -942,7 +942,7 @@ CLASS_DECL_c WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT
    if(wMsgFilterMax == 0)
       wMsgFilterMax = (UINT) -1;
 
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
    HTHREAD hthread = ::GetCurrentThread();
    DWORD idThre = ::GetCurrentThreadId();
 #endif
@@ -974,7 +974,7 @@ restart:
 
    ml.unlock();
 
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
    if(hthread != NULL && hthread->m_pthread != NULL)
    {
 
@@ -1041,7 +1041,7 @@ CLASS_DECL_c WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UIN
    if(pmq == NULL)
       return FALSE;
 
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
    HTHREAD hthread = ::GetCurrentThread();
    DWORD idThre = ::GetCurrentThreadId();
 #endif
@@ -1068,7 +1068,7 @@ CLASS_DECL_c WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UIN
 
    ml.unlock();
 
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
    if(hthread != NULL && hthread->m_pthread != NULL && hthread->m_pthread->get_x_window_count() > 0)
    {
 
@@ -1309,7 +1309,7 @@ namespace ca2
 
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
 
 void on_start_thread()
 {

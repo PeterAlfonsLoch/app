@@ -2,26 +2,6 @@
 
 
 
-//#include "linux/ca_os_cross_win_gdi_internal.h"
-
-extern cairo_surface_t *  g_cairosurface;
-extern cairo_t *  g_cairo;
-
-
-/*
-void set(XColor & color, COLORREF cr)
-{
-   color.pixel    = cr;
-   color.red      = GetRValue(cr);
-   color.green    = GetGValue(cr);
-   color.blue     = GetBValue(cr);
-}
-
-
-*/
-
-
-
 
 
 
@@ -64,7 +44,7 @@ bool os_simple_graphics::create(os_simple_graphics * pgraphics)
          return false;
 
       m_pdc = cairo_create(psurface);
-if(psurface == g_cairosurface)
+if(psurface == ::ca_cairo_keep::g_cairosurface)
 {
    printf("123");
 }
@@ -87,7 +67,7 @@ if(psurface == g_cairosurface)
 
       if(psurfaceNew == NULL)
          return false;
-if(psurfaceNew == g_cairosurface)
+if(psurfaceNew == ::ca_cairo_keep::g_cairosurface)
 {
    printf("123");
 }

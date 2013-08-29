@@ -1,8 +1,5 @@
 #include "framework.h"
 
-extern cairo_surface_t *  g_cairosurface;
-extern cairo_t *  g_cairo;
-
 simple_bitmap::simple_bitmap()
 {
 
@@ -115,10 +112,13 @@ bool simple_bitmap::destroy()
    if(m_psurface == NULL)
       return true;
 
-if(m_psurface == g_cairosurface)
-{
-   printf("123");
-}
+   if(m_psurface == ca_cairo_keep::g_cairosurface)
+   {
+   
+      printf("123");
+
+   }
+
    cairo_surface_destroy(m_psurface);
 
    return true;

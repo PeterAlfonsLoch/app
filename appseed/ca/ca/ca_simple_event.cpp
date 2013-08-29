@@ -20,6 +20,28 @@ simple_event::simple_event(bool bInitialWait, bool bManualReset)
 
    m_hEvent = ::CreateEvent(0, 0, 0, 0);
 
+#elif defined(ANDROID)
+
+   pthread_cond_init(&m_cond, NULL);
+
+   m_bManualEvent = bManualReset;
+
+   if(m_bManualEvent)
+   {
+
+      m_bSignaled = bInitialWait;
+      pthread_mutexattr_t  attr;
+      pthread_mutexattr_init(&attr);
+      pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+      int32_t rc;
+      if((rc = pthread_mutex_init(&m_mutex, &attr)))
+      {
+         throw "RC_OBJECT_NOT_CREATED";
+      }
+
+
+   }
+
 #else
 
    pthread_cond_init(&m_cond, NULL);
@@ -64,7 +86,7 @@ void simple_event::set_event()
 
 #else
 
-   mutex_lock lockMutex(m_mutex, true);
+   pmutex_lock lockMutex(&m_mutex, true);
 
    if(m_bManualEvent)
    {
@@ -97,7 +119,7 @@ void simple_event::reset_event()
 
 #else
 
-   mutex_lock lockMutex(m_mutex, true);
+   pmutex_lock lockMutex(&m_mutex, true);
 
    if(m_bManualEvent)
    {
@@ -105,6 +127,7 @@ void simple_event::reset_event()
       m_bSignaled = false;
 
    }
+
 //   pthread_cond_wait(&m_cond, &m_mutex.m_mutex);
 
 #endif
@@ -124,7 +147,7 @@ void simple_event::wait()
 
 #else
 
-   mutex_lock lockMutex(m_mutex, true);
+   pmutex_lock lockMutex(&m_mutex, true);
 
    if(m_bManualEvent)
    {
@@ -134,7 +157,7 @@ void simple_event::wait()
       while(!m_bSignaled && iSignal == m_iSignalId)
       {
 
-         pthread_cond_wait(&m_cond, &m_mutex.m_mutex);
+         pthread_cond_wait(&m_cond, &m_mutex);
 
       }
 
@@ -142,7 +165,7 @@ void simple_event::wait()
    else
    {
 
-      pthread_cond_wait(&m_cond, &m_mutex.m_mutex);
+      pthread_cond_wait(&m_cond, &m_mutex);
 
    }
 
@@ -157,13 +180,13 @@ bool simple_event::wait(uint32_t dwTimeout)
 
    return WaitForSingleObjectEx(m_hEvent, dwTimeout, FALSE) == WAIT_OBJECT_0;
 
-#elif defined WINDOWS
+#elif defined(WINDOWS)
 
    return WaitForSingleObject(m_hEvent, INFINITE) == WAIT_OBJECT_0;
 
 #else
 
-   mutex_lock lockMutex(m_mutex, true);
+   pmutex_lock lockMutex(&m_mutex, true);
 
    if(m_bManualEvent)
    {
@@ -176,7 +199,7 @@ bool simple_event::wait(uint32_t dwTimeout)
          timespec ts;
          ts.tv_sec = dwTimeout / 1000;
          ts.tv_nsec = (dwTimeout * 1000) % (1000 * 1000);
-         if(pthread_cond_timedwait(&m_cond, &m_mutex.m_mutex, &ts))
+         if(pthread_cond_timedwait(&m_cond, &m_mutex, &ts))
             break;
 
       }
@@ -188,7 +211,7 @@ bool simple_event::wait(uint32_t dwTimeout)
       timespec ts;
       ts.tv_sec = dwTimeout / 1000;
       ts.tv_nsec = (dwTimeout * 1000) % (1000 * 1000);
-      pthread_cond_timedwait(&m_cond, &m_mutex.m_mutex, &ts);
+      pthread_cond_timedwait(&m_cond, &m_mutex, &ts);
 
    }
 

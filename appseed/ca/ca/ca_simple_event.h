@@ -6,14 +6,21 @@ class CLASS_DECL_ca simple_event
 {
 public:
 
+
 #ifdef WINDOWS
+
+
    HANDLE            m_hEvent;
+
+
 #else
+   
    pthread_cond_t    m_cond;
-   simple_mutex      m_mutex;
-   bool              m_bManualEvent;
+   pthread_mutex_t   m_mutex;
+   bool              m_bManualEvent; 
    bool              m_bSignaled;  // meaningful only when m_bManualEvent
-   int32_t               m_iSignalId;  // meaningful only when m_bManualEvent
+   int32_t           m_iSignalId;  // meaningful only when m_bManualEvent
+
 #endif
 
 

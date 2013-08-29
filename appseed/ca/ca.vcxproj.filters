@@ -84,6 +84,15 @@
     <Filter Include="Header Files\ansios">
       <UniqueIdentifier>{cedce671-58fd-4162-bf1c-1c3c00dbd916}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ansios\crypto">
+      <UniqueIdentifier>{7ba43f41-9f54-4f74-a26d-bce7dbf86caa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cross">
+      <UniqueIdentifier>{9713475d-2040-4058-adb0-6d971b4284cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cross\windows">
+      <UniqueIdentifier>{e2cfe0cf-c68f-488a-979d-762d5e1aece1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hotplugin\hotplugin.h">
@@ -971,6 +980,33 @@
       <Filter>Source Files\android</Filter>
     </ClCompile>
     <ClCompile Include="android\ca_os_file_watcher.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_window_android.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_window.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_win_base.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_small_ipca_channel.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_simple_shell_launcher.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_message_loop.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_lock.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_library.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\ca_os_launcher.cpp">
       <Filter>Source Files\android</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-#ifndef ANDROID
-
 
 bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, bool bPeek)
 {
+#ifndef ANDROID
+
 
    if(hthread == NULL || hthread->m_pthread == NULL || hthread->m_pthread->get_x_window_count() <= 0)
       return false;
@@ -220,8 +220,11 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
 
    return bRet;
 
-}
+#endif
 
+   return false;
+
+}
 
 
 
@@ -235,7 +238,7 @@ void get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t nCa2Prior
 
    int iCa2Max;
 
-   if(nCa2Priority == ::ca2::scheduling_priority_normal)
+/*   if(nCa2Priority == ::ca2::scheduling_priority_normal)
    {
 
       iOsPolicy = SCHED_OTHER;
@@ -244,8 +247,8 @@ void get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t nCa2Prior
 
       iCa2Max = (int) ::ca2::scheduling_priority_normal;
 
-   }
-   else if(nCa2Priority > ::ca2::scheduling_priority_normal)
+   }*/
+   if(nCa2Priority > ::ca2::scheduling_priority_normal)
    {
 
       iOsPolicy = SCHED_RR;
@@ -258,7 +261,8 @@ void get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t nCa2Prior
    else
    {
 
-      iOsPolicy = SCHED_IDLE;
+      //iOsPolicy = SCHED_IDLE;
+      iOsPolicy = SCHED_OTHER;
 
       iCa2Min = 0;
 
@@ -305,18 +309,19 @@ int32_t get_scheduling_priority(int32_t iOsPolicy, const sched_param * pparam)
       iCa2Max = 99;
 
    }
-   else if(iOsPolicy == SCHED_IDLE)
+/*   else if(iOsPolicy == SCHED_IDLE)
    {
 
       iCa2Min = 0;
 
       iCa2Max = (int) ::ca2::scheduling_priority_normal;
 
-   }
+   }*/
    else
    {
 
-      iCa2Min = (int) ::ca2::scheduling_priority_normal;
+      //iCa2Min = (int) ::ca2::scheduling_priority_normal;
+      iCa2Min = (int) 0;
 
       iCa2Max = (int) ::ca2::scheduling_priority_normal;
 
@@ -404,9 +409,4 @@ namespace ca2
 
 
 } // namespace ca2
-
-
-#endif
-
-
 

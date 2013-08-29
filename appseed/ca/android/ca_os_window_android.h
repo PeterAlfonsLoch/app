@@ -1,6 +1,7 @@
+#pragma once
 
 
-class CLASS_DECL_ca window_cairo :
+class CLASS_DECL_ca window_android :
    public window_graphics
 {
 public:
@@ -11,8 +12,9 @@ public:
    simple_memory                 m_mem;
 
 
-   window_cairo();
-   virtual ~window_cairo();
+   window_android();
+   virtual ~window_android();
+
 
    virtual void create(oswindow window, int64_t cx, int64_t cy, int iStride = -1);
    virtual void destroy();
