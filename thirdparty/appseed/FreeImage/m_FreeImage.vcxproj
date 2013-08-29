@@ -55,7 +55,7 @@
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
-    <OutDir>$(SolutionDir)..\..\..\stage\x86\$(SolutionName)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <GenerateManifest>false</GenerateManifest>
