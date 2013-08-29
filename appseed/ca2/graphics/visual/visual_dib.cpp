@@ -88,20 +88,34 @@ namespace visual
       return load_from_file(App(m_p->m_papp).dir().matter(pszMatter));
    }
 
+
    bool dib_sp::read_from_file(sp(::ca2::file) pfile)
    {
+
       FIBITMAP * pfi = Sys(m_p->m_papp).visual().imaging().LoadImageFile(pfile);
+
       if(pfi == NULL)
          return false;
+
       mutex_lock ml(user_mutex());
+
+#if !defined(LINUX)
+
       single_lock slDc(Sys(m_p->get_app()).m_pmutexDc, true);
 
+#endif
+
       ::draw2d::graphics_sp spgraphics(m_p->m_papp->allocer());
+
       spgraphics->CreateCompatibleDC(NULL);
+
       if(!m_p->from(spgraphics, pfi, true))
          return false;
+
       return true;
+
    }
+
 
    bool dib_sp::save_to_file(var varFile, save_image * psaveimage)
    {
