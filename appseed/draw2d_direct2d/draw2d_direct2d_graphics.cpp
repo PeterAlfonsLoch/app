@@ -791,10 +791,10 @@ namespace draw2d_direct2d
 
                D2D1_RECT_F r;
 
-               r.left = x;
-               r.top = y;
-               r.right = r.left + cx;
-               r.bottom = r.top + cy;
+               r.left   = (FLOAT) x;
+               r.top    = (FLOAT) y;
+               r.right  = r.left    + cx;
+               r.bottom = r.top     + cy;
 
                m_prendertarget->DrawBitmap((ID2D1Bitmap *) b->get_os_data(), &r);
 
