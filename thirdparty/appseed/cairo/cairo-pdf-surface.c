@@ -4361,7 +4361,7 @@ _utf8_to_pdf_string (const char *utf8, char **str_out)
     cairo_status_t status = CAIRO_STATUS_SUCCESS;
 
     ascii = TRUE;
-    len = strlen (utf8);
+    len = (int) strlen (utf8);
     for (i = 0; i < len; i++) {
 	unsigned c = utf8[i];
 	if (c < 32 || c > 126 || c == '(' || c == ')' || c == '\\') {
@@ -4509,7 +4509,7 @@ _create_font_subset_tag (cairo_scaled_font_subset_t	*font_subset,
     long numerator;
     ldiv_t d;
 
-    hash = _hash_data ((unsigned char *) font_name, strlen(font_name), 0);
+    hash = _hash_data ((unsigned char *) font_name, (int) strlen(font_name), 0);
     hash = _hash_data ((unsigned char *) (font_subset->glyphs),
 		       font_subset->num_glyphs * sizeof(unsigned long), hash);
 

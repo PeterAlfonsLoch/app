@@ -3239,7 +3239,7 @@ _emit_string_literal (cairo_script_surface_t *surface,
 	end = utf8;
     } else {
 	if (len < 0)
-	    len = strlen (utf8);
+	    len = (int) strlen (utf8);
 	end = utf8 + len;
     }
 
@@ -3815,7 +3815,7 @@ cairo_script_write_comment (cairo_device_t *script,
     cairo_script_context_t *context = (cairo_script_context_t *) script;
 
     if (len < 0)
-	len = strlen (comment);
+	len = (int) strlen (comment);
 
     _cairo_output_stream_puts (context->stream, "% ");
     _cairo_output_stream_write (context->stream, comment, len);

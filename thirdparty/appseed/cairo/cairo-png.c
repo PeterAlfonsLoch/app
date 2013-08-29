@@ -396,7 +396,7 @@ stream_write_func (png_structp png, png_bytep data, png_size_t size)
     struct png_write_closure_t *png_closure;
 
     png_closure = png_get_io_ptr (png);
-    status = png_closure->write_func (png_closure->closure, data, size);
+    status = png_closure->write_func (png_closure->closure, data, (unsigned int) size);
     if (unlikely (status)) {
 	cairo_status_t *error = png_get_error_ptr (png);
 	if (*error == CAIRO_STATUS_SUCCESS)
@@ -506,7 +506,7 @@ stdio_read_func (void *closure, unsigned char *data, unsigned int size)
 	size_t ret;
 
 	ret = fread (data, 1, size, file);
-	size -= ret;
+	size -= (unsigned int) ret;
 	data += ret;
 
 	if (size && (feof (file) || ferror (file)))
@@ -523,7 +523,7 @@ stream_read_func (png_structp png, png_bytep data, png_size_t size)
     struct png_read_closure_t *png_closure;
 
     png_closure = png_get_io_ptr (png);
-    status = png_closure->read_func (png_closure->closure, data, size);
+    status = png_closure->read_func (png_closure->closure, data, (unsigned int) size);
     if (unlikely (status)) {
 	cairo_status_t *error = png_get_error_ptr (png);
 	if (*error == CAIRO_STATUS_SUCCESS)

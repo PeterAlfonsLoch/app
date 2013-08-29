@@ -664,7 +664,7 @@ pixman_region_append_non_o (region_type_t * region,
     box_type_t *next_rect;
     int new_rects;
 
-    new_rects = r_end - r;
+    new_rects = (int) (r_end - r);
 
     critical_if_fail (y1 < y2);
     critical_if_fail (new_rects != 0);
@@ -699,7 +699,7 @@ pixman_region_append_non_o (region_type_t * region,
     do									\
     {									\
 	int new_rects;							\
-	if ((new_rects = r_end - r)) {					\
+	if ((new_rects = (int) (r_end - r))) {					\
 	    RECTALLOC_BAIL (new_reg, new_rects, bail);			\
 	    memmove ((char *)PIXREGION_TOP (new_reg), (char *)r,	\
 		     new_rects * sizeof(box_type_t));			\
@@ -2631,7 +2631,7 @@ PREFIX (_init_from_image) (region_type_t *region,
     {
         pw = pw_line;
         pw_line += stride;
-        irect_line_start = rects - first_rect;
+        irect_line_start = (int) (rects - first_rect);
 
         /* If the Screen left most bit of the word is set, we're starting in
          * a box */

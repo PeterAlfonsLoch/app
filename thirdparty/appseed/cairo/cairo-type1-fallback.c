@@ -159,7 +159,7 @@ charstring_encode_command (cairo_array_t *data, int command)
     /* Ensure the array doesn't grow, which allows this function to
      * have no possibility of failure. */
     orig_size = _cairo_array_size (data);
-    status = _cairo_array_append_multiple (data, buf, p - buf);
+    status = _cairo_array_append_multiple (data, buf, (unsigned int) (p - buf));
 
     assert (status == CAIRO_STATUS_SUCCESS);
     assert (_cairo_array_size (data) == orig_size);
@@ -208,7 +208,7 @@ charstring_encode_integer (cairo_array_t *data,
     /* Ensure the array doesn't grow, which allows this function to
      * have no possibility of failure. */
     orig_size = _cairo_array_size (data);
-    status = _cairo_array_append_multiple (data, buf, p - buf);
+    status = _cairo_array_append_multiple (data, buf, (unsigned int) (p - buf));
 
     assert (status == CAIRO_STATUS_SUCCESS);
     assert (_cairo_array_size (data) == orig_size);

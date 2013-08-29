@@ -304,7 +304,7 @@ cairo_truetype_font_allocate_write_buffer (cairo_truetype_font_t  *font,
     if (font->status)
 	return font->status;
 
-    status = _cairo_array_allocate (&font->output, length, (void **) buffer);
+    status = _cairo_array_allocate (&font->output, (unsigned int) length, (void **) buffer);
     if (unlikely (status))
 	return _cairo_truetype_font_set_error (font, status);
 
@@ -321,7 +321,7 @@ cairo_truetype_font_write (cairo_truetype_font_t *font,
     if (font->status)
 	return;
 
-    status = _cairo_array_append_multiple (&font->output, data, length);
+    status = _cairo_array_append_multiple (&font->output, data, (unsigned int) length);
     if (unlikely (status))
 	status = _cairo_truetype_font_set_error (font, status);
 }
@@ -1461,7 +1461,7 @@ find_name (tt_name_t *name, int name_id, int platform, int encoding, int languag
 
     /* If font name is prefixed with a PDF subset tag, strip it off. */
     p = str;
-    len = strlen (str);
+    len = (int) strlen (str);
     has_tag = FALSE;
     if (len > 7 && p[6] == '+') {
 	has_tag = TRUE;

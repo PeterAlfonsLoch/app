@@ -708,7 +708,7 @@ _cairo_win32_display_surface_set_clip (cairo_win32_display_surface_t *surface,
 	rects[i].bottom = rect.y + rect.height;
     }
 
-    gdi_region = ExtCreateRegion (NULL, data_size, data);
+    gdi_region = ExtCreateRegion (NULL, (DWORD) data_size, data);
     if ((char *)data != stack)
 	free (data);
 

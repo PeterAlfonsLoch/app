@@ -307,7 +307,7 @@ decode_real (unsigned char *p, double *real)
 
     locale_data = localeconv ();
     decimal_point = locale_data->decimal_point;
-    decimal_point_len = strlen (decimal_point);
+    decimal_point_len = (int) strlen (decimal_point);
 
     assert (decimal_point_len != 0);
     assert (sizeof(buffer) + decimal_point_len < sizeof(buffer2));
@@ -391,7 +391,7 @@ operand_length (unsigned char *p)
     if (*p == 30) {
         while ((*p & 0x0f) != 0x0f)
             p++;
-        return p - begin + 1;
+        return (int) (p - begin + 1);
     }
 
     return 0;
@@ -939,7 +939,7 @@ cairo_cff_font_read_private_dict (cairo_cff_font_t   *font,
 
 	/* Use maximum sized encoding to reserve space for later modification. */
 	end_buf = encode_integer_max (buf, 0);
-	status = cff_dict_set_operands (private_dict, LOCAL_SUB_OP, buf, end_buf - buf);
+	status = cff_dict_set_operands (private_dict, LOCAL_SUB_OP, buf, (int) (end_buf - buf));
 	if (unlikely (status))
 	    return status;
     }
@@ -1102,7 +1102,7 @@ cairo_cff_font_read_cid_fontdict (cairo_cff_font_t *font, unsigned char *ptr)
          * space for any value later */
         end_buf = encode_integer_max (buf, 0);
         end_buf = encode_integer_max (end_buf, 0);
-        status = cff_dict_set_operands (font->fd_dict[i], PRIVATE_OP, buf, end_buf - buf);
+        status = cff_dict_set_operands (font->fd_dict[i], PRIVATE_OP, buf, (int) (end_buf - buf));
         if (unlikely (status))
             goto fail;
     }
@@ -1249,35 +1249,35 @@ cairo_cff_font_read_top_dict (cairo_cff_font_t *font)
     /* Use maximum sized encoding to reserve space for later modification. */
     end_buf = encode_integer_max (buf, 0);
     status = cff_dict_set_operands (font->top_dict,
-	                            CHARSTRINGS_OP, buf, end_buf - buf);
+	                            CHARSTRINGS_OP, buf, (int) (end_buf - buf));
     if (unlikely (status))
 	goto fail;
 
     status = cff_dict_set_operands (font->top_dict,
-	                            CHARSET_OP, buf, end_buf - buf);
+	                            CHARSET_OP, buf, (int) (end_buf - buf));
     if (unlikely (status))
 	goto fail;
 
     if (font->scaled_font_subset->is_latin) {
         status = cff_dict_set_operands (font->top_dict,
-                                        ENCODING_OP, buf, end_buf - buf);
+                                        ENCODING_OP, buf, (int) (end_buf - buf));
         if (unlikely (status))
             goto fail;
 
 	/* Private has two operands - size and offset */
 	end_buf = encode_integer_max (end_buf, 0);
-	cff_dict_set_operands (font->top_dict, PRIVATE_OP, buf, end_buf - buf);
+	cff_dict_set_operands (font->top_dict, PRIVATE_OP, buf, (int) (end_buf - buf));
         if (unlikely (status))
             goto fail;
 
     } else {
         status = cff_dict_set_operands (font->top_dict,
-                                        FDSELECT_OP, buf, end_buf - buf);
+                                        FDSELECT_OP, buf, (int) (end_buf - buf));
         if (unlikely (status))
             goto fail;
 
         status = cff_dict_set_operands (font->top_dict,
-                                        FDARRAY_OP, buf, end_buf - buf);
+                                        FDARRAY_OP, buf, (int) (end_buf - buf));
         if (unlikely (status))
             goto fail;
 
@@ -1366,26 +1366,26 @@ cairo_cff_font_set_ros_strings (cairo_cff_font_t *font)
     sid1 = NUM_STD_STRINGS + _cairo_array_num_elements (&font->strings_subset_index);
     status = cff_index_append_copy (&font->strings_subset_index,
                                     (unsigned char *)registry,
-                                    strlen(registry));
+                                    (unsigned int) strlen(registry));
     if (unlikely (status))
 	return status;
 
     sid2 = NUM_STD_STRINGS + _cairo_array_num_elements (&font->strings_subset_index);
     status = cff_index_append_copy (&font->strings_subset_index,
                                     (unsigned char *)ordering,
-				    strlen(ordering));
+				    (unsigned int) strlen(ordering));
     if (unlikely (status))
 	return status;
 
     p = encode_integer (buf, sid1);
     p = encode_integer (p, sid2);
     p = encode_integer (p, 0);
-    status = cff_dict_set_operands (font->top_dict, ROS_OP, buf, p - buf);
+    status = cff_dict_set_operands (font->top_dict, ROS_OP, buf, (int) (p - buf));
     if (unlikely (status))
 	return status;
 
     p = encode_integer (buf, font->scaled_font_subset->num_glyphs);
-    status = cff_dict_set_operands (font->top_dict, CIDCOUNT_OP, buf, p - buf);
+    status = cff_dict_set_operands (font->top_dict, CIDCOUNT_OP, buf, (int) (p - buf));
     if (unlikely (status))
 	return status;
 
@@ -1419,7 +1419,7 @@ cairo_cff_font_subset_dict_string(cairo_cff_font_t   *font,
         return status;
 
     p = encode_integer (buf, sid);
-    status = cff_dict_set_operands (dict, operator, buf, p - buf);
+    status = cff_dict_set_operands (dict, operator, buf, (int) (p - buf));
     if (unlikely (status))
 	return status;
 
@@ -1899,7 +1899,7 @@ cairo_cff_font_create_cid_fontdict (cairo_cff_font_t *font)
      * space for any value later */
     end_buf = encode_integer_max (buf, 0);
     end_buf = encode_integer_max (end_buf, 0);
-    status = cff_dict_set_operands (font->fd_dict[0], PRIVATE_OP, buf, end_buf - buf);
+    status = cff_dict_set_operands (font->fd_dict[0], PRIVATE_OP, buf, (int) (end_buf - buf));
     if (unlikely (status))
 	return status;
 
@@ -1952,7 +1952,7 @@ cairo_cff_font_add_euro_charset_string (cairo_cff_font_t *font)
 	if (ch == 128) {
 	    font->euro_sid = NUM_STD_STRINGS + _cairo_array_num_elements (&font->strings_subset_index);
 	    status = cff_index_append_copy (&font->strings_subset_index,
-					    (unsigned char *)euro, strlen(euro));
+					    (unsigned char *)euro, (unsigned int) strlen(euro));
 	    return status;
 	}
     }
@@ -2039,7 +2039,7 @@ cairo_cff_font_write_name (cairo_cff_font_t *font)
 
     status = cff_index_append_copy (&index,
                                     (unsigned char *) font->ps_name,
-                                    strlen(font->ps_name));
+                                    (unsigned int) strlen(font->ps_name));
     if (unlikely (status))
 	goto FAIL;
 
@@ -3251,18 +3251,18 @@ cairo_cff_font_fallback_generate (cairo_cff_font_t           *font,
     sid = NUM_STD_STRINGS + _cairo_array_num_elements (&font->strings_subset_index);
     status = cff_index_append_copy (&font->strings_subset_index,
                                     (unsigned char *)buf,
-                                    strlen((char*)buf));
+                                    (unsigned int) strlen((char*)buf));
     if (unlikely (status))
 	return status;
 
     end_buf = encode_integer (buf, sid);
     status = cff_dict_set_operands (font->top_dict, FULLNAME_OP,
-				    buf, end_buf - buf);
+				    buf, (int) (end_buf - buf));
     if (unlikely (status))
 	return status;
 
     status = cff_dict_set_operands (font->top_dict, FAMILYNAME_OP,
-				    buf, end_buf - buf);
+				    buf, (int) (end_buf - buf));
     if (unlikely (status))
 	return status;
 
@@ -3271,43 +3271,43 @@ cairo_cff_font_fallback_generate (cairo_cff_font_t           *font,
     end_buf = encode_integer (end_buf, type2_subset->x_max);
     end_buf = encode_integer (end_buf, type2_subset->y_max);
     status = cff_dict_set_operands (font->top_dict,
-	                            FONTBBOX_OP, buf, end_buf - buf);
+	                            FONTBBOX_OP, buf, (int) (end_buf - buf));
     if (unlikely (status))
 	return status;
 
     end_buf = encode_integer_max (buf, 0);
     status = cff_dict_set_operands (font->top_dict,
-	                            CHARSTRINGS_OP, buf, end_buf - buf);
+	                            CHARSTRINGS_OP, buf, (int) (end_buf - buf));
     if (unlikely (status))
 	return status;
 
 
     if (font->scaled_font_subset->is_latin) {
 	status = cff_dict_set_operands (font->top_dict,
-                                        ENCODING_OP, buf, end_buf - buf);
+                                        ENCODING_OP, buf, (int) (end_buf - buf));
         if (unlikely (status))
 	    return status;
 
 	/* Private has two operands - size and offset */
 	end_buf2 = encode_integer_max (end_buf, 0);
-	cff_dict_set_operands (font->top_dict, PRIVATE_OP, buf, end_buf2 - buf);
+	cff_dict_set_operands (font->top_dict, PRIVATE_OP, buf, (int) (end_buf2 - buf));
         if (unlikely (status))
 	    return status;
 
     } else {
 	status = cff_dict_set_operands (font->top_dict,
-					FDSELECT_OP, buf, end_buf - buf);
+					FDSELECT_OP, buf, (int) (end_buf - buf));
 	if (unlikely (status))
 	    return status;
 
 	status = cff_dict_set_operands (font->top_dict,
-					FDARRAY_OP, buf, end_buf - buf);
+					FDARRAY_OP, buf, (int) (end_buf - buf));
 	if (unlikely (status))
 	    return status;
     }
 
     status = cff_dict_set_operands (font->top_dict,
-	                            CHARSET_OP, buf, end_buf - buf);
+	                            CHARSET_OP, buf, (int) (end_buf - buf));
     if (unlikely (status))
 	return status;
 

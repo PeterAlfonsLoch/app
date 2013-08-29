@@ -360,9 +360,9 @@ _pixman_disabled (const char *name)
 	    int len;
 
 	    if ((end = strchr (env, ' ')))
-		len = end - env;
+		len = (int) (end - env);
 	    else
-		len = strlen (env);
+		len = (int) strlen (env);
 
 	    if (strlen (name) == len && strncmp (name, env, len) == 0)
 	    {

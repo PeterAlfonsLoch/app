@@ -202,7 +202,7 @@ find_token (const char *buffer, const char *end, const char *token)
     if (buffer == NULL)
 	return NULL;
 
-    length = strlen (token);
+    length = (int) strlen (token);
     for (i = 0; buffer + i < end - length + 1; i++)
 	if (memcmp (buffer + i, token, length) == 0)
 	    if ((i == 0 || token[0] == '/' || is_ps_delimiter(buffer[i - 1])) &&
@@ -243,7 +243,7 @@ cairo_type1_font_subset_find_segments (cairo_type1_font_subset_t *font)
 	if (eexec_token == NULL)
 	    return CAIRO_INT_STATUS_UNSUPPORTED;
 
-	font->header_segment_size = eexec_token - (char *) p + strlen ("eexec\n");
+	font->header_segment_size = (int) (eexec_token - (char *) p + strlen ("eexec\n"));
 	font->header_segment = (char *) p;
 	font->eexec_segment_size = font->type1_length - font->header_segment_size;
 	font->eexec_segment = (char *) p + font->header_segment_size;
@@ -315,7 +315,7 @@ cairo_type1_font_subset_get_matrix (cairo_type1_font_subset_t *font,
 
     locale_data = localeconv ();
     decimal_point = locale_data->decimal_point;
-    decimal_point_len = strlen (decimal_point);
+    decimal_point_len = (int) (strlen (decimal_point));
 
     assert (decimal_point_len != 0);
 
@@ -328,7 +328,7 @@ cairo_type1_font_subset_get_matrix (cairo_type1_font_subset_t *font,
     if (end == NULL)
 	return CAIRO_INT_STATUS_UNSUPPORTED;
 
-    s_max = end - start + 5*decimal_point_len + 1;
+    s_max = (int) (end - start + 5*decimal_point_len + 1);
     s = malloc (s_max);
     if (unlikely (s == NULL))
 	return _cairo_error (CAIRO_STATUS_NO_MEMORY);
@@ -1074,7 +1074,7 @@ cairo_type1_font_for_each_subr (cairo_type1_font_subset_t  *font,
 		p++;
 
 	    np = subr_string + subr_length;
-	    np_length = p - np;
+	    np_length = (int) (p - np);
 	}
 
 	status = func (font, subr_num,
@@ -1144,7 +1144,7 @@ write_used_glyphs (cairo_type1_font_subset_t *font,
 	if (subset_id > 0) {
 	    ch = font->scaled_font_subset->to_latin_char[subset_id];
 	    name = _cairo_winansi_to_glyphname (ch);
-	    name_length = strlen(name);
+	    name_length = (int) strlen(name);
 	}
     }
 
@@ -1206,7 +1206,7 @@ cairo_type1_font_subset_for_each_glyph (cairo_type1_font_subset_t *font,
     while (*p == '/') {
 	name = p + 1;
 	p = skip_token (p, dict_end);
-	name_length = p - name;
+	name_length = (int) (p - name);
 
 	charstring_length = strtol (p, &end, 10);
 	if (p == end)
@@ -1436,7 +1436,7 @@ skip_subrs:
     if (font->subset_subrs) {
 	/* First output everything up to the start of the Subrs array. */
 	status = cairo_type1_font_subset_write_encrypted (font, font->cleartext,
-							  array_start - font->cleartext);
+							  (unsigned int) (array_start - font->cleartext));
 	if (unlikely (status))
 	    return status;
 
@@ -1457,7 +1457,7 @@ skip_subrs:
      * start of /CharStrings token.  If not subr subsetting, output
      * everything start of private dict to start of /CharStrings
      * token. */
-    status = cairo_type1_font_subset_write_encrypted (font, p, charstrings - p);
+    status = cairo_type1_font_subset_write_encrypted (font, p, (unsigned int) (charstrings - p));
     if (unlikely (status))
 	return status;
 
@@ -1471,7 +1471,7 @@ skip_subrs:
     /* Write out text between the charstring count and the first
      * charstring definition */
     status = cairo_type1_font_subset_write_encrypted (font, glyph_count_end,
-	                                          dict_start - glyph_count_end);
+	                                          (unsigned int) (dict_start - glyph_count_end));
     if (unlikely (status))
 	return status;
 
@@ -1488,7 +1488,7 @@ skip_subrs:
     /* Output what's left between the end of the glyph definitions and
      * the end of the private dict to the output. */
     status = cairo_type1_font_subset_write_encrypted (font, p,
-	                        closefile_token - p + strlen ("closefile") + 1);
+	                        (unsigned int) (closefile_token - p + strlen ("closefile") + 1));
     if (unlikely (status))
 	return status;
 

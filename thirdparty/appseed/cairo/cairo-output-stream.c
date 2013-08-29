@@ -265,8 +265,8 @@ _cairo_output_stream_write (cairo_output_stream_t *stream,
     if (stream->status)
 	return;
 
-    stream->status = stream->write_func (stream, data, length);
-    stream->position += length;
+    stream->status = stream->write_func (stream, data, (unsigned int) length);
+    stream->position += (unsigned long) length;
 }
 
 void
@@ -316,7 +316,7 @@ _cairo_dtostr (char *buffer, size_t size, double d, cairo_bool_t limited_precisi
 
     locale_data = localeconv ();
     decimal_point = locale_data->decimal_point;
-    decimal_point_len = strlen (decimal_point);
+    decimal_point_len = (int) strlen (decimal_point);
 
     assert (decimal_point_len != 0);
 
@@ -369,7 +369,7 @@ _cairo_dtostr (char *buffer, size_t size, double d, cairo_bool_t limited_precisi
 
     if (strncmp (p, decimal_point, decimal_point_len) == 0) {
 	*p = '.';
-	decimal_len = strlen (p + decimal_point_len);
+	decimal_len = (int) strlen (p + decimal_point_len);
 	memmove (p + 1, p + decimal_point_len, decimal_len);
 	p[1 + decimal_len] = 0;
 
@@ -448,7 +448,7 @@ _cairo_output_stream_vprintf (cairo_output_stream_t *stream,
 	/* The only format strings exist in the cairo implementation
 	 * itself. So there's an internal consistency problem if any
 	 * of them is larger than our format buffer size. */
-	single_fmt_length = f - start + 1;
+	single_fmt_length = (int) (f - start + 1);
 	assert (single_fmt_length + 1 <= SINGLE_FMT_BUFFER_SIZE);
 
 	/* Reuse the format string for this conversion. */

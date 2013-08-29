@@ -795,7 +795,7 @@ _cairo_ps_surface_emit_body (cairo_ps_surface_t *surface)
 	return _cairo_error (CAIRO_STATUS_TEMP_FILE_ERROR);
 
     rewind (surface->tmpfile);
-    while ((n = fread (buf, 1, sizeof (buf), surface->tmpfile)) > 0)
+    while ((n = (int) fread (buf, 1, sizeof (buf), surface->tmpfile)) > 0)
 	_cairo_output_stream_write (surface->final_stream, buf, n);
 
     if (ferror (surface->tmpfile) != 0)

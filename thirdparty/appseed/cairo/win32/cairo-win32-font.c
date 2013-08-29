@@ -1987,7 +1987,7 @@ _cairo_win32_font_face_init_key (cairo_win32_font_face_t *key,
     key->logfont = *logfont;
     key->hfont = font;
 
-    hash = _cairo_hash_bytes (0, logfont->lfFaceName, 2*wcslen(logfont->lfFaceName));
+    hash = _cairo_hash_bytes (0, logfont->lfFaceName, (unsigned int) (2*wcslen(logfont->lfFaceName)));
     hash = _cairo_hash_bytes (hash, &logfont->lfWeight, sizeof(logfont->lfWeight));
     hash = _cairo_hash_bytes (hash, &logfont->lfItalic, sizeof(logfont->lfItalic));
 

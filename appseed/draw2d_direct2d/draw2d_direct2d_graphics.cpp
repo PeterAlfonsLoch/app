@@ -1684,7 +1684,7 @@ namespace draw2d_direct2d
 
       HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
          wstr,                // The string to be laid out and formatted.
-         wstr.get_length(),   // The length of the string.
+         (UINT32) wstr.get_length(),   // The length of the string.
          (IDWriteTextFormat *) get_os_font(),    // The text format to apply to the string (contains font information, etc).
          1024.f * 1024.f,               // The width of the layout box.
          1024.f * 1024.f,        // The height of the layout box.
@@ -1699,7 +1699,7 @@ namespace draw2d_direct2d
 
       HRESULT hr2 = TlsGetWriteFactory()->CreateTextLayout(
          wstr2,                // The string to be laid out and formatted.
-         wstr2.get_length(),   // The length of the string.
+         (UINT32) wstr2.get_length(),   // The length of the string.
          (IDWriteTextFormat *) get_os_font(),    // The text format to apply to the string (contains font information, etc).
          1024.f * 1024.f,               // The width of the layout box.
          1024.f * 1024.f,        // The height of the layout box.
@@ -4197,7 +4197,7 @@ namespace draw2d_direct2d
 
       wstring wstr(str);
 
-      m_prendertarget->DrawText(wstr, wstr.get_length(), get_os_font(), &rectf, get_os_brush());
+      m_prendertarget->DrawText(wstr, (UINT32) wstr.get_length(), get_os_font(), &rectf, get_os_brush());
 
       //m_prendertarget->SetTransform(&m);
 
@@ -4251,7 +4251,7 @@ namespace draw2d_direct2d
 
    HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
       wstr,                // The string to be laid out and formatted.
-      wstr.get_length(),   // The length of the string.
+      (UINT32) wstr.get_length(),   // The length of the string.
       (dynamic_cast < ::draw2d_direct2d::font * > (m_spfont.m_p))->m_pformat.Get(),    // The text format to apply to the string (contains font information, etc).
       1024.f * 1024.f,               // The width of the layout box.
       1024.f * 1024.f,        // The height of the layout box.
@@ -4400,7 +4400,7 @@ namespace draw2d_direct2d
 
    HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
       wstr,                // The string to be laid out and formatted.
-      wstr.get_length(),   // The length of the string.
+      (UINT32) wstr.get_length(),   // The length of the string.
       (IDWriteTextFormat *) get_os_font(),    // The text format to apply to the string (contains font information, etc).
       1024.f * 1024.f,               // The width of the layout box.
       1024.f * 1024.f,        // The height of the layout box.
@@ -4481,7 +4481,7 @@ namespace draw2d_direct2d
 
    HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
       wstr,                // The string to be laid out and formatted.
-      wstr.get_length(),   // The length of the string.
+      (UINT32) wstr.get_length(),   // The length of the string.
       get_os_font(),    // The text format to apply to the string (contains font information, etc).
       1024.f * 1024.f,               // The width of the layout box.
       1024.f * 1024.f,        // The height of the layout box.
@@ -4579,7 +4579,7 @@ namespace draw2d_direct2d
 
    HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
       wstr,                // The string to be laid out and formatted.
-      wstr.get_length(),   // The length of the string.
+      (UINT32) wstr.get_length(),   // The length of the string.
       (dynamic_cast < ::draw2d_direct2d::font * > (m_spfont.m_p))->m_pformat.Get(),    // The text format to apply to the string (contains font information, etc).
       1024.f * 1024.f,               // The width of the layout box.
       1024.f * 1024.f,        // The height of the layout box.
@@ -4757,7 +4757,7 @@ namespace draw2d_direct2d
 
    HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
       wstr,                // The string to be laid out and formatted.
-      wstr.get_length(),   // The length of the string.
+      (UINT32) wstr.get_length(),   // The length of the string.
       get_os_font(),    // The text format to apply to the string (contains font information, etc).
       1024.f * 1024.f,               // The width of the layout box.
       1024.f * 1024.f,        // The height of the layout box.
@@ -5269,7 +5269,7 @@ namespace draw2d_direct2d
       if(pfont == NULL)
          return false;
 
-      m_prendertarget->DrawText(wstr, wstr.get_length(), pfont, &rect, pbrush);
+      m_prendertarget->DrawText(wstr, (UINT32) wstr.get_length(), pfont, &rect, pbrush);
 
       return true;
 
@@ -5591,7 +5591,7 @@ namespace draw2d_direct2d
 
       wstring wstr(string(lpszString, nCount));
 
-      m_prendertarget->DrawText(wstr, wstr.get_length(), get_os_font(), &rect, get_os_brush());
+      m_prendertarget->DrawText(wstr, (UINT32) wstr.get_length(), get_os_font(), &rect, get_os_brush());
 
       return true;
 
