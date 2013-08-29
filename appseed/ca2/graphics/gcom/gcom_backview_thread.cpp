@@ -236,7 +236,7 @@ namespace gcom
       //      CXfplayerView * pview = pDoc->GetLyricView();
       //      //pview->PostMessage(WM_USER, lparam, 0);
       //      single_lock slGdi(&pview->m_mutexGdi, TRUE);
-      //      pview->m_voiceSpectrum.to(&pview->m_dcBuffer, &pview->m_dcBack, pApp->GetWaveIn()->GetFormatEx(), 0.0, 0.0);
+      //      pview->m_voiceSpectrum.to(&pview->m_dcBuffer, &pview->m_dcBack, pApp->get_wave_in()->GetFormatEx(), 0.0, 0.0);
       //      RECT rect;
       //      pview->m_voiceSpectrum.GetPlacement(&rect);
       //      //InvalidateRect(&rect, FALSE);
@@ -256,7 +256,7 @@ namespace gcom
       //      CXfplayerView * pview = pDoc->GetLyricView();
       //      //pview->PostMessage(WM_USER, lparam, 0);
       //      single_lock slGdi(&pview->m_mutexGdi, TRUE);
-      //      pview->m_voiceSpectrum.to(&pview->m_dcBuffer, &pview->m_dcBack, pApp->GetWaveIn()->GetFormatEx(), lpSum->dDeltaScore, lpSum->dScoreAddUp);
+      //      pview->m_voiceSpectrum.to(&pview->m_dcBuffer, &pview->m_dcBack, pApp->get_wave_in()->GetFormatEx(), lpSum->dDeltaScore, lpSum->dScoreAddUp);
       //      RECT rect;
       //      pview->m_voiceSpectrum.GetPlacement(&rect);
       //      //InvalidateRect(&rect, FALSE);
