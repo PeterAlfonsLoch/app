@@ -15,7 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{84fbad70-591c-44fa-93c4-ee232b3a4b87}</ProjectGuid>
+    <ProjectGuid>{84FBAD70-591C-44FA-93C4-EE232B3A1995}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>_ca2zlib</ProjectName>
     <RootNamespace>_ca2zlib</RootNamespace>
@@ -156,7 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\appseed\c\m_c.vcxproj">
-      <Project>{5487686f-8a2f-401a-a38e-fda8900ebb72}</Project>
+      <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

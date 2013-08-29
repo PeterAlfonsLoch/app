@@ -52,7 +52,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
-    <ProjectGuid>{2108FBEB-0E13-431A-AF45-E48A61B57F00}</ProjectGuid>
+    <ProjectGuid>{2108FBEB-0E13-431A-AF45-E48A61B51997}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>sphere</ProjectName>
     <RootNamespace>m_sphere</RootNamespace>
@@ -470,13 +470,13 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ca2\m_ca2.vcxproj">
-      <Project>{420d7aeb-cfca-45de-bb6e-95055df28b9b}</Project>
+      <Project>{420d7aeb-cfca-45de-bb6e-95055df21987}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ca\m_ca.vcxproj">
-      <Project>{5fd926e7-e8b9-4451-baac-81efa94d9d67}</Project>
+      <Project>{5fd926e7-e8b9-4451-baac-81efa94d1985}</Project>
     </ProjectReference>
     <ProjectReference Include="..\c\m_c.vcxproj">
-      <Project>{5487686f-8a2f-401a-a38e-fda8900ebb72}</Project>
+      <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

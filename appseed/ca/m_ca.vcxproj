@@ -28,7 +28,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
-    <ProjectGuid>{5FD926E7-E8B9-4451-BAAC-81EFA94D9D67}</ProjectGuid>
+    <ProjectGuid>{5FD926E7-E8B9-4451-BAAC-81EFA94D1985}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>ca</ProjectName>
     <RootNamespace>m_ca</RootNamespace>
@@ -518,6 +518,11 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
   </ItemGroup>
   <ItemGroup>
     <None Include="c.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\c\m_c.vcxproj">
+      <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

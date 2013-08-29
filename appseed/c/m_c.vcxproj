@@ -28,7 +28,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
-    <ProjectGuid>{5487686f-8a2f-401a-a38e-fda8900ebb72}</ProjectGuid>
+    <ProjectGuid>{5487686F-8A2F-401A-A38E-FDA8900E1984}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>_c</ProjectName>
     <RootNamespace>m_c</RootNamespace>

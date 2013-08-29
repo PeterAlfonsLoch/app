@@ -66,14 +66,14 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\appseed\c\m_c.vcxproj">
-      <Project>{5487686f-8a2f-401a-a38e-fda8900ebb72}</Project>
+      <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
     </ProjectReference>
     <ProjectReference Include="..\zlib\_m_ca2zlib.vcxproj">
-      <Project>{84fbad70-591c-44fa-93c4-ee232b3a4b87}</Project>
+      <Project>{84fbad70-591c-44fa-93c4-ee232b3a1995}</Project>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{EC95B149-A498-4C6C-92A0-BA563D88B8BD}</ProjectGuid>
+    <ProjectGuid>{AF9DFA62-6F0E-47B8-A55B-5AD825571F4F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>_ca2freetype</ProjectName>
     <RootNamespace>_ca2freetype</RootNamespace>

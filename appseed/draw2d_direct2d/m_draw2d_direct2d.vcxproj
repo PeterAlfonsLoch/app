@@ -28,7 +28,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
-    <ProjectGuid>{0EEC2ECE-CAAF-446A-B805-7E538FF19386}</ProjectGuid>
+    <ProjectGuid>{0EEC2ECE-CAAF-446A-B805-7E538FF11996}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>draw2d_direct2d</ProjectName>
     <RootNamespace>draw2d_direct2d</RootNamespace>
@@ -283,22 +283,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\thirdparty\appseed\FreeImage\m_FreeImage.vcxproj">
-      <Project>{fced5042-9a2d-4e71-8022-129e8e5da36e}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\freetype\_m_ca2freetype.vcxproj">
-      <Project>{ec95b149-a498-4c6c-92a0-ba563d88b8bd}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\zlib\_m_ca2zlib.vcxproj">
-      <Project>{84fbad70-591c-44fa-93c4-ee232b3a4b87}</Project>
+      <Project>{fced5042-9a2d-4e71-8022-129e8e5d1993}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ca2\m_ca2.vcxproj">
-      <Project>{420d7aeb-cfca-45de-bb6e-95055df28b9b}</Project>
+      <Project>{420d7aeb-cfca-45de-bb6e-95055df21987}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ca\m_ca.vcxproj">
-      <Project>{5fd926e7-e8b9-4451-baac-81efa94d9d67}</Project>
+      <Project>{5fd926e7-e8b9-4451-baac-81efa94d1985}</Project>
     </ProjectReference>
     <ProjectReference Include="..\c\m_c.vcxproj">
-      <Project>{5487686f-8a2f-401a-a38e-fda8900ebb72}</Project>
+      <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
