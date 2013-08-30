@@ -9,7 +9,7 @@ class CLASS_DECL_ca2 event :
 {
 public:
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
    bool              m_bManualEvent;
    bool              m_bSignaled;  // meaningful only when m_bManualEvent
    int32_t           m_iSignalId;  // meaningful only when m_bManualEvent

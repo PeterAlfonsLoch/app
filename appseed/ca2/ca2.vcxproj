@@ -931,6 +931,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="base\android\os.h" />
+    <ClInclude Include="base\android\os_allocate_debug.h" />
+    <ClInclude Include="base\android\os_debug.h" />
+    <ClInclude Include="base\android\os_multithreading.h" />
     <ClInclude Include="base\api\api.h" />
     <ClInclude Include="base\api\api_debug.h" />
     <ClInclude Include="base\api\api_muldiv64.h" />
@@ -2154,6 +2158,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user_xfplayer_view_line_selection.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="base\android\os.cpp" />
+    <ClCompile Include="base\android\os_allocate_debug.cpp" />
+    <ClCompile Include="base\android\os_debug.cpp" />
+    <ClCompile Include="base\android\os_multithreading.cpp" />
     <ClCompile Include="base\api\api_muldiv64.cpp" />
     <ClCompile Include="base\api\api_string.cpp" />
     <ClCompile Include="base\ca2\ca2.cpp" />

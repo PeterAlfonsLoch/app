@@ -34,6 +34,12 @@ bool is_debugger_attached()
    return ::AmIBeingDebugged();
    
    
+#elif defined(ANDROID)
+   
+   
+   return false;
+   
+   
 #else
    
    

@@ -6,15 +6,22 @@ class CLASS_DECL_ca2 condition :
 {
 public:
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(MACOS)
+
    int_ptr           m_object;
    bool              m_bManualEvent;
    bool              m_bSignaled;  // meaningful only when m_bManualEvent
    int32_t               m_iSignalId;  // meaningful only when m_bManualEvent
 
+#elif defined(ANDROID)
+
+   sem_t                m_sem;
+
 #else
+
    CRITICAL_SECTION     m_sect;
    CONDITION_VARIABLE   m_var;
+
 #endif
 
 

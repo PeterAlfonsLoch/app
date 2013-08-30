@@ -2,8 +2,14 @@
 
 
 #if defined(LINUX)
+
 #include <sys/ipc.h>
 #include <sys/sem.h>
+
+#elif defined(ANDROID)
+
+#include <semaphore.h>
+
 #endif
 
 
@@ -21,6 +27,15 @@ condition::condition(sp(::ca2::application) papp) :
    ::InitializeCriticalSectionEx(&m_sect, 4000, 0);
 
    ::InitializeConditionVariable(&m_var);
+#elif defined(ANDROID)
+
+   int rc;
+
+   if((rc = sem_init(&m_sem, 0, 1)) == -1)
+   {
+      throw "RC_OBJECT_NOT_CREATED";
+   }
+
 
 #else
 
@@ -89,6 +104,10 @@ bool condition::pulse()
 
    return true;
 
+#elif defined(ANDROID)
+
+
+
 #else
 
    sembuf sb;
@@ -113,6 +132,8 @@ void condition::wait ()
 
 	SleepConditionVariableCS(&m_var, &m_sect, INFINITE);
 
+#elif defined(ANDROID)
+
 #else
 
    sembuf sb;
@@ -136,7 +157,11 @@ wait_result condition::wait (const duration & duration)
 	uint32_t timeout = duration.os_lock_duration();
 
 #ifdef WINDOWS
-	return wait_result(SleepConditionVariableCS(&m_var, &m_sect, timeout));
+
+   return wait_result(SleepConditionVariableCS(&m_var, &m_sect, timeout));
+
+#elif defined(ANDROID)
+
 #else
 
 	uint32_t start = ::get_tick_count();
@@ -222,6 +247,9 @@ bool condition::lock(const duration & durationTimeout)
       return true;
    else
       return false;
+
+#elif defined(ANDROID)
+
 
 #else
 

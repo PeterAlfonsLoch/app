@@ -122,7 +122,7 @@ WINBOOL __stdcall My_ReadProcessMemory (
 {
 
    SIZE_T size;
-#if defined(METROWIN) || defined(LINUX) || defined(MACOS)
+#if defined(METROWIN) || defined(LINUX) || defined(MACOS) || defined(ANDROID)
    throw todo(::ca2::get_thread_app());
 #else
    if(!ReadProcessMemory(hProcess, (LPCVOID) qwBaseAddress, (LPVOID) lpBuffer, nSize, &size))
@@ -913,7 +913,7 @@ retry_get_base:
 
 
 
-#if defined(LINUX) || defined(METROWIN) || defined(MACOS)
+#if defined(LINUX) || defined(METROWIN) || defined(MACOS) || defined(ANDROID)
    bool engine::stack_trace(vsstring & str, uint_ptr uiSkip, void * caller_address, const char * pszFormat)
 #else
    bool engine::stack_trace(vsstring & str, uint_ptr uiSkip, const char * pszFormat)
@@ -988,7 +988,7 @@ retry_get_base:
       stack_trace(str, &context, uiSkip, false, pszFormat);
 
       return true;
-#elif defined(METROWIN)
+#elif defined(METROWIN) || defined(ANDROID)
 
       return true;
 

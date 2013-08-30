@@ -174,8 +174,11 @@ int16_t parse_http_proxy(char **proxy_host, int32_t *port) {
    if ((http_proxy = getenv("http_proxy"))) {
 
       if (! strncmp("http://", http_proxy, 7)) http_proxy += 7;
-
+#if defined(ANDROID)
+      *proxy_host = strdup(http_proxy);
+#else
       *proxy_host = _strdup(http_proxy);
+#endif
       if ( *proxy_host == NULL )
          return 0; /* let the other functions deal with the primitive::memory error */
 

@@ -44,6 +44,28 @@ event::event(sp(::ca2::application) papp, bool bInitiallyOwn, bool bManualReset,
    if(m_object == NULL)
       throw resource_exception(papp);
 
+#elif defined(ANDROID)
+
+   pthread_cond_init(&m_cond, NULL);
+
+   m_bManualEvent = bManualReset;
+
+   if(m_bManualEvent)
+   {
+
+      m_bSignaled = bInitiallyOwn;
+      pthread_mutexattr_t  attr;
+      pthread_mutexattr_init(&attr);
+      pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+      int32_t rc;
+      if((rc = pthread_mutex_init(&m_mutex, &attr)))
+      {
+         throw "RC_OBJECT_NOT_CREATED";
+      }
+
+
+   }
+
 #else
 
    m_bManualEvent    = bManualReset;
@@ -120,6 +142,28 @@ bool event::SetEvent()
    }
 
    return false;
+
+#elif defined(ANDROID)
+
+   pmutex_lock lockMutex(&m_mutex, true);
+
+   if(m_bManualEvent)
+   {
+
+      m_bSignaled = true;
+
+      m_iSignalId++;
+
+      pthread_cond_broadcast(&m_cond);
+
+   }
+   else
+   {
+
+      pthread_cond_signal(&m_cond);
+
+   }
+
 
 #else
 
@@ -227,6 +271,32 @@ void event::wait ()
 	if ( ::WaitForSingleObjectEx(item(), INFINITE, FALSE) != WAIT_OBJECT_0 )
 		throw runtime_error(get_app(), "::ca2::pal::Event::wait: failure");
 
+#elif defined(ANDROID)
+
+
+   pmutex_lock lockMutex(&m_mutex, true);
+
+   if(m_bManualEvent)
+   {
+
+      int32_t iSignal = m_iSignalId;
+
+      while(!m_bSignaled && iSignal == m_iSignalId)
+      {
+
+         pthread_cond_wait(&m_cond, &m_mutex);
+
+      }
+
+   }
+   else
+   {
+
+      pthread_cond_wait(&m_cond, &m_mutex);
+
+   }
+
+
 #else
 
    if(m_bManualEvent)
@@ -272,6 +342,43 @@ wait_result event::wait (const duration & durationTimeout)
 #ifdef WINDOWS
 
 	return wait_result((uint32_t) ::WaitForSingleObjectEx(item(), durationTimeout.os_lock_duration(), FALSE));
+
+#elif defined(ANDROID)
+
+   pmutex_lock lockMutex(&m_mutex, true);
+
+   ((duration & ) durationTimeout).normalize();
+
+
+   if(m_bManualEvent)
+   {
+
+      int32_t iSignal = m_iSignalId;
+
+      while(!m_bSignaled && iSignal == m_iSignalId)
+      {
+
+         timespec delay;
+         delay.tv_sec = durationTimeout.m_iSeconds;
+         delay.tv_nsec = durationTimeout.m_iNanoseconds;
+         if(pthread_cond_timedwait(&m_cond, &m_mutex, &delay))
+            break;
+
+      }
+
+   }
+   else
+   {
+
+      timespec delay;
+      delay.tv_sec = durationTimeout.m_iSeconds;
+      delay.tv_nsec = durationTimeout.m_iNanoseconds;
+      pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
+
+   }
+
+   return m_bSignaled ? wait_result(wait_result::Event0) : wait_result(wait_result::Timeout);
+
 
 #else
 
@@ -390,6 +497,22 @@ bool event::is_signaled() const
 
     return WAIT_OBJECT_0 == ::WaitForSingleObjectEx(m_object, 0, FALSE);
 
+#elif defined(ANDROID)
+
+   if(m_bManualEvent)
+   {
+
+      return m_bSignaled;
+
+   }
+   else
+   {
+
+      return ((event *) this)->wait(millis(0)).signaled();
+
+   }
+
+
 #else
 
    if(m_bManualEvent)
@@ -451,6 +574,46 @@ bool event::lock(const duration & durationTimeout)
       return true;
    else
       return false;
+
+#elif defined(ANDROID)
+
+   pmutex_lock lockMutex(&m_mutex, true);
+
+   ((duration & ) durationTimeout).normalize();
+
+
+   if(m_bManualEvent)
+   {
+
+      int32_t iSignal = m_iSignalId;
+
+      while(!m_bSignaled && iSignal == m_iSignalId)
+      {
+
+         timespec delay;
+         delay.tv_sec = durationTimeout.m_iSeconds;
+         delay.tv_nsec = durationTimeout.m_iNanoseconds;
+         if(pthread_cond_timedwait(&m_cond, &m_mutex, &delay))
+            break;
+
+      }
+
+      return m_bSignaled;
+
+   }
+   else
+   {
+
+      timespec delay;
+      delay.tv_sec = durationTimeout.m_iSeconds;
+      delay.tv_nsec = durationTimeout.m_iNanoseconds;
+      pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
+
+      return is_locked();
+
+   }
+
+
 
 #else
 

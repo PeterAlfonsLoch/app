@@ -459,6 +459,15 @@
     <Filter Include="Source Files\graphics\draw2d">
       <UniqueIdentifier>{e3b485cf-8224-4ee1-afb2-ea31e3a6774c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\base\os\android">
+      <UniqueIdentifier>{840c968e-69cd-4b95-8d80-5ade7b4d2223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\android">
+      <UniqueIdentifier>{e91ce7dd-017a-4fb6-82c7-245c85d6121e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\android">
+      <UniqueIdentifier>{5d7b2b50-be6c-4759-9e33-33960eb963ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -4124,6 +4133,18 @@
     <ClInclude Include="graphics\draw2d\draw2d_igui.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
+    <ClInclude Include="base\android\os.h">
+      <Filter>Header Files\base\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\android\os_allocate_debug.h">
+      <Filter>Header Files\base\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\android\os_debug.h">
+      <Filter>Header Files\base\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\android\os_multithreading.h">
+      <Filter>Header Files\base\android</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive_scalar.cpp">
@@ -6996,6 +7017,18 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_dib.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="base\android\os.cpp">
+      <Filter>Source Files\base\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\android\os_allocate_debug.cpp">
+      <Filter>Source Files\base\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\android\os_debug.cpp">
+      <Filter>Source Files\base\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\android\os_multithreading.cpp">
+      <Filter>Source Files\base\android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

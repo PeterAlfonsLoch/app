@@ -66,7 +66,7 @@ namespace ca2
 
 #endif
 
-#if !defined(LINUX) && !defined(MACOS)
+#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID)
 
    sp(::ca2::window) window::GetAncestor(UINT gaFlags) const
    {

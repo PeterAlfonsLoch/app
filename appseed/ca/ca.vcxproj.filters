@@ -93,6 +93,12 @@
     <Filter Include="Source Files\cross\windows">
       <UniqueIdentifier>{e2cfe0cf-c68f-488a-979d-762d5e1aece1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\cross">
+      <UniqueIdentifier>{88b02266-acd6-4f74-b94b-680cde4be37b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cross\windows">
+      <UniqueIdentifier>{74b66e4f-6a41-4c39-ab8a-e401f575bd54}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hotplugin\hotplugin.h">
@@ -538,6 +544,27 @@
     </ClInclude>
     <ClInclude Include="android\ca_os_file_watcher.h">
       <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="cross\cross.h">
+      <Filter>Header Files\cross</Filter>
+    </ClInclude>
+    <ClInclude Include="cross\windows\windows.h">
+      <Filter>Header Files\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="cross\windows\windows_gdi.h">
+      <Filter>Header Files\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="cross\windows\windows_ole_automation.h">
+      <Filter>Header Files\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="cross\windows\windows_thread.h">
+      <Filter>Header Files\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="cross\windows\windows_types.h">
+      <Filter>Header Files\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="cross\windows\windows_user.h">
+      <Filter>Header Files\cross\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1008,6 +1035,15 @@
     </ClCompile>
     <ClCompile Include="android\ca_os_launcher.cpp">
       <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="ansios\crypto\ansios_crypt.cpp">
+      <Filter>Source Files\ansios\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="cross\windows\windows_thread.cpp">
+      <Filter>Source Files\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="cross\windows\windows_user.cpp">
+      <Filter>Source Files\cross\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

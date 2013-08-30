@@ -86,6 +86,10 @@ namespace plane
 
 #include "base/linux/os.h"
 
+#elif defined(ANDROID)
+
+#include "base/android/os.h"
+
 #endif
 
 

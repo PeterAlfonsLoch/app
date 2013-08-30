@@ -114,10 +114,12 @@ namespace ca2
          if(pformat->m_iPrecision >= 0)
          {
 #if defined(ANDROID)
-             if(fcvt(d, pformat->m_iPrecision, &decimal_point, &negative, sz, sizeof(sz)) == -1)
+            //throw 3;
+//             if(fcvt(d, pformat->m_iPrecision, &decimal_point, &negative, sz, sizeof(sz)) == -1)
              {
-                pformat->append(::ca2::str::from(d));
-                return;
+                sprintf(sz, "%f", d);
+                //pformat->append(::ca2::str::from(d));
+                //return;
              }
 #else
              if(fcvt_r(d, pformat->m_iPrecision, &decimal_point, &negative, sz, sizeof(sz)) == -1)
@@ -153,11 +155,21 @@ namespace ca2
          }
          else
          {
+#ifdef ANDROID
+//             if(ecvt_r(d, sizeof(sz), &decimal_point, &negative, sz, sizeof(sz)) == -1)
+             {
+                sprintf(sz, "%f", d);
+    //            pformat->append(::ca2::str::from(d));
+  //              return;
+             }
+
+#else
              if(ecvt_r(d, sizeof(sz), &decimal_point, &negative, sz, sizeof(sz)) == -1)
              {
                 pformat->append(::ca2::str::from(d));
                 return;
              }
+#endif
              string str(sz);
              string strResult;
 

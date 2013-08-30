@@ -86,7 +86,7 @@ crypto_free(void *ptr) {
 }
 
 
-#elif defined(HAVE_STDLIB_H) || defined(LINUX) || defined(WINDOWS) || defined(MACOS)
+#elif defined(HAVE_STDLIB_H) || defined(LINUX) || defined(WINDOWS) || defined(MACOS) || defined(ANDROID)
 
 void *
 crypto_alloc(size_t size) {

@@ -1181,6 +1181,13 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="ca\ca_wstringtovss.h" />
     <ClInclude Include="ca\ca_xmlite.h" />
     <ClInclude Include="cpu_architecture.h" />
+    <ClInclude Include="cross\cross.h" />
+    <ClInclude Include="cross\windows\windows.h" />
+    <ClInclude Include="cross\windows\windows_gdi.h" />
+    <ClInclude Include="cross\windows\windows_ole_automation.h" />
+    <ClInclude Include="cross\windows\windows_thread.h" />
+    <ClInclude Include="cross\windows\windows_types.h" />
+    <ClInclude Include="cross\windows\windows_user.h" />
     <ClInclude Include="crypt\crypt.h" />
     <ClInclude Include="crypt\nessie.h" />
     <ClInclude Include="c_natural.h" />
@@ -1437,6 +1444,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="ansios\crypto\ansios_crypt.cpp" />
     <ClCompile Include="bsdiff\blocksort.cpp" />
     <ClCompile Include="bsdiff\bsdiff.cpp" />
     <ClCompile Include="bsdiff\bspatch.cpp" />
@@ -1500,6 +1508,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="ca\ca_wstringtovss.cpp" />
     <ClCompile Include="ca\ca_xmlite.cpp" />
     <ClCompile Include="ca\_initterm.cpp" />
+    <ClCompile Include="cross\windows\windows_thread.cpp" />
+    <ClCompile Include="cross\windows\windows_user.cpp" />
     <ClCompile Include="crypt\crypt.cpp" />
     <ClCompile Include="crypt\nessie.cpp" />
     <ClCompile Include="crypt\whirpool.cpp" />
