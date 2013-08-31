@@ -1040,7 +1040,7 @@ my_vsnprintf_mb2(char *dst, size_t n, const char* fmt, va_list ap)
   
   DBUG_ASSERT(dst <= end);
   *dst='\0';                                /* End of errmessage */
-  return (size_t) (dst - start);
+  return (int) (dst - start);
 }
 
 
@@ -2333,7 +2333,7 @@ my_vsnprintf_utf32(char *dst, size_t n, const char* fmt, va_list ap)
   *dst++= '\0';
   *dst++= '\0';
   *dst++= '\0';     /* End of errmessage */
-  return (size_t) (dst - start - 4);
+  return (int) (dst - start - 4);
 }
 
 

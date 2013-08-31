@@ -506,7 +506,7 @@ my_bool my_hash_delete(HASH *hash, uchar *record)
   if (!hash->records)
     DBUG_RETURN(1);
 
-  blength=hash->blength;
+  blength=(uint) hash->blength;
   data=dynamic_element(&hash->array,0,HASH_LINK*);
   /* Search after record with key */
   pos= data + my_hash_mask(rec_hashnr(hash, record), blength, hash->records);
@@ -609,7 +609,7 @@ my_bool my_hash_update(HASH *hash, uchar *record, uchar *old_key,
   }
 
   data=dynamic_element(&hash->array,0,HASH_LINK*);
-  blength=hash->blength; records=hash->records;
+  blength=(uint) hash->blength; records=hash->records;
 
   /* Search after record with key */
 
@@ -671,7 +671,7 @@ my_bool my_hash_update(HASH *hash, uchar *record, uchar *old_key,
   if (new_index != new_pos_index)
   {					/* Other record in wrong position */
     data[empty] = *pos;
-    movelink(data,new_index,new_pos_index,empty);
+    movelink(data,new_index,new_pos_index,(uint) empty);
     org_link.next=NO_RECORD;
     data[new_index]= org_link;
   }
@@ -679,7 +679,7 @@ my_bool my_hash_update(HASH *hash, uchar *record, uchar *old_key,
   {					/* Link in chain at right position */
     org_link.next=data[new_index].next;
     data[empty]=org_link;
-    data[new_index].next=empty;
+    data[new_index].next=(uint) empty;
   }
   DBUG_RETURN(0);
 }

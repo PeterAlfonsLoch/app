@@ -468,7 +468,7 @@ static size_t thai2sortable(uchar *tstr, size_t len)
   int	tlen;
   uchar	l2bias;
 
-  tlen= len;
+  tlen= (int) len;
   l2bias= 	256 - 8;
   for (p= tstr; tlen > 0; p++, tlen--)
   {
@@ -644,10 +644,10 @@ my_strnxfrm_tis620(const CHARSET_INFO *cs,
   set_if_smaller(dstlen, nweights);
   set_if_smaller(len, dstlen); 
   len= my_strxfrm_pad_desc_and_reverse(cs, dst, dst + len, dst + dstlen,
-                                       dstlen - len, flags, 0);
+                                       (uint) (dstlen - len), flags, 0);
   if ((flags & MY_STRXFRM_PAD_TO_MAXLEN) && len < dstlen0)
   {
-    uint fill_length= dstlen0 - len;
+    uint fill_length=(uint) ( dstlen0 - len);
     cs->cset->fill(cs, (char*) dst + len, fill_length, cs->pad_char);
     len= dstlen0;
   }

@@ -321,7 +321,7 @@ static char *process_args(const CHARSET_INFO *cs, char *to, char *end,
 {
   ARGS_INFO args_arr[MAX_ARGS];
   PRINT_INFO print_arr[MAX_PRINT_INFO];
-  uint idx= 0, arg_count= arg_index;
+  uint idx= 0, arg_count= (uint) arg_index;
 
 start:
   /* Here we are at the beginning of positional argument, right after $ */
@@ -345,7 +345,7 @@ start:
     args_arr[print_arr[idx].length].arg_type= 'd';
     args_arr[print_arr[idx].length].have_longlong= 0;
     print_arr[idx].flags|= LENGTH_ARG;
-    arg_count= MY_MAX(arg_count, print_arr[idx].length + 1);
+    arg_count= (uint) MY_MAX(arg_count, print_arr[idx].length + 1);
     fmt++;
   }
   else
@@ -364,7 +364,7 @@ start:
       args_arr[print_arr[idx].width].arg_type= 'd';
       args_arr[print_arr[idx].width].have_longlong= 0;
       print_arr[idx].flags|= WIDTH_ARG;
-      arg_count= MY_MAX(arg_count, print_arr[idx].width + 1);
+      arg_count= (uint) MY_MAX(arg_count, print_arr[idx].width + 1);
       fmt++;
     }
     else
@@ -512,7 +512,7 @@ start:
     fmt= get_width(fmt, &arg_index);
     DBUG_ASSERT(*fmt == '$');
     fmt++;
-    arg_count= MY_MAX(arg_count, arg_index);
+    arg_count= (uint) ( MY_MAX(arg_count, arg_index));
     goto start;
   }
 

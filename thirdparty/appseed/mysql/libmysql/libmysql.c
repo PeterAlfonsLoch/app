@@ -3176,7 +3176,7 @@ static void fetch_string_with_conversion(MYSQL_BIND *param, char *value,
     ulong copy_length;
     if (start < end)
     {
-      copy_length= end - start;
+      copy_length= (ulong) (end - start);
       /* We've got some data beyond offset: copy up to buffer_length bytes */
       if (param->buffer_length)
         memcpy(buffer, start, MY_MIN(copy_length, param->buffer_length));
@@ -3417,7 +3417,7 @@ static void fetch_float_with_conversion(MYSQL_BIND *param, MYSQL_FIELD *field,
       memset(buff, '0', field->length - len);
       len= field->length;
     }
-    fetch_string_with_conversion(param, buff, len);
+    fetch_string_with_conversion(param, buff, (uint) len);
 
     break;
   }

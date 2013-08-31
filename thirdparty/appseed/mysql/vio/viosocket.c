@@ -836,7 +836,7 @@ int vio_io_wait(Vio *vio, enum enum_vio_io_event event, int timeout)
   MYSQL_START_SOCKET_WAIT(locker, &state, vio->mysql_socket, PSI_SOCKET_SELECT, 0);
 
   /* The first argument is ignored on Windows. */
-  ret= select(fd + 1, &readfds, &writefds, &exceptfds, 
+  ret= select((int) fd + 1, &readfds, &writefds, &exceptfds, 
               (timeout >= 0) ? &tm : NULL);
 
   MYSQL_END_SOCKET_WAIT(locker, 0);
@@ -1114,7 +1114,7 @@ int vio_getnameinfo(const struct sockaddr *sa,
   }
 
   return getnameinfo(sa, sa_length,
-                     hostname, hostname_size,
-                     port, port_size,
+                     hostname, (DWORD) hostname_size,
+                     port, (DWORD) port_size,
                      flags);
 }

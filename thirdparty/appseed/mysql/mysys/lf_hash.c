@@ -98,7 +98,7 @@ retry:
     } while (link != cursor->curr->link && LF_BACKOFF);
     cur_hashnr= cursor->curr->hashnr;
     cur_key= cursor->curr->key;
-    cur_keylen= cursor->curr->keylen;
+    cur_keylen=  (uint)cursor->curr->keylen;
     if (*cursor->prev != (intptr)cursor->curr)
     {
       (void)LF_BACKOFF;
@@ -158,7 +158,7 @@ static LF_SLIST *linsert(LF_SLIST * volatile *head, CHARSET_INFO *cs,
 
   for (;;)
   {
-    if (lfind(head, cs, node->hashnr, node->key, node->keylen,
+    if (lfind(head, cs, node->hashnr, node->key, (uint) node->keylen,
               &cursor, pins) &&
         (flags & LF_HASH_UNIQUE))
     {
@@ -375,7 +375,7 @@ int lf_hash_insert(LF_HASH *hash, LF_PINS *pins, const void *data)
     return -1;
   memcpy(node+1, data, hash->element_size);
   node->key= hash_key(hash, (uchar *)(node+1), &node->keylen);
-  hashnr= calc_hash(hash, node->key, node->keylen);
+  hashnr= calc_hash(hash, node->key, (uint) node->keylen);
   bucket= hashnr % hash->size;
   el= _lf_dynarray_lvalue(&hash->array, bucket);
   if (unlikely(!el))

@@ -358,7 +358,7 @@ static void _lf_pinbox_real_free(LF_PINS *pins)
       _lf_dynarray_iterate(&pinbox->pinarray,
                            (lf_dynarray_func)harvest_pins, &hv);
 
-      npins= hv.granary-addr;
+      npins=(int) ( hv.granary-addr);
       /* and sort them */
       if (npins)
         qsort(addr, npins, sizeof(void *), (qsort_cmp)ptr_cmp);

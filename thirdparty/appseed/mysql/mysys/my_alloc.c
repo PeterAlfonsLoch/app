@@ -63,8 +63,8 @@ void init_alloc_root(MEM_ROOT *mem_root, size_t block_size,
 	 (USED_MEM*) my_malloc(pre_alloc_size+ ALIGN_SIZE(sizeof(USED_MEM)),
 			       MYF(0))))
     {
-      mem_root->free->size= pre_alloc_size+ALIGN_SIZE(sizeof(USED_MEM));
-      mem_root->free->left= pre_alloc_size;
+      mem_root->free->size= (unsigned int) (pre_alloc_size+ALIGN_SIZE(sizeof(USED_MEM)));
+      mem_root->free->left= (unsigned int) pre_alloc_size;
       mem_root->free->next= 0;
     }
   }
@@ -135,8 +135,8 @@ void reset_root_defaults(MEM_ROOT *mem_root, size_t block_size,
       /* Allocate new prealloc block and add it to the end of free list */
       if ((mem= (USED_MEM *) my_malloc(size, MYF(0))))
       {
-        mem->size= size; 
-        mem->left= pre_alloc_size;
+        mem->size= (unsigned int) size; 
+        mem->left= (unsigned int) pre_alloc_size;
         mem->next= *prev;
         *prev= mem_root->pre_alloc= mem; 
       }
@@ -229,14 +229,14 @@ void *alloc_root(MEM_ROOT *mem_root, size_t length)
     }
     mem_root->block_num++;
     next->next= *prev;
-    next->size= get_size;
-    next->left= get_size-ALIGN_SIZE(sizeof(USED_MEM));
+    next->size= (unsigned int) get_size;
+    next->left= (unsigned int) ( get_size-ALIGN_SIZE(sizeof(USED_MEM)));
     *prev=next;
   }
 
   point= (uchar*) ((char*) next+ (next->size-next->left));
   /*TODO: next part may be unneded due to mem_root->first_block_usage counter*/
-  if ((next->left-= length) < mem_root->min_malloc)
+  if ((next->left-= (unsigned int)  length) < mem_root->min_malloc)
   {						/* Full block */
     *prev= next->next;				/* Remove block from list */
     next->next= mem_root->used;

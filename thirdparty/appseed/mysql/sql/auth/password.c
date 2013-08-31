@@ -401,7 +401,7 @@ void my_make_scrambled_password(char *to, const char *password,
   my_crypt_genhash(to,
                      CRYPT_MAX_PASSWORD_SIZE,
                      password,
-                     pass_len,
+                     (int) pass_len,
                      salt,
                      0);
 
@@ -424,7 +424,7 @@ void compute_two_stage_sha1_hash(const char *password, size_t pass_len,
                                  uint8 *hash_stage1, uint8 *hash_stage2)
 {
   /* Stage 1: hash password */
-  compute_sha1_hash(hash_stage1, password, pass_len);
+  compute_sha1_hash(hash_stage1, password, (int) pass_len);
 
   /* Stage 2 : hash first stage's output. */
   compute_sha1_hash(hash_stage2, (const char *) hash_stage1, SHA1_HASH_SIZE);

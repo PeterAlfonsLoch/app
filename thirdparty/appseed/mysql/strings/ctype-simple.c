@@ -79,8 +79,8 @@ my_strnxfrm_simple(const CHARSET_INFO *cs,
   uchar *map= cs->sort_order;
   uchar *d0= dst;
   uint frmlen;
-  if ((frmlen= MY_MIN(dstlen, nweights)) > srclen)
-    frmlen= srclen;
+  if ((frmlen= (uint) MY_MIN(dstlen, nweights)) > srclen)
+    frmlen= (uint)srclen;
   if (dst != src)
   {
     const uchar *end;
@@ -295,7 +295,7 @@ size_t my_snprintf_8bit(const CHARSET_INFO *cs  __attribute__((unused)),
   va_list args;
   int result;
   va_start(args,fmt);
-  result= my_vsnprintf(to, n, fmt, args);
+  result= (int) my_vsnprintf(to, n, fmt, args);
   va_end(args);
   return result;
 }
@@ -1124,13 +1124,13 @@ skip:
 	if (nmatch > 0)
 	{
 	  match[0].beg= 0;
-	  match[0].end= (size_t) (str- (const uchar*)b-1);
+	  match[0].end= (uint) (str- (const uchar*)b-1);
 	  match[0].mb_len= match[0].end;
 	  
 	  if (nmatch > 1)
 	  {
 	    match[1].beg= match[0].end;
-	    match[1].end= match[0].end+s_length;
+	    match[1].end= (uint) (match[0].end+s_length);
 	    match[1].mb_len= match[1].end-match[1].beg;
 	  }
 	}
@@ -1443,7 +1443,7 @@ my_strntoull10rnd_8bit(const CHARSET_INFO *cs __attribute__((unused)),
     }
   }
   
-  digits= str - beg;
+  digits= (int) (str - beg);
 
   /* Continue to accumulate into ulonglong */
   for (dot= NULL, ull= ul; str < end; str++)
@@ -1480,7 +1480,7 @@ my_strntoull10rnd_8bit(const CHARSET_INFO *cs __attribute__((unused)),
       }
       else
       {
-        shift= dot - str;
+        shift= (int) (dot - str);
         for ( ; str < end && (ch= (uchar) (*str - '0')) < 10; str++);
       }
       goto exp;
@@ -1504,7 +1504,7 @@ my_strntoull10rnd_8bit(const CHARSET_INFO *cs __attribute__((unused)),
     /* Unknown character, exit the loop */
     break; 
   }
-  shift= dot ? dot - str : 0; /* Right shift */
+  shift= (int) ( dot ? dot - str : 0 ) ; /* Right shift */
   addon= 0;
 
 exp:    /* [ E [ <sign> ] <unsigned integer> ] */
@@ -1815,7 +1815,7 @@ my_strxfrm_pad_desc_and_reverse(const CHARSET_INFO *cs,
   my_strxfrm_desc_and_reverse(str, frmend, flags, level);
   if ((flags & MY_STRXFRM_PAD_TO_MAXLEN) && frmend < strend)
   {
-    uint fill_length= strend - frmend;
+    uint fill_length= (uint) (strend - frmend);
     cs->cset->fill(cs, (char*) frmend, fill_length, cs->pad_char);
     frmend= strend;
   }

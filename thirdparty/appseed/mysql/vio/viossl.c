@@ -154,7 +154,7 @@ size_t vio_ssl_read(Vio *vio, uchar *buf, size_t size)
   SSL *ssl= vio->ssl_arg;
   DBUG_ENTER("vio_ssl_read");
 
-  while ((ret= SSL_read(ssl, buf, size)) < 0)
+  while ((ret= SSL_read(ssl, buf, (int) size)) < 0)
   {
     enum enum_vio_io_event event;
 
@@ -177,7 +177,7 @@ size_t vio_ssl_write(Vio *vio, const uchar *buf, size_t size)
   SSL *ssl= vio->ssl_arg;
   DBUG_ENTER("vio_ssl_write");
 
-  while ((ret= SSL_write(ssl, buf, size)) < 0)
+  while ((ret= SSL_write(ssl, buf, (int) size)) < 0)
   {
     enum enum_vio_io_event event;
 
@@ -326,7 +326,7 @@ static int ssl_do(struct st_VioSSLFd *ptr, Vio *vio, long timeout,
   DBUG_PRINT("info", ("ssl: 0x%lx timeout: %ld", (long) ssl, timeout));
   SSL_clear(ssl);
   SSL_SESSION_set_timeout(SSL_get_session(ssl), timeout);
-  SSL_set_fd(ssl, sd);
+  SSL_set_fd(ssl, (int) sd);
 #ifndef HAVE_YASSL
   SSL_set_options(ssl, SSL_OP_NO_COMPRESSION);
 #endif
