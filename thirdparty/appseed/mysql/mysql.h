@@ -26,6 +26,12 @@
 #ifndef _mysql_h
 #define _mysql_h
 
+#ifdef _WIN32
+#ifndef _WINSOCKAPI_
+#define _WINSOCKAPI_
+#endif
+#endif
+
 #ifdef	__cplusplus
 extern "C" {
 #endif

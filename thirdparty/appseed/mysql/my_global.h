@@ -68,6 +68,11 @@
 #endif
 
 #if defined (_WIN32)
+
+#ifndef _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 /*
  off_t is 32 bit long. We do not use C runtime functions
  with off_t but native Win32 file IO APIs, that work with
@@ -85,6 +90,7 @@
 #endif
 
 /* Include common headers.*/
+
 #include <winsock2.h>
 #include <ws2tcpip.h> /* SOCKET */
 #include <io.h>       /* access(), chmod() */

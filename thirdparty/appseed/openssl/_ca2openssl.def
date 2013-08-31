@@ -3797,4 +3797,4 @@ EXPORTS
     TLSv1_server_method                     
     d2i_SSL_SESSION                         
     i2d_SSL_SESSION                         
-
+	OPENSSL_X509_NAME_oneline

@@ -15,6 +15,15 @@
 
 #ifndef MY_CONFIG_H
 #define MY_CONFIG_H
+
+#ifdef _WIN32
+#ifndef _WINSOCKAPI_
+#define _WINSOCKAPI_
+#endif
+#define SECURITY_WIN32
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #define DOT_FRM_VERSION 6
 /* Headers we may want to use. */
 /* #undef _GNU_SOURCE */
@@ -238,9 +247,26 @@
 
 /* #undef HAVE_VALGRIND */
 
+#define HAVE_OPENSSL
+
 #define SIZEOF_LONG   4
+#ifdef _WIN32
+#ifdef _AMD64
 #define SIZEOF_VOIDP  8
 #define SIZEOF_CHARP  8
+#else
+#define SIZEOF_VOIDP  4
+#define SIZEOF_CHARP  4
+#endif
+#else
+#ifdef __LP64
+#define SIZEOF_VOIDP  8
+#define SIZEOF_CHARP  8
+#else
+#define SIZEOF_VOIDP  4
+#define SIZEOF_CHARP  4
+#endif
+#endif
 
 #define SIZEOF_CHAR 1
 #define HAVE_CHAR 1
