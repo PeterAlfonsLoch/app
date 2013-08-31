@@ -128,9 +128,12 @@ namespace ca2
       property(property && prop)
       {
          m_idName.m_pstr = prop.m_idName.m_pstr;
-         *((var_data *) &m_var) = *((var_data*)&prop.m_var);
-         prop.m_var.m_sp.m_p = NULL;
-         prop.m_var.m_str.m_pszData = NULL;
+         m_var.m_sp.release();
+         m_var.m_str.~string();
+         memcpy(&m_var, &prop.m_var, sizeof(var));
+         prop.m_var.m_sp.m_p           = NULL;
+         prop.m_var.m_str.m_pszData    = NULL;
+         prop.m_var.m_id.m_pstr        = NULL;
       }
       ~property()
       {
@@ -354,8 +357,10 @@ namespace ca2
       {
          if(this != &prop)
          {
+            m_var.m_sp.release();
+            m_var.m_str.~string();
             m_idName.m_pstr = prop.m_idName.m_pstr;
-            *((var_data *) &m_var) = *((var_data*)&prop.m_var);
+            memcpy(&m_var, &prop.m_var, sizeof(var));
             prop.m_var.m_sp.m_p = NULL;
             prop.m_var.m_str.m_pszData = NULL;
          }

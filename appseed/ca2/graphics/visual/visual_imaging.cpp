@@ -2480,7 +2480,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
 
    ::DeleteDC(hdc);
 
-
+   ::DeleteObject(hbitmap);
 
    // restore BITMAPINFO members
    FreeImage_GetInfoHeader(fi)->biClrUsed = nColors;

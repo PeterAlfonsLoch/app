@@ -120,7 +120,7 @@ namespace visual
    bool dib_sp::save_to_file(var varFile, save_image * psaveimage)
    {
       ::ca2::filesp spfile;
-      spfile = App(m_p->m_papp).file().get_file(varFile, ::ca2::file::mode_create | ::ca2::file::mode_write | ::ca2::file::type_binary);
+      spfile = App(m_p->m_papp).file().get_file(varFile, ::ca2::file::mode_create | ::ca2::file::mode_write | ::ca2::file::type_binary | ::ca2::file::defer_create_directory);
       if(spfile.is_null())
          return false;
       return write_to_file(spfile, psaveimage);

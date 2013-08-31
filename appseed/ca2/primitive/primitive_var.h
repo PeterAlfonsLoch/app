@@ -32,8 +32,10 @@ namespace ca2
    class str_str_interface;
 }
 
-struct CLASS_DECL_ca2 var_data
+
+class CLASS_DECL_ca2 var
 {
+public:
 
    enum e_type
    {
@@ -104,31 +106,11 @@ struct CLASS_DECL_ca2 var_data
       uchar        m_uch;
       char                 m_ch;
    };
+
+
    sp(::ca2::ca2)                     m_sp;
    string                           m_str;
    id                               m_id;
-
-};
-
-
-class CLASS_DECL_ca2 var :
-   public var_data
-{
-public:
-
-
-   void set_type(e_type e_type, bool bConvert = true);
-   e_type get_type() const;
-
-   bool is_numeric() const;
-
-   inline bool is_number() const
-   {
-
-      return is_numeric();
-
-   }
-
 
 
    inline var();
@@ -183,6 +165,19 @@ public:
    }
 
    ~var();
+
+   void set_type(e_type e_type, bool bConvert = true);
+   e_type get_type() const;
+
+   bool is_numeric() const;
+
+   inline bool is_number() const
+   {
+
+      return is_numeric();
+
+   }
+
 
    
 
@@ -768,9 +763,10 @@ inline string  & operator += (string & str, const var & var)
 
 inline var::var(var && v)
 {
-   *((var_data *) this) = *((var_data*)&v);
-   v.m_sp.m_p = NULL;
-   v.m_str.m_pszData = NULL;
+   memcpy(this, &v, sizeof(var));
+   v.m_sp.m_p           = NULL;
+   v.m_str.m_pszData    = NULL;
+   v.m_id.m_pstr        = NULL;
 }
 
 #endif
@@ -779,9 +775,13 @@ inline var & var::operator = (var && v)
 {
    if(this != &v)
    {
-      *((var_data *) this) = *((var_data*)&v);
-      v.m_sp.m_p = NULL;
-      v.m_str.m_pszData = NULL;      
+      m_sp.release();
+      m_str.~string();
+      m_id.~id();
+      memcpy(this, &v, sizeof(var));
+      v.m_sp.m_p           = NULL;
+      v.m_str.m_pszData    = NULL;
+      v.m_id.m_pstr        = NULL;
    }
    return *this;
 }

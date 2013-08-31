@@ -14,6 +14,7 @@ public:
    var_array(const int_array & inta);
    var_array(const ::ca2::property_set & propset);
    var_array(const var_array & vara);
+   virtual ~var_array();
 
 
    index add(var var);

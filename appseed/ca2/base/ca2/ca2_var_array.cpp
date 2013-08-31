@@ -33,6 +33,11 @@ var_array::var_array(const var_array & vara)
    operator = (vara);
 }
 
+var_array::~var_array()
+{
+
+}
+
 index var_array::add(var var)
 {
    if(var.get_type() != var::type_empty_argument)
