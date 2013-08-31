@@ -836,7 +836,7 @@ static int setval(const struct my_option *opts, void *value, char *argument,
         *((ulonglong*)value)=
               find_set_from_flags(opts->typelib, opts->typelib->count, 
                                   *(ulonglong *)value, opts->def_value,
-                                  argument, strlen(argument),
+                                  argument, (unsigned int) strlen(argument),
                                   &error, &error_len);
         if (error)
         {
@@ -1381,7 +1381,7 @@ static uint print_name(const struct my_option *optp, FILE* file = stdout)
   const char *s= optp->name;
   for (;*s;s++)
     putc(*s == '_' ? '-' : *s, file);
-  return s - optp->name;
+  return (uint) (s - optp->name);
 }
 
 /*
@@ -1499,7 +1499,7 @@ void my_print_variables_ex(const struct my_option *options, FILE* file)
 
   for (optp= options; optp->name; optp++)
   {
-    length= strlen(optp->name)+1;
+    length= (uint) strlen(optp->name)+1;
     if (length > name_space)
       name_space= length;
   }

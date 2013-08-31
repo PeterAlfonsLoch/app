@@ -184,7 +184,7 @@ int sha256_password_auth_client(MYSQL_PLUGIN_VIO *vio, MYSQL *mysql)
   else
   {
     /* Password is a 0-terminated byte array ('\0' character included) */
-    unsigned int passwd_len= strlen(mysql->passwd) + 1;
+    unsigned int passwd_len= (unsigned int) strlen(mysql->passwd) + 1;
     if (!connection_is_secure)
     {
 #if !defined(HAVE_YASSL)
@@ -210,7 +210,7 @@ int sha256_password_auth_client(MYSQL_PLUGIN_VIO *vio, MYSQL *mysql)
       }
       
       /* Obfuscate the plain text password with the session scramble */
-      xor_string(mysql->passwd, strlen(mysql->passwd), (char *) scramble_pkt,
+      xor_string(mysql->passwd, (int) strlen(mysql->passwd), (char *) scramble_pkt,
                  SCRAMBLE_LENGTH);
       /* Encrypt the password and send it to the server */
       int cipher_length= RSA_size(public_key);

@@ -304,7 +304,7 @@ my_bool my_net_write(NET *net, const uchar *packet, size_t len)
 #ifndef DEBUG_DATA_PACKETS
   DBUG_DUMP("packet_header", buff, NET_HEADER_SIZE);
 #endif
-  rc= test(net_write_buff(net,packet,len));
+  rc= test(net_write_buff(net,packet,(ulong)len));
   MYSQL_NET_WRITE_DONE(rc);
   return rc;
 }
@@ -361,9 +361,9 @@ net_write_command(NET *net,uchar command,
     {
       int3store(buff, MAX_PACKET_LENGTH);
       buff[3]= (uchar) net->pkt_nr++;
-      if (net_write_buff(net, buff, header_size) ||
-          net_write_buff(net, header, head_len) ||
-          net_write_buff(net, packet, len))
+      if (net_write_buff(net, buff, (ulong) header_size) ||
+          net_write_buff(net, header, (ulong) head_len) ||
+          net_write_buff(net, packet, (ulong) len))
       {
         MYSQL_NET_WRITE_DONE(1);
         DBUG_RETURN(1);
@@ -378,9 +378,9 @@ net_write_command(NET *net,uchar command,
   }
   int3store(buff,length);
   buff[3]= (uchar) net->pkt_nr++;
-  rc= test(net_write_buff(net, buff, header_size) ||
-           (head_len && net_write_buff(net, header, head_len)) ||
-           net_write_buff(net, packet, len) || net_flush(net));
+  rc= test(net_write_buff(net, buff, (ulong) header_size) ||
+           (head_len && net_write_buff(net, header, (ulong) head_len)) ||
+           net_write_buff(net, packet, (ulong) len) || net_flush(net));
   MYSQL_NET_WRITE_DONE(rc);
   DBUG_RETURN(rc);
 }
@@ -838,7 +838,7 @@ static ulong net_read_packet(NET *net, size_t *complen)
 
 end:
   net->reading_or_writing= 0;
-  return pkt_len;
+  return (ulong) pkt_len;
 
 error:
   net->reading_or_writing= 0;
@@ -881,7 +881,7 @@ my_net_read(NET *net)
       size_t total_length= 0;
       do
       {
-        net->where_b += len;
+        net->where_b +=(unsigned long) len;
         total_length += len;
         len= net_read_packet(net, &complen);
       } while (len == MAX_PACKET_LENGTH);
@@ -893,7 +893,7 @@ my_net_read(NET *net)
     if (len != packet_error)
       net->read_pos[len]=0;		/* Safeguard for mysql_use_result */
     MYSQL_NET_READ_DONE(0, len);
-    return len;
+    return (unsigned long) len;
 #ifdef HAVE_COMPRESS
   }
   else
@@ -991,7 +991,7 @@ my_net_read(NET *net)
         MYSQL_NET_READ_DONE(1, 0);
         return packet_error;
       }
-      buf_length+= complen;
+      buf_length+= (unsigned long) complen;
     }
 
     net->read_pos=      net->buff+ first_packet_offset + NET_HEADER_SIZE;
@@ -1004,7 +1004,7 @@ my_net_read(NET *net)
   }
 #endif /* HAVE_COMPRESS */
   MYSQL_NET_READ_DONE(0, len);
-  return len;
+  return (unsigned long) len;
 }
 
 

@@ -206,12 +206,12 @@ int extract_user_salt(char **salt_begin,
     ++it;
   }
   *salt_end= it;
-  return *salt_end - *salt_begin;
+  return (int) (*salt_end - *salt_begin);
 }
 
 const char *sha256_find_digest(char *pass)
 {
-  int sz= strlen(pass);
+  int sz= (int) strlen(pass);
   return pass + sz - SHA256_HASH_LENGTH;
 }
 
@@ -287,7 +287,7 @@ my_crypt_genhash(char *ctbuffer,
                   salt = p + 1;
   }
 
-  salt_len = MIN(strcspn(salt, "$"), CRYPT_SALT_LENGTH);
+  salt_len = (int) MIN(strcspn(salt, "$"), CRYPT_SALT_LENGTH);
   //plaintext_len = strlen(plaintext);
 
   /* 1. */
