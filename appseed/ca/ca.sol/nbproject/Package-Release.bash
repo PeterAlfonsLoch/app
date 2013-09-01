@@ -11,8 +11,8 @@ CND_CONF=Release
 CND_DISTDIR=dist
 NBTMPDIR=build/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libca.sol.so
-OUTPUT_BASENAME=libca.sol.so
+OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libca2ca.so
+OUTPUT_BASENAME=libca2ca.so
 PACKAGE_TOP_DIR=libca.sol.so/
 
 # Functions

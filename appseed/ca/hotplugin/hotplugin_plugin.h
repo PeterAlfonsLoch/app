@@ -19,7 +19,7 @@ namespace hotplugin
       {
 
          schema_normal,
-         schema_darker,
+         schema_darker
 
       };
 

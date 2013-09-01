@@ -32,7 +32,7 @@ namespace hotplugin
       message_set_ready,
       message_set_installing,
       message_open_url,
-      message_set_plugin_url,
+      message_set_plugin_url
 
    };
 

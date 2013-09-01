@@ -43,6 +43,14 @@ template < class TYPE >
 class simple_list : public base_simple_list
 {
 public:
+
+   class item
+   {
+      item * m_pnext;
+      TYPE m_value;
+   };
+
+
    simple_list(int32_t nNextOffset = 0)
       : base_simple_list(nNextOffset) { }
    void add_head(TYPE p)

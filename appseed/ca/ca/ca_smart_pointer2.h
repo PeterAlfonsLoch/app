@@ -450,7 +450,7 @@ bool operator !=(LPARAM l, const ::ca::smart_pointer < T > & sp) { return ((T *)
 bool operator ==(void * p, const ::ca::smart_pointer < T > & sp) { return ((T *) p) == sp.m_p; }
 template < class T >
 bool operator !=(void * p, const ::ca::smart_pointer < T > & sp) { return ((T *) p) == sp.m_p; }*/
-#ifndef ANDROID
+#if !defined(ANDROID) && !defined(SOLARIS)
 template < class T >
 inline bool operator ==(int i, const ::ca::smart_pointer < T > & sp) { return ((T *) i) == sp.m_p; }
 template < class T >

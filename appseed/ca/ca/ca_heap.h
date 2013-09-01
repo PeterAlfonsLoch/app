@@ -36,14 +36,6 @@ END_EXTERN_C
 
 
 
-
-#pragma once
-
-
-#include "ca_heap.h"
-
-
-
 extern HANDLE g_hmutexCa2Alloc;
 
 

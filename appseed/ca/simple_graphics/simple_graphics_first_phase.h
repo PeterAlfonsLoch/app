@@ -10,13 +10,13 @@ namespace draw2d
    enum e_alpha_mode
    {
       alpha_mode_set,
-      alpha_mode_blend,
+      alpha_mode_blend
    };
 
    enum e_fill_mode
    {
       fill_mode_winding,
-      fill_mode_alternate,
+      fill_mode_alternate
    };
 
 

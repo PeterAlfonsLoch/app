@@ -42,10 +42,12 @@ public:
 
          enum e_type
          {
+
             type_begin,
             type_arc,
             type_line,
-            type_close,
+            type_close
+
          };
 
 

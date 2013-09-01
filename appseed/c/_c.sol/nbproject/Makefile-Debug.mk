@@ -54,11 +54,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-Debug.mk dist/Debug/OracleSolarisStudio-Solaris-x86/lib_c.sol.so
+	"${MAKE}"  -f nbproject/Makefile-Debug.mk dist/Debug/OracleSolarisStudio-Solaris-x86/lib_ca2c.so
 
-dist/Debug/OracleSolarisStudio-Solaris-x86/lib_c.sol.so: ${OBJECTFILES}
+dist/Debug/OracleSolarisStudio-Solaris-x86/lib_ca2c.so: ${OBJECTFILES}
 	${MKDIR} -p dist/Debug/OracleSolarisStudio-Solaris-x86
-	${LINK.c} -G -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lib_c.sol.so -KPIC -norunpath -h lib_c.sol.so ${OBJECTFILES} ${LDLIBSOPTIONS} 
+	${LINK.c} -G -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lib_ca2c.so -KPIC -norunpath -h lib_ca2c.so ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
 ${OBJECTDIR}/_ext/583780700/c_os.o: ../solaris/c_os.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/583780700
@@ -70,7 +70,7 @@ ${OBJECTDIR}/_ext/583780700/c_os.o: ../solaris/c_os.c
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r build/Debug
-	${RM} dist/Debug/OracleSolarisStudio-Solaris-x86/lib_c.sol.so
+	${RM} dist/Debug/OracleSolarisStudio-Solaris-x86/lib_ca2c.so
 
 # Subprojects
 .clean-subprojects:

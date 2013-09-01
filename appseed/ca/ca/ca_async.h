@@ -146,10 +146,12 @@ namespace async
 
    enum e_status
    {
+
       status_error,
       status_run,
       status_cancel,
-      status_complete,
+      status_complete
+
    };
 
 

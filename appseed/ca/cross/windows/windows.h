@@ -9,21 +9,42 @@ struct win_handle
 
    enum e_type
    {
+
       type_file,
-      type_thread,
+      type_thread
+
    };
 
    e_type m_etype;
+
+
+   struct file
+   {
+
+
+      FILE * m_pfile;
+
+
+   };
+
+
+   struct thread
+   {
+
+
+       pthread_t m_thread;
+
+
+   };
+
    union
    {
-      struct
-      {
-         FILE * m_pfile;
-      } m_file;
-      struct
-      {
-         pthread_t m_thread;
-      } m_thread;
+
+
+      file     m_file;
+      thread   m_thread;
+
+      
    };
 
 

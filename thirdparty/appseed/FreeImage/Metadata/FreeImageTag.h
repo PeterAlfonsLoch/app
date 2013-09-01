@@ -2,7 +2,7 @@
 // Tag manipulation functions
 //
 // Design and implementation by
-// - Hervé Drolon <drolon@infonie.fr>
+// - Hervï¿½ Drolon <drolon@infonie.fr>
 //
 // This file is part of FreeImage 3
 //
@@ -278,7 +278,7 @@ typedef struct tagTagInfo {
 
 
 /**
-	Class to hold tag information (based on Meyers’ Singleton).<br>
+	Class to hold tag information (based on Meyersï¿½ Singleton).<br>
 
 	Sample usage :<br>
 	<code>
@@ -321,8 +321,8 @@ public:
 
 private:
 
-	typedef std::map<WORD, TagInfo*> TAGINFO;
-	typedef std::map<int, TAGINFO*>  TABLEMAP;
+	typedef simple_map<WORD, TagInfo*> TAGINFO;
+	typedef simple_map<int, TAGINFO*>  TABLEMAP;
 
 	/// store hash tables for all known tag info tables
 	TABLEMAP _table_map;

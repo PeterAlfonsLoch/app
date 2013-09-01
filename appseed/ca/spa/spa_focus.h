@@ -10,3 +10,7 @@ public:
 };
 
 extern focus * g_pfocus;
+
+
+
+

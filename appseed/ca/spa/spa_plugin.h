@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "ca/os/os.h"
-
-
 int32_t spaboot_start(const char * pszVersion, const char * pszId);
 
 
@@ -13,8 +10,10 @@ namespace spa
 
    enum e_check
    {
+      
       check_before_auth,
-      check_before_start,
+      check_before_start
+
    };
 
 
@@ -102,6 +101,8 @@ namespace spa
 
       virtual void on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b);
 
+      using ::spa::plugin::on_receive;
+
       virtual void on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len);
 
 #endif
@@ -117,9 +118,6 @@ namespace spa
       virtual vsstring defer_get_plugin();
 
       virtual vsstring defer_get(const char * pszUrl);
-
-
-
 
 
    };

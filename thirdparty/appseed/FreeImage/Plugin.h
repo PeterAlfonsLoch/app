@@ -27,7 +27,6 @@
 #ifndef PLUGIN_H
 #define PLUGIN_H
 
-#include "FreeImageFramework.h"
 #include "Utilities.h"
 
 // ==========================================================
@@ -76,7 +75,7 @@ public :
 	BOOL IsEmpty() const;
 
 private :
-	std::map<int, PluginNode *> m_plugin_map;
+	simple_map<int, PluginNode *> m_plugin_map;
 	int m_node_count;
 };
 

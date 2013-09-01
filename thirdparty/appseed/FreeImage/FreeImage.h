@@ -3,7 +3,7 @@
 //
 // Design and implementation by
 // - Floris van den Berg (flvdberg@wxs.nl)
-// - Hervé Drolon (drolon@infonie.fr)
+// - Hervï¿½ Drolon (drolon@infonie.fr)
 //
 // Contributors:
 // - see changes log named 'Whatsnew.txt', see header of each .h and .cpp file
@@ -156,7 +156,7 @@ typedef long LONG;
 #pragma pack(1)
 #endif // WIN32
 
-
+/*/
 typedef struct tagRGBQUAD {
 #if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR
   BYTE rgbBlue;
@@ -210,6 +210,7 @@ typedef struct tagBITMAPINFO {
   RGBQUAD          bmiColors[1];
 } BITMAPINFO, *PBITMAPINFO;
 
+ */
 #endif
 
 

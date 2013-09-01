@@ -2,7 +2,7 @@
 
 
 #ifdef WINDOWS
-#elif defined(ANDROID)
+#elif defined(ANDROID) || defined(SOLARIS)
 #include <fcntl.h>
 #include <semaphore.h>
 #elif defined(MACOS)

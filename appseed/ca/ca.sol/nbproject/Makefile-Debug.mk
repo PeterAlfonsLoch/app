@@ -103,8 +103,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/43900685/ca_vsstringtow.o \
 	${OBJECTDIR}/_ext/583780700/ca_os_small_ipca_channel.o \
 	${OBJECTDIR}/_ext/583780700/ca_os_simple_path.o \
-	${OBJECTDIR}/_ext/1328484458/ansios_cross_win_file.o \
 	${OBJECTDIR}/_ext/43900685/ca_simple_shell_launcher.o \
+	${OBJECTDIR}/_ext/1328484458/ansios_cross_win_file.o \
 	${OBJECTDIR}/_ext/43900685/ca_international.o \
 	${OBJECTDIR}/_ext/1360937173/spa_plugin.o \
 	${OBJECTDIR}/_ext/583780700/ca_os_http_lib.o \
@@ -124,8 +124,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/583780700/ca_os_library.o \
 	${OBJECTDIR}/_ext/583780700/ca_os_cross_win_file.o \
 	${OBJECTDIR}/_ext/1360937173/spa_cube_run.o \
-	${OBJECTDIR}/_ext/1295684859/bzlib.o \
 	${OBJECTDIR}/_ext/43900685/ca_file.o \
+	${OBJECTDIR}/_ext/1295684859/bzlib.o \
 	${OBJECTDIR}/_ext/43901075/os_http.o \
 	${OBJECTDIR}/_ext/583780700/ca_os_window_cairo.o \
 	${OBJECTDIR}/_ext/43900685/ca_user.o \
@@ -134,8 +134,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/43900685/ca_conv.o \
 	${OBJECTDIR}/_ext/1295684859/main_bspatch.o \
 	${OBJECTDIR}/_ext/43900685/ca_simple_critical_section.o \
-	${OBJECTDIR}/_ext/416166309/windows_user.o \
 	${OBJECTDIR}/_ext/583780700/ca_os_simple_shell_launcher.o \
+	${OBJECTDIR}/_ext/416166309/windows_user.o \
 	${OBJECTDIR}/_ext/1360937173/spa_http.o \
 	${OBJECTDIR}/_ext/1360937173/spa_boot.o \
 	${OBJECTDIR}/_ext/583780700/ca_os_launcher.o \
@@ -156,8 +156,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/2111841970/simple_label.o \
 	${OBJECTDIR}/_ext/583780700/ca_os_cairo_keep.o \
 	${OBJECTDIR}/_ext/583780700/ca_os_message_loop.o \
-	${OBJECTDIR}/_ext/583780700/ca_os_cross_win_gdi.o \
 	${OBJECTDIR}/_ext/583780700/ca_os_lock.o \
+	${OBJECTDIR}/_ext/583780700/ca_os_cross_win_gdi.o \
 	${OBJECTDIR}/_ext/43900685/ca_url.o \
 	${OBJECTDIR}/_ext/43900685/ca_math.o \
 	${OBJECTDIR}/_ext/43900685/ca_md5.o \
@@ -189,11 +189,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-Debug.mk dist/Debug/OracleSolarisStudio-Solaris-x86/libca.sol.so
+	"${MAKE}"  -f nbproject/Makefile-Debug.mk dist/Debug/OracleSolarisStudio-Solaris-x86/libca2ca.so
 
-dist/Debug/OracleSolarisStudio-Solaris-x86/libca.sol.so: ${OBJECTFILES}
+dist/Debug/OracleSolarisStudio-Solaris-x86/libca2ca.so: ${OBJECTFILES}
 	${MKDIR} -p dist/Debug/OracleSolarisStudio-Solaris-x86
-	${LINK.cc} -G -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libca.sol.so -KPIC -norunpath -h libca.sol.so ${OBJECTFILES} ${LDLIBSOPTIONS} 
+	${LINK.cc} -G -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libca2ca.so -KPIC -norunpath -h libca2ca.so ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
 ${OBJECTDIR}/_ext/43900685/ca_wstringtovss.o: ../ca/ca_wstringtovss.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/43900685
@@ -475,13 +475,13 @@ ${OBJECTDIR}/_ext/583780700/ca_os_simple_path.o: ../solaris/ca_os_simple_path.cp
 	${MKDIR} -p ${OBJECTDIR}/_ext/583780700
 	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/583780700/ca_os_simple_path.o ../solaris/ca_os_simple_path.cpp
 
-${OBJECTDIR}/_ext/1328484458/ansios_cross_win_file.o: ../ansios/ansios_cross_win_file.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1328484458
-	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/1328484458/ansios_cross_win_file.o ../ansios/ansios_cross_win_file.cpp
-
 ${OBJECTDIR}/_ext/43900685/ca_simple_shell_launcher.o: ../ca/ca_simple_shell_launcher.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/43900685
 	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/43900685/ca_simple_shell_launcher.o ../ca/ca_simple_shell_launcher.cpp
+
+${OBJECTDIR}/_ext/1328484458/ansios_cross_win_file.o: ../ansios/ansios_cross_win_file.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1328484458
+	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/1328484458/ansios_cross_win_file.o ../ansios/ansios_cross_win_file.cpp
 
 ${OBJECTDIR}/_ext/43900685/ca_international.o: ../ca/ca_international.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/43900685
@@ -559,13 +559,13 @@ ${OBJECTDIR}/_ext/1360937173/spa_cube_run.o: ../spa/spa_cube_run.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/1360937173
 	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/1360937173/spa_cube_run.o ../spa/spa_cube_run.cpp
 
-${OBJECTDIR}/_ext/1295684859/bzlib.o: ../bsdiff/bzlib.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1295684859
-	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/1295684859/bzlib.o ../bsdiff/bzlib.cpp
-
 ${OBJECTDIR}/_ext/43900685/ca_file.o: ../ca/ca_file.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/43900685
 	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/43900685/ca_file.o ../ca/ca_file.cpp
+
+${OBJECTDIR}/_ext/1295684859/bzlib.o: ../bsdiff/bzlib.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1295684859
+	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/1295684859/bzlib.o ../bsdiff/bzlib.cpp
 
 ${OBJECTDIR}/_ext/43901075/os_http.o: ../os/os_http.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/43901075
@@ -599,13 +599,13 @@ ${OBJECTDIR}/_ext/43900685/ca_simple_critical_section.o: ../ca/ca_simple_critica
 	${MKDIR} -p ${OBJECTDIR}/_ext/43900685
 	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/43900685/ca_simple_critical_section.o ../ca/ca_simple_critical_section.cpp
 
-${OBJECTDIR}/_ext/416166309/windows_user.o: ../cross/windows/windows_user.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/416166309
-	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/416166309/windows_user.o ../cross/windows/windows_user.cpp
-
 ${OBJECTDIR}/_ext/583780700/ca_os_simple_shell_launcher.o: ../solaris/ca_os_simple_shell_launcher.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/583780700
 	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/583780700/ca_os_simple_shell_launcher.o ../solaris/ca_os_simple_shell_launcher.cpp
+
+${OBJECTDIR}/_ext/416166309/windows_user.o: ../cross/windows/windows_user.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/416166309
+	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/416166309/windows_user.o ../cross/windows/windows_user.cpp
 
 ${OBJECTDIR}/_ext/1360937173/spa_http.o: ../spa/spa_http.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1360937173
@@ -687,13 +687,13 @@ ${OBJECTDIR}/_ext/583780700/ca_os_message_loop.o: ../solaris/ca_os_message_loop.
 	${MKDIR} -p ${OBJECTDIR}/_ext/583780700
 	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/583780700/ca_os_message_loop.o ../solaris/ca_os_message_loop.cpp
 
-${OBJECTDIR}/_ext/583780700/ca_os_cross_win_gdi.o: ../solaris/ca_os_cross_win_gdi.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/583780700
-	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/583780700/ca_os_cross_win_gdi.o ../solaris/ca_os_cross_win_gdi.cpp
-
 ${OBJECTDIR}/_ext/583780700/ca_os_lock.o: ../solaris/ca_os_lock.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/583780700
 	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/583780700/ca_os_lock.o ../solaris/ca_os_lock.cpp
+
+${OBJECTDIR}/_ext/583780700/ca_os_cross_win_gdi.o: ../solaris/ca_os_cross_win_gdi.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/583780700
+	$(COMPILE.cc) -g -I../../../.. -I../../.. -I../.. -I.. -KPIC  -o ${OBJECTDIR}/_ext/583780700/ca_os_cross_win_gdi.o ../solaris/ca_os_cross_win_gdi.cpp
 
 ${OBJECTDIR}/_ext/43900685/ca_url.o: ../ca/ca_url.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/43900685
@@ -746,7 +746,7 @@ ${OBJECTDIR}/_ext/43900685/ca_cpu_architecture.o: ../ca/ca_cpu_architecture.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r build/Debug
-	${RM} dist/Debug/OracleSolarisStudio-Solaris-x86/libca.sol.so
+	${RM} dist/Debug/OracleSolarisStudio-Solaris-x86/libca2ca.so
 	${CCADMIN} -clean
 
 # Subprojects

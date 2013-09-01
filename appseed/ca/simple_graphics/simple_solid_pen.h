@@ -20,3 +20,7 @@ inline simple_solid_pen::simple_solid_pen(simple_graphics & g, COLORREF cr, int3
    create_solid(g, cr, iWidth);
    
 }
+
+
+
+

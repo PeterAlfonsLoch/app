@@ -8,8 +8,10 @@ public:
 
    enum e_type
    {
+
       type_solid,
-      type_stock,
+      type_stock
+
    };
 
 

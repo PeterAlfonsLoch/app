@@ -25,7 +25,7 @@
 
 // ----------------------------------------------------------
 
-CacheFile::CacheFile(const std::string filename, BOOL keep_in_memory) :
+CacheFile::CacheFile(const vsstring filename, BOOL keep_in_memory) :
 m_file(NULL),
 m_filename(filename),
 m_free_pages(),
@@ -42,8 +42,8 @@ CacheFile::~CacheFile() {
 
 BOOL
 CacheFile::open() {
-	if ((!m_filename.empty()) && (!m_keep_in_memory)) {
-		m_file = fopen(m_filename.c_str(), "w+b");
+	if ((!m_filename.is_empty()) && (!m_keep_in_memory)) {
+		m_file = fopen(m_filename, "w+b");
 		return (m_file != NULL);
 	}
 
@@ -54,15 +54,15 @@ void
 CacheFile::close() {
 	// dispose the cache entries
 
-	while (!m_page_cache_disk.empty()) {
-		Block *block = *m_page_cache_disk.begin();
-		m_page_cache_disk.pop_front();
+	while (!m_page_cache_disk.is_empty()) {
+		Block *block = m_page_cache_disk.get_head();
+		m_page_cache_disk.remove(block);
 		delete [] block->data;
 		delete block;
 	}
-	while (!m_page_cache_mem.empty()) { 
-		Block *block = *m_page_cache_mem.begin(); 
-		m_page_cache_mem.pop_front(); 
+	while (!m_page_cache_mem.is_empty()) {
+		Block *block = m_page_cache_mem.get_head();
+		m_page_cache_mem.remove(block);
 		delete [] block->data; 
 		delete block; 
 	} 
@@ -74,7 +74,7 @@ CacheFile::close() {
 
 		// delete the file
 
-		remove(m_filename.c_str());
+		remove(m_filename);
 	}
 }
 

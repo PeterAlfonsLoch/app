@@ -8,9 +8,10 @@ public:
 
    enum e_type
    {
+
      type_solid,
      type_linear_gradient,
-     type_stock,
+     type_stock
 
    };
 

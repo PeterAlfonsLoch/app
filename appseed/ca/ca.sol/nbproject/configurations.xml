@@ -455,6 +455,9 @@
             <pElem>..</pElem>
           </incDir>
         </ccTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libca2ca.so</output>
+        </linkerTool>
         <requiredProjects>
           <makeArtifact PL="../../c/_c.sol"
                         CT="2"
@@ -493,6 +496,9 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libca2ca.so</output>
+        </linkerTool>
       </compileType>
     </conf>
   </confs>

@@ -118,7 +118,7 @@ typedef enum
 	XNODE_PI,					// <?xml version="1.0" ?>
 	XNODE_COMMENT,				// <!-- comment -->
 	XNODE_CDATA,				// <![CDATA[ cdata ]]>
-	XNODE_DOC,					// internal virtual root
+	XNODE_DOC					// internal virtual root
 }NODE_TYPE;
 
 #pragma warning(push)

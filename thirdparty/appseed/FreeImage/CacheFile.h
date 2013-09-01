@@ -24,7 +24,6 @@
 
 // ----------------------------------------------------------
 
-#include "FreeImageFramework.h"
 #include "Utilities.h"
 
 // ----------------------------------------------------------
@@ -55,13 +54,13 @@ struct Block {
 // ----------------------------------------------------------
 
 class CacheFile {
-	typedef std::list<Block *> PageCache;
-	typedef std::list<Block *>::iterator PageCacheIt;
-	typedef std::map<int, PageCacheIt> PageMap;
-	typedef std::map<int, PageCacheIt>::iterator PageMapIt;
+	typedef simple_list<Block *> PageCache;
+	typedef POSITION PageCacheIt;
+	typedef simple_map<int, PageCacheIt> PageMap;
+	typedef POSITION PageMapIt;
 
 public :
-	CacheFile(const std::string filename, BOOL keep_in_memory);
+	CacheFile(const vsstring filename, BOOL keep_in_memory);
 	~CacheFile();
 
 	BOOL open();
@@ -79,8 +78,8 @@ private :
 
 private :
 	FILE *m_file;
-	std::string m_filename;
-	std::list<int> m_free_pages;
+	vsstring m_filename;
+	simple_list<int> m_free_pages;
 	PageCache m_page_cache_mem;
 	PageCache m_page_cache_disk;
 	PageMap m_page_map;

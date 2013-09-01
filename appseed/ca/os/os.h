@@ -50,6 +50,16 @@
 #define HAVE_MYSQL
 #define HAVE_OPENSSL
 
+#elif defined(SOLARIS)
+
+#include "ca/ansios/ansios.h"
+#include "os_binreloc.h"
+#include "ca/solaris/ca_os.h"
+
+#define BSD_STYLE_SOCKETS
+#define HAVE_MYSQL
+#define HAVE_OPENSSL
+
 #else
 
 #error Not supported operating system

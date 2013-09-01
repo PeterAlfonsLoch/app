@@ -10,7 +10,7 @@ public:
 
    enum
    {
-      npos = -1,
+      npos = -1
    };
 
 

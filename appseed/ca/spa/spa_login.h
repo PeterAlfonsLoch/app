@@ -18,10 +18,12 @@ public:
 
    enum e_result
    {
+      
       result_ok,
       result_wrong_password,
       result_fail,
-      result_registration_deferred,
+      result_registration_deferred
+
    };
 
    class CLASS_DECL_ca callback
@@ -71,3 +73,8 @@ public:
 
 
 };
+
+
+
+
+

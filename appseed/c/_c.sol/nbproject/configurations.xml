@@ -5,6 +5,13 @@
                    displayName="Header Files"
                    projectFiles="true"
                    kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f2"
+                     displayName="c"
+                     projectFiles="true"
+                     kind="SOURCE_LOGICAL_FOLDER">
+        <itemPath>../c/c.h</itemPath>
+        <itemPath>../c/c_c.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="f1"
                      displayName="solaris"
                      projectFiles="true"
@@ -52,6 +59,9 @@
         <platform>1</platform>
       </toolsSet>
       <compileType>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lib_ca2c.so</output>
+        </linkerTool>
       </compileType>
     </conf>
     <conf name="Release" type="2">
@@ -73,6 +83,9 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lib_ca2c.so</output>
+        </linkerTool>
       </compileType>
     </conf>
   </confs>
