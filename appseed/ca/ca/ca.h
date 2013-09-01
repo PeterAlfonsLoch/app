@@ -59,7 +59,7 @@ public:
    }
 
 
-#ifndef ANDROID
+#if !defined(ANDROID) && !defined(SOLARIS)
 
    lparam(int32_t i)
    {

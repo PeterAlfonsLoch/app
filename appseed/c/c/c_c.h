@@ -11,6 +11,10 @@
 #include "c/windows/c_os_internal.h"
 #elif defined(METROWIN)
 #include "c/windows/c_os_internal.h"
+#elif defined(SOLARIS)
+#include "c/solaris/c_os_internal.h"
 #else
 #error Not Supported Operational System
 #endif
+
+

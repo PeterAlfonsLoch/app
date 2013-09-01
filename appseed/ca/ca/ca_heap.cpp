@@ -24,6 +24,11 @@ void * ca2_alloc(size_t size)
    return g_pfnca2_alloc(size);
 }
 
+void * ca2_calloc(size_t size, size_t bytes)
+{
+   return ca2_alloc(size * bytes);
+}
+
 void * ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
    return g_pfnca2_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
