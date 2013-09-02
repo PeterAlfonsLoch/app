@@ -1,0 +1,1326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\c">
+      <UniqueIdentifier>{c884c593-8d0f-465b-8314-98944d5dac4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\android">
+      <UniqueIdentifier>{35caf055-bd72-42c2-ac5b-2bbc068ac15e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows">
+      <UniqueIdentifier>{7f5b990b-08b4-425e-847d-3a6e90f89fbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\c">
+      <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\android">
+      <UniqueIdentifier>{4ccb1b0f-1033-4f02-bb2b-bcc8e610b600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windows">
+      <UniqueIdentifier>{a22a4034-5452-4e71-94f4-59a3c75da33f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\collection">
+      <UniqueIdentifier>{fe41db0c-d878-4a35-a159-72fbe0c5388e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\exception">
+      <UniqueIdentifier>{77140af8-d51a-425d-a8e7-b383c3475af9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive">
+      <UniqueIdentifier>{e747dff7-0cdb-45ea-9b6c-6ba1abfa384b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive">
+      <UniqueIdentifier>{73b6eb83-847b-4f04-a3de-daf20e5f9a48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\c\NewFilter1">
+      <UniqueIdentifier>{3899cb86-0087-41c8-aa1a-611b979aabf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\c\NewFilter1">
+      <UniqueIdentifier>{b1ac7dd6-5cfe-4f02-b4fd-ca11e9c8a663}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\exception\NewFilter1">
+      <UniqueIdentifier>{215c546b-d479-4652-a485-e5d8480854c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\x">
+      <UniqueIdentifier>{1f97a96d-4195-4c05-b773-fbb2ebc3db97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ca2">
+      <UniqueIdentifier>{614dd72c-2f01-44b1-a4ae-7e4c0a99715d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ca2\NewFilter1">
+      <UniqueIdentifier>{d11d14da-bb4b-4d2c-aca4-2b2976e62256}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ca2\NewFilter2">
+      <UniqueIdentifier>{58e0f8a1-d06b-42bb-a549-30a0273e767c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ca">
+      <UniqueIdentifier>{5dd490b1-6761-432a-b7b3-d6090595ad17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ca">
+      <UniqueIdentifier>{0b928cd1-7824-4675-b57d-d95678f884c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ca2\NewFilter3">
+      <UniqueIdentifier>{591d05b6-d09c-4d24-8f0e-296172857870}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\multithreading">
+      <UniqueIdentifier>{262b60e3-e795-4339-b4cc-f4ca20348991}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\multithreading">
+      <UniqueIdentifier>{0d1fb68a-ae17-4c19-a26a-903d27492e6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\datetime">
+      <UniqueIdentifier>{0510e3ff-0079-4cb1-b9e8-2cca759dcb0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\NewFilter1">
+      <UniqueIdentifier>{326d7651-69ad-4ff0-9152-df6029fce47f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\comparison">
+      <UniqueIdentifier>{276fbcc3-9187-4eb9-8009-ea8317821e53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geometry">
+      <UniqueIdentifier>{34efdb62-6d14-4cb8-9650-f3435319cb79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\datetime">
+      <UniqueIdentifier>{334409e8-cda5-447b-a8c4-10b219bd72cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\exception\NewFilter2">
+      <UniqueIdentifier>{f371a338-f622-4cff-a352-b9784eecce1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\exception">
+      <UniqueIdentifier>{934af833-4170-42f6-9310-7447b5d7edea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\file">
+      <UniqueIdentifier>{e735cbc7-6be2-44c9-b19a-0c3d6ee00183}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\file">
+      <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ca2">
+      <UniqueIdentifier>{f8157614-d54a-4a3d-b01a-b67338f11254}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\os">
+      <UniqueIdentifier>{9e92b674-0ae7-4e1e-bd86-d513ccacb6a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ca2\NewFilter1">
+      <UniqueIdentifier>{c1952820-7154-4dae-b603-dfe694207daf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\spa">
+      <UniqueIdentifier>{9faab802-b503-4ed8-888b-b85ace9bc090}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\spa">
+      <UniqueIdentifier>{4b14bab0-dd46-49b3-9fce-8c6ba58b28b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NewFilter1">
+      <UniqueIdentifier>{116e3076-c458-43fe-92e9-72e6aae3c491}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\collection">
+      <UniqueIdentifier>{fd9b9048-508d-4203-831a-6aff50448bb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\str">
+      <UniqueIdentifier>{ccf3d663-d7b0-497e-a749-89d495cf7b95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\str">
+      <UniqueIdentifier>{bc376aac-e84d-4512-8b6b-fc52197d90f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\str\NewFilter1">
+      <UniqueIdentifier>{794298eb-3742-4891-a446-94a120d6ec0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ca2\NewFilter4">
+      <UniqueIdentifier>{22baf8e6-732c-435c-9ad3-369e4c7aa68b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\xml">
+      <UniqueIdentifier>{42770ef4-1efe-40e5-864d-38ad28249a78}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="c\c.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_mm.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_c.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="android\c_os_internal.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_internal.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_cpp.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_smart_pointer2.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_smart_pointer1.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_lparam.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_count.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_index.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_ca.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="framework_c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_fixed_alloc.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_simple_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_attrib_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_base_2array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_bit_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_bitset.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_comparable_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_comparable_eq_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_comparable_eq_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_comparable_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_comparable_primitive_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_comparable_raw_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_deque.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_elements.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_fifo_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_id_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_int_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_key_sort_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_lemon_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_logic_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_map_association.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_map_to_smart_pointer.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_numeric_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_object_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_packset.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_pair.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_point_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_pointer_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_primitive_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_priority_queue.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_queue.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_raw_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_rect_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_simple_eq_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_simple_object_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_simple_pointer_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_simple_template.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_simple_typed_pointer_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_smart_pointer_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_sort.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_sort_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_sort_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_spreadset.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_strid_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_string_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_string_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_string_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_string_sort_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_string_to_string_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_stringa.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_stringl.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_template.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_typed_pointer_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_typed_pointer_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_typed_pointer_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_typed_ptr_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_typed_ptr_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_unique_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_simple.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_simple_critical_section.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_types.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_dump_context.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_assert.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_simple.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_base.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_exception.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_call_stack.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_debug.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_invalid_argument.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_hresult.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_error.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_wstringtou.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_heap.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_istring.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="x\x_charcategory.h">
+      <Filter>Header Files\x</Filter>
+    </ClInclude>
+    <ClInclude Include="x\x_charcategory_names.h">
+      <Filter>Header Files\x</Filter>
+    </ClInclude>
+    <ClInclude Include="x\x_charcategory2.h">
+      <Filter>Header Files\x</Filter>
+    </ClInclude>
+    <ClInclude Include="x\x_defines.h">
+      <Filter>Header Files\x</Filter>
+    </ClInclude>
+    <ClInclude Include="x\x_encodings.h">
+      <Filter>Header Files\x</Filter>
+    </ClInclude>
+    <ClInclude Include="x\x_tables.h">
+      <Filter>Header Files\x</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_bit.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_number.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_numeric_info.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_id.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_id_space.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_net.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_condition.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_critical_section.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_event_base.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_event_collection.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_file_change_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_manual_reset_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_multi_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_mutex.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_plain_service.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_retry_multi_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_retry_single_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_semaphore.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_service_base.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_service_status.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_single_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_socket_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_sync_object.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_synch_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_thread_pool.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_wait_result.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_waitable.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_simple_array.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_ca2.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_range_error.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_file.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_file.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_md5.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_memory.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_var.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_template.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="comparison\comparison_equals.h">
+      <Filter>Header Files\comparison</Filter>
+    </ClInclude>
+    <ClInclude Include="comparison\comparison_hash.h">
+      <Filter>Header Files\comparison</Filter>
+    </ClInclude>
+    <ClInclude Include="comparison\comparison.h">
+      <Filter>Header Files\comparison</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\geometry.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\geometry_rect.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\geometry_size.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\geometry_point.h">
+      <Filter>Header Files\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="comparison\comparison_binary.h">
+      <Filter>Header Files\comparison</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_core.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="comparison\comparison_var_strict.h">
+      <Filter>Header Files\comparison</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\datetime_duration.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\datetime_time.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_var_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_memory.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_common.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception2.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_allocate.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_heap.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_debug.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_debug_stream.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_engine.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_exit.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_installing.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_interface_only.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_invalid_character.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_invalid_handle.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_invalid_index.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_io.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_last_error.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_memory_state.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_misc.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_not_implemented.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_not_installed.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_not_licensed.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_not_supported.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_operation_canceled.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_os.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_overflow_error.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_resource.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_runtime_error.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_standard.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_standard_translator.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_temporary.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_todo.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_trap.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_unhandled_report.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_user.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_vms.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_void_implementation.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_logic.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_plex.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_plex_heap.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_application.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_system.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_byte_serializable.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_byte_stream.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_file.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_output_stream_flush_interface.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_reader.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_seekable.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_stream.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_stream_base.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_writer.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_initial_single_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_buffer.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_buffer.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_thread.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_status.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_memory.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_memory_base.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_time.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_natural.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_memory_container.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_exception.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_opened.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_thread_os.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_conv.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="os\os_process.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_shared_memory.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_virtual_memory.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_thread.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_trace.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_dir.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_math.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_tokenizer.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_string_interface.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_simple_string.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_string.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_string_composite.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_string_format.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_str2.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_str.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_wstringtou.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_ch.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_ch_class.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_international2.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_international.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_hex.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_verisimple_string.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_verisimple_wstring.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_vsstringtow.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_wstringtovss.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str1.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_to_integer.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_from_integer.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str_str1.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_var2.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_property_set.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_property.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_object.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_signal.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_element.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_type.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_url_departament.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_factory.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_request_interface.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="c\c.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="android\c_os_internal.c">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_internal.c">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="c_os_locale.c">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_ca.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="framework_c.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_simple_string.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_string.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_string_core.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_string_format.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_string_manager.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_heap.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_net.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_condition.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_core.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_critical_section.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event_base.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event_collection.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_file_change_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_manual_reset_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_multi_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_mutex.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_plain_service.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_retry_multi_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_semaphore.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_service_base.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_single_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_socket_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_sync_object.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_synch_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_wait_result.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_waitable.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_simple_array.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_archive.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_archive_exception.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_base.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_call_stack.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_debug.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_dump.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_dump_context.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_dump_floating_point.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_dump_output.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_engine.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_error.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_exit.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_hresult.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_installing.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_interface_only.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_invalid_argument.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_invalid_character.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_invalid_handle.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_invalid_index.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_io.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_last_error.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_memory.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_not_implemented.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_not_installed.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_not_licensed.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_not_supported.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_operation_canceled.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_os.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_overflow_error.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_range_error.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_resource.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_runtime_error.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_simple.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_standard_translator.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_temporary.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_todo.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_user.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_VMSException.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_void_implementation.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_file.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_stream.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_reader.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_writer.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_system.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_application.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_memory.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_memory_base.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca2_fixed_alloc.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_memory_container.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_shared_memory.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_virtual_memory.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_allocate_mid_big.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_thread.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_trace.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_dir2.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_dir.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_2d_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_bit_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_class_sort_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_comparable_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_id_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_key_sort_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_map_misc.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_numeric_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_object_list.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_point_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_pointer_list.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_rect_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_sort.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_string_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_string_list.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_string_sort_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_string_to_string_map.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_stringa.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_stringl.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_math.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_ch.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_ch_class.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_hex.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_international.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_str.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_verisimple_string.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_verisimple_wstring.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_vsstringtow.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_wstringtovss.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_from_integer.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_to_integer.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_str1.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_strx.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_strw.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_property.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_object.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_factory.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_element.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="_c.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="multithreading\multithreading.inl">
+      <Filter>Header Files\multithreading</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="exception\_exception.txt">
+      <Filter>Header Files\exception</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,48 @@
+#pragma once
+
+
+namespace comparison
+{
+
+
+   class CLASS_DECL_c var_strict
+   {
+   public:
+      var_strict(const var & var);
+      var_strict(const ::comparison::var_strict & compare);
+
+      const var & m_var;
+
+      bool operator == (const var & var) const;
+      bool operator == (const char * psz) const;
+      bool operator == (const string & str) const;
+      bool operator == (double d) const;
+      bool operator == (int32_t i) const;
+      bool operator == (bool b) const;
+
+      bool operator != (const var & var) const;
+      bool operator != (const char * psz) const;
+      bool operator != (const string & str) const;
+      bool operator != (double d) const;
+      bool operator != (int32_t i) const;
+      bool operator != (bool b) const;
+
+      friend bool CLASS_DECL_c operator == (const char * psz, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_c operator == (const string & str, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_c operator == (double d, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_c operator == (int32_t i, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_c operator == (bool b, const ::comparison::var_strict & var);
+
+      friend bool CLASS_DECL_c operator != (const char * psz, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_c operator != (const string & str, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_c operator != (double d, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_c operator != (int32_t i, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_c operator != (bool b, const ::comparison::var_strict & var);
+
+   };
+
+
+
+} // namespace comparison
+
+
