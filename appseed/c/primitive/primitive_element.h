@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_c element :
-   virtual public ::ca::ca
+   virtual public base
 {
 public:
 
