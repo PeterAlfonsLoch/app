@@ -2374,7 +2374,7 @@ inactive (cairo_script_surface_t *surface)
 				      &sorted,
 				      link)
 	    {
-		if (df->operand.type < pos->operand.type)
+		if (df->operand.type_info < pos->operand.type)
 		    break;
 	    }
 	    cairo_list_move_tail (&df->link, &pos->link);

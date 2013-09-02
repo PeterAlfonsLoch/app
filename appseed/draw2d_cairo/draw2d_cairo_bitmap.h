@@ -16,7 +16,7 @@ namespace draw2d_cairo
       ::size                  m_size;
 
 
-      bitmap(sp(::ca2::application) papp);
+      bitmap(sp(::application) papp);
       virtual ~bitmap();
 
 

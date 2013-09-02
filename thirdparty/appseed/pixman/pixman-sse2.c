@@ -6065,6 +6065,9 @@ FAST_BILINEAR_MAINLOOP_COMMON (sse2_8888_n_8888_normal_OVER,
 			       uint32_t, uint32_t, uint32_t,
 			       NORMAL, FLAG_HAVE_SOLID_MASK)
 
+#undef IN
+
+
 static const pixman_fast_path_t sse2_fast_paths[] =
 {
     /* PIXMAN_OP_OVER */

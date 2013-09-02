@@ -37,7 +37,7 @@ namespace draw2d_cairo
 
 
 
-      dib(sp(::ca2::application) papp);
+      dib(sp(::application) papp);
       virtual void construct(int32_t cx, int32_t cy);
       virtual ~dib();
 
@@ -164,9 +164,9 @@ namespace draw2d_cairo
       virtual bool from(::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI);
 
 
-      bool update_window(::ca2::window * pwnd, ::ca2::signal_object * pobj);
+      bool update_window(::ca2::window * pwnd, signal_details * pobj);
 #if defined(WINDOWS)
-      bool print_window(::ca2::window * pwnd, ::ca2::signal_object * pobj);
+      bool print_window(::ca2::window * pwnd, signal_details * pobj);
 #endif
 
    };

@@ -5,8 +5,8 @@ namespace draw2d_cairo
 {
 
 
-   palette::palette(sp(::ca2::application) papp) :
-      ca2(papp)
+   palette::palette(sp(::application) papp) :
+      element(papp)
    {
 
    }
@@ -31,7 +31,7 @@ namespace draw2d_cairo
 
 /*
 
-   palette* PASCAL palette::from_handle(sp(::ca2::application) papp, HPALETTE hPalette)
+   palette* PASCAL palette::from_handle(sp(::application) papp, HPALETTE hPalette)
    {
 
       //return dynamic_cast < palette * > (::win::object::from_handle(papp, hPalette));
@@ -45,7 +45,7 @@ namespace draw2d_cairo
 
 /*
 
-   WINBOOL palette::CreatePalette(LPLOGPALETTE lpLogPalette)
+   int_bool palette::CreatePalette(LPLOGPALETTE lpLogPalette)
    {
 
    //   return Attach(::CreatePalette(lpLogPalette));
@@ -60,7 +60,7 @@ namespace draw2d_cairo
 
 /*
 
-   WINBOOL palette::CreateHalftonePalette(::draw2d::graphics * pgraphics)
+   int_bool palette::CreateHalftonePalette(::draw2d::graphics * pgraphics)
    {
 
       //ASSERT(pgraphics != NULL && (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1() != NULL);
@@ -119,7 +119,7 @@ namespace draw2d_cairo
 
 /*
 
-   WINBOOL palette::ResizePalette(UINT nNumEntries)
+   int_bool palette::ResizePalette(UINT nNumEntries)
    {
 
       //ASSERT(get_os_data() != NULL);

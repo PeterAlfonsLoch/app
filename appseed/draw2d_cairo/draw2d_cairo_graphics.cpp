@@ -6,8 +6,8 @@ namespace draw2d_cairo
 {
 
 
-   graphics::graphics(sp(::ca2::application) papp) :
-      ca2(papp)
+   graphics::graphics(sp(::application) papp) :
+      element(papp)
    {
 
       m_bPrinting       = FALSE;
@@ -47,12 +47,12 @@ namespace draw2d_cairo
 
    void graphics::assert_valid() const
    {
-      ::ca2::object::assert_valid();
+      object::assert_valid();
    }
 
    void graphics::dump(dump_context & dumpcontext) const
    {
-      ::ca2::object::dump(dumpcontext);
+      object::dump(dumpcontext);
 
 //      dumpcontext << "get_handle1() = " << get_handle1();
   //    dumpcontext << "\nm_hAttribDC = " << get_handle2();
@@ -65,7 +65,7 @@ namespace draw2d_cairo
    graphics::~graphics()
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
 /*      HDC hdc = Detach();
 
@@ -130,7 +130,7 @@ namespace draw2d_cairo
    bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       if(m_pdc != NULL)
       {
@@ -299,7 +299,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    }
 
 
-   ::ca2::object* graphics::SelectObject(::ca2::object* pObject)
+   object* graphics::SelectObject(object* pObject)
    {
    /*      ASSERT(get_handle1() != NULL);
       if(pObject == NULL)
@@ -1218,7 +1218,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    bool graphics::BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, uint32_t dwRop)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       if(m_pdibAlphaBlend != NULL)
       {
@@ -1380,7 +1380,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    bool graphics::StretchBlt(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       if(pgraphicsSrc == NULL)
          return false;
@@ -1581,7 +1581,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
       }
 
       //ASSERT(get_handle1() != NULL);
-      //wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      //wstring wstr = ::str::international::utf8_to_unicode(str);
       return TextOut(x, y, str, (int32_t) str.get_length());
 
    } // call virtual
@@ -1636,7 +1636,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
       }
 
       //ASSERT(get_handle1() != NULL);
-      //wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      //wstring wstr = ::str::international::utf8_to_unicode(str);
       return TextOut(x, y, str, (int32_t) str.get_length());
 
    } // call virtual
@@ -2594,7 +2594,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::alpha_blend(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dRate)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       if(m_pdibAlphaBlend != NULL)
       {
@@ -3020,7 +3020,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* PASCAL graphics::GetHalftoneBrush(sp(::ca2::application) papp)
+   ::draw2d::brush* PASCAL graphics::GetHalftoneBrush(sp(::application) papp)
    {
 /*      ::ca2::LockGlobals(CRIT_HALFTONEBRUSH);
       if (gen_HalftoneBrush == NULL)
@@ -3246,7 +3246,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::DeleteDC()
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       if(m_pdc == NULL)
          return true;
@@ -3357,7 +3357,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    }
 
-//   ::ca2::object* PASCAL graphics::SelectGdiObject(sp(::ca2::application) papp, HDC hDC, HGDIOBJ h)
+//   object* PASCAL graphics::SelectGdiObject(sp(::application) papp, HDC hDC, HGDIOBJ h)
   // {
 //      return ::win::object::from_handle(papp, ::SelectObject(hDC, h));
    //}
@@ -3592,7 +3592,7 @@ return 1;
    point graphics::GetViewportOrg() const
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
       //POINT point;
       //::GetViewportOrgEx(get_handle2(), &point);
 
@@ -3609,7 +3609,7 @@ return 1;
    point graphics::SetViewportOrg(int32_t x, int32_t y)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
       /*point point(0, 0);
       if(get_handle1() != NULL && get_handle1() != get_handle2())
          ::SetViewportOrgEx(get_handle1(), x, y, &point);
@@ -3634,7 +3634,7 @@ return 1;
    point graphics::OffsetViewportOrg(int32_t nWidth, int32_t nHeight)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
       point point = GetViewportOrg();
 
 
@@ -3767,7 +3767,7 @@ return 1;
    int32_t graphics::SelectClipRgn(::draw2d::region * pregion)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
       if(pregion == NULL)
       {
 
@@ -3901,7 +3901,7 @@ return 1;
    point graphics::MoveTo(int32_t x, int32_t y)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       point point(0, 0);
 
@@ -3930,7 +3930,7 @@ return 1;
    pointd graphics::MoveTo(double x, double y)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       pointd point(0., 0.);
 
@@ -4438,7 +4438,7 @@ return 1;
       // these flags would modify the string
       ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
       ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      wstring wstr = ::ca2::international::utf8_to_unicode(string(lpszString, nCount));
+      wstring wstr = ::str::international::utf8_to_unicode(string(lpszString, nCount));
       return ::DrawTextW(get_handle1(), wstr, (int32_t) wcslen(wstr), lpRect, nFormat); */
 
       return draw_text(string(lpszString, nCount), lpRect, nFormat);
@@ -4448,14 +4448,14 @@ return 1;
    int32_t graphics::draw_text(const string & str, LPRECT lpRect, UINT nFormat)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       /*if(get_handle1() == NULL)
          return -1;
       // these flags would modify the string
       ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
       ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
       return ::DrawTextW(get_handle1(), (const wchar_t *)wstr, (int32_t)wcslen(wstr), lpRect, nFormat); */
 
 /*
@@ -4548,7 +4548,7 @@ return 1;
 
       m_pgraphics->SetTransform(pmNew);
 
-      m_pgraphics->DrawString(::ca2::international::utf8_to_unicode(str), -1, gdiplus_font(), rectf, &format, gdiplus_brush());
+      m_pgraphics->DrawString(::str::international::utf8_to_unicode(str), -1, gdiplus_font(), rectf, &format, gdiplus_brush());
 
       m_pgraphics->SetTransform(&m);
 
@@ -4616,7 +4616,7 @@ return 1;
       // these flags would modify the string
       ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
       ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      wstring wstr = ::ca2::international::utf8_to_unicode(string(lpszString, nCount));
+      wstring wstr = ::str::international::utf8_to_unicode(string(lpszString, nCount));
       return ::DrawTextExW(get_handle1(), const_cast<wchar_t *>((const wchar_t *)wstr), (int32_t)wcslen(wstr), lpRect, nFormat, lpDTParams);
 */
    }
@@ -4632,7 +4632,7 @@ return 1;
       // these flags would modify the string
       ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
       ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
       return ::DrawTextExW(get_handle1(), const_cast<wchar_t *>((const wchar_t *)wstr), (int32_t)wcslen(wstr), lpRect, nFormat, lpDTParams);
 */
 
@@ -4641,7 +4641,7 @@ return 1;
    size graphics::GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
    string str(&lpszString[iIndex], nCount);
 
@@ -4674,7 +4674,7 @@ return 1;
       if(iIndex < 0)
          return size(0, 0);
 
-      wstring wstr = ::ca2::international::utf8_to_unicode(lpszString, nCount);
+      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
 
       strsize iRange = 0;
       strsize i = 0;
@@ -4682,10 +4682,10 @@ return 1;
       const char * psz = lpszString;
       while(i < iIndex)
       {
-         iLen = ::ca2::str::get_utf8_char(psz).length();
+         iLen = ::str::get_utf8_char(psz).length();
          iRange++;
          i += iLen;
-         psz = ::ca2::str::utf8_inc(psz);
+         psz = ::str::utf8_inc(psz);
          if(psz == NULL)
             break;
          if(*psz == '\0')
@@ -4757,7 +4757,7 @@ return 1;
 
    size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
    {
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
       //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
 
    string str(lpszString, nCount);
@@ -4777,7 +4777,7 @@ return 1;
 
    return size;
 
-      /*wstring wstr = ::ca2::international::utf8_to_unicode(lpszString, nCount);
+      /*wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
 
       Gdiplus::RectF box;
 
@@ -4797,7 +4797,7 @@ return 1;
          return size(0, 0);
       SIZE size;
       string str(lpszString, nCount);
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
       if(!::GetTextExtentPoint32W(get_handle2(), wstr, (int32_t)wstr.get_length(), &size))
       {
          return class size(0, 0);
@@ -4808,11 +4808,11 @@ return 1;
    size graphics::GetTextExtent(const string & str) const
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 /*      if(get_handle2() == NULL)
          return size(0, 0);
       SIZE size;
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
       if(!::GetTextExtentPoint32W(get_handle2(), wstr, (int32_t)wstr.get_length(), &size))
       {
          return class size(0, 0);
@@ -4829,7 +4829,7 @@ return 1;
       /*if(m_pgraphics == NULL)
          return size(0, 0);
 
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
 
       Gdiplus::RectF box;
 
@@ -4862,7 +4862,7 @@ return 1;
       ASSERT(get_handle1() != NULL);
       SIZE size;
       string str(lpszString, nCount);
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
       VERIFY(::GetTextExtentPoint32W(get_handle1(), wstr, (int32_t)wstr.get_length(), &size));
       return size;
 */
@@ -4878,7 +4878,7 @@ return 1;
 /*
       ASSERT(get_handle1() != NULL);
       SIZE size;
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
       VERIFY(::GetTextExtentPoint32W(get_handle1(), wstr, (int32_t)wstr.get_length(), &size));
       return size;
 */
@@ -4886,7 +4886,7 @@ return 1;
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, int32_t iIndex) const
    {
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       string str(&lpszString[iIndex], nCount);
 
@@ -4918,7 +4918,7 @@ return 1;
       if(iIndex < 0)
          return false;
 
-      wstring wstr = ::ca2::international::utf8_to_unicode(lpszString, nCount);
+      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
 
       strsize iRange = 0;
       strsize i = 0;
@@ -4928,7 +4928,7 @@ return 1;
       {
          try
          {
-            iLen = ::ca2::str::get_utf8_char(psz).length();
+            iLen = ::str::get_utf8_char(psz).length();
          }
          catch(...)
          {
@@ -4938,7 +4938,7 @@ return 1;
          i += iLen;
          try
          {
-            psz = ::ca2::str::utf8_inc(psz);
+            psz = ::str::utf8_inc(psz);
          }
          catch(...)
          {
@@ -5029,7 +5029,7 @@ return 1;
 
       //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
    string str(lpszString, nCount);
 
@@ -5047,7 +5047,7 @@ return 1;
    return true;
 
 
-/*      wstring wstr = ::ca2::international::utf8_to_unicode(lpszString, nCount);
+/*      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
 
       Gdiplus::RectF box;
 
@@ -5201,30 +5201,30 @@ return 1;
 
 
 
-   // IMPLEMENT_DYNAMIC(resource_exception, base_exception)
+   // IMPLEMENT_DYNAMIC(resource_exception, ::exception::base)
    //resource_exception _simpleResourceException(FALSE, __IDS_RESOURCE_EXCEPTION);
 
-   // IMPLEMENT_DYNAMIC(user_exception, base_exception)
+   // IMPLEMENT_DYNAMIC(user_exception, ::exception::base)
    //user_exception _simpleUserException(FALSE, __IDS_USER_EXCEPTION);
 
-   // IMPLEMENT_DYNCREATE(graphics, ::ca2::object)
+   // IMPLEMENT_DYNCREATE(graphics, object)
    // IMPLEMENT_DYNAMIC(CClientDC, graphics)
    // IMPLEMENT_DYNAMIC(CWindowDC, graphics)
    // IMPLEMENT_DYNAMIC(CPaintDC, graphics)
-   // IMPLEMENT_DYNCREATE(::ca2::object, ::ca2::object)
+   // IMPLEMENT_DYNCREATE(object, object)
 
-   // IMPLEMENT_DYNAMIC(pen, ::ca2::object)
-   // IMPLEMENT_DYNAMIC(::draw2d::brush, ::ca2::object)
-   // IMPLEMENT_DYNAMIC(::draw2d::font, ::ca2::object)
-   // IMPLEMENT_DYNAMIC(::draw2d::bitmap, ::ca2::object)
-   // IMPLEMENT_DYNAMIC(::draw2d::palette, ::ca2::object)
-   // IMPLEMENT_DYNAMIC(::draw2d::region, ::ca2::object)
+   // IMPLEMENT_DYNAMIC(pen, object)
+   // IMPLEMENT_DYNAMIC(::draw2d::brush, object)
+   // IMPLEMENT_DYNAMIC(::draw2d::font, object)
+   // IMPLEMENT_DYNAMIC(::draw2d::bitmap, object)
+   // IMPLEMENT_DYNAMIC(::draw2d::palette, object)
+   // IMPLEMENT_DYNAMIC(::draw2d::region, object)
 
 
    void graphics::FillSolidRect(LPCRECT lpRect, COLORREF clr)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       //g.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
       //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
@@ -5254,7 +5254,7 @@ return 1;
       if(cx <= 0 || cy <= 0)
          return;
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       set_os_color(clr);
 
@@ -5268,7 +5268,7 @@ return 1;
    bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       if(m_spbrush.is_null())
          return true;
@@ -5294,7 +5294,7 @@ return 1;
 
       string str(lpszString, nCount);
 
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
 
 
       try
@@ -5377,7 +5377,7 @@ return 1;
          double d2 = fontfamily.GetEmHeight(gdiplus_font()->GetStyle());
          double d3 = d1 * d2;
 
-         status = path.AddString(::ca2::international::utf8_to_unicode(str), -1, &fontfamily, gdiplus_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
+         status = path.AddString(::str::international::utf8_to_unicode(str), -1, &fontfamily, gdiplus_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
 
          path.Transform(pmNew);
 
@@ -5390,7 +5390,7 @@ return 1;
 
          m_pgraphics->SetTransform(pmNew);
 
-         status = m_pgraphics->DrawString(::ca2::international::utf8_to_unicode(str), -1, gdiplus_font(), origin, &format, gdiplus_brush());
+         status = m_pgraphics->DrawString(::str::international::utf8_to_unicode(str), -1, gdiplus_font(), origin, &format, gdiplus_brush());
 
          m_pgraphics->SetTransform(&m);
 
@@ -5406,7 +5406,7 @@ return true;
    bool graphics::TextOut(double x, double y, const char * lpszString, int32_t nCount)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       string str(lpszString, nCount);
 
@@ -5432,7 +5432,7 @@ return true;
 
       string str(lpszString, nCount);
 
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
 
 
       try
@@ -5512,7 +5512,7 @@ return true;
          double d2 = fontfamily.GetEmHeight(gdiplus_font()->GetStyle());
          double d3 = d1 * d2;
 
-         status = path.AddString(::ca2::international::utf8_to_unicode(str), -1, &fontfamily, gdiplus_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
+         status = path.AddString(::str::international::utf8_to_unicode(str), -1, &fontfamily, gdiplus_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
 
          path.Transform(pmNew);
 
@@ -5525,7 +5525,7 @@ return true;
 
          m_pgraphics->SetTransform(pmNew);
 
-         status = m_pgraphics->DrawString(::ca2::international::utf8_to_unicode(str), -1, gdiplus_font(), origin, &format, gdiplus_brush());
+         status = m_pgraphics->DrawString(::str::international::utf8_to_unicode(str), -1, gdiplus_font(), origin, &format, gdiplus_brush());
 
          m_pgraphics->SetTransform(&m);
 
@@ -5542,7 +5542,7 @@ return true;
    bool graphics::LineTo(double x, double y)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
 //      ::Gdiplus::Pen pen(::Gdiplus::Color(GetAValue(m_crColor), GetRValue(m_crColor), GetGValue(m_crColor), GetBValue(m_crColor)), m_dPenWidth);
 
@@ -5570,7 +5570,7 @@ return true;
    void graphics::set_alpha_mode(::draw2d::e_alpha_mode ealphamode)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       try
       {

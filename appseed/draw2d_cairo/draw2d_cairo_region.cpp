@@ -5,8 +5,8 @@ namespace draw2d_cairo
 {
 
 
-   region::region(sp(::ca2::application) papp) :
-      ca2(papp)
+   region::region(sp(::application) papp) :
+      element(papp)
    {
 
    }
@@ -23,27 +23,27 @@ namespace draw2d_cairo
    {
       return (HRGN)(this == NULL ? NULL : get_os_data());
    }
-   region* PASCAL region::from_handle(sp(::ca2::application) papp, HRGN hRgn)
+   region* PASCAL region::from_handle(sp(::application) papp, HRGN hRgn)
    {
       return dynamic_cast < region * > (::win::object::from_handle(papp, hRgn));
    }
-   WINBOOL region::CreateRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
+   int_bool region::CreateRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    { return Attach(::CreateRectRgn(x1, y1, x2, y2)); }
-   WINBOOL region::CreateRectRgnIndirect(LPCRECT lpRect)
+   int_bool region::CreateRectRgnIndirect(LPCRECT lpRect)
    { return Attach(::CreateRectRgnIndirect(lpRect)); }
-   WINBOOL region::CreateEllipticRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
+   int_bool region::CreateEllipticRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    { return Attach(::CreateEllipticRgn(x1, y1, x2, y2)); }
-   WINBOOL region::CreateEllipticRgnIndirect(LPCRECT lpRect)
+   int_bool region::CreateEllipticRgnIndirect(LPCRECT lpRect)
    { return Attach(::CreateEllipticRgnIndirect(lpRect)); }
-   WINBOOL region::CreatePolygonRgn(LPPOINT lpPoints, int32_t nCount, int32_t nMode)
+   int_bool region::CreatePolygonRgn(LPPOINT lpPoints, int32_t nCount, int32_t nMode)
    { return Attach(::CreatePolygonRgn(lpPoints, nCount, nMode)); }
-   WINBOOL region::CreatePolyPolygonRgn(LPPOINT lpPoints, LPINT lpPolyCounts, int32_t nCount, int32_t nPolyFillMode)
+   int_bool region::CreatePolyPolygonRgn(LPPOINT lpPoints, LPINT lpPolyCounts, int32_t nCount, int32_t nPolyFillMode)
    { return Attach(::CreatePolyPolygonRgn(lpPoints, lpPolyCounts, nCount, nPolyFillMode)); }
-   WINBOOL region::CreateRoundRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3)
+   int_bool region::CreateRoundRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3)
    { return Attach(::CreateRoundRectRgn(x1, y1, x2, y2, x3, y3)); }
-   WINBOOL region::CreateFromPath(::draw2d::graphics * pgraphics)
+   int_bool region::CreateFromPath(::draw2d::graphics * pgraphics)
    { ASSERT(pgraphics != NULL); return Attach(::PathToRegion((dynamic_cast<::win::graphics * >(pgraphics))->get_handle1())); }
-   WINBOOL region::CreateFromData(const XFORM* lpXForm, int32_t nCount, const RGNDATA* pRgnData)
+   int_bool region::CreateFromData(const XFORM* lpXForm, int32_t nCount, const RGNDATA* pRgnData)
    { return Attach(::ExtCreateRegion(lpXForm, nCount, pRgnData)); }
    int32_t region::GetRegionData(LPRGNDATA lpRgnData, int32_t nDataSize) const
    { ASSERT(get_os_data() != NULL); return (int32_t)::GetRegionData((HRGN)get_os_data(), nDataSize, lpRgnData); }
@@ -60,7 +60,7 @@ namespace draw2d_cairo
    (HRGN)pRgn2->get_os_data(), nCombineMode); }
    int32_t region::CopyRgn(const ::draw2d::region* pRgnSrc)
    { ASSERT(get_os_data() != NULL); return ::CombineRgn((HRGN)get_os_data(), (HRGN)pRgnSrc->get_os_data(), NULL, RGN_COPY); }
-   WINBOOL region::EqualRgn(const ::draw2d::region* pRgn) const
+   int_bool region::EqualRgn(const ::draw2d::region* pRgn) const
    { ASSERT(get_os_data() != NULL); return ::EqualRgn((HRGN)get_os_data(), (HRGN)pRgn->get_os_data()); }
    int32_t region::OffsetRgn(int32_t x, int32_t y)
    { ASSERT(get_os_data() != NULL); return ::OffsetRgn((HRGN)get_os_data(), x, y); }
@@ -68,11 +68,11 @@ namespace draw2d_cairo
    { ASSERT(get_os_data() != NULL); return ::OffsetRgn((HRGN)get_os_data(), point.x, point.y); }
    int32_t region::GetRgnBox(LPRECT lpRect) const
    { ASSERT(get_os_data() != NULL); return ::GetRgnBox((HRGN)get_os_data(), lpRect); }
-   WINBOOL region::PtInRegion(int32_t x, int32_t y) const
+   int_bool region::PtInRegion(int32_t x, int32_t y) const
    { ASSERT(get_os_data() != NULL); return ::PtInRegion((HRGN)get_os_data(), x, y); }
-   WINBOOL region::PtInRegion(POINT point) const
+   int_bool region::PtInRegion(POINT point) const
    { ASSERT(get_os_data() != NULL); return ::PtInRegion((HRGN)get_os_data(), point.x, point.y); }
-   WINBOOL region::RectInRegion(LPCRECT lpRect) const
+   int_bool region::RectInRegion(LPCRECT lpRect) const
    { ASSERT(get_os_data() != NULL); return ::RectInRegion((HRGN)get_os_data(), lpRect); }*/
 
    bool region::get(cairo_t * pdc)

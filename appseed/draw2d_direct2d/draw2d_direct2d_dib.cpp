@@ -26,7 +26,7 @@ namespace draw2d_direct2d
 
 
    dib::dib(::ca2::application * papp) :
-      ca2(papp),
+      element(papp),
       m_spbitmap(allocer()),
       m_spgraphics(allocer())
    {
@@ -2582,7 +2582,7 @@ fill_last:
    void dib::map(bool bApplyAlphaTransform)
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       if(m_bMapped)
          return;
@@ -2650,7 +2650,7 @@ fill_last:
    void dib::unmap()
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       if(!m_bMapped)
          return;
@@ -2966,7 +2966,7 @@ fill_last:
 
 #if defined(WINDOWSEX)
 
-   bool dib::update_window(::ca2::window * pwnd, ::ca2::signal_object * pobj)
+   bool dib::update_window(::ca2::window * pwnd, signal_details * pobj)
    {
 
       rect64 rectWindow;
@@ -2985,7 +2985,7 @@ fill_last:
 
    }
 
-   bool dib::print_window(::ca2::window * pwnd, ::ca2::signal_object * pobj)
+   bool dib::print_window(::ca2::window * pwnd, signal_details * pobj)
    {
 
 

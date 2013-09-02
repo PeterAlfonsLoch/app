@@ -190,10 +190,10 @@ int32_t preview_dc::SaveDC()
    return nAttribIndex;
 }
 
-WINBOOL preview_dc::RestoreDC(int32_t nSavedDC)
+int_bool preview_dc::RestoreDC(int32_t nSavedDC)
 {
    ASSERT(get_handle2() != NULL);
-   WINBOOL bSuccess = ::RestoreDC(get_handle2(), nSavedDC);
+   int_bool bSuccess = ::RestoreDC(get_handle2(), nSavedDC);
    if (bSuccess)
    {
       if (m_nSaveDCDelta != 0x7fff)
@@ -237,7 +237,7 @@ void preview_dc::MirrorAttributes()
    }
 }
 
-::ca2::object* preview_dc::SelectStockObject(int32_t nIndex)
+object* preview_dc::SelectStockObject(int32_t nIndex)
 {
    ASSERT(get_handle2() != NULL);
 
@@ -254,7 +254,7 @@ void preview_dc::MirrorAttributes()
    case DEFAULT_GUI_FONT:
       // Handle the stock fonts correctly
       {
-         ::ca2::object* pObject = ::draw2d_cairo::object::from_handle(
+         object* pObject = ::draw2d_cairo::object::from_handle(
                      ::SelectObject(get_handle2(), hObj));
 
          // Don't re-mirror screen font if this is the same font.
@@ -492,7 +492,7 @@ __STATIC int32_t CLASS_DECL_DRAW2D_CAIRO _AfxComputeNextTab(int32_t x, UINT nTab
 // Compute a character delta table for correctly positioning the screen
 // font characters where the printer characters will appear on the page
 size preview_dc::ComputeDeltas(int32_t& x, const char * lpszString, UINT &nCount,
-   WINBOOL bTabbed, UINT nTabStops, LPINT lpnTabStops, int32_t nTabOrigin,
+   int_bool bTabbed, UINT nTabStops, LPINT lpnTabStops, int32_t nTabOrigin,
    __out_z LPTSTR lpszOutputString, int32_t* pnDxWidths, int32_t& nRightFixup)
 {
    ASSERT_VALID(this);
@@ -507,7 +507,7 @@ size preview_dc::ComputeDeltas(int32_t& x, const char * lpszString, UINT &nCount
 
    point ptCurrent;
    UINT nAlignment = ::GetTextAlign(get_handle2());
-   WINBOOL bUpdateCP = (nAlignment & TA_UPDATECP) != 0;
+   int_bool bUpdateCP = (nAlignment & TA_UPDATECP) != 0;
    if (bUpdateCP)
    {
       ::GetCurrentPositionEx(get_os_data(), &ptCurrent);
@@ -538,7 +538,7 @@ size preview_dc::ComputeDeltas(int32_t& x, const char * lpszString, UINT &nCount
 
    for (UINT i = 0; i < nCount; i++)
    {
-      WINBOOL bSpace = ((_TUCHAR)*lpszCurChar == (_TUCHAR)tmAttrib.tmBreakChar);
+      int_bool bSpace = ((_TUCHAR)*lpszCurChar == (_TUCHAR)tmAttrib.tmBreakChar);
       if (bSpace || (bTabbed && *lpszCurChar == '\t'))
       {
          // bSpace will be either TRUE (==1) or FALSE (==0).  For spaces
@@ -634,12 +634,12 @@ size preview_dc::ComputeDeltas(int32_t& x, const char * lpszString, UINT &nCount
    return sizeExtent;
 }
 
-WINBOOL preview_dc::TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
+int_bool preview_dc::TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
 {
    return ExtTextOut(x, y, 0, NULL, lpszString, nCount, NULL);
 }
 
-WINBOOL preview_dc::ExtTextOut(int32_t x, int32_t y, UINT nOptions, LPCRECT lpRect,
+int_bool preview_dc::ExtTextOut(int32_t x, int32_t y, UINT nOptions, LPCRECT lpRect,
    const char * lpszString, UINT nCount, LPINT lpDxWidths)
 {
    ASSERT(get_os_data() != NULL);
@@ -663,7 +663,7 @@ WINBOOL preview_dc::ExtTextOut(int32_t x, int32_t y, UINT nOptions, LPCRECT lpRe
          pDeltas = new int32_t[nCount];
          pOutputString = new char[nCount];
       }
-      catch(base_exception * pe)
+      catch(::exception::base * pe)
       {
          delete[] pDeltas;  // in case it was allocated
          // Note: DELETE_EXCEPTION(e) not required
@@ -678,7 +678,7 @@ WINBOOL preview_dc::ExtTextOut(int32_t x, int32_t y, UINT nOptions, LPCRECT lpRe
       lpszString = pOutputString;
    }
 
-   WINBOOL bSuccess = ::ExtTextOut(get_os_data(), x, y, nOptions, lpRect, lpszString,
+   int_bool bSuccess = ::ExtTextOut(get_os_data(), x, y, nOptions, lpRect, lpszString,
                                           nCount, lpDxWidths);
    if (nRightFixup != 0 && bSuccess && (GetTextAlign() & TA_UPDATECP))
    {
@@ -715,7 +715,7 @@ size preview_dc::TabbedTextOut(int32_t x, int32_t y, const char * lpszString, in
       pDeltas = new int32_t[nCount];
       pOutputString = new char[nCount];
    }
-   catch(base_exception * pe)
+   catch(::exception::base * pe)
    {
       delete[] pDeltas;
       // Note: DELETE_EXCEPTION(e) not required
@@ -728,7 +728,7 @@ size preview_dc::TabbedTextOut(int32_t x, int32_t y, const char * lpszString, in
                      nTabPositions, lpnTabStopPositions, nTabOrigin,
                      pOutputString, pDeltas, nRightFixup);
 
-   WINBOOL bSuccess = ExtTextOut(x, y, 0, NULL, pOutputString, uCount, pDeltas);
+   int_bool bSuccess = ExtTextOut(x, y, 0, NULL, pOutputString, uCount, pDeltas);
 
    delete[] pDeltas;
    delete[] pOutputString;
@@ -785,8 +785,8 @@ int32_t preview_dc::DrawTextEx(__in_ecount(nCount) LPTSTR lpszString, int32_t nC
    return retVal;
 }
 
-WINBOOL preview_dc::GrayString(::draw2d::brush*,
-            WINBOOL (CALLBACK *)(HDC, LPARAM, int32_t),
+int_bool preview_dc::GrayString(::draw2d::brush*,
+            int_bool (CALLBACK *)(HDC, LPARAM, int32_t),
                LPARAM lpData, int32_t nCount, int32_t x, int32_t y, int32_t, int32_t)
 {
    TRACE(::ca2::trace::category_AppMsg, 0, "TextOut() substituted for GrayString() in Print Preview.\n");
@@ -849,7 +849,7 @@ int32_t preview_dc::Escape(int32_t nEscape, int32_t nCount, const char * lpszInD
    }
 }
 
-void preview_dc::MirrorMappingMode(WINBOOL bCompute)
+void preview_dc::MirrorMappingMode(int_bool bCompute)
 {
    ASSERT(get_handle2() != NULL);
    if (bCompute)

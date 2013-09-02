@@ -9,7 +9,7 @@ namespace draw2d_direct2d
 
 
    font::font(::ca2::application * papp) :
-      ca2(papp)
+      element(papp)
    {
 
    }

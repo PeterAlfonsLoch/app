@@ -3,7 +3,7 @@
 #endif
 
 
-#include "ca/ca/ca_2.h"
+#include "c/c/c.h"
 
 
 #ifdef _MSC_VER
@@ -11,7 +11,7 @@
 #endif
 
 
-
+/*
 #ifdef _WIN32
 #include <windows.h>
 #include <io.h>
@@ -47,7 +47,7 @@
 //#include <algorithm>
 //#include <limits>
 //#include <memory>
-
+*/
 
 #include "FreeImage.h"
 #include "CacheFile.h"

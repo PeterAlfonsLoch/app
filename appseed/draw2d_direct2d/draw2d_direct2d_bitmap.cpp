@@ -9,7 +9,7 @@ namespace draw2d_direct2d
 
 
    bitmap::bitmap(::ca2::application * papp) :
-      ca2(papp)
+      element(papp)
    { 
 
 

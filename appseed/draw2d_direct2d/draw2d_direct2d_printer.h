@@ -10,7 +10,7 @@ namespace draw2d_direct2d
 
 
       class CLASS_DECL_DRAW2D_DIRECT2D document_properties :
-         virtual public ::ca2::object
+         virtual public object
       {
       public:
 

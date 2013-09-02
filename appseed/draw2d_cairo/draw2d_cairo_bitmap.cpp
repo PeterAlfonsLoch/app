@@ -5,8 +5,8 @@ namespace draw2d_cairo
 {
 
 
-   bitmap::bitmap(sp(::ca2::application) papp) :
-      ca2(papp)
+   bitmap::bitmap(sp(::application) papp) :
+      element(papp)
    {
 
       m_psurface = NULL;
@@ -291,7 +291,7 @@ namespace draw2d_cairo
 
       void bitmap::dump(dump_context & dumpcontext) const
       {
-         ::ca2::object::dump(dumpcontext);
+         object::dump(dumpcontext);
 
 /*         if (get_handle() == NULL)
             return;

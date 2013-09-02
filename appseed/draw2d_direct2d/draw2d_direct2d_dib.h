@@ -165,8 +165,8 @@ namespace draw2d_direct2d
       virtual bool from(::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI);
 
 #if !defined(METROWIN)
-      bool update_window(::ca2::window * pwnd, ::ca2::signal_object * pobj);
-      bool print_window(::ca2::window * pwnd, ::ca2::signal_object * pobj);
+      bool update_window(::ca2::window * pwnd, signal_details * pobj);
+      bool print_window(::ca2::window * pwnd, signal_details * pobj);
 #endif
 
    };

@@ -1812,6 +1812,8 @@ FAST_SIMPLE_ROTATE (8, uint8_t)
 FAST_SIMPLE_ROTATE (565, uint16_t)
 FAST_SIMPLE_ROTATE (8888, uint32_t)
 
+#undef IN
+
 static const pixman_fast_path_t c_fast_paths[] =
 {
     PIXMAN_STD_FAST_PATH (OVER, solid, a8, r5g6b5, fast_composite_over_n_8_0565),

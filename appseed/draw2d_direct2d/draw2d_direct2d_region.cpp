@@ -6,7 +6,7 @@ namespace draw2d_direct2d
 
    
    region::region(::ca2::application * papp) :
-      ca2(papp)
+      element(papp)
    { 
       
       m_pgeometry = NULL;

@@ -13,7 +13,7 @@ namespace draw2d_direct2d
 
    
    graphics::graphics(::ca2::application * papp) :
-      ca2(papp)
+      element(papp)
    {
 
       m_sppen.create(allocer());
@@ -68,12 +68,12 @@ namespace draw2d_direct2d
 
    void graphics::assert_valid() const
    {
-      ::ca2::object::assert_valid();
+      object::assert_valid();
    }
 
    void graphics::dump(dump_context & dumpcontext) const
    {
-      ::ca2::object::dump(dumpcontext);
+      object::dump(dumpcontext);
 
       dumpcontext << "get_handle1() = " << get_handle1();
       dumpcontext << "\nm_hAttribDC = " << get_handle2();
@@ -86,7 +86,7 @@ namespace draw2d_direct2d
    graphics::~graphics()
    {
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       if(m_prendertarget != NULL)
       {
@@ -158,7 +158,7 @@ namespace draw2d_direct2d
 
       //single_lock sl(System.m_pmutexDc, true);
 
-      mutex_lock ml(user_mutex());
+      synch_lock ml(&user_mutex());
 
       if(m_iType != 0)
          destroy();
@@ -1467,7 +1467,7 @@ namespace draw2d_direct2d
       }
 
       //ASSERT(get_handle1() != NULL); 
-      //wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      //wstring wstr = ::str::international::utf8_to_unicode(str);
       return TextOut(x, y, str, (int) str.get_length()); 
 
    } // call virtual
@@ -1526,7 +1526,7 @@ namespace draw2d_direct2d
       }
 
       //ASSERT(get_handle1() != NULL); 
-      //wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      //wstring wstr = ::str::international::utf8_to_unicode(str);
       return TextOut(x, y, str, (int) str.get_length()); 
 
    } // call virtual
@@ -4087,7 +4087,7 @@ namespace draw2d_direct2d
       // these flags would modify the string
       ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
       ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      wstring wstr = ::ca2::international::utf8_to_unicode(string(lpszString, nCount));
+      wstring wstr = ::str::international::utf8_to_unicode(string(lpszString, nCount));
       return ::DrawTextW(get_handle1(), wstr, (int) wcslen(wstr), lpRect, nFormat); */
 
       return draw_text(string(lpszString, nCount), lpRect, nFormat);
@@ -4102,7 +4102,7 @@ namespace draw2d_direct2d
       // these flags would modify the string
       ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
       ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
       return ::DrawTextW(get_handle1(), (const wchar_t *)wstr, (int)wcslen(wstr), lpRect, nFormat); */
 
       try
@@ -4216,7 +4216,7 @@ namespace draw2d_direct2d
       // these flags would modify the string
       ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
       ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      wstring wstr = ::ca2::international::utf8_to_unicode(string(lpszString, nCount));
+      wstring wstr = ::str::international::utf8_to_unicode(string(lpszString, nCount));
       return ::DrawTextExW(get_handle1(), const_cast<wchar_t *>((const wchar_t *)wstr), (int)wcslen(wstr), lpRect, nFormat, lpDTParams); 
    }
 
@@ -4226,7 +4226,7 @@ namespace draw2d_direct2d
       // these flags would modify the string
       ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
       ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
       return ::DrawTextExW(get_handle1(), const_cast<wchar_t *>((const wchar_t *)wstr), (int)wcslen(wstr), lpRect, nFormat, lpDTParams); 
    }
    */
@@ -4293,7 +4293,7 @@ namespace draw2d_direct2d
       if(iIndex < 0)
          return size(0, 0);
 
-      wstring wstr = ::ca2::international::utf8_to_unicode(lpszString, nCount);
+      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
 
       strsize iRange = 0;
       strsize i = 0;
@@ -4301,10 +4301,10 @@ namespace draw2d_direct2d
       const char * psz = lpszString;
       while(i < iIndex)
       {
-         iLen = ::ca2::str::utf8_char(psz).length();
+         iLen = ::str::utf8_char(psz).length();
          iRange++;
          i += iLen;
-         psz = ::ca2::str::utf8_inc(psz);
+         psz = ::str::utf8_inc(psz);
          if(psz == NULL)
             break;
          if(*psz == '\0')
@@ -4428,7 +4428,7 @@ namespace draw2d_direct2d
 
       //single_lock slGdiplus(&System.m_mutexGdiplus, TRUE);
 
-      //wstring wstr = ::ca2::international::utf8_to_unicode(lpszString, nCount);
+      //wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
 
       //Gdiplus::RectF box;
 
@@ -4448,7 +4448,7 @@ namespace draw2d_direct2d
       return size(0, 0);
       SIZE size;
       string str(lpszString, nCount);
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
       if(!::GetTextExtentPoint32W(get_handle2(), wstr, (int)wstr.get_length(), &size))
       {
       return class size(0, 0);
@@ -4461,7 +4461,7 @@ namespace draw2d_direct2d
       /*      if(get_handle2() == NULL)
       return size(0, 0);
       SIZE size;
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
       if(!::GetTextExtentPoint32W(get_handle2(), wstr, (int)wstr.get_length(), &size))
       {
       return class size(0, 0);
@@ -4515,7 +4515,7 @@ namespace draw2d_direct2d
       //if(m_prendertarget == NULL)
       //   return size(0, 0);
 
-      //wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      //wstring wstr = ::str::international::utf8_to_unicode(str);
 
       //Gdiplus::RectF box;
 
@@ -4546,7 +4546,7 @@ namespace draw2d_direct2d
       //ASSERT(get_handle1() != NULL);
       //SIZE size;
       //string str(lpszString, nCount);
-      //wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      //wstring wstr = ::str::international::utf8_to_unicode(str);
       //VERIFY(::GetTextExtentPoint32W(get_handle1(), wstr, (int)wstr.get_length(), &size));
       //return size;
    }
@@ -4558,7 +4558,7 @@ namespace draw2d_direct2d
 
       //ASSERT(get_handle1() != NULL);
       //SIZE size;
-      //wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      //wstring wstr = ::str::international::utf8_to_unicode(str);
       //VERIFY(::GetTextExtentPoint32W(get_handle1(), wstr, (int)wstr.get_length(), &size));
       //return size;
    }
@@ -4623,7 +4623,7 @@ namespace draw2d_direct2d
       if(iIndex < 0)
          return false;
 
-      wstring wstr = ::ca2::international::utf8_to_unicode(lpszString, nCount);
+      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
 
       strsize iRange = 0;
       strsize i = 0;
@@ -4631,10 +4631,10 @@ namespace draw2d_direct2d
       const char * psz = lpszString;
       while(i < iIndex)
       {
-         iLen = ::ca2::str::utf8_char(psz).length();
+         iLen = ::str::utf8_char(psz).length();
          iRange++;
          i += iLen;
-         psz = ::ca2::str::utf8_inc(psz);
+         psz = ::str::utf8_inc(psz);
          if(psz == NULL)
             break;
          if(*psz == '\0')
@@ -4712,7 +4712,7 @@ namespace draw2d_direct2d
 
       //single_lock slGdiplus(&System.m_mutexGdiplus, TRUE);
 
-      //wstring wstr = ::ca2::international::utf8_to_unicode(lpszString, nCount);
+      //wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
 
       //Gdiplus::RectF box;
 
@@ -4791,7 +4791,7 @@ namespace draw2d_direct2d
       //if(m_prendertarget == NULL)
       //   return false;
 
-      //wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      //wstring wstr = ::str::international::utf8_to_unicode(str);
 
       //Gdiplus::RectF box;
 
@@ -4937,17 +4937,17 @@ namespace draw2d_direct2d
 
 
 
-   // IMPLEMENT_DYNAMIC(resource_exception, base_exception)
+   // IMPLEMENT_DYNAMIC(resource_exception, ::exception::base)
    //resource_exception _simpleResourceException(FALSE, __IDS_RESOURCE_EXCEPTION);
 
-   // IMPLEMENT_DYNAMIC(user_exception, base_exception)
+   // IMPLEMENT_DYNAMIC(user_exception, ::exception::base)
    //user_exception _simpleUserException(FALSE, __IDS_USER_EXCEPTION);
 
-   // IMPLEMENT_DYNCREATE(graphics, ::ca2::object)
+   // IMPLEMENT_DYNCREATE(graphics, object)
    // IMPLEMENT_DYNAMIC(CClientDC, graphics)
    // IMPLEMENT_DYNAMIC(CWindowDC, graphics)
    // IMPLEMENT_DYNAMIC(CPaintDC, graphics)
-   // IMPLEMENT_DYNCREATE(::draw2d::object, ::ca2::object)
+   // IMPLEMENT_DYNCREATE(::draw2d::object, object)
 
    // IMPLEMENT_DYNAMIC(pen, ::draw2d::object)
    // IMPLEMENT_DYNAMIC(::draw2d::brush, ::draw2d::object)
@@ -5051,7 +5051,7 @@ namespace draw2d_direct2d
 
       string str(lpszString, nCount);
 
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
 
 
       try
@@ -5134,7 +5134,7 @@ namespace draw2d_direct2d
          double d2 = fontfamily.GetEmHeight(direct2d_font()->GetStyle());
          double d3 = d1 * d2;
 
-         status = path.AddString(::ca2::international::utf8_to_unicode(str), -1, &fontfamily, direct2d_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
+         status = path.AddString(::str::international::utf8_to_unicode(str), -1, &fontfamily, direct2d_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
 
          path.Transform(pmNew);
 
@@ -5147,7 +5147,7 @@ namespace draw2d_direct2d
 
          m_prendertarget->SetTransform(pmNew);
 
-         status = m_prendertarget->DrawString(::ca2::international::utf8_to_unicode(str), -1, direct2d_font(), origin, &format, direct2d_brush());
+         status = m_prendertarget->DrawString(::str::international::utf8_to_unicode(str), -1, direct2d_font(), origin, &format, direct2d_brush());
 
          m_prendertarget->SetTransform(&m);
 
@@ -5282,7 +5282,7 @@ namespace draw2d_direct2d
 
       //string str(lpszString, nCount);
 
-      //wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      //wstring wstr = ::str::international::utf8_to_unicode(str);
 
 
       //try
@@ -5362,7 +5362,7 @@ namespace draw2d_direct2d
       //   double d2 = fontfamily.GetEmHeight(direct2d_font()->GetStyle());
       //   double d3 = d1 * d2;
 
-      //   status = path.AddString(::ca2::international::utf8_to_unicode(str), -1, &fontfamily, direct2d_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
+      //   status = path.AddString(::str::international::utf8_to_unicode(str), -1, &fontfamily, direct2d_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
 
       //   path.Transform(pmNew);
 
@@ -5375,7 +5375,7 @@ namespace draw2d_direct2d
 
       //   m_prendertarget->SetTransform(pmNew);
 
-      //   status = m_prendertarget->DrawString(::ca2::international::utf8_to_unicode(str), -1, direct2d_font(), origin, &format, direct2d_brush());
+      //   status = m_prendertarget->DrawString(::str::international::utf8_to_unicode(str), -1, direct2d_font(), origin, &format, direct2d_brush());
 
       //   m_prendertarget->SetTransform(&m);
 
@@ -5388,7 +5388,7 @@ namespace draw2d_direct2d
 
       string str(lpszString, nCount);
 
-      wstring wstr = ::ca2::international::utf8_to_unicode(str);
+      wstring wstr = ::str::international::utf8_to_unicode(str);
 
 
       try
@@ -5471,7 +5471,7 @@ namespace draw2d_direct2d
          double d2 = fontfamily.GetEmHeight(direct2d_font()->GetStyle());
          double d3 = d1 * d2;
 
-         status = path.AddString(::ca2::international::utf8_to_unicode(str), -1, &fontfamily, direct2d_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
+         status = path.AddString(::str::international::utf8_to_unicode(str), -1, &fontfamily, direct2d_font()->GetStyle(), (Gdiplus::REAL) d1, origin, &format);
 
          path.Transform(pmNew);
 
@@ -5484,7 +5484,7 @@ namespace draw2d_direct2d
 
          m_prendertarget->SetTransform(pmNew);
 
-         status = m_prendertarget->DrawString(::ca2::international::utf8_to_unicode(str), -1, direct2d_font(), origin, &format, direct2d_brush());
+         status = m_prendertarget->DrawString(::str::international::utf8_to_unicode(str), -1, direct2d_font(), origin, &format, direct2d_brush());
 
          m_prendertarget->SetTransform(&m);
 

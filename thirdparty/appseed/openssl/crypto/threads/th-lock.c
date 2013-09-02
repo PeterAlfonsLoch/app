@@ -218,7 +218,7 @@ void solaris_locking_callback(int mode, int type, char *file, int line)
 	if (mode & CRYPTO_LOCK)
 		{
 #ifdef USE_MUTEX
-		mutex_lock(&(lock_cs[type]));
+		synch_lock(&(lock_cs[type]));
 #else
 		if (mode & CRYPTO_READ)
 			rw_rdlock(&(lock_cs[type]));

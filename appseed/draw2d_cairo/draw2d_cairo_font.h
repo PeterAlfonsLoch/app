@@ -11,7 +11,7 @@ namespace draw2d_cairo
    public:
 
 
-      font(sp(::ca2::application) papp);
+      font(sp(::application) papp);
       virtual ~font();
 
 

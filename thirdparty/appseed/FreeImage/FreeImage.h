@@ -156,7 +156,7 @@ typedef long LONG;
 #pragma pack(1)
 #endif // WIN32
 
-/*/
+
 typedef struct tagRGBQUAD {
 #if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR
   BYTE rgbBlue;
@@ -210,7 +210,7 @@ typedef struct tagBITMAPINFO {
   RGBQUAD          bmiColors[1];
 } BITMAPINFO, *PBITMAPINFO;
 
- */
+
 #endif
 
 

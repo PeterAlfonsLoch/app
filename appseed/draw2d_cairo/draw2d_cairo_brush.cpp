@@ -5,8 +5,8 @@ namespace draw2d_cairo
 {
 
 
-   brush::brush(sp(::ca2::application) papp) :
-      ca2(papp)
+   brush::brush(sp(::application) papp) :
+      element(papp)
    {
 
 
@@ -99,7 +99,7 @@ namespace draw2d_cairo
 
    void brush::dump(dump_context & dumpcontext) const
    {
-      ::ca2::object::dump(dumpcontext);
+      object::dump(dumpcontext);
 
       //if (get_os_data() == NULL)
         // return;

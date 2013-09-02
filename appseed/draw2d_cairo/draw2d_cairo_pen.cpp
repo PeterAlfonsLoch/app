@@ -5,8 +5,8 @@ namespace draw2d_cairo
 {
 
 
-   pen::pen(sp(::ca2::application) papp) :
-      ca2(papp)
+   pen::pen(sp(::application) papp) :
+      element(papp)
    {
    }
    pen::~pen()
@@ -16,15 +16,15 @@ namespace draw2d_cairo
    {
       return (HPEN)(this == NULL ? NULL : get_handle());
    }*/
-/*   pen* PASCAL pen::from_handle(sp(::ca2::application) papp, HPEN hPen)
+/*   pen* PASCAL pen::from_handle(sp(::application) papp, HPEN hPen)
    {
       return dynamic_cast < pen* > (::win::object::from_handle(papp, hPen));
    }*/
-/*   WINBOOL pen::CreatePen(int32_t nPenStyle, int32_t nWidth, COLORREF crColor)
+/*   int_bool pen::CreatePen(int32_t nPenStyle, int32_t nWidth, COLORREF crColor)
    { return Attach(::CreatePen(nPenStyle, nWidth, crColor)); }*/
-/*   WINBOOL pen::CreatePenIndirect(LPLOGPEN lpLogPen)
+/*   int_bool pen::CreatePenIndirect(LPLOGPEN lpLogPen)
    { return Attach(::CreatePenIndirect(lpLogPen)); }*/
-/*   WINBOOL pen::CreatePen(int32_t nPenStyle, int32_t nWidth, const LOGBRUSH* pLogBrush,
+/*   int_bool pen::CreatePen(int32_t nPenStyle, int32_t nWidth, const LOGBRUSH* pLogBrush,
       int32_t nStyleCount, const DWORD* lpStyle)
    { return Attach(::ExtCreatePen(nPenStyle, nWidth, pLogBrush, nStyleCount,
    lpStyle)); }*/
@@ -63,7 +63,7 @@ namespace draw2d_cairo
    void pen::dump(dump_context & dumpcontext) const
    {
 
-      ::ca2::object::dump(dumpcontext);
+      object::dump(dumpcontext);
 //
   //    if (get_handle() == NULL)
     //     return;
@@ -90,24 +90,24 @@ namespace draw2d_cairo
 
 
 
-      // IMPLEMENT_DYNAMIC(resource_exception, base_exception)
+      // IMPLEMENT_DYNAMIC(resource_exception, ::exception::base)
       //resource_exception _simpleResourceException(FALSE, __IDS_RESOURCE_EXCEPTION);
 
-      // IMPLEMENT_DYNAMIC(user_exception, base_exception)
+      // IMPLEMENT_DYNAMIC(user_exception, ::exception::base)
       //user_exception _simpleUserException(FALSE, __IDS_USER_EXCEPTION);
 
-      // IMPLEMENT_DYNCREATE(::draw2d::graphics_sp, ::ca2::object)
+      // IMPLEMENT_DYNCREATE(::draw2d::graphics_sp, object)
       // IMPLEMENT_DYNAMIC(CClientDC, ::draw2d::graphics_sp)
       // IMPLEMENT_DYNAMIC(CWindowDC, ::draw2d::graphics_sp)
       // IMPLEMENT_DYNAMIC(CPaintDC, ::draw2d::graphics_sp)
-      // IMPLEMENT_DYNCREATE(::ca2::object, ::ca2::object)
+      // IMPLEMENT_DYNCREATE(object, object)
 
-      // IMPLEMENT_DYNAMIC(pen, ::ca2::object)
-      // IMPLEMENT_DYNAMIC(::draw2d::brush, ::ca2::object)
-      // IMPLEMENT_DYNAMIC(::draw2d::font, ::ca2::object)
-      // IMPLEMENT_DYNAMIC(::draw2d::bitmap, ::ca2::object)
-      // IMPLEMENT_DYNAMIC(::draw2d::palette, ::ca2::object)
-      // IMPLEMENT_DYNAMIC(::ca2::rgn, ::ca2::object)
+      // IMPLEMENT_DYNAMIC(pen, object)
+      // IMPLEMENT_DYNAMIC(::draw2d::brush, object)
+      // IMPLEMENT_DYNAMIC(::draw2d::font, object)
+      // IMPLEMENT_DYNAMIC(::draw2d::bitmap, object)
+      // IMPLEMENT_DYNAMIC(::draw2d::palette, object)
+      // IMPLEMENT_DYNAMIC(::ca2::rgn, object)
 
       /////////////////////////////////////////////////////////////////////////////
       // Standard exception processing

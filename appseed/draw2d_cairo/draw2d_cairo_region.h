@@ -16,10 +16,10 @@ namespace draw2d_cairo
 
 // xxx     Gdiplus::Region *       m_pregion;
 
-      //static region * PASCAL from_handle(sp(::ca2::application) papp, HRGN hRgn);
+      //static region * PASCAL from_handle(sp(::application) papp, HRGN hRgn);
       //operator HRGN() const;
 
-      region(sp(::ca2::application) papp);
+      region(sp(::application) papp);
       virtual ~region();
 
 

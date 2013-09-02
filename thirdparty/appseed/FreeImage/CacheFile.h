@@ -54,10 +54,10 @@ struct Block {
 // ----------------------------------------------------------
 
 class CacheFile {
-	typedef simple_list<Block *> PageCache;
-	typedef POSITION PageCacheIt;
-	typedef simple_map<int, PageCacheIt> PageMap;
-	typedef POSITION PageMapIt;
+	typedef list<Block *> PageCache;
+   typedef list<Block *>::iterator PageCacheIt;
+	typedef map<int, PageCacheIt> PageMap;
+	typedef map<int, PageCacheIt>::iterator PageMapIt;
 
 public :
 	CacheFile(const vsstring filename, BOOL keep_in_memory);
