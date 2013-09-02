@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_c base
+class CLASS_DECL_c root
 {
 public:
 
@@ -11,8 +11,8 @@ public:
    bool                       m_bHeap;
 
 
-   base();
-   virtual ~base();
+   root();
+   virtual ~root();
 
 
    virtual void delete_this();

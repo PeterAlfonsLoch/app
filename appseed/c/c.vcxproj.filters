@@ -989,6 +989,9 @@
     <ClInclude Include="math\math_numeric_info.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
+    <ClInclude Include="datetime\datetime_c.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="android\c_os_internal.c">
@@ -1477,9 +1480,6 @@
     <ClCompile Include="base\base_application.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
-    <ClCompile Include="base\base_base.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
     <ClCompile Include="base\base_departament.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
@@ -1493,6 +1493,9 @@
       <Filter>Source Files\base</Filter>
     </ClCompile>
     <ClCompile Include="base\base_system.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_root.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
   </ItemGroup>

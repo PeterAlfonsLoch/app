@@ -6,7 +6,7 @@ namespace exception
 
 
    class CLASS_DECL_c exception :
-      virtual public ::ca::ca
+      virtual public base
    {
    public:
 

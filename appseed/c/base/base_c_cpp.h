@@ -122,17 +122,16 @@ namespace user
 
 
 
-
-
-#include "c/str/str1.h"
+#include "c/math/math_numeric_info.h"
+#include "c/math/math_number.h"
 
 
 #include "c/datetime/datetime_duration.h"
 
 
-
 #include "c/primitive/primitive_element.h"
-#include "c/ca2/ca2_debug.h"
+
+#include "c/base/base_debug.h"
 
 
 
@@ -141,13 +140,12 @@ namespace user
 
 
 
-#include "ca/ca_template.h"
-#include "ca/ca_memory.h"
-#include "ca/ca_md5.h"
-#include "ca/ca_file.h"
-#include "ca/ca_net.h"
-#include "ca/ca_time.h"
-#include "ca/ca_natural.h"
+#include "c/base/base_template.h"
+
+#include "c/comparison/comparison_md5.h"
+
+#include "c/net/net.h"
+
 #include "ca/ca_conv.h"
 
 

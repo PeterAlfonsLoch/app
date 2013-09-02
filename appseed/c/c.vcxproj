@@ -1142,6 +1142,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="comparison\comparison_equals.h" />
     <ClInclude Include="comparison\comparison_hash.h" />
     <ClInclude Include="comparison\comparison_var_strict.h" />
+    <ClInclude Include="datetime\datetime_c.h" />
     <ClInclude Include="file\file_plain_text.h" />
     <ClInclude Include="file\file_plain_text_serializable.h" />
     <ClInclude Include="file\file_plain_text_stream.h" />
@@ -1345,7 +1346,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="base\base.cpp" />
     <ClCompile Include="base\base_allocate_mid_big.cpp" />
     <ClCompile Include="base\base_application.cpp" />
-    <ClCompile Include="base\base_base.cpp" />
+    <ClCompile Include="base\base_root.cpp" />
     <ClCompile Include="base\base_c.c" />
     <ClCompile Include="base\base_departament.cpp" />
     <ClCompile Include="base\base_departament_container.cpp" />
