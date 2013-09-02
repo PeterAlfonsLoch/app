@@ -5,9 +5,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Header Files\c">
-      <UniqueIdentifier>{c884c593-8d0f-465b-8314-98944d5dac4f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\android">
       <UniqueIdentifier>{35caf055-bd72-42c2-ac5b-2bbc068ac15e}</UniqueIdentifier>
     </Filter>
@@ -17,9 +14,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Source Files\c">
-      <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\android">
       <UniqueIdentifier>{4ccb1b0f-1033-4f02-bb2b-bcc8e610b600}</UniqueIdentifier>
@@ -39,35 +33,11 @@
     <Filter Include="Source Files\primitive">
       <UniqueIdentifier>{73b6eb83-847b-4f04-a3de-daf20e5f9a48}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\c\NewFilter1">
-      <UniqueIdentifier>{3899cb86-0087-41c8-aa1a-611b979aabf5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\c\NewFilter1">
-      <UniqueIdentifier>{b1ac7dd6-5cfe-4f02-b4fd-ca11e9c8a663}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\exception\NewFilter1">
       <UniqueIdentifier>{215c546b-d479-4652-a485-e5d8480854c8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\x">
       <UniqueIdentifier>{1f97a96d-4195-4c05-b773-fbb2ebc3db97}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ca2">
-      <UniqueIdentifier>{614dd72c-2f01-44b1-a4ae-7e4c0a99715d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ca2\NewFilter1">
-      <UniqueIdentifier>{d11d14da-bb4b-4d2c-aca4-2b2976e62256}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ca2\NewFilter2">
-      <UniqueIdentifier>{58e0f8a1-d06b-42bb-a549-30a0273e767c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ca">
-      <UniqueIdentifier>{5dd490b1-6761-432a-b7b3-d6090595ad17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ca">
-      <UniqueIdentifier>{0b928cd1-7824-4675-b57d-d95678f884c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ca2\NewFilter3">
-      <UniqueIdentifier>{591d05b6-d09c-4d24-8f0e-296172857870}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\multithreading">
       <UniqueIdentifier>{262b60e3-e795-4339-b4cc-f4ca20348991}</UniqueIdentifier>
@@ -102,14 +72,8 @@
     <Filter Include="Source Files\file">
       <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ca2">
-      <UniqueIdentifier>{f8157614-d54a-4a3d-b01a-b67338f11254}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\os">
       <UniqueIdentifier>{9e92b674-0ae7-4e1e-bd86-d513ccacb6a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ca2\NewFilter1">
-      <UniqueIdentifier>{c1952820-7154-4dae-b603-dfe694207daf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\spa">
       <UniqueIdentifier>{9faab802-b503-4ed8-888b-b85ace9bc090}</UniqueIdentifier>
@@ -129,12 +93,6 @@
     <Filter Include="Source Files\str">
       <UniqueIdentifier>{bc376aac-e84d-4512-8b6b-fc52197d90f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\str\NewFilter1">
-      <UniqueIdentifier>{794298eb-3742-4891-a446-94a120d6ec0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ca2\NewFilter4">
-      <UniqueIdentifier>{22baf8e6-732c-435c-9ad3-369e4c7aa68b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\xml">
       <UniqueIdentifier>{42770ef4-1efe-40e5-864d-38ad28249a78}</UniqueIdentifier>
     </Filter>
@@ -147,49 +105,25 @@
     <Filter Include="Source Files\str\NewFilter1">
       <UniqueIdentifier>{d37217b1-02e1-481c-927d-4a5ab6ddded3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\base">
+      <UniqueIdentifier>{c884c593-8d0f-465b-8314-98944d5dac4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base">
+      <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{c86f7d2f-5cdc-4d52-baae-6fd000c9d5f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="c\c.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_mm.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_c.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="android\c_os_internal.h">
       <Filter>Header Files\android</Filter>
     </ClInclude>
     <ClInclude Include="windows\c_os_internal.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_cpp.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_smart_pointer2.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_smart_pointer1.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_lparam.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_count.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_index.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_ca.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_fixed_alloc.h">
-      <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="collection\collection_simple_array.h">
       <Filter>Header Files\collection</Filter>
@@ -377,9 +311,6 @@
     <ClInclude Include="collection\collection_simple.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_types.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="exception\exception_dump_context.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
@@ -416,12 +347,6 @@
     <ClInclude Include="primitive\primitive_wstringtou.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_heap.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_istring.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="x\x_charcategory.h">
       <Filter>Header Files\x</Filter>
     </ClInclude>
@@ -440,12 +365,6 @@
     <ClInclude Include="x\x_tables.h">
       <Filter>Header Files\x</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_bit.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_number.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_numeric_info.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -454,9 +373,6 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive_id_space.h">
       <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_net.h">
-      <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading.h">
       <Filter>Header Files\multithreading</Filter>
@@ -527,32 +443,11 @@
     <ClInclude Include="multithreading\multithreading_waitable.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_simple_array.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_ca2.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="exception\exception_range_error.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_file.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_file.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_md5.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_memory.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_var.h">
       <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_template.h">
-      <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="comparison\comparison_equals.h">
       <Filter>Header Files\comparison</Filter>
@@ -578,9 +473,6 @@
     <ClInclude Include="comparison\comparison_binary.h">
       <Filter>Header Files\comparison</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_core.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="comparison\comparison_var_strict.h">
       <Filter>Header Files\comparison</Filter>
     </ClInclude>
@@ -596,20 +488,8 @@
     <ClInclude Include="exception\exception_memory.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_common.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="exception\exception2.h">
       <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_allocate.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_heap.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_debug.h">
-      <Filter>Header Files\ca2</Filter>
     </ClInclude>
     <ClInclude Include="exception\exception_debug_stream.h">
       <Filter>Header Files\exception</Filter>
@@ -707,18 +587,6 @@
     <ClInclude Include="primitive\primitive_logic.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_plex.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_plex_heap.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_application.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_system.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="file\file_byte_serializable.h">
       <Filter>Header Files\file</Filter>
     </ClInclude>
@@ -749,9 +617,6 @@
     <ClInclude Include="multithreading\multithreading_initial_single_lock.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_buffer.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="collection\collection_buffer.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
@@ -770,12 +635,6 @@
     <ClInclude Include="primitive\primitive_memory_base.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_time.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_natural.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_memory_container.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -787,9 +646,6 @@
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_thread_os.h">
       <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_conv.h">
-      <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="os\os_process.h">
       <Filter>Header Files\os</Filter>
@@ -811,9 +667,6 @@
     </ClInclude>
     <ClInclude Include="file\file_dir.h">
       <Filter>Header Files\file</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_math.h">
-      <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="str\str.h">
       <Filter>Header Files\str</Filter>
@@ -860,9 +713,6 @@
     <ClInclude Include="str\str_wstringtovss.h">
       <Filter>Header Files\str</Filter>
     </ClInclude>
-    <ClInclude Include="str\str1.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
     <ClInclude Include="str\str_to_integer.h">
       <Filter>Header Files\str</Filter>
     </ClInclude>
@@ -892,9 +742,6 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive_type.h">
       <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_url_departament.h">
-      <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_factory.h">
       <Filter>Header Files\primitive</Filter>
@@ -980,17 +827,8 @@
     <ClInclude Include="primitive\primitive_edit.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_departament.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_departament_container.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="xml\xml_departament.h">
       <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_application_bias.h">
-      <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_create_context.h">
       <Filter>Header Files\primitive</Filter>
@@ -1006,12 +844,6 @@
     </ClInclude>
     <ClInclude Include="collection\collection_decl.h">
       <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_fixed_alloc_impl.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_plex_heap_impl.h">
-      <Filter>Header Files\ca2</Filter>
     </ClInclude>
     <ClInclude Include="str\str_format.h">
       <Filter>Header Files\str</Filter>
@@ -1049,17 +881,110 @@
     <ClInclude Include="primitive\primitive_command_line.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_user.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_command_thread.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="base\base.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_allocate.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_application.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_base.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_c.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_c_cpp.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_c_objc.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_common.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_conv.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_core.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_count.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_debug.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_departament.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_departament_container.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_fixed_alloc.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_fixed_alloc_impl.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_heap.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_index.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_lparam.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_plex.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_plex_heap.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_plex_heap_impl.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_smart_pointer1.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_smart_pointer2.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_system.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_template.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_types.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_user.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="math\math.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\math_math.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\math_natural.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\math_number.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_c.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="c\c.c">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="android\c_os_internal.c">
       <Filter>Source Files\android</Filter>
     </ClCompile>
@@ -1069,17 +994,8 @@
     <ClCompile Include="c_os_locale.c">
       <Filter>Source Files\android</Filter>
     </ClCompile>
-    <ClCompile Include="c\c_ca.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="framework_c.c">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="c\c_heap.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_net.cpp">
-      <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
       <Filter>Source Files\multithreading</Filter>
@@ -1276,20 +1192,11 @@
     <ClCompile Include="file\file_writer.cpp">
       <Filter>Source Files\file</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_system.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_application.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_memory.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_memory_base.cpp">
       <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca2_fixed_alloc.cpp">
-      <Filter>Source Files\ca2</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_memory_container.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -1299,9 +1206,6 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive_virtual_memory.cpp">
       <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_allocate_mid_big.cpp">
-      <Filter>Source Files\ca2</Filter>
     </ClCompile>
     <ClCompile Include="windows\c_os_thread.cpp">
       <Filter>Source Files\windows</Filter>
@@ -1378,9 +1282,6 @@
     <ClCompile Include="collection\collection_stringl.cpp">
       <Filter>Source Files\collection</Filter>
     </ClCompile>
-    <ClCompile Include="c\c_math.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="str\str_ch.cpp">
       <Filter>Source Files\str</Filter>
     </ClCompile>
@@ -1422,9 +1323,6 @@
     </ClCompile>
     <ClCompile Include="str\str_strw.cpp">
       <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca.cpp">
-      <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_property.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -1513,15 +1411,6 @@
     <ClCompile Include="primitive\primitive_edit.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_departament.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_departament_container.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_url_departament.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_type.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
@@ -1561,9 +1450,6 @@
     <ClCompile Include="primitive\primitive_create_context.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_application_bias.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_command.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
@@ -1572,6 +1458,36 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive_command_thread.cpp">
       <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_c.c">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_allocate_mid_big.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_application.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_base.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_departament.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_departament_container.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_fixed_alloc.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_heap.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_system.cpp">
+      <Filter>Source Files\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

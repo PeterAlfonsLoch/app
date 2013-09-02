@@ -35,13 +35,11 @@
 
 #include "nodeapp/operational_system/_ca.h"
 
-#include "c_types.h"
+#include "base_types.h"
 
-#include "c_count.h"
+#include "c/math/math.h"
 
-#include "c_index.h"
-
-#include "c_heap.h"
+#include "base_heap.h"
 
 #include "c/str/str1.h"
 
