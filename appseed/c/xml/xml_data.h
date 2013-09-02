@@ -2,18 +2,18 @@
 
 
 
-namespace ca2
+namespace xml
 {
 
 
-   class CLASS_DECL_ca2 xml_data :
+   class CLASS_DECL_c data :
       public ::xml::document
    {
    public:
 
 
-      xml_data(sp(::application) papp, ::xml::parse_info * pparseinfo = NULL);
-      virtual ~xml_data();
+      data(sp(::application) papp, ::xml::parse_info * pparseinfo = NULL);
+      virtual ~data();
 
 
       virtual void write(::file::byte_output_stream & ostream);
@@ -23,6 +23,9 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace xml
+
+
+
 
 

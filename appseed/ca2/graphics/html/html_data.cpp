@@ -17,7 +17,7 @@ namespace html
 
    data::data(sp(::application) papp) :
       element(papp),
-      ::ca2::data(papp),
+      ::data(papp),
       m_imagea(papp),
       m_uiptra(papp),
       m_elemental(NULL)
@@ -135,7 +135,7 @@ namespace html
 
    void data::delete_contents()
    {
-      ::ca2::data::writing writing(this);
+      ::data::writing writing(this);
       m_elemental.m_propertyset.clear();
       m_elemental.m_pbase = NULL;
       delete m_elemental.m_pimpl;
@@ -404,7 +404,7 @@ namespace html
 
 restart:
 
-      ::ca2::data::writing writing(this);
+      ::data::writing writing(this);
 
       string strPathName;
 

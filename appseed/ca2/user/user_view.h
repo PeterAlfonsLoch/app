@@ -58,7 +58,7 @@ namespace user
       sp(::user::document_interface) get_document() const;
 
       template < class DOCUMENT >
-      ::ca2::data * get_data();
+      ::data * get_data();
 
       template < class DOCUMENT >
       DOCUMENT * get_typed_document();
@@ -104,7 +104,7 @@ namespace user
 
       sp(::user::interaction) create_view(type * info, sp(::user::document_interface) pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
       static sp(::user::interaction) s_create_view(type * info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast = NULL);
-      static sp(::user::interaction) s_create_view(::ca2::create_context * pContext, sp(::user::interaction) pwndParent, id id);
+      static sp(::user::interaction) s_create_view(create_context * pContext, sp(::user::interaction) pwndParent, id id);
 
       template < class VIEW >
       sp(VIEW) create_view(::user::document_interface * pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
@@ -131,7 +131,7 @@ namespace user
 
 
       virtual void on_draw_view_nc(::draw2d::graphics * pdc);
-      virtual void on_draw_view(::draw2d::graphics * pdc, spa(::ca2::data) spadata);
+      virtual void on_draw_view(::draw2d::graphics * pdc, spa(::data) spadata);
       virtual void defer_draw_view(::draw2d::graphics * pdc);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);

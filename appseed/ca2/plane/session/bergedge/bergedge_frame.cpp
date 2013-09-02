@@ -459,7 +459,7 @@ namespace bergedge
          }
 
       }
-      catch(const ::ca2::exception & )
+      catch(const exception & )
       {
       }
       catch(...)

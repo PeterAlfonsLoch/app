@@ -10,7 +10,7 @@ namespace user
 
    tab::data::data(sp(::application) papp) :
       element(papp),
-      ::ca2::data(papp),
+      ::data(papp),
       m_imagelist(papp),
       m_pen(allocer()),
       m_font(allocer()),
@@ -1432,7 +1432,7 @@ namespace user
 
    void tab::_001SetSel(::index iSel)
    {
-      ::ca2::data::writing writing(get_data());
+      ::data::writing writing(get_data());
       get_data()->m_iaSel.remove_all();
       get_data()->m_iaSel.add(iSel);
       on_change_pane_count();
@@ -1441,7 +1441,7 @@ namespace user
 
    void tab::_001AddSel(::index iSel)
    {
-      ::ca2::data::writing writing(get_data());
+      ::data::writing writing(get_data());
       get_data()->m_iaSel.add(iSel);
       on_change_pane_count();
    }
@@ -1781,7 +1781,7 @@ namespace user
       }
    }
 
-   void tab::set_cur_tab_by_id(id id, sp(::ca2::create_context) pcreatecontext)
+   void tab::set_cur_tab_by_id(id id, sp(create_context) pcreatecontext)
    {
       try
       {
@@ -1802,7 +1802,7 @@ namespace user
          throw e;
 
       }
-      catch(::ca2::exception & e)
+      catch(exception & e)
       {
 
          if(!Application.on_run_exception(e))
@@ -1813,7 +1813,7 @@ namespace user
       {
       }
 
-      m_spcreatecontext = (sp(::ca2::create_context)) NULL;
+      m_spcreatecontext = (sp(create_context)) NULL;
 
    }
 

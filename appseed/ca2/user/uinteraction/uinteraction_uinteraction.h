@@ -6,7 +6,7 @@ namespace uinteraction
 
 
    class CLASS_DECL_ca2 uinteraction :
-      virtual public ::ca2::section
+      virtual public ::departament
    {
    public:
 

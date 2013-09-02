@@ -100,7 +100,7 @@ namespace userfs
    void list_interface::_017UpdateList(const char * lpcsz)
    {
 
-      ::ca2::data::writing writing(get_fs_list_data());
+      ::data::writing writing(get_fs_list_data());
 
       UNREFERENCED_PARAMETER(lpcsz);
       //UNREFERENCED_PARAMETER(lpsz);
@@ -268,7 +268,7 @@ namespace userfs
    {
 
 
-      ::ca2::data::writing writing(m_pdata);
+      ::data::writing writing(m_pdata);
       _001HideEditingControls();
       _017UpdateList(get_document()->m_strFolder);
 

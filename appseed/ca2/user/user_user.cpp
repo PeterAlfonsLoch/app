@@ -7,7 +7,7 @@ namespace user
 
    user::user(::ca2::application * papp) :
       element(papp),
-      ::ca2::section(papp)
+      ::departament(papp)
    {
       
       
@@ -61,7 +61,7 @@ namespace user
 
       m_pshellimageset = new filemanager::_shell::ImageSet(m_papp);
 
-      if(!::ca2::section::initialize1())
+      if(!::departament::initialize1())
          return false;
 
       return true;
@@ -74,7 +74,7 @@ namespace user
 
 
 
-      if(!::ca2::section::initialize())
+      if(!::departament::initialize())
          return false;
 
 
@@ -221,7 +221,7 @@ retry_license:
          return false;
 
 
-      if(!::ca2::section::initialize())
+      if(!::departament::initialize())
          return false;
 
       return true;
@@ -235,7 +235,7 @@ retry_license:
    {
 
 
-      if(!::ca2::section::initialize2())
+      if(!::departament::initialize2())
          return false;
 
       m_ptemplateForm = new ::user::multiple_document_template(
@@ -270,7 +270,7 @@ retry_license:
    {
       try
       {
-         ::ca2::section::finalize();
+         ::departament::finalize();
       }
       catch(...)
       {
@@ -705,7 +705,7 @@ retry_license:
    sp(::user::document) user::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
    {
       ASSERT(Application.m_pdocmanager != NULL);
-      sp(::ca2::create_context) cc(allocer());
+      sp(create_context) cc(allocer());
       cc->m_spCommandLine->m_varFile = lpszFileName;
       return (Application.m_pdocmanager->open_document_file(cc));
    }
@@ -842,7 +842,7 @@ retry_license:
       sp(::form_document) pdoc;
       if(m_ptemplateForm == NULL)
          return NULL;
-      sp(::ca2::create_context) createcontext(allocer());
+      sp(create_context) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       createcontext->m_pviewAlloc                     = pview;
@@ -868,7 +868,7 @@ retry_license:
       sp(::form_document) pdoc;
       if(m_ptemplateForm == NULL)
          return NULL;
-      sp(::ca2::create_context) createcontext(allocer());
+      sp(create_context) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       if(var.get_type() == var::type_propset && var.has_property("hold") && !(bool) var["hold"])
@@ -889,7 +889,7 @@ retry_license:
       sp(::form_document) pdoc;
       if(m_ptemplateChildForm == NULL)
          return NULL;
-      sp(::ca2::create_context) createcontext(allocer());
+      sp(create_context) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       createcontext->m_pviewAlloc                     = pview;
@@ -915,7 +915,7 @@ retry_license:
       if(m_ptemplateChildForm == NULL)
          return NULL;
       sp(::form_document) pdoc;
-      sp(::ca2::create_context) createcontext(allocer());
+      sp(create_context) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       pdoc = (m_ptemplateChildForm->open_document_file(createcontext));
@@ -929,7 +929,7 @@ retry_license:
    sp(::user::document) user::hold(sp(::user::interaction) pui)
    {
 
-      sp(::ca2::create_context) createcontext(allocer());
+      sp(create_context) createcontext(allocer());
 
       createcontext->m_bMakeVisible    = false;
       createcontext->m_bHold           = false;

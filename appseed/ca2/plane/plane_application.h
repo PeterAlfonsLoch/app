@@ -66,7 +66,7 @@ namespace plane
       virtual bool stop_service();
 
 
-      virtual void on_service_request(sp(::ca2::create_context) pcreatecontext);
+      virtual void on_service_request(sp(create_context) pcreatecontext);
 
 
 
@@ -104,13 +104,13 @@ namespace plane
       virtual bool os_native_bergedge_start();
 
 
-      virtual sp(::application) instantiate_application(const char * pszType, const char * pszId, ::ca2::application_bias * pbias);
-      virtual sp(::application) create_application(const char * pszType, const char * pszId, bool bSynch, ::ca2::application_bias * pbias);
+      virtual sp(::application) instantiate_application(const char * pszType, const char * pszId, application_bias * pbias);
+      virtual sp(::application) create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias);
 
 
       virtual bool is_licensed(const char * pszId, bool bInteractive = true);
 
-      //virtual sp(::user::interaction) get_request_parent_ui(sp(::ca2::command_line) pline);
+      //virtual sp(::user::interaction) get_request_parent_ui(sp(command_line) pline);
 
       virtual bool initial_check_directrix();
 
@@ -174,7 +174,7 @@ namespace plane
       virtual void _001OnFileNew();
 
 
-      virtual void on_request(sp(::ca2::create_context) pcreatecontext);
+      virtual void on_request(sp(create_context) pcreatecontext);
 
       sp(::user::document_interface) _001OpenDocumentFile(var varFile);
 

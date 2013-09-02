@@ -6,7 +6,7 @@ namespace userpresence
 
 
    class CLASS_DECL_ca2 userpresence :
-      virtual public ::ca2::section,
+      virtual public ::departament,
       virtual public ::ca2::message_window_simple_callback
    {
    public:

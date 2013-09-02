@@ -3,7 +3,7 @@
 
 ifs::ifs(sp(::application) papp, const char * pszRoot) :
    element(papp),
-   ::ca2::data(papp),
+   ::data(papp),
    ::fs::data(papp)
 {
    m_strRoot = pszRoot;

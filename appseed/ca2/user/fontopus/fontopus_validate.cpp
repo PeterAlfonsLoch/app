@@ -230,7 +230,7 @@ namespace fontopus
 
    /*void validate::ensure_main_document()
    {
-      sp(::ca2::create_context) createcontext(allocer());
+      sp(create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").element < ::user::interaction > ();
       createcontext->m_bOuterPopupAlertLike = true;
@@ -1181,7 +1181,7 @@ namespace fontopus
       if(m_pdoc != NULL)
          return;
 
-      sp(::ca2::create_context) createcontext(allocer());
+      sp(create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").element < ::user::interaction > ();
       createcontext->m_bOuterPopupAlertLike = true;
@@ -1650,7 +1650,7 @@ namespace fontopus
 
    validate::auth * validate::get_auth()
    {
-      sp(::ca2::create_context) createcontext(allocer());
+      sp(create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = true;
       sp(::form_document) pdoc = (m_ptemplatePane->open_document_file(createcontext));
       sp(userex::pane_tab_view) pview = pdoc->get_typed_view < userex::pane_tab_view > ();

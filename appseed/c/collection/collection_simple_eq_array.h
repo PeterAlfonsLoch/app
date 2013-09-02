@@ -1,6 +1,6 @@
 #pragma once
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = simple_array < TYPE, ARG_TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
 class simple_eq_array :
    virtual public ARRAY_TYPE
 {

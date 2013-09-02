@@ -303,7 +303,7 @@ namespace ca2
             ::OutputDebugStringW(::str::international::utf8_to_unicode(strLine));
             fputs(strLine, plog->m_pfile);
          }
-         catch(::ca2::exception &)
+         catch(exception &)
          {
             // Ignore exception here because this class/function is used for debugging
          }
@@ -501,7 +501,7 @@ namespace ca2
             ::OutputDebugStringW(::str::international::utf8_to_unicode(strLine));
             plog->m_spfile->write(strLine, strLine.get_length());
          }
-         catch(::ca2::exception &)
+         catch(exception &)
          {
             // Ignore exception here because this class/function is used for debugging
          }

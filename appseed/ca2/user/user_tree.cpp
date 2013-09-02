@@ -816,7 +816,7 @@ namespace user
 
    void tree::_001ExpandItem(sp(::ca2::tree_item)pitem, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
    {
-      ::ca2::data::writing writing(::ca2::data_container::m_spdata);
+      ::data::writing writing(::data_container::m_spdata);
       UNREFERENCED_PARAMETER(bLayout);
       if(bExpand)
       {

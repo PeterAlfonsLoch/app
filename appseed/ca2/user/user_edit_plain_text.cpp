@@ -509,7 +509,7 @@ namespace user
          set_plain_text_data(new ::user::plain_text_data(get_app()), true);
       }
 
-      ::ca2::data * pdataParentLock = oprop("parent_lock_data").element < ::ca2::data > ();
+      ::data * pdataParentLock = oprop("parent_lock_data").element < ::data > ();
       if(pdataParentLock != NULL)
       {
          m_pdata->m_spdataParentLock = pdataParentLock;
@@ -812,7 +812,7 @@ namespace user
    UINT edit_plain_text::ThreadProcScrollSize(LPVOID lpvoid)
    {
       edit_plain_text * pview = (edit_plain_text *) lpvoid;
-      ::ca2::data::writing writing(pview->m_pdata);
+      ::data::writing writing(pview->m_pdata);
 
       ::draw2d::graphics_sp graphics(pview->allocer());
       graphics->CreateCompatibleDC(NULL);
@@ -826,7 +826,7 @@ namespace user
 
    void edit_plain_text::_001GetText(string & str)
    {
-      ::ca2::data::writing writing(m_pdata);
+      ::data::writing writing(m_pdata);
       if(m_pdata == NULL)
          return;
       file_size iSize = m_pdata->m_editfile.get_length();
@@ -976,7 +976,7 @@ namespace user
 
    void edit_plain_text::_001OnCalcLayoutProc(::user::elemental * pview, ::draw2d::graphics * pdc)
    {
-      ::ca2::data::writing writing(m_pdata);
+      ::data::writing writing(m_pdata);
 
       UNREFERENCED_PARAMETER(pview);
       pdc->SelectObject(GetFont());
@@ -1325,7 +1325,7 @@ namespace user
       iSelEnd = m_iSelEnd - m_iViewOffset;
    }
 
-   void edit_plain_text::on_updata_data(::ca2::data * pdata, int32_t iHint)
+   void edit_plain_text::on_updata_data(::data * pdata, int32_t iHint)
    {
       if(pdata == m_pdata)
       {
@@ -1426,7 +1426,7 @@ namespace user
    {
       
       {
-      ::ca2::data::writing writing(m_pdata);
+      ::data::writing writing(m_pdata);
       
 
       _009OnChar(pobj);
@@ -1709,7 +1709,7 @@ namespace user
 
    void edit_plain_text::_001OnSysChar(signal_details * pobj)
    {
-      ::ca2::data::writing writing(m_pdata);
+      ::data::writing writing(m_pdata);
       SCAST_PTR(::ca2::message::key, pkey, pobj)
       if(pkey->m_ekey == ::user::key_delete)
       {
@@ -2022,7 +2022,7 @@ namespace user
 
    void edit_plain_text::_001SetText(const char * psz)
    {
-      ::ca2::data::writing writing(m_pdata);
+      ::data::writing writing(m_pdata);
       m_pdata->m_editfile.seek(0, ::file::seek_begin);
       m_pdata->m_editfile.Delete((::primitive::memory_size)m_pdata->m_editfile.get_length());
       m_pdata->m_editfile.seek(0, ::file::seek_begin);
@@ -2244,7 +2244,7 @@ namespace user
 
    void edit_plain_text::set_plain_text_data(plain_text_data * pdata, bool bOwnData)
    {
-      ::ca2::data::writing writing(m_pdata);
+      ::data::writing writing(m_pdata);
       if(m_pdata != NULL && m_bOwnData)
       {
          delete m_pdata;

@@ -22,10 +22,15 @@ class factory_item_base;
 class fixed_alloc_no_sync;
 class bergedge;
 class system;
-
- class allocatorsp;
-
-
+class critical_section;
+class allocatorsp;
+class application;
+class application_signal_details;
+class var_array;
+class pair_set_interface;
+class str_str_interface;
+class command_thread;
+class thread;
 
 
 
@@ -70,6 +75,8 @@ namespace user
 
 
    class interaction;
+   class create_context;
+   class view;
 
 
 } // namespace user
@@ -113,14 +120,6 @@ namespace user
 
 #include "c/primitive/primitive_logic.h"
 
-
-#include "c/ca/ca_simple_array.h"
-
-
-#include "c_simple_critical_section.h"
-
-
-#include "c_fixed_alloc.h"
 
 
 #include "c/primitive/primitive_numeric_info.h"
@@ -169,6 +168,12 @@ namespace user
 #include "c/primitive/primitive_object.h"
 
 
+#include "c/collection/collection_decl.h"
+#include "c/collection/collection_array_decl.h"
+
+
+#include "c_fixed_alloc.h"
+
 
 
 #include "c/ca2/ca2_allocate.h"
@@ -200,10 +205,23 @@ namespace user
 #include "c/collection/collection.h"
 
 
+#include "c/file/file_plain_text.h"
+
+
 #include "c/primitive/primitive_var2.h"
 
 
 #include "c/primitive/primitive_id_space.h"
+
+
+#ifdef WINDOWS
+
+#include "c/windows/c_os.h"
+
+#endif
+
+
+#include "c/ca/ca_user.h"
 
 
 
@@ -211,7 +229,7 @@ namespace user
 CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError);
 #ifndef METROWIN
 CLASS_DECL_c int_bool PrintModules(vsstring & strImage, uint32_t processID, const char * pszDll );
-CLASS_DECL_c void dll_processes(simple_uint_array & dwa, stringa & straProcesses, const char * pszDll);
+CLASS_DECL_c void dll_processes(uint_array & dwa, stringa & straProcesses, const char * pszDll);
 #endif
 
 #include "c/multithreading/multithreading.h"
@@ -221,9 +239,40 @@ CLASS_DECL_c void dll_processes(simple_uint_array & dwa, stringa & straProcesses
 
 #include "c/ca/ca_application.h"
 
+#include "c/ca/ca_departament.h"
+#include "c/ca/ca_departament_container.h"
+
 #include "c/ca/ca_url_departament.h"
 
+#include "c/primitive/primitive_interlocked_long.h"
+#include "c/primitive/primitive_interlocked_long_pulse.h"
 #include "c/primitive/primitive_factory.h"
+#include "c/primitive/primitive_data.h"
+#include "c/primitive/primitive_data_listener.h"
+#include "c/primitive/primitive_data_container.h"
+#include "c/primitive/primitive_edit.h"
+
+
+#include "c/xml/xml.h"
+
+#include "c/ca/ca_application_bias.h"
+#include "c/exception/exception_engine.h"
+
+#include "c_fixed_alloc_impl.h"
+#include "c/ca2/ca2_plex_heap_impl.h"
+#include "c/primitive/primitive_command_line.h"
+#include "c/primitive/primitive_create_context.h"
+#include "c/primitive/primitive_command.h"
+
+
+
+
+
+
+
+
+#include "c/primitive/primitive_command_thread.h"
+
 
 #include "c/ca/ca_system.h"
 
@@ -238,14 +287,14 @@ CLASS_DECL_c void dll_processes(simple_uint_array & dwa, stringa & straProcesses
 #include "c/str/str_international2.h"
 
 
-#ifdef WINDOWS
-
-#include "c/windows/c_os.h"
-
-#endif
 
 
 
 
+
+
+
+
+#include "c/net/net.h"
 
 

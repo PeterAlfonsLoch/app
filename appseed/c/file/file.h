@@ -33,5 +33,5 @@
 
 #include "file_dir.h"
 
-
+#include "file_string_stream.h"
 

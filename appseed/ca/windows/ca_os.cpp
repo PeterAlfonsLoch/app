@@ -32,7 +32,7 @@ bool os_initialize()
 
    ::os_thread::s_pmutex = new mutex();
 
-   ::os_thread::s_pptra = new simple_array < os_thread * > ();
+   ::os_thread::s_pptra = new array < os_thread * > ();
 
    //Sleep(15 * 1000);
 

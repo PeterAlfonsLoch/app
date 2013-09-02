@@ -6,7 +6,7 @@ namespace usermail
 
 
    class CLASS_DECL_ca2 usermail : 
-      virtual public ::ca2::section
+      virtual public ::departament
    {
    public:
       

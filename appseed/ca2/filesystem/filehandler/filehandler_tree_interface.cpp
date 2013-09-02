@@ -10,7 +10,7 @@ namespace filehandler
       ::ca2::tree(papp)
    {
 
-      ::ca2::data_container::m_spdata = new tree_data(get_app());
+      ::data_container::m_spdata = new tree_data(get_app());
          
    }
 
@@ -28,7 +28,7 @@ namespace filehandler
 
    sp(tree_data) tree_interface::get_filehandler_tree_data()
    {
-      return  (::ca2::data_container::m_spdata.m_p);
+      return  (::data_container::m_spdata.m_p);
    }
    
    

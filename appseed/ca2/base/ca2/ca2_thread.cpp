@@ -332,7 +332,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool thread::on_run_exception(::ca2::exception & e)
+   bool thread::on_run_exception(exception & e)
    {
 
       UNREFERENCED_PARAMETER(e);
@@ -569,7 +569,7 @@ namespace ca2
 
    // called when occurs an standard_exception exception in run
    // return true to call run again
-   bool thread::on_run_exception(::ca2::exception & e)
+   bool thread::on_run_exception(exception & e)
    {
 
       try
@@ -587,7 +587,7 @@ namespace ca2
          return false;
 
       }
-      catch(::ca2::exception & e)
+      catch(exception & e)
       {
 
          throw e;

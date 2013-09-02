@@ -5,9 +5,9 @@ namespace xml
 {
 
 
-   xml::xml(::ca2::application * papp) :
+   departament::departament(::application * papp) :
       element(papp),
-      ::ca2::section(papp)
+      ::departament(papp)
    {
       
       m_poptionDefault     = NULL;
@@ -17,21 +17,21 @@ namespace xml
    }
 
 
-   xml::~xml()
+   departament::~departament()
    {
 
    }
 
 
-   bool xml::initialize1()
+   bool departament::initialize1()
    {
 
       if(Application.is_system())
       {
-         System.factory().cloneable_large < ::xml::edit_item > ();
+         System.factory().cloneable_large < edit_item > ();
       }
 
-      if(!::ca2::section::initialize1())
+      if(!::departament::initialize1())
          return false;
 
       m_poptionDefault     = new disp_option(get_app());
@@ -48,10 +48,10 @@ namespace xml
    }
 
 
-   bool xml::initialize()
+   bool departament::initialize()
    {
 
-      if(!::ca2::section::initialize())
+      if(!::departament::initialize())
          return false;
 
       return true;
@@ -59,7 +59,7 @@ namespace xml
    }
 
 
-   string xml::special_chars(const char * psz)
+   string departament::special_chars(const char * psz)
    {
       
       string str(psz);

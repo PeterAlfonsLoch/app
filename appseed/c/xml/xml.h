@@ -23,7 +23,8 @@
 
 
 #include "xml_edit.h"
+#include "xml_data.h"
 
 
-#include "xml_xml.h"
+#include "xml_departament.h"
 

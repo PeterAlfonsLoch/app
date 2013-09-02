@@ -43,7 +43,7 @@ public:
    uint32_t m_dwNextZero;
    int32_t m_iMaxSize;
    int32_t m_iLast;
-   simple_array < POINT > m_pta;
+   array < POINT > m_pta;
    simple_int_array m_ia;
    RECT m_rect;
    HBITMAP m_hbm;

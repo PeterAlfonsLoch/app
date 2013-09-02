@@ -444,7 +444,7 @@ namespace user
 
    }
 
-   bool frame_window::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, const char * lpszMenuName, uint32_t dwExStyle, sp(::ca2::create_context) pContext)
+   bool frame_window::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, const char * lpszMenuName, uint32_t dwExStyle, sp(create_context) pContext)
    {
 
       UNREFERENCED_PARAMETER(lpszMenuName);
@@ -465,7 +465,7 @@ namespace user
    }
 
    /*
-   sp(::user::interaction) frame_window::CreateView(sp(::ca2::create_context) pContext, UINT nID)
+   sp(::user::interaction) frame_window::CreateView(sp(create_context) pContext, UINT nID)
    {
    // trans   ASSERT(get_handle() != NULL);
    ASSERT(IsWindow());
@@ -501,7 +501,7 @@ namespace user
    }
    */
 
-   bool frame_window::OnCreateClient(LPCREATESTRUCT, sp(::ca2::create_context) pContext)
+   bool frame_window::OnCreateClient(LPCREATESTRUCT, sp(create_context) pContext)
    {
       // default create client will create a ::user::view if asked for it
       if (pContext != NULL &&
@@ -545,7 +545,7 @@ namespace user
       
       ENSURE_ARG(pcreate->m_lpcreatestruct != NULL);
       
-      sp(::ca2::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
+      sp(create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
       
       pcreate->set_lresult(OnCreateHelper(pcreate->m_lpcreatestruct, pContext));
       
@@ -553,7 +553,7 @@ namespace user
       
    }
 
-   int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, sp(::ca2::create_context) pContext)
+   int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, sp(create_context) pContext)
    {
 
       // create special children first
@@ -574,7 +574,7 @@ namespace user
 
 
    bool frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle,
-      sp(::user::interaction) pParentWnd, sp(::ca2::create_context) pContext)
+      sp(::user::interaction) pParentWnd, sp(create_context) pContext)
    {
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(dwDefaultStyle);
@@ -1065,7 +1065,7 @@ namespace user
          char szFileName[_MAX_PATH];
          ::DragQueryFile(hDropInfo, iFile, szFileName, _MAX_PATH);
 
-         sp(::ca2::create_context) createcontext(allocer());
+         sp(create_context) createcontext(allocer());
          createcontext->m_spCommandLine->m_varFile = szFileName;
 
          puser->open_document_file(createcontext);

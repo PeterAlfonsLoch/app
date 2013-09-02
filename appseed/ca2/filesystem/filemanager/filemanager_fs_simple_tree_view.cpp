@@ -24,7 +24,7 @@ namespace filemanager
 
             m_spdataFs = new ::ca2::simple_tree_data(get_app());
 
-            ::ca2::data_container::m_spdata = m_spdataFs;
+            ::data_container::m_spdata = m_spdataFs;
 
          }
 

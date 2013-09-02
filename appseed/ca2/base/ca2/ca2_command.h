@@ -1,48 +1,3 @@
-#pragma once
-
-
-namespace ca2
-{
-
-
-   class CLASS_DECL_ca2 command :
-      virtual public object,
-      virtual public ::ca2::request_interface
-   {
-   public:
-
-      
-      command(sp(::application) papp);
-      virtual ~command();
-
-      virtual var run();
-
-
-      virtual void on_request(sp(::ca2::create_context) pcreationcontext);
-
-
-      virtual string get_description();
-
-
-   };
-
-
-} // namespace command
-
-
-
-#pragma once
-
-
-namespace ca2
-{
-
-
-   class application;
-
-
-} // namespace ca2
-
 
 class command_target;
 
@@ -56,7 +11,7 @@ public:
    cmd_ui * m_pcmdui;
 
 
-   base_cmd_ui(::ca2::signal * psignal);
+   base_cmd_ui(::signal * psignal);
 
 
 };
@@ -71,7 +26,7 @@ public:
    id   m_id;
 
 
-   BaseCommand(::ca2::signal * psignal);
+   BaseCommand(::signal * psignal);
 
 
 };

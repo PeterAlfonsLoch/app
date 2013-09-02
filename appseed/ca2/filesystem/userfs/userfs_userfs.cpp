@@ -7,7 +7,7 @@ namespace userfs
 
    userfs::userfs(::ca2::application * papp) :
       element(papp),
-      ::ca2::section(papp)
+      ::departament(papp)
    {
 
    }
@@ -29,7 +29,7 @@ namespace userfs
       }
 
 
-      if(!::ca2::section::initialize())
+      if(!::departament::initialize())
          return false;
 
 

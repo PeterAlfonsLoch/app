@@ -63,7 +63,7 @@ namespace user
 
 
       class CLASS_DECL_ca2 data :
-         virtual public ::ca2::data
+         virtual public ::data
       {
       public:
 
@@ -123,7 +123,7 @@ namespace user
       bool                             m_bShowTabs;
       bool                             m_bNoTabs;
       e_element                        m_eelement;
-      sp(::ca2::create_context)         m_spcreatecontext;
+      sp(create_context)         m_spcreatecontext;
 
 
       tab(sp(::application) papp);
@@ -150,7 +150,7 @@ namespace user
       virtual void _001SetTabCallback(tab_callback * pcallback);
       virtual bool _001IsAddTab(::index iTab);
       virtual void _001OnDropTab(::index iTab, e_position eposition);
-      virtual void set_cur_tab_by_id(id id, sp(::ca2::create_context) pcreatecontext = NULL);
+      virtual void set_cur_tab_by_id(id id, sp(create_context) pcreatecontext = NULL);
 
       virtual id get_cur_tab_id();
       virtual id get_current_id();

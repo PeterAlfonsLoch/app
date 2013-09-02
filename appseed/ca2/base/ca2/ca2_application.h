@@ -85,20 +85,6 @@ namespace ca2
    class system;
    class window_draw;
 
-   enum e_application_signal
-   {
-      application_signal_initialize1, // cgcl // first initialization
-      application_signal_initialize2, // cst  // second initialization
-      application_signal_initialize3, // third initialization and so on...
-      application_signal_initialize, // last initialization
-      application_signal_start,
-      application_signal_process_initialize,
-      application_signal_finalize,
-      application_signal_exit_instance,
-      application_signal_init_application,
-      application_signal_none,
-   };
-
 
    enum EExclusiveInstance
    {
@@ -111,28 +97,13 @@ namespace ca2
    };
 
 
-   class CLASS_DECL_ca2 application_signal_object :
-      public signal_details
-   {
-   public:
-
-
-      ::ca2::e_application_signal       m_esignal;
-      int32_t                          m_iRet;
-      bool                             m_bOk;
-
-
-      application_signal_object(sp(::application) papp, ::ca2::signal * psignal, ::ca2::e_application_signal esignal);
-
-
-   };
-
+   
 
    class application_base;
 
 
    class CLASS_DECL_ca2 application_ptra :
-      virtual public spa(::ca2::application_base)
+      virtual public spa(application_base)
    {
    public:
 
@@ -151,7 +122,7 @@ namespace ca2
       // Running args (can be changed in initialize_instance)
       // Human-redable name of the application. Normally set in
       // constructor or retreived from __IDS_APP_TITLE.
-      smart_pointer < ::ca2::application_base >  m_p;
+      smart_pointer < application_base >  m_p;
       string                                          m_strAppId;
       string                                          m_strLibraryName;
       ::plane::application *                          m_pappThis;
@@ -228,7 +199,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca2 application :
-      virtual public ::ca2::application_base,
+      virtual public application_base,
       virtual public command_target_interface,
       virtual public request_interface,
       virtual public ::ca2::message_window_simple_callback
@@ -353,7 +324,6 @@ namespace ca2
 
 
 
-      ::ca2::signal                * m_psignal;
       sp(::fs::fs)                        m_spfs;
 
       bool                          m_bInitializeProDevianMode;
@@ -373,13 +343,12 @@ namespace ca2
       string                              m_strModulePath;
       string                              m_strModuleFolder;
       string                              m_strHelpFilePath;
-      sp(::ca2::command_thread)             m_pcommandthread;
       mutex                               m_mutex;
 
       string                        m_strInstallType;
       string                        m_strInstallToken;
       //sp(::user::interaction)         m_puiInitialPlaceHolderContainer;
-      ::ca2::application_bias        m_biasCalling;
+      application_bias        m_biasCalling;
 
 
 #ifdef WINDOWS
@@ -604,7 +573,7 @@ namespace ca2
 
 
 
-      virtual bool start_application(bool bSynch, ::ca2::application_bias * pbias);
+      virtual bool start_application(bool bSynch, application_bias * pbias);
 
 
       virtual bool update_module_paths();
@@ -670,7 +639,7 @@ namespace ca2
 
       // open named file, trying to match a regsitered
       // document template to it.
-      virtual void on_request(sp(::ca2::create_context) pline);
+      virtual void on_request(sp(create_context) pline);
 
       math::math & math();
       geometry::geometry & geometry();
@@ -711,8 +680,6 @@ namespace ca2
       virtual LRESULT GetPaintMsgProc(int32_t nCode, WPARAM wParam, LPARAM lParam);
 
 
-      virtual bool verb();
-
       void OnUpdateRecentFileMenu(cmd_ui * pcmdui) ;
 
       virtual DECL_GEN_SIGNAL(OnAppLanguage)
@@ -727,16 +694,6 @@ namespace ca2
       virtual bool hex_to_memory(primitive::memory & memory, const char * pszHex);
       virtual void memory_to_hex(string & strHex, primitive::memory & memory);
 
-      // Wall-eeeeee aliases
-      sp(::ca2::command_thread) command_central();
-      sp(::ca2::command_thread) guideline();
-      sp(::ca2::command_thread) command();
-      sp(::ca2::command_thread) directrix();
-      sp(::ca2::command_thread) axiom();
-      sp(::ca2::command_thread) creation();
-
-      //virtual void on_allocation_error(const sp(type) info);
-      //virtual sp(element) on_alloc(const sp(type) info);
 
 
       virtual bool check_exclusive();
@@ -790,7 +747,7 @@ namespace ca2
 #endif
 
 
-      virtual bool on_run_exception(::ca2::exception & e);
+      virtual bool on_run_exception(exception & e);
 
 
       // set regsitry key name to be used by application's
@@ -1013,7 +970,7 @@ namespace ca2
       virtual string dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
       virtual bool is_inside_time_dir(const char * pszPath);
       virtual bool file_is_read_only(const char * pszPath);
-      virtual string file_as_string(const char * pszPath);
+      virtual string file_as_string(var varFile);
       virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = NULL);
       virtual string dir_name(const char * psz);
       virtual bool dir_mk(const char * psz);
@@ -1067,7 +1024,7 @@ namespace ca2
       virtual string get_global_id_mutex_name();
 
 
-      virtual bool final_handle_exception(::ca2::exception & e);
+      virtual bool final_handle_exception(exception & e);
 
       bool ca_process_initialize();
       bool ca_initialize1();
@@ -1077,7 +1034,7 @@ namespace ca2
 
 
 
-      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca2::create_context) pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(create_context) pcontext);
 
 
 
@@ -1105,7 +1062,7 @@ namespace ca2
 //      virtual void construct();
       
 
-      //virtual bool final_handle_exception(::ca2::exception & e);
+      //virtual bool final_handle_exception(exception & e);
       //virtual bool initialize();
       //virtual bool initialize1();
       //virtual bool initialize2();
@@ -1126,7 +1083,7 @@ namespace ca2
 
       virtual int32_t run();
 
-//      virtual void on_request(sp(::ca2::create_context) pcreatecontext);
+//      virtual void on_request(sp(create_context) pcreatecontext);
 
 //      sp(::user::document_interface) _001OpenDocumentFile(var varFile);
 
@@ -1192,7 +1149,7 @@ namespace ca2
       //virtual oswindow get_ca2_app_wnd(const char * psz);
 
 
-      //virtual void request_create(sp(::ca2::create_context) pcreatecontext);
+      //virtual void request_create(sp(create_context) pcreatecontext);
 
 //      virtual void on_exclusive_instance_local_conflict();
 

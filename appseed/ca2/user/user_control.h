@@ -253,7 +253,7 @@ namespace user
    {
    public:
 
-      control_cmd_ui(::ca2::signal * psignal);
+      control_cmd_ui(::signal * psignal);
 
 
       map < id, id, id, id > m_mapControlCommand;

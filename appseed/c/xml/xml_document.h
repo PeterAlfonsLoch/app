@@ -8,9 +8,9 @@ namespace xml
    class edit;
 
 
-   class CLASS_DECL_ca2 document :
+   class CLASS_DECL_c document :
       public node,
-      public ::ca2::data
+      public data
    {
    public:
 
@@ -39,12 +39,12 @@ namespace xml
       document & operator = (document & document);
 
 
-      virtual void edit(::ca2::base_edit * pbaseedit);
+      virtual void edit(base_edit * pbaseedit);
 
 
-      inline sp(::xml::edit) validate_edit(::ca2::base_edit * pbaseedit)
+      inline sp(::xml::edit) validate_edit(base_edit * pbaseedit)
       {
-         return ::ca2::data::validate_edit < ::xml::edit > (pbaseedit);
+         return ::data::validate_edit < ::xml::edit > (pbaseedit);
       }
 
 

@@ -9,7 +9,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca2 process_section :
-      public ::ca2::section
+      public ::departament
    {
    public:
 

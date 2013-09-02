@@ -139,7 +139,7 @@ namespace ca2
          PrototypeOnDraw,
       };
 
-      ::ca2::signal * CreateSignal();
+      ::signal * CreateSignal();
 
       class CLASS_DECL_ca2 Handler
       {
@@ -191,7 +191,7 @@ namespace ca2
             UINT                 m_uiCode;
             UINT                 m_uiIdStart;
             UINT                 m_uiIdEnd;
-            sp(::ca2::signal)     m_psignal;
+            sp(::signal)     m_psignal;
 
             HandlerItemArray     m_handlera;
 
@@ -260,7 +260,7 @@ namespace ca2
                psignal->m_uiIdStart       = uiIdStart;
                psignal->m_uiIdEnd         = uiIdEnd;
                psignal->m_eprototype      = GetMessagePrototype(message, 0);
-               psignal->m_psignal         = canew(::ca2::signal());
+               psignal->m_psignal         = canew(::signal());
                psignal->m_psignal->connect(psignalizable, pfn);
                HandlerItem <T> * pitem    = canew(HandlerItem < T >);
                pitem->m_psignalizable     = psignalizable;
@@ -291,7 +291,7 @@ namespace ca2
 
          int32_t                    m_iHandling;
          SignalArray                m_signala;
-         ::ca2::signal               m_signalInstallMessageHandling;
+         ::signal               m_signalInstallMessageHandling;
 //         sp(manual_reset_event)     m_pevOk;
 //         sp(mutex)                  m_pmutex;
 
@@ -326,7 +326,7 @@ namespace ca2
             lparam                  m_lparam;
             bool                    m_bConditional;
 
-            base(sp(::application) papp, ::ca2::signal * psignal = NULL);
+            base(sp(::application) papp, ::signal * psignal = NULL);
             base(sp(::application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
 

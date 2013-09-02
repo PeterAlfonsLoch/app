@@ -10,27 +10,14 @@ namespace primitive
 
 } // namespace primitive
 
-namespace ca2
+enum para_return
 {
-   enum para_return
-   {
-      e_fail = 0x80000000,
-      s_success = 0,
-   };
+   e_fail = 0x80000000,
+   s_success = 0,
+};
 
-   bool ok(para_return eret);
-}
+bool ok(para_return eret);
 
-class var_array;
-
-namespace ca2
-{
-   class property;
-   class property;
-   class property_set;
-   class pair_set_interface;
-   class str_str_interface;
-}
 
 
 class CLASS_DECL_c var
@@ -79,7 +66,7 @@ public:
    union
    {
       void               * m_p;
-      ::ca2::para_return     m_parareturn;
+      para_return     m_parareturn;
       bool                 m_b;
       bool *               m_pb;
       int32_t              m_i32;
@@ -151,8 +138,8 @@ public:
    var(const property_set & set);
    var(const var & var);
    var(const property & prop);
-   var(const ::ca2::pair_set_interface & set);
-   var(const ::ca2::str_str_interface & set);
+   var(const pair_set_interface & set);
+   var(const str_str_interface & set);
    var(const string_composite & composite);
 #if defined(MOVE_SEMANTICS)
    inline var(var && v);
@@ -308,7 +295,7 @@ public:
       return *this;
    }
 
-   var & operator = (::ca2::para_return & eret);
+   var & operator = (para_return & eret);
    var & operator = (bool b);
    var & operator = (bool * pb);
    var & operator = (int32_t i);
@@ -339,8 +326,8 @@ public:
    var & operator = (const class primitive::memory & memory);
    var & operator = (const var_array & vara);
    var & operator = (const property_set & propset);
-   var & operator = (const ::ca2::pair_set_interface & propset);
-   var & operator = (const ::ca2::str_str_interface & propset);
+   var & operator = (const pair_set_interface & propset);
+   var & operator = (const str_str_interface & propset);
    var & operator = (const string_composite & composite);
    var & operator = (const id & id);
    var & operator = (id * pid);

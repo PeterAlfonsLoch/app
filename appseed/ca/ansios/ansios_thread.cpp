@@ -33,7 +33,7 @@ public:
 
 
    mutex                     m_mutex;
-   simple_array < sys_thread * >    m_threadptra;
+   array < sys_thread * >    m_threadptra;
 
 
    sys_thread * get_current();
@@ -140,7 +140,7 @@ DWORD DwThreadId()
 }
 
 // Thread local storage.
-typedef simple_array < void * > ThreadLocalData;
+typedef array < void * > ThreadLocalData;
 
 
 
@@ -150,7 +150,7 @@ static __thread HTHREAD currentThread = NULL;
 __thread os_thread * t_posthread = NULL;
 
 
-static simple_array<DWORD> freeTlsIndices;
+static array<DWORD> freeTlsIndices;
 static simple_map < HTHREAD, ThreadLocalData * > allthreaddata;
 static mutex tlsdatamutex;
 
@@ -158,7 +158,7 @@ static mutex tlsdatamutex;
 static DWORD nextTlsIndex = 0;
 
 mutex * os_thread::s_pmutex = new mutex();
-simple_array < os_thread * > * os_thread::s_pptra = new simple_array < os_thread * > ();
+array < os_thread * > * os_thread::s_pptra = new array < os_thread * > ();
 
 
 // Converts a Win32 thread priority to WinRT format.

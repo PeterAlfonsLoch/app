@@ -8,14 +8,14 @@ namespace xml
    class document;
 
 
-   class CLASS_DECL_ca2 node :
+   class CLASS_DECL_c node :
       virtual public object,
       virtual public ::file::byte_serializable
    {
    public:
 
 
-      class CLASS_DECL_ca2 array :
+      class CLASS_DECL_c array :
          virtual public spa(node)
       {
       public:
@@ -49,7 +49,7 @@ namespace xml
    protected:
 
 
-      node(::ca2::application * papp);
+      node(::application * papp);
       node(::xml::node * pnodeParent);
 
 

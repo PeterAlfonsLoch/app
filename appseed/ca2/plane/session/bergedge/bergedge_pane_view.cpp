@@ -202,7 +202,7 @@ namespace bergedge
             ::ca2::application_bias * pbiasCreate = new ::ca2::application_bias;
             pbiasCreate->m_puiParent = pcreatordata->m_pholder;
 
-            sp(::ca2::create_context) createcontext(allocer());
+            sp(create_context) createcontext(allocer());
             createcontext->m_spApplicationBias = pbiasCreate;
             createcontext->m_spCommandLine->_001ParseCommandFork(strId);
 

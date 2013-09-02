@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_c message_array :
-   public simple_array < MESSAGE >
+   public array < MESSAGE >
 {
 };
 

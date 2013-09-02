@@ -7,7 +7,7 @@ namespace fs
 
    native::native(sp(::application) papp) :
       element(papp),
-      ::ca2::data(papp),
+      ::data(papp),
       ::fs::data(papp)
    {
    }

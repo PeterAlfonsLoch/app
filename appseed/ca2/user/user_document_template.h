@@ -105,11 +105,11 @@ namespace user
 
       virtual Confidence MatchDocType(const char * lpszPathName, sp(::user::document_interface)& rpDocMatch);
       virtual sp(::user::document_interface) create_new_document();
-      virtual sp(::user::frame_window) create_new_frame(sp(::user::document_interface) pDoc, sp(::user::frame_window) pOther, sp(::ca2::create_context) pcreatecontext);
+      virtual sp(::user::frame_window) create_new_frame(sp(::user::document_interface) pDoc, sp(::user::frame_window) pOther, sp(create_context) pcreatecontext);
       virtual void InitialUpdateFrame(sp(::user::frame_window) pFrame, sp(::user::document_interface) pDoc, bool bMakeVisible = TRUE);
       virtual bool save_all_modified();     // for all documents
       virtual void close_all_documents(bool bEndSession);
-      virtual void request_create(sp(::ca2::create_context) pcreatecontext) = 0;
+      virtual void request_create(sp(create_context) pcreatecontext) = 0;
       // open named file
       // if lpszPathName == NULL => create new file with this type
       virtual void set_default_title(sp(::user::document_interface) pdocument) = 0;

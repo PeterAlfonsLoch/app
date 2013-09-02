@@ -7,7 +7,7 @@ namespace fs
 
    fs::fs(::ca2::application * papp) :
       element(papp),
-      ::ca2::section(papp)
+      ::departament(papp)
    {
 
    }

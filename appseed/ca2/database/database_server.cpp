@@ -54,7 +54,7 @@ namespace database
       return memfile.get_position() == memfile.get_length();
    }
 
-   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::ca2::plain_text_serializable & obj, update_hint * puh)
+   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::file::plain_text_serializable & obj, update_hint * puh)
    {
       _template_std_stringstream strstream;
       if(!data_server_load(pclient, idSection, id, idIndex, strstream, puh))
@@ -111,7 +111,7 @@ namespace database
       return true;
    }
 
-   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::ca2::plain_text_serializable & obj, update_hint * puh)
+   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::file::plain_text_serializable & obj, update_hint * puh)
    {
       _template_std_stringstream strstream;
       obj.write(strstream);

@@ -578,7 +578,7 @@ bool PrintModules(vsstring & strImage, uint32_t processID, const char * pszDll )
 
 }
 
-void dll_processes(simple_uint_array & dwa, stringa & straProcesses, const char * pszDll)
+void dll_processes(uint_array & dwa, stringa & straProcesses, const char * pszDll)
 {
    // Get the list of process identifiers.
 

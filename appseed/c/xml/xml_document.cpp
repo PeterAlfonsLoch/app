@@ -7,7 +7,7 @@ namespace xml
 
    document::document(sp(::application) papp, parse_info * pparseinfo) :
       element(papp),
-      ::ca2::data(papp),
+      ::data(papp),
       node(papp)
    {
 
@@ -42,7 +42,7 @@ namespace xml
 
       m_strLocation = psz;
       string str;
-      str = Application.file().as_string(psz);
+      str = Application.file_as_string(psz);
       return load(str);
 
    }
@@ -161,7 +161,7 @@ namespace xml
       if(extEnt.has_char())
       {
          bExt = true;
-         return Application.file().as_string(System.dir().path(System.dir_name(m_strLocation), extEnt));
+         return Application.file_as_string(System.dir_path(System.dir_name(m_strLocation), extEnt));
       }
       return "";
    }
@@ -204,7 +204,7 @@ namespace xml
    }
 
 
-   void document::edit(::ca2::base_edit * pbaseedit)
+   void document::edit(base_edit * pbaseedit)
    {
 
       sp(::xml::edit) pedit = validate_edit(pbaseedit);

@@ -5,7 +5,7 @@ namespace user
 
    keyboard_layout_cfg::keyboard_layout_cfg(sp(::application) papp) :
       element(papp)
-//      ::ca2::data(papp)
+//      ::data(papp)
 //      ::user::list_data(papp),
   //    ::user::split_layout(papp),
     //  

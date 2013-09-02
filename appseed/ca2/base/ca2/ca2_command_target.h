@@ -6,7 +6,7 @@
 
 
 class CLASS_DECL_ca2 command_target_interface :
-   virtual public ::ca2::signalizable,
+   virtual public signalizable,
    virtual public ::ca2::message::dispatch
 {
 public:
@@ -162,7 +162,7 @@ public:
 
 
 class CLASS_DECL_ca2 command_target :
-   virtual public ::ca2::signalizable,
+   virtual public signalizable,
    virtual public command_target_interface
 {
 public:

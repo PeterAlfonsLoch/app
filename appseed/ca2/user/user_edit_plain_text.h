@@ -145,7 +145,7 @@ namespace user
 
 
 
-      virtual void on_updata_data(::ca2::data * pdata, int32_t iHint);
+      virtual void on_updata_data(::data * pdata, int32_t iHint);
 
 
       virtual bool create_control(class ::user::control::descriptor * pdescriptor);

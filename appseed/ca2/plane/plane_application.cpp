@@ -165,7 +165,7 @@ namespace plane
    }
 
 
-   void application::on_request(sp(::ca2::create_context) pcreatecontext)
+   void application::on_request(sp(create_context) pcreatecontext)
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -333,7 +333,7 @@ namespace plane
          if(bCreate)
          {
 
-            sp(::ca2::create_context) spcreatecontext(allocer());
+            sp(create_context) spcreatecontext(allocer());
 
             papp = Session.start_application("application", pszAppId, spcreatecontext);
 
@@ -346,10 +346,10 @@ namespace plane
          throw e;
 
       }
-      catch(const ::ca2::exception & e)
+      catch(const exception & e)
       {
 
-         if(!Application.on_run_exception((::ca2::exception &) e))
+         if(!Application.on_run_exception((exception &) e))
             throw exit_exception(get_app());
 
       }
@@ -492,7 +492,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::application) papp);
    }
 
 
-   void application::on_service_request(sp(::ca2::create_context) pcreatecontext)
+   void application::on_service_request(sp(create_context) pcreatecontext)
    {
 
       if(!is_serviceable())
@@ -587,7 +587,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::application) papp);
             throw e;
 
          }
-         catch(const ::ca2::exception &)
+         catch(const exception &)
          {
             if (GetMainWnd() != NULL)
             {
@@ -631,9 +631,9 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::application) papp);
             throw e;
 
          }
-         catch(const ::ca2::exception & e)
+         catch(const exception & e)
          {
-            if(on_run_exception((::ca2::exception &) e))
+            if(on_run_exception((exception &) e))
                goto run;
             if(GetMainWnd() != NULL)
             {
@@ -648,12 +648,12 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::application) papp);
                   throw e;
 
                }
-               catch(::ca2::exception &)
+               catch(exception &)
                {
                }
                SetMainWnd(NULL);
             }
-            if(final_handle_exception((::ca2::exception &) e))
+            if(final_handle_exception((exception &) e))
                goto run;
             if(GetMainWnd() != NULL)
             {
@@ -668,7 +668,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(::application) papp);
                   throw e;
 
                }
-               catch(::ca2::exception &)
+               catch(exception &)
                {
                }
                SetMainWnd(NULL);
@@ -772,7 +772,7 @@ run:
 
       try
       {
-         ::ca2::application_signal_object signal(this, m_psignal, ::ca2::application_signal_start);
+         application_signal_details signal(this, m_psignal, application_signal_start);
          m_psignal->emit(&signal);
       }
       catch(...)
@@ -813,9 +813,9 @@ run:
             throw e;
 
          }
-         catch(const ::ca2::exception & e)
+         catch(const exception & e)
          {
-            if(on_run_exception((::ca2::exception &) e))
+            if(on_run_exception((exception &) e))
                goto run;
             if (GetMainWnd() != NULL)
             {
@@ -824,12 +824,12 @@ run:
                {
                   GetMainWnd()->DestroyWindow();
                }
-               catch(::ca2::exception &)
+               catch(exception &)
                {
                }
                SetMainWnd(NULL);
             }
-            if(final_handle_exception((::ca2::exception &) e))
+            if(final_handle_exception((exception &) e))
                goto run;
             if (GetMainWnd() != NULL)
             {
@@ -844,7 +844,7 @@ run:
                   throw e;
 
                }
-               catch(::ca2::exception &)
+               catch(exception &)
                {
                }
                SetMainWnd(NULL);

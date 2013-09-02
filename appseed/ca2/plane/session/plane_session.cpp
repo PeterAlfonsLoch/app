@@ -291,7 +291,7 @@ namespace plane
 
 
 
-   bool session::create_bergedge(sp(::ca2::create_context) pcreatecontext)
+   bool session::create_bergedge(sp(create_context) pcreatecontext)
    {
       //m_psession->m_pbergedge = this;
       //m_psession->m_pbergedgeInterface = this;
@@ -300,7 +300,7 @@ namespace plane
       if(m_pbergedgedocument == NULL)
       {
 
-         sp(::ca2::create_context) createcontextBergedge(allocer());
+         sp(create_context) createcontextBergedge(allocer());
          createcontextBergedge.oattrib(pcreatecontext);
          createcontextBergedge->m_spCommandLine->m_varFile.set_type(var::type_empty);
          createcontextBergedge->m_bMakeVisible = false;
@@ -314,7 +314,7 @@ namespace plane
          if(m_pplatformdocument == NULL)
          {
 
-            sp(::ca2::create_context) createcontextPlatform;
+            sp(create_context) createcontextPlatform;
             createcontextPlatform.oattrib(pcreatecontext);
             createcontextPlatform->m_spCommandLine->m_varFile.set_type(var::type_empty);
             createcontextPlatform->m_bMakeVisible = true;
@@ -391,10 +391,10 @@ namespace plane
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void session::on_request(sp(::ca2::create_context) pcreatecontext)
+   void session::on_request(sp(create_context) pcreatecontext)
    {
 
-      TRACE("::plane::session::on_request(sp(::ca2::create_context))");
+      TRACE("::plane::session::on_request(sp(create_context))");
 
 
       if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1
@@ -661,7 +661,7 @@ namespace plane
    }
 
 
-   sp(::plane::application) session::start_application(const char * pszType, const char * pszAppId, sp(::ca2::create_context) pcreatecontext)
+   sp(::plane::application) session::start_application(const char * pszType, const char * pszAppId, sp(create_context) pcreatecontext)
    {
 
       string strApp(pszAppId);
@@ -742,7 +742,7 @@ namespace plane
    bool session::open_by_file_extension(const char * pszPathName, ::ca2::application_bias * pbiasCreate)
    {
 
-      sp(::ca2::create_context) cc(allocer());
+      sp(create_context) cc(allocer());
 
       cc->m_spCommandLine->m_varFile = pszPathName;
 
@@ -756,7 +756,7 @@ namespace plane
    }
 
 
-   bool session::open_by_file_extension(::ca2::create_context * pcreatecontext)
+   bool session::open_by_file_extension(create_context * pcreatecontext)
    {
 
       string strId;
@@ -874,7 +874,7 @@ namespace plane
    //   }
    //
 
-   void session::request_create(sp(::ca2::create_context) pcreatecontext)
+   void session::request_create(sp(create_context) pcreatecontext)
    {
 
       //      if(m_pbergedgeInterface != NULL)
@@ -1029,7 +1029,7 @@ alt1:
    throw e;
 
    }
-   catch(::ca2::exception & e)
+   catch(exception & e)
    {
 
    if(!Application.on_run_exception(e))
@@ -1072,7 +1072,7 @@ alt1:
    }*/
    //   
    //
-   //   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca2::create_context) pcreatecontext)
+   //   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(create_context) pcreatecontext)
    //   {
    //
    //
@@ -1159,7 +1159,7 @@ alt1:
    //
    //   }
    //
-   /*   ::user::place_holder_ptra session::get_place_holder(sp(::user::main_frame) pmainframe, sp(::ca2::create_context) pcreatecontext)
+   /*   ::user::place_holder_ptra session::get_place_holder(sp(::user::main_frame) pmainframe, sp(create_context) pcreatecontext)
    {
 
    UNREFERENCED_PARAMETER(pcreatecontext);
@@ -1191,7 +1191,7 @@ alt1:
    }*/
 
    /*
-   bool session::place(sp(::user::main_frame) pmainframe, sp(::ca2::create_context) pcreatecontext)
+   bool session::place(sp(::user::main_frame) pmainframe, sp(create_context) pcreatecontext)
    {
 
    get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
@@ -1541,7 +1541,7 @@ alt1:
             throw e;
 
          }
-         catch(::ca2::exception & e)
+         catch(exception & e)
          {
 
             if(!App(this).on_run_exception(e))
@@ -1582,7 +1582,7 @@ alt1:
       }
    }
 
-   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca2::create_context) pcreatecontext)
+   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(create_context) pcreatecontext)
    {
 
 
@@ -1679,7 +1679,7 @@ alt1:
 
    }
 
-   ::user::place_holder_ptra session::get_place_holder(sp(::user::frame_window) pmainframe, sp(::ca2::create_context) pcreatecontext)
+   ::user::place_holder_ptra session::get_place_holder(sp(::user::frame_window) pmainframe, sp(create_context) pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -1710,7 +1710,7 @@ alt1:
 
    }
 
-   bool session::place(sp(::user::main_frame) pmainframe, sp(::ca2::create_context) pcreatecontext)
+   bool session::place(sp(::user::main_frame) pmainframe, sp(create_context) pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);

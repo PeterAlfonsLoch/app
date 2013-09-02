@@ -4,15 +4,6 @@
 class hthread;
 
 
-#ifdef WINDOWSEX
-
-typedef HANDLE HTHREAD;
-
-#else
-
-typedef hthread * HTHREAD;
-
-#endif
 
 
 /**
@@ -85,7 +76,7 @@ public:
 #endif
 
    static mutex *                  s_pmutex;
-   static simple_array < os_thread * > *  s_pptra;
+   static array < os_thread * > *  s_pptra;
 
 
    os_thread(uint32_t ( * pfn)(void *), void * pv);

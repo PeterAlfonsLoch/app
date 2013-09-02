@@ -7,7 +7,7 @@ namespace sockets
 
    sockets::sockets(::ca2::application * papp) :
      element(papp),
-     ::ca2::section(papp),
+     ::departament(papp),
       m_mutexHttpPostBoundary(papp),
       m_mutexResolvCache(papp)
    {
@@ -23,7 +23,7 @@ namespace sockets
    bool sockets::initialize1()
    {
 
-      if(!::ca2::section::initialize1())
+      if(!::departament::initialize1())
          return false;
 
       

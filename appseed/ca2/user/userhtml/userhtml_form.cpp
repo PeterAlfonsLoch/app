@@ -89,7 +89,7 @@ void html_form::_001OnImageLoaded(signal_details * pobj)
 
          get_html_data()->m_box = rectClient;
 
-         ::ca2::data::writing writing(get_html_data());
+         ::data::writing writing(get_html_data());
 
          ::draw2d::memory_graphics pdc(allocer());
          get_html_data()->delete_implementation();

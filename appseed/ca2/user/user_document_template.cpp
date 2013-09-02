@@ -122,7 +122,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Default frame creation
 
-   sp(::user::frame_window) document_template::create_new_frame(sp(::user::document_interface) pdocument, sp(::user::frame_window) pOther, sp(::ca2::create_context) pcreatecontext)
+   sp(::user::frame_window) document_template::create_new_frame(sp(::user::document_interface) pdocument, sp(::user::frame_window) pOther, sp(create_context) pcreatecontext)
    {
 
       // create a frame wired to the specified ::user::document_interface

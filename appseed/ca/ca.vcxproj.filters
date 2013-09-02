@@ -760,19 +760,10 @@
     <ClCompile Include="ca\ca_mktime.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_mutex_lock.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_net.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_printf.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_array.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_critical_section.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_simple_event.cpp">
@@ -800,24 +791,6 @@
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_std_file.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_str.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_stra.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_strdup.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_string_to_integer.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_strw.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_strx.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_template.cpp">

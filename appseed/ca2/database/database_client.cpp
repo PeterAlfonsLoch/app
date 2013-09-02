@@ -238,7 +238,7 @@ namespace database
       return false;
    }
 
-   bool client::data_set(class id id, class id idIndex, ::ca2::plain_text_serializable & obj, update_hint * puh)
+   bool client::data_set(class id id, class id idIndex, ::file::plain_text_serializable & obj, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
@@ -356,7 +356,7 @@ namespace database
       return false;
    }
 
-   bool client::data_get(class id id, class id idIndex, ::ca2::plain_text_serializable & obj)
+   bool client::data_get(class id id, class id idIndex, ::file::plain_text_serializable & obj)
    {
       if(m_pdataserver != NULL)
       {

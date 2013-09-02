@@ -6,7 +6,7 @@ namespace fontopus
 
 
    class CLASS_DECL_ca2 fontopus :
-      virtual public ::ca2::section
+      virtual public ::departament
    {
    public:
 
@@ -41,7 +41,7 @@ namespace fontopus
 
       virtual void on_user_login(::fontopus::user * puser);
 
-      virtual void on_request(sp(::ca2::create_context) pcreatecontext);
+      virtual void on_request(sp(create_context) pcreatecontext);
 
    };
 

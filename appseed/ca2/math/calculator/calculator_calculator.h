@@ -9,7 +9,7 @@ namespace calculator
 
 
    class CLASS_DECL_ca2 calculator :
-      virtual public ::ca2::section
+      virtual public ::departament
    {
    public:
 

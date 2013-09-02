@@ -73,7 +73,7 @@ namespace xml
 
    edit::edit(sp(::application) papp) :
       element(papp),
-      ::ca2::edit < ::xml::document > (papp)
+      ::edit < ::xml::document > (papp)
    {
       
       m_iEdit = -1;

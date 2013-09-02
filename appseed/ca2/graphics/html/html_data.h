@@ -9,8 +9,8 @@ namespace html
 
 
    class CLASS_DECL_ca2 data :
-      virtual public ::ca2::signalizable,
-      public ::ca2::data
+      virtual public signalizable,
+      public ::data
    {
    public:
 
@@ -162,7 +162,7 @@ namespace html
 
 
       data(const data & ) :
-         ::ca2::data(NULL),
+         ::data(NULL),
          m_elemental(NULL),
          m_uiptra(NULL)
       {

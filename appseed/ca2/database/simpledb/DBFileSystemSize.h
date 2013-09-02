@@ -138,7 +138,7 @@ public:
 
 class CLASS_DECL_ca2 FileSystemSizeWnd :
    public ::ca2::window_sp,
-   public ::ca2::signalizable
+   public signalizable
 {
 public:
 

@@ -12,7 +12,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca2 tree :
-      virtual public ::ca2::data_container
+      virtual public ::data_container
    {
    public:
 

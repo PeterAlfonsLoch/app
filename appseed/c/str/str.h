@@ -8,10 +8,10 @@ class string_array;
 #include "str_str.h"
 
 
-#include "str_simple_string.h"
+#include "str_simple.h"
 #include "str_wstringtou.h"
-#include "str_string_interface.h"
-#include "str_string_composite.h"
+#include "str_interface.h"
+#include "str_composite.h"
 #include "str_string.h"
 
 

@@ -330,7 +330,7 @@ void simple_frame_window::_001OnMove(signal_details * pobj)
 
 }
 
-bool simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, sp(::ca2::create_context) pContext)
+bool simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, sp(create_context) pContext)
 {
 // trans   HICON hicon = GetIcon(false);
    return ::user::frame_window::OnCreateClient(lpcs, pContext);
@@ -725,7 +725,7 @@ void simple_frame_window::_001OnNcActivate(signal_details * pobj)
 
 
 
-bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle, sp(::user::interaction) pParentWnd, sp(::ca2::create_context) pContext)
+bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle, sp(::user::interaction) pParentWnd, sp(create_context) pContext)
 {
 
    UNREFERENCED_PARAMETER(pParentWnd);
@@ -1105,7 +1105,7 @@ bool simple_frame_window::create(const char * lpszClassName,
          sp(::user::interaction) pParentWnd,        // != NULL for popups
          const char * lpszMenuName,
          uint32_t dwExStyle,
-         sp(::ca2::create_context) pContext)
+         sp(create_context) pContext)
 {
    return ::user::frame_window::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pContext);
 }

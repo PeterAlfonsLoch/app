@@ -37,7 +37,7 @@ namespace ca2
    sp(tree_data) tree::get_tree_data()
    {
 
-      return ::ca2::data_container::get_data();
+      return ::data_container::get_data();
 
    }
 

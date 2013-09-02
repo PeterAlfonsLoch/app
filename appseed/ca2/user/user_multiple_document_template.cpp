@@ -59,7 +59,7 @@ namespace user
    }
 
 
-   void multiple_document_template::request_create(sp(::ca2::create_context) pcreatecontext)
+   void multiple_document_template::request_create(sp(create_context) pcreatecontext)
    {
 
       pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(element)) NULL;

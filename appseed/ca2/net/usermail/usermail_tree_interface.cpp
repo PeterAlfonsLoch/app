@@ -16,7 +16,7 @@ namespace usermail
 
       m_dataid = "mail::tree_interface";
 
-      ::ca2::data_container::m_spdata = this;
+      ::data_container::m_spdata = this;
 
    }
 

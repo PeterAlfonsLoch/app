@@ -33,7 +33,7 @@ namespace ca2
    void section::connect_to_application_signal()
    {
 
-      m_papp->m_psignal->connect(this, &::ca2::section::on_signal);
+      m_papp->m_psignal->connect(this, &::departament::on_signal);
 
    }
 
@@ -104,35 +104,35 @@ namespace ca2
    void section::on_signal(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::application_signal_object, papplicationsignal, pobj);
+      SCAST_PTR(application_signal_details, papplicationsignal, pobj);
 
       try
       {
-         if(papplicationsignal->m_esignal == ::ca2::application_signal_process_initialize)
+         if(papplicationsignal->m_esignal == application_signal_process_initialize)
          {
             papplicationsignal->m_bOk = process_initialize();
          }
-         else if(papplicationsignal->m_esignal == ::ca2::application_signal_initialize)
+         else if(papplicationsignal->m_esignal == application_signal_initialize)
          {
             papplicationsignal->m_bOk = initialize();
          }
-         else if(papplicationsignal->m_esignal == ::ca2::application_signal_initialize1)
+         else if(papplicationsignal->m_esignal == application_signal_initialize1)
          {
             papplicationsignal->m_bOk = initialize1();
          }
-         else if(papplicationsignal->m_esignal == ::ca2::application_signal_initialize2)
+         else if(papplicationsignal->m_esignal == application_signal_initialize2)
          {
             papplicationsignal->m_bOk = initialize2();
          }
-         else if(papplicationsignal->m_esignal == ::ca2::application_signal_initialize3)
+         else if(papplicationsignal->m_esignal == application_signal_initialize3)
          {
             papplicationsignal->m_bOk = initialize3();
          }
-//         else if(papplicationsignal->m_esignal == ::ca2::application_signal_initialize_instance)
+//         else if(papplicationsignal->m_esignal == application_signal_initialize_instance)
   //       {
     //        papplicationsignal->m_bOk = initialize();
       //   }
-         else if(papplicationsignal->m_esignal == ::ca2::application_signal_finalize)
+         else if(papplicationsignal->m_esignal == application_signal_finalize)
          {
             papplicationsignal->m_bOk = finalize();
          }

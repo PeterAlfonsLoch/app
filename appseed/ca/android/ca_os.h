@@ -86,7 +86,7 @@ oswindow GetDesktopWindow();
 
 
 class oswindow_dataptra :
-   public simple_array < oswindow_data * >
+   public array < oswindow_data * >
 {
 public:
 

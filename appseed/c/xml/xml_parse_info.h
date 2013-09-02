@@ -7,7 +7,7 @@ namespace xml
    class node;
 
    // Parse info.
-   class CLASS_DECL_ca2 parse_info
+   class CLASS_DECL_c parse_info
    {
    public:
       bool               m_bTrimValue;        // [set] do trim when parse?
@@ -27,6 +27,6 @@ namespace xml
       parse_info(sp(::application) papp);
    };
 
-   CLASS_DECL_ca2 char * LoadOtherNodes( node * node, bool* pbRet, const char * pszXml, parse_info * pi = NULL);
+   CLASS_DECL_c char * LoadOtherNodes( node * node, bool* pbRet, const char * pszXml, parse_info * pi = NULL);
 
 } // namespace xml

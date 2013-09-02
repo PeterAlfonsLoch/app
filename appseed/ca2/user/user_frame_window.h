@@ -152,13 +152,13 @@ namespace user
          sp(::user::interaction) pParentWnd = NULL,        // != NULL for popups
          const char * lpszMenuName = NULL,
          uint32_t dwExStyle = 0,
-         sp(::ca2::create_context) pContext = NULL);
+         sp(create_context) pContext = NULL);
 
       // dynamic creation - load frame and associated resources
       virtual bool LoadFrame(const char * pszMatter,
          uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
          sp(::user::interaction) pParentWnd = NULL,
-         sp(::ca2::create_context) pContext = NULL);
+         sp(create_context) pContext = NULL);
 
       virtual bool ShowWindow(int32_t nCmdShow);
 
@@ -210,7 +210,7 @@ namespace user
       // border space negotiation
       enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
       virtual bool NegotiateBorderSpace(UINT nBorderCmd, LPRECT lpRectBorder);
-      virtual bool OnCreateClient(LPCREATESTRUCT lpcs, sp(::ca2::create_context) pContext);
+      virtual bool OnCreateClient(LPCREATESTRUCT lpcs, sp(create_context) pContext);
       void OnContextHelp();   // for Shift+F1 help
       void OnUpdateControlBarMenu(cmd_ui* pCmdUI);
       bool OnBarCheck(UINT nID);
@@ -249,7 +249,7 @@ namespace user
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
       virtual void PostNcDestroy();   // default to delete this.
-      int32_t OnCreateHelper(LPCREATESTRUCT lpcs, sp(::ca2::create_context) pContext);
+      int32_t OnCreateHelper(LPCREATESTRUCT lpcs, sp(create_context) pContext);
       void BringToTop(int32_t nCmdShow);
       // bring ::ca2::window to top for SW_ commands which affect z-order
 

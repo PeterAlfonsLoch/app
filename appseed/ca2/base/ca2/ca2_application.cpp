@@ -137,8 +137,6 @@ namespace ca2
    {
 
 
-      m_psignal = new ::ca2::signal();
-
       if(m_papp.is_null())
       {
          set_app(this);
@@ -169,7 +167,7 @@ namespace ca2
       //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", NULL);
       m_iResourceId              = 8001;
       m_psavings                 = new class savings(this);
-      m_pcommandthread           = new ::ca2::command_thread(this);
+      m_pcommandthread           = new command_thread(this);
 
       ::ca2::profiler::initialize();
 
@@ -594,7 +592,7 @@ namespace ca2
       if(!::ca2::application_base::m_p->initialize2())
          return false;
 
-      application_signal_object signal(this, m_psignal, ::ca2::application_signal_initialize2);
+      application_signal_details signal(this, m_psignal, application_signal_initialize2);
       m_psignal->emit(&signal);
       return signal.m_bOk;
 
@@ -604,7 +602,7 @@ namespace ca2
    bool application::initialize3()
    {
 
-      application_signal_object signal(this, m_psignal, ::ca2::application_signal_initialize3);
+      application_signal_details signal(this, m_psignal, application_signal_initialize3);
       m_psignal->emit(&signal);
       if(!signal.m_bOk)
          return false;
@@ -686,7 +684,7 @@ namespace ca2
 
    }
 
-   void application::on_request(sp(::ca2::create_context) pcreatecontext)
+   void application::on_request(sp(create_context) pcreatecontext)
    {
 
       ::ca2::request_interface::on_request(pcreatecontext);
@@ -881,7 +879,7 @@ namespace ca2
          TRACE("Could not finalize message window");
       }
 
-      ::ca2::application_signal_object signal(this, m_psignal, ::ca2::application_signal_exit_instance);
+      application_signal_details signal(this, m_psignal, application_signal_exit_instance);
       try
       {
          m_psignal->emit(&signal);
@@ -1625,41 +1623,6 @@ finishedCa2Module:;
       strHex.ReleaseBuffer(count * 2);
    }
 
-   sp(::ca2::command_thread) application::command_central()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::ca2::command_thread) application::command()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::ca2::command_thread) application::guideline()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::ca2::command_thread) application::directrix()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::ca2::command_thread) application::axiom()
-   {
-      return m_pcommandthread;
-   }
-
-   bool application::verb()
-   {
-      axiom()->run();
-      return true;
-   }
-
-   sp(::ca2::command_thread) application::creation()
-   {
-      return m_pcommandthread;
-   }
 
 } // namespace ca2
 
@@ -1999,7 +1962,7 @@ namespace ca2
       goto InitFailure;
       }
       }
-      catch(const ::ca2::exception &)
+      catch(const exception &)
       {
       if (pThread->GetMainWnd() != NULL)
       {
@@ -2021,9 +1984,9 @@ namespace ca2
       goto InitFailure;
       }
       }
-      catch(const ::ca2::exception & e)
+      catch(const exception & e)
       {
-      if(pThread->on_run_exception((::ca2::exception &) e))
+      if(pThread->on_run_exception((exception &) e))
       goto run;
       if (pThread->GetMainWnd() != NULL)
       {
@@ -2032,12 +1995,12 @@ namespace ca2
       {
       pThread->GetMainWnd()->DestroyWindow();
       }
-      catch(::ca2::exception &)
+      catch(exception &)
       {
       }
       pThread->SetMainWnd(NULL);
       }
-      if(pApp->final_handle_exception((::ca2::exception &) e))
+      if(pApp->final_handle_exception((exception &) e))
       goto run;
       if (pThread->GetMainWnd() != NULL)
       {
@@ -2046,7 +2009,7 @@ namespace ca2
       {
       pThread->GetMainWnd()->DestroyWindow();
       }
-      catch(::ca2::exception &)
+      catch(exception &)
       {
       }
       pThread->SetMainWnd(NULL);
@@ -2304,7 +2267,7 @@ namespace ca2
 
 
 
-   bool application::on_run_exception(::ca2::exception & e)
+   bool application::on_run_exception(exception & e)
    {
 
       TRACE("An unexpected error has occurred and no special exception handling is available.");
@@ -2373,14 +2336,14 @@ namespace ca2
 
    bool application::ca_process_initialize()
    {
-      application_signal_object signal(this, m_psignal, ::ca2::application_signal_process_initialize);
+      application_signal_details signal(this, m_psignal, application_signal_process_initialize);
       m_psignal->emit(&signal);
       return true;
    }
 
    bool application::ca_initialize1()
    {
-      application_signal_object signal(this, m_psignal, ::ca2::application_signal_initialize1);
+      application_signal_details signal(this, m_psignal, application_signal_initialize1);
       m_psignal->emit(&signal);
       return signal.m_bOk;
    }
@@ -2389,7 +2352,7 @@ namespace ca2
 
    bool application::ca_finalize()
    {
-      application_signal_object signal(this, m_psignal, ::ca2::application_signal_finalize);
+      application_signal_details signal(this, m_psignal, application_signal_finalize);
       try
       {
          m_psignal->emit(&signal);
@@ -2406,7 +2369,7 @@ namespace ca2
 
 
 
-   bool application::final_handle_exception(::ca2::exception & e)
+   bool application::final_handle_exception(exception & e)
    {
       UNREFERENCED_PARAMETER(e);
       //linux      exit(-1);
@@ -2415,7 +2378,7 @@ namespace ca2
       {
 
          // get_app() may be it self, it is ok...
-         if(Sys(get_app()).final_handle_exception((::ca2::exception & ) e))
+         if(Sys(get_app()).final_handle_exception((exception & ) e))
             return true;
 
 
@@ -4337,7 +4300,7 @@ namespace ca2
    }
 
 
-   application_signal_object::application_signal_object(sp(::application) papp, ::ca2::signal * psignal, ::ca2::e_application_signal esignal) :
+   application_signal_details::application_signal_details(sp(::application) papp, ::ca2::signal * psignal, e_application_signal esignal) :
       element(papp),
       signal_details(psignal)
    {
@@ -4410,7 +4373,7 @@ namespace ca2
    */
 
 
-   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca2::create_context) pcreatecontext)
+   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(create_context) pcreatecontext)
    {
 
       sp(::user::interaction) puiParent = NULL;
@@ -5015,7 +4978,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
 
       ensure_app_interest();
 
-      application_signal_object signal(this, m_psignal, ::ca2::application_signal_initialize);
+      application_signal_details signal(this, m_psignal, application_signal_initialize);
       m_psignal->emit(&signal);
       if(!signal.m_bOk)
          return false;
@@ -5041,10 +5004,10 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
       if(pbase->m_wparam == 2)
       {
          // when wparam == 2 lparam is a pointer to a ::ca2::command_fork
-         // that should be treated as ::ca2::command_line on request, i.e.,
+         // that should be treated as command_line on request, i.e.,
          // a fork whose Forking part has been done, now
          // the parameters are going to be passed to this new application
-         sp(::ca2::create_context) pcreatecontext(pbase->m_lparam);
+         sp(create_context) pcreatecontext(pbase->m_lparam);
          try
          {
             on_request(pcreatecontext);

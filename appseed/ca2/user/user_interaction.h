@@ -271,13 +271,13 @@ namespace user
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         sp(::ca2::create_context) pContext = NULL);
+         sp(create_context) pContext = NULL);
       using ::ca2::request_interface::create;
       virtual bool create(const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         sp(::ca2::create_context) pContext = NULL);
+         sp(create_context) pContext = NULL);
       virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,

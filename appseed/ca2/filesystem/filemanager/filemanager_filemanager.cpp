@@ -12,7 +12,7 @@ namespace filemanager
 
    filemanager::filemanager(::ca2::application * papp) :
       element(papp),
-      ::ca2::section(papp)
+      ::departament(papp)
    {
       m_ptemplateStd       = NULL;
 
@@ -144,7 +144,7 @@ namespace filemanager
       }
 
 
-      sp(::ca2::create_context) cc(allocer());
+      sp(create_context) cc(allocer());
       cc->m_spCommandLine->m_varFile = itema[0].m_strPath;
       request_create(cc);
 
@@ -247,7 +247,7 @@ namespace filemanager
    }
 
 
-   void filemanager::on_request(sp(::ca2::create_context) pcreatecontext)
+   void filemanager::on_request(sp(create_context) pcreatecontext)
    {
       FileManagerCallbackInterface::on_request(pcreatecontext);
    }

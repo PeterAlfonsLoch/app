@@ -1493,11 +1493,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="ca\ca_md5.cpp" />
     <ClCompile Include="ca\ca_mem.cpp" />
     <ClCompile Include="ca\ca_mktime.cpp" />
-    <ClCompile Include="ca\ca_mutex_lock.cpp" />
     <ClCompile Include="ca\ca_net.cpp" />
     <ClCompile Include="ca\ca_printf.cpp" />
-    <ClCompile Include="ca\ca_simple_array.cpp" />
-    <ClCompile Include="ca\ca_simple_critical_section.cpp" />
     <ClCompile Include="ca\ca_simple_event.cpp" />
     <ClCompile Include="ca\ca_simple_list.cpp" />
     <ClCompile Include="ca\ca_simple_memory.cpp" />
@@ -1507,12 +1504,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="ca\ca_small_ipca_channel.cpp" />
     <ClCompile Include="ca\ca_sprintf.cpp" />
     <ClCompile Include="ca\ca_std_file.cpp" />
-    <ClCompile Include="ca\ca_str.cpp" />
-    <ClCompile Include="ca\ca_stra.cpp" />
-    <ClCompile Include="ca\ca_strdup.cpp" />
-    <ClCompile Include="ca\ca_string_to_integer.cpp" />
-    <ClCompile Include="ca\ca_strw.cpp" />
-    <ClCompile Include="ca\ca_strx.cpp" />
     <ClCompile Include="ca\ca_template.cpp" />
     <ClCompile Include="ca\ca_url.cpp" />
     <ClCompile Include="ca\ca_user.cpp" />

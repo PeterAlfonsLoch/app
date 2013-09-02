@@ -12,7 +12,7 @@ namespace gcom
       class thread;
 
       class CLASS_DECL_ca2 Main :
-         virtual public ::ca2::signalizable
+         virtual public signalizable
       {
       protected:
 

@@ -14,7 +14,7 @@ namespace uinteraction
 
       class CLASS_DECL_ca2 appearance :
          public CWorkSetDownUpInterface,
-         virtual public ::ca2::signalizable
+         virtual public signalizable
       {
          friend class WorkSet;
       public:

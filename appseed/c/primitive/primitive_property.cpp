@@ -1760,10 +1760,6 @@ relation_set::~relation_set()
 }
 
 
-} // namespace ca2
-
-
-
 void prop_id_debug(sp(::application) papp)
 {
 
@@ -1791,13 +1787,13 @@ void prop_id_debug(sp(::application) papp)
 
 
 
-string CLASS_DECL_ca2 operator + (const char * psz, const property & prop)
+string  operator + (const char * psz, const property & prop)
 {
    return psz + prop.get_value();
 }
 
 
-string CLASS_DECL_ca2 operator + (const string & str, const property & prop)
+string  operator + (const string & str, const property & prop)
 {
    return str + prop.get_value();
 }
@@ -1817,43 +1813,43 @@ string CLASS_DECL_ca2 operator + (const string & str, const property & prop)
 
 
 
-var CLASS_DECL_ca2 operator - (int32_t i, const property & prop)
+var  operator - (int32_t i, const property & prop)
 {
    return i - prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator - (uint32_t user, const property & prop)
+var  operator - (uint32_t user, const property & prop)
 {
    return user - prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator - (int64_t l, const property & prop)
+var  operator - (int64_t l, const property & prop)
 {
    return l - prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator - (uint64_t ul, const property & prop)
+var  operator - (uint64_t ul, const property & prop)
 {
    return ul - prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator - (double d, const property & prop)
+var  operator - (double d, const property & prop)
 {
    return d - prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator - (const var & var, const property & prop)
+var  operator - (const var & var, const property & prop)
 {
    return var - prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator - (const property & prop1, const property & prop2)
+var  operator - (const property & prop1, const property & prop2)
 {
    return prop1.get_value() - prop2.get_value();
 }
@@ -1873,43 +1869,43 @@ var CLASS_DECL_ca2 operator - (const property & prop1, const property & prop2)
 
 
 
-var CLASS_DECL_ca2 operator + (int32_t i, const property & prop)
+var  operator + (int32_t i, const property & prop)
 {
    return i + prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator + (uint32_t user, const property & prop)
+var  operator + (uint32_t user, const property & prop)
 {
    return user + prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator + (int64_t l, const property & prop)
+var  operator + (int64_t l, const property & prop)
 {
    return l + prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator + (uint64_t ul, const property & prop)
+var  operator + (uint64_t ul, const property & prop)
 {
    return ul + prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator + (double d, const property & prop)
+var  operator + (double d, const property & prop)
 {
    return d + prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator + (const var & var, const property & prop)
+var  operator + (const var & var, const property & prop)
 {
    return var + prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator + (const property & prop1, const property & prop2)
+var  operator + (const property & prop1, const property & prop2)
 {
    return prop1.get_value() + prop2.get_value();
 }
@@ -1929,43 +1925,43 @@ var CLASS_DECL_ca2 operator + (const property & prop1, const property & prop2)
 
 
 
-var CLASS_DECL_ca2 operator / (int32_t i, const property & prop)
+var  operator / (int32_t i, const property & prop)
 {
    return i / prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator / (uint32_t user, const property & prop)
+var  operator / (uint32_t user, const property & prop)
 {
    return user / prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator / (int64_t l, const property & prop)
+var  operator / (int64_t l, const property & prop)
 {
    return l / prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator / (uint64_t ul, const property & prop)
+var  operator / (uint64_t ul, const property & prop)
 {
    return ul / prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator / (double d, const property & prop)
+var  operator / (double d, const property & prop)
 {
    return d / prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator / (const var & var, const property & prop)
+var  operator / (const var & var, const property & prop)
 {
    return var / prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator / (const property & prop1, const property & prop2)
+var  operator / (const property & prop1, const property & prop2)
 {
    return prop1.get_value() / prop2.get_value();
 }
@@ -1985,43 +1981,43 @@ var CLASS_DECL_ca2 operator / (const property & prop1, const property & prop2)
 
 
 
-var CLASS_DECL_ca2 operator * (int32_t i, const property & prop)
+var  operator * (int32_t i, const property & prop)
 {
    return i * prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator * (uint32_t user, const property & prop)
+var  operator * (uint32_t user, const property & prop)
 {
    return user * prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator * (int64_t l, const property & prop)
+var  operator * (int64_t l, const property & prop)
 {
    return l * prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator * (uint64_t ul, const property & prop)
+var  operator * (uint64_t ul, const property & prop)
 {
    return ul * prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator * (double d, const property & prop)
+var  operator * (double d, const property & prop)
 {
    return d * prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator * (const var & var, const property & prop)
+var  operator * (const var & var, const property & prop)
 {
    return var * prop.get_value();
 }
 
 
-var CLASS_DECL_ca2 operator * (const property & prop1, const property & prop2)
+var  operator * (const property & prop1, const property & prop2)
 {
    return prop1.get_value() * prop2.get_value();
 }

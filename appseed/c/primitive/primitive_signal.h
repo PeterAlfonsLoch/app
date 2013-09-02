@@ -321,7 +321,7 @@ public:
       {
          psignal                    = new signal;
          psignal->m_pid             = pid->copy();
-         psignal->m_psignal         = new ::ca2::signal();
+         psignal->m_psignal         = new ::signal();
          psignal->m_psignal->connect(psignalizable, pfn);
          handler_item <T> * pitem   = new handler_item<T>;
          pitem->m_psignalizable     = psignalizable;

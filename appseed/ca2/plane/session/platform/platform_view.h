@@ -103,7 +103,7 @@ namespace platform
 
       void SetScreen(int32_t iScreen);
 
-      virtual void open_document_file(sp(::ca2::create_context) pcreatecontext);
+      virtual void open_document_file(sp(create_context) pcreatecontext);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
 

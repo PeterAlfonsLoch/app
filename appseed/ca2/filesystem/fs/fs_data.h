@@ -9,7 +9,7 @@ namespace fs
 
 
    class CLASS_DECL_ca2 data :
-      virtual public ::ca2::data
+      virtual public ::data
    {
    public:
 

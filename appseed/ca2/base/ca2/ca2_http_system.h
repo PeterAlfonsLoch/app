@@ -22,7 +22,7 @@ namespace ca2
    {
 
       class CLASS_DECL_ca2 system :
-         virtual public ::ca2::signalizable
+         virtual public signalizable
       {
       public:
 

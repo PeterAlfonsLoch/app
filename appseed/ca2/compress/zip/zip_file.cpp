@@ -46,7 +46,7 @@ namespace zip
             return false;
          }
       }
-      catch(::ca2::exception * pe)
+      catch(exception * pe)
       {
          pe->Delete();
          return false;
@@ -80,7 +80,7 @@ namespace zip
             return false;
          }
       }
-      catch(::ca2::exception * pe)
+      catch(exception * pe)
       {
          pe->Delete();
          return false;

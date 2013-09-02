@@ -714,7 +714,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(cairo_surface_t * cs, stringa & stra, simple_array < bool >  & baTab, simple_array < int >  & ya,SIZE * psize)
+void message_box_paint(cairo_surface_t * cs, stringa & stra, array < bool >  & baTab, array < int >  & ya,SIZE * psize)
 {
 	cairo_t *c;
 
@@ -768,9 +768,9 @@ void message_box_show_dib_data(COLORREF * pcolorref, LPCRECT lpcrect, const char
 
 	stra.add_tokens(lpText, "\n");
 
-	simple_array < bool > baTab;
+	array < bool > baTab;
 
-	simple_array < int > ya;
+	array < int > ya;
 
 	for(index i = 0; i < stra.get_count(); i++)
 	{

@@ -25,11 +25,11 @@
 
 struct _tagXMLAttr;
 typedef _tagXMLAttr XAttr, *LPXAttr;
-typedef simple_array<LPXAttr> XAttrs;
+typedef array<LPXAttr> XAttrs;
 
 struct _tagXMLNode;
 typedef _tagXMLNode XNode, *LPXNode;
-typedef simple_array<LPXNode> XNodes, *LPXNodes;
+typedef array<LPXNode> XNodes, *LPXNodes;
 
 struct _tagXMLDocument;
 typedef struct _tagXMLDocument XDoc, *LPXDoc;
@@ -42,7 +42,7 @@ typedef struct _tagXmlEntity
 	int32_t ref_len;					// entity reference length
 }XENTITY,*LPXENTITY;
 
-typedef struct _tagXMLEntitys : public simple_array<XENTITY>
+typedef struct _tagXMLEntitys : public array<XENTITY>
 {
 	LPXENTITY GetEntity( int32_t entity );
 	LPXENTITY GetEntity( LPSTR entity );

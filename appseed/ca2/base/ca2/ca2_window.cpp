@@ -194,7 +194,7 @@ namespace ca2
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT & rect,
       sp(::user::interaction) pParentWnd, id id,
-      sp(::ca2::create_context) pContext)
+      sp(create_context) pContext)
    {
       UNREFERENCED_PARAMETER(lpszClassName);
       UNREFERENCED_PARAMETER(lpszWindowName);

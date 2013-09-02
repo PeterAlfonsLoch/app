@@ -6,7 +6,7 @@ namespace userfs
 
 
    class CLASS_DECL_ca2 userfs :
-      virtual public ::ca2::section
+      virtual public ::departament
    {
    public:
 

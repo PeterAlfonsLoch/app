@@ -10,7 +10,7 @@ namespace frame
    class WorkSet;
 
    class CLASS_DECL_ca2 MoveManager :
-      virtual public ::ca2::signalizable
+      virtual public signalizable
    {
       friend class WorkSet;
    public:

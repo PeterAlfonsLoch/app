@@ -9,7 +9,7 @@ namespace ca2
 
    process_section::process_section(::ca2::application * papp) :
       element(papp),
-      ::ca2::section(papp)
+      ::departament(papp)
    {
    }
 

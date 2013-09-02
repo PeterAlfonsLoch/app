@@ -25,7 +25,7 @@ namespace xml
 
 
 
-   node::node(::ca2::application * papp) :
+   node::node(::application * papp) :
       element(papp),
       m_nodea(papp),
       m_attra(papp)

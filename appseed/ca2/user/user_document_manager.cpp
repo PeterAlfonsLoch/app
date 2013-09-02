@@ -563,22 +563,22 @@ namespace user
       // open format is "[open("%s")]" - no whitespace allowed, one per line
       // print format is "[print("%s")]" - no whitespace allowed, one per line
       // print to format is "[printto("%s","%s","%s","%s")]" - no whitespace allowed, one per line
-      ::ca2::command & cmdInfo = System.command();
-      command.m_nShellCommand = ::ca2::command_line::FileDDE;
+      command & cmdInfo = System.command();
+      command.m_nShellCommand = command_line::FileDDE;
 
       if (strCommand.Left(7) == _T("[open(\""))
       {
-      cmdInfo.m_nShellCommand = ::ca2::command_line::FileOpen;
+      cmdInfo.m_nShellCommand = command_line::FileOpen;
       strCommand = strCommand.Right(strCommand.get_length() - 7);
       }
       else if (strCommand.Left(8) == _T("[print(\""))
       {
-      cmdInfo.m_nShellCommand = ::ca2::command_line::FilePrint;
+      cmdInfo.m_nShellCommand = command_line::FilePrint;
       strCommand = strCommand.Right(strCommand.get_length() - 8);
       }
       else if (strCommand.Left(10) == _T("[printto(\""))
       {
-      cmdInfo.m_nShellCommand = ::ca2::command_line::FilePrintTo;\
+      cmdInfo.m_nShellCommand = command_line::FilePrintTo;\
       strCommand = strCommand.Right(strCommand.get_length() - 10);
       }
       else
@@ -591,13 +591,13 @@ namespace user
       cmdInfo.m_varFile = strCommand.Left(i);
       strCommand = strCommand.Right(strCommand.get_length() - i);
 
-      //::ca2::command_line* pOldInfo = NULL;
+      //command_line* pOldInfo = NULL;
       bool bRetVal = TRUE;
 
       // // If we were started up for DDE retrieve the Show state
       //   System.command_line() = cmdInfo;
 
-      if (cmdInfo.m_nShellCommand == ::ca2::command_line::FileOpen)
+      if (cmdInfo.m_nShellCommand == command_line::FileOpen)
       {
       // show the application ::ca2::window
       sp(::user::interaction) pMainWnd = System.GetMainWnd();
@@ -622,7 +622,7 @@ namespace user
       goto RestoreAndReturn;
       }
 
-      if (cmdInfo.m_nShellCommand == ::ca2::command_line::FilePrintTo)
+      if (cmdInfo.m_nShellCommand == command_line::FilePrintTo)
       {
       if (strCommand.Left(3) != _T("\",\""))
       {
@@ -743,7 +743,7 @@ namespace user
    {
       // prompt the ::fontopus::user (with all document templates)
 
-      sp(::ca2::create_context) createcontext(allocer());
+      sp(create_context) createcontext(allocer());
 
       if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))
          return; // open cancelled
@@ -786,7 +786,7 @@ namespace user
 
 
 
-   void document_manager::request(sp(::ca2::create_context) pcreatecontext)
+   void document_manager::request(sp(create_context) pcreatecontext)
    {
 
       if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())

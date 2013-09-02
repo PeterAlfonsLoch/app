@@ -6,7 +6,7 @@
 
 
       class CLASS_DECL_ca2 sockets :
-         virtual public ::ca2::section
+         virtual public ::departament
       {
       public:
 

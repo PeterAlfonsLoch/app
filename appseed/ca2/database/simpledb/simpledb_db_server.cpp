@@ -117,7 +117,7 @@ bool db_server::initialize()
    m_pStringSet = new db_str_set(&Application.m_simpledb.db());
 
    int32_t iBufferSize = 128 * 1024;
-   sp(::ca2::command_thread) commandthread = System.command();
+   sp(command_thread) commandthread = System.command();
 
    if(commandthread->m_varTopicQuery.has_property("filesizebuffer"))
    {

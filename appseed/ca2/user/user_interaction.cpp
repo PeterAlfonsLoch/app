@@ -1384,7 +1384,7 @@ namespace user
       return true;
    }
 
-   bool interaction::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(interaction) pParentWnd, id id, sp(::ca2::create_context) pContext)
+   bool interaction::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(interaction) pParentWnd, id id, sp(create_context) pContext)
    {
 
       if(IsWindow())
@@ -1451,7 +1451,7 @@ namespace user
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         sp(::ca2::create_context) pContext)
+         sp(create_context) pContext)
    {
       //if(IsWindow())
       //{

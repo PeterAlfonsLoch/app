@@ -5,7 +5,7 @@ namespace user
 
    list_data::list_data(sp(::application) papp) :
       element(papp),
-      ::ca2::data(papp)
+      ::data(papp)
    {
    }
 

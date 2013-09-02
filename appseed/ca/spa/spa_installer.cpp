@@ -537,7 +537,7 @@ RetryHost:
 
          set_progress(0.7);
 
-         simple_uint_array dwa;
+         uint_array dwa;
 #ifndef METROWIN
 #ifdef X86
          dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\c.dll"));

@@ -178,7 +178,7 @@ public:
 
 protected:
 
-   ::ca2::signal        m_signal;
+   ::signal        m_signal;
 
 };
 
@@ -254,7 +254,7 @@ public:
    int32_t m_iEnum;
 
 
-   flag_change_signalization(::ca2::signal * psignal) : 
+   flag_change_signalization(::signal * psignal) : 
       signal_details(psignal)
    {
    }

@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca stringa :
-   virtual public simple_array < vsstring >
+   virtual public array < vsstring >
 {
 public:
 

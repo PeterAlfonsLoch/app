@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 buffer :
-      virtual public ::ca2::signalizable
+      virtual public signalizable
    {
    public:
       buffer(sp(::application) papp);

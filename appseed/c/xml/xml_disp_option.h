@@ -4,7 +4,7 @@ namespace xml
 {
 
    // display optional environment
-   class CLASS_DECL_ca2 disp_option
+   class CLASS_DECL_c disp_option
    {
    public:
       bool newline;         // newline when new tag
@@ -16,7 +16,7 @@ namespace xml
       disp_option(sp(::application) papp);
    };
 
-   //extern CLASS_DECL_ca2 disp_option g_optDefault;
+   //extern CLASS_DECL_c disp_option g_optDefault;
 
 
 } // namespace xml

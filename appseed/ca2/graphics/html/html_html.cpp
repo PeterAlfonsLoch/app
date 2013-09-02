@@ -7,7 +7,7 @@ namespace html
 
    html::html(::ca2::application * papp) :
       element(papp),
-      ::ca2::section(papp),
+      ::departament(papp),
       m_entityresolver(papp)
    {
    
@@ -23,7 +23,7 @@ namespace html
    void html::construct(sp(::application) papp)
    {
 
-      ::ca2::section::construct(papp);
+      ::departament::construct(papp);
 
       m_clrInvalid = 0xffffffff;
       m_percentMax = USHRT_MAX;

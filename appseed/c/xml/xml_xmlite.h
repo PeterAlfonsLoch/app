@@ -14,7 +14,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca2 char * _tcschrs( const char * psz, const char * pszchs );
+   CLASS_DECL_c char * _tcschrs( const char * psz, const char * pszchs );
 
    //========================================================
    // Name   : _tcsskip
@@ -25,7 +25,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca2 char * _tcsskip( const char * psz );
+   CLASS_DECL_c char * _tcsskip( const char * psz );
 
    //========================================================
    // Name   : _tcsechr
@@ -36,7 +36,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca2 char * _tcsechr( const char * psz, int32_t ch, int32_t escape );
+   CLASS_DECL_c char * _tcsechr( const char * psz, int32_t ch, int32_t escape );
 
    //========================================================
    // Name   : _tcselen
@@ -47,7 +47,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca2 int32_t _tcselen( int32_t escape, char * srt, char * end = NULL ) ;
+   CLASS_DECL_c int32_t _tcselen( int32_t escape, char * srt, char * end = NULL ) ;
 
    //========================================================
    // Name   : _tcsecpy
@@ -58,7 +58,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca2 void _tcsecpy( char * psz, int32_t escape, char * srt, char * end = NULL );
+   CLASS_DECL_c void _tcsecpy( char * psz, int32_t escape, char * srt, char * end = NULL );
 
    //========================================================
    // Name   : _tcsepbrk
@@ -69,7 +69,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca2 char * _tcsepbrk( const char * psz, const char * chset, int32_t escape );
+   CLASS_DECL_c char * _tcsepbrk( const char * psz, const char * chset, int32_t escape );
 
    //========================================================
    // Name   : _tcsenicmp
@@ -80,7 +80,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca2 int32_t _tcsenicmp( const char * psz, const char * str, strsize len, int32_t escape );
+   CLASS_DECL_c int32_t _tcsenicmp( const char * psz, const char * str, strsize len, int32_t escape );
 
    //========================================================
    // Name   : _tcsenistr
@@ -91,7 +91,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca2 char * _tcsenistr( const char * psz, const char * str, strsize len, int32_t escape );
+   CLASS_DECL_c char * _tcsenistr( const char * psz, const char * str, strsize len, int32_t escape );
 
    //========================================================
    // Name   : _tcseistr
@@ -102,7 +102,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca2 char * _tcseistr( const char * psz, const char * str, int32_t escape );
+   CLASS_DECL_c char * _tcseistr( const char * psz, const char * str, int32_t escape );
 
    //========================================================
    // Name   : _SetString
@@ -113,7 +113,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca2 void _SetString( char * psz, char * end, string* ps, bool trim = FALSE, int32_t escape = 0 );
+   CLASS_DECL_c void _SetString( char * psz, char * end, string* ps, bool trim = FALSE, int32_t escape = 0 );
 
 
 

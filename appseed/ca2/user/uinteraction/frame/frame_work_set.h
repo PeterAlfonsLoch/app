@@ -19,7 +19,7 @@ namespace frame
 
    class CLASS_DECL_ca2 WorkSet :
       virtual public ::database::client,
-      virtual public ::ca2::signalizable
+      virtual public signalizable
    {
    public:
       friend class appearance;

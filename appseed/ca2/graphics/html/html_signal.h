@@ -22,7 +22,7 @@ namespace html
       sp(::user::interaction) m_pui;
 
 
-      signal(::ca2::signal * psignal);
+      signal(::signal * psignal);
 
 
    };

@@ -142,7 +142,7 @@ namespace ca2
    };
 
    class CLASS_DECL_ca2 heap_item_array :
-      public simple_array < heap_item, heap_item >
+      public array < heap_item, heap_item >
    {
    public:
 
@@ -318,7 +318,7 @@ namespace ca2
 
       // called when occurs an standard_exception exception in run
       // return true to call run again
-  //    virtual bool on_run_exception(::ca2::exception & e);
+  //    virtual bool on_run_exception(exception & e);
 
    // Overridables
       // thread initialization
@@ -371,7 +371,6 @@ namespace ca2
 
 
 
-      virtual bool verb();
 
 //      virtual void assert_valid() const;
   //    virtual void dump(dump_context & dumpcontext) const;
@@ -478,7 +477,7 @@ namespace ca2
 
       // called when occurs an standard_exception exception in run
       // return true to call run again
-      virtual bool on_run_exception(::ca2::exception & e);
+      virtual bool on_run_exception(exception & e);
 
       // Overridables
       // thread initialization

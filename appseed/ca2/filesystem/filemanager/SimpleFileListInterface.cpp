@@ -815,7 +815,7 @@ namespace filemanager
 
       }
 
-      ::ca2::data::writing writing(m_pdata);
+      ::data::writing writing(m_pdata);
       
       _001HideEditingControls();
 

@@ -7,7 +7,7 @@ namespace ca2
 
    tree_data::tree_data(sp(::application) papp) :
       element(papp),
-      ::ca2::data(papp)
+      ::data(papp)
    {
 
    }

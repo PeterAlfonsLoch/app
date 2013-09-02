@@ -26,7 +26,7 @@ namespace user
 
 
 
-   bool document::set_data(::ca2::data * pdata)
+   bool document::set_data(::data * pdata)
    {
 
       if(m_spdata.is_set())
@@ -36,7 +36,7 @@ namespace user
 
       }
 
-      ::ca2::data_container::set_data(pdata);
+      ::data_container::set_data(pdata);
 
       if(pdata != NULL)
       {

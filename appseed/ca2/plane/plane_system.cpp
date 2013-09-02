@@ -186,15 +186,6 @@ namespace plane
       m_spfile.create(allocer());
       m_spdir.create(allocer());
 
-      m_pxml = canew(::xml::xml(this));
-
-      m_pxml->construct(this);
-
-      if(!m_pxml->initialize1())
-         return false;
-
-      if(!m_pxml->initialize())
-         return false;
 
       if(!m_spdir->initialize())
          return false;
@@ -1390,7 +1381,7 @@ namespace plane
       return __ca2_logging_report(i1, psz1, i2, psz2, psz3, args);
    }
 
-   void system::on_request(sp(::ca2::create_context) pcreatecontext)
+   void system::on_request(sp(create_context) pcreatecontext)
    {
       sp(::plane::session) psession = get_session(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
       psession->request_create(pcreatecontext);
@@ -1914,7 +1905,7 @@ namespace plane
 
    }
 
-   sp(::ca2::command_thread) system::command_thread()
+   sp(command_thread) system::command_thread()
    {
       return m_pcommandthread;
    }
@@ -2291,7 +2282,7 @@ retry:
    //}
 
 
-   //void system::on_request(sp(::ca2::create_context) pcreatecontext)
+   //void system::on_request(sp(create_context) pcreatecontext)
    //{
    //   ::sp(::plane::session) pbergedge = get_bergedge(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
    //   pbergedge->request_create(pcreatecontext);
@@ -2379,7 +2370,7 @@ retry:
    }
 
 
-/*   sp(::ca2::command_thread) system::command_thread()
+/*   sp(command_thread) system::command_thread()
    {
 	   return m_pcommandthread;
    }

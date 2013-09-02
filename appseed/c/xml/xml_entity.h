@@ -3,7 +3,7 @@
 namespace xml
 {
 
-   class CLASS_DECL_ca2 entity
+   class CLASS_DECL_c entity
    {
    public:
 
@@ -17,7 +17,7 @@ namespace xml
       entity & operator = (const entity & entity);
    };
 
-   class CLASS_DECL_ca2 entities : 
+   class CLASS_DECL_c entities : 
       public array < entity >
    {
    public:

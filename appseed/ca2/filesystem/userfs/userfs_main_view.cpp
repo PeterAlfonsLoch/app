@@ -31,7 +31,7 @@ namespace userfs
       SetPaneCount(2);
       SetSplitOrientation(orientation_vertical);
       set_position_rate(0, 0.2);
-      sp(::ca2::create_context) cc(allocer());
+      sp(create_context) cc(allocer());
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeinfoNewView = System.type_info < tree > ();

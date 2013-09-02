@@ -10,11 +10,11 @@
 // with strict structs and primitive data types
 
 template<class TYPE, class ARG_TYPE = const TYPE &>
-class simple_array :
+class array :
    virtual public ::ca::ca
 {
 public:
-   simple_array();
+   array();
 
    ::count get_count() const;
    ::count set_size(index nNewSize, ::count nGrowBy = -1);
@@ -35,11 +35,11 @@ public:
    const TYPE* get_data() const;
    TYPE* get_data();
 
-   // Potentially growing the simple_array
+   // Potentially growing the array
    void set_at_grow(index nIndex, ARG_TYPE newElement);
    index add(ARG_TYPE newElement);
-   ::count add(const simple_array& src);
-   ::count copy(const simple_array& src);
+   ::count add(const array& src);
+   ::count copy(const array& src);
 
 
 
@@ -50,20 +50,20 @@ public:
    // Operations that move elements around
    void insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    index remove_at(index nIndex, ::count nCount = 1);
-   void insert_at(index nStartIndex, simple_array* pNewArray);
+   void insert_at(index nStartIndex, array* pNewArray);
    void swap(index index1, index index2);
 
-   simple_array & operator = (const simple_array & src);
+   array & operator = (const array & src);
 
 // Implementation
 protected:
-   TYPE *   m_pData;    // the actual simple_array of data
+   TYPE *   m_pData;    // the actual array of data
    ::count m_nSize;    // # of elements (upperBound - 1)
    ::count m_nMaxSize; // max allocated
    ::count m_nGrowBy;  // grow amount
 
 public:
-   virtual ~simple_array();
+   virtual ~array();
 
    typedef TYPE BASE_TYPE;
    typedef ARG_TYPE BASE_ARG_TYPE;
@@ -72,58 +72,58 @@ public:
 
 
 template<class TYPE, class ARG_TYPE>
-inline ::count simple_array<TYPE, ARG_TYPE>::get_count() const
+inline ::count array<TYPE, ARG_TYPE>::get_count() const
 {
    return m_nSize;
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline ::count simple_array<TYPE, ARG_TYPE>::remove_all()
+inline ::count array<TYPE, ARG_TYPE>::remove_all()
 {
    return set_size(0, -1);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE& simple_array<TYPE, ARG_TYPE>::get_at(index nIndex)
+inline TYPE& array<TYPE, ARG_TYPE>::get_at(index nIndex)
 {
    return m_pData[nIndex];
 }
 template<class TYPE, class ARG_TYPE>
-inline const TYPE& simple_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
+inline const TYPE& array<TYPE, ARG_TYPE>::get_at(index nIndex) const
 {
    return m_pData[nIndex];
 }
 template<class TYPE, class ARG_TYPE>
-inline void simple_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
+inline void array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
 {
    m_pData[nIndex] = newElement;
 }
 template<class TYPE, class ARG_TYPE>
-inline const TYPE& simple_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
+inline const TYPE& array<TYPE, ARG_TYPE>::element_at(index nIndex) const
 {
    return m_pData[nIndex];
 }
 template<class TYPE, class ARG_TYPE>
-inline TYPE& simple_array<TYPE, ARG_TYPE>::element_at(index nIndex)
+inline TYPE& array<TYPE, ARG_TYPE>::element_at(index nIndex)
 {
    return m_pData[nIndex];
 }
 
 template<class TYPE, class ARG_TYPE>
-inline const TYPE* simple_array<TYPE, ARG_TYPE>::get_data() const
+inline const TYPE* array<TYPE, ARG_TYPE>::get_data() const
 {
    return (const TYPE*)m_pData;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE* simple_array<TYPE, ARG_TYPE>::get_data()
+inline TYPE* array<TYPE, ARG_TYPE>::get_data()
 {
    return (TYPE*)m_pData;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline index simple_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
+inline index array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
 {
    index nIndex = m_nSize;
    set_at_grow(nIndex, newElement);
@@ -131,7 +131,7 @@ inline index simple_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline ::count simple_array<TYPE, ARG_TYPE>::add(const simple_array & a)
+inline ::count array<TYPE, ARG_TYPE>::add(const array & a)
 {
    for(int32_t i = 0; i < a.get_count(); i++)
    {
@@ -141,26 +141,26 @@ inline ::count simple_array<TYPE, ARG_TYPE>::add(const simple_array & a)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline ::count simple_array<TYPE, ARG_TYPE>::copy(const simple_array & a)
+inline ::count array<TYPE, ARG_TYPE>::copy(const array & a)
 {
    remove_all();
    return add(a);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline const TYPE& simple_array<TYPE, ARG_TYPE>::operator[](index nIndex) const
+inline const TYPE& array<TYPE, ARG_TYPE>::operator[](index nIndex) const
 {
    return get_at(nIndex);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE& simple_array<TYPE, ARG_TYPE>::operator[](index nIndex)
+inline TYPE& array<TYPE, ARG_TYPE>::operator[](index nIndex)
 {
    return this->element_at(nIndex);
 }
 
 template<class TYPE, class ARG_TYPE>
-inline void simple_array<TYPE, ARG_TYPE>::swap(index index1, index index2)
+inline void array<TYPE, ARG_TYPE>::swap(index index1, index index2)
 {
    TYPE t = m_pData[index1];
    m_pData[index1] = m_pData[index2];
@@ -168,7 +168,7 @@ inline void simple_array<TYPE, ARG_TYPE>::swap(index index1, index index2)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline simple_array<TYPE, ARG_TYPE> & simple_array<TYPE, ARG_TYPE>::operator = (const simple_array & src)
+inline array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator = (const array & src)
 {
    if(&src != this)
    {
@@ -178,14 +178,14 @@ inline simple_array<TYPE, ARG_TYPE> & simple_array<TYPE, ARG_TYPE>::operator = (
 }
 
 template<class TYPE, class ARG_TYPE>
-simple_array<TYPE, ARG_TYPE>::simple_array()
+array<TYPE, ARG_TYPE>::array()
 {
    m_pData = NULL;
    m_nSize = m_nMaxSize = m_nGrowBy = 0;
 }
 
 template<class TYPE, class ARG_TYPE>
-simple_array<TYPE, ARG_TYPE>::~simple_array()
+array<TYPE, ARG_TYPE>::~array()
 {
    if (m_pData != NULL)
    {
@@ -197,7 +197,7 @@ simple_array<TYPE, ARG_TYPE>::~simple_array()
 
 
 template<class TYPE, class ARG_TYPE>
-::count simple_array<TYPE, ARG_TYPE>::set_size(::count nNewSize, ::count nGrowBy)
+::count array<TYPE, ARG_TYPE>::set_size(::count nNewSize, ::count nGrowBy)
 {
 
    if (nGrowBy >= 0)
@@ -235,7 +235,7 @@ template<class TYPE, class ARG_TYPE>
    }
    else
    {
-      // otherwise, grow simple_array
+      // otherwise, grow array
       nGrowBy = m_nGrowBy;
       if (nGrowBy == 0)
       {
@@ -269,7 +269,7 @@ template<class TYPE, class ARG_TYPE>
 
 
 template<class TYPE, class ARG_TYPE>
-void simple_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
+void array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
 {
 
    if (nIndex >= m_nSize)
@@ -278,17 +278,17 @@ void simple_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement
 }
 
 template<class TYPE, class ARG_TYPE>
-void simple_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
+void array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
 
    if (nIndex >= m_nSize)
    {
-      // adding after the end of the simple_array
+      // adding after the end of the array
       set_size(nIndex + nCount, -1);   // grow so nIndex is valid
    }
    else
    {
-      // inserting in the middle of the simple_array
+      // inserting in the middle of the array
       ::count nOldSize = m_nSize;
       set_size(m_nSize + nCount, -1);  // grow it to new size
       // destroy intial data before copying over it
@@ -308,7 +308,7 @@ void simple_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, 
 }
 
 template<class TYPE, class ARG_TYPE>
-index simple_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
+index array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
 {
    index nUpperBound = nIndex + nCount;
 
@@ -323,7 +323,7 @@ index simple_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
 }
 
 template<class TYPE, class ARG_TYPE>
-void simple_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, simple_array* pNewArray)
+void array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, array* pNewArray)
 {
    if (pNewArray->get_count() > 0)
    {
@@ -337,27 +337,27 @@ void simple_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, simple_array* pN
 
 
 class CLASS_DECL_c simple_int_array :
-   virtual public simple_array < int32_t >
+   virtual public array < int32_t >
 {
 public:
 };
 
 
-class CLASS_DECL_c simple_uint_array :
-   virtual public simple_array < uint32_t >
+class CLASS_DECL_c uint_array :
+   virtual public array < uint32_t >
 {
 public:
 };
 
 class CLASS_DECL_c simple_int64_array :
-   virtual public simple_array < int64_t >
+   virtual public array < int64_t >
 {
 public:
 };
 
 
 class CLASS_DECL_c simple_uint64_array :
-   virtual public simple_array < uint64_t >
+   virtual public array < uint64_t >
 {
 public:
 };
@@ -365,7 +365,7 @@ public:
 
 
 class CLASS_DECL_c simple_double_array :
-   virtual public simple_array < double >
+   virtual public array < double >
 {
 public:
    double average();

@@ -12,7 +12,7 @@ namespace html
 
 
    class CLASS_DECL_ca2 html :
-      public ::ca2::section
+      public ::departament
    {
    public:
 

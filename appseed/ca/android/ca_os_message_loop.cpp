@@ -8,7 +8,7 @@ public:
 
    simple_event                     m_event;
    mutex                     m_mutex;
-   simple_array < MESSAGE * >           m_msgptra;
+   array < MESSAGE * >           m_msgptra;
 
 
    int_bool GetMessage(MESSAGE * pmsg);

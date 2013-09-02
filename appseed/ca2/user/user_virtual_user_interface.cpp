@@ -321,7 +321,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
 
 
-bool virtual_user_interface::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,  const RECT& rect, sp(::user::interaction)  pparent, id id, sp(::ca2::create_context) pContext)
+bool virtual_user_interface::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,  const RECT& rect, sp(::user::interaction)  pparent, id id, sp(create_context) pContext)
 {
 
    if(m_bCreate)
@@ -593,7 +593,7 @@ bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       sp(::user::interaction) pParentWnd, UINT nID,
-      sp(::ca2::create_context) pContext)
+      sp(create_context) pContext)
    {
       return FALSE;
    }

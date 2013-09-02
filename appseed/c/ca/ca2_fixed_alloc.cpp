@@ -72,7 +72,7 @@ fixed_alloc_sync::fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize, int32_t iSh
    }
    for(int32_t i = 0; i < m_protectptra.get_count(); i++)
    {
-      m_protectptra[i] = new simple_critical_section();
+      m_protectptra[i] = new critical_section();
    }
 
    m_allocptra.set_size(iShareCount);
@@ -83,7 +83,7 @@ fixed_alloc_sync::fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize, int32_t iSh
    }
    for(int32_t i = 0; i < m_protectptra.get_count(); i++)
    {
-      m_protectptra[i] = new simple_critical_section();
+      m_protectptra[i] = new critical_section();
    }
 }
 

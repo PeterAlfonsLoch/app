@@ -5,7 +5,7 @@ class simple_ui;
 
 
 class CLASS_DECL_ca simple_ui_ptra : 
-   public simple_array < simple_ui * >
+   public array < simple_ui * >
 {
 public:
 

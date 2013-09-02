@@ -93,7 +93,7 @@ public:
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       sp(::user::interaction) pParentWnd, id id,
-      sp(::ca2::create_context) pContext = NULL);
+      sp(create_context) pContext = NULL);
    virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,

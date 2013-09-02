@@ -61,7 +61,7 @@ namespace exception
       CONTEXT *            m_pcontext;
 
       int32_t                        m_iRef;
-      simple_array < HMODULE >   m_ha;
+      array < HMODULE >   m_ha;
 
 
 #endif

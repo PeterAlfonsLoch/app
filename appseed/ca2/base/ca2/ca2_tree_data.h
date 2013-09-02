@@ -13,7 +13,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca2 tree_data :
-      public ::ca2::data
+      public ::data
    {
    public:
 

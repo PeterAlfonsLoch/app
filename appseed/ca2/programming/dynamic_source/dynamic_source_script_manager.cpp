@@ -195,7 +195,7 @@ namespace dynamic_source
             string str;
             e.get_error_message(str);
             pinstance->dprint("str");
-            TRACE0("Error: ::ca2::exception at script_manager::handle run");
+            TRACE0("Error: exception at script_manager::handle run");
             TRACE0(str);
          }
          catch(::exception::base * pe)
@@ -204,7 +204,7 @@ namespace dynamic_source
             pe->get_error_message(str);
             pinstance->dprint("str");
 
-            TRACE0("Error: ::ca2::exception * at script_manager::handle run");
+            TRACE0("Error: exception * at script_manager::handle run");
             TRACE0(str);
 
             delete pe;
@@ -217,9 +217,9 @@ namespace dynamic_source
          {
             pinstance->main_finalize();
          }
-         catch(const ::ca2::exception &)
+         catch(const exception &)
          {
-            TRACE0("Error: ::ca2::exception at script_manager::handle main_finalize");
+            TRACE0("Error: exception at script_manager::handle main_finalize");
          }
          catch(...)
          {
@@ -229,9 +229,9 @@ namespace dynamic_source
          {
             pinstance->destroy();
          }
-         catch(const ::ca2::exception &)
+         catch(const exception &)
          {
-            TRACE0("Error: ::ca2::exception at script_manager::handle destroy pinstance");
+            TRACE0("Error: exception at script_manager::handle destroy pinstance");
          }
          catch(...)
          {
@@ -241,9 +241,9 @@ namespace dynamic_source
          {
             pinstance.release();
          }
-         catch(const ::ca2::exception &)
+         catch(const exception &)
          {
-            TRACE0("Error: ::ca2::exception at script_manager::handle destroy pinstance");
+            TRACE0("Error: exception at script_manager::handle destroy pinstance");
          }
          catch(...)
          {

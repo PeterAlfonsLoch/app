@@ -91,7 +91,7 @@ void FileManagerAView::on_update(sp(::user::view) pSender, LPARAM lHint, object*
             {
                if(!base < FileManagerSaveAsView >::bases(get_pane_window(0)))
                {
-                  //::ca2::create_context cc;
+                  //create_context cc;
                   //cc.m_usercreatecontext.m_pCurrentDoc = get_document();
                   //cc.m_usercreatecontext.m_typeinfoNewView =  System.type_info < FileManagerSaveAsView > ();
                   //cc.m_usercreatecontext.m_pCurrentFrame = this;

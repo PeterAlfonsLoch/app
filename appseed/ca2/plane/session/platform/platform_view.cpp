@@ -297,7 +297,7 @@ namespace platform
                string strApp = m_linka[i].m_strSrc;
                ::str::ends_eat_ci(strApp, ".dll");
 
-               sp(::ca2::create_context) cc(Application.command_central());
+               sp(create_context) cc(Application.command_central());
 
                cc->m_spCommandLine->m_strApp   = strApp;
                cc->m_spCommandLine->m_varFile  = Session.m_varTopicFile;
@@ -458,7 +458,7 @@ namespace platform
 
    }
 
-   void view::open_document_file(sp(::ca2::create_context) pcreatecontext)
+   void view::open_document_file(sp(create_context) pcreatecontext)
    {
       try
       {

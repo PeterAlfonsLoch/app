@@ -15,7 +15,7 @@ namespace xml
    };
 
 
-   class CLASS_DECL_ca2 edit_item :
+   class CLASS_DECL_c edit_item :
       public ::file::byte_serializable
    {
    public:
@@ -42,8 +42,8 @@ namespace xml
       
    };
 
-   class CLASS_DECL_ca2 edit :
-      public ::ca2::edit < ::xml::document >,
+   class CLASS_DECL_c edit :
+      public ::edit < ::xml::document >,
       public ::file::byte_serializable_pointer_array < spa(edit_item) >
    {
    public:
@@ -67,7 +67,7 @@ namespace xml
 
 
       edit(const edit &) :
-         ::ca2::edit < ::xml::document >(NULL)
+         ::edit < ::xml::document >(NULL)
       {
       }
 

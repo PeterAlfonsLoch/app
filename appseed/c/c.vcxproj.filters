@@ -138,6 +138,15 @@
     <Filter Include="Header Files\xml">
       <UniqueIdentifier>{42770ef4-1efe-40e5-864d-38ad28249a78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\xml">
+      <UniqueIdentifier>{c4dba712-4a23-4904-b3c1-25fa6f1b24e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net">
+      <UniqueIdentifier>{ab3329cf-9ecc-4590-a567-9f22556c4d8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\str\NewFilter1">
+      <UniqueIdentifier>{d37217b1-02e1-481c-927d-4a5ab6ddded3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="c\c.h">
@@ -367,9 +376,6 @@
     </ClInclude>
     <ClInclude Include="collection\collection_simple.h">
       <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_simple_critical_section.h">
-      <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\c_types.h">
       <Filter>Header Files\c</Filter>
@@ -815,19 +821,7 @@
     <ClInclude Include="str\str_tokenizer.h">
       <Filter>Header Files\str</Filter>
     </ClInclude>
-    <ClInclude Include="str\str_string_interface.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_simple_string.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
     <ClInclude Include="str\str_string.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_string_composite.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_string_format.h">
       <Filter>Header Files\str</Filter>
     </ClInclude>
     <ClInclude Include="str\str_str2.h">
@@ -908,6 +902,159 @@
     <ClInclude Include="primitive\primitive_request_interface.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="xml\xml.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_attr.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_base_array.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_data.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_disp_option.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_document.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_edit.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_entity.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_enum.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_exportable.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_importable.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_input_tree.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_node.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_output_tree.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_parse_info.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_property_exchange.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_tree_base.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_tree_schema.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_var_exchange.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_xmlite.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_data_listener.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_data_container.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_data.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_interlocked_long.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_interlocked_long_pulse.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_edit.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_departament.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_departament_container.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_departament.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_application_bias.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_create_context.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_http.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_array_decl.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_decl.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_fixed_alloc_impl.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_plex_heap_impl.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_format.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_interface.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_simple.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_composite.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_plain_text_serializable.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_plain_text_stream.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_plain_text_string_stream.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_string_stream.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_base_enum.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_plain_text.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_command.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_command_line.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_user.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_command_thread.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="c\c.c">
@@ -927,21 +1074,6 @@
     </ClCompile>
     <ClCompile Include="framework_c.c">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_simple_string.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_string.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_string_core.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_string_format.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_string_manager.cpp">
-      <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="c\c_heap.cpp">
       <Filter>Source Files\c</Filter>
@@ -1011,9 +1143,6 @@
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_waitable.cpp">
       <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_array.cpp">
-      <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_archive.cpp">
       <Filter>Source Files\exception</Filter>
@@ -1307,6 +1436,141 @@
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_element.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_attr.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_base_array.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_data.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_disp_option.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_document.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_edit.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_entity.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_exportable.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_importable.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_input_tree.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_node.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_output_tree.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_parse_info.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_property_exchange.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_tree_base.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_tree_schema.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_var_exchange.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_xml.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_xmlite.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_data_listener.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_data_container.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_data.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_interlocked_long.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_interlocked_long_pulse.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_edit.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_departament.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_departament_container.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_url_departament.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_type.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_dup.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_var.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_simple.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_string.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_core.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_format.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_manager.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_plain_text_serializable.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_plain_text_stream.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_property_set.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_request_interface.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_create_context.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_application_bias.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_command.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_command_line.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_command_thread.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
   </ItemGroup>

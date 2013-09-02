@@ -4,7 +4,6 @@
 #include "base/ca2/ca2_exception.h"
 
 
-#include "exception_engine.h"
 #include "exception_call_stack.h"
 
 
@@ -195,25 +194,6 @@ extern CLASS_DECL_c bool g_bTraceEnabled;
 #define _DUMP( exp )
 #endif
 
-
-
-
-
-
-
-
-
-
-namespace ca2
-{
-
-
-   class object;
-
-
-} // namespace ca2
-
- 
 
 
 #ifdef DEBUG

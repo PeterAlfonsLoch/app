@@ -31,7 +31,7 @@ namespace visual
 
 
    class CLASS_DECL_ca2 visual  :
-      virtual public ::ca2::section
+      virtual public ::departament
    {
    public:
 

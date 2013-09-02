@@ -39,6 +39,8 @@ void plex_heap::FreeDataChain()     // free this one and links
 plex_heap_alloc_sync::plex_heap_alloc_sync(UINT nAllocSize, UINT nBlockSize)
 {
 
+   m_pprotect = new critical_section();
+
    if(nBlockSize <= 1)
       nBlockSize = 4;
 
@@ -62,7 +64,11 @@ plex_heap_alloc_sync::plex_heap_alloc_sync(UINT nAllocSize, UINT nBlockSize)
 
 plex_heap_alloc_sync::~plex_heap_alloc_sync()
 {
+   
    FreeAll();
+
+   delete m_pprotect;
+
 }
 
 

@@ -11,7 +11,7 @@ namespace user
 
      
       virtual sp(::user::document_interface) open_new_document();
-      virtual sp(::user::document_interface) open_document_file(sp(::ca2::create_context) pcreatecontext);
+      virtual sp(::user::document_interface) open_document_file(sp(create_context) pcreatecontext);
       virtual sp(::user::document_interface) open_document_file(var varFile = ::var(), bool bMakeVisible = true, sp(::user::interaction) puiParent = NULL);
 
 
