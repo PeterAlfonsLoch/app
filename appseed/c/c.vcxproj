@@ -1153,6 +1153,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="math\math_math.h" />
     <ClInclude Include="math\math_natural.h" />
     <ClInclude Include="math\math_number.h" />
+    <ClInclude Include="math\math_numeric_info.h" />
     <ClInclude Include="net\net.h" />
     <ClInclude Include="net\net_http.h" />
     <ClInclude Include="primitive\primitive_command.h" />
@@ -1275,7 +1276,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="primitive\primitive_memory.h" />
     <ClInclude Include="primitive\primitive_memory_base.h" />
     <ClInclude Include="primitive\primitive_memory_container.h" />
-    <ClInclude Include="primitive\primitive_numeric_info.h" />
     <ClInclude Include="primitive\primitive_shared_memory.h" />
     <ClInclude Include="primitive\primitive_var.h" />
     <ClInclude Include="primitive\primitive_virtual_memory.h" />

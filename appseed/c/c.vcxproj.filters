@@ -365,9 +365,6 @@
     <ClInclude Include="x\x_tables.h">
       <Filter>Header Files\x</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive_numeric_info.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_id.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -987,6 +984,9 @@
       <Filter>Header Files\math</Filter>
     </ClInclude>
     <ClInclude Include="math\math_index.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\math_numeric_info.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,101 +2,95 @@
 
 
 
-namespace ca
+class CLASS_DECL_c base
 {
+public:
+
+
+   int64_t                    m_countReference;
+   bool                       m_bHeap;
+
+
+   base();
+   virtual ~base();
+
+
+   virtual void delete_this();
 
 
 
-   class CLASS_DECL_c ca
+   inline int64_t get_ref_count()
    {
-   public:
-
-
-      int64_t                    m_countReference;
-      bool                       m_bHeap;
-
-
-      ca();
-      virtual ~ca();
-
-
-      virtual void delete_this();
-
-
-
-      inline int64_t get_ref_count()
-      {
-         return m_countReference;
-      }
-
-      inline bool is_heap()
-      {
-         return m_bHeap;
-      }
-
-
-      virtual int64_t add_ref();
-      virtual int64_t dec_ref();
-      virtual int64_t release();
-
-
-
-   };
-
-   template < class T >
-   T * dereference_no_delete(T * p) { p->m_bHeap = true; p->m_countReference--; return p; }
-
-
-
-
-   template < class c_derived >
-   inline int64_t add_ref(c_derived * pca)
-   {
-      if(pca == NULL)
-         return -1;
-      return pca->add_ref();
+      return m_countReference;
    }
 
-   template < class c_derived >
-   inline int64_t release(c_derived * & pca)
+   inline bool is_heap()
    {
-      if(pca == NULL)
-         return -1;
-      int64_t count = pca->release();
-      pca = NULL;
-      return count;
-   }
-
-   template < class c_derived >
-   inline int64_t ref_count(c_derived * pca)
-   {
-      if(pca == NULL)
-         return -1;
-      return pca->get_ref_count();
+      return m_bHeap;
    }
 
 
-   template < class TYPE >
-   bool is_null(TYPE * p)
+   virtual int64_t add_ref();
+   virtual int64_t dec_ref();
+   virtual int64_t release();
+
+
+
+};
+
+template < class T >
+T * dereference_no_delete(T * p) { p->m_bHeap = true; p->m_countReference--; return p; }
+
+
+
+
+template < class c_derived >
+inline int64_t add_ref(c_derived * pca)
+{
+   if(pca == NULL)
+      return -1;
+   return pca->add_ref();
+}
+
+template < class c_derived >
+inline int64_t release(c_derived * & pca)
+{
+   if(pca == NULL)
+      return -1;
+   int64_t count = pca->release();
+   pca = NULL;
+   return count;
+}
+
+template < class c_derived >
+inline int64_t ref_count(c_derived * pca)
+{
+   if(pca == NULL)
+      return -1;
+   return pca->get_ref_count();
+}
+
+
+template < class TYPE >
+bool is_null(TYPE * p)
+{
+   return (((int_ptr) p) < sizeof(TYPE));
+}
+
+template <class t>
+inline void delptr(t *& p)
+{
+   if(p != NULL)
    {
-      return (((int_ptr) p) < sizeof(TYPE));
+      delete p;
+      p = NULL;
    }
-
-   template <class t>
-   inline void delptr(t *& p)
-   {
-      if(p != NULL)
-      {
-         delete p;
-         p = NULL;
-      }
-   }
-
-
-} // namespace ca
-
+}
 
 
 
 
 #define canew(x) ::ca::dereference_no_delete(new x)
+
+
+

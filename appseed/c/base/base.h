@@ -41,27 +41,22 @@
 
 #include "base_heap.h"
 
-#include "c/str/str1.h"
+#include "c/str/str_c.h"
 
-#include "c_file.h"
+#include "c/file/file_c.h"
 
-#include "c_math.h"
 
 #ifdef __cplusplus
 
 
-#include "c_cpp.h"
+#include "base_c_cpp.h"
 
-#include "c/os/os_process.h"
-
-
-#include "c/spa/spa_trace.h"
 
 
 #elif defined(__OBJC__)
 
 
-#include "c_mm.h"
+#include "base_c_objc.h"
 
 
 #else
@@ -70,7 +65,7 @@
 BEGIN_EXTERN_C
 
 
-#include "c_c.h"
+#include "base_c.h"
 
    
 END_EXTERN_C

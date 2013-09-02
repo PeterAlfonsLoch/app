@@ -218,4 +218,8 @@ namespace numeric_info
 
    template < typename T > class type { public: typedef T TYPE; };
 
+
 } // numeric_info
+
+
+

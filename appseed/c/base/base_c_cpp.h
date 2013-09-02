@@ -110,20 +110,18 @@ namespace user
 
 
 
-#include "c_lparam.h"
+#include "base_lparam.h"
 
 
-#include "c_smart_pointer1.h"
-#include "c_ca.h"
-#include "c_smart_pointer2.h"
+#include "base_smart_pointer1.h"
+#include "base_base.h"
+#include "base_smart_pointer2.h"
 
 
 #include "c/primitive/primitive_logic.h"
 
 
 
-#include "c/primitive/primitive_numeric_info.h"
-#include "c_number.h"
 
 
 #include "c/str/str1.h"
@@ -298,3 +296,9 @@ CLASS_DECL_c void dll_processes(uint_array & dwa, stringa & straProcesses, const
 #include "c/net/net.h"
 
 
+
+
+#include "c/os/os_process.h"
+
+
+#include "c/spa/spa_trace.h"
