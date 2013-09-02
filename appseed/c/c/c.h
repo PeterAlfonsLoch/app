@@ -16,6 +16,9 @@
 #define system_user_2 "system_user_2"
 
 
+#include "nodeapp/operational_system/config.h"
+
+
 #include "nodeapp/operational_system/_.h"
 
 
@@ -28,7 +31,36 @@
 #endif
 
 
-#ifdef __OBJC__
+#include "nodeapp/operational_system/_c.h"
+
+#include "nodeapp/operational_system/_ca.h"
+
+#include "c_types.h"
+
+#include "c_count.h"
+
+#include "c_index.h"
+
+#include "c_heap.h"
+
+#include "c/str/str1.h"
+
+#include "c_file.h"
+
+#include "c_math.h"
+
+#ifdef __cplusplus
+
+
+#include "c_cpp.h"
+
+#include "c/os/os_process.h"
+
+
+#include "c/spa/spa_trace.h"
+
+
+#elif defined(__OBJC__)
 
 
 #include "c_mm.h"
@@ -49,7 +81,7 @@ END_EXTERN_C
 #endif
 
 
-#include "nodeapp/operational_system/_c.h"
+
 
 
 

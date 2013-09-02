@@ -355,7 +355,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Secur32.lib;Crypt32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib</AdditionalDependencies>
+      <AdditionalDependencies>Secur32.lib;Crypt32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -1042,13 +1042,263 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="ca2\ca2_allocate.h" />
+    <ClInclude Include="ca2\ca2_bit.h" />
+    <ClInclude Include="ca2\ca2_buffer.h" />
+    <ClInclude Include="ca2\ca2_ca2.h" />
+    <ClInclude Include="ca2\ca2_common.h" />
+    <ClInclude Include="ca2\ca2_core.h" />
+    <ClInclude Include="ca2\ca2_debug.h" />
+    <ClInclude Include="ca2\ca2_heap.h" />
+    <ClInclude Include="ca2\ca2_plex.h" />
+    <ClInclude Include="ca2\ca2_plex_heap.h" />
+    <ClInclude Include="ca\ca_application.h" />
+    <ClInclude Include="ca\ca_conv.h" />
+    <ClInclude Include="ca\ca_memory.h" />
+    <ClInclude Include="ca\ca_file.h" />
+    <ClInclude Include="ca\ca_md5.h" />
+    <ClInclude Include="ca\ca_natural.h" />
+    <ClInclude Include="ca\ca_net.h" />
+    <ClInclude Include="ca\ca_simple_array.h" />
+    <ClInclude Include="ca\ca_system.h" />
+    <ClInclude Include="ca\ca_template.h" />
+    <ClInclude Include="ca\ca_time.h" />
+    <ClInclude Include="ca\ca_url_departament.h" />
+    <ClInclude Include="collection\collection.h" />
+    <ClInclude Include="collection\collection_array.h" />
+    <ClInclude Include="collection\collection_attrib_map.h" />
+    <ClInclude Include="collection\collection_base_2array.h" />
+    <ClInclude Include="collection\collection_bitset.h" />
+    <ClInclude Include="collection\collection_bit_array.h" />
+    <ClInclude Include="collection\collection_buffer.h" />
+    <ClInclude Include="collection\collection_comparable_array.h" />
+    <ClInclude Include="collection\collection_comparable_eq_array.h" />
+    <ClInclude Include="collection\collection_comparable_eq_list.h" />
+    <ClInclude Include="collection\collection_comparable_list.h" />
+    <ClInclude Include="collection\collection_comparable_primitive_array.h" />
+    <ClInclude Include="collection\collection_comparable_raw_array.h" />
+    <ClInclude Include="collection\collection_deque.h" />
+    <ClInclude Include="collection\collection_elements.h" />
+    <ClInclude Include="collection\collection_fifo_map.h" />
+    <ClInclude Include="collection\collection_id_array.h" />
+    <ClInclude Include="collection\collection_int_map.h" />
+    <ClInclude Include="collection\collection_key_sort_array.h" />
+    <ClInclude Include="collection\collection_lemon_array.h" />
+    <ClInclude Include="collection\collection_list.h" />
+    <ClInclude Include="collection\collection_logic_array.h" />
+    <ClInclude Include="collection\collection_map.h" />
+    <ClInclude Include="collection\collection_map_association.h" />
+    <ClInclude Include="collection\collection_map_to_smart_pointer.h" />
+    <ClInclude Include="collection\collection_numeric_array.h" />
+    <ClInclude Include="collection\collection_object_list.h" />
+    <ClInclude Include="collection\collection_packset.h" />
+    <ClInclude Include="collection\collection_pair.h" />
+    <ClInclude Include="collection\collection_pointer_list.h" />
+    <ClInclude Include="collection\collection_point_array.h" />
+    <ClInclude Include="collection\collection_primitive_array.h" />
+    <ClInclude Include="collection\collection_priority_queue.h" />
+    <ClInclude Include="collection\collection_queue.h" />
+    <ClInclude Include="collection\collection_raw_array.h" />
+    <ClInclude Include="collection\collection_rect_array.h" />
+    <ClInclude Include="collection\collection_simple.h" />
+    <ClInclude Include="collection\collection_simple_array.h" />
+    <ClInclude Include="collection\collection_simple_eq_array.h" />
+    <ClInclude Include="collection\collection_simple_object_array.h" />
+    <ClInclude Include="collection\collection_simple_pointer_array.h" />
+    <ClInclude Include="collection\collection_simple_template.h" />
+    <ClInclude Include="collection\collection_simple_typed_pointer_array.h" />
+    <ClInclude Include="collection\collection_smart_pointer_array.h" />
+    <ClInclude Include="collection\collection_sort.h" />
+    <ClInclude Include="collection\collection_sort_array.h" />
+    <ClInclude Include="collection\collection_sort_map.h" />
+    <ClInclude Include="collection\collection_spreadset.h" />
+    <ClInclude Include="collection\collection_strid_map.h" />
+    <ClInclude Include="collection\collection_stringa.h" />
+    <ClInclude Include="collection\collection_stringl.h" />
+    <ClInclude Include="collection\collection_string_array.h" />
+    <ClInclude Include="collection\collection_string_list.h" />
+    <ClInclude Include="collection\collection_string_map.h" />
+    <ClInclude Include="collection\collection_string_sort_array.h" />
+    <ClInclude Include="collection\collection_string_to_string_map.h" />
+    <ClInclude Include="collection\collection_template.h" />
+    <ClInclude Include="collection\collection_typed_pointer_array.h" />
+    <ClInclude Include="collection\collection_typed_pointer_list.h" />
+    <ClInclude Include="collection\collection_typed_pointer_map.h" />
+    <ClInclude Include="collection\collection_typed_ptr_array.h" />
+    <ClInclude Include="collection\collection_typed_ptr_list.h" />
+    <ClInclude Include="collection\collection_unique_array.h" />
+    <ClInclude Include="collection\collection_var_array.h" />
+    <ClInclude Include="comparison\comparison.h" />
+    <ClInclude Include="comparison\comparison_binary.h" />
+    <ClInclude Include="comparison\comparison_equals.h" />
+    <ClInclude Include="comparison\comparison_hash.h" />
+    <ClInclude Include="comparison\comparison_var_strict.h" />
     <ClInclude Include="c\c.h" />
+    <ClInclude Include="c\c_ca.h" />
+    <ClInclude Include="c\c_count.h" />
+    <ClInclude Include="c\c_file.h" />
+    <ClInclude Include="c\c_fixed_alloc.h" />
+    <ClInclude Include="c\c_heap.h" />
+    <ClInclude Include="c\c_index.h" />
+    <ClInclude Include="c\c_istring.h" />
+    <ClInclude Include="c\c_lparam.h" />
+    <ClInclude Include="c\c_math.h" />
+    <ClInclude Include="c\c_number.h" />
+    <ClInclude Include="c\c_simple_critical_section.h" />
+    <ClInclude Include="c\c_smart_pointer1.h" />
+    <ClInclude Include="c\c_smart_pointer2.h" />
     <ClInclude Include="c\c_c.h" />
     <ClInclude Include="c\c_mm.h" />
+    <ClInclude Include="c\c_cpp.h" />
+    <ClInclude Include="c\c_types.h" />
+    <ClInclude Include="primitive\primitive_element.h" />
+    <ClInclude Include="primitive\primitive_factory.h" />
+    <ClInclude Include="primitive\primitive_object.h" />
+    <ClInclude Include="primitive\primitive_property.h" />
+    <ClInclude Include="primitive\primitive_property_set.h" />
+    <ClInclude Include="primitive\primitive_request_interface.h" />
+    <ClInclude Include="primitive\primitive_signal.h" />
+    <ClInclude Include="primitive\primitive_type.h" />
+    <ClInclude Include="primitive\primitive_var2.h" />
+    <ClInclude Include="str_str1.h" />
+    <ClInclude Include="datetime\datetime_duration.h" />
+    <ClInclude Include="datetime\datetime_time.h" />
+    <ClInclude Include="exception\exception.h" />
+    <ClInclude Include="exception\exception2.h" />
+    <ClInclude Include="exception\exception_assert.h" />
+    <ClInclude Include="exception\exception_base.h" />
+    <ClInclude Include="exception\exception_call_stack.h" />
+    <ClInclude Include="exception\exception_debug.h" />
+    <ClInclude Include="exception\exception_debug_stream.h" />
+    <ClInclude Include="exception\exception_dump_context.h" />
+    <ClInclude Include="exception\exception_engine.h" />
+    <ClInclude Include="exception\exception_error.h" />
+    <ClInclude Include="exception\exception_exception.h" />
+    <ClInclude Include="exception\exception_exit.h" />
+    <ClInclude Include="exception\exception_hresult.h" />
+    <ClInclude Include="exception\exception_installing.h" />
+    <ClInclude Include="exception\exception_interface_only.h" />
+    <ClInclude Include="exception\exception_invalid_argument.h" />
+    <ClInclude Include="exception\exception_invalid_character.h" />
+    <ClInclude Include="exception\exception_invalid_handle.h" />
+    <ClInclude Include="exception\exception_invalid_index.h" />
+    <ClInclude Include="exception\exception_io.h" />
+    <ClInclude Include="exception\exception_last_error.h" />
+    <ClInclude Include="exception\exception_memory.h" />
+    <ClInclude Include="exception\exception_memory_state.h" />
+    <ClInclude Include="exception\exception_misc.h" />
+    <ClInclude Include="exception\exception_not_implemented.h" />
+    <ClInclude Include="exception\exception_not_installed.h" />
+    <ClInclude Include="exception\exception_not_licensed.h" />
+    <ClInclude Include="exception\exception_not_supported.h" />
+    <ClInclude Include="exception\exception_operation_canceled.h" />
+    <ClInclude Include="exception\exception_os.h" />
+    <ClInclude Include="exception\exception_overflow_error.h" />
+    <ClInclude Include="exception\exception_range_error.h" />
+    <ClInclude Include="exception\exception_resource.h" />
+    <ClInclude Include="exception\exception_runtime_error.h" />
+    <ClInclude Include="exception\exception_simple.h" />
+    <ClInclude Include="exception\exception_standard.h" />
+    <ClInclude Include="exception\exception_standard_translator.h" />
+    <ClInclude Include="exception\exception_temporary.h" />
+    <ClInclude Include="exception\exception_todo.h" />
+    <ClInclude Include="exception\exception_trap.h" />
+    <ClInclude Include="exception\exception_unhandled_report.h" />
+    <ClInclude Include="exception\exception_user.h" />
+    <ClInclude Include="exception\exception_vms.h" />
+    <ClInclude Include="exception\exception_void_implementation.h" />
+    <ClInclude Include="file\file.h" />
+    <ClInclude Include="file\file_byte_serializable.h" />
+    <ClInclude Include="file\file_byte_stream.h" />
+    <ClInclude Include="file\file_dir.h" />
+    <ClInclude Include="file\file_exception.h" />
+    <ClInclude Include="file\file_file.h" />
+    <ClInclude Include="file\file_opened.h" />
+    <ClInclude Include="file\file_output_stream_flush_interface.h" />
+    <ClInclude Include="file\file_reader.h" />
+    <ClInclude Include="file\file_seekable.h" />
+    <ClInclude Include="file\file_status.h" />
+    <ClInclude Include="file\file_stream.h" />
+    <ClInclude Include="file\file_stream_base.h" />
+    <ClInclude Include="file\file_writer.h" />
+    <ClInclude Include="framework_c.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="geometry\geometry.h" />
+    <ClInclude Include="geometry\geometry_point.h" />
+    <ClInclude Include="geometry\geometry_rect.h" />
+    <ClInclude Include="geometry\geometry_size.h" />
+    <ClInclude Include="multithreading\multithreading.h" />
+    <ClInclude Include="multithreading\multithreading_condition.h" />
+    <ClInclude Include="multithreading\multithreading_critical_section.h" />
+    <ClInclude Include="multithreading\multithreading_event.h" />
+    <ClInclude Include="multithreading\multithreading_event_base.h" />
+    <ClInclude Include="multithreading\multithreading_event_collection.h" />
+    <ClInclude Include="multithreading\multithreading_file_change_event.h" />
+    <ClInclude Include="multithreading\multithreading_initial_single_lock.h" />
+    <ClInclude Include="multithreading\multithreading_manual_reset_event.h" />
+    <ClInclude Include="multithreading\multithreading_multi_lock.h" />
+    <ClInclude Include="multithreading\multithreading_mutex.h" />
+    <ClInclude Include="multithreading\multithreading_plain_service.h" />
+    <ClInclude Include="multithreading\multithreading_retry_multi_lock.h" />
+    <ClInclude Include="multithreading\multithreading_retry_single_lock.h" />
+    <ClInclude Include="multithreading\multithreading_semaphore.h" />
+    <ClInclude Include="multithreading\multithreading_service_base.h" />
+    <ClInclude Include="multithreading\multithreading_service_status.h" />
+    <ClInclude Include="multithreading\multithreading_single_lock.h" />
+    <ClInclude Include="multithreading\multithreading_socket_event.h" />
+    <ClInclude Include="multithreading\multithreading_synch_lock.h" />
+    <ClInclude Include="multithreading\multithreading_sync_object.h" />
+    <ClInclude Include="multithreading\multithreading_thread.h" />
+    <ClInclude Include="multithreading\multithreading_thread_os.h" />
+    <ClInclude Include="multithreading\multithreading_thread_pool.h" />
+    <ClInclude Include="multithreading\multithreading_waitable.h" />
+    <ClInclude Include="multithreading\multithreading_wait_result.h" />
+    <ClInclude Include="os\os_process.h" />
+    <ClInclude Include="primitive\primitive_id.h" />
+    <ClInclude Include="primitive\primitive_id_space.h" />
+    <ClInclude Include="primitive\primitive_logic.h" />
+    <ClInclude Include="primitive\primitive_memory.h" />
+    <ClInclude Include="primitive\primitive_memory_base.h" />
+    <ClInclude Include="primitive\primitive_memory_container.h" />
+    <ClInclude Include="primitive\primitive_numeric_info.h" />
+    <ClInclude Include="primitive\primitive_shared_memory.h" />
+    <ClInclude Include="primitive\primitive_var.h" />
+    <ClInclude Include="primitive\primitive_virtual_memory.h" />
+    <ClInclude Include="primitive\primitive_wstringtou.h" />
+    <ClInclude Include="spa\spa_trace.h" />
+    <ClInclude Include="str\str1.h" />
+    <ClInclude Include="str\str_from_integer.h" />
+    <ClInclude Include="str\str_to_integer.h" />
+    <ClInclude Include="str\str_verisimple_string.h" />
+    <ClInclude Include="str\str_verisimple_wstring.h" />
+    <ClInclude Include="str\str_vsstringtow.h" />
+    <ClInclude Include="str\str_wstringtovss.h" />
+    <ClInclude Include="str\str_hex.h" />
+    <ClInclude Include="str\str_international.h" />
+    <ClInclude Include="str\str_international2.h" />
+    <ClInclude Include="str\str_ch.h" />
+    <ClInclude Include="str\str_ch_class.h" />
+    <ClInclude Include="str\str_str.h" />
+    <ClInclude Include="str\str_str2.h" />
+    <ClInclude Include="str\str.h" />
+    <ClInclude Include="str\str_simple_string.h" />
+    <ClInclude Include="str\str_string.h" />
+    <ClInclude Include="str\str_string_composite.h" />
+    <ClInclude Include="str\str_string_format.h" />
+    <ClInclude Include="str\str_string_interface.h" />
+    <ClInclude Include="str\str_tokenizer.h" />
+    <ClInclude Include="str\str_wstringtou.h" />
+    <ClInclude Include="windows\c_os.h" />
     <ClInclude Include="windows\c_os_internal.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="windows\c_os_thread.h" />
+    <ClInclude Include="x\x_charcategory.h" />
+    <ClInclude Include="x\x_charcategory2.h" />
+    <ClInclude Include="x\x_charcategory_names.h" />
+    <ClInclude Include="x\x_defines.h" />
+    <ClInclude Include="x\x_encodings.h" />
+    <ClInclude Include="x\x_tables.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="android\c_os_internal.c">
@@ -1057,23 +1307,167 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="c\c.c" />
+    <ClCompile Include="ca2\ca2_allocate_mid_big.cpp" />
+    <ClCompile Include="ca\ca.cpp" />
+    <ClCompile Include="ca\ca2_fixed_alloc.cpp" />
+    <ClCompile Include="ca\ca_application.cpp" />
+    <ClCompile Include="ca\ca_net.cpp" />
+    <ClCompile Include="ca\ca_simple_array.cpp" />
+    <ClCompile Include="ca\ca_system.cpp" />
+    <ClCompile Include="collection\collection_2d_array.cpp" />
+    <ClCompile Include="collection\collection_array.cpp" />
+    <ClCompile Include="collection\collection_bit_array.cpp" />
+    <ClCompile Include="collection\collection_class_sort_array.cpp" />
+    <ClCompile Include="collection\collection_comparable_array.cpp" />
+    <ClCompile Include="collection\collection_id_array.cpp" />
+    <ClCompile Include="collection\collection_key_sort_array.cpp" />
+    <ClCompile Include="collection\collection_map_misc.cpp" />
+    <ClCompile Include="collection\collection_numeric_array.cpp" />
+    <ClCompile Include="collection\collection_object_list.cpp" />
+    <ClCompile Include="collection\collection_pointer_list.cpp" />
+    <ClCompile Include="collection\collection_point_array.cpp" />
+    <ClCompile Include="collection\collection_rect_array.cpp" />
+    <ClCompile Include="collection\collection_sort.cpp" />
+    <ClCompile Include="collection\collection_stringa.cpp" />
+    <ClCompile Include="collection\collection_stringl.cpp" />
+    <ClCompile Include="collection\collection_string_array.cpp" />
+    <ClCompile Include="collection\collection_string_list.cpp" />
+    <ClCompile Include="collection\collection_string_sort_array.cpp" />
+    <ClCompile Include="collection\collection_string_to_string_map.cpp" />
+    <ClCompile Include="c\c.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="c\c_ca.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_cpp.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="c\c_heap.cpp" />
+    <ClCompile Include="c\c_math.cpp" />
     <ClCompile Include="c_os_locale.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="framework.c">
+    <ClCompile Include="exception\exception_archive.cpp" />
+    <ClCompile Include="exception\exception_archive_exception.cpp" />
+    <ClCompile Include="exception\exception_base.cpp" />
+    <ClCompile Include="exception\exception_call_stack.cpp" />
+    <ClCompile Include="exception\exception_debug.cpp" />
+    <ClCompile Include="exception\exception_dump.cpp" />
+    <ClCompile Include="exception\exception_dump_context.cpp" />
+    <ClCompile Include="exception\exception_dump_floating_point.cpp" />
+    <ClCompile Include="exception\exception_dump_output.cpp" />
+    <ClCompile Include="exception\exception_engine.cpp" />
+    <ClCompile Include="exception\exception_error.cpp" />
+    <ClCompile Include="exception\exception_exit.cpp" />
+    <ClCompile Include="exception\exception_hresult.cpp" />
+    <ClCompile Include="exception\exception_installing.cpp" />
+    <ClCompile Include="exception\exception_interface_only.cpp" />
+    <ClCompile Include="exception\exception_invalid_argument.cpp" />
+    <ClCompile Include="exception\exception_invalid_character.cpp" />
+    <ClCompile Include="exception\exception_invalid_handle.cpp" />
+    <ClCompile Include="exception\exception_invalid_index.cpp" />
+    <ClCompile Include="exception\exception_io.cpp" />
+    <ClCompile Include="exception\exception_last_error.cpp" />
+    <ClCompile Include="exception\exception_memory.cpp" />
+    <ClCompile Include="exception\exception_not_implemented.cpp" />
+    <ClCompile Include="exception\exception_not_installed.cpp" />
+    <ClCompile Include="exception\exception_not_licensed.cpp" />
+    <ClCompile Include="exception\exception_not_supported.cpp" />
+    <ClCompile Include="exception\exception_operation_canceled.cpp" />
+    <ClCompile Include="exception\exception_os.cpp" />
+    <ClCompile Include="exception\exception_overflow_error.cpp" />
+    <ClCompile Include="exception\exception_range_error.cpp" />
+    <ClCompile Include="exception\exception_resource.cpp" />
+    <ClCompile Include="exception\exception_runtime_error.cpp" />
+    <ClCompile Include="exception\exception_simple.cpp" />
+    <ClCompile Include="exception\exception_standard_translator.cpp" />
+    <ClCompile Include="exception\exception_temporary.cpp" />
+    <ClCompile Include="exception\exception_todo.cpp" />
+    <ClCompile Include="exception\exception_user.cpp" />
+    <ClCompile Include="exception\exception_VMSException.cpp" />
+    <ClCompile Include="exception\exception_void_implementation.cpp" />
+    <ClCompile Include="file\file_dir.cpp" />
+    <ClCompile Include="file\file_dir2.cpp" />
+    <ClCompile Include="file\file_file.cpp" />
+    <ClCompile Include="file\file_reader.cpp" />
+    <ClCompile Include="file\file_stream.cpp" />
+    <ClCompile Include="file\file_writer.cpp" />
+    <ClCompile Include="framework_c.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_condition.cpp" />
+    <ClCompile Include="multithreading\multithreading_core.cpp" />
+    <ClCompile Include="multithreading\multithreading_critical_section.cpp" />
+    <ClCompile Include="multithreading\multithreading_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_event_base.cpp" />
+    <ClCompile Include="multithreading\multithreading_event_collection.cpp" />
+    <ClCompile Include="multithreading\multithreading_file_change_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_manual_reset_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_multi_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_mutex.cpp" />
+    <ClCompile Include="multithreading\multithreading_plain_service.cpp" />
+    <ClCompile Include="multithreading\multithreading_retry_multi_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_semaphore.cpp" />
+    <ClCompile Include="multithreading\multithreading_service_base.cpp" />
+    <ClCompile Include="multithreading\multithreading_single_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_socket_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_synch_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_sync_object.cpp" />
+    <ClCompile Include="multithreading\multithreading_waitable.cpp" />
+    <ClCompile Include="multithreading\multithreading_wait_result.cpp" />
+    <ClCompile Include="primitive\primitive_element.cpp" />
+    <ClCompile Include="primitive\primitive_factory.cpp" />
+    <ClCompile Include="primitive\primitive_memory.cpp" />
+    <ClCompile Include="primitive\primitive_memory_base.cpp" />
+    <ClCompile Include="primitive\primitive_memory_container.cpp" />
+    <ClCompile Include="primitive\primitive_object.cpp" />
+    <ClCompile Include="primitive\primitive_property.cpp" />
+    <ClCompile Include="primitive\primitive_shared_memory.cpp" />
+    <ClCompile Include="primitive\primitive_simple_string.cpp" />
+    <ClCompile Include="primitive\primitive_string.cpp" />
+    <ClCompile Include="primitive\primitive_string_core.cpp" />
+    <ClCompile Include="primitive\primitive_string_format.cpp" />
+    <ClCompile Include="primitive\primitive_string_manager.cpp" />
+    <ClCompile Include="primitive\primitive_virtual_memory.cpp" />
+    <ClCompile Include="spa\spa_trace.cpp" />
+    <ClCompile Include="str\str_from_integer.cpp" />
+    <ClCompile Include="str\str_str1.cpp" />
+    <ClCompile Include="str\str_strw.cpp" />
+    <ClCompile Include="str\str_strx.cpp" />
+    <ClCompile Include="str\str_to_integer.cpp" />
+    <ClCompile Include="str\str_verisimple_string.cpp" />
+    <ClCompile Include="str\str_verisimple_wstring.cpp" />
+    <ClCompile Include="str\str_vsstringtow.cpp" />
+    <ClCompile Include="str\str_wstringtovss.cpp" />
+    <ClCompile Include="str\str_ch.cpp" />
+    <ClCompile Include="str\str_ch_class.cpp" />
+    <ClCompile Include="str\str_hex.cpp" />
+    <ClCompile Include="str\str_international.cpp" />
+    <ClCompile Include="str\str_str.cpp" />
+    <ClCompile Include="windows\c_os.cpp" />
     <ClCompile Include="windows\c_os_internal.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="windows\c_os_thread.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="multithreading\multithreading.inl" />
     <None Include="_c.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="exception\_exception.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
