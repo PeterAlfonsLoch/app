@@ -88,10 +88,10 @@ int32_t vwprintf_dup(const wchar_t *format, va_list args)
 
 
 #ifdef MACOS
-simple_mutex g_mutexCvt;
+mutex g_mutexCvt;
 int32_t ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 {
-   mutex_lock ml(g_mutexCvt);
+   synch_lock ml(&g_mutexCvt);
    char * psz = ecvt(d, i, pi1, pi2);
    if(psz == NULL)
       return -1;
@@ -103,7 +103,7 @@ int32_t ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char *
 }
 int32_t fcvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 {
-   mutex_lock ml(g_mutexCvt);
+   synch_lock ml(&g_mutexCvt);
    char * psz = fcvt(d, i, pi1, pi2);
    if(psz == NULL)
       return -1;

@@ -482,7 +482,7 @@ simple_map< KEY,  VALUE >::PGetNextAssoc(const typename simple_map< KEY,  VALUE 
 template<class KEY,  class VALUE>
 void simple_map< KEY,  VALUE >::Serialize(CArchive& ar)
 {
-   ::ca2::object::Serialize(ar);
+   object::Serialize(ar);
 
    if (ar.IsStoring())
    {
@@ -1032,7 +1032,7 @@ simple_string_map < VALUE >::PGetNextAssoc(const typename simple_string_map < VA
 template < class VALUE>
 void simple_string_map < VALUE >::Serialize(CArchive& ar)
 {
-   ::ca2::object::Serialize(ar);
+   object::Serialize(ar);
 
    if (ar.IsStoring())
    {

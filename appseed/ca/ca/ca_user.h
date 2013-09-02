@@ -36,17 +36,6 @@ public:
 
 
 
-#ifdef WINDOWSEX
-
-typedef HANDLE HTHREAD;
-
-#else
-
-class simple_event;
-
-typedef hthread * HTHREAD;
-
-#endif
 
 
 namespace ca2
@@ -119,5 +108,5 @@ namespace user
 } // namespace user
 
 
-CLASS_DECL_ca simple_mutex & user_mutex();
+CLASS_DECL_ca mutex & user_mutex();
 

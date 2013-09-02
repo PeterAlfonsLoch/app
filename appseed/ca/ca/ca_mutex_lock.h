@@ -1,16 +1,16 @@
 #pragma once
 
 
-class CLASS_DECL_ca mutex_lock
+class CLASS_DECL_ca synch_lock
 {
 public:
 
 
    bool              m_bLock;
-   simple_mutex *    m_pmutex;
+   mutex *    m_pmutex;
 
-   mutex_lock(simple_mutex & mutex, bool bInitialLock = true);
-   ~mutex_lock();
+   synch_lock(mutex & mutex, bool bInitialLock = true);
+   ~synch_lock();
 
 
    void lock();

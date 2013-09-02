@@ -33,7 +33,7 @@ END_EXTERN_C
 
 
 
-simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)
+mutex::mutex(const char * pszName, bool bInitialLock)
 {
    if(pszName != NULL && strlen_dup(pszName) > 0)
    {
@@ -137,7 +137,7 @@ simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)
 }
 
 
-simple_mutex::~simple_mutex()
+mutex::~mutex()
 {
 
 #ifdef WINDOWS
@@ -162,7 +162,7 @@ simple_mutex::~simple_mutex()
 
 }
 
-void simple_mutex::lock()
+void mutex::lock()
 {
 #ifdef WINDOWSEX
    WaitForSingleObject(m_hMutex, INFINITE);
@@ -255,7 +255,7 @@ int pthread_mutex_timedlock(pthread_mutex_t * mutex, const struct timespec * abs
 #endif
 
 
-bool simple_mutex::lock(uint32_t uiTimeout)
+bool mutex::lock(uint32_t uiTimeout)
 {
 #ifdef WINDOWSEX
    return WaitForSingleObject(m_hMutex, uiTimeout) == WAIT_OBJECT_0;
@@ -315,7 +315,7 @@ bool simple_mutex::lock(uint32_t uiTimeout)
 }
 
 
-void simple_mutex::unlock()
+void mutex::unlock()
 {
 #ifdef WINDOWS
    ReleaseMutex(m_hMutex);
@@ -352,14 +352,14 @@ void simple_mutex::unlock()
 
 CLASS_DECL_ca void wait_until_mutex_does_not_exist(const char * pszName)
 {
-   simple_mutex * pmutex = new simple_mutex("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+   mutex * pmutex = new mutex("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
    if(::GetLastError() == ERROR_ALREADY_EXISTS)
    {
       while(::GetLastError() == ERROR_ALREADY_EXISTS)
       {
          delete pmutex;
          Sleep(184);
-         pmutex = new simple_mutex("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+         pmutex = new mutex("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
       }
    }
    delete pmutex;

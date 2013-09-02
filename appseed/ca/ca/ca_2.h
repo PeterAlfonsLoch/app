@@ -45,83 +45,6 @@ namespace ca2
 
 
 
-class CLASS_DECL_ca lparam
-{
-public:
-
-
-   LPARAM m_lparam;
-
-
-   lparam(LPARAM lparam = 0)
-   {
-      m_lparam = lparam;
-   }
-
-
-#if !defined(ANDROID) && !defined(SOLARIS)
-
-   lparam(int32_t i)
-   {
-      m_lparam = (LPARAM) i;
-   }
-
-#endif
-
-#if !defined(LINUX) && !(defined(OS64BIT) && defined(WINDOWS)) && !defined(MACOS)
-
-   lparam(int64_t i)
-   {
-      m_lparam = (LPARAM) i;
-   }
-
-#endif
-   
-#ifdef MACOS
-#ifdef OS64BIT
-   
-   lparam(long l)
-   {
-      m_lparam = (LPARAM) l;
-   }
-   
-#endif
-#endif
-
-   lparam(const void * p)
-   {
-      m_lparam = (LPARAM) p;
-   }
-
-   lparam(const lparam & lparam)
-   {
-      m_lparam = lparam.m_lparam;
-   }
-
-   operator LPARAM &()
-   {
-      return m_lparam;
-   }
-
-   template < typename T >
-   operator T * () const
-   {
-      return (T *) m_lparam;
-   }
-
-   lparam & operator = (const lparam & lparam)
-   {
-      m_lparam = lparam.m_lparam;
-      return *this;
-   }
-
-   lparam & operator = (LPARAM lparam)
-   {
-      m_lparam = lparam;
-      return *this;
-   }
-
-};
 
 
 #include "ca/vms/vms.h"
@@ -299,7 +222,7 @@ extern "C"
 
 CLASS_DECL_ca vsstring _ca_get_file_name(const char * psz, bool bCreate = false, int32_t * pfd = NULL);
 
-CLASS_DECL_ca vsstring get_system_error_message(uint32_t dwError);
+
 
 //#ifndef METROWIN
 //#include <openssl/ssl.h>
@@ -307,7 +230,7 @@ CLASS_DECL_ca vsstring get_system_error_message(uint32_t dwError);
 
 #ifndef WINDOWSEX
 #if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID)
-CLASS_DECL_ca WINBOOL IsWindow(oswindow oswindow);
+CLASS_DECL_ca int_bool IsWindow(oswindow oswindow);
 #endif
 #endif
 

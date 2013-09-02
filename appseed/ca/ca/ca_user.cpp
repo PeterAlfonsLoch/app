@@ -49,10 +49,10 @@ namespace ca
 } // namespace ca
 
 
-simple_mutex & user_mutex()
+mutex & user_mutex()
 {
 
-   static simple_mutex * s_pmutexUser = new simple_mutex();
+   static mutex * s_pmutexUser = new mutex();
 
    return *s_pmutexUser;
 

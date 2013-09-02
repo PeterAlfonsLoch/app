@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-mutex_lock::mutex_lock(simple_mutex & mutex, bool bInitialLock)
+synch_lock::synch_lock(mutex & mutex, bool bInitialLock)
 {
    m_bLock = false;
    m_pmutex = &mutex;
@@ -11,7 +11,7 @@ mutex_lock::mutex_lock(simple_mutex & mutex, bool bInitialLock)
    }
 }
 
-mutex_lock::~mutex_lock()
+synch_lock::~synch_lock()
 {
    if(m_bLock)
    {
@@ -19,7 +19,7 @@ mutex_lock::~mutex_lock()
    }
 }
 
-void mutex_lock::lock()
+void synch_lock::lock()
 {
    if(m_bLock)
       return;
@@ -30,7 +30,7 @@ void mutex_lock::lock()
 }
 
 
-bool mutex_lock::lock(uint32_t uiTimeout)
+bool synch_lock::lock(uint32_t uiTimeout)
 {
 
    if(m_bLock)
@@ -46,7 +46,7 @@ bool mutex_lock::lock(uint32_t uiTimeout)
 }
 
 
-void mutex_lock::unlock()
+void synch_lock::unlock()
 {
    if(!m_bLock)
       return;

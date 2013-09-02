@@ -1,16 +1,16 @@
 #include "framework.h"
 
 
-stra_dup::stra_dup()
+stringa::stringa()
 {
 }
 
-stra_dup::~stra_dup()
+stringa::~stringa()
 {
 }
 
 
-void stra_dup::trim()
+void stringa::trim()
 {
    for(int32_t ui = 0; ui < this->get_count(); ui++)
    {
@@ -18,7 +18,7 @@ void stra_dup::trim()
    }
 }
 
-void stra_dup::remove_empty()
+void stringa::remove_empty()
 {
    for(int32_t ui = 0; ui < this->get_count();)
    {
@@ -33,7 +33,7 @@ void stra_dup::remove_empty()
    }
 }
 
-::count stra_dup::remove(const char * psz)
+::count stringa::remove(const char * psz)
 {
    ::count iCount = 0;
    for(index ui = 0; ui < this->get_count();)
@@ -52,7 +52,7 @@ void stra_dup::remove_empty()
 }
 
 
-index  stra_dup::find_ci(const char * psz, index iStart)
+index  stringa::find_ci(const char * psz, index iStart)
 {
    if(iStart < 0)
       iStart = 0;
@@ -70,7 +70,7 @@ index  stra_dup::find_ci(const char * psz, index iStart)
    return -1;
 }
 
-index  stra_dup::add_unique_ci(const char * psz)
+index  stringa::add_unique_ci(const char * psz)
 {
    index iFind = find_ci(psz);
    if(iFind < 0)
@@ -85,7 +85,7 @@ index  stra_dup::add_unique_ci(const char * psz)
 }
 
 
-void stra_dup::add_tokens(const char * psz, const char * pszSeparator)
+void stringa::add_tokens(const char * psz, const char * pszSeparator)
 {
 	
    const char * pszPosBeg = psz;
@@ -115,7 +115,7 @@ void stra_dup::add_tokens(const char * psz, const char * pszSeparator)
 }
 
 
-vsstring stra_dup::encode_v16()
+vsstring stringa::encode_v16()
 {
    vsstring strEncode;
    for(int32_t ui = 0; ui < this->get_count(); ui++)
@@ -146,7 +146,7 @@ vsstring stra_dup::encode_v16()
 
 
 
-void stra_dup::decode_v16(const char * psz)
+void stringa::decode_v16(const char * psz)
 {
    int32_t iSize = 1024;
    char * str = NULL;
@@ -193,7 +193,7 @@ void stra_dup::decode_v16(const char * psz)
 
 }
 
-bool stra_dup::spa_insert(const char * psz)
+bool stringa::spa_insert(const char * psz)
 {
    if(psz == NULL)
       return false;

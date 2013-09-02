@@ -1,13 +1,13 @@
 #pragma once
 
 
-class CLASS_DECL_ca stra_dup :
+class CLASS_DECL_ca stringa :
    virtual public simple_array < vsstring >
 {
 public:
 
-   stra_dup();
-   ~stra_dup();
+   stringa();
+   ~stringa();
 
 
 
