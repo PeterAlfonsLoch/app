@@ -1148,6 +1148,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="file\file_plain_text_string_stream.h" />
     <ClInclude Include="file\file_string_stream.h" />
     <ClInclude Include="math\math.h" />
+    <ClInclude Include="math\math_count.h" />
+    <ClInclude Include="math\math_index.h" />
     <ClInclude Include="math\math_math.h" />
     <ClInclude Include="math\math_natural.h" />
     <ClInclude Include="math\math_number.h" />
