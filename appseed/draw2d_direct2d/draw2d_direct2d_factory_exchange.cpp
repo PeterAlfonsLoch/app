@@ -5,7 +5,7 @@ namespace draw2d_direct2d
 {
 
 
-   factory_exchange::factory_exchange(::ca2::application * papp) :
+   factory_exchange::factory_exchange(application * papp) :
       element(papp)
    {
 
@@ -46,7 +46,7 @@ namespace draw2d_direct2d
 } // namespace draw2d_direct2d
 
 
-void ca2_factory_exchange(sp(::application) papp)
+void ca2_factory_exchange(sp(base_application) papp)
 {
 
    draw2d_direct2d::factory_exchange factoryexchange(papp);

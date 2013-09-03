@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-file_manager_operation_view::file_manager_operation_view(sp(::application) papp) :
+file_manager_operation_view::file_manager_operation_view(sp(base_application) papp) :
    element(papp),
    ::user::split_layout(papp),
    

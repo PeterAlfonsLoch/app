@@ -34,7 +34,7 @@ namespace ca2
          void deflate(LPRECT lprect, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
 
          
-         geometry(sp(::application) papp);
+         geometry(sp(base_application) papp);
          virtual ~geometry();
 
       };

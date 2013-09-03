@@ -27,7 +27,7 @@ namespace mysql
       mysql_protocol_type       m_protocol;
 
 
-      database(sp(::application) papp);
+      database(sp(base_application) papp);
       virtual ~database();
 
 

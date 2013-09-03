@@ -2,7 +2,7 @@
 
 
 
-file_manager_operation_list_view::file_manager_operation_list_view(sp(::application) papp) :
+file_manager_operation_list_view::file_manager_operation_list_view(sp(base_application) papp) :
    element(papp),
    m_headerctrl(papp),
    

@@ -9,7 +9,7 @@ namespace filemanager
 {
 
 
-   SimpleFolderTreeView::SimpleFolderTreeView(sp(::application) papp) :
+   SimpleFolderTreeView::SimpleFolderTreeView(sp(base_application) papp) :
       element(papp),
       
       ::user::scroll_view(papp),

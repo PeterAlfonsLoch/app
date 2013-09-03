@@ -7,7 +7,7 @@ namespace gcom
    namespace backview
    {
 
-      Interface::Interface(sp(::application) papp) :
+      Interface::Interface(sp(base_application) papp) :
          element(papp)
       {
          m_bTransferVoid   = false;

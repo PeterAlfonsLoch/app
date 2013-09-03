@@ -54,7 +54,7 @@ namespace user
    }
 
 
-   static_control::static_control(sp(::application) papp) :
+   static_control::static_control(sp(base_application) papp) :
       element(papp)
    {
       

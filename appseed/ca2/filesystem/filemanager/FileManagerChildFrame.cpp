@@ -3,7 +3,7 @@
 #include "SimpleFileListInterface.h"
 
 
-FileManagerChildFrame::FileManagerChildFrame(sp(::application) papp) :
+FileManagerChildFrame::FileManagerChildFrame(sp(base_application) papp) :
    element(papp),
    simple_child_frame(papp), 
    m_toolbar(papp)
@@ -17,7 +17,7 @@ FileManagerChildFrame::~FileManagerChildFrame()
 void FileManagerChildFrame::install_message_handling(::ca2::message::dispatch * pinterface)
 {
    simple_child_frame::install_message_handling(pinterface);
-   IGUI_WIN_MSG_LINK(::ca2::application::APPM_LANGUAGE, pinterface, this, &FileManagerChildFrame::_001OnAppLanguage);
+   IGUI_WIN_MSG_LINK(application::APPM_LANGUAGE, pinterface, this, &FileManagerChildFrame::_001OnAppLanguage);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &FileManagerChildFrame::_001OnShowWindow);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &FileManagerChildFrame::_001OnCreate);
 }

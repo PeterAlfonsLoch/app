@@ -10,7 +10,7 @@ namespace uinteraction
    {
 
 
-      appearance::CTool001::CTool001(sp(::application) papp) :
+      appearance::CTool001::CTool001(sp(base_application) papp) :
          element(papp)
       {
       }

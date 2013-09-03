@@ -12,7 +12,7 @@ namespace draw2d_direct2d
 {
 
    
-   graphics::graphics(::ca2::application * papp) :
+   graphics::graphics(application * papp) :
       element(papp)
    {
 
@@ -2888,7 +2888,7 @@ namespace draw2d_direct2d
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* graphics::GetHalftoneBrush(::ca2::application * papp)
+   ::draw2d::brush* graphics::GetHalftoneBrush(application * papp)
    {
       /*      ::ca2::LockGlobals(CRIT_HALFTONEBRUSH);
       if (gen_HalftoneBrush == NULL)
@@ -3193,7 +3193,7 @@ namespace draw2d_direct2d
    //
    }
 
-   //   ::draw2d::object* graphics::SelectGdiObject(::ca2::application * papp, HDC hDC, HGDIOBJ h)
+   //   ::draw2d::object* graphics::SelectGdiObject(application * papp, HDC hDC, HGDIOBJ h)
    // {
    //      return ::draw2d_direct2d::object::from_handle(papp, ::SelectObject(hDC, h));
    //}

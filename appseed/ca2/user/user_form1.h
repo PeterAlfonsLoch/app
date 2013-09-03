@@ -23,7 +23,7 @@ namespace ca2
          ::user::form_callback *       m_pcallback;
 
 
-         form(sp(::application) papp);
+         form(sp(base_application) papp);
          virtual ~form();
 
 

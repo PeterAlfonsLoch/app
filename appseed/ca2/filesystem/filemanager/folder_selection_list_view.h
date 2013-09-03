@@ -5,7 +5,7 @@ class CLASS_DECL_ca2 folder_selection_list_view :
    virtual public FileManagerInterface
 {
 public:
-   folder_selection_list_view(::ca2::application * papp);
+   folder_selection_list_view(application * papp);
 public:
    ~folder_selection_list_view(void);
 

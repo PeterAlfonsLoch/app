@@ -3,7 +3,7 @@
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))
 #define ROUND16(x) ROUND(x, 16)
 
-var_array::var_array(::ca2::application * papp) :
+var_array::var_array(application * papp) :
    element(papp)
 {
    set_size(0, 64);

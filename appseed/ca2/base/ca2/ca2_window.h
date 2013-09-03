@@ -715,7 +715,7 @@ class CLASS_DECL_ca2 guie_message_wnd :
    virtual public ::ca2::window
 {
 public:
-   guie_message_wnd(sp(::application) papp);
+   guie_message_wnd(sp(base_application) papp);
    virtual void message_handler(signal_details * pobj);
    sp(::user::interaction) m_pguieForward;
 };

@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   handler::handler(sp(::application) papp) :
+   handler::handler(sp(base_application) papp) :
       element(papp)
    {
 

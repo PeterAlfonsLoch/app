@@ -15,7 +15,7 @@ namespace ca2
       var         m_varQuery;
 
 
-      request_signal(sp(::application) papp, ::signal * psignal = NULL);
+      request_signal(sp(base_application) papp, ::signal * psignal = NULL);
 
 
    }; 

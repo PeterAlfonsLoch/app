@@ -15,7 +15,7 @@ namespace hi5
       namespace twitter
       {
 
-         authorization::authorization(sp(::application) papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
+         authorization::authorization(sp(base_application) papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
             element(papp)
          {
             m_strAuthorizationUrl=pszAuthorizationUrl;

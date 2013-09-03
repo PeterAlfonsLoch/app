@@ -7,7 +7,7 @@
 #endif
 
 
-mutex::mutex(sp(::application) papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
+mutex::mutex(sp(base_application) papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
    sync_object(pstrName)
 {
 
@@ -103,7 +103,7 @@ mutex::mutex(sp(::application) papp, bool bInitiallyOwn, const char * pstrName, 
 
 #ifdef WINDOWS
 
-mutex::mutex(sp(::application) papp, const char * pstrName, HANDLE h) :
+mutex::mutex(sp(base_application) papp, const char * pstrName, HANDLE h) :
    element(papp),
    sync_object(pstrName)
 {
@@ -333,7 +333,7 @@ bool mutex::unlock()
 
 
 
-mutex * mutex::open_mutex(sp(::application) papp,  const char * pstrName)
+mutex * mutex::open_mutex(sp(base_application) papp,  const char * pstrName)
 {
 
 #ifdef WINDOWS

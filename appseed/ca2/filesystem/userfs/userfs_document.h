@@ -15,7 +15,7 @@ namespace userfs
       ::fs::set                                 m_fsset;
 
 
-      document(sp(::application) papp);
+      document(sp(base_application) papp);
       virtual ~document();
 
       sp(::user::document)                                get_document();

@@ -7,7 +7,7 @@ namespace filemanager
 {
 
 
-   SimpleFolderListView::SimpleFolderListView(sp(::application) papp) :
+   SimpleFolderListView::SimpleFolderListView(sp(base_application) papp) :
       element(papp),
       m_headerctrl(papp),
       

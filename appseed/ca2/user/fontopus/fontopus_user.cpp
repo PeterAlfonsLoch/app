@@ -5,7 +5,7 @@ namespace fontopus
 {
 
 
-   user::user(sp(::application) papp) :
+   user::user(sp(base_application) papp) :
       element(papp)
    {
 

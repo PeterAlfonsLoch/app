@@ -6,7 +6,7 @@ class CLASS_DECL_ca2 simple_edit :
 public:
 
 
-   simple_edit(sp(::application) papp);
+   simple_edit(sp(base_application) papp);
    virtual ~simple_edit();
 
 

@@ -15,7 +15,7 @@ namespace ca
 
 
 class hthread :
-    virtual public ::ca::ca
+    virtual public root
 {
 public:
 

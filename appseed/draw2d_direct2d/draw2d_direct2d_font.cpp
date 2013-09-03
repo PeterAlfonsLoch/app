@@ -8,7 +8,7 @@ namespace draw2d_direct2d
 {
 
 
-   font::font(::ca2::application * papp) :
+   font::font(application * papp) :
       element(papp)
    {
 

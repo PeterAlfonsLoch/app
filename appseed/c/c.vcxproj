@@ -1068,8 +1068,9 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="base\base_smart_pointer2.h" />
     <ClInclude Include="base\base_system.h" />
     <ClInclude Include="base\base_template.h" />
+    <ClInclude Include="base\base_thread.h" />
     <ClInclude Include="base\base_types.h" />
-    <ClInclude Include="base\base_user.h" />
+    <ClInclude Include="base\base_user_interaction.h" />
     <ClInclude Include="collection\collection.h" />
     <ClInclude Include="collection\collection_array.h" />
     <ClInclude Include="collection\collection_array_decl.h" />
@@ -1143,6 +1144,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="comparison\comparison_hash.h" />
     <ClInclude Include="comparison\comparison_var_strict.h" />
     <ClInclude Include="datetime\datetime_c.h" />
+    <ClInclude Include="file\file_c.h" />
     <ClInclude Include="file\file_plain_text.h" />
     <ClInclude Include="file\file_plain_text_serializable.h" />
     <ClInclude Include="file\file_plain_text_stream.h" />
@@ -1157,6 +1159,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="math\math_numeric_info.h" />
     <ClInclude Include="net\net.h" />
     <ClInclude Include="net\net_http.h" />
+    <ClInclude Include="net\net_net.h" />
+    <ClInclude Include="net\net_url_departament.h" />
     <ClInclude Include="primitive\primitive_command.h" />
     <ClInclude Include="primitive\primitive_command_line.h" />
     <ClInclude Include="primitive\primitive_command_thread.h" />
@@ -1457,6 +1461,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="multithreading\multithreading_sync_object.cpp" />
     <ClCompile Include="multithreading\multithreading_waitable.cpp" />
     <ClCompile Include="multithreading\multithreading_wait_result.cpp" />
+    <ClCompile Include="net\net_net.cpp" />
+    <ClCompile Include="net\net_url_departament.cpp" />
     <ClCompile Include="primitive\primitive_command.cpp" />
     <ClCompile Include="primitive\primitive_command_line.cpp" />
     <ClCompile Include="primitive\primitive_command_thread.cpp" />
@@ -1481,6 +1487,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="primitive\primitive_var.cpp" />
     <ClCompile Include="primitive\primitive_virtual_memory.cpp" />
     <ClCompile Include="spa\spa_trace.cpp" />
+    <ClCompile Include="str\str_c.cpp" />
     <ClCompile Include="str\str_simple.cpp" />
     <ClCompile Include="str\str_string.cpp" />
     <ClCompile Include="str\str_core.cpp" />
@@ -1488,7 +1495,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="str\str_manager.cpp" />
     <ClCompile Include="str\str_dup.cpp" />
     <ClCompile Include="str\str_from_integer.cpp" />
-    <ClCompile Include="str\str_str1.cpp" />
     <ClCompile Include="str\str_strw.cpp" />
     <ClCompile Include="str\str_strx.cpp" />
     <ClCompile Include="str\str_to_integer.cpp" />

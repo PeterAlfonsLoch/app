@@ -7,7 +7,7 @@ namespace user
    const int32_t BaseWndMenuCmdUi = 117;
    const int32_t BaseWndMenuTiming = 200;
 
-   menu::menu(sp(::application) papp) :
+   menu::menu(sp(base_application) papp) :
       element(papp),
       menu_base(papp),
       m_buttonClose(papp)
@@ -25,7 +25,7 @@ namespace user
 
    }
 
-   menu::menu(sp(::application) papp, menu_item * pitem) :
+   menu::menu(sp(base_application) papp, menu_item * pitem) :
       element(papp),
       menu_base(papp),
       m_buttonClose(papp)

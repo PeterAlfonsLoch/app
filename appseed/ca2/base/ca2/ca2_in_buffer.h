@@ -13,7 +13,7 @@ namespace ca2
       virtual public system_exception
    {
    public:
-      in_buffer_exception(sp(::application) papp, HRESULT errorCode) :
+      in_buffer_exception(sp(base_application) papp, HRESULT errorCode) :
          element(papp),
          ::call_stack(papp),
          ::exception::base(papp),

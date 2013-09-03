@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-system::system(sp(::application) papp) :
+system::system(sp(base_application) papp) :
    m_urldepartament(this)
    //m_mutexDelete(this),
    //m_http(this),

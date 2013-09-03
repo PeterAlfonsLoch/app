@@ -96,7 +96,7 @@ namespace plane
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-      virtual ::ca2::application * get_app() const;
+      virtual application * get_app() const;
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
@@ -108,7 +108,7 @@ namespace plane
 
       virtual bool create_bergedge(sp(create_context) pcreatecontext);
 
-      virtual void on_app_request_bergedge_callback(sp(::application) papp);
+      virtual void on_app_request_bergedge_callback(sp(base_application) papp);
 
       
 

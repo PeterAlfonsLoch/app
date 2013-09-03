@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_form_list_edit::simple_form_list_edit(sp(::application) papp) :
+simple_form_list_edit::simple_form_list_edit(sp(base_application) papp) :
     element(papp),
    ::user::interaction(papp),
    

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-file_manager_operation_document::file_manager_operation_document(sp(::application) papp) :
+file_manager_operation_document::file_manager_operation_document(sp(base_application) papp) :
    element(papp),
    m_thread(papp),
    ::ca2::data_container_base(papp),

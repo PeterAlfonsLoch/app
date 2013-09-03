@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   SimpleFilePropertiesForm::SimpleFilePropertiesForm(sp(::application) papp) :
+   SimpleFilePropertiesForm::SimpleFilePropertiesForm(sp(base_application) papp) :
       element(papp)
    {
       m_ptemplatePane = new ::user::single_document_template(

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   view_update_hint::view_update_hint(sp(::application) papp) :
+   view_update_hint::view_update_hint(sp(base_application) papp) :
       element(papp)
    {
 

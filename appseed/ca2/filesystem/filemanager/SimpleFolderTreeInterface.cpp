@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   SimpleFolderTreeInterface::SimpleFolderTreeInterface(sp(::application) papp) :
+   SimpleFolderTreeInterface::SimpleFolderTreeInterface(sp(base_application) papp) :
       element(papp),
       ::user::scroll_view(papp),
       ::userfs::tree(papp),

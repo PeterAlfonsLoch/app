@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-istring::istring(sp(::application) papp)
+istring::istring(sp(base_application) papp)
 {
 
    m_papp = papp;

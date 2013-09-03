@@ -81,7 +81,7 @@ namespace gcom
          mutex                     m_mutexBitmap;
          backview::Main   *          m_pbackviewinterface;   
 
-         thread(sp(::application) papp);
+         thread(sp(base_application) papp);
 
          static const UINT MESSAGE_BACKVIEW;
          static const WPARAM WPARAM_BACKVIEW_IMAGELOADED;

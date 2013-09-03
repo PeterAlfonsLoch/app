@@ -94,7 +94,7 @@ namespace user
          index                               m_iItem;
 
 
-         timer_array(sp(::application) papp);
+         timer_array(sp(base_application) papp);
 
 
          uint_ptr set(sp(interaction) pguie, uint_ptr uiId, UINT uiElapse);
@@ -161,7 +161,7 @@ namespace user
 
 
       interaction();
-      interaction(sp(::application) papp);
+      interaction(sp(base_application) papp);
       virtual ~interaction();
 
 
@@ -570,7 +570,7 @@ namespace user
 } // namespace user
 
 CLASS_DECL_ca2 sp(::user::interaction) WINAPI CreateGuieEx(
-   sp(::application) papp,
+   sp(base_application) papp,
     uint32_t dwExStyle,
     const char * lpClassName,
     const char * lpWindowName,

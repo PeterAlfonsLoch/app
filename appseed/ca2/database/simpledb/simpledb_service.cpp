@@ -8,7 +8,7 @@ namespace simpledb
 {
 
 
-   service::service(sp(::application) papp) :
+   service::service(sp(base_application) papp) :
       element(papp),
       plain_service(papp)
    {

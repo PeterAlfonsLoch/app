@@ -22,7 +22,7 @@ public:
    strsp(stringa)             m_mapdirFolderName;
 
 
-   ifs(sp(::application) papp, const char * pszRoot);
+   ifs(sp(base_application) papp, const char * pszRoot);
 
    
    virtual bool has_subdir(const char * pszPath);

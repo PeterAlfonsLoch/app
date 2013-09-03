@@ -5,7 +5,7 @@ namespace ca2
 {
 
    
-   os::os(sp(::application) papp) :
+   os::os(sp(base_application) papp) :
       element(papp)
    {
    }

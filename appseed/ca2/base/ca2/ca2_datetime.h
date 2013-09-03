@@ -26,7 +26,7 @@ namespace ca2
          virtual public object
       {
       public:
-         international(sp(::application) papp);
+         international(sp(base_application) papp);
          void parse_str(const char * psz, property_set & set);
          string get_gmt_date_time(const ::datetime::time & time);
          string get_gmt_date_time();
@@ -38,7 +38,7 @@ namespace ca2
          virtual public object
       {
       public:
-         str(sp(::application) papp);
+         str(sp(base_application) papp);
          datetime * m_pdatetime;
          string get_gmt_date_time();
       };
@@ -48,7 +48,7 @@ namespace ca2
       class ::ca2::datetime::str m_str;
 
 
-      datetime(sp(::application) papp);
+      datetime(sp(base_application) papp);
 
       int32_t get_month_day_count(int32_t year, int32_t month);
       int32_t get_weekday(int32_t year, int32_t month, int32_t day);

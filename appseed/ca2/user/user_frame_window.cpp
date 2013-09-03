@@ -670,7 +670,7 @@ namespace user
          // finally, activate the frame
          // (send the default show command unless the main desktop ::ca2::window)
          int32_t nCmdShow = -1;      // default
-         ::ca2::application* pApp = &System;
+         application* pApp = &System;
          if (pApp != NULL && pApp->GetMainWnd() == this)
          {
             nCmdShow = pApp->m_nCmdShow; // use the parameter from WinMain
@@ -881,7 +881,7 @@ namespace user
          return TRUE;
 
       // last but not least, pump through cast
-      ::ca2::application* pApp = get_app();
+      application* pApp = get_app();
       if (pApp != NULL && pApp->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 
@@ -1080,7 +1080,7 @@ namespace user
    // query end session for main frame will attempt to close it all down
    bool frame_window::OnQueryEndSession()
    {
-      ::ca2::application* pApp = &System;
+      application* pApp = &System;
       if (pApp != NULL && pApp->GetMainWnd() == this)
          return pApp->save_all_modified();
 
@@ -1093,7 +1093,7 @@ namespace user
       if (!bEnding)
          return;
 
-      ::ca2::application* pApp = &System;
+      application* pApp = &System;
       if (pApp != NULL && pApp->GetMainWnd() == this)
       {
          pApp->close_all_documents(TRUE);
@@ -1112,7 +1112,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      ::ca2::application* pApp = &System;
+      application* pApp = &System;
       if (pApp != NULL &&
          LOWORD(lParam) != 0 && HIWORD(lParam) != 0 &&
          (ATOM)LOWORD(lParam) == pApp->m_atomApp &&

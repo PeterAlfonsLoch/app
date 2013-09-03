@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_document::simple_document(sp(::application) papp) : 
+simple_document::simple_document(sp(base_application) papp) : 
    element(papp),
    ::ca2::data_container_base(papp),
    

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-FileManagerPathView::FileManagerPathView(sp(::application) papp) :
+FileManagerPathView::FileManagerPathView(sp(base_application) papp) :
    element(papp),
    ::user::interaction(papp),
    

@@ -81,9 +81,6 @@
     <Filter Include="Source Files\spa">
       <UniqueIdentifier>{4b14bab0-dd46-49b3-9fce-8c6ba58b28b1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\NewFilter1">
-      <UniqueIdentifier>{116e3076-c458-43fe-92e9-72e6aae3c491}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\collection">
       <UniqueIdentifier>{fd9b9048-508d-4203-831a-6aff50448bb7}</UniqueIdentifier>
     </Filter>
@@ -102,9 +99,6 @@
     <Filter Include="Header Files\net">
       <UniqueIdentifier>{ab3329cf-9ecc-4590-a567-9f22556c4d8f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\str\NewFilter1">
-      <UniqueIdentifier>{d37217b1-02e1-481c-927d-4a5ab6ddded3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base">
       <UniqueIdentifier>{c884c593-8d0f-465b-8314-98944d5dac4f}</UniqueIdentifier>
     </Filter>
@@ -113,6 +107,9 @@
     </Filter>
     <Filter Include="Header Files\math">
       <UniqueIdentifier>{c86f7d2f-5cdc-4d52-baae-6fd000c9d5f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net">
+      <UniqueIdentifier>{116e3076-c458-43fe-92e9-72e6aae3c491}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -962,9 +959,6 @@
     <ClInclude Include="base\base_types.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base_user.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
     <ClInclude Include="math\math.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
@@ -991,6 +985,21 @@
     </ClInclude>
     <ClInclude Include="datetime\datetime_c.h">
       <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_net.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_url_departament.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_c.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_thread.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_user_interaction.h">
+      <Filter>Header Files\base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1324,9 +1333,6 @@
     <ClCompile Include="str\str_to_integer.cpp">
       <Filter>Source Files\str</Filter>
     </ClCompile>
-    <ClCompile Include="str\str_str1.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
     <ClCompile Include="str\str_strx.cpp">
       <Filter>Source Files\str</Filter>
     </ClCompile>
@@ -1497,6 +1503,15 @@
     </ClCompile>
     <ClCompile Include="base\base_root.cpp">
       <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_net.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_url_departament.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_c.cpp">
+      <Filter>Source Files\str</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

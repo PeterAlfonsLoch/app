@@ -55,7 +55,7 @@ namespace gcom
 
 
 
-         Interface(sp(::application) papp);
+         Interface(sp(base_application) papp);
          virtual ~Interface();
 
          void Shutdown();

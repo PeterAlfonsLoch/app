@@ -13,7 +13,7 @@ public:
    comparable_array < data * > m_dataptra;
 
    
-   data_listener(sp(::application) papp);
+   data_listener(sp(base_application) papp);
    virtual ~data_listener();
 
 

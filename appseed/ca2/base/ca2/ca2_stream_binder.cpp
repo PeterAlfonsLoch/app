@@ -72,7 +72,7 @@ namespace ca2
 
 
 
-   stream_binder::stream_binder(sp(::application) papp) :
+   stream_binder::stream_binder(sp(base_application) papp) :
       element(papp),
       _allBytesAreWritenEvent(papp),
       _thereAreBytesToReadEvent(papp),

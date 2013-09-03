@@ -37,7 +37,7 @@ namespace gcom
          bool                       m_bPendingLayout;
 
       public:
-         Main(sp(::application) papp, Interface * pbackviewinterface);
+         Main(sp(base_application) papp, Interface * pbackviewinterface);
          virtual ~Main();
 
          void AddRef();

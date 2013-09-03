@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_combo_box::simple_combo_box(sp(::application) papp) :
+simple_combo_box::simple_combo_box(sp(base_application) papp) :
       element(papp),
       
       ::user::scroll_view(papp),

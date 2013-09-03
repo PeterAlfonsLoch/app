@@ -50,7 +50,7 @@ public:
 
 
 class CLASS_DECL_c strid_array :
-   virtual public ::ca::ca
+   virtual public root
 {
 protected:
 

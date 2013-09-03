@@ -12,11 +12,11 @@ namespace draw2d_direct2d
    public:
 
 
-      palette(::ca2::application * papp);
+      palette(application * papp);
       virtual ~palette();
 
 
-      static palette* from_handle(::ca2::application * papp, HPALETTE hPalette);
+      static palette* from_handle(application * papp, HPALETTE hPalette);
 
 
       bool CreatePalette(LPLOGPALETTE lpLogPalette);

@@ -7,7 +7,7 @@ namespace sip
       virtual public object
    {
    public:
-      transaction(sp(::application) papp);
+      transaction(sp(base_application) papp);
       transaction(const transaction & src);
       virtual ~transaction();
 

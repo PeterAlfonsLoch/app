@@ -10,7 +10,7 @@ namespace http
 
 #define TMPSIZE 32000
 
-   form::form(sp(::application) papp) :
+   form::form(sp(base_application) papp) :
       element(papp),
       m_setGet(papp),
       m_setPost(papp)

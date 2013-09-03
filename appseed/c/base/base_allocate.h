@@ -4,9 +4,6 @@
 #pragma once
 
 
-#include "ca2_heap.h"
-
-
 //#ifdef DEBUG
 // Special _CLIENT_BLOCK type to identifiy CObjects.
 #define ___CLIENT_BLOCK (_CLIENT_BLOCK|(0xc0<<16))

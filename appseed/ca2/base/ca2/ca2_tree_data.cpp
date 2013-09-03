@@ -5,7 +5,7 @@ namespace ca2
 {
 
 
-   tree_data::tree_data(sp(::application) papp) :
+   tree_data::tree_data(sp(base_application) papp) :
       element(papp),
       ::data(papp)
    {

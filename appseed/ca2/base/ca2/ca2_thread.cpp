@@ -19,7 +19,7 @@ namespace ca2
 
    }
 
-   thread::thread(sp(::application) papp) :
+   thread::thread(sp(base_application) papp) :
       element(papp),
       m_set(papp),
       m_mutex(papp)
@@ -38,7 +38,7 @@ namespace ca2
 
    }
 
-   thread::thread(sp(::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
+   thread::thread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
       element(papp),
       m_mutex(papp)
    {
@@ -227,7 +227,7 @@ namespace ca2
       {
          if(!finalize())
          {
-            TRACE("There occurred errors durring ::ca2::application::finalize virtual member function");
+            TRACE("There occurred errors durring application::finalize virtual member function");
          }
       }
       catch(...)
@@ -944,7 +944,7 @@ namespace ca2
 
 
 
-::ca2::thread* __begin_thread(sp(::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+::ca2::thread* __begin_thread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    ASSERT(pfnThreadProc != NULL);

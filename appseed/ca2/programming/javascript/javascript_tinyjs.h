@@ -281,7 +281,7 @@ protected:
 class tinyjs :
    virtual public object{
 public:
-    tinyjs(sp(::application) papp);
+    tinyjs(sp(base_application) papp);
     ~tinyjs();
 
     void execute(const string &code);

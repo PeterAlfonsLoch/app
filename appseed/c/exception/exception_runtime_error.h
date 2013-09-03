@@ -9,7 +9,7 @@ class CLASS_DECL_c runtime_error :
 public:
    
    
-   runtime_error(sp(::application) papp, const char * pszError);
+   runtime_error(sp(base_application) papp, const char * pszError);
    virtual ~runtime_error();
 
 };

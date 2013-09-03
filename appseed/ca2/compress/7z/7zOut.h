@@ -118,7 +118,7 @@ namespace n7z
       HRESULT WriteFinishHeader(const CFinishHeader &h);
       smart_pointer < ::file::byte_output_stream > Stream;
 
-      COutArchive(sp(::application) papp);
+      COutArchive(sp(base_application) papp);
       smart_pointer < ::file::writer > SeqStream;
       HRESULT Create(::file::writer *stream, bool endMarker);
       void Close();

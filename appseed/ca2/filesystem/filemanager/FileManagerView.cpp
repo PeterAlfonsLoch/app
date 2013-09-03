@@ -2,7 +2,7 @@
 
 
 
-FileManagerAView::FileManagerAView(sp(::application) papp) :
+FileManagerAView::FileManagerAView(sp(base_application) papp) :
    element(papp),
    ::user::split_layout(papp),
    
@@ -235,7 +235,7 @@ void FileManagerAView::CreateViews()
 
 
 
-FileManagerView::FileManagerView(sp(::application) papp) :
+FileManagerView::FileManagerView(sp(base_application) papp) :
    element(papp),
    ::user::split_layout(papp),
    

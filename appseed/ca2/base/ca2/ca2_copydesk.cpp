@@ -5,7 +5,7 @@ namespace ca2
 {
 
 
-   copydesk::copydesk(sp(::application) papp) :
+   copydesk::copydesk(sp(base_application) papp) :
       element(papp)
    {
    }

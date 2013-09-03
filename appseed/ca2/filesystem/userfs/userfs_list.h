@@ -15,7 +15,7 @@ namespace userfs
       simple_list_header_control    m_headerctrl;
 
 
-      list(sp(::application) papp);
+      list(sp(base_application) papp);
       virtual ~list();
 
 

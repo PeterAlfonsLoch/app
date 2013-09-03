@@ -206,7 +206,7 @@ protected:
 
 
 
-class CLASS_DECL_c system :
+class CLASS_DECL_c base_system :
    virtual public application
 {
 public:
@@ -223,7 +223,7 @@ public:
 
 
 
-   system::system(sp(::application) papp);
+   system::system(sp(base_application) papp);
 
 
 
@@ -237,10 +237,10 @@ public:
 
 
    using application::alloc;
-   virtual sp(element) alloc(sp(::application) papp, sp(type) info);
-   virtual sp(element) alloc(sp(::application) papp, const class id & idType);
+   virtual sp(element) alloc(sp(base_application) papp, sp(type) info);
+   virtual sp(element) alloc(sp(base_application) papp, const class id & idType);
 
-   virtual sp(element) on_alloc(sp(::application) papp, sp(type) info);
+   virtual sp(element) on_alloc(sp(base_application) papp, sp(type) info);
    virtual sp(element) clone();
    virtual sp(element) clone(sp(element) pobj);
    template < typename T >
@@ -288,14 +288,14 @@ void smart_pointer < T >::create(const allocatorsp & allocer)
 {
    static class id idType = CaSys(allocer).type_info < T > ()->m_id;
    if(m_p != NULL)
-      ::ca::release(m_p);
+      ::release(m_p);
    sp(element) pca = CaSys(allocer).alloc(allocer->m_papp, idType);
    if(pca.is_set())
    {
       m_p = dynamic_cast < T * >(pca.m_p);
       if(m_p != NULL)
       {
-         ::ca::add_ref(m_p);
+         ::add_ref(m_p);
       }
    }
 }

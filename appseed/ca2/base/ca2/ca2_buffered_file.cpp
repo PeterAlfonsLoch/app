@@ -3,7 +3,7 @@
 namespace ca2
 {
 
-   buffered_file::buffered_file(sp(::application) papp, ::ca2::filesp pfile, ::primitive::memory_size iBufferSize) :
+   buffered_file::buffered_file(sp(base_application) papp, ::ca2::filesp pfile, ::primitive::memory_size iBufferSize) :
       element(papp)
    {
       m_storage.allocate(iBufferSize);

@@ -162,7 +162,7 @@ namespace dynamic_source
       string                                    m_strSeed;
 
 
-      script_manager(sp(::application) papp);
+      script_manager(sp(base_application) papp);
       ~script_manager();
 
       bool initialize_instance();

@@ -72,7 +72,7 @@ namespace user
       bool GetToolText(int32_t iTool, string &str);
       void AddTool(tool_tip_tool * ptool);
       bool GetToolRect(int32_t iTool, LPRECT lprect);
-      tool_tip_window(sp(::application) papp);
+      tool_tip_window(sp(base_application) papp);
       virtual ~tool_tip_window();
       void UpdateDrawingObjects();
       bool ShowTip();

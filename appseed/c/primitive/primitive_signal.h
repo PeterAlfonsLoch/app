@@ -21,7 +21,7 @@ public:
 
 
 
-   signal_details(sp(::application) papp = NULL);
+   signal_details(sp(base_application) papp = NULL);
    signal_details(signal * psignal);
    virtual ~signal_details();
 
@@ -107,7 +107,7 @@ public:
 };
 
 class CLASS_DECL_c signal :
-   virtual public ::ca::ca
+   virtual public root
 {
 protected:
 

@@ -12,7 +12,7 @@ namespace user
    public:
 
 
-      split_view(sp(::application) papp);
+      split_view(sp(base_application) papp);
       virtual ~split_view();
 
 

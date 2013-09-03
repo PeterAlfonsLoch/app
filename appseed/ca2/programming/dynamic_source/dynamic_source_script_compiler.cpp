@@ -14,7 +14,7 @@ namespace dynamic_source
    void add_var_id(string & strResult, strsize & iArroba, stringa & straId, bool bMakeKeyLower = true);
 
 
-   script_compiler::script_compiler(sp(::application) papp) :
+   script_compiler::script_compiler(sp(base_application) papp) :
       element(papp),
       m_memfileLibError(papp),
       m_mutexLibrary(papp)

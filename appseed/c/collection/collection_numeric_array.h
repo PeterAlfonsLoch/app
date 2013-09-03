@@ -159,7 +159,7 @@ class unique_number_sort_array :
    public numeric_array < TYPE >
 {
 public:
-   unique_number_sort_array(sp(::application) papp = NULL);
+   unique_number_sort_array(sp(base_application) papp = NULL);
    unique_number_sort_array(const unique_number_sort_array & array);
 
    index add(const TYPE & newElement)
@@ -541,7 +541,7 @@ void numeric_array < TYPE >::divide(TYPE div)
 
 template < class TYPE >
 unique_number_sort_array < TYPE >::
-   unique_number_sort_array(sp(::application) papp) :
+   unique_number_sort_array(sp(base_application) papp) :
    element(papp)
 {
 }
@@ -559,7 +559,7 @@ class CLASS_DECL_c index_array :
    virtual public numeric_array < index >
 {
 public:
-   index_array(sp(::application) papp = NULL);
+   index_array(sp(base_application) papp = NULL);
    index_array(const index_array & array);
    virtual ~index_array();
 
@@ -572,7 +572,7 @@ class CLASS_DECL_c count_array :
    virtual public numeric_array < count >
 {
 public:
-   count_array(sp(::application) papp = NULL);
+   count_array(sp(base_application) papp = NULL);
    count_array(const count_array & array);
    virtual ~count_array();
 
@@ -585,7 +585,7 @@ class CLASS_DECL_c int_array :
    virtual public numeric_array < int32_t >
 {
 public:
-   int_array(sp(::application) papp = NULL);
+   int_array(sp(base_application) papp = NULL);
    int_array(const int_array & array);
    virtual ~int_array();
 
@@ -598,7 +598,7 @@ class CLASS_DECL_c int64_array :
    virtual public numeric_array < int64_t >
 {
 public:
-   int64_array(sp(::application) papp = NULL);
+   int64_array(sp(base_application) papp = NULL);
    int64_array(const int64_array & array);
    virtual ~int64_array();
 
@@ -610,7 +610,7 @@ class CLASS_DECL_c uint64_array :
    virtual public numeric_array < uint64_t >
 {
 public:
-   uint64_array(sp(::application) papp = NULL);
+   uint64_array(sp(base_application) papp = NULL);
    uint64_array(const uint64_array & array);
    virtual ~uint64_array();
 
@@ -622,7 +622,7 @@ class CLASS_DECL_c unique_int_sort_array :
    virtual public unique_number_sort_array < int32_t >
 {
 public:
-   unique_int_sort_array(sp(::application) papp = NULL);
+   unique_int_sort_array(sp(base_application) papp = NULL);
    unique_int_sort_array(const unique_int_sort_array & array);
    virtual ~unique_int_sort_array();
 
@@ -635,7 +635,7 @@ class CLASS_DECL_c unique_index_sort_array :
    virtual public unique_number_sort_array < index >
 {
 public:
-   unique_index_sort_array(sp(::application) papp = NULL);
+   unique_index_sort_array(sp(base_application) papp = NULL);
    unique_index_sort_array(const unique_index_sort_array & array);
    virtual ~unique_index_sort_array();
 

@@ -33,7 +33,7 @@ data::saving::~saving()
 {
 }
 
-data::data(sp(::application) papp) :
+data::data(sp(base_application) papp) :
    element(papp),
    m_pmutex(NULL)
 {

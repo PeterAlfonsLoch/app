@@ -3,7 +3,7 @@
 namespace platform
 {
 
-   pane_view::pane_view(sp(::application) papp) :
+   pane_view::pane_view(sp(base_application) papp) :
       element(papp),
       ::user::tab(papp),
       

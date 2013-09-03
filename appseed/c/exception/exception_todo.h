@@ -7,7 +7,7 @@ class CLASS_DECL_c todo :
 public:
 
 
-   todo(sp(::application) papp, const char * pszTip = NULL);
+   todo(sp(base_application) papp, const char * pszTip = NULL);
    todo(const todo & e);
    virtual ~todo();
 

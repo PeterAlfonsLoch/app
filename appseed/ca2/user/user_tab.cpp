@@ -8,7 +8,7 @@
 namespace user
 {
 
-   tab::data::data(sp(::application) papp) :
+   tab::data::data(sp(base_application) papp) :
       element(papp),
       ::data(papp),
       m_imagelist(papp),
@@ -39,7 +39,7 @@ namespace user
       return m_panea.get_visible_count();
    }
 
-   tab::tab(sp(::application) papp) :
+   tab::tab(sp(base_application) papp) :
       element(papp),
       place_holder_container(papp),
       m_dcextension(papp)
@@ -1426,7 +1426,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE  , pinterface, this, &tab::_001OnMouseLeave);
       IGUI_WIN_MSG_LINK(WM_CREATE      , pinterface, this, &tab::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_USER + 1342 , pinterface, this, &tab::_011OnCreate);
-      IGUI_WIN_MSG_LINK(::ca2::application::APPM_LANGUAGE, pinterface, this, &tab::_001OnAppLanguage);
+      IGUI_WIN_MSG_LINK(application::APPM_LANGUAGE, pinterface, this, &tab::_001OnAppLanguage);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tab::_001OnTimer);
    }
 
@@ -1451,7 +1451,7 @@ namespace user
    {
    }
 
-   tab::pane::pane(sp(::application) papp) :
+   tab::pane::pane(sp(base_application) papp) :
       element(papp),
       m_istrTitleEx(papp)
    {
@@ -1496,7 +1496,7 @@ namespace user
    }
 
 
-   tab::pane_array::pane_array(sp(::application) papp) :
+   tab::pane_array::pane_array(sp(base_application) papp) :
       element(papp)
    {
    }

@@ -25,7 +25,7 @@ namespace dynamic_source
       spa(script_instance)                      m_scriptinstanceptra;
 
 
-      script(sp(::application) papp);
+      script(sp(base_application) papp);
       virtual ~script();
 
 
@@ -71,7 +71,7 @@ namespace dynamic_source
 
 
 
-      ds_script(sp(::application) papp);
+      ds_script(sp(base_application) papp);
       ~ds_script();
 
 
@@ -94,7 +94,7 @@ namespace dynamic_source
       string get_stage_path();
 
 
-      ::ca2::application * get_app() const;
+      application * get_app() const;
 
       script_instance * create_instance();
 
@@ -108,7 +108,7 @@ namespace dynamic_source
    public:
 
 
-      t_script(sp(::application) papp) : 
+      t_script(sp(base_application) papp) : 
          element(papp),
          script(papp)
       {

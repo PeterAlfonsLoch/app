@@ -14,7 +14,7 @@ namespace userfs
    public:
 
 
-      tree(sp(::application) papp);
+      tree(sp(base_application) papp);
       virtual ~tree();
 
       virtual void install_message_handling(::ca2::message::dispatch * pdispatch);

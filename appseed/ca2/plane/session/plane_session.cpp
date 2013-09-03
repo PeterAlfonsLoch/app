@@ -70,7 +70,7 @@ namespace plane
 
          m_mapApplication.get_next_assoc(pos, strId, pcaapp);
 
-         sp(::application) papp = (pcaapp);
+         sp(base_application) papp = (pcaapp);
 
          papp->post_thread_message(WM_QUIT);
       }
@@ -92,7 +92,7 @@ namespace plane
       }
       */
       //      string strId;
-      sp(::application) papp;
+      sp(base_application) papp;
 
 
       //      POSITION pos = m_mapApplication.get_start_position();
@@ -259,20 +259,20 @@ namespace plane
    bool session::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
    {
-      return ::ca2::application::_001OnCmdMsg(pcmdmsg);
+      return application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::ca2::application * session::get_app() const
+   application * session::get_app() const
    {
       return ::plane::application::get_app();
    }
 
    void session::load_string_table()
    {
-      ::ca2::application::load_string_table();
-      ::ca2::application::load_string_table("plane", "");
-      ::ca2::application::load_string_table();
-      ::ca2::application::load_string_table("platform", "");
+      application::load_string_table();
+      application::load_string_table("plane", "");
+      application::load_string_table();
+      application::load_string_table("platform", "");
 
 
    }
@@ -505,7 +505,7 @@ namespace plane
                if(strType.is_empty())
                   strType = "application";
 
-               sp(::application) papp = (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+               sp(base_application) papp = (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
                if(papp == NULL)
                   return;
 
@@ -739,7 +739,7 @@ namespace plane
    */
 
 
-   bool session::open_by_file_extension(const char * pszPathName, ::ca2::application_bias * pbiasCreate)
+   bool session::open_by_file_extension(const char * pszPathName, application_bias * pbiasCreate)
    {
 
       sp(create_context) cc(allocer());
@@ -988,7 +988,7 @@ alt1:
       request_file(m_varTopicFile);
    }
 
-   /*void session::request_application(const char * pszId, var varFile, var varQuery, ::ca2::application_bias * pbiasCreate)
+   /*void session::request_application(const char * pszId, var varFile, var varQuery, application_bias * pbiasCreate)
    {
 
    ::ca2::application_request request;
@@ -1003,9 +1003,9 @@ alt1:
 
    }*/
    /*
-   sp(::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca2::application_bias * pbiasCreate)
+   sp(::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
-   sp(::application) papp = NULL;
+   sp(base_application) papp = NULL;
 
    if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
    return papp;
@@ -1379,7 +1379,7 @@ alt1:
 
 
 
-   void session::on_app_request_bergedge_callback(sp(::application) papp)
+   void session::on_app_request_bergedge_callback(sp(base_application) papp)
    {
       if(&App(papp) != NULL)
       {
@@ -1505,7 +1505,7 @@ alt1:
    }
 
 
-   /*void session::request_application(const char * pszId, var varFile, var varQuery, ::ca2::application_bias * pbiasCreate)
+   /*void session::request_application(const char * pszId, var varFile, var varQuery, application_bias * pbiasCreate)
    {
 
    ::ca2::application_request request;
@@ -1520,9 +1520,9 @@ alt1:
 
    }*/
 
-   sp(::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca2::application_bias * pbiasCreate)
+   sp(::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
-      sp(::application) papp = NULL;
+      sp(base_application) papp = NULL;
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
          return papp;
@@ -1736,7 +1736,7 @@ alt1:
    void session::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
-      sp(::application) papp = NULL;
+      sp(base_application) papp = NULL;
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {

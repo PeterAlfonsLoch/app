@@ -5,7 +5,7 @@ namespace ca2
 {
 
 
-   file_exception::file_exception(sp(::application) papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
+   file_exception::file_exception(sp(base_application) papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp),

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-file_operation::file_operation(sp(::application) papp) :
+file_operation::file_operation(sp(base_application) papp) :
    element(papp),
    m_fileSrc(allocer()),
    m_fileDst(allocer())

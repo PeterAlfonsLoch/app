@@ -5,7 +5,7 @@ namespace draw2d_cairo
 {
 
 
-   bitmap::bitmap(sp(::application) papp) :
+   bitmap::bitmap(sp(base_application) papp) :
       element(papp)
    {
 

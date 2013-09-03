@@ -25,7 +25,7 @@ file_size_table::get_fs_size & file_size_table::get_fs_size::operator = (const g
 }
 
 
-file_size_table::file_size_table(sp(::application) papp) :
+file_size_table::file_size_table(sp(base_application) papp) :
    element(papp)
 {
    m_hmap = NULL;
@@ -88,7 +88,7 @@ file_size_table::item::item()
    m_pitemParent = NULL;
 }
 
-void file_size_table::item::ls(sp(::application) papp, index & iIteration)
+void file_size_table::item::ls(sp(base_application) papp, index & iIteration)
 {
    if(m_bDir)
    {
@@ -150,7 +150,7 @@ string file_size_table::item::path()
       return m_pitemParent->path() + "\\" + m_strName;
 }
 
-file_size_table::item * file_size_table::item::FindItem(sp(::application) papp, const char * pszPath, index & iIteration)
+file_size_table::item * file_size_table::item::FindItem(sp(base_application) papp, const char * pszPath, index & iIteration)
 {
    string strName;
    string strPath(pszPath);
@@ -178,7 +178,7 @@ file_size_table::item * file_size_table::item::FindItem(sp(::application) papp, 
 }
 
 
-index file_size_table::item::FindName(sp(::application) papp, const char * pszName, index & iIteration)
+index file_size_table::item::FindName(sp(base_application) papp, const char * pszName, index & iIteration)
 {
    if(m_bPendingLs)
    {
@@ -192,7 +192,7 @@ index file_size_table::item::FindName(sp(::application) papp, const char * pszNa
    return -1;
 }
 
-void file_size_table::item::update_size(sp(::application) papp, index & iIteration)
+void file_size_table::item::update_size(sp(base_application) papp, index & iIteration)
 {
    UNREFERENCED_PARAMETER(papp);
    UNREFERENCED_PARAMETER(iIteration);
@@ -212,7 +212,7 @@ void file_size_table::item::update_size(sp(::application) papp, index & iIterati
 
 }
 
-void file_size_table::item::update_size_recursive(sp(::application) papp, index & iIteration)
+void file_size_table::item::update_size_recursive(sp(base_application) papp, index & iIteration)
 {
    if(m_bPendingLs)
    {
@@ -229,7 +229,7 @@ void file_size_table::item::update_size_recursive(sp(::application) papp, index 
 
 
 
-DBFileSystemSizeSet::DBFileSystemSizeSet(sp(::application) papp) :
+DBFileSystemSizeSet::DBFileSystemSizeSet(sp(base_application) papp) :
    element(papp), m_table(papp)
 {
    m_iMaxIteration = 230;
@@ -327,7 +327,7 @@ bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, b
    return true;
 }
 
-FileSystemSizeWnd::FileSystemSizeWnd(sp(::application) papp) :
+FileSystemSizeWnd::FileSystemSizeWnd(sp(base_application) papp) :
    element(papp),
    ::ca2::window_sp(papp)
 {
@@ -513,7 +513,7 @@ void FileSystemSizeWnd::_001OnTimer(signal_details * pobj)
 
 }
 
-FileSystemSizeServerThread::FileSystemSizeServerThread(sp(::application) papp) :
+FileSystemSizeServerThread::FileSystemSizeServerThread(sp(base_application) papp) :
    element(papp),
    thread(papp)
 {

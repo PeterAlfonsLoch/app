@@ -22,9 +22,9 @@ namespace primitive
 
    public:
 
-      memory_container(sp(::application) papp);
-      memory_container(sp(::application) papp, void * pMemory, memory_size dwSize);
-      memory_container(sp(::application) papp, memory_base * pmemory);
+      memory_container(sp(base_application) papp);
+      memory_container(sp(base_application) papp, void * pMemory, memory_size dwSize);
+      memory_container(sp(base_application) papp, memory_base * pmemory);
       memory_container(const memory_container & container);
       virtual ~memory_container();
 

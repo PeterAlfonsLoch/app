@@ -12,7 +12,7 @@ namespace ca2
    public:
 
 
-      os(sp(::application) papp);
+      os(sp(base_application) papp);
       virtual ~os();
 
 

@@ -9,16 +9,16 @@ namespace ca2
    public:
 
 
-      bool ungz(sp(::application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed);
-      bool gz(sp(::application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed);
+      bool ungz(sp(base_application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed);
+      bool gz(sp(base_application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed);
 
       bool ungz(::file::writer & ostreamUncompressed, const char * lpcszGzFileCompressed);
       bool gz(::file::writer & ostreamGzFileCompressed, const char * lpcszUncompressed);
 
       bool ungz(::primitive::memory_file & memoryfile);
 
-      bool unbz(sp(::application) papp, const char * lpcszUncompressed, const char * lpcszBzFileCompressed);
-      bool bz(sp(::application) papp, const char * lpcszBzFileCompressed, const char * lpcszUncompressed);
+      bool unbz(sp(base_application) papp, const char * lpcszUncompressed, const char * lpcszBzFileCompressed);
+      bool bz(sp(base_application) papp, const char * lpcszBzFileCompressed, const char * lpcszUncompressed);
 
       bool unbz(::file::writer & ostreamUncompressed, const char * lpcszBzFileCompressed);
       bool bz(::file::writer & ostreamBzFileCompressed, const char * lpcszUncompressed);
@@ -32,11 +32,11 @@ namespace ca2
       bool null(::file::writer & ostream, ::file::reader & istream);
 
 
-      void extract_all(const char * pszFile, sp(::application) papp);
+      void extract_all(const char * pszFile, sp(base_application) papp);
 
 
-      void zip(const char * pszZip, const char * psz, sp(::application) papp);
-      void zip(const char * psz, sp(::application) papp);
+      void zip(const char * pszZip, const char * psz, sp(base_application) papp);
+      void zip(const char * psz, sp(base_application) papp);
 
 
       friend class application;

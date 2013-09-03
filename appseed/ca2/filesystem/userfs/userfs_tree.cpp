@@ -5,7 +5,7 @@ namespace userfs
 {
 
 
-   tree::tree(sp(::application) papp) :
+   tree::tree(sp(base_application) papp) :
       element(papp),
       ::user::scroll_view(papp),
       ::userfs::tree_interface(papp)

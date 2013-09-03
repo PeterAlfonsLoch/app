@@ -5,7 +5,7 @@ namespace primitive
 {
 
 
-   memory_file::memory_file(sp(::application) papp, ::primitive::memory_size iSize) :
+   memory_file::memory_file(sp(base_application) papp, ::primitive::memory_size iSize) :
       element(papp),
       memory_container (papp)
    {
@@ -20,7 +20,7 @@ namespace primitive
    }
 
 
-   memory_file::memory_file(sp(::application) papp, void * pMemory, ::primitive::memory_size dwSize) :
+   memory_file::memory_file(sp(base_application) papp, void * pMemory, ::primitive::memory_size dwSize) :
       element(papp),
       memory_container(papp, pMemory, dwSize)
    {
@@ -30,7 +30,7 @@ namespace primitive
    }
 
 
-   memory_file::memory_file(sp(::application) papp, const memory_file & memoryfile) :
+   memory_file::memory_file(sp(base_application) papp, const memory_file & memoryfile) :
       element(papp),
       memory_container (papp, ((memory_file &) memoryfile).get_memory())
    {
@@ -40,7 +40,7 @@ namespace primitive
    }
 
 
-   memory_file::memory_file(sp(::application) papp, memory_base * pmemory) :
+   memory_file::memory_file(sp(base_application) papp, memory_base * pmemory) :
       element(papp),
       memory_container (papp, pmemory)
    {

@@ -23,7 +23,7 @@ namespace ca2
    public:
 
 
-      history(sp(::application) papp);
+      history(sp(base_application) papp);
          
    
       virtual bool hist(const char *psz);

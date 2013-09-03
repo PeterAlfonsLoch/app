@@ -9,7 +9,7 @@
 namespace user
 {
 
-   document_template::document_template(sp(::application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
+   document_template::document_template(sp(base_application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
       element(papp)
    {
 

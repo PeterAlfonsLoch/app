@@ -5,7 +5,7 @@
 namespace filemanager
 {
 
-   SimplePreview::SimplePreview(sp(::application) papp) :
+   SimplePreview::SimplePreview(sp(base_application) papp) :
       element(papp),
       
       SimplePreviewInterface(papp)

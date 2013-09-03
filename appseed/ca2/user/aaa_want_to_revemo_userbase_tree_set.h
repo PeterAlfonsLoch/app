@@ -16,7 +16,7 @@ namespace user
       databaseuser::list_data          m_datainterface;
 
 
-      tree_view(::ca2::application * papp);
+      tree_view(application * papp);
       virtual ~tree_view();
 
       virtual void _017OpenFolder(FileManagerItem & item);

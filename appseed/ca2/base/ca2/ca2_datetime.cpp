@@ -6,7 +6,7 @@ namespace ca2
 
 
 
-   datetime::datetime(sp(::application) papp) :
+   datetime::datetime(sp(base_application) papp) :
       element(papp),
       m_international(papp),
       m_str(papp)
@@ -95,7 +95,7 @@ namespace ca2
       return val.get_time().get_time();
    }
 
-   datetime::international::international(sp(::application) papp) :
+   datetime::international::international(sp(base_application) papp) :
       element(papp)
    {
    }
@@ -196,7 +196,7 @@ namespace ca2
       return get_local_date_time(time);
    }
 
-   datetime::str::str(sp(::application) papp)
+   datetime::str::str(sp(base_application) papp)
    {
       UNREFERENCED_PARAMETER(papp);
       m_pdatetime = NULL;

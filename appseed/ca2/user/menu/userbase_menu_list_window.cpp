@@ -7,7 +7,7 @@ namespace user
    const int32_t g_base_menu_indent = 11;
 
 
-   menu_list_window::menu_list_window(sp(::application) papp) :
+   menu_list_window::menu_list_window(sp(base_application) papp) :
       element(papp),
       
       menu_base(papp),
@@ -22,7 +22,7 @@ namespace user
       m_bAutoClose         = true;
    }
 
-   menu_list_window::menu_list_window(sp(::application) papp, menu_item * pitem) :
+   menu_list_window::menu_list_window(sp(base_application) papp, menu_item * pitem) :
       element(papp),
       
       menu_base(papp),

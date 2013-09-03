@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-string_to_string_map::string_to_string_map(sp(::application) papp, int_ptr nBlockSize) :
+string_to_string_map::string_to_string_map(sp(base_application) papp, int_ptr nBlockSize) :
    element(papp),
    base_string_to_string_map(papp,  nBlockSize)
 {

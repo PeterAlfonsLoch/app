@@ -47,7 +47,7 @@ namespace user
          sp(::user::place_holder)    m_pholder;
 
 
-         Pane(sp(::application) papp);
+         Pane(sp(base_application) papp);
 
 
       };
@@ -65,7 +65,7 @@ namespace user
       int32_t                                      m_cyBorder;
 
 
-      split_layout(sp(::application) papp);
+      split_layout(sp(base_application) papp);
       virtual ~split_layout();
 
 

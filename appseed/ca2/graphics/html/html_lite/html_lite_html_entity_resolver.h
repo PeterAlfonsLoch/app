@@ -47,7 +47,7 @@ private:
    class CharEntityRefs : public string_map < char, char >
    {
    public:
-      CharEntityRefs(::ca2::application * papp);
+      CharEntityRefs(application * papp);
    };
 
    CharEntityRefs m_CharEntityRefs;
@@ -55,7 +55,7 @@ private:
 
 // Constructors
 public:
-   LiteHTMLEntityResolver(::ca2::application * papp) : m_CharEntityRefs(papp)  { }
+   LiteHTMLEntityResolver(application * papp) : m_CharEntityRefs(papp)  { }
 
 // Operations
 public:

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-   command::command(sp(::application) papp) :
+   command::command(sp(base_application) papp) :
       element(papp)
    {
    }

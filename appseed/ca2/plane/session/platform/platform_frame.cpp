@@ -5,7 +5,7 @@ namespace platform
 {
 
 
-   frame::frame(sp(::application) papp) :
+   frame::frame(sp(base_application) papp) :
       element(papp),
       simple_frame_window(papp),
       form_frame(papp)

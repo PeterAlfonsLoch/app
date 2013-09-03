@@ -14,7 +14,7 @@ namespace user
       bool           m_bPlacing;
       
       
-      main_frame(sp(::application) papp);
+      main_frame(sp(base_application) papp);
       virtual ~main_frame();
 
       virtual void install_message_handling(::ca2::message::dispatch * pinterface);

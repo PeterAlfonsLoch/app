@@ -30,7 +30,7 @@
    { \
     friend class translator; \
    protected: \
-   name (sp(::application) papp, EXCEPTION_POINTERS * ppointers) : \
+   name (sp(base_application) papp, EXCEPTION_POINTERS * ppointers) : \
       element(papp), \
       ::call_stack(papp), \
       ::exception::base(papp), \
@@ -88,7 +88,7 @@ public:
 
 
 #ifdef WINDOWS
-   standard_exception(sp(::application) papp, EXCEPTION_POINTERS * ppointers) :
+   standard_exception(sp(base_application) papp, EXCEPTION_POINTERS * ppointers) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp),
@@ -109,7 +109,7 @@ public:
    }
 
 #else
-   standard_exception(sp(::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+   standard_exception(sp(base_application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp),
@@ -160,7 +160,7 @@ namespace exception
       friend class translator;
    protected:
    #if defined(ANDROID)
-      standard_access_violation (sp(::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
+      standard_access_violation (sp(base_application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
          element(papp),
          ::call_stack(papp),
          ::exception::base(papp),
@@ -168,7 +168,7 @@ namespace exception
          {}
    public:
    #elif defined(LINUX) || defined(MACOS)
-      standard_access_violation (sp(::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
+      standard_access_violation (sp(base_application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
          element(papp),
 #ifdef LINUX
 #ifdef _LP64
@@ -196,7 +196,7 @@ namespace exception
                  itohex_dup(info->si_addr) + " from " + itohex_dup(caller_address) + "\n\n";*/
 
    #else
-      standard_access_violation (sp(::application) papp, EXCEPTION_POINTERS * ppointers) :
+      standard_access_violation (sp(base_application) papp, EXCEPTION_POINTERS * ppointers) :
          element(papp),
          ::call_stack(papp),
          ::exception::base(papp),
@@ -213,7 +213,7 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_sigfpe (sp(::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+      standard_sigfpe (sp(base_application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
          element(papp),
       ::call_stack(papp),
          ::exception::base(papp),
@@ -229,7 +229,7 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_sigfpe (sp(::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+      standard_sigfpe (sp(base_application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
          element(papp),
 #ifdef LINUX
 #ifdef _LP64
@@ -260,7 +260,7 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_no_memory (sp(::application) papp, EXCEPTION_POINTERS * ppointers) :
+      standard_no_memory (sp(base_application) papp, EXCEPTION_POINTERS * ppointers) :
          element(papp),
          ::call_stack(papp),
          ::exception::base(papp),
@@ -326,7 +326,7 @@ private:
 {
    friend class translator;
 protected:
-   standard_sigsegv (sp(::application) papp, siginfo_t * psiginfo, void * pc) : element(papp), standard_exception(papp, psiginfo, pc) {}
+   standard_sigsegv (sp(base_application) papp, siginfo_t * psiginfo, void * pc) : element(papp), standard_exception(papp, psiginfo, pc) {}
 public:
    //bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
    //uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -336,7 +336,7 @@ public:
 {
    friend class translator;
 protected:
-   standard_sigfpe (sp(::application) papp, siginfo_t * psiginfo, void * pc) : element(papp), standard_exception(papp, psiginfo, pc) {}
+   standard_sigfpe (sp(base_application) papp, siginfo_t * psiginfo, void * pc) : element(papp), standard_exception(papp, psiginfo, pc) {}
 public:
 //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
   // uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-wait_cursor::wait_cursor(sp(::application) papp) :
+wait_cursor::wait_cursor(sp(base_application) papp) :
    element(papp)
    { System.BeginWaitCursor(); }
  wait_cursor::~wait_cursor()

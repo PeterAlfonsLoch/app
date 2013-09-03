@@ -24,3 +24,6 @@ class string_array;
 
 #include "str_hex.h"
 
+#include "str_istring.h"
+
+

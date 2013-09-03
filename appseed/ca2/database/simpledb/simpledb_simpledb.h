@@ -28,7 +28,7 @@ namespace simpledb
       db_server   *  m_pserver;
 
 
-      simpledb(::ca2::application * papp);
+      simpledb(application * papp);
       virtual ~simpledb();
 
       virtual bool initialize2();

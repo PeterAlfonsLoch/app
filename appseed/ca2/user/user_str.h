@@ -74,7 +74,7 @@ namespace user
       
 
 
-      str(sp(::application) papp);
+      str(sp(base_application) papp);
 
 
       inline str_locale * get_locale(const ::id & idLocale)
@@ -133,7 +133,7 @@ namespace user
       
 
 
-      str_context(sp(::application) papp);
+      str_context(sp(base_application) papp);
       virtual ~str_context();
 
 

@@ -16,10 +16,10 @@ namespace primitive
    public:
    
 
-      memory_file(sp(::application) papp, ::primitive::memory_size iSize = 0);
-      memory_file(sp(::application) papp, void * pMemory, ::primitive::memory_size dwSize);
-      memory_file(sp(::application) papp, const memory_file & memoryfile);
-      memory_file(sp(::application) papp, memory_base * pmemory);
+      memory_file(sp(base_application) papp, ::primitive::memory_size iSize = 0);
+      memory_file(sp(base_application) papp, void * pMemory, ::primitive::memory_size dwSize);
+      memory_file(sp(base_application) papp, const memory_file & memoryfile);
+      memory_file(sp(base_application) papp, memory_base * pmemory);
       virtual ~memory_file();
 
 

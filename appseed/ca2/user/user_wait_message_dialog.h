@@ -9,7 +9,7 @@ public:
    string      m_strResponse;
 
 
-   wait_message_dialog(sp(::application) papp);
+   wait_message_dialog(sp(base_application) papp);
    virtual ~wait_message_dialog();
 
    virtual void on_show(const char * pszMatter, property_set & propertyset);

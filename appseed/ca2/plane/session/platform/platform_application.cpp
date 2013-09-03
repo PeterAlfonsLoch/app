@@ -69,10 +69,10 @@ namespace platform
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
    {
-      return ::ca2::application::_001OnCmdMsg(pcmdmsg);
+      return application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::ca2::application * application::get_app() const
+   application * application::get_app() const
    {
       return m_papp;
    }

@@ -34,7 +34,7 @@ namespace lemon
    class CLASS_DECL_c array  : virtual public object
    {
    public:
-      array(sp(::application) papp);
+      array(sp(base_application) papp);
 
       template < class A >
       void randomize(A & a)

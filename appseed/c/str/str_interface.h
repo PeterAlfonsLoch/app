@@ -12,7 +12,7 @@ class istring;
 
 
 class CLASS_DECL_c string_interface :
-   virtual public ::ca::ca
+   virtual public root
 {
 public:
 

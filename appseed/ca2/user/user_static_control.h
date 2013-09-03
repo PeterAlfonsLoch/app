@@ -30,7 +30,7 @@ namespace user
       e_type                         m_etype;
 
 
-      static_control(sp(::application) papp);
+      static_control(sp(base_application) papp);
       virtual ~static_control();
 
 

@@ -5,7 +5,7 @@ namespace colorertake5
 {
 
 
-   colorertake5::colorertake5(::ca2::application * papp) :
+   colorertake5::colorertake5(application * papp) :
       element(papp),
       ::departament(papp)
    {

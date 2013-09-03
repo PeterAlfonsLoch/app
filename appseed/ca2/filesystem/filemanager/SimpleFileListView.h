@@ -36,7 +36,7 @@ namespace filemanager
 
 
 
-      SimpleFileListView(sp(::application) papp);
+      SimpleFileListView(sp(base_application) papp);
 
 
 

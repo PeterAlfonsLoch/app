@@ -5,7 +5,7 @@ namespace ca2
 {
 
 
-   job::job(sp(::application) papp) :
+   job::job(sp(base_application) papp) :
       element(papp)
    {
       m_bCancel = false;

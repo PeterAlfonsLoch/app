@@ -115,7 +115,7 @@ namespace file
       if(m_spwriter.is_set())
       {
          //m_spwriter->close();
-         ::ca::release(m_spwriter.m_p);
+         ::release(m_spwriter.m_p);
       }
    }
 

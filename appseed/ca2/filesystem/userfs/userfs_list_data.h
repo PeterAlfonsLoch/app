@@ -21,7 +21,7 @@ namespace userfs
 
 
 
-      list_data(sp(::application) papp);
+      list_data(sp(base_application) papp);
       virtual ~list_data();
 
       void update();

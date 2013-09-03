@@ -26,7 +26,7 @@ element::element(const element & o) :
 }
 
 
-element::element(sp(::application) papp) :
+element::element(sp(base_application) papp) :
    m_papp(papp)
 {
 
@@ -50,7 +50,7 @@ sp(::application) element::get_app() const
 }
 
 
-void element::set_app(sp(::application) papp)
+void element::set_app(sp(base_application) papp)
 {
 
    m_papp = papp;
@@ -118,7 +118,7 @@ sp(element) element::clone()
 }
 
 
-allocatorsp::allocatorsp(sp(::application) papp)
+allocatorsp::allocatorsp(sp(base_application) papp)
 {
 
    sp(allocator) spallocator = canew(allocator());

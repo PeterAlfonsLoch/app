@@ -22,7 +22,7 @@ namespace ca2
       sp(image_list)                      m_pimagelist;
 
 
-      tree_data(sp(::application) papp);
+      tree_data(sp(base_application) papp);
       virtual ~tree_data();
 
 

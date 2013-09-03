@@ -14,7 +14,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca2 tree_item_data :
-      virtual public ::ca::ca
+      virtual public root
    {
    public:
 

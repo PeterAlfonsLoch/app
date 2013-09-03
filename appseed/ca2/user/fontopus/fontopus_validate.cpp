@@ -35,7 +35,7 @@ typedef string ( *SALT)(sp(::application), const char * , stringa &);
 namespace fontopus
 {
 
-   validate::validate(sp(::application) papp, const char * pszForm, bool bAuth, bool bInteractive) :
+   validate::validate(sp(base_application) papp, const char * pszForm, bool bAuth, bool bInteractive) :
       element(papp),
       m_loginthread(papp),
       m_netcfg(papp)
@@ -399,7 +399,7 @@ namespace fontopus
 
 
 
-   login_thread::login_thread(sp(::application) papp) :
+   login_thread::login_thread(sp(base_application) papp) :
       element(papp),
       thread(papp),
       simple_thread(papp)
@@ -651,7 +651,7 @@ namespace fontopus
 
       m_strFontopusServer.Empty();
 
-      sp(::application) papp = get_app();
+      sp(base_application) papp = get_app();
 
       url_domain domainFontopus;
 

@@ -30,7 +30,7 @@ namespace ca2
          comparable_array < id >    m_idaSchema;
 
 
-         locale_schema(sp(::application) papp);
+         locale_schema(sp(base_application) papp);
          locale_schema(const locale_schema & ls);
          virtual ~locale_schema();
 

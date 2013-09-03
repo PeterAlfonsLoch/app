@@ -54,7 +54,7 @@ namespace draw2d_direct2d
    }
 
 
-   object * object_allocator(::ca2::application * papp, HANDLE h)
+   object * object_allocator(application * papp, HANDLE h)
    {
       /*switch(::GetObjectType(h))
       {
@@ -75,7 +75,7 @@ namespace draw2d_direct2d
       return NULL;
    }
 
-   /*object* object::from_handle(::ca2::application * papp, HGDIOBJ h)
+   /*object* object::from_handle(application * papp, HGDIOBJ h)
    {
       hgdiobj_map* pMap = afxMapHGDIOBJ(TRUE); //create ::map if not exist
       ASSERT(pMap != NULL);

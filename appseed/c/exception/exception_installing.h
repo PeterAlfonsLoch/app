@@ -10,7 +10,7 @@ class CLASS_DECL_c installing_exception :
 public:
 
 
-   installing_exception(sp(::application) papp, const char * pszTip = NULL);
+   installing_exception(sp(base_application) papp, const char * pszTip = NULL);
    installing_exception(const installing_exception & e);
    virtual ~installing_exception();
 

@@ -601,7 +601,7 @@ public:
    bool getenv(const char * pszVar);
 
    // Load the string from resource 'nID'
-   bool load_string(sp(::application) papp, id id);
+   bool load_string(sp(base_application) papp, id id);
 
    // Load the string from resource 'nID' in module 'hInstance'
    /*    bool load_string(HINSTANCE hInstance,strsize nID )
@@ -912,7 +912,7 @@ namespace str
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
 #include "c/x/x_charcategory.h"
-#include "c/ca2/ca2_bit.h"
+#include "c/primitive/primitive_bit.h"
 #include "c/collection/collection_bit_array.h"
 
 

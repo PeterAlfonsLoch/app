@@ -59,7 +59,7 @@ public:
 
 
 
-   command_line(sp(::application) papp);
+   command_line(sp(base_application) papp);
    ~command_line();
 
    void common_construct();

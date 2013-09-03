@@ -10,7 +10,7 @@ namespace nature
       virtual public object
    {
    public:
-      database(sp(::application) papp);
+      database(sp(base_application) papp);
       virtual ~database();
 
       bool                    m_bInitialized;

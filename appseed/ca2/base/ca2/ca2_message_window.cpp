@@ -7,7 +7,7 @@ namespace ca2
    {
    }
 
-   message_window_simple_callback::message_window_simple_callback(sp(::application) papp) :
+   message_window_simple_callback::message_window_simple_callback(sp(base_application) papp) :
       element(papp)
    {
    }
@@ -16,7 +16,7 @@ namespace ca2
    {
    }
 
-   bool message_window_simple_callback::initialize_message_window(sp(::application) papp, const char * pszName)
+   bool message_window_simple_callback::initialize_message_window(sp(base_application) papp, const char * pszName)
    {
 
       set_app(papp);

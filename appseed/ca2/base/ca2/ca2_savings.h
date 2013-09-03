@@ -17,7 +17,7 @@ namespace ca2
       virtual public object
    {
    public:
-      savings(sp(::application) papp);
+      savings(sp(base_application) papp);
       virtual ~savings();
 
       flags_ex < e_resource > m_eresourceflagsShouldSave;

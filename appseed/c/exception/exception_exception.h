@@ -6,7 +6,7 @@ namespace exception
 
 
    class CLASS_DECL_c exception :
-      virtual public base
+      virtual public root
    {
    public:
 

@@ -5,7 +5,7 @@ namespace uinteraction
 {
 
 
-   interaction::interaction(sp(::application) papp) :
+   interaction::interaction(sp(base_application) papp) :
       element(papp)
    {
    }

@@ -7,7 +7,7 @@
 namespace ca2
 {
 
-   process_section::process_section(::ca2::application * papp) :
+   process_section::process_section(application * papp) :
       element(papp),
       ::departament(papp)
    {
@@ -98,7 +98,7 @@ namespace ca2
 
    }
 
-   process_section::process_thread::process_thread(sp(::application) papp) :
+   process_section::process_thread::process_thread(sp(base_application) papp) :
       element(papp),
       thread(papp),
       simple_thread(papp),

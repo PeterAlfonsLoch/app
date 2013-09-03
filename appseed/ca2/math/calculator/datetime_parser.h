@@ -15,7 +15,7 @@ namespace datetime
       spa(element)                  m_elementa;
 
 
-      parser(sp(::application) papp, ::user::str_context * pcontext);
+      parser(sp(base_application) papp, ::user::str_context * pcontext);
       virtual ~parser();
 
 

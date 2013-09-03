@@ -69,7 +69,7 @@ namespace exception
 
 
 
-      engine(sp(::application) papp);
+      engine(sp(base_application) papp);
       ~engine();
 
 

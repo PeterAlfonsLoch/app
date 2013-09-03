@@ -12,7 +12,7 @@ namespace xml
    public:
 
 
-      data(sp(::application) papp, ::xml::parse_info * pparseinfo = NULL);
+      data(sp(base_application) papp, ::xml::parse_info * pparseinfo = NULL);
       virtual ~data();
 
 

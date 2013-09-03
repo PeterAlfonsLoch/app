@@ -26,7 +26,7 @@
  */
 #include "framework.h"
 
-LiteHTMLEntityResolver::CharEntityRefs::CharEntityRefs(::ca2::application * papp) :
+LiteHTMLEntityResolver::CharEntityRefs::CharEntityRefs(application * papp) :
    string_map < char, char >(papp, 55)
 {
    /** C0 Controls and Basic Latin */

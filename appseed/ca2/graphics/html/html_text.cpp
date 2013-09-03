@@ -9,7 +9,7 @@ namespace html
    {
 
 
-      text::text(sp(::application) papp) :
+      text::text(sp(base_application) papp) :
          element(papp),
          user::scroll_view(papp),
          user::edit_plain_text(papp)

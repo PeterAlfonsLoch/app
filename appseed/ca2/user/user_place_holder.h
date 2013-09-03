@@ -15,7 +15,7 @@ namespace user
       interaction_ptr_array  m_uiptraHold;
 
 
-      place_holder(sp(::application) papp);
+      place_holder(sp(base_application) papp);
       virtual ~place_holder();
 
 

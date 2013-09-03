@@ -26,7 +26,7 @@ namespace sockets
 {
 
 
-   ipv6_address::ipv6_address(sp(::application) papp, port_t port) :
+   ipv6_address::ipv6_address(sp(base_application) papp, port_t port) :
       element(papp),
       m_bValid(true)
    {
@@ -36,7 +36,7 @@ namespace sockets
    }
 
 
-   ipv6_address::ipv6_address(sp(::application) papp, const in6_addr& a,port_t port) :
+   ipv6_address::ipv6_address(sp(base_application) papp, const in6_addr& a,port_t port) :
       element(papp),
       m_bValid(true)
    {
@@ -56,7 +56,7 @@ namespace sockets
    }
 
 
-   ipv6_address::ipv6_address(sp(::application) papp, const string & host, port_t port) :
+   ipv6_address::ipv6_address(sp(base_application) papp, const string & host, port_t port) :
       element(papp),
       m_bValid(false)
    {
@@ -74,7 +74,7 @@ namespace sockets
    }
 
 
-   ipv6_address::ipv6_address(sp(::application) papp, const sockaddr_in6 & sa) :
+   ipv6_address::ipv6_address(sp(base_application) papp, const sockaddr_in6 & sa) :
       element(papp)
    {
       m_addr = sa;
@@ -112,7 +112,7 @@ namespace sockets
    }
 
 
-/*   bool ipv6_address::Resolve(sp(::application) papp, const string & hostname,struct in6_addr& a)
+/*   bool ipv6_address::Resolve(sp(base_application) papp, const string & hostname,struct in6_addr& a)
    {
       if(Sys(papp->m_psystem).net().isipv6(hostname))
       {
@@ -126,7 +126,7 @@ namespace sockets
    }
 
 
-   bool ipv6_address::Reverse(sp(::application) papp, in6_addr& a,string & name)
+   bool ipv6_address::Reverse(sp(base_application) papp, in6_addr& a,string & name)
    {
       struct sockaddr_in6 sa;
       memset(&sa, 0, sizeof(sa));
@@ -144,7 +144,7 @@ namespace sockets
    }*/
 
 
-/*   string ipv6_address::Convert(sp(::application) papp, struct in6_addr& a,bool mixed)
+/*   string ipv6_address::Convert(sp(base_application) papp, struct in6_addr& a,bool mixed)
    {
       char slask[100]; // l2ip temporary
       *slask = 0;

@@ -23,7 +23,7 @@ namespace usermail
          stringa   m_straId;
 
 
-         data(sp(::application) papp);
+         data(sp(base_application) papp);
 
          void update();
 

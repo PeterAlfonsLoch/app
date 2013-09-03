@@ -298,7 +298,7 @@ public:
 
 
 
-   array(sp(::application) papp = NULL, ::count nGrowBy = 32);
+   array(sp(base_application) papp = NULL, ::count nGrowBy = 32);
    array(const array <TYPE, ARG_TYPE> & a);
    array(::count n);
    array(ARG_TYPE t, ::count n = 1);

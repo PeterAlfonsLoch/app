@@ -7,8 +7,8 @@ class CLASS_DECL_c invalid_argument_exception :
 public:
 
 
-   invalid_argument_exception(sp(::application) papp);
-   invalid_argument_exception(sp(::application) papp, const char * pszMessage);
+   invalid_argument_exception(sp(base_application) papp);
+   invalid_argument_exception(sp(base_application) papp, const char * pszMessage);
    virtual ~invalid_argument_exception();
 
 

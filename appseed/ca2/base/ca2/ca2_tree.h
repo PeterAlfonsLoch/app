@@ -22,7 +22,7 @@ namespace ca2
       sp(tree_item)              m_pitemHover;
 
 
-      tree(sp(::application) papp);
+      tree(sp(base_application) papp);
       virtual ~tree();
 
 

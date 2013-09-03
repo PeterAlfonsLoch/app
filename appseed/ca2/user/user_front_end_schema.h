@@ -15,14 +15,14 @@ namespace user
       class CLASS_DECL_ca2 system_menu
       {
       public:
-         system_menu(sp(::application) papp);
+         system_menu(sp(base_application) papp);
          ::draw2d::font_sp    m_fontMarlett;
       };
 
       class CLASS_DECL_ca2 menu
       {
       public:
-         menu(sp(::application) papp);
+         menu(sp(base_application) papp);
          ~menu();
          ::draw2d::font_sp     m_font;
          button *          m_pschemaSysMenuButton;
@@ -33,7 +33,7 @@ namespace user
       class CLASS_DECL_ca2 button
       {
       public:
-         button(sp(::application) papp);
+         button(sp(base_application) papp);
          COLORREF          m_crTextNormal;
          COLORREF          m_crTextHover;
          COLORREF          m_crTextPress;

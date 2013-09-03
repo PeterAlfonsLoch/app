@@ -15,7 +15,7 @@ namespace colorertake5
 
    }
 
-   exception::exception(sp(::application) papp) :
+   exception::exception(sp(base_application) papp) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp)
@@ -23,7 +23,7 @@ namespace colorertake5
 
    }
 
-   exception::exception(sp(::application) papp, const string &msg) :
+   exception::exception(sp(base_application) papp, const string &msg) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp)
@@ -38,7 +38,7 @@ namespace colorertake5
       return message;
    };
 
-/*   InputSourceException::InputSourceException(sp(::application) papp)
+/*   InputSourceException::InputSourceException(sp(base_application) papp)
          element(papp),
       ::call_stack(papp),
       ::exception::base(papp)

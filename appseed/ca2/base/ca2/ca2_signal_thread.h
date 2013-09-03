@@ -17,7 +17,7 @@ namespace ca2
       signal_details * m_pobj;
       
       
-      signal_thread(sp(::application) papp,
+      signal_thread(sp(base_application) papp,
          DST * psignalizableDst, void (DST::* pfnDst)(signal_details *), 
          SRC * psignalizableSrc, void (SRC::* pfnSrc)(signal_details *), 
          signal_details * pobj) :
@@ -52,7 +52,7 @@ namespace ca2
    };
 
    template < class DST, class SRC >
-   void emit(sp(::application) papp,
+   void emit(sp(base_application) papp,
       DST * psignalizableDst, void (DST::* pfnDst)(signal_details *), 
       SRC * psignalizableSrc, void (SRC::* pfnSrc)(signal_details *), 
       signal_details * pobj)

@@ -9,7 +9,7 @@ namespace sockets
    {
 
 
-      batch_file::batch_file(sp(::application) papp) :
+      batch_file::batch_file(sp(base_application) papp) :
          element(papp)
       {
 

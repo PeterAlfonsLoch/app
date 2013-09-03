@@ -1,6 +1,6 @@
 #include "framework.h"
 
-simple_tab_view::simple_tab_view(sp(::application) papp) :
+simple_tab_view::simple_tab_view(sp(base_application) papp) :
    element(papp),
    
    ::user::interaction(papp), 

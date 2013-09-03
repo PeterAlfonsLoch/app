@@ -3,7 +3,7 @@
 namespace bergedge
 {
 
-   pane_view::pane_view(sp(::application) papp) :
+   pane_view::pane_view(sp(base_application) papp) :
       element(papp),
       ::user::tab(papp),
       
@@ -199,7 +199,7 @@ namespace bergedge
          if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
 
-            ::ca2::application_bias * pbiasCreate = new ::ca2::application_bias;
+            application_bias * pbiasCreate = new application_bias;
             pbiasCreate->m_puiParent = pcreatordata->m_pholder;
 
             sp(create_context) createcontext(allocer());

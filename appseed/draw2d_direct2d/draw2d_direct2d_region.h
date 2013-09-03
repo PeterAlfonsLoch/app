@@ -17,10 +17,10 @@ namespace draw2d_direct2d
   //    bool                       m_bFill;
       //::draw2d::e_fill_mode          m_efillmode;
 
-      //static region * from_handle(::ca2::application * papp, HRGN hRgn);
+      //static region * from_handle(application * papp, HRGN hRgn);
       //operator HRGN() const;
 
-      region(::ca2::application * papp);
+      region(application * papp);
       virtual ~region();
 
             

@@ -512,7 +512,7 @@ namespace plugin
          else
          {
 
-            ::ca2::application_bias * pbiasCreate = new ::ca2::application_bias;
+            application_bias * pbiasCreate = new application_bias;
             pbiasCreate->m_puiParent = m_puiHost;
             pbiasCreate->m_set["NativeWindowFocus"] = false;
             m_psystem->get_session(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
@@ -562,7 +562,7 @@ namespace plugin
          || ::str::ends_ci(strPluginScript, ".st3"))
          {
             //m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
-            ::ca2::application_bias * pbiasCreate = new ::ca2::application_bias;
+            application_bias * pbiasCreate = new application_bias;
             pbiasCreate->m_puiParent = m_puiHost;
             pbiasCreate->m_set["NativeWindowFocus"] = false;
             m_psystem->get_session(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
@@ -811,7 +811,7 @@ namespace plugin
                         //Sleep(15 * 1000);
    //                     m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
                         xxdebug_box("plugin", "open_ca2_string", 0);
-                        ::ca2::application_bias * pbiasCreate = new ::ca2::application_bias;
+                        application_bias * pbiasCreate = new application_bias;
                         pbiasCreate->m_set["NativeWindowFocus"] = false;
                         pbiasCreate->m_puiParent = m_puiHost;
                         m_psystem->post_fork_uri(str2, pbiasCreate);

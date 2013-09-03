@@ -16,8 +16,8 @@ namespace exception
    public:
 
 
-      base(sp(::application) papp, uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
-      explicit base(sp(::application) papp, bool bAutoDelete, uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
+      base(sp(base_application) papp, uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
+      explicit base(sp(base_application) papp, bool bAutoDelete, uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
       // Implementation (setting m_bAutoDelete to FALSE is advanced)
       virtual ~base();
 

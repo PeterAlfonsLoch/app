@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   document::document(sp(::application) papp) :
+   document::document(sp(base_application) papp) :
       element(papp),
       ::ca2::data_container_base(papp)
    {
@@ -103,7 +103,7 @@ namespace user
    }
 
 
-   void document::on_alloc(sp(::application) papp)
+   void document::on_alloc(sp(base_application) papp)
    {
 
       //::user::document::on_alloc(papp);

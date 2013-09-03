@@ -1,7 +1,7 @@
 #include "framework.h"
 
 /*
-raw_pointer::raw_pointer(sp(::application) papp) :
+raw_pointer::raw_pointer(sp(base_application) papp) :
    element(papp)
 {
 

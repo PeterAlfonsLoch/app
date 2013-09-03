@@ -5,7 +5,7 @@ namespace ca2
 
    CLASS_DECL_ca2 bool window_draw::s_bRunning = false;
 
-   window_draw::window_draw(sp(::application) papp) :
+   window_draw::window_draw(sp(base_application) papp) :
       element(papp),
       ::ca2::thread(papp),
       m_eventFree(papp, TRUE, TRUE)

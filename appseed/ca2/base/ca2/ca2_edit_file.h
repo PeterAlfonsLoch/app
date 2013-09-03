@@ -172,7 +172,7 @@ namespace ca2
 
       void FillFilePosition(sp(Item) pitem);
 
-      edit_file(sp(::application) papp);
+      edit_file(sp(base_application) papp);
       virtual ~edit_file();
 
       virtual bool IsValid() const;

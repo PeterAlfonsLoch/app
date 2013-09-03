@@ -6,7 +6,7 @@ class SimpleToolCmdUI : public cmd_ui        // class private to this file !
 {
 public: // re-implementations only
 
-   SimpleToolCmdUI(sp(::application) papp);
+   SimpleToolCmdUI(sp(base_application) papp);
    virtual void Enable(bool bOn);
    virtual void SetCheck(check::e_check echeck = check::checked);
    virtual void SetText(const char * lpszText);
@@ -37,7 +37,7 @@ public: // re-implementations only
 #define ITEMPADBOTTOM   4
 
 
-simple_toolbar::simple_toolbar(sp(::application) papp) :
+simple_toolbar::simple_toolbar(sp(base_application) papp) :
 element(papp),
    m_dibDraft(allocer())
 {
@@ -859,7 +859,7 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
 
    childs = doc.get_root()->children();
 
-   //   sp(::application) papp = (get_app());
+   //   sp(base_application) papp = (get_app());
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
 
@@ -1559,7 +1559,7 @@ void simple_toolbar::_001OnImageListAttrib()
 /////////////////////////////////////////////////////////////////////////////
 // simple_toolbar idle update through SimpleToolCmdUI class
 
-SimpleToolCmdUI::SimpleToolCmdUI(sp(::application) papp) :
+SimpleToolCmdUI::SimpleToolCmdUI(sp(base_application) papp) :
 element(papp),
    cmd_ui(papp)
 {

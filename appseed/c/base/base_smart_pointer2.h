@@ -62,7 +62,7 @@
    inline smart_pointer < T > ::smart_pointer(T * p)
    {
       m_p = p;
-      ::ca::add_ref(m_p);
+      ::add_ref(m_p);
    }
 
    template < class T >
@@ -75,7 +75,7 @@
    inline smart_pointer < T > ::smart_pointer(void * p)
    {
       m_p = (T *) p;
-      ::ca::add_ref(m_p);
+      ::add_ref(m_p);
    }
 
 
@@ -140,14 +140,14 @@
    template < class T >
    inline smart_pointer < T > ::operator lparam ()
    {
-      ::ca::add_ref(m_p);
+      ::add_ref(m_p);
       return lparam(m_p);
    }
 
    template < class T >
    inline smart_pointer < T > ::operator lparam () const
    {
-      ::ca::add_ref(((smart_pointer *) this)->m_p);
+      ::add_ref(((smart_pointer *) this)->m_p);
       return lparam(m_p);
    }
 
@@ -198,12 +198,12 @@
          T * pOld = m_p;
          if(p != NULL)
          {
-            ::ca::add_ref(p);
+            ::add_ref(p);
          }
          m_p = p;
          if(pOld != NULL)
          {
-            ::ca::release(pOld);
+            ::release(pOld);
          }
       }
       return *this;
@@ -329,7 +329,7 @@
     void smart_pointer <T>::release()
     {
 
-        ::ca::release(m_p);
+        ::release(m_p);
 
     }
 

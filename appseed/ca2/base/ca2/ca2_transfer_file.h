@@ -18,8 +18,8 @@ namespace ca2
       sp(mutex)                     m_spmutex;
 
 
-      transfer_file(sp(::application) papp, mutex * pmutex = NULL);
-      transfer_file(sp(::application) papp, ::primitive::memory_file * pmemoryfileIn);
+      transfer_file(sp(base_application) papp, mutex * pmutex = NULL);
+      transfer_file(sp(base_application) papp, ::primitive::memory_file * pmemoryfileIn);
       virtual ~transfer_file();
 
 

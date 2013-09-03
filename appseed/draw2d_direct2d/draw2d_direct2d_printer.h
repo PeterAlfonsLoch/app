@@ -19,7 +19,7 @@ namespace draw2d_direct2d
          HDC            m_hdc;
 
 
-         document_properties(::ca2::application * papp);
+         document_properties(application * papp);
          virtual ~document_properties();
 
 
@@ -34,7 +34,7 @@ namespace draw2d_direct2d
       document_properties     m_documentproperties;
 
 
-      printer(::ca2::application * papp);
+      printer(application * papp);
       virtual ~printer();
 
 

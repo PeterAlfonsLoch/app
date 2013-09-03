@@ -272,8 +272,8 @@ namespace ca2
 
 
       thread();
-      thread(sp(::application) papp);
-      thread(sp(::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam);
+      thread(sp(base_application) papp);
+      thread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam);
       virtual ~thread();
 
 		///  \brief		starts thread on first call

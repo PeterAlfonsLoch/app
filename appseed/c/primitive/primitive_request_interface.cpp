@@ -11,9 +11,9 @@ void request_interface::create(sp(create_context) pcreatecontext)
    request_create(pcreatecontext);
 }
 
-void request_interface::add_line(const char * pszCommandLine, ::ca2::application_bias * pbiasCreate)
+void request_interface::add_line(const char * pszCommandLine, application_bias * pbiasCreate)
 {
-   sp(command_thread) commandcentral = get_app()->cast_app < ::ca2::application > ().command_central();
+   sp(command_thread) commandcentral = get_app()->cast_app < application > ().command_central();
    sp(create_context) createcontext(canew(create_context(commandcentral)));
    createcontext->m_spApplicationBias = pbiasCreate;
    createcontext->m_spCommandLine->_001ParseCommandLine(pszCommandLine);
@@ -22,9 +22,9 @@ void request_interface::add_line(const char * pszCommandLine, ::ca2::application
    create(createcontext);
 }
 
-void request_interface::add_line_uri(const char * pszCommandLine, ::ca2::application_bias * pbiasCreate)
+void request_interface::add_line_uri(const char * pszCommandLine, application_bias * pbiasCreate)
 {
-   sp(command_thread) commandcentral = get_app()->cast_app < ::ca2::application > ().command_central();
+   sp(command_thread) commandcentral = get_app()->cast_app < application > ().command_central();
    sp(create_context) createcontext(canew(create_context(commandcentral)));
    createcontext->m_spApplicationBias = pbiasCreate;
    createcontext->m_spCommandLine->_001ParseCommandLineUri(pszCommandLine);
@@ -33,9 +33,9 @@ void request_interface::add_line_uri(const char * pszCommandLine, ::ca2::applica
    create(createcontext);
 }
 
-void request_interface::add_fork(const char * pszCommandFork, ::ca2::application_bias * pbiasCreate)
+void request_interface::add_fork(const char * pszCommandFork, application_bias * pbiasCreate)
 {
-   sp(command_thread) commandcentral = get_app()->cast_app < ::ca2::application > ().command_central();
+   sp(command_thread) commandcentral = get_app()->cast_app < application > ().command_central();
    sp(create_context) createcontext(canew(create_context(commandcentral)));
    createcontext->m_spApplicationBias = pbiasCreate;
    createcontext->m_spCommandLine->_001ParseCommandFork(pszCommandFork);
@@ -44,9 +44,9 @@ void request_interface::add_fork(const char * pszCommandFork, ::ca2::application
    create(createcontext);
 }
 
-void request_interface::add_fork_uri(const char * pszCommandFork, ::ca2::application_bias * pbiasCreate)
+void request_interface::add_fork_uri(const char * pszCommandFork, application_bias * pbiasCreate)
 {
-   sp(command_thread) commandcentral = get_app()->cast_app < ::ca2::application > ().command_central();
+   sp(command_thread) commandcentral = get_app()->cast_app < application > ().command_central();
    sp(create_context) createcontext(canew(create_context(commandcentral)));
    createcontext->m_spApplicationBias = pbiasCreate;
    createcontext->m_spCommandLine->_001ParseCommandForkUri(pszCommandFork);
@@ -58,7 +58,7 @@ void request_interface::add_fork_uri(const char * pszCommandFork, ::ca2::applica
 void request_interface::request_file(var & varFile)
 {
 
-   sp(command_thread) commandcentral = get_app()->cast_app < ::ca2::application > ().command_central();
+   sp(command_thread) commandcentral = get_app()->cast_app < application > ().command_central();
    sp(create_context) createcontext(canew(create_context(commandcentral)));
 
    createcontext->m_spCommandLine->m_varFile              = varFile;
@@ -72,7 +72,7 @@ void request_interface::request_file(var & varFile)
 void request_interface::request_file_query(var & varFile, var & varQuery)
 {
 
-   sp(command_thread) commandcentral = get_app()->cast_app < ::ca2::application > ().command_central();
+   sp(command_thread) commandcentral = get_app()->cast_app < application > ().command_central();
    sp(create_context) createcontext(canew(create_context(commandcentral)));
 
    createcontext->m_spCommandLine->m_varFile              = varFile;
@@ -92,7 +92,7 @@ void request_interface::request_file_query(var & varFile, var & varQuery)
 void request_interface::request_command(sp(command_line) pcommandline)
 {
 
-   sp(command_thread) commandcentral = get_app()->cast_app < ::ca2::application > ().command_central();
+   sp(command_thread) commandcentral = get_app()->cast_app < application > ().command_central();
    sp(create_context) createcontext(canew(create_context(commandcentral)));
 
    createcontext->m_spCommandLine = pcommandline;

@@ -32,7 +32,7 @@ namespace user
 #endif
    }
 
-   void notification_area::Initialize(sp(::application) papp)
+   void notification_area::Initialize(sp(base_application) papp)
    {
 
 #ifdef WINDOWSEX

@@ -4,7 +4,7 @@
 namespace simpledb
 {
 
-   server::server(sp(::application) papp) :
+   server::server(sp(base_application) papp) :
       element(papp)
    {
       m_pbase = NULL;

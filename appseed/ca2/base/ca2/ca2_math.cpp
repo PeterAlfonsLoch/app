@@ -12,7 +12,7 @@ namespace ca2
 
 
 
-      math::math(sp(::application) papp) :
+      math::math(sp(base_application) papp) :
          element(papp),
          m_mutex(papp)
       {

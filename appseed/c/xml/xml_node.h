@@ -21,7 +21,7 @@ namespace xml
       public:
 
 
-         array(sp(::application) papp);
+         array(sp(base_application) papp);
 
 
       };

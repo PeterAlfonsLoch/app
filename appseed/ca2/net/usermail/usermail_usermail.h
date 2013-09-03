@@ -11,7 +11,7 @@ namespace usermail
    public:
       
 
-      usermail(::ca2::application * papp);
+      usermail(application * papp);
       virtual ~usermail();
 
 

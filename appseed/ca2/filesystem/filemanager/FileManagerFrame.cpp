@@ -2,7 +2,7 @@
 #include "FileManagerFrame.h"
 
 
-FileManagerFrame::FileManagerFrame(sp(::application) papp) :
+FileManagerFrame::FileManagerFrame(sp(base_application) papp) :
    element(papp),
    simple_frame_window(papp),
    m_toolbar(papp),

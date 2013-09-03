@@ -11,7 +11,7 @@ namespace filehandler
    public:
       
 
-      tree_interface(sp(::application) papp);
+      tree_interface(sp(base_application) papp);
       virtual ~tree_interface();
 
 

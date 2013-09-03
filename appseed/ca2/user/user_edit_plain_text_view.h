@@ -13,7 +13,7 @@ namespace user
 
       
       
-      edit_plain_text_view(sp(::application) papp);
+      edit_plain_text_view(sp(base_application) papp);
 
       virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 

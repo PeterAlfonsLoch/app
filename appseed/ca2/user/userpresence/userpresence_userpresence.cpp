@@ -5,7 +5,7 @@ namespace userpresence
 {
 
 
-   userpresence::userpresence(sp(::application) papp) :
+   userpresence::userpresence(sp(base_application) papp) :
       element(papp),
       ::departament(papp),
       message_window_simple_callback(papp)

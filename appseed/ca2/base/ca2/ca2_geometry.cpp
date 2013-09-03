@@ -8,7 +8,7 @@ namespace ca2
    {
 
 
-      geometry::geometry(sp(::application) papp) :
+      geometry::geometry(sp(base_application) papp) :
          element(papp)
       {
 

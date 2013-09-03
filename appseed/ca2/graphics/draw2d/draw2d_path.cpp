@@ -15,7 +15,7 @@ namespace draw2d
 
    }
 
-   path::path(::ca2::application * papp) :
+   path::path(application * papp) :
       element(papp)
    {
 

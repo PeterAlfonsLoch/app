@@ -97,14 +97,14 @@ class CLASS_DECL_c map_word_to_ptr :
    virtual public map < WORD, WORD, void *, void * >
 {
 public:
-   map_word_to_ptr(sp(::application) papp = NULL, ::count nBlockSize = 10);
+   map_word_to_ptr(sp(base_application) papp = NULL, ::count nBlockSize = 10);
 };
 
 class CLASS_DECL_c map_ptr_to_word :
    virtual public map < void *, void *, WORD, WORD >
 {
 public:
-   map_ptr_to_word(sp(::application) papp = NULL, ::count nBlockSize = 10);
+   map_ptr_to_word(sp(base_application) papp = NULL, ::count nBlockSize = 10);
 };
 
 
@@ -112,14 +112,14 @@ class CLASS_DECL_c map_ptr_to_ptr :
    virtual public map < void *, void *, void *, void * >
 {
 public:
-   map_ptr_to_ptr(sp(::application) papp = NULL, ::count nBlockSize = 10);
+   map_ptr_to_ptr(sp(base_application) papp = NULL, ::count nBlockSize = 10);
 };
 
 class CLASS_DECL_c map_word_to_ob :
    virtual public map < WORD, WORD, object *, object * >
 {
 public:
-   map_word_to_ob(sp(::application) papp = NULL, ::count nBlockSize = 10);
+   map_word_to_ob(sp(base_application) papp = NULL, ::count nBlockSize = 10);
 };
 
 
@@ -127,14 +127,14 @@ class CLASS_DECL_c map_string_to_ptr :
    virtual public map < string, const string &, void *, void * >
 {
 public:
-   map_string_to_ptr(sp(::application) papp = NULL, ::count nBlockSize = 10);
+   map_string_to_ptr(sp(base_application) papp = NULL, ::count nBlockSize = 10);
 };
 
 class CLASS_DECL_c map_string_to_ob :
    virtual public map < string, const string &, object *, object * >
 {
 public:
-   map_string_to_ob(sp(::application) papp = NULL, ::count nBlockSize = 10);
+   map_string_to_ob(sp(base_application) papp = NULL, ::count nBlockSize = 10);
 };
 
 

@@ -14,7 +14,7 @@ namespace user
       sp(menu_item)  m_pitem;
 
 
-      menu_base(sp(::application) papp);
+      menu_base(sp(base_application) papp);
       virtual ~menu_base();
 
 

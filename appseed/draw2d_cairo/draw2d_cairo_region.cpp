@@ -5,7 +5,7 @@ namespace draw2d_cairo
 {
 
 
-   region::region(sp(::application) papp) :
+   region::region(sp(base_application) papp) :
       element(papp)
    {
 
@@ -23,7 +23,7 @@ namespace draw2d_cairo
    {
       return (HRGN)(this == NULL ? NULL : get_os_data());
    }
-   region* PASCAL region::from_handle(sp(::application) papp, HRGN hRgn)
+   region* PASCAL region::from_handle(sp(base_application) papp, HRGN hRgn)
    {
       return dynamic_cast < region * > (::win::object::from_handle(papp, hRgn));
    }

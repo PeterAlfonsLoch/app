@@ -5,7 +5,7 @@ namespace ca2
 {
 
 
-   string prepare_basic_authentication(sp(::application) papp, const char * inParam1, const char * inParam2 );
+   string prepare_basic_authentication(sp(base_application) papp, const char * inParam1, const char * inParam2 );
 
 
    namespace oAuthTwitterApiUrls
@@ -37,7 +37,7 @@ namespace ca2
    * @output: none
    *
    *--*/
-   twit::twit(sp(::application) papp) :
+   twit::twit(sp(base_application) papp) :
       element(papp),
       m_oauth(papp)
    {
@@ -1272,7 +1272,7 @@ namespace ca2
    * @remarks: internal method
    *
    *--*/
-   string prepare_basic_authentication(sp(::application) papp, const char * inParam1, const char * inParam2 )
+   string prepare_basic_authentication(sp(base_application) papp, const char * inParam1, const char * inParam2 )
    {
       string outStr = inParam1;
       outStr += App(papp).TWIT_COLON;

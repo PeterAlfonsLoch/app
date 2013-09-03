@@ -5,7 +5,7 @@ namespace draw2d_cairo
 {
 
 
-   font::font(sp(::application) papp) :
+   font::font(sp(base_application) papp) :
    element(papp)
    {
 

@@ -5,7 +5,7 @@ namespace ca2
 {
 
 
-   tree::tree(sp(::application) papp) :
+   tree::tree(sp(base_application) papp) :
       element(papp)
    {
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-data_listener::data_listener(sp(::application) papp) :
+data_listener::data_listener(sp(base_application) papp) :
    element(papp)
 {
 

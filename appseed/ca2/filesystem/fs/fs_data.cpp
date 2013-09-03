@@ -3,7 +3,7 @@
 namespace fs
 {
 
-   data::data(sp(::application) papp) :
+   data::data(sp(base_application) papp) :
       element(papp),
       ::data(papp)
    {

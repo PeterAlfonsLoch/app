@@ -11,7 +11,7 @@ public:
    sp(::user::view)                   m_pview;
 
 
-   simple_printer_list_view(sp(::application) papp);
+   simple_printer_list_view(sp(base_application) papp);
    virtual ~simple_printer_list_view();
 
 

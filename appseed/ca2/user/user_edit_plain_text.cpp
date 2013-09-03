@@ -24,7 +24,7 @@ namespace user
 {
 
 
-   edit_plain_text::edit_plain_text(sp(::application) papp) :
+   edit_plain_text::edit_plain_text(sp(base_application) papp) :
       element(papp),
       ::user::interaction(papp),
       scroll_view(papp),
@@ -558,7 +558,7 @@ namespace user
    /*   ::user::menu menu;
       Ex1TextFile file;
 
-      sp(::application) papp = ::ca2::get_app();
+      sp(base_application) papp = ::ca2::get_app();
 
       string strModuleFolder;
       strModuleFolder = papp->get_module_folder();

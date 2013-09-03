@@ -4,28 +4,28 @@
 namespace ca2
 {
 
-   byte_stream_memory_file::byte_stream_memory_file(sp(::application) papp, ::primitive::memory_size iSize) :
+   byte_stream_memory_file::byte_stream_memory_file(sp(base_application) papp, ::primitive::memory_size iSize) :
       element(papp),
       memory_container(papp),
       ::primitive::memory_file(papp, iSize)
    {
    }
 
-   byte_stream_memory_file::byte_stream_memory_file(sp(::application) papp, void * pMemory, primitive::memory_size dwSize) :
+   byte_stream_memory_file::byte_stream_memory_file(sp(base_application) papp, void * pMemory, primitive::memory_size dwSize) :
       element(papp),
       memory_container(papp, pMemory, dwSize),
       ::primitive::memory_file(papp, pMemory, dwSize)
    {
    }
 
-   byte_stream_memory_file::byte_stream_memory_file(sp(::application) papp, const memory_file & memoryfile) :
+   byte_stream_memory_file::byte_stream_memory_file(sp(base_application) papp, const memory_file & memoryfile) :
       element(papp),
       memory_container(papp),
       ::primitive::memory_file(papp, memoryfile)
    {
    }
 
-   byte_stream_memory_file::byte_stream_memory_file(sp(::application) papp, ::primitive::memory_base * pmemory) :
+   byte_stream_memory_file::byte_stream_memory_file(sp(base_application) papp, ::primitive::memory_base * pmemory) :
       element(papp),
       memory_container(papp, pmemory),
       ::primitive::memory_file(papp, pmemory)

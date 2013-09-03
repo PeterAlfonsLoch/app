@@ -16,7 +16,7 @@ namespace user
       // to be deleted while the job is not finished or canceled.
       sp(::user::view)        m_pview;
 
-      job(sp(::application) papp);
+      job(sp(base_application) papp);
       virtual ~job();
 
 

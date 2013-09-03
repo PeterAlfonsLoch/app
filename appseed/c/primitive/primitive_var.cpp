@@ -1918,7 +1918,7 @@ var_array var::vara() const
    return *m_pvara;
 }
 
-property_set & var::propset(sp(::application) papp)
+property_set & var::propset(sp(base_application) papp)
 {
    property_set * pset;
    if(m_etype == type_pvar)

@@ -6,7 +6,7 @@ namespace draw2d_direct2d
 {
 
 
-   brush::brush(::ca2::application * papp) :
+   brush::brush(application * papp) :
       element(papp)
    { 
 

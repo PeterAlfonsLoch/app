@@ -16,7 +16,7 @@ namespace filemanager
 
 
 
-      document(sp(::application) papp);
+      document(sp(base_application) papp);
       virtual ~document();
 
 

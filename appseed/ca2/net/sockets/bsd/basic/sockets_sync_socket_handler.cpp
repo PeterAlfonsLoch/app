@@ -3,7 +3,7 @@
 namespace sockets
 {
 
-   sync_socket_handler::sync_socket_handler(sp(::application) papp, StdLog * plog) :
+   sync_socket_handler::sync_socket_handler(sp(base_application) papp, StdLog * plog) :
       element(papp),
       m_handler(papp, plog),
       m_file(papp)

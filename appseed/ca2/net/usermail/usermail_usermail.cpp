@@ -5,7 +5,7 @@ namespace usermail
 {
 
 
-   usermail::usermail(::ca2::application * papp) : 
+   usermail::usermail(application * papp) : 
       element(papp),
       ::departament(papp)
    {

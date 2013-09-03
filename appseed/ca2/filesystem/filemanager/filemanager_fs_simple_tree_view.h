@@ -51,7 +51,7 @@ namespace filemanager
             sp(::ca2::simple_tree_data)             m_spdataFs;
 
 
-            tree_view(sp(::application) papp);
+            tree_view(sp(base_application) papp);
 
             virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
 

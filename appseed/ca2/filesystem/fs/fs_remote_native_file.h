@@ -16,7 +16,7 @@ namespace fs
       var                                          m_varFile;
 
 
-      remote_native_file(sp(::application) papp, var varFile);
+      remote_native_file(sp(base_application) papp, var varFile);
       virtual ~remote_native_file();
 
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);

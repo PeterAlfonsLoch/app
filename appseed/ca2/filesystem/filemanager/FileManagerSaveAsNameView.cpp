@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-FileManagerSaveAsView::FileManagerSaveAsView(sp(::application) papp) :
+FileManagerSaveAsView::FileManagerSaveAsView(sp(base_application) papp) :
    element(papp),
    ::user::edit_plain_text_view(papp),
    ::user::interaction(papp),

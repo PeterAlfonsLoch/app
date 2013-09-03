@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   attr_array::attr_array(sp(::application) papp) :
+   attr_array::attr_array(sp(base_application) papp) :
       element(papp),
       property_set(papp)
    {

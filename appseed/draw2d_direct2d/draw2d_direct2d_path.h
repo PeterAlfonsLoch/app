@@ -17,7 +17,7 @@ namespace draw2d_direct2d
       bool                       m_bFigureEnded;
 
 
-      graphics_path(::ca2::application * papp);
+      graphics_path(application * papp);
       virtual ~graphics_path();
 
 

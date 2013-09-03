@@ -72,7 +72,7 @@ namespace user
 
 
 
-      edit_plain_text(sp(::application) papp);
+      edit_plain_text(sp(base_application) papp);
 
       virtual ~edit_plain_text();
 

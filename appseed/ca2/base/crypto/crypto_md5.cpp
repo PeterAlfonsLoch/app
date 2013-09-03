@@ -9,7 +9,7 @@ namespace crypto
    {
 
 
-      context::context(sp(::application) papp) :
+      context::context(sp(base_application) papp) :
          element(papp),
          m_memoryDigest(papp)
       {

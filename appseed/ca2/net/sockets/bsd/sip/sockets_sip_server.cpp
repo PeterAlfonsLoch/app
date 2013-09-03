@@ -3,7 +3,7 @@
 namespace sockets
 {
 
-   sip_server::sip_server(sp(::application) papp) :
+   sip_server::sip_server(sp(base_application) papp) :
       element(papp),
       thread(papp)
    {

@@ -8,7 +8,7 @@ namespace ca2
    uint32_t g_dwFirstTick = ::get_tick_count();
 
 
-   log::log(sp(::application) papp) :
+   log::log(sp(base_application) papp) :
       element(papp)
    {
 

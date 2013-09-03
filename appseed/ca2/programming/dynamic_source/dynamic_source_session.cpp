@@ -32,7 +32,7 @@ namespace dynamic_source
       if(get_ref_count() == 0)
       {
          
-         ::ca::ca::add_ref();
+         root::add_ref();
 
          single_lock sl(&m_pmanager->m_mutexSession, true);
          
@@ -46,7 +46,7 @@ namespace dynamic_source
       else
       {
       
-         return ::ca::ca::add_ref();
+         return root::add_ref();
 
       }
 
@@ -70,7 +70,7 @@ namespace dynamic_source
 
       }
 
-      return ::ca::ca::dec_ref();
+      return root::dec_ref();
 
    }
 

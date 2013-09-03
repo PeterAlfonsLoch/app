@@ -120,7 +120,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      ::ca2::application::_001OnFileNew(NULL);
+      application::_001OnFileNew(NULL);
    }
 
 
@@ -132,7 +132,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return ::ca2::application::bergedge_start();
+      return application::bergedge_start();
    }
 
 
@@ -150,7 +150,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return ::ca2::application::on_install();
+      return application::on_install();
    }
 
    bool application::on_uninstall()
@@ -161,7 +161,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return ::ca2::application::on_uninstall();
+      return application::on_uninstall();
    }
 
 
@@ -173,7 +173,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return ::ca2::application::on_request(pcreatecontext);
+      return application::on_request(pcreatecontext);
 
 
    }
@@ -188,7 +188,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return ::ca2::application::is_serviceable();
+      return application::is_serviceable();
    }
 
    service_base * application::allocate_new_service()
@@ -207,7 +207,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return ::ca2::application::_001OpenDocumentFile(varFile);
+      return application::_001OpenDocumentFile(varFile);
 
    }
 
@@ -236,16 +236,16 @@ namespace plane
          {
             create_new_service();
             m_pservice->Start(0);
-            return ::ca2::application::run();
+            return application::run();
          }
          else
          {
-            return ::ca2::application::run();
+            return application::run();
          }
       }
       else
       {
-         return ::ca2::application::run();
+         return application::run();
       }
 
       return 0;
@@ -369,7 +369,7 @@ namespace plane
 
 
 
-typedef  void (* PFN_ca2_factory_exchange)(sp(::application) papp);
+typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
 
 
 
@@ -1138,10 +1138,10 @@ exit_application:
    }
 
 
-   sp(::application) application::instantiate_application(const char * pszType, const char * pszId, ::ca2::application_bias * pbias)
+   sp(::application) application::instantiate_application(const char * pszType, const char * pszId, application_bias * pbias)
    {
 
-      sp(::application) papp = NULL;
+      sp(base_application) papp = NULL;
 
       string strId(pszId);
 
@@ -1280,7 +1280,7 @@ exit_application:
    }
 
 
-   sp(::application) application::create_application(const char * pszType, const char * pszId, bool bSynch, ::ca2::application_bias * pbias)
+   sp(::application) application::create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias)
    {
 
       sp(::application) pcaapp = instantiate_application(pszType, pszId, pbias);
@@ -1288,7 +1288,7 @@ exit_application:
       if(pcaapp == NULL)
          return NULL;
 
-      sp(::application) papp = (pcaapp);
+      sp(base_application) papp = (pcaapp);
 
       if(!papp->start_application(bSynch, pbias))
       {
@@ -1705,7 +1705,7 @@ exit_application:
       }
 
 
-      if(!::ca2::application::initialize())
+      if(!application::initialize())
          return false;
 
 
@@ -1838,7 +1838,7 @@ exit_application:
    bool application::process_initialize()
    {
 
-      if(!::ca2::application::process_initialize())
+      if(!application::process_initialize())
          return false;
 
       m_pfontopus = create_fontopus();
@@ -1903,7 +1903,7 @@ exit_application:
 
       }
 
-      if(!::ca2::application::initialize1())
+      if(!application::initialize1())
          return false;
 
       if(!m_spuser->initialize1())
@@ -1924,7 +1924,7 @@ exit_application:
    bool application::initialize2()
    {
 
-      if(!::ca2::application::initialize2())
+      if(!application::initialize2())
          return false;
 
 
@@ -1944,7 +1944,7 @@ exit_application:
 
 
 
-      if(!::ca2::application::initialize_instance())
+      if(!application::initialize_instance())
          return false;
 
       if(!m_pfontopus->initialize_instance())
@@ -1972,7 +1972,7 @@ exit_application:
       try
       {
 
-         m_iReturnCode = ::ca2::application::exit_instance();
+         m_iReturnCode = application::exit_instance();
 
       }
       catch(...)

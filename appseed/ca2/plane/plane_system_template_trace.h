@@ -33,7 +33,7 @@ namespace ca2
 
 #endif
 
-      trace_add_file_and_line(sp(::application) papp, const char *pszFileName, int32_t nLineNo)
+      trace_add_file_and_line(sp(base_application) papp, const char *pszFileName, int32_t nLineNo)
          : m_papp(papp), m_pszFileName(pszFileName), m_nLineNo(nLineNo)
       {
       }

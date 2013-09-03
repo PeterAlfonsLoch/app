@@ -5,7 +5,7 @@
 __STATIC UINT __read_string_length(::file::byte_input_stream & ar);
 
 
-stringa::stringa(sp(::application) papp) :
+stringa::stringa(sp(base_application) papp) :
 element(papp)
 {
 }

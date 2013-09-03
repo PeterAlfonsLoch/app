@@ -5,7 +5,7 @@
 namespace filemanager
 {
 
-   SimpleFileListInterface::SimpleFileListInterface(sp(::application) papp) :
+   SimpleFileListInterface::SimpleFileListInterface(sp(base_application) papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::form(papp),
@@ -346,7 +346,7 @@ namespace filemanager
       }
    }
 
-   SimpleFileListInterface::create_image_list_thread::create_image_list_thread(sp(::application) papp) :
+   SimpleFileListInterface::create_image_list_thread::create_image_list_thread(sp(base_application) papp) :
       element(papp),
       thread(papp)
    {

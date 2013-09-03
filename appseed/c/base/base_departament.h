@@ -11,7 +11,7 @@ public:
    virtual ~departament();
 
 
-   virtual void construct(sp(::application) papp);
+   virtual void construct(sp(base_application) papp);
    virtual void connect_to_application_signal();
 
 

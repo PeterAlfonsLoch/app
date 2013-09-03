@@ -389,7 +389,7 @@ namespace ca2
       else if(::str::begins_eat_ci(strPath, "matter://"))
       {
 
-         sp(::application) papp = NULL;
+         sp(base_application) papp = NULL;
 
          if(System.url().get_server("matter://" + strPath) == m_papp->m_pappThis->m_strAppName)
          {

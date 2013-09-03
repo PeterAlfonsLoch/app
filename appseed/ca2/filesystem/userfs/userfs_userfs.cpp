@@ -5,7 +5,7 @@ namespace userfs
 {
 
 
-   userfs::userfs(::ca2::application * papp) :
+   userfs::userfs(application * papp) :
       element(papp),
       ::departament(papp)
    {

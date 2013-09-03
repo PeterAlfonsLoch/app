@@ -17,7 +17,7 @@ namespace ca2
       // salt here may be dangerous for the universe
 
 
-      crypt(sp(::application) papp);
+      crypt(sp(base_application) papp);
       virtual ~crypt();
 
 
@@ -49,8 +49,8 @@ namespace ca2
       void hmac(void * result, const ::primitive::memory & memMessage, const ::primitive::memory & key);
       void hmac(void * result, const string & memMessage, const string & key);
 
-      bool file_set(var varFile, const char * pszData, const char * pszSalt, sp(::application) papp);
-      bool file_get(var varFile, string & str, const char * pszSalt, sp(::application) papp);
+      bool file_set(var varFile, const char * pszData, const char * pszSalt, sp(base_application) papp);
+      bool file_get(var varFile, string & str, const char * pszSalt, sp(base_application) papp);
 
       // get a new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters

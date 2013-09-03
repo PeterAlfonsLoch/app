@@ -42,7 +42,7 @@ namespace simpledb
       socket *                m_psocket;
 
 
-      socket_thread(sp(::application) papp);
+      socket_thread(sp(base_application) papp);
       virtual ~socket_thread();
 
 

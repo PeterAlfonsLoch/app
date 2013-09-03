@@ -24,8 +24,8 @@ namespace user
       };
 
 
-      menu(sp(::application) papp);
-      menu(sp(::application) papp, menu_item * pitem);
+      menu(sp(base_application) papp);
+      menu(sp(base_application) papp, menu_item * pitem);
       virtual ~menu();
 
 

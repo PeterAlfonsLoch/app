@@ -94,7 +94,7 @@ namespace draw2d
 
 
       path();
-      path(::ca2::application * papp);
+      path(application * papp);
       virtual ~path();
 
 

@@ -5,7 +5,7 @@ namespace uinteraction
 {
 
 
-   uinteraction::uinteraction(::ca2::application * papp) :
+   uinteraction::uinteraction(application * papp) :
       element(papp),
       ::departament(papp)
    {

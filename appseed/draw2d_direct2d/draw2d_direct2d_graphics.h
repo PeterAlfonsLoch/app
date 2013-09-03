@@ -47,7 +47,7 @@ namespace draw2d_direct2d
       };
 
       graphics();
-      graphics(::ca2::application * papp);
+      graphics(application * papp);
       virtual ~graphics();
 
 
@@ -459,7 +459,7 @@ namespace draw2d_direct2d
       bool SelectClipPath(int nMode);
 
    // Misc Helper Functions
-      static ::draw2d::brush* GetHalftoneBrush(::ca2::application * papp);
+      static ::draw2d::brush* GetHalftoneBrush(application * papp);
       void DrawDragRect(LPCRECT lpRect, SIZE size,
          LPCRECT lpRectLast, SIZE sizeLast,
          ::draw2d::brush* pBrush = NULL, ::draw2d::brush* pBrushLast = NULL);
@@ -507,7 +507,7 @@ namespace draw2d_direct2d
 
    //protected:
       // used for implementation of non-virtual SelectObject calls
-      //static ::draw2d::object* SelectGdiObject(::ca2::application * papp, HDC hDC, HGDIOBJ h);
+      //static ::draw2d::object* SelectGdiObject(application * papp, HDC hDC, HGDIOBJ h);
    };
 
 } // namespace draw2d_direct2d

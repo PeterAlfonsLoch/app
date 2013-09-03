@@ -14,7 +14,7 @@ namespace url
    public:
 
 
-      departament(sp(::application) papp);
+      departament(sp(base_application) papp);
       virtual ~departament();
 
 

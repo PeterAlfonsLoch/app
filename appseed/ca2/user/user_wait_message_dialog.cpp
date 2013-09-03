@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-wait_message_dialog::wait_message_dialog(sp(::application) papp) :
+wait_message_dialog::wait_message_dialog(sp(base_application) papp) :
    element(papp)//,
    //dialog(allocer())
 {

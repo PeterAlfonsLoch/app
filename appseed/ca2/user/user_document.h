@@ -13,7 +13,7 @@ namespace user
    public:
 
 
-      document(sp(::application) papp);
+      document(sp(base_application) papp);
       virtual ~document();
 
 
@@ -26,7 +26,7 @@ namespace user
 
 
 
-      virtual void on_alloc(sp(::application) papp);
+      virtual void on_alloc(sp(base_application) papp);
 
       virtual void dump(dump_context &) const;
       virtual void assert_valid() const;

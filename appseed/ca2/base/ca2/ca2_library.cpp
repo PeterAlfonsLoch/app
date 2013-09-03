@@ -33,7 +33,7 @@ namespace ca2
 
    }
 
-   bool library::open(sp(::application) papp, const char * pszPath, bool bAutoClose)
+   bool library::open(sp(base_application) papp, const char * pszPath, bool bAutoClose)
    {
 
       set_app(papp);
@@ -320,7 +320,7 @@ namespace ca2
             if(strAppName.is_empty())
                return NULL;
 
-            sp(::application) papp = m_pca2library->get_new_app(strAppName);
+            sp(base_application) papp = m_pca2library->get_new_app(strAppName);
 
             if(papp == NULL)
                return NULL;
@@ -488,7 +488,7 @@ namespace ca2
    }
 
 
-   ::dynamic_source::script_manager * library::create_script_manager(sp(::application) papp)
+   ::dynamic_source::script_manager * library::create_script_manager(sp(base_application) papp)
    {
 
       if(m_pca2library != NULL)
@@ -511,7 +511,7 @@ namespace ca2
 
    }
 
-   ::dynamic_source::script * library::create_script(sp(::application) papp, const char * pszScript)
+   ::dynamic_source::script * library::create_script(sp(base_application) papp, const char * pszScript)
    {
 
       if(m_pca2library != NULL)

@@ -3,7 +3,7 @@
 namespace user
 {
 
-   buffer::buffer(sp(::application) papp) :
+   buffer::buffer(sp(base_application) papp) :
       element(papp),
       m_spdib(allocer())
    {

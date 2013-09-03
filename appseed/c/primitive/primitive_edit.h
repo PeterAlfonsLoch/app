@@ -7,7 +7,7 @@ class CLASS_DECL_c base_edit :
 public:
 
 
-   base_edit(sp(::application) papp);
+   base_edit(sp(base_application) papp);
    virtual ~base_edit();
 
 
@@ -53,7 +53,7 @@ class edit :
 public:      
 
 
-   edit(sp(::application) papp);
+   edit(sp(base_application) papp);
    virtual ~edit();
 
 
@@ -68,7 +68,7 @@ public:
 
 
 template < class DATA >
-edit < DATA >::edit(sp(::application) papp) :
+edit < DATA >::edit(sp(base_application) papp) :
    element(papp),
    base_edit(papp)
 {

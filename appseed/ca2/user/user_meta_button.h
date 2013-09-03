@@ -33,7 +33,7 @@ public:
    //bool              m_bFocus;
 
 
-   MetaButton(sp(::application) papp);
+   MetaButton(sp(base_application) papp);
    virtual ~MetaButton();
 
 

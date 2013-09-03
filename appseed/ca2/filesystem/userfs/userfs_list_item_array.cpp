@@ -16,7 +16,7 @@ namespace userfs
       return this->element_at(i, fCompare);
    }
 
-   list_item_array::list_item_array(sp(::application) papp) :
+   list_item_array::list_item_array(sp(base_application) papp) :
       element(papp)
    {
       m_itema.set_app(papp);

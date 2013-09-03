@@ -17,7 +17,7 @@ public:
    id                            m_idType;
 
 
-   factory_allocator(sp(::application) papp, int32_t iCount, UINT uiAllocSize, id idType) :
+   factory_allocator(sp(base_application) papp, int32_t iCount, UINT uiAllocSize, id idType) :
       element(papp),
       m_iCount(iCount),
       m_uiAllocSize(uiAllocSize),
@@ -50,12 +50,12 @@ class factory_allocator_impl :
 public:
 
 #ifdef WINDOWS
-   factory_allocator_impl(sp(::application) papp, int32_t iCount) :
+   factory_allocator_impl(sp(base_application) papp, int32_t iCount) :
       factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name())
    {
    }
 #else
-   factory_allocator_impl(sp(::application) papp, int32_t iCount) :
+   factory_allocator_impl(sp(base_application) papp, int32_t iCount) :
       factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name())
    {
    }
@@ -93,10 +93,10 @@ public:
 
    sp(factory_allocator)    m_pallocator;
 
-   inline factory_item_base(sp(::application) papp, sp(factory_allocator) pallocator) : element(papp), m_pallocator(pallocator) {}
+   inline factory_item_base(sp(base_application) papp, sp(factory_allocator) pallocator) : element(papp), m_pallocator(pallocator) {}
    virtual ~factory_item_base();
 
-   virtual sp(element) create(sp(::application) papp) = 0;
+   virtual sp(element) create(sp(base_application) papp) = 0;
    virtual sp(element) clone(sp(element) pobject) = 0;
 
 };
@@ -107,9 +107,9 @@ class creatable_factory_item :
 {
 public:
 
-   inline creatable_factory_item(sp(::application) papp, sp(factory_allocator) pallocator) : element(papp), factory_item_base(papp, pallocator) {}
+   inline creatable_factory_item(sp(base_application) papp, sp(factory_allocator) pallocator) : element(papp), factory_item_base(papp, pallocator) {}
 
-   virtual sp(element) create(sp(::application) papp)
+   virtual sp(element) create(sp(base_application) papp)
    {
 
       if(m_pallocator == NULL)
@@ -140,7 +140,7 @@ class cloneable_factory_item :
 {
 public:
 
-   inline cloneable_factory_item(sp(::application) papp, sp(factory_allocator) pallocator) : element(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
+   inline cloneable_factory_item(sp(base_application) papp, sp(factory_allocator) pallocator) : element(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
 
    virtual sp(element) clone(sp(element) pobject)
    {
@@ -170,7 +170,7 @@ public:
 
 
 
-   factory(sp(::application) papp);
+   factory(sp(base_application) papp);
    virtual ~factory();
 
 
@@ -242,7 +242,7 @@ public:
          set_at(info->name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
-   virtual sp(element) create(sp(::application) papp, sp(type) info);
+   virtual sp(element) create(sp(base_application) papp, sp(type) info);
    virtual sp(element) base_clone(sp(element) pobject);
    template < class T >
    sp(T) clone(sp(T) pobject)

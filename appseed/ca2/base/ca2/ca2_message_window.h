@@ -24,11 +24,11 @@ namespace ca2
 
 
       message_window_simple_callback();
-      message_window_simple_callback(sp(::application) papp);
+      message_window_simple_callback(sp(base_application) papp);
       virtual ~message_window_simple_callback();
 
 
-      bool initialize_message_window(sp(::application) papp, const char * pszName);
+      bool initialize_message_window(sp(base_application) papp, const char * pszName);
       bool initialize_message_window(const char * pszName);
       bool finalize_message_window();
 

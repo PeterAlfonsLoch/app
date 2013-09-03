@@ -1,6 +1,6 @@
 #include "framework.h"
 
-message_box::message_box(sp(::application) papp) :
+message_box::message_box(sp(base_application) papp) :
    element(papp)/*,
    dialog(allocer())*/,
    wait_message_dialog(allocer())

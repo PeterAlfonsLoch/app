@@ -27,7 +27,7 @@ namespace uinteraction
          {
          public:
 
-            CTool001(sp(::application) papp);
+            CTool001(sp(base_application) papp);
 
             void Update(::draw2d::graphics * pdc, LPCRECT lpcrect,
                COLORREF crHighlight,

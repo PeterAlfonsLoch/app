@@ -57,7 +57,7 @@ public:
 
    mutex  *           m_pmutex;
 
-   data(sp(::application) papp);
+   data(sp(base_application) papp);
    virtual ~data();
 
 

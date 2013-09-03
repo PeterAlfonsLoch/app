@@ -5,7 +5,7 @@ class CLASS_DECL_ca2 form_view :
    virtual public html_form_view
 {
 public:
-   form_view(sp(::application) papp);
+   form_view(sp(base_application) papp);
 
    void on_update(sp(::user::view) pSender, LPARAM lHint, object* phint);
    virtual bool BaseOnControlEvent(::user::control_event * pevent);

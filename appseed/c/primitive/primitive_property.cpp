@@ -7,7 +7,7 @@
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))
 #define ROUND16(x) ROUND(x, 16)
 
-void prop_id_debug(sp(::application) papp);
+void prop_id_debug(sp(base_application) papp);
 
 
 
@@ -151,7 +151,7 @@ const string_composite str_str_interface::operator[](const char * pszName) const
    return str::empty_string();
 }
 
-property::property(sp(::application) papp) :
+property::property(sp(base_application) papp) :
 ::element(papp)
 {
 }
@@ -1337,7 +1337,7 @@ property_map::property_map()
    InitHashTable(64);
 }
 
-property_array::property_array(sp(::application) papp) :
+property_array::property_array(sp(base_application) papp) :
    element(papp)
 {
    set_size(0, 64);
@@ -1747,7 +1747,7 @@ bool property_set::str_contains(const property_set & set) const
 
 
 
-relation_set::relation_set(sp(::application) papp) :
+relation_set::relation_set(sp(base_application) papp) :
    element(papp),
    property_set(papp, true, true)
 {
@@ -1760,7 +1760,7 @@ relation_set::~relation_set()
 }
 
 
-void prop_id_debug(sp(::application) papp)
+void prop_id_debug(sp(base_application) papp)
 {
 
    comparable_array < ::id > idaSchema;

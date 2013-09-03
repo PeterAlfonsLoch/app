@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   sockets::sockets(::ca2::application * papp) :
+   sockets::sockets(application * papp) :
      element(papp),
      ::departament(papp),
       m_mutexHttpPostBoundary(papp),

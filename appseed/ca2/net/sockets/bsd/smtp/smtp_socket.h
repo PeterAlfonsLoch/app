@@ -4,7 +4,7 @@ class CLASS_DECL_ca2 email :
    virtual public object
 {
 public:
-   email(sp(::application) papp);
+   email(sp(base_application) papp);
 
    class CLASS_DECL_ca2 address
    {

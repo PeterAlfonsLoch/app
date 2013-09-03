@@ -5,7 +5,7 @@ namespace userfs
 {
 
 
-   list_interface::list_interface(sp(::application) papp) :
+   list_interface::list_interface(sp(base_application) papp) :
       element(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
@@ -763,7 +763,7 @@ namespace userfs
       }*/
    }
 
-/*   list_interface::create_image_list_thread::create_image_list_thread(sp(::application) papp) :
+/*   list_interface::create_image_list_thread::create_image_list_thread(sp(base_application) papp) :
       element(papp),
       thread(papp)
    {

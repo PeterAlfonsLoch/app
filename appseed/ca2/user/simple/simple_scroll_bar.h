@@ -18,7 +18,7 @@ public:
    UINT                 m_uiTimer;
 
 
-   simple_scroll_bar(sp(::application) papp);
+   simple_scroll_bar(sp(base_application) papp);
    virtual ~simple_scroll_bar();
 
 

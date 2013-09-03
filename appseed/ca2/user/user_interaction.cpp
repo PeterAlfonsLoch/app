@@ -35,7 +35,7 @@ namespace user
 
    }
 
-   interaction::interaction(sp(::application) papp) :
+   interaction::interaction(sp(base_application) papp) :
       element(papp),
       ::user::window_interface(papp)
    {
@@ -3015,7 +3015,7 @@ ExitModal:
    }
 
 
-   interaction::timer_array::timer_array(sp(::application) papp) :
+   interaction::timer_array::timer_array(sp(base_application) papp) :
       element(papp),
       m_mutex(papp)
    {

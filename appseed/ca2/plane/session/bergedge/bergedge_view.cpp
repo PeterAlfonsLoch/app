@@ -3,7 +3,7 @@
 namespace bergedge
 {
 
-   view::view(sp(::application) papp) :
+   view::view(sp(base_application) papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),

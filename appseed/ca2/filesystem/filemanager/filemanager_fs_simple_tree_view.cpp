@@ -13,7 +13,7 @@ namespace filemanager
       {
 
 
-         tree_view::tree_view(sp(::application) papp) :
+         tree_view::tree_view(sp(base_application) papp) :
             element(papp),
             
             ::user::scroll_view(papp),

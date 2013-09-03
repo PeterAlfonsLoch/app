@@ -14,7 +14,7 @@ namespace primitive
    public:
 
 
-      memory(sp(::application) papp);
+      memory(sp(base_application) papp);
       memory(const void *, memory_size iCount);
       memory(const memory_base & memorybase);
       memory(const memory & memory);

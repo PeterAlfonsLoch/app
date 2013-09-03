@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_button::simple_button(sp(::application) papp) :
+simple_button::simple_button(sp(base_application) papp) :
    element(papp),
    
    ::user::button(papp),

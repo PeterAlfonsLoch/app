@@ -27,7 +27,7 @@ namespace ca2
    {
 
 
-      system::system(sp(::application) papp) :
+      system::system(sp(base_application) papp) :
          element(papp),
          m_mutex(papp),
          m_isdirmap(papp)
@@ -369,13 +369,13 @@ namespace ca2
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      void system::root_ones(stringa & stra, sp(::application) papp)
+      void system::root_ones(stringa & stra, sp(base_application) papp)
       {
          UNREFERENCED_PARAMETER(stra);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      void system::rls_pattern(sp(::application) papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize, e_extract eextract)
+      void system::rls_pattern(sp(base_application) papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize, e_extract eextract)
       {
          UNREFERENCED_PARAMETER(pstraRelative);
          UNREFERENCED_PARAMETER(pszPattern);
@@ -390,7 +390,7 @@ namespace ca2
       }
 
 
-      void system::ls_pattern(sp(::application) papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize)
+      void system::ls_pattern(sp(base_application) papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize)
       {
          UNREFERENCED_PARAMETER(pszPattern);
          if(::str::begins_ci(lpcsz, "http://") || ::str::begins_ci(lpcsz, "https://"))
@@ -411,7 +411,7 @@ namespace ca2
 
       }
 
-      void system::ls(sp(::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize)
+      void system::ls(sp(base_application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(pstraPath);
@@ -421,7 +421,7 @@ namespace ca2
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      void system::rls(sp(::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
+      void system::rls(sp(base_application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
       {
          if(eextract != extract_none && papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
@@ -434,7 +434,7 @@ namespace ca2
          }
       }
 
-      void system::rls_dir(sp(::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+      void system::rls_dir(sp(base_application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(pstraPath);
@@ -443,7 +443,7 @@ namespace ca2
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      void system::ls_dir(sp(::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+      void system::ls_dir(sp(base_application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
          if(papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
@@ -456,13 +456,13 @@ namespace ca2
          }
       }
 
-      bool system::has_subdir(sp(::application) papp, const char * lpcsz)
+      bool system::has_subdir(sp(base_application) papp, const char * lpcsz)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      void system::ls_file(sp(::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+      void system::ls_file(sp(base_application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(pstraPath);
@@ -470,7 +470,7 @@ namespace ca2
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      bool system::is(const char * lpcszPath, sp(::application) papp)
+      bool system::is(const char * lpcszPath, sp(base_application) papp)
       {
          if(::str::begins_ci(lpcszPath, "http://") || ::str::begins_ci(lpcszPath, "https://"))
          {
@@ -491,7 +491,7 @@ namespace ca2
          return false;
       }
 
-      bool system::is(const string & strPath, sp(::application) papp)
+      bool system::is(const string & strPath, sp(base_application) papp)
       {
          if(::str::begins_ci(strPath, "http://") || ::str::begins_ci(strPath, "https://"))
          {
@@ -516,17 +516,17 @@ namespace ca2
          return false;
       }
 
-      bool system::is(const var & var, sp(::application) papp)
+      bool system::is(const var & var, sp(base_application) papp)
       {
          return is((const string &) var, papp);
       }
 
-      bool system::name_is(const char * lpcszPath, sp(::application) papp)
+      bool system::name_is(const char * lpcszPath, sp(base_application) papp)
       {
          return name_is((const string &) lpcszPath, papp);
       }
 
-      bool system::name_is(const string & strPath, sp(::application) papp)
+      bool system::name_is(const string & strPath, sp(base_application) papp)
       {
          //OutputDebugString(strPath);
          if(papp->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
@@ -547,13 +547,13 @@ namespace ca2
          return false;
       }
 
-      bool system::name_is(const var & var, sp(::application) papp)
+      bool system::name_is(const var & var, sp(base_application) papp)
       {
          return name_is((const string &) var, papp);
       }
 
 
-      system::is_dir_map::is_dir_map(sp(::application) papp) :
+      system::is_dir_map::is_dir_map(sp(base_application) papp) :
          string_map < is_dir >(papp, 256), // block size
          m_mutex(papp)
       {
@@ -774,13 +774,13 @@ namespace ca2
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      bool system::mk(const char * lpcsz, sp(::application) papp)
+      bool system::mk(const char * lpcsz, sp(base_application) papp)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      bool system::rm(sp(::application) papp, const char * psz, bool bRecursive)
+      bool system::rm(sp(base_application) papp, const char * psz, bool bRecursive)
       {
          UNREFERENCED_PARAMETER(psz);
          UNREFERENCED_PARAMETER(bRecursive);
@@ -793,14 +793,14 @@ namespace ca2
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::locale_schema(sp(::application) papp, const string & strLocale, const string & strSchema)
+      string system::locale_schema(sp(base_application) papp, const string & strLocale, const string & strSchema)
       {
 
          return papp->m_pappThis->get_locale_schema_dir(strLocale, strSchema);
 
       }
 
-      string system::locale_schema_matter(sp(::application) papp, const string & strLocale, const string & strSchema)
+      string system::locale_schema_matter(sp(base_application) papp, const string & strLocale, const string & strSchema)
       {
 
          //single_lock sl(&papp->m_pappThis->m_mutexMatterLocator, true);
@@ -816,7 +816,7 @@ namespace ca2
 
       }
 
-      void system::matter_ls(sp(::application) papp, const string & str, stringa & stra)
+      void system::matter_ls(sp(base_application) papp, const string & str, stringa & stra)
       {
 
          string strDir = matter(papp, str, true);
@@ -825,7 +825,7 @@ namespace ca2
 
       }
 
-      void system::matter_ls_file(sp(::application) papp, const string & str, stringa & stra)
+      void system::matter_ls_file(sp(base_application) papp, const string & str, stringa & stra)
       {
 
          string strDir = matter(papp, str, true);
@@ -834,7 +834,7 @@ namespace ca2
 
       }
 
-      string system::matter(sp(::application) papp, const stringa & stra, bool bDir)
+      string system::matter(sp(base_application) papp, const stringa & stra, bool bDir)
       {
 
          ::index j;
@@ -1050,23 +1050,23 @@ ret:
 
       }
 
-      string system::matter(sp(::application) papp, const char * psz, const char * psz2, bool bDir)
+      string system::matter(sp(base_application) papp, const char * psz, const char * psz2, bool bDir)
       {
          return matter(papp, string(psz), string(psz2), bDir);
       }
 
-      string system::matter(sp(::application) papp, const string & str, const char * psz, bool bDir)
+      string system::matter(sp(base_application) papp, const string & str, const char * psz, bool bDir)
       {
          return matter(papp, str, string(psz), bDir);
       }
 
-      string system::matter(sp(::application) papp, const char * psz, const string & str, bool bDir)
+      string system::matter(sp(base_application) papp, const char * psz, const string & str, bool bDir)
       {
          return matter(papp, string(psz), str, bDir);
       }
 
 
-      string system::matter(sp(::application) papp, const string & str, const string & str2, bool bDir)
+      string system::matter(sp(base_application) papp, const string & str, const string & str2, bool bDir)
       {
 
          ::user::str_context * pcontext = App(papp).str_context();
@@ -1298,20 +1298,20 @@ ret:
          return path(locale_schema_matter(papp, strEmpty, strEmpty), str, str2);*/
       }
 
-      string system::matter(sp(::application) papp, const char * psz, bool bDir)
+      string system::matter(sp(base_application) papp, const char * psz, bool bDir)
       {
          string str(psz);
          string str2;
          return matter(papp, str, str2, bDir);
       }
 
-      string system::matter(sp(::application) papp, const string & str, bool bDir)
+      string system::matter(sp(base_application) papp, const string & str, bool bDir)
       {
          string str2;
          return matter(papp, str, str2, bDir);
       }
 
-      string system::matter(sp(::application) papp)
+      string system::matter(sp(base_application) papp)
       {
          string str;
          string str2;
@@ -1409,7 +1409,7 @@ ret:
 
       }
 
-      void system::appmatter_locators(string & strRoot, string & strDomain, sp(::application) papp)
+      void system::appmatter_locators(string & strRoot, string & strDomain, sp(base_application) papp)
       {
 
          if(papp->is_system())
@@ -1532,7 +1532,7 @@ ret:
          */
       }
 
-      string system::appmatter_locator(sp(::application) papp)
+      string system::appmatter_locator(sp(base_application) papp)
       {
 
          string strRoot;
@@ -1624,7 +1624,7 @@ ret:
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::usersystemappdata(sp(::application) papp, const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
+      string system::usersystemappdata(sp(base_application) papp, const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcszPrefix);
@@ -1633,7 +1633,7 @@ ret:
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::userappdata(sp(::application) papp, const char * lpcsz, const char * lpcsz2)
+      string system::userappdata(sp(base_application) papp, const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcsz);
@@ -1641,7 +1641,7 @@ ret:
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::userdata(sp(::application) papp, const char * lpcsz, const char * lpcsz2)
+      string system::userdata(sp(base_application) papp, const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcsz);
@@ -1649,7 +1649,7 @@ ret:
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::userfolder(sp(::application) papp, const char * lpcsz, const char * lpcsz2)
+      string system::userfolder(sp(base_application) papp, const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcsz);
@@ -1657,22 +1657,13 @@ ret:
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::default_os_user_path_prefix(sp(::application) papp)
+      string system::default_os_user_path_prefix(sp(base_application) papp)
       {
          UNREFERENCED_PARAMETER(papp);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::default_userappdata(sp(::application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
-      {
-         UNREFERENCED_PARAMETER(papp);
-         UNREFERENCED_PARAMETER(lpcszPrefix);
-         UNREFERENCED_PARAMETER(lpcszLogin);
-         UNREFERENCED_PARAMETER(pszRelativePath);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      string system::default_userdata(sp(::application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+      string system::default_userappdata(sp(base_application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcszPrefix);
@@ -1681,7 +1672,7 @@ ret:
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::default_userfolder(sp(::application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+      string system::default_userdata(sp(base_application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcszPrefix);
@@ -1690,7 +1681,16 @@ ret:
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::userquicklaunch(sp(::application) papp, const char * lpcszRelativePath, const char * lpcsz2)
+      string system::default_userfolder(sp(base_application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+      {
+         UNREFERENCED_PARAMETER(papp);
+         UNREFERENCED_PARAMETER(lpcszPrefix);
+         UNREFERENCED_PARAMETER(lpcszLogin);
+         UNREFERENCED_PARAMETER(pszRelativePath);
+         throw interface_only_exception(get_app(), "this is an interface");
+      }
+
+      string system::userquicklaunch(sp(base_application) papp, const char * lpcszRelativePath, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcszRelativePath);
@@ -1698,7 +1698,7 @@ ret:
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::userprograms(sp(::application) papp, const char * lpcsz, const char * lpcsz2)
+      string system::userprograms(sp(base_application) papp, const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcsz);
@@ -1713,20 +1713,20 @@ ret:
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      bool system::is_inside_time(const char * pszPath, sp(::application) papp)
+      bool system::is_inside_time(const char * pszPath, sp(base_application) papp)
       {
          UNREFERENCED_PARAMETER(pszPath);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      bool system::is_inside(const char * pszDir, const char * pszPath, sp(::application) papp)
+      bool system::is_inside(const char * pszDir, const char * pszPath, sp(base_application) papp)
       {
          UNREFERENCED_PARAMETER(pszDir);
          UNREFERENCED_PARAMETER(pszPath);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, sp(::application) papp)
+      string system::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, sp(base_application) papp)
       {
 
          stringa stra;

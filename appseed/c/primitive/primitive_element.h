@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_c element :
-   virtual public base
+   virtual public root
 {
 public:
 
@@ -28,7 +28,7 @@ public:
 
    element();
    element(const element & o);
-   element(sp(::application) papp);
+   element(sp(base_application) papp);
    virtual ~element();
 
    virtual void delete_this();
@@ -42,7 +42,7 @@ public:
    inline allocatorsp allocer();
 
    virtual sp(::application) get_app() const;
-   virtual void set_app(sp(::application) papp);
+   virtual void set_app(sp(base_application) papp);
 
    inline bool is_set_ca_flag(element::flag eflag)
    {
@@ -84,7 +84,7 @@ class CLASS_DECL_c allocatorsp :
 public:
 
 
-   allocatorsp(sp(::application) papp);
+   allocatorsp(sp(base_application) papp);
 
 
 };

@@ -9,7 +9,7 @@ namespace uinteraction
    {
 
 
-      frame::frame(sp(::application) papp)
+      frame::frame(sp(base_application) papp)
       {
       }
 

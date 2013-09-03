@@ -10,7 +10,7 @@ class CLASS_DECL_c stringa :
 public:
 
 
-   stringa(sp(::application) papp = NULL);
+   stringa(sp(base_application) papp = NULL);
    stringa(const char * psz);
    stringa(const string & str);
    stringa(const var & var);

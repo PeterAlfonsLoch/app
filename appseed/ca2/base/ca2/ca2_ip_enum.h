@@ -20,7 +20,7 @@ namespace ca2
    public:
 
 
-      ip_enum(sp(::application) papp);
+      ip_enum(sp(base_application) papp);
       virtual ~ip_enum();
 
 

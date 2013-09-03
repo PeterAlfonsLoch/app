@@ -45,14 +45,14 @@ public:
    smart_pointer(T2 * p)
    {
       m_p = dynamic_cast < T * > (p);
-      if(m_p != NULL) ::ca::add_ref(p);
+      if(m_p != NULL) ::add_ref(p);
    }
 
    template < class T2 >
    smart_pointer(const T2 * p)
    {
       m_p = dynamic_cast < T * > ((T2 *) p);
-      if(m_p != NULL) ::ca::add_ref(p);
+      if(m_p != NULL) ::add_ref(p);
    }
 
    template < class T2 >

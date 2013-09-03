@@ -3,7 +3,7 @@
 namespace user
 {
 
-   menu_button::menu_button(sp(::application) papp) :
+   menu_button::menu_button(sp(base_application) papp) :
       ::user::interaction(papp),
       
       ::user::button(papp),
@@ -114,7 +114,7 @@ namespace user
       }
    }
 
-   menu_button_cmd_ui::menu_button_cmd_ui(sp(::application) papp) :
+   menu_button_cmd_ui::menu_button_cmd_ui(sp(base_application) papp) :
       element(papp),
       cmd_ui(papp)
    {

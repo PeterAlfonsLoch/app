@@ -42,11 +42,11 @@ namespace visual
 
 
 
-      visual(::ca2::application * papp);
+      visual(application * papp);
       virtual ~visual();
 
 
-      virtual void construct(sp(::application) papp);
+      virtual void construct(sp(base_application) papp);
 
       virtual bool process_initialize();
       

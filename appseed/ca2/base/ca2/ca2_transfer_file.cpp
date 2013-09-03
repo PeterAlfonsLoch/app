@@ -5,7 +5,7 @@ namespace ca2
 {
 
 
-   transfer_file::transfer_file(sp(::application) papp, mutex * pmutex) :
+   transfer_file::transfer_file(sp(base_application) papp, mutex * pmutex) :
       element(papp)
    {
 
@@ -35,7 +35,7 @@ namespace ca2
 
    // it is not currently designed to call open.
    //
-   transfer_file::transfer_file(sp(::application) papp, ::primitive::memory_file * pmemoryfileIn) :
+   transfer_file::transfer_file(sp(base_application) papp, ::primitive::memory_file * pmemoryfileIn) :
       element(papp)
    {
 

@@ -4,7 +4,7 @@
 
 
 
-FileManagerTabView::FileManagerTabView(sp(::application) papp) :
+FileManagerTabView::FileManagerTabView(sp(base_application) papp) :
    element(papp),
    ::user::tab(papp),
    

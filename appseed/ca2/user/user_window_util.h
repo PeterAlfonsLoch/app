@@ -31,7 +31,7 @@ namespace user
    public:
 
 
-      interaction_ptr_array(sp(::application) papp);
+      interaction_ptr_array(sp(base_application) papp);
 
 
       using spa(::user::interaction)::find_first;

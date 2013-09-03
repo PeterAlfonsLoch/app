@@ -15,7 +15,7 @@ FileManagerFileListCallback::~FileManagerFileListCallback()
 
 bool FileManagerFileListCallback::initialize()
 {
-   sp(::application) papp = get_app();
+   sp(base_application) papp = get_app();
    m_pimagelistSubItemHover   = new image_list(papp);
    m_pimagelistItemHover      = new image_list(papp);
    m_pimagelistNormal         = new image_list(papp);

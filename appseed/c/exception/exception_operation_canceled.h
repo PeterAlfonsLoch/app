@@ -7,8 +7,8 @@ class CLASS_DECL_c operation_canceled_exception :
 public:
 
 
-   operation_canceled_exception(sp(::application) papp);
-   operation_canceled_exception(sp(::application) papp, const char * pszMessage);
+   operation_canceled_exception(sp(base_application) papp);
+   operation_canceled_exception(sp(base_application) papp, const char * pszMessage);
    virtual ~operation_canceled_exception();
 
 

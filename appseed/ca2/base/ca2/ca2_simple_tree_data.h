@@ -11,7 +11,7 @@ namespace ca2
    public:
 
 
-      simple_tree_data(sp(::application) papp);
+      simple_tree_data(sp(base_application) papp);
 
 
       virtual sp(tree_item_data) on_allocate_item();

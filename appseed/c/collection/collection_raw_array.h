@@ -298,7 +298,7 @@ public:
 
 
 
-   raw_array(sp(::application) papp = NULL, ::count nGrowBy = 32);
+   raw_array(sp(base_application) papp = NULL, ::count nGrowBy = 32);
    raw_array(const raw_array <TYPE, ARG_TYPE> & a);
    raw_array(::count n);
    raw_array(ARG_TYPE t, ::count n = 1);
@@ -770,7 +770,7 @@ inline raw_array<TYPE, ARG_TYPE> & raw_array<TYPE, ARG_TYPE>::operator = (const 
 // out-of-line functions
 
 template<class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE>::raw_array(sp(::application) papp, ::count nGrowBy) :
+raw_array<TYPE, ARG_TYPE>::raw_array(sp(base_application) papp, ::count nGrowBy) :
 element(papp)
 {
    m_nGrowBy = max(0, nGrowBy);

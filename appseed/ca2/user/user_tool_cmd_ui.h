@@ -10,7 +10,7 @@ namespace user
    public: // re-implementations only
 
 
-      tool_cmd_ui(sp(::application) papp);
+      tool_cmd_ui(sp(base_application) papp);
       virtual ~tool_cmd_ui();
 
       virtual void Enable(bool bOn);

@@ -11,7 +11,7 @@ public:
 
 
 
-   FileManagerPathView(sp(::application) papp);
+   FileManagerPathView(sp(base_application) papp);
 
    
    virtual void _001OnAfterChangeText();

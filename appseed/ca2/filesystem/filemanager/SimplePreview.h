@@ -9,7 +9,7 @@ namespace filemanager
       virtual public ::filemanager::SimplePreviewInterface
    {
    public:
-      SimplePreview(sp(::application) papp);
+      SimplePreview(sp(base_application) papp);
       virtual ~SimplePreview();
 
       virtual void install_message_handling(::ca2::message::dispatch * pdispatch);

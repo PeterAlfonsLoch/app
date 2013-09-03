@@ -38,7 +38,7 @@ namespace ca2
          mutex          m_mutex;
 
 
-         math(sp(::application) papp);
+         math(sp(base_application) papp);
          virtual ~math();
 
 

@@ -4,7 +4,7 @@
 namespace ca2
 {
 
-   signal_details::signal_details(sp(::application) papp) :
+   signal_details::signal_details(sp(base_application) papp) :
       element(papp)
    {
       m_iParam    = 0;

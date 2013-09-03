@@ -131,7 +131,7 @@ namespace plane
 
       ::visual::visual                    m_visual;
 
-      system(sp(::application) papp = NULL);
+      system(sp(base_application) papp = NULL);
       virtual ~system();
 
       //virtual int32_t main();
@@ -152,8 +152,8 @@ namespace plane
 
       virtual index get_new_bergedge(application_bias * pbiasCreation = NULL);
 
-      virtual void register_bergedge_application(sp(::application) papp);
-      virtual void unregister_bergedge_application(sp(::application) papp);
+      virtual void register_bergedge_application(sp(base_application) papp);
+      virtual void unregister_bergedge_application(sp(base_application) papp);
 
 
       virtual bool base_support();
@@ -207,14 +207,14 @@ namespace plane
 
       virtual bool assert_failed_line(const char * lpszFileName, int32_t iLine);
 
-      virtual void on_allocation_error(sp(::application) papp, sp(type) info);
+      virtual void on_allocation_error(sp(base_application) papp, sp(type) info);
 
       // file & dir
-      virtual string matter_as_string(sp(::application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
-      virtual string dir_matter(sp(::application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual string matter_as_string(sp(base_application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual string dir_matter(sp(base_application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
       virtual bool is_inside_time_dir(const char * pszPath);
       virtual bool file_is_read_only(const char * pszPath);
-      virtual string file_as_string(sp(::application) papp, const char * pszPath);
+      virtual string file_as_string(sp(base_application) papp, const char * pszPath);
       virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = NULL);
       virtual string dir_name(const char * psz);
       virtual bool dir_mk(const char * psz);
@@ -395,7 +395,7 @@ namespace plane
 
       virtual bool on_install();
 
-      virtual string get_fontopus_server(const char * pszUrl, sp(::application) papp, int32_t iRetry = -1);
+      virtual string get_fontopus_server(const char * pszUrl, sp(base_application) papp, int32_t iRetry = -1);
 
       virtual string get_host_location_url();
 
@@ -445,7 +445,7 @@ namespace ca2
 
 
 template < class T >
-bool ::ca2::file_system::output(sp(::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, const char *), const char * lpszSource)
+bool ::ca2::file_system::output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, const char *), const char * lpszSource)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
@@ -461,7 +461,7 @@ bool ::ca2::file_system::output(sp(::application) papp, const char * pszOutput, 
 
 
 template < class T >
-bool ::ca2::file_system::output(sp(::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, ::file::reader &), const char * lpszInput)
+bool ::ca2::file_system::output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, ::file::reader &), const char * lpszInput)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
@@ -596,7 +596,7 @@ namespace user
 namespace xml
 {
 
-   inline disp_option::disp_option(sp(::application) papp)
+   inline disp_option::disp_option(sp(base_application) papp)
    {
       newline = true;
       reference_value = true;

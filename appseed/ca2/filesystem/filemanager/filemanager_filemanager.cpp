@@ -10,7 +10,7 @@ namespace filemanager
 {
 
 
-   filemanager::filemanager(::ca2::application * papp) :
+   filemanager::filemanager(application * papp) :
       element(papp),
       ::departament(papp)
    {

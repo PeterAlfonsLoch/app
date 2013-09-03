@@ -7,7 +7,7 @@ class CLASS_DECL_c plain_service :
 public:
 
 
-   plain_service(sp(::application) papp);
+   plain_service(sp(base_application) papp);
    virtual ~plain_service();
 
 

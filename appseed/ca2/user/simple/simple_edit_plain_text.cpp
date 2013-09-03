@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_edit_plain_text::simple_edit_plain_text(sp(::application) papp) :
+simple_edit_plain_text::simple_edit_plain_text(sp(base_application) papp) :
    element(papp),
    ::user::interaction(papp),
    

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-FileManagerLeftView::FileManagerLeftView(sp(::application) papp) :
+FileManagerLeftView::FileManagerLeftView(sp(base_application) papp) :
    element(papp),
    ::user::split_layout(papp),
    

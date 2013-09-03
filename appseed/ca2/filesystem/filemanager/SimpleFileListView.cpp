@@ -9,7 +9,7 @@
 namespace filemanager
 {
 
-   SimpleFileListView::SimpleFileListView(sp(::application) papp) :
+   SimpleFileListView::SimpleFileListView(sp(base_application) papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::form(papp),

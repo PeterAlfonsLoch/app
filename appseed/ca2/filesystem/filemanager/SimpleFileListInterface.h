@@ -34,7 +34,7 @@ namespace filemanager
          SimpleFileListInterface * m_plist;
 
 
-         create_image_list_thread(sp(::application) papp);
+         create_image_list_thread(sp(base_application) papp);
 
          virtual int32_t run();
 
@@ -84,7 +84,7 @@ namespace filemanager
       public:
 
 
-         ItemArray(sp(::application) papp);
+         ItemArray(sp(base_application) papp);
 
 
          void add_item(Item & item);
@@ -153,7 +153,7 @@ namespace filemanager
          index         m_iImage;
       };*/
 
-      SimpleFileListInterface(sp(::application) papp);
+      SimpleFileListInterface(sp(base_application) papp);
       virtual ~SimpleFileListInterface();
       virtual void file_size_add_request(bool bClear);
 

@@ -15,7 +15,7 @@ void base::operator delete(void * pbData,   const char * /* lpszFileName */, int
    operator delete(pbData);
 }
 
-base::base(sp(::application) papp, uint32_t uiSkip) :
+base::base(sp(base_application) papp, uint32_t uiSkip) :
    element(papp),
    ::call_stack(papp, uiSkip)
 {
@@ -24,7 +24,7 @@ base::base(sp(::application) papp, uint32_t uiSkip) :
    m_ulFlags &= ~flag_ready_for_delete;
 }
 
-base::base(sp(::application) papp, bool bAutoDelete, uint32_t uiSkip) :
+base::base(sp(base_application) papp, bool bAutoDelete, uint32_t uiSkip) :
    element(papp),
    ::call_stack(papp, uiSkip)
 {

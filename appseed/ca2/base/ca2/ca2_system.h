@@ -6,7 +6,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca2 system :
-      virtual public ::ca2::application
+      virtual public application
       #ifdef LINUX
       , virtual public ::exception::translator
       #endif
@@ -33,10 +33,10 @@ namespace ca2
 
 
 
-      virtual void on_allocation_error(sp(::application) papp, sp(type) info);
-      sp(element) alloc(sp(::application) papp, sp(type) info);
-      sp(element) alloc(sp(::application) papp, const std_type_info & info);
-      virtual sp(element) on_alloc(sp(::application) papp, sp(type) info);
+      virtual void on_allocation_error(sp(base_application) papp, sp(type) info);
+      sp(element) alloc(sp(base_application) papp, sp(type) info);
+      sp(element) alloc(sp(base_application) papp, const std_type_info & info);
+      virtual sp(element) on_alloc(sp(base_application) papp, sp(type) info);
 
 
       static inline class id id(const ::std_type_info & info);

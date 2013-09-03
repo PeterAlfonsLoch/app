@@ -41,18 +41,18 @@ namespace sockets
 
       /** create is_empty Ipv6 address structure.
       \param port Port number */
-      ipv6_address(sp(::application) papp, port_t port = 0);
+      ipv6_address(sp(base_application) papp, port_t port = 0);
       /** create Ipv6 address structure.
       \param a socket address in network byte order
       \param port Port number in host byte order */
-      ipv6_address(sp(::application) papp, const in6_addr& a,port_t port);
-      ipv6_address(sp(::application) papp, const in6_addr& a, const string & strServiceName);
+      ipv6_address(sp(base_application) papp, const in6_addr& a,port_t port);
+      ipv6_address(sp(base_application) papp, const in6_addr& a, const string & strServiceName);
       /** create Ipv6 address structure.
       \param host Hostname to be resolved
       \param port Port number in host byte order */
-      ipv6_address(sp(::application) papp, const string & host,port_t port);
-      ipv6_address(sp(::application) papp, const string & host, const string & strServiceName);
-      ipv6_address(sp(::application) papp, const sockaddr_in6&);
+      ipv6_address(sp(base_application) papp, const string & host,port_t port);
+      ipv6_address(sp(base_application) papp, const string & host, const string & strServiceName);
+      ipv6_address(sp(base_application) papp, const sockaddr_in6&);
       ipv6_address(const ipv6_address & addr);
       ~ipv6_address();
 
@@ -75,11 +75,11 @@ namespace sockets
       string Reverse();
 
       /** Resolve hostname. */
-      //static bool Resolve(sp(::application) papp, const string & hostname, in6_addr& a);
+      //static bool Resolve(sp(base_application) papp, const string & hostname, in6_addr& a);
       /** Reverse resolve (IP to hostname). */
-      //static bool Reverse(sp(::application) papp, in6_addr& a, string & name);
+      //static bool Reverse(sp(base_application) papp, in6_addr& a, string & name);
       /** Convert address struct to text. */
-      //static string Convert(sp(::application) papp, in6_addr& a, bool mixed = false);
+      //static string Convert(sp(base_application) papp, in6_addr& a, bool mixed = false);
 
       void SetFlowinfo(uint32_t);
       uint32_t GetFlowinfo();

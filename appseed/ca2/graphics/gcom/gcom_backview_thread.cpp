@@ -9,7 +9,7 @@ namespace gcom
       const UINT thread::MESSAGE_BACKVIEW = WM_APP + 123;
       const WPARAM thread::WPARAM_BACKVIEW_IMAGELOADED = 0;
 
-      thread::thread(sp(::application) papp) :
+      thread::thread(sp(base_application) papp) :
          element(papp),
          ::ca2::thread(papp),
          m_evInitialized(papp, FALSE, TRUE),

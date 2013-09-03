@@ -5,7 +5,7 @@ namespace ca2
 {
 
 
-   section::section(::ca2::application * papp) :
+   section::section(application * papp) :
       element(papp)
    {
 
@@ -22,7 +22,7 @@ namespace ca2
    // not contain advanced initialization as the
    // papp application pointer may be incompletely
    // initialized specially its virtual functions.
-   void section::construct(sp(::application) papp)
+   void section::construct(sp(base_application) papp)
    {
 
       set_app(papp);

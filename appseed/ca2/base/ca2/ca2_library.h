@@ -57,7 +57,7 @@ namespace ca2
       library(const char * pszRoot);
       virtual ~library();
 
-      virtual bool open(sp(::application) papp, const char * pszPath, bool bAutoClose = true);
+      virtual bool open(sp(base_application) papp, const char * pszPath, bool bAutoClose = true);
       virtual bool close();
 
 
@@ -81,10 +81,10 @@ namespace ca2
       virtual bool is_uinteraction_library();
 
 
-      virtual ::dynamic_source::script_manager * create_script_manager(sp(::application) papp);
+      virtual ::dynamic_source::script_manager * create_script_manager(sp(base_application) papp);
 
       virtual void get_script_list(stringa & stra);
-      virtual ::dynamic_source::script * create_script(sp(::application) papp, const char * pszScript);
+      virtual ::dynamic_source::script * create_script(sp(base_application) papp, const char * pszScript);
       virtual void do_default_script_registration(::dynamic_source::script_manager * pmanager);
 
       virtual string get_library_name();

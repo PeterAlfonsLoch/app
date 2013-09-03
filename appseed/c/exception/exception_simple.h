@@ -12,8 +12,8 @@ public:
    vsstring       m_strMessage;
 
 
-   simple_exception(sp(::application) papp);
-   simple_exception(sp(::application) papp, const char * pszMessage);
+   simple_exception(sp(base_application) papp);
+   simple_exception(sp(base_application) papp, const char * pszMessage);
    virtual ~simple_exception();
 
 

@@ -7,7 +7,7 @@ class CLASS_DECL_c resource_exception :
 public:
 
 
-   resource_exception(sp(::application) papp);
+   resource_exception(sp(base_application) papp);
    virtual ~resource_exception();
 
 

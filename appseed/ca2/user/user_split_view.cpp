@@ -3,7 +3,7 @@
 namespace user
 {
 
-   split_view::split_view(sp(::application) papp) :
+   split_view::split_view(sp(base_application) papp) :
       element(papp),
       
       split_layout(papp),

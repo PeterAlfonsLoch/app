@@ -11,8 +11,8 @@ class property;
 class property_set;
 class object;
 class type;
-class application;
-class system;
+class base_application;
+class base_system;
 class dump_context;
 class string_interface;
 class id_space;
@@ -131,7 +131,7 @@ namespace user
 
 #include "c/primitive/primitive_element.h"
 
-#include "c/base/base_debug.h"
+#include "base_debug.h"
 
 
 
@@ -140,18 +140,18 @@ namespace user
 
 
 
-#include "c/base/base_template.h"
+#include "base_template.h"
 
 #include "c/comparison/comparison_md5.h"
 
 #include "c/net/net.h"
 
-#include "ca/ca_conv.h"
+#include "base_conv.h"
 
 
 
-#include "c/ca2/ca2_core.h"
-#include "c/ca2/ca2_common.h"
+#include "base_core.h"
+#include "base_common.h"
 
 #include "c/primitive/primitive_request_interface.h"
 
@@ -168,22 +168,19 @@ namespace user
 #include "c/collection/collection_array_decl.h"
 
 
-#include "c_fixed_alloc.h"
+#include "base_fixed_alloc.h"
 
 
 
-#include "c/ca2/ca2_allocate.h"
-#include "c/ca2/ca2_plex.h"
-#include "c/ca2/ca2_plex_heap.h"
+#include "base_allocate.h"
+#include "base_plex.h"
+#include "base_plex_heap.h"
 
 
 #include "c/primitive/primitive_id.h"
 
 
 #include "c/str/str.h"
-
-
-#include "c_istring.h"
 
 
 #include "c/datetime/datetime_time.h"
@@ -216,29 +213,25 @@ namespace user
 
 #endif
 
-
-#include "c/ca/ca_user.h"
+#include "base_thread.h"
+#include "base_user_interaction.h"
 
 
 
 
 CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError);
-#ifndef METROWIN
-CLASS_DECL_c int_bool PrintModules(vsstring & strImage, uint32_t processID, const char * pszDll );
-CLASS_DECL_c void dll_processes(uint_array & dwa, stringa & straProcesses, const char * pszDll);
-#endif
 
 #include "c/multithreading/multithreading.h"
 
 
 #include "c/primitive/primitive_type.h"
 
-#include "c/ca/ca_application.h"
+#include "base_application.h"
 
-#include "c/ca/ca_departament.h"
-#include "c/ca/ca_departament_container.h"
+#include "base_departament.h"
+#include "base_departament_container.h"
 
-#include "c/ca/ca_url_departament.h"
+#include "c/net/net_url_departament.h"
 
 #include "c/primitive/primitive_interlocked_long.h"
 #include "c/primitive/primitive_interlocked_long_pulse.h"
@@ -251,11 +244,11 @@ CLASS_DECL_c void dll_processes(uint_array & dwa, stringa & straProcesses, const
 
 #include "c/xml/xml.h"
 
-#include "c/ca/ca_application_bias.h"
+#include "c/primitive/primitive_application_bias.h"
 #include "c/exception/exception_engine.h"
 
-#include "c_fixed_alloc_impl.h"
-#include "c/ca2/ca2_plex_heap_impl.h"
+#include "base_fixed_alloc_impl.h"
+#include "base_plex_heap_impl.h"
 #include "c/primitive/primitive_command_line.h"
 #include "c/primitive/primitive_create_context.h"
 #include "c/primitive/primitive_command.h"
@@ -270,7 +263,7 @@ CLASS_DECL_c void dll_processes(uint_array & dwa, stringa & straProcesses, const
 #include "c/primitive/primitive_command_thread.h"
 
 
-#include "c/ca/ca_system.h"
+#include "base_system.h"
 
 
 #include "c/primitive/primitive_memory_base.h"

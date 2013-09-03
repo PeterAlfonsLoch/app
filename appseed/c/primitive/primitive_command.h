@@ -7,7 +7,7 @@ class CLASS_DECL_c command :
 public:
 
 
-   command(sp(::application) papp);
+   command(sp(base_application) papp);
    virtual ~command();
 
    virtual var run();

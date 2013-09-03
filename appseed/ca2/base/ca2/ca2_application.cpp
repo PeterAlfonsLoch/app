@@ -193,7 +193,7 @@ namespace ca2
 
       m_pinitmaindata = NULL;
 
-      m_psignal->connect(this, &::ca2::application::on_application_signal);
+      m_psignal->connect(this, &application::on_application_signal);
 
       m_eexclusiveinstance       = ::ca2::ExclusiveInstanceNone;
       m_peventReady              = NULL;
@@ -224,9 +224,9 @@ namespace ca2
       UNREFERENCED_PARAMETER(pszId);
    }
 
-   ::ca2::application * application::get_app() const
+   application * application::get_app() const
    {
-      return (::ca2::application *) this;
+      return (application *) this;
    }
 
 
@@ -377,7 +377,7 @@ namespace ca2
          if(!::ca2::application_base::m_p->update_module_paths())
             return false;
 
-         ::ca2::application * pappOs = dynamic_cast < ::ca2::application * > (::ca2::application_base::m_p.m_p);
+         application * pappOs = dynamic_cast < application * > (::ca2::application_base::m_p.m_p);
 
          if(pappOs->m_strCa2ModuleFolder.is_empty())
             pappOs->m_strCa2ModuleFolder = pappOs->m_strModuleFolder;
@@ -791,7 +791,7 @@ namespace ca2
       if(!::ca2::application_base::m_p->initialize2())
          return false;
 
-      return ::ca2::application::initialize2();
+      return application::initialize2();
 
    }
 
@@ -1447,7 +1447,7 @@ finishedCa2Module:;
       TRACE(::ca2::trace::category_AppMsg, 0, "Warning: GetMainWnd() is NULL in application::run - quitting application.\n");
       __post_quit_message(0);
       }*/
-      //      return ::ca2::application::run();
+      //      return application::run();
       return ::ca2::thread::run();
    }
 
@@ -4300,7 +4300,7 @@ namespace ca2
    }
 
 
-   application_signal_details::application_signal_details(sp(::application) papp, ::ca2::signal * psignal, e_application_signal esignal) :
+   application_signal_details::application_signal_details(sp(base_application) papp, ::ca2::signal * psignal, e_application_signal esignal) :
       element(papp),
       signal_details(psignal)
    {
@@ -4644,7 +4644,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
    void application::install_message_handling(::ca2::message::dispatch * pdispatch)
    {
       ::ca2::thread::install_message_handling(pdispatch);
-      IGUI_WIN_MSG_LINK(WM_APP + 2043, pdispatch, this, &::ca2::application::_001OnApplicationRequest);
+      IGUI_WIN_MSG_LINK(WM_APP + 2043, pdispatch, this, &application::_001OnApplicationRequest);
    }
 
 
@@ -4723,7 +4723,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
    bool application::base_support()
    {
 
-      //if(!::ca2::application::base_support())
+      //if(!application::base_support())
       // return false;
 
       if(m_strBaseSupportId.is_empty())
@@ -4943,7 +4943,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
 
       m_pfilemanager =canew(::filemanager::filemanager(this));
 
-      ::ca2::application::m_pfilemanager = m_pfilemanager;
+      application::m_pfilemanager = m_pfilemanager;
 
       m_pfilemanager->construct(this);
 
@@ -5347,7 +5347,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
          if(ptimer->m_nIDEvent == 123)
          {
             m_spuiMessage->KillTimer(ptimer->m_nIDEvent);
-            frames().send_message_to_descendants(::ca2::application::APPM_LANGUAGE);
+            frames().send_message_to_descendants(application::APPM_LANGUAGE);
             System.appa_load_string_table();
          }
       }
@@ -5492,7 +5492,7 @@ ret:
       }
    }
 
-   bool application::start_application(bool bSynch, ::ca2::application_bias * pbias)
+   bool application::start_application(bool bSynch, application_bias * pbias)
    {
       /*      try
       {

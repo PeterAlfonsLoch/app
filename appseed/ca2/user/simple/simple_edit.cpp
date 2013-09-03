@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_edit::simple_edit(sp(::application) papp) :
+simple_edit::simple_edit(sp(base_application) papp) :
    element(papp),
    ::user::interaction(papp),
    

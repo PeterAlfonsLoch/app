@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   address::address(sp(::application) papp, const in_addr & a, int32_t iPort)
+   address::address(sp(base_application) papp, const in_addr & a, int32_t iPort)
    {
 
       m_pipv4 = canew(ipv4_address(papp, a, iPort));
@@ -13,7 +13,7 @@ namespace sockets
    }
 
 
-   address::address(sp(::application) papp, const in6_addr & a, int32_t iPort)
+   address::address(sp(base_application) papp, const in6_addr & a, int32_t iPort)
    {
 
       m_pipv6 = canew(ipv6_address(papp, a, iPort));
@@ -21,7 +21,7 @@ namespace sockets
    }
 
 
-   address::address(sp(::application) papp, const sockaddr & sa, int32_t sa_len)
+   address::address(sp(base_application) papp, const sockaddr & sa, int32_t sa_len)
    {
 
       if (sa_len == sizeof(struct sockaddr_in6))
@@ -52,7 +52,7 @@ namespace sockets
    }
 
 
-   address::address(sp(::application) papp, const string & strAddress, const string & strServiceName) :
+   address::address(sp(base_application) papp, const string & strAddress, const string & strServiceName) :
       element(papp)
    {
 
@@ -64,7 +64,7 @@ namespace sockets
    }
 
 
-   address::address(sp(::application) papp, const string & strAddress, int32_t iPort) :
+   address::address(sp(base_application) papp, const string & strAddress, int32_t iPort) :
       element(papp)
    {
 

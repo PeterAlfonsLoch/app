@@ -234,7 +234,7 @@ namespace user
          TypeOpenDocument,
       };
    public:
-      view_update_hint(sp(::application) papp);
+      view_update_hint(sp(base_application) papp);
       etype m_etype;
    };
 

@@ -30,7 +30,7 @@ namespace uinteraction
 }
 
 
-typedef  void (* PFN_ca2_factory_exchange)(sp(::application) papp);
+typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
 
 
 namespace plane
@@ -499,7 +499,7 @@ namespace ca2
 
       virtual int32_t main();
 
-      virtual ::ca2::application * get_app() const;
+      virtual application * get_app() const;
 
       virtual bool is_system();
       virtual bool is_session();
@@ -1122,7 +1122,7 @@ namespace ca2
 
       
       string message_box(const char * pszMatter, property_set & propertyset);
-      //using ::ca2::application::simple_message_box;
+      //using application::simple_message_box;
       //virtual int32_t simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle = MB_OK);
       //virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
       virtual int32_t track_popup_menu(const char * pszMatter, point pt, sp(::user::interaction) puie);
@@ -1175,7 +1175,7 @@ namespace ca2
    };
 
 
-   inline application & get(sp(::application) papp)
+   inline application & get(sp(base_application) papp)
    {
       return papp;
    }
@@ -1188,7 +1188,7 @@ namespace ca2
       if(!contains_app(pszAppId))
          return NULL;
 
-      sp(::application) papp = canew(APP());
+      sp(base_application) papp = canew(APP());
 
       if(papp == NULL)
          return NULL;

@@ -284,7 +284,7 @@ inline array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator = (const array & 
 // out-of-line functions
 
 template<class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE>::array(sp(::application) papp, ::count nGrowBy) :
+array<TYPE, ARG_TYPE>::array(sp(base_application) papp, ::count nGrowBy) :
 element(papp)
 {
    m_nGrowBy = max(0, nGrowBy);

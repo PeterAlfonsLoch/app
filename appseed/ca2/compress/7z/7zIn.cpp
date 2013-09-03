@@ -354,7 +354,7 @@ HRESULT CInArchive::FindAndReadSignature(::file::byte_input_stream *stream, cons
   return S_FALSE;
 }
 
-      CInArchive::CInArchive(sp(::application) papp) :
+      CInArchive::CInArchive(sp(base_application) papp) :
          element(papp)
       {
       }

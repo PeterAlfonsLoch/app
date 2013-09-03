@@ -18,7 +18,7 @@ namespace ca2
       
       virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::document_template) ptemplate, sp(::user::document_interface) pdocument);
 
-      bool initialize(sp(::application) papp);
+      bool initialize(sp(base_application) papp);
 
 
    };

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-menu_document::menu_document(sp(::application) papp) :
+menu_document::menu_document(sp(base_application) papp) :
    element(papp),
    ::ca2::data_container_base(papp),
    

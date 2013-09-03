@@ -3,7 +3,7 @@
 namespace html
 {
 
-   data::image::image(sp(::application) papp) :
+   data::image::image(sp(base_application) papp) :
       element(papp),
       m_spdib(allocer())
    {
@@ -15,7 +15,7 @@ namespace html
    }
 
 
-   data::data(sp(::application) papp) :
+   data::data(sp(base_application) papp) :
       element(papp),
       ::data(papp),
       m_imagea(papp),

@@ -53,7 +53,7 @@ namespace file
       {
       }
 
-      exception(sp(::application) papp, int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
+      exception(sp(base_application) papp, int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 
       virtual void Construct(int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 

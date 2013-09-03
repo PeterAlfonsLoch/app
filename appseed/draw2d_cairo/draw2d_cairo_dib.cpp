@@ -29,7 +29,7 @@ namespace draw2d_cairo
    double dib::dPi;
 
 
-   dib::dib(sp(::application) papp) :
+   dib::dib(sp(base_application) papp) :
       element(papp),
       m_spbitmap(allocer()),
       m_spgraphics(allocer())

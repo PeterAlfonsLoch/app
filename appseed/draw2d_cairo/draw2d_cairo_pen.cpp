@@ -5,7 +5,7 @@ namespace draw2d_cairo
 {
 
 
-   pen::pen(sp(::application) papp) :
+   pen::pen(sp(base_application) papp) :
       element(papp)
    {
    }
@@ -16,7 +16,7 @@ namespace draw2d_cairo
    {
       return (HPEN)(this == NULL ? NULL : get_handle());
    }*/
-/*   pen* PASCAL pen::from_handle(sp(::application) papp, HPEN hPen)
+/*   pen* PASCAL pen::from_handle(sp(base_application) papp, HPEN hPen)
    {
       return dynamic_cast < pen* > (::win::object::from_handle(papp, hPen));
    }*/

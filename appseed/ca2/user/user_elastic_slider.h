@@ -8,7 +8,7 @@ namespace user
 
    {
    public:
-      elastic_slider(sp(::application) papp);
+      elastic_slider(sp(base_application) papp);
    public:
       virtual ~elastic_slider();
 

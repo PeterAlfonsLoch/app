@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   user::user(::ca2::application * papp) :
+   user::user(application * papp) :
       element(papp),
       ::departament(papp)
    {
@@ -735,12 +735,12 @@ retry_license:
    }
 
 
-   ::user::front_end_schema * GetUfeSchema(sp(::application) papp)
+   ::user::front_end_schema * GetUfeSchema(sp(base_application) papp)
    {
       return App(papp).user()->GetUfeSchema();
    }
 
-   ::user::front_end * GetUfe(sp(::application) papp)
+   ::user::front_end * GetUfe(sp(base_application) papp)
    {
       return App(papp).user()->GetUfe();
    }
@@ -833,7 +833,7 @@ retry_license:
 
       void user::VmsGuiiOnAppLanguage(signal_details * pobject)
       {
-         SendMessageToWindows(::ca2::application::APPM_LANGUAGE, 0, (LPARAM) pobject);
+         SendMessageToWindows(application::APPM_LANGUAGE, 0, (LPARAM) pobject);
       }
 
 

@@ -17,7 +17,7 @@ public:
 
 
    virtual_user_interface();
-   virtual_user_interface(sp(::application) papp);
+   virtual_user_interface(sp(base_application) papp);
    virtual ~virtual_user_interface();
 
    virtual void message_handler(signal_details * pobj);

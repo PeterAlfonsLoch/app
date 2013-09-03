@@ -212,7 +212,7 @@ namespace n7z
          );
    public:
 
-      CInArchive(sp(::application) papp);
+      CInArchive(sp(base_application) papp);
       virtual ~CInArchive();
 
       HRESULT Open(::file::byte_input_stream *stream, const file_position *searchHeaderSizeLimit); // S_FALSE means is not archive

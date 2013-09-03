@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   fs::fs(::ca2::application * papp) :
+   fs::fs(application * papp) :
       element(papp),
       ::departament(papp)
    {

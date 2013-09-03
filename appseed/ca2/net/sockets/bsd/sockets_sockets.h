@@ -24,7 +24,7 @@
          
 
 
-         sockets(::ca2::application * papp);
+         sockets(application * papp);
          virtual ~sockets();
 
 

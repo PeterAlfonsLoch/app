@@ -25,7 +25,7 @@ public:
 #endif
 
 
-   condition(sp(::application) papp);
+   condition(sp(base_application) papp);
    virtual ~condition();
 
 

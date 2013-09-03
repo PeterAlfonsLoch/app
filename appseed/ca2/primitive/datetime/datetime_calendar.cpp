@@ -1,6 +1,6 @@
 #include "framework.h"
 
-calendar::calendar(sp(::application) papp) :
+calendar::calendar(sp(base_application) papp) :
    element(papp),
    m_font(allocer()),
    m_fontYear(allocer()),

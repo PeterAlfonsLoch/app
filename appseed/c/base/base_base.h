@@ -90,7 +90,7 @@ inline void delptr(t *& p)
 
 
 
-#define canew(x) ::ca::dereference_no_delete(new x)
+#define canew(x) dereference_no_delete(new x)
 
 
 

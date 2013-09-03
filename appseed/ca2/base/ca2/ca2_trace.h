@@ -99,7 +99,7 @@ namespace ca2
 
          sp(::application) m_papp;
 
-         trace(sp(::application) papp)
+         trace(sp(base_application) papp)
          {
             m_papp = papp;
          }

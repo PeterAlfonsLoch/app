@@ -2397,7 +2397,7 @@ namespace ca2
 } // namespace ca2
 
 
-CTestCmdUI::CTestCmdUI(sp(::application) papp) :
+CTestCmdUI::CTestCmdUI(sp(base_application) papp) :
 element(papp),
    cmd_ui(papp)
 {
@@ -2429,7 +2429,7 @@ void CTestCmdUI::SetText(const char *)
 
 
 
-guie_message_wnd::guie_message_wnd(sp(::application) papp) :
+guie_message_wnd::guie_message_wnd(sp(base_application) papp) :
 element(papp)
 {
    m_pguieForward = NULL;

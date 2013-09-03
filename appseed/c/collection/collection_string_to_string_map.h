@@ -10,7 +10,7 @@ class CLASS_DECL_c string_to_string_map :
 public:
 
 
-   string_to_string_map(sp(::application) papp = NULL, ::count nBlockSize = 10);
+   string_to_string_map(sp(base_application) papp = NULL, ::count nBlockSize = 10);
    string_to_string_map(const string_to_string_map & map);
 	~string_to_string_map();
 

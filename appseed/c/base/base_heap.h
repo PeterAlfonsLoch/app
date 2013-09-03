@@ -144,12 +144,6 @@ inline CLASS_DECL_c void * __cdecl operator new[](size_t size, const c_class &)
 
 
 
-#pragma once
-
-
-class mutex;
-
-
 extern CLASS_DECL_c HANDLE g_hHeap;
 
 CLASS_DECL_c void * ca2_heap_alloc(size_t size);
@@ -165,5 +159,14 @@ CLASS_DECL_c void * system_heap_realloc(void * pvoidOld, size_t size);
 CLASS_DECL_c void   system_heap_free(void * pvoid);
 
 
+
+#ifdef __cplusplus
+
+class mutex;
+
+
 CLASS_DECL_c void set_heap_mutex(mutex * pmutex);
 CLASS_DECL_c mutex * get_heap_mutex();
+
+
+#endif

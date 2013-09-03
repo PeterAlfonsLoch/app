@@ -599,7 +599,7 @@ namespace ca2
    * @output: none
    *
    *--*/
-   oauth::oauth(sp(::application) papp) :
+   oauth::oauth(sp(base_application) papp) :
    element(papp),
       m_consumerKey( "" ),
       m_consumerSecret( "" ),

@@ -18,7 +18,7 @@ namespace filemanager
       ::fs::item_array                          m_itema;
 
 
-      SimpleFilePropertiesForm(sp(::application) papp);
+      SimpleFilePropertiesForm(sp(base_application) papp);
       virtual ~SimpleFilePropertiesForm();
 
 

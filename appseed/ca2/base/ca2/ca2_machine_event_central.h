@@ -5,7 +5,7 @@ class CLASS_DECL_ca2 machine_event_central :
    public simple_thread
 {
 public:
-   machine_event_central(sp(::application) papp);
+   machine_event_central(sp(base_application) papp);
    virtual ~machine_event_central();
 
    machine_event  m_machineevent;

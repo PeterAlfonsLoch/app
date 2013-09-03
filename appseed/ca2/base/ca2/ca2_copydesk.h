@@ -11,7 +11,7 @@ namespace ca2
    public:
 
       
-      copydesk(sp(::application) papp);
+      copydesk(sp(base_application) papp);
       virtual ~copydesk();
 
 

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   multiple_document_template::multiple_document_template(sp(::application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
+   multiple_document_template::multiple_document_template(sp(base_application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
       element(papp),
       ::user::document_template(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
    {

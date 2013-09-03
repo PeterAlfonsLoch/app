@@ -5,7 +5,7 @@ namespace userfs
 {
 
 
-   tree_data::tree_data(sp(::application) papp) :
+   tree_data::tree_data(sp(base_application) papp) :
       element(papp),
       ::ca2::tree_data(papp)
    {

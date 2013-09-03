@@ -20,7 +20,7 @@ public:
    ::draw2d::font    m_fontSpin;
 
 
-   clock(sp(::application) papp);
+   clock(sp(base_application) papp);
 
    void GetRect(LPRECT lprect, enum EElement eelement);
 

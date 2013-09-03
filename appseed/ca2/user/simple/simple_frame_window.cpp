@@ -8,7 +8,7 @@
 uint32_t simple_frame_window_save_window_rect(void * pvoidParam);
 
 
-simple_frame_window::simple_frame_window(sp(::application) papp) :
+simple_frame_window::simple_frame_window(sp(base_application) papp) :
    element(papp),
    m_dibBk(allocer()),
    m_fastblur(allocer())

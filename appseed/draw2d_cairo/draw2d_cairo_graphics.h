@@ -33,7 +33,7 @@ namespace draw2d_cairo
 
 
       graphics();
-      graphics(sp(::application) papp);
+      graphics(sp(base_application) papp);
       virtual ~graphics();
 
 
@@ -449,7 +449,7 @@ namespace draw2d_cairo
       bool SelectClipPath(int32_t nMode);
 
    // Misc Helper Functions
-      static ::draw2d::brush* PASCAL GetHalftoneBrush(sp(::application) papp);
+      static ::draw2d::brush* PASCAL GetHalftoneBrush(sp(base_application) papp);
       void DrawDragRect(LPCRECT lpRect, SIZE size,
          LPCRECT lpRectLast, SIZE sizeLast,
          ::draw2d::brush* pBrush = NULL, ::draw2d::brush* pBrushLast = NULL);
@@ -488,7 +488,7 @@ namespace draw2d_cairo
 
    //protected:
       // used for implementation of non-virtual SelectObject calls
-      //static object* PASCAL SelectGdiObject(sp(::application) papp, HDC hDC, HGDIOBJ h);
+      //static object* PASCAL SelectGdiObject(sp(base_application) papp, HDC hDC, HGDIOBJ h);
 
 
       // platform-specific or platform-internals

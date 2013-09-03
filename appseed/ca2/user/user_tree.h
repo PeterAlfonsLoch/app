@@ -74,7 +74,7 @@ namespace user
       BYTE                          m_uchHoverAlphaInit;
       
 
-      tree(sp(::application) papp);
+      tree(sp(base_application) papp);
       virtual ~tree();
 
       virtual void _001OnDrawBackground(::draw2d::graphics * pdc);
@@ -150,7 +150,7 @@ namespace user
       virtual public ::user::tree
    {
    public:
-      tree_window(sp(::application) papp);
+      tree_window(sp(base_application) papp);
       virtual ~tree_window();
 
       virtual void install_message_handling(::ca2::message::dispatch * pinterface);

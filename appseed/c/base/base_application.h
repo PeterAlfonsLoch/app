@@ -26,14 +26,14 @@ public:
    bool                             m_bOk;
 
 
-   application_signal_details(sp(::application) papp, ::signal * psignal, e_application_signal esignal);
+   application_signal_details(sp(base_application) papp, ::signal * psignal, e_application_signal esignal);
 
 
 };
 
 
 
-class CLASS_DECL_c application :
+class CLASS_DECL_c base_application :
    virtual public thread_base
 {
 public:

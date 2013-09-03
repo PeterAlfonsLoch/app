@@ -80,7 +80,7 @@ public:
 
 
 
-   simple_toolbar(sp(::application) papp);
+   simple_toolbar(sp(base_application) papp);
    virtual ~simple_toolbar();
 
 

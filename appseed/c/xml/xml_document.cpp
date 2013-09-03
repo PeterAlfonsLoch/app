@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   document::document(sp(::application) papp, parse_info * pparseinfo) :
+   document::document(sp(base_application) papp, parse_info * pparseinfo) :
       element(papp),
       ::data(papp),
       node(papp)

@@ -18,7 +18,7 @@ namespace filemanager
       simple_list_header_control    m_headerctrl;
 
 
-      SimpleFolderTreeView(sp(::application) papp);
+      SimpleFolderTreeView(sp(base_application) papp);
       virtual ~SimpleFolderTreeView();
 
 

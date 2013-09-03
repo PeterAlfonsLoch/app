@@ -12,10 +12,10 @@ namespace ca2
    public:
    
 
-      byte_stream_memory_file(sp(::application) papp, ::primitive::memory_size iSize = 0);
-      byte_stream_memory_file(sp(::application) papp, void * pMemory, ::primitive::memory_size dwSize);
-      byte_stream_memory_file(sp(::application) papp, const memory_file & memoryfile);
-      byte_stream_memory_file(sp(::application) papp, ::primitive::memory_base * pmemory);
+      byte_stream_memory_file(sp(base_application) papp, ::primitive::memory_size iSize = 0);
+      byte_stream_memory_file(sp(base_application) papp, void * pMemory, ::primitive::memory_size dwSize);
+      byte_stream_memory_file(sp(base_application) papp, const memory_file & memoryfile);
+      byte_stream_memory_file(sp(base_application) papp, ::primitive::memory_base * pmemory);
       byte_stream_memory_file(const byte_stream_memory_file & file);
       virtual ~byte_stream_memory_file();
 

@@ -26,7 +26,7 @@ service_base* service_base::s_pservice = 0;
 //                      service_base class.
 //
 //*****************************************************************************
-service_base::service_base(sp(::application) papp, uint32_t controlsAccepted) :
+service_base::service_base(sp(base_application) papp, uint32_t controlsAccepted) :
    element(papp),
    m_bStopping(false),
    m_stopped(papp)

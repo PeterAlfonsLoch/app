@@ -9,7 +9,7 @@
 #define ITEMCHECKEDPADRIGHT 2
 #define ITEMCHECKEDPADBOTTOM 2
 
-simple_menu_bar::simple_menu_bar(sp(::application) papp) :
+simple_menu_bar::simple_menu_bar(sp(base_application) papp) :
    element(papp),
    simple_toolbar(papp),
    m_menu(papp)
@@ -18,7 +18,7 @@ simple_menu_bar::simple_menu_bar(sp(::application) papp) :
    m_iTopMenuCount = 0;
    m_iTracking = -1;
 
-   IGUI_WIN_MSG_LINK(::ca2::application::APPM_LANGUAGE, this, this, &simple_menu_bar::_001OnAppLanguage);
+   IGUI_WIN_MSG_LINK(application::APPM_LANGUAGE, this, this, &simple_menu_bar::_001OnAppLanguage);
 
 }
 

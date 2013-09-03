@@ -84,7 +84,7 @@ namespace user
       strsize                 m_iSelEnd;
 
 
-      plain_text_data(sp(::application) papp);
+      plain_text_data(sp(base_application) papp);
       virtual ~plain_text_data();
 
 

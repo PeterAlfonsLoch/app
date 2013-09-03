@@ -4,7 +4,7 @@ namespace ca2
 {
 
    /*
-   file_association::file_association(sp(::application) papp) :
+   file_association::file_association(sp(base_application) papp) :
       element(papp)
    {
       m_hkeyClassesRoot = NULL;

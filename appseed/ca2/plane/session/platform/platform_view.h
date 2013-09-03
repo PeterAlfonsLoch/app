@@ -31,7 +31,7 @@ namespace platform
          virtual public element
       {
       public:
-         link(sp(::application) papp);
+         link(sp(base_application) papp);
          int32_t                     m_iId;
          run *                   m_prun;
          string                  m_strName;
@@ -93,7 +93,7 @@ namespace platform
 
 
       
-      view(sp(::application) papp);
+      view(sp(base_application) papp);
       virtual ~view();
 
    #ifdef DEBUG

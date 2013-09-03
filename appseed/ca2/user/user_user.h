@@ -44,7 +44,7 @@ namespace user
 
 
 
-      user(::ca2::application * papp);
+      user(application * papp);
       virtual ~user();
 
       virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
@@ -220,8 +220,8 @@ namespace user
    };
 
 
-   CLASS_DECL_ca2 ::user::front_end_schema * GetUfeSchema(sp(::application) papp);
-   CLASS_DECL_ca2 ::user::front_end * GetUfe(sp(::application) papp);
+   CLASS_DECL_ca2 ::user::front_end_schema * GetUfeSchema(sp(base_application) papp);
+   CLASS_DECL_ca2 ::user::front_end * GetUfe(sp(base_application) papp);
 
 
 } // namespace ca2

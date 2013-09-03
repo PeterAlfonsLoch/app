@@ -18,7 +18,7 @@ namespace nature
       uint32_t                      m_dwLastHover;
 
 
-      frame(sp(::application) papp);
+      frame(sp(base_application) papp);
       virtual ~frame();
 
       virtual bool pre_create_window(CREATESTRUCT& cs);

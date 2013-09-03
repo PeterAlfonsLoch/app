@@ -42,7 +42,7 @@ namespace draw2d_direct2d
 
       virtual COLORREF * get_data();
 
-      dib(::ca2::application * papp);
+      dib(application * papp);
       virtual void construct(int cx, int cy);
       virtual ~dib();
 

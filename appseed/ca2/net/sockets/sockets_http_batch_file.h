@@ -19,7 +19,7 @@ namespace sockets
 
 
 
-         batch_file(sp(::application) papp);
+         batch_file(sp(base_application) papp);
 
          virtual bool open(const char * lpszFileName, UINT nOpenFlags);
          virtual void close();

@@ -13,7 +13,7 @@ namespace xml
       entities *   m_pentities;   // entity table for entity encode
 
       int32_t tab_base;         // internal usage
-      disp_option(sp(::application) papp);
+      disp_option(sp(base_application) papp);
    };
 
    //extern CLASS_DECL_c disp_option g_optDefault;

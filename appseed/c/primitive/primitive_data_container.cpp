@@ -31,7 +31,7 @@ void data_container::on_update_data(int32_t iHint)
 }
 
 
-data_container_base::data_container_base(sp(::application) papp)
+data_container_base::data_container_base(sp(base_application) papp)
 {
 }
 

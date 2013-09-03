@@ -24,7 +24,7 @@ namespace ca2
          manual_reset_event      m_evReady;
 
 
-         process_thread(sp(::application) papp);
+         process_thread(sp(base_application) papp);
          int32_t run();
 
 
@@ -42,7 +42,7 @@ namespace ca2
       };
 
 
-      process_section(::ca2::application * papp);
+      process_section(application * papp);
       virtual ~process_section();
 
 

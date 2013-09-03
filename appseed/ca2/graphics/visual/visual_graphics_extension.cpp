@@ -8,7 +8,7 @@ namespace visual
    void word_break(::draw2d::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2);
 
 
-   graphics_extension::graphics_extension(sp(::application) papp) :
+   graphics_extension::graphics_extension(sp(base_application) papp) :
       element(papp)
    {
 

@@ -54,7 +54,7 @@ namespace ca2
 
 
 
-   sp(element) system::on_alloc(sp(::application) papp, sp(type) info)
+   sp(element) system::on_alloc(sp(base_application) papp, sp(type) info)
    {
 /*      if(info == System.type_info < class ::ca2::log > ())
       {
@@ -67,17 +67,17 @@ namespace ca2
       return NULL;
    }
 
-   sp(element) system::alloc(sp(::application) papp, sp(type) info)
+   sp(element) system::alloc(sp(base_application) papp, sp(type) info)
    {
       return on_alloc(papp, info);
    }
 
-   sp(element) system::alloc(sp(::application) papp, const std_type_info & info)
+   sp(element) system::alloc(sp(base_application) papp, const std_type_info & info)
    {
       return on_alloc(papp, canew(type(info)));
    }
 
-   void system::on_allocation_error(sp(::application) papp, sp(type) info)
+   void system::on_allocation_error(sp(base_application) papp, sp(type) info)
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(info);

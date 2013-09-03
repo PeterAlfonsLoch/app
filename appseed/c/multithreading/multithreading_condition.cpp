@@ -13,7 +13,7 @@
 #endif
 
 
-condition::condition(sp(::application) papp) :
+condition::condition(sp(base_application) papp) :
    element(papp)
 {
 

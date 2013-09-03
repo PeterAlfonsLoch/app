@@ -189,7 +189,7 @@ email::address & email::address::operator= (const char * psz)
    return *this;
 }
 
-email::email(sp(::application) papp) :
+email::email(sp(base_application) papp) :
 element(papp)
 {
 }

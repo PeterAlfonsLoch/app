@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   set::set(sp(::application) papp) :
+   set::set(sp(base_application) papp) :
       element(papp),
       ::data(papp),
       ::fs::data(papp)

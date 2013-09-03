@@ -20,7 +20,7 @@ class CLASS_DECL_ca2 FileManagerChildFrame :
    public simple_child_frame
 {
 public:
-   FileManagerChildFrame(sp(::application) papp);
+   FileManagerChildFrame(sp(base_application) papp);
 
      simple_toolbar           m_toolbar;
 

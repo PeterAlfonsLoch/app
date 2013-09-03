@@ -7,7 +7,7 @@
 #endif
 
 
-event::event(sp(::application) papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
+event::event(sp(base_application) papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
    element(papp)
 {
 

@@ -8,7 +8,7 @@ namespace sip
       virtual public transaction
    {
    public:
-      request(sp(::application) papp);
+      request(sp(base_application) papp);
       request(const request& src);
       ~request();
 

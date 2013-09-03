@@ -76,7 +76,7 @@ namespace filemanager
       int32_t   m_iDefaultImageSelected;
 
 
-      SimpleFolderTreeInterface(sp(::application) papp);
+      SimpleFolderTreeInterface(sp(base_application) papp);
       virtual ~SimpleFolderTreeInterface();
 
 

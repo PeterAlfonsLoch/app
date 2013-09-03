@@ -25,7 +25,7 @@ namespace draw2d_direct2d
    double dib::dPi;
 
 
-   dib::dib(::ca2::application * papp) :
+   dib::dib(application * papp) :
       element(papp),
       m_spbitmap(allocer()),
       m_spgraphics(allocer())

@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-void _123abc_debug_gen_array_randomize(sp(::application) papp);
+void _123abc_debug_gen_array_randomize(sp(base_application) papp);
 void ___arrayStdSortTest();
 
 /*
-void _123abc_debug_gen_array_randomize(sp(::application) papp)
+void _123abc_debug_gen_array_randomize(sp(base_application) papp)
 {
    int_array a;
    a.add_unique(1);
@@ -17,7 +17,7 @@ void _123abc_debug_gen_array_randomize(sp(::application) papp)
 namespace lemon
 {
 
-   array::array(sp(::application) papp) :
+   array::array(sp(base_application) papp) :
       element(papp)
    {
    }

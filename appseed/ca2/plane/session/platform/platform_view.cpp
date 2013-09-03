@@ -20,13 +20,13 @@ namespace platform
       m_plink = NULL;
    }
 
-   view::link::link(sp(::application) papp) :
+   view::link::link(sp(base_application) papp) :
       m_button(papp)
    {
       m_prun = NULL;
    }
 
-   view::view(sp(::application) papp) :
+   view::view(sp(base_application) papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
@@ -105,7 +105,7 @@ namespace platform
 
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &view::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &view::_001OnLButtonUp);
-      IGUI_WIN_MSG_LINK(::ca2::application::APPM_LANGUAGE, pinterface, this, &view::_001OnAppLanguage);
+      IGUI_WIN_MSG_LINK(application::APPM_LANGUAGE, pinterface, this, &view::_001OnAppLanguage);
 
    }
 

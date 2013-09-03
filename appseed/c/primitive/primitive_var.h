@@ -188,7 +188,7 @@ public:
    int_array &                      inta();
    int64_array &                    int64a();
    var_array &                      vara();
-   property_set &              propset(sp(::application) papp = NULL);
+   property_set &              propset(sp(base_application) papp = NULL);
    property &                  prop();
    const class primitive::memory &  memory() const;
    stringa                          stra() const;

@@ -11,7 +11,7 @@ namespace userfs
    public:
 
 
-      tree_data(sp(::application) papp);
+      tree_data(sp(base_application) papp);
 
 
       virtual sp(::ca2::tree_item_data) on_allocate_item();

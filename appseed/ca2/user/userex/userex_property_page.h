@@ -14,7 +14,7 @@ namespace userex
    public:
 
 
-      property_page(sp(::application) papp);
+      property_page(sp(base_application) papp);
       virtual ~property_page();
 
 

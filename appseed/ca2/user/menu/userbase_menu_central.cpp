@@ -2,7 +2,7 @@
 
 
 
-BaseMenuCentral::BaseMenuCentral(sp(::application) papp) :
+BaseMenuCentral::BaseMenuCentral(sp(base_application) papp) :
    element(papp),
    m_fontMenu(allocer())
 {
@@ -30,7 +30,7 @@ BaseMenuCentral::~BaseMenuCentral()
 {
 }
 
-BaseMenuCentral * BaseMenuCentral::GetMenuCentral(sp(::application) papp)
+BaseMenuCentral * BaseMenuCentral::GetMenuCentral(sp(base_application) papp)
 {
    return App(papp).user()->get_menucentral();
 }
@@ -231,7 +231,7 @@ BaseMenuCentral * BaseMenuCentralContainer::get_menucentral()
    return m_pmenucentral;
 }
 
-bool BaseMenuCentralContainer::initialize_central_container(sp(::application) papp)
+bool BaseMenuCentralContainer::initialize_central_container(sp(base_application) papp)
 {
    m_pmenucentral = new BaseMenuCentral(papp);
    if(!m_pmenucentral)

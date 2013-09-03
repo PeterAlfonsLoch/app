@@ -93,7 +93,7 @@ public:
    ::ca2::dispatch  m_dispatchCommand;
 
    command_target_interface();
-   command_target_interface(sp(::application) papp);
+   command_target_interface(sp(base_application) papp);
 
 
    template < class T >
@@ -167,7 +167,7 @@ class CLASS_DECL_ca2 command_target :
 {
 public:
    command_target();
-   command_target(sp(::application) papp);
+   command_target(sp(base_application) papp);
 
    void CommonConstruct();
 
@@ -236,7 +236,7 @@ public:
                      //  (probably a secondary popup menu)
 
 
-   cmd_ui(sp(::application) papp);
+   cmd_ui(sp(base_application) papp);
 
 
 // Operations to do in ON_UPDATE_COMMAND_UI
@@ -265,7 +265,7 @@ inline void cmd_ui::ContinueRouting()
 class CTestCmdUI : public cmd_ui
 {
 public:
-   CTestCmdUI(sp(::application) papp);
+   CTestCmdUI(sp(base_application) papp);
 
 public: // re-implementations only
    virtual void Enable(bool bOn);

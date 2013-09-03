@@ -35,7 +35,7 @@ namespace crypto
 
 #endif
       
-         context(sp(::application) papp);
+         context(sp(base_application) papp);
          virtual ~context();
 
          void update(const void * data, size_t size);
