@@ -42,7 +42,7 @@ namespace visual
          {
             try
             {
-               ::ca2::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::file::mode_read | ::file::file::shareDenyWrite | ::file::file::type_binary);
+               ::ca2::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::mode_read | ::file::file::shareDenyWrite | ::file::type_binary);
                m_p->read(stream);
                return true;
             }
@@ -56,7 +56,7 @@ namespace visual
       try
       {
 
-         if(!read_from_file(App(m_p->m_papp).file().get_file(varFile, ::file::file::mode_read | ::file::file::shareDenyWrite | ::file::file::type_binary)))
+         if(!read_from_file(App(m_p->m_papp).file().get_file(varFile, ::file::mode_read | ::file::file::shareDenyWrite | ::file::type_binary)))
             return false;
 
       }
@@ -73,7 +73,7 @@ namespace visual
       {
          try
          {
-            ::ca2::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::file::mode_create | ::file::file::mode_write | ::file::file::type_binary | ::file::file::defer_create_directory);
+            ::ca2::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::file::mode_create | ::file::file::mode_write | ::file::type_binary | ::file::file::defer_create_directory);
             m_p->write(stream);
          }
          catch(...)
@@ -119,8 +119,8 @@ namespace visual
 
    bool dib_sp::save_to_file(var varFile, save_image * psaveimage)
    {
-      ::ca2::filesp spfile;
-      spfile = App(m_p->m_papp).file().get_file(varFile, ::file::file::mode_create | ::file::file::mode_write | ::file::file::type_binary | ::file::file::defer_create_directory);
+      ::file::filesp spfile;
+      spfile = App(m_p->m_papp).file().get_file(varFile, ::file::file::mode_create | ::file::file::mode_write | ::file::type_binary | ::file::file::defer_create_directory);
       if(spfile.is_null())
          return false;
       return write_to_file(spfile, psaveimage);

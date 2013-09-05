@@ -47,7 +47,7 @@ namespace http
       file & operator << (::file::file & file);
 
 
-      inline file & operator << (::ca2::filesp & filesp) { return operator << ((::file::file &) *filesp.m_p); }
+      inline file & operator << (::file::filesp & filesp) { return operator << ((::file::file &) *filesp.m_p); }
 
 
       inline void to_string(string & str)

@@ -18,8 +18,8 @@ public:
    };
 
    uint32_t                   m_ulFlags;
-   sp(::application)      m_pcaapp;
-   sp(::application)     m_papp;
+   sp(base_application)      m_pcaapp;
+   sp(base_application)     m_papp;
    //::ca2::ptra *            m_pptraListener;
    //::ca2::ptra *            m_pptraListened;
    factory_item_base *        m_pfactoryitembase;
@@ -41,7 +41,7 @@ public:
 
    inline allocatorsp allocer();
 
-   virtual sp(::application) get_app() const;
+   virtual sp(base_application) get_app() const;
    virtual void set_app(sp(base_application) papp);
 
    inline bool is_set_ca_flag(element::flag eflag)

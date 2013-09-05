@@ -24,7 +24,7 @@ namespace sockets
 
          m_nOpenFlags = nOpenFlags;
 
-         if(m_nOpenFlags & ::file::file::mode_read)
+         if(m_nOpenFlags & ::file::mode_read)
          {
 
              get_file_data();

@@ -169,8 +169,8 @@ bufferedReadPixels (InputFile::Data* ifd, int scanLine1, int scanLine2)
     // accessing scanlines sequentially.
     //
 
-    int minY = std::min (scanLine1, scanLine2);
-    int maxY = std::max (scanLine1, scanLine2);
+    int minY = min (scanLine1, scanLine2);
+    int maxY = max (scanLine1, scanLine2);
 
     if (minY < ifd->minY || maxY >  ifd->maxY)
     {
@@ -220,8 +220,8 @@ bufferedReadPixels (InputFile::Data* ifd, int scanLine1, int scanLine2)
     {
         Box2i tileRange = ifd->tFile->dataWindowForTile (0, j, 0);
 
-        int minYThisRow = std::max (minY, tileRange.min.y);
-        int maxYThisRow = std::min (maxY, tileRange.max.y);
+        int minYThisRow = max (minY, tileRange.min.y);
+        int maxYThisRow = min (maxY, tileRange.max.y);
 
         if (j != ifd->cachedTileY)
         {

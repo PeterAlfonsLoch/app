@@ -4,17 +4,18 @@
 namespace file
 {
 
+   class buffer;
 
    class CLASS_DECL_c stream :
-      virtual public reader,
-      virtual public writer
+      virtual public output_stream,
+      virtual public input_stream
    {
    public:
 
       
       stream();
       stream(reader * preader, writer * pwriter);
-      stream(const reader & reader, const writer & pwriter);
+      stream(buffer * pbuffer);
       stream(const stream & stream);
       virtual ~stream();
 

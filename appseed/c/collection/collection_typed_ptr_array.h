@@ -19,8 +19,8 @@ public:
       void * p;
 
 
-      stackLowerBound.set_size(0, 256);
-      stackUpperBound.set_size(0, 256);
+      stackLowerBound.allocate(0, 256);
+      stackUpperBound.allocate(0, 256);
 
 
       if(this->get_size() >= 2)

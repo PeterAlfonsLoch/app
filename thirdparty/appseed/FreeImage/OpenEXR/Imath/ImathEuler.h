@@ -130,7 +130,6 @@
 #include "ImathQuat.h"
 #include "ImathMatrix.h"
 #include "ImathLimits.h"
-#include <iostream>
 
 namespace Imath {
 
@@ -825,7 +824,7 @@ const Euler<T>& Euler<T>::operator= (const Vec3<T> &v)
 }
 
 template<class T>
-std::ostream& operator << (std::ostream &o, const Euler<T> &euler)
+::file::output_stream& operator << (::file::output_stream &o, const Euler<T> &euler)
 {
     char a[3] = { 'X', 'Y', 'Z' };
 

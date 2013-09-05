@@ -43,13 +43,13 @@
 //-----------------------------------------------------------------------------
 
 #include <ImfAttribute.h>
-#include <string>
-#include <vector>
+
+
 
 
 namespace Imf {
 
-typedef std::vector<std::string> StringVector;
+typedef stringa StringVector;
 typedef TypedAttribute<StringVector> StringVectorAttribute;
 template <> const char *StringVectorAttribute::staticTypeName ();
 template <> void StringVectorAttribute::writeValueTo (OStream &, int) const;

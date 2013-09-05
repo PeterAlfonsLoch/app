@@ -366,13 +366,13 @@ var property::at(index iIndex) const
    return this->element_at(iIndex);
 }
 
-void property::write(::file::byte_output_stream & ostream)
+void property::write(::file::output_stream & ostream)
 {
    ostream << m_idName;
    ostream << get_value();
 }
 
-void property::read(::file::byte_input_stream & istream)
+void property::read(::file::input_stream & istream)
 {
    istream >> m_idName;
    istream >> get_value();
@@ -1369,7 +1369,7 @@ string property_set::get_http_post()
 
 string property::get_xml(::xml::disp_option * opt /*= &optDefault*/ )
 {
-   //   std::ostringstream ostring;
+   //   ::file::plain_text_output_stream ostring;
    //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";
 
    //   ostring << (const char *)m_strName << L"=" << (CHAR)opt->value_quotation_mark
@@ -1491,7 +1491,7 @@ void property_set::clear()
    m_map.remove_all();
 }
 
-void property_set::write(::file::byte_output_stream & ostream)
+void property_set::write(::file::output_stream & ostream)
 {
    ostream << m_bAutoAdd;
    ostream << m_bMultiValue;
@@ -1499,7 +1499,7 @@ void property_set::write(::file::byte_output_stream & ostream)
    ostream << m_propertya;
 }
 
-void property_set::read(::file::byte_input_stream & istream)
+void property_set::read(::file::input_stream & istream)
 {
    istream >> m_bAutoAdd;
    istream >> m_bMultiValue;
@@ -2063,8 +2063,56 @@ var  operator * (const property & prop1, const property & prop2)
 
 
 
+#define ROUND(x,y) (((x)+(y-1))&~(y-1))
+#define ROUND4(x) ROUND(x, 4)
+#undef new
 
 
+
+
+
+
+
+   static fixed_alloc g_fixedallocVar(ROUND4(sizeof(property) ), 1024);
+
+   void * property::operator new(size_t size, void * p)
+      { 
+         UNREFERENCED_PARAMETER(size);
+         return p; 
+      }
+
+   void * property::operator new(size_t nSize)
+   {
+      return g_fixedallocVar.Alloc();
+   }
+
+#ifdef DEBUG
+
+   void * property::operator new(size_t nSize, const char * lpszFileName, int32_t nLine)
+   {
+      return g_fixedallocVar.Alloc();
+   }
+
+#endif
+
+   void property::operator delete(void * p)
+   {
+      g_fixedallocVar.Free(p);
+   }
+
+   void property::operator delete(void * p, void *)
+   {
+      g_fixedallocVar.Free(p);
+   }
+
+#ifdef DEBUG
+
+   void property::operator delete(void *pvar, const char *, int32_t)
+   {
+      g_fixedallocVar.Free(pvar);
+   }
+
+#endif
 
 
 

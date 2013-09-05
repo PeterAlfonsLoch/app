@@ -289,7 +289,7 @@ namespace zip
       if(lpszExtractFileName == NULL)
          return true;
 
-      ::ca2::filesp spfile = App(papp).file().get_file(lpszExtractFileName, ::file::file::mode_create | ::file::file::mode_write | ::file::file::defer_create_directory);
+      ::file::filesp spfile = App(papp).file().get_file(lpszExtractFileName, ::file::file::mode_create | ::file::file::mode_write | ::file::file::defer_create_directory);
 
       if(spfile.is_set())
       {
@@ -342,7 +342,7 @@ namespace zip
             else if(infile.locate(strTitle))
             {
 
-               ::ca2::filesp spfile = App(pfile->get_app()).file().get_file(
+               ::file::filesp spfile = App(pfile->get_app()).file().get_file(
                   Sys(pfile->get_app()).dir().path(pszDir, strTitle),
                   ::file::file::mode_create | ::file::file::mode_write | ::file::file::defer_create_directory);
 

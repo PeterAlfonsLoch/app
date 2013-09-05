@@ -735,7 +735,7 @@ checkForZeroScaleInRow (const T& scl,
 {
     for (int i = 0; i < 3; i++)
     {
-	if ((abs (scl) < 1 && abs (row[i]) >= limits<T>::max() * abs (scl)))
+	if ((abs (scl) < 1 && abs (row[i]) >= limits<T>::maximum() * abs (scl)))
 	{
 	    if (exc)
 		throw Imath::ZeroScaleExc ("Cannot remove zero scaling "
@@ -1096,7 +1096,7 @@ checkForZeroScaleInRow (const T& scl,
 {
     for (int i = 0; i < 2; i++)
     {
-	if ((abs (scl) < 1 && abs (row[i]) >= limits<T>::max() * abs (scl)))
+	if ((abs (scl) < 1 && abs (row[i]) >= limits<T>::maximum() * abs (scl)))
 	{
 	    if (exc)
 		throw Imath::ZeroScaleExc ("Cannot remove zero scaling "

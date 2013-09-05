@@ -379,7 +379,7 @@ Pxr24Compressor::compress (const char *inPtr,
 
 	      default:
 
-		assert (false);
+		ASSERT (false);
 	    }
 	}
     }
@@ -525,7 +525,7 @@ Pxr24Compressor::uncompress (const char *inPtr,
 
 	      default:
 
-		assert (false);
+		ASSERT (false);
 	    }
 	}
     }

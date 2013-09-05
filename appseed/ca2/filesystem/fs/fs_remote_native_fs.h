@@ -37,7 +37,7 @@ namespace fs
 
       virtual bool file_move(const char * pszDst, const char * pszSrc);
 
-      virtual ::ca2::filesp get_file(var varFile, UINT nOpenFlags);
+      virtual ::file::filesp get_file(var varFile, UINT nOpenFlags);
 
       virtual bool file_exists(const char * pszPath);
 

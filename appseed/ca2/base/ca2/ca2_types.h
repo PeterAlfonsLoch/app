@@ -50,15 +50,6 @@ namespace ca2
    typedef int32_t WRes;
    #endif
 
-   // return - result - if not ok
-   #ifndef RINOK
-   #define RINOK(x) { int32_t __result__ = (x); if (__result__ != 0) return __result__; }
-   #endif
-
-   // throw - exception - result exception - if not ok
-   #ifndef TINOK
-   #define TINOK(e, x) { int32_t __result__ = (x); if (__result__ != 0) throw new e(get_app(), __result__); }
-   #endif
 
    /* The following interfaces use first parameter as pointer to structure */
 

@@ -21,7 +21,7 @@ namespace plane
       virtual void get_extension_app(stringa & straApp, const char * pszExtension);
 
 
-      //virtual sp(::application) get_new_app(const char * pszAppId);
+      //virtual sp(base_application) get_new_app(const char * pszAppId);
 
 
    };

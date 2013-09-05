@@ -40,7 +40,6 @@
 //-----------------------------------------------------------------------------
 
 #include "ImfFramework.h"
-using namespace std;
 using namespace Imath;
 
 namespace Imf {

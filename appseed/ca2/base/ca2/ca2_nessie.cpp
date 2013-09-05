@@ -24,10 +24,10 @@ namespace ca2
    string file_system::nessie(const char * psz)
    {
 
-      ::ca2::filesp spfile(allocer());
+      ::file::filesp spfile(allocer());
       try
       {
-         if(!spfile->open(psz, ::file::file::type_binary | ::file::file::mode_read))
+         if(!spfile->open(psz, ::file::type_binary | ::file::mode_read))
             return "";
       }
       catch(::file::exception &)

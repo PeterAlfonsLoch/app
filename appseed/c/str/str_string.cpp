@@ -887,28 +887,28 @@ string& string::operator=(const string_interface & str )
 {
    simple_string::operator=(string(str));
 
-   return( *this );
+   return *this;
 }
 
 string& string::operator=(string strSrc )
 {
    simple_string::operator=( strSrc );
 
-   return( *this );
+   return *this;
 }
 
 string& string::operator=(const char * pszSrc )
 {
    simple_string::operator=( pszSrc );
 
-   return( *this );
+   return *this;
 }
 
 string& string::operator=(const vsstring & str)
 {
    simple_string::operator=( str.m_psz );
 
-   return( *this );
+   return *this;
 }
 
 string& string::operator=(const wchar_t * pszSrc )
@@ -926,7 +926,7 @@ string& string::operator=(const wchar_t * pszSrc )
       Empty();
    }
 
-   return( *this );
+   return *this;
 }
 
 string& string::operator=(const uchar* pszSrc )
@@ -952,14 +952,14 @@ string& string::operator+=(const simple_string& str )
 {
    append( str, str.get_length() );
 
-   return( *this );
+   return *this;
 }
 
 string& string::operator+=(const char * pszSrc )
 {
    simple_string::operator+=( pszSrc );
 
-   return( *this );
+   return *this;
 }
 string& string::operator+=(const wchar_t * pszSrc )
 {
@@ -968,25 +968,34 @@ string& string::operator+=(const wchar_t * pszSrc )
    return( operator+=( str ) );
 }
 
-string& string::operator+=(char ch )
-{
-   AppendChar((char)  ch );
 
-   return( *this );
+string & string::operator+=(char ch )
+{
+
+   append_char((char) ch );
+
+   return *this;
+
 }
 
-string& string::operator+=(uchar ch )
-{
-   AppendChar((char)  ch );
 
-   return( *this );
+string & string::operator+=(uchar ch )
+{
+
+   append_char((char) ch );
+
+   return *this;
+
 }
 
-string& string::operator+=(wchar_t ch )
-{
-   AppendChar((char) ch );
 
-   return( *this );
+string & string::operator+=(wchar_t ch )
+{
+
+   append_char((char) ch );
+
+   return *this;
+
 }
 
 // Override from base class
@@ -1962,7 +1971,7 @@ string& string::make_upper()
    string_trait::StringUppercase( pszBuffer, nLength+1 );
    ReleaseBufferSetLength( nLength );
 
-   return( *this );
+   return *this;
 }
 
 // Convert the string to lowercase
@@ -1973,7 +1982,7 @@ string& string::make_lower()
    string_trait::StringLowercase( pszBuffer, nLength+1 );
    ReleaseBufferSetLength( nLength );
 
-   return( *this );
+   return *this;
 }
 
 // Reverse the string
@@ -1984,7 +1993,7 @@ string& string::MakeReverse()
    string_trait::StringReverse( pszBuffer );
    ReleaseBufferSetLength( nLength );
 
-   return( *this );
+   return *this;
 }
 
 // trimming
@@ -2023,7 +2032,7 @@ string& string::trim_right()
 
    }
 
-   return( *this );
+   return *this;
 
 }
 
@@ -2051,7 +2060,7 @@ string& string::trim_left()
       ReleaseBufferSetLength( nDataLength );
    }
 
-   return( *this );
+   return *this;
 }
 
 // remove all leading and trailing whitespace
@@ -2106,7 +2115,7 @@ string& string::trim_right(char chTarget )
       Truncate( iLast );
    }
 
-   return( *this );
+   return *this;
 }
 
 // remove all trailing occurrences of any of the characters in string 'pszTargets'
@@ -2115,7 +2124,7 @@ string& string::trim_right(const char * pszTargets )
    // if we're not trimming anything, we're not doing any work
    if( (pszTargets == NULL) || (*pszTargets == 0) )
    {
-      return( *this );
+      return *this;
    }
 
    // find beginning of trailing matches
@@ -2147,7 +2156,7 @@ string& string::trim_right(const char * pszTargets )
       Truncate( iLast );
    }
 
-   return( *this );
+   return *this;
 }
 
 // remove all leading occurrences of character 'chTarget'
@@ -2173,7 +2182,7 @@ string& string::trim_left(char chTarget )
       ReleaseBufferSetLength( nDataLength );
    }
 
-   return( *this );
+   return *this;
 }
 
 // remove all leading occurrences of any of the characters in string 'pszTargets'
@@ -2182,7 +2191,7 @@ string& string::trim_left(const char * pszTargets )
    // if we're not trimming anything, we're not doing any work
    if( (pszTargets == NULL) || (*pszTargets == 0) )
    {
-      return( *this );
+      return *this;
    }
 
    const char * psz = GetString();
@@ -2203,7 +2212,7 @@ string& string::trim_left(const char * pszTargets )
       ReleaseBufferSetLength( nDataLength );
    }
 
-   return( *this );
+   return *this;
 }
 
 
@@ -2392,7 +2401,7 @@ string string::Mid(strsize iFirst,strsize nCount ) const
    // optimize case of returning entire string
    if( (iFirst == 0) && ((iFirst+nCount) == get_length()) )
    {
-      return( *this );
+      return *this;
    }
 
    return( string( GetString()+iFirst, nCount, GetManager() ) );
@@ -2418,7 +2427,7 @@ string string::Right(strsize nCount ) const
    strsize nLength = get_length();
    if( nCount >= nLength )
    {
-      return( *this );
+      return *this;
    }
 
    return( string( GetString()+nLength-nCount, nCount, GetManager() ) );
@@ -2434,7 +2443,7 @@ string string::Left(strsize nCount ) const
    strsize nLength = get_length();
    if( nCount >= nLength )
    {
-      return( *this );
+      return *this;
    }
 
    return( string( GetString(), nCount, GetManager() ) );

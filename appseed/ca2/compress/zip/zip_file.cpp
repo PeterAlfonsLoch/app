@@ -37,11 +37,11 @@ namespace zip
 
       m_bOwnFile = true;
 
-      ::ca2::filesp spfile(allocer());
+      ::file::filesp spfile(allocer());
 
       try
       {
-         if(!spfile->open(lpcwsz, ::file::file::mode_read | ::file::file::type_binary))
+         if(!spfile->open(lpcwsz, ::file::mode_read | ::file::type_binary))
          {
             return false;
          }
@@ -58,7 +58,7 @@ namespace zip
       return unzip_open(spfile);
    }
 
-   bool File::unzip_open(::ca2::filesp pfile)
+   bool File::unzip_open(::file::filesp pfile)
    {
       m_pbuffile1 = new ::ca2::buffered_file(get_app(), pfile, 1024 * 256);
       m_pbuffile2 = new ::ca2::buffered_file(get_app(), m_pbuffile1, 1024 * 256);
@@ -72,10 +72,10 @@ namespace zip
    bool File::zip_open(const char * lpcwsz)
    {
       m_bOwnFile = true;
-      ::ca2::filesp spfile(allocer());
+      ::file::filesp spfile(allocer());
       try
       {
-         if(!spfile->open(lpcwsz, ::file::file::mode_read_write | ::file::file::type_binary | ::file::file::mode_create | ::file::file::defer_create_directory))
+         if(!spfile->open(lpcwsz, ::file::file::mode_read_write | ::file::type_binary | ::file::file::mode_create | ::file::file::defer_create_directory))
          {
             return false;
          }
@@ -92,7 +92,7 @@ namespace zip
       return zip_open(spfile);
    }
 
-   bool File::zip_open(::ca2::filesp pfile)
+   bool File::zip_open(::file::filesp pfile)
    {
       m_pbuffile1 = new ::ca2::buffered_file(get_app(), pfile, 1024 * 256);
       m_pbuffile2 = new ::ca2::buffered_file(get_app(), m_pbuffile1, 1024 * 256);

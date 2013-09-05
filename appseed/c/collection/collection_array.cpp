@@ -14,17 +14,6 @@ void _123abc_debug_gen_array_randomize(sp(base_application) papp)
 }
 */
 
-namespace lemon
-{
-
-   array::array(sp(base_application) papp) :
-      element(papp)
-   {
-   }
-
-} // namespace lemon
-
-
 
 #ifdef DEBUG
 

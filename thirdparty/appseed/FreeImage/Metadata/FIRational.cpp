@@ -165,14 +165,24 @@ BOOL FIRational::isInteger() {
 }
 
 /// Convert as "numerator/denominator"
-std::string FIRational::toString() {
-	std::ostringstream s;
-	if(isInteger()) {
-		s << intValue();
-	} else {
-		s << _numerator << "/" << _denominator;
+string FIRational::toString()
+{
+
+   ::file::string_buffer text;
+
+	::file::plain_text_output_stream ostream(&text);
+
+	if(isInteger())
+   {
+		ostream << intValue();
 	}
-	return s.str();
+   else
+   {
+		ostream << _numerator << "/" << _denominator;
+	}
+
+	return text.str();
+
 }
 
 

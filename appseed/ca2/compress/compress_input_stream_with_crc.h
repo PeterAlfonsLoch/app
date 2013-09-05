@@ -5,17 +5,17 @@ namespace libcompress
 {
 
    class input_stream_with_crc:
-      public ::file::byte_input_stream
+      public ::file::input_stream
    {
    public:
 
-      sp(::file::byte_input_stream)  _stream;
+      sp(::file::input_stream)  _stream;
       uint64_t         _size;
       uint32_t         _crc;
 
       ::primitive::memory_size read(void *data, ::primitive::memory_size size);
       file_position seek(file_offset offset, ::file::e_seek seekOrigin);
-      void SetStream(::file::byte_input_stream *stream) { _stream = stream;  }
+      void SetStream(::file::input_stream *stream) { _stream = stream;  }
       void Init()
       {
          _size = 0;

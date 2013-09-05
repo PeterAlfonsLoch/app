@@ -112,7 +112,7 @@ namespace n7z
       SeqStream = stream;
       if (!endMarker)
       {
-         Stream = dynamic_cast < ::file::byte_output_stream * > (SeqStream.m_p);
+         Stream = dynamic_cast < ::file::output_stream * > (SeqStream.m_p);
          if (!Stream)
          {
             return E_NOTIMPL;

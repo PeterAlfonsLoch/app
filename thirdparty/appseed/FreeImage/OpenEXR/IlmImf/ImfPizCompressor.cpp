@@ -189,7 +189,7 @@ PizCompressor::PizCompressor
     {
 	_numChans++;
 
-	assert (pixelTypeSize (c.channel().type) % pixelTypeSize (HALF) == 0);
+	ASSERT (pixelTypeSize (c.channel().type) % pixelTypeSize (HALF) == 0);
 
 	if (c.channel().type != HALF)
 	    onlyHalfChannels = false;
@@ -396,9 +396,9 @@ PizCompressor::compress (const char *inPtr,
     #if defined (DEBUG)
 
 	for (int i = 1; i < _numChans; ++i)
-	    assert (_channelData[i-1].end == _channelData[i].start);
+	    ASSERT (_channelData[i-1].end == _channelData[i].start);
 
-	assert (_channelData[_numChans-1].end == tmpBufferEnd);
+	ASSERT (_channelData[_numChans-1].end == tmpBufferEnd);
 
     #endif
 
@@ -638,9 +638,9 @@ PizCompressor::uncompress (const char *inPtr,
     #if defined (DEBUG)
 
 	for (int i = 1; i < _numChans; ++i)
-	    assert (_channelData[i-1].end == _channelData[i].start);
+	    ASSERT (_channelData[i-1].end == _channelData[i].start);
 
-	assert (_channelData[_numChans-1].end == tmpBufferEnd);
+	ASSERT (_channelData[_numChans-1].end == tmpBufferEnd);
 
     #endif
 

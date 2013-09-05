@@ -5,7 +5,7 @@
 
 template <class T>
 class buffer :
-   virtual public array < T >
+   virtual public raw_array < T >
 {
 public:
 
@@ -58,7 +58,7 @@ public:
    void SetCapacity(size_t newCapacity)
    {
 
-      set_size(newCapacity);
+      allocate(newCapacity);
 
    }
 

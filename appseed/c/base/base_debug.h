@@ -129,16 +129,6 @@ typedef void (__clrcall * _CRT_DUMP_CLIENT)(void *, size_t);
 typedef void (__clrcall * _CRT_DUMP_CLIENT_M)(void *, size_t);
 #endif
 
-struct _CrtMemBlockHeader;
-typedef struct _CrtMemState
-{
-        struct _CrtMemBlockHeader * pBlockHeader;
-        size_t lCounts[_MAX_BLOCKS];
-        size_t lSizes[_MAX_BLOCKS];
-        size_t lHighWaterCount;
-        size_t lTotalCount;
-} _CrtMemState;
-
 
  /****************************************************************************
  *
@@ -326,6 +316,11 @@ typedef struct _CrtMemState
  *
  ***************************************************************************/
 
+
+
+#ifdef WINDOWS
+#include <crtdbg.h>
+#else
 #if !defined(_M_CEE_PURE)
 CLASS_DECL__ extern long _crtAssertBusy;
 #endif /* !defined(_M_CEE_PURE) */
@@ -335,7 +330,14 @@ CLASS_DECL__ _CRT_REPORT_HOOK DECL_C _CrtGetReportHook(
     void
     );
 #endif
-
+CLASS_DECL__ int _CrtDbgReportW( 
+   int reportType,
+   const wchar_t *filename,
+   int linenumber,
+   const wchar_t *moduleName,
+   const wchar_t *format,
+   ... 
+   );
 /* _CrtSetReportHook[[W]2]:
  * For IJW, we need 2 versions: 1 for clrcall and one for cdecl.
  * For pure and native, we just need clrcall and cdecl, respectively.
@@ -348,7 +350,15 @@ CLASS_DECL__ int32_t DECL_C _CrtSetReportMode(int32_t _ReportType, int32_t _Repo
 CLASS_DECL__ _HFILE DECL_C _CrtSetReportFile(int32_t _ReportType, _HFILE _ReportFile);
 CLASS_DECL__ int32_t DECL_C _CrtDbgReport(int32_t _ReportType, const char * _Filename, int32_t _Linenumber, const char * _ModuleName, const char * _Format, ...);
 CLASS_DECL__ size_t DECL_C _CrtSetDebugFillThreshold(size_t _NewDebugFillThreshold);
-
+struct _CrtMemBlockHeader;
+typedef struct _CrtMemState
+{
+        struct _CrtMemBlockHeader * pBlockHeader;
+        size_t lCounts[_MAX_BLOCKS];
+        size_t lSizes[_MAX_BLOCKS];
+        size_t lHighWaterCount;
+        size_t lTotalCount;
+} _CrtMemState;
 CLASS_DECL__ int32_t DECL_C _CrtDbgReportW(int32_t _ReportType, const wchar_t * _Filename, int32_t _LineNumber, const wchar_t * _ModuleName, const wchar_t * _Format, ...);
 
 /* Asserts */
@@ -357,6 +367,15 @@ CLASS_DECL__ int32_t DECL_C _CrtDbgReportW(int32_t _ReportType, const wchar_t * 
         (void) ((!!(expr)) || \
                 (1 != _CrtDbgReportW(_CRT_ASSERT, _WIDEN(__FILE__), __LINE__, NULL, msg)) || \
                 (_CrtDbgBreak(), 0))
+#define _RPT_BASE(args) \
+        () ((1 != _CrtDbgReport args) || \
+                (_CrtDbgBreak(), 0))
+
+#define _RPT_BASE_W(args) \
+        () ((1 != _CrtDbgReportW args) || \
+                (_CrtDbgBreak(), 0))
+
+#endif
 
 #ifndef _ASSERT
 #define _ASSERT(expr)   _ASSERT_EXPR((expr), NULL)
@@ -376,13 +395,6 @@ should not have done so since it was not documented.
 
 /* Reports with no file/line info */
 
-#define _RPT_BASE(args) \
-        () ((1 != _CrtDbgReport args) || \
-                (_CrtDbgBreak(), 0))
-
-#define _RPT_BASE_W(args) \
-        () ((1 != _CrtDbgReportW args) || \
-                (_CrtDbgBreak(), 0))
 
 #define _RPT0(rptno, msg) \
         _RPT_BASE((rptno, NULL, 0, NULL, "%s", msg))

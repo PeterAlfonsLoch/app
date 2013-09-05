@@ -1,14 +1,14 @@
 #pragma once
 
 
-class CLASS_DECL_c departament :
+class CLASS_DECL_c base_departament :
    virtual public signalizable
 {
 public:
 
 
-   departament(::application * papp);
-   virtual ~departament();
+   base_departament(base_application * papp);
+   virtual ~base_departament();
 
 
    virtual void construct(sp(base_application) papp);

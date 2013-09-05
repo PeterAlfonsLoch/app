@@ -941,7 +941,7 @@ valid : invalid;
       ASSERT(GetStatus() == valid);
       ASSERT(dateSpan.GetStatus() == valid);
       m_dt = DateFromDouble( DoubleFromDate( m_dt )+(double)dateSpan );
-      return( *this );
+      return *this;
    }
 
    inline float_time& float_time::operator-=(float_time_span dateSpan) RELEASENOTHROW
@@ -949,7 +949,7 @@ valid : invalid;
       ASSERT(GetStatus() == valid);
       ASSERT(dateSpan.GetStatus() == valid);
       m_dt = DateFromDouble( DoubleFromDate( m_dt )-(double)dateSpan );
-      return( *this );
+      return *this;
    }
 
    inline float_time_span float_time::operator-(const float_time& date) const RELEASENOTHROW

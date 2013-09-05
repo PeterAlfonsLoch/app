@@ -53,7 +53,7 @@
 #include <ImfTileDescription.h>
 #include <ImfRgba.h>
 #include <ImfThreading.h>
-#include <string>
+
 
 namespace Imf {
 
@@ -329,11 +329,11 @@ class TiledRgbaInputFile
     //------------------------------------------------------------
 
     TiledRgbaInputFile (const char name[],
-		        const std::string &layerName,
+		        const string &layerName,
 		        int numThreads = globalThreadCount());
 
     TiledRgbaInputFile (IStream &is,
-		        const std::string &layerName,
+		        const string &layerName,
 		        int numThreads = globalThreadCount());
 
     //-----------
@@ -362,7 +362,7 @@ class TiledRgbaInputFile
     // at least once before the next call to readTile() or readTiles().
     //-------------------------------------------------------------------
 
-    void			setLayerName (const std::string &layerName);
+    void			setLayerName (const string &layerName);
 
 
     //--------------------------
@@ -470,7 +470,7 @@ class TiledRgbaInputFile
 
     TiledInputFile *	_inputFile;
     FromYa *		_fromYa;
-    std::string		_channelNamePrefix;
+    string		_channelNamePrefix;
 };
 
 

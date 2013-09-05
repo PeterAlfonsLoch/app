@@ -52,7 +52,7 @@ class CLASS_DECL_ca2 gzip
 public:
 
 
-   ::file::byte_output_stream       m_ostream;
+   ::file::output_stream       m_ostream;
    primitive::memory             m_memory;
    z_stream                      m_zstream;
    int32_t                           m_z_err;   /* error code for last stream operation */
@@ -61,7 +61,7 @@ public:
 
    gzip(sp(::file::file) pfileDest);
    gzip(::file::writer & ostreamDest);
-   gzip(::file::byte_output_stream & ostreamDest);
+   gzip(::file::output_stream & ostreamDest);
    virtual ~gzip();
 
    bool write(void * buf, ::primitive::memory_size iSize);

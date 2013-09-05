@@ -33,7 +33,7 @@ bzip::bzip(::file::writer & writer) :
 }
 
 
-bzip::bzip(::file::byte_output_stream & ostream) :
+bzip::bzip(::file::output_stream & ostream) :
    m_ostream(ostream)
 {
    construct();

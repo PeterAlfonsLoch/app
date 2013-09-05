@@ -207,7 +207,7 @@ protected:
 
 
 class CLASS_DECL_c base_system :
-   virtual public application
+   virtual public base_application
 {
 public:
 
@@ -220,10 +220,12 @@ public:
    const id_pool                                m_cidpool;
 
 
+   static id_space                              s_idspace;
+   static class id                              idEmpty;
 
 
 
-   system::system(sp(base_application) papp);
+   base_system(sp(base_application) papp);
 
 
 
@@ -236,7 +238,7 @@ public:
    ::xml::departament                       & xml();
 
 
-   using application::alloc;
+   using base_application::alloc;
    virtual sp(element) alloc(sp(base_application) papp, sp(type) info);
    virtual sp(element) alloc(sp(base_application) papp, const class id & idType);
 
@@ -280,41 +282,33 @@ public:
 
 
 
+   virtual void on_allocation_error(sp(base_application) papp, sp(type) info);
+   //   sp(element) alloc(sp(base_application) papp, sp(type) info);
+   sp(element) alloc(sp(base_application) papp, const std_type_info & info);
+   //   virtual sp(element) on_alloc(sp(base_application) papp, sp(type) info);
+
+
+   static inline class id id(const ::std_type_info & info);
+   static inline class id id(const char * psz);
+   static inline class id id(const string & str);
+   static inline class id id(int64_t i);
+   static inline class id_space & id();
+   inline class id id(const var & var);
+   inline class id id(const property & prop);
+
+
+   virtual bool assert_failed_line(const char * lpszFileName, int32_t iLine);
+   virtual bool on_assert_failed_line(const char * pszFileName, int32_t iLine);
+
+
 };
 
-
-template < class T >
-void smart_pointer < T >::create(const allocatorsp & allocer)
-{
-   static class id idType = CaSys(allocer).type_info < T > ()->m_id;
-   if(m_p != NULL)
-      ::release(m_p);
-   sp(element) pca = CaSys(allocer).alloc(allocer->m_papp, idType);
-   if(pca.is_set())
-   {
-      m_p = dynamic_cast < T * >(pca.m_p);
-      if(m_p != NULL)
-      {
-         ::add_ref(m_p);
-      }
-   }
-}
-
-template < class T >
-sp(T) smart_pointer <T>::clone() const
-{
-   if(m_p == NULL)
-      return NULL;
-   if(m_p->get_app() == NULL)
-      return NULL;
-   return CaSys(m_p).clone(m_p);
-}
 
 
 
 
 template < size_t _Bits >
-inline ::file::byte_output_stream & operator << (::file::byte_output_stream & _Ostr, const bitset<_Bits>& _Right)
+inline ::file::output_stream & operator << (::file::output_stream & _Ostr, const bitset<_Bits>& _Right)
 {
    // insert bitset as a string
    return (_Ostr << _Right.template to_string());
@@ -322,7 +316,7 @@ inline ::file::byte_output_stream & operator << (::file::byte_output_stream & _O
 
 // TEMPLATE operator>>
 template < size_t _Bits >
-inline ::file::byte_input_stream & operator >>( ::file::byte_input_stream &  _Istr, bitset<_Bits>& _Right)
+inline ::file::input_stream & operator >>( ::file::input_stream &  _Istr, bitset<_Bits>& _Right)
 {
    // extract bitset as a string
    string _Str;
@@ -335,50 +329,5 @@ inline ::file::byte_input_stream & operator >>( ::file::byte_input_stream &  _Is
 
 }
 
-
-
-#pragma once
-
-#undef new
-
-   inline void * object::operator new(size_t nSize)
-   {
-      void * p = ::operator new(nSize);
-      /*try
-      {
-      if(::ca2::get_thread_state() != NULL)
-      {
-      ::ca2::get_thread_state()->m_heapitema.add_item(p, nSize);
-      }
-      }
-      catch(...)
-      {
-      }*/
-      return p;
-   }
-
-
-#ifdef DEBUG
-
-   inline void * object::operator new(size_t nSize, const char * lpszFileName, int32_t nLine)
-   {
-      void * p = ::operator new(nSize, ___CLIENT_BLOCK, lpszFileName, nLine);
-      /*try
-      {
-      if(::ca2::get_thread_state() != NULL)
-      {
-      ::ca2::get_thread_state()->m_heapitema.add_item(p, nSize);
-      }
-      }
-      catch(...)
-      {
-      }*/
-      return p;
-   }
-
-#endif
-
-
-#define new DEBUG_NEW
 
 

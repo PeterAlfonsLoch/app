@@ -31,7 +31,7 @@ namespace fs
 
    file_size remote_native_file::get_length() const
    {
-      if((m_nOpenFlags & ::file::file::mode_read) != 0)
+      if((m_nOpenFlags & ::file::mode_read) != 0)
       {
          return m_httpfile->get_length();
       }
@@ -43,7 +43,7 @@ namespace fs
 
    file_position remote_native_file::seek(file_offset lOff, ::file::e_seek nFrom)
    {
-      if((m_nOpenFlags & ::file::file::mode_read) != 0)
+      if((m_nOpenFlags & ::file::mode_read) != 0)
       {
          return m_httpfile->seek(lOff, nFrom);
       }
@@ -74,7 +74,7 @@ namespace fs
          dwAdd |= hint_unknown_length_supported;
       }
 
-      m_httpfile->open(strUrl, ::file::file::type_binary | ::file::file::mode_read | dwAdd);
+      m_httpfile->open(strUrl, ::file::type_binary | ::file::mode_read | dwAdd);
    }
 
    void remote_native_file::set_file_data()

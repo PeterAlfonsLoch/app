@@ -9,15 +9,6 @@ namespace file
    {
    }
 
-   writer::writer(writer * pwriter) :
-      m_spwriter(pwriter)
-   {
-   }
-
-   writer::writer(const writer & writer)
-   {
-      operator = (writer);
-   }
 
    writer::~writer()
    {
@@ -26,44 +17,21 @@ namespace file
 
    void writer::write(const void *lpBuf, ::primitive::memory_size nCount)
    {
-      if(m_spwriter.is_null())
-      {
-         ::primitive::memory_size dwWritten;
-         while (nCount > 0)
-         {
-            dwWritten = 0;
-            write(lpBuf, nCount, &dwWritten);
-            if(dwWritten <= 0)
-               throw "written 0 bytes";
-            lpBuf = (const void *)((const byte *)lpBuf + dwWritten);
-            if(dwWritten > nCount)
-               throw "written more than requested ::count of bytes";
-            nCount -= dwWritten;
- 
-         }
-      }
-      else
-      {
-         // if stack overflows or function crashes here, probably this member should be overridden
-         m_spwriter->write(lpBuf, nCount);
-      }
+      
+      ::primitive::memory_size memory_size;
+      
+      write(lpBuf, nCount, &memory_size);
+
    }
 
    void writer::write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten)
    {
-      if(m_spwriter.is_null())
-      {
-         write(lpBuf, nCount);
-         *dwWritten = nCount;
-      }
-      else
-      {
-         // if stack overflows or function crashes here, probably this member should be overridden
-         m_spwriter->write(lpBuf, nCount, dwWritten);
-      }
+
+      throw interface_only_exception(get_app());
+
    }
 
-   void writer::read(reader & reader)
+   void writer::read_from(reader & reader)
    {
       ::primitive::memory_size uiRead;
       ::primitive::memory_size uiBufSize = 1024 * 1024;
@@ -91,15 +59,7 @@ namespace file
       free(buf);
    }
 
-   writer & writer::operator = (const writer & writer)
-   {
-      if(this != &writer)
-      {
-         m_spwriter = writer.m_spwriter;
-      }
-      return *this;
-   }
-
+   /*
    bool writer::is_writer_null()
    {
       return m_spwriter.is_null();
@@ -109,25 +69,165 @@ namespace file
    {
       return m_spwriter.is_set();
    }
-
+   */
    void writer::close()
    {
+      /*
       if(m_spwriter.is_set())
       {
          //m_spwriter->close();
          ::release(m_spwriter.m_p);
       }
+      */
    }
 
+   /*
    void writer::from_hex(const char * psz)
    {
       primitive::memory memory(get_app());
       memory.from_hex(psz);
       write(memory.get_data(), memory.get_size());
-   }
+   }*/
 
    void writer::flush()
    {
+   }
+
+   /*
+   void writer::write (char ch)
+   {
+      UNREFERENCED_PARAMETER(ch);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (uchar uch)
+   {
+      UNREFERENCED_PARAMETER(uch);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (int16_t sh)
+   {
+      UNREFERENCED_PARAMETER(sh);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (uint16_t ui)
+   {
+      UNREFERENCED_PARAMETER(ui);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (wchar_t wch)
+   {
+      UNREFERENCED_PARAMETER(wch);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (bool b)
+   {
+      UNREFERENCED_PARAMETER(b);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (int32_t i)
+   {
+      UNREFERENCED_PARAMETER(i);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (uint32_t ui)
+   {
+      UNREFERENCED_PARAMETER(ui);
+      throw interface_only_exception(get_app());
+   }
+    
+   void writer::write (int64_t i)
+   {
+      UNREFERENCED_PARAMETER(i);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (uint64_t ui)
+   {
+      UNREFERENCED_PARAMETER(ui);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (float f)
+   {
+      UNREFERENCED_PARAMETER(f);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (double d)
+   {
+      UNREFERENCED_PARAMETER(d);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (LPCRECT lpcrect)
+   {
+      UNREFERENCED_PARAMETER(lpcrect);
+      throw interface_only_exception(get_app());
+   }
+    
+   void writer::write (SIZE & size)
+   {
+      UNREFERENCED_PARAMETER(size);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (sp(type) info)
+   {
+      UNREFERENCED_PARAMETER(info);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (serializable & serializable)
+   {
+      UNREFERENCED_PARAMETER(serializable);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (const char * psz)
+   {
+      UNREFERENCED_PARAMETER(psz);
+      throw interface_only_exception(get_app());
+   }
+    
+   void writer::write (const id & id)
+   {
+      UNREFERENCED_PARAMETER(id);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (const var & var)
+   {
+      UNREFERENCED_PARAMETER(var);
+      throw interface_only_exception(get_app());
+   }
+
+   void writer::write (const string & str)
+   {
+      UNREFERENCED_PARAMETER(str);
+      throw interface_only_exception(get_app());
+   }
+   */
+
+   HRESULT write_writer(writer * stream, const void * data, ::primitive::memory_size size)
+   {
+      HRESULT res = S_OK;
+      try
+      {
+         stream->write(data, size);
+      }
+      catch(...)
+      {
+         res = E_FAIL;
+      }
+      RINOK(res);
+      return res;
    }
 
 

@@ -3,7 +3,7 @@
 
 class CLASS_DECL_c stringl :
    virtual public string_list,
-   virtual public ::file::byte_serializable
+   virtual public ::file::serializable
 {
 public:
 
@@ -20,8 +20,8 @@ public:
    void add_tail_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty);
 
 
-   void write(::file::byte_output_stream & ostream);
-   void read(::file::byte_input_stream & istream);
+   void write(::file::output_stream & ostream);
+   void read(::file::input_stream & istream);
 
 
 };

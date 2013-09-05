@@ -28,7 +28,7 @@ gzip::gzip(::file::writer & writer) :
    construct();
 }
 
-gzip::gzip(::file::byte_output_stream & ostreamDest) :
+gzip::gzip(::file::output_stream & ostreamDest) :
    m_ostream(&ostreamDest)
 {
    construct();

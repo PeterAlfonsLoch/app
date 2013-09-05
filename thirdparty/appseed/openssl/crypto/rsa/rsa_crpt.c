@@ -56,7 +56,6 @@
  * [including the GNU Public Licence.]
  */
 
-#include <stdio.h>
 #include <openssl/crypto.h>
 #include "cryptlib.h"
 #include <openssl/lhash.h>

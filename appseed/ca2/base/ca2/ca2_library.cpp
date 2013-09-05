@@ -306,7 +306,7 @@ namespace ca2
    }
 
 
-   sp(::application) library::get_new_app(const char * pszAppId)
+   sp(base_application) library::get_new_app(const char * pszAppId)
    {
 
       try

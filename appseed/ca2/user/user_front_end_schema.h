@@ -55,7 +55,7 @@ namespace user
       COLORREF       m_crTextNormal;
       
 
-      front_end_schema(sp(::application) app);
+      front_end_schema(sp(base_application) app);
       ~front_end_schema();
 
       virtual void DrawCheck(check::check echeck, LPCRECT lpcrect, ::draw2d::graphics * pdc);

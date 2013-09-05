@@ -172,7 +172,7 @@ namespace plane
 
       virtual sp(::plane::session)             query_bergedge(index iEdge);
       virtual void on_request(sp(create_context) pcreatecontext);
-      virtual sp(::application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
+      virtual sp(base_application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
       virtual void open_by_file_extension(index iEdge, const char * pszPathName);
       virtual bool is_system();
 
@@ -372,7 +372,7 @@ namespace plane
 
       virtual bool verb();
 
-      virtual sp(::application) get_new_app(sp(::application) pappNewApplicationParent, const char * pszType, const char * pszId);
+      virtual sp(base_application) get_new_app(sp(base_application) pappNewApplicationParent, const char * pszType, const char * pszId);
 
       virtual bool find_applications_from_cache();
       virtual bool find_applications_to_cache();
@@ -450,7 +450,7 @@ bool ::ca2::file_system::output(sp(base_application) papp, const char * pszOutpu
 
    App(papp).dir().mk(System.dir().name(pszOutput));
 
-   ::ca2::filesp fileOut = App(papp).file().get_file(pszOutput, ::file::file::mode_create | ::file::file::type_binary | ::file::file::mode_write);
+   ::file::filesp fileOut = App(papp).file().get_file(pszOutput, ::file::file::mode_create | ::file::type_binary | ::file::file::mode_write);
 
    if(fileOut.is_null())
       return false;
@@ -470,12 +470,12 @@ bool ::ca2::file_system::output(sp(base_application) papp, const char * pszOutpu
    
    strDownloading += ".downloading";
 
-   ::ca2::filesp fileOut = App(papp).file().get_file(strDownloading, ::file::file::mode_create | ::file::file::type_binary | ::file::file::mode_write);
+   ::file::filesp fileOut = App(papp).file().get_file(strDownloading, ::file::file::mode_create | ::file::type_binary | ::file::file::mode_write);
 
    if(fileOut.is_null())
       return false;
 
-   ::ca2::filesp fileIn = App(papp).file().get_file(lpszInput, ::file::file::type_binary | ::file::file::mode_read);
+   ::file::filesp fileIn = App(papp).file().get_file(lpszInput, ::file::type_binary | ::file::mode_read);
 
    if(fileIn.is_null())
       return false;
@@ -592,20 +592,4 @@ namespace user
 
 
 } //   namespace user
-
-namespace xml
-{
-
-   inline disp_option::disp_option(sp(base_application) papp)
-   {
-      newline = true;
-      reference_value = true;
-      m_pentities = &papp->m_psystem->m_pxml->m_entities;
-      tab_base = 0;
-      value_quotation_mark = '"';
-   }
-
-
-} // namespace xml
-
 

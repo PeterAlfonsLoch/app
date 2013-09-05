@@ -860,7 +860,7 @@ TiledRgbaInputFile::setFrameBuffer (Rgba *base, size_t xStride, size_t yStride)
 
 
 void		
-TiledRgbaInputFile::setLayerName (const std::string &layerName)
+TiledRgbaInputFile::setLayerName (const string &layerName)
 {
     delete _fromYa;
     _fromYa = 0;

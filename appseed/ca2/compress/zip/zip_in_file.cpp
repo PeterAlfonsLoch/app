@@ -35,7 +35,7 @@ namespace zip
       ASSERT(pFile->m_hFile != (UINT)hFileNull);
       pFile->m_bCloseOnDelete = m_bCloseOnDelete;*/
       return NULL;
-      //return new ::ca2::filesp(this);
+      //return new ::file::filesp(this);
    }
 
 
@@ -613,9 +613,9 @@ namespace zip
 
       string strPath(System.dir().path(pszDir, pszRelative));
 
-      ::ca2::filesp file;
+      ::file::filesp file;
 
-      file = Application.file().get_file(strPath, ::file::file::mode_read | ::file::file::type_binary);
+      file = Application.file().get_file(strPath, ::file::mode_read | ::file::type_binary);
 
       if(file.is_null())
          throw "failed to open file for compressing";

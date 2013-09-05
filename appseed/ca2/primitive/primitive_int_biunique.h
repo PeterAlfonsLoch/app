@@ -3,7 +3,7 @@
 template < class T, class T_to_T = attrib_map < map < T, T, T, T > > >
 class  biunique :
    public object,
-   public ::file::byte_serializable
+   public ::file::serializable
 {
 public:
    biunique(sp(base_application) papp = NULL);
@@ -53,8 +53,8 @@ public:
 
    void copy_data(const biunique & ia);
 
-   virtual void write(::file::byte_output_stream & ostream);
-   virtual void read(::file::byte_input_stream & ostream);
+   virtual void write(::file::output_stream & ostream);
+   virtual void read(::file::input_stream & ostream);
 
    biunique & operator = (const biunique & ia);
 
@@ -342,7 +342,7 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 
 
 template < class t1, class t2, class t3, class t4 >
-void serialize_write(::file::byte_output_stream & ostream, map < t1, t2, t3, t4 > & m)
+void serialize_write(::file::output_stream & ostream, map < t1, t2, t3, t4 > & m)
 {
    ::count count = m.get_count();
    typename map < t1, t2, t3, t4 >::pair * ppair = m.PGetFirstAssoc();
@@ -356,7 +356,7 @@ void serialize_write(::file::byte_output_stream & ostream, map < t1, t2, t3, t4 
 }
 
 template < class t1, class t2, class t3, class t4 >
-void serialize_read(::file::byte_input_stream & istream, map < t1, t2, t3, t4 > & m)
+void serialize_read(::file::input_stream & istream, map < t1, t2, t3, t4 > & m)
 {
    try
    {
@@ -382,7 +382,7 @@ void serialize_read(::file::byte_input_stream & istream, map < t1, t2, t3, t4 > 
 }
 
 template < class T, class T_to_T >
-void biunique < T, T_to_T > ::write(::file::byte_output_stream & ostream)
+void biunique < T, T_to_T > ::write(::file::output_stream & ostream)
 {
    ostream << m_bBiunivoca;
    ostream << m_iMaxA;
@@ -401,7 +401,7 @@ void biunique < T, T_to_T > ::write(::file::byte_output_stream & ostream)
 }
 
 template < class T, class T_to_T >
-void biunique < T, T_to_T > ::read(::file::byte_input_stream & istream)
+void biunique < T, T_to_T > ::read(::file::input_stream & istream)
 {
    try
    {

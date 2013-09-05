@@ -7,9 +7,9 @@ namespace ca2
 {
 
    class limited_input_stream:
-      public byte_input_stream
+      public input_stream
    {
-      byte_input_stream *    _stream;
+      input_stream *    _stream;
       uint64_t            _virtPos;
       uint64_t            _physPos;
       uint64_t            _size;
@@ -20,7 +20,7 @@ namespace ca2
          return _stream->seek((int_ptr) _physPos, seek_begin); 
       }
    public:
-      void SetStream(byte_input_stream *stream)
+      void SetStream(input_stream *stream)
       { 
          _stream = stream; 
       }
@@ -40,6 +40,6 @@ namespace ca2
 
    };
 
-   reader * create_limited_input_stream(byte_input_stream *inStream, uint64_t pos, uint64_t size);
+   reader * create_limited_input_stream(input_stream *inStream, uint64_t pos, uint64_t size);
 
 } // namespace ca2

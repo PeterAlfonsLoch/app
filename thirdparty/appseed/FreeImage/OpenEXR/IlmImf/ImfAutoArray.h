@@ -46,6 +46,9 @@
 
 #include "OpenEXRConfig.h"
 
+
+//#include <algorithm>
+
 namespace Imf {
 
 

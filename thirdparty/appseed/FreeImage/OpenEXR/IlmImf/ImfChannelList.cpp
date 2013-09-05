@@ -43,9 +43,6 @@
 
 #include "ImfFramework.h"
 
-using std::string;
-using std::set;
-
 namespace Imf {
 
 
@@ -94,7 +91,7 @@ ChannelList::operator [] (const char name[])
     if (i == _map.end())
 	THROW (Iex::ArgExc, "Cannot find image channel \"" << name << "\".");
 
-    return i->second;
+    return i->m_element2;
 }
 
 
@@ -106,7 +103,7 @@ ChannelList::operator [] (const char name[]) const
     if (i == _map.end())
 	THROW (Iex::ArgExc, "Cannot find image channel \"" << name << "\".");
 
-    return i->second;
+    return i->m_element2;
 }
 
 
@@ -128,7 +125,7 @@ Channel *
 ChannelList::findChannel (const char name[])
 {
     ChannelMap::iterator i = _map.find (name);
-    return (i == _map.end())? 0: &i->second;
+    return (i == _map.end())? 0: &i->m_element2;
 }
 
 
@@ -136,7 +133,7 @@ const Channel *
 ChannelList::findChannel (const char name[]) const
 {
     ChannelMap::const_iterator i = _map.find (name);
-    return (i == _map.end())? 0: &i->second;
+    return (i == _map.end())? 0: &i->m_element2;
 }
 
 
@@ -211,20 +208,20 @@ ChannelList::find (const string &name) const
 
 
 void
-ChannelList::layers (set <string> &layerNames) const
+ChannelList::layers (::unique_sort_array < string > &layerNames) const
 {
-    layerNames.clear();
+   layerNames.remove_all();
 
     for (ConstIterator i = begin(); i != end(); ++i)
     {
-	string layerName = i.name();
-	size_t pos = layerName.rfind ('.');
+	   string layerName = i.name();
+      strsize pos = layerName.reverse_find ('.');
 
-	if (pos != string::npos && pos != 0 && pos + 1 < layerName.size())
-	{
-	    layerName.erase (pos);
-	    layerNames.insert (layerName);
-	}
+	   if (pos>= 0 && pos != 0 && pos + 1 < layerName.size())
+	   {
+	       layerName.erase (pos);
+	       layerNames.add (layerName);
+	   }
     }
 }
 

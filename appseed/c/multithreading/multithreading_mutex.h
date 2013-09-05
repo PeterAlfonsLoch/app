@@ -29,7 +29,7 @@ protected:
 
 #ifdef WINDOWS
 
-   mutex(sp(::application) pappp, const char * pstrName, HANDLE h);
+   mutex(sp(base_application) pappp, const char * pstrName, HANDLE h);
 
 #else
 

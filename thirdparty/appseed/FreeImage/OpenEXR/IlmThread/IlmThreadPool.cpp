@@ -43,9 +43,6 @@
 #include "IlmThreadSemaphore.h"
 #include "IlmThreadPool.h"
 #include "Iex.h"
-#include <list>
-
-using namespace std;
 
 namespace IlmThread {
 namespace {

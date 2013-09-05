@@ -22,16 +22,16 @@ namespace ca2
       virtual ~base64();
 
 
-      void encode(::ca2::plain_text_output_stream & ostreamBase64, ::file::byte_input_stream & istreamBinary);
+      void encode(::ca2::plain_text_output_stream & ostreamBase64, ::file::input_stream & istreamBinary);
       string encode(primitive::memory_base & storageBinary);
       string encode(byte * p, ::count ca);
       string encode(const char * psz);
-      string serialize(::file::byte_serializable & serializable);
+      string serialize(::file::serializable & serializable);
 
-      void decode(::file::byte_output_stream & ostreamBinary, ::ca2::plain_text_input_stream & istreamBase64);
+      void decode(::file::output_stream & ostreamBinary, ::ca2::plain_text_input_stream & istreamBase64);
       void decode(primitive::memory & storageBinary, const char * pszBase64);
       string decode(const char * psz);
-      void unserialize(::file::byte_serializable & serializable, const char * pszBase64);
+      void unserialize(::file::serializable & serializable, const char * pszBase64);
 
    
    };

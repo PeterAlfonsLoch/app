@@ -721,9 +721,6 @@
     <ClCompile Include="ca\ca_dir2.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_file.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_file_spa.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
@@ -830,9 +827,6 @@
       <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="windows\ca_os_file_watcher.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_http.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="windows\ca_os_launcher.cpp">

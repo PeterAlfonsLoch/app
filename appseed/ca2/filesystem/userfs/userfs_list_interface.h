@@ -16,7 +16,7 @@ namespace userfs
 
 
 
-      list_interface(sp(::application) appp);
+      list_interface(sp(base_application) appp);
       virtual ~list_interface();
 
       virtual void _001InsertColumns();

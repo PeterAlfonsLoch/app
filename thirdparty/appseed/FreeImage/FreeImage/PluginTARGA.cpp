@@ -491,8 +491,8 @@ We use a specific overload based on bits-per-pixel for each type of pixel
 template <int nBITS>
 inline static void 
 _assignPixel(BYTE* bits, BYTE* val, BOOL as24bit = FALSE) {
-	// static assert should go here
-	assert(FALSE);
+	// static ASSERT should go here
+	ASSERT(FALSE);
 }
 
 template <>
@@ -1078,7 +1078,7 @@ flushPacket(BYTE*& dest, unsigned pixel_size, BYTE* packet_begin, BYTE*& packet,
 		const BYTE write_count = has_rle ? 1 : packet_count;
 
 		// build packet header: zero-based count + type bit
-		assert(packet_count >= 1);
+		ASSERT(packet_count >= 1);
 		BYTE rle = packet_count - 1;
 		rle |= type_bit;
 
@@ -1135,7 +1135,7 @@ writeToPacket(BYTE* packet, BYTE* pixel, unsigned pixel_size) {
 		break;
 
 		default:
-			assert(FALSE);
+			ASSERT(FALSE);
 	}
 }
 
@@ -1155,7 +1155,7 @@ isEqualPixel(BYTE* lhs, BYTE* rhs, unsigned pixel_size) {
 			return *(unsigned*)lhs == *(unsigned*)rhs;
 
 		default:
-			assert(FALSE);
+			ASSERT(FALSE);
 			return FALSE;
 	}
 }
@@ -1219,7 +1219,7 @@ saveRLE(FIBITMAP* dib, FreeImageIO* io, fi_handle handle) {
 
 				}
 
-				assert(packet_count < max_packet_size);
+				ASSERT(packet_count < max_packet_size);
 
 				++packet_count;
 
@@ -1256,7 +1256,7 @@ saveRLE(FIBITMAP* dib, FreeImageIO* io, fi_handle handle) {
 					// flush rle packet
 
 					// include current pixel first
-					assert(packet_count < max_packet_size);
+					ASSERT(packet_count < max_packet_size);
 					++packet_count;
 
 					flushPacket(line, pixel_size, packet_begin, packet, packet_count, has_rle);
@@ -1481,7 +1481,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		TGAEXTENSIONAREA ex;
 		memset(&ex, 0, sizeof(ex));
 		
-		assert(sizeof(ex) == 495);
+		ASSERT(sizeof(ex) == 495);
 		ex.extension_size = sizeof(ex);
 		ex.postage_stamp_offset = (DWORD) (extension_offset + ex.extension_size + 0 )/*< no Scan Line Table*/;
 		ex.attributes_type = FreeImage_GetBPP(dib) == 32 ? 3 /*< useful Alpha channel data*/ : 0 /*< no Alpha data*/;

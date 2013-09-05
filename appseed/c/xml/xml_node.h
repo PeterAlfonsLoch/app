@@ -10,7 +10,7 @@ namespace xml
 
    class CLASS_DECL_c node :
       virtual public object,
-      virtual public ::file::byte_serializable
+      virtual public ::file::serializable
    {
    public:
 
@@ -49,7 +49,7 @@ namespace xml
    protected:
 
 
-      node(::application * papp);
+      node(base_application * papp);
       node(::xml::node * pnodeParent);
 
 
@@ -206,8 +206,8 @@ namespace xml
       void close();
 
 
-      virtual void write(::file::byte_output_stream & ostream);
-      virtual void read(::file::byte_input_stream & istream);
+      virtual void write(::file::output_stream & ostream);
+      virtual void read(::file::input_stream & istream);
 
 
    };

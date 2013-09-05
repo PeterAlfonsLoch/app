@@ -16,8 +16,8 @@ namespace xml
       virtual ~data();
 
 
-      virtual void write(::file::byte_output_stream & ostream);
-      virtual void read(::file::byte_input_stream & istream);
+      virtual void write(::file::output_stream & ostream);
+      virtual void read(::file::input_stream & istream);
 
 
    };

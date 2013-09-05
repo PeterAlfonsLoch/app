@@ -9,7 +9,7 @@ namespace usermail
       virtual public ::user::list
    {
    public:
-      list_interface(sp(::application) appp);
+      list_interface(sp(base_application) appp);
       virtual ~list_interface();
 
       account * m_paccount;

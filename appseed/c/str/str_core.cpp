@@ -51,7 +51,7 @@ void const_empty_string::set_string(const char * psz)
    throw "cannot set const string";
 }
 
-namespace ca2
+namespace str
 {
    CLASS_DECL_c const_empty_string g_strEmpty;
 

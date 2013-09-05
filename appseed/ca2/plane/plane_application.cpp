@@ -94,7 +94,7 @@ namespace plane
    {
    }
 
-   sp(::application) application::get_system()
+   sp(base_application) application::get_system()
    {
       return new application();
    }
@@ -374,7 +374,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
 
 
 
-   ::ca2::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
+   ::file::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
 
       try
@@ -1138,7 +1138,7 @@ exit_application:
    }
 
 
-   sp(::application) application::instantiate_application(const char * pszType, const char * pszId, application_bias * pbias)
+   sp(base_application) application::instantiate_application(const char * pszType, const char * pszId, application_bias * pbias)
    {
 
       sp(base_application) papp = NULL;
@@ -1280,10 +1280,10 @@ exit_application:
    }
 
 
-   sp(::application) application::create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias)
+   sp(base_application) application::create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias)
    {
 
-      sp(::application) pcaapp = instantiate_application(pszType, pszId, pbias);
+      sp(base_application) pcaapp = instantiate_application(pszType, pszId, pbias);
 
       if(pcaapp == NULL)
          return NULL;

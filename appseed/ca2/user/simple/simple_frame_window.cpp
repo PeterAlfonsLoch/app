@@ -952,7 +952,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
             m_dibBk->create(rectClient.size());
             m_dibBk->Fill(0, 184, 184, 170);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-            //::visual::fastblur *( *pfnNew )(sp(::application)) = (::visual::fastblur *(*)(sp(::application))) ::GetProcAddress(hmodule, "new_fastblur");
+            //::visual::fastblur *( *pfnNew )(sp(base_application)) = (::visual::fastblur *(*)(sp(base_application))) ::GetProcAddress(hmodule, "new_fastblur");
             m_fastblur.create(allocer());
             m_fastblur.initialize(rectClient.size(), 2);
          }

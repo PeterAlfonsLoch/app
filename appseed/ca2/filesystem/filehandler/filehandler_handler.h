@@ -7,7 +7,7 @@ namespace filehandler
 
    class CLASS_DECL_ca2 handler :
       virtual public object,
-      virtual public ::file::byte_serializable
+      virtual public ::file::serializable
    {
    public:
       
@@ -32,8 +32,8 @@ namespace filehandler
       virtual void get_mime_type_app(stringa & straAppId, const char * pszMimeType);
 
 
-      void write(::file::byte_output_stream & ostream);
-      void read(::file::byte_input_stream & istream);
+      void write(::file::output_stream & ostream);
+      void read(::file::input_stream & istream);
 
 
    };

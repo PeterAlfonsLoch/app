@@ -108,25 +108,3 @@ int32_t base::ReportError(UINT nType /* = MB_OK */, const char * pszMessageId /*
 
 
 
-#ifdef WINDOWSEX
-
-bool IsWow64()
-{
-
-   int_bool bIsWow64 = FALSE;
-
-   if (!IsWow64Process(GetCurrentProcess(),&bIsWow64))
-   {
-      return FALSE;
-   }
-
-   return bIsWow64 != FALSE;
-
-}
-
-#endif
-
-
-
-
-

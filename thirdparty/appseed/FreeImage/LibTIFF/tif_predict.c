@@ -390,9 +390,9 @@ PredictorDecodeRow(TIFF* tif, tidata_t op0, tsize_t occ0, tsample_t s)
 {
 	TIFFPredictorState *sp = PredictorState(tif);
 
-	assert(sp != NULL);
-	assert(sp->decoderow != NULL);
-	assert(sp->decodepfunc != NULL);
+	ASSERT(sp != NULL);
+	ASSERT(sp->decoderow != NULL);
+	ASSERT(sp->decodepfunc != NULL);
 
 	if ((*sp->decoderow)(tif, op0, occ0, s)) {
 		(*sp->decodepfunc)(tif, op0, occ0);
@@ -413,13 +413,13 @@ PredictorDecodeTile(TIFF* tif, tidata_t op0, tsize_t occ0, tsample_t s)
 {
 	TIFFPredictorState *sp = PredictorState(tif);
 
-	assert(sp != NULL);
-	assert(sp->decodetile != NULL);
+	ASSERT(sp != NULL);
+	ASSERT(sp->decodetile != NULL);
 
 	if ((*sp->decodetile)(tif, op0, occ0, s)) {
 		tsize_t rowsize = sp->rowsize;
-		assert(rowsize > 0);
-		assert(sp->decodepfunc != NULL);
+		ASSERT(rowsize > 0);
+		ASSERT(sp->decodepfunc != NULL);
 		while ((long)occ0 > 0) {
 			(*sp->decodepfunc)(tif, op0, (tsize_t) rowsize);
 			occ0 -= rowsize;
@@ -552,9 +552,9 @@ PredictorEncodeRow(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 {
 	TIFFPredictorState *sp = PredictorState(tif);
 
-	assert(sp != NULL);
-	assert(sp->encodepfunc != NULL);
-	assert(sp->encoderow != NULL);
+	ASSERT(sp != NULL);
+	ASSERT(sp->encodepfunc != NULL);
+	ASSERT(sp->encoderow != NULL);
 
 	/* XXX horizontal differencing alters user's data XXX */
 	(*sp->encodepfunc)(tif, bp, cc);
@@ -571,9 +571,9 @@ PredictorEncodeTile(TIFF* tif, tidata_t bp0, tsize_t cc0, tsample_t s)
 	unsigned char* bp;
         int result_code;
 
-	assert(sp != NULL);
-	assert(sp->encodepfunc != NULL);
-	assert(sp->encodetile != NULL);
+	ASSERT(sp != NULL);
+	ASSERT(sp->encodepfunc != NULL);
+	ASSERT(sp->encodetile != NULL);
 
         /* 
          * Do predictor manipulation in a working buffer to avoid altering
@@ -591,8 +591,8 @@ PredictorEncodeTile(TIFF* tif, tidata_t bp0, tsize_t cc0, tsample_t s)
         bp = working_copy;
 
 	rowsize = sp->rowsize;
-	assert(rowsize > 0);
-	assert((cc0%rowsize)==0);
+	ASSERT(rowsize > 0);
+	ASSERT((cc0%rowsize)==0);
 	while (cc > 0) {
 		(*sp->encodepfunc)(tif, bp, rowsize);
 		cc -= rowsize;
@@ -617,8 +617,8 @@ PredictorVSetField(TIFF* tif, ttag_t tag, va_list ap)
 {
 	TIFFPredictorState *sp = PredictorState(tif);
 
-	assert(sp != NULL);
-	assert(sp->vsetparent != NULL);
+	ASSERT(sp != NULL);
+	ASSERT(sp->vsetparent != NULL);
 
 	switch (tag) {
 	case TIFFTAG_PREDICTOR:
@@ -637,8 +637,8 @@ PredictorVGetField(TIFF* tif, ttag_t tag, va_list ap)
 {
 	TIFFPredictorState *sp = PredictorState(tif);
 
-	assert(sp != NULL);
-	assert(sp->vgetparent != NULL);
+	ASSERT(sp != NULL);
+	ASSERT(sp->vgetparent != NULL);
 
 	switch (tag) {
 	case TIFFTAG_PREDICTOR:
@@ -674,7 +674,7 @@ TIFFPredictorInit(TIFF* tif)
 {
 	TIFFPredictorState* sp = PredictorState(tif);
 
-	assert(sp != 0);
+	ASSERT(sp != 0);
 
 	/*
 	 * Merge codec-specific tag information.
@@ -715,7 +715,7 @@ TIFFPredictorCleanup(TIFF* tif)
 {
 	TIFFPredictorState* sp = PredictorState(tif);
 
-	assert(sp != 0);
+	ASSERT(sp != 0);
 
 	tif->tif_tagmethods.vgetfield = sp->vgetparent;
 	tif->tif_tagmethods.vsetfield = sp->vsetparent;

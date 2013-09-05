@@ -1,0 +1,99 @@
+#pragma once
+
+
+namespace file
+{
+
+   class writer;
+   class reader;
+   class serializable;
+
+
+   typedef smart_pointer < reader > input_stream_sp;
+
+
+   class CLASS_DECL_c input_stream :
+      virtual public seekable
+   {
+   public:
+
+
+      ::file::reader_sp       m_spreader;
+
+
+      input_stream();
+      input_stream(reader * preader);
+      input_stream(const input_stream & preader);
+      virtual ~input_stream();
+
+
+      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
+
+      input_stream & operator = (const input_stream & ostream);
+
+      virtual bool is_reader_null();
+      virtual bool is_reader_set();
+
+      //virtual void to_hex(string & str, ::primitive::memory_position iStart = 0, ::primitive::memory_position iEnd = -1);
+
+
+      inline input_stream & operator >> (bool            & b               ) { read(b              ); return *this; }
+      inline input_stream & operator >> (char            & ch              ) { read(ch             ); return *this; }
+      inline input_stream & operator >> (uchar           & uch             ) { read(uch            ); return *this; }
+      inline input_stream & operator >> (wchar_t         & wch             ) { read(wch            ); return *this; }
+      inline input_stream & operator >> (int16_t         & sh              ) { read(sh             ); return *this; }
+      inline input_stream & operator >> (uint16_t        & ui              ) { read(ui             ); return *this; }
+      inline input_stream & operator >> (int32_t         & i               ) { read(i              ); return *this; }
+      inline input_stream & operator >> (uint32_t        & ui              ) { read(ui             ); return *this; }
+      inline input_stream & operator >> (int64_t         & i               ) { read(i              ); return *this; }
+      inline input_stream & operator >> (uint64_t        & ui              ) { read(ui             ); return *this; }
+      inline input_stream & operator >> (float           & f               ) { read(f              ); return *this; }
+      inline input_stream & operator >> (double          & d               ) { read(d              ); return *this; }
+      inline input_stream & operator >> (LPRECT            lprect          ) { read(lprect         ); return *this; }
+      inline input_stream & operator >> (SIZE            & size            ) { read(size           ); return *this; }
+      inline input_stream & operator >> (sp(type)        & info            ) { read(info           ); return *this; }
+      inline input_stream & operator >> (serializable    & serializable    ) { read(serializable   ); return *this; }
+      inline input_stream & operator >> (id              & id              ) { read(id             ); return *this; }
+      inline input_stream & operator >> (var             & var             ) { read(var            ); return *this; }
+      inline input_stream & operator >> (string          & str             ) { read(str            ); return *this; }
+
+
+      void read_arbitrary(int32_t & i);
+      void read_arbitrary(uint32_t & ui);
+      void read_arbitrary(int64_t & i);
+      void read_arbitrary(uint64_t & ui);
+
+
+      virtual void read (bool & b);
+      virtual void read (char & ch);
+      virtual void read (uchar & uch);
+      virtual void read (wchar_t & wch);
+      virtual void read (int16_t & sh);
+      virtual void read (uint16_t & uint16_t);
+      virtual void read (int32_t & i);
+      virtual void read (uint32_t & ui);
+      virtual void read (int64_t & i);
+      virtual void read (uint64_t & ui);
+      virtual void read (float & f);
+      virtual void read (double & d);
+      virtual void read (LPRECT lprect);
+      virtual void read (SIZE & size);
+      virtual void read (sp(type) info);
+      virtual void read (serializable & serializable);
+      virtual void read (id & id);
+      virtual void read (var & var);
+      virtual void read (string & str);
+
+      virtual void close();
+
+   };
+
+
+} // namespace file
+
+
+
+
+
+
+

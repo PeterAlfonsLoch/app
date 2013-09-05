@@ -2,7 +2,8 @@
 
 
 
-application::application()
+base_application::base_application() :
+   m_allocer(this)
 {
 
    m_psignal = new signal();
@@ -10,7 +11,11 @@ application::application()
 
 }
 
-int32_t application::simple_message_box(const char * pszMessage, UINT fuStyle)
+base_application::~base_application()
+{
+}
+
+int32_t base_application::simple_message_box(const char * pszMessage, UINT fuStyle)
 {
 
 #if defined(WINDOWSEX)
@@ -32,7 +37,7 @@ int32_t application::simple_message_box(const char * pszMessage, UINT fuStyle)
 }
 
 
-bool application::load_string(string & str, id id)
+bool base_application::load_string(string & str, id id)
 {
    UNREFERENCED_PARAMETER(id);
    str.Empty();
@@ -40,17 +45,17 @@ bool application::load_string(string & str, id id)
 }
 
 
-sp(element) application::alloc(sp(type) info)
+sp(element) base_application::alloc(sp(type) info)
 {
    return System.alloc(this, info);
 }
 
-sp(element) application::alloc(const  id & idType)
+sp(element) base_application::alloc(const  id & idType)
 {
    return System.alloc(this, idType);
 }
 
-bool application::is_system()
+bool base_application::is_system()
 {
 
    return true;
@@ -59,21 +64,21 @@ bool application::is_system()
 
 
 
-//string application::matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
-//string application::dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
-bool application::is_inside_time_dir(const char * pszPath)
+//string base_application::matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
+//string base_application::dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
+bool base_application::is_inside_time_dir(const char * pszPath)
 {
    throw not_implemented(this);
    return false;
 }
 
-bool application::file_is_read_only(const char * pszPath)
+bool base_application::file_is_read_only(const char * pszPath)
 {
    throw not_implemented(this);
    return false;
 }
 
-string application::file_as_string(var varFile)
+string base_application::file_as_string(var varFile)
 {
 
    if(::str::begins_ci(varFile.get_string(), "http://")
@@ -93,65 +98,71 @@ string application::file_as_string(var varFile)
 
 }
 
-string application::dir_path(const char * psz1, const char * psz2, const char * psz3)
+string base_application::dir_path(const char * psz1, const char * psz2, const char * psz3)
 {
    return ::dir::path(psz1, psz2, psz3);
 }
 
-string application::dir_name(const char * psz)
+string base_application::dir_name(const char * psz)
 {
    return ::dir::name(psz);
 }
 
-bool application::dir_mk(const char * psz)
+bool base_application::dir_mk(const char * psz)
 {
    return ::dir::mk(psz);
 }
 
-string application::file_title(const char * psz)
+string base_application::file_title(const char * psz)
 {
    return ::file_title_dup(psz);
 }
-string application::file_name(const char * psz)
+string base_application::file_name(const char * psz)
 {
    return ::file_name_dup(psz);
 }
 
 
-sp(command_thread) application::command_central()
+sp(command_thread) base_application::command_central()
 {
    return m_pcommandthread;
 }
 
-sp(command_thread) application::command()
+sp(command_thread) base_application::command()
 {
    return m_pcommandthread;
 }
 
-sp(command_thread) application::guideline()
+sp(command_thread) base_application::guideline()
 {
    return m_pcommandthread;
 }
 
-sp(command_thread) application::directrix()
+sp(command_thread) base_application::directrix()
 {
    return m_pcommandthread;
 }
 
-sp(command_thread) application::axiom()
+sp(command_thread) base_application::axiom()
 {
    return m_pcommandthread;
 }
 
-bool application::verb()
+bool base_application::verb()
 {
    axiom()->run();
    return true;
 }
 
-sp(command_thread) application::creation()
+sp(command_thread) base_application::creation()
 {
    return m_pcommandthread;
 }
 
 
+::file::filesp base_application::file_get_file(var varFile, uint32_t uiFlags)
+{
+
+   return NULL;
+
+}

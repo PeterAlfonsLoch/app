@@ -30,7 +30,7 @@ namespace win
 namespace ca2
 {
 
-   CLASS_DECL_c sp(::application) get_thread_app();
+   CLASS_DECL_c sp(base_application) get_thread_app();
 
 } // namespace ca2
 

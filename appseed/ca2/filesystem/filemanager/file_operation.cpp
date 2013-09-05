@@ -100,7 +100,7 @@ bool file_operation::open_src_dst(const char * pszSrc, const char * pszDst)
       Application.dir().mk(System.dir().name(pszDst));
       return false;
    }
-   if(!m_fileSrc->open(pszSrc, ::file::file::mode_read | ::file::file::type_binary | ::file::file::shareDenyWrite))
+   if(!m_fileSrc->open(pszSrc, ::file::mode_read | ::file::type_binary | ::file::file::shareDenyWrite))
    {
       TRACE("\n Could not open source file(%d)=%s", m_iFile, pszSrc);
       return false;
@@ -117,7 +117,7 @@ bool file_operation::open_src_dst(const char * pszSrc, const char * pszDst)
       }*/
    }
    Application.dir().mk(System.dir().name(pszDst));
-   if(!m_fileDst->open(pszDst, ::file::file::mode_write | ::file::file::type_binary | ::file::file::mode_create))
+   if(!m_fileDst->open(pszDst, ::file::file::mode_write | ::file::type_binary | ::file::file::mode_create))
    {
       TRACE("\n Could not open dest file(%d)=%s", m_iFile, pszDst);
       property_set propertyset;

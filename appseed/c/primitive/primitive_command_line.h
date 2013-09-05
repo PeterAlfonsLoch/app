@@ -49,10 +49,10 @@ public:
    var                           m_varQuery;
    ::fs::item_array *            m_pitema;
 
-   sp(::application)             m_pappFork;
+   sp(base_application)             m_pappFork;
    string                        m_strApp;
    string                        m_strAppType;
-   sp(::user::interaction_base)  m_puiParent;
+   sp(::user::base_interaction)  m_puiParent;
    index                         m_iEdge;
    manual_reset_event            m_eventReady;
    application_bias *            m_pbiasCreate;

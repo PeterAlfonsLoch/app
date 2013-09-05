@@ -130,7 +130,7 @@ void stringl::add_tail_tokens(const char * lpcsz, const char * lpcszSeparator, b
 }
 
 
-void stringl::write(::file::byte_output_stream & ostream)
+void stringl::write(::file::output_stream & ostream)
 {
    ostream << m_nCount;
    POSITION pos = get_head_position();
@@ -140,7 +140,7 @@ void stringl::write(::file::byte_output_stream & ostream)
    }
 }
 
-void stringl::read(::file::byte_input_stream & istream)
+void stringl::read(::file::input_stream & istream)
 {
    int32_t iSize;
    istream >> iSize;

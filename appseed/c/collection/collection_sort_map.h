@@ -22,9 +22,9 @@ public:
    class pair
    {
    public:
-      const KEY m_key;
-      VALUE m_value;
-      pair(const KEY & key) : m_key(key) {}
+      const KEY   m_element1;
+      VALUE       m_element2;
+      pair(const KEY & key) : m_element1(key) {}
    };
 
 
@@ -109,6 +109,98 @@ public:
 
    };
 
+   class const_iterator
+   {
+   public:
+
+
+      const pair *         m_ppair;
+      const sort_map *     m_pmap;
+
+
+      const_iterator()
+      {
+         m_ppair  = NULL;
+         m_pmap   = NULL;
+      }
+
+      const_iterator(const iterator & iterator)
+      {
+         m_ppair  = iterator.m_ppair;
+         m_pmap   = iterator.m_pmap;
+      }
+
+      const_iterator(const const_iterator & iterator)
+      {
+         m_ppair  = iterator.m_ppair;
+         m_pmap   = iterator.m_pmap;
+      }
+
+      const_iterator(const pair * ppair, const sort_map * pmap)
+      {
+         m_ppair  = ppair;
+         m_pmap   = pmap;
+      }
+
+      const pair * operator -> ()
+      {
+         return m_ppair;
+      }
+
+      const pair * operator -> () const
+      {
+         return m_ppair;
+      }
+
+
+      const_iterator & operator ++ ()
+      {
+         if(m_ppair != NULL && m_pmap != NULL)
+            m_ppair = m_pmap->PGetNextAssoc(m_ppair);
+         return *this;
+      }
+
+      const_iterator operator ++ (int32_t)
+      {
+         if(m_ppair != NULL && m_pmap != NULL)
+            m_ppair = m_pmap->PGetNextAssoc(m_ppair);
+         return *this;
+      }
+
+      bool operator == (const const_iterator & it) const
+      {
+         if(this == &it)
+            return true;
+         if(m_ppair == NULL && it.m_ppair == NULL && it.m_pmap == NULL)
+            return true;
+         if(m_pmap != it.m_pmap)
+            return false;
+         return m_ppair == it.m_ppair;
+      }
+
+      bool operator != (const const_iterator & it) const
+      {
+         return !operator == (it);
+      }
+
+      const_iterator & operator = (const const_iterator & it)
+      {
+         if(this != &it)
+         {
+            m_pmap         = it.m_pmap;
+            m_ppair        = it.m_ppair;
+         }
+         return *this;
+      }
+
+      const_iterator & operator = (const iterator & it)
+      {
+         m_pmap         = it.m_pmap;
+         m_ppair        = it.m_ppair;
+         return *this;
+      }
+
+   };
 
    comparable_array < pair *, pair * >   m_ptra;
 
@@ -139,6 +231,22 @@ public:
    {
       return iterator(NULL, this);
    }
+
+   const_iterator begin() const
+   {
+      return const_iterator(PGetFirstAssoc(), this);
+   }
+
+
+   const_iterator end() const
+   {
+      return const_iterator(NULL, this);
+   }
+
+   iterator lower_bound (ARG_KEY k);
+   const_iterator lower_bound (ARG_KEY k) const;
+   iterator upper_bound (ARG_KEY k);
+   const_iterator upper_bound (ARG_KEY k) const;
 
    ::count get_count() const;
    ::count get_size() const;
@@ -227,6 +335,9 @@ public:
    index    find_pair(pair * ppair) const;
    bool     find_key(ARG_KEY key, index & i) const;
 
+   iterator find(ARG_KEY key);
+   const_iterator find(ARG_KEY key) const;
+
    index    add_pair(ARG_KEY key, ARG_VALUE value);
 
 };
@@ -314,7 +425,7 @@ sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::sort_map(pair pairs[], int
    for(int32_t i = 0; i < iCount; i++)
    {
 
-      set_at(pairs[i].m_key, pairs[i].m_value);
+      set_at(pairs[i].m_element1, pairs[i].m_element2);
 
    }
 
@@ -365,7 +476,7 @@ bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::Lookup(ARG_KEY key, V
    if (passoc == NULL)
       return false;
 
-   rValue = passoc->m_value;
+   rValue = passoc->m_element2;
 
    return TRUE;
 
@@ -404,7 +515,7 @@ VALUE * sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::pget(ARG_KEY key)
    pair * p = PLookup(key);
 
    if(p)
-      return &p->m_value;
+      return &p->m_element2;
    else
       return NULL;
 
@@ -468,6 +579,32 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 
 }
 
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
+typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::iterator sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find(ARG_KEY key) 
+{
+   
+   index i;
+
+   if(!find_key(key, i))
+      return end();
+
+   return iterator(m_ptra[i], this);
+
+}
+
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
+typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::const_iterator sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find(ARG_KEY key) const
+{
+   
+   index i;
+
+   if(!find_key(key, i))
+      return end();
+
+   return const_iterator(m_ptra[i], this);
+
+}
+
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
 bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find_key(ARG_KEY key, index & i) const
@@ -485,7 +622,7 @@ bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find_key(ARG_KEY key,
 
       i = (hi + lo) / 2;
 
-      iCompare = BASE_COMPARE::CompareElements(&m_ptra[i]->m_key, &key);
+      iCompare = BASE_COMPARE::CompareElements(&m_ptra[i]->m_element1, &key);
 
       if(iCompare == 0)
          return true;
@@ -499,7 +636,7 @@ bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find_key(ARG_KEY key,
    for(i = 0; i < hi; i++)
    {
 
-      if(BASE_COMPARE::CompareElements(&m_ptra[i]->m_key, &key) == 0)
+      if(BASE_COMPARE::CompareElements(&m_ptra[i]->m_element1, &key) == 0)
          return true;
 
    }
@@ -507,7 +644,7 @@ bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find_key(ARG_KEY key,
    for(; i >= 0; i--)
    {
 
-      if(BASE_COMPARE::CompareElements(&m_ptra[i]->m_key, &key) < 0)
+      if(BASE_COMPARE::CompareElements(&m_ptra[i]->m_element1, &key) < 0)
          break;
 
    }
@@ -527,17 +664,82 @@ index sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::add_pair(ARG_KEY key
    if(!find_key(key, i))
    {
 
-      m_ptra.insert_at(i, new pair(key));
+      m_ptra.inset(i, new pair(key));
 
    }
 
-   m_ptra[i]->m_value = newValue;
+   m_ptra[i]->m_element2 = newValue;
 
    return i;
 
 }
 
 
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
+typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::iterator sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::lower_bound (ARG_KEY k)
+{
+
+   index i = 0;
+
+   find_key(k, i);
+
+   if(i <= 0 || i >= m_ptra.get_size())
+      return end();
+   else
+      return iterator(m_ptra[i], this);
+
+}
+
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
+typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::const_iterator sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::lower_bound (ARG_KEY k) const
+{
+   
+   index i = 0;
+
+   find_key(k, i);
+
+   if(i <= 0 || i >= m_ptra.get_size())
+      return end();
+   else
+      return const_iterator(m_ptra[i], this);
+
+}
+
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
+typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::iterator sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::upper_bound (ARG_KEY k)
+{
+   
+   index i = 0;
+
+   if(find_key(k, i))
+   {
+      i++;
+   }
+
+   if(i <= 0 || i >= m_ptra.get_size())
+      return end();
+   else
+      return iterator(m_ptra[i], this);
+
+}
+
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
+typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::const_iterator sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::upper_bound (ARG_KEY k) const
+{
+   
+   index i = 0;
+
+   if(find_key(k, i))
+   {
+      i++;
+   }
+
+   if(i <= 0 || i >= m_ptra.get_size())
+      return end();
+   else
+      return const_iterator(m_ptra[i], this);
+
+}
 
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
@@ -552,7 +754,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::erase(iterator it)
 {
 
-   remove_key(it->m_key);
+   remove_key(it->m_element1);
 
 }
 
@@ -592,20 +794,23 @@ void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::erase(iterator first,
    if(first.m_ppair == (pair *) (uint_ptr) (-1))
       iFirst = 0;
    else
-      iFirst = m_ptra.find(first.m_ppair);
+      iFirst = m_ptra.find_first(first.m_ppair);
 
    if(iFirst < 0)
       return;
+
+   index iLast;
 
    if(last.m_ppair == NULL)
-      iFirst = 0;
+      iLast = m_ptra.get_size();
    else
-      iFirst = m_ptra.find(first.m_ppair);
+      iLast = m_ptra.find_first(first.m_ppair);
 
-   if(iFirst < 0)
+   if(iLast < 0)
       return;
 
-
+   while(iLast-- > iFirst)
+      delete m_ptra.pop();
 
 }
 
@@ -635,8 +840,8 @@ void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::get_next_assoc(POSITI
    rNextPosition  = (POSITION) iNext;
 
    // fill in return data
-   rKey           = m_ptra[iRet - 1]->m_key;
-   rValue         = m_ptra[iRet - 1]->m_value;
+   rKey           = m_ptra[iRet - 1]->m_element1;
+   rValue         = m_ptra[iRet - 1]->m_element2;
 
 }
 
@@ -674,7 +879,7 @@ typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::pair*
 
    ENSURE(m_ptra.get_count() > 0);  // never call on is_empty sort_map
 
-   index iRet = (index) find_pair(pPairRet);
+   index iRet = (index) find_pair((pair *) pPairRet);
 
    // find next association
    iRet++;
@@ -780,9 +985,9 @@ sort_attrib_map < type_map > & sort_attrib_map < type_map >::operator = (const s
       for(index i = 0; i < attribmap.m_ptra.get_count(); i++)
       {
 
-         ppair      = new typename type_map::pair(attribmap.m_ptra[i]->m_key);
+         ppair      = new typename type_map::pair(attribmap.m_ptra[i]->m_element1);
 
-         ppair->m_element2    = attribmap.m_ptra[i]->m_value;
+         ppair->m_element2    = attribmap.m_ptra[i]->m_element2;
 
          this->m_ptra.add(ppair);
 
@@ -807,8 +1012,8 @@ bool sort_attrib_map < type_map >::operator == (const sort_attrib_map & attribma
    for(index i = 0; i < attribmap.m_ptra.get_count(); i++)
    {
 
-      if(attribmap.m_ptra[i]->m_key       != this->m_ptra[i]->m_key
-         || attribmap.m_ptra[i]->m_value     != this->m_ptra[i]->m_value)
+      if(attribmap.m_ptra[i]->m_element1       != this->m_ptra[i]->m_element1
+         || attribmap.m_ptra[i]->m_element2     != this->m_ptra[i]->m_element2)
       {
 
          return false;
@@ -959,8 +1164,8 @@ public:
    class pair
    {
    public:
-      const string m_key;
-      T * m_value;
+      const string m_element1;
+      T * m_element2;
    };
 
    bool Lookup(string key, T * & rValue) const

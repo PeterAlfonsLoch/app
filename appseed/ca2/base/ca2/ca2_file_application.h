@@ -33,8 +33,8 @@ namespace ca2
       string time_log(const char * pszId);
 
 
-      virtual ::ca2::filesp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      virtual ::ca2::filesp get(const char * name);
+      virtual ::file::filesp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      virtual ::file::filesp get(const char * name);
 
 
       virtual string as_string(var varFile);
@@ -52,11 +52,11 @@ namespace ca2
       string sys_temp(const char * pszName, const char * pszExtension);
 
 
-      virtual ::ca2::filesp get_file(var varFile, UINT nOpenFlags);
+      virtual ::file::filesp get_file(var varFile, UINT nOpenFlags);
       virtual ::ca2::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
       // get a file and if there are exceptions, should show end user friendly messages
-      virtual ::ca2::filesp friendly_get_file(var varFile, UINT nOpenFlags);
+      virtual ::file::filesp friendly_get_file(var varFile, UINT nOpenFlags);
 
    };
 

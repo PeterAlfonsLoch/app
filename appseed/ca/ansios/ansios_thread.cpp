@@ -58,7 +58,7 @@ static sys_thread_pool * g_psysthreadpool;
 #include "framework.h"
 
 #include <assert.h>
-//#include <vector>
+//
 //#include <set>
 //#include <map>
 

@@ -5046,13 +5046,13 @@ namespace user
    {
    }
 
-   void list::list_layout::write(::file::byte_output_stream & ostream)
+   void list::list_layout::write(::file::output_stream & ostream)
    {
       //ostream << m_iaDisplayToStrict;
       ostream << m_iWidth;
    }
 
-   void list::list_layout::read(::file::byte_input_stream & istream)
+   void list::list_layout::read(::file::input_stream & istream)
    {
       //istream >> m_iaDisplayToStrict;
       istream >> m_iWidth;
@@ -5066,13 +5066,13 @@ namespace user
    {
    }
 
-   void list::icon_layout::write(::file::byte_output_stream & ostream)
+   void list::icon_layout::write(::file::output_stream & ostream)
    {
       ostream << m_iaDisplayToStrict;
       ostream << m_iWidth;
    }
 
-   void list::icon_layout::read(::file::byte_input_stream & istream)
+   void list::icon_layout::read(::file::input_stream & istream)
    {
       istream >> m_iaDisplayToStrict;
       istream >> m_iWidth;

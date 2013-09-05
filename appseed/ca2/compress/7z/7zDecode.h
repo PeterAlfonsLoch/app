@@ -34,7 +34,7 @@ namespace n7z
       virtual ~CDecoder();
       HRESULT Decode(
          ::libcompress::codecs_info_interface * codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
-         ::file::byte_input_stream *inStream,
+         ::file::input_stream *inStream,
          file_position startPos,
          const file_size * packSizes,
          const CFolder &folder,

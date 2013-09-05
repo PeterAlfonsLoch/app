@@ -461,7 +461,7 @@ namespace user
          pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idSection,
          pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idKey,
          pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idIndex,
-         dynamic_cast < ::file::byte_serializable & > (ia)))
+         dynamic_cast < ::file::serializable & > (ia)))
       {
 /*         check_box * pcheck = dynamic_cast < check_box * > (pcontrol);
          if(pcheck != NULL)
@@ -1094,7 +1094,7 @@ namespace user
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idSection,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idKey,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idIndex,
-               dynamic_cast < ::file::byte_serializable & > (ia));
+               dynamic_cast < ::file::serializable & > (ia));
             check_interface * pcheck = dynamic_cast < check_interface * > (pevent->m_puie.m_p);
             if(pcheck->_001GetCheck() == check::checked)
             {
@@ -1109,7 +1109,7 @@ namespace user
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idSection,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idKey,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idIndex,
-               dynamic_cast < ::file::byte_serializable & > (ia));
+               dynamic_cast < ::file::serializable & > (ia));
          }
       }
       return false;

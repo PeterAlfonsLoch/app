@@ -45,7 +45,7 @@
 
 #include "IlmThreadSemaphore.h"
 #include "Iex.h"
-#include <assert.h>
+#include <ASSERT.h>
 
 namespace IlmThread {
 
@@ -60,7 +60,7 @@ Semaphore::Semaphore (unsigned int value)
 Semaphore::~Semaphore ()
 {
     int error = ::sem_destroy (&_semaphore);
-    assert (error == 0);
+    ASSERT (error == 0);
 }
 
 

@@ -205,7 +205,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 		// check the number of components and check for a coherent format
 
-		std::string exr_color_model;
+		string exr_color_model;
 		Imf::PixelType pixel_type = Imf::HALF;
 		FREE_IMAGE_TYPE image_type = FIT_UNKNOWN;
 		int components = 0;
@@ -230,14 +230,14 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			// we may have a RGBZ or RGBAZ image ...
 			if(components > 4) {
 				if(channels.findChannel("R") && channels.findChannel("G") && channels.findChannel("B") && channels.findChannel("A")) {
-					std::string msg = "Warning: converting color model " + exr_color_model + " to RGBA color model";
+					string msg = "Warning: converting color model " + exr_color_model + " to RGBA color model";
 					FreeImage_OutputMessageProc(s_format_id, msg.c_str());
 					bHandled = true;
 				}
 			}
 			else if(components > 3) {
 				if(channels.findChannel("R") && channels.findChannel("G") && channels.findChannel("B")) {
-					std::string msg = "Warning: converting color model " + exr_color_model + " to RGB color model";
+					string msg = "Warning: converting color model " + exr_color_model + " to RGB color model";
 					FreeImage_OutputMessageProc(s_format_id, msg.c_str());
 					bHandled = true;
 				}
@@ -266,7 +266,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				image_type = FIT_FLOAT;
 				components = 1;
 			} else {
-				std::string msg = "Warning: loading color model " + exr_color_model + " as Y color model";
+				string msg = "Warning: loading color model " + exr_color_model + " as Y color model";
 				FreeImage_OutputMessageProc(s_format_id, msg.c_str());
 				image_type = FIT_FLOAT;
 				// ignore the other channel
@@ -284,14 +284,14 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			if(channels.findChannel("R") && channels.findChannel("G") && channels.findChannel("B")) {
 				if(channels.findChannel("A")) {
 					if(components > 4) {
-						std::string msg = "Warning: converting color model " + exr_color_model + " to RGBA color model";
+						string msg = "Warning: converting color model " + exr_color_model + " to RGBA color model";
 						FreeImage_OutputMessageProc(s_format_id, msg.c_str());
 					}
 					image_type = FIT_RGBAF;
 					// ignore other layers if there is more than one alpha layer
 					components = 4;
 				} else {
-					std::string msg = "Warning: converting color model " + exr_color_model + " to RGB color model";
+					string msg = "Warning: converting color model " + exr_color_model + " to RGB color model";
 					FreeImage_OutputMessageProc(s_format_id, msg.c_str());
 
 					image_type = FIT_RGBF;

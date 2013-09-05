@@ -52,8 +52,8 @@ namespace Imath {
 template <>
 struct limits <half>
 {
-    static float		min()		{return -HALF_MAX;}
-    static float		max()		{return HALF_MAX;}
+    static float		minimum()		{return -HALF_MAX;}
+    static float		maximum()		{return HALF_MAX;}
     static float		smallest()	{return HALF_MIN;}
     static float		epsilon()	{return HALF_EPSILON;}
     static bool			isIntegral()	{return false;}

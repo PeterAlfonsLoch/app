@@ -85,8 +85,7 @@
 #ifndef _HALF_H_
 #define _HALF_H_
 
-#include "c/c/c.h"
-#include <iostream>
+#include "c/base/base.h"
 
 #if defined(OPENEXR_DLL)
     #if defined(HALF_EXPORTS)
@@ -236,16 +235,16 @@ class HALF_EXPORT half
 // Stream I/O
 //-----------
 
-HALF_EXPORT std::ostream &		operator << (std::ostream &os, half  h);
-HALF_EXPORT std::istream &		operator >> (std::istream &is, half &h);
+HALF_EXPORT ::file::output_stream &		operator << (::file::output_stream &os, half  h);
+HALF_EXPORT ::file::input_stream &		operator >> (::file::input_stream &is, half &h);
 
 
 //----------
 // Debugging
 //----------
 
-HALF_EXPORT void			printBits   (std::ostream &os, half  h);
-HALF_EXPORT void			printBits   (std::ostream &os, float f);
+HALF_EXPORT void			printBits   (::file::output_stream &os, half  h);
+HALF_EXPORT void			printBits   (::file::output_stream &os, float f);
 HALF_EXPORT void			printBits   (char  c[19], half  h);
 HALF_EXPORT void			printBits   (char  c[35], float f);
 

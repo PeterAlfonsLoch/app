@@ -34,8 +34,8 @@
 #include <iostream>
 #include "tiff.h"
 
-extern	TIFF* TIFFStreamOpen(const char*, std::ostream *);
-extern	TIFF* TIFFStreamOpen(const char*, std::istream *);
+extern	TIFF* TIFFStreamOpen(const char*, ::file::output_stream *);
+extern	TIFF* TIFFStreamOpen(const char*, ::file::input_stream *);
 
 #endif /* _TIFFIO_HXX_ */
 

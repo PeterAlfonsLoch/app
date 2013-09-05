@@ -46,9 +46,9 @@
 
 #include <ImfName.h>
 #include <ImfPixelType.h>
-#include <map>
-#include <set>
-#include <string>
+//#include <map>
+//#include <set>
+//
 
 
 namespace Imf {
@@ -122,7 +122,7 @@ class ChannelList
     void			insert (const char name[],
 					const Channel &channel);
 
-    void			insert (const std::string &name,
+    void			insert (const string &name,
 					const Channel &channel);
 
     //------------------------------------------------------------------
@@ -140,21 +140,21 @@ class ChannelList
     Channel &			operator [] (const char name[]);
     const Channel &		operator [] (const char name[]) const;
 
-    Channel &			operator [] (const std::string &name);
-    const Channel &		operator [] (const std::string &name) const;
+    Channel &			operator [] (const string &name);
+    const Channel &		operator [] (const string &name) const;
 
     Channel *			findChannel (const char name[]);
     const Channel *		findChannel (const char name[]) const;
 
-    Channel *			findChannel (const std::string &name);
-    const Channel *		findChannel (const std::string &name) const;
+    Channel *			findChannel (const string &name);
+    const Channel *		findChannel (const string &name) const;
 
 
     //-------------------------------------------
     // Iterator-style access to existing channels
     //-------------------------------------------
 
-    typedef std::map <Name, Channel> ChannelMap;
+    typedef sort_map < Name, Name, Channel, Channel > ChannelMap;
 
     class Iterator;
     class ConstIterator;
@@ -168,8 +168,8 @@ class ChannelList
     Iterator			find (const char name[]);
     ConstIterator		find (const char name[]) const;
 
-    Iterator			find (const std::string &name);
-    ConstIterator		find (const std::string &name) const;
+    Iterator			find (const string &name);
+    ConstIterator		find (const string &name) const;
 
     
     //-----------------------------------------------------------------
@@ -212,13 +212,13 @@ class ChannelList
     //
     //-----------------------------------------------------------------
 
-    void		layers (std::set <std::string> &layerNames) const;
+    void		layers (::unique_sort_array < string > &layerNames) const;
 
-    void		channelsInLayer (const std::string &layerName,
+    void		channelsInLayer (const string &layerName,
 	    				 Iterator &first,
 					 Iterator &last);
 
-    void		channelsInLayer (const std::string &layerName,
+    void		channelsInLayer (const string &layerName,
 	    				 ConstIterator &first,
 					 ConstIterator &last) const;
 
@@ -243,11 +243,11 @@ class ChannelList
 						    ConstIterator &first,
 						    ConstIterator &last) const;
 
-    void			channelsWithPrefix (const std::string &prefix,
+    void			channelsWithPrefix (const string &prefix,
 						    Iterator &first,
 						    Iterator &last);
 
-    void			channelsWithPrefix (const std::string &prefix,
+    void			channelsWithPrefix (const string &prefix,
 						    ConstIterator &first,
 						    ConstIterator &last) const;
 
@@ -350,14 +350,14 @@ ChannelList::Iterator::operator ++ (int)
 inline const char *
 ChannelList::Iterator::name () const
 {
-    return *_i->first;
+   return *_i->m_element1;
 }
 
 
 inline Channel &	
 ChannelList::Iterator::channel () const
 {
-    return _i->second;
+   return (Channel &) _i->m_element2;
 }
 
 
@@ -402,13 +402,13 @@ ChannelList::ConstIterator::operator ++ (int)
 inline const char *
 ChannelList::ConstIterator::name () const
 {
-    return *_i->first;
+    return *_i->m_element1;
 }
 
 inline const Channel &	
 ChannelList::ConstIterator::channel () const
 {
-    return _i->second;
+    return _i->m_element2;
 }
 
 

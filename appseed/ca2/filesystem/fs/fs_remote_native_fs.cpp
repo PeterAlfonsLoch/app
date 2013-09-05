@@ -281,10 +281,10 @@ namespace fs
    }
 
 
-   ::ca2::filesp remote_native::get_file(var varFile, UINT nOpenFlags)
+   ::file::filesp remote_native::get_file(var varFile, UINT nOpenFlags)
    {
 
-      ::ca2::filesp spfile;
+      ::file::filesp spfile;
 
       spfile = new remote_native_file(get_app(), varFile);
 

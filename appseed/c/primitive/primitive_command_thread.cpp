@@ -57,7 +57,7 @@ var command_thread::run()
             throw e;
 
          }
-         catch(exception & e)
+         catch(::exception::exception & e)
          {
 
             if(!Application.on_run_exception(e))
@@ -103,7 +103,7 @@ void command_thread::on_request(sp(create_context) pline)
       throw e;
 
    }
-   catch(exception & e)
+   catch(::exception::exception & e)
    {
 
       if(!Application.on_run_exception(e))

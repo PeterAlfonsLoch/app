@@ -24,7 +24,7 @@ namespace plane
          string                  m_strApp;
          string                  m_strQuery;
          sp(::plane::session)      m_pbergedgeParent;
-         sp(::application)   m_papp;
+         sp(base_application)   m_papp;
          bool                    m_bMakeVisible;
          sp(::user::interaction) m_puiParent;
          property_set      m_setParameters;
@@ -48,8 +48,8 @@ namespace plane
 
       bool                                                  m_bShowPlatform;
 
-      sp(::application)                                   m_pappCurrent;
-      string_map < sp(::application) >                    m_mapApplication;
+      sp(base_application)                                   m_pappCurrent;
+      string_map < sp(base_application) >                    m_mapApplication;
 
 
       var                                                   m_varTopicFile;
@@ -157,10 +157,10 @@ namespace plane
 
       void on_request(sp(create_context) pcreatecontext);
 
-      sp(::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
+      sp(base_application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
 
 
-      sp(::application) get_current_application();
+      sp(base_application) get_current_application();
 
       virtual void get_screen_rect(LPRECT lprect);
 

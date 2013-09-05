@@ -38,7 +38,7 @@
 #define INCLUDED_IEXTHROWERRNOEXC_H
 
 
-#include "c/c/c.h"
+#include "c/base/base.h"
 
 
 //----------------------------------------------------------
@@ -76,7 +76,7 @@ namespace Iex {
 //
 // More detailed messages can be assembled using stringstreams:
 //
-//	std::stringstream s;
+//	::file::plain_text_stream s;
 //	s << "Cannot open file " << name << " (%T).";
 //	throwErrnoExc (s);
 //
@@ -91,8 +91,8 @@ namespace Iex {
 //
 //--------------------------------------------------------------------------
 
-void throwErrnoExc (const std::string &txt, int errnum);
-void throwErrnoExc (const std::string &txt = "%T." /*, int errnum = oserror() */);
+void throwErrnoExc (const string &txt, int errnum);
+void throwErrnoExc (const string &txt = "%T." /*, int errnum = oserror() */);
 
 
 } // namespace Iex

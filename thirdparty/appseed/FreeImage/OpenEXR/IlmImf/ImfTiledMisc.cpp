@@ -61,7 +61,7 @@ levelSize (int min, int max, int l, LevelRoundingMode rmode)
     if (rmode == ROUND_UP && size * b < a)
 	size += 1;
 
-    return std::max (size, 1);
+    return max (size, 1);
 }
 
 
@@ -96,8 +96,8 @@ dataWindowForTile (const TileDescription &tileDesc,
     V2i levelMax = dataWindowForLevel
 		       (tileDesc, minX, maxX, minY, maxY, lx, ly).max;
 
-    tileMax = V2i (std::min (tileMax[0], levelMax[0]),
-		   std::min (tileMax[1], levelMax[1]));
+    tileMax = V2i (min (tileMax[0], levelMax[0]),
+		   min (tileMax[1], levelMax[1]));
 
     return Box2i (tileMin, tileMax);
 }
@@ -191,7 +191,7 @@ calculateNumXLevels (const TileDescription& tileDesc,
 	{
 	  int w = maxX - minX + 1;
 	  int h = maxY - minY + 1;
-	  num = roundLog2 (std::max (w, h), tileDesc.roundingMode) + 1;
+	  num = roundLog2 (max (w, h), tileDesc.roundingMode) + 1;
 	}
         break;
 
@@ -231,7 +231,7 @@ calculateNumYLevels (const TileDescription& tileDesc,
 	{
 	  int w = maxX - minX + 1;
 	  int h = maxY - minY + 1;
-	  num = roundLog2 (std::max (w, h), tileDesc.roundingMode) + 1;
+	  num = roundLog2 (max (w, h), tileDesc.roundingMode) + 1;
 	}
         break;
 

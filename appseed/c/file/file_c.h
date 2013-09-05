@@ -269,13 +269,20 @@ END_EXTERN_C
 #ifdef __cplusplus
 
 
-class simple_memory;
+namespace primitive
+{
+
+
+   class memory_base;
+
+
+} // namespace primitive
 
 
 CLASS_DECL_c vsstring get_file_md5(const char * file);
-CLASS_DECL_c bool file_put_contents_dup(const char * path, const simple_memory & memory);
+CLASS_DECL_c bool file_put_contents_dup(const char * path, const ::primitive::memory_base & memory);
 CLASS_DECL_c int_bool file_put_contents_dup(const char * path, const char * contents);
-CLASS_DECL_c bool file_get_memory_dup(simple_memory & memory, const char * path);
+CLASS_DECL_c bool file_get_memory_dup(::primitive::memory_base & memory, const char * path);
 
 
 namespace md5

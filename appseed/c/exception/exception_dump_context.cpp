@@ -455,3 +455,10 @@ dump_context & dump_context::operator<<(const wchar_t * lpsz)
    return *this << ::str::international::unicode_to_utf8(lpsz);
 
 }
+
+
+dump_context & dump_context::operator << (const string & str)
+{
+   operator <<((const char *) str);
+   return *this;
+}

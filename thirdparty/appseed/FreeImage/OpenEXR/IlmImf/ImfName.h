@@ -143,4 +143,23 @@ operator < (const Name &x, const Name &y)
 
 } // namespace IMF
 
+namespace comparison
+{
+
+   template < >
+   class CLASS_DECL_c binary < Imf::Name >
+   {
+   public:
+
+
+      inline static int_ptr CompareElements(const Imf::Name * pElement1, const Imf::Name * pElement2)
+      {
+         return strcmp(pElement1->text(), pElement2->text());
+      }
+
+
+   };
+
+} // namespace comparison
+
 #endif

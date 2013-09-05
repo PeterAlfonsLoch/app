@@ -53,14 +53,12 @@
 namespace Iex {
 
 
-void throwErrnoExc (const std::string &text, int errnum)
+void throwErrnoExc (const string &text, int errnum)
 {
     const char *entext = strerror (errnum);
-    std::string tmp (text);
-    std::string::size_type pos;
+    string tmp (text);
 
-    while (std::string::npos != (pos = tmp.find ("%T")))
-	tmp.replace (pos, 2, entext, strlen (entext));
+	tmp.replace ("%T", entext);
 
     switch (errnum)
     {
@@ -854,7 +852,7 @@ void throwErrnoExc (const std::string &text, int errnum)
 }
 
 
-void throwErrnoExc (const std::string &text)
+void throwErrnoExc (const string &text)
 {
     throwErrnoExc (text, errno);
 }

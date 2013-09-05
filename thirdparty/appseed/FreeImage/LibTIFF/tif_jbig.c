@@ -150,7 +150,7 @@ static int JBIGCopyEncodedData(TIFF* tif, tidata_t pp, tsize_t cc, tsample_t s)
                         n = tif->tif_rawdatasize - tif->tif_rawcc;
                 }
 
-                assert(n > 0);
+                ASSERT(n > 0);
                 _TIFFmemcpy(tif->tif_rawcp, pp, n);
                 tif->tif_rawcp += n;
                 tif->tif_rawcc += n;
@@ -206,7 +206,7 @@ static void JBIGCleanup(TIFF* tif)
 {
         JBIGState *sp = GetJBIGState(tif);
 
-        assert(sp != 0);
+        ASSERT(sp != 0);
 
         tif->tif_tagmethods.vgetfield = sp->vgetparent;
         tif->tif_tagmethods.vsetfield = sp->vsetparent;
@@ -315,7 +315,7 @@ int TIFFInitJBIG(TIFF* tif, int scheme)
 {
         JBIGState* codec = NULL;
 
-	assert(scheme == COMPRESSION_JBIG);
+	ASSERT(scheme == COMPRESSION_JBIG);
 
 	/*
 	 * Merge codec-specific tag information.

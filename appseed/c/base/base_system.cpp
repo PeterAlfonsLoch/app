@@ -1,7 +1,11 @@
 #include "framework.h"
 
 
-system::system(sp(base_application) papp) :
+class ::id base_system::idEmpty;
+class ::id_space base_system::s_idspace;
+
+
+base_system::base_system(sp(base_application) papp) :
    m_urldepartament(this)
    //m_mutexDelete(this),
    //m_http(this),
@@ -103,13 +107,13 @@ system::system(sp(base_application) papp) :
 
 }
 
-factory & system::factory()
+factory & base_system::factory()
 {
    return *m_pfactory;
 }
 
 
-::exception::engine & system::eengine()
+::exception::engine & base_system::eengine()
 {
 
    static ::exception::engine s_eengine(NULL);
@@ -119,7 +123,7 @@ factory & system::factory()
 }
 
 
-bool system::initialize_instance()
+bool base_system::initialize_instance()
 {
 
    m_pfactory->enable_simple_factory_request();
@@ -129,7 +133,7 @@ bool system::initialize_instance()
 }
 
 
-UINT system::os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam lparam)
+UINT base_system::os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam lparam)
 {
 
    throw interface_only_exception(this);
@@ -137,19 +141,19 @@ UINT system::os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam lparam
 
 }
 
-sp(element) system::clone()
+sp(element) base_system::clone()
 {
-   // by the time, it is not possible to clone a system
+   // by the time, it is not possible to clone a base_system
    return NULL;
 }
 
-sp(element) system::clone(sp(element) pobj)
+sp(element) base_system::clone(sp(element) pobj)
 {
    return System.factory().base_clone(pobj);
 }
 
 
-void system::discard_to_factory(sp(element) pca)
+void base_system::discard_to_factory(sp(element) pca)
 {
 
    if(m_pfactory == NULL)
@@ -160,7 +164,7 @@ void system::discard_to_factory(sp(element) pca)
 }
 
 
-bool system::process_initialize()
+bool base_system::process_initialize()
 {
 
    m_pxml = canew(::xml::departament(this));
@@ -179,12 +183,12 @@ bool system::process_initialize()
 }
 
 
-void system::wait_twf()
+void base_system::wait_twf()
 {
-   
+
 }
 
-bool system::is_system()
+bool base_system::is_system()
 {
 
    return true;
@@ -355,3 +359,85 @@ void id_pool::_reset()
    id_accept = "accept";
 
 }
+
+
+
+
+
+bool base_system::assert_failed_line(const char * lpszFileName, int32_t iLine)
+{
+   UNREFERENCED_PARAMETER(lpszFileName);
+   UNREFERENCED_PARAMETER(iLine);
+   return false;
+}
+
+
+bool base_system::on_assert_failed_line(const char * lpszFileName, int32_t iLine)
+{
+   UNREFERENCED_PARAMETER(lpszFileName);
+   UNREFERENCED_PARAMETER(iLine);
+   return true;
+}
+
+
+
+
+sp(element) base_system::on_alloc(sp(base_application) papp, sp(type) info)
+{
+/*      if(info == System.type_info < class ::ca2::log > ())
+   {
+      return new class ::ca2::log(this); // NULL log implementation
+   }*/
+   /*string str;
+   str.Format("Could not alloc %s", info.name());
+   simple_message_box(str);*/
+   on_allocation_error(papp, info);
+   return NULL;
+}
+
+sp(element) base_system::alloc(sp(base_application) papp, sp(type) info)
+{
+   return on_alloc(papp, info);
+}
+
+sp(element) base_system::alloc(sp(base_application) papp, const std_type_info & info)
+{
+   return on_alloc(papp, canew(type(info)));
+}
+
+void base_system::on_allocation_error(sp(base_application) papp, sp(type) info)
+{
+   UNREFERENCED_PARAMETER(papp);
+   UNREFERENCED_PARAMETER(info);
+}
+
+sp(element) base_system::alloc(sp(base_application) papp, const class id & idType)
+{
+   return on_alloc(papp, get_type_info(idType));
+}
+
+
+sp(type) base_system::get_type_info(const ::std_type_info & info)
+{
+
+#ifdef WINDOWS
+   sp(type) & typeinfo = m_typemap[info.raw_name()];
+#else
+   sp(type) & typeinfo = m_typemap[info.name()];
+#endif
+
+   if(typeinfo.is_null())
+      typeinfo = canew(type(info));
+
+   return typeinfo;
+
+}
+
+
+::xml::departament & base_system::xml()
+{
+   return *m_pxml;
+}
+
+
+

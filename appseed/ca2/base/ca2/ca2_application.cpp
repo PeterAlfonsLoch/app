@@ -1033,7 +1033,7 @@ namespace ca2
       try
       {
       // create the .mdb file
-      ::ca2::filesp f(get_app());
+      ::file::filesp f(get_app());
 
       if(f->open(lpcszFilePath, ::file::file::mode_create | ::file::file::mode_write ))
       {

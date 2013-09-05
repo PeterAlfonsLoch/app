@@ -11,7 +11,7 @@ namespace user
    class CLASS_DECL_ca2 document_interface :
       virtual public command_target,
       virtual public ::ca2::data_container_base,
-      virtual public ::file::byte_serializable
+      virtual public ::file::serializable
    {
    public:
 
@@ -146,8 +146,8 @@ namespace user
 
       friend class document_template;
 
-      virtual void write(::file::byte_output_stream & ostream);
-      virtual void read(::file::byte_input_stream & istream);
+      virtual void write(::file::output_stream & ostream);
+      virtual void read(::file::input_stream & istream);
 
 
    protected:

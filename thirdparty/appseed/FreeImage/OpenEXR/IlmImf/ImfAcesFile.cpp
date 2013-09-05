@@ -105,7 +105,7 @@ checkCompression (Compression compression)
 
 
 AcesOutputFile::AcesOutputFile
-    (const std::string &name,
+    (const string &name,
      const Header &header,
      RgbaChannels rgbaChannels,
      int numThreads)
@@ -151,7 +151,7 @@ AcesOutputFile::AcesOutputFile
 
 
 AcesOutputFile::AcesOutputFile
-    (const std::string &name,
+    (const string &name,
      const Imath::Box2i &displayWindow,
      const Imath::Box2i &dataWindow,
      RgbaChannels rgbaChannels,
@@ -187,7 +187,7 @@ AcesOutputFile::AcesOutputFile
 
 
 AcesOutputFile::AcesOutputFile
-    (const std::string &name,
+    (const string &name,
      int width,
      int height,
      RgbaChannels rgbaChannels,
@@ -458,7 +458,7 @@ AcesInputFile::Data::initColorConversion ()
 }
 
 
-AcesInputFile::AcesInputFile (const std::string &name, int numThreads):
+AcesInputFile::AcesInputFile (const string &name, int numThreads):
     _data (new Data)
 {
     _data->rgbaFile = new RgbaInputFile (name.c_str(), numThreads);

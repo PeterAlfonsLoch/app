@@ -82,7 +82,6 @@
 #include "ImathVec.h"
 #include "ImathBox.h"
 #include <ImfThreading.h>
-#include <string>
 
 namespace Imf {
 
@@ -111,7 +110,7 @@ class AcesOutputFile
     // Constructor -- header is constructed by the caller
     //---------------------------------------------------
 
-    AcesOutputFile (const std::string &name,
+    AcesOutputFile (const string &name,
 		    const Header &header,
 		    RgbaChannels rgbaChannels = WRITE_RGBA,
                     int numThreads = globalThreadCount());
@@ -134,7 +133,7 @@ class AcesOutputFile
     // call arguments (empty dataWindow means "same as displayWindow")
     //----------------------------------------------------------------
 
-    AcesOutputFile (const std::string &name,
+    AcesOutputFile (const string &name,
 		    const Imath::Box2i &displayWindow,
 		    const Imath::Box2i &dataWindow = Imath::Box2i(),
 		    RgbaChannels rgbaChannels = WRITE_RGBA,
@@ -152,7 +151,7 @@ class AcesOutputFile
     // Box2i (V2i (0, 0), V2i (width - 1, height -1))
     //-----------------------------------------------
 
-    AcesOutputFile (const std::string &name,
+    AcesOutputFile (const string &name,
 		    int width,
 		    int height,
 		    RgbaChannels rgbaChannels = WRITE_RGBA,
@@ -239,7 +238,7 @@ class AcesInputFile
     // destructor will automatically close the file.
     //-------------------------------------------------------
 
-    AcesInputFile (const std::string &name,
+    AcesInputFile (const string &name,
 		   int numThreads = globalThreadCount());
 
 

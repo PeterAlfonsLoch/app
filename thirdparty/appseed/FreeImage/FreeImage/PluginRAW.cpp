@@ -91,7 +91,7 @@ public:
 		return buffer;
 	}
 	virtual int scanf_one(const char *fmt, void* val) {
-		std::string buffer;
+		string buffer;
 		char element = 0;
 		bool bDone = false;
 		if(substream) return substream->scanf_one(fmt,val);				

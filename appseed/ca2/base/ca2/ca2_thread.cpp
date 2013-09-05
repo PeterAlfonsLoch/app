@@ -5,10 +5,7 @@ namespace ca2
 {
 
 
-   CLASS_DECL_ca2 PFN_get_thread g_pfn_get_thread = NULL;
-   CLASS_DECL_ca2 PFN_get_thread_state g_pfn_get_thread_state = NULL;
    bool thread::s_bAllocReady = false;
-
 
 
    thread::thread() :
@@ -57,36 +54,6 @@ namespace ca2
 
 
 
-   thread * get_thread()
-   {
-
-      if(g_pfn_get_thread == NULL)
-         return NULL;
-
-      return g_pfn_get_thread();
-
-   }
-
-
-   sp(::application) get_thread_app()
-   {
-
-      thread * pthread = get_thread();
-
-      if(pthread == NULL)
-         return NULL;
-
-      return pthread->get_app();
-
-   }
-
-
-   thread_state * get_thread_state()
-   {
-      if(g_pfn_get_thread_state == NULL)
-         return NULL;
-      return g_pfn_get_thread_state();
-   }
 
    void thread::set_p(::ca2::thread * p)
    {

@@ -326,7 +326,7 @@ namespace ca2
    edit_file::edit_file(sp(base_application) papp) :
       element(papp),
       ::ca2::tree_data(papp),
-      ::ca2::filesp(papp),
+      ::file::filesp(papp),
       ::ca2::tree(papp)
    {
 
@@ -551,7 +551,7 @@ l1:
 
       strTimeFile = System.file().time_square(get_app());
 
-      ::ca2::filesp spfile = Application.file().get_file(strTimeFile, ::file::file::type_binary | ::file::file::mode_read_write | ::file::file::mode_create | ::file::file::defer_create_directory);
+      ::file::filesp spfile = Application.file().get_file(strTimeFile, ::file::type_binary | ::file::file::mode_read_write | ::file::file::mode_create | ::file::file::defer_create_directory);
 
       if(spfile.is_null())
       {
@@ -574,7 +574,7 @@ l1:
       m_ptreeitemFlush = m_ptreeitem;
    }
 
-   bool edit_file::SaveTo(::file::byte_output_stream & ostream)
+   bool edit_file::SaveTo(::file::output_stream & ostream)
    {
       char buf[4096];
       primitive::memory_size uiRead;

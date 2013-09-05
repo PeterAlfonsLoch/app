@@ -9,8 +9,10 @@ namespace file
 
 
    class CLASS_DECL_c file :
-      virtual public ::file::stream,
-      virtual public ::file::output_stream_flush_interface
+      virtual public ::file::reader,
+      virtual public ::file::writer,
+      virtual public ::file::seekable,
+      virtual public ::file::writer_flush
    {
    public:
 
@@ -19,6 +21,7 @@ namespace file
 
 
       file();
+      virtual ~file();
 
       virtual file_position get_position() const;
       virtual bool GetStatus(file_status& rStatus) const;
@@ -38,7 +41,7 @@ namespace file
 
 
    // Overridables
-      virtual sp(::file::file) Duplicate() const;
+      virtual sp(::file::buffer) Duplicate() const;
 
       virtual file_position seek(file_offset lOff, ::file::e_seek  nFrom);
       virtual void set_length(file_size dwNewLen);
@@ -57,42 +60,30 @@ namespace file
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
       virtual string get_location() const;
 
-      virtual bool read(char * pch);
-      virtual bool read(uchar * pch);
 
-      virtual bool read(char & pch);
-      virtual bool read(uchar & pch);
-
-      virtual bool peek(char * pch);
-      virtual bool peek(uchar * pch);
-
-      virtual bool peek(char & pch);
-      virtual bool peek(uchar & pch);
-
-   // Implementation
-   public:
       virtual bool IsOpened();
-      virtual ~file();
+
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-      enum BufferCommand { bufferRead, bufferWrite, bufferCommit, bufferCheck };
+
       virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
-   public:
 
 
 
-      using ::file::reader::write;
       using ::file::writer::write;
-      void write(byte_output_stream & ostream);
+      void write(output_stream & ostream);
 
 
-      using ::file::writer::read;
       using ::file::reader::read;
-      void read(byte_input_stream & istream);
+      void read(input_stream & istream);
+
+
+      //virtual bool read_string(string & str);
 
 
 
    };
+
 
    typedef smart_pointer < file > filesp;
 

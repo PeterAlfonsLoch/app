@@ -9,16 +9,6 @@ namespace file
    {
    }
 
-   reader::reader(reader * preader) :
-      m_spreader(preader)
-   {
-   }
-
-   reader::reader(const reader & reader)
-   {
-      operator = (reader);
-   }
-
    reader::~reader()
    {
    }
@@ -26,8 +16,11 @@ namespace file
 
    ::primitive::memory_size reader::read(void * lpBuf, ::primitive::memory_size nCount)
    {
-      // if stack overflows or function crashes here, probably this member should be overridden
-      return m_spreader->read(lpBuf, nCount);
+      
+      throw interface_only_exception(get_app());
+      
+      return 0;
+
    }
 
    file_position reader::find(const void * pFind, ::primitive::memory_size size, const file_position * limit)
@@ -37,7 +30,7 @@ namespace file
       uint64_t resPos = 0;
       byte_buffer byteBuffer2;
       byteBuffer2.SetCapacity(signatureSize);
-      if(FAILED(ReadStream_FALSE(this, byteBuffer2, signatureSize)))
+      if(FAILED(read_reader_false(this, byteBuffer2, signatureSize)))
          throw simple_exception(get_app());
 
       if (memcmp(byteBuffer2, signature, signatureSize) == 0)
@@ -85,7 +78,7 @@ namespace file
 
    }
 
-   void reader::write(writer & writer)
+   void reader::write_to(writer & writer)
    {
       ::primitive::memory_size uiRead;
       ::primitive::memory_size uiBufSize = 1024 * 1024;
@@ -113,57 +106,56 @@ namespace file
       free(buf);
    }
 
-   reader & reader::operator = (const reader & reader)
-   {
-      if(this != &reader)
-      {
-         m_spreader = reader.m_spreader;
-      }
-      return *this;
-   }
-
-   bool reader::is_reader_null()
-   {
-      return m_spreader.is_null();
-   }
-
-   bool reader::is_reader_set()
-   {
-      return m_spreader.is_set();
-   }
-
    void reader::close()
    {
-      if(m_spreader.is_set())
-      {
-         m_spreader->close();
-         ::ca::release(m_spreader.m_p);
-      }
    }
 
-   void reader::to_hex(string & str, ::primitive::memory_position dwStart, ::primitive::memory_position dwEnd)
+
+   static const ::primitive::memory_size kBlockSize = ((uint32_t)1 << 31);
+
+   HRESULT read_reader(::file::reader * stream, void * data, ::primitive::memory_size * processedSize)
    {
-      primitive::memory memory(get_app());
-      seek((file_offset) dwStart, seek_begin);
-      ::primitive::memory_position uiPos = 0;
-      ::primitive::memory_size uiRead;
-      memory.allocate(1024);
-      strsize nCount = dwEnd - dwStart;
-      int32_t iTry = 0;
-      while((uiRead = read(&memory.get_data()[uiPos], min(memory.get_size() - uiPos, (::primitive::memory_size) nCount))) > 0)
+      ::primitive::memory_size size = *processedSize;
+      *processedSize = 0;
+      while (size != 0)
       {
-         uiPos += uiRead;
-         nCount -= uiRead;
-         iTry++;
-         if(iTry == 2)
+         ::primitive::memory_size curSize = min(size, kBlockSize);
+         ::primitive::memory_size processedSizeLoc;
+         HRESULT res = S_OK;
+         try
          {
-            memory.allocate_add_up(1024 * 1024);
+            processedSizeLoc = stream->read(data, curSize);
          }
+         catch(...)
+         {
+            res = E_FAIL;
+         }
+         *processedSize += processedSizeLoc;
+         data = (void *)((byte *)data + processedSizeLoc);
+         size -= processedSizeLoc;
+         RINOK(res);
+         if (processedSizeLoc == 0)
+            return S_OK;
       }
-      memory.allocate((::primitive::memory_size) uiPos);
-      memory.to_hex(str);
+      return S_OK;
    }
 
+   HRESULT read_reader_false(reader * stream, void * data, ::primitive::memory_size size)
+   {
+      ::primitive::memory_size processedSize = size;
+      RINOK(read_reader(stream, data, &processedSize));
+      return (size == processedSize) ? S_OK : S_FALSE;
+   }
+
+   HRESULT read_reader_fail(reader * stream, void * data, ::primitive::memory_size size)
+   {
+      ::primitive::memory_size processedSize = size;
+      RINOK(read_reader(stream, data, &processedSize));
+      return (size == processedSize) ? S_OK : E_FAIL;
+   }
+
+
+   
 
 
 } // namespace file

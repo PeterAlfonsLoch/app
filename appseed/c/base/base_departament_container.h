@@ -1,48 +1,42 @@
 #pragma once
 
 
-namespace ca2
+class CLASS_DECL_c departament_container_base :
+   virtual public object
 {
+public:
 
-   class CLASS_DECL_c departament_container_base :
-      virtual public object
+
+   departament_container_base();
+   virtual ~departament_container_base();
+
+
+   base_application * get_departament_app();
+
+
+};
+
+
+template < class SECTION >
+class departament_container :
+   virtual public departament_container_base
+{
+public:
+
+
+   sp(SECTION) m_pdepartament;
+
+
+   departament_container()
    {
-   public:
+
+   }
 
 
-      departament_container_base();
-      virtual ~departament_container_base();
-
-
-      application * get_departament_app();
-
-
-   };
-
-
-   template < class SECTION >
-   class departament_container :
-      virtual public departament_container_base
+   virtual ~departament_container()
    {
-   public:
+   }
 
-      
-      sp(SECTION) m_pdepartament;
-
-
-      departament_container()
-      {
-         
-      }
-
-
-      virtual ~departament_container()
-      {
-      }
-
-   };
-
-
-} // namespace ca2
+};
 
 

@@ -16,15 +16,18 @@
 
 #include "file_reader.h"
 #include "file_writer.h"
+#include "file_writer_flush.h"
+#include "file_input_stream.h"
+#include "file_output_stream_flush.h"
+#include "file_output_stream.h"
 #include "file_stream.h"
+
+#include "file_byte_input_stream.h"
+#include "file_byte_output_stream.h"
 #include "file_byte_stream.h"
 
+#include "file_buffer.h"
 
-
-#include "file_byte_serializable.h"
-
-
-#include "file_output_stream_flush_interface.h"
 #include "file_file.h"
 
 #include "file_exception.h"
@@ -33,5 +36,7 @@
 
 #include "file_dir.h"
 
-#include "file_string_stream.h"
+#include "file_composite.h"
+
+#include "file_serializable.h"
 

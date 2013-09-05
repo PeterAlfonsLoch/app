@@ -49,9 +49,9 @@ namespace database
       virtual bool data_set(class id, class id idIndex, const char * lpsz, update_hint * puh = NULL);
       virtual bool data_set(class id, class id idIndex, const wchar_t * lpsz, update_hint * puh = NULL);
       virtual bool data_set(class id, class id idIndex, ::ca2::readable & obj, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, ::file::byte_serializable & obj, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, ::file::byte_input_stream & obj, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, ::file::plain_text_serializable & obj, update_hint * puh = NULL);
+      virtual bool data_set(class id, class id idIndex, ::file::serializable & obj, update_hint * puh = NULL);
+      virtual bool data_set(class id, class id idIndex, ::file::input_stream & obj, update_hint * puh = NULL);
+      virtual bool data_set(class id, class id idIndex, ::file::serializable & obj, update_hint * puh = NULL);
       virtual bool data_set(class id, class id idIndex, ::ca2::plain_text_input_stream & obj, update_hint * puh = NULL);
       virtual bool data_set(selection & selection, const char * lpsz, update_hint * puh = NULL);
       virtual bool data_set(selection & selection, var & var, update_hint * puh = NULL);
@@ -64,9 +64,9 @@ namespace database
       virtual bool data_get(class id, class id idIndex, int64_t & i);
       virtual bool data_get(class id, class id idIndex, string & str);
       virtual bool data_get(class id, class id idIndex, ::ca2::writable & obj);
-      virtual bool data_get(class id, class id idIndex, ::file::byte_serializable & obj);
-      virtual bool data_get(class id, class id idIndex, ::file::byte_output_stream & obj);
-      virtual bool data_get(class id, class id idIndex, ::file::plain_text_serializable & obj);
+      virtual bool data_get(class id, class id idIndex, ::file::serializable & obj);
+      virtual bool data_get(class id, class id idIndex, ::file::output_stream & obj);
+      virtual bool data_get(class id, class id idIndex, ::file::serializable & obj);
       virtual bool data_get(class id, class id idIndex, ::ca2::plain_text_output_stream & obj);
       virtual bool data_get(class id dataid, class id, class id idIndex, string & str);
 

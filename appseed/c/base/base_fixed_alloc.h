@@ -70,8 +70,8 @@ public:
 
    int32_t                                      m_i;
    int32_t                                      m_iShareCount;
-   array < critical_section * >                 m_protectptra;
-   array < fixed_alloc_no_sync * >              m_allocptra;
+   raw_array < critical_section * >             m_protectptra;
+   raw_array < fixed_alloc_no_sync * >          m_allocptra;
 
 
    fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize = 64, int32_t iShareCount = 2);

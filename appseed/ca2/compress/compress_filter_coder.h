@@ -62,9 +62,9 @@ namespace libcompress
 
       /*      MY_QUERYINTERFACE_BEGIN2(::libcompress::coder_interface)
       MY_QUERYINTERFACE_ENTRY(ICompressSetInStream)
-      MY_QUERYINTERFACE_ENTRY(::file::byte_input_stream)
+      MY_QUERYINTERFACE_ENTRY(::file::input_stream)
       MY_QUERYINTERFACE_ENTRY(ICompressSetOutStream)
-      MY_QUERYINTERFACE_ENTRY(::file::byte_output_stream)
+      MY_QUERYINTERFACE_ENTRY(::file::output_stream)
       MY_QUERYINTERFACE_ENTRY(IOutStreamFlush)
 
       #ifndef _NO_CRYPTO

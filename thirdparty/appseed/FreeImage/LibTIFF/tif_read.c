@@ -173,7 +173,7 @@ TIFFReadRawStrip1(TIFF* tif,
 {
 	TIFFDirectory *td = &tif->tif_dir;
 
-	assert((tif->tif_flags&TIFF_NOREADRAW)==0);
+	ASSERT((tif->tif_flags&TIFF_NOREADRAW)==0);
 	if (!isMapped(tif)) {
 		tsize_t cc;
 
@@ -412,7 +412,7 @@ TIFFReadRawTile1(TIFF* tif,
 {
 	TIFFDirectory *td = &tif->tif_dir;
 
-	assert((tif->tif_flags&TIFF_NOREADRAW)==0);
+	ASSERT((tif->tif_flags&TIFF_NOREADRAW)==0);
 	if (!isMapped(tif)) {
 		tsize_t cc;
 
@@ -594,7 +594,7 @@ TIFFReadBufferSetup(TIFF* tif, tdata_t bp, tsize_t size)
 {
 	static const char module[] = "TIFFReadBufferSetup";
 
-	assert((tif->tif_flags&TIFF_NOREADRAW)==0);
+	ASSERT((tif->tif_flags&TIFF_NOREADRAW)==0);
 	if (tif->tif_rawdata) {
 		if (tif->tif_flags & TIFF_MYBUFFER)
 			_TIFFfree(tif->tif_rawdata);
@@ -712,7 +712,7 @@ void
 _TIFFSwab16BitData(TIFF* tif, tidata_t buf, tsize_t cc)
 {
     (void) tif;
-    assert((cc & 1) == 0);
+    ASSERT((cc & 1) == 0);
     TIFFSwabArrayOfShort((uint16*) buf, cc/2);
 }
 
@@ -720,7 +720,7 @@ void
 _TIFFSwab24BitData(TIFF* tif, tidata_t buf, tsize_t cc)
 {
     (void) tif;
-    assert((cc % 3) == 0);
+    ASSERT((cc % 3) == 0);
     TIFFSwabArrayOfTriples((uint8*) buf, cc/3);
 }
 
@@ -728,7 +728,7 @@ void
 _TIFFSwab32BitData(TIFF* tif, tidata_t buf, tsize_t cc)
 {
     (void) tif;
-    assert((cc & 3) == 0);
+    ASSERT((cc & 3) == 0);
     TIFFSwabArrayOfLong((uint32*) buf, cc/4);
 }
 
@@ -736,7 +736,7 @@ void
 _TIFFSwab64BitData(TIFF* tif, tidata_t buf, tsize_t cc)
 {
     (void) tif;
-    assert((cc & 7) == 0);
+    ASSERT((cc & 7) == 0);
     TIFFSwabArrayOfDouble((double*) buf, cc/8);
 }
 

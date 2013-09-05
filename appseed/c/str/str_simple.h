@@ -506,7 +506,7 @@ public:
          }
       }
 
-      return( *this );
+      return *this;
    }
 
 
@@ -514,58 +514,71 @@ public:
    {
       SetString( pszSrc );
 
-      return( *this );
+      return *this;
    }
 
    simple_string& operator+=(const simple_string& strSrc )
    {
       append( strSrc );
 
-      return( *this );
+      return *this;
    }
 
    simple_string& operator+=(const char * pszSrc )
    {
       append( pszSrc );
 
-      return( *this );
+      return *this;
    }
    template< strsize t_nSize >
       simple_string& operator+=(const static_string< t_nSize >& strSrc )
    {
       append( static_cast<const char *>(strSrc), strSrc.get_length() );
 
-      return( *this );
+      return *this;
    }
+
+
    simple_string& operator+=(char ch )
    {
-      AppendChar(ch );
 
-      return( *this );
+      append_char(ch );
+
+      return *this;
+
    }
+
 
    simple_string& operator+=(uchar ch )
    {
-      AppendChar( char( ch ) );
 
-      return( *this );
+      append_char( char( ch ) );
+
+      return *this;
+
    }
+
 
    simple_string& operator+=(wchar_t ch )
    {
-      AppendChar( char( ch ) );
 
-      return( *this );
+      append_char( char( ch ) );
+
+      return *this;
+
    }
+
 
    const char & operator [](strsize iChar ) const
    {
+      
       //ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
 
       if( (iChar < 0) || (iChar > get_length()) )
          throw invalid_argument_exception(::ca2::get_thread_app());
 
-      return ( m_pszData[iChar] );
+      return m_pszData[iChar];
+
    }
 
    // non error at
@@ -622,7 +635,7 @@ public:
       ReleaseBufferSetLength( nNewLength );
    }
    
-   void AppendChar(char ch )
+   void append_char(char ch)
    {
 
       strsize nOldLength = get_length();
@@ -632,6 +645,24 @@ public:
       char * pszBuffer = GetBuffer( nNewLength );
       
       pszBuffer[nOldLength] = ch;
+      
+      ReleaseBufferSetLength( nNewLength );
+
+   }
+
+   void append(strsize i, char ch)
+   {
+
+      if(i <= 0)
+         return;
+
+      strsize nOldLength = get_length();
+      
+      strsize nNewLength = nOldLength+1;
+      
+      char * pszBuffer = GetBuffer( nNewLength );
+      
+      memset(&pszBuffer[nOldLength], (int) ch, i);
       
       ReleaseBufferSetLength( nNewLength );
 

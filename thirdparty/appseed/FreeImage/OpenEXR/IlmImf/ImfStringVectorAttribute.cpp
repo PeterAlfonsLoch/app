@@ -80,7 +80,7 @@ StringVectorAttribute::readValueFrom (IStream &is, int size, int version)
        Xdr::read <StreamIO> (is, strSize);
        read += Xdr::size<int>();       
 
-       std::string str;
+       string str;
        str.resize (strSize);
   
        Xdr::read<StreamIO> (is, &str[0], strSize);

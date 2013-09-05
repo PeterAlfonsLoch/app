@@ -1479,7 +1479,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="ca\ca_debug.cpp" />
     <ClCompile Include="ca\ca_dir.cpp" />
     <ClCompile Include="ca\ca_dir2.cpp" />
-    <ClCompile Include="ca\ca_file.cpp" />
     <ClCompile Include="ca\ca_file_spa.cpp" />
     <ClCompile Include="ca\ca_file_watcher.cpp" />
     <ClCompile Include="ca\ca_file_watcher_impl.cpp" />
@@ -1600,9 +1599,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="windows\ca_os_file_watcher.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_http.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="windows\ca_os_launcher.cpp">

@@ -6,7 +6,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca2 edit_file :
-      public ::ca2::filesp,
+      public ::file::filesp,
       public ::ca2::tree,
       public ::ca2::tree_data
    {
@@ -195,7 +195,7 @@ namespace ca2
 
 
       void flush();
-      bool SaveTo(::file::byte_output_stream & file);
+      bool SaveTo(::file::output_stream & file);
       bool Save(::file::file & file);
       bool Save_N_to_CRLF(::file::file & file);
 

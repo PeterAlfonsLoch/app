@@ -62,6 +62,15 @@ public:
          return m_ppair;
       }
 
+      pair & operator * ()
+      {
+         return *m_ppair;
+      }
+
+      const pair & operator * () const
+      {
+         return *m_ppair;
+      }
 
       iterator & operator ++ ()
       {
@@ -200,6 +209,17 @@ public:
       return iterator(NULL, this);
    }
 
+   const_iterator begin() const
+   {
+      return const_iterator(((map *) this)->PGetFirstAssoc(), (map *) this);
+   }
+
+
+   const_iterator end() const
+   {
+      return const_iterator(NULL, (map *) this);
+   }
+
    void construct(::count nBlockSize = 10);
    map(sp(base_application) papp = NULL, ::count nBlockSize = 10);
    map(pair pairs[], int32_t iCount);
@@ -209,6 +229,7 @@ public:
    ::count size() const;
    ::count count() const;
    bool is_empty() const;
+   bool empty() const;
 
    // Lookup
    bool Lookup(ARG_KEY key, VALUE& rValue) const;
@@ -234,6 +255,7 @@ public:
    //void erase ( iterator first, iterator last );
    void remove_all();
    void clear();
+   void Empty();
 
 
    ::count count(const KEY & t) const;
@@ -295,6 +317,8 @@ public:
       }
    }
 
+   iterator find (ARG_KEY key);
+   const_iterator find (ARG_KEY key) const;
 
    // Implementation
 protected:
@@ -366,6 +390,10 @@ inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::size() const
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 inline bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::is_empty() const
+{ return m_nCount == 0; }
+
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+inline bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::empty() const
 { return m_nCount == 0; }
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
@@ -498,6 +526,12 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, c
 inline void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::clear()
 {
    remove_all();
+}
+
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+inline void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::Empty()
+{
+   clear();
 }
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
@@ -654,6 +688,19 @@ bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::Lookup(ARG_KEY key, VA
    return TRUE;
 
 }
+
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::iterator map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::find (ARG_KEY key)
+{
+   return iterator(PLookup(key), this);
+}
+
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::const_iterator map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::find (ARG_KEY key) const
+{
+   return const_iterator((pair *) PLookup(key), (map *) this);
+}
+
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::pair* map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::PLookup(ARG_KEY key) const

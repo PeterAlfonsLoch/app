@@ -21,11 +21,6 @@ CLASS_DECL_c void NESSIEfinalize(struct NESSIEstruct * const structpointer, ucha
 
 
 
-struct PROCESS_INFO_t
-{
-    string csProcess;
-    uint32_t dwImageListIndex;
-};
 
 
 namespace ca2
@@ -314,12 +309,12 @@ namespace ca2
       // fail if exists, create if not exists
       bool file_system::mk_time(const char * lpcszCandidate)
       {
-         ::ca2::filesp spfile(allocer());
+         ::file::filesp spfile(allocer());
          if(System.file().exists(lpcszCandidate, get_app()))
             return false;
          try
          {
-            if(!spfile->open(lpcszCandidate, ::file::file::mode_create | ::file::file::type_binary))
+            if(!spfile->open(lpcszCandidate, ::file::file::mode_create | ::file::type_binary))
                return false;
          }
          catch(...)
@@ -401,7 +396,7 @@ namespace ca2
                {
                   try
                   {
-                     storage.FullLoad(App(papp).file().get_file(strFilePath, ::file::file::type_binary | ::file::file::mode_read));
+                     storage.FullLoad(App(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
                   }
                   catch(...)
                   {
@@ -472,12 +467,12 @@ namespace ca2
 
          }
 
-         ::ca2::filesp spfile;
+         ::file::filesp spfile;
 
          try
          {
 
-            spfile = App(papp).file().get_file(varFile, ::file::file::type_binary | ::file::file::mode_read | ::file::file::shareDenyNone);
+            spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::file::shareDenyNone);
 
             if(spfile.is_null())
                return;
@@ -500,7 +495,7 @@ namespace ca2
 
          try
          {
-            if(!spfile->open(varFile, ::file::file::type_text | ::file::file::mode_read))
+            if(!spfile->open(varFile, ::file::file::type_text | ::file::mode_read))
             {
                return;
             }
@@ -520,9 +515,9 @@ namespace ca2
       bool file_system::put_contents(var varFile, const void * pvoidContents, ::count count, sp(base_application) papp)
       {
 
-         ::ca2::filesp spfile;
+         ::file::filesp spfile;
 
-         spfile = App(papp).file().get_file(varFile, ::file::file::type_binary | ::file::file::mode_write | ::file::file::mode_create | ::file::file::shareDenyNone | ::file::file::defer_create_directory);
+         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::file::mode_write | ::file::file::mode_create | ::file::file::shareDenyNone | ::file::file::defer_create_directory);
 
          if(spfile.is_null())
             return false;
@@ -547,8 +542,8 @@ namespace ca2
 
       bool file_system::put_contents(var varFile, ::file::file & file, sp(base_application) papp)
       {
-         ::ca2::filesp spfile;
-         spfile = App(papp).file().get_file(varFile, ::file::file::type_binary | ::file::file::mode_write | ::file::file::mode_create | ::file::file::shareDenyNone | ::file::file::defer_create_directory);
+         ::file::filesp spfile;
+         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::file::mode_write | ::file::file::mode_create | ::file::file::shareDenyNone | ::file::file::defer_create_directory);
          if(spfile.is_null())
             return false;
          primitive::memory mem;
@@ -568,11 +563,11 @@ namespace ca2
 
       bool file_system::put_contents_utf8(var varFile, const char * lpcszContents, sp(base_application) papp)
       {
-         ::ca2::filesp spfile;
-         spfile = App(papp).file().get_file(varFile, ::file::file::type_binary | ::file::file::mode_write | ::file::file::mode_create | ::file::file::shareDenyNone | ::file::file::defer_create_directory);
+         ::file::filesp spfile;
+         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::file::mode_write | ::file::file::mode_create | ::file::file::shareDenyNone | ::file::file::defer_create_directory);
          if(spfile.is_null())
             return false;
-         ::file::byte_output_stream(spfile) << "\xef\xbb\xbf";
+         ::file::output_stream(spfile) << "\xef\xbb\xbf";
          spfile->write(lpcszContents, strlen(lpcszContents));
          return true;
       }
@@ -750,8 +745,8 @@ namespace ca2
                strNew = pszNew;
             }
 
-            ::ca2::filesp ofile;
-            ofile = App(papp).file().get_file(strNew, ::file::file::mode_write | ::file::file::type_binary | ::file::file::mode_create | ::file::file::defer_create_directory | ::file::file::shareDenyWrite);
+            ::file::filesp ofile;
+            ofile = App(papp).file().get_file(strNew, ::file::file::mode_write | ::file::type_binary | ::file::file::mode_create | ::file::file::defer_create_directory | ::file::file::shareDenyWrite);
             if(ofile.is_null())
             {
                string strError;
@@ -759,8 +754,8 @@ namespace ca2
                throw strError;
             }
 
-            ::ca2::filesp ifile;
-            ifile = App(papp).file().get_file(psz, ::file::file::mode_read | ::file::file::type_binary | ::file::file::shareDenyNone);
+            ::file::filesp ifile;
+            ifile = App(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::file::shareDenyNone);
             if(ifile.is_null())
             {
                string strError;
@@ -1272,19 +1267,19 @@ namespace ca2
 
       }
 
-      ::ca2::filesp file_system::time_square_file(sp(base_application) papp, const char * pszPrefix, const char * pszSuffix)
+      ::file::filesp file_system::time_square_file(sp(base_application) papp, const char * pszPrefix, const char * pszSuffix)
       {
 
          return get(time_square(papp, pszPrefix, pszSuffix), papp);
 
       }
 
-      ::ca2::filesp file_system::get(const char * name, sp(base_application) papp)
+      ::file::filesp file_system::get(const char * name, sp(base_application) papp)
       {
 
          System.dir().mk(System.dir().name(name), papp);
 
-         ::ca2::filesp fileOut = App(papp).file().get_file(name, ::file::file::mode_create | ::file::file::type_binary | ::file::file::mode_write);
+         ::file::filesp fileOut = App(papp).file().get_file(name, ::file::file::mode_create | ::file::type_binary | ::file::file::mode_write);
 
          if(fileOut.is_null())
             throw ::file::exception(papp, -1, ::file::exception::none, name);
@@ -1352,11 +1347,11 @@ namespace ca2
    string file_system::md5(const char * psz)
    {
 
-      ::ca2::filesp spfile(allocer());
+      ::file::filesp spfile(allocer());
 
       try
       {
-         if(!spfile->open(psz, ::file::file::type_binary | ::file::file::mode_read))
+         if(!spfile->open(psz, ::file::type_binary | ::file::mode_read))
             return "";
       }
       catch(::file::exception &)
@@ -1398,7 +1393,7 @@ namespace ca2
    void file_system::dtf(const char * pszFile, stringa & stra, stringa & straRelative, sp(base_application) papp)
    {
 
-      ::ca2::filesp spfile = App(papp).file().get_file(pszFile, ::file::file::mode_create | ::file::file::mode_write  | ::file::file::type_binary);
+      ::file::filesp spfile = App(papp).file().get_file(pszFile, ::file::file::mode_create | ::file::file::mode_write  | ::file::type_binary);
 
       if(spfile.is_null())
          throw "failed";
@@ -1411,7 +1406,7 @@ namespace ca2
 
       write_gen_string(spfile, NULL, strVersion);
 
-      ::ca2::filesp file2(allocer());
+      ::file::filesp file2(allocer());
 
       ::primitive::memory_size iBufSize = 1024 * 1024;
 
@@ -1437,7 +1432,7 @@ namespace ca2
          write_gen_string(spfile, NULL, strMd5);
          ctx.reset();
          write_gen_string(spfile, &ctx, straRelative[i]);
-         if(!file2->open(stra[i], ::file::file::mode_read | ::file::file::type_binary))
+         if(!file2->open(stra[i], ::file::mode_read | ::file::type_binary))
             throw "failed";
          write_n_number(spfile, &ctx, (int32_t) file2->get_length());
          while((uiRead = file2->read(buf, iBufSize)) > 0)
@@ -1457,7 +1452,7 @@ namespace ca2
    void file_system::ftd(const char * pszDir, const char * pszFile, sp(base_application) papp)
    {
       string strVersion;
-      ::ca2::filesp spfile = App(papp).file().get_file(pszFile, ::file::file::mode_read  | ::file::file::type_binary);
+      ::file::filesp spfile = App(papp).file().get_file(pszFile, ::file::mode_read  | ::file::type_binary);
       if(spfile.is_null())
          throw "failed";
       read_gen_string(spfile, NULL, strVersion);
@@ -1470,7 +1465,7 @@ namespace ca2
       buf.allocate(iBufSize);
       int64_t iLen;
       ::crypto::md5::context ctx(get_app());
-      ::ca2::filesp file2(get_app());
+      ::file::filesp file2(get_app());
       ::primitive::memory_size uiRead;
       if(strVersion == "fileset v1")
       {
@@ -1484,7 +1479,7 @@ namespace ca2
             read_gen_string(spfile, &ctx, strRelative);
             string strPath = System.dir().path(pszDir, strRelative);
             App(papp).dir().mk(System.dir().name(strPath));
-            if(!file2->open(strPath, ::file::file::mode_create | ::file::file::type_binary | ::file::file::mode_write))
+            if(!file2->open(strPath, ::file::file::mode_create | ::file::type_binary | ::file::file::mode_write))
                throw "failed";
             read_n_number(spfile, &ctx, iLen);
             while(iLen > 0)
@@ -1596,492 +1591,6 @@ namespace ca2
 
 
 
-
-
-
-#if !defined(LINUX) && !defined(MACOS) && !defined(METROWIN) && !defined(ANDROID)
-
-#include <Tlhelp32.h>
-#include <Psapi.h>
-
-
-void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pUserContext );
-void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pUserContext, HANDLE hDriver, GetFinalPathNameByHandleDef pGetFinalPathNameByHandle );
-
-const LPCTSTR DRV_DOS_NAME = _T("\\\\.\\ListFileDrv");
-const LPCTSTR DRV_NAME = _T("ListOpenedFileDrv");
-const LPCTSTR DRV_FILE_NAME = _T("ListOpenedFileDrv.sys");
-
-#define DRIVER_FILE_NAME_32 _T("\\ListOpenedFileDrv_32.sys")
-#define DRIVER_FILE_NAME_64 _T("\\ListOpenedFileDrv_64.sys")
-
-
-// This Function install the driver and starts it
-HANDLE OnlyGetDrv()
-{
-
-
-        HMODULE hModule = GetModuleHandle(_T("ca2.dll"));
-        if( !hModule )
-        {
-            OutputDebugStringW( L"GetModuleHandle(_T(\"ca2.dll\")); failed" );
-            return 0;
-        }
-        string csFilePath;
-        LPTSTR lpPath = csFilePath.GetBuffer( MAX_PATH );
-        GetModuleFileName( hModule,lpPath , MAX_PATH );
-        PathRemoveFileSpec( lpPath );
-        csFilePath.ReleaseBuffer();
-        if(IsWow64())
-        {
-         csFilePath += DRIVER_FILE_NAME_64;
-        }
-        else
-        {
-           csFilePath += DRIVER_FILE_NAME_32;
-        }
-
-        if( !PathFileExists( csFilePath ))
-        {
-            MessageBox(NULL, "Cannot find driver " + csFilePath, "Cannot find driver " + csFilePath, MB_OK );
-            return 0;
-        }
-
-
-
-	// Delete the temp file...
-	//DeleteFile( csPath );
-	HANDLE hFile = CreateFile( DRV_DOS_NAME, GENERIC_READ|GENERIC_WRITE,
-								FILE_SHARE_READ | FILE_SHARE_WRITE, 0,
-								OPEN_EXISTING, FILE_FLAG_OVERLAPPED, 0 );
-	return hFile;
-}
-
-extern "C" __declspec(dllexport) void GetOpenedFiles( LPCWSTR lpPath, OF_TYPE Filter, OF_CALLBACK CallBackProc,
-													  uint_ptr pUserContext )
-{
-	string csPath = lpPath;
-	csPath.make_lower();
-	EnableTokenPrivilege( SE_DEBUG_NAME );
-	if( Filter& MODULES_ONLY )
-	{
-		EnumerateLoadedModules( csPath, CallBackProc, pUserContext );
-	}
-
-	if( Filter& FILES_ONLY )
-	{
-
-
-		// Extract the driver from the resource and install it.
-		//HANDLE hDriver = ExtractAndInstallDrv();
-      //HANDLE hDriver = OnlyGetDrv();
-      HANDLE hDriver = NULL;
-		GetFinalPathNameByHandleDef pGetFinalPathNameByHandle = 0;
-		if(  !hDriver )
-		{
-			pGetFinalPathNameByHandle = (GetFinalPathNameByHandleDef)GetProcAddress( GetModuleHandle(_T("kernel32.dll")), "GetFinalPathNameByHandleW" );
-		}
-		// Now walk all handles
-		EnumerateOpenedFiles( csPath, CallBackProc, pUserContext, hDriver, pGetFinalPathNameByHandle );
-		//if( hDriver )
-		{	// Time to wind up
-			//StopAndUninstallDrv( hDriver );
-		}
-	}
-}
-
-UINT g_CurrentIndex = 0;
-struct THREAD_PARAMS
-{
-	PSYSTEM_HANDLE_INFORMATION pSysHandleInformation;
-	GetFinalPathNameByHandleDef pGetFinalPathNameByHandle;
-	LPWSTR lpPath;
-	int32_t nFileType;
-	HANDLE hStartEvent;
-	HANDLE hFinishedEvent;
-	bool bStatus;
-};
-
-uint32_t ThreadProc(void * lParam)
-{
-	THREAD_PARAMS* pThreadParam = (THREAD_PARAMS*)lParam;
-
-   FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)new BYTE[MAX_PATH * 8];
-
-	GetFinalPathNameByHandleDef pGetFinalPathNameByHandle = pThreadParam->pGetFinalPathNameByHandle;
-	for( g_CurrentIndex; g_CurrentIndex < pThreadParam->pSysHandleInformation->dwCount;  )
-	{
-
-		WaitForSingleObject( pThreadParam->hStartEvent, INFINITE );
-		ResetEvent( pThreadParam->hStartEvent );
-		pThreadParam->bStatus = false;
-		SYSTEM_HANDLE& sh = pThreadParam->pSysHandleInformation->Handles[g_CurrentIndex];
-		g_CurrentIndex++;
-		HANDLE hDup = (HANDLE)sh.wValue;
-		HANDLE hProcess = OpenProcess( PROCESS_DUP_HANDLE , FALSE, sh.dwProcessId );
-		if( hProcess )
-		{
-			bool b = DuplicateHandle( hProcess, (HANDLE)sh.wValue, GetCurrentProcess(), &hDup, 0, FALSE, DUPLICATE_SAME_ACCESS ) != FALSE;
-			if( !b )
-			{
-				hDup = (HANDLE)sh.wValue;
-			}
-			CloseHandle( hProcess );
-		}
-		//uint32_t dwRet = pGetFinalPathNameByHandle( hDup, pThreadParam->lpPath, MAX_PATH, 0 );
-      //uint32_t dwRet = GetFileInformationByHandleEx(hDup, FileNameInfo, pinfo, MAX_PATH * 8);
-      uint32_t dwRet = GetFinalPathNameByHandleW( hDup, pThreadParam->lpPath, MAX_PATH, 0 );
-      //wcsncpy(pThreadParam->lpPath, pinfo->FileName, pinfo->FileNameLength);
-		if( hDup && (hDup != (HANDLE)sh.wValue))
-		{
-			CloseHandle( hDup );
-		}
-		if(dwRet)
-		{
-			pThreadParam->bStatus = true;
-		}
-		SetEvent( pThreadParam->hFinishedEvent );
-
-	}
-   delete[] (BYTE *) pinfo;
-	return 0;
-}
-
-void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pUserContext, HANDLE hDriver,
-						   GetFinalPathNameByHandleDef pGetFinalPathNameByHandle )
-{
-	int32_t nFileType = XP_FILETYPE;
-	OSVERSIONINFO info = { 0 };
-	info.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-	GetVersionEx(&info);
-	if( info.dwMajorVersion == 6 &&
-		info.dwMinorVersion == 0 )
-	{
-		nFileType = VISTA_FILETYPE;
-	}
-	LPCTSTR lpPath = csPath;
-	string csShortName;
-	GetShortPathName( csPath, csShortName.GetBuffer( MAX_PATH), MAX_PATH );
-	csShortName.ReleaseBuffer();
-	csShortName.make_lower();
-	bool bShortPath = false;
-	LPCTSTR lpShortPath = csShortName;
-	if(  csShortName != csPath && FALSE == csShortName.is_empty())
-	{
-		bShortPath = true;
-	}
-
-	HMODULE hModule = GetModuleHandle(_T("ntdll.dll"));
-	PNtQuerySystemInformation NtQuerySystemInformation = (PNtQuerySystemInformation)GetProcAddress( hModule, "NtQuerySystemInformation" );
-	if( 0 == NtQuerySystemInformation )
-	{
-		OutputDebugStringW( L"Getting proc of NtQuerySystemInformation failed" );
-		return;
-	}
-
-	// Get the list of all handles in the file_system
-	PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = new SYSTEM_HANDLE_INFORMATION;
-	uint32_t size = sizeof(SYSTEM_HANDLE_INFORMATION);
-	DWORD needed = 0;
-	NTSTATUS status = NtQuerySystemInformation( SystemHandleInformation, pSysHandleInformation, size, &needed );
-	if( !NT_SUCCESS(status))
-	{
-		if( 0 == needed )
-		{
-			return;// some other error
-		}
-		// The previously supplied buffer wasn't enough.
-		delete pSysHandleInformation;
-		size = needed + 1024;
-		pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)new BYTE[size];
-		status = NtQuerySystemInformation( SystemHandleInformation, pSysHandleInformation, size, &needed );
-		if( !NT_SUCCESS(status))
-		{
-			// some other error so quit.
-			delete pSysHandleInformation;
-			return;
-		}
-	}
-
-	if( pGetFinalPathNameByHandle )// there is no driver, we have do it ugly way
-	{
-		g_CurrentIndex = 0;
-//		TCHAR tcFileName[MAX_PATH+1];
-		THREAD_PARAMS ThreadParams;
-      wstring wstrFileName;
-
-      wstrFileName.alloc(MAX_PATH * 8);
-		ThreadParams.lpPath = wstrFileName;
-		ThreadParams.nFileType = nFileType;
-		ThreadParams.pGetFinalPathNameByHandle = pGetFinalPathNameByHandle;
-		ThreadParams.pSysHandleInformation = pSysHandleInformation;
-		ThreadParams.hStartEvent = ::CreateEvent( 0, TRUE, FALSE, 0 );
-		ThreadParams.hFinishedEvent = ::CreateEvent( 0, TRUE, FALSE, 0 );
-		HANDLE ThreadHandle = 0;
-		while( g_CurrentIndex < pSysHandleInformation->dwCount )
-		{
-			if( !ThreadHandle )
-			{
-				ThreadHandle = create_thread( 0, 0, ThreadProc, &ThreadParams, 0, 0 );
-			}
-			ResetEvent( ThreadParams.hFinishedEvent );
-			SetEvent( ThreadParams.hStartEvent );
-			if( WAIT_TIMEOUT == WaitForSingleObject( ThreadParams.hFinishedEvent, 100 ))
-			{
-				string csError;
-				csError.Format("Query hang for handle %d", (int32_t)pSysHandleInformation->Handles[g_CurrentIndex - 1].wValue);
-				OutputDebugString(csError );
-				TerminateThread( ThreadHandle, 0 );
-				CloseHandle( ThreadHandle );
-				ThreadHandle = 0;
-				continue;
-			}
-			if( !ThreadParams.bStatus )
-			{
-				continue;
-			}
-			int32_t nCmpStart = 4;
-			string csFileName( ::str::international::unicode_to_utf8(&ThreadParams.lpPath[nCmpStart]));
-			csFileName.make_lower();
-         if(csFileName.find("vs11_dp_ctp") >= 0)
-         {
-            continue;
-         }
-			else if( 0 != _tcsncmp( lpPath, csFileName , csPath.get_length()))
-			{
-				continue;
-			}
-			OF_INFO_t stOFInfo;
-			stOFInfo.dwPID = pSysHandleInformation->Handles[g_CurrentIndex - 1].dwProcessId;
-         wstring wstrCallback;
-         wstrCallback = ::str::international::utf8_to_unicode(csFileName);
-			stOFInfo.lpFile = wstrCallback;
-			stOFInfo.hFile  = (HANDLE)pSysHandleInformation->Handles[g_CurrentIndex - 1].wValue;
-			CallBackProc( stOFInfo, pUserContext );
-		}
-		if( ThreadHandle )
-		{
-			if( WAIT_TIMEOUT == WaitForSingleObject( ThreadHandle, 1000 ))
-			{
-				TerminateThread( ThreadHandle, 0 );
-			}
-			CloseHandle( ThreadHandle );
-		}
-		CloseHandle( ThreadParams.hStartEvent );
-		CloseHandle( ThreadParams.hFinishedEvent );
-		return;
-	}
-
-	// Walk through the handle list
-	for ( uint32_t i = 0; i < pSysHandleInformation->dwCount; i++ )
-	{
-		SYSTEM_HANDLE& sh = pSysHandleInformation->Handles[i];
-		if( sh.bObjectType != nFileType )// Under windows XP file handle is of type 28
-		{
-			continue;
-		}
-
-		string csFileName;
-		string csDir;
-		if( hDriver )
-		{
-			HANDLE_INFO stHandle = {0};
-			ADDRESS_INFO stAddress;
-			stAddress.pAddress = sh.pAddress;
-			DWORD dwReturn = 0;
-			bool bSuccess = DeviceIoControl( hDriver, IOCTL_LISTDRV_BUFFERED_IO, &stAddress, sizeof(ADDRESS_INFO), &stHandle, sizeof(HANDLE_INFO), &dwReturn, NULL ) != FALSE;
-
-
-			if( bSuccess && stHandle.tcFileName[0] != 0 &&
-				stHandle.uType != FILE_DEVICE_SOUND &&
-				stHandle.uType != FILE_DEVICE_NAMED_PIPE )
-			{
-
-				if( stHandle.uType != FILE_DEVICE_NETWORK_FILE_SYSTEM  )
-				{
-					// Get the drive name from the dos device name
-					if( !GetDrive( (LPCTSTR)stHandle.tcDeviceName, csFileName, true ))
-					{
-						OutputDebugStringW( L"GetDrive failed" );
-					}
-					csFileName += (LPCTSTR)stHandle.tcFileName;
-				}
-				else
-				{
-					csFileName = _T("\\");
-					csFileName += (LPCTSTR)stHandle.tcFileName;
-				}
-			}
-            else
-            {
-                continue;
-            }
-		}
-		else
-		{
-			return;
-		}
-
-
-		csFileName.make_lower();
-		// Check whether the file belongs to the specified folder
-// 		if( -1 == csFileName.Find( csPath ))
-// 		{
-// 			if( bShortPath )
-// 			{
-// 				// Some times the file name may be in int16_t path form.
-// 				if( -1 == csFileName.Find( csShortName ))
-// 				{
-// 					continue;
-// 				}
-// 			}
-// 			else
-// 			{
-// 				continue;
-// 			}
-// 		}
-
-		if( 0 != _tcsncmp( lpPath, csFileName, csPath.get_length()))
-		{
-			if( bShortPath )
-			{
-				// Some times the file name may be in int16_t path form.
-				if( 0 != _tcsncmp( lpShortPath, csFileName, csShortName.get_length()))
-				{
-					continue;
-				}
-			}
-			else
-			{
-				continue;
-			}
-		}
-		OF_INFO_t stOFInfo;
-		stOFInfo.dwPID = sh.dwProcessId;
-      wstring wstrCallback;
-      wstrCallback = ::str::international::utf8_to_unicode(csFileName);
-		stOFInfo.lpFile = wstrCallback;
-		stOFInfo.hFile  = (HANDLE)sh.wValue;
-		CallBackProc( stOFInfo, pUserContext );
-	}
-	delete pSysHandleInformation;
-
-}
-
-
-void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pUserContext )
-{
-	string csShortName;
-	GetShortPathName( csPath, csShortName.GetBuffer( MAX_PATH), MAX_PATH );
-	csShortName.ReleaseBuffer();
-	csShortName.make_lower();
-	bool bShortPath = false;
-	if(  csShortName != csPath && FALSE == csShortName.is_empty())
-	{
-		bShortPath = true;
-	}
-
-	uint32_t dwsize = 300;
-	PDWORD pDwId = (PDWORD)new BYTE[dwsize];
-	DWORD dwReturned = dwsize;
-	// Enum all the process first
-	while( 1 )
-	{
-		EnumProcesses( pDwId, dwsize, &dwReturned );
-		if( dwsize > dwReturned  )
-		{
-			break;
-		}
-		delete pDwId;
-		dwsize += 50;
-		pDwId = (PDWORD)new BYTE[dwsize];
-	}
-	int32_t nCount = dwReturned / sizeof(uint32_t);
-	int32_t nItemCount = -1;
-	// Enumerate modules of the above process
-	for( int32_t nIdx = 0; nIdx < nCount;nIdx++ )
-	{
-		if( 0 != pDwId[nIdx] )
-		{
-			HANDLE hModuleSnap = INVALID_HANDLE_VALUE;
-			MODULEENTRY32 me32;
-			// Take a snapshot of all modules in the specified process.
-			hModuleSnap = CreateToolhelp32Snapshot( TH32CS_SNAPMODULE, pDwId[nIdx] );
-			if( hModuleSnap == INVALID_HANDLE_VALUE )
-			{
-				continue;
-			}
-			me32.dwSize = sizeof( MODULEENTRY32 );
-			if( !Module32First( hModuleSnap, &me32 ) )
-			{
-				CloseHandle( hModuleSnap );
-				continue;
-			}
-			bool bFirst = true;
-			PROCESS_INFO_t stInfo;
-			do
-			{
-				string csModule;
-				if( bFirst )
-				{
-					// First module is always the exe name
-					bFirst = false;
-					if( !PathFileExists( me32.szExePath ))
-					{
-						TCHAR tcFileName[MAX_PATH];
-						HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION|PROCESS_VM_READ, TRUE, pDwId[nIdx] );
-						if( GetProcessImageFileName( hProcess, tcFileName, MAX_PATH ))
-						{
-							GetDrive( tcFileName, csModule, false );
-						}
-						CloseHandle( hProcess );
-					}
-					else
-					{
-						csModule = me32.szExePath;
-					}
-					csModule.make_lower();
-				}
-				else
-				{
-					csModule = me32.szExePath;
-					csModule.make_lower();
-				}
-				if( -1 == csModule.find( csPath ))
-				{
-					if( bShortPath )
-					{
-						if( -1 == csModule.find( csShortName ))
-						{
-							continue;
-						}
-					}
-					else
-					{
-						continue;
-					}
-				}
-				OF_INFO_t stOFInfo;
-				stOFInfo.dwPID = pDwId[nIdx];
-            wstring wstrCallback;
-
-            wstrCallback = ::str::international::utf8_to_unicode(csModule);
-
-				stOFInfo.lpFile = wstrCallback;
-				CallBackProc( stOFInfo, pUserContext );
-			}
-			while( Module32Next( hModuleSnap, &me32 ) );
-			CloseHandle( hModuleSnap );
-		}
-	}
-
-	delete pDwId;
-
-}
-
-
-
-#endif // LINUX
 
 
 

@@ -115,7 +115,7 @@ private:
   string searchPath();
 
   string catalogPath;
-  ::file::byte_input_stream * catalogFIS;
+  ::file::input_stream * catalogFIS;
   ErrorHandler *fileErrorHandler;
   stringa hrcLocations;
   string_map < string_map < stringa >, const string_map < stringa > & > hrdLocations;

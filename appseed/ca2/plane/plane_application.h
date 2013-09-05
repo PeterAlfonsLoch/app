@@ -104,8 +104,8 @@ namespace plane
       virtual bool os_native_bergedge_start();
 
 
-      virtual sp(::application) instantiate_application(const char * pszType, const char * pszId, application_bias * pbias);
-      virtual sp(::application) create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias);
+      virtual sp(base_application) instantiate_application(const char * pszType, const char * pszId, application_bias * pbias);
+      virtual sp(base_application) create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias);
 
 
       virtual bool is_licensed(const char * pszId, bool bInteractive = true);
@@ -178,7 +178,7 @@ namespace plane
 
       sp(::user::document_interface) _001OpenDocumentFile(var varFile);
 
-      sp(::application) get_system();
+      sp(base_application) get_system();
 
       virtual sp(::plane::application) assert_running(const char * pszAppdId);
 
@@ -204,7 +204,7 @@ namespace plane
       }
 
       // get a file and if there are exceptions, should show end user friendly messages
-      virtual ::ca2::filesp friendly_get_file(var varFile, UINT nOpenFlags);
+      virtual ::file::filesp friendly_get_file(var varFile, UINT nOpenFlags);
 
 
       virtual void data_on_after_change(signal_details * pobj);
@@ -218,7 +218,7 @@ namespace plane
 
    CLASS_DECL_ca2 UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-   typedef sp(::application) (* LPFN_instantiate_application)(sp(::application) pappParent, const char * pszId);
+   typedef sp(base_application) (* LPFN_instantiate_application)(sp(base_application) pappParent, const char * pszId);
 
    extern CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application;
 

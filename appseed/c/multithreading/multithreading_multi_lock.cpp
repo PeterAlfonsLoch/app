@@ -8,8 +8,8 @@ multi_lock::multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock)
       throw invalid_argument_exception(get_app());
 
    m_syncobjectptra  = syncobjectptra;
-   m_objecta.set_size(m_syncobjectptra.get_count());
-   m_baLocked.set_size(m_syncobjectptra.get_count());
+   m_objecta.allocate(m_syncobjectptra.get_count());
+   m_baLocked.allocate(m_syncobjectptra.get_count());
 
    // get list of handles from array of objects passed
    for (index i = 0; i < m_syncobjectptra.get_count(); i++)

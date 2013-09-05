@@ -84,12 +84,12 @@ namespace ca2
       return m_papp->m_psystem->m_spfile->time_log(m_papp, pszId);
    }
 
-   ::ca2::filesp file_application::time_square_file(const char * pszPrefix, const char * pszSuffix)
+   ::file::filesp file_application::time_square_file(const char * pszPrefix, const char * pszSuffix)
    {
       return m_papp->m_psystem->m_spfile->time_square_file(m_papp, pszPrefix, pszSuffix);
    }
 
-   ::ca2::filesp file_application::get(const char * name)
+   ::file::filesp file_application::get(const char * name)
    {
       return m_papp->m_psystem->m_spfile->get(name, m_papp);
    }
@@ -145,7 +145,7 @@ namespace ca2
    }
 
 
-   ::ca2::filesp file_application::friendly_get_file(var varFile, UINT nOpenFlags)
+   ::file::filesp file_application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
       try
       {
@@ -157,10 +157,10 @@ namespace ca2
       }
    }
 
-   ::ca2::filesp file_application::get_file(var varFile, UINT nOpenFlags)
+   ::file::filesp file_application::get_file(var varFile, UINT nOpenFlags)
    {
 
-      ::ca2::filesp spfile;
+      ::file::filesp spfile;
 
       string strPath;
 

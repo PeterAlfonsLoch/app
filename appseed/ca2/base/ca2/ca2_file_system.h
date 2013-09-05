@@ -44,7 +44,7 @@ namespace ca2
 
       path & path();
 
-      virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, sp(::application) app);
+      virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, sp(base_application) app);
       virtual void move(const char * pszNew, const char * psz);
       virtual void del(const char * psz);
       virtual string copy(const char * psz, sp(base_application) papp);
@@ -77,7 +77,7 @@ namespace ca2
 #else
       {
          System.dir().mk(System.dir().name(pszOutput), papp);
-         ::ca2::filesp fileOut = App(papp).file().get_file(pszOutput, ::file::file::mode_create | ::file::file::type_binary | ::file::file::mode_write);
+         ::file::filesp fileOut = App(papp).file().get_file(pszOutput, ::file::file::mode_create | ::file::type_binary | ::file::file::mode_write);
          if(fileOut.is_null())
             return false;
          return (p->*lpfnOuput)(fileOut, lpszSource);
@@ -93,12 +93,12 @@ namespace ca2
 
          App(papp).dir().mk(System.dir().name(pszOutput));
 
-         ::ca2::filesp fileOut = App(papp).file().get_file(pszOutput, ::file::file::mode_create | ::file::file::type_binary | ::file::file::mode_write);
+         ::file::filesp fileOut = App(papp).file().get_file(pszOutput, ::file::file::mode_create | ::file::type_binary | ::file::file::mode_write);
 
          if(fileOut.is_null())
             return false;
 
-         ::ca2::filesp fileIn = App(papp).file().get_file(lpszInput, ::file::file::type_binary | ::file::file::mode_read);
+         ::file::filesp fileIn = App(papp).file().get_file(lpszInput, ::file::type_binary | ::file::mode_read);
 
          if(fileIn.is_null())
             return false;
@@ -118,8 +118,8 @@ namespace ca2
       string time_square(sp(base_application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
       string time_log(sp(base_application) papp, const char * pszId);
 
-      virtual ::ca2::filesp time_square_file(sp(base_application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      virtual ::ca2::filesp get(const char * name, sp(base_application) papp);
+      virtual ::file::filesp time_square_file(sp(base_application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      virtual ::file::filesp get(const char * name, sp(base_application) papp);
 
       template < class T >
       string time_square(sp(base_application) papp, T * p, bool (T::*lpfnOutput)(::file::writer &, const char *), const char * lpszSource)

@@ -44,7 +44,7 @@ namespace colorertake5
       ::exception::base(papp)
 
    {};
-   InputSourceException::InputSourceException(sp(::application) pappconst string & msg){
+   InputSourceException::InputSourceException(sp(base_application) pappconst string & msg){
       message += "InputSourceException: " + msg;
    };
 

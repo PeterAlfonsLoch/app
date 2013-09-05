@@ -67,23 +67,23 @@ stackTracer ()
 
 
 BaseExc::BaseExc (const char* s) throw () :
-    std::string (s? s: ""),
+    m_str(s? s: ""),
     _stackTrace (currentStackTracer? currentStackTracer(): "")
 {
     // empty
 }
 
 
-BaseExc::BaseExc (const std::string &s) throw () :
-    std::string (s),
+BaseExc::BaseExc (const string &s) throw () :
+    m_str(s),
     _stackTrace (currentStackTracer? currentStackTracer(): "")
 {
     // empty
 }
 
 
-BaseExc::BaseExc (std::stringstream &s) throw () :
-    std::string (s.str()),
+BaseExc::BaseExc (::file::string_buffer &s) throw () :
+    m_str (s.str()),
     _stackTrace (currentStackTracer? currentStackTracer(): "")
 {
     // empty
@@ -91,9 +91,10 @@ BaseExc::BaseExc (std::stringstream &s) throw () :
 
 
 BaseExc::BaseExc (const BaseExc &be) throw () :
-    std::string (be),
+   m_str (be.m_str),
     _stackTrace (be._stackTrace)
 {
+
     // empty
 }
 
@@ -107,21 +108,26 @@ BaseExc::~BaseExc () throw ()
 const char *
 BaseExc::what () const throw ()
 {
-    return c_str();
+    return m_str;
 }
 
+string
+BaseExc::to_string () 
+{
+    return what();
+}
 
 BaseExc &
-BaseExc::assign (std::stringstream &s)
+   BaseExc::assign (::file::string_buffer &s)
 {
-    std::string::assign (s.str());
+    m_str = s.str();
     return *this;
 }
 
 BaseExc &
-BaseExc::append (std::stringstream &s)
+BaseExc::append (::file::string_buffer &s)
 {
-    std::string::append (s.str());
+    m_str += s.str();
     return *this;
 }
 

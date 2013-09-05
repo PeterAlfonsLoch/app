@@ -1,5 +1,5 @@
 
-#include "c/c/c.h"
+#include "c/base/base.h"
 
 
 /* FreeImage libtiff config */
@@ -8,7 +8,7 @@
 #define _TIFFCONF_
 
 
-#include "c/c/c.h"
+#include "c/base/base.h"
 
 
 /* Define as 0 or 1 according to the floating point format suported by the
@@ -89,7 +89,7 @@
 /* Use the Apple OpenGL framework. */
 /* #undef HAVE_APPLE_OPENGL_FRAMEWORK */
 
-/* Define to 1 if you have the <assert.h> header file. */
+/* Define to 1 if you have the <ASSERT.h> header file. */
 #define HAVE_ASSERT_H 1
 
 /* Define to 1 if you have the <dlfcn.h> header file. */

@@ -11,7 +11,7 @@ namespace ca2
    public:
 
 
-      ::ca2::filesp                m_pfile;
+      ::file::filesp                m_pfile;
 
       ::primitive::memory_size   m_uiBufferSize;
       file_position              m_uiPosition;
@@ -23,7 +23,7 @@ namespace ca2
       primitive::memory          m_storage;
 
 
-      buffered_file(sp(base_application) papp, ::ca2::filesp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
+      buffered_file(sp(base_application) papp, ::file::filesp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
       virtual ~buffered_file();
 
 

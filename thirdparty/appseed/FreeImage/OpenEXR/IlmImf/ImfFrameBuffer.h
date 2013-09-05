@@ -46,8 +46,8 @@
 
 #include <ImfName.h>
 #include <ImfPixelType.h>
-#include <map>
-#include <string>
+//#include <map>
+//
 
 
 namespace Imf {
@@ -158,7 +158,7 @@ class FrameBuffer
     void			insert (const char name[],
 					const Slice &slice);
 
-    void			insert (const std::string &name,
+    void			insert (const string &name,
 					const Slice &slice);
 
     //----------------------------------------------------------------
@@ -176,21 +176,21 @@ class FrameBuffer
     Slice &			operator [] (const char name[]);
     const Slice &		operator [] (const char name[]) const;
 
-    Slice &			operator [] (const std::string &name);
-    const Slice &		operator [] (const std::string &name) const;
+    Slice &			operator [] (const string &name);
+    const Slice &		operator [] (const string &name) const;
 
     Slice *			findSlice (const char name[]);
     const Slice *		findSlice (const char name[]) const;
 
-    Slice *			findSlice (const std::string &name);
-    const Slice *		findSlice (const std::string &name) const;
+    Slice *			findSlice (const string &name);
+    const Slice *		findSlice (const string &name) const;
 
 
     //-----------------------------------------
     // Iterator-style access to existing slices
     //-----------------------------------------
 
-    typedef std::map <Name, Slice> SliceMap;
+    typedef sort_map < Name, Name, Slice, Slice> SliceMap;
 
     class Iterator;
     class ConstIterator;
@@ -204,8 +204,8 @@ class FrameBuffer
     Iterator			find (const char name[]);
     ConstIterator		find (const char name[]) const;
 
-    Iterator			find (const std::string &name);
-    ConstIterator		find (const std::string &name) const;
+    Iterator			find (const string &name);
+    ConstIterator		find (const string &name) const;
 
   private:
 
@@ -300,14 +300,14 @@ FrameBuffer::Iterator::operator ++ (int)
 inline const char *
 FrameBuffer::Iterator::name () const
 {
-    return *_i->first;
+   return *_i->m_element1;
 }
 
 
 inline Slice &	
 FrameBuffer::Iterator::slice () const
 {
-    return _i->second;
+   return (Slice &) _i->m_element2;
 }
 
 
@@ -352,13 +352,13 @@ FrameBuffer::ConstIterator::operator ++ (int)
 inline const char *
 FrameBuffer::ConstIterator::name () const
 {
-    return *_i->first;
+   return *_i->m_element1;
 }
 
 inline const Slice &	
 FrameBuffer::ConstIterator::slice () const
 {
-    return _i->second;
+   return _i->m_element2;
 }
 
 

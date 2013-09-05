@@ -161,6 +161,8 @@ public:
    operator class string_composite const () const;
    operator const char *() const throw();
    const char * c_str() const throw();
+   const char * data() const throw();
+
    void construct() throw();
    inline string() throw();
    explicit string( string_manager * pstringmanager ) throw();
@@ -740,14 +742,14 @@ string& string::operator+=(const static_string<t_nSize >& strSrc )
 {
    simple_string::operator+=( strSrc );
 
-   return( *this );
+   return *this;
 }
 
 inline string & string::operator=(const simple_string& strSrc )
 {
    simple_string::operator=( strSrc );
 
-   return( *this );
+   return *this;
 }
 
 template < class InputIterator >
@@ -1395,6 +1397,11 @@ inline string::operator const char *() const throw()
 
 
 inline const char * string::c_str() const throw()
+{
+   return simple_string::operator const char *();
+}
+
+inline const char * string::data() const throw()
 {
    return simple_string::operator const char *();
 }

@@ -48,10 +48,10 @@ struct GIFinfo {
 	size_t global_color_table_offset;
 	int global_color_table_size;
 	BYTE background_color;
-	std::vector<size_t> application_extension_offsets;
-	std::vector<size_t> comment_extension_offsets;
-	std::vector<size_t> graphic_control_extension_offsets;
-	std::vector<size_t> image_descriptor_offsets;
+	raw_array<size_t> application_extension_offsets;
+	raw_array<size_t> comment_extension_offsets;
+	raw_array<size_t> graphic_control_extension_offsets;
+	raw_array<size_t> image_descriptor_offsets;
 
 	GIFinfo() : read(0), global_color_table_offset(0), global_color_table_size(0), background_color(0)
 	{
@@ -97,7 +97,7 @@ protected:
 	int firstPixelPassed; // A specific flag that indicates if the first pixel
 	                      // of the whole image had already been read
 
-	std::string m_strings[MAX_LZW_CODE]; //This is what is really the "string table" data for the Decompressor
+	string m_strings[MAX_LZW_CODE]; //This is what is really the "string table" data for the Decompressor
 	int* m_strmap;
 
 	//input buffer
@@ -402,7 +402,7 @@ bool StringTable::Decompress(BYTE *buf, int *len)
 			}
 
 			//output the string into the buffer
-			memcpy(bufpos, m_strings[code].data(), m_strings[code].size());
+			memcpy(bufpos, m_strings[code].c_str(), m_strings[code].size());
 			bufpos += m_strings[code].size();
 
 			//increment the next highest valid code, add a bit to the mask if we need to increase the code size
@@ -444,8 +444,8 @@ void StringTable::ClearCompressorTable(void)
 void StringTable::ClearDecompressorTable(void)
 {
 	for( int i = 0; i < m_clearCode; i++ ) {
-		m_strings[i].resize(1);
-		m_strings[i][0] = (char)i;
+//		m_strings[i].resize(1);
+		m_strings[i] = (char)i;
 	}
 	m_nextCode = m_endCode + 1;
 
@@ -720,7 +720,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			}
 
 			//cache some info about each of the pages so we can avoid decoding as many of them as possible
-			std::vector<PageInfo> pageinfo;
+			array<PageInfo> pageinfo;
 			int start = page, end = page;
 			while( start >= 0 ) {
 				//Graphic Control Extension
@@ -741,7 +741,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				SwapShort(&height);
 #endif
 
-				pageinfo.push_back(PageInfo(disposal_method, left, top, width, height));
+				::lemon::array::push_back(pageinfo, PageInfo(disposal_method, left, top, width, height));
 
 				if( start != end ) {
 					if( left == 0 && top == 0 && width == logicalwidth && height == logicalheight ) {
@@ -948,7 +948,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		}
 
 		if( page == 0 ) {
-			size_t idx;
+			index idx;
 
 			//Logical Screen Descriptor
 			io->seek_proc(handle, 6, SEEK_SET);
@@ -1009,7 +1009,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			//Comment Extension
 			for( idx = 0; idx < info->comment_extension_offsets.size(); idx++ ) {
 				io->seek_proc(handle, (long)info->comment_extension_offsets[idx], SEEK_SET);
-				std::string comment;
+				string comment;
 				char buf[255];
 				io->read_proc(&b, 1, 1, handle);
 				while( b ) {

@@ -99,7 +99,7 @@ class property_map;
 
 class CLASS_DECL_c property :
    public object,
-   public ::file::byte_serializable
+   public ::file::serializable
 {
 protected:
 
@@ -529,8 +529,8 @@ public:
    bool operator > (int32_t i) const;
    bool operator > (bool b) const;
 
-   void write(::file::byte_output_stream & ostream);
-   void read(::file::byte_input_stream & ostream);
+   void write(::file::output_stream & ostream);
+   void read(::file::input_stream & ostream);
 
 
    string operator + (const char * psz) const;

@@ -44,7 +44,7 @@
 
 #include <ImfTileDescription.h>
 #include <ImfInt64.h>
-#include <vector>
+
 
 namespace Imf {
 
@@ -98,7 +98,7 @@ class TileOffsets
     int			_numXLevels;
     int			_numYLevels;
 
-    std::vector<std::vector<std::vector <Int64> > > _offsets;
+    array<array<array <Int64> > > _offsets;
 };
 
 

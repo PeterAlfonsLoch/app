@@ -23,6 +23,7 @@
 // =====================================================================
 
 #include "FreeImageFramework.h"
+#include <io.h>
 
 // =====================================================================
 
@@ -124,11 +125,11 @@ PluginNode *
 PluginList::FindNodeFromFormat(const char *format) {
 	int count = 0;
 
-	for (map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
-		const char *the_format = ((*i).second->m_format != NULL) ? (*i).second->m_format : (*i).second->m_plugin->format_proc();
+	for (int_map < PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+      const char *the_format = ((*i).m_element2->m_format != NULL) ? (*i).m_element2->m_format : (*i).m_element2->m_plugin->format_proc();
 
 		if (FreeImage_stricmp(the_format, format) == 0)
-			return (*i).second;
+			return (*i).m_element2;
 
 		count++;
 	}
@@ -140,11 +141,11 @@ PluginNode *
 PluginList::FindNodeFromMime(const char *mime) {
 	int count = 0;
 
-	for (map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
-		const char *the_mime = ((*i).second->m_plugin->mime_proc != NULL) ? (*i).second->m_plugin->mime_proc() : "";
+	for (int_map<PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+		const char *the_mime = ((*i).m_element2->m_plugin->mime_proc != NULL) ? (*i).m_element2->m_plugin->mime_proc() : "";
 
 		if ((the_mime != NULL) && (strcmp(the_mime, mime) == 0))
-			return (*i).second;
+			return (*i).m_element2;
 
 		count++;
 	}
@@ -154,10 +155,10 @@ PluginList::FindNodeFromMime(const char *mime) {
 
 PluginNode *
 PluginList::FindNodeFromFIF(int node_id) {
-	map<int, PluginNode *>::iterator i = m_plugin_map.find(node_id);
+	int_map<PluginNode *>::iterator i = m_plugin_map.find(node_id);
 
 	if (i != m_plugin_map.end())
-		return (*i).second;
+      return (*i).m_element2;
 
 	return NULL;
 }
@@ -169,17 +170,17 @@ PluginList::Size() const {
 
 BOOL
 PluginList::IsEmpty() const {
-	return m_plugin_map.empty();
+	return m_plugin_map.is_empty();
 }
 
 PluginList::~PluginList() {
-	for (map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+	for (int_map<PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
 #ifdef _WIN32
-		if ((*i).second->m_instance != NULL)
-			FreeLibrary((HINSTANCE)(*i).second->m_instance);
+		if ((*i).m_element2->m_instance != NULL)
+			FreeLibrary((HINSTANCE)(*i).m_element2->m_instance);
 #endif
-		delete (*i).second->m_plugin;
-		delete ((*i).second);
+		delete (*i).m_element2->m_plugin;
+		delete ((*i).m_element2);
 	}
 }
 

@@ -25,7 +25,7 @@ namespace xml
 
 
 
-   node::node(::application * papp) :
+   node::node(::base_application * papp) :
       element(papp),
       m_nodea(papp),
       m_attra(papp)
@@ -1489,7 +1489,7 @@ namespace xml
       iaPath.remove_all();
       while(pnode != NULL && pnode != this)
       {
-         iaPath.insert_at(0, pnode->get_index());
+         iaPath.inset(0, pnode->get_index());
          pnode = pnode->m_pnodeParent;
       }
 
@@ -2098,7 +2098,7 @@ namespace xml
 
    }
 
-   void node::write(::file::byte_output_stream & ostream)
+   void node::write(::file::output_stream & ostream)
    {
 
       string str = get_xml();
@@ -2106,7 +2106,7 @@ namespace xml
 
    }
 
-   void node::read(::file::byte_input_stream & istream)
+   void node::read(::file::input_stream & istream)
    {
 
       close();

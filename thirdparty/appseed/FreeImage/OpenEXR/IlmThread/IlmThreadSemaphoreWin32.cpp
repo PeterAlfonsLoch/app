@@ -46,9 +46,7 @@
 #ifdef WINDOWS
 
 
-#include <string>
-#include <assert.h>
-#include <iostream>
+
 
 namespace IlmThread {
 
@@ -56,12 +54,12 @@ using namespace Iex;
 
 namespace {
 
-std::string
+string
 errorString ()
 {
     LPSTR messageBuffer;
     DWORD bufferLength;
-    std::string message;
+    string message;
 
     //
     // Call FormatMessage() to allow for message 
@@ -102,7 +100,7 @@ Semaphore::Semaphore (unsigned int value)
 Semaphore::~Semaphore()
 {
     bool ok = ::CloseHandle (_semaphore) != FALSE;
-    assert (ok);
+    ASSERT (ok);
 }
 
 

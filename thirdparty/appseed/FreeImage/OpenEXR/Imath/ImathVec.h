@@ -47,7 +47,6 @@
 #include "ImathLimits.h"
 #include "ImathMath.h"
 
-#include <iostream>
 
 #if (defined _WIN32 || defined _WIN64) && defined _MSC_VER
 // suppress exception specification warnings
@@ -243,8 +242,8 @@ template <class T> class Vec2
     // Limitations of type T (see also class limits<T>)
     //-------------------------------------------------
 
-    static T		baseTypeMin()		{return limits<T>::min();}
-    static T		baseTypeMax()		{return limits<T>::max();}
+    static T		baseTypeMin()		{return limits<T>::minimum();}
+    static T		baseTypeMax()		{return limits<T>::maximum();}
     static T		baseTypeSmallest()	{return limits<T>::smallest();}
     static T		baseTypeEpsilon()	{return limits<T>::epsilon();}
 
@@ -455,8 +454,8 @@ template <class T> class Vec3
     // Limitations of type T (see also class limits<T>)
     //-------------------------------------------------
 
-    static T		baseTypeMin()		{return limits<T>::min();}
-    static T		baseTypeMax()		{return limits<T>::max();}
+    static T		baseTypeMin()		{return limits<T>::minimum();}
+    static T		baseTypeMax()		{return limits<T>::maximum();}
     static T		baseTypeSmallest()	{return limits<T>::smallest();}
     static T		baseTypeEpsilon()	{return limits<T>::epsilon();}
 
@@ -637,8 +636,8 @@ template <class T> class Vec4
     // Limitations of type T (see also class limits<T>)
     //-------------------------------------------------
 
-    static T		baseTypeMin()		{return limits<T>::min();}
-    static T		baseTypeMax()		{return limits<T>::max();}
+    static T		baseTypeMin()		{return limits<T>::minimum();}
+    static T		baseTypeMax()		{return limits<T>::maximum();}
     static T		baseTypeSmallest()	{return limits<T>::smallest();}
     static T		baseTypeEpsilon()	{return limits<T>::epsilon();}
 
@@ -662,13 +661,13 @@ template <class T> class Vec4
 //--------------
 
 template <class T>
-std::ostream &	operator << (std::ostream &s, const Vec2<T> &v);
+::file::output_stream &	operator << (::file::output_stream &s, const Vec2<T> &v);
 
 template <class T>
-std::ostream &	operator << (std::ostream &s, const Vec3<T> &v);
+::file::output_stream &	operator << (::file::output_stream &s, const Vec3<T> &v);
 
 template <class T>
-std::ostream &	operator << (std::ostream &s, const Vec4<T> &v);
+::file::output_stream &	operator << (::file::output_stream &s, const Vec4<T> &v);
 
 //----------------------------------------------------
 // Reverse multiplication: S * Vec2<T> and S * Vec3<T>
@@ -2170,22 +2169,22 @@ Vec4<T>::normalizedNonNull () const
 //-----------------------------
 
 template <class T>
-std::ostream &
-operator << (std::ostream &s, const Vec2<T> &v)
+::file::output_stream &
+operator << (::file::output_stream &s, const Vec2<T> &v)
 {
     return s << '(' << v.x << ' ' << v.y << ')';
 }
 
 template <class T>
-std::ostream &
-operator << (std::ostream &s, const Vec3<T> &v)
+::file::output_stream &
+operator << (::file::output_stream &s, const Vec3<T> &v)
 {
     return s << '(' << v.x << ' ' << v.y << ' ' << v.z << ')';
 }
 
 template <class T>
-std::ostream &
-operator << (std::ostream &s, const Vec4<T> &v)
+::file::output_stream &
+operator << (::file::output_stream &s, const Vec4<T> &v)
 {
     return s << '(' << v.x << ' ' << v.y << ' ' << v.z << ' ' << v.w << ')';
 }

@@ -45,7 +45,7 @@
 
 #include "IlmThread.h"
 #include "Iex.h"
-#include <assert.h>
+#include <ASSERT.h>
 
 extern "C"
 {
@@ -81,7 +81,7 @@ Thread::Thread ()
 Thread::~Thread ()
 {
     int error = ::pthread_join (_thread, 0);
-    assert (error == 0);
+    ASSERT (error == 0);
 }
 
 

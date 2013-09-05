@@ -219,7 +219,7 @@ LZWSetupDecode(TIFF* tif)
             sp = DecoderState(tif);
         }
             
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 
 	if (sp->dec_codetab == NULL) {
 		sp->dec_codetab = (code_t*)_TIFFmalloc(CSIZE*sizeof (code_t));
@@ -256,7 +256,7 @@ LZWPreDecode(TIFF* tif, tsample_t s)
 	LZWCodecState *sp = DecoderState(tif);
 
 	(void) s;
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
         if( sp->dec_codetab == NULL )
         {
             tif->tif_setupdecode( tif );
@@ -360,8 +360,8 @@ LZWDecode(TIFF* tif, tidata_t op0, tsize_t occ0, tsample_t s)
 	code_t *codep, *free_entp, *maxcodep, *oldcodep;
 
 	(void) s;
-	assert(sp != NULL);
-        assert(sp->dec_codetab != NULL);
+	ASSERT(sp != NULL);
+        ASSERT(sp->dec_codetab != NULL);
 	/*
 	 * Restart interrupted output operation.
 	 */
@@ -570,7 +570,7 @@ LZWDecodeCompat(TIFF* tif, tidata_t op0, tsize_t occ0, tsample_t s)
 	code_t *codep, *free_entp, *maxcodep, *oldcodep;
 
 	(void) s;
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 	/*
 	 * Restart interrupted output operation.
 	 */
@@ -744,7 +744,7 @@ LZWSetupEncode(TIFF* tif)
 	LZWCodecState* sp = EncoderState(tif);
 	static const char module[] = "LZWSetupEncode";
 
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 	sp->enc_hashtab = (hash_t*) _TIFFmalloc(HSIZE*sizeof (hash_t));
 	if (sp->enc_hashtab == NULL) {
 		TIFFErrorExt(tif->tif_clientdata, module, "No space for LZW hash table");
@@ -762,7 +762,7 @@ LZWPreEncode(TIFF* tif, tsample_t s)
 	LZWCodecState *sp = EncoderState(tif);
 
 	(void) s;
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
         
         if( sp->enc_hashtab == NULL )
         {
@@ -839,7 +839,7 @@ LZWEncode(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 	if (sp == NULL)
 		return (0);
 
-        assert(sp->enc_hashtab != NULL);
+        ASSERT(sp->enc_hashtab != NULL);
 
 	/*
 	 * Load local state.
@@ -937,7 +937,7 @@ LZWEncode(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 			 */
 			if (free_ent > maxcode) {
 				nbits++;
-				assert(nbits <= BITS_MAX);
+				ASSERT(nbits <= BITS_MAX);
 				maxcode = (int) MAXCODE(nbits);
 			} else if (incount >= checkpoint) {
 				long rat;
@@ -1042,7 +1042,7 @@ LZWCleanup(TIFF* tif)
 {
 	(void)TIFFPredictorCleanup(tif);
 
-	assert(tif->tif_data != 0);
+	ASSERT(tif->tif_data != 0);
 
 	if (DecoderState(tif)->dec_codetab)
 		_TIFFfree(DecoderState(tif)->dec_codetab);
@@ -1059,7 +1059,7 @@ LZWCleanup(TIFF* tif)
 int
 TIFFInitLZW(TIFF* tif, int scheme)
 {
-	assert(scheme == COMPRESSION_LZW);
+	ASSERT(scheme == COMPRESSION_LZW);
 	/*
 	 * Allocate state block so tag methods have storage to record values.
 	 */

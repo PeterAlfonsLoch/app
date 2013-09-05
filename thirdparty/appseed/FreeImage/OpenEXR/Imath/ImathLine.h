@@ -159,7 +159,7 @@ Line3<T>::closestPointTo(const Line3<T>& line) const
     {
 	T absNum = ((num >= 0)? num: -num);
 
-	if (absNum >= absDenom * limits<T>::max())
+	if (absNum >= absDenom * limits<T>::maximum())
 	    return pos;
     }
 
@@ -167,7 +167,7 @@ Line3<T>::closestPointTo(const Line3<T>& line) const
 }
 
 template<class T>
-std::ostream& operator<< (std::ostream &o, const Line3<T> &line)
+::file::output_stream& operator<< (::file::output_stream &o, const Line3<T> &line)
 {
     return o << "(" << line.pos << ", " << line.dir << ")";
 }

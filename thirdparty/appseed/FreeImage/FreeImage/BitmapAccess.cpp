@@ -36,10 +36,10 @@
 // ----------------------------------------------------------
 
 // helper for map<key, value> where value is a pointer to a FreeImage tag
-typedef std::map<std::string, FITAG*> TAGMAP;
+typedef string_map < FITAG * > TAGMAP;
 
 // helper for map<FREE_IMAGE_MDMODEL, TAGMAP*>
-typedef std::map<int, TAGMAP*> METADATAMAP;
+typedef int_map < TAGMAP * > METADATAMAP;
 
 // helper for metadata iterator
 FI_STRUCT (METADATAHEADER) {
@@ -82,7 +82,7 @@ FI_STRUCT (FREEIMAGEHEADER) {
 #if defined(ANDROID) || defined(MACOS) || defined(LINUX)
 
 void* FreeImage_Aligned_Malloc(size_t amount, size_t alignment) {
-	assert(alignment == FIBITMAP_ALIGNMENT);
+	ASSERT(alignment == FIBITMAP_ALIGNMENT);
 	/*
 	In some rare situations, the malloc routines can return misaligned memory.
 	The routine FreeImage_Aligned_Malloc allocates a bit more memory to do
@@ -113,7 +113,7 @@ void FreeImage_Aligned_Free(void* mem) {
 #elif (defined(_WIN32) || defined(_WIN64)) && !defined(__MINGW32__)
 
 void* FreeImage_Aligned_Malloc(size_t amount, size_t alignment) {
-	assert(alignment == FIBITMAP_ALIGNMENT);
+	ASSERT(alignment == FIBITMAP_ALIGNMENT);
 	return _aligned_malloc(amount, alignment);
 }
 
@@ -124,7 +124,7 @@ void FreeImage_Aligned_Free(void* mem) {
 #elif defined (__MINGW32__)
 
 void* FreeImage_Aligned_Malloc(size_t amount, size_t alignment) {
-	assert(alignment == FIBITMAP_ALIGNMENT);
+	ASSERT(alignment == FIBITMAP_ALIGNMENT);
 	return __mingw_aligned_malloc (amount, alignment);
 }
 
@@ -331,11 +331,11 @@ FreeImage_Unload(FIBITMAP *dib) {
 			METADATAMAP *metadata = ((FREEIMAGEHEADER *)dib->data)->metadata;
 
 			for(METADATAMAP::iterator i = (*metadata).begin(); i != (*metadata).end(); i++) {
-				TAGMAP *tagmap = (*i).second;
+				TAGMAP *tagmap = (*i).m_element2;
 
 				if(tagmap) {
 					for(TAGMAP::iterator j = tagmap->begin(); j != tagmap->end(); j++) {
-						FITAG *tag = (*j).second;
+						FITAG *tag = (*j).m_element2;
 						FreeImage_DeleteTag(tag);
 					}
 
@@ -406,8 +406,8 @@ FreeImage_Clone(FIBITMAP *dib) {
 
 		// copy metadata models
 		for(METADATAMAP::iterator i = (*src_metadata).begin(); i != (*src_metadata).end(); i++) {
-			int model = (*i).first;
-			TAGMAP *src_tagmap = (*i).second;
+         int model = (*i).m_element1;
+			TAGMAP *src_tagmap = (*i).m_element2;
 
 			if(src_tagmap) {
 				// create a metadata model
@@ -416,8 +416,8 @@ FreeImage_Clone(FIBITMAP *dib) {
 				if(dst_tagmap) {
 					// fill the model
 					for(TAGMAP::iterator j = src_tagmap->begin(); j != src_tagmap->end(); j++) {
-						std::string dst_key = (*j).first;
-						FITAG *dst_tag = FreeImage_CloneTag( (*j).second );
+                  string dst_key = (*j).m_element1;
+						FITAG *dst_tag = FreeImage_CloneTag( (*j).m_element2 );
 
 						// assign key and tag value
 						(*dst_tagmap)[dst_key] = dst_tag;
@@ -927,7 +927,7 @@ FreeImage_FindFirstMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, FITAG **tag
 
 				// get the first element
 				TAGMAP::iterator i = tagmap->begin();
-				*tag = (*i).second;
+				*tag = (*i).m_element2;
 
 				return handle;
 			}
@@ -956,7 +956,7 @@ FreeImage_FindNextMetadata(FIMETADATA *mdhandle, FITAG **tag) {
 
 		for(TAGMAP::iterator i = tagmap->begin(); i != tagmap->end(); i++) {
 			if(count == current_pos) {
-				*tag = (*i).second;
+				*tag = (*i).m_element2;
 				mdh->pos++;
 				break;
 			}
@@ -992,11 +992,11 @@ FreeImage_CloneMetadata(FIBITMAP *dst, FIBITMAP *src) {
 
 	// copy metadata models, *except* the FIMD_ANIMATION model
 	for(METADATAMAP::iterator i = (*src_metadata).begin(); i != (*src_metadata).end(); i++) {
-		int model = (*i).first;
+      int model = (*i).m_element1;
 		if(model == (int)FIMD_ANIMATION) {
 			continue;
 		}
-		TAGMAP *src_tagmap = (*i).second;
+		TAGMAP *src_tagmap = (*i).m_element2;
 
 		if(src_tagmap) {
 			if( dst_metadata->find(model) != dst_metadata->end() ) {
@@ -1010,8 +1010,8 @@ FreeImage_CloneMetadata(FIBITMAP *dst, FIBITMAP *src) {
 			if(dst_tagmap) {
 				// fill the model
 				for(TAGMAP::iterator j = src_tagmap->begin(); j != src_tagmap->end(); j++) {
-					std::string dst_key = (*j).first;
-					FITAG *dst_tag = FreeImage_CloneTag( (*j).second );
+               string dst_key = (*j).m_element1;
+					FITAG *dst_tag = FreeImage_CloneTag( (*j).m_element2 );
 
 					// assign key and tag value
 					(*dst_tagmap)[dst_key] = dst_tag;
@@ -1043,7 +1043,7 @@ FreeImage_SetMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, 
 	METADATAMAP *metadata = ((FREEIMAGEHEADER *)dib->data)->metadata;
 	METADATAMAP::iterator model_iterator = metadata->find(model);
 	if (model_iterator != metadata->end()) {
-		tagmap = model_iterator->second;
+		tagmap = model_iterator->m_element2;
 	}
 
 	if(key != NULL) {
@@ -1099,7 +1099,7 @@ FreeImage_SetMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, 
 			// delete existing tag
 			TAGMAP::iterator i = tagmap->find(key);
 			if(i != tagmap->end()) {
-				FITAG *old_tag = (*i).second;
+				FITAG *old_tag = (*i).m_element2;
 				FreeImage_DeleteTag(old_tag);
 				tagmap->erase(key);
 			}
@@ -1109,7 +1109,7 @@ FreeImage_SetMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, 
 		// destroy the metadata model
 		if(tagmap) {
 			for(TAGMAP::iterator i = tagmap->begin(); i != tagmap->end(); i++) {
-				FITAG *tag = (*i).second;
+				FITAG *tag = (*i).m_element2;
 				FreeImage_DeleteTag(tag);
 			}
 
@@ -1135,11 +1135,11 @@ FreeImage_GetMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, 
 		METADATAMAP::iterator model_iterator = metadata->find(model);
 		if (model_iterator != metadata->end() ) {
 			// this model exists : try to get the requested tag
-			tagmap = model_iterator->second;
+			tagmap = model_iterator->m_element2;
 			TAGMAP::iterator tag_iterator = tagmap->find(key);
 			if (tag_iterator != tagmap->end() ) {
 				// get the requested tag
-				*tag = tag_iterator->second;
+				*tag = tag_iterator->m_element2;
 			}
 		}
 	}

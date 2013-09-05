@@ -37,6 +37,24 @@ namespace numeric_info
       return t;
    }
 
+   template < typename T >
+   inline bool is_signed()
+   {
+      return ((T) -1) < 0;
+   }
+
+   template < typename T >
+   inline bool is_integer()
+   {
+      // guess, as float and double is implemented
+      return true;
+   }
+
+
+
+
+
+
    template <>
    inline int32_t get_maximum_value < int32_t > ()
    {
@@ -57,6 +75,18 @@ namespace numeric_info
    {
       return 1;
    }
+   template <>
+   inline bool is_signed < int32_t >()
+   {
+      return true;
+   }
+   template <>
+   inline bool is_integer < int32_t >()
+   {
+      return true;
+   }
+
+
 
    template <>
    inline float get_maximum_value < float >()
@@ -78,6 +108,17 @@ namespace numeric_info
    {
       return 1.0f;
    }
+   template <>
+   inline bool is_signed < float >()
+   {
+      return true;
+   }
+   template <>
+   inline bool is_integer < float >()
+   {
+      return false;
+   }
+
 
    template <>
    inline double get_maximum_value < double >()
@@ -99,6 +140,18 @@ namespace numeric_info
    {
       return 1.0;
    }
+   template <>
+   inline bool is_signed < double >()
+   {
+      return true;
+   }
+   template <>
+   inline bool is_integer < double >()
+   {
+      return false;
+   }
+
+
 
    template <>
    inline BYTE get_maximum_value < BYTE > ()
@@ -120,6 +173,18 @@ namespace numeric_info
    {
       return 1;
    }
+   template <>
+   inline bool is_signed < BYTE >()
+   {
+      return false;
+   }
+   template <>
+   inline bool is_integer < BYTE >()
+   {
+      return true;
+   }
+
+
 
    template <>
    inline WORD get_maximum_value < WORD > ()
@@ -141,6 +206,18 @@ namespace numeric_info
    {
       return 1;
    }
+   template <>
+   inline bool is_signed < WORD >()
+   {
+      return false;
+   }
+   template <>
+   inline bool is_integer < WORD >()
+   {
+      return true;
+   }
+
+
 
    template <>
    inline uint32_t get_maximum_value < uint32_t > ()
@@ -162,6 +239,18 @@ namespace numeric_info
    {
       return 1;
    }
+   template <>
+   inline bool is_signed < uint32_t >()
+   {
+      return false;
+   }
+   template <>
+   inline bool is_integer < uint32_t >()
+   {
+      return true;
+   }
+
+
 
    template <>
    inline uint64_t get_maximum_value < uint64_t > ()
@@ -182,6 +271,16 @@ namespace numeric_info
    inline uint64_t get_unitary_value < uint64_t >()
    {
       return 1;
+   }
+   template <>
+   inline bool is_signed < uint64_t >()
+   {
+      return false;
+   }
+   template <>
+   inline bool is_integer < uint64_t >()
+   {
+      return true;
    }
 
 
@@ -207,7 +306,30 @@ namespace numeric_info
    {
       return 1;
    }
+   template <>
+   inline bool is_signed < int64_t >()
+   {
+      return true;
+   }
+   template <>
+   inline bool is_integer < int64_t >()
+   {
+      return true;
+   }
 
+
+
+/*   template <>
+   inline bool is_signed < size_t >()
+   {
+      return false;
+   }
+   template <>
+   inline bool is_integer < size_t >()
+   {
+      return true;
+   }
+*/
 
    template < typename T > class offset { public: typedef T TYPE; };
 

@@ -30,7 +30,7 @@ string chunk_split (const string & body, int32_t chunklen, const string & end)
 
 }
 
-typedef string ( *SALT)(sp(::application), const char * , stringa &);
+typedef string ( *SALT)(sp(base_application), const char * , stringa &);
 
 namespace fontopus
 {
@@ -44,7 +44,7 @@ namespace fontopus
       m_bAuth          = bAuth;
       m_strForm               = pszForm;
       m_bDeferRegistration    = false;
-      sp(::application) pgenapp = (papp);
+      sp(base_application) pgenapp = (papp);
       if(pgenapp != NULL)
       {
          try

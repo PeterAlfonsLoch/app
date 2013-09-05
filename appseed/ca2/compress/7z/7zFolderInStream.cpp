@@ -31,7 +31,7 @@ namespace n7z
       _filePos = 0;
       while (_fileIndex < _numFiles)
       {
-         smart_pointer < ::file::byte_input_stream > stream;
+         smart_pointer < ::file::input_stream > stream;
          HRESULT result = _updateCallback->GetStream(_fileIndices[_fileIndex], &stream.m_p);
          if (result != S_OK && result != S_FALSE)
             return result;

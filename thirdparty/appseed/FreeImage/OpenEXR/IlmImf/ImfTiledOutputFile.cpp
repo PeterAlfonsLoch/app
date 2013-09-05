@@ -45,12 +45,12 @@ namespace Imf {
 
 using Imath::Box2i;
 using Imath::V2i;
-using std::string;
-using std::vector;
-using std::ofstream;
+using string;
+using array;
+using ::file::output_stream;
 using std::map;
-using std::min;
-using std::max;
+using min;
+using max;
 using std::swap;
 using IlmThread::Mutex;
 using IlmThread::Lock;
@@ -285,7 +285,7 @@ TiledOutputFile::Data::~Data ()
     //
     
     for (TileMap::iterator i = tileMap.begin(); i != tileMap.end(); ++i)
-	delete i->second;
+	delete i->m_element2;
 
     for (size_t i = 0; i < tileBuffers.size(); i++)
         delete tileBuffers[i];
@@ -340,7 +340,7 @@ TiledOutputFile::Data::nextTileCoord (const TileCoord &a)
                         b.ly++;
 
 			#ifdef DEBUG
-			    assert (b.ly <= numYLevels);
+			    ASSERT (b.ly <= numYLevels);
 			#endif
                     }
                     break;
@@ -385,7 +385,7 @@ TiledOutputFile::Data::nextTileCoord (const TileCoord &a)
                         b.ly++;
 
 			#ifdef DEBUG
-			    assert (b.ly <= numYLevels);
+			    ASSERT (b.ly <= numYLevels);
 			#endif
                     }
                     break;
@@ -428,7 +428,7 @@ writeTileData (TiledOutputFile::Data *ofd,
     ofd->tileOffsets (dx, dy, lx, ly) = currentPosition;
 
     #ifdef DEBUG
-	assert (ofd->os->tellp() == currentPosition);
+	ASSERT (ofd->os->tellp() == currentPosition);
     #endif
 
     //
@@ -528,10 +528,10 @@ bufferedTileWrite (TiledOutputFile::Data *ofd,
             writeTileData (ofd,
 			   i->first.dx, i->first.dy,
 			   i->first.lx, i->first.ly,
-			   i->second->pixelData,
-			   i->second->pixelDataSize);
+			   i->m_element2->pixelData,
+			   i->m_element2->pixelDataSize);
 
-            delete i->second;
+            delete i->m_element2;
             ofd->tileMap.erase (i);
             
             //
@@ -607,7 +607,7 @@ convertToXdr (TiledOutputFile::Data *ofd,
 
     #ifdef DEBUG
 
-	assert (writePtr == readPtr);
+	ASSERT (writePtr == readPtr);
 
     #endif
 }

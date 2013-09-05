@@ -23,7 +23,7 @@ namespace draw2d
 
    class CLASS_DECL_ca2 dib :
       virtual public object,
-      virtual public ::file::byte_serializable
+      virtual public ::file::serializable
    {
    public:
 
@@ -255,8 +255,8 @@ namespace draw2d
       virtual double pi();
       inline class size size() { return ::size(cx, cy); }
 
-      virtual void write(::file::byte_output_stream & ostream);
-      virtual void read(::file::byte_input_stream & istream);
+      virtual void write(::file::output_stream & ostream);
+      virtual void read(::file::input_stream & istream);
 
 
 

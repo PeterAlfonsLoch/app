@@ -249,7 +249,7 @@ namespace user
             m_dibBk->create(rectClient.size());
             m_dibBk->Fill(184, 184, 170);
             HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-            ::visual::fastblur *( *pfnNew )(sp(::application)) = (::visual::fastblur *(*)(sp(::application))) ::GetProcAddress(hmodule, "new_fastblur");*/
+            ::visual::fastblur *( *pfnNew )(sp(base_application)) = (::visual::fastblur *(*)(sp(base_application))) ::GetProcAddress(hmodule, "new_fastblur");*/
 /*            m_fastblur.create(allocer());
             m_fastblur.initialize(rectClient.size(), 2);
          }
@@ -563,7 +563,7 @@ namespace user
       string strModuleFolder;
       strModuleFolder = papp->get_module_folder();
 
-      if(!spfile->open(::ca2::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::file::file::type_text | ::file::file::mode_read))
+      if(!spfile->open(::ca2::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::file::file::type_text | ::file::mode_read))
          return;
 
       string str;

@@ -16,7 +16,7 @@ namespace xml
 
 
    class CLASS_DECL_c edit_item :
-      public ::file::byte_serializable
+      public ::file::serializable
    {
    public:
 
@@ -36,8 +36,8 @@ namespace xml
       void add_attr(const sp(::xml::node) pnode, const attr * pattr);
 
 
-      virtual void write(::file::byte_output_stream & ostream);
-      virtual void read(::file::byte_input_stream & istream);
+      virtual void write(::file::output_stream & ostream);
+      virtual void read(::file::input_stream & istream);
 
       
    };

@@ -42,7 +42,7 @@ namespace http
    // --------------------------------------------------------------------------------------
    /*void response::SetFile( const string & path )
    {
-      m_file = std::auto_ptr<IFile>(new File);
+      m_file = smart_pointer<IFile>(new File);
       m_file -> fopen( path, "rb" );
    }*/
 
@@ -51,7 +51,7 @@ namespace http
    {
       transaction::clear();
       file().Truncate(0);
-   //   m_file = std::auto_ptr<IFile>(new MemFile);
+   //   m_file = smart_pointer<IFile>(new MemFile);
    }
 
 } // namespace http 

@@ -404,7 +404,7 @@ retry_get_base:
 
          }
 
-         system::eengine().reset();
+         base_system::eengine().reset();
 
          bRetry = true;
 

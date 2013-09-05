@@ -47,7 +47,6 @@ namespace Imf {
 using Imath::Box2i;
 using Imath::divp;
 using Imath::modp;
-using std::vector;
 
 int
 pixelTypeSize (PixelType type)
@@ -91,12 +90,12 @@ numSamples (int s, int a, int b)
 
 size_t
 bytesPerLineTable (const Header &header,
-		   vector<size_t> &bytesPerLine)
+		   raw_array<size_t> &bytesPerLine)
 {
     const Box2i &dataWindow = header.dataWindow();
     const ChannelList &channels = header.channels();
 
-    bytesPerLine.resize (dataWindow.max.y - dataWindow.min.y + 1);
+    bytesPerLine.allocate (dataWindow.max.y - dataWindow.min.y + 1);
 
     for (ChannelList::ConstIterator c = channels.begin();
 	 c != channels.end();

@@ -42,7 +42,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <limits>
+
 #include <IexMathExc.h>
 
 namespace Imf {
@@ -62,10 +62,10 @@ uiMult (T a, T b)
     // Unsigned integer multiplication
     //
 
-    IMF_STATIC_ASSERT (!std::numeric_limits<T>::is_signed &&
-                        std::numeric_limits<T>::is_integer);
+    IMF_STATIC_ASSERT (!::static_numeric_info < T >::is_signed &&
+                        ::static_numeric_info < T >::is_integer);
 
-    if (a > 0 && b > std::numeric_limits<T>::max() / a)
+    if (a > 0 && b > ::numeric_info::get_maximum_value < T > () / a)
         throw Iex::OverflowExc ("Integer multiplication overflow.");
 
     return a * b;
@@ -80,8 +80,8 @@ uiDiv (T a, T b)
     // Unsigned integer division
     //
 
-    IMF_STATIC_ASSERT (!std::numeric_limits<T>::is_signed &&
-                        std::numeric_limits<T>::is_integer);
+    IMF_STATIC_ASSERT (!::numeric_info::is_signed < T >() &&
+                        ::numeric_info::is_integer < T >());
 
     if (b == 0)
         throw Iex::DivzeroExc ("Integer division by zero.");
@@ -98,10 +98,10 @@ uiAdd (T a, T b)
     // Unsigned integer addition
     //
 
-    IMF_STATIC_ASSERT (!std::numeric_limits<T>::is_signed &&
-                        std::numeric_limits<T>::is_integer);
+    IMF_STATIC_ASSERT (!::static_numeric_info < T >::is_signed &&
+                        ::static_numeric_info < T >::is_integer);
 
-    if (a > std::numeric_limits<T>::max() - b)
+    if (a > ::numeric_info::get_maximum_value < T > () - b)
         throw Iex::OverflowExc ("Integer addition overflow.");
 
     return a + b;
@@ -116,8 +116,8 @@ uiSub (T a, T b)
     // Unsigned integer subtraction
     //
 
-    IMF_STATIC_ASSERT (!std::numeric_limits<T>::is_signed &&
-                        std::numeric_limits<T>::is_integer);
+    IMF_STATIC_ASSERT (!::numeric_info::is_signed < T >() &&
+                        ::numeric_info::is_integer < T >());
 
     if (a < b)
         throw Iex::UnderflowExc ("Integer subtraction underflow.");
@@ -144,12 +144,12 @@ checkArraySize (T n, size_t s)
     //      size_t (n).
     //
 
-    IMF_STATIC_ASSERT (!std::numeric_limits<T>::is_signed &&
-                        std::numeric_limits<T>::is_integer);
+    IMF_STATIC_ASSERT (!::static_numeric_info < T >::is_signed &&
+                        ::static_numeric_info < T >::is_integer);
 
     IMF_STATIC_ASSERT (sizeof (T) <= sizeof (size_t));
 
-    if (size_t (n) > std::numeric_limits<size_t>::max() / s)
+    if (size_t (n) > ::numeric_info::get_maximum_value<size_t>() / s)
         throw Iex::OverflowExc ("Integer multiplication overflow.");
 
     return size_t (n);

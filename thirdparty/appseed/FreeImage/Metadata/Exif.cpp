@@ -494,15 +494,15 @@ static BOOL
 jpeg_read_exif_dir(FIBITMAP *dib, const BYTE *tiffp, unsigned long offset, unsigned int length, BOOL msb_order) {
 	WORD de, nde;
 
-	std::stack<WORD>			destack;	// directory entries stack
-	std::stack<const BYTE*>		ifdstack;	// IFD stack
-	std::stack<TagLib::MDMODEL>	modelstack; // metadata model stack
+   raw_stack<WORD>			destack;	// directory entries stack
+	raw_stack<const BYTE*>		ifdstack;	// IFD stack
+	raw_stack<TagLib::MDMODEL>	modelstack; // metadata model stack
 
 	// Keep a list of already visited IFD to avoid stack overflows 
 	// when recursive/cyclic directory structures exist. 
 	// This kind of recursive Exif file was encountered with Kodak images coming from 
 	// KODAK PROFESSIONAL DCS Photo Desk JPEG Export v3.2 W
-	std::map<DWORD, int> visitedIFD;
+	map<DWORD, DWORD, int, int> visitedIFD;
 
 	/*
 	"An Image File Directory (IFD) consists of a 2-byte count of the number of directory

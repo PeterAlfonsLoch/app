@@ -162,7 +162,7 @@ namespace primitive
    }
  
 
-   void memory_base::read(::file::byte_input_stream & istream)
+   void memory_base::read(::file::input_stream & istream)
    {
 
       memory_size uiRead;
@@ -193,7 +193,7 @@ namespace primitive
    }
 
    
-   void memory_base::write(::file::byte_output_stream & ostream)
+   void memory_base::write(::file::output_stream & ostream)
    {
 
       ostream.write(get_data(), this->get_size());

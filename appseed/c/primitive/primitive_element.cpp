@@ -42,7 +42,7 @@ element::~element()
 }
 
 
-sp(::application) element::get_app() const
+sp(base_application) element::get_app() const
 {
 
    return m_papp;

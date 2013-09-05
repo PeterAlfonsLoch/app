@@ -6,13 +6,13 @@ namespace ca2
 {
 
    class clustered_input_stream:
-      public byte_input_stream
+      public input_stream
    {
       uint64_t _virtPos;
       uint64_t _physPos;
       uint64_t _curRem;
    public:
-      byte_input_stream * Stream;
+      input_stream * Stream;
       uint64_t StartOffset;
       uint64_t Size;
       int32_t BlockSizeLog;

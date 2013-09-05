@@ -307,7 +307,7 @@ AssignPixel(BYTE* dst, const BYTE* src, unsigned bytesperpixel) {
 			break;
 
 		default:
-			assert(FALSE);
+			ASSERT(FALSE);
 	}
 }
 

@@ -38,7 +38,7 @@
 #define INCLUDED_IEXBASEEXC_H
 
 
-#include "c/c/c.h"
+#include "c/base/base.h"
 
 //----------------------------------------------------------
 //
@@ -47,9 +47,6 @@
 //
 //----------------------------------------------------------
 
-#include <string>
-#include <exception>
-#include <sstream>
 
 namespace Iex {
 
@@ -62,17 +59,19 @@ namespace Iex {
 // Our most basic exception class
 //-------------------------------
 
-class BaseExc: public std::string, public std::exception
+   class BaseExc: public exception::exception
 {
   public:
+
+     string m_str;
 
     //----------------------------
     // Constructors and destructor
     //----------------------------
 
-    BaseExc (const char *s = 0) throw();	// std::string (s)
-    BaseExc (const std::string &s) throw();	// std::string (s)
-    BaseExc (std::stringstream &s) throw();	// std::string (s.str())
+    BaseExc (const char *s = 0) throw();	// string (s)
+    BaseExc (const string &s) throw();	// string (s)
+    BaseExc (::file::string_buffer & s) throw();	// string (s.str())
 
     BaseExc (const BaseExc &be) throw();
     virtual ~BaseExc () throw ();
@@ -82,17 +81,19 @@ class BaseExc: public std::string, public std::exception
     //--------------------------------------------
 
     virtual const char * what () const throw ();
+    virtual string to_string ();
+    operator const char *() { return m_str; }
 
 
     //--------------------------------------------------
     // Convenient methods to change the exception's text
     //--------------------------------------------------
 
-    BaseExc &		assign (std::stringstream &s);	// assign (s.str())
-    BaseExc &		operator = (std::stringstream &s);
+    BaseExc &		assign (::file::string_buffer &s);	// assign (s.str())
+    BaseExc &		operator = (::file::string_buffer &s);
 
-    BaseExc &		append (std::stringstream &s);	// append (s.str())
-    BaseExc &		operator += (std::stringstream &s);
+    BaseExc &		append (::file::string_buffer &s);	// append (s.str())
+    BaseExc &		operator += (::file::string_buffer &s);
 
 
     //--------------------------------------------------
@@ -114,11 +115,11 @@ class BaseExc: public std::string, public std::exception
     // has been installed (see below, setStackTracer()).
     //--------------------------------------------------
 
-    const std::string &	stackTrace () const;
+    const string &	stackTrace () const;
 
   private:
 
-    std::string		_stackTrace;
+    string		_stackTrace;
 };
 
 
@@ -132,8 +133,8 @@ class BaseExc: public std::string, public std::exception
     {							        \
       public:                                                   \
 	name (const char* text=0)      throw(): base (text) {}	\
-	name (const std::string &text) throw(): base (text) {}	\
-	name (std::stringstream &text) throw(): base (text) {}	\
+	name (const string &text) throw(): base (text) {}	\
+	name (::file::string_buffer &text) throw(): base (text) {}	\
     };
 
 
@@ -199,7 +200,7 @@ DEFINE_EXC (TypeExc, BaseExc) 	 // An object is an inappropriate type,
 // 
 //----------------------------------------------------------------------
 
-typedef std::string (* StackTracer) ();
+typedef string (* StackTracer) ();
 
 void		setStackTracer (StackTracer stackTracer);
 StackTracer	stackTracer ();
@@ -210,14 +211,14 @@ StackTracer	stackTracer ();
 //-----------------
 
 inline BaseExc &
-BaseExc::operator = (std::stringstream &s)
+BaseExc::operator = (::file::string_buffer &s)
 {
     return assign (s);
 }
 
 
 inline BaseExc &
-BaseExc::operator += (std::stringstream &s)
+BaseExc::operator += (::file::string_buffer &s)
 {
     return append (s);
 }
@@ -226,7 +227,7 @@ BaseExc::operator += (std::stringstream &s)
 inline BaseExc &
 BaseExc::assign (const char *s)
 {
-    std::string::assign(s);
+    m_str = s;
     return *this;
 }
 
@@ -234,14 +235,14 @@ BaseExc::assign (const char *s)
 inline BaseExc &
 BaseExc::operator = (const char *s)
 {
-    return assign(s);
+   return assign(s);
 }
 
 
 inline BaseExc &
 BaseExc::append (const char *s)
 {
-    std::string::append(s);
+    m_str += s;
     return *this;
 }
 
@@ -253,7 +254,7 @@ BaseExc::operator += (const char *s)
 }
 
 
-inline const std::string &
+inline const string &
 BaseExc::stackTrace () const
 {
     return _stackTrace;

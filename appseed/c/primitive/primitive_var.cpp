@@ -809,7 +809,7 @@ bool var::is_new_or_null() const
    return is_new() || is_null();
 }
 
-void var::read(::file::byte_input_stream & is)
+void var::read(::file::input_stream & is)
 {
    int32_t i;
    is >> i;
@@ -843,7 +843,7 @@ void var::read(::file::byte_input_stream & is)
       {
          int32_t iCount;
          is >> iCount;
-         inta().set_size(iCount);
+         inta().allocate(iCount);
          for(int32_t i = 0; i < m_pia->get_count(); i++)
          {
             is >> (int32_t &) m_pia->element_at(i);
@@ -874,27 +874,19 @@ void var::read(::file::byte_input_stream & is)
       {
          sp(type) info;
          is >> info;
-         m_sp = Sys(is.get_app()).alloc(info);
+         m_sp = Sys(is.m_spreader->get_app()).alloc(info);
          if(m_sp.is_null())
          {
             throw "object allocation is not implemented";
          }
-         sp(::file::byte_serializable) pserializable = m_sp;
+         sp(::file::serializable) pserializable = m_sp;
          if(pserializable != NULL)
          {
             pserializable->read(is);
          }
          else
          {
-            sp(::file::plain_text_serializable) pserializable = m_sp;
-            if(pserializable != NULL)
-            {
-               pserializable->read(is.m_spreader);
-            }
-            else
-            {
-               throw "object serialization is not implemented";
-            }
+            throw io_exception(is.m_spreader->get_app(), "object serialization is not implemented");
          }
       }
       break;
@@ -903,7 +895,7 @@ void var::read(::file::byte_input_stream & is)
    }
 }
 
-void var::write(::file::byte_output_stream & ostream)
+void var::write(::file::output_stream & ostream)
 {
    int32_t i = get_type();
    ostream << i;
@@ -949,24 +941,16 @@ void var::write(::file::byte_output_stream & ostream)
       break;
    case type_ca2:
       {
-         sp(type) info(Sys(ostream.get_app()).get_type_info(typeid(*m_sp.m_p)));
+         sp(type) info(Sys(ostream.m_spwriter->get_app()).get_type_info(typeid(*m_sp.m_p)));
          ostream << info;
-         sp(::file::byte_serializable) pserializable = m_sp;
+         sp(::file::serializable) pserializable = m_sp;
          if(pserializable != NULL)
          {
             pserializable->write(ostream);
          }
          else
          {
-            sp(::file::plain_text_serializable) pserializable = m_sp;
-            if(pserializable != NULL)
-            {
-               pserializable->write(ostream.m_spwriter);
-            }
-            else
-            {
-               throw "object is not serializable";
-            }
+            throw io_exception(ostream.m_spwriter->get_app(), "object is not serializable");
          }
       }
       break;
@@ -3647,3 +3631,39 @@ bool var::is_numeric() const
    };
 
 }
+
+
+
+bool ok(para_return eret)
+{
+   return ((int32_t)eret) >= 0;
+}
+
+
+var str_ends_get(const char * lpcsz, const char * lpcszSuffix)
+{
+      
+   string str(lpcsz);
+
+   string strSuffix(lpcszSuffix);
+
+   strsize iLen = strSuffix.get_length();
+
+   if(str.Right(iLen) == lpcszSuffix)
+   {
+
+      return str.Left(str.get_length() - iLen);
+
+   }
+
+   return false;
+
+}
+
+
+
+
+
+
+
+

@@ -4,16 +4,17 @@
 
 
 
+class random_access_iterator { public: };
 
 
-
-
+#include "collection_iterator.h"
 
 #include "collection_pair.h"
 
 
-#include "collection_array.h"
-#include "collection_raw_array.h"
+#include "collection_array_impl.h"
+#include "collection_raw_array_impl.h"
+#include "collection_lemon_array_impl.h"
 #include "collection_smart_pointer_array.h"
 #include "collection_comparable_eq_array.h"
 #include "collection_comparable_array.h"
@@ -147,7 +148,7 @@ public:
 
 #include "c/datetime/datetime_time.h"
 
-#include "primitive/primitive_var.h"
+#include "c/primitive/primitive_var.h"
 
 #include "collection_stringa.h"
 
@@ -193,8 +194,6 @@ public:
 
 #include "collection_id_array.h"
 
-#include "collection_array.h"
-
 #include "collection_bitset.h"
 
 #include "collection_packset.h"
@@ -230,5 +229,9 @@ class CLASS_DECL_c time_array :
 
 
 #include "c/collection/collection_base_enum.h"
+
+#include "collection_unique_array.h"
+
+#include "collection_stack.h"
 
 

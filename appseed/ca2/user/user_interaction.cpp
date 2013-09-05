@@ -2363,8 +2363,8 @@ namespace user
       //bool bAttach = AttachThreadInput(get_wnd()->m_pthread->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
       m_iaModalThread.add(::ca2::get_thread()->get_os_int());
-      sp(::application) pappThis1 = (m_pthread->m_pthread->m_p);
-      sp(::application) pappThis2 = (m_pthread->m_pthread);
+      sp(base_application) pappThis1 = (m_pthread->m_pthread->m_p);
+      sp(base_application) pappThis2 = (m_pthread->m_pthread);
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
 

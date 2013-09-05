@@ -927,7 +927,7 @@ namespace ca2
       {
       }
 
-      sp(::application) dispatch::calc_app()
+      sp(base_application) dispatch::calc_app()
       {
          return NULL;
       }

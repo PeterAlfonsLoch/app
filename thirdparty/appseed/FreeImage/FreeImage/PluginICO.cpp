@@ -94,7 +94,7 @@ CalculateImageSize(FIBITMAP* icon_dib) {
 @return Returns the file offset for that image
 */
 static DWORD 
-CalculateImageOffset(std::vector<FIBITMAP*>& vPages, int nIndex ) {
+CalculateImageOffset(raw_array<FIBITMAP*>& vPages, int nIndex ) {
 	DWORD	dwSize;
 
     // calculate the ICO header size
@@ -450,7 +450,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 	if(icon_header) {
 
-		std::vector<FIBITMAP*> vPages;
+		raw_array<FIBITMAP*> vPages;
 		FIBITMAP  *icon_dib = NULL;
 
 		// load all icons

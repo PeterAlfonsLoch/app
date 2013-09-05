@@ -41,8 +41,8 @@ read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) {
 	size_t length = datalen;
 	BYTE *profile = (BYTE*)dataptr;
 
-	std::string Keywords;
-	std::string SupplementalCategory;
+	string Keywords;
+	string SupplementalCategory;
 
 	WORD tag_id;
 
@@ -266,17 +266,17 @@ write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size) {
 				case TAG_SUPPLEMENTAL_CATEGORIES:
 				case TAG_KEYWORDS:
 					if(FreeImage_GetTagType(tag) == FIDT_ASCII) {
-						std::string value = (const char*)FreeImage_GetTagValue(tag);
+						string value = (const char*)FreeImage_GetTagValue(tag);
 
 						// split the tag value
-						std::vector<std::string> output;
-						std::string delimiter = IPTC_DELIMITER;		
+						stringa output;
+						string delimiter = IPTC_DELIMITER;		
 						
 						size_t offset = 0;
 						size_t delimiterIndex = 0;
 
 						delimiterIndex = value.find(delimiter, offset);
-						while (delimiterIndex != std::string::npos) {
+						while (delimiterIndex >= 0) {
 							output.push_back(value.substr(offset, delimiterIndex - offset));
 							offset += delimiterIndex - offset + delimiter.length();
 							delimiterIndex = value.find(delimiter, offset);
@@ -285,7 +285,7 @@ write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size) {
 
 						// add as many tags as there are comma separated strings
 						for(int i = 0; i < (int)output.size(); i++) {
-							std::string& tag_value = output[i];
+							string& tag_value = output[i];
 							buffer = append_iptc_tag(buffer, &buffer_size, tag_id, (DWORD)tag_value.length(), tag_value.c_str());
 						}
 

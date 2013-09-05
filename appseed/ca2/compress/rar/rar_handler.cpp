@@ -346,7 +346,7 @@ namespace rar
    };
 
    //HRESULT handler::Open2(IInStream *stream,
-   HRESULT handler::Open2(::file::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
+   HRESULT handler::Open2(::file::input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
    {
       {
          ::libcompress::archive_open_volume_callback_interface  * openVolumeCallback = NULL;
@@ -366,7 +366,7 @@ namespace rar
 
          for (;;)
          {
-            ::file::byte_input_stream * inStream;
+            ::file::input_stream * inStream;
             if (!_archives.is_empty())
             {
                if (!openVolumeCallback)
@@ -470,7 +470,7 @@ namespace rar
       return S_OK;
    }
 
-   ::ca2::HRes handler::Open(::file::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
+   ::ca2::HRes handler::Open(::file::input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
    {
       Close();
       try

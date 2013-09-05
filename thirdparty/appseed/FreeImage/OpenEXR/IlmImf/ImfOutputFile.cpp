@@ -47,11 +47,6 @@ namespace Imf {
 using Imath::Box2i;
 using Imath::divp;
 using Imath::modp;
-using std::string;
-using std::vector;
-using std::ofstream;
-using std::min;
-using std::max;
 using IlmThread::Mutex;
 using IlmThread::Lock;
 using IlmThread::Semaphore;
@@ -161,21 +156,21 @@ struct OutputFile::Data: public Mutex
     int			 maxX;			// data window's max x coord
     int			 minY;			// data window's min y coord
     int			 maxY;			// data window's max x coord
-    vector<Int64>	 lineOffsets;		// stores offsets in file for
+    numeric_array<Int64>	 lineOffsets;		// stores offsets in file for
 						// each scanline
-    vector<size_t>	 bytesPerLine;          // combined size of a line over
+    numeric_array<size_t>	 bytesPerLine;          // combined size of a line over
                                                 // all channels
-    vector<size_t>	 offsetInLineBuffer;    // offset for each scanline in
+    numeric_array<size_t>	 offsetInLineBuffer;    // offset for each scanline in
                                                 // its linebuffer
     Compressor::Format	 format;                // compressor's data format
-    vector<OutSliceInfo> slices;		// info about channels in file
+    array<OutSliceInfo> slices;		// info about channels in file
     OStream *		 os;			// file stream to write to
     bool		 deleteStream;
     Int64		 lineOffsetsPosition;   // file position for line
                                                 // offset table
     Int64		 currentPosition;       // current file position
 
-    vector<LineBuffer*>  lineBuffers;           // each holds one line buffer
+    comparable_array<LineBuffer*>  lineBuffers;           // each holds one line buffer
     int			 linesInBuffer;         // number of scanlines each
                                                 // buffer holds
     size_t		 lineBufferSize;        // size of the line buffer
@@ -262,7 +257,7 @@ writePixelData (OutputFile::Data *ofd,
 
     #ifdef DEBUG
 
-	assert (ofd->os->tellp() == currentPosition);
+	ASSERT (ofd->os->tellp() == currentPosition);
 
     #endif
 
@@ -550,7 +545,7 @@ LineBufferTask::execute ()
         
             #ifdef DEBUG
         
-                assert (writePtr - (_lineBuffer->buffer +
+                ASSERT (writePtr - (_lineBuffer->buffer +
                         _ofd->offsetInLineBuffer[y - _ofd->minY]) ==
                         (int) _ofd->bytesPerLine[y - _ofd->minY]);
         
@@ -1020,7 +1015,7 @@ OutputFile::writePixels (int numScanLines)
     
                 #ifdef DEBUG
     
-                    assert (_data->currentScanLine ==
+                    ASSERT (_data->currentScanLine ==
                             ((_data->lineOrder == INCREASING_Y) ?
                              writeBuffer->scanLineMax + 1:
                              writeBuffer->scanLineMin - 1));

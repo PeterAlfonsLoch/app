@@ -31,7 +31,7 @@ namespace rar
       throw input_file_exception(get_app(), cause);
    }
 
-   HRESULT input_file::Open(::file::byte_input_stream *inStream, const file_position *searchHeaderSizeLimit)
+   HRESULT input_file::Open(::file::input_stream *inStream, const file_position *searchHeaderSizeLimit)
    {
       try
       {
@@ -75,7 +75,7 @@ namespace rar
       return processed == size;
    }
 
-   HRESULT input_file::Open2(::file::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
+   HRESULT input_file::Open2(::file::input_stream *stream, const file_position *searchHeaderSizeLimit)
    {
       m_CryptoMode = false;
       try

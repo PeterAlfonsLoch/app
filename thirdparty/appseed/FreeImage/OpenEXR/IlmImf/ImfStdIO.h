@@ -44,14 +44,12 @@
 //-----------------------------------------------------------------------------
 
 #include <ImfIO.h>
-#include <fstream>
-#include <sstream>
 
 namespace Imf {
 
 //-------------------------------------------
 // class StdIFStream -- an implementation of
-// class IStream based on class std::ifstream
+// class IStream based on class ::file::input_stream
 //-------------------------------------------
 
 class StdIFStream: public IStream
@@ -67,12 +65,12 @@ class StdIFStream: public IStream
 
     
     //---------------------------------------------------------
-    // A constructor that uses a std::ifstream that has already
+    // A constructor that uses a ::file::input_stream that has already
     // been opened by the caller.  The StdIFStream's destructor
-    // will not close the std::ifstream.
+    // will not close the ::file::input_stream.
     //---------------------------------------------------------
 
-    StdIFStream (std::ifstream &is, const char fileName[]);
+    StdIFStream (::file::input_stream &is, const char fileName[]);
 
 
     virtual ~StdIFStream ();
@@ -84,14 +82,14 @@ class StdIFStream: public IStream
 
   private:
 
-    std::ifstream *	_is;
+    ::file::input_stream *	_is;
     bool		_deleteStream;
 };
 
 
 //-------------------------------------------
 // class StdOFStream -- an implementation of
-// class OStream based on class std::ofstream
+// class OStream based on class ::file::output_stream
 //-------------------------------------------
 
 class StdOFStream: public OStream
@@ -107,12 +105,12 @@ class StdOFStream: public OStream
     
 
     //---------------------------------------------------------
-    // A constructor that uses a std::ofstream that has already
+    // A constructor that uses a ::file::output_stream that has already
     // been opened by the caller.  The StdOFStream's destructor
-    // will not close the std::ofstream.
+    // will not close the ::file::output_stream.
     //---------------------------------------------------------
 
-    StdOFStream (std::ofstream &os, const char fileName[]);
+    StdOFStream (::file::output_stream &os, const char fileName[]);
 
 
     virtual ~StdOFStream ();
@@ -123,14 +121,14 @@ class StdOFStream: public OStream
 
   private:
 
-    std::ofstream *	_os;
+    ::file::output_stream *	_os;
     bool		_deleteStream;
 };
 
 
 //------------------------------------------------
 // class StdOSStream -- an implementation of class
-// OStream, based on class std::ostringstream
+// OStream, based on class ::file::plain_text_output_stream
 //------------------------------------------------
 
 class StdOSStream: public OStream
@@ -143,11 +141,11 @@ class StdOSStream: public OStream
     virtual Int64	tellp ();
     virtual void	seekp (Int64 pos);
 
-    std::string		str () const {return _os.str();}
+    string		str () const {return _os.str();}
 
   private:
 
-    std::ostringstream 	_os;
+    ::file::string_buffer 	_os;
 };
 
 

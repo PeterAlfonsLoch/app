@@ -75,7 +75,7 @@ public :
 	BOOL IsEmpty() const;
 
 private :
-	simple_map<int, PluginNode *> m_plugin_map;
+	int_map < PluginNode * > m_plugin_map;
 	int m_node_count;
 };
 

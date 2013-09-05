@@ -108,8 +108,6 @@
  * Hudson (tjh@cryptsoft.com).
  *
  */
-#include <stdio.h>
-
 #define USE_SOCKETS
 #include "e_os.h"
 #include "cryptlib.h"

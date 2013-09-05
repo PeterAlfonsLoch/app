@@ -33,7 +33,7 @@ namespace primitive
 
    class CLASS_DECL_c memory_base :
       public object,
-      public ::file::byte_serializable
+      public ::file::serializable
    {
    public:
 
@@ -73,8 +73,8 @@ namespace primitive
 
       ::primitive::memory_size read(::file::file & file);
 
-      void write(::file::byte_output_stream & ostream);
-      void read(::file::byte_input_stream & ostream);
+      void write(::file::output_stream & ostream);
+      void read(::file::input_stream & istream);
 
       inline  void allocate_add_up(memory_size dwAddUp);
 

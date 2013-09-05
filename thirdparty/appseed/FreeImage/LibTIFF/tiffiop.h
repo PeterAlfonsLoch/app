@@ -45,9 +45,9 @@
 #endif
 
 #ifdef HAVE_ASSERT_H
-# include <assert.h>
+# include <ASSERT.h>
 #else
-# define assert(x) 
+# define ASSERT(x) 
 #endif
 
 #ifdef HAVE_SEARCH_H

@@ -49,7 +49,7 @@ namespace http
       UNREFERENCED_PARAMETER(sz);
       m_file.Truncate(0);
       /*if (!m_file.get())
-         m_file = std::auto_ptr<IFile>(new MemFile);
+         m_file = smart_pointer<IFile>(new MemFile);
    DEB(   else
          TRACE("Body data file already opened\n");*/
    }
@@ -109,7 +109,7 @@ namespace http
       attr("server_port") = 0;
       attr("https") = false;*/
 
-   //   m_file = std::auto_ptr<IFile>(NULL);
+   //   m_file = smart_pointer<IFile>(NULL);
       m_form.clear();
       m_cookies.remove_all();
       file().Truncate(0);

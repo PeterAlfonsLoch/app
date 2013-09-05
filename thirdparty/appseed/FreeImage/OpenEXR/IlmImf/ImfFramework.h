@@ -2,7 +2,7 @@
 #pragma once
 #endif
 
-#include "c/c/c.h"
+#include "c/base/base.h"
 
 #include <ImfAcesFile.h>
 #include <ImfRgbaFile.h>
@@ -12,7 +12,7 @@
 #include "IlmThreadMutex.h"
 #include "Iex.h"
 #include <string.h>
-#include <map>
+//#include <map>
 #include <ImfB44Compressor.h>
 #include <ImfHeader.h>
 #include <ImfChannelList.h>
@@ -24,8 +24,8 @@
 #include <ImfIO.h>
 #include <ImfXdr.h>
 #include <string.h>
-#include <assert.h>
-#include <algorithm>
+#include <ASSERT.h>
+
 #include <ImfBoxAttribute.h>
 #include <ImfChannelList.h>
 #include <Iex.h>
@@ -59,7 +59,7 @@
 #include <ImfDoubleAttribute.h>
 #include <ImfEnvmap.h>
 #include "ImathFun.h"
-#include <algorithm>
+
 #include <math.h>
 #include <ImfEnvmapAttribute.h>
 #include <ImfFloatAttribute.h>
@@ -93,7 +93,7 @@
 #include <ImfVecAttribute.h>
 #include "IlmThreadMutex.h"
 #include "Iex.h"
-#include <sstream>
+
 #include <stdlib.h>
 #include <time.h>
 #include <ImfHuf.h>
@@ -101,8 +101,8 @@
 #include <ImfAutoArray.h>
 #include "Iex.h"
 #include <string.h>
-#include <assert.h>
-#include <algorithm>
+#include <ASSERT.h>
+
 #include <ImfInputFile.h>
 #include <ImfScanLineInputFile.h>
 #include <ImfTiledInputFile.h>
@@ -114,8 +114,8 @@
 #include "IlmThreadMutex.h"
 #include "Iex.h"
 #include "half.h"
-#include <fstream>
-#include <algorithm>
+
+
 #include <ImfIntAttribute.h>
 #include <ImfIO.h>
 #include "Iex.h"
@@ -125,7 +125,7 @@
 #include <ImfLineOrderAttribute.h>
 #include <ImfLut.h>
 #include <math.h>
-#include <assert.h>
+#include <ASSERT.h>
 #include <ImfMatrixAttribute.h>
 #include <ImfMisc.h>
 #include <ImfHeader.h>
@@ -155,10 +155,10 @@
 #include "IlmThreadSemaphore.h"
 #include "IlmThreadMutex.h"
 #include "Iex.h"
-#include <string>
-#include <vector>
-#include <fstream>
-#include <assert.h>
+
+
+
+#include <ASSERT.h>
 #include <ImfPizCompressor.h>
 #include <ImfHeader.h>
 #include <ImfChannelList.h>
@@ -173,7 +173,7 @@
 #include <ImfXdr.h>
 #include <ImfAutoArray.h>
 #include <string.h>
-#include <assert.h>
+#include <ASSERT.h>
 #include <ImfPreviewImage.h>
 #include <ImfCheckedArithmetic.h>
 #include "Iex.h"
@@ -187,8 +187,8 @@
 #include <Iex.h>
 #include <half.h>
 #include <zlib/zlib.h>
-#include <assert.h>
-#include <algorithm>
+#include <ASSERT.h>
+
 #include <ImfRational.h>
 #include <cmath>
 #include <ImfRationalAttribute.h>
@@ -202,10 +202,10 @@
 #include <IlmThreadMutex.h>
 #include <Iex.h>
 #include <string.h>
-#include <algorithm>
+
 #include <ImfRgbaYca.h>
-#include <assert.h>
-#include <algorithm>
+#include <ASSERT.h>
+
 #include <ImfRleCompressor.h>
 #include <ImfCheckedArithmetic.h>
 #include "Iex.h"
@@ -223,9 +223,9 @@
 #include "IlmThreadSemaphore.h"
 #include "IlmThreadMutex.h"
 #include "Iex.h"
-#include <string>
-#include <vector>
-#include <assert.h>
+
+
+#include <ASSERT.h>
 #include <ImfStandardAttributes.h>
 #include <ImfStdIO.h>
 #include "Iex.h"
@@ -256,10 +256,10 @@
 #include "IlmThreadMutex.h"
 #include "ImathVec.h"
 #include "Iex.h"
-#include <string>
-#include <vector>
-#include <algorithm>
-#include <assert.h>
+
+
+
+#include <ASSERT.h>
 #include <ImfTiledMisc.h>
 #include "Iex.h"
 #include <ImfMisc.h>
@@ -284,11 +284,11 @@
 #include "IlmThreadSemaphore.h"
 #include "IlmThreadMutex.h"
 #include "Iex.h"
-#include <string>
-#include <vector>
-#include <fstream>
-#include <assert.h>
-#include <map>
+
+
+
+#include <ASSERT.h>
+//#include <map>
 #include <ImfTiledRgbaFile.h>
 #include <ImfRgbaFile.h>
 #include <ImfTiledOutputFile.h>

@@ -21,10 +21,9 @@ class ptra;
 class factory_item_base;
 class fixed_alloc_no_sync;
 class bergedge;
-class system;
+class base_system;
 class critical_section;
 class allocatorsp;
-class application;
 class application_signal_details;
 class var_array;
 class pair_set_interface;
@@ -65,6 +64,8 @@ namespace file
 
    
    class file;
+   class input_stream;
+   class output_stream;
 
 
 } // namespace file
@@ -74,7 +75,7 @@ namespace user
 {
 
 
-   class interaction;
+   class base_interaction;
    class create_context;
    class view;
 
@@ -91,8 +92,8 @@ namespace user
 #define CaSys(pca) (*pca->m_pcaapp->m_pcasystem)
 #define Sys(papp) (*papp->m_pcasystem)
 #define System (Sys(this->m_pcaapp))
-#define Mathematics(papp) (Sys(papp).math())
-#define Math (Mathematics(this->m_pcaapp))
+//#define Mathematics(papp) (Sys(papp).math())
+//#define Math (Mathematics(this->m_pcaapp))
 
 //#define Sess(papp) (*papp->m_psession)
 //#define Session (Sess(this->m_pcaapp))
@@ -101,6 +102,15 @@ namespace user
 #define App(pcaapp) (*pcaapp)
 #define Application (App(m_pcaapp))
 
+// return - result - if not ok
+#ifndef RINOK
+#define RINOK(x) { int32_t __result__ = (x); if (__result__ != 0) return __result__; }
+#endif
+
+// throw - exception - result exception - if not ok
+#ifndef TINOK
+#define TINOK(e, x) { int32_t __result__ = (x); if (__result__ != 0) throw new e(get_app(), __result__); }
+#endif
 
 
 #ifdef WINDOWS
@@ -111,10 +121,12 @@ namespace user
 
 
 #include "base_lparam.h"
+#include "base_muldiv64.h"
 
+#include "base_auto_pointer.h"
 
 #include "base_smart_pointer1.h"
-#include "base_base.h"
+#include "base_root.h"
 #include "base_smart_pointer2.h"
 
 
@@ -122,6 +134,7 @@ namespace user
 
 
 
+#include "c/math/math_static_numeric_info.h"
 #include "c/math/math_numeric_info.h"
 #include "c/math/math_number.h"
 
@@ -166,6 +179,8 @@ namespace user
 
 #include "c/collection/collection_decl.h"
 #include "c/collection/collection_array_decl.h"
+#include "c/collection/collection_raw_array_decl.h"
+#include "c/collection/collection_lemon_array_decl.h"
 
 
 #include "base_fixed_alloc.h"
@@ -209,7 +224,7 @@ namespace user
 
 #ifdef WINDOWS
 
-#include "c/windows/c_os.h"
+#include "c/windows/windows.h"
 
 #endif
 
@@ -252,6 +267,7 @@ CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError);
 #include "c/primitive/primitive_command_line.h"
 #include "c/primitive/primitive_create_context.h"
 #include "c/primitive/primitive_command.h"
+#include "c/primitive/primitive_request_signal.h"
 
 
 
@@ -264,6 +280,12 @@ CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError);
 
 
 #include "base_system.h"
+#include "base_system_smart_pointer.h"
+#include "base_system_object.h"
+#include "base_system_id.h"
+#include "base_system_factory.h"
+#include "base_system_primitive_var.h"
+#include "base_system_xml.h"
 
 
 #include "c/primitive/primitive_memory_base.h"

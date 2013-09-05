@@ -44,7 +44,6 @@
 //
 //---------------------------------------------------------------------------
 
-#include <assert.h>
 #include "half.h"
 
 using namespace std;
@@ -222,16 +221,16 @@ half::convert (int i)
 // Stream I/O operators
 //---------------------
 
-ostream &
-operator << (ostream &os, half h)
+::file::output_stream &
+operator << (::file::output_stream &os, half h)
 {
     os << float (h);
     return os;
 }
 
 
-istream &
-operator >> (istream &is, half &h)
+::file::input_stream &
+operator >> (::file::input_stream &is, half &h)
 {
     float f;
     is >> f;
@@ -246,7 +245,7 @@ operator >> (istream &is, half &h)
 //---------------------------------------
 
 void
-printBits (ostream &os, half h)
+printBits (::file::output_stream & os, half h)
 {
     unsigned short b = h.bits();
 
@@ -261,7 +260,7 @@ printBits (ostream &os, half h)
 
 
 void
-printBits (ostream &os, float f)
+printBits (::file::output_stream &os, float f)
 {
     half::uif x;
     x.f = f;

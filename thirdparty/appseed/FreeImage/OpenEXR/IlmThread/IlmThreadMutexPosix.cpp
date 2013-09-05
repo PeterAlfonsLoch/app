@@ -45,7 +45,7 @@
 
 #include "IlmThreadMutex.h"
 #include "Iex.h"
-#include <assert.h>
+#include <ASSERT.h>
 
 namespace IlmThread {
 
@@ -60,7 +60,7 @@ Mutex::Mutex ()
 Mutex::~Mutex ()
 {
     int error = ::pthread_mutex_destroy (&_mutex);
-    assert (error == 0);
+    ASSERT (error == 0);
 }
 
 

@@ -593,15 +593,15 @@ namespace user
       try
       {
 
-         spfile = Application.file().get_byte_stream(varFile, ::file::file::mode_read | ::file::file::shareDenyWrite | ::file::file::type_binary);
+         spfile = Application.file().get_byte_stream(varFile, ::file::mode_read | ::file::file::shareDenyWrite | ::file::type_binary);
 
          /*if(::str::begins_ci(varFile, "uifs://"))
          {
-         spfile = ifs(get_app(), "").get_file(varFile, ::file::file::mode_read | ::file::file::shareDenyWrite | ::file::file::type_binary, &fe);
+         spfile = ifs(get_app(), "").get_file(varFile, ::file::mode_read | ::file::file::shareDenyWrite | ::file::type_binary, &fe);
          }
          else
          {
-         spfile = System.fs()->get_file(varFile, ::file::file::mode_read | ::file::file::shareDenyWrite | ::file::file::type_binary, &fe);
+         spfile = System.fs()->get_file(varFile, ::file::mode_read | ::file::file::shareDenyWrite | ::file::type_binary, &fe);
          }*/
       }
       catch(::exception::base & e)
@@ -885,12 +885,12 @@ namespace user
       return m_bNew;
    }
 
-   void document_interface::write(::file::byte_output_stream & ostream)
+   void document_interface::write(::file::output_stream & ostream)
    {
       UNREFERENCED_PARAMETER(ostream);
    }
 
-   void document_interface::read(::file::byte_input_stream & istream)
+   void document_interface::read(::file::input_stream & istream)
    {
       UNREFERENCED_PARAMETER(istream);
    }

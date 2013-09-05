@@ -19,7 +19,7 @@ it under the terms of the one of three licenses as you choose:
 
  */
 
-#include "c/c/c.h"
+#include "c/base/base.h"
 #include <math.h>
 #include <errno.h>
 #include <float.h>
@@ -167,7 +167,7 @@ void LibRaw::dcraw_clear_mem(libraw_processed_image_t* p)
     if(p) ::free(p);
 }
 
-#define ZERO(a) memset(&a,0,sizeof(a))
+//#define ZERO(a) memset(&a,0,sizeof(a))
 
 
 LibRaw:: LibRaw(unsigned int flags)

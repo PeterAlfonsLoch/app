@@ -555,7 +555,7 @@ void FileSystemSizeWnd::ClientStartServer()
 }
 
 
-void file_size_table::get_fs_size::write(::file::byte_output_stream & ostream)
+void file_size_table::get_fs_size::write(::file::output_stream & ostream)
 {
    ostream << m_strPath;
    ostream << m_bPending;
@@ -575,7 +575,7 @@ void file_size_table::get_fs_size::write(::file::byte_output_stream & ostream)
 
 }
 
-void file_size_table::get_fs_size::read(::file::byte_input_stream & istream)
+void file_size_table::get_fs_size::read(::file::input_stream & istream)
 {
    istream >> m_strPath;
    istream >> m_bPending;

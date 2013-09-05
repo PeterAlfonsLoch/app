@@ -60,7 +60,7 @@ namespace plane
       }
 
       string strId;
-      sp(::application) pcaapp;
+      sp(base_application) pcaapp;
 
       while(pos != NULL)
       {
@@ -357,7 +357,7 @@ namespace plane
 
       pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] = 1;
 
-      sp(::application) pcaapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      sp(base_application) pcaapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
 
       sp(::plane::session) papp = pcaapp;
 
@@ -1003,7 +1003,7 @@ alt1:
 
    }*/
    /*
-   sp(::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(base_application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
    sp(base_application) papp = NULL;
 
@@ -1056,7 +1056,7 @@ alt1:
       return true;
    }
 
-   sp(::application) session::get_current_application()
+   sp(base_application) session::get_current_application()
    {
       return m_pappCurrent;
    }
@@ -1520,7 +1520,7 @@ alt1:
 
    }*/
 
-   sp(::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(base_application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
       sp(base_application) papp = NULL;
 

@@ -43,7 +43,7 @@
 //
 //--------------------------------------------------------------------
 
-#include <sstream>
+
 
 
 //----------------------------------------------------------------------------
@@ -58,8 +58,9 @@
 #define THROW(type, text)	\
     do				\
     {				\
-	std::stringstream s;	\
-	s << text;		\
+	::file::string_buffer s;	\
+   ::file::plain_text_output_stream os(&s); \
+	os << text;		\
 	throw type (s);		\
     }				\
     while (0)
@@ -91,18 +92,20 @@
 #define APPEND_EXC(exc, text)	\
     do				\
     {				\
-	std::stringstream s;	\
+      ::file::string_buffer s; \
+	::file::plain_text_stream os(&s);	\
 	s << text;		\
-	exc.append (s);		\
+	exc.append (s.str());		\
     }				\
     while (0)
 
 #define REPLACE_EXC(exc, text)	\
     do				\
     {				\
-	std::stringstream s;	\
-	s << text;		\
-	exc.assign (s);		\
+      ::file::string_buffer s; \
+	::file::plain_text_output_stream os(&s);	\
+	os << text;		\
+	exc.assign (s.str());		\
     }				\
     while (0)
 
@@ -120,7 +123,7 @@
 #define THROW_ERRNO(text)		\
     do					\
     {					\
-	std::stringstream s;		\
+	::file::plain_text_stream s;		\
 	s << text;			\
 	::Iex::throwErrnoExc (s.str());	\
     }					\
@@ -132,11 +135,11 @@
 //
 // Example:
 //
-//	ASSERT (ptr != NULL, NullExc, "Null pointer" );
+//	THROW_ASSERT (ptr != NULL, NullExc, "Null pointer" );
 //
 //-------------------------------------------------------------
 
-#define ASSERT(assertion, type, text)   \
+#define THROW_ASSERT(assertion, type, text)   \
     do                                  \
     {                                   \
 	if ((assertion) == false)       \

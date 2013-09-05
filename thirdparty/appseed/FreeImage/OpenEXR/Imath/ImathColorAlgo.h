@@ -73,13 +73,13 @@ hsv2rgb(const Vec3<T> &hsv)
 {
     if ( limits<T>::isIntegral() )
     {
-	Vec3<double> v = Vec3<double>(hsv.x / double(limits<T>::max()),
-				      hsv.y / double(limits<T>::max()),
-				      hsv.z / double(limits<T>::max()));
+	Vec3<double> v = Vec3<double>(hsv.x / double(limits<T>::maximum()),
+				      hsv.y / double(limits<T>::maximum()),
+				      hsv.z / double(limits<T>::maximum()));
 	Vec3<double> c = hsv2rgb_d(v);
-	return Vec3<T>((T) (c.x * limits<T>::max()),
-		       (T) (c.y * limits<T>::max()),
-		       (T) (c.z * limits<T>::max()));
+	return Vec3<T>((T) (c.x * limits<T>::maximum()),
+		       (T) (c.y * limits<T>::maximum()),
+		       (T) (c.z * limits<T>::maximum()));
     }
     else
     {
@@ -96,15 +96,15 @@ hsv2rgb(const Color4<T> &hsv)
 {
     if ( limits<T>::isIntegral() )
     {
-	Color4<double> v = Color4<double>(hsv.r / float(limits<T>::max()),
-					  hsv.g / float(limits<T>::max()),
-					  hsv.b / float(limits<T>::max()),
-					  hsv.a / float(limits<T>::max()));
+	Color4<double> v = Color4<double>(hsv.r / float(limits<T>::maximum()),
+					  hsv.g / float(limits<T>::maximum()),
+					  hsv.b / float(limits<T>::maximum()),
+					  hsv.a / float(limits<T>::maximum()));
 	Color4<double> c = hsv2rgb_d(v);
-	return Color4<T>((T) (c.r * limits<T>::max()),
-    	    	    	 (T) (c.g * limits<T>::max()),
-    	    	    	 (T) (c.b * limits<T>::max()),
-			 (T) (c.a * limits<T>::max()));
+	return Color4<T>((T) (c.r * limits<T>::maximum()),
+    	    	    	 (T) (c.g * limits<T>::maximum()),
+    	    	    	 (T) (c.b * limits<T>::maximum()),
+			 (T) (c.a * limits<T>::maximum()));
     }
     else
     {
@@ -121,13 +121,13 @@ rgb2hsv(const Vec3<T> &rgb)
 {
     if ( limits<T>::isIntegral() )
     {
-	Vec3<double> v = Vec3<double>(rgb.x / double(limits<T>::max()),
-				      rgb.y / double(limits<T>::max()),
-				      rgb.z / double(limits<T>::max()));
+	Vec3<double> v = Vec3<double>(rgb.x / double(limits<T>::maximum()),
+				      rgb.y / double(limits<T>::maximum()),
+				      rgb.z / double(limits<T>::maximum()));
 	Vec3<double> c = rgb2hsv_d(v);
-	return Vec3<T>((T) (c.x * limits<T>::max()),
-		       (T) (c.y * limits<T>::max()),
-		       (T) (c.z * limits<T>::max()));
+	return Vec3<T>((T) (c.x * limits<T>::maximum()),
+		       (T) (c.y * limits<T>::maximum()),
+		       (T) (c.z * limits<T>::maximum()));
     }
     else
     {
@@ -144,15 +144,15 @@ rgb2hsv(const Color4<T> &rgb)
 {
     if ( limits<T>::isIntegral() )
     {
-	Color4<double> v = Color4<double>(rgb.r / float(limits<T>::max()),
-					  rgb.g / float(limits<T>::max()),
-					  rgb.b / float(limits<T>::max()),
-					  rgb.a / float(limits<T>::max()));
+	Color4<double> v = Color4<double>(rgb.r / float(limits<T>::maximum()),
+					  rgb.g / float(limits<T>::maximum()),
+					  rgb.b / float(limits<T>::maximum()),
+					  rgb.a / float(limits<T>::maximum()));
 	Color4<double> c = rgb2hsv_d(v);
-	return Color4<T>((T) (c.r * limits<T>::max()),
-    	    	    	 (T) (c.g * limits<T>::max()),
-    	    	    	 (T) (c.b * limits<T>::max()),
-			 (T) (c.a * limits<T>::max()));
+	return Color4<T>((T) (c.r * limits<T>::maximum()),
+    	    	    	 (T) (c.g * limits<T>::maximum()),
+    	    	    	 (T) (c.b * limits<T>::maximum()),
+			 (T) (c.a * limits<T>::maximum()));
     }
     else
     {
@@ -168,9 +168,9 @@ rgb2packed(const Vec3<T> &c)
 {
     if ( limits<T>::isIntegral() )
     {
-	float x = c.x / float(limits<T>::max());
-	float y = c.y / float(limits<T>::max());
-	float z = c.z / float(limits<T>::max());
+	float x = c.x / float(limits<T>::maximum());
+	float y = c.y / float(limits<T>::maximum());
+	float z = c.z / float(limits<T>::maximum());
 	return rgb2packed( V3f(x,y,z) );
     }
     else
@@ -187,10 +187,10 @@ rgb2packed(const Color4<T> &c)
 {
     if ( limits<T>::isIntegral() )
     {
-	float r = c.r / float(limits<T>::max());
-	float g = c.g / float(limits<T>::max());
-	float b = c.b / float(limits<T>::max());
-	float a = c.a / float(limits<T>::max());
+	float r = c.r / float(limits<T>::maximum());
+	float g = c.g / float(limits<T>::maximum());
+	float b = c.b / float(limits<T>::maximum());
+	float a = c.a / float(limits<T>::maximum());
 	return rgb2packed( C4f(r,g,b,a) );
     }
     else
@@ -214,7 +214,7 @@ packed2rgb(PackedColor packed, Vec3<T> &out)
 {
     if ( limits<T>::isIntegral() )
     {
-	T f = limits<T>::max() / ((PackedColor)0xFF);
+	T f = limits<T>::maximum() / ((PackedColor)0xFF);
 	out.x =  (packed &     0xFF) * f;
 	out.y = ((packed &   0xFF00) >>  8) * f;
 	out.z = ((packed & 0xFF0000) >> 16) * f;
@@ -234,7 +234,7 @@ packed2rgb(PackedColor packed, Color4<T> &out)
 {
     if ( limits<T>::isIntegral() )
     {
-	T f = limits<T>::max() / ((PackedColor)0xFF);
+	T f = limits<T>::maximum() / ((PackedColor)0xFF);
 	out.r =  (packed &       0xFF) * f;
 	out.g = ((packed &     0xFF00) >>  8) * f;
 	out.b = ((packed &   0xFF0000) >> 16) * f;

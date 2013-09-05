@@ -1142,7 +1142,7 @@ TIFFFetchDirectory(TIFF* tif, toff_t diroff, TIFFDirEntry **pdir,
 	TIFFDirEntry *dir;
 	uint16 dircount;
 
-	assert(pdir);
+	ASSERT(pdir);
 
 	tif->tif_diroff = diroff;
 	if (nextdiroff)

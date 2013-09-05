@@ -45,6 +45,7 @@ IEEE Transactions on Signal Processing, vol. 41, no. 2, pp. 834-848, February 19
 
 #include "FreeImageFramework.h"
 
+#include <float.h>
 
 #define PI	((double)3.14159265358979323846264338327950288419716939937510)
 

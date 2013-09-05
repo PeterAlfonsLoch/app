@@ -10,11 +10,11 @@ namespace ca2
    public:
 
       
-      sp(byte_input_stream)     _stream;
+      sp(input_stream)     _stream;
       critical_section     _criticalSection;
 
 
-      void Init(byte_input_stream *stream)
+      void Init(input_stream *stream)
       { 
          _stream = stream; 
       }

@@ -31,10 +31,8 @@ namespace lemon
       return a;
    }
    
-   class CLASS_DECL_c array  : virtual public object
+   namespace array
    {
-   public:
-      array(sp(base_application) papp);
 
       template < class A >
       void randomize(A & a)
@@ -42,7 +40,7 @@ namespace lemon
          A b;
          while(a.get_count() > 0)
          {
-            index i = (index) System.math().RandRange(0, a.get_upper_bound());
+            index i = (index) (rand() % a.get_size());
             b.add(a.element_at(i));
             a.remove_at(i);
          }
@@ -129,7 +127,7 @@ namespace lemon
          }
       }
 
-   };
+   } // namespace array
 
 
 

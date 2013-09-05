@@ -10,20 +10,20 @@ namespace file
    }
 
    stream::stream(reader * preader, writer * pwriter) :
-      reader(preader),
-      writer(pwriter)
+      input_stream(preader),
+      output_stream(pwriter)
    {
    }
 
-   stream::stream(const reader & reader, const writer & writer) :
-      ::file::reader(reader),
-      ::file::writer(writer)
+   stream::stream(buffer * pbuffer) :
+      input_stream(pbuffer),
+      output_stream(pbuffer)
    {
    }
 
    stream::stream(const stream & stream) :
-      reader(stream),
-      writer(stream)
+      input_stream(stream),
+      output_stream(stream)
    {
    }
 
@@ -33,8 +33,8 @@ namespace file
 
    stream & stream::operator = (const stream & stream)
    {
-      reader::operator = (stream);
-      writer::operator = (stream);
+      input_stream::operator = (stream);
+      output_stream::operator = (stream);
       return *this;
    }
 
@@ -50,8 +50,8 @@ namespace file
 
    void stream::close()
    {
-      reader::close();
-      writer::close();
+      input_stream::close();
+      output_stream::close();
    }
 
 

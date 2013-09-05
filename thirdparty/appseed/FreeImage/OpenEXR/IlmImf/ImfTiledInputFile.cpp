@@ -45,10 +45,10 @@ namespace Imf {
 
 using Imath::Box2i;
 using Imath::V2i;
-using std::string;
-using std::vector;
-using std::min;
-using std::max;
+using string;
+using array;
+using min;
+using max;
 using IlmThread::Mutex;
 using IlmThread::Lock;
 using IlmThread::Semaphore;

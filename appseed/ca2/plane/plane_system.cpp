@@ -310,12 +310,12 @@ namespace plane
       if(directrix()->m_varTopicQuery.has_property("install"))
          return true;
 
-      ::ca2::filesp file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::file::file::type_binary | ::file::file::mode_read);
+      ::file::filesp file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::file::type_binary | ::file::mode_read);
 
       if(file.is_null())
          return false;
 
-      ::file::byte_input_stream is(file);
+      ::file::input_stream is(file);
 
       is >> m_mapAppLibrary;
 
@@ -384,12 +384,12 @@ namespace plane
 
       }
 
-      ::ca2::filesp file;
+      ::file::filesp file;
 
       try
       {
 
-         file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::file::file::defer_create_directory | ::file::file::type_binary | ::file::file::mode_create  | ::file::file::mode_write);
+         file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::file::file::defer_create_directory | ::file::type_binary | ::file::file::mode_create  | ::file::file::mode_write);
 
       }
       catch(::exception::base &)
@@ -399,7 +399,7 @@ namespace plane
 
       }
 
-      ::file::byte_output_stream os(file);
+      ::file::output_stream os(file);
 
       os << m_mapAppLibrary;
 
@@ -794,7 +794,7 @@ namespace plane
    }
 
 
-   sp(::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(base_application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
       sp(::plane::session) psession = get_session(iEdge, pbiasCreate);
       return psession->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
@@ -839,11 +839,6 @@ namespace plane
    ::ca2::stra & system::stra()
    {
       return m_stra;
-   }
-
-   ::xml::xml & system::xml()
-   {
-      return *m_pxml;
    }
 
    ::fontopus::user_set & system::userset()
@@ -1393,16 +1388,6 @@ namespace plane
       psession->open_by_file_extension(pszFileName);
    }
 
-   sp(element) system::alloc(sp(base_application) papp, sp(type) info)
-   {
-      return ::ca2::system::alloc(papp, info);
-   }
-
-   sp(element) system::alloc(sp(base_application) papp, const class id & idType)
-   {
-      return ::ca2::system::alloc(papp, get_type_info(idType));
-   }
-
    bool system::sync_load_url(string & str, const char * lpszUrl, ::fontopus::user * puser, ::http::cookies * pcookies)
    {
       string filename = System.file().time_square(get_app());
@@ -1570,7 +1555,7 @@ namespace plane
    }
 
 
-   sp(::application) system::get_new_app(sp(::application) pappNewApplicationParent, const char * pszType, const char * pszAppId)
+   sp(base_application) system::get_new_app(sp(base_application) pappNewApplicationParent, const char * pszType, const char * pszAppId)
    {
 
       string strId(pszAppId);
@@ -1642,7 +1627,7 @@ namespace plane
       if(papp == NULL)
          return NULL;
 
-      sp(::application) pgenapp = (papp);
+      sp(base_application) pgenapp = (papp);
 
       pgenapp->m_strAppId = pszAppId;
 
@@ -1702,21 +1687,6 @@ namespace plane
 
    }*/
 
-   sp(type) system::get_type_info(const ::std_type_info & info)
-   {
-
-#ifdef WINDOWS
-      sp(type) & typeinfo = m_typemap[info.raw_name()];
-#else
-      sp(type) & typeinfo = m_typemap[info.name()];
-#endif
-
-      if(typeinfo.is_null())
-         typeinfo = canew(type(info));
-
-      return typeinfo;
-
-   }
 
 
 
@@ -2224,7 +2194,7 @@ retry:
       return pbergedge->get_nature();
    }
 
-   /*sp(::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   /*sp(base_application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
       sp(::plane::session) pbergedge = ge(iEdge, pbiasCreate);
       return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
@@ -2425,7 +2395,7 @@ retry:
       return pbergedge->get_nature();
    }
 
-   sp(::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(base_application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
       sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreate);
       return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);

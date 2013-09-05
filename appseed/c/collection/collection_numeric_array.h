@@ -28,7 +28,7 @@ namespace str
 
 template < typename TYPE >
 class numeric_array :
-   virtual public ::file::byte_serializable_array < comparable_primitive_array < TYPE > >
+   virtual public ::file::serializable_array < comparable_primitive_array < TYPE > >
 {
 public:
    numeric_array();
@@ -171,7 +171,7 @@ public:
       }
       else
       {
-         this->insert_at(iFind, newElement);
+         this->inset(iFind, newElement);
          return iFind;
       }
    }
@@ -434,7 +434,7 @@ void numeric_array < TYPE >::CopySorted(
 {
    index i;
    TYPE tStart = tMin - tOffset;
-   this->set_size(a.get_size());
+   this->allocate(a.get_size());
    TYPE t;
    for(i = 0; i < a.get_size()
       && a.get_at(i) <= tStart; i++)
@@ -454,7 +454,7 @@ void numeric_array < TYPE >::Diff(
 {
    ASSERT(array1.get_size() == array2.get_size());
    index i;
-   this->set_size(array1.get_size());
+   this->allocate(array1.get_size());
    TYPE t;
    for(i = 0; i < array1.get_size(); i++)
    {
@@ -471,7 +471,7 @@ void numeric_array < TYPE >::ElementDiff(
    index i;
    TYPE t;
    TYPE it;
-   this->set_size(a.get_size());
+   this->allocate(a.get_size());
    if(a.get_size() > 0)
    {
       TYPE tLast = a[0];
@@ -1390,7 +1390,7 @@ sort_add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
 {
    index iIndex = 0;
    binary_search(t, iIndex, fCompare, ia);
-   this->insert_at(iIndex, t);
+   this->inset(iIndex, t);
    ia.add(iIndex);
    return iIndex;
 }
@@ -1799,7 +1799,7 @@ sort_add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
 {
    index iIndex = 0;
    binary_search(t, iIndex, fCompare, ia);
-   this->insert_at(iIndex, t);
+   this->inset(iIndex, t);
    ia.add(iIndex);
    return iIndex;
 }

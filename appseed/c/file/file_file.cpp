@@ -27,23 +27,31 @@ namespace file
    }
 
 
-   void file::write(byte_output_stream & ostream)
+   void file::write(output_stream & ostream)
    {
+      
       seek_to_begin();
-      ::file::reader::write(ostream);
+
+      write_to(ostream.m_spwriter);
+
    }
 
-   void file::read(byte_input_stream & istream)
+
+   void file::read(input_stream & istream)
    {
-      ::file::writer::read(istream);
+   
+      read_from(istream.m_spreader);
+
       seek_to_begin();
+
    }
+
 
    file::~file()
    {
    }
 
-   sp(::file::file) file::Duplicate() const
+   sp(::file::buffer) file::Duplicate() const
    {
       return NULL;
    }
@@ -304,6 +312,7 @@ namespace file
       return GetFileName();
    }
 
+   /*
    bool file::read(char * pch)
    {
       if(read(pch, 1) == 1)
@@ -375,6 +384,62 @@ namespace file
       return peek(&uch);
    }
 
+
+   int file::sgetc()
+   {
+
+      char ch;
+
+      if(!peek(&ch))
+         return EOF;
+
+      return ch;
+      
+   }
+
+   int file::sbumpc()
+   {
+
+      char ch;
+
+      if(read(&ch, 1) <= 0)
+         return EOF;
+
+      return ch;
+      
+   }
+
+   bool file::read_string(string & str)
+   {
+      
+      int i = sbumpc();
+
+      if(i == EOF)
+         return false;
+
+      while(true)
+      {
+
+         if((char) i == '\n' || (char) i == '\r')
+            break;
+         
+         str += (char) i;
+      
+         i = sbumpc();
+      };
+
+      int iNew = sbumpc();
+
+      if(iNew == i || ((char) iNew != '\n' && (char) iNew != '\r'))
+      {
+         seek(-1, seek_current);
+      }
+
+      return true;
+
+   }
+
+   */
 
 } // namespace file
 

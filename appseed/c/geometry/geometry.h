@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "geometry_align.h"
+
+
 #ifdef METROWIN
 #include <intsafe.h>
 #else

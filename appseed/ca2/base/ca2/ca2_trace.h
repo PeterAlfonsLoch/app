@@ -97,7 +97,7 @@ namespace ca2
       {
       public:
 
-         sp(::application) m_papp;
+         sp(base_application) m_papp;
 
          trace(sp(base_application) papp)
          {

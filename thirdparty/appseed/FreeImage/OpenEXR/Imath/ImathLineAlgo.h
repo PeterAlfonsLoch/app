@@ -104,8 +104,8 @@ closestPoints
     T absD = abs (d);
 
     if ((absD > 1) ||
-	(abs (n1) < limits<T>::max() * absD &&
-	 abs (n2) < limits<T>::max() * absD))
+	(abs (n1) < limits<T>::maximum() * absD &&
+	 abs (n2) < limits<T>::maximum() * absD))
     {
 	point1 = line1 (n1 / d);
 	point2 = line2 (n2 / d);
@@ -172,7 +172,7 @@ intersect
     T d = normal ^ (v0 - line.pos);
     T nd = normal ^ line.dir;
 
-    if (abs (nd) > 1 || abs (d) < limits<T>::max() * abs (nd))
+    if (abs (nd) > 1 || abs (d) < limits<T>::maximum() * abs (nd))
 	pt = line (d / nd);
     else
 	return false;  // line and plane are nearly parallel

@@ -1658,7 +1658,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				const unsigned Bpc = dibBpp / chCount;
 				const unsigned srcBpp = bitspersample * samplesperpixel / 8;
 
-				assert(Bpc <= 2); //< CMYK is only BYTE or SHORT
+				ASSERT(Bpc <= 2); //< CMYK is only BYTE or SHORT
 
 				// In the tiff file the lines are save from up to down
 				// In a DIB the lines must be saved from down to up

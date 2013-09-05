@@ -303,7 +303,7 @@ static inline bool TestSignature2(const byte *p)
 #define TestSignature2(p) TestSignature(p)
 #endif
 
-HRESULT CInArchive::FindAndReadSignature(::file::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
+HRESULT CInArchive::FindAndReadSignature(::file::input_stream *stream, const file_position *searchHeaderSizeLimit)
 {
   RINOK(ReadStream_FALSE(stream, _header, kHeaderSize));
 
@@ -363,7 +363,7 @@ HRESULT CInArchive::FindAndReadSignature(::file::byte_input_stream *stream, cons
       }
 
 // S_FALSE means that file is not archive
-HRESULT CInArchive::Open(::file::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
+HRESULT CInArchive::Open(::file::input_stream *stream, const file_position *searchHeaderSizeLimit)
 {
   HeadersSize = 0;
   Close();

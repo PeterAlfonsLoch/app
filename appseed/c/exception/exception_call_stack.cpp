@@ -39,9 +39,9 @@ vsstring call_stack::get(uint32_t uiSkip)
    UNREFERENCED_PARAMETER(uiSkip);
 
 #ifdef LINUX
-   system::eengine().stack_trace(str, uiSkip, m_caller_address);
+   base_system::eengine().stack_trace(str, uiSkip, m_caller_address);
 #else
-   system::eengine().stack_trace(str, uiSkip);
+   base_system::eengine().stack_trace(str, uiSkip);
 #endif
 
    return str;

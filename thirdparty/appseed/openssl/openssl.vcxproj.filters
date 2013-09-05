@@ -2022,15 +2022,6 @@
     <ClCompile Include="crypto\rand\rand_win.c">
       <Filter>Source Files\crypto\rand</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\rand\rand_vms.c">
-      <Filter>Source Files\crypto\rand</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\rand\rand_unix.c">
-      <Filter>Source Files\crypto\rand</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\rand\rand_os2.c">
-      <Filter>Source Files\crypto\rand</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\rand\rand_nw.c">
       <Filter>Source Files\crypto\rand</Filter>
     </ClCompile>

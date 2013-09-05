@@ -1,4 +1,4 @@
-/* Define to 1 if you have the <assert.h> header file. */
+/* Define to 1 if you have the <ASSERT.h> header file. */
 #define HAVE_ASSERT_H 1
 
 /* Define to 1 if you have the <fcntl.h> header file. */

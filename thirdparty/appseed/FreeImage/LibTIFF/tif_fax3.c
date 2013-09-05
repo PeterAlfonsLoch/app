@@ -153,7 +153,7 @@ Fax3PreDecode(TIFF* tif, tsample_t s)
 	Fax3CodecState* sp = DecoderState(tif);
 
 	(void) s;
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 	sp->bit = 0;			/* force initial read */
 	sp->data = 0;
 	sp->EOLcnt = 0;			/* force initial scan for EOL */
@@ -447,7 +447,7 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 		x += runs[1];
 	    }
 	}
-	assert(x == lastx);
+	ASSERT(x == lastx);
 }
 #undef	ZERO
 #undef	FILL
@@ -640,7 +640,7 @@ putspan(TIFF* tif, int32 span, const tableentry* tab)
 	}
 	if (span >= 64) {
 		const tableentry* te = &tab[63 + (span>>6)];
-		assert(te->runlen == 64*(span>>6));
+		ASSERT(te->runlen == 64*(span>>6));
 		code = te->code, length = te->length;
 #ifdef FAX3_DEBUG
 		DEBUG_PRINT("MakeUp", te->runlen);
@@ -707,7 +707,7 @@ Fax3PreEncode(TIFF* tif, tsample_t s)
 	Fax3CodecState* sp = EncoderState(tif);
 
 	(void) s;
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 	sp->bit = 8;
 	sp->data = 0;
 	sp->tag = G3_1D;
@@ -1089,7 +1089,7 @@ Fax3Cleanup(TIFF* tif)
 {
 	Fax3CodecState* sp = DecoderState(tif);
 	
-	assert(sp != 0);
+	ASSERT(sp != 0);
 
 	tif->tif_tagmethods.vgetfield = sp->b.vgetparent;
 	tif->tif_tagmethods.vsetfield = sp->b.vsetparent;
@@ -1161,8 +1161,8 @@ Fax3VSetField(TIFF* tif, ttag_t tag, va_list ap)
 	Fax3BaseState* sp = Fax3State(tif);
 	const TIFFFieldInfo* fip;
 
-	assert(sp != 0);
-	assert(sp->vsetparent != 0);
+	ASSERT(sp != 0);
+	ASSERT(sp->vsetparent != 0);
 
 	switch (tag) {
 	case TIFFTAG_FAXMODE:
@@ -1220,7 +1220,7 @@ Fax3VGetField(TIFF* tif, ttag_t tag, va_list ap)
 {
 	Fax3BaseState* sp = Fax3State(tif);
 
-	assert(sp != 0);
+	ASSERT(sp != 0);
 
 	switch (tag) {
 	case TIFFTAG_FAXMODE:
@@ -1265,7 +1265,7 @@ Fax3PrintDir(TIFF* tif, FILE* fd, long flags)
 {
 	Fax3BaseState* sp = Fax3State(tif);
 
-	assert(sp != 0);
+	ASSERT(sp != 0);
 
 	(void) flags;
 	if (TIFFFieldSet(tif,FIELD_OPTIONS)) {

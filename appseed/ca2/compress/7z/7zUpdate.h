@@ -72,7 +72,7 @@ namespace n7z
 
    HRESULT Update(
       ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
-      ::file::byte_input_stream *inStream,
+      ::file::input_stream *inStream,
       const CArchiveDatabaseEx *db,
       const smart_pointer_array<CUpdateItem> &updateItems,
       COutArchive &archive,

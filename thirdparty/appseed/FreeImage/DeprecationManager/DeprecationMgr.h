@@ -67,10 +67,10 @@ private:
 	struct DeprecatedFunction {
 		const char *old_function_name;
 		const char *new_function_name;
-		std::set<int> called_from;
+		unique_sort_array < int > called_from;
 	};
 
-	std::map<const char *, DeprecatedFunction> m_functions;
+	map<const char *, const char * , DeprecatedFunction, DeprecatedFunction> m_functions;
 
 public:
 	DeprecationMgr();

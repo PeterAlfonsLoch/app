@@ -555,7 +555,7 @@ namespace frame
          pwnd->ClientToScreen(&ptCursor);
          rect rectEvent;
          GetEventWindow()->GetWindowRect(rectEvent);
-         //sp(::application) pApp = &System;
+         //sp(base_application) pApp = &System;
          bool bSize = false;
          rect rectWindow;
          if(m_ehittestMode == HitTestNone)

@@ -2,7 +2,7 @@
 
 
 // return string length or -1 if UNICODE string is found in the archive
-__STATIC UINT __read_string_length(::file::byte_input_stream & ar);
+__STATIC UINT __read_string_length(::file::input_stream & ar);
 
 
 stringa::stringa(sp(base_application) papp) :
@@ -625,7 +625,7 @@ return -1;
 */
 
 
-void stringa::write(::file::byte_output_stream & ostream)
+void stringa::write(::file::output_stream & ostream)
 {
    ostream.write_arbitrary(m_nSize);
    for(int32_t i = 0; i < this->get_size(); i++)
@@ -634,7 +634,7 @@ void stringa::write(::file::byte_output_stream & ostream)
    }
 }
 
-void stringa::read(::file::byte_input_stream & istream)
+void stringa::read(::file::input_stream & istream)
 {
    
    ::count iSize;
@@ -660,106 +660,6 @@ void stringa::read(::file::byte_input_stream & istream)
 
 
 
-::file::byte_input_stream & operator>>(::file::byte_input_stream & ar, string & string)
-{
-   int32_t nConvert = 0;   // if we get UNICODE, convert
-
-   UINT nNewLen = __read_string_length(ar);
-   if (nNewLen == (UINT)-1)
-   {
-      nConvert = 1 - nConvert;
-      nNewLen = __read_string_length(ar);
-      ASSERT(nNewLen != -1);
-   }
-
-   char * lpBuf;
-   // set length of string to new length
-   UINT nByteLen = nNewLen;
-   nByteLen += nByteLen * nConvert;    // bytes to read
-   if (nNewLen == 0)
-      lpBuf = string.GetBufferSetLength(0);
-   else
-      lpBuf = string.GetBufferSetLength((int32_t)nByteLen+nConvert);
-
-   // read in the characters
-   if (nNewLen != 0)
-   {
-      ASSERT(nByteLen != 0);
-
-      // read new data
-      if (ar.read(lpBuf, nByteLen) != nByteLen)
-      {
-         //   ::ca2::ThrowArchiveException(CArchiveException::endOfFile);
-      }
-
-      // convert the data if as necessary
-      if (nConvert != 0)
-      {
-         lpBuf[nNewLen] = '\0';    // must be NUL terminated
-         string.ReleaseBuffer();   // don't delete the old data
-      }
-   }
-   return ar;
-}
-
-// string serialization code
-// string format:
-//      UNICODE strings are always prefixed by 0xff, 0xfffe
-//      if < 0xff chars: len:BYTE, char chars
-//      if >= 0xff characters: 0xff, len:WORD, char chars
-//      if >= 0xfffe characters: 0xff, 0xffff, len:uint32_t, TCHARs
-
-::file::byte_output_stream & operator<<(::file::byte_output_stream & ar, const string & string)
-{
-   if (string.get_length() < 255)
-   {
-      ar << (byte)         string.get_length();
-   }
-   else if (string.get_length() < 0xfffe)
-   {
-      ar << (byte)         0xff;
-      ar << (uint16_t)     string.get_length();
-   }
-   else
-   {
-      ar << (byte)         0xff;
-      ar << (uint16_t)     0xffff;
-      ar << (uint32_t)     string.get_length();
-   }
-
-   ar.write((const char *) string, string.get_length());
-   return ar;
-}
-
-// return string length or -1 if UNICODE string is found in the archive
-__STATIC UINT __read_string_length(::file::byte_input_stream & ar)
-{
-   uint32_t nNewLen;
-
-   // attempt BYTE length first
-   byte bLen;
-   ar >> bLen;
-
-   if (bLen < 0xff)
-      return bLen;
-
-   // attempt WORD length
-   uint16_t wLen;
-   ar >> wLen;
-   if (wLen == 0xfffe)
-   {
-      // UNICODE string prefix (length will follow)
-      return (UINT)-1;
-   }
-   else if (wLen == 0xffff)
-   {
-      // read uint32_t of length
-      ar >> nNewLen;
-      return (UINT)nNewLen;
-   }
-   else
-      return wLen;
-}
 
 
 void stringa::implode(string & str, const char * lpcszSeparator, index start, ::count count) const

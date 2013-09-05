@@ -61,11 +61,11 @@ HalfLut::apply (half *data, int nData, int stride) const
 void
 HalfLut::apply (const Slice &data, const Imath::Box2i &dataWindow) const
 {
-    assert (data.type == HALF);
-    assert (dataWindow.min.x % data.xSampling == 0);
-    assert (dataWindow.min.y % data.ySampling == 0);
-    assert ((dataWindow.max.x - dataWindow.min.x + 1) % data.xSampling == 0);
-    assert ((dataWindow.max.y - dataWindow.min.y + 1) % data.ySampling == 0);
+    ASSERT (data.type == HALF);
+    ASSERT (dataWindow.min.x % data.xSampling == 0);
+    ASSERT (dataWindow.min.y % data.ySampling == 0);
+    ASSERT ((dataWindow.max.x - dataWindow.min.x + 1) % data.xSampling == 0);
+    ASSERT ((dataWindow.max.y - dataWindow.min.y + 1) % data.ySampling == 0);
 
     char *base = data.base + data.yStride *
 		 (dataWindow.min.y / data.ySampling);

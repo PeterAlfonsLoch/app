@@ -34,8 +34,6 @@ it under the terms of the one of three licenses as you choose:
 
 #include "libraw_const.h"
 #include "libraw_types.h"
-#include <fstream>
-#include <memory>
 
 #if defined (WIN32)
 /* MSVS 2008 and above... */
@@ -227,8 +225,8 @@ class LibRaw_abstract_datastream
 class LibRaw_file_datastream: public LibRaw_abstract_datastream
 {
   protected:
-    std::auto_ptr<std::streambuf> f; /* will close() automatically through dtor */
-    std::auto_ptr<std::streambuf> saved_f; /* when *f is a subfile, *saved_f is the master file */
+    smart_pointer<::file::buffer> f; /* will close() automatically through dtor */
+    smart_pointer<::file::buffer> saved_f; /* when *f is a subfile, *saved_f is the master file */
     const char *filename;
 
   public:
@@ -237,23 +235,25 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
       :filename(fname)
     {
         if (filename) {
-            std::auto_ptr<std::filebuf> buf(new std::filebuf());
-            buf->open(filename, std::ios_base::in | std::ios_base::binary);
-            if (buf->is_open()) {
+            smart_pointer <::file::file > buf;
+            buf.create(::ca2::get_thread_app());
+            buf->open(filename, ::file::mode_read | ::file::type_binary);
+            if (buf->IsOpened())
+            {
                 f = buf;
             }
         }
     }
 
-    virtual int valid() { return f.get() ? 1 : 0; }
+    virtual int valid() { return f.is_set() ? 1 : 0; }
 
-#define LR_STREAM_CHK() do {if(!f.get()) throw LIBRAW_EXCEPTION_IO_EOF;}while(0)
+#define LR_STREAM_CHK() do {if(f.is_null()) throw LIBRAW_EXCEPTION_IO_EOF;}while(0)
 
 /* Visual Studio 2008 marks sgetn as insecure, but VS2010 does not. */
 #if defined(WIN32SECURECALLS) && (_MSC_VER < 1600)
 	virtual int read(void * ptr,size_t size, size_t nmemb){LR_STREAM_CHK(); return int(f->_Sgetn_s(static_cast<char*>(ptr), nmemb * size,nmemb * size) / size); }
 #else
-    virtual int read(void * ptr,size_t size, size_t nmemb){LR_STREAM_CHK(); return int(f->sgetn(static_cast<char*>(ptr), std::streamsize(nmemb * size)) / size); }
+    virtual int read(void * ptr,size_t size, size_t nmemb){LR_STREAM_CHK(); return int(f->read(static_cast<char*>(ptr), nmemb * size) / size); }
 #endif
 
     virtual int eof() { LR_STREAM_CHK(); return f->sgetc() == EOF; }
@@ -261,45 +261,58 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
     virtual int seek(INT64 o, int whence) 
     { 
         LR_STREAM_CHK(); 
-        std::ios_base::seekdir dir;
+        file::e_seek dir;
         switch (whence) 
             {
-            case SEEK_SET: dir = std::ios_base::beg; break;
-            case SEEK_CUR: dir = std::ios_base::cur; break;
-            case SEEK_END: dir = std::ios_base::end; break;
-            default: dir = std::ios_base::beg;
+        case SEEK_SET: dir = ::file::seek_begin; break;
+        case SEEK_CUR: dir = ::file::seek_current; break;
+        case SEEK_END: dir = ::file::seek_end; break;
+        default: dir = ::file::seek_begin;
             }
-        return (int)f->pubseekoff((long)o, dir);
+        return (int)f->seek((long)o, dir);
     }
 
-    virtual INT64 tell()     { LR_STREAM_CHK(); return f->pubseekoff(0, std::ios_base::cur);  }
+    virtual INT64 tell()     { LR_STREAM_CHK(); return f->get_position();  }
 
     virtual int get_char() { LR_STREAM_CHK();  return f->sbumpc();  }
-    virtual char* gets(char *str, int sz) 
+    virtual char* gets(char *psz, int sz) 
     { 
         LR_STREAM_CHK(); 
-        std::istream is(f.get());
-        is.getline(str, sz);
-        if (is.fail()) return 0;
-        return str;
+        string str;
+        if(!f->read_string(str))
+           return NULL;
+        strncpy(psz, str, min(sz, str.get_length()));
+        return psz;
     }
 
     virtual int scanf_one(const char *fmt, void*val) 
     { 
         LR_STREAM_CHK(); 
 
-        std::istream is(f.get());
+        file::byte_input_stream is(f);
 
         /* HUGE ASSUMPTION: *fmt is either "%d" or "%f" */
         if (strcmp(fmt, "%d") == 0) {
           int d;
-          is >> d;
-          if (is.fail()) return EOF;
+          try
+          {
+            is >> d;
+          }
+          catch(io_exception &)
+          {
+            return EOF;
+          }
           *(static_cast<int*>(val)) = d;
         } else {
           float f;
-          is >> f;
-          if (is.fail()) return EOF;
+          try
+          {
+            is >> f;
+          }
+          catch(io_exception &)
+          {
+            return EOF;
+          }
           *(static_cast<float*>(val)) = f;
         }
 
@@ -310,12 +323,12 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
     virtual int subfile_open(const char *fn)
     {
         LR_STREAM_CHK();
-        if (saved_f.get()) return EBUSY;
+        if (saved_f.is_set()) return EBUSY;
         saved_f = f;
-        std::auto_ptr<std::filebuf> buf(new std::filebuf());
+        smart_pointer<::file::file> buf(new ::file::file());
         
-        buf->open(fn, std::ios_base::in | std::ios_base::binary);
-        if (!buf->is_open()) {
+        buf->open(fn,::file::mode_read | ::file::type_binary);
+        if (!buf->IsOpened()) {
             f = saved_f;
             return ENOENT;
         } else {
@@ -325,25 +338,24 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
         return 0;
     }
     
-    virtual void subfile_close()    { if (!saved_f.get()) return; f = saved_f;   }
-    virtual int tempbuffer_open(void* buf, size_t size)
+    virtual void subfile_close()    { if (!saved_f.is_set()) return; f = saved_f;   }
+    virtual int tempbuffer_open()
     {
         LR_STREAM_CHK();
-        if (saved_f.get()) return EBUSY;
+        if (saved_f.is_set()) return EBUSY;
         saved_f = f;
         
-        f.reset(new std::filebuf());
-        if (!f.get()) {
+        f.create(::ca2::get_thread_app());
+        if (!f.is_set()) {
             f = saved_f;
             return ENOMEM;
         }
-		f->pubsetbuf(static_cast<char*>(buf), static_cast<std::streamsize>(size));
         return 0;
     }
     
     virtual void	tempbuffer_close()
     {
-        if (!saved_f.get()) return;
+        if (!saved_f.is_set()) return;
         f = saved_f;
     }
 };

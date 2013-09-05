@@ -22,38 +22,38 @@ namespace ca2
 
 output_stream2 & output_stream2::operator << (uchar uch)
 {
-   byte_output_stream::operator << (uch);
+   output_stream::operator << (uch);
    return *this;
 }
 
 output_stream2 & output_stream2::operator << (uint16_t ui)
 {
-   byte_output_stream::operator << (ui);
+   output_stream::operator << (ui);
    return *this;
 }
 
 output_stream2 & output_stream2::operator << (int32_t i)
 {
-   byte_output_stream::operator << (i);
+   output_stream::operator << (i);
    return *this;
 }
 
 output_stream2 & output_stream2::operator << (uint32_t ui)
 {
-   byte_output_stream::operator << (ui);
+   output_stream::operator << (ui);
    return *this;
 }
 
 output_stream2 & output_stream2::operator << (LPCRECT lpcrect)
 {
-   byte_output_stream::operator << (lpcrect);
+   output_stream::operator << (lpcrect);
    return *this;
 }
 
 
-output_stream2 & output_stream2::operator << (byte_serializable & serializable)
+output_stream2 & output_stream2::operator << (serializable & serializable)
 {
-   byte_output_stream::operator << (serializable);
+   output_stream::operator << (serializable);
    return *this;
 }
 

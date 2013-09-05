@@ -1006,7 +1006,7 @@ namespace ca2
 
 
          if(papp->m_psession != NULL && papp->m_psession != papp &&
-            (sp(::application)) papp->m_psystem != (sp(::application)) papp)
+            (sp(base_application)) papp->m_psystem != (sp(base_application)) papp)
          {
             strPath = matter(papp->m_psession, stra, bDir);
             if(bDir)
@@ -1022,7 +1022,7 @@ namespace ca2
          }
 
          if(papp->m_psystem != NULL && papp->m_psystem != papp &&
-            (sp(::application)) papp->m_psystem != (sp(::application)) papp->m_psession)
+            (sp(base_application)) papp->m_psystem != (sp(base_application)) papp->m_psession)
          {
             strPath = matter(papp->m_psystem, stra, bDir);
             if(bDir)
@@ -1198,7 +1198,7 @@ ret:
 
 
             if(papp->m_psession != NULL && papp->m_psession != papp &&
-               (sp(::application)) papp->m_psystem != (sp(::application)) papp)
+               (sp(base_application)) papp->m_psystem != (sp(base_application)) papp)
             {
                strPath = matter(papp->m_psession, str, str2);
                if(bDir)
@@ -1219,7 +1219,7 @@ ret:
 
 
          if(papp->m_psystem != NULL && papp->m_psystem != papp &&
-            (sp(::application)) papp->m_psystem != (sp(::application)) papp->m_psession)
+            (sp(base_application)) papp->m_psystem != (sp(base_application)) papp->m_psession)
          {
             strPath = matter(papp->m_psystem, str, str2);
             if(bDir)
@@ -1282,14 +1282,14 @@ ret:
          if(System.file().exists(strPath, papp))
             return strPath;
          if(papp->m_psession != NULL && papp->m_psession != papp &&
-            (sp(::application)) papp->m_psystem != (sp(::application)) papp)
+            (sp(base_application)) papp->m_psystem != (sp(base_application)) papp)
          {
             strPath = matter(papp->m_psession, str, str2);
             if(System.file().exists(strPath, papp))
                return strPath;
          }
          if(papp->m_psystem != NULL && papp->m_psystem != papp &&
-            (sp(::application)) papp->m_psystem != (sp(::application)) papp->m_psession)
+            (sp(base_application)) papp->m_psystem != (sp(base_application)) papp->m_psession)
          {
             strPath = matter(papp->m_psystem, str, str2);
             if(System.file().exists(strPath, papp))

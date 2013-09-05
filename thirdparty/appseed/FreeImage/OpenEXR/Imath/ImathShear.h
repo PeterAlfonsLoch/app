@@ -48,8 +48,6 @@
 #include "ImathMath.h"
 #include "ImathVec.h"
 
-#include <iostream>
-
 
 namespace Imath {
 
@@ -203,8 +201,8 @@ template <class T> class Shear6
     // Limitations of type T (see also class limits<T>)
     //-------------------------------------------------
 
-    static T		baseTypeMin()		{return limits<T>::min();}
-    static T		baseTypeMax()		{return limits<T>::max();}
+    static T		baseTypeMin()		{return limits<T>::minimum();}
+    static T		baseTypeMax()		{return limits<T>::maximum();}
     static T		baseTypeSmallest()	{return limits<T>::smallest();}
     static T		baseTypeEpsilon()	{return limits<T>::epsilon();}
 
@@ -224,7 +222,7 @@ template <class T> class Shear6
 //--------------
 
 template <class T>
-std::ostream &	operator << (std::ostream &s, const Shear6<T> &h);
+::file::output_stream &	operator << (::file::output_stream &s, const Shear6<T> &h);
 
 
 //----------------------------------------------------
@@ -631,8 +629,8 @@ Shear6<T>::operator / (T a) const
 //-----------------------------
 
 template <class T>
-std::ostream &
-operator << (std::ostream &s, const Shear6<T> &h)
+::file::output_stream &
+operator << (::file::output_stream &s, const Shear6<T> &h)
 {
     return s << '(' 
 	     << h.xy << ' ' << h.xz << ' ' << h.yz 

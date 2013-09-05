@@ -46,7 +46,7 @@ namespace ca2
 
 
 
-   reader * create_limited_input_stream(byte_input_stream *inStream, uint64_t pos, uint64_t size)
+   reader * create_limited_input_stream(input_stream *inStream, uint64_t pos, uint64_t size)
    {
       limited_input_stream *streamSpec = new limited_input_stream;
       streamSpec->SetStream(inStream);

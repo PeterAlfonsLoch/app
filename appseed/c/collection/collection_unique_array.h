@@ -1,14 +1,14 @@
 #pragma once
 
-template < class TYPE >
+template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_ARRAY = lemon_array < typename TYPE, ARG_TYPE >, class COMPARE = ::comparison::less < TYPE, ARG_TYPE > >
 class unique_sort_array :
-   protected array < typename TYPE >
+   protected BASE_ARRAY
 {
 public:
    unique_sort_array(sp(base_application) papp = NULL);
    unique_sort_array(const unique_sort_array & array);
 
-   virtual index add(TYPE newElement)
+   virtual index add(ARG_TYPE newElement)
    {
       index iFind = 0;
       if(find(newElement, iFind))
@@ -22,42 +22,59 @@ public:
       }
    }
 
-   bool find(const TYPE &t, index & find) const
+   bool find(ARG_TYPE t, index & find) const
    {
       index iL = find;
       index iU = get_upper_bound();
       while(iU - iL > 5)
       {
          find = (iL + iU) / 2;
-         TYPE tCmp = t - this->element_at(find);
-         if(tCmp == (TYPE) 0)
+         if(COMPARE::compare(t, this->element_at(find)))
          {
-            return true;
+            iU = find - 1;
          }
-         else if(tCmp > (TYPE) 0)
+         else if(COMPARE::compare(this->element_at(find), t))
          {
             iL = find + 1;
          }
          else
          {
-            iU = find - 1;
+            return true;
+         }
+      }
+      for(; find >= 0; find--)
+      {
+         if(COMPARE::compare(this->element_at(find), t))
+         {
+            break;
          }
       }
       for(; find < this->get_size(); find++)
       {
-         TYPE tCmp = t - this->element_at(find);
-         if(tCmp == (TYPE) 0)
-         {
-            return true;
-         }
-         else if(tCmp < (TYPE) 0)
+         if(COMPARE::compare(t, this->element_at(find)))
          {
             return false;
+         }
+         else if(COMPARE::compare(this->element_at(find), t))
+         {
+         }
+         else
+         {
+            return true;
          }
       }
       return false;
    }
 
+   void clear()
+   {
+      BASE_ARRAY::clear();
+   }
+
+   void remove_all()
+   {
+      BASE_ARRAY::remove_all();
+   }
 
 };
 

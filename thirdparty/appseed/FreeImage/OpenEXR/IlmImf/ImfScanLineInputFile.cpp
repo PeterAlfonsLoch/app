@@ -47,11 +47,11 @@ namespace Imf {
 using Imath::Box2i;
 using Imath::divp;
 using Imath::modp;
-using std::string;
-using std::vector;
-using std::ifstream;
-using std::min;
-using std::max;
+using string;
+using array;
+using ::file::input_stream;
+using min;
+using max;
 using IlmThread::Mutex;
 using IlmThread::Lock;
 using IlmThread::Semaphore;

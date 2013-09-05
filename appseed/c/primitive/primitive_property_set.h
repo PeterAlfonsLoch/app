@@ -4,7 +4,7 @@
 // property set key is case insensitive
 class CLASS_DECL_c property_set :
    public object,
-   public ::file::byte_serializable
+   public ::file::serializable
 {
 public:
 
@@ -139,8 +139,8 @@ public:
    void parse_http_headers(const char * pszHeaders);
    string get_http_post();
 
-   virtual void write(::file::byte_output_stream & ostream);
-   virtual void read(::file::byte_input_stream & ostream);
+   virtual void write(::file::output_stream & ostream);
+   virtual void read(::file::input_stream & ostream);
 
    virtual string implode(const char * pszGlue) const;
    ::count get_count() const;

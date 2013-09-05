@@ -643,8 +643,8 @@ JPEGSetupDecode(TIFF* tif)
 
         JPEGInitializeLibJPEG( tif, 0, 1 );
 
-	assert(sp != NULL);
-	assert(sp->cinfo.comm.is_decompressor);
+	ASSERT(sp != NULL);
+	ASSERT(sp->cinfo.comm.is_decompressor);
 
 	/* Read JPEGTables if it is present */
 	if (TIFFFieldSet(tif,FIELD_JPEGTABLES)) {
@@ -688,8 +688,8 @@ JPEGPreDecode(TIFF* tif, tsample_t s)
 	int downsampled_output;
 	int ci;
 
-	assert(sp != NULL);
-	assert(sp->cinfo.comm.is_decompressor);
+	ASSERT(sp != NULL);
+	ASSERT(sp->cinfo.comm.is_decompressor);
 	/*
 	 * Reset decoder state from any previous strip/tile,
 	 * in case application didn't read the whole strip.
@@ -1175,8 +1175,8 @@ JPEGSetupEncode(TIFF* tif)
 
         JPEGInitializeLibJPEG( tif, 1, 0 );
 
-	assert(sp != NULL);
-	assert(!sp->cinfo.comm.is_decompressor);
+	ASSERT(sp != NULL);
+	ASSERT(!sp->cinfo.comm.is_decompressor);
 
 	/*
 	 * Initialize all JPEG parameters to default values.
@@ -1309,8 +1309,8 @@ JPEGPreEncode(TIFF* tif, tsample_t s)
 	uint32 segment_width, segment_height;
 	int downsampled_input;
 
-	assert(sp != NULL);
-	assert(!sp->cinfo.comm.is_decompressor);
+	ASSERT(sp != NULL);
+	ASSERT(!sp->cinfo.comm.is_decompressor);
 	/*
 	 * Set encoding parameters for this strip/tile.
 	 */
@@ -1436,7 +1436,7 @@ JPEGEncode(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
 	JSAMPROW bufptr[1];
 
 	(void) s;
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 	/* data is expected to be supplied in multiples of a scanline */
 	nrows = cc / sp->bytesperline;
 	if (cc % sp->bytesperline)
@@ -1475,7 +1475,7 @@ JPEGEncodeRaw(TIFF* tif, tidata_t buf, tsize_t cc, tsample_t s)
 	tsize_t bytesperclumpline;
 
 	(void) s;
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 	/* data is expected to be supplied in multiples of a clumpline */
 	/* a clumpline is equivalent to v_sampling desubsampled scanlines */
 	/* TODO: the following calculation of bytesperclumpline, should substitute calculation of sp->bytesperline, except that it is per v_sampling lines */
@@ -1585,7 +1585,7 @@ JPEGCleanup(TIFF* tif)
 {
 	JPEGState *sp = JState(tif);
 	
-	assert(sp != 0);
+	ASSERT(sp != 0);
 
 	tif->tif_tagmethods.vgetfield = sp->vgetparent;
 	tif->tif_tagmethods.vsetfield = sp->vsetparent;
@@ -1644,7 +1644,7 @@ JPEGVSetField(TIFF* tif, ttag_t tag, va_list ap)
 	const TIFFFieldInfo* fip;
 	uint32 v32;
 
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 
 	switch (tag) {
 	case TIFFTAG_JPEGTABLES:
@@ -1785,7 +1785,7 @@ JPEGVGetField(TIFF* tif, ttag_t tag, va_list ap)
 {
 	JPEGState* sp = JState(tif);
 
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 
 	switch (tag) {
 		case TIFFTAG_JPEGTABLES:
@@ -1827,7 +1827,7 @@ JPEGPrintDir(TIFF* tif, FILE* fd, long flags)
 {
 	JPEGState* sp = JState(tif);
 
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 
 	(void) flags;
 	if (TIFFFieldSet(tif,FIELD_JPEGTABLES))
@@ -1961,7 +1961,7 @@ TIFFInitJPEG(TIFF* tif, int scheme)
 {
 	JPEGState* sp;
 
-	assert(scheme == COMPRESSION_JPEG);
+	ASSERT(scheme == COMPRESSION_JPEG);
 
 	/*
 	 * Merge codec-specific tag information.

@@ -233,9 +233,9 @@ namespace filemanager
       string wstrItemExtra;
 
       int32_t iFind;
-      ::ca2::filesp spfile(allocer());
+      ::file::filesp spfile(allocer());
 
-      //spfile->open(szPath, ::file::file::mode_read | ::file::file::type_binary);
+      //spfile->open(szPath, ::file::mode_read | ::file::type_binary);
 
       array < ::primitive::memory_file, ::primitive::memory_file & > filea;
       _vmszipFile zipfile;

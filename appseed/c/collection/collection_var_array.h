@@ -4,7 +4,7 @@
 
 
 class CLASS_DECL_c var_array : 
-   public ::file::byte_serializable_array < array < var > >
+   public ::file::serializable_array < array < var > >
 {
 public:
 

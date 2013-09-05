@@ -397,7 +397,7 @@ int psdICCProfile::Read(FreeImageIO *io, fi_handle handle, int size) {
 	
 	clear();
 	
-	_ProfileData = new (std::nothrow) BYTE[size];
+	_ProfileData = new BYTE[size];
 	if(NULL != _ProfileData) {
 		n = (int)io->read_proc(_ProfileData, 1, size, handle);
 		_ProfileSize = size;
@@ -795,7 +795,7 @@ FIBITMAP* psdParser::ReadImageData(FreeImageIO *io, fi_handle handle) {
 			// store an array of these
 
 			// later use this array as WORD rleLineSizeList[nChannels][nHeight];
-			WORD *rleLineSizeList = new (std::nothrow) WORD[nChannels*nHeight];
+			WORD *rleLineSizeList = new WORD[nChannels*nHeight];
 
 			if(!rleLineSizeList) {
 				FreeImage_Unload(bitmap);
@@ -819,7 +819,7 @@ FIBITMAP* psdParser::ReadImageData(FreeImageIO *io, fi_handle handle) {
 				}
 			}
 
-			BYTE* rle_line_start = new (std::nothrow) BYTE[largestRLELine];
+			BYTE* rle_line_start = new BYTE[largestRLELine];
 			if(!rle_line_start) {
 				FreeImage_Unload(bitmap);
 				SAFE_DELETE_ARRAY(line_start);
@@ -858,7 +858,7 @@ FIBITMAP* psdParser::ReadImageData(FreeImageIO *io, fi_handle handle) {
 							
 							++len;
 							
-							// assert we don't write beyound eol
+							// ASSERT we don't write beyound eol
 							memcpy(line, rle_line, line + len > line_end ? line_end - line : len);
 							line += len;
 							rle_line += len;
@@ -872,7 +872,7 @@ FIBITMAP* psdParser::ReadImageData(FreeImageIO *io, fi_handle handle) {
 							len ^= 0xFF; // same as (-len + 1) & 0xFF 
 							len += 2;    //
 
-							// assert we don't write beyound eol
+							// ASSERT we don't write beyound eol
 							memset(line, *rle_line++, line + len > line_end ? line_end - line : len);							
 							line += len;
 

@@ -217,15 +217,6 @@ namespace ca2
    };
 
 
-   class CLASS_DECL_ca2 thread_state
-   {
-   public:
-
-
-      //heap_item_array                     m_heapitema;
-
-
-   };
 
 
    class thread;
@@ -263,7 +254,7 @@ namespace ca2
       uint_ptr                            m_dwAlive;
       bool                                m_bReady;
       int32_t                             m_iReturnCode;
-      sp(::application)                 m_pappDelete;
+      sp(base_application)                 m_pappDelete;
       sp(::user::interaction)             m_puiMain;           // main window (usually same System.GetMainWnd())
       sp(::user::interaction)             m_puiActive;         // active main window (may not be GetMainWnd())
       bool *                              m_pbReady;
@@ -547,15 +538,6 @@ namespace ca2
 
 
 
-   CLASS_DECL_ca2 thread * get_thread();
-   CLASS_DECL_ca2 thread_state * get_thread_state();
-
-
-   typedef thread * (* PFN_get_thread)();
-   typedef thread_state * (* PFN_get_thread_state)();
-
-   extern CLASS_DECL_ca2 PFN_get_thread g_pfn_get_thread;
-   extern CLASS_DECL_ca2 PFN_get_thread_state g_pfn_get_thread_state;
 
 
 

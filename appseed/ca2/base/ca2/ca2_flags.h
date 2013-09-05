@@ -3,7 +3,7 @@
 typedef sort_array < int_ptr, int_ptr, array < int_ptr, int_ptr >, &numeric_compare < int_ptr > > sort_int_ptr_array;
 
 class CLASS_DECL_ca2 base_sort_serializable_int_ptr_array :
-   virtual public ::file::byte_serializable_array < sort_int_ptr_array >
+   virtual public ::file::serializable_array < sort_int_ptr_array >
 {
 
 

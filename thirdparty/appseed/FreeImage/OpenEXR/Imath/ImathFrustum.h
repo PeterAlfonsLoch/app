@@ -348,7 +348,7 @@ T Frustum<T>::aspect() const
     T topMinusBottom = _top-_bottom;
 
     if (abs(topMinusBottom) < 1 &&
-	abs(rightMinusLeft) > limits<T>::max() * abs(topMinusBottom))
+	abs(rightMinusLeft) > limits<T>::maximum() * abs(topMinusBottom))
     {
 	throw Iex::DivzeroExc ("Bad viewing frustum: "
 			       "aspect ratio cannot be computed.");
@@ -370,11 +370,11 @@ Matrix44<T> Frustum<T>::projectionMatrix() const
     T farMinusNear   = _far-_near;
 
     if ((abs(rightMinusLeft) < 1 &&
-	 abs(rightPlusLeft) > limits<T>::max() * abs(rightMinusLeft)) ||
+	 abs(rightPlusLeft) > limits<T>::maximum() * abs(rightMinusLeft)) ||
 	(abs(topMinusBottom) < 1 &&
-	 abs(topPlusBottom) > limits<T>::max() * abs(topMinusBottom)) ||
+	 abs(topPlusBottom) > limits<T>::maximum() * abs(topMinusBottom)) ||
 	(abs(farMinusNear) < 1 &&
-	 abs(farPlusNear) > limits<T>::max() * abs(farMinusNear)))
+	 abs(farPlusNear) > limits<T>::maximum() * abs(farMinusNear)))
     {
 	throw Iex::DivzeroExc ("Bad viewing frustum: "
 			       "projection matrix cannot be computed.");
@@ -387,11 +387,11 @@ Matrix44<T> Frustum<T>::projectionMatrix() const
 	T tz = -farPlusNear   / farMinusNear;
 
 	if ((abs(rightMinusLeft) < 1 &&
-	     2 > limits<T>::max() * abs(rightMinusLeft)) ||
+	     2 > limits<T>::maximum() * abs(rightMinusLeft)) ||
 	    (abs(topMinusBottom) < 1 &&
-	     2 > limits<T>::max() * abs(topMinusBottom)) ||
+	     2 > limits<T>::maximum() * abs(topMinusBottom)) ||
 	    (abs(farMinusNear) < 1 &&
-	     2 > limits<T>::max() * abs(farMinusNear)))
+	     2 > limits<T>::maximum() * abs(farMinusNear)))
 	{
 	    throw Iex::DivzeroExc ("Bad viewing frustum: "
 				   "projection matrix cannot be computed.");
@@ -414,7 +414,7 @@ Matrix44<T> Frustum<T>::projectionMatrix() const
 
 	T farTimesNear = -2 * _far * _near;
 	if (abs(farMinusNear) < 1 &&
-	    abs(farTimesNear) > limits<T>::max() * abs(farMinusNear))
+	    abs(farTimesNear) > limits<T>::maximum() * abs(farMinusNear))
 	{
 	    throw Iex::DivzeroExc ("Bad viewing frustum: "
 				   "projection matrix cannot be computed.");
@@ -425,9 +425,9 @@ Matrix44<T> Frustum<T>::projectionMatrix() const
 	T twoTimesNear = 2 * _near;
 
 	if ((abs(rightMinusLeft) < 1 &&
-	     abs(twoTimesNear) > limits<T>::max() * abs(rightMinusLeft)) ||
+	     abs(twoTimesNear) > limits<T>::maximum() * abs(rightMinusLeft)) ||
 	    (abs(topMinusBottom) < 1 &&
-	     abs(twoTimesNear) > limits<T>::max() * abs(topMinusBottom)))
+	     abs(twoTimesNear) > limits<T>::maximum() * abs(topMinusBottom)))
 	{
 	    throw Iex::DivzeroExc ("Bad viewing frustum: "
 				   "projection matrix cannot be computed.");
@@ -471,9 +471,9 @@ Vec2<T> Frustum<T>::localToScreen(const Vec2<T> &p) const
     T bottomMinusTop = _bottom-_top;
 
     if ((abs(leftMinusRight) < 1 &&
-	 abs(leftPlusRight) > limits<T>::max() * abs(leftMinusRight)) ||
+	 abs(leftPlusRight) > limits<T>::maximum() * abs(leftMinusRight)) ||
 	(abs(bottomMinusTop) < 1 &&
-	 abs(bottomPlusTop) > limits<T>::max() * abs(bottomMinusTop)))
+	 abs(bottomPlusTop) > limits<T>::maximum() * abs(bottomMinusTop)))
     {
 	throw Iex::DivzeroExc
 	    ("Bad viewing frustum: "
@@ -537,7 +537,7 @@ T Frustum<T>::normalizedZToDepth(T zval) const
 	T farMinusNear = Zp * (_far - _near) - _far - _near;
 
 	if (abs(farMinusNear) < 1 &&
-	    abs(farTimesNear) > limits<T>::max() * abs(farMinusNear))
+	    abs(farTimesNear) > limits<T>::maximum() * abs(farMinusNear))
 	{
 	    throw Iex::DivzeroExc
 		("Frustum::normalizedZToDepth cannot be computed.  The "
@@ -560,7 +560,7 @@ long Frustum<T>::DepthToZ(T depth,long zmin,long zmax) const
 	T farPlusNear = 2*depth + _far + _near;
 
 	if (abs(farMinusNear) < 1 &&
-	    abs(farPlusNear) > limits<T>::max() * abs(farMinusNear))
+	    abs(farPlusNear) > limits<T>::maximum() * abs(farMinusNear))
 	{
 	    throw Iex::DivzeroExc
 		("Bad viewing frustum: near and far clipping planes "
@@ -576,7 +576,7 @@ long Frustum<T>::DepthToZ(T depth,long zmin,long zmax) const
 
 	T farTimesNear = 2*_far*_near;
 	if (abs(depth) < 1 &&
-	    abs(farTimesNear) > limits<T>::max() * abs(depth))
+	    abs(farTimesNear) > limits<T>::maximum() * abs(depth))
 	{
 	    throw Iex::DivzeroExc
 		("Bad call to DepthToZ function: value of `depth' "
@@ -585,7 +585,7 @@ long Frustum<T>::DepthToZ(T depth,long zmin,long zmax) const
 
 	T farPlusNear = farTimesNear/depth + _far + _near;
 	if (abs(farMinusNear) < 1 &&
-	    abs(farPlusNear) > limits<T>::max() * abs(farMinusNear))
+	    abs(farPlusNear) > limits<T>::maximum() * abs(farMinusNear))
 	{
 	    throw Iex::DivzeroExc
 		("Bad viewing frustum: near and far clipping planes "
@@ -610,7 +610,7 @@ T Frustum<T>::screenRadius(const Vec3<T> &p, T radius) const
     // A similar analysis holds in the Y-Z plane.
     // So r is the quantity we want to return.
 
-    if (abs(p.z) > 1 || abs(-_near) < limits<T>::max() * abs(p.z))
+    if (abs(p.z) > 1 || abs(-_near) < limits<T>::maximum() * abs(p.z))
     {
 	return radius * (-_near / p.z);
     }
@@ -627,7 +627,7 @@ T Frustum<T>::screenRadius(const Vec3<T> &p, T radius) const
 template<class T>
 T Frustum<T>::worldRadius(const Vec3<T> &p, T radius) const
 {
-    if (abs(-_near) > 1 || abs(p.z) < limits<T>::max() * abs(-_near))
+    if (abs(-_near) > 1 || abs(p.z) < limits<T>::maximum() * abs(-_near))
     {
 	return radius * (p.z / -_near);
     }

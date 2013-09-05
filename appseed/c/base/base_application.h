@@ -34,19 +34,21 @@ public:
 
 
 class CLASS_DECL_c base_application :
-   virtual public thread_base
+   virtual public base_thread
 {
 public:
 
 
    signal *                                        m_psignal;
-   class system *                                  m_pcasystem;
+   base_system *                                   m_pcasystem;
    string                                          m_strAppName;
    sp(command_thread)                              m_pcommandthread;
+   allocatorsp                                     m_allocer;
 
 
-   application();
-   virtual ~application();
+
+   base_application();
+   virtual ~base_application();
 
 
    virtual sp(element) alloc(sp(type) info);
@@ -71,6 +73,8 @@ public:
    virtual string file_title(const char * psz);
    virtual string file_name(const char * psz);
 
+   ::file::filesp file_get_file(var varFile, uint32_t uiFlags);
+
 
    // Wall-eeeeee aliases
    sp(command_thread) command_central();
@@ -88,3 +92,9 @@ public:
 
 
 };
+
+
+inline allocatorsp element::allocer()
+{
+   return m_pcaapp->m_allocer;
+}

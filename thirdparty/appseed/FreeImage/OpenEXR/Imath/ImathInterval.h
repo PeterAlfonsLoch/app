@@ -152,8 +152,8 @@ template <class T>
 inline void
 Interval<T>::makeEmpty()
 {
-    min = limits<T>::max();
-    max = limits<T>::min();
+    min = limits<T>::maximum();
+    max = limits<T>::minimum();
 }
 
 template <class T>

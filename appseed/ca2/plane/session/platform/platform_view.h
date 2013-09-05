@@ -23,7 +23,7 @@ namespace platform
          string                  m_strApp;
          string                  m_strQuery;
          sp(view)                  m_pview;
-         sp(::application)     m_papp;
+         sp(base_application)     m_papp;
          bool                    m_bMakeVisible;
       };
 

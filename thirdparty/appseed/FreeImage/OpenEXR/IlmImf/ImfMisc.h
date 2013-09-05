@@ -44,7 +44,7 @@
 //-----------------------------------------------------------------------------
 
 #include <ImfPixelType.h>
-#include <vector>
+
 #include <ImfCompressor.h>
 
 namespace Imf {
@@ -78,7 +78,7 @@ int	numSamples (int s, int a, int b);
 //
 
 size_t	bytesPerLineTable (const Header &header,
-		           std::vector<size_t> &bytesPerLine);
+		           array<size_t> &bytesPerLine);
 
 //
 // For scanline-based files, pixels are read or written in
@@ -90,9 +90,9 @@ size_t	bytesPerLineTable (const Header &header,
 // relative to the beginning of the line buffer.
 //
 
-void	offsetInLineBufferTable (const std::vector<size_t> &bytesPerLine,
+void	offsetInLineBufferTable (const array<size_t> &bytesPerLine,
 				 int linesInLineBuffer,
-				 std::vector<size_t> &offsetInLineBuffer);
+				 array<size_t> &offsetInLineBuffer);
 
 //
 // For a scanline-based file, compute the range of scanlines

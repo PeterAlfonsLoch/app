@@ -277,8 +277,8 @@ namespace sockets
                "\r\n";
             Send( tmp );
             {
-               ::ca2::filesp file(get_app());
-               if(file->open(filename, ::file::file::type_binary | ::file::file::mode_read))
+               ::file::filesp file(get_app());
+               if(file->open(filename, ::file::type_binary | ::file::mode_read))
                {
                   primitive::memory mem;
                   mem.FullLoad(file);

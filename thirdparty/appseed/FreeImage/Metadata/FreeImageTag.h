@@ -321,8 +321,8 @@ public:
 
 private:
 
-	typedef simple_map<WORD, TagInfo*> TAGINFO;
-	typedef simple_map<int, TAGINFO*>  TABLEMAP;
+	typedef map < WORD, WORD, TagInfo *, TagInfo * > TAGINFO;
+	typedef map < int , int , TAGINFO *, TAGINFO * > TABLEMAP;
 
 	/// store hash tables for all known tag info tables
 	TABLEMAP _table_map;

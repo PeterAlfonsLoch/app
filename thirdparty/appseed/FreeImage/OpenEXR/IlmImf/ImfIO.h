@@ -139,7 +139,7 @@ class IStream
     IStream (const IStream &);			// not implemented
     IStream & operator = (const IStream &);	// not implemented
 
-    std::string		_fileName;
+    string		_fileName;
 };
 
 
@@ -202,7 +202,7 @@ class OStream
     OStream (const OStream &);			// not implemented
     OStream & operator = (const OStream &);	// not implemented
 
-    std::string		_fileName;
+    string		_fileName;
 };
 
 

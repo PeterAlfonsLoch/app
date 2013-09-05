@@ -100,10 +100,10 @@ void TIFFSetClientInfo( TIFF *tif, void *data, const char *name )
     */
 
     link = (TIFFClientInfoLink *) _TIFFmalloc(sizeof(TIFFClientInfoLink));
-    assert (link != NULL);
+    ASSERT (link != NULL);
     link->next = tif->tif_clientinfo;
     link->name = (char *) _TIFFmalloc((tsize_t) (strlen(name)+1));
-    assert (link->name != NULL);
+    ASSERT (link->name != NULL);
     strcpy(link->name, name);
     link->data = data;
 

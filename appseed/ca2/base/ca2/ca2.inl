@@ -37,14 +37,14 @@ _AFX_INLINE CArchiveException::~CArchiveException()
 _AFX_INLINE ::ca2::file_exception_sp::~::ca2::file_exception_sp()
    { }
 
-// ::ca2::filesp
-_AFX_INLINE ::ca2::filesp::operator HANDLE() const
+// ::file::filesp
+_AFX_INLINE ::file::filesp::operator HANDLE() const
    { return m_hFile; }
-_AFX_INLINE ULONGLONG ::ca2::filesp::SeekToEnd()
-   { return seek(0, ::ca2::filesp::end); }
-_AFX_INLINE void ::ca2::filesp::seek_to_begin()
-   { seek(0, ::ca2::filesp::begin); }
-_AFX_INLINE void ::ca2::filesp::SetFilePath(LPCTSTR lpszNewName)
+_AFX_INLINE ULONGLONG ::file::filesp::SeekToEnd()
+   { return seek(0, ::file::filesp::end); }
+_AFX_INLINE void ::file::filesp::seek_to_begin()
+   { seek(0, ::file::filesp::begin); }
+_AFX_INLINE void ::file::filesp::SetFilePath(LPCTSTR lpszNewName)
 {
    ASSERT_VALID(this);
    ASSERT(AfxIsValidString(lpszNewName));

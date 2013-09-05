@@ -389,7 +389,7 @@ bool handler::IsEncrypted(uint32_t index1) const
   return S_OK;
 }
 
-::ca2::HRes handler::Open(::file::byte_input_stream *stream,
+::ca2::HRes handler::Open(::file::input_stream *stream,
     const file_position *maxCheckStartPosition,
     ::libcompress::archive_open_callback_interface *openArchiveCallback)
 {

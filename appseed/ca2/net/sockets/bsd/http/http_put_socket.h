@@ -46,7 +46,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          string            m_filename;
          //string            m_content_type;
          //long              m_content_length;
-         ::ca2::filesp     m_file;
+         ::file::filesp     m_file;
 
 
          http_put_socket(socket_handler_base&);

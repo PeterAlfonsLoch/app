@@ -141,7 +141,7 @@ namespace fs
       }
    }
 
-   ::ca2::filesp data::get_file(var varFile, UINT nOpenFlags)
+   ::file::filesp data::get_file(var varFile, UINT nOpenFlags)
    {
       UNREFERENCED_PARAMETER(varFile);
       UNREFERENCED_PARAMETER(nOpenFlags);

@@ -58,7 +58,7 @@ namespace n7z
       virtual ::ca2::HRes SetProperties(const char **names, const var *values, int32_t numProperties);
 
    private:
-      smart_pointer < ::file::byte_input_stream > _inStream;
+      smart_pointer < ::file::input_stream > _inStream;
       n7z::CArchiveDatabaseEx _db;
       //#ifndef _NO_CRYPTO
       bool _passwordIsDefined;

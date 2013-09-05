@@ -13,7 +13,7 @@ namespace ca2
    public:
 
 
-      sp(::application)     m_papp;
+      sp(base_application)     m_papp;
       const char * const      m_pszFileName;
       const int32_t               m_nLineNo;
       string                  m_str;
@@ -38,12 +38,12 @@ namespace ca2
       {
       }
 
-      inline sp(::application) get_app() const
+      inline sp(base_application) get_app() const
       {
          return m_papp;
       }
 
-      inline sp(::application) get_app()
+      inline sp(base_application) get_app()
       {
          return m_papp;
       }

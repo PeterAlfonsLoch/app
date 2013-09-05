@@ -90,7 +90,7 @@ ZIPSetupDecode(TIFF* tif)
 	ZIPState* sp = DecoderState(tif);
 	static const char module[] = "ZIPSetupDecode";
 
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 
         /* if we were last encoding, terminate this mode */
 	if (sp->state & ZSTATE_INIT_ENCODE) {
@@ -116,7 +116,7 @@ ZIPPreDecode(TIFF* tif, tsample_t s)
 	ZIPState* sp = DecoderState(tif);
 
 	(void) s;
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 
         if( (sp->state & ZSTATE_INIT_DECODE) == 0 )
             tif->tif_setupdecode( tif );
@@ -133,8 +133,8 @@ ZIPDecode(TIFF* tif, tidata_t op, tsize_t occ, tsample_t s)
 	static const char module[] = "ZIPDecode";
 
 	(void) s;
-	assert(sp != NULL);
-        assert(sp->state == ZSTATE_INIT_DECODE);
+	ASSERT(sp != NULL);
+        ASSERT(sp->state == ZSTATE_INIT_DECODE);
 
 	sp->stream.next_out = op;
 	sp->stream.avail_out = occ;
@@ -171,7 +171,7 @@ ZIPSetupEncode(TIFF* tif)
 	ZIPState* sp = EncoderState(tif);
 	static const char module[] = "ZIPSetupEncode";
 
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 	if (sp->state & ZSTATE_INIT_DECODE) {
             inflateEnd(&sp->stream);
             sp->state = 0;
@@ -195,7 +195,7 @@ ZIPPreEncode(TIFF* tif, tsample_t s)
 	ZIPState *sp = EncoderState(tif);
 
 	(void) s;
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
         if( sp->state != ZSTATE_INIT_ENCODE )
             tif->tif_setupencode( tif );
 
@@ -213,8 +213,8 @@ ZIPEncode(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 	ZIPState *sp = EncoderState(tif);
 	static const char module[] = "ZIPEncode";
 
-        assert(sp != NULL);
-        assert(sp->state == ZSTATE_INIT_ENCODE);
+        ASSERT(sp != NULL);
+        ASSERT(sp->state == ZSTATE_INIT_ENCODE);
 
 	(void) s;
 	sp->stream.next_in = bp;
@@ -275,7 +275,7 @@ ZIPCleanup(TIFF* tif)
 {
 	ZIPState* sp = ZState(tif);
 
-	assert(sp != 0);
+	ASSERT(sp != 0);
 
 	(void)TIFFPredictorCleanup(tif);
 
@@ -345,7 +345,7 @@ TIFFInitZIP(TIFF* tif, int scheme)
 	static const char module[] = "TIFFInitZIP";
 	ZIPState* sp;
 
-	assert( (scheme == COMPRESSION_DEFLATE)
+	ASSERT( (scheme == COMPRESSION_DEFLATE)
 		|| (scheme == COMPRESSION_ADOBE_DEFLATE));
 
 	/*

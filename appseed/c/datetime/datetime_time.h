@@ -391,8 +391,14 @@ namespace datetime
 
 
 
-dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time);
-dump_context & operator <<(dump_context & dumpcontext, ::datetime::time_span time);
+CLASS_DECL_c dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time);
+CLASS_DECL_c dump_context & operator <<(dump_context & dumpcontext, ::datetime::time_span time);
+
+CLASS_DECL_c ::file::output_stream & operator <<(::file::output_stream & os, ::datetime::time time);
+CLASS_DECL_c ::file::input_stream & operator >>(::file::input_stream & is, ::datetime::time & time);
+CLASS_DECL_c ::file::output_stream & operator <<(::file::output_stream & os, ::datetime::time_span span);
+CLASS_DECL_c ::file::input_stream & operator >>(::file::input_stream & is, ::datetime::time_span & span);
+
 
 inline CLASS_DECL_c ::datetime::time_span operator - (const duration & duration, const ::datetime::time & time)
 {

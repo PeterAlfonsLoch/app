@@ -1037,7 +1037,7 @@ vsstring _tagXMLAttr::GetXML( LPDISP_OPT opt /*= poptDefault*/ )
 {
    if(opt == NULL)
       opt = poptDefault;
-//	std::ostringstream os;
+//	::file::plain_text_output_stream os;
 //	//os << (LPCSTR)name << "='" << (LPCSTR)value << "' ";
 
 //	os << (LPCSTR)name << L"=" << (CHAR)opt->value_quotation_mark

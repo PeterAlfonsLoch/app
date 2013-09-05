@@ -631,8 +631,8 @@ namespace dynamic_source
 
    void script_compiler::cppize1(ds_script * pscript)
    {
-      /*::ca2::filesp spfile(allocer());
-      if(!spfile->open(pscript->m_strSourcePath, ::file::file::type_binary | ::file::file::mode_read | ::file::file::shareDenyNone))
+      /*::file::filesp spfile(allocer());
+      if(!spfile->open(pscript->m_strSourcePath, ::file::type_binary | ::file::mode_read | ::file::file::shareDenyNone))
       return;
 
       primitive::memory memstorage;

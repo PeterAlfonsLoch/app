@@ -109,12 +109,12 @@ namespace fs
    }
 
 
-   ::ca2::filesp native::get_file(var varFile, UINT nOpenFlags)
+   ::file::filesp native::get_file(var varFile, UINT nOpenFlags)
    {
 
-      ::ca2::filesp spfile(allocer());
+      ::file::filesp spfile(allocer());
 
-      // ::file::file::mode_read | ::file::file::shareDenyNone | ::file::file::type_binary
+      // ::file::mode_read | ::file::file::shareDenyNone | ::file::type_binary
       if(!spfile->open(varFile.get_string(), nOpenFlags))
       {
 

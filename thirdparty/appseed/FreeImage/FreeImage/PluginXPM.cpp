@@ -65,7 +65,7 @@ ReadString(FreeImageIO *io, fi_handle handle) {
 	if( !FindChar(io, handle,'"') )
 		return NULL;
 	BYTE c;
-	std::string s;
+	string s;
 	io->read_proc(&c, sizeof(BYTE), 1, handle);
 	while(c != '"') {
 		s += c;
@@ -188,7 +188,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		}
 
 		//build a map of color chars to rgb values
-		std::map<std::string,FILE_RGBA> rawpal; //will store index in Alpha if 8bpp
+		string_map<FILE_RGBA> rawpal; //will store index in Alpha if 8bpp
 		for(int i = 0; i < colors; i++ ) {
 			FILE_RGBA rgba;
 
@@ -196,7 +196,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			if(!str)
 				throw "Error reading color strings";
 
-			std::string chrs(str,cpp); //create a string for the color chars using the first cpp chars
+			string chrs(str,cpp); //create a string for the color chars using the first cpp chars
 			char *keys = str + cpp; //the color keys for these chars start after the first cpp chars
 
 			//translate all the tabs to spaces
@@ -314,7 +314,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 			for(int x = 0; x < width; x++ ) {
 				//locate the chars in the color map
-				std::string chrs(pixel_ptr,cpp);
+				string chrs(pixel_ptr,cpp);
 				FILE_RGBA rgba = rawpal[chrs];
 
 				if( colors > 256 ) {
@@ -363,13 +363,13 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		int x,y;
 
 		//map base92 chrs to the rgb value to create the palette
-		std::map<DWORD,FILE_RGB> chrs2color;
+		map < DWORD, DWORD, FILE_RGB, FILE_RGB> chrs2color;
 		//map 8bpp index or 24bpp rgb value to the base92 chrs to create pixel data
 		typedef union {
 			DWORD index;
 			FILE_RGBA rgba;
 		} DWORDRGBA;
-		std::map<DWORD,std::string> color2chrs;
+		map < DWORD, DWORD, string, string> color2chrs;
 
 		//loop thru entire dib, if new color, inc num_colors and add to both maps
 		int num_colors = 0;
@@ -392,7 +392,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 					line++;
 				}
 				if( color2chrs.find(u.index) == color2chrs.end() ) { //new color
-					std::string chrs(Base92(num_colors));
+					string chrs(Base92(num_colors));
 					color2chrs[u.index] = chrs;
 					chrs2color[num_colors] = rgb;
 					num_colors++;

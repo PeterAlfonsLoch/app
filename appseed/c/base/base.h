@@ -49,9 +49,14 @@
 
 #include "c/datetime/datetime_c.h"
 
+
 #ifdef __cplusplus
 
+
+#include "base_c.h"
 #include "base_c_cpp.h"
+
+
 
 #elif defined(__OBJC__)
 

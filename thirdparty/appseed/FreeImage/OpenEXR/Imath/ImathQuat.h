@@ -58,8 +58,6 @@
 #include "ImathExc.h"
 #include "ImathMatrix.h"
 
-#include <iostream>
-
 namespace Imath {
 
 #if (defined _WIN32 || defined _WIN64) && defined _MSC_VER
@@ -180,7 +178,7 @@ template<class T>
 Matrix33<T>		operator * (const Quat<T> &q, const Matrix33<T> &M);
 
 template<class T>
-std::ostream &		operator << (std::ostream &o, const Quat<T> &q);
+::file::output_stream &		operator << (::file::output_stream &o, const Quat<T> &q);
 
 template<class T>
 Quat<T>			operator * (const Quat<T> &q1, const Quat<T> &q2);
@@ -629,7 +627,7 @@ Quat<T>::log () const
     // Rendering Techniques by Watt and Watt, Page 366:
     //
 
-    T theta = Math<T>::acos (std::min (r, (T) 1.0));
+    T theta = Math<T>::acos (min (r, (T) 1.0));
 
     if (theta == 0)
 	return Quat<T> (0, v);
@@ -637,7 +635,7 @@ Quat<T>::log () const
     T sintheta = Math<T>::sin (theta);
     
     T k;
-    if (abs (sintheta) < 1 && abs (theta) >= limits<T>::max() * abs (sintheta))
+    if (abs (sintheta) < 1 && abs (theta) >= limits<T>::maximum() * abs (sintheta))
 	k = 1;
     else
 	k = theta / sintheta;
@@ -660,7 +658,7 @@ Quat<T>::exp () const
     T sintheta = Math<T>::sin (theta);
     
     T k;
-    if (abs (theta) < 1 && abs (sintheta) >= limits<T>::max() * abs (theta))
+    if (abs (theta) < 1 && abs (sintheta) >= limits<T>::maximum() * abs (theta))
 	k = 1;
     else
 	k = sintheta / theta;
@@ -861,8 +859,8 @@ operator * (const Quat<T> &q, const Matrix33<T> &M)
 
 
 template<class T>
-std::ostream &
-operator << (std::ostream &o, const Quat<T> &q)
+::file::output_stream &
+operator << (::file::output_stream &o, const Quat<T> &q)
 {
     return o << "(" << q.r
 	     << " " << q.v.x

@@ -20,7 +20,7 @@ namespace simpledb
 
    void service::serve()
    {
-      sp(::application) pcaapp = get_app();
+      sp(base_application) pcaapp = get_app();
 
       Sys(pcaapp).set_thread(&Sys(pcaapp->m_psystem));
 

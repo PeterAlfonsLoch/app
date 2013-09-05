@@ -218,7 +218,7 @@ namespace database
       return false;
    }
 
-   bool client::data_set(class id id, class id idIndex, ::file::byte_serializable & obj, update_hint * puh)
+   bool client::data_set(class id id, class id idIndex, ::file::serializable & obj, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
@@ -229,7 +229,7 @@ namespace database
       return false;
    }
 
-   bool client::data_set(class id id, class id idIndex, ::file::byte_input_stream & istream, update_hint * puh)
+   bool client::data_set(class id id, class id idIndex, ::file::input_stream & istream, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
@@ -238,7 +238,7 @@ namespace database
       return false;
    }
 
-   bool client::data_set(class id id, class id idIndex, ::file::plain_text_serializable & obj, update_hint * puh)
+   bool client::data_set(class id id, class id idIndex, ::file::serializable & obj, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
@@ -334,7 +334,7 @@ namespace database
       return false;
    }
 
-   bool client::data_get(class id id, class id idIndex, ::file::byte_serializable & obj)
+   bool client::data_get(class id id, class id idIndex, ::file::serializable & obj)
    {
       if(m_pdataserver != NULL)
       {
@@ -345,7 +345,7 @@ namespace database
       return false;
    }
 
-   bool client::data_get(class id id, class id idIndex, ::file::byte_output_stream & ostream)
+   bool client::data_get(class id id, class id idIndex, ::file::output_stream & ostream)
    {
       if(m_pdataserver != NULL)
       {
@@ -356,7 +356,7 @@ namespace database
       return false;
    }
 
-   bool client::data_get(class id id, class id idIndex, ::file::plain_text_serializable & obj)
+   bool client::data_get(class id id, class id idIndex, ::file::serializable & obj)
    {
       if(m_pdataserver != NULL)
       {

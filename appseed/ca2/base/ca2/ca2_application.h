@@ -76,7 +76,7 @@ namespace ca2
 
  CLASS_DECL_ca2 UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-   typedef sp(::application) (* LPFN_instantiate_application)(sp(::application) pappParent, const char * pszId);
+   typedef sp(base_application) (* LPFN_instantiate_application)(sp(base_application) pappParent, const char * pszId);
 
    extern CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application;
 
@@ -445,7 +445,6 @@ namespace ca2
       rect                             m_rectScreen;
       bool                             m_bSessionSynchronizedScreen;
       sp(::user::interaction)          m_pwndMain;
-      allocatorsp                m_allocer;
 
 
       int32_t                          m_iResourceId;
@@ -1087,7 +1086,7 @@ namespace ca2
 
 //      sp(::user::document_interface) _001OpenDocumentFile(var varFile);
 
-      sp(::application) get_system();
+      sp(base_application) get_system();
 
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
@@ -1182,7 +1181,7 @@ namespace ca2
 
    // impl
    template < class APP >
-   sp(::application) single_application_library < APP > :: get_new_app(const char * pszAppId)
+   sp(base_application) single_application_library < APP > :: get_new_app(const char * pszAppId)
    {
 
       if(!contains_app(pszAppId))
@@ -1214,10 +1213,6 @@ namespace ca2
    }
 
 
-   inline allocatorsp ca2::allocer()
-   {
-      return m_papp->m_allocer;
-   }
 
 
 } // namespace ca2

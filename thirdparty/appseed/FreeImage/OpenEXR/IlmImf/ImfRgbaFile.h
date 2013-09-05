@@ -54,7 +54,6 @@
 #include "ImathBox.h"
 #include "half.h"
 #include <ImfThreading.h>
-#include <string>
 
 namespace Imf {
 
@@ -256,11 +255,11 @@ class RgbaInputFile
     //--------------------------------------------------------------
 
     RgbaInputFile (const char name[],
-		   const std::string &layerName,
+		   const string &layerName,
 		   int numThreads = globalThreadCount());
 
     RgbaInputFile (IStream &is,
-		   const std::string &layerName,
+		   const string &layerName,
 		   int numThreads = globalThreadCount());
 
 
@@ -291,7 +290,7 @@ class RgbaInputFile
     // called at least once before the next call to readPixels().
     //----------------------------------------------------------------
 
-    void			setLayerName (const std::string &layerName);
+    void			setLayerName (const string &layerName);
 
 
     //-------------------------------------------
@@ -335,7 +334,7 @@ class RgbaInputFile
 
     InputFile *			_inputFile;
     FromYca *			_fromYca;
-    std::string			_channelNamePrefix;
+    string			_channelNamePrefix;
 };
 
 

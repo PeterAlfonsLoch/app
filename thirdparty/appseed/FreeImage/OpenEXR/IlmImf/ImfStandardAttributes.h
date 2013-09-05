@@ -116,8 +116,8 @@ IMF_STD_ATTRIBUTE_DEF (adoptedNeutral, AdoptedNeutral, Imath::V2f)
 // modification transforms for this image.
 // 
 
-IMF_STD_ATTRIBUTE_DEF (renderingTransform, RenderingTransform, std::string)
-IMF_STD_ATTRIBUTE_DEF (lookModTransform, LookModTransform, std::string)
+IMF_STD_ATTRIBUTE_DEF (renderingTransform, RenderingTransform, string)
+IMF_STD_ATTRIBUTE_DEF (lookModTransform, LookModTransform, string)
 
 
 //
@@ -132,7 +132,7 @@ IMF_STD_ATTRIBUTE_DEF (xDensity, XDensity, float)
 // owner -- name of the owner of the image
 //
 
-IMF_STD_ATTRIBUTE_DEF (owner, Owner, std::string)
+IMF_STD_ATTRIBUTE_DEF (owner, Owner, string)
    
 
 //
@@ -140,7 +140,7 @@ IMF_STD_ATTRIBUTE_DEF (owner, Owner, std::string)
 // form, for example a verbal description of the image
 //
 
-IMF_STD_ATTRIBUTE_DEF (comments, Comments, std::string)
+IMF_STD_ATTRIBUTE_DEF (comments, Comments, string)
 
 
 //
@@ -156,7 +156,7 @@ IMF_STD_ATTRIBUTE_DEF (comments, Comments, std::string)
 //
 //
 
-IMF_STD_ATTRIBUTE_DEF (capDate, CapDate, std::string)
+IMF_STD_ATTRIBUTE_DEF (capDate, CapDate, string)
 
 
 //
@@ -266,7 +266,7 @@ IMF_STD_ATTRIBUTE_DEF (timeCode, TimeCode, TimeCode)
 //			every other instance is mirrored
 //
 
-IMF_STD_ATTRIBUTE_DEF (wrapmodes, Wrapmodes, std::string)
+IMF_STD_ATTRIBUTE_DEF (wrapmodes, Wrapmodes, string)
 
 
 //

@@ -202,7 +202,7 @@ inline bool Plane3<T>::intersectT(const Line3<T>& line, T &t) const
 }
 
 template<class T>
-std::ostream &operator<< (std::ostream &o, const Plane3<T> &plane)
+::file::output_stream &operator<< (::file::output_stream &o, const Plane3<T> &plane)
 {
     return o << "(" << plane.normal << ", " << plane.distance
 	     << ")";

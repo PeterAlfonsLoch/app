@@ -105,7 +105,6 @@ using Imath::divp;
 using Imath::modp;
 using Imath::Box2i;
 using Imath::V2i;
-using std::min;
 
 namespace {
 
@@ -360,7 +359,7 @@ unpack14 (const unsigned char b[14], unsigned short s[16])
     //
 
     #if defined (DEBUG)
-	assert (b[2] != 0xfc);
+	ASSERT (b[2] != 0xfc);
     #endif
 
     s[ 0] = (b[0] << 8) | b[1];
@@ -406,7 +405,7 @@ unpack3 (const unsigned char b[3], unsigned short s[16])
     //
 
     #if defined (DEBUG)
-	assert (b[2] == 0xfc);
+	ASSERT (b[2] == 0xfc);
     #endif
 
     s[0] = (b[0] << 8) | b[1];
@@ -487,7 +486,7 @@ B44Compressor::B44Compressor
 	 c != channels.end();
 	 ++c)
     {
-	assert (pixelTypeSize (c.channel().type) % pixelTypeSize (HALF) == 0);
+	ASSERT (pixelTypeSize (c.channel().type) % pixelTypeSize (HALF) == 0);
 	++_numChans;
 
 	if (c.channel().type == HALF)
@@ -529,7 +528,7 @@ B44Compressor::B44Compressor
     // format only if all image channels are of type HALF.
     //
 
-    assert (sizeof (unsigned short) == pixelTypeSize (HALF));
+    ASSERT (sizeof (unsigned short) == pixelTypeSize (HALF));
 
     if (_numChans == numHalfChans)
 	_format = NATIVE;
@@ -712,7 +711,7 @@ B44Compressor::compress (const char *inPtr,
 		ChannelData &cd = _channelData[i];
 
 		#if defined (DEBUG)
-		    assert (cd.type == HALF);
+		    ASSERT (cd.type == HALF);
 		#endif
 
 		if (modp (y, cd.ys) != 0)
@@ -735,9 +734,9 @@ B44Compressor::compress (const char *inPtr,
     #if defined (DEBUG)
 
 	for (int i = 1; i < _numChans; ++i)
-	    assert (_channelData[i-1].end == _channelData[i].start);
+	    ASSERT (_channelData[i-1].end == _channelData[i].start);
 
-	assert (_channelData[_numChans-1].end == tmpBufferEnd);
+	ASSERT (_channelData[_numChans-1].end == tmpBufferEnd);
 
     #endif
 
@@ -1023,7 +1022,7 @@ B44Compressor::uncompress (const char *inPtr,
 		ChannelData &cd = _channelData[i];
 
 		#if defined (DEBUG)
-		    assert (cd.type == HALF);
+		    ASSERT (cd.type == HALF);
 		#endif
 
 		if (modp (y, cd.ys) != 0)
@@ -1040,9 +1039,9 @@ B44Compressor::uncompress (const char *inPtr,
     #if defined (DEBUG)
 
 	for (int i = 1; i < _numChans; ++i)
-	    assert (_channelData[i-1].end == _channelData[i].start);
+	    ASSERT (_channelData[i-1].end == _channelData[i].start);
 
-	assert (_channelData[_numChans-1].end == tmpBufferEnd);
+	ASSERT (_channelData[_numChans-1].end == tmpBufferEnd);
 
     #endif
 

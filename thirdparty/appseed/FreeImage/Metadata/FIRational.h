@@ -90,7 +90,7 @@ public:
 	BOOL isInteger();
 
 	/// Convert as "numerator/denominator"
-	std::string toString();
+	string toString();
 
 private:
 	/// Initialize and normalize a rational number

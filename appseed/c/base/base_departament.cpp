@@ -1,14 +1,14 @@
 #include "framework.h"
 
 
-departament::departament(::application * papp) :
+base_departament::base_departament(base_application * papp) :
    element(papp)
 {
 
 }
 
 
-departament::~departament()
+base_departament::~base_departament()
 {
 
 }
@@ -18,7 +18,7 @@ departament::~departament()
 // not contain advanced initialization as the
 // papp application pointer may be incompletely
 // initialized specially its virtual functions.
-void departament::construct(sp(base_application) papp)
+void base_departament::construct(sp(base_application) papp)
 {
 
    set_app(papp);
@@ -26,23 +26,15 @@ void departament::construct(sp(base_application) papp)
 }
 
 
-void departament::connect_to_application_signal()
+void base_departament::connect_to_application_signal()
 {
 
-   m_papp->m_psignal->connect(this, &::departament::on_signal);
+   m_papp->m_psignal->connect(this, &::base_departament::on_signal);
 
 }
 
 
-bool departament::process_initialize()
-{
-
-   return true;
-
-}
-
-
-bool departament::initialize()
+bool base_departament::process_initialize()
 {
 
    return true;
@@ -50,7 +42,7 @@ bool departament::initialize()
 }
 
 
-bool departament::initialize1()
+bool base_departament::initialize()
 {
 
    return true;
@@ -58,7 +50,7 @@ bool departament::initialize1()
 }
 
 
-bool departament::initialize2()
+bool base_departament::initialize1()
 {
 
    return true;
@@ -66,7 +58,7 @@ bool departament::initialize2()
 }
 
 
-bool departament::initialize3()
+bool base_departament::initialize2()
 {
 
    return true;
@@ -74,7 +66,7 @@ bool departament::initialize3()
 }
 
 
-bool departament::initialize_instance()
+bool base_departament::initialize3()
 {
 
    return true;
@@ -82,7 +74,7 @@ bool departament::initialize_instance()
 }
 
 
-bool departament::finalize()
+bool base_departament::initialize_instance()
 {
 
    return true;
@@ -90,14 +82,22 @@ bool departament::finalize()
 }
 
 
-int32_t departament::exit_instance()
+bool base_departament::finalize()
+{
+
+   return true;
+
+}
+
+
+int32_t base_departament::exit_instance()
 {
 
    return 0;
 
 }
 
-void departament::on_signal(signal_details * pobj)
+void base_departament::on_signal(signal_details * pobj)
 {
 
    SCAST_PTR(application_signal_details, papplicationsignal, pobj);

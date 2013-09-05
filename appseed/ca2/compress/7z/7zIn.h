@@ -118,7 +118,7 @@ namespace n7z
    {
       friend class CStreamSwitch;
 
-      sp(::file::byte_input_stream) _stream;
+      sp(::file::input_stream) _stream;
 
       spa(CInByte2) _inByteVector;
       CInByte2 *_inByteBack;
@@ -143,7 +143,7 @@ namespace n7z
       }
 
    private:
-      HRESULT FindAndReadSignature(::file::byte_input_stream *stream, const file_position *searchHeaderSizeLimit);
+      HRESULT FindAndReadSignature(::file::input_stream *stream, const file_position *searchHeaderSizeLimit);
 
       void ReadBytes(byte *data, size_t size) { _inByteBack->ReadBytes(data, size); }
       byte ReadByte() { return _inByteBack->ReadByte(); }
@@ -215,7 +215,7 @@ namespace n7z
       CInArchive(sp(base_application) papp);
       virtual ~CInArchive();
 
-      HRESULT Open(::file::byte_input_stream *stream, const file_position *searchHeaderSizeLimit); // S_FALSE means is not archive
+      HRESULT Open(::file::input_stream *stream, const file_position *searchHeaderSizeLimit); // S_FALSE means is not archive
       void Close();
 
       HRESULT ReadDatabase(

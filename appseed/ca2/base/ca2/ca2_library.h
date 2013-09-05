@@ -73,7 +73,7 @@ namespace ca2
 
 
       // impl
-      virtual sp(::application) get_new_app(const char * pszId);
+      virtual sp(base_application) get_new_app(const char * pszId);
       virtual void get_app_list(stringa & stra);
 
 
@@ -108,7 +108,7 @@ namespace ca2
       single_application_library(const char * pszRoot) : ::ca2::library(pszRoot) {}
 
       // impl
-      virtual sp(::application) get_new_app(const char * pszAppId);
+      virtual sp(base_application) get_new_app(const char * pszAppId);
 
 
    };

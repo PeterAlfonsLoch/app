@@ -8,9 +8,9 @@ protected:
 
    sync_object_ptra           m_syncobjectptra;
 #ifdef WINDOWS
-   array < HANDLE >      m_objecta;
+   raw_array < HANDLE >      m_objecta;
 #else
-   array < waitable * >  m_objecta;
+   raw_array < waitable * >  m_objecta;
 #endif
    bool_array                 m_baLocked;
    duration             m_durationLock;

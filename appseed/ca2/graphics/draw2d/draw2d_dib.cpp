@@ -3038,7 +3038,7 @@ fill_last:
       }
    }
 
-   void dib::write(::file::byte_output_stream & ostream)
+   void dib::write(::file::output_stream & ostream)
    {
       ostream << (int32_t) cx;
       ostream << (int32_t) cy;
@@ -3052,7 +3052,7 @@ fill_last:
       }
    }
 
-   void dib::read(::file::byte_input_stream & istream)
+   void dib::read(::file::input_stream & istream)
    {
       int32_t width;
       int32_t height;

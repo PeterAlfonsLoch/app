@@ -50,7 +50,7 @@
 class bzip
 {
 public:
-   ::file::byte_output_stream m_ostream;
+   ::file::output_stream m_ostream;
    primitive::memory m_memory;
    int32_t m_CurrentBufferSize;
    bz_stream m_zstream;
@@ -61,7 +61,7 @@ public:
 
    bzip(sp(::file::file) pfileDest);
    bzip(::file::writer & writer);
-   bzip(::file::byte_output_stream & ostreamDest);
+   bzip(::file::output_stream & ostreamDest);
    virtual ~bzip();
 
    bool write(void * buf, ::primitive::memory_size iSize);

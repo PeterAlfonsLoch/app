@@ -20,7 +20,7 @@ public:
    sp(T) & add_new()
    {
 
-      sp(T) & sp = array < smart_pointer < T > >::add_new();
+      sp(T) & sp = ::lemon::array::add_new(*this);
 
       sp.create(this->allocer());
 
@@ -31,14 +31,17 @@ public:
 
    ::count set_size(::count nNewSize, ::count nGrowBy = -1)
    {
-      this->array < smart_pointer < T > >::set_size(nNewSize);
+
+      ::lemon::array::set_size(*this, nNewSize);
+
       return this->get_size();
+
    }
 
    ::count set_size_create(::count nNewSize, ::count nGrowBy = -1)
    {
       index i = this->get_size();
-      this->array < smart_pointer < T > >::set_size(nNewSize);
+      ::lemon::array::set_size(*this, nNewSize);
       ::count ca = this->get_size();
       for(; i < ca; i++)
       {

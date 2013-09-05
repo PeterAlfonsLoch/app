@@ -3,7 +3,7 @@
 #endif
 
 
-#include "c/c/c.h"
+#include "c/base/base.h"
 
 
 #ifdef _MSC_VER
@@ -32,20 +32,20 @@
 #include <string.h>
 #include <stdarg.h>
 #include <ctype.h>
-#include <assert.h>
+#include <ASSERT.h>
 #include <errno.h>
 #include <float.h>
 #include <limits.h>
 
-//#include <string>
+//
 //#include <list>
 //#include <map>
 //#include <set>
-//#include <vector>
+//
 //#include <stack>
-//#include <sstream>
-//#include <algorithm>
-//#include <limits>
+//
+//
+//
 //#include <memory>
 */
 

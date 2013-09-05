@@ -413,7 +413,7 @@ bool XfplayerViewLine::to(
 }
 
 bool XfplayerViewLine::to(
-   sp(::application)  papp,
+   sp(base_application)  papp,
    ::draw2d::graphics *     pdc,
    bool                 bDraw,
    LPRECT               lpRect,

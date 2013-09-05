@@ -591,7 +591,7 @@ TIFFGrowStrips(TIFF* tif, int delta, const char* module)
 	TIFFDirectory	*td = &tif->tif_dir;
 	uint32		*new_stripoffset, *new_stripbytecount;
 
-	assert(td->td_planarconfig == PLANARCONFIG_CONTIG);
+	ASSERT(td->td_planarconfig == PLANARCONFIG_CONTIG);
 	new_stripoffset = (uint32*)_TIFFrealloc(td->td_stripoffset,
 		(td->td_nstrips + delta) * sizeof (uint32));
 	new_stripbytecount = (uint32*)_TIFFrealloc(td->td_stripbytecount,
@@ -626,7 +626,7 @@ TIFFAppendToStrip(TIFF* tif, tstrip_t strip, tidata_t data, tsize_t cc)
 	TIFFDirectory *td = &tif->tif_dir;
 
 	if (td->td_stripoffset[strip] == 0 || tif->tif_curoff == 0) {
-            assert(td->td_nstrips > 0);
+            ASSERT(td->td_nstrips > 0);
 
             if( td->td_stripbytecount[strip] != 0 
                 && td->td_stripoffset[strip] != 0 

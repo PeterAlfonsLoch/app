@@ -326,10 +326,10 @@ bool ifs::file_move(const char * pszDst, const char * pszSrc)
 }
 
 
-::ca2::filesp ifs::get_file(var varFile, UINT nOpenFlags)
+::file::filesp ifs::get_file(var varFile, UINT nOpenFlags)
 {
    
-   ::ca2::filesp spfile;
+   ::file::filesp spfile;
 
    spfile = new ifs_file(get_app(), varFile);
 

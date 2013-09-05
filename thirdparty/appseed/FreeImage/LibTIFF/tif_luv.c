@@ -190,15 +190,15 @@ LogL16Decode(TIFF* tif, tidata_t op, tsize_t occ, tsample_t s)
 	int16 b;
 	int cc, rc;
 
-	assert(s == 0);
-	assert(sp != NULL);
+	ASSERT(s == 0);
+	ASSERT(sp != NULL);
 
 	npixels = occ / sp->pixel_size;
 
 	if (sp->user_datafmt == SGILOGDATAFMT_16BIT)
 		tp = (int16*) op;
 	else {
-		assert(sp->tbuflen >= npixels);
+		ASSERT(sp->tbuflen >= npixels);
 		tp = (int16*) sp->tbuf;
 	}
 	_TIFFmemset((tdata_t) tp, 0, npixels*sizeof (tp[0]));
@@ -245,15 +245,15 @@ LogLuvDecode24(TIFF* tif, tidata_t op, tsize_t occ, tsample_t s)
 	unsigned char* bp;
 	uint32* tp;
 
-	assert(s == 0);
-	assert(sp != NULL);
+	ASSERT(s == 0);
+	ASSERT(sp != NULL);
 
 	npixels = occ / sp->pixel_size;
 
 	if (sp->user_datafmt == SGILOGDATAFMT_RAW)
 		tp = (uint32 *)op;
 	else {
-		assert(sp->tbuflen >= npixels);
+		ASSERT(sp->tbuflen >= npixels);
 		tp = (uint32 *) sp->tbuf;
 	}
 					/* copy to array of uint32 */
@@ -289,16 +289,16 @@ LogLuvDecode32(TIFF* tif, tidata_t op, tsize_t occ, tsample_t s)
 	uint32 b;
 	int cc, rc;
 
-	assert(s == 0);
+	ASSERT(s == 0);
 	sp = DecoderState(tif);
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 
 	npixels = occ / sp->pixel_size;
 
 	if (sp->user_datafmt == SGILOGDATAFMT_RAW)
 		tp = (uint32*) op;
 	else {
-		assert(sp->tbuflen >= npixels);
+		ASSERT(sp->tbuflen >= npixels);
 		tp = (uint32*) sp->tbuf;
 	}
 	_TIFFmemset((tdata_t) tp, 0, npixels*sizeof (tp[0]));
@@ -344,7 +344,7 @@ LogLuvDecodeStrip(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 {
 	tsize_t rowlen = TIFFScanlineSize(tif);
 
-	assert(cc%rowlen == 0);
+	ASSERT(cc%rowlen == 0);
 	while (cc && (*tif->tif_decoderow)(tif, bp, rowlen, s))
 		bp += rowlen, cc -= rowlen;
 	return (cc == 0);
@@ -360,7 +360,7 @@ LogLuvDecodeTile(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 {
 	tsize_t rowlen = TIFFTileRowSize(tif);
 
-	assert(cc%rowlen == 0);
+	ASSERT(cc%rowlen == 0);
 	while (cc && (*tif->tif_decoderow)(tif, bp, rowlen, s))
 		bp += rowlen, cc -= rowlen;
 	return (cc == 0);
@@ -379,15 +379,15 @@ LogL16Encode(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 	int16 b;
 	int occ, rc=0, mask, beg;
 
-	assert(s == 0);
-	assert(sp != NULL);
+	ASSERT(s == 0);
+	ASSERT(sp != NULL);
 	npixels = cc / sp->pixel_size;
 
 	if (sp->user_datafmt == SGILOGDATAFMT_16BIT)
 		tp = (int16*) bp;
 	else {
 		tp = (int16*) sp->tbuf;
-		assert(sp->tbuflen >= npixels);
+		ASSERT(sp->tbuflen >= npixels);
 		(*sp->tfunc)(sp, bp, npixels);
 	}
 					/* compress each byte string */
@@ -465,15 +465,15 @@ LogLuvEncode24(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 	tidata_t op;
 	uint32* tp;
 
-	assert(s == 0);
-	assert(sp != NULL);
+	ASSERT(s == 0);
+	ASSERT(sp != NULL);
 	npixels = cc / sp->pixel_size;
 
 	if (sp->user_datafmt == SGILOGDATAFMT_RAW)
 		tp = (uint32*) bp;
 	else {
 		tp = (uint32*) sp->tbuf;
-		assert(sp->tbuflen >= npixels);
+		ASSERT(sp->tbuflen >= npixels);
 		(*sp->tfunc)(sp, bp, npixels);
 	}
 					/* write out encoded pixels */
@@ -512,8 +512,8 @@ LogLuvEncode32(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 	uint32 b;
 	int occ, rc=0, mask, beg;
 
-	assert(s == 0);
-	assert(sp != NULL);
+	ASSERT(s == 0);
+	ASSERT(sp != NULL);
 
 	npixels = cc / sp->pixel_size;
 
@@ -521,7 +521,7 @@ LogLuvEncode32(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 		tp = (uint32*) bp;
 	else {
 		tp = (uint32*) sp->tbuf;
-		assert(sp->tbuflen >= npixels);
+		ASSERT(sp->tbuflen >= npixels);
 		(*sp->tfunc)(sp, bp, npixels);
 	}
 					/* compress each byte string */
@@ -597,7 +597,7 @@ LogLuvEncodeStrip(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 {
 	tsize_t rowlen = TIFFScanlineSize(tif);
 
-	assert(cc%rowlen == 0);
+	ASSERT(cc%rowlen == 0);
 	while (cc && (*tif->tif_encoderow)(tif, bp, rowlen, s) == 1)
 		bp += rowlen, cc -= rowlen;
 	return (cc == 0);
@@ -612,7 +612,7 @@ LogLuvEncodeTile(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
 {
 	tsize_t rowlen = TIFFTileRowSize(tif);
 
-	assert(cc%rowlen == 0);
+	ASSERT(cc%rowlen == 0);
 	while (cc && (*tif->tif_encoderow)(tif, bp, rowlen, s) == 1)
 		bp += rowlen, cc -= rowlen;
 	return (cc == 0);
@@ -1179,8 +1179,8 @@ LogL16InitState(TIFF* tif)
 	LogLuvState* sp = DecoderState(tif);
 	static const char module[] = "LogL16InitState";
 
-	assert(sp != NULL);
-	assert(td->td_photometric == PHOTOMETRIC_LOGL);
+	ASSERT(sp != NULL);
+	ASSERT(td->td_photometric == PHOTOMETRIC_LOGL);
 
 	/* for some reason, we can't do this in TIFFInitLogL16 */
 	if (sp->user_datafmt == SGILOGDATAFMT_UNKNOWN)
@@ -1272,8 +1272,8 @@ LogLuvInitState(TIFF* tif)
 	LogLuvState* sp = DecoderState(tif);
 	static const char module[] = "LogLuvInitState";
 
-	assert(sp != NULL);
-	assert(td->td_photometric == PHOTOMETRIC_LOGLUV);
+	ASSERT(sp != NULL);
+	ASSERT(td->td_photometric == PHOTOMETRIC_LOGLUV);
 
 	/* for some reason, we can't do this in TIFFInitLogLuv */
 	if (td->td_planarconfig != PLANARCONFIG_CONTIG) {
@@ -1466,7 +1466,7 @@ LogLuvCleanup(TIFF* tif)
 {
 	LogLuvState* sp = (LogLuvState *)tif->tif_data;
 
-	assert(sp != 0);
+	ASSERT(sp != 0);
 
 	tif->tif_tagmethods.vgetfield = sp->vgetparent;
 	tif->tif_tagmethods.vsetfield = sp->vsetparent;
@@ -1564,7 +1564,7 @@ TIFFInitSGILog(TIFF* tif, int scheme)
 	static const char module[] = "TIFFInitSGILog";
 	LogLuvState* sp;
 
-	assert(scheme == COMPRESSION_SGILOG24 || scheme == COMPRESSION_SGILOG);
+	ASSERT(scheme == COMPRESSION_SGILOG24 || scheme == COMPRESSION_SGILOG);
 
 	/*
 	 * Merge codec-specific tag information.

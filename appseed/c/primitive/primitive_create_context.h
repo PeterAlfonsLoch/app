@@ -4,54 +4,6 @@
 #include "primitive_command.h"
 
 
-template < class TYPE, class BASE_ARRAY = array < TYPE > >
-class stack :
-   virtual public BASE_ARRAY
-{
-public:
-
-
-   TYPE * operator ->()
-   {
-      return &BASE_ARRAY::last_element();
-   }
-
-   const TYPE * operator ->() const
-   {
-      return &BASE_ARRAY::last_element();
-   }
-
-};
-
-template < class TYPE, class STACK = stack < TYPE > >
-class stacker
-{
-public:
-
-   STACK & m_stack;
-
-   stacker(STACK & stack) :
-      m_stack(stack)
-   {
-      m_stack.add_new();
-   }
-
-   ~stacker()
-   {
-      m_stack.pop();
-   }
-
-   TYPE * operator ->()
-   {
-      return &m_stack.last_element();
-   }
-
-   const TYPE * operator ->() const
-   {
-      return &m_stack.last_element();
-   }
-
-};
 
 
 
@@ -85,23 +37,23 @@ class CLASS_DECL_c create_context :
 public:
 
 
-   bool                                m_bMakeVisible;
-   bool                                m_bTransparentBackground;
-   bool                                m_bClientOnly;
-   bool                                m_bOuterPopupAlertLike;
-   bool                                m_bHold;
-   sp(::user::interaction)             m_puiParent;
-   sp(::user::view)                    m_pviewAlloc;
-   sp(application_bias)                m_spApplicationBias;
-   command_line_sp                     m_spCommandLine;
-   stack < ::user::create_context * >  m_user;
-   sp(command_thread)                  m_pthreadParent;
+   bool                                   m_bMakeVisible;
+   bool                                   m_bTransparentBackground;
+   bool                                   m_bClientOnly;
+   bool                                   m_bOuterPopupAlertLike;
+   bool                                   m_bHold;
+   sp(::user::base_interaction)           m_puiParent;
+   sp(::user::base_interaction)           m_puiViewAlloc;
+   sp(application_bias)                   m_spApplicationBias;
+   command_line_sp                        m_spCommandLine;
+   stack < sp(::root) >                   m_user; // used root but expect to store ::user::create_context
+   sp(command_thread)                     m_pthreadParent;
 
 
 
    create_context(sp(base_application) papp);
    create_context(sp(command_thread) pthreadParent);
-   create_context(sp(command_thread) pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::interaction) puiParent = NULL);
+   create_context(sp(command_thread) pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::base_interaction) puiParent = NULL);
    create_context(const create_context & createcontext);
    virtual ~create_context();
 

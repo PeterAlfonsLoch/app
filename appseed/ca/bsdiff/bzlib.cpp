@@ -98,7 +98,7 @@ int32_t bz_config_ok ( void )
 {
    if (sizeof(int32_t)   != 4) return 0;
    if (sizeof(int16_t) != 2) return 0;
-   if (sizeof(char)  != 1) return 0;
+   if (sizeof(char) != 1) return 0;
    return 1;
 }
 

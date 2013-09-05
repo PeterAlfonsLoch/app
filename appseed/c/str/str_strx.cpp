@@ -128,7 +128,7 @@ void utf8_to_16(wchar_t * pwsz, const char * psz)
 }
 
 
-WCHAR * utf8_to_16(const char * psz)
+WCHAR * utf8_to_16_dup(const char * psz)
 {
 
    ::count iCount = utf16_len(psz);

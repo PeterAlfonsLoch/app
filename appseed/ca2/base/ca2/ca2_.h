@@ -1484,8 +1484,6 @@ inline bool is_null(const TYPE & ref)
 #define NULL_REF(class) (*((class *) NULL))
 
 
-CLASS_DECL_ca2 ::file::byte_input_stream &  operator >>(::file::byte_input_stream & istream, string & string);
-CLASS_DECL_ca2 ::file::byte_output_stream &  operator <<(::file::byte_output_stream & ostream, const string & string);
 
 #ifdef WIN32
 #include "ca2_file_association.h"

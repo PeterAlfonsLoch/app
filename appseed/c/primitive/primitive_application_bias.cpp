@@ -2,10 +2,10 @@
 
 
 
-void application_bias::callback::connect_to(sp(::application) papp)
+void application_bias::callback::connect_to(sp(base_application) papp)
 {
    set_app(papp);
-   m_papp.cast < application >()->m_psignal->connect(this, &callback::on_call_signal);
+   m_papp.cast < base_application >()->m_psignal->connect(this, &callback::on_call_signal);
 }
 
 void application_bias::callback::on_call_signal(signal_details * pobj)
@@ -27,7 +27,7 @@ application_bias::application_bias()
    m_puiParent                            = NULL;
 }
 
-application_bias::application_bias(sp(::application) papp) :
+application_bias::application_bias(sp(base_application) papp) :
    element(papp)
 {
    m_set["SessionSynchronizedInput"]      = true;

@@ -1,9 +1,9 @@
 #pragma once
 
 
-// raw_array is an array that does not call destructor or constructors in elements
-// so, if raw_array can be a copy of array changing the following members :
-// set_size, remove_at
+// raw_array is an array that does not call constructors or destructor in elements
+// array is an array that call only copy constructor and destructor in elements
+// lemon_array is an array that call default constructors, copy constructs and destructors in elements
 
 
 template<class TYPE, class ARG_TYPE = const TYPE &>
@@ -102,7 +102,8 @@ public:
    };
    */
 
-   class iterator
+   class iterator :
+      public random_access_iterator
    {
    public:
 
@@ -192,7 +193,8 @@ public:
    };
 
 
-   class const_iterator
+   class const_iterator :
+      public random_access_iterator
    {
    public:
 
@@ -301,8 +303,8 @@ public:
    array(sp(base_application) papp = NULL, ::count nGrowBy = 32);
    array(const array <TYPE, ARG_TYPE> & a);
    array(::count n);
-   array(ARG_TYPE t, ::count n = 1);
-   array(TYPE * ptypea, ::count n);
+ //  array(ARG_TYPE t, ::count n = 1);
+   //array(TYPE * ptypea, ::count n);
    virtual ~array();
 
    virtual void destroy();
@@ -318,8 +320,8 @@ public:
    inline bool is_empty(::count countMinimum = 1) const;
    inline bool has_elements(::count countMinimum = 1) const;
    inline index get_upper_bound(index i = -1) const;
-   ::count set_size(index nNewSize, ::count nGrowBy = -1);
-   ::count set_size_in_bytes(index nNewSize, ::count nGrowBy = -1);
+   ::count allocate(index nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
+   ::count allocate_in_bytes(index nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count set_raw_size(index nNewSize, ::count nGrowBy = -1); // does not call constructors and destructors on items/elements
 
 
@@ -359,21 +361,17 @@ public:
    inline TYPE* get_data();
 
    // Potentially growing the array
-   void set_at_grow(index nIndex, ARG_TYPE newElement);
-   TYPE & element_at_grow(index nIndex);
-   TYPE get_at_grow(index nIndex);
+   //void set_at_grow(index nIndex, ARG_TYPE newElement);
+   //TYPE & element_at_grow(index nIndex);
+   //TYPE get_at_grow(index nIndex);
    index add(ARG_TYPE newElement);
    index add(const array& src);
-   virtual index add_new(::count count);
-   virtual TYPE & add_new();
    index append(const array& src);
    void copy(const array& src);
 
 
    TYPE pop(index index = -1);
-   index push(ARG_TYPE newElement, index i = 0);
    void pop_back(index index = -1);
-   void push_back(ARG_TYPE newElement, index = 0);
 
 
 
@@ -395,12 +393,12 @@ public:
    inline TYPE& operator[](index nIndex);
 
    // Operations that move elements around
-   index insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
+   index inset(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    index remove_at(index nIndex, ::count nCount = 1);
    void _001RemoveIndexes(index_array & ia);
    void remove_indexes(const index_array & ia); // remove indexes from index array upper bound to index array lower bound
    void remove_descending_indexes(const index_array & ia); // remove indexes from index array lower bound to index array upper bound
-   index insert_at(index nStartIndex, array* pNewArray);
+   index inset(index nStartIndex, array* pNewArray);
    void swap(index index1, index index2);
 
    array & operator = (const array & src);
@@ -492,3 +490,8 @@ public:
 
 
 };
+
+
+
+
+

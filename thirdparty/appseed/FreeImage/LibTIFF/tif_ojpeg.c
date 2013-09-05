@@ -394,7 +394,7 @@ TIFFInitOJPEG(TIFF* tif, int scheme)
 	static const char module[]="TIFFInitOJPEG";
 	OJPEGState* sp;
 
-	assert(scheme==COMPRESSION_OJPEG);
+	ASSERT(scheme==COMPRESSION_OJPEG);
 
         /*
 	 * Merge codec-specific tag information.
@@ -579,7 +579,7 @@ OJPEGPrintDir(TIFF* tif, FILE* fd, long flags)
 	OJPEGState* sp=(OJPEGState*)tif->tif_data;
 	uint8 m;
 	(void)flags;
-	assert(sp!=NULL);
+	ASSERT(sp!=NULL);
 	if (TIFFFieldSet(tif,FIELD_OJPEG_JPEGINTERCHANGEFORMAT))
 		fprintf(fd,"  JpegInterchangeFormat: %lu\n",(unsigned long)sp->jpeg_interchange_format);
 	if (TIFFFieldSet(tif,FIELD_OJPEG_JPEGINTERCHANGEFORMATLENGTH))
@@ -775,7 +775,7 @@ OJPEGDecodeRaw(TIFF* tif, tidata_t buf, tsize_t cc)
 		TIFFErrorExt(tif->tif_clientdata,module,"Fractional scanline not read");
 		return(0);
 	}
-	assert(cc>0);
+	ASSERT(cc>0);
 	m=buf;
 	n=cc;
 	do
@@ -823,7 +823,7 @@ OJPEGDecodeScanlines(TIFF* tif, tidata_t buf, tsize_t cc)
 		TIFFErrorExt(tif->tif_clientdata,module,"Fractional scanline not read");
 		return(0);
 	}
-	assert(cc>0);
+	ASSERT(cc>0);
 	m=buf;
 	n=cc;
 	do
@@ -845,7 +845,7 @@ OJPEGPostDecode(TIFF* tif, tidata_t buf, tsize_t cc)
 	sp->write_curstrile++;
 	if (sp->write_curstrile%tif->tif_dir.td_stripsperimage==0)
 	{
-		assert(sp->libjpeg_session_active!=0);
+		ASSERT(sp->libjpeg_session_active!=0);
 		OJPEGLibjpegSessionAbort(tif);
 		sp->writeheader_done=0;
 	}
@@ -940,7 +940,7 @@ OJPEGSubsamplingCorrect(TIFF* tif)
 	OJPEGState* sp=(OJPEGState*)tif->tif_data;
 	uint8 mh;
 	uint8 mv;
-	assert(sp->subsamplingcorrect_done==0);
+	ASSERT(sp->subsamplingcorrect_done==0);
 	if ((tif->tif_dir.td_samplesperpixel!=3) || ((tif->tif_dir.td_photometric!=PHOTOMETRIC_YCBCR) &&
 	    (tif->tif_dir.td_photometric!=PHOTOMETRIC_ITULAB)))
 	{
@@ -991,7 +991,7 @@ OJPEGReadHeaderInfo(TIFF* tif)
 {
 	static const char module[]="OJPEGReadHeaderInfo";
 	OJPEGState* sp=(OJPEGState*)tif->tif_data;
-	assert(sp->readheader_done==0);
+	ASSERT(sp->readheader_done==0);
 	sp->image_width=tif->tif_dir.td_imagewidth;
 	sp->image_length=tif->tif_dir.td_imagelength;
 	if isTiled(tif)
@@ -1052,10 +1052,10 @@ OJPEGReadSecondarySos(TIFF* tif, tsample_t s)
 {
 	OJPEGState* sp=(OJPEGState*)tif->tif_data;
 	uint8 m;
-	assert(s>0);
-	assert(s<3);
-	assert(sp->sos_end[0].log!=0);
-	assert(sp->sos_end[s].log==0);
+	ASSERT(s>0);
+	ASSERT(s<3);
+	ASSERT(sp->sos_end[0].log!=0);
+	ASSERT(sp->sos_end[s].log==0);
 	sp->plane_sample_offset=s-1;
 	while(sp->sos_end[sp->plane_sample_offset].log==0)
 		sp->plane_sample_offset--;
@@ -1104,7 +1104,7 @@ OJPEGWriteHeaderInfo(TIFF* tif)
 	OJPEGState* sp=(OJPEGState*)tif->tif_data;
 	uint8** m;
 	uint32 n;
-	assert(sp->libjpeg_session_active==0);
+	ASSERT(sp->libjpeg_session_active==0);
 	sp->out_state=ososSoi;
 	sp->restart_index=0;
 	jpeg_std_error(&(sp->libjpeg_jpeg_error_mgr));
@@ -1133,8 +1133,8 @@ OJPEGWriteHeaderInfo(TIFF* tif)
 		sp->libjpeg_jpeg_query_style=0;
 		if (sp->subsampling_convert_log==0)
 		{
-			assert(sp->subsampling_convert_ycbcrbuf==0);
-			assert(sp->subsampling_convert_ycbcrimage==0);
+			ASSERT(sp->subsampling_convert_ycbcrbuf==0);
+			ASSERT(sp->subsampling_convert_ycbcrimage==0);
 			sp->subsampling_convert_ylinelen=((sp->strile_width+sp->subsampling_hor*8-1)/(sp->subsampling_hor*8)*sp->subsampling_hor*8);
 			sp->subsampling_convert_ylines=sp->subsampling_ver*8;
 			sp->subsampling_convert_clinelen=sp->subsampling_convert_ylinelen/sp->subsampling_hor;
@@ -1193,7 +1193,7 @@ static void
 OJPEGLibjpegSessionAbort(TIFF* tif)
 {
 	OJPEGState* sp=(OJPEGState*)tif->tif_data;
-	assert(sp->libjpeg_session_active!=0);
+	ASSERT(sp->libjpeg_session_active!=0);
 	jpeg_destroy((jpeg_common_struct*)(&(sp->libjpeg_jpeg_decompress_struct)));
 	sp->libjpeg_session_active=0;
 }
@@ -1295,7 +1295,7 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 			case JPEG_MARKER_SOS:
 				if (sp->subsamplingcorrect!=0)
 					return(1);
-				assert(sp->plane_sample_offset==0);
+				ASSERT(sp->plane_sample_offset==0);
 				if (OJPEGReadHeaderInfoSecStreamSos(tif)==0)
 					return(0);
 				break;
@@ -1641,7 +1641,7 @@ OJPEGReadHeaderInfoSecStreamSos(TIFF* tif)
 	uint16 m;
 	uint8 n;
 	uint8 o;
-	assert(sp->subsamplingcorrect==0);
+	ASSERT(sp->subsamplingcorrect==0);
 	if (sp->sof_log==0)
 	{
 		TIFFErrorExt(tif->tif_clientdata,module,"Corrupt SOS marker in JPEG data");
@@ -1884,10 +1884,10 @@ OJPEGReadBufferFill(OJPEGState* sp)
 			n=TIFFReadFile(sp->tif,sp->in_buffer,(tsize_t)m);
 			if (n==0)
 				return(0);
-			assert(n>0);
-			assert(n<=OJPEG_BUFFER);
-			assert(n<65536);
-			assert((uint16)n<=sp->in_buffer_file_togo);
+			ASSERT(n>0);
+			ASSERT(n<=OJPEG_BUFFER);
+			ASSERT(n<65536);
+			ASSERT((uint16)n<=sp->in_buffer_file_togo);
 			m=(uint16)n;
 			sp->in_buffer_togo=m;
 			sp->in_buffer_cur=sp->in_buffer;
@@ -1954,7 +1954,7 @@ OJPEGReadByte(OJPEGState* sp, uint8* byte)
 	{
 		if (OJPEGReadBufferFill(sp)==0)
 			return(0);
-		assert(sp->in_buffer_togo>0);
+		ASSERT(sp->in_buffer_togo>0);
 	}
 	*byte=*(sp->in_buffer_cur);
 	sp->in_buffer_cur++;
@@ -1969,7 +1969,7 @@ OJPEGReadBytePeek(OJPEGState* sp, uint8* byte)
 	{
 		if (OJPEGReadBufferFill(sp)==0)
 			return(0);
-		assert(sp->in_buffer_togo>0);
+		ASSERT(sp->in_buffer_togo>0);
 	}
 	*byte=*(sp->in_buffer_cur);
 	return(1);
@@ -1978,7 +1978,7 @@ OJPEGReadBytePeek(OJPEGState* sp, uint8* byte)
 static void
 OJPEGReadByteAdvance(OJPEGState* sp)
 {
-	assert(sp->in_buffer_togo>0);
+	ASSERT(sp->in_buffer_togo>0);
 	sp->in_buffer_cur++;
 	sp->in_buffer_togo--;
 }
@@ -2002,7 +2002,7 @@ OJPEGReadBlock(OJPEGState* sp, uint16 len, void* mem)
 	uint16 mlen;
 	uint8* mmem;
 	uint16 n;
-	assert(len>0);
+	ASSERT(len>0);
 	mlen=len;
 	mmem=mem;
 	do
@@ -2011,7 +2011,7 @@ OJPEGReadBlock(OJPEGState* sp, uint16 len, void* mem)
 		{
 			if (OJPEGReadBufferFill(sp)==0)
 				return(0);
-			assert(sp->in_buffer_togo>0);
+			ASSERT(sp->in_buffer_togo>0);
 		}
 		n=mlen;
 		if (n>sp->in_buffer_togo)
@@ -2039,7 +2039,7 @@ OJPEGReadSkip(OJPEGState* sp, uint16 len)
 	m-=n;
 	if (m>0)
 	{
-		assert(sp->in_buffer_togo==0);
+		ASSERT(sp->in_buffer_togo==0);
 		n=m;
 		if (n>sp->in_buffer_file_togo)
 			n=sp->in_buffer_file_togo;
@@ -2062,7 +2062,7 @@ OJPEGWriteStream(TIFF* tif, void** mem, uint32* len)
 	*len=0;
 	do
 	{
-		assert(sp->out_state<=ososEoi);
+		ASSERT(sp->out_state<=ososEoi);
 		switch(sp->out_state)
 		{
 			case ososSoi:
@@ -2132,7 +2132,7 @@ static void
 OJPEGWriteStreamSoi(TIFF* tif, void** mem, uint32* len)
 {
 	OJPEGState* sp=(OJPEGState*)tif->tif_data;
-	assert(OJPEG_BUFFER>=2);
+	ASSERT(OJPEG_BUFFER>=2);
 	sp->out_buffer[0]=255;
 	sp->out_buffer[1]=JPEG_MARKER_SOI;
 	*len=2;
@@ -2180,7 +2180,7 @@ static void
 OJPEGWriteStreamDri(TIFF* tif, void** mem, uint32* len)
 {
 	OJPEGState* sp=(OJPEGState*)tif->tif_data;
-	assert(OJPEG_BUFFER>=6);
+	ASSERT(OJPEG_BUFFER>=6);
 	if (sp->restart_interval!=0)
 	{
 		sp->out_buffer[0]=255;
@@ -2200,8 +2200,8 @@ OJPEGWriteStreamSof(TIFF* tif, void** mem, uint32* len)
 {
 	OJPEGState* sp=(OJPEGState*)tif->tif_data;
 	uint8 m;
-	assert(OJPEG_BUFFER>=2+8+sp->samples_per_pixel_per_plane*3);
-	assert(255>=8+sp->samples_per_pixel_per_plane*3);
+	ASSERT(OJPEG_BUFFER>=2+8+sp->samples_per_pixel_per_plane*3);
+	ASSERT(255>=8+sp->samples_per_pixel_per_plane*3);
 	sp->out_buffer[0]=255;
 	sp->out_buffer[1]=sp->sof_marker_id;
 	/* Lf */
@@ -2236,8 +2236,8 @@ OJPEGWriteStreamSos(TIFF* tif, void** mem, uint32* len)
 {
 	OJPEGState* sp=(OJPEGState*)tif->tif_data;
 	uint8 m;
-	assert(OJPEG_BUFFER>=2+6+sp->samples_per_pixel_per_plane*2);
-	assert(255>=6+sp->samples_per_pixel_per_plane*2);
+	ASSERT(OJPEG_BUFFER>=2+6+sp->samples_per_pixel_per_plane*2);
+	ASSERT(255>=6+sp->samples_per_pixel_per_plane*2);
 	sp->out_buffer[0]=255;
 	sp->out_buffer[1]=JPEG_MARKER_SOS;
 	/* Ls */
@@ -2271,7 +2271,7 @@ OJPEGWriteStreamCompressed(TIFF* tif, void** mem, uint32* len)
 	{
 		if (OJPEGReadBufferFill(sp)==0)
 			return(0);
-		assert(sp->in_buffer_togo>0);
+		ASSERT(sp->in_buffer_togo>0);
 	}
 	*len=sp->in_buffer_togo;
 	*mem=(void*)sp->in_buffer_cur;
@@ -2300,7 +2300,7 @@ static void
 OJPEGWriteStreamRst(TIFF* tif, void** mem, uint32* len)
 {
 	OJPEGState* sp=(OJPEGState*)tif->tif_data;
-	assert(OJPEG_BUFFER>=2);
+	ASSERT(OJPEG_BUFFER>=2);
 	sp->out_buffer[0]=255;
 	sp->out_buffer[1]=JPEG_MARKER_RST0+sp->restart_index;
 	sp->restart_index++;
@@ -2315,7 +2315,7 @@ static void
 OJPEGWriteStreamEoi(TIFF* tif, void** mem, uint32* len)
 {
 	OJPEGState* sp=(OJPEGState*)tif->tif_data;
-	assert(OJPEG_BUFFER>=2);
+	ASSERT(OJPEG_BUFFER>=2);
 	sp->out_buffer[0]=255;
 	sp->out_buffer[1]=JPEG_MARKER_EOI;
 	*len=2;

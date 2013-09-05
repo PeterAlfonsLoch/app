@@ -6,7 +6,7 @@ namespace xml
 
 
    class CLASS_DECL_c departament :
-      public ::departament
+      public base_departament
    {
    public:
 
@@ -16,7 +16,7 @@ namespace xml
       parse_info *   m_pparseinfoDefault;
 
 
-      departament(::application * papp);
+      departament(base_application * papp);
       virtual ~departament();
 
       virtual bool initialize1();

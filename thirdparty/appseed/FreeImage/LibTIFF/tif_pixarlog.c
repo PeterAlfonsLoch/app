@@ -649,7 +649,7 @@ PixarLogSetupDecode(TIFF* tif)
 	tsize_t tbuf_size;
 	static const char module[] = "PixarLogSetupDecode";
 
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 
 	/* Make sure no byte swapping happens on the data
 	 * after decompression. */
@@ -693,7 +693,7 @@ PixarLogPreDecode(TIFF* tif, tsample_t s)
 	PixarLogState* sp = DecoderState(tif);
 
 	(void) s;
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 	sp->stream.next_in = tif->tif_rawdata;
 	sp->stream.avail_in = tif->tif_rawcc;
 	return (inflateReset(&sp->stream) == Z_OK);
@@ -731,7 +731,7 @@ PixarLogDecode(TIFF* tif, tidata_t op, tsize_t occ, tsample_t s)
 	llen = sp->stride * td->td_imagewidth;
 
 	(void) s;
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 	sp->stream.next_out = (unsigned char *) sp->tbuf;
 	sp->stream.avail_out = nsamples * sizeof(uint16);
 	do {
@@ -830,7 +830,7 @@ PixarLogSetupEncode(TIFF* tif)
 	tsize_t tbuf_size;
 	static const char module[] = "PixarLogSetupEncode";
 
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 
 	/* for some reason, we can't do this in TIFFInitPixarLog */
 
@@ -868,7 +868,7 @@ PixarLogPreEncode(TIFF* tif, tsample_t s)
 	PixarLogState *sp = EncoderState(tif);
 
 	(void) s;
-	assert(sp != NULL);
+	ASSERT(sp != NULL);
 	sp->stream.next_out = tif->tif_rawdata;
 	sp->stream.avail_out = tif->tif_rawdatasize;
 	return (deflateReset(&sp->stream) == Z_OK);
@@ -1174,7 +1174,7 @@ PixarLogCleanup(TIFF* tif)
 {
 	PixarLogState* sp = (PixarLogState*) tif->tif_data;
 
-	assert(sp != 0);
+	ASSERT(sp != 0);
 
 	(void)TIFFPredictorCleanup(tif);
 
@@ -1293,7 +1293,7 @@ TIFFInitPixarLog(TIFF* tif, int scheme)
 
 	PixarLogState* sp;
 
-	assert(scheme == COMPRESSION_PIXARLOG);
+	ASSERT(scheme == COMPRESSION_PIXARLOG);
 
 	/*
 	 * Merge codec-specific tag information.

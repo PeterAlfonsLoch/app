@@ -87,8 +87,8 @@ namespace ca2
       }
       if (_tempFileCreated)
       {
-         ::ca2::filesp inFile(get_app());
-         if (!inFile->open(_tempFileName, ::file::file::mode_read | ::file::file::type_binary))
+         ::file::filesp inFile(get_app());
+         if (!inFile->open(_tempFileName, ::file::mode_read | ::file::type_binary))
             return E_FAIL;
          while (size < _size)
          {

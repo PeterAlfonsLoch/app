@@ -80,7 +80,7 @@ parseString (string name, char c = '.')
 	// Strip off name including ending 'c'
 	//
 
-	if (s == name.npos)
+	if (s < 0)
 	    name = "";
 	else
 	    name = name.substr (s + 1);

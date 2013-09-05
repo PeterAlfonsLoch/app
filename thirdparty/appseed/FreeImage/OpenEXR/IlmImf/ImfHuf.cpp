@@ -349,7 +349,7 @@ hufBuildEncTable
     // of the tree) are incremented by one.
     //
 
-    make_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
+    ::lemon::make_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
 
     AutoArray <Int64, HUF_ENCSIZE> scode;
     memset (scode, 0, sizeof (Int64) * HUF_ENCSIZE);
@@ -363,14 +363,14 @@ hufBuildEncTable
 	//
 
 	int mm = (int) (fHeap[0] - frq);
-	pop_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
+	::lemon::pop_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
 	--nf;
 
 	int m = (int) (fHeap[0] - frq);
-	pop_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
+	::lemon::pop_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
 
 	frq[m ] += frq[mm];
-	push_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
+	::lemon::push_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
 
 	//
 	// The entries in scode are linked into lists with the
@@ -395,7 +395,7 @@ hufBuildEncTable
 	{
 	    scode[j]++;
 
-	    assert (scode[j] <= 58);
+	    ASSERT (scode[j] <= 58);
 
 	    if (hlink[j] == j)
 	    {
@@ -416,7 +416,7 @@ hufBuildEncTable
 	{
 	    scode[j]++;
 
-	    assert (scode[j] <= 58);
+	    ASSERT (scode[j] <= 58);
 
 	    if (hlink[j] == j)
 		break;

@@ -4,7 +4,7 @@
 //#include <openssl/err.h>
 
 
-//typedef string ( *SALT)(sp(::application), const char * , stringa &);
+//typedef string ( *SALT)(sp(base_application), const char * , stringa &);
 
 namespace hi5
 {

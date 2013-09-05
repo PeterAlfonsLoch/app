@@ -27,7 +27,7 @@ void ifs_file::write(const void * lpBuf, ::primitive::memory_size nCount)
 
 file_size ifs_file::get_length() const
 {
-   if((m_nOpenFlags & ::file::file::mode_read) != 0)
+   if((m_nOpenFlags & ::file::mode_read) != 0)
    {
       return m_httpfile->get_length();
    }
@@ -39,7 +39,7 @@ file_size ifs_file::get_length() const
 
 file_position ifs_file::seek(file_offset lOff, ::file::e_seek nFrom)
 {
-   if((m_nOpenFlags & ::file::file::mode_read) != 0)
+   if((m_nOpenFlags & ::file::mode_read) != 0)
    {
       return m_httpfile->seek(lOff, nFrom);
    }
@@ -69,7 +69,7 @@ void ifs_file::get_file_data()
       dwAdd |= hint_unknown_length_supported;
    }
 
-   m_httpfile->open(strUrl, ::file::file::type_binary | ::file::file::mode_read | dwAdd);
+   m_httpfile->open(strUrl, ::file::type_binary | ::file::mode_read | dwAdd);
 }
  
 void ifs_file::set_file_data()

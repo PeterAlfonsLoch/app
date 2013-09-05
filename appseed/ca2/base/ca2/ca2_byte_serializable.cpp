@@ -7,12 +7,12 @@ namespace ca2
 
 /*
    
-   byte_serializable::byte_serializable()
+   serializable::serializable()
    {
 
    }
 
-   byte_serializable::~byte_serializable()
+   serializable::~serializable()
    {
 
    }

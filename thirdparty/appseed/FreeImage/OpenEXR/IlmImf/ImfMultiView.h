@@ -88,7 +88,7 @@ namespace Imf {
 // vector is empty, return "".
 //
 
-std::string defaultViewName (const StringVector &multiView);
+string defaultViewName (const StringVector &multiView);
 
 
 //
@@ -97,7 +97,7 @@ std::string defaultViewName (const StringVector &multiView);
 // is not a member of any named view.
 //
 
-std::string viewFromChannelName (const std::string &channel,
+string viewFromChannelName (const string &channel,
                                  const StringVector &multiView);
 
 
@@ -107,15 +107,15 @@ std::string viewFromChannelName (const std::string &channel,
 // belongs to no view or if both channels belong to the same view.)
 //
 
-bool areCounterparts (const std::string &channel1,
-                      const std::string &channel2,
+bool areCounterparts (const string &channel1,
+                      const string &channel2,
                       const StringVector &multiView);
 
 //
 // Return a list of all channels belonging to view viewName.
 //
 
-ChannelList channelsInView (const std::string &viewName,
+ChannelList channelsInView (const string &viewName,
                             const ChannelList &channelList,
                             const StringVector &multiView);
 
@@ -132,7 +132,7 @@ ChannelList channelsInNoView (const ChannelList &channelList,
 // X.right.Y, X.centre.Y, etc.).
 //
 
-ChannelList channelInAllViews (const std::string &channame,
+ChannelList channelInAllViews (const string &channame,
                                const ChannelList &channelList,
                                const StringVector &multiView);
 
@@ -143,10 +143,10 @@ ChannelList channelInAllViews (const std::string &channame,
 // exist.
 //
 
-std::string channelInOtherView (const std::string &channel,
+string channelInOtherView (const string &channel,
                                 const ChannelList &channelList,
                                 const StringVector &multiView,
-                                const std::string &otherViewName);
+                                const string &otherViewName);
 
 //
 // Given a channel name that does not include a view name, insert
@@ -155,7 +155,7 @@ std::string channelInOtherView (const std::string &channel,
 // not insert the view name.
 //
 
-std::string insertViewName (const std::string &channel,
+string insertViewName (const string &channel,
 			    const StringVector &multiView,
 			    int i);
 

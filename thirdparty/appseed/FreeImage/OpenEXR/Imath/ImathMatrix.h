@@ -50,8 +50,6 @@
 #include "ImathShear.h"
 
 #include <string.h> 
-#include <iostream>
-#include <iomanip>
 
 #if (defined _WIN32 || defined _WIN64) && defined _MSC_VER
 // suppress exception specification warnings
@@ -373,8 +371,8 @@ template <class T> class Matrix33
     // Limitations of type T (see also class limits<T>)
     //-------------------------------------------------
 
-    static T            baseTypeMin()           {return limits<T>::min();}
-    static T            baseTypeMax()           {return limits<T>::max();}
+    static T            baseTypeMin()           {return limits<T>::minimum();}
+    static T            baseTypeMax()           {return limits<T>::maximum();}
     static T            baseTypeSmallest()      {return limits<T>::smallest();}
     static T            baseTypeEpsilon()       {return limits<T>::epsilon();}
 
@@ -743,8 +741,8 @@ template <class T> class Matrix44
     // Limitations of type T (see also class limits<T>)
     //-------------------------------------------------
 
-    static T            baseTypeMin()           {return limits<T>::min();}
-    static T            baseTypeMax()           {return limits<T>::max();}
+    static T            baseTypeMin()           {return limits<T>::minimum();}
+    static T            baseTypeMax()           {return limits<T>::maximum();}
     static T            baseTypeSmallest()      {return limits<T>::smallest();}
     static T            baseTypeEpsilon()       {return limits<T>::epsilon();}
 
@@ -769,10 +767,10 @@ template <class T> class Matrix44
 //--------------
 
 template <class T>
-std::ostream &  operator << (std::ostream & s, const Matrix33<T> &m); 
+::file::output_stream &  operator << (::file::output_stream & s, const Matrix33<T> &m); 
 
 template <class T>
-std::ostream &  operator << (std::ostream & s, const Matrix44<T> &m); 
+::file::output_stream &  operator << (::file::output_stream & s, const Matrix44<T> &m); 
 
 
 //---------------------------------------------
@@ -3111,8 +3109,8 @@ Matrix44<T>::shear (const Shear6<S> &h)
 //--------------------------------
 
 template <class T>
-std::ostream &
-operator << (std::ostream &s, const Matrix33<T> &m)
+::file::output_stream &
+operator << (::file::output_stream &s, const Matrix33<T> &m)
 {
     std::ios_base::fmtflags oldFlags = s.flags();
     int width;
@@ -3146,8 +3144,8 @@ operator << (std::ostream &s, const Matrix33<T> &m)
 }
 
 template <class T>
-std::ostream &
-operator << (std::ostream &s, const Matrix44<T> &m)
+::file::output_stream &
+operator << (::file::output_stream &s, const Matrix44<T> &m)
 {
     std::ios_base::fmtflags oldFlags = s.flags();
     int width;

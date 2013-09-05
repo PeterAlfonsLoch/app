@@ -9,7 +9,7 @@ namespace url
 
 
    class CLASS_DECL_c departament :
-      virtual public ::departament
+      virtual public base_departament
    {
    public:
 

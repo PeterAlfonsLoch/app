@@ -220,7 +220,7 @@ namespace ca2
 
          virtual void _on_start_user_message_handler();
 
-         virtual sp(::application) calc_app();
+         virtual sp(base_application) calc_app();
 
          virtual sp(base) peek_message(LPMESSAGE lpmsg, sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
          virtual sp(base) get_message(LPMESSAGE lpmsg, sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax);

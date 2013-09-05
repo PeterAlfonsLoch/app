@@ -46,8 +46,6 @@
 #ifdef WINDOWS
 
 
-#include <iostream>
-#include <assert.h>
 
 namespace IlmThread {
 
@@ -80,9 +78,9 @@ Thread::Thread ()
 Thread::~Thread ()
 {
     DWORD status = ::WaitForSingleObject (_thread, INFINITE);
-    assert (status ==  WAIT_OBJECT_0);
+    ASSERT (status ==  WAIT_OBJECT_0);
     bool ok = ::CloseHandle (_thread) != FALSE;
-    assert (ok);
+    ASSERT (ok);
 }
 
 

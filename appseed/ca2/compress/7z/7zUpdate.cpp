@@ -86,7 +86,7 @@ namespace n7z
 #define USE_86_FILTER
 #endif
 
-   static HRESULT WriteRange(::file::byte_input_stream *inStream, ::file::writer *outStream,
+   static HRESULT WriteRange(::file::input_stream *inStream, ::file::writer *outStream,
       uint64_t position, uint64_t size, ::libcompress::progress_info_interface *progress)
    {
       inStream->seek(position, ::file::seek_begin);
@@ -615,7 +615,7 @@ namespace n7z
    {
    public:
       HRESULT Result;
-      smart_pointer < ::file::byte_input_stream > InStream;
+      smart_pointer < ::file::input_stream > InStream;
 
       CFolderOutStream2 *FosSpec;
       smart_pointer < ::file::writer > Fos;
@@ -728,7 +728,7 @@ namespace n7z
    HRESULT Update(
       ::libcompress::codecs_info_interface * codecsInfo,
       const array < ::libcompress::codec_info_ex > * externalCodecs,
-      ::file::byte_input_stream * inStream,
+      ::file::input_stream * inStream,
       const CArchiveDatabaseEx * db,
       const smart_pointer_array < CUpdateItem > & updateItems,
       COutArchive & archive,
@@ -745,7 +745,7 @@ namespace n7z
       if (numSolidFiles == 0)
          numSolidFiles = 1;
       /*
-      smart_pointer<::file::byte_output_stream> outStream;
+      smart_pointer<::file::output_stream> outStream;
       RINOK(seqOutStream->QueryInterface(IID_IOutStream, (void **)&outStream));
       if (!outStream)
       return E_NOTIMPL;

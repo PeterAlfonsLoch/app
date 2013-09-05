@@ -1031,9 +1031,6 @@
     <ClInclude Include="compress\crypto\crypto_aes_cbc_coder.h">
       <Filter>Header Files\compress\crypto</Filter>
     </ClInclude>
-    <ClInclude Include=".\primitive\primitive_align.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include=".\primitive\primitive_check.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -3614,12 +3611,6 @@
     <ClInclude Include="base\ca2\ca2_reference.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_request_interface.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_request_signal.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_resource.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
@@ -4081,9 +4072,6 @@
     <ClCompile Include="database\database_user_interaction.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_duration.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_calendar.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
@@ -4096,23 +4084,11 @@
     <ClCompile Include="primitive\datetime\datetime_clock_interface.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive_var_allocation.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_id_space.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_time.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_geometric_types.cpp">
-      <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_color.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -4121,12 +4097,6 @@
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_fixed_string.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_id.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_index.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_int_biunique.cpp">
@@ -4141,16 +4111,7 @@
     <ClCompile Include="primitive\primitive_memory_file.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive_point.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_rectangle.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_shared_file.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_size.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_unzip.cpp">
@@ -6166,12 +6127,6 @@
     <ClCompile Include="base\ca2\ca2.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="base\ca2\ca2_allocation_base_ca.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_allocation_ca2_heap.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="base\ca2\ca2_allocation_mid_big.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
@@ -6190,9 +6145,6 @@
     <ClCompile Include="base\ca2\ca2_base64.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="base\ca2\ca2_bit.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="base\ca2\ca2_bstr.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
@@ -6200,9 +6152,6 @@
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_byte_serializable.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_byte_stream.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_byte_stream_memory_file.cpp">
@@ -6289,22 +6238,10 @@
     <ClCompile Include="base\ca2\ca2_email.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="base\ca2\ca2_exception.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="base\ca2\ca2_factory.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="base\ca2\ca2_file.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="base\ca2\ca2_file_application.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_file_composite.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_file_exception.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_file_set.cpp">
@@ -6463,12 +6400,6 @@
     <ClCompile Include="base\ca2\ca2_plain_text_stream.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="base\ca2\ca2_plex.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_plex_heap.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="base\ca2\ca2_pointer_holder.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
@@ -6499,9 +6430,6 @@
     <ClCompile Include="base\ca2\ca2_profiler.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="base\ca2\ca2_request_signal.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="base\ca2\ca2_resource.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
@@ -6514,16 +6442,10 @@
     <ClCompile Include="base\ca2\ca2_section_container.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="base\ca2\ca2_seekable.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="base\ca2\ca2_service.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_session.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_signal.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_signal_thread.cpp">
@@ -6557,9 +6479,6 @@
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_stream2.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_string_tokenizer.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_strn.cpp">
@@ -6611,18 +6530,6 @@
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_url_domain.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_var.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_var_array.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_var_property_allocation.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="base\ca2\ca2_variable_strict_compare.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
     <ClCompile Include="base\ca2\ca2_wait_cursor.cpp">

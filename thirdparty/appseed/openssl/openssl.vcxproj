@@ -502,9 +502,6 @@
     <ClCompile Include="crypto\rand\rand_err.c" />
     <ClCompile Include="crypto\rand\rand_lib.c" />
     <ClCompile Include="crypto\rand\rand_nw.c" />
-    <ClCompile Include="crypto\rand\rand_os2.c" />
-    <ClCompile Include="crypto\rand\rand_unix.c" />
-    <ClCompile Include="crypto\rand\rand_vms.c" />
     <ClCompile Include="crypto\rand\rand_win.c" />
     <ClCompile Include="crypto\rc2\rc2cfb64.c" />
     <ClCompile Include="crypto\rc2\rc2ofb64.c" />
