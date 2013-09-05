@@ -138,7 +138,7 @@ namespace primitive
    }
 
 
-   void memory_container ::FullLoad(::file::file & file)
+   void memory_container ::FullLoad(::file::binary_buffer & file)
    {
       if(m_spmemory.is_null())
       {

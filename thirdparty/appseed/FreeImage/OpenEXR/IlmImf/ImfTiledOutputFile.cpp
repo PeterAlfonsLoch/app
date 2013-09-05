@@ -45,13 +45,6 @@ namespace Imf {
 
 using Imath::Box2i;
 using Imath::V2i;
-using string;
-using array;
-using ::file::output_stream;
-using std::map;
-using min;
-using max;
-using std::swap;
 using IlmThread::Mutex;
 using IlmThread::Lock;
 using IlmThread::Semaphore;
@@ -159,7 +152,7 @@ struct BufferedTile
 };
 
 
-typedef map <TileCoord, BufferedTile *> TileMap;
+typedef ::map < TileCoord, TileCoord, BufferedTile *, BufferedTile * > TileMap;
 
 
 struct TileBuffer
@@ -227,7 +220,7 @@ struct TiledOutputFile::Data: public Mutex
 						// each tile
 
     Compressor::Format	format;			// compressor's data format
-    vector<TOutSliceInfo> slices;		// info about channels in file
+    lemon_array<TOutSliceInfo> slices;		// info about channels in file
     OStream *		os;			// file stream to write to
     bool		deleteStream;
 
@@ -235,7 +228,7 @@ struct TiledOutputFile::Data: public Mutex
 						// over all channels
 
     
-    vector<TileBuffer*> tileBuffers;
+    comparable_array<TileBuffer*> tileBuffers;
     size_t		tileBufferSize;         // size of a tile buffer
 
     Int64		tileOffsetsPosition;	// position of the tile index

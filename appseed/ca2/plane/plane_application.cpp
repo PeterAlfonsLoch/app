@@ -374,7 +374,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
 
 
 
-   ::file::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
+   ::file::binary_buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
 
       try

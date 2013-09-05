@@ -25,8 +25,8 @@ namespace ca2
       resource();
       virtual ~resource();
 
-      virtual bool ReadResource(::file::file & file, UINT nID, const char * lpcszType);
-      virtual bool ReadResource(HINSTANCE hinst, ::file::file & file, UINT nID, const char * lpcszType);
+      virtual bool ReadResource(::file::binary_buffer & file, UINT nID, const char * lpcszType);
+      virtual bool ReadResource(HINSTANCE hinst, ::file::binary_buffer & file, UINT nID, const char * lpcszType);
 
    };
 

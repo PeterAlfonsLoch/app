@@ -194,7 +194,7 @@ HRCParser* ParserFactory::getHRCParser()
             }
             stringa straPath;
             System.dir().rls(get_app(), path, &straPath);
-            ::file::filesp spfile(allocer());
+            ::file::binary_buffer_sp spfile(allocer());
             for(int32_t i = 0; i < straPath.get_count(); i++)
             {
                if(!Application.dir().is(straPath[i]))

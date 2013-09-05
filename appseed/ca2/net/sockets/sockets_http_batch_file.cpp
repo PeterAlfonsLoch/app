@@ -37,7 +37,7 @@ namespace sockets
       
       void batch_file::close()
       {
-         if(m_nOpenFlags & ::file::file::mode_write)
+         if(m_nOpenFlags & ::file::binary_buffer::mode_write)
          {
             set_file_data();
          }
@@ -45,7 +45,7 @@ namespace sockets
 
       void batch_file::flush()
       {
-         if(m_nOpenFlags & ::file::file::mode_write)
+         if(m_nOpenFlags & ::file::binary_buffer::mode_write)
          {
             set_file_data();
          }

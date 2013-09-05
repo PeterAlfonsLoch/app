@@ -20,7 +20,7 @@ vsstring crypt_nessie(const char * psz)
    /*
    string file::nessie(const char * psz)
    {
-      ::ca::filesp spfile(allocer());
+      ::ca::binary_buffer_sp spfile(allocer());
       try
       {
          if(!spfile->open(psz, ::ca::file::type_binary | ::ca::file::mode_read))

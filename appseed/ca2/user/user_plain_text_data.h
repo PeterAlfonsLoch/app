@@ -76,7 +76,7 @@ namespace user
       sp(::ca2::tree_item)     m_ptreeitem;
       sp(GroupCommand)        m_pgroupcommand;
       index                   m_iBranch;
-      sp(::file::file)            m_pfile;
+      sp(::file::binary_buffer)            m_pfile;
       ::ca2::edit_file         m_editfile;
       
       
@@ -88,7 +88,7 @@ namespace user
       virtual ~plain_text_data();
 
 
-      void SetFile(sp(::file::file) pfile);
+      void SetFile(sp(::file::binary_buffer) pfile);
 
 
    private:

@@ -6,7 +6,7 @@ namespace http
 
 
    class CLASS_DECL_ca2 file :
-      virtual public ::file::file
+      virtual public ::file::binary_buffer
    {
    public:
 
@@ -44,10 +44,10 @@ namespace http
       }
 
 
-      file & operator << (::file::file & file);
+      file & operator << (::file::binary_buffer & file);
 
 
-      inline file & operator << (::file::filesp & filesp) { return operator << ((::file::file &) *filesp.m_p); }
+      inline file & operator << (::file::binary_buffer_sp & binary_buffer_sp) { return operator << ((::file::binary_buffer &) *binary_buffer_sp.m_p); }
 
 
       inline void to_string(string & str)

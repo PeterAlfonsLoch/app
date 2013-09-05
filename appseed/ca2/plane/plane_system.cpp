@@ -310,7 +310,7 @@ namespace plane
       if(directrix()->m_varTopicQuery.has_property("install"))
          return true;
 
-      ::file::filesp file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::file::type_binary | ::file::mode_read);
+      ::file::binary_buffer_sp file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::file::type_binary | ::file::mode_read);
 
       if(file.is_null())
          return false;
@@ -384,12 +384,12 @@ namespace plane
 
       }
 
-      ::file::filesp file;
+      ::file::binary_buffer_sp file;
 
       try
       {
 
-         file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::file::file::defer_create_directory | ::file::type_binary | ::file::file::mode_create  | ::file::file::mode_write);
+         file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::file::binary_buffer::defer_create_directory | ::file::type_binary | ::file::binary_buffer::mode_create  | ::file::binary_buffer::mode_write);
 
       }
       catch(::exception::base &)

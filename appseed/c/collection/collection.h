@@ -228,8 +228,6 @@ class CLASS_DECL_c time_array :
 
 
 
-#include "c/collection/collection_base_enum.h"
-
 #include "collection_unique_array.h"
 
 #include "collection_stack.h"

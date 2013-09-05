@@ -102,7 +102,7 @@ namespace libcompress
       CA2_COMPRESS_INTERFACE_archive_ExtractCallback(= 0)
    };
 
-//virtual ::ca2::HRes GetStream(const char * name, ::file::input_stream **inStream) specifier; \ // input stream should be seekable, so by the time using ::file::file interface
+//virtual ::ca2::HRes GetStream(const char * name, ::file::input_stream **inStream) specifier; \ // input stream should be seekable, so by the time using ::file::binary_buffer interface
    #define CA2_COMPRESS_INTERFACE_archive_OpenVolumeCallback(specifier) \
      virtual ::ca2::HRes GetProperty(int32_t propID, var *value) specifier; \
      virtual ::ca2::HRes GetStream(const char * name, ::file::input_stream **inStream) specifier; \
@@ -135,7 +135,7 @@ namespace libcompress
      testMode != 0 means "test files without writing to outStream"
    */
 
-     //virtual ::ca2::HRes Open(::file::input_stream * stream, const uint64_t *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openArchiveCallback) specifier; \ // input stream should be seekable, so by the time using ::file::file interface
+     //virtual ::ca2::HRes Open(::file::input_stream * stream, const uint64_t *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openArchiveCallback) specifier; \ // input stream should be seekable, so by the time using ::file::binary_buffer interface
    #define CA2_COMPRESS_INTERFACE_input_archive(specifier) \
      virtual ::ca2::HRes Open(::file::input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openArchiveCallback) specifier; \
      virtual ::ca2::HRes Close() specifier; \

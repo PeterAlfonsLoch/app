@@ -33,8 +33,8 @@ namespace ca2
       string time_log(const char * pszId);
 
 
-      virtual ::file::filesp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      virtual ::file::filesp get(const char * name);
+      virtual ::file::binary_buffer_sp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      virtual ::file::binary_buffer_sp get(const char * name);
 
 
       virtual string as_string(var varFile);
@@ -44,7 +44,7 @@ namespace ca2
 
       virtual bool put_contents(var varFile, const void * pvoidContents, ::count count);
       virtual bool put_contents(var varFile, const char * lpcszContents);
-      virtual bool put_contents(var varFile, ::file::file & file);
+      virtual bool put_contents(var varFile, ::file::binary_buffer & file);
       virtual bool put_contents(var varFile, primitive::memory & mem);
       virtual bool put_contents_utf8(var varFile, const char * lpcszContents);
 
@@ -52,11 +52,11 @@ namespace ca2
       string sys_temp(const char * pszName, const char * pszExtension);
 
 
-      virtual ::file::filesp get_file(var varFile, UINT nOpenFlags);
+      virtual ::file::binary_buffer_sp get_file(var varFile, UINT nOpenFlags);
       virtual ::ca2::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
       // get a file and if there are exceptions, should show end user friendly messages
-      virtual ::file::filesp friendly_get_file(var varFile, UINT nOpenFlags);
+      virtual ::file::binary_buffer_sp friendly_get_file(var varFile, UINT nOpenFlags);
 
    };
 

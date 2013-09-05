@@ -326,10 +326,10 @@ bool ifs::file_move(const char * pszDst, const char * pszSrc)
 }
 
 
-::file::filesp ifs::get_file(var varFile, UINT nOpenFlags)
+::file::binary_buffer_sp ifs::get_file(var varFile, UINT nOpenFlags)
 {
    
-   ::file::filesp spfile;
+   ::file::binary_buffer_sp spfile;
 
    spfile = new ifs_file(get_app(), varFile);
 

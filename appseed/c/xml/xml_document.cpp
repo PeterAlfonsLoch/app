@@ -47,7 +47,7 @@ namespace xml
 
    }
 
-   bool document::load(sp(::file::file) pfile)
+   bool document::load(sp(::file::binary_buffer) pfile)
    {
 
       primitive::memory memory;

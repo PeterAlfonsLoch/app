@@ -189,7 +189,7 @@ namespace filemanager
       string wstrItemExtra;
 
       index iFind;
-      ::file::filesp spfile(allocer());
+      ::file::binary_buffer_sp spfile(allocer());
 
       //spfile->open(szPath, ::file::mode_read | ::file::type_binary);
 

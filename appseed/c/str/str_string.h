@@ -540,7 +540,6 @@ public:
 
 
 
-
    void FormatPrinter(void * , const char * s)
    {
 
@@ -638,6 +637,30 @@ public:
 
    return( TRUE );
    }*/
+
+   void resize (strsize n)
+   {
+      resize(n, '\0');
+   }
+
+   void resize (strsize n, char c)
+   {
+      
+      strsize nOldSize = length();
+
+      if(n < nOldSize)
+      {
+         Truncate(n);
+      }
+      else
+      {
+         LPSTR lpsz = GetBufferSetLength(n);
+         memset(&lpsz[nOldSize], c, n - nOldSize);
+         ReleaseBuffer(n);
+      }
+
+   }
+
 
    friend string CLASS_DECL_c operator+(const string & str1,const string & str2 );
    friend string CLASS_DECL_c operator+(const string & str1,const char * psz2 );

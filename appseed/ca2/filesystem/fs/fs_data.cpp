@@ -141,7 +141,7 @@ namespace fs
       }
    }
 
-   ::file::filesp data::get_file(var varFile, UINT nOpenFlags)
+   ::file::binary_buffer_sp data::get_file(var varFile, UINT nOpenFlags)
    {
       UNREFERENCED_PARAMETER(varFile);
       UNREFERENCED_PARAMETER(nOpenFlags);

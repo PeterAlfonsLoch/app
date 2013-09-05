@@ -5,36 +5,24 @@ namespace file
 {
 
 
-    enum e_buffer
-    {
-       buffer_read, 
-       buffer_write, 
-       buffer_commit,
-       buffer_check
-    };
-
-
-
-
    class exception;
    struct file_status;
 
 
-   class CLASS_DECL_c buffer :
-      virtual public ::file::reader,
-      virtual public ::file::writer,
-      virtual public ::file::seekable,
-      virtual public ::file::writer_flush
+   class CLASS_DECL_c simple_binary_buffer :
+      virtual public ::file::binary_buffer
    {
    public:
 
 
-      buffer();
-      virtual ~buffer();
+      FILE *         m_pfile;
+      string       m_strFileName;
 
+
+      simple_binary_buffer(sp(base_application) papp);
+      virtual ~simple_binary_buffer();
 
       virtual file_position get_position() const;
-      virtual file_position tell() const;
       virtual bool GetStatus(file_status& rStatus) const;
       virtual string GetFileName() const;
       virtual string GetFileTitle() const;
@@ -42,16 +30,19 @@ namespace file
       virtual void SetFilePath(const char * lpszNewName);
 
       
+   // Operations
       virtual bool open(const char * lpszFileName, UINT nOpenFlags);
 
+      //virtual void Rename(const char * lpszOldName, const char * lpszNewName);
+      //virtual void remove(const char * lpszFileName);
       virtual bool GetStatus(const char * lpszFileName, file_status& rStatus);
       virtual void SetStatus(const char * lpszFileName, const file_status& status);
 
 
+   // Overridables
       virtual sp(::file::buffer) Duplicate() const;
 
       virtual file_position seek(file_offset lOff, ::file::e_seek  nFrom);
-      virtual file_position seek(file_position lPos);
       virtual void set_length(file_size dwNewLen);
       virtual file_size get_length() const;
 
@@ -63,16 +54,19 @@ namespace file
       virtual void close();
 
 
+      // io_stream
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
       virtual string get_location() const;
 
 
+      virtual bool IsOpened();
+
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
-      virtual bool IsOpened();
-      virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
+      //virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
+
 
 
       using ::file::writer::write;
@@ -83,25 +77,16 @@ namespace file
       void read(input_stream & istream);
 
 
-      virtual bool read(char * pch);
-      virtual bool read(uchar * puch);
-      virtual bool peek(char * pch);
-      virtual bool peek(uchar * puch);
-      virtual bool read(char & ch);
-      virtual bool read(uchar & uch);
-      virtual bool peek(char & ch);
-      virtual bool peek(uchar & uch);
-      virtual int sgetc();
-      virtual int sbumpc();
-      virtual bool read_string(string & str);
+      //virtual bool read_string(string & str);
 
-
+      virtual void write_string(const char * lpsz);
+      virtual LPTSTR read_string(LPTSTR lpsz, UINT nMax);
+      virtual UINT read_string(string & rString);
 
    };
 
 
-   typedef smart_pointer < buffer > buffer_sp;
-
+   void CLASS_DECL_c throw_exception(sp(base_application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 } // namespace file
 

@@ -67,7 +67,7 @@ void dump_context::output_string(const char * lpsz)
 #endif
 }
 
-dump_context::dump_context(sp(::file::file) pFile)
+dump_context::dump_context(sp(::file::binary_buffer) pFile)
 {
    if (pFile)
       ASSERT_VALID(pFile);
@@ -457,7 +457,7 @@ dump_context & dump_context::operator<<(const wchar_t * lpsz)
 }
 
 
-dump_context & dump_context::operator << (const string & str)
+dump_context & dump_context::operator << (string str)
 {
    operator <<((const char *) str);
    return *this;

@@ -126,7 +126,7 @@ namespace primitive
    }
 
    
-   void memory_base::FullLoad(::file::file & file)
+   void memory_base::FullLoad(::file::binary_buffer & file)
    {
 
       if(!is_enabled())
@@ -201,7 +201,7 @@ namespace primitive
    }
 
    
-   ::primitive::memory_size memory_base::read(::file::file & file)
+   ::primitive::memory_size memory_base::read(::file::binary_buffer & file)
    {
 
       file_size dwEnd = file.get_length();

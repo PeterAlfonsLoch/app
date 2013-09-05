@@ -47,11 +47,6 @@ namespace Imf {
 using Imath::Box2i;
 using Imath::divp;
 using Imath::modp;
-using string;
-using array;
-using ::file::input_stream;
-using min;
-using max;
 using IlmThread::Mutex;
 using IlmThread::Lock;
 using IlmThread::Semaphore;
@@ -168,19 +163,19 @@ struct ScanLineInputFile::Data: public Mutex
     int			maxX;		    // data window's max x coord
     int			minY;		    // data window's min y coord
     int			maxY;		    // data window's max x coord
-    vector<Int64>	lineOffsets;	    // stores offsets in file for
+    int64_array	lineOffsets;	    // stores offsets in file for
 					    // each line
     bool		fileIsComplete;	    // True if no scanlines are missing
     					    // in the file
     int			nextLineBufferMinY; // minimum y of the next linebuffer
-    vector<size_t>	bytesPerLine;       // combined size of a line over all
+    raw_array < size_t >	bytesPerLine;       // combined size of a line over all
                                             // channels
-    vector<size_t>	offsetInLineBuffer; // offset for each scanline in its
+    raw_array < size_t >	offsetInLineBuffer; // offset for each scanline in its
                                             // linebuffer
-    vector<InSliceInfo>	slices;             // info about channels in file
+    lemon_array<InSliceInfo>	slices;             // info about channels in file
     IStream *		is;                 // file stream to read from
     
-    vector<LineBuffer*> lineBuffers;        // each holds one line buffer
+    comparable_array<LineBuffer*> lineBuffers;        // each holds one line buffer
     int			linesInBuffer;      // number of scanlines each buffer
                                             // holds
     size_t		lineBufferSize;     // size of the line buffer

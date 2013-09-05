@@ -4,7 +4,7 @@ namespace ca2
 {
 
    class CLASS_DECL_ca2 text_file : 
-      virtual public ::file::file
+      virtual public ::file::binary_buffer
    {
    public:
       text_file();

@@ -874,7 +874,7 @@ void var::read(::file::input_stream & is)
       {
          sp(type) info;
          is >> info;
-         m_sp = Sys(is.m_spreader->get_app()).alloc(info);
+         m_sp = Sys(is.m_spbuffer->get_app()).alloc(info);
          if(m_sp.is_null())
          {
             throw "object allocation is not implemented";
@@ -886,7 +886,7 @@ void var::read(::file::input_stream & is)
          }
          else
          {
-            throw io_exception(is.m_spreader->get_app(), "object serialization is not implemented");
+            throw io_exception(is.m_spbuffer->get_app(), "object serialization is not implemented");
          }
       }
       break;

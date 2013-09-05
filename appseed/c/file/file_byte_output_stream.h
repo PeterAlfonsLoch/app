@@ -9,7 +9,7 @@ namespace file
 
    class exception;         // file exception
    class file;
-   typedef sp(file) filesp;
+   typedef sp(binary_buffer) binary_buffer_sp;
 
    class byte_output_stream;
    class input_stream;

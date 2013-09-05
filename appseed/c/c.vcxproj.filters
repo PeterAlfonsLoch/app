@@ -584,9 +584,6 @@
     <ClInclude Include="primitive\primitive_logic.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="file\file_file.h">
-      <Filter>Header Files\file</Filter>
-    </ClInclude>
     <ClInclude Include="file\file_reader.h">
       <Filter>Header Files\file</Filter>
     </ClInclude>
@@ -1094,6 +1091,18 @@
     <ClInclude Include="file\file_string_buffer.h">
       <Filter>Header Files\file</Filter>
     </ClInclude>
+    <ClInclude Include="file\file_binary_buffer.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_byte_input_stream_binary_buffer.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_simple_binary_buffer.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_byte_output_stream_binary_buffer.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="android\c_os_internal.c">
@@ -1287,9 +1296,6 @@
     </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="file\file_file.cpp">
-      <Filter>Source Files\file</Filter>
     </ClCompile>
     <ClCompile Include="file\file_stream.cpp">
       <Filter>Source Files\file</Filter>
@@ -1757,6 +1763,18 @@
       <Filter>Source Files\file</Filter>
     </ClCompile>
     <ClCompile Include="file\file_plain_text_stream_string_buffer.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_byte_input_stream_binary_buffer.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_binary_buffer.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_simple_binary_buffer.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_byte_output_stream_binary_buffer.cpp">
       <Filter>Source Files\file</Filter>
     </ClCompile>
   </ItemGroup>

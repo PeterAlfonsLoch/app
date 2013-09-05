@@ -47,15 +47,13 @@ using namespace std;
 namespace Imf {
 namespace {
 
-void
-clearError ()
+void clearError ()
 {
     errno = 0;
 }
 
 
-bool
-checkError (istream &is, streamsize expected = 0)
+bool checkError (::file::input_stream &is, ::primitive::memory_size expected = 0)
 {
     if (!is)
     {
@@ -75,7 +73,7 @@ checkError (istream &is, streamsize expected = 0)
 
 
 void
-checkError (ostream &os)
+checkError (::file::output_stream &os)
 {
     if (!os)
     {
@@ -91,18 +89,18 @@ checkError (ostream &os)
 
 StdIFStream::StdIFStream (const char fileName[]):
     IStream (fileName),
-    _is (new ifstream (fileName, ios_base::binary)),
+    _is (canew(::file:: byte_input_stream_binary_buffer(::ca2::get_thread_app(), fileName))),
     _deleteStream (true)
 {
     if (!*_is)
     {
-	delete _is;
-	Iex::throwErrnoExc();
+       _is.release();
+	      Iex::throwErrnoExc();
     }
 }
 
     
-StdIFStream::StdIFStream (ifstream &is, const char fileName[]):
+StdIFStream::StdIFStream (::file::input_stream &is, const char fileName[]):
     IStream (fileName),
     _is (&is),
     _deleteStream (false)
@@ -133,7 +131,7 @@ StdIFStream::read (char c[/*n*/], int n)
 Int64
 StdIFStream::tellg ()
 {
-    return std::streamoff (_is->tellg());
+    return (Int64) _is->tellg();
 }
 
 
@@ -154,7 +152,7 @@ StdIFStream::clear ()
 
 StdOFStream::StdOFStream (const char fileName[]):
     OStream (fileName),
-    _os (new ofstream (fileName, ios_base::binary)),
+    _os (new byte_ouput_stream_binary_buffer (::ca2::get_thread_app(), fileName)),
     _deleteStream (true)
 {
     if (!*_os)

@@ -14,7 +14,7 @@
 
          mutex                   m_mutexData;
          ::primitive::memory_file        m_memoryfile;
-         sp(::file::file)             m_pfile;
+         sp(::file::binary_buffer)             m_pfile;
           int64_t           m_iFinalSize;
 
 

@@ -43,7 +43,7 @@ namespace sockets
          //psignal->m_set["optional_ca2_login"] = true;
          psignal->m_set["noclose"] = false;
 
-         if((nOpenFlags & ::file::file::hint_unknown_length_supported) != 0)
+         if((nOpenFlags & ::file::binary_buffer::hint_unknown_length_supported) != 0)
          {
             m_ptimeoutfile->m_uiExpectedSize = (uint64_t) -2;
          }

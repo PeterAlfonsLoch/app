@@ -190,7 +190,7 @@ return LoadImageFile(ar.GetFile());
 }
 */
 
-FIBITMAP * imaging::LoadImageFile(sp(::file::file) pfile)
+FIBITMAP * imaging::LoadImageFile(sp(::file::binary_buffer) pfile)
 {
 
    if(pfile == NULL)
@@ -236,7 +236,7 @@ return false;
 
 file.seek_to_begin();
 
-sp(::file::file) pfile = &file;
+sp(::file::binary_buffer) pfile = &file;
 
 FreeImageIO io;
 io.read_proc   = ___Ex1File__ReadProc;

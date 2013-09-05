@@ -33,15 +33,15 @@ inline ::count array<TYPE, ARG_TYPE>::get_byte_count() const
 }
 
 template<class TYPE, class ARG_TYPE>
-inline class_size < array<TYPE, ARG_TYPE > > array<TYPE, ARG_TYPE>::size()
+inline ::count array<TYPE, ARG_TYPE>::size() const
 {
-   return class_size < array<TYPE, ARG_TYPE > >(this);
+   return this->get_size();
 }
 
 template<class TYPE, class ARG_TYPE>
-inline class_size < array<TYPE, ARG_TYPE > > array<TYPE, ARG_TYPE>::count()
+inline ::count array<TYPE, ARG_TYPE>::count() const
 {
-   return class_size < array<TYPE, ARG_TYPE > >(this);
+   return this->get_count();
 }
 
 
@@ -317,6 +317,12 @@ void array<TYPE, ARG_TYPE>::destroy()
       m_nMaxSize  = 0;
    }
 
+}
+
+template<class TYPE, class ARG_TYPE>
+::count array<TYPE, ARG_TYPE>::resize(::count nNewSize, ::count nGrowBy)
+{
+   return allocate(nNewSize, nGrowBy);
 }
 
 template<class TYPE, class ARG_TYPE>

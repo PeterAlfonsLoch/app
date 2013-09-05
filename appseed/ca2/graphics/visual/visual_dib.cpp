@@ -42,7 +42,7 @@ namespace visual
          {
             try
             {
-               ::ca2::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::mode_read | ::file::file::shareDenyWrite | ::file::type_binary);
+               ::ca2::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::mode_read | ::file::binary_buffer::shareDenyWrite | ::file::type_binary);
                m_p->read(stream);
                return true;
             }
@@ -56,7 +56,7 @@ namespace visual
       try
       {
 
-         if(!read_from_file(App(m_p->m_papp).file().get_file(varFile, ::file::mode_read | ::file::file::shareDenyWrite | ::file::type_binary)))
+         if(!read_from_file(App(m_p->m_papp).file().get_file(varFile, ::file::mode_read | ::file::binary_buffer::shareDenyWrite | ::file::type_binary)))
             return false;
 
       }
@@ -73,7 +73,7 @@ namespace visual
       {
          try
          {
-            ::ca2::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::file::mode_create | ::file::file::mode_write | ::file::type_binary | ::file::file::defer_create_directory);
+            ::ca2::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_write | ::file::type_binary | ::file::binary_buffer::defer_create_directory);
             m_p->write(stream);
          }
          catch(...)
@@ -89,7 +89,7 @@ namespace visual
    }
 
 
-   bool dib_sp::read_from_file(sp(::file::file) pfile)
+   bool dib_sp::read_from_file(sp(::file::binary_buffer) pfile)
    {
 
       FIBITMAP * pfi = Sys(m_p->m_papp).visual().imaging().LoadImageFile(pfile);
@@ -119,14 +119,14 @@ namespace visual
 
    bool dib_sp::save_to_file(var varFile, save_image * psaveimage)
    {
-      ::file::filesp spfile;
-      spfile = App(m_p->m_papp).file().get_file(varFile, ::file::file::mode_create | ::file::file::mode_write | ::file::type_binary | ::file::file::defer_create_directory);
+      ::file::binary_buffer_sp spfile;
+      spfile = App(m_p->m_papp).file().get_file(varFile, ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_write | ::file::type_binary | ::file::binary_buffer::defer_create_directory);
       if(spfile.is_null())
          return false;
       return write_to_file(spfile, psaveimage);
    }
 
-   bool dib_sp::write_to_file(sp(::file::file) pfile, save_image * psaveimage)
+   bool dib_sp::write_to_file(sp(::file::binary_buffer) pfile, save_image * psaveimage)
    {
       save_image saveimageDefault;
       if(psaveimage == NULL)

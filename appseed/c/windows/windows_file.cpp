@@ -1,7 +1,7 @@
 #include "framework.h"
+#include <io.h>
 
 
-#include "framework.h"
 
 
 BEGIN_EXTERN_C
@@ -1255,3 +1255,9 @@ void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uint_ptr 
 
 
 
+
+
+int ftruncate(int file, file_size len)
+{
+  return _chsize_s (file, len);
+}

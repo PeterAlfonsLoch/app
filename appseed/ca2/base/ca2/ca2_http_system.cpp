@@ -771,7 +771,7 @@ retry:
             }
             if(set.has_property("file"))
             {
-               psession->m_pfile = set["file"].element < ::file::file >();
+               psession->m_pfile = set["file"].element < ::file::binary_buffer >();
             }
             if(pcookies != NULL && pcookies->get_size() > 0)
             {
@@ -788,12 +788,12 @@ retry:
 
             bool bPost;
             bool bPut;
-            if(set["put"].element < ::file::file >() != NULL || set["http_request"] == "PUT")
+            if(set["put"].element < ::file::binary_buffer >() != NULL || set["http_request"] == "PUT")
             {
                bPost = false;
                bPut = true;
                psession->request("PUT", strRequest);
-               dynamic_cast < ::sockets::http_put_socket * > (psession)->m_file = set["put"].element < ::file::file >();
+               dynamic_cast < ::sockets::http_put_socket * > (psession)->m_file = set["put"].element < ::file::binary_buffer >();
             }
             else if(post.m_propertya.get_count() > 0 || set["http_request"] == "POST")
             {
@@ -1172,12 +1172,12 @@ retry:
 
          bool bPost;
          bool bPut;
-         if(set["put"].element < ::file::file >() != NULL || set["http_request"] == "PUT")
+         if(set["put"].element < ::file::binary_buffer >() != NULL || set["http_request"] == "PUT")
          {
             bPost = false;
             bPut = true;
             psocket = new ::sockets::http_put_socket(handler, strUrl);
-            dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].element < ::file::file >();
+            dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].element < ::file::binary_buffer >();
          }
          else if(post.get_count() > 0 || set["http_request"] == "POST")
          {
@@ -1207,7 +1207,7 @@ retry:
          }
          if(set.has_property("file"))
          {
-            psocket->m_pfile = set["file"].element < ::file::file >();
+            psocket->m_pfile = set["file"].element < ::file::binary_buffer >();
          }
          if(pcookies != NULL && pcookies->get_size() > 0)
          {
@@ -1429,9 +1429,9 @@ retry:
          if(psocket == NULL)
             return false;
 
-         ::file::filesp spfile(allocer());
-         if(!spfile->open(pszFile, ::file::type_binary | ::file::file::mode_create | ::file::file::mode_read_write
-            | ::file::file::defer_create_directory))
+         ::file::binary_buffer_sp spfile(allocer());
+         if(!spfile->open(pszFile, ::file::type_binary | ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_read_write
+            | ::file::binary_buffer::defer_create_directory))
          {
             return false;
          }
@@ -1705,7 +1705,7 @@ retry:
          return put(pszUrl, &file, puser);
       }
 
-      bool system::put(const char * pszUrl, sp(::file::file) pfile, ::fontopus::user * puser)
+      bool system::put(const char * pszUrl, sp(::file::binary_buffer) pfile, ::fontopus::user * puser)
       {
          if(puser == NULL)
          {
@@ -1731,7 +1731,7 @@ retry:
       }
 
 
-      bool system::put(string & strResponse, const char * pszUrl, sp(::file::file) pfile, ::fontopus::user * puser)
+      bool system::put(string & strResponse, const char * pszUrl, sp(::file::binary_buffer) pfile, ::fontopus::user * puser)
       {
 
          if(puser == NULL)

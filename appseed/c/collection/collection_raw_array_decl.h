@@ -310,9 +310,8 @@ public:
    inline ::count get_size_in_bytes() const;
    inline ::count get_count() const;
    inline ::count get_byte_count() const;
-
-   class_size < raw_array > size();
-   class_size < raw_array > count();
+   inline ::count size() const;
+   inline ::count count() const;
 
    inline bool is_empty(::count countMinimum = 1) const;
    inline bool empty(::count countMinimum = 1) const;
@@ -320,6 +319,7 @@ public:
    inline index get_upper_bound(index i = -1) const;
    ::count allocate(index nNewSize, ::count nGrowBy = -1);
    ::count allocate_in_bytes(index nNewSize, ::count nGrowBy = -1);
+   ::count resize(index nNewSize, ::count nGrowBy = -1);
 
    void free_extra();
 

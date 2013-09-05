@@ -563,7 +563,7 @@ namespace user
       string strModuleFolder;
       strModuleFolder = papp->get_module_folder();
 
-      if(!spfile->open(::ca2::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::file::file::type_text | ::file::mode_read))
+      if(!spfile->open(::ca2::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::file::binary_buffer::type_text | ::file::mode_read))
          return;
 
       string str;

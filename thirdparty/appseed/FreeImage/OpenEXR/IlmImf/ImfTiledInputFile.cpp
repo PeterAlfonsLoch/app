@@ -45,10 +45,6 @@ namespace Imf {
 
 using Imath::Box2i;
 using Imath::V2i;
-using string;
-using array;
-using min;
-using max;
 using IlmThread::Mutex;
 using IlmThread::Lock;
 using IlmThread::Semaphore;
@@ -191,7 +187,7 @@ struct TiledInputFile::Data: public Mutex
 					    // used to prevent unnecessary
 					    // seeking
 
-    vector<TInSliceInfo> slices;	    // info about channels in file
+    lemon_array<TInSliceInfo> slices;	    // info about channels in file
     IStream *	    is;			    // file stream to read from
 
     bool	    deleteStream;	    // should we delete the stream
@@ -204,7 +200,7 @@ struct TiledInputFile::Data: public Mutex
 					    // over all channels
 
     
-    vector<TileBuffer*> tileBuffers;        // each holds a single tile
+    comparable_array<TileBuffer*> tileBuffers;        // each holds a single tile
     size_t          tileBufferSize;	    // size of the tile buffers
 
      Data (bool deleteStream, int numThreads);

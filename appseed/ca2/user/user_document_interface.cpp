@@ -217,7 +217,7 @@ namespace user
       {
          strPathName = varFile.propset()["url"];
       }
-      else if(varFile.element < ::file::file > () != NULL)
+      else if(varFile.element < ::file::binary_buffer > () != NULL)
       {
          strPathName = System.datetime().international().get_gmt_date_time() + "." + get_document_template()->m_set["default_extension"];
       }
@@ -593,15 +593,15 @@ namespace user
       try
       {
 
-         spfile = Application.file().get_byte_stream(varFile, ::file::mode_read | ::file::file::shareDenyWrite | ::file::type_binary);
+         spfile = Application.file().get_byte_stream(varFile, ::file::mode_read | ::file::binary_buffer::shareDenyWrite | ::file::type_binary);
 
          /*if(::str::begins_ci(varFile, "uifs://"))
          {
-         spfile = ifs(get_app(), "").get_file(varFile, ::file::mode_read | ::file::file::shareDenyWrite | ::file::type_binary, &fe);
+         spfile = ifs(get_app(), "").get_file(varFile, ::file::mode_read | ::file::binary_buffer::shareDenyWrite | ::file::type_binary, &fe);
          }
          else
          {
-         spfile = System.fs()->get_file(varFile, ::file::mode_read | ::file::file::shareDenyWrite | ::file::type_binary, &fe);
+         spfile = System.fs()->get_file(varFile, ::file::mode_read | ::file::binary_buffer::shareDenyWrite | ::file::type_binary, &fe);
          }*/
       }
       catch(::exception::base & e)
@@ -647,7 +647,7 @@ namespace user
       try
       {
 
-         spfile = Application.file().get_byte_stream(varFile, ::file::file::defer_create_directory | ::file::file::mode_create | ::file::file::mode_write | ::file::file::shareExclusive);
+         spfile = Application.file().get_byte_stream(varFile, ::file::binary_buffer::defer_create_directory | ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_write | ::file::binary_buffer::shareExclusive);
 
       }
       catch(::exception::base & e)

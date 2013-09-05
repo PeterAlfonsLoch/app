@@ -33,7 +33,7 @@ namespace xml
       node * get_root();
       
       bool load_location(const char * psz);
-      bool load(sp(::file::file) pfile);
+      bool load(sp(::file::binary_buffer) pfile);
       bool load(const char * psz);
 
       document & operator = (document & document);

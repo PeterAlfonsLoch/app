@@ -156,7 +156,7 @@ struct OutputFile::Data: public Mutex
     int			 maxX;			// data window's max x coord
     int			 minY;			// data window's min y coord
     int			 maxY;			// data window's max x coord
-    numeric_array<Int64>	 lineOffsets;		// stores offsets in file for
+    int64_array	 lineOffsets;		// stores offsets in file for
 						// each scanline
     numeric_array<size_t>	 bytesPerLine;          // combined size of a line over
                                                 // all channels
@@ -204,7 +204,7 @@ OutputFile::Data::~Data ()
     if (deleteStream)
 	delete os;
 
-    for (size_t i = 0; i < lineBuffers.size(); i++)
+    for (index i = 0; i < lineBuffers.size(); i++)
         delete lineBuffers[i];
 }
 
@@ -220,15 +220,15 @@ namespace {
 
 
 Int64
-writeLineOffsets (OStream &os, const vector<Int64> &lineOffsets)
+writeLineOffsets (OStream &os, const int64_array & lineOffsets)
 {
     Int64 pos = os.tellp();
 
     if (pos == -1)
 	Iex::throwErrnoExc ("Cannot determine current file position (%T).");
 
-    for (unsigned int i = 0; i < lineOffsets.size(); i++)
-	Xdr::write <StreamIO> (os, lineOffsets[i]);
+    for (index i = 0; i < lineOffsets.size(); i++)
+       Xdr::write <StreamIO> (os, (Imath::Int64) lineOffsets[i]);
 
     return pos;
 }
@@ -338,7 +338,7 @@ convertToXdr (OutputFile::Data *ofd,
         // Iterate over all slices in the file.
 	//
 	
-        for (unsigned int i = 0; i < ofd->slices.size(); ++i)
+        for (index i = 0; i < ofd->slices.size(); ++i)
         {
             //
             // Test if scan line y of this channel is
@@ -485,7 +485,7 @@ LineBufferTask::execute ()
             // Iterate over all image channels.
             //
         
-            for (unsigned int i = 0; i < _ofd->slices.size(); ++i)
+            for (index i = 0; i < _ofd->slices.size(); ++i)
             {
                 //
                 // Test if scan line y of this channel contains any data
@@ -696,10 +696,9 @@ OutputFile::initialize (const Header &header)
     _data->minY = dataWindow.min.y;
     _data->maxY = dataWindow.max.y;
 
-    size_t maxBytesPerLine = bytesPerLineTable (_data->header,
-						_data->bytesPerLine);
+    size_t maxBytesPerLine = bytesPerLineTable (_data->header, _data->bytesPerLine);
 
-    for (size_t i = 0; i < _data->lineBuffers.size(); ++i)
+    for (index i = 0; i < _data->lineBuffers.size(); ++i)
     {
         _data->lineBuffers[i] =
 	    new LineBuffer (newCompressor (_data->header.compression(),
@@ -712,7 +711,7 @@ OutputFile::initialize (const Header &header)
     _data->linesInBuffer = numLinesInBuffer (lineBuffer->compressor);
     _data->lineBufferSize = maxBytesPerLine * _data->linesInBuffer;
 
-    for (size_t i = 0; i < _data->lineBuffers.size(); i++)
+    for (index i = 0; i < _data->lineBuffers.size(); i++)
         _data->lineBuffers[i]->buffer.resizeErase((long) _data->lineBufferSize);
 
     int lineOffsetSize = (dataWindow.max.y - dataWindow.min.y +

@@ -859,6 +859,7 @@ read (T &in, char v[], int n)		// fixed-size char array
 }
 
 
+
 template <class S, class T>
 void
 read (T &in, int n, char v[])		// zero-terminated string

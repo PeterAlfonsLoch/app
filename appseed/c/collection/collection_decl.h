@@ -1,5 +1,6 @@
 #pragma once
 
+/*
 
 #define new DEBUG_NEW
 
@@ -69,6 +70,37 @@ class index_array;
 // with strict structs and primitive data types
 
 template < typename C >
+class const_class_size
+{
+public:
+
+   sp(C)          m_p;
+   ::count        m_c;
+
+   const_class_size(const C * p) : m_p(p), m_c(-1) {}
+
+   const_class_size(const C * p, ::count ca) : m_p(NULL), m_c(ca) {}
+
+   const_class_size(const const_class_size & size) : m_p(size.m_p), m_c(size.m_c) {}
+
+   operator ::count () const
+   {
+      if(m_c >= 0)
+      {
+         return m_c;
+      }
+      else
+      {
+         return m_p->get_size();
+      }
+
+   }
+
+
+};
+
+
+template < typename C >
 class class_size
 {
 public:
@@ -82,7 +114,7 @@ public:
 
    class_size(const class_size & size) : m_p(size.m_p), m_c(size.m_c) {}
 
-   operator ::count ()
+   operator ::count () const
    {
       if(m_c >= 0)
       {
@@ -157,3 +189,6 @@ public:
    }
 
 };
+
+
+*/

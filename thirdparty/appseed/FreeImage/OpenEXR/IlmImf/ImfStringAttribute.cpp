@@ -69,10 +69,13 @@ template <>
 void
 StringAttribute::readValueFrom (IStream &is, int size, int version)
 {
-    _value.resize (size);
+   LPSTR lpsz =  _value.GetBufferSetLength(size);
 
     for (int i = 0; i < size; i++)
-	Xdr::read <StreamIO> (is, _value[i]);
+	   Xdr::read <StreamIO> (is, lpsz[i]);
+
+    _value.ReleaseBuffer();
+
 }
 
 

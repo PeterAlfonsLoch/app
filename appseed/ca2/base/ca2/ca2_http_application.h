@@ -62,10 +62,10 @@ namespace ca2
 
 
          bool put(const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser = NULL);
-         bool put(const char * pszUrl, sp(::file::file) pfile, ::fontopus::user * puser = NULL);
+         bool put(const char * pszUrl, sp(::file::binary_buffer) pfile, ::fontopus::user * puser = NULL);
 
          bool put(string & strResponse, const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser = NULL);
-         bool put(string & strResponse, const char * pszUrl, sp(::file::file) pfile, ::fontopus::user * puser = NULL);
+         bool put(string & strResponse, const char * pszUrl, sp(::file::binary_buffer) pfile, ::fontopus::user * puser = NULL);
 
       };
 

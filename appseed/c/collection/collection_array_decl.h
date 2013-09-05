@@ -1,6 +1,9 @@
 #pragma once
 
 
+class index_array;
+
+
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
 // lemon_array is an array that call default constructors, copy constructs and destructors in elements
@@ -313,9 +316,8 @@ public:
    inline ::count get_size_in_bytes() const;
    inline ::count get_count() const;
    inline ::count get_byte_count() const;
-
-   class_size < array > size();
-   class_size < array > count();
+   inline ::count size() const;
+   inline ::count count() const;
 
    inline bool is_empty(::count countMinimum = 1) const;
    inline bool has_elements(::count countMinimum = 1) const;
@@ -323,6 +325,7 @@ public:
    ::count allocate(index nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count allocate_in_bytes(index nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count set_raw_size(index nNewSize, ::count nGrowBy = -1); // does not call constructors and destructors on items/elements
+   ::count resize(index nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
 
 
    void free_extra();

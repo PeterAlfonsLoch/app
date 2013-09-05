@@ -17,7 +17,7 @@ namespace zip
    }
 
 
-   sp(::file::file) InFile::Duplicate() const
+   sp(::file::binary_buffer) InFile::Duplicate() const
    {
    //   ASSERT_VALID(this);
       ASSERT(get_zip_file() != NULL);
@@ -35,7 +35,7 @@ namespace zip
       ASSERT(pFile->m_hFile != (UINT)hFileNull);
       pFile->m_bCloseOnDelete = m_bCloseOnDelete;*/
       return NULL;
-      //return new ::file::filesp(this);
+      //return new ::file::binary_buffer_sp(this);
    }
 
 
@@ -82,7 +82,7 @@ namespace zip
             return FALSE;
          }
          m_filea.add(new File(get_app()));
-         if(!m_filea.last_element()->zip_open((sp(::file::file)) m_izfilea.last_element()))
+         if(!m_filea.last_element()->zip_open((sp(::file::binary_buffer)) m_izfilea.last_element()))
          {
             m_filea.remove_all();
             m_izfilea.remove_all();
@@ -99,7 +99,7 @@ namespace zip
       return TRUE;
    }
 
-   bool InFile::unzip_open(sp(::file::file) pfile)
+   bool InFile::unzip_open(sp(::file::binary_buffer) pfile)
    {
 
       m_filea.remove_all();
@@ -158,7 +158,7 @@ namespace zip
             return FALSE;
          }
          m_filea.add(new File(get_app()));
-         if(!m_filea.last_element()->unzip_open((sp(::file::file))m_izfilea.last_element()))
+         if(!m_filea.last_element()->unzip_open((sp(::file::binary_buffer))m_izfilea.last_element()))
          {
             m_filea.remove_all();
             m_izfilea.remove_all();
@@ -230,7 +230,7 @@ namespace zip
       return TRUE;
    }
 
-   bool InFile::dump(sp(::file::file) pfile)
+   bool InFile::dump(sp(::file::binary_buffer) pfile)
    {
       if(m_strFileName.is_empty())
          return false;
@@ -613,7 +613,7 @@ namespace zip
 
       string strPath(System.dir().path(pszDir, pszRelative));
 
-      ::file::filesp file;
+      ::file::binary_buffer_sp file;
 
       file = Application.file().get_file(strPath, ::file::mode_read | ::file::type_binary);
 

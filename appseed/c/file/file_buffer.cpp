@@ -34,9 +34,19 @@ namespace file
       return 0;
    }
 
+   file_position buffer::seek(file_position lPos)
+   {
+      return seek(lPos, seek_begin);
+   }
+
    file_position buffer::get_position() const
    {
       return ((buffer *) this)->seek(0, ::file::seek_current);
+   }
+
+   file_position buffer::tell() const
+   {
+      return get_position();
    }
 
    void buffer::flush()
@@ -71,7 +81,7 @@ namespace file
    void buffer::read(input_stream & istream)
    {
    
-      read_from(istream.m_spreader);
+      read_from(istream.m_spbuffer);
 
       seek_to_begin();
 

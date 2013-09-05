@@ -12,11 +12,11 @@ namespace file
 
 
 
-      ::file::filesp     m_spfile;
+      ::file::binary_buffer_sp     m_spfile;
 
 
       composite();
-      composite(sp(::file::file) pfile);
+      composite(sp(::file::binary_buffer) pfile);
       virtual ~composite();
 
       virtual file_position get_position() const;

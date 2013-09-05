@@ -277,7 +277,7 @@ namespace sockets
                "\r\n";
             Send( tmp );
             {
-               ::file::filesp file(get_app());
+               ::file::binary_buffer_sp file(get_app());
                if(file->open(filename, ::file::type_binary | ::file::mode_read))
                {
                   primitive::memory mem;

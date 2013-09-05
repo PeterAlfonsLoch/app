@@ -235,7 +235,7 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
       :filename(fname)
     {
         if (filename) {
-            smart_pointer <::file::file > buf;
+            smart_pointer <::file::binary_buffer > buf;
             buf.create(::ca2::get_thread_app());
             buf->open(filename, ::file::mode_read | ::file::type_binary);
             if (buf->IsOpened())
@@ -325,7 +325,7 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
         LR_STREAM_CHK();
         if (saved_f.is_set()) return EBUSY;
         saved_f = f;
-        smart_pointer<::file::file> buf(new ::file::file());
+        smart_pointer<::file::binary_buffer> buf(new ::file::binary_buffer());
         
         buf->open(fn,::file::mode_read | ::file::type_binary);
         if (!buf->IsOpened()) {

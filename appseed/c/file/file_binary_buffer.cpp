@@ -5,29 +5,23 @@ namespace file
 {
 
 
-   __STATIC inline bool IsDirSep(WCHAR ch)
-   {
-      return (ch == '\\' || ch == '/');
-   }
-
-
-   file::file()
+   binary_buffer::binary_buffer()
    {
    }
 
 
-   ::primitive::memory_size file::read(void *lpBuf, ::primitive::memory_size nCount)
+   ::primitive::memory_size binary_buffer::read(void *lpBuf, ::primitive::memory_size nCount)
    {
       return ::file::reader::read(lpBuf, nCount);
    }
 
-   void file::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void binary_buffer::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
       ::file::writer::write(lpBuf, nCount);
    }
 
 
-   void file::write(output_stream & ostream)
+   void binary_buffer::write(output_stream & ostream)
    {
       
       seek_to_begin();
@@ -37,80 +31,80 @@ namespace file
    }
 
 
-   void file::read(input_stream & istream)
+   void binary_buffer::read(input_stream & istream)
    {
    
-      read_from(istream.m_spreader);
+      read_from(istream.m_spbuffer);
 
       seek_to_begin();
 
    }
 
 
-   file::~file()
+   binary_buffer::~binary_buffer()
    {
    }
 
-   sp(::file::buffer) file::Duplicate() const
+   sp(::file::buffer) binary_buffer::Duplicate() const
    {
       return NULL;
    }
 
-   bool file::open(const char * lpszFileName, UINT nOpenFlags)
+   bool binary_buffer::open(const char * lpszFileName, UINT nOpenFlags)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(nOpenFlags);
       return FALSE;
    }
 
-   file_position file::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position binary_buffer::seek(file_offset lOff, ::file::e_seek nFrom)
    {
       UNREFERENCED_PARAMETER(lOff);
       UNREFERENCED_PARAMETER(nFrom);
       return 0;
    }
 
-   file_position file::get_position() const
+   file_position binary_buffer::get_position() const
    {
-      return ((file *) this)->seek(0, ::file::seek_current);
+      return ((binary_buffer *) this)->seek(0, ::file::seek_current);
    }
 
-   void file::flush()
-   {
-   }
-
-   void file::close()
+   void binary_buffer::flush()
    {
    }
 
-   void file::Abort()
+   void binary_buffer::close()
    {
    }
 
-   void file::LockRange(file_position dwPos, file_size dwCount)
+   void binary_buffer::Abort()
    {
-      UNREFERENCED_PARAMETER(dwPos);
-      UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void file::UnlockRange(file_position dwPos, file_size dwCount)
+   void binary_buffer::LockRange(file_position dwPos, file_size dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void file::set_length(file_size dwNewLen)
+   void binary_buffer::UnlockRange(file_position dwPos, file_size dwCount)
+   {
+      UNREFERENCED_PARAMETER(dwPos);
+      UNREFERENCED_PARAMETER(dwCount);
+   }
+
+   void binary_buffer::set_length(file_size dwNewLen)
    {
       UNREFERENCED_PARAMETER(dwNewLen);
    }
 
-   file_size file::get_length() const
+   file_size binary_buffer::get_length() const
    {
       return 0;
    }
 
    // file does not support direct buffering (CMemFile does)
-   uint64_t file::GetBufferPtr(UINT nCommand, uint64_t nCount, void ** ppBufStart, void ** ppBufMax)
+   uint64_t binary_buffer::GetBufferPtr(UINT nCommand, uint64_t nCount, void ** ppBufStart, void ** ppBufMax)
    {
       UNREFERENCED_PARAMETER(nCommand);
       UNREFERENCED_PARAMETER(nCount);
@@ -130,13 +124,13 @@ namespace file
       UNREFERENCED_PARAMETER(lpszFileName);
    }*/
 
-   void file::assert_valid() const
+   void binary_buffer::assert_valid() const
    {
    //   object::assert_valid();
       // we permit the descriptor m_hFile to be any value for derived classes
    }
 
-   void file::dump(dump_context & dumpcontext) const
+   void binary_buffer::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
    //   object::dump(dumpcontext);
@@ -246,17 +240,17 @@ namespace file
    /////////////////////////////////////////////////////////////////////////////
    // file name handlers
 
-   string file::GetFileName() const
+   string binary_buffer::GetFileName() const
    {
       return "";
    }
 
-   string file::GetFileTitle() const
+   string binary_buffer::GetFileTitle() const
    {
       return "";
    }
 
-   string file::GetFilePath() const
+   string binary_buffer::GetFilePath() const
    {
       return "";
    }
@@ -280,13 +274,13 @@ namespace file
    /////////////////////////////////////////////////////////////////////////////
    // file Status implementation
 
-   bool file::GetStatus(file_status & rStatus) const
+   bool binary_buffer::GetStatus(file_status & rStatus) const
    {
       UNREFERENCED_PARAMETER(rStatus);
       return FALSE;
    }
 
-   bool file::GetStatus(const char * lpszFileName, file_status & rStatus)
+   bool binary_buffer::GetStatus(const char * lpszFileName, file_status & rStatus)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(rStatus);
@@ -294,7 +288,7 @@ namespace file
    }
 
 
-   void file::SetStatus(const char * lpszFileName, const file_status & status)
+   void binary_buffer::SetStatus(const char * lpszFileName, const file_status & status)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(status);
@@ -302,144 +296,18 @@ namespace file
 
 
 
-   bool file::IsOpened()
+   bool binary_buffer::IsOpened()
    {
       return false;
    }
 
-   string file::get_location() const
+   string binary_buffer::get_location() const
    {
       return GetFileName();
    }
 
-   /*
-   bool file::read(char * pch)
-   {
-      if(read(pch, 1) == 1)
-      {
-         return true;
-      }
-      else
-      {
-         return false;
-      }
-   }
-
-   bool file::read(uchar * puch)
-   {
-      if(read(puch, 1) == 1)
-      {
-         return true;
-      }
-      else
-      {
-         return false;
-      }
-   }
-
-   bool file::peek(char * pch)
-   {
-      if(read(pch, 1) == 1)
-      {
-         seek(-1, ::file::seek_current);
-         return true;
-      }
-      else
-      {
-         return false;
-      }
-   }
-
-   bool file::peek(uchar * puch)
-   {
-      if(read(puch, 1) == 1)
-      {
-         seek(-1, ::file::seek_current);
-         return true;
-      }
-      else
-      {
-         return false;
-      }
-   }
-
-   bool file::read(char & ch)
-   {
-      return read(&ch);
-   }
-
-   bool file::read(uchar & uch)
-   {
-      return read(&uch);
-   }
-
-   bool file::peek(char & ch)
-   {
-      return peek(&ch);
-   }
 
 
-   bool file::peek(uchar & uch)
-   {
-      return peek(&uch);
-   }
-
-
-   int file::sgetc()
-   {
-
-      char ch;
-
-      if(!peek(&ch))
-         return EOF;
-
-      return ch;
-      
-   }
-
-   int file::sbumpc()
-   {
-
-      char ch;
-
-      if(read(&ch, 1) <= 0)
-         return EOF;
-
-      return ch;
-      
-   }
-
-   bool file::read_string(string & str)
-   {
-      
-      int i = sbumpc();
-
-      if(i == EOF)
-         return false;
-
-      while(true)
-      {
-
-         if((char) i == '\n' || (char) i == '\r')
-            break;
-         
-         str += (char) i;
-      
-         i = sbumpc();
-      };
-
-      int iNew = sbumpc();
-
-      if(iNew == i || ((char) iNew != '\n' && (char) iNew != '\r'))
-      {
-         seek(-1, seek_current);
-      }
-
-      return true;
-
-   }
-
-   */
 
 } // namespace file
 

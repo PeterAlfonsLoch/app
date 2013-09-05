@@ -309,8 +309,8 @@ namespace primitive
 
       primitive::memory storage;
       storage.allocate(1024 * 1024 * 8);
-      ::file::filesp spfile(allocer());
-      if(!spfile->open(psz, ::file::type_binary | ::file::mode_read | ::file::file::shareDenyNone))
+      ::file::binary_buffer_sp spfile(allocer());
+      if(!spfile->open(psz, ::file::type_binary | ::file::mode_read | ::file::binary_buffer::shareDenyNone))
          return;
       else
       {

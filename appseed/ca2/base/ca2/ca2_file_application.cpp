@@ -84,12 +84,12 @@ namespace ca2
       return m_papp->m_psystem->m_spfile->time_log(m_papp, pszId);
    }
 
-   ::file::filesp file_application::time_square_file(const char * pszPrefix, const char * pszSuffix)
+   ::file::binary_buffer_sp file_application::time_square_file(const char * pszPrefix, const char * pszSuffix)
    {
       return m_papp->m_psystem->m_spfile->time_square_file(m_papp, pszPrefix, pszSuffix);
    }
 
-   ::file::filesp file_application::get(const char * name)
+   ::file::binary_buffer_sp file_application::get(const char * name)
    {
       return m_papp->m_psystem->m_spfile->get(name, m_papp);
    }
@@ -124,7 +124,7 @@ namespace ca2
       return m_papp->m_psystem->m_spfile->put_contents(varFile, lpcszContents, m_papp);
    }
 
-   bool file_application::put_contents(var varFile, ::file::file & file)
+   bool file_application::put_contents(var varFile, ::file::binary_buffer & file)
    {
       return m_papp->m_psystem->m_spfile->put_contents(varFile, file, m_papp);
    }
@@ -145,7 +145,7 @@ namespace ca2
    }
 
 
-   ::file::filesp file_application::friendly_get_file(var varFile, UINT nOpenFlags)
+   ::file::binary_buffer_sp file_application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
       try
       {
@@ -157,10 +157,10 @@ namespace ca2
       }
    }
 
-   ::file::filesp file_application::get_file(var varFile, UINT nOpenFlags)
+   ::file::binary_buffer_sp file_application::get_file(var varFile, UINT nOpenFlags)
    {
 
-      ::file::filesp spfile;
+      ::file::binary_buffer_sp spfile;
 
       string strPath;
 
@@ -199,10 +199,10 @@ namespace ca2
 
       }
 
-      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].element < ::file::file >() != NULL)
+      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].element < ::file::binary_buffer >() != NULL)
       {
 
-         spfile = varFile.propset()["file"].element < ::file::file >();
+         spfile = varFile.propset()["file"].element < ::file::binary_buffer >();
 
       }
       else if(::str::find_ci(".zip:", strPath) >= 0)
@@ -429,7 +429,7 @@ namespace ca2
             return spfile;
          }
 
-         if((nOpenFlags & ::file::file::mode_create) == 0 && !exists(strPath))
+         if((nOpenFlags & ::file::binary_buffer::mode_create) == 0 && !exists(strPath))
          {
             TRACE("plane::file_application::file does not exist!!");
             return spfile;

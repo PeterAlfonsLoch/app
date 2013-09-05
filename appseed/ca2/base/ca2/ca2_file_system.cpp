@@ -309,12 +309,12 @@ namespace ca2
       // fail if exists, create if not exists
       bool file_system::mk_time(const char * lpcszCandidate)
       {
-         ::file::filesp spfile(allocer());
+         ::file::binary_buffer_sp spfile(allocer());
          if(System.file().exists(lpcszCandidate, get_app()))
             return false;
          try
          {
-            if(!spfile->open(lpcszCandidate, ::file::file::mode_create | ::file::type_binary))
+            if(!spfile->open(lpcszCandidate, ::file::binary_buffer::mode_create | ::file::type_binary))
                return false;
          }
          catch(...)
@@ -333,9 +333,9 @@ namespace ca2
       string file_system::as_string(var varFile, var & varQuery, sp(base_application) papp)
       {
          primitive::memory storage;
-         if(varFile.element < ::file::file > () != NULL)
+         if(varFile.element < ::file::binary_buffer > () != NULL)
          {
-            storage.FullLoad(*varFile.element < ::file::file >());
+            storage.FullLoad(*varFile.element < ::file::binary_buffer >());
          }
          else
          {
@@ -448,7 +448,7 @@ namespace ca2
             if(strPath.is_empty())
             {
 
-               TRACE("::file::file::file_system::as_memory varFile is a empty file name!!");
+               TRACE("::file::binary_buffer::file_system::as_memory varFile is a empty file name!!");
 
                return;
 
@@ -467,12 +467,12 @@ namespace ca2
 
          }
 
-         ::file::filesp spfile;
+         ::file::binary_buffer_sp spfile;
 
          try
          {
 
-            spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::file::shareDenyNone);
+            spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::binary_buffer::shareDenyNone);
 
             if(spfile.is_null())
                return;
@@ -495,7 +495,7 @@ namespace ca2
 
          try
          {
-            if(!spfile->open(varFile, ::file::file::type_text | ::file::mode_read))
+            if(!spfile->open(varFile, ::file::binary_buffer::type_text | ::file::mode_read))
             {
                return;
             }
@@ -515,9 +515,9 @@ namespace ca2
       bool file_system::put_contents(var varFile, const void * pvoidContents, ::count count, sp(base_application) papp)
       {
 
-         ::file::filesp spfile;
+         ::file::binary_buffer_sp spfile;
 
-         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::file::mode_write | ::file::file::mode_create | ::file::file::shareDenyNone | ::file::file::defer_create_directory);
+         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::binary_buffer::mode_write | ::file::binary_buffer::mode_create | ::file::binary_buffer::shareDenyNone | ::file::binary_buffer::defer_create_directory);
 
          if(spfile.is_null())
             return false;
@@ -540,10 +540,10 @@ namespace ca2
          }
       }
 
-      bool file_system::put_contents(var varFile, ::file::file & file, sp(base_application) papp)
+      bool file_system::put_contents(var varFile, ::file::binary_buffer & file, sp(base_application) papp)
       {
-         ::file::filesp spfile;
-         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::file::mode_write | ::file::file::mode_create | ::file::file::shareDenyNone | ::file::file::defer_create_directory);
+         ::file::binary_buffer_sp spfile;
+         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::binary_buffer::mode_write | ::file::binary_buffer::mode_create | ::file::binary_buffer::shareDenyNone | ::file::binary_buffer::defer_create_directory);
          if(spfile.is_null())
             return false;
          primitive::memory mem;
@@ -563,8 +563,8 @@ namespace ca2
 
       bool file_system::put_contents_utf8(var varFile, const char * lpcszContents, sp(base_application) papp)
       {
-         ::file::filesp spfile;
-         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::file::mode_write | ::file::file::mode_create | ::file::file::shareDenyNone | ::file::file::defer_create_directory);
+         ::file::binary_buffer_sp spfile;
+         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::binary_buffer::mode_write | ::file::binary_buffer::mode_create | ::file::binary_buffer::shareDenyNone | ::file::binary_buffer::defer_create_directory);
          if(spfile.is_null())
             return false;
          ::file::output_stream(spfile) << "\xef\xbb\xbf";
@@ -745,8 +745,8 @@ namespace ca2
                strNew = pszNew;
             }
 
-            ::file::filesp ofile;
-            ofile = App(papp).file().get_file(strNew, ::file::file::mode_write | ::file::type_binary | ::file::file::mode_create | ::file::file::defer_create_directory | ::file::file::shareDenyWrite);
+            ::file::binary_buffer_sp ofile;
+            ofile = App(papp).file().get_file(strNew, ::file::binary_buffer::mode_write | ::file::type_binary | ::file::binary_buffer::mode_create | ::file::binary_buffer::defer_create_directory | ::file::binary_buffer::shareDenyWrite);
             if(ofile.is_null())
             {
                string strError;
@@ -754,8 +754,8 @@ namespace ca2
                throw strError;
             }
 
-            ::file::filesp ifile;
-            ifile = App(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::file::shareDenyNone);
+            ::file::binary_buffer_sp ifile;
+            ifile = App(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::binary_buffer::shareDenyNone);
             if(ifile.is_null())
             {
                string strError;
@@ -1267,19 +1267,19 @@ namespace ca2
 
       }
 
-      ::file::filesp file_system::time_square_file(sp(base_application) papp, const char * pszPrefix, const char * pszSuffix)
+      ::file::binary_buffer_sp file_system::time_square_file(sp(base_application) papp, const char * pszPrefix, const char * pszSuffix)
       {
 
          return get(time_square(papp, pszPrefix, pszSuffix), papp);
 
       }
 
-      ::file::filesp file_system::get(const char * name, sp(base_application) papp)
+      ::file::binary_buffer_sp file_system::get(const char * name, sp(base_application) papp)
       {
 
          System.dir().mk(System.dir().name(name), papp);
 
-         ::file::filesp fileOut = App(papp).file().get_file(name, ::file::file::mode_create | ::file::type_binary | ::file::file::mode_write);
+         ::file::binary_buffer_sp fileOut = App(papp).file().get_file(name, ::file::binary_buffer::mode_create | ::file::type_binary | ::file::binary_buffer::mode_write);
 
          if(fileOut.is_null())
             throw ::file::exception(papp, -1, ::file::exception::none, name);
@@ -1347,7 +1347,7 @@ namespace ca2
    string file_system::md5(const char * psz)
    {
 
-      ::file::filesp spfile(allocer());
+      ::file::binary_buffer_sp spfile(allocer());
 
       try
       {
@@ -1393,7 +1393,7 @@ namespace ca2
    void file_system::dtf(const char * pszFile, stringa & stra, stringa & straRelative, sp(base_application) papp)
    {
 
-      ::file::filesp spfile = App(papp).file().get_file(pszFile, ::file::file::mode_create | ::file::file::mode_write  | ::file::type_binary);
+      ::file::binary_buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_write  | ::file::type_binary);
 
       if(spfile.is_null())
          throw "failed";
@@ -1406,7 +1406,7 @@ namespace ca2
 
       write_gen_string(spfile, NULL, strVersion);
 
-      ::file::filesp file2(allocer());
+      ::file::binary_buffer_sp file2(allocer());
 
       ::primitive::memory_size iBufSize = 1024 * 1024;
 
@@ -1452,7 +1452,7 @@ namespace ca2
    void file_system::ftd(const char * pszDir, const char * pszFile, sp(base_application) papp)
    {
       string strVersion;
-      ::file::filesp spfile = App(papp).file().get_file(pszFile, ::file::mode_read  | ::file::type_binary);
+      ::file::binary_buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_read  | ::file::type_binary);
       if(spfile.is_null())
          throw "failed";
       read_gen_string(spfile, NULL, strVersion);
@@ -1465,7 +1465,7 @@ namespace ca2
       buf.allocate(iBufSize);
       int64_t iLen;
       ::crypto::md5::context ctx(get_app());
-      ::file::filesp file2(get_app());
+      ::file::binary_buffer_sp file2(get_app());
       ::primitive::memory_size uiRead;
       if(strVersion == "fileset v1")
       {
@@ -1479,7 +1479,7 @@ namespace ca2
             read_gen_string(spfile, &ctx, strRelative);
             string strPath = System.dir().path(pszDir, strRelative);
             App(papp).dir().mk(System.dir().name(strPath));
-            if(!file2->open(strPath, ::file::file::mode_create | ::file::type_binary | ::file::file::mode_write))
+            if(!file2->open(strPath, ::file::binary_buffer::mode_create | ::file::type_binary | ::file::binary_buffer::mode_write))
                throw "failed";
             read_n_number(spfile, &ctx, iLen);
             while(iLen > 0)
@@ -1499,7 +1499,7 @@ namespace ca2
       }
    }
 
-   void file_system::write_n_number(sp(::file::file) pfile, ::crypto::md5::context * pctx, int64_t iNumber)
+   void file_system::write_n_number(sp(::file::binary_buffer) pfile, ::crypto::md5::context * pctx, int64_t iNumber)
    {
 
       string str;
@@ -1517,7 +1517,7 @@ namespace ca2
 
    }
 
-   void file_system::read_n_number(sp(::file::file) pfile, ::crypto::md5::context * pctx, int64_t & iNumber)
+   void file_system::read_n_number(sp(::file::binary_buffer) pfile, ::crypto::md5::context * pctx, int64_t & iNumber)
    {
 
       uint64_t uiRead;
@@ -1553,7 +1553,7 @@ namespace ca2
 
    }
 
-   void file_system::write_gen_string(sp(::file::file) pfile, ::crypto::md5::context * pctx, string & str)
+   void file_system::write_gen_string(sp(::file::binary_buffer) pfile, ::crypto::md5::context * pctx, string & str)
    {
       ::count iLen = str.get_length();
       write_n_number(pfile, pctx, iLen);
@@ -1564,7 +1564,7 @@ namespace ca2
       }
    }
 
-   void file_system::read_gen_string(sp(::file::file) pfile, ::crypto::md5::context * pctx, string & str)
+   void file_system::read_gen_string(sp(::file::binary_buffer) pfile, ::crypto::md5::context * pctx, string & str)
    {
       int64_t iLen;
       read_n_number(pfile, pctx, iLen);

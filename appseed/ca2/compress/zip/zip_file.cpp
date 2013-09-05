@@ -37,7 +37,7 @@ namespace zip
 
       m_bOwnFile = true;
 
-      ::file::filesp spfile(allocer());
+      ::file::binary_buffer_sp spfile(allocer());
 
       try
       {
@@ -58,7 +58,7 @@ namespace zip
       return unzip_open(spfile);
    }
 
-   bool File::unzip_open(::file::filesp pfile)
+   bool File::unzip_open(::file::binary_buffer_sp pfile)
    {
       m_pbuffile1 = new ::ca2::buffered_file(get_app(), pfile, 1024 * 256);
       m_pbuffile2 = new ::ca2::buffered_file(get_app(), m_pbuffile1, 1024 * 256);
@@ -72,10 +72,10 @@ namespace zip
    bool File::zip_open(const char * lpcwsz)
    {
       m_bOwnFile = true;
-      ::file::filesp spfile(allocer());
+      ::file::binary_buffer_sp spfile(allocer());
       try
       {
-         if(!spfile->open(lpcwsz, ::file::file::mode_read_write | ::file::type_binary | ::file::file::mode_create | ::file::file::defer_create_directory))
+         if(!spfile->open(lpcwsz, ::file::binary_buffer::mode_read_write | ::file::type_binary | ::file::binary_buffer::mode_create | ::file::binary_buffer::defer_create_directory))
          {
             return false;
          }
@@ -92,7 +92,7 @@ namespace zip
       return zip_open(spfile);
    }
 
-   bool File::zip_open(::file::filesp pfile)
+   bool File::zip_open(::file::binary_buffer_sp pfile)
    {
       m_pbuffile1 = new ::ca2::buffered_file(get_app(), pfile, 1024 * 256);
       m_pbuffile2 = new ::ca2::buffered_file(get_app(), m_pbuffile1, 1024 * 256);
@@ -103,7 +103,7 @@ namespace zip
       return true;
    }
 
-   void  File::write_to_file(sp(::file::file) pfileOut, const wchar_t * lpcsz)
+   void  File::write_to_file(sp(::file::binary_buffer) pfileOut, const wchar_t * lpcsz)
    {
       string str;
       ::str::international::unicode_to_utf8(str, lpcsz);
@@ -129,21 +129,21 @@ namespace zip
       UNREFERENCED_PARAMETER(mode);
       UNREFERENCED_PARAMETER(filename);
       File * pzipfile = (File *) opaque;
-      sp(::file::file) pfile = pzipfile->m_pfile;
+      sp(::file::binary_buffer) pfile = pzipfile->m_pfile;
       return (voidpf) pfile;
    }
    uint_ptr  File::read_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size)
    {
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
-      sp(::file::file) pfile = pzipfile->m_pfile;
+      sp(::file::binary_buffer) pfile = pzipfile->m_pfile;
       return (uint_ptr) pfile->read(buf, size);
    }
    uint_ptr  File::write_file_func (voidpf opaque, voidpf stream, const void * buf, uint_ptr size)
    {
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
-      sp(::file::file) pfile = pzipfile->m_pfile;
+      sp(::file::binary_buffer) pfile = pzipfile->m_pfile;
       pfile->write(buf, size);
       return size;
    }
@@ -151,7 +151,7 @@ namespace zip
    {
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
-      sp(::file::file) pfile = pzipfile->m_pfile;
+      sp(::file::binary_buffer) pfile = pzipfile->m_pfile;
       return (long) pfile->get_position();
    }
 
@@ -159,7 +159,7 @@ namespace zip
    {
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
-      sp(::file::file) pfile = pzipfile->m_pfile;
+      sp(::file::binary_buffer) pfile = pzipfile->m_pfile;
       if(pfile->seek(offset, (::file::e_seek) origin) == 0xffffffff)
          return -1;
       else
@@ -172,7 +172,7 @@ namespace zip
       UNREFERENCED_PARAMETER(opaque);
       UNREFERENCED_PARAMETER(stream);
 //      File * pzipfile = (File *) opaque;
-//      sp(::file::file) pfile = pzipfile->m_pfile;
+//      sp(::file::binary_buffer) pfile = pzipfile->m_pfile;
       return 1;
    }
 
@@ -181,7 +181,7 @@ namespace zip
       UNREFERENCED_PARAMETER(opaque);
       UNREFERENCED_PARAMETER(stream);
 //      File * pzipfile = (File *) opaque;
-//      sp(::file::file) pfile = pzipfile->m_pfile;
+//      sp(::file::binary_buffer) pfile = pzipfile->m_pfile;
       //return spfile->IsValid() ? 0 : 1;
       return 0;
    }

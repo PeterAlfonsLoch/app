@@ -5,6 +5,20 @@ namespace file
 {
 
 
+   class buffer;
+   typedef sp(buffer) buffer_sp;
+
+
+   enum e_iostate
+   {
+      goodbit        = 0x00,
+	   eofbit         = 0x01,
+	   failbit        = 0x02,
+	   badbit         = 0x04,
+	   _Hardfail      = 0x10,
+   };
+
+
    enum e_open
    {
       mode_read               = (int32_t) 0x00001,
@@ -58,7 +72,57 @@ namespace file
    public:
 
 
+      buffer_sp               m_spbuffer;
+      e_iostate               m_iostate;
 
+      
+      stream_base();
+      virtual ~stream_base();
+
+
+      e_iostate rdstate() const
+		{
+		   return m_iostate;
+		}
+
+      bool operator ! ()
+      {
+         return fail();
+      }
+
+      bool bad() const
+      {
+         return (m_iostate & badbit) != 0;
+      }
+
+      bool fail() const
+      {
+         return ((int) m_iostate & ((int) badbit | (int) failbit)) != 0;
+      }
+
+      bool eof() const
+      {
+         return (m_iostate & eofbit) != 0;
+      }
+
+      bool good() const
+      {
+         return m_iostate == goodbit;
+      }
+
+      void setstate(e_iostate state)
+      {
+         clear((e_iostate) (rdstate() | state));
+      }
+
+      void clear(e_iostate state = goodbit)
+      {
+         m_iostate = state;
+      }
+
+      virtual string GetFilePath() const;
+
+      string fileName() { return GetFilePath(); }
 
    };
 

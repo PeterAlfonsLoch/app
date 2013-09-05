@@ -69,9 +69,9 @@ namespace primitive
 
       virtual void remove_offset();
 
-      virtual void FullLoad(::file::file &file);
+      virtual void FullLoad(::file::binary_buffer &file);
 
-      ::primitive::memory_size read(::file::file & file);
+      ::primitive::memory_size read(::file::binary_buffer & file);
 
       void write(::file::output_stream & ostream);
       void read(::file::input_stream & istream);

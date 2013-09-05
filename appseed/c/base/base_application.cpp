@@ -160,7 +160,7 @@ sp(command_thread) base_application::creation()
 }
 
 
-::file::filesp base_application::file_get_file(var varFile, uint32_t uiFlags)
+::file::binary_buffer_sp base_application::file_get_file(var varFile, uint32_t uiFlags)
 {
 
    return NULL;

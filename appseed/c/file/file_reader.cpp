@@ -110,6 +110,11 @@ namespace file
    {
    }
 
+   file_position reader::get_position()
+   {
+      throw interface_only_exception(get_app());
+      return 0;
+   }
 
    static const ::primitive::memory_size kBlockSize = ((uint32_t)1 << 31);
 

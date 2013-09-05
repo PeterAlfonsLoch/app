@@ -77,7 +77,7 @@ namespace ca2
 #else
       {
          System.dir().mk(System.dir().name(pszOutput), papp);
-         ::file::filesp fileOut = App(papp).file().get_file(pszOutput, ::file::file::mode_create | ::file::type_binary | ::file::file::mode_write);
+         ::file::binary_buffer_sp fileOut = App(papp).file().get_file(pszOutput, ::file::binary_buffer::mode_create | ::file::type_binary | ::file::binary_buffer::mode_write);
          if(fileOut.is_null())
             return false;
          return (p->*lpfnOuput)(fileOut, lpszSource);
@@ -93,12 +93,12 @@ namespace ca2
 
          App(papp).dir().mk(System.dir().name(pszOutput));
 
-         ::file::filesp fileOut = App(papp).file().get_file(pszOutput, ::file::file::mode_create | ::file::type_binary | ::file::file::mode_write);
+         ::file::binary_buffer_sp fileOut = App(papp).file().get_file(pszOutput, ::file::binary_buffer::mode_create | ::file::type_binary | ::file::binary_buffer::mode_write);
 
          if(fileOut.is_null())
             return false;
 
-         ::file::filesp fileIn = App(papp).file().get_file(lpszInput, ::file::type_binary | ::file::mode_read);
+         ::file::binary_buffer_sp fileIn = App(papp).file().get_file(lpszInput, ::file::type_binary | ::file::mode_read);
 
          if(fileIn.is_null())
             return false;
@@ -118,8 +118,8 @@ namespace ca2
       string time_square(sp(base_application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
       string time_log(sp(base_application) papp, const char * pszId);
 
-      virtual ::file::filesp time_square_file(sp(base_application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      virtual ::file::filesp get(const char * name, sp(base_application) papp);
+      virtual ::file::binary_buffer_sp time_square_file(sp(base_application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      virtual ::file::binary_buffer_sp get(const char * name, sp(base_application) papp);
 
       template < class T >
       string time_square(sp(base_application) papp, T * p, bool (T::*lpfnOutput)(::file::writer &, const char *), const char * lpszSource)
@@ -141,7 +141,7 @@ namespace ca2
 
       bool put_contents(var varFile, const void * pvoidContents, ::count count, sp(base_application) papp);
       bool put_contents(var varFile, const char * lpcszContents, sp(base_application) papp);
-      bool put_contents(var varFile, ::file::file & file, sp(base_application) papp);
+      bool put_contents(var varFile, ::file::binary_buffer & file, sp(base_application) papp);
       bool put_contents(var varFile, primitive::memory & mem, sp(base_application) papp);
       bool put_contents_utf8(var varFile, const char * lpcszContents, sp(base_application) papp);
 
@@ -163,7 +163,7 @@ namespace ca2
       string md5(const char * psz);
       string nessie(const char * psz);
 
-      string nessie(sp(::file::file) pfile);
+      string nessie(sp(::file::binary_buffer) pfile);
 
 //      path & path36();
 
@@ -174,11 +174,11 @@ namespace ca2
       void is_valid_fileset(const char * pszFile, sp(base_application) papp);
 
       // 'n' (natural) terminated ascii number, example: 245765487n
-      static void write_n_number(sp(::file::file) pfile, ::crypto::md5::context * pctx, int64_t iNumber);
-      static void read_n_number(sp(::file::file) pfile, ::crypto::md5::context * pctx, int64_t & iNumber);
+      static void write_n_number(sp(::file::binary_buffer) pfile, ::crypto::md5::context * pctx, int64_t iNumber);
+      static void read_n_number(sp(::file::binary_buffer) pfile, ::crypto::md5::context * pctx, int64_t & iNumber);
 
-      static void write_gen_string(sp(::file::file) pfile, ::crypto::md5::context * pctx, string & str);
-      static void read_gen_string(sp(::file::file) pfile, ::crypto::md5::context * pctx, string & str);
+      static void write_gen_string(sp(::file::binary_buffer) pfile, ::crypto::md5::context * pctx, string & str);
+      static void read_gen_string(sp(::file::binary_buffer) pfile, ::crypto::md5::context * pctx, string & str);
 
 
 

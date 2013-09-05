@@ -13,18 +13,19 @@ namespace file
 
 
    class CLASS_DECL_c input_stream :
-      virtual public seekable
+      virtual public stream_base
    {
    public:
 
 
-      ::file::reader_sp       m_spreader;
+      ::primitive::memory_size      m_gcount;
 
 
       input_stream();
       input_stream(reader * preader);
       input_stream(const input_stream & preader);
       virtual ~input_stream();
+
 
 
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
@@ -85,6 +86,11 @@ namespace file
       virtual void read (string & str);
 
       virtual void close();
+
+      ::primitive::memory_size gcount() { return m_gcount; }
+      ::file_position tellg() { return m_spbuffer->tell(); }
+      input_stream & seekg(file_position position) { m_spbuffer->seek(position); return *this; }
+      input_stream & seekg(file_offset offset, e_seek eseek) { m_spbuffer->seek(offset, eseek); return *this; }
 
    };
 

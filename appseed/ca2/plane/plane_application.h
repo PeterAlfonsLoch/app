@@ -204,7 +204,7 @@ namespace plane
       }
 
       // get a file and if there are exceptions, should show end user friendly messages
-      virtual ::file::filesp friendly_get_file(var varFile, UINT nOpenFlags);
+      virtual ::file::binary_buffer_sp friendly_get_file(var varFile, UINT nOpenFlags);
 
 
       virtual void data_on_after_change(signal_details * pobj);

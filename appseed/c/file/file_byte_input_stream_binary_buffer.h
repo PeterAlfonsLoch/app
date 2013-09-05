@@ -1,0 +1,22 @@
+#pragma once
+
+
+namespace file
+{
+
+
+   class CLASS_DECL_c byte_input_stream_binary_buffer :
+      virtual public byte_input_stream
+   {
+   public:
+
+
+      byte_input_stream_binary_buffer(sp(base_application) papp, const char * pszFilePath, uint32_t uiFlags = 0);
+      virtual ~byte_input_stream_binary_buffer();
+
+   };
+
+
+} // namespace file
+
+

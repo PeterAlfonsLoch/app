@@ -86,7 +86,7 @@ namespace sockets
       bool                    m_bClose; ///< close and delete flag
       sp(socket)                m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       address                 m_addressRemoteClient; ///< Address of last connect()
-      sp(::file::file)             m_pfileTrafficMonitor;
+      sp(::file::binary_buffer)             m_pfileTrafficMonitor;
       time_t                  m_timeTimeoutStart; ///< set by SetTimeout
       time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
@@ -686,9 +686,9 @@ namespace sockets
       //@}
 
       /** write traffic to an IFile. socket will not delete this object. */
-      void SetTrafficMonitor(sp(::file::file)p) { m_pfileTrafficMonitor = p; }
+      void SetTrafficMonitor(sp(::file::binary_buffer)p) { m_pfileTrafficMonitor = p; }
       /** All traffic will be written to this IFile, if set. */
-      sp(::file::file)GetTrafficMonitor() { return m_pfileTrafficMonitor; }
+      sp(::file::binary_buffer)GetTrafficMonitor() { return m_pfileTrafficMonitor; }
 
       /** \name Triggers */
       //@{

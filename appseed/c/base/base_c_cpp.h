@@ -63,7 +63,7 @@ namespace file
 {
 
    
-   class file;
+   class binary_buffer;
    class input_stream;
    class output_stream;
 
@@ -213,7 +213,7 @@ namespace user
 #include "c/collection/collection.h"
 
 
-#include "c/file/file_plain_text.h"
+#include "c/file/file_string_buffer.h"
 
 
 #include "c/primitive/primitive_var2.h"

@@ -15,7 +15,7 @@ namespace ca2
 
 
 
-typedef ::file::file * HFILE;
+typedef ::file::binary_buffer * HFILE;
 
 
 #endif
@@ -27,7 +27,7 @@ namespace zip
    class File;
 
    class CLASS_DECL_ca2 InFile :
-      public ::file::file
+      public ::file::binary_buffer
    {
    public:
 
@@ -62,7 +62,7 @@ namespace zip
       virtual bool zip_open(const char *,UINT);
       virtual bool zip_open(File * pzfile, const char * lpcszFileName);
 
-      virtual bool unzip_open(sp(::file::file) pfile);
+      virtual bool unzip_open(sp(::file::binary_buffer) pfile);
       virtual bool unzip_open(const char *,UINT);
       virtual bool unzip_open(File * pzfile, const char * lpcszFileName);
 
@@ -70,9 +70,9 @@ namespace zip
 
       virtual void add_file(const char * pszDir, const char * pszRelative);
 
-      bool dump(sp(::file::file) pfile);
+      bool dump(sp(::file::binary_buffer) pfile);
 
-      virtual sp(::file::file) Duplicate() const;
+      virtual sp(::file::binary_buffer) Duplicate() const;
 
       File * get_zip_file();
       const File * get_zip_file() const;
@@ -101,7 +101,7 @@ namespace zip
 
 
    private:
-      using ::file::file::open;
+      using ::file::binary_buffer::open;
 
    };
 

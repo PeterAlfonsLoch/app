@@ -455,10 +455,10 @@ namespace ca2
 
          try
          {
-            if(!plog->m_spfile->open(m_strLogPath, ::file::file::type_text
-               | ::file::file::mode_write
-               | ::file::file::shareDenyWrite | ::file::file::mode_create | ::file::file::modeNoTruncate
-               | ::file::file::defer_create_directory))
+            if(!plog->m_spfile->open(m_strLogPath, ::file::binary_buffer::type_text
+               | ::file::binary_buffer::mode_write
+               | ::file::binary_buffer::shareDenyWrite | ::file::binary_buffer::mode_create | ::file::binary_buffer::modeNoTruncate
+               | ::file::binary_buffer::defer_create_directory))
             {
                if(plog->m_spfile->IsOpened())
                {

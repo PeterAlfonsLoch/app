@@ -944,11 +944,11 @@ namespace dynamic_source
    bool script_manager::extract_image_size(const string & strFile, ::size * psize)
    {
 
-      ::file::filesp f;
+      ::file::binary_buffer_sp f;
 
       try
       {
-         f = Application.file().get_file(strFile, ::file::type_binary | ::file::mode_read | ::file::file::shareDenyWrite);
+         f = Application.file().get_file(strFile, ::file::type_binary | ::file::mode_read | ::file::binary_buffer::shareDenyWrite);
       }
       catch(...)
       {

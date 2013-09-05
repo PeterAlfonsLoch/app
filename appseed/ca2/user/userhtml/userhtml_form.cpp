@@ -290,7 +290,7 @@ bool html_form::open_document(var varFile)
    {
       strPathName = varFile.propset()["url"];
    }
-   else if(varFile.element < ::file::file > () != NULL)
+   else if(varFile.element < ::file::binary_buffer > () != NULL)
    {
       strPathName = System.datetime().international().get_gmt_date_time() + "." + get_document()->get_document_template()->m_set["default_extension"];
    }

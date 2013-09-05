@@ -81,9 +81,10 @@ StringVectorAttribute::readValueFrom (IStream &is, int size, int version)
        read += Xdr::size<int>();       
 
        string str;
-       str.resize (strSize);
+       LPSTR lpsz = str.GetBufferSetLength(strSize);
   
-       Xdr::read<StreamIO> (is, &str[0], strSize);
+       Xdr::read<StreamIO> (is, lpsz, strSize);
+       str.ReleaseBuffer(strSize);
        read += strSize;
 
        _value.push_back (str);

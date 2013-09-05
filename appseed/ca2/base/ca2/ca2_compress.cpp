@@ -195,7 +195,7 @@ namespace ca2
 
    bool compress::bz(::file::writer & ostreamBzFileCompressed, const char * lpcszUncompressed)
    {
-      ::file::filesp file = Application.file().get_file(lpcszUncompressed, ::file::mode_read | ::file::type_binary);
+      ::file::binary_buffer_sp file = Application.file().get_file(lpcszUncompressed, ::file::mode_read | ::file::type_binary);
       if(file.is_null())
       {
          return false;
@@ -267,7 +267,7 @@ namespace ca2
          stringa straPath;
          stringa straRelative;
          string strPath;
-         ::file::filesp file;
+         ::file::binary_buffer_sp file;
          System.dir().rls(papp, psz, &straPath, NULL, &straRelative);
          for(int32_t i = 0; i < straPath.get_size(); i++)
          {

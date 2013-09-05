@@ -313,7 +313,7 @@ namespace ca2
          return System.http().put(pszUrl, memory, puser);
       }
 
-      bool application::put(const char * pszUrl, sp(::file::file) pfile, ::fontopus::user * puser)
+      bool application::put(const char * pszUrl, sp(::file::binary_buffer) pfile, ::fontopus::user * puser)
       {
          if(puser == NULL)
          {
@@ -332,7 +332,7 @@ namespace ca2
          return System.http().put(strResponse, pszUrl, memory, puser);
       }
 
-      bool application::put(string & strResponse, const char * pszUrl, sp(::file::file) pfile, ::fontopus::user * puser)
+      bool application::put(string & strResponse, const char * pszUrl, sp(::file::binary_buffer) pfile, ::fontopus::user * puser)
       {
          if(puser == NULL)
          {

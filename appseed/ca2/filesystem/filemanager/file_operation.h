@@ -63,8 +63,8 @@ public:
    string            m_strBase;
    double            m_dSize;
    double            m_dRead;
-   ::file::filesp           m_fileSrc;
-   ::file::filesp           m_fileDst;
+   ::file::binary_buffer_sp           m_fileSrc;
+   ::file::binary_buffer_sp           m_fileDst;
    int32_t               m_iFile;
    bool              m_bReplaceAll;
    char *            m_pchBuffer;

@@ -87,7 +87,7 @@ namespace ca2
       }
       if (_tempFileCreated)
       {
-         ::file::filesp inFile(get_app());
+         ::file::binary_buffer_sp inFile(get_app());
          if (!inFile->open(_tempFileName, ::file::mode_read | ::file::type_binary))
             return E_FAIL;
          while (size < _size)

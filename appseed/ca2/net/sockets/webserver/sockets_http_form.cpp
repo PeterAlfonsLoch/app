@@ -151,7 +151,7 @@ namespace http
                      int32_t out = 0;
                      char ca;
                      string strTempFile = System.file().time_square(get_app());
-                     ::file::filesp spfile(Application.file().get_file(strTempFile, ::file::type_binary | ::file::file::mode_create | ::file::file::mode_write));
+                     ::file::binary_buffer_sp spfile(Application.file().get_file(strTempFile, ::file::type_binary | ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_write));
                      if(spfile.is_set())
                      {
                         while (infil -> read(&ca,1))

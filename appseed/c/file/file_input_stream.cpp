@@ -19,16 +19,25 @@ namespace file
 
    input_stream::input_stream()
    {
+
+      m_gcount = 0;
+
    }
 
    input_stream::input_stream(reader * preader)
    {
-      m_spreader = preader;      
+      
+      m_spbuffer = preader;      
+      m_gcount = 0;
+
    }
 
    input_stream::input_stream(const input_stream & istream)
    {
-      m_spreader = istream.m_spreader;      
+      
+      m_spbuffer = istream.m_spbuffer;      
+      m_gcount = 0;
+
    }
 
    input_stream::~input_stream()
@@ -42,7 +51,7 @@ namespace file
    ::primitive::memory_size input_stream::read(void * lpBuf, ::primitive::memory_size nCount)
    {
       
-      return m_spreader->read(lpBuf, nCount);
+      return m_gcount = m_spbuffer->read(lpBuf, nCount);
       
    }
 
@@ -212,7 +221,7 @@ namespace file
    input_stream & input_stream::operator = (const input_stream & istream)
    {
 
-      m_spreader = istream.m_spreader;
+      m_spbuffer = istream.m_spbuffer;
 
       return *this;
 
@@ -221,12 +230,12 @@ namespace file
 
    bool input_stream::is_reader_null()
    {
-      return m_spreader.is_null();
+      return m_spbuffer.is_null();
    }
 
    bool input_stream::is_reader_set()
    {
-      return m_spreader.is_set();
+      return m_spbuffer.is_set();
    }
 
 } // namespace file

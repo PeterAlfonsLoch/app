@@ -5,7 +5,7 @@ class CLASS_DECL_c dump_context :
    virtual public element
 {
 public:
-   dump_context(sp(::file::file) pFile = NULL);
+   dump_context(sp(::file::binary_buffer) pFile = NULL);
 
 // Attributes
    int32_t GetDepth() const;      // 0 => this object, 1 => children objects
@@ -14,7 +14,7 @@ public:
 // Operations
    dump_context & operator<<(const char * lpsz);
    dump_context & operator<<(const wchar_t * lpsz); // automatically thinned
-   dump_context & operator<<(const string & str);
+   dump_context & operator<<(string str);
    dump_context & operator<<(const void * lp);
    dump_context & operator<<(const object* pOb);
    dump_context & operator<<(const object& ob);
@@ -58,6 +58,6 @@ protected:
    int32_t m_nDepth;
 
 public:
-   sp(::file::file) m_pfile;
+   sp(::file::binary_buffer) m_pfile;
 };
 

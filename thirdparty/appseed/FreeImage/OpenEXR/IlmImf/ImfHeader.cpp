@@ -124,7 +124,7 @@ namespace Imf {
             if (str[i] == '\0')
                return;
          }
-         ::file::plain_text_stream s;
+         ::file::plain_text_stream_string_buffer s;
          s << "Invalid " << what << ": it is more than " << (N - 1) 
             << " characters long.";
          throw Iex::InputExc(s);

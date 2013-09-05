@@ -78,7 +78,7 @@ int	numSamples (int s, int a, int b);
 //
 
 size_t	bytesPerLineTable (const Header &header,
-		           array<size_t> &bytesPerLine);
+		           numeric_array<size_t> &bytesPerLine);
 
 //
 // For scanline-based files, pixels are read or written in
@@ -90,9 +90,9 @@ size_t	bytesPerLineTable (const Header &header,
 // relative to the beginning of the line buffer.
 //
 
-void	offsetInLineBufferTable (const array<size_t> &bytesPerLine,
+void	offsetInLineBufferTable (const numeric_array < size_t > &bytesPerLine,
 				 int linesInLineBuffer,
-				 array<size_t> &offsetInLineBuffer);
+				 numeric_array<size_t> &offsetInLineBuffer);
 
 //
 // For a scanline-based file, compute the range of scanlines

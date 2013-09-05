@@ -4,7 +4,7 @@ namespace primitive
 {
 
    class CLASS_DECL_ca2 memory_file :
-      virtual public ::file::file,
+      virtual public ::file::binary_buffer,
       virtual public primitive::memory_container
    {
    protected:

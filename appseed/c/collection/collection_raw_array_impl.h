@@ -32,17 +32,16 @@ inline ::count raw_array<TYPE, ARG_TYPE>::get_byte_count() const
 }
 
 template<class TYPE, class ARG_TYPE>
-inline class_size < raw_array<TYPE, ARG_TYPE > > raw_array<TYPE, ARG_TYPE>::size()
+inline ::count raw_array<TYPE, ARG_TYPE>::size() const
 {
-   return class_size < raw_array<TYPE, ARG_TYPE > >(this);
+   return this->get_size();
 }
 
 template<class TYPE, class ARG_TYPE>
-inline class_size < raw_array<TYPE, ARG_TYPE > > raw_array<TYPE, ARG_TYPE>::count()
+inline ::count raw_array<TYPE, ARG_TYPE>::count() const
 {
-   return class_size < raw_array<TYPE, ARG_TYPE > >(this);
+   return this->get_count();
 }
-
 
 template<class TYPE, class ARG_TYPE>
 inline bool raw_array<TYPE, ARG_TYPE>::is_empty(::count countMinimum) const
@@ -365,6 +364,13 @@ void raw_array<TYPE, ARG_TYPE>::destroy()
    }
 
 }
+
+template<class TYPE, class ARG_TYPE>
+::count raw_array<TYPE, ARG_TYPE>::resize(::count nNewSize, ::count nGrowBy)
+{
+   return allocate(nNewSize, -1);
+}
+
 
 template<class TYPE, class ARG_TYPE>
 ::count raw_array<TYPE, ARG_TYPE>::allocate_in_bytes(::count nNewSize, ::count nGrowBy)

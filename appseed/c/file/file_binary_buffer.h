@@ -4,11 +4,12 @@
 namespace file
 {
 
+
    class exception;
    struct file_status;
 
 
-   class CLASS_DECL_c file :
+   class CLASS_DECL_c binary_buffer :
       virtual public ::file::reader,
       virtual public ::file::writer,
       virtual public ::file::seekable,
@@ -20,8 +21,8 @@ namespace file
 
 
 
-      file();
-      virtual ~file();
+      binary_buffer();
+      virtual ~binary_buffer();
 
       virtual file_position get_position() const;
       virtual bool GetStatus(file_status& rStatus) const;
@@ -85,9 +86,9 @@ namespace file
    };
 
 
-   typedef smart_pointer < file > filesp;
+   typedef smart_pointer < binary_buffer > binary_buffer_sp;
 
-   inline void file::SetFilePath(const char * lpszNewName)
+   inline void binary_buffer::SetFilePath(const char * lpszNewName)
    {
       UNREFERENCED_PARAMETER(lpszNewName);
    }

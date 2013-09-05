@@ -1033,9 +1033,9 @@ namespace ca2
       try
       {
       // create the .mdb file
-      ::file::filesp f(get_app());
+      ::file::binary_buffer_sp f(get_app());
 
-      if(f->open(lpcszFilePath, ::file::file::mode_create | ::file::file::mode_write ))
+      if(f->open(lpcszFilePath, ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_write ))
       {
       // write the ::fontopus::user-defined resource to the .mdb file
       f->write(lpnRes, dwResSize);

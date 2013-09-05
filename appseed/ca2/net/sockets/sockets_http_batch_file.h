@@ -10,7 +10,7 @@ namespace sockets
 
 
       class CLASS_DECL_ca2 batch_file : 
-         virtual public ::file::file
+         virtual public ::file::binary_buffer
       {
       public:
 

@@ -121,15 +121,15 @@ bytesPerLineTable (const Header &header,
 
 
 void
-offsetInLineBufferTable (const vector<size_t> &bytesPerLine,
+offsetInLineBufferTable (const raw_array < size_t > &bytesPerLine,
 			 int linesInLineBuffer,
-			 vector<size_t> &offsetInLineBuffer)
+			 raw_array < size_t > &offsetInLineBuffer)
 {
     offsetInLineBuffer.resize (bytesPerLine.size());
 
     size_t offset = 0;
 
-    for (unsigned int i = 0; i < bytesPerLine.size(); ++i)
+    for (index i = 0; i < bytesPerLine.size(); ++i)
     {
 	if (i % linesInLineBuffer == 0)
 	    offset = 0;

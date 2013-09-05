@@ -22,7 +22,7 @@ namespace ca2
 } // namespace ca2
 
 
-typedef ::file::file * HFILE;
+typedef ::file::binary_buffer * HFILE;
 
 
 

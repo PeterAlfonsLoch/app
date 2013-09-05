@@ -45,7 +45,7 @@ namespace primitive
       void to_string(string & str);
 
       void FullLoad(memory_base *pmemorystorage);
-      void FullLoad(::file::file & file);
+      void FullLoad(::file::binary_buffer & file);
 
       void keep_pointer(void **ppvoid);
       void offset_kept_pointers(memory_offset iOffset);

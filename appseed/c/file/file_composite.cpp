@@ -11,7 +11,7 @@ namespace file
    }
 
 
-   composite::composite(sp(file) pfile)
+   composite::composite(sp(binary_buffer) pfile)
    {
 
       m_spfile = pfile;

@@ -73,7 +73,7 @@ public:
    virtual string file_title(const char * psz);
    virtual string file_name(const char * psz);
 
-   ::file::filesp file_get_file(var varFile, uint32_t uiFlags);
+   ::file::binary_buffer_sp file_get_file(var varFile, uint32_t uiFlags);
 
 
    // Wall-eeeeee aliases

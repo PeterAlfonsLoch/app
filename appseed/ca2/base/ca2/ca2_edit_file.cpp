@@ -326,7 +326,7 @@ namespace ca2
    edit_file::edit_file(sp(base_application) papp) :
       element(papp),
       ::ca2::tree_data(papp),
-      ::file::filesp(papp),
+      ::file::binary_buffer_sp(papp),
       ::ca2::tree(papp)
    {
 
@@ -344,7 +344,7 @@ namespace ca2
    }
 
 
-   void edit_file::SetFile(sp(::file::file) pfile)
+   void edit_file::SetFile(sp(::file::binary_buffer) pfile)
    {
 
       if(pfile == NULL)
@@ -551,7 +551,7 @@ l1:
 
       strTimeFile = System.file().time_square(get_app());
 
-      ::file::filesp spfile = Application.file().get_file(strTimeFile, ::file::type_binary | ::file::file::mode_read_write | ::file::file::mode_create | ::file::file::defer_create_directory);
+      ::file::binary_buffer_sp spfile = Application.file().get_file(strTimeFile, ::file::type_binary | ::file::binary_buffer::mode_read_write | ::file::binary_buffer::mode_create | ::file::binary_buffer::defer_create_directory);
 
       if(spfile.is_null())
       {
@@ -588,7 +588,7 @@ l1:
       return true;
    }
 
-   bool edit_file::Save(::file::file & file)
+   bool edit_file::Save(::file::binary_buffer & file)
    {
       char buf[4096];
       primitive::memory_size uiRead;
@@ -603,7 +603,7 @@ l1:
       return true;
    }
 
-   bool edit_file::Save_N_to_CRLF(::file::file & file)
+   bool edit_file::Save_N_to_CRLF(::file::binary_buffer & file)
    {
       char buf[4096];
       string str;

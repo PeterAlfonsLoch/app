@@ -6,7 +6,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca2 edit_file :
-      public ::file::filesp,
+      public ::file::binary_buffer_sp,
       public ::ca2::tree,
       public ::ca2::tree_data
    {
@@ -164,11 +164,11 @@ namespace ca2
       sp(::ca2::tree_item)   m_ptreeitem;
       sp(::ca2::tree_item)   m_ptreeitemFlush;
       ::primitive::memory_offset              m_iBranch;
-      sp(::file::file)          m_pfile;
+      sp(::file::binary_buffer)          m_pfile;
       GroupItem *          m_pgroupitem;
       bool                 m_bRootDirection;
 
-      void SetFile(sp(::file::file) pfile);
+      void SetFile(sp(::file::binary_buffer) pfile);
 
       void FillFilePosition(sp(Item) pitem);
 
@@ -196,8 +196,8 @@ namespace ca2
 
       void flush();
       bool SaveTo(::file::output_stream & file);
-      bool Save(::file::file & file);
-      bool Save_N_to_CRLF(::file::file & file);
+      bool Save(::file::binary_buffer & file);
+      bool Save_N_to_CRLF(::file::binary_buffer & file);
 
 
       void Insert(DeleteItem * pitem);

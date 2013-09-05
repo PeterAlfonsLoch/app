@@ -82,7 +82,7 @@ class StdIFStream: public IStream
 
   private:
 
-    ::file::input_stream *	_is;
+    sp(::file::input_stream)	_is;
     bool		_deleteStream;
 };
 

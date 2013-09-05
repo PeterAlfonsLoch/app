@@ -76,7 +76,7 @@ namespace file
    void byte_input_stream::read(char & ch)
    {
 
-      if(m_spreader->read(&ch, sizeof(ch)) != sizeof(ch))
+      if(m_spbuffer->read(&ch, sizeof(ch)) != sizeof(ch))
          throw io_exception(get_app());
 
 
@@ -87,7 +87,7 @@ namespace file
    void byte_input_stream::read(uchar & uch)
    {
 
-      if(m_spreader->read(&uch, sizeof(uch)) != sizeof(uch))
+      if(m_spbuffer->read(&uch, sizeof(uch)) != sizeof(uch))
          throw io_exception(get_app());
 
 
@@ -118,7 +118,7 @@ namespace file
 
    void byte_input_stream::read(bool & b)
    {
-      m_spreader->read(&b, sizeof(b));
+      m_spbuffer->read(&b, sizeof(b));
 
    }
 
@@ -179,7 +179,7 @@ namespace file
 
       byte b;
 
-      if(m_spreader->read(&b, sizeof(b)) < sizeof(b))
+      if(m_spbuffer->read(&b, sizeof(b)) < sizeof(b))
          throw io_exception(get_app(), "ca2::byte_input_stream::read_arbitrary : unexpected end of stream, cannot read header byte");
 
       if(b == 0)
@@ -195,7 +195,7 @@ namespace file
       if(len > sizeof(uiRead) || len > nMax)
          throw io_exception(get_app(), "ca2::byte_input_stream::read_arbitrary : overflow");
 
-      if(m_spreader->read(&uiRead, len) != len)
+      if(m_spbuffer->read(&uiRead, len) != len)
          throw io_exception(get_app(), "ca2::byte_input_stream::read_arbitrary : unexpected end of stream, cannot read number body");
 
       if(b & 0x40)
@@ -212,29 +212,29 @@ namespace file
 
    void byte_input_stream::read(float & f)
    {
-      m_spreader->read(&f, sizeof(f));
+      m_spbuffer->read(&f, sizeof(f));
 
    }
 
    void byte_input_stream::read(double & d)
    {
-      m_spreader->read(&d, sizeof(d));
+      m_spbuffer->read(&d, sizeof(d));
 
    }
 
    void byte_input_stream::read(LPRECT lprect)
    {
-      m_spreader->read(&lprect->left,     sizeof(lprect->left));
-      m_spreader->read(&lprect->top,      sizeof(lprect->top));
-      m_spreader->read(&lprect->right,    sizeof(lprect->right));
-      m_spreader->read(&lprect->bottom,   sizeof(lprect->bottom));
+      m_spbuffer->read(&lprect->left,     sizeof(lprect->left));
+      m_spbuffer->read(&lprect->top,      sizeof(lprect->top));
+      m_spbuffer->read(&lprect->right,    sizeof(lprect->right));
+      m_spbuffer->read(&lprect->bottom,   sizeof(lprect->bottom));
 
    }
 
    void byte_input_stream::read(SIZE & size)
    {
-      m_spreader->read(&size.cx,     sizeof(size.cx));
-      m_spreader->read(&size.cy,      sizeof(size.cy));
+      m_spbuffer->read(&size.cx,     sizeof(size.cx));
+      m_spbuffer->read(&size.cy,      sizeof(size.cy));
 
    }
 
@@ -242,18 +242,18 @@ namespace file
    {
       {
          int32_t iLen;
-         m_spreader->read(&iLen, sizeof(iLen));
+         m_spbuffer->read(&iLen, sizeof(iLen));
          char * psz = (char *) malloc(iLen + 1);
-         m_spreader->read(psz, iLen);
+         m_spbuffer->read(psz, iLen);
          psz[iLen] = '\0';
          info->m_id = psz;
          free((void *) psz);
       }
       {
          int32_t iLen;
-         m_spreader->read(&iLen, sizeof(iLen));
+         m_spbuffer->read(&iLen, sizeof(iLen));
          char * psz = (char *) malloc(iLen + 1);
-         m_spreader->read(psz, iLen);
+         m_spbuffer->read(psz, iLen);
          psz[iLen] = '\0';
          info->m_idFriendly = psz;
          free((void *) psz);
@@ -304,33 +304,83 @@ namespace file
 
    /*file_position byte_input_stream::seek(file_offset offset, e_seek seekOrigin)
    {
-   return m_spreader->seek(offset, seekOrigin);
+   return m_spbuffer->seek(offset, seekOrigin);
    }*/
 
 
    void byte_input_stream::full_load(string & str)
    {
 
-      seek_to_end();
+      if(m_spbuffer.is_null())
+         return;
 
-      ::file_position uiLength = get_position();
+      sp(seekable) spseekable = m_spbuffer;
 
-      seek_to_begin();
-
-      ::file_position uiCount = uiLength;
-
-      ::file_position uiPos = 0;
-      LPSTR lpstr = str.GetBufferSetLength((strsize) (uiLength + 1));
-      while(uiCount > 0)
+      if(spseekable.is_set())
       {
-         ::primitive::memory_size uiRead =  m_spreader->read(&lpstr[uiPos], (::primitive::memory_size) uiCount);
-         uiCount -= uiRead;
-         uiPos+=uiRead;
-         if(uiCount > 0)
-            Sleep(84);
-      }
 
-      str.ReleaseBuffer((strsize) uiLength);
+         spseekable->seek_to_end();
+
+         ::file_position uiLength = spseekable->get_position();
+
+         spseekable->seek_to_begin();
+
+         ::strsize uiCount = (strsize) min(uiLength, ::numeric_info::get_maximum_value < strsize >());
+
+         ::file_position uiPos = 0;
+
+         LPSTR lpstr = str.GetBufferSetLength((strsize) (uiLength + 1));
+
+         while(uiCount > 0)
+         {
+
+            ::primitive::memory_size uiRead =  m_spbuffer->read(&lpstr[uiPos], (::primitive::memory_size) uiCount);
+
+            uiCount -= uiRead;
+
+            uiPos+=uiRead;
+
+         }
+
+         str.ReleaseBuffer((strsize) uiLength);
+
+      }
+      else
+      {
+
+         ::file::string_buffer strbuffer;
+
+         ::strsize uiPos = 0;
+
+         ::primitive::memory_size uiRead;
+
+         do
+         {
+
+            try
+            {
+
+               strbuffer.alloc_up(1024);
+
+            }
+            catch(...)
+            {
+
+               break;
+
+            }
+
+            uiRead =  m_spbuffer->read((void *) &((const char *) strbuffer)[uiPos], (::primitive::memory_size) (strbuffer.get_allocation_size() - uiPos));
+
+            uiPos += uiRead;
+
+         } while(uiRead > 0);
+
+         strbuffer.m_iSize = uiPos;
+
+         str = strbuffer.str();
+
+      }
 
    }
 
@@ -362,7 +412,7 @@ namespace file
          ASSERT(nByteLen != 0);
 
          // read new data
-         if (m_spreader->read(lpBuf, nByteLen) != nByteLen)
+         if (m_spbuffer->read(lpBuf, nByteLen) != nByteLen)
          {
             //   ::ca2::ThrowArchiveException(CArchiveException::endOfFile);
          }

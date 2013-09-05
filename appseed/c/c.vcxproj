@@ -1160,7 +1160,9 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="datetime\datetime_c.h" />
     <ClInclude Include="file\file_buffer.h" />
     <ClInclude Include="file\file_byte_input_stream.h" />
+    <ClInclude Include="file\file_byte_input_stream_binary_buffer.h" />
     <ClInclude Include="file\file_byte_output_stream.h" />
+    <ClInclude Include="file\file_byte_output_stream_binary_buffer.h" />
     <ClInclude Include="file\file_byte_stream.h" />
     <ClInclude Include="file\file_c.h" />
     <ClInclude Include="file\file_composite.h" />
@@ -1169,6 +1171,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="file\file_plain_text_stream_base.h" />
     <ClInclude Include="file\file_plain_text_output_stream.h" />
     <ClInclude Include="file\file_plain_text_stream_string_buffer.h" />
+    <ClInclude Include="file\file_simple_binary_buffer.h" />
     <ClInclude Include="file\file_writer_flush.h" />
     <ClInclude Include="file\file_output_stream.h" />
     <ClInclude Include="file\file_string_buffer.h" />
@@ -1257,7 +1260,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="file\file_serializable.h" />
     <ClInclude Include="file\file_dir.h" />
     <ClInclude Include="file\file_exception.h" />
-    <ClInclude Include="file\file_file.h" />
+    <ClInclude Include="file\file_binary_buffer.h" />
     <ClInclude Include="file\file_opened.h" />
     <ClInclude Include="file\file_output_stream_flush.h" />
     <ClInclude Include="file\file_reader.h" />
@@ -1470,7 +1473,9 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="exception\exception_void_implementation.cpp" />
     <ClCompile Include="file\file_buffer.cpp" />
     <ClCompile Include="file\file_byte_input_stream.cpp" />
+    <ClCompile Include="file\file_byte_input_stream_binary_buffer.cpp" />
     <ClCompile Include="file\file_byte_output_stream.cpp" />
+    <ClCompile Include="file\file_byte_output_stream_binary_buffer.cpp" />
     <ClCompile Include="file\file_byte_stream.cpp" />
     <ClCompile Include="file\file_c.cpp" />
     <ClCompile Include="file\file_composite.cpp" />
@@ -1480,13 +1485,14 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="file\file_plain_text_input_stream.cpp" />
     <ClCompile Include="file\file_dir.cpp" />
     <ClCompile Include="file\file_dir2.cpp" />
-    <ClCompile Include="file\file_file.cpp" />
+    <ClCompile Include="file\file_binary_buffer.cpp" />
     <ClCompile Include="file\file_plain_text_output_stream.cpp" />
     <ClCompile Include="file\file_plain_text_stream.cpp" />
     <ClCompile Include="file\file_plain_text_stream_base.cpp" />
     <ClCompile Include="file\file_plain_text_stream_string_buffer.cpp" />
     <ClCompile Include="file\file_reader.cpp" />
     <ClCompile Include="file\file_seekable.cpp" />
+    <ClCompile Include="file\file_simple_binary_buffer.cpp" />
     <ClCompile Include="file\file_stream.cpp" />
     <ClCompile Include="file\file_stream_base.cpp" />
     <ClCompile Include="file\file_string.cpp" />

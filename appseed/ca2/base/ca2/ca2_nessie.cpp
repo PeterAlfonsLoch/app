@@ -24,7 +24,7 @@ namespace ca2
    string file_system::nessie(const char * psz)
    {
 
-      ::file::filesp spfile(allocer());
+      ::file::binary_buffer_sp spfile(allocer());
       try
       {
          if(!spfile->open(psz, ::file::type_binary | ::file::mode_read))
@@ -39,7 +39,7 @@ namespace ca2
    }
 
 
-   string file_system::nessie(sp(::file::file) pfile)
+   string file_system::nessie(sp(::file::binary_buffer) pfile)
    {
       
 	   int32_t iBufSize = 1024 * 256;
