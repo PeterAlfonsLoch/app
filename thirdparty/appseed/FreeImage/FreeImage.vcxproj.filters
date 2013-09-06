@@ -1684,7 +1684,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="_ca2freeimage.def">
+    <None Include="basefreeimage.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

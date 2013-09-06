@@ -323,7 +323,7 @@ _cairo_spline_bound (cairo_spline_add_point_func_t add_point_func,
      *
      *   delta = b*b - a*c
      *
-     * the extreme points are at -c/2b if a is zero, at (-b±√delta)/a if
+     * the extreme points are at -"base/2b if a is zero, at (-b±√delta)/a if
      * delta is positive, and at -b/a if delta is zero.
      */
 

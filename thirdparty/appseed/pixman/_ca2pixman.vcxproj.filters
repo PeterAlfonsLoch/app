@@ -166,7 +166,7 @@
     <None Include="pixman-arm-detect-win32.asm">
       <Filter>Source Files\asm</Filter>
     </None>
-    <None Include="_ca2pixman.def">
+    <None Include="basepixman.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

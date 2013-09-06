@@ -30,6 +30,7 @@
    #define CLASS_DECL_c  CLASS_DECL_IMPORT
 #endif
 
+#include "base/version.h"
 
 #include "nodeapp/operational_system/_c.h"
 
@@ -37,17 +38,17 @@
 
 #include "base_types.h"
 
-#include "c/math/math.h"
+#include "base/math/math.h"
 
 #include "base_heap.h"
 
-#include "c/str/str_c.h"
+#include "base/str/str_c.h"
 
-#include "c/file/file_c.h"
+#include "base/file/file_c.h"
 
-#include "c/primitive/primitive_memory_c.h"
+#include "base/primitive/primitive_memory_c.h"
 
-#include "c/datetime/datetime_c.h"
+#include "base/datetime/datetime_c.h"
 
 
 #ifdef __cplusplus

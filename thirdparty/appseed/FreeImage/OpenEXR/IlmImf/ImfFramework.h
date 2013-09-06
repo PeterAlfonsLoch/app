@@ -2,7 +2,7 @@
 #pragma once
 #endif
 
-#include "c/base/base.h"
+#include "base/base/base.h"
 
 #include <ImfAcesFile.h>
 #include <ImfRgbaFile.h>

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "c/base/base.h"
+#include "base/base/base.h"
 
 
 #ifndef __cplusplus
@@ -34,23 +34,20 @@ namespace ca2
 
 
 #if defined(MACOS)
-#include "ca/macos/ca_os_internal.h"
+#include "boot/macos/ca_os_internal.h"
 #elif defined(LINUX)
-#include "ca/linux/ca_os_internal.h"
+#include "boot/linux/ca_os_internal.h"
 #elif defined(WINDOWS)
-#include "ca/windows/ca_os_internal.h"
+#include "boot/windows/ca_os_internal.h"
 #elif defined(ANDROID)
-#include "ca/android/ca_os_internal.h"
+#include "boot/android/ca_os_internal.h"
 #endif
 
 
 
 
 
-#include "ca/vms/vms.h"
-
-
-#include "ca/version/version.h"
+#include "boot/vms/vms.h"
 
 
 #include "ca_logic.h"
@@ -74,7 +71,7 @@ namespace ca2
 
 
 
-#include "ca/simple_graphics/simple_graphics_first_phase.h"
+#include "boot/simple_graphics/simple_graphics_first_phase.h"
 
 #include "ca_math.h"
 
@@ -115,14 +112,14 @@ namespace ca2
 #endif*/
 #include "ca_window_graphics.h"
 
-#include "ca/ca/ca_os.h"
+#include "boot/ca/ca_os.h"
 
-#include "ca/cross/cross.h"
-
-
+#include "boot/cross/cross.h"
 
 
-#include "ca/simple_graphics/simple_graphics_second_phase.h"
+
+
+#include "boot/simple_graphics/simple_graphics_second_phase.h"
 
 
 #include "ca_simple_shell_launcher.h"
@@ -137,12 +134,12 @@ namespace ca2
 #include "ca_base64.h"
 
 
-#include "ca/hotplugin/hotplugin.h"
-#include "ca/simple_ui/simple_ui.h"
-#include "ca/crypt/crypt.h"
-#include "ca/spa/spa.h"
+#include "boot/hotplugin/hotplugin.h"
+#include "boot/simple_ui/simple_ui.h"
+#include "boot/crypt/crypt.h"
+#include "boot/spa/spa.h"
 
-#include "ca/bsdiff/bsdiff.h"
+#include "boot/bsdiff/bsdiff.h"
 
 
 

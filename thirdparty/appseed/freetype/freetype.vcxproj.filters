@@ -151,6 +151,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="_ca2freetype.def" />
+    <None Include="basefreetype.def" />
   </ItemGroup>
 </Project>

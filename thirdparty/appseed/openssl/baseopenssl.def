@@ -9,7 +9,7 @@
 ;
 ;
 
-LIBRARY         _ca2openssl
+LIBRARY         baseopenssl
 
 EXPORTS
     ACCESS_DESCRIPTION_free                 

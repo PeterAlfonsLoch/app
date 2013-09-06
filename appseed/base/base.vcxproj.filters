@@ -1112,6 +1112,15 @@
     <ClInclude Include="file\file_buffer.h">
       <Filter>Header Files\file</Filter>
     </ClInclude>
+    <ClInclude Include="product.version.config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="version.config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="android\c_os_internal.c">
@@ -1817,6 +1826,9 @@
     </None>
     <None Include="base\base.inl">
       <Filter>Header Files\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Header Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

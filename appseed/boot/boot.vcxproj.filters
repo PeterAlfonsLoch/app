@@ -819,7 +819,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ca.def">
+    <None Include="boot.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

@@ -39,11 +39,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\appseed\c\c.vcxproj">
-      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\include\pixman-version.h" />
     <ClInclude Include="..\..\include\pixman.h" />
     <ClInclude Include="config.h" />
@@ -99,10 +94,15 @@
     <None Include="pixman-arm-neon-asm-bilinear.S" />
     <None Include="pixman-arm-simd-asm-scaled.S" />
     <None Include="pixman-mips-memcpy-asm.S" />
-    <None Include="_ca2pixman.def" />
+    <None Include="basepixman.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\appseed\base\base.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>_ca2pixman</ProjectName>
+    <ProjectName>basepixman</ProjectName>
     <ProjectGuid>{63108F1C-EAA8-4C49-A591-13F813A76B05}</ProjectGuid>
     <RootNamespace>_ca2pixman</RootNamespace>
   </PropertyGroup>

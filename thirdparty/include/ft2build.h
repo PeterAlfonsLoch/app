@@ -32,7 +32,7 @@
 #define __FT2_BUILD_GENERIC_H__
 
 #if !defined(CAIRO_FT_H)
-#include "c/base/base.h"
+#include "base/base/base.h"
 #endif
 
 #include <freetype/config/ftheader.h>

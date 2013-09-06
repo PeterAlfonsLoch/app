@@ -31,7 +31,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 ///////////////////////////////////////////////////////////////////////////
-#include "c/base/base.h"
+#include "base/base/base.h"
 #include "ImathBox.h"
 
 // this file is necessary for template instantiation on windows

@@ -813,15 +813,15 @@
     <ClInclude Include="ssl\tls1.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="_ca2openssl.def" />
+    <None Include="baseopenssl.def" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\appseed\c\c.vcxproj">
+    <ProjectReference Include="..\..\..\appseed\base\base.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>_ca2openssl</ProjectName>
+    <ProjectName>baseopenssl</ProjectName>
     <ProjectGuid>{AC98B756-E84C-4A70-9CDB-E9812FEF9B98}</ProjectGuid>
     <RootNamespace>_ca2openssl</RootNamespace>
   </PropertyGroup>

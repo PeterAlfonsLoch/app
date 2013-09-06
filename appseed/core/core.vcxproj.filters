@@ -6342,11 +6342,11 @@
     <None Include="base\multithreading\multithreading.inl">
       <Filter>Header Files\base\multithreading</Filter>
     </None>
-    <None Include="ca2.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base\ca2\ca2.inl">
       <Filter>Header Files\base\ca2</Filter>
+    </None>
+    <None Include="core.def">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
 </Project>

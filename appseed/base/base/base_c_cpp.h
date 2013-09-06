@@ -140,19 +140,19 @@ namespace file
 } // namespace file
 
 
-#include "c/primitive/primitive_logic.h"
+#include "base/primitive/primitive_logic.h"
 
 
 
-#include "c/math/math_static_numeric_info.h"
-#include "c/math/math_numeric_info.h"
-#include "c/math/math_number.h"
+#include "base/math/math_static_numeric_info.h"
+#include "base/math/math_numeric_info.h"
+#include "base/math/math_number.h"
 
 
-#include "c/datetime/datetime_duration.h"
+#include "base/datetime/datetime_duration.h"
 
 
-#include "c/primitive/primitive_element.h"
+#include "base/primitive/primitive_element.h"
 
 #include "base_debug.h"
 
@@ -164,9 +164,9 @@ namespace file
 
 #include "base_template.h"
 
-#include "c/comparison/comparison_md5.h"
+#include "base/comparison/comparison_md5.h"
 
-#include "c/net/net.h"
+#include "base/net/net.h"
 
 #include "base_conv.h"
 
@@ -174,21 +174,21 @@ namespace file
 
 #include "base_core.h"
 
-#include "c/primitive/primitive_request_interface.h"
+#include "base/primitive/primitive_request_interface.h"
 
 
-#include "c/multithreading/multithreading_wait_result.h"
-#include "c/multithreading/multithreading_waitable.h"
+#include "base/multithreading/multithreading_wait_result.h"
+#include "base/multithreading/multithreading_waitable.h"
 
 
 
-#include "c/primitive/primitive_object.h"
+#include "base/primitive/primitive_object.h"
 
 
-#include "c/collection/collection_decl.h"
-#include "c/collection/collection_array_decl.h"
-#include "c/collection/collection_raw_array_decl.h"
-#include "c/collection/collection_lemon_array_decl.h"
+#include "base/collection/collection_decl.h"
+#include "base/collection/collection_array_decl.h"
+#include "base/collection/collection_raw_array_decl.h"
+#include "base/collection/collection_lemon_array_decl.h"
 
 
 #include "base_fixed_alloc.h"
@@ -200,45 +200,45 @@ namespace file
 #include "base_plex_heap.h"
 
 
-#include "c/primitive/primitive_id.h"
+#include "base/primitive/primitive_id.h"
 
 
-#include "c/str/str.h"
-#include "c/exception/exception.h"
+#include "base/str/str.h"
+#include "base/exception/exception.h"
 #include "base_common.h"
 
 
-#include "c/datetime/datetime_time.h"
+#include "base/datetime/datetime_time.h"
 
 
 
 
-#include "c/file/file.h"
+#include "base/file/file.h"
 
 
 
 
-#include "c/geometry/geometry.h"
+#include "base/geometry/geometry.h"
 
 
-#include "c/comparison/comparison.h"
+#include "base/comparison/comparison.h"
 
 
-#include "c/collection/collection.h"
+#include "base/collection/collection.h"
 
 
-#include "c/file/file_string_buffer.h"
+#include "base/file/file_string_buffer.h"
 
 
-#include "c/primitive/primitive_var2.h"
+#include "base/primitive/primitive_var2.h"
 
 
-#include "c/primitive/primitive_id_space.h"
+#include "base/primitive/primitive_id_space.h"
 
 
 #ifdef WINDOWS
 
-#include "c/windows/windows.h"
+#include "base/windows/windows.h"
 
 #endif
 
@@ -250,38 +250,38 @@ namespace file
 
 CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 
-#include "c/multithreading/multithreading.h"
+#include "base/multithreading/multithreading.h"
 
 
-#include "c/primitive/primitive_type.h"
+#include "base/primitive/primitive_type.h"
 
 #include "base_application.h"
 
 #include "base_departament.h"
 #include "base_departament_container.h"
 
-#include "c/net/net_url_departament.h"
+#include "base/net/net_url_departament.h"
 
-#include "c/primitive/primitive_interlocked_long.h"
-#include "c/primitive/primitive_interlocked_long_pulse.h"
-#include "c/primitive/primitive_factory.h"
-#include "c/primitive/primitive_data.h"
-#include "c/primitive/primitive_data_listener.h"
-#include "c/primitive/primitive_data_container.h"
-#include "c/primitive/primitive_edit.h"
+#include "base/primitive/primitive_interlocked_long.h"
+#include "base/primitive/primitive_interlocked_long_pulse.h"
+#include "base/primitive/primitive_factory.h"
+#include "base/primitive/primitive_data.h"
+#include "base/primitive/primitive_data_listener.h"
+#include "base/primitive/primitive_data_container.h"
+#include "base/primitive/primitive_edit.h"
 
 
-#include "c/xml/xml.h"
+#include "base/xml/xml.h"
 
-#include "c/primitive/primitive_application_bias.h"
-#include "c/exception/exception_engine.h"
+#include "base/primitive/primitive_application_bias.h"
+#include "base/exception/exception_engine.h"
 
 #include "base_fixed_alloc_impl.h"
 #include "base_plex_heap_impl.h"
-#include "c/primitive/primitive_command_line.h"
-#include "c/primitive/primitive_create_context.h"
-#include "c/primitive/primitive_command.h"
-#include "c/primitive/primitive_request_signal.h"
+#include "base/primitive/primitive_command_line.h"
+#include "base/primitive/primitive_create_context.h"
+#include "base/primitive/primitive_command.h"
+#include "base/primitive/primitive_request_signal.h"
 
 
 
@@ -290,7 +290,7 @@ CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 
 
 
-#include "c/primitive/primitive_command_thread.h"
+#include "base/primitive/primitive_command_thread.h"
 
 
 #include "base_system.h"
@@ -302,18 +302,16 @@ CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 #include "base_system_xml.h"
 
 
-#include "c/primitive/primitive_memory_base.h"
-#include "c/primitive/primitive_memory.h"
-#include "c/primitive/primitive_shared_memory.h"
-#include "c/primitive/primitive_virtual_memory.h"
-#include "c/primitive/primitive_memory_container.h"
+#include "base/primitive/primitive_memory_base.h"
+#include "base/primitive/primitive_memory.h"
+#include "base/primitive/primitive_shared_memory.h"
+#include "base/primitive/primitive_virtual_memory.h"
+#include "base/primitive/primitive_memory_container.h"
 
-#include "c/file/file_memory_buffer.h"
-
-
-#include "c/str/str_international2.h"
+#include "base/file/file_memory_buffer.h"
 
 
+#include "base/str/str_international2.h"
 
 
 
@@ -322,22 +320,24 @@ CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 
 
 
-#include "c/net/net.h"
+
+
+#include "base/net/net.h"
 
 
 
 
-#include "c/os/os_process.h"
+#include "base/os/os_process.h"
 
 
-#include "c/spa/spa_trace.h"
+#include "base/spa/spa_trace.h"
 
 
-#include "c/multithreading/multithreading.inl"
+#include "base/multithreading/multithreading.inl"
 
 
-#include "c/str/str.inl"
+#include "base/str/str.inl"
 
-#include "c/base/base.inl"
+#include "base/base/base.inl"
 
 

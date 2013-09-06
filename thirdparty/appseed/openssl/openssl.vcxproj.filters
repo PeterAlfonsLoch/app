@@ -2641,7 +2641,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="_ca2openssl.def">
+    <None Include="baseopenssl.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

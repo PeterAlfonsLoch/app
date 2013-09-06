@@ -46,7 +46,7 @@
 #ifndef _CAIROINT_H_
 #define _CAIROINT_H_
 
-#include "c/base/base.h"
+#include "base/base/base.h"
 
 #if HAVE_CONFIG_H
 #include "config.h"

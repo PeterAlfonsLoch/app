@@ -144,21 +144,21 @@ public:
 #include "collection_bit_array.h"
 #include "collection_string_array.h"
 
-#include "c/datetime/datetime_time.h"
+#include "base/datetime/datetime_time.h"
 
-#include "c/primitive/primitive_var.h"
+#include "base/primitive/primitive_var.h"
 
 #include "collection_stringa.h"
 
 
 #include "collection_var_array.h"
-#include "c/primitive/primitive_property.h"
+#include "base/primitive/primitive_property.h"
 
 
 
 
-#include "c/primitive/primitive_signal.h"
-#include "c/primitive/primitive_property_set.h"
+#include "base/primitive/primitive_signal.h"
+#include "base/primitive/primitive_property_set.h"
 
 
 #include "collection_point_array.h"

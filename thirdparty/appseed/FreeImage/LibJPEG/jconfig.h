@@ -1,6 +1,6 @@
 
 
-#include "c/base/base.h"
+#include "base/base/base.h"
 
 /* jconfig.vc --- jconfig.h for Microsoft Visual C++ on Windows 95 or NT. */
 /* see jconfig.doc for explanations */

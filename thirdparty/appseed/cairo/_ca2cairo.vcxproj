@@ -39,7 +39,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>_ca2cairo</ProjectName>
+    <ProjectName>basecairo</ProjectName>
     <ProjectGuid>{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}</ProjectGuid>
     <RootNamespace>_ca2cairo</RootNamespace>
   </PropertyGroup>
@@ -980,7 +980,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\appseed\c\c.vcxproj">
+    <ProjectReference Include="..\..\..\appseed\base\base.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
     <ProjectReference Include="..\FreeImage\FreeImage.vcxproj">

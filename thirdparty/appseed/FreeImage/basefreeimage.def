@@ -1,6 +1,6 @@
-; _ca2freeimage.def : Declares the module parameters for the DLL.
+; basefreeimage.def : Declares the module parameters for the DLL.
 
-LIBRARY      "_ca2freeimage"
+LIBRARY      "basefreeimage"
 	;DESCRIPTION  '_ca2freeimage Windows Dynamic Link Library'
 
 EXPORTS
