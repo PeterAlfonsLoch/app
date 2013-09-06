@@ -3,7 +3,7 @@
 
 bool g_bAdmin = false;
 
-vsstring * g_pstrId = NULL;
+string * g_pstrId = NULL;
 
 
 CLASS_DECL_ca bool spa_get_admin()
@@ -16,7 +16,7 @@ CLASS_DECL_ca void spa_set_admin(bool bSet)
    g_bAdmin = bSet;
 }
 
-CLASS_DECL_ca vsstring spa_get_id()
+CLASS_DECL_ca string spa_get_id()
 {
    return *g_pstrId;
 }
@@ -25,13 +25,13 @@ CLASS_DECL_ca void spa_set_id(const char * psz)
 {
    if(g_pstrId == NULL)
    {
-      g_pstrId = new vsstring;
+      g_pstrId = new string;
    }
    *g_pstrId = psz;
 }
 
 
-CLASS_DECL_ca vsstring spa_get_platform()
+CLASS_DECL_ca string spa_get_platform()
 {
 #ifdef X86
    return "x86";
@@ -68,7 +68,7 @@ bool is_installed(const char * pszVersion, const char * pszBuild, const char * p
 
    }
 
-   vsstring strLatestBuildNumber;
+   string strLatestBuildNumber;
 
    if(pszBuild == NULL || *pszBuild == '\0')
    {
@@ -82,35 +82,35 @@ bool is_installed(const char * pszVersion, const char * pszBuild, const char * p
    if(stricmp_dup(pszVersion, "basis") && stricmp_dup(pszVersion, "stage"))
       return false;
 
-   XNode nodeInstall;
+   ::xml::document nodeInstall;
 
-   nodeInstall.Load(file_as_string_dup(dir::appdata("spa_install.xml")));
+   nodeInstall.load(file_as_string_dup(dir::appdata("spa_install.xml")));
 
-   LPXNode lpnodeVersion = nodeInstall.GetChild(pszVersion);
+   ::xml::node * lpnodeVersion = nodeInstall.get_child(pszVersion);
 
    if(lpnodeVersion == NULL)
       return false;
 
-   LPXNode lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", pszBuild);
+   ::xml::node * lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", pszBuild);
 
    if(lpnodeInstalled == NULL)
       return false;
 
-   LPXNode lpnodeType = lpnodeInstalled->GetChild(pszType);
+   ::xml::node * lpnodeType = lpnodeInstalled->get_child(pszType);
 
    if(lpnodeType == NULL)
       return false;
 
-   LPXNode lpnodeId = NULL;
+   ::xml::node * lpnodeId = NULL;
 
-   for(int32_t ui = 0; ui < lpnodeType->childs.get_count(); ui++)
+   for(int32_t ui = 0; ui < lpnodeType->get_children_count(); ui++)
    {
 
-      lpnodeId = lpnodeType->childs[ui];
+      lpnodeId = lpnodeType->child_at(ui);
 
-      vsstring strId = lpnodeId->GetAttrValue("id");
+      string strId = lpnodeId->attr("id");
 
-      if(!strcmp(lpnodeId->name, pszType) && strId == psz)
+      if(!strcmp(lpnodeId->get_name(), pszType) && strId == psz)
       {
 
          goto found_id;
@@ -123,17 +123,17 @@ bool is_installed(const char * pszVersion, const char * pszBuild, const char * p
 
 found_id:
 
-   LPXNode lpnodeLocalization = NULL;
+   ::xml::node * lpnodeLocalization = NULL;
 
-   for(int32_t ui = 0; ui < lpnodeId->childs.get_count(); ui++)
+   for(int32_t ui = 0; ui < lpnodeId->get_children_count(); ui++)
    {
 
-      lpnodeLocalization = lpnodeId->childs[ui];
+      lpnodeLocalization = lpnodeId->child_at(ui);
 
-      vsstring strLocale = lpnodeLocalization->GetAttrValue("locale");
-      vsstring strSchema = lpnodeLocalization->GetAttrValue("schema");
+      string strLocale = lpnodeLocalization->attr("locale");
+      string strSchema = lpnodeLocalization->attr("schema");
 
-      if(!strcmp(lpnodeLocalization->name, "localization") && strLocale == pszLocale && strSchema == pszSchema)
+      if(!strcmp(lpnodeLocalization->get_name(), "localization") && strLocale == pszLocale && strSchema == pszSchema)
       {
 
          return true;
@@ -146,14 +146,14 @@ found_id:
 
 }
 
-static simple_string_to_string g_strmapLatestBuildNumber;
+static string_to_string g_strmapLatestBuildNumber;
 
 uint32_t g_dwLatestBuildNumberLastFetch = 0;
 
-CLASS_DECL_ca vsstring get_latest_build_number(const char * pszVersion)
+CLASS_DECL_ca string get_latest_build_number(const char * pszVersion)
 {
 
-   vsstring strLatestBuildNumber = g_strmapLatestBuildNumber[pszVersion];
+   string strLatestBuildNumber = g_strmapLatestBuildNumber[pszVersion];
 
    if(!strLatestBuildNumber.is_empty() && (get_tick_count() - g_dwLatestBuildNumberLastFetch) < ((1984 + 1977) * 3))
       return strLatestBuildNumber;
@@ -162,12 +162,12 @@ CLASS_DECL_ca vsstring get_latest_build_number(const char * pszVersion)
 
 }
 
-CLASS_DECL_ca vsstring fetch_latest_build_number(const char * pszVersion)
+CLASS_DECL_ca string fetch_latest_build_number(const char * pszVersion)
 {
 
-   vsstring strBuildNumber;
+   string strBuildNumber;
 
-   vsstring strSpaIgnitionBaseUrl;
+   string strSpaIgnitionBaseUrl;
 
    if(pszVersion != NULL && !strcmp(pszVersion, "basis"))
    {
@@ -213,7 +213,7 @@ RetryBuildNumber:
 
    iRetry++;
 
-   strBuildNumber = ms_get_dup(strSpaIgnitionBaseUrl + "/query?node=build", false, NULL, NULL);
+   strBuildNumber = http_get_dup(strSpaIgnitionBaseUrl + "/query?node=build", false, NULL, NULL);
 
    strBuildNumber.trim();
 

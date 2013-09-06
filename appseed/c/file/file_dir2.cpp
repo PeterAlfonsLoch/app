@@ -4,20 +4,20 @@
 #endif
 
 
-vsstring dir::afterca2()
+string dir::afterca2()
 {
    return element();
 }
 
-vsstring dir::appdata(const char * lpcsz)
+string dir::appdata(const char * lpcsz)
 {
 
-   vsstring str;
+   string str;
 
 
 #ifdef METROWIN
 
-   vsstring buf;
+   string buf;
 
    buf = "C:\\ProgramData";
    
@@ -43,16 +43,16 @@ vsstring dir::appdata(const char * lpcsz)
 
 #endif
    
-   vsstring strCa2 = dir::element();
+   string strCa2 = dir::element();
    
    index iFind = strCa2.find(':');
    
    if(iFind >= 0)
    {
       
-      index iFind1 = strCa2.rfind('\\', iFind);
+      index iFind1 = strCa2.reverse_find('\\', iFind);
       
-      index iFind2 = strCa2.rfind('/', iFind);
+      index iFind2 = strCa2.reverse_find('/', iFind);
       
       index iStart = max(iFind1 + 1, iFind2 + 1);
       
@@ -71,10 +71,10 @@ vsstring dir::appdata(const char * lpcsz)
 
 
 
-vsstring dir::userappdata(const char * lpcsz)
+string dir::userappdata(const char * lpcsz)
 {
 
-   vsstring str;
+   string str;
 
 #ifdef WINDOWSEX
    
@@ -82,11 +82,11 @@ vsstring dir::userappdata(const char * lpcsz)
    
    SHGetKnownFolderPath(FOLDERID_LocalAppDataLow, 0, NULL, &buf);
 
-   char * psz = utf16_to_8_dup(buf);
+   string psz = ::str::international::unicode_to_utf8(buf);
 
    str = path(psz, "ca2");
 
-   ca2_free(psz);
+//   ca2_free(psz);
    
    CoTaskMemFree(buf);
 
@@ -96,16 +96,16 @@ vsstring dir::userappdata(const char * lpcsz)
 
 #endif
    
-   vsstring strCa2 = dir::element();
+   string strCa2 = dir::element();
    
    index iFind = strCa2.find(':');
    
    if(iFind >= 0)
    {
       
-      index iFind1 = strCa2.rfind('\\', iFind);
+      index iFind1 = strCa2.reverse_find('\\', iFind);
       
-      index iFind2 = strCa2.rfind('/', iFind);
+      index iFind2 = strCa2.reverse_find('/', iFind);
       
       index iStart = max(iFind1 + 1, iFind2 + 1);
       

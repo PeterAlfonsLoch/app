@@ -40,7 +40,7 @@ void update_ca2_installed(bool bUnloadIfNotInstalled)
    }
 
 
-   vsstring strStage(dir::element("stage", spa_get_platform()));
+   string strStage(dir::element("stage", spa_get_platform()));
 
 #ifdef WINDOWSEX
    ::SetDllDirectoryA(strStage);
@@ -141,7 +141,7 @@ void update_ca2_build()
 {
    if(g_pszCa2Build != NULL)
       _ca_free(g_pszCa2Build, 0);
-   g_pszCa2Build = (char *) strdup_dup(ms_get_dup("http://spaignition.api.server.ca2.cc/ca2_get_build?authnone"));
+   g_pszCa2Build = (char *) strdup_dup(http_get_dup("http://spaignition.api.server.ca2.cc/ca2_get_build?authnone"));
 }
 
 
@@ -162,21 +162,21 @@ UINT spa_starter_start::start()
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-   vsstring strVersion = "basis";
+   string strVersion = "basis";
 
 #else
          
-   vsstring strVersion = "stage";
+   string strVersion = "stage";
 
 #endif
 
-   vsstring strId = get_command_line_param(m_strCommandLine, "app", "session", "session_start");
+   string strId = get_command_line_param(m_strCommandLine, "app", "session", "session_start");
 
-   vsstring strType = get_command_line_param(m_strCommandLine, "app_type");
+   string strType = get_command_line_param(m_strCommandLine, "app_type");
 
-   vsstring strLocale = get_command_line_param(m_strCommandLine, "locale");
+   string strLocale = get_command_line_param(m_strCommandLine, "locale");
 
-   vsstring strSchema = get_command_line_param(m_strCommandLine, "schema");
+   string strSchema = get_command_line_param(m_strCommandLine, "schema");
 
    if(strId.is_empty())
       return -1;
@@ -188,7 +188,7 @@ UINT spa_starter_start::start()
 
    int32_t i = 0;
 
-   vsstring strBuildNumber;
+   string strBuildNumber;
 
    spa_set_admin(false);
 
@@ -235,9 +235,9 @@ UINT spa_starter_start::start()
    // sentinel is not ready neither spa entire concept of passive installation is ready yet.
    // recap:  wait for a required installation. But upgrades are passive installation,  done when it all can be done hot or when there is no use, except when it is requested explicitly.
 
-   /*vsstring strPlatform = spa_get_platform();
+   /*string strPlatform = spa_get_platform();
 
-   vsstring strSentinelPath = dir::path(dir::beforeca2(), ("ca2\\stage\\" + strPlatform + "\\app-sentinel.exe"));
+   string strSentinelPath = dir::path(dir::beforeca2(), ("ca2\\stage\\" + strPlatform + "\\app-sentinel.exe"));
 
    call_sync(strSentinelPath, "");*/
 

@@ -414,7 +414,7 @@ tiny_http::http_retcode tiny_http::t_delete()
  */
 tiny_http::http_retcode tiny_http::t_parse_url(const char * url)
 {
-   vsstring strUrl(url);
+   string strUrl(url);
    if(!strUrl.begins_eat_ci("http://"))
    {
 #ifdef VERBOSE

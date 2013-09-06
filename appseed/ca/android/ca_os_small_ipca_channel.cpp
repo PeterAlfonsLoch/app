@@ -331,7 +331,7 @@ void * small_ipc_rx_channel::receive()
       /* The length is essentially the size of the structure minus sizeof(mtype) */
       length = sizeof(data_struct) - sizeof(long);
 
-      simple_memory mem;
+      ::primitive::memory mem;
 
       do
       {
@@ -393,8 +393,8 @@ bool small_ipc_channel::open_ab(const char * pszKey, launcher * plauncher)
 
    m_rxchannel.m_preceiver = this;
 
-   vsstring strChannelRx = m_vssChannel + "-a";
-   vsstring strChannelTx = m_vssChannel + "-b";
+   string strChannelRx = m_vssChannel + "-a";
+   string strChannelTx = m_vssChannel + "-b";
 
 
    if(!m_rxchannel.create(strChannelRx))
@@ -418,8 +418,8 @@ bool small_ipc_channel::open_ba(const char * pszKey, launcher * plauncher)
 
    m_rxchannel.m_preceiver = this;
 
-   vsstring strChannelRx = m_vssChannel + "-b";
-   vsstring strChannelTx = m_vssChannel + "-a";
+   string strChannelRx = m_vssChannel + "-b";
+   string strChannelTx = m_vssChannel + "-a";
 
 
    if(!m_rxchannel.create(strChannelRx))

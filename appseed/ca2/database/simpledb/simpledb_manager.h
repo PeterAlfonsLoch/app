@@ -14,17 +14,17 @@ namespace simpledb
       uint32_t                         m_dwBuildTimeWindow;
       uint32_t                         m_dwBuildTimeRandomWindow;
 
-      string_to_string_map          m_strmapFunUserKey;
+      string_to_string          m_strmapFunUserKey;
 
       string                        m_strPersistentError;
 
       critical_section              m_csPersistentStr;
       critical_section              m_csUiRedir;
       mutex                         m_mutexTagId;
-      string_to_string_map          m_tagid;
-      string_to_string_map          m_usersecuretagid;
+      string_to_string          m_tagid;
+      string_to_string          m_usersecuretagid;
       mutex                         m_mutexTagName;
-      string_to_string_map          m_tagname;
+      string_to_string          m_tagname;
 
       int64_t                       m_iDatabaseWaitTimeOut;
 

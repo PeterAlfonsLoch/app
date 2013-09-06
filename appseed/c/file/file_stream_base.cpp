@@ -24,6 +24,10 @@ namespace file
 
    }
 
+   void stream_base::close()
+   {
+      m_spbuffer.release();
+   }
 
 } // namespace file
 

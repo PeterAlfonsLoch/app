@@ -5,7 +5,7 @@
 
 
 // vmszip
-#include "memory_file.h"
+#include "memory_buffer.h"
 #include "File.h"
 #include "Util.h"
 #include "api.h"

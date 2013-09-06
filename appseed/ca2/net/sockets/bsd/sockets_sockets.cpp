@@ -32,7 +32,7 @@ namespace sockets
 
          ::sockets::SSLInitializer ssl_init(m_papp->m_psystem);
 
-         System.factory().creatable_small < ::http::memory_file > ();
+         System.factory().creatable_small < ::http::memory_buffer > ();
          System.factory().cloneable_small < ::sockets::ipv4_address > ();
          System.factory().cloneable_small < ::sockets::ipv6_address > ();
 

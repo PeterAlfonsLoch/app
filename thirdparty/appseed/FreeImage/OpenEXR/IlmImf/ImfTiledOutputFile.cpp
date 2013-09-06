@@ -93,6 +93,7 @@ TOutSliceInfo::TOutSliceInfo (PixelType t,
 }
 
 
+
 struct TileCoord
 {
     int		dx;
@@ -130,6 +131,7 @@ struct TileCoord
 	       dy == other.dy;
     }
 };
+
 
 
 struct BufferedTile
@@ -204,7 +206,7 @@ struct TiledOutputFile::Data: public Mutex
     int			version;		// file format version
     TileDescription	tileDesc;		// describes the tile layout
     FrameBuffer		frameBuffer;		// framebuffer to write into
-    Int64		previewPosition;
+    int64_t		previewPosition;
     LineOrder		lineOrder;		// the file's lineorder
     int			minX;			// data window's min x coord
     int			maxX;			// data window's max x coord
@@ -231,8 +233,8 @@ struct TiledOutputFile::Data: public Mutex
     comparable_array<TileBuffer*> tileBuffers;
     size_t		tileBufferSize;         // size of a tile buffer
 
-    Int64		tileOffsetsPosition;	// position of the tile index
-    Int64		currentPosition;	// current position in the file
+    int64_t		tileOffsetsPosition;	// position of the tile index
+    int64_t		currentPosition;	// current position in the file
     
     TileMap		tileMap;
     TileCoord		nextTileToWrite;
@@ -280,7 +282,7 @@ TiledOutputFile::Data::~Data ()
     for (TileMap::iterator i = tileMap.begin(); i != tileMap.end(); ++i)
 	delete i->m_element2;
 
-    for (size_t i = 0; i < tileBuffers.size(); i++)
+    for (index i = 0; i < tileBuffers.size(); i++)
         delete tileBuffers[i];
 }
 
@@ -412,7 +414,7 @@ writeTileData (TiledOutputFile::Data *ofd,
     // without calling tellp() (tellp() can be fairly expensive).
     //
 
-    Int64 currentPosition = ofd->currentPosition;
+    int64_t currentPosition = ofd->currentPosition;
     ofd->currentPosition = 0;
 
     if (currentPosition == 0)
@@ -519,8 +521,8 @@ bufferedTileWrite (TiledOutputFile::Data *ofd,
             //
 
             writeTileData (ofd,
-			   i->first.dx, i->first.dy,
-			   i->first.lx, i->first.ly,
+               i->m_element1.dx, i->m_element1.dy,
+			   i->m_element1.lx, i->m_element1.ly,
 			   i->m_element2->pixelData,
 			   i->m_element2->pixelDataSize);
 
@@ -585,7 +587,7 @@ convertToXdr (TiledOutputFile::Data *ofd,
 	// Iterate over all slices in the file.
 	//
 
-	for (unsigned int i = 0; i < ofd->slices.size(); ++i)
+	for (index i = 0; i < ofd->slices.size(); ++i)
 	{
 	    const TOutSliceInfo &slice = ofd->slices[i];
 
@@ -700,7 +702,7 @@ TileBufferTask::execute ()
             // Iterate over all image channels.
             //
     
-            for (unsigned int i = 0; i < _ofd->slices.size(); ++i)
+            for (index i = 0; i < _ofd->slices.size(); ++i)
             {
                 const TOutSliceInfo &slice = _ofd->slices[i];
     
@@ -912,7 +914,7 @@ TiledOutputFile::initialize (const Header &header)
     // Create all the TileBuffers and allocate their internal buffers
     //
 
-    for (size_t i = 0; i < _data->tileBuffers.size(); i++)
+    for (index i = 0; i < _data->tileBuffers.size(); i++)
     {
         _data->tileBuffers[i] = new TileBuffer (newTileCompressor
 						  (_data->header.compression(),
@@ -1017,7 +1019,7 @@ TiledOutputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
     // Initialize slice table for writePixels().
     //
 
-    vector<TOutSliceInfo> slices;
+    lemon_array<TOutSliceInfo> slices;
 
     for (ChannelList::ConstIterator i = channels.begin();
 	 i != channels.end();
@@ -1091,11 +1093,10 @@ TiledOutputFile::writeTiles (int dx1, int dx2, int dy1, int dy2,
         // based on the file's lineOrder
         //
                                
-        if (dx1 > dx2)
-            swap (dx1, dx2);
+            sort::sort (dx1, dx2);
         
-        if (dy1 > dy2)
-            swap (dy1, dy2);
+        
+            sort::sort (dy1, dy2);
         
         int dyStart = dy1;
 	int dyStop  = dy2 + 1;
@@ -1239,7 +1240,7 @@ TiledOutputFile::writeTiles (int dx1, int dx2, int dy1, int dy2,
 
 	const string *exception = 0;
 
-        for (int i = 0; (unsigned) i < _data->tileBuffers.size(); ++i)
+        for (int i = 0;  i < _data->tileBuffers.size(); ++i)
 	{
             TileBuffer *tileBuffer = _data->tileBuffers[i];
 
@@ -1621,7 +1622,7 @@ TiledOutputFile::updatePreviewImage (const PreviewRgba newPixels[])
     // preview image, and jump back to the saved file position.
     //
 
-    Int64 savedPosition = _data->os->tellp();
+    int64_t savedPosition = _data->os->tellp();
 
     try
     {
@@ -1648,7 +1649,7 @@ TiledOutputFile::breakTile
 {
     Lock lock (*_data);
 
-    Int64 position = _data->tileOffsets (dx, dy, lx, ly);
+    int64_t position = _data->tileOffsets (dx, dy, lx, ly);
 
     if (!position)
 	THROW (Iex::ArgExc,
@@ -1665,3 +1666,11 @@ TiledOutputFile::breakTile
 }
 
 } // namespace Imf
+
+
+template < >
+inline UINT HashKey < Imf::TileCoord > (Imf::TileCoord key)
+{
+   // default identity hash - works for most primitive values
+   return key.dx | key.dy << 16 ;
+}

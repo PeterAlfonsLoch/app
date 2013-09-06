@@ -59,11 +59,11 @@ TileOffsets::TileOffsets (LevelMode mode,
 
         _offsets.resize (_numXLevels);
 
-        for (unsigned int l = 0; l < _offsets.size(); ++l)
+        for (index l = 0; l < _offsets.size(); ++l)
         {
             _offsets[l].resize (numYTiles[l]);
 
-            for (unsigned int dy = 0; dy < _offsets[l].size(); ++dy)
+            for (index dy = 0; dy < _offsets[l].size(); ++dy)
 	    {
                 _offsets[l][dy].resize (numXTiles[l]);
             }
@@ -74,14 +74,14 @@ TileOffsets::TileOffsets (LevelMode mode,
 
         _offsets.resize (_numXLevels * _numYLevels);
 
-        for (unsigned int ly = 0; ly < (unsigned) _numYLevels; ++ly)
+        for (index ly = 0; ly <  _numYLevels; ++ly)
         {
-            for (unsigned int lx = 0; lx < (unsigned) _numXLevels; ++lx)
+            for (index lx = 0; lx < _numXLevels; ++lx)
             {
                 int l = ly * _numXLevels + lx;
                 _offsets[l].resize (numYTiles[ly]);
 
-                for (unsigned int dy = 0; dy < _offsets[l].size(); ++dy)
+                for (index dy = 0; dy < _offsets[l].size(); ++dy)
                 {
                     _offsets[l][dy].resize (numXTiles[lx]);
                 }
@@ -98,9 +98,9 @@ TileOffsets::TileOffsets (LevelMode mode,
 bool
 TileOffsets::anyOffsetsAreInvalid () const
 {
-    for (unsigned int l = 0; l < _offsets.size(); ++l)
-	for (unsigned int dy = 0; dy < _offsets[l].size(); ++dy)
-	    for (unsigned int dx = 0; dx < _offsets[l][dy].size(); ++dx)
+    for (index l = 0; l < _offsets.size(); ++l)
+	for (index dy = 0; dy < _offsets[l].size(); ++dy)
+	    for (index dx = 0; dx < _offsets[l][dy].size(); ++dx)
 		if (_offsets[l][dy][dx] <= 0)
 		    return true;
     
@@ -111,13 +111,13 @@ TileOffsets::anyOffsetsAreInvalid () const
 void
 TileOffsets::findTiles (IStream &is)
 {
-    for (unsigned int l = 0; l < _offsets.size(); ++l)
+    for (index l = 0; l < _offsets.size(); ++l)
     {
-	for (unsigned int dy = 0; dy < _offsets[l].size(); ++dy)
+	for (index dy = 0; dy < _offsets[l].size(); ++dy)
 	{
-	    for (unsigned int dx = 0; dx < _offsets[l][dy].size(); ++dx)
+	    for (index dx = 0; dx < _offsets[l][dy].size(); ++dx)
 	    {
-		Int64 tileOffset = is.tellg();
+		int64_t tileOffset = is.tellg();
 
 		int tileX;
 		Xdr::read <StreamIO> (is, tileX);
@@ -155,7 +155,7 @@ TileOffsets::reconstructFromFile (IStream &is)
     // of the tiles we find.
     //
 
-    Int64 position = is.tellg();
+    int64_t position = is.tellg();
 
     try
     {
@@ -182,9 +182,9 @@ TileOffsets::readFrom (IStream &is, bool &complete)
     // Read in the tile offsets from the file's tile offset table
     //
 
-    for (unsigned int l = 0; l < _offsets.size(); ++l)
-	for (unsigned int dy = 0; dy < _offsets[l].size(); ++dy)
-	    for (unsigned int dx = 0; dx < _offsets[l][dy].size(); ++dx)
+    for (index l = 0; l < _offsets.size(); ++l)
+	for (index dy = 0; dy < _offsets[l].size(); ++dy)
+	    for (index dx = 0; dx < _offsets[l][dy].size(); ++dx)
 		Xdr::read <StreamIO> (is, _offsets[l][dy][dx]);
 
     //
@@ -214,7 +214,7 @@ TileOffsets::readFrom (IStream &is, bool &complete)
 }
 
 
-Int64
+int64_t
 TileOffsets::writeTo (OStream &os) const
 {
     //
@@ -223,14 +223,14 @@ TileOffsets::writeTo (OStream &os) const
     // in the file.
     //
     
-    Int64 pos = os.tellp();
+    int64_t pos = os.tellp();
 
     if (pos == -1)
 	Iex::throwErrnoExc ("Cannot determine current file position (%T).");
 
-    for (unsigned int l = 0; l < _offsets.size(); ++l)
-	for (unsigned int dy = 0; dy < _offsets[l].size(); ++dy)
-	    for (unsigned int dx = 0; dx < _offsets[l][dy].size(); ++dx)
+    for (index l = 0; l < _offsets.size(); ++l)
+	for (index dy = 0; dy < _offsets[l].size(); ++dy)
+	    for (index dx = 0; dx < _offsets[l][dy].size(); ++dx)
 		Xdr::write <StreamIO> (os, _offsets[l][dy][dx]);
 
     return pos;
@@ -240,9 +240,9 @@ TileOffsets::writeTo (OStream &os) const
 bool
 TileOffsets::isEmpty () const
 {
-    for (unsigned int l = 0; l < _offsets.size(); ++l)
-	for (unsigned int dy = 0; dy < _offsets[l].size(); ++dy)
-	    for (unsigned int dx = 0; dx < _offsets[l][dy].size(); ++dx)
+    for (index l = 0; l < _offsets.size(); ++l)
+	for (index dy = 0; dy < _offsets[l].size(); ++dy)
+	    for (index dx = 0; dx < _offsets[l][dy].size(); ++dx)
 		if (_offsets[l][dy][dx] != 0)
 		    return false;
     return true;
@@ -259,8 +259,8 @@ TileOffsets::isValidTile (int dx, int dy, int lx, int ly) const
         if (lx == 0 &&
 	    ly == 0 &&
 	    _offsets.size() > 0 &&
-            _offsets[0].size() > (unsigned) dy &&
-            _offsets[0][dy].size() > (unsigned) dx)
+            _offsets[0].size() > dy &&
+            _offsets[0][dy].size() > dx)
 	{
             return true;
 	}
@@ -271,9 +271,9 @@ TileOffsets::isValidTile (int dx, int dy, int lx, int ly) const
 
         if (lx < _numXLevels &&
 	    ly < _numYLevels &&
-            _offsets.size() > (unsigned) lx &&
-            _offsets[lx].size() > (unsigned) dy &&
-            _offsets[lx][dy].size() > (unsigned) dx)
+            _offsets.size() > lx &&
+            _offsets[lx].size() > dy &&
+            _offsets[lx][dy].size() > dx)
 	{
             return true;
 	}
@@ -284,9 +284,9 @@ TileOffsets::isValidTile (int dx, int dy, int lx, int ly) const
 
         if (lx < _numXLevels &&
 	    ly < _numYLevels &&
-            _offsets.size() > (unsigned) (lx + ly * _numXLevels) &&
-            _offsets[lx + ly * _numXLevels].size() > (unsigned) dy &&
-            _offsets[lx + ly * _numXLevels][dy].size() > (unsigned) dx)
+            _offsets.size() > (lx + ly * _numXLevels) &&
+            _offsets[lx + ly * _numXLevels].size() > dy &&
+            _offsets[lx + ly * _numXLevels][dy].size() > dx)
 	{
             return true;
 	}
@@ -302,7 +302,7 @@ TileOffsets::isValidTile (int dx, int dy, int lx, int ly) const
 }
 
 
-Int64 &
+int64_t &
 TileOffsets::operator () (int dx, int dy, int lx, int ly)
 {
     //
@@ -335,14 +335,14 @@ TileOffsets::operator () (int dx, int dy, int lx, int ly)
 }
 
 
-Int64 &
+int64_t &
 TileOffsets::operator () (int dx, int dy, int l)
 {
     return operator () (dx, dy, l, l);
 }
 
 
-const Int64 &
+const int64_t &
 TileOffsets::operator () (int dx, int dy, int lx, int ly) const
 {
     //
@@ -375,7 +375,7 @@ TileOffsets::operator () (int dx, int dy, int lx, int ly) const
 }
 
 
-const Int64 &
+const int64_t &
 TileOffsets::operator () (int dx, int dy, int l) const
 {
     return operator () (dx, dy, l, l);

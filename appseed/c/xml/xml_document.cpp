@@ -6,9 +6,9 @@ namespace xml
 
 
    document::document(sp(base_application) papp, parse_info * pparseinfo) :
-      element(papp),
-      ::data(papp),
-      node(papp)
+      element(papp.is_set() ? papp : ::ca2::get_thread_app()),
+      data(papp.is_set() ? papp : ::ca2::get_thread_app()),
+      node(papp.is_set() ? papp : ::ca2::get_thread_app())
    {
 
       m_pdoc         = this;

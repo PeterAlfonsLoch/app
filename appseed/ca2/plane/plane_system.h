@@ -71,12 +71,12 @@ namespace plane
       class ::ca2::email                            m_email;
       ::ca2::copydesk_sp                            m_spcopydesk;
       ::ca2::port_forward_sp                        m_spportforward;
-      ::string_to_string_map                       m_mapAppLibrary;
+      ::string_to_string                       m_mapAppLibrary;
       sp(colorertake5::ParserFactory)              m_pparserfactory;
 
 
       class ::fontopus::user_set                   m_userset;
-      string_to_string_map                         m_mapFontopusServer;
+      string_to_string                         m_mapFontopusServer;
 
 
       sp(::plane::session::run_start_installer)      m_prunstartinstaller;

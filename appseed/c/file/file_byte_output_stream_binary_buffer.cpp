@@ -10,18 +10,22 @@ namespace file
       element(papp)
    {
 
-      m_spbuffer.create(papp);
+      m_spbinarybuffer.create(papp);
 
-      m_spbuffer->open(pszFilePath, ((uiFlags & ~type_text) | type_binary) | mode_write);
+      m_spbinarybuffer->open(pszFilePath, ((uiFlags & ~type_text) | type_binary) | mode_write);
 
-      if(m_spbuffer && m_spbuffer->IsOpened())
+      if(m_spbinarybuffer.is_set() && m_spbinarybuffer->IsOpened())
       {
 
          clear();
 
+         m_spbuffer = m_spbinarybuffer;
+
       }
       else
       {
+
+         m_spbinarybuffer.release();
 
          setstate(failbit);
 

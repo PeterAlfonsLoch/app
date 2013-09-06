@@ -76,8 +76,8 @@ class StdIFStream: public IStream
     virtual ~StdIFStream ();
 
     virtual bool	read (char c[/*n*/], int n);
-    virtual Int64	tellg ();
-    virtual void	seekg (Int64 pos);
+    virtual int64_t	tellg ();
+    virtual void	seekg (int64_t pos);
     virtual void	clear ();
 
   private:
@@ -116,8 +116,8 @@ class StdOFStream: public OStream
     virtual ~StdOFStream ();
 
     virtual void	write (const char c[/*n*/], int n);
-    virtual Int64	tellp ();
-    virtual void	seekp (Int64 pos);
+    virtual int64_t	tellp ();
+    virtual void	seekp (int64_t pos);
 
   private:
 
@@ -138,14 +138,14 @@ class StdOSStream: public OStream
     StdOSStream ();
 
     virtual void	write (const char c[/*n*/], int n);
-    virtual Int64	tellp ();
-    virtual void	seekp (Int64 pos);
+    virtual int64_t	tellp ();
+    virtual void	seekp (int64_t pos);
 
     string		str () const {return _os.str();}
 
   private:
 
-    ::file::string_buffer 	_os;
+     ::file::plain_text_output_stream_string_buffer 	_os;
 };
 
 

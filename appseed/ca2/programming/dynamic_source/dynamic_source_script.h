@@ -20,7 +20,7 @@ namespace dynamic_source
       sp(script_manager)                        m_pmanager;
       string                                    m_strName;
       mutex                                     m_mutex;
-      http::memory_file                         m_memfileError;
+      http::memory_buffer                         m_memfileError;
 
       spa(script_instance)                      m_scriptinstanceptra;
 

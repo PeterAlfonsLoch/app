@@ -10,7 +10,7 @@ namespace dynamic_source
 
       if(get_app() != NULL)
       {
-         m_spmemoryfileFallback = canew(::http::memory_file(get_app()));
+         m_spmemoryfileFallback = canew(::http::memory_buffer(get_app()));
       }
       
       m_pinstanceMain      = NULL;

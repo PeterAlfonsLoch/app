@@ -73,7 +73,7 @@ namespace file
       
       seek_to_begin();
 
-      write_to(ostream.m_spwriter);
+      write_to(ostream.m_spbuffer);
 
    }
 

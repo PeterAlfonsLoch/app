@@ -59,14 +59,14 @@ public:
 
 
 
-   vsstring    m_strHttpServer;
+   string    m_strHttpServer;
    int32_t         m_iHttpPort;
-   vsstring    m_strProxyServer;
+   string    m_strProxyServer;
    int32_t         m_iHttpProxyPort;
-   vsstring    m_strUserAgent;
-   vsstring    m_strFileName;
+   string    m_strUserAgent;
+   string    m_strFileName;
 
-   vsstring    m_strContentType;
+   string    m_strContentType;
 
    tiny_http();
    ~tiny_http();

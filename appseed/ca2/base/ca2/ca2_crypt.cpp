@@ -243,7 +243,7 @@ namespace ca2
 
       }
 
-      simple_memory memory;
+      ::primitive::memory memory;
 
       storageEncrypt.set_os_cf_data(data);
 
@@ -472,7 +472,7 @@ namespace ca2
 
       }
 
-      simple_memory memory;
+      ::primitive::memory memory;
 
       storageDecrypt.set_os_cf_data(data);
 
@@ -815,7 +815,7 @@ namespace ca2
 bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt)
 {
 
-   vsstring vsstr;
+   string vsstr;
 
    if(!crypt_file_get(pszFile, vsstr, pszSalt))
       return false;

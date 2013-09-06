@@ -62,9 +62,10 @@ WinRegGetValueW(
 
 #ifdef __cplusplus
 
-CLASS_DECL_c vsstring key_to_char(WPARAM wparam, LPARAM lparam);
+CLASS_DECL_c string key_to_char(WPARAM wparam, LPARAM lparam);
 
 #endif
 
 #define MESSAGE MSG
 #define LPMESSAGE LPMSG
+

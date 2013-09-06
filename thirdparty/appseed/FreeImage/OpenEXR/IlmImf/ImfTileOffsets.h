@@ -43,7 +43,7 @@
 //-----------------------------------------------------------------------------
 
 #include <ImfTileDescription.h>
-#include <ImfInt64.h>
+
 
 
 namespace Imf {
@@ -67,7 +67,7 @@ class TileOffsets
     // --------
 
     void		readFrom (IStream &is, bool &complete);
-    Int64		writeTo (OStream &os) const;
+    int64_t		writeTo (OStream &os) const;
 
 
     //-----------------------------------------------------------
@@ -81,10 +81,10 @@ class TileOffsets
     // Access to the elements
     //-----------------------
 
-    Int64 &		operator () (int dx, int dy, int lx, int ly);
-    Int64 &		operator () (int dx, int dy, int l);
-    const Int64 &	operator () (int dx, int dy, int lx, int ly) const;
-    const Int64 &	operator () (int dx, int dy, int l) const;
+    int64_t &		operator () (int dx, int dy, int lx, int ly);
+    int64_t &		operator () (int dx, int dy, int l);
+    const int64_t &	operator () (int dx, int dy, int lx, int ly) const;
+    const int64_t &	operator () (int dx, int dy, int l) const;
 
   private:
   
@@ -98,7 +98,7 @@ class TileOffsets
     int			_numXLevels;
     int			_numYLevels;
 
-    array<array<array <Int64> > > _offsets;
+    array<array<array <int64_t> > > _offsets;
 };
 
 

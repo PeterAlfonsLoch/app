@@ -6,13 +6,13 @@
 mutex g_mutexTrace;
 stringa * g_pstraTrace = NULL;
 HANDLE g_ftrace = INVALID_HANDLE_VALUE;
-vsstring g_strLastStatus;
-vsstring g_strLastGlsStatus;
+string g_strLastStatus;
+string g_strLastGlsStatus;
 int32_t g_iLastStatus = 0;
 int32_t g_iLastGlsStatus = 0;
 
 
-void on_trace(vsstring & str, vsstring & str2);
+void on_trace(string & str, string & str2);
 
 
 
@@ -23,7 +23,7 @@ void ensure_trace_file()
    if(g_ftrace != INVALID_HANDLE_VALUE)
    {
       // best really determination that g_ftrace is valid, if it is valid, it is not necessary to create or open it
-      vsstring str2 = "ensure_trace_file";
+      string str2 = "ensure_trace_file";
       DWORD dwWritten;
       if(WriteFile(g_ftrace, str2, (uint32_t) str2.length(), &dwWritten, NULL))
       {
@@ -73,20 +73,20 @@ void trace(const char * psz)
          }
       }
    }
-   vsstring str;
+   string str;
    {
       synch_lock lockTrace(&g_mutexTrace);
       g_pstraTrace->add(psz);
       str = g_pstraTrace->element_at(g_pstraTrace->get_count() - 1);
    }
-   vsstring str2(str);
+   string str2(str);
    str2 = "\r\n" + str2;
    on_trace(str, str2);
 }
 
 void trace_add(const char * psz)
 {
-   vsstring str;
+   string str;
    {
       synch_lock lockTrace(&g_mutexTrace);
       if(g_pstraTrace->get_count() == 0)
@@ -95,7 +95,7 @@ void trace_add(const char * psz)
          g_pstraTrace->element_at(g_pstraTrace->get_count() - 1) += psz;
       str = g_pstraTrace->element_at(g_pstraTrace->get_count() - 1);
    }
-   vsstring str2(psz);
+   string str2(psz);
    on_trace(str, str2);
 }
 
@@ -112,7 +112,7 @@ bool isspace_dup(char ch)
    return false;
 }
 
-void on_trace(vsstring & str, vsstring & str2)
+void on_trace(string & str, string & str2)
 {
 /*   if(::IsWindowVisible(g_oswindow))
    {
@@ -146,7 +146,7 @@ void trace_progress(double dRate)
    dRate = dRate * 1000.0 * 1000.0 * 1000.0;
    //int32_t i = ftol(dRate);
    int32_t i = (int32_t) dRate;
-   vsstring str;
+   string str;
    str = "|||";
    str += itoa_dup(i);
    trace(str);

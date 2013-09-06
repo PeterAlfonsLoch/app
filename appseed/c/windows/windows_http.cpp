@@ -6,7 +6,7 @@ HINTERNET  g_hConnect = NULL;
 HINTERNET  g_hPreviousRequest = NULL;
 uint32_t g_MsDownloadSize = 1024 * 16;
 char * g_MsDownloadBuffer = NULL;
-vsstring * g_pstrHost = NULL;
+string * g_pstrHost = NULL;
 
 
 void reset_http()
@@ -42,7 +42,7 @@ void prepare_http()
    if(g_pstrHost == NULL)
    {
 
-      g_pstrHost = new vsstring();
+      g_pstrHost = new string();
 
    }
 
@@ -55,7 +55,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
    if(piStatus != NULL)
       *piStatus = 0;
 
-   vsstring strUrl;
+   string strUrl;
 
    char * szBuf = (char *) _ca_alloc(4096);
 
@@ -64,7 +64,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
    if(file_exists_dup(pszFile) && !::DeleteFile(pszFile))
    {
       //trace("download failed: could not delete file prior to download.");
-      vsstring str;
+      string str;
       str = "ms_download_dup: error url=\"";
       str += pszUrl;
       str += "\"";
@@ -92,8 +92,8 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
       strUrl.replace_ci("%3A", ":");
       strUrl.replace_ci("%2F", "/");
    }
-   vsstring strHost;
-   vsstring strReq;
+   string strHost;
+   string strReq;
    if(strUrl.substr(0, 7) == "http://")
    {
       size_t iPos = strUrl.find("/", 8);
@@ -104,7 +104,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
    LPSTR pszOutBuffer;
    bool  bResults = FALSE;
 
-   WCHAR * pwzHost = utf8_to_16_dup(strHost);
+   WCHAR * pwzHost = ::str::international::utf8_to_unicode(strHost);
 
    if(g_hSession == NULL)
    {
@@ -215,7 +215,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
       DWORD dwWritten;
       uint32_t dwError;
       DWORD dwDownloaded;
-      vsstring strPath;
+      string strPath;
       strPath = pszFile;
       uint32_t dwLen = 0;
       dir::mk(dir::name(strPath));
@@ -231,7 +231,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
       {
          ::CloseHandle(hfile);
          ::OutputDebugStringA("Out of memory\n");
-         vsstring str;
+         string str;
          str = "ms_download_dup: out of memory error url=\"";
          str += pszUrl;
          str += "\"";
@@ -291,7 +291,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
 
    if(!bResults)
    {
-      vsstring str;
+      string str;
       str = "ms_download_dup: error url=\"";
       str += pszUrl;
       str += "\"";
@@ -306,14 +306,14 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
 
 
 
-vsstring http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int32_t, uint_ptr), void * callback_param, bool bProgress)
+string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int32_t, uint_ptr), void * callback_param, bool bProgress)
 {
 
    prepare_http();
-   vsstring strRet;
-   vsstring strUrl(pszUrl);
-   vsstring strHost;
-   vsstring strReq;
+   string strRet;
+   string strUrl(pszUrl);
+   string strHost;
+   string strReq;
    int32_t iPort = 80;
    if(strUrl.substr(0, 7) == "http://")
    {
@@ -331,7 +331,7 @@ vsstring http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *,
    strsize iFind = strReq.find("?");
    if(iFind >= 0)
    {
-      vsstring strQ = strReq.substr(iFind);
+      string strQ = strReq.substr(iFind);
       strQ.replace("/", "%2F");
       strReq = strReq.substr(0, iFind) + strQ;
    }
@@ -343,7 +343,7 @@ vsstring http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *,
       hConnect = NULL,
       hRequest = NULL;
 
-   WCHAR * pwzHost = utf8_to_16_dup(strHost);
+   WCHAR * pwzHost = ::str::international::utf8_to_unicode(strHost);
 
    /*WCHAR * pwzAutoUrl = NULL;
    if(WinHttpDetectAutoProxyConfigUrl(
@@ -461,7 +461,7 @@ vsstring http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *,
             }
             else
             {
-               strRet += vsstring(pszOutBuffer, dwDownloaded);
+               strRet += string(pszOutBuffer, dwDownloaded);
                dwLen += dwDownloaded;
                if(bProgress && callback != NULL)
                {
@@ -488,7 +488,7 @@ vsstring http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *,
 
    if(!bResults)
    {
-      vsstring str;
+      string str;
       str = "ms_download_dup: error url=\"";
       str += pszUrl;
       str += "\"";
@@ -500,9 +500,9 @@ vsstring http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *,
 }
 
 
-vsstring url_encode_dup(const char * psz)
+string url_encode_dup(const char * psz)
 {
-   vsstring str;
+   string str;
    char sz[256];
    while(*psz != '\0')
    {
@@ -552,11 +552,11 @@ vsstring url_encode_dup(const char * psz)
 
 
 /*
-vsstring ms_post(const char * pszUrl, const char * pszPost)
+string ms_post(const char * pszUrl, const char * pszPost)
 {
-vsstring strUrl(pszUrl);
-vsstring strHost;
-vsstring strReq;
+string strUrl(pszUrl);
+string strHost;
+string strReq;
 int32_t iPort;
 if(strUrl.substr(0, 7) == "http://")
 {
@@ -653,7 +653,7 @@ GetLastError());
 if (bResults)
 bResults = WinHttpReceiveResponse( hRequest, NULL);
 
-vsstring strResult;
+string strResult;
 
 // Keep checking for data until there is nothing left.
 if (bResults)

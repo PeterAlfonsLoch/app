@@ -1,6 +1,11 @@
 #pragma once
 
 
+
+CLASS_DECL_c string get_file_md5(const char * file);
+CLASS_DECL_c string file_as_string_dup(const char * path);
+
+
 #include "file_status.h"
 
 
@@ -34,6 +39,8 @@
 #include "file_byte_input_stream_binary_buffer.h"
 
 #include "file_byte_output_stream_binary_buffer.h"
+
+
 
 #include "file_exception.h"
 

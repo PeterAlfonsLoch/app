@@ -374,3 +374,19 @@ mutex * mutex::open_mutex(sp(base_application) papp,  const char * pstrName)
 #endif
 
 }
+
+
+void wait_until_mutex_does_not_exist(const char * pszName)
+{
+   mutex * pmutex = new mutex(::ca2::get_thread_app(), false, "Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+   if(::GetLastError() == ERROR_ALREADY_EXISTS)
+   {
+      while(::GetLastError() == ERROR_ALREADY_EXISTS)
+      {
+         delete pmutex;
+         Sleep(184);
+         pmutex = new mutex(::ca2::get_thread_app(), false, "Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+      }
+   }
+   delete pmutex;
+}

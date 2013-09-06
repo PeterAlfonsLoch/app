@@ -1,9 +1,6 @@
 #pragma once
 
 
-#pragma once
-
-
 // from 7-zip
 
 namespace ca2
@@ -87,6 +84,7 @@ char (*__countof_helper(UNALIGNED _CountofType (&_Array)[_SizeOfArray]))[_SizeOf
 #endif
 
 
+/*
 #ifndef ASSERT
 #ifdef DEBUG
 #define ASSERT(expr) _ASSERTE(expr)
@@ -94,7 +92,7 @@ char (*__countof_helper(UNALIGNED _CountofType (&_Array)[_SizeOfArray]))[_SizeOf
 #define ASSERT(expr)
 #endif
 #endif // ASSERT
-
+*/
 
 /*
 Why does ASSUME exist?

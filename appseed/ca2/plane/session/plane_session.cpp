@@ -842,7 +842,7 @@ namespace plane
    //      if(eexclusive == ::ca2::ExclusiveInstanceLocalId)
    //      {
    //         /*
-   //         ::primitive::memory_file file(get_app());
+   //         ::::file::memory_buffer file(get_app());
    //         file.from_string(command()->m_varTopicFile);
    //         COPYDATASTRUCT data;
    //         data.dwData = 1984;
@@ -1484,7 +1484,7 @@ alt1:
       if(eexclusive == ::ca2::ExclusiveInstanceLocalId)
       {
 #ifdef WINDOWSEX
-         ::primitive::memory_file file(get_app());
+         ::::file::memory_buffer file(get_app());
          file.from_string(command()->m_varTopicFile);
          COPYDATASTRUCT data;
          data.dwData = 1984;

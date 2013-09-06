@@ -2,7 +2,7 @@
 
 
 
-CLASS_DECL_ca int32_t nibble_to_low_hex(byte nibble)
+int32_t nibble_to_low_hex(byte nibble)
 {
    if(nibble >= 0 && nibble <= 9)
    {

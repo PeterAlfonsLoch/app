@@ -147,16 +147,15 @@ namespace comparison
 {
 
    template < >
-   class CLASS_DECL_c binary < Imf::Name >
+   class binary < Imf::Name >
    {
    public:
 
 
-      inline static int_ptr CompareElements(const Imf::Name * pElement1, const Imf::Name * pElement2)
+      static int_ptr CompareElements( Imf::Name const * pElement1, Imf::Name const * pElement2)
       {
          return strcmp(pElement1->text(), pElement2->text());
       }
-
 
    };
 

@@ -10,6 +10,8 @@ namespace file
    {
    public:
 
+      binary_buffer_sp     m_spbinarybuffer;
+
 
       byte_input_stream_binary_buffer(sp(base_application) papp, const char * pszFilePath, uint32_t uiFlags = 0);
       virtual ~byte_input_stream_binary_buffer();

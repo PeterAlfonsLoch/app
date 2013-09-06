@@ -175,7 +175,6 @@ public:
    string(wchar_t * pszSrc);
    string(const wchar_t * pszSrc);
    string(const string & strSrc);
-   string(const vsstring & str);
    string(const istring & istr);
    string(const string_interface & str);
 
@@ -221,9 +220,9 @@ public:
    inline string & operator = (const property & prop);
 
    string & operator = (const string_interface & str );
-   string & operator = (string strSrc);
+   //string & operator = (string strSrc);
    string & operator = (const simple_string & strSrc);
-   string & operator = (const vsstring & strSrc);
+   string & operator = (const string & strSrc);
    string & operator = (const char * pszSrc);
    string & operator = (const wchar_t * pszSrc);
    string & operator = (const uchar* pszSrc);
@@ -326,6 +325,8 @@ public:
 
    // replace all occurrences of string 'pszOld' with string 'pszNew'
    strsize replace(const char * pszOld,const char * pszNew, strsize iStart = 0);
+
+   strsize replace_ci(const char * pszOld,const char * pszNew, strsize iStart = 0);
 
    string & replace(strsize iStart, strsize nCount, const char * psz);
 

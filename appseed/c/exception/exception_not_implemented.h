@@ -7,7 +7,7 @@ class CLASS_DECL_c not_implemented :
 public:
 
 
-   vsstring m_strTip;
+   string m_strTip;
 
 
    not_implemented(sp(base_application) papp, const char * pszTip = NULL);

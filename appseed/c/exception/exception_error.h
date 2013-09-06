@@ -9,7 +9,7 @@ class CLASS_DECL_c error_exception :
 public:
    
    
-   vsstring m_strError;
+   string m_strError;
 
 
    error_exception(sp(base_application) papp, const char * pszError);

@@ -811,46 +811,49 @@ char * strpbrk_dup(char * sz, const char * szFind)
 
 
 
-vsstring str_replace_dup(const char * psz, const char * pszFind, const char * pszReplace)
+string str_replace_dup(const char * psz, const char * pszFind, const char * pszReplace)
 {
-   vsstring str(psz);
+   string str(psz);
    str.replace(pszFind, pszReplace);
    return str;
 }
 
 
-vsstring itoa_dup(int64_t i)
+string itoa_dup(int64_t i)
 {
    char sz[256];
    itoa_dup(sz, i, 10);
-   return vsstring(sz);
+   return string(sz);
 }
 
-vsstring itohex_dup(int64_t i)
+/*
+string itohex_dup(int64_t i)
 {
    char sz[256];
    itoa_dup(sz, i, 16);
-   return vsstring(sz);
+   return string(sz);
 }
+*/
 
-vsstring itohexpad_dup(int64_t i, int32_t iPad)
+/*
+string itohexpad_dup(int64_t i, int32_t iPad)
 {
-   vsstring str = itohex_dup(i);
+   string str = itohex_dup(i);
    while(iPad > str.length())
       str = "0" + str;
    return str;
 }
-
-/*vsstring i64toa_dup(int64_t i)
+*/
+/*string i64toa_dup(int64_t i)
 {
    char sz[512];
    i64toa_dup(sz, i);
-   return vsstring(sz);
+   return string(sz);
 }*/
 
 #ifdef WINDOWSEX
 
-vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszType)
+string read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszType)
 {
 
    HRSRC hrsrc = ::FindResource(hinst, MAKEINTRESOURCE(nID), lpcszType);
@@ -865,6 +868,7 @@ vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszTyp
 
    uint32_t dwResSize = ::SizeofResource(hinst, hrsrc);
 
+   string str;
    char * psz = NULL;
 
 	if(hres != NULL)
@@ -872,14 +876,12 @@ vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszTyp
 
       UINT FAR* lpnRes = (UINT FAR*)::LockResource(hres);
 
-      psz = (char *) _ca_alloc(dwResSize + 1);
-      memcpy_dup(psz, lpnRes, dwResSize);
+      psz = str.GetBufferSetLength(dwResSize);
       psz[dwResSize] = '\0';
+      str.ReleaseBuffer(dwResSize);
       ::FreeResource(hres);
 	}
-	vsstring vss;
-   vss.attach(psz);
-   return vss;
+   return str;
 
 }
 
@@ -959,7 +961,7 @@ char * strupr(char * pszParam)
 
 
 
-void zero_pad(vsstring & str, ::count iPad)
+void zero_pad(string & str, ::count iPad)
 {
 
    while(str.length() < iPad)

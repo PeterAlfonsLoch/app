@@ -135,22 +135,22 @@ invalidTableEntry ()
 }
 
 
-inline Int64
-hufLength (Int64 code)
+inline int64_t
+hufLength (int64_t code)
 {
     return code & 63;
 }
 
 
-inline Int64
-hufCode (Int64 code)
+inline int64_t
+hufCode (int64_t code)
 {
     return code >> 6;
 }
 
 
 inline void
-outputBits (int nBits, Int64 bits, Int64 &c, int &lc, char *&out)
+outputBits (int nBits, int64_t bits, int64_t &c, int &lc, char *&out)
 {
     c <<= nBits;
     lc += nBits;
@@ -162,8 +162,8 @@ outputBits (int nBits, Int64 bits, Int64 &c, int &lc, char *&out)
 }
 
 
-inline Int64
-getBits (int nBits, Int64 &c, int &lc, const char *&in)
+inline int64_t
+getBits (int nBits, int64_t &c, int &lc, const char *&in)
 {
     while (lc < nBits)
     {
@@ -197,9 +197,9 @@ getBits (int nBits, Int64 &c, int &lc, const char *&in)
 //
 
 void
-hufCanonicalCodeTable (Int64 hcode[HUF_ENCSIZE])
+hufCanonicalCodeTable (int64_t hcode[HUF_ENCSIZE])
 {
-    Int64 n[59];
+    int64_t n[59];
 
     //
     // For each i from 0 through 58, count the
@@ -219,11 +219,11 @@ hufCanonicalCodeTable (Int64 hcode[HUF_ENCSIZE])
     // store that code in n[i].
     //
 
-    Int64 c = 0;
+    int64_t c = 0;
 
     for (int i = 58; i > 0; --i)
     {
-	Int64 nc = ((c + n[i]) >> 1);
+	int64_t nc = ((c + n[i]) >> 1);
 	n[i] = c;
 	c = nc;
     }
@@ -257,13 +257,13 @@ hufCanonicalCodeTable (Int64 hcode[HUF_ENCSIZE])
 
 struct FHeapCompare
 {
-    bool operator () (Int64 *a, Int64 *b) {return *a > *b;}
+    bool operator () (int64_t *a, int64_t *b) {return *a > *b;}
 };
 
 
 void
 hufBuildEncTable
-    (Int64*	frq,	// io: input frequencies [HUF_ENCSIZE], output table
+    (int64_t*	frq,	// io: input frequencies [HUF_ENCSIZE], output table
      int*	im,	//  o: min frq index
      int*	iM)	//  o: max frq index
 {
@@ -289,7 +289,7 @@ hufBuildEncTable
     //
 
     AutoArray <int, HUF_ENCSIZE> hlink;
-    AutoArray <Int64 *, HUF_ENCSIZE> fHeap;
+    AutoArray <int64_t *, HUF_ENCSIZE> fHeap;
 
     *im = 0;
 
@@ -351,8 +351,8 @@ hufBuildEncTable
 
     ::lemon::make_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
 
-    AutoArray <Int64, HUF_ENCSIZE> scode;
-    memset (scode, 0, sizeof (Int64) * HUF_ENCSIZE);
+    AutoArray <int64_t, HUF_ENCSIZE> scode;
+    memset (scode, 0, sizeof (int64_t) * HUF_ENCSIZE);
 
     while (nf > 1)
     {
@@ -430,7 +430,7 @@ hufBuildEncTable
     //
 
     hufCanonicalCodeTable (scode);
-    memcpy (frq, scode, sizeof (Int64) * HUF_ENCSIZE);
+    memcpy (frq, scode, sizeof (int64_t) * HUF_ENCSIZE);
 }
 
 
@@ -457,13 +457,13 @@ const int LONGEST_LONG_RUN   = 255 + SHORTEST_LONG_RUN;
 
 void
 hufPackEncTable
-    (const Int64*	hcode,		// i : encoding table [HUF_ENCSIZE]
+    (const int64_t*	hcode,		// i : encoding table [HUF_ENCSIZE]
      int		im,		// i : min hcode index
      int		iM,		// i : max hcode index
      char**		pcode)		//  o: ptr to packed table (updated)
 {
     char *p = *pcode;
-    Int64 c = 0;
+    int64_t c = 0;
     int lc = 0;
 
     for (; im <= iM; im++)
@@ -517,12 +517,12 @@ hufUnpackEncTable
      int		ni,		// i : input size (in bytes)
      int		im,		// i : min hcode index
      int		iM,		// i : max hcode index
-     Int64*		hcode)		//  o: encoding table [HUF_ENCSIZE]
+     int64_t*		hcode)		//  o: encoding table [HUF_ENCSIZE]
 {
-    memset (hcode, 0, sizeof (Int64) * HUF_ENCSIZE);
+    memset (hcode, 0, sizeof (int64_t) * HUF_ENCSIZE);
 
     const char *p = *pcode;
-    Int64 c = 0;
+    int64_t c = 0;
     int lc = 0;
 
     for (; im <= iM; im++)
@@ -530,9 +530,9 @@ hufUnpackEncTable
 	if (p - *pcode > ni)
 	    unexpectedEndOfTable();
 
-	Int64 l = hcode[im] = getBits (6, c, lc, p); // code length
+	int64_t l = hcode[im] = getBits (6, c, lc, p); // code length
 
-	if (l == (Int64) LONG_ZEROCODE_RUN)
+	if (l == (int64_t) LONG_ZEROCODE_RUN)
 	{
 	    if (p - *pcode > ni)
 		unexpectedEndOfTable();
@@ -547,7 +547,7 @@ hufUnpackEncTable
 
 	    im--;
 	}
-	else if (l >= (Int64) SHORT_ZEROCODE_RUN)
+	else if (l >= (int64_t) SHORT_ZEROCODE_RUN)
 	{
 	    int zerun = (int) (l - SHORT_ZEROCODE_RUN + 2);
 
@@ -594,7 +594,7 @@ hufClearDecTable
 
 void
 hufBuildDecTable
-    (const Int64*	hcode,		// i : encoding table
+    (const int64_t*	hcode,		// i : encoding table
      int		im,		// i : min index in hcode
      int		iM,		// i : max index in hcode
      HufDec *		hdecod)		//  o: (allocated by caller)
@@ -607,7 +607,7 @@ hufBuildDecTable
 
     for (; im <= iM; im++)
     {
-	Int64 c = hufCode (hcode[im]);
+	int64_t c = hufCode (hcode[im]);
 	int l = (int) (hufLength (hcode[im]));
 
 	if (c >> l)
@@ -666,7 +666,7 @@ hufBuildDecTable
 
 	    HufDec *pl = hdecod + (c << (HUF_DECBITS - l));
 
-	    for (Int64 i = 1 << (HUF_DECBITS - l); i > 0; i--, pl++)
+	    for (int64_t i = 1 << (HUF_DECBITS - l); i > 0; i--, pl++)
 	    {
 		if (pl->len || pl->p)
 		{
@@ -709,15 +709,15 @@ hufFreeDecTable (HufDec *hdecod)	// io: Decoding table
 //
 
 inline void
-outputCode (Int64 code, Int64 &c, int &lc, char *&out)
+outputCode (int64_t code, int64_t &c, int &lc, char *&out)
 {
     outputBits ((int) hufLength (code), hufCode (code), c, lc, out);
 }
 
 
 inline void
-sendCode (Int64 sCode, int runCount, Int64 runCode,
-	  Int64 &c, int &lc, char *&out)
+sendCode (int64_t sCode, int runCount, int64_t runCode,
+	  int64_t &c, int &lc, char *&out)
 {
     static const int RLMIN = 32; // min count to activate run-length coding
 
@@ -741,14 +741,14 @@ sendCode (Int64 sCode, int runCount, Int64 runCode,
 
 int
 hufEncode				// return: output size (in bits)
-    (const Int64*  	    hcode,	// i : encoding table
+    (const int64_t*  	    hcode,	// i : encoding table
      const unsigned short*  in,		// i : uncompressed input buffer
      const int     	    ni,		// i : input buffer size (in bytes)
      int           	    rlc,	// i : rl code
      char*         	    out)	//  o: compressed output buffer
 {
     char *outStart = out;
-    Int64 c = 0;	// bits not yet written to out
+    int64_t c = 0;	// bits not yet written to out
     int lc = 0;		// number of valid bits in c (LSB)
     int s = in[0];
     int cs = 0;
@@ -842,7 +842,7 @@ hufEncode				// return: output size (in bits)
 
 void
 hufDecode
-    (const Int64 * 	hcode,	// i : encoding table
+    (const int64_t * 	hcode,	// i : encoding table
      const HufDec * 	hdecod,	// i : decoding table
      const char* 	in,	// i : compressed input buffer
      int		ni,	// i : input size (in bits)
@@ -850,7 +850,7 @@ hufDecode
      int		no,	// i : expected output size (in bytes)
      unsigned short*	out)	//  o: uncompressed output buffer
 {
-    Int64 c = 0;
+    int64_t c = 0;
     int lc = 0;
     unsigned short * outb = out;
     unsigned short * oe = out + no;
@@ -902,7 +902,7 @@ hufDecode
 		    if (lc >= l)
 		    {
 			if (hufCode (hcode[pl.p[j]]) ==
-				((c >> (lc - l)) & ((Int64(1) << l) - 1)))
+				((c >> (lc - l)) & ((int64_t(1) << l) - 1)))
 			{
 			    //
 			    // Found : get long code
@@ -950,7 +950,7 @@ hufDecode
 
 
 void
-countFrequencies (Int64 freq[HUF_ENCSIZE],
+countFrequencies (int64_t freq[HUF_ENCSIZE],
 		  const unsigned short data[/*n*/],
 		  int n)
 {
@@ -1001,7 +1001,7 @@ hufCompress (const unsigned short raw[],
     if (nRaw == 0)
 	return 0;
 
-    AutoArray <Int64, HUF_ENCSIZE> freq;
+    AutoArray <int64_t, HUF_ENCSIZE> freq;
 
     countFrequencies (freq, raw, nRaw);
 
@@ -1051,7 +1051,7 @@ hufUncompress (const char compressed[],
 
     const char *ptr = compressed + 20;
 
-    AutoArray <Int64, HUF_ENCSIZE> freq;
+    AutoArray <int64_t, HUF_ENCSIZE> freq;
     AutoArray <HufDec, HUF_DECSIZE> hdec;
 
     hufClearDecTable (hdec);

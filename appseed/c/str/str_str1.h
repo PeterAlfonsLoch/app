@@ -90,8 +90,8 @@ CLASS_DECL_c char * strtok_r_dup(char *s1, const char *s2, char **lasts);
 
 CLASS_DECL_c count utf16_len(const char * psz);
 CLASS_DECL_c void utf8_to_16(wchar_t * pwsz, const char * psz);
-CLASS_DECL_c wchar_t * utf8_to_16_dup(const char * psz);
-CLASS_DECL_c char * utf16_to_8_dup(const wchar_t * psz);
+//CLASS_DECL_c wchar_t * ::str::international::utf8_to_unicode(const char * psz);
+//CLASS_DECL_c char * ::str::international::unicode_to_utf8(const wchar_t * psz);
 
 
 

@@ -21,7 +21,7 @@ int32_t err(int32_t i, const char* str, T1 arg1, T2 arg2)
 {
    wchar_t lastErrorTxt[1024];
    FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,GetLastError(),0,lastErrorTxt,1024,NULL);
-   printf_dup("%s", vsstring(lastErrorTxt));
+   printf_dup("%s", string(lastErrorTxt));
    printf_dup(str, arg1, arg2);
    return (i);
 }
@@ -31,7 +31,7 @@ int32_t err(int32_t i, const char* str, T arg)
 {
    wchar_t lastErrorTxt[1024];
    FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,GetLastError(),0,lastErrorTxt,1024,NULL);
-   printf_dup("%s", vsstring(lastErrorTxt));
+   printf_dup("%s", string(lastErrorTxt));
    printf_dup(str, arg);
    return (i);
 }

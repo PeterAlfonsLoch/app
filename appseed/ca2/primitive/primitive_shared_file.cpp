@@ -11,7 +11,7 @@ namespace primitive
    shared_file::shared_file(sp(base_application) papp, UINT nAllocFlags, UINT nGrowBytes) :
       element(papp),
       memory_container(papp),
-      memory_file(papp)
+      memory_buffer(papp)
    {
 
       UNREFERENCED_PARAMETER(nGrowBytes);

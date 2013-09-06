@@ -237,19 +237,19 @@ namespace filemanager
 
       //spfile->open(szPath, ::file::mode_read | ::file::type_binary);
 
-      array < ::primitive::memory_file, ::primitive::memory_file & > filea;
+      array < ::::file::memory_buffer, ::::file::memory_buffer & > filea;
       _vmszipFile zipfile;
 
       zipfile.m_pfile = &file;
 
       unzFile pf = _vmszipApi::unzipOpen(&zipfile);
 
-      array < ::primitive::memory_file, ::primitive::memory_file & > filea;
+      array < ::::file::memory_buffer, ::::file::memory_buffer & > filea;
       int32_t iStart = 0;
       int32_t iFind;
       while((iFind  = wstrExtra.find(L".zip:", iStart)) >= 0)
       {
-         filea.add(::primitive::memory_file());
+         filea.add(::::file::memory_buffer());
          pf->dump(filea.last_element(), wstrExtra.Mid(iStart + 5, iFind - iStart + 5));
          iStart = iFind + 1;
       }*/

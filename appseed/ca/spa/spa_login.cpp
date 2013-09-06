@@ -64,34 +64,34 @@ spa_login::spa_login()
 }
 
 
-void spa_login::defer_translate(::spa::plugin * pplugin)
+void spa_login::defer_translate(::spa_install::plugin * pplugin)
 {
 
    xxdebug_box("defer_translate", "spa_login", 0);
 
-   vsstring strForm = pplugin->defer_get("http://account.ca2.cc/login_form");
+   string strForm = pplugin->defer_get("http://account.ca2.cc/login_form");
 
    if(strForm.is_empty())
       return;
 
-   XNode node;
+   ::xml::document node;
 
-   if(!node.Load(strForm))
+   if(!node.load(strForm))
       return;
 
-   vsstring str;
+   string str;
 
-   str = node.GetAttrValue("email");
+   str = node.attr("email");
 
    if(str.has_char())
       m_labelUser.m_strText = str;
 
-   str = node.GetAttrValue("senha");
+   str = node.attr("senha");
 
    if(str.has_char())
       m_labelPassword.m_strText = str;
 
-   str = node.GetAttrValue("abrir");
+   str = node.attr("abrir");
 
    if(str.has_char())
       m_tap.m_strText = str;
@@ -125,7 +125,7 @@ void spa_login::initialize()
 }
 
 
-vsstring spa_login::calc_key_hash()
+string spa_login::calc_key_hash()
 {
    if(m_strKeyHash.has_char())
       return m_strKeyHash;
@@ -190,15 +190,15 @@ spa_login::e_result spa_login::login()
    if(m_password.m_strText.is_empty() && m_strPasshash.is_empty())
       return result_fail;
 
-   vsstring strLoginUrl("https://api.ca2.cc/account/login");
+   string strLoginUrl("https://api.ca2.cc/account/login");
 
-   XDoc doc;
+   ::xml::document doc;
 
-   vsstring strSessId;
+   string strSessId;
 
-   vsstring strRsaModulus;
+   string strRsaModulus;
 
-   vsstring strLogin;
+   string strLogin;
 
    for(int32_t iRetry = 0; iRetry <= 8; iRetry++)
    {
@@ -212,7 +212,7 @@ spa_login::e_result spa_login::login()
       {
 
 
-         strLogin = ms_get_dup(strLoginUrl);
+         strLogin = http_get_dup(strLoginUrl);
 
       }
       catch(...)
@@ -224,18 +224,18 @@ spa_login::e_result spa_login::login()
       if(strLogin.is_empty())
          continue;
 
-      if(!doc.Load(strLogin))
+      if(!doc.load(strLogin))
          continue;
 
-      if(doc.GetRoot()->name != "login")
+      if(doc.get_root()->get_name() != "login")
          continue;
 
-      strSessId = doc.GetRoot()->GetAttrValue("sessid");
+      strSessId = doc.get_root()->attr("sessid");
 
       if(strSessId.is_empty())
          continue;
 
-      strRsaModulus = doc.GetRoot()->GetAttrValue("rsa_modulus");
+      strRsaModulus = doc.get_root()->attr("rsa_modulus");
 
       if(strRsaModulus.has_char())
          break;
@@ -245,7 +245,7 @@ spa_login::e_result spa_login::login()
    if(strRsaModulus.is_empty())
       return result_fail;
 
-   vsstring strPass;
+   string strPass;
    if(m_strPasshash.is_empty())
    {
       strPass = crypt_nessie(m_password.m_strText);
@@ -256,17 +256,17 @@ spa_login::e_result spa_login::login()
    }
 
 
-   vsstring strHex;
+   string strHex;
    
 #ifndef METROWIN
    strHex = spa_login_crypt(strPass, strRsaModulus);
 #endif
 
-   vsstring strResponse;
+   string strResponse;
 
    {
 
-      vsstring strAuthUrl("https://api.ca2.cc/account/auth?defer_registration&ruri=" + m_pplugin->m_strRuri);
+      string strAuthUrl("https://api.ca2.cc/account/auth?defer_registration&ruri=" + m_pplugin->m_strRuri);
 
       if(m_strPasshash.is_empty())
       {
@@ -295,7 +295,7 @@ spa_login::e_result spa_login::login()
    {
 
 
-      XDoc doc;
+      ::xml::document doc;
 
       if(doc.Load(strResponse))
       {
@@ -303,7 +303,7 @@ spa_login::e_result spa_login::login()
          if(doc.GetRoot()->name == "response")
          {
             // Heuristical check
-            if(stricmp_dup(doc.GetRoot()->GetAttrValue("id"), "auth") == 0 && vsstring(doc.GetRoot()->GetAttrValue("passhash")).get_length() > 16 && atoi(doc.GetRoot()->GetAttrValue("secureuserid")) > 0)
+            if(stricmp_dup(doc.GetRoot()->GetAttrValue("id"), "auth") == 0 && string(doc.GetRoot()->GetAttrValue("passhash")).get_length() > 16 && atoi(doc.GetRoot()->GetAttrValue("secureuserid")) > 0)
             {
                m_strPasshash = doc.GetRoot()->GetAttrValue("passhash");
                eresult = result_ok;
@@ -372,12 +372,12 @@ void spa_login::login_result(e_result eresult)
 void spa_login::authentication_succeeded()
 {
 
-   vsstring strUsername = m_editUser.m_strText;
-   vsstring strPasshash = m_strPasshash;
-   vsstring strPassword = m_password.m_strText;
+   string strUsername = m_editUser.m_strText;
+   string strPasshash = m_strPasshash;
+   string strPassword = m_password.m_strText;
 
-   vsstring strUsernamePrevious;
-   vsstring strPasshashPrevious;
+   string strUsernamePrevious;
+   string strPasshashPrevious;
    crypt_file_get(dir::userappdata("license_auth/00001.data"), strUsernamePrevious, "");
    crypt_file_get(dir::userappdata("license_auth/00002.data"), strPasshashPrevious, calc_key_hash());
 

@@ -1,36 +1,36 @@
 #include "framework.h"
 
 
-string_to_string_map::string_to_string_map(sp(base_application) papp, int_ptr nBlockSize) :
+string_to_string::string_to_string(sp(base_application) papp, int_ptr nBlockSize) :
    element(papp),
-   base_string_to_string_map(papp,  nBlockSize)
+   base_string_to_string(papp,  nBlockSize)
 {
 
 }
 
 
-string_to_string_map::string_to_string_map(const string_to_string_map & map) :
+string_to_string::string_to_string(const string_to_string & map) :
    element(map.get_app()),
-   base_string_to_string_map(dynamic_cast < const base_string_to_string_map & > (map))
+   base_string_to_string(dynamic_cast < const base_string_to_string & > (map))
 {
 
 }
 
 
-string_to_string_map::~string_to_string_map()
+string_to_string::~string_to_string()
 {
 }
 
 
 
-string_to_string_map & string_to_string_map::operator = (const string_to_string_map & map)
+string_to_string & string_to_string::operator = (const string_to_string & map)
 {
 
    if(this != &map)
    {
 
-      base_string_to_string_map::m_nBlockSize = map.base_string_to_string_map::m_nBlockSize;
-      attrib_map < base_string_to_string_map >::operator = (map);
+      base_string_to_string::m_nBlockSize = map.base_string_to_string::m_nBlockSize;
+      attrib_map < base_string_to_string >::operator = (map);
 
    }
 

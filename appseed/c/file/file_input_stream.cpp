@@ -215,6 +215,9 @@ namespace file
 
    void input_stream::close()
    {
+
+      stream_base::close();
+
    }
 
 

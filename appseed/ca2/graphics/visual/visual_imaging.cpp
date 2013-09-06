@@ -148,7 +148,7 @@ imaging::~imaging()
 
 FIBITMAP * imaging::LoadImageFile(var varFile, sp(base_application) papp)
 {
-   ::primitive::memory_file memfile(get_app());
+   ::::file::memory_buffer memfile(get_app());
    System.file().as_memory(varFile, *memfile.get_memory(), papp);
    if(memfile.get_size() <= 0)
       return NULL;
@@ -158,7 +158,7 @@ FIBITMAP * imaging::LoadImageFile(var varFile, sp(base_application) papp)
 bool imaging::LoadImageFile(::draw2d::dib * pdib, var varFile, sp(base_application) papp)
 {
 
-   ::primitive::memory_file memfile(get_app());
+   ::::file::memory_buffer memfile(get_app());
 
    System.file().as_memory(varFile, *memfile.get_memory(), papp);
 
@@ -227,7 +227,7 @@ const char * lpszId)
 {
 throw not_implemented(get_app());
 /*
-::primitive::memory_file file(get_app());
+::::file::memory_buffer file(get_app());
 
 ::ca2::Resource resource;
 

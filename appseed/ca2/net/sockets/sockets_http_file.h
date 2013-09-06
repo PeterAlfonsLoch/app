@@ -16,7 +16,7 @@ namespace sockets
 
          
          file(sp(base_application) papp, mutex * pmutex = NULL);
-         file(sp(base_application) papp, ::primitive::memory_file * pmemoryfileIn);
+         file(sp(base_application) papp, ::::file::memory_buffer * pmemoryfileIn);
          virtual ~file();
 
 

@@ -17,7 +17,7 @@ namespace file
       plain_text_output_stream(const output_stream & ostream);
       virtual ~plain_text_output_stream();
 
-
+      using output_stream::write;
       virtual void write (bool b);
       virtual void write (char ch);
       virtual void write (uchar uch);

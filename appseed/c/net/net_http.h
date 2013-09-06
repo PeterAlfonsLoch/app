@@ -16,6 +16,6 @@ CLASS_DECL_c void prepare_http();
 
 
 CLASS_DECL_c bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode = false, int32_t * piStatus = NULL, void (*callback)(void *, int32_t, uint_ptr) = NULL, void * callback_param = NULL);
-CLASS_DECL_c vsstring http_get_dup(const char * pszUrl, bool bCache = false, void (*callback)(void *, int32_t, uint_ptr) = NULL, void * callback_param = NULL, bool bProgressCallback = false);
-CLASS_DECL_c vsstring http_defer_locale_schema_get(const char * pszUrl, const char * pszLocale, const char * pszSchema);
+CLASS_DECL_c string http_get_dup(const char * pszUrl, bool bCache = false, void (*callback)(void *, int32_t, uint_ptr) = NULL, void * callback_param = NULL, bool bProgressCallback = false);
+CLASS_DECL_c string http_defer_locale_schema_get(const char * pszUrl, const char * pszLocale, const char * pszSchema);
 

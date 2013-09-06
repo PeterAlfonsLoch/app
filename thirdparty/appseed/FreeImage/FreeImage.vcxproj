@@ -850,7 +850,6 @@
     <ClInclude Include="OpenEXR\IlmImf\ImfHeader.h" />
     <ClInclude Include="OpenEXR\IlmImf\ImfHuf.h" />
     <ClInclude Include="OpenEXR\IlmImf\ImfInputFile.h" />
-    <ClInclude Include="OpenEXR\IlmImf\ImfInt64.h" />
     <ClInclude Include="OpenEXR\IlmImf\ImfIntAttribute.h" />
     <ClInclude Include="OpenEXR\IlmImf\ImfIO.h" />
     <ClInclude Include="OpenEXR\IlmImf\ImfKeyCode.h" />
@@ -912,7 +911,6 @@
     <ClInclude Include="OpenEXR\Imath\ImathGL.h" />
     <ClInclude Include="OpenEXR\Imath\ImathGLU.h" />
     <ClInclude Include="OpenEXR\Imath\ImathHalfLimits.h" />
-    <ClInclude Include="OpenEXR\Imath\ImathInt64.h" />
     <ClInclude Include="OpenEXR\Imath\ImathInterval.h" />
     <ClInclude Include="OpenEXR\Imath\ImathLimits.h" />
     <ClInclude Include="OpenEXR\Imath\ImathLine.h" />

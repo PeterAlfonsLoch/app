@@ -47,7 +47,7 @@ namespace file_watcher
 	{
 	public:
 
-      vsstring    m_strMessage;
+      string    m_strMessage;
 		exception(const char *  message) :
          m_strMessage(message)
 		{
@@ -65,7 +65,7 @@ namespace file_watcher
 		{}
 
 		file_not_found_exception(const char * filename)
-			: exception("File not found (" + vsstring(filename) + ")")
+			: exception("File not found (" + string(filename) + ")")
 		{}
 	};
 

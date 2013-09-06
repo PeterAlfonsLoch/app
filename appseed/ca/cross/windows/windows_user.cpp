@@ -173,7 +173,7 @@ MultiByteToWideChar(
     int32_t      cchWideChar)
 {
 
-   vsstring str(lpMultiByteStr, cbMultiByte);
+   string str(lpMultiByteStr, cbMultiByte);
 
    wstring wstr(str);
 
@@ -231,7 +231,7 @@ WideCharToMultiByte(
 
    wstring wstr(lpWideCharStr, cchWideChar);
 
-   vsstring str(wstr);
+   string str(wstr);
 
    if(cbMultiByte == 0)
    {
@@ -272,10 +272,10 @@ WideCharToMultiByte(
 
 }
 
-CLASS_DECL_ca vsstring get_system_error_message(uint32_t dwError)
+CLASS_DECL_ca string get_system_error_message(uint32_t dwError)
 {
 
-   vsstring str;
+   string str;
 
    return str;
 

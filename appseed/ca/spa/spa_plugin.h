@@ -4,9 +4,8 @@
 int32_t spaboot_start(const char * pszVersion, const char * pszId);
 
 
-namespace spa
+namespace spa_install
 {
-
 
    enum e_check
    {
@@ -101,7 +100,7 @@ namespace spa
 
       virtual void on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b);
 
-      using ::spa::plugin::on_receive;
+      using ::hotplugin::plugin::on_receive;
 
       virtual void on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len);
 
@@ -115,15 +114,15 @@ namespace spa
 
       virtual void on_ready();
 
-      virtual vsstring defer_get_plugin();
+      virtual string defer_get_plugin();
 
-      virtual vsstring defer_get(const char * pszUrl);
+      virtual string defer_get(const char * pszUrl);
 
 
    };
 
 
-} // namespace spa
+} // namespace spa_install
 
 
 

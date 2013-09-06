@@ -195,6 +195,13 @@ CLASS_DECL_c void __free_memory_debug(void * pbData, bool bIsObject);
 
 CLASS_DECL_c bool __default_alloc_hook(size_t, bool, LONG);
 
+// A failure hook returns whether to permit allocation
+typedef bool (* __ALLOC_HOOK)(size_t nSize, bool bObject, LONG lRequestNumber);
+
+// set new hook, return old (never NULL)
+//CLASS_DECL_c __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
+
+
 CLASS_DECL_c int32_t __cdecl __alloc_alloc_hook(int32_t nAllocType, void * pvData, size_t nSize, int32_t nBlockUse, long lRequest, const uchar * szFilename, int32_t nLine);
 CLASS_DECL_c __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnNewHook);
 

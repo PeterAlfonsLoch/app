@@ -110,7 +110,7 @@ typedef struct _operand {
     enum {
 	SURFACE,
 	DEFERRED,
-    } type;
+    } type_info;
     cairo_list_t link;
 } operand_t;
 
@@ -558,7 +558,7 @@ _emit_context (cairo_script_surface_t *surface)
 	op = cairo_list_first_entry (&ctx->operands,
 				     operand_t,
 				     link);
-	if (op->type == DEFERRED)
+	if (op->type_info == DEFERRED)
 	    break;
 
 	old = cairo_container_of (op, cairo_script_surface_t, operand);
@@ -2183,7 +2183,7 @@ _cairo_script_surface_finish (void *abstract_surface)
 			status = status2;
 		    cairo_list_del (&surface->operand.link);
 		} else {
-		    link->operand.type = DEFERRED;
+		    link->operand.type_info = DEFERRED;
 		    cairo_list_swap (&link->operand.link,
 				     &surface->operand.link);
 		    cairo_list_add (&link->link, &ctx->deferred);
@@ -2363,7 +2363,7 @@ inactive (cairo_script_surface_t *surface)
 	    depth++;
 	}
 
-	df->operand.type = depth;
+	df->operand.type_info = depth;
 
 	if (cairo_list_is_empty (&sorted)) {
 	    cairo_list_move (&df->link, &sorted);
@@ -2374,7 +2374,7 @@ inactive (cairo_script_surface_t *surface)
 				      &sorted,
 				      link)
 	    {
-		if (df->operand.type_info < pos->operand.type)
+		if (df->operand.type_info < pos->operand.type_info)
 		    break;
 	    }
 	    cairo_list_move_tail (&df->link, &pos->link);
@@ -3666,7 +3666,7 @@ _cairo_script_surface_create_internal (cairo_script_context_t *ctx,
     surface->emitted = FALSE;
     surface->defined = FALSE;
     surface->active = FALSE;
-    surface->operand.type = SURFACE;
+    surface->operand.type_info = SURFACE;
     cairo_list_init (&surface->operand.link);
 
     _cairo_script_implicit_context_init (&surface->cr);

@@ -344,7 +344,7 @@ namespace ca2
             {
                if(!exists(strFilePath, papp))
                   return "";
-               ::primitive::memory_file memfile(papp, &storage);
+               ::::file::memory_buffer memfile(papp, &storage);
                zip::InFile infile(get_app());
                if(!infile.unzip_open(strFilePath, 0))
                   return "";

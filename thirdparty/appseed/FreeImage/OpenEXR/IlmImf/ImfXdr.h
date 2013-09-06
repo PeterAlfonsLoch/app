@@ -102,7 +102,7 @@
 //
 //----------------------------------------------------------------------------
 
-#include <ImfInt64.h>
+
 #include "IexMathExc.h"
 #include "half.h"
 #include <limits.h>
@@ -159,7 +159,7 @@ write (T &out, unsigned long v);
 
     template <class S, class T>
     void
-    write (T &out, Int64 v);
+    write (T &out, int64_t v);
 
 #endif
 
@@ -242,7 +242,7 @@ read (T &in, unsigned long &v);
 
     template <class S, class T>
     void
-    read (T &in, Int64 &v);
+    read (T &in, int64_t &v);
 
 #endif
 
@@ -496,7 +496,7 @@ write (T &out, unsigned long v)
 
     template <class S, class T>
     void
-    write (T &out, Int64 v)
+    write (T &out, int64_t v)
     {
         unsigned char b[8];
 
@@ -537,7 +537,7 @@ template <class S, class T>
 void
 write (T &out, double v)
 {
-    union {Int64 i; double d;} u;
+    union {int64_t i; double d;} u;
     u.d = v;
 
     unsigned char b[8];
@@ -778,20 +778,20 @@ read (T &in, unsigned long &v)
 
     template <class S, class T>
     void
-    read (T &in, Int64 &v)
+    read (T &in, int64_t &v)
     {
         unsigned char b[8];
 
         readUnsignedChars<S> (in, b, 8);
 
-        v =  ((Int64) b[0]        & 0x00000000000000ffLL) |
-	    (((Int64) b[1] << 8)  & 0x000000000000ff00LL) |
-	    (((Int64) b[2] << 16) & 0x0000000000ff0000LL) |
-	    (((Int64) b[3] << 24) & 0x00000000ff000000LL) |
-	    (((Int64) b[4] << 32) & 0x000000ff00000000LL) |
-	    (((Int64) b[5] << 40) & 0x0000ff0000000000LL) |
-	    (((Int64) b[6] << 48) & 0x00ff000000000000LL) |
-	    ((Int64) b[7] << 56);
+        v =  ((int64_t) b[0]        & 0x00000000000000ffLL) |
+	    (((int64_t) b[1] << 8)  & 0x000000000000ff00LL) |
+	    (((int64_t) b[2] << 16) & 0x0000000000ff0000LL) |
+	    (((int64_t) b[3] << 24) & 0x00000000ff000000LL) |
+	    (((int64_t) b[4] << 32) & 0x000000ff00000000LL) |
+	    (((int64_t) b[5] << 40) & 0x0000ff0000000000LL) |
+	    (((int64_t) b[6] << 48) & 0x00ff000000000000LL) |
+	    ((int64_t) b[7] << 56);
     }
 
 #endif
@@ -824,16 +824,16 @@ read (T &in, double &v)
 
     readUnsignedChars<S> (in, b, 8);
 
-    union {Int64 i; double d;} u;
+    union {int64_t i; double d;} u;
 
-    u.i = ((Int64) b[0]        & 0x00000000000000ffULL) |
-	 (((Int64) b[1] << 8)  & 0x000000000000ff00ULL) |
-	 (((Int64) b[2] << 16) & 0x0000000000ff0000ULL) |
-	 (((Int64) b[3] << 24) & 0x00000000ff000000ULL) |
-	 (((Int64) b[4] << 32) & 0x000000ff00000000ULL) |
-	 (((Int64) b[5] << 40) & 0x0000ff0000000000ULL) |
-	 (((Int64) b[6] << 48) & 0x00ff000000000000ULL) |
-	  ((Int64) b[7] << 56);
+    u.i = ((int64_t) b[0]        & 0x00000000000000ffULL) |
+	 (((int64_t) b[1] << 8)  & 0x000000000000ff00ULL) |
+	 (((int64_t) b[2] << 16) & 0x0000000000ff0000ULL) |
+	 (((int64_t) b[3] << 24) & 0x00000000ff000000ULL) |
+	 (((int64_t) b[4] << 32) & 0x000000ff00000000ULL) |
+	 (((int64_t) b[5] << 40) & 0x0000ff0000000000ULL) |
+	 (((int64_t) b[6] << 48) & 0x00ff000000000000ULL) |
+	  ((int64_t) b[7] << 56);
 
     v = u.d;
 }

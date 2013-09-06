@@ -147,7 +147,7 @@ struct OutputFile::Data: public Mutex
 {
     Header		 header;		// the image header
     int			 version;		// file format version
-    Int64		 previewPosition;       // file position for preview
+    int64_t		 previewPosition;       // file position for preview
     FrameBuffer		 frameBuffer;           // framebuffer to write into
     int			 currentScanLine;       // next scanline to be written
     int			 missingScanLines;      // number of lines to write
@@ -166,9 +166,9 @@ struct OutputFile::Data: public Mutex
     array<OutSliceInfo> slices;		// info about channels in file
     OStream *		 os;			// file stream to write to
     bool		 deleteStream;
-    Int64		 lineOffsetsPosition;   // file position for line
+    int64_t		 lineOffsetsPosition;   // file position for line
                                                 // offset table
-    Int64		 currentPosition;       // current file position
+    int64_t		 currentPosition;       // current file position
 
     comparable_array<LineBuffer*>  lineBuffers;           // each holds one line buffer
     int			 linesInBuffer;         // number of scanlines each
@@ -219,16 +219,16 @@ OutputFile::Data::getLineBuffer (int number)
 namespace {
 
 
-Int64
+int64_t
 writeLineOffsets (OStream &os, const int64_array & lineOffsets)
 {
-    Int64 pos = os.tellp();
+    int64_t pos = os.tellp();
 
     if (pos == -1)
 	Iex::throwErrnoExc ("Cannot determine current file position (%T).");
 
     for (index i = 0; i < lineOffsets.size(); i++)
-       Xdr::write <StreamIO> (os, (Imath::Int64) lineOffsets[i]);
+       Xdr::write <StreamIO> (os, (int64_t) lineOffsets[i]);
 
     return pos;
 }
@@ -246,7 +246,7 @@ writePixelData (OutputFile::Data *ofd,
     // without calling tellp() (tellp() can be fairly expensive).
     //
 
-    Int64 currentPosition = ofd->currentPosition;
+    int64_t currentPosition = ofd->currentPosition;
     ofd->currentPosition = 0;
 
     if (currentPosition == 0)
@@ -820,7 +820,7 @@ OutputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
     // Initialize slice table for writePixels().
     //
 
-    vector<OutSliceInfo> slices;
+    lemon_array < OutSliceInfo > slices;
 
     for (ChannelList::ConstIterator i = channels.begin();
 	 i != channels.end();
@@ -1079,7 +1079,7 @@ OutputFile::writePixels (int numScanLines)
 
 	const string *exception = 0;
 
-        for (int i = 0; (unsigned) i < _data->lineBuffers.size(); ++i)
+        for (int i = 0;  i < _data->lineBuffers.size(); ++i)
 	{
             LineBuffer *lineBuffer = _data->lineBuffers[i];
 
@@ -1221,7 +1221,7 @@ OutputFile::updatePreviewImage (const PreviewRgba newPixels[])
     // preview image, and jump back to the saved file position.
     //
 
-    Int64 savedPosition = _data->os->tellp();
+    int64_t savedPosition = _data->os->tellp();
 
     try
     {
@@ -1243,7 +1243,7 @@ OutputFile::breakScanLine  (int y, int offset, int length, char c)
 {
     Lock lock (*_data);
 
-    Int64 position = 
+    int64_t position = 
 	_data->lineOffsets[(y - _data->minY) / _data->linesInBuffer];
 
     if (!position)

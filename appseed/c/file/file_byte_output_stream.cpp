@@ -37,7 +37,7 @@ namespace file
          *this << (uint32_t)     string.get_length();
       }
 
-      m_spwriter->write((const char *) string, string.get_length());
+      m_spbuffer->write((const char *) string, string.get_length());
 
    }
 
@@ -70,21 +70,21 @@ namespace file
    void byte_output_stream:: write (bool b)
    {
       
-      m_spwriter->write(&b, sizeof(b));
+      m_spbuffer->write(&b, sizeof(b));
 
    }
 
    void byte_output_stream:: write (char ch)
    {
       
-      m_spwriter->write(&ch, sizeof(ch));
+      m_spbuffer->write(&ch, sizeof(ch));
 
    }
 
    void byte_output_stream:: write (uchar uch)
    {
       
-      m_spwriter->write(&uch, sizeof(uch));
+      m_spbuffer->write(&uch, sizeof(uch));
 
    }
 
@@ -202,9 +202,9 @@ namespace file
 
       byte b = (signal << 6) | (len & 0x3f);
 
-      m_spwriter->write(&b, sizeof(b));
+      m_spbuffer->write(&b, sizeof(b));
 
-      m_spwriter->write(&ui, len);
+      m_spbuffer->write(&ui, len);
 
    }
 
@@ -231,40 +231,40 @@ namespace file
 
    void byte_output_stream:: write (float f)
    {
-      m_spwriter->write(&f, sizeof(f));
+      m_spbuffer->write(&f, sizeof(f));
 
    }
 
    void byte_output_stream:: write (double d)
    {
-      m_spwriter->write(&d, sizeof(d));
+      m_spbuffer->write(&d, sizeof(d));
 
    }
 
    void byte_output_stream:: write (LPCRECT lpcrect)
    {
-      m_spwriter->write(&lpcrect->left,     sizeof(lpcrect->left));
-      m_spwriter->write(&lpcrect->top,      sizeof(lpcrect->top));
-      m_spwriter->write(&lpcrect->right,    sizeof(lpcrect->right));
-      m_spwriter->write(&lpcrect->bottom,   sizeof(lpcrect->bottom));
+      m_spbuffer->write(&lpcrect->left,     sizeof(lpcrect->left));
+      m_spbuffer->write(&lpcrect->top,      sizeof(lpcrect->top));
+      m_spbuffer->write(&lpcrect->right,    sizeof(lpcrect->right));
+      m_spbuffer->write(&lpcrect->bottom,   sizeof(lpcrect->bottom));
 
    }
 
    void byte_output_stream:: write (SIZE & size)
    {
-      m_spwriter->write(&size.cx,     sizeof(size.cx));
-      m_spwriter->write(&size.cy,     sizeof(size.cy));
+      m_spbuffer->write(&size.cx,     sizeof(size.cx));
+      m_spbuffer->write(&size.cy,     sizeof(size.cy));
 
    }
 
    void byte_output_stream:: write (sp(type) info)
    {
       strsize iLen = strlen(info->name());
-      m_spwriter->write(&iLen, sizeof(iLen));
-      m_spwriter->write(info->name(), iLen);
+      m_spbuffer->write(&iLen, sizeof(iLen));
+      m_spbuffer->write(info->name(), iLen);
       iLen = strlen(info->friendly_name());
-      m_spwriter->write(&iLen, sizeof(iLen));
-      m_spwriter->write(info->friendly_name(), iLen);
+      m_spbuffer->write(&iLen, sizeof(iLen));
+      m_spbuffer->write(info->friendly_name(), iLen);
 
    }
 
@@ -277,7 +277,7 @@ namespace file
    void byte_output_stream:: write (const char * psz)
    {
       
-      m_spwriter->write(psz, strlen(psz));
+      m_spbuffer->write(psz, strlen(psz));
 
    }
 

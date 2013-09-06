@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-vsstring crypt_nessie(const char * psz)
+string crypt_nessie(const char * psz)
 {
-   vsstring strFormat;
-   vsstring str;
+   string strFormat;
+   string str;
 //      int32_t i;
    NESSIEstruct ns;
    uint8_t digest[NESSIE_DIGESTBYTES];

@@ -32,7 +32,7 @@ class CLASS_DECL_c call_stack :
 {
 public:
 
-   vsstring m_strCallStack;
+   string m_strCallStack;
 
    static bool s_bDoStackTrace;
 
@@ -50,7 +50,7 @@ public:
 
    call_stack(const ::call_stack & cs);
 
-   vsstring get(uint32_t uiSkip = 2);
+   string get(uint32_t uiSkip = 2);
 
    const char * stack_trace() const;
 

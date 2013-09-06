@@ -16,10 +16,6 @@ namespace file
    public:
 
       
-      writer_sp         m_spwriter;
-      writer_flush_sp   m_spflush;
-   
-      
       output_stream();
       output_stream(writer * pwriter);
       output_stream(writer & writer);
@@ -92,6 +88,9 @@ namespace file
       virtual void write (const var & var);
       virtual void write (const string & str);
 
+      ::file_position tellp() { return m_spbuffer->tell(); }
+      output_stream & seekp(file_position position) { m_spbuffer->seek(position); return *this; }
+      output_stream & seekp(file_offset offset, e_seek eseek) { m_spbuffer->seek(offset, eseek); return *this; }
 
    };
 

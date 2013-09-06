@@ -1575,7 +1575,7 @@ exit_application:
 
       psession = System.http().get(h, psession, strUrl, mem);
 
-      primitive::memory_file file(get_app(), &mem);
+      ::file::memory_buffer file(get_app(), &mem);
 
       if(mem.get_size() > 0)
       {

@@ -25,7 +25,7 @@
 
 // ----------------------------------------------------------
 
-CacheFile::CacheFile(const vsstring filename, BOOL keep_in_memory) :
+CacheFile::CacheFile(const string filename, BOOL keep_in_memory) :
 m_file(NULL),
 m_filename(filename),
 m_free_pages(),

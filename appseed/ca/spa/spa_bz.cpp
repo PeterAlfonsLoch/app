@@ -17,7 +17,7 @@ int32_t bzuncompress(LPCSTR lpcszUncompressed, LPCSTR lpcszGzFileCompressed)
       //fprintf_dup(stderr_dup, "bzopen error\n");
       return -2;
    }
-   vsstring strUn(lpcszUncompressed);
+   string strUn(lpcszUncompressed);
 //   strUn += ".tmp";
    _FILE * fileUn = fopen_dup(strUn, "wb+");
    if (fileUn == NULL)

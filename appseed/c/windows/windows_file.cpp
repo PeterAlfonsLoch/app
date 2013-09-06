@@ -136,7 +136,7 @@ int_bool get_temp_file_name_template(char * szRet, count iBufferSize, const char
 
    char bufItem[30];
 
-   char buf[30];
+//   char buf[30];
 
    size_t iLen= strlen_dup(lpPathBuffer);
 
@@ -192,8 +192,7 @@ int_bool get_temp_file_name_template(char * szRet, count iBufferSize, const char
          strcat_dup(szRet, "-");
       }
       {
-         sprint_hex(buf, i + 1);
-         strcat_dup(szRet, buf);
+         strcat_dup(szRet, hex::lower_from(i+1));
          strcat_dup(szRet, "\\");
       }
       strcat_dup(szRet, pszName);
@@ -260,18 +259,18 @@ int_bool file_ftd_dup(const char * pszDir, const char * pszFile)
    if(hfile1 == INVALID_HANDLE_VALUE)
       return FALSE;
 
-   vsstring strVersion;
+   string strVersion;
 
 
    file_read_gen_string_dup(hfile1, NULL, strVersion);
    
    int32_t n;
    
-   vsstring strRelative;
+   string strRelative;
    
-   vsstring strMd5;
+   string strMd5;
    
-   vsstring strMd5New;
+   string strMd5New;
    
    int32_t iBufSize = 1024 * 1024;
    
@@ -291,7 +290,7 @@ int_bool file_ftd_dup(const char * pszDir, const char * pszFile)
          file_read_gen_string_dup(hfile1, NULL, strMd5);
          ctx.initialize();
          file_read_gen_string_dup(hfile1, &ctx, strRelative);
-         vsstring strPath = dir::path(pszDir, strRelative);
+         string strPath = dir::path(pszDir, strRelative);
          dir::mk(dir::name(strPath));
          hfile2 = create_file(strPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
          if(hfile2 == INVALID_HANDLE_VALUE)
@@ -312,7 +311,7 @@ int_bool file_ftd_dup(const char * pszDir, const char * pszFile)
          ctx.finalize();
 
          strMd5New.clear();
-         vsstring strFormat;
+         string strFormat;
          strMd5New = ctx.to_string();
          if(strMd5.CompareNoCase(strMd5New) != 0)
             return FALSE;
@@ -361,8 +360,8 @@ int_bool file_is_equal_path(const char * psz1, const char * psz2)
 {
 
    const int32_t iBufSize = MAX_PATH * 8;
-   const wchar_t * pwsz1 = utf8_to_16_dup(psz1);
-   const wchar_t * pwsz2 = utf8_to_16_dup(psz2);
+   wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
+   wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
    wchar_t * pwszFile1;
    wchar_t * pwszFile2;
    wchar_t * pwszPath1 = new wchar_t[iBufSize];
@@ -372,15 +371,11 @@ int_bool file_is_equal_path(const char * psz1, const char * psz2)
    {
       if(GetFullPathNameW(pwsz2, iBufSize, pwszPath2, &pwszFile2))
       {
-         const char * p1 = utf16_to_8_dup(pwszPath1);
-         const char * p2 = utf16_to_8_dup(pwszPath2);
+         string p1 = ::str::international::unicode_to_utf8(pwszPath1);
+         string p2 = ::str::international::unicode_to_utf8(pwszPath2);
          iCmp = stricmp_dup(p1, p2);
-         _ca_free((void *) p1, 0);
-         _ca_free((void *) p2, 0);
       }
    }
-   _ca_free((void *) pwsz1, 0);
-   _ca_free((void *) pwsz2, 0);
    delete pwszPath1;
    delete pwszPath2;
    return iCmp == 0;
@@ -431,10 +426,10 @@ int_bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite
 
 
 
-vsstring file_get_mozilla_firefox_plugin_container_path()
+string file_get_mozilla_firefox_plugin_container_path()
 {
 
-   vsstring strPath;
+   string strPath;
    HKEY hkeyMozillaFirefox;
 
    if(::RegOpenKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox", &hkeyMozillaFirefox) != ERROR_SUCCESS)
@@ -473,9 +468,9 @@ vsstring file_get_mozilla_firefox_plugin_container_path()
       }
       wstrDir.release_buffer();
 
-      vsstring strDir;
+      string strDir;
 
-      strDir.attach(utf16_to_8_dup(wstrDir));
+      strDir = ::str::international::unicode_to_utf8(wstrDir);
 
       strPath = dir::path(strDir, "plugin-container.exe");
    }
@@ -491,23 +486,23 @@ ret1:
 
 
 
-vsstring get_sys_temp_path()
+string get_sys_temp_path()
 {
 
    wchar_t  wsz[MAX_PATH * 4];
 
    wsz[GetTempPathW(sizeof(wsz) / sizeof(wsz[0]), wsz)] = L'\0';
 
-   return vsstring(wsz);
+   return string(wsz);
 
 }
 
 
 
-vsstring file_as_string_dup(const char * path)
+string file_as_string_dup(const char * path)
 {
 
-   vsstring str;
+   string str;
 
    HANDLE hfile = ::create_file(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
@@ -518,13 +513,15 @@ vsstring file_as_string_dup(const char * path)
 
    DWORD dwSize = ::GetFileSize(hfile, &dwSizeHigh);
 
-   str.alloc(dwSize);
+   LPSTR lpsz = str.GetBufferSetLength(dwSize);
 
    DWORD dwRead;
 
-   ::ReadFile(hfile, str, dwSize, &dwRead, NULL);
+   ::ReadFile(hfile, lpsz, dwSize, &dwRead, NULL);
 
-   str.m_psz[dwSize] = '\0';
+   lpsz[dwSize] = '\0';
+
+   str.ReleaseBuffer(dwSize);
 
    ::CloseHandle(hfile);
 
@@ -569,7 +566,7 @@ bool file_get_memory_dup(::primitive::memory_base & memory, const char * path)
 
 
 
-vsstring file_module_path_dup()
+string file_module_path_dup()
 {
 
    char path[MAX_PATH * 4];
@@ -586,7 +583,7 @@ vsstring file_module_path_dup()
 void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int32_t & iNumber)
 {
 
-   vsstring str;
+   string str;
 
    char ch;
 
@@ -612,7 +609,7 @@ void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int32_t & iNumber)
    iNumber = atoi_dup(str);
 }
 
-void file_read_gen_string_dup(HANDLE hfile, ::md5::md5 * pctx, vsstring & str)
+void file_read_gen_string_dup(HANDLE hfile, ::md5::md5 * pctx, string & str)
 {
    int32_t iLen;
    file_read_n_number_dup(hfile, pctx, iLen);
@@ -629,7 +626,7 @@ void file_read_gen_string_dup(HANDLE hfile, ::md5::md5 * pctx, vsstring & str)
 }
 
 
-bool PrintModules(vsstring & strImage, uint32_t processID, const char * pszDll )
+bool PrintModules(string & strImage, uint32_t processID, const char * pszDll )
 {
 
    HANDLE hProcess;
@@ -717,7 +714,7 @@ void dll_processes(uint_array & dwa, stringa & straProcesses, const char * pszDl
 
    // Print the name of the modules for each process.
 
-   vsstring strImage;
+   string strImage;
 
    for(ui = 0; ui < cProcesses; ui++)
    {

@@ -18,9 +18,9 @@ namespace ca2
       m_pmemory->set_app(papp);
       m_pmemory->m_spmutex = m_spmutex;
 
-      m_pmemoryfileIn = new ::primitive::memory_file(papp, m_pmemory.m_p);
+      m_pmemoryfileIn = new ::::file::memory_buffer(papp, m_pmemory.m_p);
 
-      m_pmemoryfileOut = new ::primitive::memory_file(papp, m_pmemory.m_p);
+      m_pmemoryfileOut = new ::::file::memory_buffer(papp, m_pmemory.m_p);
 
       // (uint64_t) -1 - initially unknown size
       m_ptimeoutfile = new ::ca2::timeout_file(papp, m_pmemoryfileOut, (uint64_t) -1);
@@ -35,7 +35,7 @@ namespace ca2
 
    // it is not currently designed to call open.
    //
-   transfer_file::transfer_file(sp(base_application) papp, ::primitive::memory_file * pmemoryfileIn) :
+   transfer_file::transfer_file(sp(base_application) papp, ::::file::memory_buffer * pmemoryfileIn) :
       element(papp)
    {
 
@@ -47,7 +47,7 @@ namespace ca2
       m_pmemory = pmemoryfileIn->get_memory();
       m_pmemoryfileIn = pmemoryfileIn;
 
-      m_pmemoryfileOut = new ::primitive::memory_file(papp, m_pmemory.m_p);
+      m_pmemoryfileOut = new ::::file::memory_buffer(papp, m_pmemory.m_p);
 
       m_ptimeoutfile = new ::ca2::timeout_file(papp, m_pmemoryfileOut);
       m_ptimeoutfile->m_spmutex = m_spmutex;

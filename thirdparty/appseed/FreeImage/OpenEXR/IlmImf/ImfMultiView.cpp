@@ -228,11 +228,11 @@ namespace Imf {
       //
 
       StringVector chan1 = parseString (channel1);
-      unsigned int size1 = (unsigned int) chan1.size();	// number of SECTIONS in string
+      count size1 = chan1.size();	// number of SECTIONS in string
       // name (not string length)
 
       StringVector chan2 = parseString (channel2);
-      unsigned int size2 = (unsigned int) chan2.size();
+      count size2 = chan2.size();
 
       if (size1 == 0 || size2 == 0)
          return false;
@@ -288,7 +288,7 @@ namespace Imf {
       if (size1 != size2)
          return false;
 
-      for(unsigned int i = 0; i < size1; ++i)
+      for(index i = 0; i < size1; ++i)
       {
          if (i != size1 - 2 && chan1[i] != chan2[i])
             return false;

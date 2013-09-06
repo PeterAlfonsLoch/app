@@ -11,8 +11,8 @@ namespace fontopus
    public:
 
 
-      string_to_string_map                   m_mapFontopus;
-      string_to_string_map                   m_mapServer;
+      string_to_string                   m_mapFontopus;
+      string_to_string                   m_mapServer;
 
 
    };

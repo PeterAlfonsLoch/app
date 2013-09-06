@@ -5,16 +5,16 @@ namespace http
 {
 
 
-   memory_file::memory_file(sp(base_application) papp) :
+   memory_buffer::memory_buffer(sp(base_application) papp) :
       element(papp),
-      ::primitive::memory_file(papp),
+      ::::file::memory_buffer(papp),
       primitive::memory_container(papp)
    {
    }
       
-   void memory_file::to_string(string & str)
+   void memory_buffer::to_string(string & str)
    {
-      ::primitive::memory_file::to_string(str);
+      ::::file::memory_buffer::to_string(str);
    }
 
 

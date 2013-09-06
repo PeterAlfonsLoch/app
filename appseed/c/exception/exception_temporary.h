@@ -7,7 +7,7 @@ class CLASS_DECL_c temporary_exception :
 public:
    
    
-   vsstring m_strTip;
+   string m_strTip;
 
 
    temporary_exception(sp(base_application) papp, const char * pszTip = NULL);

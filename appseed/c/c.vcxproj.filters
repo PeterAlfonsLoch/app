@@ -662,9 +662,6 @@
     <ClInclude Include="str\str_str.h">
       <Filter>Header Files\str</Filter>
     </ClInclude>
-    <ClInclude Include="str\str_wstringtou.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
     <ClInclude Include="str\str_ch.h">
       <Filter>Header Files\str</Filter>
     </ClInclude>
@@ -678,18 +675,6 @@
       <Filter>Header Files\str</Filter>
     </ClInclude>
     <ClInclude Include="str\str_hex.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_verisimple_string.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_verisimple_wstring.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_vsstringtow.h">
-      <Filter>Header Files\str</Filter>
-    </ClInclude>
-    <ClInclude Include="str\str_wstringtovss.h">
       <Filter>Header Files\str</Filter>
     </ClInclude>
     <ClInclude Include="str\str_to_integer.h">
@@ -1103,6 +1088,24 @@
     <ClInclude Include="file\file_byte_output_stream_binary_buffer.h">
       <Filter>Header Files\file</Filter>
     </ClInclude>
+    <ClInclude Include="file\file_plain_text_output_stream_string_buffer.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_memory_buffer.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_wstring.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_stringtow.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_wtostring.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_definition.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="android\c_os_internal.c">
@@ -1405,16 +1408,7 @@
     <ClCompile Include="str\str_str.cpp">
       <Filter>Source Files\str</Filter>
     </ClCompile>
-    <ClCompile Include="str\str_verisimple_string.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
     <ClCompile Include="str\str_verisimple_wstring.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_vsstringtow.cpp">
-      <Filter>Source Files\str</Filter>
-    </ClCompile>
-    <ClCompile Include="str\str_wstringtovss.cpp">
       <Filter>Source Files\str</Filter>
     </ClCompile>
     <ClCompile Include="str\str_from_integer.cpp">
@@ -1729,9 +1723,6 @@
     <ClCompile Include="file\file_stream_base.cpp">
       <Filter>Source Files\file</Filter>
     </ClCompile>
-    <ClCompile Include="file\file_string.cpp">
-      <Filter>Source Files\file</Filter>
-    </ClCompile>
     <ClCompile Include="file\file_plain_text_input_stream.cpp">
       <Filter>Source Files\file</Filter>
     </ClCompile>
@@ -1777,6 +1768,24 @@
     <ClCompile Include="file\file_byte_output_stream_binary_buffer.cpp">
       <Filter>Source Files\file</Filter>
     </ClCompile>
+    <ClCompile Include="file\file_string_buffer.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_plain_text_output_stream_string_buffer.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_memory_buffer.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_conv.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_stringtow.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_wtostring.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="_c.def">
@@ -1784,6 +1793,12 @@
     </None>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
+    </None>
+    <None Include="str\str.inl">
+      <Filter>Header Files\str</Filter>
+    </None>
+    <None Include="base\base.inl">
+      <Filter>Header Files\base</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

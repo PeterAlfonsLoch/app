@@ -1701,7 +1701,7 @@ retry:
 
       bool system::put(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
       {
-         ::primitive::memory_file file(get_app(), &memory);
+         ::::file::memory_buffer file(get_app(), &memory);
          return put(pszUrl, &file, puser);
       }
 
@@ -1724,7 +1724,7 @@ retry:
       bool system::put(string & strResponse, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
       {
 
-         ::primitive::memory_file file(get_app(), &memory);
+         ::::file::memory_buffer file(get_app(), &memory);
 
          return put(strResponse, pszUrl, &file, puser);
 

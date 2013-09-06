@@ -941,7 +941,7 @@ void var::write(::file::output_stream & ostream)
       break;
    case type_ca2:
       {
-         sp(type) info(Sys(ostream.m_spwriter->get_app()).get_type_info(typeid(*m_sp.m_p)));
+         sp(type) info(Sys(ostream.m_spbuffer->get_app()).get_type_info(typeid(*m_sp.m_p)));
          ostream << info;
          sp(::file::serializable) pserializable = m_sp;
          if(pserializable != NULL)
@@ -950,7 +950,7 @@ void var::write(::file::output_stream & ostream)
          }
          else
          {
-            throw io_exception(ostream.m_spwriter->get_app(), "object is not serializable");
+            throw io_exception(ostream.m_spbuffer->get_app(), "object is not serializable");
          }
       }
       break;

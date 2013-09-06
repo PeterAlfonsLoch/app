@@ -44,7 +44,7 @@
 //-----------------------------------------------------------------------------
 
 #include "ImathLimits.h"
-#include "ImathInt64.h"
+
 
 namespace Imath {
 
@@ -255,7 +255,7 @@ finitef (float f)
 inline bool 
 finited (double d)
 {
-    union {double d; Int64 i;} u;
+    union {double d; int64_t i;} u;
     u.d = d;
 
     return (u.i & 0x7ff0000000000000LL) != 0x7ff0000000000000LL;

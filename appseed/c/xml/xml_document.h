@@ -15,15 +15,15 @@ namespace xml
    public:
 
 
-      string_to_string_map       entitiesHash;
-      string_to_string_map       extEntitiesHash;
+      string_to_string       entitiesHash;
+      string_to_string       extEntitiesHash;
       parse_info *               m_pparseinfo;
       string                     m_strLocation;
       string                     m_strData;
       sp(::xml::edit)              m_pedit;
 
 
-      document(sp(base_application) papp, parse_info * pparseinfo = NULL);
+      document(sp(base_application) papp = NULL, parse_info * pparseinfo = NULL);
       virtual ~document();
     
 

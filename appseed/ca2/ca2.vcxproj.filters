@@ -1055,25 +1055,13 @@
     <ClInclude Include=".\primitive\primitive_logic.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include=".\primitive\primitive_memory_file.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include=".\primitive\primitive_natural.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include=".\primitive\primitive_numeric_info.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include=".\primitive\primitive_scalar.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include=".\primitive\primitive_shared_file.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include=".\primitive\primitive_shared_memory.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include=".\primitive\primitive_virtual_memory.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_float_time.h">
@@ -4106,9 +4094,6 @@
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_natural.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_memory_file.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_shared_file.cpp">

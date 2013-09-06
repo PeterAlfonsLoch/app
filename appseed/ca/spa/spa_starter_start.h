@@ -24,7 +24,7 @@ public:
       
       
    ::hotplugin::plugin  *              m_pplugin;
-   vsstring                            m_strCommandLine;
+   string                            m_strCommandLine;
 
 
    UINT start();

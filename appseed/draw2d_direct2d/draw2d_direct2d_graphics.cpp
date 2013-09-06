@@ -4241,7 +4241,7 @@ namespace draw2d_direct2d
    if(nCount < 0)
       nCount = strlen(&lpszString[iIndex]);
 
-   vsstring str(&lpszString[iIndex], nCount);
+   string str(&lpszString[iIndex], nCount);
 
    wstring wstr(str);
 
@@ -4380,7 +4380,7 @@ namespace draw2d_direct2d
    if(nCount < 0)
       nCount = strlen(lpszString);
 
-   vsstring str(lpszString, nCount);
+   string str(lpszString, nCount);
 
    wstring wstr(str);
 
@@ -4471,7 +4471,7 @@ namespace draw2d_direct2d
    /*if(nCount < 0)
       nCount = strlen(lpszString);
 
-   vsstring str(lpszString, nCount);*/
+   string str(lpszString, nCount);*/
 
    wstring wstr(str);
 
@@ -4569,7 +4569,7 @@ namespace draw2d_direct2d
    if(nCount < 0)
       nCount = strlen(&lpszString[iIndex]);
 
-   vsstring str(&lpszString[iIndex], nCount);
+   string str(&lpszString[iIndex], nCount);
 
    wstring wstr(str);
 

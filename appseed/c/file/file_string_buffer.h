@@ -12,6 +12,12 @@ namespace file
 {
 
 
+   class string_buffer;
+
+
+   typedef sp(string_buffer) string_buffer_sp;
+
+
    class CLASS_DECL_c string_buffer :
       virtual public ::file::buffer
    {
@@ -27,6 +33,7 @@ namespace file
 
 
       string_buffer();
+      string_buffer(sp(base_application) papp);
       string_buffer(const string & str);
       string_buffer(const string_buffer & str);
       virtual ~string_buffer();
@@ -180,7 +187,7 @@ namespace file
 
 
 
-
+#include "file_plain_text_output_stream_string_buffer.h"
 #include "file_plain_text_stream_string_buffer.h"
 
 

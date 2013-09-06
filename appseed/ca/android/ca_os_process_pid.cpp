@@ -6,7 +6,7 @@ using namespace std;
 int32_t get_process_pid(const char * procNameParam)
 {
 
-   vsstring procName(procNameParam);
+   string procName(procNameParam);
 
    int32_t pid = -1;
 
@@ -23,9 +23,9 @@ int32_t get_process_pid(const char * procNameParam)
          if (id > 0)
          {
             // Read contents of virtual /proc/{pid}/cmdline file
-            vsstring cmdPath = vsstring("/proc/") + dirp->d_name + "/cmdline";
+            string cmdPath = string("/proc/") + dirp->d_name + "/cmdline";
             FILE * cmdFile = fopen(cmdPath, "rb");
-            vsstring cmdLine;
+            string cmdLine;
             fgets(cmdLine.alloc(1024 * 256), 1024 * 256, cmdFile);
             if(cmdLine.has_char())
             {

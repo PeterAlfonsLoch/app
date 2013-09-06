@@ -194,7 +194,7 @@ namespace exception
 
 #ifdef WINDOWSEX
 
-   size_t engine::module(vsstring & str)
+   size_t engine::module(string & str)
    {
       if (!check())
          return 0;
@@ -208,7 +208,7 @@ namespace exception
 
 #ifdef WINDOWSEX
 
-   size_t engine::symbol(vsstring & str, DWORD64 * pdisplacement)
+   size_t engine::symbol(string & str, DWORD64 * pdisplacement)
    {
       if (!check())
          return 0;
@@ -237,7 +237,7 @@ namespace exception
 #ifdef WINDOWSEX
 
 
-   index engine::fileline (vsstring & str, uint32_t * pline, uint32_t * pdisplacement)
+   index engine::fileline (string & str, uint32_t * pline, uint32_t * pdisplacement)
    {
 
       if (!check())
@@ -466,7 +466,7 @@ retry_get_base:
 #ifdef WINDOWSEX
 
 
-   size_t engine::get_module_basename (HMODULE hmodule, vsstring & str)
+   size_t engine::get_module_basename (HMODULE hmodule, string & str)
    {
 
       char filename[MAX_PATH];
@@ -479,7 +479,7 @@ retry_get_base:
       str = filename;
 
       // find the last '\' mark.
-      size_t iPos = str.rfind('\\');
+      size_t iPos = str.reverse_find('\\');
 
       if(iPos >= 0)
       {
@@ -816,7 +816,7 @@ retry_get_base:
 #ifdef WINDOWSEX
 
 
-   bool engine::stack_trace(vsstring & str, CONTEXT * pcontext, uint_ptr uiSkip, const char * pszFormat)
+   bool engine::stack_trace(string & str, CONTEXT * pcontext, uint_ptr uiSkip, const char * pszFormat)
    {
 
       if(!pszFormat)
@@ -914,9 +914,9 @@ retry_get_base:
 
 
 #if defined(LINUX) || defined(METROWIN) || defined(MACOS) || defined(ANDROID)
-   bool engine::stack_trace(vsstring & str, uint_ptr uiSkip, void * caller_address, const char * pszFormat)
+   bool engine::stack_trace(string & str, uint_ptr uiSkip, void * caller_address, const char * pszFormat)
 #else
-   bool engine::stack_trace(vsstring & str, uint_ptr uiSkip, const char * pszFormat)
+   bool engine::stack_trace(string & str, uint_ptr uiSkip, const char * pszFormat)
 #endif
    {
 
@@ -1092,7 +1092,7 @@ retry_get_base:
 #ifdef WINDOWSEX
 
 
-   bool engine::stack_trace(vsstring & str, CONTEXT * pcontext, uint_ptr uiSkip, bool bSkip, const char * pszFormat)
+   bool engine::stack_trace(string & str, CONTEXT * pcontext, uint_ptr uiSkip, bool bSkip, const char * pszFormat)
    {
 
       if (!stack_first(pcontext))
@@ -1122,14 +1122,14 @@ retry_get_base:
 #ifdef WINDOWSEX
 
 
-   vsstring engine::get_frame(const char * pszFormat)
+   string engine::get_frame(const char * pszFormat)
    {
 
-      vsstring str;
+      string str;
 
-      vsstring strBuf;
-      vsstring strFile;
-      vsstring strSymbol;
+      string strBuf;
+      string strFile;
+      string strSymbol;
 
 
       uint32_t uiLineDisplacement = 0;

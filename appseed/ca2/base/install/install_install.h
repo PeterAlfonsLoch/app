@@ -13,7 +13,7 @@ namespace ca2
       
       HANDLE                  m_hmutexBoot;
 
-      ::string_to_string_map  m_strmapLatestBuildNumber;
+      ::string_to_string  m_strmapLatestBuildNumber;
 
 
       install();

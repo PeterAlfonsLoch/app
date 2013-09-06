@@ -848,7 +848,7 @@ namespace Imf {
    }
 
 
-   Int64
+   int64_t
       Header::writeTo (OStream &os, bool isTiled) const
    {
       //
@@ -873,7 +873,7 @@ namespace Imf {
       // keep track of its position in the file.
       //
 
-      Int64 previewPosition = 0;
+      int64_t previewPosition = 0;
 
       const Attribute *preview =
          findTypedAttribute <PreviewImageAttribute> ("preview");

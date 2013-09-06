@@ -75,7 +75,7 @@ struct PendingThreadInfo
    DWORD (WINAPI * lpStartAddress)(LPVOID);
    LPVOID lpParameter;
    HTHREAD m_hthread;
-   simple_event  * suspensionEvent;
+   event  * suspensionEvent;
    int32_t nPriority;
    int32_t cbStack;
 
@@ -280,7 +280,7 @@ HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_p
             info.lpStartAddress     = lpStartAddress;
             info.lpParameter        = lpParameter;
             info.m_hthread    = threadHandle;
-            info.suspensionEvent    = new simple_event(false, true);
+            info.suspensionEvent    = new event(false, true);
             info.nPriority = 0;
 
             synch_lock lock(pendingThreadsLock);

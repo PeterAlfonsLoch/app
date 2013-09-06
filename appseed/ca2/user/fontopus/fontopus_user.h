@@ -22,7 +22,7 @@ namespace fontopus
       string                                 m_strPath;
       string                                 m_strDataPath;
       string                                 m_strAppDataPath;
-      string_to_string_map                   m_sessionidmap;
+      string_to_string                   m_sessionidmap;
       string                                 m_strFunUserId;
 
 

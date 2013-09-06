@@ -89,7 +89,7 @@ namespace dynamic_source
       mutex                                     m_mutexIncludeHasScript;
       string_map < bool >         m_mapIncludeHasScript;
       mutex                                     m_mutexIncludeExpandMd5;
-      string_to_string_map                      m_mapIncludeExpandMd5;
+      string_to_string                      m_mapIncludeExpandMd5;
 
 
       int32_t                                   m_iTunnelPluginCount;
@@ -146,17 +146,17 @@ namespace dynamic_source
       uint32_t                                  m_dwBuildTimeWindow;
       uint32_t                                  m_dwBuildTimeRandomWindow;
 
-      string_to_string_map                      m_strmapFunUserKey;
+      string_to_string                      m_strmapFunUserKey;
 
       string                                    m_strPersistentError;
 
       mutex                                     m_mutexPersistentStr;
       mutex                                     m_mutexUiRedir;
       mutex                                     m_mutexTagId;
-      string_to_string_map                      m_tagid;
-      string_to_string_map                      m_usersecuretagid;
+      string_to_string                      m_tagid;
+      string_to_string                      m_usersecuretagid;
       mutex                                     m_mutexTagName;
-      string_to_string_map                      m_tagname;
+      string_to_string                      m_tagname;
 
 
       string                                    m_strSeed;

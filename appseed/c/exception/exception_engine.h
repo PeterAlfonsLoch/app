@@ -95,13 +95,13 @@ namespace exception
 
 #ifdef WINDOWSEX
 
-      bool stack_trace(vsstring & str, CONTEXT *, uint_ptr uiSkip = 0, const char * pszFormat = default_format());
-      bool stack_trace(vsstring & str, uint_ptr uiSkip = 1, const char * pszFormat = default_format());
-      bool stack_trace(vsstring & str, CONTEXT *, uint_ptr uiSkip = 1, bool bSkip = false, const char * pszFormat = default_format());
+      bool stack_trace(string & str, CONTEXT *, uint_ptr uiSkip = 0, const char * pszFormat = default_format());
+      bool stack_trace(string & str, uint_ptr uiSkip = 1, const char * pszFormat = default_format());
+      bool stack_trace(string & str, CONTEXT *, uint_ptr uiSkip = 1, bool bSkip = false, const char * pszFormat = default_format());
 
 #else
 
-      bool stack_trace(vsstring & str, uint_ptr uiSkip = 0, void * caller_address = NULL, const char * pszFormat = default_format());
+      bool stack_trace(string & str, uint_ptr uiSkip = 0, void * caller_address = NULL, const char * pszFormat = default_format());
 
 #endif
 
@@ -115,9 +115,9 @@ namespace exception
 
 
       bool get_line_from_address(HANDLE hProc, DWORD64 uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE64 * pline);
-      size_t get_module_basename(HMODULE hmodule, vsstring & strName);
+      size_t get_module_basename(HMODULE hmodule, string & strName);
 
-      vsstring get_frame(const char * pszFormat);
+      string get_frame(const char * pszFormat);
 
       bool check();
 
@@ -126,9 +126,9 @@ namespace exception
       DWORD64 address() const   { return m_uiAddress; }
 
       // symbol handler queries
-      size_t      module  (vsstring & str);
-      size_t      symbol  (vsstring & str, DWORD64 * pdisplacement = 0);
-      index       fileline(vsstring & str, uint32_t * pline, uint32_t * pdisplacement= 0);
+      size_t      module  (string & str);
+      size_t      symbol  (string & str, DWORD64 * pdisplacement = 0);
+      index       fileline(string & str, uint32_t * pline, uint32_t * pdisplacement= 0);
 
       // stack walk
       bool stack_first (CONTEXT* pctx);

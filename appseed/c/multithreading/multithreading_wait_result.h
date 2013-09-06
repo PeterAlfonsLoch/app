@@ -51,46 +51,31 @@ public:
 
 	///  \brief		checks if last result == Abandon0
 	///  \return	true if last result == Abandon0
-	bool abandoned() const
-	{ return m_iWaitResult <= Abandon0; }
+	inline bool abandoned() const;
 
 	///  \brief		returns index of abandoned thread
 	///  \return	abandoned thread index
-	size_t abandoned_index() const
-	{
-		if ( !abandoned() )
-         throw range_error(::ca2::get_thread_app(), "abandoned index out of range");
-		return -(m_iWaitResult + Abandon0);
-	}
+	inline size_t abandoned_index() const;
 
 	///  \brief		checks if last result == Failure
 	///  \return	true if last result == Failure
-	bool failed() const
-	{ return m_iWaitResult == Failure; }
+	inline bool failed() const;
 
 	///  \brief		checks if last result == BadThread
 	///  \return	true if last result == BadThread
-	bool bad_thread() const
-	{ return m_iWaitResult == BadThread; }
+	inline bool bad_thread() const;
 
 	///  \brief		checks if last result == Timeout
 	///  \return	true if last result == Timeout
-	bool timeout() const
-	{ return m_iWaitResult == Timeout; }
+	inline bool timeout() const;
 
 	///  \brief		checks if last result == Event0
 	///  \return	true if last result == Event0
-	bool signaled() const
-	{ return m_iWaitResult >= Event0; }
+	inline bool signaled() const;
 
 	///  \brief		returns index of signaled thread
 	///  \return	signaled thread index
-	size_t signaled_index() const
-	{
-		if ( !signaled() )
-			throw range_error(::ca2::get_thread_app(), "signaled index out of range");
-		return m_iWaitResult - Event0;
-	}
+	inline size_t signaled_index() const;
 
 };
 

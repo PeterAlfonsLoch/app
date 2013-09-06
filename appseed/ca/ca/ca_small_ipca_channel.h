@@ -28,7 +28,7 @@ public:
       char     data[512];
    } msg;
 #endif
-   vsstring m_strKey;
+   string m_strKey;
 
 
    small_ipc_channel_base();
@@ -79,7 +79,7 @@ public:
    receiver *        m_preceiver;
 
 #ifdef WINDOWS
-   vsstring          m_strWindowProcModule;
+   string          m_strWindowProcModule;
 #else
    bool              m_bRunning;
    bool              m_bRun;
@@ -131,7 +131,7 @@ public:
 
 
    small_ipc_rx_channel       m_rxchannel;
-   vsstring                   m_vssChannel;
+   string                   m_vssChannel;
    uint32_t                      m_dwTimeout;
 
 

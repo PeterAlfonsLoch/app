@@ -917,7 +917,7 @@ namespace fontopus
 
       BCRYPT_RSAKEY_BLOB blob;
 
-      primitive::memory_file memfile(get_app());
+      ::file::memory_buffer memfile(get_app());
 
       blob.Magic = 0x31415352; // BCRYPT_RSAPUBLIC_MAGIC;
       blob.BitLength = 1024;

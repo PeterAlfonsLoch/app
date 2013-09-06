@@ -4,7 +4,7 @@
 #include <openssl/err.h>
 
 
-int32_t crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & key)
+int32_t crypt_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, ::primitive::memory & key)
 {
    int32_t plainlen = (int32_t) storageDecrypt.get_size();
    int32_t cipherlen, tmplen;
@@ -28,7 +28,7 @@ int32_t crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & stor
    return cipherlen;
 }
 
-int32_t crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & key)
+int32_t crypt_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, ::primitive::memory & key)
 {
    int32_t cipherlen = (int32_t) storageEncrypt.get_size();
    int32_t plainlen, tmplen;

@@ -29,14 +29,14 @@ namespace exception
 
 
 #ifdef WINDOWS
-__declspec(thread) vsstring * t_pstrNote = NULL;
-__declspec(thread) BYTE t_pdataNote[sizeof(vsstring)];
+__declspec(thread) string * t_pstrNote = NULL;
+__declspec(thread) BYTE t_pdataNote[sizeof(string)];
 #else
-__thread vsstring * t_pstrNote = NULL;
-__thread BYTE t_pdataNote[sizeof(vsstring)];
+__thread string * t_pstrNote = NULL;
+__thread BYTE t_pdataNote[sizeof(string)];
 #endif
 
-vsstring __get_thread_note()
+string __get_thread_note()
 {
    if(t_pstrNote == NULL)
       return "";
@@ -47,7 +47,7 @@ void __set_thread_note(const char * pszNote)
    if(t_pstrNote == NULL)
    {
 #undef new
-      t_pstrNote = ::new(t_pdataNote) vsstring;
+      t_pstrNote = ::new(t_pdataNote) string;
 #define new DEBUG_NEW
    }
    *t_pstrNote = pszNote;

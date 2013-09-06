@@ -5,14 +5,14 @@ namespace http
 {
 
 
-   class CLASS_DECL_ca2 memory_file : 
+   class CLASS_DECL_ca2 memory_buffer : 
       virtual public ::http::file,
-      virtual public ::primitive::memory_file
+      virtual public ::::file::memory_buffer
    {
    public:
 
 
-      memory_file(sp(base_application) papp);
+      memory_buffer(sp(base_application) papp);
 
 
       void to_string(string & str);

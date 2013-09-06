@@ -90,7 +90,7 @@ isOpenExrFile (IStream &is, bool &tiled)
 {
     try
     {
-	Int64 pos = is.tellg();
+	int64_t pos = is.tellg();
 
 	if (pos != 0)
 	    is.seekg (0);

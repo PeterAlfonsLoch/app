@@ -38,6 +38,7 @@ namespace file
       void write_arbitrary(uint64_t ui);
       void write_arbitrary(uint64_t ui, int signal);
 
+      using output_stream::write;
       virtual void write (char ch);
       virtual void write (uchar uch);
       virtual void write (int16_t sh);

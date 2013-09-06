@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace spa
+namespace spa_install
 {
 
    class plugin;
@@ -40,10 +40,10 @@ public:
    simple_password      m_password;
    simple_tap           m_tap;
 
-   vsstring             m_strPasshash;
+   string             m_strPasshash;
 
    callback *           m_pcallback;
-   vsstring             m_strKeyHash;
+   string             m_strKeyHash;
 
    
    spa_login();
@@ -54,7 +54,7 @@ public:
 
    void initialize();
 
-   void defer_translate(::spa::plugin * pplugin);
+   void defer_translate(::spa_install::plugin * pplugin);
 
    void start_login();
 
@@ -62,7 +62,7 @@ public:
 
    e_result login();
 
-   vsstring calc_key_hash();
+   string calc_key_hash();
 
 
    virtual void login_result(e_result eresult);

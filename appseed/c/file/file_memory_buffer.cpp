@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-namespace primitive
+namespace file
 {
 
 
-   memory_file::memory_file(sp(base_application) papp, ::primitive::memory_size iSize) :
+   memory_buffer::memory_buffer(sp(base_application) papp, ::primitive::memory_size iSize) :
       element(papp),
       memory_container (papp)
    {
@@ -20,7 +20,7 @@ namespace primitive
    }
 
 
-   memory_file::memory_file(sp(base_application) papp, void * pMemory, ::primitive::memory_size dwSize) :
+   memory_buffer::memory_buffer(sp(base_application) papp, void * pMemory, ::primitive::memory_size dwSize) :
       element(papp),
       memory_container(papp, pMemory, dwSize)
    {
@@ -30,9 +30,9 @@ namespace primitive
    }
 
 
-   memory_file::memory_file(sp(base_application) papp, const memory_file & memoryfile) :
+   memory_buffer::memory_buffer(sp(base_application) papp, const memory_buffer & memoryfile) :
       element(papp),
-      memory_container (papp, ((memory_file &) memoryfile).get_memory())
+      memory_container (papp, ((memory_buffer &) memoryfile).get_memory())
    {
 
       m_dwPosition = 0;
@@ -40,7 +40,7 @@ namespace primitive
    }
 
 
-   memory_file::memory_file(sp(base_application) papp, memory_base * pmemory) :
+   memory_buffer::memory_buffer(sp(base_application) papp, ::primitive::memory_base * pmemory) :
       element(papp),
       memory_container (papp, pmemory)
    {
@@ -50,13 +50,13 @@ namespace primitive
    }
 
 
-   memory_file::~memory_file()
+   memory_buffer::~memory_buffer()
    {
 
    }
 
 
-   ::primitive::memory_size memory_file::read(void *lpBuf, ::primitive::memory_size nCount)
+   ::primitive::memory_size memory_buffer::read(void *lpBuf, ::primitive::memory_size nCount)
    {
       
       single_lock sl(get_memory()->m_spmutex, TRUE);
@@ -77,7 +77,7 @@ namespace primitive
    }
 
 
-   void memory_file::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void memory_buffer::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
 
       single_lock sl(get_memory()->m_spmutex, TRUE);
@@ -107,7 +107,7 @@ namespace primitive
    }
 
 
-   void memory_file::Truncate(file_size size)
+   void memory_buffer::Truncate(file_size size)
    {
       
       single_lock sl(get_memory()->m_spmutex, TRUE);
@@ -122,7 +122,7 @@ namespace primitive
 
 
 
-   void memory_file::clear()
+   void memory_buffer::clear()
    {
 
       single_lock sl(get_memory()->m_spmutex, TRUE);
@@ -134,7 +134,7 @@ namespace primitive
    }
 
 
-   file_size memory_file::get_length() const
+   file_size memory_buffer::get_length() const
    {
       ASSERT(IsValid());
       return (file_size) this->get_size();
@@ -142,7 +142,7 @@ namespace primitive
 
 
 
-   file_position memory_file::get_position() const
+   file_position memory_buffer::get_position() const
    {
       if(!IsValid())
          throw io_exception(get_app());
@@ -150,7 +150,7 @@ namespace primitive
    }
 
 
-   file_position memory_file::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position memory_buffer::seek(file_offset lOff, ::file::e_seek nFrom)
    {
 
       single_lock sl(get_memory()->m_spmutex, TRUE);
@@ -195,7 +195,7 @@ namespace primitive
    }
 
 
-   void memory_file::create(::primitive::memory_size iSize)
+   void memory_buffer::create(::primitive::memory_size iSize)
    {
 
       allocate(iSize);
@@ -203,7 +203,7 @@ namespace primitive
    }
 
 
-   void memory_file::load_string(string &str)
+   void memory_buffer::load_string(string &str)
    {
       char * lpsz = str.GetBuffer((int32_t)(this->get_size() + 1));
       memcpy(lpsz, get_data(), (size_t) this->get_size());
@@ -212,7 +212,7 @@ namespace primitive
    }
 
 
-   memory_size memory_file::remove_begin(void *lpBuf, ::primitive::memory_size uiCount)
+   ::primitive::memory_size memory_buffer::remove_begin(void *lpBuf, ::primitive::memory_size uiCount)
    {
 
       single_lock sl(get_memory()->m_spmutex, TRUE);
@@ -253,19 +253,19 @@ namespace primitive
    }
 
 
-   bool memory_file::IsValid() const
+   bool memory_buffer::IsValid() const
    {
       return memory_container::IsValid() && !(m_dwPosition & 0x80000000);
    }
 
 
-   string memory_file::GetFilePath() const
+   string memory_buffer::GetFilePath() const
    {
       return L"";
    }
 
 
-   uint64_t memory_file::GetBufferPtr(UINT nCommand, uint64_t nCount, void ** ppBufStart, void ** ppBufMax)
+   uint64_t memory_buffer::GetBufferPtr(UINT nCommand, uint64_t nCount, void ** ppBufStart, void ** ppBufMax)
    {
       UNREFERENCED_PARAMETER(nCommand);
       UNREFERENCED_PARAMETER(nCount);
@@ -275,32 +275,32 @@ namespace primitive
    }
 
 
-   void memory_file::flush()
+   void memory_buffer::flush()
    {
    }
 
 
-   void memory_file::set_length(file_size dwNewLen)
+   void memory_buffer::set_length(file_size dwNewLen)
    {
       Truncate(dwNewLen);
    }
 
 
-   void memory_file::assert_valid() const
+   void memory_buffer::assert_valid() const
    {
-      file::assert_valid();
+      buffer::assert_valid();
    }
 
-   void memory_file::dump(dump_context & dumpcontext) const
+   void memory_buffer::dump(dump_context & dumpcontext) const
    {
-      file::dump(dumpcontext);
+      buffer::dump(dumpcontext);
    }
 
 
 
 
 
-   void memory_file::full_load(const char * psz)
+   void memory_buffer::full_load(const char * psz)
    {
 
       single_lock sl(get_memory()->m_spmutex, TRUE);
@@ -310,7 +310,7 @@ namespace primitive
       primitive::memory storage;
       storage.allocate(1024 * 1024 * 8);
       ::file::binary_buffer_sp spfile(allocer());
-      if(!spfile->open(psz, ::file::type_binary | ::file::mode_read | ::file::binary_buffer::shareDenyNone))
+      if(!spfile->open(psz, type_binary | mode_read | shareDenyNone))
          return;
       else
       {
@@ -322,7 +322,7 @@ namespace primitive
       }
    }
 
-   ::primitive::memory_base * memory_file::create_memory()
+   ::primitive::memory_base * memory_buffer::create_memory()
    {
       
       return canew(primitive::memory(this));
@@ -330,4 +330,4 @@ namespace primitive
    }
 
 
-} // namespace primitive
+} // namespace file

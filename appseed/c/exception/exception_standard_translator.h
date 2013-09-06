@@ -59,8 +59,8 @@ namespace exception
       static void filter_sigpipe(int32_t signal, siginfo_t * psiginfo, void * pc);
    #endif
 
-      static vsstring name(uint32_t uiCode);
-      static vsstring description(uint32_t uiCode);
+      static string name(uint32_t uiCode);
+      static string description(uint32_t uiCode);
 
 
       bool attach();

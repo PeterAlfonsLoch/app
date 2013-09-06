@@ -353,7 +353,7 @@ namespace url
             {
                i++;
                iLen--;
-               *psz = (char) (uchar) (from_hex_char(*lpszUrl) * 16 + from_hex_char(*(lpszUrl + 1)));
+               *psz = (char) (uchar) (hex::to(*lpszUrl) * 16 + hex::to(*(lpszUrl + 1)));
                psz++;
                lpszUrl += 2;
             }

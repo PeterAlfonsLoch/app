@@ -45,7 +45,7 @@ namespace colorertake5
 
      array<region *>   regionNamesVector;
      string_map<region *>   regionNamesHash;
-     string_to_string_map              schemeEntitiesHash;
+     string_to_string              schemeEntitiesHash;
 
      string versionName;
 

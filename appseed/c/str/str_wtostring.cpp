@@ -1,17 +1,17 @@
 #include "framework.h"
 
-wstringtovss::wstringtovss(vsstring & str, int32_t iAllocCount)
+wtostring::wtostring(string & str, int32_t iAllocCount)
 {
    m_pstringUtf8 = &str;
    m_pwsz = NULL;
    alloc(iAllocCount);
 }
 
-wstringtovss::~wstringtovss()
+wtostring::~wtostring()
 {
    if(m_pstringUtf8 != NULL)
    {
-      m_pstringUtf8->attach(utf16_to_8_dup(m_pwsz));
+      *m_pstringUtf8 = ::str::international::unicode_to_utf8(m_pwsz);
    }
    if(m_pwsz != NULL)
    {

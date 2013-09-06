@@ -20,20 +20,17 @@ namespace file
 
    output_stream::output_stream(writer * pwriter)
    {
-      m_spwriter     = pwriter;
-      m_spflush      = pwriter;
+      m_spbuffer     = pwriter;
    }
 
    output_stream::output_stream(writer & writer)
    {
-      m_spwriter     = &writer;
-      m_spflush      = &writer;
+      m_spbuffer     = &writer;
    }
 
    output_stream::output_stream(const  output_stream & ostream) 
    {
-      m_spwriter     = ostream.m_spwriter;
-      m_spflush      = ostream.m_spflush;
+      m_spbuffer     = ostream.m_spbuffer;
    }
 
    output_stream::~output_stream()
@@ -45,14 +42,14 @@ namespace file
    void output_stream::write(const void *lpBuf, ::primitive::memory_size nCount)
    {
       
-      m_spwriter->write(lpBuf, nCount);
+      m_spbuffer->write(lpBuf, nCount);
 
    }
 
    void output_stream::write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten)
    {
 
-      m_spwriter->write(lpBuf, nCount, dwWritten);
+      m_spbuffer->write(lpBuf, nCount, dwWritten);
 
    }
 
@@ -186,8 +183,7 @@ namespace file
    output_stream & output_stream::operator = (const output_stream & ostream)
    {
 
-      m_spwriter = ostream.m_spwriter;
-      m_spflush  = ostream.m_spflush;
+      m_spbuffer = ostream.m_spbuffer;
 
       return *this;
 
@@ -196,12 +192,7 @@ namespace file
    void output_stream::flush()
    {
       
-      if(m_spflush.is_set())
-      {
-         
-         m_spflush->flush();
-
-      }
+      m_spbuffer->flush();
 
    }
 
@@ -210,17 +201,20 @@ namespace file
    {
 
       flush();
+
+      stream_base::close();
+
    }
         
    
    bool output_stream::is_writer_null()
    {
-      return m_spwriter.is_null();
+      return m_spbuffer.is_null();
    }
 
    bool output_stream::is_writer_set()
    {
-      return m_spwriter.is_set();
+      return m_spbuffer.is_set();
    }
 
    

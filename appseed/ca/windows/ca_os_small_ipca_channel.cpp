@@ -338,7 +338,7 @@ LRESULT small_ipc_rx_channel::message_window_proc(UINT message, WPARAM wparam, L
       if(pcds->dwData == 0x80000000)
       {
 
-         vsstring strMessage((const char *)pcds->lpData, pcds->cbData);
+         string strMessage((const char *)pcds->lpData, pcds->cbData);
 
          on_receive(this, strMessage);
 
@@ -386,8 +386,8 @@ bool small_ipc_channel::open_ab(const char * pszKey, const char * pszModule, lau
 
    m_rxchannel.m_preceiver = this;
 
-   vsstring strChannelRx = m_vssChannel + "-a";
-   vsstring strChannelTx = m_vssChannel + "-b";
+   string strChannelRx = m_vssChannel + "-a";
+   string strChannelTx = m_vssChannel + "-b";
 
 
    if(!m_rxchannel.create(strChannelRx, pszModule))
@@ -411,8 +411,8 @@ bool small_ipc_channel::open_ba(const char * pszKey, const char * pszModule, lau
 
    m_rxchannel.m_preceiver = this;
 
-   vsstring strChannelRx = m_vssChannel + "-b";
-   vsstring strChannelTx = m_vssChannel + "-a";
+   string strChannelRx = m_vssChannel + "-b";
+   string strChannelTx = m_vssChannel + "-a";
 
 
    if(!m_rxchannel.create(strChannelRx, pszModule))

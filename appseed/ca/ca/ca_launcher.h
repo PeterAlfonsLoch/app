@@ -8,9 +8,9 @@ public:
 
    virtual bool ensure_executable() = 0;
 
-   virtual vsstring get_executable_path() = 0;
+   virtual string get_executable_path() = 0;
 
-   virtual vsstring get_params() { return ""; }
+   virtual string get_params() { return ""; }
 
    virtual bool start();
 

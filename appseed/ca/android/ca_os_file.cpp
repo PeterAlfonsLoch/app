@@ -48,7 +48,7 @@ CLASS_DECL_c void dll_processes(uint_array & dwa, stringa & straProcesses, const
 
 
 
-vsstring get_sys_temp_path()
+string get_sys_temp_path()
 {
 
    return ::dir::path(getenv("HOME"), ".ca2", "time");

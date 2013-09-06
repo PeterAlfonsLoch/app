@@ -7,8 +7,8 @@ class CLASS_DECL_c not_licensed :
 public:
 
 
-   vsstring      m_strRealm;    // license realm
-   vsstring      m_strUrl;      // licensing url
+   string      m_strRealm;    // license realm
+   string      m_strUrl;      // licensing url
 
 
    not_licensed(sp(base_application) papp, const char * pszRealm, const char * pszUrl);

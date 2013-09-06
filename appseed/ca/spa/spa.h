@@ -55,7 +55,7 @@ CLASS_DECL_ca int32_t start_spaadmin(const char * pszCommandLine);
 CLASS_DECL_ca void installation_file_lock(bool bLock);
 
 
-CLASS_DECL_ca vsstring get_installation_lock_file_path();
+CLASS_DECL_ca string get_installation_lock_file_path();
 
 
 CLASS_DECL_ca bool is_installation_lock_file_locked();

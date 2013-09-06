@@ -47,7 +47,7 @@
 #include <ImfCompression.h>
 #include <ImfName.h>
 #include <ImfTileDescription.h>
-#include <ImfInt64.h>
+
 #include "ImathVec.h"
 #include "ImathBox.h"
 #include "IexBaseExc.h"
@@ -348,7 +348,7 @@ class Header
     //------------------------------------------------------------------
 
 
-    Int64			writeTo (OStream &os,
+    int64_t			writeTo (OStream &os,
 					 bool isTiled = false) const;
 
     void			readFrom (IStream &is, int &version);

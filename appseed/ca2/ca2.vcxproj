@@ -1786,14 +1786,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include=".\primitive\primitive_index.h" />
     <ClInclude Include=".\primitive\primitive_int_biunique.h" />
     <ClInclude Include=".\primitive\primitive_logic.h" />
-    <ClInclude Include=".\primitive\primitive_memory_file.h" />
     <ClInclude Include=".\primitive\primitive_natural.h" />
-    <ClInclude Include=".\primitive\primitive_numeric_info.h" />
     <ClInclude Include="primitive\primitive.h" />
     <ClInclude Include=".\primitive\primitive_scalar.h" />
     <ClInclude Include=".\primitive\primitive_shared_file.h" />
-    <ClInclude Include=".\primitive\primitive_shared_memory.h" />
-    <ClInclude Include=".\primitive\primitive_virtual_memory.h" />
     <ClInclude Include="programming\dynamic_source\dynamic_source.h" />
     <ClInclude Include="programming\dynamic_source\dynamic_source_exit_exception.h" />
     <ClInclude Include="programming\dynamic_source\dynamic_source_httpd_socket.h" />
@@ -2883,7 +2879,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="primitive\primitive_fixed_string.cpp" />
     <ClCompile Include="primitive\primitive_int_biunique.cpp" />
     <ClCompile Include="primitive\primitive_logic.cpp" />
-    <ClCompile Include="primitive\primitive_memory_file.cpp" />
     <ClCompile Include="primitive\primitive_natural.cpp" />
     <ClCompile Include="primitive\primitive_scalar.cpp" />
     <ClCompile Include="primitive\primitive_shared_file.cpp" />

@@ -156,7 +156,7 @@ namespace ca2
          CryptGenRandom(hCryptProv, dwLen, (BYTE *) buf);
 #elif defined(METROWIN)
          Windows::Storage::Streams::IBuffer ^ buffer = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandom(dwLen);
-         simple_memory mem;
+         ::primitive::memory mem;
          mem.set_os_stream_buffer(buffer);
          memcpy(buf, mem.get_data(), mem.get_size());
 #else

@@ -18,7 +18,7 @@ namespace ca2
          if(pformat->m_chLength == 'X')
          {
 
-            string str = ::str::hex::hi_from((void *) &ch, 1);
+            string str = ::hex::hi_from((void *) &ch, 1);
 
             while(pformat->m_iWidth > str.get_length())
             {
@@ -231,7 +231,7 @@ namespace ca2
 
 
 
-      void format(string_format * pformat, vsstring const & str)
+      void format(string_format * pformat, string const & str)
       {
 
          pformat->append(str);

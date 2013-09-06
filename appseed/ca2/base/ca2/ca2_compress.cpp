@@ -69,7 +69,7 @@ namespace ca2
    }
 
 
-   bool compress::ungz(::primitive::memory_file & memoryfile)
+   bool compress::ungz(::::file::memory_buffer & memoryfile)
    {
 
       int64_t dataLength = memoryfile.get_length();
@@ -84,7 +84,7 @@ namespace ca2
       strm.zalloc = Z_NULL;
       strm.zfree = Z_NULL;
 
-      ::primitive::memory_file memoryfileOut(get_app());
+      ::::file::memory_buffer memoryfileOut(get_app());
       class primitive::memory memory;
       memory.allocate(1024 * 256);
       ASSERT(memory.get_size() <= UINT_MAX);

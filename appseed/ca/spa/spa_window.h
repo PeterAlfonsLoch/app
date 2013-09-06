@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace spa
+namespace spa_install
 {
 
 
@@ -10,7 +10,7 @@ namespace spa
 
 
    class CLASS_DECL_ca window_map :
-      public simple_map < oswindow, window * >
+      public ::map < oswindow, oswindow, window *, window * >
    {
 
 
@@ -71,4 +71,4 @@ namespace spa
    };
 
 
-} // namespace spa
+} // namespace spa_install

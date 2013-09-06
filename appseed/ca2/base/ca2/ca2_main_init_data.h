@@ -9,7 +9,7 @@ namespace ca2
    {
    public:
 
-      vsstring    m_vssCommandLine;
+      string    m_vssCommandLine;
 
    };
 

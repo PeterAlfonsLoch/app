@@ -16,7 +16,7 @@ namespace colorertake5
       @param lineRegions Linked list of LineRegion structures.
       Only region references are used there.
       */
-      void ParsedLineWriter::tokenWrite(::file::output_stream & markupWriter, ::file::output_stream & textWriter, string_to_string_map * docLinkHash, const char  *line, LineRegion *lineRegions)
+      void ParsedLineWriter::tokenWrite(::file::output_stream & markupWriter, ::file::output_stream & textWriter, string_to_string * docLinkHash, const char  *line, LineRegion *lineRegions)
       {
          UNREFERENCED_PARAMETER(docLinkHash);
          index pos = 0;
@@ -64,7 +64,7 @@ namespace colorertake5
       @param line Line of text
       @param lineRegions Linked list of LineRegion structures
       */
-      void ParsedLineWriter::markupWrite(::file::output_stream & markupWriter, ::file::output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions)
+      void ParsedLineWriter::markupWrite(::file::output_stream & markupWriter, ::file::output_stream & textWriter, string_to_string *docLinkHash, const char *line, LineRegion *lineRegions)
       {
          UNREFERENCED_PARAMETER(docLinkHash);
 
@@ -124,7 +124,7 @@ namespace colorertake5
       @param line Line of text
       @param lineRegions Linked list of LineRegion structures
       */
-      void ParsedLineWriter::htmlRGBWrite(::file::output_stream & markupWriter, ::file::output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions)
+      void ParsedLineWriter::htmlRGBWrite(::file::output_stream & markupWriter, ::file::output_stream & textWriter, string_to_string *docLinkHash, const char *line, LineRegion *lineRegions)
       {
 
          index pos = 0;
@@ -193,7 +193,7 @@ namespace colorertake5
          writer << "</span>";
       }
 
-      void ParsedLineWriter::writeHref(::file::output_stream & writer, string_to_string_map *docLinkHash, const class scheme *scheme, const string &token, bool start){
+      void ParsedLineWriter::writeHref(::file::output_stream & writer, string_to_string *docLinkHash, const class scheme *scheme, const string &token, bool start){
          string url;
          if (scheme != NULL){
             url = docLinkHash->operator [](token + "--" + scheme->getName());

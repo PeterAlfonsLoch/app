@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
- vsstring i64toa_dup(int64_t i, int32_t iBase)
+ string i64toa_dup(int64_t i, int32_t iBase)
 {
 
    char sz[128 + 64];
@@ -48,7 +48,7 @@
 }
 
 
- vsstring i64toa_dup(int64_t i)
+ string i64toa_dup(int64_t i)
 {
 
    return i64toa_dup(i, 10);
@@ -57,7 +57,7 @@
 
 
 
- vsstring ui64toa_dup(int64_t i, int32_t iBase)
+ string ui64toa_dup(int64_t i, int32_t iBase)
 {
 
    char sz[128 + 64];
@@ -93,7 +93,7 @@
 }
 
 
- vsstring ui64toa_dup(int64_t i)
+ string ui64toa_dup(int64_t i)
 {
 
    return ui64toa_dup(i, 10);

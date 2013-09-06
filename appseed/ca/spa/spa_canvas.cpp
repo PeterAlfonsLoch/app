@@ -9,7 +9,7 @@
 #include <math.h>
 
 
-namespace spa
+namespace spa_install
 {
 
    canvas::canvas()
@@ -44,7 +44,7 @@ public:
    int32_t m_iMaxSize;
    int32_t m_iLast;
    array < POINT > m_pta;
-   simple_int_array m_ia;
+   int_array m_ia;
    RECT m_rect;
    HBITMAP m_hbm;
    HDC m_hdc;
@@ -80,7 +80,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
    static canvas_zero czero;
    #endif
 
-   static vsstring s_strLastStatus;
+   static string s_strLastStatus;
    RECT rect = *lpcrect;
 //   int32_t cx = lpcrect->right - lpcrect->left;
 //   int32_t cy = lpcrect->bottom - lpcrect->top;
@@ -227,7 +227,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
          {
             int32_t iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
             iTell--;
-            vsstring strLine;
+            string strLine;
             int32_t iSkip = 0;
 //            ::SetBkMode(hdc, TRANSPARENT);
             bool bNormal = false;
@@ -313,7 +313,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
          {
             int32_t iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
             iTell--;
-            vsstring strLine;
+            string strLine;
             int32_t iSkip = 0;
             while(iTell > 0 && iLine >= iLineMin)
             {
@@ -608,4 +608,4 @@ void canvas_zero::zero(HDC hdc, POINT pt, int32_t iSize, int32_t iStep)
 #endif
 
 
-} // namespace spa
+} // namespace spa_install

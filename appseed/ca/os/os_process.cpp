@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-vsstring consume_param(const char * pszCommandLine, const char ** pszEndPtr)
+string consume_param(const char * pszCommandLine, const char ** pszEndPtr)
 {
 
    if(pszCommandLine == NULL)
@@ -37,21 +37,21 @@ vsstring consume_param(const char * pszCommandLine, const char ** pszEndPtr)
       *pszEndPtr = pszEnd + 1;
    }
 
-   return vsstring(pszStart, pszEnd - pszStart);
+   return string(pszStart, pszEnd - pszStart);
 
 }
 
 
 
-vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam, const char * pszIfParamValue, const char * pszReplaceParam)
+string get_command_line_param(const char * pszCommandLine, const char * pszParam, const char * pszIfParamValue, const char * pszReplaceParam)
 {
 
-   vsstring strValue = get_command_line_param(pszCommandLine, pszParam);
+   string strValue = get_command_line_param(pszCommandLine, pszParam);
 
    if(strValue == pszIfParamValue)
    {
          
-      vsstring strReplace = get_command_line_param(pszCommandLine, pszReplaceParam);
+      string strReplace = get_command_line_param(pszCommandLine, pszReplaceParam);
 
       if(strReplace.has_char())
       {
@@ -64,14 +64,14 @@ vsstring get_command_line_param(const char * pszCommandLine, const char * pszPar
 
 }
 
-vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam)
+string get_command_line_param(const char * pszCommandLine, const char * pszParam)
 {
 
-   vsstring strParam(pszParam);
+   string strParam(pszParam);
 
    strParam = strParam + "=";
 
-   vsstring strValue;
+   string strValue;
 
    const char * pszValue = strstr_dup(pszCommandLine, strParam);
 
@@ -88,11 +88,11 @@ vsstring get_command_line_param(const char * pszCommandLine, const char * pszPar
 
       if(pszValueEnd == NULL)
       {
-         strValue = vsstring(pszValue);
+         strValue = string(pszValue);
       }
       else
       {
-         strValue = vsstring(pszValue, pszValueEnd - pszValue + 1);
+         strValue = string(pszValue, pszValueEnd - pszValue + 1);
       }
 
    }
@@ -103,11 +103,11 @@ vsstring get_command_line_param(const char * pszCommandLine, const char * pszPar
 
       if(pszValueEnd == NULL)
       {
-         strValue = vsstring(pszValue);
+         strValue = string(pszValue);
       }
       else
       {
-         strValue = vsstring(pszValue, pszValueEnd - pszValue);
+         strValue = string(pszValue, pszValueEnd - pszValue);
       }
 
    }

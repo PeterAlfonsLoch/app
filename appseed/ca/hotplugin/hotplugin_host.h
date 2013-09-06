@@ -16,7 +16,7 @@ namespace hotplugin
       ::count m_countMemory;
       double                        m_dProgressRate;
       bool                          m_bShowProgress;
-      vsstring                      m_strHostPluginLocation;
+      string                      m_strHostPluginLocation;
 
 
       bool                          m_bCa2InstallationReady;
@@ -50,7 +50,7 @@ namespace hotplugin
       // Host location is not the updated url - if there is a way to update the url and 
       // maintain the same plugin instance, what would lead to an out-of-date location url.
       // It is the location url of the page that hosts the plugin when the plugin was created.
-      virtual vsstring     get_host_location_url();
+      virtual string     get_host_location_url();
 
       virtual void         post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam);
       virtual oswindow         get_host_window();

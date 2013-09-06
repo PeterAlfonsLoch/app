@@ -283,7 +283,7 @@ bufferedReadPixels (InputFile::Data* ifd, int scanLine1, int scanLine2)
 		     x <= levelRange.max.x;
 		     x += toSlice.xSampling)
                 {
-		    for (size_t i = 0; i < (unsigned) size; ++i)
+		    for (index i = 0; i <  size; ++i)
 			toPtr[i] = fromPtr[i];
 
 		    fromPtr += fromSlice.xStride * toSlice.xSampling;

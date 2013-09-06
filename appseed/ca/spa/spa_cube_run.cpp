@@ -4,8 +4,8 @@
 int32_t cube_run(const char * id)
 {
 
-   vsstring strDir;
-   vsstring strFile;
+   string strDir;
+   string strFile;
 
 #ifdef X86
 
@@ -20,7 +20,7 @@ int32_t cube_run(const char * id)
    strFile = strDir;
    strFile += "\\app.exe";
 
-   vsstring strParam;
+   string strParam;
 
    strParam = ": app=";
    strParam += id;

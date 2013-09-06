@@ -9,10 +9,12 @@ class string_array;
 
 
 #include "str_simple.h"
-#include "str_wstringtou.h"
 #include "str_interface.h"
 #include "str_composite.h"
 #include "str_string.h"
+
+#include "str_stringtow.h"
+#include "str_from_integer.h"
 
 
 #include "str_ch.h"

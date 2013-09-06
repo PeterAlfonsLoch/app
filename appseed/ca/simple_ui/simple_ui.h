@@ -20,8 +20,8 @@ public:
 
    bool                             m_bVisible;
    RECT                             m_rect;
-   vsstring                         m_strId;
-   vsstring                         m_strText;
+   string                           m_strId;
+   string                           m_strText;
    simple_ui_ptra                   m_uiptra;
    simple_ui *                      m_puiParent;
    simple_ui *                      m_puiFocus;
@@ -42,7 +42,7 @@ public:
    virtual void draw_focus_rect(simple_graphics & hdc);
 
 
-   virtual void on_char(int32_t iKey, const vsstring & strChar);
+   virtual void on_char(int32_t iKey, const string & strChar);
    virtual void on_lbutton_down(int32_t x, int32_t y);
    virtual void on_lbutton_up(int32_t x, int32_t y);
    virtual void on_mouse_move(int32_t x, int32_t y);

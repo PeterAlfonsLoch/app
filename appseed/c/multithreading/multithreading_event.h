@@ -41,6 +41,7 @@ public:
    virtual void * get_os_data() const;
 
    bool SetEvent();
+   bool set_event() {return SetEvent(); }
    //bool PulseEvent();
    bool ResetEvent();
 

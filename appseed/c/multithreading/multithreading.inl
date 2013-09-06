@@ -78,3 +78,39 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
    { ::LeaveCriticalSection(&m_sect); return TRUE; }
 
 #endif //_AFXMT_INLINE
+
+
+
+
+
+
+
+	inline bool wait_result::abandoned() const
+	{ return m_iWaitResult <= Abandon0; }
+
+	inline size_t wait_result::abandoned_index() const
+	{
+		if ( !abandoned() )
+         throw range_error(::ca2::get_thread_app(), "abandoned index out of range");
+		return -(m_iWaitResult + Abandon0);
+	}
+
+	inline bool wait_result::failed() const
+	{ return m_iWaitResult == Failure; }
+
+	inline bool wait_result::bad_thread() const
+	{ return m_iWaitResult == BadThread; }
+
+	inline bool wait_result::timeout() const
+	{ return m_iWaitResult == Timeout; }
+
+	inline bool wait_result::signaled() const
+	{ return m_iWaitResult >= Event0; }
+
+	inline size_t wait_result::signaled_index() const
+	{
+		if ( !signaled() )
+			throw range_error(::ca2::get_thread_app(), "signaled index out of range");
+		return m_iWaitResult - Event0;
+	}
+

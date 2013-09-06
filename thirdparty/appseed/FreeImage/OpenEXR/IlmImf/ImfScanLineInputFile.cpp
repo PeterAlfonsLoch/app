@@ -168,9 +168,9 @@ struct ScanLineInputFile::Data: public Mutex
     bool		fileIsComplete;	    // True if no scanlines are missing
     					    // in the file
     int			nextLineBufferMinY; // minimum y of the next linebuffer
-    raw_array < size_t >	bytesPerLine;       // combined size of a line over all
+    numeric_array < size_t >	bytesPerLine;       // combined size of a line over all
                                             // channels
-    raw_array < size_t >	offsetInLineBuffer; // offset for each scanline in its
+    numeric_array < size_t >	offsetInLineBuffer; // offset for each scanline in its
                                             // linebuffer
     lemon_array<InSliceInfo>	slices;             // info about channels in file
     IStream *		is;                 // file stream to read from
@@ -203,7 +203,7 @@ ScanLineInputFile::Data::Data (IStream *is, int numThreads):
 
 ScanLineInputFile::Data::~Data ()
 {
-    for (size_t i = 0; i < lineBuffers.size(); i++)
+    for (index i = 0; i < lineBuffers.size(); i++)
         delete lineBuffers[i];
 }
 
@@ -221,15 +221,15 @@ namespace {
 void
 reconstructLineOffsets (IStream &is,
 			LineOrder lineOrder,
-			vector<Int64> &lineOffsets)
+			int64_array &lineOffsets)
 {
-    Int64 position = is.tellg();
+    int64_t position = is.tellg();
 
     try
     {
-	for (unsigned int i = 0; i < lineOffsets.size(); i++)
+	for (index i = 0; i < lineOffsets.size(); i++)
 	{
-	    Int64 lineOffset = is.tellg();
+	    int64_t lineOffset = is.tellg();
 
 	    int y;
 	    Xdr::read <StreamIO> (is, y);
@@ -263,17 +263,17 @@ reconstructLineOffsets (IStream &is,
 void
 readLineOffsets (IStream &is,
 		 LineOrder lineOrder,
-		 vector<Int64> &lineOffsets,
+		 int64_array &lineOffsets,
 		 bool &complete)
 {
-    for (unsigned int i = 0; i < lineOffsets.size(); i++)
+    for (index i = 0; i < lineOffsets.size(); i++)
     {
 	Xdr::read <StreamIO> (is, lineOffsets[i]);
     }
 
     complete = true;
 
-    for (unsigned int i = 0; i < lineOffsets.size(); i++)
+    for (index i = 0; i < lineOffsets.size(); i++)
     {
 	if (lineOffsets[i] <= 0)
 	{
@@ -313,7 +313,7 @@ readPixelData (ScanLineInputFile::Data *ifd,
     // array (hence buffer needs to be a reference to a char *).
     //
 
-    Int64 lineOffset =
+    int64_t lineOffset =
 	ifd->lineOffsets[(minY - ifd->minY) / ifd->linesInBuffer];
 
     if (lineOffset == 0)
@@ -491,7 +491,7 @@ LineBufferTask::execute ()
             // Iterate over all image channels.
             //
     
-            for (unsigned int i = 0; i < _ifd->slices.size(); ++i)
+            for (index i = 0; i < _ifd->slices.size(); ++i)
             {
                 //
                 // Test if scan line y of this channel contains any data
@@ -660,7 +660,7 @@ ScanLineInputFile::ScanLineInputFile
 	size_t maxBytesPerLine = bytesPerLineTable (_data->header,
                                                     _data->bytesPerLine);
 
-        for (size_t i = 0; i < _data->lineBuffers.size(); i++)
+        for (index i = 0; i < _data->lineBuffers.size(); i++)
         {
             _data->lineBuffers[i] = new LineBuffer (newCompressor
                                                 (_data->header.compression(),
@@ -674,7 +674,7 @@ ScanLineInputFile::ScanLineInputFile
         _data->lineBufferSize = maxBytesPerLine * _data->linesInBuffer;
 
         if (!_data->is->isMemoryMapped())
-            for (size_t i = 0; i < _data->lineBuffers.size(); i++)
+            for (index i = 0; i < _data->lineBuffers.size(); i++)
                 _data->lineBuffers[i]->buffer = new char[_data->lineBufferSize];
 
 	_data->nextLineBufferMinY = _data->minY - 1;
@@ -704,7 +704,7 @@ ScanLineInputFile::ScanLineInputFile
 ScanLineInputFile::~ScanLineInputFile ()
 {
     if (!_data->is->isMemoryMapped())
-        for (size_t i = 0; i < _data->lineBuffers.size(); i++)
+        for (index i = 0; i < _data->lineBuffers.size(); i++)
             delete [] _data->lineBuffers[i]->buffer;
 
     delete _data;
@@ -766,7 +766,7 @@ ScanLineInputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
     // Initialize the slice table for readPixels().
     //
 
-    vector<InSliceInfo> slices;
+    lemon_array<InSliceInfo> slices;
     ChannelList::ConstIterator i = channels.begin();
 
     for (FrameBuffer::ConstIterator j = frameBuffer.begin();
@@ -937,7 +937,7 @@ ScanLineInputFile::readPixels (int scanLine1, int scanLine2)
 
 	const string *exception = 0;
 
-        for (int i = 0; (unsigned) i < _data->lineBuffers.size(); ++i)
+        for (int i = 0;i < _data->lineBuffers.size(); ++i)
 	{
             LineBuffer *lineBuffer = _data->lineBuffers[i];
 

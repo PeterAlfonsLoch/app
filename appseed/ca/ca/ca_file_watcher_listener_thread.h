@@ -16,10 +16,10 @@ namespace file_watcher
       struct op
       {
 
-         vsstring m_str;
+         string m_str;
          bool m_bRecursive;
          file_watch_listener * m_plistener;
-         simple_event m_event;
+         event m_event;
          id m_id;
 
          op() : m_event(false, true) {}

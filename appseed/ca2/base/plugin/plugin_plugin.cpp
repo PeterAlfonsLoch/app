@@ -641,7 +641,7 @@ namespace plugin
 #endif
                   m_bMainReady = false;*/
 
-                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
+                  string strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
 
 #ifdef WINDOWSEX
@@ -682,7 +682,7 @@ namespace plugin
 #endif
                   m_bMainReady = false;*/
 
-                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
+                  string strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
 #ifdef WINDOWSEX
                   PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);

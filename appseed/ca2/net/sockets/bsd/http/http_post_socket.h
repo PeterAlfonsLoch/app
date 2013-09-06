@@ -45,9 +45,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
          string                                 m_boundary;
-         string_to_string_map                   m_mapFiles;
+         string_to_string                   m_mapFiles;
          string_map < uint_ptr >  m_mapContentLength;
-         string_to_string_map                   m_mapContentType;
+         string_to_string                   m_mapContentType;
          bool                                   m_bMultipart;
          //static int32_t m_boundary_count;
          //static mutex m_boundary_mutex;

@@ -6,13 +6,20 @@ namespace file
 
 
    class CLASS_DECL_c plain_text_stream_string_buffer :
-      virtual public plain_text_stream,
-      virtual public string_buffer
+      virtual public plain_text_stream
    {
    public:
 
-      plain_text_stream_string_buffer();
+
+      string_buffer_sp        m_spstringbuffer;
+
+
+      plain_text_stream_string_buffer(sp(base_application) papp = NULL);
       virtual ~plain_text_stream_string_buffer();
+
+      string str() const;
+
+      operator const char *() const;
 
    };
 

@@ -333,7 +333,7 @@ namespace user
          strHkl.trim();
          if(::str::begins_eat_ci(strHkl, "0x"))
          {
-            hkl = (HKL) ::str::hex::to_uint(strHkl);
+            hkl = (HKL) ::hex::to_uint(strHkl);
          }
          else
          {

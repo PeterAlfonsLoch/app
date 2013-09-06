@@ -431,7 +431,7 @@ bool os_simple_graphics::blend_bitmap_data(int32_t x, int32_t y, int32_t cx, int
 SIZE os_simple_graphics::get_text_extent(const char * psz, int32_t iLen)
 {
 
-   vsstring str(psz, iLen);
+   string str(psz, iLen);
 
    cairo_text_extents_t ex;
 
@@ -591,7 +591,7 @@ bool os_simple_graphics::text_out(int32_t x, int32_t y, const char * pszUtf8, in
 
    set(m_brush);
 
-   vsstring str(pszUtf8, iSize);
+   string str(pszUtf8, iSize);
 
    cairo_show_text(m_pdc, str);
 

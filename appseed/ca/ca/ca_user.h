@@ -20,7 +20,7 @@ class hthread :
 public:
 
 
-   simple_event               * m_pevent;
+   event               * m_pevent;
    ::ca::thread_base          * m_pthread;
    os_thread                  * m_posthread;
 

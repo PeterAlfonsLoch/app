@@ -259,7 +259,7 @@ void simple_tap::draw_text(simple_graphics & g)
 }
 
 
-void simple_tap::on_char(int32_t iKey, const vsstring & strChar)
+void simple_tap::on_char(int32_t iKey, const string & strChar)
 {
 
    if(iKey == VK_RETURN || iKey == VK_SPACE)

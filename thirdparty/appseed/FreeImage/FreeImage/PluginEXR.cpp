@@ -51,8 +51,8 @@ public:
 	IStream(""), _io (io), _handle(handle) {}
 
 	virtual bool	read (char c[/*n*/], int n);
-	virtual Imf::Int64	tellg ();
-	virtual void	seekg (Imf::Int64 pos);
+	virtual int64_t	tellg ();
+	virtual void	seekg (int64_t pos);
 	virtual void	clear () {};
 
 private:
@@ -70,8 +70,8 @@ public:
 	OStream(""), _io (io), _handle(handle) {}
 
     virtual void	write (const char c[/*n*/], int n);
-	virtual Imf::Int64	tellp ();
-	virtual void	seekp (Imf::Int64 pos);
+	virtual int64_t	tellp ();
+	virtual void	seekp (int64_t pos);
 
 private:
     FreeImageIO *_io;
@@ -84,13 +84,13 @@ C_IStream::read (char c[/*n*/], int n) {
 	return ((unsigned)n != _io->read_proc(c, 1, n, _handle));
 }
 
-Imf::Int64
+int64_t
 C_IStream::tellg () {
 	return _io->tell_proc(_handle);
 }
 
 void
-C_IStream::seekg (Imf::Int64 pos) {
+C_IStream::seekg (int64_t pos) {
 	_io->seek_proc(_handle, (unsigned)pos, SEEK_SET);
 }
 
@@ -101,13 +101,13 @@ C_OStream::write (const char c[/*n*/], int n) {
 	}
 }
 
-Imf::Int64
+int64_t
 C_OStream::tellp () {
 	return _io->tell_proc(_handle);
 }
 
 void
-C_OStream::seekp (Imf::Int64 pos) {
+C_OStream::seekp (int64_t pos) {
 	_io->seek_proc(_handle, (unsigned)pos, SEEK_SET);
 }
 

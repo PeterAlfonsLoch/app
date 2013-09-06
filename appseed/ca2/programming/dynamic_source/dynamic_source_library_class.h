@@ -1,6 +1,6 @@
 #pragma once
 
-
+/*
 #include <sys/stat.h>
 
 
@@ -17,7 +17,7 @@
 
 
 #endif
-
+*/
 
 
 namespace dynamic_source
@@ -30,7 +30,7 @@ namespace dynamic_source
    public:
 
 
-      http::memory_file                      m_memfileError;
+      http::memory_buffer                      m_memfileError;
       string                                 m_strName;
       stringa                                m_straSourcePath;
       stringa                                m_straCppPath;

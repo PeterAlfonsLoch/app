@@ -191,7 +191,7 @@ template <class T>
 inline void
 Box<T>::extendBy(const T &point)
 {
-    for (unsigned int i = 0; i < min.dimensions(); i++)
+    for (index i = 0; i < min.dimensions(); i++)
     {
 	if (point[i] < min[i])
 	    min[i] = point[i];
@@ -206,7 +206,7 @@ template <class T>
 inline void
 Box<T>::extendBy(const Box<T> &box)
 {
-    for (unsigned int i = 0; i < min.dimensions(); i++)
+    for (index i = 0; i < min.dimensions(); i++)
     {
 	if (box.min[i] < min[i])
 	    min[i] = box.min[i];
@@ -221,7 +221,7 @@ template <class T>
 inline bool
 Box<T>::intersects(const T &point) const
 {
-    for (unsigned int i = 0; i < min.dimensions(); i++)
+    for (index i = 0; i < min.dimensions(); i++)
     {
         if (point[i] < min[i] || point[i] > max[i])
 	    return false;
@@ -235,7 +235,7 @@ template <class T>
 inline bool
 Box<T>::intersects(const Box<T> &box) const
 {
-    for (unsigned int i = 0; i < min.dimensions(); i++)
+    for (index i = 0; i < min.dimensions(); i++)
     {
         if (box.max[i] < min[i] || box.min[i] > max[i])
 	    return false;
@@ -268,7 +268,7 @@ template <class T>
 inline bool
 Box<T>::isEmpty() const
 {
-    for (unsigned int i = 0; i < min.dimensions(); i++)
+    for (index i = 0; i < min.dimensions(); i++)
     {
         if (max[i] < min[i])
 	    return true;
@@ -282,7 +282,7 @@ template <class T>
 inline bool
 Box<T>::hasVolume() const
 {
-    for (unsigned int i = 0; i < min.dimensions(); i++)
+    for (index i = 0; i < min.dimensions(); i++)
     {
         if (max[i] <= min[i])
 	    return false;

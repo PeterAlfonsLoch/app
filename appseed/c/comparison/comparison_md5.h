@@ -93,7 +93,7 @@ namespace md5
 		void	            update(void * pdata, size_t nInputLen);
 		void	            finalize();
 		unsigned char *   digest();
-		vsstring			   to_string();
+		string			   to_string();
 		void *				body(void *data, uint32_t size);
 
 	};

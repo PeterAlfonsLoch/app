@@ -181,12 +181,12 @@ static const char *basis_hex = "0123456789abcdef";
 * (Same as inet_ntop(AF_INET6, addr, buf, size), except that errno
 * is not set on failure.)
 */
-CLASS_DECL_c vsstring to_vsstring(const in6_addr * addr)
+CLASS_DECL_c string to_vsstring(const in6_addr * addr)
 {
 
-   vsstring str;
+   string str;
 
-#define STUFF(c) { str += (c); }
+#define STUFF(c) { str += ((char)(c)); }
 
    int32_t double_colon = -1;          /* index of the first 16-bit
                                    * group of zeros represented
@@ -342,7 +342,7 @@ CLASS_DECL_c int_bool from_string(in_addr * addrParam, const char * string)
 }
 
 
-CLASS_DECL_c vsstring to_vsstring(const in_addr * addrParam)
+CLASS_DECL_c string to_vsstring(const in_addr * addrParam)
 {
 
    c_in_addr * paddr = (c_in_addr *) addrParam;
@@ -351,7 +351,7 @@ CLASS_DECL_c vsstring to_vsstring(const in_addr * addrParam)
 
    addr.S_un.S_addr = NTOHL(paddr->S_un.S_addr);
 
-   vsstring str;
+   string str;
 
    str += itoa_dup(addr.S_un.S_un_b.s_b1);
 
@@ -407,10 +407,10 @@ CLASS_DECL_c int32_t c_inet_pton(int32_t af, const char *src, void *dst)
 }
 
 
-CLASS_DECL_c vsstring c_inet_ntop(int32_t af, const void *src)
+CLASS_DECL_c string c_inet_ntop(int32_t af, const void *src)
 {
 
-   vsstring str;
+   string str;
 
    if(af == AF_INET)
    {
@@ -439,7 +439,7 @@ CLASS_DECL_c const char * c_inet_ntop(int32_t af, const void *src, char *dst, in
    if(dst == NULL)
       return NULL;
 
-   vsstring str = c_inet_ntop(af, src);
+   string str = c_inet_ntop(af, src);
 
    if(str.is_empty())
       return NULL;
@@ -550,7 +550,7 @@ CLASS_DECL_c uint32_t c_inet_addr(const char * src)
 
 }
 
-CLASS_DECL_c vsstring c_gethostbyname(const char * hostname)
+CLASS_DECL_c string c_gethostbyname(const char * hostname)
 {
 
 #ifdef BSD_STYLE_SOCKETS
@@ -561,7 +561,7 @@ CLASS_DECL_c vsstring c_gethostbyname(const char * hostname)
 
 #else
 
-   return (ref new ::Windows::Networking::HostName(vsstring(hostname)))->DisplayName;
+   return (ref new ::Windows::Networking::HostName(string(hostname)))->DisplayName;
 
 #endif
 

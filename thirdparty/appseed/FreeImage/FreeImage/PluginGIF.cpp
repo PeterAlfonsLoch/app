@@ -741,7 +741,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				SwapShort(&height);
 #endif
 
-				::lemon::array::push_back(pageinfo, PageInfo(disposal_method, left, top, width, height));
+				pageinfo.add(PageInfo(disposal_method, left, top, width, height));
 
 				if( start != end ) {
 					if( left == 0 && top == 0 && width == logicalwidth && height == logicalheight ) {

@@ -53,7 +53,7 @@ CLASS_DECL_ca bool send_short_message_to_installer(const char * psz, bool bLaunc
    
    small_ipc_tx_channel txchannel;
    
-   spa::installer::launcher launcher;
+   spa_install::installer::launcher launcher;
 
    if(!txchannel.open("ca2/spaboot_install", bLaunch ? &launcher : NULL)) 
       return false;
@@ -78,7 +78,7 @@ void send_spaboot_install_response(const char * param)
 
    small_ipc_tx_channel txchannel;
    
-   spa::installer::launcher launcher;
+   spa_install::installer::launcher launcher;
 
    if(!txchannel.open("ca2/spaboot_install_callback")) 
       return;

@@ -7,7 +7,7 @@ class CLASS_DECL_c misc_exception :
 public:
 
 
-   vsstring m_strMessage;
+   string m_strMessage;
 
 
    misc_exception(const misc_exception & e);

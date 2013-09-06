@@ -36,8 +36,8 @@ template<> CLASS_DECL_c bool simple_CompareElements(const wstring * pElement1, c
 
 template<> CLASS_DECL_c UINT simple_HashKey<const wchar_t *> (const wchar_t * key);
 template<> CLASS_DECL_c UINT simple_HashKey<const char *> (const char * key);
-template<> CLASS_DECL_c UINT simple_HashKey<verisimple_string> (verisimple_string key);
-template<> CLASS_DECL_c UINT simple_HashKey<verisimple_wstring> (verisimple_wstring key);
+//template<> CLASS_DECL_c UINT simple_HashKey<verisimple_string> (verisimple_string key);
+//template<> CLASS_DECL_c UINT simple_HashKey<verisimple_wstring> (verisimple_wstring key);
 
 
 
@@ -51,18 +51,7 @@ template<> CLASS_DECL_c UINT simple_HashKey<verisimple_wstring> (verisimple_wstr
 //#pragma deprecated( ConstructElements )
 
 template<class TYPE>
-inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
-{
-   ENSURE(nCount == 0 || pDest != 0 && pSrc != 0);
-   ASSERT(nCount == 0 ||
-      __is_valid_address(pDest, (size_t)nCount * sizeof(TYPE)));
-   ASSERT(nCount == 0 ||
-      __is_valid_address(pSrc, (size_t)nCount * sizeof(TYPE)));
-
-   // default is element-copy using assignment
-   while (nCount--)
-      *pDest++ = *pSrc++;
-}
+inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount);
 /*
 template<class TYPE>
 void SerializeElements(CArchive& ar, TYPE* pElements, ::count nCount)
@@ -135,18 +124,7 @@ void SerializeElementsInsertExtract(CArchive& ar, TYPE* pElements,
 */
 
 template<class TYPE>
-void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::count nCount)
-{
-   ENSURE(nCount == 0 || pElements != NULL);
-   ASSERT(nCount == 0 ||
-      __is_valid_address(pElements, (size_t)nCount * sizeof(TYPE), FALSE));
-#ifdef WINDOWS
-   &dumpcontext; // not used
-   pElements;  // not used
-   nCount; // not used
-#endif
-   // default does nothing
-}
+inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::count nCount);
 
 
 // the two functions below are deprecated.  Use a constructor/destructor instead.
@@ -244,8 +222,8 @@ bool CompareElements(const TYPE* pElement1, const ARG_TYPE* pElement2)
 #pragma once
 
 
-#include "base/ca2/ca2_definition.h"
-#include "base/ca2/ca2_core.h"
+//#include "base/ca2/ca2_definition.h"
+#include "base_core.h"
 
 #define _TYPELIB_INDEX_LENGTH 10
 #define _QUOTES_SPACE 2

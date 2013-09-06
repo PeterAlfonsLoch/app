@@ -65,3 +65,4 @@ public:
 };
 
 
+CLASS_DECL_c void wait_until_mutex_does_not_exist(const char * pszName);

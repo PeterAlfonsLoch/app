@@ -1,4 +1,5 @@
 #include "framework.h"
+#undef new
 #ifdef WINDOWS
 #include <gdiplus.h>
 #endif
@@ -60,7 +61,7 @@ namespace hotplugin
       return false;
    }
 
-   vsstring host::get_host_location_url()
+   string host::get_host_location_url()
    {
       return m_strHostPluginLocation;
    }
@@ -322,7 +323,7 @@ namespace hotplugin
       delete pmutex;
 
 
-      m_pplugin = new spa::plugin();
+      m_pplugin = new spa_install::plugin();
       m_pplugin->m_phost = this;
 
 

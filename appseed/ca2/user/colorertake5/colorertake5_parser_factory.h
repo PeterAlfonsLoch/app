@@ -119,7 +119,7 @@ private:
   ErrorHandler *fileErrorHandler;
   stringa hrcLocations;
   string_map < string_map < stringa >, const string_map < stringa > & > hrdLocations;
-  string_to_string_map hrdDescriptions;
+  string_to_string hrdDescriptions;
   HRCParser  *hrcParser;
   sp(::xml::node)catalog;
 

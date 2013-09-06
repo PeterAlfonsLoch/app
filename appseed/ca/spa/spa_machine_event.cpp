@@ -23,7 +23,7 @@
 }
 
 
-vsstring dir_beforeca2()
+string dir_beforeca2()
 {
    char lpszModuleFolder[MAX_PATH * 8];
    get_ca2_module_folder_dup(lpszModuleFolder);
@@ -42,9 +42,9 @@ vsstring dir_beforeca2()
    // now, lpszModuleFolder should be beforeca2
    return lpszModuleFolder;
 }
-vsstring dir_path(const char * path1, const char * path2)
+string dir_path(const char * path1, const char * path2)
 {
-   vsstring str1(path1);
+   string str1(path1);
    if(str1.substr(str1.length() - 2,1) != PATH_SEPARATOR)
    {
       str1 = str1 + PATH_SEPARATOR;
@@ -59,7 +59,7 @@ vsstring dir_path(const char * path1, const char * path2)
    }
 }
 
-vsstring dir_ca2(const char * path = NULL)
+string dir_ca2(const char * path = NULL)
 {
    if(path == NULL)
       return dir_path(dir_beforeca2(), "ca2");
@@ -67,11 +67,11 @@ vsstring dir_ca2(const char * path = NULL)
       return dir_path(dir_ca2(), path);
 }
 
-vsstring dir_appdata(const char * path = NULL)
+string dir_appdata(const char * path = NULL)
 {
    char sz[MAX_PATH * 8];
    ::SHGetSpecialFolderPathA(NULL, sz, CSIDL_COMMON_APPDATA, TRUE);
-   vsstring str = dir_path(sz, "ca2");
+   string str = dir_path(sz, "ca2");
    return dir_path(str, path);
 }
 

@@ -12,6 +12,14 @@ namespace file
       m_iAlloc    = 0;
    }
 
+   string_buffer::string_buffer(sp(base_application) papp) :
+      element(papp)
+   {
+      m_psz       = NULL;
+      m_iSize     = 0;
+      m_iAlloc    = 0;
+   }
+
    string_buffer::string_buffer(const string & str)
    {
       m_psz       = NULL;

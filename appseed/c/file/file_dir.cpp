@@ -24,10 +24,10 @@
 #ifdef WINDOWSEX
 
 
-bool  SHGetSpecialFolderPath(oswindow oswindow, vsstring &str, int32_t csidl, bool fCreate)
+bool  SHGetSpecialFolderPath(oswindow oswindow, string &str, int32_t csidl, bool fCreate)
 {
 
-   return ::SHGetSpecialFolderPathW(oswindow, wstringtovss(str, MAX_PATH * 8), csidl, fCreate) != FALSE;
+   return ::SHGetSpecialFolderPathW(oswindow, wtostring(str, MAX_PATH * 8), csidl, fCreate) != FALSE;
 
 }
 
@@ -80,10 +80,10 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
    if(hmodule == NULL)
    {
 
-      vsstring buf;
+      string buf;
 
       throw metrowin_todo();
-      //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, NULL, wstringtovss(buf, 4096));
+      //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, NULL, wtostring(buf, 4096));
       //if(FAILED(hr))
       // throw "dir::get_ca2_module_folder_dup : SHGetKnownFolderPath failed";
 
@@ -203,7 +203,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
 }
 
-bool eat_end_level_dup(vsstring & str, int32_t iLevelCount, const char * lpSeparator)
+bool eat_end_level_dup(string & str, int32_t iLevelCount, const char * lpSeparator)
 {
 
    strsize iLast = str.length() - 1;
@@ -217,9 +217,9 @@ bool eat_end_level_dup(vsstring & str, int32_t iLevelCount, const char * lpSepar
    for(int32_t i = 0; i < iLevelCount; i++)
    {
 
-      strsize iFind1 = str.rfind('/', iLast);
+      strsize iFind1 = str.reverse_find('/', iLast);
 
-      strsize iFind2 = str.rfind('\\', iLast);
+      strsize iFind2 = str.reverse_find('\\', iLast);
 
       strsize iFind = max(iFind1, iFind2);
 
@@ -243,7 +243,7 @@ bool eat_end_level_dup(vsstring & str, int32_t iLevelCount, const char * lpSepar
 }
 
 
-vsstring ca2_module_folder_dup()
+string ca2_module_folder_dup()
 {
 
 #ifdef WINDOWSEX
@@ -253,7 +253,7 @@ vsstring ca2_module_folder_dup()
    char lpszModuleFolder[MAX_PATH + 1];
    LPTSTR lpszModuleFileName;
    GetFullPathName(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
-   return vsstring(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
+   return string(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
 
 #elif defined(LINUX)
 
@@ -266,7 +266,7 @@ vsstring ca2_module_folder_dup()
 
    dlinfo(handle, RTLD_DI_LINKMAP, &plm);
 
-   vsstring strCa2ModuleFolder = ::dir::name(plm->l_name);
+   string strCa2ModuleFolder = ::dir::name(plm->l_name);
 
    dlclose(handle);
 
@@ -282,7 +282,7 @@ vsstring ca2_module_folder_dup()
 
       char * pszCurDir = getcwd(NULL, 0);
 
-      vsstring strCurDir = pszCurDir;
+      string strCurDir = pszCurDir;
 
       free(pszCurDir);
 
@@ -301,7 +301,7 @@ vsstring ca2_module_folder_dup()
 
 }
 
-vsstring dir::element(const char * path1, const char * path2, const char * path3, const char * path4)
+string dir::element(const char * path1, const char * path2, const char * path3, const char * path4)
 {
 
 #ifdef WINDOWS
@@ -309,7 +309,7 @@ vsstring dir::element(const char * path1, const char * path2, const char * path3
    if(path1 == NULL && path2 == NULL && path3 == NULL && path4 == NULL)
    {
 
-      vsstring str;
+      string str;
 
       char lpszModuleFilePath[MAX_PATH * 10];
       get_ca2_module_folder_dup(lpszModuleFilePath);
@@ -350,11 +350,11 @@ vsstring dir::element(const char * path1, const char * path2, const char * path3
 
 #else
 
-   vsstring strRelative = ca2_module_folder_dup();
+   string strRelative = ca2_module_folder_dup();
 
    eat_end_level_dup(strRelative, 2, "/");
 
-   vsstring str = path(getenv("HOME"), ".ca2/appdata");
+   string str = path(getenv("HOME"), ".ca2/appdata");
 
    return path(path(str, "ca2", strRelative), path1, path2, path3, path4);
 
@@ -370,12 +370,12 @@ bool dir::mk(const char * lpcsz)
    if(is(lpcsz))
       return true;
 
-   vsstring url(lpcsz);
-   vsstring tmp;
-   vsstring dir;
+   string url(lpcsz);
+   string tmp;
+   string dir;
    index oldpos = -1;
    index pos = url.find("\\");
-   vsstring unc("\\\\?\\");
+   string unc("\\\\?\\");
    while (pos >= 0)
    {
       tmp = url.substr(oldpos + 1, pos - oldpos -1 );
@@ -404,9 +404,9 @@ bool dir::mk(const char * lpcsz)
    // stat -> Sir And Arthur - Serenato
    struct stat st;
 
-   vsstring url(lpcsz);
-   vsstring tmp;
-   vsstring dir;
+   string url(lpcsz);
+   string tmp;
+   string dir;
    ::index oldpos = -1;
    ::index pos = url.find("/");
    while (pos >= 0)
@@ -433,7 +433,7 @@ bool dir::mk(const char * lpcsz)
 
 }
 
-vsstring dir::module_folder(const char * path1)
+string dir::module_folder(const char * path1)
 {
 
 #ifdef WINDOWSEX
@@ -461,16 +461,16 @@ vsstring dir::module_folder(const char * path1)
 
 }
 
-vsstring dir::path(const char * path1, const char * path2, const char * path3, const char * path4, const char * path5)
+string dir::path(const char * path1, const char * path2, const char * path3, const char * path4, const char * path5)
 {
-   vsstring str(path1);
+   string str(path1);
    if(str.substr(str.length() - 1, 1) == PATH_SEPARATOR)
    {
       str = str.substr(0, str.length() - 1);
    }
    if(path2 != NULL)
    {
-      vsstring strAdd(path2);
+      string strAdd(path2);
       if(strAdd.substr(0, 1) != PATH_SEPARATOR)
       {
          strAdd = PATH_SEPARATOR + strAdd;
@@ -479,7 +479,7 @@ vsstring dir::path(const char * path1, const char * path2, const char * path3, c
    }
    if(path3 != NULL)
    {
-      vsstring strAdd(path3);
+      string strAdd(path3);
       if(strAdd.substr(0, 1) != PATH_SEPARATOR)
       {
          strAdd = PATH_SEPARATOR + strAdd;
@@ -488,7 +488,7 @@ vsstring dir::path(const char * path1, const char * path2, const char * path3, c
    }
    if(path4 != NULL)
    {
-      vsstring strAdd(path4);
+      string strAdd(path4);
       if(strAdd.substr(0, 1) != PATH_SEPARATOR)
       {
          strAdd = PATH_SEPARATOR + strAdd;
@@ -497,7 +497,7 @@ vsstring dir::path(const char * path1, const char * path2, const char * path3, c
    }
    if(path5 != NULL)
    {
-      vsstring strAdd(path5);
+      string strAdd(path5);
       if(strAdd.substr(0, 1) != PATH_SEPARATOR)
       {
          strAdd = PATH_SEPARATOR + strAdd;
@@ -516,7 +516,7 @@ bool dir::is(const char * path1)
 {
 
 #ifdef WINDOWS
-   vsstring str;
+   string str;
 
    str = "\\\\?\\";
    str += path1;
@@ -551,16 +551,16 @@ bool dir::is(const char * path1)
 
 }
 
-vsstring dir::name(const char * path1)
+string dir::name(const char * path1)
 {
 
-   vsstring str;
+   string str;
 
    str = path1;
 #if defined(LINUX) || defined(MACOS)
-   index iPos = str.rfind('/');
+   index iPos = str.reverse_find('/');
 #else
-   index iPos = str.rfind('\\');
+   index iPos = str.reverse_find('\\');
 #endif
 
    return str.substr(0, iPos + 1);
@@ -622,7 +622,7 @@ void dir::ls(stringa & stra, const char *psz)
 
 #elif defined(METROWIN)
 
-   ::Windows::Storage::StorageFolder ^ folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(vsstring(psz)));
+   ::Windows::Storage::StorageFolder ^ folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
 
    if(folder == nullptr)
       return;
@@ -688,7 +688,7 @@ void dir::ls_dir(stringa & stra, const char *psz)
                continue;
          }
       }
-      vsstring strPath = path(psz, dp->d_name);
+      string strPath = path(psz, dp->d_name);
       if(is(strPath))
       {
          stra.add(strPath);
@@ -700,7 +700,7 @@ void dir::ls_dir(stringa & stra, const char *psz)
 
 #elif defined(METROWIN)
 
-   ::Windows::Storage::StorageFolder ^ folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(vsstring(psz)));
+   ::Windows::Storage::StorageFolder ^ folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
 
    ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
 
@@ -742,7 +742,7 @@ void dir::ls_dir(stringa & stra, const char *psz)
 
 }
 
-vsstring dir::default_os_user_path_prefix()
+string dir::default_os_user_path_prefix()
 {
 #if defined(WINDOWSEX)
    wchar_t buf[MAX_PATH];
@@ -754,21 +754,22 @@ vsstring dir::default_os_user_path_prefix()
          memset(buf, 0, sizeof(buf));
       }
    }
-   vsstring str;
-   str.attach(utf16_to_8_dup(buf));
+   string str;
+   //str.attach(::str::international::unicode_to_utf8(buf));
+   str = str::international::unicode_to_utf8(buf);
    return str;
 
 #elif defined(METROWIN)
-   vsstring str(Windows::System::UserProfile::UserInformation::GetDomainNameAsync()->GetResults()->Data());
+   string str(Windows::System::UserProfile::UserInformation::GetDomainNameAsync()->GetResults()->Data());
    return str;
 
 #elif defined(ANDROID)
-   vsstring str("ca2user");
+   string str("ca2user");
    return str;
 
 #else
 
-   simple_memory mem;
+   ::primitive::memory mem;
 
    mem.allocate(512);
 
@@ -803,24 +804,24 @@ retry:
 
 
 
-vsstring dir::usersystemappdata(const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
+string dir::usersystemappdata(const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
 {
    return path(appdata(lpcszPrefix), lpcsz, lpcsz2);
 }
 
 
 
-vsstring dir::default_userappdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+string dir::default_userappdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
 {
    return path(default_userfolder(lpcszPrefix, lpcszLogin, "appdata"), pszRelativePath);
 }
 
-vsstring dir::default_userdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+string dir::default_userdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
 {
    return path(default_userfolder(lpcszPrefix, lpcszLogin, "data"), pszRelativePath);
 }
 
-vsstring dir::default_userfolder(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+string dir::default_userfolder(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
 {
 
    return userfolder(pszRelativePath);
@@ -829,14 +830,14 @@ vsstring dir::default_userfolder(const char * lpcszPrefix, const char * lpcszLog
 
 
 
-vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
+string dir::userfolder(const char * lpcsz, const char * lpcsz2)
 {
 
-   vsstring str;
+   string str;
 
 #ifdef WINDOWSEX
 
-   SHGetSpecialFolderPath(NULL, (vsstring &) str, CSIDL_PROFILE, false);
+   SHGetSpecialFolderPath(NULL, (string &) str, CSIDL_PROFILE, false);
 
 #elif defined(METROWIN)
 
@@ -848,18 +849,18 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
 
 #endif
 
-   vsstring strRelative;
+   string strRelative;
    strRelative = element();
    index iFind = strRelative.find(':');
    if(iFind >= 0)
    {
-      ::index iFind1 = strRelative.rfind('\\', iFind);
-      ::index iFind2 = strRelative.rfind('/', iFind);
+      ::index iFind1 = strRelative.reverse_find('\\', iFind);
+      ::index iFind2 = strRelative.reverse_find('/', iFind);
       ::index iStart = max(iFind1 + 1, iFind2 + 1);
       strRelative = strRelative.substr(0, iFind - 1) + "_" + strRelative.substr(iStart, iFind - iStart) + strRelative.substr(iFind + 1);
    }
 
-   vsstring strUserFolderShift;
+   string strUserFolderShift;
 
    /*if(App(papp).directrix()->m_varTopicQuery.has_property("user_folder_relative_path"))
    {
@@ -890,14 +891,14 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
 }
 
 
-vsstring dir::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
+string dir::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
 {
 
    stringa stra;
 
    stra.add_tokens(pszEnv, ":");
 
-   vsstring strCandidate;
+   string strCandidate;
 
    for(int32_t i = 0; i < stra.get_count(); i++)
    {

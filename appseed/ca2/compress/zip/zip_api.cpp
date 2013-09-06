@@ -4,7 +4,7 @@
 namespace zip
 {
 
-   //map < unzFile, unzFile, memory_file *, memory_file * & > api::m_mapUnzip;
+   //map < unzFile, unzFile, memory_buffer *, memory_buffer * & > api::m_mapUnzip;
 
    api::api()
    {
@@ -17,7 +17,7 @@ namespace zip
    }
 
 
-   unzFile api::unzipOpen(memory_file * pfile)
+   unzFile api::unzipOpen(memory_buffer * pfile)
    {
       unzFile pf = unzOpen2("pad", &pfile->m_filefuncdef);
       if(pf == NULL)

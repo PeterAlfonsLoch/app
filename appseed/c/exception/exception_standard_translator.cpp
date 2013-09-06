@@ -215,10 +215,10 @@ namespace exception
       };
    }
 
-   vsstring translator::name(uint32_t uiCode)
+   string translator::name(uint32_t uiCode)
    {
 
-      vsstring str;
+      string str;
 
       switch (uiCode)
       {
@@ -250,7 +250,7 @@ namespace exception
       case 0xE06D7363:                          str = "Microsoft C++ Exception";    break;
       default:
          str = "0x";
-         str += itohexpad_dup(uiCode, 8);
+         str += hex::lower_from(uiCode);
          break;
       };
 
@@ -258,10 +258,10 @@ namespace exception
 
    }
 
-   vsstring translator::description(uint32_t uiCode)
+   string translator::description(uint32_t uiCode)
    {
 
-      vsstring str;
+      string str;
 
       switch(uiCode)
       {

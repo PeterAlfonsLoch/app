@@ -68,7 +68,7 @@ CLASS_DECL_c int32_t call_async(
                             const char * pszDir,
                             int32_t iShow)
 {
-    vsstring strCmdLine;
+    string strCmdLine;
 
     strCmdLine = pszPath;
     if(strlen_dup(pszParam) > 0)
@@ -96,7 +96,7 @@ CLASS_DECL_c DWORD call_sync(
                              int32_t (* pfnOnRetry)(int32_t iTry, dword_ptr dwParam),
                              dword_ptr dwParam)
 {
-    vsstring strCmdLine;
+    string strCmdLine;
 
     strCmdLine = pszPath;
     if(strlen_dup(pszParam) > 0)

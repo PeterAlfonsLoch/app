@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace spa
+namespace spa_install
 {
 
 
@@ -77,7 +77,7 @@ namespace spa
 	      wchar_t lastErrorTxt[1024];
          memset_dup(lastErrorTxt, 0, sizeof(lastErrorTxt));
 	      FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, dw, 0, lastErrorTxt, 1024, NULL);
-         trace(vsstring(lastErrorTxt));
+         trace(string(lastErrorTxt));
          trace("ms_get_dup failed : GetLastErrorCode : " + itoa_dup(dw));
 #endif
       }
@@ -88,12 +88,12 @@ namespace spa
    }
 
 
-} // namespace spa
+} // namespace spa_install
 
 
 void ms_download_callback(void * param, int32_t i, uint_ptr dwLen)
 {
-   spa::installer * pinstaller = ((spa::installer *) param);
+   spa_install::installer * pinstaller = ((spa_install::installer *) param);
    pinstaller->ms_download_callback(i, dwLen);
 }
 
@@ -102,6 +102,6 @@ void ms_download_callback(void * param, int32_t i, uint_ptr dwLen)
 
 void ms_get_callback(void * param, int32_t i, uint_ptr dwLen)
 {
-   spa::installer * pinstaller = ((spa::installer *) param);
+   spa_install::installer * pinstaller = ((spa_install::installer *) param);
    pinstaller->ms_get_callback(i, dwLen);
 }

@@ -85,7 +85,7 @@ void simple_ui::draw_children(simple_graphics & g)
 
 }
 
-void simple_ui::on_char(int32_t iKey, const vsstring & strChar)
+void simple_ui::on_char(int32_t iKey, const string & strChar)
 {
 
    get_focus()->on_char(iKey, strChar);

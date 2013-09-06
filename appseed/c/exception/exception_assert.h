@@ -7,7 +7,7 @@ class CLASS_DECL_c assert_exception :
 public:
 
 
-   vsstring m_strFile;
+   string m_strFile;
    long m_lLine;
 
 

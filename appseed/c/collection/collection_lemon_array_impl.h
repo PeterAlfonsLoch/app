@@ -303,7 +303,7 @@ namespace lemon
       }
 
       template<class ARRAY>
-      index insert_at(ARRAY & a, index nIndex, typename ARRAY::ARG_TYPE newElement, ::count nCount /*=1*/)
+      index insert_at(ARRAY & a, index nIndex, typename ARRAY::BASE_ARG_TYPE newElement, ::count nCount /*=1*/)
       {
          //ASSERT_VALID(this);
          //ASSERT(nIndex >= 0);    // will expand to meet need
@@ -312,38 +312,38 @@ namespace lemon
             return -1;
 
          if(nIndex < 0)
-            throw invalid_argument_exception(get_app());
+            throw invalid_argument_exception(a.get_app());
 
-         if (nIndex >= m_nSize)
+         if (nIndex >= a.m_nSize)
          {
             // adding after the end of the array
-            ::lemon::array::set_size(nIndex + nCount, -1);   // grow so nIndex is valid
+            ::lemon::array::set_size(a, nIndex + nCount, -1);   // grow so nIndex is valid
          }
          else
          {
             // inserting in the middle of the array
-            ::count nOldSize = m_nSize;
-            ::lemon::array::set_size(a, m_nSize + nCount, -1);  // grow it to new size
+            ::count nOldSize = a.m_nSize;
+            ::lemon::array::set_size(a, a.m_nSize + nCount, -1);  // grow it to new size
             // destroy intial data before copying over it
             // shift old data up to fill gap
-            ::ca2::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
-               m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
+            ::ca2::memmove_s(a.m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(ARRAY::BASE_TYPE),
+               a.m_pData + nIndex, (nOldSize-nIndex) * sizeof(ARRAY::BASE_TYPE));
 
             // re-init slots we copied from
-            memset((void *)(m_pData + nIndex), 0, (size_t)nCount * sizeof(TYPE));
+            memset((void *)(a.m_pData + nIndex), 0, (size_t)nCount * sizeof(ARRAY::BASE_TYPE));
 #undef new
             for( int32_t i = 0; i < nCount; i++ )
-               ::new( (void *)( m_pData + nIndex + i ) ) TYPE;
+               ::new( (void *)(a.m_pData + nIndex + i ) ) ARRAY::BASE_TYPE;
 #define new DEBUG_NEW
          }
 
          // insert new value in the gap
-         ASSERT(nIndex + nCount <= m_nSize);
+         ASSERT(nIndex + nCount <= a.m_nSize);
 
          index nIndexParam = nIndex;
 
          while (nCount--)
-            m_pData[nIndex++] = newElement;
+            a.m_pData[nIndex++] = newElement;
 
          return nIndexParam;
 

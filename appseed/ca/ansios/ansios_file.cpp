@@ -6,7 +6,7 @@
 #include <unistd.h>
 #define PACKAGE "mmap"
 
-void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, vsstring & str);
+void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str);
 
 void ensure_file_size(int32_t fd, size_t iSize)
 {
@@ -85,10 +85,10 @@ bool file_put_contents_dup(const char * path, const char * contents, ::count len
 
 
 
-vsstring file_as_string_dup(const char * path)
+string file_as_string_dup(const char * path)
 {
 
-   vsstring str;
+   string str;
 
 
    FILE * f = fopen(path, "rb");
@@ -111,7 +111,7 @@ vsstring file_as_string_dup(const char * path)
 }
 
 
-bool file_get_memory_dup(simple_memory & memory, const char * path)
+bool file_get_memory_dup(::primitive::memory & memory, const char * path)
 {
 
    FILE * f = fopen(path, "rb");
@@ -224,7 +224,7 @@ uint64_t file_length_dup(const char * path)
 
 
 
-vsstring file_module_path_dup()
+string file_module_path_dup()
 {
 
    return "/ca2/stage";
@@ -246,14 +246,14 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
    if(hfile1 == NULL)
       return false;
 
-   vsstring strVersion;
+   string strVersion;
 
 
    file_read_ex1_string_dup(hfile1, NULL, strVersion);
    int32_t n;
-   vsstring strRelative;
-   vsstring strMd5;
-   vsstring strMd5New;
+   string strRelative;
+   string strMd5;
+   string strMd5New;
    int32_t iBufSize = 1024 * 1024;
    uchar * buf = (uchar *)  _ca_alloc(iBufSize);
    int32_t iLen;
@@ -270,7 +270,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
          file_read_ex1_string_dup(hfile1, NULL, strMd5);
          ctx.initialize();
          file_read_ex1_string_dup(hfile1, &ctx, strRelative);
-         vsstring strPath = dir::path(pszDir, strRelative);
+         string strPath = dir::path(pszDir, strRelative);
          dir::mk(dir::name(strPath));
          hfile2 = fopen(strPath, "wb");
          if(hfile2 == NULL)
@@ -291,7 +291,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
          ctx.finalize();
 
          strMd5New.clear();
-         vsstring strFormat;
+         string strFormat;
          strMd5New = ctx.to_string();
          if(strMd5.CompareNoCase(strMd5New) != 0)
             return false;
@@ -306,7 +306,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
 
 void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int32_t & iNumber)
 {
-   vsstring str;
+   string str;
    char ch;
    ::count dwRead;
    while(((dwRead = fread(&ch, 1, 1, (FILE *) hfile))) && dwRead == 1)
@@ -329,7 +329,7 @@ void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int32_t & iNumber)
    iNumber = atoi_dup(str);
 }
 
-void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, vsstring & str)
+void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str)
 {
    int32_t iLen;
    file_read_n_number_dup(hfile, pctx, iLen);
@@ -442,7 +442,7 @@ CLASS_DECL_c bool file_is_equal_path(const char * psz1, const char * psz2)
 }
 
 
-CLASS_DECL_c vsstring file_get_mozilla_firefox_plugin_container_path()
+CLASS_DECL_c string file_get_mozilla_firefox_plugin_container_path()
 {
    throw " todo ";
 

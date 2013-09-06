@@ -377,14 +377,15 @@ namespace md5
    }
 
 
-   vsstring md5::to_string()
+   string md5::to_string()
    {
 
-	  vsstring str;
-	  str.alloc(32);
+	   string str;
+      str.GetBufferSetLength(32);
       char * psz = (char *) (const char *) str;
-	  lo_hex_from(psz, m_uchaDigest, 16);
+      hex::lower_from(psz, m_uchaDigest, 16);
       psz[32] = '\0';
+      str.ReleaseBuffer();
       return str;
 
    }
@@ -392,7 +393,7 @@ namespace md5
 } // namespace md5
 
 
-vsstring get_file_md5_by_map(const char * path)
+string get_file_md5_by_map(const char * path)
 {
 
 #ifdef METROWIN
@@ -593,7 +594,7 @@ vsstring get_file_md5_by_map(const char * path)
 
 }
 
-vsstring get_file_md5_by_read(const char * path)
+string get_file_md5_by_read(const char * path)
 {
 
 
@@ -728,10 +729,10 @@ vsstring get_file_md5_by_read(const char * path)
 }
 
 
-vsstring get_file_md5(const char * path)
+string get_file_md5(const char * path)
 {
 
-   vsstring strMd5 = get_file_md5_by_map(path);
+   string strMd5 = get_file_md5_by_map(path);
 
    if(strMd5.has_char())
       return strMd5;
@@ -743,7 +744,7 @@ vsstring get_file_md5(const char * path)
 
 
 
-vsstring get_md5(const void * data, ::count c)
+string get_md5(const void * data, ::count c)
 {
 
    if(c < 0)

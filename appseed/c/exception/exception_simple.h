@@ -9,7 +9,7 @@ class CLASS_DECL_c simple_exception :
 public:
    
    
-   vsstring       m_strMessage;
+   string       m_strMessage;
 
 
    simple_exception(sp(base_application) papp);
@@ -17,7 +17,7 @@ public:
    virtual ~simple_exception();
 
 
-   virtual vsstring get_error_message();
+   virtual string get_error_message();
 
 
 };

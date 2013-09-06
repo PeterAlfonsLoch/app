@@ -275,7 +275,7 @@ SRegInfo *next, *temp;
           break;
         default:
           next->op = ReBkBrack;
-          next->param0 = (int32_t) ::str::hex::from_char(&expr[i+1]);
+          next->param0 = (int32_t) ::hex::from_char(&expr[i+1]);
           if (next->param0 < 0 || next->param0 > 9){
             index retEnd;
             next->op = ReSymb;
@@ -322,14 +322,14 @@ SRegInfo *next, *temp;
       if (expr[i] == '?' && expr[i+1] == '#' &&
           expr[i+2] >= '0' && expr[i+2] <= '9'){
         next->op = ReBehind;
-        next->param0 = (int32_t) ::str::hex::from_char(&expr[i+2]);
+        next->param0 = (int32_t) ::hex::from_char(&expr[i+2]);
         i += 2;
         continue;
       };
       if (expr[i] == '?' && expr[i+1] == '~' &&
           expr[i+2]>='0' && expr[i+2]<='9'){
         next->op = ReNBehind;
-        next->param0 = (int32_t) ::str::hex::from_char(&expr[i+2]);
+        next->param0 = (int32_t) ::hex::from_char(&expr[i+2]);
         i += 2;
         continue;
       };

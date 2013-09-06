@@ -254,7 +254,7 @@ namespace bergedge
          COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam.m_lparam;
          if(pstruct->dwData == 1984)
          {
-            ::primitive::memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
+            ::::file::memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
             string strPath;
             file.to_string(strPath);
             System.open_by_file_extension(iEdge, strPath);

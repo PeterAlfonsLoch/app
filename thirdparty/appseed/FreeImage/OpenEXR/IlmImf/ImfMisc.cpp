@@ -41,6 +41,7 @@
 //-----------------------------------------------------------------------------
 
 #include "ImfFramework.h"
+#include "ImfName.h"
 
 namespace Imf {
 
@@ -90,7 +91,7 @@ numSamples (int s, int a, int b)
 
 size_t
 bytesPerLineTable (const Header &header,
-		   raw_array<size_t> &bytesPerLine)
+		   numeric_array<size_t> &bytesPerLine)
 {
     const Box2i &dataWindow = header.dataWindow();
     const ChannelList &channels = header.channels();
@@ -121,9 +122,9 @@ bytesPerLineTable (const Header &header,
 
 
 void
-offsetInLineBufferTable (const raw_array < size_t > &bytesPerLine,
+offsetInLineBufferTable (const numeric_array < size_t > &bytesPerLine,
 			 int linesInLineBuffer,
-			 raw_array < size_t > &offsetInLineBuffer)
+			 numeric_array < size_t > &offsetInLineBuffer)
 {
     offsetInLineBuffer.resize (bytesPerLine.size());
 
@@ -391,7 +392,7 @@ copyIntoFrameBuffer (const char *& readPtr,
 
                 while (writePtr <= endPtr)
                 {
-                    for (size_t i = 0; i < sizeof (unsigned int); ++i)
+                    for (index i = 0; i < sizeof (unsigned int); ++i)
                         writePtr[i] = readPtr[i];
 
                     readPtr += sizeof (unsigned int);
@@ -416,7 +417,7 @@ copyIntoFrameBuffer (const char *& readPtr,
                 {
                     float f;
 
-                    for (size_t i = 0; i < sizeof (float); ++i)
+                    for (index i = 0; i < sizeof (float); ++i)
                         ((char *)&f)[i] = readPtr[i];
 
                     *(unsigned int *)writePtr = floatToUint (f);
@@ -440,7 +441,7 @@ copyIntoFrameBuffer (const char *& readPtr,
                 {
                     unsigned int ui;
 
-                    for (size_t i = 0; i < sizeof (unsigned int); ++i)
+                    for (index i = 0; i < sizeof (unsigned int); ++i)
                         ((char *)&ui)[i] = readPtr[i];
 
                     *(half *) writePtr = uintToHalf (ui);
@@ -465,7 +466,7 @@ copyIntoFrameBuffer (const char *& readPtr,
                 {
                     float f;
 
-                    for (size_t i = 0; i < sizeof (float); ++i)
+                    for (index i = 0; i < sizeof (float); ++i)
                         ((char *)&f)[i] = readPtr[i];
 
                     *(half *) writePtr = floatToHalf (f);
@@ -489,7 +490,7 @@ copyIntoFrameBuffer (const char *& readPtr,
                 {
                     unsigned int ui;
 
-                    for (size_t i = 0; i < sizeof (unsigned int); ++i)
+                    for (index i = 0; i < sizeof (unsigned int); ++i)
                         ((char *)&ui)[i] = readPtr[i];
 
                     *(float *) writePtr = float (ui);
@@ -513,7 +514,7 @@ copyIntoFrameBuffer (const char *& readPtr,
 
                 while (writePtr <= endPtr)
                 {
-                    for (size_t i = 0; i < sizeof (float); ++i)
+                    for (index i = 0; i < sizeof (float); ++i)
                         writePtr[i] = readPtr[i];
 
                     readPtr += sizeof (float);
@@ -671,7 +672,7 @@ copyFromFrameBuffer (char *& writePtr,
 
             while (readPtr <= endPtr)
             {
-                for (size_t i = 0; i < sizeof (unsigned int); ++i)
+                for (index i = 0; i < sizeof (unsigned int); ++i)
                     *writePtr++ = readPtr[i];
 
                 readPtr += xStride;
@@ -692,7 +693,7 @@ copyFromFrameBuffer (char *& writePtr,
 
             while (readPtr <= endPtr)
             {
-                for (size_t i = 0; i < sizeof (float); ++i)
+                for (index i = 0; i < sizeof (float); ++i)
                     *writePtr++ = readPtr[i];
 
                 readPtr += xStride;
@@ -761,7 +762,7 @@ fillChannelWithZeroes (char *& writePtr,
             {
                 static const unsigned int ui = 0;
 
-                for (size_t i = 0; i < sizeof (ui); ++i)
+                for (index i = 0; i < sizeof (ui); ++i)
                     *writePtr++ = ((char *) &ui)[i];
             }
             break;
@@ -781,7 +782,7 @@ fillChannelWithZeroes (char *& writePtr,
             {
                 static const float f = 0;
 
-                for (size_t i = 0; i < sizeof (f); ++i)
+                for (index i = 0; i < sizeof (f); ++i)
                     *writePtr++ = ((char *) &f)[i];
             }
             break;
@@ -794,3 +795,5 @@ fillChannelWithZeroes (char *& writePtr,
 }
 
 } // namespace Imf
+
+

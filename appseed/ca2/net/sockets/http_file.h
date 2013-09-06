@@ -34,7 +34,7 @@ namespace http
       }
 
 
-      inline file & operator << (::primitive::memory_file & memfile)
+      inline file & operator << (::::file::memory_buffer & memfile)
       {
 
          write(memfile.get_data(), (::primitive::memory_size) memfile.get_length());

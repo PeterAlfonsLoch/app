@@ -1,4 +1,5 @@
 #include "framework.h"
+#undef new
 #if defined(WINDOWS)
 #include <gdiplus.h>
 #endif
@@ -31,7 +32,7 @@ void simple_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers)
 #endif // defined WINDOWS
 
 
-namespace spa
+namespace spa_install
 {
 
    plugin::plugin()
@@ -180,7 +181,7 @@ namespace spa
             try
             {
 
-               vsstring str;
+               string str;
 
       #if defined(_AMD64_) || defined(_LP64)
 
@@ -198,7 +199,7 @@ namespace spa
 
                ::hotplugin::container_launcher launcher(str);
 
-               vsstring strChannel = "\\ca2\\ca2plugin-container-";
+               string strChannel = "\\ca2\\ca2plugin-container-";
 
                strChannel += str;
 
@@ -346,7 +347,7 @@ namespace spa
 
       {
 
-         XNode node;
+         ::xml::node node;
 
          // remove install tag : should be turned into a function dependant of spalib at maximum
 
@@ -356,30 +357,30 @@ namespace spa
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         XNode * lpnodeVersion = node.GetChild("basis");
+         ::xml::node * lpnodeVersion = node.GetChild("basis");
 
 #else
 
-         XNode * lpnodeVersion = node.GetChild("stage");
+         ::xml::node * lpnodeVersion = node.GetChild("stage");
 
 #endif
 
          if(lpnodeVersion == NULL)
             goto install;
 
-         vsstring strBuild = get_latest_build_number(NULL);
+         string strBuild = get_latest_build_number(NULL);
 
-         XNode * lpnodeInstalled = node.GetChildByAttr("installed", "build", strBuild);
+         ::xml::node * lpnodeInstalled = node.GetChildByAttr("installed", "build", strBuild);
 
          if(lpnodeInstalled == NULL)
             goto install;
 
-         XNode * lpnodeType = lpnodeInstalled->GetChild(pszType);
+         ::xml::node * lpnodeType = lpnodeInstalled->GetChild(pszType);
 
          if(lpnodeType == NULL)
             goto install;
 
-         XNode * pnode = lpnodeType->GetChildByAttr(pszType, "id", pszInstall);
+         ::xml::node * pnode = lpnodeType->GetChildByAttr(pszType, "id", pszInstall);
 
          if(pnode == NULL)
             goto install;
@@ -491,12 +492,12 @@ install:
       //gWindow.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
         //     g         , lprect->left - ::hotplugin::plugin::m_rect.left  , lprect->top - ::hotplugin::plugin::m_rect.top    , SRCCOPY);
 
-      /*vsstring strx = itoa_dup(lprect->left);
-      vsstring stry = itoa_dup(lprect->top);
+      /*string strx = itoa_dup(lprect->left);
+      string stry = itoa_dup(lprect->top);
       TextOut(hdcWindow, lprect->left + 10, lprect->top + 10, strx, strx.get_length());
       TextOut(hdcWindow, lprect->left + 110, lprect->top + 10, stry, stry.get_length());
-      vsstring strx2 = itoa_dup(m_rect.left);
-      vsstring stry2 = itoa_dup(m_rect.top);
+      string strx2 = itoa_dup(m_rect.left);
+      string stry2 = itoa_dup(m_rect.top);
       TextOut(hdcWindow, lprect->left + 210, lprect->top + 10, strx2, strx2.get_length());
       TextOut(hdcWindow, lprect->left + 310, lprect->top + 10, stry2, stry2.get_length());
       */
@@ -597,7 +598,7 @@ install:
 
 #else
 
-               vsstring str;
+               string str;
                wchar_t wsz[32];
 
                BYTE baState[256];
@@ -696,7 +697,7 @@ install:
 
          int32_t iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
          iTell--;
-         vsstring strLine;
+         string strLine;
          int32_t iSkip = 0;
          bool bNormal = false;
          bool bBold = false;
@@ -798,7 +799,7 @@ install:
          if(message == ::hotplugin::message_open_url)
          {
 
-            vsstring strUrl((const char *) pdata, len);
+            string strUrl((const char *) pdata, len);
 
             open_url(strUrl);
 
@@ -885,12 +886,12 @@ install:
       else
       {
 
-         vsstring strPrompt;
+         string strPrompt;
 
          if(m_phost->m_puchMemory != NULL)
          {
 
-            strPrompt = vsstring((const char *) m_phost->m_puchMemory, m_phost->m_countMemory);
+            strPrompt = string((const char *) m_phost->m_puchMemory, m_phost->m_countMemory);
 
          }
          else
@@ -920,7 +921,7 @@ install:
 
          }
 
-         vsstring strLocale;
+         string strLocale;
 
          if(strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
             strLocale = str_get_system_default_locale_dup();
@@ -928,7 +929,7 @@ install:
          if(strLocale.is_empty())
             strLocale = "en";
 
-         vsstring strSchema;
+         string strSchema;
 
          if(strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
             strSchema = str_get_system_default_schema_dup();
@@ -981,10 +982,10 @@ install:
 
    }
 
-   vsstring plugin::defer_get_plugin()
+   string plugin::defer_get_plugin()
    {
 
-      vsstring str;
+      string str;
 
       int32_t iAttemptStream = 0;
       int32_t iAttemptUrl = 0;
@@ -1030,10 +1031,10 @@ restart:
 
    }
 
-   vsstring plugin::defer_get(const char * pszUrl)
+   string plugin::defer_get(const char * pszUrl)
    {
 
-      vsstring str;
+      string str;
 
       int32_t iAttempt = 0;
 
@@ -1112,10 +1113,10 @@ restart:
 
 
 
-} // namespace spa
+} // namespace spa_install
 
 
 ::hotplugin::plugin * new_hotplugin()
 {
-   return new ::spa::plugin();
+   return new ::spa_install::plugin();
 }

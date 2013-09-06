@@ -99,9 +99,9 @@ protected:
   scheme_impl *baseScheme;
 
   array< FileTypeChooser *> chooserVector;
-  string_to_string_map paramDefaultHash;
-  string_to_string_map paramHash;
-  string_to_string_map paramDescriptionHash;
+  string_to_string paramDefaultHash;
+  string_to_string paramHash;
+  string_to_string paramDescriptionHash;
   stringa paramVector;
   stringa importVector;
   string    m_strSourceLocation;

@@ -735,13 +735,13 @@ string::string(const wchar_t* pszSrc ) :
 }
 
 
-string::string(const vsstring & str ) :
+/*string::string(const string & str ) :
    simple_string( string_trait::GetDefaultManager() )
 {
 
    *this = str.m_psz;
 
-}
+}*/
 
 
 string::string( const string_interface & str ) :
@@ -890,12 +890,14 @@ string& string::operator=(const string_interface & str )
    return *this;
 }
 
+/*
 string& string::operator=(string strSrc )
 {
    simple_string::operator=( strSrc );
 
    return *this;
 }
+*/
 
 string& string::operator=(const char * pszSrc )
 {
@@ -904,9 +906,9 @@ string& string::operator=(const char * pszSrc )
    return *this;
 }
 
-string& string::operator=(const vsstring & str)
+string& string::operator=(const string & str)
 {
-   simple_string::operator=( str.m_psz );
+   simple_string::operator=( str.c_str() );
 
    return *this;
 }
@@ -2524,7 +2526,7 @@ void string::FormatMessageV(const char * pszFormat, va_list* pArgList )
    if(dwResult == 0)
    {
 
-      ThrowMemoryException();
+      throw_memory_exception();
 
    }
 
@@ -2551,7 +2553,7 @@ BSTR string::AllocSysString() const
    BSTR bstrResult = string_trait::AllocSysString( GetString(), get_length() );
    if( bstrResult == NULL )
    {
-      ThrowMemoryException();
+      throw_memory_exception();
    }
    return( bstrResult );
 }
@@ -2563,7 +2565,7 @@ BSTR string::SetSysString(BSTR* pbstr ) const
    if( !string_trait::ReAllocSysString( GetString(), pbstr,
       get_length() ) )
    {
-      ThrowMemoryException();
+      throw_memory_exception();
    }
    ASSERT( *pbstr != NULL );
    return( *pbstr );

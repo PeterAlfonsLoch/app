@@ -1,16 +1,18 @@
 #include "framework.h"
 
 
-void sprint_hex(char * sz, int32_t iValue)
+/*void sprint_hex(char * sz, int32_t iValue)
 {
    int32_t i = 8;
    sz[i] = '\0';
    i--;
    for(; i >= 0; i--)
    {
-      sz[i] = to_hi_hex_char((iValue >> (4 * (7 - i))) &  0xf);
+      sz[i] = hex::from((iValue >> (4 * (7 - i))) &  0xf);
    }
 }
+*/
+
 
 bool file_put_contents_dup(const char * path, const ::primitive::memory_base & memory)
 {
@@ -34,12 +36,12 @@ int_bool get_temp_file_name_dup(char * szRet, ::count iBufferSize, const char * 
 
 
 
-vsstring file_title_dup(const char * path)
+string file_title_dup(const char * path)
 {
-   vsstring str(path);
+   string str(path);
    size_t iPos;
-   size_t iPos1 = str.rfind('\\');
-   size_t iPos2 = str.rfind('/');
+   size_t iPos1 = str.reverse_find('\\');
+   size_t iPos2 = str.reverse_find('/');
    if(iPos1 != -1 && iPos2 != -1)
    {
       if(iPos1 > iPos2)
@@ -67,9 +69,9 @@ vsstring file_title_dup(const char * path)
 }
 
 
-vsstring file_name_dup(const char * path)
+string file_name_dup(const char * path)
 {
-   vsstring str = file_title_dup(path);
+   string str = file_title_dup(path);
    size_t iPos = str.find('.');
    if(iPos != -1)
    {

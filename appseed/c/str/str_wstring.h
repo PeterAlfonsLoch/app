@@ -21,7 +21,7 @@ protected:
 
 
    friend class verisimple_wstring;
-   friend class wstringtou;
+   friend class wtostring;
 
 
    static wchar_t * get_nil();
@@ -79,7 +79,7 @@ class CLASS_DECL_c verisimple_wstring
 protected:
 
 
-   friend class wstringtou;
+   friend class wtostring;
 
    // it is and should be really a pointer to the m_pwsz of a wstring_data alloced in heap
    // better always use wstring_data::alloc and wstring_data::free

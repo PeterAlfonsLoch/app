@@ -41,7 +41,7 @@ namespace ca2
 
       const char * pszEnd = NULL;
 
-      vsstring strBin = consume_param(pszCmdLine, &pszEnd);
+      string strBin = consume_param(pszCmdLine, &pszEnd);
 
 
 
@@ -82,7 +82,7 @@ namespace ca2
 
       const char * pszEnd = NULL;
 
-      vsstring strBin = consume_param(pszCmdLine, &pszEnd);
+      string strBin = consume_param(pszCmdLine, &pszEnd);
 
 #ifndef METROWIN
 

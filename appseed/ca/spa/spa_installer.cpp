@@ -35,7 +35,7 @@ typedef struct _PROCESS_BASIC_INFORMATION64 {
 typedef NTSTATUS (NTAPI *_NtQueryInformationProcess)(HANDLE ProcessHandle, uint32_t ProcessInformationClass, PVOID ProcessInformation, uint32_t ProcessInformationLength, PDWORD ReturnLength);
 
 
-vsstring get_display_error(uint32_t NTStatusMessage);
+string get_display_error(uint32_t NTStatusMessage);
 
 PPEB GetPebAddress(HANDLE handleProcess)
 {
@@ -45,7 +45,7 @@ PPEB GetPebAddress(HANDLE handleProcess)
    DWORD dwInLen = sizeof(pbi);
    DWORD dwOutLen = 0xffffffff;
    uint32_t dwStatus = NtQueryInformationProcess(handleProcess, ProcessBasicInformation, &pbi, dwInLen, &dwOutLen);
-   vsstring strError = get_display_error(dwStatus);
+   string strError = get_display_error(dwStatus);
    if((dwStatus & 3) == 3)
    {
       return NULL;
@@ -54,7 +54,7 @@ PPEB GetPebAddress(HANDLE handleProcess)
 }
 
 
-vsstring get_display_error(uint32_t NTStatusMessage)
+string get_display_error(uint32_t NTStatusMessage)
 {
 
    return get_system_error_message(NTStatusMessage);
@@ -62,7 +62,7 @@ vsstring get_display_error(uint32_t NTStatusMessage)
 }
 
 
-vsstring get_command_line(HANDLE handleProcess)
+string get_command_line(HANDLE handleProcess)
 {
 
    PPEB ppeb = GetPebAddress(handleProcess);
@@ -93,7 +93,7 @@ vsstring get_command_line(HANDLE handleProcess)
       return "";
    }
    commandLineContents[ustrCommandLine.Length / sizeof(WCHAR)] = L'\0';
-   vsstring str = utf16_to_8_dup(commandLineContents);
+   string str = ::str::international::unicode_to_utf8(commandLineContents);
    _ca_free(commandLineContents, 0);
    return str;
 }
@@ -108,7 +108,7 @@ int32_t run_file(const char * pszFile, int32_t nCmdShow);
 
 
 
-namespace spa
+namespace spa_install
 {
 
 
@@ -252,7 +252,7 @@ install_begin:;
 
          int32_t iHostRetry = 0;
 RetryHost:
-         vsstring strSpaHost;
+         string strSpaHost;
          iRet= calc_host(strSpaHost, iHostRetry);
          if(iRet < 0)
             return iRet;
@@ -269,37 +269,37 @@ RetryHost:
          set_progress(0.3);
 
 #ifdef WINDOWSEX
-         vsstring path;
+         string path;
          path.alloc(1024 * 4);
          ::GetModuleFileNameA(NULL, (char *) (const char *) path, 1024 * 4);
 #endif
 //         int32_t iRetryDeleteSpa = 0;
-         vsstring strFile;
+         string strFile;
 
-         vsstring strUrl;
+         string strUrl;
 
 #ifdef WINDOWSEX
          HKEY hkey;
 
 
          strUrl = m_strSpaIgnitionBaseUrl + "/install_filter_list";
-         vsstring strInstallFilterList = ms_get_dup(strUrl);
-         XNode nodeInstallFilter;
+         string strInstallFilterList = ms_get_dup(strUrl);
+         ::xml::node nodeInstallFilter;
          nodeInstallFilter.Load(strInstallFilterList);
          strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
          strUrl += m_strApplicationId;
          strUrl += "&key=install_filter";
-         vsstring strInstallFilter = ms_get_dup(strUrl);
+         string strInstallFilter = ms_get_dup(strUrl);
          for(int32_t ui = 0; ui < nodeInstallFilter.childs.get_count(); ui++)
          {
-            LPXNode lpchild = nodeInstallFilter.childs[ui];
-            vsstring strId;
+            ::xml::node * lpchild = nodeInstallFilter.childs[ui];
+            string strId;
             strId = lpchild->GetAttrValue("id");
-            vsstring strFilter;
+            string strFilter;
             strFilter = "|" + strId + "|"; // ex. "|multimedia|"
-            if(strInstallFilter.find(strFilter) != vsstring::npos)
+            if(strInstallFilter.find(strFilter) != string::npos)
             {
-               vsstring strKey;
+               string strKey;
                strKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\ca2_" + strId;
 
                if(::RegCreateKey(HKEY_LOCAL_MACHINE,
@@ -313,7 +313,7 @@ RetryHost:
                      REG_SZ,
                      (const BYTE *) (const char *) strFile,
                      (uint32_t) strFile.length());
-                  vsstring strDisplayName;
+                  string strDisplayName;
                   strDisplayName = "ca2 - ";
                   strKey = "install_filter_title_" + strId;
                   strDisplayName += load_string(strKey, strId);
@@ -347,29 +347,29 @@ RetryHost:
          set_progress(0.4);
 
          stringa straFileList;
-         simple_string_to_intptr mapLen;
-         simple_string_to_string mapMd5;
-         simple_string_to_intptr mapGzLen;
-         simple_string_to_intptr mapFlag;
+         string_to_intptr mapLen;
+         string_to_string mapMd5;
+         string_to_intptr mapGzLen;
+         string_to_intptr mapFlag;
 
 
 
-         XNode nodeInstall;
+         ::xml::node nodeInstall;
 
          nodeInstall.Load(file_as_string_dup(dir::appdata("spa_install.xml")));
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-         LPXNode lpnodeVersion = nodeInstall.GetChild("basis");
+         ::xml::node * lpnodeVersion = nodeInstall.GetChild("basis");
 #else
-         LPXNode lpnodeVersion = nodeInstall.GetChild("stage");
+         ::xml::node * lpnodeVersion = nodeInstall.GetChild("stage");
 #endif
 
          trace("***Downloading file list.");
 
-         vsstring strBuild;
+         string strBuild;
          strBuild = str_replace_dup(m_strBuild, " ", "_");
          strBuild = str_replace_dup(strBuild, ":", "-");
-         vsstring strIndexPath;
+         string strIndexPath;
          if(!ca2_fy_url(strIndexPath, ("app/stage/metastage/index-"+strBuild+".spa.bz"), false, -1, NULL, -1, true))
          {
             trace("Failed to download file list!");
@@ -378,7 +378,7 @@ RetryHost:
             goto RetryHost;
          }
          strUrl = "http://" + strSpaHost + "/stage/app/stage/metastage/index-"+strBuild+".md5";
-         vsstring strCgclIndexMd5 = ms_get_dup(strUrl, false);
+         string strCgclIndexMd5 = ms_get_dup(strUrl, false);
          if(strCgclIndexMd5.length() != 32
             || stricmp_dup(get_file_md5(strIndexPath), strCgclIndexMd5) != 0)
          {
@@ -419,7 +419,7 @@ RetryHost:
             for(int32_t ui = 0; ui < lpnodeVersion->childs.get_count(); ui++)
             {
 
-               LPXNode lpnodeInstalled = lpnodeVersion->childs[ui];
+               ::xml::node * lpnodeInstalled = lpnodeVersion->childs[ui];
 
                if(!strcmp(lpnodeVersion->name, "installed"))
                {
@@ -427,12 +427,12 @@ RetryHost:
                   for(int32_t ui = 0; ui < lpnodeInstalled->childs.get_count(); ui++)
                   {
 
-                     LPXNode lpnodeType = lpnodeInstalled->childs[ui];
+                     ::xml::node * lpnodeType = lpnodeInstalled->childs[ui];
 
                      for(int32_t ui = 0; ui < lpnodeType->childs.get_count(); ui++)
                      {
 
-                        vsstring strId = lpnodeType->childs[ui]->GetAttrValue("id");
+                        string strId = lpnodeType->childs[ui]->GetAttrValue("id");
 
                         if(strcmp_dup(strId, m_strApplicationId) != 0)
                         {
@@ -470,9 +470,9 @@ RetryHost:
 
          }
 
-         /*vsstring strType;
-         vsstring strStart;
-         XNode nodeSpaStart;
+         /*string strType;
+         string strStart;
+         ::xml::node nodeSpaStart;
          nodeSpaStart.Load(file_as_string_dup(dir::appdata("spa_start.xml")));
 
          for(int32_t ui = 0; ui < nodeSpaStart.childs.get_count(); ui++)
@@ -490,7 +490,7 @@ RetryHost:
                for(int32_t ui = 0; ui < lpnodeInstalled->childs.get_count(); ui++)
                {
 
-                  LPXNode lpnodeType = lpnodeInstalled->childs[ui];
+                  ::xml::node * lpnodeType = lpnodeInstalled->childs[ui];
 
                   if(lpnodeType->name == strType)
                   {
@@ -498,7 +498,7 @@ RetryHost:
                      for(int32_t ui = 0; ui < lpnodeType->childs.get_count(); ui++)
                      {
 
-                        vsstring strId = lpnodeType->childs[ui]->GetAttrValue("id");
+                        string strId = lpnodeType->childs[ui]->GetAttrValue("id");
 
                         if(strId == strStart)
                         {
@@ -521,7 +521,7 @@ RetryHost:
             }
             if(bGet)
             {
-               vsstring strGet;
+               string strGet;
                strGet = "app/stage/metastage/";
                strGet += strStart;
                strGet += ".spa";
@@ -565,7 +565,7 @@ RetryHost:
          {
             if(!m_bStarterStart)
                return 0;
-            vsstring strCommand;
+            string strCommand;
             bool bAsk;
             bool bRestart;
             for(int32_t i = 0; i < m_straTerminateProcesses.get_count(); i++)
@@ -576,7 +576,7 @@ RetryHost:
                }
                bAsk = true;
                bRestart = true;
-               vsstring strPath = m_straTerminateProcesses.element_at(i);
+               string strPath = m_straTerminateProcesses.element_at(i);
                if(str_ends_ci_dup(strPath, "\\app-install.exe") && stristr_dup(strPath, "\\ca2\\") != NULL)
                {
                   bAsk = false;
@@ -596,7 +596,7 @@ RetryHost:
                bAsk = false;
                bRestart = false;
 
-               vsstring str;
+               string str;
                str = "Should ca Terminate and try to restart process \"";
                str += strPath;
                str += "\"?";
@@ -662,7 +662,7 @@ RetryHost:
 
             if(oswindowSpaBoot != NULL)
             {
-               vsstring str = m_straRestartCommandLine.encode_v16();
+               string str = m_straRestartCommandLine.encode_v16();
                COPYDATASTRUCT cds;
                memset_dup(&cds, 0, sizeof(cds));
                cds.dwData = 15111984;
@@ -772,7 +772,7 @@ RetryHost:
 
 
 
-   ::count installer::download_file_list(stringa & stringa, simple_string_to_intptr & mapLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag)
+   ::count installer::download_file_list(stringa & stringa, string_to_intptr & mapLen, string_to_string & mapMd5, string_to_intptr & mapGzLen, string_to_intptr & mapFlag)
    {
 
       class stringa straExpandFileSet;
@@ -789,13 +789,13 @@ RetryHost:
 
 
 
-      vsstring str;
+      string str;
 
-      vsstring strMd5;
+      string strMd5;
 
-      vsstring strStageInplace;
+      string strStageInplace;
 
-      vsstring strStageInplaceFile;
+      string strStageInplaceFile;
 
       int_ptr iLen;
 
@@ -818,7 +818,7 @@ RetryHost:
       for(; i < stringa.get_count();)
       {
 
-         vsstring strCurrent  = stringa[i];
+         string strCurrent  = stringa[i];
 
          bExpandFileSet = strCurrent.ends_ci(".expand_fileset");
 
@@ -849,9 +849,9 @@ RetryHost:
 
          str += straExpandFileSet[i];
 
-         vsstring strCurrent  = straExpandFileSet[i];
+         string strCurrent  = straExpandFileSet[i];
 
-         vsstring str2 = dir::name(str);
+         string str2 = dir::name(str);
 
          if(str2.substr(0, m_strInstall.length()) == m_strInstall)
          {
@@ -864,7 +864,7 @@ RetryHost:
 
          str += ".bz";
 
-         vsstring str3  = str;
+         string str3  = str;
 
          strMd5         = mapMd5[strCurrent];
 
@@ -876,7 +876,7 @@ RetryHost:
 
          str += strMd5;
 
-         vsstring strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent, strMd5);
+         string strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent, strMd5);
 
          strStageInplaceFile = ca2inplace_get_file(strCurrent);
 
@@ -914,15 +914,15 @@ RetryHost:
 
             m_dProgress = m_dProgress2;
 
-            vsstring strRelative = dir::path(dir::name(strCurrent), file_name_dup(strCurrent));
+            string strRelative = dir::path(dir::name(strCurrent), file_name_dup(strCurrent));
 
-            vsstring strStageInplace2 = ca2inplace_get_dir(strRelative) + ca2inplace_get_file(strRelative);
+            string strStageInplace2 = ca2inplace_get_dir(strRelative) + ca2inplace_get_file(strRelative);
 
             file_ftd_dup(strStageInplace2, strStageInplace);
 
          }
 
-         vsstring strExpand = strCurrent;
+         string strExpand = strCurrent;
 
          strExpand += ".spa";
 
@@ -955,7 +955,7 @@ RetryHost:
       for(i = 0; i < stringa.get_count(); i++)
       {
 
-         vsstring strCurrent  = stringa[i];
+         string strCurrent  = stringa[i];
 
          iGzLen         = mapGzLen[strCurrent];
 
@@ -963,7 +963,7 @@ RetryHost:
 
          str += strCurrent;
 
-         vsstring str2 = dir::name(str);
+         string str2 = dir::name(str);
 
          if(str2.substr(0, m_strInstall.length()) == m_strInstall)
          {
@@ -976,7 +976,7 @@ RetryHost:
 
          str += ".bz";
 
-         vsstring str3  = str;
+         string str3  = str;
 
          strMd5         = mapMd5[strCurrent];
 
@@ -986,7 +986,7 @@ RetryHost:
 
          str += strMd5;
 
-         vsstring strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent, strMd5);
+         string strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent, strMd5);
 
          strStageInplaceFile = ca2inplace_get_file(strCurrent);
 
@@ -1060,15 +1060,15 @@ RetryHost:
 
 
 
-   bool installer::get(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen)
+   bool installer::get(const string& url_in, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen)
    {
       if(m_bOfflineInstall)
          return true;
-      vsstring url = url_in;
-      vsstring file;
-      vsstring file2;
-      vsstring dir;
-      vsstring dir2;
+      string url = url_in;
+      string file;
+      string file2;
+      string dir;
+      string dir2;
       dir = dir::element();
       if(dir.substr(dir.size() - 1, 1) != "\\")
       {
@@ -1085,7 +1085,7 @@ RetryHost:
          }
          index oldpos = -1;
          pos = url.find("/");
-         vsstring lastfile;
+         string lastfile;
          while (pos >=0)
          {
             file = url.substr(oldpos + 1, pos - oldpos -1);
@@ -1136,23 +1136,23 @@ RetryHost:
    }
 
 
-   bool installer::download_file(const vsstring& inplaceParam, const vsstring& url_in, bool bExist, bool bCheck, int64_t iLength, const char * pszMd5, int64_t iGzLen, int_ptr & iFlag)
+   bool installer::download_file(const string& inplaceParam, const string& url_in, bool bExist, bool bCheck, int64_t iLength, const char * pszMd5, int64_t iGzLen, int_ptr & iFlag)
    {
 
       if(m_bOfflineInstall)
          return true;
 
-      vsstring url = url_in;
+      string url = url_in;
 
-      vsstring file;
+      string file;
 
-      vsstring file2;
+      string file2;
 
-      vsstring dir;
+      string dir;
 
-      vsstring dir2;
+      string dir2;
 
-      vsstring dir3;
+      string dir3;
 
       dir = dir::element();
 
@@ -1186,7 +1186,7 @@ RetryHost:
 
          pos = url.find("/");
 
-         vsstring lastfile;
+         string lastfile;
 
          while (pos >=0)
          {
@@ -1226,7 +1226,7 @@ RetryHost:
 
       dir::mk(dir);
 
-      vsstring inplace;
+      string inplace;
 
       if(inplaceParam.is_empty())
       {
@@ -1275,9 +1275,9 @@ RetryHost:
 
          // then first try to download and apply patch
 
-         vsstring strOldMd5 = get_file_md5(inplace);
+         string strOldMd5 = get_file_md5(inplace);
 
-         vsstring strNewMd5 = pszMd5;
+         string strNewMd5 = pszMd5;
 
          dir::mk(dir::name((dir + file)));
 
@@ -1294,7 +1294,7 @@ RetryHost:
          while(true)
          {
 
-            vsstring strUrl;
+            string strUrl;
 
             strUrl = "http://spa.api.server.ca2.cc/bspatch?file=";
 
@@ -1308,7 +1308,7 @@ RetryHost:
 
             strUrl += strNewMd5;
 
-            vsstring strBsPatch = dir + file + "." + strOldMd5 + "." + strNewMd5 + ".bspatch";
+            string strBsPatch = dir + file + "." + strOldMd5 + "." + strNewMd5 + ".bspatch";
 
             bOk = ms_download_dup(strUrl, strBsPatch, false, false, &iStatus, &::ms_download_callback, (void *) this);
 
@@ -1378,7 +1378,7 @@ RetryHost:
                }
                else
                {
-                  vsstring strMd5;
+                  string strMd5;
                   strMd5 = get_file_md5((dir3 + file2));
                   bOk = stricmp_dup(strMd5, pszMd5) == 0;
                   //trace("Patch MD5 Hash Verification");
@@ -1508,19 +1508,19 @@ RetryHost:
    }
 
 
-   vsstring installer::ca2_get_dir(LPCSTR lpcszUrl)
+   string installer::ca2_get_dir(LPCSTR lpcszUrl)
    {
-      vsstring url_in(lpcszUrl);
-      vsstring dir;
-      vsstring url;
-      vsstring file;
+      string url_in(lpcszUrl);
+      string dir;
+      string url;
+      string file;
       dir = dir::element();
       if(dir.substr(dir.size() - 1, 1) != "\\")
       {
          dir += "\\";
       }
       dir;
-      vsstring strFind;
+      string strFind;
       index pos = url_in.find(m_strInstall);
       if(pos == 0)
       {
@@ -1532,7 +1532,7 @@ RetryHost:
       }
       index oldpos = -1;
       pos = url.find("/");
-      vsstring lastfile;
+      string lastfile;
       while (pos >=0)
       {
          file = url.substr(oldpos + 1, pos - oldpos -1);
@@ -1548,12 +1548,12 @@ RetryHost:
       return dir;
    }
 
-   vsstring installer::ca2bz_get_dir(LPCSTR lpcszUrl)
+   string installer::ca2bz_get_dir(LPCSTR lpcszUrl)
    {
-      vsstring url_in(lpcszUrl);
-      vsstring dir;
-      vsstring url;
-      vsstring file;
+      string url_in(lpcszUrl);
+      string dir;
+      string url;
+      string file;
       if(m_bInternetInstall)
       {
          dir = dir::path(dir::afterca2(), "time\\bz\\");
@@ -1573,7 +1573,7 @@ RetryHost:
       }
       index oldpos = -1;
       pos = url.find("/");
-      vsstring lastfile;
+      string lastfile;
       while (pos >=0)
       {
          file = url.substr(oldpos + 1, pos - oldpos -1);
@@ -1588,12 +1588,12 @@ RetryHost:
          dir +=  lastfile + "\\";
       return dir;
    }
-   vsstring installer::ca2unbz_get_dir(LPCSTR lpcszUrl)
+   string installer::ca2unbz_get_dir(LPCSTR lpcszUrl)
    {
-      vsstring url_in(lpcszUrl);
-      vsstring dir;
-      vsstring url;
-      vsstring file;
+      string url_in(lpcszUrl);
+      string dir;
+      string url;
+      string file;
       if(m_bInternetInstall)
       {
          dir = dir::path(dir::afterca2(), "time\\unbz\\");
@@ -1613,7 +1613,7 @@ RetryHost:
       }
       index oldpos = -1;
       pos = url.find("/");
-      vsstring lastfile;
+      string lastfile;
       while (pos >=0)
       {
          file = url.substr(oldpos + 1, pos - oldpos -1);
@@ -1630,12 +1630,12 @@ RetryHost:
    }
 
 
-   vsstring installer::ca2inplace_get_dir(LPCSTR lpcszUrl)
+   string installer::ca2inplace_get_dir(LPCSTR lpcszUrl)
    {
-      vsstring url_in(lpcszUrl);
-      vsstring dir;
-      vsstring url;
-      vsstring file;
+      string url_in(lpcszUrl);
+      string dir;
+      string url;
+      string file;
       if(m_bInternetInstall)
       {
          dir = dir::afterca2();
@@ -1659,7 +1659,7 @@ RetryHost:
       }
       index oldpos = -1;
       pos = url.find("/");
-      vsstring lastfile;
+      string lastfile;
       while (pos >=0)
       {
          file = url.substr(oldpos + 1, pos - oldpos -1);
@@ -1676,18 +1676,18 @@ RetryHost:
    }
 
 
-   vsstring installer::ca2_get_file(LPCSTR lpcszUrl)
+   string installer::ca2_get_file(LPCSTR lpcszUrl)
    {
-      vsstring url_in(lpcszUrl);
-      vsstring dir;
-      vsstring url;
-      vsstring file;
+      string url_in(lpcszUrl);
+      string dir;
+      string url;
+      string file;
       dir = dir::element();
       if(dir.substr(dir.size() - 1, 1) != "\\")
       {
          dir += "\\";
       }
-      vsstring strFind;
+      string strFind;
       index pos = url_in.find(m_strInstall);
       if(pos == 0)
       {
@@ -1699,7 +1699,7 @@ RetryHost:
       }
       index oldpos = -1;
       pos = url.find("/");
-      vsstring lastfile;
+      string lastfile;
       while (pos >=0)
       {
          file = url.substr(oldpos + 1, pos - oldpos -1);
@@ -1717,14 +1717,14 @@ RetryHost:
       else
          return file;
    }
-   vsstring installer::ca2bz_get_file(LPCSTR lpcszUrl, const char * pszMd5)
+   string installer::ca2bz_get_file(LPCSTR lpcszUrl, const char * pszMd5)
    {
-      vsstring url_in(lpcszUrl);
-      vsstring dir;
-      vsstring url;
-      vsstring file;
+      string url_in(lpcszUrl);
+      string dir;
+      string url;
+      string file;
       dir = dir::path(dir::afterca2(), "time\\bz\\");
-      vsstring strFind;
+      string strFind;
       index pos = url_in.find(m_strInstall);
       if(pos == 0)
       {
@@ -1736,7 +1736,7 @@ RetryHost:
       }
       index oldpos = -1;
       pos = url.find("/");
-      vsstring lastfile;
+      string lastfile;
       while (pos >=0)
       {
          file = url.substr(oldpos + 1, pos - oldpos -1);
@@ -1765,14 +1765,14 @@ RetryHost:
       }
    }
 
-   vsstring installer::ca2unbz_get_file(LPCSTR lpcszUrl)
+   string installer::ca2unbz_get_file(LPCSTR lpcszUrl)
    {
-      vsstring url_in(lpcszUrl);
-      vsstring dir;
-      vsstring url;
-      vsstring file;
+      string url_in(lpcszUrl);
+      string dir;
+      string url;
+      string file;
       dir = dir::path(dir::afterca2(), "time\\unbz\\");
-      vsstring strFind;
+      string strFind;
       index pos = url_in.find(m_strInstall);
       if(pos == 0)
       {
@@ -1784,7 +1784,7 @@ RetryHost:
       }
       index oldpos = -1;
       pos = url.find("/");
-      vsstring lastfile;
+      string lastfile;
       while (pos >=0)
       {
          file = url.substr(oldpos + 1, pos - oldpos -1);
@@ -1803,12 +1803,12 @@ RetryHost:
          return file;
    }
 
-   vsstring installer::ca2inplace_get_file(LPCSTR lpcszUrl)
+   string installer::ca2inplace_get_file(LPCSTR lpcszUrl)
    {
-      vsstring url_in(lpcszUrl);
-      vsstring url;
-      vsstring file;
-      vsstring strFind;
+      string url_in(lpcszUrl);
+      string url;
+      string file;
+      string strFind;
       index pos = url_in.find(m_strInstall);
       if(pos == 0)
       {
@@ -1820,7 +1820,7 @@ RetryHost:
       }
       index oldpos = -1;
       pos = url.find("/");
-      vsstring lastfile;
+      string lastfile;
       while (pos >=0)
       {
          file = url.substr(oldpos + 1, pos - oldpos -1);
@@ -1836,11 +1836,11 @@ RetryHost:
    }
 
 
-   bool installer::ca2_fy_url(vsstring & str, LPCSTR lpcszPath, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen, bool bIndex)
+   bool installer::ca2_fy_url(string & str, LPCSTR lpcszPath, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen, bool bIndex)
    {
-      vsstring strStage;
-      vsstring strStageGz;
-      vsstring strUrl;
+      string strStage;
+      string strStageGz;
+      string strUrl;
       strUrl = lpcszPath;
       if(bIndex)
       {
@@ -1885,17 +1885,17 @@ RetryHost:
 
 
 
-   int32_t installer::GetFileListEx(stringa & stringa, class stringa  & straPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapFlag)
+   int32_t installer::GetFileListEx(stringa & stringa, class stringa  & straPath, string_to_intptr & mapLen, string_to_intptr & mapGzLen, string_to_string & mapMd5, string_to_intptr & mapFlag)
    {
 
       int32_t iCurrent;
 
-      vsstring strPlatform = spa_get_platform();
+      string strPlatform = spa_get_platform();
 
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
 
-         vsstring strPathParam = straPath[i];
+         string strPathParam = straPath[i];
 
          if(strPathParam.begins_ci("stage\\basis\\"))
          {
@@ -1934,12 +1934,12 @@ RetryHost:
 
 
 
-   int32_t installer::GetFileList(stringa & stringa, LPCSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapFlag)
+   int32_t installer::GetFileList(stringa & stringa, LPCSTR lpcszPath, string_to_intptr & mapLen, string_to_intptr & mapGzLen, string_to_string & mapMd5, string_to_intptr & mapFlag)
    {
-      vsstring strPath(lpcszPath);
+      string strPath(lpcszPath);
       strPath = str_replace_dup(strPath, "/", "\\");
       strPath = strPath;
-      vsstring strUrl(lpcszPath);
+      string strUrl(lpcszPath);
       if(strUrl.length() == 0)
          return -1;
       if(strUrl.ends_ci(".spa"))
@@ -1958,13 +1958,13 @@ RetryHost:
       int32_t iCount = 0;
       int32_t iCurrent;
       strUrl += ".bz";
-      vsstring str;
-      vsstring strMd5 = mapMd5[strPath];
+      string str;
+      string strMd5 = mapMd5[strPath];
       strUrl.replace_ci("\\", "/");
       if(!ca2_fy_url(str, strUrl, false, -1, strMd5, -1))
          return -2;
       _FILE * f = fopen_dup(str, "rb");
-      vsstring strPlatform = spa_get_platform();
+      string strPlatform = spa_get_platform();
       while(fgets_dup(buf, sizeof(buf), f))
       {
          buf[sizeof(buf) - 1] = '\0';
@@ -1972,8 +1972,8 @@ RetryHost:
          {
             buf[strlen_dup(buf) - 1] = '\0';
          }
-         vsstring str2;
-         vsstring strPathParam(buf);
+         string str2;
+         string strPathParam(buf);
          if(strPathParam.begins_ci("stage\\basis\\"))
          {
             strPathParam = "stage\\" + strPlatform + strPathParam.substr(11);
@@ -2002,7 +2002,7 @@ RetryHost:
    int32_t installer::GetLocalFileList(stringa & stringa, LPCSTR lpcszUrl)
    {
 
-      vsstring strUrl(lpcszUrl);
+      string strUrl(lpcszUrl);
       trace(strUrl);
       //MainWindowRedraw();
       if(strUrl.substr(strUrl.size() - 4, 4) != ".spa")
@@ -2013,7 +2013,7 @@ RetryHost:
       int32_t iCount = 0;
       int32_t iCurrent;
       strUrl += ".bz";
-      vsstring str;
+      string str;
       if(!ca2_fy_url(str, strUrl, false, -1, NULL, -1))
          return -2;
       _FILE * f = fopen_dup(str, "rb");
@@ -2041,8 +2041,8 @@ RetryHost:
             *pszFind2 = '\0';
             pszFind2++;
          }
-         vsstring strSpa;
-         vsstring str2;
+         string strSpa;
+         string str2;
          iCurrent = GetLocalFileList(stringa, buf);
          if(iCurrent == -1)
          {
@@ -2058,11 +2058,11 @@ RetryHost:
    }
 
 
-   ::count installer::UncompressFileList(stringa & stringa, simple_string_to_string & strmapMd5)
+   ::count installer::UncompressFileList(stringa & stringa, string_to_string & strmapMd5)
    {
-      vsstring strStage;
-      vsstring strStageGz;
-      vsstring str;
+      string strStage;
+      string strStageGz;
+      string str;
       double d = 0.0;
       m_dProgress = 0.0;
       for(int32_t i = 0; i < stringa.get_count(); i++)
@@ -2088,11 +2088,11 @@ RetryHost:
       return stringa.get_count();
    }
 
-   ::count installer::CopyFileList(stringa & stringa, simple_string_to_intptr & mapFlag)
+   ::count installer::CopyFileList(stringa & stringa, string_to_intptr & mapFlag)
    {
-      vsstring strStage;
-      vsstring strStageUnbz;
-      vsstring str;
+      string strStage;
+      string strStageUnbz;
+      string str;
       double d = 0.0;
       m_dProgress = 0.0;
       for(int32_t i = 0; i < stringa.get_count(); i++)
@@ -2134,42 +2134,42 @@ RetryHost:
 
 
 
-   void installer::ParseSpaIndex(XNode & node)
+   void installer::ParseSpaIndex(::xml::node & node)
    {
       if(node.name == "spa" && node.childs.get_count() > 0)
       {
-         LPXNode lpnode = &node;
+         ::xml::node * lpnode = &node;
          for(int32_t ui = 0; ui < lpnode->childs.get_count(); ui++)
          {
             if(lpnode->childs[ui]->name == "index")
             {
                if(lpnode->childs[ui]->GetAttr("start") != NULL)
                {
-                  if(vsstring(lpnode->childs[ui]->GetAttrValue("start")).length() > 0)
+                  if(string(lpnode->childs[ui]->GetAttrValue("start")).length() > 0)
                   {
                      m_iStart = 4;
-                     m_strCommandLine = vsstring(lpnode->childs[ui]->GetAttrValue("start"));
+                     m_strCommandLine = string(lpnode->childs[ui]->GetAttrValue("start"));
                      m_strApplicationId = get_command_line_param(m_strCommandLine, "app");
                   }
                }
                if(lpnode->childs[ui]->GetAttr("build") != NULL)
                {
-                  if(vsstring(lpnode->childs[ui]->GetAttrValue("build")).length() > 0)
+                  if(string(lpnode->childs[ui]->GetAttrValue("build")).length() > 0)
                   {
                      m_iStart = 4;
-                     m_strBuildResource = vsstring(lpnode->childs[ui]->GetAttrValue("build"));
+                     m_strBuildResource = string(lpnode->childs[ui]->GetAttrValue("build"));
                   }
                }
                if(lpnode->childs[ui]->GetAttr("type") != NULL)
                {
 #ifdef WINDOWSEX
-                  if(vsstring(lpnode->childs[ui]->GetAttrValue("type")) == "parse_file_name")
+                  if(string(lpnode->childs[ui]->GetAttrValue("type")) == "parse_file_name")
                   {
                      m_iStart = 4;
                      char buf[2048];
                      ::GetModuleFileName(NULL, buf, sizeof(buf));
                      char * psz = strrchr_dup(buf, '\\');
-                     vsstring str;
+                     string str;
                      if(psz == NULL)
                      {
                         str = buf;
@@ -2191,19 +2191,19 @@ RetryHost:
                   }
                   else
 #endif
-                     if(vsstring(lpnode->childs[ui]->GetAttrValue("type")) == "online_default")
+                     if(string(lpnode->childs[ui]->GetAttrValue("type")) == "online_default")
                      {
                         m_bOfflineInstall = false;
                         m_strInstallGz = "http://ca2os.com/stage/";
                         m_strInstall = "http://ca2os.com/stage/";
                      }
-                     else if(vsstring(lpnode->childs[ui]->GetAttrValue("type")) == "offline")
+                     else if(string(lpnode->childs[ui]->GetAttrValue("type")) == "offline")
                      {
                         m_bOfflineInstall = true;
                         m_strInstallGz = dir::path(lpnode->childs[ui]->GetAttrValue("src"), "stage.bz\\");
                         m_strInstall = dir::path(lpnode->childs[ui]->GetAttrValue("src"), "stage\\");
                      }
-                     else if(vsstring(lpnode->childs[ui]->GetAttrValue("type")) == "online")
+                     else if(string(lpnode->childs[ui]->GetAttrValue("type")) == "online")
                      {
                         m_bOfflineInstall = false;
                         m_bInstallSet = true;
@@ -2216,12 +2216,12 @@ RetryHost:
       }
    }
 
-   vsstring installer::load_string(const char * pszId, const char * pszDefault)
+   string installer::load_string(const char * pszId, const char * pszDefault)
    {
-      LPXNode lpnode = &m_nodeStringTable;
+      ::xml::node * lpnode = &m_nodeStringTable;
       for(int32_t ui = 0; ui < lpnode->childs.get_count(); ui++)
       {
-         if(vsstring(lpnode->childs[ui]->GetAttrValue("id")) == pszId)
+         if(string(lpnode->childs[ui]->GetAttrValue("id")) == pszId)
          {
             return lpnode->childs[ui]->value;
          }
@@ -2229,7 +2229,7 @@ RetryHost:
       return pszDefault;
    }
 
-   void installer::ParseIndexFile(const char * psz, simple_string_to_intptr & mapLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag)
+   void installer::ParseIndexFile(const char * psz, string_to_intptr & mapLen, string_to_string & mapMd5, string_to_intptr & mapGzLen, string_to_intptr & mapFlag)
    {
       _FILE * f = fopen_dup(psz, "rb");
       char * pszFind1;
@@ -2269,29 +2269,29 @@ RetryHost:
             *pszFind3 = '\0';
             pszFind3++;
          }
-         vsstring strSpa;
-         vsstring str2;
+         string strSpa;
+         string str2;
          strSpa = m_strInstall;
          strSpa += buf;
          if(pszFind1 != NULL)
          {
             m_iProgressMode = 0;
-            mapLen[(vsstring)(const char *) buf] = atoi_dup(pszFind1);
+            mapLen[(string)(const char *) buf] = atoi_dup(pszFind1);
          }
          else
-            mapLen[(vsstring)(const char *) buf] = -1;
+            mapLen[(string)(const char *) buf] = -1;
          if(pszFind2 != NULL)
          {
-            mapMd5[(vsstring)(const char *) buf] = pszFind2;
+            mapMd5[(string)(const char *) buf] = pszFind2;
          }
          else
-            mapMd5[(vsstring)(const char *) buf] = "";
+            mapMd5[(string)(const char *) buf] = "";
          if(pszFind3 != NULL)
          {
-            mapGzLen[(vsstring)(const char *) buf] = atoi_dup(pszFind3);
+            mapGzLen[(string)(const char *) buf] = atoi_dup(pszFind3);
          }
          else
-            mapGzLen[(vsstring)(const char *) buf] = -1;
+            mapGzLen[(string)(const char *) buf] = -1;
       }
       fclose_dup(f);
       _ca_free(buf, 0);
@@ -2299,10 +2299,10 @@ RetryHost:
 
    bool installer::spa_exec(const char * psz)
    {
-      vsstring strExec(psz);
+      string strExec(psz);
       if(strExec.substr(0, 15) == "install_service")
       {
-         vsstring strStage;
+         string strStage;
          strStage = dir::path(dir::element(),strExec.substr(16));
 
 #ifdef METROWIN
@@ -2324,10 +2324,10 @@ RetryHost:
       }
       else if(strExec.substr(0, 10) == "install_ex")
       {
-         vsstring strStage;
-         vsstring str2 = strExec.substr(11);
+         string strStage;
+         string str2 = strExec.substr(11);
          index iPos = str2.find(" ");
-         vsstring str3 = str2.substr(iPos + 1);
+         string str3 = str2.substr(iPos + 1);
          strStage = dir::element();
          strStage = dir::path(strStage, str3);
 
@@ -2383,11 +2383,11 @@ RetryHost:
 
 
       char szFormat[256];
-      vsstring strUrl;
+      string strUrl;
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
       strUrl += m_strApplicationId;
       strUrl += "&key=post_install_count";
-      vsstring strCount = ms_get_dup(strUrl);
+      string strCount = ms_get_dup(strUrl);
       int32_t iCount = atoi_dup(strCount);
       //set_progress(0.2);
       for(int32_t i = 0; i < iCount; i++)
@@ -2397,7 +2397,7 @@ RetryHost:
          strUrl += "&key=post_install";
          sprintf_dup(szFormat, "[%d]", i);
          strUrl += szFormat;
-         vsstring strExec = ms_get_dup(strUrl);
+         string strExec = ms_get_dup(strUrl);
          if(!spa_exec(strExec))
          {
             #ifdef WINDOWSEX
@@ -2411,7 +2411,7 @@ RetryHost:
       trace("starting app-install.exe...");
 
 
-      vsstring strCommandLine = m_strCommandLine;
+      string strCommandLine = m_strCommandLine;
 
       if(get_command_line_param(strCommandLine, "build_number").is_empty())
       {
@@ -2431,7 +2431,7 @@ RetryHost:
       }*/
       trace(".");
       //set_progress(0.9);
-      vsstring strPlatform = spa_get_platform();
+      string strPlatform = spa_get_platform();
       if(i == 0)
       {
          set_updated(m_strBuild);
@@ -2443,7 +2443,7 @@ RetryHost:
          if(m_straRestartProcess.get_count() > 0)
          {
 
-            vsstring str;
+            string str;
 
             str = "Now :\n\n";
 
@@ -2522,12 +2522,12 @@ RetryHost:
 
 
 
-      XNode node;
+      ::xml::node node;
 
       // MessageBox(NULL, "BegInstall", "Caption", MB_OK);
       if(m_iStart != 4)
       {
-         vsstring strCa2sp = file_as_string_dup(m_strFile);
+         string strCa2sp = file_as_string_dup(m_strFile);
          if(strCa2sp.length() == 0)
          {
 #ifdef WINDOWSEX
@@ -2561,7 +2561,7 @@ RetryHost:
       {
       pszEnd++;
       }
-      m_strStart = vsstring(pszStart, pszEnd - pszStart);
+      m_strStart = string(pszStart, pszEnd - pszStart);
       }
       else
       {
@@ -2581,7 +2581,7 @@ RetryHost:
          {
             pszEnd++;
          }
-         m_strLocale = vsstring(pszLocale, pszEnd - pszLocale);
+         m_strLocale = string(pszLocale, pszEnd - pszLocale);
       }
       else
       {
@@ -2650,7 +2650,7 @@ RetryHost:
 
       m_strInstall               = "http://ca2os.com/stage/";
 
-      m_strInstallStatusTemplate = defer_ls_get("http://account.ca2.cc/defer_ls_get?id=spa::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
+      m_strInstallStatusTemplate = defer_ls_get("http://account.ca2.cc/defer_ls_get?id=spa_install::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
 
       m_bForceUpdatedBuild       = true;
 
@@ -2663,13 +2663,13 @@ RetryHost:
 
    int32_t installer::application_name()
    {
-      vsstring strUrl;
+      string strUrl;
       trace(("get application name from server http://spaignition.api.server.ca2.cc/ using application id \"" + m_strApplicationId + "\" "));
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
       strUrl += m_strApplicationId;
       strUrl += "&key=name";
 
-      vsstring strName;
+      string strName;
       int32_t iRetry = 0;
       while(true)
       {
@@ -2688,7 +2688,7 @@ RetryHost:
          Sleep(184);
       }
 
-      vsstring strStatusTemplate;
+      string strStatusTemplate;
 
       if(m_strInstallStatusTemplate.get_length() >= strlen_dup("%APPNAME%"))
       {
@@ -2716,7 +2716,7 @@ RetryHost:
    int32_t installer::appmatter_list()
    {
 
-      vsstring strUrl;
+      string strUrl;
 
       trace(("get appmatter list for application with id : \"" + m_strApplicationId + "\" "));
       trace(("locale : \"" + m_strInstallLocale + "\" "));
@@ -2729,7 +2729,7 @@ RetryHost:
       strUrl += "&schema=";
       strUrl += m_strInstallSchema;
 
-      vsstring str;
+      string str;
       int32_t iRetry = 0;
       while(true)
       {
@@ -2787,7 +2787,7 @@ RetryBuildNumber:
       return 0;
    }
 
-   int32_t installer::calc_host(vsstring & strSpaHost, int32_t &iHostRetry)
+   int32_t installer::calc_host(string & strSpaHost, int32_t &iHostRetry)
    {
 RetryHost:
       if(iHostRetry > 84)
@@ -2808,7 +2808,7 @@ RetryHost:
       {
          m_strLastHost = m_strCurrentHost + ";" + m_strLastHost;
       }
-      vsstring strUrl;
+      string strUrl;
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=basis";
@@ -2857,7 +2857,7 @@ RetryHost:
       return 0;
    }
 
-   /*vsstring installer::install(const char * psz)
+   /*string installer::install(const char * psz)
    {
    return m_strInstall + psz;
    }*/
@@ -2877,8 +2877,8 @@ RetryHost:
 
    int32_t installer::run_install(const char * lpCmdLine, int32_t nCmdShow)
    {
-      vsstring str = lpCmdLine;
-      vsstring strFile = lpCmdLine;
+      string str = lpCmdLine;
+      string strFile = lpCmdLine;
 
       index i1 = str.find("\"");
       if(i1 >= 0)
@@ -2904,14 +2904,14 @@ RetryHost:
    int32_t installer::run_starter_start(int32_t nCmdShow)
    {
 
-      vsstring strName = "spa ignition";
+      string strName = "spa ignition";
 
       strcpy_dup(szTitle, strName);
       strcpy_dup(szWindowClassSpaAdmin, strName);
 
       if(nCmdShow != SW_HIDE)
       {
-         //m_pwindow = new spa::window;
+         //m_pwindow = new spa_install::window;
       }
 
 #if defined(WINDOWS)
@@ -2951,8 +2951,8 @@ RetryHost:
       // since the spa.xml is not present and contains turning information.
       if(!m_bOfflineInstall && (m_strApplicationId.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
       {
-         vsstring str = file_as_string_dup(dir::module_folder("spa.xml"));
-         XNode node;
+         string str = file_as_string_dup(dir::module_folder("spa.xml"));
+         ::xml::node node;
          node.Load(str);
          ParseSpaIndex(node);
       }
@@ -2962,8 +2962,8 @@ RetryHost:
       // since the spa.xml is not present and contains turning information.
       if(!m_bOfflineInstall && !m_bInstallSet && (m_strApplicationId.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
       {
-         vsstring str = read_resource_as_string_dup(NULL, 1984, "CA2SP");
-         XNode node;
+         string str = read_resource_as_string_dup(NULL, 1984, "CA2SP");
+         ::xml::node node;
          node.Load(str);
          ParseSpaIndex(node);
       }
@@ -3018,34 +3018,34 @@ RetryHost:
       m_iStart = 0;
       //m_iStyle = 0;
 
-      vsstring str = pszCommandLine;
+      string str = pszCommandLine;
 
-      vsstring strExe = file_name_dup(file_module_path_dup());
+      string strExe = file_name_dup(file_module_path_dup());
 
 //      bool bSpa = false;
 
-      if(str.find(" background ") != vsstring::npos
-         || str.ends(" background") || strExe.find(" in background ") != vsstring::npos
+      if(str.find(" background ") != string::npos
+         || str.ends(" background") || strExe.find(" in background ") != string::npos
          || strExe.ends(" in background"))
       {
          m_bShow = false;
       }
 
-      if(str.find(" spa ") != vsstring::npos
-         || str.ends(" spa") || strExe.find(" in spa ") != vsstring::npos
+      if(str.find(" spa ") != string::npos
+         || str.ends(" spa") || strExe.find(" in spa ") != string::npos
          || strExe.ends(" in spa"))
       {
-         spa::installer::spa();
+         spa_install::installer::spa();
          return 0;
       }
 
       m_bLoginStartup = false;
       index i = str.find("install_filter=");
-      if(i != vsstring::npos)
+      if(i != string::npos)
       {
          index iStart = i + 15; // 15 = strlen_dup("install_filter=")
          i = str.find(" ", i);
-         if(i != vsstring::npos)
+         if(i != string::npos)
          {
             m_strInstallFilter = str.substr(iStart, i - iStart);
          }
@@ -3056,11 +3056,11 @@ RetryHost:
       }
       // MessageBox(NULL, "xxx", "yyy", MB_OK);
       i = str.find("install=");
-      if(i != vsstring::npos)
+      if(i != string::npos)
       {
          index iStart = i + 8; // 8 = strlen_dup("install=")
          i = str.find(" ", i);
-         if(i != vsstring::npos)
+         if(i != string::npos)
          {
             m_strApplicationId = str.substr(iStart, i - iStart);
          }
@@ -3077,8 +3077,8 @@ RetryHost:
       {
          ::count iStart = strlen_dup("Install ");
          i = strExe.find(" ", iStart);
-         vsstring strIdStart;
-         if(i != vsstring::npos)
+         string strIdStart;
+         if(i != string::npos)
          {
             strIdStart = strExe.substr(iStart, i - iStart);
          }
@@ -3089,20 +3089,20 @@ RetryHost:
          m_iStart = 4;
          return starter_start(strIdStart);
       }
-      vsstring strFind("starter_start:");
+      string strFind("starter_start:");
       i = str.find(strFind);
-      if(i != vsstring::npos)
+      if(i != string::npos)
       {
          index iStart = i + strFind.length(); // 8 = strlen_dup("install=")
          //         i = str.find(" ", iStart);
-         //         vsstring strCommandLine;
-         //       if(i != vsstring::npos)
+         //         string strCommandLine;
+         //       if(i != string::npos)
          //     {
          // strCommandLine = str.substr(iStart, i - iStart);
          //   }
          // else
          //{
-         vsstring strCommandLine;
+         string strCommandLine;
          strCommandLine = str.substr(iStart);
          //       }
          m_iStart = 4;
@@ -3132,17 +3132,17 @@ RetryHost:
 
       if(numargs >= 2)
       {
-         vsstring str(utf16_to_8_dup(argv[1]));
+         string str(::str::international::unicode_to_utf8(argv[1]));
          return run_file(str, m_nCmdShow);
       }
 
 
       index iFind;
-      if((iFind = str.find("uninstall")) != vsstring::npos)
+      if((iFind = str.find("uninstall")) != string::npos)
       {
          return run_uninstall_run(&str[iFind + 10], m_nCmdShow);
       }
-      else if(str.find("uninstall") != vsstring::npos)
+      else if(str.find("uninstall") != string::npos)
       {
          return run_uninstall(pszCommandLine, m_nCmdShow);
       }
@@ -3185,7 +3185,7 @@ RetryHost:
       // Make the security attributes point
       // to the security descriptor
       //MutexAttributes.lpSecurityDescriptor = &SD;
-      vsstring strMutex;
+      string strMutex;
       strMutex = "Global\\ca2_application_global_mutex:";
       strMutex += psz;
       //HANDLE hmutex = ::CreateMutex(&MutexAttributes, FALSE, strMutex);
@@ -3193,7 +3193,7 @@ RetryHost:
       bool bOpened = ::GetLastError() == ERROR_ALREADY_EXISTS;
       if(bOpened)
       {
-         vsstring strMessage;
+         string strMessage;
          strMessage = psz;
          strMessage += "app.exe is still opened!";
          trace(strMessage);
@@ -3268,7 +3268,7 @@ RetryHost:
 
       pinstaller->m_bStarterStart = false;
 
-      ::create_thread(NULL, 0, spa::installer::thread_proc_run, (LPVOID) pinstaller, 0, 0);
+      ::create_thread(NULL, 0, spa_install::installer::thread_proc_run, (LPVOID) pinstaller, 0, 0);
 
    }
 
@@ -3288,7 +3288,7 @@ RetryHost:
 
       m_bStarterStart = true;
 
-      ::create_thread(NULL, 0, spa::installer::thread_proc_run, (LPVOID) this, 0, 0);
+      ::create_thread(NULL, 0, spa_install::installer::thread_proc_run, (LPVOID) this, 0, 0);
 
    }
 
@@ -3296,12 +3296,12 @@ RetryHost:
 
    void installer::add_spa_start(const char * pszId)
    {
-      vsstring strPath = dir::appdata("spa_start.xml");
-      vsstring strContents = file_as_string_dup(strPath);
-      XNode node;
+      string strPath = dir::appdata("spa_start.xml");
+      string strContents = file_as_string_dup(strPath);
+      ::xml::node node;
       node.Load(strContents);
       node.name = "spa";
-      LPXNode lpnode = node.GetChildByAttr("start", "id", pszId);
+      ::xml::node * lpnode = node.GetChildByAttr("start", "id", pszId);
       if(lpnode == NULL)
       {
          lpnode = node.AppendChild("start");
@@ -3312,12 +3312,12 @@ RetryHost:
 
    void installer::remove_spa_start(const char * pszId)
    {
-      vsstring strPath = dir::appdata("spa_start.xml");
-      vsstring strContents = file_as_string_dup(strPath);
-      XNode node;
+      string strPath = dir::appdata("spa_start.xml");
+      string strContents = file_as_string_dup(strPath);
+      ::xml::node node;
       node.Load(strContents);
       node.name = "spa";
-      LPXNode lpnode = node.GetChildByAttr("start", "id", pszId);
+      ::xml::node * lpnode = node.GetChildByAttr("start", "id", pszId);
       if(lpnode != NULL)
       {
          node.RemoveChild(lpnode);
@@ -3428,7 +3428,7 @@ RetryHost:
 
             if(is_file_ok(m_strPath, "app-install.exe"))
                break;
-            vsstring strUrl;
+            string strUrl;
 #if CA2_PLATFORM_VERSION == CA2_BASIS
             strUrl = "http://warehouse.ca2.cc/spa?download=app-install.exe&authnone";
 #else
@@ -3451,7 +3451,7 @@ RetryHost:
       return true;
    }
 
-   vsstring installer::launcher::get_executable_path()
+   string installer::launcher::get_executable_path()
    {
       ensure_executable();
       return m_strPath;
@@ -3463,7 +3463,7 @@ RetryHost:
 #if defined(METROWIN)
             throw "todo";
 #else
-      vsstring param;
+      string param;
       param = "-install:";
       param += pszCommandLine;
 #if defined(WINDOWS)
@@ -3472,7 +3472,7 @@ RetryHost:
       wchar_t * pwszFullPath = new wchar_t[2048];
       wchar_t * pwszFile = NULL;
       ::GetFullPathNameW(pwsz, 2048, pwszFullPath, &pwszFile);
-      char * psz = utf16_to_8_dup(pwszFullPath);
+      char * psz = ::str::international::unicode_to_utf8(pwszFullPath);
       delete pwsz;
       delete pwszFullPath;
 #elif defined(MACOS)
@@ -3503,7 +3503,7 @@ RetryHost:
 #if defined(METROWIN)
       throw "todo";
 #else
-      vsstring strPlatform = spa_get_platform();
+      string strPlatform = spa_get_platform();
 
 #ifdef WINDOWS
       ::SetDllDirectory(dir::path(dir::element(), "stage\\" + strPlatform));
@@ -3515,7 +3515,7 @@ RetryHost:
 
       CA2MAIN pfn_ca2_main = (CA2MAIN) libraryOs.raw_get("ca2_main");
 
-      vsstring strFullCommandLine;
+      string strFullCommandLine;
 
       strFullCommandLine = dir::path(dir::element(), ("stage\\" + strPlatform + "\\app.exe"));
 
@@ -3532,7 +3532,7 @@ RetryHost:
       return 0;
    }
 
-} // namespace spa
+} // namespace spa_install
 
 
 

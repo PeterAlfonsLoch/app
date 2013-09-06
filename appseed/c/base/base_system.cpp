@@ -105,6 +105,7 @@ base_system::base_system(sp(base_application) papp) :
    m_pfactory->cloneable_large < mutex > ();
    m_pfactory->cloneable_large < event > ();
    m_pfactory->creatable_large < ::file::simple_binary_buffer > (type_info < ::file::binary_buffer >());
+   m_pfactory->creatable_large < ::file::string_buffer > ();
 
 }
 

@@ -132,11 +132,6 @@ CLASS_DECL_c bool __enable_memory_tracking(bool bTrack);
 CLASS_DECL_c bool __enable_memory_leak_override(bool bEnable);
 
 
-// A failure hook returns whether to permit allocation
-typedef bool (* __ALLOC_HOOK)(size_t nSize, bool bObject, LONG lRequestNumber);
-
-// set new hook, return old (never NULL)
-CLASS_DECL_c __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
 
 #include "exception_memory_state.h"
 
@@ -206,7 +201,7 @@ extern CLASS_DECL_c bool g_bTraceEnabled;
 #endif
 
 
-CLASS_DECL_c vsstring __get_thread_note();
+CLASS_DECL_c string __get_thread_note();
 CLASS_DECL_c void __set_thread_note(const char * pszNote);
 
 

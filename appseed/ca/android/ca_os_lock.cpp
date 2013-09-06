@@ -81,10 +81,10 @@ int32_t _c_unlock(void ** pdata)
 
 
 
-vsstring _ca_get_file_name(const char * pszName, bool bCreate, int32_t * pfd)
+string _ca_get_file_name(const char * pszName, bool bCreate, int32_t * pfd)
 {
 
-   vsstring str(pszName);
+   string str(pszName);
 
    str.replace("\\", "/");
    str.replace("::", "_");

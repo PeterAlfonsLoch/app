@@ -5,13 +5,13 @@
 namespace zip
 {
 
-   class CLASS_DECL_ca2 memory_file :
-      public ::primitive::memory_file
+   class CLASS_DECL_ca2 memory_buffer :
+      public ::::file::memory_buffer
 
    {
    public:
-      memory_file(sp(base_application) papp);
-      virtual ~memory_file();
+      memory_buffer(sp(base_application) papp);
+      virtual ~memory_buffer();
       static voidpf open_file_func (voidpf opaque, const char* filename, int32_t mode);
       static uint_ptr  read_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size);
       static uint_ptr  write_file_func (voidpf opaque, voidpf stream, const void * buf, uint_ptr size);

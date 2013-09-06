@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace spa
+namespace spa_install
 {
 
    class CLASS_DECL_ca canvas
@@ -23,7 +23,7 @@ namespace spa
    };
 
 
-} // namespace spa
+} // namespace spa_install
 
 
 

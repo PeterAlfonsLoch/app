@@ -13,7 +13,7 @@ public:
 
    mutex               m_mutex;
    message_array              ma;
-   simple_event               m_eventNewMessage;
+   event               m_eventNewMessage;
    HTHREAD                    m_hthread;
    uint32_t                   m_uiId;
 

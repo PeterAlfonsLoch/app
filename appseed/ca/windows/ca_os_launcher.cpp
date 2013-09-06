@@ -7,11 +7,11 @@ bool launcher::start()
    if(!ensure_executable())
       return false;
 
-   vsstring strPath(get_executable_path());
+   string strPath(get_executable_path());
    
-   vsstring strDir(dir::name(strPath));
+   string strDir(dir::name(strPath));
 
-   vsstring strParams = get_params();
+   string strParams = get_params();
 
    call_async(strPath, strParams, strDir, SW_HIDE);
 

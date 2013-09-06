@@ -88,13 +88,13 @@ struct ThreadPool::Data
     Semaphore taskSemaphore;        // threads wait on this for ready tasks
     Mutex taskMutex;                // mutual exclusion for the tasks list
     list<Task*> tasks;              // the list of tasks to execute
-    size_t numTasks;                // fast access to list size
+    ::count numTasks;                // fast access to list size
                                     //   (list::size() can be O(n))
 
     Semaphore threadSemaphore;      // signaled when a thread starts executing
     Mutex threadMutex;              // mutual exclusion for threads list
     list<WorkerThread*> threads;    // the list of all threads
-    size_t numThreads;              // fast access to list size
+    ::count numThreads;              // fast access to list size
     
     bool stopping;                  // flag indicating whether to stop threads
     Mutex stopMutex;                // mutual exclusion for stopping flag
@@ -238,7 +238,7 @@ ThreadPool::Data::finish ()
     // an error like: "pure virtual method called"
     //
 
-    for (size_t i = 0; i < numThreads; i++)
+    for (index i = 0; i < numThreads; i++)
     {
 	taskSemaphore.post();
 	threadSemaphore.wait();
@@ -355,19 +355,19 @@ ThreadPool::setNumThreads (int count)
 
     Lock lock (_data->threadMutex);
 
-    if ((size_t)count > _data->numThreads)
+    if (count > _data->numThreads)
     {
 	//
         // Add more threads
 	//
 
-        while (_data->numThreads < (size_t)count)
+        while (_data->numThreads < count)
         {
             _data->threads.push_back (new WorkerThread (_data));
             _data->numThreads++;
         }
     }
-    else if ((size_t)count < _data->numThreads)
+    else if (count < _data->numThreads)
     {
 	//
 	// Wait until all existing threads are finished processing,
@@ -380,7 +380,7 @@ ThreadPool::setNumThreads (int count)
         // Add in new threads
 	//
 
-        while (_data->numThreads < (size_t)count)
+        while (_data->numThreads <count)
         {
             _data->threads.push_back (new WorkerThread (_data));
             _data->numThreads++;

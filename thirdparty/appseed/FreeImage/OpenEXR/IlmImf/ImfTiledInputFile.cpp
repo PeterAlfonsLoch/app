@@ -183,7 +183,7 @@ struct TiledInputFile::Data: public Mutex
     bool	    fileIsComplete;	    // True if no tiles are missing
     					    // in the file
 
-    Int64	    currentPosition;        // file offset for current tile,
+    int64_t	    currentPosition;        // file offset for current tile,
 					    // used to prevent unnecessary
 					    // seeking
 
@@ -235,7 +235,7 @@ TiledInputFile::Data::~Data ()
     if (deleteStream)
 	delete is;
 
-    for (size_t i = 0; i < tileBuffers.size(); i++)
+    for (index i = 0; i < tileBuffers.size(); i++)
         delete tileBuffers[i];
 }
 
@@ -268,7 +268,7 @@ readTileData (TiledInputFile::Data *ifd,
     // seek to that position if necessary
     //
     
-    Int64 tileOffset = ifd->tileOffsets (dx, dy, lx, ly);
+    int64_t tileOffset = ifd->tileOffsets (dx, dy, lx, ly);
 
     if (tileOffset == 0)
     {
@@ -482,7 +482,7 @@ TileBufferTask::execute ()
             // Iterate over all image channels.
             //
             
-            for (unsigned int i = 0; i < _ifd->slices.size(); ++i)
+            for (index i = 0; i < _ifd->slices.size(); ++i)
             {
                 const TInSliceInfo &slice = _ifd->slices[i];
     
@@ -725,7 +725,7 @@ TiledInputFile::initialize ()
     // Create all the TileBuffers and allocate their internal buffers
     //
 
-    for (size_t i = 0; i < _data->tileBuffers.size(); i++)
+    for (index i = 0; i < _data->tileBuffers.size(); i++)
     {
         _data->tileBuffers[i] = new TileBuffer (newTileCompressor
 						  (_data->header.compression(),
@@ -752,7 +752,7 @@ TiledInputFile::initialize ()
 TiledInputFile::~TiledInputFile ()
 {
     if (!_data->is->isMemoryMapped())
-        for (size_t i = 0; i < _data->tileBuffers.size(); i++)
+        for (index i = 0; i < _data->tileBuffers.size(); i++)
             delete [] _data->tileBuffers[i]->buffer;
 
     delete _data;
@@ -818,7 +818,7 @@ TiledInputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
     // Initialize the slice table for readPixels().
     //
 
-    vector<TInSliceInfo> slices;
+    lemon_array<TInSliceInfo> slices;
     ChannelList::ConstIterator i = channels.begin();
 
     for (FrameBuffer::ConstIterator j = frameBuffer.begin();
@@ -935,11 +935,9 @@ TiledInputFile::readTiles (int dx1, int dx2, int dy1, int dy2, int lx, int ly)
         // they are stored in the file.
         //
                                
-        if (dx1 > dx2)
-            std::swap (dx1, dx2);
+           sort::sort(dx1, dx2);
         
-        if (dy1 > dy2)
-            std::swap (dy1, dy2);
+            sort::sort(dy1, dy2);
         
         int dyStart = dy1;
 	int dyStop  = dy2 + 1;
@@ -1001,7 +999,7 @@ TiledInputFile::readTiles (int dx1, int dx2, int dy1, int dy2, int lx, int ly)
 
 	const string *exception = 0;
 
-        for (int i = 0; (unsigned) i < _data->tileBuffers.size(); ++i)
+        for (int i = 0; i < _data->tileBuffers.size(); ++i)
 	{
             TileBuffer *tileBuffer = _data->tileBuffers[i];
 

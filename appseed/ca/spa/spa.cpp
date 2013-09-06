@@ -31,12 +31,12 @@ double g_dPi = asin_dup(1.0) * 4;
 #endif
 
 
-namespace spa
+namespace spa_install
 {
 
    window g_window;
 
-} // namespace spa
+} // namespace spa_install
 
 
 
@@ -47,15 +47,15 @@ namespace spa
 
 
 /*
-vsstring Login()
+string Login()
 {
    if(stricmp_dup(g_pedit->m_str, "ca2") == 0
       && stricmp_dup(g_pedit->m_pnext->m_str, "ca2") == 0)
    {
       return "OK";
    }
-   vsstring document;
-   vsstring strPost;
+   string document;
+   string strPost;
    strPost = "entered_login=";
    strPost += g_pedit->m_str;
    strPost += "&entered_password=";
@@ -69,17 +69,17 @@ vsstring Login()
 
 
 
-/*bool Get(const vsstring& url_in,vsstring & document)
+/*bool Get(const string& url_in,string & document)
 {
    bool https = !strcasecmp(url.substr(0,8), "https://");
 	int32_t port = https ? 443 : 80;
-	vsstring url = url_in;
-	vsstring file; // get filename at end of url
-	vsstring dir; // get filename at end of url
+	string url = url_in;
+	string file; // get filename at end of url
+	string dir; // get filename at end of url
 	{
 		Parse pa(url,"/");
-		vsstring tmp = pa.getword();
-      vsstring lastfile;
+		string tmp = pa.getword();
+      string lastfile;
 		while (tmp.size())
 		{
 			file = tmp;
@@ -110,7 +110,7 @@ vsstring Login()
 		complete = s.Complete();
 		if (complete)
 		{
-			document = static_cast<vsstring>( (char *)s.GetDataPtr());
+			document = static_cast<string>( (char *)s.GetDataPtr());
 		}
 		delete[] s.GetDataPtr();
 	}
@@ -148,9 +148,9 @@ vsstring Login()
 
 
 
-vsstring url_query_param(int32_t & iParam, const char * pszParam)
+string url_query_param(int32_t & iParam, const char * pszParam)
 {
-   vsstring str;
+   string str;
    if(iParam == 0)
    {
       iParam++;
@@ -181,7 +181,7 @@ vsstring url_query_param(int32_t & iParam, const char * pszParam)
 int32_t synch_spaadmin(const char * pszCommandLine)
 {
 
-   ::spa::installer * pinstaller    = new ::spa::installer();
+   ::spa_install::installer * pinstaller    = new ::spa_install::installer();
 
    pinstaller->m_bStarterStart      = true;
 
@@ -195,7 +195,7 @@ int32_t synch_spaadmin(const char * pszCommandLine)
 int32_t start_spaadmin(const char * pszCommandLine)
 {
 
-   ::spa::installer * pinstaller    = new ::spa::installer();
+   ::spa_install::installer * pinstaller    = new ::spa_install::installer();
 
    pinstaller->m_bStarterStart      = true;
 
@@ -206,10 +206,10 @@ int32_t start_spaadmin(const char * pszCommandLine)
 }
 
 
-vsstring get_installation_lock_file_path()
+string get_installation_lock_file_path()
 {
 
-   vsstring strPath;
+   string strPath;
 
    strPath = dir::path(dir::afterca2(), "install.lock");
 
@@ -221,7 +221,7 @@ vsstring get_installation_lock_file_path()
 void installation_file_lock(bool bLock)
 {
 
-   vsstring strPath;
+   string strPath;
 
    strPath = get_installation_lock_file_path();
 
@@ -304,7 +304,7 @@ bool is_installation_lock_file_locked()
 
 #endif
 
-   vsstring strPath;
+   string strPath;
 
    strPath = get_installation_lock_file_path();
 

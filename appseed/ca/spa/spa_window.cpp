@@ -18,7 +18,7 @@ CHAR szWindowClassSpaAdmin[1024];			// the main window class name
 #define CARET_TIME 1000
 
 
-namespace spa
+namespace spa_install
 {
 
    window_map window::s_windowmap;
@@ -362,7 +362,7 @@ namespace spa
    }
 
 
-} // namespace spa
+} // namespace spa_install
 
 
 

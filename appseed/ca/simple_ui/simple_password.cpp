@@ -38,7 +38,7 @@ void simple_password::draw_this(simple_graphics & g)
 
    g.select(f);
 
-   vsstring str;
+   string str;
 
    str.append('*', m_strText.get_length());
 

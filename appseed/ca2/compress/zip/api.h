@@ -11,14 +11,14 @@ namespace zip
    public:
 
 
-      static map < unzFile, unzFile, memory_file *, memory_file * & > m_mapUnzip;
+      static map < unzFile, unzFile, memory_buffer *, memory_buffer * & > m_mapUnzip;
       
       
       api();
       virtual ~api();
 
 
-      static unzFile unzipOpen(memory_file * pfile);
+      static unzFile unzipOpen(memory_buffer * pfile);
       static unzFile unzipOpen(File * pfile);
 
       static zipFile zipOpen(File * pfile);

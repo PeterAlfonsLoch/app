@@ -305,8 +305,8 @@ namespace ca2
       //string                                                                                    m_strMatterUrl;
       //string                                                                                    m_strMatterSecureUrl;
 
-      string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemap;
-      string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemapStd;
+      string_map < string_to_string *, string_to_string * >               m_stringtablemap;
+      string_map < string_to_string *, string_to_string * >               m_stringtablemapStd;
       manual_reset_event *                                                                      m_peventReady;
 
 

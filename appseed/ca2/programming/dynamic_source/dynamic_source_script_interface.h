@@ -25,7 +25,7 @@ namespace dynamic_source
       sp(script_manager)                  m_pmanager;
 
 
-      sp(::http::memory_file)             m_spmemoryfileFallback;
+      sp(::http::memory_buffer)             m_spmemoryfileFallback;
 
       sp(script)                          m_pscript;
 

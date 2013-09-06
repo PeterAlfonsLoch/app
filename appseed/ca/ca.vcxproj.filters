@@ -21,12 +21,6 @@
     <Filter Include="Source Files\windows">
       <UniqueIdentifier>{a13a8bda-ed40-417d-bbf6-cbf59c3a81cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\spa">
-      <UniqueIdentifier>{6bf137f8-a742-466c-bf79-11663e2ace1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\spa">
-      <UniqueIdentifier>{50051563-f9fc-42ae-8ed5-686f5775ffd6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\windows">
       <UniqueIdentifier>{ad978b40-9de8-4303-900d-8ddbb7990312}</UniqueIdentifier>
     </Filter>
@@ -99,6 +93,12 @@
     <Filter Include="Header Files\cross\windows">
       <UniqueIdentifier>{74b66e4f-6a41-4c39-ab8a-e401f575bd54}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\spa_install">
+      <UniqueIdentifier>{50051563-f9fc-42ae-8ed5-686f5775ffd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\spa_install">
+      <UniqueIdentifier>{6bf137f8-a742-466c-bf79-11663e2ace1b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hotplugin\hotplugin.h">
@@ -120,55 +120,55 @@
       <Filter>Header Files\C Header Files</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_machine_event.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_machine_event_data.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_boot.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_ca2_install_canvas.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_command_start.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_cube_run.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_focus.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_http.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_install_ca2.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_installer.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_plugin.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_small_bell.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_spa.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_starter_start.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\spa_trace.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="spa\resource.h">
-      <Filter>Header Files\spa</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="bsdiff\bsdiff.h">
       <Filter>Header Files\bsdiff</Filter>
@@ -248,22 +248,10 @@
     <ClInclude Include="ca\ca_base64.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_conv.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_count.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_cpu_architecture.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_debug.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_dir.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_file.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_file_watcher.h">
@@ -276,15 +264,6 @@
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_file_watcher_thread.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_heap.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_index.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_integer_to_string.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_international.h">
@@ -308,16 +287,7 @@
     <ClInclude Include="ca\ca_math.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_md5.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_memory.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_message_loop.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_mutex_lock.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_number.h">
@@ -329,27 +299,6 @@
     <ClInclude Include="ca\ca_simple_app.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_simple_array.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_critical_section.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_event.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_list.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_map.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_memory.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_obj.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_simple_pixel_font.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -359,52 +308,16 @@
     <ClInclude Include="ca\ca_small_ipca_channel.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_smart_pointer1.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_smart_pointer2.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_sprintf.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_stra.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_string_to_integer.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_template.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_time.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_types.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_url.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_user.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_verisimple_string.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_verisimple_wstring.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_vsstringtow.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_wstringtovss.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_xmlite.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="windows\ca_os.h">
@@ -420,9 +333,6 @@
       <Filter>Header Files\windows</Filter>
     </ClInclude>
     <ClInclude Include="windows\ca_os_graphics_round_rect.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\ca_os_http.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
     <ClInclude Include="windows\ca_os_internal.h">
@@ -455,14 +365,8 @@
     <ClInclude Include="windows\ca_os_simple_pen.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
-    <ClInclude Include="windows\ca_os_thread.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
     <ClInclude Include="spa\spa_window.h">
-      <Filter>Header Files\spa</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_ca.h">
-      <Filter>Header Files\ca</Filter>
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
     <ClInclude Include="android\ca_os_internal.h">
       <Filter>Header Files\android</Filter>
@@ -554,8 +458,14 @@
     <ClInclude Include="cross\windows\windows_user.h">
       <Filter>Header Files\cross\windows</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_simple_mutex2.h">
+    <ClInclude Include="ca\ca.h">
       <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_canvas.h">
+      <Filter>Header Files\spa_install</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_login.h">
+      <Filter>Header Files\spa_install</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -566,61 +476,58 @@
       <Filter>Source Files\hotplugin</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_machine_event.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_machine_event_data.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa.cpp">
-      <Filter>Source Files\spa</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_trace.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_boot.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_bz.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_cube_run.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_focus.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_http.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_install_ca2.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_installer.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_spa.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_starter_start.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_small_bell.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_plugin.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_main.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_installer_square.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_canvas.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_window.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="os\os_process.cpp">
       <Filter>Source Files\os</Filter>
@@ -647,7 +554,7 @@
       <Filter>Source Files\simple_ui</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_login.cpp">
-      <Filter>Source Files\spa</Filter>
+      <Filter>Source Files\spa_install</Filter>
     </ClCompile>
     <ClCompile Include="crypt\crypt.cpp">
       <Filter>Source Files\crypt</Filter>
@@ -706,22 +613,10 @@
     <ClCompile Include="ca\ca_base64.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_conv.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_cpu_architecture.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_debug.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_dir.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_dir2.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_file_spa.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_file_watcher.cpp">
@@ -736,46 +631,16 @@
     <ClCompile Include="ca\ca_file_watcher_thread.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_heap.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_integer_to_string.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_international.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_math.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_md5.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_mem.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_mktime.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_net.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_printf.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_event.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_list.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_memory.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_mutex.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_obj.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_simple_shell_launcher.cpp">
@@ -796,34 +661,10 @@
     <ClCompile Include="ca\ca_url.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_user.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_verisimple_string.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_verisimple_wstring.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_version.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_vsstringtow.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_xmlite.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
     <ClCompile Include="windows\ca_os_ca_dll.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_file.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_file_std.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="windows\ca_os_file_watcher.cpp">
@@ -839,9 +680,6 @@
       <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="windows\ca_os_message_loop.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_process.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="windows\ca_os_registry.cpp">
@@ -872,9 +710,6 @@
       <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="windows\ca_os_small_ipca_channel.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\ca_os_thread.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="windows\ca_os_time.cpp">

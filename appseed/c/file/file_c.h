@@ -32,7 +32,7 @@ CLASS_DECL_c int_bool file_ftd_dup(const char * pszDir, const char * pszFile);
 CLASS_DECL_c int_bool file_copy_dup(const char * pszDup, const char * pszSrc, int_bool bOverwrite);
 
 
-CLASS_DECL_c void sprint_hex(char * sz, int32_t iValue);
+//CLASS_DECL_c void sprint_hex(char * sz, int32_t iValue);
 
 typedef HANDLE handle;
 
@@ -163,7 +163,7 @@ CLASS_DECL_c int_bool file_ftd_dup(const char * pszDir, const char * pszFile);
 CLASS_DECL_c int_bool file_copy_dup(const char * pszDup, const char * pszSrc, int_bool bOverwrite);
 
 
-CLASS_DECL_c void sprint_hex(char * sz, int32_t iValue);
+//CLASS_DECL_c void sprint_hex(char * sz, int32_t iValue);
 
 
 
@@ -279,7 +279,6 @@ namespace primitive
 } // namespace primitive
 
 
-CLASS_DECL_c vsstring get_file_md5(const char * file);
 CLASS_DECL_c bool file_put_contents_dup(const char * path, const ::primitive::memory_base & memory);
 CLASS_DECL_c int_bool file_put_contents_dup(const char * path, const char * contents);
 CLASS_DECL_c bool file_get_memory_dup(::primitive::memory_base & memory, const char * path);
@@ -297,10 +296,10 @@ namespace md5
 
 #ifdef WINDOWS
 CLASS_DECL_c void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int32_t & iNumber);
-CLASS_DECL_c void file_read_gen_string_dup(HANDLE hfile, ::md5::md5 * pctx, vsstring & str);
+CLASS_DECL_c void file_read_gen_string_dup(HANDLE hfile, ::md5::md5 * pctx, string & str);
 #else
 CLASS_DECL_c void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int32_t & iNumber);
-CLASS_DECL_c void file_read_gen_string_dup(FILE * hfile, ::md5::md5 * pctx, vsstring & str);
+CLASS_DECL_c void file_read_gen_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str);
 #endif
 
 
@@ -308,19 +307,19 @@ class uint_array;
 class stringa;
 
 #ifndef METROWIN
-CLASS_DECL_c bool PrintModules(vsstring & strImage, uint32_t processID, const char * pszDll );
+CLASS_DECL_c bool PrintModules(string & strImage, uint32_t processID, const char * pszDll );
 CLASS_DECL_c void dll_processes(uint_array & dwa, stringa & straProcesses, const char * pszDll);
 #endif
 
-CLASS_DECL_c vsstring file_title_dup(const char * path);
-CLASS_DECL_c vsstring file_name_dup(const char * path);
-CLASS_DECL_c vsstring file_module_path_dup();
+CLASS_DECL_c string file_title_dup(const char * path);
+CLASS_DECL_c string file_name_dup(const char * path);
+CLASS_DECL_c string file_module_path_dup();
 
 CLASS_DECL_c int_bool file_copy_dup(const char * pszDup, const char * pszSrc); // , bool bOverwrite = true);
 
-CLASS_DECL_c vsstring get_sys_temp_path();
+CLASS_DECL_c string get_sys_temp_path();
 
-CLASS_DECL_c vsstring file_get_mozilla_firefox_plugin_container_path();
+CLASS_DECL_c string file_get_mozilla_firefox_plugin_container_path();
 
 
 

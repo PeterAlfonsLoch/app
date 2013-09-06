@@ -13,13 +13,13 @@ namespace ca2
 
       sp(::ca2::timeout_file)        m_ptimeoutfile;
       sp(::primitive::memory_base)  m_pmemory;
-      sp(::primitive::memory_file)  m_pmemoryfileIn;
-      sp(::primitive::memory_file)  m_pmemoryfileOut;
+      sp(::::file::memory_buffer)  m_pmemoryfileIn;
+      sp(::::file::memory_buffer)  m_pmemoryfileOut;
       sp(mutex)                     m_spmutex;
 
 
       transfer_file(sp(base_application) papp, mutex * pmutex = NULL);
-      transfer_file(sp(base_application) papp, ::primitive::memory_file * pmemoryfileIn);
+      transfer_file(sp(base_application) papp, ::::file::memory_buffer * pmemoryfileIn);
       virtual ~transfer_file();
 
 

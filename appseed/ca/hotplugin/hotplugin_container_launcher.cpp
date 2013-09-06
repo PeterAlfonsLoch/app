@@ -13,7 +13,7 @@ namespace hotplugin
    }
 
 
-   vsstring container_launcher::get_executable_path()
+   string container_launcher::get_executable_path()
    {
 
 #ifdef _M_IX86
@@ -28,10 +28,10 @@ namespace hotplugin
 
    }
 
-   vsstring container_launcher::get_params()
+   string container_launcher::get_params()
    {
 
-      return vsstring(": channel=") + m_strChannel;
+      return string(": channel=") + m_strChannel;
 
    }
 

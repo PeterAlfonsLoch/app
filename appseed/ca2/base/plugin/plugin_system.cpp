@@ -29,7 +29,7 @@ namespace plugin
 
       UNREFERENCED_PARAMETER(pszTarget);
 
-      m_pplugin->m_puiHost->post_message(host_interaction::message_check, 2, (LPARAM) (void *) (new vsstring(pszLink)));
+      m_pplugin->m_puiHost->post_message(host_interaction::message_check, 2, (LPARAM) (void *) (new string(pszLink)));
 
       return true;
 

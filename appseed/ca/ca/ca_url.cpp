@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_ca bool url_query_get_param_dup(vsstring & strParam, const char * pszKey, const char * pszUrl)
+CLASS_DECL_ca bool url_query_get_param_dup(string & strParam, const char * pszKey, const char * pszUrl)
 {
 
    const char * pszBeg;
@@ -9,7 +9,7 @@ CLASS_DECL_ca bool url_query_get_param_dup(vsstring & strParam, const char * psz
 
    {
     
-      vsstring strKey;
+      string strKey;
 
       strKey = "?";
       strKey += pszKey;
@@ -30,7 +30,7 @@ CLASS_DECL_ca bool url_query_get_param_dup(vsstring & strParam, const char * psz
 
    {
     
-      vsstring strKey;
+      string strKey;
 
       strKey = "&";
       strKey += pszKey;
@@ -51,7 +51,7 @@ CLASS_DECL_ca bool url_query_get_param_dup(vsstring & strParam, const char * psz
 
    {
     
-      vsstring strKey;
+      string strKey;
 
       strKey = "?";
       strKey += pszKey;
@@ -72,7 +72,7 @@ CLASS_DECL_ca bool url_query_get_param_dup(vsstring & strParam, const char * psz
 
    {
     
-      vsstring strKey;
+      string strKey;
 
       strKey = "&";
       strKey += pszKey;
@@ -103,7 +103,7 @@ success:
    }
    else
    {
-      strParam = vsstring(pszBeg, pszEnd - pszBeg);
+      strParam = string(pszBeg, pszEnd - pszBeg);
    }
 
    return true;

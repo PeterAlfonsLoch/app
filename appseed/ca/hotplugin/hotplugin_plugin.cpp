@@ -1,5 +1,6 @@
 #include "framework.h"
 
+#undef new
 
 #if defined(LINUX) || defined(ANDROID)
 #include <sys/mman.h>
@@ -91,7 +92,7 @@ namespace hotplugin
       return false;
    }
 
-   vsstring plugin::get_host_location_url()
+   string plugin::get_host_location_url()
    {
       if(m_phost != NULL)
       {
@@ -609,9 +610,9 @@ namespace hotplugin
 
       {
 
-         vsstringtow strProgress(wstrProgress);
+         stringtow strProgress(wstrProgress);
 
-         vsstring strDecimal = itoa_dup(iRatePercentMillis);
+         string strDecimal = itoa_dup(iRatePercentMillis);
 
          zero_pad(strDecimal, 3);
 
@@ -784,7 +785,7 @@ namespace hotplugin
       wstrStatus     = wstrStatus + L" : ";
       wstrStatus     = wstrStatus + wstrProgress;
 
-      g.text_out(lprect->left + cx / iRate - 1 + 18, lprect->top + (cy - iBarHeight) / 2 - 1 + 1, vsstring(wstrStatus));
+      g.text_out(lprect->left + cx / iRate - 1 + 18, lprect->top + (cy - iBarHeight) / 2 - 1 + 1, string(wstrStatus));
 
    }
 
@@ -1028,13 +1029,13 @@ namespace hotplugin
          zero(&ps, sizeof(ps));
          ps.dwSize = sizeof(ps);
          ps.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
-         wstring wstr(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel));
+         wstring wstr(dir::path(dir::userappdata("time"), string("ca2\\ca2plugin-container-") + m_strBitmapChannel));
          m_hfileBitmap = CreateFile2(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, iOpen, &ps);
 #elif defined(WINDOWS)
-         wstring wstr(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel));
+         wstring wstr(dir::path(dir::userappdata("time"), string("ca2\\ca2plugin-container-") + m_strBitmapChannel));
          m_hfileBitmap = CreateFileW(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, iOpen, FILE_ATTRIBUTE_NORMAL, NULL);
 #else
-         m_hfileBitmap = ::open(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel).m_psz, iOpen, S_IRUSR | S_IWUSR);
+         m_hfileBitmap = ::open(dir::path(dir::userappdata("time"), string("ca2\\ca2plugin-container-") + m_strBitmapChannel).m_psz, iOpen, S_IRUSR | S_IWUSR);
 #endif
 
 
@@ -1133,7 +1134,7 @@ namespace hotplugin
             throw "resource exception";
          }
 
-         m_pmutexBitmap = new mutex(vsstring("Global\\ca2plugin-container-") + itohex_dup((int_ptr)this));
+         m_pmutexBitmap = new mutex(string("Global\\ca2plugin-container-") + itohex_dup((int_ptr)this));
 
       }
 

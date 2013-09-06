@@ -118,7 +118,7 @@ namespace user
 #pragma warning(disable: 4250)  // via dominance
 #endif
 
-
+#include "base_definition.h"
 
 #include "base_lparam.h"
 #include "base_muldiv64.h"
@@ -148,7 +148,6 @@ namespace user
 
 
 
-#include "c/exception/exception.h"
 
 
 
@@ -164,7 +163,6 @@ namespace user
 
 
 #include "base_core.h"
-#include "base_common.h"
 
 #include "c/primitive/primitive_request_interface.h"
 
@@ -196,12 +194,18 @@ namespace user
 
 
 #include "c/str/str.h"
+#include "c/exception/exception.h"
+#include "base_common.h"
 
 
 #include "c/datetime/datetime_time.h"
 
 
+
+
 #include "c/file/file.h"
+
+
 
 
 #include "c/geometry/geometry.h"
@@ -234,7 +238,7 @@ namespace user
 
 
 
-CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError);
+CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 
 #include "c/multithreading/multithreading.h"
 
@@ -294,6 +298,8 @@ CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError);
 #include "c/primitive/primitive_virtual_memory.h"
 #include "c/primitive/primitive_memory_container.h"
 
+#include "c/file/file_memory_buffer.h"
+
 
 #include "c/str/str_international2.h"
 
@@ -315,3 +321,13 @@ CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError);
 
 
 #include "c/spa/spa_trace.h"
+
+
+#include "c/multithreading/multithreading.inl"
+
+
+#include "c/str/str.inl"
+
+#include "c/base/base.inl"
+
+

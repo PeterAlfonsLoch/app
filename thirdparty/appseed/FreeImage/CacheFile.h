@@ -60,7 +60,7 @@ class CacheFile {
 	typedef map<int, int, PageCacheIt, PageCacheIt>::iterator PageMapIt;
 
 public :
-	CacheFile(const vsstring filename, BOOL keep_in_memory);
+	CacheFile(const string filename, BOOL keep_in_memory);
 	~CacheFile();
 
 	BOOL open();
@@ -78,7 +78,7 @@ private :
 
 private :
 	FILE *m_file;
-	vsstring m_filename;
+	string m_filename;
 	list<int> m_free_pages;
 	PageCache m_page_cache_mem;
 	PageCache m_page_cache_disk;

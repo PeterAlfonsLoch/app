@@ -473,9 +473,6 @@
     <ClInclude Include="OpenEXR\IlmImf\ImfInputFile.h">
       <Filter>Header Files\OpenEXR\IImImf</Filter>
     </ClInclude>
-    <ClInclude Include="OpenEXR\IlmImf\ImfInt64.h">
-      <Filter>Header Files\OpenEXR\IImImf</Filter>
-    </ClInclude>
     <ClInclude Include="OpenEXR\IlmImf\ImfIntAttribute.h">
       <Filter>Header Files\OpenEXR\IImImf</Filter>
     </ClInclude>
@@ -657,9 +654,6 @@
       <Filter>Header Files\OpenEXR\Imath</Filter>
     </ClInclude>
     <ClInclude Include="OpenEXR\Imath\ImathHalfLimits.h">
-      <Filter>Header Files\OpenEXR\Imath</Filter>
-    </ClInclude>
-    <ClInclude Include="OpenEXR\Imath\ImathInt64.h">
       <Filter>Header Files\OpenEXR\Imath</Filter>
     </ClInclude>
     <ClInclude Include="OpenEXR\Imath\ImathInterval.h">

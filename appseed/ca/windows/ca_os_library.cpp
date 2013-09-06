@@ -54,7 +54,7 @@ namespace ca
          pszPath = "ca2";
       }
 
-      vsstring strPath(pszPath);
+      string strPath(pszPath);
 
       if(str_ends_ci_dup(strPath, ".ilk"))
          return false;

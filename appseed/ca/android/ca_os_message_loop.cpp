@@ -6,7 +6,7 @@ class sys_message_queue
 public:
 
 
-   simple_event                     m_event;
+   event                     m_event;
    mutex                     m_mutex;
    array < MESSAGE * >           m_msgptra;
 

@@ -389,7 +389,7 @@ namespace dynamic_source
 
    void script_manager::run(const char * lpcszName)
    {
-      http::memory_file memfile(get_app());
+      http::memory_buffer memfile(get_app());
       script_instance * pinstance = get(lpcszName);
       if(pinstance != NULL)
       {
@@ -401,7 +401,7 @@ namespace dynamic_source
 
    string script_manager::get_library_build_log()
    {
-      http::memory_file memfile(get_app());
+      http::memory_buffer memfile(get_app());
       POSITION pos = m_pcompiler->m_mapLib.get_start_position();
       while(pos != NULL)
       {

@@ -5,35 +5,35 @@
 #include <openssl/err.h>
 #endif
 
-CLASS_DECL_ca int32_t crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & key);
+CLASS_DECL_ca int32_t crypt_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, ::primitive::memory & key);
 
-CLASS_DECL_ca int32_t crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & key);
+CLASS_DECL_ca int32_t crypt_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, ::primitive::memory & key);
 
-bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, const char * pszSalt)
+bool crypt_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, const char * pszSalt)
 {
 
-   simple_memory key(get_md5(pszSalt));
+   ::primitive::memory key(get_md5(pszSalt));
 
    return crypt_encrypt(storageEncrypt, storageDecrypt, key) > 0;
 
 }
 
 
-bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, const char * pszSalt)
+bool crypt_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, const char * pszSalt)
 {
 
-   simple_memory key(get_md5(pszSalt));
+   ::primitive::memory key(get_md5(pszSalt));
 
    return crypt_decrypt(storageDecrypt, storageEncrypt, key) > 0;
 
 }
 
 
-int32_t crypt_encrypt(vsstring & strEncrypt, const char * pszDecrypt, const char * pszKey)
+int32_t crypt_encrypt(string & strEncrypt, const char * pszDecrypt, const char * pszKey)
 {
-   simple_memory storageDecrypt;
-   simple_memory storageEncrypt;
-   simple_memory storageKey;
+   ::primitive::memory storageDecrypt;
+   ::primitive::memory storageEncrypt;
+   ::primitive::memory storageKey;
    if(pszDecrypt == NULL || strlen(pszDecrypt) == 0)
    {
       strEncrypt = "";
@@ -48,25 +48,25 @@ int32_t crypt_encrypt(vsstring & strEncrypt, const char * pszDecrypt, const char
 }
 
 
-bool crypt_decrypt(vsstring & strDecrypt, const simple_memory & storageEncrypt, const char * pszSalt)
+bool crypt_decrypt(string & strDecrypt, const ::primitive::memory & storageEncrypt, const char * pszSalt)
 {
-   simple_memory memoryDecrypt;
+   ::primitive::memory memoryDecrypt;
    if(!crypt_decrypt(memoryDecrypt, storageEncrypt, pszSalt))
       return false;
-   memoryDecrypt.ToAsc(strDecrypt);
+   memoryDecrypt.to_asc(strDecrypt);
    return true;
 }
 
-bool crypt_encrypt(simple_memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt)
+bool crypt_encrypt(::primitive::memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt)
 {
-   simple_memory memoryDecrypt;
-   memoryDecrypt.FromAsc(pszDecrypt);
+   ::primitive::memory memoryDecrypt;
+   memoryDecrypt.from_asc(pszDecrypt);
    return crypt_encrypt(storageEncrypt, memoryDecrypt, pszSalt);
 }
 
-bool crypt_file_get(const char * pszFile, vsstring & str, const char * pszSalt)
+bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt)
 {
-   simple_memory memoryEncrypt;
+   ::primitive::memory memoryEncrypt;
    if(!file_get_memory_dup(memoryEncrypt, pszFile))
       return false;
    if(memoryEncrypt.get_size() <= 0)
@@ -77,7 +77,7 @@ bool crypt_file_get(const char * pszFile, vsstring & str, const char * pszSalt)
 
 bool crypt_file_set(const char * pszFile, const char * pszData, const char * pszSalt)
 {
-   simple_memory memoryEncrypt;
+   ::primitive::memory memoryEncrypt;
    crypt_encrypt(memoryEncrypt, pszData, pszSalt);
    file_put_contents_dup(pszFile, memoryEncrypt);
    return true;
@@ -87,7 +87,7 @@ bool crypt_file_set(const char * pszFile, const char * pszData, const char * psz
 
 
 #ifndef METROWIN
-CLASS_DECL_ca vsstring spa_login_crypt(const char * psz, const char * pszRsa)
+CLASS_DECL_ca string spa_login_crypt(const char * psz, const char * pszRsa)
 {
 
 #ifdef MACOS
@@ -98,7 +98,7 @@ CLASS_DECL_ca vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 
 // not needed, defaults to true    CFDictionaryAddValue(parameters, kSecAttrCanEncrypt, kCFBooleanTrue);
 
-    simple_memory memKeyData;
+    ::primitive::memory memKeyData;
 
     memKeyData.from_hex(pszRsa);
 
@@ -159,7 +159,7 @@ CLASS_DECL_ca vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 
     }
 
-    simple_memory memDataIn;
+    ::primitive::memory memDataIn;
 
     memDataIn.from_hex(pszRsa);
 
@@ -210,9 +210,9 @@ CLASS_DECL_ca vsstring spa_login_crypt(const char * psz, const char * pszRsa)
     }
 
 
-    vsstring str;
+    string str;
 
-    simple_memory memory;
+    ::primitive::memory memory;
 
     memory.set_os_cf_data(data);
 
@@ -240,8 +240,8 @@ CLASS_DECL_ca vsstring spa_login_crypt(const char * psz, const char * pszRsa)
    BN_hex2bn(&rsa->e, "10001");
 
 
-   simple_memory memory;
-   simple_memory memIn;
+   ::primitive::memory memory;
+   ::primitive::memory memIn;
 
    memIn.from_hex(psz);
 
@@ -257,7 +257,7 @@ CLASS_DECL_ca vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 
    memory.allocate(i);
 
-   vsstring strHex;
+   string strHex;
 
    memory.to_hex(strHex);
 

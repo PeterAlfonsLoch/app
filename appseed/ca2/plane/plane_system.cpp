@@ -1466,7 +1466,7 @@ namespace plane
       int32_t iLen = strlen(filename);
       gzFile gzf = gzopen(filename, "rb");
       int32_t iRead;
-      ::primitive::memory_file memfile;
+      ::::file::memory_buffer memfile;
       int32_t iBufSize = (1024 * 256);
       char * buf = (char *) malloc(iBufSize);
       while((iRead = gzread(gzf, buf, iBufSize)) > 0)

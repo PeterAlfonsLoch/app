@@ -153,15 +153,16 @@ verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
 }
 */
 
+/*
 
-wstringtou::wstringtou(string & str, int32_t iAllocCount)
+wtostring::wtostring(string & str, int32_t iAllocCount)
 {
    m_pstringUtf8 = &str;
    m_pwsz = wstring_data::get_nil();
    alloc(iAllocCount);
 }
 
-wstringtou::~wstringtou()
+wtostring::~wtostring()
 {
    if(m_pstringUtf8 != NULL)
    {
@@ -174,3 +175,5 @@ wstringtou::~wstringtou()
       m_pwsz = wstring_data::get_nil();
    }
 }
+
+*/

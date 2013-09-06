@@ -67,7 +67,8 @@
 #define N1_slash 63
 
 
-base64::base64()
+base64::base64() :
+   object(::ca2::get_thread_app())
 {
    int32_t i;
 
@@ -135,12 +136,17 @@ base64::~base64()
 
 }
 
-void base64::encode(simple_memory & ostream, const simple_memory & istream)
+void base64::encode(::primitive::memory & memoryOut, const ::primitive::memory & memoryIn)
 {
    int32_t i,hiteof= FALSE;
    byte igroup[3],ogroup[4];
    int32_t n;
    char ch;
+
+   file::memory_buffer ofile(get_app(), &memoryOut);
+   file::memory_buffer ifile(get_app(), (::primitive::memory_base *) &memoryIn);
+   file::byte_output_stream ostream(&ofile);
+   file::byte_input_stream istream(&ifile);
 
    while(!hiteof)
    {
@@ -177,52 +183,59 @@ void base64::encode(simple_memory & ostream, const simple_memory & istream)
 }
 
 
-vsstring base64::encode(const char * psz)
+string base64::encode(const char * psz)
 {
       
-   simple_memory storage;
+   ::primitive::memory storage;
 
    size_t iLen = strlen(psz);
 
    storage.allocate(iLen);
 
-   memcpy(storage.m_psz, psz, iLen);
+   memcpy(storage.get_data(), psz, iLen);
 
    return encode(storage);
 
 }
 
-vsstring base64::encode(const byte * p, ::count c)
+string base64::encode(const byte * p, ::count c)
 {
 
-   simple_memory storage;
+   ::primitive::memory storage;
 
    storage.allocate(c);
 
-   memcpy(storage.m_psz, p, c);
+   memcpy(storage.get_data(), p, c);
 
    return encode(storage);
 
 }
 
-vsstring base64::encode(const simple_memory & storageBinary)
+string base64::encode(const ::primitive::memory & storageBinary)
 {
       
 
-   simple_memory ostream;
+   ::primitive::memory ostream;
 
    encode(ostream, storageBinary);
 
-   return ostream.str();
+   return ostream.to_string();
 
 }
 
 
-void base64::decode(simple_memory & ostream, const simple_memory & istream)
+void base64::decode(::primitive::memory & memoryOut, const ::primitive::memory & memoryIn)
 {
    int32_t i;
    byte a[4],b[4],o[3];
    uchar uch;
+
+
+   file::memory_buffer ofile(get_app(), (::primitive::memory_base *) &memoryOut);
+   file::memory_buffer ifile(get_app(), (::primitive::memory_base *) &memoryIn);
+   file::byte_output_stream ostream(&ofile);
+   file::byte_input_stream istream(&ifile);
+
 
    while(TRUE)
    {
@@ -259,21 +272,21 @@ void base64::decode(simple_memory & ostream, const simple_memory & istream)
 
 
 
-vsstring base64::decode(const char * pszBase64)
+string base64::decode(const char * pszBase64)
 {
       
-   simple_memory storage;
+   ::primitive::memory storage;
       
    decode(storage, pszBase64);
       
-   return storage.str();
+   return storage.to_string();
 
 }
 
-void base64::decode(simple_memory & storageBinary, const char * pszBase64)
+void base64::decode(::primitive::memory & storageBinary, const char * pszBase64)
 {
 
-   simple_memory istream(pszBase64);
+   ::primitive::memory istream(pszBase64);
 
    decode(storageBinary, istream);
 

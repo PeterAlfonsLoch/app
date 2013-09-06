@@ -128,15 +128,15 @@ StdIFStream::read (char c[/*n*/], int n)
 }
 
 
-Int64
+int64_t
 StdIFStream::tellg ()
 {
-    return (Int64) _is->tellg();
+    return (int64_t) _is->tellg();
 }
 
 
 void
-StdIFStream::seekg (Int64 pos)
+StdIFStream::seekg (int64_t pos)
 {
     _is->seekg (pos);
     checkError (*_is);
@@ -152,7 +152,7 @@ StdIFStream::clear ()
 
 StdOFStream::StdOFStream (const char fileName[]):
     OStream (fileName),
-    _os (new byte_ouput_stream_binary_buffer (::ca2::get_thread_app(), fileName)),
+    _os (new ::file::byte_output_stream_binary_buffer (::ca2::get_thread_app(), fileName)),
     _deleteStream (true)
 {
     if (!*_os)
@@ -163,7 +163,7 @@ StdOFStream::StdOFStream (const char fileName[]):
 }
 
 
-StdOFStream::StdOFStream (ofstream &os, const char fileName[]):
+StdOFStream::StdOFStream (::file::output_stream &os, const char fileName[]):
     OStream (fileName),
     _os (&os),
     _deleteStream (false)
@@ -188,15 +188,15 @@ StdOFStream::write (const char c[/*n*/], int n)
 }
 
 
-Int64
+int64_t
 StdOFStream::tellp ()
 {
-    return std::streamoff (_os->tellp());
+    return (int64_t) _os->tellp();
 }
 
 
 void
-StdOFStream::seekp (Int64 pos)
+StdOFStream::seekp (int64_t pos)
 {
     _os->seekp (pos);
     checkError (*_os);
@@ -218,15 +218,15 @@ StdOSStream::write (const char c[/*n*/], int n)
 }
 
 
-Int64
+int64_t
 StdOSStream::tellp ()
 {
-    return std::streamoff (_os.tellp());
+   return _os.tellp();
 }
 
 
 void
-StdOSStream::seekp (Int64 pos)
+StdOSStream::seekp (int64_t pos)
 {
     _os.seekp (pos);
     checkError (_os);

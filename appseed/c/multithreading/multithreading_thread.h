@@ -7,7 +7,7 @@ typedef HANDLE HTHREAD;
 
 #else
 
-class simple_event;
+class event;
 
 typedef hthread * HTHREAD;
 

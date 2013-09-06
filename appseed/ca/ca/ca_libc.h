@@ -35,6 +35,4 @@ END_EXTERN_C
 
 
 
-#include "ca_heap.h"
-
 #endif

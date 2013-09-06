@@ -1046,6 +1046,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="base\base_allocate.h" />
     <ClInclude Include="base\base_application.h" />
     <ClInclude Include="base\base_auto_pointer.h" />
+    <ClInclude Include="base\base_definition.h" />
     <ClInclude Include="base\base_root.h" />
     <ClInclude Include="base\base_c.h" />
     <ClInclude Include="base\base_common.h" />
@@ -1167,6 +1168,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="file\file_c.h" />
     <ClInclude Include="file\file_composite.h" />
     <ClInclude Include="file\file_input_stream.h" />
+    <ClInclude Include="file\file_memory_buffer.h" />
+    <ClInclude Include="file\file_plain_text_output_stream_string_buffer.h" />
     <ClInclude Include="file\file_plain_text_stream.h" />
     <ClInclude Include="file\file_plain_text_stream_base.h" />
     <ClInclude Include="file\file_plain_text_output_stream.h" />
@@ -1316,10 +1319,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="str\str_from_integer.h" />
     <ClInclude Include="str\str_str1.h" />
     <ClInclude Include="str\str_to_integer.h" />
-    <ClInclude Include="str\str_verisimple_string.h" />
-    <ClInclude Include="str\str_verisimple_wstring.h" />
-    <ClInclude Include="str\str_vsstringtow.h" />
-    <ClInclude Include="str\str_wstringtovss.h" />
+    <ClInclude Include="str\str_wstring.h" />
+    <ClInclude Include="str\str_stringtow.h" />
     <ClInclude Include="str\str_hex.h" />
     <ClInclude Include="str\str_international.h" />
     <ClInclude Include="str\str_international2.h" />
@@ -1334,7 +1335,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="str\str_format.h" />
     <ClInclude Include="str\str_interface.h" />
     <ClInclude Include="str\str_tokenizer.h" />
-    <ClInclude Include="str\str_wstringtou.h" />
+    <ClInclude Include="str\str_wtostring.h" />
     <ClInclude Include="windows\windows.h" />
     <ClInclude Include="windows\windows_file.h" />
     <ClInclude Include="windows\windows_internal.h">
@@ -1385,6 +1386,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="base\base_allocate_var.cpp" />
     <ClCompile Include="base\base_application.cpp" />
     <ClCompile Include="base\base_assert.cpp" />
+    <ClCompile Include="base\base_conv.cpp" />
     <ClCompile Include="base\base_muldiv64.cpp" />
     <ClCompile Include="base\base_plex.cpp" />
     <ClCompile Include="base\base_plex_heap.cpp" />
@@ -1481,12 +1483,14 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="file\file_composite.cpp" />
     <ClCompile Include="file\file_exception.cpp" />
     <ClCompile Include="file\file_input_stream.cpp" />
+    <ClCompile Include="file\file_memory_buffer.cpp" />
     <ClCompile Include="file\file_output_stream.cpp" />
     <ClCompile Include="file\file_plain_text_input_stream.cpp" />
     <ClCompile Include="file\file_dir.cpp" />
     <ClCompile Include="file\file_dir2.cpp" />
     <ClCompile Include="file\file_binary_buffer.cpp" />
     <ClCompile Include="file\file_plain_text_output_stream.cpp" />
+    <ClCompile Include="file\file_plain_text_output_stream_string_buffer.cpp" />
     <ClCompile Include="file\file_plain_text_stream.cpp" />
     <ClCompile Include="file\file_plain_text_stream_base.cpp" />
     <ClCompile Include="file\file_plain_text_stream_string_buffer.cpp" />
@@ -1495,7 +1499,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="file\file_simple_binary_buffer.cpp" />
     <ClCompile Include="file\file_stream.cpp" />
     <ClCompile Include="file\file_stream_base.cpp" />
-    <ClCompile Include="file\file_string.cpp" />
+    <ClCompile Include="file\file_string_buffer.cpp" />
     <ClCompile Include="file\file_writer.cpp" />
     <ClCompile Include="framework_c.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
@@ -1579,10 +1583,9 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="str\str_strx.cpp" />
     <ClCompile Include="str\str_tokenizer.cpp" />
     <ClCompile Include="str\str_to_integer.cpp" />
-    <ClCompile Include="str\str_verisimple_string.cpp" />
     <ClCompile Include="str\str_verisimple_wstring.cpp" />
-    <ClCompile Include="str\str_vsstringtow.cpp" />
-    <ClCompile Include="str\str_wstringtovss.cpp" />
+    <ClCompile Include="str\str_stringtow.cpp" />
+    <ClCompile Include="str\str_wtostring.cpp" />
     <ClCompile Include="str\str_ch.cpp" />
     <ClCompile Include="str\str_ch_class.cpp" />
     <ClCompile Include="str\str_hex.cpp" />
@@ -1625,7 +1628,9 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="xml\xml_xmlite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="base\base.inl" />
     <None Include="multithreading\multithreading.inl" />
+    <None Include="str\str.inl" />
     <None Include="_c.def" />
   </ItemGroup>
   <ItemGroup>

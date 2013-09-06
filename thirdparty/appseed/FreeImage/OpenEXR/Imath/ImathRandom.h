@@ -56,8 +56,8 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <stdlib.h>
-#include <math.h>
+//#include <stdlib.h>
+//#include <math.h>
 
 namespace Imath {
 
@@ -337,7 +337,7 @@ solidSphereRand (Rand &rand)
 
     do
     {
-	for (unsigned int i = 0; i < Vec::dimensions(); i++)
+	for (index i = 0; i < Vec::dimensions(); i++)
 	    v[i] = (typename Vec::BaseType) rand.nextf (-1, 1);
     }
     while (v.length2() > 1);
@@ -355,7 +355,7 @@ hollowSphereRand (Rand &rand)
 
     do
     {
-	for (unsigned int i = 0; i < Vec::dimensions(); i++)
+	for (index i = 0; i < Vec::dimensions(); i++)
 	    v[i] = (typename Vec::BaseType) rand.nextf (-1, 1);
 
 	length = v.length();

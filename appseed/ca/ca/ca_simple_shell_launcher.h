@@ -15,10 +15,10 @@ public:
 
 
    oswindow        m_oswindow;
-   vsstring    m_vssOperation;
-   vsstring    m_vssFile;
-   vsstring    m_vssParameters;
-   vsstring    m_vssDirectory;
+   string    m_vssOperation;
+   string    m_vssFile;
+   string    m_vssParameters;
+   string    m_vssDirectory;
    int32_t         m_iShow;
 
 #ifdef WINDOWS

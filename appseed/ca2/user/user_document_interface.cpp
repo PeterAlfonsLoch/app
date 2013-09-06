@@ -665,7 +665,7 @@ namespace user
 
          wait_cursor wait(get_app());
 
-         if(varFile["xmledit"].element < ::primitive::memory_file > () != NULL)
+         if(varFile["xmledit"].element < ::::file::memory_buffer > () != NULL)
          {
 
          }

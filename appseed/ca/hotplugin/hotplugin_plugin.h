@@ -23,8 +23,8 @@ namespace hotplugin
 
       };
 
-      vsstring                      m_strPluginUrl;
-      vsstring                      m_strPluginHeaders;
+      string                      m_strPluginUrl;
+      string                      m_strPluginHeaders;
       BYTE *                        m_lpbMemory;
       int32_t                           m_iMemory;
       bool                          m_bOnPaint;
@@ -47,7 +47,7 @@ namespace hotplugin
       COLORREF *                    m_pcolorref;
       SIZE                          m_sizeBitmap;
 
-      vsstring                      m_strStatus;
+      string                      m_strStatus;
 
       uint32_t                         m_nCa2StarterStartThreadID;
       bool                          m_bReload;
@@ -62,13 +62,13 @@ namespace hotplugin
 #endif
       mutex *                m_pmutexBitmap;
       SIZE                          m_sizeBitmapData;
-      vsstring                      m_strBitmapChannel;
+      string                      m_strBitmapChannel;
       POINT                         m_ptCursorPhase;
 
       e_schema                      m_eschema;
-      vsstring                      m_strLocale;
-      vsstring                      m_strSchema;
-      vsstring                      m_strRuri;
+      string                      m_strLocale;
+      string                      m_strSchema;
+      string                      m_strRuri;
 
 
       plugin();
@@ -83,7 +83,7 @@ namespace hotplugin
       // Host location is not the updated url - if there is a way to update the url and
       // maintain the same plugin instance, what would lead to an out-of-date location url.
       // It is the location url of the page that hosts the plugin when the plugin was created.
-      virtual vsstring     get_host_location_url();
+      virtual string     get_host_location_url();
 
 
       virtual void         redraw();

@@ -3,6 +3,8 @@
 
 class string_manager;
 
+inline void throw_error_exception(const char * psz);
+DECLSPEC_NO_RETURN inline void __cdecl throw_memory_exception();
 
 struct CLASS_DECL_c string_data
 {
@@ -411,74 +413,10 @@ public:
       construct(pstringmanager);
    }
 
-   void construct(string_manager * pstringmanager)
-   {
-      ENSURE( pstringmanager != NULL );
-      string_data * pData = pstringmanager->GetNilString();
-      attach( pData );
-   }
-
-   simple_string(const simple_string & strSrc, string_manager * pstringmanager  )
-   {
-      if(&strSrc == NULL)
-      {
-         ENSURE( pstringmanager != NULL );
-
-         string_data* pData = pstringmanager->allocate( 0, sizeof( char ) );
-         if( pData == NULL )
-         {
-            ThrowMemoryException();
-         }
-         attach( pData );
-         set_length( 0 );
-         return;
-      }
-      string_data* pSrcData = strSrc.get_data();
-      string_data* pNewData = CloneData( pSrcData );
-      attach( pNewData );
-   }
-
-   simple_string(const char * pszSrc,string_manager * pstringmanager )
-   {
-      ENSURE( pstringmanager != NULL );
-
-      strsize nLength = StringLength( pszSrc );
-      string_data* pData = pstringmanager->allocate( nLength, sizeof( char ) );
-      if( pData == NULL )
-      {
-         ThrowMemoryException();
-      }
-      attach( pData );
-      set_length( nLength );
-#if _SECURE_TEMPLATE
-      CopyChars( m_pszData, nLength, pszSrc, nLength );
-#else
-      CopyChars( m_pszData, pszSrc, nLength );
-#endif
-   }
-   simple_string(const char* pchSrc,strsize nLength,string_manager * pstringmanager )
-   {
-      ENSURE( pstringmanager != NULL );
-
-      if(pchSrc == NULL && nLength != 0)
-         throw invalid_argument_exception(::ca2::get_thread_app());
-
-      if(nLength < 0)
-         nLength = (strsize) strlen(pchSrc);
-
-      string_data * pData = pstringmanager->allocate( nLength, sizeof( char ) );
-      if( pData == NULL )
-      {
-         ThrowMemoryException();
-      }
-      attach( pData );
-      set_length( nLength );
-#if _SECURE_TEMPLATE
-      CopyChars( m_pszData, nLength, pchSrc, nLength );
-#else
-      CopyChars( m_pszData, pchSrc, nLength );
-#endif
-   }
+   void construct(string_manager * pstringmanager);
+   simple_string(const simple_string & strSrc, string_manager * pstringmanager  );
+   simple_string(const char * pszSrc,string_manager * pstringmanager );
+   simple_string(const char* pchSrc,strsize nLength,string_manager * pstringmanager );
    ~simple_string() NOTHROW
    {
       if(m_pszData != NULL)
@@ -569,17 +507,7 @@ public:
    }
 
 
-   const char & operator [](strsize iChar ) const
-   {
-      
-      //ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
-
-      if( (iChar < 0) || (iChar > get_length()) )
-         throw invalid_argument_exception(::ca2::get_thread_app());
-
-      return m_pszData[iChar];
-
-   }
+   inline const char & operator [](strsize iChar ) const;
 
    // non error at
    char s_at(strsize iChar) const
@@ -735,14 +663,7 @@ public:
    {
       return( get_data()->nAllocLength );
    }
-   char get_at(strsize iChar ) const
-   {
-      ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
-      if( (iChar < 0) || (iChar > get_length()) )
-         throw invalid_argument_exception(::ca2::get_thread_app());
-
-      return( m_pszData[iChar] );
-   }
+   inline char get_at(strsize iChar ) const;
    char * GetBuffer()
    {
       string_data* pData = get_data();
@@ -835,86 +756,15 @@ public:
       }
       set_length( nNewLength );
    }
-   void ReleaseBufferSetLength(strsize nNewLength )
-   {
-      ASSERT( nNewLength >= 0 );
-      set_length( nNewLength );
-   }
-   void Truncate(strsize nNewLength )
-   {
-      ASSERT( nNewLength <= get_length() );
-      GetBuffer( nNewLength );
-      ReleaseBufferSetLength( nNewLength );
-   }
-   void set_at(strsize iChar,char ch )
-   {
-      ASSERT( (iChar >= 0) && (iChar < get_length()) );
-
-      if( (iChar < 0) || (iChar >= get_length()) )
-         throw invalid_argument_exception(::ca2::get_thread_app());
-
-      strsize nLength = get_length();
-      char * pszBuffer = GetBuffer();
-      pszBuffer[iChar] = ch;
-      ReleaseBufferSetLength( nLength );
-
-   }
-   void SetManager(string_manager * pstringmanager )
-   {
-      ASSERT( is_empty() );
-
-      string_data * pData = get_data();
-      pData->Release();
-      pData = pstringmanager->GetNilString();
-      attach( pData );
-   }
+   inline void ReleaseBufferSetLength(strsize nNewLength );
+   inline void Truncate(strsize nNewLength );
+inline   void set_at(strsize iChar,char ch );
+   inline void SetManager(string_manager * pstringmanager );
    void SetString(const char * pszSrc )
    {
       SetString( pszSrc, StringLength( pszSrc ) );
    }
-   void SetString(const char * pszSrc,strsize nLength )
-   {
-      if( nLength == 0 )
-      {
-         Empty();
-      }
-      else
-      {
-         // It is possible that pszSrc points to a location inside of our
-         // buffer.  GetBuffer() might change m_pszData if (1) the buffer
-         // is shared or (2) the buffer is too small to hold the new
-         // string.  We detect this aliasing, and modify pszSrc to point
-         // into the newly allocated buffer instead.
-
-         if(pszSrc == NULL)
-            throw invalid_argument_exception(::ca2::get_thread_app());
-
-         uint_ptr nOldLength = (uint_ptr) get_length();
-         uint_ptr nOffset = (uint_ptr) (pszSrc - GetString());
-         // If 0 <= nOffset <= nOldLength, then pszSrc points into our
-         // buffer
-
-         char * pszBuffer = GetBuffer( nLength );
-         if( nOffset <= nOldLength )
-         {
-#if _SECURE_TEMPLATE
-            CopyCharsOverlapped( pszBuffer, nLength,
-               pszBuffer+nOffset, nLength );
-#else
-            CopyCharsOverlapped( pszBuffer, pszBuffer+nOffset, nLength );
-#endif
-         }
-         else
-         {
-#if _SECURE_TEMPLATE
-            CopyChars( pszBuffer, nLength, pszSrc, nLength );
-#else
-            CopyChars( pszBuffer, pszSrc, nLength );
-#endif
-         }
-         ReleaseBufferSetLength( nLength );
-      }
-   }
+   inline void SetString(const char * pszSrc,strsize nLength );
 
 public:
    friend simple_string operator+(
@@ -1013,10 +863,6 @@ protected:
       strResult.ReleaseBufferSetLength( nNewLength );
    }
 
-   DECLSPEC_NO_RETURN static void __cdecl ThrowMemoryException()
-   {
-      throw hresult_exception(::ca2::get_thread_app(), E_OUTOFMEMORY);
-   }
 
    // Implementation
 private:
@@ -1031,7 +877,7 @@ private:
       string_data* pNewData = pOldData->pstringmanager->Clone()->allocate( nLength, sizeof( char ) );
       if( pNewData == NULL )
       {
-         ThrowMemoryException();
+         throw_memory_exception();
       }
       strsize nCharsToCopy = ((nOldLength < nLength) ? nOldLength : nLength)+1;  // copy '\0'
 #if _SECURE_TEMPLATE
@@ -1089,31 +935,14 @@ private:
          Reallocate( nNewLength );
       }
    }
-   void Reallocate(strsize nLength )
-   {
-      string_data* pOldData = get_data();
-      ASSERT( pOldData->nAllocLength < nLength );
-      string_manager * pstringmanager = pOldData->pstringmanager;
-      if ( pOldData->nAllocLength >= nLength || nLength <= 0)
-      {
-         ThrowMemoryException();
-         return;
-      }
-      string_data* pNewData = pstringmanager->Reallocate( pOldData, nLength, sizeof( char ) );
-      if( pNewData == NULL )
-      {
-         ThrowMemoryException();
-      }
-      attach( pNewData );
-   }
-
+   inline void Reallocate(strsize nLength );
    void set_length(strsize nLength )
    {
 
       if(nLength < 0 )
-         throw error_exception(::ca2::get_thread_app(), "simple_string::set_length nLength < 0");
+         throw_error_exception("simple_string::set_length nLength < 0");
       if(nLength > get_data()->nAllocLength)
-         throw error_exception(::ca2::get_thread_app(), "simple_string::set_length nLength > get_data()->nAllocLength");
+         throw_error_exception("simple_string::set_length nLength > get_data()->nAllocLength");
 
       get_data()->nDataLength = nLength;
       m_pszData[nLength] = 0;
@@ -1135,7 +964,7 @@ private:
          pNewData = pNewStringMgr->allocate( pData->nDataLength, sizeof( char ) );
          if( pNewData == NULL )
          {
-            ThrowMemoryException();
+            throw_memory_exception();
          }
          pNewData->nDataLength = pData->nDataLength;
 #if _SECURE_TEMPLATE
@@ -1209,16 +1038,7 @@ public:
       return( m_pszBuffer );
    }
 
-   void set_length(strsize nLength )
-   {
-      ASSERT( nLength >= 0 );
-      ASSERT( nLength <= m_nBufferLength );
-
-      if( nLength < 0 )
-         throw invalid_argument_exception(::ca2::get_thread_app());
-
-      m_nLength = nLength;
-   }
+   inline void set_length(strsize nLength );
 
    // Implementation
 private:
@@ -1243,51 +1063,6 @@ inline char * string_data::data() NOTHROW
    return reinterpret_cast < char *> (this+1);
 }
 
-inline void string_data::AddRef() RELEASENOTHROW
-{
-   ASSERT(nRefs > 0);
-   _gen_InterlockedIncrement(&nRefs);
-}
-inline bool string_data::IsLocked() const NOTHROW
-{
-   return nRefs < 0;
-}
-inline bool string_data::IsShared() const NOTHROW
-{
-   return( nRefs > 1 );
-}
-inline void string_data::lock() RELEASENOTHROW
-{
-   ASSERT( nRefs <= 1 );
-   nRefs--;  // Locked buffers can't be shared, so no interlocked operation necessary
-   if( nRefs == 0 )
-   {
-      nRefs = -1;
-   }
-}
-inline void string_data::Release() RELEASENOTHROW
-{
-   ASSERT( nRefs != 0 );
-
-   if( _gen_InterlockedDecrement( &nRefs ) <= 0 )
-   {
-      pstringmanager->Free( this );
-   }
-}
-inline void string_data::unlock() RELEASENOTHROW
-{
-   ASSERT( IsLocked() );
-
-   if(IsLocked())
-   {
-      nRefs++;  // Locked buffers can't be shared, so no interlocked operation necessary
-      if( nRefs == 0 )
-      {
-         nRefs = 1;
-      }
-   }
-}
-      
 
 
 

@@ -7,7 +7,7 @@ public:
 
 
    cairo_surface_t *       m_psurface;
-   simple_memory           m_mem;
+   ::primitive::memory           m_mem;
 
 
    simple_bitmap();

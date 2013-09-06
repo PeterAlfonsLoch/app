@@ -1,10 +1,11 @@
 #pragma once
 
-namespace primitive
+
+namespace file
 {
 
-   class CLASS_DECL_ca2 memory_file :
-      virtual public ::file::binary_buffer,
+   class CLASS_DECL_c memory_buffer :
+      virtual public ::file::buffer,
       virtual public primitive::memory_container
    {
    protected:
@@ -16,17 +17,17 @@ namespace primitive
    public:
    
 
-      memory_file(sp(base_application) papp, ::primitive::memory_size iSize = 0);
-      memory_file(sp(base_application) papp, void * pMemory, ::primitive::memory_size dwSize);
-      memory_file(sp(base_application) papp, const memory_file & memoryfile);
-      memory_file(sp(base_application) papp, memory_base * pmemory);
-      virtual ~memory_file();
+      memory_buffer(sp(base_application) papp, ::primitive::memory_size iSize = 0);
+      memory_buffer(sp(base_application) papp, void * pMemory, ::primitive::memory_size dwSize);
+      memory_buffer(sp(base_application) papp, const memory_buffer & memoryfile);
+      memory_buffer(sp(base_application) papp, ::primitive::memory_base * pmemory);
+      virtual ~memory_buffer();
 
 
       virtual bool IsValid() const;
-      memory_size remove_begin(void * lpBuf, ::primitive::memory_size uiCount);
+      ::primitive::memory_size remove_begin(void * lpBuf, ::primitive::memory_size uiCount);
       void load_string(string & str);
-      using ::ca2::request_interface::create;
+      using ::request_interface::create;
       void create(::primitive::memory_size iSize = -1);
       file_position seek(file_offset lOff, ::file::e_seek  nFrom);
       file_position get_position() const;

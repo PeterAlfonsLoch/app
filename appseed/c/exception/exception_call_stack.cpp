@@ -31,10 +31,10 @@ call_stack::call_stack(const ::call_stack & cs) :
 
 }
 
-vsstring call_stack::get(uint32_t uiSkip)
+string call_stack::get(uint32_t uiSkip)
 {
 
-   vsstring str;
+   string str;
 
    UNREFERENCED_PARAMETER(uiSkip);
 

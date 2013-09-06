@@ -5,7 +5,7 @@ extern bool g_bInstalling;
 
 #define SPA_FILE_FLAG_VOID_COPY 1
 
-namespace spa
+namespace spa_install
 {
 
 
@@ -22,11 +22,11 @@ namespace spa
       {
       public:
 
-         vsstring m_strPath;
+         string m_strPath;
 
          virtual bool ensure_executable();
 
-         virtual vsstring get_executable_path();
+         virtual string get_executable_path();
 
       };
 
@@ -36,25 +36,25 @@ namespace spa
       stringa       m_straTerminateProcesses;
       stringa       m_straRestartCommandLine;
       stringa       m_straRestartProcess;
-      vsstring       m_strLastHost;
-      vsstring       m_strCurrentHost;
+      string       m_strLastHost;
+      string       m_strCurrentHost;
       bool           m_bStarterStart;
 #ifdef WINDOWS
       MESSAGE            m_msg;
 #endif
-      vsstring       m_strPlatform;
+      string       m_strPlatform;
 
-      vsstring       m_strInstallLocale;
-      vsstring       m_strInstallSchema;
+      string       m_strInstallLocale;
+      string       m_strInstallSchema;
 
-      vsstring       m_strAppMatterList;
+      string       m_strAppMatterList;
 
       uint32_t          m_dwDownloadCallbackLast100k;
       uint32_t          m_iDownloadCallbackColumn;
       uint64_t       m_dwDownloadLen;
       int32_t            m_cx;
       int32_t            m_cy;
-      vsstring       m_strHost;
+      string       m_strHost;
       uint32_t          m_dwInstallStartTime;
 
       HINSTANCE      m_hinstance;
@@ -67,20 +67,20 @@ namespace spa
 
       window *       m_pwindow;
 
-      vsstring       m_strBuild;
-      vsstring       m_strBuildResource;
-      vsstring       m_strApplicationId;
-      vsstring       m_strApplicationType;
-      vsstring       m_strCommandLine;
+      string       m_strBuild;
+      string       m_strBuildResource;
+      string       m_strApplicationId;
+      string       m_strApplicationType;
+      string       m_strCommandLine;
 
       machine_event  m_machineevent;
 
       double         m_dProgress;
       double         m_dProgress1;
       double         m_dProgress2;
-      XNode          m_nodeStringTable;
+      ::xml::node          m_nodeStringTable;
       int32_t            m_iStart;
-      simple_double_array m_daDownloadRate;
+      double_array m_daDownloadRate;
       uint32_t          m_dwDownloadTick;
       uint64_t          m_dwDownload;
       int32_t            m_iDownloadRate;
@@ -92,11 +92,11 @@ namespace spa
 
       bool           m_bOfflineInstall;
       bool           m_bInternetInstall;
-      vsstring       m_strIndex;
-      vsstring       m_strIndexGz;
-      vsstring       m_strInstall;
-      vsstring       m_strInstallGz;
-      vsstring       m_strInstallStatusTemplate;
+      string       m_strIndex;
+      string       m_strIndexGz;
+      string       m_strInstall;
+      string       m_strInstallGz;
+      string       m_strInstallStatusTemplate;
 
       bool           m_bInstallSet;
 
@@ -110,8 +110,8 @@ namespace spa
       bool           m_NeedRestartFatalError;
       bool           m_bLoginStartup;
       bool           m_bMsDownload;
-      vsstring       m_strTitle;
-      vsstring       m_strSpaIgnitionBaseUrl;
+      string       m_strTitle;
+      string       m_strSpaIgnitionBaseUrl;
       uint64_t       m_dwCurFileLen;
 
 
@@ -125,14 +125,14 @@ namespace spa
       int64_t        m_iProgressTotalGzLen;
       int64_t        m_iGzLen;
       int32_t            m_iStyle;
-      vsstring       m_strLogin;
-      vsstring       m_strSessid;
-      vsstring       m_strInstallFilter;
-      vsstring       m_strLocale;
-      vsstring       m_strLoginFailed;
+      string       m_strLogin;
+      string       m_strSessid;
+      string       m_strInstallFilter;
+      string       m_strLocale;
+      string       m_strLoginFailed;
       oswindow           m_oswindow;
 
-      vsstring       m_strFile;
+      string       m_strFile;
       bool           m_bSynch;
 
 
@@ -143,48 +143,48 @@ namespace spa
 
 
       void set_progress(double dProgress);
-      ::count download_file_list(stringa & stringa, simple_string_to_intptr & mapLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag);
+      ::count download_file_list(stringa & stringa, string_to_intptr & mapLen, string_to_string & mapCrc, string_to_intptr & mapGzLen, string_to_intptr & mapFlag);
 
       static uint32_t thread_proc_run(void * lpParam);
 
       void PaintOpaqueBk(HDC hdc);
 
-      bool get(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen);
+      bool get(const string& url_in, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen);
 
-      bool download_file(const vsstring& inplace, const vsstring& url_in, bool bExist, bool bCheck, int64_t iLength, const char * pszCrc, int64_t iGzLen, int_ptr & iFlag);
+      bool download_file(const string& inplace, const string& url_in, bool bExist, bool bCheck, int64_t iLength, const char * pszCrc, int64_t iGzLen, int_ptr & iFlag);
 
-      vsstring ca2_get_dir(LPCSTR lpcszUrl);
+      string ca2_get_dir(LPCSTR lpcszUrl);
 
-      vsstring ca2bz_get_dir(LPCSTR lpcszUrl);
+      string ca2bz_get_dir(LPCSTR lpcszUrl);
 
-      vsstring ca2unbz_get_dir(LPCSTR lpcszUrl);
+      string ca2unbz_get_dir(LPCSTR lpcszUrl);
 
-      vsstring ca2inplace_get_dir(LPCSTR lpcszUrl);
+      string ca2inplace_get_dir(LPCSTR lpcszUrl);
 
-      vsstring ca2_get_file(LPCSTR lpcszUrl);
+      string ca2_get_file(LPCSTR lpcszUrl);
 
-      vsstring ca2bz_get_file(LPCSTR lpcszUrl, const char * pszCrc);
+      string ca2bz_get_file(LPCSTR lpcszUrl, const char * pszCrc);
 
-      vsstring ca2unbz_get_file(LPCSTR lpcszUrl);
+      string ca2unbz_get_file(LPCSTR lpcszUrl);
 
-      vsstring ca2inplace_get_file(LPCSTR lpcszUrl);
+      string ca2inplace_get_file(LPCSTR lpcszUrl);
 
-      bool ca2_fy_url(vsstring & str, LPCSTR lpcszPath, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen, bool bIndex = false);
+      bool ca2_fy_url(string & str, LPCSTR lpcszPath, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen, bool bIndex = false);
 
-      int32_t GetFileList(stringa & stringa, LPCSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapFlag);
-      int32_t GetFileListEx(stringa & stringa, class stringa & straPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapFlag);
+      int32_t GetFileList(stringa & stringa, LPCSTR lpcszPath, string_to_intptr & mapLen, string_to_intptr & mapGzLen, string_to_string & mapCrc, string_to_intptr & mapFlag);
+      int32_t GetFileListEx(stringa & stringa, class stringa & straPath, string_to_intptr & mapLen, string_to_intptr & mapGzLen, string_to_string & mapCrc, string_to_intptr & mapFlag);
 
       int32_t GetLocalFileList(stringa & stringa, LPCSTR lpcszUrl);
 
-      ::count UncompressFileList(stringa & stringa, simple_string_to_string & strmapCrc);
+      ::count UncompressFileList(stringa & stringa, string_to_string & strmapCrc);
 
-      ::count CopyFileList(stringa & stringa, simple_string_to_intptr & mapFlag);
+      ::count CopyFileList(stringa & stringa, string_to_intptr & mapFlag);
 
-      void ParseSpaIndex(XNode & node);
+      void ParseSpaIndex(::xml::node & node);
 
-      vsstring load_string(const char * pszId, const char * pszDefault);
+      string load_string(const char * pszId, const char * pszDefault);
 
-      void ParseIndexFile(const char * psz, simple_string_to_intptr & mapLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag);
+      void ParseIndexFile(const char * psz, string_to_intptr & mapLen, string_to_string & mapCrc, string_to_intptr & mapGzLen, string_to_intptr & mapFlag);
 
       bool spa_exec(const char * psz);
 
@@ -200,7 +200,7 @@ namespace spa
 
       int32_t ca2_build_version();
 
-      int32_t calc_host(vsstring & strSpaHost, int32_t &iHostRetry);
+      int32_t calc_host(string & strSpaHost, int32_t &iHostRetry);
 
 
       int32_t run_uninstall(const char * lpCmdLine, int32_t nCmdShow);
@@ -227,7 +227,7 @@ namespace spa
 
 
       // it will install/update if there is a "breach"
-      static void spa();
+      static void do_spa();
 
       // it will install forcing to install as it is possible
       void synch_starter_start();
@@ -260,6 +260,6 @@ namespace spa
    CLASS_DECL_ca int32_t ca2_app_install_run(const char * pszCommandLine, uint32_t & dwStartError, bool bSynch);
 
 
-} // namespace spa
+} // namespace spa_install
 
 

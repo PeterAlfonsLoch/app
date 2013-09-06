@@ -378,7 +378,7 @@ SIZE os_simple_graphics::get_text_extent(const char * psz, strsize iLen)
    if(iLen < 0)
       iLen = strlen(psz);
 
-   vsstring str(psz, iLen);
+   string str(psz, iLen);
 
    wstring wstr(str);
 

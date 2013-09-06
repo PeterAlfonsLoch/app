@@ -1715,7 +1715,7 @@ namespace str
                {
                   return BAD_WCHAR;
                }
-               int64_t hex = ::str::hex::to_int64(val);
+               int64_t hex = ::hex::to_int64(val);
                strsize val_len = val.get_length();
                if(hex < 0 || hex > 0xFFFF)
                {
@@ -1726,7 +1726,7 @@ namespace str
             }
             else
             {
-               int64_t hex = ::str::hex::to_int64(string(&lpcsz[pos+2], 2));
+               int64_t hex = ::hex::to_int64(string(&lpcsz[pos+2], 2));
                if(int64_t(strlen(lpcsz)) <= pos + 2 || hex== -1)
                {
                   return BAD_WCHAR;

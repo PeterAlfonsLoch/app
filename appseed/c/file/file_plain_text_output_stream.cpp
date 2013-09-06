@@ -35,7 +35,7 @@ namespace file
 
    void plain_text_output_stream:: write (char ch)
    {
-      m_spwriter->write(&ch, sizeof(ch)); // treat as char - character
+      m_spbuffer->write(&ch, sizeof(ch)); // treat as char - character
       
    }
 
@@ -129,7 +129,7 @@ namespace file
 
    void plain_text_output_stream:: write (const char * psz)
    {
-      m_spwriter->write(psz, strlen(psz));
+      m_spbuffer->write(psz, strlen(psz));
       
    }
 
@@ -140,7 +140,7 @@ namespace file
 
    void plain_text_output_stream::raw_print(const string & str)
    {
-      m_spwriter->write(str.c_str(), str.size());
+      m_spbuffer->write(str.c_str(), str.size());
       
    }
 

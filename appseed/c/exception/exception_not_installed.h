@@ -7,12 +7,12 @@ class CLASS_DECL_c not_installed :
 public:
 
 
-   vsstring      m_strVersion;
-   vsstring      m_strBuild;
-   vsstring      m_strType;
-   vsstring      m_strId;
-   vsstring      m_strLocale;
-   vsstring      m_strSchema;
+   string      m_strVersion;
+   string      m_strBuild;
+   string      m_strType;
+   string      m_strId;
+   string      m_strLocale;
+   string      m_strSchema;
 
 
    not_installed(sp(base_application) papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema);

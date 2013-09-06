@@ -124,6 +124,8 @@ namespace file
 
       string fileName() { return GetFilePath(); }
 
+      virtual void close();
+
    };
 
 

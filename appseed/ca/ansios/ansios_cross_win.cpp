@@ -47,7 +47,7 @@ OutputDebugStringW(
 {
 
 
-    OutputDebugStringA(vsstring(lpOutputString));
+    OutputDebugStringA(string(lpOutputString));
 
 
 }

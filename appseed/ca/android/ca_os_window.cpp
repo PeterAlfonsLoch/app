@@ -775,7 +775,7 @@ void message_box_show_dib_data(COLORREF * pcolorref, LPCRECT lpcrect, const char
 	for(index i = 0; i < stra.get_count(); i++)
 	{
 
-	   vsstring str = stra[i];
+	   string str = stra[i];
 
 	   bool bTab = str_begins_dup(str, "\t");
 

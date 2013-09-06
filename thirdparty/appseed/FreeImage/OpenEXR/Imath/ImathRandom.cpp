@@ -32,7 +32,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 ///////////////////////////////////////////////////////////////////////////
-
+#include "c/base/base.h"
 //-----------------------------------------------------------------------------
 //
 //	Routines that generate pseudo-random numbers compatible
@@ -41,7 +41,7 @@
 //-----------------------------------------------------------------------------
 
 #include "ImathRandom.h"
-#include "ImathInt64.h"
+
 
 namespace Imath {
 namespace {
@@ -65,17 +65,17 @@ rand48Next (unsigned short state[3])
     // where a and c are as specified below, and m == (1 << 48)
     //
 
-    static const Int64 a = Int64 (0x5deece66dLL);
-    static const Int64 c = Int64 (0xbLL);
+    static const int64_t a = int64_t (0x5deece66dLL);
+    static const int64_t c = int64_t (0xbLL);
 
     //
     // Assemble the 48-bit value x[n] from the
     // three 16-bit values stored in state.
     //
 
-    Int64 x = (Int64 (state[2]) << 32) |
-	      (Int64 (state[1]) << 16) |
-	       Int64 (state[0]);
+    int64_t x = (int64_t (state[2]) << 32) |
+	      (int64_t (state[1]) << 16) |
+	       int64_t (state[0]);
 
     //
     // Compute x[n+1], except for the "modulo m" part.
@@ -119,13 +119,13 @@ erand48 (unsigned short state[3])
 
     rand48Next (state);
 
-    union {double d; Int64 i;} u;
+    union {double d; int64_t i;} u;
 
-    u.i = (Int64 (0x3ff)    << 52) |	// sign and exponent
-	  (Int64 (state[2]) << 36) |	// significand
-	  (Int64 (state[1]) << 20) |
-	  (Int64 (state[0]) <<  4) |
-	  (Int64 (state[2]) >> 12);
+    u.i = (int64_t (0x3ff)    << 52) |	// sign and exponent
+	  (int64_t (state[2]) << 36) |	// significand
+	  (int64_t (state[1]) << 20) |
+	  (int64_t (state[0]) <<  4) |
+	  (int64_t (state[2]) >> 12);
 
     return u.d - 1;
 }

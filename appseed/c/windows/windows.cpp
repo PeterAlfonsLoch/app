@@ -163,7 +163,7 @@ int_bool main_finalize()
 
 
 
-vsstring key_to_char(WPARAM wparam, LPARAM lparam)
+string key_to_char(WPARAM wparam, LPARAM lparam)
 {
 
 
@@ -190,30 +190,30 @@ vsstring key_to_char(WPARAM wparam, LPARAM lparam)
 
       wsz[iRet] = L'\0';
 
-      vsstring str;
+      string str;
 
-      str.attach(utf16_to_8_dup(wsz));
+      str = ::str::international::unicode_to_utf8(wsz);
 
       if((GetAsyncKeyState(VK_CAPITAL) & 0x0001) != 0)
       {
          if((GetAsyncKeyState(VK_SHIFT) & 0x80000000) != 0)
          {
-            to_lower(str.m_psz);
+            str.make_lower();
          }
          else
          {
-            to_upper(str.m_psz);
+            str.make_upper();
          }
       }
       else
       {
          if((GetAsyncKeyState(VK_SHIFT) & 0x80000000) != 0)
          {
-            to_upper(str.m_psz);
+            str.make_upper();
          }
          else
          {
-            to_lower(str.m_psz);
+            str.make_lower();
          }
       }
 
@@ -227,7 +227,7 @@ vsstring key_to_char(WPARAM wparam, LPARAM lparam)
 
 }
 
- vsstring get_system_error_message(uint32_t dwError)
+ string get_system_error_message(uint32_t dwError)
 {
 
    LPWSTR lpBuffer;
@@ -264,7 +264,7 @@ vsstring key_to_char(WPARAM wparam, LPARAM lparam)
 
    }
 
-   vsstring str(lpBuffer);
+   string str(lpBuffer);
 
    LocalFree(lpBuffer);
    

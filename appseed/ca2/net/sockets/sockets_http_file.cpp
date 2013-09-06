@@ -17,7 +17,7 @@ namespace sockets
 
       // it is not currently designed to call open.
       //
-      file::file(sp(base_application) papp, ::primitive::memory_file * pmemoryfileIn) :
+      file::file(sp(base_application) papp, ::::file::memory_buffer * pmemoryfileIn) :
          element(papp),
          transfer_file(papp, pmemoryfileIn)
       {

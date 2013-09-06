@@ -16,7 +16,7 @@ namespace ca2
       NESSIEinit(&ns);
       NESSIEadd((const byte *) psz, (uint_ptr) (8 * strlen(psz)), &ns);
       NESSIEfinalize(&ns, digest);
-      return ::str::hex::lo_from(digest, NESSIE_DIGESTBYTES);
+      return ::hex::lo_from(digest, NESSIE_DIGESTBYTES);
 
    }
 
@@ -53,7 +53,7 @@ namespace ca2
       }
       uint8_t digest[NESSIE_DIGESTBYTES];
       NESSIEfinalize(&ns, digest);
-	  return ::str::hex::lo_from(digest, NESSIE_DIGESTBYTES);
+	  return ::hex::lo_from(digest, NESSIE_DIGESTBYTES);
 
    }
 

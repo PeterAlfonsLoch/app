@@ -1595,22 +1595,7 @@ finishedCa2Module:;
       return true;
    }
 
-   int32_t nibble_to_low_hex(byte nibble)
-   {
-      if(nibble >= 0 && nibble <= 9)
-      {
-         return nibble + '0';
-      }
-      else if(nibble >= 10 && nibble <= 15)
-      {
-         return nibble + 'a' - 10;
-      }
-      else
-      {
-         return -1;
-      }
-   }
-
+   
    void application::memory_to_hex(string & strHex, primitive::memory & memory)
    {
       ::count count = memory.get_size();
@@ -5141,7 +5126,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
       string strId(*id.m_pstr);
       string strTable;
       string strString;
-      string_to_string_map * pmap = NULL;
+      string_to_string * pmap = NULL;
       index iFind = 0;
       if((iFind = strId.find(':')) <= 0)
       {
@@ -5226,13 +5211,13 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
          catch(...)
          {
          }
-         m_stringtablemap.set_at(pszId, new string_to_string_map);
+         m_stringtablemap.set_at(pszId, new string_to_string);
          return;
       }
       string strFile = Application.file().as_string(strFilePath);
       if(!doc.load(strFile))
          return;
-      string_to_string_map * pmapNew = new string_to_string_map;
+      string_to_string * pmapNew = new string_to_string;
       for(int32_t i = 0; i < doc.get_root()->children().get_count(); i++)
       {
          string strId      = doc.get_root()->child_at(i)->attr("id");
@@ -5240,7 +5225,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
          pmapNew->set_at(strId, strValue);
       }
 
-      string_to_string_map * pmapOld = m_stringtablemap[strTableId];
+      string_to_string * pmapOld = m_stringtablemap[strTableId];
 
       m_stringtablemap[strTableId] = NULL;
 
