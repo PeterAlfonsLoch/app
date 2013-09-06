@@ -104,7 +104,7 @@ namespace n7z
       bool mtMode, uint32_t numThreads
       )
    {
-      ::ca2::HRes hr;
+      HRes hr;
       if (!folderInfo.CheckStructure())
          return E_NOTIMPL;
       passwordIsDefined = false;

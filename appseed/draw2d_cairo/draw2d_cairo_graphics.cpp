@@ -4341,7 +4341,7 @@ return 1;
                if (hObjOld == hStockFont)
                {
                   // got the stock object back, so must be selecting a font
-                  throw not_implemented(::ca2::get_thread_app());
+                  throw not_implemented(get_thread_app());
 //                  (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
                   break;  // don't play the default record
                }
@@ -4357,7 +4357,7 @@ return 1;
             {
                // play back as graphics::SelectObject(::draw2d::font*)
 //               (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
-               throw not_implemented(::ca2::get_thread_app());
+               throw not_implemented(get_thread_app());
                break;  // don't play the default record
             }
          }

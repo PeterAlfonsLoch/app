@@ -4,7 +4,7 @@ namespace user
 {
 
    class CLASS_DECL_ca2 plain_text_data :
-      public ::ca2::tree_data
+      public ::data::tree_data
    {
    public:
 
@@ -73,11 +73,11 @@ namespace user
       };
 
 
-      sp(::ca2::tree_item)     m_ptreeitem;
+      sp(::data::tree_item)     m_ptreeitem;
       sp(GroupCommand)        m_pgroupcommand;
       index                   m_iBranch;
-      sp(::file::binary_buffer)            m_pfile;
-      ::ca2::edit_file         m_editfile;
+      ::file::buffer_sp            m_pfile;
+      ::ca2::::file::edit_buffer         m_editfile;
       
       
       strsize                 m_iSelStart;
@@ -88,14 +88,14 @@ namespace user
       virtual ~plain_text_data();
 
 
-      void SetFile(sp(::file::binary_buffer) pfile);
+      void SetFile(::file::buffer_sp pfile);
 
 
    private:
 
       plain_text_data(const plain_text_data & ) :
          m_editfile(NULL),
-         ::ca2::tree_data(NULL)
+         ::data::tree_data(NULL)
       {
       }
 

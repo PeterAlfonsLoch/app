@@ -568,7 +568,7 @@ void file_size_table::get_fs_size::write(::file::output_stream & ostream)
 
 #else
 
-   throw not_implemented(::ca2::get_thread_app());
+   throw not_implemented(get_thread_app());
 
 #endif
 
@@ -588,7 +588,7 @@ void file_size_table::get_fs_size::read(::file::input_stream & istream)
 
 #else
 
-   throw not_implemented(::ca2::get_thread_app());
+   throw not_implemented(get_thread_app());
 
 #endif
 

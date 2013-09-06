@@ -15,7 +15,7 @@ namespace file
    {
    }
 
-   byte_stream::byte_stream(buffer * pbuffer) :
+   byte_stream::byte_stream(stream_buffer * pbuffer) :
       input_stream(pbuffer),
       output_stream(pbuffer)
    {

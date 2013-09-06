@@ -83,21 +83,21 @@ namespace libcompress
       MY_ADDREF_RELEASE*/
 
 
-      ::ca2::HRes Code(::file::reader *inStream, ::file::writer *outStream, const file_size *inSize, const file_size *outSize, progress_info_interface *progress);
-      ::ca2::HRes SetInStream(::file::reader *inStream);
-      ::ca2::HRes SetOutStream(::file::writer *outStream);
-      ::ca2::HRes ReleaseInStream();
-      ::ca2::HRes ReleaseOutStream();
+      HRes Code(::file::reader *inStream, ::file::writer *outStream, const file_size *inSize, const file_size *outSize, progress_info_interface *progress);
+      HRes SetInStream(::file::reader *inStream);
+      HRes SetOutStream(::file::writer *outStream);
+      HRes ReleaseInStream();
+      HRes ReleaseOutStream();
       ::primitive::memory_size read(void *data, ::primitive::memory_size size);
       void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize);
       void flush();
 
-      ::ca2::HRes CryptoSetPassword(const byte *data, uint32_t size);
-      ::ca2::HRes SetCoderProperties(const int32_t *propIDs, const var *properties, uint32_t numProperties);
-      ::ca2::HRes WriteCoderProperties(::file::writer *outStream);
-      // ::ca2::HRes ResetSalt();
-      ::ca2::HRes ResetInitVector();
-      ::ca2::HRes SetDecoderProperties2(const byte *data, uint32_t size);
+      HRes CryptoSetPassword(const byte *data, uint32_t size);
+      HRes SetCoderProperties(const int32_t *propIDs, const var *properties, uint32_t numProperties);
+      HRes WriteCoderProperties(::file::writer *outStream);
+      // HRes ResetSalt();
+      HRes ResetInitVector();
+      HRes SetDecoderProperties2(const byte *data, uint32_t size);
    };
 
    class input_stream_releaser

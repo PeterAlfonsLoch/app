@@ -300,7 +300,7 @@ namespace user
 
       //   _001OnDrawBackground(pdc);
 
-      sp(::ca2::tree_item) pitem = m_pitemFirstVisible;
+      sp(::data::tree_item) pitem = m_pitemFirstVisible;
 
 
 
@@ -370,7 +370,7 @@ namespace user
       rect rect;
 
       sp(tree) ptree = this;
-      sp(::ca2::tree_item) pitem = data.m_pitem;
+      sp(::data::tree_item) pitem = data.m_pitem;
 
       sp(image_list) pimagelistItem = pitem->get_image_list();
       sp(image_list) pimagelistTree = get_image_list();
@@ -541,7 +541,7 @@ namespace user
          m_iClick = 2;
 
       _001OnClick((UINT) pmouse->m_nFlags, pmouse->m_pt);
-      sp(::ca2::tree_item) pitem;
+      sp(::data::tree_item) pitem;
       ::user::e_tree_element eelement;
       pitem = _001HitTest(pmouse->m_pt, eelement);
       if(pitem != NULL)
@@ -597,7 +597,7 @@ namespace user
 
       _001OnClick(nFlags, point);
       //xxx         TwiRedraw();
-      sp(::ca2::tree_item) pitem;
+      sp(::data::tree_item) pitem;
       ::user::e_tree_element eelement;
       ScreenToClient(&point);
       pitem = _001HitTest(point, eelement);
@@ -700,7 +700,7 @@ namespace user
       }
    }
 
-   sp(::ca2::tree_item) tree::_001HitTest(POINT pt, ::user::e_tree_element & eelement)
+   sp(::data::tree_item) tree::_001HitTest(POINT pt, ::user::e_tree_element & eelement)
    {
       index iy = pt.y;
 
@@ -720,7 +720,7 @@ namespace user
       //   if(iItem >= _001StaticGetItemCount())
       //      return false;
       index iLevel;
-      sp(::ca2::tree_item) pitem = get_proper_item(iItem, &iLevel);
+      sp(::data::tree_item) pitem = get_proper_item(iItem, &iLevel);
 
       if(pitem == NULL)
          return NULL;
@@ -806,7 +806,7 @@ namespace user
       return true;
    }
 
-   void tree::_001SelectItem(sp(::ca2::tree_item)pitem)
+   void tree::_001SelectItem(sp(::data::tree_item)pitem)
    {
       if(pitem != NULL)
       {
@@ -814,7 +814,7 @@ namespace user
       }
    }
 
-   void tree::_001ExpandItem(sp(::ca2::tree_item)pitem, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
+   void tree::_001ExpandItem(sp(::data::tree_item)pitem, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
    {
       ::data::writing writing(::data_container::m_spdata);
       UNREFERENCED_PARAMETER(bLayout);
@@ -864,7 +864,7 @@ namespace user
 
    }
 
-   void tree::_001OnItemExpand(sp(::ca2::tree_item) pitem)
+   void tree::_001OnItemExpand(sp(::data::tree_item) pitem)
    {
       if(pitem->get_tree() != this)
       {
@@ -872,7 +872,7 @@ namespace user
       }
    }
 
-   void tree::_001OnItemCollapse(sp(::ca2::tree_item)pitem)
+   void tree::_001OnItemCollapse(sp(::data::tree_item)pitem)
    {
       if(pitem->get_tree() != this)
       {
@@ -956,7 +956,7 @@ namespace user
 
 
 
-   void tree::_001OnOpenItem(sp(::ca2::tree_item)pitem)
+   void tree::_001OnOpenItem(sp(::data::tree_item)pitem)
    {
       if(pitem->get_tree() != this)
       {
@@ -970,7 +970,7 @@ namespace user
       System.get_cursor_pos(&pt);
       ScreenToClient(&pt);
       ::user::e_tree_element eelement;
-      sp(::ca2::tree_item) pitem = _001HitTest(pt, eelement);
+      sp(::data::tree_item) pitem = _001HitTest(pt, eelement);
       if(eelement != tree_element_image &&
          eelement != tree_element_text)
       {
@@ -1022,7 +1022,7 @@ namespace user
       int32_t iWidth;
       index iLevel = m_iFirstVisibleItemLevel;
       index iIndent  = _001GetIndentation();
-      sp(::ca2::tree_item) pitem = m_pitemFirstVisible;
+      sp(::data::tree_item) pitem = m_pitemFirstVisible;
       if(pitem == NULL)
          return iMaxWidth;
       for(int32_t i = 0; i < iCount; i++)
@@ -1055,14 +1055,14 @@ namespace user
    }
    */
 
-   sp(::ca2::tree_item) tree::CalcFirstVisibleItem(index & iLevel, index & iProperIndex)
+   sp(::data::tree_item) tree::CalcFirstVisibleItem(index & iLevel, index & iProperIndex)
    {
       index nOffset;
       if(_001GetItemHeight() == 0)
          return NULL;
       nOffset = m_scrollinfo.m_ptScroll.y / _001GetItemHeight();
 
-      sp(::ca2::tree_item) pitem = get_base_item();
+      sp(::data::tree_item) pitem = get_base_item();
 
       iLevel = 0;
       iProperIndex = 0;

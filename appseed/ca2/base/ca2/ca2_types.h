@@ -181,7 +181,6 @@ namespace ca2
    EXTERN_C_END
 
 
-   typedef int32_t HRes;
 
 
 

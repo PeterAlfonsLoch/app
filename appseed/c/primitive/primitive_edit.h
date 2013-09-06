@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_c base_edit :
-   public ::data_container
+   public ::data::data_container
 {
 public:
 
@@ -12,7 +12,7 @@ public:
 
 
    template < class DATA >
-   inline DATA * validate_data(::data * pdata)
+   inline DATA * validate_data(::data::data * pdata)
    {
 
       if(pdata == m_spdata)
@@ -31,19 +31,23 @@ public:
 
 };
 
-
-template < class EDIT >
-EDIT * data::validate_edit(base_edit * pedit)
+namespace data
 {
 
-   if(pedit->m_spdata == this)
+   template < class EDIT >
+   EDIT * data::validate_edit(base_edit * pedit)
    {
-      return dynamic_cast < EDIT * > (pedit);
+
+      if(pedit->m_spdata == this)
+      {
+         return dynamic_cast < EDIT * > (pedit);
+      }
+
+      return NULL;
+
    }
 
-   return NULL;
-
-}
+} // namespace data
 
 
 template < class DATA >
@@ -57,7 +61,7 @@ public:
    virtual ~edit();
 
 
-   DATA * validate_data(::data * pdata)
+   DATA * validate_data(::data::data * pdata)
    {
 
       return base_edit::validate_data < DATA > (pdata);  

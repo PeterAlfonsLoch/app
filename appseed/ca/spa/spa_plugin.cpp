@@ -183,17 +183,7 @@ namespace spa_install
 
                string str;
 
-      #if defined(_AMD64_) || defined(_LP64)
-
-               str = itohex_dup(((int32_t*) m_phost)[1]);
-
-               str += itohex_dup(((int32_t*) m_phost)[0]);
-
-      #else
-
-               str = itohex_dup((int32_t) m_phost);
-
-      #endif
+               str = hex::lower_from((int_ptr) m_phost);
 
                m_phost->m_strBitmapChannel = str;
 
@@ -238,7 +228,7 @@ namespace spa_install
 
                //set_ready();
 
-               ensure_tx(::hotplugin::message_set_plugin_url, m_phost->m_strPluginUrl, (int32_t) m_phost->m_strPluginUrl.length());
+               ensure_tx(::hotplugin::message_set_plugin_url, (void *) (const char*) m_phost->m_strPluginUrl, (int32_t) m_phost->m_strPluginUrl.length());
 
                ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, (int32_t) m_phost->m_countMemory);
 
@@ -347,21 +337,21 @@ namespace spa_install
 
       {
 
-         ::xml::node node;
+         ::xml::document node;
 
          // remove install tag : should be turned into a function dependant of spalib at maximum
 
-         if(!node.Load(file_as_string_dup(dir::appdata("spa_install.xml"))))
+         if(!node.load(file_as_string_dup(dir::appdata("spa_install.xml"))))
             goto install;
 
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         ::xml::node * lpnodeVersion = node.GetChild("basis");
+         ::xml::node * lpnodeVersion = node.get_child("basis");
 
 #else
 
-         ::xml::node * lpnodeVersion = node.GetChild("stage");
+         ::xml::node * lpnodeVersion = node.get_child("stage");
 
 #endif
 
@@ -375,7 +365,7 @@ namespace spa_install
          if(lpnodeInstalled == NULL)
             goto install;
 
-         ::xml::node * lpnodeType = lpnodeInstalled->GetChild(pszType);
+         ::xml::node * lpnodeType = lpnodeInstalled->get_child(pszType);
 
          if(lpnodeType == NULL)
             goto install;
@@ -385,9 +375,9 @@ namespace spa_install
          if(pnode == NULL)
             goto install;
 
-         lpnodeType->RemoveChild(pnode);
+         lpnodeType->remove_child(pnode);
 
-         file_put_contents_dup(dir::appdata("spa_install.xml"), node.GetXML(NULL));
+         file_put_contents_dup(dir::appdata("spa_install.xml"), node.get_xml(NULL));
 
       }
 
@@ -727,17 +717,17 @@ install:
             {
                iSkip = 0;
                strLine.trim();
-               if(strLine.begins_eat("get application name"))
+               if(::str::begins_eat(strLine, "get application name"))
                {
                   m_strStatus = "";
                   return 0.0;
                }
-               else if(!bRate && strLine.begins_eat("|||"))
+               else if(!bRate && ::str::begins_eat(strLine, "|||"))
                {
                   bRate = true;
                   dRate = ((double) atoi_dup(strLine)) / (1000.0 * 1000.0 * 1000.0 );
                }
-               else if(!bStatus && strLine.begins_eat(":::::"))
+               else if(!bStatus && ::str::begins_eat(strLine, ":::::"))
                {
                   bStatus = true;
                   m_strStatus = strLine;
@@ -1105,7 +1095,7 @@ restart:
 
       }
 
-      str = defer_ls_get(pszUrl, m_strLocale, m_strSchema);
+      str = http_defer_locale_schema_get(pszUrl, m_strLocale, m_strSchema);
 
       return str;
 

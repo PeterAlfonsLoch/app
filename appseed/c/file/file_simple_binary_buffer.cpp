@@ -266,7 +266,7 @@ namespace file
       m_pfile = NULL;
    }
 
-   sp(::file::buffer) simple_binary_buffer::Duplicate() const
+   ::file::buffer_sp simple_binary_buffer::Duplicate() const
    {
       ASSERT_VALID(this);
       ASSERT(m_pfile != NULL);

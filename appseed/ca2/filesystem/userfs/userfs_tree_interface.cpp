@@ -36,7 +36,7 @@ namespace userfs
    }
 
 
-   void tree_interface::_017UpdateList(const char * lpcsz, sp(::ca2::tree_item) pitemParent, int32_t iLevel)
+   void tree_interface::_017UpdateList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel)
    {
       if(lpcsz == NULL)
          lpcsz = "";
@@ -69,8 +69,8 @@ namespace userfs
 
 
       sp(::userfs::tree_item_data) pitemChild;
-      sp(::ca2::tree_item) pitem;
-      ::ca2::tree_item_ptr_array ptraRemove;
+      sp(::data::tree_item) pitem;
+      ::data::tree_item_ptr_array ptraRemove;
 
       if(pitemFolder != NULL && pitemFolder->m_flags.is_signalized(::fs::FlagHasSubFolderUnknown))
       {
@@ -239,7 +239,7 @@ namespace userfs
       for(index i = 0; i < stra.get_size(); i++)
       {
          string strAscendant = stra[i];
-         sp(::ca2::tree_item) pitem = find_item(strAscendant);
+         sp(::data::tree_item) pitem = find_item(strAscendant);
          if(pitem == NULL)
          {
             string str;
@@ -265,7 +265,7 @@ namespace userfs
 
       _StartDelayedListUpdate();
 
-      sp(::ca2::tree_item) pitem = find_item(lpcsz);
+      sp(::data::tree_item) pitem = find_item(lpcsz);
 
       if(pitem != NULL)
       {
@@ -288,7 +288,7 @@ namespace userfs
       _001RedrawWindow();
    }
 
-   sp(::ca2::tree_item) tree_interface::find_item(const char * lpcsz)
+   sp(::data::tree_item) tree_interface::find_item(const char * lpcsz)
    {
       return find_absolute(lpcsz);
    }
@@ -297,7 +297,7 @@ namespace userfs
    {
       if(!bForceUpdate)
       {
-         sp(::ca2::tree_item) pitem = find_item(lpcsz);
+         sp(::data::tree_item) pitem = find_item(lpcsz);
          if(pitem != NULL)
          {
             if(is_tree_item_selected(pitem))
@@ -326,7 +326,7 @@ namespace userfs
 
    }
 
-   void tree_interface::_017UpdateZipList(const char * lpcsz, sp(::ca2::tree_item) pitemParent, int32_t iLevel)
+   void tree_interface::_017UpdateZipList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel)
    {
 
       string szPath(lpcsz);
@@ -370,7 +370,7 @@ namespace userfs
       string wstrFolder;
       stringa wstraFolder;
       string wstrItem;
-      ::ca2::tree_item_ptr_array ptraRemove;
+      ::data::tree_item_ptr_array ptraRemove;
       pitemParent->get_children(ptraRemove);
 
       for(int32_t i = 0; i < wstraItem.get_size(); i++)
@@ -424,7 +424,7 @@ namespace userfs
             pitemNew->m_iImage         = m_iDefaultImage;
             pitemNew->m_iImageSelected = m_iDefaultImageSelected;
             //         item.m_flags.signalize(FlagInZip);
-            ::ca2::tree_item  * pitem    = find_item(pitemNew->m_strPath);
+            ::data::tree_item  * pitem    = find_item(pitemNew->m_strPath);
             if(pitem == NULL)
             {
                pitem = insert_item_data(get_fs_tree_data(), pitemNew, ::ca2::RelativeLastChild, pitemParent);
@@ -452,7 +452,7 @@ namespace userfs
    }
 
 
-   void tree_interface::_001UpdateImageList(sp(::ca2::tree_item) pitem)
+   void tree_interface::_001UpdateImageList(sp(::data::tree_item) pitem)
    {
       UNREFERENCED_PARAMETER(pitem);
 //         Item & item = m_itema.get_item(pitem->m_dwUser);
@@ -611,7 +611,7 @@ namespace userfs
    }
    */
 
-   void tree_interface::_001OnItemExpand(sp(::ca2::tree_item) pitem)
+   void tree_interface::_001OnItemExpand(sp(::data::tree_item) pitem)
    {
       if(typeid(*pitem->m_pitemdata) == System.type_info < ::userfs::tree_item_data > ())
       {
@@ -623,7 +623,7 @@ namespace userfs
       }
    }
 
-   void tree_interface::_001OnItemCollapse(sp(::ca2::tree_item) pitem)
+   void tree_interface::_001OnItemCollapse(sp(::data::tree_item) pitem)
    {
       UNREFERENCED_PARAMETER(pitem);
    }
@@ -633,7 +633,7 @@ namespace userfs
       return true;
    }
 
-   void tree_interface::_001OnOpenItem(sp(::ca2::tree_item) pitem)
+   void tree_interface::_001OnOpenItem(sp(::data::tree_item) pitem)
    {
 
       _017OpenFolder(canew(::fs::item(*pitem->m_pitemdata.cast < ::userfs::tree_item_data > ())));
@@ -649,7 +649,7 @@ namespace userfs
 
    void tree_interface::_StartCreateImageList()
    {
-      m_pdataitemCreateImageListStep = (sp(::ca2::tree_item)) get_base_item()->m_pchild;
+      m_pdataitemCreateImageListStep = (sp(::data::tree_item)) get_base_item()->m_pchild;
 //         SetTimer(TimerCreateImageList, 80, NULL);
    }
 
@@ -716,7 +716,7 @@ namespace userfs
       m_bDelayedListUpdate = true;
 
 
-      sp(::ca2::tree_item) pitem = find_item(m_straMissingUpdate[0]);
+      sp(::data::tree_item) pitem = find_item(m_straMissingUpdate[0]);
       if(pitem != NULL)
       {
 
@@ -744,9 +744,9 @@ namespace userfs
       }
    }
 
-   sp(::ca2::tree_item) tree_interface::find_absolute(const char * lpcszPath)
+   sp(::data::tree_item) tree_interface::find_absolute(const char * lpcszPath)
    {
-      sp(::ca2::tree_item) pitem = get_base_item();
+      sp(::data::tree_item) pitem = get_base_item();
       if(lpcszPath == NULL || strlen(lpcszPath) == 0)
          return pitem;
       string strPath(lpcszPath);

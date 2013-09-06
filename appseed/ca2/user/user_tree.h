@@ -14,7 +14,7 @@ namespace user
    class CLASS_DECL_ca2 tree_draw_item
    {
    public:
-      sp(::ca2::tree_item)      m_pitem;
+      sp(::data::tree_item)      m_pitem;
       ::draw2d::graphics *        m_pdc;
       index                   m_iItem;
       index                   m_iIndentation;
@@ -51,7 +51,7 @@ namespace user
       index                         m_iClick;
       UINT                          m_uiLButtonUpFlags;
       point                         m_ptLButtonUp;
-      sp(::ca2::tree_item)             m_pitemFirstVisible;
+      sp(::data::tree_item)             m_pitemFirstVisible;
       index                         m_iFirstVisibleItemLevel;
       index                         m_iFirstVisibleItemProperIndex;
       int32_t                       m_iCurrentViewWidth;
@@ -86,17 +86,17 @@ namespace user
       void _001GetViewRect(LPRECT lprect);
 
       void _001OnTreeDataChange();
-      sp(::ca2::tree_item) CalcFirstVisibleItem(index & iLevel, index & iProperIndex);
+      sp(::data::tree_item) CalcFirstVisibleItem(index & iLevel, index & iProperIndex);
       virtual int32_t _001CalcCurrentViewWidth();
-      void _001SelectItem(sp(::ca2::tree_item) pitem);
+      void _001SelectItem(sp(::data::tree_item) pitem);
       count _001GetVisibleItemCount();
       void _001SetCollapseImage(const char * pszMatter);
       void _001SetExpandImage(const char * pszMatter);
       void UpdateHover();
-      virtual void _001OnOpenItem(sp(::ca2::tree_item) pitem);
-      void _001ExpandItem(sp(::ca2::tree_item) pitem, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
-      virtual void _001OnItemExpand(sp(::ca2::tree_item) pitem);
-      virtual void _001OnItemCollapse(sp(::ca2::tree_item) pitem);
+      virtual void _001OnOpenItem(sp(::data::tree_item) pitem);
+      void _001ExpandItem(sp(::data::tree_item) pitem, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
+      virtual void _001OnItemExpand(sp(::data::tree_item) pitem);
+      virtual void _001OnItemCollapse(sp(::data::tree_item) pitem);
       virtual bool _001GetItemElementRect(LPRECT lprect, tree_draw_item & drawitem, ::user::e_tree_element eelement);
       virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
       int32_t _001GetItemHeight();
@@ -104,7 +104,7 @@ namespace user
       
       
 
-      sp(::ca2::tree_item) _001HitTest(POINT pt, ::user::e_tree_element & eelement);
+      sp(::data::tree_item) _001HitTest(POINT pt, ::user::e_tree_element & eelement);
       void _001OnClick(UINT uiFlags, point point);
 
 

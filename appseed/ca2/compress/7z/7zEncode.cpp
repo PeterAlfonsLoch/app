@@ -56,7 +56,7 @@ namespace n7z
       const array < ::libcompress::codec_info_ex > *externalCodecs,
       const file_size *inSizeForReduce)
    {
-      ::ca2::HRes hr;
+      HRes hr;
       _mixerCoderSpec = new ::libcompress::coder_mixer::CCoderMixer2MT(get_app());
       _mixerCoder = _mixerCoderSpec;
       RINOK(_mixerCoderSpec->SetBindInfo(_bindInfo));
@@ -149,7 +149,7 @@ namespace n7z
       array<file_size> &packSizes,
       ::libcompress::progress_info_interface *compressProgress)
    {
-      ::ca2::HRes hr;
+      HRes hr;
       RINOK(EncoderConstr());
 
       if (_mixerCoderSpec == NULL)

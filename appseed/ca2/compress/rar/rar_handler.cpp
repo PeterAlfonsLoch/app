@@ -110,7 +110,7 @@ namespace rar
       return totalPackSize;
    }
 
-   ::ca2::HRes handler::GetArchiveProperty(int32_t propID, var *value)
+   HRes handler::GetArchiveProperty(int32_t propID, var *value)
    {
       var var;
       switch(propID)
@@ -137,7 +137,7 @@ namespace rar
       return S_OK;
    }
 
-   ::ca2::HRes handler::GetNumberOfItems(uint32_t * numItems)
+   HRes handler::GetNumberOfItems(uint32_t * numItems)
    {
 
       *numItems = (uint32_t) _refItems.get_size();
@@ -176,7 +176,7 @@ namespace rar
       prop = utcFileTime;
    }
 
-   ::ca2::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
+   HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
    {
       var prop;
       const CRefItem &refItem = _refItems[index];
@@ -470,7 +470,7 @@ namespace rar
       return S_OK;
    }
 
-   ::ca2::HRes handler::Open(::file::input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
+   HRes handler::Open(::file::input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
    {
       Close();
       try
@@ -491,7 +491,7 @@ namespace rar
       }
    }
 
-   ::ca2::HRes handler::Close()
+   HRes handler::Close()
    {
       _errorMessage.Empty();
       _refItems.remove_all();
@@ -507,7 +507,7 @@ namespace rar
    };
 
 
-   ::ca2::HRes handler::Extract(const uint32_t *indices, uint32_t numItems, int32_t testMode, ::libcompress::archive_extract_callback_interface *extractCallback)
+   HRes handler::Extract(const uint32_t *indices, uint32_t numItems, int32_t testMode, ::libcompress::archive_extract_callback_interface *extractCallback)
    {
       ::crypto::get_text_password_interface * getTextPassword = NULL;
       file_size censoredTotalUnPacked = 0,
@@ -859,7 +859,7 @@ namespace rar
    }
 
    // IMPL_ISetCompressCodecsInfo2(CHandler)
-   ::ca2::HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
+   HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
    {
       _codecsInfo = compressCodecsInfo;
       return LoadExternalCodecs(_codecsInfo, _externalCodecs);

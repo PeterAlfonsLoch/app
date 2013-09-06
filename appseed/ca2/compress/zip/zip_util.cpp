@@ -302,7 +302,7 @@ namespace zip
 
    }
 
-   bool Util::extract_all(const char * pszDir, sp(::file::binary_buffer) pfile)
+   bool Util::extract_all(const char * pszDir, ::file::buffer_sp pfile)
    {
 
       InFile infile(pfile->get_app());

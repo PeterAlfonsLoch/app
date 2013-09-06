@@ -100,7 +100,7 @@ namespace n7z
       return processedSize;
    }
 
-   ::ca2::HRes CFolderInStream::GetSubStreamSize(uint64_t subStream, uint64_t *value)
+   HRes CFolderInStream::GetSubStreamSize(uint64_t subStream, uint64_t *value)
    {
       *value = 0;
       index index1 = (index)subStream;

@@ -9,7 +9,7 @@ plex_heap * plex_heap::create(plex_heap*& pHead, uint_ptr nMax, uint_ptr cbEleme
    ASSERT(nMax > 0 && cbElement > 0);
    if (nMax == 0 || cbElement == 0)
    {
-      throw invalid_argument_exception(::ca2::get_thread_app());
+      throw invalid_argument_exception(get_thread_app());
    }
 
    plex_heap* p = (plex_heap*) system_heap_alloc(sizeof(plex) + nMax * cbElement);
@@ -387,7 +387,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
 
 #ifndef MEMDLEAK
 
-   throw simple_exception(::ca2::get_thread_app(), "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
+   throw simple_exception(get_thread_app(), "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
 
 #endif
 

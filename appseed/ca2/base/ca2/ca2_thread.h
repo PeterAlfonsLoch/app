@@ -226,7 +226,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca2 thread :
-      virtual public ::ca::thread_base,
+      virtual public base_thread,
       virtual public command_target,
       #ifdef WINDOWS
       virtual public ::exception::translator,
@@ -468,7 +468,7 @@ namespace ca2
 
       // called when occurs an standard_exception exception in run
       // return true to call run again
-      virtual bool on_run_exception(exception & e);
+      virtual bool on_run_exception(::exception::exception & e);
 
       // Overridables
       // thread initialization

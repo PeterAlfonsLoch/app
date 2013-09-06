@@ -1,115 +1,124 @@
 #include "framework.h"
 
 
-data_container::data_container()
-{
-}
-
-data_container::~data_container()
-{
-}
-
-bool data_container::set_data(::data * pdata)
-{
-   m_spdata = pdata;
-   return true;
-}
-
-data * data_container::get_data()
-{
-   return m_spdata;
-}
-
-bool data_container::is_data_in_use() const
-{
-   return m_spdata->is_in_use();
-}
-
-void data_container::on_update_data(int32_t iHint)
-{
-   UNREFERENCED_PARAMETER(iHint);
-}
-
-
-data_container_base::data_container_base(sp(base_application) papp)
-{
-}
-
-data_container_base::~data_container_base()
-{
-}
-
-
-bool data_container_base::add_data(::data * pdata)
+namespace data
 {
 
-   for(index i = 0; i < m_spadata.get_count(); i++)
+
+   data_container::data_container()
    {
-
-      if(m_spadata.sp_at(i) == pdata)
-         return true;
-
    }
 
-   m_spadata.add(pdata);
+   data_container::~data_container()
+   {
+   }
 
-   return true;
+   bool data_container::set_data(::data::data * pdata)
+   {
+      m_spdata = pdata;
+      return true;
+   }
 
-}
+   data * data_container::get_data()
+   {
+      return m_spdata;
+   }
 
-bool data_container_base::remove_data(::data * pdata)
-{
+   bool data_container::is_data_in_use() const
+   {
+      return m_spdata->is_in_use();
+   }
 
-   ::count cRemove = 0;
+   void data_container::on_update_data(int32_t iHint)
+   {
+      UNREFERENCED_PARAMETER(iHint);
+   }
 
-   for(index i = 0; i < m_spadata.get_count();)
+
+   data_container_base::data_container_base(sp(base_application) papp)
+   {
+   }
+
+   data_container_base::~data_container_base()
+   {
+   }
+
+
+   bool data_container_base::add_data(::data::data * pdata)
    {
 
-      if(m_spadata.sp_at(i) == pdata)
+      for(index i = 0; i < m_spadata.get_count(); i++)
       {
-         m_spadata.remove_at(i);
-         cRemove++;
-      }
-      else
-      {
-         i++;
+
+         if(m_spadata.sp_at(i) == pdata)
+            return true;
+
       }
 
+      m_spadata.add(pdata);
+
+      return true;
+
    }
 
-   return cRemove > 0;
-
-}
-
-data * data_container_base::get_data(index i)
-{
-
-   return m_spadata.sp_at(i);
-
-}
-
-::count data_container_base::get_count() const
-{
-
-   return m_spadata.get_count();
-
-}
-
-sync_object_ptra data_container_base::get_sync()
-{
-
-   sync_object_ptra ptra;
-
-   for(index i = 0; i < m_spadata.get_count(); i++)
+   bool data_container_base::remove_data(::data::data * pdata)
    {
 
-      ptra.add(m_spadata[i].data_mutex());
+      ::count cRemove = 0;
+
+      for(index i = 0; i < m_spadata.get_count();)
+      {
+
+         if(m_spadata.sp_at(i) == pdata)
+         {
+            m_spadata.remove_at(i);
+            cRemove++;
+         }
+         else
+         {
+            i++;
+         }
+
+      }
+
+      return cRemove > 0;
 
    }
 
-   return ptra;
+   data * data_container_base::get_data(index i)
+   {
 
-}
+      return m_spadata.sp_at(i);
+
+   }
+
+   ::count data_container_base::get_count() const
+   {
+
+      return m_spadata.get_count();
+
+   }
+
+   sync_object_ptra data_container_base::get_sync()
+   {
+
+      sync_object_ptra ptra;
+
+      for(index i = 0; i < m_spadata.get_count(); i++)
+      {
+
+         ptra.add(m_spadata[i].data_mutex());
+
+      }
+
+      return ptra;
+
+   }
+
+
+
+} // namespace data
+
 
 
 

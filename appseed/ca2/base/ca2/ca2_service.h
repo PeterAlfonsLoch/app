@@ -10,7 +10,7 @@ namespace ca2
       virtual ~service();
       int32_t stop(const char * pszName);
       int32_t remove(const char * pszName);
-      using ::ca2::request_interface::create;
+      using ::request_interface::create;
       int32_t create(
             const char * pszName,
             const char * pszDisplayName,

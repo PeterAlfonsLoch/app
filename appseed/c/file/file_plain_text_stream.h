@@ -15,7 +15,7 @@ namespace file
       
       plain_text_stream();
       plain_text_stream(reader * preader, writer * pwriter);
-      plain_text_stream(buffer * pbuffer);
+      plain_text_stream(stream_buffer * pbuffer);
       plain_text_stream(const stream & stream);
       virtual ~plain_text_stream();
 

@@ -1250,7 +1250,7 @@ RetryHost:
                if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(get_file_md5(inplace), pszMd5) == 0)
                {
 
-                  trace_add(_unitext(" up-to-date c"));
+                  trace_add(unitext(" up-to-date c"));
 
                   iFlag |= SPA_FILE_FLAG_VOID_COPY;
 
@@ -1367,7 +1367,7 @@ RetryHost:
                   }
                   else
                   {
-                     // trace_add(_unitext("Length mismatch ¡X!"));
+                     // trace_add(unitext("Length mismatch ¡X!"));
                   }
                }
             }
@@ -1393,7 +1393,7 @@ RetryHost:
                   }
                   else
                   {
-                     //trace_add(_unitext("MD5 Hash mismatch ¡X!"));
+                     //trace_add(unitext("MD5 Hash mismatch ¡X!"));
                   }
                }
             }
@@ -1422,22 +1422,22 @@ RetryHost:
          {
             if(iRetry > 0)
             {
-               // sprintf_dup(sz, _unitext("Patch succeeded with %d retries %0.2fkbytes compressed ✓"), (iBsLen / 1000.0), iRetry);
-               trace_add(_unitext(" c"));
+               // sprintf_dup(sz, unitext("Patch succeeded with %d retries %0.2fkbytes compressed ✓"), (iBsLen / 1000.0), iRetry);
+               trace_add(unitext(" c"));
             }
             else
             {
                // this trace is added and signalized like that because it
                // should be one of the most common cases and one of the most
                // normal cases.
-               //sprintf_dup(sz, _unitext(" patched %0.2fkbytes compressed ✓"), (iBsLen / 1000.0));
+               //sprintf_dup(sz, unitext(" patched %0.2fkbytes compressed ✓"), (iBsLen / 1000.0));
                //trace_add(sz);
-               trace_add(_unitext(" c"));
+               trace_add(unitext(" c"));
             }
          }
          else
          {
-            //trace(_unitext("Patch failed ¡X!"));
+            //trace(unitext("Patch failed ¡X!"));
          }
       }
       // then finally try to download the entire file
@@ -1492,17 +1492,17 @@ RetryHost:
          }
          if(bOk)
          {
-            sprintf_dup(sz, _unitext("%0.2fkbytes compressed c"), (iGzLen / 1000.0));
+            sprintf_dup(sz, unitext("%0.2fkbytes compressed c"), (iGzLen / 1000.0));
             trace(sz);
          }
          else
          {
-            //trace((_unitext("Failed to download file ") + file2 + _unitext("¡X!")));
+            //trace((unitext("Failed to download file ") + file2 + unitext("¡X!")));
          }
       }
       if(!bOk)
       {
-         //sprintf_dup(sz, _unitext("General failure to retrieve file \"%s\" ¡X!"), file2);
+         //sprintf_dup(sz, unitext("General failure to retrieve file \"%s\" ¡X!"), file2);
          //trace(sz);
       }
       return bOk;
@@ -1847,7 +1847,7 @@ RetryHost:
       {
          if (!get(m_strInstall + lpcszPath, bExist, iLength, pszMd5, iGzLen))
          {
-            printf_dup("Failed: %s\n", (void *) strUrl);
+            printf_dup("Failed: %s\n", (const char *) strUrl);
             return false;
          }
          if(m_bOfflineInstall)
@@ -1864,7 +1864,7 @@ RetryHost:
       {
          if (!get(m_strInstall + lpcszPath + "." + pszMd5, bExist, iLength, pszMd5, iGzLen))
          {
-            printf_dup("Failed: %s\n", (void *) strUrl);
+            printf_dup("Failed: %s\n", (const char *) strUrl);
             return false;
          }
          if(m_bOfflineInstall)
@@ -1916,7 +1916,7 @@ RetryHost:
          else if(iCurrent == -1)
          {
 
-            strPathParam.replace(strPathParam, "/", "\\");
+            strPathParam.replace("/", "\\");
 
             if(stringa.add_unique(strPathParam) >= 0)
             {
@@ -1938,14 +1938,14 @@ RetryHost:
    int32_t installer::GetFileList(stringa & stringa, LPCSTR lpcszPath, string_to_intptr & mapLen, string_to_intptr & mapGzLen, string_to_string & mapMd5, string_to_intptr & mapFlag)
    {
       string strPath(lpcszPath);
-      strPath = str_replace_dup(strPath, "/", "\\");
+      strPath.replace("/", "\\");
       strPath = strPath;
       string strUrl(lpcszPath);
       if(strUrl.length() == 0)
          return -1;
       if(strUrl.ends_ci(".spa"))
       {
-         if(!m_strSpa.spa_insert(strUrl))
+         if(m_strSpa.add_unique(strUrl) < 0)
          {
             return -1;
          }
@@ -1954,7 +1954,7 @@ RetryHost:
       {
          return -1;
       }
-      trace(str_replace_dup(strUrl, "\\", "/"));
+      trace(str::replace("\\", "/", strUrl));
       char buf[2048];
       int32_t iCount = 0;
       int32_t iCurrent;
@@ -1986,7 +1986,7 @@ RetryHost:
          }
          else if(iCurrent == -1)
          {
-            if(stringa.spa_insert(strPathParam))
+            if(stringa.add_unique(strPathParam) >= 0)
             {
                m_iTotalGzLen += mapGzLen[strPathParam];
             }
@@ -2047,7 +2047,7 @@ RetryHost:
          iCurrent = GetLocalFileList(stringa, buf);
          if(iCurrent == -1)
          {
-            stringa.spa_insert(buf);
+            stringa.add_unique(buf);
          }
          else
          {
@@ -2137,14 +2137,14 @@ RetryHost:
 
    void installer::ParseSpaIndex(::xml::node & node)
    {
-      if(node.name == "spa" && node.get_children_count() > 0)
+      if(node.get_name() == "spa" && node.get_children_count() > 0)
       {
          ::xml::node * lpnode = &node;
          for(int32_t ui = 0; ui < lpnode->get_children_count(); ui++)
          {
             if(lpnode->child_at(ui)->get_name() == "index")
             {
-               if(lpnode->child_at(ui)->GetAttr("start") != NULL)
+               if(lpnode->child_at(ui)->attr("start").is_set())
                {
                   if(string(lpnode->child_at(ui)->attr("start")).length() > 0)
                   {
@@ -2153,7 +2153,7 @@ RetryHost:
                      m_strApplicationId = get_command_line_param(m_strCommandLine, "app");
                   }
                }
-               if(lpnode->child_at(ui)->GetAttr("build") != NULL)
+               if(lpnode->child_at(ui)->attr("build").is_set())
                {
                   if(string(lpnode->child_at(ui)->attr("build")).length() > 0)
                   {
@@ -2161,7 +2161,7 @@ RetryHost:
                      m_strBuildResource = string(lpnode->child_at(ui)->attr("build"));
                   }
                }
-               if(lpnode->child_at(ui)->GetAttr("type") != NULL)
+               if(lpnode->child_at(ui)->attr("type").is_set())
                {
 #ifdef WINDOWSEX
                   if(string(lpnode->child_at(ui)->attr("type")) == "parse_file_name")
@@ -2219,12 +2219,12 @@ RetryHost:
 
    string installer::load_string(const char * pszId, const char * pszDefault)
    {
-      ::xml::node * lpnode = &m_nodeStringTable;
+      ::xml::node * lpnode = &m_xmldocStringTable;
       for(int32_t ui = 0; ui < lpnode->get_children_count(); ui++)
       {
          if(string(lpnode->child_at(ui)->attr("id")) == pszId)
          {
-            return lpnode->child_at(ui)->value;
+            return lpnode->child_at(ui)->get_value();
          }
       }
       return pszDefault;
@@ -2523,7 +2523,7 @@ RetryHost:
 
 
 
-      ::xml::node node;
+      ::xml::document node;
 
       // MessageBox(NULL, "BegInstall", "Caption", MB_OK);
       if(m_iStart != 4)
@@ -2539,7 +2539,7 @@ RetryHost:
          }
          if(strCa2sp.length() > 0)
          {
-            node.Load(strCa2sp);
+            node.load(strCa2sp);
             ParseSpaIndex(node);
          }
          else
@@ -2651,7 +2651,7 @@ RetryHost:
 
       m_strInstall               = "http://ca2os.com/stage/";
 
-      m_strInstallStatusTemplate = defer_ls_get("http://account.ca2.cc/defer_ls_get?id=spa_install::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
+      m_strInstallStatusTemplate = http_defer_locale_schema_get("http://account.ca2.cc/defer_ls_get?id=spa_install::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
 
       m_bForceUpdatedBuild       = true;
 
@@ -2674,7 +2674,7 @@ RetryHost:
       int32_t iRetry = 0;
       while(true)
       {
-         strName = defer_ls_get(strUrl, m_strInstallLocale, m_strInstallSchema);
+         strName = http_defer_locale_schema_get(strUrl, m_strInstallLocale, m_strInstallSchema);
          if(strName.length() > 0)
             break;
          else if(iRetry < 84)
@@ -2953,8 +2953,8 @@ RetryHost:
       if(!m_bOfflineInstall && (m_strApplicationId.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
       {
          string str = file_as_string_dup(dir::module_folder("spa.xml"));
-         ::xml::node node;
-         node.Load(str);
+         ::xml::document node;
+         node.load(str);
          ParseSpaIndex(node);
       }
 
@@ -2964,8 +2964,8 @@ RetryHost:
       if(!m_bOfflineInstall && !m_bInstallSet && (m_strApplicationId.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
       {
          string str = read_resource_as_string_dup(NULL, 1984, "CA2SP");
-         ::xml::node node;
-         node.Load(str);
+         ::xml::document node;
+         node.load(str);
          ParseSpaIndex(node);
       }
 #else
@@ -3025,28 +3025,28 @@ RetryHost:
 
 //      bool bSpa = false;
 
-      if(str.find(" background ") != string::npos
-         || str.ends(" background") || strExe.find(" in background ") != string::npos
-         || strExe.ends(" in background"))
+      if(str.find(" background ") >= 0
+         || str.ends_ci(" background") || strExe.find(" in background ") >= 0
+         || strExe.ends_ci(" in background"))
       {
          m_bShow = false;
       }
 
-      if(str.find(" spa ") != string::npos
-         || str.ends(" spa") || strExe.find(" in spa ") != string::npos
-         || strExe.ends(" in spa"))
+      if(str.find(" spa ") >= 0
+         || str.ends_ci(" spa") || strExe.find(" in spa ") >= 0
+         || strExe.ends_ci(" in spa"))
       {
-         spa_install::installer::spa();
+         spa_install::installer::do_spa();
          return 0;
       }
 
       m_bLoginStartup = false;
       index i = str.find("install_filter=");
-      if(i != string::npos)
+      if(i >= 0)
       {
          index iStart = i + 15; // 15 = strlen_dup("install_filter=")
          i = str.find(" ", i);
-         if(i != string::npos)
+         if(i >= 0)
          {
             m_strInstallFilter = str.substr(iStart, i - iStart);
          }
@@ -3057,11 +3057,11 @@ RetryHost:
       }
       // MessageBox(NULL, "xxx", "yyy", MB_OK);
       i = str.find("install=");
-      if(i != string::npos)
+      if(i >= 0)
       {
          index iStart = i + 8; // 8 = strlen_dup("install=")
          i = str.find(" ", i);
-         if(i != string::npos)
+         if(i >= 0)
          {
             m_strApplicationId = str.substr(iStart, i - iStart);
          }
@@ -3079,7 +3079,7 @@ RetryHost:
          ::count iStart = strlen_dup("Install ");
          i = strExe.find(" ", iStart);
          string strIdStart;
-         if(i != string::npos)
+         if(i >= 0)
          {
             strIdStart = strExe.substr(iStart, i - iStart);
          }
@@ -3092,12 +3092,12 @@ RetryHost:
       }
       string strFind("starter_start:");
       i = str.find(strFind);
-      if(i != string::npos)
+      if(i >= 0)
       {
          index iStart = i + strFind.length(); // 8 = strlen_dup("install=")
          //         i = str.find(" ", iStart);
          //         string strCommandLine;
-         //       if(i != string::npos)
+         //       if(i>= 0)
          //     {
          // strCommandLine = str.substr(iStart, i - iStart);
          //   }
@@ -3139,11 +3139,11 @@ RetryHost:
 
 
       index iFind;
-      if((iFind = str.find("uninstall")) != string::npos)
+      if((iFind = str.find("uninstall"))>= 0)
       {
          return run_uninstall_run(&str[iFind + 10], m_nCmdShow);
       }
-      else if(str.find("uninstall") != string::npos)
+      else if(str.find("uninstall")>= 0)
       {
          return run_uninstall(pszCommandLine, m_nCmdShow);
       }
@@ -3157,7 +3157,6 @@ RetryHost:
       throw "todo";
 
 #endif
-
    }
 
 
@@ -3190,7 +3189,7 @@ RetryHost:
       strMutex = "Global\\ca2_application_global_mutex:";
       strMutex += psz;
       //HANDLE hmutex = ::CreateMutex(&MutexAttributes, FALSE, strMutex);
-      mutex mutex(strMutex, false);
+      mutex mutex(get_thread_app(), false, strMutex);
       bool bOpened = ::GetLastError() == ERROR_ALREADY_EXISTS;
       if(bOpened)
       {
@@ -3235,7 +3234,7 @@ RetryHost:
 
    void installer::machine_signalize_close_application()
    {
-      synch_lock lockMachineEvent(m_machineevent.m_mutex);
+      synch_lock lockMachineEvent(&m_machineevent.m_mutex);
       machine_event_data data;
       m_machineevent.read(&data);
       data.m_fixed.m_bRequestCloseApplication = true;
@@ -3244,7 +3243,7 @@ RetryHost:
 
    bool installer::machine_unsignalize_close_application()
    {
-      synch_lock lockMachineEvent(m_machineevent.m_mutex);
+      synch_lock lockMachineEvent(&m_machineevent.m_mutex);
       machine_event_data data;
       m_machineevent.read(&data);
       data.m_fixed.m_bRequestCloseApplication = false;
@@ -3254,7 +3253,7 @@ RetryHost:
 
    bool installer::machine_check_close_application(bool bDefault)
    {
-      synch_lock lockMachineEvent(m_machineevent.m_mutex);
+      synch_lock lockMachineEvent(&m_machineevent.m_mutex);
       machine_event_data data;
       if(!m_machineevent.read(&data))
          return false;
@@ -3262,7 +3261,7 @@ RetryHost:
    }
 
 
-   void installer::spa()
+   void installer::do_spa()
    {
 
       installer * pinstaller = new installer;
@@ -3299,15 +3298,15 @@ RetryHost:
    {
       string strPath = dir::appdata("spa_start.xml");
       string strContents = file_as_string_dup(strPath);
-      ::xml::node node;
-      node.Load(strContents);
-      node.name = "spa";
+      ::xml::document node;
+      node.load(strContents);
+      node.set_name("spa");
       ::xml::node * lpnode = node.GetChildByAttr("start", "id", pszId);
       if(lpnode == NULL)
       {
-         lpnode = node.AppendChild("start");
-         lpnode->AppendAttr("id", pszId);
-         file_put_contents_dup(strPath, node.GetXML());
+         lpnode = node.add_child("start");
+         lpnode->add_attr("id", pszId);
+         file_put_contents_dup(strPath, node.get_xml());
       }
    }
 
@@ -3315,14 +3314,14 @@ RetryHost:
    {
       string strPath = dir::appdata("spa_start.xml");
       string strContents = file_as_string_dup(strPath);
-      ::xml::node node;
-      node.Load(strContents);
-      node.name = "spa";
+      ::xml::document node;
+      node.load(strContents);
+      node.set_name("spa");
       ::xml::node * lpnode = node.GetChildByAttr("start", "id", pszId);
       if(lpnode != NULL)
       {
-         node.RemoveChild(lpnode);
-         file_put_contents_dup(strPath, node.GetXML());
+         node.remove_child(lpnode);
+         file_put_contents_dup(strPath, node.get_xml());
       }
    }
 
@@ -3374,7 +3373,7 @@ RetryHost:
          m_daDownloadRate[m_iDownloadRate] = ((double)dwLen / 1024.0) / ((double)(dwDeltaTime) / 1000.0);
          m_iDownloadRate++;
       }
-      if(m_daDownloadRate.average() == 0.0)
+      if(::lemon::numeric_array::big_average(m_daDownloadRate) == 0.0)
       {
          if(m_dDownloadRate != 0.0)
          {
@@ -3386,8 +3385,8 @@ RetryHost:
       }
       else
       {
-         m_dDownloadRate = m_daDownloadRate.average();
-         m_dwDownloadRemain = (uint32_t)(((m_iTotalGzLen - m_iGzLen) / 1024.0) / m_daDownloadRate.average());
+         m_dDownloadRate = ::lemon::numeric_array::big_average(m_daDownloadRate);
+         m_dwDownloadRemain = (uint32_t)(((m_iTotalGzLen - m_iGzLen) / 1024.0) / ::lemon::numeric_array::big_average(m_daDownloadRate));
       }
    }
 
@@ -3396,7 +3395,8 @@ RetryHost:
    {
 
       int32_t iSpabootInstallStrSize = MAX_PATH * 16;
-      m_strPath.alloc(iSpabootInstallStrSize);
+
+      
 
 #ifdef WINDOWSEX
 
@@ -3409,10 +3409,12 @@ RetryHost:
          ::GetModuleFileNameA((HINSTANCE) hinstancePlugin , szModulePath, sizeof(szModulePath));
 
          char * file = NULL;
-         ::GetFullPathNameA(szModulePath, iSpabootInstallStrSize, m_strPath.m_psz, &file);
+         LPSTR psz = m_strPath.GetBufferSetLength(iSpabootInstallStrSize);
+         ::GetFullPathNameA(szModulePath, iSpabootInstallStrSize, psz, &file);
          file[0] = '\0';
 
-         strcat_dup(m_strPath.m_psz, "app-install.exe");
+         strcat_dup(psz, "app-install.exe");
+         m_strPath.ReleaseBuffer();
       }
 #else
       throw "TODO";
@@ -3423,10 +3425,13 @@ RetryHost:
          int32_t iRetry = 0;
          while(iRetry < 8)
          {
-
-            if(!get_temp_file_name_dup(m_strPath.m_psz, iSpabootInstallStrSize, "app-install", "exe"))
+            LPSTR psz = m_strPath.GetBufferSetLength(iSpabootInstallStrSize);
+            if(!get_temp_file_name_dup(psz, iSpabootInstallStrSize, "app-install", "exe"))
+            {
+               m_strPath.ReleaseBuffer();
                return false;
-
+            }
+            m_strPath.ReleaseBuffer();
             if(is_file_ok(m_strPath, "app-install.exe"))
                break;
             string strUrl;
@@ -3445,8 +3450,10 @@ RetryHost:
             iRetry++;
          }
       }
+      m_strPath.ReleaseBuffer();
       if(!is_file_ok(m_strPath, "app-install.exe"))
       {
+
          return false;
       }
       return true;
@@ -3473,7 +3480,7 @@ RetryHost:
       wchar_t * pwszFullPath = new wchar_t[2048];
       wchar_t * pwszFile = NULL;
       ::GetFullPathNameW(pwsz, 2048, pwszFullPath, &pwszFile);
-      char * psz = ::str::international::unicode_to_utf8(pwszFullPath);
+      string str = ::str::international::unicode_to_utf8(pwszFullPath);
       delete pwsz;
       delete pwszFullPath;
 #elif defined(MACOS)
@@ -3487,15 +3494,10 @@ RetryHost:
       char * psz = br_find_exe("app-install");
 #endif
 
-      call_sync(psz, param, NULL, SW_HIDE, -1, 84, NULL, 0);
-
-#if defined(WINDOWS)
-      _ca_free(psz, 0);
-#else
-      free(psz);
-#endif
+      call_sync(str, param, NULL, SW_HIDE, -1, 84, NULL, 0);
 #endif
       return 0;
+
    }
 
 

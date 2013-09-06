@@ -1025,7 +1025,7 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCREC
 {
 #ifdef METROWIN
 
-   throw todo(::ca2::get_thread_app());
+   throw todo(get_thread_app());
 
 #else
 
@@ -1048,7 +1048,7 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCREC
 
 #else
 
-   throw todo(::ca2::get_thread_app());
+   throw todo(get_thread_app());
 
 #endif
 
@@ -1067,7 +1067,7 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCREC
 
 #else
 
-   throw todo(::ca2::get_thread_app());
+   throw todo(get_thread_app());
 
 #endif
 

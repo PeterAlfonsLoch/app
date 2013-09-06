@@ -45,7 +45,7 @@ namespace file
    {
    }
 
-   sp(::file::buffer) binary_buffer::Duplicate() const
+   ::file::buffer_sp binary_buffer::Duplicate() const
    {
       return NULL;
    }

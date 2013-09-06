@@ -366,9 +366,6 @@
     <Filter Include="Header Files\base\libcharguess">
       <UniqueIdentifier>{7b7c2c1f-7213-497e-9a3f-2adb146b5724}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\collection">
-      <UniqueIdentifier>{db753c32-122c-4879-b25b-66be1344b8bb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\crypto">
       <UniqueIdentifier>{81c963f7-21d5-4e58-bba6-655bf65b63d0}</UniqueIdentifier>
     </Filter>
@@ -389,9 +386,6 @@
     </Filter>
     <Filter Include="Source Files\base\exception">
       <UniqueIdentifier>{f7c568b3-4c16-45dd-b85e-81aae11d186e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\collection">
-      <UniqueIdentifier>{c489671d-ff54-415f-89eb-7d45606a2c6e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\base\crypto">
       <UniqueIdentifier>{a598dcc2-b5e3-42ec-ba57-f3c3febc03db}</UniqueIdentifier>
@@ -464,6 +458,33 @@
     </Filter>
     <Filter Include="Header Files\base\android">
       <UniqueIdentifier>{5d7b2b50-be6c-4759-9e33-33960eb963ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\http">
+      <UniqueIdentifier>{dc968f7e-92a8-4312-a7bd-730d6052664b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\http">
+      <UniqueIdentifier>{02ab1185-7a2c-40f5-822c-a1af029494a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\file">
+      <UniqueIdentifier>{6d36e31f-cdd1-43fa-8552-969adff0de94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\file">
+      <UniqueIdentifier>{ec0bc585-ba95-4719-91bb-202ddde49dc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\file\NewFilter1">
+      <UniqueIdentifier>{b98a8bd5-4ad6-4cbe-bd95-282b1034f4c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\file">
+      <UniqueIdentifier>{e51c6660-f414-4fee-a338-a3e074eafd03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\system">
+      <UniqueIdentifier>{e8f5b0b1-486b-4360-bb66-daa6ed39bf66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\data">
+      <UniqueIdentifier>{7d3860be-3de6-4106-8af1-292bf77af63d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\data\NewFilter1">
+      <UniqueIdentifier>{c9878c48-411e-4ebe-8c26-650832e1dfa4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -773,9 +794,6 @@
     <ClInclude Include="primitive\datetime\datetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_duration.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
     <ClInclude Include="database\database1.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
@@ -809,9 +827,6 @@
     <ClInclude Include="user\user_data_exchange.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_time.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_value.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
@@ -820,15 +835,6 @@
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_windows_file_time.h">
       <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os_windows_defs.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os_cross_windows.h">
-      <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="math\_double.h">
       <Filter>Header Files\math</Filter>
@@ -1038,9 +1044,6 @@
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include=".\primitive\primitive_fixed_string.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include=".\primitive\primitive_geometric_types.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include=".\primitive\primitive_img.h">
@@ -2657,186 +2660,6 @@
     <ClInclude Include="base\libcharguess\UTF8Prober.h">
       <Filter>Header Files\base\libcharguess</Filter>
     </ClInclude>
-    <ClInclude Include="base\collection\collection.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_attrib_map.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_base_2array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_bit_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_bitset.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_comparable_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_comparable_eq_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_comparable_eq_list.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_comparable_list.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_comparable_primitive_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_comparable_raw_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_deque.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_elements.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_fifo_map.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_id_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_int_map.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_key_sort_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_lemon_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_list.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_logic_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_map.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_map_association.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_map_to_smart_pointer.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_numeric_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_object_list.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_packset.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_pair.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_point_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_pointer_list.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_primitive_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_priority_queue.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_queue.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_raw_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_rect_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_simple_eq_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_simple_object_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_simple_pointer_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_simple_template.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_simple_typed_pointer_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_smart_pointer_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_sort.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_sort_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_sort_map.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_spreadset.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_strid_map.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_string_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_string_list.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_string_map.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_string_sort_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_string_to_string_map.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_stringa.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_stringl.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_template.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_typed_pointer_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_typed_pointer_list.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_typed_pointer_map.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_typed_ptr_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_typed_ptr_list.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="base\collection\collection_unique_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
     <ClInclude Include="base\crypto\crypto.h">
       <Filter>Header Files\base\crypto</Filter>
     </ClInclude>
@@ -3134,9 +2957,6 @@
     <ClInclude Include="database\databaseuser\list_data.h">
       <Filter>Header Files\database\databaseuser</Filter>
     </ClInclude>
-    <ClInclude Include="base\collection\aaa_want_to_remove_xxx_collection_base_array.h">
-      <Filter>Header Files\base\collection</Filter>
-    </ClInclude>
     <ClInclude Include="programming\dynamic_source\dynamic_source_session.h">
       <Filter>Header Files\programming\dynamic_source</Filter>
     </ClInclude>
@@ -3218,9 +3038,6 @@
     <ClInclude Include="base\ca2\aaa_want_to_remove_ca2_scoped_ptr.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_0.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
@@ -3254,43 +3071,7 @@
     <ClInclude Include="base\ca2\ca2_bit.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_bitl_decoder.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_bitl_encoder.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_bitm_decoder.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_bitm_encoder.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_bstr.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_buffer.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_buffered_file.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_byte_serializable.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_byte_stream.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_byte_stream_memory_file.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_ch_class.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_circular_buffer.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_clustered_input_stream.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_command.h">
@@ -3300,12 +3081,6 @@
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_command_thread.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_common.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_compare.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_composite.h">
@@ -3321,9 +3096,6 @@
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_copydesk.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_core.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_create_context.h">
@@ -3353,49 +3125,19 @@
     <ClInclude Include="base\ca2\ca2_dir_system.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_dynamic_buffer.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_dynamic_buffered_writer.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_edit_file.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_email.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_enum.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_exception.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_factory.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_file.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_file_application.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_file_association.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_file_composite.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_file_set.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_file_stream.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_file_system.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_fixed_alloc.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_flags.h">
@@ -3428,31 +3170,13 @@
     <ClInclude Include="base\ca2\ca2_http_system.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_in_buffer.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_inline.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_insert_iterator.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_interlocked_long.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_interlocked_long_pulse.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_international_locale_schema.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_io_temp_buffer.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_ip_enum.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_istring.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_iterator.h">
@@ -3473,15 +3197,6 @@
     <ClInclude Include="base\ca2\ca2_library.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_limited_input_stream.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_limited_reader.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_limited_writer.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_listener.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
@@ -3489,9 +3204,6 @@
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_live_signal.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_locked_in_stream.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_log.h">
@@ -3524,9 +3236,6 @@
     <ClInclude Include="base\ca2\ca2_message.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_message_window.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_microtimer.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
@@ -3548,12 +3257,6 @@
     <ClInclude Include="base\ca2\ca2_os_implementation.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_out_buffer.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_output_stream_flush_interface.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_parse.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
@@ -3561,15 +3264,6 @@
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_pipe.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_plain_text_serializable.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_plain_text_stream.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_plain_text_string_stream.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_port_forward.h">
@@ -3620,9 +3314,6 @@
     <ClInclude Include="base\ca2\ca2_session.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_signal.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_signal_thread.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
@@ -3633,9 +3324,6 @@
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_simple_tree_item_data.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_size_count_writer.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_smart_pointer_query.h">
@@ -3650,34 +3338,13 @@
     <ClInclude Include="base\ca2\ca2_stra.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_stream_binder.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_stream2.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_string_tokenizer.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_strn.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_system.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_system_exception.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_template.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_text_file.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_thread.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_timeout_file.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_timer.h">
@@ -3687,9 +3354,6 @@
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_timer_listener.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_timer_window.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_trace.h">
@@ -3713,13 +3377,7 @@
     <ClInclude Include="base\ca2\ca2_twit.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_type_info.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="base\ca2\ca2_types.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_url_domain.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_user.h">
@@ -3729,21 +3387,6 @@
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_util1.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_variable_strict_compare.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_wait_cursor.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_window.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_window_draw.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\ca2\ca2_ca2.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\webserver\webserver_http_cookie.h">
@@ -3803,9 +3446,6 @@
     <ClInclude Include="base\plugin\plugin.h">
       <Filter>Header Files\base\plugin</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_string_buffer.h">
-      <Filter>Header Files\base\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\draw2d\draw2d.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
@@ -3853,6 +3493,147 @@
     </ClInclude>
     <ClInclude Include="base\android\os_multithreading.h">
       <Filter>Header Files\base\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\ca2\ca2.h">
+      <Filter>Header Files\base\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_application.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_get_socket.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_system.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_in_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_stream2.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_out_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_bitl_decoder.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_bitl_encoder.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_circular_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_bitm_decoder.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_bitm_encoder.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_limited_reader.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_limited_input_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_dynamic_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_clustered_file_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_limited_writer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_byte_stream_memory_file.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_buffered.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_application.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_clustered_input_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_set.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_system.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_stream_binder.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_text_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_wait_cursor.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_window.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_window_draw.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_url_domain.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="os\os.h">
+      <Filter>Header Files\base\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\os_cross_windows.h">
+      <Filter>Header Files\base\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\os_windows_defs.h">
+      <Filter>Header Files\base\os</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_message_window.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_timer_window.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_locked_in_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_io_temp_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_size_count_writer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_timeout_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_dynamic_buffered_writer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_edit_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="base\data\data_tree.h">
+      <Filter>Header Files\base\data</Filter>
+    </ClInclude>
+    <ClInclude Include="base\data\data_tree_data.h">
+      <Filter>Header Files\base\data</Filter>
+    </ClInclude>
+    <ClInclude Include="base\data\data_tree_item.h">
+      <Filter>Header Files\base\data</Filter>
+    </ClInclude>
+    <ClInclude Include="base\data\data_tree_item_data.h">
+      <Filter>Header Files\base\data</Filter>
+    </ClInclude>
+    <ClInclude Include="base\data\data_simple_tree_data.h">
+      <Filter>Header Files\base\data</Filter>
+    </ClInclude>
+    <ClInclude Include="base\data\data_simple_tree_item_data.h">
+      <Filter>Header Files\base\data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5575,63 +5356,6 @@
     <ClCompile Include="base\exception\exception_void_implementation.cpp">
       <Filter>Source Files\base\exception</Filter>
     </ClCompile>
-    <ClCompile Include="base\collection\collection_2d_array.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_array.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_bit_array.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_class_sort_array.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_comparable_array.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_key_sort_array.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_map_misc.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_numeric_array.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_object_list.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_point_array.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_pointer_list.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_rect_array.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_sort.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_string_array.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_string_list.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_string_sort_array.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_string_to_string_map.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_stringa.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="base\collection\collection_stringl.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
     <ClCompile Include="base\crypto\crypto_ae_xfm.cpp">
       <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
@@ -6091,9 +5815,6 @@
     <ClCompile Include="filesystem\userfs\userfs_userfs.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="base\collection\collection_id_array.cpp">
-      <Filter>Source Files\base\collection</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\webserver\sockets_http_cookie.cpp">
       <Filter>Source Files\net\sockets\webserver</Filter>
     </ClCompile>
@@ -6364,9 +6085,6 @@
     <ClCompile Include="base\ca2\ca2_os_history.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="base\ca2\ca2_out_buffer.cpp">
-      <Filter>Source Files\base\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="base\ca2\ca2_output_string_stream.cpp">
       <Filter>Source Files\base\ca2</Filter>
     </ClCompile>
@@ -6571,6 +6289,48 @@
     <ClCompile Include="base\android\os_multithreading.cpp">
       <Filter>Source Files\base\android</Filter>
     </ClCompile>
+    <ClCompile Include="net\http\http_application.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_get_socket.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_system.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_in_buffer.cpp">
+      <Filter>Source Files\base\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_out_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_application.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_buffered.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_stream_memory_file.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_clustered_input_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_dynamic_buffered_writer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_set.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_sssociation.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_system.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="user\interaction.inl">
@@ -6578,9 +6338,6 @@
     </None>
     <None Include="user\user_interaction.inl">
       <Filter>Header Files\user</Filter>
-    </None>
-    <None Include="base\collection\collection.inl">
-      <Filter>Header Files\base\collection</Filter>
     </None>
     <None Include="base\multithreading\multithreading.inl">
       <Filter>Header Files\base\multithreading</Filter>

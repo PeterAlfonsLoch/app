@@ -822,7 +822,7 @@ namespace plane
       if(papp == NULL)
          return false;
 
-      papp->::ca2::request_interface::create(pcreatecontext);
+      papp->::request_interface::create(pcreatecontext);
 
       return true;
 

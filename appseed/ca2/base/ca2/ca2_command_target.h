@@ -11,7 +11,7 @@ class CLASS_DECL_ca2 command_target_interface :
 {
 public:
 
-   class CLASS_DECL_ca2 command_signalid : public ::ca2::signalid
+   class CLASS_DECL_ca2 command_signalid : public signalid
    {
    public:
 
@@ -23,7 +23,7 @@ public:
 
       id m_id;
 
-      virtual bool is_equal(::ca2::signalid * pidParam)
+      virtual bool is_equal(signalid * pidParam)
       {
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
          if(pid == NULL)
@@ -31,7 +31,7 @@ public:
          return pid->m_id == m_id;
       };
 
-      virtual bool matches(::ca2::signalid * pidParam)
+      virtual bool matches(signalid * pidParam)
       {
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
          if(pid == NULL)
@@ -39,7 +39,7 @@ public:
          return pid->m_id == m_id;
       };
 
-      virtual ::ca2::signalid * copy()
+      virtual signalid * copy()
       {
          command_signalid * pid = new command_signalid();
          pid->m_id = m_id;
@@ -47,7 +47,7 @@ public:
       }
    };
 
-   class CLASS_DECL_ca2 command_signalrange : public ::ca2::signalid
+   class CLASS_DECL_ca2 command_signalrange : public signalid
    {
    public:
 
@@ -60,7 +60,7 @@ public:
       index m_iStart;
       index m_iEnd;
 
-      virtual bool is_equal(::ca2::signalid * pidParam)
+      virtual bool is_equal(signalid * pidParam)
       {
          command_signalrange * prange = dynamic_cast < command_signalrange * > (pidParam);
          if(prange == NULL)
@@ -68,7 +68,7 @@ public:
          return prange->m_iStart == m_iStart && prange->m_iEnd == m_iEnd;
       };
 
-      virtual bool matches(::ca2::signalid * pidParam)
+      virtual bool matches(signalid * pidParam)
       {
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
          if(pid == NULL)
@@ -78,7 +78,7 @@ public:
              && pid->m_id <= m_iEnd;
       };
 
-      virtual ::ca2::signalid * copy()
+      virtual signalid * copy()
       {
          command_signalrange * pid = new command_signalrange();
          pid->m_iStart = m_iStart;
@@ -87,10 +87,10 @@ public:
       }
    };
 
-   ::ca2::signalid_array m_signalidaCommand;
+   signalid_array m_signalidaCommand;
 
-   ::ca2::dispatch  m_dispatchUpdateCmdUi;
-   ::ca2::dispatch  m_dispatchCommand;
+   dispatch  m_dispatchUpdateCmdUi;
+   dispatch  m_dispatchCommand;
 
    command_target_interface();
    command_target_interface(sp(base_application) papp);
@@ -110,7 +110,7 @@ public:
    bool connect_update_cmd_ui(id id, void (T::*pfn)(signal_details *))
    {
       command_signalid signalid;
-      ::ca2::signalid * pid;
+      signalid * pid;
       signalid.m_id = id;
       pid = m_signalidaCommand.get(&signalid);
       return m_dispatchUpdateCmdUi.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
@@ -119,7 +119,7 @@ public:
    bool connect_command(id id, void (T::*pfn)(signal_details *))
    {
       command_signalid signalid;
-      ::ca2::signalid * pid;
+      signalid * pid;
       signalid.m_id = id;
       pid = m_signalidaCommand.get(&signalid);
       return m_dispatchCommand.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
@@ -128,7 +128,7 @@ public:
    bool connect_update_cmd_range_ui(int32_t iStart, int32_t iEnd, void (T::*pfn)(signal_details *))
    {
       command_signalrange signalrange;
-      ::ca2::signalid * pid;
+      signalid * pid;
       signalrange.m_iStart = iStart;
       signalrange.m_iEnd = iEnd;
       pid = m_signalidaCommand.get(&signalrange);
@@ -138,7 +138,7 @@ public:
    bool connect_command_range(int32_t iStart, int32_t iEnd, void (T::*pfn)(signal_details *))
    {
       command_signalrange signalrange;
-      ::ca2::signalid * pid;
+      signalid * pid;
       signalrange.m_iStart = iStart;
       signalrange.m_iEnd = iEnd;
       pid = m_signalidaCommand.get(&signalrange);
@@ -156,7 +156,7 @@ public:
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
    //virtual bool _001HasCommandHandler(const char * pszId);
 
-   void get_command_signal_array(BaseCmdMsg::e_type etype, ::ca2::dispatch::signal_ptr_array & signalptra, id id);
+   void get_command_signal_array(BaseCmdMsg::e_type etype, dispatch::SignalPtrArray & signalptra, id id);
 };
 
 

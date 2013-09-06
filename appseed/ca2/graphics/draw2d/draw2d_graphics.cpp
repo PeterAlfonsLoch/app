@@ -2477,7 +2477,7 @@ namespace draw2d
 #ifdef WINDOWSEX
       m_p->attach(::BeginPaint(pwindow->get_safe_handle(), &m_ps));
 #else
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 #endif
    }
 
@@ -2486,7 +2486,7 @@ namespace draw2d
 #ifdef WINDOWSEX
       ::EndPaint(m_pwindow->get_safe_handle(), &m_ps);
 #else
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 #endif
    }
 

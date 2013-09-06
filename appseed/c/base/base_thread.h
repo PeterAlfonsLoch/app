@@ -41,31 +41,27 @@ public:
 };
 
 
-namespace ca2
+class CLASS_DECL_c thread_state
 {
-
-   class CLASS_DECL_c thread_state
-   {
-   public:
+public:
 
 
-      //heap_item_array                     m_heapitema;
+   //heap_item_array                     m_heapitema;
 
 
-   };
+};
 
-   CLASS_DECL_c base_thread * get_thread();
-   CLASS_DECL_c thread_state * get_thread_state();
-
-
-   typedef base_thread * (* PFN_get_thread)();
-   typedef thread_state * (* PFN_get_thread_state)();
-
-   extern CLASS_DECL_c PFN_get_thread g_pfn_get_thread;
-   extern CLASS_DECL_c PFN_get_thread_state g_pfn_get_thread_state;
+CLASS_DECL_c base_thread * get_thread();
+CLASS_DECL_c thread_state * get_thread_state();
 
 
-} // namespace ca2
+typedef base_thread * (* PFN_get_thread)();
+typedef thread_state * (* PFN_get_thread_state)();
+
+extern CLASS_DECL_c PFN_get_thread g_pfn_get_thread;
+extern CLASS_DECL_c PFN_get_thread_state g_pfn_get_thread_state;
+
+
 
 
 

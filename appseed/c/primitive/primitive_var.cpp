@@ -1576,13 +1576,13 @@ int32_t var::int32(int32_t iDefault) const
    case type_id:
    {
       if(!is32integer((int64_t) m_id))
-         throw overflow_error(::ca2::get_thread_app(), "var contains id that does not fit 32 bit integer");
+         throw overflow_error(get_thread_app(), "var contains id that does not fit 32 bit integer");
       return (int32_t) (int64_t) m_id;
    }
    case type_pid:
    {
       if(!is32integer((int64_t) *m_pid))
-         throw overflow_error(::ca2::get_thread_app(), "var contains id that does not fit 32 bit integer");
+         throw overflow_error(get_thread_app(), "var contains id that does not fit 32 bit integer");
       return (int32_t) (int64_t) *m_pid;
    }
    default:
@@ -2513,9 +2513,9 @@ var operator / (uint64_t ul, const class var & var)
    switch(var.m_etype)
    {
    case ::var::type_null:
-      throw simple_exception(::ca2::get_thread_app(), "division by zero");
+      throw simple_exception(get_thread_app(), "division by zero");
    case ::var::type_empty:
-      throw simple_exception(::ca2::get_thread_app(), "division by zero");
+      throw simple_exception(get_thread_app(), "division by zero");
    case ::var::type_int32:
       return (int_ptr) ul / var.m_i32;
    case ::var::type_uint32:
@@ -2533,7 +2533,7 @@ var operator / (uint64_t ul, const class var & var)
    case ::var::type_pvar:
       return operator / (ul, *var.m_pvar);
    default:
-      throw simple_exception(::ca2::get_thread_app(), "division by zero");
+      throw simple_exception(get_thread_app(), "division by zero");
    }
 
 }
@@ -3626,7 +3626,7 @@ bool var::is_numeric() const
          return false;
 
       default:
-         throw not_implemented(::ca2::get_thread_app());
+         throw not_implemented(get_thread_app());
 
    };
 

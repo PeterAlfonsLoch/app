@@ -1134,7 +1134,7 @@ namespace hotplugin
             throw "resource exception";
          }
 
-         m_pmutexBitmap = new mutex(string("Global\\ca2plugin-container-") + itohex_dup((int_ptr)this));
+         m_pmutexBitmap = new mutex(get_thread_app(), false, string("Global\\ca2plugin-container-") + hex::lower_from((int_ptr)this));
 
       }
 

@@ -54,8 +54,8 @@ namespace n7z
 
       handler();
 
-      virtual ::ca2::HRes SetCompressCodecsInfo(::libcompress::codecs_info_interface *compressCodecsInfo) = 0;
-      virtual ::ca2::HRes SetProperties(const char **names, const var *values, int32_t numProperties);
+      virtual HRes SetCompressCodecsInfo(::libcompress::codecs_info_interface *compressCodecsInfo) = 0;
+      virtual HRes SetProperties(const char **names, const var *values, int32_t numProperties);
 
    private:
       smart_pointer < ::file::input_stream > _inStream;
@@ -78,12 +78,12 @@ namespace n7z
 
       array<CBind> _binds;
 
-      ::ca2::HRes SetCompressionMethod(CCompressionMethodMode &method,
+      HRes SetCompressionMethod(CCompressionMethodMode &method,
          smart_pointer_array < ::libcompress::COneMethodInfo > &methodsInfo
          , uint32_t numThreads
          );
 
-      ::ca2::HRes SetCompressionMethod(
+      HRes SetCompressionMethod(
          CCompressionMethodMode &method,
          CCompressionMethodMode &headerMethod);
 

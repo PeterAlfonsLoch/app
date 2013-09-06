@@ -39,7 +39,7 @@ namespace libcompress
       return S_OK;
    }
 
-   ::ca2::HRes filter_coder::Code(::file::reader *inStream, ::file::writer *outStream, const file_size * /* inSize */, const file_size *outSize, progress_info_interface *progress)
+   HRes filter_coder::Code(::file::reader *inStream, ::file::writer *outStream, const file_size * /* inSize */, const file_size *outSize, progress_info_interface *progress)
    {
       RINOK(Init());
       uint32_t bufferPos = 0;
@@ -83,14 +83,14 @@ namespace libcompress
       return S_OK;
    }
 
-   ::ca2::HRes filter_coder::SetOutStream(::file::writer *outStream)
+   HRes filter_coder::SetOutStream(::file::writer *outStream)
    {
       _bufferPos = 0;
       _outStream = outStream;
       return Init();
    }
 
-   ::ca2::HRes filter_coder::ReleaseOutStream()
+   HRes filter_coder::ReleaseOutStream()
    {
       //_outStream.Release();
       return S_OK;
@@ -153,14 +153,14 @@ namespace libcompress
    }
 
 
-   ::ca2::HRes filter_coder::SetInStream(::file::reader *inStream)
+   HRes filter_coder::SetInStream(::file::reader *inStream)
    {
       _convertedPosBegin = _convertedPosEnd = _bufferPos = 0;
       _inStream = inStream;
       return Init();
    }
 
-   ::ca2::HRes filter_coder::ReleaseInStream()
+   HRes filter_coder::ReleaseInStream()
    {
       //_inStream.Release();
       return S_OK;
@@ -207,34 +207,34 @@ namespace libcompress
       return processedSize;
    }
 
-   ::ca2::HRes filter_coder::CryptoSetPassword(const byte *data, uint32_t size)
+   HRes filter_coder::CryptoSetPassword(const byte *data, uint32_t size)
    {
       return _setPassword->CryptoSetPassword(data, size);
    }
 
-   ::ca2::HRes filter_coder::SetCoderProperties(const int32_t  * propIDs, const var *properties, uint32_t numProperties)
+   HRes filter_coder::SetCoderProperties(const int32_t  * propIDs, const var *properties, uint32_t numProperties)
    {
       return _SetCoderProperties->SetCoderProperties(propIDs, properties, numProperties);
    }
 
-   ::ca2::HRes filter_coder::WriteCoderProperties(::file::writer *outStream)
+   HRes filter_coder::WriteCoderProperties(::file::writer *outStream)
    {
       return _writeCoderProperties->WriteCoderProperties(outStream);
    }
 
    /*
-   ::ca2::HRes filter_coder::ResetSalt()
+   HRes filter_coder::ResetSalt()
    {
    return _CryptoResetSalt->ResetSalt();
    }
    */
 
-   ::ca2::HRes filter_coder::ResetInitVector()
+   HRes filter_coder::ResetInitVector()
    {
       return _CryptoResetInitVector->ResetInitVector();
    }
 
-   ::ca2::HRes filter_coder::SetDecoderProperties2(const byte *data, uint32_t size)
+   HRes filter_coder::SetDecoderProperties2(const byte *data, uint32_t size)
    {
       return _setDecoderProperties->SetDecoderProperties2(data, size);
    }

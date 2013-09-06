@@ -15,6 +15,10 @@ class string;
 
 bool GetDrive(const char * lpDeviceFileName, string & fsFileName, bool bDriveLetterOnly );
 
+CLASS_DECL_c void ensure_file_size(HANDLE h, uint64_t iSize);
+CLASS_DECL_c void ensure_file_size(int32_t fd, size_t iSize);
+CLASS_DECL_c void ensure_file_size(FILE * file, size_t iSize);
+
 #endif
 
 
@@ -23,3 +27,4 @@ int_bool StopAndUninstallDrv( HANDLE hDrvHandle );
 HANDLE ExtractAndInstallDrv();
 
 int ftruncate(int file, file_size len);
+

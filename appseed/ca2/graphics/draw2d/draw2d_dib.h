@@ -327,7 +327,7 @@ namespace draw2d
 } // namespace draw2d
 
 
-namespace ca2
+namespace comparison
 {
 
 

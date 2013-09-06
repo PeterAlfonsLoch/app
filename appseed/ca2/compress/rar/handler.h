@@ -50,7 +50,7 @@ namespace rar
 
          CA2_COMPRESS_INTERFACE_input_archive(;)
 
-         ::ca2::HRes SetCompressCodecsInfo(::libcompress::codecs_info_interface *compressCodecsInfo);
+         HRes SetCompressCodecsInfo(::libcompress::codecs_info_interface *compressCodecsInfo);
    };
 
 } // namespace rar

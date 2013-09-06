@@ -10,7 +10,7 @@ namespace xml
 
    class CLASS_DECL_c document :
       public node,
-      public data
+      public ::data::data
    {
    public:
 
@@ -33,7 +33,7 @@ namespace xml
       node * get_root();
       
       bool load_location(const char * psz);
-      bool load(sp(::file::binary_buffer) pfile);
+      bool load(::file::input_stream & is);
       bool load(const char * psz);
 
       document & operator = (document & document);
@@ -44,7 +44,7 @@ namespace xml
 
       inline sp(::xml::edit) validate_edit(base_edit * pbaseedit)
       {
-         return ::data::validate_edit < ::xml::edit > (pbaseedit);
+         return ::data::data::validate_edit < ::xml::edit > (pbaseedit);
       }
 
 

@@ -524,7 +524,7 @@ namespace user
          colorertake5::base_editor::initialize(&m_lines);
          colorertake5::base_editor::setRegionMapper("rgb", "default");
       }
-   //  m_peditfile = new edit_file(get_app());
+   //  m_peditfile = new ::file::edit_buffer(get_app());
       m_pdata->m_editfile.SetFile(m_pdata->m_pfile);
       m_bGetTextNeedUpdate = true;
       m_bPassword = false;
@@ -1933,7 +1933,7 @@ namespace user
       }
       if(m_pdata->m_ptreeitem->m_pnext != NULL)
       {
-         sp(::ca2::tree_item) pitemNew = insert_item_data(m_pdata, pcommand, ::ca2::RelativeFirstChild, m_pdata->m_ptreeitem);
+         sp(::data::tree_item) pitemNew = insert_item_data(m_pdata, pcommand, ::ca2::RelativeFirstChild, m_pdata->m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -1941,7 +1941,7 @@ namespace user
       }
       else
       {
-         sp(::ca2::tree_item) pitemNew = insert_item_data(m_pdata, pcommand, ::ca2::RelativeLastSibling, m_pdata->m_ptreeitem);
+         sp(::data::tree_item) pitemNew = insert_item_data(m_pdata, pcommand, ::ca2::RelativeLastSibling, m_pdata->m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -1979,7 +1979,7 @@ namespace user
          return false;
       }
       sp(plain_text_data::Command) pcommand = NULL;
-      sp(::ca2::tree_item) ptreeitem;
+      sp(::data::tree_item) ptreeitem;
       if(m_pdata->m_iBranch < m_pdata->m_ptreeitem->get_expandable_children_count())
       {
          ptreeitem = m_pdata->m_ptreeitem->get_expandable_child(m_pdata->m_iBranch);

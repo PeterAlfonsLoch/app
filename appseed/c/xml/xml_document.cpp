@@ -6,9 +6,9 @@ namespace xml
 
 
    document::document(sp(base_application) papp, parse_info * pparseinfo) :
-      element(papp.is_set() ? papp : ::ca2::get_thread_app()),
-      data(papp.is_set() ? papp : ::ca2::get_thread_app()),
-      node(papp.is_set() ? papp : ::ca2::get_thread_app())
+      element(papp.is_set() ? papp : get_thread_app()),
+      data(papp.is_set() ? papp : get_thread_app()),
+      node(papp.is_set() ? papp : get_thread_app())
    {
 
       m_pdoc         = this;
@@ -47,13 +47,14 @@ namespace xml
 
    }
 
-   bool document::load(sp(::file::binary_buffer) pfile)
+   bool document::load(::file::input_stream & is)
    {
 
       primitive::memory memory;
-      memory.FullLoad(*pfile);
-      string str = memory.get_data();
-      return load(str);
+
+      memory.read(is);
+
+      return load(memory.to_string());
 
    }
 

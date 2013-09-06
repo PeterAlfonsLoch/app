@@ -15,7 +15,7 @@ namespace file
    {
    }
 
-   stream::stream(buffer * pbuffer) :
+   stream::stream(stream_buffer * pbuffer) :
       input_stream(pbuffer),
       output_stream(pbuffer)
    {

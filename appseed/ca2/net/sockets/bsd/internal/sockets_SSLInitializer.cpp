@@ -216,7 +216,7 @@ void ssl_sigpipe_handle( int x ) {
       mutex * pmutex;
       if(!mmap.Lookup(n, pmutex))
       {
-         mmap[n] = new mutex(::ca2::get_thread_app());
+         mmap[n] = new mutex(get_thread_app());
       }
       if (mode & CRYPTO_LOCK)
       {

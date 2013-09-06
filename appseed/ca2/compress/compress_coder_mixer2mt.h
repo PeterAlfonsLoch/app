@@ -60,13 +60,13 @@ namespace libcompress
 
          CCoderMixer2MT(sp(base_application) papp);
 
-         ::ca2::HRes Code(spa(::file::reader) & inStreams,
+         HRes Code(spa(::file::reader) & inStreams,
             const file_size **inSizes,
             spa(::file::writer) & outStreams,
             const file_size **outSizes,
             progress_info_interface *progress);
 
-         ::ca2::HRes SetBindInfo(const CBindInfo &bindInfo);
+         HRes SetBindInfo(const CBindInfo &bindInfo);
          void AddCoder(::libcompress::coder_interface *coder);
          void AddCoder2(::libcompress::coder2_interface *coder);
          void SetProgressCoderIndex(int32_t coderIndex) {  _progressCoderIndex = coderIndex; }

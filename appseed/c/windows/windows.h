@@ -63,6 +63,7 @@ WinRegGetValueW(
 #ifdef __cplusplus
 
 CLASS_DECL_c string key_to_char(WPARAM wparam, LPARAM lparam);
+CLASS_DECL_c string read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszType);
 
 #endif
 

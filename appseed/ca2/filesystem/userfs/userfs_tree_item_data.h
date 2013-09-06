@@ -26,7 +26,7 @@ namespace userfs
       string get_text(sp(::ca2::tree) ptree);
       index get_image(sp(::ca2::tree) ptree);
 
-      static index CompareArrangeByName(sp(::ca2::tree_item) & pitema, sp(::ca2::tree_item) & pitemb);
+      static index CompareArrangeByName(sp(::data::tree_item) & pitema, sp(::data::tree_item) & pitemb);
       int32_t get_index() const;
       bool is_folder() const;
 

@@ -60,46 +60,41 @@ mutex & user_mutex()
 
 
 
-namespace ca2
+CLASS_DECL_c PFN_get_thread g_pfn_get_thread = NULL;
+CLASS_DECL_c PFN_get_thread_state g_pfn_get_thread_state = NULL;
+
+
+base_thread * get_thread()
 {
 
+   if(g_pfn_get_thread == NULL)
+      return NULL;
 
-   CLASS_DECL_c PFN_get_thread g_pfn_get_thread = NULL;
-   CLASS_DECL_c PFN_get_thread_state g_pfn_get_thread_state = NULL;
+   return g_pfn_get_thread();
 
-
-   base_thread * get_thread()
-   {
-
-      if(g_pfn_get_thread == NULL)
-         return NULL;
-
-      return g_pfn_get_thread();
-
-   }
+}
 
 
-   sp(base_application) get_thread_app()
-   {
+sp(base_application) get_thread_app()
+{
 
-      base_thread * pthread = get_thread();
+   base_thread * pthread = get_thread();
 
-      if(pthread == NULL)
-         return NULL;
+   if(pthread == NULL)
+      return NULL;
 
-      return pthread->get_app();
+   return pthread->get_app();
 
-   }
+}
 
 
-   thread_state * get_thread_state()
-   {
-      if(g_pfn_get_thread_state == NULL)
-         return NULL;
-      return g_pfn_get_thread_state();
-   }
+thread_state * get_thread_state()
+{
+   if(g_pfn_get_thread_state == NULL)
+      return NULL;
+   return g_pfn_get_thread_state();
+}
 
-   } // namespace ca2
 
 
 

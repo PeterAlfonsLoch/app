@@ -705,10 +705,10 @@ namespace n7z
       string Password;
 
       //MY_UNKNOWN_IMP
-         ::ca2::HRes CryptoGetTextPassword(string & password);
+         HRes CryptoGetTextPassword(string & password);
    };
 
-   ::ca2::HRes CCryptoGetTextPassword::CryptoGetTextPassword(string & password)
+   HRes CCryptoGetTextPassword::CryptoGetTextPassword(string & password)
    {
       password = Password;
       return S_OK;

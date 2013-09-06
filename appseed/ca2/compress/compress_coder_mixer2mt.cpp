@@ -77,7 +77,7 @@ namespace libcompress
       //////////////////////////////////////
       // CCoderMixer2MT
 
-      ::ca2::HRes CCoderMixer2MT::SetBindInfo(const CBindInfo &bindInfo)
+      HRes CCoderMixer2MT::SetBindInfo(const CBindInfo &bindInfo)
       {
          _bindInfo = bindInfo;
          _streamBinders.remove_all();
@@ -188,7 +188,7 @@ namespace libcompress
          return S_OK;
       }
 
-      ::ca2::HRes CCoderMixer2MT::Code(spa(::file::reader) & inStreams,
+      HRes CCoderMixer2MT::Code(spa(::file::reader) & inStreams,
          const file_size ** /* inSizes */,
          spa(::file::writer) & outStreams,
          const file_size ** /* outSizes */,

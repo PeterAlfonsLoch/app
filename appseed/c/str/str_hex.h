@@ -10,9 +10,6 @@ namespace hex
 
    CLASS_DECL_c int64_t          utf8_char_to(const char * pszUtf8Char);
 
-   CLASS_DECL_c string           upper_from(void * p, primitive::memory_size s);
-   CLASS_DECL_c string           lower_from(void * p, primitive::memory_size s);
-
    //CLASS_DECL_c string           pad_from(int64_t i, int32_t iPad);
 
    

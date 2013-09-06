@@ -687,7 +687,7 @@ namespace ca2
    void application::on_request(sp(create_context) pcreatecontext)
    {
 
-      ::ca2::request_interface::on_request(pcreatecontext);
+      ::request_interface::on_request(pcreatecontext);
 
    }
 
@@ -3148,7 +3148,7 @@ namespace ca2
       szAppName[_MAX_PATH - 1] = '\0';
       #else
 
-      throw not_implemented(::ca2::get_thread_app());
+      throw not_implemented(get_thread_app());
 
       #endif
       }
@@ -4611,7 +4611,7 @@ void __post_quit_message(int32_t nExitCode)
 
 #else
 
-   throw not_implemented(::ca2::get_thread_app());
+   throw not_implemented(get_thread_app());
 
 #endif
 

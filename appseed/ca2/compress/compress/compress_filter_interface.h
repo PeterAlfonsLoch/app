@@ -9,7 +9,7 @@ namespace libcompress
       virtual public object
    {
    public:
-     virtual ::ca2::HRes Init() = 0;
+     virtual HRes Init() = 0;
      virtual uint32_t Filter(byte *data, uint32_t size) = 0;
      // Filter converts as most as possible bytes
      // Filter return outSize (uint32_t)

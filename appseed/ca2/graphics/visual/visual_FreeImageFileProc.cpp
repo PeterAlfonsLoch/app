@@ -92,7 +92,7 @@ long __TellProc (fi_handle handle)
 uint32_t _stdcall  __ReadProc2 (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    primitive::memory_size dwRead;
-   sp(::file::binary_buffer) pfile = (sp(::file::binary_buffer)) handle;
+   ::file::buffer_sp pfile = (::file::buffer_sp) handle;
    if((dwRead = pfile->read(buffer, count * size)) > 0)
    {
       return count;
@@ -105,7 +105,7 @@ uint32_t _stdcall  __ReadProc2 (void *buffer, uint32_t size, uint32_t count, fi_
 }
 uint32_t _stdcall __WriteProc2 (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
-   sp(::file::binary_buffer) pfile = (sp(::file::binary_buffer)) handle;
+   ::file::buffer_sp pfile = (::file::buffer_sp) handle;
    try
    {
       pfile->write(buffer, count * size);
@@ -118,7 +118,7 @@ uint32_t _stdcall __WriteProc2 (void *buffer, uint32_t size, uint32_t count, fi_
 }
 int32_t _stdcall __SeekProc2 (fi_handle handle, long offset, int32_t origin)
 {
-   sp(::file::binary_buffer) pfile = (sp(::file::binary_buffer)) handle;
+   ::file::buffer_sp pfile = (::file::buffer_sp) handle;
    if(origin == SEEK_SET)
       origin = ::file::seek_begin;
    else if(origin == SEEK_CUR)
@@ -137,7 +137,7 @@ int32_t _stdcall __SeekProc2 (fi_handle handle, long offset, int32_t origin)
 }
 long _stdcall __TellProc2 (fi_handle handle)
 {
-   sp(::file::binary_buffer) pfile = (sp(::file::binary_buffer)) handle;
+   ::file::buffer_sp pfile = (::file::buffer_sp) handle;
    return (long) pfile->get_position();
 }
 
@@ -149,7 +149,7 @@ long _stdcall __TellProc2 (fi_handle handle)
 uint32_t _stdcall  ___Ex1File__ReadProc (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    primitive::memory_size dwRead;
-   sp(::file::binary_buffer) pfile = (sp(::file::binary_buffer)) handle;
+   ::file::buffer_sp pfile = (::file::buffer_sp) handle;
    if((dwRead = pfile->read(buffer, count * size)))
    {
       return count;
@@ -163,7 +163,7 @@ uint32_t _stdcall  ___Ex1File__ReadProc (void *buffer, uint32_t size, uint32_t c
 
 uint32_t _stdcall ___Ex1File__WriteProc(void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
-   sp(::file::binary_buffer) pfile = (sp(::file::binary_buffer)) handle;
+   ::file::buffer_sp pfile = (::file::buffer_sp) handle;
    try
    {
       pfile->write(buffer, count * size);
@@ -177,7 +177,7 @@ uint32_t _stdcall ___Ex1File__WriteProc(void *buffer, uint32_t size, uint32_t co
 
 int32_t _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, int32_t origin)
 {
-   sp(::file::binary_buffer) pfile = (sp(::file::binary_buffer)) handle;
+   ::file::buffer_sp pfile = (::file::buffer_sp) handle;
    if(origin == SEEK_SET)
       origin = ::file::seek_begin;
    else if(origin == SEEK_CUR)
@@ -192,7 +192,7 @@ int32_t _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, int32_t ori
 
 long _stdcall ___Ex1File__TellProc(fi_handle handle)
 {
-   sp(::file::binary_buffer) pfile = (sp(::file::binary_buffer)) handle;
+   ::file::buffer_sp pfile = (::file::buffer_sp) handle;
    return (long) pfile->get_position();
 }
 

@@ -7,7 +7,7 @@ namespace user
 
    plain_text_data::plain_text_data(sp(base_application) papp) :
       element(papp),
-      ::ca2::tree_data(papp),
+      ::data::tree_data(papp),
       m_editfile(papp)
    {
       m_pgroupcommand      = NULL;
@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   void plain_text_data::SetFile(sp(::file::binary_buffer) pfile)
+   void plain_text_data::SetFile(::file::buffer_sp pfile)
    {
       m_editfile.SetFile(pfile);
       on_update_data(update_hint_set_file);

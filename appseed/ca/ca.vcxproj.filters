@@ -30,12 +30,6 @@
     <Filter Include="Header Files\bsdiff">
       <UniqueIdentifier>{254aa1d9-6362-42f9-af93-f43b19cc8e40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\os">
-      <UniqueIdentifier>{50811508-299a-4925-a40f-f63b00af7a4a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os">
-      <UniqueIdentifier>{e0507713-d4b9-4d03-b783-b2dc3b1aa752}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\simple_ui">
       <UniqueIdentifier>{cb9e03a3-6ef2-49c7-a402-e772ca8c08d8}</UniqueIdentifier>
     </Filter>
@@ -185,12 +179,6 @@
     <ClInclude Include="bsdiff\bsdiff_private.h">
       <Filter>Header Files\bsdiff</Filter>
     </ClInclude>
-    <ClInclude Include="os\os_process.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -205,9 +193,6 @@
     </ClInclude>
     <ClInclude Include="crypt\nessie.h">
       <Filter>Header Files\crypt</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os_thread.h">
-      <Filter>Header Files\os</Filter>
     </ClInclude>
     <ClInclude Include="version\version.config.h">
       <Filter>Header Files\version</Filter>
@@ -479,6 +464,9 @@
     <ClInclude Include="simple_ui\simple_tap.h">
       <Filter>Header Files\simple_ui</Filter>
     </ClInclude>
+    <ClInclude Include="ca\ca_os.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -541,9 +529,6 @@
     <ClCompile Include="spa\spa_window.cpp">
       <Filter>Source Files\spa_install</Filter>
     </ClCompile>
-    <ClCompile Include="os\os_process.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -576,12 +561,6 @@
     </ClCompile>
     <ClCompile Include="crypt\whirpool.cpp">
       <Filter>Source Files\crypt</Filter>
-    </ClCompile>
-    <ClCompile Include="os\os_thread.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\os_http.cpp">
-      <Filter>Source Files\os</Filter>
     </ClCompile>
     <ClCompile Include="simple_graphics\simple_graphics.cpp">
       <Filter>Source Files\simple_graphics</Filter>

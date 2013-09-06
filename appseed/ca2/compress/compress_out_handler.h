@@ -22,10 +22,10 @@ namespace libcompress
 
       out_handler(sp(base_application) papp);
 
-      ::ca2::HRes SetProperty(const char *name, var value);
+      HRes SetProperty(const char *name, var value);
 
-      ::ca2::HRes SetSolidSettings(const string &s);
-      ::ca2::HRes SetSolidSettings(var value);
+      HRes SetSolidSettings(const string &s);
+      HRes SetSolidSettings(var value);
 
       uint32_t _numThreads;
 
@@ -52,8 +52,8 @@ namespace libcompress
 
       bool _volumeMode;
 
-      ::ca2::HRes SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value);
-      ::ca2::HRes SetParams(COneMethodInfo &oneMethodInfo, const string &srcString);
+      HRes SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value);
+      HRes SetParams(COneMethodInfo &oneMethodInfo, const string &srcString);
 
       void SetCompressionMethod2(COneMethodInfo &oneMethodInfo, uint32_t numThreads);
 

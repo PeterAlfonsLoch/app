@@ -64,8 +64,8 @@ namespace filemanager
 
             m_iParentFolder = doc.get_root()->attr("id");
 
-            sp(::ca2::tree_item) pdataitemParent;
-            sp(::ca2::tree_item) pdataitemChild;
+            sp(::data::tree_item) pdataitemParent;
+            sp(::data::tree_item) pdataitemChild;
 
             pdataitemParent = FindTreeItem(m_iParentFolder);
             if(pdataitemParent == NULL)
@@ -162,7 +162,7 @@ namespace filemanager
          }
 
 
-         sp(::ca2::tree_item) tree_view::FindTreeItem(int64_t iFolder)
+         sp(::data::tree_item) tree_view::FindTreeItem(int64_t iFolder)
          {
             int32_t iUser;
 
@@ -190,7 +190,7 @@ namespace filemanager
 
 
          index tree_view::_001GetItemImage(
-            sp(::ca2::tree_item) pitem,
+            sp(::data::tree_item) pitem,
             bool bSelected
             )
          {
@@ -204,7 +204,7 @@ namespace filemanager
             }
          }
 
-         void tree_view::_001OnItemExpand(sp(::ca2::tree_item)pitem)
+         void tree_view::_001OnItemExpand(sp(::data::tree_item)pitem)
          {
             m_pserver->open_folder(m_foldera[pitem->m_dwUser].m_iFolder);
          }

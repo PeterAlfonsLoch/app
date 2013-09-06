@@ -88,6 +88,7 @@ int_bool file_exists_dup(const char * path1)
 }
 
 
+
 int_bool file_put_contents_dup(const char * path, const char * contents, count len)
 {
 
@@ -322,7 +323,6 @@ int_bool file_ftd_dup(const char * pszDir, const char * pszFile)
       CloseHandle(hfile2);
    return true;
 }
-
 
 
 
@@ -1258,3 +1258,88 @@ int ftruncate(int file, file_size len)
 {
   return _chsize_s (file, len);
 }
+
+int_bool file_put_contents_dup(const char * path, const char * contents)
+{
+   
+   return file_put_contents_dup(path, contents, strlen(contents));
+
+}
+
+
+
+
+void ensure_file_size(int32_t fd, size_t iSize)
+{
+
+   if(ftruncate(fd, iSize) == -1)
+      throw "fd_ensure_file_size exception";
+
+}
+
+void ensure_file_size(FILE * file, size_t iSize)
+{
+
+   ensure_file_size(fileno(file), iSize);
+
+}
+
+
+void ensure_file_size(HANDLE h, uint64_t iSize)
+{
+
+   DWORD dwHi;
+
+   DWORD dwLo = GetFileSize(h, &dwHi);
+
+   if(((uint64_t) dwLo | ((uint64_t)dwHi << 32)) != iSize)
+   {
+
+      LONG l = (iSize >> 32) & 0xffffffff;
+
+      SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET);
+
+      SetEndOfFile(h);
+
+   }
+
+}
+
+
+
+int_bool close_handle(handle h)
+{
+
+   return CloseHandle(h) != FALSE;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

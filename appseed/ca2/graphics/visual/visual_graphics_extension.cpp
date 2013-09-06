@@ -54,7 +54,7 @@ namespace visual
 
 #else
 
-            throw todo(::ca2::get_thread_app());
+            throw todo(get_thread_app());
 
             // ::GetTextExtentPoint32((HDC)pdc->get_os_data(), ::str::international::unicode_to_utf8(lpwsz), (int32_t) ::str::international::unicode_to_utf8(lpwsz).get_lengt(), &sz);
 

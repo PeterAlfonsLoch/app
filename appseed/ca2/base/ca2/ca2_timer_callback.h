@@ -1,4 +1,4 @@
-// TimerCallback.h: interface for the TimerCallback class.
+// timer_callback.h: interface for the timer_callback class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -10,14 +10,14 @@ namespace ca2
 {
 
 
-   class TimerWnd;
+   class timer_window;
 
-   class CLASS_DECL_ca2 TimerCallback
+   class CLASS_DECL_ca2 timer_callback
    {
    protected:
 
 
-      TimerWnd     *    m_ptimerwnd;
+      timer_window     *    m_ptimerwnd;
       bool              m_bQueueModel;
          // This flag must be set when the Timer Callback object
          // wishes and is prepared for over
@@ -32,15 +32,15 @@ namespace ca2
    public:
 
 
-      TimerCallback();
-      virtual ~TimerCallback();
+      timer_callback();
+      virtual ~timer_callback();
 
       
       bool IsEnabled();
       void Enable(bool bEnable = true);
       virtual void TimerProc(uint_ptr nID) = 0;
       bool WishesQueueModel();
-      bool SetTimerWindow(TimerWnd * ptimerwnd);
+      bool SetTimerWindow(timer_window * ptimerwnd);
       
 
    };

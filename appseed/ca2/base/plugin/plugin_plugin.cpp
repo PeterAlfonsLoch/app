@@ -17,7 +17,7 @@ void CLASS_DECL_ca2 __cdecl _ca2_purecall_();
 
 void CLASS_DECL_ca2 __cdecl _ca2_purecall_()
 {
-    throw simple_exception(::ca2::get_thread_app());
+    throw simple_exception(get_thread_app());
 }
 
 namespace ca2

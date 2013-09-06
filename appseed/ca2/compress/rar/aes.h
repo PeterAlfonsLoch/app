@@ -28,9 +28,9 @@ namespace crypto
          bool               _rar350Mode;
 
          void Calculate();
-         ::ca2::HRes Init();
-         ::ca2::HRes CryptoSetPassword(const byte *aData, uint32_t aSize);
-         ::ca2::HRes SetDecoderProperties2(const byte *data, uint32_t size);
+         HRes Init();
+         HRes CryptoSetPassword(const byte *aData, uint32_t aSize);
+         HRes SetDecoderProperties2(const byte *data, uint32_t size);
 
          decoder();
          void SetRar350Mode(bool rar350Mode) { _rar350Mode = rar350Mode; }

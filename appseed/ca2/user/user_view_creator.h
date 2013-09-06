@@ -92,7 +92,7 @@ namespace user
 
       virtual ::user::view_creator_data * allocate(id id);
 
-      using ::ca2::request_interface::create;
+      using ::request_interface::create;
       virtual ::user::view_creator_data * create(id id);
 
       virtual ::user::view_creator_data * ensure(id id);

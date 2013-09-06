@@ -48,7 +48,7 @@
       ENSURE( pstringmanager != NULL );
 
       if(pchSrc == NULL && nLength != 0)
-         throw invalid_argument_exception(::ca2::get_thread_app());
+         throw invalid_argument_exception(get_thread_app());
 
       if(nLength < 0)
          nLength = (strsize) strlen(pchSrc);
@@ -73,7 +73,7 @@
       //ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
 
       if( (iChar < 0) || (iChar > get_length()) )
-         throw invalid_argument_exception(::ca2::get_thread_app());
+         throw invalid_argument_exception(get_thread_app());
 
       return m_pszData[iChar];
 
@@ -82,7 +82,7 @@
    {
       ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
       if( (iChar < 0) || (iChar > get_length()) )
-         throw invalid_argument_exception(::ca2::get_thread_app());
+         throw invalid_argument_exception(get_thread_app());
 
       return( m_pszData[iChar] );
    }
@@ -93,7 +93,7 @@
       ASSERT( (iChar >= 0) && (iChar < get_length()) );
 
       if( (iChar < 0) || (iChar >= get_length()) )
-         throw invalid_argument_exception(::ca2::get_thread_app());
+         throw invalid_argument_exception(get_thread_app());
 
       strsize nLength = get_length();
       char * pszBuffer = GetBuffer();
@@ -118,7 +118,7 @@
          // into the newly allocated buffer instead.
 
          if(pszSrc == NULL)
-            throw invalid_argument_exception(::ca2::get_thread_app());
+            throw invalid_argument_exception(get_thread_app());
 
          uint_ptr nOldLength = (uint_ptr) get_length();
          uint_ptr nOffset = (uint_ptr) (pszSrc - GetString());
@@ -150,7 +150,7 @@
 
       inline void throw_error_exception(const char * psz)
       {
-         throw error_exception(::ca2::get_thread_app(), psz);
+         throw error_exception(get_thread_app(), psz);
       }
 
    inline void string_buffer::set_length(strsize nLength )
@@ -159,7 +159,7 @@
       ASSERT( nLength <= m_nBufferLength );
 
       if( nLength < 0 )
-         throw invalid_argument_exception(::ca2::get_thread_app());
+         throw invalid_argument_exception(get_thread_app());
 
       m_nLength = nLength;
    }
@@ -261,7 +261,7 @@ inline strsize string::replace_ci(const char * pszOld,const char * pszNew, strsi
 
 DECLSPEC_NO_RETURN inline void __cdecl throw_memory_exception()
 {
-   throw memory_exception(::ca2::get_thread_app());
+   throw memory_exception(get_thread_app());
 }
 
 inline bool string::ends_ci(const string & strSuffixCandidate)

@@ -92,7 +92,7 @@ string::string(const wchar_t* pch,strsize nLength ) :
    {
       ASSERT(__is_valid_address( pch, nLength*sizeof( wchar_t ), FALSE ) );
       if(pch == NULL)
-         throw invalid_argument_exception(::ca2::get_thread_app());
+         throw invalid_argument_exception(get_thread_app());
 
       strsize nDestLength = string_trait::GetcharLength( pch, nLength );
       char * pszBuffer = GetBuffer( nDestLength );
@@ -109,7 +109,7 @@ string::string(const wchar_t* pch,strsize nLength,string_manager * pstringmanage
    {
       ASSERT( __is_valid_address( pch, nLength*sizeof( wchar_t ), FALSE ) );
       if(pch == NULL)
-         throw invalid_argument_exception(::ca2::get_thread_app());
+         throw invalid_argument_exception(get_thread_app());
 
       strsize nDestLength = string_trait::GetcharLength( pch, nLength );
       char * pszBuffer = GetBuffer( nDestLength );
@@ -591,7 +591,7 @@ uint32_t __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar, ch
 
 #ifdef METROWIN
 
-   throw todo(::ca2::get_thread_app());
+   throw todo(get_thread_app());
 
 #elif defined(WINDOWSEX)
 
@@ -614,13 +614,13 @@ void crt_char_traits::ConvertToAnsi(char* pstrString,size_t size)
    if(size>UINT_MAX)
    {
       // API only allows uint32_t size
-      throw invalid_argument_exception(::ca2::get_thread_app());
+      throw invalid_argument_exception(get_thread_app());
    }
    uint32_t dwSize=static_cast<uint32_t>(size);
    bool fSuccess=::OemToCharBuffA(pstrString, pstrString, dwSize) != 0;
    if(!fSuccess)
    {
-      throw last_error_exception(::ca2::get_thread_app());
+      throw last_error_exception(get_thread_app());
    }
 
 #endif
@@ -636,13 +636,13 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    if(size>UINT_MAX)
    {
       // API only allows uint32_t size
-      throw invalid_argument_exception(::ca2::get_thread_app());
+      throw invalid_argument_exception(get_thread_app());
    }
    uint32_t dwSize=static_cast<uint32_t>(size);
    bool fSuccess=::CharToOemBuffA(pstrString, pstrString, dwSize) != 0;
    if(!fSuccess)
    {
-      throw last_error_exception(::ca2::get_thread_app());
+      throw last_error_exception(get_thread_app());
    }
 
 #endif
@@ -1457,7 +1457,7 @@ string string::Tokenize(const char * pszTokens, strsize& iStart ) const
    ASSERT( iStart >= 0 );
 
    if(iStart < 0)
-      throw invalid_argument_exception(::ca2::get_thread_app());
+      throw invalid_argument_exception(get_thread_app());
 
    if( (pszTokens == NULL) || (*pszTokens == (char)0) )
    {
@@ -2456,7 +2456,7 @@ string string::SpanIncluding(const char * pszCharSet ) const
 {
    ASSERT( __is_valid_string( pszCharSet ) );
    if(pszCharSet == NULL)
-      throw invalid_argument_exception(::ca2::get_thread_app());
+      throw invalid_argument_exception(get_thread_app());
 
    return( Left( string_trait::StringSpanIncluding( GetString(), pszCharSet ) ) );
 }
@@ -2466,7 +2466,7 @@ string string::SpanExcluding(const char * pszCharSet ) const
 {
    ASSERT( __is_valid_string( pszCharSet ) );
    if(pszCharSet == NULL)
-      throw invalid_argument_exception(::ca2::get_thread_app());
+      throw invalid_argument_exception(get_thread_app());
 
    return( Left( string_trait::StringSpanExcluding( GetString(), pszCharSet ) ) );
 }
@@ -2498,7 +2498,7 @@ void string::FormatV(const char * pszFormat, va_list args )
    ASSERT( __is_valid_string( pszFormat ) );
 
    if(pszFormat == NULL)
-      throw invalid_argument_exception(::ca2::get_thread_app());
+      throw invalid_argument_exception(get_thread_app());
 
   strsize nLength = string_trait::GetFormattedLength( pszFormat, args );
    char * pszBuffer = GetBuffer( nLength );
@@ -2676,7 +2676,7 @@ void __cdecl string::AppendFormat(const char * pszFormat, ... )
 void __cdecl string::format_message(const char * pszFormat, ... )
 {
    if(pszFormat == NULL)
-      throw invalid_argument_exception(::ca2::get_thread_app());
+      throw invalid_argument_exception(get_thread_app());
 
    va_list argList;
    va_start( argList, pszFormat );

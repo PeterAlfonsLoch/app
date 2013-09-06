@@ -288,12 +288,12 @@ namespace file
 
    void memory_buffer::assert_valid() const
    {
-      buffer::assert_valid();
+      stream_buffer::assert_valid();
    }
 
    void memory_buffer::dump(dump_context & dumpcontext) const
    {
-      buffer::dump(dumpcontext);
+      stream_buffer::dump(dumpcontext);
    }
 
 

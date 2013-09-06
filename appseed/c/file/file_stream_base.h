@@ -5,8 +5,9 @@ namespace file
 {
 
 
-   class buffer;
-   typedef sp(buffer) buffer_sp;
+   class stream_buffer;
+
+   typedef sp(stream_buffer) buffer_sp;
 
 
    enum e_iostate

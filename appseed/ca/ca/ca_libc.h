@@ -29,7 +29,6 @@ extern _PVFV __xc_a[], __xc_z[];    /* C++ initializers */
 CLASS_DECL_ca void _initterm(_PVFV *pfbegin, _PVFV *pfend);
 CLASS_DECL_ca void _init_atexit();
 CLASS_DECL_ca void _doexit();
-CLASS_DECL_ca void _init_file();
 
 END_EXTERN_C
 

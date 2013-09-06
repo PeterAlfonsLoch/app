@@ -43,9 +43,9 @@ namespace crypto
          data _cipher;
 
 
-         ::ca2::HRes Init();
+         HRes Init();
          uint32_t Filter(byte *data, uint32_t size);
-         ::ca2::HRes CryptoSetPassword(const byte *data, uint32_t size);
+         HRes CryptoSetPassword(const byte *data, uint32_t size);
       };
 
    } // namespace rar20

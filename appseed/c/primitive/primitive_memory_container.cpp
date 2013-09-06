@@ -128,7 +128,7 @@ namespace primitive
 
 
 
-   void memory_container ::FullLoad(memory_base * pmemory)
+   void memory_container ::read(memory_base * pmemory)
    {
       if(m_spmemory.is_null())
       {
@@ -138,13 +138,13 @@ namespace primitive
    }
 
 
-   void memory_container ::FullLoad(::file::binary_buffer & file)
+   void memory_container ::read(::file::input_stream & is)
    {
       if(m_spmemory.is_null())
       {
          m_spmemory = new primitive::memory(this);
       }
-      m_spmemory->FullLoad(file);
+      m_spmemory->read(is);
    }
 
 

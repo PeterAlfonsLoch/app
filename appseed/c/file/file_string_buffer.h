@@ -19,7 +19,7 @@ namespace file
 
 
    class CLASS_DECL_c string_buffer :
-      virtual public ::file::buffer
+      virtual public ::file::stream_buffer
    {
    public:
 

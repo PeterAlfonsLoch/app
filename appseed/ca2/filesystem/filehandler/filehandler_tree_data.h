@@ -6,7 +6,7 @@ namespace filehandler
 
 
    class CLASS_DECL_ca2 tree_data :
-      virtual public ::ca2::tree_data
+      virtual public ::data::tree_data
    {
    public:
 

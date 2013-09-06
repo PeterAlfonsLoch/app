@@ -9,7 +9,7 @@ namespace file
    plain_text_stream_string_buffer::plain_text_stream_string_buffer(sp(base_application) papp)
    {
 
-      m_spstringbuffer.create(papp.is_set() ? papp : ::ca2::get_thread_app());
+      m_spstringbuffer.create(papp.is_set() ? papp : get_thread_app());
 
       if(m_spstringbuffer.is_set())
       {

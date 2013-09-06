@@ -63,7 +63,7 @@ namespace file
 {
 
    
-   class binary_buffer;
+   class stream_buffer;
    class input_stream;
    class output_stream;
 
@@ -128,6 +128,16 @@ namespace user
 #include "base_smart_pointer1.h"
 #include "base_root.h"
 #include "base_smart_pointer2.h"
+
+
+namespace file
+{
+   
+
+   typedef sp(stream_buffer) buffer_sp;
+
+
+} // namespace file
 
 
 #include "c/primitive/primitive_logic.h"

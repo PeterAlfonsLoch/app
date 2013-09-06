@@ -12,7 +12,7 @@
 namespace ca2
 {
 
-   class TimerCallback;
+   class timer_callback;
 
 class CLASS_DECL_ca2 Timer  
 {
@@ -20,7 +20,7 @@ public:
    class CCreate
    {
    public:
-      TimerCallback *   m_ptimercallback;
+      timer_callback *   m_ptimercallback;
       UINT            m_uiElapse;
       UINT            m_uiIDEvent;
    };

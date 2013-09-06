@@ -68,7 +68,7 @@
 
 
 base64::base64() :
-   object(::ca2::get_thread_app())
+   object(get_thread_app())
 {
    int32_t i;
 

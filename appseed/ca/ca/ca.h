@@ -115,7 +115,7 @@ namespace ca2
 #endif*/
 #include "ca_window_graphics.h"
 
-#include "ca/os/os.h"
+#include "ca/ca/ca_os.h"
 
 #include "ca/cross/cross.h"
 
@@ -172,7 +172,7 @@ extern "C"
 
 CLASS_DECL_ca string _ca_get_file_name(const char * psz, bool bCreate = false, int32_t * pfd = NULL);
 
-CLASS_DECL_ca string get_system_error_message(uint32_t dwError);
+CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 
 //#ifndef METROWIN
 //#include <openssl/ssl.h>

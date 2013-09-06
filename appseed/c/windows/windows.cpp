@@ -9,7 +9,7 @@ typedef bool
     _In_ uint32_t dwFlag);
 
 
-LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = NULL;
+CLASS_DECL_c LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = NULL;
 
 typedef  
 LSTATUS

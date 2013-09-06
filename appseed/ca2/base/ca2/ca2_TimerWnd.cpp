@@ -4,13 +4,13 @@ namespace ca2
 {
 
 
-   TimerWnd::TimerWnd() :
+   timer_window::timer_window() :
       m_evFree(NULL, FALSE, TRUE)
    {
       EnableTimer();
    }
 
-   TimerWnd::~TimerWnd()
+   timer_window::~timer_window()
    {
 
    //    if(m_pTimerCallbackFinal != NULL)
@@ -21,8 +21,8 @@ namespace ca2
    }
 
 
-   // // BEGIN_MESSAGE_MAP(TimerWnd, ::ca2::window)
-      //{{__MSG_MAP(TimerWnd)
+   // // BEGIN_MESSAGE_MAP(timer_window, ::ca2::window)
+      //{{__MSG_MAP(timer_window)
    /* xxx   ON_WM_TIMER()
       ON_WM_DESTROY()
       ON_WM_CLOSE()
@@ -32,9 +32,9 @@ namespace ca2
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // TimerWnd message handlers
+   // timer_window message handlers
 
-   bool TimerWnd::create(TimerCallback *pCallback)
+   bool timer_window::create(timer_callback *pCallback)
 
    {
        m_pTimerCallback = pCallback;
@@ -44,7 +44,7 @@ namespace ca2
        return ::ca2::window::CreateEx(0,NULL, "Timer Window", 0, rect, NULL, id());
    }
 
-   void TimerWnd::OnTimer(UINT nIDEvent)
+   void timer_window::OnTimer(UINT nIDEvent)
    {
       // TODO: add your message handler code here and/or call default
    //    try
@@ -101,7 +101,7 @@ namespace ca2
    //    }
    //    catch(...)
    //    {
-   //       System.simple_message_box("TimerWnd::OnTimer Exception");
+   //       System.simple_message_box("timer_window::OnTimer Exception");
    //    }
        //}
    //    catch(...)
@@ -112,7 +112,7 @@ namespace ca2
       //::ca2::window::OnTimer(nIDEvent);
    }
 
-   void TimerWnd::OnDestroy()
+   void timer_window::OnDestroy()
    {
        m_pTimerCallback = NULL;
    //   ::ca2::window::OnDestroy();
@@ -131,7 +131,7 @@ namespace ca2
 
    }
 
-   void TimerWnd::OnClose()
+   void timer_window::OnClose()
    {
       // TODO: add your message handler code here and/or call default
 
@@ -139,7 +139,7 @@ namespace ca2
        DestroyWindow();
    }
 
-   bool TimerWnd::DestroyWindow()
+   bool timer_window::DestroyWindow()
    {
       // TODO: add your specialized code here and/or call the base class
 
@@ -154,14 +154,14 @@ namespace ca2
        }
    }
 
-   bool TimerWnd::EnableTimer(bool bEnable)
+   bool timer_window::EnableTimer(bool bEnable)
    {
       bool b = m_bEnable;
       m_bEnable = bEnable;
       return b;
    }
 
-   bool TimerWnd::IsEnabled()
+   bool timer_window::IsEnabled()
    {
       return m_bEnable;
    }
@@ -169,7 +169,7 @@ namespace ca2
    // Purpose:
    // Handle Queue Model Message Posts
    //
-   LRESULT TimerWnd::OnUserMessage(WPARAM wparam, LPARAM lparam)
+   LRESULT timer_window::OnUserMessage(WPARAM wparam, LPARAM lparam)
    {
       UNREFERENCED_PARAMETER(lparam);
 

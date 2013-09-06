@@ -9,7 +9,7 @@ namespace libcompress
       virtual public object
    {
    public:
-      virtual ::ca2::HRes WriteCoderProperties(::file::writer * outStream) = 0;
+      virtual HRes WriteCoderProperties(::file::writer * outStream) = 0;
    };
 
 } // namespace libcompress

@@ -22,7 +22,7 @@ CLASS_DECL_c string file_as_string_dup(const char * path);
 #include "file_reader.h"
 #include "file_writer.h"
 #include "file_writer_flush.h"
-#include "file_buffer.h"
+#include "file_stream_buffer.h"
 
 #include "file_input_stream.h"
 #include "file_output_stream_flush.h"
@@ -54,3 +54,6 @@ CLASS_DECL_c string file_as_string_dup(const char * path);
 
 #include "file_simple_binary_buffer.h"
 
+
+
+#include "file_buffer.h"

@@ -1838,3 +1838,31 @@ sort_remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
    }
    return ca;
 }
+
+
+namespace lemon
+{
+
+   namespace numeric_array
+   {
+
+      template < class ARRAY >
+      typename ARRAY::BASE_TYPE big_average(const ARRAY & a)
+      {
+         ::count c = a.get_count();
+         if(c == 0)
+            return 0.0;
+         ARRAY::BASE_TYPE f = 0.0;
+         ARRAY::BASE_TYPE fCount = (ARRAY::BASE_TYPE) c;
+         for(index i = 0; i < c; i++)
+         {
+            f += a.element_at(i) / fCount;
+         }
+         return f;
+      }
+
+   } // namespace numeric_array
+
+} // namespace lemon
+
+

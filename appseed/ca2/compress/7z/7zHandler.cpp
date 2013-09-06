@@ -48,7 +48,7 @@ handler::handler()
   #endif
 }
 
-::ca2::HRes handler::GetNumberOfItems(uint32_t *numItems)
+HRes handler::GetNumberOfItems(uint32_t *numItems)
 {
   *numItems = (uint32_t) _db.Files.get_count();
   return S_OK;
@@ -58,12 +58,12 @@ handler::handler()
 
 IMP_IInArchive_ArcProps_NO
 
-::ca2::HRes handler::GetNumberOfProperties(uint32_t * /* numProperties */)
+HRes handler::GetNumberOfProperties(uint32_t * /* numProperties */)
 {
   return E_NOTIMPL;
 }
 
-::ca2::HRes handler::GetPropertyInfo(uint32_t /* index */,
+HRes handler::GetPropertyInfo(uint32_t /* index */,
       BSTR * /* name */, PROPID * /* propID */, VARTYPE * /* varType */)
 {
   return E_NOTIMPL;
@@ -90,7 +90,7 @@ stat_prop_stg kArcProps[] =
   { NULL, ::libcompress::kpidOffset, var::type_uint64}
 };
 
-::ca2::HRes handler::GetArchiveProperty(int32_t propID, var *value)
+HRes handler::GetArchiveProperty(int32_t propID, var *value)
 {
   var prop;
   switch(propID)
@@ -205,7 +205,7 @@ bool handler::IsEncrypted(uint32_t index1) const
   return false;
 }
 
-::ca2::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
+HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
 {
   var prop;
 
@@ -389,7 +389,7 @@ bool handler::IsEncrypted(uint32_t index1) const
   return S_OK;
 }
 
-::ca2::HRes handler::Open(::file::input_stream *stream,
+HRes handler::Open(::file::input_stream *stream,
     const file_position *maxCheckStartPosition,
     ::libcompress::archive_open_callback_interface *openArchiveCallback)
 {
@@ -437,7 +437,7 @@ bool handler::IsEncrypted(uint32_t index1) const
   return S_OK;
 }
 
-::ca2::HRes handler::Close()
+HRes handler::Close()
 {
 ::ca::release(_inStream.m_p);
   _db.clear();
@@ -447,7 +447,7 @@ bool handler::IsEncrypted(uint32_t index1) const
 #ifdef __7Z_SET_PROPERTIES
 #ifdef EXTRACT_ONLY
 
-::ca2::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *values, Int32 numProperties)
+HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *values, Int32 numProperties)
 {
   COM_TRY_BEGIN
   const uint32_t numProcessors = NSystem::GetNumberOfProcessors();
@@ -481,7 +481,7 @@ bool handler::IsEncrypted(uint32_t index1) const
 #endif
 
    // IMPL_ISetCompressCodecsInfo2(handler)
-   ::ca2::HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
+   HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
    {
       _codecsInfo = compressCodecsInfo;
       return LoadExternalCodecs(_codecsInfo, _externalCodecs);

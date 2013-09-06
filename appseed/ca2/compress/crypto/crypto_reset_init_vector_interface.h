@@ -9,7 +9,7 @@ namespace crypto
       virtual public object
    {
    public:
-      virtual ::ca2::HRes ResetInitVector() = 0;
+      virtual HRes ResetInitVector() = 0;
    };
 
 } /// namespace crypto

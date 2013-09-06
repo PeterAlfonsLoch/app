@@ -482,7 +482,7 @@ namespace visual
 
 #else
 
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 
 #endif
 
@@ -502,7 +502,7 @@ namespace visual
 
 #else
 
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 
 #endif
 

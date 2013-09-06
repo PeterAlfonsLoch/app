@@ -49,7 +49,7 @@ namespace libcompress
       virtual public object
    {
    public:
-      virtual ::ca2::HRes SetCoderProperties(const int32_t * propIDs, const var * props, uint32_t numProps) = 0;
+      virtual HRes SetCoderProperties(const int32_t * propIDs, const var * props, uint32_t numProps) = 0;
    };
 
 } // namespace libcompress

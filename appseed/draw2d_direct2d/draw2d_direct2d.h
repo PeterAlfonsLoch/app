@@ -34,7 +34,7 @@ namespace draw2d_direct2d
    {
 
       if(FAILED(hr))
-         throw hresult_exception(::ca2::get_thread_app(), hr);
+         throw hresult_exception(get_thread_app(), hr);
       //if(FAILED(hr))
       // throw hr;
 

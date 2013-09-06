@@ -77,7 +77,7 @@ bool simple_bitmap::create_from_data(int32_t cx, int32_t cy, COLORREF * pdata, s
    m_size.cx = abs(cx);
    m_size.cy = abs(cy);
 
-   m_memory.attach(pdata, m_size.cx * m_size.cy * 4);
+//   m_memory.attach(pdata, m_size.cx * m_size.cy * 4);
 
    if(m_memory.get_data() == NULL)
    {
@@ -86,7 +86,7 @@ bool simple_bitmap::create_from_data(int32_t cx, int32_t cy, COLORREF * pdata, s
       return false;
    }
 
-   m_pbitmap = new Gdiplus::Bitmap(m_size.cx, m_size.cy, m_size.cx * 4, PixelFormat32bppARGB, (BYTE *) m_memory.get_data());
+   m_pbitmap = new Gdiplus::Bitmap(m_size.cx, m_size.cy, m_size.cx * 4, PixelFormat32bppARGB, (BYTE *) pdata);
 
    if(m_pbitmap == NULL)
    {

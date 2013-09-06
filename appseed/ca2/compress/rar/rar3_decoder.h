@@ -228,10 +228,10 @@ namespace libcompress
             m_InBitStream.bitDecoder.ReleaseStream();
          }
 
-         virtual ::ca2::HRes Code(::file::reader *inStream, ::file::writer *outStream,
+         virtual HRes Code(::file::reader *inStream, ::file::writer *outStream,
             const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress);
 
-         virtual ::ca2::HRes SetDecoderProperties2(const byte *data, uint32_t size);
+         virtual HRes SetDecoderProperties2(const byte *data, uint32_t size);
 
          void CopyBlock(uint32_t distance, uint32_t len)
          {

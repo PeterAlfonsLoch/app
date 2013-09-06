@@ -1,7 +1,7 @@
 #pragma once
 
 
-string url_encode_dup(const char * psz);
+CLASS_DECL_c string url_encode_dup(const char * psz);
 
 namespace url
 {

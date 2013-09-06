@@ -6,7 +6,7 @@ namespace userfs
 
 
    class CLASS_DECL_ca2 tree_data :
-      public ::ca2::tree_data
+      public ::data::tree_data
    {
    public:
 

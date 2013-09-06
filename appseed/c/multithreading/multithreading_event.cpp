@@ -12,7 +12,7 @@ event::event(sp(base_application) papp, bool bInitiallyOwn, bool bManualReset, c
 {
 
    //if(papp == NULL)
-      //throw invalid_argument_exception(::ca2::get_thread_app());
+      //throw invalid_argument_exception(get_thread_app());
 
 #ifdef WINDOWSEX
 

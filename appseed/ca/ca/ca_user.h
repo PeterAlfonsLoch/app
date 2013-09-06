@@ -1,17 +1,6 @@
 #pragma once
 
 
-namespace ca
-{
-
-
-   class thread_base;
-
-
-} // namespace ca
-
-
-
 
 
 class hthread :
@@ -21,7 +10,7 @@ public:
 
 
    event               * m_pevent;
-   ::ca::thread_base          * m_pthread;
+   base_thread          * m_pthread;
    os_thread                  * m_posthread;
 
 

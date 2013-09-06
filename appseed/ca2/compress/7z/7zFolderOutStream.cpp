@@ -14,7 +14,7 @@ namespace n7z
       _crcStream = _crcStreamSpec;
    }
 
-   ::ca2::HRes CFolderOutStream::Init(
+   HRes CFolderOutStream::Init(
       const CArchiveDatabaseEx *db,
       uint32_t ref2Offset, uint32_t startIndex,
       const bool_array *extractStatuses,
@@ -35,7 +35,7 @@ namespace n7z
       return ProcessEmptyFiles();
    }
 
-   ::ca2::HRes CFolderOutStream::OpenFile()
+   HRes CFolderOutStream::OpenFile()
    {
       int32_t askMode = ((*_extractStatuses)[_currentIndex]) ? (_testMode ?
          ::libcompress::archive::extract::ask_mode_test :
@@ -55,7 +55,7 @@ namespace n7z
       return _extractCallback->PrepareOperation(askMode);
    }
 
-   ::ca2::HRes CFolderOutStream::CloseFileAndSetResult(int32_t res)
+   HRes CFolderOutStream::CloseFileAndSetResult(int32_t res)
    {
       _crcStreamSpec->ReleaseStream();
       _fileIsOpen = false;
@@ -63,7 +63,7 @@ namespace n7z
       return _extractCallback->SetOperationResult(res);
    }
 
-   ::ca2::HRes CFolderOutStream::CloseFileAndSetResult()
+   HRes CFolderOutStream::CloseFileAndSetResult()
    {
       const CFileItem &fi = _db->Files[_startIndex + _currentIndex];
       return CloseFileAndSetResult(
@@ -72,7 +72,7 @@ namespace n7z
       ::libcompress::archive::extract::operation_result_CRCError);
    }
 
-   ::ca2::HRes CFolderOutStream::ProcessEmptyFiles()
+   HRes CFolderOutStream::ProcessEmptyFiles()
    {
       while (_currentIndex < _extractStatuses->get_count() && _db->Files[_startIndex + _currentIndex].get_count == 0)
       {
@@ -121,7 +121,7 @@ namespace n7z
       }
    }
 
-   ::ca2::HRes CFolderOutStream::GetSubStreamSize(uint64_t subStream, uint64_t * value)
+   HRes CFolderOutStream::GetSubStreamSize(uint64_t subStream, uint64_t * value)
    {
       *value = 0;
       if ((int32_t)subStream >= _extractStatuses->get_count())
@@ -130,7 +130,7 @@ namespace n7z
       return S_OK;
    }
 
-   ::ca2::HRes CFolderOutStream::FlushCorrupted(int32_t resultEOperationResult)
+   HRes CFolderOutStream::FlushCorrupted(int32_t resultEOperationResult)
    {
       while (_currentIndex < _extractStatuses->get_count())
       {

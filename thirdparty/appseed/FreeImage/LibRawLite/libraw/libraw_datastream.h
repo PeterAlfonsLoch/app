@@ -225,8 +225,8 @@ class LibRaw_abstract_datastream
 class LibRaw_file_datastream: public LibRaw_abstract_datastream
 {
   protected:
-    smart_pointer<::file::buffer> f; /* will close() automatically through dtor */
-    smart_pointer<::file::buffer> saved_f; /* when *f is a subfile, *saved_f is the master file */
+    smart_pointer<::file::stream_buffer> f; /* will close() automatically through dtor */
+    smart_pointer<::file::stream_buffer> saved_f; /* when *f is a subfile, *saved_f is the master file */
     const char *filename;
 
   public:
@@ -236,7 +236,7 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
     {
         if (filename) {
             smart_pointer <::file::binary_buffer > buf;
-            buf.create(::ca2::get_thread_app());
+            buf.create(get_thread_app());
             buf->open(filename, ::file::mode_read | ::file::type_binary);
             if (buf->IsOpened())
             {
@@ -345,7 +345,7 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
         if (saved_f.is_set()) return EBUSY;
         saved_f = f;
         
-        f.create(::ca2::get_thread_app());
+        f.create(get_thread_app());
         if (!f.is_set()) {
             f = saved_f;
             return ENOMEM;

@@ -8,8 +8,8 @@ namespace libcompress
       virtual public object
    {
    public:
-      virtual ::ca2::HRes SetOutStream(::file::writer * outStream) = 0;
-      virtual ::ca2::HRes ReleaseOutStream() = 0;
+      virtual HRes SetOutStream(::file::writer * outStream) = 0;
+      virtual HRes ReleaseOutStream() = 0;
    };
 
 } // namespace libcompress

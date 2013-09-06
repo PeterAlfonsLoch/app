@@ -313,7 +313,7 @@ namespace hotplugin
       //Sleep(15 * 1000);
       //Sleep(15 * 1000);
       //      update_npca2_installed();
-      mutex * pmutex = new mutex("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+      mutex * pmutex = new mutex(get_thread_app(), "Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
       if(::GetLastError() == ERROR_ALREADY_EXISTS)
       {
          m_bRunningSpaAdmin = true;
@@ -465,7 +465,7 @@ namespace hotplugin
       if(m_pcolorref == NULL)
          return;
 
-      synch_lock ml(&*m_pmutexBitmap, true);
+      synch_lock ml(m_pmutexBitmap);
 
       m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
 
@@ -501,7 +501,7 @@ namespace hotplugin
       if(m_pcolorref == NULL)
          return;
 
-      synch_lock ml(&*m_pmutexBitmap, true);
+      synch_lock ml(m_pmutexBitmap);
 
       m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
 
@@ -544,7 +544,7 @@ namespace hotplugin
       if(m_pcolorref == NULL)
          return;
 
-      synch_lock ml(&*m_pmutexBitmap, true);
+      synch_lock ml(m_pmutexBitmap);
 
       gWindow.blend_bitmap_data(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
 

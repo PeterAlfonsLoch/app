@@ -21,8 +21,6 @@ class random_access_iterator { public: };
 #include "collection_comparable_raw_array.h"
 #include "collection_comparable_primitive_array.h"
 
-#include "base/ca2/ca2_byte_serializable.h"
-
 #include "collection_primitive_array.h"
 #include "collection_numeric_array.h"
 
@@ -211,8 +209,6 @@ class CLASS_DECL_c time_array :
 {
 };
 
-
-#include "collection_buffer.h"
 
 #include "collection_stringl.h"
 #include "collection_string_sort_array.h"

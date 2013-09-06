@@ -847,7 +847,7 @@ namespace libcompress
          return S_OK;
       }
 
-      ::ca2::HRes decoder::Code(::file::reader *inStream, ::file::writer *outStream,
+      HRes decoder::Code(::file::reader *inStream, ::file::writer *outStream,
          const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress)
       {
          try
@@ -889,7 +889,7 @@ namespace libcompress
          // by error in data stream.
       }
 
-      ::ca2::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
+      HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
       {
          if (size < 1)
             return E_INVALIDARG;

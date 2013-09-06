@@ -11,7 +11,7 @@ namespace file
    }
 
 
-   composite::composite(sp(binary_buffer) pfile)
+   composite::composite(buffer_sp pfile)
    {
 
       m_spfile = pfile;
@@ -82,7 +82,7 @@ namespace file
 
    }
 
-   sp(::file::buffer) composite::Duplicate() const
+   ::file::buffer_sp composite::Duplicate() const
    {
 
       return m_spfile->Duplicate();

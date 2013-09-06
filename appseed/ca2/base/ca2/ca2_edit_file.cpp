@@ -3,81 +3,81 @@
 namespace ca2
 {
 
-   edit_file::Item::Item()
+   ::file::edit_buffer::Item::Item()
    {
    }
 
-   UINT edit_file::Item::read_ch(edit_file * pfile)
+   UINT ::file::edit_buffer::Item::read_ch(::file::edit_buffer * pfile)
    {
       UNREFERENCED_PARAMETER(pfile);
       throw not_implemented(pfile->get_app());
       return 0;
    }
 
-   file_position edit_file::Item::get_position(bool bForward) {UNREFERENCED_PARAMETER(bForward); return m_dwPosition;};
+   file_position ::file::edit_buffer::Item::get_position(bool bForward) {UNREFERENCED_PARAMETER(bForward); return m_dwPosition;};
 
-   BYTE * edit_file::Item::get_data() { return NULL; }
-   edit_file::EItemType edit_file::Item::get_type() { return ItemTypeUndefined; }
-   ::primitive::memory_size edit_file::Item::get_extent() { return 0; }
-   ::primitive::memory_size edit_file::Item::get_file_extent() { return 0; }
-   BYTE * edit_file::Item::reverse_get_data() { return NULL; }
-   edit_file::EItemType edit_file::Item::reverse_get_type() { return ItemTypeUndefined; }
-   ::primitive::memory_size edit_file::Item::reverse_get_extent() { return 0; }
-   ::primitive::memory_size edit_file::Item::reverse_get_file_extent() { return 0; }
-   ::primitive::memory_size edit_file::Item::get_extent(bool bForward) { return bForward ? get_extent() : reverse_get_extent(); }
-   edit_file::EItemType edit_file::Item::get_type(bool bForward) { return bForward ? get_type() : reverse_get_type(); }
-   ::primitive::memory_size edit_file::Item::get_file_extent(bool bForward) { return bForward ? get_file_extent() : reverse_get_file_extent(); }
-   BYTE * edit_file::Item::get_data(bool bForward) { return bForward ? get_data() : reverse_get_data(); }
-   ::primitive::memory_offset edit_file::Item::get_delta_length()  { return 0; }
+   BYTE * ::file::edit_buffer::Item::get_data() { return NULL; }
+   ::file::edit_buffer::EItemType ::file::edit_buffer::Item::get_type() { return ItemTypeUndefined; }
+   ::primitive::memory_size ::file::edit_buffer::Item::get_extent() { return 0; }
+   ::primitive::memory_size ::file::edit_buffer::Item::get_file_extent() { return 0; }
+   BYTE * ::file::edit_buffer::Item::reverse_get_data() { return NULL; }
+   ::file::edit_buffer::EItemType ::file::edit_buffer::Item::reverse_get_type() { return ItemTypeUndefined; }
+   ::primitive::memory_size ::file::edit_buffer::Item::reverse_get_extent() { return 0; }
+   ::primitive::memory_size ::file::edit_buffer::Item::reverse_get_file_extent() { return 0; }
+   ::primitive::memory_size ::file::edit_buffer::Item::get_extent(bool bForward) { return bForward ? get_extent() : reverse_get_extent(); }
+   ::file::edit_buffer::EItemType ::file::edit_buffer::Item::get_type(bool bForward) { return bForward ? get_type() : reverse_get_type(); }
+   ::primitive::memory_size ::file::edit_buffer::Item::get_file_extent(bool bForward) { return bForward ? get_file_extent() : reverse_get_file_extent(); }
+   BYTE * ::file::edit_buffer::Item::get_data(bool bForward) { return bForward ? get_data() : reverse_get_data(); }
+   ::primitive::memory_offset ::file::edit_buffer::Item::get_delta_length()  { return 0; }
 
 
 
-   edit_file::EItemType edit_file::DeleteItem::get_type()
+   ::file::edit_buffer::EItemType ::file::edit_buffer::DeleteItem::get_type()
    {
       return ItemTypeDelete;
    }
 
-   ::primitive::memory_size edit_file::DeleteItem::get_extent()
+   ::primitive::memory_size ::file::edit_buffer::DeleteItem::get_extent()
    {
       return 0;
    }
 
-   ::primitive::memory_size edit_file::DeleteItem::get_file_extent()
+   ::primitive::memory_size ::file::edit_buffer::DeleteItem::get_file_extent()
    {
       return m_memstorage.get_size();
    }
 
-   BYTE * edit_file::DeleteItem::get_data()
+   BYTE * ::file::edit_buffer::DeleteItem::get_data()
    {
       return NULL;
    }
 
-   edit_file::EItemType edit_file::DeleteItem::reverse_get_type()
+   ::file::edit_buffer::EItemType ::file::edit_buffer::DeleteItem::reverse_get_type()
    {
       return ItemTypeInsert;
    }
 
-   ::primitive::memory_size edit_file::DeleteItem::reverse_get_extent()
+   ::primitive::memory_size ::file::edit_buffer::DeleteItem::reverse_get_extent()
    {
       return m_memstorage.get_size();
    }
 
-   ::primitive::memory_size edit_file::DeleteItem::reverse_get_file_extent()
+   ::primitive::memory_size ::file::edit_buffer::DeleteItem::reverse_get_file_extent()
    {
       return 0;
    }
 
-   BYTE * edit_file::DeleteItem::reverse_get_data()
+   BYTE * ::file::edit_buffer::DeleteItem::reverse_get_data()
    {
       return m_memstorage.get_data();
    }
 
-   ::primitive::memory_offset edit_file::DeleteItem::get_delta_length()
+   ::primitive::memory_offset ::file::edit_buffer::DeleteItem::get_delta_length()
    {
       return - (::primitive::memory_offset) m_memstorage.get_size();
    }
 
-   UINT edit_file::DeleteItem::read_ch(edit_file * pfile)
+   UINT ::file::edit_buffer::DeleteItem::read_ch(::file::edit_buffer * pfile)
    {
       if(pfile->m_bRootDirection)
       {
@@ -111,54 +111,54 @@ namespace ca2
 
 
 
-   edit_file::EItemType edit_file::InsertItem::get_type()
+   ::file::edit_buffer::EItemType ::file::edit_buffer::InsertItem::get_type()
    {
       return ItemTypeInsert;
    }
 
-   ::primitive::memory_size edit_file::InsertItem::get_extent()
+   ::primitive::memory_size ::file::edit_buffer::InsertItem::get_extent()
    {
       return m_memstorage.get_size();
    }
 
-   ::primitive::memory_size edit_file::InsertItem::get_file_extent()
+   ::primitive::memory_size ::file::edit_buffer::InsertItem::get_file_extent()
    {
       return 0;
    }
 
-   BYTE * edit_file::InsertItem::get_data()
+   BYTE * ::file::edit_buffer::InsertItem::get_data()
    {
       return m_memstorage.get_data();
    }
 
-   edit_file::EItemType edit_file::InsertItem::reverse_get_type()
+   ::file::edit_buffer::EItemType ::file::edit_buffer::InsertItem::reverse_get_type()
    {
       return ItemTypeDelete;
    }
 
-   ::primitive::memory_size edit_file::InsertItem::reverse_get_extent()
+   ::primitive::memory_size ::file::edit_buffer::InsertItem::reverse_get_extent()
    {
       return 0;
    }
 
-   ::primitive::memory_size edit_file::InsertItem::reverse_get_file_extent()
+   ::primitive::memory_size ::file::edit_buffer::InsertItem::reverse_get_file_extent()
    {
       return m_memstorage.get_size();
    }
 
-   BYTE * edit_file::InsertItem::reverse_get_data()
+   BYTE * ::file::edit_buffer::InsertItem::reverse_get_data()
    {
       return NULL;
    }
 
-   ::primitive::memory_offset edit_file::InsertItem::get_delta_length()
+   ::primitive::memory_offset ::file::edit_buffer::InsertItem::get_delta_length()
    {
       return (::primitive::memory_offset) m_memstorage.get_size();
    }
 
 
 
-   UINT edit_file::InsertItem::read_ch(edit_file * pfile)
+   UINT ::file::edit_buffer::InsertItem::read_ch(::file::edit_buffer * pfile)
    {
       if(pfile->m_bRootDirection)
       {
@@ -193,47 +193,47 @@ namespace ca2
 
 
 
-   edit_file::EItemType edit_file::EditItem::get_type()
+   ::file::edit_buffer::EItemType ::file::edit_buffer::EditItem::get_type()
    {
       return ItemTypeEdit;
    }
 
-   ::primitive::memory_size edit_file::EditItem::get_extent()
+   ::primitive::memory_size ::file::edit_buffer::EditItem::get_extent()
    {
       return m_memstorage.get_size();
    }
 
-   ::primitive::memory_size edit_file::EditItem::get_file_extent()
+   ::primitive::memory_size ::file::edit_buffer::EditItem::get_file_extent()
    {
       return get_extent();
    }
 
-   BYTE * edit_file::EditItem::get_data()
+   BYTE * ::file::edit_buffer::EditItem::get_data()
    {
       return m_memstorage.get_data();
    }
 
-   edit_file::EItemType edit_file::EditItem::reverse_get_type()
+   ::file::edit_buffer::EItemType ::file::edit_buffer::EditItem::reverse_get_type()
    {
       return ItemTypeEdit;
    }
 
-   ::primitive::memory_size edit_file::EditItem::reverse_get_extent()
+   ::primitive::memory_size ::file::edit_buffer::EditItem::reverse_get_extent()
    {
       return m_memstorageReverse.get_size();
    }
 
-   ::primitive::memory_size edit_file::EditItem::reverse_get_file_extent()
+   ::primitive::memory_size ::file::edit_buffer::EditItem::reverse_get_file_extent()
    {
       return get_extent();
    }
 
-   BYTE * edit_file::EditItem::reverse_get_data()
+   BYTE * ::file::edit_buffer::EditItem::reverse_get_data()
    {
       return m_memstorageReverse.get_data();
    }
 
-   ::primitive::memory_offset edit_file::EditItem::get_delta_length()
+   ::primitive::memory_offset ::file::edit_buffer::EditItem::get_delta_length()
    {
       return 0;
    }
@@ -249,47 +249,47 @@ namespace ca2
 
 
 
-   edit_file::EItemType edit_file::GroupItem::get_type()
+   ::file::edit_buffer::EItemType ::file::edit_buffer::GroupItem::get_type()
    {
       return ItemTypeGroup;
    }
 
-   ::primitive::memory_size edit_file::GroupItem::get_extent()
+   ::primitive::memory_size ::file::edit_buffer::GroupItem::get_extent()
    {
       return 0;
    }
 
-   ::primitive::memory_size edit_file::GroupItem::get_file_extent()
+   ::primitive::memory_size ::file::edit_buffer::GroupItem::get_file_extent()
    {
       return 0;
    }
 
-   BYTE * edit_file::GroupItem::get_data()
+   BYTE * ::file::edit_buffer::GroupItem::get_data()
    {
       return 0;
    }
 
-   edit_file::EItemType edit_file::GroupItem::reverse_get_type()
+   ::file::edit_buffer::EItemType ::file::edit_buffer::GroupItem::reverse_get_type()
    {
       return ItemTypeGroup;
    }
 
-   ::primitive::memory_size edit_file::GroupItem::reverse_get_extent()
+   ::primitive::memory_size ::file::edit_buffer::GroupItem::reverse_get_extent()
    {
       return 0;
    }
 
-   ::primitive::memory_size edit_file::GroupItem::reverse_get_file_extent()
+   ::primitive::memory_size ::file::edit_buffer::GroupItem::reverse_get_file_extent()
    {
       return 0;
    }
 
-   BYTE * edit_file::GroupItem::reverse_get_data()
+   BYTE * ::file::edit_buffer::GroupItem::reverse_get_data()
    {
       return 0;
    }
 
-   ::primitive::memory_offset edit_file::GroupItem::get_delta_length()
+   ::primitive::memory_offset ::file::edit_buffer::GroupItem::get_delta_length()
    {
       ::primitive::memory_offset iLen = 0;
       for(int32_t i = 0; i < this->get_count(); i++)
@@ -299,7 +299,7 @@ namespace ca2
       return iLen;
    }
 
-   UINT edit_file::GroupItem::read_ch(edit_file * pfile)
+   UINT ::file::edit_buffer::GroupItem::read_ch(::file::edit_buffer * pfile)
    {
       if(pfile->m_bRootDirection)
       {
@@ -323,9 +323,9 @@ namespace ca2
    }
 
 
-   edit_file::edit_file(sp(base_application) papp) :
+   ::file::edit_buffer::::file::edit_buffer(sp(base_application) papp) :
       element(papp),
-      ::ca2::tree_data(papp),
+      ::data::tree_data(papp),
       ::file::binary_buffer_sp(papp),
       ::ca2::tree(papp)
    {
@@ -338,13 +338,13 @@ namespace ca2
 
    }
 
-   edit_file::~edit_file()
+   ::file::edit_buffer::~::file::edit_buffer()
    {
 
    }
 
 
-   void edit_file::SetFile(sp(::file::binary_buffer) pfile)
+   void ::file::edit_buffer::SetFile(::file::buffer_sp pfile)
    {
 
       if(pfile == NULL)
@@ -361,7 +361,7 @@ namespace ca2
    }
 
 
-   ::primitive::memory_size edit_file::read(void *lpBuf, ::primitive::memory_size nCount)
+   ::primitive::memory_size ::file::edit_buffer::read(void *lpBuf, ::primitive::memory_size nCount)
    {
       byte * buf = (byte *) lpBuf;
       UINT uiRead = 0;
@@ -374,7 +374,7 @@ namespace ca2
 //      uint32_t dwMaxCount = m_dwFileLength;
 //      uint32_t dwUpperLimit = m_dwFileLength;
 //      int32_t iOffset =0;
-      sp(::ca2::tree_item) ptreeitem;
+      sp(::data::tree_item) ptreeitem;
 //      GroupItem * pitemgroup = NULL;
       int_array ia;
 
@@ -421,7 +421,7 @@ l1:
    }
 
 
-   void edit_file::TreeInsert(sp(Item) pitem)
+   void ::file::edit_buffer::TreeInsert(sp(Item) pitem)
    {
       if(m_pgroupitem != NULL
         && m_pgroupitem != pitem)
@@ -429,7 +429,7 @@ l1:
          m_pgroupitem->add(pitem);
          return;
       }
-      sp(::ca2::tree_item) pitemNew = NULL;
+      sp(::data::tree_item) pitemNew = NULL;
       if(m_ptreeitem != NULL && m_ptreeitem->m_pnext != NULL)
       {
          pitemNew = insert_item_data(this, pitem, RelativeFirstChild, m_ptreeitem);
@@ -449,7 +449,7 @@ l1:
 
    }
 
-   void edit_file::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void ::file::edit_buffer::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
       EditItem * pedit;
       pedit = new EditItem;
@@ -460,7 +460,7 @@ l1:
       m_dwPosition += nCount;
    }
 
-   void edit_file::Insert(const void * lpBuf, ::primitive::memory_size nCount)
+   void ::file::edit_buffer::Insert(const void * lpBuf, ::primitive::memory_size nCount)
    {
       InsertItem * pinsert;
       pinsert = new InsertItem;
@@ -471,7 +471,7 @@ l1:
       m_dwFileLength += nCount;
    }
 
-   void edit_file::Delete(::primitive::memory_size uiCount)
+   void ::file::edit_buffer::Delete(::primitive::memory_size uiCount)
    {
 
       DeleteItem * pdelete;
@@ -491,17 +491,17 @@ l1:
    }
 
 
-   file_position edit_file::get_position() const
+   file_position ::file::edit_buffer::get_position() const
    {
       return m_dwPosition;
    }
 
-   bool edit_file::IsValid() const
+   bool ::file::edit_buffer::IsValid() const
    {
       return true;
    }
 
-   file_position edit_file::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position ::file::edit_buffer::seek(file_offset lOff, ::file::e_seek nFrom)
    {
       ASSERT(IsValid());
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
@@ -540,12 +540,12 @@ l1:
    }
 
 
-   file_size edit_file::get_length() const
+   file_size ::file::edit_buffer::get_length() const
    {
       return m_dwFileLength;
    }
 
-   void edit_file::flush()
+   void ::file::edit_buffer::flush()
    {
       string strTimeFile;
 
@@ -574,7 +574,7 @@ l1:
       m_ptreeitemFlush = m_ptreeitem;
    }
 
-   bool edit_file::SaveTo(::file::output_stream & ostream)
+   bool ::file::edit_buffer::SaveTo(::file::output_stream & ostream)
    {
       char buf[4096];
       primitive::memory_size uiRead;
@@ -588,7 +588,7 @@ l1:
       return true;
    }
 
-   bool edit_file::Save(::file::binary_buffer & file)
+   bool ::file::edit_buffer::Save(::file::binary_buffer & file)
    {
       char buf[4096];
       primitive::memory_size uiRead;
@@ -603,7 +603,7 @@ l1:
       return true;
    }
 
-   bool edit_file::Save_N_to_CRLF(::file::binary_buffer & file)
+   bool ::file::edit_buffer::Save_N_to_CRLF(::file::binary_buffer & file)
    {
       char buf[4096];
       string str;
@@ -623,18 +623,18 @@ l1:
    }
 
 
-   bool edit_file::CanUndo()
+   bool ::file::edit_buffer::CanUndo()
    {
       return m_ptreeitem != get_base_item();
    }
 
-   bool edit_file::CanRedo()
+   bool ::file::edit_buffer::CanRedo()
    {
       return m_iBranch < m_ptreeitem->get_expandable_children_count()
          || m_ptreeitem->get_next(false, false) != NULL;
    }
 
-   ::count edit_file::GetRedoBranchCount()
+   ::count ::file::edit_buffer::GetRedoBranchCount()
    {
       if(m_ptreeitem == NULL)
          return 1;
@@ -644,7 +644,7 @@ l1:
            + (m_ptreeitem->m_pchild != NULL ? 1 : 0);
    }
 
-   bool edit_file::Undo()
+   bool ::file::edit_buffer::Undo()
    {
       if(!CanUndo())
          return false;
@@ -655,14 +655,14 @@ l1:
       return true;
    }
 
-   bool edit_file::Redo()
+   bool ::file::edit_buffer::Redo()
    {
       if(m_iBranch < 0 || m_iBranch >= GetRedoBranchCount())
       {
          return false;
       }
 //      sp(Item) pitem = NULL;
-      sp(::ca2::tree_item) ptreeitem;
+      sp(::data::tree_item) ptreeitem;
       if(m_iBranch < m_ptreeitem->get_expandable_children_count())
       {
          ptreeitem = m_ptreeitem->get_expandable_child(m_iBranch);
@@ -676,14 +676,14 @@ l1:
       return true;
    }
 
-   void edit_file::MacroBegin()
+   void ::file::edit_buffer::MacroBegin()
    {
       GroupItem * pgroupitem = new GroupItem;
       pgroupitem->m_pgroupitem = m_pgroupitem;
       m_pgroupitem = pgroupitem;
    }
 
-   void edit_file::MacroEnd()
+   void ::file::edit_buffer::MacroEnd()
    {
       if(m_pgroupitem == NULL)
       {
@@ -699,9 +699,9 @@ l1:
 
 
 
-   bool edit_file::calc_root_direction()
+   bool ::file::edit_buffer::calc_root_direction()
    {
-      sp(::ca2::tree_item) ptreeitem;
+      sp(::data::tree_item) ptreeitem;
       if(m_ptreeitem == m_ptreeitemFlush)
          return false;
       for(ptreeitem  = m_ptreeitem;
@@ -713,7 +713,7 @@ l1:
    }
 
 
-   sp(::ca2::tree_item) edit_file::get_previous(sp(::ca2::tree_item) pitem)
+   sp(::data::tree_item) ::file::edit_buffer::get_previous(sp(::data::tree_item) pitem)
    {
       if(pitem->m_pprevious != NULL)
          return pitem->m_pprevious;
@@ -721,7 +721,7 @@ l1:
          return pitem->m_pparent;
    }
 
-   sp(::ca2::tree_item) edit_file::get_next(sp(::ca2::tree_item) pitem, bool bChild)
+   sp(::data::tree_item) ::file::edit_buffer::get_next(sp(::data::tree_item) pitem, bool bChild)
    {
       if(bChild && pitem->m_pchild != NULL)
          return pitem->m_pchild;
@@ -735,7 +735,7 @@ l1:
 
 
 
-   sp(tree_item_data) edit_file::on_allocate_item()
+   sp(tree_item_data) ::file::edit_buffer::on_allocate_item()
    {
       return new Item;
    }

@@ -91,7 +91,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 	inline size_t wait_result::abandoned_index() const
 	{
 		if ( !abandoned() )
-         throw range_error(::ca2::get_thread_app(), "abandoned index out of range");
+         throw range_error(get_thread_app(), "abandoned index out of range");
 		return -(m_iWaitResult + Abandon0);
 	}
 
@@ -110,7 +110,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 	inline size_t wait_result::signaled_index() const
 	{
 		if ( !signaled() )
-			throw range_error(::ca2::get_thread_app(), "signaled index out of range");
+			throw range_error(get_thread_app(), "signaled index out of range");
 		return m_iWaitResult - Event0;
 	}
 

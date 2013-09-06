@@ -25,7 +25,7 @@ void * base_ca2_alloc(size_t size)
    byte * p = (byte *) ca2_heap_alloc(size + 4 + 32);
    if(p == NULL)
    {
-      throw memory_exception(::ca2::get_thread_app());
+      throw memory_exception(get_thread_app());
    }
    p[0] = 0;
    *((size_t *) &p[1]) = size;
@@ -42,7 +42,7 @@ void * base_ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileNa
    byte * p = (byte *) ca2_heap_alloc_dbg(nSize + 4 + 32, nBlockUse, szFileName, nLine);
    if(p == NULL)
    {
-      throw memory_exception(::ca2::get_thread_app());
+      throw memory_exception(get_thread_app());
    }
    p[0] = 1;
    *((size_t *) &p[1]) = nSize;
@@ -80,12 +80,12 @@ void * base_ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const cha
    {
       // todo: rethrow free exception
       {
-         throw memory_exception(::ca2::get_thread_app());
+         throw memory_exception(get_thread_app());
       }
    }
    if(p == NULL)
    {
-      throw memory_exception(::ca2::get_thread_app());
+      throw memory_exception(get_thread_app());
    }
    *((size_t *) &p[1]) = nSize;
    return p + 4 + 16;

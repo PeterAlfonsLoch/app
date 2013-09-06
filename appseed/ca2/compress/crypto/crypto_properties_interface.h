@@ -6,8 +6,8 @@ namespace crypto
       virtual public object
    {
    public:
-     virtual ::ca2::HRes SetKey(const byte *data, uint32_t size) = 0;
-     virtual ::ca2::HRes SetInitVector(const byte *data, uint32_t size) = 0;
+     virtual HRes SetKey(const byte *data, uint32_t size) = 0;
+     virtual HRes SetInitVector(const byte *data, uint32_t size) = 0;
    };
 
 }

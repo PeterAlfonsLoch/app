@@ -90,7 +90,7 @@ void string_format::allocate_add_up(strsize iLenAddUp)
    }
 
    if(m_pszBuffer == NULL)
-      throw memory_exception(::ca2::get_thread_app());
+      throw memory_exception(get_thread_app());
 
 
    memset(&m_pszBuffer[m_iLength], 0, m_iSize - m_iLength);

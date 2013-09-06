@@ -268,7 +268,7 @@ namespace user
 
 #else
 
-      throw not_implemented(::ca2::get_thread_app());
+      throw not_implemented(get_thread_app());
 
 #endif
 
@@ -415,7 +415,7 @@ namespace user
 
 #else
 
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 
 #endif
 
@@ -512,7 +512,7 @@ namespace user
 
 #else
 
-         throw todo(::ca2::get_thread_app());
+         throw todo(get_thread_app());
 
 #endif
 
@@ -542,7 +542,7 @@ namespace user
 
 #else
 
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 
 #endif
 
@@ -585,7 +585,7 @@ namespace user
 
 #else
 
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 
 #endif
 #endif
@@ -664,7 +664,7 @@ namespace user
 
 #else
 
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 
 #endif
 
@@ -739,7 +739,7 @@ namespace user
 
 #else
 
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 
 #endif
 
@@ -769,7 +769,7 @@ namespace user
 
 #else
 
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 
 #endif
 
@@ -826,7 +826,7 @@ namespace user
 
 #else
 
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 
 #endif
 
@@ -857,7 +857,7 @@ namespace user
 
 #else
 
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 
 #endif
 

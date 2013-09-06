@@ -24,8 +24,8 @@ namespace filehandler
       void add_menu_library(menu_library * plibrary);
 
 
-      sp(::ca2::tree_item) get_extension_tree_item(const char * pszExtension, bool bCreate);
-      sp(::ca2::tree_item) get_mime_type_tree_item(const char * pszMimeType, bool bCreate);
+      sp(::data::tree_item) get_extension_tree_item(const char * pszExtension, bool bCreate);
+      sp(::data::tree_item) get_mime_type_tree_item(const char * pszMimeType, bool bCreate);
 
 
       virtual void get_extension_app(stringa & straAppId, const char * pszExtension);

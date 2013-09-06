@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, vsstring & str);
+void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, string & str);
 
 
 CLASS_DECL_ca void ensure_file_size(HANDLE h, int64_t iSize)
@@ -163,7 +163,7 @@ CLASS_DECL_ca bool close_handle(handle h)
 CLASS_DECL_ca ::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName)
 {
 
-   return wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(vsstring(lpcszDirName)));
+   return wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(lpcszDirName)));
 
 }
 
@@ -295,7 +295,7 @@ CLASS_DECL_ca bool get_file_time(::Windows::Storage::StorageFile ^ file, LPFILET
 
 
 
-vsstring get_sys_temp_path()
+string get_sys_temp_path()
 {
 
    return ::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path;
@@ -307,7 +307,7 @@ vsstring get_sys_temp_path()
 bool file_exists_dup(const char * path1)
 {
 
-   vsstring str(path1);
+   string str(path1);
    str.replace("/", "\\");
    wstring wstr(L"\\\\?\\");
    wstr = wstr + wstring(str);
@@ -348,10 +348,10 @@ bool file_put_contents_dup(const char * path, const char * contents, ::count len
 
 
 
-vsstring file_as_string_dup(const char * path)
+string file_as_string_dup(const char * path)
 {
    
-   vsstring str;
+   string str;
 
    HANDLE hfile = ::create_file(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
@@ -407,7 +407,7 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
 bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate)
 {
 
-   vsstring str(::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path);
+   string str(::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path);
 
    char bufTime[30];
 
@@ -512,7 +512,7 @@ uint64_t file_length_dup(const char * path)
 
 
 
-vsstring file_module_path_dup()
+string file_module_path_dup()
 {
 
    return "/ca2/stage";
@@ -535,14 +535,14 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
    if(hfile1 == INVALID_HANDLE_VALUE)
       return false;
 
-   vsstring strVersion;
+   string strVersion;
 
 
    file_read_ex1_string_dup(hfile1, NULL, strVersion);
    int32_t n;
-   vsstring strRelative;
-   vsstring strMd5;
-   vsstring strMd5New;
+   string strRelative;
+   string strMd5;
+   string strMd5New;
    int32_t iBufSize = 1024 * 1024;
    uchar * buf = (uchar *)  _ca_alloc(iBufSize);
    int32_t iLen;
@@ -559,7 +559,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
          file_read_ex1_string_dup(hfile1, NULL, strMd5);
          ctx.initialize();
          file_read_ex1_string_dup(hfile1, &ctx, strRelative);
-         vsstring strPath = dir::path(pszDir, strRelative);
+         string strPath = dir::path(pszDir, strRelative);
          dir::mk(dir::name(strPath));
          hfile2 = ::create_file(strPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
          if(hfile2 == INVALID_HANDLE_VALUE)
@@ -580,7 +580,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
          ctx.finalize();
 
          strMd5New.clear();
-         vsstring strFormat;
+         string strFormat;
          strMd5New = ctx.to_string();
          if(strMd5.CompareNoCase(strMd5New) != 0)
             return false;
@@ -595,7 +595,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
 
 void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int32_t & iNumber)
 {
-   vsstring str;
+   string str;
    char ch;
    DWORD dwRead;
    while(ReadFile(hfile, &ch, 1, &dwRead, NULL) && dwRead == 1)
@@ -618,7 +618,7 @@ void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int32_t & iNumber)
    iNumber = atoi_dup(str);
 }
 
-void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, vsstring & str)
+void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, string & str)
 {
    int32_t iLen;
    file_read_n_number_dup(hfile, pctx, iLen);
@@ -697,7 +697,7 @@ CLASS_DECL_ca bool file_is_equal_path(const char * psz1, const char * psz2)
 }
 
 
-CLASS_DECL_ca vsstring file_get_mozilla_firefox_plugin_container_path()
+CLASS_DECL_ca string file_get_mozilla_firefox_plugin_container_path()
 {
 
    throw " todo ";

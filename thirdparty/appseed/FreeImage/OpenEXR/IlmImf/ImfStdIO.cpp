@@ -89,7 +89,7 @@ checkError (::file::output_stream &os)
 
 StdIFStream::StdIFStream (const char fileName[]):
     IStream (fileName),
-    _is (canew(::file:: byte_input_stream_binary_buffer(::ca2::get_thread_app(), fileName))),
+    _is (canew(::file:: byte_input_stream_binary_buffer(get_thread_app(), fileName))),
     _deleteStream (true)
 {
     if (!*_is)
@@ -152,7 +152,7 @@ StdIFStream::clear ()
 
 StdOFStream::StdOFStream (const char fileName[]):
     OStream (fileName),
-    _os (new ::file::byte_output_stream_binary_buffer (::ca2::get_thread_app(), fileName)),
+    _os (new ::file::byte_output_stream_binary_buffer (get_thread_app(), fileName)),
     _deleteStream (true)
 {
     if (!*_os)

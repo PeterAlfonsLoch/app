@@ -57,13 +57,13 @@ namespace filemanager
 
 
 
-            void _001OnItemExpand(sp(::ca2::tree_item)pitem);
+            void _001OnItemExpand(sp(::data::tree_item)pitem);
 
 
             void parse(const char * lpszSource);
 
-            sp(::ca2::tree_item) FindTreeItem(int64_t iFolder);
-            index _001GetItemImage(sp(::ca2::tree_item) pitem, bool bSelected);
+            sp(::data::tree_item) FindTreeItem(int64_t iFolder);
+            index _001GetItemImage(sp(::data::tree_item) pitem, bool bSelected);
 
 
             virtual ~tree_view();

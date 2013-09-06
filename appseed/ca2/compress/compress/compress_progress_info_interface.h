@@ -7,7 +7,7 @@ namespace libcompress
       virtual public object
    {
    public:
-      virtual ::ca2::HRes SetRatioInfo(const uint64_t *inSize, const uint64_t *outSize) = 0;
+      virtual HRes SetRatioInfo(const uint64_t *inSize, const uint64_t *outSize) = 0;
    };
 
 } // namespace libcompress

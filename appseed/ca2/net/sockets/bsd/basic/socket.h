@@ -86,7 +86,7 @@ namespace sockets
       bool                    m_bClose; ///< close and delete flag
       sp(socket)                m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       address                 m_addressRemoteClient; ///< Address of last connect()
-      sp(::file::binary_buffer)             m_pfileTrafficMonitor;
+      ::file::buffer_sp             m_pfileTrafficMonitor;
       time_t                  m_timeTimeoutStart; ///< set by SetTimeout
       time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
@@ -181,7 +181,7 @@ namespace sockets
       * needs to be used for the socket class. Note: the socket class still needs
       * the "default" constructor with one socket_handler_base& as input parameter.
       */
-      using ::ca2::request_interface::create;
+      using ::request_interface::create;
       virtual socket *create() { return NULL; }
 
       /** Returns reference to sockethandler that owns the socket.
@@ -686,9 +686,9 @@ namespace sockets
       //@}
 
       /** write traffic to an IFile. socket will not delete this object. */
-      void SetTrafficMonitor(sp(::file::binary_buffer)p) { m_pfileTrafficMonitor = p; }
+      void SetTrafficMonitor(::file::buffer_spp) { m_pfileTrafficMonitor = p; }
       /** All traffic will be written to this IFile, if set. */
-      sp(::file::binary_buffer)GetTrafficMonitor() { return m_pfileTrafficMonitor; }
+      ::file::buffer_spGetTrafficMonitor() { return m_pfileTrafficMonitor; }
 
       /** \name Triggers */
       //@{

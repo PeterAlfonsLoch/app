@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace str
 {
 
 

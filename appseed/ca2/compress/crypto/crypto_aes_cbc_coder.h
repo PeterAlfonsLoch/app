@@ -20,10 +20,10 @@ namespace crypto
       aes_cbc_coder();
 
 
-      ::ca2::HRes Init();
+      HRes Init();
       uint32_t Filter(byte *data, uint32_t size);
-      ::ca2::HRes SetKey(const byte *data, uint32_t size);
-      ::ca2::HRes SetInitVector(const byte *data, uint32_t size);
+      HRes SetKey(const byte *data, uint32_t size);
+      HRes SetInitVector(const byte *data, uint32_t size);
    };
 
    struct aes_cbc_encoder :

@@ -4,8 +4,9 @@
 namespace file
 {
 
+
    class CLASS_DECL_c memory_buffer :
-      virtual public ::file::buffer,
+      virtual public ::file::stream_buffer,
       virtual public primitive::memory_container
    {
    protected:

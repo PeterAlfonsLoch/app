@@ -15,7 +15,7 @@ namespace file
    {
    }
 
-   plain_text_stream::plain_text_stream(buffer * pbuffer) :
+   plain_text_stream::plain_text_stream(stream_buffer * pbuffer) :
       plain_text_input_stream(pbuffer),
       plain_text_output_stream(pbuffer)
    {

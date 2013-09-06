@@ -34,7 +34,7 @@ namespace user
 
    class CLASS_DECL_ca2 interaction :
       virtual public window_interface,
-      virtual public ::user::interaction_base
+      virtual public ::user::base_interaction
    {
    public:
 
@@ -272,7 +272,7 @@ namespace user
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
          sp(create_context) pContext = NULL);
-      using ::ca2::request_interface::create;
+      using ::request_interface::create;
       virtual bool create(const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
@@ -370,8 +370,8 @@ namespace user
       virtual sp(::user::interaction) get_parent() const;
       virtual sp(::user::interaction) set_parent(sp(::user::interaction) pguieParent);
       virtual oswindow get_parent_handle() const;
-      virtual sp(::user::interaction_base) get_parent_base() const;
-      virtual sp(::user::interaction_base) set_parent_base(sp(::user::interaction_base) pguieParent);
+      virtual sp(::user::base_interaction) get_parent_base() const;
+      virtual sp(::user::base_interaction) set_parent_base(sp(::user::base_interaction) pguieParent);
 
       virtual id GetDlgCtrlId();
       virtual id SetDlgCtrlId(class id id);

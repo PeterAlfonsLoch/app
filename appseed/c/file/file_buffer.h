@@ -1,3 +1,5 @@
+// Common/Buffer.h
+// from 7-zip
 #pragma once
 
 
@@ -5,107 +7,110 @@ namespace file
 {
 
 
-    enum e_buffer
-    {
-       buffer_read, 
-       buffer_write, 
-       buffer_commit,
-       buffer_check
-    };
-
-
-
-
-   class exception;
-   struct file_status;
-
-
-   class CLASS_DECL_c buffer :
-      virtual public ::file::reader,
-      virtual public ::file::writer,
-      virtual public ::file::seekable,
-      virtual public ::file::writer_flush
+   template <class T>
+   class buffer :
+      virtual public raw_array < T >
    {
    public:
 
 
-      buffer();
-      virtual ~buffer();
+      buffer()
+      {
+
+      }
+
+      buffer(const buffer & buffer) :
+         array(buffer)
+      {
+
+      }
+
+      buffer(size_t size)
+      {
+
+         SetCapacity(size);
+
+      }
+
+      virtual ~buffer()
+      {
+
+      }
+
+      operator T *()
+      { 
+
+         return get_data();
+
+      }
+
+      operator const T *() const
+      { 
+
+         return get_data();
+
+      }
 
 
-      virtual file_position get_position() const;
-      virtual file_position tell() const;
-      virtual bool GetStatus(file_status& rStatus) const;
-      virtual string GetFileName() const;
-      virtual string GetFileTitle() const;
-      virtual string GetFilePath() const;
-      virtual void SetFilePath(const char * lpszNewName);
+      size_t GetCapacity() const
+      { 
 
-      
-      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
+         return  get_size();
 
-      virtual bool GetStatus(const char * lpszFileName, file_status& rStatus);
-      virtual void SetStatus(const char * lpszFileName, const file_status& status);
+      }
 
+      void SetCapacity(size_t newCapacity)
+      {
 
-      virtual sp(::file::buffer) Duplicate() const;
+         allocate(newCapacity);
 
-      virtual file_position seek(file_offset lOff, ::file::e_seek  nFrom);
-      virtual file_position seek(file_position lPos);
-      virtual void set_length(file_size dwNewLen);
-      virtual file_size get_length() const;
+      }
 
-      virtual void LockRange(file_position dwPos, file_size dwCount);
-      virtual void UnlockRange(file_position dwPos, file_size dwCount);
+      buffer & operator = (const buffer &buffer)
+      {
 
-      virtual void Abort();
-      virtual void flush();
-      virtual void close();
+         SetCapacity(buffer._capacity);
 
+         if (buffer._capacity > 0)
+         {
+            memmove(_items, buffer._items, buffer._capacity * sizeof(T));
+         }
 
-      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
-      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
-      virtual string get_location() const;
+         return *this;
+
+      }
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      bool operator == (const buffer < T > & b) const
+      {
 
-      virtual bool IsOpened();
-      virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
+         if(GetCapacity() != b.GetCapacity())
+            return false;
 
+         for (size_t i = 0; i < GetCapacity(); i++)
+            if (operator[](i) != b[i])
+               return false;
 
-      using ::file::writer::write;
-      void write(output_stream & ostream);
+         return true;
 
-
-      using ::file::reader::read;
-      void read(input_stream & istream);
-
-
-      virtual bool read(char * pch);
-      virtual bool read(uchar * puch);
-      virtual bool peek(char * pch);
-      virtual bool peek(uchar * puch);
-      virtual bool read(char & ch);
-      virtual bool read(uchar & uch);
-      virtual bool peek(char & ch);
-      virtual bool peek(uchar & uch);
-      virtual int sgetc();
-      virtual int sbumpc();
-      virtual bool read_string(string & str);
+      }
 
 
+      bool operator != (const buffer < T > & b) const
+      {
+         return !(*this == b);
+      }
 
    };
 
 
-   typedef smart_pointer < buffer > buffer_sp;
+
+   typedef CLASS_DECL_c buffer < char >      char_buffer;
+   typedef CLASS_DECL_c buffer < wchar_t >   wchar_buffer;
+   typedef CLASS_DECL_c buffer < byte >      byte_buffer;
 
 
 } // namespace file
-
-
 
 
 

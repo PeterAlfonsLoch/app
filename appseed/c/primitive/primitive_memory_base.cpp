@@ -125,7 +125,7 @@ namespace primitive
       return false;
    }
 
-   
+   /*   
    void memory_base::FullLoad(::file::binary_buffer & file)
    {
 
@@ -160,6 +160,7 @@ namespace primitive
       }
 
    }
+   */
  
 
    void memory_base::read(::file::input_stream & istream)
@@ -201,7 +202,8 @@ namespace primitive
    }
 
    
-   ::primitive::memory_size memory_base::read(::file::binary_buffer & file)
+
+/*   ::primitive::memory_size memory_base::read(::file::binary_buffer & file)
    {
 
       file_size dwEnd = file.get_length();
@@ -219,6 +221,7 @@ namespace primitive
       return dwRead;
 
    }
+   */
 
    void memory_base::delete_begin(memory_size iSize)
    {

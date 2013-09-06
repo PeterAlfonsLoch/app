@@ -1161,3 +1161,12 @@ CLASS_DECL_c string get_md5(const char * psz)
 {
    return get_md5(psz, strlen(psz));
 }
+
+/*
+CLASS_DECL_c void zero_pad(string & str, count iPad)
+{
+   while(str.get_length() < iPad)
+   {
+      str = "0" + str;
+   }
+}*/

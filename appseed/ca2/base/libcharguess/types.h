@@ -23,4 +23,4 @@
 #define PR_FREEIF ca2_free
 
 
-#define NS_ASSERTION(a,b) { if (!(a)) { puts(b); throw simple_exception(::ca2::get_thread_app()); } }
+#define NS_ASSERTION(a,b) { if (!(a)) { puts(b); throw simple_exception(get_thread_app()); } }

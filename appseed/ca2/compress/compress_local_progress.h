@@ -31,7 +31,7 @@ namespace libcompress
 
       //MY_UNKNOWN_IMP
 
-      ::ca2::HRes SetRatioInfo(const uint64_t *inSize, const uint64_t *outSize);
+      HRes SetRatioInfo(const uint64_t *inSize, const uint64_t *outSize);
    };
 
 } // namespace libcompress

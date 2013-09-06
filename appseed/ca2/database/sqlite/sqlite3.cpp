@@ -22361,7 +22361,7 @@ afp_end_lock:
             rc = file_exists_dup(zFilename) ? 1 : 0;
             break;
          case SQLITE_ACCESS_READWRITE:
-            throw todo(::ca2::get_thread_app());
+            throw todo(get_thread_app());
           //  rc = (attr & FILE_ATTRIBUTE_READONLY)==0;
             break;
          default:

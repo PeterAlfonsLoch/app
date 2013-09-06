@@ -11,7 +11,7 @@ namespace userfs
    }
 
 
-   index tree_item_data::CompareArrangeByName(sp(::ca2::tree_item) & item1, sp(::ca2::tree_item) & item2)
+   index tree_item_data::CompareArrangeByName(sp(::data::tree_item) & item1, sp(::data::tree_item) & item2)
    {
       
       if(item1->m_ptreedata == item2->m_ptreedata)

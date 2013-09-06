@@ -10,7 +10,7 @@ namespace usermail
       
       ::user::scroll_view(papp),
       ::user::tree(papp),
-      ::ca2::tree_data(papp),
+      ::data::tree_data(papp),
       ::usermail::tree_data(papp)
    {
 

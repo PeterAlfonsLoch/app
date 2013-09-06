@@ -123,6 +123,9 @@
     <Filter Include="Source Files\math">
       <UniqueIdentifier>{6ce58d15-6c9b-4329-a8d5-a0fa621591e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\os">
+      <UniqueIdentifier>{245e3241-db5a-4886-814d-9434580575d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="android\c_os_internal.h">
@@ -602,9 +605,6 @@
     <ClInclude Include="multithreading\multithreading_initial_single_lock.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="collection\collection_buffer.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include="multithreading\multithreading_thread.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
@@ -1058,9 +1058,6 @@
     <ClInclude Include="file\file_byte_output_stream.h">
       <Filter>Header Files\file</Filter>
     </ClInclude>
-    <ClInclude Include="file\file_buffer.h">
-      <Filter>Header Files\file</Filter>
-    </ClInclude>
     <ClInclude Include="comparison\comparison_less.h">
       <Filter>Header Files\comparison</Filter>
     </ClInclude>
@@ -1105,6 +1102,15 @@
     </ClInclude>
     <ClInclude Include="base\base_definition.h">
       <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_system.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_stream_buffer.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_buffer.h">
+      <Filter>Header Files\file</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1299,9 +1305,6 @@
     </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="file\file_stream.cpp">
-      <Filter>Source Files\file</Filter>
     </ClCompile>
     <ClCompile Include="file\file_reader.cpp">
       <Filter>Source Files\file</Filter>
@@ -1651,9 +1654,6 @@
     <ClCompile Include="windows\windows_process.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\windows_http.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
     <ClCompile Include="windows\windows_thread.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
@@ -1750,9 +1750,6 @@
     <ClCompile Include="file\file_output_stream.cpp">
       <Filter>Source Files\file</Filter>
     </ClCompile>
-    <ClCompile Include="file\file_buffer.cpp">
-      <Filter>Source Files\file</Filter>
-    </ClCompile>
     <ClCompile Include="file\file_plain_text_stream_string_buffer.cpp">
       <Filter>Source Files\file</Filter>
     </ClCompile>
@@ -1788,6 +1785,24 @@
     </ClCompile>
     <ClCompile Include="base\base_template.cpp">
       <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="os\os_process.cpp">
+      <Filter>Source Files\os</Filter>
+    </ClCompile>
+    <ClCompile Include="os\os_http.cpp">
+      <Filter>Source Files\os</Filter>
+    </ClCompile>
+    <ClCompile Include="os\os_thread.cpp">
+      <Filter>Source Files\os</Filter>
+    </ClCompile>
+    <ClCompile Include="os\os_file.cpp">
+      <Filter>Source Files\os</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_stream.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_stream_buffer.cpp">
+      <Filter>Source Files\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

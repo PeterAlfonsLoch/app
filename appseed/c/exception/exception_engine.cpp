@@ -123,7 +123,7 @@ int_bool __stdcall My_ReadProcessMemory (
 
    SIZE_T size;
 #if defined(METROWIN) || defined(LINUX) || defined(MACOS) || defined(ANDROID)
-   throw todo(::ca2::get_thread_app());
+   throw todo(get_thread_app());
 #else
    if(!ReadProcessMemory(hProcess, (LPCVOID) qwBaseAddress, (LPVOID) lpBuffer, nSize, &size))
       return FALSE;

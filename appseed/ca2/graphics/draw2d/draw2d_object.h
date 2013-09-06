@@ -6,7 +6,7 @@ namespace draw2d
 
 
    class CLASS_DECL_ca2 object :
-      virtual public object
+      virtual public ::object
    {
    public:
 

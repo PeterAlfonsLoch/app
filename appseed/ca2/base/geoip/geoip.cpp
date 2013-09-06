@@ -913,7 +913,7 @@ _GeoIP_lookupaddress_v6(const char *host)
    return ipnum;
 #else
 
-   throw todo(::ca2::get_thread_app());
+   throw todo(get_thread_app());
 
 #endif
 

@@ -40,7 +40,7 @@ namespace file
 
 
    // Overridables
-      virtual sp(::file::buffer) Duplicate() const;
+      virtual ::file::buffer_sp Duplicate() const;
 
       virtual file_position seek(file_offset lOff, ::file::e_seek  nFrom);
       virtual void set_length(file_size dwNewLen);

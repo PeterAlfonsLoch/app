@@ -83,7 +83,7 @@ _AFX_INLINE int_bool CArchive::IsByteSwapping() const
    { return FALSE; }
 _AFX_INLINE int_bool CArchive::IsBufferEmpty() const
    { return m_lpBufCur == m_lpBufMax; }
-_AFX_INLINE sp(::file::binary_buffer) CArchive::GetFile() const
+_AFX_INLINE ::file::buffer_sp CArchive::GetFile() const
    { return m_pFile; }
 _AFX_INLINE void CArchive::SetObjectSchema(UINT nSchema)
    { m_nObjectSchema = nSchema; }

@@ -3,18 +3,18 @@
 namespace ca2
 {
 
-   TimerCallback::TimerCallback()
+   timer_callback::timer_callback()
    {
       m_bQueueModel = false;
       m_ptimerwnd = NULL;
        Enable();
    }
 
-   TimerCallback::~TimerCallback()
+   timer_callback::~timer_callback()
    {
    }
 
-   void TimerCallback::Enable(bool bEnable)
+   void timer_callback::Enable(bool bEnable)
    {
       m_bTimerCallbackEnable = bEnable;
       if(m_ptimerwnd != NULL)
@@ -23,20 +23,20 @@ namespace ca2
       }
    }
 
-   bool TimerCallback::IsEnabled()
+   bool timer_callback::IsEnabled()
    {
        return m_bTimerCallbackEnable;
 
    }
 
-   bool TimerCallback::SetTimerWindow(TimerWnd *ptimerwnd)
+   bool timer_callback::SetTimerWindow(timer_window *ptimerwnd)
    {
       m_ptimerwnd = ptimerwnd;
       return true;
    }
 
 
-   bool TimerCallback::WishesQueueModel()
+   bool timer_callback::WishesQueueModel()
    {
       return m_bQueueModel;
    }

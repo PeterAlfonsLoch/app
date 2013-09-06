@@ -39,7 +39,7 @@ namespace ca2
    }
 
 
-   string file_system::nessie(sp(::file::binary_buffer) pfile)
+   string file_system::nessie(::file::buffer_sp pfile)
    {
       
 	   int32_t iBufSize = 1024 * 256;

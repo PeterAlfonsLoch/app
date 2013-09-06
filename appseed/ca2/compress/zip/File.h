@@ -30,7 +30,7 @@ namespace zip
       static int32_t        close_file_func (voidpf opaque, voidpf stream);
       static int32_t        testerror_file_func (voidpf opaque, voidpf stream);
 
-      void write_to_file(sp(::file::binary_buffer) pfile, const wchar_t * lpcsz);
+      void write_to_file(::file::buffer_sp pfile, const wchar_t * lpcsz);
 
       bool unzip_open(const char * lpcwsz);
       bool unzip_open(::file::binary_buffer_sp pfile);

@@ -190,7 +190,7 @@ return LoadImageFile(ar.GetFile());
 }
 */
 
-FIBITMAP * imaging::LoadImageFile(sp(::file::binary_buffer) pfile)
+FIBITMAP * imaging::LoadImageFile(::file::buffer_sp pfile)
 {
 
    if(pfile == NULL)
@@ -236,7 +236,7 @@ return false;
 
 file.seek_to_begin();
 
-sp(::file::binary_buffer) pfile = &file;
+::file::buffer_sp pfile = &file;
 
 FreeImageIO io;
 io.read_proc   = ___Ex1File__ReadProc;
@@ -440,7 +440,7 @@ void EmbossedTextOut(
 
 #else
 
-   throw todo(::ca2::get_thread_app());
+   throw todo(get_thread_app());
 
 #endif
 
@@ -496,7 +496,7 @@ void EmbossedTextOut(
 
 #else
 
-   throw todo(::ca2::get_thread_app());
+   throw todo(get_thread_app());
 
 #endif
 
@@ -536,7 +536,7 @@ void GetMultiLineTextExtent(HDC hDC, stringa * pArray, LPSIZE lpSize)
 
 #else
 
-   throw todo(::ca2::get_thread_app());
+   throw todo(get_thread_app());
 
 #endif
 
@@ -575,7 +575,7 @@ void DrawMultiLineText(HDC hDC, stringa * pArray)
 
 #else
 
-   throw todo(::ca2::get_thread_app());
+   throw todo(get_thread_app());
 
 #endif
 

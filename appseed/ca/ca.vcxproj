@@ -1137,6 +1137,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="ca\ca_math.h" />
     <ClInclude Include="ca\ca_message_loop.h" />
     <ClInclude Include="ca\ca_number.h" />
+    <ClInclude Include="ca\ca_os.h" />
     <ClInclude Include="ca\ca_printf.h" />
     <ClInclude Include="ca\ca_simple_app.h" />
     <ClInclude Include="ca\ca_simple_pixel_font.h" />
@@ -1162,9 +1163,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="hotplugin\hotplugin_host.h" />
     <ClInclude Include="hotplugin\hotplugin.h" />
     <ClInclude Include="hotplugin\hotplugin_plugin.h" />
-    <ClInclude Include="os\os.h" />
-    <ClInclude Include="os\os_process.h" />
-    <ClInclude Include="os\os_thread.h" />
     <ClInclude Include="simple_graphics\simple_font.h" />
     <ClInclude Include="simple_graphics\simple_graphics.h" />
     <ClInclude Include="simple_graphics\simple_graphics_first_phase.h" />
@@ -1431,6 +1429,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="ansios\crypto\ansios_crypt.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="bsdiff\blocksort.cpp" />
     <ClCompile Include="bsdiff\bsdiff.cpp" />
@@ -1507,9 +1506,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="os\os_http.cpp" />
-    <ClCompile Include="os\os_process.cpp" />
-    <ClCompile Include="os\os_thread.cpp" />
     <ClCompile Include="simple_graphics\simple_graphics.cpp" />
     <ClCompile Include="simple_graphics\simple_path.cpp" />
     <ClCompile Include="simple_ui\simple_edit_box.cpp" />

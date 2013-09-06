@@ -165,11 +165,11 @@ namespace ca2
 
 #elif defined(METROWIN)
 
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 
 #elif defined(ANDROID)
 
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 
 #else
 
@@ -359,7 +359,7 @@ namespace ca2
 
 #elif defined(METROWIN)
 
-      throw todo(::ca2::get_thread_app());
+      throw todo(get_thread_app());
 
 #else
       int32_t iExitCode;

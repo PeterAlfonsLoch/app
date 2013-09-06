@@ -45,7 +45,7 @@ namespace filehandler
 
       for(int32_t i = 0; i < straExtension.get_count(); i++)
       {
-         sp(::ca2::tree_item) pitem = get_extension_tree_item(straExtension[i], true);
+         sp(::data::tree_item) pitem = get_extension_tree_item(straExtension[i], true);
          if(pitem == NULL)
             continue;
          pitem->m_pitemdata.cast < tree_item_data > ()->m_straHandlerLibrary.add(plibrary->m_strCa2Name);
@@ -58,7 +58,7 @@ namespace filehandler
 
       for(int32_t i = 0; i < straMimeType.get_count(); i++)
       {
-         sp(::ca2::tree_item) pitem = get_extension_tree_item(straMimeType[i], true);
+         sp(::data::tree_item) pitem = get_extension_tree_item(straMimeType[i], true);
          if(pitem == NULL)
             continue;
          pitem->m_pitemdata.cast < tree_item_data > ()->m_straHandlerLibrary.add(plibrary->m_strCa2Name);
@@ -76,7 +76,7 @@ namespace filehandler
 
       for(int32_t i = 0; i < straExtension.get_count(); i++)
       {
-         sp(::ca2::tree_item) pitem = get_extension_tree_item(straExtension[i], true);
+         sp(::data::tree_item) pitem = get_extension_tree_item(straExtension[i], true);
          if(pitem == NULL)
             continue;
          pitem->m_pitemdata.cast < tree_item_data > ()->m_straMenuLibrary.add(plibrary->m_strCa2Name);
@@ -89,7 +89,7 @@ namespace filehandler
 
       for(int32_t i = 0; i < straMimeType.get_count(); i++)
       {
-         sp(::ca2::tree_item) pitem = get_mime_type_tree_item(straMimeType[i], true);
+         sp(::data::tree_item) pitem = get_mime_type_tree_item(straMimeType[i], true);
          if(pitem == NULL)
             continue;
          pitem->m_pitemdata.cast < tree_item_data > ()->m_straMenuLibrary.add(plibrary->m_strCa2Name);
@@ -98,10 +98,10 @@ namespace filehandler
 
    }
 
-   sp(::ca2::tree_item) handler::get_extension_tree_item(const char * pszExtension, bool bCreate)
+   sp(::data::tree_item) handler::get_extension_tree_item(const char * pszExtension, bool bCreate)
    {
 
-      sp(::ca2::tree_item) pitem = m_sptree->get_base_item()->get_next();
+      sp(::data::tree_item) pitem = m_sptree->get_base_item()->get_next();
 
       if(strcmp(pszExtension, "*") == 0)
       {
@@ -147,10 +147,10 @@ namespace filehandler
    }
 
 
-   sp(::ca2::tree_item) handler::get_mime_type_tree_item(const char * pszMimeType, bool bCreate)
+   sp(::data::tree_item) handler::get_mime_type_tree_item(const char * pszMimeType, bool bCreate)
    {
 
-      sp(::ca2::tree_item) pitem = m_sptree->get_base_item()->get_next();
+      sp(::data::tree_item) pitem = m_sptree->get_base_item()->get_next();
 
       while(pitem != NULL)
       {
@@ -176,7 +176,7 @@ namespace filehandler
    void handler::get_extension_app(stringa & straAppId, const char * pszExtension)
    {
 
-      sp(::ca2::tree_item) pitem = get_extension_tree_item(pszExtension, false);
+      sp(::data::tree_item) pitem = get_extension_tree_item(pszExtension, false);
       if(pitem == NULL)
          return;
       straAppId.add(dynamic_cast < tree_item_data * > (pitem->m_pitemdata.m_p)->m_straApp);
@@ -186,7 +186,7 @@ namespace filehandler
    void handler::get_mime_type_app(stringa & straAppId, const char * pszMimeType)
    {
 
-      sp(::ca2::tree_item) pitem = get_mime_type_tree_item(pszMimeType, false);
+      sp(::data::tree_item) pitem = get_mime_type_tree_item(pszMimeType, false);
       if(pitem == NULL)
          return;
       straAppId.add(dynamic_cast < tree_item_data * > (pitem->m_pitemdata.m_p)->m_straApp);
@@ -195,7 +195,7 @@ namespace filehandler
 
    void handler::write(::file::output_stream & ostream)
    {
-      sp(::ca2::tree_item) pitem = m_sptree->get_base_item();
+      sp(::data::tree_item) pitem = m_sptree->get_base_item();
 
       index iLevel = 0;
 
@@ -217,7 +217,7 @@ namespace filehandler
    void handler::read(::file::input_stream & istream)
    {
 
-      sp(::ca2::tree_item) pitem = m_sptree->get_base_item();
+      sp(::data::tree_item) pitem = m_sptree->get_base_item();
 
       int32_t iPreviousLevel = 0;
       int32_t iLevel = 0;

@@ -4,7 +4,6 @@
 namespace file
 {
 
-   class buffer;
 
    class CLASS_DECL_c stream :
       virtual public output_stream,
@@ -15,7 +14,7 @@ namespace file
       
       stream();
       stream(reader * preader, writer * pwriter);
-      stream(buffer * pbuffer);
+      stream(stream_buffer * pbuffer);
       stream(const stream & stream);
       virtual ~stream();
 
