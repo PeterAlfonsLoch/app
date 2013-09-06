@@ -17,6 +17,10 @@ class string_array;
 #include "str_from_integer.h"
 
 
+CLASS_DECL_c string get_md5(const void * data, ::count c);
+CLASS_DECL_c string get_md5(const char * psz);
+
+
 #include "str_ch.h"
 #include "str_ch_class.h"
 #include "str_international.h"

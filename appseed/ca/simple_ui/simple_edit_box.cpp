@@ -39,7 +39,7 @@ bool simple_edit_box::is_focusable()
 }
 
 
-
+/*
 
 CLASS_DECL_ca char to_upper(int32_t ch)
 {
@@ -66,7 +66,7 @@ return pchParam;
 }
 
 
-
+*/
 
 
 void simple_edit_box::draw_this(simple_graphics & g)

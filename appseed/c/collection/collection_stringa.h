@@ -134,6 +134,12 @@ public:
    bool is_empty(::count countMinimum = 1);
    bool has_elements(::count countMinimum = 1);
 
+   string encode_v16();
+
+
+   void decode_v16(const char * psz);
+
+
 };
 
 

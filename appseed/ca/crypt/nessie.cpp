@@ -3,19 +3,21 @@
 
 string crypt_nessie(const char * psz)
 {
-   string strFormat;
-   string str;
-//      int32_t i;
+
    NESSIEstruct ns;
+   
    uint8_t digest[NESSIE_DIGESTBYTES];
+   
    NESSIEinit(&ns);
+   
    NESSIEadd((const byte *) psz, (uint_ptr) (8*strlen(psz)), &ns);
+   
    NESSIEfinalize(&ns, digest);
-   char * pszOut = str.alloc(NESSIE_DIGESTBYTES * 2);
-   lo_hex_from(pszOut, digest, NESSIE_DIGESTBYTES);
-   pszOut[NESSIE_DIGESTBYTES * 2] = '\0';
-   return str;
+
+   return hex::lower_from(digest, NESSIE_DIGESTBYTES);
+
 }
+
 
    /*
    string file::nessie(const char * psz)

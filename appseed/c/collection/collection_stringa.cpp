@@ -1119,3 +1119,84 @@ comparable_array < id > stringa::get_comparable_ida() const
 
 }
 
+
+
+string stringa::encode_v16()
+{
+   string strEncode;
+   for(int32_t ui = 0; ui < this->get_count(); ui++)
+   {
+      string & str = this->element_at(ui);
+      strEncode += hex::lower_from((const char*) str, str.get_length());
+      strEncode += "00";
+/*      for(int32_t uj = 0; uj < str.length(); uj++)
+      {
+         char sz[32];
+         itoa_dup(sz, str[uj], 16);
+         if(strlen_dup(sz) == 0)
+         {
+            strEncode += "00";
+         }
+         else if(strlen_dup(sz) == 1)
+         {
+            strEncode += "0";
+            strEncode += sz;
+         }
+         else if(strlen_dup(sz) == 2)
+         {
+            strEncode += sz;
+         }
+      }*/
+      
+   }
+   return strEncode;
+}
+
+
+
+void stringa::decode_v16(const char * psz)
+{
+   int32_t iSize = 1024;
+   char * str = NULL;
+   if(psz == NULL)
+      return;
+   while(*psz != '\0')
+   {
+      psz++;
+      if(*psz == '\0')
+         break;
+      char sz[3];
+      sz[0] = psz[-1];
+      sz[1] = psz[0];
+      sz[2] = '\0';
+      const char * pszEnd;
+      int32_t iConversion = ::atoi_dup(sz, &pszEnd, 16);
+      char ch = static_cast < char > (iConversion);
+      if(ch == '\0')
+      {
+         add(str);
+         str = NULL;
+         iSize = 1024;
+      }
+      else
+      {
+         if(str == NULL)
+         {
+            str = (char *) _ca_alloc(iSize);
+         }
+         else if(iSize < (strlen_dup(str) + 1))
+         {
+            char * strOld = str;
+            iSize += 1024;
+            char * strNew = (char *) _ca_alloc(iSize);
+            strcpy_dup(strNew, strOld);
+            str = strNew;
+         }
+         sz[0] = ch;
+         sz[1] = '\0';
+         strcat_dup(str, sz);
+      }
+      psz++;
+   }
+
+}

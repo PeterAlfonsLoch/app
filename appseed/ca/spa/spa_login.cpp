@@ -286,7 +286,7 @@ spa_login::e_result spa_login::login()
 
       strAuthUrl += "&sessid=" + strSessId;
 
-      strResponse = ms_get_dup(strAuthUrl);
+      strResponse = http_get_dup(strAuthUrl);
 
    }
 
@@ -297,18 +297,18 @@ spa_login::e_result spa_login::login()
 
       ::xml::document doc;
 
-      if(doc.Load(strResponse))
+      if(doc.load(strResponse))
       {
 
-         if(doc.GetRoot()->name == "response")
+         if(doc.get_root()->get_name() == "response")
          {
             // Heuristical check
-            if(stricmp_dup(doc.GetRoot()->GetAttrValue("id"), "auth") == 0 && string(doc.GetRoot()->GetAttrValue("passhash")).get_length() > 16 && atoi(doc.GetRoot()->GetAttrValue("secureuserid")) > 0)
+            if(stricmp_dup(doc.get_root()->attr("id"), "auth") == 0 && string(doc.get_root()->attr("passhash")).get_length() > 16 && atoi(doc.get_root()->attr("secureuserid")) > 0)
             {
-               m_strPasshash = doc.GetRoot()->GetAttrValue("passhash");
+               m_strPasshash = doc.get_root()->attr("passhash");
                eresult = result_ok;
             }
-            else if(stricmp_dup(doc.GetRoot()->GetAttrValue("id"), "registration_deferred") == 0)
+            else if(stricmp_dup(doc.get_root()->attr("id"), "registration_deferred") == 0)
             {
                eresult = result_registration_deferred;
             }

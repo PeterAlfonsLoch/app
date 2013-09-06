@@ -12,7 +12,9 @@ CLASS_DECL_ca int32_t crypt_decrypt(::primitive::memory & storageDecrypt, const 
 bool crypt_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, const char * pszSalt)
 {
 
-   ::primitive::memory key(get_md5(pszSalt));
+   ::primitive::memory key;
+
+   key.from_string(get_md5(pszSalt));
 
    return crypt_encrypt(storageEncrypt, storageDecrypt, key) > 0;
 
@@ -22,7 +24,9 @@ bool crypt_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memo
 bool crypt_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, const char * pszSalt)
 {
 
-   ::primitive::memory key(get_md5(pszSalt));
+   ::primitive::memory key;
+
+   key.from_string(get_md5(pszSalt));
 
    return crypt_decrypt(storageDecrypt, storageEncrypt, key) > 0;
 

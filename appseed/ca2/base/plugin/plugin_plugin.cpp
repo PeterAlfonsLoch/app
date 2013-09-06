@@ -475,7 +475,7 @@ namespace plugin
          if(strExtension.is_empty() || strExtension.compare_no_case("ca2") == 0)
          {
             // remark alarm
-            // STRESS : ms_get_dup
+            // STRESS : http_get_dup
             // in ca2 library normally System or Application.http() is used
             string strPluginData;
 
@@ -488,7 +488,7 @@ namespace plugin
             for(int32_t iAttempt = 0; iAttempt < 3; iAttempt++)
             {
 
-               //strPluginData = ms_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
+               //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
 
                property_set post(get_app());
                property_set headers(get_app());

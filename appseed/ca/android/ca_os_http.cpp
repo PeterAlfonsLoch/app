@@ -18,7 +18,7 @@ void prepare_http()
 }
 
 
-bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int32_t * piStatus, void (*callback)(void *, int32_t, dword_ptr), void * callback_param )
+bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int32_t * piStatus, void (*callback)(void *, int32_t, dword_ptr), void * callback_param )
 {
 
    if(piStatus != NULL)
@@ -34,7 +34,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    {
       //trace("download failed: could not delete file prior to download.");
       string str;
-      str = "ms_download_dup: error url=\"";
+      str = "http_download_dup: error url=\"";
       str += pszUrl;
       str += "\"";
       str = "file path=\"";
@@ -93,7 +93,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
 
 
 
-string ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int32_t, dword_ptr), void * callback_param, bool bProgress)
+string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int32_t, dword_ptr), void * callback_param, bool bProgress)
 {
 
    prepare_http();

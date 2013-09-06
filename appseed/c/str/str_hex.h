@@ -72,9 +72,9 @@ namespace hex
 
 
    // sz buffer should have twice size of s (p)
-   inline CLASS_DECL_c void lower_from(char * sz, void * p, ::primitive::memory_size s)
+   inline CLASS_DECL_c void lower_from(char * sz, const void * p, ::primitive::memory_size s)
    {
-       byte * pb = (byte *) p;
+       const byte * pb = (const byte *) p;
        while(s)
        {
            lower_from(sz, *pb);
@@ -84,9 +84,9 @@ namespace hex
        }
    }
 
-   inline CLASS_DECL_c void upper_from(char * sz, void * p, ::primitive::memory_size s)
+   inline CLASS_DECL_c void upper_from(char * sz, const void * p, ::primitive::memory_size s)
    {
-       byte * pb = (byte *) p;
+       const byte * pb = (const byte *) p;
        while(s)
        {
            upper_from(sz, *pb);
@@ -97,7 +97,7 @@ namespace hex
    }
 
    // sz buffer should have twice size of s (p)
-   inline CLASS_DECL_c string lower_from(void * p, ::primitive::memory_size s)
+   inline CLASS_DECL_c string lower_from(const void * p, ::primitive::memory_size s)
    {
       string str;
       lower_from(str.GetBufferSetLength(s * 2), p, s);
@@ -105,7 +105,7 @@ namespace hex
       return str;
    }
 
-   inline CLASS_DECL_c string upper_from(void * p, ::primitive::memory_size s)
+   inline CLASS_DECL_c string upper_from(const void * p, ::primitive::memory_size s)
    {
       string str;
       upper_from(str.GetBufferSetLength(s * 2), p, s);

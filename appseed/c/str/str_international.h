@@ -146,3 +146,5 @@ namespace str
 
 
 #define unitext(text) (::str::international::unicode_to_utf8(L##text))
+
+

@@ -67,18 +67,18 @@ namespace spa_install
       {
   //       uint32_t dwBufferLen = 1024 + 256;
          simple_http_status * pstatus = (simple_http_status *) reinterpret_cast < void * > (dwLen);
-         trace("ms_get_dup failed : status : " + itoa_dup(pstatus->m_dwStatusCode) + " - " + pstatus->m_pszStatus);
+         trace("http_get_dup failed : status : " + itoa_dup(pstatus->m_dwStatusCode) + " - " + pstatus->m_pszStatus);
       }
       else if(i == -2)
       {
-         trace("ms_get_dup failed");
+         trace("http_get_dup failed");
 #ifdef WINDOWS
          uint32_t dw = ::GetLastError();
 	      wchar_t lastErrorTxt[1024];
          memset_dup(lastErrorTxt, 0, sizeof(lastErrorTxt));
 	      FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, dw, 0, lastErrorTxt, 1024, NULL);
          trace(string(lastErrorTxt));
-         trace("ms_get_dup failed : GetLastErrorCode : " + itoa_dup(dw));
+         trace("http_get_dup failed : GetLastErrorCode : " + itoa_dup(dw));
 #endif
       }
       else

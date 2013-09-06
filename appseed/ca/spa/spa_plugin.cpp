@@ -901,7 +901,7 @@ install:
 
             retry_get_prompt:
 
-            strPrompt = ms_get_dup(m_phost->m_strPluginUrl);
+            strPrompt = http_get_dup(m_phost->m_strPluginUrl);
 
             if(strPrompt.is_empty())
             {
@@ -1014,7 +1014,7 @@ restart:
          Sleep(iAttemptUrl * 84);
       }
 
-      while((str = ms_get_dup(m_phost->m_strPluginUrl)).is_empty())
+      while((str = http_get_dup(m_phost->m_strPluginUrl)).is_empty())
       {
          if(!m_phost->m_bStream)
          {

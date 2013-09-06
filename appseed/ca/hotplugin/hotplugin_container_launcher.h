@@ -10,15 +10,15 @@ namespace hotplugin
    {
    public:
 
-      vsstring m_strChannel;
+      string m_strChannel;
 
       container_launcher(const char * pszChannel);
          
       virtual bool ensure_executable() { return true; }
 
-      vsstring get_params();
+      string get_params();
 
-      virtual vsstring get_executable_path();
+      virtual string get_executable_path();
 
    };
 

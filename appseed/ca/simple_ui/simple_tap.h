@@ -23,7 +23,7 @@ public:
    virtual void draw_text(simple_graphics & g);
 
 
-   virtual void on_char(int32_t iKey, const vsstring & strChar);
+   virtual void on_char(int32_t iKey, const string & strChar);
    virtual void on_lbutton_down(int32_t x, int32_t y);
    virtual void on_lbutton_up(int32_t x, int32_t y);
    virtual void on_mouse_move(int32_t x, int32_t y);

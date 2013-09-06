@@ -99,6 +99,9 @@
     <Filter Include="Source Files\spa_install">
       <UniqueIdentifier>{6bf137f8-a742-466c-bf79-11663e2ace1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\simple_ui\NewFilter1">
+      <UniqueIdentifier>{e950dcfe-db47-4937-b8e1-fd2a487ebef6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hotplugin\hotplugin.h">
@@ -192,9 +195,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="simple_ui\simple_button.h">
-      <Filter>Header Files\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_ui\simple_edit.h">
       <Filter>Header Files\simple_ui</Filter>
     </ClInclude>
     <ClInclude Include="simple_ui\simple_ui.h">
@@ -309,9 +309,6 @@
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_sprintf.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_template.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_url.h">
@@ -466,6 +463,21 @@
     </ClInclude>
     <ClInclude Include="spa\spa_login.h">
       <Filter>Header Files\spa_install</Filter>
+    </ClInclude>
+    <ClInclude Include="hotplugin\hotplugin_container_launcher.h">
+      <Filter>Header Files\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_ui\simple_edit_box.h">
+      <Filter>Header Files\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_ui\simple_label.h">
+      <Filter>Header Files\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_ui\simple_password.h">
+      <Filter>Header Files\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_ui\simple_tap.h">
+      <Filter>Header Files\simple_ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -653,9 +665,6 @@
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_std_file.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_template.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_url.cpp">

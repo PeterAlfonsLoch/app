@@ -65,7 +65,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
    {
       //trace("download failed: could not delete file prior to download.");
       string str;
-      str = "ms_download_dup: error url=\"";
+      str = "http_download_dup: error url=\"";
       str += pszUrl;
       str += "\"";
       str = "file path=\"";
@@ -232,7 +232,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
          ::CloseHandle(hfile);
          ::OutputDebugStringA("Out of memory\n");
          string str;
-         str = "ms_download_dup: out of memory error url=\"";
+         str = "http_download_dup: out of memory error url=\"";
          str += pszUrl;
          str += "\"";
          trace(str);
@@ -292,7 +292,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
    if(!bResults)
    {
       string str;
-      str = "ms_download_dup: error url=\"";
+      str = "http_download_dup: error url=\"";
       str += pszUrl;
       str += "\"";
       str = "file path=\"";
@@ -489,7 +489,7 @@ string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    if(!bResults)
    {
       string str;
-      str = "ms_download_dup: error url=\"";
+      str = "http_download_dup: error url=\"";
       str += pszUrl;
       str += "\"";
       trace(str);

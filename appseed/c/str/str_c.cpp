@@ -811,13 +811,13 @@ char * strpbrk_dup(char * sz, const char * szFind)
 
 
 
-string str_replace_dup(const char * psz, const char * pszFind, const char * pszReplace)
+/*string str_replace_dup(const char * psz, const char * pszFind, const char * pszReplace)
 {
    string str(psz);
    str.replace(pszFind, pszReplace);
    return str;
 }
-
+*/
 
 string itoa_dup(int64_t i)
 {
@@ -1154,4 +1154,10 @@ int_bool matches_wildcard_criteria_ci(const char * pszCriteria, const char * psz
 
    return true;
 
+}
+
+
+CLASS_DECL_c string get_md5(const char * psz)
+{
+   return get_md5(psz, strlen(psz));
 }

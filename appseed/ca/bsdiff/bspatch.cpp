@@ -49,7 +49,7 @@ int32_t err(int32_t i, const char* str)
     
 #endif
     
-   printf_dup("%s", string(lastErrorTxt).m_psz);
+   printf_dup("%s", string(lastErrorTxt).c_str());
     
    if (str!=NULL)
    {

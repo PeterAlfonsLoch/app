@@ -271,12 +271,3 @@ verisimple_wstring verisimple_wstring::substr(::index iStart, ::count count)
 }
 
 
-template<> bool simple_CompareElements(const wstring * pElement1, const wstring * pElement2)
-{
-   return pElement1->Compare(*pElement2) != FALSE;
-}
-
-
-
-
-

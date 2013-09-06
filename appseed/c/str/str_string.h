@@ -398,6 +398,9 @@ public:
    strsize reverse_find( const char * ch, strsize iStart = -1 ) const RELEASENOTHROW;
 
 
+   inline bool ends_ci(const string & strSuffixCandidate);
+
+
    bool begins_ci(const char * s) const;
 
 

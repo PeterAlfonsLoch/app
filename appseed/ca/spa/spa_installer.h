@@ -78,7 +78,7 @@ namespace spa_install
       double         m_dProgress;
       double         m_dProgress1;
       double         m_dProgress2;
-      ::xml::node          m_nodeStringTable;
+      ::xml::document          m_xmldocStringTable;
       int32_t            m_iStart;
       double_array m_daDownloadRate;
       uint32_t          m_dwDownloadTick;
