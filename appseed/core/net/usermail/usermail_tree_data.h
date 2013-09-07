@@ -13,7 +13,7 @@ namespace usermail
       tree_data(sp(base_application) papp);
 
       
-      virtual sp(::ca2::tree_item_data) on_allocate_item();
+      virtual sp(::core::tree_item_data) on_allocate_item();
       
 
    };

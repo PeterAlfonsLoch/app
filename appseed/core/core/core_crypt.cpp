@@ -8,7 +8,7 @@
 #define CA4_CRYPT_V5_SALT_BYTES (CA4_CRYPT_V5_FINAL_HASH_BYTES - NESSIE_DIGESTBYTES)
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -806,7 +806,7 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace core
 
 
 

@@ -13,14 +13,14 @@ namespace filehandler
    }
 
 
-   sp(::ca2::tree_item_data) tree_data::on_allocate_item()
+   sp(::core::tree_item_data) tree_data::on_allocate_item()
    {
 
       return canew(::filehandler::tree_item_data());
 
    }
 
-   void tree_data::on_delete_item(sp(::ca2::tree_item_data) pitem)
+   void tree_data::on_delete_item(sp(::core::tree_item_data) pitem)
    {
 
    }

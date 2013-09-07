@@ -24,7 +24,7 @@ simple_scroll_bar::~simple_scroll_bar()
 }
 
 
-void simple_scroll_bar::install_message_handling(::ca2::message::dispatch * pinterface)
+void simple_scroll_bar::install_message_handling(message::dispatch * pinterface)
 {
    ::user::interaction::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &simple_scroll_bar::_001OnMouseMove);
@@ -53,7 +53,7 @@ bool simple_scroll_bar::create(e_orientation eorientation, uint32_t dwStyle, rec
 void simple_scroll_bar::_001OnMouseMove(signal_details * pobj)
 {
 
-   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+   SCAST_PTR(message::mouse, pmouse, pobj)
 
    point pt = pmouse->m_pt;
 
@@ -112,7 +112,7 @@ void simple_scroll_bar::_001OnMouseMove(signal_details * pobj)
 
 void simple_scroll_bar::_001OnLButtonDown(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+   SCAST_PTR(message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    rect rectTrack;
@@ -177,7 +177,7 @@ void simple_scroll_bar::_001OnLButtonDown(signal_details * pobj)
 
 void simple_scroll_bar::_001OnLButtonUp(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+   SCAST_PTR(message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    simple_scroll_bar * pcandidate =
@@ -428,7 +428,7 @@ int32_t simple_scroll_bar::SetTrackingPos(point point)
 
 void simple_scroll_bar::_001OnHScroll(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::scroll, pscroll, pobj)
+   SCAST_PTR(message::scroll, pscroll, pobj)
       pscroll->m_bRet = false;
 }
 
@@ -443,7 +443,7 @@ int32_t simple_scroll_bar::_001GetScrollPos()
 void simple_scroll_bar::_001OnSize(signal_details * pobj)
 {
 
-   //SCAST_PTR(::ca2::message::size, psize, pobj)
+   //SCAST_PTR(message::size, psize, pobj)
       pobj->previous();
    // trans   ::user::interaction::OnSize(psize->m_wparam, size.cx, size.cy);
 
@@ -507,7 +507,7 @@ void simple_scroll_bar::_001OnSize(signal_details * pobj)
 void simple_scroll_bar::_001OnTimer(signal_details * pobj)
 {
 //   return; //xxxtimer
-   SCAST_PTR(::ca2::message::timer, ptimer, pobj)
+   SCAST_PTR(message::timer, ptimer, pobj)
 
       point point;
    rect rect;
@@ -689,7 +689,7 @@ pParentWnd->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_LINEDOWN, m_scrollinfo.nPos), 
 
 void simple_scroll_bar::_001OnCreate(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::create, pcreate, pobj)
+   SCAST_PTR(message::create, pcreate, pobj)
 
       UpdateDrawingObjects();
 
@@ -705,7 +705,7 @@ void simple_scroll_bar::OnDisplayChange(int32_t iBitsPerPixel, size sizeScreen)
 void simple_scroll_bar::pre_translate_message(signal_details * pobj)
 {
 
-   SCAST_PTR(::ca2::message::base, pbase, pobj);
+   SCAST_PTR(message::base, pbase, pobj);
 
    if(pbase->m_pwnd == this)
    {
@@ -821,7 +821,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
    GetClientRect(rectClient);
 
-   if(System.savings().is_trying_to_save(::ca2::resource_processing))
+   if(System.savings().is_trying_to_save(::core::resource_processing))
    {
 
       pdc->FillSolidRect(rectClient, RGB(255,255,255));
@@ -861,7 +861,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
 void simple_scroll_bar::_001OnShowWindow(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::show_window, pshowwindow, pobj)
+   SCAST_PTR(message::show_window, pshowwindow, pobj)
       pshowwindow->m_bRet = false;
 
    // xxx   TwiOnShowWindow(bShow, nStatus);

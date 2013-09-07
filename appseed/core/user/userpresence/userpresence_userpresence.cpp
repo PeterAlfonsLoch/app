@@ -176,12 +176,12 @@ namespace userpresence
    void userpresence::message_window_message_handler(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
 
       if(pbase->m_uiMessage == WM_TIMER)
       {
 
-         SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+         SCAST_PTR(message::timer, ptimer, pobj);
 
          if(&ApplicationUser != NULL)
          {

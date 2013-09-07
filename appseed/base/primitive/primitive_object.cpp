@@ -18,9 +18,9 @@ object::object()
 { 
 /*      try
    {
-      if(::ca2::get_thread_state() != NULL)
+      if(::core::get_thread_state() != NULL)
       {
-         ::ca2::get_thread_state()->m_heapitema.set_heap_alloc(this);
+         ::core::get_thread_state()->m_heapitema.set_heap_alloc(this);
       }
    }
    catch(...)
@@ -36,9 +36,9 @@ object::object(const object& objectSrc)
 
    /*try
    {
-      if(::ca2::get_thread_state() != NULL)
+      if(::core::get_thread_state() != NULL)
       {
-         ::ca2::get_thread_state()->m_heapitema.set_heap_alloc(this);
+         ::core::get_thread_state()->m_heapitema.set_heap_alloc(this);
       }
    }
    catch(...)
@@ -184,14 +184,14 @@ void assert_valid_object(const object * pOb, const char * lpszFileName, int32_t 
 {
    if (pOb == NULL)
    {
-//      TRACE(::ca2::trace::category_AppMsg, 0, "ASSERT_VALID fails with NULL pointer.\n");
+//      TRACE(::core::trace::category_AppMsg, 0, "ASSERT_VALID fails with NULL pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          __debug_break();
       return;     // quick escape
    }
    if (!__is_valid_address(pOb, sizeof(object)))
    {
-      ///TRACE(::ca2::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
+      ///TRACE(::core::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          __debug_break();
       return;     // quick escape
@@ -202,7 +202,7 @@ void assert_valid_object(const object * pOb, const char * lpszFileName, int32_t 
    //   if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
    if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
    {
-//      TRACE(::ca2::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal vtable pointer.\n");
+//      TRACE(::core::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal vtable pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          __debug_break();
       return;     // quick escape
@@ -210,7 +210,7 @@ void assert_valid_object(const object * pOb, const char * lpszFileName, int32_t 
 
    /*if (!__is_valid_address(pOb, typeid(pOb->GetRuntimeClass()->m_nObjectSize, FALSE))
    {
-   TRACE(::ca2::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
+   TRACE(::core::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
    if (__assert_failed_line(lpszFileName, nLine))
    __debug_break();
    return;     // quick escape

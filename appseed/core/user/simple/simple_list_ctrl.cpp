@@ -99,7 +99,7 @@ bool simple_list_control::remove_item(range & range)
 }
 
 
-void simple_list_control::install_message_handling(::ca2::message::dispatch * pinterface)
+void simple_list_control::install_message_handling(message::dispatch * pinterface)
 {
    UNREFERENCED_PARAMETER(pinterface);
 }

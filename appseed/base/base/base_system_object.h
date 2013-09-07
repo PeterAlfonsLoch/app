@@ -7,9 +7,9 @@ inline void * object::operator new(size_t nSize)
    void * p = ::operator new(nSize);
    /*try
    {
-   if(::ca2::get_thread_state() != NULL)
+   if(::core::get_thread_state() != NULL)
    {
-   ::ca2::get_thread_state()->m_heapitema.add_item(p, nSize);
+   ::core::get_thread_state()->m_heapitema.add_item(p, nSize);
    }
    }
    catch(...)
@@ -26,9 +26,9 @@ inline void * object::operator new(size_t nSize, const char * lpszFileName, int3
    void * p = ::operator new(nSize, ___CLIENT_BLOCK, lpszFileName, nLine);
    /*try
    {
-   if(::ca2::get_thread_state() != NULL)
+   if(::core::get_thread_state() != NULL)
    {
-   ::ca2::get_thread_state()->m_heapitema.add_item(p, nSize);
+   ::core::get_thread_state()->m_heapitema.add_item(p, nSize);
    }
    }
    catch(...)

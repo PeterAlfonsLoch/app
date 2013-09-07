@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
 
    class CLASS_DECL_ca2 job :
-      virtual public ::ca2::thread
+      virtual public ::core::thread
    {
    public:
 
@@ -24,6 +24,6 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace core
 
 

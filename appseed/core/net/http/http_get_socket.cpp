@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -65,11 +65,11 @@ namespace ca2
 
    string http_get_socket::MyUseragent()
    {
-	   return "ca2-sockets/10.0.2";
+	   return "core-sockets/10.0.2";
    }
 
 
-} // namespace ca2
+} // namespace core
 
 
 

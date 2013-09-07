@@ -30,7 +30,7 @@ namespace user
    }
 #endif //DEBUG
 
-   void main_frame::install_message_handling(::ca2::message::dispatch * pinterface)
+   void main_frame::install_message_handling(message::dispatch * pinterface)
    {
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE,         pinterface, this, &main_frame::_001OnCreate);
@@ -39,7 +39,7 @@ namespace user
    void main_frame::_001OnCreate(signal_details * pobj)
    {
 
-//      SCAST_PTR(::ca2::message::create, pcreate, pobj)
+//      SCAST_PTR(message::create, pcreate, pobj)
       
       m_bWindowFrame = !Application.directrix()->m_varTopicQuery["client_only"].is_set();
 

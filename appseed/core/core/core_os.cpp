@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace core
 {
 
    
@@ -282,14 +282,14 @@ namespace ca2
 
    }
 
-   void os::set_file_status(const char * lpszFileName, const ::ca2::file_status& status)
+   void os::set_file_status(const char * lpszFileName, const ::core::file_status& status)
    {
 
       throw interface_only_exception(get_app());
 
    }
 
-} // namespace ca2
+} // namespace core
 
 
 

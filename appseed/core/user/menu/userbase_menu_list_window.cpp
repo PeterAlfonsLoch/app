@@ -42,7 +42,7 @@ namespace user
    {
    }
 
-   void menu_list_window::install_message_handling(::ca2::message::dispatch * pinterface)
+   void menu_list_window::install_message_handling(message::dispatch * pinterface)
    {
       control::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &menu_list_window::_001OnCreate);
@@ -200,7 +200,7 @@ namespace user
 
    void menu_list_window::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj)
+      SCAST_PTR(message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == BaseWndMenuCmdUi)
       {
          _UpdateCmdUi(m_pitem);

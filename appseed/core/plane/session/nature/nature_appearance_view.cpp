@@ -20,7 +20,7 @@ namespace nature
    {
    }
 
-   void appearance_view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void appearance_view::install_message_handling(message::dispatch * pinterface)
    {
       ::userex::pane_tab_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &appearance_view::_001OnCreate);
@@ -115,7 +115,7 @@ namespace nature
       switch(pcreatordata->m_id)
       {
       case view_image_folder:
-         pview->Initialize(&filemanager.std(), "Image", "ca2.nature.ImageDirectorySet", true);
+         pview->Initialize(&filemanager.std(), "Image", "core.nature.ImageDirectorySet", true);
          break;
       }
       pview->connect_command("edit_add", &folder_selection_list_view::_001OnAdd);

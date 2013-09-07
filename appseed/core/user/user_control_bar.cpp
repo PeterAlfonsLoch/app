@@ -34,7 +34,7 @@ namespace user
       m_nMRUWidth = 32767;
    }
 
-   void control_bar::install_message_handling(::ca2::message::dispatch * pinterface)
+   void control_bar::install_message_handling(message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &control_bar::_001OnTimer);
@@ -284,7 +284,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
 
       UINT message = pbase->m_uiMessage;
 
@@ -312,7 +312,7 @@ namespace user
       if (pFrameWnd != NULL && pFrameWnd->m_bHelpMode)
          return;
 
-      // since 'IsDialogMessage' will eat frame ::ca2::window accelerators,
+      // since 'IsDialogMessage' will eat frame ::core::window accelerators,
       //   we call all frame windows' pre_translate_message first
       while (pOwner != NULL)
       {
@@ -336,7 +336,7 @@ namespace user
       if(pobj->m_bRet)
          return;
 
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
 
       ASSERT_VALID(this);
 
@@ -390,7 +390,7 @@ namespace user
    void control_bar::_001OnHelpHitTest(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca2::message::base, pbase, pobj)
+//      SCAST_PTR(message::base, pbase, pobj)
       ASSERT_VALID(this);
 
    }
@@ -439,7 +439,7 @@ namespace user
 
    void control_bar::_001OnMouseActivate(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse_activate, pmouseactivate, pobj)
+      SCAST_PTR(message::mouse_activate, pmouseactivate, pobj)
       // call default when toolbar is not floating
       if (!IsFloating())
       {
@@ -470,7 +470,7 @@ namespace user
 
    void control_bar::EraseNonClient()
    {
-      // get ::ca2::window DC that is clipped to the non-client area
+      // get ::core::window DC that is clipped to the non-client area
    /* trans   CWindowDC spgraphics(this);
       rect rectClient;
       GetClientRect(rectClient);
@@ -494,7 +494,7 @@ namespace user
 
    void control_bar::EraseNonClient(::draw2d::graphics * pdc)
    {
-      // get ::ca2::window DC that is clipped to the non-client area
+      // get ::core::window DC that is clipped to the non-client area
       rect rectClient;
       GetClientRect(rectClient);
       rect rectWindow;
@@ -528,7 +528,7 @@ namespace user
 
    void control_bar::_001OnCtlColor(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::ctl_color, pctlcolor, pobj)
+      SCAST_PTR(message::ctl_color, pctlcolor, pobj)
       LRESULT lResult;
       if (pctlcolor->m_pwnd->SendChildNotifyLastMsg(&lResult))
       {
@@ -538,7 +538,7 @@ namespace user
       }
 
       // force black text on gray background all the time
-/*      if (!::ca2::window::GrayCtlColor((HDC)pctlcolor->m_pdc->get_os_data(), pctlcolor->m_pwnd->get_os_data(), pctlcolor->m_nCtlType,
+/*      if (!::core::window::GrayCtlColor((HDC)pctlcolor->m_pdc->get_os_data(), pctlcolor->m_pwnd->get_os_data(), pctlcolor->m_nCtlType,
          afxData.hbrBtnFace, afxData.clrBtnText))
       {
          pctlcolor->set_lresult(Default());
@@ -551,7 +551,7 @@ namespace user
 
    void control_bar::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       // only start dragging if clicked in "void" space
       if (m_pDockBar != NULL )
          //!m_pDockContext->m_bTracking  && OnToolHitTest(pmouse->m_pt, NULL) == -1)
@@ -569,7 +569,7 @@ namespace user
 
    void control_bar::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       if(m_bDockTrack)
       {
    //      m_pDockContext->OnBarLButtonUp(pmouse->m_nFlags, pmouse->m_pt);
@@ -579,7 +579,7 @@ namespace user
 
    void control_bar::_001OnMouseMove(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       if(m_bDockTrack)
       {
    //      m_pDockContext->OnBarMouseMove(pmouse->m_nFlags, pmouse->m_pt);
@@ -589,13 +589,13 @@ namespace user
 
    void control_bar::_001OnLButtonDblClk(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       pmouse->previous();
    }
 
    void control_bar::_001OnIdleUpdateCmdUI(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
       // handle delay hide/show
       bool bVis = (GetStyle() & WS_VISIBLE) != 0;
       UINT swpFlags = 0;
@@ -626,7 +626,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pobj);
       // update the indicators before becoming visible
-      ::ca2::message::base base(get_app());
+      message::base base(get_app());
       LRESULT lresult;
       base.set(this, WM_IDLEUPDATECMDUI, TRUE, 0L, lresult);
       _001OnIdleUpdateCmdUI(&base);
@@ -658,16 +658,16 @@ namespace user
          }
          if (swpFlags != 0)
          {
-            // make the ::ca2::window seem visible/hidden
+            // make the ::core::window seem visible/hidden
             dwStyle ^= WS_VISIBLE;
             // clear delay flags
             m_nStateFlags &= ~(delayShow|delayHide);
-            // hide/show the ::ca2::window if actually doing layout
+            // hide/show the ::core::window if actually doing layout
             SetWindowPos(0, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
          }
          else
          {
-            // clear delay flags -- ::ca2::window is already in correct state
+            // clear delay flags -- ::core::window is already in correct state
             m_nStateFlags &= ~(delayShow|delayHide);
          }
       }
@@ -676,7 +676,7 @@ namespace user
 
    void control_bar::_001OnSizeParent(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
       __SIZEPARENTPARAMS* lpLayout = (__SIZEPARENTPARAMS*) pbase->m_lparam.m_lparam;
       uint32_t dwStyle = RecalcDelayShow(lpLayout);
 
@@ -734,7 +734,7 @@ namespace user
          rect.right = rect.left + size.cx;
          rect.bottom = rect.top + size.cy;
 
-         // only resize the ::ca2::window if doing layout and not just rect query
+         // only resize the ::core::window if doing layout and not just rect query
          if (lpLayout->hDWP != NULL)
             __reposition_window(lpLayout, this, &rect);
       }

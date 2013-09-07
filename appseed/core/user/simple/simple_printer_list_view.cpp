@@ -25,7 +25,7 @@ simple_printer_list_view::~simple_printer_list_view()
 }
 
 
-void simple_printer_list_view::install_message_handling(::ca2::message::dispatch * pdispatch)
+void simple_printer_list_view::install_message_handling(message::dispatch * pdispatch)
 {
 
    simple_list_view::install_message_handling(pdispatch);
@@ -36,7 +36,7 @@ void simple_printer_list_view::install_message_handling(::ca2::message::dispatch
 
 void simple_printer_list_view::_001OnCreate(signal_details * pobj)
 {
-//   SCAST_PTR(::ca2::message::create, pcreate, pobj);
+//   SCAST_PTR(message::create, pcreate, pobj);
 
    pobj->previous();
 

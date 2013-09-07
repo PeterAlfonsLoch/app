@@ -17,7 +17,7 @@ namespace user
    {
    }
 
-   void tree_window::install_message_handling(::ca2::message::dispatch * pinterface)
+   void tree_window::install_message_handling(message::dispatch * pinterface)
    {
 
 

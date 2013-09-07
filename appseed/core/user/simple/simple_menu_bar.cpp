@@ -26,7 +26,7 @@ simple_menu_bar::~simple_menu_bar()
 {
 }
 
-void simple_menu_bar::install_message_handling(::ca2::message::dispatch * pdispatch)
+void simple_menu_bar::install_message_handling(message::dispatch * pdispatch)
 {
    simple_toolbar::install_message_handling(pdispatch);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE      , pdispatch, this, &simple_menu_bar::_001OnMouseMove);
@@ -133,7 +133,7 @@ bool simple_menu_bar::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
 void simple_menu_bar::_001OnMouseMove(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+   SCAST_PTR(message::mouse, pmouse, pobj)
    _001Hover(pmouse->m_pt);
    pobj->previous();
 }
@@ -168,14 +168,14 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(int32_t iItem)
 
 void simple_menu_bar::_001OnNcMouseMove(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+   SCAST_PTR(message::mouse, pmouse, pobj)
    _001Hover(pmouse->m_pt);
 // trans   simple_toolbar::OnNcMouseMove(pmouse->m_nFlags, pmouse->m_pt);
 }
 
 void simple_menu_bar::pre_translate_message(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::base, pbase, pobj);
+   SCAST_PTR(message::base, pbase, pobj);
    if(pbase->m_uiMessage == WM_USER && pbase->m_pwnd == this)
    {
       if(pbase->m_wparam == 33)
@@ -189,7 +189,7 @@ void simple_menu_bar::pre_translate_message(signal_details * pobj)
 
 void simple_menu_bar::_001OnCreate(signal_details * pobj)
 {
-//   SCAST_PTR(::ca2::message::create, pcreate, pobj)
+//   SCAST_PTR(message::create, pcreate, pobj)
    if(pobj->previous())
       return;
 
@@ -560,7 +560,7 @@ bool simple_menu_bar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCt
    dwStyle |= dwCtrlStyle;
 
 //   ASSERT(gen_ComCtlVersion != -1);
-//   _::ca2::GetDropDownWidth();
+//   _::core::GetDropDownWidth();
 //   ASSERT(gen_DropDownWidth != -1);
 
    // create the oswindow
@@ -577,7 +577,7 @@ bool simple_menu_bar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCt
 
 void simple_menu_bar::_001OnLButtonDown(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+   SCAST_PTR(message::mouse, pmouse, pobj)
    int32_t iItem = _001HitTest(pmouse->m_pt);
    if(iItem >= 0)
    {
@@ -735,7 +735,7 @@ void simple_menu_bar::_001Hover()
 
 void simple_menu_bar::_001OnTimer(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::timer, ptimer, pobj)
+   SCAST_PTR(message::timer, ptimer, pobj)
    if(ptimer->m_nIDEvent == TIMER_HOVER)
    {
       _001Hover();
@@ -789,7 +789,7 @@ int32_t simple_menu_bar::_001GetHoverItem()
 
 void simple_menu_bar::_001OnAppLanguage(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::base, pbase, pobj)
+   SCAST_PTR(message::base, pbase, pobj)
    send_message(WM_CANCELMODE);
    LoadMenuBar(m_uiResourceID);
    _001RedrawWindow();

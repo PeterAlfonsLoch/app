@@ -51,22 +51,22 @@ string template_std_ostringstream::str() const
 
 ::file::plain_text_stream::::file::plain_text_stream()
 {
-   ::ca2::str_reader::m_pstr = &m_str;
-   ::ca2::str_writer::m_pstr = &m_str;
+   ::core::str_reader::m_pstr = &m_str;
+   ::core::str_writer::m_pstr = &m_str;
 }
 
 ::file::plain_text_stream::::file::plain_text_stream(const char * psz) :
    m_str(psz)
 {
-   ::ca2::str_reader::m_pstr = &m_str;
-   ::ca2::str_writer::m_pstr = &m_str;
+   ::core::str_reader::m_pstr = &m_str;
+   ::core::str_writer::m_pstr = &m_str;
 }
 
 ::file::plain_text_stream::::file::plain_text_stream(const string & str) :
    m_str(str)
 {
-   ::ca2::str_reader::m_pstr = &m_str;
-   ::ca2::str_writer::m_pstr = &m_str;
+   ::core::str_reader::m_pstr = &m_str;
+   ::core::str_writer::m_pstr = &m_str;
 }
 
 string & ::file::plain_text_stream::str()

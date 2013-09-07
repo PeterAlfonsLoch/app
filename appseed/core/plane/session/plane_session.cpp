@@ -119,7 +119,7 @@ namespace plane
       m_strBaseSupportId   = "ca2_bergedge";
       m_strInstallToken    = "session";
       m_bLicense           = false;
-      m_eexclusiveinstance = ::ca2::ExclusiveInstanceNone;
+      m_eexclusiveinstance = ::core::ExclusiveInstanceNone;
 
    }
 
@@ -173,10 +173,10 @@ namespace plane
 
       if(Session.is_remote_session())
       {
-         /*Session.savings().save(::ca2::resource_display_bandwidth);
-         Session.savings().save(::ca2::resource_blur_background);
-         Session.savings().save(::ca2::resource_blurred_text_embossing);
-         Session.savings().save(::ca2::resource_translucent_background);*/
+         /*Session.savings().save(::core::resource_display_bandwidth);
+         Session.savings().save(::core::resource_blur_background);
+         Session.savings().save(::core::resource_blurred_text_embossing);
+         Session.savings().save(::core::resource_translucent_background);*/
       }
 
       /*      if(System.directrix()->m_varTopicQuery.has_property("install")
@@ -605,7 +605,7 @@ namespace plane
          }
          else if (pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count() > 1)
          {
-            start_application("application", "app/ca2/bergedge", pcreatecontext);
+            start_application("application", "app/core/bergedge", pcreatecontext);
             return;
          }
 
@@ -812,7 +812,7 @@ namespace plane
          }
          else
          {
-            strId = "app/ca2/default_file_handler";
+            strId = "app/core/default_file_handler";
          }
 
       }
@@ -836,10 +836,10 @@ namespace plane
       m_puiParent = NULL;
    }
 
-   //   void session::on_exclusive_instance_conflict(::ca2::EExclusiveInstance eexclusive)
+   //   void session::on_exclusive_instance_conflict(::core::EExclusiveInstance eexclusive)
    //   {
    //
-   //      if(eexclusive == ::ca2::ExclusiveInstanceLocalId)
+   //      if(eexclusive == ::core::ExclusiveInstanceLocalId)
    //      {
    //         /*
    //         ::::file::memory_buffer file(get_app());
@@ -900,7 +900,7 @@ namespace plane
 alt1:
             if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
             {
-               if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
+               if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
                {
                   string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
                   if(::str::begins_eat(strCommand, "ca2prompt\r")
@@ -943,7 +943,7 @@ alt1:
 
       if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
       {
-         if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
+         if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
          {
             string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
             if(::str::begins_eat(strCommand, "ca2prompt\r")
@@ -991,7 +991,7 @@ alt1:
    /*void session::request_application(const char * pszId, var varFile, var varQuery, application_bias * pbiasCreate)
    {
 
-   ::ca2::application_request request;
+   ::core::application_request request;
 
    request.m_iEdge         = m_iEdge;
    request.m_strApp        = pszId;
@@ -1212,7 +1212,7 @@ alt1:
 
       strSentinelPath = System.dir().element("stage/x86/app-sentinel.exe");
 
-      System.os().local_machine_set_run("ca2 app-sentinel", "\"" + strSentinelPath + "\"");
+      System.os().local_machine_set_run("core app-sentinel", "\"" + strSentinelPath + "\"");
 
 
       System.os().defer_register_ca2_plugin_for_mozilla();
@@ -1479,9 +1479,9 @@ alt1:
 
    }
 
-   void session::on_exclusive_instance_conflict(::ca2::EExclusiveInstance eexclusive)
+   void session::on_exclusive_instance_conflict(::core::EExclusiveInstance eexclusive)
    {
-      if(eexclusive == ::ca2::ExclusiveInstanceLocalId)
+      if(eexclusive == ::core::ExclusiveInstanceLocalId)
       {
 #ifdef WINDOWSEX
          ::::file::memory_buffer file(get_app());
@@ -1508,7 +1508,7 @@ alt1:
    /*void session::request_application(const char * pszId, var varFile, var varQuery, application_bias * pbiasCreate)
    {
 
-   ::ca2::application_request request;
+   ::core::application_request request;
 
    request.m_iEdge         = m_iEdge;
    request.m_strApp        = pszId;

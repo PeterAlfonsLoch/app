@@ -96,7 +96,7 @@ namespace libcompress
      virtual HRes SetOperationResult(int32_t resultEOperationResult) specifier; \
 
    class CLASS_DECL_ca2 archive_extract_callback_interface :
-      virtual public ::ca2::progress_interface
+      virtual public ::core::progress_interface
    {
    public:
       CA2_COMPRESS_INTERFACE_archive_ExtractCallback(= 0)
@@ -174,7 +174,7 @@ namespace libcompress
      virtual HRes SetOperationResult(int32_t operationResult) specifier; \
 
    class CLASS_DECL_ca2 archive_update_callback_interface :
-      virtual public ::ca2::progress_interface
+      virtual public ::core::progress_interface
    {
    public:
      CA2_COMPRESS_INTERFACE_archive_update_callback(= 0);

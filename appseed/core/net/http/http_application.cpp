@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -44,7 +44,7 @@ namespace ca2
 
          domain.create(System.url().get_server(psignal->m_strUrl));
 
-         if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(psignal->m_strUrl), "/matter/"))
+         if(domain.m_strRadix == "core" && ::str::begins(System.url().get_object(psignal->m_strUrl), "/matter/"))
          {
             
             string strUrl(psignal->m_strUrl);
@@ -145,11 +145,11 @@ namespace ca2
 
       string application::get(const char * pszUrl, ::fontopus::user * puser)
       {
-         if(puser == NULL && ::str::find_ci("/matter.ca2.cc/", pszUrl) < 0 && ::str::find_ci("-matter.ca2.cc/", pszUrl) < 0)
+         if(puser == NULL && ::str::find_ci("/matter.core.cc/", pszUrl) < 0 && ::str::find_ci("-matter.core.cc/", pszUrl) < 0)
          {
-            if(::ca2::get_thread() != NULL)
+            if(::core::get_thread() != NULL)
             {
-               keeper < string > keepWorkUrl(&::ca2::get_thread()->m_strWorkUrl, pszUrl, ::ca2::get_thread()->m_strWorkUrl, true);
+               keeper < string > keepWorkUrl(&::core::get_thread()->m_strWorkUrl, pszUrl, ::core::get_thread()->m_strWorkUrl, true);
                puser = &ApplicationUser;
             }
             else
@@ -346,5 +346,5 @@ namespace ca2
    } // namespace http
 
 
-} // namespace ca2
+} // namespace core
 

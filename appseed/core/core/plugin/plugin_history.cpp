@@ -6,7 +6,7 @@ namespace plugin
 
    history::history(sp(base_application) papp, plugin * pplugin) :
       element(papp),
-      ::ca2::history(papp),
+      ::core::history(papp),
       m_pplugin(pplugin)
    {
    }

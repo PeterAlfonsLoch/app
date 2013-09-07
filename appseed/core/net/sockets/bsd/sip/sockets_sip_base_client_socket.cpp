@@ -77,7 +77,7 @@ namespace sockets
                   if (m_chunk_line.get_length() > 1 && m_chunk_line.Mid(m_chunk_line.get_length() - 2) == "\r\n")
                   {
                      m_chunk_line = m_chunk_line.Left(m_chunk_line.get_length() - 2);
-                     ::ca2::parse pa(m_chunk_line, ";");
+                     ::core::parse pa(m_chunk_line, ";");
                      string size_str = pa.getword();
                      m_chunk_size = ::hex::to_uint(size_str);
                      if (!m_chunk_size)
@@ -189,7 +189,7 @@ namespace sockets
 
 
          }
-         ::ca2::parse pa(line);
+         ::core::parse pa(line);
          string str = pa.getword();
          if (str.get_length() > 4 &&  ::str::begins_ci(str, "http/")) // response
          {
@@ -235,7 +235,7 @@ namespace sockets
          }
          return;
       }
-      ::ca2::parse pa(line,":");
+      ::core::parse pa(line,":");
       string strKey = pa.getword();
       id key(strKey.make_lower());
       string value = pa.getrest();
@@ -371,14 +371,14 @@ namespace sockets
 
    void sip_base_client_socket::url_this(const string & url_in,string & protocol,string & host,port_t& port,string & url,string & file)
    {
-      ::ca2::parse pa(url_in,"/");
+      ::core::parse pa(url_in,"/");
       protocol = pa.getword(); // http
       if (!strcasecmp(protocol, "https:"))
       {
    #ifdef HAVE_OPENSSL
          EnableSSL();
    #else
-         Handler().LogError(this, "url_this", -1, "SSL not available", ::ca2::log::level_warning);
+         Handler().LogError(this, "url_this", -1, "SSL not available", ::core::log::level_warning);
    #endif
          port = 443;
       }
@@ -389,13 +389,13 @@ namespace sockets
       host = pa.getword();
       if (strstr(host,":"))
       {
-         ::ca2::parse pa(host,":");
+         ::core::parse pa(host,":");
          pa.getword(host);
          port = static_cast<port_t>(pa.getvalue());
       }
       url = "/" + pa.getrest();
       {
-         ::ca2::parse pa(url,"/");
+         ::core::parse pa(url,"/");
          string tmp = pa.getword();
          while (tmp.get_length())
          {

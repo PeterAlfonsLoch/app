@@ -27,7 +27,7 @@ public:
 
 
 
-namespace ca2
+namespace core
 {
 
    class thread;

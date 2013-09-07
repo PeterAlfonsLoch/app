@@ -22,7 +22,7 @@ namespace user
    {
       if(IsWindow())
          return;
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
       switch(pbase->m_uiMessage)
       {
       case WM_MOUSEMOVE:
@@ -213,7 +213,7 @@ namespace user
    // WM_PAINT message handler.
    //
    // Output:
-   // See ca2 API documentation.
+   // See core API documentation.
    //
    //
    ///////////////////////////////////////////////////////////
@@ -302,7 +302,7 @@ namespace user
          break;
       }
 
-       ::ca2::window::OnTimer(nIDEvent);
+       ::core::window::OnTimer(nIDEvent);
    }
 
 
@@ -343,7 +343,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnSize(UINT nType, int32_t cx, int32_t cy)
    {
-       ::ca2::window::OnSize(nType, cx, cy);
+       ::core::window::OnSize(nType, cx, cy);
 
       UpdateDrawingObjects();
    }
@@ -422,7 +422,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnDestroy()
    {
-   //    ::ca2::window::OnDestroy();
+   //    ::core::window::OnDestroy();
    }
 
    ///////////////////////////////////////////////////////////
@@ -579,7 +579,7 @@ namespace user
    }
 
 
-   void tool_tip_window::SetPositionHint(sp(::ca2::window) pwnd, e_position eposition)
+   void tool_tip_window::SetPositionHint(sp(::core::window) pwnd, e_position eposition)
    {
       rect rect;
       pwnd->GetWindowRect(rect);

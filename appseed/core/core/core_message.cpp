@@ -17,16 +17,16 @@ struct myfx_CTLCOLOR
 };
 
 
-namespace ca2
+namespace core
 {
 
 
    namespace message
    {
 
-      ::ca2::signal * CreateSignal()
+      ::core::signal * CreateSignal()
       {
-         return new ::ca2::signal();
+         return new ::core::signal();
       }
 
 
@@ -119,7 +119,7 @@ namespace ca2
             break;
          case PrototypeCreate:
             {
-               pbase = canew(::ca2::message::create(get_app()));
+               pbase = canew(message::create(get_app()));
             }
             break;
          case PrototypeNcActivate:
@@ -288,7 +288,7 @@ namespace ca2
 //         dispatch_event_ok()->wait();
 
          SignalPtrArray signalptra;
-         SCAST_PTR(::ca2::message::base, pbase, pobj);
+         SCAST_PTR(message::base, pbase, pobj);
          if(pbase->m_uiMessage == (WM_APP + 2014))
          {
             sp(base) pbase2 = pbase->m_lparam;
@@ -303,7 +303,7 @@ namespace ca2
          for(int32_t i = 0; i < signalptra.get_size(); i++)
          {
             Signal & signal = *signalptra[i];
-            ::ca2::signal * psignal = signal.m_psignal;
+            ::core::signal * psignal = signal.m_psignal;
             pobj->m_psignal = psignal;
             psignal->emit(pobj);
             if(pobj->m_bRet)
@@ -419,9 +419,9 @@ namespace ca2
       }
 
 
-      sp(::ca2::window) dispatch::_GetWnd()
+      sp(::core::window) dispatch::_GetWnd()
       {
-         return dynamic_cast < ::ca2::window * > (this);
+         return dynamic_cast < ::core::window * > (this);
       }
 
       Handler::Handler()
@@ -535,7 +535,7 @@ namespace ca2
          }
       }
 
-      base::base(sp(base_application) papp, ::ca2::signal * psignal) :
+      base::base(sp(base_application) papp, ::core::signal * psignal) :
          element(papp),
          signal_details(psignal)
       {
@@ -610,7 +610,7 @@ namespace ca2
 
       activate::activate(sp(base_application) papp) :
          element(papp),
-         ::ca2::message::base(papp)
+         message::base(papp)
       {
       }
 
@@ -626,7 +626,7 @@ namespace ca2
 
       erase_bkgnd::erase_bkgnd(sp(base_application) papp) :
          element(papp),
-         ::ca2::message::base(papp)
+         message::base(papp)
       {
       }
 
@@ -637,7 +637,7 @@ namespace ca2
 
       key::key(sp(base_application) papp) :
          element(papp),
-         ::ca2::message::base(papp)
+         message::base(papp)
       {
       }
 
@@ -658,7 +658,7 @@ namespace ca2
 
       nc_activate::nc_activate(sp(base_application) papp) :
          element(papp),
-         ::ca2::message::base(papp)
+         message::base(papp)
       {
       }
 
@@ -722,7 +722,7 @@ namespace ca2
       {
          throw not_implemented(get_app());
          return NULL;
-//            return ::ca2::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
+//            return ::core::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
       }
 
       UINT mouse_activate::GetHitTest()
@@ -735,11 +735,11 @@ namespace ca2
          return HIWORD(m_lparam);
       }
 
-      sp(::ca2::window) context_menu::GetWindow()
+      sp(::core::window) context_menu::GetWindow()
       {
          throw not_implemented(get_app());
          return NULL;
-//            return ::ca2::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
+//            return ::core::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
       }
 
       point context_menu::GetPoint()
@@ -1053,7 +1053,7 @@ namespace ca2
                   set_cursor setcursor(get_app());
                   setcursor.m_psignal = psignal;
                   setcursor.set(message, wparam, lparam, lresult);
-                  //setcursor.m_pWnd = ::ca2::window::from_os_data(reinterpret_cast<oswindow>(wparam));
+                  //setcursor.m_pWnd = ::core::window::from_os_data(reinterpret_cast<oswindow>(wparam));
                   setcursor.m_nHitTest = LOWORD(lparam);
                   setcursor.m_message = HIWORD(lparam);
                   psignal->emit(&setcursor);
@@ -1173,11 +1173,11 @@ namespace ca2
                   myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
                   ::draw2d::graphics_sp dcTemp;
    //               dcTemp.set_handle1(pCtl->hDC);
-                  ::ca2::window wndTemp;
+                  ::core::window wndTemp;
    //               wndTemp.set_handle(pCtl->oswindow);
                   UINT nCtlType = pCtl->nCtlType;
-                  // if not coming from a permanent ::ca2::window, use stack temporary
-   //               sp(::ca2::window) pWnd = ::ca2::window::FromHandlePermanent(wndTemp.get_handle());
+                  // if not coming from a permanent ::core::window, use stack temporary
+   //               sp(::core::window) pWnd = ::core::window::FromHandlePermanent(wndTemp.get_handle());
    //               if (pWnd == NULL)
                {
 

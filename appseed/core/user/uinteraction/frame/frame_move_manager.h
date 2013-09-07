@@ -46,10 +46,10 @@ namespace frame
       sp(::user::interaction) GetEventWindow();
       sp(::user::interaction) GetMoveWindow();
 
-      bool Relay(::ca2::message::mouse * pmouse);
-      bool _000OnLButtonDown(::ca2::message::mouse * pmouse);
-      bool _000OnMouseMove(::ca2::message::mouse * pmouse);
-      bool _000OnLButtonUp(::ca2::message::mouse * pmouse);
+      bool Relay(message::mouse * pmouse);
+      bool _000OnLButtonDown(message::mouse * pmouse);
+      bool _000OnMouseMove(message::mouse * pmouse);
+      bool _000OnLButtonUp(message::mouse * pmouse);
       bool _000OnTimer(UINT nIDEvent);
 
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
    class CLASS_DECL_ca2 fs_interface
@@ -14,4 +14,4 @@ namespace ca2
       virtual bool get_info(const char * pszPath, const char * pszInfo, var & varInfo);
    };
 
-} // namespace ca2
+} // namespace core

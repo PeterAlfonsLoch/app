@@ -167,15 +167,15 @@ int32_t LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & 
    {
       lpszBegin++;
       chTemp = *lpszBegin;
-      int32_t   ca2 = (::isdigit(chTemp) ? 10 :
+      int32_t   core = (::isdigit(chTemp) ? 10 :
                (chTemp == 'x' ||
                   chTemp == 'X' ? 16 : 0));
-      if (ca2)
+      if (core)
       {
-         if (ca2 == 16)
+         if (core == 16)
             lpszBegin++;
 
-         uint32_t  ulNum = (uint32_t) ::strtoul(lpszBegin, NULL, ca2);
+         uint32_t  ulNum = (uint32_t) ::strtoul(lpszBegin, NULL, core);
          strChar = ::str::uni_to_utf8(ulNum);
          return (int32_t) (lpszEnd - lpszEntity + 1);
       }

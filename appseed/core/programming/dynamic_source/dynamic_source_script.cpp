@@ -61,7 +61,7 @@ namespace dynamic_source
       return System.dir().path("C:\\netnode\\stage\\x64\\", strPath);
 #else
 ::str::begins_eat(strPath, ".");
-      return System.dir().path("/ca2/stage/x86/", "lib" + strPath);
+      return System.dir().path("/core/stage/x86/", "lib" + strPath);
 #endif
 
    }
@@ -424,7 +424,7 @@ namespace dynamic_source
       {
          try
          {
-            ::ca2::set_thread_priority(::ca2::scheduling_priority_highest);
+            ::core::set_thread_priority(::core::scheduling_priority_highest);
          }
          catch(...)
          {
@@ -455,7 +455,7 @@ namespace dynamic_source
          // don't bother with sleeps if not compiling even if there are errors
          try
          {
-            ::ca2::set_thread_priority(::ca2::scheduling_priority_normal);
+            ::core::set_thread_priority(::core::scheduling_priority_normal);
          }
          catch(...)
          {

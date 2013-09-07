@@ -1,16 +1,16 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
-   TimerListener::TimerListener()
+   timer_listener::timer_listener()
    {
 
    }
 
-   TimerListener::~TimerListener()
+   timer_listener::~timer_listener()
    {
 
    }
 
-} // namespace ca2
+} // namespace core

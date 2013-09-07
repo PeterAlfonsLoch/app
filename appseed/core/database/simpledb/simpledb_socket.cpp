@@ -52,9 +52,9 @@ namespace simpledb
          {
       //      __debug_break();
          }
-         if(strHost == "ca2.am")
+         if(strHost == "core.am")
          {
-            TRACE("simpledb::socket::send_response ca2.am");
+            TRACE("simpledb::socket::send_response core.am");
 //            uint32_t dw = ::get_tick_count();
           //  __debug_break();
          }
@@ -119,7 +119,7 @@ namespace simpledb
          {
             strValue = "https://" + Application.m_strFontopusServer + System.url().get_object(strValue);
          }
-         else if(domain.m_strName == "account.ca2.cc" && System.url().get_protocol(strValue) == "https")
+         else if(domain.m_strName == "account.core.cc" && System.url().get_protocol(strValue) == "https")
          {
             strValue = "https://" + Application.m_strFontopusServer + System.url().get_object(strValue);
          }

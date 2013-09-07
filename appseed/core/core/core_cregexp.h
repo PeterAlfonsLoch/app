@@ -141,7 +141,7 @@ public:
     EMetaSymbols metaSymbol;
     string *symbol;
     string *uint16_t;
-    ::ca2::ch_class *charclass;
+    ::core::ch_class *charclass;
     SRegInfo *param;
   }un;
   string namedata;

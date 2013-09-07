@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca2/database/database.h"
+#include "core/database/database.h"
 
 
 namespace simpledb

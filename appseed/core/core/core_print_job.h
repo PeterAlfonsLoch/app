@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
    class CLASS_DECL_ca2 print_job :
-      virtual public ::ca2::job
+      virtual public ::core::job
    {
    public:
 
@@ -22,4 +22,4 @@ namespace ca2
 
    };
 
-} // namespace ca2
+} // namespace core

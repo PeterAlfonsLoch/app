@@ -38,7 +38,7 @@ namespace sockets
          // in a general place as this class, because no one will know when it will be closed.
          // And to keep alive in http - http_tunnel - it is better to create a session class,
          // that receives http requests and finally close connection...
-         // session though is not currently implemented in ca2...
+         // session though is not currently implemented in core...
          //m_request.m_propertysetHeader["Proxy-Connection"] = "Keep-Alive";
 
 
@@ -175,7 +175,7 @@ namespace sockets
          {
             if (!Connecting())
             {
-               Handler().LogError(this, "http_get_socket", -1, "connect() failed miserably", ::ca2::log::level_fatal);
+               Handler().LogError(this, "http_get_socket", -1, "connect() failed miserably", ::core::log::level_fatal);
                SetCloseAndDelete();
             }
             return false;
@@ -189,7 +189,7 @@ namespace sockets
          {
             if (!Connecting())
             {
-               Handler().LogError(this, "http_get_socket", -1, "connect() failed miserably", ::ca2::log::level_fatal);
+               Handler().LogError(this, "http_get_socket", -1, "connect() failed miserably", ::core::log::level_fatal);
                SetCloseAndDelete();
             }
             return false;

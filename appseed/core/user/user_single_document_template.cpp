@@ -16,7 +16,7 @@ namespace user
    {
 #ifdef DEBUG
       if (m_pdocument != NULL)
-         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document_interface.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document_interface.\n");
 #endif
    }
 
@@ -126,7 +126,7 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // user has been alerted to what failed in on_new_document
-            TRACE(::ca2::trace::category_AppMsg, 0, "::user::document_interface::on_new_document returned FALSE.\n");
+            TRACE(::core::trace::category_AppMsg, 0, "::user::document_interface::on_new_document returned FALSE.\n");
             if (bCreated)
                pFrame->DestroyWindow();    // will destroy ::user::document_interface
             return;
@@ -143,7 +143,7 @@ namespace user
          if (!pdocument->on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
          {
             // user has been alerted to what failed in on_open_document
-            TRACE(::ca2::trace::category_AppMsg, 0, "::user::document_interface::on_open_document returned FALSE.\n");
+            TRACE(::core::trace::category_AppMsg, 0, "::user::document_interface::on_open_document returned FALSE.\n");
             if (bCreated)
             {
                pFrame->DestroyWindow();    // will destroy ::user::document_interface
@@ -160,7 +160,7 @@ namespace user
 
                if (!pdocument->on_new_document())
                {
-                  TRACE(::ca2::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
+                  TRACE(::core::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
                      "to open a ::user::document_interface - trying to continue.\n");
                   // assume we can continue
                }
@@ -170,13 +170,13 @@ namespace user
          pdocument->set_path_name(pcreatecontext->m_spCommandLine->m_varFile);
       }
 
-      ::ca2::thread* pThread = System.GetThread();
+      ::core::thread* pThread = System.GetThread();
       ASSERT(pThread);
       if(bCreated)
       {
          if(pThread->GetMainWnd() == NULL)
          {
-            // set as main frame (InitialUpdateFrame will show the ::ca2::window)
+            // set as main frame (InitialUpdateFrame will show the ::core::window)
             pThread->SetMainWnd(pFrame);
          }
          if(Application.m_puiMain == NULL)

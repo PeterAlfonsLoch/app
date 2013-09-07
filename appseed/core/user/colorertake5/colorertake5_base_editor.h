@@ -169,7 +169,7 @@ namespace colorertake5
       * This method can be called periodically in background thread
       * to make possible background parsing process.
       * @param lno Line number, for which validation is requested.
-      *   If this number is in the current visible ::ca2::window range,
+      *   If this number is in the current visible ::core::window range,
       *   the part of text is validated, which is required
       *   for visual repaint.
       *   If this number is equals to -1, all the text is validated.
@@ -255,7 +255,7 @@ namespace colorertake5
       comparable_array<EditorListener*> editorListeners;
 
       int32_t backParse;
-      // ::ca2::window area
+      // ::core::window area
       index wStart;
       ::count wSize;
       // line count

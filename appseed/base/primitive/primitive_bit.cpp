@@ -4,7 +4,7 @@
 #define INT_ALIGN (BYTE_ALIGN * sizeof(int32_t))
 
 
-namespace ca2
+namespace core
 {
    namespace bit
    {
@@ -94,6 +94,6 @@ namespace ca2
 
    } // namespace bit
 
-} // namespace ca2
+} // namespace core
 
 

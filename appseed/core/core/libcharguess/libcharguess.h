@@ -1,8 +1,6 @@
 #pragma once
 
 
-#include "base/ca2/ca2.h"
-
 
 // The following ifdef block is the standard way of creating macros which make exporting
 // from a DLL simpler. All files within this DLL are compiled with the LIBCHARGUESS_EXPORTS

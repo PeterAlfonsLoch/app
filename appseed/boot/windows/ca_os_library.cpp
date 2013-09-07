@@ -51,7 +51,7 @@ namespace ca
       }
       else if(stricmp_dup(pszPath, "app_ca2") == 0)
       {
-         pszPath = "ca2";
+         pszPath = "core";
       }
 
       string strPath(pszPath);
@@ -134,7 +134,7 @@ namespace ca
 
    bool ca2_library::open(const char * pszPath)
    {
-      m_plibrary = ::ca2::open_ca2_library(pszPath);
+      m_plibrary = ::core::open_ca2_library(pszPath);
       return m_plibrary != NULL;
    }
 
@@ -144,7 +144,7 @@ namespace ca
 } // namespace ca
 
 
-namespace ca2
+namespace core
 {
 
    void * open_ca2_library(const char * psz)
@@ -171,7 +171,7 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace core
 
 
 

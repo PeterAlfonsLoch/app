@@ -11,7 +11,7 @@ using namespace NWindows;
 using namespace NFile;
 using namespace NDirectory;*/
 
-namespace ca2
+namespace core
 {
 
    static const uint32_t kTempBufSize = (1 << 20);
@@ -118,4 +118,4 @@ namespace ca2
          *processed = size;
    }
 
-} // namespace ca2
+} // namespace core

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
    CLASS_DECL_ca2 string char2hex( char dec );
@@ -83,4 +83,4 @@ namespace ca2
        void generateNonceTimeStamp();
    };
 
-} // namespace ca2
+} // namespace core

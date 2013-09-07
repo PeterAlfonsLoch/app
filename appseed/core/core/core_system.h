@@ -1,12 +1,13 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
 
    class CLASS_DECL_ca2 system :
-      virtual public application
+      virtual public application,
+      virtual public base_system
       #ifdef LINUX
       , virtual public ::exception::translator
       #endif
@@ -28,7 +29,7 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace core
 
 
 

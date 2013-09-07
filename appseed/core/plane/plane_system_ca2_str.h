@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -73,17 +73,17 @@ namespace ca2
    } // namespace str
 
 
-   inline static string log_level_name(::ca2::log::e_level elevel)
+   inline static string log_level_name(::core::log::e_level elevel)
    {
       switch(elevel)
       {
-      case ::ca2::log::level_warning:
+      case ::core::log::level_warning:
          return "warning";
-      case ::ca2::log::level_error:
+      case ::core::log::level_error:
          return "error";
-      case ::ca2::log::level_fatal:
+      case ::core::log::level_fatal:
          return "fatal";
-      case ::ca2::log::level_info:
+      case ::core::log::level_info:
          return "info";
       default:
          return "undefined log error";

@@ -47,7 +47,7 @@ simple_frame_window::~simple_frame_window()
 /////////////////////////////////////////////////////////////////////////////
 // simple_frame_window message handlers
 
-void simple_frame_window::install_message_handling(::ca2::message::dispatch * pinterface)
+void simple_frame_window::install_message_handling(message::dispatch * pinterface)
 {
    ::user::frame_window::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE         , pinterface, this, &simple_frame_window::_001OnCreate);
@@ -138,7 +138,7 @@ sp(::uinteraction::frame::frame) simple_frame_window::create_frame_schema()
 void simple_frame_window::_001OnCreate(signal_details * pobj)
 {
 
-   SCAST_PTR(::ca2::message::create, pcreate, pobj)
+   SCAST_PTR(message::create, pcreate, pobj)
 
    if(pobj->previous())
       return;
@@ -157,7 +157,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
    if(m_bAutoWindowFrame)
    {
 #ifdef METROWIN
-      m_bWindowFrame = get_parent() == NULL || dynamic_cast < ::ca2::window * > (get_parent()->m_pimpl.m_p) != NULL;
+      m_bWindowFrame = get_parent() == NULL || dynamic_cast < ::core::window * > (get_parent()->m_pimpl.m_p) != NULL;
 #else
       m_bWindowFrame = get_parent() == NULL;
 #endif
@@ -280,7 +280,7 @@ uint32_t simple_frame_window_save_window_rect(void * pvoidParam)
 void simple_frame_window::_001OnDisplayChange(signal_details * pobj)
 {
 
-   SCAST_PTR(::ca2::message::base, pbase, pobj);
+   SCAST_PTR(message::base, pbase, pobj);
 
    post_simple_command(simple_command_load_window_rect, (LPARAM) FALSE);
 
@@ -376,7 +376,7 @@ void simple_frame_window::ViewOnActivateFrame(sp(::user::view) pview, UINT user,
 void simple_frame_window::_001OnGetMinMaxInfo(signal_details * pobj)
 {
 #ifdef WINDOWSEX
-   SCAST_PTR(::ca2::message::base, pbase, pobj);
+   SCAST_PTR(message::base, pbase, pobj);
    MINMAXINFO FAR * lpMMI = (MINMAXINFO FAR*) pbase->m_lparam.m_lparam;
    if (IsFullScreen())
    {
@@ -491,7 +491,7 @@ void simple_frame_window::_001OnViewFullScreen(signal_details * pobj)
 void simple_frame_window::_001OnMouseMove(signal_details * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-//   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+//   SCAST_PTR(message::mouse, pmouse, pobj)
 }
 
 void simple_frame_window::_001OnUpdateViewFullScreen(signal_details * pobj)
@@ -514,7 +514,7 @@ bool simple_frame_window::_001CanEnterScreenSaver()
 
 void simple_frame_window::_001OnSysCommand(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::base, pbase, pobj);
+   SCAST_PTR(message::base, pbase, pobj);
 
    if(pbase->m_wparam == SC_SCREENSAVE)
    {
@@ -697,12 +697,12 @@ void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS F
 
 void simple_frame_window::_001OnNcActivate(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::nc_activate, pncactivate, pobj)
+   SCAST_PTR(message::nc_activate, pncactivate, pobj)
    // stay active if WF_STAYACTIVE bit is on
    if (m_nFlags & WF_STAYACTIVE)
       pncactivate->m_bActive = TRUE;
 
-   // but do not stay active if the ::ca2::window is disabled
+   // but do not stay active if the ::core::window is disabled
    if (!IsWindowEnabled())
       pncactivate->m_bActive = FALSE;
 
@@ -772,7 +772,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
 
 void simple_frame_window::_001OnDdeInitiate(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::base, pbase, pobj)
+   SCAST_PTR(message::base, pbase, pobj)
    pbase->set_lresult(DefWindowProc((uint32_t) pbase->m_wparam, pbase->m_lparam, pbase->get_lresult()));
 }
 
@@ -780,11 +780,11 @@ void simple_frame_window::_001OnDdeInitiate(signal_details * pobj)
 void simple_frame_window::pre_translate_message(signal_details * pobj)
 {
 #ifdef WINDOWSEX
-   SCAST_PTR(::ca2::message::base, pbase, pobj);
+   SCAST_PTR(message::base, pbase, pobj);
    if(pbase->m_uiMessage == WM_KEYDOWN)
    {
 
-      SCAST_PTR(::ca2::message::key, pkey, pobj);
+      SCAST_PTR(message::key, pkey, pobj);
 
       if(pkey->m_ekey == ::user::key_alt)
       {
@@ -810,7 +810,7 @@ void simple_frame_window::pre_translate_message(signal_details * pobj)
    else if(pbase->m_uiMessage == WM_KEYUP)
    {
 
-      SCAST_PTR(::ca2::message::key, pkey, pobj);
+      SCAST_PTR(message::key, pkey, pobj);
 
       if(pkey->m_ekey == ::user::key_alt)
       {
@@ -864,8 +864,8 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
 void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
 {
-   if(System.savings().is_trying_to_save(::ca2::resource_processing)
-   || System.savings().is_trying_to_save(::ca2::resource_translucent_background))
+   if(System.savings().is_trying_to_save(::core::resource_processing)
+   || System.savings().is_trying_to_save(::core::resource_translucent_background))
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -890,9 +890,9 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdc)
    }
    else
 #endif
-   if(!Session.savings().is_trying_to_save(::ca2::resource_processing)
-   && !Session.savings().is_trying_to_save(::ca2::resource_display_bandwidth)
-   && !Session.savings().is_trying_to_save(::ca2::resource_memory))
+   if(!Session.savings().is_trying_to_save(::core::resource_processing)
+   && !Session.savings().is_trying_to_save(::core::resource_display_bandwidth)
+   && !Session.savings().is_trying_to_save(::core::resource_memory))
    //&& (get_parent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
    {
       #if TEST
@@ -936,12 +936,12 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
       rect rectClient;
       GetClientRect(rectClient);
       //rectClient.offset(rectClient.top_left());
-      if(System.savings().is_trying_to_save(::ca2::resource_translucent_background))
+      if(System.savings().is_trying_to_save(::core::resource_translucent_background))
       {
          //pdc->FillSolidRect(rectClient, RGB(150, 220, 140));
       }
-      else if(System.savings().is_trying_to_save(::ca2::resource_processing)
-      || System.savings().is_trying_to_save(::ca2::resource_blur_background))
+      else if(System.savings().is_trying_to_save(::core::resource_processing)
+      || System.savings().is_trying_to_save(::core::resource_blur_background))
       {
          imaging.color_blend(pdc, rectClient, RGB(150, 180, 140), 150);
       }
@@ -1061,7 +1061,7 @@ void simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uin
 
 void simple_frame_window::_001OnUser184(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::base, pbase, pobj);
+   SCAST_PTR(message::base, pbase, pobj);
    if(pbase->m_wparam == 0 &&
       pbase->m_lparam == 0)
    {

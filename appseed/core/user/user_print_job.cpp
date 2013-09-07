@@ -6,9 +6,9 @@ namespace user
 
    print_job::print_job(sp(base_application) papp) :
       element(papp),
-      ::ca2::print_job(papp),
-      ::ca2::job(papp),
-      ::ca2::thread(papp),
+      ::core::print_job(papp),
+      ::core::job(papp),
+      ::core::thread(papp),
       ::user::job(papp)
    {
    }

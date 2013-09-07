@@ -91,7 +91,7 @@ extern CLASS_DECL_ca2 AUX_DATA afxData;*/
 #define HELP_ENTERING   2   // entering Shift+F1 help mode (non-zero)
 
 /////////////////////////////////////////////////////////////////////////////
-// Window class names and other ::ca2::window creation support
+// Window class names and other ::core::window creation support
 
 
 #define __WND_REG                                             0x00001
@@ -119,8 +119,8 @@ extern CLASS_DECL_ca2 AUX_DATA afxData;*/
 #define __WNDCOMMCTLSNEW_REG                  0x7C000 // INTERNET|COOL|USEREX|DATE
 
 
-// ca2 API has its own version of the TOOLINFO structure containing the
-// the Win95 base version of the structure. Since ca2 API targets Win95 base,
+// core API has its own version of the TOOLINFO structure containing the
+// the Win95 base version of the structure. Since core API targets Win95 base,
 // we need this structure so calls into that old library don't fail.
 
 typedef struct tag__OLDTOOLINFO {
@@ -133,10 +133,10 @@ typedef struct tag__OLDTOOLINFO {
    LPTSTR lpszText;
 } __OLDTOOLINFO;
 
-// special _ ::ca2::window class name mangling
+// special _ ::core::window class name mangling
 
 
-#define __WNDCLASS(s)    "ca2" _T(s)
+#define __WNDCLASS(s)    "core" _T(s)
 #define __WND             __WNDCLASS("Wnd")
 #define __WNDCONTROLBAR   __WNDCLASS("ControlBar")
 #define __WNDMDIFRAME     __WNDCLASS("MDIFrame")

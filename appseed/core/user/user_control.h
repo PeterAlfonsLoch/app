@@ -191,7 +191,7 @@ namespace user
       virtual ~control();
 
 
-      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
+      virtual void install_message_handling(message::dispatch * pdispatch);
 
       virtual bool create_control(class control::descriptor * pdescriptor);
 

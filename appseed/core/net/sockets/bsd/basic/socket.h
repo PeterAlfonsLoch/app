@@ -28,7 +28,7 @@ namespace sockets
       /** Detached socket run thread.
       \ingroup internal */
       class CLASS_DECL_ca2 socket_thread :
-         virtual public ::ca2::thread
+         virtual public ::core::thread
       {
       public:
          socket_thread(socket * psocket, bool bCompileRefactoryDummy);

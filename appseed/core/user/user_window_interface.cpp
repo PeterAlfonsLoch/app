@@ -48,9 +48,9 @@ namespace user
    {
    }
 
-   void window_interface::install_message_handling(::ca2::message::dispatch * pinterface)
+   void window_interface::install_message_handling(message::dispatch * pinterface)
    {
-      ::ca2::message::dispatch::install_message_handling(pinterface);
+      message::dispatch::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(
          MessageBaseWndGetProperty,
@@ -71,7 +71,7 @@ namespace user
          &window_interface::_001OnBaseWndGetProperty);
    }
 
-   // draw the background of a ::ca2::window
+   // draw the background of a ::core::window
    // can be used for trasparency
    // the rectangle must be in client coordinates.
    void window_interface::_001DrawBackground(::draw2d::graphics *pdc, LPRECT lprect)
@@ -106,7 +106,7 @@ namespace user
             else
                continue;
          }
-         sp(::ca2::window) pwndChild = ::ca2::window::from_handle(oswindowChild);
+         sp(::core::window) pwndChild = ::core::window::from_handle(oswindowChild);
          oswindow oswindowParent = ::get_parent(oswindowChild);
          ::GetClientRect(oswindowChild, rectChild);
          ::ClientToScreen(oswindowChild, &rectChild.top_left());
@@ -159,7 +159,7 @@ namespace user
       }
 
 
-      sp(::ca2::window) pwnd = ::ca2::window::FromHandlePermanent(oswindowParam);
+      sp(::core::window) pwnd = ::core::window::FromHandlePermanent(oswindowParam);
 
       if((::GetWindowLong((oswindowParam), GWL_STYLE) & WS_VISIBLE) == 0)
       {
@@ -221,7 +221,7 @@ namespace user
       else
       {
          bool bWin4 = FALSE;
-      //_::ca2::FillPSOnStack();
+      //_::core::FillPSOnStack();
          ::DefWindowProc(
             oswindowParam,
             (bWin4 ? WM_PRINT : WM_PAINT),
@@ -287,7 +287,7 @@ namespace user
 
    void window_interface::_001OnBaseWndGetProperty(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
       pbase->set_lresult(_001BaseWndGetProperty((EProperty) pbase->m_wparam, pbase->m_lparam));
    }
 
@@ -310,14 +310,14 @@ namespace user
 
 
 
-   // The first ::ca2::window handle in the array must belong
-   // to the higher z order ::ca2::window.
+   // The first ::core::window handle in the array must belong
+   // to the higher z order ::core::window.
    // The rectangle must contain all update region.
    // It must be in screen coordinates.
 
    // This optimization eliminates top level windows
    // that are lower z order siblings of a higher z order
-   // top level ::ca2::window that contains all
+   // top level ::core::window that contains all
    // the update region in a opaque area.
    // It doesn´t eliminates from the update parent windows
    // obscured by opaque children.
@@ -482,7 +482,7 @@ namespace user
 
    void window_interface::_001OnCreate(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::create, pcreate, pobj)
+      SCAST_PTR(message::create, pcreate, pobj)
       if(pobj->previous())
          return;
       pcreate->set_lresult(0);
@@ -510,7 +510,7 @@ namespace user
       return NULL;
    }
 #else
-   sp(::ca2::window) window_interface::get_wnd() const
+   sp(::core::window) window_interface::get_wnd() const
    {
       return NULL;
    }

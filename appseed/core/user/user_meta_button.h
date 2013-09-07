@@ -43,7 +43,7 @@ public:
    virtual void _001OnDraw(::draw2d::graphics * pdc);
    virtual bool pre_create_window(CREATESTRUCT& cs);
 
-   virtual void install_message_handling(::ca2::message::dispatch *pinterface);
+   virtual void install_message_handling(message::dispatch *pinterface);
    void UpdateWndRgn();
    void SetEllipsePens(
         ::draw2d::pen * ppen,

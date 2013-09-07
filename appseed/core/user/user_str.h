@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -15,7 +15,7 @@ namespace ca2
    } // namespace international
 
 
-} // namespace ca2
+} // namespace core
 
 
 

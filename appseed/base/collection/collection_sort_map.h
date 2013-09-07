@@ -1070,7 +1070,7 @@ sort_string_map < VALUE, ARG_VALUE, COMPARE > & sort_string_map < VALUE, ARG_VAL
 
 }
 
-template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::ca2::strid_compare  >
+template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::core::strid_compare  >
 class sort_strid_map :
    virtual public sort_attrib_map < sort_map < id, const id &, VALUE, ARG_VALUE, COMPARE > >
 {

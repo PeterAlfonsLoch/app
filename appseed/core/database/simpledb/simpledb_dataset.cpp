@@ -320,7 +320,7 @@ namespace simpledb
             recrow.m_ptable = &table;
             file_position posEnd = (file_position) table.m_spfileFixed->get_length();
             table.m_spfileFixed->seek_to_begin();
-            ::ca2::byte_stream stream(table.m_spfileFixed);
+            ::core::byte_stream stream(table.m_spfileFixed);
             while(true)
             {
                if(table.m_spfileFixed->get_position() >= posEnd)
@@ -402,7 +402,7 @@ namespace simpledb
          rec.m_ptable = &table;
          rec.m_var = straValue;
          table.m_spfileFixed->seek_to_end();
-         ::ca2::byte_stream stream(table.m_spfileFixed);
+         ::core::byte_stream stream(table.m_spfileFixed);
          rec.write(stream);
 
          {

@@ -22,7 +22,7 @@ namespace user
          CommandGroup,
       };
 
-      class Command : public ::ca2::tree_item_data
+      class Command : public ::core::tree_item_data
       {
       public:
          virtual ECommand get_command();
@@ -77,7 +77,7 @@ namespace user
       sp(GroupCommand)        m_pgroupcommand;
       index                   m_iBranch;
       ::file::buffer_sp            m_pfile;
-      ::ca2::::file::edit_buffer         m_editfile;
+      ::core::::file::edit_buffer         m_editfile;
       
       
       strsize                 m_iSelStart;

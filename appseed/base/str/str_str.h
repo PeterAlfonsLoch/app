@@ -17,7 +17,7 @@ namespace calculator
 } // namespace calculator
 
 
-namespace ca2
+namespace core
 {
 
 

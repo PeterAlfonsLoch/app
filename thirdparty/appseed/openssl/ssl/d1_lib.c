@@ -380,7 +380,7 @@ int dtls1_is_timer_expired(SSL *s)
 		return 0;
 		}
 
-	/* Timer expired, so return true */	
+	/* timer expired, so return true */	
 	return 1;
 	}
 

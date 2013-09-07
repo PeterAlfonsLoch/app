@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ca2
+namespace core
 {
 
    class CLASS_DECL_ca2 folder_watch :
@@ -37,4 +37,4 @@ namespace ca2
 
    typedef smart_pointer < folder_watch > folder_watch_sp;
 
-} // namespace ca2
+} // namespace core

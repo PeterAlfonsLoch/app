@@ -83,7 +83,7 @@ namespace dynamic_source
       m_strLibPlatform = "";
 #endif
 
-      //System.file().lines(m_straSync, "C:\\ca2\\database\\text\\dynamic_source\\syncer.txt", get_app());
+      //System.file().lines(m_straSync, "C:\\core\\database\\text\\dynamic_source\\syncer.txt", get_app());
 #if defined(LINUX)
       prepare1(m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bash",
          m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bash");
@@ -206,7 +206,7 @@ namespace dynamic_source
       /*string strScript(strName);
       strScript.replace("\\", ",");
       strScript.replace("/", ",");
-      strScript = "ca2" + m_pmanager->m_strNamespace + "_script." + strScript;*/
+      strScript = "core" + m_pmanager->m_strNamespace + "_script." + strScript;*/
       string strScript;
       strScript = System.file().title_(strName);
       string strTransformName = strName;
@@ -217,7 +217,7 @@ namespace dynamic_source
       }
       else
       {
-         pscript->m_strSourcePath.Format(System.dir().path(m_pmanager->m_strNetnodePath, "net\\netseed\\ds\\ca2\\%s", false), strName);
+         pscript->m_strSourcePath.Format(System.dir().path(m_pmanager->m_strNetnodePath, "net\\netseed\\ds\\core\\%s", false), strName);
       }
       pscript->m_strSourceDir = System.dir().name(pscript->m_strSourcePath);
 
@@ -469,9 +469,9 @@ namespace dynamic_source
 
 #ifndef METROWIN
 
-      ::ca2::process process;
+      ::core::process process;
 
-      process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat), ::ca2::scheduling_priority_highest);
+      process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat), ::core::scheduling_priority_highest);
 
       uint32_t dwStart = ::get_tick_count();
       uint32_t dwExitCode;
@@ -777,7 +777,7 @@ namespace dynamic_source
       //#ifdef DEBUG
       strTemplate = System.dir().path(strFolder, strSource, false );
       //#else
-      // strTemplate = System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\matter\\dynamic_source_cl.bat", false);
+      // strTemplate = System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\matter\\dynamic_source_cl.bat", false);
       //#endif
       string str;
       str = Application.file().as_string(strTemplate);
@@ -795,7 +795,7 @@ namespace dynamic_source
       //#ifdef DEBUG
       strCmd = System.dir().path(strFolder, strDest, false);
       //#else
-      // strCmd = System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
+      // strCmd = System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
       //#endif
       Application.dir().mk(System.dir().name(strCmd));
       Application.file().put_contents(strCmd, str);
@@ -914,12 +914,12 @@ namespace dynamic_source
 
       //#ifdef DEBUG
 #ifdef LINUX
-      m_strLibraryPath = "/ca2/stage/x86/libnetnodelibrary.so";
+      m_strLibraryPath = "/core/stage/x86/libnetnodelibrary.so";
 #else
       m_strLibraryPath.Format(System.dir().stage(m_strPlatform + "\\dynamic_source\\library\\%s.dll"), System.dir().path(System.dir().name(strName), strLib, false));
 #endif
       //#else
-      // plib->m_strLibraryPath.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
+      // plib->m_strLibraryPath.Format(System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
       //#endif
 
       Application.dir().mk(System.dir().name(m_strLibraryPath));
@@ -949,7 +949,7 @@ namespace dynamic_source
          strCmd = System.dir().element("stage\\front\\" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat");
 #endif
          //#else
-         //    strCmd.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
+         //    strCmd.Format(System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
          //#endif
          string str = Application.file().as_string(strCmd);
          str.replace("%ITEM_NAME%", str1);
@@ -992,9 +992,9 @@ namespace dynamic_source
          Application.file().put_contents(strCmd, str);
 
 #ifndef METROWIN
-         ::ca2::process process;
+         ::core::process process;
 
-         process.create_child_process(strCmd, false, System.dir().element("stage\\front"), ::ca2::scheduling_priority_highest);
+         process.create_child_process(strCmd, false, System.dir().element("stage\\front"), ::core::scheduling_priority_highest);
 
 
          uint32_t dwExitCode;
@@ -1042,7 +1042,7 @@ namespace dynamic_source
          ".bat"));
 #endif
       //#else
-      // strCmd.Format(System.dir().path(strFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
+      // strCmd.Format(System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
       //#endif
       string str = Application.file().as_string(strCmd);
       str.replace("%ITEM_NAME%", "library" PATH_SEPARATOR + strName);
@@ -1067,10 +1067,10 @@ namespace dynamic_source
 
 #ifndef METROWIN
 
-      ::ca2::process process;
+      ::core::process process;
 
 
-      process.create_child_process(strCmd, false, System.dir().name(strCmd), ::ca2::scheduling_priority_highest);
+      process.create_child_process(strCmd, false, System.dir().name(strCmd), ::core::scheduling_priority_highest);
 
       uint32_t dwExitCode;
       while(true)
@@ -1084,7 +1084,7 @@ namespace dynamic_source
 
 
       str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-link-log.txt"), strName);
-      //str.Format("V:\\time\\ca2\\fontopus\\net\\dynamic_source\\%s-build-log.txt", lpcszName);
+      //str.Format("V:\\time\\core\\fontopus\\net\\dynamic_source\\%s-build-log.txt", lpcszName);
       str = Application.file().as_string(str);
       str.replace("\r\n", "</pre><pre>");
       m_memfileLibError << str;
@@ -1846,12 +1846,12 @@ ch_else:
 
    void script_compiler::run_persistent()
    {
-      string strPath = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\persistent", false);
+      string strPath = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "core\\persistent", false);
       stringa stra;
       Application.dir().rls(strPath, &stra);
 
       string strCat;
-      strCat = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\netnode_persistent_ui_str.ds", false);
+      strCat = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "core\\netnode_persistent_ui_str.ds", false);
       string strBody;
       strBody = "<?\r\n";
       strBody += "// ATTENTION!\r\n";
@@ -1864,7 +1864,7 @@ ch_else:
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
          string str = stra[i];
-         if(::str::begins_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\persistent", false))
+         if(::str::begins_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "core\\persistent", false))
             && ::str::ends_ci(str, ".ds"))
          {
             strBody += Application.file().as_string(str);
@@ -1913,7 +1913,7 @@ ch_else:
       if(::str::find_ci("pstr_set", psz) && ::str::ends_ci(psz, ".txt"))
       {
          string strCat;
-         strCat = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\netnode_persistent_ui_str.ds", false);
+         strCat = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "core\\netnode_persistent_ui_str.ds", false);
          string strInclude = strCat;
          ::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
          ::str::ends_eat_ci(strInclude, ".ds");
@@ -1939,7 +1939,7 @@ ch_else:
             pinstance->destroy();
          }
       }
-      else if(::str::begins_eat_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\persistent", false))
+      else if(::str::begins_eat_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "core\\persistent", false))
          && ::str::ends_eat_ci(str, ".ds")
          && str.CompareNoCase("netnode_persistent_ui_str") != 0)
       {

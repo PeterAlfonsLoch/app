@@ -136,21 +136,21 @@ namespace fontopus
       string strHost(pszRequestingParty);
 
       stringa straRequestingServer;
-      straRequestingServer.add("account.ca2.cc");
-      straRequestingServer.add("eu-account.ca2.cc");
-      straRequestingServer.add("asia-account.ca2.cc");
+      straRequestingServer.add("account.core.cc");
+      straRequestingServer.add("eu-account.core.cc");
+      straRequestingServer.add("asia-account.core.cc");
       if(strHost.is_empty())
       {
-         if(::ca2::get_thread() != NULL && ::ca2::get_thread()->m_strWorkUrl.has_char())
+         if(::core::get_thread() != NULL && ::core::get_thread()->m_strWorkUrl.has_char())
          {
-            strHost = ::ca2::get_thread()->m_strWorkUrl;
+            strHost = ::core::get_thread()->m_strWorkUrl;
          }
          else
          {
             strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
             if(!straRequestingServer.contains_ci(strHost))
             {
-               strHost = "https://account.ca2.cc/";
+               strHost = "https://account.core.cc/";
             }
          }
       }
@@ -302,12 +302,12 @@ namespace fontopus
       m_loginthread.m_strLicense = m_strLicense;
       string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
-      straRequestingServer.add("account.ca2.cc");
-      straRequestingServer.add("eu-account.ca2.cc");
-      straRequestingServer.add("asia-account.ca2.cc");
+      straRequestingServer.add("account.core.cc");
+      straRequestingServer.add("eu-account.core.cc");
+      straRequestingServer.add("asia-account.core.cc");
       if(!straRequestingServer.contains_ci(strHost))
       {
-         strHost = "account.ca2.cc";
+         strHost = "account.core.cc";
       }
 
       if(straRequestingServer.contains(Application.command_thread()->m_varTopicQuery["fontopus"].get_string())
@@ -443,7 +443,7 @@ namespace fontopus
    // return hash and check if hash is valid
    bool validate::check_ca2_hash()
    {
-      string strUrl("https://api.ca2.cc/account/check_hash");
+      string strUrl("https://api.core.cc/account/check_hash");
       property_set post;
       property_set headers;
       property_set set;
@@ -502,7 +502,7 @@ namespace fontopus
 
    int32_t login_thread::run()
    {
-      ::ca2::http::e_status estatus;
+      ::core::http::e_status estatus;
       string strResponse = Login(&estatus);
       e_result iAuth = result_fail;
       xml::document doc(get_app());
@@ -584,7 +584,7 @@ namespace fontopus
 
          delete m_puser;
 
-         if(estatus == ::ca2::http::status_connection_timed_out)
+         if(estatus == ::core::http::status_connection_timed_out)
          {
 
             iAuth = result_time_out;
@@ -604,14 +604,14 @@ namespace fontopus
       return TRUE;
    }
 
-   string login_thread::Login(::ca2::http::e_status * pestatus)
+   string login_thread::Login(::core::http::e_status * pestatus)
    {
       if(m_straRequestingServer.get_count() <= 0)
       {
          stringa straRequestingServer;
-         straRequestingServer.add("account.ca2.cc");
-         straRequestingServer.add("eu-account.ca2.cc");
-         straRequestingServer.add("asia-account.ca2.cc");
+         straRequestingServer.add("account.core.cc");
+         straRequestingServer.add("eu-account.core.cc");
+         straRequestingServer.add("asia-account.core.cc");
          if(straRequestingServer.contains_ci(m_strRequestingServer))
          {
             m_bFontopusServer = true;
@@ -639,7 +639,7 @@ namespace fontopus
    }
 
 
-   string login_thread::NetLogin(::ca2::http::e_status * pestatus)
+   string login_thread::NetLogin(::core::http::e_status * pestatus)
    {
 
       if(System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)
@@ -659,7 +659,7 @@ namespace fontopus
 
       domainFontopus.create(m_strFontopusServer);
 
-      if(domainFontopus.m_strRadix != "ca2")
+      if(domainFontopus.m_strRadix != "core")
          return "";
 
       if(System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
@@ -1166,7 +1166,7 @@ namespace fontopus
       {
          m_pviewAuth->SetTimer(1984, 484, NULL);
       }
-      ::ca2::live_signal livesignal;
+      ::core::live_signal livesignal;
       livesignal.keep(get_app());
       m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
       m_ptemplatePane->close_all_documents(FALSE);
@@ -1218,12 +1218,12 @@ namespace fontopus
 
             m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Licensing";
             string strUrl;
-            strUrl = "http://api.ca2.cc/spaignition/query?node=install_application&id=";
+            strUrl = "http://api.core.cc/spaignition/query?node=install_application&id=";
             strUrl += m_strLicense;
             strUrl += "&key=name";
             m_pdocAuth->get_html_data()->m_propertyset["project"] = System.http().get(strUrl);
 
-            strUrl = "ext://https://account.ca2.cc/license?id="+ m_strLicense + "&lang=" + System.get_locale() + "&sessid=" + ApplicationUser.get_sessid(m_loginthread.m_strFontopusServer);
+            strUrl = "ext://https://account.core.cc/license?id="+ m_strLicense + "&lang=" + System.get_locale() + "&sessid=" + ApplicationUser.get_sessid(m_loginthread.m_strFontopusServer);
             m_pdocAuth->get_html_data()->m_propertyset["contribute_link"] = strUrl;
 
          }
@@ -1356,7 +1356,7 @@ namespace fontopus
       page1(straMatter);
       if(m_ptabview->get_wnd()->m_iModalCount <= 0)
       {
-         ::ca2::live_signal livesignal;
+         ::core::live_signal livesignal;
          livesignal.keep(get_app());
          m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
          m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
@@ -1546,7 +1546,7 @@ namespace fontopus
          if(m_bInteractive)
          {
             string strUrl;
-            strUrl = "http://api.ca2.cc/spaignition/query?node=install_application&id=";
+            strUrl = "http://api.core.cc/spaignition/query?node=install_application&id=";
             strUrl += m_strLicense;
             strUrl += "&key=launch_name";
             string strName = Application.http().get(strUrl);
@@ -1597,7 +1597,7 @@ namespace fontopus
       {
          if(m_bInteractive)
          {
-            propertyset["server"] = "account.ca2.cc";
+            propertyset["server"] = "account.core.cc";
             pageMessage("err\\user\\network\\connection_timed_out.html", propertyset);
          }
       }
@@ -1605,7 +1605,7 @@ namespace fontopus
       {
          if(m_bInteractive)
          {
-            propertyset["server"] = "account.ca2.cc";
+            propertyset["server"] = "account.core.cc";
             propertyset["email"] = strUsername;
             pageMessage("err\\user\\authentication\\registration_deferred.html", propertyset);
          }
@@ -1667,7 +1667,7 @@ namespace fontopus
       pview->add_tab("login", 1);
       pview->set_cur_tab_by_id(1);
       pview->GetParentFrame()->RedrawWindow();
-      ::ca2::live_signal livesignal;
+      ::core::live_signal livesignal;
       livesignal.keep(get_app());
       pview->GetTopLevelFrame()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
       return m_pauth;

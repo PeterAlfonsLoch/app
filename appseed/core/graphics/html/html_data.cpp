@@ -199,7 +199,7 @@ namespace html
    void data::_001OnKeyDown(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::key, pkey, pobj)
+      SCAST_PTR(message::key, pkey, pobj)
 
       if(pkey->m_ekey == ::user::key_tab)
       {
@@ -456,7 +456,7 @@ restart:
          string filename;
          filename = System.file().time_square(get_app());
          System.http().download(
-            "https://api.ca2.cc/auth",
+            "https://api.core.cc/auth",
             filename,
             post,
             headers,

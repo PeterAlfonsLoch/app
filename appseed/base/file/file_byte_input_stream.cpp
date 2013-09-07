@@ -180,7 +180,7 @@ namespace file
       byte b;
 
       if(m_spbuffer->read(&b, sizeof(b)) < sizeof(b))
-         throw io_exception(get_app(), "ca2::byte_input_stream::read_arbitrary : unexpected end of stream, cannot read header byte");
+         throw io_exception(get_app(), "core::byte_input_stream::read_arbitrary : unexpected end of stream, cannot read header byte");
 
       if(b == 0)
       {
@@ -193,10 +193,10 @@ namespace file
       int len = b & 0x3f;
 
       if(len > sizeof(uiRead) || len > nMax)
-         throw io_exception(get_app(), "ca2::byte_input_stream::read_arbitrary : overflow");
+         throw io_exception(get_app(), "core::byte_input_stream::read_arbitrary : overflow");
 
       if(m_spbuffer->read(&uiRead, len) != len)
-         throw io_exception(get_app(), "ca2::byte_input_stream::read_arbitrary : unexpected end of stream, cannot read number body");
+         throw io_exception(get_app(), "core::byte_input_stream::read_arbitrary : unexpected end of stream, cannot read number body");
 
       if(b & 0x40)
       {
@@ -414,7 +414,7 @@ namespace file
          // read new data
          if (m_spbuffer->read(lpBuf, nByteLen) != nByteLen)
          {
-            //   ::ca2::ThrowArchiveException(CArchiveException::endOfFile);
+            //   ::core::ThrowArchiveException(CArchiveException::endOfFile);
          }
 
          // convert the data if as necessary

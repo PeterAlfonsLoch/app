@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -37,7 +37,7 @@ namespace ca2
    typedef smart_pointer < copydesk > copydesk_sp;
 
 
-} // namespace ca2
+} // namespace core
 
 
 

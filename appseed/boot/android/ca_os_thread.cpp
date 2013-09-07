@@ -238,22 +238,22 @@ void get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t nCa2Prior
 
    int iCa2Max;
 
-/*   if(nCa2Priority == ::ca2::scheduling_priority_normal)
+/*   if(nCa2Priority == ::core::scheduling_priority_normal)
    {
 
       iOsPolicy = SCHED_OTHER;
 
-      iCa2Min = (int) ::ca2::scheduling_priority_normal;
+      iCa2Min = (int) ::core::scheduling_priority_normal;
 
-      iCa2Max = (int) ::ca2::scheduling_priority_normal;
+      iCa2Max = (int) ::core::scheduling_priority_normal;
 
    }*/
-   if(nCa2Priority > ::ca2::scheduling_priority_normal)
+   if(nCa2Priority > ::core::scheduling_priority_normal)
    {
 
       iOsPolicy = SCHED_RR;
 
-      iCa2Min = (int) ::ca2::scheduling_priority_normal;
+      iCa2Min = (int) ::core::scheduling_priority_normal;
 
       iCa2Max = 99;
 
@@ -266,7 +266,7 @@ void get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t nCa2Prior
 
       iCa2Min = 0;
 
-      iCa2Max = (int) ::ca2::scheduling_priority_normal;
+      iCa2Max = (int) ::core::scheduling_priority_normal;
 
    }
 
@@ -304,7 +304,7 @@ int32_t get_scheduling_priority(int32_t iOsPolicy, const sched_param * pparam)
    if(iOsPolicy == SCHED_RR)
    {
 
-      iCa2Min = (int) ::ca2::scheduling_priority_normal;
+      iCa2Min = (int) ::core::scheduling_priority_normal;
 
       iCa2Max = 99;
 
@@ -314,16 +314,16 @@ int32_t get_scheduling_priority(int32_t iOsPolicy, const sched_param * pparam)
 
       iCa2Min = 0;
 
-      iCa2Max = (int) ::ca2::scheduling_priority_normal;
+      iCa2Max = (int) ::core::scheduling_priority_normal;
 
    }*/
    else
    {
 
-      //iCa2Min = (int) ::ca2::scheduling_priority_normal;
+      //iCa2Min = (int) ::core::scheduling_priority_normal;
       iCa2Min = (int) 0;
 
-      iCa2Max = (int) ::ca2::scheduling_priority_normal;
+      iCa2Max = (int) ::core::scheduling_priority_normal;
 
    }
 
@@ -335,7 +335,7 @@ int32_t get_scheduling_priority(int32_t iOsPolicy, const sched_param * pparam)
 
    if(iOsMax == iOsMin)
    {
-      iCa2Priority = (int32_t) ::ca2::scheduling_priority_normal;
+      iCa2Priority = (int32_t) ::core::scheduling_priority_normal;
    }
    else
    {
@@ -385,7 +385,7 @@ int32_t process_get_scheduling_priority(int32_t iOsPolicy, const sched_param * p
 
 
 
-namespace ca2
+namespace core
 {
 
    CLASS_DECL_ca bool set_priority_class(int32_t priority)
@@ -408,5 +408,5 @@ namespace ca2
 
 
 
-} // namespace ca2
+} // namespace core
 

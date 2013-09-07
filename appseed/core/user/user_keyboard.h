@@ -34,7 +34,7 @@ namespace user
 
       bool initialize(::user::keyboard_layout_id * playoutid, const char * pszPath);
 
-      void translate_os_key_message(::ca2::message::key * pkey);
+      void translate_os_key_message(message::key * pkey);
 
       virtual bool load_os_layout(const char * pszPath);
 

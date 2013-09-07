@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -23,7 +23,7 @@ namespace ca2
       m_pmemoryfileOut = new ::::file::memory_buffer(papp, m_pmemory.m_p);
 
       // (uint64_t) -1 - initially unknown size
-      m_ptimeoutfile = new ::ca2::timeout_file(papp, m_pmemoryfileOut, (uint64_t) -1);
+      m_ptimeoutfile = new ::core::timeout_file(papp, m_pmemoryfileOut, (uint64_t) -1);
       m_ptimeoutfile->m_spmutex = m_spmutex;
 
       m_spreader = m_ptimeoutfile;
@@ -49,7 +49,7 @@ namespace ca2
 
       m_pmemoryfileOut = new ::::file::memory_buffer(papp, m_pmemory.m_p);
 
-      m_ptimeoutfile = new ::ca2::timeout_file(papp, m_pmemoryfileOut);
+      m_ptimeoutfile = new ::core::timeout_file(papp, m_pmemoryfileOut);
       m_ptimeoutfile->m_spmutex = m_spmutex;
 
       m_spreader = m_ptimeoutfile;
@@ -76,5 +76,5 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace core
 

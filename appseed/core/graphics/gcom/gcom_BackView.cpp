@@ -33,7 +33,7 @@ namespace gcom
 
          m_pthreadHighestPriority   = new thread(get_app());
          m_pthreadHighestPriority->SetMain(this);
-         m_pthreadHighestPriority->begin(::ca2::scheduling_priority_highest);
+         m_pthreadHighestPriority->begin(::core::scheduling_priority_highest);
 
          m_bPendingLayout = true;
 
@@ -84,7 +84,7 @@ namespace gcom
 
       void Main::UpdateDrawingObjects()
       {
-         //::ca2::savings & savings = System.savings();
+         //::core::savings & savings = System.savings();
          Graphics & graphics = GetGraphics();
 
          graphics.UpdateObjects();
@@ -143,7 +143,7 @@ namespace gcom
          ImageChange & imagechange = GetImageChange();
          Graphics & graphics = GetGraphics();
          EImagePlacement eplacement;
-         //::ca2::savings & savings = System.savings();
+         //::core::savings & savings = System.savings();
 
          TRACE("\nCXfplayerView::OnAfterImageLoaded\n");
 
@@ -173,7 +173,7 @@ namespace gcom
 
          ASSERT(papp != NULL);
 
-         //         ::ca2::savings & savings = System.savings();
+         //         ::core::savings & savings = System.savings();
 
          Graphics & graphics = GetGraphics();
 

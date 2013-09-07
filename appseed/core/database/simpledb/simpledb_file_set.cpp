@@ -7,7 +7,7 @@ namespace simpledb
 
    file_set::file_set(sp(base_application) papp) :
       element(papp),
-      ::ca2::file_set_sp(allocer())
+      ::core::file_set_sp(allocer())
    {
 
    }
@@ -25,8 +25,8 @@ namespace simpledb
       SCAST_PTR(::database::change_event, pchange, pobj);
 
       if(pchange->m_key.m_idSection == m_dataid
-      && pchange->m_key.m_idIndex == (const ::database::id &) ::ca2::system::idEmpty
-      && pchange->m_key.m_idKey == (const ::database::id &) ::ca2::system::idEmpty)
+      && pchange->m_key.m_idIndex == (const ::database::id &) ::core::system::idEmpty
+      && pchange->m_key.m_idKey == (const ::database::id &) ::core::system::idEmpty)
       {
 
          refresh();
@@ -45,10 +45,10 @@ namespace simpledb
 
       bool_array baRecursive;
       
-      if(!data_get(::ca2::system::idEmpty, ::ca2::system::idEmpty, stra))
+      if(!data_get(::core::system::idEmpty, ::core::system::idEmpty, stra))
          return false;
 
-      data_get("recursive", ::ca2::system::idEmpty, baRecursive);
+      data_get("recursive", ::core::system::idEmpty, baRecursive);
       
       // add_search calls Ex2FileSet refresh internally
       m_p->add_search(stra, baRecursive);
@@ -63,12 +63,12 @@ namespace simpledb
 
       stringa stra;
 
-      data_get(::ca2::system::idEmpty, ::ca2::system::idEmpty, stra);
+      data_get(::core::system::idEmpty, ::core::system::idEmpty, stra);
 
       if(stra.add_unique(pszSearchDirectory) < 0)
          return true;
 
-      if(!data_set(::ca2::system::idEmpty, ::ca2::system::idEmpty, stra))
+      if(!data_set(::core::system::idEmpty, ::core::system::idEmpty, stra))
          return false;
 
       if(!refresh())
@@ -84,7 +84,7 @@ namespace simpledb
 
       stringa stra;
 
-      if(!data_set(::ca2::system::idEmpty, ::ca2::system::idEmpty, stra))
+      if(!data_set(::core::system::idEmpty, ::core::system::idEmpty, stra))
          return false;
 
       if(!refresh())

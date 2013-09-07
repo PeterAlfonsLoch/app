@@ -73,12 +73,12 @@ namespace rar
       file_position                                   m_StreamStartPosition;
 
       input_file_info                                 _header;
-      ::ca2::char_dynamic_buffer                        m_NameBuffer;
-      ::ca2::wchar_dynamic_buffer                       _unicodeNameBuffer;
+      ::core::char_dynamic_buffer                        m_NameBuffer;
+      ::core::wchar_dynamic_buffer                       _unicodeNameBuffer;
 
-      ::ca2::byte_buffer                                _comment;
+      ::core::byte_buffer                                _comment;
 
-      ::ca2::byte_dynamic_buffer                        m_FileHeaderData;
+      ::core::byte_dynamic_buffer                        m_FileHeaderData;
 
       header::NBlock::CBlock                          m_BlockHeader;
 
@@ -90,7 +90,7 @@ namespace rar
       uint32_t                                          m_CurPos;
       uint32_t                                          m_PosLimit;
 
-      ::ca2::byte_buffer                                m_DecryptedData;
+      ::core::byte_buffer                                m_DecryptedData;
       byte *                                          m_DecryptedDataAligned;
       ::primitive::memory_size                        m_DecryptedDataSize;
 

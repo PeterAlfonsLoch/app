@@ -72,7 +72,7 @@ namespace sockets
       }
       else
       {
-         Handler().LogError(this, "SetFile", Errno, StrError(Errno), ::ca2::log::level_fatal);
+         Handler().LogError(this, "SetFile", Errno, StrError(Errno), ::core::log::level_fatal);
          SetCloseAndDelete();
       }
    }

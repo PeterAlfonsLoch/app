@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace core
 {
    int32_t patch::bsdiff(const char * old, const char * newfile, const char * patch)
    {
@@ -26,4 +26,4 @@ namespace ca2
          return -1;
       }
    }
-} // namespace ca2
+} // namespace core

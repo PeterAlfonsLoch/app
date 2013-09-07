@@ -83,7 +83,7 @@ namespace gcom
          return *GetDib(_graphics::DibSource)->get_bitmap();
       }
 
-//      ::ca2::draw_dib & Graphics::GetDrawDib()
+//      ::core::draw_dib & Graphics::GetDrawDib()
 //      {
 //         return m_spdrawdib;
 //      }
@@ -114,7 +114,7 @@ namespace gcom
 
          Main & main = HelperGetMain();
 
-         //         ::ca2::savings & savings = System.savings();
+         //         ::core::savings & savings = System.savings();
 
          bool bOk = false;
          // 2004-08-24

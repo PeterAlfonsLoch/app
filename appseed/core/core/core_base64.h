@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -22,13 +22,13 @@ namespace ca2
       virtual ~base64();
 
 
-      void encode(::ca2::plain_text_output_stream & ostreamBase64, ::file::input_stream & istreamBinary);
+      void encode(::core::plain_text_output_stream & ostreamBase64, ::file::input_stream & istreamBinary);
       string encode(primitive::memory_base & storageBinary);
       string encode(byte * p, ::count ca);
       string encode(const char * psz);
       string serialize(::file::serializable & serializable);
 
-      void decode(::file::output_stream & ostreamBinary, ::ca2::plain_text_input_stream & istreamBase64);
+      void decode(::file::output_stream & ostreamBinary, ::core::plain_text_input_stream & istreamBase64);
       void decode(primitive::memory & storageBinary, const char * pszBase64);
       string decode(const char * psz);
       void unserialize(::file::serializable & serializable, const char * pszBase64);
@@ -37,7 +37,7 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace core
 
 
 

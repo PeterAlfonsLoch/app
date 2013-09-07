@@ -14,7 +14,7 @@ namespace userfs
    {
    }
 
-   void main_view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void main_view::install_message_handling(message::dispatch * pinterface)
    {
       ::user::split_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &main_view::_001OnCreate);
@@ -54,7 +54,7 @@ namespace userfs
    void main_view::_001OnTimer(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+      SCAST_PTR(message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 123)
       {
 //         Application.TimerStep();

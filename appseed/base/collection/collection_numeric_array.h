@@ -23,7 +23,7 @@ namespace str
       return to_int64(string(psz));
    }
 
-} // namespace ::ca2::str
+} // namespace ::core::str
 
 
 template < typename TYPE >

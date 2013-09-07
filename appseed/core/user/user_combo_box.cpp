@@ -24,7 +24,7 @@ namespace user
    }
 
 
-   void combo_box::install_message_handling(::ca2::message::dispatch * pdispatch)
+   void combo_box::install_message_handling(message::dispatch * pdispatch)
    {
 
       if(m_bEdit)
@@ -525,7 +525,7 @@ namespace user
    void combo_box::_001OnLButtonDown(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      SCAST_PTR(message::mouse, pmouse, pobj);
 
       point pt = pmouse->m_pt;
 
@@ -544,14 +544,14 @@ namespace user
    void combo_box::_001OnLButtonUp(signal_details * pobj)
    {
 
-//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+//      SCAST_PTR(message::mouse, pmouse, pobj);
 
    }
 
    void combo_box::_001OnSetFocus(signal_details * pobj)
    {
 
-//      SCAST_PTR(::ca2::message::set_focus, pfocus, pobj);
+//      SCAST_PTR(message::set_focus, pfocus, pobj);
 
    }
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -53,7 +53,7 @@ namespace ca2
 
 
       virtual ::file::binary_buffer_sp get_file(var varFile, UINT nOpenFlags);
-      virtual ::ca2::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
+      virtual ::core::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
       // get a file and if there are exceptions, should show end user friendly messages
       virtual ::file::binary_buffer_sp friendly_get_file(var varFile, UINT nOpenFlags);
@@ -61,7 +61,7 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace core
 
 
 

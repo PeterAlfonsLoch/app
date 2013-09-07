@@ -33,9 +33,9 @@ namespace http
       void strcpyval(string &,const char *) const;
 
       /* get value */
-      ::ca2::relation_set & get();
-      ::ca2::relation_set & post();
-      ::ca2::relation_set & request();
+      ::core::relation_set & get();
+      ::core::relation_set & post();
+      ::core::relation_set & request();
 
       string & boundary();
 
@@ -44,25 +44,25 @@ namespace http
       form(const form& ) {}
       form& operator=(const form& ) { return *this; }
    protected:
-      ::ca2::relation_set m_setGet;
-      ::ca2::relation_set m_setPost;
-      ::ca2::relation_set m_setRequest;
+      ::core::relation_set m_setGet;
+      ::core::relation_set m_setPost;
+      ::core::relation_set m_setRequest;
       string m_strBoundary;
       bool m_bRaw;
    };
 
 
-   inline ::ca2::relation_set & form::get()
+   inline ::core::relation_set & form::get()
    {
       return m_setGet;
    }
 
-   inline ::ca2::relation_set & form::post()
+   inline ::core::relation_set & form::post()
    {
       return m_setPost;
    }
 
-   inline ::ca2::relation_set & form::request()
+   inline ::core::relation_set & form::request()
    {
       return m_setRequest;
    }

@@ -53,7 +53,7 @@ namespace user
       return m_spdib->get_graphics();
    }
 
-   void buffer::InstallMessageHandling(::ca2::message::dispatch *pinterface)
+   void buffer::InstallMessageHandling(message::dispatch *pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
    }

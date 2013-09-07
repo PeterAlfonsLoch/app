@@ -1076,7 +1076,7 @@ namespace user
 
    void tab::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      SCAST_PTR(message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
 
       index iPane = hit_test(point, m_eelement);
@@ -1104,7 +1104,7 @@ namespace user
 
    void tab::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      SCAST_PTR(message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
 
       e_element eelement;
@@ -1133,7 +1133,7 @@ namespace user
 
    void tab::_001OnMouseMove(signal_details * pobj)
    {
-//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+//      SCAST_PTR(message::mouse, pmouse, pobj);
 //      class point point = pmouse->m_pt;
       if(get_data()->m_iDragTab >= 0)
       {
@@ -1160,7 +1160,7 @@ namespace user
 
    void tab::_001OnMouseLeave(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
       m_iHover = -1;
       //get_parent()->_001RedrawWindow();
       pbase->set_lresult(0);
@@ -1345,13 +1345,13 @@ namespace user
       return -1;
    }
 
-   sp(::ca2::window) tab::GetNotifyWnd()
+   sp(::core::window) tab::GetNotifyWnd()
    {
 #ifdef METROWIN
       return NULL;
 
 #else
-      sp(::ca2::window) pwnd;
+      sp(::core::window) pwnd;
    //   if((pwnd = m_pguie->get_owner()) != NULL)
      //    return pwnd;
       if((pwnd = m_pguie->get_parent()->get_wnd()) != NULL)
@@ -1376,7 +1376,7 @@ namespace user
    void tab::_001OnCreate(signal_details * pobj)
    {
       
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
       
       if(pobj->previous())
          return;
@@ -1397,7 +1397,7 @@ namespace user
       
       UNREFERENCED_PARAMETER(pobj);
       
-//      SCAST_PTR(::ca2::message::base, pbase, pobj);
+//      SCAST_PTR(message::base, pbase, pobj);
 
       keeper < bool > keepRestoringTabs(&m_bRestoringTabs, true, false, true);
       
@@ -1417,7 +1417,7 @@ namespace user
 
    }
 
-   void tab::install_message_handling(::ca2::message::dispatch *pinterface)
+   void tab::install_message_handling(message::dispatch *pinterface)
    {
       ::user::control::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN , pinterface, this, &tab::_001OnLButtonDown);
@@ -1730,7 +1730,7 @@ namespace user
       }
    }
 
-   void tab::_001ConnectParent(::ca2::message::dispatch * pinterface)
+   void tab::_001ConnectParent(message::dispatch * pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
    }
@@ -1910,7 +1910,7 @@ namespace user
 
    void tab::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+      SCAST_PTR(message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 5432187)
       {
          get_data()->m_bDrag = true;
@@ -1922,7 +1922,7 @@ namespace user
       }
    }
 
-   void tab::_000OnMouse(::ca2::message::mouse * pmouse)
+   void tab::_000OnMouse(message::mouse * pmouse)
    {
       if(m_bShowTabs)
       {
@@ -2111,7 +2111,7 @@ namespace user
 
    void tab::get_restore_tab(var_array & vara)
    {
-      ::ca2::match::any  & matchany = get_data()->m_matchanyRestore;
+      ::core::match::any  & matchany = get_data()->m_matchanyRestore;
       if(matchany.get_count() == 0)
          return;
       var varId;
@@ -2128,7 +2128,7 @@ namespace user
 
    bool tab::has_restore_tab()
    {
-      ::ca2::match::any  & matchany = get_data()->m_matchanyRestore;
+      ::core::match::any  & matchany = get_data()->m_matchanyRestore;
       if(matchany.get_count() == 0)
          return false;
       var varId;
@@ -2166,6 +2166,6 @@ namespace user
       remove_tab_by_id(get_id_by_tab(iTab));
    }
 
-} // namespace ca2
+} // namespace core
 
 

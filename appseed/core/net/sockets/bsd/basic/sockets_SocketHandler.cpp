@@ -161,7 +161,7 @@ namespace sockets
    }
 
 
-   void socket_handler::LogError(socket * p,const string & user_text,int32_t err,const string & sys_err,::ca2::log::e_level t)
+   void socket_handler::LogError(socket * p,const string & user_text,int32_t err,const string & sys_err,::core::log::e_level t)
    {
       if (m_stdlog)
       {
@@ -174,7 +174,7 @@ namespace sockets
    {
       if (p -> GetSocket() == INVALID_SOCKET)
       {
-         LogError(p, "add", -1, "Invalid socket", ::ca2::log::level_warning);
+         LogError(p, "add", -1, "Invalid socket", ::core::log::level_warning);
          if (p -> CloseAndDelete())
          {
             m_delete.add_tail(p);
@@ -184,7 +184,7 @@ namespace sockets
       sp(socket) plookup;
       if (m_add.Lookup(p -> GetSocket(), plookup))
       {
-         LogError(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in add queue", ::ca2::log::level_info);
+         LogError(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in add queue", ::core::log::level_info);
          //m_delete.add_tail(p);
          return;
       }
@@ -282,7 +282,7 @@ namespace sockets
       {
          if (m_sockets.get_size() >= FD_SETSIZE)
          {
-            LogError(NULL, "Select", (int32_t)m_sockets.get_size(), "FD_SETSIZE reached", ::ca2::log::level_warning);
+            LogError(NULL, "Select", (int32_t)m_sockets.get_size(), "FD_SETSIZE reached", ::core::log::level_warning);
             break;
          }
          POSITION pos = m_add.get_start_position();
@@ -294,7 +294,7 @@ namespace sockets
          sp(socket) plookup;
          if (m_sockets.Lookup(p -> GetSocket(), plookup))
          {
-            LogError(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in controlled queue", ::ca2::log::level_fatal);
+            LogError(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in controlled queue", ::core::log::level_fatal);
             // %! it's a dup, don't add to delete queue, just ignore it
             m_delete.add_tail(p);
             m_add.remove_key(s);
@@ -325,7 +325,7 @@ namespace sockets
          }
          else
          {
-            LogError(p, "add", (int32_t)p -> GetSocket(), "Trying to add socket with SetCloseAndDelete() true", ::ca2::log::level_warning);
+            LogError(p, "add", (int32_t)p -> GetSocket(), "Trying to add socket with SetCloseAndDelete() true", ::core::log::level_warning);
          }
          // only add to m_fds (process fd_set events) if
          //  slave handler and detached/detaching socket
@@ -577,7 +577,7 @@ namespace sockets
                }
                else
                {
-                  LogError(NULL, "GetSocket/handler/1", (int32_t) socket, "Did not find expected socket using file descriptor", ::ca2::log::level_warning);
+                  LogError(NULL, "GetSocket/handler/1", (int32_t) socket, "Did not find expected socket using file descriptor", ::core::log::level_warning);
                }
                n--;
             }
@@ -598,7 +598,7 @@ namespace sockets
                }
                else
                {
-                  LogError(NULL, "GetSocket/handler/2", (int32_t) socket, "Did not find expected socket using file descriptor", ::ca2::log::level_warning);
+                  LogError(NULL, "GetSocket/handler/2", (int32_t) socket, "Did not find expected socket using file descriptor", ::core::log::level_warning);
                }
                n--;
             }
@@ -624,7 +624,7 @@ namespace sockets
                }
                else
                {
-                  LogError(NULL, "GetSocket/handler/3", (int32_t) socket, "Did not find expected socket using file descriptor", ::ca2::log::level_warning);
+                  LogError(NULL, "GetSocket/handler/3", (int32_t) socket, "Did not find expected socket using file descriptor", ::core::log::level_warning);
                }
                n--;
             }
@@ -643,7 +643,7 @@ namespace sockets
             sp(class socket) psocket = NULL;
             if(!m_sockets.Lookup(socket, psocket)) // not found
             {
-               LogError(NULL, "GetSocket/handler/4", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca2::log::level_warning);
+               LogError(NULL, "GetSocket/handler/4", (int32_t)socket, "Did not find expected socket using file descriptor", ::core::log::level_warning);
             }
             if(psocket != NULL)
             {
@@ -672,7 +672,7 @@ namespace sockets
                            psocket -> OnReconnect();
                         else
                         {
-                           LogError(tcp, "Calling OnConnect", 0, "Because CallOnConnect", ::ca2::log::level_info);
+                           LogError(tcp, "Calling OnConnect", 0, "Because CallOnConnect", ::core::log::level_info);
                            psocket -> OnConnect();
                         }
                      }
@@ -746,7 +746,7 @@ namespace sockets
                {
                   if(!m_add.Lookup(socket, p))
                   {
-                     LogError(NULL, "GetSocket/handler/6", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca2::log::level_warning);
+                     LogError(NULL, "GetSocket/handler/6", (int32_t)socket, "Did not find expected socket using file descriptor", ::core::log::level_warning);
                   }
                }
                if (p)
@@ -776,7 +776,7 @@ namespace sockets
             sp(class socket)p = NULL;
             if(m_sockets.Lookup(socket, p))
             {
-               LogError(NULL, "GetSocket/handler/7", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca2::log::level_warning);
+               LogError(NULL, "GetSocket/handler/7", (int32_t)socket, "Did not find expected socket using file descriptor", ::core::log::level_warning);
             }
             if (p)
             {
@@ -797,7 +797,7 @@ namespace sockets
                      }
                      else
                      {
-                        LogError(p, "RetryClientConnect", 0, "no address", ::ca2::log::level_error);
+                        LogError(p, "RetryClientConnect", 0, "no address", ::core::log::level_error);
                      }
                      add(p);
                      m_fds_erase.add_tail(nn);
@@ -820,7 +820,7 @@ namespace sockets
             {
                if(!m_add.Lookup(socket, p))
                {
-                     LogError(NULL, "GetSocket/handler/8", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca2::log::level_warning);
+                     LogError(NULL, "GetSocket/handler/8", (int32_t)socket, "Did not find expected socket using file descriptor", ::core::log::level_warning);
                }
             }
             if (p)
@@ -836,14 +836,14 @@ namespace sockets
    //TRACE(" close(1)\n");
                      if (tcp -> GetOutputLength())
                      {
-                        LogError(p, "Closing", (int32_t)tcp -> GetOutputLength(), "Sending all data before closing", ::ca2::log::level_info);
+                        LogError(p, "Closing", (int32_t)tcp -> GetOutputLength(), "Sending all data before closing", ::core::log::level_info);
                      }
                      else // shutdown write when output buffer is is_empty
                      if (!(tcp -> GetShutdown() & SHUT_WR))
                      {
                         if (socket != INVALID_SOCKET && shutdown(socket, SHUT_WR) == -1)
                         {
-                           LogError(p, "graceful shutdown", Errno, StrError(Errno), ::ca2::log::level_error);
+                           LogError(p, "graceful shutdown", Errno, StrError(Errno), ::core::log::level_error);
                         }
                         tcp -> SetShutdown(SHUT_WR);
                      }
@@ -866,7 +866,7 @@ namespace sockets
                      }
                      else
                      {
-                        LogError(p, "Reconnect", 0, "no address", ::ca2::log::level_error);
+                        LogError(p, "Reconnect", 0, "no address", ::core::log::level_error);
                      }
                      tcp -> ResetConnectionRetries();
                      add(p);
@@ -877,7 +877,7 @@ namespace sockets
                      //TRACE(" close(3) fd %d GetSocket() %d\n", socket, p -> GetSocket());
                      if (tcp && p -> IsConnected() && tcp -> GetOutputLength())
                      {
-                        LogError(p, "Closing", (int32_t)tcp -> GetOutputLength(), "Closing socket while data still left to send", ::ca2::log::level_warning);
+                        LogError(p, "Closing", (int32_t)tcp -> GetOutputLength(), "Closing socket while data still left to send", ::core::log::level_warning);
                      }
                      if (p -> Retain() && !p -> Lost())
                      {
@@ -1055,7 +1055,7 @@ namespace sockets
       System.net().convert(local, "127.0.0.1");
       if (!resolv -> open(local, m_resolver_port))
       {
-         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca2::log::level_fatal);
+         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::core::log::level_fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -1074,7 +1074,7 @@ namespace sockets
       System.net().convert(local, "127.0.0.1");
       if (!resolv -> open(local, m_resolver_port))
       {
-         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca2::log::level_fatal);
+         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::core::log::level_fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -1092,7 +1092,7 @@ namespace sockets
       System.net().convert(local, "127.0.0.1");
       if (!resolv -> open(local, m_resolver_port))
       {
-         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca2::log::level_fatal);
+         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::core::log::level_fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -1110,7 +1110,7 @@ namespace sockets
       System.net().convert(local, "127.0.0.1");
       if (!resolv -> open(local, m_resolver_port))
       {
-         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca2::log::level_fatal);
+         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::core::log::level_fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -1223,7 +1223,7 @@ namespace sockets
       {
          if(ppair->m_element2 == p)
          {
-            LogError(p, "remove", -1, "socket destructor called while still in use", ::ca2::log::level_warning);
+            LogError(p, "remove", -1, "socket destructor called while still in use", ::core::log::level_warning);
             m_sockets.remove_key(ppair->m_element1);
             return;
          }
@@ -1234,7 +1234,7 @@ namespace sockets
       {
          if (ppair2->m_element2 == p)
          {
-            LogError(p, "remove", -2, "socket destructor called while still in use", ::ca2::log::level_warning);
+            LogError(p, "remove", -2, "socket destructor called while still in use", ::core::log::level_warning);
             m_add.remove_key(ppair2->m_element1);
             return;
          }
@@ -1242,7 +1242,7 @@ namespace sockets
       }
       if(m_delete.remove(p) > 0)
       {
-         LogError(p, "remove", -3, "socket destructor called while still in use", ::ca2::log::level_warning);
+         LogError(p, "remove", -3, "socket destructor called while still in use", ::core::log::level_warning);
          return;
       }
    }
@@ -1339,10 +1339,10 @@ namespace sockets
             m_trigger_dst[id][dst] = true;
             return true;
          }
-         LogError(dst, "Subscribe", id, "Already subscribed", ::ca2::log::level_info);
+         LogError(dst, "Subscribe", id, "Already subscribed", ::core::log::level_info);
          return false;
       }
-      LogError(dst, "Subscribe", id, "Trigger id not found", ::ca2::log::level_info);
+      LogError(dst, "Subscribe", id, "Trigger id not found", ::core::log::level_info);
       return false;
    }
 
@@ -1356,10 +1356,10 @@ namespace sockets
             m_trigger_dst[id].remove_key(dst);
             return true;
          }
-         LogError(dst, "Unsubscribe", id, "Not subscribed", ::ca2::log::level_info);
+         LogError(dst, "Unsubscribe", id, "Not subscribed", ::core::log::level_info);
          return false;
       }
-      LogError(dst, "Unsubscribe", id, "Trigger id not found", ::ca2::log::level_info);
+      LogError(dst, "Unsubscribe", id, "Trigger id not found", ::core::log::level_info);
       return false;
    }
 
@@ -1387,7 +1387,7 @@ namespace sockets
       }
       else
       {
-         LogError(NULL, "Trigger", id, "Trigger id not found", ::ca2::log::level_info);
+         LogError(NULL, "Trigger", id, "Trigger id not found", ::core::log::level_info);
       }
    }
 

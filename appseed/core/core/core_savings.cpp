@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    savings::savings(sp(base_application) papp) :
@@ -59,4 +59,4 @@ namespace ca2
       return m_eresourceflagsWarning.is_signalized(eresource);
    }
 
-} // namespace ca2
+} // namespace core

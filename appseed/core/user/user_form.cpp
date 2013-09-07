@@ -43,7 +43,7 @@ namespace user
          {
          case control::type_static:
             {
-   /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) ::ca2::window::FromHandlePermanent(pform->get_child_by_id(pcontrol->m_id)->GetSafeoswindow_());
+   /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) ::core::window::FromHandlePermanent(pform->get_child_by_id(pcontrol->m_id)->GetSafeoswindow_());
                if(pstatic == NULL || !base < CTransparentStatic >::bases(pstatic))
                {
                   pstatic = new CTransparentStatic;
@@ -487,7 +487,7 @@ namespace user
          return;
       ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
       int32_t i;
-      if(data_get(pcontrol->descriptor().m_dataid, ::ca2::system::idEmpty, i))
+      if(data_get(pcontrol->descriptor().m_dataid, ::core::system::idEmpty, i))
       {
    /* linux      simple_button * pbutton = (simple_button *) get_child_by_id(pcontrol->m_id);
          pbutton->SetCheck((i != 0) ? 1 : 0); */
@@ -585,7 +585,7 @@ namespace user
       {
          ::user::simple_list_data * pdata = dynamic_cast < ::user::simple_list_data * > (plist->GetDataInterface());
          stringa stra;
-         data_get(pcontrol->descriptor().m_dataid, ::ca2::system::idEmpty, stra);
+         data_get(pcontrol->descriptor().m_dataid, ::core::system::idEmpty, stra);
          ASSERT(plist != NULL);
          pdata->set_data(plist, stra);
       }*/
@@ -594,7 +594,7 @@ namespace user
    void form::_000OnPosCreate(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca2::message::base, pbase, pobj)
+//      SCAST_PTR(message::base, pbase, pobj)
    }
 
    void form::_001InitializeFormPreData()
@@ -624,7 +624,7 @@ namespace user
          return false;
 
       int32_t i;
-      if(!data_get(pcontrol->descriptor().m_dataid, ::ca2::system::idEmpty, i))
+      if(!data_get(pcontrol->descriptor().m_dataid, ::core::system::idEmpty, i))
          return false;
 
       bData = (i != 0) ? 1 : 0;
@@ -640,7 +640,7 @@ namespace user
          return false;
 
       int32_t i = bData ? 1 : 0;
-      data_set(pcontrol->descriptor().m_dataid, ::ca2::system::idEmpty, i);
+      data_set(pcontrol->descriptor().m_dataid, ::core::system::idEmpty, i);
       return true;
 
    }
@@ -663,7 +663,7 @@ namespace user
       }
    }
 
-   void form::install_message_handling( ::ca2::message::dispatch *pinterface)
+   void form::install_message_handling( message::dispatch *pinterface)
    {
       ::user::scroll_view::install_message_handling(pinterface);
    /*   InstallOnDrawInterface(pinterface);
@@ -676,7 +676,7 @@ namespace user
       VMSGEN_WINDOW_ON_LBUTTONDBLCLK_CONDITIONAL(pinterface, this, _001OnLButtonDblClk);
       VMSGEN_WINDOW_ON_TIMER_CONDITIONAL(pinterface, this, _001OnTimer);*/
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form::_001OnCreate);
-      IGUI_MSG_LINK(::ca2::message_pos_create, pinterface, this, &form::_000OnPosCreate);
+      IGUI_MSG_LINK(::core::message_pos_create, pinterface, this, &form::_000OnPosCreate);
 //      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &form::_001OnCommand);
   //    IGUI_WIN_MSG_LINK(WM_NOTIFY, pinterface, this, &form::_001OnNotify);
       // revamp IGUI_WIN_MSG_LINK(user::MessageNotify, pinterface, this, &form::_001OnMessageNotify);
@@ -698,7 +698,7 @@ namespace user
       VMSGEN_WINDOW_ON_LBUTTONDBLCLK_CONDITIONAL(pinterface, this, _001OnLButtonDblClk);
       VMSGEN_WINDOW_ON_TIMER_CONDITIONAL(pinterface, this, _001OnTimer);*/
       //IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form::_001OnCreate);
-      //IGUI_MSG_LINK(::ca2::message_pos_create, pinterface, this, &form::_000OnPosCreate);
+      //IGUI_MSG_LINK(::core::message_pos_create, pinterface, this, &form::_000OnPosCreate);
 //      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &form::_001OnCommand);
   //    IGUI_WIN_MSG_LINK(WM_NOTIFY, pinterface, this, &form::_001OnNotify);
       // revamp IGUI_WIN_MSG_LINK(user::MessageNotify, pinterface, this, &form::_001OnMessageNotify);
@@ -714,7 +714,7 @@ namespace user
    void form::_001GetSelection(
       ::database::id & id, ::database::selection &selection)
    {
-      selection.add_item(id, ::ca2::system::idEmpty);
+      selection.add_item(id, ::core::system::idEmpty);
    }
 
    bool form::_001OnCommand(id id)
@@ -728,7 +728,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      SCAST_PTR(::ca2::message::notify, pnotify, pobj)
+      SCAST_PTR(message::notify, pnotify, pobj)
 
       pnotify->m_bRet = false;
 
@@ -744,7 +744,7 @@ namespace user
    void form::_001OnMessageNotify(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
 
       // revamp pbase->set_lresult(user::NotifyRetContinue);
 
@@ -892,7 +892,7 @@ namespace user
    void form::_001OnAppLanguage(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
 
       keeper < bool > keepOnLanguageChange(&m_bOnLanguageChange, true, false, true);
 
@@ -906,11 +906,11 @@ namespace user
    void form::_001OnCreate(signal_details * pobj)
    {
 
-//      SCAST_PTR(::ca2::message::create, pcreate, pobj)
+//      SCAST_PTR(message::create, pcreate, pobj)
       if(pobj->previous())
          return;
 
-      //PostMessage(::ca2::message::message_pos_create);
+      //PostMessage(message::message_pos_create);
 
    }
 
@@ -965,8 +965,8 @@ namespace user
                {
                   //xxx pcontrol->m_pwnd->unsubclass_window();
                }
-   //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < ::ca2::window > ()));
-               if(dynamic_cast < ::ca2::window * >(descriptor.m_pcontrol.m_p) != NULL)
+   //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < ::core::window > ()));
+               if(dynamic_cast < ::core::window * >(descriptor.m_pcontrol.m_p) != NULL)
                {
                   //window_id wndidTemp = get_child_by_id(pcontrol->m_id)->GetSafeoswindow_();
                   //if(wndidTemp != NULL)

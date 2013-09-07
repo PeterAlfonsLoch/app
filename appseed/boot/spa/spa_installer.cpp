@@ -218,11 +218,11 @@ namespace spa_install
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
+      m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.core.cc";
 
 #else
 
-      m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
+      m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.core.cc";
 
 #endif
 
@@ -263,8 +263,8 @@ RetryHost:
          trace(strSpaHost);
 
          dir::mk("C:\\ca");
-         dir::mk("C:\\ca2\\time");
-         dir::mk("C:\\ca2\\time\\ca");
+         dir::mk("C:\\core\\time");
+         dir::mk("C:\\core\\time\\ca");
 
          set_progress(0.3);
 
@@ -315,7 +315,7 @@ RetryHost:
                      (const BYTE *) (const char *) strFile,
                      (uint32_t) strFile.length());
                   string strDisplayName;
-                  strDisplayName = "ca2 - ";
+                  strDisplayName = "core - ";
                   strKey = "install_filter_title_" + strId;
                   strDisplayName += load_string(strKey, strId);
                   ::RegSetValueEx(
@@ -578,7 +578,7 @@ RetryHost:
                bAsk = true;
                bRestart = true;
                string strPath = m_straTerminateProcesses.element_at(i);
-               if(str_ends_ci_dup(strPath, "\\app-install.exe") && stristr_dup(strPath, "\\ca2\\") != NULL)
+               if(str_ends_ci_dup(strPath, "\\app-install.exe") && stristr_dup(strPath, "\\core\\") != NULL)
                {
                   bAsk = false;
                   bRestart = false;
@@ -653,13 +653,13 @@ RetryHost:
                }
 
             }
-            //file_put_contents_dup("C:\\ca2\\machine\\on_after_spaadmin.txt", strCommand);
+            //file_put_contents_dup("C:\\core\\machine\\on_after_spaadmin.txt", strCommand);
          }
 
          if(m_straRestartCommandLine.get_count() > 0)
          {
 
-            oswindow oswindowSpaBoot = ::FindWindow(NULL, "::ca2::spaboot:callback_window");
+            oswindow oswindowSpaBoot = ::FindWindow(NULL, "::core::spaboot:callback_window");
 
             if(oswindowSpaBoot != NULL)
             {
@@ -1297,7 +1297,7 @@ RetryHost:
 
             string strUrl;
 
-            strUrl = "http://spa.api.server.ca2.cc/bspatch?file=";
+            strUrl = "http://spa.api.server.core.cc/bspatch?file=";
 
             strUrl += url_encode_dup(file2);
 
@@ -2360,7 +2360,7 @@ RetryHost:
 
       small_ipc_tx_channel txchannel;
 
-      if(!txchannel.open("ca2/spaboot_install_callback"))
+      if(!txchannel.open("core/spaboot_install_callback"))
          return;
 
 #endif
@@ -2651,7 +2651,7 @@ RetryHost:
 
       m_strInstall               = "http://ca2os.com/stage/";
 
-      m_strInstallStatusTemplate = http_defer_locale_schema_get("http://account.ca2.cc/defer_ls_get?id=spa_install::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
+      m_strInstallStatusTemplate = http_defer_locale_schema_get("http://account.core.cc/defer_ls_get?id=spa_install::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
 
       m_bForceUpdatedBuild       = true;
 
@@ -2665,7 +2665,7 @@ RetryHost:
    int32_t installer::application_name()
    {
       string strUrl;
-      trace(("get application name from server http://spaignition.api.server.ca2.cc/ using application id \"" + m_strApplicationId + "\" "));
+      trace(("get application name from server http://spaignition.api.server.core.cc/ using application id \"" + m_strApplicationId + "\" "));
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
       strUrl += m_strApplicationId;
       strUrl += "&key=name";
@@ -2937,13 +2937,13 @@ RetryHost:
 
       m_hinstance = hinstance; // Store instance handle in our global variable
 
-      m_strInstallGz = dir::module_folder("ca2\\bz\\stage\\");
-      m_strInstall = dir::module_folder("ca2\\stage\\");
+      m_strInstallGz = dir::module_folder("core\\bz\\stage\\");
+      m_strInstall = dir::module_folder("core\\stage\\");
 
       m_strIndexGz = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa.bz"));
       m_strIndex = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa"));
 
-      bool bOfflineInstall1 = dir::is(dir::module_folder("ca2\\bz"));
+      bool bOfflineInstall1 = dir::is(dir::module_folder("core\\bz"));
       //bool bOfflineInstall2 = file_exists_dup(g_strIndexGz);
       //m_bOfflineInstall = bOfflineInstall1 && bOfflineInstall2;
       m_bOfflineInstall = bOfflineInstall1;
@@ -3436,9 +3436,9 @@ RetryHost:
                break;
             string strUrl;
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-            strUrl = "http://warehouse.ca2.cc/spa?download=app-install.exe&authnone";
+            strUrl = "http://warehouse.core.cc/spa?download=app-install.exe&authnone";
 #else
-            strUrl = "http://store.ca2.cc/spa?download=app-install.exe&authnone";
+            strUrl = "http://store.core.cc/spa?download=app-install.exe&authnone";
 #endif
             if(http_download_dup(strUrl, m_strPath, false))
             {

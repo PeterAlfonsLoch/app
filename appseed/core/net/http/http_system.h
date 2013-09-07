@@ -14,7 +14,7 @@ namespace fontopus
 } // namespace fontopus
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -146,5 +146,5 @@ namespace ca2
    } // namespace http
 
 
-} // namespace ca2
+} // namespace core
 

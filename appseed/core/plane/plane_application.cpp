@@ -543,7 +543,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
 
       if(!is_system() && (bool)oprop("SessionSynchronizedInput"))
       {
-         ::AttachThreadInput(GetCurrentThreadId(), (uint32_t) System.::ca2::thread::m_p->get_os_int(), TRUE);
+         ::AttachThreadInput(GetCurrentThreadId(), (uint32_t) System.::core::thread::m_p->get_os_int(), TRUE);
       }
 
 #endif
@@ -574,7 +574,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
             {
                if (GetMainWnd() != NULL)
                {
-                  TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                  TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                   GetMainWnd()->DestroyWindow();
                }
                goto InitFailure;
@@ -606,7 +606,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
             {
                if (GetMainWnd() != NULL)
                {
-                  TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                  TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                   GetMainWnd()->DestroyWindow();
                }
 
@@ -637,7 +637,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
                goto run;
             if(GetMainWnd() != NULL)
             {
-               TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -657,7 +657,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
                goto run;
             if(GetMainWnd() != NULL)
             {
-               TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -731,7 +731,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
          //           - ::ikaraoke::karaoke file does not open? can open next? do it... may animate with a temporary icon...
          //           - import a little as pepper for the meal, prodevian technology into estamira, so gaming experience relativity can open ligh
          //               speed into cartesian dimensions of
-         //               ca2, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
+         //               core, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
          //               black letters, or colorful and pink are accepted and sometimes desired, for example, hello kity prodevian, pirarucu games,
          //               I think no one likes to be boring, but a entire background in black... I don't know... only for your personal office, may be...
          //           - could an online colaborator investigate crashes promptly in a funny way, and make news and jokes? Like terra and UOL for the real world?
@@ -779,7 +779,7 @@ run:
       {
       }
 
-      ::ca2::thread * pthread = System.GetThread();
+      ::core::thread * pthread = System.GetThread();
 
       install_message_handling(pthread->m_p);
 #if !defined(DEBUG) || defined(WINDOWS)
@@ -819,7 +819,7 @@ run:
                goto run;
             if (GetMainWnd() != NULL)
             {
-               TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -833,7 +833,7 @@ run:
                goto run;
             if (GetMainWnd() != NULL)
             {
-               TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -911,7 +911,7 @@ run:
          //           - ::ikaraoke::karaoke file does not open? can open next? do it... may animate with a temporary icon...
          //           - import a little as pepper for the meal, prodevian technology into estamira, so gaming experience relativity can open ligh
          //               speed into cartesian dimensions of
-         //               ca2, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
+         //               core, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
          //               black letters, or colorful and pink are accepted and sometimes desired, for example, hello kity prodevian, pirarucu games,
          //               I think no one likes to be boring, but a entire background in black... I don't know... only for your personal office, may be...
          //           - could an online colaborator investigate crashes promptly in a funny way, and make news and jokes? Like terra and UOL for the real world?
@@ -948,7 +948,7 @@ InitFailure:
       }
       try
       {
-         ::ca2::thread * pthread = ::ca2::thread::m_p;
+         ::core::thread * pthread = ::core::thread::m_p;
          if(pthread != NULL && pthread->m_pbReady != NULL)
          {
             *pthread->m_pbReady = true;
@@ -959,7 +959,7 @@ InitFailure:
       }
       /*try
       {
-         ::ca2::thread * pthread = dynamic_cast < ::ca2::thread * > (this);
+         ::core::thread * pthread = dynamic_cast < ::core::thread * > (this);
          ::SetEvent((HANDLE) pthread->m_peventReady);
       }
       catch(...)
@@ -1172,13 +1172,13 @@ exit_application:
          if(strId == "bergedge")
          {
 
-            strNewId = "app/ca2/bergedge";
+            strNewId = "app/core/bergedge";
 
          }
          else if(strId == "cube")
          {
 
-            strNewId = "app/ca2/cube";
+            strNewId = "app/core/cube";
 
          }
          else
@@ -1543,11 +1543,11 @@ exit_application:
       string strUrl;
       if(_ca_is_basis())
       {
-         strUrl = "http://basis.spaignition.api.server.ca2.cc/download?authnone&version=basis&stage=";
+         strUrl = "http://basis.spaignition.api.server.core.cc/download?authnone&version=basis&stage=";
       }
       else
       {
-         strUrl = "http://stage.spaignition.api.server.ca2.cc/download?authnone&version=stage&stage=";
+         strUrl = "http://stage.spaignition.api.server.core.cc/download?authnone&version=stage&stage=";
       }
 
       strUrl += System.url().url_encode(strRelative);
@@ -1610,7 +1610,7 @@ exit_application:
    }
 
 
-   bool application::add_library(::ca2::library * plibrary)
+   bool application::add_library(::core::library * plibrary)
    {
 
       plibrary->set_app(this);
@@ -1726,7 +1726,7 @@ exit_application:
       {
 
          string str;
-         // if system locale has changed (compared to last recorded one by ca2)
+         // if system locale has changed (compared to last recorded one by core)
          // use the system locale
          if(data_get("system_locale", str))
          {
@@ -1771,7 +1771,7 @@ exit_application:
                set_locale(str, false);
             }
          }
-         // if system schema has changed (compared to last recorded one by ca2)
+         // if system schema has changed (compared to last recorded one by core)
          // use the system schema
          if(data_get("system_schema", str))
          {
@@ -1820,7 +1820,7 @@ exit_application:
             user()->set_keyboard_layout(NULL, false);
          }
 
-         data_pulse_change("ca2", "savings", NULL);
+         data_pulse_change("core", "savings", NULL);
 
 
          App(this).fill_locale_schema(*str_context()->m_plocaleschema);
@@ -2001,7 +2001,7 @@ exit_application:
          if(System.appptra().get_count() <= 1)
          {
 
-             if(System.::ca2::thread::get_os_data() != NULL)
+             if(System.::core::thread::get_os_data() != NULL)
               {
               System.post_thread_message(WM_QUIT);
 
@@ -2031,7 +2031,7 @@ exit_application:
    void application::data_on_after_change(signal_details * pobj)
    {
       SCAST_PTR(::database::change_event, pchange, pobj);
-      if(pchange->m_key.m_idKey == "ca2")
+      if(pchange->m_key.m_idKey == "core")
       {
          if(pchange->m_key.m_idIndex  == "savings")
          {

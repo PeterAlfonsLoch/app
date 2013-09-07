@@ -1695,11 +1695,11 @@ fill_last:
 
    void dib::Line ( int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t R, int32_t G, int32_t B )
    {
-      int32_t d, x, y, ca2, ay, sx, sy, dx, dy;
+      int32_t d, x, y, core, ay, sx, sy, dx, dy;
       COLORREF color=RGB ( B, G, R );
 
       dx=x2-x1;
-      ca2=abs ( dx )<<1;
+      core=abs ( dx )<<1;
       sx=(dx<0) ? -1 : 1;
       dy=y2-y1;
       ay=abs ( dy )<<1;
@@ -1707,16 +1707,16 @@ fill_last:
       x=x1;
       y=y1;
 
-      if ( ca2>ay )
+      if ( core>ay )
       {
-         d=ay-(ca2>>1);
+         d=ay-(core>>1);
          while ( x!=x2 )
          {
             get_data()[y*cx+x]=color;
             if ( d>=0 )
             {
                y+=sy;
-               d-=ca2;
+               d-=core;
             }
             x+=sx;
             d+=ay;
@@ -1724,7 +1724,7 @@ fill_last:
       }
       else
       {
-         d=ca2-(ay>>1);
+         d=core-(ay>>1);
          while ( y!=y2 )
          {
             get_data()[y*cx+x]=color;
@@ -1734,19 +1734,19 @@ fill_last:
                d-=ay;
             }
             y+=sy;
-            d+=ca2;
+            d+=core;
          }
       }
    }
 
    void dib::LineGlass ( int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t R, int32_t G, int32_t B, int32_t A )
    {
-      int32_t d, x, y, ca2, ay, sx, sy, dx, dy;
+      int32_t d, x, y, core, ay, sx, sy, dx, dy;
 //      COLORREF color=RGB ( B, G, R );
       BYTE *dst=(BYTE *)get_data();
 
       dx=x2-x1;
-      ca2=abs ( dx )<<1;
+      core=abs ( dx )<<1;
       sx=(dx<0) ? -1 : 1;
       dy=y2-y1;
       ay=abs ( dy )<<1;
@@ -1754,9 +1754,9 @@ fill_last:
       x=x1;
       y=y1;
 
-      if ( ca2>ay )
+      if ( core>ay )
       {
-         d=ay-(ca2>>1);
+         d=ay-(core>>1);
          while ( x!=x2 )
          {
             dst[(y*cx+x)<<2]=(BYTE)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
@@ -1765,7 +1765,7 @@ fill_last:
             if ( d>=0 )
             {
                y+=sy;
-               d-=ca2;
+               d-=core;
             }
             x+=sx;
             d+=ay;
@@ -1773,7 +1773,7 @@ fill_last:
       }
       else
       {
-         d=ca2-(ay>>1);
+         d=core-(ay>>1);
          while ( y!=y2 )
          {
             dst[(y*cx+x)<<2]=(BYTE)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
@@ -1785,7 +1785,7 @@ fill_last:
                d-=ay;
             }
             y+=sy;
-            d+=ca2;
+            d+=core;
          }
       }
    }
@@ -3445,7 +3445,7 @@ fill_last:
     }
 
    
-   bool dib::update_window(::ca2::window * pwnd, signal_details * pobj)
+   bool dib::update_window(::core::window * pwnd, signal_details * pobj)
    {
       
       UNREFERENCED_PARAMETER(pwnd);
@@ -3461,7 +3461,7 @@ fill_last:
    }
    
 
-   bool dib::print_window(::ca2::window * pwnd, signal_details * pobj)
+   bool dib::print_window(::core::window * pwnd, signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pwnd);
       UNREFERENCED_PARAMETER(pobj);

@@ -34,9 +34,9 @@ namespace sockets
 {
 
 
-   void trace_log::error(socket_handler_base * phandler, socket * sock, const string & strCall, int32_t iError, const string & strSystemError, ::ca2::log::e_level elevel)
+   void trace_log::error(socket_handler_base * phandler, socket * sock, const string & strCall, int32_t iError, const string & strSystemError, ::core::log::e_level elevel)
    {
-      string strLevel = ::ca2::log_level_name(elevel);
+      string strLevel = ::core::log_level_name(elevel);
 
       if (sock)
       {

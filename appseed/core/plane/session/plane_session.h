@@ -11,7 +11,7 @@ namespace plane
    class CLASS_DECL_ca2 session :
       virtual public ::platform::application,
       virtual public ::filemanager::item_action,
-      virtual public ::ca2::session
+      virtual public ::core::session
    {
    public:
 
@@ -131,7 +131,7 @@ namespace plane
 
       virtual void check_topic_file_change();
 
-      void on_exclusive_instance_conflict(::ca2::EExclusiveInstance eexclusive);
+      void on_exclusive_instance_conflict(::core::EExclusiveInstance eexclusive);
 
       void launch_app(const char * psz);
       void install_app(const char * psz);

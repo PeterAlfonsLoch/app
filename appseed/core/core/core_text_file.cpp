@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    text_file::text_file()
@@ -35,4 +35,4 @@ namespace ca2
       return uiTotal;
    }
 
-} // namespace ca2
+} // namespace core

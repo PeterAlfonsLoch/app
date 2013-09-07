@@ -29,7 +29,7 @@ namespace user
    //   AllocElements(0, 0);    // destroys existing elements
    }
 
-   void status_bar::install_message_handling(::ca2::message::dispatch * pinterface)
+   void status_bar::install_message_handling(message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_NCHITTEST         , pinterface, this, &status_bar::_001OnNcHitTest);
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE        , pinterface, this, &status_bar::_001OnNcCalcSize);
@@ -52,10 +52,10 @@ namespace user
    {
       ASSERT_VALID(pParentWnd);   // must have a parent
 
-      // save the style (some of these style bits are ca2 API specific)
+      // save the style (some of these style bits are core API specific)
       m_dwStyle = (dwStyle & CBRS_ALL);
 
-      // translate ca2 API style bits to windows style bits
+      // translate core API style bits to windows style bits
       dwStyle &= ~CBRS_ALL;
 #ifdef WINDOWSEX
       dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
@@ -117,7 +117,7 @@ namespace user
             {
    /* xxx            if (!pSBP->strText.load_string(pSBP->strId))
                {
-                  TRACE(::ca2::trace::category_AppMsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
+                  TRACE(::core::trace::category_AppMsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
                      pSBP->strId);
                   bResult = FALSE;
                   break;
@@ -509,7 +509,7 @@ namespace user
 
    void status_bar::_001OnNcHitTest(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::nchittest, pnchittest, pobj)
+      SCAST_PTR(message::nchittest, pnchittest, pobj)
       UINT nResult = (UINT)Default();
       if (nResult == HTBOTTOMRIGHT)
       {
@@ -524,7 +524,7 @@ namespace user
    void status_bar::_001OnNcCalcSize(signal_details * pobj)
    {
 #ifdef WINDOWSEX
-      SCAST_PTR(::ca2::message::nc_calc_size, pnccalcsize, pobj)
+      SCAST_PTR(message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect;
       rect.null();
@@ -615,7 +615,7 @@ namespace user
    void status_bar::_001OnWindowPosChanging(signal_details * pobj)
    {
 #ifdef WINDOWSEX
-      SCAST_PTR(::ca2::message::window_pos, pwindowpos, pobj)
+      SCAST_PTR(message::window_pos, pwindowpos, pobj)
       // not necessary to invalidate the borders
       uint32_t dwStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
@@ -629,7 +629,7 @@ namespace user
 
    void status_bar::_001OnSetText(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
@@ -646,7 +646,7 @@ namespace user
 
    void status_bar::_001OnGetText(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
@@ -677,7 +677,7 @@ namespace user
 
    void status_bar::_001OnGetTextLength(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
 
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -695,7 +695,7 @@ namespace user
 
    void status_bar::_001OnSetMinHeight(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
       LRESULT lResult = Default();
       m_nMinHeight = (int32_t)pbase->m_wparam;
       pbase->set_lresult(lResult);

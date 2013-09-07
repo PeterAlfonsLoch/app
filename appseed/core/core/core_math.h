@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -99,6 +99,6 @@ namespace ca2
    } // namespace math
 
 
-} // namespace ca2
+} // namespace core
 
 

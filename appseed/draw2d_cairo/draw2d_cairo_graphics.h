@@ -46,7 +46,7 @@ namespace draw2d_cairo
          return *m_pgraphics;
       }*/
 
-      //::ca2::window * GetWindow() const;
+      //::core::window * GetWindow() const;
 
       //static ::draw2d::graphics * PASCAL from_handle(HDC hDC);
       //static void PASCAL DeleteTempMap();
@@ -205,7 +205,7 @@ namespace draw2d_cairo
             int32_t SelectClipRgn(::draw2d::region* pRgn);
             int32_t ExcludeClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
             int32_t ExcludeClipRect(LPCRECT lpRect);
-            int32_t ExcludeUpdateRgn(::ca2::window * pWnd);
+            int32_t ExcludeUpdateRgn(::core::window * pWnd);
             int32_t IntersectClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
             int32_t IntersectClipRect(LPCRECT lpRect);
             int32_t OffsetClipRgn(int32_t x, int32_t y);

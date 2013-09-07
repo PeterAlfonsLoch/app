@@ -10,5 +10,5 @@ public:
 
    DECL_GEN_SIGNAL(_001OnShowWindow)
 
-   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+   virtual void install_message_handling(message::dispatch * pinterface);
 };

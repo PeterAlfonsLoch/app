@@ -172,13 +172,13 @@ CLASS_DECL_ca string fetch_latest_build_number(const char * pszVersion)
    if(pszVersion != NULL && !strcmp(pszVersion, "basis"))
    {
 
-       strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
+       strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.core.cc";
 
    }
    else if(pszVersion != NULL && !strcmp(pszVersion, "stage"))
    {
 
-       strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
+       strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.core.cc";
 
    }
    else
@@ -186,11 +186,11 @@ CLASS_DECL_ca string fetch_latest_build_number(const char * pszVersion)
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
+      strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.core.cc";
 
 #else
 
-      strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
+      strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.core.cc";
 
 #endif
 

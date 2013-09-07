@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    namespace logic
@@ -18,5 +18,5 @@ namespace ca2
 
    } // namespace logic
 
-} // namespace ca2
+} // namespace core
 

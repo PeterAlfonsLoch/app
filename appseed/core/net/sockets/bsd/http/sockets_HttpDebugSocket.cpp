@@ -55,7 +55,7 @@ namespace sockets
    #ifdef HAVE_OPENSSL
          EnableSSL();
    #else
-         Handler().LogError(this, "url_this", -1, "SSL not available", ::ca2::log::level_warning);
+         Handler().LogError(this, "url_this", -1, "SSL not available", ::core::log::level_warning);
    #endif
       }
    }

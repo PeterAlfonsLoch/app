@@ -69,7 +69,7 @@ void spa_login::defer_translate(::spa_install::plugin * pplugin)
 
    xxdebug_box("defer_translate", "spa_login", 0);
 
-   string strForm = pplugin->defer_get("http://account.ca2.cc/login_form");
+   string strForm = pplugin->defer_get("http://account.core.cc/login_form");
 
    if(strForm.is_empty())
       return;
@@ -190,7 +190,7 @@ spa_login::e_result spa_login::login()
    if(m_password.m_strText.is_empty() && m_strPasshash.is_empty())
       return result_fail;
 
-   string strLoginUrl("https://api.ca2.cc/account/login");
+   string strLoginUrl("https://api.core.cc/account/login");
 
    ::xml::document doc;
 
@@ -266,7 +266,7 @@ spa_login::e_result spa_login::login()
 
    {
 
-      string strAuthUrl("https://api.ca2.cc/account/auth?defer_registration&ruri=" + m_pplugin->m_strRuri);
+      string strAuthUrl("https://api.core.cc/account/auth?defer_registration&ruri=" + m_pplugin->m_strRuri);
 
       if(m_strPasshash.is_empty())
       {

@@ -12,7 +12,7 @@ namespace userfs
    }
 
 
-   sp(::ca2::tree_item_data) tree_data::on_allocate_item()
+   sp(::core::tree_item_data) tree_data::on_allocate_item()
    {
       return canew(::userfs::tree_item_data());
    }

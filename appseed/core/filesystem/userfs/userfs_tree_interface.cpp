@@ -113,7 +113,7 @@ namespace userfs
 
          pitemChild = canew(::userfs::tree_item_data);
 
-         pitemChild->m_pdata = ::ca2::tree::get_data();
+         pitemChild->m_pdata = ::core::tree::get_data();
 
          pitemChild->m_strPath = straPath[i];
 
@@ -136,16 +136,16 @@ namespace userfs
                pitem = find_item(pitemChild->m_strPath);
                if(pitem != NULL)
                {
-                  pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::ca2::RelativeReplace, pitem);
+                  pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::core::RelativeReplace, pitem);
                }
                else
                {
-                  pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::ca2::RelativeLastChild, pitemParent);
+                  pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::core::RelativeLastChild, pitemParent);
                }
 
                if(zip::Util().HasSubFolder(get_app(), pitemChild->m_strPath))
                {
-                  pitem->m_dwState |= ::ca2::tree_item_state_expandable;
+                  pitem->m_dwState |= ::core::tree_item_state_expandable;
                }
 
                if(iLevel > 1)
@@ -176,7 +176,7 @@ namespace userfs
          if(pitem != NULL)
          {
 
-            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::ca2::RelativeReplace, pitem);
+            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::core::RelativeReplace, pitem);
 
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
@@ -186,14 +186,14 @@ namespace userfs
          else
          {
 
-            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::ca2::RelativeLastChild, pitemParent);
+            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::core::RelativeLastChild, pitemParent);
 
          }
 
          if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
          {
 
-            pitem->m_dwState |= ::ca2::tree_item_state_expandable;
+            pitem->m_dwState |= ::core::tree_item_state_expandable;
 
          }
 
@@ -217,7 +217,7 @@ namespace userfs
 
       if(iChildCount == 0)
       {
-         pitemParent->m_dwState &= ~::ca2::tree_item_state_expandable;
+         pitemParent->m_dwState &= ~::core::tree_item_state_expandable;
       }
 
 
@@ -251,7 +251,7 @@ namespace userfs
          if(pitem == NULL)
             break;
 
-         if(!(pitem->m_dwState & ::ca2::tree_item_state_expanded))
+         if(!(pitem->m_dwState & ::core::tree_item_state_expanded))
          {
             _001ExpandItem(pitem, true, false, false);
          }
@@ -427,17 +427,17 @@ namespace userfs
             ::data::tree_item  * pitem    = find_item(pitemNew->m_strPath);
             if(pitem == NULL)
             {
-               pitem = insert_item_data(get_fs_tree_data(), pitemNew, ::ca2::RelativeLastChild, pitemParent);
+               pitem = insert_item_data(get_fs_tree_data(), pitemNew, ::core::RelativeLastChild, pitemParent);
             }
             else
             {
-               pitem = insert_item_data(get_fs_tree_data(), pitemNew, ::ca2::RelativeReplace, pitem);
+               pitem = insert_item_data(get_fs_tree_data(), pitemNew, ::core::RelativeReplace, pitem);
             }
             str = szPath;
             wstraChildItem.remove_all();
             if(zip::Util().HasSubFolder(get_app(), str))
             {
-               pitem->m_dwState |= ::ca2::tree_item_state_expandable;
+               pitem->m_dwState |= ::core::tree_item_state_expandable;
             }
             if(iLevel > 1)
             {
@@ -529,7 +529,7 @@ namespace userfs
       _017Browse(get_document()->m_strFolder);
    }
 
-   void tree_interface::install_message_handling(::ca2::message::dispatch *pinterface)
+   void tree_interface::install_message_handling(message::dispatch *pinterface)
    {
       ::user::tree::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree_interface::_001OnTimer);
@@ -668,14 +668,14 @@ namespace userfs
 
       _001UpdateImageList(m_pdataitemCreateImageListStep);
 
-      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(::ca2::TreeNavigationProperForward);
+      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(::core::TreeNavigationProperForward);
 
 
    }
 
    void tree_interface::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj)
+      SCAST_PTR(message::timer, ptimer, pobj)
 /*            switch(ptimer->m_nIDEvent)
       {
          case TimerDelayedListUpdate:
@@ -783,7 +783,7 @@ namespace userfs
 
    sp(::userfs::tree_data) tree_interface::get_fs_tree_data()
    {
-      return ::ca2::tree::get_tree_data();
+      return ::core::tree::get_tree_data();
    }
 
 

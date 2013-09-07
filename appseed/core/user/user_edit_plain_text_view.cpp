@@ -14,7 +14,7 @@ namespace user
    {
    }
 
-   void edit_plain_text_view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void edit_plain_text_view::install_message_handling(message::dispatch * pinterface)
    {
       
       

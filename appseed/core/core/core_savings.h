@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ca2
+namespace core
 {
 
    enum e_resource
@@ -40,4 +40,4 @@ namespace ca2
 
    };
 
-} // namespace ca2
+} // namespace core

@@ -110,17 +110,17 @@ namespace n7z
       passwordIsDefined = false;
       smart_pointer_array < ::file::reader > inStreams;
 
-      ::ca2::locked_in_stream lockedInStream;
+      ::core::locked_in_stream lockedInStream;
       lockedInStream.Init(inStream);
 
       for (int32_t j = 0; j < folderInfo.PackStreams.get_count(); j++)
       {
-         ::ca2::locked_reader *lockedStreamImpSpec = new ::ca2::locked_reader;
+         ::core::locked_reader *lockedStreamImpSpec = new ::core::locked_reader;
          smart_pointer < ::file::reader > lockedStreamImp = lockedStreamImpSpec;
          lockedStreamImpSpec->Init(&lockedInStream, (file_size) startPos);
          startPos += packSizes[j];
 
-         ::ca2::limited_reader *streamSpec = new ::ca2::limited_reader;
+         ::core::limited_reader *streamSpec = new ::core::limited_reader;
          streamSpec->SetStream(lockedStreamImp);
          streamSpec->Init(packSizes[j]);
          inStreams.add((::file::reader *) streamSpec);
@@ -228,7 +228,7 @@ namespace n7z
             setDecoderProperties = dynamic_cast < ::libcompress::set_decoder_properties2_interface * > (setDecoderProperties.m_p);
             if (setDecoderProperties)
             {
-               const ::ca2::byte_buffer &props = coderInfo.Props;
+               const ::core::byte_buffer &props = coderInfo.Props;
                size_t size = props.GetCapacity();
                if (size > 0xFFFFFFFF)
                   return E_NOTIMPL;
@@ -261,7 +261,7 @@ namespace n7z
                {
                   return hr;
                }
-               ::ca2::byte_buffer buffer;
+               ::core::byte_buffer buffer;
                passwordIsDefined = true;
                wstring password(::str::international::utf8_to_unicode(passwordBSTR));
                const uint32_t sizeInBytes = (const uint32_t ) (password.get_length() * 2);

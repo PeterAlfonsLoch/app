@@ -340,7 +340,7 @@ namespace exception
          str = "Microsoft C++ Exception";
          break;
       default:
-         str = "Unknown Exception (Not currently known by ca2 platform)";
+         str = "Unknown Exception (Not currently known by core platform)";
          break;
       };
 

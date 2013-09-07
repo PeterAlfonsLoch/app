@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -9,7 +9,7 @@ namespace ca2
    class signal;
 
 
-} // namespace ca2
+} // namespace core
 
 
 namespace user
@@ -70,10 +70,6 @@ namespace fontopus
 
 
 
-namespace ca2
-{
-
-
  CLASS_DECL_ca2 UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
    typedef sp(base_application) (* LPFN_instantiate_application)(sp(base_application) pappParent, const char * pszId);
@@ -114,8 +110,8 @@ namespace ca2
 
    class CLASS_DECL_ca2 application_base :
       virtual public ::ca::application,
-      virtual public ::ca2::live_object,
-      virtual public ::ca2::thread
+      virtual public ::core::live_object,
+      virtual public ::core::thread
    {
    public:
 
@@ -149,17 +145,17 @@ namespace ca2
       virtual sp(::user::interaction) window_from_os_data(void * pdata) = 0;
       virtual sp(::user::interaction) window_from_os_data_permanent(void * pdata) = 0;
 #else
-      virtual sp(::ca2::window) window_from_os_data(void * pdata) = 0;
-      virtual sp(::ca2::window) window_from_os_data_permanent(void * pdata) = 0;
+      virtual sp(::core::window) window_from_os_data(void * pdata) = 0;
+      virtual sp(::core::window) window_from_os_data_permanent(void * pdata) = 0;
 #endif
 
-      virtual sp(::ca2::window) FindWindow(const char * lpszClassName, const char * lpszWindowName) = 0;
-      virtual sp(::ca2::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow) = 0;
+      virtual sp(::core::window) FindWindow(const char * lpszClassName, const char * lpszWindowName) = 0;
+      virtual sp(::core::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow) = 0;
 
       virtual string get_version() = 0;
 
-      virtual ::ca2::thread * GetThread() = 0;
-      virtual void set_thread(::ca2::thread * pthread) = 0;
+      virtual ::core::thread * GetThread() = 0;
+      virtual void set_thread(::core::thread * pthread) = 0;
 
       virtual void SetCurrentHandles() = 0;
 
@@ -202,7 +198,7 @@ namespace ca2
       virtual public application_base,
       virtual public command_target_interface,
       virtual public request_interface,
-      virtual public ::ca2::message_window_simple_callback
+      virtual public ::core::message_window_simple_callback
    {
    public:
 
@@ -333,7 +329,7 @@ namespace ca2
       ::plane::system *             m_psystem;
       sp(::plane::session)            m_psession;
 
-      class ::ca2::base64                 m_base64;
+      class ::core::base64                 m_base64;
       signal                              m_signalAppLanguageChange;
       math::math *                        m_pmath;
       geometry::geometry *                m_pgeometry;
@@ -382,7 +378,7 @@ namespace ca2
 #endif
       // Pointer to the command-line.
       string                        m_strCmdLine;
-      // Initial state of the application's ::ca2::window; normally,
+      // Initial state of the application's ::core::window; normally,
       // this is an argument to ShowWindow().
       int32_t                           m_nCmdShow;
 
@@ -541,7 +537,7 @@ namespace ca2
       }
 
 
-      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
+      virtual void install_message_handling(message::dispatch * pdispatch);
 
       //virtual int32_t run();
 
@@ -685,7 +681,7 @@ namespace ca2
          virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
 
-      class ::ca2::base64 & base64();
+      class ::core::base64 & base64();
 
       virtual string get_local_mutex_id();
       virtual string get_global_mutex_id();
@@ -911,7 +907,7 @@ namespace ca2
 
       void OnAppExit();
       // System Policy Settings
-      virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that ca2 API loads.
+      virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that core API loads.
       bool GetSysPolicyValue(uint32_t dwPolicyID, bool *pbValue); // returns the policy's setting in the out parameter
       bool _LoadSysPolicies() throw(); // Implementation helper
       static const char gen_FileSection[];
@@ -927,7 +923,7 @@ namespace ca2
 
       virtual void delete_temp();
 
-      //using ::ca2::thread::propset;
+      //using ::core::thread::propset;
       //property_set & propset(object * pobject);
       //property_set * existing_propset(object * pobject);
 
@@ -943,16 +939,16 @@ namespace ca2
 
       virtual int32_t get_document_count();
 
-      // transparent ::ca2::window framework
+      // transparent ::core::window framework
 
 
       //mutex * get_mutex(::waitable * pobject);
-      //using ::ca2::thread::lock;
+      //using ::core::thread::lock;
       //void wait(::waitable * pobject);
       //wait_result wait(::waitable * pobject, duration dwTimeout);
       //void lock(::waitable * pobject);
       //bool lock(::waitable * pobject, duration dwTimeout);
-      //using ::ca2::thread::unlock;
+      //using ::core::thread::unlock;
       //bool unlock(::waitable * pobject);
 
       //      event * get_event(::waitable * pobject, int32_t iEvent = 0);
@@ -1005,12 +1001,12 @@ namespace ca2
       virtual sp(::user::interaction) window_from_os_data(void * pdata);
       virtual sp(::user::interaction) window_from_os_data_permanent(void * pdata);
 #else
-      virtual sp(::ca2::window) window_from_os_data(void * pdata);
-      virtual sp(::ca2::window) window_from_os_data_permanent(void * pdata);
+      virtual sp(::core::window) window_from_os_data(void * pdata);
+      virtual sp(::core::window) window_from_os_data_permanent(void * pdata);
 #endif
 
-      virtual sp(::ca2::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual sp(::ca2::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
+      virtual sp(::core::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      virtual sp(::core::window) FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual string get_local_mutex_name(const char * pszAppName);
       virtual string get_local_id_mutex_name(const char * pszAppName, const char * pszId);
@@ -1038,7 +1034,7 @@ namespace ca2
 
 
 
-      //      virtual ::ca2::file_system & file_system();
+      //      virtual ::core::file_system & file_system();
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
       virtual sp(::user::document_interface) _001OpenDocumentFile(var varFile);
@@ -1050,11 +1046,11 @@ namespace ca2
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();
 
-      virtual ::ca2::thread * GetThread();
-      virtual void set_thread(::ca2::thread * pthread);
+      virtual ::core::thread * GetThread();
+      virtual void set_thread(::core::thread * pthread);
 
 
-      virtual sp(::ca2::window) get_desktop_window();
+      virtual sp(::core::window) get_desktop_window();
 
 
 
@@ -1211,15 +1207,5 @@ namespace ca2
       return papp;
 
    }
-
-
-
-
-} // namespace ca2
-
-
-
-
-
 
 

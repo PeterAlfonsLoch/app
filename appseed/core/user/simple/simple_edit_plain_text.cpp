@@ -11,7 +11,7 @@ simple_edit_plain_text::simple_edit_plain_text(sp(base_application) papp) :
 }
 
 
-void simple_edit_plain_text::install_message_handling(::ca2::message::dispatch * pinterface)
+void simple_edit_plain_text::install_message_handling(message::dispatch * pinterface)
 {
    ::user::interaction::install_message_handling(pinterface);
    ::user::edit_plain_text::install_message_handling(pinterface);
@@ -26,7 +26,7 @@ void simple_edit_plain_text::install_message_handling(::ca2::message::dispatch *
 void simple_edit_plain_text::_001OnShowWindow(signal_details * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-//   SCAST_PTR(::ca2::message::show_window, pshowwindow, pobj);
+//   SCAST_PTR(message::show_window, pshowwindow, pobj);
 
 }
 

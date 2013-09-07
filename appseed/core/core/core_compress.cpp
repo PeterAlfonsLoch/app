@@ -40,7 +40,7 @@ FILE * my_fopen(const char * psz, const char * pszMode)
 
 
 
-namespace ca2
+namespace core
 {
 
    bool compress::ungz(::file::writer & ostreamUncompressed, const char * lpcszGzFileCompressed)
@@ -286,4 +286,4 @@ namespace ca2
    {
    }
 
-} // namespace ca2
+} // namespace core

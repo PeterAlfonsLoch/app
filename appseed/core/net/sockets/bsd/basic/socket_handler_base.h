@@ -67,7 +67,7 @@ namespace sockets
          }
 
          void OnRead() {
-            Handler().LogError(this, "OnRead", 0, "data on hibernating socket", ::ca2::log::level_fatal);
+            Handler().LogError(this, "OnRead", 0, "data on hibernating socket", ::core::log::level_fatal);
             SetCloseAndDelete();
          }
          void OnOptions(int32_t,int32_t,int32_t,SOCKET) {}
@@ -90,7 +90,7 @@ namespace sockets
       virtual void RegStdLog(StdLog * pstdlog) = 0;
 
       /** Log error to log class for print out / storage. */
-      virtual void LogError(socket *p,const string & user_text,int32_t err,const string & sys_err, ::ca2::log::e_level elevel = ::ca_get_level_warning()) = 0;
+      virtual void LogError(socket *p,const string & user_text,int32_t err,const string & sys_err, ::core::log::e_level elevel = ::ca_get_level_warning()) = 0;
 
       // -------------------------------------------------------------------------
       // socket stuff

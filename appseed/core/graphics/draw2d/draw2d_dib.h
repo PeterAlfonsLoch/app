@@ -262,8 +262,8 @@ namespace draw2d
 
       virtual void draw_bitmap(int32_t dx, int32_t dy, FT_Bitmap * bitmap, FT_Int x, FT_Int y);
 
-      virtual bool update_window(::ca2::window * pwnd, signal_details * pobj);
-      virtual bool print_window(::ca2::window * pwnd, signal_details * pobj);
+      virtual bool update_window(::core::window * pwnd, signal_details * pobj);
+      virtual bool print_window(::core::window * pwnd, signal_details * pobj);
 
 
    };
@@ -349,7 +349,7 @@ namespace comparison
    };
 
 
-} // namespace ca2 - for class ::comparison::hash const < ::draw2d::dib::descriptor & >
+} // namespace core - for class ::comparison::hash const < ::draw2d::dib::descriptor & >
 
 
 

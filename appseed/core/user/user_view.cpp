@@ -1,4 +1,4 @@
-// This is ca2 API library.
+// This is core API library.
 //
 //
 //
@@ -13,7 +13,7 @@
 
    // like ON_MESSAGE but no return value
    /*#define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, ::ca2::Sig_vv, \
+   { message, 0, 0, 0, ::core::Sig_vv, \
    (__PMSG)(__PMSGW)(void (__MSG_CALL ::user::interaction::*)())&memberFxn },*/
    // IMPLEMENT_DYNAMIC(::user::view, ::user::interaction)
 
@@ -64,7 +64,7 @@ namespace user
          m_spdocument->remove_view(this);
    }
 
-   void view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void view::install_message_handling(message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_VIEW, pinterface, this, &view::_001OnView);
@@ -139,7 +139,7 @@ namespace user
 
    void view::_001OnCreate(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::create, pcreate, pobj);
+      SCAST_PTR(message::create, pcreate, pobj);
 
       if(pcreate->previous())
          return;
@@ -156,7 +156,7 @@ namespace user
       }
       else
       {
-         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document_interface.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document_interface.\n");
       }
 
       pcreate->set_lresult(0);
@@ -360,7 +360,7 @@ namespace user
    }
 
    /* trans
-   int32_t view::OnMouseActivate(sp(::ca2::window) pDesktopWnd, UINT nHitTest, UINT message)
+   int32_t view::OnMouseActivate(sp(::core::window) pDesktopWnd, UINT nHitTest, UINT message)
    {
    int32_t nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
@@ -543,7 +543,7 @@ namespace user
 
    void view::_001OnView(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
          if(pbase->m_wparam == 0)
          {
             ::user::document_interface::update * pupdate = (::user::document_interface::update *) pbase->m_lparam.m_lparam;
@@ -697,7 +697,7 @@ namespace user
    void view::_001OnLButtonDown(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //   SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      //   SCAST_PTR(message::mouse, pmouse, pobj);
 
       if(GetParentFrame() != NULL)
       {
@@ -711,13 +711,13 @@ namespace user
    void view::_001OnLButtonUp(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      //SCAST_PTR(message::mouse, pmouse, pobj);
    }
 
    void view::_001OnMouseMove(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //   SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      //   SCAST_PTR(message::mouse, pmouse, pobj);
    }
 
 
@@ -728,7 +728,7 @@ namespace user
    }
 
 
-   void view::collaborate(::ca2::job * pjob)
+   void view::collaborate(::core::job * pjob)
    {
       {
          ::user::job * puserjob = (dynamic_cast < ::user::job * > (pjob));
@@ -741,7 +741,7 @@ namespace user
 
 
 
-   int32_t view::get_total_page_count(::ca2::job * pjob)
+   int32_t view::get_total_page_count(::core::job * pjob)
    {
       UNREFERENCED_PARAMETER(pjob);
       return 1;
@@ -865,7 +865,7 @@ retry:
 
    void view::_001OnMouseActivate(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse_activate, pmouseactivate, pobj);
+      SCAST_PTR(message::mouse_activate, pmouseactivate, pobj);
       pobj->previous();
       //int32_t nResult = pmouseactivate->get_lresult();
 
@@ -1060,15 +1060,15 @@ retry:
    ASSERT(pContext != NULL);
    ASSERT(pContext->m_typeinfoNewView != NULL);
 
-   // Note: can be a ::ca2::window with PostNcDestroy self cleanup
-   sp(::ca2::window) pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
+   // Note: can be a ::core::window with PostNcDestroy self cleanup
+   sp(::core::window) pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
    if (pview == NULL)
    {
    TRACE1("Warning: Dynamic create of ::user::view type %hs failed.\n",
    pContext->m_typeinfoNewView.name());
    return NULL;
    }
-   ASSERT_KINDOF(::ca2::window, pview);
+   ASSERT_KINDOF(::core::window, pview);
 
    // views are always created with a border!
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
@@ -1093,7 +1093,7 @@ retry:
    void view::_001OnRButtonDown(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      //SCAST_PTR(message::mouse, pmouse, pobj);
 
       GetParentFrame()->SetActiveView( (this));
    }
@@ -1101,7 +1101,7 @@ retry:
    void view::_001OnMButtonDown(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      //      SCAST_PTR(message::mouse, pmouse, pobj);
 
       GetParentFrame()->SetActiveView( (this));
    }

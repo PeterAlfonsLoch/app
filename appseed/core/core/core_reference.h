@@ -89,7 +89,7 @@ on_final_release()
 
 
 
-namespace ca2
+namespace core
 {
 
    template <class DERIVED >
@@ -110,7 +110,7 @@ namespace ca2
          pref = NULL;
       }
    }
-} // namespace ca2
+} // namespace core
 
 
 

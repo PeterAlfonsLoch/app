@@ -23,7 +23,7 @@ CLASS_DECL_c void NESSIEfinalize(struct NESSIEstruct * const structpointer, ucha
 
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -392,7 +392,7 @@ namespace ca2
                {
                   App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
                }
-               else if(domain.m_strRadix == "ca2" && strFilePath.contains("/matter/"))
+               else if(domain.m_strRadix == "core" && strFilePath.contains("/matter/"))
                {
                   try
                   {
@@ -491,7 +491,7 @@ namespace ca2
       void file_system::lines(stringa & stra, var varFile, sp(base_application) papp)
       {
          UNREFERENCED_PARAMETER(papp);
-         ::ca2::text_file_sp spfile(allocer());
+         ::core::text_file_sp spfile(allocer());
 
          try
          {
@@ -770,7 +770,7 @@ namespace ca2
             bool bOutputFail = false;
             bool bInputFail = false;
             bool bStatusFail = false;
-            ::ca2::file_status st;
+            ::core::file_status st;
 
             try
             {
@@ -1587,7 +1587,7 @@ namespace ca2
 
 
 
-} // namespace ca2
+} // namespace core
 
 
 

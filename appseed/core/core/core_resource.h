@@ -15,7 +15,7 @@
 
 #pragma once
 
-namespace ca2
+namespace core
 {
 
    class CLASS_DECL_ca2 resource :
@@ -32,5 +32,5 @@ namespace ca2
 
    typedef smart_pointer < resource > resource_sp;
 
-} // namespace ca2
+} // namespace core
 

@@ -18,7 +18,7 @@ namespace zip
 }
 
 
-namespace ca2
+namespace file
 {
 
 
@@ -87,7 +87,7 @@ namespace ca2
          virtual ~system();
 
 
-         virtual class ::ca2::path & path();
+         virtual class ::core::path & path();
 
 
          virtual string path(const string & strFolder, const string & strRelative, bool bUrl);
@@ -206,4 +206,20 @@ namespace ca2
    } // namespace dir
 
 
-} // namespace ca2
+} // namespace file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

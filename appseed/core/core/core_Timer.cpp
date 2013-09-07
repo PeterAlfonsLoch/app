@@ -1,19 +1,19 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
-   const UINT Timer::ID_HOVER = 16381;
+   const UINT timer::ID_HOVER = 16381;
 
-   Timer::Timer()
+   timer::timer()
    {
 
    }
 
-   Timer::~Timer()
+   timer::~timer()
    {
 
    }
 
 
-}  // namespace ca2
+}  // namespace core

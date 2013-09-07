@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   void elastic_slider::install_message_handling(::ca2::message::dispatch * pdispatch)
+   void elastic_slider::install_message_handling(message::dispatch * pdispatch)
    {
       ::user::interaction::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &elastic_slider::_001OnCreate);
@@ -40,7 +40,7 @@ namespace user
    void elastic_slider::_001OnTimer(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+      SCAST_PTR(message::timer, ptimer, pobj);
 
       if(ptimer->m_nIDEvent == 1)
       {
@@ -63,7 +63,7 @@ namespace user
 
    void elastic_slider::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      SCAST_PTR(message::mouse, pmouse, pobj);
       rect rect;
       GetSliderRect(rect);
       point pt(pmouse->m_pt);
@@ -84,7 +84,7 @@ namespace user
 
    void elastic_slider::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      SCAST_PTR(message::mouse, pmouse, pobj);
       if(m_bSlide)
       {
 
@@ -98,7 +98,7 @@ namespace user
    void elastic_slider::_001OnMouseMove(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+//      SCAST_PTR(message::mouse, pmouse, pobj);
    }
 
    void elastic_slider::Slide()

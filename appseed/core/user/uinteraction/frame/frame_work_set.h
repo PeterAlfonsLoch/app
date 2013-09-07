@@ -79,7 +79,7 @@ namespace frame
 
 
       void AttachFrameSchema(sp(::uinteraction::frame::frame) pframeschema);
-      void _001InstallEventHandling(::ca2::message::dispatch * pdispatch);
+      void _001InstallEventHandling(message::dispatch * pdispatch);
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
          DECL_GEN_SIGNAL(_001OnMouseMove)

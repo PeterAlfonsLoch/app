@@ -17,7 +17,7 @@
 
 
 
-namespace ca2
+namespace core
 {
 
    mutex g_mutexStr(NULL);
@@ -41,7 +41,7 @@ namespace ca2
    application::application() :
       element(this), // start m_papp as this for constructor referencing this app
       m_mutex(this),
-      ::ca2::thread(NULL),
+      ::core::thread(NULL),
       m_mutexMatterLocator(this),
       m_allocer(this),
       OAUTHLIB_CONSUMERKEY_KEY      ("oauth_consumer_key"),
@@ -169,7 +169,7 @@ namespace ca2
       m_psavings                 = new class savings(this);
       m_pcommandthread           = new command_thread(this);
 
-      ::ca2::profiler::initialize();
+      ::core::profiler::initialize();
 
       m_pszRegistryKey              = NULL;
       m_pszHelpFilePath             = NULL;
@@ -195,7 +195,7 @@ namespace ca2
 
       m_psignal->connect(this, &application::on_application_signal);
 
-      m_eexclusiveinstance       = ::ca2::ExclusiveInstanceNone;
+      m_eexclusiveinstance       = ::core::ExclusiveInstanceNone;
       m_peventReady              = NULL;
       m_pmapKeyPressed           = NULL;
       m_bLicense                 = true;
@@ -237,7 +237,7 @@ namespace ca2
 
       try
       {
-         ::ca2::thread::exit();
+         ::core::thread::exit();
       }
       catch(...)
       {
@@ -319,23 +319,23 @@ namespace ca2
          Ex1OnFactoryExchange();
       }
 
-      ::ca2::thread::s_bAllocReady = true;
+      ::core::thread::s_bAllocReady = true;
 
-      if(::ca2::thread::m_p == NULL)
+      if(::core::thread::m_p == NULL)
       {
 
-         ::ca2::thread::m_p.create(allocer());
-         ::ca2::thread::m_p->m_p = this;
+         ::core::thread::m_p.create(allocer());
+         ::core::thread::m_p->m_p = this;
 
       }
 
-      ::ca2::application_base::m_p.create(allocer());
-      ::ca2::application_base::m_p->construct();
-      ::ca2::application_base::m_p->::ca2::application_base::m_p = this;
+      ::core::application_base::m_p.create(allocer());
+      ::core::application_base::m_p->construct();
+      ::core::application_base::m_p->::core::application_base::m_p = this;
 
-      if(::ca2::get_thread() == NULL)
+      if(::core::get_thread() == NULL)
       {
-         set_thread(dynamic_cast < ::ca2::thread * > (this));
+         set_thread(dynamic_cast < ::core::thread * > (this));
       }
 
       if(!update_module_paths())
@@ -360,7 +360,7 @@ namespace ca2
          draw2d_factory_exchange();
       }
 
-      if(!::ca2::application_base::m_p->process_initialize())
+      if(!::core::application_base::m_p->process_initialize())
          return false;
 
       return true;
@@ -374,10 +374,10 @@ namespace ca2
       if(is_system())
       {
 
-         if(!::ca2::application_base::m_p->update_module_paths())
+         if(!::core::application_base::m_p->update_module_paths())
             return false;
 
-         application * pappOs = dynamic_cast < application * > (::ca2::application_base::m_p.m_p);
+         application * pappOs = dynamic_cast < application * > (::core::application_base::m_p.m_p);
 
          if(pappOs->m_strCa2ModuleFolder.is_empty())
             pappOs->m_strCa2ModuleFolder = pappOs->m_strModuleFolder;
@@ -423,9 +423,9 @@ namespace ca2
       /*
       if(is_system())
       {
-      m_strFontopusServer     = System.get_fontopus_server("http://account.ca2.cc/get_fontopus", this, 8);
+      m_strFontopusServer     = System.get_fontopus_server("http://account.core.cc/get_fontopus", this, 8);
       if(m_strFontopusServer.is_empty())
-      m_strFontopusServer = "server.ca2.cc";
+      m_strFontopusServer = "server.core.cc";
       else
       {
       m_strFontopusServer.replace("account", "server");
@@ -578,7 +578,7 @@ namespace ca2
 
 
 
-      if(!::ca2::application_base::m_p->initialize1())
+      if(!::core::application_base::m_p->initialize1())
          return false;
 
       return true;
@@ -589,7 +589,7 @@ namespace ca2
    bool application::initialize2()
    {
 
-      if(!::ca2::application_base::m_p->initialize2())
+      if(!::core::application_base::m_p->initialize2())
          return false;
 
       application_signal_details signal(this, m_psignal, application_signal_initialize2);
@@ -607,7 +607,7 @@ namespace ca2
       if(!signal.m_bOk)
          return false;
 
-      if(!::ca2::application_base::m_p->initialize3())
+      if(!::core::application_base::m_p->initialize3())
          return false;
 
       return true;
@@ -708,7 +708,7 @@ namespace ca2
    }
 
 
-   ::ca2::savings & application::savings()
+   ::core::savings & application::savings()
    {
 
       return *m_psavings;
@@ -724,7 +724,7 @@ namespace ca2
    }
 
 
-   class ::ca2::base64 & application::base64()
+   class ::core::base64 & application::base64()
    {
 
       return m_base64;
@@ -788,7 +788,7 @@ namespace ca2
          return false;
       }
 
-      if(!::ca2::application_base::m_p->initialize2())
+      if(!::core::application_base::m_p->initialize2())
          return false;
 
       return application::initialize2();
@@ -901,7 +901,7 @@ namespace ca2
 
       /*try
       {
-      ::ca::release(smart_pointer <::ca2::thread>::m_p);
+      ::ca::release(smart_pointer <::core::thread>::m_p);
       }
       catch(...)
       {
@@ -915,7 +915,7 @@ namespace ca2
          //       {
          //        if(m_spfilesystem.m_p != NULL)
          //      {
-         //       ::ca2::del(m_spfilesystem.m_p);
+         //       ::core::del(m_spfilesystem.m_p);
          //  }
          //         }
          //       catch(...)
@@ -928,7 +928,7 @@ namespace ca2
       try
       {
 
-         ::ca2::thread         * pthread      = ::ca2::thread::m_p.detach();
+         ::core::thread         * pthread      = ::core::thread::m_p.detach();
 
          if(pthread != NULL)
          {
@@ -962,7 +962,7 @@ namespace ca2
       try
       {
 
-         ::ca2::application_base   * papp         = ::ca2::application_base::m_p.detach();
+         ::core::application_base   * papp         = ::core::application_base::m_p.detach();
 
          if(papp != NULL && papp != this && !papp->is_system())
          {
@@ -1013,7 +1013,7 @@ namespace ca2
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpcszType);
       UNREFERENCED_PARAMETER(lpcszFilePath);
-      /*      HINSTANCE hinst = ::ca2::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
+      /*      HINSTANCE hinst = ::core::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
       if(hinst == NULL)
       return false;
       HRSRC hrsrc = ::FindResource(
@@ -1048,7 +1048,7 @@ namespace ca2
       #endif
       }
       }
-      catch(::ca2::file_exception_sp * pe)
+      catch(::core::file_exception_sp * pe)
       {
       #ifdef DEBUG
       //         g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";
@@ -1105,7 +1105,7 @@ namespace ca2
 
       char lpszModuleFilePath[MAX_PATH + 1];
 
-      if(GetModuleFileName(::GetModuleHandleA("ca2.dll"), lpszModuleFilePath, MAX_PATH + 1))
+      if(GetModuleFileName(::GetModuleHandleA("core.dll"), lpszModuleFilePath, MAX_PATH + 1))
       {
 
          strModuleFileName = lpszModuleFilePath;
@@ -1122,7 +1122,7 @@ namespace ca2
 
       {
 
-         void * handle = dlopen("ca2.so", 0);
+         void * handle = dlopen("core.so", 0);
 
          if(handle == NULL)
             return false;
@@ -1149,20 +1149,20 @@ namespace ca2
 
          free(pszCurDir);
 
-         if(App(this).file().exists(System.dir().path(strCurDir, "ca2.dylib")))
+         if(App(this).file().exists(System.dir().path(strCurDir, "core.dylib")))
          {
             m_strCa2ModuleFolder = strCurDir;
             goto finishedCa2Module;
          }
 
 
-         if(App(this).file().exists(System.dir().path(m_strModuleFolder, "ca2.dylib")))
+         if(App(this).file().exists(System.dir().path(m_strModuleFolder, "core.dylib")))
          {
             m_strCa2ModuleFolder = m_strModuleFolder;
             goto finishedCa2Module;
          }
 
-         strModuleFileName = App(this).dir().pathfind(getenv("LD_LIBRARY_PATH"), "ca2.dylib", "rfs"); // readable - normal file - non zero sized
+         strModuleFileName = App(this).dir().pathfind(getenv("LD_LIBRARY_PATH"), "core.dylib", "rfs"); // readable - normal file - non zero sized
 
       }
 
@@ -1333,7 +1333,7 @@ finishedCa2Module:;
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpcszType);
       UNREFERENCED_PARAMETER(storage);
-      /*      HINSTANCE hinst = ::ca2::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
+      /*      HINSTANCE hinst = ::core::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
 
       if(hinst == NULL)
       return false;
@@ -1359,7 +1359,7 @@ finishedCa2Module:;
       {
       storage.set_data(lpnRes, dwResSize);
       }
-      catch(::ca2::file_exception_sp * pe)
+      catch(::core::file_exception_sp * pe)
       {
       #ifdef DEBUG
       //            g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";
@@ -1401,15 +1401,15 @@ finishedCa2Module:;
       UNUSED(bEnable);
 #endif
 
-      // no-op if main ::ca2::window is NULL or not a frame_window_interface
+      // no-op if main ::core::window is NULL or not a frame_window_interface
       /*      sp(::user::interaction) pMainWnd = System.GetMainWnd();
       if (pMainWnd == NULL || !pMainWnd->is_frame_window())
       return;*/
 
 #ifndef ___NO_OLE_SUPPORT
       // check if notify hook installed
-      /*   ::ca2::frame_window_interface* pFrameWnd =
-      dynamic_cast < ::ca2::frame_window_interface * > (pMainWnd);
+      /*   ::core::frame_window_interface* pFrameWnd =
+      dynamic_cast < ::core::frame_window_interface * > (pMainWnd);
       ASSERT(pFrameWnd != NULL);
       if (pFrameWnd->GetNotifyHook() != NULL)
       pFrameWnd->GetNotifyHook()->OnEnableModeless(bEnable);*/
@@ -1441,14 +1441,14 @@ finishedCa2Module:;
    // Main running routine until application exits
    int32_t application::run()
    {
-      /*   if (GetMainWnd() == NULL) // may be a service or console application ::ca2::window
+      /*   if (GetMainWnd() == NULL) // may be a service or console application ::core::window
       {
-      // Not launched /Embedding or /Automation, but has no main ::ca2::window!
-      TRACE(::ca2::trace::category_AppMsg, 0, "Warning: GetMainWnd() is NULL in application::run - quitting application.\n");
+      // Not launched /Embedding or /Automation, but has no main ::core::window!
+      TRACE(::core::trace::category_AppMsg, 0, "Warning: GetMainWnd() is NULL in application::run - quitting application.\n");
       __post_quit_message(0);
       }*/
       //      return application::run();
-      return ::ca2::thread::run();
+      return ::core::thread::run();
    }
 
 
@@ -1487,7 +1487,7 @@ finishedCa2Module:;
    {
       ENSURE_ARG(e != NULL);
       ENSURE_ARG(pobj != NULL);
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
       // handle certain messages in thread
       switch (pbase->m_uiMessage)
       {
@@ -1609,7 +1609,7 @@ finishedCa2Module:;
    }
 
 
-} // namespace ca2
+} // namespace core
 
 
 
@@ -1800,7 +1800,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 
 */
 
-namespace ca2
+namespace core
 {
 
    bool application::LoadSysPolicies()
@@ -1941,7 +1941,7 @@ namespace ca2
       {
       if (pThread->GetMainWnd() != NULL)
       {
-      TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+      TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
       pThread->GetMainWnd()->DestroyWindow();
       }
       goto InitFailure;
@@ -1962,7 +1962,7 @@ namespace ca2
       {
       if (pThread->GetMainWnd() != NULL)
       {
-      TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+      TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
       pThread->GetMainWnd()->DestroyWindow();
       }
       pThread->exit_instance();
@@ -1975,7 +1975,7 @@ namespace ca2
       goto run;
       if (pThread->GetMainWnd() != NULL)
       {
-      TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+      TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
       try
       {
       pThread->GetMainWnd()->DestroyWindow();
@@ -1989,7 +1989,7 @@ namespace ca2
       goto run;
       if (pThread->GetMainWnd() != NULL)
       {
-      TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+      TRACE(::core::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
       try
       {
       pThread->GetMainWnd()->DestroyWindow();
@@ -2624,7 +2624,7 @@ namespace ca2
 
    }
 
-   // This is ca2 API library.
+   // This is core API library.
    //
    //
    //
@@ -2661,7 +2661,7 @@ namespace ca2
       return FALSE;
    }
 
-   // This is ca2 API library.
+   // This is core API library.
    //
    //
    //
@@ -2674,12 +2674,12 @@ namespace ca2
 
 
 
-   /*void ::ca2::FormatString1(string & rString, UINT nIDS, const char * lpsz1)
+   /*void ::core::FormatString1(string & rString, UINT nIDS, const char * lpsz1)
    {
    __format_strings(rString, nIDS, &lpsz1, 1);
    }
 
-   void ::ca2::FormatString2(string & rString, UINT nIDS, const char * lpsz1,
+   void ::core::FormatString2(string & rString, UINT nIDS, const char * lpsz1,
    const char * lpsz2)
    {
    const char * rglpsz[2];
@@ -2692,7 +2692,7 @@ namespace ca2
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Basic Help support (for backward compatibility to ca2 API 2.0)
+   // Basic Help support (for backward compatibility to core API 2.0)
 
    void application::OnHelp()  // use context to derive help context
    {
@@ -2704,8 +2704,8 @@ namespace ca2
          return;
       }
 
-      // otherwise, use ::ca2::window::OnHelp implementation
-      /* trans sp(::ca2::window) pWnd = System.GetMainWnd();
+      // otherwise, use ::core::window::OnHelp implementation
+      /* trans sp(::core::window) pWnd = System.GetMainWnd();
       ENSURE_VALID(pWnd);
       if (!pWnd->is_frame_window())
       pWnd->OnHelp();
@@ -2751,7 +2751,7 @@ namespace ca2
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Context Help Mode support (backward compatibility to ca2 API 2.0)
+   // Context Help Mode support (backward compatibility to core API 2.0)
 
    void application::OnContextHelp()
    {
@@ -2768,7 +2768,7 @@ namespace ca2
    /////////////////////////////////////////////////////////////////////////////
 
 
-   // This is ca2 API library.
+   // This is core API library.
    //
    //
    //
@@ -2834,7 +2834,7 @@ namespace ca2
       //      UNREFERENCED_PARAMETER(spgraphics);
       throw not_implemented(get_app());
       /*
-      HDC hDC = ::ca2::CreateDC(m_hDevNames, m_hDevMode);
+      HDC hDC = ::core::CreateDC(m_hDevNames, m_hDevMode);
       if (hDC != NULL)
       {
       spgraphics->DeleteDC();
@@ -2848,7 +2848,7 @@ namespace ca2
    /////////////////////////////////////////////////////////////////////////////
 
 
-   // This is ca2 API library.
+   // This is core API library.
    //
    //
    //
@@ -2866,7 +2866,7 @@ namespace ca2
    void application::OnAppExit()
    {
 
-      // same as double-clicking on main ::ca2::window close box
+      // same as double-clicking on main ::core::window close box
 
       ASSERT(GetMainWnd() != NULL);
 
@@ -2886,7 +2886,7 @@ namespace ca2
          GetMainWnd()->ShowWindow(SW_HIDE);
          // trans    GetMainWnd()->ShowOwnedPopups(FALSE);
 
-         // put the ::ca2::window at the bottom of zorder, so it isn't activated
+         // put the ::core::window at the bottom of zorder, so it isn't activated
          GetMainWnd()->SetWindowPos(ZORDER_BOTTOM, 0, 0, 0, 0,
             SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE);
       }
@@ -2947,10 +2947,10 @@ namespace ca2
    void application::ShowWaitCursor(bool bShow)
    {
 
-      if(::ca2::application_base::m_p == NULL)
+      if(::core::application_base::m_p == NULL)
          return;
 
-      ::ca2::application_base::m_p->ShowWaitCursor(bShow);
+      ::core::application_base::m_p->ShowWaitCursor(bShow);
 
    }
 
@@ -2992,7 +2992,7 @@ namespace ca2
       UNUSED(bEnable);
 #endif
 
-      // no-op if main ::ca2::window is NULL or not a frame_window
+      // no-op if main ::core::window is NULL or not a frame_window
       /*   sp(::user::interaction) pMainWnd = System.GetMainWnd();
       if (pMainWnd == NULL || !pMainWnd->is_frame_window())
       return;*/
@@ -3064,9 +3064,9 @@ namespace ca2
       // disable windows for modal dialog
       DoEnableModeless(FALSE);
       ::oswindow oswindow_Top;
-      ::oswindow oswindow = ::ca2::window::get_safe_owner(NULL, &oswindow_Top);
+      ::oswindow oswindow = ::core::window::get_safe_owner(NULL, &oswindow_Top);
 
-      // re-enable the parent ::ca2::window, so that focus is restored
+      // re-enable the parent ::core::window, so that focus is restored
       // correctly when the dialog is dismissed.
       if (oswindow != oswindow_Top)
       EnableWindow(oswindow, TRUE);
@@ -3130,7 +3130,7 @@ namespace ca2
 
       #ifdef DEBUG
       //    if ((nType & MB_ICONMASK) == 0)
-      //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: no icon specified for message box.\n");
+      //         TRACE(::core::trace::category_AppMsg, 0, "Warning: no icon specified for message box.\n");
       #endif
 
       char szAppName[_MAX_PATH];
@@ -3178,7 +3178,7 @@ namespace ca2
    }
 
 
-   /* int32_t ::ca2::MessageBox(const char * lpszText, UINT nType, UINT nIDHelp)
+   /* int32_t ::core::MessageBox(const char * lpszText, UINT nType, UINT nIDHelp)
    {
    application* papp = &System;
    if (papp != NULL)
@@ -3197,7 +3197,7 @@ namespace ca2
    string string;
    if (!string.load_string(nIDPrompt))
    {
-   TRACE(::ca2::trace::category_AppMsg, 0, "Error: failed to load message box prompt string 0x%04x.\n",
+   TRACE(::core::trace::category_AppMsg, 0, "Error: failed to load message box prompt string 0x%04x.\n",
    nIDPrompt);
    ASSERT(FALSE);
    }
@@ -3239,7 +3239,7 @@ namespace ca2
 
 #elif defined(WINDOWSEX) || defined(LINUX)
 
-      sp(::ca2::window) pwnd = System.window_from_os_data_permanent(::GetFocus());
+      sp(::core::window) pwnd = System.window_from_os_data_permanent(::GetFocus());
       if(pwnd != NULL)
       {
          if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
@@ -3298,7 +3298,7 @@ namespace ca2
    bResult = FALSE;
    break;
 
-   // If the ::fontopus::user wanted to print, hide our main ::ca2::window and
+   // If the ::fontopus::user wanted to print, hide our main ::core::window and
    // fire a message to ourselves to start the printing
 
    case CCommandLineInfo::FilePrintTo:
@@ -3530,7 +3530,7 @@ namespace ca2
    }
 
 
-   // This is ca2 API library.
+   // This is core API library.
    //
    //
    //
@@ -3564,7 +3564,7 @@ namespace ca2
       ASSERT(m_pszRegistryKey == NULL);
       throw not_implemented(get_app());
       /*char szRegistryKey[256];
-      VERIFY(::ca2::LoadString(nIDRegistryKey, szRegistryKey));
+      VERIFY(::core::LoadString(nIDRegistryKey, szRegistryKey));
       SetRegistryKey(szRegistryKey);*/
    }
 
@@ -3719,7 +3719,7 @@ namespace ca2
 
    // ensure destruction
 
-   // linux ::ca2::CRegKey rkSecKey(hSecKey);
+   // linux ::core::CRegKey rkSecKey(hSecKey);
 
    uint32_t dwType=0;
    uint32_t dwCount=0;
@@ -4080,7 +4080,7 @@ namespace ca2
       if(oswindowCapture == NULL)
          return NULL;
 
-      return System.window_from_os_data(oswindowCapture).cast < ::ca2::window >()->get_capture();
+      return System.window_from_os_data(oswindowCapture).cast < ::core::window >()->get_capture();
 
 #else
 
@@ -4091,7 +4091,7 @@ namespace ca2
       if(oswindowCapture == NULL)
          return NULL;
 
-      return ::GetCapture()->get_user_interaction()->m_pimpl.cast < ::ca2::window >()->get_capture();
+      return ::GetCapture()->get_user_interaction()->m_pimpl.cast < ::core::window >()->get_capture();
 
 #endif
 
@@ -4177,12 +4177,12 @@ namespace ca2
    // Temporary map management (locks temp map on current thread)
    void application::LockTempMaps()
    {
-      ::ca2::application_base::m_p->LockTempMaps();
+      ::core::application_base::m_p->LockTempMaps();
    }
 
    bool application::UnlockTempMaps(bool bDeleteTemp)
    {
-      return ::ca2::application_base::m_p->UnlockTempMaps(bDeleteTemp);
+      return ::core::application_base::m_p->UnlockTempMaps(bDeleteTemp);
    }
 
    void application::TermThread(HINSTANCE hInstTerm)
@@ -4199,39 +4199,39 @@ namespace ca2
 #ifdef METROWIN
    sp(::user::interaction) application::window_from_os_data(void * pdata)
    {
-      return ::ca2::application_base::m_p->window_from_os_data(pdata);
+      return ::core::application_base::m_p->window_from_os_data(pdata);
    }
 
    sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)
    {
-      return ::ca2::application_base::m_p->window_from_os_data_permanent(pdata);
+      return ::core::application_base::m_p->window_from_os_data_permanent(pdata);
    }
 #else
-   sp(::ca2::window) application::window_from_os_data(void * pdata)
+   sp(::core::window) application::window_from_os_data(void * pdata)
    {
 
-      if(::ca2::application_base::m_p == NULL)
+      if(::core::application_base::m_p == NULL)
          return NULL;
 
-      return ::ca2::application_base::m_p->window_from_os_data(pdata);
+      return ::core::application_base::m_p->window_from_os_data(pdata);
 
    }
 
-   sp(::ca2::window) application::window_from_os_data_permanent(void * pdata)
+   sp(::core::window) application::window_from_os_data_permanent(void * pdata)
    {
-      return ::ca2::application_base::m_p->window_from_os_data_permanent(pdata);
+      return ::core::application_base::m_p->window_from_os_data_permanent(pdata);
    }
 #endif
 
 
-   sp(::ca2::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   sp(::core::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
-      return ::ca2::application_base::m_p->FindWindow(lpszClassName, lpszWindowName);
+      return ::core::application_base::m_p->FindWindow(lpszClassName, lpszWindowName);
    }
 
-   sp(::ca2::window) application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
+   sp(::core::window) application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
    {
-      return ::ca2::application_base::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
+      return ::core::application_base::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
    }
 
    string application::get_local_mutex_name(const char * pszAppName)
@@ -4285,7 +4285,7 @@ namespace ca2
    }
 
 
-   application_signal_details::application_signal_details(sp(base_application) papp, ::ca2::signal * psignal, e_application_signal esignal) :
+   application_signal_details::application_signal_details(sp(base_application) papp, ::core::signal * psignal, e_application_signal esignal) :
       element(papp),
       signal_details(psignal)
    {
@@ -4306,7 +4306,7 @@ namespace ca2
 
       try
       {
-         ::ca2::thread::finalize();
+         ::core::thread::finalize();
       }
       catch(...)
       {
@@ -4404,14 +4404,14 @@ namespace ca2
 
       request_file_query(varFile, varQuery);
 
-      //::ca2::application_base::m_p->_001OnFileNew();
+      //::core::application_base::m_p->_001OnFileNew();
    }
 
 
    sp(::user::document_interface) application::_001OpenDocumentFile(var varFile)
    {
 
-      return ::ca2::application_base::m_p->_001OpenDocumentFile(varFile);
+      return ::core::application_base::m_p->_001OpenDocumentFile(varFile);
 
    }
 
@@ -4419,7 +4419,7 @@ namespace ca2
    void application::_001EnableShellOpen()
    {
 
-      ::ca2::application_base::m_p->_001EnableShellOpen();
+      ::core::application_base::m_p->_001EnableShellOpen();
 
    }
 
@@ -4427,10 +4427,10 @@ namespace ca2
    bool application::_001OnDDECommand(const char * lpcsz)
    {
       throw not_implemented(get_app());
-      //return ::ca2::application_base::m_p->_001OnDDECommand(lpcsz);
+      //return ::core::application_base::m_p->_001OnDDECommand(lpcsz);
    }
 
-   //   ::ca2::file_system & application::file_system()
+   //   ::core::file_system & application::file_system()
    // {
    //  return m_spfilesystem;
    //}
@@ -4441,7 +4441,7 @@ namespace ca2
 
    string application::get_version()
    {
-      return ::ca2::application_base::m_p->get_version();
+      return ::core::application_base::m_p->get_version();
    }
 
 
@@ -4456,30 +4456,30 @@ namespace ca2
    }
 
 
-   ::ca2::thread * application::GetThread()
+   ::core::thread * application::GetThread()
    {
 
-      if(::ca2::application_base::m_p == NULL)
+      if(::core::application_base::m_p == NULL)
          return NULL;
 
-      return ::ca2::application_base::m_p->GetThread();
+      return ::core::application_base::m_p->GetThread();
 
    }
 
 
-   void application::set_thread(::ca2::thread * pthread)
+   void application::set_thread(::core::thread * pthread)
    {
-      ::ca2::application_base::m_p->set_thread(pthread);
+      ::core::application_base::m_p->set_thread(pthread);
    }
 
    /*   ::draw2d::graphics * application::graphics_from_os_data(void * pdata)
    {
-   return ::ca2::application_base::m_p->graphics_from_os_data(pdata);
+   return ::core::application_base::m_p->graphics_from_os_data(pdata);
    }*/
 
 
 
-   sp(::ca2::window) application::get_desktop_window()
+   sp(::core::window) application::get_desktop_window()
    {
 #if defined(METROWIN) || defined(MACOS)
       throw todo(this);
@@ -4503,7 +4503,7 @@ namespace ca2
 
    void application::SetCurrentHandles()
    {
-      ::ca2::application_base::m_p->SetCurrentHandles();
+      ::core::application_base::m_p->SetCurrentHandles();
    }
 
 
@@ -4511,24 +4511,24 @@ namespace ca2
 
    void application::get_time(timeval *p)
    {
-      ::ca2::application_base::m_p->get_time(p);
+      ::core::application_base::m_p->get_time(p);
    }
 
 #endif
 
    void application::set_env_var(const string & var,const string & value)
    {
-      ::ca2::application_base::m_p->set_env_var(var, value);
+      ::core::application_base::m_p->set_env_var(var, value);
    }
 
    uint32_t application::get_thread_id()
    {
-      return ::ca2::application_base::m_p->get_thread_id();
+      return ::core::application_base::m_p->get_thread_id();
    }
 
-   bool application::set_main_init_data(::ca2::main_init_data * pdata)
+   bool application::set_main_init_data(::core::main_init_data * pdata)
    {
-      return ::ca2::application_base::m_p->set_main_init_data(pdata);
+      return ::core::application_base::m_p->set_main_init_data(pdata);
    }
 
 
@@ -4595,7 +4595,7 @@ namespace ca2
       dumpcontext << "\n";
    }
 
-} // namespace ca2
+} // namespace core
 
 
 
@@ -4621,14 +4621,14 @@ void __post_quit_message(int32_t nExitCode)
 #include "framework.h"
 
 
-namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cube)]
+namespace core //namespace _001ca1api00001 + [core = (//namespace cube // ca8 + cube)]
 {
 
 
 
-   void application::install_message_handling(::ca2::message::dispatch * pdispatch)
+   void application::install_message_handling(message::dispatch * pdispatch)
    {
-      ::ca2::thread::install_message_handling(pdispatch);
+      ::core::thread::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_APP + 2043, pdispatch, this, &application::_001OnApplicationRequest);
    }
 
@@ -4835,27 +4835,27 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
       {
          if(guideline()->m_varTopicQuery.propset().has_property("save_processing"))
          {
-            System.savings().save(::ca2::resource_processing);
+            System.savings().save(::core::resource_processing);
          }
          if(guideline()->m_varTopicQuery.propset().has_property("save_blur_back"))
          {
-            System.savings().save(::ca2::resource_blur_background);
+            System.savings().save(::core::resource_blur_background);
          }
          if(guideline()->m_varTopicQuery.propset().has_property("save_transparent_back"))
          {
-            System.savings().save(::ca2::resource_translucent_background);
+            System.savings().save(::core::resource_translucent_background);
          }
       }
 
       if(directrix()->m_varTopicQuery.propset().has_property("install"))
       {
-         // ca2 level app install
+         // core level app install
          if(!Ex2OnAppInstall())
             return false;
       }
       else if(directrix()->m_varTopicQuery.propset().has_property("uninstall"))
       {
-         // ca2 level app uninstall
+         // core level app uninstall
          if(!Ex2OnAppUninstall())
             return false;
       }
@@ -4972,7 +4972,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
 
    void application::pre_translate_message(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_USER + 124 && pbase->m_pwnd == NULL)
       {
          /*      OnMachineEvent((flags < machine_event::e_flag> *) pmsg->lParam);
@@ -4980,15 +4980,15 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
          pbase->m_bRet = true;
          return;
       }
-      return ::ca2::thread::pre_translate_message(pobj);
+      return ::core::thread::pre_translate_message(pobj);
    }
 
    void application::_001OnApplicationRequest(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
       if(pbase->m_wparam == 2)
       {
-         // when wparam == 2 lparam is a pointer to a ::ca2::command_fork
+         // when wparam == 2 lparam is a pointer to a ::core::command_fork
          // that should be treated as command_line on request, i.e.,
          // a fork whose Forking part has been done, now
          // the parameters are going to be passed to this new application
@@ -5325,10 +5325,10 @@ namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cu
 
    void application::message_window_message_handler(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_TIMER)
       {
-         SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+         SCAST_PTR(message::timer, ptimer, pobj);
          if(ptimer->m_nIDEvent == 123)
          {
             m_spuiMessage->KillTimer(ptimer->m_nIDEvent);
@@ -5512,9 +5512,9 @@ ret:
          peventReady->ResetEvent();
       }
 
-      ::ca2::thread::m_p.create(allocer());
-      //dynamic_cast < ::ca2::thread * > (papp->::ca2::thread::m_p)->m_p = papp->::ca2::thread::m_p;
-      ::ca2::thread::m_p->m_p = this;
+      ::core::thread::m_p.create(allocer());
+      //dynamic_cast < ::core::thread * > (papp->::core::thread::m_p)->m_p = papp->::core::thread::m_p;
+      ::core::thread::m_p->m_p = this;
       if(pbias != NULL)
       {
          m_biasCalling = *pbias;
@@ -5597,7 +5597,7 @@ ok:;
    ::user::printer * application::get_printer(const char * pszDeviceName)
    {
 
-      return ::ca2::application_base::m_p->get_printer(pszDeviceName);
+      return ::core::application_base::m_p->get_printer(pszDeviceName);
 
    }
 
@@ -5734,9 +5734,9 @@ ok:;
 
 
       // there are cases where destroying the documents may destroy the
-      //  main ::ca2::window of the application.
-      //bool b::ca2::ContextIsDll = afxContextIsDLL;
-      //if (!b::ca2::ContextIsDll && papp->GetVisibleFrameCount() <= 0)
+      //  main ::core::window of the application.
+      //bool b::core::ContextIsDll = afxContextIsDLL;
+      //if (!b::core::ContextIsDll && papp->GetVisibleFrameCount() <= 0)
       if(Application.user()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
       {
 
@@ -5808,10 +5808,10 @@ ok:;
    string application::veriwell_multimedia_music_midi_get_default_library_name()
    {
 
-      if(::ca2::application_base::m_p == NULL)
+      if(::core::application_base::m_p == NULL)
          return "";
 
-      return ::ca2::application_base::m_p->veriwell_multimedia_music_midi_get_default_library_name();
+      return ::core::application_base::m_p->veriwell_multimedia_music_midi_get_default_library_name();
 
    }
 
@@ -5820,10 +5820,10 @@ ok:;
    string application::multimedia_audio_mixer_get_default_library_name()
    {
 
-      if(::ca2::application_base::m_p == NULL)
+      if(::core::application_base::m_p == NULL)
          return "";
 
-      return ::ca2::application_base::m_p->multimedia_audio_mixer_get_default_library_name();
+      return ::core::application_base::m_p->multimedia_audio_mixer_get_default_library_name();
 
    }
 
@@ -5832,10 +5832,10 @@ ok:;
    string application::multimedia_audio_get_default_library_name()
    {
 
-      if(::ca2::application_base::m_p == NULL)
+      if(::core::application_base::m_p == NULL)
          return "";
 
-      return ::ca2::application_base::m_p->multimedia_audio_get_default_library_name();
+      return ::core::application_base::m_p->multimedia_audio_get_default_library_name();
 
    }
 
@@ -5844,10 +5844,10 @@ ok:;
    string application::draw2d_get_default_library_name()
    {
 
-      if(::ca2::application_base::m_p == NULL)
+      if(::core::application_base::m_p == NULL)
          return "draw2d_cairo";
 
-      return ::ca2::application_base::m_p->draw2d_get_default_library_name();
+      return ::core::application_base::m_p->draw2d_get_default_library_name();
 
    }
 
@@ -5895,7 +5895,7 @@ ok:;
 
 
 
-} //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cube)]
+} //namespace _001ca1api00001 + [core = (//namespace cube // ca8 + cube)]
 
 
 

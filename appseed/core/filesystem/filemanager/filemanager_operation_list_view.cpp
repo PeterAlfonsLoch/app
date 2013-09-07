@@ -15,7 +15,7 @@ file_manager_operation_list_view::file_manager_operation_list_view(sp(base_appli
    m_pheaderctrl->SetBaseListCtrlInterface(this);
 }
 
-void file_manager_operation_list_view::install_message_handling(::ca2::message::dispatch * pinterface)
+void file_manager_operation_list_view::install_message_handling(message::dispatch * pinterface)
 {
    ::user::view::install_message_handling(pinterface);
    ::user::list::install_message_handling(pinterface);
@@ -102,7 +102,7 @@ void file_manager_operation_list_view::_001OnCreate(signal_details * pobj)
 }
 void file_manager_operation_list_view::_001OnTimer(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+   SCAST_PTR(message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 123)
    {
        /*if(::get_tick_count() - m_dwLast123Update > 500)

@@ -20,14 +20,14 @@
 
 
 
-namespace ca2
+namespace core
 {
 
 
    class application;
 
 
-} // namespace ca2
+} // namespace core
 
 
 #include "nodeapp/operational_system/_ca_2.h"

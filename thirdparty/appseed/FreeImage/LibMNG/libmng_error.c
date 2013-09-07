@@ -119,7 +119,7 @@ MNG_LOCAL mng_error_entry const error_table [] =
     {MNG_OUTPUTERROR,      "Writing was unsuccessful; disk full?"},
     {MNG_JPEGBUFTOOSMALL,  "Internal buffer for JPEG processing too small"},
     {MNG_NEEDMOREDATA,     "Reading suspended; waiting for I/O to catch up"},
-    {MNG_NEEDTIMERWAIT,    "Timer suspension; normal animation delay"},
+    {MNG_NEEDTIMERWAIT,    "timer suspension; normal animation delay"},
     {MNG_NEEDSECTIONWAIT,  "SEEK suspension; application decides"},
     {MNG_LOOPWITHCACHEOFF, "LOOP encountered when playback cache is turned off"},
 

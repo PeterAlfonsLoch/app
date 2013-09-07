@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace core
 {
    
    namespace geometry
@@ -104,4 +104,4 @@ namespace ca2
 
    } // namespace geometry
 
-} // namespace ca2
+} // namespace core

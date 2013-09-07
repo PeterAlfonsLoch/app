@@ -11,7 +11,7 @@ namespace gcom
 
       thread::thread(sp(base_application) papp) :
          element(papp),
-         ::ca2::thread(papp),
+         ::core::thread(papp),
          m_evInitialized(papp, FALSE, TRUE),
          m_mutexBitmap(papp)
       {
@@ -32,10 +32,10 @@ namespace gcom
       {
          m_evInitialized.SetEvent();
          m_pbackviewinterface->Release();
-         return ::ca2::thread::exit_instance();
+         return ::core::thread::exit_instance();
       }
 
-      void thread::install_message_handling(::ca2::message::dispatch * pinterface)
+      void thread::install_message_handling(message::dispatch * pinterface)
       {
          IGUI_WIN_MSG_LINK(WM_USER, pinterface, this, &thread::OnUserMessage);
          IGUI_WIN_MSG_LINK(MESSAGE_BACKVIEW, pinterface, this, &thread::OnBackViewMessage);
@@ -191,7 +191,7 @@ namespace gcom
 
       void thread::OnBackViewMessage(signal_details * pobj)
       {
-         SCAST_PTR(::ca2::message::base, pbase, pobj);
+         SCAST_PTR(message::base, pbase, pobj);
          switch(pbase->m_wparam)
          {
          case WPARAM_BACKVIEW_IMAGELOADED:
@@ -211,7 +211,7 @@ namespace gcom
       }
       void thread::OnUserMessage(signal_details * pobj)
       {
-         SCAST_PTR(::ca2::message::base, pbase, pobj);
+         SCAST_PTR(message::base, pbase, pobj);
           ASSERT(GetMainWnd() == NULL);
          if(pbase->m_wparam == 1) //&& m_pImageLoader != NULL)
          {
@@ -313,7 +313,7 @@ namespace gcom
 
       void thread::OnCommandMessage(signal_details * pobj)
       {
-         SCAST_PTR(::ca2::message::base, pbase, pobj);
+         SCAST_PTR(message::base, pbase, pobj);
          switch(pbase->m_wparam)
          {
          case CommandLoadImage:
@@ -386,7 +386,7 @@ namespace gcom
       void thread::LoadImageAsync(const load_image & loadimage)
       {
          load_image * lploadimage = new load_image(loadimage);
-         ::ca2::connect(lploadimage->m_signalImageLoaded,  m_pbackviewinterface, &backview::Main::_001OnImageLoaded);
+         ::core::connect(lploadimage->m_signalImageLoaded,  m_pbackviewinterface, &backview::Main::_001OnImageLoaded);
 
          post_thread_message(
             MessageCommand,

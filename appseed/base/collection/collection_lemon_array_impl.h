@@ -222,7 +222,7 @@ namespace lemon
             TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
 
             // copy new data from old
-            ::ca2::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE), a.m_pData, (size_t)a.m_nSize * sizeof(TYPE));
+            ::core::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE), a.m_pData, (size_t)a.m_nSize * sizeof(TYPE));
 
             // construct remaining elements
             ASSERT(nNewSize > a.m_nSize);
@@ -326,7 +326,7 @@ namespace lemon
             ::lemon::array::set_size(a, a.m_nSize + nCount, -1);  // grow it to new size
             // destroy intial data before copying over it
             // shift old data up to fill gap
-            ::ca2::memmove_s(a.m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(ARRAY::BASE_TYPE),
+            ::core::memmove_s(a.m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(ARRAY::BASE_TYPE),
                a.m_pData + nIndex, (nOldSize-nIndex) * sizeof(ARRAY::BASE_TYPE));
 
             // re-init slots we copied from

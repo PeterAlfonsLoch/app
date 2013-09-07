@@ -103,7 +103,7 @@ public:
 
 
 // generic
-namespace ca2
+namespace core
 {
 
 
@@ -118,7 +118,7 @@ namespace ca2
    } // namespace pal - platform abstraction layer
 
 
-} // namespace ca2 - generic
+} // namespace core - generic
 
 
 

@@ -10,7 +10,7 @@ namespace sockets
 
 
       class CLASS_DECL_ca2 file : 
-         virtual public ::ca2::transfer_file
+         virtual public ::core::transfer_file
       {
       public:
 

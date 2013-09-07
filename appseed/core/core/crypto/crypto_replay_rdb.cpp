@@ -49,7 +49,7 @@
 /*
  * this implementation of a replay database works as follows:
  * 
- * window_start is the index of the first packet in the ::ca2::window
+ * window_start is the index of the first packet in the ::core::window
  * bitmask      a bit-buffer, containing the most recently entered
  *              index as the leftmost bit 
  *
@@ -71,15 +71,15 @@ rdb_init(rdb_t *rdb) {
 err_status_t
 rdb_check(const rdb_t *rdb, uint32_t index) {
   
-  /* if the index appears after (or at very end of) the ::ca2::window, its good */
+  /* if the index appears after (or at very end of) the ::core::window, its good */
   if (index >= rdb->window_start + rdb_bits_in_bitmask)
     return err_status_ok;
   
-  /* if the index appears before the ::ca2::window, its bad */
+  /* if the index appears before the ::core::window, its bad */
   if (index < rdb->window_start)
     return err_status_replay_old;
 
-  /* otherwise, the index appears within the ::ca2::window, so check the bitmask */
+  /* otherwise, the index appears within the ::core::window, so check the bitmask */
   if (v128_get_bit(&rdb->bitmask, (index - rdb->window_start)) == 1)
     return err_status_replay_fail;    
       
@@ -105,14 +105,14 @@ rdb_add_index(rdb_t *rdb, uint32_t index) {
   delta = (index - rdb->window_start);    
   if (delta < rdb_bits_in_bitmask) {
 
-    /* if the index is within the ::ca2::window, set the appropriate bit */
+    /* if the index is within the ::core::window, set the appropriate bit */
     v128_set_bit(&rdb->bitmask, delta);
 
   } else { 
     
     delta -= rdb_bits_in_bitmask - 1;
 
-    /* shift the ::ca2::window forward by delta bits*/
+    /* shift the ::core::window forward by delta bits*/
     v128_left_shift(&rdb->bitmask, delta);
     v128_set_bit(&rdb->bitmask, rdb_bits_in_bitmask-delta);
     rdb->window_start += delta;

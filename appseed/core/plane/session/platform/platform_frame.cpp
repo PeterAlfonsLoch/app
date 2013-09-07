@@ -12,7 +12,7 @@ namespace platform
    {
       m_pimagelist         = NULL;
       m_iFrameData         = 10;
-      m_dataid             = "ca2::platform::frame";
+      m_dataid             = "core::platform::frame";
 
       m_bWindowFrame       = true;
       m_bFrameMoveEnable   = false;
@@ -63,7 +63,7 @@ namespace platform
 
 #endif //DEBUG
 
-   void frame::install_message_handling(::ca2::message::dispatch * pinterface)
+   void frame::install_message_handling(message::dispatch * pinterface)
    {
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame::_001OnCreate);
@@ -77,7 +77,7 @@ namespace platform
 
    void frame::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+      SCAST_PTR(message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
 
       static float theta;
@@ -223,7 +223,7 @@ namespace platform
 
    void frame::_001OnCreate(signal_details * pobj)
    {
-      //      SCAST_PTR(::ca2::message::create, pcreate, pobj);
+      //      SCAST_PTR(message::create, pcreate, pobj);
       pobj->previous();
 
       m_bTimerOn = false;

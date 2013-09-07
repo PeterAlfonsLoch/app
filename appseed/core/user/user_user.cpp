@@ -18,8 +18,8 @@ namespace user
       m_pufe            = NULL;
 
 
-      //::ca2::user * papp = dynamic_cast <::ca2::user *>(System.GetThread()->m_pAppThread);
-      //::ca2::connect(papp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
+      //::core::user * papp = dynamic_cast <::core::user *>(System.GetThread()->m_pAppThread);
+      //::core::connect(papp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
 
       m_pkeyboard = NULL;
       //m_pwindowmap = NULL;
@@ -500,7 +500,7 @@ retry_license:
    void user::data_on_after_change(signal_details * pobj)
    {
       SCAST_PTR(::database::change_event, pchange, pobj);
-      if(pchange->m_key.m_idKey == "ca2")
+      if(pchange->m_key.m_idKey == "core")
       {
          if(pchange->m_key.m_idIndex  == "savings")
          {

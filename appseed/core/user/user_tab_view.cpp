@@ -34,7 +34,7 @@ namespace user
 
    void tab_view::_001OnCreate(signal_details * pobj)
    {
-//      SCAST_PTR(::ca2::message::create, pcreate, pobj)
+//      SCAST_PTR(message::create, pcreate, pobj)
       if(pobj->previous())
          return;
    }
@@ -94,14 +94,14 @@ namespace user
 
    void tab_view::_001OnMenuMessage(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
       if(pbase->m_wparam == 0 && pbase->m_lparam == 0)
       {
          set_cur_tab_by_id(m_pviewdataOld->m_id);
       }
    }
 
-   void tab_view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void tab_view::install_message_handling(message::dispatch * pinterface)
    {
       view::install_message_handling(pinterface);
       ::user::tab::install_message_handling(pinterface);
@@ -398,7 +398,7 @@ namespace user
    id tab_view::get_view_id()
    {
       if(m_pviewdata == NULL)
-         return ::ca2::system::idEmpty;
+         return ::core::system::idEmpty;
       return m_pviewdata->m_id;
    }
 
@@ -472,7 +472,7 @@ namespace user
    {
    }
 
-   void tab_drop_target_window::install_message_handling(::ca2::message::dispatch * pinterface)
+   void tab_drop_target_window::install_message_handling(message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &tab_drop_target_window::_001OnLButtonUp);
@@ -569,7 +569,7 @@ namespace user
 
    void tab_drop_target_window::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      SCAST_PTR(message::mouse, pmouse, pobj);
 
       e_position eposition = m_ptab->DragHitTest(pmouse->m_pt);
 

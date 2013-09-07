@@ -4,7 +4,7 @@
 #ifndef METROWIN
 
 
-namespace ca2
+namespace core
 {
 
    process_section::process_section(application * papp) :
@@ -134,7 +134,7 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace core
 
 
 

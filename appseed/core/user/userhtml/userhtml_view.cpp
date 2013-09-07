@@ -34,7 +34,7 @@ html_view::~html_view()
 {
 }
 
-void html_view::install_message_handling(::ca2::message::dispatch * pinterface)
+void html_view::install_message_handling(message::dispatch * pinterface)
 {
    ::user::view::install_message_handling(pinterface);
 
@@ -137,7 +137,7 @@ void html_view::_001OnCreate(signal_details * pobj)
 }
 void html_view::_001OnContextMenu(signal_details * pobj) 
 {
-   //   SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
+   //   SCAST_PTR(message::context_menu, pcontextmenu, pobj)
    //   point point = pcontextmenu->GetPoint();
 
 }
@@ -147,7 +147,7 @@ void html_view::_001OnContextMenu(signal_details * pobj)
 void html_view::_001OnSetCursor(signal_details * pobj) 
 {
 
-   SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+   SCAST_PTR(message::mouse, pmouse, pobj);
 
    pmouse->m_ecursor = ::visual::cursor_arrow;
 

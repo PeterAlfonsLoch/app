@@ -106,7 +106,7 @@ namespace gcom
                
                string strCurrentImagePath;
                
-               data_get("gcom::backview::CurrentBackgroundImagePath", ::ca2::system::idEmpty, strCurrentImagePath);
+               data_get("gcom::backview::CurrentBackgroundImagePath", ::core::system::idEmpty, strCurrentImagePath);
                
                return m_spfilesetBackgroundImage->get_next_file(strCurrentImagePath);
                
@@ -120,7 +120,7 @@ namespace gcom
          void interaction::BackViewSetCurrentBackgroundImagePath(const char * psz)
          {
             
-            data_set("gcom::backview::CurrentBackgroundImagePath", ::ca2::system::idEmpty, psz);
+            data_set("gcom::backview::CurrentBackgroundImagePath", ::core::system::idEmpty, psz);
             
          }
          

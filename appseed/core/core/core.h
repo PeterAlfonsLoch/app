@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "app/appseed/ca/ca/ca.h"
+#include "app/appseed/boot/boot/boot.h"
 
 
 #include "nodeapp/operational_system/operational_system.h"
@@ -42,12 +42,12 @@ namespace plane
 #endif
 
 
-#include "ca2_enum.h"
-#include "ca2_live_object.h"
-#include "ca2_log.h"
+#include "core_enum.h"
+#include "core_live_object.h"
+#include "core_log.h"
 
 
-#include "ca2_main_init_data.h"
+#include "core_main_init_data.h"
 
 
 
@@ -59,7 +59,7 @@ namespace plane
 
 
 
-#include "base/api/api_rotate.h"
+#include "core/api/api_rotate.h"
 
 
 #define rgba_get_r(rgba)      ((byte)(rgba & 0xff))
@@ -70,21 +70,21 @@ namespace plane
 #ifdef WINDOWS
 #include <crtdbg.h>
 #else
-#include "base/api/api_debug.h"
+#include "core/api/api_debug.h"
 #endif
 
 
 #if defined(MACOS)
 
-#include "base/macos/macos.h"
+#include "core/macos/macos.h"
 
 #elif defined(METROWIN)
 
-#include "base/metrowin/metrowin.h"
+#include "core/metrowin/metrowin.h"
 
 #elif defined(LINUX)
 
-#include "base/linux/os.h"
+#include "core/linux/os.h"
 
 #endif
 
@@ -92,7 +92,7 @@ namespace plane
 #include "primitive/count.h"
 
 
-#include "base/api/api.h"
+#include "core/api/api.h"
 
 
 
@@ -100,9 +100,9 @@ namespace plane
 
 
 
-// former ca2
+// former core
 
-// Since ca2 API itself is built with wchar_t as a native type, it will not have
+// Since core API itself is built with wchar_t as a native type, it will not have
 // the correct type info for types built with wchar_t typedef'd to uint32_t
 // int16_t.  Make sure that the ::fontopus::user's cast builds this type info in this case.
 #ifndef _NATIVE_WCHAR_T_DEFINED
@@ -111,7 +111,7 @@ namespace plane
 
 
 #ifdef __DBGMEM_H__
-#error <atldbgmem.h> cannot be used in ca2 API projects. See __enable_memory_tracking
+#error <atldbgmem.h> cannot be used in core API projects. See __enable_memory_tracking
 #endif
 
 #if defined(_MFC_DLL_BLD) && defined(DEBUG)
@@ -167,7 +167,7 @@ struct memory_state;
 #pragma warning( push )
 #endif
 
-// warnings caerated with common ca2 API/Windows code
+// warnings caerated with common core API/Windows code
 #pragma warning(disable: 4134)  // message map member fxn casts
 #pragma warning(disable: 4201)  // nameless unions are part of C++
 #pragma warning(disable: 4320)  // structs with uuid handled as interfaces
@@ -210,7 +210,7 @@ struct memory_state;
 #include "primitive/primitive.h"
 
 
-#include "ca2_strn.h"
+#include "core_strn.h"
 #include "primitive/primitive_fixed_string.h"
 
 
@@ -218,20 +218,20 @@ struct memory_state;
 
 
 
-#include "ca2_less.h"
+#include "core_less.h"
 
 
 
 
-#include "ca2_smart_pointer_query.h"
+#include "core_smart_pointer_query.h"
 
 
 
 #define ASSERT_KINDOF(class_name, object) ASSERT(base < class_name > ::bases(object))
 #define DYNAMIC_DOWNCAST(class_name, object) (dynamic_cast < class_name * > (object))
 #define STATIC_DOWNCAST(class_name, object) (dynamic_cast<class_name*>(object))
-#define STATIC_DOWNCAST_T(class_name, T1, object) (static_cast<class_name<T1>*>(::ca2::StaticDownCast(RUNTIME_CLASS_T(class_name, T1), object)))
-#define STATIC_DOWNCAST_T2(class_name, T1, T2, object) (static_cast<class_name<T1, T2>*>(::ca2::StaticDownCast(RUNTIME_CLASS_T2(class_name, T1, T2), object)))
+#define STATIC_DOWNCAST_T(class_name, T1, object) (static_cast<class_name<T1>*>(::core::StaticDownCast(RUNTIME_CLASS_T(class_name, T1), object)))
+#define STATIC_DOWNCAST_T2(class_name, T1, T2, object) (static_cast<class_name<T1, T2>*>(::core::StaticDownCast(RUNTIME_CLASS_T2(class_name, T1, T2), object)))
 
 // optional bit for schema number that enables object versioning
 #define VERSIONABLE_SCHEMA  (0x80000000)
@@ -244,7 +244,7 @@ struct memory_state;
 
 
 
-#include "ca2.inl"
+#include "core.inl"
 
 
 #undef __DATA
@@ -257,13 +257,7 @@ struct memory_state;
 
 
 
-#include "ca2_allocate.h"
-
-
-#include "ca2_base.h"
-
-
-#include "ca2_international_locale_schema.h"
+#include "core_international_locale_schema.h"
 #include "user/user_str.h"
 
 
@@ -372,8 +366,7 @@ typedef struct tag_TimerCallbackCreateTimer
 #define WM_VIEW (WM_USER + 1023)
 
 
-#include "ca2_base.h"
-#include "ca2_constraint.h"
+#include "core_constraint.h"
 
 #ifdef WINDOWS
 #ifndef _INC_SHELLAPI
@@ -443,12 +436,12 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          class font;
          class pen;
          class brush;
-         class memory_graphics;         // ::draw2d::graphics_sp for client of ::ca2::window
-         class window_graphics;         // ::draw2d::graphics_sp for entire ::ca2::window
+         class memory_graphics;         // ::draw2d::graphics_sp for client of ::core::window
+         class window_graphics;         // ::draw2d::graphics_sp for entire ::core::window
          class paint_graphics;          // embeddable BeginPaint struct helper
       }
 
-      namespace ca2
+      namespace core
       {
          class window;            // a window
          class job;
@@ -486,11 +479,11 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          // views on a document
             class CScrollView;  // a scrolling ::user::view
 
-            namespace ca2
+            namespace core
             {
                class thread;           // thread base class
                class application;          // application base class
-            } // namespace ca2
+            } // namespace core
 
 //      class document_template;         // template for document creation
          class single_document_template;// SDI support
@@ -533,10 +526,10 @@ CLASS_DECL_ca2 CArchive& operator>>(CArchive& ar, RECT& rect);
 
 
 
-CLASS_DECL_ca2 void __get_gray_bitmap(sp(::ca2::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
-CLASS_DECL_ca2 void __draw_gray_bitmap(sp(::ca2::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
-CLASS_DECL_ca2 void __get_dithered_bitmap(sp(::ca2::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
-CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(::ca2::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca2 void __get_gray_bitmap(sp(::core::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
+CLASS_DECL_ca2 void __draw_gray_bitmap(sp(::core::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
+CLASS_DECL_ca2 void __get_dithered_bitmap(sp(::core::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(::core::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
 
 
 #include "graphics/draw2d/draw2d.h"
@@ -549,8 +542,8 @@ CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(::ca2::application) papp, ::draw2d
 
 
 
-#include "ca2_command.h"
-#include "ca2_command_target.h"
+#include "core_command.h"
+#include "core_command_target.h"
 
 
 typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
@@ -558,13 +551,13 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 
 
-CLASS_DECL_ca2 ::ca2::thread* __begin_thread(sp(::ca2::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority = ::ca2::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
-/* xxx CLASS_DECL_ca2 thread* __begin_thread(sp(::ca2::type_info) pThreadClass,
+CLASS_DECL_ca2 ::core::thread* __begin_thread(sp(::core::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+/* xxx CLASS_DECL_ca2 thread* __begin_thread(sp(::core::type_info) pThreadClass,
    int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
    uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
 template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread (sp(::ca2::application) papp, int32_t epriority = ::ca2::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
+THREAD_TYPE * __begin_thread (sp(::core::application) papp, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
 {
    THREAD_TYPE * pthread = new THREAD_TYPE(papp);
    pthread->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
@@ -580,7 +573,7 @@ CLASS_DECL_ca2 void __post_quit_message(int32_t nExitCode);
 class CRecentFileList;          // forward reference (see afxadv.h)
 
 
-/*class CLASS_DECL_ca2 CCommandLineInfo : public ::ca2::object
+/*class CLASS_DECL_ca2 CCommandLineInfo : public ::core::object
 {
 public:
    // Sets default values
@@ -659,7 +652,7 @@ struct __system_policies
    __system_policy_data *pData;
 };
 
-//#include "ca2_file_manager_interface.h"
+//#include "core_file_manager_interface.h"
 
 
 
@@ -699,7 +692,7 @@ namespace user
 
 
 #include "user/user_window.h"
-#include "base/base_message_window.h"
+#include "core/core_message_window.h"
 
 
 
@@ -709,34 +702,32 @@ namespace user
 
 
 
-#include "ca2_profiler.h"
-#include "ca2_timer.h"
-#include "ca2_timer_callback.h"
-#include "base/base_timer_window.h"
-#include "ca2_timer_listener.h"
-#include "ca2_live_signal.h"
-#include "ca2_thread.h"
+#include "core_profiler.h"
+#include "core_timer.h"
+#include "core_timer_callback.h"
+#include "core_timer_window.h"
+#include "core_timer_listener.h"
+#include "core_live_signal.h"
+#include "core_thread.h"
 #include "user/user_window_draw.h"
-#include "ca2_history.h"
-#include "ca2_application_bias.h"
-#include "ca2_create_context.h"
-#include "ca2_job.h"
-#include "ca2_print_job.h"
+#include "core_history.h"
+#include "core_job.h"
+#include "core_print_job.h"
 
 
 
 
 
 
-// former ca2
+// former core
 
-#include "ca2_os_history.h"
+#include "core_os_history.h"
 
 
 namespace windows
 {
    template < class APP >
-   inline ::ca2::application & cast(APP * papp)
+   inline ::core::application & cast(APP * papp)
    {
       return *((papp));
    }
@@ -745,7 +736,7 @@ namespace windows
 
 
 
-#include "ca2_international_locale_schema.h"
+#include "core_international_locale_schema.h"
 
 
 #include "user/user_wait_cursor.h"
@@ -762,7 +753,7 @@ extern CLASS_DECL_ca2 UINT g_uiTraceFlags;
 #endif // DEBUG
 
 #ifdef DEBUG
-#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_ca2 ::ca2::trace::category name;
+#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_ca2 ::core::trace::category name;
 #else
 #define DECLARE___TRACE_CATEGORY( name ) const uint_ptr name = 0;
 #endif
@@ -771,8 +762,8 @@ extern CLASS_DECL_ca2 UINT g_uiTraceFlags;
 //////////////////////////////////////////////////////////////////////////////
 // MessageBox helpers
 
-//CLASS_DECL_ca2 void ::ca2::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
-//CLASS_DECL_ca2 void ::ca2::FormatString2(string & rString, UINT nIDS,
+//CLASS_DECL_ca2 void ::core::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
+//CLASS_DECL_ca2 void ::core::FormatString2(string & rString, UINT nIDS,
 //            const char * lpsz1, const char * lpsz2);
 /*CLASS_DECL_ca2 int32_t System.simple_message_box(const char * lpszText, UINT nType = MB_OK,
             UINT nIDHelp = 0);*/
@@ -782,7 +773,7 @@ extern CLASS_DECL_ca2 UINT g_uiTraceFlags;
 // Implementation string helpers
 //CLASS_DECL_ca2 void __format_strings(string & rString, UINT nIDS,
 //            const char * const* rglpsz, int32_t nString);
-namespace ca2
+namespace core
 {
 
    CLASS_DECL_ca2 void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString);
@@ -792,7 +783,7 @@ namespace ca2
 
 
 
-#include "base/os/os.h"
+#include "core/os/os.h"
 
 
 
@@ -804,18 +795,18 @@ namespace ca2
 #endif
 
 
-#include "ca2_process_data.h"
+#include "core_process_data.h"
 
 
-#include "base/data/data_tree_item_data.h"
-#include "base/data/data_tree_item.h"
-#include "base/data/data_tree_data.h"
-#include "base/data/data_tree.h"
+#include "core/data/data_tree_item_data.h"
+#include "core/data/data_tree_item.h"
+#include "core/data/data_tree_data.h"
+#include "core/data/data_tree.h"
 
-#include "ca2_fs_interface.h"
+#include "core_fs_interface.h"
 
 
-#include "ca2_base_enum.h"
+#include "core_base_enum.h"
 
 
 
@@ -831,7 +822,7 @@ namespace ca2
 
 
 
-#include "base/libcharguess/libcharguess.h"
+#include "core/libcharguess/libcharguess.h"
 
 
 
@@ -846,7 +837,7 @@ struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
       class preview_dc;               // Virtual DC for print preview
 
    //command_target
-      //::ca2::window
+      //::core::window
          //::user::view
             class CPreviewView;     // Print preview ::user::view
       //frame_window
@@ -867,7 +858,7 @@ class CDockContext;                     // for dragging control bars
 // F000 -> FFFF : standard windows commands and other things etc
    // E000 -> E7FF standard commands
    // E800 -> E8FF control bars (first 32 are special)
-   // E900 -> EEFF standard ::ca2::window controls/components
+   // E900 -> EEFF standard ::core::window controls/components
    // EF00 -> EFFF SC_ menu help
    // F000 -> FFFF standard strings
 #define ID_COMMAND_FROM_SC(sc)  (((sc - 0xF000) >> 4) + __IDS_SCFIRST)
@@ -891,7 +882,7 @@ class CDockContext;                     // for dragging control bars
 
 /////////////////////////////////////////////////////////////////////////////
 // Internal _ Windows messages (see Technical note TN024 for more details)
-// (0x0360 - 0x037F are reserved for ca2 API)
+// (0x0360 - 0x037F are reserved for core API)
 
 #define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
@@ -903,10 +894,10 @@ class CDockContext;                     // for dragging control bars
 #define WM_HELPHITTEST      0x0366  // lResult = dwContext,
                            // lParam = MAKELONG(x,y)
 #define WM_EXITHELPMODE     0x0367  // (params unused)
-#define WM_RECALCPARENT     0x0368  // force layout on frame ::ca2::window
+#define WM_RECALCPARENT     0x0368  // force layout on frame ::core::window
                            //  (only for inplace frame windows)
 #define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
-                           // wParam = ID of child ::ca2::window
+                           // wParam = ID of child ::core::window
                            // lParam = lpRectNew (new position/size)
 #define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
 #define WM_QUERYCENTERWND   0x036B  // lParam = oswindow to use as centering parent
@@ -924,13 +915,13 @@ class CDockContext;                     // for dragging control bars
 #define WM_RESERVED_036F   0x036F  // was WM_QUERY3DCONTROLS (now not used)
 
 // Note: Messages 0x0370, 0x0371, and 0x372 were incorrectly used by
-//  some versions of Windows.  To remain compatible, ca2 API does not
+//  some versions of Windows.  To remain compatible, core API does not
 //  use messages in that range.
 #define WM_RESERVED_0370    0x0370
 #define WM_RESERVED_0371    0x0371
 #define WM_RESERVED_0372    0x0372
 
-// WM_SOCKET_NOTIFY and WM_SOCKET_DEAD are used internally by ca2 API's
+// WM_SOCKET_NOTIFY and WM_SOCKET_DEAD are used internally by core API's
 // Windows sockets implementation.  For more information, see sockcore.cpp
 #define WM_SOCKET_NOTIFY    0x0373
 #define WM_SOCKET_DEAD      0x0374
@@ -939,7 +930,7 @@ class CDockContext;                     // for dragging control bars
 #define WM_POPMESSAGESTRING 0x0375
 
 // WM_HELPPROMPTADDR is used internally to get the address of
-//   m_dwPromptContext from the associated frame ::ca2::window. This is used
+//   m_dwPromptContext from the associated frame ::core::window. This is used
 //   during message boxes to setup for F1 help while that msg box is
 //   displayed. lResult is the address of m_dwPromptContext.
 #define WM_HELPPROMPTADDR   0x0376
@@ -956,12 +947,12 @@ class CDockContext;                     // for dragging control bars
 // Marker used while rearranging the message queue
 #define WM_QUEUE_SENTINEL   0x0379
 
-// Note: Messages 0x037C - 0x37E reserved for future ca2 API use.
+// Note: Messages 0x037C - 0x37E reserved for future core API use.
 #define WM_RESERVED_037C    0x037C
 #define WM_RESERVED_037D    0x037D
 #define WM_RESERVED_037E    0x037E
 
-// WM_FORWARDMSG - used by ca2 to forward a message to another ::ca2::window for processing
+// WM_FORWARDMSG - used by core to forward a message to another ::core::window for processing
 //   WPARAM - uint32_t dwUserData - defined by ::fontopus::user
 //   LPARAM - LPMESSAGE pMsg - a pointer to the MESSAGE structure
 //   return value - 0 if the message was not processed, nonzero if it was
@@ -969,8 +960,8 @@ class CDockContext;                     // for dragging control bars
 
 // like ON_MESSAGE but no return value
 #define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, ::ca2::Sig_vv, \
-      (__PMSG)(__PMSGW)(void (__MSG_CALL ::ca2::window::*)())&memberFxn },
+   { message, 0, 0, 0, ::core::Sig_vv, \
+      (__PMSG)(__PMSGW)(void (__MSG_CALL ::core::window::*)())&memberFxn },
 
 #if defined(LINUX) || defined(MACOS) || defined(METROWIN) || defined(ANDROID)
 
@@ -1037,9 +1028,9 @@ class COleControlLock;
 
 // Functions declared in this file
 
-// ::ca2::BSTR2ABTSR
-// ::ca2::TaskStringA2W
-// ::ca2::TaskStringW2A
+// ::core::BSTR2ABTSR
+// ::core::TaskStringA2W
+// ::core::TaskStringW2A
 
 #endif
 
@@ -1164,12 +1155,12 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // Global UNICODE<>ANSI translation helpers
 
-CLASS_DECL_ca2 void ::ca2::BSTR2String(string* pStr, BSTR bstr);
+CLASS_DECL_ca2 void ::core::BSTR2String(string* pStr, BSTR bstr);
 
 #if !defined(_UNICODE)
-CLASS_DECL_ca2 BSTR ::ca2::BSTR2ABSTR(BSTR bstrW);
-CLASS_DECL_ca2 wchar_t * ::ca2::TaskStringA2W(const char * lpa);
-CLASS_DECL_ca2 char * ::ca2::TaskStringW2A(const wchar_t * lpw);
+CLASS_DECL_ca2 BSTR ::core::BSTR2ABSTR(BSTR bstrW);
+CLASS_DECL_ca2 wchar_t * ::core::TaskStringA2W(const char * lpa);
+CLASS_DECL_ca2 char * ::core::TaskStringW2A(const wchar_t * lpw);
 #endif
 
 #endif // __AFXPRIV2_H__DISP__
@@ -1182,12 +1173,12 @@ CLASS_DECL_ca2 char * ::ca2::TaskStringW2A(const wchar_t * lpw);
 
 
 
-#include "ca2_types.h"
+#include "core_types.h"
 
-#include "ca2_match.h"
+#include "core_match.h"
 
 // interfaces
-#include "ca2_progress_interface.h"
+#include "core_progress_interface.h"
 
 
 // from 7-zip
@@ -1215,90 +1206,90 @@ CLASS_DECL_ca2 char * ::ca2::TaskStringW2A(const wchar_t * lpw);
 #include "filesystem/file/file_timeout_buffer.h"
 #include "filesystem/file/file_edit_buffer.h"
 #include "filesystem/file/file_text_buffer.h"
-//#include "ca2_file_system.h"
-#include "ca2_resource.h"
+//#include "core_file_system.h"
+#include "core_resource.h"
 
-#include "ca2_simple_tree_item_data.h"
-#include "ca2_simple_tree_data.h"
+#include "core/data/data_simple_tree_item_data.h"
+#include "core/data/data_simple_tree_data.h"
 
 
 
-// former ca2 start - former before concatenation of ca2 + ca2 + ca2 + ca2
+// former core start - former before concatenation of core + core + core + core
 
-#include "ca2_debug.h"
+#include "core_debug.h"
 
 #include "math/math_math.h"
 
-#include "ca2_math_rng.h"
-#include "ca2_math.h"
-#include "ca2_geometry.h"
+#include "core_math_rng.h"
+#include "core_math.h"
+#include "core_geometry.h"
 
-#include "ca2_equals.h"
+//#include "core_equals.h"
 
-#include "ca2_iterator.h"
-#include "ca2_insert_iterator.h"
-#include "ca2_back_insert_iterator.h"
-#include "ca2_std_pair.h"
-
-
-#include "ca2_c_number.h"
+#include "core_iterator.h"
+#include "core_insert_iterator.h"
+#include "core_back_insert_iterator.h"
+#include "core_std_pair.h"
 
 
+#include "core_c_number.h"
 
 
-#include "ca2_muldiv32.h"
+
+
+#include "core_muldiv32.h"
 
 #define EX1ASSERT_VALID(pobj) ASSERT(pobj->Ex1IsObjValid())
 
 
-#include "ca2_simple_thread.h"
-#include "ca2_go_thread.h"
+#include "core_simple_thread.h"
+#include "core_go_thread.h"
 
 
 
-//#include "ca2_scoped_ptr.h"
-#include "ca2_logic.h"
+//#include "core_scoped_ptr.h"
+#include "core_logic.h"
 
 
 
-#include "ca2_parse.h"
+#include "core_parse.h"
 
 
-#include "ca2_template.h"
+#include "core_template.h"
 
 
-#include "base/collection/collection_base_2array.h"
-#include "base/collection/collection_string_array.h"
-#include "base/collection/collection_stringa.h"
-#include "base/collection/collection_stringl.h"
-#include "base/collection/collection_string_sort_array.h"
+#include "core/collection/collection_base_2array.h"
+#include "core/collection/collection_string_array.h"
+#include "core/collection/collection_stringa.h"
+#include "core/collection/collection_stringl.h"
+#include "core/collection/collection_string_sort_array.h"
 
-#include "ca2_string_tokenizer.h"
-
-
-#include "ca2_base_enum.h"
-#include "ca2_base_enum.h"
-//#include "ca2_raw_pointer.h"
-//#include "ca2_full_pointer.h"
-//#include "ca2_time.h"
-#include "ca2_byte_serializable.h"
-#include "base/collection/collection_stringa.h"
-#include "ca2_var.h"
-#include "ca2_var_array.h"
-
-#include "ca2_pipe.h"
-#include "ca2_process.h"
+#include "core_string_tokenizer.h"
 
 
-#include "ca2_savings.h"
+#include "core_base_enum.h"
+#include "core_base_enum.h"
+//#include "core_raw_pointer.h"
+//#include "core_full_pointer.h"
+//#include "core_time.h"
+#include "core_byte_serializable.h"
+#include "core/collection/collection_stringa.h"
+#include "core_var.h"
+#include "core_var_array.h"
 
-#include "ca2_command.h"
-#include "ca2_command_line.h"
-#include "ca2_command_thread.h"
+#include "core_pipe.h"
+#include "core_process.h"
 
-#include "ca2_base64.h"
 
-#include "ca2_util1.h"
+#include "core_savings.h"
+
+#include "core_command.h"
+#include "core_command_line.h"
+#include "core_command_thread.h"
+
+#include "core_base64.h"
+
+#include "core_util1.h"
 
 
 
@@ -1306,11 +1297,11 @@ CLASS_DECL_ca2 char * ::ca2::TaskStringW2A(const wchar_t * lpw);
 #include "primitive/primitive_int_biunique.h"
 
 
-//#include "ca2_memory_file.h"
-#include "ca2_byte_stream_memory_file.h"
+//#include "core_memory_file.h"
+#include "core_byte_stream_memory_file.h"
 
 
-#include "ca2_microtimer.h"
+#include "core_microtimer.h"
 
 template <class TYPE>
 inline bool is_null(const TYPE & ref)
@@ -1321,35 +1312,35 @@ inline bool is_null(const TYPE & ref)
 #define NULL_REF(class) (*((class *) NULL))
 
 
-CLASS_DECL_ca2 ::ca2::byte_input_stream &  operator >>(::ca2::byte_input_stream & istream, string & string);
-CLASS_DECL_ca2 ::ca2::byte_output_stream &  operator <<(::ca2::byte_output_stream & ostream, const string & string);
+CLASS_DECL_ca2 ::core::byte_input_stream &  operator >>(::core::byte_input_stream & istream, string & string);
+CLASS_DECL_ca2 ::core::byte_output_stream &  operator <<(::core::byte_output_stream & ostream, const string & string);
 
 #ifdef WIN32
-#include "ca2_file_association.h"
+#include "core_file_association.h"
 #endif
 
 
-#include "ca2_signal_thread.h"
+#include "core_signal_thread.h"
 
-#include "ca2_international_locale_schema.h"
+#include "core_international_locale_schema.h"
 
-#include "ca2_timer.h"
+#include "core_timer.h"
 
-#include "ca2_istring.h"
-
-
-#include "ca2_cregexp.h"
-#include "ca2_cregexp_util.h"
+#include "core_istring.h"
 
 
+#include "core_cregexp.h"
+#include "core_cregexp_util.h"
 
 
 
-#include "ca2_file_set.h"
 
-#include "ca2_folder_watch.h"
 
-#include "ca2_transfer_file.h"
+#include "core_file_set.h"
+
+#include "core_folder_watch.h"
+
+#include "core_transfer_file.h"
 
 
 class document_interface;
@@ -1358,17 +1349,17 @@ class document_interface;
 class main_frame;
 
 
-typedef sp(::ca2::application) (* LP_GET_NEW_APP) ();
+typedef sp(::core::application) (* LP_GET_NEW_APP) ();
 
 
-namespace ca2
+namespace core
 {
 
 
    class command_line;
 
 
-} // namespace ca2
+} // namespace core
 
 namespace visual
 {
@@ -1432,68 +1423,68 @@ namespace lemon
 
 
 
-#include "ca2_trace.h"
+#include "core_trace.h"
 
 
 
 #include "math/calculator/calculator.h"
-#include "base/xml/xml.h"
+#include "core/xml/xml.h"
 #include "net/sockets/sockets.h"
 #include "user/colorertake5/colorertake5.h"
 
 #include "graphics/html/html.h"
 
 
-#include "ca2_definition.h"
-#include "ca2_debug.h"
+#include "core_definition.h"
+#include "core_debug.h"
 
 
 
-namespace ca2
+namespace core
 {
 
 
    class application;
 
 
-} // namespace ca2
+} // namespace core
 
 
-#include "base/crypto/crypto.h"
+#include "core/crypto/crypto.h"
 
 
-#include "ca2_file_application.h"
-#include "ca2_file_system.h"
-#include "ca2_dir_application.h"
-#include "ca2_dir_system.h"
-#include "ca2_edit_file.h"
-#include "ca2_stra.h"
-#include "ca2_url_domain.h"
-#include "ca2_url.h"
+#include "core_file_application.h"
+#include "core_file_system.h"
+#include "core_dir_application.h"
+#include "core_dir_system.h"
+#include "core_edit_file.h"
+#include "core_stra.h"
+#include "core_url_domain.h"
+#include "core_url.h"
 
 
-#include "ca2_service.h"
-#include "ca2_machine_event_central.h"
+#include "core_service.h"
+#include "core_machine_event_central.h"
 
 
-#include "base/install/install.h"
+#include "core/install/install.h"
 
 
-#include "ca2_os.h"
-
-
-
-
-
-#include "ca2_datetime.h"
+#include "core_os.h"
 
 
 
 
-#include "ca2_library.h"
+
+#include "core_datetime.h"
 
 
-#include "base/xml/xml_data.h"
+
+
+#include "core_library.h"
+
+
+#include "core/xml/xml_data.h"
 
 
 #include "filesystem/filehandler/filehandler.h"
@@ -1508,7 +1499,7 @@ namespace ca2
 #include "compress/compress.h"
 #include "programming/javascript/javascript.h"
 
-// former ca2 - changed to ca2 on 2013-02-21
+// former core - changed to core on 2013-02-21
 ////////////////////////////////////////////////////////////////
 // ca2api
 // Layer level 5
@@ -1518,23 +1509,23 @@ namespace ca2
 
 
 
-#include "ca2_compress.h"
-#include "ca2_patch.h"
-#include "ca2_copydesk.h"
-#include "ca2_crypt.h"
-#include "ca2_email.h"
-#include "ca2_http.h"
-#include "ca2_http_application.h"
-#include "ca2_http_system.h"
-#include "ca2_http_get_socket.h"
-#include "ca2_ip_enum.h"
-#include "ca2_port_forward.h"
+#include "core_compress.h"
+#include "core_patch.h"
+#include "core_copydesk.h"
+#include "core_crypt.h"
+#include "core_email.h"
+#include "core_http.h"
+#include "core_http_application.h"
+#include "core_http_system.h"
+#include "core_http_get_socket.h"
+#include "core_ip_enum.h"
+#include "core_port_forward.h"
 
 
-#include "ca2_oauth.h"
-#include "ca2_twit.h"
+#include "core_oauth.h"
+#include "core_twit.h"
 
-#include "ca2_process_section.h"
+#include "core_process_section.h"
 
 
 
@@ -1561,12 +1552,12 @@ namespace ca2
 
 #include "net/hi5/hi5_net.h"
 
-#include "ca2_application.h"
+#include "core_application.h"
 
 
 
 
-#include "ca2_session.h"
-#include "ca2_system.h"
+#include "core_session.h"
+#include "core_system.h"
 
 

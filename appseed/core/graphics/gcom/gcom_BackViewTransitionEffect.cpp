@@ -1820,10 +1820,10 @@ namespace gcom
       }
 
 
-      ::ca2::thread * TransitionEffect::CreateRunStepThread()
+      ::core::thread * TransitionEffect::CreateRunStepThread()
       {
 
-         return __begin_thread(get_app(), ThreadProcRunStep, this, ::ca2::scheduling_priority_normal, 0, 0, NULL);
+         return __begin_thread(get_app(), ThreadProcRunStep, this, ::core::scheduling_priority_normal, 0, 0, NULL);
 
       }
 

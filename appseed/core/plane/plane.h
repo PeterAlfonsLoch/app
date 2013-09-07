@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/ca2/ca2.h"
+#include "core/core.h"
 
 
 class service_base;
@@ -64,7 +64,7 @@ class form_view;
 #include "plane_system_primitive_string_format_spec.h"
 
 
-#include "base/plugin/plugin.h"
+#include "core/plugin/plugin.h"
 
 #include "plane/session/bergedge/bergedge.h"
 

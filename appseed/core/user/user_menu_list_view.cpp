@@ -15,7 +15,7 @@ namespace user
       m_bAutoClose         = false;
    }
 
-   void menu_list_view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void menu_list_view::install_message_handling(message::dispatch * pinterface)
    {
       menu_list_window::install_message_handling(pinterface);
    }
@@ -41,7 +41,7 @@ namespace user
 
    void menu_list_view::GuieProc(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
       if(pbase->m_uiMessage == m_uiMessage)
       {
          if(base < ::user::place_holder >::bases(get_parent()))

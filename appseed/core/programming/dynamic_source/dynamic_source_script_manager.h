@@ -28,8 +28,8 @@ namespace dynamic_source
 
 
    class CLASS_DECL_ca2 script_manager :
-      virtual public ::ca2::thread,
-      virtual public ::ca2::message_window_simple_callback
+      virtual public ::core::thread,
+      virtual public ::core::message_window_simple_callback
    {
    public:
 
@@ -178,7 +178,7 @@ namespace dynamic_source
 
 
       script_instance * get(const string & strName);
-      using ::ca2::thread::handle;
+      using ::core::thread::handle;
       virtual void handle(::dynamic_source::httpd_socket * psocket);
       bool get_output_internal(::dynamic_source::script_interface * & pinstance, ::dynamic_source::script_interface * pinstanceParent, const string & strName);
       using thread::run;

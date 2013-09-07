@@ -29,7 +29,7 @@ namespace user
    {
       if (m_strDocStrings.is_empty() && System.matter_as_string(get_app(), m_strMatter, "full_string.txt").is_empty())
       {
-         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: no ::user::document_interface names in string for template #%d.\n", m_strMatter);
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: no ::user::document_interface names in string for template #%d.\n", m_strMatter);
       }
    }
 
@@ -40,7 +40,7 @@ namespace user
 
    bool document_template::GetDocString(string & rString, enum DocStringIndex i) const
    {
-      return ::ca2::extract_sub_string(rString, m_strDocStrings, (int32_t)i);
+      return ::core::extract_sub_string(rString, m_strDocStrings, (int32_t)i);
    }
 
    void document_template::add_document(sp(::user::document_interface) pdocument)
@@ -102,14 +102,14 @@ namespace user
       // default implementation constructs one from sp(type)
       if(!m_typeinfoDocument)
       {
-         TRACE(::ca2::trace::category_AppMsg, 0, "Error: you must override document_template::create_new_document.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Error: you must override document_template::create_new_document.\n");
          ASSERT(FALSE);
          return NULL;
       }
       sp(::user::document_interface) pdocument = Application.alloc(m_typeinfoDocument);
       if (pdocument == NULL)
       {
-         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::document_interface type %hs failed.\n",
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::document_interface type %hs failed.\n",
             m_typeinfoDocument->name());
          return NULL;
       }
@@ -143,14 +143,14 @@ namespace user
 
       if (!m_typeinfoFrame)
       {
-         TRACE(::ca2::trace::category_AppMsg, 0, "Error: you must override document_template::create_new_frame.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Error: you must override document_template::create_new_frame.\n");
          ASSERT(FALSE);
          return NULL;
       }
       sp(::user::frame_window) pFrame = Application.alloc(m_typeinfoFrame);
       if (pFrame == NULL)
       {
-         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",
             m_typeinfoFrame->name());
          return NULL;
       }
@@ -158,14 +158,14 @@ namespace user
       pFrame->m_pdocumenttemplate = this;
 
       if(!context->m_typeinfoNewView)
-         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: creating frame with no default ::user::view.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: creating frame with no default ::user::view.\n");
 
       // create new from resource
       if (!pFrame->LoadFrame(m_strMatter,
          WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,   // default frame styles
          pcreatecontext->m_puiParent, pcreatecontext))
       {
-         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: document_template couldn't create a frame.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: document_template couldn't create a frame.\n");
          // frame will be deleted in PostNcDestroy cleanup
          return NULL;
       }
@@ -175,7 +175,7 @@ namespace user
    }
 
    /*
-   sp(::user::frame_window) document_template::CreateOleFrame(sp(::ca2::window) pParentWnd, sp(::user::document_interface) pdocument,
+   sp(::user::frame_window) document_template::CreateOleFrame(sp(::core::window) pParentWnd, sp(::user::document_interface) pdocument,
    bool bCreateView)
    {
    create_context context;
@@ -186,7 +186,7 @@ namespace user
 
    if (m_pOleFrameClass == NULL)
    {
-   TRACE(::ca2::trace::category_AppMsg, 0, "Warning: pOleFrameClass not specified for doc template.\n");
+   TRACE(::core::trace::category_AppMsg, 0, "Warning: pOleFrameClass not specified for doc template.\n");
    return NULL;
    }
 
@@ -194,7 +194,7 @@ namespace user
    sp(::user::frame_window) pFrame = (System.alloc(m_pOleFrameClass));
    if (pFrame == NULL)
    {
-   TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",
+   TRACE(::core::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",
    m_pOleFrameClass->name());
    return NULL;
    }
@@ -203,7 +203,7 @@ namespace user
    if (!pFrame->LoadFrame(m_strServerMatter,
    WS_CHILD|WS_CLIPSIBLINGS, pParentWnd, &context))
    {
-   TRACE(::ca2::trace::category_AppMsg, 0, "Warning: document_template couldn't create an OLE frame.\n");
+   TRACE(::core::trace::category_AppMsg, 0, "Warning: document_template couldn't create an OLE frame.\n");
    // frame will be deleted in PostNcDestroy cleanup
    return NULL;
    }

@@ -126,7 +126,7 @@ void fixed_string_log::OnAllocateSpill(strsize nActualChars,strsize nFixedChars,
 ()nActualChars;
 ()nFixedChars;
 ()pData;
-//   TRACE(::ca2::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
+//   TRACE(::core::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
 ::OutputDebugStringA("fixed_string_log::OnAllocateSpill");
 }
 
@@ -135,7 +135,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ()nActualChars;
 ()nFixedChars;
 ()pData;
-//   TRACE(::ca2::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
+//   TRACE(::core::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
 ::OutputDebugStringA("fixed_string_log::OnReallocateSpill");
 }
 
@@ -363,7 +363,7 @@ _INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringLowe
 char * __cdecl crt_char_traits::StringUppercase(char * psz,size_t size ) throw()
 {
 
-   ::ca2::strupr_s(psz, size);
+   ::core::strupr_s(psz, size);
 
    return psz;
 
@@ -372,7 +372,7 @@ char * __cdecl crt_char_traits::StringUppercase(char * psz,size_t size ) throw()
 char * __cdecl crt_char_traits::StringLowercase(char * psz,size_t size ) throw()
 {
 
-   ::ca2::strlwr_s(psz, size);
+   ::core::strlwr_s(psz, size);
 
    return psz;
 
@@ -459,7 +459,7 @@ void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, 
 {
    if (nSrcLength == -1) { nSrcLength=1 + GetcharLength(pszSrc); }
    // nLen is in XCHARs
-   ::ca2::memcpy_s( pszDest, nDestLength*sizeof( char ),
+   ::core::memcpy_s( pszDest, nDestLength*sizeof( char ),
       pszSrc, nSrcLength*sizeof( char ) );
 }
 
@@ -1238,7 +1238,7 @@ strsize string::Delete(strsize iIndex,strsize nCount)
    if(nCount < 0)
       return get_length();
 
-   if( (::ca2::add_throw(nCount, iIndex)) > nLength )
+   if( (::core::add_throw(nCount, iIndex)) > nLength )
    {
       nCount = nLength-iIndex;
    }
@@ -1247,7 +1247,7 @@ strsize string::Delete(strsize iIndex,strsize nCount)
       strsize nNewLength = nLength-nCount;
       strsize nXCHARsToCopy = nLength-(iIndex+nCount)+1;
       char * pszBuffer = GetBuffer();
-      ::ca2::memmove_s( pszBuffer+iIndex, nXCHARsToCopy*sizeof( char ),
+      ::core::memmove_s( pszBuffer+iIndex, nXCHARsToCopy*sizeof( char ),
          pszBuffer+iIndex+nCount, nXCHARsToCopy*sizeof( char ) );
       ReleaseBufferSetLength( nNewLength );
    }
@@ -1269,7 +1269,7 @@ strsize string::Insert(strsize iIndex,char ch )
    char * pszBuffer = GetBuffer( nNewLength );
 
    // move existing bytes down
-   ::ca2::memmove_s( pszBuffer+iIndex+1, (nNewLength-iIndex)*sizeof( char ),
+   ::core::memmove_s( pszBuffer+iIndex+1, (nNewLength-iIndex)*sizeof( char ),
       pszBuffer+iIndex, (nNewLength-iIndex)*sizeof( char ) );
    pszBuffer[iIndex] = ch;
 
@@ -1297,9 +1297,9 @@ strsize string::Insert(strsize iIndex,const char * psz )
 
       char * pszBuffer = GetBuffer( nNewLength );
       // move existing bytes down
-      ::ca2::memmove_s( pszBuffer+iIndex+nInsertLength, (nNewLength-iIndex-nInsertLength+1)*sizeof( char ),
+      ::core::memmove_s( pszBuffer+iIndex+nInsertLength, (nNewLength-iIndex-nInsertLength+1)*sizeof( char ),
          pszBuffer+iIndex, (nNewLength-iIndex-nInsertLength+1)*sizeof( char ) );
-      ::ca2::memcpy_s( pszBuffer+iIndex, nInsertLength*sizeof( char ),
+      ::core::memcpy_s( pszBuffer+iIndex, nInsertLength*sizeof( char ),
          psz, nInsertLength*sizeof( char ) );
       ReleaseBufferSetLength( nNewLength );
    }
@@ -1388,9 +1388,9 @@ strsize string::replace(const char * pszOld, const char * pszNew, strsize iStart
          while( (pszTarget = string_trait::StringFindString( pszStart, pszOld ) ) != NULL )
          {
             strsize nBalance = nOldLength-strsize(pszTarget-pszBuffer+nSourceLen);
-            ::ca2::memmove_s( pszTarget+nReplacementLen, nBalance*sizeof( char ),
+            ::core::memmove_s( pszTarget+nReplacementLen, nBalance*sizeof( char ),
                pszTarget+nSourceLen, nBalance*sizeof( char ) );
-            ::ca2::memcpy_s( pszTarget, nReplacementLen*sizeof( char ),
+            ::core::memcpy_s( pszTarget, nReplacementLen*sizeof( char ),
                pszNew, nReplacementLen*sizeof( char ) );
             pszStart = pszTarget+nReplacementLen;
             pszTarget[nReplacementLen+nBalance] = 0;
@@ -2057,7 +2057,7 @@ string& string::trim_left()
       char * pszBuffer = GetBuffer( get_length() );
       psz = pszBuffer+iFirst;
       strsize nDataLength = get_length()-iFirst;
-      ::ca2::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
+      ::core::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
          psz, (nDataLength+1)*sizeof( char ) );
       ReleaseBufferSetLength( nDataLength );
    }
@@ -2179,7 +2179,7 @@ string& string::trim_left(char chTarget )
       char * pszBuffer = GetBuffer( get_length() );
       psz = pszBuffer+iFirst;
       strsize nDataLength = get_length()-iFirst;
-      ::ca2::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
+      ::core::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
          psz, (nDataLength+1)*sizeof( char ) );
       ReleaseBufferSetLength( nDataLength );
    }
@@ -2209,7 +2209,7 @@ string& string::trim_left(const char * pszTargets )
       char * pszBuffer = GetBuffer( get_length() );
       psz = pszBuffer+iFirst;
       strsize nDataLength = get_length()-iFirst;
-      ::ca2::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
+      ::core::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
          psz, (nDataLength+1)*sizeof( char ) );
       ReleaseBufferSetLength( nDataLength );
    }
@@ -2389,7 +2389,7 @@ string string::Mid(strsize iFirst,strsize nCount ) const
    if(nCount < 0)
       return "";
 
-   if( (::ca2::add_throw(iFirst,nCount)) > get_length() )
+   if( (::core::add_throw(iFirst,nCount)) > get_length() )
    {
       nCount = get_length()-iFirst;
    }

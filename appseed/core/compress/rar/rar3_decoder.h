@@ -47,7 +47,7 @@ namespace libcompress
          uint32_t m_Value;
          uint32_t m_BitPos;
       public:
-         ::ca2::in_buffer m_Stream;
+         ::core::in_buffer m_Stream;
          bool Create(uint32_t bufferSize) { return m_Stream.Create(bufferSize); }
          void SetStream(::file::reader *inStream) { m_Stream.SetStream(inStream);}
          void ReleaseStream()
@@ -104,7 +104,7 @@ namespace libcompress
          uint32_t Code;
          uint32_t Low;
          bit_decoder bitDecoder;
-         ::ca2::SRes Res;
+         ::core::SRes Res;
 
       public:
          void InitRangeCoder()

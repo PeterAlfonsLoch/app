@@ -9,7 +9,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 #endif
 
 
-namespace ca2
+namespace core
 {
 
    //typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
@@ -182,7 +182,7 @@ namespace ca2
 
 #endif
 
-#define DECLARE_NOUIASSERT() ::ca2::CNoUIAssertHook _g_NoUIAssertHook;
+#define DECLARE_NOUIASSERT() ::core::CNoUIAssertHook _g_NoUIAssertHook;
 
 #endif  // _NO_DEBUG_CRT
 
@@ -191,9 +191,9 @@ namespace ca2
       CLASS_DECL_ca2 void __cdecl __trace(const wchar_t * pszFormat, ...);
       CLASS_DECL_ca2 void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const char * pszFormat, ...);
       CLASS_DECL_ca2 void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const wchar_t * pszFormat, ...);
-#define TRACENOTIMPL(funcname)  do { TRACE(::ca2::atlTraceNotImpl, 0, "ca2: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
+#define TRACENOTIMPL(funcname)  do { TRACE(::core::atlTraceNotImpl, 0, "core: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
    } // namespace trace
     
 
-};  // namespace ca2
+};  // namespace core
 

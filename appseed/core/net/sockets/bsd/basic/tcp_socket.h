@@ -279,7 +279,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** SSL; get ssl password. */
          const string & GetPassword();
 
-         ::ca2::circular_buffer ibuf; ///< Circular input buffer
+         ::core::circular_buffer ibuf; ///< Circular input buffer
       public:
 
          virtual string get_url();

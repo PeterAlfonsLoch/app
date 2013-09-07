@@ -29,7 +29,7 @@ namespace plane
 
    class CLASS_DECL_ca2 system :
       virtual public ::plane::application,
-      virtual public ::ca2::system
+      virtual public ::core::system
    {
    public:
       //plane::session::run_start_installer *        m_prunstartinstaller;
@@ -40,7 +40,7 @@ namespace plane
       mutex                                        m_mutex;
 #ifdef METROWIN
       sp(::user::interaction)                      m_pui;
-      ::ca2::system_window ^                       m_pwindow;
+      ::core::system_window ^                       m_pwindow;
 #endif
 #ifdef WINDOWS
       ID2D1DeviceContext *                         m_pdevicecontext;
@@ -52,25 +52,25 @@ namespace plane
       FT_Library                                   m_ftlibrary;
       mutex                                        m_mutexDelete;
       application_ptra                       m_appptra;
-      ::ca2::file_system_sp                         m_spfile;
-      ::ca2::dir::system_sp                         m_spdir;
-      class ::ca2::stra                             m_stra;
-      class ::ca2::service                          m_service;
-      class ::ca2::install                          m_install;
-      ::ca2::os_sp                                  m_spos;
+      ::core::file_system_sp                         m_spfile;
+      ::core::dir::system_sp                         m_spdir;
+      class ::core::stra                             m_stra;
+      class ::core::service                          m_service;
+      class ::core::install                          m_install;
+      ::core::os_sp                                  m_spos;
 #ifndef METROWIN
-      class ::ca2::process_section                  m_processsection;
+      class ::core::process_section                  m_processsection;
 #endif
-      sp(class ::ca2::datetime)                     m_pdatetime;
+      sp(class ::core::datetime)                     m_pdatetime;
       class ::sockets::net                         m_net;
 
-      class ::ca2::compress                         m_compress;
-      class ::ca2::patch                            m_patch;
-      ::ca2::crypt_sp                               m_spcrypt;
-      class ::ca2::http::system                     m_http;
-      class ::ca2::email                            m_email;
-      ::ca2::copydesk_sp                            m_spcopydesk;
-      ::ca2::port_forward_sp                        m_spportforward;
+      class ::core::compress                         m_compress;
+      class ::core::patch                            m_patch;
+      ::core::crypt_sp                               m_spcrypt;
+      class ::core::http::system                     m_http;
+      class ::core::email                            m_email;
+      ::core::copydesk_sp                            m_spcopydesk;
+      ::core::port_forward_sp                        m_spportforward;
       ::string_to_string                       m_mapAppLibrary;
       sp(colorertake5::ParserFactory)              m_pparserfactory;
 
@@ -83,11 +83,11 @@ namespace plane
       sp(::plane::session::map)                      m_pbergedgemap;
 
 
-      sp(class ::ca2::log)                          m_plog;
-      sp(class ::ca2::history)                      m_phistory;
-      sp(::ca2::window_draw)                        m_ptwf;
+      sp(class ::core::log)                          m_plog;
+      sp(class ::core::history)                      m_phistory;
+      sp(::core::window_draw)                        m_ptwf;
       //      ::sockets::net                               m_net;
-      //      sp(::ca2::filehandler::handler)  m_spfilehandler;
+      //      sp(::core::filehandler::handler)  m_spfilehandler;
 
 
       fontopus::authentication_map                 m_authmap;
@@ -121,9 +121,9 @@ namespace plane
 
       bool                                          m_bDoNotExitIfNoApplications;
 
-      strid_map < ::ca2::library * >  m_idmapCreateViewLibrary;
+      strid_map < ::core::library * >  m_idmapCreateViewLibrary;
 
-      comparable_array < ::ca2::library * >         m_libraryptra;
+      comparable_array < ::core::library * >         m_libraryptra;
 
 #ifdef METROWIN
       Platform::Agile < Windows::UI::Core::CoreWindow > m_window;
@@ -163,7 +163,7 @@ namespace plane
 
 
       using ::plane::application::process;
-      bool set_history(::ca2::history * phistory);
+      bool set_history(::core::history * phistory);
 
 
       virtual sp(::plane::session)             get_session(index iEdge, application_bias * pbiasCreation = NULL);
@@ -221,35 +221,35 @@ namespace plane
       virtual string file_title(const char * psz);
       virtual string file_name(const char * psz);
 
-      class ::ca2::log                     & log();
+      class ::core::log                     & log();
 
-      sp(::ca2::window_draw )              get_twf();
+      sp(::core::window_draw )              get_twf();
 
       FT_Library                          & ftlibrary();
 
       application_ptra              & appptra();
-      ::ca2::datetime                      & datetime();
+      ::core::datetime                      & datetime();
 
-      inline ::ca2::file_system            & file()    { return m_spfile; }
-      inline ::ca2::dir::system            & dir()     { return m_spdir; }
-      ::ca2::stra                          & stra();
-      ::ca2::install                       & install();
-      ::ca2::service                       & service();
+      inline ::core::file_system            & file()    { return m_spfile; }
+      inline ::core::dir::system            & dir()     { return m_spdir; }
+      ::core::stra                          & stra();
+      ::core::install                       & install();
+      ::core::service                       & service();
       class ::machine_event_central       & machine_event_central();
-      class ::ca2::os                      & os();
+      class ::core::os                      & os();
 #ifndef METROWIN
-      ::ca2::process_section               & process();
+      ::core::process_section               & process();
 #endif
       class ::sockets::net                & net();
 
-      ::ca2::history                    & hist();
+      ::core::history                    & hist();
 
-      class ::ca2::compress            & compress();
-      class ::ca2::patch               & patch();
-      class ::ca2::crypt               & crypt();
-      class ::ca2::http::system        & http();
-      class ::ca2::email               & email();
-      class ::ca2::copydesk            & copydesk();
+      class ::core::compress            & compress();
+      class ::core::patch               & patch();
+      class ::core::crypt               & crypt();
+      class ::core::http::system        & http();
+      class ::core::email               & email();
+      class ::core::copydesk            & copydesk();
 
       ::fontopus::user_set             & userset();
 
@@ -399,12 +399,12 @@ namespace plane
 
       virtual string get_host_location_url();
 
-      virtual bool add_library(::ca2::library * plibrary);
+      virtual bool add_library(::core::library * plibrary);
 
       virtual void get_cursor_pos(LPPOINT lppoint);
 
 
-      virtual bool set_main_init_data(::ca2::main_init_data * pdata);
+      virtual bool set_main_init_data(::core::main_init_data * pdata);
 
 
       void enum_display_monitors();
@@ -431,21 +431,21 @@ namespace plane
 } // namespace cube
 
 
-namespace ca2
+namespace core
 {
 
 
 
 
 
-} // namespace ca2
+} // namespace core
 
 
 #if defined(LINUX) || defined(MACOS)
 
 
 template < class T >
-bool ::ca2::file_system::output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, const char *), const char * lpszSource)
+bool ::core::file_system::output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, const char *), const char * lpszSource)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
@@ -461,7 +461,7 @@ bool ::ca2::file_system::output(sp(base_application) papp, const char * pszOutpu
 
 
 template < class T >
-bool ::ca2::file_system::output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, ::file::reader &), const char * lpszInput)
+bool ::core::file_system::output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, ::file::reader &), const char * lpszInput)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
@@ -535,7 +535,7 @@ bool ::ca2::file_system::output(sp(base_application) papp, const char * pszOutpu
 
 
 
-#include "base/collection/collection_lemon_array.h"
+#include "core/collection/collection_lemon_array.h"
 
 
 namespace user

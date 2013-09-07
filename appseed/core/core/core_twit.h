@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
    /* twitCurl class */
@@ -127,4 +127,4 @@ namespace ca2
    
 
 
-} // namespace ca2
+} // namespace core

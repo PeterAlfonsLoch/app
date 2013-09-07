@@ -99,7 +99,7 @@ namespace filemanager
 
       virtual void _001OnAfterSort();
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(message::dispatch * pinterface);
 
 
    };

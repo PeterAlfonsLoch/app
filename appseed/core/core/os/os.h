@@ -3,11 +3,11 @@
 
 #ifdef WINDOWSEX
 
-#include "base/windows/os.h"
+#include "core/windows/os.h"
 
 #elif defined(METROWIN)
 
-#include "base/metrowin/metrowin.h"
+#include "core/metrowin/metrowin.h"
 #include "os_cross_windows.h"
 
 #else 

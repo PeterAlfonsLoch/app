@@ -47,7 +47,7 @@ namespace dynamic_source
    script_manager::script_manager(sp(base_application) papp) :
       element(papp),
       thread(papp),
-      ::ca2::message_window_simple_callback(papp),
+      ::core::message_window_simple_callback(papp),
       m_mutexIncludeMatches(papp),
       m_mutexIncludeHasScript(papp),
       m_mutexIncludeExpandMd5(papp),
@@ -88,11 +88,11 @@ namespace dynamic_source
       #ifdef LINUX
       m_strNetnodePath           = "/netnodenet/";
       m_strNetseedPath           = "/netnodenet/net/netseed/";
-      m_strNetseedDsCa2Path      = "/netnodenet/net/netseed/ds/ca2/";
+      m_strNetseedDsCa2Path      = "/netnodenet/net/netseed/ds/core/";
       #else
       m_strNetnodePath           = "C:\\netnodenet\\";
       m_strNetseedPath           = "C:\\netnodenet\\net\\netseed\\";
-      m_strNetseedDsCa2Path      = "C:\\netnodenet\\net\\netseed\\ds\\ca2\\";
+      m_strNetseedDsCa2Path      = "C:\\netnodenet\\net\\netseed\\ds\\core\\";
       #endif
 
 
@@ -122,7 +122,7 @@ namespace dynamic_source
    bool script_manager::initialize_instance()
    {
 
-      initialize_message_window("::ca2::netnode::cgclcst");
+      initialize_message_window("::core::netnode::cgclcst");
       m_pcompiler->initialize();
 #ifdef WINDOWS
       {
@@ -418,7 +418,7 @@ namespace dynamic_source
 
    void script_manager::message_window_message_handler(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_APP + 13)
       {
          //if(wparam == 0)

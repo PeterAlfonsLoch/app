@@ -7,7 +7,7 @@ namespace filemanager
 
    document::document(sp(base_application) papp) :
       element(papp),
-      ::ca2::data_container_base(papp),
+      ::core::data_container_base(papp),
       ::userfs::document(papp)
    {
 
@@ -283,7 +283,7 @@ namespace filemanager
 
       uh.m_pmanager = this;
 
-      if(data_get("InitialBrowsePath", ::ca2::system::idEmpty, str))
+      if(data_get("InitialBrowsePath", ::core::system::idEmpty, str))
       {
 
          if(str == "machinefs://")

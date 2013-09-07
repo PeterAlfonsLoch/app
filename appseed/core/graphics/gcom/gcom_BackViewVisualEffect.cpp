@@ -41,7 +41,7 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ca2::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::core::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
@@ -687,7 +687,7 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ca2::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::core::draw_dib & drawdib = graphics.GetDrawDib();
 
 
 

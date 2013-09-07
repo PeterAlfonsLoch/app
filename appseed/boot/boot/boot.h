@@ -20,14 +20,14 @@
 
 
 
-namespace ca2
+namespace core
 {
 
 
    class application;
 
 
-} // namespace ca2
+} // namespace core
 
 
 #include "nodeapp/operational_system/_ca.h"
@@ -50,37 +50,37 @@ namespace ca2
 #include "boot/vms/vms.h"
 
 
-#include "ca_logic.h"
+#include "boot_logic.h"
 
 
-#include "ca_cpu_architecture.h"
+#include "boot_cpu_architecture.h"
 
 
-#include "ca_libc.h"
+#include "boot_libc.h"
 
 
-#include "ca_number.h"
-#include "ca_keep_true.h"
+#include "boot_number.h"
+#include "boot_keep_true.h"
 
 
-#include "ca_debug.h"
+#include "boot_debug.h"
 
 
-#include "ca_printf.h"
-#include "ca_sprintf.h"
+#include "boot_printf.h"
+#include "boot_sprintf.h"
 
 
 
 #include "boot/simple_graphics/simple_graphics_first_phase.h"
 
-#include "ca_math.h"
+#include "boot_math.h"
 
-#include "ca_geometric_types.h"
-
-
+#include "boot_geometric_types.h"
 
 
-#include "ca_launcher.h"
+
+
+#include "boot_launcher.h"
 
 
 #ifdef METROWIN
@@ -90,16 +90,16 @@ namespace ca2
 #else
 
 #define BSD_STYLE_SOCKETS
-#include "ca_small_ipca_channel.h"
+#include "boot_small_ipca_channel.h"
 
 #endif
 
 
 
-#include "ca_library.h"
+#include "boot_library.h"
 
-#include "ca_file_watcher.h"
-#include "ca_file_watcher_impl.h"
+#include "boot_file_watcher.h"
+#include "boot_file_watcher_impl.h"
 
 
 
@@ -110,9 +110,9 @@ namespace ca2
 #define VK_DELETE 6
 #define VK_SPACE 9
 #endif*/
-#include "ca_window_graphics.h"
+#include "boot_window_graphics.h"
 
-#include "boot/ca/ca_os.h"
+#include "boot_os.h"
 
 #include "boot/cross/cross.h"
 
@@ -122,16 +122,16 @@ namespace ca2
 #include "boot/simple_graphics/simple_graphics_second_phase.h"
 
 
-#include "ca_simple_shell_launcher.h"
+#include "boot_simple_shell_launcher.h"
 
 
 
-#include "ca_file_watcher_thread.h"
-#include "ca_file_watcher_listener_thread.h"
-#include "ca_async.h"
+#include "boot_file_watcher_thread.h"
+#include "boot_file_watcher_listener_thread.h"
+#include "boot_async.h"
 
 
-#include "ca_base64.h"
+#include "boot_base64.h"
 
 
 #include "boot/hotplugin/hotplugin.h"
@@ -144,11 +144,11 @@ namespace ca2
 
 
 
-#include "ca_message_loop.h"
+#include "boot_message_loop.h"
 
-#include "ca_url.h"
+#include "boot_url.h"
 
-#include "ca_international.h"
+#include "boot_international.h"
 
 
 
@@ -182,10 +182,10 @@ CLASS_DECL_ca WINBOOL IsWindow(oswindow oswindow);
 #endif
 
 
-#include "ca_user.h"
+#include "boot_user.h"
 
 #include "zlib/zlib.h"
 
-#include "ca_simple_app.h"
+#include "boot_simple_app.h"
 
 

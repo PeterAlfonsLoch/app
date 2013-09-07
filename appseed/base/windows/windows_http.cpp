@@ -109,7 +109,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
    if(g_hSession == NULL)
    {
       g_hSession = InternetOpen(
-         "ca2",
+         "core",
          INTERNET_OPEN_TYPE_PRECONFIG,
          NULL,
          NULL,
@@ -147,7 +147,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
    HINTERNET hRequest = NULL;
    if (g_hConnect != NULL)
       hRequest = HttpOpenRequest( g_hConnect, "GET", strReq,
-      NULL, "ca2",
+      NULL, "core",
       NULL,
       INTERNET_FLAG_EXISTING_CONNECT
       | INTERNET_FLAG_KEEP_CONNECTION,
@@ -357,7 +357,7 @@ string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
 
 
    // Use WinHttpOpen to obtain a session handle.
-   hSession = InternetOpen("ca2", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
+   hSession = InternetOpen("core", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
 
    if(hSession)
       hConnect = InternetConnect(hSession, strHost, iPort, NULL, NULL, INTERNET_SERVICE_HTTP, iPort == 443 ? INTERNET_FLAG_SECURE : 0, 1);
@@ -377,7 +377,7 @@ string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    }
 
    if(hConnect)
-      hRequest = HttpOpenRequest(hConnect, "GET", strReq, NULL, "ca2", NULL,  dwFlags, 1); 
+      hRequest = HttpOpenRequest(hConnect, "GET", strReq, NULL, "core", NULL,  dwFlags, 1); 
 
    if(hRequest)
       bResults =
@@ -594,7 +594,7 @@ GlobalFree((HGLOBAL) pwzAutoUrl);
 
 
 // Use WinHttpOpen to obtain a session handle.
-/*  hSession = WinHttpOpen( L"ca2",
+/*  hSession = WinHttpOpen( L"core",
 WINHTTP_ACCESS_TYPE_DEFAULT_PROXY,
 WINHTTP_NO_PROXY_NAME,
 WINHTTP_NO_PROXY_BYPASS, 0);

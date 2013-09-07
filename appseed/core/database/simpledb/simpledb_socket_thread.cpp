@@ -23,7 +23,7 @@ namespace simpledb
    {
    }
 
-   void socket_thread::install_message_handling(::ca2::message::dispatch * pinterface)
+   void socket_thread::install_message_handling(message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_APP, pinterface, this, &socket_thread::OnApp);
    }
@@ -83,7 +83,7 @@ namespace simpledb
 
    void socket_thread::OnApp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
       if(pbase->m_wparam == 0)
       {
 

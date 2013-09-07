@@ -12,14 +12,14 @@ DWORD GetTickCount();
 void RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, const ulong_ptr *lpArguments);
 
 
-namespace ca2
+namespace core
 {
 
 
    class file;
 
 
-} // namespace ca2
+} // namespace core
 
 
 typedef ::file::binary_buffer * HFILE;

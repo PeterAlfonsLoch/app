@@ -10,7 +10,7 @@ namespace user
    tree::tree(sp(base_application) papp) :
       element(papp),
       ::user::scroll_view(papp),
-      ::ca2::tree(papp),
+      ::core::tree(papp),
       m_dcextension(papp)
    {
       m_bHoverStart = false;
@@ -57,7 +57,7 @@ namespace user
 
    }
 
-   //bool tree::_001DynamicGetItemData(BaseTreeItemData & itemdata, ::ca2::tree_path & itempath, int32_t iValidateCount)
+   //bool tree::_001DynamicGetItemData(BaseTreeItemData & itemdata, ::core::tree_path & itempath, int32_t iValidateCount)
    //{
    /*   if(m_pdatainterface001 != NULL)
    {
@@ -97,7 +97,7 @@ namespace user
       rect rectClient;
       GetClientRect(rectClient);
 
-      //      ::ca2::savings & savings = System.savings();
+      //      ::core::savings & savings = System.savings();
       rect rectClientOffset = rectClient;
 
       rect rectClipBox;
@@ -113,7 +113,7 @@ namespace user
 
       class imaging & imaging = System.visual().imaging();
 
-      if(System.savings().is_trying_to_save(::ca2::resource_processing))
+      if(System.savings().is_trying_to_save(::core::resource_processing))
       {
          pdc->FillSolidRect(
             rectClipBox,
@@ -193,7 +193,7 @@ namespace user
                m_uchHoverAlpha = (BYTE) (m_uchHoverAlphaInit - dwCurve);
          }
       }
-      //      ::ca2::savings & savings = System.savings();
+      //      ::core::savings & savings = System.savings();
 
       ///      ::draw2d::graphics * pDCBuffer = pdc;
 
@@ -245,7 +245,7 @@ namespace user
          }
          //else
          {
-            //if(System.savings().is_trying_to_save(::ca2::resource_processing))
+            //if(System.savings().is_trying_to_save(::core::resource_processing))
             {
                pdc->FillSolidRect(
                   rectClient,
@@ -288,7 +288,7 @@ namespace user
 
 
       //   BaseTreeItemData itemdata;
-      /*      ::ca2::tree_path itempath;*/
+      /*      ::core::tree_path itempath;*/
       ::user::tree_draw_item drawitemdata;
       drawitemdata.m_pdc = pdc;
       drawitemdata.m_iIndentation = _001GetIndentation();
@@ -309,7 +309,7 @@ namespace user
       index iIndex = 0;
 
 
-      for(;pitem != NULL; pitem = pitem->get_item(::ca2::TreeNavigationProperForward, &iLevel))
+      for(;pitem != NULL; pitem = pitem->get_item(::core::TreeNavigationProperForward, &iLevel))
       {
          drawitemdata.m_pitem = pitem;
          drawitemdata.m_iItem = iItem;
@@ -318,7 +318,7 @@ namespace user
          drawitemdata.m_rect.top += (LONG) (iIndex * drawitemdata.m_iItemHeight);
          drawitemdata.m_rect.bottom = (LONG) (drawitemdata.m_rect.top + drawitemdata.m_iItemHeight);
          drawitemdata.m_rect.right = m_iCurrentViewWidth;
-         if(pitem->m_dwState & ::ca2::tree_item_state_selected)
+         if(pitem->m_dwState & ::core::tree_item_state_selected)
          {
             //         drawitemdata.m_dwMetaData |= 1;
          }
@@ -383,13 +383,13 @@ namespace user
       if(m_uchHoverAlpha > 0)
       {
 
-         if(ptree != NULL && pimagelistTree != NULL && data.m_pitem->m_dwState & ::ca2::tree_item_state_expandable)
+         if(ptree != NULL && pimagelistTree != NULL && data.m_pitem->m_dwState & ::core::tree_item_state_expandable)
          {
 
             _001GetItemElementRect(rect, data, tree_element_expand_box);
 
             int32_t iImage;
-            if(data.m_pitem->m_dwState & ::ca2::tree_item_state_expanded)
+            if(data.m_pitem->m_dwState & ::core::tree_item_state_expanded)
             {
                iImage = (int32_t) ptree->m_iImageCollapse;
             }
@@ -402,10 +402,10 @@ namespace user
       }
 
 
-      //      ::ca2::savings & savings = System.savings();
+      //      ::core::savings & savings = System.savings();
       if(bSelected) // selected
       {
-         if(System.savings().is_trying_to_save(::ca2::resource_processing))
+         if(System.savings().is_trying_to_save(::core::resource_processing))
          {
             data.m_pdc->FillSolidRect(
                data.m_rect,
@@ -524,7 +524,7 @@ namespace user
 
    void tree::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
          /*if(System.get_focus_guie() != this)
          {
          System.set_active_guie(this);
@@ -537,7 +537,7 @@ namespace user
 
    void tree::_001OnLButtonDblClk(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
          m_iClick = 2;
 
       _001OnClick((UINT) pmouse->m_nFlags, pmouse->m_pt);
@@ -550,7 +550,7 @@ namespace user
             eelement == tree_element_image ||
             eelement == tree_element_text)
          {
-            _001ExpandItem(pitem, !(pitem->m_dwState & ::ca2::tree_item_state_expanded));
+            _001ExpandItem(pitem, !(pitem->m_dwState & ::core::tree_item_state_expanded));
          }
       }
 
@@ -579,7 +579,7 @@ namespace user
 
    void tree::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
          m_iClick++;
       m_uiLButtonUpFlags = (UINT) pmouse->m_nFlags;
       m_ptLButtonUp = pmouse->m_pt;
@@ -607,7 +607,7 @@ namespace user
             eelement == tree_element_image ||
             eelement == tree_element_text)
          {
-            _001ExpandItem(pitem, !(pitem->m_dwState & ::ca2::tree_item_state_expanded));
+            _001ExpandItem(pitem, !(pitem->m_dwState & ::core::tree_item_state_expanded));
          }
          if(eelement == tree_element_image ||
             eelement == tree_element_text)
@@ -641,7 +641,7 @@ namespace user
 
    void tree::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj)
+      SCAST_PTR(message::timer, ptimer, pobj)
 
          //         return; //xxxtimer
 
@@ -672,7 +672,7 @@ namespace user
 
    /*window_id tree::_001GetNotifyWnd()
    {
-   sp(::ca2::window) pwnd = get_guie();
+   sp(::core::window) pwnd = get_guie();
 
    window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
    if(wndidNotify == NULL)
@@ -743,7 +743,7 @@ namespace user
       return m_iItemHeight;
    }
 
-   void tree::install_message_handling(::ca2::message::dispatch * pdispatch)
+   void tree::install_message_handling(message::dispatch * pdispatch)
    {
       ::user::window_interface::install_message_handling(pdispatch);
       ::user::scroll_view::install_message_handling(pdispatch);
@@ -820,12 +820,12 @@ namespace user
       UNREFERENCED_PARAMETER(bLayout);
       if(bExpand)
       {
-         if(!(pitem->m_dwState & ::ca2::tree_item_state_expanded))
+         if(!(pitem->m_dwState & ::core::tree_item_state_expanded))
          {
 
             _001OnItemExpand(pitem);
 
-            pitem->m_dwState |= ::ca2::tree_item_state_expanded;
+            pitem->m_dwState |= ::core::tree_item_state_expanded;
 
             // scroll properly to show the highest possible number
             // of children while trying to preserve the old position and
@@ -853,7 +853,7 @@ namespace user
       }
       else
       {
-         pitem->m_dwState &= ~::ca2::tree_item_state_expanded;
+         pitem->m_dwState &= ~::core::tree_item_state_expanded;
       }
 
       layout();
@@ -1032,7 +1032,7 @@ namespace user
          {
             iMaxWidth = iWidth;
          }
-         pitem = pitem->get_item(::ca2::TreeNavigationProperForward, &iLevel);
+         pitem = pitem->get_item(::core::TreeNavigationProperForward, &iLevel);
          if(pitem == NULL)
             break;
       }
@@ -1069,7 +1069,7 @@ namespace user
 
       for(;;)
       {
-         pitem = pitem->get_item(::ca2::TreeNavigationProperForward, &iLevel);
+         pitem = pitem->get_item(::core::TreeNavigationProperForward, &iLevel);
          if(pitem == NULL)
             break;
          if(nOffset <= 0)
@@ -1105,7 +1105,7 @@ namespace user
 
       sp(tree) ptree =  (pui.m_p);
 
-      if(!insert_item(NULL, ptree->get_base_item(), ::ca2::RelativeLastChild, get_base_item()))
+      if(!insert_item(NULL, ptree->get_base_item(), ::core::RelativeLastChild, get_base_item()))
          return false;
 
       m_treeptra.add(ptree);
@@ -1128,6 +1128,6 @@ namespace user
 
 
 
-} // namespace ca2
+} // namespace core
 
 

@@ -26,7 +26,7 @@ namespace user
       virtual ~split_bar();
 
 
-      void install_message_handling(::ca2::message::dispatch * pinterface);
+      void install_message_handling(message::dispatch * pinterface);
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
 

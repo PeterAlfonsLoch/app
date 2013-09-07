@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca2/gen_0.h"
+#include "core/gen_0.h"
 
 
 #include "primitive/memory.h"

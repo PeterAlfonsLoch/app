@@ -310,7 +310,7 @@ namespace user
          if(item.m_bOk)
          {
             iWidth = item.m_iColumnWidth;
-            if(data_get(str, ::ca2::system::idEmpty, iOldWidth))
+            if(data_get(str, ::core::system::idEmpty, iOldWidth))
             {
                if(iOldWidth == iWidth)
                   bSave = false;
@@ -318,7 +318,7 @@ namespace user
          }
          if(bSave)
          {
-            if(!data_set(str, ::ca2::system::idEmpty, iWidth))
+            if(!data_set(str, ::core::system::idEmpty, iWidth))
                return false;
          }
       }
@@ -326,7 +326,7 @@ namespace user
       {
          if(data_get(
             str,
-            ::ca2::system::idEmpty,
+            ::core::system::idEmpty,
             iWidth))
          {
             constraint::constraint_min(iWidth, 50);
@@ -338,7 +338,7 @@ namespace user
       return true;
    }
 
-   void list_header::AddMessageHandling(::ca2::message::dispatch *pinterface)
+   void list_header::AddMessageHandling(message::dispatch *pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &list_header::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &list_header::_001OnLButtonUp);
@@ -348,7 +348,7 @@ namespace user
 
    void list_header::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       if(hit_test(ptCursor, m_eelementLButtonDown, m_iItemLButtonDown))
@@ -361,7 +361,7 @@ namespace user
 
    void list_header::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       list * plist = m_plistctrlinterface;
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
@@ -417,7 +417,7 @@ namespace user
 
    void list_header::_001OnMouseMove(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       list * plist = m_plistctrlinterface;
@@ -477,7 +477,7 @@ namespace user
 
    void list_header::_001OnLButtonDblClk(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       list * plist = m_plistctrlinterface;

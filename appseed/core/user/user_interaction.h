@@ -4,7 +4,7 @@
 #include "user/user_window_interface.h"
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -21,7 +21,7 @@ namespace ca2
 
 #endif
 
-} // namespace ca2
+} // namespace core
 
 
 namespace user
@@ -102,7 +102,7 @@ namespace user
          bool unset(sp(interaction) pguie, uint_ptr uiId);
          void unset(sp(interaction) pguie);
          void detach(spa(timer_item) & timera, sp(interaction) pguie);
-         void transfer(sp(::ca2::window) pwindow, sp(interaction) pguie);
+         void transfer(sp(::core::window) pwindow, sp(interaction) pguie);
          sp(interaction) find(sp(element) pca);
          index find(sp(interaction) pguie, uint_ptr uiId);
          index find_from(sp(interaction) pguie, index iStart);
@@ -114,9 +114,9 @@ namespace user
 
 
 
-      virtual bool create_message_window(const char * pszName, ::ca2::window_callback * pcallback = NULL);
+      virtual bool create_message_window(const char * pszName, ::core::window_callback * pcallback = NULL);
 #ifdef METROWIN
-      virtual bool initialize(Windows::UI::Core::CoreWindow ^ window, ::ca2::system_window ^ pwindow);
+      virtual bool initialize(Windows::UI::Core::CoreWindow ^ window, ::core::system_window ^ pwindow);
 #endif
 
 
@@ -155,7 +155,7 @@ namespace user
 
 #endif
 
-      id                                  m_idModalResult; // for return values from ::ca2::window::RunModalLoop
+      id                                  m_idModalResult; // for return values from ::core::window::RunModalLoop
       COLORREF                            m_crDefaultBackgroundColor;
 
 
@@ -205,7 +205,7 @@ namespace user
       // dialog support
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       virtual void CenterWindow(sp(interaction) pAlternateOwner = NULL);
-      virtual id   RunModalLoop(uint32_t dwFlags = 0, ::ca2::live_object * pliveobject = NULL);
+      virtual id   RunModalLoop(uint32_t dwFlags = 0, ::core::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
@@ -329,8 +329,8 @@ namespace user
       virtual uint32_t GetExStyle();
       virtual LRESULT Default();
 
-      virtual LRESULT send(::ca2::message::base * pbase);
-      virtual bool post(::ca2::message::base * pbase);
+      virtual LRESULT send(message::base * pbase);
+      virtual bool post(message::base * pbase);
       virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = NULL);
 
 #ifdef LINUX
@@ -347,7 +347,7 @@ namespace user
       virtual bool ShowWindow(int32_t nCmdShow);
       virtual bool is_frame_window();
 
-   // Timer Functions
+   // timer Functions
       virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,
          void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t));
       virtual bool KillTimer(uint_ptr nIDEvent);
@@ -399,11 +399,11 @@ namespace user
       virtual void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
       virtual ::draw2d::font* GetFont();
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(message::dispatch * pinterface);
       virtual bool IsWindowVisible();
 
-      virtual void _000OnMouse(::ca2::message::mouse * pmouse);
-      virtual void _000OnKey(::ca2::message::key * pkey);
+      virtual void _000OnMouse(message::mouse * pmouse);
+      virtual void _000OnKey(message::key * pkey);
       DECL_GEN_SIGNAL(_001OnMouseMove)
       DECL_GEN_SIGNAL(_001OnMouseEnter)
       DECL_GEN_SIGNAL(_001OnMouseLeave)
@@ -456,7 +456,7 @@ namespace user
 #ifdef METROWIN
       virtual sp(::user::interaction) get_wnd() const;
 #else
-      virtual sp(::ca2::window) get_wnd() const;
+      virtual sp(::core::window) get_wnd() const;
 #endif
 
       enum RepositionFlags

@@ -17,7 +17,7 @@ namespace userfs
       tree(sp(base_application) papp);
       virtual ~tree();
 
-      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
+      virtual void install_message_handling(message::dispatch * pdispatch);
 
       virtual void _017OpenFolder(sp(::fs::item) item);
       void StartAnimation();

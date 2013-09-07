@@ -20,7 +20,7 @@ extern char * const * environ;
 
 
 
-namespace ca2
+namespace core
 {
 
    process::process() :
@@ -181,7 +181,7 @@ namespace ca2
 
 #ifdef LINUX
 
-      if(iCa2Priority != (int32_t) ::ca2::scheduling_priority_none)
+      if(iCa2Priority != (int32_t) ::core::scheduling_priority_none)
       {
 
          int32_t iPolicy = SCHED_OTHER;
@@ -204,7 +204,7 @@ namespace ca2
 
 #ifdef MACOS
 
-      if(iCa2Priority != (int32_t) ::ca2::scheduling_priority_none)
+      if(iCa2Priority != (int32_t) ::core::scheduling_priority_none)
       {
 
          int32_t iOsPriority = process_get_os_priority(iCa2Priority);
@@ -420,7 +420,7 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace core
 
 
 

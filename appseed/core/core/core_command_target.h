@@ -1,13 +1,13 @@
 #pragma once
 
 
-#include "ca2_message.h"
+#include "core_message.h"
 #include "user/user_create_context.h"
 
 
 class CLASS_DECL_ca2 command_target_interface :
    virtual public signalizable,
-   virtual public ::ca2::message::dispatch
+   virtual public message::dispatch
 {
 public:
 
@@ -223,8 +223,8 @@ public:
    ::user::menu *      m_pSubMenu;      // sub containing menu item
                      // if a popup sub menu - ID is for first in popup
 
-   // if from some other ::ca2::window
-   sp(::user::interaction)   m_pOther;         // NULL if a menu or not a ::ca2::window
+   // if from some other ::core::window
+   sp(::user::interaction)   m_pOther;         // NULL if a menu or not a ::core::window
 
    bool                    m_bEnableChanged;
    bool                    m_bContinueRouting;
@@ -315,7 +315,7 @@ struct CLASS_DECL_ca2 __EVENTSINKMAP_ENTRY
    UINT nCtrlIDLast;
 };
 
-// DSC Sink state/reason codes passed to ca2 API ::fontopus::user event handlers
+// DSC Sink state/reason codes passed to core API ::fontopus::user event handlers
 enum DSCSTATE
 {
    dscNoState = 0,
@@ -341,43 +341,43 @@ enum DSCREASON
 };
 
 /////////////////////////////////////////////////////////////////////////////
-// ::ca2::window implementation
+// ::core::window implementation
 namespace user
 {
    class create_context;      // context for creating user interface things
 }
-namespace ca2
+namespace core
 {
    class create_context;      // context for creating things
 }
 struct CPrintInfo;          // print preview customization info
 
 /////////////////////////////////////////////////////////////////////////////
-// ::ca2::window - a Microsoft Windows application ::ca2::window
+// ::core::window - a Microsoft Windows application ::core::window
 
 
-// ::ca2::window::m_nFlags (generic to ::ca2::window)
-#define WF_TOOLTIPS         0x0001  // ::ca2::window is enabled for tooltips
-#define WF_TEMPHIDE         0x0002  // ::ca2::window is temporarily hidden
-#define WF_STAYDISABLED     0x0004  // ::ca2::window should stay disabled
+// ::core::window::m_nFlags (generic to ::core::window)
+#define WF_TOOLTIPS         0x0001  // ::core::window is enabled for tooltips
+#define WF_TEMPHIDE         0x0002  // ::core::window is temporarily hidden
+#define WF_STAYDISABLED     0x0004  // ::core::window should stay disabled
 #define WF_OLECTLCONTAINER  0x0100  // some descendant is an OLE control
-#define WF_TRACKINGTOOLTIPS 0x0400  // ::ca2::window is enabled for tracking tooltips
+#define WF_TRACKINGTOOLTIPS 0x0400  // ::core::window is enabled for tracking tooltips
 
-// ::ca2::window::m_nFlags (specific to frame_window)
+// ::core::window::m_nFlags (specific to frame_window)
 #define WF_STAYACTIVE       0x0020  // look active even though not active
 #define WF_NOPOPMSG         0x0040  // ignore WM_POPMESSAGESTRING calls
-#define WF_MODALDISABLE     0x0080  // ::ca2::window is disabled
+#define WF_MODALDISABLE     0x0080  // ::core::window is disabled
 #define WF_KEEPMINIACTIVE   0x0200  // stay activate even though you are deactivated
 
 
 #define WF_NOWIN32ISDIALOGMSG   0x0800
 #define WF_ISWINFORMSVIEWWND    0x1000
 
-// flags for ::ca2::window::RunModalLoop
+// flags for ::core::window::RunModalLoop
 #define MLF_NOIDLEMSG       0x0001  // don't send WM_ENTERIDLE messages
 #define MLF_NOKICKIDLE      0x0002  // don't send WM_KICKIDLE messages
-#define MLF_SHOWONIDLE      0x0004  // show ::ca2::window if not visible at idle time
+#define MLF_SHOWONIDLE      0x0004  // show ::core::window if not visible at idle time
 
-// extra ca2 API defined TTF_ flags for TOOLINFO::uFlags
+// extra core API defined TTF_ flags for TOOLINFO::uFlags
 #define TTF_NOTBUTTON       0x80000000L // no status help on buttondown
 #define TTF_ALWAYSTIP       0x40000000L // always show the tip even if not active

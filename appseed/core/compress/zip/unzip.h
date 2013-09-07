@@ -56,7 +56,7 @@ extern "C" {
 #endif
 
 #ifndef __cplusplus
-#include "ca2/ca_c.h"
+#include "core/ca_c.h"
 #endif
 
 #if defined(STRICTUNZIP) || defined(STRICTZIPUNZIP)

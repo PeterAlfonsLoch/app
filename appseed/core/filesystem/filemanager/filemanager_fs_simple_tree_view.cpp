@@ -22,7 +22,7 @@ namespace filemanager
 
             m_etranslucency = TranslucencyPresent;
 
-            m_spdataFs = new ::ca2::simple_tree_data(get_app());
+            m_spdataFs = new ::core::simple_tree_data(get_app());
 
             ::data_container::m_spdata = m_spdataFs;
 
@@ -136,15 +136,15 @@ namespace filemanager
 
                if(pdataitemChild == NULL)
                {
-                  pdataitemChild = create_item(m_spdataFs, pdataitemParent, ::ca2::RelativeLastChild);
+                  pdataitemChild = create_item(m_spdataFs, pdataitemParent, ::core::RelativeLastChild);
                }
 
                if(pdataitemChild->m_pitemdata == NULL)
                {
-                  pdataitemChild->m_pitemdata = new ::ca2::simple_tree_item_data();
+                  pdataitemChild->m_pitemdata = new ::core::simple_tree_item_data();
                }
 
-               ((::ca2::simple_tree_item_data *) pdataitemChild->m_pitemdata.m_p)->m_str = folder.m_strName;
+               ((::core::simple_tree_item_data *) pdataitemChild->m_pitemdata.m_p)->m_str = folder.m_strName;
                pdataitemChild->m_dwUser = iNewItem;
 
          //      else
@@ -209,7 +209,7 @@ namespace filemanager
             m_pserver->open_folder(m_foldera[pitem->m_dwUser].m_iFolder);
          }
 
-         void tree_view::install_message_handling(::ca2::message::dispatch * pdispatch)
+         void tree_view::install_message_handling(message::dispatch * pdispatch)
          {
             ::user::view::install_message_handling(pdispatch);
             ::user::tree::install_message_handling(pdispatch);

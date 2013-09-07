@@ -275,7 +275,7 @@ namespace userfs
 
    }
 
-   void list_interface::install_message_handling(::ca2::message::dispatch *pinterface)
+   void list_interface::install_message_handling(message::dispatch *pinterface)
    {
 
 
@@ -552,7 +552,7 @@ namespace userfs
 
    void list_interface::_001OnVScroll(signal_details * pobj)
    {
-//      SCAST_PTR(::ca2::message::scroll, pscroll, pobj)
+//      SCAST_PTR(message::scroll, pscroll, pobj)
       //m_iCreateImageListStep = pscroll->m_nPos;
       //m_bRestartCreateImageList = true;
       pobj->m_bRet = false;
@@ -617,7 +617,7 @@ namespace userfs
    void list_interface::_001OnShowWindow(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca2::message::show_window, pshow, pobj)
+//      SCAST_PTR(message::show_window, pshow, pobj)
 
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
       if(pcentral == NULL)

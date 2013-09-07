@@ -23,7 +23,7 @@ void simple_button::_001OnDraw(::draw2d::graphics *pdc)
    ::user::button::_001OnDraw(pdc);
 }
 
-void simple_button::install_message_handling(::ca2::message::dispatch * pinterface)
+void simple_button::install_message_handling(message::dispatch * pinterface)
 {
    ::user::button::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_SETFOCUS, pinterface, this, &simple_button::_001OnSetFocus);
@@ -40,7 +40,7 @@ void simple_button::pre_subclass_window()
 
 void simple_button::_001OnCtlColor(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::ctl_color, pctlcolor, pobj)
+   SCAST_PTR(message::ctl_color, pctlcolor, pobj)
    if(m_bTransparent)
    {
 //      pctlcolor->m_pdc->SetBkMode(TRANSPARENT);
@@ -75,7 +75,7 @@ void simple_button::ResizeToFit()
 
 void simple_button::_001OnSetFocus(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::set_focus, psetfocus, pobj)
+   SCAST_PTR(message::set_focus, psetfocus, pobj)
  //  if(!m_bFocus)
    //{
      // pOldWnd->SetFocus();

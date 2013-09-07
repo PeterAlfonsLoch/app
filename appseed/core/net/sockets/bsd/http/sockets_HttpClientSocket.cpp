@@ -94,7 +94,7 @@ namespace sockets
    {
       if (!IsResponse())
       {
-         Handler().LogError(this, "OnFirst", 0, "Response expected but not received - aborting", ::ca2::log::level_fatal);
+         Handler().LogError(this, "OnFirst", 0, "Response expected but not received - aborting", ::core::log::level_fatal);
          SetCloseAndDelete();
       }
       m_content = m_response.attr("http_version") + " " +

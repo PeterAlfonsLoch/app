@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    // uiExpectedSize = (uint64_t) -1 - initially unknown size
@@ -179,4 +179,4 @@ namespace ca2
       m_uiExpectedSize = dwNewLen;
    }
 
-} // namespace ca2
+} // namespace core

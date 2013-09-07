@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -109,5 +109,5 @@ namespace ca2
    typedef smart_pointer < port_forward > port_forward_sp;
 
 
-} // namespace ca2
+} // namespace core
 

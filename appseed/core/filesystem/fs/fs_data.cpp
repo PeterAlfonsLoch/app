@@ -148,9 +148,9 @@ namespace fs
       return NULL;
    }
 
-   ::ca2::byte_stream data::get_byte_stream(var varFile, UINT nOpenFlags)
+   ::core::byte_stream data::get_byte_stream(var varFile, UINT nOpenFlags)
    {
-      return ::ca2::byte_stream(get_file(varFile, nOpenFlags));
+      return ::core::byte_stream(get_file(varFile, nOpenFlags));
    }
 
    bool data::file_exists(const char * pszPath)

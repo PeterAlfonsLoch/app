@@ -476,7 +476,7 @@ SRegInfo *next, *temp;
     if (expr[i] == '[')
     {
       strsize endPos;
-      ::ca2::ch_class *cc = ::ca2::ch_class::createCharClass(expr, i, &endPos);
+      ::core::ch_class *cc = ::core::ch_class::createCharClass(expr, i, &endPos);
       if (cc == NULL) return EENUM;
 //      next->op = (exprn[i] == ReEnumS) ? ReEnum : ReNEnum;
       next->op = ReEnum;

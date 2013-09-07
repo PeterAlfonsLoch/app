@@ -14,7 +14,7 @@ CLASS_DECL_ca2 int32_t DOW(int32_t y, int32_t m, int32_t d);
 CLASS_DECL_ca2 int32_t getDayOfWeek(int32_t month, int32_t day, int32_t year, int32_t CalendarSystem);
 
 
-namespace ca2
+namespace core
 {
 
    
@@ -44,8 +44,8 @@ namespace ca2
       };
 
 
-      class ::ca2::datetime::international m_international;
-      class ::ca2::datetime::str m_str;
+      class ::core::datetime::international m_international;
+      class ::core::datetime::str m_str;
 
 
       datetime(sp(base_application) papp);
@@ -87,4 +87,4 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace core

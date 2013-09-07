@@ -7,7 +7,7 @@ namespace user
 
    document::document(sp(base_application) papp) :
       element(papp),
-      ::ca2::data_container_base(papp)
+      ::core::data_container_base(papp)
    {
    
       m_pdocumentemplate = NULL;

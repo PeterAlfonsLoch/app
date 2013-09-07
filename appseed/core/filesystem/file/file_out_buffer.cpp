@@ -31,7 +31,7 @@
 
 #include "OutBuffer.h"*/
 
-namespace ca2
+namespace core
 {
 
    out_buffer::out_buffer() :
@@ -154,4 +154,4 @@ namespace ca2
       }
 
 
-} // namespace ca2
+} // namespace core

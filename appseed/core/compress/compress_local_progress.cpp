@@ -12,7 +12,7 @@ namespace libcompress
      SendRatio = SendProgress = true;
    }
 
-   void local_progress::Init(::ca2::progress_interface *progress, bool inSizeIsMain)
+   void local_progress::Init(::core::progress_interface *progress, bool inSizeIsMain)
    {
      _ratioProgress = NULL;
      _progress = progress;

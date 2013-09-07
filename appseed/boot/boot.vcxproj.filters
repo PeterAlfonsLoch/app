@@ -54,12 +54,6 @@
     <Filter Include="Source Files\simple_graphics">
       <UniqueIdentifier>{c14f6fb5-2f4a-4c34-805b-f5467b6ff11d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ca">
-      <UniqueIdentifier>{c884c593-8d0f-465b-8314-98944d5dac4f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ca">
-      <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\android">
       <UniqueIdentifier>{3317aa86-fa14-40ae-a177-fcd3712f6093}</UniqueIdentifier>
     </Filter>
@@ -95,6 +89,12 @@
     </Filter>
     <Filter Include="Header Files\simple_ui\NewFilter1">
       <UniqueIdentifier>{e950dcfe-db47-4937-b8e1-fd2a487ebef6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\boot">
+      <UniqueIdentifier>{c884c593-8d0f-465b-8314-98944d5dac4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\boot">
+      <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -227,81 +227,6 @@
     <ClInclude Include="simple_graphics\simple_path.h">
       <Filter>Header Files\simple_graphics</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_async.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_base64.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_cpu_architecture.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_debug.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_file_watcher.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_file_watcher_impl.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_file_watcher_listener_thread.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_file_watcher_thread.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_international.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_keep_true.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_launcher.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_libc.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_library.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_logic.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_math.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_message_loop.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_number.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_printf.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_app.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_pixel_font.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_shell_launcher.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_small_ipca_channel.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_sprintf.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_url.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_user.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="windows\ca_os.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
@@ -356,9 +281,6 @@
     <ClInclude Include="android\ca_os.h">
       <Filter>Header Files\android</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_geometric_types.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="android\ca_os_simple_bitmap.h">
       <Filter>Header Files\android</Filter>
     </ClInclude>
@@ -379,9 +301,6 @@
     </ClInclude>
     <ClInclude Include="windows\ca_os_window_gdi.h">
       <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_window_graphics.h">
-      <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="android\ca_os_graphics.h">
       <Filter>Header Files\android</Filter>
@@ -440,9 +359,6 @@
     <ClInclude Include="cross\windows\windows_user.h">
       <Filter>Header Files\cross\windows</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="spa\spa_canvas.h">
       <Filter>Header Files\spa_install</Filter>
     </ClInclude>
@@ -464,8 +380,95 @@
     <ClInclude Include="simple_ui\simple_tap.h">
       <Filter>Header Files\simple_ui</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_os.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_2.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_async.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_base64.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_cpu_architecture.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_debug.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_file_watcher.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_file_watcher_impl.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_file_watcher_listener_thread.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_file_watcher_thread.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_geometric_types.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_international.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_keep_true.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_launcher.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_libc.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_library.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_logic.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_math.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_message_loop.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_number.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_os.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_printf.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_simple_app.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_simple_pixel_font.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_simple_shell_launcher.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_small_ipca_channel.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_sprintf.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_url.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_user.h">
+      <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="boot\boot_window_graphics.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -595,63 +598,6 @@
     <ClCompile Include="bsdiff\randtable.cpp">
       <Filter>Source Files\bsdiff</Filter>
     </ClCompile>
-    <ClCompile Include="ca\_initterm.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_argcargv.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_base64.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_cpu_architecture.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_debug.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_file_watcher.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_file_watcher_impl.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_file_watcher_listener_thread.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_file_watcher_thread.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_international.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_math.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_mktime.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_printf.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_shell_launcher.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_small_ipca_channel.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_sprintf.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_std_file.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_url.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_version.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="windows\ca_os_ca_dll.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
@@ -709,9 +655,6 @@
     <ClCompile Include="android\ca_os.cpp">
       <Filter>Source Files\android</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_geometric_types.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="android\ca_os_simple_bitmap.cpp">
       <Filter>Source Files\android</Filter>
     </ClCompile>
@@ -732,9 +675,6 @@
     </ClCompile>
     <ClCompile Include="windows\ca_os_window_gdi.cpp">
       <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_window_graphics.cpp">
-      <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="android\ca_os_cairo_keep.cpp">
       <Filter>Source Files\android</Filter>
@@ -816,6 +756,69 @@
     </ClCompile>
     <ClCompile Include="cross\windows\windows_user.cpp">
       <Filter>Source Files\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\_initterm.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_argcargv.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_base64.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_cpu_architecture.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_debug.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_file_watcher.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_file_watcher_impl.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_file_watcher_listener_thread.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_file_watcher_thread.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_geometric_types.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_international.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_math.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_mktime.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_printf.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_simple_shell_launcher.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_small_ipca_channel.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_sprintf.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_std_file.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_url.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_version.cpp">
+      <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="boot\boot_window_graphics.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

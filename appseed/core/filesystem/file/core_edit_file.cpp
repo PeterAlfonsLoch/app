@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    ::file::edit_buffer::Item::Item()
@@ -327,7 +327,7 @@ namespace ca2
       element(papp),
       ::data::tree_data(papp),
       ::file::binary_buffer_sp(papp),
-      ::ca2::tree(papp)
+      ::core::tree(papp)
    {
 
       m_iBranch = 0;
@@ -742,4 +742,4 @@ l1:
 
 
 
-} // namespace ca2
+} // namespace core

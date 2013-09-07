@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -306,5 +306,5 @@ namespace ca2
 
 
 
-} // namespace ca2
+} // namespace core
 

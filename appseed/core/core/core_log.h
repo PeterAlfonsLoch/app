@@ -8,7 +8,7 @@ class string;
 class id;
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -64,7 +64,7 @@ namespace ca2
 
 
       bool                    m_bTrace;
-      ::ca2::trace::trace *     m_ptrace;
+      ::core::trace::trace *     m_ptrace;
       critical_section *      m_pcsTrace;
       stringa *               m_pstraSeparator;
       FILE *                  m_pfile;
@@ -122,9 +122,9 @@ namespace ca2
 
 
 
-} // namespace ca2
+} // namespace core
 
 
 
 
-inline ::ca2::log::e_level ca_get_level_warning() { return ::ca2::log::level_warning; }
+inline ::core::log::e_level ca_get_level_warning() { return ::core::log::level_warning; }

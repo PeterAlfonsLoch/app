@@ -130,7 +130,7 @@ CLASS_DECL_c bool __enable_memory_leak_override(bool bEnable);
 // Enumerate allocated objects or runtime classes
 /*void __do_for_all_objects(void (c_cdecl *pfn)(object* pObject, void * pContext),
    void * pContext);
-void ::ca2::DoForAllClasses(void (c_cdecl *pfn)(sp(type) pClass,
+void ::core::DoForAllClasses(void (c_cdecl *pfn)(sp(type) pClass,
    void * pContext), void * pContext);*/
 
 #define new DEBUG_NEW
@@ -212,11 +212,11 @@ CLASS_DECL_c void assert_valid_object(const object* pOb,
 CLASS_DECL_c void __dump(const object* pOb); // dump an object from CodeView
 
 
-// extern ::ca2::CTrace TRACE;
+// extern ::core::CTrace TRACE;
 #ifdef DEBUG
 #ifndef TRACE
-#define TRACE ::ca2::trace_add_file_and_line(m_papp, __FILE__, __LINE__)
-#define APPTRACE(papp) ::ca2::trace_add_file_and_line(papp, __FILE__, __LINE__)
+#define TRACE ::core::trace_add_file_and_line(m_papp, __FILE__, __LINE__)
+#define APPTRACE(papp) ::core::trace_add_file_and_line(papp, __FILE__, __LINE__)
 //#define TRACE2 TRACE
 #endif
 #define THIS_FILE          __FILE__
@@ -263,7 +263,7 @@ inline void c_cdecl __trace(...) { }
 
 //#define ASSERT(f)          DEBUG_ONLY(() ((f) || !::__assert_failed_line(THIS_FILE, __LINE__) || (__debug_break(), 0)))
 #define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && (!::__assert_failed_line(__FILE__, __LINE__) || (__debug_break(), 0))) || (!is_debugger_attached() && (throw assert_exception(get_thread_app(), __FILE__, __LINE__), 0))))
-/* see ca2 headers for commentary on this */
+/* see core headers for commentary on this */
 /* We use the name _ASSUME to avoid name clashes */
 #define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
 //#define ASSERT_VALID(pOb)  DEBUG_ONLY((::assert_valid_object(pOb, THIS_FILE, __LINE__)))
@@ -313,9 +313,9 @@ inline void c_cdecl __trace(...) { }
    do { \
       string str; \
       if (pException->get_error_message(str, 0)) \
-         TRACE(::ca2::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
+         TRACE(::core::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
       else \
-         TRACE(::ca2::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
+         TRACE(::core::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
       ASSERT(FALSE); \
    } while (0)
 #else

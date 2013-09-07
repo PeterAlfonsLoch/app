@@ -4,7 +4,7 @@
 #ifndef NO_VARIADIC_TEMPLATE
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -256,7 +256,7 @@ namespace ca2
    } // namespace str
 
 
-} // namespace ca2
+} // namespace core
 
 
 #endif

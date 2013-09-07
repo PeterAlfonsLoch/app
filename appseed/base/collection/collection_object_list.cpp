@@ -1,5 +1,5 @@
 
-// This is ca2 API library.
+// This is core API library.
 // 
 // 
 //

@@ -1,6 +1,6 @@
 /*
 Module : IPENUM.H
-Purpose: Interface for an ca2 API class wrapper for IP address enumeration
+Purpose: Interface for an core API class wrapper for IP address enumeration
 Created: PJN / 21-04-1998
 History: None
 
@@ -10,7 +10,7 @@ Copyright (ca) 1998 by PJ Naughter.
 */
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -33,7 +33,7 @@ namespace ca2
    typedef smart_pointer < ip_enum > ip_enum_sp;
 
 
-} // namespace ca2
+} // namespace core
 
 
 

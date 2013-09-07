@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////
-// Timer.h
+// timer.h
 // =======
-// High Resolution Timer.
+// High Resolution timer.
 // This timer is able to measure the elapsed time with 1 micro-second accuracy
 // in both Windows, Linux and Unix system
 //
@@ -15,7 +15,7 @@
 
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -57,7 +57,7 @@ namespace ca2
 
 
 
-} // namespace ca2
+} // namespace core
 
 
 

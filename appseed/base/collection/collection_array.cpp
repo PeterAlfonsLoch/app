@@ -20,7 +20,7 @@ void _123abc_debug_gen_array_randomize(sp(base_application) papp)
 void ___arrayStdSortTest()
 {
    array<int32_t, int32_t> ia;
-   /*::ca2::_sort::quick_sort(
+   /*::core::_sort::quick_sort(
       ia,
       sort::CompareAscending < int32_t >);*/
 

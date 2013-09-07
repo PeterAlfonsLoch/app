@@ -433,27 +433,27 @@ namespace visual
       int32_t align = 0;
       if(uiFormat & DT_BOTTOM)
       {
-         align |= ::ca2::AlignBottom;
+         align |= ::core::AlignBottom;
       }
       else if(uiFormat & DT_VCENTER)
       {
-         align |= ::ca2::AlignVerticalCenter;
+         align |= ::core::AlignVerticalCenter;
       }
       else
       {
-         align |= ::ca2::AlignTop;
+         align |= ::core::AlignTop;
       }
       if(uiFormat & DT_RIGHT)
       {
-         align |= ::ca2::AlignRight;
+         align |= ::core::AlignRight;
       }
       else if(uiFormat & DT_CENTER)
       {
-         align |= ::ca2::AlignHorizontalCenter;
+         align |= ::core::AlignHorizontalCenter;
       }
       else
       {
-         align |= ::ca2::AlignLeft;
+         align |= ::core::AlignLeft;
       }
 
       rect.Align(align, lpcrect);

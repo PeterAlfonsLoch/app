@@ -28,7 +28,7 @@ public:
 
    virtual void GetClientRect(LPRECT lprect);
 
-   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+   virtual void install_message_handling(message::dispatch * pinterface);
 
    DECL_GEN_VSIGNAL(_001OnLButtonUp)
    DECL_GEN_VSIGNAL(_001OnMouseMove)

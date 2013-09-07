@@ -43,7 +43,7 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnNotifyIconMessage)
 
-      void install_message_handling(::ca2::message::dispatch * pinterface);
+      void install_message_handling(message::dispatch * pinterface);
 
 
    };

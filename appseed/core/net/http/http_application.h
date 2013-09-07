@@ -12,7 +12,7 @@ namespace fontopus
 } // namespace fontopus
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -73,4 +73,4 @@ namespace ca2
    } // namespace htttp
 
 
-} // namespace ca2
+} // namespace core

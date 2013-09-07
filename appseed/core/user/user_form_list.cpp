@@ -34,7 +34,7 @@ namespace user
       list::_001GetSelection(key, selection);
    }
 
-   void form_list::install_message_handling( ::ca2::message::dispatch *pinterface)
+   void form_list::install_message_handling( message::dispatch *pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &form_list::_001OnKeyDown);
 
@@ -75,7 +75,7 @@ namespace user
 
                m_iControlItem             = iItem;
 
-               send_message(::ca2::message_event, 0, (LPARAM) &ev);
+               send_message(::core::message_event, 0, (LPARAM) &ev);
 
             }
          }
@@ -166,7 +166,7 @@ namespace user
 
    void form_list::_001OnVScroll(signal_details * pobj)
    {
-      //SCAST_PTR(::ca2::message::scroll, pscroll, pobj);
+      //SCAST_PTR(message::scroll, pscroll, pobj);
       pobj->previous();
 
 
@@ -193,7 +193,7 @@ namespace user
 
    }
 
-   bool form_list::_001OnMouseActivate(sp(::ca2::window) pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult)
+   bool form_list::_001OnMouseActivate(sp(::core::window) pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult)
    {
       UNREFERENCED_PARAMETER(pDesktopWnd);
       UNREFERENCED_PARAMETER(nHitTest);
@@ -312,7 +312,7 @@ namespace user
 
    void form_list::_001OnKeyDown(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::key, pkey, pobj)
+      SCAST_PTR(message::key, pkey, pobj)
 
       if(pkey->m_ekey == ::user::key_return)
       {
@@ -419,7 +419,7 @@ namespace user
       }
    }
 
-   void form_list::_000OnMouse(::ca2::message::mouse * pmouse)
+   void form_list::_000OnMouse(message::mouse * pmouse)
    {
 
       point pt = pmouse->m_pt;

@@ -5,14 +5,14 @@ namespace database
 {
 
 
-   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::ca2::writable & writable, update_hint * puh)
+   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::core::writable & writable, update_hint * puh)
    {
       return var_load(pclient, idSection, id, idIndex, writable, puh);
    }
 
    bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, var & var   , update_hint * puh)
    {
-      ::ca2::byte_stream_memory_file memfile(get_app());
+      ::core::byte_stream_memory_file memfile(get_app());
       if(!data_server_load(pclient, idSection, id, idIndex, memfile, puh))
          return false;
       try
@@ -29,17 +29,17 @@ namespace database
 
    bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::file::output_stream & ostream, update_hint * puh)
    {
-      return data_server_load(pclient, idSection, id, idIndex, (::ca2::writable &) ostream, puh);
+      return data_server_load(pclient, idSection, id, idIndex, (::core::writable &) ostream, puh);
    }
 
-   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::ca2::plain_text_output_stream & ostream, update_hint * puh)
+   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::core::plain_text_output_stream & ostream, update_hint * puh)
    {
-      return data_server_load(pclient, idSection, id, idIndex, (::ca2::writable &) ostream, puh);
+      return data_server_load(pclient, idSection, id, idIndex, (::core::writable &) ostream, puh);
    }
 
    bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * puh)
    {
-      ::ca2::byte_stream_memory_file memfile(get_app());
+      ::core::byte_stream_memory_file memfile(get_app());
       if(!data_server_load(pclient, idSection, id, idIndex, memfile, puh))
          return false;
       try
@@ -76,14 +76,14 @@ namespace database
       return true;
    }
 
-   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::ca2::readable & readable, update_hint * puh)
+   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::core::readable & readable, update_hint * puh)
    {
       return var_save(pclient, idSection, id, idIndex, readable, puh);
    }
 
    bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, var & var   , update_hint * puh)
    {
-      ::ca2::byte_stream_memory_file memfile(get_app());
+      ::core::byte_stream_memory_file memfile(get_app());
       memfile << var;
       memfile.seek_to_begin();
       if(!data_server_save(pclient, idSection, id, idIndex, memfile, puh))
@@ -93,17 +93,17 @@ namespace database
 
    bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::file::input_stream & istream, update_hint * puh)
    {
-      return data_server_save(pclient, idSection, id, idIndex, (::ca2::readable &) istream, puh);
+      return data_server_save(pclient, idSection, id, idIndex, (::core::readable &) istream, puh);
    }
 
-   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::ca2::plain_text_input_stream & istream, update_hint * puh)
+   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::core::plain_text_input_stream & istream, update_hint * puh)
    {
-      return data_server_save(pclient, idSection, id, idIndex, (::ca2::readable &) istream, puh);
+      return data_server_save(pclient, idSection, id, idIndex, (::core::readable &) istream, puh);
    }
 
    bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * puh)
    {
-      ::ca2::byte_stream_memory_file memfile(get_app());
+      ::core::byte_stream_memory_file memfile(get_app());
       obj.write(memfile);
       memfile.seek_to_begin();
       if(!data_server_save(pclient, idSection, id, idIndex, memfile, puh))
@@ -175,7 +175,7 @@ namespace database
       return data_server_save(pclient, idSection, id, idIndex, var, phint);
    }
 
-   bool server::var_load(client * pclient, class id idSection, class id id, class id idIndex, ::ca2::writable & writable, update_hint * puh)
+   bool server::var_load(client * pclient, class id idSection, class id id, class id idIndex, ::core::writable & writable, update_hint * puh)
    {
       var var;
       if(!data_server_load(pclient, idSection, id, idIndex, var, puh))
@@ -185,7 +185,7 @@ namespace database
       return true;
    }
 
-   bool server::var_save(client * pclient, class id idSection, class id id, class id idIndex, ::ca2::readable & readable, update_hint * puh)
+   bool server::var_save(client * pclient, class id idSection, class id id, class id idIndex, ::core::readable & readable, update_hint * puh)
    {
       var var;
       ::file::input_stream istream(&readable);

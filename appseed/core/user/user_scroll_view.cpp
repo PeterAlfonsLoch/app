@@ -129,7 +129,7 @@ namespace user
    void scroll_view::_001OnCreate(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::create, pcreate, pobj);
+      SCAST_PTR(message::create, pcreate, pobj);
 
       if(pcreate->previous())
          return;
@@ -144,7 +144,7 @@ namespace user
 
    void scroll_view::_001OnUser9654(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
       if(pbase->m_wparam == 0)
       {
          if(pbase->m_lparam == 0)
@@ -158,7 +158,7 @@ namespace user
    {
 
 
-      SCAST_PTR(::ca2::message::scroll, pscroll, pobj);
+      SCAST_PTR(message::scroll, pscroll, pobj);
 
 
       keeper < bool > keepVScroll(&m_scrollinfo.m_bVScroll, true, false, true);
@@ -180,7 +180,7 @@ namespace user
    {
 
 
-      SCAST_PTR(::ca2::message::scroll, pscroll, pobj);
+      SCAST_PTR(message::scroll, pscroll, pobj);
 
 
       keeper < bool > keepHScroll(&m_scrollinfo.m_bHScroll, true, false, true);
@@ -217,7 +217,7 @@ namespace user
    void scroll_view::_001OnMouseWheel(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::mouse_wheel, pmousewheel, pobj);
+      SCAST_PTR(message::mouse_wheel, pmousewheel, pobj);
 
       if(pmousewheel->GetDelta() > 0)
       {
@@ -319,7 +319,7 @@ namespace user
 
 
 
-   void scroll_view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void scroll_view::install_message_handling(message::dispatch * pinterface)
    {
 
 
@@ -470,7 +470,7 @@ namespace user
    }
 
 
-}  // namespace ca2
+}  // namespace core
 
 
 

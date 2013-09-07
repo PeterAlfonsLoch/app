@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    byte *dynamic_buffered_writer::GetBufPtrForWriting(size_t addSize)
@@ -33,4 +33,4 @@ namespace ca2
          *processedSize = size;
    }
 
-} // namespace ca2
+} // namespace core

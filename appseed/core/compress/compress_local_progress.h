@@ -15,7 +15,7 @@ namespace libcompress
    public:
 
 
-      ::ca2::progress_interface * _progress;
+      ::core::progress_interface * _progress;
       progress_info_interface * _ratioProgress;
 
       bool _inSizeIsMain;
@@ -26,7 +26,7 @@ namespace libcompress
       bool SendProgress;
 
       local_progress();
-      void Init(::ca2::progress_interface *progress, bool inSizeIsMain);
+      void Init(::core::progress_interface *progress, bool inSizeIsMain);
       HRESULT SetCur();
 
       //MY_UNKNOWN_IMP

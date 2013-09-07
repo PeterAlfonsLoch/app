@@ -102,7 +102,7 @@ namespace user
    }
 
 
-   void list::install_message_handling(::ca2::message::dispatch * pinterface)
+   void list::install_message_handling(message::dispatch * pinterface)
    {
 
       ::user::scroll_view::install_message_handling(pinterface);
@@ -563,7 +563,7 @@ namespace user
 
       if(pdrawitem->m_bListItemSelected)
       {
-         if(System.savings().is_trying_to_save(::ca2::resource_processing))
+         if(System.savings().is_trying_to_save(::core::resource_processing))
          {
             pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, ARGB(255, 96,96,96));
          }
@@ -722,19 +722,19 @@ namespace user
 
    //cs.style |= LVS_NOSCROLL;
 
-   return ::ca2::window::pre_create_window(cs);
+   return ::core::window::pre_create_window(cs);
    }*/
 
    /*void list::OnSize(UINT nType, index cx, index cy)
    {
-   ::ca2::window::OnSize(nType, cx, cy);
+   ::core::window::OnSize(nType, cx, cy);
 
    layout();
    }*/
 
    void list::_001OnSize(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::size, psize, pobj);
+      SCAST_PTR(message::size, psize, pobj);
       layout();
       psize->m_bRet = false;
    }
@@ -1082,7 +1082,7 @@ namespace user
       {
          list_column * pcolumn = m_columna._001GetVisible(iColumn);
          str.Format("SubItem[%d].Visible", pcolumn->m_iSubItem);
-         if(data_get(str, ::ca2::system::idEmpty, bVisible))
+         if(data_get(str, ::core::system::idEmpty, bVisible))
          {
             if(!bVisible)
             {
@@ -1095,7 +1095,7 @@ namespace user
       {
          list_column * pcolumn = m_columna._001GetNonVisible(iColumn);
          str.Format("SubItem[%d].Visible", pcolumn->m_iSubItem);
-         if(data_get(str, ::ca2::system::idEmpty, bVisible))
+         if(data_get(str, ::core::system::idEmpty, bVisible))
          {
             if(bVisible)
             {
@@ -2277,7 +2277,7 @@ namespace user
 
    void list::_001OnKeyDown(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::key, pkey, pobj)
+      SCAST_PTR(message::key, pkey, pobj)
          if(pkey->previous()) // give chance to child
             return;
       if(pkey->m_ekey == ::user::key_down || pkey->m_ekey == ::user::key_up ||
@@ -2370,7 +2370,7 @@ namespace user
 
    void list::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       pmouse->previous(); // give chance to child control and to base views
       int_ptr iItem;
       point pt = pmouse->m_pt;
@@ -2432,7 +2432,7 @@ namespace user
 
    void list::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
          point pt = pmouse->m_pt;
       ScreenToClient(&pt);
 
@@ -2475,7 +2475,7 @@ namespace user
 
    void list::_001OnRButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
 
       pmouse->previous();
       point pt = pmouse->m_pt;
@@ -2531,12 +2531,12 @@ namespace user
       else if(get_form() != NULL)
       {
          get_form()->send_message(
-            ::ca2::message_event, 0, (LPARAM) &ev);
+            ::core::message_event, 0, (LPARAM) &ev);
       }
       else
       {
          get_parent()->send_message(
-            ::ca2::message_event, 0, (LPARAM) &ev);
+            ::core::message_event, 0, (LPARAM) &ev);
       }
 
    }
@@ -2721,7 +2721,7 @@ namespace user
 
    void list::_001OnLButtonDblClk(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
          m_iClick = 2;
 
       //   _001OnClick(nFlags, point);
@@ -2839,7 +2839,7 @@ namespace user
          width = m_columna.element_at(i)->m_iWidth;
          data_set(
             str,
-            ::ca2::system::idEmpty,
+            ::core::system::idEmpty,
             width);
       }
 
@@ -2869,7 +2869,7 @@ namespace user
       str.Format("SubItem[%d].Visible", iSubItem);
       data_set(
          str,
-         ::ca2::system::idEmpty,
+         ::core::system::idEmpty,
          bShow ? 1 : 0);
       m_columna.ShowSubItem(iSubItem, bShow);
       _001OnColumnChange();
@@ -3309,13 +3309,13 @@ namespace user
          str.Format("list_column[%d].Next", iKey);
          m_plist->data_set(
             str,
-            ::ca2::system::idEmpty,
+            ::core::system::idEmpty,
             column->m_iNextGlobalOrderKey);
       }
       str.Format("list_column[-1].Next");
       m_plist->data_set(
          str,
-         ::ca2::system::idEmpty,
+         ::core::system::idEmpty,
          m_iFirstGlobalOrderKey);
 
 
@@ -3331,13 +3331,13 @@ namespace user
          str.Format("list_column[%d].Next", iKey);
          m_plist->data_get(
             str,
-            ::ca2::system::idEmpty,
+            ::core::system::idEmpty,
             column->m_iNextGlobalOrderKey);
       }
       str.Format("list_column[-1].Next");
       m_plist->data_get(
          str,
-         ::ca2::system::idEmpty,
+         ::core::system::idEmpty,
          m_iFirstGlobalOrderKey);
 
       GlobalToVisibleOrder();
@@ -3484,7 +3484,7 @@ namespace user
 
    void list::_001OnCreate(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::create, pcreate, pobj)
+      SCAST_PTR(message::create, pcreate, pobj)
 
 
          pobj->previous();
@@ -3561,7 +3561,7 @@ namespace user
    void list::_001OnTimer(signal_details * pobj)
    {
 //      return; //xxxtimer
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+      SCAST_PTR(message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 12345679) // left click
       {
          KillTimer(12345679);
@@ -4760,7 +4760,7 @@ namespace user
 
    void list::_001OnMouseMove(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
          pmouse->set_lresult(1);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -4929,7 +4929,7 @@ namespace user
 
    void list::_001OnVScroll(signal_details * pobj)
    {
-//      SCAST_PTR(::ca2::message::scroll, pscroll, pobj);
+//      SCAST_PTR(message::scroll, pscroll, pobj);
 
       pobj->previous();
 
@@ -4937,7 +4937,7 @@ namespace user
 
    void list::_001OnHScroll(signal_details * pobj)
    {
-//      SCAST_PTR(::ca2::message::scroll, pscroll, pobj);
+//      SCAST_PTR(message::scroll, pscroll, pobj);
 
       pobj->previous();
 

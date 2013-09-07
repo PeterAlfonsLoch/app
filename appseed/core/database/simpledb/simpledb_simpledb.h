@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
 
    class command_line;
 
 
-} // namespace ca2
+} // namespace core
 
 
 class db_server;

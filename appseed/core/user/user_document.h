@@ -20,7 +20,7 @@ namespace user
       virtual bool set_data(::data * pdata);
 
       using ::data_container::get_data;
-      using ::ca2::data_container_base::get_data;
+      using ::core::data_container_base::get_data;
 
 
 

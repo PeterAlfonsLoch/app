@@ -168,7 +168,7 @@ namespace n7z
          array<uint32_t> &packCRCs);
 
       void ReadUnpackInfo(
-         const smart_pointer_array < ::ca2::byte_buffer >  *dataVector,
+         const smart_pointer_array < ::core::byte_buffer >  *dataVector,
          smart_pointer_array < CFolder > &folders);
 
       void ReadSubStreamsInfo(
@@ -179,7 +179,7 @@ namespace n7z
          array<uint32_t> &digests);
 
       void ReadStreamsInfo(
-         const smart_pointer_array < ::ca2::byte_buffer >  *dataVector,
+         const smart_pointer_array < ::core::byte_buffer >  *dataVector,
          file_position &dataOffset,
          array<file_size> &packSizes,
          bool_array &packCRCsDefined,
@@ -193,11 +193,11 @@ namespace n7z
 
       void ReadBoolVector(int32_t numItems, bool_array &v);
       void ReadBoolVector2(int32_t numItems, bool_array &v);
-      void ReadUInt64DefVector(const smart_pointer_array < ::ca2::byte_buffer > &dataVector, CUInt64DefVector &v, int32_t numFiles);
+      void ReadUInt64DefVector(const smart_pointer_array < ::core::byte_buffer > &dataVector, CUInt64DefVector &v, int32_t numFiles);
       HRESULT ReadAndDecodePackedStreams(
          ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
          file_position baseOffset, file_position &dataOffset,
-         smart_pointer_array < ::ca2::byte_buffer > &dataVector,
+         smart_pointer_array < ::core::byte_buffer > &dataVector,
          ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
          );
       HRESULT ReadHeader(

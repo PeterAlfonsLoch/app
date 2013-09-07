@@ -8,11 +8,11 @@ namespace bergedge
    frame::frame(sp(base_application) papp) :
       element(papp),
       simple_frame_window(papp),
-      ::ca2::message_window_simple_callback(papp)
+      ::core::message_window_simple_callback(papp)
    {
       m_pdocument = NULL;
       m_iFrameData = 10;
-      m_dataid = "ca2::frame";
+      m_dataid = "core::frame";
       m_iAnimateStep = 0;
 
       WfiEnableFullScreen();
@@ -34,7 +34,7 @@ namespace bergedge
 
    void frame::_001OnCreate(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::create, pcreate, pobj);
+      SCAST_PTR(message::create, pcreate, pobj);
 
       m_bWindowFrame = GetTypedParent < ::plugin::host_interaction >() == NULL;
 
@@ -52,7 +52,7 @@ namespace bergedge
 
    }
 
-   void frame::install_message_handling(::ca2::message::dispatch * pinterface)
+   void frame::install_message_handling(message::dispatch * pinterface)
    {
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CLOSE,          pinterface, this, &frame::_001OnClose);
@@ -91,7 +91,7 @@ namespace bergedge
 
    void frame::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+      SCAST_PTR(message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
       static float theta;
       if(nIDEvent == 3)
@@ -170,7 +170,7 @@ namespace bergedge
 
 
 
-   void frame::_000OnMouse(::ca2::message::mouse * pmouse)
+   void frame::_000OnMouse(message::mouse * pmouse)
    {
       Session.m_ptCursor = pmouse->m_pt;
 //      sp(::plane::application) pappParent = &App(Application.m_papp);
@@ -208,14 +208,14 @@ namespace bergedge
 
       UNREFERENCED_PARAMETER(pobj);
 
-//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+//      SCAST_PTR(message::mouse, pmouse, pobj);
 //      m_bMouseOver = false;
 //      bergedgesp(::application) papp = dynamic_cast < bergedgesp(::application) > (get_app());
    }
 
    void frame::pre_translate_message(signal_details * pobj)
    {
-//      SCAST_PTR(::ca2::message::base, pbase, pobj);
+//      SCAST_PTR(message::base, pbase, pobj);
       simple_frame_window::pre_translate_message(pobj);
    }
 
@@ -242,7 +242,7 @@ namespace bergedge
    {
 
 #ifdef WINDOWSEX
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
       if(pbase->m_uiMessage == (WM_APP + 2000))
       {
          _001OnApp2000(pbase);
@@ -272,7 +272,7 @@ namespace bergedge
 
    void frame::_001OnApp2000(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
 
 
       if(pbase->m_wparam == 0)
@@ -429,7 +429,7 @@ namespace bergedge
    void frame::_001OnApp1(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
 
       MESSAGE * pmsg = (MESSAGE *) pbase->m_lparam.m_lparam;
 
@@ -445,7 +445,7 @@ namespace bergedge
          if(pmsg->message != WM_KICKIDLE)
          {
 #ifdef WINDOWSEX
-            smart_pointer < ::ca2::message::base > spbase;
+            smart_pointer < message::base > spbase;
             spbase = get_base(pmsg);
             pre_translate_message(spbase);
             if(!spbase->m_bRet)

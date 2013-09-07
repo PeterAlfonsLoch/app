@@ -19,7 +19,7 @@ folder_selection_list_view::~folder_selection_list_view()
 {
 }
 
-void folder_selection_list_view::install_message_handling(::ca2::message::dispatch * pinterface)
+void folder_selection_list_view::install_message_handling(message::dispatch * pinterface)
 {
    ::user::split_view::install_message_handling(pinterface);
 }
@@ -45,7 +45,7 @@ void folder_selection_list_view::Initialize(FileManagerTemplate * ptemplate, con
 
    m_plistview->_001UpdateColumns();
 
-   if(data_get("InitialBrowsePath", ::ca2::system::idEmpty, str))
+   if(data_get("InitialBrowsePath", ::core::system::idEmpty, str))
    {
       FileManagerBrowse(str);
    }

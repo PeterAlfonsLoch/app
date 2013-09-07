@@ -224,6 +224,6 @@ namespace user
    CLASS_DECL_ca2 ::user::front_end * GetUfe(sp(base_application) papp);
 
 
-} // namespace ca2
+} // namespace core
 
 

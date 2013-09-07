@@ -20,7 +20,7 @@ void CLASS_DECL_ca2 __cdecl _ca2_purecall_()
     throw simple_exception(get_thread_app());
 }
 
-namespace ca2
+namespace core
 {
 
    extern HMODULE g_hmoduleOs;
@@ -84,7 +84,7 @@ namespace plugin
 
       string strMutex = m_phost->m_vssChannel;
 
-      ::str::begins_eat_ci(strMutex, "\\ca2\\");
+      ::str::begins_eat_ci(strMutex, "\\core\\");
 
       m_pmutexBitmap = new mutex("Global\\" + strMutex, false);
 
@@ -124,7 +124,7 @@ namespace plugin
          psystem->init_main_data(pinitmaindata);*/
 
 #ifdef WINDOWS
-         psystem->m_hInstance = ::GetModuleHandle("ca2.dll");
+         psystem->m_hInstance = ::GetModuleHandle("core.dll");
 #endif
 
          if(!psystem->InitApplication())
@@ -151,7 +151,7 @@ namespace plugin
          m_psystem->m_pplugin = this;
 
 #ifdef WINDOWS
-         m_psystem->m_hInstance = ::GetModuleHandle("ca2.dll");
+         m_psystem->m_hInstance = ::GetModuleHandle("core.dll");
 #endif
 
          if(!m_psystem->InitApplication())
@@ -421,7 +421,7 @@ namespace plugin
 
       string strUrl;
 
-      strUrl = "https://account.ca2.cc/sec?action=logout";
+      strUrl = "https://account.core.cc/sec?action=logout";
 
       m_psystem->url().string_set(strUrl, "ruri", strLocation);
 
@@ -451,7 +451,7 @@ namespace plugin
 
       keeper < bool > keepMainReady(&m_bMainReady, true, false, true);
 
-      xxdebug_box("ca2 plugin plugin", "ready_on_main_thread", 0);
+      xxdebug_box("core plugin plugin", "ready_on_main_thread", 0);
 
       ::count iCount = get_memory_length();
 
@@ -472,14 +472,14 @@ namespace plugin
 
          string strExtension     = System.file().extension(System.url().get_script(strPluginUrl));
 
-         if(strExtension.is_empty() || strExtension.compare_no_case("ca2") == 0)
+         if(strExtension.is_empty() || strExtension.compare_no_case("core") == 0)
          {
             // remark alarm
             // STRESS : http_get_dup
-            // in ca2 library normally System or Application.http() is used
+            // in core library normally System or Application.http() is used
             string strPluginData;
 
-            ::ca2::http::e_status estatus = ::ca2::http::status_failed;
+            ::core::http::e_status estatus = ::core::http::status_failed;
 
             string strUrl = strPluginUrl;
 
@@ -496,12 +496,12 @@ namespace plugin
 
                Application.http().get(strUrl, strPluginData, post, headers, set, NULL, NULL, NULL, &estatus);
 
-               if(estatus == ::ca2::http::status_ok)
+               if(estatus == ::core::http::status_ok)
                   break;
 
             }
 
-            if(estatus == ::ca2::http::status_ok)
+            if(estatus == ::core::http::status_ok)
             {
 
                open_ca2_string(strPluginData);
@@ -631,9 +631,9 @@ namespace plugin
             if(str1 == "ca2login")
             {
                // graphical - 2 - user interface for login - fontopus - through the plugin
-               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/ca2/fontopus", strLocale, strSchema))
+               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
                {
-/*                  Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
+/*                  Sys(m_psystem).install().start(": app=session session_start=app/core/fontopus app_type=application install");
 #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
@@ -641,7 +641,7 @@ namespace plugin
 #endif
                   m_bMainReady = false;*/
 
-                  string strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
+                  string strCommandLine(": app=session session_start=app/core/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
 
 #ifdef WINDOWSEX
@@ -671,10 +671,10 @@ namespace plugin
             else if(str1 == "ca2logout")
             {
                // graphical - 2 - user interface for logout - fontopus - through the plugin
-               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/ca2/fontopus", strLocale, strSchema))
+               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
                {
                   /*
-                  Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
+                  Sys(m_psystem).install().start(": app=session session_start=app/core/fontopus app_type=application install");
 #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
@@ -682,7 +682,7 @@ namespace plugin
 #endif
                   m_bMainReady = false;*/
 
-                  string strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
+                  string strCommandLine(": app=session session_start=app/core/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
 #ifdef WINDOWSEX
                   PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);
@@ -871,7 +871,7 @@ namespace plugin
       try
       {
 
-         ::ca2::thread * pthread = m_psystem->::ca2::thread::m_p;
+         ::core::thread * pthread = m_psystem->::core::thread::m_p;
 
          if(pthread->get_run())
          {
@@ -916,7 +916,7 @@ namespace plugin
       {
          try
          {
-            if(!::FreeLibrary(::ca2::g_hmoduleOs))
+            if(!::FreeLibrary(::core::g_hmoduleOs))
             {
                break;
             }
@@ -960,13 +960,13 @@ namespace plugin
          if(uiMessage == WM_MOUSEMOVE)
          {
 
-            sp(::ca2::window) pwindow = m_puiHost->m_pimpl;
+            sp(::core::window) pwindow = m_puiHost->m_pimpl;
 
             pwindow->m_bMouseHover = true; // avoids tracking mouse leave;
 
          }
 
-         sp(::ca2::window) pwindow = m_puiHost->m_pimpl;
+         sp(::core::window) pwindow = m_puiHost->m_pimpl;
 
          oswindow oswindow = pwindow->get_handle();
 
@@ -975,7 +975,7 @@ namespace plugin
          if(bIsWindow)
          {
 
-            smart_pointer < ::ca2::message::base > spbase;
+            smart_pointer < message::base > spbase;
 
             spbase = m_puiHost->get_base(m_puiHost, uiMessage, wparam, lparam);
 

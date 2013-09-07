@@ -33,7 +33,7 @@ namespace nature
       using ::user::tab_view::on_show_view;
 #endif
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(message::dispatch * pinterface);
       virtual void on_show_view();
 
       void on_create_view(::user::view_creator_data * pcreatordata);

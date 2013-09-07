@@ -189,7 +189,7 @@ namespace spa_install
 
                ::hotplugin::container_launcher launcher(str);
 
-               string strChannel = "\\ca2\\ca2plugin-container-";
+               string strChannel = "\\core\\ca2plugin-container-";
 
                strChannel += str;
 

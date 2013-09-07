@@ -4,7 +4,7 @@
 
 
 
-namespace ca2
+namespace core
 {
 
    const char * psz_empty_app_id = "";
@@ -212,7 +212,7 @@ namespace ca2
       if(strLibraryName == "libca2")
       {
 
-         strLibraryName = "ca2";
+         strLibraryName = "core";
 
       }
       else if(!::str::begins_eat(strLibraryName, "libca2"))
@@ -262,7 +262,7 @@ namespace ca2
       if(strLibraryName == "libca2")
       {
 
-         strLibraryName = "ca2";
+         strLibraryName = "core";
 
       }
       else if(!::str::begins_eat(strLibraryName, "libca2"))
@@ -535,6 +535,6 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace core
 
 

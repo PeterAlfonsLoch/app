@@ -7,13 +7,13 @@ namespace filehandler
 {
 
 
-   string tree_item_data::get_text(sp(::ca2::tree) ptree)
+   string tree_item_data::get_text(sp(::core::tree) ptree)
    {
       UNREFERENCED_PARAMETER(ptree);
       return m_strTopic;
    }
 
-   index tree_item_data::get_image(sp(::ca2::tree) ptree)
+   index tree_item_data::get_image(sp(::core::tree) ptree)
    {
       if(ptree->is_tree_item_data_selected(this))
       {

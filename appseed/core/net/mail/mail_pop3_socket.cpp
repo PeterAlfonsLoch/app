@@ -326,7 +326,7 @@ namespace mail
                {
                  m_ppop3->m_setHeaders[m_strKey] = m_strValue;
                }
-               ::ca2::parse pa(strLine,":");
+               ::core::parse pa(strLine,":");
                m_strKey = pa.getword();
                m_strValue = pa.getrest();
             }

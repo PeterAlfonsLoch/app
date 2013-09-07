@@ -148,7 +148,7 @@ void FileManagerTemplate::Initialize(int32_t iTemplate, const char * pszMatter)
       get_app(),
       pszMatter,
       System.type_info < ::filemanager::document > (),
-      System.type_info < FileManagerMainFrame > (),       // main SDI frame ::ca2::window
+      System.type_info < FileManagerMainFrame > (),       // main SDI frame ::core::window
       System.type_info < FileManagerTabView > ());
 
    m_pdoctemplate = new ::user::multiple_document_template(

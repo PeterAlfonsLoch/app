@@ -21,9 +21,9 @@ namespace plane
    public:
 
       sp(service_base)                    m_pservice;
-      class ::ca2::dir::application        m_dir;
-      class ::ca2::file_application        m_file;
-      class ::ca2::http::application       m_http;
+      class ::core::dir::application        m_dir;
+      class ::core::file_application        m_file;
+      class ::core::http::application       m_http;
 
       sp(class ::fontopus::license)       m_splicense;
       sp(class ::fs::data)                m_spfsdata;
@@ -74,9 +74,9 @@ namespace plane
       virtual int32_t exit_instance();
 
 
-      inline class ::ca2::dir::application       & dir()        { return m_dir          ; }
-      inline class ::ca2::file_application       & file()       { return m_file         ; }
-      inline class ::ca2::http::application      & http()       { return m_http         ; }
+      inline class ::core::dir::application       & dir()        { return m_dir          ; }
+      inline class ::core::file_application       & file()       { return m_file         ; }
+      inline class ::core::http::application      & http()       { return m_http         ; }
       inline class ::fontopus::license          & license()    { return m_splicense    ; }
       inline sp(class ::fs::data)               fs()           { return m_spfsdata     ; }
       inline sp(class ::user::user)             user()         { return m_spuser       ; }
@@ -150,7 +150,7 @@ namespace plane
       virtual bool update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession, const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle);
 
 
-      virtual bool add_library(::ca2::library * plibrary);
+      virtual bool add_library(::core::library * plibrary);
 
       virtual bool system_add_app_install(const char * pszId);
 

@@ -34,7 +34,7 @@ namespace uinteraction
 
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -105,7 +105,7 @@ namespace ca2
    {
    public:
 
-      single_application_library(const char * pszRoot) : ::ca2::library(pszRoot) {}
+      single_application_library(const char * pszRoot) : ::core::library(pszRoot) {}
 
       // impl
       virtual sp(base_application) get_new_app(const char * pszAppId);
@@ -115,6 +115,6 @@ namespace ca2
 
 
 
-} // namespace ca2
+} // namespace core
 
 

@@ -188,7 +188,7 @@ namespace mysql
       
       if(pres) /* a result set was returned */
       {
-         m_iLastUsedTime = ::ca2::profiler::micros();
+         m_iLastUsedTime = ::core::profiler::micros();
          return canew(result(this, pres));
       }
       else /* no result set was returned */
@@ -205,7 +205,7 @@ namespace mysql
             * SHOW, DESCRIBE, etc.); just report rows-affected value.
             */
 
-            m_iLastUsedTime = ::ca2::profiler::micros();
+            m_iLastUsedTime = ::core::profiler::micros();
 
             TRACE("Number of rows affected: %lu\n", (uint32_t) mysql_affected_rows ((MYSQL *) m_pmysql));
 

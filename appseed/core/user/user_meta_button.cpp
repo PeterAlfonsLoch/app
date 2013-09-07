@@ -204,7 +204,7 @@ void MetaButton::layout()
 
 void MetaButton::_001OnTimer(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::timer, ptimer, pobj)
+   SCAST_PTR(message::timer, ptimer, pobj)
       // TODO: add your message handler code here and/or call default
       if(ptimer->m_nIDEvent == TimerCheckFocus)
       {
@@ -253,7 +253,7 @@ void MetaButton::UpdateWndRgn()
 
 }
 
-void MetaButton::install_message_handling(::ca2::message::dispatch *pinterface)
+void MetaButton::install_message_handling(message::dispatch *pinterface)
 {
    ::user::button::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &MetaButton::_001OnShowWindow);

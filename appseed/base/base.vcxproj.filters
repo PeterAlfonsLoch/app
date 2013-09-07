@@ -1121,6 +1121,9 @@
     <ClInclude Include="version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive_bit.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="android\c_os_internal.c">
@@ -1815,9 +1818,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="_c.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
     </None>
@@ -1829,6 +1829,9 @@
     </None>
     <None Include="base.def">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

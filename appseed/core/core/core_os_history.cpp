@@ -3,7 +3,7 @@
 
 os_history::os_history(sp(base_application) papp) :
    element(papp),
-   ::ca2::history(papp)
+   ::core::history(papp)
 {
 }
 

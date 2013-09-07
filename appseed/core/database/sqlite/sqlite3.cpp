@@ -7906,7 +7906,7 @@ namespace sqlite3
    **       b INTEGER CONSTRAINT fk1 REFERENCES element(x)
    **     );
    **
-   ** For foreign key "fk1", the from-table is "ca2" and the to-table is "ca2".
+   ** For foreign key "fk1", the from-table is "core" and the to-table is "core".
    **
    ** Each REFERENCES clause generates an instance of the following structure
    ** which is attached to the from-table.  The to-table need not exist when
@@ -13739,7 +13739,7 @@ zulu_time:
    */
    typedef struct et_info {   /* Information about each format field */
       char fmttype;            /* The format field code letter */
-      etByte base;             /* The base for ca2 conversion */
+      etByte base;             /* The base for core conversion */
       etByte flags;            /* One or more of FLAG_ constants below */
       etByte type;             /* Conversion paradigm */
       etByte charset;          /* Offset into aDigits[] of the digits string */

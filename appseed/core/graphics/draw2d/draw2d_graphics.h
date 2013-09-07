@@ -6,7 +6,7 @@ namespace draw2d
 
 
    class CLASS_DECL_ca2 graphics :
-      virtual public ::ca2::simple_chain < ::user::draw_context >
+      virtual public ::core::simple_chain < ::user::draw_context >
    {
    public:
 
@@ -15,7 +15,7 @@ namespace draw2d
       ::user::draw_context *        m_pdrawcontext;
       ::draw2d::dib *               m_pdibAlphaBlend;
       point                         m_ptAlphaBlend;
-      ::ca2::job *                  m_pjob;
+      ::core::job *                  m_pjob;
 
 
       ::draw2d::dib *               m_pdib;
@@ -234,7 +234,7 @@ namespace draw2d
       virtual int32_t SelectClipRgn(::draw2d::region* pRgn);
       virtual int32_t ExcludeClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual int32_t ExcludeClipRect(LPCRECT lpRect);
-      virtual int32_t ExcludeUpdateRgn(sp(::ca2::window) pWnd);
+      virtual int32_t ExcludeUpdateRgn(sp(::core::window) pWnd);
       virtual int32_t IntersectClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual int32_t IntersectClipRect(LPCRECT lpRect);
       virtual int32_t OffsetClipRgn(int32_t x, int32_t y);
@@ -560,9 +560,9 @@ namespace draw2d
       virtual bool setFont(::draw2d::font * pfont);
       virtual bool set_font(::draw2d::font * pfont);
 
-      virtual bool create_client_dc(::ca2::window * pwnd);
-      virtual bool create_window_dc(::ca2::window * pwnd);
-      virtual bool release_dc(::ca2::window * pwnd);
+      virtual bool create_client_dc(::core::window * pwnd);
+      virtual bool create_window_dc(::core::window * pwnd);
+      virtual bool release_dc(::core::window * pwnd);
 
    };
 
@@ -603,9 +603,9 @@ namespace draw2d
    {
    public:
 
-      sp(::ca2::window) m_pwindow;
+      sp(::core::window) m_pwindow;
 
-      window_graphics(sp(::ca2::window) pwindow);
+      window_graphics(sp(::core::window) pwindow);
       virtual ~window_graphics();
 
    };
@@ -615,16 +615,16 @@ namespace draw2d
    {
    public:
 
-      sp(::ca2::window)    m_pwindow;
+      sp(::core::window)    m_pwindow;
 #ifdef WINDOWSEX
       PAINTSTRUCT       m_ps;
 #endif
 
-      paint_graphics(sp(::ca2::window) pwindow);
+      paint_graphics(sp(::core::window) pwindow);
       virtual ~paint_graphics();
 
    };
 
-} // namespace ca2
+} // namespace core
 
 

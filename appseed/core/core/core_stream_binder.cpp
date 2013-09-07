@@ -3,7 +3,7 @@
 
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    class reader_for_binder:
@@ -154,4 +154,4 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace core

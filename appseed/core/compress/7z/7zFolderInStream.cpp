@@ -41,8 +41,8 @@ namespace n7z
          if (stream)
          {
             _fileIsOpen = true;
-            smart_pointer < ::ca2::stream_get_size > streamGetSize;
-            streamGetSize = dynamic_cast < ::ca2::stream_get_size * > (stream.m_p);
+            smart_pointer < ::core::stream_get_size > streamGetSize;
+            streamGetSize = dynamic_cast < ::core::stream_get_size * > (stream.m_p);
             if (streamGetSize)
             {
                RINOK(streamGetSize->GetSize(&_currentSize));

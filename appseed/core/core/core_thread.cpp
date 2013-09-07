@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -29,7 +29,7 @@ namespace ca2
       set_app(papp);
       if(!s_bAllocReady)
          return;
-      ::ca2::thread::m_p.create(allocer());
+      ::core::thread::m_p.create(allocer());
       m_p->m_p = this;
       m_p->construct();
 
@@ -42,7 +42,7 @@ namespace ca2
 
       construct();
 
-      ::ca2::thread::m_p.create(allocer());
+      ::core::thread::m_p.create(allocer());
       m_p->set_p(this);
       m_p->construct(pfnThreadProc, pParam);
 
@@ -55,7 +55,7 @@ namespace ca2
 
 
 
-   void thread::set_p(::ca2::thread * p)
+   void thread::set_p(::core::thread * p)
    {
       UNREFERENCED_PARAMETER(p);
       throw interface_only_exception(get_app());
@@ -228,7 +228,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
+   message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
    {
       UNREFERENCED_PARAMETER(uiMessage);
       UNREFERENCED_PARAMETER(uiCode);
@@ -399,7 +399,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   ::ca2::thread * thread::get_app_thread()
+   ::core::thread * thread::get_app_thread()
    {
       throw interface_only_exception(get_app());
    }
@@ -499,7 +499,7 @@ namespace ca2
 
    CLASS_DECL_ca2 void thread_alloc_ready(bool bReady)
    {
-      ::ca2::thread::s_bAllocReady = bReady;
+      ::core::thread::s_bAllocReady = bReady;
    }
 
 
@@ -576,7 +576,7 @@ namespace ca2
       return m_p->initialize_instance();
    }
 
-   ::ca2::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
+   message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
    {
       return m_p->GetMessagePrototype(uiMessage, uiCode);
    }
@@ -797,7 +797,7 @@ namespace ca2
    }
 
 
-   ::ca2::thread * thread::get_app_thread()
+   ::core::thread * thread::get_app_thread()
    {
 
       if(m_p == NULL)
@@ -906,17 +906,17 @@ namespace ca2
 
 
 
-} // namespace ca2
+} // namespace core
 
 
 
 
-::ca2::thread* __begin_thread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+::core::thread* __begin_thread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    ASSERT(pfnThreadProc != NULL);
 
-   ::ca2::thread* pThread = new ::ca2::thread(papp, pfnThreadProc, pParam);
+   ::core::thread* pThread = new ::core::thread(papp, pfnThreadProc, pParam);
    ASSERT_VALID(pThread);
 
    if (!pThread->create_thread(epriority, dwCreateFlags, nStackSize, lpSecurityAttrs))

@@ -99,7 +99,7 @@ void FileManagerInterface::OnFileManagerBrowse()
    if(::str::begins(m_item->m_strPath, "uifs://")
       || ::str::begins(m_item->m_strPath, "fs://"))
    {
-      data_set("InitialBrowsePath", ::ca2::system::idEmpty, m_item->m_strPath);
+      data_set("InitialBrowsePath", ::core::system::idEmpty, m_item->m_strPath);
    }
    else
    {
@@ -112,7 +112,7 @@ void FileManagerInterface::OnFileManagerBrowse()
       idMachine = "Windows Desktop";
 #endif
 
-      data_set("InitialBrowsePath", ::ca2::system::idEmpty, "machinefs://");
+      data_set("InitialBrowsePath", ::core::system::idEmpty, "machinefs://");
       data_set("InitialBrowsePath", idMachine, m_item->m_strPath);
 
    }

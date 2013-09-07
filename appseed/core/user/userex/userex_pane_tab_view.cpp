@@ -150,7 +150,7 @@ namespace userex
    void pane_tab_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
 
-      ::ca2::library * plibrary = NULL;
+      ::core::library * plibrary = NULL;
       if(System.m_idmapCreateViewLibrary.Lookup(pcreatordata->m_id, plibrary) && plibrary != NULL)
       {
          plibrary->on_create_view(pcreatordata);

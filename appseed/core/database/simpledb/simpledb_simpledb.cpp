@@ -132,7 +132,7 @@ namespace simpledb
 
       ::database::client::initialize_data_client(m_pserver);
 
-//      ::ca2::application_request * prequest = System.get_application_request();
+//      ::core::application_request * prequest = System.get_application_request();
 
 
       m_papp->m_pappThis->fill_locale_schema(*m_papp->m_pappThis->str_context()->m_plocaleschema);

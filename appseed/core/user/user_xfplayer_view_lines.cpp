@@ -90,7 +90,7 @@ void XfplayerViewLines::SetEffect(int32_t iEffect)
     }
 }
 
-void XfplayerViewLines::SetRenderWindow(sp(::ca2::window) pWnd)
+void XfplayerViewLines::SetRenderWindow(sp(::core::window) pWnd)
 {
    UNREFERENCED_PARAMETER(pWnd);
 }
@@ -120,7 +120,7 @@ index XfplayerViewLines::FindLine(XfplayerViewLine * pline)
 
 }
 
-void XfplayerViewLines::InstallMessageHandling(::ca2::message::dispatch *pinterface)
+void XfplayerViewLines::InstallMessageHandling(message::dispatch *pinterface)
 {
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,    pinterface, this, &XfplayerViewLines::OnMouseMove);
    IGUI_WIN_MSG_LINK(WM_SETCURSOR,    pinterface, this, &XfplayerViewLines::OnSetCursor);

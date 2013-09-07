@@ -363,7 +363,7 @@ namespace rar
             RINOK(getTextPassword->CryptoGetTextPassword(password))
             wstring unicodePassword = ::str::international::utf8_to_unicode(password);
 
-            ::ca2::byte_buffer buffer;
+            ::core::byte_buffer buffer;
             const uint32_t sizeInBytes = (const uint32_t) (unicodePassword.get_length() * 2);
             buffer.SetCapacity(sizeInBytes);
             for (int32_t i = 0; i < unicodePassword.get_length(); i++)
@@ -479,7 +479,7 @@ namespace rar
 
    ::file::reader* input_file::CreateLimitedStream(file_position position, file_size size)
    {
-      ::ca2::limited_reader *streamSpec = new ::ca2::limited_reader;
+      ::core::limited_reader *streamSpec = new ::core::limited_reader;
       ::file::reader * inStream = streamSpec;
       SeekInArchive(position);
       streamSpec->SetStream(m_Stream);

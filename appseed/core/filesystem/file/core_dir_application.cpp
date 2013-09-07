@@ -5,7 +5,7 @@ namespace zip
    class Util;
 }
 
-namespace ca2
+namespace core
 {
 
    namespace dir
@@ -86,7 +86,7 @@ namespace ca2
                else
                   return "";
             }
-            if(System.file().output(get_app(), strFile, &System.compress(), &::ca2::compress::null, strPath))
+            if(System.file().output(get_app(), strFile, &System.compress(), &::core::compress::null, strPath))
             {
                Application.file().put_contents(strFileExists, "yes");
                return strFile;
@@ -253,6 +253,6 @@ namespace ca2
    } // namespace dir
 
 
-} // namespace ca2
+} // namespace core
 
 

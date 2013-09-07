@@ -130,7 +130,7 @@ bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char *
 
 
    char lpPathBuffer[256 * 4];
-   strcpy_dup(lpPathBuffer, "/tmp/ca2");
+   strcpy_dup(lpPathBuffer, "/tmp/core");
    char bufTime[30];
    char bufItem[30];
    char buf[30];
@@ -227,7 +227,7 @@ uint64_t file_length_dup(const char * path)
 string file_module_path_dup()
 {
 
-   return "/ca2/stage";
+   return "/core/stage";
 
 }
 

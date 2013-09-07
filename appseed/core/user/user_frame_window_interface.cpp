@@ -78,7 +78,7 @@ namespace user
 
    void frame_window_interface::_guserbaseOnInitialUpdate(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
          FrameInitialUpdate * pfiu = (FrameInitialUpdate *) pbase->m_lparam.m_lparam;
       if(pfiu != NULL)
       {
@@ -105,7 +105,7 @@ namespace user
                pview->OnActivateFrame(WA_INACTIVE, pframe);
 
             // finally, activate the frame
-            // (send the default show command unless the main desktop ::ca2::window)
+            // (send the default show command unless the main desktop ::core::window)
             int32_t nCmdShow = -1;      // default
             application* pApp = &System;
             if (pApp != NULL && pApp->GetMainWnd() == pframe)
@@ -114,7 +114,7 @@ namespace user
                pApp->m_nCmdShow = -1; // set to default after first time
             }
             bool bFullScreen;
-            data_get("FullScreen", ::ca2::system::idEmpty, bFullScreen);
+            data_get("FullScreen", ::core::system::idEmpty, bFullScreen);
             if(bFullScreen)
             {
                WfiFullScreen(bFullScreen, false);
@@ -139,11 +139,11 @@ namespace user
       pbase->set_lresult(0);
    }
 
-   void frame_window_interface::install_message_handling(::ca2::message::dispatch *pinterface)
+   void frame_window_interface::install_message_handling(message::dispatch *pinterface)
    {
 //      ::user::frame_window_interface::install_message_handling(pinterface);
       database::user::interaction::install_message_handling(pinterface);
-      IGUI_MSG_LINK(::ca2::message_frame_initial_update, pinterface, this, &frame_window_interface::_guserbaseOnInitialUpdate);
+      IGUI_MSG_LINK(::core::message_frame_initial_update, pinterface, this, &frame_window_interface::_guserbaseOnInitialUpdate);
    }
 
    void frame_window_interface::_000OnDraw(::draw2d::graphics * pdc)
@@ -194,7 +194,7 @@ namespace user
       if((m_bWindowFrame
          || m_etranslucency == TranslucencyTotal
          || m_etranslucency == TranslucencyPresent) &&
-         !Session.savings().is_trying_to_save(::ca2::resource_display_bandwidth))
+         !Session.savings().is_trying_to_save(::core::resource_display_bandwidth))
       {
          ::uinteraction::frame::WorkSetClientInterface::_001OnDraw(pdc);
       }
@@ -420,8 +420,8 @@ namespace user
    {
       if(m_bLayered)
       {
-         return !Session.savings().is_trying_to_save(::ca2::resource_processing)
-            && !Session.savings().is_trying_to_save(::ca2::resource_display_bandwidth);
+         return !Session.savings().is_trying_to_save(::core::resource_processing)
+            && !Session.savings().is_trying_to_save(::core::resource_display_bandwidth);
       }
       else
       {
@@ -434,7 +434,7 @@ namespace user
    {
       database::user::interaction::data_on_after_change(pobj);
       SCAST_PTR(database::change_event, phint, pobj);
-      if(phint->m_key.m_idKey == "ca2"
+      if(phint->m_key.m_idKey == "core"
          && phint->m_key.m_idIndex == "savings")
       {
          defer_synch_layered();

@@ -408,8 +408,8 @@ namespace zip
    /*/////////////////////////////////////////////////////////////////////////////
    // InFile implementation helpers
 
-   #ifdef ::ca2::GetFileName
-   #undef ::ca2::GetFileName
+   #ifdef ::core::GetFileName
+   #undef ::core::GetFileName
    #endif
 
    #ifndef ___NO_OLE_SUPPORT
@@ -620,7 +620,7 @@ namespace zip
       if(file.is_null())
          throw "failed to open file for compressing";
 
-      ::ca2::file_status status;
+      ::core::file_status status;
 
       file->GetStatus(status);
 

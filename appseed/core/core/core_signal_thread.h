@@ -1,11 +1,11 @@
 #pragma once
 
-namespace ca2
+namespace core
 {
 
    template < class DST, class SRC >
    class signal_thread :
-      public ::ca2::thread
+      public ::core::thread
    {
    public:
 
@@ -61,4 +61,4 @@ namespace ca2
       pthread->begin();
    }
 
-} // namespace ca2
+} // namespace core

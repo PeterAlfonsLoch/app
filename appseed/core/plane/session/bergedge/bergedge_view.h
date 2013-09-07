@@ -66,7 +66,7 @@ namespace bergedge
 
       virtual void pre_translate_message(signal_details * pobj);
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual void OnDraw(::draw2d::graphics * pgraphics);
       virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
@@ -108,7 +108,7 @@ namespace bergedge
 
       static UINT c_cdecl ThreadProcShowWindow(LPVOID lpparam);
       
-      void _000OnMouse(::ca2::message::mouse * pmouse);
+      void _000OnMouse(message::mouse * pmouse);
 
    };
 

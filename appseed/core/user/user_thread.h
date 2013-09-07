@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 thread :
-      virtual public ::ca2::thread
+      virtual public ::core::thread
    {
    public:
 

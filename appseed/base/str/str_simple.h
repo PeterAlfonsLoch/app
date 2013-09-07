@@ -232,18 +232,18 @@ inline string_data * string_manager::GetNilString()
 
 
 
-namespace ca2
+namespace core
 {
    namespace str
    {
       CLASS_DECL_c inline void copy(char * pszDest, const char * pszSrc) { strcpy(pszDest, pszSrc); }
       CLASS_DECL_c inline void copy(wchar_t * pszDest, const wchar_t * pszSrc) { wcscpy_dup(pszDest, pszSrc); }
    } // namespace str
-} // namespace ca2
+} // namespace core
 
 
 
-/*namespace ca2
+/*namespace core
 {
 
    namespace international
@@ -364,9 +364,9 @@ static_string& operator=( const static_string& str ) NOTHROW;
 
 
 
-#define _ST( psz ) ::ca2::static_string< char, sizeof( _T( psz ) ) >( _T( psz ) )
-#define _SA( psz ) ::ca2::static_string< char, sizeof( psz ) >( psz )
-#define _SW( psz ) ::ca2::static_string< wchar_t, sizeof( L##psz ) >( L##psz )
+#define _ST( psz ) ::core::static_string< char, sizeof( _T( psz ) ) >( _T( psz ) )
+#define _SA( psz ) ::core::static_string< char, sizeof( psz ) >( psz )
+#define _SW( psz ) ::core::static_string< wchar_t, sizeof( L##psz ) >( L##psz )
 #define _SO( psz ) _SW( psz )
 
 class CLASS_DECL_c char_traits_base

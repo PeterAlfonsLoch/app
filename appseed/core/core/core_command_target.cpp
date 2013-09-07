@@ -1,11 +1,11 @@
 #include "framework.h"
 
-base_cmd_ui::base_cmd_ui(::ca2::signal * psignal) :
+base_cmd_ui::base_cmd_ui(::core::signal * psignal) :
    signal_details(psignal)
 {
 }
 
-BaseCommand::BaseCommand(::ca2::signal * psignal) :
+BaseCommand::BaseCommand(::core::signal * psignal) :
    signal_details(psignal)
 {
 }

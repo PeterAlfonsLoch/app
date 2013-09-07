@@ -66,7 +66,7 @@
 #define N1_slash 63
 
 
-namespace ca2
+namespace core
 {
 
    base64::base64()
@@ -137,7 +137,7 @@ namespace ca2
 
    }
 
-   void base64::encode(::ca2::plain_text_output_stream & ostream, ::file::input_stream & istream)
+   void base64::encode(::core::plain_text_output_stream & ostream, ::file::input_stream & istream)
    {
       int32_t i,hiteof= FALSE;
       byte igroup[3],ogroup[4];
@@ -179,7 +179,7 @@ namespace ca2
    }
 
 
-   void base64::decode(::file::output_stream & ostream, ::ca2::plain_text_input_stream & istream)
+   void base64::decode(::file::output_stream & ostream, ::core::plain_text_input_stream & istream)
    {
       int32_t i;
       byte a[4],b[4],o[3];
@@ -250,7 +250,7 @@ namespace ca2
       
       string strRet;
 
-      ::ca2::byte_stream_memory_file file(&System, &storageBinary);
+      ::core::byte_stream_memory_file file(&System, &storageBinary);
 
       ::file::plain_text_output_stream ostream;
 
@@ -285,7 +285,7 @@ namespace ca2
 
       _template_std_istringstream istream(pszBase64);
 
-      ::ca2::byte_stream_memory_file memfile(&System, &storageBinary);
+      ::core::byte_stream_memory_file memfile(&System, &storageBinary);
 
       decode(memfile, istream);
 
@@ -294,7 +294,7 @@ namespace ca2
    string base64::serialize(::file::serializable & serializable)
    {
       
-      ::ca2::byte_stream_memory_file file(&System);
+      ::core::byte_stream_memory_file file(&System);
 
       serializable.write(file);
 
@@ -311,7 +311,7 @@ namespace ca2
    void base64::unserialize(::file::serializable & serializable, const char * pszBase64)
    {
       
-      ::ca2::byte_stream_memory_file file(&System);
+      ::core::byte_stream_memory_file file(&System);
 
       _template_std_istringstream reader(pszBase64);
 
@@ -324,6 +324,6 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace core
 
 

@@ -191,7 +191,7 @@ bool file_operation::step()
             {
                string strDestPath = m_fileDst->GetFilePath();
                m_fileDst->close();
-               ::ca2::file_status st;
+               ::core::file_status st;
                m_fileSrc->GetStatus(st);
                System.os().set_file_status(strDestPath, st);
                m_fileSrc->close();

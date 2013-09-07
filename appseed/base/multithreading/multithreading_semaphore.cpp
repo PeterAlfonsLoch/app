@@ -28,7 +28,7 @@ semaphore::semaphore(sp(base_application) papp, LONG lInitialCount, LONG lMaxCou
    if(pstrName != NULL && *pstrName != '\0')
    {
 
-      string strPath = "/ca2/time/ftok/event/" + string(pstrName);
+      string strPath = "/core/time/ftok/event/" + string(pstrName);
 
       m_object = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
 

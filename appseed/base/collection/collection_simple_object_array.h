@@ -1,7 +1,7 @@
 #pragma once
 
 class simple_object_array :
-   virtual public ::ca2::serializable
+   virtual public ::core::serializable
 {
 public:
 

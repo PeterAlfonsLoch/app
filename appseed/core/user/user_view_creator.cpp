@@ -175,7 +175,7 @@ namespace user
       {
          return m_pviewcontainer->get_view_id();
       }
-      return ::ca2::system::idEmpty;
+      return ::core::system::idEmpty;
    }
 
    void view_creator::hide_all_except(id id)

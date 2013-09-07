@@ -126,7 +126,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::ca2::window * graphics::GetWindow() const
+   ::core::window * graphics::GetWindow() const
    { 
 #ifdef WINDOWSEX
       throw todo(get_app());
@@ -305,7 +305,7 @@ namespace draw2d_direct2d
 
    }
 
-   int graphics::ExcludeUpdateRgn(::ca2::window * pWnd)
+   int graphics::ExcludeUpdateRgn(::core::window * pWnd)
    { 
       throw todo(get_app());
 
@@ -2674,7 +2674,7 @@ namespace draw2d_direct2d
 
    }
 
-   // This is ca2 API library.
+   // This is core API library.
    // 
    // 
    //
@@ -2890,7 +2890,7 @@ namespace draw2d_direct2d
 
    ::draw2d::brush* graphics::GetHalftoneBrush(application * papp)
    {
-      /*      ::ca2::LockGlobals(CRIT_HALFTONEBRUSH);
+      /*      ::core::LockGlobals(CRIT_HALFTONEBRUSH);
       if (gen_HalftoneBrush == NULL)
       {
       WORD grayPattern[8];
@@ -2905,7 +2905,7 @@ namespace draw2d_direct2d
       }
       if (!gen_WingdixTerm)
       gen_WingdixTerm = (char)!atexit(&__win_gdi_x_term);
-      ::ca2::UnlockGlobals(CRIT_HALFTONEBRUSH);
+      ::core::UnlockGlobals(CRIT_HALFTONEBRUSH);
 
       //      return ::draw2d_direct2d::brush::from_handle(papp, gen_HalftoneBrush);*/
       return NULL;
@@ -3126,7 +3126,7 @@ namespace draw2d_direct2d
       /*      hdc_map* pMap = afxMapHDC();
       if (pMap != NULL && pMap->lookup_permanent(get_handle1()) == this)
       {
-      TRACE(::ca2::trace::category_AppMsg, 0, "Cannot Set Output hDC on Attached graphics.\n");
+      TRACE(::core::trace::category_AppMsg, 0, "Cannot Set Output hDC on Attached graphics.\n");
       ASSERT(FALSE);
       }*/
 //#endif
@@ -3144,7 +3144,7 @@ namespace draw2d_direct2d
       /*      hdc_map* pMap = afxMapHDC();
       if (pMap != NULL && pMap->lookup_permanent(get_handle1()) == this)
       {
-      TRACE(::ca2::trace::category_AppMsg, 0, "Cannot Release Output hDC on Attached graphics.\n");
+      TRACE(::core::trace::category_AppMsg, 0, "Cannot Release Output hDC on Attached graphics.\n");
       ASSERT(FALSE);
       }*/
 //#endif
@@ -3908,7 +3908,7 @@ namespace draw2d_direct2d
       //   HRGN hRgn = ::CreateRectRgn(0, 0, 0, 0);
       //   if (::GetClipRgn(get_handle1(), hRgn) < 0 || !::SelectClipRgn(get_handle2(), hRgn))
       //   {
-      //      TRACE(::ca2::trace::category_AppMsg, 0, "Error: unable to transfer clip region in graphics::SelectClipPath!\n");
+      //      TRACE(::core::trace::category_AppMsg, 0, "Error: unable to transfer clip region in graphics::SelectClipPath!\n");
       //      bResult = FALSE;
       //   }
       //   ::DeleteObject(hRgn);

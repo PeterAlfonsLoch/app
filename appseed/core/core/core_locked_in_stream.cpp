@@ -2,7 +2,7 @@
 
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    ::primitive::memory_size locked_in_stream::read(file_position startPos, void *data, ::primitive::memory_size size)
@@ -19,4 +19,4 @@ namespace ca2
       return realProcessedSize;
    }
 
-} // namespace ca2
+} // namespace core

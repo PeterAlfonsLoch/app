@@ -26,7 +26,7 @@ namespace gcom
       }
 
 
-      void Interface::install_message_handling(::ca2::message::dispatch * pinterface)
+      void Interface::install_message_handling(message::dispatch * pinterface)
       {
          IGUI_WIN_MSG_LINK(MessageBackView, pinterface, this, &Interface::OnBackViewMessage);
          IGUI_WIN_MSG_LINK(MessageBackViewDequeue, pinterface, this, &Interface::OnDequeueMessage);
@@ -50,7 +50,7 @@ namespace gcom
 
       void Interface::OnBackViewMessage(signal_details * pobj)
       {
-         SCAST_PTR(::ca2::message::base, pbase, pobj)
+         SCAST_PTR(message::base, pbase, pobj)
          switch(pbase->m_wparam)
          {
          case BackViewWparamImageChangeEvent:
@@ -75,21 +75,21 @@ namespace gcom
 
       void Interface::OnDequeueMessage(signal_details * pobj)
       {
-         SCAST_PTR(::ca2::message::base, pbase, pobj)
+         SCAST_PTR(message::base, pbase, pobj)
          GetMain().OnDequeueMessage(pbase->m_wparam, pbase->m_lparam);
          pbase->set_lresult(0);
       }
 
       void Interface::OnWndSize(signal_details * pobj)
       {
-         SCAST_PTR(::ca2::message::base, pbase, pobj)
+         SCAST_PTR(message::base, pbase, pobj)
          GetMain().m_bPendingLayout = true;
          pbase->m_bRet = false;
       }
 
       void Interface::OnWndTimer(signal_details * pobj)
       {
-         SCAST_PTR(::ca2::message::timer, ptimer, pobj)
+         SCAST_PTR(message::timer, ptimer, pobj)
          if(m_dwTimerStep > 0 && m_dwTimerStep == ptimer->m_nIDEvent)
          {
             ImageChangePostEvent(gcom::backview::event_timer);
@@ -107,7 +107,7 @@ namespace gcom
 
       void Interface::OnWndCreate(signal_details * pobj)
       {
-//         SCAST_PTR(::ca2::message::create, pcreate, pobj)
+//         SCAST_PTR(message::create, pcreate, pobj)
          if(pobj->previous())
             return;
          initialize_user_interaction();
@@ -279,7 +279,7 @@ namespace gcom
       // background, this function call is a feedback requested by from some
       // transition effect or visual effect in order to display to the
       // the ::fontopus::user an intereactive effect. At first design, the only needed
-      // feedback is the final output ::ca2::window screenshot.
+      // feedback is the final output ::core::window screenshot.
       void Interface::BackViewFeedback(::draw2d::graphics * pdc)
       {
          UNREFERENCED_PARAMETER(pdc);

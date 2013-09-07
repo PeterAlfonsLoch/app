@@ -16,7 +16,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 
    if (dwReason == DLL_PROCESS_ATTACH)
    {
-      ::OutputDebugStringW(L"::ca2:: draw2d_direct2d.dll :: initializing!\n");
+      ::OutputDebugStringW(L"::core:: draw2d_direct2d.dll :: initializing!\n");
       
 
 
@@ -25,7 +25,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
    {
 
 
-      ::OutputDebugStringW(L"::ca2:: draw2d_direct2d.dll :: terminating!\n");
+      ::OutputDebugStringW(L"::core:: draw2d_direct2d.dll :: terminating!\n");
 
    }
 

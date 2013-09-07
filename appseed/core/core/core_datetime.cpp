@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
 
@@ -464,4 +464,4 @@ int32_t datetime::ISO_WN(int32_t  y, int32_t m, int32_t d )
    }
 
 
-} // namespace ca2
+} // namespace core

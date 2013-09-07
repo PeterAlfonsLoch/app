@@ -14,7 +14,7 @@ namespace userfs
    public:
          
       main_view(sp(base_application) papp);
-      void install_message_handling(::ca2::message::dispatch * pinterface);
+      void install_message_handling(message::dispatch * pinterface);
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnTimer)
 

@@ -6,7 +6,7 @@ namespace filehandler
 
 
    menu_library::menu_library() :
-      ::ca2::library("app")
+      ::core::library("app")
    {
    }
 

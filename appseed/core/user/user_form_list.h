@@ -55,7 +55,7 @@ namespace user
 
       virtual void _001DrawSubItem(draw_list_item * pdrawitem);
 
-      void _000OnMouse(::ca2::message::mouse * pmouse);
+      void _000OnMouse(message::mouse * pmouse);
 
       void control_get_client_rect(sp(control) pcontrol, LPRECT lprect);
       void control_get_window_rect(sp(control) pcontrol, LPRECT lprect);
@@ -89,10 +89,10 @@ namespace user
       DECL_GEN_SIGNAL(_001OnHScroll)
       DECL_GEN_SIGNAL(_001OnKeyDown)
 
-      virtual bool _001OnMouseActivate(sp(::ca2::window) pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult);
+      virtual bool _001OnMouseActivate(sp(::core::window) pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult);
 
 
-      virtual void install_message_handling( ::ca2::message::dispatch *pinterface);
+      virtual void install_message_handling( message::dispatch *pinterface);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
 

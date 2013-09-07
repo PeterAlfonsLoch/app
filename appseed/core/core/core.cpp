@@ -9,7 +9,7 @@
 CLASS_DECL_ca2 string g_strNote;
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -62,14 +62,14 @@ namespace ca2
             pchSrc += 2;
             if (i >= nString)
             {
-               //               TRACE(::ca2::trace::category_AppMsg, 0, "Error: illegal string index requested %d.\n", i);
+               //               TRACE(::core::trace::category_AppMsg, 0, "Error: illegal string index requested %d.\n", i);
                *pchDest++ = '?';
                nTotalLen--;
             }
             else if (rglpsz[i] != NULL)
             {
                size_t nLen = strlen(rglpsz[i]);
-               ::ca2::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
+               ::core::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
                nTotalLen -= nLen;
                pchDest += nLen;
             }
@@ -108,7 +108,7 @@ namespace ca2
 
       ASSERT(nLen >= 0);
 
-      ::ca2::memcpy_s(rString.GetBufferSetLength(nLen), nLen*sizeof(char), lpszFullString, nLen*sizeof(char));
+      ::core::memcpy_s(rString.GetBufferSetLength(nLen), nLen*sizeof(char), lpszFullString, nLen*sizeof(char));
 
       rString.ReleaseBuffer();   // Need to call ReleaseBuffer after calling GetBufferSetLength
 
@@ -116,7 +116,7 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace core
 
 
 

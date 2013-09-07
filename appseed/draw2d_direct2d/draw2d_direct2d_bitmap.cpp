@@ -180,7 +180,7 @@ namespace draw2d_direct2d
    }
    bool bitmap::LoadBitmap(const char * lpszResourceName)
    { 
-      //   return Attach(::LoadBitmap(::ca2::FindResourceHandle(
+      //   return Attach(::LoadBitmap(::core::FindResourceHandle(
       //lpszResourceName, RT_BITMAP), lpszResourceName));
       return FALSE;
 
@@ -213,7 +213,7 @@ namespace draw2d_direct2d
 
    bool bitmap::LoadBitmap(UINT nIDResource)
    { 
-      //return Attach(::LoadBitmap(::ca2::FindResourceHandle(MAKEINTRESOURCE(nIDResource), RT_BITMAP), MAKEINTRESOURCE(nIDResource))); 
+      //return Attach(::LoadBitmap(::core::FindResourceHandle(MAKEINTRESOURCE(nIDResource), RT_BITMAP), MAKEINTRESOURCE(nIDResource))); 
       return FALSE;
    }
    bool bitmap::LoadOEMBitmap(UINT nIDBitmap)

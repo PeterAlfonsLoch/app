@@ -37,12 +37,12 @@ namespace user
       if(get_form() != NULL)
       {
          get_form()->send_message(
-            ::ca2::message_event, 0, (LPARAM) &ev);
+            ::core::message_event, 0, (LPARAM) &ev);
       }
       else
       {
          get_parent()->send_message(
-            ::ca2::message_event, 0, (LPARAM) &ev);
+            ::core::message_event, 0, (LPARAM) &ev);
       }
    }
 
@@ -87,18 +87,18 @@ namespace user
    void check_box::_001OnTimer(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::ca2::message::timer, ptimer, pobj)
+      //SCAST_PTR(message::timer, ptimer, pobj)
    }
 
    void check_box::_001OnKeyDown(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca2::message::key, pkey, pobj)
+//      SCAST_PTR(message::key, pkey, pobj)
    }
 
    void check_box::_001OnKeyUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::key, pkey, pobj)
+      SCAST_PTR(message::key, pkey, pobj)
       if(pkey->m_ekey == ::user::key_space)
       {
          _001ToggleCheck(true);
@@ -109,7 +109,7 @@ namespace user
    void check_box::_001OnLButtonDown(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+//      SCAST_PTR(message::mouse, pmouse, pobj)
       m_bMouseDown = true;
       pobj->m_bRet = true;
 
@@ -117,7 +117,7 @@ namespace user
    void check_box::_001OnLButtonUp(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       if(m_bMouseDown)
       {
          _001ToggleCheck(true);
@@ -132,7 +132,7 @@ namespace user
    void check_box::_001OnMouseMove(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      SCAST_PTR(message::mouse, pmouse, pobj);
 
       pmouse->m_ecursor = ::visual::cursor_text_select;
 
@@ -141,7 +141,7 @@ namespace user
 
 
 
-   void check_box::install_message_handling(::ca2::message::dispatch * pinterface)
+   void check_box::install_message_handling(message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &check_box::_001OnLButtonDown);

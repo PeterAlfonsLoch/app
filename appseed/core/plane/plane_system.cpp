@@ -102,7 +102,7 @@ namespace plane
 #ifndef METROWIN
       m_processsection.set_app(this);
 #endif
-      m_pdatetime = new class ::ca2::datetime(this);
+      m_pdatetime = new class ::core::datetime(this);
       m_email.set_app(this);
       m_http.set_app(this);
       m_compress.set_app(this);
@@ -173,10 +173,10 @@ namespace plane
          return false;
 
 
-      ::ca2::profiler::initialize();
+      ::core::profiler::initialize();
 
 
-//      System.factory().creatable < ::ca2::log >(System.type_info < ::ca2::log > (), 1);
+//      System.factory().creatable < ::core::log >(System.type_info < ::core::log > (), 1);
 
 /*      if(!::plane::application::process_initialize())
       {
@@ -353,7 +353,7 @@ namespace plane
    bool system::find_applications_to_cache()
    {
 
-      /*      m_spfilehandler(new ::ca2::filehandler::handler(this));*/
+      /*      m_spfilehandler(new ::core::filehandler::handler(this));*/
 
       m_mapAppLibrary.remove_all();
 
@@ -412,7 +412,7 @@ namespace plane
    bool system::map_application_library(const char * pszLibrary)
    {
 
-      ::ca2::library library(NULL);
+      ::core::library library(NULL);
 
       if(!library.open(this, pszLibrary))
          return false;
@@ -444,7 +444,7 @@ namespace plane
       if(strLibrary == "libca2")
       {
 
-         strLibrary = "ca2";
+         strLibrary = "core";
 
       }
       else if(!::str::begins_eat(strLibrary, "libca2"))
@@ -498,7 +498,7 @@ namespace plane
    bool system::initialize_instance()
    {
 
-      if(!::ca2::system::initialize_instance())
+      if(!::core::system::initialize_instance())
       {
          return false;
       }
@@ -508,7 +508,7 @@ namespace plane
       set_enum_name(var::type_string    , "string");
       set_enum_name(var::type_int32   , "integer");
       set_enum_name(var::type_uint32     , "ulong");
-      set_enum_name(var::type_ca2       , "ca2");
+      set_enum_name(var::type_ca2       , "core");
       set_enum_name(var::type_bool      , "bool");
       set_enum_name(var::type_double    , "double");*/
 
@@ -547,7 +547,7 @@ namespace plane
       if(!m_bDoNotExitIfNoApplications)
       {
 
-         ::ca2::application_ptra appptra;
+         ::core::application_ptra appptra;
 
          appptra = this->appptra();
 
@@ -684,7 +684,7 @@ namespace plane
          if(m_ptwf != NULL)
          {
             m_ptwf->twf_stop();
-            ::ca2::del(m_ptwf);
+            ::core::del(m_ptwf);
             m_ptwf = NULL;
          }
       }
@@ -801,7 +801,7 @@ namespace plane
    }
 
 
-   sp(::ca2::window_draw) system::get_twf()
+   sp(::core::window_draw) system::get_twf()
    {
 
       return m_ptwf;
@@ -809,24 +809,24 @@ namespace plane
    }
 
 
-   ::ca2::history & system::hist()
+   ::core::history & system::hist()
    {
       return *m_phistory;
    }
 
 
-   bool system::set_history(::ca2::history * phistory)
+   bool system::set_history(::core::history * phistory)
    {
       m_phistory = phistory;
       return true;
    }
 
-   ::ca2::log & system::log()
+   ::core::log & system::log()
    {
       return *m_plog;
    }
 
-   ::ca2::application_ptra & system::appptra()
+   ::core::application_ptra & system::appptra()
    {
       return m_appptra;
    }
@@ -836,7 +836,7 @@ namespace plane
       return m_net;
    }
 
-   ::ca2::stra & system::stra()
+   ::core::stra & system::stra()
    {
       return m_stra;
    }
@@ -846,31 +846,31 @@ namespace plane
       return m_userset;
    }
 
-   ::ca2::service & system::service()
+   ::core::service & system::service()
    {
       return m_service;
    }
 
-   ::ca2::install & system::install()
+   ::core::install & system::install()
    {
       return m_install;
    }
 
-   ::ca2::os & system::os()
+   ::core::os & system::os()
    {
       return m_spos;
    }
 
 #ifndef METROWIN
 
-   ::ca2::process_section & system::process()
+   ::core::process_section & system::process()
    {
       return m_processsection;
    }
 
 #endif
 
-   ::ca2::datetime & system::datetime()
+   ::core::datetime & system::datetime()
    {
       return *m_pdatetime;
    }
@@ -880,7 +880,7 @@ namespace plane
       return *m_puserstr;
    }
 
-   /*   ::ca2::filehandler::handler & system::filehandler()
+   /*   ::core::filehandler::handler & system::filehandler()
    {
    return *m_spfilehandler;
    }*/
@@ -1101,7 +1101,7 @@ namespace plane
    {
       if(m_plog != NULL)
          return true;
-      m_plog = new ::ca2::log(this);
+      m_plog = new ::core::log(this);
       m_plog->set_extended_log();
       m_plog->set_app(this);
       if(!m_plog->initialize(pszId))
@@ -1109,7 +1109,7 @@ namespace plane
          m_plog.release();
          return false;
       }
-      //      ::ca2::trace_v = &::ca2::system_log_trace_v;
+      //      ::core::trace_v = &::core::system_log_trace_v;
       return true;
    }
 
@@ -1255,7 +1255,7 @@ namespace plane
    {
       if(m_plog == NULL || !m_plog->m_bExtendedLog)
       {
-         return ::ca2::SimpleDebugReport(iReportType, pszFileName, iLineNumber, pszModuleName, pszFormat, list);
+         return ::core::SimpleDebugReport(iReportType, pszFileName, iLineNumber, pszModuleName, pszFormat, list);
       }
 
       string str;
@@ -1484,33 +1484,33 @@ namespace plane
       return bOk;*/
    }
 
-   ::ca2::compress & system::compress()
+   ::core::compress & system::compress()
    {
       return m_compress;
    }
 
-   ::ca2::patch & system::patch()
+   ::core::patch & system::patch()
    {
       return m_patch;
    }
 
-   class ::ca2::crypt & system::crypt()
+   class ::core::crypt & system::crypt()
    {
       return m_spcrypt;
    }
 
-   class ::ca2::email & system::email()
+   class ::core::email & system::email()
    {
       return m_email;
    }
 
-   class ::ca2::http::system & system::http()
+   class ::core::http::system & system::http()
    {
       return m_http;
    }
 
 
-   ::ca2::copydesk & system::copydesk()
+   ::core::copydesk & system::copydesk()
    {
       return m_spcopydesk;
    }
@@ -1539,7 +1539,7 @@ namespace plane
    {
       if(m_ptwf != NULL)
          return true;
-      m_ptwf = alloc(this, System.type_info < ::ca2::window_draw > ());
+      m_ptwf = alloc(this, System.type_info < ::core::window_draw > ());
       m_ptwf->twf_start();
       return true;
    }
@@ -1562,13 +1562,13 @@ namespace plane
 
       string strApplicationId;
 
-      if(strId == "app/ca2/bergedge")
+      if(strId == "app/core/bergedge")
       {
 
          strApplicationId = "bergedge";
 
       }
-      else if(strId == "app/ca2/system")
+      else if(strId == "app/core/system")
       {
 
          strApplicationId = "system";
@@ -1606,7 +1606,7 @@ namespace plane
 
 #endif
 
-      ::ca2::library library(NULL);
+      ::core::library library(NULL);
 
       string strLibrary = m_mapAppLibrary[pszAppId];
 
@@ -1636,7 +1636,7 @@ namespace plane
    }
 
 /*
-   bool system::set_main_init_data(::ca2::main_init_data * pdata)
+   bool system::set_main_init_data(::core::main_init_data * pdata)
    {
 
       if(pdata == NULL)
@@ -1980,7 +1980,7 @@ retry:
    }
 
 
-   bool system::add_library(::ca2::library * plibrary)
+   bool system::add_library(::core::library * plibrary)
    {
 
       m_libraryptra.add(plibrary);
@@ -2201,7 +2201,7 @@ retry:
    }*/
 
 
-   /*bool system::set_history(::ca2::history * phistory)
+   /*bool system::set_history(::core::history * phistory)
    {
 
       UNREFERENCED_PARAMETER(phistory);
@@ -2289,7 +2289,7 @@ retry:
       return true;
    }
 
-   bool system::set_main_init_data(::ca2::main_init_data * pdata)
+   bool system::set_main_init_data(::core::main_init_data * pdata)
    {
 
       if(pdata == NULL)

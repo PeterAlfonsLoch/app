@@ -1708,7 +1708,7 @@ inline void id::clear()
 
 
 
-namespace  ca2
+namespace  core
 {
 
    namespace str
@@ -1733,7 +1733,7 @@ namespace  ca2
 
    } // namespace str
 
-} // namespace ca2
+} // namespace core
 
 
 inline CLASS_DECL_c string operator + (const id & id, const char * psz)

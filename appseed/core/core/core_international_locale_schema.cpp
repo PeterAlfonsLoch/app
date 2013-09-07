@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -378,7 +378,7 @@ namespace ca2
                   }
                   else if(ch2 == 'a')
                   {
-                     // ca2
+                     // core
                      defer_add_locale(__id(en_ca), idSchema);
                      defer_add_locale(__id(en), idSchema);
                      defer_add_locale(__id(fr_ca), idSchema);
@@ -710,6 +710,6 @@ restart:
    }  // namespace international
 
 
-} // namespace ca2
+} // namespace core
 
 

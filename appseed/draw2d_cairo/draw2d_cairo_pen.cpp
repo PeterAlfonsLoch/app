@@ -107,7 +107,7 @@ namespace draw2d_cairo
       // IMPLEMENT_DYNAMIC(::draw2d::font, object)
       // IMPLEMENT_DYNAMIC(::draw2d::bitmap, object)
       // IMPLEMENT_DYNAMIC(::draw2d::palette, object)
-      // IMPLEMENT_DYNAMIC(::ca2::rgn, object)
+      // IMPLEMENT_DYNAMIC(::core::rgn, object)
 
       /////////////////////////////////////////////////////////////////////////////
       // Standard exception processing

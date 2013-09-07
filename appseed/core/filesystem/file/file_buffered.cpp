@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    buffered_file::buffered_file(sp(base_application) papp, ::file::binary_buffer_sp pfile, ::primitive::memory_size iBufferSize) :
@@ -80,7 +80,7 @@ namespace ca2
       }
       else
       {
-         throw invalid_argument_exception(get_app(), "::ca2::buffered_file::seek invalid seek option");
+         throw invalid_argument_exception(get_app(), "::core::buffered_file::seek invalid seek option");
       }
 
       if(uiNewPos >= uiBegBufPosition
@@ -218,4 +218,4 @@ namespace ca2
       m_pfile->set_length(dwNewLen);
    }
 
-} // namespace ca2
+} // namespace core

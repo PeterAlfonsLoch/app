@@ -343,7 +343,7 @@ public:
    sp(T) element()
    {
       if(m_etype == type_pvar && m_pvar != NULL)
-         return m_pvar->ca2 < T > ();
+         return m_pvar->core < T > ();
       if(m_etype != type_ca2)
          return NULL;
       return m_sp;
@@ -568,7 +568,7 @@ public:
 
 };
 
-namespace ca2
+namespace core
 {
 
 
@@ -587,7 +587,7 @@ namespace ca2
    } // namespace str
 
 
-} // namespace ca2
+} // namespace core
 
 
 inline string CLASS_DECL_c operator+ (const char * psz, const var & var)

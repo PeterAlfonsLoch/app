@@ -25,7 +25,7 @@ namespace file
      }
    public:
      dynamic_buffer(): buffer<T>() {};
-     dynamic_buffer(const dynamic_buffer &buffer): ::ca2::buffer<T>(buffer) {};
+     dynamic_buffer(const dynamic_buffer &buffer): ::core::buffer<T>(buffer) {};
      dynamic_buffer(size_t size): buffer<T>(size) {};
      dynamic_buffer& operator=(const dynamic_buffer &buffer)
      {

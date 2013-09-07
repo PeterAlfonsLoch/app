@@ -49,7 +49,7 @@ public:
    void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch);
 
 
-   //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::ca2::live_object * pliveobject = NULL);
+   //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::core::live_object * pliveobject = NULL);
 
 
    virtual bool DestroyWindow();
@@ -69,15 +69,15 @@ public:
 
 #endif
 
-   // as hosting ::ca2::window
-   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
-   // as virtual ::ca2::window
-   virtual void _002InstallMessageHandling(::ca2::message::dispatch * pinterface);
+   // as hosting ::core::window
+   virtual void install_message_handling(message::dispatch * pinterface);
+   // as virtual ::core::window
+   virtual void _002InstallMessageHandling(message::dispatch * pinterface);
 
 
    bool create_message_window();
 
-// Timer Functions
+// timer Functions
    virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,
       void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t));
    virtual bool KillTimer(uint_ptr nIDEvent);

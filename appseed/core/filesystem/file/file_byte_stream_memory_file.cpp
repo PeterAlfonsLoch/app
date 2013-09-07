@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace core
 {
 
    byte_stream_memory_file::byte_stream_memory_file(sp(base_application) papp, ::primitive::memory_size iSize) :
@@ -49,4 +49,4 @@ namespace ca2
       return ::::file::memory_buffer::seek(offset, seekOrigin);
    }
 
-} // namespace ca2
+} // namespace core

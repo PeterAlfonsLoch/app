@@ -231,7 +231,7 @@ __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnNewHook)
 }
 
 // This can be set to TRUE to override all __enable_memory_tracking calls,
-// allowing all allocations, even ca2 API internal allocations to be tracked.
+// allowing all allocations, even core API internal allocations to be tracked.
 bool gen_MemoryLeakOverride = FALSE;
 
 bool __enable_memory_leak_override(bool bEnable)

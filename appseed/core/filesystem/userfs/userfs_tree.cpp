@@ -31,7 +31,7 @@ namespace userfs
 #endif //DEBUG
 
 
-   void tree::install_message_handling(::ca2::message::dispatch * pinterface)
+   void tree::install_message_handling(message::dispatch * pinterface)
    {
       ::userfs::tree_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tree::_001OnCreate);
@@ -172,7 +172,7 @@ namespace userfs
 
    void tree::_001OnContextMenu(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(message::context_menu, pcontextmenu, pobj)
    //   int32_t iItem;
    //   HRESULT hr;
       point ptClient = pcontextmenu->GetPoint();
@@ -213,7 +213,7 @@ namespace userfs
 
             pPopup->TrackPopupMenu(
                point.x, point.y,
-               (sp(::ca2::window)) pframe);
+               (sp(::core::window)) pframe);
          }
       }
       else
@@ -226,7 +226,7 @@ namespace userfs
             sp(::user::frame_window) pframe = GetTopLevelFrame();
             pPopup->TrackPopupMenu(
                point.x, point.y,
-               (sp(::ca2::window)) pframe);
+               (sp(::core::window)) pframe);
          }
       }*/
    }
@@ -242,7 +242,7 @@ namespace userfs
 
    void tree::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj)
+      SCAST_PTR(message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == 1234567)
       {
          m_iAnimate += 2;

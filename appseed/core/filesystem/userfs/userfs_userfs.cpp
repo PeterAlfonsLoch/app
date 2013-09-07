@@ -39,7 +39,7 @@ namespace userfs
    }
 
 
-} // namespace ca2
+} // namespace core
 
 
 

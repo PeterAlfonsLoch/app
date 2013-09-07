@@ -21,7 +21,7 @@ category traceSocket("socket");
 //extern CLASS_DECL_ca2 fixed_alloc_array * g_pfixedallocaWstring;
 
 
-namespace ca2
+namespace core
 {
 
    namespace trace
@@ -33,8 +33,8 @@ namespace ca2
       /*   category::category( const char * pszCategoryName, UINT nStartingLevel ) throw() :
       m_dwCategory( 0 )
       {
-      m_dwCategory = ::ca2::CTrace::s_trace.RegisterCategory( pszCategoryName );
-      ::ca2::CTrace::s_trace.ChangeCategory( m_dwCategory, nStartingLevel, TRACESTATUS_INHERIT);
+      m_dwCategory = ::core::CTrace::s_trace.RegisterCategory( pszCategoryName );
+      ::core::CTrace::s_trace.ChangeCategory( m_dwCategory, nStartingLevel, TRACESTATUS_INHERIT);
       }*/
 
       void trace::TraceV(const char *pszFileName, int32_t nLine, uint_ptr dwCategory, UINT nLevel, const char * pszFormat, va_list args) const
@@ -50,7 +50,7 @@ namespace ca2
          category & category = ((trace *) this)->m_map[(uint32_t ) dwCategory];
 
          //if(ShouldTraceOutput(dwModule, dwCategory, nLevel, &pCategory, &pmodule))
-         if(category.m_estatus == ::ca2::trace::status_disabled || nLevel > category.m_uiLevel)
+         if(category.m_estatus == ::core::trace::status_disabled || nLevel > category.m_uiLevel)
             return;
          /*      if (nLen >= 0 && nLen < nCount)
          {
@@ -152,4 +152,4 @@ namespace ca2
 
    } // namespace trace
 
-}  // namespace ca2
+}  // namespace core

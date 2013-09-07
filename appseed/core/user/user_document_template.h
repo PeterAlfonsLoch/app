@@ -32,7 +32,7 @@ namespace user
 
       enum DocStringIndex
       {
-         windowTitle,        // default ::ca2::window title
+         windowTitle,        // default ::core::window title
          docName,            // ::fontopus::user visible name for default ::user::document_interface
          fileNewName,        // ::fontopus::user visible name for FileNew
          // for file based documents:
@@ -98,7 +98,7 @@ namespace user
       virtual void remove_document(sp(::user::document_interface) pDoc);   // must override
 
       virtual bool GetDocString(string & rString, enum DocStringIndex index) const; // get one of the info strings
-      //sp(::user::frame_window) CreateOleFrame(sp(::ca2::window) pParentWnd, sp(::user::document_interface) pDoc,
+      //sp(::user::frame_window) CreateOleFrame(sp(::core::window) pParentWnd, sp(::user::document_interface) pDoc,
       //   bool bCreateView);
 
       void update_all_views(sp(::user::view) pviewSender, LPARAM lhint, object * puh);

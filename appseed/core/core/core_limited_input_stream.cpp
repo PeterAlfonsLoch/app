@@ -3,7 +3,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace core
 {
 
    ::primitive::memory_size limited_input_stream::read(void *data, ::primitive::memory_size size)
@@ -55,4 +55,4 @@ namespace ca2
       return streamSpec;
    }
 
-} // namespace ca2
+} // namespace core

@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_ca2 os_history :
-   virtual public ::ca2::history
+   virtual public ::core::history
 {
 public:
 

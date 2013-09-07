@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   void step_slider::install_message_handling(::ca2::message::dispatch * pdispatch)
+   void step_slider::install_message_handling(message::dispatch * pdispatch)
    {
       ::user::interaction::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &step_slider::_001OnCreate);
@@ -34,13 +34,13 @@ namespace user
    void step_slider::_001OnCreate(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca2::message::create, pcreate, pobj);
+//      SCAST_PTR(message::create, pcreate, pobj);
 
    }
 
    void step_slider::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+      SCAST_PTR(message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 1)
       {
          if(m_bHover)
@@ -54,13 +54,13 @@ namespace user
 
    void step_slider::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      SCAST_PTR(message::mouse, pmouse, pobj);
       m_iLButtonDown = hit_test(pmouse->m_pt);
    }
 
    void step_slider::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      SCAST_PTR(message::mouse, pmouse, pobj);
       int32_t iLButtonUp = hit_test(pmouse->m_pt);
       int32_t iMin, iMax;
       m_pscalar->GetMinScalar(m_iScalar, iMin);
@@ -76,7 +76,7 @@ namespace user
    void step_slider::_001OnMouseMove(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+//      SCAST_PTR(message::mouse, pmouse, pobj);
       SetTimer(1, 200, NULL);
       m_bHover = true;
       UpdateHover();

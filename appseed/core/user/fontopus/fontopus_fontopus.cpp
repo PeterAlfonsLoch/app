@@ -221,7 +221,7 @@ namespace fontopus
       {
          if(m_puser == NULL)
          {
-            if(m_pthreadCreatingUser == ::ca2::get_thread())
+            if(m_pthreadCreatingUser == ::core::get_thread())
                return NULL;
             if(m_pthreadCreatingUser != NULL)
             {
@@ -233,7 +233,7 @@ namespace fontopus
                   return m_puser;
                return NULL;
             }
-            keeper < ::ca2::thread * > keepCreatingUser(&m_pthreadCreatingUser, ::ca2::get_thread(), NULL, true);
+            keeper < ::core::thread * > keepCreatingUser(&m_pthreadCreatingUser, ::core::get_thread(), NULL, true);
             user * puser = create_current_user();
             if(!puser->initialize())
             {

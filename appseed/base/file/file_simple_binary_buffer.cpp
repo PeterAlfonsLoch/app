@@ -397,7 +397,7 @@ namespace file
    {
       ASSERT_VALID(this);
 
-      //memset(&rStatus, 0, sizeof(::ca2::file_status));
+      //memset(&rStatus, 0, sizeof(::core::file_status));
 
       // copy file name from cached m_strFileName
       rStatus.m_strFullName = m_strFileName;
@@ -407,7 +407,7 @@ namespace file
          struct stat st;
          if(fstat(fileno(m_pfile), &st) == -1)
             return FALSE;
-         // get time ::ca2::seek_current file size
+         // get time ::core::seek_current file size
          /*FILETIME ftCreate, ftAccess, ftModify;
          if (!::GetFileTime((HANDLE)m_iFile, &ftCreate, &ftAccess, &ftModify))
             return FALSE;*/
@@ -423,16 +423,16 @@ namespace file
             rStatus.m_attribute = 0;
 /*         else
          {
-            DWORD dwAttribute = ::GetFileAttributesW(::ca2::international::utf8_to_unicode(m_strFileName));
+            DWORD dwAttribute = ::GetFileAttributesW(::core::international::utf8_to_unicode(m_strFileName));
 
-            // don't return an error for this because previous versions of ca2 API didn't
+            // don't return an error for this because previous versions of core API didn't
             if (dwAttribute == 0xFFFFFFFF)
                rStatus.m_attribute = 0;
             else
             {
                rStatus.m_attribute = (BYTE) dwAttribute;
 #ifdef DEBUG
-               // ca2 API BUG: m_attribute is only a BYTE wide
+               // core API BUG: m_attribute is only a BYTE wide
                if (dwAttribute & ~0xFF)
                   TRACE0("Warning: file::GetStatus() returns m_attribute without high-order flags.\n");
 #endif
@@ -468,7 +468,7 @@ namespace file
          rStatus.m_strFullName.Empty();
          return FALSE;
       }
-      ::ca2::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);*/
+      ::core::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);*/
 
       rStatus.m_strFullName = lpszFileName;
 

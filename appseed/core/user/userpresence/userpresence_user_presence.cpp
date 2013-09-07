@@ -57,12 +57,12 @@ namespace userpresence
 
       string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
-      straRequestingServer.add("api.ca2.cc");
-      straRequestingServer.add("eu-api.ca2.cc");
-      straRequestingServer.add("asia-api.ca2.cc");
+      straRequestingServer.add("api.core.cc");
+      straRequestingServer.add("eu-api.core.cc");
+      straRequestingServer.add("asia-api.core.cc");
       if(!straRequestingServer.contains_ci(strHost))
       {
-         strHost = "api.ca2.cc";
+         strHost = "api.core.cc";
       }
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";

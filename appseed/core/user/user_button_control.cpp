@@ -16,7 +16,7 @@ BaseButtonControl::~BaseButtonControl()
 {
 }
 
-void BaseButtonControl::install_message_handling(::ca2::message::dispatch * pdispatch)
+void BaseButtonControl::install_message_handling(message::dispatch * pdispatch)
 {
    button::install_message_handling(pdispatch);
 }
@@ -39,7 +39,7 @@ void BaseButtonControl::_001OnDraw(::draw2d::graphics * pdc)
    bool bItemHover;
    bool bSubItemHover;
 
-   ::user::draw_context * pdrawcontext = pdc->::ca2::simple_chain < ::user::draw_context >::get_last();
+   ::user::draw_context * pdrawcontext = pdc->::core::simple_chain < ::user::draw_context >::get_last();
 
    if(pdrawcontext != NULL)
    {

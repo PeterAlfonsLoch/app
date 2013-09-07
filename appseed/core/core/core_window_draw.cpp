@@ -1,13 +1,13 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    CLASS_DECL_ca2 bool window_draw::s_bRunning = false;
 
    window_draw::window_draw(sp(base_application) papp) :
       element(papp),
-      ::ca2::thread(papp),
+      ::core::thread(papp),
       m_eventFree(papp, TRUE, TRUE)
    {
       m_bProDevianMode                    = true;
@@ -63,7 +63,7 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace core
 
 
 

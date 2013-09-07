@@ -4,14 +4,14 @@
 #if defined(LINUX) || defined(ANDROID)
 
 
-namespace ca2
+namespace core
 {
 
 
     class file;
 
 
-} // namespace ca2
+} // namespace core
 
 
 

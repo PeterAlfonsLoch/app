@@ -123,7 +123,7 @@ public:
 
 
 class CLASS_DECL_ca2 FileSystemSizeServerThread :
-   virtual public ::ca2::thread
+   virtual public ::core::thread
 {
 public:
 
@@ -137,7 +137,7 @@ public:
 
 
 class CLASS_DECL_ca2 FileSystemSizeWnd :
-   public ::ca2::window_sp,
+   public ::core::window_sp,
    public signalizable
 {
 public:
@@ -170,7 +170,7 @@ public:
    void ClientStartServer();
    bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);
 
-   void install_message_handling(::ca2::message::dispatch * pinterface);
+   void install_message_handling(message::dispatch * pinterface);
 
    DECL_GEN_SIGNAL(_001OnCopyData)
    DECL_GEN_SIGNAL(_001OnTimer)

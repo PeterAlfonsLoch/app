@@ -23,9 +23,9 @@ namespace bergedge
 
       m_iDisplay        = -1;
       m_ppropform       = NULL;
-      m_dataid          = "ca2::bergedge::pane_view";
+      m_dataid          = "core::bergedge::pane_view";
 
-      get_data()->m_matchanyRestore.add(new ::ca2::match::prefix("app:"));
+      get_data()->m_matchanyRestore.add(new ::core::match::prefix("app:"));
 
    }
 
@@ -144,7 +144,7 @@ namespace bergedge
       {
    /*      sp(::user::interaction) pui = m_pformOptions->ve_display_bandwidth");
          check_interface * pcheck = dynamic_cast < check_interface * > (puie);
-         if(System.savings().save().is_signalized(::ca2::save_display_bandwidth))
+         if(System.savings().save().is_signalized(::core::save_display_bandwidth))
          {
             pcheck->_001SetCheck(check::checked, false);
          }
@@ -254,7 +254,7 @@ namespace bergedge
                System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
                if(::str::begins_eat(strApp, "application:"))
                {
-                  Application.file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\n" + strApp);
+                  Application.file().put_contents(System.dir().path(strDir, strApp + ".core"), "ca2prompt\n" + strApp);
                }
             }
             pdoc->FileManagerBrowse(strDir);
@@ -404,7 +404,7 @@ namespace bergedge
       set_cur_tab_by_id(m_pviewdataOld->m_id);
    }
 
-   void pane_view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void pane_view::install_message_handling(message::dispatch * pinterface)
    {
       ::userex::pane_tab_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);
@@ -485,11 +485,11 @@ namespace bergedge
          System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
          if(::str::begins_eat(strApp, "application:"))
          {
-            Application.file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\r\n"+ strApp);
+            Application.file().put_contents(System.dir().path(strDir, strApp + ".core"), "ca2prompt\r\n"+ strApp);
          }
       }
 
-      //Application.file().put_contents(System.dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
+      //Application.file().put_contents(System.dir().path(strDir, "veriwell Musical Player.core"), "ca2prompt\r\nmplite");
 /*      stringa straPath;
       stringa straRelative;
       straPath.remove_all();
@@ -608,7 +608,7 @@ namespace bergedge
    void pane_view::_001OnRButtonUp(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+//      SCAST_PTR(message::mouse, pmouse, pobj);
       /*if(get_view_id() == ::bergedge::PaneViewWinActionArea)
       {
          ::user::menu menu(get_app());
@@ -677,9 +677,9 @@ namespace bergedge
       control.m_id = "save_display_bandwidth";
       control.set_ddx_dbflags(
             "",
-            "ca2",
+            "core",
             "savings",
-            ::ca2::resource_display_bandwidth);
+            ::core::resource_display_bandwidth);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 
@@ -688,9 +688,9 @@ namespace bergedge
       control.m_id = "save_processing";
       control.set_ddx_dbflags(
             "",
-            "ca2",
+            "core",
             "savings",
-            ::ca2::resource_processing);
+            ::core::resource_processing);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 
@@ -699,9 +699,9 @@ namespace bergedge
       control.m_id = "save_memory";
       control.set_ddx_dbflags(
             "",
-            "ca2",
+            "core",
             "savings",
-            ::ca2::resource_memory);
+            ::core::resource_memory);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 
@@ -710,7 +710,7 @@ namespace bergedge
       control.m_id = "enable_wallpaper";
       control.set_ddx_dbflags(
             "",
-            "ca2",
+            "core",
             "bergedge",
             0);
    //   control.add_function(user::control::function_static);

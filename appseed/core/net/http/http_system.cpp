@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -101,12 +101,12 @@ namespace ca2
 
          string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
          stringa straRequestingServer;
-         straRequestingServer.add("account.ca2.cc");
-         straRequestingServer.add("eu-account.ca2.cc");
-         straRequestingServer.add("asia-account.ca2.cc");
+         straRequestingServer.add("account.core.cc");
+         straRequestingServer.add("eu-account.core.cc");
+         straRequestingServer.add("asia-account.core.cc");
          if(!straRequestingServer.contains_ci(strHost))
          {
-            strHost = "account.ca2.cc";
+            strHost = "account.core.cc";
          }
 
          straRequestingServer.remove(strHost);
@@ -202,12 +202,12 @@ namespace ca2
 
 
 
-      ::ca2::http::system::proxy * system::get_proxy(const char * pszUrl)
+      ::core::http::system::proxy * system::get_proxy(const char * pszUrl)
       {
 
          single_lock sl(&m_mutexProxy, true);
 
-         string_map < ::ca2::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
+         string_map < ::core::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
 
          if(ppair == NULL || (::get_tick_count() - ppair->m_element2->m_dwLastChecked) > (84 * 1000))
          {
@@ -217,7 +217,7 @@ namespace ca2
                m_mapPac.remove_key(pszUrl);
             }
 
-            class ::ca2::http::system::proxy * pproxy = new class ::ca2::http::system::proxy(get_app());
+            class ::core::http::system::proxy * pproxy = new class ::core::http::system::proxy(get_app());
 
             pproxy->m_dwLastChecked = get_tick_count();
 
@@ -311,7 +311,7 @@ namespace ca2
 
 #else
 
-         ::ca2::http::system::proxy * pproxy = get_proxy(pszUrl);
+         ::core::http::system::proxy * pproxy = get_proxy(pszUrl);
 
          if(pproxy == NULL)
             return;
@@ -332,7 +332,7 @@ namespace ca2
       }
 
 
-      void system::config_proxy(const char * pszUrl, ::ca2::http::system::proxy * pproxy)
+      void system::config_proxy(const char * pszUrl, ::core::http::system::proxy * pproxy)
       {
 
          xml::document doc(get_app());
@@ -507,7 +507,7 @@ namespace ca2
 
                   domainFontopus.create(strFontopusServer);
 
-                  if(domainFontopus.m_strRadix == "ca2")
+                  if(domainFontopus.m_strRadix == "core")
                   {
                      puser = &AppUser(papp);
                      if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
@@ -567,7 +567,7 @@ namespace ca2
             }*/
             delete psession;
             uint32_t dwTimeProfile2 = get_tick_count();
-            TRACE0("Not Opened/Connected Result Total time ::ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+            TRACE0("Not Opened/Connected Result Total time ::core::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
             return NULL;
          }
          uint32_t dw2 = ::get_tick_count();
@@ -729,7 +729,7 @@ retry:
 
                   domainFontopus.create(strFontopusServer);
 
-                  if(domainFontopus.m_strRadix == "ca2")
+                  if(domainFontopus.m_strRadix == "core")
                   {
                      puser = &AppUser(papp);
                      if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
@@ -812,7 +812,7 @@ retry:
             handler.add(psession);
 
             int32_t iIteration = 0;
-            ::ca2::live_signal keeplive;
+            ::core::live_signal keeplive;
 
             if(papp != NULL)
             {
@@ -835,11 +835,11 @@ retry:
                {
                   break;
                }
-               if(set["file_out"].element < ::ca2::timeout_file >() != NULL)
+               if(set["file_out"].element < ::core::timeout_file >() != NULL)
                {
-                  if(psession->m_iFinalSize != -1 && set["file_out"].element < ::ca2::timeout_file >()->m_uiExpectedSize != psession->m_iFinalSize)
+                  if(psession->m_iFinalSize != -1 && set["file_out"].element < ::core::timeout_file >()->m_uiExpectedSize != psession->m_iFinalSize)
                   {
-                     set["file_out"].element < ::ca2::timeout_file >()->m_uiExpectedSize = psession->m_iFinalSize;
+                     set["file_out"].element < ::core::timeout_file >()->m_uiExpectedSize = psession->m_iFinalSize;
                   }
                }
                dw2 = ::get_tick_count();
@@ -847,11 +847,11 @@ retry:
                iIteration++;
             }
 
-            if(set["file_out"].element < ::ca2::timeout_file >() != NULL)
+            if(set["file_out"].element < ::core::timeout_file >() != NULL)
             {
-               if(psession->m_iFinalSize != -1 && set["file_out"].element < ::ca2::timeout_file >()->m_uiExpectedSize != psession->m_iFinalSize)
+               if(psession->m_iFinalSize != -1 && set["file_out"].element < ::core::timeout_file >()->m_uiExpectedSize != psession->m_iFinalSize)
                {
-                  set["file_out"].element < ::ca2::timeout_file >()->m_uiExpectedSize = psession->m_iFinalSize;
+                  set["file_out"].element < ::core::timeout_file >()->m_uiExpectedSize = psession->m_iFinalSize;
                }
             }
 
@@ -915,7 +915,7 @@ retry:
                   if(::str::begins_ci(strCa2Realm, "not licensed: "))
                   {
                      uint32_t dwTimeProfile2 = get_tick_count();
-                     TRACE0("Not Licensed Result Total time ::ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+                     TRACE0("Not Licensed Result Total time ::core::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
                      string strLocation = psession->outheader("Location");
                      delete psession;
                      throw not_licensed(get_app(), strCa2Realm, strLocation);
@@ -929,7 +929,7 @@ retry:
             }
 
             uint32_t dwTimeProfile2 = get_tick_count();
-            TRACE0("Total time ::ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+            TRACE0("Total time ::core::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
 
          }
          catch(...)
@@ -1141,7 +1141,7 @@ retry:
 
                   domainFontopus.create(strFontopusServer);
 
-                  if(domainFontopus.m_strRadix == "ca2")
+                  if(domainFontopus.m_strRadix == "core")
                   {
                      puser = &AppUser(papp);
                      if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
@@ -1262,7 +1262,7 @@ retry:
             }
             delete psocket;
             uint32_t dwTimeProfile2 = get_tick_count();
-            TRACE0("Not Opened/Connected Result Total time ::ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+            TRACE0("Not Opened/Connected Result Total time ::core::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
             return NULL;
          }
          uint32_t dw2 = ::get_tick_count();
@@ -1270,7 +1270,7 @@ retry:
          handler.add(psocket);
 
          int32_t iIteration = 0;
-         ::ca2::live_signal keeplive;
+         ::core::live_signal keeplive;
 
          if((bool)set["noloop"])
             return psocket;
@@ -1290,11 +1290,11 @@ retry:
             {
                break;
             }
-            if(set["file_out"].element < ::ca2::timeout_file >() != NULL)
+            if(set["file_out"].element < ::core::timeout_file >() != NULL)
             {
-               if(psocket->m_iFinalSize != ((size_t) -1) && set["file_out"].element < ::ca2::timeout_file >()->m_uiExpectedSize != psocket->m_iFinalSize)
+               if(psocket->m_iFinalSize != ((size_t) -1) && set["file_out"].element < ::core::timeout_file >()->m_uiExpectedSize != psocket->m_iFinalSize)
                {
-                  set["file_out"].element < ::ca2::timeout_file >()->m_uiExpectedSize = psocket->m_iFinalSize;
+                  set["file_out"].element < ::core::timeout_file >()->m_uiExpectedSize = psocket->m_iFinalSize;
                }
             }
             dw2 = ::get_tick_count();
@@ -1345,7 +1345,7 @@ retry:
                if(::str::begins_ci(strCa2Realm, "not licensed: "))
                {
                   uint32_t dwTimeProfile2 = get_tick_count();
-                  TRACE0("Not Licensed Result Total time ::ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+                  TRACE0("Not Licensed Result Total time ::core::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
                   string strLocation = psocket->outheader("Location");
                   delete psocket;
                   throw not_licensed(get_app(), strCa2Realm, strLocation);
@@ -1359,7 +1359,7 @@ retry:
          }
 
          uint32_t dwTimeProfile2 = get_tick_count();
-         TRACE0("Total time ::ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+         TRACE0("Total time ::core::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
 
          return psocket;
 
@@ -1751,5 +1751,5 @@ retry:
    } // namespace system
 
 
-} // namespace ca2
+} // namespace core
 

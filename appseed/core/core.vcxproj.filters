@@ -477,6 +477,9 @@
     <Filter Include="Header Files\core\data\NewFilter1">
       <UniqueIdentifier>{c9878c48-411e-4ebe-8c26-650832e1dfa4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\filesystem\file\NewFilter2">
+      <UniqueIdentifier>{3dc15f7d-8433-4629-a500-96bcfffa0935}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -1171,9 +1174,6 @@
     </ClInclude>
     <ClInclude Include="user\user1.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="database\database_database.h">
       <Filter>Header Files\database</Filter>
@@ -3254,377 +3254,305 @@
     <ClInclude Include="core\data\data_simple_tree_item_data.h">
       <Filter>Header Files\core\data</Filter>
     </ClInclude>
+    <ClInclude Include="core\core.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_allocator.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_application.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_back_insert_iterator.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_base64.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_bstr.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_command.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_command_target.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_composite.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_compress.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_constraint.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_contact_list.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_copydesk.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_cregexp.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_cregexp_util.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_crypt.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_datetime.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_debug.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_email.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_enum.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_flags.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_folder_watch.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_fs_interface.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_geometry.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_go_thread.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_history.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_http.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_insert_iterator.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_international_locale_schema.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_ip_enum.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_iterator.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_job.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_keep_alive.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_keeper.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_less.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_library.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_listener.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_live_object.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_live_signal.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_log.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_logic.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_machine_event_central.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_main.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_main_init_data.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_map_to_smart_pointer.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_match.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_math.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_math_rng.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_message.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
     <ClInclude Include="core\core_message_window.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_microtimer.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_muldiv32.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_oauth.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_os.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_os_history.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_os_implementation.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_parse.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_patch.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_pipe.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_port_forward.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_print_job.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_process.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_process_data.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_process_section.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_profiler.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_progress_interface.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_raw_pointer.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_reference.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_resource.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_savings.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_se_translator.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_se_translator.want_to_remove.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_service.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_session.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_signal_thread.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_simple_thread.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_smart_pointer_query.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_sockets_address.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_std_pair.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_stra.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_strn.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_system.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_thread.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_timer.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_timer_callback.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_timer_listener.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_timer_window.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\_ca2_2.h">
+    <ClInclude Include="core\core_trace.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\aaa_want_to_remove_ca2_file_manager_interface.h">
+    <ClInclude Include="core\core_twit.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\aaa_want_to_remove_ca2_raw_pointer.h">
+    <ClInclude Include="core\core_types.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\aaa_want_to_remove_ca2_scoped_ptr.h">
+    <ClInclude Include="core\core_util.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\ca2.h">
+    <ClInclude Include="core\core_util1.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\ca2_0.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_1.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_allocate.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_allocator.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_application.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_application_bias.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_back_insert_iterator.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_base.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_base64.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_base_enum.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_bit.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_bstr.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_command.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_command_target.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_command_thread.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_composite.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_compress.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_constraint.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_contact_list.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_copydesk.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_create_context.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_cregexp.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_cregexp_util.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_crypt.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_datetime.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_debug.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_definition.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_dir_application.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_dir_system.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_email.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_enum.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_file_application.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_file_set.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_file_system.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_flags.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_folder_watch.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_fs_interface.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_geometry.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_go_thread.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_history.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_http.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_http_application.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_http_get_socket.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_http_system.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_insert_iterator.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_international_locale_schema.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_ip_enum.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_iterator.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_job.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_keep_alive.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_keeper.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_less.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_library.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_listener.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_live_object.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_live_signal.h">
-      <Filter>Header Files\core</Filter>
+    <ClInclude Include="..\filesystem\file\file_transfer_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="core\ca2_log.h">
+    <ClInclude Include="core\zzz_want_to_remove_core_0.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\ca2_logic.h">
+    <ClInclude Include="core\zzz_want_to_remove_core_.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\ca2_machine_event_central.h">
+    <ClInclude Include="core\zzz_want_to_remove_core_1.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\ca2_main.h">
+    <ClInclude Include="core\zzz_want_to_remove_core_2.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\ca2_main_init_data.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_map_to_smart_pointer.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_match.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_math.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_math_rng.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_message.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_microtimer.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_muldiv32.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_oauth.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_object.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_os.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_os_history.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_os_implementation.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_parse.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_patch.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_pipe.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_port_forward.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_print_job.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_process.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_process_data.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_process_section.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_profiler.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_progress_interface.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_raw_pointer.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_reference.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_resource.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_savings.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_se_translator.h">
-      <Filter>Header Files\core</Filter>
+    <ClInclude Include="filesystem\file\file_dir_system.h">
+      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="core\ca2_se_translator.want_to_remove.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_section_container.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_service.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_session.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_signal_thread.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_simple_thread.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_simple_tree_data.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_simple_tree_item_data.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_smart_pointer_query.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_sockets_address.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_std_pair.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_stra.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_strn.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_system.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_thread.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_timer.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_timer_callback.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_timer_listener.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_trace.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_transfer_file.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_tree.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_tree_data.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_tree_item.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_tree_item_data.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_twit.h">
-      <Filter>Header Files\core</Filter>
+    <ClInclude Include="filesystem\file\file_dir_application.h">
+      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="core\ca2_types.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_user.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_util.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ca2_util1.h">
-      <Filter>Header Files\core</Filter>
+    <ClInclude Include="net\http\http_http.h">
+      <Filter>Header Files\net\http</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5908,418 +5836,331 @@
     <ClCompile Include="filesystem\file\file_system.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2.cpp">
+    <ClCompile Include="core\core.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_allocation_mid_big.cpp">
+    <ClCompile Include="core\core_allocation_mid_big.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_allocation_system_heap.cpp">
+    <ClCompile Include="core\core_allocation_system_heap.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_application.cpp">
+    <ClCompile Include="core\core_application.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_assert.cpp">
+    <ClCompile Include="core\core_assert.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_base64.cpp">
+    <ClCompile Include="core\core_base_enum_static_debug.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_base_enum_static_debug.cpp">
+    <ClCompile Include="core\core_base64.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_bstr.cpp">
+    <ClCompile Include="core\core_bstr.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_buffered_file.cpp">
+    <ClCompile Include="core\core_byte_serializable.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_byte_serializable.cpp">
+    <ClCompile Include="core\core_checked.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_byte_stream_memory_file.cpp">
+    <ClCompile Include="core\core_circular_buffer.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_ch.cpp">
+    <ClCompile Include="core\core_cmdtarg.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_ch_class.cpp">
+    <ClCompile Include="core\core_command.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_checked.cpp">
+    <ClCompile Include="core\core_command_line.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_circular_buffer.cpp">
+    <ClCompile Include="core\core_command_target.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_clustered_input_stream.cpp">
+    <ClCompile Include="core\core_composite.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_cmdtarg.cpp">
+    <ClCompile Include="core\core_compress.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_command.cpp">
+    <ClCompile Include="core\core_constraint.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_command_line.cpp">
+    <ClCompile Include="core\core_copydesk.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_command_target.cpp">
+    <ClCompile Include="core\core_cregexp.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_composite.cpp">
+    <ClCompile Include="core\core_cregexp_util.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_compress.cpp">
+    <ClCompile Include="core\core_crypt.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_constraint.cpp">
+    <ClCompile Include="core\core_datetime.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_copydesk.cpp">
+    <ClCompile Include="core\core_Debug.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_cregexp.cpp">
+    <ClCompile Include="core\core_dir_application.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_cregexp_util.cpp">
+    <ClCompile Include="core\core_dir_system.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_crypt.cpp">
+    <ClCompile Include="core\core_edit.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_data.cpp">
+    <ClCompile Include="core\core_edit_file.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_data_container.cpp">
+    <ClCompile Include="core\core_email.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_data_listener.cpp">
+    <ClCompile Include="core\core_factory.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_datetime.cpp">
+    <ClCompile Include="core\core_flags.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_Debug.cpp">
+    <ClCompile Include="core\core_folder_watch.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_dir_application.cpp">
+    <ClCompile Include="core\core_fs_interface.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_dir_system.cpp">
+    <ClCompile Include="core\core_geometry.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_dynamic_buffered_writer.cpp">
+    <ClCompile Include="core\core_go_thread.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_edit.cpp">
+    <ClCompile Include="core\core_history.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_edit_file.cpp">
+    <ClCompile Include="core\core_http.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_email.cpp">
+    <ClCompile Include="core\core_in_buffer.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_factory.cpp">
+    <ClCompile Include="core\core_international_locale_schema.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_file_application.cpp">
+    <ClCompile Include="core\core_io_temp_buffer.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_file_set.cpp">
+    <ClCompile Include="core\core_ip_enum.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_file_sssociation.cpp">
+    <ClCompile Include="core\core_istring.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_file_stream.cpp">
+    <ClCompile Include="core\core_job.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_file_system.cpp">
+    <ClCompile Include="core\core_keeper.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_flags.cpp">
+    <ClCompile Include="core\core_library.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_folder_watch.cpp">
+    <ClCompile Include="core\core_limited_input_stream.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_fs_interface.cpp">
+    <ClCompile Include="core\core_limited_reader.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_geometry.cpp">
+    <ClCompile Include="core\core_limited_writer.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_go_thread.cpp">
+    <ClCompile Include="core\core_live_object.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_history.cpp">
+    <ClCompile Include="core\core_live_signal.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_http.cpp">
+    <ClCompile Include="core\core_locked_in_stream.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_http_application.cpp">
+    <ClCompile Include="core\core_log.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_http_get_socket.cpp">
+    <ClCompile Include="core\core_logic.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_http_system.cpp">
+    <ClCompile Include="core\core_machine_event_central.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_in_buffer.cpp">
+    <ClCompile Include="core\core_match.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_interlocked_long.cpp">
+    <ClCompile Include="core\core_math.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_interlocked_long_pulse.cpp">
+    <ClCompile Include="core\core_math_rng.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_international_locale_schema.cpp">
+    <ClCompile Include="core\core_memory.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_io_temp_buffer.cpp">
+    <ClCompile Include="core\core_message.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_ip_enum.cpp">
+    <ClCompile Include="core\core_message_window.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_istring.cpp">
+    <ClCompile Include="core\core_microtimer.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_job.cpp">
+    <ClCompile Include="core\core_nessie.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_keeper.cpp">
+    <ClCompile Include="core\core_oauth.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_library.cpp">
+    <ClCompile Include="core\core_os.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_limited_input_stream.cpp">
+    <ClCompile Include="core\core_os_history.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_limited_reader.cpp">
+    <ClCompile Include="core\core_output_string_stream.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_limited_writer.cpp">
+    <ClCompile Include="core\core_parse.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_live_object.cpp">
+    <ClCompile Include="core\core_patch.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_live_signal.cpp">
+    <ClCompile Include="core\core_pipe.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_locked_in_stream.cpp">
+    <ClCompile Include="core\core_pointer_holder.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_log.cpp">
+    <ClCompile Include="core\core_pointer_interface.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_logic.cpp">
+    <ClCompile Include="core\core_pointer_keeper.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_machine_event_central.cpp">
+    <ClCompile Include="core\core_pointer_listener.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_match.cpp">
+    <ClCompile Include="core\core_pointer_manager.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_math.cpp">
+    <ClCompile Include="core\core_port_forward.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_math_rng.cpp">
+    <ClCompile Include="core\core_print_job.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_memory.cpp">
+    <ClCompile Include="core\core_process.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_message.cpp">
+    <ClCompile Include="core\core_process_section.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_message_window.cpp">
+    <ClCompile Include="core\core_profiler.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_microtimer.cpp">
+    <ClCompile Include="core\core_resource.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_nessie.cpp">
+    <ClCompile Include="core\core_savings.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_oauth.cpp">
+    <ClCompile Include="core\core_section.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_object.cpp">
+    <ClCompile Include="core\core_service.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_os.cpp">
+    <ClCompile Include="core\core_session.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_os_history.cpp">
+    <ClCompile Include="core\core_signal_thread.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_output_string_stream.cpp">
+    <ClCompile Include="core\core_simple_thread.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_parse.cpp">
+    <ClCompile Include="core\core_size_count_writer.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_patch.cpp">
+    <ClCompile Include="core\core_smart_pointer.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_pipe.cpp">
+    <ClCompile Include="core\core_str.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_plain_text_serializable.cpp">
+    <ClCompile Include="core\core_str_format.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_plain_text_stream.cpp">
+    <ClCompile Include="core\core_str_stream.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_pointer_holder.cpp">
+    <ClCompile Include="core\core_stream_binder.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_pointer_interface.cpp">
+    <ClCompile Include="core\core_stream2.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_pointer_keeper.cpp">
+    <ClCompile Include="core\core_strn.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_pointer_listener.cpp">
+    <ClCompile Include="core\core_system.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_pointer_manager.cpp">
+    <ClCompile Include="core\core_text_file.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_port_forward.cpp">
+    <ClCompile Include="core\core_thread.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_print_job.cpp">
+    <ClCompile Include="core\core_timeout_file.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_process.cpp">
+    <ClCompile Include="core\core_Timer.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_process_section.cpp">
+    <ClCompile Include="core\core_TimerCallback.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_profiler.cpp">
+    <ClCompile Include="core\core_TimerListener.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_resource.cpp">
+    <ClCompile Include="core\core_TimerWnd.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_savings.cpp">
+    <ClCompile Include="core\core_trace.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_section.cpp">
+    <ClCompile Include="core\core_transfer_file.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_section_container.cpp">
+    <ClCompile Include="core\core_twit.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_service.cpp">
+    <ClCompile Include="core\core_url_domain.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_session.cpp">
+    <ClCompile Include="core\core_wait_cursor.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_signal_thread.cpp">
+    <ClCompile Include="core\core_window.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\ca2_simple_thread.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_simple_tree_data.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_simple_tree_item_data.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_size_count_writer.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_smart_pointer.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_str.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_str_format.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_str_stream.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_stream2.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_stream_binder.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_strn.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_system.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_text_file.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_thread.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_timeout_file.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_Timer.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_TimerCallback.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_TimerListener.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_TimerWnd.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_trace.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_transfer_file.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_tree.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_tree_data.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_tree_item.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_tree_item_data.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_twit.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_url_domain.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_wait_cursor.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_window.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ca2_window_draw.cpp">
+    <ClCompile Include="core\core_window_draw.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -6336,8 +6177,13 @@
     <None Include="core.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="core\ca2.inl">
+    <None Include="core\core.inl">
       <Filter>Header Files\core</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="core\core_str2.h.txt">
+      <Filter>Header Files\core</Filter>
+    </Text>
   </ItemGroup>
 </Project>

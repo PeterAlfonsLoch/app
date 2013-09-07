@@ -64,7 +64,7 @@ namespace user
       DOCUMENT * get_typed_document();
 
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(message::dispatch * pinterface);
 
       virtual bool IsSelected(const object* pDocItem) const; // support for OLE
 
@@ -143,7 +143,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnCreate)
          DECL_GEN_SIGNAL(_001OnDestroy)
          void OnPaint();
-      //int32_t OnMouseActivate(sp(::ca2::window) pDesktopWnd, UINT nHitTest, UINT message);
+      //int32_t OnMouseActivate(sp(::core::window) pDesktopWnd, UINT nHitTest, UINT message);
       // commands
       void OnUpdateSplitCmd(cmd_ui* pCmdUI);
       bool OnSplitCmd(UINT nID);
@@ -155,8 +155,8 @@ namespace user
       void OnFilePrintPreview();
 
       // TODO: could return a kind of - also TODO - JOB object in case of assynchronous call
-      virtual void collaborate(::ca2::job * pjob);
-      virtual int32_t  get_total_page_count(::ca2::job * pjob);
+      virtual void collaborate(::core::job * pjob);
+      virtual int32_t  get_total_page_count(::core::job * pjob);
 
       DECL_GEN_SIGNAL(_001OnView)
          DECL_GEN_SIGNAL(_001OnLButtonDown)
@@ -222,7 +222,7 @@ namespace user
 //         DECL_GEN_SIGNAL(_001OnLButtonDown)
          DECL_GEN_SIGNAL(_001OnMButtonDown)
 
-//         virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+//         virtual void install_message_handling(message::dispatch * pinterface);
    };
 
    class view_update_hint :

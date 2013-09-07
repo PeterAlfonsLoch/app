@@ -19,7 +19,7 @@ public:
    using ::user::list_header::create;
    virtual bool create(UINT nStyle, LPCRECT lpcrect, sp(::user::interaction) pwndParent, UINT nID);
 
-   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+   virtual void install_message_handling(message::dispatch * pinterface);
 
 
 

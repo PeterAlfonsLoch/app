@@ -4,7 +4,7 @@
 #ifndef METROWIN
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -19,7 +19,7 @@ namespace ca2
       public:
 
 
-         ::ca2::process           m_process;
+         ::core::process           m_process;
          string                  m_strRead;
          manual_reset_event      m_evReady;
 
@@ -60,7 +60,7 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace core
 
 
 #endif

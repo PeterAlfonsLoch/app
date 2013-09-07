@@ -10,7 +10,7 @@ class hthread;
 * \file		src/lib/pal/linux/thread_linux.hpp
 */
 
-namespace ca2
+namespace core
 {
 
 
@@ -39,13 +39,13 @@ namespace ca2
 	CLASS_DECL_c int32_t thread_priority();
 
 
-} // namespace ca2
+} // namespace core
 
 
 inline int32_t get_scheduling_priority_none()
 {
 
-      return ::ca2::scheduling_priority_none;
+      return ::core::scheduling_priority_none;
 
 }
 
@@ -53,7 +53,7 @@ inline int32_t get_scheduling_priority_none()
 inline int32_t get_scheduling_priority_normal()
 {
 
-      return ::ca2::scheduling_priority_normal;
+      return ::core::scheduling_priority_normal;
 
 }
 

@@ -11,7 +11,7 @@ public:
    simple_tree_view(sp(base_application) papp);   
    virtual ~simple_tree_view();
 
-   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+   virtual void install_message_handling(message::dispatch * pinterface);
 
 
    DECL_GEN_SIGNAL(_001OnCreate)

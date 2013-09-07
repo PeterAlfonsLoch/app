@@ -6,7 +6,7 @@ namespace user
 
 
    document_interface::document_interface() :
-      ::ca2::data_container_base(NULL),
+      ::core::data_container_base(NULL),
       m_mutex(NULL)
    {
       m_pdocumentemplate      = NULL;
@@ -25,7 +25,7 @@ namespace user
       // do not call delete_contents here !
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: destroying an unsaved document_interface.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: destroying an unsaved document_interface.\n");
 #endif
 
       // there should be no views left!
@@ -230,17 +230,17 @@ namespace user
       //if ( lstrlen(lpszPathName) >= _MAX_PATH )
       //{
       //   ASSERT(FALSE);
-      // ca2 API requires paths with length < _MAX_PATH
+      // core API requires paths with length < _MAX_PATH
       // No other way to handle the error from a void function
-      //   ::ca2::ThrowFileException(::file::exception::badPath);
+      //   ::core::ThrowFileException(::file::exception::badPath);
       //}
 
-      //   if( ::ca2::FullPath(szFullPath, lpszPathName) == FALSE )
+      //   if( ::core::FullPath(szFullPath, lpszPathName) == FALSE )
       //   {
       //      ASSERT(FALSE);
-      // ca2 API requires paths with length < _MAX_PATH
+      // core API requires paths with length < _MAX_PATH
       // No other way to handle the error from a void function
-      //      ::ca2::ThrowFileException(::file::exception::badPath);
+      //      ::core::ThrowFileException(::file::exception::badPath);
       //   }
 
       // store the path fully qualified
@@ -305,7 +305,7 @@ namespace user
       if(!do_save(var(var::type_empty)))
       {
 
-         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: File save-as failed.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: File save-as failed.\n");
 
       }
 
@@ -323,7 +323,7 @@ namespace user
          if(!do_save(var(var::type_empty)))
          {
 
-            TRACE(::ca2::trace::category_AppMsg, 0, "Warning: File save with new name failed.\n");
+            TRACE(::core::trace::category_AppMsg, 0, "Warning: File save with new name failed.\n");
 
             return FALSE;
 
@@ -336,7 +336,7 @@ namespace user
          if(!do_save(m_strPathName))
          {
 
-            TRACE(::ca2::trace::category_AppMsg, 0, "Warning: File save failed.\n");
+            TRACE(::core::trace::category_AppMsg, 0, "Warning: File save failed.\n");
 
             return FALSE;
 
@@ -402,7 +402,7 @@ namespace user
             }
             catch(::exception::base * pe)
             {
-               TRACE(::ca2::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
+               TRACE(::core::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
                pe->Delete();
             }
 
@@ -508,7 +508,7 @@ namespace user
             {
                ::file::exception * pfe = dynamic_cast < ::file::exception * > (e);
                // throw not_implemented(get_app());
-               TRACE(::ca2::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
+               TRACE(::core::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
                   pfe->m_lOsError);
 
 
@@ -517,7 +517,7 @@ namespace user
 
                if (!pfe->get_error_message(prompt))
                {
-                  /*               switch (((::ca2::file_exception_sp*)e)->m_cause)
+                  /*               switch (((::core::file_exception_sp*)e)->m_cause)
                   {
                   case ::file::exception::fileNotFound:
                   case ::file::exception::badPath:
@@ -552,7 +552,7 @@ namespace user
             string strTitle = System.file().title_(lpszPathName);
             //throw not_implemented(get_app());
             /*
-            ::ca2::FormatString1(prompt, nIDP, strTitle);*/
+            ::core::FormatString1(prompt, nIDP, strTitle);*/
          }
 
          //System.simple_message_box(prompt, MB_ICONEXCLAMATION, nHelpContext);
@@ -571,7 +571,7 @@ namespace user
    {
 #ifdef DEBUG
       if(is_modified())
-         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: on_new_document replaces an unsaved document_interface.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: on_new_document replaces an unsaved document_interface.\n");
 #endif
 
       delete_contents();
@@ -585,10 +585,10 @@ namespace user
    {
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
 #endif
 
-      ::ca2::byte_stream spfile;
+      ::core::byte_stream spfile;
 
       try
       {
@@ -642,7 +642,7 @@ namespace user
    bool document_interface::on_save_document(var varFile)
    {
 
-      ::ca2::byte_stream spfile;
+      ::core::byte_stream spfile;
 
       try
       {

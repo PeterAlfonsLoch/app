@@ -54,7 +54,7 @@ namespace sockets
             {
                if (m_header_line.get_length())
                {
-                  ::ca2::parse pa(m_header_line, ":");
+                  ::core::parse pa(m_header_line, ":");
                   string key = pa.getword();
                   key.make_lower();
                   string value = pa.getrest();
@@ -72,7 +72,7 @@ namespace sockets
             {
                if (m_header_line.get_length())
                {
-                  ::ca2::parse pa(m_header_line, ":");
+                  ::core::parse pa(m_header_line, ":");
                   string key = pa.getword();
                   key.make_lower();
                   string value = pa.getrest();
@@ -101,7 +101,7 @@ namespace sockets
          }
          return;
       }
-      ::ca2::parse pa(line);
+      ::core::parse pa(line);
       string cmd = pa.getword();
       cmd.make_upper();
       if (cmd == "EHLO")
@@ -138,7 +138,7 @@ namespace sockets
       else
       if (cmd == "MAIL") // mail from:
       {
-         ::ca2::parse pa(line, ":");
+         ::core::parse pa(line, ":");
          pa.getword(); // 'mail'
          pa.getword(); // 'from'
          string email = pa.getrest();
@@ -169,7 +169,7 @@ namespace sockets
       else
       if (cmd == "RCPT") // rcpt to:
       {
-         ::ca2::parse pa(line, ":");
+         ::core::parse pa(line, ":");
          pa.getword(); // 'rcpt'
          pa.getword(); // 'to'
          string email = pa.getrest();

@@ -16,7 +16,7 @@ public:
    FileManagerTabView(sp(base_application) papp);
 
    virtual void on_create_view(::user::view_creator_data * pcreatordata);
-   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+   virtual void install_message_handling(message::dispatch * pinterface);
    void FileManagerBrowse(const char * lpcwstr);
 
 

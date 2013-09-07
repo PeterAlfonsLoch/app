@@ -31,6 +31,6 @@ namespace xml
    };
 
 
-} // namespace ca2
+} // namespace core
 
 

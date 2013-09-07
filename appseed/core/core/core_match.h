@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
    
 
@@ -142,5 +142,5 @@ namespace ca2
    } // namespace match
 
 
-} // namespace ca2
+} // namespace core
 

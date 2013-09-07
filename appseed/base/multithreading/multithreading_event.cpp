@@ -86,7 +86,7 @@ event::event(sp(base_application) papp, bool bInitiallyOwn, bool bManualReset, c
       if(pstrName != NULL && *pstrName != '\0')
       {
 
-         string strPath = "/ca2/time/ftok/event/" + string(pstrName);
+         string strPath = "/core/time/ftok/event/" + string(pstrName);
 
          m_object = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
 
@@ -269,7 +269,7 @@ void event::wait ()
 
 
 	if ( ::WaitForSingleObjectEx(item(), INFINITE, FALSE) != WAIT_OBJECT_0 )
-		throw runtime_error(get_app(), "::ca2::pal::Event::wait: failure");
+		throw runtime_error(get_app(), "::core::pal::Event::wait: failure");
 
 #elif defined(ANDROID)
 

@@ -165,7 +165,7 @@ GetTempPathW(
     )
 {
 
-   wstring wstr = "/var/ca2/time/";
+   wstring wstr = "/var/core/time/";
 
    ::count iLen = min(nBufferLength, wstr.get_length());
 

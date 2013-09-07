@@ -229,7 +229,7 @@ throw not_implemented(get_app());
 /*
 ::::file::memory_buffer file(get_app());
 
-::ca2::Resource resource;
+::core::Resource resource;
 
 if(!resource.ReadResource(*file.get_memory(), (UINT) MAKEINTRESOURCE(lpszId), lpszType))
 return false;

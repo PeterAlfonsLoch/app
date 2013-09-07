@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    timer_callback::timer_callback()
@@ -41,7 +41,7 @@ namespace ca2
       return m_bQueueModel;
    }
 
-} // namespace ca2
+} // namespace core
 
 
 

@@ -90,8 +90,8 @@ namespace n7z
       uint64_t position, uint64_t size, ::libcompress::progress_info_interface *progress)
    {
       inStream->seek(position, ::file::seek_begin);
-      ::ca2::limited_reader *streamSpec = new ::ca2::limited_reader;
-      smart_pointer < ::ca2::limited_reader > inStreamLimited(streamSpec);
+      ::core::limited_reader *streamSpec = new ::core::limited_reader;
+      smart_pointer < ::core::limited_reader > inStreamLimited(streamSpec);
       streamSpec->SetStream(inStream);
       streamSpec->Init(size);
 
@@ -129,7 +129,7 @@ namespace n7z
 
 #define RINOZ_COMP(a, b) RINOZ(MyCompare(a, b))
 
-   static int32_t CompareBuffers(const ::ca2::byte_buffer &a1, const ::ca2::byte_buffer &a2)
+   static int32_t CompareBuffers(const ::core::byte_buffer &a1, const ::core::byte_buffer &a2)
    {
       size_t c1 = a1.GetCapacity();
       size_t c2 = a2.GetCapacity();
@@ -611,7 +611,7 @@ namespace n7z
       }
    }
 
-   class CThreadDecoder: public ::ca2::thread
+   class CThreadDecoder: public ::core::thread
    {
    public:
       HRESULT Result;
@@ -988,7 +988,7 @@ namespace n7z
             }
             else
             {
-               ::ca2::stream_binder sb(codecsInfo->get_app());
+               ::core::stream_binder sb(codecsInfo->get_app());
                RINOK(sb.CreateEvents());
                sp(::file::writer) sbOutStream;
                sp(::file::reader) sbInStream;

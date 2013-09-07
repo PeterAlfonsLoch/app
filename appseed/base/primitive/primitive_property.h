@@ -32,7 +32,7 @@ var CLASS_DECL_c operator / (const var & var, const property & prop);
 var CLASS_DECL_c operator / (const property & prop1, const property & prop2);
 
 var CLASS_DECL_c operator * (int32_t i, const property & prop);
-var CLASS_DECL_c operator * (uint32_t user, const ::ca2:: property & prop);
+var CLASS_DECL_c operator * (uint32_t user, const ::core:: property & prop);
 var CLASS_DECL_c operator * (int64_t i, const property & prop);
 var CLASS_DECL_c operator * (uint64_t ui, const property & prop);
 var CLASS_DECL_c operator * (double d, const property & prop);

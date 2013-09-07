@@ -45,7 +45,7 @@ namespace uinteraction
 
 #endif
 
-      ::ca2::library library(NULL);
+      ::core::library library(NULL);
 
       string strLibrary(strId);
 

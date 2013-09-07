@@ -59,10 +59,10 @@ public:
 
 
    using database::server::data_server_load;
-   virtual bool data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::ca2::writable & writable, ::database::update_hint * phint = NULL);
+   virtual bool data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::core::writable & writable, ::database::update_hint * phint = NULL);
 
    using database::server::data_server_save;
-   virtual bool data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::ca2::readable & readable, ::database::update_hint * phint = NULL);
+   virtual bool data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::core::readable & readable, ::database::update_hint * phint = NULL);
 
 
    virtual bool data_pulse_change(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::database::update_hint * puh);
@@ -70,10 +70,10 @@ public:
    void close();
 
    bool load(const char * lpKey, string & str);
-   bool load(const char * lpKey, ::ca2::writable & writer);
+   bool load(const char * lpKey, ::core::writable & writer);
 
    bool save(const char * lpKey, const char * psz);
-   bool save(const char * lpKey, ::ca2::readable & reader);
+   bool save(const char * lpKey, ::core::readable & reader);
 
 
    virtual string calc_key(::database::client * pclient, ::database::id & idSection, ::database::id & id, ::database::id & idIndex);

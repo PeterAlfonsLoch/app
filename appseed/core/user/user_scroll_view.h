@@ -54,7 +54,7 @@ namespace user
       virtual void create_scroll_bar(scroll_bar::e_orientation eorientation);
 
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(message::dispatch * pinterface);
 
       virtual int32_t get_wheel_scroll_delta();
 
@@ -68,7 +68,7 @@ namespace user
       virtual void SetScrollSizes();
 
 
-      void send_scroll_message(::ca2::message::scroll * pscroll);
+      void send_scroll_message(message::scroll * pscroll);
 
 
       virtual void _001OnUpdateScrollPosition();

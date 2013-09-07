@@ -97,13 +97,13 @@ repeat:;
           property_set headers(get_app());
           property_set set(get_app());
 
-          ::ca2::http::e_status estatus;
+          ::core::http::e_status estatus;
 
           string strUrl;
 
           set["interactive_user"] = true;
 
-          strUrl = "https://api.ca2.cc/account/long_set_save?key=";
+          strUrl = "https://api.core.cc/account/long_set_save?key=";
           strUrl += System.url().url_encode(m_itema[0].m_strKey);
           strUrl += "&value=";
           strUrl += ::str::from(m_itema[0].m_l);
@@ -115,7 +115,7 @@ repeat:;
 
           m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-          if(m_phttpsession == NULL || estatus != ::ca2::http::status_ok)
+          if(m_phttpsession == NULL || estatus != ::core::http::status_ok)
           {
              Sleep(1984);
              goto repeat;
@@ -165,19 +165,19 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       property_set headers(get_app());
       property_set set(get_app());
 
-      ::ca2::http::e_status estatus;
+      ::core::http::e_status estatus;
 
       string strUrl;
 
       set["interactive_user"] = true;
 
-      strUrl = "https://api.ca2.cc/account/long_set_load?key=";
+      strUrl = "https://api.core.cc/account/long_set_load?key=";
       strUrl += System.url().url_encode(lpKey);
 
       //m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
       m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, NULL, NULL, &estatus);
 
-      if(m_phttpsession == NULL || estatus != ::ca2::http::status_ok)
+      if(m_phttpsession == NULL || estatus != ::core::http::status_ok)
       {
          return false;
       }
@@ -483,7 +483,7 @@ bool db_long_set::save(const char * lpKey, LPCRECT lpRect)
    return true;
 
 }
-bool db_long_set::MoveWindow_(const char * lpKey, sp(::ca2::window)pWnd)
+bool db_long_set::MoveWindow_(const char * lpKey, sp(::core::window)pWnd)
 {
    rect rect;
    if(!load(lpKey, &rect))
@@ -492,7 +492,7 @@ bool db_long_set::MoveWindow_(const char * lpKey, sp(::ca2::window)pWnd)
    return true;
 }
 
-bool db_long_set::SaveWindowRect_(const char * lpKey, sp(::ca2::window)pWnd)
+bool db_long_set::SaveWindowRect_(const char * lpKey, sp(::core::window)pWnd)
 {
 
 #ifdef WINDOWSEX
@@ -645,7 +645,7 @@ return hr;
 
 //}
 
-bool db_long_set::SetWindowPlacement(const char * lpKey, sp(::ca2::window)pWnd)
+bool db_long_set::SetWindowPlacement(const char * lpKey, sp(::core::window)pWnd)
 {
 
 #ifdef WINDOWSEX
@@ -682,7 +682,7 @@ bool db_long_set::SetWindowPlacement(const char * lpKey, sp(::ca2::window)pWnd)
 
 }
 
-bool db_long_set::SaveWindowPlacement(const char * lpKey, sp(::ca2::window)pWnd)
+bool db_long_set::SaveWindowPlacement(const char * lpKey, sp(::core::window)pWnd)
 {
 
 #ifdef WINDOWSEX

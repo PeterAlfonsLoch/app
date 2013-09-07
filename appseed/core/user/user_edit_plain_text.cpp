@@ -31,8 +31,8 @@ namespace user
       colorertake5::base_editor(papp),
       m_fastblur(allocer()),
       m_dibBk(allocer()),
-      ::ca2::tree(papp),
-      ::ca2::data_listener(papp),
+      ::core::tree(papp),
+      ::core::data_listener(papp),
       m_keymessageLast(papp)
    {
 
@@ -72,7 +72,7 @@ namespace user
       }
    }
 
-   void edit_plain_text::install_message_handling(::ca2::message::dispatch * pinterface)
+   void edit_plain_text::install_message_handling(message::dispatch * pinterface)
    {
       scroll_view::install_message_handling(pinterface);
    /*   IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &edit_plain_text::_001OnDestroy);
@@ -196,7 +196,7 @@ namespace user
       crBkSel     = ARGB(255, 0, 0, 127);
       crSel       = ARGB(255, 255, 255, 255);
 
-      ::ca2::job * pjob = pdc->m_pjob;
+      ::core::job * pjob = pdc->m_pjob;
 
       ::user::print_job * pprintjob = NULL;
       if(pjob!= NULL)
@@ -235,8 +235,8 @@ namespace user
       {
          pdc->FillSolidRect(rectClient, get_background_color());
       }
-      /*else if(!System.savings().is_trying_to_save(::ca2::resource_processing)
-      && !System.savings().is_trying_to_save(::ca2::resource_blur_background))
+      /*else if(!System.savings().is_trying_to_save(::core::resource_processing)
+      && !System.savings().is_trying_to_save(::core::resource_blur_background))
       {
 
          pdc->blur(true, 4, rectClient);
@@ -495,7 +495,7 @@ namespace user
    void edit_plain_text::_001OnCreate(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::create, pcreate, pobj);
+      SCAST_PTR(message::create, pcreate, pobj);
 
 
       if(get_document() != NULL
@@ -541,14 +541,14 @@ namespace user
 
    void edit_plain_text::_001OnContextMenu(signal_details * pobj)
    {
-//      SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(message::context_menu, pcontextmenu, pobj)
 //      point point = pcontextmenu->GetPoint();
 
    }
 
    void edit_plain_text::_001OnRButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       //int32_t iItem;
       //HRESULT hr;
       class point point = pmouse->m_pt;
@@ -558,12 +558,12 @@ namespace user
    /*   ::user::menu menu;
       Ex1TextFile file;
 
-      sp(base_application) papp = ::ca2::get_app();
+      sp(base_application) papp = ::core::get_app();
 
       string strModuleFolder;
       strModuleFolder = papp->get_module_folder();
 
-      if(!spfile->open(::ca2::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::file::binary_buffer::type_text | ::file::mode_read))
+      if(!spfile->open(::core::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::file::binary_buffer::type_text | ::file::mode_read))
          return;
 
       string str;
@@ -577,13 +577,13 @@ namespace user
       {
          //::user::menu* pPopup = (::user::menu_item *) menu.GetSubMenu(0);
          //ASSERT(pPopup != NULL);
-         sp(::user::frame_window) pframe = (sp(::user::frame_window)) (sp(::ca2::window)) GetParentFrame();
+         sp(::user::frame_window) pframe = (sp(::user::frame_window)) (sp(::core::window)) GetParentFrame();
          //pPopup->TrackPopupMenu(
            // point.x, point.y,
-            //(sp(::ca2::window)) pframe);
+            //(sp(::core::window)) pframe);
          menu.TrackPopupMenu(
             point.x, point.y,
-            (sp(::ca2::window)) pframe);
+            (sp(::core::window)) pframe);
       }*/
    }
 
@@ -600,7 +600,7 @@ namespace user
 
    void edit_plain_text::_002OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj)
+      SCAST_PTR(message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent >= 100
          && ptimer->m_nIDEvent <= 200)
       {
@@ -623,7 +623,7 @@ namespace user
 
    void edit_plain_text::_002OnKeyDown(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::key, pkey, pobj)
+      SCAST_PTR(message::key, pkey, pobj)
       if(pkey->m_ekey == ::user::key_return)
       {
          if(Application.is_key_pressed(::user::key_control) && Application.is_key_pressed(::user::key_alt))
@@ -698,7 +698,7 @@ namespace user
 
    void edit_plain_text::_002OnKeyUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::key, pkey, pobj)
+      SCAST_PTR(message::key, pkey, pobj)
       if(pkey->m_ekey == ::user::key_return)
       {
          if(Application.is_key_pressed(::user::key_control)
@@ -718,7 +718,7 @@ namespace user
    void edit_plain_text::_002OnChar(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca2::message::key, pkey, pobj)
+//      SCAST_PTR(message::key, pkey, pobj)
          if(m_bKeyPressed)
          {
                //key_to_char(&m_keymessageLast);
@@ -744,7 +744,7 @@ namespace user
 
    void edit_plain_text::pre_translate_message(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_KEYDOWN)
       {
          pbase->m_bRet = true;
@@ -761,9 +761,9 @@ namespace user
          ::user::interaction::_001OnChar(pbase);
       }
    }
-   void edit_plain_text::key_to_char(::ca2::message::key * pkey)
+   void edit_plain_text::key_to_char(message::key * pkey)
    {
-      ::ca2::message::key & key = *pkey;
+      message::key & key = *pkey;
 //      LRESULT lresult = 0;
       if(
          key.m_ekey == ::user::key_shift   || key.m_ekey == ::user::key_lshift   || key.m_ekey == ::user::key_rshift
@@ -903,7 +903,7 @@ namespace user
 
    void edit_plain_text::_002OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
@@ -922,7 +922,7 @@ namespace user
 
    void edit_plain_text::_002OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       ::draw2d::memory_graphics pdc(allocer());
@@ -938,7 +938,7 @@ namespace user
 
    void edit_plain_text::_002OnRButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
@@ -955,7 +955,7 @@ namespace user
 
    void edit_plain_text::_002OnRButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       ::draw2d::memory_graphics pdc(allocer());
@@ -1302,7 +1302,7 @@ namespace user
 
    void edit_plain_text::_002OnMouseMove(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
       //pmouse->m_ecursor = ::visual::cursor_text_select;
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -1432,7 +1432,7 @@ namespace user
       _009OnChar(pobj);
       if(pobj->m_bRet)
          return;
-      SCAST_PTR(::ca2::message::key, pkey, pobj)
+      SCAST_PTR(message::key, pkey, pobj)
 
       string strChar;
 
@@ -1642,7 +1642,7 @@ namespace user
          {
             if(pkey->m_ekey == ::user::key_return)
             {
-               // Kill Focus => Kill Key Repeat Timer
+               // Kill Focus => Kill Key Repeat timer
                //System.simple_message_box("VK_RETURN reached edit_plain_text");
             }
             plain_text_data::SetSelCommand * psetsel = new plain_text_data::SetSelCommand;
@@ -1710,7 +1710,7 @@ namespace user
    void edit_plain_text::_001OnSysChar(signal_details * pobj)
    {
       ::data::writing writing(m_pdata);
-      SCAST_PTR(::ca2::message::key, pkey, pobj)
+      SCAST_PTR(message::key, pkey, pobj)
       if(pkey->m_ekey == ::user::key_delete)
       {
          if(!m_bReadOnly)
@@ -1933,7 +1933,7 @@ namespace user
       }
       if(m_pdata->m_ptreeitem->m_pnext != NULL)
       {
-         sp(::data::tree_item) pitemNew = insert_item_data(m_pdata, pcommand, ::ca2::RelativeFirstChild, m_pdata->m_ptreeitem);
+         sp(::data::tree_item) pitemNew = insert_item_data(m_pdata, pcommand, ::core::RelativeFirstChild, m_pdata->m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -1941,7 +1941,7 @@ namespace user
       }
       else
       {
-         sp(::data::tree_item) pitemNew = insert_item_data(m_pdata, pcommand, ::ca2::RelativeLastSibling, m_pdata->m_ptreeitem);
+         sp(::data::tree_item) pitemNew = insert_item_data(m_pdata, pcommand, ::core::RelativeLastSibling, m_pdata->m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -2236,7 +2236,7 @@ namespace user
 
 
 
-   sp(::ca2::tree_item_data) edit_plain_text::on_allocate_item()
+   sp(::core::tree_item_data) edit_plain_text::on_allocate_item()
    {
       return new plain_text_data::Command;
    }
@@ -2295,6 +2295,6 @@ namespace user
    }
 
 
-} // namespace ca2
+} // namespace core
 
 

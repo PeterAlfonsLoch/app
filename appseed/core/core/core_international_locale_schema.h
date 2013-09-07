@@ -78,7 +78,7 @@ namespace str
    }  // namespace international
 
 
-} // namespace ca2
+} // namespace core
 
 
 

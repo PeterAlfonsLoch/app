@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    message_window_simple_callback::message_window_simple_callback()
@@ -71,7 +71,7 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace core
 
 
 

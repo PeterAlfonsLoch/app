@@ -8,7 +8,7 @@ namespace simpledb
    manager::manager(sp(base_application) papp) :
       element(papp),
       thread(papp),
-      ::ca2::message_window_simple_callback(papp),
+      ::core::message_window_simple_callback(papp),
       m_mutexSession(papp),
       m_mutexTagId(papp),
       m_mutexTagName(papp)
@@ -30,7 +30,7 @@ namespace simpledb
 
    bool manager::initialize_instance()
    {
-      initialize_message_window("::ca2::netnode::cgclcst");
+      initialize_message_window("::core::netnode::cgclcst");
 
       return true;
    }
@@ -47,7 +47,7 @@ namespace simpledb
          return false;
       }
       psocket->response().file().write(memory.get_data(), memory.get_size());
-      psocket->outheader(__id(content_type)) = "application/x-ca2-var";
+      psocket->outheader(__id(content_type)) = "application/x-core-var";
       return true;
    }
 
@@ -62,7 +62,7 @@ namespace simpledb
 
    void manager::message_window_message_handler(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_APP + 13)
       {
          //if(wparam == 0)

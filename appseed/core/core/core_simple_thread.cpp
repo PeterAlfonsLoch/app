@@ -11,9 +11,9 @@ simple_thread::simple_thread(sp(base_application) papp) :
 
 simple_thread::~simple_thread()
 {
-   if(::ca2::thread::m_p->m_p != NULL)
+   if(::core::thread::m_p->m_p != NULL)
    {
-      ::ca2::thread::m_p->m_p.m_p = NULL;
+      ::core::thread::m_p->m_p.m_p = NULL;
    }
    m_p->set_run(false);
    m_p->get_finish_event().wait(millis(m_dwFinishTimeout));

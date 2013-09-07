@@ -1484,7 +1484,7 @@ namespace filemanager
 
       int32_t iImage = 0x80000000;
 
-      if(::str::ends_ci(strPath, ".ca2"))
+      if(::str::ends_ci(strPath, ".core"))
       {
          string str = Application.file().as_string(strPath);
          if(::str::begins_eat_ci(str, "ca2prompt\r\n"))

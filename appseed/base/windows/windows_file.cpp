@@ -768,10 +768,10 @@ HANDLE OnlyGetDrv()
 {
 
 
-        HMODULE hModule = GetModuleHandle(_T("ca2.dll"));
+        HMODULE hModule = GetModuleHandle(_T("core.dll"));
         if( !hModule )
         {
-            OutputDebugStringW( L"GetModuleHandle(_T(\"ca2.dll\")); failed" );
+            OutputDebugStringW( L"GetModuleHandle(_T(\"core.dll\")); failed" );
             return 0;
         }
         string csFilePath;

@@ -30,7 +30,7 @@ namespace userfs
       void add_item(const char * pszPath, const char * pszTitle);
       //virtual void schedule_file_size(const char * psz) = 0;
       virtual void _017Synchronize();
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(message::dispatch * pinterface);
 
       sp(image_list) GetActionButtonImageList(index i);
 

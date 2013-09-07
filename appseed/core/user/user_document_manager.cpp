@@ -157,7 +157,7 @@ namespace user
    if (::RegSetValue(HKEY_CLASSES_ROOT, lpszKey, REG_SZ,
    lpszValue, lstrlen(lpszValue) * sizeof(char)) != ERROR_SUCCESS)
    {
-   //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n",
+   //         TRACE(::core::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n",
    //          lpszKey);
    return FALSE;
    }
@@ -175,7 +175,7 @@ namespace user
    if(::RegCloseKey(hKey) == ERROR_SUCCESS && lResult == ERROR_SUCCESS)
    return TRUE;
    }
-   //TRACE(::ca2::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n", lpszKey);
+   //TRACE(::core::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n", lpszKey);
    return FALSE;
    }
    }
@@ -432,7 +432,7 @@ namespace user
    }
 
    /*
-   __STATIC void _::ca2::AppendFilterSuffix(string & filter, OPENFILENAME& ofn,
+   __STATIC void _::core::AppendFilterSuffix(string & filter, OPENFILENAME& ofn,
    sp(document_template) ptemplate, string* pstrDefaultExt)
    {
    ENSURE_VALID(ptemplate);
@@ -599,7 +599,7 @@ namespace user
 
       if (cmdInfo.m_nShellCommand == command_line::FileOpen)
       {
-      // show the application ::ca2::window
+      // show the application ::core::window
       sp(::user::interaction) pMainWnd = System.GetMainWnd();
       int32_t nCmdShow = System.m_nCmdShow;
       if (nCmdShow == -1 || nCmdShow == SW_SHOWNORMAL)
@@ -617,7 +617,7 @@ namespace user
       /*System.open_document_file(cmdInfo.m_varFile);
 
 
-      // next time, show the ::ca2::window as default
+      // next time, show the ::core::window as default
       System.m_nCmdShow = -1;
       goto RestoreAndReturn;
       }
@@ -715,7 +715,7 @@ namespace user
    {
    if (m_templateptra.is_empty())
    {
-   TRACE(::ca2::trace::category_AppMsg, 0, "Error: no document templates registered with application.\n");
+   TRACE(::core::trace::category_AppMsg, 0, "Error: no document templates registered with application.\n");
    // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
    System.simple_message_box(NULL, "Failed to create document");
    return;
@@ -805,21 +805,21 @@ namespace user
       char szTemp[_MAX_PATH];
       if (lpszFileName[0] == '\"')
       ++lpszFileName;
-      ::ca2::tcsncpy_s(szTemp, _countof(szTemp), varFileName, _TRUNCATE);
+      ::core::tcsncpy_s(szTemp, _countof(szTemp), varFileName, _TRUNCATE);
       LPTSTR lpszLast = _tcsrchr(szTemp, '\"');
       if (lpszLast != NULL)
       *lpszLast = 0;*/
 
-      //if( ::ca2::FullPath(szPath, szTemp) == FALSE )
+      //if( ::core::FullPath(szPath, szTemp) == FALSE )
       //{
       //   ASSERT(FALSE);
-      //   return NULL; // We won't open the file. ca2 API requires paths with
+      //   return NULL; // We won't open the file. core API requires paths with
       // length < _MAX_PATH
       //}
 
       /*   char szLinkName[_MAX_PATH];
-      if (::ca2::ResolveShortcut(System.GetMainWnd(), szPath, szLinkName, _MAX_PATH))
-      ::ca2::tcscpy_s(szPath, _countof(szPath), szLinkName);
+      if (::core::ResolveShortcut(System.GetMainWnd(), szPath, szLinkName, _MAX_PATH))
+      ::core::tcscpy_s(szPath, _countof(szPath), szLinkName);
       */
 
       for(index index = 0; index < count; index++)
@@ -848,7 +848,7 @@ namespace user
             sp(::user::frame_window) pFrame = pview->GetParentFrame();
 
             if (pFrame == NULL)
-               TRACE(::ca2::trace::category_AppMsg, 0, "Error: Can not find a frame for document to activate.\n");
+               TRACE(::core::trace::category_AppMsg, 0, "Error: Can not find a frame for document to activate.\n");
             else
             {
                pFrame->ActivateFrame();
@@ -865,7 +865,7 @@ namespace user
             }
          }
          else
-            TRACE(::ca2::trace::category_AppMsg, 0, "Error: Can not find a ::user::view for document to activate.\n");
+            TRACE(::core::trace::category_AppMsg, 0, "Error: Can not find a ::user::view for document to activate.\n");
 
          pcreatecontext->m_spCommandLine->m_varQuery["document"] = pOpenDocument;
       }

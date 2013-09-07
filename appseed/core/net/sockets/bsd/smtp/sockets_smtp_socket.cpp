@@ -18,7 +18,7 @@ namespace sockets
    void smtp_socket::OnLine(const string & line)
    {
       SetNonblocking(false);
-      ::ca2::parse pa(line);
+      ::core::parse pa(line);
       string code = pa.getword();
 
       code.make_upper();
@@ -28,7 +28,7 @@ namespace sockets
          {
             m_estate = state_hello;
             //Send("HELO localhost\r\n");
-            Send("EHLO account.ca2.cc\r\n");
+            Send("EHLO account.core.cc\r\n");
          }
       }
       else if(m_estate == state_hello)

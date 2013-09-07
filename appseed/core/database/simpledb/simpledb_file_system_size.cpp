@@ -329,11 +329,11 @@ bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, b
 
 FileSystemSizeWnd::FileSystemSizeWnd(sp(base_application) papp) :
    element(papp),
-   ::ca2::window_sp(papp)
+   ::core::window_sp(papp)
 {
 }
 
-void FileSystemSizeWnd::install_message_handling(::ca2::message::dispatch * pinterface)
+void FileSystemSizeWnd::install_message_handling(message::dispatch * pinterface)
 {
    m_p->install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_COPYDATA, pinterface, this, &FileSystemSizeWnd::_001OnCopyData);
@@ -399,7 +399,7 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
    size.m_bRet = false;
 
 
-   ::ca2::byte_stream_memory_file file(get_app());
+   ::core::byte_stream_memory_file file(get_app());
    size.write(file);
 
    COPYDATASTRUCT data;
@@ -434,7 +434,7 @@ void FileSystemSizeWnd::_001OnCopyData(signal_details * pobj)
 
 #ifdef WINDOWSEX
 
-   SCAST_PTR(::ca2::message::base, pbase, pobj);
+   SCAST_PTR(message::base, pbase, pobj);
 
    COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam.m_lparam;
    if(pstruct->dwData == 0)
@@ -442,7 +442,7 @@ void FileSystemSizeWnd::_001OnCopyData(signal_details * pobj)
       //file_size_table::get_fs_size * prec  = (file_size_table::get_fs_size *) pstruct->lpData;
       db_server * pcentral = &System.m_simpledb.db();
       file_size_table::get_fs_size size;
-      ::ca2::byte_stream_memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
+      ::core::byte_stream_memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
       size.read(file);
 
       single_lock sl(&m_cs, TRUE);
@@ -457,7 +457,7 @@ void FileSystemSizeWnd::_001OnCopyData(signal_details * pobj)
    else if(pstruct->dwData == 1)
    {
       file_size_table::get_fs_size size;
-      ::ca2::byte_stream_memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
+      ::core::byte_stream_memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
       size.read(file);
       m_bRet = true;
       m_map.set_at(size.m_strPath, size);
@@ -478,7 +478,7 @@ void FileSystemSizeWnd::_001OnTimer(signal_details * pobj)
 
 #ifdef WINDOWSEX
 
-    SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+    SCAST_PTR(message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 100)
    {
       //::PostMessage(pbase->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);
@@ -488,7 +488,7 @@ void FileSystemSizeWnd::_001OnTimer(signal_details * pobj)
          data.dwData = 1;
 
 
-         ::ca2::byte_stream_memory_file file(get_app());
+         ::core::byte_stream_memory_file file(get_app());
 
          while(m_sizea.get_size() > 0)
          {

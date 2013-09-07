@@ -45,7 +45,7 @@ namespace sockets
          const string & call,
          int32_t err,
          const string & sys_err,
-         ::ca2::log::e_level);
+         ::core::log::e_level);
    };
 
 } // namespace sockets

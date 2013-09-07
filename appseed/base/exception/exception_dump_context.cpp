@@ -52,7 +52,7 @@ void dump_context::output_string(const char * lpsz)
    if (m_pfile == NULL)
    {
       ::OutputDebugStringW(::str::international::utf8_to_unicode(lpsz));
-      //     TRACE(::ca2::trace::category_dumpContext, 0, "%s", lpsz);
+      //     TRACE(::core::trace::category_dumpContext, 0, "%s", lpsz);
       return;
    }
 

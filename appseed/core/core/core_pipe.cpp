@@ -9,7 +9,7 @@
 #endif
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -291,7 +291,7 @@ namespace ca2
       return true;
    }
 
-} // namespace ca2
+} // namespace core
 
 
 #endif

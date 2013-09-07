@@ -67,7 +67,7 @@ public:
 
 
 
-   virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+   virtual void install_message_handling(message::dispatch * pinterface);
 
    virtual void on_set_parent(sp(::user::interaction) pguieParent);
 

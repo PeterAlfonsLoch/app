@@ -102,7 +102,7 @@ namespace sockets
       }
       else
       {
-         Handler().LogError(this, "AddFile", Errno, StrError(Errno), ::ca2::log::level_fatal);
+         Handler().LogError(this, "AddFile", Errno, StrError(Errno), ::core::log::level_fatal);
          SetCloseAndDelete();
       }
    }

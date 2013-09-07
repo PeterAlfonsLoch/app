@@ -89,7 +89,7 @@ namespace user
          ::index                          m_iDragTab;
          bool                             m_bDrag;
          bool                             m_bVertical;
-         ::ca2::match::any                m_matchanyRestore;
+         ::core::match::any                m_matchanyRestore;
          bool                             m_bEnableCloseAll;
 
 
@@ -143,7 +143,7 @@ namespace user
       virtual sp(::user::interaction) get_tab_window(::index iTab, bool bVisible = true);
       virtual sp(::user::place_holder) get_tab_holder(::index iTab, bool bVisible = true);
 
-      void _000OnMouse(::ca2::message::mouse * pmouse);
+      void _000OnMouse(message::mouse * pmouse);
 
       virtual sp(::user::interaction) get_view_uie();
 
@@ -163,7 +163,7 @@ namespace user
 
       virtual void _001OnTabClick(::index iTab);
       virtual void _001OnTabClose(::index iTab);
-      virtual sp(::ca2::window) GetNotifyWnd();
+      virtual sp(::core::window) GetNotifyWnd();
       virtual index hit_test(point pt, e_element & eelement);
       virtual e_position DragHitTest(point pt);
       virtual void GetDragRect(LPRECT lprect, e_position eposition);
@@ -207,8 +207,8 @@ namespace user
       virtual void get_ends_ci_eat_id(stringa & stra, const char * pszSuffix);
       virtual void get_begins_ends_ci_eat_id(stringa & stra, const char * pszPrefix, const char * pszSuffixed);
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
-      virtual void _001ConnectParent(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void _001ConnectParent(message::dispatch * pinterface);
 
 
       virtual bool has_restore_tab();

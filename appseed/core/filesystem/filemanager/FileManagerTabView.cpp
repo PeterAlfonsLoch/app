@@ -33,7 +33,7 @@ void FileManagerTabView::dump(dump_context & dumpcontext) const
 #endif //DEBUG
 
 
-void FileManagerTabView::install_message_handling(::ca2::message::dispatch * pinterface)
+void FileManagerTabView::install_message_handling(message::dispatch * pinterface)
 {
    ::user::tab_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &FileManagerTabView::_001OnCreate);
@@ -56,7 +56,7 @@ void FileManagerTabView::on_update(sp(::user::view) pSender, LPARAM lHint, objec
          {
             string str;
             str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-            sp(FileManagerFrame) pframe = ((sp(::ca2::window)) GetParentFrame());
+            sp(FileManagerFrame) pframe = ((sp(::core::window)) GetParentFrame());
             if(pframe != NULL)
             {
                pframe->m_dataid = str;
@@ -234,7 +234,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
 
 void FileManagerTabView::_001OnCreate(signal_details * pobj)
 {
-   //   SCAST_PTR(::ca2::message::create, pcreate, pobj)
+   //   SCAST_PTR(message::create, pcreate, pobj)
 
    pobj->previous();
 

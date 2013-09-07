@@ -94,7 +94,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
       {
          lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
       }
-      strcat_dup(lpszModuleFilePath, "\\ca2\\");
+      strcat_dup(lpszModuleFilePath, "\\core\\");
 #ifdef X86
       strcat_dup(lpszModuleFilePath, "stage\\x86\\");
 #else
@@ -157,7 +157,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
       {
          lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
       }
-      strcat_dup(lpszModuleFilePath, "\\ca2\\");
+      strcat_dup(lpszModuleFilePath, "\\core\\");
 #ifdef X86
       strcat_dup(lpszModuleFilePath, "stage\\x86\\");
 #else
@@ -193,7 +193,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
 #else
 
-   strcpy_dup(lpszModuleFolder, "/ca2/");
+   strcpy_dup(lpszModuleFolder, "/core/");
 
 
 
@@ -354,9 +354,9 @@ string dir::element(const char * path1, const char * path2, const char * path3, 
 
    eat_end_level_dup(strRelative, 2, "/");
 
-   string str = path(getenv("HOME"), ".ca2/appdata");
+   string str = path(getenv("HOME"), ".core/appdata");
 
-   return path(path(str, "ca2", strRelative), path1, path2, path3, path4);
+   return path(path(str, "core", strRelative), path1, path2, path3, path4);
 
 #endif
 
@@ -455,7 +455,7 @@ string dir::module_folder(const char * path1)
 
 #else
 
-   return dir::path("/ca2/stage", path1);
+   return dir::path("/core/stage", path1);
 
 #endif
 
@@ -871,9 +871,9 @@ string dir::userfolder(const char * lpcsz, const char * lpcsz2)
       strUserFolderShift = strRelative;
    }
 
-   return path(path(str, "ca2", strUserFolderShift), lpcsz, lpcsz2);
+   return path(path(str, "core", strUserFolderShift), lpcsz, lpcsz2);
 
-   //      return path(path(str, "ca2"), lpcsz);
+   //      return path(path(str, "core"), lpcsz);
    /*      if(&AppUser(papp) == NULL)
    {
    string str;
@@ -882,7 +882,7 @@ string dir::userfolder(const char * lpcsz, const char * lpcsz2)
    str,
    CSIDL_PROFILE,
    FALSE);
-   return path(path(str, "ca2\\_____default"), lpcsz);
+   return path(path(str, "core\\_____default"), lpcsz);
    }
    else
    {

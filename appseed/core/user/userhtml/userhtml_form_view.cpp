@@ -18,7 +18,7 @@ html_form_view::~html_form_view()
 }
 
 
-void html_form_view::install_message_handling(::ca2::message::dispatch * pinterface)
+void html_form_view::install_message_handling(message::dispatch * pinterface)
 {
 
    html_form::install_message_handling(pinterface);

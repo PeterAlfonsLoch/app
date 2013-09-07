@@ -28,7 +28,7 @@ namespace user
 
       bool create(sp(::user::interaction) pwndParent, id id);
 
-      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
+      virtual void install_message_handling(message::dispatch * pdispatch);
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
       void GetStepHoverRect(int32_t iStep, LPRECT lprect);

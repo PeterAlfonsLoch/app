@@ -152,7 +152,7 @@ namespace datetime
       string FormatGmt(const char * pszFormat);
 
 #if defined(_AFX) && defined(_UNICODE)
-      // for compatibility with ca2 API 3.x
+      // for compatibility with core API 3.x
       string Format(const char * pFormat) const;
       string FormatGmt(const char * pFormat) const;
 #endif

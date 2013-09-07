@@ -120,7 +120,7 @@ namespace libcompress
          public ::libcompress::set_decoder_properties2_interface
       {
          ::libcompress::lz_out_window m_OutWindowStream;
-         ::ca2::bitm::in_buffer_decoder m_InBitStream;
+         ::core::bitm::in_buffer_decoder m_InBitStream;
          huffman::decoder<kNumHuffmanBits, kMainTableSize> m_MainDecoder;
          huffman::decoder<kNumHuffmanBits, kDistTableSize> m_DistDecoder;
          huffman::decoder<kNumHuffmanBits, kLenTableSize> m_LenDecoder;

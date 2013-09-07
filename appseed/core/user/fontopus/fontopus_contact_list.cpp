@@ -11,4 +11,4 @@ namespace fontopus
    {
    }
 
-} // namespace ca2
+} // namespace core

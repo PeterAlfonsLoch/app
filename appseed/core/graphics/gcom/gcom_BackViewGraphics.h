@@ -37,7 +37,7 @@ namespace gcom
          rect             m_rectFinalPlacement;
 
          map < int32_t, int32_t, ::draw2d::dib *, ::draw2d::dib * > m_mapDib;
-//         ::ca2::draw_dib_sp         m_spdrawdib;
+//         ::core::draw_dib_sp         m_spdrawdib;
 
          mutex   m_mutgenBack;
          mutex   m_mutgenBuffer;
@@ -68,7 +68,7 @@ namespace gcom
          ::draw2d::graphics & GetScreenDC(); // m_dcBackViewSource
 
          ::draw2d::dib * GetDib(int32_t iIndex);
-//         ::ca2::draw_dib & GetDrawDib();
+//         ::core::draw_dib & GetDrawDib();
 
          ::draw2d::bitmap & GetTransferBitmap(); // m_bmpBackView2
          ::draw2d::bitmap & GetFrame1Bitmap(); // m_bmpBackView2

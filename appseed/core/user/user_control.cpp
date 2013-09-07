@@ -183,7 +183,7 @@ namespace user
 
    }
 
-   void control::install_message_handling(::ca2::message::dispatch * pdispatch)
+   void control::install_message_handling(message::dispatch * pdispatch)
    {
 
       ::user::view::install_message_handling(pdispatch);
@@ -225,7 +225,7 @@ namespace user
    {
       m_pwndCustomWindowProc = pwnd;
       keeper <bool> keepOnCustomMessage(&m_bCustomWindowProc, true, false, true);
-      ::ca2::message::base base(get_app(), pwnd, message, wparam, lparam, lresult);
+      message::base base(get_app(), pwnd, message, wparam, lparam, lresult);
       _003CustomWindowProc(&base);
       return base.m_bRet;
    }
@@ -717,7 +717,7 @@ namespace user
 
    void control::_001OnMouseMove(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      SCAST_PTR(message::mouse, pmouse, pobj);
 
       index iHover = hit_test(pmouse->m_pt, m_eelementHover);
 
@@ -777,7 +777,7 @@ namespace user
    }
 
 
-   control_cmd_ui::control_cmd_ui(::ca2::signal * psignal) :
+   control_cmd_ui::control_cmd_ui(::core::signal * psignal) :
       base_cmd_ui(psignal)
    {
    }
@@ -790,4 +790,4 @@ namespace user
 
 
 
-} // namespace ca2
+} // namespace core

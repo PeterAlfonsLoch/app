@@ -42,17 +42,17 @@
 class event;
 
 
-namespace ca2
+namespace core
 {
 
 
    class thread;
 
 
-} // namespace ca2
+} // namespace core
 
 
-namespace ca2
+namespace core
 {
 
 #ifdef WINDOWS
@@ -232,7 +232,7 @@ namespace ca2
       virtual public ::exception::translator,
       #endif
       virtual public spa(::user::interaction),
-      virtual public ::ca2::live_object,
+      virtual public ::core::live_object,
       virtual public event_base
    {
    public:
@@ -246,7 +246,7 @@ namespace ca2
       static bool    s_bAllocReady;
       mutex          m_mutex;
 
-      ::ca2::thread_sp                     m_p;
+      ::core::thread_sp                     m_p;
       bool                                m_bRun;
       sp(user::interaction_ptr_array)     m_puiptra;
       sp(user::interaction::timer_array)  m_ptimera;
@@ -277,7 +277,7 @@ namespace ca2
       virtual HTHREAD get_os_handle() const;
 
 
-      virtual void set_p(::ca2::thread * p);
+      virtual void set_p(::core::thread * p);
 
 
       virtual void set_os_data(void * pvoidOsData);
@@ -319,7 +319,7 @@ namespace ca2
 
       virtual int32_t exit();
 
-      //virtual ::ca2::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
+      //virtual message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
       // running and idle processing
 //      virtual int32_t run();
@@ -355,7 +355,7 @@ namespace ca2
 ////      virtual void set_run(bool bRun = true);
 //      virtual event & get_finish_event();
 //      virtual bool get_run();
-//      virtual ::ca2::thread * get_app_thread();
+//      virtual ::core::thread * get_app_thread();
 //      virtual sp(::user::interaction) get_active_ui();
 //      virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);
 //      virtual void step_timer();
@@ -474,7 +474,7 @@ namespace ca2
       // thread initialization
       virtual bool initialize_instance();
 
-      virtual ::ca2::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
+      virtual message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
       // running and idle processing
       virtual int32_t run();
@@ -507,7 +507,7 @@ namespace ca2
       virtual void set_run(bool bRun = true);
       virtual event & get_finish_event();
       virtual bool get_run();
-      virtual ::ca2::thread * get_app_thread();
+      virtual ::core::thread * get_app_thread();
       virtual sp(::user::interaction) get_active_ui();
       virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);
       virtual void step_timer();
@@ -541,7 +541,7 @@ namespace ca2
 
 
 
-} // namespace ca2
+} // namespace core
 
 
 

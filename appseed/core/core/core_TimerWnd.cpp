@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
 
@@ -21,7 +21,7 @@ namespace ca2
    }
 
 
-   // // BEGIN_MESSAGE_MAP(timer_window, ::ca2::window)
+   // // BEGIN_MESSAGE_MAP(timer_window, ::core::window)
       //{{__MSG_MAP(timer_window)
    /* xxx   ON_WM_TIMER()
       ON_WM_DESTROY()
@@ -41,7 +41,7 @@ namespace ca2
    ///    m_pTimerCallbackFinal = m_pTimerCallback;
        rect rect(0, 0, 0, 0);
        
-       return ::ca2::window::CreateEx(0,NULL, "Timer Window", 0, rect, NULL, id());
+       return ::core::window::CreateEx(0,NULL, "timer Window", 0, rect, NULL, id());
    }
 
    void timer_window::OnTimer(UINT nIDEvent)
@@ -109,13 +109,13 @@ namespace ca2
        //    ASSERT(FALSE);
        //}
 
-      //::ca2::window::OnTimer(nIDEvent);
+      //::core::window::OnTimer(nIDEvent);
    }
 
    void timer_window::OnDestroy()
    {
        m_pTimerCallback = NULL;
-   //   ::ca2::window::OnDestroy();
+   //   ::core::window::OnDestroy();
 
        //m_pTimerCallbackFinal = m_pTimerCallback;
 
@@ -135,7 +135,7 @@ namespace ca2
    {
       // TODO: add your message handler code here and/or call default
 
-   //   ::ca2::window::OnClose();
+   //   ::core::window::OnClose();
        DestroyWindow();
    }
 
@@ -143,7 +143,7 @@ namespace ca2
    {
       // TODO: add your specialized code here and/or call the base class
 
-      if(::ca2::window::DestroyWindow())
+      if(::core::window::DestroyWindow())
        {
            delete this;
            return TRUE;
@@ -191,6 +191,6 @@ namespace ca2
       return 0;
    }
 
-} // namespace ca2
+} // namespace core
 
 

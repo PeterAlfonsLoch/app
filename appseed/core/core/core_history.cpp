@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    history::history()
@@ -24,6 +24,6 @@ namespace ca2
       return false;
    }
 
-} // namespace ca2
+} // namespace core
 
 

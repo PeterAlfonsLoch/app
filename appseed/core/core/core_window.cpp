@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    window::window()
@@ -25,7 +25,7 @@ namespace ca2
 
    }
 
-   bool window::create_message_window(const char * pszName, ::ca2::window_callback * pcallback)
+   bool window::create_message_window(const char * pszName, ::core::window_callback * pcallback)
    {
       UNREFERENCED_PARAMETER(pszName);
       UNREFERENCED_PARAMETER(pcallback);
@@ -68,7 +68,7 @@ namespace ca2
 
 #if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID)
 
-   sp(::ca2::window) window::GetAncestor(UINT gaFlags) const
+   sp(::core::window) window::GetAncestor(UINT gaFlags) const
    {
       UNREFERENCED_PARAMETER(gaFlags);
       throw interface_only_exception(get_app());
@@ -140,7 +140,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   sp(::ca2::window) window::from_os_data(void * pdata)
+   sp(::core::window) window::from_os_data(void * pdata)
    {
       UNREFERENCED_PARAMETER(pdata);
       throw interface_only_exception(get_app());
@@ -206,7 +206,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::install_message_handling(::ca2::message::dispatch * pinterface)
+   void window::install_message_handling(message::dispatch * pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
       throw interface_only_exception(get_app());
@@ -610,7 +610,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::OnSetFocus(sp(::ca2::window))
+   void window::OnSetFocus(sp(::core::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -699,12 +699,12 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::OnEnterIdle(UINT /*nWhy*/, sp(::ca2::window) /*pWho*/)
+   void window::OnEnterIdle(UINT /*nWhy*/, sp(::core::window) /*pWho*/)
    {
       throw interface_only_exception(get_app());
    }
 
-   HBRUSH window::OnCtlColor(::draw2d::graphics *, sp(::ca2::window) pWnd, UINT)
+   HBRUSH window::OnCtlColor(::draw2d::graphics *, sp(::core::window) pWnd, UINT)
    {
       UNREFERENCED_PARAMETER(pWnd);
       throw interface_only_exception(get_app());
@@ -757,7 +757,7 @@ namespace ca2
    }
 
 
-/*   id window::RunModalLoop(uint32_t dwFlags, ::ca2::live_object * pliveobject)
+/*   id window::RunModalLoop(uint32_t dwFlags, ::core::live_object * pliveobject)
    {
       UNREFERENCED_PARAMETER(dwFlags);
       UNREFERENCED_PARAMETER(pliveobject);
@@ -791,7 +791,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool window::SubclassDlgItem(UINT nID, sp(::ca2::window) pParent)
+   bool window::SubclassDlgItem(UINT nID, sp(::core::window) pParent)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(pParent);
@@ -1067,7 +1067,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::MapWindowPoints(sp(::ca2::window) pwndTo, LPPOINT lpPoint, UINT nCount)
+   void window::MapWindowPoints(sp(::core::window) pwndTo, LPPOINT lpPoint, UINT nCount)
    {
       UNREFERENCED_PARAMETER(pwndTo);
       UNREFERENCED_PARAMETER(lpPoint);
@@ -1075,7 +1075,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::MapWindowPoints(sp(::ca2::window) pwndTo, LPRECT lpRect)
+   void window::MapWindowPoints(sp(::core::window) pwndTo, LPRECT lpRect)
    {
       UNREFERENCED_PARAMETER(pwndTo);
       UNREFERENCED_PARAMETER(lpRect);
@@ -1341,14 +1341,14 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   sp(::ca2::window) window::GetNextDlgGroupItem(sp(::ca2::window) pWndCtl, bool bPrevious) const
+   sp(::core::window) window::GetNextDlgGroupItem(sp(::core::window) pWndCtl, bool bPrevious) const
    {
       UNREFERENCED_PARAMETER(pWndCtl);
       UNREFERENCED_PARAMETER(bPrevious);
       throw interface_only_exception(get_app());
    }
 
-   sp(::ca2::window) window::GetNextDlgTabItem(sp(::ca2::window) pWndCtl, bool bPrevious) const
+   sp(::core::window) window::GetNextDlgTabItem(sp(::core::window) pWndCtl, bool bPrevious) const
    {
       UNREFERENCED_PARAMETER(pWndCtl);
       UNREFERENCED_PARAMETER(bPrevious);
@@ -1441,7 +1441,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   sp(::ca2::window) window::set_parent(sp(::ca2::window) pWndNewParent)
+   sp(::core::window) window::set_parent(sp(::core::window) pWndNewParent)
    {
       UNREFERENCED_PARAMETER(pWndNewParent);
       throw interface_only_exception(get_app());
@@ -1549,7 +1549,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::OnActivate(UINT, sp(::ca2::window), bool)
+   void window::OnActivate(UINT, sp(::core::window), bool)
    {
       throw interface_only_exception(get_app());
    }
@@ -1569,7 +1569,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::OnContextMenu(sp(::ca2::window), point)
+   void window::OnContextMenu(sp(::core::window), point)
    {
       throw interface_only_exception(get_app());
    }
@@ -1577,7 +1577,7 @@ namespace ca2
 
 #ifdef WINDOWSEX
 
-   bool window::OnCopyData(sp(::ca2::window), COPYDATASTRUCT*)
+   bool window::OnCopyData(sp(::core::window), COPYDATASTRUCT*)
    {
       throw interface_only_exception(get_app());
    }
@@ -1625,7 +1625,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::OnKillFocus(sp(::ca2::window))
+   void window::OnKillFocus(sp(::core::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -1664,7 +1664,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   bool window::OnSetCursor(sp(::ca2::window), UINT, UINT)
+   bool window::OnSetCursor(sp(::core::window), UINT, UINT)
    {
       throw interface_only_exception(get_app());
    }
@@ -1715,7 +1715,7 @@ namespace ca2
 #endif
 
 
-   void window::OnPaletteIsChanging(sp(::ca2::window))
+   void window::OnPaletteIsChanging(sp(::core::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -1840,7 +1840,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::OnPaletteChanged(sp(::ca2::window))
+   void window::OnPaletteChanged(sp(::core::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -1905,7 +1905,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   int32_t window::OnMouseActivate(sp(::ca2::window), UINT, UINT)
+   int32_t window::OnMouseActivate(sp(::core::window), UINT, UINT)
    {
       throw interface_only_exception(get_app());
    }
@@ -1981,12 +1981,12 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::OnHScrollClipboard(sp(::ca2::window), UINT, UINT)
+   void window::OnHScrollClipboard(sp(::core::window), UINT, UINT)
    {
       throw interface_only_exception(get_app());
    }
 
-   void window::OnPaintClipboard(sp(::ca2::window), HGLOBAL)
+   void window::OnPaintClipboard(sp(::core::window), HGLOBAL)
    {
       throw interface_only_exception(get_app());
    }
@@ -2001,12 +2001,12 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::OnSizeClipboard(sp(::ca2::window), HGLOBAL)
+   void window::OnSizeClipboard(sp(::core::window), HGLOBAL)
    {
       throw interface_only_exception(get_app());
    }
 
-   void window::OnVScrollClipboard(sp(::ca2::window), UINT, UINT)
+   void window::OnVScrollClipboard(sp(::core::window), UINT, UINT)
    {
       throw interface_only_exception(get_app());
    }
@@ -2018,7 +2018,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::OnMDIActivate(bool, sp(::ca2::window), sp(::ca2::window))
+   void window::OnMDIActivate(bool, sp(::core::window), sp(::core::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -2067,7 +2067,7 @@ namespace ca2
       throw interface_only_exception(get_app());
    }
 
-   void window::OnCaptureChanged(sp(::ca2::window))
+   void window::OnCaptureChanged(sp(::core::window))
    {
       throw interface_only_exception(get_app());
    }
@@ -2128,7 +2128,7 @@ namespace ca2
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::ca2::window command handling
+   // ::core::window command handling
 
    bool window::OnCommand(WPARAM wParam, LPARAM lParam)
       // return TRUE if command invocation was attempted
@@ -2153,7 +2153,7 @@ namespace ca2
       _001OnCommand(nID, CN_UPDATE_COMMAND_UI, &state, NULL);
       if (!state.m_bEnabled)
       {
-      TRACE(::ca2::trace::category_AppMsg, 0, "Warning: not executing disabled command %d\n", nID);
+      TRACE(::core::trace::category_AppMsg, 0, "Warning: not executing disabled command %d\n", nID);
       return TRUE;
       }
 
@@ -2168,7 +2168,7 @@ namespace ca2
       if (gen_ThreadState->m_hLockoutNotifyWindow == get_handle())
       return TRUE;        // locked out - ignore control notification
 
-      // reflect notification to child ::ca2::window control
+      // reflect notification to child ::core::window control
       if (ReflectLastMsg(oswindow_Ctrl))
       return TRUE;    // eaten by child
 
@@ -2179,7 +2179,7 @@ namespace ca2
 
       #ifdef DEBUG
       if (nCode < 0 && nCode != (int32_t)0x8000)
-      TRACE(::ca2::trace::category_AppMsg, 0, "Implementation Warning: control notification = $%X.\n",
+      TRACE(::core::trace::category_AppMsg, 0, "Implementation Warning: control notification = $%X.\n",
       nCode);
       #endif
 
@@ -2209,11 +2209,11 @@ namespace ca2
 
 
    ////////////////////////////////////////////////////////////////////////////
-   // UI related ::ca2::window functions
+   // UI related ::core::window functions
    /*
    oswindow window::get_safe_owner(oswindow hParent, oswindow* pWndTop)
    {
-      // get ::ca2::window to start with
+      // get ::core::window to start with
       oswindow oswindow = hParent;
       if (oswindow == NULL)
       {
@@ -2224,11 +2224,11 @@ namespace ca2
             oswindow = System.GetMainWnd()->GetSafeoswindow_();
       }
 
-      // a popup ::ca2::window cannot be owned by a child ::ca2::window
+      // a popup ::core::window cannot be owned by a child ::core::window
       while (oswindow != NULL && (::GetWindowLong(oswindow, GWL_STYLE) & WS_CHILD))
          oswindow = ::GetParent;
 
-      // determine toplevel ::ca2::window to disable as well
+      // determine toplevel ::core::window to disable as well
       ::oswindow oswindow_Top = oswindow;
       ::oswindow oswindow_Temp = oswindow;
       for (;;)
@@ -2244,7 +2244,7 @@ namespace ca2
       if (hParent == NULL && oswindow != NULL)
          oswindow = ::GetLastActivePopup;
 
-      // disable and store top level parent ::ca2::window if specified
+      // disable and store top level parent ::core::window if specified
       if (pWndTop != NULL)
       {
          if (oswindow_Top != NULL && ::IsWindowEnabled(oswindow_Top) && oswindow_Top != oswindow)
@@ -2394,7 +2394,7 @@ namespace ca2
 
 
 
-} // namespace ca2
+} // namespace core
 
 
 CTestCmdUI::CTestCmdUI(sp(base_application) papp) :

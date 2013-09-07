@@ -20,7 +20,7 @@ namespace libcompress
 
       static void *SzBigAlloc(void *, size_t size) { return BigAlloc(size); }
       static void SzBigFree(void *, void *address) { BigFree(address); }
-      static ::ca2::ISzAlloc g_BigAlloc = { SzBigAlloc, SzBigFree };
+      static ::core::ISzAlloc g_BigAlloc = { SzBigAlloc, SzBigFree };
 
       static const uint32_t kNumAlignReps = 15;
 
@@ -883,7 +883,7 @@ namespace libcompress
             _unpackSize = *outSize;
             return CodeReal(progress);
          }
-         catch(const ::ca2::in_buffer_exception &e)  { return e.ErrorCode; }
+         catch(const ::core::in_buffer_exception &e)  { return e.ErrorCode; }
          catch(...) { return S_FALSE; }
          // CNewException is possible here. But probably CNewException is caused
          // by error in data stream.

@@ -39,7 +39,7 @@ namespace user
       virtual void BaseToolTipGetRect(LPRECT lprect);
       virtual int32_t BaseToolTipGetIndex();
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(message::dispatch * pinterface);
 #ifdef WINDOWSEX
       virtual void DrawItem(LPDRAWITEMSTRUCT lpDIS);
 #endif

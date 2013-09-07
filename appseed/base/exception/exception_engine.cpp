@@ -663,7 +663,7 @@ retry_get_base:
    bool engine::init()
    {
 
-      if(!::file_exists_dup("C:\\ca2\\exception_engine.txt"))
+      if(!::file_exists_dup("C:\\core\\exception_engine.txt"))
       {
          return false;
       }
@@ -754,7 +754,7 @@ retry_get_base:
    void engine::reset()
    {
 
-      if(!::file_exists_dup("C:\\ca2\\exception_engine.txt"))
+      if(!::file_exists_dup("C:\\core\\exception_engine.txt"))
       {
          return;
       }

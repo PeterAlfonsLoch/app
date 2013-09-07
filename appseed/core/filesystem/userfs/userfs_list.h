@@ -21,7 +21,7 @@ namespace userfs
 
       void _001OnClick(UINT uiFlags, point point);
 
-      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
+      virtual void install_message_handling(message::dispatch * pdispatch);
       
       virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);

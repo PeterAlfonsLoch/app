@@ -13,7 +13,7 @@ XfplayerViewLineSelection::~XfplayerViewLineSelection()
 
 void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::base, pbase, pobj);
+   SCAST_PTR(message::base, pbase, pobj);
 
    UINT message = pbase->m_uiMessage;
 
@@ -148,7 +148,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_
    else if(message == WM_TIMER)
    {
       uint_ptr nIDEvent = pbase->m_wparam;
-      if(nIDEvent == ::ca2::Timer::ID_HOVER)
+      if(nIDEvent == ::core::timer::ID_HOVER)
       {
          point pt;
          System.get_cursor_pos(&pt);
@@ -156,7 +156,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_
          if(!viewline.IsInHover())
          {
             sp(::user::interaction) pwnd = viewline.get_interaction();
-            pwnd->KillTimer(::ca2::Timer::ID_HOVER);
+            pwnd->KillTimer(::core::timer::ID_HOVER);
          }
       }
    }
@@ -628,7 +628,7 @@ bool XfplayerViewLineSelection::OnLButtonUp(XfplayerViewLine & viewline, UINT us
 bool XfplayerViewLineSelection::OnTimer(XfplayerViewLine & viewline, UINT user)
 {
    UINT nIDEvent = user;
-   if(nIDEvent == ::ca2::Timer::ID_HOVER)
+   if(nIDEvent == ::core::timer::ID_HOVER)
    {
       if(viewline.IsInHover())
       {
@@ -642,8 +642,8 @@ bool XfplayerViewLineSelection::OnTimer(XfplayerViewLine & viewline, UINT user)
             viewline.GetPlacement(rectPlacement);
             viewline.get_interaction()->_001RedrawWindow();
          }
-         //         sp(::ca2::window) pwnd = viewline.GetWnd();
-         //         pwnd->KillTimer(::ca2::Timer::ID_HOVER);
+         //         sp(::core::window) pwnd = viewline.GetWnd();
+         //         pwnd->KillTimer(::core::timer::ID_HOVER);
       }
    }
    return false;
@@ -653,13 +653,13 @@ void XfplayerViewLineSelectionItem::NormalizeSel()
 {
    if(m_iLineStart > m_iLineEnd)
    {
-      ::ca2::swap(m_iLineEnd, m_iLineStart);
-      ::ca2::swap(m_iCharEnd, m_iCharStart);
+      ::core::swap(m_iLineEnd, m_iLineStart);
+      ::core::swap(m_iCharEnd, m_iCharStart);
    }
    else if(m_iLineStart == m_iLineEnd
       && m_iCharStart > m_iCharEnd)
    {
-      ::ca2::swap(m_iCharEnd, m_iCharStart);
+      ::core::swap(m_iCharEnd, m_iCharStart);
    }
 
 }

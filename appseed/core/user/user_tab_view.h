@@ -57,7 +57,7 @@ namespace user
 
       virtual void _001OnShowTab(::user::tab * ptab);
       virtual void on_show_view();
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(message::dispatch * pinterface);
 
       void _001OnTabClick(int32_t iTab);
 
@@ -91,7 +91,7 @@ namespace user
       virtual ~tab_drop_target_window();
 
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(message::dispatch * pinterface);
 
       void _001OnDraw(::draw2d::graphics * pdc);
 

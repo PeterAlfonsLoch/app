@@ -479,7 +479,7 @@ template<class TYPE, class ARG_TYPE>
 #define new DEBUG_NEW
 
       // copy new data from old
-      ::ca2::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
+      ::core::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
          m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
@@ -542,7 +542,7 @@ void raw_array<TYPE, ARG_TYPE>::free_extra()
       {
          pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
          // copy new data from old
-         ::ca2::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
+         ::core::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
             m_pData, m_nSize * sizeof(TYPE));
       }
 
@@ -613,7 +613,7 @@ index raw_array<TYPE, ARG_TYPE>::inset(index nIndex, ARG_TYPE newElement, ::coun
       allocate(m_nSize + nCount, -1);  // grow it to new size
       // destroy intial data before copying over it
       // shift old data up to fill gap
-      ::ca2::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
+      ::core::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
          m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
 
       // re-init slots we copied from
@@ -647,7 +647,7 @@ inline index raw_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
    ::count nMoveCount = m_nSize - (nUpperBound);
    if (nMoveCount)
    {
-      ::ca2::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
+      ::core::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
          m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
    }
    m_nSize -= nCount;

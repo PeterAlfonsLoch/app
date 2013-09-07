@@ -71,7 +71,7 @@ simple_toolbar::~simple_toolbar()
 
 }
 
-void simple_toolbar::install_message_handling(::ca2::message::dispatch * pdispatch)
+void simple_toolbar::install_message_handling(message::dispatch * pdispatch)
 {
    ::user::control_bar::install_message_handling(pdispatch);
    //IGUI_WIN_MSG_LINK(WM_ERASEBKGND()
@@ -802,7 +802,7 @@ ASSERT_VALID(this);
 ASSERT(lpszResourceName != NULL);
 
 // determine location of the bitmap in resource fork
-HINSTANCE hInst = ::ca2::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
+HINSTANCE hInst = ::core::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
 HRSRC hRsrc = ::FindResource(hInst, lpszResourceName, RT_TOOLBAR);
 if (hRsrc == NULL)
 return FALSE;
@@ -1143,14 +1143,14 @@ ASSERT_VALID(this);
 ASSERT(lpszResourceName != NULL);
 
 // determine location of the bitmap in resource fork
-HINSTANCE hInstImageWell = ::ca2::FindResourceHandle(lpszResourceName, RT_BITMAP);
+HINSTANCE hInstImageWell = ::core::FindResourceHandle(lpszResourceName, RT_BITMAP);
 HRSRC hRsrcImageWell = ::FindResource(hInstImageWell, lpszResourceName, RT_BITMAP);
 if (hRsrcImageWell == NULL)
 return FALSE;
 
 // load the bitmap
 HBITMAP hbmImageWell;
-//   hbmImageWell = ::ca2::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
+//   hbmImageWell = ::core::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
 ::draw2d::memory_graphics pdc(this);;
 hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
 
@@ -1356,7 +1356,7 @@ void simple_toolbar::layout()
 
 void simple_toolbar::_001OnMouseMove(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+   SCAST_PTR(message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    if(m_bDockTrack)
@@ -1377,7 +1377,7 @@ void simple_toolbar::_001OnMouseMove(signal_details * pobj)
 
 void simple_toolbar::_001OnLButtonDown(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+   SCAST_PTR(message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    m_iButtonPressItem = _001HitTest(pt);
@@ -1395,7 +1395,7 @@ void simple_toolbar::_001OnLButtonDown(signal_details * pobj)
 
 void simple_toolbar::_001OnLButtonUp(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+   SCAST_PTR(message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    if(m_bDockTrack)
@@ -1476,7 +1476,7 @@ void simple_toolbar::_001Hover(bool bRedraw)
 
 void simple_toolbar::_001OnTimer(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::timer, ptimer, pobj)
+   SCAST_PTR(message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == TIMER_HOVER)
       {
          _001Hover();
@@ -1658,7 +1658,7 @@ void simple_toolbar::SetButtonStyle(int32_t nIndex, UINT nStyle)
 void simple_toolbar::_001OnNcCalcSize(signal_details * pobj)
 {
 #if defined(WINDOWSEX) //|| defined(LINUX)
-   SCAST_PTR(::ca2::message::nc_calc_size, pnccalcsize, pobj)
+   SCAST_PTR(message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
    class rect rect;
    rect.null();
@@ -1678,7 +1678,7 @@ void simple_toolbar::_001OnNcCalcSize(signal_details * pobj)
 
 void simple_toolbar::_001OnNcHitTest(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::nchittest, pnchittest, pobj)
+   SCAST_PTR(message::nchittest, pnchittest, pobj)
       pnchittest->set_lresult(HTCLIENT);
 }
 
@@ -2133,7 +2133,7 @@ void simple_toolbar::_001OnMove(signal_details * pobj)
 
 void simple_toolbar::_001OnMouseLeave(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::base, pbase, pobj)
+   SCAST_PTR(message::base, pbase, pobj)
       m_iHover = 0x80000000;
    OnUpdateHover();
    _001RedrawWindow();

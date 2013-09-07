@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
 
    class property;
 
 
-} // namespace ca2
+} // namespace core
 
 
 class CLASS_DECL_c string_array :

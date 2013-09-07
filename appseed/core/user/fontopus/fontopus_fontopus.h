@@ -11,7 +11,7 @@ namespace fontopus
    public:
 
 
-      ::ca2::thread * m_pthreadCreatingUser;
+      ::core::thread * m_pthreadCreatingUser;
       user *         m_puser;
 
 

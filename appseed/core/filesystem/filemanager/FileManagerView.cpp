@@ -48,7 +48,7 @@ void FileManagerAView::on_update(sp(::user::view) pSender, LPARAM lHint, object*
             {
                string str;
                str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-               sp(FileManagerFrame) pframe = ((sp(::ca2::window)) GetParentFrame());
+               sp(FileManagerFrame) pframe = ((sp(::core::window)) GetParentFrame());
                if(pframe != NULL)
                {
                   pframe->m_dataid = str;
@@ -292,7 +292,7 @@ void FileManagerView::on_update(sp(::user::view) pSender, LPARAM lHint, object* 
             {
                string str;
                str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-               sp(FileManagerFrame) pframe = ((sp(::ca2::window)) GetParentFrame());
+               sp(FileManagerFrame) pframe = ((sp(::core::window)) GetParentFrame());
                if(pframe != NULL)
                {
                   pframe->m_dataid = str;
@@ -313,7 +313,7 @@ void FileManagerView::on_update(sp(::user::view) pSender, LPARAM lHint, object* 
                GetParentFrame()->ActivateFrame(SW_SHOW);
                OnActivateView(TRUE, this, this);
                RedrawWindow();
-               sp(FileManagerFrame) pframe = ((sp(::ca2::window)) GetParentFrame());
+               sp(FileManagerFrame) pframe = ((sp(::core::window)) GetParentFrame());
                if(pframe != NULL)
                {
    //xxx               pframe->WindowDataLoadWindowRect();
@@ -322,7 +322,7 @@ void FileManagerView::on_update(sp(::user::view) pSender, LPARAM lHint, object* 
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypeCreateBars))
             {
-               sp(FileManagerFrame) pframe = ((sp(::ca2::window)) GetParentFrame());
+               sp(FileManagerFrame) pframe = ((sp(::core::window)) GetParentFrame());
                if(pframe != NULL)
                {
                   ASSERT(pframe != NULL);
@@ -335,7 +335,7 @@ void FileManagerView::on_update(sp(::user::view) pSender, LPARAM lHint, object* 
                {
                   pmainframe->CreateBars();
                }
-               sp(FileManagerChildFrame) pchildframe = ((sp(::ca2::window)) GetParentFrame());
+               sp(FileManagerChildFrame) pchildframe = ((sp(::core::window)) GetParentFrame());
                if(pchildframe != NULL)
                {
                   ASSERT(pchildframe != NULL);

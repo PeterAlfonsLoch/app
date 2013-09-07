@@ -48,7 +48,7 @@ namespace userex // ca8 + cube
    };
 
 
-} // namespace ca2 // ca8 + cube
+} // namespace core // ca8 + cube
 
 
 

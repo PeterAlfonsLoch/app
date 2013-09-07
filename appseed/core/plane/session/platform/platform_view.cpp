@@ -89,7 +89,7 @@ namespace platform
    {
    }
 
-   void view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void view::install_message_handling(message::dispatch * pinterface)
    {
       form_view::install_message_handling(pinterface);
 
@@ -204,7 +204,7 @@ namespace platform
       m_dibBkImage.load_from_matter("casweden1.png");
 
       m_dibBk->create(1280, 1024);
-      //::ca2::savings & savings = System.savings();
+      //::core::savings & savings = System.savings();
       //if(
 
       const char * pszSessionName = NULL;
@@ -258,7 +258,7 @@ namespace platform
    }
    void view::_001OnContextMenu(signal_details * pobj)
    {
-//      SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(message::context_menu, pcontextmenu, pobj)
 //         point point = pcontextmenu->GetPoint();
 
    }
@@ -350,7 +350,7 @@ namespace platform
       rectDesktop.top = 0;
       rectDesktop.bottom = ::GetSystemMetrics(SM_CYSCREEN);
       }*/
-      if(System.savings().is_trying_to_save(::ca2::resource_processing))
+      if(System.savings().is_trying_to_save(::core::resource_processing))
       {
          pdc->FillRect(&rectClient, m_brushBk);
       }
@@ -531,7 +531,7 @@ namespace platform
    void view::_001OnAppLanguage(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      //      SCAST_PTR(message::base, pbase, pobj);
       load_links();
    }
 
@@ -560,7 +560,7 @@ namespace platform
    void view::mt_show_window(oswindow oswindow, int32_t iShow)
    {
 
-      __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(oswindow, iShow), ::ca2::scheduling_priority_highest);
+      __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(oswindow, iShow), ::core::scheduling_priority_highest);
 
    }
 
@@ -574,7 +574,7 @@ namespace platform
    void view::_001OnTimer(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj)
+      SCAST_PTR(message::timer, ptimer, pobj)
 
          if(ptimer->m_nIDEvent == 21977)
          {
@@ -612,7 +612,7 @@ namespace platform
 
    void view::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
          pmouse->set_lresult(1);
       KillTimer(5432180);
       point pt = pmouse->m_pt;
@@ -875,7 +875,7 @@ namespace platform
 
    void view::_001OnMouseMove(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
          pmouse->set_lresult(1);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);

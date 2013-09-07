@@ -9,18 +9,18 @@ class CLASS_DECL_ca2 raw_pointer :
 {
 public:
 
-   raw_pointer(::ca2::applicationsp papp);
+   raw_pointer(::core::applicationsp papp);
    raw_pointer(const raw_pointer & holder);
    raw_pointer(sp(element) pboject);
 
    template < class T >
-   T * ca2 ()
+   T * core ()
    {
       return dynamic_cast < T * > (m_pca);
    }
 
    template < class T >
-   T * const ca2 () const
+   T * const core () const
    {
       return dynamic_cast < T * const > (m_pca);
    }

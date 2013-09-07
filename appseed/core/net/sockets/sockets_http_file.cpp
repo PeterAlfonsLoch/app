@@ -34,7 +34,7 @@ namespace sockets
 //         if(!Application.file().exists(lpszFileName))
   //          return false;
 
-         ::ca2::http::signal * psignal = new ::ca2::http::signal;
+         ::core::http::signal * psignal = new ::core::http::signal;
 
          psignal->m_set["file"]       = (sp(element)) m_pmemoryfileIn;
          psignal->m_set["file_out"]   = (sp(element)) m_ptimeoutfile;
@@ -52,7 +52,7 @@ namespace sockets
             m_ptimeoutfile->m_uiExpectedSize = (uint64_t) -1;
          }
 
-         ::ca2::emit(get_app(), this, &file::on_http_request_response, &Application.http(), &::ca2::http::application::get, psignal);
+         ::core::emit(get_app(), this, &file::on_http_request_response, &Application.http(), &::core::http::application::get, psignal);
          return TRUE;
       }
 

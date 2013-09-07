@@ -297,12 +297,12 @@ void id_pool::_reset()
    id_jp = "jp";
 
    id_fr = "fr";
-   id_fr_ca = "fr-ca2";
-   id_ca = "ca2";
+   id_fr_ca = "fr-core";
+   id_ca = "core";
 
    id_en = "en";
    id_en_us = "en-us";
-   id_en_ca = "en-ca2";
+   id_en_ca = "en-core";
    id_std = "_std";
 
    id_pe = "pe";
@@ -386,9 +386,9 @@ bool base_system::on_assert_failed_line(const char * lpszFileName, int32_t iLine
 
 sp(element) base_system::on_alloc(sp(base_application) papp, sp(type) info)
 {
-/*      if(info == System.type_info < class ::ca2::log > ())
+/*      if(info == System.type_info < class ::core::log > ())
    {
-      return new class ::ca2::log(this); // NULL log implementation
+      return new class ::core::log(this); // NULL log implementation
    }*/
    /*string str;
    str.Format("Could not alloc %s", info.name());

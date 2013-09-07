@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -37,6 +37,6 @@ namespace ca2
    typedef smart_pointer < file_set > file_set_sp;
 
 
-} // namespace ca2
+} // namespace core
 
 

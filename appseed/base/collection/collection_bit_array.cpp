@@ -41,16 +41,16 @@ void bit_array::set_size(int32_t iBitCount, bool bSet)
       {
          if(int_ptr(pdataOld) == 1)
          {
-            ::ca2::bit::set(m_pdata, true, 0, m_iDataCount * 8 * sizeof(int32_t) - 1);
+            ::core::bit::set(m_pdata, true, 0, m_iDataCount * 8 * sizeof(int32_t) - 1);
          }
          else if(pdataOld != NULL)
          {
-            ::ca2::bit::int_aligned_copy(m_pdata, 0, pdataOld, 0, iOldBitCount - 1);
+            ::core::bit::int_aligned_copy(m_pdata, 0, pdataOld, 0, iOldBitCount - 1);
             delete [] pdataOld;
          }
          if(iOldBitCount < m_iBitCount)
          {
-            ::ca2::bit::set(m_pdata, bSet, iOldBitCount, m_iBitCount - 1);
+            ::core::bit::set(m_pdata, bSet, iOldBitCount, m_iBitCount - 1);
          }
       }
    }

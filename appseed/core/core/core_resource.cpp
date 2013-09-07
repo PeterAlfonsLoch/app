@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    resource::resource()
@@ -28,4 +28,4 @@ namespace ca2
       return false;
    }
 
-} // namespace ca2
+} // namespace core

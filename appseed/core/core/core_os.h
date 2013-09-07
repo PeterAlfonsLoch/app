@@ -2,7 +2,7 @@
 
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -72,7 +72,7 @@ namespace ca2
       virtual void post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam);
 
 
-      virtual void set_file_status(const char * lpszFileName, const ::ca2::file_status& status);
+      virtual void set_file_status(const char * lpszFileName, const ::core::file_status& status);
 
    };
 
@@ -80,7 +80,7 @@ namespace ca2
    typedef smart_pointer < os > os_sp;
 
 
-} // namespace ca2
+} // namespace core
 
 
 

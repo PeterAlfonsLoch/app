@@ -11,7 +11,7 @@ namespace libcompress
    {
 
 
-      struct CCoder2: public CCoderInfo2, public ::ca2::thread
+      struct CCoder2: public CCoderInfo2, public ::core::thread
       {
 
 
@@ -48,7 +48,7 @@ namespace libcompress
          virtual public CCoderMixer2
       {
          CBindInfo _bindInfo;
-         spa(::ca2::stream_binder) _streamBinders;
+         spa(::core::stream_binder) _streamBinders;
          int32_t _progressCoderIndex;
 
          void AddCoderCommon();

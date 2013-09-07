@@ -13,7 +13,7 @@ simple_tree_view::~simple_tree_view()
 {
 }
 
-void simple_tree_view::install_message_handling(::ca2::message::dispatch * pinterface)
+void simple_tree_view::install_message_handling(message::dispatch * pinterface)
 {
    ::user::view::install_message_handling(pinterface);
    ::user::tree::install_message_handling(pinterface);
@@ -39,7 +39,7 @@ void simple_tree_view::dump(dump_context & dumpcontext) const
 void simple_tree_view::_001OnCreate(signal_details * pobj)
 {
 
-   SCAST_PTR(::ca2::message::create, pcreate, pobj);
+   SCAST_PTR(message::create, pcreate, pobj);
 
    pcreate->previous();
 

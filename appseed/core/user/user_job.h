@@ -5,7 +5,7 @@ namespace user
 {
 
    class CLASS_DECL_ca2 job :
-      virtual public ::ca2::job
+      virtual public ::core::job
    {
    public:
 

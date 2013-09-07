@@ -147,7 +147,7 @@ namespace libcompress
             throw "E_FAIL";
          _bufferPos = 0;
       }
-      ::ca2::output_stream_flush_interface * pflush = dynamic_cast < ::ca2::output_stream_flush_interface * > (_outStream) ;
+      ::core::output_stream_flush_interface * pflush = dynamic_cast < ::core::output_stream_flush_interface * > (_outStream) ;
       if(pflush)
          return pflush->flush();
    }

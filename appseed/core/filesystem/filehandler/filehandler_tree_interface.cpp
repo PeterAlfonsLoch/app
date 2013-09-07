@@ -7,7 +7,7 @@ namespace filehandler
 
    tree_interface::tree_interface(sp(base_application) papp) :
       element(papp),
-      ::ca2::tree(papp)
+      ::core::tree(papp)
    {
 
       ::data_container::m_spdata = new tree_data(get_app());

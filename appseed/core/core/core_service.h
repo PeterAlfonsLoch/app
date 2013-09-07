@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ca2
+namespace core
 {
    class CLASS_DECL_ca2 service :
       public object
@@ -18,4 +18,4 @@ namespace ca2
       int32_t start(const char * pszName);
    };
 
-} // namespace ca2
+} // namespace core

@@ -1,13 +1,13 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace core
 {
 
 
    print_job::print_job(sp(base_application) papp) :
       element(papp),
-      ::ca2::job(papp)
+      ::core::job(papp)
    {
       m_iPageStart = -1;
       m_iPageCount = -1;
@@ -19,4 +19,4 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace core

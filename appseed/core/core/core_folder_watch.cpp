@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ca2
+namespace core
 {
 
    void folder_watch::callback::on_file_action(e_action eaction, const char * pszFolder, const char * psz)
@@ -25,4 +25,4 @@ namespace ca2
       }
    }
       
-} // namespace ca2
+} // namespace core

@@ -4,7 +4,7 @@
 CLASS_DECL_ca2 bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt);
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -77,7 +77,7 @@ namespace ca2
    typedef smart_pointer < crypt > crypt_sp;
 
 
-} //   namespace ca2
+} //   namespace core
 
 
 

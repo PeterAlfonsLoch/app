@@ -132,7 +132,7 @@ bool db_server::initialize()
 #endif
 
    //var varChange;
-   //data_server_load("ca2", "database_change", "change", varChange);
+   //data_server_load("core", "database_change", "change", varChange);
    //g_idbchange = varChange;
 
 #if !defined(METROWIN) && !defined(MACOS)
@@ -227,15 +227,15 @@ bool db_server::destroy_message_window()
 
 void db_server::_001OnTimer(signal_details * pobj)
 {
-   SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+   SCAST_PTR(message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 1258477)
    {
       /*var varChange;
       var var;
-      data_server_load("ca2", "database_change", "change", varChange);
+      data_server_load("core", "database_change", "change", varChange);
       while(g_idbchange <= (int32_t) varChange)
       {
-         if(data_server_load("ca2", "database_change", g_idbchange, var))
+         if(data_server_load("core", "database_change", g_idbchange, var))
          {
             if(var.stra().get_count() == 3)
             {
@@ -276,7 +276,7 @@ void db_server::close()
 }
 
 
-bool db_server::data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::ca2::writable & writable, ::database::update_hint * phint)
+bool db_server::data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::core::writable & writable, ::database::update_hint * phint)
 {
    UNREFERENCED_PARAMETER(phint);
 //   single_lock sl(&m_csImplDatabase, TRUE);
@@ -285,31 +285,31 @@ bool db_server::data_server_load(::database::client * pclient, ::database::id id
    return true;
 }
 
-bool db_server::data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::ca2::readable & readable, ::database::update_hint * phint)
+bool db_server::data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::core::readable & readable, ::database::update_hint * phint)
 {
    UNREFERENCED_PARAMETER(phint);
    single_lock sl(&m_csImplDatabase, TRUE);
    if(!save(calc_key(pclient, idSection, id, idIndex), readable))
       return false;
-/*   if(idSection.m_id.str() != "ca2" ||
+/*   if(idSection.m_id.str() != "core" ||
       id.m_id.str() != "database_change")
    {
       try
       {
          m_pdb->start_transaction();
          var varChange;
-         data_server_load("ca2", "database_change", "change", varChange);
+         data_server_load("core", "database_change", "change", varChange);
          varChange++;
          stringa stra;
          stra.add(idSection.m_id);
          stra.add(id.m_id);
          stra.add(idIndex.m_id);
-         if(!data_save("ca2", "database_change", varChange.int32(), stra))
+         if(!data_save("core", "database_change", varChange.int32(), stra))
          {
             m_pdb->rollback_transaction();
             goto end_write_change;
          }
-         if(!data_server_save("ca2", "database_change", "change", varChange))
+         if(!data_server_save("core", "database_change", "change", varChange))
          {
             m_pdb->rollback_transaction();
             goto end_write_change;
@@ -336,7 +336,7 @@ bool db_server::load(const char * lpcszKey, string & str)
 
 
 
-bool db_server::load(const char * lpKey, ::ca2::writable &  writable)
+bool db_server::load(const char * lpKey, ::core::writable &  writable)
 {
 //   single_lock sl(&m_csImplDatabase, TRUE);
    string str;
@@ -357,7 +357,7 @@ bool db_server::save(const char * lpcszKey, const char * lpcsz)
 }
 
 
-bool db_server::save(const char * lpKey, ::ca2::readable & readable)
+bool db_server::save(const char * lpKey, ::core::readable & readable)
 {
    single_lock sl(&m_csImplDatabase, TRUE);
    string str;

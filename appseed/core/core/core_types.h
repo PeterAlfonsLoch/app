@@ -3,7 +3,7 @@
 
 // Common/Types.h
 // from 7-zip
-namespace ca2
+namespace core
 {
    
    //#include "../../C/Types.h"
@@ -185,5 +185,5 @@ namespace ca2
 
 
 
-} // namespace ca2
+} // namespace core
 

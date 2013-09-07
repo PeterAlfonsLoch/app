@@ -16,7 +16,7 @@ simple_list_header_control::~simple_list_header_control()
 
 
 
-void simple_list_header_control::install_message_handling(::ca2::message::dispatch * pinterface)
+void simple_list_header_control::install_message_handling(message::dispatch * pinterface)
 {
    ::user::interaction::install_message_handling(pinterface);
    ::user::list_header::install_message_handling(pinterface);
@@ -52,7 +52,7 @@ void simple_list_header_control::install_message_handling(::ca2::message::dispat
 void simple_list_header_control::_001OnEndTrack(signal_details * pobj)
 {
 #ifdef WINDOWSEX
-   SCAST_PTR(::ca2::message::notify, pnotify, pobj)
+   SCAST_PTR(message::notify, pnotify, pobj)
 #else
    throw todo(get_app());
 #endif
@@ -79,7 +79,7 @@ void simple_list_header_control::_001OnEndTrack(signal_details * pobj)
 void simple_list_header_control::_001OnTrack(signal_details * pobj)
 {
 #ifdef WINDOWSEX
-   SCAST_PTR(::ca2::message::notify, pnotify, pobj)
+   SCAST_PTR(message::notify, pnotify, pobj)
 #else
    throw todo(get_app());
 #endif
@@ -107,7 +107,7 @@ void simple_list_header_control::_001OnTrack(signal_details * pobj)
 
 void simple_list_header_control::_001OnCreate(signal_details * pobj) 
 {
-   SCAST_PTR(::ca2::message::create, pcreate, pobj)
+   SCAST_PTR(message::create, pcreate, pobj)
 //   LOGFONTW lf;
 
    ::user::list_header::m_font->operator = (*System.visual().font_central().GetListCtrlFont());
@@ -119,7 +119,7 @@ void simple_list_header_control::_001OnCreate(signal_details * pobj)
 void simple_list_header_control::_001OnEndDrag(signal_details * pobj)
 {
 #ifdef WINDOWSEX
-   SCAST_PTR(::ca2::message::notify, pnotify, pobj)
+   SCAST_PTR(message::notify, pnotify, pobj)
 #else
    throw todo(get_app());
 #endif
@@ -216,7 +216,7 @@ bool simple_list_header_control::create(UINT nStyle, LPCRECT lpcrect, sp(::user:
 
 void simple_list_header_control::_001OnMove(signal_details * pobj) 
 {
-   SCAST_PTR(::ca2::message::move, pmove, pobj)
+   SCAST_PTR(message::move, pmove, pobj)
    point point(pmove->m_pt.x, pmove->m_pt.y);
    pmove->m_bRet = false;
 }

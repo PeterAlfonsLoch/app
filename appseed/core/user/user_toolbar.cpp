@@ -78,7 +78,7 @@ namespace user
       //m_nCount = 0;
    }
 
-   void tool_bar::install_message_handling(::ca2::message::dispatch * pinterface)
+   void tool_bar::install_message_handling(message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_NCHITTEST         , pinterface, this, &tool_bar::_001OnNcHitTest);
       //IGUI_WIN_MSG_LINK(WM_NCPAINT         , pinterface, this, &tool_bar::_001On);
@@ -237,7 +237,7 @@ namespace user
       ASSERT(lpszResourceName != NULL);
 
       // determine location of the bitmap in resource fork
-      HINSTANCE hInst = ::ca2::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
+      HINSTANCE hInst = ::core::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
       HRSRC hRsrc = ::FindResource(hInst, lpszResourceName, RT_TOOLBAR);
       if (hRsrc == NULL)
          return FALSE;
@@ -282,14 +282,14 @@ namespace user
       ASSERT(lpszResourceName != NULL);
 
       // determine location of the bitmap in resource fork
-      HINSTANCE hInstImageWell = ::ca2::FindResourceHandle(lpszResourceName, RT_BITMAP);
+      HINSTANCE hInstImageWell = ::core::FindResourceHandle(lpszResourceName, RT_BITMAP);
       HRSRC hRsrcImageWell = ::FindResource(hInstImageWell, lpszResourceName, RT_BITMAP);
       if (hRsrcImageWell == NULL)
          return FALSE;
 
       // load the bitmap
       HBITMAP hbmImageWell;
-   //   hbmImageWell = ::ca2::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
+   //   hbmImageWell = ::core::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
       ::draw2d::memory_graphics pdc(this);
       hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
 
@@ -1138,7 +1138,7 @@ throw todo(get_app());
 
    void tool_bar::_001OnNcHitTest(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
       pbase->set_lresult(HTCLIENT);
       pbase->m_bRet = true;
    }
@@ -1146,7 +1146,7 @@ throw todo(get_app());
    void tool_bar::_001OnNcCalcSize(signal_details * pobj)
    {
 #ifdef WINDOWSEX
-      SCAST_PTR(::ca2::message::nc_calc_size, pnccalcsize, pobj)
+      SCAST_PTR(message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect;
       rect.null();
@@ -1197,7 +1197,7 @@ throw todo(get_app());
    void tool_bar::_001OnWindowPosChanging(signal_details * pobj)
    {
 #ifdef WINDOWSEX
-      SCAST_PTR(::ca2::message::window_pos, pwindowpos, pobj)
+      SCAST_PTR(message::window_pos, pwindowpos, pobj)
       // not necessary to invalidate the borders
       uint32_t dwStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
@@ -1243,13 +1243,13 @@ throw todo(get_app());
 
    void tool_bar::_001OnSetButtonSize(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
       pbase->set_lresult(OnSetSizeHelper(m_sizeButton, pbase->m_lparam));
    }
 
    void tool_bar::_001OnSetBitmapSize(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
       pbase->set_lresult(OnSetSizeHelper(m_sizeImage, pbase->m_lparam));
    }
 
@@ -1285,7 +1285,7 @@ throw todo(get_app());
    void tool_bar::_001OnPreserveZeroBorderHelper(signal_details * pobj)
    {
       LRESULT lResult = 0;
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(message::base, pbase, pobj)
 #ifdef LRESULT
 
       bool bModify = FALSE;
@@ -1311,7 +1311,7 @@ throw todo(get_app());
 //      if (m_hInstImageWell != NULL && m_hbmImageWell != NULL)
       {
    // trans      HBITMAP hbmNew;
-   /*      hbmNew = ::ca2::LoadSysColorBitmap(m_hInstImageWell, m_hRsrcImageWell);
+   /*      hbmNew = ::core::LoadSysColorBitmap(m_hInstImageWell, m_hRsrcImageWell);
          if (hbmNew != NULL)
             AddReplaceBitmap(hbmNew);*/
       }

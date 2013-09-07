@@ -554,7 +554,7 @@ namespace n7z
       ::libcompress::codecs_info_interface * codecsInfo,
       const array < ::libcompress::codec_info_ex > * externalCodecs,
       CEncoder & encoder,
-      const ::ca2::byte_buffer & data,
+      const ::core::byte_buffer & data,
       array < file_size > & packSizes,
       smart_pointer_array < CFolder > & folders)
    {
@@ -796,7 +796,7 @@ namespace n7z
 
          if (encodeHeaders)
          {
-            ::ca2::byte_buffer buf;
+            ::core::byte_buffer buf;
             buf.SetCapacity(_countSize);
             _outByte2.Init((byte *)buf, _countSize);
 

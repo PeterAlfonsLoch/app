@@ -81,7 +81,7 @@ namespace hi5
                return;
 
             string strUrl;
-            strUrl = "http://spaignition.api.server.ca2.cc/query?node=install_application&id=";
+            strUrl = "http://spaignition.api.server.core.cc/query?node=install_application&id=";
             string strAppName;
             if(System.m_strAppName == "winactionarea")
             {

@@ -27,7 +27,7 @@ public:
    virtual bool pre_create_window(CREATESTRUCT& cs);
    
 
-   virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
+   virtual void install_message_handling(message::dispatch * pdispatch);
 
    void UpdateDrawingObjects();
    void UpdateWndRgn();

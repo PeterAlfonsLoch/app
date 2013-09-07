@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace core
 {
 
 
@@ -234,7 +234,7 @@ namespace ca2
 
          domain.create(System.url().get_server(strPath));
 
-         if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(strPath), "/matter/"))
+         if(domain.m_strRadix == "core" && ::str::begins(System.url().get_object(strPath), "/matter/"))
          {
 
             string strFile(strPath);
@@ -321,7 +321,7 @@ namespace ca2
                   try
                   {
 
-                     System.file().output(m_papp, strFile, &System.compress(), &::ca2::compress::null, *spfile.m_p);
+                     System.file().output(m_papp, strFile, &System.compress(), &::core::compress::null, *spfile.m_p);
 
                   }
                   catch(...)
@@ -457,17 +457,17 @@ namespace ca2
 
    }
 
-   ::ca2::byte_stream file_application::get_byte_stream(var varFile, UINT nOpenFlags)
+   ::core::byte_stream file_application::get_byte_stream(var varFile, UINT nOpenFlags)
    {
 
-      return ::ca2::byte_stream(get_file(varFile, nOpenFlags));
+      return ::core::byte_stream(get_file(varFile, nOpenFlags));
 
    }
 
 
 
 
-} // namespace ca2
+} // namespace core
 
 
 

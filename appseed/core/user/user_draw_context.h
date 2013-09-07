@@ -10,7 +10,7 @@ namespace draw2d
 } // namespace draw2d
 
 
-namespace ca2
+namespace core
 {
 
    template < class TYPE >
@@ -72,7 +72,7 @@ namespace user
 {
    
    class CLASS_DECL_ca2 draw_context :
-      virtual public ::ca2::simple_chain < draw_context >
+      virtual public ::core::simple_chain < draw_context >
    {
    public:
 

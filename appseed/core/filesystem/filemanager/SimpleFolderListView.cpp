@@ -29,7 +29,7 @@ namespace filemanager
    }
 
 
-   void SimpleFolderListView::install_message_handling(::ca2::message::dispatch * pinterface)
+   void SimpleFolderListView::install_message_handling(message::dispatch * pinterface)
    {
       ::user::view::install_message_handling(pinterface);
       SimpleFolderListInterface::install_message_handling(pinterface);
@@ -105,7 +105,7 @@ namespace filemanager
 
    void SimpleFolderListView::_001OnLButtonDblClk(signal_details * pobj) 
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(message::mouse, pmouse, pobj)
          index iItem;
       if(_001HitTest_(pmouse->m_pt, iItem))
       {

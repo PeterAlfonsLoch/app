@@ -11,7 +11,7 @@
 
 #endif
 
-namespace ca2
+namespace core
 {
 
 
@@ -61,14 +61,14 @@ namespace ca2
       string system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2)
       {
 
-         return path(pszFolder, iLenFolder, pszRelative, iLenRelative, psz2, iLen2, ::ca2::is_url(pszFolder));
+         return path(pszFolder, iLenFolder, pszRelative, iLenRelative, psz2, iLen2, ::core::is_url(pszFolder));
 
       }
 
       string system::path(const string & strFolder, const string & strRelative)
       {
 
-         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), NULL, 0, ::ca2::is_url(strFolder));
+         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), NULL, 0, ::core::is_url(strFolder));
 
       }
 
@@ -76,7 +76,7 @@ namespace ca2
       string system::path(const string & strFolder, const string & strRelative, const string & str2)
       {
 
-         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), str2, str2.get_length(), ::ca2::is_url(strFolder));
+         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), str2, str2.get_length(), ::core::is_url(strFolder));
 
       }
 
@@ -84,11 +84,11 @@ namespace ca2
       {
          if(psz2 == NULL)
          {
-            return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), psz2, 0, ::ca2::is_url(strFolder));
+            return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), psz2, 0, ::core::is_url(strFolder));
          }
          else
          {
-            return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), psz2, strlen(psz2), ::ca2::is_url(strFolder));
+            return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), psz2, strlen(psz2), ::core::is_url(strFolder));
          }
 
       }
@@ -914,11 +914,11 @@ namespace ca2
 
             if(bDir)
             {
-               strPath = System.http().get("http://server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://server.core.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
             else
             {
-               strPath = System.http().get("http://server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://server.core.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
 
             if(strPath.has_char())
@@ -1128,11 +1128,11 @@ ret:
             
             if(bDir)
             {
-               strPath = System.http().get("http://server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://server.core.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
             else
             {
-               strPath = System.http().get("http://server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://server.core.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
 
             strPath.trim();
@@ -1601,7 +1601,7 @@ ret:
       }
 
 
-      class ::ca2::path & system::path()
+      class ::core::path & system::path()
       {
          throw interface_only_exception(get_app(), "this is an interface");
       }
@@ -1754,4 +1754,4 @@ ret:
 
    }  // namespace dir
 
-} // namespace ca2
+} // namespace core
