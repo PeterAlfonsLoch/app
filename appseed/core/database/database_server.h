@@ -16,32 +16,32 @@ namespace database
 
 
 
-      virtual bool data_server_load       (client * pclient, class id idSection, class id id, class id idIndex, ::core::writable & obj, update_hint * phint = NULL);
+      virtual bool data_server_load       (client * pclient, class id idSection, class id id, class id idIndex, ::file::writable & obj, update_hint * phint = NULL);
 
       virtual bool data_server_load       (client * pclient, class id idSection, class id id, class id idIndex, var & var, update_hint * phint = NULL);
       virtual bool data_server_load       (client * pclient, class id idSection, class id id, class id idIndex, ::file::output_stream & ostream, update_hint * phint = NULL);
       virtual bool data_server_load       (client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * phint = NULL);
-      virtual bool data_server_load       (client * pclient, class id idSection, class id id, class id idIndex, ::core::plain_text_output_stream & ostream, update_hint * phint = NULL);
-      virtual bool data_server_load       (client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * phint = NULL);
+//      virtual bool data_server_load       (client * pclient, class id idSection, class id id, class id idIndex, ::core::plain_text_output_stream & ostream, update_hint * phint = NULL);
+//      virtual bool data_server_load       (client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * phint = NULL);
       
       
       
 
 
-      virtual bool data_server_save       (client * pclient, class id idSection, class id id, class id idIndex, ::core::readable & obj, update_hint * phint = NULL);
+      virtual bool data_server_save       (client * pclient, class id idSection, class id id, class id idIndex, ::file::readable & obj, update_hint * phint = NULL);
 
       virtual bool data_server_save       (client * pclient, class id idSection, class id id, class id idIndex, var & var, update_hint * phint = NULL);
       virtual bool data_server_save       (client * pclient, class id idSection, class id id, class id idIndex, ::file::input_stream & istream, update_hint * phint = NULL);
       virtual bool data_server_save       (client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * phint = NULL);
-      virtual bool data_server_save       (client * pclient, class id idSection, class id id, class id idIndex, ::core::plain_text_input_stream & istream, update_hint * phint = NULL);
-      virtual bool data_server_save       (client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * phint = NULL);
+//      virtual bool data_server_save       (client * pclient, class id idSection, class id id, class id idIndex, ::core::plain_text_input_stream & istream, update_hint * phint = NULL);
+//      virtual bool data_server_save       (client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * phint = NULL);
 
 
 
 
 
-      virtual bool var_load               (client * pclient, class id idSection, class id id, class id idIndex, ::core::writable & obj, update_hint * phint = NULL);
-      virtual bool var_save               (client * pclient, class id idSection, class id id, class id idIndex, ::core::readable & obj, update_hint * phint = NULL);
+      virtual bool var_load               (client * pclient, class id idSection, class id id, class id idIndex, ::file::writable & obj, update_hint * phint = NULL);
+      virtual bool var_save               (client * pclient, class id idSection, class id id, class id idIndex, ::file::readable & obj, update_hint * phint = NULL);
 
 
       virtual bool data_pulse_change      (client * pclient, class id idSection, class id id, class id idIndex, update_hint * puh = NULL);

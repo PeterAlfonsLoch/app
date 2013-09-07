@@ -143,8 +143,8 @@ namespace n7z
 
    void COutArchive::Close()
    {
-      ::ca::release(SeqStream.m_p);
-      ::ca::release(Stream.m_p);
+      ::release(SeqStream.m_p);
+      ::release(Stream.m_p);
    }
 
    HRESULT COutArchive::SkipPrefixArchiveHeader()
@@ -554,7 +554,7 @@ namespace n7z
       ::libcompress::codecs_info_interface * codecsInfo,
       const array < ::libcompress::codec_info_ex > * externalCodecs,
       CEncoder & encoder,
-      const ::core::byte_buffer & data,
+      const ::file::byte_buffer & data,
       array < file_size > & packSizes,
       smart_pointer_array < CFolder > & folders)
    {
@@ -796,7 +796,7 @@ namespace n7z
 
          if (encodeHeaders)
          {
-            ::core::byte_buffer buf;
+            ::file::byte_buffer buf;
             buf.SetCapacity(_countSize);
             _outByte2.Init((byte *)buf, _countSize);
 

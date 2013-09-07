@@ -27,7 +27,7 @@ namespace userfs
    {
    }
 
-   void list::install_message_handling(message::dispatch * pinterface)
+   void list::install_message_handling(::message::dispatch * pinterface)
    {
       ::userfs::list_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &list::_001OnCreate);

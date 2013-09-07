@@ -28,7 +28,7 @@ namespace libcompress
       {
       public:
          ::libcompress::lz_out_window        m_OutWindowStream;
-         ::core::bitm::in_buffer_decoder   m_InBitStream;
+         ::file::bitm::in_buffer_decoder   m_InBitStream;
 
          uint32_t m_RepDists[kNumRepDists];
          uint32_t m_RepDistPtr;

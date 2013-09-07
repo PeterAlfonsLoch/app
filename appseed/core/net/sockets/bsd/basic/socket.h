@@ -28,7 +28,7 @@ namespace sockets
       /** Detached socket run thread.
       \ingroup internal */
       class CLASS_DECL_ca2 socket_thread :
-         virtual public ::core::thread
+         virtual public thread
       {
       public:
          socket_thread(socket * psocket, bool bCompileRefactoryDummy);
@@ -70,7 +70,7 @@ namespace sockets
 
       SOCKET                     m_socket; ///< File descriptor
       socket_handler_base &      m_handler; ///< Reference of socket_handler_base in control of this socket
-      ::::file::memory_buffer   m_memfileInput;
+      ::file::memory_buffer   m_memfileInput;
       bool                    m_bEnd; // should finish by not sending no more writes
       string                  m_strCat;
       callback *              m_pcallback;
@@ -86,7 +86,7 @@ namespace sockets
       bool                    m_bClose; ///< close and delete flag
       sp(socket)                m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       address                 m_addressRemoteClient; ///< Address of last connect()
-      ::file::buffer_sp             m_pfileTrafficMonitor;
+      ::file::buffer_sp              m_pfileTrafficMonitor;
       time_t                  m_timeTimeoutStart; ///< set by SetTimeout
       time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
@@ -686,9 +686,9 @@ namespace sockets
       //@}
 
       /** write traffic to an IFile. socket will not delete this object. */
-      void SetTrafficMonitor(::file::buffer_spp) { m_pfileTrafficMonitor = p; }
+      void SetTrafficMonitor(::file::buffer_sp  p) { m_pfileTrafficMonitor = p; }
       /** All traffic will be written to this IFile, if set. */
-      ::file::buffer_spGetTrafficMonitor() { return m_pfileTrafficMonitor; }
+      ::file::buffer_sp  GetTrafficMonitor() { return m_pfileTrafficMonitor; }
 
       /** \name Triggers */
       //@{

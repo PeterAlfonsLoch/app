@@ -5,7 +5,7 @@ class CLASS_DECL_c dump_context :
    virtual public element
 {
 public:
-   dump_context(::file::buffer_sp pFile = NULL);
+   dump_context(::file::buffer_sp  pFile = NULL);
 
 // Attributes
    int32_t GetDepth() const;      // 0 => this object, 1 => children objects
@@ -58,6 +58,6 @@ protected:
    int32_t m_nDepth;
 
 public:
-   ::file::buffer_sp m_pfile;
+   ::file::buffer_sp  m_pfile;
 };
 

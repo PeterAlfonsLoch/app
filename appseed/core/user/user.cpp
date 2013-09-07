@@ -43,7 +43,7 @@ namespace user
 
    sp(::user::interaction) get_parent_owner(sp(::user::interaction) oswindow)
    {
-      // check for permanent-owned ::core::window first
+      // check for permanent-owned ::user::window first
       sp(::user::interaction) pWnd = oswindow;
       if(pWnd == NULL)
          return NULL;

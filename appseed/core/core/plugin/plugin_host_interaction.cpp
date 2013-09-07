@@ -32,7 +32,7 @@ namespace plugin
       }
    }
 
-   void host_interaction::install_message_handling(message::dispatch * pinterface)
+   void host_interaction::install_message_handling(::message::dispatch * pinterface)
    {
 
       ::user::interaction::install_message_handling(pinterface);
@@ -215,7 +215,7 @@ namespace plugin
    void host_interaction::_on_start_user_message_handler()
    {
       ::user::interaction::_on_start_user_message_handler();
-      m_pfnDispatchWindowProc = reinterpret_cast < void (message::dispatch::*)(signal_details * pobj) > (&host_interaction::_user_message_handler);
+      m_pfnDispatchWindowProc = reinterpret_cast < void (::message::dispatch::*)(signal_details * pobj) > (&host_interaction::_user_message_handler);
    }
 
 

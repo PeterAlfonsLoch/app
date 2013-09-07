@@ -310,7 +310,7 @@ namespace filemanager
       return m_foldera.GetFolderCount();
    }
 
-   void SimpleFolderListInterface::install_message_handling(message::dispatch * pinterface)
+   void SimpleFolderListInterface::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::list::install_message_handling(pinterface);
    }

@@ -24,7 +24,7 @@ namespace user
    }
 
 
-   void button::install_message_handling(message::dispatch * pinterface)
+   void button::install_message_handling(::message::dispatch * pinterface)
    {
       //::user::window_interface::install_message_handling(pinterface);
       ::user::control::install_message_handling(pinterface);

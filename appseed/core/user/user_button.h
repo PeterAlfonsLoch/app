@@ -50,7 +50,7 @@ namespace user
 
       virtual ::draw2d::font * _001GetFont();
 
-      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual void _002OnDraw(::draw2d::graphics * pdc);

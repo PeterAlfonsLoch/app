@@ -3445,7 +3445,7 @@ fill_last:
     }
 
    
-   bool dib::update_window(::core::window * pwnd, signal_details * pobj)
+   bool dib::update_window(::user::window * pwnd, signal_details * pobj)
    {
       
       UNREFERENCED_PARAMETER(pwnd);
@@ -3461,7 +3461,7 @@ fill_last:
    }
    
 
-   bool dib::print_window(::core::window * pwnd, signal_details * pobj)
+   bool dib::print_window(::user::window * pwnd, signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pwnd);
       UNREFERENCED_PARAMETER(pobj);

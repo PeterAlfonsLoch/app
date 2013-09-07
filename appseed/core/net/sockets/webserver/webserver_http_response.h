@@ -11,7 +11,7 @@ namespace http
 
 
       //Utility::ncmap<string> m_cookie;
-      http::memory_buffer m_memfileBody;
+      file::memory_buffer m_memfileBody;
    
 
 
@@ -27,7 +27,7 @@ namespace http
       //string Cookie(const string & name);
       //list<string> CookieNames() const;
 
-      http::memory_buffer & file() { return m_memfileBody; }
+      file::memory_buffer & file() { return m_memfileBody; }
 
       /** replace memfile with file on disk, opened for read. */
    //   void SetFile( const string & path );

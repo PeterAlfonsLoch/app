@@ -72,7 +72,7 @@ public:
    SimpleDialogBar *    m_pdialogbar;
 
 
-   sp(::filemanager::document) open(sp(create_context) pcreatecontext = NULL, ::fs::data * pdata = NULL, ::filemanager::data * pfilemanagerdata = NULL);
+   sp(::filemanager::document) open(sp(::create_context) pcreatecontext = NULL, ::fs::data * pdata = NULL, ::filemanager::data * pfilemanagerdata = NULL);
    sp(::filemanager::document) OpenChild(bool bMakeVisible = true, bool bTransparentBackground = false, sp(::user::interaction) pwndParent = NULL, ::filemanager::data * pfilemanagerdata = NULL);
    sp(::filemanager::document) open_child_list(bool bMakeVisible = true, bool bTransparentBackground = false, sp(::user::interaction) pwndParent = NULL, ::filemanager::data * pfilemanagerdata = NULL);
 

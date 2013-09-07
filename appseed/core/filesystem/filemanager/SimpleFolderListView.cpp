@@ -29,7 +29,7 @@ namespace filemanager
    }
 
 
-   void SimpleFolderListView::install_message_handling(message::dispatch * pinterface)
+   void SimpleFolderListView::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::view::install_message_handling(pinterface);
       SimpleFolderListInterface::install_message_handling(pinterface);

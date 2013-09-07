@@ -443,3 +443,10 @@ sp(type) base_system::get_type_info(const ::std_type_info & info)
 
 
 
+   class ::str::base64 & base_system::base64()
+   {
+
+      return m_base64;
+
+   }
+

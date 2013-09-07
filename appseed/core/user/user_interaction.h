@@ -3,12 +3,12 @@
 
 #include "user/user_window_interface.h"
 
+   class message_window_callback;
 
 namespace core
 {
 
 
-   class window_callback;
    class live_object;
 
 #ifdef METROWIN
@@ -102,7 +102,7 @@ namespace user
          bool unset(sp(interaction) pguie, uint_ptr uiId);
          void unset(sp(interaction) pguie);
          void detach(spa(timer_item) & timera, sp(interaction) pguie);
-         void transfer(sp(::core::window) pwindow, sp(interaction) pguie);
+         void transfer(sp(::user::window) pwindow, sp(interaction) pguie);
          sp(interaction) find(sp(element) pca);
          index find(sp(interaction) pguie, uint_ptr uiId);
          index find_from(sp(interaction) pguie, index iStart);
@@ -114,7 +114,7 @@ namespace user
 
 
 
-      virtual bool create_message_window(const char * pszName, ::core::window_callback * pcallback = NULL);
+      virtual bool create_message_window(const char * pszName, ::message_window_callback * pcallback = NULL);
 #ifdef METROWIN
       virtual bool initialize(Windows::UI::Core::CoreWindow ^ window, ::core::system_window ^ pwindow);
 #endif
@@ -155,7 +155,7 @@ namespace user
 
 #endif
 
-      id                                  m_idModalResult; // for return values from ::core::window::RunModalLoop
+      id                                  m_idModalResult; // for return values from ::user::window::RunModalLoop
       COLORREF                            m_crDefaultBackgroundColor;
 
 
@@ -271,13 +271,13 @@ namespace user
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         sp(create_context) pContext = NULL);
+         sp(::create_context) pContext = NULL);
       using ::request_interface::create;
       virtual bool create(const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         sp(create_context) pContext = NULL);
+         sp(::create_context) pContext = NULL);
       virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
@@ -399,7 +399,7 @@ namespace user
       virtual void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
       virtual ::draw2d::font* GetFont();
 
-      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool IsWindowVisible();
 
       virtual void _000OnMouse(message::mouse * pmouse);
@@ -456,7 +456,7 @@ namespace user
 #ifdef METROWIN
       virtual sp(::user::interaction) get_wnd() const;
 #else
-      virtual sp(::core::window) get_wnd() const;
+      virtual sp(::user::window) get_wnd() const;
 #endif
 
       enum RepositionFlags

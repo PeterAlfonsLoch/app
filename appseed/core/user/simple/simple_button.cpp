@@ -23,7 +23,7 @@ void simple_button::_001OnDraw(::draw2d::graphics *pdc)
    ::user::button::_001OnDraw(pdc);
 }
 
-void simple_button::install_message_handling(message::dispatch * pinterface)
+void simple_button::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::button::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_SETFOCUS, pinterface, this, &simple_button::_001OnSetFocus);

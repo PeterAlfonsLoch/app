@@ -61,7 +61,7 @@ namespace user
       DECL_GEN_VSIGNAL(_000OnPosCreate)
       DECL_GEN_SIGNAL(_001OnCreate)
 
-      virtual void install_message_handling(message::dispatch *pinterface);
+      virtual void install_message_handling(::message::dispatch *pinterface);
       virtual void _001InitializeFormPreData();
       virtual void _001OnUpdate(sp(::user::view) pviewSender, LPARAM lhint, object* phint);
       virtual void _001Update(sp(control) pcontrol);
@@ -98,7 +98,7 @@ namespace user
 //        form_view(sp(base_application) papp);
   //    virtual ~form_view();
 
-      //virtual void install_message_handling(message::dispatch * pinterface);
+      //virtual void install_message_handling(::message::dispatch * pinterface);
 
 //      DECL_GEN_SIGNAL(_001OnCreate);
 

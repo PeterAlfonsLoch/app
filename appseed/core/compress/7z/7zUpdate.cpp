@@ -129,7 +129,7 @@ namespace n7z
 
 #define RINOZ_COMP(a, b) RINOZ(MyCompare(a, b))
 
-   static int32_t CompareBuffers(const ::core::byte_buffer &a1, const ::core::byte_buffer &a2)
+   static int32_t CompareBuffers(const ::file::byte_buffer &a1, const ::file::byte_buffer &a2)
    {
       size_t c1 = a1.GetCapacity();
       size_t c2 = a2.GetCapacity();
@@ -534,7 +534,7 @@ namespace n7z
 
    void CFolderOutStream2::ReleaseOutStream()
    {
-      ::ca::release(_outStream.m_p);
+      ::release(_outStream.m_p);
       _crcStreamSpec->ReleaseStream();
    }
 
@@ -611,7 +611,7 @@ namespace n7z
       }
    }
 
-   class CThreadDecoder: public ::core::thread
+   class CThreadDecoder: public thread
    {
    public:
       HRESULT Result;
@@ -988,7 +988,7 @@ namespace n7z
             }
             else
             {
-               ::core::stream_binder sb(codecsInfo->get_app());
+               ::file::stream_binder sb(codecsInfo->get_app());
                RINOK(sb.CreateEvents());
                sp(::file::writer) sbOutStream;
                sp(::file::reader) sbInStream;
@@ -1012,7 +1012,7 @@ namespace n7z
                }
 
                RINOK(threadDecoder.FosSpec->Init(db, db->FolderStartFileIndex[folderIndex], &extractStatuses, sbOutStream));
-               ::ca::release(sbOutStream.m_p);
+               ::release(sbOutStream.m_p);
 
                threadDecoder.InStream = inStream;
                threadDecoder.Folder = db->Folders(folderIndex);

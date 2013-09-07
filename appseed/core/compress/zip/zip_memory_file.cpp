@@ -5,7 +5,7 @@ namespace zip
 {
 
    memory_buffer::memory_buffer(sp(base_application) papp) :
-      ::::file::memory_buffer(papp),
+      ::file::memory_buffer(papp),
       ::primitive::memory_container(papp)
    {
       m_filefuncdef.opaque = (voidpf) this;

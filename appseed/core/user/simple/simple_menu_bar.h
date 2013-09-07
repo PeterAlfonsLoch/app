@@ -116,7 +116,7 @@ public:
 
    DECL_GEN_SIGNAL(_001OnAppLanguage)
 
-   virtual void install_message_handling(message::dispatch * pdispatch);
+   virtual void install_message_handling(::message::dispatch * pdispatch);
 
 
 };

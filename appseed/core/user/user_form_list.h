@@ -89,10 +89,10 @@ namespace user
       DECL_GEN_SIGNAL(_001OnHScroll)
       DECL_GEN_SIGNAL(_001OnKeyDown)
 
-      virtual bool _001OnMouseActivate(sp(::core::window) pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult);
+      virtual bool _001OnMouseActivate(sp(::user::window) pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult);
 
 
-      virtual void install_message_handling( message::dispatch *pinterface);
+      virtual void install_message_handling( ::message::dispatch *pinterface);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
 

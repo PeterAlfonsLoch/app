@@ -63,7 +63,7 @@ namespace platform
 
 #endif //DEBUG
 
-   void frame::install_message_handling(message::dispatch * pinterface)
+   void frame::install_message_handling(::message::dispatch * pinterface)
    {
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame::_001OnCreate);

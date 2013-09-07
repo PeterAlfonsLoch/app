@@ -37,7 +37,7 @@ public:
   int32_t num;
   int32_t matchCase;
   strsize minKeywordLength;
-  ::core::ch_class *firstChar;
+  ::str::ch_class *firstChar;
   KeywordInfo *kwList;
   KeywordList();
   ~KeywordList();
@@ -91,7 +91,7 @@ public:
 
   VirtualEntryVector virtualEntryVector;
   KeywordList *kwList;
-  ::core::ch_class *worddiv;
+  ::str::ch_class *worddiv;
 
   class region* region;
   class region* regions[REGIONS_NUM];

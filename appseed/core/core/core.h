@@ -34,12 +34,16 @@ namespace plane
 #define planeApplication (planeApp(m_papp))
 #define App(pcaapp) planeApp(pcaapp)
 #define Application (App(m_papp))
-
+#undef Sys
+#define Sys(pcaapp) (*pcaapp->m_pappThis->m_psystem)
 
 
 #if defined(WIN32) && !defined(VC6) && ! defined(VC71)
 #include <vadefs.h>
 #endif
+
+
+class job;
 
 
 #include "core_enum.h"
@@ -436,14 +440,13 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          class font;
          class pen;
          class brush;
-         class memory_graphics;         // ::draw2d::graphics_sp for client of ::core::window
-         class window_graphics;         // ::draw2d::graphics_sp for entire ::core::window
+         class memory_graphics;         // ::draw2d::graphics_sp for client of ::user::window
+         class window_graphics;         // ::draw2d::graphics_sp for entire ::user::window
          class paint_graphics;          // embeddable BeginPaint struct helper
       }
 
       namespace core
       {
-         class window;            // a window
          class job;
       }
 
@@ -451,6 +454,7 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 
    namespace user
    {
+      class window;            // a window
       class menu;                 // a menu
       class interaction;
       class edit_plain_text;            // Edit control
@@ -479,11 +483,8 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          // views on a document
             class CScrollView;  // a scrolling ::user::view
 
-            namespace core
-            {
                class thread;           // thread base class
                class application;          // application base class
-            } // namespace core
 
 //      class document_template;         // template for document creation
          class single_document_template;// SDI support
@@ -526,10 +527,10 @@ CLASS_DECL_ca2 CArchive& operator>>(CArchive& ar, RECT& rect);
 
 
 
-CLASS_DECL_ca2 void __get_gray_bitmap(sp(::core::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
-CLASS_DECL_ca2 void __draw_gray_bitmap(sp(::core::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
-CLASS_DECL_ca2 void __get_dithered_bitmap(sp(::core::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
-CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(::core::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca2 void __get_gray_bitmap(sp(::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
+CLASS_DECL_ca2 void __draw_gray_bitmap(sp(::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
+CLASS_DECL_ca2 void __get_dithered_bitmap(sp(::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
 
 
 #include "graphics/draw2d/draw2d.h"
@@ -551,13 +552,13 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 
 
-CLASS_DECL_ca2 ::core::thread* __begin_thread(sp(::core::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+CLASS_DECL_ca2 thread* __begin_thread(sp(::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_ca2 thread* __begin_thread(sp(::core::type_info) pThreadClass,
    int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
    uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
 template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread (sp(::core::application) papp, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
+THREAD_TYPE * __begin_thread (sp(::application) papp, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
 {
    THREAD_TYPE * pthread = new THREAD_TYPE(papp);
    pthread->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
@@ -727,7 +728,7 @@ namespace user
 namespace windows
 {
    template < class APP >
-   inline ::core::application & cast(APP * papp)
+   inline ::application & cast(APP * papp)
    {
       return *((papp));
    }
@@ -806,12 +807,6 @@ namespace core
 #include "core_fs_interface.h"
 
 
-#include "core_base_enum.h"
-
-
-
-
-
 // memory primitives
 #include "primitive/primitive_shared_file.h"
 
@@ -837,7 +832,7 @@ struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
       class preview_dc;               // Virtual DC for print preview
 
    //command_target
-      //::core::window
+      //::user::window
          //::user::view
             class CPreviewView;     // Print preview ::user::view
       //frame_window
@@ -858,7 +853,7 @@ class CDockContext;                     // for dragging control bars
 // F000 -> FFFF : standard windows commands and other things etc
    // E000 -> E7FF standard commands
    // E800 -> E8FF control bars (first 32 are special)
-   // E900 -> EEFF standard ::core::window controls/components
+   // E900 -> EEFF standard ::user::window controls/components
    // EF00 -> EFFF SC_ menu help
    // F000 -> FFFF standard strings
 #define ID_COMMAND_FROM_SC(sc)  (((sc - 0xF000) >> 4) + __IDS_SCFIRST)
@@ -894,10 +889,10 @@ class CDockContext;                     // for dragging control bars
 #define WM_HELPHITTEST      0x0366  // lResult = dwContext,
                            // lParam = MAKELONG(x,y)
 #define WM_EXITHELPMODE     0x0367  // (params unused)
-#define WM_RECALCPARENT     0x0368  // force layout on frame ::core::window
+#define WM_RECALCPARENT     0x0368  // force layout on frame ::user::window
                            //  (only for inplace frame windows)
 #define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
-                           // wParam = ID of child ::core::window
+                           // wParam = ID of child ::user::window
                            // lParam = lpRectNew (new position/size)
 #define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
 #define WM_QUERYCENTERWND   0x036B  // lParam = oswindow to use as centering parent
@@ -930,7 +925,7 @@ class CDockContext;                     // for dragging control bars
 #define WM_POPMESSAGESTRING 0x0375
 
 // WM_HELPPROMPTADDR is used internally to get the address of
-//   m_dwPromptContext from the associated frame ::core::window. This is used
+//   m_dwPromptContext from the associated frame ::user::window. This is used
 //   during message boxes to setup for F1 help while that msg box is
 //   displayed. lResult is the address of m_dwPromptContext.
 #define WM_HELPPROMPTADDR   0x0376
@@ -952,7 +947,7 @@ class CDockContext;                     // for dragging control bars
 #define WM_RESERVED_037D    0x037D
 #define WM_RESERVED_037E    0x037E
 
-// WM_FORWARDMSG - used by core to forward a message to another ::core::window for processing
+// WM_FORWARDMSG - used by core to forward a message to another ::user::window for processing
 //   WPARAM - uint32_t dwUserData - defined by ::fontopus::user
 //   LPARAM - LPMESSAGE pMsg - a pointer to the MESSAGE structure
 //   return value - 0 if the message was not processed, nonzero if it was
@@ -961,7 +956,7 @@ class CDockContext;                     // for dragging control bars
 // like ON_MESSAGE but no return value
 #define ON_MESSAGE_VOID(message, memberFxn) \
    { message, 0, 0, 0, ::core::Sig_vv, \
-      (__PMSG)(__PMSGW)(void (__MSG_CALL ::core::window::*)())&memberFxn },
+      (__PMSG)(__PMSGW)(void (__MSG_CALL ::user::window::*)())&memberFxn },
 
 #if defined(LINUX) || defined(MACOS) || defined(METROWIN) || defined(ANDROID)
 
@@ -1232,11 +1227,6 @@ CLASS_DECL_ca2 char * ::core::TaskStringW2A(const wchar_t * lpw);
 #include "core_std_pair.h"
 
 
-#include "core_c_number.h"
-
-
-
-
 #include "core_muldiv32.h"
 
 #define EX1ASSERT_VALID(pobj) ASSERT(pobj->Ex1IsObjValid())
@@ -1252,56 +1242,21 @@ CLASS_DECL_ca2 char * ::core::TaskStringW2A(const wchar_t * lpw);
 
 
 
-#include "core_parse.h"
-
-
-#include "core_template.h"
-
-
-#include "core/collection/collection_base_2array.h"
-#include "core/collection/collection_string_array.h"
-#include "core/collection/collection_stringa.h"
-#include "core/collection/collection_stringl.h"
-#include "core/collection/collection_string_sort_array.h"
-
-#include "core_string_tokenizer.h"
-
-
-#include "core_base_enum.h"
-#include "core_base_enum.h"
-//#include "core_raw_pointer.h"
-//#include "core_full_pointer.h"
-//#include "core_time.h"
-#include "core_byte_serializable.h"
-#include "core/collection/collection_stringa.h"
-#include "core_var.h"
-#include "core_var_array.h"
-
 #include "core_pipe.h"
 #include "core_process.h"
-
 
 #include "core_savings.h"
 
 #include "core_command.h"
-#include "core_command_line.h"
-#include "core_command_thread.h"
 
 #include "core_base64.h"
 
 #include "core_util1.h"
 
-
-
-
 #include "primitive/primitive_int_biunique.h"
 
-
-//#include "core_memory_file.h"
-#include "core_byte_stream_memory_file.h"
-
-
 #include "core_microtimer.h"
+
 
 template <class TYPE>
 inline bool is_null(const TYPE & ref)
@@ -1312,12 +1267,12 @@ inline bool is_null(const TYPE & ref)
 #define NULL_REF(class) (*((class *) NULL))
 
 
-CLASS_DECL_ca2 ::core::byte_input_stream &  operator >>(::core::byte_input_stream & istream, string & string);
-CLASS_DECL_ca2 ::core::byte_output_stream &  operator <<(::core::byte_output_stream & ostream, const string & string);
+//CLASS_DECL_ca2 ::core::byte_input_stream &  operator >>(::core::byte_input_stream & istream, string & string);
+//CLASS_DECL_ca2 ::core::byte_output_stream &  operator <<(::core::byte_output_stream & ostream, const string & string);
 
-#ifdef WIN32
-#include "core_file_association.h"
-#endif
+//#ifdef WIN32
+//#include "core_file_association.h"
+//#endif
 
 
 #include "core_signal_thread.h"
@@ -1326,7 +1281,7 @@ CLASS_DECL_ca2 ::core::byte_output_stream &  operator <<(::core::byte_output_str
 
 #include "core_timer.h"
 
-#include "core_istring.h"
+//#include "core_istring.h"
 
 
 #include "core_cregexp.h"
@@ -1336,11 +1291,11 @@ CLASS_DECL_ca2 ::core::byte_output_stream &  operator <<(::core::byte_output_str
 
 
 
-#include "core_file_set.h"
+#include "filesystem/file/file_set.h"
 
-#include "core_folder_watch.h"
+#include "filesystem/file/file_folder_watch.h"
 
-#include "core_transfer_file.h"
+#include "filesystem/file/file_transfer_buffer.h"
 
 
 class document_interface;
@@ -1349,7 +1304,7 @@ class document_interface;
 class main_frame;
 
 
-typedef sp(::core::application) (* LP_GET_NEW_APP) ();
+typedef sp(::application) (* LP_GET_NEW_APP) ();
 
 
 namespace core
@@ -1401,24 +1356,10 @@ typedef ::visual::icon * HICON;
 
 
 
-#pragma once
-
-
 class file_system;
-typedef ::ca::smart_pointer < file_system > file_system_sp;
+typedef smart_pointer < file_system > file_system_sp;
 class Ex1FactoryImpl;
 
-
-
-
-namespace lemon
-{
-
-
-   class array;
-
-
-} // namespace lemon
 
 
 
@@ -1428,39 +1369,29 @@ namespace lemon
 
 
 #include "math/calculator/calculator.h"
-#include "core/xml/xml.h"
 #include "net/sockets/sockets.h"
 #include "user/colorertake5/colorertake5.h"
 
 #include "graphics/html/html.h"
 
 
-#include "core_definition.h"
 #include "core_debug.h"
 
 
 
-namespace core
-{
-
-
-   class application;
-
-
-} // namespace core
 
 
 #include "core/crypto/crypto.h"
 
 
-#include "core_file_application.h"
-#include "core_file_system.h"
-#include "core_dir_application.h"
-#include "core_dir_system.h"
-#include "core_edit_file.h"
+#include "filesystem/file/file_application.h"
+#include "filesystem/file/file_system.h"
+#include "filesystem/file/file_dir_application.h"
+#include "filesystem/file/file_dir_system.h"
+#include "filesystem/file/file_edit_buffer.h"
 #include "core_stra.h"
-#include "core_url_domain.h"
-#include "core_url.h"
+#include "net/net_url_domain.h"
+//#include "core_url.h"
 
 
 #include "core_service.h"
@@ -1484,7 +1415,7 @@ namespace core
 #include "core_library.h"
 
 
-#include "core/xml/xml_data.h"
+//#include "core/xml/xml_data.h"
 
 
 #include "filesystem/filehandler/filehandler.h"
@@ -1514,18 +1445,18 @@ namespace core
 #include "core_copydesk.h"
 #include "core_crypt.h"
 #include "core_email.h"
-#include "core_http.h"
-#include "core_http_application.h"
-#include "core_http_system.h"
-#include "core_http_get_socket.h"
+#include "net/http/http_http.h"
+#include "net/http/http_application.h"
+#include "net/http/http_system.h"
+#include "net/http/http_get_socket.h"
 #include "core_ip_enum.h"
 #include "core_port_forward.h"
 
 
-#include "core_oauth.h"
-#include "core_twit.h"
+#include "net/hi5/hi5_oauth.h"
+#include "net/hi5/hi5_twit.h"
 
-#include "core_process_section.h"
+#include "core_process_departament.h"
 
 
 
@@ -1535,7 +1466,7 @@ namespace core
 #include "programming/dynamic_source/dynamic_source.h"
 
 
-
+#include "core_parse.h"
 
 
 #include "graphics/html/html2.h"
@@ -1550,7 +1481,7 @@ namespace core
 #include "net/usermail/usermail.h"
 
 
-#include "net/hi5/hi5_net.h"
+#include "net/hi5/hi5.h"
 
 #include "core_application.h"
 

@@ -12,11 +12,11 @@ namespace file
 
 
 
-      ::file::buffer_sp     m_spfile;
+      ::file::buffer_sp      m_spfile;
 
 
       composite();
-      composite(::file::buffer_sp pfile);
+      composite(::file::buffer_sp  pfile);
       virtual ~composite();
 
       virtual file_position get_position() const;
@@ -35,7 +35,7 @@ namespace file
       virtual void SetStatus(const char * lpszFileName, const file_status& status);
 
 
-      virtual ::file::buffer_sp Duplicate() const;
+      virtual ::file::buffer_sp  Duplicate() const;
 
       virtual file_position seek(file_offset lOff, ::file::e_seek  nFrom);
       virtual void set_length(file_size dwNewLen);

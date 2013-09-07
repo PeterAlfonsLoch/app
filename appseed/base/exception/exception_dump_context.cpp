@@ -67,7 +67,7 @@ void dump_context::output_string(const char * lpsz)
 #endif
 }
 
-dump_context::dump_context(::file::buffer_sp pFile)
+dump_context::dump_context(::file::buffer_sp  pFile)
 {
    if (pFile)
       ASSERT_VALID(pFile);

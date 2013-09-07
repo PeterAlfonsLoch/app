@@ -20,11 +20,13 @@
 
 namespace win
 {
+
    CLASS_DECL_c string error_message(uint32_t dwError);
+
 }
 
 
-CLASS_DECL_c sp(base_application) get_thread_app();
+
 
 #include "exception_error.h"
 #include "exception_overflow_error.h"

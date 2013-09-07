@@ -113,7 +113,7 @@ namespace libcompress
 
             void AllocateEmptyFixedGlobal()
             {
-               GlobalData.set_size(0, kFixedGlobalSize);
+               GlobalData.allocate(0, kFixedGlobalSize);
                for (uint32_t i = 0; i < kFixedGlobalSize; i++)
                   GlobalData.add(0);
             }

@@ -28,7 +28,7 @@ int32_t machine_event_central::run()
    while(get_run())
    {
       {
-         synch_lock lockMachineEvent(m_machineevent.m_mutex, true);
+         synch_lock lockMachineEvent(&m_machineevent.m_mutex);
          machine_event_data data;
          m_machineevent.read(&data);
          System.process(&data);
@@ -40,7 +40,7 @@ int32_t machine_event_central::run()
 
 bool machine_event_central::is_close_application()
 {
-   synch_lock lockMachineEvent(m_machineevent.m_mutex, true);
+   synch_lock lockMachineEvent(&m_machineevent.m_mutex);
    machine_event_data data;
    m_machineevent.read(&data);
    System.process(&data);
@@ -50,7 +50,7 @@ bool machine_event_central::is_close_application()
 
 void machine_event_central::command(sp(::xml::node) pnode)
 {
-   synch_lock lockMachineEvent(m_machineevent.m_mutex, true);
+   synch_lock lockMachineEvent(&m_machineevent.m_mutex);
    machine_event_data data;
    m_machineevent.read(&data);
    xml::document doc(get_app());

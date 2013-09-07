@@ -14,7 +14,7 @@ namespace userfs
    {
    }
 
-   void main_view::install_message_handling(message::dispatch * pinterface)
+   void main_view::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::split_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &main_view::_001OnCreate);
@@ -31,7 +31,7 @@ namespace userfs
       SetPaneCount(2);
       SetSplitOrientation(orientation_vertical);
       set_position_rate(0, 0.2);
-      sp(create_context) cc(allocer());
+      sp(::create_context) cc(allocer());
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeinfoNewView = System.type_info < tree > ();

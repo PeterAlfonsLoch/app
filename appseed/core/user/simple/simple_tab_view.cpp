@@ -67,7 +67,7 @@ void simple_tab_view::_001OnDraw(::draw2d::graphics * pdc)
    ::user::tab::_001OnDraw(pdc);
 }
 
-void simple_tab_view::install_message_handling(message::dispatch * pinterface)
+void simple_tab_view::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::view::install_message_handling(pinterface);
    ::user::tab::install_message_handling(pinterface);

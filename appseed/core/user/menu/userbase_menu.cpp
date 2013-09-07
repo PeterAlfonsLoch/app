@@ -459,7 +459,7 @@ namespace user
       pobj->m_bRet = false;
    }
 
-   void menu::install_message_handling(message::dispatch * pinterface)
+   void menu::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageDestroyWindow, pinterface, this, &menu::OnMessageDestroyWindow);

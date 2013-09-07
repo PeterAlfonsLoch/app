@@ -31,7 +31,7 @@ namespace userfs
 #endif //DEBUG
 
 
-   void tree::install_message_handling(message::dispatch * pinterface)
+   void tree::install_message_handling(::message::dispatch * pinterface)
    {
       ::userfs::tree_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tree::_001OnCreate);
@@ -213,7 +213,7 @@ namespace userfs
 
             pPopup->TrackPopupMenu(
                point.x, point.y,
-               (sp(::core::window)) pframe);
+               (sp(::user::window)) pframe);
          }
       }
       else
@@ -226,7 +226,7 @@ namespace userfs
             sp(::user::frame_window) pframe = GetTopLevelFrame();
             pPopup->TrackPopupMenu(
                point.x, point.y,
-               (sp(::core::window)) pframe);
+               (sp(::user::window)) pframe);
          }
       }*/
    }

@@ -275,7 +275,7 @@ SRegInfo *next, *temp;
           break;
         default:
           next->op = ReBkBrack;
-          next->param0 = (int32_t) ::hex::from_char(&expr[i+1]);
+          next->param0 = (int32_t) ::hex::utf8_char_to(&expr[i+1]);
           if (next->param0 < 0 || next->param0 > 9){
             index retEnd;
             next->op = ReSymb;
@@ -322,14 +322,14 @@ SRegInfo *next, *temp;
       if (expr[i] == '?' && expr[i+1] == '#' &&
           expr[i+2] >= '0' && expr[i+2] <= '9'){
         next->op = ReBehind;
-        next->param0 = (int32_t) ::hex::from_char(&expr[i+2]);
+        next->param0 = (int32_t) ::hex::utf8_char_to(&expr[i+2]);
         i += 2;
         continue;
       };
       if (expr[i] == '?' && expr[i+1] == '~' &&
           expr[i+2]>='0' && expr[i+2]<='9'){
         next->op = ReNBehind;
-        next->param0 = (int32_t) ::hex::from_char(&expr[i+2]);
+        next->param0 = (int32_t) ::hex::utf8_char_to(&expr[i+2]);
         i += 2;
         continue;
       };
@@ -476,7 +476,7 @@ SRegInfo *next, *temp;
     if (expr[i] == '[')
     {
       strsize endPos;
-      ::core::ch_class *cc = ::core::ch_class::createCharClass(expr, i, &endPos);
+      ::str::ch_class *cc = ::str::ch_class::createCharClass(expr, i, &endPos);
       if (cc == NULL) return EENUM;
 //      next->op = (exprn[i] == ReEnumS) ? ReEnum : ReNEnum;
       next->op = ReEnum;

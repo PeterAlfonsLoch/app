@@ -7,7 +7,7 @@ namespace user
 
    document::document(sp(base_application) papp) :
       element(papp),
-      ::core::data_container_base(papp)
+      ::data::data_container_base(papp)
    {
    
       m_pdocumentemplate = NULL;
@@ -36,7 +36,7 @@ namespace user
 
       }
 
-      ::data_container::set_data(pdata);
+      ::data::data_container::set_data(pdata);
 
       if(pdata != NULL)
       {

@@ -75,7 +75,7 @@ namespace user
    frame_window::frame_window()
    {
 
-      m_nWindow = -1;                 // unknown ::core::window ID
+      m_nWindow = -1;                 // unknown ::user::window ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
       m_lpfnCloseProc = NULL;
       m_hMenuDefault = NULL;
@@ -210,7 +210,7 @@ namespace user
       VERIFY(::PostMessage(get_handle(), WM_EXITHELPMODE, 0, 0));
       }
 
-      // release capture if this ::core::window has it
+      // release capture if this ::user::window has it
       if (System.get_capture_uie() == get_handle())
       System.release_capture_uie();
 
@@ -354,7 +354,7 @@ namespace user
       /*   oswindow oswindow = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
       while (oswindow != NULL)
       {
-      sp(::core::window) pWnd = ::core::window::FromHandlePermanent(oswindow);
+      sp(::user::window) pWnd = ::user::window::FromHandlePermanent(oswindow);
       if (pWnd != NULL && get_handle() != oswindow && __is_descendant(this, pWnd))
       {
       uint32_t dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
@@ -381,7 +381,7 @@ namespace user
       if (bEnable && (m_nFlags & WF_STAYDISABLED))
       {
 
-         // Work around for MAPI support. This makes sure the main ::core::window
+         // Work around for MAPI support. This makes sure the main ::user::window
          // remains disabled even when the mail system is booting.
 
          EnableWindow(FALSE);
@@ -444,7 +444,7 @@ namespace user
 
    }
 
-   bool frame_window::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, const char * lpszMenuName, uint32_t dwExStyle, sp(create_context) pContext)
+   bool frame_window::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, const char * lpszMenuName, uint32_t dwExStyle, sp(::create_context) pContext)
    {
 
       UNREFERENCED_PARAMETER(lpszMenuName);
@@ -465,7 +465,7 @@ namespace user
    }
 
    /*
-   sp(::user::interaction) frame_window::CreateView(sp(create_context) pContext, UINT nID)
+   sp(::user::interaction) frame_window::CreateView(sp(::create_context) pContext, UINT nID)
    {
    // trans   ASSERT(get_handle() != NULL);
    ASSERT(IsWindow());
@@ -501,7 +501,7 @@ namespace user
    }
    */
 
-   bool frame_window::OnCreateClient(LPCREATESTRUCT, sp(create_context) pContext)
+   bool frame_window::OnCreateClient(LPCREATESTRUCT, sp(::create_context) pContext)
    {
       // default create client will create a ::user::view if asked for it
       if (pContext != NULL &&
@@ -517,7 +517,7 @@ namespace user
    void frame_window::_001OnCreate(signal_details * pobj)
    {
 
-      ::core::thread * pappthread = m_pthread->m_pthread;
+      thread * pappthread = m_pthread->m_pthread;
       
       if(pappthread != NULL)
       {
@@ -545,7 +545,7 @@ namespace user
       
       ENSURE_ARG(pcreate->m_lpcreatestruct != NULL);
       
-      sp(create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
+      sp(::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
       
       pcreate->set_lresult(OnCreateHelper(pcreate->m_lpcreatestruct, pContext));
       
@@ -553,7 +553,7 @@ namespace user
       
    }
 
-   int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, sp(create_context) pContext)
+   int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, sp(::create_context) pContext)
    {
 
       // create special children first
@@ -574,7 +574,7 @@ namespace user
 
 
    bool frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle,
-      sp(::user::interaction) pParentWnd, sp(create_context) pContext)
+      sp(::user::interaction) pParentWnd, sp(::create_context) pContext)
    {
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(dwDefaultStyle);
@@ -593,7 +593,7 @@ namespace user
 
       VERIFY(__defer_register_class(__WNDFRAMEORVIEW_REG));
 
-      // attempt to create the ::core::window
+      // attempt to create the ::user::window
       const char * lpszClass = GetIconWndClass(dwDefaultStyle, nIDResource);
       string strTitle = m_strTitle;
       if (!CreateEx(0, lpszClass, strTitle, dwDefaultStyle, rectDefault,
@@ -668,7 +668,7 @@ namespace user
             pview->OnActivateFrame(WA_INACTIVE, this);
 
          // finally, activate the frame
-         // (send the default show command unless the main desktop ::core::window)
+         // (send the default show command unless the main desktop ::user::window)
          int32_t nCmdShow = -1;      // default
          application* pApp = &System;
          if (pApp != NULL && pApp->GetMainWnd() == this)
@@ -776,7 +776,7 @@ namespace user
 
 
       // there are cases where destroying the documents may destroy the
-      //  main ::core::window of the application.
+      //  main ::user::window of the application.
       if (!afxContextIsDLL && pApp->GetMainWnd() == NULL)
       {
       __post_quit_message(0);
@@ -806,11 +806,11 @@ namespace user
       return;
       }
 
-      // allow the ::user::document_interface to cleanup before the ::core::window is destroyed
+      // allow the ::user::document_interface to cleanup before the ::user::window is destroyed
       pdocument->pre_close_frame(this);
       }
 
-      // then destroy the ::core::window
+      // then destroy the ::user::window
       DestroyWindow();*/
    }
 
@@ -824,11 +824,11 @@ namespace user
       ASSERT(::GetMenu(get_handle()) == m_hMenuDefault);
       } */
 
-      // Automatically quit when the main ::core::window is destroyed.
+      // Automatically quit when the main ::user::window is destroyed.
       /* trans application* pApp = &System;
       if (pApp != NULL && pApp->GetMainWnd() == this && pApp->m_eHelpType == afxWinHelp)
       {
-      // closing the main application ::core::window
+      // closing the main application ::user::window
       ::WinHelp(get_handle(), NULL, HELP_QUIT, 0L);
 
       // will call PostQuitMessage in user::frame_window_interface::OnNcDestroy
@@ -839,7 +839,7 @@ namespace user
 
    /////////////////////////////////////////////////////////////////////////////
    // frame_window command/message routing
-   void frame_window::install_message_handling(message::dispatch * pinterface)
+   void frame_window::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       frame_window_interface::install_message_handling(pinterface);
@@ -931,7 +931,7 @@ namespace user
 
 
       // deactivate current active ::user::view
-      ::core::thread *pThread = System.GetThread();
+      thread *pThread = System.GetThread();
       ASSERT(pThread);
       if (pThread->GetMainWnd() == this)
       {
@@ -956,8 +956,8 @@ namespace user
 
       pobj->previous();
 
-      // get top level frame unless this is a child ::core::window
-      // determine if ::core::window should be active or not
+      // get top level frame unless this is a child ::user::window
+      // determine if ::user::window should be active or not
       sp(::user::frame_window) pTopLevel = (GetStyle() & WS_CHILD) ? this : GetTopLevelFrame().m_p;
 
       if(pTopLevel == NULL)
@@ -1004,7 +1004,7 @@ namespace user
          if (m_nFlags & WF_STAYACTIVE)
             pncactivate->m_bActive = TRUE;
 
-      // but do not stay active if the ::core::window is disabled
+      // but do not stay active if the ::user::window is disabled
       if (!IsWindowEnabled())
          pncactivate->m_bActive = FALSE;
 
@@ -1065,7 +1065,7 @@ namespace user
          char szFileName[_MAX_PATH];
          ::DragQueryFile(hDropInfo, iFile, szFileName, _MAX_PATH);
 
-         sp(create_context) createcontext(allocer());
+         sp(::create_context) createcontext(allocer());
          createcontext->m_spCommandLine->m_varFile = szFileName;
 
          puser->open_document_file(createcontext);
@@ -1176,10 +1176,10 @@ namespace user
          ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
          (UINT)0x8000, (uint_ptr)hData));
 
-      // don't execute the command when the ::core::window is disabled
+      // don't execute the command when the ::user::window is disabled
       if (!IsWindowEnabled())
       {
-         TRACE(::core::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because ::core::window is disabled.\n",
+         TRACE(::core::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because ::user::window is disabled.\n",
             strCommand.GetString());
          return 0;
       }
@@ -1248,7 +1248,7 @@ namespace user
       if (pViewOld != NULL)
          pViewOld->OnActivateView(FALSE, pViewNew, pViewOld);
 
-      // if the OnActivateView moves the active ::core::window,
+      // if the OnActivateView moves the active ::user::window,
       //    that will veto this change
       if (m_pViewActive != NULL)
          return;     // already set
@@ -1404,7 +1404,7 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Setting title of frame ::core::window - UISG standard
+   // Setting title of frame ::user::window - UISG standard
 
    void frame_window::on_update_frame_title(bool bAddToTitle)
    {
@@ -1430,7 +1430,7 @@ namespace user
          {
             WindowText += lpszDocName;
 
-            // add current ::core::window # if needed
+            // add current ::user::window # if needed
             if (m_nWindow > 0)
             {
 
@@ -1457,7 +1457,7 @@ namespace user
             WindowText += " - ";
             WindowText += lpszDocName;
 
-            // add current ::core::window # if needed
+            // add current ::user::window # if needed
             if (m_nWindow > 0)
             {
 
@@ -1482,7 +1482,7 @@ namespace user
    void frame_window::OnSetPreviewMode(bool bPreview, CPrintPreviewState* pState)
    {
       ENSURE_ARG(pState != NULL);
-      // default implementation changes control bars, menu and main pane ::core::window
+      // default implementation changes control bars, menu and main pane ::user::window
 
 
       // set visibility of standard ControlBars (only the first 32)
@@ -1718,7 +1718,7 @@ namespace user
 
       if (nCmdShow != -1)
       {
-         // show the ::core::window as specified
+         // show the ::user::window as specified
          ShowWindow(nCmdShow);
 
          // and finally, bring to top after showing
@@ -1737,7 +1737,7 @@ namespace user
       if(get_parent() == NULL)
       {
 
-         // place the ::core::window on top except for certain nCmdShow
+         // place the ::user::window on top except for certain nCmdShow
 
          if(
             nCmdShow != SW_HIDE
@@ -1891,7 +1891,7 @@ namespace user
    {
       // trans ASSERT(get_handle() == NULL);
 
-      m_nWindow = -1;                 // unknown ::core::window ID
+      m_nWindow = -1;                 // unknown ::user::window ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
       m_lpfnCloseProc = NULL;
       m_hMenuDefault = NULL;
@@ -1926,12 +1926,12 @@ namespace user
       ASSERT_VALID(this);
       // trans   ASSERT(get_handle() != NULL);
 
-      // get top level parent frame ::core::window first unless this is a child ::core::window
+      // get top level parent frame ::user::window first unless this is a child ::user::window
       sp(::user::frame_window) pParent = (GetStyle() & WS_CHILD) ? this : (GetTopLevelFrame().m_p);
       ASSERT(pParent != NULL);
       if (dwFlags & (FS_DEACTIVATE|FS_ACTIVATE))
       {
-         // update parent ::core::window activation state
+         // update parent ::user::window activation state
          bool bActivate = !(dwFlags & FS_DEACTIVATE);
          bool bEnabled = pParent->IsWindowEnabled();
 
@@ -2064,7 +2064,7 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Setting title of frame ::core::window - UISG standard
+   // Setting title of frame ::user::window - UISG standard
 
 
 

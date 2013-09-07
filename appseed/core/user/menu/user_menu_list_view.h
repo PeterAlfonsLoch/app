@@ -15,7 +15,7 @@ namespace user
       menu_list_view(sp(base_application) papp);
       virtual ~menu_list_view();
 
-      void install_message_handling(message::dispatch * pinterface);
+      void install_message_handling(::message::dispatch * pinterface);
 
       virtual void GuieProc(signal_details * pobj);
 

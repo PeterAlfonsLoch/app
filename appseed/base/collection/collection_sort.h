@@ -1182,8 +1182,8 @@ namespace sort
    template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
    void QuickSortAsc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
    {
-      ::array < POSITION > stackLowerBound;
-      ::array < POSITION > stackUpperBound;
+      ::raw_array < POSITION > stackLowerBound;
+      ::raw_array < POSITION > stackUpperBound;
       POSITION iLowerBound;
       POSITION iUpperBound;
       POSITION iLPos, iUPos, iMPos;
@@ -1251,8 +1251,8 @@ namespace sort
    template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
    void QuickSortDesc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
    {
-      ::array < POSITION > stackLowerBound;
-      ::array < POSITION > stackUpperBound;
+      ::raw_array < POSITION > stackLowerBound;
+      ::raw_array < POSITION > stackUpperBound;
       POSITION iLowerBound;
       POSITION iUpperBound;
       POSITION iLPos, iUPos, iMPos;

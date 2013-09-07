@@ -17,7 +17,7 @@ namespace sockets
 
       // it is not currently designed to call open.
       //
-      file::file(sp(base_application) papp, ::::file::memory_buffer * pmemoryfileIn) :
+      file::file(sp(base_application) papp, ::file::memory_buffer * pmemoryfileIn) :
          element(papp),
          transfer_file(papp, pmemoryfileIn)
       {
@@ -34,7 +34,7 @@ namespace sockets
 //         if(!Application.file().exists(lpszFileName))
   //          return false;
 
-         ::core::http::signal * psignal = new ::core::http::signal;
+         ::http::signal * psignal = new ::http::signal;
 
          psignal->m_set["file"]       = (sp(element)) m_pmemoryfileIn;
          psignal->m_set["file_out"]   = (sp(element)) m_ptimeoutfile;
@@ -52,7 +52,7 @@ namespace sockets
             m_ptimeoutfile->m_uiExpectedSize = (uint64_t) -1;
          }
 
-         ::core::emit(get_app(), this, &file::on_http_request_response, &Application.http(), &::core::http::application::get, psignal);
+         ::core::emit(get_app(), this, &file::on_http_request_response, &Application.http(), &::http::application::get, psignal);
          return TRUE;
       }
 

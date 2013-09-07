@@ -7,7 +7,7 @@ namespace user
 
    job::job(sp(base_application) papp) :
       element(papp),
-      ::core::job(papp)
+      ::job(papp)
    {
 
    }

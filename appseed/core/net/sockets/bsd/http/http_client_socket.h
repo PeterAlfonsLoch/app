@@ -13,8 +13,8 @@
       public:
 
          mutex                   m_mutexData;
-         ::::file::memory_buffer        m_memoryfile;
-         ::file::buffer_sp             m_pfile;
+         ::file::memory_buffer        m_memoryfile;
+         ::file::buffer_sp              m_pfile;
           int64_t           m_iFinalSize;
 
 

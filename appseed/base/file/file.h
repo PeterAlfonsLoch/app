@@ -57,3 +57,4 @@ CLASS_DECL_c string file_as_string_dup(const char * path);
 
 
 #include "file_buffer.h"
+

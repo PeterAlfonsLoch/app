@@ -7,17 +7,17 @@
 namespace core
 {
 
-   process_section::process_section(application * papp) :
+   process_departament::process_departament(application * papp) :
       element(papp),
-      ::departament(papp)
+      ::base_departament(papp)
    {
    }
 
-   process_section::~process_section()
+   process_departament::~process_departament()
    {
    }
 
-   var process_section::get_output(const char * pszCmdLine)
+   var process_departament::get_output(const char * pszCmdLine)
    {
       process_thread thread(get_app());
       if(!thread.m_process.create_child_process(pszCmdLine, true))
@@ -31,7 +31,7 @@ namespace core
       return thread.m_strRead;
    }
 
-   uint32_t process_section::retry(const char * pszCmdLine, uint32_t dwTimeout, int32_t iShow)
+   uint32_t process_departament::retry(const char * pszCmdLine, uint32_t dwTimeout, int32_t iShow)
    {
 
       class on_retry onretry;
@@ -51,7 +51,7 @@ namespace core
 
 #else
 
-      uint32_t dwExitCode = call_sync(strBin, pszEnd, NULL, iShow, -1, 484, &process_section::s_on_retry, (uint_ptr) &onretry);
+      uint32_t dwExitCode = call_sync(strBin, pszEnd, NULL, iShow, -1, 484, &process_departament::s_on_retry, (uint_ptr) &onretry);
 
       return dwExitCode;
 
@@ -61,7 +61,7 @@ namespace core
 
    }
 
-   int32_t process_section::s_on_retry(int32_t iTry, uint_ptr dwParam)
+   int32_t process_departament::s_on_retry(int32_t iTry, uint_ptr dwParam)
    {
 
       UNREFERENCED_PARAMETER(iTry);
@@ -72,12 +72,12 @@ namespace core
 
    }
 
-   uint32_t process_section::synch(const char * pszCmdLine, int32_t iShow)
+   uint32_t process_departament::synch(const char * pszCmdLine, int32_t iShow)
    {
       return retry(pszCmdLine, 0, iShow);
    }
 
-   bool process_section::launch(const char * pszCmdLine, int32_t iShow)
+   bool process_departament::launch(const char * pszCmdLine, int32_t iShow)
    {
 
       const char * pszEnd = NULL;
@@ -98,7 +98,7 @@ namespace core
 
    }
 
-   process_section::process_thread::process_thread(sp(base_application) papp) :
+   process_departament::process_thread::process_thread(sp(base_application) papp) :
       element(papp),
       thread(papp),
       simple_thread(papp),
@@ -106,7 +106,7 @@ namespace core
    {
    }
 
-   int32_t process_section::process_thread::run()
+   int32_t process_departament::process_thread::run()
    {
       while(!m_process.has_exited())
       {

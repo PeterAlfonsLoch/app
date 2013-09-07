@@ -47,7 +47,7 @@ namespace libcompress
          uint32_t m_Value;
          uint32_t m_BitPos;
       public:
-         ::core::in_buffer m_Stream;
+         ::file::in_buffer m_Stream;
          bool Create(uint32_t bufferSize) { return m_Stream.Create(bufferSize); }
          void SetStream(::file::reader *inStream) { m_Stream.SetStream(inStream);}
          void ReleaseStream()

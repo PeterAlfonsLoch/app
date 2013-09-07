@@ -1,11 +1,13 @@
 #include "framework.h"
 
-base_cmd_ui::base_cmd_ui(::core::signal * psignal) :
+
+base_cmd_ui::base_cmd_ui(::signal * psignal) :
    signal_details(psignal)
 {
 }
 
-BaseCommand::BaseCommand(::core::signal * psignal) :
+
+BaseCommand::BaseCommand(::signal * psignal) :
    signal_details(psignal)
 {
 }
@@ -122,7 +124,7 @@ command_target_interface::command_target_interface(sp(base_application) papp)
 
 bool command_target_interface::_001OnCommand(id id)
 {
-   dispatch::signal_ptr_array signalptra;
+   ::dispatch::signal_item_ptr_array signalptra;
    get_command_signal_array(BaseCmdMsg::type_command, signalptra, id);
    bool bOk = false;
    for(int32_t i = 0; i < signalptra.get_size(); i++)
@@ -139,7 +141,7 @@ bool command_target_interface::_001OnCommand(id id)
 bool command_target_interface::_001HasCommandHandler(id id)
 {
 
-   dispatch::signal_ptr_array signalptra;
+   ::dispatch::signal_item_ptr_array signalptra;
 
    get_command_signal_array(BaseCmdMsg::type_command, signalptra, id);
 
@@ -150,7 +152,7 @@ bool command_target_interface::_001HasCommandHandler(id id)
 
 bool command_target_interface::_001OnUpdateCmdUi(cmd_ui * pcmdui)
 {
-   dispatch::signal_ptr_array signalptra;
+   ::dispatch::signal_item_ptr_array signalptra;
    get_command_signal_array(BaseCmdMsg::type_cmdui, signalptra, pcmdui->m_id);
    bool bOk = false;
    for(int32_t i = 0; i < signalptra.get_size(); i++)
@@ -164,9 +166,7 @@ bool command_target_interface::_001OnUpdateCmdUi(cmd_ui * pcmdui)
    return bOk;
 }
 
-void command_target_interface::get_command_signal_array(
-   BaseCmdMsg::e_type etype,
-   dispatch::signal_ptr_array & signalptra, id id)
+void command_target_interface::get_command_signal_array(BaseCmdMsg::e_type etype, ::dispatch::signal_item_ptr_array & signalptra, id id)
 {
    command_signalid signalid;
    signalid.m_id = id;

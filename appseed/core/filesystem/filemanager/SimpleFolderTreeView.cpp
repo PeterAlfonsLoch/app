@@ -210,7 +210,7 @@ namespace filemanager
 
             pPopup->TrackPopupMenu(
                point.x, point.y,
-               (sp(::core::window)) pframe);
+               (sp(::user::window)) pframe);
          }
       }
       else
@@ -223,7 +223,7 @@ namespace filemanager
             sp(::user::frame_window) pframe = GetTopLevelFrame();
             pPopup->TrackPopupMenu(
                point.x, point.y,
-               (sp(::core::window)) pframe);
+               (sp(::user::window)) pframe);
          }
       }*/
    }
@@ -291,7 +291,7 @@ namespace filemanager
    }
 
 
-   void SimpleFolderTreeView::install_message_handling(message::dispatch * pinterface)
+   void SimpleFolderTreeView::install_message_handling(::message::dispatch * pinterface)
    {
       SimpleFolderTreeInterface::install_message_handling(pinterface);
 

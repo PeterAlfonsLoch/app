@@ -480,6 +480,12 @@
     <Filter Include="Header Files\filesystem\file\NewFilter2">
       <UniqueIdentifier>{3dc15f7d-8433-4629-a500-96bcfffa0935}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\net\hi5">
+      <UniqueIdentifier>{3728a81f-1e66-4661-8f29-af1e5a81f3e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\folder_watch">
+      <UniqueIdentifier>{0836171c-654e-4702-8512-85ed485fb89e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -579,9 +585,6 @@
       <Filter>Header Files\compress\zip</Filter>
     </ClInclude>
     <ClInclude Include="compress\zip\iowin32.h">
-      <Filter>Header Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\memory_file.h">
       <Filter>Header Files\compress\zip</Filter>
     </ClInclude>
     <ClInclude Include="compress\zip\unzip.h">
@@ -1904,19 +1907,7 @@
     <ClInclude Include="graphics\html\html2.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
-    <ClInclude Include="net\sockets\http_file.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http_memory_file.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
     <ClInclude Include="net\sockets\sockets.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_http_batch_file.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_http_file.h">
       <Filter>Header Files\net\sockets</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\bsd\sockets.h">
@@ -3332,9 +3323,6 @@
     <ClInclude Include="core\core_history.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core_http.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core_insert_iterator.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
@@ -3348,9 +3336,6 @@
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_job.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core_keep_alive.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_keeper.h">
@@ -3443,9 +3428,6 @@
     <ClInclude Include="core\core_process_data.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core_process_section.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core_profiler.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
@@ -3464,12 +3446,6 @@
     <ClInclude Include="core\core_savings.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core_se_translator.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core_se_translator.want_to_remove.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core_service.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
@@ -3483,9 +3459,6 @@
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_smart_pointer_query.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core_sockets_address.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core_std_pair.h">
@@ -3553,6 +3526,45 @@
     </ClInclude>
     <ClInclude Include="net\http\http_http.h">
       <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_process_departament.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\zzz_want_to_remove_core_se_translator.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\zzz_want_to_remove_core_se_translator.want_to_remove.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="net\hi5\hi5_oauth.h">
+      <Filter>Header Files\net\hi5</Filter>
+    </ClInclude>
+    <ClInclude Include="net\hi5\hi5.h">
+      <Filter>Header Files\net\hi5</Filter>
+    </ClInclude>
+    <ClInclude Include="net\hi5\hi5_twitter_authorization.h">
+      <Filter>Header Files\net\hi5</Filter>
+    </ClInclude>
+    <ClInclude Include="net\hi5\hi5_twit.h">
+      <Filter>Header Files\net\hi5</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_folder_watch.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\zzz_want_to_remove_http_buffer.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\zzz_want_to_remove_http_memory_file.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_http_buffer.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_http_batch_buffer.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\memory_buffer.h">
+      <Filter>Header Files\compress\zip</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5065,9 +5077,6 @@
     <ClCompile Include="core\windows\os_utils.cpp">
       <Filter>Source Files\core\windows</Filter>
     </ClCompile>
-    <ClCompile Include="core\api\api_muldiv64.cpp">
-      <Filter>Source Files\core\api</Filter>
-    </ClCompile>
     <ClCompile Include="core\api\api_string.cpp">
       <Filter>Source Files\core\api</Filter>
     </ClCompile>
@@ -5839,43 +5848,10 @@
     <ClCompile Include="core\core.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_allocation_mid_big.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_allocation_system_heap.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core_application.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_assert.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_base_enum_static_debug.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_base64.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_bstr.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_byte_serializable.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_checked.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_circular_buffer.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core_cmdtarg.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_command.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_command_line.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_command_target.cpp">
@@ -5908,28 +5884,10 @@
     <ClCompile Include="core\core_Debug.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_dir_application.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_dir_system.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_edit.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_edit_file.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core_email.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_factory.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core_flags.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_folder_watch.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_fs_interface.cpp">
@@ -5944,16 +5902,7 @@
     <ClCompile Include="core\core_history.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_http.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_in_buffer.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core_international_locale_schema.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_io_temp_buffer.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_ip_enum.cpp">
@@ -5971,22 +5920,10 @@
     <ClCompile Include="core\core_library.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_limited_input_stream.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_limited_reader.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_limited_writer.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core_live_object.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_live_signal.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_locked_in_stream.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_log.cpp">
@@ -6022,40 +5959,16 @@
     <ClCompile Include="core\core_nessie.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_oauth.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core_os.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_os_history.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_output_string_stream.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_parse.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core_patch.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_pipe.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_pointer_holder.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_pointer_interface.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_pointer_keeper.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_pointer_listener.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_pointer_manager.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_port_forward.cpp">
@@ -6094,25 +6007,7 @@
     <ClCompile Include="core\core_simple_thread.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_size_count_writer.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_smart_pointer.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_str.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core_str_format.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_str_stream.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_stream_binder.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_stream2.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_strn.cpp">
@@ -6121,46 +6016,91 @@
     <ClCompile Include="core\core_system.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_text_file.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core_thread.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_timeout_file.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_Timer.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_TimerCallback.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_TimerListener.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_TimerWnd.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_trace.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_transfer_file.cpp">
+    <ClCompile Include="net\hi5\hi5_oauth.cpp">
+      <Filter>Source Files\net\hi5</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_transfer_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_dir_application.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_dir_system.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="net\hi5\hi5_twit.cpp">
+      <Filter>Source Files\net\hi5</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_folder_watch.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_circular_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_io_temp_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_limited_reader.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_limited_input_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_limited_writer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_url_domain.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream_binder.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_locked_in_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_timeout_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_text_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream2.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_size_count_writer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_window.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_window_draw.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_wait_cursor.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_timer_window.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_twit.cpp">
+    <ClCompile Include="core\core_timer_listener.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_url_domain.cpp">
+    <ClCompile Include="core\core_timer_callback.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_wait_cursor.cpp">
+    <ClCompile Include="core\core_timer.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_window.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_window_draw.cpp">
+    <ClCompile Include="core\core_parse.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -6180,10 +6120,5 @@
     <None Include="core\core.inl">
       <Filter>Header Files\core</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="core\core_str2.h.txt">
-      <Filter>Header Files\core</Filter>
-    </Text>
   </ItemGroup>
 </Project>

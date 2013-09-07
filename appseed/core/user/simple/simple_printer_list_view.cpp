@@ -25,7 +25,7 @@ simple_printer_list_view::~simple_printer_list_view()
 }
 
 
-void simple_printer_list_view::install_message_handling(message::dispatch * pdispatch)
+void simple_printer_list_view::install_message_handling(::message::dispatch * pdispatch)
 {
 
    simple_list_view::install_message_handling(pdispatch);

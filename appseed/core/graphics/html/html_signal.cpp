@@ -4,7 +4,7 @@
 namespace html
 {
 
-   signal::signal(::core::signal * psignal)
+   signal::signal(::signal * psignal)
       : signal_details(psignal)
    {
    }

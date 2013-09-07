@@ -8,7 +8,7 @@ namespace simpledb
    manager::manager(sp(base_application) papp) :
       element(papp),
       thread(papp),
-      ::core::message_window_simple_callback(papp),
+      message_window_simple_callback(papp),
       m_mutexSession(papp),
       m_mutexTagId(papp),
       m_mutexTagName(papp)

@@ -44,7 +44,7 @@ namespace filemanager
          {
          }
 
-         void list_view::install_message_handling(message::dispatch * pinterface)
+         void list_view::install_message_handling(::message::dispatch * pinterface)
          {
             simple_list_view::install_message_handling(pinterface);
             IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &list_view::_001OnLButtonDblClk);
@@ -602,7 +602,7 @@ namespace filemanager
             ASSERT(pPopup != NULL);
             sp(::user::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(point.x, point.y,
-            (sp(::core::window)) pframe);
+            (sp(::user::window)) pframe);
             }
             }
             else
@@ -615,7 +615,7 @@ namespace filemanager
             sp(::user::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(
             point.x, point.y,
-            (sp(::core::window)) pframe);
+            (sp(::user::window)) pframe);
             }
             }*/
          }

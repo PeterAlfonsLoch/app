@@ -7,7 +7,7 @@ namespace user
 
    user::user(application * papp) :
       element(papp),
-      ::departament(papp)
+      ::base_departament(papp)
    {
       
       
@@ -705,7 +705,7 @@ retry_license:
    sp(::user::document) user::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
    {
       ASSERT(Application.m_pdocmanager != NULL);
-      sp(create_context) cc(allocer());
+      sp(::create_context) cc(allocer());
       cc->m_spCommandLine->m_varFile = lpszFileName;
       return (Application.m_pdocmanager->open_document_file(cc));
    }
@@ -842,7 +842,7 @@ retry_license:
       sp(::form_document) pdoc;
       if(m_ptemplateForm == NULL)
          return NULL;
-      sp(create_context) createcontext(allocer());
+      sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       createcontext->m_pviewAlloc                     = pview;
@@ -868,7 +868,7 @@ retry_license:
       sp(::form_document) pdoc;
       if(m_ptemplateForm == NULL)
          return NULL;
-      sp(create_context) createcontext(allocer());
+      sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       if(var.get_type() == var::type_propset && var.has_property("hold") && !(bool) var["hold"])
@@ -889,7 +889,7 @@ retry_license:
       sp(::form_document) pdoc;
       if(m_ptemplateChildForm == NULL)
          return NULL;
-      sp(create_context) createcontext(allocer());
+      sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       createcontext->m_pviewAlloc                     = pview;
@@ -915,7 +915,7 @@ retry_license:
       if(m_ptemplateChildForm == NULL)
          return NULL;
       sp(::form_document) pdoc;
-      sp(create_context) createcontext(allocer());
+      sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       pdoc = (m_ptemplateChildForm->open_document_file(createcontext));
@@ -929,7 +929,7 @@ retry_license:
    sp(::user::document) user::hold(sp(::user::interaction) pui)
    {
 
-      sp(create_context) createcontext(allocer());
+      sp(::create_context) createcontext(allocer());
 
       createcontext->m_bMakeVisible    = false;
       createcontext->m_bHold           = false;

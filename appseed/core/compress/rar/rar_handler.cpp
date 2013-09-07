@@ -707,7 +707,7 @@ namespace rar
                RINOK(getTextPassword->CryptoGetTextPassword(password));
                if (item.UnPackVersion >= 29)
                {
-                  ::core::byte_buffer buffer;
+                  ::file::byte_buffer buffer;
                   wstring unicodePassword = ::str::international::utf8_to_unicode(password);
                   const uint32_t sizeInBytes = (const uint32_t) (unicodePassword.get_length() * 2);
                   buffer.SetCapacity(sizeInBytes);

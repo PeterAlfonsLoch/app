@@ -233,7 +233,7 @@ namespace fontopus
                   return m_puser;
                return NULL;
             }
-            keeper < ::core::thread * > keepCreatingUser(&m_pthreadCreatingUser, ::core::get_thread(), NULL, true);
+            keeper < thread * > keepCreatingUser(&m_pthreadCreatingUser, ::core::get_thread(), NULL, true);
             user * puser = create_current_user();
             if(!puser->initialize())
             {
@@ -291,7 +291,7 @@ namespace fontopus
          && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
       {
 
-         sp(create_context) spcreatecontext(allocer());
+         sp(::create_context) spcreatecontext(allocer());
 
          sp(base_application) papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
 
@@ -312,7 +312,7 @@ namespace fontopus
 
 
 
-   void fontopus::on_request(sp(create_context) pcreatecontext)
+   void fontopus::on_request(sp(::create_context) pcreatecontext)
    {
 
       if(pcreatecontext->m_spCommandLine.is_set()

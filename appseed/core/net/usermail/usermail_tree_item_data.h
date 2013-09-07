@@ -6,7 +6,7 @@ namespace usermail
 
 
    class CLASS_DECL_ca2 tree_item_data :
-      public ::core::tree_item_data
+      public ::data::tree_item_data
    {
    public:
       
@@ -16,8 +16,8 @@ namespace usermail
       account      * m_paccount;
       string         m_strFolder;
 
-      string get_text(sp(::core::tree) ptree);
-      index get_image(sp(::core::tree) ptree);
+      string get_text(sp(::data::tree) ptree);
+      index get_image(sp(::data::tree) ptree);
 
 
 

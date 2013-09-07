@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   void step_slider::install_message_handling(message::dispatch * pdispatch)
+   void step_slider::install_message_handling(::message::dispatch * pdispatch)
    {
       ::user::interaction::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &step_slider::_001OnCreate);

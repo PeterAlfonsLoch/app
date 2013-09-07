@@ -43,7 +43,7 @@ namespace userfs
    
 
       virtual void _017Synchronize();
-      void install_message_handling(message::dispatch * pinterface);
+      void install_message_handling(::message::dispatch * pinterface);
    
 
       void _StartCreateImageList();

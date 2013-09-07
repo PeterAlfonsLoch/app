@@ -36,7 +36,7 @@ namespace bergedge
    {
    }
 
-   void view::install_message_handling(message::dispatch * pinterface)
+   void view::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::view::install_message_handling(pinterface);
       ::user::place_holder::install_message_handling(pinterface);

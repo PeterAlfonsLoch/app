@@ -35,7 +35,7 @@ void FileManagerCallbackInterface::OnFileManagerOpenContextMenu(::filemanager::d
    UNREFERENCED_PARAMETER(pdata);
 }
 
-void FileManagerCallbackInterface::on_request(sp(create_context) pcreatecontext)
+void FileManagerCallbackInterface::on_request(sp(::create_context) pcreatecontext)
 {
 
    Application.request_create(pcreatecontext);

@@ -19,7 +19,6 @@
 
 #include "framework.h"
 
-#include "ca2_debug.h"
 
 #ifdef DEBUG
 void TRACELASTERROR()

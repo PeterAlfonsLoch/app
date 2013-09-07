@@ -87,8 +87,8 @@ namespace fontopus
       virtual ~login_thread();
 
       virtual int32_t run();
-      virtual string Login(::core::http::e_status * pestatus);
-      virtual string NetLogin(::core::http::e_status * pestatus);
+      virtual string Login(::http::e_status * pestatus);
+      virtual string NetLogin(::http::e_status * pestatus);
       void execute();
    };
 

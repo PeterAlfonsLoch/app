@@ -27,7 +27,7 @@ namespace filemanager
              //  delete m_pinetsession;
          }
 
-         void view::install_message_handling(message::dispatch * pinterface)
+         void view::install_message_handling(::message::dispatch * pinterface)
          {
             ::user::split_view::install_message_handling(pinterface);
          }
@@ -89,7 +89,7 @@ namespace filemanager
 
          void view::on_request_response(signal_details * pobj)
          {
-            SCAST_PTR(::core::http::signal, psignal, pobj);
+            SCAST_PTR(::http::signal, psignal, pobj);
 
             string strResponse;
 
@@ -103,14 +103,14 @@ namespace filemanager
          void view::open_folder(int64_t iFolder)
          {
          
-            ::core::http::signal * psignal = new ::core::http::signal;
+            ::http::signal * psignal = new ::http::signal;
 
             (*psignal)()["request"] = "";
             psignal->m_strUrl.Format("http://file.veriwell.net/ifs/ls?id=%I64d", iFolder); 
 
             psignal->m_puser = &ApplicationUser;
 
-            ::core::emit(get_app(), this, &view::on_request_response, &Application.http(), &::core::http::application::get, psignal);
+            ::core::emit(get_app(), this, &view::on_request_response, &Application.http(), &::http::application::get, psignal);
 
          }
 
@@ -127,7 +127,7 @@ namespace filemanager
 
          }
 
-         void view::set_request_interface(::core::request_interface * prequestinterface)
+         void view::set_request_interface(request_interface * prequestinterface)
          {
             m_prequestinterface = prequestinterface;
          }

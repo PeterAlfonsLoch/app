@@ -52,14 +52,14 @@ namespace plane
       FT_Library                                   m_ftlibrary;
       mutex                                        m_mutexDelete;
       application_ptra                       m_appptra;
-      ::core::file_system_sp                         m_spfile;
-      ::core::dir::system_sp                         m_spdir;
+      ::file::system_sp                         m_spfile;
+      ::file::dir::system_sp                         m_spdir;
       class ::core::stra                             m_stra;
       class ::core::service                          m_service;
       class ::core::install                          m_install;
       ::core::os_sp                                  m_spos;
 #ifndef METROWIN
-      class ::core::process_section                  m_processsection;
+      class ::core::process_departament              m_processsection;
 #endif
       sp(class ::core::datetime)                     m_pdatetime;
       class ::sockets::net                         m_net;
@@ -67,7 +67,7 @@ namespace plane
       class ::core::compress                         m_compress;
       class ::core::patch                            m_patch;
       ::core::crypt_sp                               m_spcrypt;
-      class ::core::http::system                     m_http;
+      class ::http::system                     m_http;
       class ::core::email                            m_email;
       ::core::copydesk_sp                            m_spcopydesk;
       ::core::port_forward_sp                        m_spportforward;
@@ -85,7 +85,7 @@ namespace plane
 
       sp(class ::core::log)                          m_plog;
       sp(class ::core::history)                      m_phistory;
-      sp(::core::window_draw)                        m_ptwf;
+      sp(::user::window_draw)                        m_ptwf;
       //      ::sockets::net                               m_net;
       //      sp(::core::filehandler::handler)  m_spfilehandler;
 
@@ -171,7 +171,7 @@ namespace plane
       virtual sp(::nature::document)               get_nature(index iEdge, application_bias * pbiasCreation = NULL);
 
       virtual sp(::plane::session)             query_bergedge(index iEdge);
-      virtual void on_request(sp(create_context) pcreatecontext);
+      virtual void on_request(sp(::create_context) pcreatecontext);
       virtual sp(base_application) application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
       virtual void open_by_file_extension(index iEdge, const char * pszPathName);
       virtual bool is_system();
@@ -223,22 +223,22 @@ namespace plane
 
       class ::core::log                     & log();
 
-      sp(::core::window_draw )              get_twf();
+      sp(::user::window_draw )              get_twf();
 
       FT_Library                          & ftlibrary();
 
       application_ptra              & appptra();
       ::core::datetime                      & datetime();
 
-      inline ::core::file_system            & file()    { return m_spfile; }
-      inline ::core::dir::system            & dir()     { return m_spdir; }
+      inline ::file::system            & file()    { return m_spfile; }
+      inline ::file::dir::system            & dir()     { return m_spdir; }
       ::core::stra                          & stra();
       ::core::install                       & install();
       ::core::service                       & service();
       class ::machine_event_central       & machine_event_central();
       class ::core::os                      & os();
 #ifndef METROWIN
-      ::core::process_section               & process();
+      ::core::process_departament           & process();
 #endif
       class ::sockets::net                & net();
 
@@ -247,7 +247,7 @@ namespace plane
       class ::core::compress            & compress();
       class ::core::patch               & patch();
       class ::core::crypt               & crypt();
-      class ::core::http::system        & http();
+      class ::http::system        & http();
       class ::core::email               & email();
       class ::core::copydesk            & copydesk();
 
@@ -535,7 +535,7 @@ bool ::core::file_system::output(sp(base_application) papp, const char * pszOutp
 
 
 
-#include "core/collection/collection_lemon_array.h"
+//#include "core/collection/collection_lemon_array.h"
 
 
 namespace user
@@ -573,7 +573,7 @@ namespace user
 
 
    template < class DOCUMENT >
-   ::data * view::get_data()
+   ::data::data * view::get_data()
    {
       ASSERT(this != NULL);
       DOCUMENT * pdocument = get_typed_document < DOCUMENT > ();

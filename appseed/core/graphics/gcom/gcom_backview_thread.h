@@ -15,7 +15,7 @@ namespace gcom
 
 
       class CLASS_DECL_ca2 thread : 
-         virtual public ::core::thread
+         virtual public ::thread
       {
       public:
 
@@ -89,7 +89,7 @@ namespace gcom
 
          void SetMain(backview::Main * pmain);
 
-         void install_message_handling(message::dispatch * pinterface);
+         void install_message_handling(::message::dispatch * pinterface);
 
          static uint32_t ThreadProcStretchImage(void * lpParameter);
          static uint32_t ThreadProcLoadImage(void * lpParameter);

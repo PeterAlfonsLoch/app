@@ -148,7 +148,7 @@ imaging::~imaging()
 
 FIBITMAP * imaging::LoadImageFile(var varFile, sp(base_application) papp)
 {
-   ::::file::memory_buffer memfile(get_app());
+   ::file::memory_buffer memfile(get_app());
    System.file().as_memory(varFile, *memfile.get_memory(), papp);
    if(memfile.get_size() <= 0)
       return NULL;
@@ -158,7 +158,7 @@ FIBITMAP * imaging::LoadImageFile(var varFile, sp(base_application) papp)
 bool imaging::LoadImageFile(::draw2d::dib * pdib, var varFile, sp(base_application) papp)
 {
 
-   ::::file::memory_buffer memfile(get_app());
+   ::file::memory_buffer memfile(get_app());
 
    System.file().as_memory(varFile, *memfile.get_memory(), papp);
 
@@ -190,7 +190,7 @@ return LoadImageFile(ar.GetFile());
 }
 */
 
-FIBITMAP * imaging::LoadImageFile(::file::buffer_sp pfile)
+FIBITMAP * imaging::LoadImageFile(::file::buffer_sp  pfile)
 {
 
    if(pfile == NULL)
@@ -227,7 +227,7 @@ const char * lpszId)
 {
 throw not_implemented(get_app());
 /*
-::::file::memory_buffer file(get_app());
+::file::memory_buffer file(get_app());
 
 ::core::Resource resource;
 
@@ -236,7 +236,7 @@ return false;
 
 file.seek_to_begin();
 
-::file::buffer_sp pfile = &file;
+::file::buffer_sp  pfile = &file;
 
 FreeImageIO io;
 io.read_proc   = ___Ex1File__ReadProc;

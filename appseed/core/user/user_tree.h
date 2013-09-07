@@ -34,7 +34,7 @@ namespace user
 
    class CLASS_DECL_ca2 tree :
       virtual public scroll_view,
-      public ::core::tree
+      public ::data::tree
    {
    public:
 
@@ -98,7 +98,7 @@ namespace user
       virtual void _001OnItemExpand(sp(::data::tree_item) pitem);
       virtual void _001OnItemCollapse(sp(::data::tree_item) pitem);
       virtual bool _001GetItemElementRect(LPRECT lprect, tree_draw_item & drawitem, ::user::e_tree_element eelement);
-      virtual void install_message_handling(message::dispatch * pdispatch);
+      virtual void install_message_handling(::message::dispatch * pdispatch);
       int32_t _001GetItemHeight();
       virtual index _001GetIndentation();
       
@@ -153,7 +153,7 @@ namespace user
       tree_window(sp(base_application) papp);
       virtual ~tree_window();
 
-      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
    };
 
 } // namespace user

@@ -15,7 +15,7 @@ file_manager_operation_list_view::file_manager_operation_list_view(sp(base_appli
    m_pheaderctrl->SetBaseListCtrlInterface(this);
 }
 
-void file_manager_operation_list_view::install_message_handling(message::dispatch * pinterface)
+void file_manager_operation_list_view::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::view::install_message_handling(pinterface);
    ::user::list::install_message_handling(pinterface);

@@ -22,7 +22,7 @@ namespace user
          CommandGroup,
       };
 
-      class Command : public ::core::tree_item_data
+      class Command : public ::data::tree_item_data
       {
       public:
          virtual ECommand get_command();
@@ -76,8 +76,8 @@ namespace user
       sp(::data::tree_item)     m_ptreeitem;
       sp(GroupCommand)        m_pgroupcommand;
       index                   m_iBranch;
-      ::file::buffer_sp            m_pfile;
-      ::core::::file::edit_buffer         m_editfile;
+      ::file::buffer_sp             m_pfile;
+      ::file::edit_buffer         m_editfile;
       
       
       strsize                 m_iSelStart;
@@ -88,7 +88,7 @@ namespace user
       virtual ~plain_text_data();
 
 
-      void SetFile(::file::buffer_sp pfile);
+      void SetFile(::file::buffer_sp  pfile);
 
 
    private:

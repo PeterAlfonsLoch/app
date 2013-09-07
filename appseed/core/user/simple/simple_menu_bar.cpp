@@ -26,7 +26,7 @@ simple_menu_bar::~simple_menu_bar()
 {
 }
 
-void simple_menu_bar::install_message_handling(message::dispatch * pdispatch)
+void simple_menu_bar::install_message_handling(::message::dispatch * pdispatch)
 {
    simple_toolbar::install_message_handling(pdispatch);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE      , pdispatch, this, &simple_menu_bar::_001OnMouseMove);

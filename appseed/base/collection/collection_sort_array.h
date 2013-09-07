@@ -225,7 +225,7 @@ void sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
 set_size(::count n)
 {
 
-   BASE_ARRAY::set_size(n);
+   BASE_ARRAY::allocate(n);
 
    m_indexmap.mark_dirty();
 

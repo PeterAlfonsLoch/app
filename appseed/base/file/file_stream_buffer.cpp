@@ -15,7 +15,7 @@ namespace file
    {
    }
 
-   ::file::buffer_sp stream_buffer::Duplicate() const
+   ::file::buffer_sp  stream_buffer::Duplicate() const
    {
       return NULL;
    }

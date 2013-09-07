@@ -389,9 +389,6 @@
     <ClInclude Include="boot\boot_async.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="boot\boot_base64.h">
-      <Filter>Header Files\boot</Filter>
-    </ClInclude>
     <ClInclude Include="boot\boot_cpu_architecture.h">
       <Filter>Header Files\boot</Filter>
     </ClInclude>
@@ -763,9 +760,6 @@
     <ClCompile Include="boot\boot_argcargv.cpp">
       <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="boot\boot_base64.cpp">
-      <Filter>Source Files\boot</Filter>
-    </ClCompile>
     <ClCompile Include="boot\boot_cpu_architecture.cpp">
       <Filter>Source Files\boot</Filter>
     </ClCompile>
@@ -812,9 +806,6 @@
       <Filter>Source Files\boot</Filter>
     </ClCompile>
     <ClCompile Include="boot\boot_url.cpp">
-      <Filter>Source Files\boot</Filter>
-    </ClCompile>
-    <ClCompile Include="boot\boot_version.cpp">
       <Filter>Source Files\boot</Filter>
     </ClCompile>
     <ClCompile Include="boot\boot_window_graphics.cpp">

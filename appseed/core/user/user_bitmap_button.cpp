@@ -16,7 +16,7 @@ namespace user
    {
    }
 
-   void bitmap_button::install_message_handling(message::dispatch * pinterface)
+   void bitmap_button::install_message_handling(::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &bitmap_button::_001OnMouseMove);
    }
@@ -181,13 +181,13 @@ namespace user
 
    void bitmap_button::BaseToolTipGetRect(LPRECT lprect)
    {
-      // use ::core::window client rect as the tool rect
+      // use ::user::window client rect as the tool rect
       GetClientRect(lprect);
    }
 
    int32_t bitmap_button::BaseToolTipGetIndex()
    {
-      // use ::core::window dialog control id as the index
+      // use ::user::window dialog control id as the index
       return (int32_t) GetDlgCtrlId();
    }
 

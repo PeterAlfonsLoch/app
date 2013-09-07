@@ -1820,7 +1820,7 @@ namespace gcom
       }
 
 
-      ::core::thread * TransitionEffect::CreateRunStepThread()
+      thread * TransitionEffect::CreateRunStepThread()
       {
 
          return __begin_thread(get_app(), ThreadProcRunStep, this, ::core::scheduling_priority_normal, 0, 0, NULL);

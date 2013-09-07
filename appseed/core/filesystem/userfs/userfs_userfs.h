@@ -6,12 +6,12 @@ namespace userfs
 
 
    class CLASS_DECL_ca2 userfs :
-      virtual public ::departament
+      virtual public ::base_departament
    {
    public:
 
 
-      userfs(application * papp);
+      userfs(base_application * papp);
       virtual ~userfs();
 
       bool initialize();

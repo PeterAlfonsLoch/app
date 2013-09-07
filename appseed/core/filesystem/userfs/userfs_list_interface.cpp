@@ -275,7 +275,7 @@ namespace userfs
 
    }
 
-   void list_interface::install_message_handling(message::dispatch *pinterface)
+   void list_interface::install_message_handling(::message::dispatch *pinterface)
    {
 
 

@@ -55,14 +55,14 @@ namespace draw2d
 } // namespace draw2d
 
 
-namespace core
+namespace user
 {
 
 
    class window;
 
 
-} // namespace core
+} // namespace user
 
 
 #include "user/user_key_enum.h"
@@ -138,13 +138,14 @@ namespace message
 
    ::signal * CreateSignal();
 
-   class CLASS_DECL_ca2 Handler
+/*   class CLASS_DECL_ca2 Handler
    {
    public:
       Handler();
       virtual ~Handler();
       virtual int32_t OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam);
    };
+   */
 
    class CLASS_DECL_ca2 dispatch :
       virtual public object
@@ -234,7 +235,7 @@ namespace message
 #endif
 
       void RemoveMessageHandler(signalizable* psignalizable);
-      sp(::core::window) _GetWnd();
+      sp(::user::window) _GetWnd();
       // Prototype_bool_WPARAM_LPARAM;
 
       template < class T >
@@ -282,7 +283,7 @@ namespace message
 
       virtual e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
-      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
       virtual void _001ClearMessageHandling();
 
@@ -457,7 +458,7 @@ namespace message
 
 
          context_menu(sp(base_application) papp) : element(papp), message::base(papp) {}
-         sp(::core::window) GetWindow();
+         sp(::user::window) GetWindow();
          point GetPoint();
       };
 
@@ -468,7 +469,7 @@ namespace message
 
 
          set_cursor(sp(base_application) papp) : element(papp), message::base(papp) {}
-         sp(::core::window) m_pWnd;
+         sp(::user::window) m_pWnd;
          UINT m_nHitTest;
          UINT m_message;
       };
@@ -598,7 +599,7 @@ namespace message
          ctl_color(sp(base_application) papp) : element(papp), message::base(papp) {}
          HBRUSH      m_hbrush;
          ::draw2d::graphics *       m_pdc;
-         sp(::core::window)      m_pwnd;
+         sp(::user::window)      m_pwnd;
          UINT        m_nCtlType;
       };
 

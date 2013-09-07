@@ -30,7 +30,7 @@ namespace user
    }
 #endif //DEBUG
 
-   void main_frame::install_message_handling(message::dispatch * pinterface)
+   void main_frame::install_message_handling(::message::dispatch * pinterface)
    {
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE,         pinterface, this, &main_frame::_001OnCreate);

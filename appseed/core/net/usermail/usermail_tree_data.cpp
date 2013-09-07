@@ -15,7 +15,7 @@ namespace usermail
    }
 
 
-   sp(::core::tree_item_data) tree_data::on_allocate_item()
+   sp(::data::tree_item_data) tree_data::on_allocate_item()
    {
 
       return canew(::usermail::tree_item_data());

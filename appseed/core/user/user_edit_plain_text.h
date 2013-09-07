@@ -12,8 +12,8 @@ namespace user
    class CLASS_DECL_ca2 edit_plain_text :
       virtual public scroll_view,
       public colorertake5::base_editor,
-      public ::core::data_listener,
-      public ::core::tree
+      public ::data::data_listener,
+      public ::data::tree
    {
    public:
 
@@ -124,7 +124,7 @@ namespace user
 
       void key_to_char(message::key * pkey);
 
-      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
       virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::user::view
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
 
@@ -145,7 +145,7 @@ namespace user
 
 
 
-      virtual void on_updata_data(::data * pdata, int32_t iHint);
+      virtual void on_updata_data(::data::data * pdata, int32_t iHint);
 
 
       virtual bool create_control(class ::user::control::descriptor * pdescriptor);
@@ -201,7 +201,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnSetCursor)
 
 
-      virtual sp(::core::tree_item_data) on_allocate_item();
+      virtual sp(::data::tree_item_data) on_allocate_item();
 
 
    };

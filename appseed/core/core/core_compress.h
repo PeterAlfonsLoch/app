@@ -15,7 +15,7 @@ namespace core
       bool ungz(::file::writer & ostreamUncompressed, const char * lpcszGzFileCompressed);
       bool gz(::file::writer & ostreamGzFileCompressed, const char * lpcszUncompressed);
 
-      bool ungz(::::file::memory_buffer & memoryfile);
+      bool ungz(::file::memory_buffer & memoryfile);
 
       bool unbz(sp(base_application) papp, const char * lpcszUncompressed, const char * lpcszBzFileCompressed);
       bool bz(sp(base_application) papp, const char * lpcszBzFileCompressed, const char * lpcszUncompressed);

@@ -27,12 +27,7 @@ public:
 
 
 
-namespace core
-{
-
-   class thread;
-
-}
+class thread;
 
 
 

@@ -18,7 +18,7 @@ namespace http
       m_bRaw = false;
    }
 
-   void form::parse_body(http::memory_buffer *infil, const char * pszContentType, size_t content_length)
+   void form::parse_body(file::memory_buffer *infil, const char * pszContentType, size_t content_length)
    {
       UNREFERENCED_PARAMETER(content_length);
 

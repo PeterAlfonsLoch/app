@@ -331,7 +331,7 @@ public:
    virtual bool LoadImageSync(::draw2d::dib * pdib, const char * lpcszImageFilePath, sp(base_application) papp);
 
    virtual FIBITMAP * LoadImageFile(var varFile, sp(base_application) papp);
-   virtual FIBITMAP * LoadImageFile(::file::buffer_sp pfile);
+   virtual FIBITMAP * LoadImageFile(::file::buffer_sp  pfile);
    virtual ::draw2d::bitmap_sp FItoHBITMAP(FIBITMAP * pfibitmap, bool bDestroyFI);
    virtual FIBITMAP * HBITMAPtoFI(::draw2d::bitmap_sp hbitmap);
    virtual ::draw2d::bitmap_sp LoadImageSync(const char * lpcszImageFilePath, sp(base_application) papp);

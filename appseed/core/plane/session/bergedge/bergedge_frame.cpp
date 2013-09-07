@@ -8,7 +8,7 @@ namespace bergedge
    frame::frame(sp(base_application) papp) :
       element(papp),
       simple_frame_window(papp),
-      ::core::message_window_simple_callback(papp)
+      message_window_simple_callback(papp)
    {
       m_pdocument = NULL;
       m_iFrameData = 10;
@@ -52,7 +52,7 @@ namespace bergedge
 
    }
 
-   void frame::install_message_handling(message::dispatch * pinterface)
+   void frame::install_message_handling(::message::dispatch * pinterface)
    {
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CLOSE,          pinterface, this, &frame::_001OnClose);
@@ -254,7 +254,7 @@ namespace bergedge
          COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam.m_lparam;
          if(pstruct->dwData == 1984)
          {
-            ::::file::memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
+            ::file::memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
             string strPath;
             file.to_string(strPath);
             System.open_by_file_extension(iEdge, strPath);

@@ -48,9 +48,9 @@ namespace user
    {
    }
 
-   void window_interface::install_message_handling(message::dispatch * pinterface)
+   void window_interface::install_message_handling(::message::dispatch * pinterface)
    {
-      message::dispatch::install_message_handling(pinterface);
+      ::message::dispatch::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(
          MessageBaseWndGetProperty,
@@ -71,7 +71,7 @@ namespace user
          &window_interface::_001OnBaseWndGetProperty);
    }
 
-   // draw the background of a ::core::window
+   // draw the background of a ::user::window
    // can be used for trasparency
    // the rectangle must be in client coordinates.
    void window_interface::_001DrawBackground(::draw2d::graphics *pdc, LPRECT lprect)
@@ -106,7 +106,7 @@ namespace user
             else
                continue;
          }
-         sp(::core::window) pwndChild = ::core::window::from_handle(oswindowChild);
+         sp(::user::window) pwndChild = ::user::window::from_handle(oswindowChild);
          oswindow oswindowParent = ::get_parent(oswindowChild);
          ::GetClientRect(oswindowChild, rectChild);
          ::ClientToScreen(oswindowChild, &rectChild.top_left());
@@ -159,7 +159,7 @@ namespace user
       }
 
 
-      sp(::core::window) pwnd = ::core::window::FromHandlePermanent(oswindowParam);
+      sp(::user::window) pwnd = ::user::window::FromHandlePermanent(oswindowParam);
 
       if((::GetWindowLong((oswindowParam), GWL_STYLE) & WS_VISIBLE) == 0)
       {
@@ -310,14 +310,14 @@ namespace user
 
 
 
-   // The first ::core::window handle in the array must belong
-   // to the higher z order ::core::window.
+   // The first ::user::window handle in the array must belong
+   // to the higher z order ::user::window.
    // The rectangle must contain all update region.
    // It must be in screen coordinates.
 
    // This optimization eliminates top level windows
    // that are lower z order siblings of a higher z order
-   // top level ::core::window that contains all
+   // top level ::user::window that contains all
    // the update region in a opaque area.
    // It doesn´t eliminates from the update parent windows
    // obscured by opaque children.
@@ -510,7 +510,7 @@ namespace user
       return NULL;
    }
 #else
-   sp(::core::window) window_interface::get_wnd() const
+   sp(::user::window) window_interface::get_wnd() const
    {
       return NULL;
    }

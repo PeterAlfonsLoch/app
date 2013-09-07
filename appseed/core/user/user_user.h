@@ -17,7 +17,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 user :
-      virtual public ::departament,
+      virtual public ::base_departament,
       virtual public ::user::document_request_interface,
       virtual public BaseMenuCentralContainer,
       virtual public ::database::client

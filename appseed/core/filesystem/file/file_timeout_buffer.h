@@ -11,7 +11,7 @@ namespace file
    public:
 
 
-      ::file::buffer_sp     m_pfile;
+      ::file::buffer_sp      m_pfile;
       uint64_t          m_uiExpectedSize;
       uint32_t             m_dwTimeOut;
       uint32_t             m_dwLastCall;
@@ -19,7 +19,7 @@ namespace file
       sp(mutex)         m_spmutex;
 
 
-      timeout_buffer(sp(base_application) papp, ::file::buffer_sp pfile, uint64_t uiExpectedSize = ((uint64_t) 0));
+      timeout_buffer(sp(base_application) papp, ::file::buffer_sp  pfile, uint64_t uiExpectedSize = ((uint64_t) 0));
       virtual ~timeout_buffer();
 
       virtual bool IsValid() const;

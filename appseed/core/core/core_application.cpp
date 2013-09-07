@@ -17,9 +17,6 @@
 
 
 
-namespace core
-{
-
    mutex g_mutexStr(NULL);
 
    int32_t nibble_to_low_hex(byte nibble);
@@ -41,9 +38,9 @@ namespace core
    application::application() :
       element(this), // start m_papp as this for constructor referencing this app
       m_mutex(this),
-      ::core::thread(NULL),
+      thread(NULL),
       m_mutexMatterLocator(this),
-      m_allocer(this),
+      //m_allocer(this),
       OAUTHLIB_CONSUMERKEY_KEY      ("oauth_consumer_key"),
       OAUTHLIB_CALLBACK_KEY         ("oauth_callback"),
       OAUTHLIB_VERSION_KEY          ("oauth_version"),
@@ -237,7 +234,7 @@ namespace core
 
       try
       {
-         ::core::thread::exit();
+         thread::exit();
       }
       catch(...)
       {
@@ -319,13 +316,13 @@ namespace core
          Ex1OnFactoryExchange();
       }
 
-      ::core::thread::s_bAllocReady = true;
+      thread::s_bAllocReady = true;
 
-      if(::core::thread::m_p == NULL)
+      if(thread::m_p == NULL)
       {
 
-         ::core::thread::m_p.create(allocer());
-         ::core::thread::m_p->m_p = this;
+         thread::m_p.create(allocer());
+         thread::m_p->m_p = this;
 
       }
 
@@ -335,7 +332,7 @@ namespace core
 
       if(::core::get_thread() == NULL)
       {
-         set_thread(dynamic_cast < ::core::thread * > (this));
+         set_thread(dynamic_cast < thread * > (this));
       }
 
       if(!update_module_paths())
@@ -684,7 +681,7 @@ namespace core
 
    }
 
-   void application::on_request(sp(create_context) pcreatecontext)
+   void application::on_request(sp(::create_context) pcreatecontext)
    {
 
       ::request_interface::on_request(pcreatecontext);
@@ -723,13 +720,6 @@ namespace core
 
    }
 
-
-   class ::core::base64 & application::base64()
-   {
-
-      return m_base64;
-
-   }
 
    bool application::initialize_instance()
    {
@@ -901,7 +891,7 @@ namespace core
 
       /*try
       {
-      ::ca::release(smart_pointer <::core::thread>::m_p);
+      ::release(smart_pointer <thread>::m_p);
       }
       catch(...)
       {
@@ -928,7 +918,7 @@ namespace core
       try
       {
 
-         ::core::thread         * pthread      = ::core::thread::m_p.detach();
+         thread         * pthread      = thread::m_p.detach();
 
          if(pthread != NULL)
          {
@@ -1401,7 +1391,7 @@ finishedCa2Module:;
       UNUSED(bEnable);
 #endif
 
-      // no-op if main ::core::window is NULL or not a frame_window_interface
+      // no-op if main ::user::window is NULL or not a frame_window_interface
       /*      sp(::user::interaction) pMainWnd = System.GetMainWnd();
       if (pMainWnd == NULL || !pMainWnd->is_frame_window())
       return;*/
@@ -1441,14 +1431,14 @@ finishedCa2Module:;
    // Main running routine until application exits
    int32_t application::run()
    {
-      /*   if (GetMainWnd() == NULL) // may be a service or console application ::core::window
+      /*   if (GetMainWnd() == NULL) // may be a service or console application ::user::window
       {
-      // Not launched /Embedding or /Automation, but has no main ::core::window!
+      // Not launched /Embedding or /Automation, but has no main ::user::window!
       TRACE(::core::trace::category_AppMsg, 0, "Warning: GetMainWnd() is NULL in application::run - quitting application.\n");
       __post_quit_message(0);
       }*/
       //      return application::run();
-      return ::core::thread::run();
+      return thread::run();
    }
 
 
@@ -2704,8 +2694,8 @@ namespace core
          return;
       }
 
-      // otherwise, use ::core::window::OnHelp implementation
-      /* trans sp(::core::window) pWnd = System.GetMainWnd();
+      // otherwise, use ::user::window::OnHelp implementation
+      /* trans sp(::user::window) pWnd = System.GetMainWnd();
       ENSURE_VALID(pWnd);
       if (!pWnd->is_frame_window())
       pWnd->OnHelp();
@@ -2866,7 +2856,7 @@ namespace core
    void application::OnAppExit()
    {
 
-      // same as double-clicking on main ::core::window close box
+      // same as double-clicking on main ::user::window close box
 
       ASSERT(GetMainWnd() != NULL);
 
@@ -2886,7 +2876,7 @@ namespace core
          GetMainWnd()->ShowWindow(SW_HIDE);
          // trans    GetMainWnd()->ShowOwnedPopups(FALSE);
 
-         // put the ::core::window at the bottom of zorder, so it isn't activated
+         // put the ::user::window at the bottom of zorder, so it isn't activated
          GetMainWnd()->SetWindowPos(ZORDER_BOTTOM, 0, 0, 0, 0,
             SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE);
       }
@@ -2992,7 +2982,7 @@ namespace core
       UNUSED(bEnable);
 #endif
 
-      // no-op if main ::core::window is NULL or not a frame_window
+      // no-op if main ::user::window is NULL or not a frame_window
       /*   sp(::user::interaction) pMainWnd = System.GetMainWnd();
       if (pMainWnd == NULL || !pMainWnd->is_frame_window())
       return;*/
@@ -3064,9 +3054,9 @@ namespace core
       // disable windows for modal dialog
       DoEnableModeless(FALSE);
       ::oswindow oswindow_Top;
-      ::oswindow oswindow = ::core::window::get_safe_owner(NULL, &oswindow_Top);
+      ::oswindow oswindow = ::user::window::get_safe_owner(NULL, &oswindow_Top);
 
-      // re-enable the parent ::core::window, so that focus is restored
+      // re-enable the parent ::user::window, so that focus is restored
       // correctly when the dialog is dismissed.
       if (oswindow != oswindow_Top)
       EnableWindow(oswindow, TRUE);
@@ -3239,7 +3229,7 @@ namespace core
 
 #elif defined(WINDOWSEX) || defined(LINUX)
 
-      sp(::core::window) pwnd = System.window_from_os_data_permanent(::GetFocus());
+      sp(::user::window) pwnd = System.window_from_os_data_permanent(::GetFocus());
       if(pwnd != NULL)
       {
          if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
@@ -3298,7 +3288,7 @@ namespace core
    bResult = FALSE;
    break;
 
-   // If the ::fontopus::user wanted to print, hide our main ::core::window and
+   // If the ::fontopus::user wanted to print, hide our main ::user::window and
    // fire a message to ourselves to start the printing
 
    case CCommandLineInfo::FilePrintTo:
@@ -4080,7 +4070,7 @@ namespace core
       if(oswindowCapture == NULL)
          return NULL;
 
-      return System.window_from_os_data(oswindowCapture).cast < ::core::window >()->get_capture();
+      return System.window_from_os_data(oswindowCapture).cast < ::user::window >()->get_capture();
 
 #else
 
@@ -4091,7 +4081,7 @@ namespace core
       if(oswindowCapture == NULL)
          return NULL;
 
-      return ::GetCapture()->get_user_interaction()->m_pimpl.cast < ::core::window >()->get_capture();
+      return ::GetCapture()->get_user_interaction()->m_pimpl.cast < ::user::window >()->get_capture();
 
 #endif
 
@@ -4207,7 +4197,7 @@ namespace core
       return ::core::application_base::m_p->window_from_os_data_permanent(pdata);
    }
 #else
-   sp(::core::window) application::window_from_os_data(void * pdata)
+   sp(::user::window) application::window_from_os_data(void * pdata)
    {
 
       if(::core::application_base::m_p == NULL)
@@ -4217,19 +4207,19 @@ namespace core
 
    }
 
-   sp(::core::window) application::window_from_os_data_permanent(void * pdata)
+   sp(::user::window) application::window_from_os_data_permanent(void * pdata)
    {
       return ::core::application_base::m_p->window_from_os_data_permanent(pdata);
    }
 #endif
 
 
-   sp(::core::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   sp(::user::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
       return ::core::application_base::m_p->FindWindow(lpszClassName, lpszWindowName);
    }
 
-   sp(::core::window) application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
+   sp(::user::window) application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
    {
       return ::core::application_base::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
    }
@@ -4285,7 +4275,7 @@ namespace core
    }
 
 
-   application_signal_details::application_signal_details(sp(base_application) papp, ::core::signal * psignal, e_application_signal esignal) :
+   application_signal_details::application_signal_details(sp(base_application) papp, ::signal * psignal, e_application_signal esignal) :
       element(papp),
       signal_details(psignal)
    {
@@ -4306,7 +4296,7 @@ namespace core
 
       try
       {
-         ::core::thread::finalize();
+         thread::finalize();
       }
       catch(...)
       {
@@ -4358,7 +4348,7 @@ namespace core
    */
 
 
-   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(create_context) pcreatecontext)
+   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create_context) pcreatecontext)
    {
 
       sp(::user::interaction) puiParent = NULL;
@@ -4456,7 +4446,7 @@ namespace core
    }
 
 
-   ::core::thread * application::GetThread()
+   thread * application::GetThread()
    {
 
       if(::core::application_base::m_p == NULL)
@@ -4467,7 +4457,7 @@ namespace core
    }
 
 
-   void application::set_thread(::core::thread * pthread)
+   void application::set_thread(thread * pthread)
    {
       ::core::application_base::m_p->set_thread(pthread);
    }
@@ -4479,7 +4469,7 @@ namespace core
 
 
 
-   sp(::core::window) application::get_desktop_window()
+   sp(::user::window) application::get_desktop_window()
    {
 #if defined(METROWIN) || defined(MACOS)
       throw todo(this);
@@ -4626,9 +4616,9 @@ namespace core //namespace _001ca1api00001 + [core = (//namespace cube // ca8 + 
 
 
 
-   void application::install_message_handling(message::dispatch * pdispatch)
+   void application::install_message_handling(::message::dispatch * pdispatch)
    {
-      ::core::thread::install_message_handling(pdispatch);
+      thread::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_APP + 2043, pdispatch, this, &application::_001OnApplicationRequest);
    }
 
@@ -4980,7 +4970,7 @@ namespace core //namespace _001ca1api00001 + [core = (//namespace cube // ca8 + 
          pbase->m_bRet = true;
          return;
       }
-      return ::core::thread::pre_translate_message(pobj);
+      return thread::pre_translate_message(pobj);
    }
 
    void application::_001OnApplicationRequest(signal_details * pobj)
@@ -4992,7 +4982,7 @@ namespace core //namespace _001ca1api00001 + [core = (//namespace cube // ca8 + 
          // that should be treated as command_line on request, i.e.,
          // a fork whose Forking part has been done, now
          // the parameters are going to be passed to this new application
-         sp(create_context) pcreatecontext(pbase->m_lparam);
+         sp(::create_context) pcreatecontext(pbase->m_lparam);
          try
          {
             on_request(pcreatecontext);
@@ -5512,9 +5502,9 @@ ret:
          peventReady->ResetEvent();
       }
 
-      ::core::thread::m_p.create(allocer());
-      //dynamic_cast < ::core::thread * > (papp->::core::thread::m_p)->m_p = papp->::core::thread::m_p;
-      ::core::thread::m_p->m_p = this;
+      thread::m_p.create(allocer());
+      //dynamic_cast < thread * > (papp->thread::m_p)->m_p = papp->thread::m_p;
+      thread::m_p->m_p = this;
       if(pbias != NULL)
       {
          m_biasCalling = *pbias;
@@ -5734,7 +5724,7 @@ ok:;
 
 
       // there are cases where destroying the documents may destroy the
-      //  main ::core::window of the application.
+      //  main ::user::window of the application.
       //bool b::core::ContextIsDll = afxContextIsDLL;
       //if (!b::core::ContextIsDll && papp->GetVisibleFrameCount() <= 0)
       if(Application.user()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
@@ -5895,7 +5885,7 @@ ok:;
 
 
 
-} //namespace _001ca1api00001 + [core = (//namespace cube // ca8 + cube)]
+//namespace _001ca1api00001 + [core = (//namespace cube // ca8 + cube)]
 
 
 

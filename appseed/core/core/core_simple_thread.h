@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca2 simple_thread :
-   virtual public ::core::thread
+   virtual public thread
 {
 public:
 

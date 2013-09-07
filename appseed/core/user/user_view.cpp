@@ -64,7 +64,7 @@ namespace user
          m_spdocument->remove_view(this);
    }
 
-   void view::install_message_handling(message::dispatch * pinterface)
+   void view::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_VIEW, pinterface, this, &view::_001OnView);
@@ -146,7 +146,7 @@ namespace user
 
       // if ok, wire in the current ::user::document_interface
       ASSERT(::user::view::get_document() == NULL);
-      sp(create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
+      sp(::create_context) pContext = pcreate->m_lpcreatestruct->lpCreateParams;
 
       // A ::user::view should be created in a given context!
       if (pContext != NULL && pContext->m_user->m_pCurrentDoc != NULL)
@@ -360,7 +360,7 @@ namespace user
    }
 
    /* trans
-   int32_t view::OnMouseActivate(sp(::core::window) pDesktopWnd, UINT nHitTest, UINT message)
+   int32_t view::OnMouseActivate(sp(::user::window) pDesktopWnd, UINT nHitTest, UINT message)
    {
    int32_t nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
@@ -557,7 +557,7 @@ namespace user
 
       sp(type) info(pinfo);
 
-      sp(create_context) cacc(allocer());
+      sp(::create_context) cacc(allocer());
 
       stacker < ::user::create_context > cc(cacc->m_user);
 
@@ -596,7 +596,7 @@ namespace user
 
       sp(type) info(pinfo);
 
-      sp(create_context) cacc(pdoc->allocer());
+      sp(::create_context) cacc(pdoc->allocer());
 
       stacker < ::user::create_context > cc(cacc->m_user);
 
@@ -728,7 +728,7 @@ namespace user
    }
 
 
-   void view::collaborate(::core::job * pjob)
+   void view::collaborate(::job * pjob)
    {
       {
          ::user::job * puserjob = (dynamic_cast < ::user::job * > (pjob));
@@ -741,7 +741,7 @@ namespace user
 
 
 
-   int32_t view::get_total_page_count(::core::job * pjob)
+   int32_t view::get_total_page_count(::job * pjob)
    {
       UNREFERENCED_PARAMETER(pjob);
       return 1;
@@ -1017,7 +1017,7 @@ retry:
 
 
    /*
-   sp(::user::interaction) view::CreateView(sp(create_context) pContext, UINT nID)
+   sp(::user::interaction) view::CreateView(sp(::create_context) pContext, UINT nID)
    {
    ASSERT(IsWindow());
    ASSERT(pContext != NULL);
@@ -1035,7 +1035,7 @@ retry:
 
    // views are always created with a border!
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
-   rect(0,0,0,0), this, nID, (sp(create_context)) pContext))
+   rect(0,0,0,0), this, nID, (sp(::create_context)) pContext))
    {
    TRACE0("Warning: could not create ::user::view for frame.\n");
    return NULL;        // can't continue without a ::user::view
@@ -1054,25 +1054,25 @@ retry:
    }*/
 
 
-   /*sp(::user::interaction) view::CreateView(sp(create_context) pContext, UINT nID, ::user::interaction  * pwndParent)
+   /*sp(::user::interaction) view::CreateView(sp(::create_context) pContext, UINT nID, ::user::interaction  * pwndParent)
    {
    ASSERT(pwndParent->IsWindow());
    ASSERT(pContext != NULL);
    ASSERT(pContext->m_typeinfoNewView != NULL);
 
-   // Note: can be a ::core::window with PostNcDestroy self cleanup
-   sp(::core::window) pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
+   // Note: can be a ::user::window with PostNcDestroy self cleanup
+   sp(::user::window) pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
    if (pview == NULL)
    {
    TRACE1("Warning: Dynamic create of ::user::view type %hs failed.\n",
    pContext->m_typeinfoNewView.name());
    return NULL;
    }
-   ASSERT_KINDOF(::core::window, pview);
+   ASSERT_KINDOF(::user::window, pview);
 
    // views are always created with a border!
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
-   rect(0,0,0,0), pwndParent, nID, (sp(create_context)) pContext))
+   rect(0,0,0,0), pwndParent, nID, (sp(::create_context)) pContext))
    {
    TRACE0("Warning: could not create ::user::view for frame.\n");
    return NULL;        // can't continue without a ::user::view

@@ -1,77 +1,71 @@
 #include "framework.h"
 
-namespace core
+
+message_window_simple_callback::message_window_simple_callback()
+{
+}
+
+message_window_simple_callback::message_window_simple_callback(sp(base_application) papp) :
+   element(papp)
+{
+}
+
+message_window_simple_callback::~message_window_simple_callback()
+{
+}
+
+bool message_window_simple_callback::initialize_message_window(sp(base_application) papp, const char * pszName)
 {
 
-   message_window_simple_callback::message_window_simple_callback()
-   {
-   }
+   set_app(papp);
 
-   message_window_simple_callback::message_window_simple_callback(sp(base_application) papp) :
-      element(papp)
-   {
-   }
+   return initialize_message_window(pszName);
 
-   message_window_simple_callback::~message_window_simple_callback()
-   {
-   }
-
-   bool message_window_simple_callback::initialize_message_window(sp(base_application) papp, const char * pszName)
-   {
-
-      set_app(papp);
-
-      return initialize_message_window(pszName);
-
-   }
+}
 
 
-   bool message_window_simple_callback::initialize_message_window(const char * pszName)
-   {
+bool message_window_simple_callback::initialize_message_window(const char * pszName)
+{
 
-      m_spuiMessage = canew(user::interaction(get_app()));
+   m_spuiMessage = canew(user::interaction(get_app()));
 
-      return m_spuiMessage->create_message_window(pszName, this);
+   return m_spuiMessage->create_message_window(pszName, this);
 
-   }
+}
 
 
-   bool message_window_simple_callback::finalize_message_window()
+bool message_window_simple_callback::finalize_message_window()
+{
+
+   bool bOk = true;
+
+   if(m_spuiMessage.is_set())
    {
 
-      bool bOk = true;
-
-      if(m_spuiMessage.is_set())
+      try
       {
 
-         try
+         if(m_spuiMessage->IsWindow())
          {
 
-            if(m_spuiMessage->IsWindow())
-            {
-
-               bOk = m_spuiMessage->DestroyWindow();
-
-            }
-
-         }
-         catch(...)
-         {
-
-            bOk = false;
+            bOk = m_spuiMessage->DestroyWindow();
 
          }
 
-         m_spuiMessage.release();
+      }
+      catch(...)
+      {
+
+         bOk = false;
 
       }
 
-      return bOk;
+      m_spuiMessage.release();
 
    }
 
+   return bOk;
 
-} // namespace core
-
+}
 
 

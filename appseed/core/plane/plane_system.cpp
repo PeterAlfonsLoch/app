@@ -1376,7 +1376,7 @@ namespace plane
       return __ca2_logging_report(i1, psz1, i2, psz2, psz3, args);
    }
 
-   void system::on_request(sp(create_context) pcreatecontext)
+   void system::on_request(sp(::create_context) pcreatecontext)
    {
       sp(::plane::session) psession = get_session(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
       psession->request_create(pcreatecontext);
@@ -1466,7 +1466,7 @@ namespace plane
       int32_t iLen = strlen(filename);
       gzFile gzf = gzopen(filename, "rb");
       int32_t iRead;
-      ::::file::memory_buffer memfile;
+      ::file::memory_buffer memfile;
       int32_t iBufSize = (1024 * 256);
       char * buf = (char *) malloc(iBufSize);
       while((iRead = gzread(gzf, buf, iBufSize)) > 0)
@@ -1504,7 +1504,7 @@ namespace plane
       return m_email;
    }
 
-   class ::core::http::system & system::http()
+   class ::http::system & system::http()
    {
       return m_http;
    }
@@ -2252,7 +2252,7 @@ retry:
    //}
 
 
-   //void system::on_request(sp(create_context) pcreatecontext)
+   //void system::on_request(sp(::create_context) pcreatecontext)
    //{
    //   ::sp(::plane::session) pbergedge = get_bergedge(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
    //   pbergedge->request_create(pcreatecontext);

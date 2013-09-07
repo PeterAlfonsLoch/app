@@ -43,7 +43,7 @@ namespace user
          {
          case control::type_static:
             {
-   /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) ::core::window::FromHandlePermanent(pform->get_child_by_id(pcontrol->m_id)->GetSafeoswindow_());
+   /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) ::user::window::FromHandlePermanent(pform->get_child_by_id(pcontrol->m_id)->GetSafeoswindow_());
                if(pstatic == NULL || !base < CTransparentStatic >::bases(pstatic))
                {
                   pstatic = new CTransparentStatic;
@@ -663,7 +663,7 @@ namespace user
       }
    }
 
-   void form::install_message_handling( message::dispatch *pinterface)
+   void form::install_message_handling( ::message::dispatch *pinterface)
    {
       ::user::scroll_view::install_message_handling(pinterface);
    /*   InstallOnDrawInterface(pinterface);
@@ -965,8 +965,8 @@ namespace user
                {
                   //xxx pcontrol->m_pwnd->unsubclass_window();
                }
-   //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < ::core::window > ()));
-               if(dynamic_cast < ::core::window * >(descriptor.m_pcontrol.m_p) != NULL)
+   //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < ::user::window > ()));
+               if(dynamic_cast < ::user::window * >(descriptor.m_pcontrol.m_p) != NULL)
                {
                   //window_id wndidTemp = get_child_by_id(pcontrol->m_id)->GetSafeoswindow_();
                   //if(wndidTemp != NULL)

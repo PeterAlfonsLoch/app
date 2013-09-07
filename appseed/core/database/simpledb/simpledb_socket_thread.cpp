@@ -23,7 +23,7 @@ namespace simpledb
    {
    }
 
-   void socket_thread::install_message_handling(message::dispatch * pinterface)
+   void socket_thread::install_message_handling(::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_APP, pinterface, this, &socket_thread::OnApp);
    }

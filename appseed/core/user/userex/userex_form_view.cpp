@@ -90,7 +90,7 @@ bool form_view::BaseOnControlEvent(::user::control_event * pevent)
    return false;
 }
 
-void form_view::install_message_handling(message::dispatch * pinterface)
+void form_view::install_message_handling(::message::dispatch * pinterface)
 {
    html_form_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form_view::_001OnCreate);

@@ -11,16 +11,16 @@ namespace file
    public:
 
 
-      sp(::core::timeout_file)        m_ptimeoutfile;
-      sp(::primitive::memory_base)  m_pmemory;
-      sp(::::file::memory_buffer)  m_pmemoryfileIn;
-      sp(::::file::memory_buffer)  m_pmemoryfileOut;
-      sp(mutex)                     m_spmutex;
+      sp(::file::timeout_buffer)       m_ptimeoutfile;
+      sp(::primitive::memory_base)     m_pmemory;
+      sp(::file::memory_buffer)      m_pmemoryfileIn;
+      sp(::file::memory_buffer)      m_pmemoryfileOut;
+      sp(mutex)                        m_spmutex;
 
 
-      transfer_file(sp(base_application) papp, mutex * pmutex = NULL);
-      transfer_file(sp(base_application) papp, ::::file::memory_buffer * pmemoryfileIn);
-      virtual ~transfer_file();
+      transfer_buffer(sp(base_application) papp, mutex * pmutex = NULL);
+      transfer_buffer(sp(base_application) papp, ::file::memory_buffer * pmemoryfileIn);
+      virtual ~transfer_buffer();
 
 
       virtual file_position seek(file_offset lOff, ::file::e_seek  nFrom);

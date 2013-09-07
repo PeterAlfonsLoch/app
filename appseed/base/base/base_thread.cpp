@@ -75,7 +75,7 @@ base_thread * get_thread()
 }
 
 
-sp(base_application) get_thread_app()
+base_application * get_thread_app()
 {
 
    base_thread * pthread = get_thread();

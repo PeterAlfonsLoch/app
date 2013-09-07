@@ -141,7 +141,7 @@ namespace n7z
          _decoders.remove_all();
          // _decoders2.clear();
 
-         ::ca::release(_mixerCoder.m_p);
+         ::release(_mixerCoder.m_p);
 
          if (_multiThread)
          {
@@ -228,7 +228,7 @@ namespace n7z
             setDecoderProperties = dynamic_cast < ::libcompress::set_decoder_properties2_interface * > (setDecoderProperties.m_p);
             if (setDecoderProperties)
             {
-               const ::core::byte_buffer &props = coderInfo.Props;
+               const ::file::byte_buffer &props = coderInfo.Props;
                size_t size = props.GetCapacity();
                if (size > 0xFFFFFFFF)
                   return E_NOTIMPL;
@@ -261,7 +261,7 @@ namespace n7z
                {
                   return hr;
                }
-               ::core::byte_buffer buffer;
+               ::file::byte_buffer buffer;
                passwordIsDefined = true;
                wstring password(::str::international::utf8_to_unicode(passwordBSTR));
                const uint32_t sizeInBytes = (const uint32_t ) (password.get_length() * 2);

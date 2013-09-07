@@ -105,7 +105,7 @@ namespace user
                pview->OnActivateFrame(WA_INACTIVE, pframe);
 
             // finally, activate the frame
-            // (send the default show command unless the main desktop ::core::window)
+            // (send the default show command unless the main desktop ::user::window)
             int32_t nCmdShow = -1;      // default
             application* pApp = &System;
             if (pApp != NULL && pApp->GetMainWnd() == pframe)
@@ -139,7 +139,7 @@ namespace user
       pbase->set_lresult(0);
    }
 
-   void frame_window_interface::install_message_handling(message::dispatch *pinterface)
+   void frame_window_interface::install_message_handling(::message::dispatch *pinterface)
    {
 //      ::user::frame_window_interface::install_message_handling(pinterface);
       database::user::interaction::install_message_handling(pinterface);

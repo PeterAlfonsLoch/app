@@ -33,4 +33,6 @@ CLASS_DECL_c void zero_pad(string & str, count iPad);
 
 #include "str_istring.h"
 
+#include "str_base64.h"
+
 

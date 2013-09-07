@@ -6,7 +6,7 @@ namespace file
 
 
    class CLASS_DECL_ca2 edit_buffer :
-      public ::file::buffer_sp,
+      public ::file::buffer_sp ,
       public ::data::tree,
       public ::data::tree_data
    {
@@ -165,11 +165,11 @@ namespace file
       sp(::data::tree_item)   m_ptreeitem;
       sp(::data::tree_item)   m_ptreeitemFlush;
       ::primitive::memory_offset              m_iBranch;
-      ::file::buffer_sp          m_pfile;
+      ::file::buffer_sp           m_pfile;
       GroupItem *          m_pgroupitem;
       bool                 m_bRootDirection;
 
-      void SetFile(::file::buffer_sp pfile);
+      void SetFile(::file::buffer_sp  pfile);
 
       void FillFilePosition(sp(Item) pitem);
 

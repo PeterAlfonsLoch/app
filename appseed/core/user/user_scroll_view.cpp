@@ -319,7 +319,7 @@ namespace user
 
 
 
-   void scroll_view::install_message_handling(message::dispatch * pinterface)
+   void scroll_view::install_message_handling(::message::dispatch * pinterface)
    {
 
 

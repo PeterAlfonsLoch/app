@@ -222,6 +222,7 @@ public:
 
    static id_space                              s_idspace;
    static class id                              idEmpty;
+   class ::str::base64                          m_base64;
 
 
 
@@ -233,9 +234,11 @@ public:
 
 
 
-   class factory                    & factory();
-   inline ::url::departament           & url()     { return m_urldepartament; }
-   ::xml::departament                       & xml();
+   class factory                                & factory();
+   inline ::url::departament                    & url()     { return m_urldepartament; }
+   ::xml::departament                           & xml();
+   class ::str::base64                          & base64();
+
 
 
    using base_application::alloc;

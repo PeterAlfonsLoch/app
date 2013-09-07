@@ -61,7 +61,7 @@ namespace n7z
 
       uint64_t GetPos() const;
       void WriteBytes(const void *data, size_t size);
-      void WriteBytes(const ::core::byte_buffer &data) { WriteBytes(data, data.GetCapacity()); }
+      void WriteBytes(const ::file::byte_buffer &data) { WriteBytes(data, data.GetCapacity()); }
       void WriteByte(byte b);
       void WriteUInt32(uint32_t value);
       void WriteUInt64(uint64_t value);
@@ -96,7 +96,7 @@ namespace n7z
 
       HRESULT EncodeStream(
          ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
-         CEncoder &encoder, const ::core::byte_buffer &data,
+         CEncoder &encoder, const ::file::byte_buffer &data,
          array<file_size> &packSizes, smart_pointer_array<CFolder> &folders);
       void WriteHeader(
          const CArchiveDatabase &db,
@@ -107,7 +107,7 @@ namespace n7z
       bool _writeToStream;
       size_t _countSize;
       uint32_t _crc;
-      ::core::out_buffer _outByte;
+      ::file::out_buffer _outByte;
       CWriteBufferLoc _outByte2;
 
       bool _endMarker;

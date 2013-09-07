@@ -183,7 +183,7 @@ namespace user
 
    }
 
-   void control::install_message_handling(message::dispatch * pdispatch)
+   void control::install_message_handling(::message::dispatch * pdispatch)
    {
 
       ::user::view::install_message_handling(pdispatch);
@@ -777,7 +777,7 @@ namespace user
    }
 
 
-   control_cmd_ui::control_cmd_ui(::core::signal * psignal) :
+   control_cmd_ui::control_cmd_ui(::signal * psignal) :
       base_cmd_ui(psignal)
    {
    }

@@ -16,12 +16,19 @@ namespace core
       NESSIEinit(&ns);
       NESSIEadd((const byte *) psz, (uint_ptr) (8 * strlen(psz)), &ns);
       NESSIEfinalize(&ns, digest);
-      return ::hex::lo_from(digest, NESSIE_DIGESTBYTES);
+      return ::hex::lower_from(digest, NESSIE_DIGESTBYTES);
 
    }
 
 
-   string file_system::nessie(const char * psz)
+
+} // namespace core
+
+
+namespace file
+{
+
+   string system::nessie(const char * psz)
    {
 
       ::file::binary_buffer_sp spfile(allocer());
@@ -39,7 +46,7 @@ namespace core
    }
 
 
-   string file_system::nessie(::file::buffer_sp pfile)
+   string system::nessie(::file::buffer_sp  pfile)
    {
       
 	   int32_t iBufSize = 1024 * 256;
@@ -53,13 +60,8 @@ namespace core
       }
       uint8_t digest[NESSIE_DIGESTBYTES];
       NESSIEfinalize(&ns, digest);
-	  return ::hex::lo_from(digest, NESSIE_DIGESTBYTES);
+	  return ::hex::lower_from(digest, NESSIE_DIGESTBYTES);
 
    }
 
-
-} // namespace core
-
-
-
-
+} // namespace file

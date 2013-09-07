@@ -14,16 +14,16 @@ namespace plane
 
 
    class CLASS_DECL_ca2 application : 
-      virtual public application,
+      virtual public ::application,
       virtual public ::database::client
 
    {
    public:
 
       sp(service_base)                    m_pservice;
-      class ::core::dir::application        m_dir;
-      class ::core::file_application        m_file;
-      class ::core::http::application       m_http;
+      class ::file::dir::application        m_dir;
+      class ::file::application        m_file;
+      class ::http::application       m_http;
 
       sp(class ::fontopus::license)       m_splicense;
       sp(class ::fs::data)                m_spfsdata;
@@ -66,7 +66,7 @@ namespace plane
       virtual bool stop_service();
 
 
-      virtual void on_service_request(sp(create_context) pcreatecontext);
+      virtual void on_service_request(sp(::create_context) pcreatecontext);
 
 
 
@@ -74,9 +74,9 @@ namespace plane
       virtual int32_t exit_instance();
 
 
-      inline class ::core::dir::application       & dir()        { return m_dir          ; }
-      inline class ::core::file_application       & file()       { return m_file         ; }
-      inline class ::core::http::application      & http()       { return m_http         ; }
+      inline class ::file::dir::application       & dir()        { return m_dir          ; }
+      inline class ::file::application       & file()       { return m_file         ; }
+      inline class ::http::application      & http()       { return m_http         ; }
       inline class ::fontopus::license          & license()    { return m_splicense    ; }
       inline sp(class ::fs::data)               fs()           { return m_spfsdata     ; }
       inline sp(class ::user::user)             user()         { return m_spuser       ; }
@@ -174,7 +174,7 @@ namespace plane
       virtual void _001OnFileNew();
 
 
-      virtual void on_request(sp(create_context) pcreatecontext);
+      virtual void on_request(sp(::create_context) pcreatecontext);
 
       sp(::user::document_interface) _001OpenDocumentFile(var varFile);
 

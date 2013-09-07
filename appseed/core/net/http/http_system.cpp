@@ -202,12 +202,12 @@ namespace core
 
 
 
-      ::core::http::system::proxy * system::get_proxy(const char * pszUrl)
+      ::http::system::proxy * system::get_proxy(const char * pszUrl)
       {
 
          single_lock sl(&m_mutexProxy, true);
 
-         string_map < ::core::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
+         string_map < ::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
 
          if(ppair == NULL || (::get_tick_count() - ppair->m_element2->m_dwLastChecked) > (84 * 1000))
          {
@@ -217,7 +217,7 @@ namespace core
                m_mapPac.remove_key(pszUrl);
             }
 
-            class ::core::http::system::proxy * pproxy = new class ::core::http::system::proxy(get_app());
+            class ::http::system::proxy * pproxy = new class ::http::system::proxy(get_app());
 
             pproxy->m_dwLastChecked = get_tick_count();
 
@@ -311,7 +311,7 @@ namespace core
 
 #else
 
-         ::core::http::system::proxy * pproxy = get_proxy(pszUrl);
+         ::http::system::proxy * pproxy = get_proxy(pszUrl);
 
          if(pproxy == NULL)
             return;
@@ -332,7 +332,7 @@ namespace core
       }
 
 
-      void system::config_proxy(const char * pszUrl, ::core::http::system::proxy * pproxy)
+      void system::config_proxy(const char * pszUrl, ::http::system::proxy * pproxy)
       {
 
          xml::document doc(get_app());
@@ -567,7 +567,7 @@ namespace core
             }*/
             delete psession;
             uint32_t dwTimeProfile2 = get_tick_count();
-            TRACE0("Not Opened/Connected Result Total time ::core::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+            TRACE0("Not Opened/Connected Result Total time ::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
             return NULL;
          }
          uint32_t dw2 = ::get_tick_count();
@@ -915,7 +915,7 @@ retry:
                   if(::str::begins_ci(strCa2Realm, "not licensed: "))
                   {
                      uint32_t dwTimeProfile2 = get_tick_count();
-                     TRACE0("Not Licensed Result Total time ::core::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+                     TRACE0("Not Licensed Result Total time ::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
                      string strLocation = psession->outheader("Location");
                      delete psession;
                      throw not_licensed(get_app(), strCa2Realm, strLocation);
@@ -929,7 +929,7 @@ retry:
             }
 
             uint32_t dwTimeProfile2 = get_tick_count();
-            TRACE0("Total time ::core::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+            TRACE0("Total time ::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
 
          }
          catch(...)
@@ -1262,7 +1262,7 @@ retry:
             }
             delete psocket;
             uint32_t dwTimeProfile2 = get_tick_count();
-            TRACE0("Not Opened/Connected Result Total time ::core::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+            TRACE0("Not Opened/Connected Result Total time ::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
             return NULL;
          }
          uint32_t dw2 = ::get_tick_count();
@@ -1345,7 +1345,7 @@ retry:
                if(::str::begins_ci(strCa2Realm, "not licensed: "))
                {
                   uint32_t dwTimeProfile2 = get_tick_count();
-                  TRACE0("Not Licensed Result Total time ::core::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+                  TRACE0("Not Licensed Result Total time ::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
                   string strLocation = psocket->outheader("Location");
                   delete psocket;
                   throw not_licensed(get_app(), strCa2Realm, strLocation);
@@ -1359,7 +1359,7 @@ retry:
          }
 
          uint32_t dwTimeProfile2 = get_tick_count();
-         TRACE0("Total time ::core::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+         TRACE0("Total time ::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
 
          return psocket;
 
@@ -1701,11 +1701,11 @@ retry:
 
       bool system::put(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
       {
-         ::::file::memory_buffer file(get_app(), &memory);
+         ::file::memory_buffer file(get_app(), &memory);
          return put(pszUrl, &file, puser);
       }
 
-      bool system::put(const char * pszUrl, ::file::buffer_sp pfile, ::fontopus::user * puser)
+      bool system::put(const char * pszUrl, ::file::buffer_sp  pfile, ::fontopus::user * puser)
       {
          if(puser == NULL)
          {
@@ -1724,14 +1724,14 @@ retry:
       bool system::put(string & strResponse, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
       {
 
-         ::::file::memory_buffer file(get_app(), &memory);
+         ::file::memory_buffer file(get_app(), &memory);
 
          return put(strResponse, pszUrl, &file, puser);
 
       }
 
 
-      bool system::put(string & strResponse, const char * pszUrl, ::file::buffer_sp pfile, ::fontopus::user * puser)
+      bool system::put(string & strResponse, const char * pszUrl, ::file::buffer_sp  pfile, ::fontopus::user * puser)
       {
 
          if(puser == NULL)

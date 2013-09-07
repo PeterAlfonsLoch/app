@@ -22,9 +22,9 @@ namespace filemanager
 
             m_etranslucency = TranslucencyPresent;
 
-            m_spdataFs = new ::core::simple_tree_data(get_app());
+            m_spdataFs = new ::data::simple_tree_data(get_app());
 
-            ::data_container::m_spdata = m_spdataFs;
+            ::data::data_container::m_spdata = m_spdataFs;
 
          }
 
@@ -209,7 +209,7 @@ namespace filemanager
             m_pserver->open_folder(m_foldera[pitem->m_dwUser].m_iFolder);
          }
 
-         void tree_view::install_message_handling(message::dispatch * pdispatch)
+         void tree_view::install_message_handling(::message::dispatch * pdispatch)
          {
             ::user::view::install_message_handling(pdispatch);
             ::user::tree::install_message_handling(pdispatch);

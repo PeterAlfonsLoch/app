@@ -46,7 +46,7 @@ void file_manager_operation_view::_001OnCreate(signal_details * pobj)
 
 }
 
-void file_manager_operation_view::install_message_handling(message::dispatch * pinterface)
+void file_manager_operation_view::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::split_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_view::_001OnCreate);

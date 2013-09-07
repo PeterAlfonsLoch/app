@@ -34,7 +34,7 @@ namespace user
       list::_001GetSelection(key, selection);
    }
 
-   void form_list::install_message_handling( message::dispatch *pinterface)
+   void form_list::install_message_handling( ::message::dispatch *pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &form_list::_001OnKeyDown);
 
@@ -193,7 +193,7 @@ namespace user
 
    }
 
-   bool form_list::_001OnMouseActivate(sp(::core::window) pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult)
+   bool form_list::_001OnMouseActivate(sp(::user::window) pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult)
    {
       UNREFERENCED_PARAMETER(pDesktopWnd);
       UNREFERENCED_PARAMETER(nHitTest);

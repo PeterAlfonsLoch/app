@@ -165,7 +165,7 @@ namespace plane
    }
 
 
-   void application::on_request(sp(create_context) pcreatecontext)
+   void application::on_request(sp(::create_context) pcreatecontext)
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -333,7 +333,7 @@ namespace plane
          if(bCreate)
          {
 
-            sp(create_context) spcreatecontext(allocer());
+            sp(::create_context) spcreatecontext(allocer());
 
             papp = Session.start_application("application", pszAppId, spcreatecontext);
 
@@ -492,7 +492,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
    }
 
 
-   void application::on_service_request(sp(create_context) pcreatecontext)
+   void application::on_service_request(sp(::create_context) pcreatecontext)
    {
 
       if(!is_serviceable())
@@ -543,7 +543,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
 
       if(!is_system() && (bool)oprop("SessionSynchronizedInput"))
       {
-         ::AttachThreadInput(GetCurrentThreadId(), (uint32_t) System.::core::thread::m_p->get_os_int(), TRUE);
+         ::AttachThreadInput(GetCurrentThreadId(), (uint32_t) System.thread::m_p->get_os_int(), TRUE);
       }
 
 #endif
@@ -779,7 +779,7 @@ run:
       {
       }
 
-      ::core::thread * pthread = System.GetThread();
+      thread * pthread = System.GetThread();
 
       install_message_handling(pthread->m_p);
 #if !defined(DEBUG) || defined(WINDOWS)
@@ -948,7 +948,7 @@ InitFailure:
       }
       try
       {
-         ::core::thread * pthread = ::core::thread::m_p;
+         thread * pthread = thread::m_p;
          if(pthread != NULL && pthread->m_pbReady != NULL)
          {
             *pthread->m_pbReady = true;
@@ -959,7 +959,7 @@ InitFailure:
       }
       /*try
       {
-         ::core::thread * pthread = dynamic_cast < ::core::thread * > (this);
+         thread * pthread = dynamic_cast < thread * > (this);
          ::SetEvent((HANDLE) pthread->m_peventReady);
       }
       catch(...)
@@ -2001,7 +2001,7 @@ exit_application:
          if(System.appptra().get_count() <= 1)
          {
 
-             if(System.::core::thread::get_os_data() != NULL)
+             if(System.thread::get_os_data() != NULL)
               {
               System.post_thread_message(WM_QUIT);
 

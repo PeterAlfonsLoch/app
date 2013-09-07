@@ -479,7 +479,7 @@ namespace plugin
             // in core library normally System or Application.http() is used
             string strPluginData;
 
-            ::core::http::e_status estatus = ::core::http::status_failed;
+            ::http::e_status estatus = ::http::status_failed;
 
             string strUrl = strPluginUrl;
 
@@ -496,12 +496,12 @@ namespace plugin
 
                Application.http().get(strUrl, strPluginData, post, headers, set, NULL, NULL, NULL, &estatus);
 
-               if(estatus == ::core::http::status_ok)
+               if(estatus == ::http::status_ok)
                   break;
 
             }
 
-            if(estatus == ::core::http::status_ok)
+            if(estatus == ::http::status_ok)
             {
 
                open_ca2_string(strPluginData);
@@ -871,7 +871,7 @@ namespace plugin
       try
       {
 
-         ::core::thread * pthread = m_psystem->::core::thread::m_p;
+         thread * pthread = m_psystem->thread::m_p;
 
          if(pthread->get_run())
          {
@@ -960,13 +960,13 @@ namespace plugin
          if(uiMessage == WM_MOUSEMOVE)
          {
 
-            sp(::core::window) pwindow = m_puiHost->m_pimpl;
+            sp(::user::window) pwindow = m_puiHost->m_pimpl;
 
             pwindow->m_bMouseHover = true; // avoids tracking mouse leave;
 
          }
 
-         sp(::core::window) pwindow = m_puiHost->m_pimpl;
+         sp(::user::window) pwindow = m_puiHost->m_pimpl;
 
          oswindow oswindow = pwindow->get_handle();
 

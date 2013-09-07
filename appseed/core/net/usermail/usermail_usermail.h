@@ -6,12 +6,12 @@ namespace usermail
 
 
    class CLASS_DECL_ca2 usermail : 
-      virtual public ::departament
+      virtual public ::base_departament
    {
    public:
       
 
-      usermail(application * papp);
+      usermail(base_application * papp);
       virtual ~usermail();
 
 

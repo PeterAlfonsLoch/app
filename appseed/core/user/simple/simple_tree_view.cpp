@@ -13,7 +13,7 @@ simple_tree_view::~simple_tree_view()
 {
 }
 
-void simple_tree_view::install_message_handling(message::dispatch * pinterface)
+void simple_tree_view::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::view::install_message_handling(pinterface);
    ::user::tree::install_message_handling(pinterface);

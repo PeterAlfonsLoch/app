@@ -101,7 +101,7 @@ namespace user
       }
    }
 
-   void tab_view::install_message_handling(message::dispatch * pinterface)
+   void tab_view::install_message_handling(::message::dispatch * pinterface)
    {
       view::install_message_handling(pinterface);
       ::user::tab::install_message_handling(pinterface);
@@ -472,7 +472,7 @@ namespace user
    {
    }
 
-   void tab_drop_target_window::install_message_handling(message::dispatch * pinterface)
+   void tab_drop_target_window::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &tab_drop_target_window::_001OnLButtonUp);

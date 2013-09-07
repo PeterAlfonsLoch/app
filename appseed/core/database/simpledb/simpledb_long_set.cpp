@@ -97,7 +97,7 @@ repeat:;
           property_set headers(get_app());
           property_set set(get_app());
 
-          ::core::http::e_status estatus;
+          ::http::e_status estatus;
 
           string strUrl;
 
@@ -115,7 +115,7 @@ repeat:;
 
           m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-          if(m_phttpsession == NULL || estatus != ::core::http::status_ok)
+          if(m_phttpsession == NULL || estatus != ::http::status_ok)
           {
              Sleep(1984);
              goto repeat;
@@ -165,7 +165,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       property_set headers(get_app());
       property_set set(get_app());
 
-      ::core::http::e_status estatus;
+      ::http::e_status estatus;
 
       string strUrl;
 
@@ -177,7 +177,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       //m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
       m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, NULL, NULL, &estatus);
 
-      if(m_phttpsession == NULL || estatus != ::core::http::status_ok)
+      if(m_phttpsession == NULL || estatus != ::http::status_ok)
       {
          return false;
       }
@@ -483,7 +483,7 @@ bool db_long_set::save(const char * lpKey, LPCRECT lpRect)
    return true;
 
 }
-bool db_long_set::MoveWindow_(const char * lpKey, sp(::core::window)pWnd)
+bool db_long_set::MoveWindow_(const char * lpKey, sp(::user::window)pWnd)
 {
    rect rect;
    if(!load(lpKey, &rect))
@@ -492,7 +492,7 @@ bool db_long_set::MoveWindow_(const char * lpKey, sp(::core::window)pWnd)
    return true;
 }
 
-bool db_long_set::SaveWindowRect_(const char * lpKey, sp(::core::window)pWnd)
+bool db_long_set::SaveWindowRect_(const char * lpKey, sp(::user::window)pWnd)
 {
 
 #ifdef WINDOWSEX
@@ -645,7 +645,7 @@ return hr;
 
 //}
 
-bool db_long_set::SetWindowPlacement(const char * lpKey, sp(::core::window)pWnd)
+bool db_long_set::SetWindowPlacement(const char * lpKey, sp(::user::window)pWnd)
 {
 
 #ifdef WINDOWSEX
@@ -682,7 +682,7 @@ bool db_long_set::SetWindowPlacement(const char * lpKey, sp(::core::window)pWnd)
 
 }
 
-bool db_long_set::SaveWindowPlacement(const char * lpKey, sp(::core::window)pWnd)
+bool db_long_set::SaveWindowPlacement(const char * lpKey, sp(::user::window)pWnd)
 {
 
 #ifdef WINDOWSEX

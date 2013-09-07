@@ -6,7 +6,7 @@
 
 
       class CLASS_DECL_ca2 sockets :
-         virtual public ::departament
+         virtual public ::base_departament
       {
       public:
 
@@ -24,7 +24,7 @@
          
 
 
-         sockets(application * papp);
+         sockets(base_application * papp);
          virtual ~sockets();
 
 

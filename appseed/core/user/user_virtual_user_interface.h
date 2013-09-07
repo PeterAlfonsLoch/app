@@ -69,10 +69,10 @@ public:
 
 #endif
 
-   // as hosting ::core::window
-   virtual void install_message_handling(message::dispatch * pinterface);
-   // as virtual ::core::window
-   virtual void _002InstallMessageHandling(message::dispatch * pinterface);
+   // as hosting ::user::window
+   virtual void install_message_handling(::message::dispatch * pinterface);
+   // as virtual ::user::window
+   virtual void _002InstallMessageHandling(::message::dispatch * pinterface);
 
 
    bool create_message_window();
@@ -93,7 +93,7 @@ public:
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       sp(::user::interaction) pParentWnd, id id,
-      sp(create_context) pContext = NULL);
+      sp(::create_context) pContext = NULL);
    virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,

@@ -277,7 +277,7 @@ public:
                throw memory_exception(get_thread_app());
 
             LiteHTMLElemAttr   *pItem = NULL;
-            m_parrAttrib->set_size(nElemCount);
+            m_parrAttrib->allocate(nElemCount);
 
             /** DEEP COPY BEGIN */
             for (int32_t iElem = 0; iElem < nElemCount; iElem++)

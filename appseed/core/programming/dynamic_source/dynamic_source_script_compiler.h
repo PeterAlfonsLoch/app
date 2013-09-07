@@ -24,7 +24,7 @@ namespace dynamic_source
 
 
 
-      http::memory_buffer          m_memfileLibError;
+      file::memory_buffer          m_memfileLibError;
       stringa                    m_straLibSourcePath;
       stringa                    m_straLibSourceRelPath;
       stringa                    m_straLibCppPath;

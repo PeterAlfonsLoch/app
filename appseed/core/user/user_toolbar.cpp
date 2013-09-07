@@ -78,7 +78,7 @@ namespace user
       //m_nCount = 0;
    }
 
-   void tool_bar::install_message_handling(message::dispatch * pinterface)
+   void tool_bar::install_message_handling(::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_NCHITTEST         , pinterface, this, &tool_bar::_001OnNcHitTest);
       //IGUI_WIN_MSG_LINK(WM_NCPAINT         , pinterface, this, &tool_bar::_001On);

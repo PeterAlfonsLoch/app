@@ -333,7 +333,7 @@ FileSystemSizeWnd::FileSystemSizeWnd(sp(base_application) papp) :
 {
 }
 
-void FileSystemSizeWnd::install_message_handling(message::dispatch * pinterface)
+void FileSystemSizeWnd::install_message_handling(::message::dispatch * pinterface)
 {
    m_p->install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_COPYDATA, pinterface, this, &FileSystemSizeWnd::_001OnCopyData);

@@ -23,12 +23,12 @@ class BaseDockState;
 
 
 
-// Standard control bars (IDW = ::core::window ID)
+// Standard control bars (IDW = ::user::window ID)
 #define __IDW_CONTROLBAR_FIRST        0xE800
 #define __IDW_CONTROLBAR_LAST         0xE8FF
 
-#define __IDW_TOOLBAR                 0xE800  // main Toolbar for ::core::window
-//#define "status_bar"              0xE801  // Status bar ::core::window
+#define __IDW_TOOLBAR                 0xE800  // main Toolbar for ::user::window
+//#define "status_bar"              0xE801  // Status bar ::user::window
 #define __IDW_PREVIEW_BAR             0xE802  // PrintPreview Dialog Bar
 #define __IDW_RESIZE_BAR              0xE803  // OLE in-place resize bar
 #define __IDW_REBAR                   0xE804  // COMCTL32 "rebar" Bar
@@ -79,7 +79,7 @@ public:
    bool m_bFloating;   // whether floating or not
    bool m_bHorz;       // orientation of floating dockbar
    bool m_bDockBar;    // TRUE if a dockbar
-   point m_pointPos;  // topleft point of ::core::window
+   point m_pointPos;  // topleft point of ::user::window
 
    UINT m_nMRUWidth;   // MRUWidth for Dynamic Toolbars
    bool m_bDocking;    // TRUE if this bar has a DockContext
@@ -211,7 +211,7 @@ namespace user
    //   DECL_GEN_SIGNAL(_001OnPaint)
    //   virtual void _001OnDraw(::draw2d::graphics * pdc);
 
-      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
       friend class ::user::frame_window;
       friend class BaseDockBar;

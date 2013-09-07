@@ -11,7 +11,7 @@ namespace bergedge
 
    class CLASS_DECL_ca2 frame : 
       public simple_frame_window,
-      public ::core::message_window_simple_callback
+      public message_window_simple_callback
    {
    public:
       
@@ -31,7 +31,7 @@ namespace bergedge
 
 
       frame(sp(base_application) papp);
-      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_001OnApp1);
       DECL_GEN_SIGNAL(_001OnMouseLeave);

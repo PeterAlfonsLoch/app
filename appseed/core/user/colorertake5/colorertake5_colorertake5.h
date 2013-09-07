@@ -6,7 +6,7 @@ namespace colorertake5
 
 
    class CLASS_DECL_ca2 colorertake5 :
-      virtual public ::departament
+      virtual public ::base_departament
    {
    public:
 

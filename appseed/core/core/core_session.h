@@ -6,7 +6,7 @@ namespace core
 
 
    class CLASS_DECL_ca2 session :
-      virtual public application
+      virtual public ::application
    {
    public:
 

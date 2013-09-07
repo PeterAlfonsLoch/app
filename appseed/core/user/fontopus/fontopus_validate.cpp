@@ -230,7 +230,7 @@ namespace fontopus
 
    /*void validate::ensure_main_document()
    {
-      sp(create_context) createcontext(allocer());
+      sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").element < ::user::interaction > ();
       createcontext->m_bOuterPopupAlertLike = true;
@@ -502,7 +502,7 @@ namespace fontopus
 
    int32_t login_thread::run()
    {
-      ::core::http::e_status estatus;
+      ::http::e_status estatus;
       string strResponse = Login(&estatus);
       e_result iAuth = result_fail;
       xml::document doc(get_app());
@@ -584,7 +584,7 @@ namespace fontopus
 
          delete m_puser;
 
-         if(estatus == ::core::http::status_connection_timed_out)
+         if(estatus == ::http::status_connection_timed_out)
          {
 
             iAuth = result_time_out;
@@ -604,7 +604,7 @@ namespace fontopus
       return TRUE;
    }
 
-   string login_thread::Login(::core::http::e_status * pestatus)
+   string login_thread::Login(::http::e_status * pestatus)
    {
       if(m_straRequestingServer.get_count() <= 0)
       {
@@ -639,7 +639,7 @@ namespace fontopus
    }
 
 
-   string login_thread::NetLogin(::core::http::e_status * pestatus)
+   string login_thread::NetLogin(::http::e_status * pestatus)
    {
 
       if(System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)
@@ -1181,7 +1181,7 @@ namespace fontopus
       if(m_pdoc != NULL)
          return;
 
-      sp(create_context) createcontext(allocer());
+      sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").element < ::user::interaction > ();
       createcontext->m_bOuterPopupAlertLike = true;
@@ -1650,7 +1650,7 @@ namespace fontopus
 
    validate::auth * validate::get_auth()
    {
-      sp(create_context) createcontext(allocer());
+      sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = true;
       sp(::form_document) pdoc = (m_ptemplatePane->open_document_file(createcontext));
       sp(userex::pane_tab_view) pview = pdoc->get_typed_view < userex::pane_tab_view > ();

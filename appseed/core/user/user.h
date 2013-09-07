@@ -129,7 +129,7 @@ namespace user
 /////////////////////////////////////////////////////////////////////////////
 // frame_window - base class for SDI and other frame windows
 
-// Frame ::core::window styles
+// Frame ::user::window styles
 #define FWS_ADDTOTITLE  0x00008000L // modify title based on content
 #define FWS_PREFIXTITLE 0x00004000L // show document name before cast name
 #define FWS_SNAPTOBARS  0x00002000L // snap size to size of contained bars
@@ -161,7 +161,7 @@ class CDockState;           // forward reference (see afxpriv.h)
 /////////////////////////////////////////////////////////////////////////////
 // CMiniFrameWnd
 
-// MiniFrame ::core::window styles
+// MiniFrame ::user::window styles
 #define MFS_SYNCACTIVE      0x00000100L // syncronize activation w/ parent
 #define MFS_4THICKFRAME     0x00000200L // thick frame all around (no tiles)
 #define MFS_THICKFRAME      0x00000400L // use instead of WS_THICKFRAME

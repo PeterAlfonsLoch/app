@@ -10,7 +10,7 @@ namespace user
    tree::tree(sp(base_application) papp) :
       element(papp),
       ::user::scroll_view(papp),
-      ::core::tree(papp),
+      ::data::tree(papp),
       m_dcextension(papp)
    {
       m_bHoverStart = false;
@@ -672,7 +672,7 @@ namespace user
 
    /*window_id tree::_001GetNotifyWnd()
    {
-   sp(::core::window) pwnd = get_guie();
+   sp(::user::window) pwnd = get_guie();
 
    window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
    if(wndidNotify == NULL)
@@ -743,7 +743,7 @@ namespace user
       return m_iItemHeight;
    }
 
-   void tree::install_message_handling(message::dispatch * pdispatch)
+   void tree::install_message_handling(::message::dispatch * pdispatch)
    {
       ::user::window_interface::install_message_handling(pdispatch);
       ::user::scroll_view::install_message_handling(pdispatch);
@@ -816,7 +816,7 @@ namespace user
 
    void tree::_001ExpandItem(sp(::data::tree_item)pitem, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
    {
-      ::data::writing writing(::data_container::m_spdata);
+      ::data::writing writing(::data::data_container::m_spdata);
       UNREFERENCED_PARAMETER(bLayout);
       if(bExpand)
       {

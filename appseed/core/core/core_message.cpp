@@ -17,16 +17,12 @@ struct myfx_CTLCOLOR
 };
 
 
-namespace core
-{
-
-
    namespace message
    {
 
-      ::core::signal * CreateSignal()
+      ::signal * CreateSignal()
       {
-         return new ::core::signal();
+         return new ::signal();
       }
 
 
@@ -303,7 +299,7 @@ namespace core
          for(int32_t i = 0; i < signalptra.get_size(); i++)
          {
             Signal & signal = *signalptra[i];
-            ::core::signal * psignal = signal.m_psignal;
+            ::signal * psignal = signal.m_psignal;
             pobj->m_psignal = psignal;
             psignal->emit(pobj);
             if(pobj->m_bRet)
@@ -419,9 +415,9 @@ namespace core
       }
 
 
-      sp(::core::window) dispatch::_GetWnd()
+      sp(::user::window) dispatch::_GetWnd()
       {
-         return dynamic_cast < ::core::window * > (this);
+         return dynamic_cast < ::user::window * > (this);
       }
 
       Handler::Handler()
@@ -535,7 +531,7 @@ namespace core
          }
       }
 
-      base::base(sp(base_application) papp, ::core::signal * psignal) :
+      base::base(sp(base_application) papp, ::signal * psignal) :
          element(papp),
          signal_details(psignal)
       {
@@ -722,7 +718,7 @@ namespace core
       {
          throw not_implemented(get_app());
          return NULL;
-//            return ::core::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
+//            return ::user::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
       }
 
       UINT mouse_activate::GetHitTest()
@@ -735,11 +731,11 @@ namespace core
          return HIWORD(m_lparam);
       }
 
-      sp(::core::window) context_menu::GetWindow()
+      sp(::user::window) context_menu::GetWindow()
       {
          throw not_implemented(get_app());
          return NULL;
-//            return ::core::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
+//            return ::user::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
       }
 
       point context_menu::GetPoint()
@@ -1053,7 +1049,7 @@ namespace core
                   set_cursor setcursor(get_app());
                   setcursor.m_psignal = psignal;
                   setcursor.set(message, wparam, lparam, lresult);
-                  //setcursor.m_pWnd = ::core::window::from_os_data(reinterpret_cast<oswindow>(wparam));
+                  //setcursor.m_pWnd = ::user::window::from_os_data(reinterpret_cast<oswindow>(wparam));
                   setcursor.m_nHitTest = LOWORD(lparam);
                   setcursor.m_message = HIWORD(lparam);
                   psignal->emit(&setcursor);
@@ -1173,11 +1169,11 @@ namespace core
                   myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
                   ::draw2d::graphics_sp dcTemp;
    //               dcTemp.set_handle1(pCtl->hDC);
-                  ::core::window wndTemp;
+                  ::user::window wndTemp;
    //               wndTemp.set_handle(pCtl->oswindow);
                   UINT nCtlType = pCtl->nCtlType;
-                  // if not coming from a permanent ::core::window, use stack temporary
-   //               sp(::core::window) pWnd = ::core::window::FromHandlePermanent(wndTemp.get_handle());
+                  // if not coming from a permanent ::user::window, use stack temporary
+   //               sp(::user::window) pWnd = ::user::window::FromHandlePermanent(wndTemp.get_handle());
    //               if (pWnd == NULL)
                {
 

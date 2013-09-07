@@ -1,18 +1,18 @@
 #pragma once
 
 
-namespace core
+namespace file
 {
 
 
-   class CLASS_DECL_ca2 file_set :
+   class CLASS_DECL_ca2 set :
       virtual public object
    {
    public:
       
       
-      file_set();
-      virtual ~file_set();
+      set();
+      virtual ~set();
 
 
    // composite
@@ -34,9 +34,12 @@ namespace core
    };
 
 
-   typedef smart_pointer < file_set > file_set_sp;
+   typedef smart_pointer < set > set_sp;
 
 
-} // namespace core
+} // namespace file
+
+
+
 
 

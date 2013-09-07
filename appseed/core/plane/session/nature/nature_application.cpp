@@ -38,7 +38,7 @@ namespace nature
          this,
          "bergedge/frame",
          System.type_info < document > (),
-         System.type_info < frame > (),       // main SDI frame ::core::window
+         System.type_info < frame > (),       // main SDI frame ::user::window
          System.type_info < pane_view > ());
       user()->add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;

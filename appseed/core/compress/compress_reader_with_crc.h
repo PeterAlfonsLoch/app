@@ -24,7 +24,7 @@ namespace libcompress
          _wasFinished = false;
          _crc = CRC_INIT_VAL;
       }
-      void ReleaseStream() { ::ca::release(_stream.m_p); }
+      void ReleaseStream() { ::release(_stream.m_p); }
       uint32_t GetCRC() const { return CRC_GET_DIGEST(_crc); }
       uint64_t GetSize() const { return _size; }
       bool WasFinished() const { return _wasFinished; }

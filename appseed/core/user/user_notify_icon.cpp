@@ -19,7 +19,7 @@ namespace user
       Destroy();
    }
 
-   void notify_icon::install_message_handling(message::dispatch * pinterface)
+   void notify_icon::install_message_handling(::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(MessageNotifyIcon, pinterface, this, &notify_icon::_001OnNotifyIconMessage);
    }

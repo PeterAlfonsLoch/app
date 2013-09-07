@@ -169,7 +169,7 @@ namespace platform
       }
    }
 
-   void pane_view::install_message_handling(message::dispatch * pinterface)
+   void pane_view::install_message_handling(::message::dispatch * pinterface)
    {
       ::userex::pane_tab_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);

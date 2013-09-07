@@ -30,7 +30,7 @@ namespace dynamic_source
    public:
 
 
-      http::memory_buffer                      m_memfileError;
+      file::memory_buffer                      m_memfileError;
       string                                 m_strName;
       stringa                                m_straSourcePath;
       stringa                                m_straCppPath;
@@ -59,7 +59,7 @@ namespace dynamic_source
 
 
 
-      application * get_app() const;
+     // application * get_app() const;
 
    };
 

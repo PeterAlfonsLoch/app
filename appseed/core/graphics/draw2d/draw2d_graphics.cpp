@@ -113,7 +113,7 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-   int32_t graphics::ExcludeUpdateRgn(sp(::core::window) pWnd)
+   int32_t graphics::ExcludeUpdateRgn(sp(::user::window) pWnd)
    {
       UNREFERENCED_PARAMETER(pWnd);
       throw interface_only_exception(get_app());
@@ -2458,7 +2458,7 @@ namespace draw2d
       m_pui->ReleaseDC(m_p);
    }*/
 
-   window_graphics::window_graphics(sp(::core::window) pwindow)
+   window_graphics::window_graphics(sp(::user::window) pwindow)
    {
       m_pwindow = pwindow;
       create(pwindow->get_app()->allocer());
@@ -2470,7 +2470,7 @@ namespace draw2d
       m_pwindow->ReleaseDC(m_p);
    }
 
-   paint_graphics::paint_graphics(sp(::core::window) pwindow)
+   paint_graphics::paint_graphics(sp(::user::window) pwindow)
    {
       m_pwindow = pwindow;
       create(pwindow->get_app()->allocer());
@@ -2503,7 +2503,7 @@ namespace draw2d
    }
 
 
-   bool graphics::create_client_dc(::core::window * pwnd)
+   bool graphics::create_client_dc(::user::window * pwnd)
    { 
       
       UNREFERENCED_PARAMETER(pwnd);
@@ -2512,7 +2512,7 @@ namespace draw2d
    }
 
 
-   bool graphics::create_window_dc(::core::window * pwnd)
+   bool graphics::create_window_dc(::user::window * pwnd)
    {
 
       UNREFERENCED_PARAMETER(pwnd);
@@ -2521,7 +2521,7 @@ namespace draw2d
    }
 
 
-   bool graphics::release_dc(::core::window * pwnd)
+   bool graphics::release_dc(::user::window * pwnd)
    { 
 
       UNREFERENCED_PARAMETER(pwnd);

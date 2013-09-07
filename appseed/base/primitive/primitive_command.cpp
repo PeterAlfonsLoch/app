@@ -16,7 +16,7 @@
       return true;
    }
 
-   void command::on_request(sp(create_context) pcreatecontext)
+   void command::on_request(sp(::create_context) pcreatecontext)
    {
       UNREFERENCED_PARAMETER(pcreatecontext);
    }

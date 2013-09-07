@@ -533,14 +533,13 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          class font;
          class pen;
          class brush;
-         class memory_graphics;         // ::draw2d::graphics_sp for client of ::core::window
-         class window_graphics;         // ::draw2d::graphics_sp for entire ::core::window
+         class memory_graphics;         // ::draw2d::graphics_sp for client of ::user::window
+         class window_graphics;         // ::draw2d::graphics_sp for entire ::user::window
          class paint_graphics;          // embeddable BeginPaint struct helper
       }
 
       namespace core
       {
-         class window;            // a window
          class job;
       }
 
@@ -548,6 +547,7 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 
    namespace user
    {
+      class window;            // a window
       class menu;                 // a menu
       class interaction;
       class edit_plain_text;            // Edit control
@@ -651,7 +651,7 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 
 
-CLASS_DECL_ca2 ::core::thread* __begin_thread(sp(::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+CLASS_DECL_ca2 thread* __begin_thread(sp(::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_ca2 thread* __begin_thread(sp(type) pThreadClass,
    int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
    uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
@@ -831,7 +831,7 @@ namespace user
 namespace windows
 {
    template < class APP >
-   inline ::core::application & cast(APP * papp)
+   inline ::application & cast(APP * papp)
    {
       return *((papp));
    }
@@ -1006,7 +1006,7 @@ struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
       class preview_dc;               // Virtual DC for print preview
 
    //command_target
-      //::core::window
+      //::user::window
          //::user::view
             class CPreviewView;     // Print preview ::user::view
       //frame_window
@@ -1027,7 +1027,7 @@ class CDockContext;                     // for dragging control bars
 // F000 -> FFFF : standard windows commands and other things etc
    // E000 -> E7FF standard commands
    // E800 -> E8FF control bars (first 32 are special)
-   // E900 -> EEFF standard ::core::window controls/components
+   // E900 -> EEFF standard ::user::window controls/components
    // EF00 -> EFFF SC_ menu help
    // F000 -> FFFF standard strings
 #define ID_COMMAND_FROM_SC(sc)  (((sc - 0xF000) >> 4) + __IDS_SCFIRST)
@@ -1063,10 +1063,10 @@ class CDockContext;                     // for dragging control bars
 #define WM_HELPHITTEST      0x0366  // lResult = dwContext,
                            // lParam = MAKELONG(x,y)
 #define WM_EXITHELPMODE     0x0367  // (params unused)
-#define WM_RECALCPARENT     0x0368  // force layout on frame ::core::window
+#define WM_RECALCPARENT     0x0368  // force layout on frame ::user::window
                            //  (only for inplace frame windows)
 #define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
-                           // wParam = ID of child ::core::window
+                           // wParam = ID of child ::user::window
                            // lParam = lpRectNew (new position/size)
 #define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
 #define WM_QUERYCENTERWND   0x036B  // lParam = oswindow to use as centering parent
@@ -1099,7 +1099,7 @@ class CDockContext;                     // for dragging control bars
 #define WM_POPMESSAGESTRING 0x0375
 
 // WM_HELPPROMPTADDR is used internally to get the address of
-//   m_dwPromptContext from the associated frame ::core::window. This is used
+//   m_dwPromptContext from the associated frame ::user::window. This is used
 //   during message boxes to setup for F1 help while that msg box is
 //   displayed. lResult is the address of m_dwPromptContext.
 #define WM_HELPPROMPTADDR   0x0376
@@ -1121,7 +1121,7 @@ class CDockContext;                     // for dragging control bars
 #define WM_RESERVED_037D    0x037D
 #define WM_RESERVED_037E    0x037E
 
-// WM_FORWARDMSG - used by core to forward a message to another ::core::window for processing
+// WM_FORWARDMSG - used by core to forward a message to another ::user::window for processing
 //   WPARAM - uint32_t dwUserData - defined by ::fontopus::user
 //   LPARAM - LPMESSAGE pMsg - a pointer to the MESSAGE structure
 //   return value - 0 if the message was not processed, nonzero if it was
@@ -1130,7 +1130,7 @@ class CDockContext;                     // for dragging control bars
 // like ON_MESSAGE but no return value
 #define ON_MESSAGE_VOID(message, memberFxn) \
    { message, 0, 0, 0, ::core::Sig_vv, \
-      (__PMSG)(__PMSGW)(void (__MSG_CALL ::core::window::*)())&memberFxn },
+      (__PMSG)(__PMSGW)(void (__MSG_CALL ::user::window::*)())&memberFxn },
 
 #if defined(LINUX) || defined(MACOS) || defined(METROWIN) || defined(ANDROID)
 

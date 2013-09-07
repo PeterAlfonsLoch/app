@@ -104,7 +104,7 @@ namespace draw2d_cairo
    }
 
 
-/*   sp(::core::window) graphics::GetWindow() const
+/*   sp(::user::window) graphics::GetWindow() const
    {
       ASSERT(get_handle1() != NULL); return ::win::window::from_handle(::WindowFromDC(get_handle1()));
    }
@@ -210,7 +210,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    }
 
-   int32_t graphics::ExcludeUpdateRgn(::core::window * pWnd)
+   int32_t graphics::ExcludeUpdateRgn(::user::window * pWnd)
    {
   //    ASSERT(get_handle1() != NULL);
 //      return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pWnd)->get_handle());

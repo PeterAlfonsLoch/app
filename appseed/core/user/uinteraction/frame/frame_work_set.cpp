@@ -349,7 +349,7 @@ namespace frame
 
       pwndRegion->SetTimer(16319, 100, NULL);
 
-      _001InstallEventHandling(dynamic_cast < message::dispatch * >(pwndEvent->m_pimpl.m_p));
+      _001InstallEventHandling(dynamic_cast < ::message::dispatch * >(pwndEvent->m_pimpl.m_p));
 
       return true;
    }
@@ -1093,7 +1093,7 @@ namespace frame
    //      m_pappearance->_001OnSize(nType, cx, cy);
       }
    }
-   void WorkSet::_001InstallEventHandling(message::dispatch * pdispatch)
+   void WorkSet::_001InstallEventHandling(::message::dispatch * pdispatch)
    {
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN    , pdispatch, this, &WorkSet::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP      , pdispatch, this, &WorkSet::_001OnLButtonUp);

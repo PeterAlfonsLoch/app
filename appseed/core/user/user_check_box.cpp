@@ -141,7 +141,7 @@ namespace user
 
 
 
-   void check_box::install_message_handling(message::dispatch * pinterface)
+   void check_box::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &check_box::_001OnLButtonDown);

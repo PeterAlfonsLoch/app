@@ -119,7 +119,7 @@ namespace user
 
 
 
-      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
       virtual void _on_start_user_message_handler();
 
@@ -137,8 +137,8 @@ namespace user
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
       bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, UINT, uint32_t));
       bool KillTimer(int32_t nIDEvent);
-      bool SetWindowPos(const sp(::core::window) pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
-      sp(::core::window) SetFocus();*/
+      bool SetWindowPos(const sp(::user::window) pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
+      sp(::user::window) SetFocus();*/
 
 
       bool RedrawOptimize(LPRECT lprectOut, LPCRECT lpcrect1, LPCRECT lpcrect2);
@@ -149,7 +149,7 @@ namespace user
       bool _001HasTranslucency();
 
       /*
-      virtual void _001SetWindowPos(const sp(::core::window) pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
+      virtual void _001SetWindowPos(const sp(::user::window) pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
       virtual void _001SetFocus();
       virtual void _001ShowWindow(int32_t iShow);
       virtual void _001ScreenToClient(LPPOINT lppoint);
@@ -175,7 +175,7 @@ namespace user
 #ifdef METROWIN
       virtual sp(interaction) get_wnd() const;
 #else
-      virtual sp(::core::window) get_wnd() const;
+      virtual sp(::user::window) get_wnd() const;
 #endif
 
       enum EOptimize

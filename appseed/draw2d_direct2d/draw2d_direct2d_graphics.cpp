@@ -126,7 +126,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::core::window * graphics::GetWindow() const
+   ::user::window * graphics::GetWindow() const
    { 
 #ifdef WINDOWSEX
       throw todo(get_app());
@@ -305,7 +305,7 @@ namespace draw2d_direct2d
 
    }
 
-   int graphics::ExcludeUpdateRgn(::core::window * pWnd)
+   int graphics::ExcludeUpdateRgn(::user::window * pWnd)
    { 
       throw todo(get_app());
 

@@ -54,7 +54,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // single_document_template commands
 
-   void single_document_template::request_create(sp(create_context) pcreatecontext)
+   void single_document_template::request_create(sp(::create_context) pcreatecontext)
       // if lpszPathName == NULL => create new file of this type
    {
       pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(element)) NULL;
@@ -170,13 +170,13 @@ namespace user
          pdocument->set_path_name(pcreatecontext->m_spCommandLine->m_varFile);
       }
 
-      ::core::thread* pThread = System.GetThread();
+      thread* pThread = System.GetThread();
       ASSERT(pThread);
       if(bCreated)
       {
          if(pThread->GetMainWnd() == NULL)
          {
-            // set as main frame (InitialUpdateFrame will show the ::core::window)
+            // set as main frame (InitialUpdateFrame will show the ::user::window)
             pThread->SetMainWnd(pFrame);
          }
          if(Application.m_puiMain == NULL)

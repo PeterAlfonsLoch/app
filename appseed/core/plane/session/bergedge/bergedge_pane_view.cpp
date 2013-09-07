@@ -202,7 +202,7 @@ namespace bergedge
             application_bias * pbiasCreate = new application_bias;
             pbiasCreate->m_puiParent = pcreatordata->m_pholder;
 
-            sp(create_context) createcontext(allocer());
+            sp(::create_context) createcontext(allocer());
             createcontext->m_spApplicationBias = pbiasCreate;
             createcontext->m_spCommandLine->_001ParseCommandFork(strId);
 
@@ -404,7 +404,7 @@ namespace bergedge
       set_cur_tab_by_id(m_pviewdataOld->m_id);
    }
 
-   void pane_view::install_message_handling(message::dispatch * pinterface)
+   void pane_view::install_message_handling(::message::dispatch * pinterface)
    {
       ::userex::pane_tab_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);

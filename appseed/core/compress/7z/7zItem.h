@@ -17,7 +17,7 @@ namespace n7z
       virtual public element
    {
       ::libcompress::method_id MethodID;
-      ::core::byte_buffer Props;
+      ::file::byte_buffer Props;
       CNum NumInStreams;
       CNum NumOutStreams;
       bool IsSimpleCoder() const { return (NumInStreams == 1) && (NumOutStreams == 1); }

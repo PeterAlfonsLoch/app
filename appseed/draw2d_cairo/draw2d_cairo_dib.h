@@ -164,9 +164,9 @@ namespace draw2d_cairo
       virtual bool from(::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI);
 
 
-      bool update_window(::core::window * pwnd, signal_details * pobj);
+      bool update_window(::user::window * pwnd, signal_details * pobj);
 #if defined(WINDOWS)
-      bool print_window(::core::window * pwnd, signal_details * pobj);
+      bool print_window(::user::window * pwnd, signal_details * pobj);
 #endif
 
    };

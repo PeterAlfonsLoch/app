@@ -19,7 +19,7 @@ namespace user
    }
 
 
-   void combo_list::install_message_handling(message::dispatch * pdispatch)
+   void combo_list::install_message_handling(::message::dispatch * pdispatch)
    {
 
       ::user::control::install_message_handling(pdispatch);

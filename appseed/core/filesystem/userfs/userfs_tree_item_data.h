@@ -6,7 +6,7 @@ namespace userfs
 
 
    class CLASS_DECL_ca2 tree_item_data :
-      virtual public ::core::tree_item_data,
+      virtual public ::data::tree_item_data,
       virtual public ::fs::item
 
    {
@@ -23,8 +23,8 @@ namespace userfs
 
       tree_item_data();
 
-      string get_text(sp(::core::tree) ptree);
-      index get_image(sp(::core::tree) ptree);
+      string get_text(sp(::data::tree) ptree);
+      index get_image(sp(::data::tree) ptree);
 
       static index CompareArrangeByName(sp(::data::tree_item) & pitema, sp(::data::tree_item) & pitemb);
       int32_t get_index() const;

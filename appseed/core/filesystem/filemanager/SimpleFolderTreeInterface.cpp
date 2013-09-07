@@ -193,19 +193,19 @@ namespace filemanager
 
       //spfile->open(szPath, ::file::mode_read | ::file::type_binary);
 
-      /*array < ::::file::memory_buffer, ::::file::memory_buffer & > filea;
+      /*array < ::file::memory_buffer, ::file::memory_buffer & > filea;
       _vmszipFile zipfile;
 
       zipfile.m_pfile = &file;
 
       unzFile pf = _vmszipApi::unzipOpen(&zipfile);
 
-      array < ::::file::memory_buffer, ::::file::memory_buffer & > filea;
+      array < ::file::memory_buffer, ::file::memory_buffer & > filea;
       int32_t iStart = 0;
       int32_t iFind;
       while((iFind  = wstrExtra.find(L".zip:", iStart)) >= 0)
       {
-      filea.add(::::file::memory_buffer());
+      filea.add(::file::memory_buffer());
       pf->dump(filea.last_element(), wstrExtra.Mid(iStart + 5, iFind - iStart + 5));
       iStart = iFind + 1;
       }*/
@@ -802,7 +802,7 @@ namespace filemanager
       _017Browse(GetFileManagerItem().m_strPath);
    }
 
-   void SimpleFolderTreeInterface::install_message_handling(message::dispatch *pinterface)
+   void SimpleFolderTreeInterface::install_message_handling(::message::dispatch *pinterface)
    {
       ::userfs::tree::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageMainPost, pinterface,  this,  &SimpleFolderTreeInterface::_001OnMainPostMessage);

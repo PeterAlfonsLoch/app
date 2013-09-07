@@ -11,7 +11,7 @@ simple_edit_plain_text::simple_edit_plain_text(sp(base_application) papp) :
 }
 
 
-void simple_edit_plain_text::install_message_handling(message::dispatch * pinterface)
+void simple_edit_plain_text::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::interaction::install_message_handling(pinterface);
    ::user::edit_plain_text::install_message_handling(pinterface);

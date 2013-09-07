@@ -9,7 +9,7 @@ namespace fs
 
 
    class CLASS_DECL_ca2 data :
-      virtual public ::data
+      virtual public ::data::data
    {
    public:
 
@@ -35,7 +35,7 @@ namespace fs
       virtual bool file_move(const char * pszDst, const char * pszSrc);
 
       virtual ::file::binary_buffer_sp get_file(var varFile, UINT nOpenFlags);
-      virtual ::core::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
+      virtual ::file::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
 
       virtual bool fast_has_subdir(const char * pszPath);

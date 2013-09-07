@@ -24,7 +24,7 @@ public:
 
      simple_toolbar           m_toolbar;
 
-   void install_message_handling(message::dispatch * pinterface);
+   void install_message_handling(::message::dispatch * pinterface);
 
    void OnChangeEditSearch();
 

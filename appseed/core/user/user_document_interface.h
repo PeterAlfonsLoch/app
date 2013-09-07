@@ -10,7 +10,7 @@ namespace user
 
    class CLASS_DECL_ca2 document_interface :
       virtual public command_target,
-      virtual public ::core::data_container_base,
+      virtual public ::data::data_container_base,
       virtual public ::file::serializable
    {
    public:

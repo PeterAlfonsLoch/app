@@ -21,7 +21,7 @@ namespace crypto
 
          byte               _salt[8];
          bool               _thereIsSalt;
-         ::core::byte_buffer   buffer;
+         ::file::byte_buffer   buffer;
          byte               aesKey[kRarAesKeySize];
          byte               _aesInit[AES_BLOCK_SIZE];
          bool               _needCalculate;

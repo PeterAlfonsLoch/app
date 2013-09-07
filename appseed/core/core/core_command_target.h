@@ -7,7 +7,7 @@
 
 class CLASS_DECL_ca2 command_target_interface :
    virtual public signalizable,
-   virtual public message::dispatch
+   virtual public ::message::dispatch
 {
 public:
 
@@ -87,10 +87,10 @@ public:
       }
    };
 
-   signalid_array m_signalidaCommand;
+   ::signalid_array m_signalidaCommand;
 
-   dispatch  m_dispatchUpdateCmdUi;
-   dispatch  m_dispatchCommand;
+   ::dispatch  m_dispatchUpdateCmdUi;
+   ::dispatch  m_dispatchCommand;
 
    command_target_interface();
    command_target_interface(sp(base_application) papp);
@@ -156,7 +156,7 @@ public:
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
    //virtual bool _001HasCommandHandler(const char * pszId);
 
-   void get_command_signal_array(BaseCmdMsg::e_type etype, dispatch::SignalPtrArray & signalptra, id id);
+   void get_command_signal_array(BaseCmdMsg::e_type etype, ::dispatch::signal_item_ptr_array & signalptra, id id);
 };
 
 
@@ -223,8 +223,8 @@ public:
    ::user::menu *      m_pSubMenu;      // sub containing menu item
                      // if a popup sub menu - ID is for first in popup
 
-   // if from some other ::core::window
-   sp(::user::interaction)   m_pOther;         // NULL if a menu or not a ::core::window
+   // if from some other ::user::window
+   sp(::user::interaction)   m_pOther;         // NULL if a menu or not a ::user::window
 
    bool                    m_bEnableChanged;
    bool                    m_bContinueRouting;
@@ -341,7 +341,7 @@ enum DSCREASON
 };
 
 /////////////////////////////////////////////////////////////////////////////
-// ::core::window implementation
+// ::user::window implementation
 namespace user
 {
    class create_context;      // context for creating user interface things
@@ -353,30 +353,30 @@ namespace core
 struct CPrintInfo;          // print preview customization info
 
 /////////////////////////////////////////////////////////////////////////////
-// ::core::window - a Microsoft Windows application ::core::window
+// ::user::window - a Microsoft Windows application ::user::window
 
 
-// ::core::window::m_nFlags (generic to ::core::window)
-#define WF_TOOLTIPS         0x0001  // ::core::window is enabled for tooltips
-#define WF_TEMPHIDE         0x0002  // ::core::window is temporarily hidden
-#define WF_STAYDISABLED     0x0004  // ::core::window should stay disabled
+// ::user::window::m_nFlags (generic to ::user::window)
+#define WF_TOOLTIPS         0x0001  // ::user::window is enabled for tooltips
+#define WF_TEMPHIDE         0x0002  // ::user::window is temporarily hidden
+#define WF_STAYDISABLED     0x0004  // ::user::window should stay disabled
 #define WF_OLECTLCONTAINER  0x0100  // some descendant is an OLE control
-#define WF_TRACKINGTOOLTIPS 0x0400  // ::core::window is enabled for tracking tooltips
+#define WF_TRACKINGTOOLTIPS 0x0400  // ::user::window is enabled for tracking tooltips
 
-// ::core::window::m_nFlags (specific to frame_window)
+// ::user::window::m_nFlags (specific to frame_window)
 #define WF_STAYACTIVE       0x0020  // look active even though not active
 #define WF_NOPOPMSG         0x0040  // ignore WM_POPMESSAGESTRING calls
-#define WF_MODALDISABLE     0x0080  // ::core::window is disabled
+#define WF_MODALDISABLE     0x0080  // ::user::window is disabled
 #define WF_KEEPMINIACTIVE   0x0200  // stay activate even though you are deactivated
 
 
 #define WF_NOWIN32ISDIALOGMSG   0x0800
 #define WF_ISWINFORMSVIEWWND    0x1000
 
-// flags for ::core::window::RunModalLoop
+// flags for ::user::window::RunModalLoop
 #define MLF_NOIDLEMSG       0x0001  // don't send WM_ENTERIDLE messages
 #define MLF_NOKICKIDLE      0x0002  // don't send WM_KICKIDLE messages
-#define MLF_SHOWONIDLE      0x0004  // show ::core::window if not visible at idle time
+#define MLF_SHOWONIDLE      0x0004  // show ::user::window if not visible at idle time
 
 // extra core API defined TTF_ flags for TOOLINFO::uFlags
 #define TTF_NOTBUTTON       0x80000000L // no status help on buttondown

@@ -6,7 +6,8 @@ namespace core
 
 
 
-   system::system()
+   system::system() :
+      base_system(this)
    {
 
       idEmpty = "";
@@ -34,7 +35,12 @@ namespace core
 
 
 
+   bool system::is_system()
+   {
+      
+      return true;
 
+   }
 
 
 

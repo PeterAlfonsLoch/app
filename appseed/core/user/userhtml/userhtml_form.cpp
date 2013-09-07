@@ -101,7 +101,7 @@ void html_form::_001OnImageLoaded(signal_details * pobj)
 }
 
 
-void html_form::install_message_handling(message::dispatch * pinterface)
+void html_form::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::form::install_message_handling(pinterface);
 

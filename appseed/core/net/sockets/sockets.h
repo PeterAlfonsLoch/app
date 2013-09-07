@@ -8,8 +8,8 @@ typedef int32_t socklen_t;
 #endif
 
 
-#include "http_file.h"
-#include "http_memory_file.h"
+//#include "http_file.h"
+//#include "http_memory_file.h"
 
 
 #include "webserver/webserver_http_form.h"
@@ -30,8 +30,8 @@ typedef int32_t socklen_t;
 #endif
 
 
-#include "sockets_http_file.h"
-#include "sockets_http_batch_file.h"
+#include "sockets_http_buffer.h"
+#include "sockets_http_batch_buffer.h"
 
 
 

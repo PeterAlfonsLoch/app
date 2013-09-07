@@ -82,7 +82,7 @@ namespace file
 
    }
 
-   ::file::buffer_sp composite::Duplicate() const
+   ::file::buffer_sp  composite::Duplicate() const
    {
 
       return m_spfile->Duplicate();

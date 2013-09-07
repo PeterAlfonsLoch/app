@@ -1345,13 +1345,13 @@ namespace user
       return -1;
    }
 
-   sp(::core::window) tab::GetNotifyWnd()
+   sp(::user::window) tab::GetNotifyWnd()
    {
 #ifdef METROWIN
       return NULL;
 
 #else
-      sp(::core::window) pwnd;
+      sp(::user::window) pwnd;
    //   if((pwnd = m_pguie->get_owner()) != NULL)
      //    return pwnd;
       if((pwnd = m_pguie->get_parent()->get_wnd()) != NULL)
@@ -1417,7 +1417,7 @@ namespace user
 
    }
 
-   void tab::install_message_handling(message::dispatch *pinterface)
+   void tab::install_message_handling(::message::dispatch *pinterface)
    {
       ::user::control::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN , pinterface, this, &tab::_001OnLButtonDown);
@@ -1730,7 +1730,7 @@ namespace user
       }
    }
 
-   void tab::_001ConnectParent(message::dispatch * pinterface)
+   void tab::_001ConnectParent(::message::dispatch * pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
    }
@@ -1781,7 +1781,7 @@ namespace user
       }
    }
 
-   void tab::set_cur_tab_by_id(id id, sp(create_context) pcreatecontext)
+   void tab::set_cur_tab_by_id(id id, sp(::create_context) pcreatecontext)
    {
       try
       {
@@ -1813,7 +1813,7 @@ namespace user
       {
       }
 
-      m_spcreatecontext = (sp(create_context)) NULL;
+      m_spcreatecontext = (sp(::create_context)) NULL;
 
    }
 

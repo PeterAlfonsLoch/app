@@ -1,17 +1,17 @@
 #pragma once
 
 
-namespace core
+namespace file
 {
 
 
-   class CLASS_DECL_ca2 file_application :
+   class CLASS_DECL_ca2 application :
       public object
    {
    public:
 
 
-      file_application();
+      application();
 
 
       virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists = false, e_extract eextract = extract_first);
@@ -53,7 +53,7 @@ namespace core
 
 
       virtual ::file::binary_buffer_sp get_file(var varFile, UINT nOpenFlags);
-      virtual ::core::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
+      virtual ::file::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
       // get a file and if there are exceptions, should show end user friendly messages
       virtual ::file::binary_buffer_sp friendly_get_file(var varFile, UINT nOpenFlags);

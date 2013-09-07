@@ -17,7 +17,7 @@ namespace zip
    }
 
 
-   ::file::buffer_sp InFile::Duplicate() const
+   ::file::buffer_sp  InFile::Duplicate() const
    {
    //   ASSERT_VALID(this);
       ASSERT(get_zip_file() != NULL);
@@ -82,7 +82,7 @@ namespace zip
             return FALSE;
          }
          m_filea.add(new File(get_app()));
-         if(!m_filea.last_element()->zip_open((::file::buffer_sp) m_izfilea.last_element()))
+         if(!m_filea.last_element()->zip_open((::file::buffer_sp ) m_izfilea.last_element()))
          {
             m_filea.remove_all();
             m_izfilea.remove_all();
@@ -99,7 +99,7 @@ namespace zip
       return TRUE;
    }
 
-   bool InFile::unzip_open(::file::buffer_sp pfile)
+   bool InFile::unzip_open(::file::buffer_sp  pfile)
    {
 
       m_filea.remove_all();
@@ -158,7 +158,7 @@ namespace zip
             return FALSE;
          }
          m_filea.add(new File(get_app()));
-         if(!m_filea.last_element()->unzip_open((::file::buffer_sp)m_izfilea.last_element()))
+         if(!m_filea.last_element()->unzip_open((::file::buffer_sp )m_izfilea.last_element()))
          {
             m_filea.remove_all();
             m_izfilea.remove_all();
@@ -230,7 +230,7 @@ namespace zip
       return TRUE;
    }
 
-   bool InFile::dump(::file::buffer_sp pfile)
+   bool InFile::dump(::file::buffer_sp  pfile)
    {
       if(m_strFileName.is_empty())
          return false;
@@ -620,7 +620,7 @@ namespace zip
       if(file.is_null())
          throw "failed to open file for compressing";
 
-      ::core::file_status status;
+      ::file::file_status status;
 
       file->GetStatus(status);
 

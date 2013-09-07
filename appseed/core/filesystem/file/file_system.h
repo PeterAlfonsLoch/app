@@ -1,24 +1,11 @@
 #pragma once
 
 
-#if defined(WINDOWS)
-
-CLASS_DECL_ca2 bool IsWow64();
-
-#endif
-
-
-
-typedef struct MD5state_st MD5_CTX;
-
-
-
-
-namespace core
+namespace file
 {
 
 
-   class CLASS_DECL_ca2 file_system :
+   class CLASS_DECL_ca2 system :
       public object
    {
    public:
@@ -40,7 +27,7 @@ namespace core
 
       };
 
-      file_system();
+      system();
 
       path & path();
 
@@ -163,7 +150,7 @@ namespace core
       string md5(const char * psz);
       string nessie(const char * psz);
 
-      string nessie(::file::buffer_sp pfile);
+      string nessie(::file::buffer_sp  pfile);
 
 //      path & path36();
 
@@ -174,28 +161,28 @@ namespace core
       void is_valid_fileset(const char * pszFile, sp(base_application) papp);
 
       // 'n' (natural) terminated ascii number, example: 245765487n
-      static void write_n_number(::file::buffer_sp pfile, ::crypto::md5::context * pctx, int64_t iNumber);
-      static void read_n_number(::file::buffer_sp pfile, ::crypto::md5::context * pctx, int64_t & iNumber);
+      static void write_n_number(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, int64_t iNumber);
+      static void read_n_number(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, int64_t & iNumber);
 
-      static void write_gen_string(::file::buffer_sp pfile, ::crypto::md5::context * pctx, string & str);
-      static void read_gen_string(::file::buffer_sp pfile, ::crypto::md5::context * pctx, string & str);
+      static void write_gen_string(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, string & str);
+      static void read_gen_string(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, string & str);
 
 
 
 
    protected:
 
-      class file_system::path m_path;
+      class system::path m_path;
 
    };
 
 
-   typedef smart_pointer < file_system > file_system_sp;
+   typedef smart_pointer < system > system_sp;
 
 
 
 
-} // namespace core
+} // namespace file
 
 
 

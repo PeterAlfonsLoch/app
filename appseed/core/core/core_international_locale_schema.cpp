@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace core
+namespace str
 {
 
 
@@ -14,8 +14,8 @@ namespace core
       {
 
 
-         m_idaLocale.set_size(0, 256);
-         m_idaSchema.set_size(0, 256);
+         m_idaLocale.allocate(0, 256);
+         m_idaSchema.allocate(0, 256);
 
          m_bSchemaOnly           = false;
          m_bAddAlternateStyle    = true;
@@ -710,6 +710,6 @@ restart:
    }  // namespace international
 
 
-} // namespace core
+} // namespace str
 
 

@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   void elastic_slider::install_message_handling(message::dispatch * pdispatch)
+   void elastic_slider::install_message_handling(::message::dispatch * pdispatch)
    {
       ::user::interaction::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &elastic_slider::_001OnCreate);

@@ -12,7 +12,7 @@ namespace html
 
 
    class CLASS_DECL_ca2 html :
-      public ::departament
+      public ::base_departament
    {
    public:
 
@@ -26,7 +26,7 @@ namespace html
       LiteHTMLEntityResolver     m_entityresolver;
 
 
-      html(application * papp);
+      html(base_application * papp);
       virtual ~html();
 
       virtual void construct(sp(base_application) papp);

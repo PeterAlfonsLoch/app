@@ -51,7 +51,7 @@ KeywordList::KeywordList(){
   matchCase = false;
   minKeywordLength = 0;
   kwList = NULL;
-  firstChar = new ::core::ch_class();
+  firstChar = new ::str::ch_class();
 };
 KeywordList::~KeywordList(){
 //  for(int32_t idx = 0; idx < num; idx++) {

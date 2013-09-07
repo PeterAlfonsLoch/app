@@ -599,7 +599,7 @@ namespace user
 
       if (cmdInfo.m_nShellCommand == command_line::FileOpen)
       {
-      // show the application ::core::window
+      // show the application ::user::window
       sp(::user::interaction) pMainWnd = System.GetMainWnd();
       int32_t nCmdShow = System.m_nCmdShow;
       if (nCmdShow == -1 || nCmdShow == SW_SHOWNORMAL)
@@ -617,7 +617,7 @@ namespace user
       /*System.open_document_file(cmdInfo.m_varFile);
 
 
-      // next time, show the ::core::window as default
+      // next time, show the ::user::window as default
       System.m_nCmdShow = -1;
       goto RestoreAndReturn;
       }
@@ -743,7 +743,7 @@ namespace user
    {
       // prompt the ::fontopus::user (with all document templates)
 
-      sp(create_context) createcontext(allocer());
+      sp(::create_context) createcontext(allocer());
 
       if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))
          return; // open cancelled
@@ -786,7 +786,7 @@ namespace user
 
 
 
-   void document_manager::request(sp(create_context) pcreatecontext)
+   void document_manager::request(sp(::create_context) pcreatecontext)
    {
 
       if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())

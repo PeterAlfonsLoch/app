@@ -22,7 +22,7 @@ namespace filemanager
       SimpleFolderListView (sp(base_application) papp);
       virtual ~SimpleFolderListView ();
       
-      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
       virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::user::view
       virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);

@@ -118,7 +118,7 @@ namespace n7z
 
          if (cryptoSetPassword)
          {
-            ::core::byte_buffer buffer;
+            ::file::byte_buffer buffer;
             wstring password = ::str::international::utf8_to_unicode(_options.Password);
             const uint32_t sizeInBytes = (const uint32_t) (password.get_length() * 2);
             buffer.SetCapacity(sizeInBytes);

@@ -171,8 +171,8 @@ bool virtual_user_interface::create_message_window()
       pwnd->m_pguieForward = this;
       string strName = "::draw2d::fontopus::guie_message_wnd::";
       strName += typeid(*m_pguie).name();
-      if(!pwnd->::core::window::create(NULL, strName, 0,
-      rect(0, 0, 0, 0), ::core::window::from_handle(HWND_MESSAGE), NULL))
+      if(!pwnd->::user::window::create(NULL, strName, 0,
+      rect(0, 0, 0, 0), ::user::window::from_handle(HWND_MESSAGE), NULL))
       {
          delete pwnd;
          return false;
@@ -227,16 +227,16 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
    //m_pguie = this;
 //   m_oswindow = pparent->get_handle();
-   /*sp(::core::window) pwndThis = (this);
+   /*sp(::user::window) pwndThis = (this);
    if(pwndThis != NULL)
    {
       pwndThis->set_handle(m_oswindow);
    }*/
 #ifndef METROWIN
-   if(dynamic_cast < message::dispatch * > (pparent->get_guie().m_p) == NULL)
+   if(dynamic_cast < ::message::dispatch * > (pparent->get_guie().m_p) == NULL)
       return false;
 #endif
-   //m_pimpl = new ::core::window(get_app());
+   //m_pimpl = new ::user::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
    //m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pparent, iId, lpParam);
    ASSERT_VALID(this);
@@ -305,7 +305,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
    m_pguie->pre_create_window(cs);
 
-   //m_pguie->install_message_handling(dynamic_cast < message::dispatch * > (this));
+   //m_pguie->install_message_handling(dynamic_cast < ::message::dispatch * > (this));
 
    send_message(WM_CREATE, 0, (LPARAM) &cs);
 
@@ -321,7 +321,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
 
 
-bool virtual_user_interface::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,  const RECT& rect, sp(::user::interaction)  pparent, id id, sp(create_context) pContext)
+bool virtual_user_interface::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,  const RECT& rect, sp(::user::interaction)  pparent, id id, sp(::create_context) pContext)
 {
 
    if(m_bCreate)
@@ -366,14 +366,14 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    
    //m_pguie = this;
 //   m_oswindow = pparent->get_handle();
-//   sp(::core::window) pwndThis = (this);
+//   sp(::user::window) pwndThis = (this);
 /*   if(pwndThis != NULL)
    {
       pwndThis->set_handle(m_oswindow);
    }*/
-   if(dynamic_cast < message::dispatch * > (pparent->get_guie().m_p) == NULL)
+   if(dynamic_cast < ::message::dispatch * > (pparent->get_guie().m_p) == NULL)
       return false;
-   //m_pimpl = new ::core::window(get_app());
+   //m_pimpl = new ::user::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
    //m_pimpl->create(lpszClassName, lpszWindowName, dwStyle, rect, pparent, iId, pContext);
    /*sp(interaction) oswindow_Parent = pparent;
@@ -399,7 +399,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    }
    m_id      = id;
    m_pguie->m_id      = id;
-   //m_pguie->install_message_handling(dynamic_cast < message::dispatch * > (this));
+   //m_pguie->install_message_handling(dynamic_cast < ::message::dispatch * > (this));
    CREATESTRUCT cs;
    cs.dwExStyle = 0;
    cs.style = dwStyle;
@@ -504,14 +504,14 @@ bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
    
    //m_pguie = this;
 //   m_oswindow = pparent->get_handle();
-//   sp(::core::window) pwndThis = (this);
+//   sp(::user::window) pwndThis = (this);
 /*   if(pwndThis != NULL)
    {
       pwndThis->set_handle(m_oswindow);
    }*/
-   if(dynamic_cast < message::dispatch * > (pparent->get_guie().m_p) == NULL)
+   if(dynamic_cast < ::message::dispatch * > (pparent->get_guie().m_p) == NULL)
       return false;
-   //m_pimpl = new ::core::window(get_app());
+   //m_pimpl = new ::user::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
    //m_pimpl->create(NULL, NULL, WS_CHILD | WS_VISIBLE, rect(0, 0, 0, 0), pparent, iId);
    /*sp(interaction) oswindow_Parent = pparent;
@@ -537,8 +537,8 @@ bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
    }
    m_id      = id;
    m_pguie->m_id = id;
-   //install_message_handling(dynamic_cast < message::dispatch * > (pparent));
-   //m_pguie->install_message_handling(dynamic_cast < message::dispatch * > (this));
+   //install_message_handling(dynamic_cast < ::message::dispatch * > (pparent));
+   //m_pguie->install_message_handling(dynamic_cast < ::message::dispatch * > (this));
    CREATESTRUCT cs;
    cs.dwExStyle = 0;
    cs.lpszClass = NULL;
@@ -593,7 +593,7 @@ bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       sp(::user::interaction) pParentWnd, UINT nID,
-      sp(create_context) pContext)
+      sp(::create_context) pContext)
    {
       return FALSE;
    }
@@ -610,7 +610,7 @@ bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
    bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
-      sp(::core::window) pParentWnd, UINT nID,
+      sp(::user::window) pParentWnd, UINT nID,
       LPVOID lpParam)
    {
       return FALSE;
@@ -624,7 +624,7 @@ void virtual_user_interface::VirtualOnSize()
 }
 
 
-void virtual_user_interface::install_message_handling(message::dispatch * pinterface)
+void virtual_user_interface::install_message_handling(::message::dispatch * pinterface)
 {
    IGUI_WIN_MSG_LINK(WM_DESTROY     , pinterface, this, &virtual_user_interface::_001OnDestroy);
    IGUI_WIN_MSG_LINK(WM_NCDESTROY   , pinterface, this, &virtual_user_interface::_001OnNcDestroy);
@@ -636,7 +636,7 @@ void virtual_user_interface::install_message_handling(message::dispatch * pinter
    IGUI_WIN_MSG_LINK(WM_MOVE        , pinterface, this, &virtual_user_interface::_001OnMove);
 }
 
-void virtual_user_interface::_002InstallMessageHandling(message::dispatch * pinterface)
+void virtual_user_interface::_002InstallMessageHandling(::message::dispatch * pinterface)
 {
    UNREFERENCED_PARAMETER(pinterface);
 }
@@ -919,7 +919,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          layout.rect.right -= lpRectParam->right;
          layout.rect.bottom -= lpRectParam->bottom;
       }
-      // reposition the ::core::window
+      // reposition the ::user::window
       if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
       {
          pLeftOver->CalcWindowRect(&layout.rect);
@@ -1007,7 +1007,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          layout.rect.right -= lpRectParam->right;
          layout.rect.bottom -= lpRectParam->bottom;
       }
-      // reposition the ::core::window
+      // reposition the ::user::window
       if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
       {
          pLeftOver->CalcWindowRect(&layout.rect);

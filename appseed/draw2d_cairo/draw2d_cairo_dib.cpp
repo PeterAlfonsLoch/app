@@ -2688,7 +2688,7 @@ namespace draw2d_cairo
 
 #if defined(WINDOWS)
 
-   bool dib::update_window(::core::window * pwnd, signal_details * pobj)
+   bool dib::update_window(::user::window * pwnd, signal_details * pobj)
    {
 
 
@@ -2709,7 +2709,7 @@ namespace draw2d_cairo
    }
 
 
-   bool dib::print_window(::core::window * pwnd, signal_details * pobj)
+   bool dib::print_window(::user::window * pwnd, signal_details * pobj)
    {
 
       SCAST_PTR(message::base, pbase, pobj);
@@ -2811,7 +2811,7 @@ namespace draw2d_cairo
 
 
 
-   bool dib::update_window(::core::window * pwnd, signal_details * pobj)
+   bool dib::update_window(::user::window * pwnd, signal_details * pobj)
    {
 
 

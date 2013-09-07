@@ -41,7 +41,8 @@ public:
 
    inline allocatorsp allocer();
 
-   virtual sp(base_application) get_app() const;
+   inline base_application * get_app() const { return m_pcaapp; }
+
    virtual void set_app(sp(base_application) papp);
 
    inline bool is_set_ca_flag(element::flag eflag)

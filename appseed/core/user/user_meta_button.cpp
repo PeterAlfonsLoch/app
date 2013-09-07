@@ -253,7 +253,7 @@ void MetaButton::UpdateWndRgn()
 
 }
 
-void MetaButton::install_message_handling(message::dispatch *pinterface)
+void MetaButton::install_message_handling(::message::dispatch *pinterface)
 {
    ::user::button::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &MetaButton::_001OnShowWindow);

@@ -66,7 +66,7 @@ namespace bergedge
 
       virtual void pre_translate_message(signal_details * pobj);
 
-      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual void OnDraw(::draw2d::graphics * pgraphics);
       virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);

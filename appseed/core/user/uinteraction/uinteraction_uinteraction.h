@@ -6,12 +6,12 @@ namespace uinteraction
 
 
    class CLASS_DECL_ca2 uinteraction :
-      virtual public ::departament
+      virtual public ::base_departament
    {
    public:
 
 
-      uinteraction(application * papp);
+      uinteraction(base_application * papp);
       virtual ~uinteraction();
 
 

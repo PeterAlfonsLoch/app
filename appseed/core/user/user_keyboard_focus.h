@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace core
+namespace user
 {
 
 
    class window;
 
 
-} // namespace core
+} // namespace user
 
 
 namespace user
@@ -32,7 +32,7 @@ namespace user
 #ifdef METROWIN
       virtual sp(interaction) get_wnd() const = 0;
 #else
-      virtual sp(::core::window) get_wnd() const = 0;
+      virtual sp(::user::window) get_wnd() const = 0;
 #endif
       virtual bool BaseOnControlEvent(control_event * pevent) = 0;
       virtual keyboard_focus * keyboard_get_next_focusable();

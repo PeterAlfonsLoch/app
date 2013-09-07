@@ -44,6 +44,8 @@ public:
    string                                          m_strAppName;
    sp(command_thread)                              m_pcommandthread;
    allocatorsp                                     m_allocer;
+   ::plane::application *                          m_pappThis; // can be used only from core and upper
+
 
 
 

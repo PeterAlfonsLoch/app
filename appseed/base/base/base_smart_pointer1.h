@@ -142,7 +142,7 @@ public:
       }
       if(pOld != NULL)
       {
-         ::ca::release(pOld);
+         ::release(pOld);
       }
       return *this;
    }

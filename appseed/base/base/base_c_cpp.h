@@ -20,7 +20,6 @@ class type;
 class ptra;
 class factory_item_base;
 class fixed_alloc_no_sync;
-class bergedge;
 class base_system;
 class critical_section;
 class allocatorsp;
@@ -44,12 +43,17 @@ namespace visual
 
 } // namespace visual
 
+namespace primitive
+{
 
+   class memory;
+
+} // namespace primitive
 
 namespace plane
 {
 
-
+   class application;
    class session;
    class system;
    //class cube;
@@ -66,6 +70,7 @@ namespace file
    class stream_buffer;
    class input_stream;
    class output_stream;
+   class serializable;
 
 
 } // namespace file
@@ -92,6 +97,7 @@ namespace user
 #define CaSys(pca) (*pca->m_pcaapp->m_pcasystem)
 #define Sys(papp) (*papp->m_pcasystem)
 #define System (Sys(this->m_pcaapp))
+#define threadSystem (Sys(get_thread_app()))
 //#define Mathematics(papp) (Sys(papp).math())
 //#define Math (Mathematics(this->m_pcaapp))
 
@@ -117,6 +123,8 @@ namespace user
 #pragma warning(disable: 4251)  // using non-exported as public in exported
 #pragma warning(disable: 4250)  // via dominance
 #endif
+
+CLASS_DECL_c base_application * get_thread_app();
 
 #include "base_definition.h"
 
@@ -310,6 +318,8 @@ CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 
 #include "base/file/file_memory_buffer.h"
 
+#include "base/file/file_byte_stream_memory_buffer.h"
+
 
 #include "base/str/str_international2.h"
 
@@ -339,5 +349,7 @@ CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 #include "base/str/str.inl"
 
 #include "base/base/base.inl"
+
+#include "base/base/base_enum.h"
 
 

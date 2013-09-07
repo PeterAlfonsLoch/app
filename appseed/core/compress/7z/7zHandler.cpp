@@ -439,7 +439,7 @@ HRes handler::Open(::file::input_stream *stream,
 
 HRes handler::Close()
 {
-::ca::release(_inStream.m_p);
+::release(_inStream.m_p);
   _db.clear();
   return S_OK;
 }

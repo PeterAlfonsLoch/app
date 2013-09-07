@@ -17,7 +17,7 @@ namespace user
       virtual ~place_holder_container();
 
 
-      void install_message_handling(message::dispatch * pdispatch);
+      void install_message_handling(::message::dispatch * pdispatch);
 
 
       virtual bool create(sp(::user::interaction) puiParent, id id);

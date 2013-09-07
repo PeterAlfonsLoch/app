@@ -44,10 +44,9 @@ int32_t crypt_encrypt(string & strEncrypt, const char * pszDecrypt, const char *
       return 0;
    }
    storageDecrypt.from_string(pszDecrypt);
-   base64 base64;
-   base64.decode(storageKey, pszKey);
+   threadSystem.base64().decode(storageKey, pszKey);
    int32_t cipherlen = crypt_encrypt(storageEncrypt, storageDecrypt, storageKey);
-   strEncrypt = base64.encode(storageEncrypt);
+   strEncrypt = threadSystem.base64().encode(storageEncrypt);
    return cipherlen;
 }
 

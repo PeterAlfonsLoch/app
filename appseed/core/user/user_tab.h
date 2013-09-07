@@ -63,7 +63,7 @@ namespace user
 
 
       class CLASS_DECL_ca2 data :
-         virtual public ::data
+         virtual public ::data::data
       {
       public:
 
@@ -123,7 +123,7 @@ namespace user
       bool                             m_bShowTabs;
       bool                             m_bNoTabs;
       e_element                        m_eelement;
-      sp(create_context)         m_spcreatecontext;
+      sp(::create_context)         m_spcreatecontext;
 
 
       tab(sp(base_application) papp);
@@ -150,7 +150,7 @@ namespace user
       virtual void _001SetTabCallback(tab_callback * pcallback);
       virtual bool _001IsAddTab(::index iTab);
       virtual void _001OnDropTab(::index iTab, e_position eposition);
-      virtual void set_cur_tab_by_id(id id, sp(create_context) pcreatecontext = NULL);
+      virtual void set_cur_tab_by_id(id id, sp(::create_context) pcreatecontext = NULL);
 
       virtual id get_cur_tab_id();
       virtual id get_current_id();
@@ -163,7 +163,7 @@ namespace user
 
       virtual void _001OnTabClick(::index iTab);
       virtual void _001OnTabClose(::index iTab);
-      virtual sp(::core::window) GetNotifyWnd();
+      virtual sp(::user::window) GetNotifyWnd();
       virtual index hit_test(point pt, e_element & eelement);
       virtual e_position DragHitTest(point pt);
       virtual void GetDragRect(LPRECT lprect, e_position eposition);
@@ -207,8 +207,8 @@ namespace user
       virtual void get_ends_ci_eat_id(stringa & stra, const char * pszSuffix);
       virtual void get_begins_ends_ci_eat_id(stringa & stra, const char * pszPrefix, const char * pszSuffixed);
 
-      virtual void install_message_handling(message::dispatch * pinterface);
-      virtual void _001ConnectParent(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
+      virtual void _001ConnectParent(::message::dispatch * pinterface);
 
 
       virtual bool has_restore_tab();

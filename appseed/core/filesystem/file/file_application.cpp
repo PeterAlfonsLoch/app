@@ -307,7 +307,7 @@ namespace core
             if(m_papp->m_pappThis->m_file.exists(strFileDownloading) || m_papp->m_pappThis->m_http.exists(strPath, &varQuery))
             {
 
-               spfile = new sockets::http::file(get_app());
+               spfile = new ::sockets::http_buffer(get_app());
 
                if(!spfile->open(strPath, nOpenFlags))
                {
@@ -340,7 +340,7 @@ namespace core
          else
          {
 
-            spfile = new sockets::http::file(get_app());
+            spfile = new ::sockets::http_buffer(get_app());
 
             if(!spfile->open(strPath, nOpenFlags))
             {
@@ -457,10 +457,10 @@ namespace core
 
    }
 
-   ::core::byte_stream file_application::get_byte_stream(var varFile, UINT nOpenFlags)
+   ::file::byte_stream file_application::get_byte_stream(var varFile, UINT nOpenFlags)
    {
 
-      return ::core::byte_stream(get_file(varFile, nOpenFlags));
+      return ::file::byte_stream(get_file(varFile, nOpenFlags));
 
    }
 

@@ -29,7 +29,7 @@ namespace user
    //   AllocElements(0, 0);    // destroys existing elements
    }
 
-   void status_bar::install_message_handling(message::dispatch * pinterface)
+   void status_bar::install_message_handling(::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_NCHITTEST         , pinterface, this, &status_bar::_001OnNcHitTest);
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE        , pinterface, this, &status_bar::_001OnNcCalcSize);

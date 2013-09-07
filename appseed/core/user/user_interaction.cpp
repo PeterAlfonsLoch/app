@@ -70,7 +70,7 @@ namespace user
          {
             if(m_pthread != NULL)
             {
-               m_pthread->m_pthread->::core::thread::remove(this);
+               m_pthread->m_pthread->thread::remove(this);
             }
          }
          catch(...)
@@ -92,7 +92,7 @@ namespace user
    /*      if(GetTopLevelParent() != NULL
          && GetTopLevelParent() != this)
          {
-            sp(::core::window) pwnd = GetTopLevelParent()->get_wnd();
+            sp(::user::window) pwnd = GetTopLevelParent()->get_wnd();
             if(pwnd != NULL)
             {
 
@@ -219,7 +219,7 @@ namespace user
 
             m_pimpl->set_parent(NULL);
 
-            sp(::core::window) pimplNew = Application.alloc(System.type_info < ::core::window > ());
+            sp(::user::window) pimplNew = Application.alloc(System.type_info < ::user::window > ());
 
             pimplNew->m_pguie = this;
 
@@ -416,7 +416,7 @@ namespace user
          return m_pimpl->GetDlgCtrlId();
    }
 
-   void interaction::install_message_handling(message::dispatch * pinterface)
+   void interaction::install_message_handling(::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_CREATE               , pinterface, this, &interaction::_001OnCreate);
       if(m_bMessageWindow)
@@ -1011,7 +1011,7 @@ namespace user
    }
 
    /*
-   void interaction::_001SetWindowPos(const sp(::core::window) pWndInsertAfter, int32_t x, int32_t y,
+   void interaction::_001SetWindowPos(const sp(::user::window) pWndInsertAfter, int32_t x, int32_t y,
                int32_t cx, int32_t cy, UINT nFlags)
    {
       SetWindowPos(pWndInsertAfter, x, y, cx, cy, nFlags);
@@ -1234,7 +1234,7 @@ namespace user
       return NULL;
 
 #else
-      sp(::core::window) pwnd = NULL;
+      sp(::user::window) pwnd = NULL;
 
       try
       {
@@ -1273,9 +1273,9 @@ namespace user
 
       sp(interaction) pimplOld = m_pimpl;
 
-      sp(::core::window) pimplNew = NULL;
+      sp(::user::window) pimplNew = NULL;
 
-      pimplNew = (Application.alloc(System.type_info < ::core::window > ()));
+      pimplNew = (Application.alloc(System.type_info < ::user::window > ()));
 
       pimplNew->m_pguie = this;
 
@@ -1296,7 +1296,7 @@ namespace user
 
             pimplOld->_001ClearMessageHandling();
 
-            sp(::core::window) pwindowOld = pimplOld;
+            sp(::user::window) pwindowOld = pimplOld;
 
             if(pwindowOld != NULL)
             {
@@ -1330,7 +1330,7 @@ namespace user
    oswindow interaction::unsubclass_window()
    {
 
-      sp(::core::window) pwindow = m_pimpl;
+      sp(::user::window) pwindow = m_pimpl;
 
       if(pwindow != NULL)
       {
@@ -1349,7 +1349,7 @@ namespace user
          DestroyWindow();
       }
       m_signalptra.remove_all();
-      m_pimpl = (Application.alloc(System.type_info < ::core::window > ()));
+      m_pimpl = (Application.alloc(System.type_info < ::user::window > ()));
       m_pimpl->m_pguie = this;
       m_pguie = this;
       if(!m_pimpl->initialize(window, pwindow))
@@ -1384,7 +1384,7 @@ namespace user
       return true;
    }
 
-   bool interaction::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(interaction) pParentWnd, id id, sp(create_context) pContext)
+   bool interaction::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(interaction) pParentWnd, id id, sp(::create_context) pContext)
    {
 
       if(IsWindow())
@@ -1398,7 +1398,7 @@ namespace user
 
       sp(interaction) pimplNew = NULL;
 
-      pimplNew = (Application.alloc(System.type_info < ::core::window > ()));
+      pimplNew = (Application.alloc(System.type_info < ::user::window > ()));
 
       pimplNew->m_pguie = this;
 
@@ -1420,7 +1420,7 @@ namespace user
 
             pimplOld->_001ClearMessageHandling();
 
-            sp(::core::window) pwindowOld = (pimplOld.m_p);
+            sp(::user::window) pwindowOld = (pimplOld.m_p);
 
             if(pwindowOld != NULL)
             {
@@ -1451,7 +1451,7 @@ namespace user
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          sp(interaction) pParentWnd, id id,
-         sp(create_context) pContext)
+         sp(::create_context) pContext)
    {
       //if(IsWindow())
       //{
@@ -1467,7 +1467,7 @@ namespace user
       if(pParentWnd == NULL)
 #endif
       {
-         pimplNew = (Application.alloc(System.type_info < ::core::window > ()));
+         pimplNew = (Application.alloc(System.type_info < ::user::window > ()));
          pimplNew->m_pguie = this;
          m_pimpl = pimplNew;
          if(!pimplNew->create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, pContext))
@@ -1491,7 +1491,7 @@ namespace user
          {
             pimplOld->m_pguie = NULL;
             pimplOld->_001ClearMessageHandling();
-            sp(::core::window) pwindowOld = (pimplOld.m_p);
+            sp(::user::window) pwindowOld = (pimplOld.m_p);
             if(pwindowOld != NULL)
             {
                pwindowOld->install_message_handling(pimplOld);
@@ -1526,7 +1526,7 @@ namespace user
          DestroyWindow();
       }
       m_signalptra.remove_all();
-      m_pimpl = (Application.alloc(System.type_info < ::core::window > ()));
+      m_pimpl = (Application.alloc(System.type_info < ::user::window > ()));
       m_pimpl->m_pguie = this;
       if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
       {
@@ -1552,7 +1552,7 @@ namespace user
 #ifndef METROWIN
       if(pParentWnd == NULL)
       {
-         m_pimpl = (Application.alloc(System.type_info < ::core::window > ()));
+         m_pimpl = (Application.alloc(System.type_info < ::user::window > ()));
          m_pimpl->m_pguie = this;
          dwStyle &= ~WS_CHILD;
          if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
@@ -2565,7 +2565,7 @@ ExitModal:
          System.GetThread()->post_thread_message(WM_NULL);
          for(int32_t i = iLevel; i >= 0; i--)
          {
-            ::core::thread * pthread = oprop(string("RunModalLoop.thread(") + ::str::from(i) + ")").element < ::core::thread > ();
+            thread * pthread = oprop(string("RunModalLoop.thread(") + ::str::from(i) + ")").element < thread > ();
             try
             {
                pthread->post_thread_message(WM_NULL);
@@ -2688,7 +2688,7 @@ ExitModal:
    {
       m_eappearance = appearance_zoomed;
       rect rectDesktop;
-      sp(::core::window) pwndDesktop = System.get_desktop_window();
+      sp(::user::window) pwndDesktop = System.get_desktop_window();
       pwndDesktop->GetWindowRect(rectDesktop);
       SetWindowPos(ZORDER_TOP, 0, 0, rectDesktop.width(),
          rectDesktop.height(), SWP_SHOWWINDOW);
@@ -2759,7 +2759,7 @@ ExitModal:
    }
 
 
-   bool interaction::create_message_window(const char * pszName, ::core::window_callback * pcallback)
+   bool interaction::create_message_window(const char * pszName, ::message_window_callback * pcallback)
    {
 
       UNREFERENCED_PARAMETER(pcallback);
@@ -2773,7 +2773,7 @@ ExitModal:
 
       m_signalptra.remove_all();
 
-      m_pimpl = (Application.alloc(System.type_info < ::core::window > ()));
+      m_pimpl = (Application.alloc(System.type_info < ::user::window > ()));
 
       if(m_pimpl == NULL)
          return false;
@@ -3066,7 +3066,7 @@ ExitModal:
 
    }
 
-   void interaction::timer_array::transfer(sp(::core::window) pwindow, sp(interaction) pguie)
+   void interaction::timer_array::transfer(sp(::user::window) pwindow, sp(interaction) pguie)
    {
 
 
@@ -3305,12 +3305,12 @@ restart:
 #ifdef METROWIN
    sp(::user::interaction) interaction::get_wnd() const
 #else
-   sp(::core::window) interaction::get_wnd() const
+   sp(::user::window) interaction::get_wnd() const
 #endif
    {
       if(m_pimpl != NULL)
       {
-         sp(::core::window) pwnd = (m_pimpl.m_p);
+         sp(::user::window) pwnd = (m_pimpl.m_p);
          if(pwnd != NULL)
             return pwnd;
       }

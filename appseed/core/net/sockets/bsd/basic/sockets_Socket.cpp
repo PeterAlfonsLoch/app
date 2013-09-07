@@ -863,13 +863,13 @@ namespace sockets
 
    int64_t socket::socket_thread::add_ref()
    {
-      return ::core::thread::add_ref();
+      return thread::add_ref();
    }
 
 
    int64_t socket::socket_thread::release()
    {
-      return ::core::thread::release();
+      return thread::release();
    }
 
 

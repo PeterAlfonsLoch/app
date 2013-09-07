@@ -266,7 +266,7 @@ namespace file
       m_pfile = NULL;
    }
 
-   ::file::buffer_sp simple_binary_buffer::Duplicate() const
+   ::file::buffer_sp  simple_binary_buffer::Duplicate() const
    {
       ASSERT_VALID(this);
       ASSERT(m_pfile != NULL);
@@ -397,7 +397,7 @@ namespace file
    {
       ASSERT_VALID(this);
 
-      //memset(&rStatus, 0, sizeof(::core::file_status));
+      //memset(&rStatus, 0, sizeof(::file::file_status));
 
       // copy file name from cached m_strFileName
       rStatus.m_strFullName = m_strFileName;

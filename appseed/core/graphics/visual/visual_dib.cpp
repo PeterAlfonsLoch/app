@@ -42,7 +42,7 @@ namespace visual
          {
             try
             {
-               ::core::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::mode_read | ::file::binary_buffer::shareDenyWrite | ::file::type_binary);
+               ::file::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::mode_read | ::file::binary_buffer::shareDenyWrite | ::file::type_binary);
                m_p->read(stream);
                return true;
             }
@@ -73,7 +73,7 @@ namespace visual
       {
          try
          {
-            ::core::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_write | ::file::type_binary | ::file::binary_buffer::defer_create_directory);
+            ::file::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_write | ::file::type_binary | ::file::binary_buffer::defer_create_directory);
             m_p->write(stream);
          }
          catch(...)
@@ -89,7 +89,7 @@ namespace visual
    }
 
 
-   bool dib_sp::read_from_file(::file::buffer_sp pfile)
+   bool dib_sp::read_from_file(::file::buffer_sp  pfile)
    {
 
       FIBITMAP * pfi = Sys(m_p->m_papp).visual().imaging().LoadImageFile(pfile);
@@ -126,7 +126,7 @@ namespace visual
       return write_to_file(spfile, psaveimage);
    }
 
-   bool dib_sp::write_to_file(::file::buffer_sp pfile, save_image * psaveimage)
+   bool dib_sp::write_to_file(::file::buffer_sp  pfile, save_image * psaveimage)
    {
       save_image saveimageDefault;
       if(psaveimage == NULL)

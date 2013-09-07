@@ -20,14 +20,7 @@
 
 
 
-namespace core
-{
-
-
-   class application;
-
-
-} // namespace core
+class application;
 
 
 #include "nodeapp/operational_system/_ca.h"
@@ -129,9 +122,6 @@ namespace core
 #include "boot_file_watcher_thread.h"
 #include "boot_file_watcher_listener_thread.h"
 #include "boot_async.h"
-
-
-#include "boot_base64.h"
 
 
 #include "boot/hotplugin/hotplugin.h"

@@ -16,7 +16,7 @@ namespace user
       void BitBlt(::draw2d::graphics * pdc);
       void BitBlt(LPRECT lprect, ::draw2d::graphics * pdc);
 
-      void InstallMessageHandling(message::dispatch * pinterface);
+      void InstallMessageHandling(::message::dispatch * pinterface);
 
 
       bool UpdateBuffer(int32_t cx, int32_t cy);

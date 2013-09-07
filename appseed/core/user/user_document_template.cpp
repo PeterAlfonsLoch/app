@@ -122,7 +122,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Default frame creation
 
-   sp(::user::frame_window) document_template::create_new_frame(sp(::user::document_interface) pdocument, sp(::user::frame_window) pOther, sp(create_context) pcreatecontext)
+   sp(::user::frame_window) document_template::create_new_frame(sp(::user::document_interface) pdocument, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext)
    {
 
       // create a frame wired to the specified ::user::document_interface
@@ -175,7 +175,7 @@ namespace user
    }
 
    /*
-   sp(::user::frame_window) document_template::CreateOleFrame(sp(::core::window) pParentWnd, sp(::user::document_interface) pdocument,
+   sp(::user::frame_window) document_template::CreateOleFrame(sp(::user::window) pParentWnd, sp(::user::document_interface) pdocument,
    bool bCreateView)
    {
    create_context context;

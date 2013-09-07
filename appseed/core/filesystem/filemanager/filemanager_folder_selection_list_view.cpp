@@ -19,7 +19,7 @@ folder_selection_list_view::~folder_selection_list_view()
 {
 }
 
-void folder_selection_list_view::install_message_handling(message::dispatch * pinterface)
+void folder_selection_list_view::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::split_view::install_message_handling(pinterface);
 }

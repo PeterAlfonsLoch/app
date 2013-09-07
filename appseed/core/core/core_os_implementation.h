@@ -91,7 +91,7 @@ extern CLASS_DECL_ca2 AUX_DATA afxData;*/
 #define HELP_ENTERING   2   // entering Shift+F1 help mode (non-zero)
 
 /////////////////////////////////////////////////////////////////////////////
-// Window class names and other ::core::window creation support
+// Window class names and other ::user::window creation support
 
 
 #define __WND_REG                                             0x00001
@@ -133,7 +133,7 @@ typedef struct tag__OLDTOOLINFO {
    LPTSTR lpszText;
 } __OLDTOOLINFO;
 
-// special _ ::core::window class name mangling
+// special _ ::user::window class name mangling
 
 
 #define __WNDCLASS(s)    "core" _T(s)

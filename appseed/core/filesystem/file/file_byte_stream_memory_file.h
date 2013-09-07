@@ -6,8 +6,8 @@ namespace file
 
 
    class CLASS_DECL_ca2 byte_stream_memory_file :
-      virtual public ::::file::memory_buffer,
-      virtual public ::core::byte_stream
+      virtual public ::file::memory_buffer,
+      virtual public ::file::byte_stream
    {
    public:
    

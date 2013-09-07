@@ -26,7 +26,7 @@ namespace filemanager
       virtual void _017OpenFolder(sp(::fs::item)  item);
       void StartAnimation();
       void RenameFile(int32_t iLine, string & str);
-      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
 

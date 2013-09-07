@@ -71,7 +71,7 @@ simple_toolbar::~simple_toolbar()
 
 }
 
-void simple_toolbar::install_message_handling(message::dispatch * pdispatch)
+void simple_toolbar::install_message_handling(::message::dispatch * pdispatch)
 {
    ::user::control_bar::install_message_handling(pdispatch);
    //IGUI_WIN_MSG_LINK(WM_ERASEBKGND()

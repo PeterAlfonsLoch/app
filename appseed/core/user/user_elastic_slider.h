@@ -13,7 +13,7 @@ namespace user
       virtual ~elastic_slider();
 
 
-      virtual void install_message_handling(message::dispatch * pdispatch);
+      virtual void install_message_handling(::message::dispatch * pdispatch);
 
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnTimer)

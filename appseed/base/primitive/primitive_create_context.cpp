@@ -88,7 +88,7 @@ create_context & create_context::operator = (const create_context & createcontex
    m_spApplicationBias        .oattrib(createcontext.m_spApplicationBias);
    m_spCommandLine            .oattrib(createcontext.m_spCommandLine);
 
-   m_pthreadParent->consolidate((sp(create_context)) this);
+   m_pthreadParent->consolidate((sp(::create_context)) this);
 
    return *this;
 

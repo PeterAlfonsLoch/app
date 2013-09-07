@@ -16,7 +16,7 @@ simple_list_header_control::~simple_list_header_control()
 
 
 
-void simple_list_header_control::install_message_handling(message::dispatch * pinterface)
+void simple_list_header_control::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::interaction::install_message_handling(pinterface);
    ::user::list_header::install_message_handling(pinterface);

@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace core
+namespace user
 {
 
 
    class window;
 
 
-} // namespace core
+} // namespace user
 
 
 namespace user
@@ -86,7 +86,7 @@ namespace user
    {
    public:
       static void ContraintPosToParent(oswindow oswindow);
-      //static void EnumChildren(sp(::core::window) pwnd, interaction_ptr_array & wndpa);
+      //static void EnumChildren(sp(::user::window) pwnd, interaction_ptr_array & wndpa);
       static void EnumChildren(oswindow oswindow, oswindow_array & oswindowa);
       /*static void ExcludeChild(interaction_ptr_array & wndpa);*/
       /*static void SortByZOrder(interaction_ptr_array & wndpa);*/
@@ -107,7 +107,7 @@ namespace user
 //      static HRGN GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChilren);
 //      static void ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset);
 
-      //static void SortByZOrder(comparable_array < sp(::core::window), sp(::core::window) > & wndpa);
+      //static void SortByZOrder(comparable_array < sp(::user::window), sp(::user::window) > & wndpa);
       //static void SortByZOrder(comparable_array < oswindow, oswindow > & oswindowa);
       //static void EnumChildren(oswindow oswindow, comparable_array < oswindow, oswindow > & oswindowa);
 

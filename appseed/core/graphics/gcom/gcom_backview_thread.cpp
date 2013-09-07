@@ -11,7 +11,7 @@ namespace gcom
 
       thread::thread(sp(base_application) papp) :
          element(papp),
-         ::core::thread(papp),
+         thread(papp),
          m_evInitialized(papp, FALSE, TRUE),
          m_mutexBitmap(papp)
       {
@@ -32,10 +32,10 @@ namespace gcom
       {
          m_evInitialized.SetEvent();
          m_pbackviewinterface->Release();
-         return ::core::thread::exit_instance();
+         return thread::exit_instance();
       }
 
-      void thread::install_message_handling(message::dispatch * pinterface)
+      void thread::install_message_handling(::message::dispatch * pinterface)
       {
          IGUI_WIN_MSG_LINK(WM_USER, pinterface, this, &thread::OnUserMessage);
          IGUI_WIN_MSG_LINK(MESSAGE_BACKVIEW, pinterface, this, &thread::OnBackViewMessage);

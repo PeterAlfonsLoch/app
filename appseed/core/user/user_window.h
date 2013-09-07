@@ -46,16 +46,16 @@ namespace user
       window();
 
 
-      virtual bool create_message_window(const char * pszName, ::core::window_callback * pcallback = NULL);
+      virtual bool create_message_window(const char * pszName, ::message_window_callback * pcallback = NULL);
 #ifdef METROWIN
       virtual bool initialize(Windows::UI::Core::CoreWindow ^ window, ::core::system_window ^ pwindow) = 0;
 #endif
 
 
-      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
-      bool operator==(const ::core::window& wnd) const;
-      bool operator!=(const ::core::window& wnd) const;
+      bool operator==(const ::user::window& wnd) const;
+      bool operator!=(const ::user::window& wnd) const;
 
       virtual uint32_t GetStyle();
       virtual uint32_t GetExStyle();
@@ -71,7 +71,7 @@ namespace user
 
 
 
-      virtual sp(::core::window) from_os_data(void * pdata);
+      virtual sp(::user::window) from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
 
@@ -93,7 +93,7 @@ namespace user
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window();
       virtual bool subclass_window(oswindow oswindow);
-      virtual bool SubclassDlgItem(UINT nID, sp(::core::window) pParent);
+      virtual bool SubclassDlgItem(UINT nID, sp(::user::window) pParent);
       virtual oswindow unsubclass_window();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
@@ -105,7 +105,7 @@ namespace user
 
       using ::user::interaction::create;
       // for child windows, views, panes etc
-      virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, id id, sp(create_context) pContext = NULL);
+      virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, id id, sp(::create_context) pContext = NULL);
 
       // advanced creation (allows access to extended styles)
       virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, oswindow oswindow_Parent, id id, LPVOID lpParam = NULL);
@@ -114,7 +114,7 @@ namespace user
 
       virtual bool DestroyWindow();
 
-      // special pre-creation and ::core::window rect adjustment hooks
+      // special pre-creation and ::user::window rect adjustment hooks
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
       // Advanced: virtual AdjustWindowRect
@@ -140,7 +140,7 @@ namespace user
 
    #if(WINVER >= 0x0500)
 
-      virtual sp(::core::window) GetAncestor(UINT gaFlags) const;
+      virtual sp(::user::window) GetAncestor(UINT gaFlags) const;
 
    #endif   // WINVER >= 0x0500
 
@@ -190,8 +190,8 @@ namespace user
 #endif
 
    // Coordinate Mapping Functions
-      virtual void MapWindowPoints(sp(::core::window) pwndTo, LPPOINT lpPoint, UINT nCount);
-      virtual void MapWindowPoints(sp(::core::window) pwndTo, LPRECT lpRect);
+      virtual void MapWindowPoints(sp(::user::window) pwndTo, LPPOINT lpPoint, UINT nCount);
+      virtual void MapWindowPoints(sp(::user::window) pwndTo, LPRECT lpRect);
 
    // Update/Painting Functions
       virtual ::draw2d::graphics * GetDC();
@@ -271,11 +271,11 @@ namespace user
       virtual bool IsWindowEnabled();
       virtual bool EnableWindow(bool bEnable = TRUE);
 
-      // the active ::core::window applies only to top-level (frame windows)
+      // the active ::user::window applies only to top-level (frame windows)
       virtual sp(::user::interaction) GetActiveWindow();
       virtual sp(::user::interaction) SetActiveWindow();
 
-      // the foreground ::core::window applies only to top-level windows (frame windows)
+      // the foreground ::user::window applies only to top-level windows (frame windows)
       virtual bool SetForegroundWindow();
 
       virtual id SetDlgCtrlId(id id);
@@ -309,8 +309,8 @@ namespace user
       virtual UINT GetChildByIdInt(int32_t nID, bool* lpTrans = NULL, bool bSigned = TRUE) const;
       virtual int32_t GetChildByIdText(int32_t nID, LPTSTR lpStr, int32_t nMaxCount) const;
       virtual int32_t GetChildByIdText(int32_t nID, string & rString) const;
-      virtual sp(::core::window) GetNextDlgGroupItem(sp(::core::window) pWndCtl, bool bPrevious = FALSE) const;
-      virtual sp(::core::window) GetNextDlgTabItem(sp(::core::window) pWndCtl, bool bPrevious = FALSE) const;
+      virtual sp(::user::window) GetNextDlgGroupItem(sp(::user::window) pWndCtl, bool bPrevious = FALSE) const;
+      virtual sp(::user::window) GetNextDlgTabItem(sp(::user::window) pWndCtl, bool bPrevious = FALSE) const;
       virtual UINT IsDlgButtonChecked(int32_t nIDButton) const;
       virtual LRESULT SendDlgItemMessage(int32_t nID, UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
       virtual void SetDlgItemInt(int32_t nID, UINT nValue, bool bSigned = TRUE);
@@ -363,7 +363,7 @@ namespace user
 
       virtual bool IsChild(sp(::user::interaction)  pWnd);
       virtual sp(::user::interaction) get_parent() const;
-      sp(::core::window) set_parent(sp(::core::window) pWndNewParent);
+      sp(::user::window) set_parent(sp(::user::window) pWndNewParent);
 
    // Alert Functions
       bool FlashWindow(bool bInvert);
@@ -438,26 +438,26 @@ namespace user
       virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
       virtual bool OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
-      void OnActivate(UINT nState, sp(::core::window) pWndOther, bool bMinimized);
+      void OnActivate(UINT nState, sp(::user::window) pWndOther, bool bMinimized);
       void OnActivateApp(bool bActive, uint32_t dwThreadID);
       LRESULT OnActivateTopLevel(WPARAM, LPARAM);
       void OnCancelMode();
       void OnChildActivate();
       void OnClose();
-      void OnContextMenu(sp(::core::window) pWnd, point pos);
+      void OnContextMenu(sp(::user::window) pWnd, point pos);
 
 #ifdef WINDOWSEX
-      bool OnCopyData(sp(::core::window) pWnd, COPYDATASTRUCT* pCopyDataStruct);
+      bool OnCopyData(sp(::user::window) pWnd, COPYDATASTRUCT* pCopyDataStruct);
 #endif
       DECL_GEN_SIGNAL(_001OnCreate)
 
 
-      HBRUSH OnCtlColor(::draw2d::graphics * pgraphics, sp(::core::window) pWnd, UINT nCtlColor);
+      HBRUSH OnCtlColor(::draw2d::graphics * pgraphics, sp(::user::window) pWnd, UINT nCtlColor);
 
       DECL_GEN_SIGNAL(_001OnDestroy);
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
-      void OnEnterIdle(UINT nWhy, sp(::core::window) pWho);
+      void OnEnterIdle(UINT nWhy, sp(::user::window) pWho);
       bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
 
 
@@ -468,7 +468,7 @@ namespace user
 
 
       void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
-      void OnKillFocus(sp(::core::window) pNewWnd);
+      void OnKillFocus(sp(::user::window) pNewWnd);
       LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
       void OnMove(int32_t x, int32_t y);
@@ -480,7 +480,7 @@ namespace user
       bool OnQueryEndSession();
       bool OnQueryNewPalette();
       bool OnQueryOpen();
-      void OnSetFocus(sp(::core::window) pOldWnd);
+      void OnSetFocus(sp(::user::window) pOldWnd);
       void OnShowWindow(bool bShow, UINT nStatus);
       void OnSize(UINT nType, int32_t cx, int32_t cy);
 
@@ -521,7 +521,7 @@ namespace user
 #ifdef WINDOWSEX
       void OnDropFiles(HDROP hDropInfo);
 #endif
-      void OnPaletteIsChanging(sp(::core::window) pRealizeWnd);
+      void OnPaletteIsChanging(sp(::user::window) pRealizeWnd);
       void OnSysChar(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnSysCommand(UINT nID, LPARAM lParam);
       void OnSysDeadChar(UINT nChar, UINT nRepCnt, UINT nFlags);
@@ -530,7 +530,7 @@ namespace user
       void OnCompacting(UINT nCpuTime);
       void OnDevModeChange(LPTSTR lpDeviceName);
       void OnFontChange();
-      void OnPaletteChanged(sp(::core::window) pFocusWnd);
+      void OnPaletteChanged(sp(::user::window) pFocusWnd);
       void OnSpoolerStatus(UINT nStatus, UINT nJobs);
       void OnSysColorChange();
       void OnTimeChange();
@@ -550,14 +550,14 @@ namespace user
       void OnMButtonDblClk(UINT nFlags, point point);
       void OnMButtonDown(UINT nFlags, point point);
       void OnMButtonUp(UINT nFlags, point point);
-      int32_t OnMouseActivate(sp(::core::window) pDesktopWnd, UINT nHitTest, UINT message);
+      int32_t OnMouseActivate(sp(::user::window) pDesktopWnd, UINT nHitTest, UINT message);
       void OnMouseMove(UINT nFlags, point point);
       bool OnMouseWheel(UINT nFlags, int16_t zDelta, point pt);
       LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
       void OnRButtonDblClk(UINT nFlags, point point);
       void OnRButtonDown(UINT nFlags, point point);
       void OnRButtonUp(UINT nFlags, point point);
-      bool OnSetCursor(sp(::core::window) pWnd, UINT nHitTest, UINT message);
+      bool OnSetCursor(sp(::user::window) pWnd, UINT nHitTest, UINT message);
       void OnTimer(uint_ptr nIDEvent);
 
    // Initialization message handler member functions
@@ -573,12 +573,12 @@ namespace user
       void OnChangeCbChain(oswindow oswindow_Remove, oswindow oswindow_After);
       void OnDestroyClipboard();
       void OnDrawClipboard();
-      void OnHScrollClipboard(sp(::core::window) pClipAppWnd, UINT nSBCode, UINT nPos);
-      void OnPaintClipboard(sp(::core::window) pClipAppWnd, HGLOBAL hPaintStruct);
+      void OnHScrollClipboard(sp(::user::window) pClipAppWnd, UINT nSBCode, UINT nPos);
+      void OnPaintClipboard(sp(::user::window) pClipAppWnd, HGLOBAL hPaintStruct);
       void OnRenderAllFormats();
       void OnRenderFormat(UINT nFormat);
-      void OnSizeClipboard(sp(::core::window) pClipAppWnd, HGLOBAL hRect);
-      void OnVScrollClipboard(sp(::core::window) pClipAppWnd, UINT nSBCode, UINT nPos);
+      void OnSizeClipboard(sp(::user::window) pClipAppWnd, HGLOBAL hRect);
+      void OnVScrollClipboard(sp(::user::window) pClipAppWnd, UINT nSBCode, UINT nPos);
 
 
 #endif
@@ -601,7 +601,7 @@ namespace user
 
 
       // MDI message handler member functions
-      void OnMDIActivate(bool bActivate, sp(::core::window) pActivateWnd, sp(::core::window) pDeactivateWnd);
+      void OnMDIActivate(bool bActivate, sp(::user::window) pActivateWnd, sp(::user::window) pDeactivateWnd);
 
       // menu loop notification messages
       void OnEnterMenuLoop(bool bIsTrackPopupMenu);
@@ -614,7 +614,7 @@ namespace user
 #endif
       void OnSizing(UINT nSide, LPRECT lpRect);
       void OnMoving(UINT nSide, LPRECT lpRect);
-      void OnCaptureChanged(sp(::core::window) pWnd);
+      void OnCaptureChanged(sp(::user::window) pWnd);
       bool OnDeviceChange(UINT nEventType, uint_ptr dwData);
 
 
@@ -668,8 +668,8 @@ namespace user
 
 
       // for creating dialogs and dialog-like windows
-      //virtual bool CreateDlg(const char * lpszTemplateName, sp(::core::window) pParentWnd);
-      //virtual bool CreateDlgIndirect(LPCDLGTEMPLATE lpDialogTemplate, sp(::core::window) pParentWnd,
+      //virtual bool CreateDlg(const char * lpszTemplateName, sp(::user::window) pParentWnd);
+      //virtual bool CreateDlgIndirect(LPCDLGTEMPLATE lpDialogTemplate, sp(::user::window) pParentWnd,
         // HINSTANCE hInst);
 
 

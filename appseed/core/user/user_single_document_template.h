@@ -21,7 +21,7 @@ namespace user
       virtual void remove_document(sp(::user::document_interface) pDoc);
       virtual ::count get_document_count() const;
       virtual sp(::user::document_interface) get_document(index index = 0) const;
-      virtual void request_create(sp(create_context) pcreatecontext);
+      virtual void request_create(sp(::create_context) pcreatecontext);
       virtual void set_default_title(sp(::user::document_interface) pdocument);
 
       virtual void dump(dump_context &) const;

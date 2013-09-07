@@ -144,7 +144,7 @@ repeat:;
              property_set headers(get_app());
              property_set set(get_app());
 
-             ::core::http::e_status estatus;
+             ::http::e_status estatus;
 
              string strUrl;
 
@@ -173,7 +173,7 @@ repeat:;
 
              m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-             if(m_phttpsession == NULL || estatus != ::core::http::status_ok)
+             if(m_phttpsession == NULL || estatus != ::http::status_ok)
              {
                 Sleep(1984);
                 strApiServer = "";
@@ -246,7 +246,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       property_set headers(get_app());
       property_set set(get_app());
 
-      ::core::http::e_status estatus;
+      ::http::e_status estatus;
 
       set["interactive_user"] = true;
 
@@ -257,7 +257,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-      if(m_phttpsession == NULL || estatus != ::core::http::status_ok)
+      if(m_phttpsession == NULL || estatus != ::http::status_ok)
       {
          return false;
       }

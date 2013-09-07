@@ -3,7 +3,7 @@
 
 menu_document::menu_document(sp(base_application) papp) :
    element(papp),
-   ::core::data_container_base(papp),
+   ::data::data_container_base(papp),
    
    form_document(papp)
 {

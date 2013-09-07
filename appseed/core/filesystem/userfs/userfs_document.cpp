@@ -7,7 +7,7 @@ namespace userfs
 
    document::document(sp(base_application) papp) :
       element(papp),
-      ::core::data_container_base(papp),
+      ::data::data_container_base(papp),
       
       user::document(papp),
       m_fsset(papp)

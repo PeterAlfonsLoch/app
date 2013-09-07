@@ -20,7 +20,7 @@ namespace nature
    {
    }
 
-   void view::install_message_handling(message::dispatch * pinterface)
+   void view::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::view::install_message_handling(pinterface);
 

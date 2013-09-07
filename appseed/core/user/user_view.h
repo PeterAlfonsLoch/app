@@ -58,13 +58,13 @@ namespace user
       sp(::user::document_interface) get_document() const;
 
       template < class DOCUMENT >
-      ::data * get_data();
+      ::data::data * get_data();
 
       template < class DOCUMENT >
       DOCUMENT * get_typed_document();
 
 
-      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
       virtual bool IsSelected(const object* pDocItem) const; // support for OLE
 
@@ -131,7 +131,7 @@ namespace user
 
 
       virtual void on_draw_view_nc(::draw2d::graphics * pdc);
-      virtual void on_draw_view(::draw2d::graphics * pdc, spa(::data) spadata);
+      virtual void on_draw_view(::draw2d::graphics * pdc, spa(::data::data) spadata);
       virtual void defer_draw_view(::draw2d::graphics * pdc);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
@@ -143,7 +143,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnCreate)
          DECL_GEN_SIGNAL(_001OnDestroy)
          void OnPaint();
-      //int32_t OnMouseActivate(sp(::core::window) pDesktopWnd, UINT nHitTest, UINT message);
+      //int32_t OnMouseActivate(sp(::user::window) pDesktopWnd, UINT nHitTest, UINT message);
       // commands
       void OnUpdateSplitCmd(cmd_ui* pCmdUI);
       bool OnSplitCmd(UINT nID);
@@ -155,8 +155,8 @@ namespace user
       void OnFilePrintPreview();
 
       // TODO: could return a kind of - also TODO - JOB object in case of assynchronous call
-      virtual void collaborate(::core::job * pjob);
-      virtual int32_t  get_total_page_count(::core::job * pjob);
+      virtual void collaborate(::job * pjob);
+      virtual int32_t  get_total_page_count(::job * pjob);
 
       DECL_GEN_SIGNAL(_001OnView)
          DECL_GEN_SIGNAL(_001OnLButtonDown)
@@ -222,7 +222,7 @@ namespace user
 //         DECL_GEN_SIGNAL(_001OnLButtonDown)
          DECL_GEN_SIGNAL(_001OnMButtonDown)
 
-//         virtual void install_message_handling(message::dispatch * pinterface);
+//         virtual void install_message_handling(::message::dispatch * pinterface);
    };
 
    class view_update_hint :

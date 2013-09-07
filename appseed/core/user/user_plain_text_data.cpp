@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   void plain_text_data::SetFile(::file::buffer_sp pfile)
+   void plain_text_data::SetFile(::file::buffer_sp  pfile)
    {
       m_editfile.SetFile(pfile);
       on_update_data(update_hint_set_file);

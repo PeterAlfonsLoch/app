@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-void request_interface::create(sp(create_context) pcreatecontext)
+void request_interface::create(sp(::create_context) pcreatecontext)
 {
    if(pcreatecontext->m_spCommandLine->m_varQuery["client_only"] != 0)
    {
@@ -14,7 +14,7 @@ void request_interface::create(sp(create_context) pcreatecontext)
 void request_interface::add_line(const char * pszCommandLine, application_bias * pbiasCreate)
 {
    sp(command_thread) commandcentral = get_app()->command_central();
-   sp(create_context) createcontext(canew(create_context(commandcentral)));
+   sp(::create_context) createcontext(canew(create_context(commandcentral)));
    createcontext->m_spApplicationBias = pbiasCreate;
    createcontext->m_spCommandLine->_001ParseCommandLine(pszCommandLine);
    commandcentral->consolidate(createcontext);
@@ -25,7 +25,7 @@ void request_interface::add_line(const char * pszCommandLine, application_bias *
 void request_interface::add_line_uri(const char * pszCommandLine, application_bias * pbiasCreate)
 {
    sp(command_thread) commandcentral = get_app()->command_central();
-   sp(create_context) createcontext(canew(create_context(commandcentral)));
+   sp(::create_context) createcontext(canew(create_context(commandcentral)));
    createcontext->m_spApplicationBias = pbiasCreate;
    createcontext->m_spCommandLine->_001ParseCommandLineUri(pszCommandLine);
    commandcentral->consolidate(createcontext);
@@ -36,7 +36,7 @@ void request_interface::add_line_uri(const char * pszCommandLine, application_bi
 void request_interface::add_fork(const char * pszCommandFork, application_bias * pbiasCreate)
 {
    sp(command_thread) commandcentral = get_app()->command_central();
-   sp(create_context) createcontext(canew(create_context(commandcentral)));
+   sp(::create_context) createcontext(canew(create_context(commandcentral)));
    createcontext->m_spApplicationBias = pbiasCreate;
    createcontext->m_spCommandLine->_001ParseCommandFork(pszCommandFork);
    commandcentral->consolidate(createcontext);
@@ -47,7 +47,7 @@ void request_interface::add_fork(const char * pszCommandFork, application_bias *
 void request_interface::add_fork_uri(const char * pszCommandFork, application_bias * pbiasCreate)
 {
    sp(command_thread) commandcentral = get_app()->command_central();
-   sp(create_context) createcontext(canew(create_context(commandcentral)));
+   sp(::create_context) createcontext(canew(create_context(commandcentral)));
    createcontext->m_spApplicationBias = pbiasCreate;
    createcontext->m_spCommandLine->_001ParseCommandForkUri(pszCommandFork);
    commandcentral->consolidate(createcontext);
@@ -59,7 +59,7 @@ void request_interface::request_file(var & varFile)
 {
 
    sp(command_thread) commandcentral = get_app()->command_central();
-   sp(create_context) createcontext(canew(create_context(commandcentral)));
+   sp(::create_context) createcontext(canew(create_context(commandcentral)));
 
    createcontext->m_spCommandLine->m_varFile              = varFile;
 
@@ -73,7 +73,7 @@ void request_interface::request_file_query(var & varFile, var & varQuery)
 {
 
    sp(command_thread) commandcentral = get_app()->command_central();
-   sp(create_context) createcontext(canew(create_context(commandcentral)));
+   sp(::create_context) createcontext(canew(create_context(commandcentral)));
 
    createcontext->m_spCommandLine->m_varFile              = varFile;
    createcontext->m_spCommandLine->m_varQuery             = varQuery;
@@ -93,7 +93,7 @@ void request_interface::request_command(sp(command_line) pcommandline)
 {
 
    sp(command_thread) commandcentral = get_app()->command_central();
-   sp(create_context) createcontext(canew(create_context(commandcentral)));
+   sp(::create_context) createcontext(canew(create_context(commandcentral)));
 
    createcontext->m_spCommandLine = pcommandline;
 
@@ -101,12 +101,12 @@ void request_interface::request_command(sp(command_line) pcommandline)
 
 }
 
-void request_interface::request_create(sp(create_context) pcreatecontext)
+void request_interface::request_create(sp(::create_context) pcreatecontext)
 {
    on_request(pcreatecontext);
 }
 
-void request_interface::on_request(sp(create_context) pcreatecontext)
+void request_interface::on_request(sp(::create_context) pcreatecontext)
 {
    UNREFERENCED_PARAMETER(pcreatecontext);
 }

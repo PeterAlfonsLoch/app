@@ -14,7 +14,7 @@ FileManagerChildFrame::~FileManagerChildFrame()
 {
 }
 
-void FileManagerChildFrame::install_message_handling(message::dispatch * pinterface)
+void FileManagerChildFrame::install_message_handling(::message::dispatch * pinterface)
 {
    simple_child_frame::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(application::APPM_LANGUAGE, pinterface, this, &FileManagerChildFrame::_001OnAppLanguage);

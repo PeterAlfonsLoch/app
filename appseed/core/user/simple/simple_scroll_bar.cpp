@@ -24,7 +24,7 @@ simple_scroll_bar::~simple_scroll_bar()
 }
 
 
-void simple_scroll_bar::install_message_handling(message::dispatch * pinterface)
+void simple_scroll_bar::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::interaction::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &simple_scroll_bar::_001OnMouseMove);
@@ -38,7 +38,7 @@ void simple_scroll_bar::install_message_handling(message::dispatch * pinterface)
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &simple_scroll_bar::_001OnDestroy);
 }
 
-bool simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, UINT nID, sp(create_context) pContext)
+bool simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, UINT nID, sp(::create_context) pContext)
 {
    return ::user::interaction::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }

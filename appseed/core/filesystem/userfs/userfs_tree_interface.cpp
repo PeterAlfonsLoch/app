@@ -113,7 +113,7 @@ namespace userfs
 
          pitemChild = canew(::userfs::tree_item_data);
 
-         pitemChild->m_pdata = ::core::tree::get_data();
+         pitemChild->m_pdata = ::data::tree::get_data();
 
          pitemChild->m_strPath = straPath[i];
 
@@ -339,19 +339,19 @@ namespace userfs
 
       //spfile->open(szPath, ::file::mode_read | ::file::type_binary);
 
-      /*array < ::::file::memory_buffer, ::::file::memory_buffer & > filea;
+      /*array < ::file::memory_buffer, ::file::memory_buffer & > filea;
       _vmszipFile zipfile;
 
       zipfile.m_pfile = &file;
 
       unzFile pf = _vmszipApi::unzipOpen(&zipfile);
 
-      array < ::::file::memory_buffer, ::::file::memory_buffer & > filea;
+      array < ::file::memory_buffer, ::file::memory_buffer & > filea;
       int32_t iStart = 0;
       int32_t iFind;
       while((iFind  = wstrExtra.find(L".zip:", iStart)) >= 0)
       {
-      filea.add(::::file::memory_buffer());
+      filea.add(::file::memory_buffer());
       pf->dump(filea.last_element(), wstrExtra.Mid(iStart + 5, iFind - iStart + 5));
       iStart = iFind + 1;
       }*/
@@ -529,7 +529,7 @@ namespace userfs
       _017Browse(get_document()->m_strFolder);
    }
 
-   void tree_interface::install_message_handling(message::dispatch *pinterface)
+   void tree_interface::install_message_handling(::message::dispatch *pinterface)
    {
       ::user::tree::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree_interface::_001OnTimer);
@@ -783,7 +783,7 @@ namespace userfs
 
    sp(::userfs::tree_data) tree_interface::get_fs_tree_data()
    {
-      return ::core::tree::get_tree_data();
+      return ::data::tree::get_tree_data();
    }
 
 

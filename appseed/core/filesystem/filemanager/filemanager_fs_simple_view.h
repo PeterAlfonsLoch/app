@@ -19,11 +19,11 @@ namespace filemanager
          public:
             tree_view * m_ptree;
             sp(list_view) m_plist;
-            ::core::request_interface * m_prequestinterface;
+            request_interface * m_prequestinterface;
 
             view(sp(base_application) papp);
 
-            void install_message_handling(message::dispatch * pinterface);
+            void install_message_handling(::message::dispatch * pinterface);
 
             void open_file(int64_t iFolder, const char * lpszFileName, const char * pszExt);
             void open_folder(int64_t iFolder);
@@ -31,7 +31,7 @@ namespace filemanager
             void start_root();
             void CreateViews();
 
-            void set_request_interface(::core::request_interface * prequestinterface);
+            void set_request_interface(request_interface * prequestinterface);
 
             virtual ~view();
          #ifdef DEBUG

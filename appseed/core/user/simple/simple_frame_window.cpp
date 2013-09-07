@@ -47,7 +47,7 @@ simple_frame_window::~simple_frame_window()
 /////////////////////////////////////////////////////////////////////////////
 // simple_frame_window message handlers
 
-void simple_frame_window::install_message_handling(message::dispatch * pinterface)
+void simple_frame_window::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::frame_window::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE         , pinterface, this, &simple_frame_window::_001OnCreate);
@@ -157,7 +157,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
    if(m_bAutoWindowFrame)
    {
 #ifdef METROWIN
-      m_bWindowFrame = get_parent() == NULL || dynamic_cast < ::core::window * > (get_parent()->m_pimpl.m_p) != NULL;
+      m_bWindowFrame = get_parent() == NULL || dynamic_cast < ::user::window * > (get_parent()->m_pimpl.m_p) != NULL;
 #else
       m_bWindowFrame = get_parent() == NULL;
 #endif
@@ -330,7 +330,7 @@ void simple_frame_window::_001OnMove(signal_details * pobj)
 
 }
 
-bool simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, sp(create_context) pContext)
+bool simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, sp(::create_context) pContext)
 {
 // trans   HICON hicon = GetIcon(false);
    return ::user::frame_window::OnCreateClient(lpcs, pContext);
@@ -702,7 +702,7 @@ void simple_frame_window::_001OnNcActivate(signal_details * pobj)
    if (m_nFlags & WF_STAYACTIVE)
       pncactivate->m_bActive = TRUE;
 
-   // but do not stay active if the ::core::window is disabled
+   // but do not stay active if the ::user::window is disabled
    if (!IsWindowEnabled())
       pncactivate->m_bActive = FALSE;
 
@@ -725,7 +725,7 @@ void simple_frame_window::_001OnNcActivate(signal_details * pobj)
 
 
 
-bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle, sp(::user::interaction) pParentWnd, sp(create_context) pContext)
+bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle, sp(::user::interaction) pParentWnd, sp(::create_context) pContext)
 {
 
    UNREFERENCED_PARAMETER(pParentWnd);
@@ -1105,7 +1105,7 @@ bool simple_frame_window::create(const char * lpszClassName,
          sp(::user::interaction) pParentWnd,        // != NULL for popups
          const char * lpszMenuName,
          uint32_t dwExStyle,
-         sp(create_context) pContext)
+         sp(::create_context) pContext)
 {
    return ::user::frame_window::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pContext);
 }

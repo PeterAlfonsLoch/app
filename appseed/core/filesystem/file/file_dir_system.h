@@ -87,7 +87,7 @@ namespace file
          virtual ~system();
 
 
-         virtual class ::core::path & path();
+         virtual class ::file::path & path();
 
 
          virtual string path(const string & strFolder, const string & strRelative, bool bUrl);

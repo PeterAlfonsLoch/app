@@ -6,14 +6,14 @@ namespace fs
 
 
    class CLASS_DECL_ca2 fs :
-      virtual public ::departament
+      virtual public ::base_departament
    {
    public:
 
 
 
 
-      fs(application * papp);
+      fs(base_application * papp);
       virtual ~fs();
 
       bool initialize();

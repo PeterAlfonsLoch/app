@@ -1108,7 +1108,7 @@ void XfplayerViewLine::SetAnimateIncrement(double dIncrement)
   //  m_iRedrawMode = iMode;
 //}
 
-//void XfplayerViewLine::SetRenderWindow(sp(::core::window)pWnd)
+//void XfplayerViewLine::SetRenderWindow(sp(::user::window)pWnd)
 //{
   //  m_pRenderWnd = pWnd;
 //}

@@ -62,7 +62,7 @@ namespace zip
       virtual bool zip_open(const char *,UINT);
       virtual bool zip_open(File * pzfile, const char * lpcszFileName);
 
-      virtual bool unzip_open(::file::buffer_sp pfile);
+      virtual bool unzip_open(::file::buffer_sp  pfile);
       virtual bool unzip_open(const char *,UINT);
       virtual bool unzip_open(File * pzfile, const char * lpcszFileName);
 
@@ -70,9 +70,9 @@ namespace zip
 
       virtual void add_file(const char * pszDir, const char * pszRelative);
 
-      bool dump(::file::buffer_sp pfile);
+      bool dump(::file::buffer_sp  pfile);
 
-      virtual ::file::buffer_sp Duplicate() const;
+      virtual ::file::buffer_sp  Duplicate() const;
 
       File * get_zip_file();
       const File * get_zip_file() const;

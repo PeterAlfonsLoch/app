@@ -17,7 +17,7 @@ namespace http
        * Input is read from stdin. Number of characters to read
        * can be found in the environment var CONTENT_LENGTH.
       */
-      void parse_body(::http::memory_buffer *, const char * pszContentType, size_t content_length);
+      void parse_body(::file::input_stream *, const char * pszContentType, size_t content_length);
       /**
        * Another constructor (used in GET operations).
        * Input is read from the environment var QUERY_STRING.
@@ -33,9 +33,9 @@ namespace http
       void strcpyval(string &,const char *) const;
 
       /* get value */
-      ::core::relation_set & get();
-      ::core::relation_set & post();
-      ::core::relation_set & request();
+      relation_set & get();
+      relation_set & post();
+      relation_set & request();
 
       string & boundary();
 
@@ -44,25 +44,25 @@ namespace http
       form(const form& ) {}
       form& operator=(const form& ) { return *this; }
    protected:
-      ::core::relation_set m_setGet;
-      ::core::relation_set m_setPost;
-      ::core::relation_set m_setRequest;
+      relation_set m_setGet;
+      relation_set m_setPost;
+      relation_set m_setRequest;
       string m_strBoundary;
       bool m_bRaw;
    };
 
 
-   inline ::core::relation_set & form::get()
+   inline relation_set & form::get()
    {
       return m_setGet;
    }
 
-   inline ::core::relation_set & form::post()
+   inline relation_set & form::post()
    {
       return m_setPost;
    }
 
-   inline ::core::relation_set & form::request()
+   inline relation_set & form::request()
    {
       return m_setRequest;
    }

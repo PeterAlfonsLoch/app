@@ -42,7 +42,7 @@ namespace user
    {
    }
 
-   void menu_list_window::install_message_handling(message::dispatch * pinterface)
+   void menu_list_window::install_message_handling(::message::dispatch * pinterface)
    {
       control::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &menu_list_window::_001OnCreate);

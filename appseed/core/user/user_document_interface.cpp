@@ -6,7 +6,7 @@ namespace user
 
 
    document_interface::document_interface() :
-      ::core::data_container_base(NULL),
+      ::data::data_container_base(NULL),
       m_mutex(NULL)
    {
       m_pdocumentemplate      = NULL;
@@ -588,7 +588,7 @@ namespace user
          TRACE(::core::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
 #endif
 
-      ::core::byte_stream spfile;
+      ::file::byte_stream spfile;
 
       try
       {
@@ -642,7 +642,7 @@ namespace user
    bool document_interface::on_save_document(var varFile)
    {
 
-      ::core::byte_stream spfile;
+      ::file::byte_stream spfile;
 
       try
       {
@@ -665,7 +665,7 @@ namespace user
 
          wait_cursor wait(get_app());
 
-         if(varFile["xmledit"].element < ::::file::memory_buffer > () != NULL)
+         if(varFile["xmledit"].element < ::file::memory_buffer > () != NULL)
          {
 
          }

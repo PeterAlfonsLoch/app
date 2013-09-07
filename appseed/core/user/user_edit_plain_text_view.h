@@ -15,7 +15,7 @@ namespace user
       
       edit_plain_text_view(sp(base_application) papp);
 
-      virtual void install_message_handling(message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
       virtual void _001OnSetText();
       virtual void _001OnUpdate();

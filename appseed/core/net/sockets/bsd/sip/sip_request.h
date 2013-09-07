@@ -29,13 +29,13 @@ namespace sip
 
       http::form & form();
 
-      http::memory_buffer & file() { return m_file; }
+      file::memory_buffer & file() { return m_file; }
 
       virtual void clear();
 
    private:
       string m_null;
-      http::memory_buffer m_file;
+      file::memory_buffer m_file;
       http::form m_form;
       
 

@@ -33,7 +33,7 @@ void FileManagerTabView::dump(dump_context & dumpcontext) const
 #endif //DEBUG
 
 
-void FileManagerTabView::install_message_handling(message::dispatch * pinterface)
+void FileManagerTabView::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::tab_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &FileManagerTabView::_001OnCreate);
@@ -56,7 +56,7 @@ void FileManagerTabView::on_update(sp(::user::view) pSender, LPARAM lHint, objec
          {
             string str;
             str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-            sp(FileManagerFrame) pframe = ((sp(::core::window)) GetParentFrame());
+            sp(FileManagerFrame) pframe = ((sp(::user::window)) GetParentFrame());
             if(pframe != NULL)
             {
                pframe->m_dataid = str;
@@ -100,7 +100,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
    if(pcreatordata->m_id == "add_location"
       || pcreatordata->m_id == "replace_name")
    {
-      sp(create_context) createcontext(allocer());
+      sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = pcreatordata->m_pholder;
       sp(file_manager_form_document) pdoc = Application.filemanager().m_ptemplateForm->open_document_file(createcontext);
@@ -135,7 +135,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
    }
    else if(pcreatordata->m_id == 200000)
    {
-      sp(create_context) createcontext(allocer());
+      sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = this;
       //throw not_implemented(get_app());
@@ -151,7 +151,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
    }
    else
    {
-      sp(create_context) createcontext(allocer());
+      sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = true;
       createcontext->m_puiParent = pcreatordata->m_pholder;
       sp(::filemanager::document) pdoc =  (Application.filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));

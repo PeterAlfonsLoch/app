@@ -34,7 +34,7 @@ html_view::~html_view()
 {
 }
 
-void html_view::install_message_handling(message::dispatch * pinterface)
+void html_view::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::view::install_message_handling(pinterface);
 

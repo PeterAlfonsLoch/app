@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 list_data :
-      public ::data
+      public ::data::data
    {
    public:
 

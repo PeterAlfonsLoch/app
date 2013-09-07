@@ -42,12 +42,12 @@ element::~element()
 }
 
 
-sp(base_application) element::get_app() const
+/*sp(base_application) element::get_app() const
 {
 
    return m_papp;
 
-}
+}*/
 
 
 void element::set_app(sp(base_application) papp)

@@ -32,7 +32,7 @@ namespace plugin
       host_interaction(sp(base_application) papp);
       virtual ~host_interaction();
 
-      void install_message_handling(message::dispatch * pmessage);
+      void install_message_handling(::message::dispatch * pmessage);
 
       virtual void _000OnDraw(::draw2d::graphics * pgraphics);
 

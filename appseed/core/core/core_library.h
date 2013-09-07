@@ -73,7 +73,7 @@ namespace core
 
 
       // impl
-      virtual sp(base_application) get_new_app(const char * pszId);
+      virtual sp(::application) get_new_app(const char * pszId);
       virtual void get_app_list(stringa & stra);
 
 
@@ -108,7 +108,7 @@ namespace core
       single_application_library(const char * pszRoot) : ::core::library(pszRoot) {}
 
       // impl
-      virtual sp(base_application) get_new_app(const char * pszAppId);
+      virtual sp(::application) get_new_app(const char * pszAppId);
 
 
    };

@@ -261,7 +261,7 @@ namespace sockets
             m_response.m_propertysetHeader.set(__id(content_encoding), "gzip");
 
 
-            ::::file::memory_buffer file(get_app());
+            ::file::memory_buffer file(get_app());
 
             gzip gz(&file);
 

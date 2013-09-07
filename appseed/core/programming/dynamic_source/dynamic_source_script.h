@@ -20,7 +20,7 @@ namespace dynamic_source
       sp(script_manager)                        m_pmanager;
       string                                    m_strName;
       mutex                                     m_mutex;
-      http::memory_buffer                         m_memfileError;
+      file::memory_buffer                         m_memfileError;
 
       spa(script_instance)                      m_scriptinstanceptra;
 
@@ -94,7 +94,7 @@ namespace dynamic_source
       string get_stage_path();
 
 
-      application * get_app() const;
+      ///base_application * get_app() const;
 
       script_instance * create_instance();
 

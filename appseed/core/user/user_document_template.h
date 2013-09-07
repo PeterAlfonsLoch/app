@@ -32,7 +32,7 @@ namespace user
 
       enum DocStringIndex
       {
-         windowTitle,        // default ::core::window title
+         windowTitle,        // default ::user::window title
          docName,            // ::fontopus::user visible name for default ::user::document_interface
          fileNewName,        // ::fontopus::user visible name for FileNew
          // for file based documents:
@@ -98,18 +98,18 @@ namespace user
       virtual void remove_document(sp(::user::document_interface) pDoc);   // must override
 
       virtual bool GetDocString(string & rString, enum DocStringIndex index) const; // get one of the info strings
-      //sp(::user::frame_window) CreateOleFrame(sp(::core::window) pParentWnd, sp(::user::document_interface) pDoc,
+      //sp(::user::frame_window) CreateOleFrame(sp(::user::window) pParentWnd, sp(::user::document_interface) pDoc,
       //   bool bCreateView);
 
       void update_all_views(sp(::user::view) pviewSender, LPARAM lhint, object * puh);
 
       virtual Confidence MatchDocType(const char * lpszPathName, sp(::user::document_interface)& rpDocMatch);
       virtual sp(::user::document_interface) create_new_document();
-      virtual sp(::user::frame_window) create_new_frame(sp(::user::document_interface) pDoc, sp(::user::frame_window) pOther, sp(create_context) pcreatecontext);
+      virtual sp(::user::frame_window) create_new_frame(sp(::user::document_interface) pDoc, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext);
       virtual void InitialUpdateFrame(sp(::user::frame_window) pFrame, sp(::user::document_interface) pDoc, bool bMakeVisible = TRUE);
       virtual bool save_all_modified();     // for all documents
       virtual void close_all_documents(bool bEndSession);
-      virtual void request_create(sp(create_context) pcreatecontext) = 0;
+      virtual void request_create(sp(::create_context) pcreatecontext) = 0;
       // open named file
       // if lpszPathName == NULL => create new file with this type
       virtual void set_default_title(sp(::user::document_interface) pdocument) = 0;

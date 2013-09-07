@@ -1,41 +1,44 @@
 #pragma once
 
-namespace core
+
+namespace math
 {
-   namespace math
+
+   // {
+   // http://www.alhem.net/
+   /** from C++ Sockets Library \file Utility.h
+   **   \date  2004-02-13
+   **   \author grymse@alhem.net
+   **/
+   /** Conversion utilities. 
+   \ingroup util */
+   /**
+   The Mersenne Twister
+   http://www.math.keio.ac.jp/~matumoto/emt.html
+   */
+   class CLASS_DECL_ca2 rng
    {
+   public:
+      rng();
 
-// {
-      // http://www.alhem.net/
-      /** from C++ Sockets Library \file Utility.h
-       **   \date  2004-02-13
-       **   \author grymse@alhem.net
-      **/
-      /** Conversion utilities. 
-         \ingroup util */
-         /**
-            The Mersenne Twister
-            http://www.math.keio.ac.jp/~matumoto/emt.html
-         */
-         class CLASS_DECL_ca2 rng
-         {
-         public:
-            rng();
+      void seed(int32_t iTwistLen, uint32_t seed);
+      uint32_t get();
 
-            void seed(int32_t iTwistLen, uint32_t seed);
-            uint32_t get();
+   private:
+      int32_t m_value;
+      uint32_array m_uinta;
+   };
 
-         private:
-            int32_t m_value;
-            uint32_array m_uinta;
-         };
-   
-      // http://www.alhem.net/
-      /** from C++ Sockets Library \file Utility.h
-       **   \date  2004-02-13
-       **   \author grymse@alhem.net
-       **/ 
-      // }
+   // http://www.alhem.net/
+   /** from C++ Sockets Library \file Utility.h
+   **   \date  2004-02-13
+   **   \author grymse@alhem.net
+   **/ 
+   // }
 
-   } //namespace math
-} //namespace core
+
+} //namespace math
+
+
+
+

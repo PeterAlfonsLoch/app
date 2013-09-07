@@ -13,7 +13,7 @@ namespace core
    public:
 
 
-      sp(base_application)     m_papp;
+      sp(base_application)     m_pcaapp;
       const char * const      m_pszFileName;
       const int32_t               m_nLineNo;
       string                  m_str;
@@ -34,18 +34,18 @@ namespace core
 #endif
 
       trace_add_file_and_line(sp(base_application) papp, const char *pszFileName, int32_t nLineNo)
-         : m_papp(papp), m_pszFileName(pszFileName), m_nLineNo(nLineNo)
+         : m_pcaapp(papp), m_pszFileName(pszFileName), m_nLineNo(nLineNo)
       {
       }
 
       inline sp(base_application) get_app() const
       {
-         return m_papp;
+         return m_pcaapp;
       }
 
       inline sp(base_application) get_app()
       {
-         return m_papp;
+         return m_pcaapp;
       }
 
 #ifdef WINDOWS

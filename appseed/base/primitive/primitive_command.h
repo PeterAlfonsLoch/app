@@ -13,7 +13,7 @@ public:
    virtual var run();
 
 
-   virtual void on_request(sp(create_context) pcreationcontext);
+   virtual void on_request(sp(::create_context) pcreationcontext);
 
 
    virtual string get_description();

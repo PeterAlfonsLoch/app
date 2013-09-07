@@ -6,13 +6,13 @@ namespace fs
 
 
    class CLASS_DECL_ca2 remote_native_file : 
-      virtual public ::sockets::http::batch_file
+      virtual public ::sockets::http_batch_buffer
    {
    public:
 
 
-      smart_pointer < sockets::http::file >  m_httpfile;
-      ::::file::memory_buffer                             m_memfile;
+      smart_pointer < ::sockets::http_buffer >  m_httpfile;
+      ::file::memory_buffer                             m_memfile;
       var                                          m_varFile;
 
 

@@ -19,7 +19,7 @@ public:
 
    void SetBlend(double dBlend);
    index FindLine(XfplayerViewLine * pline);
-   void SetRenderWindow(sp(::core::window) pWnd);
+   void SetRenderWindow(sp(::user::window) pWnd);
    void SetEffect(int32_t iEffect);
    void set_user_interaction(sp(::user::interaction) pinteraction);
    void Prepare(XfplayerViewLine * lpViewLine);
@@ -31,7 +31,7 @@ public:
 
    user::e_line_hit hit_test(POINT &ptCursor, strsize &iLine, strsize &iChar);
 
-   void InstallMessageHandling(message::dispatch *pinterface);
+   void InstallMessageHandling(::message::dispatch *pinterface);
 
    virtual ~XfplayerViewLines();
 

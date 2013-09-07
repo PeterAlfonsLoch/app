@@ -15,7 +15,7 @@ namespace user
    {
    }
 
-   void split_view::install_message_handling(message::dispatch * pinterface)
+   void split_view::install_message_handling(::message::dispatch * pinterface)
    {
       view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &split_view::_001OnSize);

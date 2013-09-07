@@ -253,7 +253,7 @@ namespace simpledb
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ::file::seek_begin);
                primitive::memory_size uiRead;
-               ::::file::memory_buffer memfile(get_app());
+               ::file::memory_buffer memfile(get_app());
                primitive::memory_position iPos = iStart;
                if(iEnd >= iStart)
                {
@@ -306,7 +306,7 @@ namespace simpledb
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ::file::seek_begin);
                primitive::memory_size uiRead;
-               ::::file::memory_buffer memfile(get_app());
+               ::file::memory_buffer memfile(get_app());
                primitive::memory_position iPos = iStart;
                if(iEnd >= iStart)
                {

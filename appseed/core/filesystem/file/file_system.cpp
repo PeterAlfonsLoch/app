@@ -344,7 +344,7 @@ namespace core
             {
                if(!exists(strFilePath, papp))
                   return "";
-               ::::file::memory_buffer memfile(papp, &storage);
+               ::file::memory_buffer memfile(papp, &storage);
                zip::InFile infile(get_app());
                if(!infile.unzip_open(strFilePath, 0))
                   return "";
@@ -770,7 +770,7 @@ namespace core
             bool bOutputFail = false;
             bool bInputFail = false;
             bool bStatusFail = false;
-            ::core::file_status st;
+            ::file::file_status st;
 
             try
             {
@@ -1499,7 +1499,7 @@ namespace core
       }
    }
 
-   void file_system::write_n_number(::file::buffer_sp pfile, ::crypto::md5::context * pctx, int64_t iNumber)
+   void file_system::write_n_number(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, int64_t iNumber)
    {
 
       string str;
@@ -1517,7 +1517,7 @@ namespace core
 
    }
 
-   void file_system::read_n_number(::file::buffer_sp pfile, ::crypto::md5::context * pctx, int64_t & iNumber)
+   void file_system::read_n_number(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, int64_t & iNumber)
    {
 
       uint64_t uiRead;
@@ -1553,7 +1553,7 @@ namespace core
 
    }
 
-   void file_system::write_gen_string(::file::buffer_sp pfile, ::crypto::md5::context * pctx, string & str)
+   void file_system::write_gen_string(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, string & str)
    {
       ::count iLen = str.get_length();
       write_n_number(pfile, pctx, iLen);
@@ -1564,7 +1564,7 @@ namespace core
       }
    }
 
-   void file_system::read_gen_string(::file::buffer_sp pfile, ::crypto::md5::context * pctx, string & str)
+   void file_system::read_gen_string(::file::buffer_sp  pfile, ::crypto::md5::context * pctx, string & str)
    {
       int64_t iLen;
       read_n_number(pfile, pctx, iLen);

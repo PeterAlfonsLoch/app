@@ -31,7 +31,7 @@ namespace user
       colorertake5::base_editor(papp),
       m_fastblur(allocer()),
       m_dibBk(allocer()),
-      ::core::tree(papp),
+      ::data::tree(papp),
       ::core::data_listener(papp),
       m_keymessageLast(papp)
    {
@@ -72,7 +72,7 @@ namespace user
       }
    }
 
-   void edit_plain_text::install_message_handling(message::dispatch * pinterface)
+   void edit_plain_text::install_message_handling(::message::dispatch * pinterface)
    {
       scroll_view::install_message_handling(pinterface);
    /*   IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &edit_plain_text::_001OnDestroy);
@@ -196,7 +196,7 @@ namespace user
       crBkSel     = ARGB(255, 0, 0, 127);
       crSel       = ARGB(255, 255, 255, 255);
 
-      ::core::job * pjob = pdc->m_pjob;
+      ::job * pjob = pdc->m_pjob;
 
       ::user::print_job * pprintjob = NULL;
       if(pjob!= NULL)
@@ -518,7 +518,7 @@ namespace user
       m_pdata->m_ptreeitem          = get_base_item();
 
       pcreate->previous();
-      m_pdata->m_pfile = new ::::file::memory_buffer(get_app());
+      m_pdata->m_pfile = new ::file::memory_buffer(get_app());
       if(m_bColorerTake5)
       {
          colorertake5::base_editor::initialize(&m_lines);
@@ -577,13 +577,13 @@ namespace user
       {
          //::user::menu* pPopup = (::user::menu_item *) menu.GetSubMenu(0);
          //ASSERT(pPopup != NULL);
-         sp(::user::frame_window) pframe = (sp(::user::frame_window)) (sp(::core::window)) GetParentFrame();
+         sp(::user::frame_window) pframe = (sp(::user::frame_window)) (sp(::user::window)) GetParentFrame();
          //pPopup->TrackPopupMenu(
            // point.x, point.y,
-            //(sp(::core::window)) pframe);
+            //(sp(::user::window)) pframe);
          menu.TrackPopupMenu(
             point.x, point.y,
-            (sp(::core::window)) pframe);
+            (sp(::user::window)) pframe);
       }*/
    }
 
@@ -2236,7 +2236,7 @@ namespace user
 
 
 
-   sp(::core::tree_item_data) edit_plain_text::on_allocate_item()
+   sp(::data::tree_item_data) edit_plain_text::on_allocate_item()
    {
       return new plain_text_data::Command;
    }

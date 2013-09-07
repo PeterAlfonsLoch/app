@@ -1124,6 +1124,15 @@
     <ClInclude Include="primitive\primitive_bit.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="str\str_base64.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_byte_stream_memory_buffer.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_enum.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="android\c_os_internal.c">
@@ -1816,6 +1825,18 @@
     <ClCompile Include="file\file_stream_buffer.cpp">
       <Filter>Source Files\file</Filter>
     </ClCompile>
+    <ClCompile Include="str\str_base64.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_byte_stream_memory_buffer.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="version.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_checked.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -1829,6 +1850,9 @@
     </None>
     <None Include="base.def">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

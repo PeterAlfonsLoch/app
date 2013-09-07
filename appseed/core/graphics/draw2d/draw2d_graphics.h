@@ -15,7 +15,7 @@ namespace draw2d
       ::user::draw_context *        m_pdrawcontext;
       ::draw2d::dib *               m_pdibAlphaBlend;
       point                         m_ptAlphaBlend;
-      ::core::job *                  m_pjob;
+      ::job *                  m_pjob;
 
 
       ::draw2d::dib *               m_pdib;
@@ -234,7 +234,7 @@ namespace draw2d
       virtual int32_t SelectClipRgn(::draw2d::region* pRgn);
       virtual int32_t ExcludeClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual int32_t ExcludeClipRect(LPCRECT lpRect);
-      virtual int32_t ExcludeUpdateRgn(sp(::core::window) pWnd);
+      virtual int32_t ExcludeUpdateRgn(sp(::user::window) pWnd);
       virtual int32_t IntersectClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual int32_t IntersectClipRect(LPCRECT lpRect);
       virtual int32_t OffsetClipRgn(int32_t x, int32_t y);
@@ -560,9 +560,9 @@ namespace draw2d
       virtual bool setFont(::draw2d::font * pfont);
       virtual bool set_font(::draw2d::font * pfont);
 
-      virtual bool create_client_dc(::core::window * pwnd);
-      virtual bool create_window_dc(::core::window * pwnd);
-      virtual bool release_dc(::core::window * pwnd);
+      virtual bool create_client_dc(::user::window * pwnd);
+      virtual bool create_window_dc(::user::window * pwnd);
+      virtual bool release_dc(::user::window * pwnd);
 
    };
 
@@ -603,9 +603,9 @@ namespace draw2d
    {
    public:
 
-      sp(::core::window) m_pwindow;
+      sp(::user::window) m_pwindow;
 
-      window_graphics(sp(::core::window) pwindow);
+      window_graphics(sp(::user::window) pwindow);
       virtual ~window_graphics();
 
    };
@@ -615,12 +615,12 @@ namespace draw2d
    {
    public:
 
-      sp(::core::window)    m_pwindow;
+      sp(::user::window)    m_pwindow;
 #ifdef WINDOWSEX
       PAINTSTRUCT       m_ps;
 #endif
 
-      paint_graphics(sp(::core::window) pwindow);
+      paint_graphics(sp(::user::window) pwindow);
       virtual ~paint_graphics();
 
    };

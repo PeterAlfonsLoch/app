@@ -16,7 +16,7 @@ command_thread::~command_thread()
 var command_thread::run()
 {
    single_lock sl(&m_mutex);
-   sp(create_context) pcreatecontext;
+   sp(::create_context) pcreatecontext;
    sp(command) spcommand;
    while(m_ptra.get_size() > 0)
    {
@@ -85,13 +85,13 @@ var command_thread::run()
    return true;
 }
 
-void command_thread::request_create(sp(create_context) pline)
+void command_thread::request_create(sp(::create_context) pline)
 {
    single_lock sl(&m_mutex, TRUE);
    m_ptra.add(pline);
 }
 
-void command_thread::on_request(sp(create_context) pline)
+void command_thread::on_request(sp(::create_context) pline)
 {
    try
    {
@@ -115,7 +115,7 @@ void command_thread::on_request(sp(create_context) pline)
    }
 }
 
-void command_thread::consolidate(sp(create_context) pcreatecontext)
+void command_thread::consolidate(sp(::create_context) pcreatecontext)
 {
    if(!pcreatecontext->m_spCommandLine->m_varFile.is_empty())
    {

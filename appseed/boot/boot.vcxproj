@@ -1117,7 +1117,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="boot\boot.h" />
     <ClInclude Include="boot\boot_2.h" />
     <ClInclude Include="boot\boot_async.h" />
-    <ClInclude Include="boot\boot_base64.h" />
     <ClInclude Include="boot\boot_cpu_architecture.h" />
     <ClInclude Include="boot\boot_debug.h" />
     <ClInclude Include="boot\boot_file_watcher.h" />
@@ -1433,7 +1432,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="boot\boot_argcargv.cpp" />
-    <ClCompile Include="boot\boot_base64.cpp" />
     <ClCompile Include="boot\boot_cpu_architecture.cpp" />
     <ClCompile Include="boot\boot_debug.cpp" />
     <ClCompile Include="boot\boot_file_watcher.cpp" />
@@ -1450,7 +1448,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="boot\boot_sprintf.cpp" />
     <ClCompile Include="boot\boot_std_file.cpp" />
     <ClCompile Include="boot\boot_url.cpp" />
-    <ClCompile Include="boot\boot_version.cpp" />
     <ClCompile Include="boot\boot_window_graphics.cpp" />
     <ClCompile Include="boot\_initterm.cpp" />
     <ClCompile Include="bsdiff\blocksort.cpp" />

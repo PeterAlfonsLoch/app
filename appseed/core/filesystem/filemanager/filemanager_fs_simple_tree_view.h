@@ -48,12 +48,12 @@ namespace filemanager
             sp(::filemanager::fs::simple::view)    m_pserver;
             FolderArray                            m_foldera; 
             int64_t                                m_iParentFolder;
-            sp(::core::simple_tree_data)             m_spdataFs;
+            sp(::data::simple_tree_data)           m_spdataFs;
 
 
             tree_view(sp(base_application) papp);
 
-            virtual void install_message_handling(message::dispatch * pdispatch);
+            virtual void install_message_handling(::message::dispatch * pdispatch);
 
 
 

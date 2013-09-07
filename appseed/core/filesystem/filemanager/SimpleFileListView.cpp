@@ -48,7 +48,7 @@ namespace filemanager
    {
    }
 
-   void SimpleFileListView::install_message_handling(message::dispatch * pinterface)
+   void SimpleFileListView::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::view::install_message_handling(pinterface);
       SimpleFileListInterface::install_message_handling(pinterface);
@@ -143,7 +143,7 @@ namespace filemanager
                   return;
                //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
                SetTimer(5432185, 230, NULL);
-               //::core::window::SetTimer(5432184, 23, NULL);
+               //::user::window::SetTimer(5432184, 23, NULL);
    // dbbreak            m_pserverNext = simpledb::get(get_app())->GetDataServer();
    //            AddClient(this);
      //          SetDataInterface(&m_datainterface);

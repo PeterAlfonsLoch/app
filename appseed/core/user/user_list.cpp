@@ -102,7 +102,7 @@ namespace user
    }
 
 
-   void list::install_message_handling(message::dispatch * pinterface)
+   void list::install_message_handling(::message::dispatch * pinterface)
    {
 
       ::user::scroll_view::install_message_handling(pinterface);
@@ -722,12 +722,12 @@ namespace user
 
    //cs.style |= LVS_NOSCROLL;
 
-   return ::core::window::pre_create_window(cs);
+   return ::user::window::pre_create_window(cs);
    }*/
 
    /*void list::OnSize(UINT nType, index cx, index cy)
    {
-   ::core::window::OnSize(nType, cx, cy);
+   ::user::window::OnSize(nType, cx, cy);
 
    layout();
    }*/
