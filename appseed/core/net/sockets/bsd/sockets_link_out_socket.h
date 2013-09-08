@@ -33,8 +33,8 @@ namespace sockets
       link_out_socket(socket_handler_base & h);
       virtual ~link_out_socket();
 
-      virtual void OnRead( char *buf, size_t n );
-      void link_write(void * p, size_t size);
+      virtual void on_read(const void * pdata, ::primitive::memory_size n);
+      void link_write(const void * p, ::primitive::memory_size size);
 
 
       void server_to_link_out(httpd_socket * psocket);

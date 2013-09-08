@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-namespace core
+namespace file
 {
 
 
-   transfer_file::transfer_file(sp(base_application) papp, mutex * pmutex) :
+   transfer_stream::transfer_stream(sp(base_application) papp, mutex * pmutex) :
       element(papp)
    {
 
@@ -23,11 +23,10 @@ namespace core
       m_pmemoryfileOut = new ::file::memory_buffer(papp, m_pmemory.m_p);
 
       // (uint64_t) -1 - initially unknown size
-      m_ptimeoutfile = new ::core::timeout_file(papp, m_pmemoryfileOut, (uint64_t) -1);
+      m_ptimeoutfile = new ::file::timeout_buffer(papp, m_pmemoryfileOut, (uint64_t) -1);
       m_ptimeoutfile->m_spmutex = m_spmutex;
 
-      m_spreader = m_ptimeoutfile;
-      m_spwriter = m_ptimeoutfile;
+      m_spbuffer = m_ptimeoutfile;
       m_ptimeoutfile->m_dwSleep = 284;
       m_ptimeoutfile->m_dwTimeOut = 184 * 1000;
 
@@ -35,7 +34,7 @@ namespace core
 
    // it is not currently designed to call open.
    //
-   transfer_file::transfer_file(sp(base_application) papp, ::file::memory_buffer * pmemoryfileIn) :
+   transfer_stream::transfer_stream(sp(base_application) papp, ::file::memory_buffer * pmemoryfileIn) :
       element(papp)
    {
 
@@ -49,28 +48,27 @@ namespace core
 
       m_pmemoryfileOut = new ::file::memory_buffer(papp, m_pmemory.m_p);
 
-      m_ptimeoutfile = new ::core::timeout_file(papp, m_pmemoryfileOut);
+      m_ptimeoutfile = new ::file::timeout_buffer(papp, m_pmemoryfileOut);
       m_ptimeoutfile->m_spmutex = m_spmutex;
 
-      m_spreader = m_ptimeoutfile;
-      m_spwriter = m_ptimeoutfile;
+      m_spbuffer = m_ptimeoutfile;
 
       m_ptimeoutfile->m_dwSleep = 284;
       m_ptimeoutfile->m_dwTimeOut = 184 * 1000;
 
    }
 
-   transfer_file::~transfer_file()
+   transfer_stream::~transfer_stream()
    {
 
    }
 
-   file_position transfer_file::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position transfer_stream::seek(file_offset lOff, ::file::e_seek nFrom)
    {
       return m_ptimeoutfile->seek(lOff, nFrom);
    }
 
-   file_size transfer_file::get_length() const
+   file_size transfer_stream::get_length() const
    {
       return m_ptimeoutfile->get_length();
    }

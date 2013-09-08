@@ -40,11 +40,11 @@ public:
 
 
    signal *                                        m_psignal;
-   base_system *                                   m_pcasystem;
+   base_system *                                   m_pbasesystem;
    string                                          m_strAppName;
    sp(command_thread)                              m_pcommandthread;
    allocatorsp                                     m_allocer;
-   ::plane::application *                          m_pappThis; // can be used only from core and upper
+   ::plane::application *                          m_pplaneapp; // can be used only from core and upper
 
 
 
@@ -79,12 +79,13 @@ public:
 
 
    // Wall-eeeeee aliases
-   sp(command_thread) command_central();
-   sp(command_thread) guideline();
-   sp(command_thread) command();
-   sp(command_thread) directrix();
-   sp(command_thread) axiom();
-   sp(command_thread) creation();
+   sp(::command_thread) command_central();
+   sp(::command_thread) command_thread();
+   sp(::command_thread) guideline();
+   sp(::command_thread) command();
+   sp(::command_thread) directrix();
+   sp(::command_thread) axiom();
+   sp(::command_thread) creation();
 
    //virtual void on_allocation_error(const sp(type) info);
    //virtual sp(element) on_alloc(const sp(type) info);
@@ -98,5 +99,5 @@ public:
 
 inline allocatorsp element::allocer()
 {
-   return m_pcaapp->m_allocer;
+   return m_pbaseapp->m_allocer;
 }

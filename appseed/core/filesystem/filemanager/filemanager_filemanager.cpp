@@ -10,9 +10,9 @@ namespace filemanager
 {
 
 
-   filemanager::filemanager(application * papp) :
+   filemanager::filemanager(base_application * papp) :
       element(papp),
-      ::departament(papp)
+      base_departament(papp)
    {
       m_ptemplateStd       = NULL;
 

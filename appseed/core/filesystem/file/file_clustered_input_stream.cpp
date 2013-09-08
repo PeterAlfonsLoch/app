@@ -3,13 +3,15 @@
 #include "framework.h"
 
 
-namespace core
+namespace file
 {
 
 
    ::primitive::memory_size clustered_input_stream::read(void *data, ::primitive::memory_size size)
    {
+
       ::primitive::memory_size processedSize = 0;
+
       if (_virtPos >= Size)
       {
          if(_virtPos == Size)
@@ -64,5 +66,9 @@ namespace core
       return newVirtPos;
    }
 
-} // namespace core
+
+} // namespace file
+
+
+
 

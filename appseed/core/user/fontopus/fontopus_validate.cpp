@@ -141,9 +141,9 @@ namespace fontopus
       straRequestingServer.add("asia-account.core.cc");
       if(strHost.is_empty())
       {
-         if(::core::get_thread() != NULL && ::core::get_thread()->m_strWorkUrl.has_char())
+         if(::get_thread() != NULL && ::get_thread()->m_strWorkUrl.has_char())
          {
-            strHost = ::core::get_thread()->m_strWorkUrl;
+            strHost = ::get_thread()->m_strWorkUrl;
          }
          else
          {

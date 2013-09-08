@@ -1,64 +1,66 @@
 #include "framework.h"
 
-namespace core
+
+namespace file
 {
 
-   file_set::file_set()
+
+   set::set()
    {
 
    }
 
-   file_set::~file_set()
+   set::~set()
    {
 
    }
 
-   void file_set::add_search(stringa & stra, bool_array & baRecursive)
+   void set::add_search(stringa & stra, bool_array & baRecursive)
    {
       UNREFERENCED_PARAMETER(stra);
       UNREFERENCED_PARAMETER(baRecursive);
    }
 
-   void file_set::add_filter(stringa & stra)
+   void set::add_filter(stringa & stra)
    {
       UNREFERENCED_PARAMETER(stra);
    }
 
-   ::count file_set::get_file_count()
+   ::count set::get_file_count()
    {
       return 0;
    }
 
-   void file_set::file_at(::index i, string & str)
+   void set::file_at(::index i, string & str)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(str);
    }
 
-   ::index file_set::find_first_file(const char * lpcsz, ::index iStart)
+   ::index set::find_first_file(const char * lpcsz, ::index iStart)
    {
       UNREFERENCED_PARAMETER(lpcsz);
       UNREFERENCED_PARAMETER(iStart);
       return -1;
    }
 
-   void file_set::clear_search()
+   void set::clear_search()
    {
    }
 
-   void file_set::clear_filter()
+   void set::clear_filter()
    {
    }
 
-   void file_set::clear_file()
+   void set::clear_file()
    {
    }
 
-   void file_set::refresh()
+   void set::refresh()
    {
    }
 
-   bool file_set::get_next_file(const char * lpcszCurrentFilePath, string & strNextFilePath)
+   bool set::get_next_file(const char * lpcszCurrentFilePath, string & strNextFilePath)
    {
       ::index i = find_first_file(lpcszCurrentFilePath);
       i++;
@@ -73,7 +75,7 @@ namespace core
       }
    }
 
-   string file_set::get_next_file(const char * pszCurrent)
+   string set::get_next_file(const char * pszCurrent)
    {
       string strNextFilePath;
       if(get_next_file(pszCurrent, strNextFilePath))
@@ -87,4 +89,4 @@ namespace core
    }
 
 
-} // namespace core
+} // namespace file

@@ -15,8 +15,8 @@ namespace draw2d
 
    }
 
-   path::path(application * papp) :
-      element(papp)
+   path::path(base_application * papp) :
+      ::element(papp)
    {
 
       m_bUpdated     = false;

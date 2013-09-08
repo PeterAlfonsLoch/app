@@ -7,7 +7,7 @@ namespace uinteraction
 
    uinteraction::uinteraction(application * papp) :
       element(papp),
-      ::departament(papp)
+      base_departament(papp)
    {
 
    }

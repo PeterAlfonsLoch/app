@@ -3,6 +3,9 @@
 //#include <memory>
 #undef HMAC_SHA1
 
+
+namespace hi5
+{
 /*
 100% free public domain implementation of the SHA-1 algorithm
 by Dominik Reichl <dominik.reichl@t-online.de>
@@ -538,9 +541,6 @@ void CSHA1::GetHash(UINT_8 *puDest)
 //}
 //
 
-namespace core
-{
-
  namespace oAuthLibDefaults
    {
        /* Constants */
@@ -1062,7 +1062,7 @@ namespace core
       /* Get url encoded base64 signature using request type, url and parameters */
       getSignature(eType, pureUrl, setSignature, oauthSignature);
 
-      ::core::oAuthKeyValuePairs pairs(get_app());
+      ::hi5::oAuthKeyValuePairs pairs(get_app());
       /* Now, again build key-value pairs with signature this time */
       buildOAuthTokenKeyValuePairs(includeOAuthVerifierPin, pairs, oauthSignature, setHeader);
 

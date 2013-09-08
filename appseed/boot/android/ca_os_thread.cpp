@@ -10,7 +10,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
    if(hthread == NULL || hthread->m_pthread == NULL || hthread->m_pthread->get_x_window_count() <= 0)
       return false;
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    bool bRet = false;
 

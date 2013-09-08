@@ -214,7 +214,7 @@ class var & var::operator ++(int32_t)
    case type_stra:
    case type_inta:
    case type_empty:
-   case type_ca2:
+   case type_element:
       set_type(type_int32);
       m_i32 = 1;
       break;
@@ -600,7 +600,7 @@ class var & var::operator = (const class var & var)
       case type_prop:
          prop()   = ((class var &)var).prop();
          break;
-      case type_ca2:
+      case type_element:
          {
             m_sp = ((class var &)var).m_sp;
          }
@@ -730,7 +730,7 @@ bool var::is_true(bool bDefault) const
       return m_ui32 != 0;
    case type_double:
       return m_d != 0;
-   case type_ca2:
+   case type_element:
       return m_sp.is_set();
    case type_bool:
       return m_b;
@@ -759,7 +759,7 @@ bool var::is_empty() const
       return m_ui32 == 0;
    case type_double:
       return m_d == 0.0;
-   case type_ca2:
+   case type_element:
       return m_sp.is_set();
    case type_pvar:
       return m_pvar->is_empty();
@@ -870,7 +870,7 @@ void var::read(::file::input_stream & is)
          is >> m_id;
       }
       break;
-   case type_ca2:
+   case type_element:
       {
          sp(type) info;
          is >> info;
@@ -939,7 +939,7 @@ void var::write(::file::output_stream & ostream)
    case type_id:
       ostream << m_id;
       break;
-   case type_ca2:
+   case type_element:
       {
          sp(type) info(Sys(ostream.m_spbuffer->get_app()).get_type_info(typeid(*m_sp.m_p)));
          ostream << info;
@@ -1567,7 +1567,7 @@ int32_t var::int32(int32_t iDefault) const
       return (int32_t) m_i64;
    case type_uint64:
       return (int32_t) m_ui64;
-   case type_ca2:
+   case type_element:
       return iDefault;
    case type_pvar:
       return m_pvar->int32(iDefault);
@@ -1604,7 +1604,7 @@ uint32_t var::uint32(uint32_t uiDefault) const
       return m_i32;
    case type_uint32:
       return (uint32_t) m_ui32;
-   case type_ca2:
+   case type_element:
       return uiDefault;
    case type_uint64:
       return (uint32_t) m_ui64;
@@ -1629,7 +1629,7 @@ int64_t var::int64(int64_t iDefault) const
       return m_i32;
    case type_uint32:
       return m_ui32;
-   case type_ca2:
+   case type_element:
       return iDefault;
    case type_pvar:
       return m_pvar->int64(iDefault);
@@ -1653,7 +1653,7 @@ uint64_t var::uint64(uint64_t uiDefault) const
       return m_i32;
    case type_uint32:
       return m_ui32;
-   case type_ca2:
+   case type_element:
       return uiDefault;
    case type_pvar:
       return m_pvar->uint64(uiDefault);
@@ -3081,7 +3081,7 @@ bool var::is_scalar() const
    {
       return prop().get_value().is_scalar();
    }
-   else if(m_etype == type_ca2)
+   else if(m_etype == type_element)
    {
       return false;
    }
@@ -3405,7 +3405,7 @@ bool var::has_property(const char * pszName) const
    {
       return m_pvar->has_property(pszName);
    }
-   else if(get_type() == type_ca2)
+   else if(get_type() == type_element)
    {
       if(element < property_set >() != NULL)
       {
@@ -3588,7 +3588,7 @@ bool var::is_numeric() const
       case type_pvar:
          return m_pvar->is_numeric();
 
-      case type_ca2:
+      case type_element:
          return false;
 
       case type_bool:

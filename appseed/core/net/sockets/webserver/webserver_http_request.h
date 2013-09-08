@@ -16,6 +16,10 @@ namespace http
       string      m_strQueryString;
       string      m_strHttpHost;
       id          m_idHttpMethod;
+      file::memory_buffer              m_memfileBody;
+      ::http::output_stream            m_ostream;
+      string m_null;
+      http::form m_form;
 
 
 
@@ -41,14 +45,11 @@ namespace http
 
       http::form & form();
 
-      ::file::stream_base & file() { return m_file; }
+      ::http::output_stream & ostream()   { return m_ostream; }
+      ::file::stream_buffer & file()      { return m_memfileBody; }
 
       virtual void clear();
 
-   private:
-      string m_null;
-      ::file::stream m_file;
-      http::form m_form;
       
 
    }; // end of class

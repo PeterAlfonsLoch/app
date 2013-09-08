@@ -13,7 +13,7 @@ namespace sockets
    /** socket base class.
    \ingroup basic */
    class CLASS_DECL_ca2 socket :
-      virtual public object
+      virtual public ::file::stream_buffer
    {
    public:
 
@@ -219,7 +219,7 @@ namespace sockets
 
       /** close connection immediately - internal use.
       \sa SetCloseAndDelete */
-      virtual int32_t close();
+      virtual void close();
 
       /** add file descriptor to sockethandler fd_set's. */
       void set(bool bRead,bool bWrite,bool bException = true);
@@ -256,11 +256,20 @@ namespace sockets
       /** get address/port of last connect() call. */
       address GetClientRemoteAddress();
 
-      /** Common interface for SendBuf used by Tcp and Udp sockets. */
-      virtual void SendBuf(const char *, int32_t, int32_t = 0);
+      using ::file::stream_buffer::write;
+
+      /** Common interface for write used by Tcp and Udp sockets. */
+      virtual void write(const void *, primitive::memory_size c);
 
       /** Common interface for Send used by Tcp and Udp sockets. */
-      virtual void Send(const string &, int32_t = 0);
+      /** Send a string.
+      \param s string to send
+      \param f Dummy flags -- not used */
+      virtual void write(const string & s);
+      
+      /** Common interface for Send used by Tcp and Udp sockets. */
+      /** Send string using printf formatting. */
+      virtual void writef(const char *format, ...);
 
       /** Outgoing traffic counter. */
       virtual uint64_t GetBytesSent(bool clear = false);
@@ -298,7 +307,10 @@ namespace sockets
       * line protocol mode. */
       virtual void OnLine(const string & );
 
-      virtual void OnRead(char * buf, size_t len);
+
+      virtual primitive::memory_size read(void * buf, primitive::memory_size c);
+
+      virtual void on_read(const void * buf, primitive::memory_size c);
       virtual void OnRawData(char * buf, size_t len);
 
       /** Called on connect timeout (5s). */

@@ -10,8 +10,9 @@ namespace http
    public:
 
 
-      //Utility::ncmap<string> m_cookie;
-      file::memory_buffer m_memfileBody;
+      //Utility::ncmap<string>         m_cookie;
+      file::memory_buffer              m_memfileBody;
+      ::http::output_stream            m_ostream;
    
 
 
@@ -27,7 +28,8 @@ namespace http
       //string Cookie(const string & name);
       //list<string> CookieNames() const;
 
-      file::memory_buffer & file() { return m_memfileBody; }
+      ::http::output_stream & ostream()   { return m_ostream; }
+      ::file::stream_buffer & file()      { return m_memfileBody; }
 
       /** replace memfile with file on disk, opened for read. */
    //   void SetFile( const string & path );

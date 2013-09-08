@@ -64,7 +64,7 @@ namespace rar
          *resSize = i;
          return S_OK;
       }
-      return ReadStream(m_Stream, data, resSize);
+      return ::file::read(m_Stream, data, resSize);
    }
 
    bool input_file::ReadBytesAndTestSize(void *data, ::primitive::memory_size size)
@@ -103,7 +103,7 @@ namespace rar
       }
       byte buf[header::archive::kArchiveHeaderSize + 1];
 
-      RINOK(ReadStream_FALSE(stream, buf, header::archive::kArchiveHeaderSize));
+      RINOK(::file::read_false(stream, buf, header::archive::kArchiveHeaderSize));
       AddToSeekValue(header::archive::kArchiveHeaderSize);
 
 
@@ -117,7 +117,7 @@ namespace rar
       {
          if (blockSize <= headerSize)
             return S_FALSE;
-         RINOK(ReadStream_FALSE(stream, buf + header::archive::kArchiveHeaderSize, 1));
+         RINOK(::file::read_false(stream, buf + header::archive::kArchiveHeaderSize, 1));
          AddToSeekValue(1);
          _header.EncryptVersion = buf[header::archive::kArchiveHeaderSize];
          headerSize += 1;
@@ -129,7 +129,7 @@ namespace rar
 
       ::primitive::memory_size commentSize = blockSize - headerSize;
       _comment.SetCapacity((size_t) commentSize);
-      RINOK(ReadStream_FALSE(stream, _comment, commentSize));
+      RINOK(::file::read_false(stream, _comment, commentSize));
       AddToSeekValue(commentSize);
       m_Stream = stream;
       _header.StartPosition = arcStartPos;
@@ -384,7 +384,7 @@ namespace rar
             }
             RINOK(m_RarAES->Init());
             ::primitive::memory_size decryptedDataSizeT = kDecryptedBufferSize;
-            RINOK(ReadStream(m_Stream, m_DecryptedDataAligned, &decryptedDataSizeT));
+            RINOK(::file::read(m_Stream, m_DecryptedDataAligned, &decryptedDataSizeT));
             m_DecryptedDataSize = (uint32_t)decryptedDataSizeT;
             m_DecryptedDataSize = m_RarAES->Filter(m_DecryptedDataAligned, (uint32_t) m_DecryptedDataSize);
 
@@ -479,7 +479,7 @@ namespace rar
 
    ::file::reader* input_file::CreateLimitedStream(file_position position, file_size size)
    {
-      ::core::limited_reader *streamSpec = new ::core::limited_reader;
+      ::file::limited_reader *streamSpec = new ::file::limited_reader;
       ::file::reader * inStream = streamSpec;
       SeekInArchive(position);
       streamSpec->SetStream(m_Stream);

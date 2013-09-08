@@ -24,7 +24,7 @@ namespace file
 
    }
 
-   input_stream::input_stream(reader * preader)
+   input_stream::input_stream(sp(reader) preader)
    {
       
       m_spbuffer = preader;      
@@ -241,6 +241,31 @@ namespace file
       return m_spbuffer.is_set();
    }
 
+
+   void input_stream::read_to_hex(string & str, ::primitive::memory_position dwStart, ::primitive::memory_position dwEnd)
+   {
+      primitive::memory memory(get_app());
+      if(dwStart != (::primitive::memory_position) -1)
+      {
+         seek(dwStart);
+      }
+      ::primitive::memory_position uiPos = 0;
+      ::primitive::memory_size uiRead;
+      memory.allocate(1024);
+      strsize nCount = dwEnd - dwStart;
+      while((uiRead = read(&memory.get_data()[uiPos], min(memory.get_size() - uiPos, (::primitive::memory_size) nCount))) > 0)
+      {
+         uiPos += uiRead;
+         nCount -= uiRead;
+         memory.allocate_add_up(1024 * 1024);
+      }
+      memory.allocate((::primitive::memory_size) uiPos);
+      memory.to_hex(str);
+   }
+
+
+
+   
 } // namespace file
 
 

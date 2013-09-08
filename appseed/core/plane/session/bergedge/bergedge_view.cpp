@@ -499,12 +499,12 @@ namespace bergedge
             {
                papp = NULL;
             }
-            //if(papp != NULL && m_papp != NULL && m_papp->m_psession != NULL && (papp) != (m_papp->m_psession))
-            if(papp != NULL && m_papp != NULL && m_papp->m_psession != NULL)
+            //if(papp != NULL && m_papp != NULL && m_pbaseapp->m_pplaneapp->m_psession != NULL && (papp) != (m_pbaseapp->m_pplaneapp->m_psession))
+            if(papp != NULL && m_papp != NULL && m_pbaseapp->m_pplaneapp->m_psession != NULL)
             {
                try
                {
-                  papp->m_ptCursor = Session.m_ptCursor;
+                  papp->m_pplaneapp->m_ptCursor = Session.m_ptCursor;
                }
                catch(...)
                {

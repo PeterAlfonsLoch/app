@@ -315,11 +315,11 @@ public:
       void (T::*pfn)(signal_details *),
       bool bAddUnique = true)
    {
-      signal * psignal = m_signala.GetSignalById(pid);
+      signal_item * psignal = m_signala.GetSignalById(pid);
       // If not found a existing Signal, create one
       if(psignal == NULL)
       {
-         psignal                    = new signal;
+         psignal                    = new signal_item;
          psignal->m_pid             = pid->copy();
          psignal->m_psignal         = new ::signal();
          psignal->m_psignal->connect(psignalizable, pfn);

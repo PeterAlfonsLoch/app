@@ -97,7 +97,7 @@ namespace visual
    {
       string str(lpcsz);
       strsize iLen = str.get_length();
-      sizea.set_size(iLen);
+      sizea.allocate(iLen);
       if(iLen > 0)
       {
          sizea[0] = (uint32_t) 0;
@@ -433,27 +433,27 @@ namespace visual
       int32_t align = 0;
       if(uiFormat & DT_BOTTOM)
       {
-         align |= ::core::AlignBottom;
+         align |= ::AlignBottom;
       }
       else if(uiFormat & DT_VCENTER)
       {
-         align |= ::core::AlignVerticalCenter;
+         align |= ::AlignVerticalCenter;
       }
       else
       {
-         align |= ::core::AlignTop;
+         align |= ::AlignTop;
       }
       if(uiFormat & DT_RIGHT)
       {
-         align |= ::core::AlignRight;
+         align |= ::AlignRight;
       }
       else if(uiFormat & DT_CENTER)
       {
-         align |= ::core::AlignHorizontalCenter;
+         align |= ::AlignHorizontalCenter;
       }
       else
       {
-         align |= ::core::AlignLeft;
+         align |= ::AlignLeft;
       }
 
       rect.Align(align, lpcrect);

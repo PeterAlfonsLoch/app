@@ -46,7 +46,7 @@ namespace zip
             return false;
          }
       }
-      catch(exception * pe)
+      catch(exception::exception * pe)
       {
          pe->Delete();
          return false;
@@ -60,8 +60,8 @@ namespace zip
 
    bool File::unzip_open(::file::binary_buffer_sp pfile)
    {
-      m_pbuffile1 = new ::core::buffered_file(get_app(), pfile, 1024 * 256);
-      m_pbuffile2 = new ::core::buffered_file(get_app(), m_pbuffile1, 1024 * 256);
+      m_pbuffile1 = new ::file::buffered_buffer(get_app(), pfile, 1024 * 256);
+      m_pbuffile2 = new ::file::buffered_buffer(get_app(), m_pbuffile1, 1024 * 256);
       m_pbuffile2->seek_to_begin();
       m_pfile = m_pbuffile2;
       m_filefuncdef.opaque = (voidpf) this;
@@ -75,12 +75,12 @@ namespace zip
       ::file::binary_buffer_sp spfile(allocer());
       try
       {
-         if(!spfile->open(lpcwsz, ::file::binary_buffer::mode_read_write | ::file::type_binary | ::file::binary_buffer::mode_create | ::file::binary_buffer::defer_create_directory))
+         if(!spfile->open(lpcwsz, ::file::mode_read_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory))
          {
             return false;
          }
       }
-      catch(exception * pe)
+      catch(exception::exception * pe)
       {
          pe->Delete();
          return false;
@@ -94,8 +94,8 @@ namespace zip
 
    bool File::zip_open(::file::binary_buffer_sp pfile)
    {
-      m_pbuffile1 = new ::core::buffered_file(get_app(), pfile, 1024 * 256);
-      m_pbuffile2 = new ::core::buffered_file(get_app(), m_pbuffile1, 1024 * 256);
+      m_pbuffile1 = new ::file::buffered_buffer(get_app(), pfile, 1024 * 256);
+      m_pbuffile2 = new ::file::buffered_buffer(get_app(), m_pbuffile1, 1024 * 256);
       m_pbuffile2->seek_to_begin();
       m_pfile = m_pbuffile2;
       m_filefuncdef.opaque = (voidpf) this;

@@ -45,7 +45,7 @@ namespace sockets
       virtual sp(socket) create_listen_socket();
 
       /** close file descriptor. */
-      virtual int32_t close();
+      virtual void close();
 
       /** Bind and listen to any interface.
       \param port Port (0 is random)

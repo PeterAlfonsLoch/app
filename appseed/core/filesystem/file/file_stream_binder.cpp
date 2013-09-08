@@ -1,10 +1,11 @@
 // StreamBinder.cpp
 // from 7-zip on dawn of 13/01/2001 - Thursday
-
 #include "framework.h"
 
-namespace core
+
+namespace file
 {
+
 
    class reader_for_binder:
       public ::file::reader
@@ -154,4 +155,7 @@ namespace core
    }
 
 
-} // namespace core
+} // namespace file
+
+
+

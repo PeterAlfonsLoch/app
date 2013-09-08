@@ -5,6 +5,12 @@ namespace file
 {
 
 
+   class memory_buffer;
+
+   
+   typedef sp(memory_buffer) memory_buffer_sp;
+
+
    class CLASS_DECL_c memory_buffer :
       virtual public ::file::stream_buffer,
       virtual public primitive::memory_container
@@ -54,7 +60,12 @@ namespace file
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
+      virtual void * get_internal_data();
+      virtual ::primitive::memory_size get_internal_data_size();
+      virtual bool set_internal_data_size(::primitive::memory_size c);
 
+
+      virtual void transfer_to(writer & writer);
 
    };
 

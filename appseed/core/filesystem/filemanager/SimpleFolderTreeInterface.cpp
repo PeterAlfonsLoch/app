@@ -100,7 +100,7 @@ namespace filemanager
          if(pitem == NULL)
             break;
 
-         if(!(pitem->m_dwState & ::core::tree_item_state_expanded))
+         if(!(pitem->m_dwState & ::data::tree_item_state_expanded))
          {
             _001ExpandItem(pitem, true, false, false);
          }
@@ -279,17 +279,17 @@ namespace filemanager
             ::data::tree_item  * pitem    = find_item(pitemNew->m_strPath);
             if(pitem == NULL)
             {
-               pitem = insert_item_data(get_fs_tree_data(), pitemNew, ::core::RelativeLastChild, pitemParent);
+               pitem = insert_item_data(get_fs_tree_data(), pitemNew, ::data::RelativeLastChild, pitemParent);
             }
             else
             {
-               pitem = insert_item_data(get_fs_tree_data(), pitemNew, ::core::RelativeReplace, pitem);
+               pitem = insert_item_data(get_fs_tree_data(), pitemNew, ::data::RelativeReplace, pitem);
             }
             str = szPath;
             wstraChildItem.remove_all();
             if(zip::Util().HasSubFolder(get_app(), str))
             {
-               pitem->m_dwState |= ::core::tree_item_state_expandable;
+               pitem->m_dwState |= ::data::tree_item_state_expandable;
             }
             if(iLevel > 1)
             {
@@ -439,7 +439,7 @@ namespace filemanager
          pitem = find_item(pitemChild->m_strPath);
          if(pitem != NULL)
          {
-            //pitem = insert_item(pitemChild, ::core::RelativeReplace, pitem);
+            //pitem = insert_item(pitemChild, ::data::RelativeReplace, pitem);
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
             //pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
@@ -448,12 +448,12 @@ namespace filemanager
          }
          else
          {
-            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::core::RelativeLastChild, pitemBase);
+            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::data::RelativeLastChild, pitemBase);
          }
 
          if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
          {
-            pitem->m_dwState |= ::core::tree_item_state_expandable;
+            pitem->m_dwState |= ::data::tree_item_state_expandable;
          }
 
 
@@ -584,20 +584,20 @@ namespace filemanager
                if(pitem != NULL)
                {
 
-                  pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::core::RelativeReplace, pitem);
+                  pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::data::RelativeReplace, pitem);
 
                }
                else
                {
 
-                  pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::core::RelativeLastChild, pitemParent);
+                  pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::data::RelativeLastChild, pitemParent);
 
                }
 
                if(zip::Util().HasSubFolder(get_app(), pitemChild->m_strPath))
                {
 
-                  pitem->m_dwState |= ::core::tree_item_state_expandable;
+                  pitem->m_dwState |= ::data::tree_item_state_expandable;
 
                }
 
@@ -655,19 +655,19 @@ namespace filemanager
          pitem = find_item(pitemChild->m_strPath);
          if(pitem != NULL)
          {
-            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::core::RelativeReplace, pitem);
+            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::data::RelativeReplace, pitem);
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
             pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
          }
          else
          {
-            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::core::RelativeLastChild, pitemParent);
+            pitem = insert_item_data(get_fs_tree_data(), pitemChild, ::data::RelativeLastChild, pitemParent);
          }
 
          if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
          {
-            pitem->m_dwState |= ::core::tree_item_state_expandable;
+            pitem->m_dwState |= ::data::tree_item_state_expandable;
          }
 
          if(iLevel > 1)
@@ -681,7 +681,7 @@ namespace filemanager
 
       if(iChildCount == 0)
       {
-         pitemParent->m_dwState &= ~::core::tree_item_state_expandable;
+         pitemParent->m_dwState &= ~::data::tree_item_state_expandable;
       }
 
       dwTimeOut = get_tick_count();
@@ -966,7 +966,7 @@ namespace filemanager
 
       _001UpdateImageList(m_pdataitemCreateImageListStep);
 
-      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(::core::TreeNavigationProperForward);
+      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(::data::TreeNavigationProperForward);
 
 
    }

@@ -50,7 +50,7 @@ namespace http
    void response::clear()
    {
       transaction::clear();
-      file().Truncate(0);
+      file().set_length(0);
    //   m_file = smart_pointer<IFile>(new MemFile);
    }
 

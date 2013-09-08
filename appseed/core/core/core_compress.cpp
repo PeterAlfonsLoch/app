@@ -116,7 +116,7 @@ namespace core
 	      }
       }
 
-      memoryfile.FullLoad(memoryfileOut);
+      memoryfile = memoryfileOut;
 
       if (inflateEnd (&strm) != Z_OK || !done)
       {
@@ -139,7 +139,7 @@ namespace core
          fprintf(stderr, "gz fopen error %d %s", err, lpcszUncompressed);
          return false;
       }
-      gzip gz(ostreamCompressed);
+      gzip_stream gz(ostreamCompressed);
       class primitive::memory memory;
       memory.allocate(1024 * 256);
       ::primitive::memory_size uncomprLen;

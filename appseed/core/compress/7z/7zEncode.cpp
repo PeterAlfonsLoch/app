@@ -160,20 +160,20 @@ namespace n7z
       _mixerCoderSpec->ReInit();
       // _mixerCoderSpec->SetCoderInfo(0, NULL, NULL, progress);
 
-      smart_pointer_array < ::core::temp_io_buffer > inOutTempBuffers;
-      smart_pointer_array < ::core::temp_io_writer > tempBufferSpecs;
+      smart_pointer_array < ::file::temp_io_buffer > inOutTempBuffers;
+      smart_pointer_array < ::file::temp_io_writer > tempBufferSpecs;
       smart_pointer_array < ::file::writer > tempBuffers;
       ::count numMethods = _bindInfo.Coders.get_count();
       index i;
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
-         inOutTempBuffers.add(new ::core::temp_io_buffer());
+         inOutTempBuffers.add(new ::file::temp_io_buffer());
          inOutTempBuffers.last_element()->create();
          inOutTempBuffers.last_element()->InitWriting();
       }
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
-         ::core::temp_io_writer *tempBufferSpec = new ::core::temp_io_writer;
+         ::file::temp_io_writer *tempBufferSpec = new ::file::temp_io_writer;
          smart_pointer < ::file::writer > tempBuffer = tempBufferSpec;
          tempBufferSpec->Init(inOutTempBuffers(i - 1));
          tempBuffers.add(tempBuffer);
@@ -205,7 +205,7 @@ namespace n7z
 
       ::libcompress::size_count_reader2 * inStreamSizeCountSpec = new ::libcompress::size_count_reader2;
       sp(::file::reader) inStreamSizeCount = inStreamSizeCountSpec;
-      ::core::size_count_writer * outStreamSizeCountSpec = new ::core::size_count_writer;
+      ::file::size_count_writer * outStreamSizeCountSpec = new ::file::size_count_writer;
       sp(::file::writer) outStreamSizeCount = outStreamSizeCountSpec;
 
       inStreamSizeCountSpec->Init(inStream);
@@ -234,7 +234,7 @@ namespace n7z
          writeCoderProperties = dynamic_cast < ::libcompress::write_coder_properties_interface * >(&_mixerCoderSpec->_coders[i]);
          if (writeCoderProperties != NULL)
          {
-            ::core::dynamic_buffered_writer *outStreamSpec = new ::core::dynamic_buffered_writer;
+            ::file::dynamic_buffered_writer *outStreamSpec = new ::file::dynamic_buffered_writer;
             smart_pointer < ::file::writer > outStream(outStreamSpec);
             outStreamSpec->Init();
             writeCoderProperties->WriteCoderProperties(outStream);
@@ -265,7 +265,7 @@ namespace n7z
 
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
-         ::core::temp_io_buffer &inOutTempBuffer = inOutTempBuffers[i - 1];
+         ::file::temp_io_buffer &inOutTempBuffer = inOutTempBuffers[i - 1];
          RINOK(inOutTempBuffer.write_to_stream(outStream));
          packSizes.add((file_size) inOutTempBuffer.GetDataSize());
       }
@@ -346,7 +346,7 @@ namespace n7z
                   _bindInfo.BindPairs.add(bindPair);
                }
                else
-                  _bindInfo.OutStreams.insert_at(0, numOutStreams);
+                  _bindInfo.OutStreams.inset(0, numOutStreams);
                for (uint32_t j = 1; j < coderStreamsInfo.NumOutStreams; j++)
                   _bindInfo.OutStreams.add(numOutStreams + j);
             }
@@ -396,7 +396,7 @@ namespace n7z
                if (_bindInfo.OutStreams[i] == outIndex)
                {
                   _bindInfo.OutStreams.remove_at(i);
-                  _bindInfo.OutStreams.insert_at(0, outIndex);
+                  _bindInfo.OutStreams.inset(0, outIndex);
                   break;
                }
                break;

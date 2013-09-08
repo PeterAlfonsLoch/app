@@ -161,19 +161,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          /** close file descriptor - internal use only.
          \sa SetCloseAndDelete */
-         int32_t close();
+         void close();
 
-         /** Send a string.
-         \param s string to send
-         \param f Dummy flags -- not used */
-         void Send(const string &s,int32_t f = 0);
-         /** Send string using printf formatting. */
-         void Sendf(const char *format, ...);
          /** Send buffer of bytes.
          \param buf buffer pointer
          \param len Length of data
          \param f Dummy flags -- not used */
-         void SendBuf(const char *buf, int32_t len, int32_t f = 0);
+         using ::sockets::socket::write;
+         void write(const void *buf, ::primitive::memory_size c);
          /** This callback is executed after a successful read from the socket.
          \param buf Pointer to the data
          \param len Length of the data */
@@ -247,7 +242,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          tcp_socket(const tcp_socket& );
          void OnRead();
-         virtual void OnRead( char *buf, size_t n );
+         virtual primitive::memory_size read(void * buf, ::primitive::memory_size n);
+         virtual primitive::memory_size recv(void * buf, ::primitive::memory_size n);
+         virtual void on_read(const void * buf, ::primitive::memory_size n );
          void OnWrite();
 
 

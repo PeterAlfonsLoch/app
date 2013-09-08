@@ -13,7 +13,8 @@ namespace file
 
 
    class CLASS_DECL_c input_stream :
-      virtual public stream_base
+      virtual public stream_base,
+      virtual public reader
    {
    public:
 
@@ -22,7 +23,7 @@ namespace file
 
 
       input_stream();
-      input_stream(reader * preader);
+      input_stream(sp(reader) preader);
       input_stream(const input_stream & preader);
       virtual ~input_stream();
 
@@ -35,7 +36,7 @@ namespace file
       virtual bool is_reader_null();
       virtual bool is_reader_set();
 
-      //virtual void to_hex(string & str, ::primitive::memory_position iStart = 0, ::primitive::memory_position iEnd = -1);
+      virtual void read_to_hex(string & str, ::primitive::memory_position iStart = -1, ::primitive::memory_position iEnd = -1);
 
 
       inline input_stream & operator >> (bool            & b               ) { read(b              ); return *this; }

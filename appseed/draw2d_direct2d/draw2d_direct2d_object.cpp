@@ -75,7 +75,7 @@ namespace draw2d_direct2d
       return NULL;
    }
 
-   /*object* object::from_handle(application * papp, HGDIOBJ h)
+   /*object* object::from_handle(base_application * papp, HGDIOBJ h)
    {
       hgdiobj_map* pMap = afxMapHGDIOBJ(TRUE); //create ::map if not exist
       ASSERT(pMap != NULL);

@@ -114,7 +114,7 @@ namespace libcompress
 
       HRESULT decoder::WriteDataToStream(const byte *data, uint32_t size)
       {
-         return WriteStream(_outStream, data, size);
+         return ::file::write(_outStream, data, size);
       }
 
       HRESULT decoder::WriteData(const byte *data, uint32_t size)
@@ -337,7 +337,7 @@ namespace libcompress
             int32_t requredSize = (int32_t)(dataSize + vm::kFixedGlobalSize);
             if (globalData.get_size() < requredSize)
             {
-               globalData.set_size(globalData.get_size(), requredSize);
+               globalData.allocate(globalData.get_size(), requredSize);
                for (; globalData.get_size() < requredSize; i++)
                   globalData.add(0);
             }
@@ -883,7 +883,7 @@ namespace libcompress
             _unpackSize = *outSize;
             return CodeReal(progress);
          }
-         catch(const ::core::in_buffer_exception &e)  { return e.ErrorCode; }
+         catch(const ::file::in_buffer_exception &e)  { return e.ErrorCode; }
          catch(...) { return S_FALSE; }
          // CNewException is possible here. But probably CNewException is caused
          // by error in data stream.

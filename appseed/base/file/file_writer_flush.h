@@ -15,7 +15,7 @@ namespace file
    public:
       
       
-      virtual void flush() = 0;
+      virtual void flush();
 
 
    };

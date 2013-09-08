@@ -53,6 +53,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
       public:
+
+         int m_iWriteFlags;
+
          /** Constructor.
          \param h socket_handler_base reference
          \param ibufsz Maximum size of receive message (extra bytes will be truncated)
@@ -144,9 +147,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void SendTo(::sockets::address & ad,const string &,int32_t flags = 0);
 
          /** Send to connected address */
-         void SendBuf(const char *data, int32_t, int32_t flags = 0);
+         using ::sockets::socket::write;
+         void write(const void *data, ::primitive::memory_size c);
          /** Send string to connected address. */
-         void Send(const string & ,int32_t flags = 0);
+         //void Send(const string &);
 
          /** set broadcast */
          void SetBroadcast(bool b = true);

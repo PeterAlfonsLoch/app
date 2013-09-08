@@ -47,7 +47,7 @@ namespace libcompress
 #include "compress_coder_mixer2mt.h"
 
 // zlib
-#include "compress_gzip_helper.h"
+#include "compress_gzip_stream.h"
 
 // 7z
 #include "7z/7z.h"

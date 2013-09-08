@@ -118,7 +118,7 @@ namespace gcom
                m_data.m_tiles.m_iTilesY = tilesy;
                m_data.m_tiles.m_iTiles = tiles;
 
-               m_ia.set_size(tiles);
+               m_ia.allocate(tiles);
                for(int32_t i = 0; i < tiles; i++)
                {
                   m_ia.element_at(i) = i;
@@ -230,7 +230,7 @@ namespace gcom
                      }
                   }
                }
-               m_ia.set_size(iTileCount);
+               m_ia.allocate(iTileCount);
                for(int32_t i = 0; i < iTileCount; i++)
                {
                   m_ia.element_at(i) = 0;

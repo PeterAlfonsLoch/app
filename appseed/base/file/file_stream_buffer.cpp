@@ -73,7 +73,7 @@ namespace file
       
       seek_to_begin();
 
-      write_to(ostream.m_spbuffer);
+      transfer_to(ostream.m_spbuffer);
 
    }
 
@@ -81,7 +81,7 @@ namespace file
    void stream_buffer::read(input_stream & istream)
    {
    
-      read_from(istream.m_spbuffer);
+      transfer_from(istream.m_spbuffer);
 
       seek_to_begin();
 

@@ -344,7 +344,8 @@ bool db_server::load(const char * lpKey, ::file::writable &  writable)
    {
       return false;
    }
-   writable.from_hex(str);
+   ::file::byte_output_stream os(&writable);
+   os.write_from_hex(str);
    return true;
 }
 
@@ -359,14 +360,28 @@ bool db_server::save(const char * lpcszKey, const char * lpcsz)
 
 bool db_server::save(const char * lpKey, ::file::readable & readable)
 {
+   
    single_lock sl(&m_csImplDatabase, TRUE);
+   
    string str;
-   readable.to_hex(str);
+   
+   sp(::file::seekable) spseekable = &readable;
+   
+   if(spseekable.is_set())
+      spseekable->seek_to_begin();
+
+   ::file::byte_input_stream is(&readable);
+   
+   is.read_to_hex(str);
+//   readable.to_hex(str);
 //   int32_t iLength = str.get_length();
 //   int32_t iKeyLen = strlen(lpKey);
+
    if(!save(lpKey, str))
       return false;
+
    return true;
+
 }
 
 /*

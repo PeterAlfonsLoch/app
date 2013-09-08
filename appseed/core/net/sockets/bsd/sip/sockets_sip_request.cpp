@@ -84,6 +84,7 @@ namespace sip
       attr("http_referer") = header("referer");
       if(m_file.get_size() > 0)
       {
+         //::file::byte_input_stream is(&m_file);
          m_form.parse_body(&m_file, ContentType(), ContentLength());
       }
       m_form.request().merge(m_form.get());

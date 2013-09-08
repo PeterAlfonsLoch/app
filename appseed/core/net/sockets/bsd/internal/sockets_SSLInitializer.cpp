@@ -101,7 +101,7 @@ void ssl_sigpipe_handle( int x ) {
       bio_err = NULL;
       m_rand_size = 1024;
 
-      g_psystem = &Sys(papp->m_psystem);
+      g_psystem = &Sys(papp->m_pplaneapp->m_psystem);
 
       /* An error write context */
       bio_err = BIO_new_fp(stderr, BIO_NOCLOSE);

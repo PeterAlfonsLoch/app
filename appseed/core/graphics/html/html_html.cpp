@@ -5,9 +5,9 @@ namespace html
 {
 
 
-   html::html(application * papp) :
+   html::html(base_application * papp) :
       element(papp),
-      ::departament(papp),
+      base_departament(papp),
       m_entityresolver(papp)
    {
    
@@ -23,7 +23,7 @@ namespace html
    void html::construct(sp(base_application) papp)
    {
 
-      ::departament::construct(papp);
+      base_departament::construct(papp);
 
       m_clrInvalid = 0xffffffff;
       m_percentMax = USHRT_MAX;

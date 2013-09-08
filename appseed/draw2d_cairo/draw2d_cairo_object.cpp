@@ -125,7 +125,7 @@ namespace draw2d_cairo
 
    void object::dump(dump_context & dumpcontext) const
    {
-      object::dump(dumpcontext);
+      ::object::dump(dumpcontext);
 
 //      dumpcontext << "get_handle() = " << get_handle();
   //    dumpcontext << "\n";
@@ -133,7 +133,7 @@ namespace draw2d_cairo
 
    void object::assert_valid() const
    {
-      object::assert_valid();
+      ::object::assert_valid();
       //ASSERT(get_handle() == NULL ||
         // (afxData.bWin95 || ::GetObjectType(get_handle()) != 0));
    }

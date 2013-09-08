@@ -31,11 +31,21 @@ namespace file
 
    }
 
-   void writer::read_from(reader & reader)
+   void writer::transfer_from(reader & reader, ::primitive::memory_size uiBufSize)
    {
+
+
+      if(reader.get_internal_data() != NULL && reader.get_internal_data_size() > 0)
+      {
+
+         write(reader.get_internal_data(), reader.get_internal_data_size());
+         
+      }
+
+
       ::primitive::memory_size uiRead;
-      ::primitive::memory_size uiBufSize = 1024 * 1024;
       ::primitive::memory_size uiSize = 0;
+      uiBufSize = max(8 * 1024, uiBufSize);
 
       char * buf = (char *) malloc(uiBufSize);
       if(buf == NULL)
@@ -215,12 +225,13 @@ namespace file
    }
    */
 
-   HRESULT write_writer(writer * stream, const void * data, ::primitive::memory_size size)
+
+   HRESULT write(writer * pwriter, const void * data, ::primitive::memory_size size)
    {
       HRESULT res = S_OK;
       try
       {
-         stream->write(data, size);
+         pwriter->write(data, size);
       }
       catch(...)
       {
@@ -229,7 +240,6 @@ namespace file
       RINOK(res);
       return res;
    }
-
 
 } // namespace file
 

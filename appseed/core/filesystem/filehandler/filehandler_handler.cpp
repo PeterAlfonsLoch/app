@@ -116,7 +116,7 @@ namespace filehandler
          if(!bCreate)
             return NULL;
 
-         pitem = m_sptree->create_item(m_sptree->get_filehandler_tree_data(), m_sptree->get_base_item(), ::core::RelativeLastChild);
+         pitem = m_sptree->create_item(m_sptree->get_filehandler_tree_data(), m_sptree->get_base_item(), ::data::RelativeLastChild);
 
          pitem->m_pitemdata.cast < tree_item_data > ()->m_etopictype      = tree_item_data::topic_type_root;
 
@@ -135,7 +135,7 @@ namespace filehandler
          if(!bCreate)
             return NULL;
 
-         pitem = m_sptree->create_item(m_sptree->get_filehandler_tree_data(), m_sptree->get_base_item(), ::core::RelativeLastChild);
+         pitem = m_sptree->create_item(m_sptree->get_filehandler_tree_data(), m_sptree->get_base_item(), ::data::RelativeLastChild);
 
          dynamic_cast < tree_item_data * > (pitem->m_pitemdata.m_p)->m_etopictype      = tree_item_data::topic_type_extension;
          dynamic_cast < tree_item_data * > (pitem->m_pitemdata.m_p)->m_strTopic        = pszExtension;
@@ -163,7 +163,7 @@ namespace filehandler
       if(!bCreate)
          return NULL;
 
-      pitem = m_sptree->create_item(m_sptree->get_filehandler_tree_data(), m_sptree->get_base_item(), ::core::RelativeLastChild);
+      pitem = m_sptree->create_item(m_sptree->get_filehandler_tree_data(), m_sptree->get_base_item(), ::data::RelativeLastChild);
 
       dynamic_cast < tree_item_data * > (pitem->m_pitemdata.m_p)->m_etopictype      = tree_item_data::topic_type_mime_type;
       dynamic_cast < tree_item_data * > (pitem->m_pitemdata.m_p)->m_strTopic        = pszMimeType;
@@ -229,9 +229,9 @@ namespace filehandler
          if(iLevel < 0)
             break;
          if(iLevel == iPreviousLevel)
-            pitem = m_sptree->create_item(m_sptree->get_filehandler_tree_data(), pitem, ::core::RelativeLastSibling);
+            pitem = m_sptree->create_item(m_sptree->get_filehandler_tree_data(), pitem, ::data::RelativeLastSibling);
          else if(iLevel > iPreviousLevel)
-            pitem = m_sptree->create_item(m_sptree->get_filehandler_tree_data(), pitem, ::core::RelativeFirstChild);
+            pitem = m_sptree->create_item(m_sptree->get_filehandler_tree_data(), pitem, ::data::RelativeFirstChild);
          else
          {
             while(iLevel < iPreviousLevel)
@@ -239,7 +239,7 @@ namespace filehandler
                pitem = pitem->m_pparent;
                iPreviousLevel--;
             }
-            pitem = m_sptree->create_item(m_sptree->get_filehandler_tree_data(), pitem, ::core::RelativeLastSibling);
+            pitem = m_sptree->create_item(m_sptree->get_filehandler_tree_data(), pitem, ::data::RelativeLastSibling);
          }
 
          istream >> (int32_t &) dynamic_cast < tree_item_data * > (pitem->m_pitemdata.m_p)->m_etopictype;

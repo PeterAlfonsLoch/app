@@ -1,13 +1,16 @@
 #include "framework.h"
 
+
 namespace http
 {
+
 
    // --------------------------------------------------------------------------------------
    request::request(sp(base_application) papp) :
       element(papp),
       transaction(papp),
-      m_file(papp),
+      m_memfileBody(papp),
+      m_ostream(&m_memfileBody),
       m_form(papp)
    {
    }
@@ -18,10 +21,12 @@ namespace http
    element(((request&) src).get_app()),
    transaction(src),
    m_null(src.m_null),
-   m_file(((request&) src).get_app()),
+   m_memfileBody(((request&) src).get_app()),
+   m_ostream(&m_memfileBody),
    m_form(((request&) src).get_app())
    {
-      m_file = src.m_file;
+      m_memfileBody = src.m_memfileBody;
+      //m_file = src.m_file;
    }
 
 
@@ -47,7 +52,7 @@ namespace http
    void request::InitBody( size_t sz )
    {
       UNREFERENCED_PARAMETER(sz);
-      m_file.Truncate(0);
+      m_memfileBody.Truncate(0);
       /*if (!m_file.get())
          m_file = smart_pointer<IFile>(new MemFile);
    DEB(   else
@@ -58,7 +63,7 @@ namespace http
    // --------------------------------------------------------------------------------------
    void request::write( const char *buf, ::primitive::memory_size sz )
    {
-         m_file.write(buf, sz);
+         m_memfileBody.write(buf, sz);
    }
 
 
@@ -85,9 +90,9 @@ namespace http
          // skip following POST processing below
          return;
       }
-      if(m_file.get_size() > 0)
+      if(m_memfileBody.get_length() > 0)
       {
-         m_form.parse_body(&m_file, ContentType(), ContentLength());
+         m_form.parse_body(&m_memfileBody, ContentType(), ContentLength());
       }
       m_form.request().merge(m_form.post());
    }
@@ -112,7 +117,7 @@ namespace http
    //   m_file = smart_pointer<IFile>(NULL);
       m_form.clear();
       m_cookies.remove_all();
-      file().Truncate(0);
+      file().set_length(0);
    }
 
 } // namespace http

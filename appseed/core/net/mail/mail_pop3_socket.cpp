@@ -48,13 +48,13 @@ namespace mail
             if(m_bTls)
             {
                m_estate = state_auth_1;
-               Send("STLS\r\n");
+               write("STLS\r\n");
             }
             else
             {
                m_estate = state_auth_2;
                string str = "USER " + m_ppop3->get_user() + "\r\n";
-               Send((const char *) str);
+               write((const char *) str);
             }
          }
          break;
@@ -75,7 +75,7 @@ namespace mail
                OnConnect();
             Handler().AddList(GetSocket(), LIST_CALLONCONNECT, false);*/
             string str = "USER " + m_ppop3->get_user() + "\r\n";
-            Send((const char *) str);
+            write((const char *) str);
          }
          break;
       case state_auth_2:
@@ -83,7 +83,7 @@ namespace mail
          if(stra.get_size() > 0 && stra[0] == "+OK")
          {
             m_estate = state_transaction;
-            Send("PASS " + m_ppop3->get_pass() + "\r\n");
+            write("PASS " + m_ppop3->get_pass() + "\r\n");
          }
          break;
       case state_transaction:
@@ -113,10 +113,10 @@ namespace mail
             else if(::str::begins_ci(m_ppop3->get_transaction(), "RETRHD"))
             {
                m_estate = state_retr_only_headers_start;
-               Send("RETR\r\n");
+               write("RETR\r\n");
                break;
             }
-            Send(m_ppop3->get_transaction() + "\r\n");
+            write(m_ppop3->get_transaction() + "\r\n");
          }
          break;
       case state_quit:
@@ -139,7 +139,7 @@ namespace mail
                m_ppop3->set_stat_size(atoi(stra[2]));
                if(m_ppop3->m_bSynch)
                {
-                  Send("QUIT\r\n");
+                  write("QUIT\r\n");
                   m_estate = state_quit;
                }
                else
@@ -158,7 +158,7 @@ namespace mail
                m_ppop3->set_list_size(atoi(stra[2]));
                if(m_ppop3->m_bSynch)
                {
-                  Send("QUIT\r\n");
+                  write("QUIT\r\n");
                   m_estate = state_quit;
                }
                else
@@ -277,7 +277,7 @@ namespace mail
             m_ppop3->store();
             if(m_ppop3->m_bSynch)
             {
-               Send("QUIT\r\n");
+               write("QUIT\r\n");
                m_estate = state_quit;
             }
             else
@@ -296,12 +296,12 @@ namespace mail
             {
                if(m_ppop3->m_bSynch)
                {
-                  Send("QUIT\r\n");
+                  write("QUIT\r\n");
                   m_estate = state_quit;
                }
                else
                {
-                  Send("RSET\r\n");
+                  write("RSET\r\n");
                   m_estate = state_rset;
                }
             }
@@ -326,7 +326,7 @@ namespace mail
                {
                  m_ppop3->m_setHeaders[m_strKey] = m_strValue;
                }
-               ::core::parse pa(strLine,":");
+               ::str::parse pa(strLine,":");
                m_strKey = pa.getword();
                m_strValue = pa.getrest();
             }
@@ -357,7 +357,7 @@ namespace mail
             {
                if(m_ppop3->m_bSynch)
                {
-                  Send("QUIT\r\n");
+                  write("QUIT\r\n");
                   m_estate = state_quit;
                }
                else
@@ -379,7 +379,7 @@ namespace mail
             m_ppop3->store();
             if(m_ppop3->m_bSynch)
             {
-               Send("QUIT\r\n");
+               write("QUIT\r\n");
                m_estate = state_quit;
             }
             else
@@ -406,7 +406,7 @@ namespace mail
       m_ppop3->m_id = m_ppop3->m_straId[0];
       string strSend;
       strSend.Format("RETR %s\r\n", m_ppop3->m_straIndex[0]);
-      Send((const char *) strSend);
+      write((const char *) strSend);
       m_ppop3->m_strHeaders.Empty();
       m_ppop3->m_strBody.Empty();
       m_ppop3->m_straId.remove_at(0);

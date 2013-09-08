@@ -28,7 +28,7 @@
          void handle(socket * psocket);
 
          virtual void write(string & str);
-         virtual void write(void * pdata, int32_t len);
+         virtual void write(const void * pdata, int32_t len);
          virtual int32_t read(void * pdata, int32_t len);
          virtual string read_line();
          virtual string read_string();

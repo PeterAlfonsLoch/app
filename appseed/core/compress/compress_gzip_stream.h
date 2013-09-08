@@ -47,24 +47,24 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 gzip
+class CLASS_DECL_ca2 gzip_stream :
+   virtual public ::file::output_stream
 {
 public:
 
 
-   ::file::output_stream       m_ostream;
    primitive::memory             m_memory;
    z_stream                      m_zstream;
-   int32_t                           m_z_err;   /* error code for last stream operation */
+   int32_t                       m_z_err;   /* error code for last stream operation */
    uint32_t                      m_crc;     /* crc32 of uncompressed data */
 
 
-   gzip(::file::buffer_sp  pfileDest);
-   gzip(::file::writer & ostreamDest);
-   gzip(::file::output_stream & ostreamDest);
-   virtual ~gzip();
+   gzip_stream(::file::buffer_sp  pfileDest);
+   gzip_stream(::file::writer & ostreamDest);
+   gzip_stream(::file::output_stream & ostreamDest);
+   virtual ~gzip_stream();
 
-   bool write(void * buf, ::primitive::memory_size iSize);
+   virtual void write(const void * buf, ::primitive::memory_size iSize);
    void finish();
 
 protected:

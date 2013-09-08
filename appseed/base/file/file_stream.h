@@ -13,8 +13,7 @@ namespace file
 
       
       stream();
-      stream(reader * preader, writer * pwriter);
-      stream(stream_buffer * pbuffer);
+      stream(sp(stream_buffer) pbuffer);
       stream(const stream & stream);
       virtual ~stream();
 

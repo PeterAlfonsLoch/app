@@ -399,24 +399,20 @@ void ssl_sigpipe_handle( int x );
    }
 
 
-   void tcp_socket::OnRead()
+   ::primitive::memory_size tcp_socket::recv(void * buf, ::primitive::memory_size nBufSize)
    {
-      int32_t n = 0;
-   #ifdef SOCKETS_DYNAMIC_TEMP
-      char *buf = m_buf;
-   #else
-      char buf[TCP_BUFSIZE_READ];
-   #endif
-   #ifdef HAVE_OPENSSL
-      uint32_t dw1, dw2;
+
+      ::primitive::memory_size n = nBufSize;
+
+#ifdef HAVE_OPENSSL
+
       if (IsSSL())
       {
+
          if (!Ready())
-            return;
-         dw1 = ::get_tick_count();
-         n = SSL_read(m_ssl, buf, TCP_BUFSIZE_READ);
-         dw2 = ::get_tick_count();
-         //TRACE("tcp_socket::OnRead SSL_read time = %d, %d, %d\n", dw1, dw2, dw2 - dw1);
+            throw io_exception(get_app());
+
+         n = SSL_read(m_ssl, buf, nBufSize);
          if (n == -1)
          {
             n = SSL_get_error(m_ssl, n);
@@ -427,7 +423,7 @@ void ssl_sigpipe_handle( int x );
             case SSL_ERROR_WANT_WRITE:
                break;
             case SSL_ERROR_ZERO_RETURN:
-   TRACE("SSL_read() returns zero - closing socket\n");
+               TRACE("SSL_read() returns zero - closing socket\n");
                OnDisconnect();
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
@@ -440,7 +436,7 @@ void ssl_sigpipe_handle( int x );
                SetFlushBeforeClose(false);
                SetLost();
             }
-            return;
+            throw io_exception(get_app());
          }
          else
          if (!n)
@@ -450,44 +446,36 @@ void ssl_sigpipe_handle( int x );
             SetFlushBeforeClose(false);
             SetLost();
             SetShutdown(SHUT_WR);
-            return;
+            throw io_exception(get_app());
          }
-         else
-         if (n > 0 && n <= TCP_BUFSIZE_READ)
+         else if (n > 0 && n <= nBufSize)
          {
-            m_bytes_received += n;
-            if (GetTrafficMonitor())
-            {
-               GetTrafficMonitor()->write(buf, n);
-            }
-            if (!m_b_input_buffer_disabled && !ibuf.write(buf,n))
-            {
-               Handler().LogError(this, "OnRead(ssl)", 0, "ibuf overflow", ::core::log::level_warning);
-            }
+            return n;
          }
          else
          {
-            Handler().LogError(this, "OnRead(ssl)", n, "abnormal value from SSL_read", ::core::log::level_error);
+            Handler().LogError(this, "tcp_socket::recv(ssl)", n, "abnormal value from SSL_read", ::core::log::level_error);
+            throw io_exception(get_app());
          }
       }
       else
    #endif // HAVE_OPENSSL
       {
 #ifdef MACOS
-//         n = (int32_t) recv(GetSocket(), buf, TCP_BUFSIZE_READ, SO_NOSIGPIPE);
-         n = (int32_t) recv(GetSocket(), buf, TCP_BUFSIZE_READ, 0);
+//         n = (int32_t) recv(GetSocket(), buf, nBufSize, SO_NOSIGPIPE);
+         n = (int32_t) recv(GetSocket(), buf, nBufSize, 0);
 
 #else
-         n = recv(GetSocket(), buf, TCP_BUFSIZE_READ, MSG_NOSIGNAL);
+         n = ::recv(GetSocket(), (char *) buf, nBufSize, MSG_NOSIGNAL);
 #endif
          if (n == -1)
          {
-            Handler().LogError(this, "read", Errno, StrError(Errno), ::core::log::level_fatal);
+            Handler().LogError(this, "recv", Errno, StrError(Errno), ::core::log::level_fatal);
             OnDisconnect();
             SetCloseAndDelete(true);
             SetFlushBeforeClose(false);
             SetLost();
-            return;
+            throw io_exception(get_app());
          }
          else
          if (!n)
@@ -497,32 +485,102 @@ void ssl_sigpipe_handle( int x );
             SetFlushBeforeClose(false);
             SetLost();
             SetShutdown(SHUT_WR);
-            return;
+            throw io_exception(get_app());
          }
          else
-         if (n > 0 && n <= TCP_BUFSIZE_READ)
+         if (n > 0 && n <= nBufSize)
          {
-            m_bytes_received += n;
-            if (GetTrafficMonitor())
-            {
-               GetTrafficMonitor() -> write(buf, n);
-            }
-            if (!m_b_input_buffer_disabled && !ibuf.write(buf,n))
-            {
-               Handler().LogError(this, "OnRead", 0, "ibuf overflow", ::core::log::level_warning);
-            }
+            return n;
          }
          else
          {
-            Handler().LogError(this, "OnRead", n, "abnormal value from recv", ::core::log::level_error);
+            Handler().LogError(this, "tcp_socket::recv", n, "abnormal value from recv", ::core::log::level_error);
+            throw io_exception(get_app());
          }
+
       }
-      //
-      OnRead( buf, n );
+
    }
 
 
-   void tcp_socket::OnRead( char *buf, size_t n )
+   ::primitive::memory_size tcp_socket::read(void * buf, ::primitive::memory_size nBufSize)
+   {
+
+      ::primitive::memory_size n = nBufSize;
+
+      n = recv(buf, nBufSize);
+      
+      if (n > 0 && n <= nBufSize)
+      {
+
+         m_bytes_received += n;
+
+         if (GetTrafficMonitor())
+         {
+
+            GetTrafficMonitor()->write(buf, n);
+
+         }
+
+         if(!m_b_input_buffer_disabled)
+         {
+
+            try
+            {
+
+               ibuf.write(buf, n);
+
+            }
+            catch(...)
+            {
+                  
+               Handler().LogError(this, "tcp_socket::read", 0, "ibuf overflow", ::core::log::level_warning);
+
+            }
+         }
+         else
+         {
+            Handler().LogError(this, "tcp_socket::read", n, "abnormal value from SSL_read", ::core::log::level_error);
+         }
+
+      }
+
+   }
+
+   void tcp_socket::OnRead()
+   {
+      
+#ifdef SOCKETS_DYNAMIC_TEMP
+
+      char *buf = m_buf;
+
+#else
+
+      char buf[TCP_BUFSIZE_READ];
+
+#endif
+
+      ::primitive::memory_size n = 0;
+
+      try
+      {
+
+         n = read(buf, TCP_BUFSIZE_READ);
+
+      }
+      catch(...)
+      {
+
+         return;
+
+      }
+
+      on_read(buf, n);
+
+   }
+
+
+   void tcp_socket::on_read(const void * buf, ::primitive::memory_size n)
    {
       // unbuffered
       if (n > 0)
@@ -748,28 +806,29 @@ void ssl_sigpipe_handle( int x );
    }
 
 
-   void tcp_socket::Send(const string &str,int32_t i)
+   void tcp_socket::write(const string &str)
    {
-      SendBuf(str,  (int32_t) str.get_length(), i);
+      write(str,  (int32_t) str.get_length());
    }
 
 
-   void tcp_socket::SendBuf(const char *buf, int32_t len,int32_t)
+   void tcp_socket::write(const void * buf, primitive::memory_size len)
    {
+
       if (!Ready() && !Connecting())
       {
-         Handler().LogError(this, "SendBuf", -1, "Attempt to write to a non-ready socket" ); // warning
+         Handler().LogError(this, "write", -1, "Attempt to write to a non-ready socket" ); // warning
          if (GetSocket() == INVALID_SOCKET)
-            Handler().LogError(this, "SendBuf", 0, " * GetSocket() == INVALID_SOCKET", ::core::log::level_info);
+            Handler().LogError(this, "write", 0, " * GetSocket() == INVALID_SOCKET", ::core::log::level_info);
          if (Connecting())
-            Handler().LogError(this, "SendBuf", 0, " * Connecting()", ::core::log::level_info);
+            Handler().LogError(this, "write", 0, " * Connecting()", ::core::log::level_info);
          if (CloseAndDelete())
-            Handler().LogError(this, "SendBuf", 0, " * CloseAndDelete()", ::core::log::level_info);
+            Handler().LogError(this, "write", 0, " * CloseAndDelete()", ::core::log::level_info);
          return;
       }
       if (!IsConnected())
       {
-         Handler().LogError(this, "SendBuf", -1, "Attempt to write to a non-connected socket, will be sent on connect" ); // warning
+         Handler().LogError(this, "write", -1, "Attempt to write to a non-connected socket, will be sent on connect" ); // warning
          buffer(buf, len);
          return;
       }
@@ -854,7 +913,7 @@ void ssl_sigpipe_handle( int x );
       }
       strcpy(request + 8, GetSocks4Userid());
       size_t length = GetSocks4Userid().get_length() + 8 + 1;
-      SendBuf(request, (int32_t) length);
+      write(request, length);
       m_socks4_state = 0;
    }
 
@@ -934,19 +993,6 @@ void ssl_sigpipe_handle( int x );
    }
 
 
-   void tcp_socket::Sendf(const char *format, ...)
-   {
-      va_list ap;
-      va_start(ap, format);
-      char slask[5000]; // vsprintf / vsnprintf temporary
-   #ifdef _WIN32
-      vsprintf(slask, format, ap);
-   #else
-      vsnprintf(slask, 5000, format, ap);
-   #endif
-      va_end(ap);
-      Send( slask );
-   }
 
 
    void tcp_socket::OnSSLConnect()

@@ -48,7 +48,7 @@ namespace file
       // determine read/write mode depending on ::file::binary_buffer_sp mode
       if (nOpenFlags & mode_create)
       {
-         if (nOpenFlags & modeNoTruncate)
+         if (nOpenFlags & mode_no_truncate)
             szMode[nMode++] = 'a';
          else
             szMode[nMode++] = 'w';

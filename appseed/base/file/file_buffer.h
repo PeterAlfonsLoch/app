@@ -20,7 +20,7 @@ namespace file
       }
 
       buffer(const buffer & buffer) :
-         array(buffer)
+         raw_array(buffer)
       {
 
       }
@@ -69,11 +69,11 @@ namespace file
       buffer & operator = (const buffer &buffer)
       {
 
-         SetCapacity(buffer._capacity);
+         SetCapacity(buffer.GetCapacity());
 
-         if (buffer._capacity > 0)
+         if (buffer.GetCapacity() > 0)
          {
-            memmove(_items, buffer._items, buffer._capacity * sizeof(T));
+            memcpy(get_data(), buffer.get_data(), buffer.GetCapacity() * sizeof(T));
          }
 
          return *this;

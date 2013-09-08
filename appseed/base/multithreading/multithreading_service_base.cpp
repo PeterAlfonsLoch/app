@@ -26,10 +26,10 @@ service_base* service_base::s_pservice = 0;
 //                      service_base class.
 //
 //*****************************************************************************
-service_base::service_base(sp(base_application) papp, uint32_t controlsAccepted) :
-   element(papp),
+service_base::service_base(sp(base_application) pbaseapp, uint32_t controlsAccepted) :
+   element(pbaseapp),
    m_bStopping(false),
-   m_stopped(papp)
+   m_stopped(pbaseapp)
 #ifdef WINDOWSEx
    , m_handle(0)
 #else
@@ -37,7 +37,7 @@ service_base::service_base(sp(base_application) papp, uint32_t controlsAccepted)
 #endif
 {
 
-   papp->m_pcasystem->m_serviceptra.add(this);
+   pbaseapp->m_pbasesystem->m_serviceptra.add(this);
 
 #ifdef WINDOWSEX
     m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS;

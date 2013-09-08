@@ -325,7 +325,7 @@ namespace core
             if(papp == NULL)
                return NULL;
 
-            papp->m_strLibraryName   = m_strCa2Name;
+            papp->m_pplaneapp->m_strLibraryName   = m_strCa2Name;
 
             return papp;
 

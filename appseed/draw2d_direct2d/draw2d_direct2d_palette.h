@@ -16,7 +16,7 @@ namespace draw2d_direct2d
       virtual ~palette();
 
 
-      static palette* from_handle(application * papp, HPALETTE hPalette);
+      static palette* from_handle(base_application * papp, HPALETTE hPalette);
 
 
       bool CreatePalette(LPLOGPALETTE lpLogPalette);

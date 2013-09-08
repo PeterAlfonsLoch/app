@@ -94,7 +94,7 @@ void file_size_table::item::ls(sp(base_application) papp, index & iIteration)
    {
       stringa               straName;
       array < int64_t, int64_t > iaSize;
-      array < bool, bool > baIsDir;
+      bool_array baIsDir;
       if(path().is_empty())
       {
          App(papp).dir().root_ones(straName);
@@ -329,7 +329,7 @@ bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, b
 
 FileSystemSizeWnd::FileSystemSizeWnd(sp(base_application) papp) :
    element(papp),
-   ::core::window_sp(papp)
+   ::user::window_sp(papp)
 {
 }
 
@@ -399,7 +399,7 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
    size.m_bRet = false;
 
 
-   ::core::byte_stream_memory_file file(get_app());
+   ::file::byte_stream_memory_buffer file(get_app());
    size.write(file);
 
    COPYDATASTRUCT data;
@@ -442,7 +442,7 @@ void FileSystemSizeWnd::_001OnCopyData(signal_details * pobj)
       //file_size_table::get_fs_size * prec  = (file_size_table::get_fs_size *) pstruct->lpData;
       db_server * pcentral = &System.m_simpledb.db();
       file_size_table::get_fs_size size;
-      ::core::byte_stream_memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
+      ::file::byte_stream_memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
       size.read(file);
 
       single_lock sl(&m_cs, TRUE);
@@ -457,7 +457,7 @@ void FileSystemSizeWnd::_001OnCopyData(signal_details * pobj)
    else if(pstruct->dwData == 1)
    {
       file_size_table::get_fs_size size;
-      ::core::byte_stream_memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
+      ::file::byte_stream_memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
       size.read(file);
       m_bRet = true;
       m_map.set_at(size.m_strPath, size);
@@ -488,13 +488,13 @@ void FileSystemSizeWnd::_001OnTimer(signal_details * pobj)
          data.dwData = 1;
 
 
-         ::core::byte_stream_memory_file file(get_app());
+         ::file::byte_stream_memory_buffer file(get_app());
 
          while(m_sizea.get_size() > 0)
          {
             single_lock sl(&m_cs, TRUE);
             file_size_table::get_fs_size & size = m_sizea[0];
-            file.Truncate(0);
+            file.m_spmemorybuffer->Truncate(0);
             size.write(file);
             data.cbData = (uint32_t) file.get_length();
             data.lpData = file.get_data();

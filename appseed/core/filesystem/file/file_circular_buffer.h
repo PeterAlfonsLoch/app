@@ -5,10 +5,12 @@
 
 namespace file
 {
+
 /** buffer class containing one read/write circular buffer. 
          \ingroup internal */
+
       class circular_buffer :
-         virtual public object
+         virtual public stream_buffer
       {
       protected:
 
@@ -30,9 +32,9 @@ namespace file
          ~circular_buffer();
 
          /** append l bytes from p to buffer */
-         bool write(const char *p,size_t l);
+         void write(const void * pdata, ::primitive::memory_size l);
          /** copy l bytes from buffer to dest */
-         bool read(char *dest,size_t l);
+         ::primitive::memory_size read(void * pbuffer, ::primitive::memory_size l);
          /** skip l bytes from buffer */
          bool remove(size_t l);
          /** read l bytes from buffer, returns as string. */

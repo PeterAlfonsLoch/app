@@ -14,7 +14,7 @@ public:
 
    typedef TYPE BASE_TYPE;
    typedef ARG_TYPE BASE_ARG_TYPE;
-   typedef array < TYPE, ARG_TYPE > THIS_ARRAY;
+   typedef array < TYPE, ARG_TYPE > BASE_ARRAY;
 
 
 
@@ -26,6 +26,8 @@ public:
    inline lemon_array(TYPE * ptypea, ::count n);
    virtual ~lemon_array();
 
+
+   ::count set_size(index nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
 
    // Potentially growing the array
    inline void set_at_grow(index nIndex, ARG_TYPE newElement);
@@ -40,7 +42,7 @@ public:
 
    // Operations that move elements around
    inline index insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
-   inline index insert_at(index nStartIndex, array* pNewArray);
+   inline index insert_at(index nStartIndex, array < TYPE, ARG_TYPE > * pNewArray);
 
 };
 
@@ -79,7 +81,7 @@ namespace lemon
       void push_back(ARRAY & a, typename ARRAY::BASE_ARG_TYPE newElement, index = 0);
 
       template<class ARRAY>
-      index insert_at(ARRAY & a, index nStartIndex, ARRAY * pNewArray);
+      index insert_at(ARRAY & a, index nStartIndex, typename ARRAY::BASE_ARRAY * pNewArray);
 
    }
 

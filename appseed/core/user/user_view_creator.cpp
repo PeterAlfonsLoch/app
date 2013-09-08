@@ -85,7 +85,7 @@ namespace user
             throw e;
 
          }
-         catch(exception & e)
+         catch(exception::exception & e)
          {
             
             if(!Application.on_run_exception(e))
@@ -108,7 +108,7 @@ namespace user
             throw e;
 
          }
-         catch(exception & e)
+         catch(exception::exception & e)
          {
             
             if(!Application.on_run_exception(e))
@@ -138,7 +138,7 @@ namespace user
          throw e;
 
       }
-      catch(exception & e)
+      catch(exception::exception & e)
       {
             
          if(!Application.on_run_exception(e))

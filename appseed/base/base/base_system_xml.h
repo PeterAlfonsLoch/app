@@ -4,11 +4,11 @@
 namespace xml
 {
 
-   inline disp_option::disp_option(sp(base_application) papp)
+   inline disp_option::disp_option(sp(base_application) pbaseapp)
    {
       newline = true;
       reference_value = true;
-      m_pentities = &papp->m_pcasystem->m_pxml->m_entities;
+      m_pentities = &pbaseapp->m_pbasesystem->m_pxml->m_entities;
       tab_base = 0;
       value_quotation_mark = '"';
    }

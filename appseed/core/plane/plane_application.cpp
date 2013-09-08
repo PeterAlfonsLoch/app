@@ -19,7 +19,7 @@ namespace plane
    {
 
       m_papp      = this;
-      m_pappThis  = this;
+      m_pplaneapp  = this;
 
       m_dir.set_app(this);
       m_file.set_app(this);
@@ -36,7 +36,7 @@ namespace plane
 
 
       m_papp      = this;
-      m_pappThis  = this;
+      m_pplaneapp  = this;
 
       construct(pszId);
 
@@ -120,7 +120,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      application::_001OnFileNew(NULL);
+      ::application::_001OnFileNew(NULL);
    }
 
 
@@ -132,7 +132,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return application::bergedge_start();
+      return ::application::bergedge_start();
    }
 
 
@@ -150,7 +150,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return application::on_install();
+      return ::application::on_install();
    }
 
    bool application::on_uninstall()
@@ -161,7 +161,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return application::on_uninstall();
+      return ::application::on_uninstall();
    }
 
 
@@ -173,7 +173,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return application::on_request(pcreatecontext);
+      return ::application::on_request(pcreatecontext);
 
 
    }
@@ -188,7 +188,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return application::is_serviceable();
+      return ::application::is_serviceable();
    }
 
    service_base * application::allocate_new_service()
@@ -207,7 +207,7 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      return application::_001OpenDocumentFile(varFile);
+      return ::application::_001OpenDocumentFile(varFile);
 
    }
 
@@ -236,16 +236,16 @@ namespace plane
          {
             create_new_service();
             m_pservice->Start(0);
-            return application::run();
+            return ::application::run();
          }
          else
          {
-            return application::run();
+            return ::application::run();
          }
       }
       else
       {
-         return application::run();
+         return ::application::run();
       }
 
       return 0;
@@ -274,7 +274,7 @@ namespace plane
 
                papp = System.m_appptra(i);
 
-               if(papp->m_strAppName == pszAppId)
+               if(papp->m_pplaneapp->m_strAppName == pszAppId)
                {
                   bFound = true;
                   break;
@@ -296,7 +296,7 @@ namespace plane
 
             try
             {
-               if(papp->is_running())
+               if(papp->m_pplaneapp->is_running())
                {
                   bRunning = true;
                }
@@ -310,7 +310,7 @@ namespace plane
 
                try
                {
-                  papp->post_thread_message(WM_QUIT);
+                  papp->m_pplaneapp->post_thread_message(WM_QUIT);
                }
                catch(...)
                {
@@ -346,7 +346,7 @@ namespace plane
          throw e;
 
       }
-      catch(const exception & e)
+      catch(const ::exception::exception & e)
       {
 
          if(!Application.on_run_exception((exception &) e))
@@ -1193,12 +1193,12 @@ exit_application:
          if(papp == NULL)
             return NULL;
 
-         papp->m_psession                          = m_psession;
+         papp->m_pplaneapp->m_psession                          = m_psession;
 
-         /*if(pcaapp->m_bService)
+         /*if(pbaseapp->m_bService)
          {
 
-            App(pcaapp).m_puiInitialPlaceHolderContainer  = NULL;
+            App(pbaseapp).m_puiInitialPlaceHolderContainer  = NULL;
 
          }*/
 
@@ -1216,14 +1216,14 @@ exit_application:
             || strId == "cube")
             {
 
-               papp->m_strAppId = strId;
+               papp->m_pplaneapp->m_strAppId = strId;
 
             }
 
-            if(papp->m_strInstallToken.is_empty())
+            if(papp->m_pplaneapp->m_strInstallToken.is_empty())
             {
 
-               papp->m_strInstallToken = papp->m_strAppId;
+               papp->m_pplaneapp->m_strInstallToken = papp->m_pplaneapp->m_strAppId;
 
             }
 
@@ -1231,28 +1231,28 @@ exit_application:
 
       }
 
-      //pcaapp->m_papp                               = this;
-      papp->m_psystem                            = m_psystem;
+      //pbaseapp->m_papp                               = this;
+      papp->m_pplaneapp->m_psystem                            = m_psystem;
 
-      papp->command_central()->consolidate(command_central());
+      papp->m_pplaneapp->command_central()->consolidate(command_central());
 
-      papp->m_bSessionSynchronizedCursor = m_bSessionSynchronizedCursor;
+      papp->m_pplaneapp->m_bSessionSynchronizedCursor = m_bSessionSynchronizedCursor;
 
       if(pbias != NULL)
       {
 
-         papp->propset().merge(pbias->m_set);
+         papp->m_pplaneapp->propset().merge(pbias->m_set);
 
       }
       else
       {
 
-         papp->oprop("SessionSynchronizedInput")   = true;
-         papp->oprop("NativeWindowFocus")          = true;
+         papp->m_pplaneapp->oprop("SessionSynchronizedInput")   = true;
+         papp->m_pplaneapp->oprop("NativeWindowFocus")          = true;
 
       }
 
-      if((papp == NULL || papp->m_strAppId != strId)
+      if((papp == NULL || papp->m_pplaneapp->m_strAppId != strId)
          &&
          (!Application.command()->m_varTopicQuery.has_property("install")
          && !Application.command()->m_varTopicQuery.has_property("uninstall")))
@@ -1283,18 +1283,18 @@ exit_application:
    sp(base_application) application::create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias)
    {
 
-      sp(base_application) pcaapp = instantiate_application(pszType, pszId, pbias);
+      sp(base_application) pbaseapp = instantiate_application(pszType, pszId, pbias);
 
-      if(pcaapp == NULL)
+      if(pbaseapp == NULL)
          return NULL;
 
-      sp(base_application) papp = (pcaapp);
+      sp(base_application) papp = (pbaseapp);
 
-      if(!papp->start_application(bSynch, pbias))
+      if(!papp->m_pplaneapp->start_application(bSynch, pbias))
       {
          try
          {
-            pcaapp.release();
+            pbaseapp.release();
          }
          catch(...)
          {
@@ -1303,7 +1303,7 @@ exit_application:
       }
 
 
-      return pcaapp;
+      return pbaseapp;
 
    }
 
@@ -1705,7 +1705,7 @@ exit_application:
       }
 
 
-      if(!application::initialize())
+      if(!::application::initialize())
          return false;
 
 
@@ -1838,7 +1838,7 @@ exit_application:
    bool application::process_initialize()
    {
 
-      if(!application::process_initialize())
+      if(!::application::process_initialize())
          return false;
 
       m_pfontopus = create_fontopus();
@@ -1903,7 +1903,7 @@ exit_application:
 
       }
 
-      if(!application::initialize1())
+      if(!::application::initialize1())
          return false;
 
       if(!m_spuser->initialize1())
@@ -1924,7 +1924,7 @@ exit_application:
    bool application::initialize2()
    {
 
-      if(!application::initialize2())
+      if(!::application::initialize2())
          return false;
 
 
@@ -1944,7 +1944,7 @@ exit_application:
 
 
 
-      if(!application::initialize_instance())
+      if(!::application::initialize_instance())
          return false;
 
       if(!m_pfontopus->initialize_instance())
@@ -1972,7 +1972,7 @@ exit_application:
       try
       {
 
-         m_iReturnCode = application::exit_instance();
+         m_iReturnCode = ::application::exit_instance();
 
       }
       catch(...)

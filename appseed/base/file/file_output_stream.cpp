@@ -5,27 +5,20 @@ namespace file
 {
 
 
-   void output_stream:: write (const string & string)
-   {
-
-   }
-
-
 
 
 
    output_stream::output_stream()
    {
+   
    }
 
-   output_stream::output_stream(writer * pwriter)
+
+
+
+   output_stream::output_stream(sp(writer) pwriter)
    {
       m_spbuffer     = pwriter;
-   }
-
-   output_stream::output_stream(writer & writer)
-   {
-      m_spbuffer     = &writer;
    }
 
    output_stream::output_stream(const  output_stream & ostream) 
@@ -218,6 +211,12 @@ namespace file
    }
 
    
+   void output_stream:: write (const string & string)
+   {
+
+   }
+
+
 
 } // namespace file
 

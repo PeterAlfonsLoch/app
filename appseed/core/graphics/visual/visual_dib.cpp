@@ -1,6 +1,6 @@
 #include "framework.h"
 #ifndef METROWIN
-#include "include/freeimage.h"
+#include "freeimage/freeimage.h"
 #endif
 
 
@@ -42,7 +42,7 @@ namespace visual
          {
             try
             {
-               ::file::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::mode_read | ::file::binary_buffer::shareDenyWrite | ::file::type_binary);
+               ::file::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
                m_p->read(stream);
                return true;
             }
@@ -56,7 +56,7 @@ namespace visual
       try
       {
 
-         if(!read_from_file(App(m_p->m_papp).file().get_file(varFile, ::file::mode_read | ::file::binary_buffer::shareDenyWrite | ::file::type_binary)))
+         if(!read_from_file(App(m_p->m_papp).file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary)))
             return false;
 
       }
@@ -73,7 +73,7 @@ namespace visual
       {
          try
          {
-            ::file::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_write | ::file::type_binary | ::file::binary_buffer::defer_create_directory);
+            ::file::byte_stream stream = App(m_p->m_papp).file().get_byte_stream(strFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
             m_p->write(stream);
          }
          catch(...)
@@ -120,7 +120,7 @@ namespace visual
    bool dib_sp::save_to_file(var varFile, save_image * psaveimage)
    {
       ::file::binary_buffer_sp spfile;
-      spfile = App(m_p->m_papp).file().get_file(varFile, ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_write | ::file::type_binary | ::file::binary_buffer::defer_create_directory);
+      spfile = App(m_p->m_papp).file().get_file(varFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
       return write_to_file(spfile, psaveimage);

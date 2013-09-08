@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_ca2 buffered_file : 
+   class CLASS_DECL_ca2 buffered_buffer : 
       public ::file::binary_buffer
    {
    public:
@@ -23,8 +23,8 @@ namespace file
       primitive::memory          m_storage;
 
 
-      buffered_file(sp(base_application) papp, ::file::binary_buffer_sp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
-      virtual ~buffered_file();
+      buffered_buffer(sp(base_application) papp, ::file::binary_buffer_sp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
+      virtual ~buffered_buffer();
 
 
       virtual bool IsValid() const;

@@ -321,6 +321,16 @@ namespace file
    
 
 
+   void byte_output_stream::write_from_hex(const char * psz)
+   {
+
+      primitive::memory memory(get_app());
+
+      memory.from_hex(psz);
+
+      write(memory.get_data(), memory.get_size());
+
+   }
 
 
 

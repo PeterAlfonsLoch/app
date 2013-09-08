@@ -34,7 +34,7 @@ namespace libcompress
          if (size > remSize)
             size = (uint32_t)remSize;
       }
-      RINOK(WriteStream(outStream, _buffer, size));
+      RINOK(::file::write(outStream, _buffer, size));
       _nowPos64 += size;
       return S_OK;
    }
@@ -52,7 +52,7 @@ namespace libcompress
          ::primitive::memory_size processedSize = kBufferSize - bufferPos;
 
          // Change it: It can be optimized using ReadPart
-         RINOK(ReadStream(inStream, _buffer + bufferPos, &processedSize));
+         RINOK(::file::read(inStream, _buffer + bufferPos, &processedSize));
 
          uint32_t endPos = bufferPos + (uint32_t)processedSize;
 
@@ -147,7 +147,7 @@ namespace libcompress
             throw "E_FAIL";
          _bufferPos = 0;
       }
-      ::core::output_stream_flush_interface * pflush = dynamic_cast < ::core::output_stream_flush_interface * > (_outStream) ;
+      ::file::output_stream_flush * pflush = dynamic_cast < ::file::output_stream_flush * > (_outStream) ;
       if(pflush)
          return pflush->flush();
    }
@@ -187,7 +187,7 @@ namespace libcompress
          _bufferPos = i;
          _convertedPosBegin = _convertedPosEnd = 0;
          ::primitive::memory_size processedSizeTemp = kBufferSize - _bufferPos;
-         RINOK(ReadStream(_inStream, _buffer + _bufferPos, &processedSizeTemp));
+         RINOK(::file::read(_inStream, _buffer + _bufferPos, &processedSizeTemp));
          _bufferPos += (uint32_t)processedSizeTemp;
          _convertedPosEnd = Filter->Filter(_buffer, _bufferPos);
          if (_convertedPosEnd == 0)

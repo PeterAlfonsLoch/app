@@ -5,9 +5,9 @@ namespace usermail
 {
 
 
-   usermail::usermail(application * papp) : 
+   usermail::usermail(base_application * papp) : 
       element(papp),
-      ::departament(papp)
+      base_departament(papp)
    {
    }
 
@@ -19,7 +19,7 @@ namespace usermail
    bool usermail::initialize_instance()
    {
 
-      if(!::departament::initialize_instance())
+      if(!base_departament::initialize_instance())
          return FALSE;
 
 
@@ -30,7 +30,7 @@ namespace usermail
    {
       try
       {
-         ::departament::exit_instance();
+         base_departament::exit_instance();
       }
       catch(...)
       {

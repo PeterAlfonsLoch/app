@@ -252,7 +252,7 @@ bool oswindow_remove_message_only_window(::user::base_interaction * pui)
 int32_t oswindow_data::store_name(const char * psz)
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    synch_lock slOsWindow(*s_pmutex, true);
 
@@ -273,7 +273,7 @@ int32_t oswindow_data::select_input(int32_t iInput)
 {
 
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    synch_lock slOsWindow(*s_pmutex, true);
 
@@ -311,7 +311,7 @@ int32_t oswindow_data::map_window()
 
    /*
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    synch_lock slOsWindow(*s_pmutex, true);
 
@@ -407,7 +407,7 @@ void oswindow_data::set_user_interaction(::user::base_interaction * pui)
 bool oswindow_data::is_child(::oswindow oswindow)
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    synch_lock slOsWindow(*s_pmutex, true);
 
@@ -426,7 +426,7 @@ bool oswindow_data::is_child(::oswindow oswindow)
 oswindow oswindow_data::get_parent()
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    synch_lock slOsWindow(*s_pmutex, true);
 
@@ -458,7 +458,7 @@ oswindow oswindow_data::get_parent()
 oswindow oswindow_data::set_parent(oswindow oswindow)
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    synch_lock slOsWindow(*s_pmutex, true);
 
@@ -484,7 +484,7 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 bool oswindow_data::show_window(int32_t nCmdShow)
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    synch_lock slOsWindow(*s_pmutex, true);
 
@@ -599,7 +599,7 @@ long oswindow_data::get_state()
 {
 
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    /*
 
@@ -655,7 +655,7 @@ bool oswindow_data::is_iconic()
 bool oswindow_data::is_window_visible()
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    /*
 
@@ -863,7 +863,7 @@ oswindow GetCapture()
 oswindow SetCapture(oswindow window)
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    oswindow windowOld(g_oswindowCapture);
    /*
@@ -892,7 +892,7 @@ oswindow SetCapture(oswindow window)
 int_bool ReleaseCapture()
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    /*
    xdisplay d(g_oswindowCapture->display());
@@ -912,7 +912,7 @@ int_bool ReleaseCapture()
 oswindow SetFocus(oswindow window)
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    /*
    xdisplay display(window->display());
@@ -938,7 +938,7 @@ oswindow SetFocus(oswindow window)
 oswindow GetFocus()
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    /*
    xdisplay pdisplay;
@@ -989,7 +989,7 @@ oswindow SetActiveWindow(oswindow window)
 oswindow GetWindow(oswindow windowParam, int iParentHood)
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
 
 
@@ -1108,7 +1108,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 int_bool DestroyWindow(oswindow window)
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    if(!IsWindow(window))
       return FALSE;

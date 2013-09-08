@@ -26,7 +26,7 @@ namespace sockets
       }
 
       /** close file descriptor. */
-      int32_t listen_socket_base::close()
+      void listen_socket_base::close()
       {
 
          if (GetSocket() != INVALID_SOCKET)
@@ -34,7 +34,7 @@ namespace sockets
             close_socket();
 
          }
-         return 0;
+         
       }
 
       /** Bind and listen to any interface.

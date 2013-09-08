@@ -931,7 +931,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\filesystem\file\file_transfer_buffer.h" />
+    <ClInclude Include="..\filesystem\file\file_transfer_stream.h" />
     <ClInclude Include="core\android\os.h" />
     <ClInclude Include="core\android\os_allocate_debug.h" />
     <ClInclude Include="core\android\os_debug.h" />
@@ -943,9 +943,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\api\api_string.h" />
     <ClInclude Include="core\api\mktime.h" />
     <ClInclude Include="core\core.h" />
-    <ClInclude Include="core\zzz_want_to_remove_core_.h" />
-    <ClInclude Include="core\zzz_want_to_remove_core_0.h" />
-    <ClInclude Include="core\zzz_want_to_remove_core_1.h" />
     <ClInclude Include="core\core_allocator.h" />
     <ClInclude Include="core\core_application.h" />
     <ClInclude Include="core\core_back_insert_iterator.h" />
@@ -1015,8 +1012,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core_savings.h" />
     <ClInclude Include="core\core_service.h" />
     <ClInclude Include="core\core_session.h" />
-    <ClInclude Include="core\zzz_want_to_remove_core_se_translator.h" />
-    <ClInclude Include="core\zzz_want_to_remove_core_se_translator.want_to_remove.h" />
     <ClInclude Include="core\core_signal_thread.h" />
     <ClInclude Include="core\core_simple_thread.h" />
     <ClInclude Include="core\core_smart_pointer_query.h" />
@@ -1101,28 +1096,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\libcharguess\types.h" />
     <ClInclude Include="core\libcharguess\universal.h" />
     <ClInclude Include="core\libcharguess\UTF8Prober.h" />
-    <ClInclude Include="core\multithreading\multithreading.h" />
-    <ClInclude Include="core\multithreading\multithreading_condition.h" />
-    <ClInclude Include="core\multithreading\multithreading_critical_section.h" />
-    <ClInclude Include="core\multithreading\multithreading_event.h" />
-    <ClInclude Include="core\multithreading\multithreading_event_base.h" />
-    <ClInclude Include="core\multithreading\multithreading_event_collection.h" />
-    <ClInclude Include="core\multithreading\multithreading_manual_reset_event.h" />
-    <ClInclude Include="core\multithreading\multithreading_multi_lock.h" />
-    <ClInclude Include="core\multithreading\multithreading_mutex.h" />
-    <ClInclude Include="core\multithreading\multithreading_plain_service.h" />
-    <ClInclude Include="core\multithreading\multithreading_retry_multi_lock.h" />
-    <ClInclude Include="core\multithreading\multithreading_retry_single_lock.h" />
-    <ClInclude Include="core\multithreading\multithreading_semaphore.h" />
-    <ClInclude Include="core\multithreading\multithreading_service_base.h" />
-    <ClInclude Include="core\multithreading\multithreading_service_status.h" />
-    <ClInclude Include="core\multithreading\multithreading_single_lock.h" />
-    <ClInclude Include="core\multithreading\multithreading_socket_event.h" />
-    <ClInclude Include="core\multithreading\multithreading_synch_lock.h" />
-    <ClInclude Include="core\multithreading\multithreading_sync_object.h" />
-    <ClInclude Include="core\multithreading\multithreading_thread_pool.h" />
-    <ClInclude Include="core\multithreading\multithreading_waitable.h" />
-    <ClInclude Include="core\multithreading\multithreading_wait_result.h" />
     <ClInclude Include="core\os\os.h" />
     <ClInclude Include="core\os\os_cross_windows.h" />
     <ClInclude Include="core\os\os_cross_windows_crt.h" />
@@ -1143,27 +1116,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\windows\os_defs.h" />
     <ClInclude Include="core\windows\os_library.h" />
     <ClInclude Include="core\windows\os_utils.h" />
-    <ClInclude Include="core\xml\xml.h" />
-    <ClInclude Include="core\xml\xml_attr.h" />
-    <ClInclude Include="core\xml\xml_base_array.h" />
-    <ClInclude Include="core\xml\xml_data.h" />
-    <ClInclude Include="core\xml\xml_disp_option.h" />
-    <ClInclude Include="core\xml\xml_document.h" />
-    <ClInclude Include="core\xml\xml_edit.h" />
-    <ClInclude Include="core\xml\xml_entity.h" />
-    <ClInclude Include="core\xml\xml_enum.h" />
-    <ClInclude Include="core\xml\xml_exportable.h" />
-    <ClInclude Include="core\xml\xml_importable.h" />
-    <ClInclude Include="core\xml\xml_input_tree.h" />
-    <ClInclude Include="core\xml\xml_node.h" />
-    <ClInclude Include="core\xml\xml_output_tree.h" />
-    <ClInclude Include="core\xml\xml_parse_info.h" />
-    <ClInclude Include="core\xml\xml_property_exchange.h" />
-    <ClInclude Include="core\xml\xml_tree_base.h" />
-    <ClInclude Include="core\xml\xml_tree_schema.h" />
-    <ClInclude Include="core\xml\xml_var_exchange.h" />
-    <ClInclude Include="core\xml\xml_xml.h" />
-    <ClInclude Include="core\xml\xml_xmlite.h" />
     <ClInclude Include="compress\7z\7z.h" />
     <ClInclude Include="compress\7z\7zCompressionMode.h" />
     <ClInclude Include="compress\7z\7zDecode.h" />
@@ -1213,7 +1165,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="compress\compress_copy_coder.h" />
     <ClInclude Include="compress\compress_create_coder.h" />
     <ClInclude Include="compress\compress_filter_coder.h" />
-    <ClInclude Include="compress\compress_gzip_helper.h" />
+    <ClInclude Include="compress\compress_gzip_stream.h" />
     <ClInclude Include="compress\compress_huffman_decoder.h" />
     <ClInclude Include="compress\compress_input_stream_with_crc.h" />
     <ClInclude Include="compress\compress_int_to_string.h" />
@@ -1261,7 +1213,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="compress\zip\zip.h" />
     <ClInclude Include="compress\zip\zipImpl.h" />
     <ClInclude Include="compress\zip\zip_internal.h" />
-    <ClInclude Include="core\zzz_want_to_remove_core_2.h" />
     <ClInclude Include="database\database.h" />
     <ClInclude Include="database\database1.h" />
     <ClInclude Include="database\databaseuser\databaseuser.h" />
@@ -1378,8 +1329,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="filesystem\file\file_bitm_decoder.h" />
     <ClInclude Include="filesystem\file\file_bitm_encoder.h" />
     <ClInclude Include="filesystem\file\file_buffer.h" />
-    <ClInclude Include="filesystem\file\file_buffered.h" />
-    <ClInclude Include="filesystem\file\file_byte_stream_memory_file.h" />
+    <ClInclude Include="filesystem\file\file_buffered_buffer.h" />
     <ClInclude Include="filesystem\file\file_circular_buffer.h" />
     <ClInclude Include="filesystem\file\file_clustered_file_stream.h" />
     <ClInclude Include="filesystem\file\file_clustered_input_stream.h" />
@@ -1537,6 +1487,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\http\http_http.h" />
     <ClInclude Include="net\http\http_application.h" />
     <ClInclude Include="net\http\http_get_socket.h" />
+    <ClInclude Include="net\http\http_output_stream.h" />
     <ClInclude Include="net\http\http_system.h" />
     <ClInclude Include="net\mail\mail.h" />
     <ClInclude Include="net\mail\mail_pop3.h" />
@@ -2001,7 +1952,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\core_history.cpp" />
     <ClCompile Include="core\core_international_locale_schema.cpp" />
     <ClCompile Include="core\core_ip_enum.cpp" />
-    <ClCompile Include="core\core_istring.cpp" />
     <ClCompile Include="core\core_job.cpp" />
     <ClCompile Include="core\core_keeper.cpp" />
     <ClCompile Include="core\core_library.cpp" />
@@ -2071,45 +2021,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\crypto\crypto_rng_prng.cpp" />
     <ClCompile Include="core\crypto\crypto_rng_rand_source.cpp" />
     <ClCompile Include="core\crypto\crypto_sha1.cpp" />
-    <ClCompile Include="core\exception\exception_archive.cpp" />
-    <ClCompile Include="core\exception\exception_archive_exception.cpp" />
-    <ClCompile Include="core\exception\exception_base.cpp" />
-    <ClCompile Include="core\exception\exception_call_stack.cpp" />
-    <ClCompile Include="core\exception\exception_debug.cpp" />
-    <ClCompile Include="core\exception\exception_dump.cpp" />
-    <ClCompile Include="core\exception\exception_dump_context.cpp" />
-    <ClCompile Include="core\exception\exception_dump_floating_point.cpp" />
-    <ClCompile Include="core\exception\exception_dump_output.cpp" />
-    <ClCompile Include="core\exception\exception_engine.cpp" />
-    <ClCompile Include="core\exception\exception_error.cpp" />
-    <ClCompile Include="core\exception\exception_exit.cpp" />
-    <ClCompile Include="core\exception\exception_hresult.cpp" />
-    <ClCompile Include="core\exception\exception_installing.cpp" />
-    <ClCompile Include="core\exception\exception_interface_only.cpp" />
-    <ClCompile Include="core\exception\exception_invalid_argument.cpp" />
-    <ClCompile Include="core\exception\exception_invalid_character.cpp" />
-    <ClCompile Include="core\exception\exception_invalid_handle.cpp" />
-    <ClCompile Include="core\exception\exception_invalid_index.cpp" />
-    <ClCompile Include="core\exception\exception_io.cpp" />
-    <ClCompile Include="core\exception\exception_last_error.cpp" />
-    <ClCompile Include="core\exception\exception_memory.cpp" />
-    <ClCompile Include="core\exception\exception_not_implemented.cpp" />
-    <ClCompile Include="core\exception\exception_not_installed.cpp" />
-    <ClCompile Include="core\exception\exception_not_licensed.cpp" />
-    <ClCompile Include="core\exception\exception_not_supported.cpp" />
-    <ClCompile Include="core\exception\exception_operation_canceled.cpp" />
-    <ClCompile Include="core\exception\exception_os.cpp" />
-    <ClCompile Include="core\exception\exception_overflow_error.cpp" />
-    <ClCompile Include="core\exception\exception_range_error.cpp" />
-    <ClCompile Include="core\exception\exception_resource.cpp" />
-    <ClCompile Include="core\exception\exception_runtime_error.cpp" />
-    <ClCompile Include="core\exception\exception_simple.cpp" />
-    <ClCompile Include="core\exception\exception_standard_translator.cpp" />
-    <ClCompile Include="core\exception\exception_temporary.cpp" />
-    <ClCompile Include="core\exception\exception_todo.cpp" />
-    <ClCompile Include="core\exception\exception_user.cpp" />
-    <ClCompile Include="core\exception\exception_VMSException.cpp" />
-    <ClCompile Include="core\exception\exception_void_implementation.cpp" />
     <ClCompile Include="core\geoip\geoip.cpp" />
     <ClCompile Include="core\geoip\geoip_city.cpp" />
     <ClCompile Include="core\geoip\geoip_region_name.cpp" />
@@ -2140,27 +2051,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\libcharguess\libcharguess_SJISProber.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess_universal.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess_UTF8Prober.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_condition.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_core.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_critical_section.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_event.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_event_base.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_event_collection.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_file_change_event.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_manual_reset_event.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_multi_lock.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_mutex.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_plain_service.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_retry_multi_lock.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_retry_single_lock.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_semaphore.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_service_base.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_single_lock.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_socket_event.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_synch_lock.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_sync_object.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_waitable.cpp" />
-    <ClCompile Include="core\multithreading\multithreading_wait_result.cpp" />
     <ClCompile Include="core\plugin\plugin_history.cpp" />
     <ClCompile Include="core\plugin\plugin_host_interaction.cpp" />
     <ClCompile Include="core\plugin\plugin_instance.cpp" />
@@ -2168,26 +2058,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\plugin\plugin_run_start_installer.cpp" />
     <ClCompile Include="core\plugin\plugin_system.cpp" />
     <ClCompile Include="core\windows\os_library_initialize.cpp" />
-    <ClCompile Include="core\windows\os_utils.cpp" />
-    <ClCompile Include="core\xml\xml_attr.cpp" />
-    <ClCompile Include="core\xml\xml_base_array.cpp" />
-    <ClCompile Include="core\xml\xml_data.cpp" />
-    <ClCompile Include="core\xml\xml_disp_option.cpp" />
-    <ClCompile Include="core\xml\xml_document.cpp" />
-    <ClCompile Include="core\xml\xml_edit.cpp" />
-    <ClCompile Include="core\xml\xml_entity.cpp" />
-    <ClCompile Include="core\xml\xml_exportable.cpp" />
-    <ClCompile Include="core\xml\xml_importable.cpp" />
-    <ClCompile Include="core\xml\xml_input_tree.cpp" />
-    <ClCompile Include="core\xml\xml_node.cpp" />
-    <ClCompile Include="core\xml\xml_output_tree.cpp" />
-    <ClCompile Include="core\xml\xml_parse_info.cpp" />
-    <ClCompile Include="core\xml\xml_property_exchange.cpp" />
-    <ClCompile Include="core\xml\xml_tree_base.cpp" />
-    <ClCompile Include="core\xml\xml_tree_schema.cpp" />
-    <ClCompile Include="core\xml\xml_var_exchange.cpp" />
-    <ClCompile Include="core\xml\xml_xml.cpp" />
-    <ClCompile Include="core\xml\xml_xmlite.cpp" />
     <ClCompile Include="compress\7z\7zDecode.cpp" />
     <ClCompile Include="compress\7z\7zEncode.cpp" />
     <ClCompile Include="compress\7z\7zExtract.cpp" />
@@ -2232,7 +2102,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="compress\compress_filter_coder.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="compress\compress_gzip_helper.cpp">
+    <ClCompile Include="compress\compress_gzip_stream.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="compress\compress_int_to_string.cpp">
@@ -2473,7 +2343,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_application.cpp" />
     <ClCompile Include="filesystem\file\file_buffered.cpp" />
-    <ClCompile Include="filesystem\file\file_byte_stream_memory_file.cpp" />
     <ClCompile Include="filesystem\file\file_clustered_input_stream.cpp" />
     <ClCompile Include="filesystem\file\file_dynamic_buffered_writer.cpp" />
     <ClCompile Include="filesystem\file\file_in_buffer.cpp" />
@@ -2492,7 +2361,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="filesystem\file\file_system.cpp" />
     <ClCompile Include="filesystem\file\file_text_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_timeout_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_transfer_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_transfer_stream.cpp" />
     <ClCompile Include="filesystem\fs\fs_data.cpp" />
     <ClCompile Include="filesystem\fs\fs_fs.cpp" />
     <ClCompile Include="filesystem\fs\fs_ifs.cpp" />
@@ -2604,9 +2473,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="math\_integer.cpp" />
     <ClCompile Include="net\hi5\hi5_twit.cpp" />
     <ClCompile Include="net\hi5\hi5_oauth.cpp" />
-    <ClCompile Include="net\hi5\hi5_net_twitter_authorization.cpp" />
+    <ClCompile Include="net\hi5\hi5_twitter_authorization.cpp" />
     <ClCompile Include="net\http\http_application.cpp" />
     <ClCompile Include="net\http\http_get_socket.cpp" />
+    <ClCompile Include="net\http\http_output_stream.cpp" />
     <ClCompile Include="net\http\http_system.cpp" />
     <ClCompile Include="net\mail\mail_pop3.cpp" />
     <ClCompile Include="net\mail\mail_pop3_socket.cpp" />
@@ -2666,8 +2536,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="net\sockets\bsd\webserver\sockets_http_base_socket.cpp" />
     <ClCompile Include="net\sockets\http_file.cpp" />
     <ClCompile Include="net\sockets\http_memory_file.cpp" />
-    <ClCompile Include="net\sockets\sockets_http_batch_file.cpp" />
-    <ClCompile Include="net\sockets\sockets_http_file.cpp" />
+    <ClCompile Include="net\sockets\sockets_http_batch_buffer.cpp" />
+    <ClCompile Include="net\sockets\sockets_http_buffer.cpp" />
     <ClCompile Include="net\sockets\webserver\sockets_http_cookie.cpp" />
     <ClCompile Include="net\sockets\webserver\sockets_http_form.cpp" />
     <ClCompile Include="net\sockets\webserver\sockets_http_request.cpp" />
@@ -2959,7 +2829,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
   </ItemGroup>
   <ItemGroup>
     <None Include="core\core.inl" />
-    <None Include="core\multithreading\multithreading.inl" />
     <None Include="core.def" />
     <None Include="user\interaction.inl" />
     <None Include="user\user_interaction.inl" />

@@ -6,7 +6,7 @@ namespace sockets
 
 
    class CLASS_DECL_ca2 http_buffer : 
-      virtual public ::file::transfer_buffer
+      virtual public ::file::transfer_stream
    {
    public:
 

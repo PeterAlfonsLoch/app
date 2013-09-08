@@ -42,7 +42,7 @@ int_bool ReleaseDC(oswindow hwnd, HDC hdc)
 {
 
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
 
    if(hdc == NULL)
@@ -60,7 +60,7 @@ int_bool ReleaseDC(oswindow hwnd, HDC hdc)
 int_bool GetClientRect(oswindow hwnd, LPRECT lprect)
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
 //   XWindowAttributes attrs;
 
@@ -89,7 +89,7 @@ int_bool GetWindowRect(oswindow hwnd, LPRECT lprect)
 
 
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    if(!IsWindow(hwnd))
       return FALSE;
@@ -138,7 +138,7 @@ int_bool GetWindowRect(oswindow hwnd, LPRECT lprect)
 int32_t FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
 
    //XFillRectangle(hdc->m_display, hdc->m_d, hdc->m_gc, lprc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
@@ -169,7 +169,7 @@ int_bool EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
 int_bool GetCursorPos(LPPOINT lpptCursor)
 {
 
-   //synch_lock sl(user_mutex(), true);
+   //synch_lock sl(&user_mutex());
 
 
    Window root_return;
@@ -198,7 +198,7 @@ int_bool GetCursorPos(LPPOINT lpptCursor)
 int_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT uFlags)
 {
 
-   synch_lock sl(user_mutex(), true);
+   synch_lock sl(&user_mutex());
 
    /*
    xdisplay display(hwnd->display());

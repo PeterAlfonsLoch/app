@@ -7,12 +7,25 @@ namespace file
 
    void seekable::seek_to_begin()
    {
+
       seek(0, seek_begin);
+
    }
+
 
    file_position seekable::seek_to_end()
    {
+
       return seek(0, seek_end);
+
+   }
+
+
+   file_position seekable::seek(file_position position)
+   {
+
+      return seek((file_offset) position, seek_begin);
+
    }
 
    file_position seekable::seek(file_offset offset, e_seek seekOrigin)

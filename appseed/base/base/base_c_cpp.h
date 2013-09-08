@@ -94,19 +94,19 @@ namespace user
 
 #define sp(TYPE) smart_pointer < TYPE >
 
-#define CaSys(pca) (*pca->m_pcaapp->m_pcasystem)
-#define Sys(papp) (*papp->m_pcasystem)
-#define System (Sys(this->m_pcaapp))
+#define CaSys(pca) (*pca->m_pbaseapp->m_pbasesystem)
+#define Sys(pbaseapp) (*pbaseapp->m_pbasesystem)
+#define System (Sys(this->m_pbaseapp))
 #define threadSystem (Sys(get_thread_app()))
 //#define Mathematics(papp) (Sys(papp).math())
-//#define Math (Mathematics(this->m_pcaapp))
+//#define Math (Mathematics(this->m_pbaseapp))
 
-//#define Sess(papp) (*papp->m_psession)
-//#define Session (Sess(this->m_pcaapp))
+//#define Sess(papp) (*papp->m_pplaneapp->m_psession)
+//#define Session (Sess(this->m_pbaseapp))
 
 #undef App
-#define App(pcaapp) (*pcaapp)
-#define Application (App(m_pcaapp))
+#define App(pbaseapp) (*pbaseapp)
+#define Application (App(m_pbaseapp))
 
 // return - result - if not ok
 #ifndef RINOK
@@ -320,6 +320,7 @@ CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 
 #include "base/file/file_byte_stream_memory_buffer.h"
 
+#include "base/file/file_plain_text_stream_memory_buffer.h"
 
 #include "base/str/str_international2.h"
 

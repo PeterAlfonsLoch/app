@@ -20,24 +20,24 @@ namespace simpledb
 
    void service::serve()
    {
-      sp(base_application) pcaapp = get_app();
+      sp(base_application) pbaseapp = get_app();
 
-      Sys(pcaapp).set_thread(&Sys(pcaapp->m_psystem));
-
-
-      m_pmanager = new ::simpledb::manager(pcaapp);
+      Sys(pbaseapp).set_thread(&Sys(pbaseapp->m_pplaneapp->m_psystem));
 
 
-      /*App(pcaapp).m_strFontopusServer		= System.m_simpledb.db().data_load("fontopus_server", ::database::id(), ::database::id());
-      App(pcaapp).m_strDatabaseServerHost	= System.m_simpledb.db().data_load("database_server", ::database::id(), ::database::id());
-      App(pcaapp).m_iDatabaseServerPort	= System.m_simpledb.db().data_load("database_port", ::database::id(), ::database::id());
-      if(App(pcaapp).m_strDatabaseServerHost.is_empty())
+      m_pmanager = new ::simpledb::manager(pbaseapp);
+
+
+      /*App(pbaseapp).m_strFontopusServer		= System.m_simpledb.db().data_load("fontopus_server", ::database::id(), ::database::id());
+      App(pbaseapp).m_strDatabaseServerHost	= System.m_simpledb.db().data_load("database_server", ::database::id(), ::database::id());
+      App(pbaseapp).m_iDatabaseServerPort	= System.m_simpledb.db().data_load("database_port", ::database::id(), ::database::id());
+      if(App(pbaseapp).m_strDatabaseServerHost.is_empty())
       {
-         App(pcaapp).m_strDatabaseServerHost = "localhost";
+         App(pbaseapp).m_strDatabaseServerHost = "localhost";
       }
-      if(App(pcaapp).m_iDatabaseServerPort <= 0)
+      if(App(pbaseapp).m_iDatabaseServerPort <= 0)
       {
-	      App(pcaapp).m_iDatabaseServerPort = 0;
+	      App(pbaseapp).m_iDatabaseServerPort = 0;
       }*/
 
 

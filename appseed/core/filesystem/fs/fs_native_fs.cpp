@@ -7,7 +7,7 @@ namespace fs
 
    native::native(sp(base_application) papp) :
       element(papp),
-      ::data(papp),
+      ::data::data(papp),
       ::fs::data(papp)
    {
    }
@@ -114,7 +114,7 @@ namespace fs
 
       ::file::binary_buffer_sp spfile(allocer());
 
-      // ::file::mode_read | ::file::binary_buffer::shareDenyNone | ::file::type_binary
+      // ::file::mode_read | ::file::share_deny_none | ::file::type_binary
       if(!spfile->open(varFile.get_string(), nOpenFlags))
       {
 

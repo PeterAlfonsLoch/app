@@ -22,23 +22,23 @@ namespace file
 
    enum e_open
    {
-      mode_read               = (int32_t) 0x00001,
-      mode_write              = (int32_t) 0x00002,
-      mode_read_write         = (int32_t) 0x00003,
-      shareCompat             = (int32_t) 0x00000,
-      shareExclusive          = (int32_t) 0x00010,
-      shareDenyWrite          = (int32_t) 0x00020,
-      shareDenyRead           = (int32_t) 0x00030,
-      shareDenyNone           = (int32_t) 0x00040,
-      modeNoInherit           = (int32_t) 0x00080,
-      mode_create             = (int32_t) 0x01000,
-      modeNoTruncate                      = (int32_t) 0x02000,
-      type_text                           = (int32_t) 0x04000, // type_text and type_binary are used in
-      type_binary                         = (int32_t) 0x08000, // derived classes only
-      defer_create_directory              = (int32_t) 0x10000,
-      hint_unknown_length_supported       = (int32_t) 0x20000,
-      binary                  = type_binary,
-      out                     = mode_write
+      mode_read                        = (int32_t) 0x00001,
+      mode_write                       = (int32_t) 0x00002,
+      mode_read_write                  = (int32_t) 0x00003,
+      share_compat                     = (int32_t) 0x00000,
+      share_exclusive                  = (int32_t) 0x00010,
+      share_deny_write                 = (int32_t) 0x00020,
+      share_deny_read                  = (int32_t) 0x00030,
+      share_deny_none                  = (int32_t) 0x00040,
+      mode_no_inherit                  = (int32_t) 0x00080,
+      mode_create                      = (int32_t) 0x01000,
+      mode_no_truncate                 = (int32_t) 0x02000,
+      type_text                        = (int32_t) 0x04000, // type_text and type_binary are used in
+      type_binary                      = (int32_t) 0x08000, // derived classes only
+      defer_create_directory           = (int32_t) 0x10000,
+      hint_unknown_length_supported    = (int32_t) 0x20000,
+      binary                           = type_binary,
+      out                              = mode_write
    };
 
 
@@ -68,7 +68,7 @@ namespace file
 
 
    class CLASS_DECL_c stream_base :
-      virtual public object
+      virtual public seekable
    {
    public:
 
@@ -78,6 +78,8 @@ namespace file
 
       
       stream_base();
+      stream_base(sp(stream_buffer) pbuffer);
+      stream_base(const stream_base & stream);
       virtual ~stream_base();
 
 
@@ -126,6 +128,9 @@ namespace file
       string fileName() { return GetFilePath(); }
 
       virtual void close();
+
+      using seekable::seek;
+      virtual file_position seek(file_offset offset, e_seek eseek);
 
    };
 

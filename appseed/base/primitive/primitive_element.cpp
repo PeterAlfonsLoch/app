@@ -94,7 +94,7 @@ void element::delete_this()
    else if(m_ulFlags & flag_discard_to_factory)
    {
 
-      m_papp->m_pcasystem->discard_to_factory(this);
+      m_papp->m_pbasesystem->discard_to_factory(this);
 
    }
    else if(is_heap())
@@ -113,7 +113,7 @@ sp(element) element::clone()
    if(m_pfactoryitembase != NULL)
       return m_pfactoryitembase->clone(this);
    else
-      return m_papp->m_pcasystem->clone(this);
+      return m_papp->m_pbasesystem->clone(this);
 
 }
 

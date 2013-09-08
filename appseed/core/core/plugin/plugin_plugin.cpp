@@ -86,13 +86,13 @@ namespace plugin
 
       ::str::begins_eat_ci(strMutex, "\\core\\");
 
-      m_pmutexBitmap = new mutex("Global\\" + strMutex, false);
+      m_pmutexBitmap = new mutex(get_thread_app(), false, "Global\\" + strMutex);
 
       bool bNew = false;
 
       //Sleep(15 * 1000);
 
-      synch_lock mlSystem(m_phost->m_mutexSystem, true);
+      synch_lock mlSystem(&m_phost->m_mutexSystem);
 
       if(m_phost->get_system() == NULL)
       {
@@ -293,7 +293,7 @@ namespace plugin
 
          {
 
-            synch_lock sl(*m_pmutexBitmap, true);
+            synch_lock sl(m_pmutexBitmap);
 
             memcpy(m_pcolorref, m_dib->get_data(), abs_dup(m_sizeBitmap.cy) * abs_dup(m_sizeBitmap.cx) * 4);
 

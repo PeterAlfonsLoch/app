@@ -12,7 +12,7 @@ namespace database
 
    bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, var & var   , update_hint * puh)
    {
-      ::core::byte_stream_memory_file memfile(get_app());
+      ::file::byte_stream_memory_buffer memfile(get_app());
       if(!data_server_load(pclient, idSection, id, idIndex, memfile, puh))
          return false;
       try
@@ -32,14 +32,9 @@ namespace database
       return data_server_load(pclient, idSection, id, idIndex, (::file::writable &) ostream, puh);
    }
 
-   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::core::plain_text_output_stream & ostream, update_hint * puh)
-   {
-      return data_server_load(pclient, idSection, id, idIndex, (::file::writable &) ostream, puh);
-   }
-
    bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * puh)
    {
-      ::core::byte_stream_memory_file memfile(get_app());
+      ::file::byte_stream_memory_buffer memfile(get_app());
       if(!data_server_load(pclient, idSection, id, idIndex, memfile, puh))
          return false;
       try
@@ -54,27 +49,6 @@ namespace database
       return memfile.get_position() == memfile.get_length();
    }
 
-   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * puh)
-   {
-      ::file::plain_text_stream strstream;
-      if(!data_server_load(pclient, idSection, id, idIndex, strstream, puh))
-         return false;
-      try
-      {
-         strstream.m_dwPos = 0;
-         obj.read(strstream);
-      }
-      catch(const char * psz)
-      {
-         TRACE("database::server::data_server_load : %s", psz);
-         return false;
-      }
-      catch(...)
-      {
-         return false;
-      }
-      return true;
-   }
 
    bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::file::readable & readable, update_hint * puh)
    {
@@ -83,7 +57,7 @@ namespace database
 
    bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, var & var   , update_hint * puh)
    {
-      ::core::byte_stream_memory_file memfile(get_app());
+      ::file::byte_stream_memory_buffer memfile(get_app());
       memfile << var;
       memfile.seek_to_begin();
       if(!data_server_save(pclient, idSection, id, idIndex, memfile, puh))
@@ -96,27 +70,12 @@ namespace database
       return data_server_save(pclient, idSection, id, idIndex, (::file::readable &) istream, puh);
    }
 
-   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::core::plain_text_input_stream & istream, update_hint * puh)
-   {
-      return data_server_save(pclient, idSection, id, idIndex, (::file::readable &) istream, puh);
-   }
-
    bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * puh)
    {
-      ::core::byte_stream_memory_file memfile(get_app());
+      ::file::byte_stream_memory_buffer memfile(get_app());
       obj.write(memfile);
       memfile.seek_to_begin();
       if(!data_server_save(pclient, idSection, id, idIndex, memfile, puh))
-         return false;
-      return true;
-   }
-
-   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * puh)
-   {
-      ::file::plain_text_stream strstream;
-      obj.write(strstream);
-      strstream.m_dwPos = 0;
-      if(!data_server_save(pclient, idSection, id, idIndex, strstream, puh))
          return false;
       return true;
    }

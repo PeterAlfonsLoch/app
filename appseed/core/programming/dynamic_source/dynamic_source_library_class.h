@@ -59,7 +59,7 @@ namespace dynamic_source
 
 
 
-     // application * get_app() const;
+     base_application * get_app() const;
 
    };
 

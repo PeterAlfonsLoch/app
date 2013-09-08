@@ -1133,6 +1133,12 @@
     <ClInclude Include="base\base_enum.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
+    <ClInclude Include="file\file_stream_buffer_base.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file_plain_text_stream_memory_buffer.h">
+      <Filter>Header Files\file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="android\c_os_internal.c">
@@ -1837,6 +1843,15 @@
     <ClCompile Include="base\base_checked.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
+    <ClCompile Include="file\file_writer_flush.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_stream_buffer_base.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file_plain_text_stream_memory_buffer.cpp">
+      <Filter>Source Files\file</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -1850,6 +1865,9 @@
     </None>
     <None Include="base.def">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

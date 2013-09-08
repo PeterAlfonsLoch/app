@@ -7,7 +7,7 @@ namespace fs
 
    remote_native::remote_native(sp(base_application) papp, const char * pszRoot) :
       element(papp),
-      ::data(papp),
+      ::data::data(papp),
       ::fs::data(papp)
    {
 

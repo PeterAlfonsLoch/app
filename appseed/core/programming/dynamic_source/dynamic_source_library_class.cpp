@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <sys/stat.h>
 
 
 namespace dynamic_source
@@ -26,7 +27,7 @@ namespace dynamic_source
 //         memset(&ftAccess, 0, sizeof(__time_t));
 //         memset(&ftModified, 0, sizeof(__time_t));
 //         HANDLE h = ::CreateFile(m_straSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-         stat(m_straSourcePath[i], &st);
+         ::stat(m_straSourcePath[i], &st);
 //         ::CloseHandle(h);
          if(memcmp(&st.st_ctime, &m_ftaCreation[i], sizeof(__time_t)) != 0
             || memcmp(&m_ftaModified[i], &st.st_mtime, sizeof(__time_t)) != 0)
@@ -40,9 +41,9 @@ namespace dynamic_source
    {
       if(!m_library.open(m_strLibraryPath))
          return;
-      m_ftaCreation.set_size(m_straSourcePath.get_size());
-      m_ftaAccess.set_size(m_straSourcePath.get_size());
-      m_ftaModified.set_size(m_straSourcePath.get_size());
+      m_ftaCreation.allocate(m_straSourcePath.get_size());
+      m_ftaAccess.allocate(m_straSourcePath.get_size());
+      m_ftaModified.allocate(m_straSourcePath.get_size());
       for(int32_t i = 0; i < m_straSourcePath.get_size(); i++)
       {
          //HANDLE h = ::CreateFile(m_straSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -68,7 +69,8 @@ namespace dynamic_source
    {
    }
 
-   application * library_class::get_app() const
+
+   base_application * library_class::get_app() const
    {
       return m_pmanager->get_app();
    }

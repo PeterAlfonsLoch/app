@@ -22,8 +22,7 @@ namespace file
 
       uint64_t SeekToPhys()
       {
-         Stream->seekg((file_offset) _physPos, seek_begin);
-         return tellg();
+         return Stream->seek((file_offset) _physPos, seek_begin);
       }
 
       uint64_t InitAndSeek()

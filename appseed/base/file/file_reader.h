@@ -12,7 +12,7 @@ namespace file
 
 
    class CLASS_DECL_c reader :
-      virtual public object
+      virtual public stream_buffer_base
    {
    public:
 
@@ -24,7 +24,7 @@ namespace file
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
       virtual file_position find(const void * pFind, ::primitive::memory_size size, const file_position * limit);
 
-      virtual void write_to(writer & writer);
+      virtual void transfer_to(writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024);
 
       virtual void close();
 
@@ -38,10 +38,10 @@ namespace file
 
    typedef reader readable;
 
+   CLASS_DECL_c HRESULT read(reader * preader, void * data, ::primitive::memory_size * size);
+   CLASS_DECL_c HRESULT read_false(reader * preader, void * data, ::primitive::memory_size size);
+   CLASS_DECL_c HRESULT read_fail(reader * preader, void * data, ::primitive::memory_size size);
 
-   CLASS_DECL_c HRESULT read_reader(reader * stream, void * data, ::primitive::memory_size * size);
-   CLASS_DECL_c HRESULT read_reader_false(reader * stream, void * data, ::primitive::memory_size size);
-   CLASS_DECL_c HRESULT read_reader_fail(reader * stream, void * data, ::primitive::memory_size size);
 
 } // namespace file
 

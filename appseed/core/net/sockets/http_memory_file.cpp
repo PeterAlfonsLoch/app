@@ -4,7 +4,7 @@
 namespace http
 {
 
-
+   /*
    memory_buffer::memory_buffer(sp(base_application) papp) :
       element(papp),
       ::file::memory_buffer(papp),
@@ -16,7 +16,7 @@ namespace http
    {
       ::file::memory_buffer::to_string(str);
    }
-
+   */
 
 } // namespace http
 

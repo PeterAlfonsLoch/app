@@ -17,7 +17,7 @@ typedef ::map < sp(element), sp(element), ptra, ptra > map_many;
 
 
 #undef __id
-#define __id(x) (m_papp->m_pcasystem->m_cidpool.id_##x)
+#define __id(x) (m_papp->m_pbasesystem->m_cidpool.id_##x)
 
 
 

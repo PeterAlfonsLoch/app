@@ -8,7 +8,7 @@ namespace fs
    remote_native_file::remote_native_file(sp(base_application) papp, var varFile) :
       element(papp),
       ::sockets::http_batch_buffer(papp),
-      m_httpfile(new ::::sockets::http_buffer(papp)),
+      m_httpfile(canew(::sockets::http_buffer(papp))),
       m_memfile(papp),
       m_varFile(varFile)
    {
@@ -56,7 +56,7 @@ namespace fs
 
    void remote_native_file::get_file_data()
    {
-      /*if(m_nOpenFlags & ::file::binary_buffer::mode_write)
+      /*if(m_nOpenFlags & ::file::mode_write)
       {
       throw "Cannot open remote_native_file for reading and writing simultaneously due the characteristic of possibility of extreme delayed streaming. The way it is implemented would also not work.\n It is build with this premisse.";
       return;
@@ -69,9 +69,9 @@ namespace fs
 
       uint32_t dwAdd = 0;
 
-      if(m_nOpenFlags & hint_unknown_length_supported)
+      if(m_nOpenFlags & ::file::hint_unknown_length_supported)
       {
-         dwAdd |= hint_unknown_length_supported;
+         dwAdd |= ::file::hint_unknown_length_supported;
       }
 
       m_httpfile->open(strUrl, ::file::type_binary | ::file::mode_read | dwAdd);

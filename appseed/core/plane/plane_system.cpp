@@ -44,7 +44,7 @@ namespace plane
       else
       {
 
-         oprop("parent_system") = papp->m_psystem;
+         oprop("parent_system") = papp->m_pplaneapp->m_psystem;
 
       }
 
@@ -389,7 +389,7 @@ namespace plane
       try
       {
 
-         file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::file::binary_buffer::defer_create_directory | ::file::type_binary | ::file::binary_buffer::mode_create  | ::file::binary_buffer::mode_write);
+         file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::file::defer_create_directory | ::file::type_binary | ::file::mode_create  | ::file::mode_write);
 
       }
       catch(::exception::base &)
@@ -508,7 +508,7 @@ namespace plane
       set_enum_name(var::type_string    , "string");
       set_enum_name(var::type_int32   , "integer");
       set_enum_name(var::type_uint32     , "ulong");
-      set_enum_name(var::type_ca2       , "core");
+      set_enum_name(var::type_element       , "core");
       set_enum_name(var::type_bool      , "bool");
       set_enum_name(var::type_double    , "double");*/
 
@@ -892,8 +892,8 @@ namespace plane
 
       appptra().add_unique(papp);
 
-      if(!papp->is_session()
-      && !papp->is_system())
+      if(!papp->m_pplaneapp->is_session()
+      && !papp->m_pplaneapp->is_system())
       {
 
          if(System.is_installing() || System.is_uninstalling())
@@ -922,7 +922,7 @@ namespace plane
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
          sp(base_application) papp = appptra()(i);
-         papp->load_string_table();
+         papp->m_pplaneapp->load_string_table();
       }
 
    }
@@ -935,7 +935,7 @@ namespace plane
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
          sp(base_application) papp = appptra()(i);
-         papp->set_locale(pszLocale, bUser);
+         papp->m_pplaneapp->set_locale(pszLocale, bUser);
       }
 
    }
@@ -948,7 +948,7 @@ namespace plane
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
          sp(base_application) papp = appptra()(i);
-         papp->set_schema(pszStyle, bUser);
+         papp->m_pplaneapp->set_schema(pszStyle, bUser);
       }
 
    }
@@ -1735,7 +1735,7 @@ namespace plane
      LPARAM dwData)
    {
       ::plane::system * papp = (::plane::system *) dwData;
-      papp->monitor_enum(hmonitor, hdcMonitor, lprcMonitor);
+      papp->m_pplaneapp->monitor_enum(hmonitor, hdcMonitor, lprcMonitor);
       return TRUE; // to enumerate all
    }
 #endif

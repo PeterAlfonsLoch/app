@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-namespace core
+namespace http
 {
 
 
-   http_get_socket::http_get_socket(::sockets::socket_handler & handler, const string & url) :
+   get_socket::get_socket(::sockets::socket_handler & handler, const string & url) :
       element(handler.get_app()),
       ::sockets::socket(handler),
       ::sockets::stream_socket(handler),
@@ -20,7 +20,7 @@ namespace core
    }
 
       
-   http_get_socket::http_get_socket(::sockets::socket_handler & handler, const string & host, port_t port, const string & url) :
+   get_socket::get_socket(::sockets::socket_handler & handler, const string & host, port_t port, const string & url) :
       element(handler.get_app()),
       ::sockets::socket(handler),
       ::sockets::stream_socket(handler),
@@ -33,12 +33,12 @@ namespace core
       m_pcookies = NULL;
    }
 
-   void http_get_socket::OnDataArrived(const char *, size_t len)
+   void get_socket::OnDataArrived(const char *, size_t len)
    {
       UNREFERENCED_PARAMETER(len);
    }
 
-   void http_get_socket::OnHeader(id key, const string & value)
+   void get_socket::OnHeader(id key, const string & value)
    {
 
       ::sockets::http_get_socket::OnHeader(key, value);
@@ -63,7 +63,7 @@ namespace core
 
    }
 
-   string http_get_socket::MyUseragent()
+   string get_socket::MyUseragent()
    {
 	   return "core-sockets/10.0.2";
    }

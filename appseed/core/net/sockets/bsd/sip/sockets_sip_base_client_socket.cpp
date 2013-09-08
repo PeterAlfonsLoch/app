@@ -66,7 +66,7 @@ namespace sockets
                         char tmp[TCP_BUFSIZE_READ];
                         memcpy(tmp, buf + ptr, len - ptr);
                         tmp[len - ptr] = 0;
-                        OnRead( tmp, len - ptr );
+                        on_read( tmp, len - ptr );
                         ptr = len;
                      }
                   }
@@ -77,7 +77,7 @@ namespace sockets
                   if (m_chunk_line.get_length() > 1 && m_chunk_line.Mid(m_chunk_line.get_length() - 2) == "\r\n")
                   {
                      m_chunk_line = m_chunk_line.Left(m_chunk_line.get_length() - 2);
-                     ::core::parse pa(m_chunk_line, ";");
+                     ::str::parse pa(m_chunk_line, ";");
                      string size_str = pa.getword();
                      m_chunk_size = ::hex::to_uint(size_str);
                      if (!m_chunk_size)
@@ -151,7 +151,7 @@ namespace sockets
                   char tmp[TCP_BUFSIZE_READ];
                   memcpy(tmp, buf + sz, len - sz);
                   tmp[len - sz] = 0;
-                  OnRead( tmp, len - sz );
+                  on_read( tmp, len - sz );
                }
             }
          }
@@ -189,7 +189,7 @@ namespace sockets
 
 
          }
-         ::core::parse pa(line);
+         ::str::parse pa(line);
          string str = pa.getword();
          if (str.get_length() > 4 &&  ::str::begins_ci(str, "http/")) // response
          {
@@ -235,7 +235,7 @@ namespace sockets
          }
          return;
       }
-      ::core::parse pa(line,":");
+      ::str::parse pa(line,":");
       string strKey = pa.getword();
       id key(strKey.make_lower());
       string value = pa.getrest();
@@ -308,7 +308,7 @@ namespace sockets
          TRACE(strTrace + "\n");
       }
       msg += "\r\n";
-      Send( msg );
+      write( msg );
    }
 
    void sip_base_client_socket::SendResponseBody()
@@ -326,7 +326,7 @@ namespace sockets
          msg += m_response.m_propertysetHeader.m_propertya[i].name() + ": " + m_response.m_propertysetHeader.m_propertya[i].get_string() + "\r\n";
       }
       msg += "\r\n";
-      Send( msg );
+      write( msg );
    }
 
 
@@ -371,7 +371,7 @@ namespace sockets
 
    void sip_base_client_socket::url_this(const string & url_in,string & protocol,string & host,port_t& port,string & url,string & file)
    {
-      ::core::parse pa(url_in,"/");
+      ::str::parse pa(url_in,"/");
       protocol = pa.getword(); // http
       if (!strcasecmp(protocol, "https:"))
       {
@@ -389,13 +389,13 @@ namespace sockets
       host = pa.getword();
       if (strstr(host,":"))
       {
-         ::core::parse pa(host,":");
+         ::str::parse pa(host,":");
          pa.getword(host);
          port = static_cast<port_t>(pa.getvalue());
       }
       url = "/" + pa.getrest();
       {
-         ::core::parse pa(url,"/");
+         ::str::parse pa(url,"/");
          string tmp = pa.getword();
          while (tmp.get_length())
          {

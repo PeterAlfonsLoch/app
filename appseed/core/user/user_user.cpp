@@ -19,7 +19,7 @@ namespace user
 
 
       //::core::user * papp = dynamic_cast <::core::user *>(System.GetThread()->m_pAppThread);
-      //::core::connect(papp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
+      //::core::connect(papp->m_pplaneapp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
 
       m_pkeyboard = NULL;
       //m_pwindowmap = NULL;
@@ -61,7 +61,7 @@ namespace user
 
       m_pshellimageset = new filemanager::_shell::ImageSet(m_papp);
 
-      if(!::departament::initialize1())
+      if(!base_departament::initialize1())
          return false;
 
       return true;
@@ -74,7 +74,7 @@ namespace user
 
 
 
-      if(!::departament::initialize())
+      if(!base_departament::initialize())
          return false;
 
 
@@ -221,7 +221,7 @@ retry_license:
          return false;
 
 
-      if(!::departament::initialize())
+      if(!base_departament::initialize())
          return false;
 
       return true;
@@ -235,7 +235,7 @@ retry_license:
    {
 
 
-      if(!::departament::initialize2())
+      if(!base_departament::initialize2())
          return false;
 
       m_ptemplateForm = new ::user::multiple_document_template(
@@ -270,7 +270,7 @@ retry_license:
    {
       try
       {
-         ::departament::finalize();
+         base_departament::finalize();
       }
       catch(...)
       {
@@ -334,9 +334,9 @@ retry_license:
    int32_t user::simple_message_box(sp(::user::interaction) pwndOwner, const char * pszMessage, UINT fuStyle)
    {
 
-      if(m_papp->m_psession != NULL)
+      if(m_pbaseapp->m_pplaneapp->m_psession != NULL)
       {
-         return m_papp->m_psession->simple_message_box(pwndOwner, pszMessage, fuStyle);
+         return m_pbaseapp->m_pplaneapp->m_psession->simple_message_box(pwndOwner, pszMessage, fuStyle);
       }
 
       class message_box box(get_app());

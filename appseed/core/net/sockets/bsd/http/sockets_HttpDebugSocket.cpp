@@ -63,20 +63,20 @@ namespace sockets
 
    void http_debug_socket::OnFirst()
    {
-      Send(
+      write(
          "HTTP/1.1 200 OK\n"
          "Content-type: text/html\n"
          "Connection: close\n"
          "Server: http_debug_socket/1.0\n"
          "\n");
-      Send(
+      write(
          "<html><head><title>Echo Request</title></head>"
          "<body><h3>Request header</h3>");
-      Send(   "<form method='post' action='/test_post'>"
+      write(   "<form method='post' action='/test_post'>"
          "<input type='text' name='text' value='test text'><br>"
          "<input type='submit' name='submit' value=' OK '></form>");
-      Send(   "<pre style='background: #e0e0e0'>");
-      Send(m_request.attr("http_method").get_string() + " " + m_request.attr("request_uri") + " " + m_request.attr("http_version") + "\n");
+      write(   "<pre style='background: #e0e0e0'>");
+      write(m_request.attr("http_method").get_string() + " " + m_request.attr("request_uri") + " " + m_request.attr("http_version") + "\n");
    }
 
 
@@ -85,7 +85,7 @@ namespace sockets
       if(key == __id(content_length))
          m_content_length = atoi(value);
 
-      Send(key + ": " + value + "\n");
+      write(key + ": " + value + "\n");
    }
 
 
@@ -93,23 +93,23 @@ namespace sockets
    {
       if (m_content_length || m_content_length != ((size_t)(-1)) || IsChunked())
       {
-         Send("</pre><h3>Request Body</h3><pre style='background: #e0e0e0'>");
+         write("</pre><h3>Request Body</h3><pre style='background: #e0e0e0'>");
       }
       else
       {
-         Send("</pre><hr></body></html>");
+         write("</pre><hr></body></html>");
          SetCloseAndDelete();
       }
    }
 
 
-   void http_debug_socket::OnData(const char *p,size_t l)
+   void http_debug_socket::OnData(const char *p, size_t l)
    {
-      SendBuf(p, (int32_t) l);
+      write(p, l);
       m_read_ptr += (int32_t)l;
       if (m_read_ptr >= m_content_length && m_content_length && m_content_length != ((size_t)(-1)))
       {
-         Send("</pre><hr></body></html>");
+         write("</pre><hr></body></html>");
          SetCloseAndDelete();
       }
    }
@@ -119,7 +119,7 @@ namespace sockets
    {
       if (!CloseAndDelete())
       {
-         Send("</pre><hr></body></html>");
+         write("</pre><hr></body></html>");
          SetCloseAndDelete();
       }
    }

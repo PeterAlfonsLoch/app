@@ -68,9 +68,9 @@ namespace gcom
 
          double m_z;
 
-         array < DoublePoint, DoublePoint & > m_pointaM;
+         raw_array < DoublePoint, DoublePoint & > m_pointaM;
 
-         array < DoublePoint, DoublePoint & > m_pointa;
+         raw_array < DoublePoint, DoublePoint & > m_pointa;
 
 
          PixelExplosion();

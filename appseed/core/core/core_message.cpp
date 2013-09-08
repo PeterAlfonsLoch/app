@@ -17,295 +17,295 @@ struct myfx_CTLCOLOR
 };
 
 
-   namespace message
+namespace message
+{
+
+   ::signal * CreateSignal()
    {
-
-      ::signal * CreateSignal()
-      {
-         return new ::signal();
-      }
+      return new ::signal();
+   }
 
 
-      /*
-      array < Handler *, Handler * > theMessageHandlerArray;
+   /*
+   array < Handler *, Handler * > theMessageHandlerArray;
 
-      void HookMessageHandler(Handler * phandler)
-      {
-         theMessageHandlerArray.add_unique(phandler);
-      }
+   void HookMessageHandler(Handler * phandler)
+   {
+   theMessageHandlerArray.add_unique(phandler);
+   }
 
-      void UnhookMessageHandler(Handler * phandler)
-      {
-         while(theMessageHandlerArray.remove_first(phandler));
-      }
+   void UnhookMessageHandler(Handler * phandler)
+   {
+   while(theMessageHandlerArray.remove_first(phandler));
+   }
 
 
-      void SendGlobalMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam)
-      {
-         for(int32_t i = 0; i < theMessageHandlerArray.get_size(); i++)
-         {
-            theMessageHandlerArray[i]->OnMessage(mparam, nparam, oparam);
-         }
-      }
-      */
+   void SendGlobalMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam)
+   {
+   for(int32_t i = 0; i < theMessageHandlerArray.get_size(); i++)
+   {
+   theMessageHandlerArray[i]->OnMessage(mparam, nparam, oparam);
+   }
+   }
+   */
 
 #ifdef WINDOWS
 
-      bool dispatch::igui_RelayEvent(LPMESSAGE lpmsg)
+   bool dispatch::igui_RelayEvent(LPMESSAGE lpmsg)
+   {
+      switch(lpmsg->message)
       {
-         switch(lpmsg->message)
-         {
-         case message_pos_create:
-            return OnWndMsgPosCreate();
-            break;
-         default:
-            return false;
-         }
-         return 0;
+      case message_pos_create:
+         return OnWndMsgPosCreate();
+         break;
+      default:
+         return false;
       }
+      return 0;
+   }
 
 #endif
 
-      bool dispatch::OnWndMsgPosCreate()
+   bool dispatch::OnWndMsgPosCreate()
+   {
+      return true;
+   }
+
+   sp(base) dispatch::peek_message(LPMESSAGE lpmsg, sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+   {
+      if(!::PeekMessage(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
+         return NULL;
+      return get_base(lpmsg, pwnd);
+   }
+
+   sp(base) dispatch::get_message(LPMESSAGE lpmsg, sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
+   {
+      if(!::GetMessage(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax))
+         return NULL;
+      return get_base(lpmsg, pwnd);
+   }
+
+   sp(base) dispatch::peek_message(sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+   {
+      MESSAGE msg;
+      return peek_message(&msg, pwnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg);
+   }
+
+
+   sp(base) dispatch::get_message(sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
+   {
+      MESSAGE msg;
+      return get_message(&msg, pwnd, wMsgFilterMin, wMsgFilterMax);
+   }
+
+   sp(base) dispatch::get_base(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   {
+      sp(base) pbase;
+      e_prototype eprototype = PrototypeNone;
+      //if(oswindow != NULL)
       {
-         return true;
+         eprototype = dispatch::GetMessagePrototype(uiMessage, 0);
       }
-
-      sp(base) dispatch::peek_message(LPMESSAGE lpmsg, sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+      switch(eprototype)
       {
-         if(!::PeekMessage(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
-            return NULL;
-         return get_base(lpmsg, pwnd);
-      }
-
-      sp(base) dispatch::get_message(LPMESSAGE lpmsg, sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
-      {
-         if(!::GetMessage(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax))
-            return NULL;
-         return get_base(lpmsg, pwnd);
-      }
-
-      sp(base) dispatch::peek_message(sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
-      {
-         MESSAGE msg;
-         return peek_message(&msg, pwnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg);
-      }
-
-
-      sp(base) dispatch::get_message(sp(::user::interaction) pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
-      {
-         MESSAGE msg;
-         return get_message(&msg, pwnd, wMsgFilterMin, wMsgFilterMax);
-      }
-
-      sp(base) dispatch::get_base(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
-      {
-         sp(base) pbase;
-         e_prototype eprototype = PrototypeNone;
-         //if(oswindow != NULL)
+      case PrototypeNone:
          {
-            eprototype = dispatch::GetMessagePrototype(uiMessage, 0);
+            pbase = canew(base(get_app()));
          }
-         switch(eprototype)
+         break;
+      case PrototypeCreate:
          {
-         case PrototypeNone:
-            {
-               pbase = canew(base(get_app()));
-            }
-            break;
-         case PrototypeCreate:
-            {
-               pbase = canew(message::create(get_app()));
-            }
-            break;
-         case PrototypeNcActivate:
-            {
-               pbase = canew(nc_activate(get_app()));
-            }
-            break;
-         case PrototypeKey:
-            {
-               pbase = canew(key(get_app()));
-            }
-            break;
-         case PrototypeTimer:
-            {
-               pbase = canew(timer(get_app()));
-            }
-            break;
-         case PrototypeShowWindow:
-            {
-               pbase = canew(show_window(get_app()));
-            }
-            break;
-         case PrototypeSetCursor:
-            {
-               pbase = canew(set_cursor(get_app()));
-            }
-            break;
-         case PrototypeNcHitTest:
-            {
-               pbase = canew(nchittest(get_app()));
-            }
-            break;
-         case PrototypeMove:
-            {
-               pbase = canew(move(get_app()));
-            }
-            break;
-         case PrototypeEraseBkgnd:
-            {
-               pbase = canew(erase_bkgnd(get_app()));
-            }
-            break;
-         case PrototypeScroll:
-            {
-               pbase = canew(scroll(get_app()));
-            }
-            break;
-         case PrototypeSetFocus:
-            {
-               pbase = canew(set_focus(get_app()));
-            }
-            break;
+            pbase = canew(message::create(get_app()));
+         }
+         break;
+      case PrototypeNcActivate:
+         {
+            pbase = canew(nc_activate(get_app()));
+         }
+         break;
+      case PrototypeKey:
+         {
+            pbase = canew(key(get_app()));
+         }
+         break;
+      case PrototypeTimer:
+         {
+            pbase = canew(timer(get_app()));
+         }
+         break;
+      case PrototypeShowWindow:
+         {
+            pbase = canew(show_window(get_app()));
+         }
+         break;
+      case PrototypeSetCursor:
+         {
+            pbase = canew(set_cursor(get_app()));
+         }
+         break;
+      case PrototypeNcHitTest:
+         {
+            pbase = canew(nchittest(get_app()));
+         }
+         break;
+      case PrototypeMove:
+         {
+            pbase = canew(move(get_app()));
+         }
+         break;
+      case PrototypeEraseBkgnd:
+         {
+            pbase = canew(erase_bkgnd(get_app()));
+         }
+         break;
+      case PrototypeScroll:
+         {
+            pbase = canew(scroll(get_app()));
+         }
+         break;
+      case PrototypeSetFocus:
+         {
+            pbase = canew(set_focus(get_app()));
+         }
+         break;
 #if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
-         case PrototypeWindowPos:
-            {
-               pbase = canew(window_pos(get_app()));
-            }
-            break;
-         case PrototypeNcCalcSize:
-            {
-               pbase = canew(nc_calc_size(get_app()));
-            }
-            break;
-#endif
-         case PrototypeMouse:
-            {
-               pbase = canew(mouse(get_app()));
-            }
-            break;
-         case PrototypeMouseWheel:
-            {
-               pbase = canew(mouse_wheel(get_app()));
-            }
-            break;
-         case PrototypeSize:
-            {
-               pbase = canew(size(get_app()));
-            }
-            break;
-         case PrototypeActivate:
-            {
-               pbase = canew(activate(get_app()));
-            }
-            break;
-         default:
-            {
-               pbase = canew(base(get_app()));
-            }
-            break;
+      case PrototypeWindowPos:
+         {
+            pbase = canew(window_pos(get_app()));
          }
-         if(pbase == NULL)
-            return NULL;
-         pbase->set(pwnd, uiMessage, wparam, lparam);
-         return pbase;
+         break;
+      case PrototypeNcCalcSize:
+         {
+            pbase = canew(nc_calc_size(get_app()));
+         }
+         break;
+#endif
+      case PrototypeMouse:
+         {
+            pbase = canew(mouse(get_app()));
+         }
+         break;
+      case PrototypeMouseWheel:
+         {
+            pbase = canew(mouse_wheel(get_app()));
+         }
+         break;
+      case PrototypeSize:
+         {
+            pbase = canew(size(get_app()));
+         }
+         break;
+      case PrototypeActivate:
+         {
+            pbase = canew(activate(get_app()));
+         }
+         break;
+      default:
+         {
+            pbase = canew(base(get_app()));
+         }
+         break;
       }
+      if(pbase == NULL)
+         return NULL;
+      pbase->set(pwnd, uiMessage, wparam, lparam);
+      return pbase;
+   }
 
-      sp(base) dispatch::get_base(LPMESSAGE lpmsg, sp(::user::interaction) pwnd)
-      {
+   sp(base) dispatch::get_base(LPMESSAGE lpmsg, sp(::user::interaction) pwnd)
+   {
 #if defined(METROWIN)
-         if(pwnd == NULL && lpmsg->oswindow != NULL)
-         {
-            sp(::user::interaction) pwindow = lpmsg->oswindow->window();
+      if(pwnd == NULL && lpmsg->oswindow != NULL)
+      {
+         sp(::user::interaction) pwindow = lpmsg->oswindow->window();
 #else
-         if(pwnd == NULL && lpmsg->hwnd != NULL)
+      if(pwnd == NULL && lpmsg->hwnd != NULL)
+      {
+         if(lpmsg->message == 126)
          {
-            if(lpmsg->message == 126)
-            {
 
-               TRACE0("WM_DISPLAYCHANGE");
-            }
-            sp(::user::interaction) pwindow = System.window_from_os_data(lpmsg->hwnd);
+            TRACE0("WM_DISPLAYCHANGE");
+         }
+         sp(::user::interaction) pwindow = System.window_from_os_data(lpmsg->hwnd);
 #endif
-            if(pwindow != NULL)
+         if(pwindow != NULL)
+         {
+            try
             {
-               try
-               {
-                  pwnd = pwindow->m_pguie;
-               }
-               catch(...)
-               {
-                  pwnd = NULL;
-               }
+               pwnd = pwindow->m_pguie;
             }
-
-            if(pwnd == NULL)
-               return NULL;
-
+            catch(...)
+            {
+               pwnd = NULL;
+            }
          }
 
-         return get_base(pwnd, lpmsg->message, lpmsg->wParam, lpmsg->lParam);
+         if(pwnd == NULL)
+            return NULL;
 
       }
+
+      return get_base(pwnd, lpmsg->message, lpmsg->wParam, lpmsg->lParam);
+
+   }
 
 
 #if defined(LINUX)
 
-      sp(base) dispatch::get_base(XEvent * pevent, sp(::user::interaction) pwnd)
-      {
+   sp(base) dispatch::get_base(XEvent * pevent, sp(::user::interaction) pwnd)
+   {
 
-         throw todo(get_app());
+      throw todo(get_app());
 
-      }
+   }
 
 
 #endif
 
-      dispatch::dispatch()// :
-//         m_pevOk(NULL),
-  //       m_pmutex(NULL)
+   dispatch::dispatch()// :
+      //         m_pevOk(NULL),
+      //       m_pmutex(NULL)
+   {
+
+      m_pfnDispatchWindowProc    = &dispatch::_start_user_message_handler;
+
+   }
+
+
+   dispatch::~dispatch()
+   {
+
+   }
+
+
+   void dispatch::_user_message_handler(signal_details * pobj)
+   {
+
+      //         dispatch_event_ok()->wait();
+
+      SignalPtrArray signalptra;
+      SCAST_PTR(message::base, pbase, pobj);
+      if(pbase->m_uiMessage == (WM_APP + 2014))
       {
-
-         m_pfnDispatchWindowProc    = &dispatch::_start_user_message_handler;
-
-      }
-
-
-      dispatch::~dispatch()
-      {
-
-      }
-
-
-      void dispatch::_user_message_handler(signal_details * pobj)
-      {
-
-//         dispatch_event_ok()->wait();
-
-         SignalPtrArray signalptra;
-         SCAST_PTR(message::base, pbase, pobj);
-         if(pbase->m_uiMessage == (WM_APP + 2014))
+         sp(base) pbase2 = pbase->m_lparam;
+         _user_message_handler(pbase2);
+         if(pbase2->m_wparam != 0)
          {
-            sp(base) pbase2 = pbase->m_lparam;
-            _user_message_handler(pbase2);
-            if(pbase2->m_wparam != 0)
-            {
-               delete pbase;
-            }
+            delete pbase;
+         }
+         return;
+      }
+      m_signala.GetSignalsByMessage(signalptra, pbase->m_uiMessage, 0, 0);
+      for(int32_t i = 0; i < signalptra.get_size(); i++)
+      {
+         Signal & signal = *signalptra[i];
+         ::signal * psignal = signal.m_psignal;
+         pobj->m_psignal = psignal;
+         psignal->emit(pobj);
+         if(pobj->m_bRet)
             return;
-         }
-         m_signala.GetSignalsByMessage(signalptra, pbase->m_uiMessage, 0, 0);
-         for(int32_t i = 0; i < signalptra.get_size(); i++)
-         {
-            Signal & signal = *signalptra[i];
-            ::signal * psignal = signal.m_psignal;
-            pobj->m_psignal = psignal;
-            psignal->emit(pobj);
-            if(pobj->m_bRet)
-               return;
-         }
       }
+   }
 
 
    /////////////////////////////////////////////////////////////////////////////
@@ -319,931 +319,933 @@ struct myfx_CTLCOLOR
 
 #endif
 
-      //bool dispatch::_iguimessageDispatchCommandMessage(
-         // BaseCommand * pcommand,
-         //bool & b)
-      //{
-         /*int32_t & i = m_iHandling;
-         SignalPtrArray signalptra;
-         m_signala.GetSignalsByMessage(signalptra, nMsg, nCode, nID);
-         for(i = 0; i < signalptra.get_size(); i++)
-         {
-            Signal & signal = *signalptra[i];
-            if(pcommand->m_bHasCommandHandler)
-            {
-               update_cmd_ui updatecmdui;
-               updatecmdui.m_pcmdui = (cmd_ui *)pExtra;
-               signal.m_psignal->emit(&updatecmdui);
-               b = TRUE;
-               if(updatecmdui.m_pcmdui->m_bEnableChanged)
-                  return true;
-            }
-            else
-            {
-               switch(signal.m_eprototype)
-               {
+   //bool dispatch::_iguimessageDispatchCommandMessage(
+   // BaseCommand * pcommand,
+   //bool & b)
+   //{
+   /*int32_t & i = m_iHandling;
+   SignalPtrArray signalptra;
+   m_signala.GetSignalsByMessage(signalptra, nMsg, nCode, nID);
+   for(i = 0; i < signalptra.get_size(); i++)
+   {
+   Signal & signal = *signalptra[i];
+   if(pcommand->m_bHasCommandHandler)
+   {
+   update_cmd_ui updatecmdui;
+   updatecmdui.m_pcmdui = (cmd_ui *)pExtra;
+   signal.m_psignal->emit(&updatecmdui);
+   b = TRUE;
+   if(updatecmdui.m_pcmdui->m_bEnableChanged)
+   return true;
+   }
+   else
+   {
+   switch(signal.m_eprototype)
+   {
    /*            case PrototypeNotify:
-                  {
+   {
 
-                     __NOTIFY* pNotify = (__NOTIFY*)pExtra;
-                     ASSERT(pNotify != NULL);
-                     ASSERT(pNotify->pResult != NULL);
-                     ASSERT(pNotify->pNMHDR != NULL);
-                     notify notify;
-                     notify.m_lparam = (LPARAM) pNotify->pNMHDR;
-                     signal.m_psignal->emit(&notify);
-                     if(notify.m_bRet)
-                        return true;
-                  }
-                  break;*/
-               /*case PrototypeCommand:
-                  {
-                     if (pHandlerInfo != NULL)
-                     {
-                        // just fill in the information, don't do it
-                        //pHandlerInfo->pTarget = (command_target *) 1;
-                        //pHandlerInfo->pmf = (void (__MSG_CALL command_target::*)()) NULL;
-                        b = TRUE;
-                        return true;
-                     }
-                     else
-                     {
-                        BaseCommandSignal command(m_signalOnCommand);
-                        command.m_pcommand = pcommand;
-                        m_signalOnCommand.m_psignal->emit(&command);
-                        if(command.m_bRet)
-                           return true;
-                     }
-                  }
-                  break;
-               default:
-                  // Unknown Prototype
-                  ASSERT(FALSE);
-                  return false;
-               }
-            }
-         }*/
-         //return false;
-      //}
+   __NOTIFY* pNotify = (__NOTIFY*)pExtra;
+   ASSERT(pNotify != NULL);
+   ASSERT(pNotify->pResult != NULL);
+   ASSERT(pNotify->pNMHDR != NULL);
+   notify notify;
+   notify.m_lparam = (LPARAM) pNotify->pNMHDR;
+   signal.m_psignal->emit(&notify);
+   if(notify.m_bRet)
+   return true;
+   }
+   break;*/
+   /*case PrototypeCommand:
+   {
+   if (pHandlerInfo != NULL)
+   {
+   // just fill in the information, don't do it
+   //pHandlerInfo->pTarget = (command_target *) 1;
+   //pHandlerInfo->pmf = (void (__MSG_CALL command_target::*)()) NULL;
+   b = TRUE;
+   return true;
+   }
+   else
+   {
+   BaseCommandSignal command(m_signalOnCommand);
+   command.m_pcommand = pcommand;
+   m_signalOnCommand.m_psignal->emit(&command);
+   if(command.m_bRet)
+   return true;
+   }
+   }
+   break;
+   default:
+   // Unknown Prototype
+   ASSERT(FALSE);
+   return false;
+   }
+   }
+   }*/
+   //return false;
+   //}
 
 
-      void dispatch::RemoveMessageHandler(signalizable* psignalizable)
+   void dispatch::RemoveMessageHandler(signalizable* psignalizable)
+   {
+      UNREFERENCED_PARAMETER(psignalizable);
+      /* xxx     HandlerItemArray & itema = m_handlerset.m_itema;
+      for(int32_t i = 0; i < itema.get_size();)
       {
-         UNREFERENCED_PARAMETER(psignalizable);
-   /* xxx     HandlerItemArray & itema = m_handlerset.m_itema;
-         for(int32_t i = 0; i < itema.get_size();)
-         {
-            if(itema[i]->get_signalizable() == psignalizable)
-            {
-               itema.remove_at(i);
-            }
-            else
-            {
-               i++;
-            }
-         }
-   /*      HandlerMap::pair * ppair = m_handlerset.m_map.PGetFirstAssoc();
-         while(ppair != NULL)
-         {
-            ppair = m_handlerset.m_map.PGetNextAssoc(ppair);
-         }*/
-
+      if(itema[i]->get_signalizable() == psignalizable)
+      {
+      itema.remove_at(i);
       }
-
-      dispatch::SignalArray::~SignalArray()
+      else
       {
+      i++;
       }
-
-
-      sp(::user::window) dispatch::_GetWnd()
-      {
-         return dynamic_cast < ::user::window * > (this);
       }
-
-      Handler::Handler()
+      /*      HandlerMap::pair * ppair = m_handlerset.m_map.PGetFirstAssoc();
+      while(ppair != NULL)
       {
+      ppair = m_handlerset.m_map.PGetNextAssoc(ppair);
+      }*/
+
+   }
+
+   dispatch::SignalArray::~SignalArray()
+   {
+   }
+
+
+   sp(::user::window) dispatch::_GetWnd()
+   {
+      return dynamic_cast < ::user::window * > (this);
+   }
+
+
+   /*
+   Handler::Handler()
+   {
    //xxx      HookMessageHandler(this);
-      }
+   }
 
-      Handler::~Handler()
-      {
+   Handler::~Handler()
+   {
    //xxx      UnhookMessageHandler(this);
-      }
+   }
+   */
 
-      int32_t Handler::OnMessage(UINT /*message*/, UINT /*uiParam1*/, UINT /*uiParam2*/)
+   /////*      int32_t Handler::OnMessage(UINT /*message*/, UINT /*uiParam1*/, UINT /*uiParam2*/)
+   //      {
+   //         return 0;
+   //      }
+   //*/
+
+   e_prototype dispatch::GetMessagePrototype(UINT uiMessage, UINT uiCode)
+   {
+      switch(uiMessage)
       {
-         return 0;
-      }
-
-
-      e_prototype dispatch::GetMessagePrototype(UINT uiMessage, UINT uiCode)
-      {
-         switch(uiMessage)
+      case WM_SIZE:
+         return PrototypeSize;
+      case WM_HSCROLL:
+      case WM_VSCROLL:
+         return PrototypeScroll;
+      case WM_CREATE:
+      case WM_NCCREATE:
+         return PrototypeCreate;
+      case WM_MOVE:
+         return PrototypeMove;
+      case WM_ACTIVATE:
+         return PrototypeActivate;
+      case WM_MEASUREITEM:
+         return PrototypeMeasureItem;
+#ifdef WINDOWS
+      case WM_NOTIFY:
+         return PrototypeNotify;
+#endif
+      case WM_COMMAND:
          {
-         case WM_SIZE:
-            return PrototypeSize;
-         case WM_HSCROLL:
-         case WM_VSCROLL:
-            return PrototypeScroll;
-         case WM_CREATE:
-         case WM_NCCREATE:
-            return PrototypeCreate;
-         case WM_MOVE:
-            return PrototypeMove;
-         case WM_ACTIVATE:
-            return PrototypeActivate;
-         case WM_MEASUREITEM:
-            return PrototypeMeasureItem;
-#ifdef WINDOWS
-         case WM_NOTIFY:
-            return PrototypeNotify;
-#endif
-         case WM_COMMAND:
+            switch(uiCode)
             {
-               switch(uiCode)
-               {
-               case CN_UPDATE_COMMAND_UI:
-                  return PrototypeUpdateCommandUserInterface;
-               default:
-                  return PrototypeCommand;
-               }
-            }
-         case WM_MOUSEMOVE:
-         case WM_LBUTTONDOWN:
-         case WM_LBUTTONUP:
-         case WM_LBUTTONDBLCLK:
-         case WM_RBUTTONDOWN:
-         case WM_RBUTTONUP:
-         case WM_RBUTTONDBLCLK:
-         case WM_MBUTTONDOWN:
-         case WM_MBUTTONUP:
-         case WM_MBUTTONDBLCLK:
-         case WM_NCMOUSEMOVE:
-         case WM_NCLBUTTONDOWN:
-         case WM_NCLBUTTONUP:
-            return PrototypeMouse;
-#ifdef WINDOWS
-         case WM_MOUSEWHEEL:
-            return PrototypeMouseWheel;
-#endif
-         case WM_NCACTIVATE:
-            return PrototypeNcActivate;
-         case WM_TIMER:
-            return PrototypeTimer;
-         case WM_KEYDOWN:
-         case WM_KEYUP:
-         case WM_CHAR:
-         case WM_DEADCHAR:
-         case WM_SYSKEYDOWN:
-         case WM_SYSKEYUP:
-         case WM_SYSCHAR:
-         case WM_SYSDEADCHAR:
-   #if(_WIN32_WINNT >= 0x0501)
-         case WM_UNICHAR:
-   #endif
-            return PrototypeKey;
-         case WM_NCHITTEST:
-            return PrototypeNcHitTest;
-         case WM_SETCURSOR:
-            return PrototypeSetCursor;
-         case WM_ERASEBKGND:
-            return PrototypeEraseBkgnd;
-         case WM_SHOWWINDOW:
-            return PrototypeShowWindow;
-         case WM_INITMENUPOPUP:
-            return PrototypeInitMenuPopup;
-#ifdef WINDOWS
-         case WM_CTLCOLOR:
-            return PrototypeCtlColor;
-         case WM_CTLCOLOR + WM_REFLECT_BASE:
-            return PrototypeCtlColorReflect;
-#endif
-         case WM_SETFOCUS:
-            return PrototypeSetFocus;
-         case WM_WINDOWPOSCHANGING:
-            return PrototypeWindowPos;
-         case WM_NCCALCSIZE:
-            return PrototypeNcCalcSize;
-         case WM_PAINT:
-            return PrototypeNone;
-         default:
-            return PrototypeNone;
-         }
-      }
-
-      base::base(sp(base_application) papp, ::signal * psignal) :
-         element(papp),
-         signal_details(psignal)
-      {
-         m_lresult = 0;
-         m_plresult = &m_lresult;
-      }
-
-      base::base(sp(base_application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult) :
-         element(papp),
-         signal_details(papp)
-      {
-         m_lresult = 0;
-         set(pwnd, uiMessage, wparam, lparam, lresult);
-      }
-
-      void base::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-      {
-         m_pwnd            = pwnd;
-         m_uiMessage       = uiMessage;
-         m_wparam          = wparam;
-         m_lparam          = lparam;
-         m_plresult        = &lresult;
-      }
-
-      void base::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
-      {
-         set(pwnd, uiMessage, wparam, lparam, m_lresult);
-      }
-
-      void base::set_lresult(LRESULT lresult)
-      {
-         *m_plresult = lresult;
-      }
-
-      LRESULT & base::get_lresult()
-      {
-         return *m_plresult;
-      }
-
-      void create::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-      {
-         base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_lpcreatestruct = reinterpret_cast<LPCREATESTRUCT>(lparam);
-      }
-
-      void create::set_lresult(LRESULT lresult)
-      {
-         base::set_lresult(lresult);
-         if(get_lresult() == -1)
-            m_bRet = true;
-         else
-            m_bRet = false;
-      }
-
-      void create::failed(const char * lpcszErrorMessage)
-      {
-         error(lpcszErrorMessage);
-      }
-
-      void create::error(const char * lpcszErrorMessage)
-      {
-         set_lresult(-1);
-         TRACE0(lpcszErrorMessage);
-         System.log().print(lpcszErrorMessage);
-      }
-
-      void timer::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-      {
-         base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_nIDEvent = static_cast<UINT>(wparam);
-      }
-
-      activate::activate(sp(base_application) papp) :
-         element(papp),
-         message::base(papp)
-      {
-      }
-
-      void activate::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-      {
-         base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_nState = (UINT)(LOWORD(wparam));
-         m_pWndOther = System.window_from_os_data((void *) lparam);
-         m_bMinimized = HIWORD(wparam) != FALSE;
-      }
-
-
-
-      erase_bkgnd::erase_bkgnd(sp(base_application) papp) :
-         element(papp),
-         message::base(papp)
-      {
-      }
-
-      void erase_bkgnd::set_result(bool bResult)
-      {
-         set_lresult(bResult);
-      }
-
-      key::key(sp(base_application) papp) :
-         element(papp),
-         message::base(papp)
-      {
-      }
-
-      void key::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-      {
-
-         base::set(pwnd, uiMessage, wparam, lparam, lresult);
-
-         m_nChar = static_cast<UINT>(wparam);
-
-         m_nRepCnt = LOWORD(lparam);
-
-         m_nFlags = HIWORD(lparam);
-
-         
-
-      }
-
-      nc_activate::nc_activate(sp(base_application) papp) :
-         element(papp),
-         message::base(papp)
-      {
-      }
-
-      void nc_activate::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-      {
-         base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_bActive = wparam != FALSE;
-      }
-
-      void size::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-      {
-         base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_nType     = static_cast < UINT > (wparam);
-         m_size      = ::size(LOWORD(lparam), HIWORD(lparam));
-      }
-
-      mouse::mouse(sp(base_application) papp) :
-         element(papp),
-         base(papp),
-         m_ecursor(::visual::cursor_unmodified)
-      {
-      }
-
-      mouse::~mouse()
-      {
-         try
-         {
-            if(m_ecursor != ::visual::cursor_unmodified && m_papp != NULL && m_papp->m_psession != NULL)
-            {
-               Session.set_cursor(m_ecursor);
+            case CN_UPDATE_COMMAND_UI:
+               return PrototypeUpdateCommandUserInterface;
+            default:
+               return PrototypeCommand;
             }
          }
-         catch(...)
+      case WM_MOUSEMOVE:
+      case WM_LBUTTONDOWN:
+      case WM_LBUTTONUP:
+      case WM_LBUTTONDBLCLK:
+      case WM_RBUTTONDOWN:
+      case WM_RBUTTONUP:
+      case WM_RBUTTONDBLCLK:
+      case WM_MBUTTONDOWN:
+      case WM_MBUTTONUP:
+      case WM_MBUTTONDBLCLK:
+      case WM_NCMOUSEMOVE:
+      case WM_NCLBUTTONDOWN:
+      case WM_NCLBUTTONUP:
+         return PrototypeMouse;
+#ifdef WINDOWS
+      case WM_MOUSEWHEEL:
+         return PrototypeMouseWheel;
+#endif
+      case WM_NCACTIVATE:
+         return PrototypeNcActivate;
+      case WM_TIMER:
+         return PrototypeTimer;
+      case WM_KEYDOWN:
+      case WM_KEYUP:
+      case WM_CHAR:
+      case WM_DEADCHAR:
+      case WM_SYSKEYDOWN:
+      case WM_SYSKEYUP:
+      case WM_SYSCHAR:
+      case WM_SYSDEADCHAR:
+#if(_WIN32_WINNT >= 0x0501)
+      case WM_UNICHAR:
+#endif
+         return PrototypeKey;
+      case WM_NCHITTEST:
+         return PrototypeNcHitTest;
+      case WM_SETCURSOR:
+         return PrototypeSetCursor;
+      case WM_ERASEBKGND:
+         return PrototypeEraseBkgnd;
+      case WM_SHOWWINDOW:
+         return PrototypeShowWindow;
+      case WM_INITMENUPOPUP:
+         return PrototypeInitMenuPopup;
+#ifdef WINDOWS
+      case WM_CTLCOLOR:
+         return PrototypeCtlColor;
+      case WM_CTLCOLOR + WM_REFLECT_BASE:
+         return PrototypeCtlColorReflect;
+#endif
+      case WM_SETFOCUS:
+         return PrototypeSetFocus;
+      case WM_WINDOWPOSCHANGING:
+         return PrototypeWindowPos;
+      case WM_NCCALCSIZE:
+         return PrototypeNcCalcSize;
+      case WM_PAINT:
+         return PrototypeNone;
+      default:
+         return PrototypeNone;
+      }
+   }
+
+   base::base(sp(base_application) papp, ::signal * psignal) :
+      element(papp),
+      signal_details(psignal)
+   {
+      m_lresult = 0;
+      m_plresult = &m_lresult;
+   }
+
+   base::base(sp(base_application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult) :
+      element(papp),
+      signal_details(papp)
+   {
+      m_lresult = 0;
+      set(pwnd, uiMessage, wparam, lparam, lresult);
+   }
+
+   void base::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   {
+      m_pwnd            = pwnd;
+      m_uiMessage       = uiMessage;
+      m_wparam          = wparam;
+      m_lparam          = lparam;
+      m_plresult        = &lresult;
+   }
+
+   void base::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   {
+      set(pwnd, uiMessage, wparam, lparam, m_lresult);
+   }
+
+   void base::set_lresult(LRESULT lresult)
+   {
+      *m_plresult = lresult;
+   }
+
+   LRESULT & base::get_lresult()
+   {
+      return *m_plresult;
+   }
+
+   void create::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   {
+      base::set(pwnd, uiMessage, wparam, lparam, lresult);
+      m_lpcreatestruct = reinterpret_cast<LPCREATESTRUCT>(lparam);
+   }
+
+   void create::set_lresult(LRESULT lresult)
+   {
+      base::set_lresult(lresult);
+      if(get_lresult() == -1)
+         m_bRet = true;
+      else
+         m_bRet = false;
+   }
+
+   void create::failed(const char * lpcszErrorMessage)
+   {
+      error(lpcszErrorMessage);
+   }
+
+   void create::error(const char * lpcszErrorMessage)
+   {
+      set_lresult(-1);
+      TRACE0(lpcszErrorMessage);
+      System.log().print(lpcszErrorMessage);
+   }
+
+   void timer::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   {
+      base::set(pwnd, uiMessage, wparam, lparam, lresult);
+      m_nIDEvent = static_cast<UINT>(wparam);
+   }
+
+   activate::activate(sp(base_application) papp) :
+      element(papp),
+      message::base(papp)
+   {
+   }
+
+   void activate::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   {
+      base::set(pwnd, uiMessage, wparam, lparam, lresult);
+      m_nState = (UINT)(LOWORD(wparam));
+      m_pWndOther = System.window_from_os_data((void *) lparam);
+      m_bMinimized = HIWORD(wparam) != FALSE;
+   }
+
+
+
+   erase_bkgnd::erase_bkgnd(sp(base_application) papp) :
+      element(papp),
+      message::base(papp)
+   {
+   }
+
+   void erase_bkgnd::set_result(bool bResult)
+   {
+      set_lresult(bResult);
+   }
+
+   key::key(sp(base_application) papp) :
+      element(papp),
+      message::base(papp)
+   {
+   }
+
+   void key::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   {
+
+      base::set(pwnd, uiMessage, wparam, lparam, lresult);
+
+      m_nChar = static_cast<UINT>(wparam);
+
+      m_nRepCnt = LOWORD(lparam);
+
+      m_nFlags = HIWORD(lparam);
+
+
+
+   }
+
+   nc_activate::nc_activate(sp(base_application) papp) :
+      element(papp),
+      message::base(papp)
+   {
+   }
+
+   void nc_activate::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   {
+      base::set(pwnd, uiMessage, wparam, lparam, lresult);
+      m_bActive = wparam != FALSE;
+   }
+
+   void size::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   {
+      base::set(pwnd, uiMessage, wparam, lparam, lresult);
+      m_nType     = static_cast < UINT > (wparam);
+      m_size      = ::size(LOWORD(lparam), HIWORD(lparam));
+   }
+
+   mouse::mouse(sp(base_application) papp) :
+      element(papp),
+      base(papp),
+      m_ecursor(::visual::cursor_unmodified)
+   {
+   }
+
+   mouse::~mouse()
+   {
+      try
+      {
+         if(m_ecursor != ::visual::cursor_unmodified && m_papp != NULL && m_pbaseapp->m_pplaneapp->m_psession != NULL)
          {
+            Session.set_cursor(m_ecursor);
          }
       }
-
-      void mouse::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      catch(...)
       {
-         base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_nFlags    = wparam;
-         m_pt        = point(lparam);
+      }
+   }
+
+   void mouse::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   {
+      base::set(pwnd, uiMessage, wparam, lparam, lresult);
+      m_nFlags    = wparam;
+      m_pt        = point(lparam);
 #ifdef LINUX
-         m_bTranslated = true;  // in root coordinates
+      m_bTranslated = true;  // in root coordinates
 #elif defined(WINDOWS)
-         m_bTranslated = false; // not in root coordinates
+      m_bTranslated = false; // not in root coordinates
 #else
-         m_bTranslated = false; // not in root coordinates
+      m_bTranslated = false; // not in root coordinates
 #endif
-      }
+   }
 
-      void mouse_wheel::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-      {
-         base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_nFlags    = wparam;
-         m_pt        = point(lparam);
-         m_bTranslated = true;
-      }
+   void mouse_wheel::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   {
+      base::set(pwnd, uiMessage, wparam, lparam, lresult);
+      m_nFlags    = wparam;
+      m_pt        = point(lparam);
+      m_bTranslated = true;
+   }
 
-      sp(::user::interaction) mouse_activate::GetDesktopWindow()
-      {
-         throw not_implemented(get_app());
-         return NULL;
-//            return ::user::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
-      }
+   sp(::user::interaction) mouse_activate::GetDesktopWindow()
+   {
+      throw not_implemented(get_app());
+      return NULL;
+      //            return ::user::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
+   }
 
-      UINT mouse_activate::GetHitTest()
-      {
-         return LOWORD(m_lparam);
-      }
+   UINT mouse_activate::GetHitTest()
+   {
+      return LOWORD(m_lparam);
+   }
 
-      UINT mouse_activate::GetMessage()
-      {
-         return HIWORD(m_lparam);
-      }
+   UINT mouse_activate::GetMessage()
+   {
+      return HIWORD(m_lparam);
+   }
 
-      sp(::user::window) context_menu::GetWindow()
-      {
-         throw not_implemented(get_app());
-         return NULL;
-//            return ::user::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
-      }
+   sp(::user::window) context_menu::GetWindow()
+   {
+      throw not_implemented(get_app());
+      return NULL;
+      //            return ::user::window::from_handle(reinterpret_cast<oswindow>(m_wparam));
+   }
 
-      point context_menu::GetPoint()
-      {
-         return point(m_lparam);
-      }
-
-
-      void scroll::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-      {
-         base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_nSBCode = (int16_t) LOWORD(wparam);
-         m_nPos = (int16_t) HIWORD(wparam);
-         m_pScrollBar = (sp(::user::interaction)) lparam;
-      }
-
-      void show_window::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-      {
-         base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_bShow = wparam != FALSE;
-         m_nStatus = static_cast<UINT>(lparam);
-      }
-
-      void set_focus::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-      {
-         base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         //m_pwnd = System.window_from_os_data(reinterpret_cast<oswindow>(wparam));
-         m_pwnd = NULL;
-      }
-
-      void window_pos::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-      {
-         base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_pwindowpos = reinterpret_cast<WINDOWPOS*>(lparam);
-      }
-
-      void nc_calc_size::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
-      {
-         base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_pparams = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam);
-      }
-
-      bool nc_calc_size::GetCalcValidRects()
-      {
-         return m_wparam != FALSE;
-      }
+   point context_menu::GetPoint()
+   {
+      return point(m_lparam);
+   }
 
 
-      bool enable::get_enable()
-      {
-         return m_wparam != 0;
-      }
+   void scroll::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   {
+      base::set(pwnd, uiMessage, wparam, lparam, lresult);
+      m_nSBCode = (int16_t) LOWORD(wparam);
+      m_nPos = (int16_t) HIWORD(wparam);
+      m_pScrollBar = (sp(::user::interaction)) lparam;
+   }
+
+   void show_window::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   {
+      base::set(pwnd, uiMessage, wparam, lparam, lresult);
+      m_bShow = wparam != FALSE;
+      m_nStatus = static_cast<UINT>(lparam);
+   }
+
+   void set_focus::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   {
+      base::set(pwnd, uiMessage, wparam, lparam, lresult);
+      //m_pwnd = System.window_from_os_data(reinterpret_cast<oswindow>(wparam));
+      m_pwnd = NULL;
+   }
+
+   void window_pos::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   {
+      base::set(pwnd, uiMessage, wparam, lparam, lresult);
+      m_pwindowpos = reinterpret_cast<WINDOWPOS*>(lparam);
+   }
+
+   void nc_calc_size::set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   {
+      base::set(pwnd, uiMessage, wparam, lparam, lresult);
+      m_pparams = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam);
+   }
+
+   bool nc_calc_size::GetCalcValidRects()
+   {
+      return m_wparam != FALSE;
+   }
 
 
+   bool enable::get_enable()
+   {
+      return m_wparam != 0;
+   }
 
 
 
-      UINT mouse_wheel::GetFlags()
-      {
-         return LOWORD(m_wparam);
-      }
 
-      int16_t mouse_wheel::GetDelta()
-      {
-         return (int16_t)HIWORD(m_wparam);
-      }
 
-      point mouse_wheel::GetPoint()
-      {
-         return point(GET_X_LPARAM(m_lparam), GET_Y_LPARAM(m_lparam));
-      }
+   UINT mouse_wheel::GetFlags()
+   {
+      return LOWORD(m_wparam);
+   }
 
-      UINT command::GetNotifyCode()
-      {
-         return HIWORD(m_wparam);
-      }
+   int16_t mouse_wheel::GetDelta()
+   {
+      return (int16_t)HIWORD(m_wparam);
+   }
 
-      UINT command::GetId()
-      {
-         return LOWORD(m_wparam);
-      }
+   point mouse_wheel::GetPoint()
+   {
+      return point(GET_X_LPARAM(m_lparam), GET_Y_LPARAM(m_lparam));
+   }
+
+   UINT command::GetNotifyCode()
+   {
+      return HIWORD(m_wparam);
+   }
+
+   UINT command::GetId()
+   {
+      return LOWORD(m_wparam);
+   }
 
 #ifdef WINDOWS
 
-      oswindow command::get_oswindow()
-      {
-         return (oswindow) m_lparam.m_lparam;
-      }
+   oswindow command::get_oswindow()
+   {
+      return (oswindow) m_lparam.m_lparam;
+   }
 
 #endif
 
 #ifdef WINDOWSEX
 
-      LPNMHDR notify::get_lpnmhdr()
-      {
-         return (LPNMHDR) m_lparam.m_lparam;
-      }
+   LPNMHDR notify::get_lpnmhdr()
+   {
+      return (LPNMHDR) m_lparam.m_lparam;
+   }
 
-      int32_t notify::get_ctrl_id()
-      {
-         return (int32_t) m_wparam;
-      }
+   int32_t notify::get_ctrl_id()
+   {
+      return (int32_t) m_wparam;
+   }
 
 #endif
 
-      dispatch::Signal::Signal()
+   dispatch::Signal::Signal()
+   {
+      m_psignal = NULL;
+   }
+
+   dispatch::Signal::~Signal()
+   {
+      if(m_psignal != NULL)
       {
-         m_psignal = NULL;
+         m_psignal.release();
       }
+   }
 
-      dispatch::Signal::~Signal()
+   dispatch::HandlerItemBase::~HandlerItemBase()
+   {
+
+   }
+
+   dispatch::HandlerItemArray::~HandlerItemArray()
+   {
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
-         if(m_psignal != NULL)
-         {
-            m_psignal.release();
-         }
+         delete this->element_at(i);
       }
+   }
 
-      dispatch::HandlerItemBase::~HandlerItemBase()
+   bool dispatch::HandlerItemArray::HasSignalizable(signalizable* psignalizable)
+   {
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
-
+         if(this->element_at(i)->get_signalizable() == psignalizable)
+            return true;
       }
+      return false;
+   }
 
-      dispatch::HandlerItemArray::~HandlerItemArray()
+   void dispatch::_start_user_message_handler(signal_details * pobj)
+   {
+
+
+      synch_lock ml(&user_mutex());
+
+      if(m_pfnDispatchWindowProc == &dispatch::_user_message_handler)
       {
-         for(int32_t i = 0; i < this->get_size(); i++)
-         {
-            delete this->element_at(i);
-         }
-      }
-
-      bool dispatch::HandlerItemArray::HasSignalizable(signalizable* psignalizable)
-      {
-         for(int32_t i = 0; i < this->get_size(); i++)
-         {
-            if(this->element_at(i)->get_signalizable() == psignalizable)
-               return true;
-         }
-         return false;
-      }
-
-      void dispatch::_start_user_message_handler(signal_details * pobj)
-      {
-         
-         
-         synch_lock ml(&user_mutex());
-         
-         if(m_pfnDispatchWindowProc == &dispatch::_user_message_handler)
-         {
-            
-            ml.unlock();
-            
-            _user_message_handler(pobj);
-            
-            return;
-            
-         }
-
-         m_pfnDispatchWindowProc = &dispatch::_user_message_handler;
-
-         _on_start_user_message_handler();
-         
-         install_message_handling(this);
-
-         if(get_app() == NULL)
-         {
-            
-            set_app(calc_app());
-            
-         }
 
          ml.unlock();
-         
-         return _user_message_handler(pobj);
-         
-      }
-         
 
-      void dispatch::install_message_handling(dispatch * pinterface)
-      {
-         UNREFERENCED_PARAMETER(pinterface);
+         _user_message_handler(pobj);
+
+         return;
+
       }
 
-      void dispatch::_on_start_user_message_handler()
+      m_pfnDispatchWindowProc = &dispatch::_user_message_handler;
+
+      _on_start_user_message_handler();
+
+      install_message_handling(this);
+
+      if(get_app() == NULL)
       {
+
+         set_app(calc_app());
+
       }
 
-      sp(base_application) dispatch::calc_app()
-      {
-         return NULL;
-      }
+      ml.unlock();
 
-      void dispatch::_001ClearMessageHandling()
-      {
-         m_signala.remove_all();
-         //m_signalInstallMessageHandling.remove_all();
-      }
+      return _user_message_handler(pobj);
+
+   }
 
 
-      UINT translate_to_os_message(UINT uiMessage)
-      {
+   void dispatch::install_message_handling(dispatch * pinterface)
+   {
+      UNREFERENCED_PARAMETER(pinterface);
+   }
+
+   void dispatch::_on_start_user_message_handler()
+   {
+   }
+
+   sp(base_application) dispatch::calc_app()
+   {
+      return NULL;
+   }
+
+   void dispatch::_001ClearMessageHandling()
+   {
+      m_signala.remove_all();
+      //m_signalInstallMessageHandling.remove_all();
+   }
+
+
+   UINT translate_to_os_message(UINT uiMessage)
+   {
 
 #ifdef WINDOWS
 
-         switch(uiMessage)
-         {
-            case message_create:
-               return WM_CREATE;
-            default:
-               return uiMessage;
-         };
+      switch(uiMessage)
+      {
+      case message_create:
+         return WM_CREATE;
+      default:
+         return uiMessage;
+      };
 #elif defined(LINUX) ||  defined(MACOS)
-         switch(uiMessage)
-         {
-            case message_create:
-               return WM_CREATE;
-            default:
-               return uiMessage;
-         };
+      switch(uiMessage)
+      {
+      case message_create:
+         return WM_CREATE;
+      default:
+         return uiMessage;
+      };
 
 #else
-         switch(uiMessage)
-         {
-            default:
-               return uiMessage;
-         };
+      switch(uiMessage)
+      {
+      default:
+         return uiMessage;
+      };
 #endif
 
-      }
+   }
 
 
-   } // namespace user
-
-
-} // namespace win
+} // namespace user
 
 
 
 
 
-   //         e_prototype eprototype = signal.m_eprototype;
-   /*         switch(eprototype)
-            {
-            case PrototypeNone:
-               {
-                  base base(get_app());
-                  base.m_psignal = psignal;
-                  base.set(message, wparam, lparam, lresult);
-                  psignal->emit(&base);
-                  if(base.m_bRet)
-                     return true;
-               }
-               break;
-
-            case PrototypeCreate:
-               {
-                  create create(allocer());
-                  create.m_psignal = psignal;
-                  create.set(message, wparam, lparam, lresult);
-                  psignal->emit(&create);
-                  if(create.m_bRet)
-                     return true;
-               }
-               break;
-            case PrototypeNcActivate:
-               {
-                  nc_activate ncactivate(get_app());
-                  ncactivate.m_psignal = psignal;
-                  ncactivate.set(message, wparam, lparam, lresult);
-                  ncactivate.m_bActive = static_cast<bool>(wparam);
-                  psignal->emit(&ncactivate);
-                  if(ncactivate.m_bRet)
-                     return true;
-               }
-               break;
-            case PrototypeKey:
-               {
-                  key key(get_app());
-                  key.m_psignal = psignal;
-                  key.set(message, wparam, lparam, lresult);
-                  psignal->emit(&key);
-                  if(key.m_bRet)
-                     return true;
-               }
-               break;
-            case PrototypeTimer:
-               {
-                  timer timer(get_app());
-                  timer.m_psignal = psignal;
-                  timer.set(message, wparam, lparam, lresult);
-                  timer.m_nIDEvent = static_cast<UINT>(wparam);
-                  psignal->emit(&timer);
-                  if(timer.m_bRet)
-                     return true;
-               }
-               break;
-            case PrototypeShowWindow:
-               {
-                  show_window showwindow(get_app());
-                  showwindow.m_psignal = psignal;
-                  showwindow.set(message, wparam, lparam, lresult);
-                  showwindow.m_bShow = static_cast<UINT>(wparam);
-                  showwindow.m_nStatus = static_cast<UINT>(lparam);
-                  psignal->emit(&showwindow);
-                  if(showwindow.m_bRet)
-                     return true;
-               }
-               break;
-            case PrototypeSetCursor:
-               {
-                  set_cursor setcursor(get_app());
-                  setcursor.m_psignal = psignal;
-                  setcursor.set(message, wparam, lparam, lresult);
-                  //setcursor.m_pWnd = ::user::window::from_os_data(reinterpret_cast<oswindow>(wparam));
-                  setcursor.m_nHitTest = LOWORD(lparam);
-                  setcursor.m_message = HIWORD(lparam);
-                  psignal->emit(&setcursor);
-                  if(setcursor.m_bRet)
-                     return true;
-               }
-               break;
-            case PrototypeNcHitTest:
-               {
-                  nchittest nchittest(get_app());
-                  nchittest.m_psignal = psignal;
-                  nchittest.set(message, wparam, lparam, lresult);
-                  nchittest.m_pt = point(lparam);
-                  psignal->emit(&nchittest);
-                  if(nchittest.m_bRet)
-                     return true;
-               }
-               break;
-            case PrototypeMove:
-               {
-                  move move(get_app());
-                  move.m_psignal = psignal;
-                  move.set(message, wparam, lparam, lresult);
-                  move.m_pt = point(lparam);
-                  psignal->emit(&move);
-                  if(move.m_bRet)
-                     return true;
-               }
-               break;
-            case PrototypeEraseBkgnd:
-               {
-                  erase_bkgnd erasebkgnd(get_app());
-                  erasebkgnd.m_psignal = psignal;
-                  erasebkgnd.set(message, wparam, lparam, lresult);
-   //               erasebkgnd.m_pdc = ::draw2d::graphics_sp::from_handle(reinterpret_cast<HDC>(wparam));
-                  psignal->emit(&erasebkgnd);
-                  if(erasebkgnd.m_bRet)
-                     return true;
-               }
-               break;
-
-            case PrototypeScroll:
-               {
-                  scroll scroll(get_app());
-                  scroll.m_psignal = psignal;
-                  scroll.set(message, wparam, lparam, lresult);
-                  psignal->emit(&scroll);
-                  if(scroll.m_bRet)
-                     return true;
-               }
-               break;
-            case PrototypeSetFocus:
-               {
-                  set_focus setfocus(get_app());
-                  setfocus.set(message, wparam, lparam, lresult);
-                  psignal->emit(&setfocus);
-                  if(setfocus.m_bRet)
-                     return true;
-               }
-               break;
-            case PrototypeWindowPos:
-               {
-                  window_pos windowpos(get_app());
-                  windowpos.set(message, wparam, lparam, lresult);
-                  psignal->emit(&windowpos);
-                  if(windowpos.m_bRet)
-                     return true;
-               }
-               break;
-            case PrototypeNcCalcSize:
-               {
-                  nc_calc_size nccalcsize(get_app());
-                  nccalcsize.set(message, wparam, lparam, lresult);
-                  psignal->emit(&nccalcsize);
-                  if(nccalcsize.m_bRet)
-                     return true;
-               }
-               break;
-            case PrototypeMouse:
-            {
-               mouse mouse(get_app());
-               mouse.m_psignal = psignal;
-               mouse.set(message, wparam, lparam, lresult);
-               psignal->emit(&mouse);
-               if(mouse.m_bRet)
-                  return true;
-            }
-            break;
-            case PrototypeSize:
-            {
-               size size(get_app());
-               size.m_psignal = psignal;
-               size.set(message, wparam, lparam, lresult);
-               psignal->emit(&size);
-               if(size.m_bRet)
-                  return true;
-            }
-            break;
-
-            case PrototypeActivate:
-            {
-               activate activate(get_app());
-               activate.m_psignal = psignal;
-               activate.set(message, wparam, lparam, lresult);
-               activate.m_nState = (UINT)(LOWORD(wparam));
-               activate.m_pWndOther = System.window_from_os_data(lparam);
-               activate.m_bMinimized = (bool)HIWORD(wparam);
-               psignal->emit(&activate);
-               if(activate.m_bRet)
-                  return true;
-               }
-               break;
-               case PrototypeCtlColor:
-                  {
-                  // special case for OnCtlColor to avoid too many temporary objects
-                  ASSERT(message == WM_CTLCOLOR);
-                  myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
-                  ::draw2d::graphics_sp dcTemp;
-   //               dcTemp.set_handle1(pCtl->hDC);
-                  ::user::window wndTemp;
-   //               wndTemp.set_handle(pCtl->oswindow);
-                  UINT nCtlType = pCtl->nCtlType;
-                  // if not coming from a permanent ::user::window, use stack temporary
-   //               sp(::user::window) pWnd = ::user::window::FromHandlePermanent(wndTemp.get_handle());
-   //               if (pWnd == NULL)
-               {
-
-   //               pWnd = &wndTemp;
-      /*         }
-               ctl_color ctlcolor(get_app());
-               ctlcolor.m_psignal   = psignal;
-   //            ctlcolor.m_pdc       = &dcTemp;
-   //            ctlcolor.m_pwnd      = pWnd;
-               ctlcolor.m_nCtlType  = nCtlType;
-               ctlcolor.m_hbrush    = NULL;
-               psignal->emit(&ctlcolor);
-               // fast detach of temporary objects
-   //            dcTemp.set_handle1(NULL);
-   //            wndTemp.set_handle(NULL);
-               lresult = reinterpret_cast<LRESULT>(ctlcolor.m_hbrush);
-               if(ctlcolor.m_bRet)
-                  return true;
-               }
-                  break;
 
 
-            /*case PrototypeCtlColorReflect:
-               {         // special case for CtlColor to avoid too many temporary objects
-                  ASSERT(message == WM_REFLECT_BASE+WM_CTLCOLOR);
-                  myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
-                  ::draw2d::graphics_sp dcTemp;
-   //               dcTemp.set_handle1(pCtl->hDC);
-                  UINT nCtlType = pCtl->nCtlType;
-                  ctl_color ctlcolor(get_app());
-                  ctlcolor.m_psignal   = psignal;
-   //               ctlcolor.m_pdc       = &dcTemp;
-                  ctlcolor.m_pwnd      = NULL;
-                  ctlcolor.m_nCtlType  = nCtlType;
-                  ctlcolor.m_hbrush    = NULL;
-                  psignal->emit(&ctlcolor);
-                  // fast detach of temporary objects
-   //               dcTemp.set_handle1(NULL);
-                  lresult = reinterpret_cast<LRESULT>(ctlcolor.m_hbrush);
-                  if(ctlcolor.m_bRet)
-                     return true;
+//         e_prototype eprototype = signal.m_eprototype;
+/*         switch(eprototype)
+{
+case PrototypeNone:
+{
+base base(get_app());
+base.m_psignal = psignal;
+base.set(message, wparam, lparam, lresult);
+psignal->emit(&base);
+if(base.m_bRet)
+return true;
+}
+break;
 
-               }
-               break;*/
+case PrototypeCreate:
+{
+create create(allocer());
+create.m_psignal = psignal;
+create.set(message, wparam, lparam, lresult);
+psignal->emit(&create);
+if(create.m_bRet)
+return true;
+}
+break;
+case PrototypeNcActivate:
+{
+nc_activate ncactivate(get_app());
+ncactivate.m_psignal = psignal;
+ncactivate.set(message, wparam, lparam, lresult);
+ncactivate.m_bActive = static_cast<bool>(wparam);
+psignal->emit(&ncactivate);
+if(ncactivate.m_bRet)
+return true;
+}
+break;
+case PrototypeKey:
+{
+key key(get_app());
+key.m_psignal = psignal;
+key.set(message, wparam, lparam, lresult);
+psignal->emit(&key);
+if(key.m_bRet)
+return true;
+}
+break;
+case PrototypeTimer:
+{
+timer timer(get_app());
+timer.m_psignal = psignal;
+timer.set(message, wparam, lparam, lresult);
+timer.m_nIDEvent = static_cast<UINT>(wparam);
+psignal->emit(&timer);
+if(timer.m_bRet)
+return true;
+}
+break;
+case PrototypeShowWindow:
+{
+show_window showwindow(get_app());
+showwindow.m_psignal = psignal;
+showwindow.set(message, wparam, lparam, lresult);
+showwindow.m_bShow = static_cast<UINT>(wparam);
+showwindow.m_nStatus = static_cast<UINT>(lparam);
+psignal->emit(&showwindow);
+if(showwindow.m_bRet)
+return true;
+}
+break;
+case PrototypeSetCursor:
+{
+set_cursor setcursor(get_app());
+setcursor.m_psignal = psignal;
+setcursor.set(message, wparam, lparam, lresult);
+//setcursor.m_pWnd = ::user::window::from_os_data(reinterpret_cast<oswindow>(wparam));
+setcursor.m_nHitTest = LOWORD(lparam);
+setcursor.m_message = HIWORD(lparam);
+psignal->emit(&setcursor);
+if(setcursor.m_bRet)
+return true;
+}
+break;
+case PrototypeNcHitTest:
+{
+nchittest nchittest(get_app());
+nchittest.m_psignal = psignal;
+nchittest.set(message, wparam, lparam, lresult);
+nchittest.m_pt = point(lparam);
+psignal->emit(&nchittest);
+if(nchittest.m_bRet)
+return true;
+}
+break;
+case PrototypeMove:
+{
+move move(get_app());
+move.m_psignal = psignal;
+move.set(message, wparam, lparam, lresult);
+move.m_pt = point(lparam);
+psignal->emit(&move);
+if(move.m_bRet)
+return true;
+}
+break;
+case PrototypeEraseBkgnd:
+{
+erase_bkgnd erasebkgnd(get_app());
+erasebkgnd.m_psignal = psignal;
+erasebkgnd.set(message, wparam, lparam, lresult);
+//               erasebkgnd.m_pdc = ::draw2d::graphics_sp::from_handle(reinterpret_cast<HDC>(wparam));
+psignal->emit(&erasebkgnd);
+if(erasebkgnd.m_bRet)
+return true;
+}
+break;
 
-         //    default:;
-   /*            if(message == WM_COMMAND)
-               {
-                  command command;
-                  command.set(message, wparam, lparam, lresult);
-                  psignal->emit(&command);
-                  if(command.m_bRet)
-                     return true;
-               }
-               else if(message == WM_NOTIFY)
-               {
-                  notify notify;
-                  notify.set(message, wparam, lparam, lresult);
+case PrototypeScroll:
+{
+scroll scroll(get_app());
+scroll.m_psignal = psignal;
+scroll.set(message, wparam, lparam, lresult);
+psignal->emit(&scroll);
+if(scroll.m_bRet)
+return true;
+}
+break;
+case PrototypeSetFocus:
+{
+set_focus setfocus(get_app());
+setfocus.set(message, wparam, lparam, lresult);
+psignal->emit(&setfocus);
+if(setfocus.m_bRet)
+return true;
+}
+break;
+case PrototypeWindowPos:
+{
+window_pos windowpos(get_app());
+windowpos.set(message, wparam, lparam, lresult);
+psignal->emit(&windowpos);
+if(windowpos.m_bRet)
+return true;
+}
+break;
+case PrototypeNcCalcSize:
+{
+nc_calc_size nccalcsize(get_app());
+nccalcsize.set(message, wparam, lparam, lresult);
+psignal->emit(&nccalcsize);
+if(nccalcsize.m_bRet)
+return true;
+}
+break;
+case PrototypeMouse:
+{
+mouse mouse(get_app());
+mouse.m_psignal = psignal;
+mouse.set(message, wparam, lparam, lresult);
+psignal->emit(&mouse);
+if(mouse.m_bRet)
+return true;
+}
+break;
+case PrototypeSize:
+{
+size size(get_app());
+size.m_psignal = psignal;
+size.set(message, wparam, lparam, lresult);
+psignal->emit(&size);
+if(size.m_bRet)
+return true;
+}
+break;
 
-                  psignal->emit(&notify);
-                  if(notify.m_bRet)
-                     return true;
-               }
-               else
-               {
-                  // Unknown Prototype
-                  ASSERT(FALSE);
-                  return false;
-               }*/
-            //  }
+case PrototypeActivate:
+{
+activate activate(get_app());
+activate.m_psignal = psignal;
+activate.set(message, wparam, lparam, lresult);
+activate.m_nState = (UINT)(LOWORD(wparam));
+activate.m_pWndOther = System.window_from_os_data(lparam);
+activate.m_bMinimized = (bool)HIWORD(wparam);
+psignal->emit(&activate);
+if(activate.m_bRet)
+return true;
+}
+break;
+case PrototypeCtlColor:
+{
+// special case for OnCtlColor to avoid too many temporary objects
+ASSERT(message == WM_CTLCOLOR);
+myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
+::draw2d::graphics_sp dcTemp;
+//               dcTemp.set_handle1(pCtl->hDC);
+::user::window wndTemp;
+//               wndTemp.set_handle(pCtl->oswindow);
+UINT nCtlType = pCtl->nCtlType;
+// if not coming from a permanent ::user::window, use stack temporary
+//               sp(::user::window) pWnd = ::user::window::FromHandlePermanent(wndTemp.get_handle());
+//               if (pWnd == NULL)
+{
+
+//               pWnd = &wndTemp;
+/*         }
+ctl_color ctlcolor(get_app());
+ctlcolor.m_psignal   = psignal;
+//            ctlcolor.m_pdc       = &dcTemp;
+//            ctlcolor.m_pwnd      = pWnd;
+ctlcolor.m_nCtlType  = nCtlType;
+ctlcolor.m_hbrush    = NULL;
+psignal->emit(&ctlcolor);
+// fast detach of temporary objects
+//            dcTemp.set_handle1(NULL);
+//            wndTemp.set_handle(NULL);
+lresult = reinterpret_cast<LRESULT>(ctlcolor.m_hbrush);
+if(ctlcolor.m_bRet)
+return true;
+}
+break;
+
+
+/*case PrototypeCtlColorReflect:
+{         // special case for CtlColor to avoid too many temporary objects
+ASSERT(message == WM_REFLECT_BASE+WM_CTLCOLOR);
+myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
+::draw2d::graphics_sp dcTemp;
+//               dcTemp.set_handle1(pCtl->hDC);
+UINT nCtlType = pCtl->nCtlType;
+ctl_color ctlcolor(get_app());
+ctlcolor.m_psignal   = psignal;
+//               ctlcolor.m_pdc       = &dcTemp;
+ctlcolor.m_pwnd      = NULL;
+ctlcolor.m_nCtlType  = nCtlType;
+ctlcolor.m_hbrush    = NULL;
+psignal->emit(&ctlcolor);
+// fast detach of temporary objects
+//               dcTemp.set_handle1(NULL);
+lresult = reinterpret_cast<LRESULT>(ctlcolor.m_hbrush);
+if(ctlcolor.m_bRet)
+return true;
+
+}
+break;*/
+
+//    default:;
+/*            if(message == WM_COMMAND)
+{
+command command;
+command.set(message, wparam, lparam, lresult);
+psignal->emit(&command);
+if(command.m_bRet)
+return true;
+}
+else if(message == WM_NOTIFY)
+{
+notify notify;
+notify.set(message, wparam, lparam, lresult);
+
+psignal->emit(&notify);
+if(notify.m_bRet)
+return true;
+}
+else
+{
+// Unknown Prototype
+ASSERT(FALSE);
+return false;
+}*/
+//  }
 
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))
 #define ROUND4(x) ROUND(x, 4)

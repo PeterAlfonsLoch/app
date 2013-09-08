@@ -110,7 +110,7 @@ public:
    bool connect_update_cmd_ui(id id, void (T::*pfn)(signal_details *))
    {
       command_signalid signalid;
-      signalid * pid;
+      ::signalid * pid;
       signalid.m_id = id;
       pid = m_signalidaCommand.get(&signalid);
       return m_dispatchUpdateCmdUi.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
@@ -119,7 +119,7 @@ public:
    bool connect_command(id id, void (T::*pfn)(signal_details *))
    {
       command_signalid signalid;
-      signalid * pid;
+      ::signalid * pid;
       signalid.m_id = id;
       pid = m_signalidaCommand.get(&signalid);
       return m_dispatchCommand.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
@@ -128,7 +128,7 @@ public:
    bool connect_update_cmd_range_ui(int32_t iStart, int32_t iEnd, void (T::*pfn)(signal_details *))
    {
       command_signalrange signalrange;
-      signalid * pid;
+      ::signalid * pid;
       signalrange.m_iStart = iStart;
       signalrange.m_iEnd = iEnd;
       pid = m_signalidaCommand.get(&signalrange);
@@ -138,7 +138,7 @@ public:
    bool connect_command_range(int32_t iStart, int32_t iEnd, void (T::*pfn)(signal_details *))
    {
       command_signalrange signalrange;
-      signalid * pid;
+      ::signalid * pid;
       signalrange.m_iStart = iStart;
       signalrange.m_iEnd = iEnd;
       pid = m_signalidaCommand.get(&signalrange);

@@ -88,10 +88,10 @@ namespace libcompress
       NumInStreams(numInStreams),
          NumOutStreams(numOutStreams)
       {
-         InSizes.set_size(0, NumInStreams);
-         InSizePointers.set_size(0, NumInStreams);
-         OutSizes.set_size(0, NumOutStreams);
-         OutSizePointers.set_size(0, NumOutStreams);
+         InSizes.allocate(0, NumInStreams);
+         InSizePointers.allocate(0, NumInStreams);
+         OutSizes.allocate(0, NumOutStreams);
+         OutSizePointers.allocate(0, NumOutStreams);
       }
 
       static void SetSizes(const file_size **srcSizes, array<file_size> &sizes,

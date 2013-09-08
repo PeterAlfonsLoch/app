@@ -928,7 +928,7 @@ namespace user
             pcontrol->GetComboBox()->m_wstra.remove_all();
             pcontrol->GetComboBox()->m_dwaData.remove_all();
             var var;
-            var.m_etype = var::type_ca2;
+            var.m_etype = var::type_element;
             var.m_pca2 = pcontrol->GetComboBox();
             VmsDataGet(
                pcontrol->GetComboBox()->m_datakeyFill,
@@ -1131,7 +1131,7 @@ namespace user
       }*/
       _001UpdateFunctionStatic();
    //   CVmsGuiApp * papp = (CVmsGuiApp *) &System;
-   //   papp->TwfInitializeDescendants(pview->GetSafeoswindow_(), true);
+   //   papp->m_pplaneapp->TwfInitializeDescendants(pview->GetSafeoswindow_(), true);
       for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
       {
          sp(control) pcontrol = m_controldescriptorset[i].m_pcontrol;

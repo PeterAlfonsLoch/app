@@ -948,7 +948,7 @@ namespace dynamic_source
 
       try
       {
-         f = Application.file().get_file(strFile, ::file::type_binary | ::file::mode_read | ::file::binary_buffer::shareDenyWrite);
+         f = Application.file().get_file(strFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_write);
       }
       catch(...)
       {

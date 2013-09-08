@@ -30,12 +30,16 @@ namespace plane
 
 #undef App
 #undef Application
-#define planeApp(pcaapp) (*pcaapp->m_pappThis)
-#define planeApplication (planeApp(m_papp))
-#define App(pcaapp) planeApp(pcaapp)
-#define Application (App(m_papp))
+#define planeApp(pbaseapp) (*pbaseapp->m_pplaneapp)
+#define planeApplication (planeApp(m_pbaseapp))
+#define App(pbaseapp) planeApp(pbaseapp)
+#define Application (App(m_pbaseapp))
 #undef Sys
-#define Sys(pcaapp) (*pcaapp->m_pappThis->m_psystem)
+#define Sys(pbaseapp) (*pbaseapp->m_pplaneapp->m_psystem)
+
+
+#define Sess(pbaseapp) (*pbaseapp->m_pplaneapp->m_psession)
+#define Session (Sess(this->m_pbaseapp))
 
 
 #if defined(WIN32) && !defined(VC6) && ! defined(VC71)
@@ -1197,7 +1201,7 @@ CLASS_DECL_ca2 char * ::core::TaskStringW2A(const wchar_t * lpw);
 #include "filesystem/file/file_dynamic_buffered_writer.h"
 
 
-#include "filesystem/file/file_buffered.h"
+#include "filesystem/file/file_buffered_buffer.h"
 #include "filesystem/file/file_timeout_buffer.h"
 #include "filesystem/file/file_edit_buffer.h"
 #include "filesystem/file/file_text_buffer.h"
@@ -1295,7 +1299,7 @@ inline bool is_null(const TYPE & ref)
 
 #include "filesystem/file/file_folder_watch.h"
 
-#include "filesystem/file/file_transfer_buffer.h"
+#include "filesystem/file/file_transfer_stream.h"
 
 
 class document_interface;
@@ -1369,7 +1373,13 @@ class Ex1FactoryImpl;
 
 
 #include "math/calculator/calculator.h"
+
+
+#include "net/http/http_output_stream.h"
 #include "net/sockets/sockets.h"
+
+
+
 #include "user/colorertake5/colorertake5.h"
 
 #include "graphics/html/html.h"
@@ -1467,6 +1477,7 @@ class Ex1FactoryImpl;
 
 
 #include "core_parse.h"
+
 
 
 #include "graphics/html/html2.h"

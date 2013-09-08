@@ -17,7 +17,7 @@ namespace html
 
    data::data(sp(base_application) papp) :
       element(papp),
-      ::data(papp),
+      ::data::data(papp),
       m_imagea(papp),
       m_uiptra(papp),
       m_elemental(NULL)
@@ -135,7 +135,7 @@ namespace html
 
    void data::delete_contents()
    {
-      ::data::writing writing(this);
+      ::data::data::writing writing(this);
       m_elemental.m_propertyset.clear();
       m_elemental.m_pbase = NULL;
       delete m_elemental.m_pimpl;
@@ -225,7 +225,7 @@ namespace html
    {
 
 
-      synch_lock sl(user_mutex(), true);
+      synch_lock sl(&user_mutex());
 
 
       int32_t iCount = 24;
@@ -404,7 +404,7 @@ namespace html
 
 restart:
 
-      ::data::writing writing(this);
+      ::data::data::writing writing(this);
 
       string strPathName;
 

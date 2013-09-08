@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace core
+namespace hi5
 {
 
 
@@ -1418,5 +1418,8 @@ namespace core
    }
 
 
-} // namespace core
+} // namespace hi5
+
+
+
 

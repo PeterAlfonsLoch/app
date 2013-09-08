@@ -17,7 +17,7 @@ public:
 
    typedef TYPE BASE_TYPE;
    typedef ARG_TYPE BASE_ARG_TYPE;
-   typedef array < TYPE, ARG_TYPE > THIS_ARRAY;
+   typedef array < TYPE, ARG_TYPE > BASE_ARRAY;
 
    /*
 

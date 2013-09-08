@@ -10,18 +10,26 @@ CLASS_DECL_c string file_as_string_dup(const char * path);
 
 
 
+#include "file_seekable.h"
+
+
+#include "file_writer_flush.h"
+
+
+#include "file_stream_buffer_base.h"
+
+
 #include "file_stream_base.h"
 
 
 
-#include "file_seekable.h"
 
 
 
 
 #include "file_reader.h"
 #include "file_writer.h"
-#include "file_writer_flush.h"
+
 #include "file_stream_buffer.h"
 
 #include "file_input_stream.h"

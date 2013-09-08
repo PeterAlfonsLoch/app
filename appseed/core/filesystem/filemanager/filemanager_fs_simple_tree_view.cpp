@@ -136,15 +136,15 @@ namespace filemanager
 
                if(pdataitemChild == NULL)
                {
-                  pdataitemChild = create_item(m_spdataFs, pdataitemParent, ::core::RelativeLastChild);
+                  pdataitemChild = create_item(m_spdataFs, pdataitemParent, ::data::RelativeLastChild);
                }
 
                if(pdataitemChild->m_pitemdata == NULL)
                {
-                  pdataitemChild->m_pitemdata = new ::core::simple_tree_item_data();
+                  pdataitemChild->m_pitemdata = new ::data::simple_tree_item_data();
                }
 
-               ((::core::simple_tree_item_data *) pdataitemChild->m_pitemdata.m_p)->m_str = folder.m_strName;
+               ((::data::simple_tree_item_data *) pdataitemChild->m_pitemdata.m_p)->m_str = folder.m_strName;
                pdataitemChild->m_dwUser = iNewItem;
 
          //      else

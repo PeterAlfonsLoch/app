@@ -3,6 +3,7 @@
  */
 #include "framework.h"
 
+
 namespace datetime
 {
 
@@ -36,7 +37,7 @@ namespace datetime
 
 element * parser::parse(const char * psz)
  {
-   element *node;
+   ::datetime::element *node;
    m_scanner.initialize(psz);
    node = expr(term(factor()));
    if(m_scanner.m_ptoken->value != token::end)
@@ -44,9 +45,9 @@ element * parser::parse(const char * psz)
    return node;
 }
 
-element * parser::expr(element * pelement1)
+element * parser::expr(::datetime::element * pelement1)
 {
-   element * top_node;
+   ::datetime::element * top_node;
    m_scanner.peek();
    if(m_scanner.m_ptoken->value == token::addition || m_scanner.m_ptoken->value == token::subtraction)
    {
@@ -60,9 +61,9 @@ element * parser::expr(element * pelement1)
    return pelement1;
 }
 
-   element *parser::term(element *m_pelement1)
+   element *parser::term(::datetime::element *m_pelement1)
    {
-      element *top_node;
+      ::datetime::element *top_node;
       m_scanner.peek();
       if(m_scanner.m_ptoken->value == token::multiplication || m_scanner.m_ptoken->value == token::division)
       {
@@ -79,7 +80,7 @@ element * parser::expr(element * pelement1)
 
    element *parser::factor()
    {
-      element *node;
+      ::datetime::element *node;
       m_scanner.peek();
       if(m_scanner.m_ptoken->value == token::identifier)
       {

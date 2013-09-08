@@ -739,7 +739,7 @@ namespace gcom
          m_rndgrowDirectionLatency.maxlbound = 50;
          m_rndgrowDirectionLatency.maxubound = 100;
 
-         m_colortrack1a.set_size(12);
+         m_colortrack1a.allocate(12);
          for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
          {
             ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -2536,9 +2536,9 @@ namespace gcom
          {
             if(m_pointa.get_size() != cx1)
             {
-               m_pointa.set_size(cx1);
-               m_pointa1.set_size(cx1);
-               m_pointa2.set_size(cx1);
+               m_pointa.allocate(cx1);
+               m_pointa1.allocate(cx1);
+               m_pointa2.allocate(cx1);
 
                for(int32_t i = 0; i < cx1; i++)
                {
@@ -2752,9 +2752,9 @@ namespace gcom
          {
             if(m_pointa.get_size() != cx1)
             {
-               m_pointa.set_size(cx1);
-               m_pointa1.set_size(cx1);
-               m_pointa2.set_size(cx1);
+               m_pointa.allocate(cx1);
+               m_pointa1.allocate(cx1);
+               m_pointa2.allocate(cx1);
 
                for(int32_t i = 0; i < cx1; i++)
                {
@@ -3290,8 +3290,8 @@ namespace gcom
       }
       void PixelExplosion::create(int32_t iWidth,int32_t iHeight)
       {
-         m_pointa.set_size(iWidth * iHeight);
-         m_pointaM.set_size(iWidth * iHeight);
+         m_pointa.allocate(iWidth * iHeight);
+         m_pointaM.allocate(iWidth * iHeight);
 
 
          m_iWidth = iWidth;
@@ -4843,9 +4843,9 @@ namespace gcom
          {
             if(m_pointa.get_size() != cx1)
             {
-               m_pointa.set_size(cx1);
-               m_pointa1.set_size(cx1);
-               m_pointa2.set_size(cx1);
+               m_pointa.allocate(cx1);
+               m_pointa1.allocate(cx1);
+               m_pointa2.allocate(cx1);
 
                for(int32_t i = 0; i < cx1; i++)
                {
@@ -5063,9 +5063,9 @@ namespace gcom
          {
             if(m_pointa.get_size() != cx1)
             {
-               m_pointa.set_size(cx1);
-               m_pointa1.set_size(cx1);
-               m_pointa2.set_size(cx1);
+               m_pointa.allocate(cx1);
+               m_pointa1.allocate(cx1);
+               m_pointa2.allocate(cx1);
 
                for(int32_t i = 0; i < cx1; i++)
                {

@@ -5,9 +5,9 @@ namespace sockets
 {
 
 
-   sockets::sockets(application * papp) :
+   sockets::sockets(base_application * papp) :
      element(papp),
-     ::departament(papp),
+     base_departament(papp),
       m_mutexHttpPostBoundary(papp),
       m_mutexResolvCache(papp)
    {
@@ -23,14 +23,14 @@ namespace sockets
    bool sockets::initialize1()
    {
 
-      if(!::departament::initialize1())
+      if(!base_departament::initialize1())
          return false;
 
       
       if(Application.is_system())
       {
 
-         ::sockets::SSLInitializer ssl_init(m_papp->m_psystem);
+         ::sockets::SSLInitializer ssl_init(m_pbaseapp->m_pplaneapp->m_psystem);
 
          System.factory().creatable_small < ::file::memory_buffer > ();
          System.factory().cloneable_small < ::sockets::ipv4_address > ();

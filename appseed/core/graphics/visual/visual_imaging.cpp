@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "include/freeimage.h"
+#include "freeimage/freeimage.h"
 #include "visual_FreeImageFileProc.h"
 #ifdef WINDOWSEX
 #undef new
@@ -3372,30 +3372,30 @@ void fastblur(::draw2d::dib * pimg, int32_t radius)
    int32_t wh=w*h;
    int32_t div=radius+radius+1;
    int_array iaA;
-   iaA.set_size(wh);
+   iaA.allocate(wh);
    int32_t * a = iaA.get_data();
    int_array iaR;
-   iaR.set_size(wh);
+   iaR.allocate(wh);
    int32_t * r = iaR.get_data();
    int_array iaG;
-   iaG.set_size(wh);
+   iaG.allocate(wh);
    int32_t * g = iaG.get_data();
    int_array iaB;
-   iaB.set_size(wh);
+   iaB.allocate(wh);
    int32_t * b = iaB.get_data();
    int32_t asum, rsum,gsum,bsum,x,y,i,yp,yi,yw;
    int32_t p;
    int32_t p1;
    int32_t p2;
    int_array iaVmin;
-   iaVmin.set_size(max(w,h));
+   iaVmin.allocate(max(w,h));
    int32_t * vmin = iaVmin.get_data();
    int_array iaVmax;
-   iaVmax.set_size(max(w,h));
+   iaVmax.allocate(max(w,h));
    int32_t * vmax = iaVmax.get_data();
    int32_t * pix=(int32_t *) pimg->get_data();
    int_array iaDv;
-   iaDv.set_size(256*div);
+   iaDv.allocate(256*div);
    int32_t * dv = iaDv.get_data();
    for (i=0;i<iaDv.get_count();i++)
    {

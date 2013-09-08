@@ -1,49 +1,69 @@
 #include "framework.h"
 
+
 namespace gcom
 {
 
+
    namespace backview
    {
+
 
       const UINT thread::MESSAGE_BACKVIEW = WM_APP + 123;
       const WPARAM thread::WPARAM_BACKVIEW_IMAGELOADED = 0;
 
       thread::thread(sp(base_application) papp) :
          element(papp),
-         thread(papp),
+         ::thread(papp),
          m_evInitialized(papp, FALSE, TRUE),
          m_mutexBitmap(papp)
       {
+
          m_pbackviewinterface = NULL;
+
       }
+
 
       thread::~thread()
       {
+
       }
+
 
       bool thread::initialize_instance()
       {
+
          m_evInitialized.SetEvent();
+
          return true;
+
       }
+
 
       int32_t thread::exit_instance()
       {
+
          m_evInitialized.SetEvent();
+
          m_pbackviewinterface->Release();
-         return thread::exit_instance();
+
+         return ::thread::exit_instance();
+
       }
+
 
       void thread::install_message_handling(::message::dispatch * pinterface)
       {
+
          IGUI_WIN_MSG_LINK(WM_USER, pinterface, this, &thread::OnUserMessage);
          IGUI_WIN_MSG_LINK(MESSAGE_BACKVIEW, pinterface, this, &thread::OnBackViewMessage);
          IGUI_WIN_MSG_LINK(MessageCommand, pinterface, this, &thread::OnCommandMessage);
+
       }
 
       void thread::PreTransitionImageAsync(backview::Main * pview)
       {
+
          post_thread_message(
             MessageCommand,
             CommandPreTransitionImage,
@@ -386,7 +406,7 @@ namespace gcom
       void thread::LoadImageAsync(const load_image & loadimage)
       {
          load_image * lploadimage = new load_image(loadimage);
-         ::core::connect(lploadimage->m_signalImageLoaded,  m_pbackviewinterface, &backview::Main::_001OnImageLoaded);
+         ::connect(lploadimage->m_signalImageLoaded,  m_pbackviewinterface, &backview::Main::_001OnImageLoaded);
 
          post_thread_message(
             MessageCommand,

@@ -112,7 +112,7 @@ namespace usermail
 
       index iFind = -1;
 
-      array < bool, bool > baAlpha;
+      bool_array baAlpha;
       stringa straDate;
       stringa straDateSeparator;
 

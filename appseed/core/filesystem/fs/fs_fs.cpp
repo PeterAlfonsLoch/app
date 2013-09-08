@@ -5,9 +5,9 @@ namespace fs
 {
 
 
-   fs::fs(application * papp) :
+   fs::fs(base_application * papp) :
       element(papp),
-      ::departament(papp)
+      base_departament(papp)
    {
 
    }

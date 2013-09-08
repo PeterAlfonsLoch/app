@@ -18,7 +18,7 @@ public:
    };
 
    uint32_t                   m_ulFlags;
-   sp(base_application)      m_pcaapp;
+   sp(base_application)      m_pbaseapp;
    sp(base_application)     m_papp;
    //::core::ptra *            m_pptraListener;
    //::core::ptra *            m_pptraListened;
@@ -41,7 +41,7 @@ public:
 
    inline allocatorsp allocer();
 
-   inline base_application * get_app() const { return m_pcaapp; }
+   inline base_application * get_app() const { return m_pbaseapp; }
 
    virtual void set_app(sp(base_application) papp);
 

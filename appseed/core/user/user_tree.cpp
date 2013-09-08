@@ -318,7 +318,7 @@ namespace user
          drawitemdata.m_rect.top += (LONG) (iIndex * drawitemdata.m_iItemHeight);
          drawitemdata.m_rect.bottom = (LONG) (drawitemdata.m_rect.top + drawitemdata.m_iItemHeight);
          drawitemdata.m_rect.right = m_iCurrentViewWidth;
-         if(pitem->m_dwState & ::core::tree_item_state_selected)
+         if(pitem->m_dwState & ::data::tree_item_state_selected)
          {
             //         drawitemdata.m_dwMetaData |= 1;
          }
@@ -383,13 +383,13 @@ namespace user
       if(m_uchHoverAlpha > 0)
       {
 
-         if(ptree != NULL && pimagelistTree != NULL && data.m_pitem->m_dwState & ::core::tree_item_state_expandable)
+         if(ptree != NULL && pimagelistTree != NULL && data.m_pitem->m_dwState & ::data::tree_item_state_expandable)
          {
 
             _001GetItemElementRect(rect, data, tree_element_expand_box);
 
             int32_t iImage;
-            if(data.m_pitem->m_dwState & ::core::tree_item_state_expanded)
+            if(data.m_pitem->m_dwState & ::data::tree_item_state_expanded)
             {
                iImage = (int32_t) ptree->m_iImageCollapse;
             }
@@ -550,7 +550,7 @@ namespace user
             eelement == tree_element_image ||
             eelement == tree_element_text)
          {
-            _001ExpandItem(pitem, !(pitem->m_dwState & ::core::tree_item_state_expanded));
+            _001ExpandItem(pitem, !(pitem->m_dwState & ::data::tree_item_state_expanded));
          }
       }
 
@@ -607,7 +607,7 @@ namespace user
             eelement == tree_element_image ||
             eelement == tree_element_text)
          {
-            _001ExpandItem(pitem, !(pitem->m_dwState & ::core::tree_item_state_expanded));
+            _001ExpandItem(pitem, !(pitem->m_dwState & ::data::tree_item_state_expanded));
          }
          if(eelement == tree_element_image ||
             eelement == tree_element_text)
@@ -816,16 +816,16 @@ namespace user
 
    void tree::_001ExpandItem(sp(::data::tree_item)pitem, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
    {
-      ::data::writing writing(::data::data_container::m_spdata);
+      ::data::data::writing writing(::data::data_container::m_spdata);
       UNREFERENCED_PARAMETER(bLayout);
       if(bExpand)
       {
-         if(!(pitem->m_dwState & ::core::tree_item_state_expanded))
+         if(!(pitem->m_dwState & ::data::tree_item_state_expanded))
          {
 
             _001OnItemExpand(pitem);
 
-            pitem->m_dwState |= ::core::tree_item_state_expanded;
+            pitem->m_dwState |= ::data::tree_item_state_expanded;
 
             // scroll properly to show the highest possible number
             // of children while trying to preserve the old position and
@@ -853,7 +853,7 @@ namespace user
       }
       else
       {
-         pitem->m_dwState &= ~::core::tree_item_state_expanded;
+         pitem->m_dwState &= ~::data::tree_item_state_expanded;
       }
 
       layout();
@@ -1105,7 +1105,7 @@ namespace user
 
       sp(tree) ptree =  (pui.m_p);
 
-      if(!insert_item(NULL, ptree->get_base_item(), ::core::RelativeLastChild, get_base_item()))
+      if(!insert_item(NULL, ptree->get_base_item(), ::data::RelativeLastChild, get_base_item()))
          return false;
 
       m_treeptra.add(ptree);

@@ -39,16 +39,18 @@ namespace sockets
    {
    }
 
-   void link_out_socket::OnRead( char *buf, size_t n )
+   void link_out_socket::on_read(const void * pdata, ::primitive::memory_size n)
    {
 
-      m_in->link_write(buf, n);
+      m_in->link_write(pdata, n);
 
    }
 
-   void link_out_socket::link_write(void * p, size_t size)
+   void link_out_socket::link_write(const void * pdata, ::primitive::memory_size size)
    {
-      m_out->SendBuf((const char *) p, (int32_t) size);
+
+      m_out->write(pdata, size);
+
    }
 
 

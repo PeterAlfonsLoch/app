@@ -1,11 +1,12 @@
 #include "framework.h"
 
+
 namespace file
 {
 
    // uiExpectedSize = (uint64_t) -1 - initially unknown size
    // uiExpectedSize = (uint64_t) -2 - permanent or until end unknown size
-   timeout_file::timeout_file(sp(base_application) papp, ::file::buffer_sp  pfile, uint64_t uiExpectedSize) :
+   timeout_buffer::timeout_buffer(sp(base_application) papp, ::file::buffer_sp  pfile, uint64_t uiExpectedSize) :
       element(papp)
    {
       UNREFERENCED_PARAMETER(uiExpectedSize);
@@ -22,17 +23,17 @@ namespace file
       m_dwSleep         = 584;
    }
    
-   timeout_file::~timeout_file()
+   timeout_buffer::~timeout_buffer()
    {
    }
 
-   bool timeout_file::IsValid() const
+   bool timeout_buffer::IsValid() const
    {
-      single_lock sl((const_cast < timeout_file * > (this))->m_spmutex, TRUE);
+      single_lock sl((const_cast < timeout_buffer * > (this))->m_spmutex, TRUE);
       return m_pfile != NULL;
    }
 
-   file_position timeout_file::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position timeout_buffer::seek(file_offset lOff, ::file::e_seek nFrom)
    {
       single_lock sl(m_spmutex, TRUE);
       uint64_t dwFuture;
@@ -76,26 +77,26 @@ namespace file
       return m_pfile->get_position();
    }
 
-   file_position timeout_file::get_position() const
+   file_position timeout_buffer::get_position() const
    {
-      single_lock sl((const_cast < timeout_file * > (this))->m_spmutex, TRUE);
+      single_lock sl((const_cast < timeout_buffer * > (this))->m_spmutex, TRUE);
       return m_pfile->get_position();
    }
 
-   file_size timeout_file::get_length() const
+   file_size timeout_buffer::get_length() const
    {
       if(m_uiExpectedSize == (uint64_t) -2)
          return (uint64_t) -2;
       if(m_uiExpectedSize == (uint64_t) -1)
       {
-         (const_cast < timeout_file * > (this))->m_dwLastCall = ::get_tick_count();
+         (const_cast < timeout_buffer * > (this))->m_dwLastCall = ::get_tick_count();
          while(m_uiExpectedSize == (uint64_t) -1)
          {
             if(::get_tick_count() - m_dwLastCall > m_dwTimeOut)
                break;
             Sleep(max(11, m_dwSleep));
          }
-         TRACE("timeout_file::m_uiExpectedSize = %d", m_uiExpectedSize);
+         TRACE("timeout_buffer::m_uiExpectedSize = %d", m_uiExpectedSize);
       }
       if(m_uiExpectedSize == (uint64_t) -1)
          return 0;
@@ -104,7 +105,7 @@ namespace file
    }
 
 
-   file_size timeout_file::get_length(single_lock * psl) const
+   file_size timeout_buffer::get_length(single_lock * psl) const
    {
       bool bAcquired = psl->IsLocked();
       if(bAcquired)
@@ -114,14 +115,14 @@ namespace file
          return (uint64_t) -2;
       if(m_uiExpectedSize == (uint64_t) -1)
       {
-         (const_cast < timeout_file * > (this))->m_dwLastCall = ::get_tick_count();
+         (const_cast < timeout_buffer * > (this))->m_dwLastCall = ::get_tick_count();
          while(m_uiExpectedSize == (uint64_t) -1)
          {
             if(::get_tick_count() - m_dwLastCall > m_dwTimeOut)
                break;
             Sleep(max(11, m_dwSleep));
          }
-         TRACE("timeout_file::m_uiExpectedSize = %d", m_uiExpectedSize);
+         TRACE("timeout_buffer::m_uiExpectedSize = %d", m_uiExpectedSize);
       }
       if(bAcquired)
          psl->lock();
@@ -131,7 +132,7 @@ namespace file
          return m_uiExpectedSize;
    }
 
-   ::primitive::memory_size timeout_file::read(void *lpBuf, ::primitive::memory_size nCount)
+   ::primitive::memory_size timeout_buffer::read(void *lpBuf, ::primitive::memory_size nCount)
    {
       single_lock sl(m_spmutex);
       if(m_pfile == NULL)
@@ -160,23 +161,27 @@ namespace file
       return uiRead;
    }
 
-   void timeout_file::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void timeout_buffer::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
       single_lock sl(m_spmutex, TRUE);
       m_pfile->write(lpBuf, nCount);
   //     m_uiExpectedSize = m_pfile->get_length();
    }
 
-   void timeout_file::flush()
+   void timeout_buffer::flush()
    {
       single_lock sl(m_spmutex, TRUE);
       m_pfile->flush();
    }
 
-   void timeout_file::set_length(file_size dwNewLen)
+   void timeout_buffer::set_length(file_size dwNewLen)
    {
       single_lock sl(m_spmutex, TRUE);
       m_uiExpectedSize = dwNewLen;
    }
 
+
 } // namespace file
+
+
+

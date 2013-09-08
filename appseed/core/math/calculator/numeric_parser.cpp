@@ -7,7 +7,7 @@ namespace calculator
 {
 
    parser::parser(sp(base_application) papp) :
-      element(papp),
+      ::element(papp),
       m_scanner(papp)
    {
    }
@@ -16,12 +16,12 @@ namespace calculator
    {
    }
 
-   element * parser::new_node()
+   ::calculator::element * parser::new_node()
    {
       return m_elementa(m_elementa.add(canew(::calculator::element)));
    }
 
-   //element * parser::parse(const char * psz)
+   //::calculator::element * parser::parse(const char * psz)
 /********************************************/
 /* Parsing functions */
 
@@ -34,9 +34,9 @@ namespace calculator
 */
 
 
-element * parser::parse(const char * psz)
+::calculator::element * parser::parse(const char * psz)
  {
-   element *node;
+   ::calculator::element *node;
    m_scanner.initialize(psz);
    node = expr(term(factor()));
    if(m_scanner.m_ptoken->value != token::end)
@@ -44,9 +44,9 @@ element * parser::parse(const char * psz)
    return node;
 }
 
-element * parser::expr(element * pelement1)
+::calculator::element * parser::expr(::calculator::element * pelement1)
 {
-   element * top_node;
+   ::calculator::element * top_node;
    m_scanner.peek();
    if(m_scanner.m_ptoken->value == token::addition || m_scanner.m_ptoken->value == token::subtraction)
    {
@@ -60,9 +60,9 @@ element * parser::expr(element * pelement1)
    return pelement1;
 }
 
-   element *parser::term(element *m_pelement1)
+   ::calculator::element *parser::term(::calculator::element *m_pelement1)
    {
-      element *top_node;
+      ::calculator::element *top_node;
       m_scanner.peek();
       if(m_scanner.m_ptoken->value == token::multiplication || m_scanner.m_ptoken->value == token::division)
       {
@@ -77,9 +77,9 @@ element * parser::expr(element * pelement1)
    }
 
 
-   element *parser::factor()
+   ::calculator::element *parser::factor()
    {
-      element *node;
+      ::calculator::element *node;
       m_scanner.peek();
       if(m_scanner.m_ptoken->value == token::addition)
       {

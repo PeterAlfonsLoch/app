@@ -27,7 +27,7 @@ namespace n7z {
 static void BoolVector_Fill_False(bool_array &v, int32_t size)
 {
   v.remove_all();
-  v.set_size(0, size);
+  v.allocate(0, size);
   for (int32_t i = 0; i < size; i++)
     v.add(false);
 }
@@ -305,7 +305,7 @@ static inline bool TestSignature2(const byte *p)
 
 HRESULT CInArchive::FindAndReadSignature(::file::input_stream *stream, const file_position *searchHeaderSizeLimit)
 {
-  RINOK(ReadStream_FALSE(stream, _header, kHeaderSize));
+   RINOK(::file::read_false(stream, _header, kHeaderSize));
 
   if (TestSignature2(_header))
     return S_OK;
@@ -438,7 +438,7 @@ void CInArchive::GetNextFolderItem(CFolder &folder)
 
   CNum numBindPairs = numOutStreams - 1;
   folder.BindPairs.remove_all();
-  folder.BindPairs.set_size(0, numBindPairs);
+  folder.BindPairs.allocate(0, numBindPairs);
   for (i = 0; i < numBindPairs; i++)
   {
     CBindPair bp;
@@ -450,7 +450,7 @@ void CInArchive::GetNextFolderItem(CFolder &folder)
   if (numInStreams < numBindPairs)
     ThrowUnsupported();
   CNum numPackStreams = numInStreams - numBindPairs;
-  folder.PackStreams.set_size(0, numPackStreams);
+  folder.PackStreams.allocate(0, numPackStreams);
   if (numPackStreams == 1)
   {
     for (i = 0; i < numInStreams; i++)
@@ -486,7 +486,7 @@ void CInArchive::ReadHashDigests(int32_t numItems,
 {
   ReadBoolVector2(numItems, digestsDefined);
   digests.remove_all();
-  digests.set_size(0, numItems);
+  digests.allocate(0, numItems);
   for (int32_t i = 0; i < numItems; i++)
   {
     uint32_t crc = 0;
@@ -507,7 +507,7 @@ void CInArchive::ReadPackInfo(
 
   WaitAttribute(NID::kSize);
   packSizes.remove_all();
-  packSizes.set_size(0, numPackStreams);
+  packSizes.allocate(0, numPackStreams);
   for (CNum i = 0; i < numPackStreams; i++)
     packSizes.add((file_size) ReadNumber());
 
@@ -527,7 +527,7 @@ void CInArchive::ReadPackInfo(
   if (packCRCsDefined.is_empty())
   {
     BoolVector_Fill_False(packCRCsDefined, numPackStreams);
-    packCRCs.set_size(0, numPackStreams);
+    packCRCs.allocate(0, numPackStreams);
     packCRCs.remove_all();
     for (CNum i = 0; i < numPackStreams; i++)
       packCRCs.add(0);
@@ -559,7 +559,7 @@ void CInArchive::ReadUnpackInfo(
   {
     CFolder &folder = folders[i];
     CNum numOutStreams = folder.GetNumOutStreams();
-    folder.UnpackSizes.set_size(0, numOutStreams);
+    folder.UnpackSizes.allocate(0, numOutStreams);
     for (CNum j = 0; j < numOutStreams; j++)
       folder.UnpackSizes.add((file_size) ReadNumber());
   }
@@ -594,7 +594,7 @@ void CInArchive::ReadSubStreamsInfo(
     array<uint32_t> &digests)
 {
   numUnpackStreamsInFolders.remove_all();
-  numUnpackStreamsInFolders.set_size(0, folders.get_count());
+  numUnpackStreamsInFolders.allocate(0, folders.get_count());
   uint64_t type;
   for (;;)
   {
@@ -735,7 +735,7 @@ void CInArchive::ReadStreamsInfo(
 void CInArchive::ReadBoolVector(int32_t numItems, bool_array &v)
 {
   v.remove_all();
-  v.set_size(0, numItems);
+  v.allocate(0, numItems);
   byte b = 0;
   byte mask = 0;
   for (int32_t i = 0; i < numItems; i++)
@@ -759,7 +759,7 @@ void CInArchive::ReadBoolVector2(int32_t numItems, bool_array &v)
     return;
   }
   v.remove_all();
-  v.set_size(0, numItems);
+  v.allocate(0, numItems);
   for (int32_t i = 0; i < numItems; i++)
     v.add(true);
 }
@@ -770,7 +770,7 @@ void CInArchive::ReadUInt64DefVector(const smart_pointer_array < ::file::byte_bu
 
   CStreamSwitch streamSwitch;
   streamSwitch.set(this, &dataVector);
-  v.Values.set_size(0, numFiles);
+  v.Values.allocate(0, numFiles);
 
   for (int32_t i = 0; i < numFiles; i++)
   {
@@ -1081,7 +1081,7 @@ HRESULT CInArchive::ReadHeader(
 void CArchiveDatabaseEx::FillFolderStartPackStream()
 {
   FolderStartPackStreamIndex.remove_all();
-  FolderStartPackStreamIndex.set_size(0, Folders.get_count());
+  FolderStartPackStreamIndex.allocate(0, Folders.get_count());
   CNum startPos = 0;
   for (int32_t i = 0; i < Folders.get_count(); i++)
   {
@@ -1093,7 +1093,7 @@ void CArchiveDatabaseEx::FillFolderStartPackStream()
 void CArchiveDatabaseEx::FillStartPos()
 {
   PackStreamStartPositions.remove_all();
-  PackStreamStartPositions.set_size(0, PackSizes.get_count());
+  PackStreamStartPositions.allocate(0, PackSizes.get_count());
   file_position startPos = 0;
   for (int32_t i = 0; i < PackSizes.get_count(); i++)
   {
@@ -1105,9 +1105,9 @@ void CArchiveDatabaseEx::FillStartPos()
 void CArchiveDatabaseEx::FillFolderStartFileIndex()
 {
   FolderStartFileIndex.remove_all();
-  FolderStartFileIndex.set_size(0, Folders.get_count());
+  FolderStartFileIndex.allocate(0, Folders.get_count());
   FileIndexToFolderIndexMap.remove_all();
-  FileIndexToFolderIndexMap.set_size(0, Files.get_count());
+  FileIndexToFolderIndexMap.allocate(0, Files.get_count());
 
   int32_t folderIndex = 0;
   CNum indexInFolder = 0;
@@ -1183,7 +1183,7 @@ HRESULT CInArchive::ReadDatabase2(
       checkSize = (int32_t)(cur2 - cur);
     cur2 = _stream->seek(-checkSize, ::file::seek_end);
 
-    RINOK(ReadStream_FALSE(_stream, buf, (size_t)checkSize));
+    RINOK(::file::read_false(_stream, buf, (size_t)checkSize));
 
     int32_t i;
     for (i = (int32_t)checkSize - 2; i >= 0; i--)
@@ -1219,7 +1219,7 @@ HRESULT CInArchive::ReadDatabase2(
   ::file::byte_buffer buffer2;
   buffer2.SetCapacity((size_t)nextHeaderSize);
 
-  RINOK(ReadStream_FALSE(_stream, buffer2, (size_t)nextHeaderSize));
+  RINOK(::file::read_false(_stream, buffer2, (size_t)nextHeaderSize));
   HeadersSize += kHeaderSize + nextHeaderSize;
   db.PhySize = kHeaderSize + nextHeaderOffset + nextHeaderSize;
 

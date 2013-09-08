@@ -6,7 +6,9 @@ namespace plugin
 
 
    system::system(sp(base_application) papp) :
+      base_system(papp),
       ::plane::system(papp)
+      
    {
 
       m_bShouldInitializeGTwf    = false;

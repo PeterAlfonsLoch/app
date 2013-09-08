@@ -52,13 +52,20 @@ lemon_array < TYPE, ARG_TYPE > :: ~lemon_array()
 {
 }
 
+template < class TYPE, class ARG_TYPE >
+::count lemon_array < TYPE, ARG_TYPE > :: set_size(index nNewSize, ::count nGrowBy) // does not call default constructors on new items/elements
+{
+
+   return ::lemon::array::set_size(*this, nNewSize, nGrowBy);
+
+}
 
 // Potentially growing the array
 template < class TYPE, class ARG_TYPE >
 inline void lemon_array < TYPE, ARG_TYPE > :: set_at_grow(index nIndex, ARG_TYPE newElement)
 {
 
-   ::lemon::array::set_at_grow(*this, nIndex, nNewElement);
+   ::lemon::array::set_at_grow(*this, nIndex, newElement);
 
 }
 
@@ -66,7 +73,7 @@ template < class TYPE, class ARG_TYPE >
 inline TYPE & lemon_array < TYPE, ARG_TYPE > :: element_at_grow(index nIndex)
 {
 
-   return ::lemon::array::element_at_grow(*this, nIndex, nNewElement);
+   return ::lemon::array::element_at_grow(*this, nIndex);
 
 }
 
@@ -109,10 +116,10 @@ inline index lemon_array < TYPE, ARG_TYPE > :: insert_at(index nIndex, ARG_TYPE 
 
 
 template < class TYPE, class ARG_TYPE >
-inline index lemon_array < TYPE, ARG_TYPE > :: insert_at(index nStartIndex, array* pNewArray)
+inline index lemon_array < TYPE, ARG_TYPE > :: insert_at(index nStartIndex, array < TYPE, ARG_TYPE > * pNewArray)
 {
    
-   return ::lemon::array::insert_at(*this, nStartIndex, *pNewArray);
+   return ::lemon::array::insert_at(*this, nStartIndex, pNewArray);
 
 }
 
@@ -255,14 +262,14 @@ namespace lemon
       }
 
       template <class ARRAY>
-      void copy(ARRAY & a, const typename ARRAY::TYPE * ptypea, ::count n)
+      void copy(ARRAY & a, const typename ARRAY::BASE_TYPE * ptypea, ::count n)
       {
 
          ::lemon::array::set_size(a, n);
 
          for(int i = 0; i < n; i++)
          {
-            aelement_at(i) = ptypea[i];
+            a.element_at(i) = ptypea[i];
          }
 
       }
@@ -270,43 +277,53 @@ namespace lemon
       template < class ARRAY >
       void set_at_grow(ARRAY & a, index nIndex, typename ARRAY::BASE_ARG_TYPE newElement)
       {
-         //ASSERT_VALID(this);
-         //ASSERT(nIndex >= 0);
+         
+         ASSERT_VALID(&a);
+         
+         ASSERT(nIndex >= 0);
 
          if(nIndex < 0)
-            throw invalid_argument_exception(get_app());
+            throw invalid_argument_exception(a.get_app());
 
-         if (nIndex >= m_nSize)
+         if (nIndex >= a.m_nSize)
             ::lemon::array::set_size(a, nIndex+1, -1);
-         m_pData[nIndex] = newElement;
+
+         a.m_pData[nIndex] = newElement;
+
       }
 
       template < class ARRAY>
       typename ARRAY::BASE_TYPE get_at_grow(ARRAY & a, index nIndex)
       {
-         return element_at_grow(nIndex);
+         return element_at_grow(a, nIndex);
       }
 
 
       template < class ARRAY >
       typename ARRAY::BASE_TYPE & element_at_grow(ARRAY & a, index nIndex)
       {
-         ASSERT_VALID(this);
+         
+         ASSERT_VALID(&a);
+
          ASSERT(nIndex >= 0);
 
          if(nIndex < 0)
-            throw invalid_argument_exception(get_app());
+            throw invalid_argument_exception(a.get_app());
 
-         if (nIndex >= m_nSize)
-            set_size(nIndex+1, -1);
-         return m_pData[nIndex];
+         if (nIndex >= a.m_nSize)
+            ::lemon::array::set_size(a, nIndex+1, -1);
+
+         return a.m_pData[nIndex];
+
       }
 
       template<class ARRAY>
       index insert_at(ARRAY & a, index nIndex, typename ARRAY::BASE_ARG_TYPE newElement, ::count nCount /*=1*/)
       {
-         //ASSERT_VALID(this);
-         //ASSERT(nIndex >= 0);    // will expand to meet need
+         
+         ASSERT_VALID(&a);
+         
+         ASSERT(nIndex >= 0);    // will expand to meet need
 
          if(nCount <= 0)
             return -1;
@@ -352,7 +369,7 @@ namespace lemon
       template<class ARRAY>
       inline index push(ARRAY & a, typename ARRAY::BASE_ARG_TYPE newElement, index n)
       {
-         return insert_at0(a, a.get_upper_bound(n), newElement);
+         return insert_at(a, a.get_upper_bound(n), newElement);
       }
 
       template<class ARRAY>
@@ -362,15 +379,15 @@ namespace lemon
       }
 
       template<class ARRAY>
-      index insert_at(ARRAY & a, index nStartIndex, ARRAY * pNewArray)
+      index insert_at(ARRAY & a, index nStartIndex, typename ARRAY::BASE_ARRAY * pNewArray)
       {
-         ASSERT_VALID(this);
+         ASSERT_VALID(&a);
          ASSERT(pNewArray != NULL);
          ASSERT_VALID(pNewArray);
          ASSERT(nStartIndex >= 0);
 
          if(pNewArray == NULL || nStartIndex < 0)
-            throw invalid_argument_exception(get_app());
+            throw invalid_argument_exception(a.get_app());
 
          if (pNewArray->get_size() > 0)
          {

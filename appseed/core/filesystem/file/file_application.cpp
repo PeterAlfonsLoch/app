@@ -1,35 +1,35 @@
 #include "framework.h"
 
 
-namespace core
+namespace file
 {
 
 
-   file_application::file_application()
+   application::application()
    {
    }
 
-   void file_application::copy(const char * pszNew, const char * pszOld, bool bFailIfExists, e_extract eextract)
+   void application::copy(const char * pszNew, const char * pszOld, bool bFailIfExists, e_extract eextract)
    {
-      return m_papp->m_psystem->m_spfile->copy(pszNew, pszOld, bFailIfExists, eextract, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->copy(pszNew, pszOld, bFailIfExists, eextract, m_papp);
    }
 
-   void file_application::trash_that_is_not_trash(const char * psz)
+   void application::trash_that_is_not_trash(const char * psz)
    {
-      return m_papp->m_psystem->m_spfile->trash_that_is_not_trash(psz, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->trash_that_is_not_trash(psz, m_papp);
    }
 
-   void file_application::trash_that_is_not_trash(stringa & stra)
+   void application::trash_that_is_not_trash(stringa & stra)
    {
-      return m_papp->m_psystem->m_spfile->trash_that_is_not_trash(stra, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->trash_that_is_not_trash(stra, m_papp);
    }
 
-   void file_application::replace(const char * pszContext, const char * pszFind, const char * pszReplace)
+   void application::replace(const char * pszContext, const char * pszFind, const char * pszReplace)
    {
-      return m_papp->m_psystem->m_spfile->replace(pszContext, pszFind, pszReplace, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->replace(pszContext, pszFind, pszReplace, m_papp);
    }
 
-   bool file_application::exists(const char * pszPath)
+   bool application::exists(const char * pszPath)
    {
 
       if(::str::begins_ci(pszPath, "uifs://"))
@@ -37,12 +37,12 @@ namespace core
          return AppUser(m_papp).m_pifs->file_exists(pszPath);
       }
 
-      return m_papp->m_psystem->m_spfile->exists(pszPath, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->exists(pszPath, m_papp);
 
    }
 
 
-   bool file_application::exists(const string & strPath)
+   bool application::exists(const string & strPath)
    {
 
       if(::str::begins_ci_iws(strPath, "uifs://"))
@@ -51,11 +51,11 @@ namespace core
          return user.m_pifs->file_exists(strPath);
       }
 
-      return m_papp->m_psystem->m_spfile->exists(strPath, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->exists(strPath, m_papp);
 
    }
 
-   bool file_application::exists(const var & var)
+   bool application::exists(const var & var)
    {
 
       const string & strPath = var.get_string();
@@ -65,87 +65,87 @@ namespace core
          return AppUser(m_papp).m_pifs->file_exists(strPath);
       }
 
-      return m_papp->m_psystem->m_spfile->exists(strPath, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->exists(strPath, m_papp);
 
    }
 
-   string file_application::time(const char * pszBasePath, int32_t iDepth, const char * pszPrefix, const char * pszSuffix)
+   string application::time(const char * pszBasePath, int32_t iDepth, const char * pszPrefix, const char * pszSuffix)
    {
-      return m_papp->m_psystem->m_spfile->time(m_papp, pszBasePath, iDepth, pszPrefix, pszSuffix);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->time(m_papp, pszBasePath, iDepth, pszPrefix, pszSuffix);
    }
 
-   string file_application::time_square(const char * pszPrefix, const char * pszSuffix)
+   string application::time_square(const char * pszPrefix, const char * pszSuffix)
    {
-      return m_papp->m_psystem->m_spfile->time_square(m_papp, pszPrefix, pszSuffix);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->time_square(m_papp, pszPrefix, pszSuffix);
    }
 
-   string file_application::time_log(const char * pszId)
+   string application::time_log(const char * pszId)
    {
-      return m_papp->m_psystem->m_spfile->time_log(m_papp, pszId);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->time_log(m_papp, pszId);
    }
 
-   ::file::binary_buffer_sp file_application::time_square_file(const char * pszPrefix, const char * pszSuffix)
+   ::file::binary_buffer_sp application::time_square_file(const char * pszPrefix, const char * pszSuffix)
    {
-      return m_papp->m_psystem->m_spfile->time_square_file(m_papp, pszPrefix, pszSuffix);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->time_square_file(m_papp, pszPrefix, pszSuffix);
    }
 
-   ::file::binary_buffer_sp file_application::get(const char * name)
+   ::file::binary_buffer_sp application::get(const char * name)
    {
-      return m_papp->m_psystem->m_spfile->get(name, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->get(name, m_papp);
    }
 
-   string file_application::as_string(var varFile)
+   string application::as_string(var varFile)
    {
-      return m_papp->m_psystem->m_spfile->as_string(varFile, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->as_string(varFile, m_papp);
    }
 
-   string file_application::as_string(var varFile, var & varQuery)
+   string application::as_string(var varFile, var & varQuery)
    {
-      return m_papp->m_psystem->m_spfile->as_string(varFile, varQuery, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->as_string(varFile, varQuery, m_papp);
    }
 
-   void file_application::as_memory(var varFile, primitive::memory & mem)
+   void application::as_memory(var varFile, primitive::memory & mem)
    {
-      return m_papp->m_psystem->m_spfile->as_memory(varFile, mem, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->as_memory(varFile, mem, m_papp);
    }
 
-   void file_application::lines(stringa & stra, var varFile)
+   void application::lines(stringa & stra, var varFile)
    {
-      return m_papp->m_psystem->m_spfile->lines(stra, varFile, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->lines(stra, varFile, m_papp);
    }
 
-   bool file_application::put_contents(var varFile, const void * pvoidContents, ::count count)
+   bool application::put_contents(var varFile, const void * pvoidContents, ::count count)
    {
-      return m_papp->m_psystem->m_spfile->put_contents(varFile, pvoidContents, count, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->put_contents(varFile, pvoidContents, count, m_papp);
    }
 
-   bool file_application::put_contents(var varFile, const char * lpcszContents)
+   bool application::put_contents(var varFile, const char * lpcszContents)
    {
-      return m_papp->m_psystem->m_spfile->put_contents(varFile, lpcszContents, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->put_contents(varFile, lpcszContents, m_papp);
    }
 
-   bool file_application::put_contents(var varFile, ::file::binary_buffer & file)
+   bool application::put_contents(var varFile, ::file::binary_buffer & file)
    {
-      return m_papp->m_psystem->m_spfile->put_contents(varFile, file, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->put_contents(varFile, file, m_papp);
    }
 
-   bool file_application::put_contents(var varFile, primitive::memory & mem)
+   bool application::put_contents(var varFile, primitive::memory & mem)
    {
-      return m_papp->m_psystem->m_spfile->put_contents(varFile, mem, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->put_contents(varFile, mem, m_papp);
    }
 
-   bool file_application::put_contents_utf8(var varFile, const char * lpcszContents)
+   bool application::put_contents_utf8(var varFile, const char * lpcszContents)
    {
-      return m_papp->m_psystem->m_spfile->put_contents_utf8(varFile, lpcszContents, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->put_contents_utf8(varFile, lpcszContents, m_papp);
    }
 
-   string file_application::sys_temp(const char * pszName, const char * pszExtension)
+   string application::sys_temp(const char * pszName, const char * pszExtension)
    {
-      return m_papp->m_psystem->m_spfile->sys_temp(pszName, pszExtension, m_papp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->sys_temp(pszName, pszExtension, m_papp);
    }
 
 
-   ::file::binary_buffer_sp file_application::friendly_get_file(var varFile, UINT nOpenFlags)
+   ::file::binary_buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
       try
       {
@@ -157,7 +157,7 @@ namespace core
       }
    }
 
-   ::file::binary_buffer_sp file_application::get_file(var varFile, UINT nOpenFlags)
+   ::file::binary_buffer_sp application::get_file(var varFile, UINT nOpenFlags)
    {
 
       ::file::binary_buffer_sp spfile;
@@ -267,7 +267,7 @@ namespace core
 
             strFileDownloading = strFile + ".downloading";
 
-            if(m_papp->m_pappThis->m_file.exists(strFile) && !m_papp->m_pappThis->m_file.exists(strFileDownloading))
+            if(m_papp->m_pplaneapp->m_file.exists(strFile) && !m_papp->m_pplaneapp->m_file.exists(strFileDownloading))
             {
 
                spfile.create(allocer());
@@ -304,7 +304,7 @@ namespace core
 
             varQuery["disable_ca2_sessid"] = true;
 
-            if(m_papp->m_pappThis->m_file.exists(strFileDownloading) || m_papp->m_pappThis->m_http.exists(strPath, &varQuery))
+            if(m_papp->m_pplaneapp->m_file.exists(strFileDownloading) || m_papp->m_pplaneapp->m_http.exists(strPath, &varQuery))
             {
 
                spfile = new ::sockets::http_buffer(get_app());
@@ -315,7 +315,7 @@ namespace core
                   spfile.release();
 
                }
-               else if(!m_papp->m_pappThis->m_file.exists(strFileDownloading))
+               else if(!m_papp->m_pplaneapp->m_file.exists(strFileDownloading))
                {
                   
                   try
@@ -391,7 +391,7 @@ namespace core
 
          sp(base_application) papp = NULL;
 
-         if(System.url().get_server("matter://" + strPath) == m_papp->m_pappThis->m_strAppName)
+         if(System.url().get_server("matter://" + strPath) == m_papp->m_pplaneapp->m_strAppName)
          {
 
             strPath = System.url().get_object("matter://" + strPath).Mid(1);
@@ -425,13 +425,13 @@ namespace core
 
          if(strPath.is_empty())
          {
-            TRACE("plane::file_application::get_file file with empty name!!");
+            TRACE("plane::application::get_file file with empty name!!");
             return spfile;
          }
 
-         if((nOpenFlags & ::file::binary_buffer::mode_create) == 0 && !exists(strPath))
+         if((nOpenFlags & ::file::mode_create) == 0 && !exists(strPath))
          {
-            TRACE("plane::file_application::file does not exist!!");
+            TRACE("plane::application::file does not exist!!");
             return spfile;
          }
 
@@ -457,7 +457,7 @@ namespace core
 
    }
 
-   ::file::byte_stream file_application::get_byte_stream(var varFile, UINT nOpenFlags)
+   ::file::byte_stream application::get_byte_stream(var varFile, UINT nOpenFlags)
    {
 
       return ::file::byte_stream(get_file(varFile, nOpenFlags));

@@ -131,7 +131,7 @@ namespace sockets
       {
          return false;
       }
-      ::core::parse pa(str,":.");
+      ::str::parse pa(str,":.");
       string tmp = pa.getword();
       while (tmp.get_length())
       {
@@ -183,7 +183,7 @@ namespace sockets
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
       {
-         ::core::parse pa((const char *)host, ".");
+         ::str::parse pa((const char *)host, ".");
          union {
             struct {
                uchar b1;
@@ -502,7 +502,7 @@ namespace sockets
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
       {
-         ::core::parse pa((const char *)host, ".");
+         ::str::parse pa((const char *)host, ".");
          union {
             struct {
                uchar b1;

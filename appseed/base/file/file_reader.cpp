@@ -30,7 +30,7 @@ namespace file
       uint64_t resPos = 0;
       byte_buffer byteBuffer2;
       byteBuffer2.SetCapacity(signatureSize);
-      if(FAILED(read_reader_false(this, byteBuffer2, signatureSize)))
+      if(FAILED(read_false(this, byteBuffer2, signatureSize)))
          throw simple_exception(get_app());
 
       if (memcmp(byteBuffer2, signature, signatureSize) == 0)
@@ -78,32 +78,81 @@ namespace file
 
    }
 
-   void reader::write_to(writer & writer)
+   void reader::transfer_to(writer & writer, ::primitive::memory_size uiBufMax)
    {
-      ::primitive::memory_size uiRead;
-      ::primitive::memory_size uiBufSize = 1024 * 1024;
-      ::primitive::memory_size uiSize = 0;
 
-      char * buf = (char *) malloc((::primitive::memory_size)uiBufSize);
-      if(buf == NULL)
+
+      if(get_internal_data() && get_internal_data_size() > 0)
+      {
+
+         if(writer.increase_internal_data_size(get_internal_data_size()) && writer.get_internal_data() != NULL)
+         {
+            
+            if(writer.get_internal_data() == get_internal_data())
+               return;
+
+            memmove(((byte *) writer.get_internal_data()) + writer.get_position() + get_internal_data_size(), ((byte *) writer.get_internal_data()) + writer.get_position(), writer.get_internal_data_size() - get_internal_data_size());
+            memcpy(((byte *) writer.get_internal_data()) + writer.get_position(), get_internal_data(), get_internal_data_size());
+            writer.seek(get_internal_data_size(), seek_current);
+
+         }
+         else
+         {
+            
+            writer.write(get_internal_data(), get_internal_data_size());
+
+         }
+
+         return;
+
+      }
+
+      uiBufMax = max(8 * 1024, uiBufMax);
+      ::primitive::memory_size uiBufMin = uiBufMax / 8;
+      ::primitive::memory_size uiBufSize = uiBufMax;
+      ::primitive::memory_size uiBufInc = uiBufSize;
+      ::primitive::memory_size uiRead;
+      ::primitive::memory_size uiSize = writer.get_internal_data_size();
+
+      while(writer.increase_internal_data_size(uiBufInc) && writer.get_internal_data() != NULL)
+      {
+         memmove(((byte *) writer.get_internal_data()) + writer.get_position() + uiBufInc, ((byte *) writer.get_internal_data()) + writer.get_position(), uiBufInc);
+         uiRead = read(((byte *) writer.get_internal_data()) + writer.get_position(), uiBufSize);
+         writer.seek(uiRead, seek_current);
+         uiBufSize -= uiRead;
+         if(uiBufSize < uiBufMin)
+         {
+            uiBufSize   = uiBufMax;
+            uiBufInc    = uiBufSize;
+         }
+      }
+
+      if(uiBufSize > 0)
+      {
+         memmove(((byte *) writer.get_internal_data()) + writer.get_position(), ((byte *) writer.get_internal_data()) + writer.get_position() + uiBufSize, uiBufSize);
+         writer.increase_internal_data_size(-(::primitive::memory_offset)uiBufSize);
+      }
+
+      ::primitive::memory buf;
+      buf.allocate(uiBufMax);
+      if(buf.get_data() == NULL)
          throw "no primitive::memory";
       try
       {
          while(true)
          {
-            uiRead = read(buf, uiBufSize);
+            uiRead = read(buf, buf.get_size());
             writer.write(buf, uiRead);
-            if(uiRead < uiBufSize)
+            if(uiRead <= 0)
             {
-               break;
+               return;
             }
-            uiSize += uiBufSize;
+            uiSize += uiRead;
          }
       }
       catch(...)
       {
       }
-      free(buf);
    }
 
    void reader::close()
@@ -116,9 +165,11 @@ namespace file
       return 0;
    }
 
+
    static const ::primitive::memory_size kBlockSize = ((uint32_t)1 << 31);
 
-   HRESULT read_reader(::file::reader * stream, void * data, ::primitive::memory_size * processedSize)
+
+   HRESULT read(reader * preader, void * data, ::primitive::memory_size * processedSize)
    {
       ::primitive::memory_size size = *processedSize;
       *processedSize = 0;
@@ -129,7 +180,7 @@ namespace file
          HRESULT res = S_OK;
          try
          {
-            processedSizeLoc = stream->read(data, curSize);
+            processedSizeLoc = preader->read(data, curSize);
          }
          catch(...)
          {
@@ -145,22 +196,20 @@ namespace file
       return S_OK;
    }
 
-   HRESULT read_reader_false(reader * stream, void * data, ::primitive::memory_size size)
+   HRESULT read_false(reader * preader, void * data, ::primitive::memory_size size)
    {
       ::primitive::memory_size processedSize = size;
-      RINOK(read_reader(stream, data, &processedSize));
+      RINOK(read(preader, data, &processedSize));
       return (size == processedSize) ? S_OK : S_FALSE;
    }
 
-   HRESULT read_reader_fail(reader * stream, void * data, ::primitive::memory_size size)
+   HRESULT read_fail(reader * preader, void * data, ::primitive::memory_size size)
    {
       ::primitive::memory_size processedSize = size;
-      RINOK(read_reader(stream, data, &processedSize));
+      RINOK(read(preader, data, &processedSize));
       return (size == processedSize) ? S_OK : E_FAIL;
    }
-
-
-   
+  
 
 
 } // namespace file

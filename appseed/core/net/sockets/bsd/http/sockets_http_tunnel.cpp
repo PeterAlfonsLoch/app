@@ -51,11 +51,11 @@ namespace sockets
          {
             string str;
             str.Format("CONNECT %s:%d HTTP/1.0\r\n", GetUrlHost(), (int32_t) GetUrlPort());
-            Send(str);
+            write(str);
             str.Format("host: %s:%d\r\n", GetUrlHost(), (int32_t) GetUrlPort());
-            Send(str);
+            write(str);
             str = "\r\n";
-            Send(str);
+            write(str);
             m_estate = state_connect_sent;
          }
       }

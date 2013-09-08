@@ -27,7 +27,7 @@ base_system::base_system(sp(base_application) papp) :
 #endif
 
    //m_psystem                                 = this;
-   m_pcasystem                                 = this;
+   m_pbasesystem                                 = this;
    set_app(this);
 
 
@@ -40,7 +40,7 @@ base_system::base_system(sp(base_application) papp) :
    else
    {
 
-      oprop("parent_system") = papp->m_pcasystem;
+      oprop("parent_system") = papp->m_pbasesystem;
 
    }
 

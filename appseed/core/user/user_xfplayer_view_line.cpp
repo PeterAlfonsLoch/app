@@ -136,7 +136,7 @@ void XfplayerViewLine::AddChar(WCHAR wch, strsize & index)
    index++;
    if(m_iaPosition.get_size() < index + 2)
    {
-        m_iaPosition.set_size(m_iaPosition.get_size() + 10);
+        m_iaPosition.allocate(m_iaPosition.get_size() + 10);
    }
 
    m_str += wch;
@@ -151,7 +151,7 @@ void XfplayerViewLine::AddChar(WCHAR wch, strsize & index, visual::font * pFont)
    index++;
    if(m_iaPosition.get_size() < index + 2)
    {
-        m_iaPosition.set_size(m_iaPosition.get_size() + 10);
+        m_iaPosition.allocate(m_iaPosition.get_size() + 10);
    }
    m_str += wch;
    ASSERT(m_str.get_length() - 1 == index);

@@ -43,8 +43,10 @@ namespace sockets
    , m_retries(retries)
    , m_b_read_ts(false)
    {
+      m_iWriteFlags = 0;
       SetIpv6(ipv6);
    }
+
 
 
    udp_socket::~udp_socket()
@@ -270,24 +272,27 @@ namespace sockets
 
 
    /** send to connected address */
-   void udp_socket::SendBuf(const char *data, int32_t len, int32_t flags)
+   void udp_socket::write(const void *data, ::primitive::memory_size len)
    {
+      
       if (!IsConnected())
       {
-         Handler().LogError(this, "SendBuf", 0, "not connected", ::core::log::level_error);
+
+         Handler().LogError(this, "write", 0, "not connected", ::core::log::level_error);
+
          return;
+
       }
-      if ((m_last_size_written = send(GetSocket(), data, (int32_t)len, flags)) == -1)
+      
+      if ((m_last_size_written = send(GetSocket(), (const char *) data, (int32_t)len, m_iWriteFlags)) == -1)
       {
-         Handler().LogError(this, "send", Errno, StrError(Errno), ::core::log::level_error);
+
+         Handler().LogError(this, "write", Errno, StrError(Errno), ::core::log::level_error);
+
       }
+
    }
 
-
-   void udp_socket::Send(const string & str, int32_t flags)
-   {
-      SendBuf(str, (int32_t)str.get_length(), flags);
-   }
 
 
    #if defined(LINUX) || defined(MACOSX)

@@ -155,7 +155,7 @@ namespace sockets
    }
 
 
-   int32_t socket::close()
+   void socket::close()
    {
       if (m_socket == INVALID_SOCKET) // this could happen
       {
@@ -163,7 +163,7 @@ namespace sockets
          {
             Handler().LogError(this, "socket::close", 0, "file descriptor invalid", ::core::log::level_warning);
          }
-         return 0;
+         return;
       }
       int32_t n;
       if ((n = ::closesocket(m_socket)) == -1)
@@ -184,7 +184,7 @@ namespace sockets
          Handler().AddList(m_socket, LIST_CLOSE, false);
       }
       m_socket = INVALID_SOCKET;
-      return n;
+      throw n;
    }
 
 
@@ -500,15 +500,38 @@ namespace sockets
    }
 
 
-   void socket::SendBuf(const char *, int32_t, int32_t)
+   void socket::write(const void * pdata, ::primitive::memory_size c)
    {
+
+      UNREFERENCED_PARAMETER(pdata);
+      UNREFERENCED_PARAMETER(c);
+
    }
 
 
-   void socket::Send(const string &,int32_t)
+   void socket::write(const string & str)
    {
+
+      write(str,  str.get_length());
+
    }
 
+   void socket::writef(const char *format, ...)
+   {
+
+      string strFormat;
+
+      va_list list;
+
+      va_start(list, format);
+
+      strFormat.FormatV(format, list);
+
+      va_end(list);
+
+      write(strFormat);
+
+   }
 
    void socket::SetConnected(bool bConnected)
    {
@@ -1816,8 +1839,11 @@ namespace sockets
    }
 
 
-   void socket::OnRead( char *buf, size_t n )
+   void socket::on_read(const void * pdata, ::primitive::memory_size n)
    {
+      
+      char * buf = (char *) pdata;
+
       m_memfileInput.write(buf, n);
       if (LineProtocol())
       {

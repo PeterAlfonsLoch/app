@@ -6,10 +6,6 @@
    Copyright (C) 1998-2003 Gilles Vollant
 */
 #include "framework.h"
-
-
-
-#include "ca/ca/ca.h"
 #include "zlib/zlib.h"
 #include "ioapi.h"
 

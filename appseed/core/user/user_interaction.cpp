@@ -447,7 +447,7 @@ namespace user
 
       try
       {
-         if(m_papp != NULL && m_papp->m_pappThis != NULL)
+         if(m_papp != NULL && m_papp->m_pplaneapp != NULL)
          {
             Application.remove_frame(this);
          }
@@ -458,7 +458,7 @@ namespace user
 
       try
       {
-         if(m_papp != NULL && m_papp->m_psession != NULL && &Session != NULL)
+         if(m_papp != NULL && m_pbaseapp->m_pplaneapp->m_psession != NULL && &Session != NULL)
          {
             Session.remove_frame(this);
          }
@@ -469,7 +469,7 @@ namespace user
 
       try
       {
-         if(m_papp != NULL && m_papp->m_psystem != NULL && &System != NULL)
+         if(m_papp != NULL && m_pbaseapp->m_pplaneapp->m_psystem != NULL && &System != NULL)
          {
             System.remove_frame(this);
          }
@@ -2362,7 +2362,7 @@ namespace user
 
       //bool bAttach = AttachThreadInput(get_wnd()->m_pthread->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
-      m_iaModalThread.add(::core::get_thread()->get_os_int());
+      m_iaModalThread.add(::get_thread()->get_os_int());
       sp(base_application) pappThis1 = (m_pthread->m_pthread->m_p);
       sp(base_application) pappThis2 = (m_pthread->m_pthread);
       // acquire and dispatch messages until the modal state is done

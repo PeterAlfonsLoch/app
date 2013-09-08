@@ -17,8 +17,7 @@ namespace file
 
       uint64_t SeekToPhys()
       { 
-         _stream->seekg((int_ptr) _physPos, seek_begin); 
-         return tellg();
+         return _stream->seek((int_ptr) _physPos, seek_begin); 
       }
    public:
       void SetStream(input_stream *stream)

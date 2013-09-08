@@ -5,7 +5,7 @@ namespace fs
 
    data::data(sp(base_application) papp) :
       element(papp),
-      ::data(papp)
+      ::data::data(papp)
    {
    }
 

@@ -810,7 +810,7 @@ namespace core
 
 
 
-
+/*
 
 bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt)
 {
@@ -827,3 +827,4 @@ bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt)
 }
 
 
+*/

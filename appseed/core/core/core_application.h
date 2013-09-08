@@ -331,7 +331,7 @@ public:
    signal                              m_signalAppLanguageChange;
    math::math *                        m_pmath;
    geometry::geometry *                m_pgeometry;
-   class savings *                     m_psavings;
+   core::savings *                     m_psavings;
    string                              m_strCa2ModulePath;
    string                              m_strCa2ModuleFolder;
    string                              m_strModulePath;
@@ -636,7 +636,7 @@ public:
 
    math::math & math();
    geometry::geometry & geometry();
-   class savings & savings();
+   core::savings & savings();
 
    virtual void defer_add_document_template(sp(::user::document_template) ptemplate);
 
@@ -1049,7 +1049,7 @@ public:
    //      virtual void construct();
 
 
-   //virtual bool final_handle_exception(exception & e);
+   //virtual bool final_handle_exception(exception::exception & e);
    //virtual bool initialize();
    //virtual bool initialize1();
    //virtual bool initialize2();
@@ -1180,7 +1180,7 @@ namespace core
 
       try
       {
-         papp->construct(pszAppId);
+         papp->m_pplaneapp->construct(pszAppId);
       }
       catch(...)
       {

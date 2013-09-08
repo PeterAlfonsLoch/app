@@ -130,7 +130,7 @@ namespace sockets
       m_events.insert_before(pos, peNew);
       if (m_socket)
       {
-         m_socket->Send("\n");
+         m_socket->write("\n");
       }
       return peNew->GetID();
    }

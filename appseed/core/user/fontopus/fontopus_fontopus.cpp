@@ -7,7 +7,7 @@ namespace fontopus
 
    fontopus::fontopus(application * papp) :
       element(papp),
-      ::departament(papp)
+      base_departament(papp)
    {
    
       m_puser                    = NULL;
@@ -74,9 +74,9 @@ namespace fontopus
 
          if(m_puser != NULL 
             && !::str::begins(m_puser->m_strLogin, "system")
-            && m_papp->m_pappThis->m_strAppId != "app-core/deepfish"
-            && !::str::begins(m_papp->m_pappThis->m_strAppName, "app-core/deepfish_")
-            && !m_papp->m_pappThis->is_serviceable())
+            && m_papp->m_pplaneapp->m_strAppId != "app-core/deepfish"
+            && !::str::begins(m_papp->m_pplaneapp->m_strAppName, "app-core/deepfish_")
+            && !m_papp->m_pplaneapp->is_serviceable())
          {
 
             on_user_login(m_puser);
@@ -171,7 +171,7 @@ namespace fontopus
 
    user * fontopus::allocate_user()
    {
-      return new class user(m_papp->m_pappThis);
+      return new class user(m_papp->m_pplaneapp);
    }
 
    user * fontopus::create_user(::fontopus::user * puser)
@@ -181,11 +181,11 @@ namespace fontopus
          puser->m_strPathPrefix = Application.dir().default_os_user_path_prefix();
       }
       puser->m_strPath = Application.dir().default_userfolder(puser->m_strPathPrefix, puser->m_strLogin);
-      App(m_papp->m_pappThis).dir().mk(puser->m_strPath);
+      App(m_papp->m_pplaneapp).dir().mk(puser->m_strPath);
       puser->m_strDataPath = Application.dir().default_userdata(puser->m_strPathPrefix, puser->m_strLogin);
-      App(m_papp->m_pappThis).dir().mk(puser->m_strDataPath);
+      App(m_papp->m_pplaneapp).dir().mk(puser->m_strDataPath);
       puser->m_strAppDataPath = Application.dir().default_userappdata(puser->m_strPathPrefix, puser->m_strLogin);
-      App(m_papp->m_pappThis).dir().mk(puser->m_strAppDataPath);
+      App(m_papp->m_pplaneapp).dir().mk(puser->m_strAppDataPath);
       puser->create_ifs();
       return puser;
    }
@@ -217,11 +217,11 @@ namespace fontopus
 
    user * fontopus::get_user()
    {
-      if(m_papp->m_pappThis->is_session())
+      if(m_papp->m_pplaneapp->is_session())
       {
          if(m_puser == NULL)
          {
-            if(m_pthreadCreatingUser == ::core::get_thread())
+            if(m_pthreadCreatingUser == ::get_thread())
                return NULL;
             if(m_pthreadCreatingUser != NULL)
             {
@@ -233,7 +233,7 @@ namespace fontopus
                   return m_puser;
                return NULL;
             }
-            keeper < thread * > keepCreatingUser(&m_pthreadCreatingUser, ::core::get_thread(), NULL, true);
+            keeper < thread * > keepCreatingUser(&m_pthreadCreatingUser, ::get_thread(), NULL, true);
             user * puser = create_current_user();
             if(!puser->initialize())
             {
@@ -252,13 +252,13 @@ namespace fontopus
          }
          return m_puser;
       }
-      else if(m_papp == NULL || m_papp->m_psession == NULL)
+      else if(m_papp == NULL || m_pbaseapp->m_pplaneapp->m_psession == NULL)
       {
          return NULL;
       }
       else
       {
-         return Sess(m_papp->m_pappThis).get_user();
+         return Sess(m_papp->m_pplaneapp).get_user();
       }
    }
 

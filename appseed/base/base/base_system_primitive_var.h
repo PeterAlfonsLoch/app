@@ -95,7 +95,7 @@ inline bool var::is_array() const
    {
       return prop().get_value().is_array();
    }
-   else if(m_etype == type_ca2)
+   else if(m_etype == type_element)
    {
       return false;
    }

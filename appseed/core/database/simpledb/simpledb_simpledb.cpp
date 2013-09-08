@@ -8,9 +8,9 @@ namespace simpledb
 {
 
 
-   simpledb::simpledb(application * papp) :
+   simpledb::simpledb(base_application * papp) :
       element(papp),
-      ::departament(papp)
+      base_departament(papp)
    {
 
       m_pserver      = NULL;
@@ -57,7 +57,7 @@ namespace simpledb
       {
          data_set("locale", lpcsz);
       }
-      m_papp->m_pappThis->on_set_locale(lpcsz, bUser);
+      m_papp->m_pplaneapp->on_set_locale(lpcsz, bUser);
    }
 
    void simpledb::on_set_schema(const char * lpcsz, bool bUser)
@@ -66,7 +66,7 @@ namespace simpledb
       {
          data_set("schema", lpcsz);
       }
-      m_papp->m_pappThis->on_set_schema(lpcsz, bUser);
+      m_papp->m_pplaneapp->on_set_schema(lpcsz, bUser);
    }
 
    bool simpledb::FinalizeDataCentral()
@@ -109,16 +109,16 @@ namespace simpledb
    bool simpledb::initialize2()
    {
 
-      if(m_papp->m_pappThis->command()->m_varTopicQuery["locale"].get_string().has_char())
+      if(m_papp->m_pplaneapp->command()->m_varTopicQuery["locale"].get_string().has_char())
       {
-         string str = m_papp->m_pappThis->command()->m_varTopicQuery["locale"];
-         m_papp->m_pappThis->set_locale(str, false);
+         string str = m_papp->m_pplaneapp->command()->m_varTopicQuery["locale"];
+         m_papp->m_pplaneapp->set_locale(str, false);
       }
 
-      if(m_papp->m_pappThis->command()->m_varTopicQuery["schema"].get_string().has_char())
+      if(m_papp->m_pplaneapp->command()->m_varTopicQuery["schema"].get_string().has_char())
       {
-         string str = m_papp->m_pappThis->command()->m_varTopicQuery["schema"];
-         m_papp->m_pappThis->set_schema(str, false);
+         string str = m_papp->m_pplaneapp->command()->m_varTopicQuery["schema"];
+         m_papp->m_pplaneapp->set_schema(str, false);
       }
 
 //      if(&AppUser(this) == NULL)
@@ -126,7 +126,7 @@ namespace simpledb
 
       if(!InitializeDataCentral())
       {
-         m_papp->m_pappThis->simple_message_box(NULL, "Could not initialize data central");
+         m_papp->m_pplaneapp->simple_message_box(NULL, "Could not initialize data central");
          return false;
       }
 
@@ -135,10 +135,10 @@ namespace simpledb
 //      ::core::application_request * prequest = System.get_application_request();
 
 
-      m_papp->m_pappThis->fill_locale_schema(*m_papp->m_pappThis->str_context()->m_plocaleschema);
+      m_papp->m_pplaneapp->fill_locale_schema(*m_papp->m_pplaneapp->str_context()->m_plocaleschema);
 
 
-      if(!m_papp->m_pappThis->is_installing() && !m_papp->m_pappThis->is_uninstalling())
+      if(!m_papp->m_pplaneapp->is_installing() && !m_papp->m_pplaneapp->is_uninstalling())
       {
 
          set_keyboard_layout(NULL, false);

@@ -176,7 +176,7 @@ namespace plane
       virtual void open_by_file_extension(index iEdge, const char * pszPathName);
       virtual bool is_system();
 
-      virtual sp(command_thread) command_thread();
+//      virtual sp(command_thread) command_thread();
 
 
 
@@ -450,7 +450,7 @@ bool ::core::file_system::output(sp(base_application) papp, const char * pszOutp
 
    App(papp).dir().mk(System.dir().name(pszOutput));
 
-   ::file::binary_buffer_sp fileOut = App(papp).file().get_file(pszOutput, ::file::binary_buffer::mode_create | ::file::type_binary | ::file::binary_buffer::mode_write);
+   ::file::binary_buffer_sp fileOut = App(papp).file().get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
    if(fileOut.is_null())
       return false;
@@ -470,7 +470,7 @@ bool ::core::file_system::output(sp(base_application) papp, const char * pszOutp
    
    strDownloading += ".downloading";
 
-   ::file::binary_buffer_sp fileOut = App(papp).file().get_file(strDownloading, ::file::binary_buffer::mode_create | ::file::type_binary | ::file::binary_buffer::mode_write);
+   ::file::binary_buffer_sp fileOut = App(papp).file().get_file(strDownloading, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
    if(fileOut.is_null())
       return false;

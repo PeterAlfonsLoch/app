@@ -4,9 +4,12 @@
 namespace draw2d_cairo
 {
 
+
    class brush;
    class pen;
    class font;
+   class object
+
 
    class CLASS_DECL_DRAW2D_CAIRO graphics :
       virtual public ::draw2d::graphics

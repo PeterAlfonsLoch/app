@@ -15,7 +15,7 @@ namespace zip
 
    }
 
-   void Util::ls(sp(base_application) papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize, e_extract eextract)
+   void Util::ls(sp(base_application) papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, array < int64_t, int64_t > * piaSize, e_extract eextract)
    {
       string strZip;
       string strRemain;
@@ -118,7 +118,7 @@ namespace zip
    {
       stringa straPath;
       stringa straTitle;
-      array < bool, bool > baIsDir;
+      bool_array baIsDir;
       ls(papp, lpcsz, false, &straPath, &straTitle, NULL, &baIsDir);
 
       string strPath;
@@ -198,13 +198,13 @@ namespace zip
       string str;
       int32_t i;
       smart_pointer_array < InFile, InFile & > izfilea;
-   //   smart_pointer_array < buffered_file, buffered_file & > bzfilea;
+   //   smart_pointer_array < buffered_buffer, buffered_buffer & > bzfilea;
       for(i = 1; i < wstraPath.get_size(); i++)
       {
          izfilea.add(new InFile(get_app()));
          str =  wstraPath[i];
          izfilea.last_element().open(&filea.last_element(), str);
-     //    bzfilea.add(new buffered_file(&izfilea.last_element(), 1024 * 1024, 1024 * 1024));
+     //    bzfilea.add(new buffered_buffer(&izfilea.last_element(), 1024 * 1024, 1024 * 1024));
          filea.add(new File(get_app()));
          //filea.last_element().open(&bzfilea.last_element());
          filea.last_element().open(&izfilea.last_element());
@@ -289,7 +289,7 @@ namespace zip
       if(lpszExtractFileName == NULL)
          return true;
 
-      ::file::binary_buffer_sp spfile = App(papp).file().get_file(lpszExtractFileName, ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_write | ::file::binary_buffer::defer_create_directory);
+      ::file::binary_buffer_sp spfile = App(papp).file().get_file(lpszExtractFileName, ::file::mode_create | ::file::mode_write | ::file::defer_create_directory);
 
       if(spfile.is_set())
       {
@@ -344,7 +344,7 @@ namespace zip
 
                ::file::binary_buffer_sp spfile = App(pfile->get_app()).file().get_file(
                   Sys(pfile->get_app()).dir().path(pszDir, strTitle),
-                  ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_write | ::file::binary_buffer::defer_create_directory);
+                  ::file::mode_create | ::file::mode_write | ::file::defer_create_directory);
 
 
                if(spfile.is_set())

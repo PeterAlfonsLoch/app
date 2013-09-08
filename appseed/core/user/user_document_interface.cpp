@@ -593,15 +593,15 @@ namespace user
       try
       {
 
-         spfile = Application.file().get_byte_stream(varFile, ::file::mode_read | ::file::binary_buffer::shareDenyWrite | ::file::type_binary);
+         spfile = Application.file().get_byte_stream(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
 
          /*if(::str::begins_ci(varFile, "uifs://"))
          {
-         spfile = ifs(get_app(), "").get_file(varFile, ::file::mode_read | ::file::binary_buffer::shareDenyWrite | ::file::type_binary, &fe);
+         spfile = ifs(get_app(), "").get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary, &fe);
          }
          else
          {
-         spfile = System.fs()->get_file(varFile, ::file::mode_read | ::file::binary_buffer::shareDenyWrite | ::file::type_binary, &fe);
+         spfile = System.fs()->get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary, &fe);
          }*/
       }
       catch(::exception::base & e)
@@ -647,7 +647,7 @@ namespace user
       try
       {
 
-         spfile = Application.file().get_byte_stream(varFile, ::file::binary_buffer::defer_create_directory | ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_write | ::file::binary_buffer::shareExclusive);
+         spfile = Application.file().get_byte_stream(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_write | ::file::share_exclusive);
 
       }
       catch(::exception::base & e)

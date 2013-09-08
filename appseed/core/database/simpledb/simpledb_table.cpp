@@ -22,10 +22,12 @@ namespace simpledb
 
       strMetaPath = System.dir().element("database/" + m_pdatabase->getDatabase() + "/" + m_strName, "meta.xml");
 
-      if(!m_spfileMeta->open(strMetaPath, ::file::type_binary | ::file::binary_buffer::mode_read_write | ::file::binary_buffer::shareExclusive))
+      if(!m_spfileMeta->open(strMetaPath, ::file::type_binary | ::file::mode_read_write | ::file::share_exclusive))
          throw 0;
 
-      if(!m_xmldocumentMeta.load(m_spfileMeta))
+      ::file::input_stream is(m_spfileMeta);
+
+      if(!m_xmldocumentMeta.load(is))
          throw 0;
 
       sp(::xml::node) pfields = m_xmldocumentMeta.get_root()->get_child("fields");
@@ -44,8 +46,8 @@ namespace simpledb
       if(strFixedPath.is_empty())
          strFixedPath = strMetaPath = System.dir().element("database/" + m_pdatabase->getDatabase() + "/" + m_strName, "fixed.txt");
 
-      if(!m_spfileFixed->open(strMetaPath, ::file::binary_buffer::mode_create | ::file::binary_buffer::modeNoTruncate | ::file::type_binary | ::file::binary_buffer::mode_read_write | ::file::binary_buffer::shareExclusive |
-         ::file::binary_buffer::defer_create_directory))
+      if(!m_spfileFixed->open(strMetaPath, ::file::mode_create | ::file::mode_no_truncate | ::file::type_binary | ::file::mode_read_write | ::file::share_exclusive |
+         ::file::defer_create_directory))
          throw 0;
 
    }

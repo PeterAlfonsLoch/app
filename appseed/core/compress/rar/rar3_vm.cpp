@@ -161,7 +161,7 @@ namespace libcompress
             if (dataSize != 0)
             {
                dataSize += kFixedGlobalSize;
-               outGlobalData.set_size(0, dataSize);
+               outGlobalData.allocate(0, dataSize);
                for (uint32_t i = 0; i < dataSize; i++)
                   outGlobalData.add(Mem[kGlobalOffset + i]);
             }

@@ -119,7 +119,7 @@ namespace sockets
 
          string body;
 
-         if(m_fields.has_property("xml") && m_fields["xml"].get_value().get_type() == var::type_ca2)
+         if(m_fields.has_property("xml") && m_fields["xml"].get_value().get_type() == var::type_element)
          {
             sp(::xml::node) pnode = m_fields["xml"].element < ::xml::node >();
             body = pnode->get_xml();
@@ -179,7 +179,7 @@ namespace sockets
          if(body.get_length() > 0)
          {
          // send body
-         Send( body );
+         write( body );
          }
       }
    }
@@ -258,7 +258,7 @@ namespace sockets
                string value = var[j].get_string();
                tmp += value + "\r\n";
             }
-            Send( tmp );
+            write( tmp );
          }
       }
 
@@ -275,22 +275,20 @@ namespace sockets
                "content-disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\"\r\n"
                "content-type: " + content_type + "\r\n"
                "\r\n";
-            Send( tmp );
+            write( tmp );
             {
                ::file::binary_buffer_sp file(get_app());
                if(file->open(filename, ::file::type_binary | ::file::mode_read))
                {
-                  primitive::memory mem;
-                  mem.FullLoad(file);
-                  SendBuf((const char *) mem.get_data(), (int32_t) mem.get_size());
+                  transfer_from(file);
                }
             }
-            Send("\r\n");
+            write("\r\n");
          }
       }
 
       // end of send
-      Send("--" + m_boundary + "--\r\n");
+      write("--" + m_boundary + "--\r\n");
    }
 
 

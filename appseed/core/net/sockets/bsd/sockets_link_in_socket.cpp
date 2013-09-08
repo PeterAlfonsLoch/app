@@ -41,7 +41,7 @@ namespace sockets
    }
 
 
-   void link_in_socket::OnRead( char *buf, size_t n )
+   void link_in_socket::on_read(const void * buf, ::primitive::memory_size n)
    {
 
       m_out->link_write(buf, n);
@@ -49,10 +49,10 @@ namespace sockets
    }
 
 
-   void link_in_socket::link_write(void * p, size_t n)
+   void link_in_socket::link_write(const void * p, ::primitive::memory_size n)
    {
       
-      m_in->SendBuf((const char *) p, (int32_t) n);
+      m_in->write(p, n);
 
    }
 
@@ -98,7 +98,7 @@ namespace sockets
 
 	   pinsocket->m_in = psocket;
 	
-	   pinsocket->m_memfileInput.FullLoad(psocket->m_memfileInput);
+      pinsocket->m_memfileInput.transfer_from(psocket->m_memfileInput);
 
       pinsocket->server_to_link_in(psocket);
 

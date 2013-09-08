@@ -1,27 +1,27 @@
 /*      void SetMemStream(byte *buffer) { _buffer2 = buffer; }
-      void SetStream(writer *stream);
-      void Init();
-      HRESULT flush();
-      void FlushWithCheck();
-      void ReleaseStream()
-      {
-         // _stream.Release();
-      }
-      HRESULT FlushPart();
+void SetStream(writer *stream);
+void Init();
+HRESULT flush();
+void FlushWithCheck();
+void ReleaseStream()
+{
+// _stream.Release();
+}
+HRESULT FlushPart();
 
-      void WriteByte(byte b)
-      {
-         m_memory.get_data()[_pos++] = b;
-         if(_pos == _limitPos)
-            FlushWithCheck();
-      }
-      void WriteBytes(const void *data, size_t size)
-      {
-         for (size_t i = 0; i < size; i++)
-            WriteByte(((const byte *)data)[i]);
-      }
+void WriteByte(byte b)
+{
+m_memory.get_data()[_pos++] = b;
+if(_pos == _limitPos)
+FlushWithCheck();
+}
+void WriteBytes(const void *data, size_t size)
+{
+for (size_t i = 0; i < size; i++)
+WriteByte(((const byte *)data)[i]);
+}
 
-      uint64_t GetProcessedSize() const;*/
+uint64_t GetProcessedSize() const;*/
 
 // OutBuffer.cpp
 // from 7-zip on 2012-12-23, dawn
@@ -31,8 +31,10 @@
 
 #include "OutBuffer.h"*/
 
-namespace core
+
+namespace file
 {
+
 
    out_buffer::out_buffer() :
       _pos(0), _stream(0), _buffer2(0)
@@ -73,9 +75,9 @@ namespace core
       _pos = 0;
       _processedSize = 0;
       _overDict = false;
-   #ifdef _NO_EXCEPTIONS
+#ifdef _NO_EXCEPTIONS
       ErrorCode = S_OK;
-   #endif
+#endif
    }
 
    uint64_t out_buffer::GetProcessedSize() const
@@ -136,22 +138,31 @@ namespace core
    }
 
 
-         void out_buffer::SetMemStream(byte *buffer) { _buffer2 = buffer; }
-      void out_buffer::ReleaseStream()
-      {
-         // _stream.Release();
-      }
-      void out_buffer::WriteByte(byte b)
-      {
-         m_memory.get_data()[_pos++] = b;
-         if(_pos == _limitPos)
-            FlushWithCheck();
-      }
-      void out_buffer::WriteBytes(const void *data, size_t size)
-      {
-         for (size_t i = 0; i < size; i++)
-            WriteByte(((const byte *)data)[i]);
-      }
+   void out_buffer::SetMemStream(byte *buffer)
+   {
+      _buffer2 = buffer;
+   }
+
+   void out_buffer::ReleaseStream()
+   {
+      // _stream.Release();
+   }
+
+   void out_buffer::WriteByte(byte b)
+   {
+      m_memory.get_data()[_pos++] = b;
+      if(_pos == _limitPos)
+         FlushWithCheck();
+   }
+
+   void out_buffer::WriteBytes(const void *data, size_t size)
+   {
+      for (size_t i = 0; i < size; i++)
+         WriteByte(((const byte *)data)[i]);
+   }
 
 
-} // namespace core
+} // namespace file
+
+
+

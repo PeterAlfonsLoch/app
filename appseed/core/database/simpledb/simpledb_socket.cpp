@@ -65,7 +65,7 @@ namespace simpledb
          }
          manager().handle(this);
       }
-      if(!outheaders().has_property("content-type") && response().file().get_size() > 0)
+      if(!outheaders().has_property("content-type") && response().file().get_length() > 0)
       {
            outheader(__id(content_type)) = "text/html; charset=UTF-8";
       }
@@ -228,13 +228,15 @@ namespace simpledb
          outheader(__id(content_type)) = "application/x-jar";
       }
       ::file::binary_buffer_sp spfile(allocer());
-      if(!spfile->open(lpcsz, ::file::type_binary | ::file::mode_read | ::file::binary_buffer::shareDenyNone))
+      if(!spfile->open(lpcsz, ::file::type_binary | ::file::mode_read | ::file::share_deny_none))
       {
          return false;
       }
       if(prangea == NULL || prangea->get_count() == 0)
       {
-         response().file() << spfile;
+         ::file::byte_input_stream is(spfile);
+         ::file::byte_output_stream os(&response().file());
+         os.transfer_from(is);
       }
       else
       {
@@ -266,10 +268,10 @@ namespace simpledb
                {
                   continue;
                }
-               response().file() << "--THIS_STRING_SEPARATES\r\n\r\n";
-               response().file() << "Content-range: bytes " + ::str::from(iStart) + "-" + ::str::from(iEnd) + "/" + ::str::from(iLen) + "\r\n";
-               response().file() << "Content-Transfer-Encoding: base64";
-               response().file() << "\r\n";
+               response().ostream() << "--THIS_STRING_SEPARATES\r\n\r\n";
+               response().ostream() << "Content-range: bytes " + ::str::from(iStart) + "-" + ::str::from(iEnd) + "/" + ::str::from(iLen) + "\r\n";
+               response().ostream() << "Content-Transfer-Encoding: base64";
+               response().ostream() << "\r\n";
                while(true)
                {
                   if(iEnd >= iStart)
@@ -289,9 +291,9 @@ namespace simpledb
                   if(iPos >= spfile->get_length())
                      break;
                }
-               response().file() << System.base64().encode(*memfile.get_memory());
+               response().ostream() << System.base64().encode(*memfile.get_memory());
             }
-            response().file() << "--THIS_STRING_SEPARATES--\r\n\r\n";
+            response().ostream() << "--THIS_STRING_SEPARATES--\r\n\r\n";
             outheader(__id(content_type)) = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";
          }
          else

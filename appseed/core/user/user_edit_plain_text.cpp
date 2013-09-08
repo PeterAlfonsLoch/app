@@ -561,9 +561,9 @@ namespace user
       sp(base_application) papp = ::core::get_app();
 
       string strModuleFolder;
-      strModuleFolder = papp->get_module_folder();
+      strModuleFolder = papp->m_pplaneapp->get_module_folder();
 
-      if(!spfile->open(::core::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::file::binary_buffer::type_text | ::file::mode_read))
+      if(!spfile->open(::core::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::file::type_text | ::file::mode_read))
          return;
 
       string str;
@@ -812,7 +812,7 @@ namespace user
    UINT edit_plain_text::ThreadProcScrollSize(LPVOID lpvoid)
    {
       edit_plain_text * pview = (edit_plain_text *) lpvoid;
-      ::data::writing writing(pview->m_pdata);
+      ::data::data::writing writing(pview->m_pdata);
 
       ::draw2d::graphics_sp graphics(pview->allocer());
       graphics->CreateCompatibleDC(NULL);
@@ -826,7 +826,7 @@ namespace user
 
    void edit_plain_text::_001GetText(string & str)
    {
-      ::data::writing writing(m_pdata);
+      ::data::data::writing writing(m_pdata);
       if(m_pdata == NULL)
          return;
       file_size iSize = m_pdata->m_editfile.get_length();
@@ -976,7 +976,7 @@ namespace user
 
    void edit_plain_text::_001OnCalcLayoutProc(::user::elemental * pview, ::draw2d::graphics * pdc)
    {
-      ::data::writing writing(m_pdata);
+      ::data::data::writing writing(m_pdata);
 
       UNREFERENCED_PARAMETER(pview);
       pdc->SelectObject(GetFont());
@@ -1426,7 +1426,7 @@ namespace user
    {
       
       {
-      ::data::writing writing(m_pdata);
+      ::data::data::writing writing(m_pdata);
       
 
       _009OnChar(pobj);
@@ -1709,7 +1709,7 @@ namespace user
 
    void edit_plain_text::_001OnSysChar(signal_details * pobj)
    {
-      ::data::writing writing(m_pdata);
+      ::data::data::writing writing(m_pdata);
       SCAST_PTR(message::key, pkey, pobj)
       if(pkey->m_ekey == ::user::key_delete)
       {
@@ -1933,7 +1933,7 @@ namespace user
       }
       if(m_pdata->m_ptreeitem->m_pnext != NULL)
       {
-         sp(::data::tree_item) pitemNew = insert_item_data(m_pdata, pcommand, ::core::RelativeFirstChild, m_pdata->m_ptreeitem);
+         sp(::data::tree_item) pitemNew = insert_item_data(m_pdata, pcommand, ::data::RelativeFirstChild, m_pdata->m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -1941,7 +1941,7 @@ namespace user
       }
       else
       {
-         sp(::data::tree_item) pitemNew = insert_item_data(m_pdata, pcommand, ::core::RelativeLastSibling, m_pdata->m_ptreeitem);
+         sp(::data::tree_item) pitemNew = insert_item_data(m_pdata, pcommand, ::data::RelativeLastSibling, m_pdata->m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -2022,7 +2022,7 @@ namespace user
 
    void edit_plain_text::_001SetText(const char * psz)
    {
-      ::data::writing writing(m_pdata);
+      ::data::data::writing writing(m_pdata);
       m_pdata->m_editfile.seek(0, ::file::seek_begin);
       m_pdata->m_editfile.Delete((::primitive::memory_size)m_pdata->m_editfile.get_length());
       m_pdata->m_editfile.seek(0, ::file::seek_begin);
@@ -2244,7 +2244,7 @@ namespace user
 
    void edit_plain_text::set_plain_text_data(plain_text_data * pdata, bool bOwnData)
    {
-      ::data::writing writing(m_pdata);
+      ::data::data::writing writing(m_pdata);
       if(m_pdata != NULL && m_bOwnData)
       {
          delete m_pdata;

@@ -110,7 +110,7 @@ namespace filemanager
 
             psignal->m_puser = &ApplicationUser;
 
-            ::core::emit(get_app(), this, &view::on_request_response, &Application.http(), &::http::application::get, psignal);
+            ::emit(get_app(), this, &view::on_request_response, &Application.http(), &::http::application::get, psignal);
 
          }
 

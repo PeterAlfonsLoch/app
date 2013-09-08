@@ -11,7 +11,7 @@ namespace file
 
 
    class CLASS_DECL_c writer :
-      virtual public object
+      virtual public stream_buffer_base
    {
    public:
 
@@ -23,7 +23,7 @@ namespace file
       virtual void write(const void *lpBuf, ::primitive::memory_size nCount);
       virtual void write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten);
 
-      virtual void read_from(reader & reader);
+      virtual void transfer_from(reader & reader, ::primitive::memory_size uiBufferSize = 1024 * 1024);
 
       virtual void close();
 
@@ -36,7 +36,8 @@ namespace file
 
    typedef writer writable;
 
-   CLASS_DECL_c HRESULT write_writer(writer * stream, const void * data, ::primitive::memory_size size);
+   
+   CLASS_DECL_c HRESULT write(writer * pwriter, const void * data, ::primitive::memory_size size);
 
 
 

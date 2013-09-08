@@ -65,6 +65,6 @@ namespace fontopus
 } // namespace fontopus
 
 
-#define AppUser(pcaapp) (*planeApp(pcaapp).m_pfontopus->get_user())
+#define AppUser(pbaseapp) (*planeApp(pbaseapp).m_pfontopus->get_user())
 #define ApplicationUser (AppUser(m_papp))
 

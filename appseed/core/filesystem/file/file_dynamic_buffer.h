@@ -11,21 +11,21 @@ namespace file
      void GrowLength(size_t size)
      {
        size_t delta;
-       if (this->_capacity > 64)
-         delta = this->_capacity / 4;
-       else if (this->_capacity > 8)
+       if (this->GetCapacity() > 64)
+         delta = this->GetCapacity() / 4;
+       else if (this->GetCapacity() > 8)
          delta = 16;
        else
          delta = 4;
-       delta = MyMax(delta, size);
-       size_t newCap = this->_capacity + delta;
+       delta = max(delta, size);
+       size_t newCap = this->GetCapacity() + delta;
        if (newCap < delta)
-         newCap = this->_capacity + size;
+         newCap = this->GetCapacity() + size;
          buffer < T > ::SetCapacity(newCap);
      }
    public:
      dynamic_buffer(): buffer<T>() {};
-     dynamic_buffer(const dynamic_buffer &buffer): ::core::buffer<T>(buffer) {};
+     dynamic_buffer(const dynamic_buffer &buffer): ::file::buffer<T>(buffer) {};
      dynamic_buffer(size_t size): buffer<T>(size) {};
      dynamic_buffer& operator=(const dynamic_buffer &buffer)
      {
@@ -39,8 +39,8 @@ namespace file
      }
      void EnsureCapacity(size_t capacity)
      {
-       if (this->_capacity < capacity)
-         GrowLength(capacity - this->_capacity);
+       if (this->GetCapacity() < capacity)
+         GrowLength(capacity - this->GetCapacity());
      }
 
    };

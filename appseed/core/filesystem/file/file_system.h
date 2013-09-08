@@ -10,12 +10,13 @@ namespace file
    {
    public:
 
+
       class CLASS_DECL_ca2 path :
          virtual public object
       {
       public:
          
-         file_system * m_pfile;
+         ::file::system * m_pfile;
 
 
          bool is_equal(const char * lpszFilPathA, const char * lpszFilPathB);
@@ -26,6 +27,7 @@ namespace file
          bool rename(const char * pszNew, const char * psz, sp(base_application) papp);
 
       };
+
 
       system();
 
@@ -64,7 +66,7 @@ namespace file
 #else
       {
          System.dir().mk(System.dir().name(pszOutput), papp);
-         ::file::binary_buffer_sp fileOut = App(papp).file().get_file(pszOutput, ::file::binary_buffer::mode_create | ::file::type_binary | ::file::binary_buffer::mode_write);
+         ::file::binary_buffer_sp fileOut = App(papp).file().get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
          if(fileOut.is_null())
             return false;
          return (p->*lpfnOuput)(fileOut, lpszSource);
@@ -80,7 +82,7 @@ namespace file
 
          App(papp).dir().mk(System.dir().name(pszOutput));
 
-         ::file::binary_buffer_sp fileOut = App(papp).file().get_file(pszOutput, ::file::binary_buffer::mode_create | ::file::type_binary | ::file::binary_buffer::mode_write);
+         ::file::binary_buffer_sp fileOut = App(papp).file().get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
          if(fileOut.is_null())
             return false;

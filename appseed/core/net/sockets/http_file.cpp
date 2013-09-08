@@ -3,6 +3,7 @@
 namespace http
 {
 
+   /*
    bool file::read_string(string & str)
    {
       uint_ptr nRead;
@@ -49,5 +50,5 @@ namespace http
          }
          return *this;
       }
-
+      */
 } // namespace http

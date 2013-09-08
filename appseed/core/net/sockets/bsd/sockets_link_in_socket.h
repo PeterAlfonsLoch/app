@@ -39,8 +39,8 @@ namespace sockets
       ~link_in_socket();
 
 
-      void OnRead( char *buf, size_t n );
-      void link_write(void * p, size_t size);
+      void on_read(const void * pdata, ::primitive::memory_size n);
+      void link_write(const void * pdata, ::primitive::memory_size size);
 
 
       static link_in_socket * from_server(httpd_socket * psocket);

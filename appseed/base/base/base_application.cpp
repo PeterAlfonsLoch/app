@@ -8,6 +8,7 @@ base_application::base_application() :
 
    m_psignal = new signal();
 
+   m_pcommandthread           = new ::command_thread(this);
 
 }
 
@@ -124,6 +125,11 @@ string base_application::file_name(const char * psz)
 
 
 sp(command_thread) base_application::command_central()
+{
+   return m_pcommandthread;
+}
+
+sp(command_thread) base_application::command_thread()
 {
    return m_pcommandthread;
 }

@@ -11,14 +11,14 @@ namespace file
 
 
    class CLASS_DECL_c output_stream :
-      virtual public stream_base
+      virtual public stream_base,
+      virtual public writer
    {
    public:
 
       
       output_stream();
-      output_stream(writer * pwriter);
-      output_stream(writer & writer);
+      output_stream(sp(writer) pwriter);
       output_stream(const output_stream & pwriter);
       virtual ~output_stream();
 

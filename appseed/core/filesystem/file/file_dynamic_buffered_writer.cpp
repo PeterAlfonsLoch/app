@@ -1,22 +1,34 @@
 #include "framework.h"
 
-namespace core
+
+namespace file
 {
+
 
    byte *dynamic_buffered_writer::GetBufPtrForWriting(size_t addSize)
    {
+
       addSize += _size;
+
       if (addSize < _size)
          return NULL;
+
       _buffer.EnsureCapacity(addSize);
+
       return (byte *)_buffer + _size;
+
    }
+
 
    void dynamic_buffered_writer::CopyToBuffer(byte_buffer &dest) const
    {
+
       dest.SetCapacity(_size);
+
       memcpy(dest, _buffer, _size);
+
    }
+
 
    void dynamic_buffered_writer::write(const void *data, uint_ptr size, uint_ptr *processedSize)
    {
@@ -33,4 +45,8 @@ namespace core
          *processedSize = size;
    }
 
+
 } // namespace core
+
+
+

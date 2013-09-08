@@ -151,7 +151,7 @@ namespace database
       bool interaction::LoadWindowRect_(::database::id key, ::database::id idIndex, sp(::user::interaction) pWnd, bool bForceRestore)
       {
 
-         ::core::byte_stream_memory_file memstream(get_app());
+         ::file::byte_stream_memory_buffer memstream(get_app());
 
          if(!data_get(key, idIndex, memstream))
             return false;
@@ -276,8 +276,8 @@ namespace database
       {
          //WINDOWPLACEMENT wp;
          //pWnd->GetWindowPlacement(&wp);
-         ::core::byte_stream_memory_file memstream(get_app());
-         ::core::byte_stream_memory_file memstreamGet(get_app());
+         ::file::byte_stream_memory_buffer memstream(get_app());
+         ::file::byte_stream_memory_buffer memstreamGet(get_app());
          bool bGet = data_get(
             key,
             idIndex,

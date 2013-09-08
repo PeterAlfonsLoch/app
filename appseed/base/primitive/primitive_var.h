@@ -44,7 +44,7 @@ public:
       type_float,
       type_double,
       type_pvar,
-      type_ca2,
+      type_element,
       type_bool,
       type_pbool,
       type_stra,
@@ -283,14 +283,14 @@ public:
 /*   template < class T >
    var & operator = (sp(T) p)
    {
-      set_type(type_ca2, false);
+      set_type(type_element, false);
       m_sp = p;
       return *this;
    }
 */
    inline var & operator = (element * p)
    {
-      set_type(type_ca2, false);
+      set_type(type_element, false);
       m_sp = p;
       return *this;
    }
@@ -343,8 +343,8 @@ public:
    sp(T) element()
    {
       if(m_etype == type_pvar && m_pvar != NULL)
-         return m_pvar->core < T > ();
-      if(m_etype != type_ca2)
+         return m_pvar->element < T > ();
+      if(m_etype != type_element)
          return NULL;
       return m_sp;
    }
@@ -352,7 +352,7 @@ public:
    template < class T >
    const sp(T) element() const
    {
-      if(m_etype != type_ca2)
+      if(m_etype != type_element)
          return NULL;
       return m_sp;
    }

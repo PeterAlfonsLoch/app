@@ -7,7 +7,7 @@ namespace simpledb
 
    file_set::file_set(sp(base_application) papp) :
       element(papp),
-      ::core::file_set_sp(allocer())
+      ::file::set_sp(allocer())
    {
 
    }

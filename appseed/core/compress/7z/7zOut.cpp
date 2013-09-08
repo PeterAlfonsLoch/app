@@ -153,7 +153,7 @@ namespace n7z
       if (_endMarker)
          return S_OK;
 #endif
-      Stream->seek(24, ::file::seek_current);
+      Stream->seekp(24, ::file::seek_current);
       return S_OK;
    }
 
@@ -638,7 +638,7 @@ namespace n7z
       {
          /* ---------- Empty Streams ---------- */
          bool_array emptyStreamVector;
-         emptyStreamVector.set_size(0, db.Files.get_count());
+         emptyStreamVector.allocate(0, db.Files.get_count());
          int32_t numEmptyStreams = 0;
          for (i = 0; i < db.Files.get_count(); i++)
             if (db.Files[i].HasStream)
@@ -655,8 +655,8 @@ namespace n7z
                WriteBoolVector(emptyStreamVector);
 
                bool_array emptyFileVector, antiVector;
-               emptyFileVector.set_size(0, numEmptyStreams);
-               antiVector.set_size(0, numEmptyStreams);
+               emptyFileVector.allocate(0, numEmptyStreams);
+               antiVector.allocate(0, numEmptyStreams);
                CNum numEmptyFiles = 0, numAntiItems = 0;
                for (i = 0; i < db.Files.get_count(); i++)
                {
@@ -732,7 +732,7 @@ namespace n7z
       {
          /* ---------- Write Attrib ---------- */
          bool_array boolVector;
-         boolVector.set_size(0, db.Files.get_count());
+         boolVector.allocate(0, db.Files.get_count());
          int32_t numDefined = 0;
          for (i = 0; i < db.Files.get_count(); i++)
          {
@@ -856,7 +856,7 @@ namespace n7z
          h.NextHeaderSize = headerSize;
          h.NextHeaderCRC = headerCRC;
          h.NextHeaderOffset = headerOffset;
-         Stream->seek(_prefixHeaderPos, ::file::seek_begin);
+         Stream->seekp(_prefixHeaderPos, ::file::seek_begin);
          return WriteStartHeader(h);
       }
    }

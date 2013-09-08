@@ -4,6 +4,7 @@
 namespace datetime
 {
 
+   class element;
 
    class CLASS_DECL_ca2 parser :
       virtual public object
@@ -12,18 +13,18 @@ namespace datetime
 
       
       scanner                       m_scanner;
-      spa(element)                  m_elementa;
+      spa(::datetime::element)      m_elementa;
 
 
       parser(sp(base_application) papp, ::user::str_context * pcontext);
       virtual ~parser();
 
 
-      element * parse(const char * psz);
+      ::datetime::element * parse(const char * psz);
 
-      element * expr(element * pelement1);
-      element * term(element * pelement1);
-      element * factor();
+      ::datetime::element * expr(::datetime::element * pelement1);
+      ::datetime::element * term(::datetime::element * pelement1);
+      ::datetime::element * factor();
 
 
       void error(const char * pszMessage);
@@ -31,12 +32,12 @@ namespace datetime
       void expect(char ch);
 
 
-      element *new_node();
+      ::datetime::element *new_node();
       int32_t precedence(token::e_type next, token::e_type current);
-      double parse(element *current_node);
-      double node_traverse(element *current_node, double value);
-      double apply_traverse_operator(element *current_node, double total);
-      double apply_operator(element *current_node, double total, double m_etype);
+      double parse(::datetime::element *current_node);
+      double node_traverse(::datetime::element *current_node, double value);
+      double apply_traverse_operator(::datetime::element *current_node, double total);
+      double apply_operator(::datetime::element *current_node, double total, double m_etype);
 
       
    };

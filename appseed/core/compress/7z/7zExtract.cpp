@@ -39,7 +39,7 @@ namespace n7z
      {
        if (fileIndex != kNumNoIndex)
        {
-         ExtractStatuses.set_size(0, 1);
+         ExtractStatuses.allocate(0, 1);
          ExtractStatuses.add(true);
        }
      };

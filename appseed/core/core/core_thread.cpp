@@ -295,7 +295,7 @@ UNREFERENCED_PARAMETER(lparam);
 throw interface_only_exception(get_app());
 }
 
-bool thread::on_run_exception(exception & e)
+bool thread::on_run_exception(exception::exception & e)
 {
 
 UNREFERENCED_PARAMETER(e);
@@ -455,10 +455,12 @@ bool thread::has_message()
    return false;
 }
 
+/*
 bool thread::verb()
 {
    return true;
 }
+*/
 
 bool thread::is_auto_delete()
 {
@@ -532,7 +534,7 @@ bool thread::PreInitInstance()
 
 // called when occurs an standard_exception exception in run
 // return true to call run again
-bool thread::on_run_exception(exception & e)
+bool thread::on_run_exception(::exception::exception & e)
 {
 
    try
@@ -550,7 +552,7 @@ bool thread::on_run_exception(exception & e)
       return false;
 
    }
-   catch(exception & e)
+   catch(exception::exception & e)
    {
 
       throw e;

@@ -5,9 +5,9 @@ namespace userfs
 {
 
 
-   userfs::userfs(application * papp) :
+   userfs::userfs(base_application * papp) :
       element(papp),
-      ::departament(papp)
+      base_departament(papp)
    {
 
    }
@@ -29,7 +29,7 @@ namespace userfs
       }
 
 
-      if(!::departament::initialize())
+      if(!base_departament::initialize())
          return false;
 
 

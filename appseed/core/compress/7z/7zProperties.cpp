@@ -92,7 +92,7 @@ namespace n7z
             dest.remove_at(i);
             break;
          }
-         dest.insert_at(0, item);
+         dest.inset(0, item);
    }
 
    void handler::FillPopIDs()

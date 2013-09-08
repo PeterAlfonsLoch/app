@@ -6,16 +6,15 @@ namespace file
 
 
    class CLASS_DECL_c byte_stream :
-      virtual public output_stream,
-      virtual public input_stream,
+      virtual public byte_output_stream,
+      virtual public byte_input_stream,
       virtual public stream
    {
    public:
 
       
       byte_stream();
-      byte_stream(reader * preader, writer * pwriter);
-      byte_stream(stream_buffer * pbuffer);
+      byte_stream(sp(stream_buffer) pbuffer);
       byte_stream(const stream & stream);
       virtual ~byte_stream();
 
@@ -26,6 +25,8 @@ namespace file
       virtual bool is_stream_set();
 
       virtual void close();
+
+      virtual file_position get_position();
 
    };
 

@@ -28,21 +28,31 @@ namespace sockets
 
    void sync_socket_handler::OnRawData(socket * psocket, void * pdata, size_t len)
    {
+
       if(m_psocket == psocket)
       {
+
          m_file.write(pdata, len);
+
       }
+
    }
 
    void sync_socket_handler::write(string &str)
    {
-      m_psocket->Send(str);
+
+      m_psocket->write(str);
+
    }
 
-   void sync_socket_handler::write(void * pdata, int32_t len)
+
+   void sync_socket_handler::write(const void * pdata, int32_t len)
    {
-      m_psocket->SendBuf((char *) pdata, len);
+
+      m_psocket->write(pdata, len);
+
    }
+
 
    int32_t sync_socket_handler::read(void * pdata, int32_t len)
    {

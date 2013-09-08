@@ -201,7 +201,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
    // But the need, and it seems good, to use application thread where window is created.
    // Application thread englobes window lifetime. While possibly worker threads not.
    
-//   m_pthread = ::core::get_thread();
+//   m_pthread = ::get_thread();
    
 //   if(m_pthread == NULL)
 
@@ -342,7 +342,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    // But the need, and it seems good, to use application thread where window is created.
    // Application thread englobes window lifetime. While possibly worker threads not.
    
-//   m_pthread = ::core::get_thread();
+//   m_pthread = ::get_thread();
    
 //   if(m_pthread == NULL)
 
@@ -480,7 +480,7 @@ bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
    // But the need, and it seems good, to use application thread where window is created.
    // Application thread englobes window lifetime. While possibly worker threads not.
    
-//   m_pthread = ::core::get_thread();
+//   m_pthread = ::get_thread();
    
 //   if(m_pthread == NULL)
 

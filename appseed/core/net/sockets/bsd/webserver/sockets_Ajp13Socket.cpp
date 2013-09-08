@@ -93,7 +93,7 @@ namespace sockets
          int16_t len = htons((u_short)( ptr - 4 ));
          memcpy( msg + 2, &len, 2 );
 
-         SendBuf( msg, ptr );
+         write( msg, ptr );
          return;
       }
 
@@ -300,7 +300,7 @@ namespace sockets
          int16_t len = htons((u_short) ( ptr - 4 ));
          memcpy( msg + 2, &len, 2 );
 
-         SendBuf( msg, ptr );
+         write( msg, ptr );
       }
       // Send Body Chunk
       OnTransferLimit();
@@ -326,7 +326,7 @@ namespace sockets
          int16_t len = htons((u_short) ( ptr - 4 ));
          memcpy( msg + 2, &len, 2 );
 
-         SendBuf( msg, ptr );
+         write( msg, ptr );
          if (GetOutputLength() > 1)
          {
             SetTransferLimit( 1 );
@@ -351,7 +351,7 @@ namespace sockets
          int16_t len = htons((u_short) ( ptr - 4 ));
          memcpy( msg + 2, &len, 2 );
 
-         SendBuf( msg, ptr );
+         write( msg, ptr );
 
          OnResponseComplete();
       }

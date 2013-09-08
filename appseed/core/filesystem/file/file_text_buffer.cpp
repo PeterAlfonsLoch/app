@@ -1,20 +1,29 @@
 #include "framework.h"
 
-namespace core
+
+namespace file
 {
+
 
    text_buffer::text_buffer()
    {
+
    }
+
 
    text_buffer::~text_buffer()
    {
+
    }
+
 
    void text_buffer::write_string(const char * lpsz)
    {
+
       UNREFERENCED_PARAMETER(lpsz);
+
    }
+
 
    UINT text_buffer::read_string(string & str)
    {
@@ -35,4 +44,8 @@ namespace core
       return uiTotal;
    }
 
-} // namespace core
+
+} // namespace file
+
+
+

@@ -109,7 +109,7 @@ void simple_frame_window::_001OnDestroy(signal_details * pobj)
 
    try
    {
-      if(m_papp != NULL && m_papp->m_psystem != NULL && &System != NULL)
+      if(m_papp != NULL && m_pbaseapp->m_pplaneapp->m_psystem != NULL && &System != NULL)
       {
          System.remove_frame(this);
       }
@@ -646,7 +646,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
 
    sp(::plane::application) papp = &Application;
 
-   if(papp->is_system() || papp->is_session())
+   if(papp->m_pplaneapp->is_system() || papp->m_pplaneapp->is_session())
    {
 
       // TODO: instead of closing all applications in process System.m_apptra, should close application that make part of
@@ -663,10 +663,10 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       }
 
    }
-   else if(papp->user()->GetVisibleTopLevelFrameCountExcept(this) <= 0)
+   else if(papp->m_pplaneapp->user()->GetVisibleTopLevelFrameCountExcept(this) <= 0)
    {
 
-      if(!papp->_001CloseApplicationByUser(this))
+      if(!papp->m_pplaneapp->_001CloseApplicationByUser(this))
          return;
 
    }

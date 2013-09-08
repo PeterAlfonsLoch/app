@@ -1432,7 +1432,7 @@ namespace user
 
    void tab::_001SetSel(::index iSel)
    {
-      ::data::writing writing(get_data());
+      ::data::data::writing writing(get_data());
       get_data()->m_iaSel.remove_all();
       get_data()->m_iaSel.add(iSel);
       on_change_pane_count();
@@ -1441,7 +1441,7 @@ namespace user
 
    void tab::_001AddSel(::index iSel)
    {
-      ::data::writing writing(get_data());
+      ::data::data::writing writing(get_data());
       get_data()->m_iaSel.add(iSel);
       on_change_pane_count();
    }
@@ -1802,7 +1802,7 @@ namespace user
          throw e;
 
       }
-      catch(exception & e)
+      catch(exception::exception & e)
       {
 
          if(!Application.on_run_exception(e))

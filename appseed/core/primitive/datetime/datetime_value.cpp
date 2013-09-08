@@ -4,8 +4,10 @@
 namespace datetime
 {
 
-   value span_strtotime(sp(base_application) pcaapp, ::user::str_context * pcontext, const char * pszSpanExpression)
+
+   value span_strtotime(sp(base_application) pbaseapp, ::user::str_context * pcontext, const char * pszSpanExpression)
    {
+
       static id idCalendarDay("calendar:day");
       static id idCalendarDays("calendar:days");
       static id idCalendarWeek("calendar:week");
@@ -15,7 +17,7 @@ namespace datetime
       static id idCalendarHour("calendar:hour");
       static id idCalendarHours("calendar:hours");
       static id idCalendarNow("calendar:now");
-      UNREFERENCED_PARAMETER(pcaapp);
+      UNREFERENCED_PARAMETER(pbaseapp);
       value time;
       time.m_bSpan = true;
       string str(pszSpanExpression);
@@ -71,7 +73,7 @@ namespace datetime
                }
                else
                {
-                  throw not_implemented(pcaapp);
+                  throw not_implemented(pbaseapp);
                }
                strNumber.Empty();
                strText1.Empty();
@@ -92,11 +94,11 @@ namespace datetime
          {
             if(bAdd)
             {
-               Sys(pcaapp->m_psystem).log().trace("strtotime: invalid char +");
+               Sys(pbaseapp->m_pplaneapp->m_psystem).log().trace("strtotime: invalid char +");
             }
             else if(bMinus)
             {
-               Sys(pcaapp->m_psystem).log().trace("strtotime: invalid char + on Minus state");
+               Sys(pbaseapp->m_pplaneapp->m_psystem).log().trace("strtotime: invalid char + on Minus state");
             }
             bAdd = true;
             bMinus = false;
@@ -106,11 +108,11 @@ namespace datetime
          {
             if(bAdd)
             {
-               Sys(pcaapp->m_psystem).log().trace("strtotime: invalid char - on add state");
+               Sys(pbaseapp->m_pplaneapp->m_psystem).log().trace("strtotime: invalid char - on add state");
             }
             else if(bMinus)
             {
-               Sys(pcaapp->m_psystem).log().trace("strtotime: invalid char - on Minus state");
+               Sys(pbaseapp->m_pplaneapp->m_psystem).log().trace("strtotime: invalid char - on Minus state");
             }
             bAdd = false;
             bMinus = true;
@@ -129,7 +131,7 @@ namespace datetime
    }
 
 
-   value strtotime(sp(base_application) pcaapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount)
+   value strtotime(sp(base_application) pbaseapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount)
    {
       ::datetime::time time;
       string str(psz);
@@ -149,7 +151,7 @@ namespace datetime
          && str.Mid(16, 1) == ":")
          {
             bBaseTime = true;
-            Sys(pcaapp->m_psystem).datetime().international().parse_str(str, set);
+            Sys(pbaseapp->m_pplaneapp->m_psystem).datetime().international().parse_str(str, set);
             string strWord = str.Mid(19);
             strWord.trim_left();
             strWord = ::str::get_word(strWord, " ");
@@ -193,7 +195,7 @@ namespace datetime
          && str.Mid(7, 1) == "-")
          {
             bBaseTime = true;
-            Sys(pcaapp->m_psystem).datetime().international().parse_str(str, set);
+            Sys(pbaseapp->m_pplaneapp->m_psystem).datetime().international().parse_str(str, set);
             time = ::datetime::time(
                set["year"],
                set["month"],
@@ -239,14 +241,14 @@ namespace datetime
          if(i1 != i2
          && i1 >= 1 && i1 <= 12
          && i2 >= 1 && i2 <=
-            Sys(pcaapp->m_psystem).datetime().get_month_day_count(time.GetYear(), i1))
+            Sys(pbaseapp->m_pplaneapp->m_psystem).datetime().get_month_day_count(time.GetYear(), i1))
          {
             bFirst = true;
             iCount++;
          }
          if(i2 >= 1 && i2 <= 12
          && i1 >= 1 && i1 <=
-            Sys(pcaapp->m_psystem).datetime().get_month_day_count(time.GetYear(), i2))
+            Sys(pbaseapp->m_pplaneapp->m_psystem).datetime().get_month_day_count(time.GetYear(), i2))
          {
             iCount++;
          }
@@ -275,11 +277,11 @@ namespace datetime
       }
       if(bBaseTime)
       {
-         return value(time) + span_strtotime(pcaapp, pcontext, str.Mid(iStart));
+         return value(time) + span_strtotime(pbaseapp, pcontext, str.Mid(iStart));
       }
       else
       {
-         return span_strtotime(pcaapp, pcontext, str.Mid(iStart));
+         return span_strtotime(pbaseapp, pcontext, str.Mid(iStart));
       }
    }
 
@@ -368,7 +370,7 @@ namespace datetime
       return *this;
    }
 
-   string value::to_string(sp(base_application) pcaapp, ::user::str_context * pcontext)
+   string value::to_string(sp(base_application) pbaseapp, ::user::str_context * pcontext)
    {
       string str;
       if(m_bSpan)
@@ -464,20 +466,20 @@ namespace datetime
             if(time.GetHour() == 0 && time.GetMinute() == 0)
             {
                str = time.Format("%Y-");
-               Sys(pcaapp->m_psystem).datetime().get_month_str(pcontext, time.GetMonth());
+               Sys(pbaseapp->m_pplaneapp->m_psystem).datetime().get_month_str(pcontext, time.GetMonth());
                str += time.Format("-%d");
             }
             else
             {
                str = time.Format("%Y-");
-               str += Sys(pcaapp->m_psystem).datetime().get_month_str(pcontext, time.GetMonth());
+               str += Sys(pbaseapp->m_pplaneapp->m_psystem).datetime().get_month_str(pcontext, time.GetMonth());
                str += time.Format("-%d %H:%M");
             }
          }
          else
          {
             str = time.Format("%Y-");
-            str += Sys(pcaapp->m_psystem).datetime().get_month_str(pcontext, time.GetMonth());
+            str += Sys(pbaseapp->m_pplaneapp->m_psystem).datetime().get_month_str(pcontext, time.GetMonth());
             str += time.Format("-%d %H:%M:%S");
          }
       }
@@ -619,3 +621,5 @@ datetime::value operator / (const datetime::value & val1, double d)
    }
    return val;
 }
+
+

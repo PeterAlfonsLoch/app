@@ -34,9 +34,9 @@ namespace visual
 {
 
 
-   visual::visual(application * papp) :
+   visual::visual(base_application * papp) :
       element(papp),
-      ::departament(papp)
+      base_departament(papp)
    {
       m_pimaging        = NULL;
       m_pfontcentral    = NULL;
@@ -61,7 +61,7 @@ namespace visual
    void visual::construct(sp(base_application) papp)
    {
 
-      ::departament::construct(papp);
+      base_departament::construct(papp);
 
       m_pvisualapi               = new ::visual::api(papp);
 
@@ -85,7 +85,7 @@ namespace visual
    bool visual::initialize1()
    {
 
-      if(!::departament::initialize1())
+      if(!base_departament::initialize1())
          return false;
 
       m_pfontcentral = new class font_central(get_app());
@@ -109,7 +109,7 @@ namespace visual
    bool visual::process_initialize()
    {
 
-      if(!::departament::process_initialize())
+      if(!base_departament::process_initialize())
          return false;
 
       if(!m_pvisualapi->open())
@@ -123,7 +123,7 @@ namespace visual
    bool visual::initialize()
    {
 
-      if(!::departament::initialize())
+      if(!base_departament::initialize())
          return false;
 
       __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::core::scheduling_priority_highest);
@@ -355,7 +355,7 @@ namespace visual
       try
       {
 
-         iExitCode = ::departament::exit_instance();
+         iExitCode = base_departament::exit_instance();
 
       }
       catch(...)

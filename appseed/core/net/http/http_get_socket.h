@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace core
+namespace http
 {
 
 
-   class CLASS_DECL_ca2 http_get_socket : 
+   class CLASS_DECL_ca2 get_socket : 
       public ::sockets::http_get_socket
    {
    public:
@@ -15,8 +15,8 @@ namespace core
       ::http::cookies *    m_pcookies;
 
 
-      http_get_socket(::sockets::socket_handler & handler, const string & url);
-      http_get_socket(::sockets::socket_handler & handler, const string & host,port_t port,const string & url);
+      get_socket(::sockets::socket_handler & handler, const string & url);
+      get_socket(::sockets::socket_handler & handler, const string & host,port_t port,const string & url);
 
 
       virtual void OnDataArrived(const char *, size_t len);
@@ -28,6 +28,6 @@ namespace core
    };
 
 
-} // namespace core
+} // namespace http
 
 

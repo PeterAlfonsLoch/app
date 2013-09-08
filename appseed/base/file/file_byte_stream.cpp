@@ -9,15 +9,14 @@ namespace file
    {
    }
 
-   byte_stream::byte_stream(reader * preader, writer * pwriter) :
+/*   byte_stream::byte_stream(reader * preader, writer * pwriter) :
       input_stream(preader),
       output_stream(pwriter)
    {
-   }
+   }*/
 
-   byte_stream::byte_stream(stream_buffer * pbuffer) :
-      input_stream(pbuffer),
-      output_stream(pbuffer)
+   byte_stream::byte_stream(sp(stream_buffer) pbuffer) :
+      stream(pbuffer)
    {
    }
 
@@ -54,6 +53,11 @@ namespace file
       output_stream::close();
    }
 
+
+   file_position byte_stream::get_position()
+   {
+      return m_spbuffer->get_position();
+   }
 
 } // namespace file
 

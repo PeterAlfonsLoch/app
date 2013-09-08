@@ -5,26 +5,10 @@ namespace file
 {
 
 
-    enum e_buffer
-    {
-       buffer_read, 
-       buffer_write, 
-       buffer_commit,
-       buffer_check
-    };
-
-
-
-
-   class exception;
-   struct file_status;
-
 
    class CLASS_DECL_c stream_buffer :
       virtual public ::file::reader,
-      virtual public ::file::writer,
-      virtual public ::file::seekable,
-      virtual public ::file::writer_flush
+      virtual public ::file::writer
    {
    public:
 

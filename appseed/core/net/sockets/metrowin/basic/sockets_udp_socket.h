@@ -54,6 +54,10 @@ namespace sockets
 
 
    public:
+
+      int m_iWriteFlags;
+
+
       /** Constructor.
       \param h socket_handler_base reference
       \param ibufsz Maximum size of receive message (extra bytes will be truncated)

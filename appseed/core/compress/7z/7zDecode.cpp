@@ -110,17 +110,17 @@ namespace n7z
       passwordIsDefined = false;
       smart_pointer_array < ::file::reader > inStreams;
 
-      ::core::locked_in_stream lockedInStream;
+      ::file::locked_in_stream lockedInStream;
       lockedInStream.Init(inStream);
 
       for (int32_t j = 0; j < folderInfo.PackStreams.get_count(); j++)
       {
-         ::core::locked_reader *lockedStreamImpSpec = new ::core::locked_reader;
+         ::file::locked_reader *lockedStreamImpSpec = new ::file::locked_reader;
          smart_pointer < ::file::reader > lockedStreamImp = lockedStreamImpSpec;
          lockedStreamImpSpec->Init(&lockedInStream, (file_size) startPos);
          startPos += packSizes[j];
 
-         ::core::limited_reader *streamSpec = new ::core::limited_reader;
+         ::file::limited_reader *streamSpec = new ::file::limited_reader;
          streamSpec->SetStream(lockedStreamImp);
          streamSpec->Init(packSizes[j]);
          inStreams.add((::file::reader *) streamSpec);
@@ -282,8 +282,8 @@ namespace n7z
          uint32_t numOutStreams = (uint32_t)coderInfo.NumOutStreams;
          array<const file_size *> packSizesPointers;
          array<const file_size *> unpackSizesPointers;
-         packSizesPointers.set_size(0, numInStreams);
-         unpackSizesPointers.set_size(0, numOutStreams);
+         packSizesPointers.allocate(0, numInStreams);
+         unpackSizesPointers.allocate(0, numOutStreams);
          uint32_t j;
          for (j = 0; j < numOutStreams; j++, unpackStreamIndex++)
             unpackSizesPointers.add(&folderInfo.UnpackSizes[unpackStreamIndex]);

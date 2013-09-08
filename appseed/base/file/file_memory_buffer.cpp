@@ -308,19 +308,30 @@ namespace file
       ASSERT(IsValid());
 
       primitive::memory storage;
+      
       storage.allocate(1024 * 1024 * 8);
+      
       ::file::binary_buffer_sp spfile(allocer());
-      if(!spfile->open(psz, type_binary | mode_read | shareDenyNone))
+      
+      if(!spfile->open(psz, type_binary | mode_read | share_deny_none))
          return;
+
       else
       {
+
          ::primitive::memory_size uiRead;
+
          while((uiRead = spfile->read(storage.get_data(), storage.get_size())) > 0)
          {
+
             write(storage.get_data(), uiRead);
+
          }
+
       }
+
    }
+
 
    ::primitive::memory_base * memory_buffer::create_memory()
    {
@@ -330,4 +341,63 @@ namespace file
    }
 
 
+   void * memory_buffer::get_internal_data()
+   {
+
+      return get_data();
+
+   }
+
+
+   ::primitive::memory_size memory_buffer::get_internal_data_size()
+   {
+
+      return get_size();
+
+   }
+
+
+   bool memory_buffer::set_internal_data_size(::primitive::memory_size c)
+   {
+
+      Truncate(c);
+
+      return c == get_internal_data_size();
+
+   }
+
+   void memory_buffer::transfer_to(writer & writer)
+   {
+
+
+      if(get_internal_data() == NULL || get_internal_data_size() <= 0)
+         return;
+
+      if(writer.increase_internal_data_size(get_internal_data_size()) && writer.get_internal_data() != NULL)
+      {
+            
+         if(writer.get_internal_data() == get_internal_data())
+            return;
+
+         memmove(((byte *) writer.get_internal_data()) + writer.get_position() + get_internal_data_size(), ((byte *) writer.get_internal_data()) + writer.get_position(), writer.get_internal_data_size() - get_internal_data_size());
+         memcpy(((byte *) writer.get_internal_data()) + writer.get_position(), get_internal_data(), get_internal_data_size());
+         writer.seek(get_internal_data_size(), seek_current);
+
+      }
+      else
+      {
+            
+         writer.write(get_internal_data(), get_internal_data_size());
+
+      }
+
+   }
+
+
+
 } // namespace file
+
+
+
+
+

@@ -90,8 +90,8 @@ namespace n7z
       uint64_t position, uint64_t size, ::libcompress::progress_info_interface *progress)
    {
       inStream->seek(position, ::file::seek_begin);
-      ::core::limited_reader *streamSpec = new ::core::limited_reader;
-      smart_pointer < ::core::limited_reader > inStreamLimited(streamSpec);
+      ::file::limited_reader *streamSpec = new ::file::limited_reader;
+      smart_pointer < ::file::limited_reader > inStreamLimited(streamSpec);
       streamSpec->SetStream(inStream);
       streamSpec->Init(size);
 
@@ -424,7 +424,7 @@ namespace n7z
       {
          CMethodFull methodFull;
          GetMethodFull(k_BCJ2, 4, methodFull);
-         exeMethod.Methods.insert_at(0, new CMethodFull(methodFull));
+         exeMethod.Methods.inset(0, new CMethodFull(methodFull));
          GetMethodFull(k_LZMA, 1, methodFull);
          methodFull.Props[NCoderPropID::kAlgorithm] = (int64_t)kAlgorithmForBCJ2_LZMA;
          methodFull.Props[NCoderPropID::kMatchFinder] = (int64_t)kMatchFinderForBCJ2_LZMA;
@@ -455,7 +455,7 @@ namespace n7z
       {
          CMethodFull methodFull;
          GetMethodFull(k_BCJ, 1, methodFull);
-         exeMethod.Methods.insert_at(0, new CMethodFull(methodFull));
+         exeMethod.Methods.inset(0, new CMethodFull(methodFull));
          CBind bind;
          bind.OutCoder = 0;
          bind.InStream = 0;
@@ -764,7 +764,7 @@ namespace n7z
       bool needEncryptedRepack = false;
       if (db != 0)
       {
-         fileIndexToUpdateIndexMap.set_size(0, db->Files.get_count());
+         fileIndexToUpdateIndexMap.allocate(0, db->Files.get_count());
          int32_t i;
          for (i = 0; i < db->Files.get_count(); i++)
             fileIndexToUpdateIndexMap.add(-1);
@@ -1089,7 +1089,7 @@ namespace n7z
          //refItems.Sort(CompareUpdateItems, (void *)&sortByType);
 
          array<uint32_t> indices;
-         indices.set_size(0, numFiles);
+         indices.allocate(0, numFiles);
 
          for (i = 0; i < numFiles; i++)
          {

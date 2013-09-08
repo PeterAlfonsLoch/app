@@ -9,21 +9,13 @@ namespace file
    {
    }
 
-   stream::stream(reader * preader, writer * pwriter) :
-      input_stream(preader),
-      output_stream(pwriter)
-   {
-   }
-
-   stream::stream(stream_buffer * pbuffer) :
-      input_stream(pbuffer),
-      output_stream(pbuffer)
+   stream::stream(sp(stream_buffer) pbuffer) :
+      stream_base(pbuffer)
    {
    }
 
    stream::stream(const stream & stream) :
-      input_stream(stream),
-      output_stream(stream)
+      stream_base(stream)
    {
    }
 

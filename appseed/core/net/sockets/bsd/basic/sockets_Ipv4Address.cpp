@@ -118,13 +118,13 @@ namespace sockets
 
 /*   bool ipv4_address::Resolve(sp(base_application) papp, const string & hostname, in_addr& a)
    {
-      if(Sys(papp->m_psystem).net().isipv4(hostname))
+      if(Sys(papp->m_pplaneapp->m_psystem).net().isipv4(hostname))
       {
-         if(!Sys(papp->m_psystem).net().convert(a, hostname, AI_NUMERICHOST))
+         if(!Sys(papp->m_pplaneapp->m_psystem).net().convert(a, hostname, AI_NUMERICHOST))
             return false;
          return true;
       }
-      if(!Sys(papp->m_psystem).net().convert(a, hostname))
+      if(!Sys(papp->m_pplaneapp->m_psystem).net().convert(a, hostname))
          return false;
       return true;
    }
@@ -132,7 +132,7 @@ namespace sockets
 
    bool ipv4_address::Reverse(sp(base_application) papp, in_addr& a,string & name)
    {
-      return Sys(papp->m_psystem).net().reverse(a, name);
+      return Sys(papp->m_pplaneapp->m_psystem).net().reverse(a, name);
    }
 
 
@@ -152,7 +152,7 @@ namespace sockets
       sa.sin_family = AF_INET;
       sa.sin_addr = a;
       string name;
-     Sys(papp->m_psystem).net().reverse((struct sockaddr *)&sa, sizeof(sa), name, NI_NUMERICHOST | NI_NUMERICSERV);
+     Sys(papp->m_pplaneapp->m_psystem).net().reverse((struct sockaddr *)&sa, sizeof(sa), name, NI_NUMERICHOST | NI_NUMERICSERV);
       return name;
    }*/
 

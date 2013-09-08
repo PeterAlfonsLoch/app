@@ -24,7 +24,7 @@ namespace fontopus
    void user::start_veiev_synch()
    {
       signal_details * psignal = new signal_details();
-      ::core::emit(get_app(), this, &user::on_end_veiev_synch, this, &user::veiev_synch, psignal);
+      ::emit(get_app(), this, &user::on_end_veiev_synch, this, &user::veiev_synch, psignal);
    }
 
 

@@ -1,15 +1,21 @@
 #include "framework.h"
 
+
 namespace zip
 {
+
    class Util;
+
 }
 
-namespace core
+
+namespace file
 {
+
 
    namespace dir
    {
+
 
       application::application()
       {
@@ -160,87 +166,87 @@ namespace core
       }
 
 
-      void application::ls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath, stringa * pstraTitle, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize)
+      void application::ls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, array < int64_t, int64_t > * piaSize)
       {
-         return m_papp->m_psystem->m_spdir.m_p->ls_pattern(m_papp, lpcsz, lpcszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->ls_pattern(m_papp, lpcsz, lpcszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize);
       }
 
-      void application::ls(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize)
+      void application::ls(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, array < int64_t, int64_t > * piaSize)
       {
-         return m_papp->m_psystem->m_spdir.m_p->ls(m_papp, lpcsz, pstraPath, pstraTitle, pbaIsDir, piaSize);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->ls(m_papp, lpcsz, pstraPath, pstraTitle, pbaIsDir, piaSize);
       }
 
-      void application::rls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, array < bool, bool > * pbaIsDir, array < int64_t, int64_t > * piaSize)
+      void application::rls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, array < int64_t, int64_t > * piaSize)
       {
-         return m_papp->m_psystem->m_spdir.m_p->rls_pattern(m_papp, lpcsz, lpcszPattern, pstraPath, pstraTitle, pstraRelative, pbaIsDir, piaSize);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->rls_pattern(m_papp, lpcsz, lpcszPattern, pstraPath, pstraTitle, pstraRelative, pbaIsDir, piaSize);
       }
 
       void application::rls(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
       {
-         return m_papp->m_psystem->m_spdir.m_p->rls(m_papp, lpcsz, pstraPath, pstraTitle, pstraRelative);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->rls(m_papp, lpcsz, pstraPath, pstraTitle, pstraRelative);
       }
 
       void application::rls_dir(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
       {
-         return m_papp->m_psystem->m_spdir.m_p->rls_dir(m_papp, lpcsz, pstraPath, pstraTitle, pstraRelative);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->rls_dir(m_papp, lpcsz, pstraPath, pstraTitle, pstraRelative);
       }
 
       void application::ls_dir(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
-         return m_papp->m_psystem->m_spdir.m_p->ls_dir(m_papp, lpcsz, pstraPath, pstraTitle);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->ls_dir(m_papp, lpcsz, pstraPath, pstraTitle);
       }
 
       bool application::has_subdir(const char * lpcsz)
       {
-         return m_papp->m_psystem->m_spdir.m_p->has_subdir(m_papp, lpcsz);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->has_subdir(m_papp, lpcsz);
       }
 
       void application::ls_file(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
-         return m_papp->m_psystem->m_spdir.m_p->ls_file(m_papp, lpcsz, pstraPath, pstraTitle);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->ls_file(m_papp, lpcsz, pstraPath, pstraTitle);
       }
 
       bool application::is(const char * lpcsz)
       {
-         return m_papp->m_psystem->m_spdir.m_p->is(lpcsz, m_papp);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->is(lpcsz, m_papp);
       }
 
       bool application::is(const string & str)
       {
-         return m_papp->m_psystem->m_spdir.m_p->is(str, m_papp);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->is(str, m_papp);
       }
 
       bool application::is(const var & var)
       {
-         return m_papp->m_psystem->m_spdir.m_p->is(var, m_papp);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->is(var, m_papp);
       }
 
       bool application::is_inside(const char * lpcszDir, const char * lpcszPath)
       {
-         return m_papp->m_psystem->m_spdir.m_p->is_inside(lpcszDir, lpcszPath, m_papp);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->is_inside(lpcszDir, lpcszPath, m_papp);
       }
 
       bool application::is_inside_time(const char * lpcsz)
       {
-         return m_papp->m_psystem->m_spdir.m_p->is_inside_time(lpcsz, m_papp);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->is_inside_time(lpcsz, m_papp);
       }
 
 
       void application::root_ones(stringa & stra)
       {
-         return m_papp->m_psystem->m_spdir.m_p->root_ones(stra, m_papp);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->root_ones(stra, m_papp);
       }
 
 
       bool application::mk(const char * lpcsz)
       {
-         return m_papp->m_psystem->m_spdir.m_p->mk(lpcsz, m_papp);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->mk(lpcsz, m_papp);
       }
 
 
       bool application::rm(const char * psz, bool bRecursive)
       {
-         return m_papp->m_psystem->m_spdir.m_p->rm(m_papp, psz, bRecursive);
+         return m_pbaseapp->m_pplaneapp->m_psystem->m_spdir.m_p->rm(m_papp, psz, bRecursive);
       }
 
 
@@ -253,6 +259,6 @@ namespace core
    } // namespace dir
 
 
-} // namespace core
+} // namespace file
 
 

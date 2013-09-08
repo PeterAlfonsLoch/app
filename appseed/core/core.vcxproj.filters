@@ -336,9 +336,6 @@
     <Filter Include="Source Files\core\api">
       <UniqueIdentifier>{192ca103-fd43-4c09-b562-cdddde28d82b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core\multithreading">
-      <UniqueIdentifier>{bafe58a1-067a-48e4-9409-820647c33f28}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\core\windows">
       <UniqueIdentifier>{4e78959a-4e29-4cfb-8184-a549dce8fadd}</UniqueIdentifier>
     </Filter>
@@ -348,9 +345,6 @@
     <Filter Include="Header Files\core">
       <UniqueIdentifier>{a28da0a9-77ec-4f4c-8821-ad2d60cf8bad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\core\multithreading">
-      <UniqueIdentifier>{c058d61a-9c66-4e4d-bcc6-cedd9f28e292}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\core\api">
       <UniqueIdentifier>{8ce7f905-15ff-4ea9-844d-259b244b2b43}</UniqueIdentifier>
     </Filter>
@@ -359,9 +353,6 @@
     </Filter>
     <Filter Include="Header Files\core\os">
       <UniqueIdentifier>{cdc5a44f-a86f-4733-9b61-8fc16259d054}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core\xml">
-      <UniqueIdentifier>{9fb38254-691f-489f-8857-3c68b0b1224f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\core\libcharguess">
       <UniqueIdentifier>{7b7c2c1f-7213-497e-9a3f-2adb146b5724}</UniqueIdentifier>
@@ -384,9 +375,6 @@
     <Filter Include="Source Files\core\geoip">
       <UniqueIdentifier>{5fcdf9f7-4a55-4f09-92cd-be40278095ff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core\exception">
-      <UniqueIdentifier>{f7c568b3-4c16-45dd-b85e-81aae11d186e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\core\crypto">
       <UniqueIdentifier>{a598dcc2-b5e3-42ec-ba57-f3c3febc03db}</UniqueIdentifier>
     </Filter>
@@ -395,9 +383,6 @@
     </Filter>
     <Filter Include="Source Files\core\plugin">
       <UniqueIdentifier>{079ee505-bca6-43e2-9e84-e7fcc53a03df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\xml">
-      <UniqueIdentifier>{9e37a409-9cf7-4a9b-8821-84e51688a22d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user\fontopus">
       <UniqueIdentifier>{4387558a-eec5-477c-a058-6d0898f937f0}</UniqueIdentifier>
@@ -912,9 +897,6 @@
       <Filter>Header Files\compress</Filter>
     </ClInclude>
     <ClInclude Include="compress\compress_filter_coder.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_gzip_helper.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
     <ClInclude Include="compress\compress_huffman_decoder.h">
@@ -2513,69 +2495,6 @@
     <ClInclude Include="core\os\os_cross_windows_winnt.h">
       <Filter>Header Files\core\os</Filter>
     </ClInclude>
-    <ClInclude Include="core\xml\xml.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_attr.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_base_array.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_data.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_disp_option.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_document.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_edit.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_entity.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_enum.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_exportable.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_importable.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_input_tree.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_node.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_output_tree.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_parse_info.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_property_exchange.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_tree_base.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_tree_schema.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_var_exchange.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_xml.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="core\xml\xml_xmlite.h">
-      <Filter>Header Files\core\xml</Filter>
-    </ClInclude>
     <ClInclude Include="core\libcharguess\big5Prober.h">
       <Filter>Header Files\core\libcharguess</Filter>
     </ClInclude>
@@ -2864,72 +2783,6 @@
     <ClInclude Include="user\user_window_map.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_condition.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_critical_section.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_event.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_event_base.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_event_collection.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_manual_reset_event.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_multi_lock.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_mutex.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_plain_service.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_retry_multi_lock.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_retry_single_lock.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_semaphore.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_service_base.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_service_status.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_single_lock.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_socket_event.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_sync_object.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_synch_lock.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_thread_pool.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_wait_result.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="core\multithreading\multithreading_waitable.h">
-      <Filter>Header Files\core\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="database\databaseuser\data_key_list_data.h">
       <Filter>Header Files\database\databaseuser</Filter>
     </ClInclude>
@@ -3159,12 +3012,6 @@
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_limited_writer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_stream_memory_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_buffered.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_application.h">
@@ -3503,21 +3350,6 @@
     <ClInclude Include="core\core_util1.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\filesystem\file\file_transfer_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="core\zzz_want_to_remove_core_0.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\zzz_want_to_remove_core_.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\zzz_want_to_remove_core_1.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\zzz_want_to_remove_core_2.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_dir_system.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -3528,12 +3360,6 @@
       <Filter>Header Files\net\http</Filter>
     </ClInclude>
     <ClInclude Include="core\core_process_departament.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\zzz_want_to_remove_core_se_translator.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\zzz_want_to_remove_core_se_translator.want_to_remove.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="net\hi5\hi5_oauth.h">
@@ -3565,6 +3391,18 @@
     </ClInclude>
     <ClInclude Include="compress\zip\memory_buffer.h">
       <Filter>Header Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_buffered_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\filesystem\file\file_transfer_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\http_output_stream.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_gzip_stream.h">
+      <Filter>Header Files\compress</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3854,9 +3692,6 @@
       <Filter>Source Files\compress</Filter>
     </ClCompile>
     <ClCompile Include="compress\compress_bzip_helper.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_gzip_helper.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
     <ClCompile Include="compress\compress_out_handler.cpp">
@@ -4666,12 +4501,6 @@
     <ClCompile Include="net\sockets\http_memory_file.cpp">
       <Filter>Source Files\net\sockets</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\sockets_http_batch_file.cpp">
-      <Filter>Source Files\net\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\sockets_http_file.cpp">
-      <Filter>Source Files\net\sockets</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\bsd\sockets_include.cpp">
       <Filter>Source Files\net\sockets\bsd</Filter>
     </ClCompile>
@@ -4993,9 +4822,6 @@
     <ClCompile Include="programming\dynamic_source\dynamic_source_script_manager.cpp">
       <Filter>Source Files\programming\dynamic_source</Filter>
     </ClCompile>
-    <ClCompile Include="net\hi5\hi5_net_twitter_authorization.cpp">
-      <Filter>Source Files\net\hi5</Filter>
-    </ClCompile>
     <ClCompile Include="database\sqlite\sqlite3.cpp">
       <Filter>Source Files\database\sqlite</Filter>
     </ClCompile>
@@ -5072,9 +4898,6 @@
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
     <ClCompile Include="core\windows\os_library_initialize.cpp">
-      <Filter>Source Files\core\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="core\windows\os_utils.cpp">
       <Filter>Source Files\core\windows</Filter>
     </ClCompile>
     <ClCompile Include="core\api\api_string.cpp">
@@ -5166,123 +4989,6 @@
     </ClCompile>
     <ClCompile Include="core\geoip\geoip_update.cpp">
       <Filter>Source Files\core\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_archive.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_archive_exception.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_base.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_call_stack.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_debug.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_dump.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_dump_context.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_dump_floating_point.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_dump_output.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_engine.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_error.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_exit.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_hresult.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_installing.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_interface_only.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_invalid_argument.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_invalid_character.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_invalid_handle.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_invalid_index.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_io.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_last_error.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_memory.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_not_implemented.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_not_installed.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_not_licensed.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_not_supported.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_operation_canceled.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_os.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_overflow_error.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_range_error.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_resource.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_runtime_error.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_simple.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_standard_translator.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_temporary.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_todo.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_user.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_VMSException.cpp">
-      <Filter>Source Files\core\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="core\exception\exception_void_implementation.cpp">
-      <Filter>Source Files\core\exception</Filter>
     </ClCompile>
     <ClCompile Include="core\crypto\crypto_ae_xfm.cpp">
       <Filter>Source Files\core\crypto</Filter>
@@ -5385,63 +5091,6 @@
     </ClCompile>
     <ClCompile Include="core\plugin\plugin_system.cpp">
       <Filter>Source Files\core\plugin</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_attr.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_base_array.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_data.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_disp_option.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_document.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_edit.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_entity.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_exportable.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_importable.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_input_tree.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_node.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_output_tree.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_parse_info.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_property_exchange.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_tree_base.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_tree_schema.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_var_exchange.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_xml.cpp">
-      <Filter>Source Files\core\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="core\xml\xml_xmlite.cpp">
-      <Filter>Source Files\core\xml</Filter>
     </ClCompile>
     <ClCompile Include="user\fontopus\fontopus_contact_list.cpp">
       <Filter>Source Files\user\fontopus</Filter>
@@ -5611,66 +5260,6 @@
     <ClCompile Include="user\user_view_update_hint.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_condition.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_core.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_critical_section.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_event.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_event_base.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_event_collection.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_file_change_event.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_manual_reset_event.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_multi_lock.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_mutex.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_plain_service.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_retry_multi_lock.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_retry_single_lock.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_semaphore.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_service_base.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_single_lock.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_socket_event.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_synch_lock.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_wait_result.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_waitable.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_document.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
@@ -5709,9 +5298,6 @@
     </ClCompile>
     <ClCompile Include="database\databaseuser\database_list_data.cpp">
       <Filter>Source Files\database\databaseuser</Filter>
-    </ClCompile>
-    <ClCompile Include="core\multithreading\multithreading_sync_object.cpp">
-      <Filter>Source Files\core\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\basic</Filter>
@@ -5824,9 +5410,6 @@
     <ClCompile Include="filesystem\file\file_buffered.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_stream_memory_file.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_clustered_input_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -5906,9 +5489,6 @@
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_ip_enum.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_istring.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_job.cpp">
@@ -6025,9 +5605,6 @@
     <ClCompile Include="net\hi5\hi5_oauth.cpp">
       <Filter>Source Files\net\hi5</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_transfer_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_dir_application.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -6103,6 +5680,24 @@
     <ClCompile Include="core\core_parse.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\file\file_transfer_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_output_stream.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\hi5\hi5_twitter_authorization.cpp">
+      <Filter>Source Files\net\hi5</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_http_batch_buffer.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_http_buffer.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_gzip_stream.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="user\interaction.inl">
@@ -6110,9 +5705,6 @@
     </None>
     <None Include="user\user_interaction.inl">
       <Filter>Header Files\user</Filter>
-    </None>
-    <None Include="core\multithreading\multithreading.inl">
-      <Filter>Header Files\core\multithreading</Filter>
     </None>
     <None Include="core.def">
       <Filter>Source Files</Filter>

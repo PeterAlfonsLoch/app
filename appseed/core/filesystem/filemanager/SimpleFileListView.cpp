@@ -137,7 +137,7 @@ namespace filemanager
             FileManagerViewUpdateHint * puh = (FileManagerViewUpdateHint *) phint;
             if(puh->is_type_of(FileManagerViewUpdateHint::TypeInitialize))
             {
-               m_papp = get_app()->m_pappThis;
+               m_papp = get_app()->m_pplaneapp;
                db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
                if(pcentral == NULL)
                   return;
@@ -835,7 +835,7 @@ namespace filemanager
                pmenuitem->m_button._001SetButtonText(stra[i]);
                pmenuitem->m_iLevel = pitema->m_pitemContainer != NULL ? pitema->m_pitemContainer->m_iLevel + 1 : 0;
                pmenuitem->m_pbase = pbase;
-               pitema->insert_at(iIndex, pmenuitem);
+               pitema->inset(iIndex, pmenuitem);
                iIndex++;
             }
             pcmdui->m_pcmdui->m_iIndex = iStartIndex;

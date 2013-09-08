@@ -238,25 +238,6 @@ namespace database
       return false;
    }
 
-   bool client::data_set(class id id, class id idIndex, ::file::serializable & obj, update_hint * puh)
-   {
-      if(m_pdataserver != NULL)
-      {
-         if(!m_pdataserver->data_server_save(this, m_dataid, id, idIndex, obj, puh))
-            return false;
-         return true;
-      }
-      return false;
-   }
-
-   bool client::data_set(class id id, class id idIndex, ::core::plain_text_input_stream & istream, update_hint * puh)
-   {
-      if(m_pdataserver != NULL)
-      {
-         return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, istream, puh);
-      }
-      return false;
-   }
 
    bool client::data_get(class id id, class id idIndex, bool & b)
    {
@@ -356,28 +337,7 @@ namespace database
       return false;
    }
 
-   bool client::data_get(class id id, class id idIndex, ::file::serializable & obj)
-   {
-      if(m_pdataserver != NULL)
-      {
-         if(!m_pdataserver->data_server_load(this, m_dataid, id, idIndex, obj))
-            return false;
-         return true;
-      }
-      return false;
-   }
-
-   bool client::data_get(class id id, class id idIndex, ::core::plain_text_output_stream & ostream)
-   {
-      if(m_pdataserver != NULL)
-      {
-         if(!m_pdataserver->data_server_load(this, m_dataid, id, idIndex, ostream))
-            return false;
-         return true;
-      }
-      return false;
-   }
-
+   
    bool client::data_pulse_change(class id id, class id idIndex, update_hint * puh)
    {
       if(m_pdataserver != NULL)

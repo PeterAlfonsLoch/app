@@ -24,13 +24,18 @@ namespace file
    }
 
 
-   bool circular_buffer::write(const char *s,size_t l)
+   void circular_buffer::write(const void * pdata, ::primitive::memory_size l)
    {
+
+      const char * s = (const char *) pdata;
+
       if (m_q + l > m_max)
       {
-         return false; // overflow
+         throw io_exception(get_app());
       }
+
       m_count += (uint_ptr) l;
+
       if (m_t + l > m_max) // block crosses circular border
       {
          size_t l1 = m_max - m_t; // size left until circular border crossing
@@ -50,49 +55,88 @@ namespace file
             m_t -= m_max;
          m_q += l;
       }
-      return true;
+      
    }
 
 
-   bool circular_buffer::read(char *s,size_t l)
+   ::primitive::memory_size circular_buffer::read(void * pbuffer, primitive::memory_size l)
    {
+
+      byte * s = (byte *) pbuffer;
+
+
       if (l > m_q)
       {
-         return false; // not enough chars
+         throw io_exception(get_app());
       }
+
       if (m_b + l > m_max) // block crosses circular border
       {
+
          size_t l1 = m_max - m_b;
-         if (s)
+
+
+         if(s != NULL)
          {
+
             memcpy(s, m_memory.get_data() + m_b, l1);
+
             memcpy(s + l1, m_memory.get_data(), l - l1);
+
          }
+
          m_b = l - l1;
+
          m_q -= l;
+
       }
       else
       {
-         if (s)
+
+         if(s != NULL)
          {
+
             memcpy(s, m_memory.get_data() + m_b, l);
+
          }
+
          m_b += l;
+
          if (m_b >= m_max)
             m_b -= m_max;
+
          m_q -= l;
+
       }
+
       if (!m_q)
       {
+
          m_b = m_t = 0;
+
       }
-      return true;
+
+      return l;
+
    }
 
 
    bool circular_buffer::remove(size_t l)
    {
-      return read(NULL, l);
+
+      try
+      {
+         
+         return read(NULL, l) == l;
+
+      }
+      catch(...)
+      {
+
+         return false;
+
+      }
+
    }
 
 

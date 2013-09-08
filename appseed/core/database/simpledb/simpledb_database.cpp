@@ -20,7 +20,7 @@ namespace simpledb
 
       try
       {
-         if(!m_spfileMeta->open(strMetaPath, ::file::type_binary | ::file::binary_buffer::mode_read_write | ::file::binary_buffer::shareExclusive))
+         if(!m_spfileMeta->open(strMetaPath, ::file::type_binary | ::file::mode_read_write | ::file::share_exclusive))
             return DB_ERROR;
       }
       catch(...)
@@ -28,7 +28,7 @@ namespace simpledb
          strMetaPath = System.dir().appdata("database/" + db, "meta.xml");
          try
          {
-            if(!m_spfileMeta->open(strMetaPath, ::file::type_binary | ::file::binary_buffer::mode_read_write | ::file::binary_buffer::shareExclusive))
+            if(!m_spfileMeta->open(strMetaPath, ::file::type_binary | ::file::mode_read_write | ::file::share_exclusive))
                return DB_ERROR;
          }
          catch(...)
@@ -37,7 +37,9 @@ namespace simpledb
          }
       }
 
-      if(!m_xmldocumentMeta.load(m_spfileMeta))
+      ::file::input_stream is(m_spfileMeta);
+
+      if(!m_xmldocumentMeta.load(is))
          return DB_ERROR;
 
       return DB_COMMAND_OK;

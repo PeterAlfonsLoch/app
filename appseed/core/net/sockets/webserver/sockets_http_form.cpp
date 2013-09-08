@@ -18,8 +18,11 @@ namespace http
       m_bRaw = false;
    }
 
-   void form::parse_body(file::memory_buffer *infil, const char * pszContentType, size_t content_length)
+   void form::parse_body(file::stream_buffer *infil, const char * pszContentType, size_t content_length)
    {
+
+      ::file::plain_text_input_stream is(infil);
+
       UNREFERENCED_PARAMETER(content_length);
 
       size_t extra = 2;
@@ -30,7 +33,7 @@ namespace http
 
       if (content_type.get_length() >= 19 && content_type.Mid(0, 19) == "multipart/form-data")
       {
-         ::core::parse pa(content_type,";=");
+         ::str::parse pa(content_type,";=");
          char *tempcmp = NULL;
          size_t tc = 0;
          strsize iBoundaryLength = 0;
@@ -70,7 +73,7 @@ namespace http
                      slask.trim();
                      if(slask.is_empty())
                         break;
-                     ::core::parse pa(slask,";");
+                     ::str::parse pa(slask,";");
                      string h = pa.getword();
                      if(!stricmp(h,"Content-type:"))
                      {
@@ -86,7 +89,7 @@ namespace http
                            h = pa.getword();
                            while(h.has_char())
                            {
-                              ::core::parse pa2(h,"=");
+                              ::str::parse pa2(h,"=");
                               string name = pa2.getword();
                               h = pa2.getrest();
                               if (!strcmp(name,"name"))
@@ -151,7 +154,7 @@ namespace http
                      int32_t out = 0;
                      char ca;
                      string strTempFile = System.file().time_square(get_app());
-                     ::file::binary_buffer_sp spfile(Application.file().get_file(strTempFile, ::file::type_binary | ::file::binary_buffer::mode_create | ::file::binary_buffer::mode_write));
+                     ::file::binary_buffer_sp spfile(Application.file().get_file(strTempFile, ::file::type_binary | ::file::mode_create | ::file::mode_write));
                      if(spfile.is_set())
                      {
                         while (infil -> read(&ca,1))

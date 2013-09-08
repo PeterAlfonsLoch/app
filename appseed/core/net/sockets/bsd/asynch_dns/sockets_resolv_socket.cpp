@@ -110,7 +110,7 @@ namespace sockets
 
    void resolv_socket::OnLine(const string & line)
    {
-      ::core::parse pa(line, ":");
+      ::str::parse pa(line, ":");
       if (m_bServer)
       {
          m_query = pa.getword();
@@ -125,28 +125,28 @@ namespace sockets
                if (time(NULL) - System.sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
                {
    TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query, m_data, result);
-                  Send("Cached\n");
+                  write("Cached\n");
                   if (result.is_empty()) /* failed */
                   {
-                     Send("Failed\n\n");
+                     write("Failed\n\n");
                      SetCloseAndDelete();
                      return;
                   }
                   else if (m_query == "gethostbyname")
                   {
-                     Send("A: " + result + "\n\n");
+                     write("A: " + result + "\n\n");
                      SetCloseAndDelete();
                      return;
                   }
                   else if (m_query == "gethostbyname2")
                   {
-                     Send("AAAA: " + result + "\n\n");
+                     write("AAAA: " + result + "\n\n");
                      SetCloseAndDelete();
                      return;
                   }
                   else if (m_query == "gethostbyaddr")
                   {
-                     Send("Name: " + result + "\n\n");
+                     write("Name: " + result + "\n\n");
                      SetCloseAndDelete();
                      return;
                   }
@@ -252,13 +252,13 @@ namespace sockets
          {
             string ip;
             System.net().convert(ip, sa);
-            Send("A: " + ip + "\n");
+            write("A: " + ip + "\n");
          }
          else
          {
-            Send("Failed\n");
+            write("Failed\n");
          }
-         Send("\n");
+         write("\n");
       }
       else if (m_query == "gethostbyname2")
       {
@@ -267,13 +267,13 @@ namespace sockets
          {
             string ip;
             System.net().convert(ip, sa);
-            Send("AAAA: " + ip + "\n");
+            write("AAAA: " + ip + "\n");
          }
          else
          {
-            Send("Failed\n");
+            write("Failed\n");
          }
-         Send("\n");
+         write("\n");
       }
       else
       if (m_query == "gethostbyaddr")
@@ -283,18 +283,18 @@ namespace sockets
             struct in_addr sa;
             if (!System.net().convert(sa, m_data, AI_NUMERICHOST))
             {
-               Send("Failed: convert to sockaddr_in failed\n");
+               write("Failed: convert to sockaddr_in failed\n");
             }
             else
             {
                string name;
                if (!System.net().reverse( (struct sockaddr *)&sa, sizeof(sa), name))
                {
-                  Send("Failed: ipv4 reverse lookup of " + m_data + "\n");
+                  write("Failed: ipv4 reverse lookup of " + m_data + "\n");
                }
                else
                {
-                  Send("Name: " + name + "\n");
+                  write("Name: " + name + "\n");
                }
             }
          }
@@ -303,32 +303,32 @@ namespace sockets
             struct in6_addr sa;
             if (!System.net().convert(sa, m_data, AI_NUMERICHOST))
             {
-               Send("Failed: convert to sockaddr_in6 failed\n");
+               write("Failed: convert to sockaddr_in6 failed\n");
             }
             else
             {
                string name;
                if (!System.net().reverse( (struct sockaddr *)&sa, sizeof(sa), name))
                {
-                  Send("Failed: ipv6 reverse lookup of " + m_data + "\n");
+                  write("Failed: ipv6 reverse lookup of " + m_data + "\n");
                }
                else
                {
-                  Send("Name: " + name + "\n");
+                  write("Name: " + name + "\n");
                }
             }
          }
          else
          {
-            Send("Failed: malformed address\n");
+            write("Failed: malformed address\n");
          }
-         Send("\n");
+         write("\n");
       }
       else
       {
          string msg = "Unknown query type: " + m_query;
          Handler().LogError(this, "OnDetached", 0, msg);
-         Send("Unknown\n\n");
+         write("Unknown\n\n");
       }
       SetCloseAndDelete();
    }
@@ -341,7 +341,7 @@ namespace sockets
          string msg = (m_resolve_ipv6 ? "gethostbyname2 " : "gethostbyname ") + m_resolv_host + "\n";
          m_query = m_resolve_ipv6 ? "gethostbyname2" : "gethostbyname";
          m_data = m_resolv_host;
-         Send( msg );
+         write( msg );
          return;
       }
       if (m_resolve_ipv6)
@@ -351,14 +351,14 @@ namespace sockets
          m_query = "gethostbyaddr";
          m_data = tmp;
          string msg = "gethostbyaddr " + tmp + "\n";
-         Send( msg );
+         write( msg );
       }
       string tmp;
       System.net().convert(tmp, m_resolv_address);
       m_query = "gethostbyaddr";
       m_data = tmp;
       string msg = "gethostbyaddr " + tmp + "\n";
-      Send( msg );
+      write( msg );
    }
 
 

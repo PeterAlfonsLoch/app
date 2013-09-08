@@ -303,7 +303,7 @@ namespace core
             ::OutputDebugStringW(::str::international::utf8_to_unicode(strLine));
             fputs(strLine, plog->m_pfile);
          }
-         catch(exception &)
+         catch(exception::exception &)
          {
             // Ignore exception here because this class/function is used for debugging
          }
@@ -455,10 +455,10 @@ namespace core
 
          try
          {
-            if(!plog->m_spfile->open(m_strLogPath, ::file::binary_buffer::type_text
-               | ::file::binary_buffer::mode_write
-               | ::file::binary_buffer::shareDenyWrite | ::file::binary_buffer::mode_create | ::file::binary_buffer::modeNoTruncate
-               | ::file::binary_buffer::defer_create_directory))
+            if(!plog->m_spfile->open(m_strLogPath, ::file::type_text
+               | ::file::mode_write
+               | ::file::share_deny_write | ::file::mode_create | ::file::mode_no_truncate
+               | ::file::defer_create_directory))
             {
                if(plog->m_spfile->IsOpened())
                {

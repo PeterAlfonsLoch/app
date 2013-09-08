@@ -150,7 +150,7 @@ public:
       CLONEABLE_TYPE * pt = ::new (pv) CLONEABLE_TYPE(*ptSrc);
 #define new DEBUG_NEW
       ::dereference_no_delete(pt);
-      pt->element::set_ca_flag(element::flag_discard_to_factory);
+      pt->::element::set_ca_flag(element::flag_discard_to_factory);
       pt->m_pfactoryitembase = this;
       pt->m_pthis = pt;
       return pt;

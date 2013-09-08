@@ -80,7 +80,7 @@ namespace file
 
       if (_bufPos > 0)
       {
-         RINOK(WriteStream(stream, m_memory.get_data(), (::primitive::memory_size) _bufPos));
+         RINOK(::file::write(stream, m_memory.get_data(), (::primitive::memory_size) _bufPos));
          //WriteStream(stream, m_memory.get_data(), _bufPos);
          crc = crc_update(crc, m_memory.get_data(), (::primitive::memory_size) _bufPos);
          size += _bufPos;
@@ -98,7 +98,7 @@ namespace file
                return E_FAIL;*/
             if (processed == 0)
                break;
-            RINOK(WriteStream(stream, m_memory.get_data(), processed));
+            RINOK(::file::write(stream, m_memory.get_data(), processed));
             crc = crc_update(crc, m_memory.get_data(), processed);
             size += processed;
          }

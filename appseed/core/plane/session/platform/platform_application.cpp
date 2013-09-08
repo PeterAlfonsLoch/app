@@ -72,10 +72,12 @@ namespace platform
       return application::_001OnCmdMsg(pcmdmsg);
    }
 
-   application * application::get_app() const
+/*
+application * application::get_app() const
    {
-      return m_papp;
+      return m_pcaapp;
    }
+*/
 
    void application::OnFileManagerOpenFile(
       ::filemanager::data * pdata,

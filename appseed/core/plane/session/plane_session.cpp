@@ -60,19 +60,19 @@ namespace plane
       }
 
       string strId;
-      sp(base_application) pcaapp;
+      sp(base_application) pbaseapp;
 
       while(pos != NULL)
       {
 
          strId.Empty();
-         pcaapp = NULL;
+         pbaseapp = NULL;
 
-         m_mapApplication.get_next_assoc(pos, strId, pcaapp);
+         m_mapApplication.get_next_assoc(pos, strId, pbaseapp);
 
-         sp(base_application) papp = (pcaapp);
+         sp(base_application) papp = (pbaseapp);
 
-         papp->post_thread_message(WM_QUIT);
+         papp->m_pplaneapp->post_thread_message(WM_QUIT);
       }
 
 
@@ -106,7 +106,7 @@ namespace plane
 
          m_mapApplication.get_next_assoc(pos, strId, papp);
 
-         papp->post_thread_message(WM_QUIT);
+         papp->m_pplaneapp->post_thread_message(WM_QUIT);
 
       }
 
@@ -119,7 +119,7 @@ namespace plane
       m_strBaseSupportId   = "ca2_bergedge";
       m_strInstallToken    = "session";
       m_bLicense           = false;
-      m_eexclusiveinstance = ::core::ExclusiveInstanceNone;
+      m_eexclusiveinstance = ExclusiveInstanceNone;
 
    }
 
@@ -262,10 +262,12 @@ namespace plane
       return application::_001OnCmdMsg(pcmdmsg);
    }
 
+   /*
    application * session::get_app() const
    {
       return ::plane::application::get_app();
    }
+   */
 
    void session::load_string_table()
    {
@@ -306,7 +308,7 @@ namespace plane
          createcontextBergedge->m_bMakeVisible = false;
 
          m_pbergedgedocument =  (m_ptemplate_bergedge->open_document_file(createcontextBergedge).m_p);
-         m_pbergedgedocument->m_papp->m_psession = m_psession;
+         m_pbergedgedocument->m_pbaseapp->m_pplaneapp->m_psession = m_psession;
 
       }
       if(m_bShowPlatform)
@@ -324,7 +326,7 @@ namespace plane
             m_pplatformdocument->m_pbergedgedocument =  m_pbergedgedocument;
             //m_pnaturedocument    =
             // dynamic_cast < sp(::nature::document) > (
-            //  papp->m_ptemplate_nature->open_document_file(NULL, false, m_pbergedgedocument->get_bergedge_view()));
+            //  papp->m_pplaneapp->m_ptemplate_nature->open_document_file(NULL, false, m_pbergedgedocument->get_bergedge_view()));
 
             m_pbergedgedocument->set_platform(m_pplatformdocument);
             //m_pbergedgedocument->set_nature(m_pnaturedocument);
@@ -357,14 +359,14 @@ namespace plane
 
       pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] = 1;
 
-      sp(base_application) pcaapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      sp(base_application) pbaseapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
 
-      sp(::plane::session) papp = pcaapp;
+      sp(::plane::session) papp = pbaseapp;
 
       if(papp == NULL)
       {
 
-         pcaapp.release();
+         pbaseapp.release();
 
          return false;
 
@@ -373,7 +375,7 @@ namespace plane
 
       UINT uiMessage = WM_APP + 2043;
 
-      papp->post_thread_message(uiMessage, 2, pcreatecontext);
+      papp->m_pplaneapp->post_thread_message(uiMessage, 2, pcreatecontext);
 
       pcreatecontext->m_spCommandLine->m_eventReady.wait();
 
@@ -527,7 +529,7 @@ namespace plane
 
                   pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"] = (sp(::plane::session) ) this;
 
-                  papp->post_thread_message(dw, 2, pcreatecontext);
+                  papp->m_pplaneapp->post_thread_message(dw, 2, pcreatecontext);
 
                   m_pappCurrent = papp;
 
@@ -686,7 +688,7 @@ namespace plane
 
          UINT uiMessage = WM_APP + 2043;
 
-         papp->post_thread_message(uiMessage, 2, pcreatecontext);
+         papp->m_pplaneapp->post_thread_message(uiMessage, 2, pcreatecontext);
 
          while(get_run())
          {
@@ -822,7 +824,7 @@ namespace plane
       if(papp == NULL)
          return false;
 
-      papp->::request_interface::create(pcreatecontext);
+      papp->m_pplaneapp->::request_interface::create(pcreatecontext);
 
       return true;
 
@@ -1029,7 +1031,7 @@ alt1:
    throw e;
 
    }
-   catch(exception & e)
+   catch(exception::exception & e)
    {
 
    if(!Application.on_run_exception(e))
@@ -1421,11 +1423,11 @@ alt1:
          }
       }
 
-      if(m_pappCurrent != NULL && m_pappCurrent->m_pappThis->fontopus()->m_puser != NULL)
+      if(m_pappCurrent != NULL && m_pappCurrent->m_pplaneapp->fontopus()->m_puser != NULL)
       {
          try
          {
-            get_view()->GetParentFrame()->SetWindowText(m_pappCurrent->m_pappThis->fontopus()->m_puser->m_strLogin);
+            get_view()->GetParentFrame()->SetWindowText(m_pappCurrent->m_pplaneapp->fontopus()->m_puser->m_strLogin);
          }
          catch(...)
          {
@@ -1541,7 +1543,7 @@ alt1:
             throw e;
 
          }
-         catch(exception & e)
+         catch(exception::exception & e)
          {
 
             if(!App(this).on_run_exception(e))
