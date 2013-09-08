@@ -63,7 +63,7 @@ void menu_view::_001OnCreate(signal_details * pobj)
 
 void menu_view::_001OnTimer(signal_details * pobj)
 {
-   SCAST_PTR(message::timer, ptimer, pobj);
+   SCAST_PTR(::message::timer, ptimer, pobj);
    if(m_pcallback != NULL)
    {
       ::user::control_event ev;
@@ -80,7 +80,7 @@ void menu_view::_001OnTimer(signal_details * pobj)
 
 void menu_view::_001OnUser123(signal_details * pobj)
 {
-   SCAST_PTR(message::base, pbase, pobj);
+   SCAST_PTR(::message::base, pbase, pobj);
    if(pbase->m_wparam == 0x80000001)
    {
       GetTopLevelParent()->EndModalLoop(IDOK);

@@ -67,7 +67,7 @@ namespace plugin
 
    void host_interaction::_001OnCheck(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_wparam == 0)
       {
          if(pbase->m_lparam != 0)
@@ -97,7 +97,7 @@ namespace plugin
 
    void host_interaction::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(message::timer, ptimer, pobj);
+      SCAST_PTR(::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 19841115)
       {
          KillTimer(19841115);
@@ -222,7 +222,7 @@ namespace plugin
    void host_interaction::on_ignore_message(signal_details * pobj)
    {
       // avoid host interaction call DefWindowProc for certain Windows messages
-//      SCAST_PTR(message::base, pbase, pobj);
+//      SCAST_PTR(::message::base, pbase, pobj);
 
       pobj->m_bRet = true;
    }

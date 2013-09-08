@@ -419,7 +419,7 @@ namespace dynamic_source
 
    void script_manager::message_window_message_handler(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_APP + 13)
       {
          //if(wparam == 0)
@@ -806,7 +806,7 @@ namespace dynamic_source
 
                pinsocket->m_in = phttpdsocket;
 
-               pinsocket->m_memfileInput.FullLoad(phttpdsocket->m_memfileInput);
+               pinsocket->m_memfileInput.transfer_from(phttpdsocket->m_memfileInput);
 
                pinsocket->server_to_link_in(phttpdsocket);
 

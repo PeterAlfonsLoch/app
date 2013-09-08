@@ -57,7 +57,7 @@ namespace database
       void interaction::_001OnShowWindow(signal_details * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
-         //         SCAST_PTR(message::show_window, pshowwindow, pobj)
+         //         SCAST_PTR(::message::show_window, pshowwindow, pobj)
          if(get_parent() == NULL)
          {
 #if !core_level_1 && !core_level_2 && defined(WINDOWS)

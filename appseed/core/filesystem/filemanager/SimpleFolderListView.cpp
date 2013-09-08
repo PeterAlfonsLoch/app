@@ -105,7 +105,7 @@ namespace filemanager
 
    void SimpleFolderListView::_001OnLButtonDblClk(signal_details * pobj) 
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
          index iItem;
       if(_001HitTest_(pmouse->m_pt, iItem))
       {

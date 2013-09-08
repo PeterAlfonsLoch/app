@@ -284,7 +284,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       UINT message = pbase->m_uiMessage;
 
@@ -336,7 +336,7 @@ namespace user
       if(pobj->m_bRet)
          return;
 
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       ASSERT_VALID(this);
 
@@ -390,7 +390,7 @@ namespace user
    void control_bar::_001OnHelpHitTest(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(message::base, pbase, pobj)
+//      SCAST_PTR(::message::base, pbase, pobj)
       ASSERT_VALID(this);
 
    }
@@ -439,7 +439,7 @@ namespace user
 
    void control_bar::_001OnMouseActivate(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse_activate, pmouseactivate, pobj)
+      SCAST_PTR(::message::mouse_activate, pmouseactivate, pobj)
       // call default when toolbar is not floating
       if (!IsFloating())
       {
@@ -528,7 +528,7 @@ namespace user
 
    void control_bar::_001OnCtlColor(signal_details * pobj)
    {
-      SCAST_PTR(message::ctl_color, pctlcolor, pobj)
+      SCAST_PTR(::message::ctl_color, pctlcolor, pobj)
       LRESULT lResult;
       if (pctlcolor->m_pwnd->SendChildNotifyLastMsg(&lResult))
       {
@@ -551,7 +551,7 @@ namespace user
 
    void control_bar::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
       // only start dragging if clicked in "void" space
       if (m_pDockBar != NULL )
          //!m_pDockContext->m_bTracking  && OnToolHitTest(pmouse->m_pt, NULL) == -1)
@@ -569,7 +569,7 @@ namespace user
 
    void control_bar::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
       if(m_bDockTrack)
       {
    //      m_pDockContext->OnBarLButtonUp(pmouse->m_nFlags, pmouse->m_pt);
@@ -579,7 +579,7 @@ namespace user
 
    void control_bar::_001OnMouseMove(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
       if(m_bDockTrack)
       {
    //      m_pDockContext->OnBarMouseMove(pmouse->m_nFlags, pmouse->m_pt);
@@ -589,13 +589,13 @@ namespace user
 
    void control_bar::_001OnLButtonDblClk(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
       pmouse->previous();
    }
 
    void control_bar::_001OnIdleUpdateCmdUI(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj)
       // handle delay hide/show
       bool bVis = (GetStyle() & WS_VISIBLE) != 0;
       UINT swpFlags = 0;
@@ -676,7 +676,7 @@ namespace user
 
    void control_bar::_001OnSizeParent(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj)
       __SIZEPARENTPARAMS* lpLayout = (__SIZEPARENTPARAMS*) pbase->m_lparam.m_lparam;
       uint32_t dwStyle = RecalcDelayShow(lpLayout);
 

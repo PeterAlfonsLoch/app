@@ -258,7 +258,7 @@ namespace platform
    }
    void view::_001OnContextMenu(signal_details * pobj)
    {
-//      SCAST_PTR(message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
 //         point point = pcontextmenu->GetPoint();
 
    }
@@ -531,7 +531,7 @@ namespace platform
    void view::_001OnAppLanguage(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(message::base, pbase, pobj);
+      //      SCAST_PTR(::message::base, pbase, pobj);
       load_links();
    }
 
@@ -574,7 +574,7 @@ namespace platform
    void view::_001OnTimer(signal_details * pobj)
    {
 
-      SCAST_PTR(message::timer, ptimer, pobj)
+      SCAST_PTR(::message::timer, ptimer, pobj)
 
          if(ptimer->m_nIDEvent == 21977)
          {
@@ -612,7 +612,7 @@ namespace platform
 
    void view::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
          pmouse->set_lresult(1);
       KillTimer(5432180);
       point pt = pmouse->m_pt;
@@ -875,7 +875,7 @@ namespace platform
 
    void view::_001OnMouseMove(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
          pmouse->set_lresult(1);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);

@@ -102,7 +102,7 @@ void file_manager_operation_list_view::_001OnCreate(signal_details * pobj)
 }
 void file_manager_operation_list_view::_001OnTimer(signal_details * pobj)
 {
-   SCAST_PTR(message::timer, ptimer, pobj);
+   SCAST_PTR(::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 123)
    {
        /*if(::get_tick_count() - m_dwLast123Update > 500)

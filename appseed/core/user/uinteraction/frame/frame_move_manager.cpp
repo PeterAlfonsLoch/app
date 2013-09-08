@@ -462,7 +462,7 @@ namespace uinteraction
 
       void MoveManager::message_handler(sp(::user::interaction) pwnd, signal_details * pobj)
       {
-         SCAST_PTR(message::base, pbase, pobj);
+         SCAST_PTR(::message::base, pbase, pobj);
          if(m_bPendingMove
             && get_tick_count() > m_dwLastMoveTime + s_dwMoveTime)
          {

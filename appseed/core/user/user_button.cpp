@@ -121,7 +121,7 @@ namespace user
 
    void button::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
 
          e_element eelement;
 
@@ -140,7 +140,7 @@ namespace user
 
    void button::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
 
          e_element eelement;
 
@@ -168,7 +168,7 @@ namespace user
 
    void button::_001OnMouseMove(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
          if(get_form() == NULL)
          {
 
@@ -204,7 +204,7 @@ namespace user
 
    void button::_001OnMouseLeave(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj)
          if(get_form() == NULL)
          {
             index iOldHover = m_iHover;
@@ -307,7 +307,7 @@ namespace user
 
    void button::_001OnSize(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj)
          _001Layout();
       pbase->m_bRet = false;
    }
@@ -315,7 +315,7 @@ namespace user
    void button::on_create(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(message::create, pcreate, pobj)
+      //SCAST_PTR(::message::create, pcreate, pobj)
 
       sp(::simple_frame_window) pframewindow = GetTypedParent < ::simple_frame_window > ();
       if(pframewindow != NULL)

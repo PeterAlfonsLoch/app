@@ -11,7 +11,7 @@ namespace colorertake5
       ::exception::base(e.get_app())
    {
 
-      message = (e.message);
+      m_strMessage = e.m_strMessage;
 
    }
 
@@ -20,6 +20,8 @@ namespace colorertake5
       ::call_stack(papp),
       ::exception::base(papp)
    {
+      
+      m_strMessage = "colorertake5::exception";
 
    }
 
@@ -28,15 +30,14 @@ namespace colorertake5
       ::call_stack(papp),
       ::exception::base(papp)
    {
-      message = "exception: ";
-      message += msg;
+      m_strMessage = "colorertake5::exception: ";
+      m_strMessage += msg;
    }
 
-   exception::~exception(){
-   };
-   string exception::getMessage() const{
-      return message;
-   };
+   exception::~exception()
+   {
+   }
+
 
 /*   InputSourceException::InputSourceException(sp(base_application) papp)
          element(papp),

@@ -1691,7 +1691,7 @@ bool XfplayerViewLine::CalcChar(point pt, strsize &iChar)
 
 void XfplayerViewLine::OnMouseMove(signal_details * pobj)
 {
-   SCAST_PTR(message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj)
    strsize iChar;
    if(CalcChar(pmouse->m_pt, iChar))
    {
@@ -1796,7 +1796,7 @@ void XfplayerViewLine::OnSetCursor(signal_details * pobj)
 
 void XfplayerViewLine::OnLButtonDown(signal_details * pobj)
 {
-   SCAST_PTR(message::mouse, pmouse, pobj);
+   SCAST_PTR(::message::mouse, pmouse, pobj);
    if(GetSelection().OnLButtonDown(*this, (UINT) pmouse->m_nFlags, pmouse->m_pt))
    {
       pmouse->m_bRet = true;
@@ -1806,7 +1806,7 @@ void XfplayerViewLine::OnLButtonDown(signal_details * pobj)
 
 void XfplayerViewLine::OnLButtonUp(signal_details * pobj)
 {
-   SCAST_PTR(message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj)
    strsize iChar;
    if(CalcChar(pmouse->m_pt, iChar))
    {

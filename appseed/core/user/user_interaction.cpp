@@ -944,7 +944,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(message::timer, ptimer, pobj)
+//      SCAST_PTR(::message::timer, ptimer, pobj)
 
    }
 
@@ -2806,7 +2806,7 @@ ExitModal:
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
 
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       // walk from the target window up to the oswindow_Stop window checking
       //  if any window wants to translate this message
 
@@ -2843,7 +2843,7 @@ ExitModal:
 
    void interaction::_001OnMouseMove(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       pmouse->m_ecursor = get_cursor();
    }
 
@@ -3283,7 +3283,7 @@ restart:
 
    void interaction::_001OnUser184(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_wparam == 0 &&
          pbase->m_lparam == 0)
       {
@@ -3492,7 +3492,7 @@ restart:
    void interaction::_001OnSimpleCommand(signal_details * pobj)
    {
 
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       LRESULT lresult = 0;
 

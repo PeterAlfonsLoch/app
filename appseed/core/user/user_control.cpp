@@ -717,7 +717,7 @@ namespace user
 
    void control::_001OnMouseMove(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       index iHover = hit_test(pmouse->m_pt, m_eelementHover);
 

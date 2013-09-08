@@ -34,13 +34,13 @@ namespace user
    void step_slider::_001OnCreate(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(message::create, pcreate, pobj);
+//      SCAST_PTR(::message::create, pcreate, pobj);
 
    }
 
    void step_slider::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(message::timer, ptimer, pobj);
+      SCAST_PTR(::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 1)
       {
          if(m_bHover)
@@ -54,13 +54,13 @@ namespace user
 
    void step_slider::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       m_iLButtonDown = hit_test(pmouse->m_pt);
    }
 
    void step_slider::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       int32_t iLButtonUp = hit_test(pmouse->m_pt);
       int32_t iMin, iMax;
       m_pscalar->GetMinScalar(m_iScalar, iMin);
@@ -76,7 +76,7 @@ namespace user
    void step_slider::_001OnMouseMove(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(message::mouse, pmouse, pobj);
+//      SCAST_PTR(::message::mouse, pmouse, pobj);
       SetTimer(1, 200, NULL);
       m_bHover = true;
       UpdateHover();

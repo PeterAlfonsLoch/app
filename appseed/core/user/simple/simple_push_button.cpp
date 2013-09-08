@@ -200,7 +200,7 @@ void SimplePushButton::_001OnDestroy(signal_details * pobj)
 
 void SimplePushButton::_001OnTimer(signal_details * pobj)
 {
-   SCAST_PTR(message::timer, ptimer, pobj);
+   SCAST_PTR(::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 16384)
    {
       UpdateHover();

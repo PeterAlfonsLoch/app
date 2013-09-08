@@ -118,7 +118,7 @@ namespace user
    void notify_icon::_001OnNotifyIconMessage(signal_details * pobj)
    {
       
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       m_plistener->OnNotifyIconMessage(m_uiId, (UINT) pbase->m_lparam);
 

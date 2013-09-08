@@ -80,7 +80,7 @@ namespace user
 
    void split_bar::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       single_lock sl(&m_pparent->m_mutex, TRUE);
       m_pparent->m_iIndex = m_iIndex;
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count()
@@ -95,7 +95,7 @@ namespace user
 
    void split_bar::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       single_lock sl(&m_pparent->m_mutex, TRUE);
       if(m_pparent->m_iIndex == m_iIndex)
       {
@@ -109,7 +109,7 @@ namespace user
    void split_bar::_001OnMouseMove(signal_details * pobj)
    {
 
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       single_lock sl(&m_pparent->m_mutex, TRUE);
 

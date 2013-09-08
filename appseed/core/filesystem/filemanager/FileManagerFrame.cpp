@@ -120,7 +120,7 @@ void FileManagerFrame::install_message_handling(::message::dispatch * pinterface
 
 void FileManagerFrame::_001OnSetText(signal_details * pobj)
 {
-//   SCAST_PTR(message::base, pbase, pobj)
+//   SCAST_PTR(::message::base, pbase, pobj)
 
    pobj->previous();
 

@@ -734,7 +734,7 @@ namespace user
 
    void list::_001OnSize(signal_details * pobj)
    {
-      SCAST_PTR(message::size, psize, pobj);
+      SCAST_PTR(::message::size, psize, pobj);
       layout();
       psize->m_bRet = false;
    }
@@ -2277,7 +2277,7 @@ namespace user
 
    void list::_001OnKeyDown(signal_details * pobj)
    {
-      SCAST_PTR(message::key, pkey, pobj)
+      SCAST_PTR(::message::key, pkey, pobj)
          if(pkey->previous()) // give chance to child
             return;
       if(pkey->m_ekey == ::user::key_down || pkey->m_ekey == ::user::key_up ||
@@ -2370,7 +2370,7 @@ namespace user
 
    void list::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
       pmouse->previous(); // give chance to child control and to base views
       int_ptr iItem;
       point pt = pmouse->m_pt;
@@ -2432,7 +2432,7 @@ namespace user
 
    void list::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
          point pt = pmouse->m_pt;
       ScreenToClient(&pt);
 
@@ -2475,7 +2475,7 @@ namespace user
 
    void list::_001OnRButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
 
       pmouse->previous();
       point pt = pmouse->m_pt;
@@ -2721,7 +2721,7 @@ namespace user
 
    void list::_001OnLButtonDblClk(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
          m_iClick = 2;
 
       //   _001OnClick(nFlags, point);
@@ -3484,7 +3484,7 @@ namespace user
 
    void list::_001OnCreate(signal_details * pobj)
    {
-      SCAST_PTR(message::create, pcreate, pobj)
+      SCAST_PTR(::message::create, pcreate, pobj)
 
 
          pobj->previous();
@@ -3561,7 +3561,7 @@ namespace user
    void list::_001OnTimer(signal_details * pobj)
    {
 //      return; //xxxtimer
-      SCAST_PTR(message::timer, ptimer, pobj);
+      SCAST_PTR(::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 12345679) // left click
       {
          KillTimer(12345679);
@@ -4760,7 +4760,7 @@ namespace user
 
    void list::_001OnMouseMove(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
          pmouse->set_lresult(1);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -4929,7 +4929,7 @@ namespace user
 
    void list::_001OnVScroll(signal_details * pobj)
    {
-//      SCAST_PTR(message::scroll, pscroll, pobj);
+//      SCAST_PTR(::message::scroll, pscroll, pobj);
 
       pobj->previous();
 
@@ -4937,7 +4937,7 @@ namespace user
 
    void list::_001OnHScroll(signal_details * pobj)
    {
-//      SCAST_PTR(message::scroll, pscroll, pobj);
+//      SCAST_PTR(::message::scroll, pscroll, pobj);
 
       pobj->previous();
 

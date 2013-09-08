@@ -838,10 +838,10 @@ namespace plane
       m_puiParent = NULL;
    }
 
-   //   void session::on_exclusive_instance_conflict(::core::EExclusiveInstance eexclusive)
+   //   void session::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
    //   {
    //
-   //      if(eexclusive == ::core::ExclusiveInstanceLocalId)
+   //      if(eexclusive == ExclusiveInstanceLocalId)
    //      {
    //         /*
    //         ::file::memory_buffer file(get_app());
@@ -1481,9 +1481,9 @@ alt1:
 
    }
 
-   void session::on_exclusive_instance_conflict(::core::EExclusiveInstance eexclusive)
+   void session::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
    {
-      if(eexclusive == ::core::ExclusiveInstanceLocalId)
+      if(eexclusive == ExclusiveInstanceLocalId)
       {
 #ifdef WINDOWSEX
          ::file::memory_buffer file(get_app());
@@ -1543,7 +1543,7 @@ alt1:
             throw e;
 
          }
-         catch(::exception::exception &)
+         catch(::exception::exception & e)
          {
 
             if(!App(this).on_run_exception(e))

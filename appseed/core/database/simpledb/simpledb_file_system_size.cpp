@@ -434,7 +434,7 @@ void FileSystemSizeWnd::_001OnCopyData(signal_details * pobj)
 
 #ifdef WINDOWSEX
 
-   SCAST_PTR(message::base, pbase, pobj);
+   SCAST_PTR(::message::base, pbase, pobj);
 
    COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam.m_lparam;
    if(pstruct->dwData == 0)
@@ -478,7 +478,7 @@ void FileSystemSizeWnd::_001OnTimer(signal_details * pobj)
 
 #ifdef WINDOWSEX
 
-    SCAST_PTR(message::timer, ptimer, pobj);
+    SCAST_PTR(::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 100)
    {
       //::PostMessage(pbase->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);

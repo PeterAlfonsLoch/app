@@ -32,7 +32,7 @@ namespace user
    void keyboard_focus::keyboard_focus_OnKeyDown(signal_details * pobj)
    {
 
-      SCAST_PTR(message::key, pkey, pobj)
+      SCAST_PTR(::message::key, pkey, pobj)
 
       if(pkey->m_ekey == ::user::key_tab)
       {

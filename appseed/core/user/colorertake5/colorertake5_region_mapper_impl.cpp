@@ -12,7 +12,7 @@ RegionDefine *RegionMapperImpl::getRegionDefine(class region *region){
   if (rd != NULL) return rd;
 
   if (regionDefinesVector.get_size() < region->getID()+1)
-    regionDefinesVector.set_size(region->getID()*2);
+    regionDefinesVector.allocate(region->getID()*2);
 
   RegionDefine *rd_new = regionDefines[region->getName()];
   if (rd_new != NULL){

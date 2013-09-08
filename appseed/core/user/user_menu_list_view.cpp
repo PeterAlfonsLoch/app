@@ -41,7 +41,7 @@ namespace user
 
    void menu_list_view::GuieProc(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == m_uiMessage)
       {
          if(base < ::user::place_holder >::bases(get_parent()))

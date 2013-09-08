@@ -7,7 +7,7 @@ namespace user
       element(papp),
       ::user::interaction(papp)
    {
-      m_daScalar.set_size(100);
+      m_daScalar.allocate(100);
       m_daScalar.set(0.0);
 
       m_etranslucency = TranslucencyPresent;
@@ -40,7 +40,7 @@ namespace user
    void elastic_slider::_001OnTimer(signal_details * pobj)
    {
 
-      SCAST_PTR(message::timer, ptimer, pobj);
+      SCAST_PTR(::message::timer, ptimer, pobj);
 
       if(ptimer->m_nIDEvent == 1)
       {
@@ -63,7 +63,7 @@ namespace user
 
    void elastic_slider::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       rect rect;
       GetSliderRect(rect);
       point pt(pmouse->m_pt);
@@ -84,7 +84,7 @@ namespace user
 
    void elastic_slider::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       if(m_bSlide)
       {
 
@@ -98,7 +98,7 @@ namespace user
    void elastic_slider::_001OnMouseMove(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(message::mouse, pmouse, pobj);
+//      SCAST_PTR(::message::mouse, pmouse, pobj);
    }
 
    void elastic_slider::Slide()

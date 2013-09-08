@@ -34,7 +34,7 @@ namespace colorertake5
       {
          parseHRC(pszSource);
       }
-      catch(::exception::exception &e)
+      catch(exception &e)
       {
          throw e;
       }

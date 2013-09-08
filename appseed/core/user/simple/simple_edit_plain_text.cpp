@@ -26,7 +26,7 @@ void simple_edit_plain_text::install_message_handling(::message::dispatch * pint
 void simple_edit_plain_text::_001OnShowWindow(signal_details * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-//   SCAST_PTR(message::show_window, pshowwindow, pobj);
+//   SCAST_PTR(::message::show_window, pshowwindow, pobj);
 
 }
 

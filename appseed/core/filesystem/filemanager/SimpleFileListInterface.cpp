@@ -775,7 +775,7 @@ namespace filemanager
 
    void SimpleFileListInterface::_001OnMainPostMessage(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj)
       switch(pbase->m_wparam)
       {
       case MessageMainPostCreateImageListItemStepSetRedraw:
@@ -1100,7 +1100,7 @@ namespace filemanager
 
    void SimpleFileListInterface::_001OnVScroll(signal_details * pobj)
    {
-      SCAST_PTR(message::scroll, pscroll, pobj)
+      SCAST_PTR(::message::scroll, pscroll, pobj)
       m_iCreateImageListStep = pscroll->m_nPos;
       m_bRestartCreateImageList = true;
       pobj->m_bRet = false;
@@ -1177,7 +1177,7 @@ namespace filemanager
    void SimpleFileListInterface::_001OnShowWindow(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(message::show_window, pshow, pobj)
+//      SCAST_PTR(::message::show_window, pshow, pobj)
 
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
       if(pcentral == NULL)

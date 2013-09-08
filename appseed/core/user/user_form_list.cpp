@@ -166,7 +166,7 @@ namespace user
 
    void form_list::_001OnVScroll(signal_details * pobj)
    {
-      //SCAST_PTR(message::scroll, pscroll, pobj);
+      //SCAST_PTR(::message::scroll, pscroll, pobj);
       pobj->previous();
 
 
@@ -312,7 +312,7 @@ namespace user
 
    void form_list::_001OnKeyDown(signal_details * pobj)
    {
-      SCAST_PTR(message::key, pkey, pobj)
+      SCAST_PTR(::message::key, pkey, pobj)
 
       if(pkey->m_ekey == ::user::key_return)
       {

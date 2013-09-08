@@ -39,7 +39,7 @@ void simple_tree_view::dump(dump_context & dumpcontext) const
 void simple_tree_view::_001OnCreate(signal_details * pobj)
 {
 
-   SCAST_PTR(message::create, pcreate, pobj);
+   SCAST_PTR(::message::create, pcreate, pobj);
 
    pcreate->previous();
 

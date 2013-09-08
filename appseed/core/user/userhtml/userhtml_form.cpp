@@ -166,7 +166,7 @@ void html_form::layout()
 
 void html_form::_001OnCreate(signal_details * pobj)
 {
-   SCAST_PTR(message::create, pcreate, pobj)
+   SCAST_PTR(::message::create, pcreate, pobj)
    if(pobj->previous())
       return;
    get_html_data()->m_pform = this;
@@ -190,7 +190,7 @@ void html_form::_001OnCreate(signal_details * pobj)
 
 void html_form::_001OnLButtonDown(signal_details * pobj)
 {
-   SCAST_PTR(message::mouse, pmouse, pobj);
+   SCAST_PTR(::message::mouse, pmouse, pobj);
    point pt;
    pt = pmouse->m_pt;
    ScreenToClient(&pt);
@@ -207,7 +207,7 @@ void html_form::_001OnLButtonDown(signal_details * pobj)
 }
    /*void html_form::_001OnMouseMove(signal_details * pobj)
 {
-SCAST_PTR(message::mouse, pmouse, pobj);
+SCAST_PTR(::message::mouse, pmouse, pobj);
    point pt;
    pt = pmouse->m_pt;
    ScreenToClient(&pt);
@@ -222,7 +222,7 @@ SCAST_PTR(message::mouse, pmouse, pobj);
 
 void html_form::_001OnMouseMove(signal_details * pobj)
 {
-   SCAST_PTR(message::mouse, pmouse, pobj);
+   SCAST_PTR(::message::mouse, pmouse, pobj);
    point pt(pmouse->m_pt);
    ScreenToClient(&pt);
    html::elemental * pelemental = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
@@ -260,7 +260,7 @@ void html_form::_001OnMouseMove(signal_details * pobj)
 
 void html_form::_001OnLButtonUp(signal_details * pobj)
 {
-   SCAST_PTR(message::mouse, pmouse, pobj);
+   SCAST_PTR(::message::mouse, pmouse, pobj);
    point pt(pmouse->m_pt);
    ScreenToClient(&pt);
    html::elemental * pelemental = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
@@ -348,7 +348,7 @@ const ::html::data * html_form::get_html_data() const
 
 void html_form::_001OnKeyDown(signal_details * pobj)
 {
-   SCAST_PTR(message::key, pkey, pobj);
+   SCAST_PTR(::message::key, pkey, pobj);
    if(pkey->m_ekey == ::user::key_tab)
    {
       pkey->m_bRet = true;

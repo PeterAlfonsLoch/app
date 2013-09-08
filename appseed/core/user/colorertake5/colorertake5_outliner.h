@@ -69,7 +69,7 @@ namespace colorertake5
 
      base_editor *baseEditor;
      class region *searchRegion;
-     array<OutlineItem*> outline;
+     comparable_raw_array<OutlineItem*> outline;
      bool lineIsEmpty;
      index curLevel;
      index modifiedLine;

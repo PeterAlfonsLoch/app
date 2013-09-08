@@ -112,7 +112,7 @@ sp(file_manager_operation_document) file_manager_operation_info_view::get_docume
 
 void file_manager_operation_info_view::_001OnTimer(signal_details * pobj)
 {
-   SCAST_PTR(message::timer, ptimer, pobj);
+   SCAST_PTR(::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 123)
    {
    }

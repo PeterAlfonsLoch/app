@@ -766,7 +766,7 @@ namespace filemanager
 
    void SimpleFolderTreeInterface::_001OnMainPostMessage(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj)
          switch(pbase->m_wparam)
       {
          case MessageMainPostCreateImageListItemRedraw:
@@ -974,7 +974,7 @@ namespace filemanager
    void SimpleFolderTreeInterface::_001OnTimer(signal_details * pobj)
    {
 
-      SCAST_PTR(message::timer, ptimer, pobj);
+      SCAST_PTR(::message::timer, ptimer, pobj);
 
       switch(ptimer->m_nIDEvent)
       {

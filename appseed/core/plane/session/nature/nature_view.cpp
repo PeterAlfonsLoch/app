@@ -100,7 +100,7 @@ namespace nature
    void view::_001OnSize(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(message::size, psize, pobj)
+      //      SCAST_PTR(::message::size, psize, pobj)
 
 
       /*   pobj->previous();
@@ -147,7 +147,7 @@ namespace nature
    }
    void view::_001OnContextMenu(signal_details * pobj)
    {
-//      SCAST_PTR(message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
 //         point point = pcontextmenu->GetPoint();
 
    }
@@ -164,18 +164,18 @@ namespace nature
    void view::_001OnWavePlayerEvent(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(message::base, pbase, pobj)
+      //SCAST_PTR(::message::base, pbase, pobj)
    }
 
    void view::_001OnUpdateViewEncoding(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(message::update_cmd_ui, pupdatecmdui, pobj)
+      //SCAST_PTR(::message::update_cmd_ui, pupdatecmdui, pobj)
    }
    void view::_001OnViewEncoding(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(message::command, pcommand, pobj)
+      //SCAST_PTR(::message::command, pcommand, pobj)
    }
 
 
@@ -192,7 +192,7 @@ namespace nature
    void view::_001OnSetCursor(signal_details * pobj)
    {
       
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
 
       pmouse->m_ecursor = ::visual::cursor_arrow;
 
@@ -203,7 +203,7 @@ namespace nature
 
    void view::_001OnEraseBkgnd(signal_details * pobj)
    {
-      SCAST_PTR(message::erase_bkgnd, perasebkgnd, pobj)
+      SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pobj)
          perasebkgnd->m_bRet = true;
       perasebkgnd->set_result(TRUE);
    }

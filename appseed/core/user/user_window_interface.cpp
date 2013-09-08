@@ -287,7 +287,7 @@ namespace user
 
    void window_interface::_001OnBaseWndGetProperty(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj)
       pbase->set_lresult(_001BaseWndGetProperty((EProperty) pbase->m_wparam, pbase->m_lparam));
    }
 
@@ -482,7 +482,7 @@ namespace user
 
    void window_interface::_001OnCreate(signal_details * pobj)
    {
-      SCAST_PTR(message::create, pcreate, pobj)
+      SCAST_PTR(::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
       pcreate->set_lresult(0);

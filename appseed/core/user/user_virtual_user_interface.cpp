@@ -1234,7 +1234,7 @@ sp(::user::interaction) virtual_user_interface::GetTopLevelParent()
 
 void virtual_user_interface::message_handler(signal_details * pobj)
 {
-   SCAST_PTR(message::base, pbase, pobj);
+   SCAST_PTR(::message::base, pbase, pobj);
    //LRESULT lresult = 0;
    if(m_pguie != NULL)
    {

@@ -203,7 +203,7 @@ namespace filemanager
 
          void list_view::_001OnLButtonDblClk(signal_details * pobj)
          {
-            SCAST_PTR(message::mouse, pmouse, pobj)
+            SCAST_PTR(::message::mouse, pmouse, pobj)
                index iItem;
 
             if(_001HitTest_(pmouse->m_pt, iItem))
@@ -359,7 +359,7 @@ namespace filemanager
 
          void list_view::_001OnTimer(signal_details * pobj)
          {
-            SCAST_PTR(message::timer, ptimer, pobj)
+            SCAST_PTR(::message::timer, ptimer, pobj)
                if(ptimer->m_nIDEvent == 123654)
                {
                   KillTimer(123654);
@@ -530,7 +530,7 @@ namespace filemanager
 
          void list_view::_001OnFillTaskResponse(signal_details * pobj)
          {
-            SCAST_PTR(message::base, pbase, pobj)
+            SCAST_PTR(::message::base, pbase, pobj)
                m_bKickActive = true;
             if(pbase->m_wparam == 0)
             {
@@ -588,7 +588,7 @@ namespace filemanager
          void list_view::_001OnContextMenu(signal_details * pobj)
          {
 
-            SCAST_PTR(message::context_menu, pcontextmenu, pobj)
+            SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
                //int32_t iItem;
                point point = pcontextmenu->GetPoint();
             class point ptClient = point;
@@ -742,7 +742,7 @@ namespace filemanager
 
          void list_view::_001OnEraseBkgnd(signal_details * pobj)
          {
-            SCAST_PTR(message::erase_bkgnd, perasebkgnd, pobj)
+            SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pobj)
                perasebkgnd->m_bRet = true;
             perasebkgnd->set_result(TRUE);
          }

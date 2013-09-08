@@ -35,6 +35,7 @@ namespace exception
       void operator delete(void * pbData);
       void operator delete(void * pbData, const char * lpszFileName, int32_t nLine);
 
+      virtual const char * getMessage() const throw();
 
    };
 

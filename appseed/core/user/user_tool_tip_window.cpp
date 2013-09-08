@@ -22,7 +22,7 @@ namespace user
    {
       if(IsWindow())
          return;
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       switch(pbase->m_uiMessage)
       {
       case WM_MOUSEMOVE:

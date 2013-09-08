@@ -211,7 +211,7 @@ namespace gcom
 
       void thread::OnBackViewMessage(signal_details * pobj)
       {
-         SCAST_PTR(message::base, pbase, pobj);
+         SCAST_PTR(::message::base, pbase, pobj);
          switch(pbase->m_wparam)
          {
          case WPARAM_BACKVIEW_IMAGELOADED:
@@ -231,7 +231,7 @@ namespace gcom
       }
       void thread::OnUserMessage(signal_details * pobj)
       {
-         SCAST_PTR(message::base, pbase, pobj);
+         SCAST_PTR(::message::base, pbase, pobj);
           ASSERT(GetMainWnd() == NULL);
          if(pbase->m_wparam == 1) //&& m_pImageLoader != NULL)
          {
@@ -333,7 +333,7 @@ namespace gcom
 
       void thread::OnCommandMessage(signal_details * pobj)
       {
-         SCAST_PTR(message::base, pbase, pobj);
+         SCAST_PTR(::message::base, pbase, pobj);
          switch(pbase->m_wparam)
          {
          case CommandLoadImage:

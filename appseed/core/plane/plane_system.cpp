@@ -548,7 +548,7 @@ namespace plane
       if(!m_bDoNotExitIfNoApplications)
       {
 
-         ::core::application_ptra appptra;
+         application_ptra appptra;
 
          appptra = this->appptra();
 
@@ -751,18 +751,19 @@ namespace plane
       return iRet;
    }
 
+   /*
    sp(element) system::on_alloc(sp(base_application) papp, sp(type) info)
    {
       /*string str;
       str.Format("Could not alloc %s", info.name());
       simple_message_box(str);*/
-      sp(element) pobj = Sys(papp).factory().create(papp, info);
+      /*sp(element) pobj = Sys(papp).factory().create(papp, info);
       if(pobj != NULL)
          return pobj;
       on_allocation_error(papp, info);
       return NULL;
    }
-
+   */
 
 
    sp(::plane::session) system::query_session(index iEdge)
@@ -802,7 +803,7 @@ namespace plane
    }
 
 
-   sp(::core::window_draw) system::get_twf()
+   sp(::user::window_draw) system::get_twf()
    {
 
       return m_ptwf;
@@ -827,7 +828,7 @@ namespace plane
       return *m_plog;
    }
 
-   ::core::application_ptra & system::appptra()
+   application_ptra & system::appptra()
    {
       return m_appptra;
    }
@@ -1540,7 +1541,7 @@ namespace plane
    {
       if(m_ptwf != NULL)
          return true;
-      m_ptwf = alloc(this, System.type_info < ::core::window_draw > ());
+      m_ptwf = alloc(this, System.type_info < ::user::window_draw > ());
       m_ptwf->twf_start();
       return true;
    }

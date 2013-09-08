@@ -36,7 +36,7 @@ void simple_printer_list_view::install_message_handling(::message::dispatch * pd
 
 void simple_printer_list_view::_001OnCreate(signal_details * pobj)
 {
-//   SCAST_PTR(message::create, pcreate, pobj);
+//   SCAST_PTR(::message::create, pcreate, pobj);
 
    pobj->previous();
 

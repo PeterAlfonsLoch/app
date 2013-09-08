@@ -541,7 +541,7 @@ namespace user
       if(pobj->previous())
          return;
 
-      SCAST_PTR(message::create, pcreate, pobj)
+      SCAST_PTR(::message::create, pcreate, pobj)
       
       ENSURE_ARG(pcreate->m_lpcreatestruct != NULL);
       
@@ -950,7 +950,7 @@ namespace user
 
    void frame_window::_001OnActivate(signal_details * pobj)
    {
-      SCAST_PTR(message::activate, pactivate, pobj);
+      SCAST_PTR(::message::activate, pactivate, pobj);
 
       sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther.m_p : this);
 
@@ -999,7 +999,7 @@ namespace user
 
    void frame_window::_001OnNcActivate(signal_details * pobj)
    {
-      SCAST_PTR(message::nc_activate, pncactivate, pobj)
+      SCAST_PTR(::message::nc_activate, pncactivate, pobj)
          // stay active if WF_STAYACTIVE bit is on
          if (m_nFlags & WF_STAYACTIVE)
             pncactivate->m_bActive = TRUE;
@@ -1824,7 +1824,7 @@ namespace user
 
 #ifdef WINDOWS
 
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(get_parent() == NULL)
       {
          if(pbase->m_wparam == SC_RESTORE)
@@ -2019,7 +2019,7 @@ namespace user
    // query end session for main frame will attempt to close it all down
    void frame_window::_001OnQueryEndSession(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if (&System != NULL && System.GetMainWnd() == this)
       {
          pbase->set_lresult(System.save_all_modified());
@@ -2106,7 +2106,7 @@ namespace user
    void frame_window::_001OnSize(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(message::size, psize, pobj)
+      //      SCAST_PTR(::message::size, psize, pobj)
    }
 
 

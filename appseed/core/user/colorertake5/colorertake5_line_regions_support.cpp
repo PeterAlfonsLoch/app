@@ -247,7 +247,7 @@ namespace colorertake5
       UNREFERENCED_PARAMETER(scheme);
       class region* scheme_region = schemeStack.last_element()->region;
       delete schemeStack.last_element();
-      schemeStack.set_size(schemeStack.get_size()-1);
+      schemeStack.allocate(schemeStack.get_size()-1);
       // ignoring out of cached interval lines
       if (!checkLine(lno)) return;
       // we have to skip transparent regions

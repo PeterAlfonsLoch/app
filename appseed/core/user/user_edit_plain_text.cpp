@@ -495,7 +495,7 @@ namespace user
    void edit_plain_text::_001OnCreate(signal_details * pobj)
    {
 
-      SCAST_PTR(message::create, pcreate, pobj);
+      SCAST_PTR(::message::create, pcreate, pobj);
 
 
       if(get_document() != NULL
@@ -541,14 +541,14 @@ namespace user
 
    void edit_plain_text::_001OnContextMenu(signal_details * pobj)
    {
-//      SCAST_PTR(message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
 //      point point = pcontextmenu->GetPoint();
 
    }
 
    void edit_plain_text::_001OnRButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
       //int32_t iItem;
       //HRESULT hr;
       class point point = pmouse->m_pt;
@@ -600,7 +600,7 @@ namespace user
 
    void edit_plain_text::_002OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(message::timer, ptimer, pobj)
+      SCAST_PTR(::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent >= 100
          && ptimer->m_nIDEvent <= 200)
       {
@@ -623,7 +623,7 @@ namespace user
 
    void edit_plain_text::_002OnKeyDown(signal_details * pobj)
    {
-      SCAST_PTR(message::key, pkey, pobj)
+      SCAST_PTR(::message::key, pkey, pobj)
       if(pkey->m_ekey == ::user::key_return)
       {
          if(Application.is_key_pressed(::user::key_control) && Application.is_key_pressed(::user::key_alt))
@@ -698,7 +698,7 @@ namespace user
 
    void edit_plain_text::_002OnKeyUp(signal_details * pobj)
    {
-      SCAST_PTR(message::key, pkey, pobj)
+      SCAST_PTR(::message::key, pkey, pobj)
       if(pkey->m_ekey == ::user::key_return)
       {
          if(Application.is_key_pressed(::user::key_control)
@@ -718,7 +718,7 @@ namespace user
    void edit_plain_text::_002OnChar(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(message::key, pkey, pobj)
+//      SCAST_PTR(::message::key, pkey, pobj)
          if(m_bKeyPressed)
          {
                //key_to_char(&m_keymessageLast);
@@ -744,7 +744,7 @@ namespace user
 
    void edit_plain_text::pre_translate_message(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_KEYDOWN)
       {
          pbase->m_bRet = true;
@@ -903,7 +903,7 @@ namespace user
 
    void edit_plain_text::_002OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
@@ -922,7 +922,7 @@ namespace user
 
    void edit_plain_text::_002OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       ::draw2d::memory_graphics pdc(allocer());
@@ -938,7 +938,7 @@ namespace user
 
    void edit_plain_text::_002OnRButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
@@ -955,7 +955,7 @@ namespace user
 
    void edit_plain_text::_002OnRButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       ::draw2d::memory_graphics pdc(allocer());
@@ -1302,7 +1302,7 @@ namespace user
 
    void edit_plain_text::_002OnMouseMove(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
       //pmouse->m_ecursor = ::visual::cursor_text_select;
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -1432,7 +1432,7 @@ namespace user
       _009OnChar(pobj);
       if(pobj->m_bRet)
          return;
-      SCAST_PTR(message::key, pkey, pobj)
+      SCAST_PTR(::message::key, pkey, pobj)
 
       string strChar;
 
@@ -1710,7 +1710,7 @@ namespace user
    void edit_plain_text::_001OnSysChar(signal_details * pobj)
    {
       ::data::data::writing writing(m_pdata);
-      SCAST_PTR(message::key, pkey, pobj)
+      SCAST_PTR(::message::key, pkey, pobj)
       if(pkey->m_ekey == ::user::key_delete)
       {
          if(!m_bReadOnly)

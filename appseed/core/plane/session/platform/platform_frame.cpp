@@ -77,7 +77,7 @@ namespace platform
 
    void frame::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(message::timer, ptimer, pobj);
+      SCAST_PTR(::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
 
       static float theta;
@@ -223,7 +223,7 @@ namespace platform
 
    void frame::_001OnCreate(signal_details * pobj)
    {
-      //      SCAST_PTR(message::create, pcreate, pobj);
+      //      SCAST_PTR(::message::create, pcreate, pobj);
       pobj->previous();
 
       m_bTimerOn = false;

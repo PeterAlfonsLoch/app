@@ -508,11 +508,11 @@ namespace frame
 
    void SizeManager::message_handler(sp(::user::interaction) pwnd, signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
-         SCAST_PTR(message::mouse, pmouse, pobj);
+         SCAST_PTR(::message::mouse, pmouse, pobj);
          point ptCursor((int16_t) LOWORD(pbase->m_lparam), (int16_t) HIWORD(pbase->m_lparam));
          pwnd->ClientToScreen(&ptCursor);
 //         UINT uiFlags = pbase->m_wparam;
@@ -543,7 +543,7 @@ namespace frame
       else if(pbase->m_uiMessage == WM_MOUSEMOVE ||
          pbase->m_uiMessage == WM_LBUTTONUP)
       {
-         SCAST_PTR(message::mouse, pmouse, pobj);
+         SCAST_PTR(::message::mouse, pmouse, pobj);
          if(pbase->m_uiMessage == WM_MOUSEMOVE &&
             (m_dwLastSizingTime + m_dwPaintDelay) > get_tick_count()
             && m_ehittestMode != HitTestNone)

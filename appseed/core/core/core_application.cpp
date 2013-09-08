@@ -1478,7 +1478,7 @@ void application::ProcessWndProcException(::exception::base* e, signal_details *
 {
    ENSURE_ARG(e != NULL);
    ENSURE_ARG(pobj != NULL);
-   SCAST_PTR(message::base, pbase, pobj);
+   SCAST_PTR(::message::base, pbase, pobj);
    // handle certain messages in thread
    switch (pbase->m_uiMessage)
    {
@@ -4950,7 +4950,7 @@ bool application::initialize()
 
 void application::pre_translate_message(signal_details * pobj)
 {
-   SCAST_PTR(message::base, pbase, pobj);
+   SCAST_PTR(::message::base, pbase, pobj);
    if(pbase->m_uiMessage == WM_USER + 124 && pbase->m_pwnd == NULL)
    {
       /*      OnMachineEvent((flags < machine_event::e_flag> *) pmsg->lParam);
@@ -4963,7 +4963,7 @@ void application::pre_translate_message(signal_details * pobj)
 
 void application::_001OnApplicationRequest(signal_details * pobj)
 {
-   SCAST_PTR(message::base, pbase, pobj);
+   SCAST_PTR(::message::base, pbase, pobj);
    if(pbase->m_wparam == 2)
    {
       // when wparam == 2 lparam is a pointer to a ::core::command_fork
@@ -5303,10 +5303,10 @@ sp(::user::interaction) application::uie_from_point(point pt)
 
 void application::message_window_message_handler(signal_details * pobj)
 {
-   SCAST_PTR(message::base, pbase, pobj);
+   SCAST_PTR(::message::base, pbase, pobj);
    if(pbase->m_uiMessage == WM_TIMER)
    {
-      SCAST_PTR(message::timer, ptimer, pobj);
+      SCAST_PTR(::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 123)
       {
          m_spuiMessage->KillTimer(ptimer->m_nIDEvent);

@@ -2712,7 +2712,7 @@ namespace draw2d_cairo
    bool dib::print_window(::user::window * pwnd, signal_details * pobj)
    {
 
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       if(pbase->m_wparam == NULL)
          return false;

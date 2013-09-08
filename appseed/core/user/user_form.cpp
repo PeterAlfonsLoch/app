@@ -594,7 +594,7 @@ namespace user
    void form::_000OnPosCreate(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(message::base, pbase, pobj)
+//      SCAST_PTR(::message::base, pbase, pobj)
    }
 
    void form::_001InitializeFormPreData()
@@ -728,7 +728,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      SCAST_PTR(message::notify, pnotify, pobj)
+      SCAST_PTR(::message::notify, pnotify, pobj)
 
       pnotify->m_bRet = false;
 
@@ -744,7 +744,7 @@ namespace user
    void form::_001OnMessageNotify(signal_details * pobj)
    {
 
-      SCAST_PTR(message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj)
 
       // revamp pbase->set_lresult(user::NotifyRetContinue);
 
@@ -892,7 +892,7 @@ namespace user
    void form::_001OnAppLanguage(signal_details * pobj)
    {
 
-      SCAST_PTR(message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj)
 
       keeper < bool > keepOnLanguageChange(&m_bOnLanguageChange, true, false, true);
 
@@ -906,7 +906,7 @@ namespace user
    void form::_001OnCreate(signal_details * pobj)
    {
 
-//      SCAST_PTR(message::create, pcreate, pobj)
+//      SCAST_PTR(::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
 

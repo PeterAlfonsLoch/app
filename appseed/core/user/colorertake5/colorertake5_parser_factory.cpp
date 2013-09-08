@@ -23,7 +23,7 @@ namespace colorertake5
       {
          document.load_location(catalogPath);
       }
-      catch(::exception::exception &e)
+      catch(exception &e)
       {
          throw ParserFactoryException(get_app(), e.getMessage());
       }

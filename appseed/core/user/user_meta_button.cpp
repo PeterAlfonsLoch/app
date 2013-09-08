@@ -204,7 +204,7 @@ void MetaButton::layout()
 
 void MetaButton::_001OnTimer(signal_details * pobj)
 {
-   SCAST_PTR(message::timer, ptimer, pobj)
+   SCAST_PTR(::message::timer, ptimer, pobj)
       // TODO: add your message handler code here and/or call default
       if(ptimer->m_nIDEvent == TimerCheckFocus)
       {

@@ -525,7 +525,7 @@ namespace user
    void combo_box::_001OnLButtonDown(signal_details * pobj)
    {
 
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       point pt = pmouse->m_pt;
 
@@ -544,14 +544,14 @@ namespace user
    void combo_box::_001OnLButtonUp(signal_details * pobj)
    {
 
-//      SCAST_PTR(message::mouse, pmouse, pobj);
+//      SCAST_PTR(::message::mouse, pmouse, pobj);
 
    }
 
    void combo_box::_001OnSetFocus(signal_details * pobj)
    {
 
-//      SCAST_PTR(message::set_focus, pfocus, pobj);
+//      SCAST_PTR(::message::set_focus, pfocus, pobj);
 
    }
 

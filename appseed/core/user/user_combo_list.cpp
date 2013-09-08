@@ -317,7 +317,7 @@ namespace user
    void combo_list::_001OnActivate(signal_details * pobj)
    {
 
-      SCAST_PTR(message::activate, pactivate, pobj);
+      SCAST_PTR(::message::activate, pactivate, pobj);
 
       sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther.m_p : this);
 
@@ -362,7 +362,7 @@ namespace user
    void combo_list::_001OnMouseActivate(signal_details * pobj)
    {
 
-//      SCAST_PTR(message::mouse_activate, pactivate, pobj);
+//      SCAST_PTR(::message::mouse_activate, pactivate, pobj);
 
 
    }
@@ -370,7 +370,7 @@ namespace user
    void combo_list::_001OnLButtonDown(signal_details * pobj)
    {
 
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       point pt = pmouse->m_pt;
 
@@ -405,7 +405,7 @@ namespace user
    void combo_list::_001OnMButtonDown(signal_details * pobj)
    {
 
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       point pt = pmouse->m_pt;
 
@@ -431,7 +431,7 @@ namespace user
    void combo_list::_001OnRButtonDown(signal_details * pobj)
    {
 
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       point pt = pmouse->m_pt;
 
@@ -458,7 +458,7 @@ namespace user
    void combo_list::_001OnMouseMove(signal_details * pobj)
    {
 
-//      SCAST_PTR(message::mouse, pmouse, pobj);
+//      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       pobj->m_bRet = true;
 

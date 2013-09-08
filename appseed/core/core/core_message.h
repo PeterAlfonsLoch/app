@@ -85,20 +85,20 @@ class BaseCommand;
 #define WM_USER                         0x0400
 #endif
 
-enum e_message
-{
-
-   message_create = USER_MESSAGE,
-   message_event = WM_APP + 1000,
-   message_property = WM_APP + 1001,
-   message_pos_create = WM_USER + 193,
-   message_frame_initial_update,
-
-};
 
 namespace message
 {
 
+   enum e_message
+   {
+
+      message_create = USER_MESSAGE,
+      message_event = WM_APP + 1000,
+      message_property = WM_APP + 1001,
+      message_pos_create = WM_USER + 193,
+      message_frame_initial_update,
+
+   };
 
    CLASS_DECL_ca2 UINT translate_to_os_message(UINT uiMessage);
 
@@ -821,29 +821,29 @@ namespace message
 
 #if defined(WINDOWS) || defined(LINUX) || defined(MACOS)
 #define IGUI_WIN_MSG_LINK \
-   message::os_connect
+   ::message::os_connect
 #else
 #define IGUI_WIN_MSG_LINK(p1, p2, p3, p4) \
    ;
 #endif
 #ifdef LINUX
 #define IGUI_MAC_MSG_LINK \
-   message::os_connect
+   ::message::os_connect
 #else
 #define IGUI_MAC_MSG_LINK(p1, p2, p3, p4) \
    ;
 #endif
 
 #define IGUI_MSG_LINK(param1, param2, param3, param4) \
-   message::_connect(param1, param2, param3, param4)
+   ::message::_connect(param1, param2, param3, param4)
 
 #define USER_MESSAGE_LINK(param1, param2, param3, param4) \
-   IGUI_MSG_LINK(::core::param1, param2, param3, param4)
+   IGUI_MSG_LINK(::message::param1, param2, param3, param4)
 
 
 
 #define IGUI_WIN_CMD_LINK \
-   message::cmd_connect
+   ::message::cmd_connect
 
 #define IGUI_WIN_NOTIFY_REFLECT(wNotifyCode, pinterface, phandler, pfunction) \
    IGUI_WIN_CMD_LINK(WM_COMMAND, (UINT) wNotifyCode + WM_REFLECT_BASE, 0, 0xffffffff, pinterface, phandler, pfunction)
@@ -854,6 +854,6 @@ namespace message
 #define IGUI_WIN_ON_NOTIFY(id, n, pdispatch, phandler, poperation) \
    IGUI_WIN_CMD_LINK(WM_NOTIFY, n, id, id, pdispatch, phandler, poperation)
 
-#define IGUI_WIN_CAST(tcast, pcasted) message::tcast * pcasted = (message::tcast *) pobj;
-#define IGUI_WIN_CST(tcast) message::tcast * p##tcast = (message::tcast *) pobj;
+#define IGUI_WIN_CAST(tcast, pcasted) message::tcast * pcasted = (::message::tcast *) pobj;
+#define IGUI_WIN_CST(tcast) ::message::tcast * p##tcast = (::message::tcast *) pobj;
 

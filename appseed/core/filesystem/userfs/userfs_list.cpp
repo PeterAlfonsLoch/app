@@ -142,7 +142,7 @@ namespace userfs
    void list::_001OnLButtonDblClk(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(message::mouse, pmouse, pobj)
+//      SCAST_PTR(::message::mouse, pmouse, pobj)
 /*         index iItem;
       list_data * pdata = get_fs_list_data();
       if(_001HitTest_(pmouse->m_pt, iItem))

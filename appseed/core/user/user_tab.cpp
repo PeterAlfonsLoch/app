@@ -1076,7 +1076,7 @@ namespace user
 
    void tab::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
 
       index iPane = hit_test(point, m_eelement);
@@ -1104,7 +1104,7 @@ namespace user
 
    void tab::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
 
       e_element eelement;
@@ -1133,7 +1133,7 @@ namespace user
 
    void tab::_001OnMouseMove(signal_details * pobj)
    {
-//      SCAST_PTR(message::mouse, pmouse, pobj);
+//      SCAST_PTR(::message::mouse, pmouse, pobj);
 //      class point point = pmouse->m_pt;
       if(get_data()->m_iDragTab >= 0)
       {
@@ -1160,7 +1160,7 @@ namespace user
 
    void tab::_001OnMouseLeave(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       m_iHover = -1;
       //get_parent()->_001RedrawWindow();
       pbase->set_lresult(0);
@@ -1376,7 +1376,7 @@ namespace user
    void tab::_001OnCreate(signal_details * pobj)
    {
       
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       
       if(pobj->previous())
          return;
@@ -1397,7 +1397,7 @@ namespace user
       
       UNREFERENCED_PARAMETER(pobj);
       
-//      SCAST_PTR(message::base, pbase, pobj);
+//      SCAST_PTR(::message::base, pbase, pobj);
 
       keeper < bool > keepRestoringTabs(&m_bRestoringTabs, true, false, true);
       
@@ -1910,7 +1910,7 @@ namespace user
 
    void tab::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(message::timer, ptimer, pobj);
+      SCAST_PTR(::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 5432187)
       {
          get_data()->m_bDrag = true;

@@ -139,7 +139,7 @@ namespace user
 
    void view::_001OnCreate(signal_details * pobj)
    {
-      SCAST_PTR(message::create, pcreate, pobj);
+      SCAST_PTR(::message::create, pcreate, pobj);
 
       if(pcreate->previous())
          return;
@@ -543,7 +543,7 @@ namespace user
 
    void view::_001OnView(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj)
          if(pbase->m_wparam == 0)
          {
             ::user::document_interface::update * pupdate = (::user::document_interface::update *) pbase->m_lparam.m_lparam;
@@ -697,7 +697,7 @@ namespace user
    void view::_001OnLButtonDown(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //   SCAST_PTR(message::mouse, pmouse, pobj);
+      //   SCAST_PTR(::message::mouse, pmouse, pobj);
 
       if(GetParentFrame() != NULL)
       {
@@ -711,13 +711,13 @@ namespace user
    void view::_001OnLButtonUp(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(message::mouse, pmouse, pobj);
+      //SCAST_PTR(::message::mouse, pmouse, pobj);
    }
 
    void view::_001OnMouseMove(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //   SCAST_PTR(message::mouse, pmouse, pobj);
+      //   SCAST_PTR(::message::mouse, pmouse, pobj);
    }
 
 
@@ -865,7 +865,7 @@ retry:
 
    void view::_001OnMouseActivate(signal_details * pobj)
    {
-      SCAST_PTR(message::mouse_activate, pmouseactivate, pobj);
+      SCAST_PTR(::message::mouse_activate, pmouseactivate, pobj);
       pobj->previous();
       //int32_t nResult = pmouseactivate->get_lresult();
 
@@ -1093,7 +1093,7 @@ retry:
    void view::_001OnRButtonDown(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(message::mouse, pmouse, pobj);
+      //SCAST_PTR(::message::mouse, pmouse, pobj);
 
       GetParentFrame()->SetActiveView( (this));
    }
@@ -1101,7 +1101,7 @@ retry:
    void view::_001OnMButtonDown(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(message::mouse, pmouse, pobj);
+      //      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       GetParentFrame()->SetActiveView( (this));
    }

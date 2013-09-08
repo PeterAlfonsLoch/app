@@ -83,7 +83,7 @@ namespace simpledb
 
    void socket_thread::OnApp(signal_details * pobj)
    {
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_wparam == 0)
       {
 

@@ -50,7 +50,7 @@ namespace gcom
 
       void Interface::OnBackViewMessage(signal_details * pobj)
       {
-         SCAST_PTR(message::base, pbase, pobj)
+         SCAST_PTR(::message::base, pbase, pobj)
          switch(pbase->m_wparam)
          {
          case BackViewWparamImageChangeEvent:
@@ -75,21 +75,21 @@ namespace gcom
 
       void Interface::OnDequeueMessage(signal_details * pobj)
       {
-         SCAST_PTR(message::base, pbase, pobj)
+         SCAST_PTR(::message::base, pbase, pobj)
          GetMain().OnDequeueMessage(pbase->m_wparam, pbase->m_lparam);
          pbase->set_lresult(0);
       }
 
       void Interface::OnWndSize(signal_details * pobj)
       {
-         SCAST_PTR(message::base, pbase, pobj)
+         SCAST_PTR(::message::base, pbase, pobj)
          GetMain().m_bPendingLayout = true;
          pbase->m_bRet = false;
       }
 
       void Interface::OnWndTimer(signal_details * pobj)
       {
-         SCAST_PTR(message::timer, ptimer, pobj)
+         SCAST_PTR(::message::timer, ptimer, pobj)
          if(m_dwTimerStep > 0 && m_dwTimerStep == ptimer->m_nIDEvent)
          {
             ImageChangePostEvent(gcom::backview::event_timer);
@@ -107,7 +107,7 @@ namespace gcom
 
       void Interface::OnWndCreate(signal_details * pobj)
       {
-//         SCAST_PTR(message::create, pcreate, pobj)
+//         SCAST_PTR(::message::create, pcreate, pobj)
          if(pobj->previous())
             return;
          initialize_user_interaction();

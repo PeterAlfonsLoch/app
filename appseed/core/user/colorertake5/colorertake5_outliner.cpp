@@ -77,7 +77,7 @@ namespace colorertake5
 
          delete outline.element_at(new_size);
       }
-      outline.set_size(new_size+1);
+      outline.allocate(new_size+1);
 
       modifiedLine = topLine;
    }

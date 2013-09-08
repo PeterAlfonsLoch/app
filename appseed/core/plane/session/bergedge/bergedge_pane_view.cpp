@@ -608,7 +608,7 @@ namespace bergedge
    void pane_view::_001OnRButtonUp(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(message::mouse, pmouse, pobj);
+//      SCAST_PTR(::message::mouse, pmouse, pobj);
       /*if(get_view_id() == ::bergedge::PaneViewWinActionArea)
       {
          ::user::menu menu(get_app());

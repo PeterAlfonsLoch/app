@@ -756,7 +756,7 @@ namespace html
             m_bHasHover = bHasHover;
             m_bHoverEvaluated = true;
          }
-         SCAST_PTR(message::mouse, pmouse, phtml->m_psignal);
+         SCAST_PTR(::message::mouse, pmouse, phtml->m_psignal);
          ::point pt = pmouse->m_pt;
          phtml->m_pui->ScreenToClient(&pt);
          bool bHover = hit_test(phtml->m_pdata, pt) != 0;

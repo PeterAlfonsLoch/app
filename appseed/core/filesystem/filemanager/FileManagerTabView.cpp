@@ -234,7 +234,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
 
 void FileManagerTabView::_001OnCreate(signal_details * pobj)
 {
-   //   SCAST_PTR(message::create, pcreate, pobj)
+   //   SCAST_PTR(::message::create, pcreate, pobj)
 
    pobj->previous();
 

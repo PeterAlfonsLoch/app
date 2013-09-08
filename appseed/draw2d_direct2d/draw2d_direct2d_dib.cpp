@@ -2989,7 +2989,7 @@ fill_last:
    {
 
 
-      SCAST_PTR(message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       if(pbase->m_wparam == NULL)
          return false;

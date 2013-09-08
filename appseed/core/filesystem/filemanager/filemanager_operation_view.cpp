@@ -61,7 +61,7 @@ sp(file_manager_operation_document) file_manager_operation_view::get_document()
 
 void file_manager_operation_view::_001OnMainPostMessage(signal_details * pobj)
 {
-   SCAST_PTR(message::base, pbase, pobj)
+   SCAST_PTR(::message::base, pbase, pobj)
    if(pbase->m_wparam == MessageMainPostFileOperation)
    {
       m_pinfoview->OnFileOperationStep((int32_t) pbase->m_lparam, false);

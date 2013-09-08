@@ -54,7 +54,7 @@ namespace userfs
    void main_view::_001OnTimer(signal_details * pobj)
    {
 
-      SCAST_PTR(message::timer, ptimer, pobj);
+      SCAST_PTR(::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 123)
       {
 //         Application.TimerStep();
