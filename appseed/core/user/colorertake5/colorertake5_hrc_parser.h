@@ -29,7 +29,7 @@ namespace colorertake5
          ::exception::base(papp),
          ::colorertake5::exception(papp)
       {
-         message += "HRCParserException: " + msg;
+         m_strMessage += "colorertake5::HRCParserException: " + msg;
       }
 
 

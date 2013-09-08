@@ -1,16 +1,6 @@
 #pragma once
 
 
-
-
-
-namespace html
-{
-
-   class application;
-
-} // namespace html
-
 #include "html_point.h"
 #include "html_size.h"
 #include "html_box.h"

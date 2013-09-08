@@ -23,9 +23,9 @@ simple_exception::~simple_exception()
 
 }
 
-string simple_exception::get_error_message()
+const char * simple_exception::get_error_message() const
 {
 
-   return m_strMessage;
+   return what();
 
 }

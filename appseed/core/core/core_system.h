@@ -19,12 +19,13 @@ namespace core
       virtual ~system();
 
 
-      friend class application;
-
       virtual sp(element) clone(sp(element) pobj);
       virtual void discard_to_factory(sp(element) pca);
 
       virtual bool is_system();
+
+
+      virtual bool initialize_instance();
 
    };
 

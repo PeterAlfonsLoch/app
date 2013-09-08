@@ -3,17 +3,6 @@
 
 #include "core/core/core.h"
 
-
-namespace database
-{
-
-
-   class application;
-
-
-} // namespace database
-
-
 #include "database_client.h"
 
 #include "database_user_interaction.h"

@@ -547,7 +547,7 @@ LineBufferTask::execute ()
             }
         }
     }
-    catch (std::exception &e)
+    catch (::exception::exception &e)
     {
         if (!_lineBuffer->hasException)
         {
@@ -601,7 +601,7 @@ newLineBufferTask
 			   lineBuffer->dataSize);
 	}
     }
-	catch (std::exception &e)
+	catch (::exception::exception &e)
 	{
 	if (!lineBuffer->hasException)
 	{

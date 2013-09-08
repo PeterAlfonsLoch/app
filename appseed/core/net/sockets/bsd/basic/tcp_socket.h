@@ -289,9 +289,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          tcp_socket& operator=(const tcp_socket& ) { return *this; }
 
          /** the actual send() */
-         int32_t TryWrite(const char *buf, int32_t len);
+         ::primitive::memory_size try_write(const void * buf, ::primitive::memory_size len);
          /** add data to output buffer top */
-         void buffer(const char *buf, int32_t len);
+         void buffer(const void * buf, ::primitive::memory_size len);
 
 
       };

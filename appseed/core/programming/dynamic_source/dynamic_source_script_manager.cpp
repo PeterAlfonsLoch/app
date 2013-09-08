@@ -176,7 +176,7 @@ namespace dynamic_source
          {
             if(pinstance->get("debug_lib").is_set())
             {
-               pdssocket->response().file() << m_pcompiler->m_memfileLibError;
+               pdssocket->response().file().transfer_from(m_pcompiler->m_memfileLibError);
             }
          }
       }
@@ -217,7 +217,7 @@ namespace dynamic_source
          {
             pinstance->main_finalize();
          }
-         catch(const exception &)
+         catch(const ::exception::exception &)
          {
             TRACE0("Error: exception at script_manager::handle main_finalize");
          }
@@ -229,7 +229,7 @@ namespace dynamic_source
          {
             pinstance->destroy();
          }
-         catch(const exception &)
+         catch(const ::exception::exception &)
          {
             TRACE0("Error: exception at script_manager::handle destroy pinstance");
          }
@@ -241,7 +241,7 @@ namespace dynamic_source
          {
             pinstance.release();
          }
-         catch(const exception &)
+         catch(const ::exception::exception &)
          {
             TRACE0("Error: exception at script_manager::handle destroy pinstance");
          }
@@ -264,7 +264,7 @@ namespace dynamic_source
             {
                if(pinstanceParent->m_pscript->m_memfileError.get_length() > 0)
                {
-                  pinstanceParent->main_instance()->netnodesocket()->response().file() << "script_manager::get_output_internal is_empty script parent" << pinstanceParent->m_pscript->m_strName;
+                  pinstanceParent->main_instance()->netnodesocket()->response().ostream() << "script_manager::get_output_internal is_empty script parent" << pinstanceParent->m_pscript->m_strName;
                }
             }
          }
@@ -297,7 +297,7 @@ namespace dynamic_source
                if(pdsscript->m_memfileError.get_length() > 0)
                {
 
-                  pinstance->output_file() << pdsscript->m_memfileError;
+                  pinstance->ostream().transfer_from(pdsscript->m_memfileError);
 
                }
 
@@ -401,19 +401,20 @@ namespace dynamic_source
 
    string script_manager::get_library_build_log()
    {
-      file::memory_buffer memfile(get_app());
+      file::plain_text_stream_memory_buffer memfile(get_app());
       POSITION pos = m_pcompiler->m_mapLib.get_start_position();
       while(pos != NULL)
       {
          library_class * plib;
          string strClass;
          m_pcompiler->m_mapLib.get_next_assoc(pos, strClass, (void * &) plib);
-         memfile << plib->m_memfileError;
+         memfile.transfer_from(plib->m_memfileError);
       }
+
       memfile << m_strPersistentError;
-      string strBuildLog;
-      memfile.to_string(strBuildLog);
-      return strBuildLog;
+      
+      return memfile.to_string();
+
    }
 
    void script_manager::message_window_message_handler(signal_details * pobj)

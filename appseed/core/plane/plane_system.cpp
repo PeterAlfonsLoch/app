@@ -20,7 +20,8 @@ namespace plane
 #ifndef METROWIN
       m_processsection(this),
 #endif
-      m_visual(this)
+      m_visual(this),
+      base_system(this)
    {
 
 #ifdef METROWIN
@@ -95,7 +96,7 @@ namespace plane
       m_net.set_app(this);
       m_file.set_app(this);
       m_stra.set_app(this);
-      m_url.set_app(this);
+//      m_url.set_app(this);
       m_userset.set_app(this);
       m_service.set_app(this);
       m_install.set_app(this);

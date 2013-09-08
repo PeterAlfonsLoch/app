@@ -9,8 +9,8 @@ namespace colorertake5
       schemeHash(papp, 4000),
       regionNamesHash(papp, 1000)
    {
-      regionNamesVector.set_size(0, 200);
-      fileTypeVector.set_size(0, 200);
+      regionNamesVector.allocate(0, 200);
+      fileTypeVector.allocate(0, 200);
       parseType = NULL;
       errorHandler = NULL;
       updateStarted = false;
@@ -34,7 +34,7 @@ namespace colorertake5
       {
          parseHRC(pszSource);
       }
-      catch(exception &e)
+      catch(::exception::exception &e)
       {
          throw e;
       }

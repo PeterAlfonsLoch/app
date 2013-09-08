@@ -37,7 +37,6 @@ namespace plane
 {
 
 
-   class application;
    class system;
 
 
@@ -734,7 +733,7 @@ public:
 #endif
 
 
-   virtual bool on_run_exception(::exception::exception & e);
+   virtual bool on_run_exception(::exception::exception &);
 
 
    // set regsitry key name to be used by application's
@@ -1011,7 +1010,7 @@ public:
    virtual string get_global_id_mutex_name();
 
 
-   virtual bool final_handle_exception(::exception::exception & e);
+   virtual bool final_handle_exception(::exception::exception &);
 
    bool ca_process_initialize();
    bool ca_initialize1();
@@ -1049,7 +1048,7 @@ public:
    //      virtual void construct();
 
 
-   //virtual bool final_handle_exception(exception::exception & e);
+   //virtual bool final_handle_exception(::exception::exception &);
    //virtual bool initialize();
    //virtual bool initialize1();
    //virtual bool initialize2();

@@ -459,7 +459,7 @@ namespace bergedge
          }
 
       }
-      catch(const exception & )
+      catch(const ::exception::exception & )
       {
       }
       catch(...)

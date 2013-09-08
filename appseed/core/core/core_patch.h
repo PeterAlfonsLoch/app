@@ -15,7 +15,6 @@ namespace core
       // 0 for success
       int32_t bspatch(const char * old, const char * newfile, const char * patch);
 
-      friend class application;
    };
 
 

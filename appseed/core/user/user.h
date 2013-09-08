@@ -30,11 +30,6 @@ namespace user
 } // namespace user
 
 
-namespace user
-{
-   class application;
-} // namespace user
-
 enum e_position
 {
    position_none           = 0,

@@ -102,7 +102,7 @@ const char * schemeNodeTypeNames[] =  { "EMPTY", "RE", "SCHEME", "KEYWORDS", "IN
 
 SchemeNode::SchemeNode()
 {
-   virtualEntryVector.set_size(0, 5);
+   virtualEntryVector.allocate(0, 5);
   type = SNT_EMPTY;
   scheme = NULL;
   kwList = NULL;

@@ -158,7 +158,7 @@ namespace dynamic_source
       Unload(false);
       m_bCalcHasTempError = false;
       m_bShouldBuild = false;
-      m_memfileError.Truncate(0);
+      m_memfileError.m_spbuffer->set_length(0);
    }
 
    bool ds_script::HasTimedOutLastBuild()
@@ -173,7 +173,7 @@ namespace dynamic_source
       single_lock sl(&m_mutex, TRUE);
       string str;
       m_memfileError.seek_to_begin();
-      m_memfileError.to_string(str);
+      str = m_memfileError.to_string();
       if(str.find(" error(") >= 0)
          return true;
       if(str.find(" error ") >= 0)
@@ -199,7 +199,7 @@ namespace dynamic_source
       single_lock sl(&m_mutex, bLock ? TRUE : FALSE);
       string str;
       m_memfileError.seek_to_begin();
-      m_memfileError.to_string(str);
+      str = m_memfileError.to_string();
       {
          strsize iFind1 = str.find(".dll: does not exist.");
          if(iFind1 >= 0)
@@ -435,7 +435,7 @@ namespace dynamic_source
          {
             m_pmanager->m_pcompiler->compile(this);
             m_memfileError.seek_to_begin();
-            m_memfileError.to_string(str);
+            str = m_memfileError.to_string();
             if(iRetry == 0)
             {
                TRACE("Build: %s\n%s\n", m_strName.c_str(), str.c_str());
@@ -478,7 +478,7 @@ namespace dynamic_source
    }
 
 
-   application * ds_script::get_app() const
+   base_application * ds_script::get_app() const
    {
       return m_pmanager->get_app();
    }

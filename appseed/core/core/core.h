@@ -488,7 +488,6 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
             class CScrollView;  // a scrolling ::user::view
 
                class thread;           // thread base class
-               class application;          // application base class
 
 //      class document_template;         // template for document creation
          class single_document_template;// SDI support

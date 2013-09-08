@@ -6,13 +6,19 @@ namespace exception
 
 
    class CLASS_DECL_c exception :
-      virtual public root
+      virtual public object
    {
    public:
 
 
+      string m_strMessage;
+
+
       virtual ~exception();
       virtual void Delete();
+
+
+      virtual const char * what () const throw ();
 
 
    };

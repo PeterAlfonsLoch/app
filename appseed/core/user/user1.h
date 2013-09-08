@@ -4,15 +4,6 @@
 #include "core/core/core.h"
 
 
-namespace user
-{
-
-   class application;
-
-} // namespace user
-
-
-//#include "user_element_2d.h"
 #include "user_draw_interface.h"
 #include "user_mouse_focus.h"
 #include "user_keyboard_focus.h"

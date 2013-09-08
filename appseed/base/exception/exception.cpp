@@ -23,6 +23,13 @@ namespace exception
       throw pe;
 
    }
+   
+   const char * exception::what() const throw()
+   {
+
+      return m_strMessage;
+
+   }
 
 
 } // namespace exception

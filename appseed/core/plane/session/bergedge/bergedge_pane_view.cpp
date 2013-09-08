@@ -207,7 +207,7 @@ namespace bergedge
             createcontext->m_spCommandLine->_001ParseCommandFork(strId);
 
             string str;
-            str = ::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent.m_p);
+            str = ::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
             //MessageBox(NULL, str, str, MB_ICONEXCLAMATION);
             Session.request_create(createcontext);
 

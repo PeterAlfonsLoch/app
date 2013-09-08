@@ -39,9 +39,6 @@ namespace core
       void zip(const char * psz, sp(base_application) papp);
 
 
-      friend class application;
-
-
    };
 
 } // namespace core

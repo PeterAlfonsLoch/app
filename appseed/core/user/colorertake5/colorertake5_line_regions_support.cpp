@@ -30,7 +30,7 @@ namespace colorertake5
    void LineRegionsSupport::resize(index lineCount)
    {
       ::count iOldLineCount = lineRegions.get_size();
-      lineRegions.set_size(lineCount);
+      lineRegions.allocate(lineCount);
       for(index i = iOldLineCount; i < lineCount; i++)
       {
          lineRegions[i] = NULL;

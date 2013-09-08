@@ -2,13 +2,6 @@
 
 
 
-
-
-namespace colorertake5
-{
-   class application;
-} // namespace colorertake5
-
 #include "colorertake5_features.h"
 #include "colorertake5_exception.h"
 #include "colorertake5_memory_chunks.h"

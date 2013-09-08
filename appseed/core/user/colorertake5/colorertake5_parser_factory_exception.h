@@ -33,7 +33,7 @@ namespace colorertake5
          ::colorertake5::exception(papp)
       {
 
-         message += "ParserFactoryException: " + string(pszMessage);
+         m_strMessage += "colorertake5::ParserFactoryException: " + string(pszMessage);
 
       }
 

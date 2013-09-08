@@ -349,7 +349,7 @@ namespace plane
       catch(const ::exception::exception & e)
       {
 
-         if(!Application.on_run_exception((exception &) e))
+         if(!Application.on_run_exception((::exception::exception &) e))
             throw exit_exception(get_app());
 
       }
@@ -587,7 +587,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
             throw e;
 
          }
-         catch(const exception &)
+         catch(const ::exception::exception &)
          {
             if (GetMainWnd() != NULL)
             {
@@ -631,9 +631,9 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
             throw e;
 
          }
-         catch(const exception & e)
+         catch(const ::exception::exception & e)
          {
-            if(on_run_exception((exception &) e))
+            if(on_run_exception((::exception::exception &) e))
                goto run;
             if(GetMainWnd() != NULL)
             {
@@ -648,12 +648,12 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
                   throw e;
 
                }
-               catch(exception &)
+               catch(::exception::exception &)
                {
                }
                SetMainWnd(NULL);
             }
-            if(final_handle_exception((exception &) e))
+            if(final_handle_exception((::exception::exception &) e))
                goto run;
             if(GetMainWnd() != NULL)
             {
@@ -668,7 +668,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
                   throw e;
 
                }
-               catch(exception &)
+               catch(::exception::exception &)
                {
                }
                SetMainWnd(NULL);
@@ -813,9 +813,9 @@ run:
             throw e;
 
          }
-         catch(const exception & e)
+         catch(const ::exception::exception & e)
          {
-            if(on_run_exception((exception &) e))
+            if(on_run_exception((::exception::exception &) e))
                goto run;
             if (GetMainWnd() != NULL)
             {
@@ -824,12 +824,12 @@ run:
                {
                   GetMainWnd()->DestroyWindow();
                }
-               catch(exception &)
+               catch(::exception::exception &)
                {
                }
                SetMainWnd(NULL);
             }
-            if(final_handle_exception((exception &) e))
+            if(final_handle_exception((::exception::exception &) e))
                goto run;
             if (GetMainWnd() != NULL)
             {
@@ -844,7 +844,7 @@ run:
                   throw e;
 
                }
-               catch(exception &)
+               catch(::exception::exception &)
                {
                }
                SetMainWnd(NULL);

@@ -1933,7 +1933,7 @@ bool application::InitApplication()
    goto InitFailure;
    }
    }
-   catch(const exception &)
+   catch(const ::exception::exception &)
    {
    if (pThread->GetMainWnd() != NULL)
    {
@@ -1955,9 +1955,9 @@ bool application::InitApplication()
    goto InitFailure;
    }
    }
-   catch(const exception & e)
+   catch(const ::exception::exception &)
    {
-   if(pThread->on_run_exception((exception &) e))
+   if(pThread->on_run_exception((::exception::exception &) e))
    goto run;
    if (pThread->GetMainWnd() != NULL)
    {
@@ -1966,12 +1966,12 @@ bool application::InitApplication()
    {
    pThread->GetMainWnd()->DestroyWindow();
    }
-   catch(exception &)
+   catch(::exception::exception &)
    {
    }
    pThread->SetMainWnd(NULL);
    }
-   if(pApp->final_handle_exception((exception &) e))
+   if(pApp->final_handle_exception((::exception::exception &) e))
    goto run;
    if (pThread->GetMainWnd() != NULL)
    {
@@ -1980,7 +1980,7 @@ bool application::InitApplication()
    {
    pThread->GetMainWnd()->DestroyWindow();
    }
-   catch(exception &)
+   catch(::exception::exception &)
    {
    }
    pThread->SetMainWnd(NULL);
@@ -2340,7 +2340,7 @@ bool application::ca_finalize()
 
 
 
-bool application::final_handle_exception(exception::exception & e)
+bool application::final_handle_exception(::exception::exception & e)
 {
    UNREFERENCED_PARAMETER(e);
    //linux      exit(-1);
@@ -2349,7 +2349,7 @@ bool application::final_handle_exception(exception::exception & e)
    {
 
       // get_app() may be it self, it is ok...
-      if(Sys(get_app()).final_handle_exception((exception::exception & ) e))
+      if(Sys(get_app()).final_handle_exception((::exception::exception & ) e))
          return true;
 
 

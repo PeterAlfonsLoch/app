@@ -43,6 +43,19 @@ namespace core
    }
 
 
+   bool system::initialize_instance()
+   {
+
+      if(!::base_system::initialize_instance())
+         return false;
+
+      if(!::application::initialize_instance())
+         return false;
+
+      return true;
+
+   }
+
 
 } // namespace core
 

@@ -785,7 +785,7 @@ TileBufferTask::execute ()
             }
         }
     }
-    catch (std::exception &e)
+    catch (::exception::exception &e)
     {
         if (!_tileBuffer->hasException)
         {

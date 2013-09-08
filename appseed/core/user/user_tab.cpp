@@ -1802,7 +1802,7 @@ namespace user
          throw e;
 
       }
-      catch(exception::exception & e)
+      catch(::exception::exception &)
       {
 
          if(!Application.on_run_exception(e))

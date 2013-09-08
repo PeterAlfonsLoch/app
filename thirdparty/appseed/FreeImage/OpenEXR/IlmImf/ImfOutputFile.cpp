@@ -600,7 +600,7 @@ LineBufferTask::execute ()
 
         _lineBuffer->partiallyFull = false;
     }
-    catch (std::exception &e)
+    catch (::exception::exception &e)
     {
         if (!_lineBuffer->hasException)
         {

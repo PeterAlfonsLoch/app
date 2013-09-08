@@ -303,7 +303,7 @@ namespace core
             ::OutputDebugStringW(::str::international::utf8_to_unicode(strLine));
             fputs(strLine, plog->m_pfile);
          }
-         catch(exception::exception &)
+         catch(::exception::exception &)
          {
             // Ignore exception here because this class/function is used for debugging
          }
@@ -501,7 +501,7 @@ namespace core
             ::OutputDebugStringW(::str::international::utf8_to_unicode(strLine));
             plog->m_spfile->write(strLine, strLine.get_length());
          }
-         catch(exception &)
+         catch(::exception::exception &)
          {
             // Ignore exception here because this class/function is used for debugging
          }

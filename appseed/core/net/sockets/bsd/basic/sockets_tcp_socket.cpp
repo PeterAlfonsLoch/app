@@ -545,6 +545,8 @@ void ssl_sigpipe_handle( int x );
 
       }
 
+      return n;
+
    }
 
    void tcp_socket::OnRead()
@@ -585,7 +587,7 @@ void ssl_sigpipe_handle( int x );
       // unbuffered
       if (n > 0)
       {
-         stream_socket::OnRead(buf, n);
+         stream_socket::on_read(buf, n);
       }
       if (m_b_input_buffer_disabled)
       {
@@ -660,7 +662,7 @@ void ssl_sigpipe_handle( int x );
             return;
          OUTPUT * p = m_obuf.get_at(pos);
          repeat = false;
-         int32_t n = TryWrite(p -> Buf(), p -> Len());
+         int32_t n = try_write(p -> Buf(), p -> Len());
          if (n > 0)
          {
             size_t left = p -> remove(n);
@@ -701,13 +703,18 @@ void ssl_sigpipe_handle( int x );
    }
 
 
-   int32_t tcp_socket::TryWrite(const char *buf, int32_t len)
+   ::primitive::memory_size tcp_socket::try_write(const void * buf, ::primitive::memory_size len)
    {
-      size_t n = 0;
+
+      ::primitive::memory_size n = 0;
+
    #ifdef HAVE_OPENSSL
+
       if (IsSSL())
       {
+
          n = SSL_write(m_ssl, buf, (int32_t)len);
+
          if (n == -1)
          {
             int32_t errnr = SSL_get_error(m_ssl, (int32_t) n);
@@ -740,7 +747,7 @@ void ssl_sigpipe_handle( int x );
 #ifdef MACOS
          n = send(GetSocket(), buf, len, SO_NOSIGPIPE);
 #else
-         n = send(GetSocket(), buf, len, MSG_NOSIGNAL);
+         n = send(GetSocket(), (const char *) buf, len, MSG_NOSIGNAL);
 #endif
          if (n == -1)
          {
@@ -774,10 +781,15 @@ void ssl_sigpipe_handle( int x );
    }
 
 
-   void tcp_socket::buffer(const char *buf, int32_t len)
+   void tcp_socket::buffer(const void * pdata, primitive::memory_size len)
    {
-      int32_t ptr = 0;
+
+      const char * buf = (const char *) pdata;
+
+      ::primitive::memory_size ptr = 0;
+
       m_output_length += len;
+
       while (ptr < len)
       {
          // buf/len => pbuf/sz
@@ -799,21 +811,29 @@ void ssl_sigpipe_handle( int x );
          }
          else
          {
+
             m_obuf_top = new OUTPUT;
+
             m_obuf.add_tail( m_obuf_top );
+
          }
+
       }
+
    }
 
 
+/*
    void tcp_socket::write(const string &str)
    {
       write(str,  (int32_t) str.get_length());
    }
+*/
 
-
-   void tcp_socket::write(const void * buf, primitive::memory_size len)
+   void tcp_socket::write(const void * pdata, primitive::memory_size len)
    {
+
+      const byte * buf = (const byte *) pdata;
 
       if (!Ready() && !Connecting())
       {
@@ -837,7 +857,7 @@ void ssl_sigpipe_handle( int x );
          buffer(buf, len);
          return;
       }
-      int32_t n = TryWrite(buf, len);
+      int32_t n = try_write(buf, len);
       if (n >= 0 && n < (int32_t)len)
       {
          buffer(buf + n, len - n);
@@ -1340,12 +1360,12 @@ void ssl_sigpipe_handle( int x );
    }
 
 
-   int32_t tcp_socket::close()
+   void tcp_socket::close()
    {
       if (GetSocket() == INVALID_SOCKET) // this could happen
       {
          Handler().LogError(this, "socket::close", 0, "file descriptor invalid", ::core::log::level_warning);
-         return 0;
+         return;
       }
       int32_t n;
       SetNonblocking(true);
@@ -1359,7 +1379,7 @@ void ssl_sigpipe_handle( int x );
       }
       //
       char tmp[1000];
-      if (!Lost() && (n = (int32_t) recv(GetSocket(),tmp,1000,0)) >= 0)
+      if (!Lost() && (n = (int32_t) ::recv(GetSocket(),tmp,1000,0)) >= 0)
       {
          if (n)
          {
@@ -1403,8 +1423,11 @@ void ssl_sigpipe_handle( int x );
          m_ssl = NULL;
       }
    #endif
-      return socket::close();
+      
+      socket::close();
+
    }
+
 
 
    #ifdef HAVE_OPENSSL

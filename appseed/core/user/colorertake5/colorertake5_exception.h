@@ -28,13 +28,6 @@ namespace colorertake5
      */
      virtual ~exception();
 
-     /** Returns exception message
-     */
-     virtual string getMessage() const;
-   protected:
-     /** Internal message container
-     */
-     string message;
    };
 
    /**

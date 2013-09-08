@@ -1031,7 +1031,7 @@ alt1:
    throw e;
 
    }
-   catch(exception::exception & e)
+   catch(::exception::exception &)
    {
 
    if(!Application.on_run_exception(e))
@@ -1543,7 +1543,7 @@ alt1:
             throw e;
 
          }
-         catch(exception::exception & e)
+         catch(::exception::exception &)
          {
 
             if(!App(this).on_run_exception(e))

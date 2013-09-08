@@ -60,7 +60,7 @@ char errorMessage[MAX_ERR_LENGTH];
 
 
 void
-setErrorMessage (const std::exception &e)
+setErrorMessage (const ::exception::exception &e)
 {
     strncpy (errorMessage, e.what(), MAX_ERR_LENGTH - 1);
     errorMessage[MAX_ERR_LENGTH - 1] = 0;
@@ -177,7 +177,7 @@ ImfNewHeader (void)
     {
 	return (ImfHeader *) new Imf::Header;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -199,7 +199,7 @@ ImfCopyHeader (const ImfHeader *hdr)
     {
 	return (ImfHeader *) new Imf::Header (*header (hdr));
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -340,7 +340,7 @@ ImfHeaderSetIntAttribute (ImfHeader *hdr, const char name[], int value)
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -356,7 +356,7 @@ ImfHeaderIntAttribute (const ImfHeader *hdr, const char name[], int *value)
 	*value = header(hdr)->typedAttribute<Imf::IntAttribute>(name).value();
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -381,7 +381,7 @@ ImfHeaderSetFloatAttribute (ImfHeader *hdr, const char name[], float value)
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -406,7 +406,7 @@ ImfHeaderSetDoubleAttribute (ImfHeader *hdr, const char name[], double value)
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -422,7 +422,7 @@ ImfHeaderFloatAttribute (const ImfHeader *hdr, const char name[], float *value)
 	*value = header(hdr)->typedAttribute<Imf::FloatAttribute>(name).value();
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -442,7 +442,7 @@ ImfHeaderDoubleAttribute (const ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -469,7 +469,7 @@ ImfHeaderSetStringAttribute (ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -489,7 +489,7 @@ ImfHeaderStringAttribute (const ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -519,7 +519,7 @@ ImfHeaderSetBox2iAttribute (ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -545,7 +545,7 @@ ImfHeaderBox2iAttribute (const ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -575,7 +575,7 @@ ImfHeaderSetBox2fAttribute (ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -601,7 +601,7 @@ ImfHeaderBox2fAttribute (const ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -625,7 +625,7 @@ ImfHeaderSetV2iAttribute (ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -648,7 +648,7 @@ ImfHeaderV2iAttribute (const ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -672,7 +672,7 @@ ImfHeaderSetV2fAttribute (ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -695,7 +695,7 @@ ImfHeaderV2fAttribute (const ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -719,7 +719,7 @@ ImfHeaderSetV3iAttribute (ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -743,7 +743,7 @@ ImfHeaderV3iAttribute (const ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -767,7 +767,7 @@ ImfHeaderSetV3fAttribute (ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -791,7 +791,7 @@ ImfHeaderV3fAttribute (const ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -815,7 +815,7 @@ ImfHeaderSetM33fAttribute (ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -847,7 +847,7 @@ ImfHeaderM33fAttribute (const ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -871,7 +871,7 @@ ImfHeaderSetM44fAttribute (ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -911,7 +911,7 @@ ImfHeaderM44fAttribute (const ImfHeader *hdr,
 
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -927,7 +927,7 @@ ImfOpenOutputFile (const char name[], const ImfHeader *hdr, int channels)
 	return (ImfOutputFile *) new Imf::RgbaOutputFile
 	    (name, *header(hdr), Imf::RgbaChannels (channels));
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -943,7 +943,7 @@ ImfCloseOutputFile (ImfOutputFile *out)
 	delete outfile (out);
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -962,7 +962,7 @@ ImfOutputSetFrameBuffer (ImfOutputFile *out,
 	outfile(out)->setFrameBuffer ((Imf::Rgba *)base, xStride, yStride);
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -978,7 +978,7 @@ ImfOutputWritePixels (ImfOutputFile *out, int numScanLines)
 	outfile(out)->writePixels (numScanLines);
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1023,7 +1023,7 @@ ImfOpenTiledOutputFile (const char name[],
 		     Imf::LevelMode (mode),
 		     Imf::LevelRoundingMode (rmode));
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1039,7 +1039,7 @@ ImfCloseTiledOutputFile (ImfTiledOutputFile *out)
 	delete outfile (out);
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1058,7 +1058,7 @@ ImfTiledOutputSetFrameBuffer (ImfTiledOutputFile *out,
 	outfile(out)->setFrameBuffer ((Imf::Rgba *)base, xStride, yStride);
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1076,7 +1076,7 @@ ImfTiledOutputWriteTile (ImfTiledOutputFile *out,
 	outfile(out)->writeTile (dx, dy, lx, ly);
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1095,7 +1095,7 @@ ImfTiledOutputWriteTiles (ImfTiledOutputFile *out,
 	outfile(out)->writeTiles (dxMin, dxMax, dyMin, dyMax, lx, ly);
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1152,7 +1152,7 @@ ImfOpenInputFile (const char name[])
     {
 	return (ImfInputFile *) new Imf::RgbaInputFile (name);
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1168,7 +1168,7 @@ ImfCloseInputFile (ImfInputFile *in)
 	delete infile (in);
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1187,7 +1187,7 @@ ImfInputSetFrameBuffer (ImfInputFile *in,
 	infile(in)->setFrameBuffer ((Imf::Rgba *) base, xStride, yStride);
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1203,7 +1203,7 @@ ImfInputReadPixels (ImfInputFile *in, int scanLine1, int scanLine2)
 	infile(in)->readPixels (scanLine1, scanLine2);
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1239,7 +1239,7 @@ ImfOpenTiledInputFile (const char name[])
     {
 	return (ImfTiledInputFile *) new Imf::TiledRgbaInputFile (name);
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1255,7 +1255,7 @@ ImfCloseTiledInputFile (ImfTiledInputFile *in)
 	delete infile (in);
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1274,7 +1274,7 @@ ImfTiledInputSetFrameBuffer (ImfTiledInputFile *in,
 	infile(in)->setFrameBuffer ((Imf::Rgba *) base, xStride, yStride);
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1292,7 +1292,7 @@ ImfTiledInputReadTile (ImfTiledInputFile *in,
 	infile(in)->readTile (dx, dy, lx, ly);
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1311,7 +1311,7 @@ ImfTiledInputReadTiles (ImfTiledInputFile *in,
 	infile(in)->readTiles (dxMin, dxMax, dyMin, dyMax, lx, ly);
 	return 1;
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1376,7 +1376,7 @@ ImfNewRound12logLut (int channels)
 	return (ImfLut *) new Imf::RgbaLut
 	    (Imf::round12log, Imf::RgbaChannels (channels));
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;
@@ -1392,7 +1392,7 @@ ImfNewRoundNBitLut (unsigned int n, int channels)
 	return (ImfLut *) new Imf::RgbaLut
 	    (Imf::roundNBit (n), Imf::RgbaChannels (channels));
     }
-    catch (const std::exception &e)
+    catch (const ::exception::exception &e)
     {
 	setErrorMessage (e);
 	return 0;

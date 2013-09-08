@@ -5,7 +5,7 @@ namespace colorertake5
 {
 
 
-   exception::exception(const exception &e) :
+   exception::exception(const exception & e) :
       element(e.get_app()),
       ::call_stack(e.get_app()),
       ::exception::base(e.get_app())

@@ -60,7 +60,7 @@ namespace file
    string plain_text_stream_memory_buffer::to_string()
    {
       
-      return m_spmemorybuffer->to_string();
+      return m_spmemorybuffer->str();
 
    }
 

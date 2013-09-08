@@ -4,11 +4,6 @@
 #include "core/database/database.h"
 
 
-namespace simpledb
-{
-   class application;
-}
-
 
 //////////////////////////////////////////////////////////
 // simpledb - non-meta-non-orto-non-para remark

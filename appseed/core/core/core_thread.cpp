@@ -295,7 +295,7 @@ UNREFERENCED_PARAMETER(lparam);
 throw interface_only_exception(get_app());
 }
 
-bool thread::on_run_exception(exception::exception & e)
+bool thread::on_run_exception(::exception::exception &)
 {
 
 UNREFERENCED_PARAMETER(e);
@@ -552,7 +552,7 @@ bool thread::on_run_exception(::exception::exception & e)
       return false;
 
    }
-   catch(exception::exception & e)
+   catch(::exception::exception & e)
    {
 
       throw e;

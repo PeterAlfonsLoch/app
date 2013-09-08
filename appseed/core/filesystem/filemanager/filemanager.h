@@ -4,12 +4,6 @@
 #include "filesystem/userfs/userfs.h"
 
 
-namespace filemanager
-{
-   class application;
-} // namespace filemanager
-
-
 #include "filemanager_const.h"
 
 #include "filemanager_icon.h"

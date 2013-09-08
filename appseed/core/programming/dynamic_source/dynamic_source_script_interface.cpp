@@ -75,23 +75,24 @@ namespace dynamic_source
 
    }
 
-   ::http::file & script_interface::output_file()
+   ::file::output_stream & script_interface::ostream()
    {
       if(m_pinstanceMain == this)
       {
-         return *((::http::file *) NULL);
+         return *((::file::output_stream *) NULL);
       }
       else if(m_pinstanceMain != NULL)
       {
-         return m_pinstanceMain->output_file();
+         return m_pinstanceMain->ostream();
       }
       else if(m_pnetnodesocket != NULL)
       {
-         return m_pnetnodesocket->response().file();
+         return m_pnetnodesocket->response().ostream();
       }
       else
       {
-         return *m_spmemoryfileFallback;
+         m_ostreamFallback.m_spbuffer = m_spmemoryfileFallback;
+         return m_ostreamFallback;
       }
    }
 
