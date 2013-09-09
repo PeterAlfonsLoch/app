@@ -626,7 +626,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pobj);
       // update the indicators before becoming visible
-      message::base base(get_app());
+      ::message::base base(get_app());
       LRESULT lresult;
       base.set(this, WM_IDLEUPDATECMDUI, TRUE, 0L, lresult);
       _001OnIdleUpdateCmdUI(&base);

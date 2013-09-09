@@ -126,6 +126,12 @@
     <Filter Include="Source Files\os">
       <UniqueIdentifier>{245e3241-db5a-4886-814d-9434580575d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{dc109c06-f55b-48ea-ac46-06302b3262f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{8832ff75-5113-4095-b832-a6e62e777cfd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="android\c_os_internal.h">
@@ -947,9 +953,6 @@
     <ClInclude Include="base\base_thread.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base_user_interaction.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_request_signal.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -1138,6 +1141,24 @@
     </ClInclude>
     <ClInclude Include="file\file_plain_text_stream_memory_buffer.h">
       <Filter>Header Files\file</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_create_context.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_base_interaction.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_base_document.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_base_document_template.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str_istring.h">
+      <Filter>Header Files\str</Filter>
+    </ClInclude>
+    <ClInclude Include="os\os.h">
+      <Filter>Header Files\os</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1852,6 +1873,12 @@
     <ClCompile Include="file\file_plain_text_stream_memory_buffer.cpp">
       <Filter>Source Files\file</Filter>
     </ClCompile>
+    <ClCompile Include="user\user_create_context.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str_istring.cpp">
+      <Filter>Source Files\str</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -1865,6 +1892,9 @@
     </None>
     <None Include="base.def">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

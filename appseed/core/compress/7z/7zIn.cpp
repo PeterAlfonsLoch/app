@@ -399,7 +399,7 @@ void CInArchive::GetNextFolderItem(CFolder &folder)
   for (i = 0; i < numCoders; i++)
   {
     folder.Coders.add(new CCoderInfo());
-    CCoderInfo &coder = folder.Coders.last_element();
+    CCoderInfo &coder = *folder.Coders.last_element();
 
     {
       byte mainByte = ReadByte();
@@ -834,7 +834,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
   {
     const CFolder &folder = folders[i];
     dataVector.add(new ::file::byte_buffer());
-    ::file::byte_buffer &data = dataVector.last_element();
+    ::file::byte_buffer &data = *dataVector.last_element();
     uint64_t unpackSize64 = folder.GetUnpackSize();
     size_t unpackSize = (size_t)unpackSize64;
     if (unpackSize != unpackSize64)

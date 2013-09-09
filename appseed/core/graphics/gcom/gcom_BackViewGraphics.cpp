@@ -28,7 +28,7 @@ namespace gcom
 
       ::draw2d::graphics & Graphics::GetScreenDC()
       {
-         return m_dcScreen;
+         return *m_dcScreen;
       }
 
       ::draw2d::graphics & Graphics::GetBackDC()

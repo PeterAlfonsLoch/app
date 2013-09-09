@@ -6,7 +6,7 @@ class CLASS_DECL_c istring
 protected:
 
 
-   sp(base_application)  m_papp;
+   sp(base_application)  m_pbaseapp;
    string               m_str;
    string               m_strTemplate;
 

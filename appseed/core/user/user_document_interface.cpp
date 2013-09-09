@@ -9,6 +9,11 @@ namespace user
       ::data::data_container_base(NULL),
       m_mutex(NULL)
    {
+
+
+      m_pdoc                  = this;
+
+
       m_pdocumentemplate      = NULL;
       m_bModified             = FALSE;
       m_bAutoDelete           = TRUE;       // default to auto delete document_interface

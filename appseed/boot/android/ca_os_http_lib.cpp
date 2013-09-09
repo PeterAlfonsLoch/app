@@ -320,7 +320,7 @@ tiny_http::http_retcode tiny_http::t_get(char ** pdata, int32_t * plength, void 
       return ERRNOLG;
     }
     if (plength) *plength=length;
-    if (!(*pdata=(char *) ca2_alloc(length))) {
+    if (!(*pdata=(char *) memory_alloc(length))) {
       close(fd);
       return ERRMEM;
     }

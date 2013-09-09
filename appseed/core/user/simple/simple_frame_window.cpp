@@ -87,7 +87,7 @@ void simple_frame_window::_001OnDestroy(signal_details * pobj)
 {
    try
    {
-      if(m_papp != NULL && &Application != NULL)
+      if(m_pbaseapp != NULL && &Application != NULL)
       {
          Application.remove_frame(this);
       }
@@ -109,7 +109,7 @@ void simple_frame_window::_001OnDestroy(signal_details * pobj)
 
    try
    {
-      if(m_papp != NULL && m_pbaseapp->m_pplaneapp->m_psystem != NULL && &System != NULL)
+      if(m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp->m_psystem != NULL && &System != NULL)
       {
          System.remove_frame(this);
       }

@@ -15,7 +15,7 @@ namespace http
       //virtual void to_string(string & str);
 
       output_stream();
-      output_stream(::file::buffer_sp pbuffer);
+      output_stream(::file::stream_buffer * pbuffer);
       virtual ~output_stream();
 
 

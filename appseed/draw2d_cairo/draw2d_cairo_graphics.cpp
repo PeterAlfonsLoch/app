@@ -299,7 +299,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    }
 
 
-   object* graphics::SelectObject(object* pObject)
+   ::draw2d_cairo::object* graphics::SelectObject(draw2d_cairo::object* pObject)
    {
    /*      ASSERT(get_handle1() != NULL);
       if(pObject == NULL)

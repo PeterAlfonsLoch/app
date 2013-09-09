@@ -57,7 +57,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
 
    string strUrl;
 
-   char * szBuf = (char *) _ca_alloc(4096);
+   char * szBuf = (char *) memory_alloc(4096);
 
    prepare_http();
 
@@ -170,7 +170,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
    if(piStatus != NULL)
       *piStatus = dwStatusCode;
    dwBufferLen = 1024;
-   char * pszStatus = (char *) _ca_alloc(dwBufferLen);
+   char * pszStatus = (char *) memory_alloc(dwBufferLen);
    if(pszStatus != NULL)
    {
       memset_dup(pszStatus, 0, dwBufferLen);
@@ -188,7 +188,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
       if(piStatus == NULL)
       {
          /*dwBufferLen = 1024 + 256;
-         char * pszMessage = (char *) _ca_alloc(dwBufferLen);
+         char * pszMessage = (char *) memory_alloc(dwBufferLen);
          if(pszMessage != NULL)
          {
          //sprintf_s(pszMessage, dwBufferLen, "download error : status %d - %s", dwStatusCode, pszStatus);
@@ -206,7 +206,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
    }
    if(pszStatus != NULL)
    {
-      _ca_free(pszStatus, 0);
+      memory_free_dbg(pszStatus, 0);
    }
 
    if (bResults)
@@ -397,7 +397,7 @@ string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    if(bResults)
       bResults = HttpQueryInfo(hRequest, HTTP_QUERY_STATUS_CODE | HTTP_QUERY_FLAG_NUMBER, &dwStatusCode, &dwBufferLen, &dwIndex) != FALSE;
    dwBufferLen = 1024;
-   char * pszStatus = (char *) _ca_alloc(dwBufferLen);
+   char * pszStatus = (char *) memory_alloc(dwBufferLen);
    if(pszStatus != NULL)
    {
       memset_dup(pszStatus, 0, dwBufferLen);
@@ -423,7 +423,7 @@ string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    }
    if(pszStatus != NULL)
    {
-      _ca_free(pszStatus, 0);
+      memory_free_dbg(pszStatus, 0);
    }
 
    uint32_t dwLen = 0;

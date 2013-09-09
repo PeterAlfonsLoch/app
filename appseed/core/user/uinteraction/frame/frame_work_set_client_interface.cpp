@@ -12,7 +12,7 @@ namespace frame
 
    WorkSetClientInterface::WorkSetClientInterface()
    {
-      m_workset.set_app(m_papp);
+      m_workset.set_app(m_pbaseapp);
    }
 
    WorkSetClientInterface::~WorkSetClientInterface()

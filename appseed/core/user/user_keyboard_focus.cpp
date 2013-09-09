@@ -5,7 +5,7 @@ namespace user
 
    keyboard_focus::~keyboard_focus()
    {
-      if(m_papp != NULL && &System != NULL && System.user().is_set())
+      if(m_pbaseapp != NULL && &System != NULL && System.user().is_set())
       {
          if(System.user()->m_pkeyboardfocus == this)
          {

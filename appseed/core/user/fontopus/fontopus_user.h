@@ -66,5 +66,5 @@ namespace fontopus
 
 
 #define AppUser(pbaseapp) (*planeApp(pbaseapp).m_pfontopus->get_user())
-#define ApplicationUser (AppUser(m_papp))
+#define ApplicationUser (AppUser(m_pbaseapp))
 

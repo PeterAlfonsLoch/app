@@ -11,7 +11,7 @@ namespace data
       {
          if(pdata->m_lockedlongWriting == 1 && (pdata->m_spdataParentLock.is_null() || !pdata->m_spdataParentLock->is_in_use()))
          {
-            Sys(pdata->m_papp).wait_twf();
+            Sys(pdata->m_pbaseapp).wait_twf();
          }
       }
    }
@@ -27,7 +27,7 @@ namespace data
       {
          if(pdata->m_lockedlongSaving == 1 && (pdata->m_spdataParentLock.is_null() || !pdata->m_spdataParentLock->is_in_use()))
          {
-            Sys(pdata->m_papp).wait_twf();
+            Sys(pdata->m_pbaseapp).wait_twf();
          }
       }
    }

@@ -1798,7 +1798,7 @@ namespace html
    {
       if(m_pbase->get_type() == base::type_value)
       {
-         str += Sys(pdata->m_papp).html()->entities(m_propertyset["PropertyBody"].get_string());
+         str += Sys(pdata->m_pbaseapp).html()->entities(m_propertyset["PropertyBody"].get_string());
       }
       else
       {
@@ -1818,7 +1818,7 @@ namespace html
          str += ">";
          if(m_elementalptra.get_size() <= 0)
          {
-            str += Sys(pdata->m_papp).html()->entities(m_propertyset["PropertyBody"].get_string());
+            str += Sys(pdata->m_pbaseapp).html()->entities(m_propertyset["PropertyBody"].get_string());
          }
          else
          {

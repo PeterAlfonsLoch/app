@@ -1,6 +1,6 @@
 #include "framework.h"
 
-
+/*
 #ifdef WINDOWS
 CLASS_DECL_c void * (*g_pfnca2_alloc)(size_t size) = NULL;
 CLASS_DECL_c void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = NULL;
@@ -8,60 +8,68 @@ CLASS_DECL_c void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlo
 CLASS_DECL_c void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType) = NULL;
 CLASS_DECL_c size_t (*g_pfnca2_msize)(void * pvoid, int32_t iBlockType) = NULL;
 #else
-CLASS_DECL_c void * (*g_pfnca2_alloc)(size_t size) = &::_ca_alloc;
+CLASS_DECL_c void * (*g_pfnca2_alloc)(size_t size) = &::memory_alloc;
 CLASS_DECL_c void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = &::_ca_alloc_dbg;
-CLASS_DECL_c void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = &::_ca_realloc;
-CLASS_DECL_c void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType) = &::_ca_free;
+CLASS_DECL_c void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = &::memory_realloc_dbg;
+CLASS_DECL_c void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType) = &::memory_free_dbg;
 CLASS_DECL_c size_t (*g_pfnca2_msize)(void * pvoid, int32_t iBlockType) = &::_ca_msize;
 #endif
+*/
+
+
+void * base_memory_alloc(size_t size);
+void * base_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+void * base_memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+void   base_memory_free_dbg(void * pvoid, int32_t iBlockType);
+size_t base_memory_size_dbg(void * pvoid, int32_t iBlockType);
 
 
 BEGIN_EXTERN_C
 
 
-void * ca2_alloc(size_t size)
+void * memory_alloc(size_t size)
 {
-   return g_pfnca2_alloc(size);
+   return base_memory_alloc(size);
 }
 
-void * ca2_calloc(size_t size, size_t bytes)
+void * memory_calloc(size_t size, size_t bytes)
 {
-   return ca2_alloc(size * bytes);
+   return base_memory_alloc(size * bytes);
 }
 
-void * ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
-   return g_pfnca2_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
+   return base_memory_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
 }
 
-void * ca2_realloc(void * pvoid, size_t nSize)
+void * memory_realloc(void * pvoid, size_t nSize)
 {
-   return g_pfnca2_realloc(pvoid, nSize, 0, NULL, -1);
+   return base_memory_realloc_dbg(pvoid, nSize, 0, NULL, -1);
 }
 
-void * ca2_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+void * memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
-   return g_pfnca2_realloc(pvoid, nSize, nBlockUse, szFileName, nLine);
+   return base_memory_realloc_dbg(pvoid, nSize, nBlockUse, szFileName, nLine);
 }
 
-void ca2_free(void * pvoid)
+void memory_free(void * pvoid)
 {
-   return g_pfnca2_free(pvoid, 0);
+   return base_memory_free_dbg(pvoid, 0);
 }
 
-void ca2_free_dbg(void * pvoid, int32_t iBlockType)
+void memory_free_dbg(void * pvoid, int32_t iBlockType)
 {
-   return g_pfnca2_free(pvoid, iBlockType);
+   return base_memory_free_dbg(pvoid, iBlockType);
 }
 
-size_t ca2_msize(void * pvoid)
+size_t memory_size(void * pvoid)
 {
-   return g_pfnca2_msize(pvoid, 0);
+   return base_memory_size_dbg(pvoid, 0);
 }
 
-size_t ca2_msize_dbg(void * pvoid, int32_t iBlockType)
+size_t memory_size_dbg(void * pvoid, int32_t iBlockType)
 {
-   return g_pfnca2_msize(pvoid, iBlockType);
+   return base_memory_size_dbg(pvoid, iBlockType);
 }
 
 
@@ -69,6 +77,8 @@ END_EXTERN_C
 
 #undef new 
 
+
+/*
 mutex & get_mutex_c_heap()
 {
 
@@ -88,7 +98,7 @@ mutex & get_mutex_c_heap()
 }
 
 
-void * _ca_alloc(size_t size)
+void * memory_alloc(size_t size)
 {
    synch_lock ml(&get_mutex_c_heap());
 #ifdef WINDOWSEX
@@ -111,16 +121,16 @@ void * _ca_alloc(size_t size)
 void * _ca_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
    synch_lock ml(&get_mutex_c_heap());
-   return _ca_alloc(nSize);
+   return memory_alloc(nSize);
 }
 
 
-void * _ca_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+void * memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
    synch_lock ml(&get_mutex_c_heap());
    byte * p = (byte *) pvoid;
    if(p == NULL)
-      return _ca_alloc(nSize);
+      return memory_alloc(nSize);
    p -= (4 + 16);
    if(p[0] == 22)
    {
@@ -146,7 +156,7 @@ void * _ca_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * s
    return p + 4 + 16;
 }
 
-void _ca_free(void * pvoid, int32_t iBlockType)
+void memory_free_dbg(void * pvoid, int32_t iBlockType)
 {
    synch_lock ml(&get_mutex_c_heap());
    byte * p = (byte *) pvoid;
@@ -183,14 +193,19 @@ size_t _ca_msize(void * pvoid, int32_t iBlockType)
    }
    return 0;
 }
+*/
 
+
+extern mutex * g_pmutexSystemHeap;
 
 
 void initialize_primitive_heap()
 {
+
+   /*
    if(g_pfnca2_alloc == NULL)
    {
-      g_pfnca2_alloc       = _ca_alloc;
+      g_pfnca2_alloc       = memory_alloc;
    }
    if(g_pfnca2_alloc_dbg == NULL)
    {
@@ -198,16 +213,20 @@ void initialize_primitive_heap()
    }
    if(g_pfnca2_realloc == NULL)
    {
-      g_pfnca2_realloc     = _ca_realloc;
+      g_pfnca2_realloc     = memory_realloc_dbg;
    }
    if(g_pfnca2_free == NULL)
    {
-      g_pfnca2_free        = _ca_free;
+      g_pfnca2_free        = memory_free_dbg;
    }
    if(g_pfnca2_msize == NULL)
    {
       g_pfnca2_msize       = _ca_msize;
    }
+
+   */
+
+   g_pmutexSystemHeap = new mutex(); 
 
 }
 
@@ -215,45 +234,45 @@ void finalize_primitive_heap()
 {
 }
 
-
+/*
 BEGIN_EXTERN_C
 
    CLASS_DECL_c void * c_alloc(size_t size)
 {
-   return ca2_alloc(size);
+   return memory_alloc(size);
 }
    CLASS_DECL_c void * c_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
-   return ca2_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
+   return memory_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
 }
    CLASS_DECL_c void * c_realloc(void * pvoid, size_t nSize)
 {
-   return ca2_realloc(pvoid, nSize);
+   return memory_realloc(pvoid, nSize);
 }
    CLASS_DECL_c void * c_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
-   return ca2_realloc_dbg(pvoid, nSize, nBlockUse, szFileName, nLine);
+   return memory_realloc_dbg(pvoid, nSize, nBlockUse, szFileName, nLine);
 }
-   CLASS_DECL_c void   c_free(void * pvoid)
+   CLASS_DECL_c void   memory_free(void * pvoid)
 {
-   return ca2_free(pvoid);
+   return memory_free(pvoid);
 }
    CLASS_DECL_c void   c_free_dbg(void * pvoid, int32_t iBlockType)
    {
-      return ca2_free_dbg(pvoid, iBlockType);
+      return memory_free_dbg(pvoid, iBlockType);
    }
    CLASS_DECL_c size_t c_msize(void * p)
 {
-   return ca2_msize(p);
+   return memory_size(p);
 }
    CLASS_DECL_c size_t c_msize_dbg(void * p, int32_t iBlockType)
 {
-   return ca2_msize_dbg(p, iBlockType);
+   return memory_size_dbg(p, iBlockType);
 }
 
 END_EXTERN_C
 
-
+*/
 
 c_class c_class::s_cclass;
 

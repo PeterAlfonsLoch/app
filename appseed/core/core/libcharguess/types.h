@@ -19,8 +19,8 @@
 */
 
 
-#define PR_MALLOC ca2_alloc
-#define PR_FREEIF ca2_free
+#define PR_MALLOC memory_alloc
+#define PR_FREEIF memory_free
 
 
 #define NS_ASSERTION(a,b) { if (!(a)) { puts(b); throw simple_exception(get_thread_app()); } }

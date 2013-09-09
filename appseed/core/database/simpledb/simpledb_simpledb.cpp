@@ -25,7 +25,7 @@ namespace simpledb
    bool simpledb::InitializeDataCentral()
    {
 
-      if(m_papp->is_system())
+      if(m_pbaseapp->is_system())
       {
 #ifndef METROWIN
          /* initialize client library */
@@ -37,7 +37,7 @@ namespace simpledb
 #endif
       }
 
-      m_pserver = new db_server(m_papp);
+      m_pserver = new db_server(m_pbaseapp);
 
 
       m_pserver->add_client(this);
@@ -57,7 +57,7 @@ namespace simpledb
       {
          data_set("locale", lpcsz);
       }
-      m_papp->m_pplaneapp->on_set_locale(lpcsz, bUser);
+      m_pbaseapp->m_pplaneapp->on_set_locale(lpcsz, bUser);
    }
 
    void simpledb::on_set_schema(const char * lpcsz, bool bUser)
@@ -66,7 +66,7 @@ namespace simpledb
       {
          data_set("schema", lpcsz);
       }
-      m_papp->m_pplaneapp->on_set_schema(lpcsz, bUser);
+      m_pbaseapp->m_pplaneapp->on_set_schema(lpcsz, bUser);
    }
 
    bool simpledb::FinalizeDataCentral()
@@ -88,7 +88,7 @@ namespace simpledb
       {
       }
 
-      if(m_papp->is_system())
+      if(m_pbaseapp->is_system())
       {
 
          m_pserver = NULL;
@@ -109,16 +109,16 @@ namespace simpledb
    bool simpledb::initialize2()
    {
 
-      if(m_papp->m_pplaneapp->command()->m_varTopicQuery["locale"].get_string().has_char())
+      if(m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["locale"].get_string().has_char())
       {
-         string str = m_papp->m_pplaneapp->command()->m_varTopicQuery["locale"];
-         m_papp->m_pplaneapp->set_locale(str, false);
+         string str = m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["locale"];
+         m_pbaseapp->m_pplaneapp->set_locale(str, false);
       }
 
-      if(m_papp->m_pplaneapp->command()->m_varTopicQuery["schema"].get_string().has_char())
+      if(m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["schema"].get_string().has_char())
       {
-         string str = m_papp->m_pplaneapp->command()->m_varTopicQuery["schema"];
-         m_papp->m_pplaneapp->set_schema(str, false);
+         string str = m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["schema"];
+         m_pbaseapp->m_pplaneapp->set_schema(str, false);
       }
 
 //      if(&AppUser(this) == NULL)
@@ -126,7 +126,7 @@ namespace simpledb
 
       if(!InitializeDataCentral())
       {
-         m_papp->m_pplaneapp->simple_message_box(NULL, "Could not initialize data central");
+         m_pbaseapp->m_pplaneapp->simple_message_box(NULL, "Could not initialize data central");
          return false;
       }
 
@@ -135,10 +135,10 @@ namespace simpledb
 //      ::core::application_request * prequest = System.get_application_request();
 
 
-      m_papp->m_pplaneapp->fill_locale_schema(*m_papp->m_pplaneapp->str_context()->m_plocaleschema);
+      m_pbaseapp->m_pplaneapp->fill_locale_schema(*m_pbaseapp->m_pplaneapp->str_context()->m_plocaleschema);
 
 
-      if(!m_papp->m_pplaneapp->is_installing() && !m_papp->m_pplaneapp->is_uninstalling())
+      if(!m_pbaseapp->m_pplaneapp->is_installing() && !m_pbaseapp->m_pplaneapp->is_uninstalling())
       {
 
          set_keyboard_layout(NULL, false);
@@ -216,7 +216,7 @@ namespace simpledb
       if(bUser)
       {
 
-         if(App(m_papp).get_safe_user() != NULL)
+         if(App(m_pbaseapp).get_safe_user() != NULL)
          {
 
             data_set("keyboard_layout", pszPath);

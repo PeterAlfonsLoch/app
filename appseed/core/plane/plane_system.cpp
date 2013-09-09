@@ -170,6 +170,10 @@ namespace plane
       m_bProcessInitialize          = true;
 
 
+      if(!::core::system::process_initialize())
+         return false;
+
+
       if(!::plane::application::process_initialize())
          return false;
 
@@ -865,7 +869,7 @@ namespace plane
 
 #ifndef METROWIN
 
-   ::core::process_section & system::process()
+   ::core::process_departament & system::process()
    {
       return m_processsection;
    }
@@ -892,7 +896,7 @@ namespace plane
 
       retry_single_lock rsl(&m_mutex, millis(84), millis(84));
 
-      appptra().add_unique(papp);
+      appptra().add_unique(papp->m_pplaneapp);
 
       if(!papp->m_pplaneapp->is_session()
       && !papp->m_pplaneapp->is_system())
@@ -912,7 +916,7 @@ namespace plane
 
       retry_single_lock rsl(&m_mutex, millis(84), millis(84));
 
-      appptra().remove(papp);
+      appptra().remove(papp->m_pplaneapp);
 
    }
 
@@ -1631,7 +1635,7 @@ namespace plane
 
       sp(base_application) pgenapp = (papp);
 
-      pgenapp->m_strAppId = pszAppId;
+      pgenapp->m_pplaneapp->m_strAppId = pszAppId;
 
       return papp;
 
@@ -1730,38 +1734,39 @@ namespace plane
    }
 
 #ifdef WINDOWSEX
-   BOOL CALLBACK system::monitor_enum_proc(
-     HMONITOR hmonitor,
-     HDC hdcMonitor,
-     LPRECT lprcMonitor,
-     LPARAM dwData)
+   BOOL CALLBACK system::monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData)
    {
-      ::plane::system * papp = (::plane::system *) dwData;
-      papp->m_pplaneapp->monitor_enum(hmonitor, hdcMonitor, lprcMonitor);
+      ::plane::system * psystem = (::plane::system *) dwData;
+      psystem->monitor_enum(hmonitor, hdcMonitor, lprcMonitor);
       return TRUE; // to enumerate all
    }
-#endif
 
-#ifdef WINDOWSEX
-   void system::monitor_enum(
-     HMONITOR hmonitor,
-     HDC hdcMonitor,
-     LPRECT lprcMonitor)
+   void system::monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, LPRECT lprcMonitor)
    {
+      
       UNREFERENCED_PARAMETER(hdcMonitor);
       UNREFERENCED_PARAMETER(lprcMonitor);
-      m_monitorinfoa.set_size(m_monitorinfoa.get_size() + 1);
-      memset(&m_monitorinfoa.last_element(), 0, sizeof(MONITORINFO));
+      
+      m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
+      
+      ZERO(m_monitorinfoa.last_element());
+
       m_monitorinfoa.last_element().cbSize = sizeof(MONITORINFO);
+
       ::GetMonitorInfo(hmonitor, &m_monitorinfoa.last_element());
+
       MONITORINFO mi = m_monitorinfoa.last_element();
 
       TRACE0("application::monitor_enum\n");
       TRACE("upper_bound %d\n", m_monitorinfoa.get_upper_bound());
       TRACE("rcMonitor(left, top, right, bottom) %d, %d, %d, %d\n", mi.rcMonitor.left, mi.rcMonitor.top, mi.rcMonitor.right, mi.rcMonitor.bottom);
       TRACE("rcWork(left, top, right, bottom) %d, %d, %d, %d\n", mi.rcWork.left, mi.rcWork.top, mi.rcWork.right, mi.rcWork.bottom);
+
    }
+
+
 #endif
+
 
 
    ::count system::get_monitor_count()
@@ -1877,11 +1882,12 @@ namespace plane
 
    }
 
-   sp(command_thread) system::command_thread()
+/*
+sp(::command_thread) system::command_thread()
    {
       return m_pcommandthread;
    }
-
+*/
 
    bool system::on_install()
    {
@@ -2342,7 +2348,7 @@ retry:
    }
 
 
-/*   sp(command_thread) system::command_thread()
+/*   sp(::command_thread) system::command_thread()
    {
 	   return m_pcommandthread;
    }
@@ -2404,7 +2410,7 @@ retry:
    }
    */
 
-   void application::assert_valid() const
+   void system::assert_valid() const
    {
 
       application::assert_valid();
@@ -2413,7 +2419,7 @@ retry:
    }
 
 
-   void application::dump(dump_context & context) const
+   void system::dump(dump_context & context) const
    {
 
       application::dump(context);
@@ -2422,12 +2428,29 @@ retry:
    }
 
 
-   UINT application::os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam lparam)
+   UINT system::os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam lparam)
    {
-      return os().post_to_all_threads(uiMessage, wparam, lparam);
+      
+      os().post_to_all_threads(uiMessage, wparam, lparam);
+
+      return 0;
+
    }
 
+   ::exception::engine & system::eengine()
+   {
+
+      static ::exception::engine s_eengine(NULL);
+
+      return s_eengine;
+
+   }
+
+
+
 } // namespace plane
+
+
 
 
 

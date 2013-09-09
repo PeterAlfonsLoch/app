@@ -33,6 +33,9 @@
   HFTODO this must be hidden if we don't want client capabilities in 
   embedded library
  */
+
+#include "base/base/base.h"
+
 #include <my_global.h>
 #include <mysql.h>
 #include <mysql_com.h>
@@ -45,10 +48,10 @@
 #include <errno.h>
 #include "probes_mysql.h"
 
-#include <algorithm>
+//#include <algorithm>
 
-using std::min;
-using std::max;
+//using std::min;
+//using std::max;
 
 #ifdef EMBEDDED_LIBRARY
 #undef MYSQL_SERVER

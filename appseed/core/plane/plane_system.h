@@ -1,12 +1,10 @@
 #pragma once
 
 
-//#ifndef WINDOWS
-//#define INFINITE 0xffffffff
-//#endif
-
 #ifdef WINDOWS
+
 interface ID2D1DeviceContext;
+
 #endif
 
 #ifdef METROWIN
@@ -17,14 +15,8 @@ interface ID2D1DeviceContext;
 
 class id;
 
-
-
-
-
-
 namespace plane
 {
-
 
 
    class CLASS_DECL_ca2 system :
@@ -32,6 +24,8 @@ namespace plane
       virtual public ::core::system
    {
    public:
+
+
       //plane::session::run_start_installer *        m_prunstartinstaller;
       //plane::session::map *                        m_pbergedgemap;
       index                                        m_iNewEdge;
@@ -176,7 +170,7 @@ namespace plane
       virtual void open_by_file_extension(index iEdge, const char * pszPathName);
       virtual bool is_system();
 
-//      virtual sp(command_thread) command_thread();
+//      virtual sp(::command_thread) command_thread();
 
 
 
@@ -230,8 +224,8 @@ namespace plane
       application_ptra              & appptra();
       ::core::datetime                      & datetime();
 
-      inline ::file::system            & file()    { return m_spfile; }
-      inline ::file::dir::system            & dir()     { return m_spdir; }
+      inline ::file::system            & file()    { return *m_spfile; }
+      inline ::file::dir::system            & dir()     { return *m_spdir; }
       ::core::stra                          & stra();
       ::core::install                       & install();
       ::core::service                       & service();
@@ -368,7 +362,7 @@ namespace plane
 
       virtual bool create_twf();
 
-      virtual void discard_to_factory(sp(element) pca);
+      //virtual void discard_to_factory(sp(element) pca);
 
       virtual bool verb();
 
@@ -390,7 +384,7 @@ namespace plane
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
 
-      //virtual sp(command_thread) command_thread();
+      //virtual sp(::command_thread) command_thread();
 
 
       virtual bool on_install();
@@ -417,28 +411,18 @@ namespace plane
 
 #endif
 
+      void assert_valid() const;
+      void dump(dump_context & context) const;
+
+
       virtual UINT os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam lparam);
 
 
    };
 
 
-   //CLASS_DECL_ca2 class heap_item_array * get_heap_itema();
+} // namespace plane
 
-   //CLASS_DECL_ca2 void set_heap_itema(class heap_item_array * pitema);
-
-
-} // namespace cube
-
-
-namespace core
-{
-
-
-
-
-
-} // namespace core
 
 
 #if defined(LINUX) || defined(MACOS)

@@ -162,7 +162,7 @@ namespace uinteraction
       }
 
 
-      bool frame::_000OnLButtonDown(message::mouse * pmouse)
+      bool frame::_000OnLButtonDown(::message::mouse * pmouse)
       {
 
          UNREFERENCED_PARAMETER(pmouse);
@@ -171,7 +171,7 @@ namespace uinteraction
 
       }
 
-      bool frame::_000OnLButtonUp(message::mouse * pmouse)
+      bool frame::_000OnLButtonUp(::message::mouse * pmouse)
       {
 
          UNREFERENCED_PARAMETER(pmouse);
@@ -180,7 +180,7 @@ namespace uinteraction
 
       }
 
-      bool frame::_000OnMouseMove(message::mouse * pmouse)
+      bool frame::_000OnMouseMove(::message::mouse * pmouse)
       {
 
          UNREFERENCED_PARAMETER(pmouse);
@@ -189,7 +189,7 @@ namespace uinteraction
 
       }
 
-      bool frame::_000OnNcLButtonDown(message::mouse * pmouse)
+      bool frame::_000OnNcLButtonDown(::message::mouse * pmouse)
       {
 
          UNREFERENCED_PARAMETER(pmouse);
@@ -198,7 +198,7 @@ namespace uinteraction
 
       }
 
-      bool frame::_000OnNcLButtonUp(message::mouse * pmouse)
+      bool frame::_000OnNcLButtonUp(::message::mouse * pmouse)
       {
 
          UNREFERENCED_PARAMETER(pmouse);
@@ -207,7 +207,7 @@ namespace uinteraction
 
       }
 
-      bool frame::_000OnNcMouseMove(message::mouse * pmouse)
+      bool frame::_000OnNcMouseMove(::message::mouse * pmouse)
       {
 
          UNREFERENCED_PARAMETER(pmouse);

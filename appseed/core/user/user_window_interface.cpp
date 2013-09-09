@@ -172,8 +172,8 @@ namespace user
       window_interface * pwndi = dynamic_cast<window_interface *>(pwnd);
       if(pwndi == NULL)
       {
-         single_lock sl(m_papp->s_ptwf->m_csWndInterfaceMap, TRUE);
-         if(m_papp->s_ptwf->m_wndinterfacemap.Lookup(oswindowParam, pwndi))
+         single_lock sl(m_pbaseapp->s_ptwf->m_csWndInterfaceMap, TRUE);
+         if(m_pbaseapp->s_ptwf->m_wndinterfacemap.Lookup(oswindowParam, pwndi))
          {
             if(pwndi != NULL)
             {
@@ -182,7 +182,7 @@ namespace user
          }
          else
          {
-            m_papp->s_ptwf->m_wndinterfacemap.set_at(oswindowParam, pwndi);
+            m_pbaseapp->s_ptwf->m_wndinterfacemap.set_at(oswindowParam, pwndi);
             ::SendMessage(
                oswindowParam,
                window_interface::MessageBaseWndGetProperty,
@@ -210,9 +210,9 @@ namespace user
          {
             if(pwndi != NULL)
             {
-               m_papp->s_ptwf->m_twrenderclienttool.FastClear();
-               pwndi->TwiRenderClient(m_papp->s_ptwf->m_twrenderclienttool);
-               if(m_papp->s_ptwf->m_twrenderclienttool.IsSignalizedRenderResult(
+               m_pbaseapp->s_ptwf->m_twrenderclienttool.FastClear();
+               pwndi->TwiRenderClient(m_pbaseapp->s_ptwf->m_twrenderclienttool);
+               if(m_pbaseapp->s_ptwf->m_twrenderclienttool.IsSignalizedRenderResult(
                   user::RenderDoNotProceedWithChildren))
                    return true;
             }
@@ -372,15 +372,15 @@ namespace user
       window_interface * pwndi = NULL;
       if(pwndi == NULL)
       {
-         single_lock sl(&m_papp->s_ptwf->m_csWndInterfaceMap, TRUE);
-         if(!m_papp->s_ptwf->m_wndinterfacemap.Lookup(oswindow, pwndi))
+         single_lock sl(&m_pbaseapp->s_ptwf->m_csWndInterfaceMap, TRUE);
+         if(!m_pbaseapp->s_ptwf->m_wndinterfacemap.Lookup(oswindow, pwndi))
          {
             ::SendMessage(
                oswindow,
                window_interface::MessageBaseWndGetProperty,
                window_interface::PropertyDrawBaseWndInterface,
                (LPARAM) &pwndi);
-            m_papp->s_ptwf->m_wndinterfacemap.set_at(oswindow, pwndi);
+            m_pbaseapp->s_ptwf->m_wndinterfacemap.set_at(oswindow, pwndi);
          }
       }
 

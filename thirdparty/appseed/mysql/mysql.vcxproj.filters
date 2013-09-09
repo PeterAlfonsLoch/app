@@ -794,9 +794,6 @@
     <ClCompile Include="strings\xml.c">
       <Filter>Source Files\strings</Filter>
     </ClCompile>
-    <ClCompile Include="sql\net_serv.cc">
-      <Filter>Source Files\sql</Filter>
-    </ClCompile>
     <ClCompile Include="mysys\lf_alloc-pin.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
@@ -827,9 +824,12 @@
     <ClCompile Include="mysys_ssl\my_sha2.cc">
       <Filter>Source Files\mysys_ssl</Filter>
     </ClCompile>
+    <ClCompile Include="sql\net_serv.cc">
+      <Filter>Source Files\sql</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="_ca2mysql.def">
+    <None Include="basemysql.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

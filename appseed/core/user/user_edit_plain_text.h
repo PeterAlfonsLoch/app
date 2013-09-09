@@ -122,7 +122,7 @@ namespace user
 
       virtual void pre_translate_message(signal_details * pobj);
 
-      void key_to_char(message::key * pkey);
+      void key_to_char(::message::key * pkey);
 
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::user::view

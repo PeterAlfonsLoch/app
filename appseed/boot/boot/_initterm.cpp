@@ -51,7 +51,7 @@ static uint32_t cur_atexit_entries = 0;
 void _init_atexit()
 {
 	max_atexit_entries = 128;
-	atexitlist = (_PVFV*)_ca_alloc(max_atexit_entries * sizeof(_PVFV*));
+	atexitlist = (_PVFV*)memory_alloc(max_atexit_entries * sizeof(_PVFV*));
 }
 
 int32_t atexit(_PVFV func)

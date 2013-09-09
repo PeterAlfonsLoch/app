@@ -61,7 +61,5 @@ typedef thread_state * (* PFN_get_thread_state)();
 extern CLASS_DECL_c PFN_get_thread g_pfn_get_thread;
 extern CLASS_DECL_c PFN_get_thread_state g_pfn_get_thread_state;
 
-
-
-
+CLASS_DECL_c mutex & user_mutex();
 

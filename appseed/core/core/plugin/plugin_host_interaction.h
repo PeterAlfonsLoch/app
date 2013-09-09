@@ -54,7 +54,7 @@ namespace plugin
       void _on_start_user_message_handler();
       void _user_message_handler(signal_details * pobj);
 
-      virtual void _000OnMouse(message::mouse * pmouse);
+      virtual void _000OnMouse(::message::mouse * pmouse);
 
       DECL_GEN_SIGNAL(on_ignore_message)
       DECL_GEN_SIGNAL(_001OnTimer)

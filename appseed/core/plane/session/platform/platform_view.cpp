@@ -15,7 +15,7 @@ namespace platform
 
    view::run::run()
    {
-      m_papp = NULL;
+      m_pbaseapp = NULL;
       m_pview = NULL;
       m_plink = NULL;
    }

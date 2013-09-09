@@ -208,7 +208,7 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
    //org:
    //if(((fd=fopen_dup(oldfile,O_RDONLY,0))<0) ||
    //   ((oldsize=fseek_dup(fd,0,SEEK_END))==-1) ||
-   //   ((old=_ca_alloc(oldsize+1))==NULL) ||
+   //   ((old=memory_alloc(oldsize+1))==NULL) ||
    //   (fseek_dup(fd,0,SEEK_SET)!=0) ||
    //   (_read(fd,old,oldsize)!=oldsize) ||
    //   (fclose_dup(fd)==-1)) return err(1,"%s",oldfile);
@@ -216,7 +216,7 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
    //_read in chunks, don't rely on _read always returns full data!
    if(((fd=fopen_dup(oldfile,"rb"))==0) ||
       ((oldsize = (ssize_t) fseek_dup(fd,0,SEEK_END))==-1) ||
-      ((old=(u_char*)_ca_alloc(oldsize+1))==NULL) ||
+      ((old=(u_char*)memory_alloc(oldsize+1))==NULL) ||
       (fseek_dup(fd,0,SEEK_SET)!=0))
    {
       fclose_dup(cpf);
@@ -228,7 +228,7 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
       }
       if(old != NULL)
       {
-         _ca_free(old, 0);
+         memory_free_dbg(old, 0);
       }
       return err(1,"%s",oldfile);
    }
@@ -243,17 +243,17 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
       fclose_dup(cpf);
       fclose_dup(dpf);
       fclose_dup(epf);
-      _ca_free(old, 0);
+      memory_free_dbg(old, 0);
       return err(1,"%s",oldfile);
    }
 
-   if((_new=(u_char*)_ca_alloc(newsize+1))==NULL)
+   if((_new=(u_char*)memory_alloc(newsize+1))==NULL)
    {
       fclose_dup(cpf);
       fclose_dup(dpf);
       fclose_dup(epf);
       fclose_dup(fd);
-      _ca_free(old, 0);
+      memory_free_dbg(old, 0);
       return err(1,NULL);
    }
 
@@ -269,8 +269,8 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
             fclose_dup(dpf);
             fclose_dup(epf);
             fclose_dup(fd);
-            _ca_free(_new, 0);
-            _ca_free(old, 0);
+            memory_free_dbg(_new, 0);
+            memory_free_dbg(old, 0);
             return errx(1, "Corrupt patch\n");
          }
          ctrl[i]=offtin(buf);
@@ -283,8 +283,8 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
          fclose_dup(dpf);
          fclose_dup(epf);
          fclose_dup(fd);
-         _ca_free(_new, 0);
-         _ca_free(old, 0);
+         memory_free_dbg(_new, 0);
+         memory_free_dbg(old, 0);
          return errx(1,"Corrupt patch\n");
       }
 
@@ -297,8 +297,8 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
          fclose_dup(dpf);
          fclose_dup(epf);
          fclose_dup(fd);
-         _ca_free(_new, 0);
-         _ca_free(old, 0);
+         memory_free_dbg(_new, 0);
+         memory_free_dbg(old, 0);
          return errx(1, "Corrupt patch\n");
       }
 
@@ -318,8 +318,8 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
          fclose_dup(dpf);
          fclose_dup(epf);
          fclose_dup(fd);
-         _ca_free(_new, 0);
-         _ca_free(old, 0);
+         memory_free_dbg(_new, 0);
+         memory_free_dbg(old, 0);
          return errx(1,"Corrupt patch\n");
       }
 
@@ -332,8 +332,8 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
          fclose_dup(dpf);
          fclose_dup(epf);
          fclose_dup(fd);
-         _ca_free(_new, 0);
-         _ca_free(old, 0);
+         memory_free_dbg(_new, 0);
+         memory_free_dbg(old, 0);
          return errx(1, "Corrupt patch\n");
       }
 
@@ -348,8 +348,8 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
    BZ2_bzReadClose(&ebz2err, epfbz2);
    if (fclose_dup(cpf) || fclose_dup(dpf) || fclose_dup(epf))
    {
-      _ca_free(_new, 0);
-      _ca_free(old, 0);
+      memory_free_dbg(_new, 0);
+      memory_free_dbg(old, 0);
       return err(1, "fclose_dup(%s)", patchfile);
    }
 
@@ -360,13 +360,13 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
    if(((fd=fopen_dup(newfile,"wb")) == 0) ||
       (fwrite_dup(_new,newsize,1, fd)!=newsize) || (fclose_dup(fd)==-1))
    {
-      _ca_free(_new, 0);
-      _ca_free(old, 0);
+      memory_free_dbg(_new, 0);
+      memory_free_dbg(old, 0);
       return err(1,"%s",newfile);
    }
 
-   _ca_free(_new, 0);
-   _ca_free(old, 0);
+   memory_free_dbg(_new, 0);
+   memory_free_dbg(old, 0);
 
    return 0;
 }

@@ -471,6 +471,9 @@
     <Filter Include="Source Files\filesystem\folder_watch">
       <UniqueIdentifier>{0836171c-654e-4702-8512-85ed485fb89e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core\data">
+      <UniqueIdentifier>{02ea13d1-b468-4618-a812-9cb07e01c7f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -642,9 +645,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_check_interface.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_create_context.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_draw_interface.h">
@@ -3736,9 +3736,6 @@
     <ClCompile Include="user\user_control_property.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_create_context.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_data_exchange.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -4532,9 +4529,6 @@
       <Filter>Source Files\net\sockets\bsd\basic</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\basic\sockets_SctpSocket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_Socket.cpp">
       <Filter>Source Files\net\sockets\bsd\basic</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\basic\sockets_SocketHandler.cpp">
@@ -5697,6 +5691,30 @@
     </ClCompile>
     <ClCompile Include="compress\compress_gzip_stream.cpp">
       <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="core\data\data_simple_tree_data.cpp">
+      <Filter>Source Files\core\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\data\data_simple_tree_item_data.cpp">
+      <Filter>Source Files\core\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\data\data_tree.cpp">
+      <Filter>Source Files\core\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\data\data_tree_data.cpp">
+      <Filter>Source Files\core\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\data\data_tree_item.cpp">
+      <Filter>Source Files\core\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\data\data_tree_item_data.cpp">
+      <Filter>Source Files\core\data</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_signal.cpp">
+      <Filter>Source Files\net\http</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

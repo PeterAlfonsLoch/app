@@ -1,6 +1,6 @@
 #include "framework.h"
 #include <math.h>
-#include "include/FreeImage.h"
+#include "freeimage/FreeImage.h"
 
 
 namespace draw2d_direct2d
@@ -13,19 +13,8 @@ namespace draw2d_direct2d
    //////////////////////////////////////////////////////////////////////
 
 
-   float dib::Cosines[360];
-   float dib::Sines[360];
 
-   int64_t dib::CosN[360]; // * 1 << 31
-   int64_t dib::SinN[360]; 
-
-   int64_t dib::Cos10N[10]; // until 10 degress
-   int64_t dib::Sin10N[10]; // more precision * 1 << 34
-
-   double dib::dPi;
-
-
-   dib::dib(application * papp) :
+   dib::dib(base_application * papp) :
       element(papp),
       m_spbitmap(allocer()),
       m_spgraphics(allocer())
@@ -53,33 +42,6 @@ namespace draw2d_direct2d
       return m_spbitmap.detach();
    }
 
-
-   CLASS_DECL_DRAW2D_DIRECT2D void dib::s_initialize()
-   {
-      double dCos;
-      double dSin;
-      double d32 = (1U << 31);
-      dPi = atan(1.0) * 4.0;;
-      int i;
-      for ( i=0; i<360; i++ )
-      {
-         dCos = ::cos ( i/180.0*dPi );
-         dSin = ::sin ( i/180.0*dPi );
-         Cosines[i]=float(dCos);
-         Sines[i]=float(dSin);
-         CosN[i] = (int64_t) (dCos * d32);
-         SinN[i] = (int64_t) (dSin * d32);
-      }
-      d32 = (1U << 31);
-      d32 *= 8;
-      for(i = 0; i < 10; i++)
-      {
-         dCos = ::cos ( i/180.0*dPi );
-         dSin = ::sin ( i/180.0*dPi );
-         Cos10N[i] = (int64_t) (dCos * d32);
-         Sin10N[i] = (int64_t) (dSin * d32);
-      }
-   }
 
    void    dib::construct (int cx,  int cy)
    {

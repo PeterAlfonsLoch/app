@@ -63,7 +63,7 @@ namespace hotplugin
       if(m_pbitmap != NULL)
          delete (Gdiplus::Bitmap *) m_pbitmap;
       if(m_pcolorref != NULL)
-         _ca_free(m_pcolorref, 0);
+         memory_free_dbg(m_pcolorref, 0);
 #endif
       //delete m_pinfo;
    }

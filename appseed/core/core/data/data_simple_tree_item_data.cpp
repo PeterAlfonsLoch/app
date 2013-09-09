@@ -1,11 +1,11 @@
 #include "framework.h"
 
-namespace ca2
+namespace data
 {
 
    /*#define ROUND(x,y) (((x)+(y-1))&~(y-1))
    #define ROUND4(x) ROUND(x, 4)
-   __STATIC fixed_alloc_no_sync _alloc001SimpleTreeItem(ROUND4(sizeof(::ca2::simple_tree_item_data)));*/
+   __STATIC fixed_alloc_no_sync _alloc001SimpleTreeItem(ROUND4(sizeof(::data::simple_tree_item_data)));*/
 
    simple_tree_item_data::simple_tree_item_data()
    {
@@ -21,13 +21,13 @@ namespace ca2
    {
    }
 
-   string simple_tree_item_data::get_text(sp(::ca2::tree) ptree)
+   string simple_tree_item_data::get_text(sp(::data::tree) ptree)
    {
       UNREFERENCED_PARAMETER(ptree);
       return m_str;
    }
    
-   index simple_tree_item_data::get_image(sp(::ca2::tree) ptree)
+   index simple_tree_item_data::get_image(sp(::data::tree) ptree)
    {
       if(ptree->is_tree_item_data_selected(this))
       {
@@ -62,4 +62,4 @@ namespace ca2
       return _alloc001SimpleTreeItem.Free(p);
    }*/
 
-} // namespace ca2
+} // namespace data

@@ -20,7 +20,7 @@ namespace draw2d_direct2d
       //static region * from_handle(base_application * papp, HRGN hRgn);
       //operator HRGN() const;
 
-      region(application * papp);
+      region(base_application * papp);
       virtual ~region();
 
             

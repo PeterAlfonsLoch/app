@@ -1,16 +1,16 @@
 #include "framework.h"
 
+
 #define d2d1_fax_options D2D1_FACTORY_OPTIONS // fax of merde
 #define single_threaded D2D1_FACTORY_TYPE_SINGLE_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
+
 
 namespace draw2d_direct2d
 {
 
 
-   
-
-   graphics_path::graphics_path(application * papp) :
-      element(papp)
+   graphics_path::graphics_path(base_application * papp) :
+      ::element(papp)
    {
 
    }

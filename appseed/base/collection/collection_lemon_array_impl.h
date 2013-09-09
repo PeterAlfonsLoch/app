@@ -53,7 +53,23 @@ lemon_array < TYPE, ARG_TYPE > :: ~lemon_array()
 }
 
 template < class TYPE, class ARG_TYPE >
-::count lemon_array < TYPE, ARG_TYPE > :: set_size(index nNewSize, ::count nGrowBy) // does not call default constructors on new items/elements
+TYPE & lemon_array < TYPE, ARG_TYPE > :: add_new()
+{
+
+   return ::lemon::array::add_new(*this);
+
+}
+
+template < class TYPE, class ARG_TYPE >
+::index lemon_array < TYPE, ARG_TYPE > :: add_new(::count c)
+{
+
+   return ::lemon::array::add_new(*this, c);
+
+}
+
+template < class TYPE, class ARG_TYPE >
+::count lemon_array < TYPE, ARG_TYPE > :: set_size(index nNewSize, ::count nGrowBy)
 {
 
    return ::lemon::array::set_size(*this, nNewSize, nGrowBy);
@@ -247,19 +263,20 @@ namespace lemon
          return countOld;
       }
 
-      template <class ARRY, class TYPE>
-      inline index add_new(::count count)
-      {
-         allocate(m_nSize + count);
-         return get_upper_bound();
-      }
-
       template <class ARRAY >
       inline typename ARRAY::BASE_TYPE & add_new(ARRAY & a)
       {
          ::lemon::array::set_size(a, a.m_nSize + 1);
          return a.last_element();
       }
+
+      template <class ARRAY >
+      inline index add_new(ARRAY & a, ::count count)
+      {
+         ::lemon::array::set_size(a, a.m_nSize + count);
+         return a.get_upper_bound();
+      }
+
 
       template <class ARRAY>
       void copy(ARRAY & a, const typename ARRAY::BASE_TYPE * ptypea, ::count n)

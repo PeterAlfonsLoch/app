@@ -20,12 +20,7 @@ void CLASS_DECL_ca2 __cdecl _ca2_purecall_()
     throw simple_exception(get_thread_app());
 }
 
-namespace core
-{
-
-   extern HMODULE g_hmoduleOs;
-
-}
+extern HMODULE g_hmoduleOs;
 
 namespace plugin
 {
@@ -37,7 +32,7 @@ namespace plugin
    plugin::plugin()
    {
 
-      m_papp                  = NULL;
+      m_pbaseapp                  = NULL;
       m_puiHost               = NULL;
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;
@@ -198,7 +193,7 @@ namespace plugin
       m_puiHost->layout();
 
       if(m_pbReady == NULL)
-         m_pbReady = (bool *) ca2_alloc(sizeof(bool));
+         m_pbReady = (bool *) memory_alloc(sizeof(bool));
 
 
 #ifdef WINDOWS
@@ -897,7 +892,7 @@ namespace plugin
 
       try
       {
-         ca2_free(m_pbReady);
+         memory_free(m_pbReady);
       }
       catch(...)
       {
@@ -916,7 +911,7 @@ namespace plugin
       {
          try
          {
-            if(!::FreeLibrary(::core::g_hmoduleOs))
+            if(!::FreeLibrary(g_hmoduleOs))
             {
                break;
             }

@@ -12,24 +12,24 @@ namespace core
       bool ungz(sp(base_application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed);
       bool gz(sp(base_application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed);
 
-      bool ungz(::file::writer & ostreamUncompressed, const char * lpcszGzFileCompressed);
-      bool gz(::file::writer & ostreamGzFileCompressed, const char * lpcszUncompressed);
+      bool ungz(::file::output_stream & ostreamUncompressed, const char * lpcszGzFileCompressed);
+      bool gz(::file::output_stream & ostreamGzFileCompressed, const char * lpcszUncompressed);
 
       bool ungz(::file::memory_buffer & memoryfile);
 
       bool unbz(sp(base_application) papp, const char * lpcszUncompressed, const char * lpcszBzFileCompressed);
       bool bz(sp(base_application) papp, const char * lpcszBzFileCompressed, const char * lpcszUncompressed);
 
-      bool unbz(::file::writer & ostreamUncompressed, const char * lpcszBzFileCompressed);
-      bool bz(::file::writer & ostreamBzFileCompressed, const char * lpcszUncompressed);
+      bool unbz(::file::output_stream & ostreamUncompressed, const char * lpcszBzFileCompressed);
+      bool bz(::file::output_stream & ostreamBzFileCompressed, const char * lpcszUncompressed);
 
-      bool bz_stream(::file::writer & ostreamBzFileCompressed, ::file::reader & istreamFileUncompressed);
+      bool bz_stream(::file::writer & ostreamBzFileCompressed, ::file::input_stream & istreamFileUncompressed);
 
       bool _compress(class primitive::memory & memory, void * pdata, ::primitive::memory_size ulSizeUncompressed);
       bool _uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, ::primitive::memory_size ulSizeUncompressed);
 
 
-      bool null(::file::writer & ostream, ::file::reader & istream);
+      bool null(::file::output_stream & ostream, ::file::input_stream & istream);
 
 
       void extract_all(const char * pszFile, sp(base_application) papp);

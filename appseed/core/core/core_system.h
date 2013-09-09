@@ -25,6 +25,9 @@ namespace core
       virtual bool is_system();
 
 
+      virtual bool process_initialize();
+
+
       virtual bool initialize_instance();
 
    };

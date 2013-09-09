@@ -34,5 +34,5 @@ class thread;
 
 
 
-CLASS_DECL_ca mutex & user_mutex();
+
 

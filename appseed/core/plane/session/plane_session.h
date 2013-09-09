@@ -24,7 +24,7 @@ namespace plane
          string                  m_strApp;
          string                  m_strQuery;
          sp(::plane::session)      m_pbergedgeParent;
-         sp(base_application)   m_papp;
+         sp(base_application)   m_pbaseapp;
          bool                    m_bMakeVisible;
          sp(::user::interaction) m_puiParent;
          property_set      m_setParameters;

@@ -320,6 +320,7 @@ public:
    inline ::count count() const;
 
    inline bool is_empty(::count countMinimum = 1) const;
+   inline bool empty(::count countMinimum = 1) const;
    inline bool has_elements(::count countMinimum = 1) const;
    inline index get_upper_bound(index i = -1) const;
    ::count allocate(index nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements

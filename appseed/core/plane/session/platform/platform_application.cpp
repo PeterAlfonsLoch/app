@@ -67,10 +67,12 @@ namespace platform
 
 
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
-
    {
-      return application::_001OnCmdMsg(pcmdmsg);
+
+      return ::application::_001OnCmdMsg(pcmdmsg);
+
    }
+
 
 /*
 application * application::get_app() const

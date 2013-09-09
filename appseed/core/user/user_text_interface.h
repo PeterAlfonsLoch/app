@@ -12,7 +12,7 @@ public:
 
    // string_interface < char > interface
    virtual strsize get_length();
-   virtual void get_string(char * psz);
+   virtual void get_string(char * psz, ::primitive::memory_size len);
    virtual void set_string(const char * psz);
 
 };

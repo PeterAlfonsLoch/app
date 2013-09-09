@@ -53,6 +53,9 @@ public:
    object & operator = (const object & objectSrc);       // no implementation
 
 
+   inline sp(::command_thread) command_thread();
+
+
 };
 
 

@@ -15,8 +15,9 @@ enum e_application_signal
    application_signal_none,
 };
 
+
 class CLASS_DECL_c application_signal_details :
-      public signal_details
+   public signal_details
 {
 public:
 
@@ -42,7 +43,7 @@ public:
    signal *                                        m_psignal;
    base_system *                                   m_pbasesystem;
    string                                          m_strAppName;
-   sp(command_thread)                              m_pcommandthread;
+   sp(::command_thread)                            m_pcommandthread;
    allocatorsp                                     m_allocer;
    ::plane::application *                          m_pplaneapp; // can be used only from core and upper
 
@@ -100,4 +101,13 @@ public:
 inline allocatorsp element::allocer()
 {
    return m_pbaseapp->m_allocer;
+}
+
+
+
+inline sp(::command_thread) object::command_thread()
+{
+   
+   return m_pbaseapp->command_thread();
+
 }

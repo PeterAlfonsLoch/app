@@ -92,20 +92,12 @@ base_system::base_system(sp(base_application) papp) :
 
    }
 
-   use_base_ca2_allocator();
+   //use_base_ca2_allocator();
 
 
    m_pfactory = new class factory(this);
    m_pfactory->set_app(this);
 
-   m_pfactory->cloneable_large < create_context > ();
-   m_pfactory->cloneable_large < application_bias > ();
-   m_pfactory->cloneable_large < command_line > ();
-   m_pfactory->cloneable_large < manual_reset_event > ();
-   m_pfactory->cloneable_large < mutex > ();
-   m_pfactory->cloneable_large < event > ();
-   m_pfactory->creatable_large < ::file::simple_binary_buffer > (type_info < ::file::binary_buffer >());
-   m_pfactory->creatable_large < ::file::string_buffer > ();
 
 }
 
@@ -123,6 +115,37 @@ factory & base_system::factory()
    return s_eengine;
 
 }
+
+
+bool base_system::process_initialize()
+{
+
+   m_pfactory->cloneable_large < create_context > ();
+   m_pfactory->cloneable_large < application_bias > ();
+   m_pfactory->cloneable_large < command_line > ();
+   m_pfactory->cloneable_large < manual_reset_event > ();
+   m_pfactory->cloneable_large < mutex > ();
+   m_pfactory->cloneable_large < event > ();
+   m_pfactory->creatable_large < ::file::simple_binary_buffer > (type_info < ::file::binary_buffer >());
+   m_pfactory->creatable_large < ::file::string_buffer > ();
+
+
+   m_pxml = canew(::xml::departament(this));
+
+   m_pxml->construct(this);
+
+   if(!m_pxml->initialize1())
+      return false;
+
+   if(!m_pxml->initialize())
+      return false;
+
+
+   return true;
+
+}
+
+
 
 
 bool base_system::initialize_instance()
@@ -165,24 +188,6 @@ void base_system::discard_to_factory(sp(element) pca)
 
 }
 
-
-bool base_system::process_initialize()
-{
-
-   m_pxml = canew(::xml::departament(this));
-
-   m_pxml->construct(this);
-
-   if(!m_pxml->initialize1())
-      return false;
-
-   if(!m_pxml->initialize())
-      return false;
-
-
-   return true;
-
-}
 
 
 void base_system::wait_twf()
@@ -386,13 +391,12 @@ bool base_system::on_assert_failed_line(const char * lpszFileName, int32_t iLine
 
 sp(element) base_system::on_alloc(sp(base_application) papp, sp(type) info)
 {
-/*      if(info == System.type_info < class ::core::log > ())
-   {
-      return new class ::core::log(this); // NULL log implementation
-   }*/
    /*string str;
    str.Format("Could not alloc %s", info.name());
    simple_message_box(str);*/
+   sp(element) pobj = Sys(papp).factory().create(papp, info);
+   if(pobj != NULL)
+      return pobj;
    on_allocation_error(papp, info);
    return NULL;
 }
@@ -443,10 +447,13 @@ sp(type) base_system::get_type_info(const ::std_type_info & info)
 
 
 
-   class ::str::base64 & base_system::base64()
-   {
+class ::str::base64 & base_system::base64()
+{
 
-      return m_base64;
+   return m_base64;
 
-   }
+}
+
+
+
 

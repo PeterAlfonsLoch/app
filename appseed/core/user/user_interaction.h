@@ -329,8 +329,8 @@ namespace user
       virtual uint32_t GetExStyle();
       virtual LRESULT Default();
 
-      virtual LRESULT send(message::base * pbase);
-      virtual bool post(message::base * pbase);
+      virtual LRESULT send(::message::base * pbase);
+      virtual bool post(::message::base * pbase);
       virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = NULL);
 
 #ifdef LINUX
@@ -402,8 +402,8 @@ namespace user
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool IsWindowVisible();
 
-      virtual void _000OnMouse(message::mouse * pmouse);
-      virtual void _000OnKey(message::key * pkey);
+      virtual void _000OnMouse(::message::mouse * pmouse);
+      virtual void _000OnKey(::message::key * pkey);
       DECL_GEN_SIGNAL(_001OnMouseMove)
       DECL_GEN_SIGNAL(_001OnMouseEnter)
       DECL_GEN_SIGNAL(_001OnMouseLeave)

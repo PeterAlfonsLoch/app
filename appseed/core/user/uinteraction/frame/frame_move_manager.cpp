@@ -31,7 +31,7 @@ namespace uinteraction
       }
 
 
-      bool MoveManager::_000OnLButtonDown(message::mouse * pmouse)
+      bool MoveManager::_000OnLButtonDown(::message::mouse * pmouse)
       {
          if(!m_pworkset->IsMovingEnabled()
             || m_pworkset->m_bSizingCapture)
@@ -57,7 +57,7 @@ namespace uinteraction
          return true;
       }
 
-      bool MoveManager::_000OnMouseMove(message::mouse * pmouse)
+      bool MoveManager::_000OnMouseMove(::message::mouse * pmouse)
       {
          if(!m_pworkset->IsMovingEnabled()
             || m_pworkset->m_bSizingCapture)
@@ -71,7 +71,7 @@ namespace uinteraction
          return Relay(pmouse);
       }
 
-      bool MoveManager::_000OnLButtonUp(message::mouse * pmouse)
+      bool MoveManager::_000OnLButtonUp(::message::mouse * pmouse)
       {
          if(!m_pworkset->IsMovingEnabled()
             || m_pworkset->m_bSizingCapture)
@@ -81,7 +81,7 @@ namespace uinteraction
       }
 
       // process only WM_MOUSEMOVE and WM_LBUTTONUP messages
-      bool MoveManager::Relay(message::mouse * pmouse)
+      bool MoveManager::Relay(::message::mouse * pmouse)
       {
          ASSERT(pmouse->m_uiMessage == WM_MOUSEMOVE
             || pmouse->m_uiMessage == WM_LBUTTONUP

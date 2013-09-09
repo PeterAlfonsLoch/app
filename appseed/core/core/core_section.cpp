@@ -34,7 +34,7 @@ namespace core
    void section::connect_to_application_signal()
    {
 
-      m_papp->m_psignal->connect(this, &base_departament::on_signal);
+      m_pbaseapp->m_psignal->connect(this, &base_departament::on_signal);
 
    }
 

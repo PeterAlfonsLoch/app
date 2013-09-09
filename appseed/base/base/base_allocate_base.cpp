@@ -1,26 +1,26 @@
 #include "framework.h"
 
 
-void * base_ca2_alloc(size_t size);
-void * base_ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-void * base_ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-void   base_ca2_free(void * pvoid, int32_t iBlockType);
-size_t base_ca2_msize(void * pvoid, int32_t iBlockType);
+void * base_memory_alloc(size_t size);
+void * base_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+void * base_memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+void   base_memory_free_dbg(void * pvoid, int32_t iBlockType);
+size_t base_memory_size_dbg(void * pvoid, int32_t iBlockType);
 
-
+/*
 void use_base_ca2_allocator()
 {
 
-   g_pfnca2_alloc       = &base_ca2_alloc;
-   g_pfnca2_alloc_dbg   = &base_ca2_alloc_dbg;
-   g_pfnca2_realloc     = &base_ca2_realloc;
-   g_pfnca2_free        = &base_ca2_free;
-   g_pfnca2_msize       = &base_ca2_msize;
+   g_pfnca2_alloc       = &base_memory_alloc;
+   g_pfnca2_alloc_dbg   = &base_memory_alloc_dbg;
+   g_pfnca2_realloc     = &base_memory_realloc;
+   g_pfnca2_free        = &base_memory_free;
+   g_pfnca2_msize       = &base_memory_size;
 
 }
+*/
 
-
-void * base_ca2_alloc(size_t size)
+void * base_memory_alloc(size_t size)
 {
    byte * p = (byte *) ca2_heap_alloc(size + 4 + 32);
    if(p == NULL)
@@ -32,7 +32,7 @@ void * base_ca2_alloc(size_t size)
    return p + 4 + 16;
 }
 
-void * base_ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+void * base_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
    UNREFERENCED_PARAMETER(nBlockUse);
    UNREFERENCED_PARAMETER(szFileName);
@@ -49,17 +49,17 @@ void * base_ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileNa
    return p + 4 + 16;
 }
 
-void * base_ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+void * base_memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
    byte * p = (byte *) pvoid;
    if(p == NULL)
-      return ca2_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
+      return memory_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
    p -= (4 + 16);
    try
    {
       if(p == NULL)
       {
-         return ca2_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
+         return memory_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
       }
       else if(p[0] == 0)
       {
@@ -73,7 +73,7 @@ void * base_ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const cha
       }
       else
       {
-         return _ca_realloc(pvoid, nSize, nBlockUse, szFileName, nLine);
+         return ca2_heap_realloc_dbg(pvoid, nSize, nBlockUse, szFileName, nLine);
       }
    }
    catch(...)
@@ -91,7 +91,7 @@ void * base_ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const cha
    return p + 4 + 16;
 }
 
-void base_ca2_free(void * pvoid, int32_t iBlockType)
+void base_memory_free_dbg(void * pvoid, int32_t iBlockType)
 {
    byte * p = (byte *) pvoid;
    if(p == NULL)
@@ -112,7 +112,7 @@ void base_ca2_free(void * pvoid, int32_t iBlockType)
       }
       else
       {
-         _ca_free(pvoid, iBlockType);
+         ca2_heap_free_dbg(pvoid);
       }
    }
    catch(...)
@@ -121,7 +121,7 @@ void base_ca2_free(void * pvoid, int32_t iBlockType)
    }
 }
 
-size_t base_ca2_msize(void * pvoid, int32_t iBlockType)
+size_t base_memory_size_dbg(void * pvoid, int32_t iBlockType)
 {
 
    byte * p = (byte *) pvoid;
@@ -146,7 +146,7 @@ size_t base_ca2_msize(void * pvoid, int32_t iBlockType)
       }
       else
       {
-         return _ca_msize(pvoid, iBlockType);
+         return memory_size_dbg(pvoid, iBlockType);
       }
    }
    catch(...)
@@ -177,12 +177,12 @@ void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFile
 
 void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const char * lpszFileName, int32_t nLine)
 {
-   return ca2_alloc_dbg(nSize, bIsObject ? ___CLIENT_BLOCK : _NORMAL_BLOCK, lpszFileName, nLine);
+   return memory_alloc_dbg(nSize, bIsObject ? ___CLIENT_BLOCK : _NORMAL_BLOCK, lpszFileName, nLine);
 }
 
 void __free_memory_debug(void * pbData, bool bIsObject)
 {
-   ca2_free(pbData, bIsObject ? ___CLIENT_BLOCK : _NORMAL_BLOCK);
+   memory_free(pbData, bIsObject ? ___CLIENT_BLOCK : _NORMAL_BLOCK);
 }
 
 /////////////////////////////////////////////////////////////////////////////

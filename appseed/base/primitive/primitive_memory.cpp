@@ -42,7 +42,7 @@ namespace primitive
       {
          m_iOffset = 0;
          memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
-         m_pbStorage = (LPBYTE) ca2_alloc((size_t) dwAllocation);
+         m_pbStorage = (LPBYTE) memory_alloc((size_t) dwAllocation);
          if(m_pbStorage == NULL)
          {
             m_pbComputed = NULL;
@@ -65,7 +65,7 @@ namespace primitive
          {
             m_iOffset = 0;
             memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
-            LPVOID lpVoid = ca2_alloc((size_t) dwAllocation);
+            LPVOID lpVoid = memory_alloc((size_t) dwAllocation);
             if(lpVoid == NULL)
             {
                return false;
@@ -80,7 +80,7 @@ namespace primitive
                }
 
                m_dwAllocation = dwAllocation;
-               ca2_free(m_pbStorage);
+               memory_free(m_pbStorage);
                m_pbStorage = (LPBYTE) lpVoid;
                m_pbComputed = m_pbStorage;
                return true;
@@ -89,7 +89,7 @@ namespace primitive
          else if(dwNewLength > m_dwAllocation)
          {
             memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
-            LPVOID lpVoid = ca2_realloc(m_pbStorage, (size_t) dwAllocation);
+            LPVOID lpVoid = memory_realloc(m_pbStorage, (size_t) dwAllocation);
             if(lpVoid == NULL)
             {
                return false;
@@ -155,7 +155,7 @@ namespace primitive
          m_cbStorage       = 0;
          try
          {
-            ca2_free(m_pbStorage);
+            memory_free(m_pbStorage);
          }
          catch(...)
          {

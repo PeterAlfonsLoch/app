@@ -2,7 +2,6 @@
 
 
 #include "core_message.h"
-#include "user/user_create_context.h"
 
 
 class CLASS_DECL_ca2 command_target_interface :

@@ -107,14 +107,14 @@ int32_t bz_config_ok ( void )
 static
 void * default_bzalloc ( void * opaque, int32_t items, int32_t size )
 {
-   void * v = _ca_alloc ( items * size );
+   void * v = memory_alloc ( items * size );
    return v;
 }
 
 static
 void default_bzfree ( void * opaque, void * addr )
 {
-   if (addr != NULL) c_free ( addr );
+   if (addr != NULL) memory_free ( addr );
 }
 
 
@@ -939,7 +939,7 @@ BZFILE* BZ_API(BZ2_bzWriteOpen)
    if (ferror_dup(f))
       { BZ_SETERR(BZ_IO_ERROR); return NULL; };
 
-   bzf = (bzFile *)_ca_alloc ( sizeof(bzFile) );
+   bzf = (bzFile *)memory_alloc ( sizeof(bzFile) );
    if (bzf == NULL)
       { BZ_SETERR(BZ_MEM_ERROR); return NULL; };
 
@@ -956,7 +956,7 @@ BZFILE* BZ_API(BZ2_bzWriteOpen)
    ret = BZ2_bzCompressInit ( &(bzf->strm), blockSize100k, 
                               verbosity, workFactor );
    if (ret != BZ_OK)
-      { BZ_SETERR(ret); c_free(bzf); return NULL; };
+      { BZ_SETERR(ret); memory_free(bzf); return NULL; };
 
    bzf->strm.avail_in = 0;
    bzf->initialisedOk = True;
@@ -1084,7 +1084,7 @@ void BZ_API(BZ2_bzWriteClose64)
 
    BZ_SETERR(BZ_OK);
    BZ2_bzCompressEnd ( &(bzf->strm) );
-   c_free ( bzf );
+   memory_free ( bzf );
 }
 
 
@@ -1112,7 +1112,7 @@ BZFILE* BZ_API(BZ2_bzReadOpen)
    if (ferror_dup(f))
       { BZ_SETERR(BZ_IO_ERROR); return NULL; };
 
-   bzf = (bzFile *) _ca_alloc ( sizeof(bzFile) );
+   bzf = (bzFile *) memory_alloc ( sizeof(bzFile) );
    if (bzf == NULL) 
       { BZ_SETERR(BZ_MEM_ERROR); return NULL; };
 
@@ -1134,7 +1134,7 @@ BZFILE* BZ_API(BZ2_bzReadOpen)
 
    ret = BZ2_bzDecompressInit ( &(bzf->strm), verbosity, small );
    if (ret != BZ_OK)
-      { BZ_SETERR(ret); c_free(bzf); return NULL; };
+      { BZ_SETERR(ret); memory_free(bzf); return NULL; };
 
    bzf->strm.avail_in = bzf->bufN;
    bzf->strm.next_in  = bzf->buf;
@@ -1158,7 +1158,7 @@ void BZ_API(BZ2_bzReadClose) ( int32_t *bzerror, BZFILE *b )
 
    if (bzf->initialisedOk)
       (void)BZ2_bzDecompressEnd ( &(bzf->strm) );
-   c_free ( bzf );
+   memory_free ( bzf );
 }
 
 
@@ -1394,7 +1394,7 @@ BZFILE * bzopen_or_bzdopen
 {
 
    int32_t     bzerr;
-   char      * unused         = (char *) _ca_alloc(BZ_MAX_UNUSED);
+   char      * unused         = (char *) memory_alloc(BZ_MAX_UNUSED);
    int32_t     blockSize100k  = 9;
    int32_t     writing        = 0;
    char        mode2[10]      = "";
@@ -1451,12 +1451,12 @@ BZFILE * bzopen_or_bzdopen
                             unused,nUnused);
    }
    if (bzfp == NULL) {
-      _ca_free(unused, 0);
+      memory_free_dbg(unused, 0);
       if (fp != stdin_dup && fp != stdout_dup) fclose_dup(fp);
       fclose_dup(fp);
       return NULL;
    }
-   _ca_free(unused, 0);
+   memory_free_dbg(unused, 0);
    return bzfp;
 }
 

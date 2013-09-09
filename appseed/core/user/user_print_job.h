@@ -10,7 +10,10 @@ namespace user
    {
    public:
 
-      sp(printer)     m_phprinter;
+      
+      sp(printer)       m_phprinter;
+      view *            m_pview;
+
 
       print_job(sp(base_application) papp);
       virtual ~print_job();
@@ -18,6 +21,11 @@ namespace user
 
       virtual int32_t run();
 
+
    };
 
+
 } // namespace user
+
+
+

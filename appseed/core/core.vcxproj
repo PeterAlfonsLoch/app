@@ -1834,7 +1834,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user_control.h" />
     <ClInclude Include="user\user_control_event.h" />
     <ClInclude Include="user\user_control_property.h" />
-    <ClInclude Include="user\user_create_context.h" />
     <ClInclude Include="user\user_data_exchange.h" />
     <ClInclude Include="user\user_document.h" />
     <ClInclude Include="user\user_document_interface.h" />
@@ -2021,6 +2020,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\crypto\crypto_rng_prng.cpp" />
     <ClCompile Include="core\crypto\crypto_rng_rand_source.cpp" />
     <ClCompile Include="core\crypto\crypto_sha1.cpp" />
+    <ClCompile Include="core\data\data_simple_tree_data.cpp" />
+    <ClCompile Include="core\data\data_simple_tree_item_data.cpp" />
+    <ClCompile Include="core\data\data_tree.cpp" />
+    <ClCompile Include="core\data\data_tree_data.cpp" />
+    <ClCompile Include="core\data\data_tree_item.cpp" />
+    <ClCompile Include="core\data\data_tree_item_data.cpp" />
     <ClCompile Include="core\geoip\geoip.cpp" />
     <ClCompile Include="core\geoip\geoip_city.cpp" />
     <ClCompile Include="core\geoip\geoip_region_name.cpp" />
@@ -2474,6 +2479,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="net\hi5\hi5_twit.cpp" />
     <ClCompile Include="net\hi5\hi5_oauth.cpp" />
     <ClCompile Include="net\hi5\hi5_twitter_authorization.cpp" />
+    <ClCompile Include="net\http\http_signal.cpp" />
     <ClCompile Include="net\http\http_application.cpp" />
     <ClCompile Include="net\http\http_get_socket.cpp" />
     <ClCompile Include="net\http\http_output_stream.cpp" />
@@ -2490,7 +2496,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_net.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_SctpSocket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_Socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_socket.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_SocketHandler.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.cpp" />
@@ -2758,7 +2764,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user_control.cpp" />
     <ClCompile Include="user\user_control_event.cpp" />
     <ClCompile Include="user\user_control_property.cpp" />
-    <ClCompile Include="user\user_create_context.cpp" />
     <ClCompile Include="user\user_data_exchange.cpp" />
     <ClCompile Include="user\user_document.cpp" />
     <ClCompile Include="user\user_document_interface.cpp" />
@@ -2842,6 +2847,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </ProjectReference>
     <ProjectReference Include="..\..\thirdparty\appseed\freetype\freetype.vcxproj">
       <Project>{771f4b49-cad1-438f-b272-20f3eb8e88f1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\mysql\mysql.vcxproj">
+      <Project>{2652c96f-6e86-4ed1-b3b6-ac977dfb0593}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\thirdparty\appseed\openssl\openssl.vcxproj">
       <Project>{ac98b756-e84c-4a70-9cdb-e9812fef9b98}</Project>

@@ -20,11 +20,11 @@ namespace plugin
 
    host_interaction::~host_interaction()
    {
-      if(m_papp != NULL)
+      if(m_pbaseapp != NULL)
       {
          try
          {
-            m_papp.release();
+            m_pbaseapp.release();
          }
          catch(...)
          {
@@ -228,7 +228,7 @@ namespace plugin
    }
 
 
-   void host_interaction::_000OnMouse(message::mouse * pmouse)
+   void host_interaction::_000OnMouse(::message::mouse * pmouse)
    {
       if(&Session != NULL)
       {
@@ -236,9 +236,9 @@ namespace plugin
       }
       else
       {
-         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0].m_papp != NULL && m_uiptraChild[0].m_pbaseapp->m_pplaneapp->m_psession != NULL)
+         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0].m_pbaseapp != NULL && m_uiptraChild[0].m_pbaseapp->m_pplaneapp->m_psession != NULL)
          {
-            set_app(m_uiptraChild[0].m_papp);
+            set_app(m_uiptraChild[0].m_pbaseapp);
          }
       }
       ::user::interaction::_000OnMouse(pmouse);

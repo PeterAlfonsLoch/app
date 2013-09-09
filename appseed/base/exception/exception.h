@@ -217,7 +217,7 @@ CLASS_DECL_c void __dump(const object* pOb); // dump an object from CodeView
 // extern ::core::CTrace TRACE;
 #ifdef DEBUG
 #ifndef TRACE
-#define TRACE ::core::trace_add_file_and_line(m_papp, __FILE__, __LINE__)
+#define TRACE ::core::trace_add_file_and_line(m_pbaseapp, __FILE__, __LINE__)
 #define APPTRACE(papp) ::core::trace_add_file_and_line(papp, __FILE__, __LINE__)
 //#define TRACE2 TRACE
 #endif

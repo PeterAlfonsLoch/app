@@ -284,7 +284,11 @@ namespace sockets
 
    bool net::convert(struct in6_addr& l, const string & str, int32_t ai_flags)
    {
-      return from_string(&l, str);
+
+
+      return from_string(&l, str) != FALSE;
+
+
    }
 
 

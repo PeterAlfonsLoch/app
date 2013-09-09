@@ -83,3 +83,4 @@ namespace file
 
 
 
+CLASS_DECL_c void throw_file_exception(base_application * papp, int32_t cause, LONG lOsError,   const char * lpszFileName = NULL);

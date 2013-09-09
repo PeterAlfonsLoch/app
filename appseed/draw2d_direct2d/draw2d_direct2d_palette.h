@@ -12,7 +12,7 @@ namespace draw2d_direct2d
    public:
 
 
-      palette(application * papp);
+      palette(base_application * papp);
       virtual ~palette();
 
 

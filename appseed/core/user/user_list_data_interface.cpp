@@ -1,11 +1,13 @@
 #include "framework.h"
 
+
 namespace user
 {
 
+
    list_data::list_data(sp(base_application) papp) :
       element(papp),
-      ::data(papp)
+      ::data::data(papp)
    {
    }
 

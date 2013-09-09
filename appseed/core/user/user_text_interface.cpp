@@ -22,11 +22,15 @@ strsize text_interface::get_length()
    return str.get_length();
 }
 
-void text_interface::get_string(char * psz)
+void text_interface::get_string(char * psz, ::primitive::memory_size len)
 {
+
    string str;
+
    _001GetText(str);
-   ::str::copy(psz, str);
+
+   strncpy(psz, str, len);
+
 }
 
 void text_interface::set_string(const char * psz)

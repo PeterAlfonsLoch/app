@@ -355,7 +355,7 @@ namespace user
 
    }
 
-   void keyboard::translate_os_key_message(message::key * pkey)
+   void keyboard::translate_os_key_message(::message::key * pkey)
    {
 
       pkey->m_ekey = m_mapKey[(int32_t) pkey->m_nChar];

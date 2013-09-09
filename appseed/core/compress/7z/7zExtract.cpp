@@ -122,7 +122,7 @@ namespace n7z
            extractFolderInfoVector.last_element()->UnpackSize = unpackSize;
          }
 
-         CExtractFolderInfo &efi = extractFolderInfoVector.last_element();
+         CExtractFolderInfo &efi = *extractFolderInfoVector.last_element();
 
          // const CFolderInfo &folderInfo = m_dam_Folders[folderIndex];
          CNum startIndex = (CNum) db.FolderStartFileIndex[folderIndex];

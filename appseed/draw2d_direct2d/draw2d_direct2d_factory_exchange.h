@@ -9,7 +9,7 @@ namespace draw2d_direct2d
    public:
 
 
-      factory_exchange(application * papp);
+      factory_exchange(base_application * papp);
       virtual ~factory_exchange();
 
 

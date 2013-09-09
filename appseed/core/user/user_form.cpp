@@ -676,7 +676,7 @@ namespace user
       VMSGEN_WINDOW_ON_LBUTTONDBLCLK_CONDITIONAL(pinterface, this, _001OnLButtonDblClk);
       VMSGEN_WINDOW_ON_TIMER_CONDITIONAL(pinterface, this, _001OnTimer);*/
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form::_001OnCreate);
-      IGUI_MSG_LINK(::core::message_pos_create, pinterface, this, &form::_000OnPosCreate);
+      IGUI_MSG_LINK(::message::message_pos_create, pinterface, this, &form::_000OnPosCreate);
 //      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &form::_001OnCommand);
   //    IGUI_WIN_MSG_LINK(WM_NOTIFY, pinterface, this, &form::_001OnNotify);
       // revamp IGUI_WIN_MSG_LINK(user::MessageNotify, pinterface, this, &form::_001OnMessageNotify);
@@ -698,7 +698,7 @@ namespace user
       VMSGEN_WINDOW_ON_LBUTTONDBLCLK_CONDITIONAL(pinterface, this, _001OnLButtonDblClk);
       VMSGEN_WINDOW_ON_TIMER_CONDITIONAL(pinterface, this, _001OnTimer);*/
       //IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form::_001OnCreate);
-      //IGUI_MSG_LINK(::core::message_pos_create, pinterface, this, &form::_000OnPosCreate);
+      //IGUI_MSG_LINK(::message::message_pos_create, pinterface, this, &form::_000OnPosCreate);
 //      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &form::_001OnCommand);
   //    IGUI_WIN_MSG_LINK(WM_NOTIFY, pinterface, this, &form::_001OnNotify);
       // revamp IGUI_WIN_MSG_LINK(user::MessageNotify, pinterface, this, &form::_001OnMessageNotify);
@@ -910,7 +910,7 @@ namespace user
       if(pobj->previous())
          return;
 
-      //PostMessage(message::message_pos_create);
+      //PostMessage(::message::message_pos_create);
 
    }
 

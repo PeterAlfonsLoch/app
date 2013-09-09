@@ -78,7 +78,7 @@ sp(::filemanager::document) FileManagerTemplate::create_new_document(
 }
 
 
-sp(::filemanager::document) FileManagerTemplate::OpenChild(bool bMakeVisible, bool bTransparentBackground, sp(::user::interaction) pwndParent, filemanager::data * pfilemanagerdata)
+sp(::filemanager::document) FileManagerTemplate::OpenChild(bool bMakeVisible, bool bTransparentBackground, sp(::user::interaction) pwndParent, ::filemanager::data * pfilemanagerdata)
 {
    sp(::create_context) createcontext(allocer());
    createcontext->m_bMakeVisible = false;

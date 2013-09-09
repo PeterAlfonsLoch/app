@@ -1182,13 +1182,13 @@ void stringa::decode_v16(const char * psz)
       {
          if(str == NULL)
          {
-            str = (char *) _ca_alloc(iSize);
+            str = (char *) memory_alloc(iSize);
          }
          else if(iSize < (strlen_dup(str) + 1))
          {
             char * strOld = str;
             iSize += 1024;
-            char * strNew = (char *) _ca_alloc(iSize);
+            char * strNew = (char *) memory_alloc(iSize);
             strcpy_dup(strNew, strOld);
             str = strNew;
          }

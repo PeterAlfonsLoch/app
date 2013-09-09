@@ -49,7 +49,7 @@ namespace fontopus
       {
          try
          {
-            pgenapp->keep_alive();
+            pgenapp->m_pplaneapp->keep_alive();
          }
          catch(...)
          {
@@ -141,9 +141,9 @@ namespace fontopus
       straRequestingServer.add("asia-account.core.cc");
       if(strHost.is_empty())
       {
-         if(::get_thread() != NULL && ::get_thread()->m_strWorkUrl.has_char())
+         if(::get_thread() != NULL && ::get_thread()->m_pthread->m_strWorkUrl.has_char())
          {
-            strHost = ::get_thread()->m_strWorkUrl;
+            strHost = ::get_thread()->m_pthread->m_strWorkUrl;
          }
          else
          {
@@ -1167,7 +1167,7 @@ namespace fontopus
          m_pviewAuth->SetTimer(1984, 484, NULL);
       }
       ::core::live_signal livesignal;
-      livesignal.keep(get_app());
+      livesignal.keep(get_app()->m_pplaneapp);
       m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
       m_ptemplatePane->close_all_documents(FALSE);
 
@@ -1357,7 +1357,7 @@ namespace fontopus
       if(m_ptabview->get_wnd()->m_iModalCount <= 0)
       {
          ::core::live_signal livesignal;
-         livesignal.keep(get_app());
+         livesignal.keep(get_app()->m_pplaneapp);
          m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
          m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
       }
@@ -1668,7 +1668,7 @@ namespace fontopus
       pview->set_cur_tab_by_id(1);
       pview->GetParentFrame()->RedrawWindow();
       ::core::live_signal livesignal;
-      livesignal.keep(get_app());
+      livesignal.keep(get_app()->m_pplaneapp);
       pview->GetTopLevelFrame()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
       return m_pauth;
    }

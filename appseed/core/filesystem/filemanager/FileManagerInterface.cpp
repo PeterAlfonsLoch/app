@@ -25,7 +25,7 @@ bool FileManagerInterface::FileManagerBrowse(sp(::fs::item)  item)
    try
    {
 
-      m_item = canew(::fs::item(item));
+      m_item = canew(::fs::item(*item));
 
 
       OnFileManagerBrowse();
@@ -85,7 +85,7 @@ void FileManagerInterface::GetActiveViewSelection(::fs::item_array & itema)
 
 ::fs::item & FileManagerInterface::get_item()
 {
-   return m_item;
+   return *m_item;
 }
 
 critical_section * FileManagerInterface::GetItemIdListCriticalSection()

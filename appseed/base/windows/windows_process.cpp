@@ -165,7 +165,7 @@ bool process_modules(stringa & stra, uint32_t processID)
 
    const int32_t iImageSize = MAX_PATH * 8;
 
-   char * szImage = (char *) _ca_alloc(iImageSize);
+   char * szImage = (char *) memory_alloc(iImageSize);
 
    if(EnumProcessModules(hProcess, hMods, sizeof(HMODULE) * iMaxModuleCount, &cbNeeded))
    {
@@ -184,7 +184,7 @@ bool process_modules(stringa & stra, uint32_t processID)
 
    }
 
-   _ca_free(szImage, 0);
+   memory_free_dbg(szImage, 0);
 
    delete hMods;
 

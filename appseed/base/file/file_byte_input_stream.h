@@ -23,7 +23,7 @@ namespace file
 
 
       byte_input_stream();
-      byte_input_stream(reader * preader);
+      byte_input_stream(stream_buffer * preader);
       byte_input_stream(const input_stream & istream);
       virtual ~byte_input_stream();
 

@@ -453,8 +453,8 @@ public:
    sp(::filemanager::filemanager)   m_pfilemanager;
    sp(::usermail::usermail)         m_pusermail;
 #ifdef WINDOWSEX
-   array < MONITORINFO >            m_monitorinfoa;
-   array < MONITORINFO >            m_monitorinfoaDesk;
+   raw_array < MONITORINFO >            m_monitorinfoa;
+   raw_array < MONITORINFO >            m_monitorinfoaDesk;
 #endif
 
    stringa                          m_straAppInterest;

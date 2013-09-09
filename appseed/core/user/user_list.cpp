@@ -814,7 +814,7 @@ namespace user
       {
          index iStart = m_listlayout.m_iaDisplayToStrict.get_count();
          index iEnd = m_nItemCount - 1;
-         m_listlayout.m_iaDisplayToStrict.set_size(m_nItemCount);
+         m_listlayout.m_iaDisplayToStrict.allocate(m_nItemCount);
          for(index iStrict = iStart; iStrict <= iEnd; iStrict++)
          {
             m_listlayout.m_iaDisplayToStrict.set_at(iStrict, iStrict);
@@ -2531,12 +2531,12 @@ namespace user
       else if(get_form() != NULL)
       {
          get_form()->send_message(
-            ::core::message_event, 0, (LPARAM) &ev);
+            ::message::message_event, 0, (LPARAM) &ev);
       }
       else
       {
          get_parent()->send_message(
-            ::core::message_event, 0, (LPARAM) &ev);
+            ::message::message_event, 0, (LPARAM) &ev);
       }
 
    }
@@ -4584,14 +4584,14 @@ namespace user
          CSortInfoItem newItem = m_sortinfo.m_itema[iFound];
          m_sortinfo.m_itema.remove_at(iFound);
          newItem.m_bAscendent = !newItem.m_bAscendent;
-         m_sortinfo.m_itema.insert_at(0, newItem);
+         m_sortinfo.m_itema.inset(0, newItem);
       }
       else
       {
          CSortInfoItem newItem;
          newItem.m_iSubItem = iSubItem;
          newItem.m_bAscendent = true;
-         m_sortinfo.m_itema.insert_at(0, newItem);
+         m_sortinfo.m_itema.inset(0, newItem);
       }
 
       _001OnSort();

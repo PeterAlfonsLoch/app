@@ -305,7 +305,7 @@ bool html_form::open_document(var varFile)
 
 void html_form::_001GetText(string & str)
 {
-   get_html_data()->m_elemental.get_html(const_cast < html::data * > (get_html_data()), str);
+   get_html_data()->m_elemental.get_html(const_cast < ::html::data * > (get_html_data()), str);
 }
 
 void html_form::_001SetText(const char * psz)

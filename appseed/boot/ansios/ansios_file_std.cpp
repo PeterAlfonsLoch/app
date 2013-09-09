@@ -357,7 +357,7 @@ size_t fread_dup(void *buffer, size_t size, size_t count, _FILE *str)
 
 	char *src;
 	if (textMode)
-		src = (char*)_ca_alloc(size*count);
+		src = (char*)memory_alloc(size*count);
 	else
 		src = (char*)buffer;
 
@@ -413,7 +413,7 @@ size_t fread_dup(void *buffer, size_t size, size_t count, _FILE *str)
 				*dst++ = src[i];
 		}
 
-		_ca_free(src, 0);
+		memory_free_dbg(src, 0);
 	}
 
 	return br/size;
@@ -546,10 +546,10 @@ wchar_t *fgetws_dup(wchar_t *str, int32_t n, _FILE *s)
 	// Text-mode fgetws converts MBCS->Unicode
 	if (((_FILE*)str)->_flag & _FILE_TEXT)
 	{
-		char *bfr = (char*)_ca_alloc(n);
+		char *bfr = (char*)memory_alloc(n);
 		fgets_dup(bfr, n, s);
 		MultiByteToWideChar(CP_ACP, 0, bfr, -1, str, n);
-		_ca_free(bfr, 0);
+		memory_free_dbg(bfr, 0);
 		return str;
 	}
 

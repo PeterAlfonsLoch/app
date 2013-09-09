@@ -104,7 +104,7 @@ namespace user
 
       sp(::user::interaction) create_view(type * info, sp(::user::document_interface) pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
       static sp(::user::interaction) s_create_view(type * info, sp(::user::document_interface) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast = NULL);
-      static sp(::user::interaction) s_create_view(create_context * pContext, sp(::user::interaction) pwndParent, id id);
+      static sp(::user::interaction) s_create_view(::create_context * pContext, sp(::user::interaction) pwndParent, id id);
 
       template < class VIEW >
       sp(VIEW) create_view(::user::document_interface * pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);

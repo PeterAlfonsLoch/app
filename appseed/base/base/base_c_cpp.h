@@ -251,7 +251,7 @@ namespace file
 #endif
 
 #include "base_thread.h"
-#include "base_user_interaction.h"
+#include "base/user/user_base_interaction.h"
 
 
 
@@ -336,6 +336,7 @@ CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 #include "base/net/net.h"
 
 
+#include "base/os/os.h"
 
 
 #include "base/os/os_process.h"

@@ -16,7 +16,7 @@ namespace file
 
 
 
-   output_stream::output_stream(sp(writer) pwriter)
+   output_stream::output_stream(buffer_sp pwriter)
    {
       m_spbuffer     = pwriter;
    }
@@ -202,21 +202,33 @@ namespace file
    
    bool output_stream::is_writer_null()
    {
+
       return m_spbuffer.is_null();
+
    }
+
 
    bool output_stream::is_writer_set()
    {
+
       return m_spbuffer.is_set();
+
    }
 
    
-   void output_stream:: write (const string & string)
+   void output_stream:: write (const string & str)
    {
+
+      m_spbuffer->write(str, str.get_length());
 
    }
 
+   void output_stream::set_length(file_size len)
+   {
+   
+      m_spbuffer->set_length(len);
 
+   }
 
 } // namespace file
 

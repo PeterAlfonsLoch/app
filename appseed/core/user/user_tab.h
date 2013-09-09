@@ -143,7 +143,7 @@ namespace user
       virtual sp(::user::interaction) get_tab_window(::index iTab, bool bVisible = true);
       virtual sp(::user::place_holder) get_tab_holder(::index iTab, bool bVisible = true);
 
-      void _000OnMouse(message::mouse * pmouse);
+      void _000OnMouse(::message::mouse * pmouse);
 
       virtual sp(::user::interaction) get_view_uie();
 

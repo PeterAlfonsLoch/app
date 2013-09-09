@@ -786,7 +786,7 @@ namespace message
    {
       for(int32_t i = 0; i < this->get_size(); i++)
       {
-         Signal & signal = this->element_at(i);
+         Signal & signal = *this->element_at(i);
          if(uiMessage      == signal.m_uiMessage
          && uiCode         == signal.m_uiCode
          && uiId           >= signal.m_uiIdStart
@@ -802,7 +802,7 @@ namespace message
    {
       for(int32_t i = 0; i < this->get_size(); i++)
       {
-         Signal & signal = this->element_at(i);
+         Signal & signal = *this->element_at(i);
          if(uiMessage      == signal.m_uiMessage
          && uiCode         == signal.m_uiCode
          && uiIdStart      == signal.m_uiIdStart

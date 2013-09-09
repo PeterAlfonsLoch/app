@@ -80,7 +80,7 @@ verisimple_wstring::verisimple_wstring(const wchar_t * pwsz)
    else
    {
 //      m_pwsz = (wchar_t *) g_pfixedallocaWstring->alloc((wcslen(pwsz) + 1) * 2);
-      m_pwsz = (wchar_t *) ca2_alloc((wcslen(pwsz) + 1) * 2);
+      m_pwsz = (wchar_t *) memory_alloc((wcslen(pwsz) + 1) * 2);
       wcscpy(m_pwsz, pwsz);
    }
 }
@@ -96,7 +96,7 @@ verisimple_wstring::~verisimple_wstring()
    if(m_pwsz != NULL)
    {
 //      g_pfixedallocaWstring->free(m_pwsz, (wcslen(m_pwsz) + 1) * 2);
-      ca2_free(m_pwsz, 0);
+      memory_free(m_pwsz, 0);
    }
 }
 
@@ -109,7 +109,7 @@ wchar_t * verisimple_wstring::alloc(int32_t iCount)
    }
    int32_t iAlloc = (iCount + 1) * sizeof(wchar_t);
    //m_pwsz = (wchar_t *) g_pfixedallocaWstring->alloc(iAlloc);
-   m_pwsz = (wchar_t *) ca2_alloc(iAlloc);
+   m_pwsz = (wchar_t *) memory_alloc(iAlloc);
    m_pwsz[iCount] = L'\0';
    return m_pwsz;
 }
@@ -137,7 +137,7 @@ verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
       if(m_pwsz != NULL)
       {
          //g_pfixedallocaWstring->free(m_pwsz, (wcslen(m_pwsz) + 1) * 2);
-         ca2_free(m_pwsz, 0);
+         memory_free(m_pwsz, 0);
          m_pwsz = NULL;
       }
       if(pwsz == NULL)
@@ -145,7 +145,7 @@ verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
       else
       {
          //m_pwsz = (wchar_t *) g_pfixedallocaWstring->alloc((wcslen(pwsz) + 1) * 2);
-         m_pwsz = (wchar_t *) ca2_alloc((wcslen(pwsz) + 1) * 2);
+         m_pwsz = (wchar_t *) memory_alloc((wcslen(pwsz) + 1) * 2);
          wcscpy(m_pwsz, pwsz);
       }
    }

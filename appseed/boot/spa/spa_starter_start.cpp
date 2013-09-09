@@ -140,7 +140,7 @@ void __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers
 void update_ca2_build()
 {
    if(g_pszCa2Build != NULL)
-      _ca_free(g_pszCa2Build, 0);
+      memory_free_dbg(g_pszCa2Build, 0);
    g_pszCa2Build = (char *) strdup_dup(http_get_dup("http://spaignition.api.server.core.cc/ca2_get_build?authnone"));
 }
 

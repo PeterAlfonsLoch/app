@@ -18,7 +18,7 @@ namespace file
 
       
       output_stream();
-      output_stream(sp(writer) pwriter);
+      output_stream(stream_buffer * pwriter);
       output_stream(const output_stream & pwriter);
       virtual ~output_stream();
 
@@ -36,6 +36,8 @@ namespace file
       virtual void close();
 
       virtual void flush();
+
+      virtual void set_length(file_size len);
 
       inline output_stream & operator << (char ch                              ) { write(ch              ); return *this;}
       inline output_stream & operator << (uchar uch                            ) { write(uch             ); return *this;}

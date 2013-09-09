@@ -17,7 +17,7 @@ element::element()
 
 
 element::element(const element & o) :
-   m_papp(o.m_papp)
+   m_pbaseapp(o.m_pbaseapp)
 {
 
    m_ulFlags            = o.m_ulFlags;
@@ -27,7 +27,7 @@ element::element(const element & o) :
 
 
 element::element(sp(base_application) papp) :
-   m_papp(papp)
+   m_pbaseapp(papp)
 {
 
    m_ulFlags            = (uint32_t) flag_auto_clean;
@@ -45,7 +45,7 @@ element::~element()
 /*sp(base_application) element::get_app() const
 {
 
-   return m_papp;
+   return m_pbaseapp;
 
 }*/
 
@@ -53,7 +53,7 @@ element::~element()
 void element::set_app(sp(base_application) papp)
 {
 
-   m_papp = papp;
+   m_pbaseapp = papp;
 
 }
 
@@ -73,7 +73,7 @@ element & element::operator = (const element & o)
    {
 
       m_ulFlags   = o.m_ulFlags;
-      m_papp      = o.m_papp;
+      m_pbaseapp      = o.m_pbaseapp;
 
    }
 
@@ -94,7 +94,7 @@ void element::delete_this()
    else if(m_ulFlags & flag_discard_to_factory)
    {
 
-      m_papp->m_pbasesystem->discard_to_factory(this);
+      m_pbaseapp->m_pbasesystem->discard_to_factory(this);
 
    }
    else if(is_heap())
@@ -113,7 +113,7 @@ sp(element) element::clone()
    if(m_pfactoryitembase != NULL)
       return m_pfactoryitembase->clone(this);
    else
-      return m_papp->m_pbasesystem->clone(this);
+      return m_pbaseapp->m_pbasesystem->clone(this);
 
 }
 
@@ -123,7 +123,7 @@ allocatorsp::allocatorsp(sp(base_application) papp)
 
    sp(allocator) spallocator = canew(allocator());
 
-   spallocator->m_papp = papp;
+   spallocator->m_pbaseapp = papp;
 
    smart_pointer < allocator >::operator = (spallocator);
 

@@ -18,7 +18,7 @@ namespace plane
       m_simpledb(this)
    {
 
-      m_papp      = this;
+      m_pbaseapp      = this;
       m_pplaneapp  = this;
 
       m_dir.set_app(this);
@@ -35,7 +35,7 @@ namespace plane
    {
 
 
-      m_papp      = this;
+      m_pbaseapp      = this;
       m_pplaneapp  = this;
 
       construct(pszId);
@@ -1231,7 +1231,7 @@ exit_application:
 
       }
 
-      //pbaseapp->m_papp                               = this;
+      //pbaseapp->m_pbaseapp                               = this;
       papp->m_pplaneapp->m_psystem                            = m_psystem;
 
       papp->m_pplaneapp->command_central()->consolidate(command_central());
@@ -2041,6 +2041,22 @@ exit_application:
    }
 
 
+   void application::assert_valid() const
+   {
+
+     ::application::assert_valid();
+      //::database::server::assert_valid();
+
+   }
+
+
+   void application::dump(dump_context & context) const
+   {
+
+      ::application::dump(context);
+      //::database::server::dump(context);
+
+   }
 
 
 } //namespace plane

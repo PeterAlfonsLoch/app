@@ -27,7 +27,7 @@ namespace file
 
 
       byte_output_stream();
-      byte_output_stream(writer * pwriter);
+      byte_output_stream(stream_buffer * pwriter);
       byte_output_stream(const output_stream & ostream);
       virtual ~byte_output_stream();
 

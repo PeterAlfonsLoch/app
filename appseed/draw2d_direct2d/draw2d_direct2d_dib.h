@@ -16,37 +16,22 @@ namespace draw2d_direct2d
    {
    public:
 
-      static float Cosines[360];
-      static float Sines[360];
-      static int64_t CosN[360]; // * 1 << 31
-      static int64_t SinN[360]; 
-      static int64_t Cos10N[10]; // until 10 degress
-      static int64_t Sin10N[10]; // more precision * 1 << 34
-      static double dPi;
 
-      BITMAPINFO           m_info;
-      ::draw2d::bitmap_sp      m_spbitmap;
-      ::draw2d::bitmap_sp      m_spbitmapMap;
-      ::draw2d::graphics_sp    m_spgraphics;
-      ::draw2d::graphics_sp    m_spgraphicsMap;
-      //class size           m_size;
-      bool                 m_bMapped;
+      BITMAPINFO                    m_info;
+      ::draw2d::bitmap_sp           m_spbitmap;
+      ::draw2d::bitmap_sp           m_spbitmapMap;
+      ::draw2d::graphics_sp         m_spgraphics;
+      ::draw2d::graphics_sp         m_spgraphicsMap;
+      //class size                  m_size;
+      bool                          m_bMapped;
 
 
       //HBITMAP              m_hbitmapOriginal;
 
-      virtual ::draw2d::graphics * get_graphics();
-      virtual ::draw2d::bitmap_sp get_bitmap();
-      virtual ::draw2d::bitmap_sp detach_bitmap();
-
-
-      virtual COLORREF * get_data();
-
-      dib(application * papp);
+      dib(base_application * papp);
       virtual void construct(int cx, int cy);
       virtual ~dib();
 
-      static void s_initialize();
       void stretch_dib(::draw2d::dib * pdib);
 
       bool dc_select(bool bSelect = true);
@@ -78,6 +63,13 @@ namespace draw2d_direct2d
       void rotate(::draw2d::dib * pdib, LPCRECT lpcrect, double dAngle, double dScale);
       void rotate(::draw2d::dib * pdib, double dAngle, double dScale);
       void Rotate034(::draw2d::dib * pdib, double dAngle, double dScale);
+
+      virtual ::draw2d::graphics * get_graphics();
+      virtual ::draw2d::bitmap_sp get_bitmap();
+      virtual ::draw2d::bitmap_sp detach_bitmap();
+
+
+      virtual COLORREF * get_data();
 
 
       void SetIconMask(::visual::icon * picon, int cx, int cy);

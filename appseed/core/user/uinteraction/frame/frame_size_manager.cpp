@@ -35,7 +35,7 @@ namespace frame
    VMSGEN_WINDOW_ON_MOUSEMOVE_CONDITIONAL(pdispatch, this, _001OnMouseMove);
    }*/
 
-   bool SizeManager::_000OnLButtonDown(message::mouse * pmouse)
+   bool SizeManager::_000OnLButtonDown(::message::mouse * pmouse)
    {
       ASSERT(pmouse->m_uiMessage == WM_LBUTTONDOWN
          || pmouse->m_uiMessage == WM_NCLBUTTONDOWN);
@@ -121,7 +121,7 @@ namespace frame
       }
    }
 
-   bool SizeManager::_000OnMouseMove(message::mouse * pmouse)
+   bool SizeManager::_000OnMouseMove(::message::mouse * pmouse)
    {
 
       if(!m_pworkset->IsSizingEnabled())
@@ -161,7 +161,7 @@ namespace frame
 
    }
 
-   bool SizeManager::_000OnLButtonUp(message::mouse * pmouse)
+   bool SizeManager::_000OnLButtonUp(::message::mouse * pmouse)
    {
       if(!m_pworkset->IsSizingEnabled())
          return false;
@@ -177,7 +177,7 @@ namespace frame
       return false;
    }
 
-   bool SizeManager::Relay(message::mouse * pmouse)
+   bool SizeManager::Relay(::message::mouse * pmouse)
    {
       UNREFERENCED_PARAMETER(pmouse);
       return false;

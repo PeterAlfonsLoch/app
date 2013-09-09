@@ -9,12 +9,6 @@ namespace file
    {
    }
 
-   plain_text_stream::plain_text_stream(reader * preader, writer * pwriter) :
-      plain_text_input_stream(preader),
-      plain_text_output_stream(pwriter)
-   {
-   }
-
    plain_text_stream::plain_text_stream(stream_buffer * pbuffer) :
       plain_text_input_stream(pbuffer),
       plain_text_output_stream(pbuffer)

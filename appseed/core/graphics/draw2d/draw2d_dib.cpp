@@ -19,6 +19,22 @@ byte byte_clip(double d)
 namespace draw2d
 {
 
+   //   Creator : El Barto (ef00@luc.ac.be)
+   //   Location : http://www.luc.ac.be/~ef00/ebgfx
+   //   Date : 09-04-98
+   //////////////////////////////////////////////////////////////////////
+
+
+   float dib::Cosines[360];
+   float dib::Sines[360];
+
+   int64_t dib::CosN[360]; // * 1 << 31
+   int64_t dib::SinN[360]; 
+
+   int64_t dib::Cos10N[10]; // until 10 degress
+   int64_t dib::Sin10N[10]; // more precision * 1 << 34
+
+   double dib::dPi;
 
    dib::dib()
    {
@@ -134,7 +150,7 @@ namespace draw2d
 
    bool dib::create(::draw2d::graphics * pdc)
    {
-      ::draw2d::bitmap & bitmap = pdc->get_current_bitmap();
+      ::draw2d::bitmap & bitmap = *pdc->get_current_bitmap();
       if(&bitmap == NULL)
          return FALSE;
 
@@ -3668,6 +3684,35 @@ fill_last:
    {
       gradient_vertical_fill(clr1, clr2, 0, cx - 1);
    }
+
+
+   void dib::static_initialize()
+   {
+      double dCos;
+      double dSin;
+      double d32 = (1U << 31);
+      dPi = atan(1.0) * 4.0;;
+      int32_t i;
+       for ( i=0; i<360; i++ )
+      {
+         dCos = ::cos ( i/180.0*dPi );
+         dSin = ::sin ( i/180.0*dPi );
+         Cosines[i]=float(dCos);
+         Sines[i]=float(dSin);
+         CosN[i] = (int64_t) (dCos * d32);
+         SinN[i] = (int64_t) (dSin * d32);
+      }
+      d32 = (1U << 31);
+      d32 *= 8;
+       for(i = 0; i < 10; i++)
+      {
+         dCos = ::cos ( i/180.0*dPi );
+         dSin = ::sin ( i/180.0*dPi );
+         Cos10N[i] = (int64_t) (dCos * d32);
+         Sin10N[i] = (int64_t) (dSin * d32);
+      }
+   }
+
 
 } // namespace draw2d
 

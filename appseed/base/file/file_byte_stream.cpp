@@ -9,11 +9,6 @@ namespace file
    {
    }
 
-/*   byte_stream::byte_stream(reader * preader, writer * pwriter) :
-      input_stream(preader),
-      output_stream(pwriter)
-   {
-   }*/
 
    byte_stream::byte_stream(sp(stream_buffer) pbuffer) :
       stream(pbuffer)

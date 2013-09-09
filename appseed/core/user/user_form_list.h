@@ -55,7 +55,7 @@ namespace user
 
       virtual void _001DrawSubItem(draw_list_item * pdrawitem);
 
-      void _000OnMouse(message::mouse * pmouse);
+      void _000OnMouse(::message::mouse * pmouse);
 
       void control_get_client_rect(sp(control) pcontrol, LPRECT lprect);
       void control_get_window_rect(sp(control) pcontrol, LPRECT lprect);

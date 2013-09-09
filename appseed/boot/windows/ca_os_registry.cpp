@@ -73,14 +73,14 @@ void reg_delete_tree_dup(HKEY hkey, const char * name)
       &hkeySub))
    {
       uint32_t dwAlloc = 1026 * 64;
-      char * szKey = (char *) _ca_alloc(dwAlloc);
+      char * szKey = (char *) memory_alloc(dwAlloc);
       uint32_t dwIndex = 0;
       while(ERROR_SUCCESS == ::RegEnumKey(hkeySub, dwIndex, szKey, dwAlloc))
       {
          reg_delete_tree_dup(hkeySub, szKey);
          dwIndex++;
       }
-      _ca_free(szKey, 0);
+      memory_free_dbg(szKey, 0);
       ::RegCloseKey(hkeySub);
    }
    ::RegDeleteKey(hkey, name);

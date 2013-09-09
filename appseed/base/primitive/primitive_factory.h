@@ -32,9 +32,9 @@ public:
    {
       m_iAllocCount++;
 #if MEMDLEAK
-      return ca2_alloc_dbg(m_uiAllocSize, 0, "typeid://" + *m_idType.m_pstr, 0);
+      return memory_alloc_dbg(m_uiAllocSize, 0, "typeid://" + *m_idType.m_pstr, 0);
 #else
-      return ca2_alloc(m_uiAllocSize);
+      return memory_alloc(m_uiAllocSize);
 #endif
    }
 
@@ -75,7 +75,7 @@ public:
       }
       try
       {
-         ca2_free(ptype);
+         memory_free(ptype);
          m_iAllocCount--;
       }
       catch(...)
@@ -120,7 +120,7 @@ public:
       CREATABLE_TYPE * pt = ::new (pv) CREATABLE_TYPE(papp);
 #define new DEBUG_NEW
       ::dereference_no_delete(pt);
-      pt->element::set_ca_flag(element::flag_discard_to_factory);
+      pt->::element::set_ca_flag(element::flag_discard_to_factory);
       pt->m_pfactoryitembase = this;
       pt->m_pthis = pt;
       return pt;

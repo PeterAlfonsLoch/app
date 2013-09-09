@@ -85,7 +85,7 @@ string get_command_line(HANDLE handleProcess)
    }
 
    /* allocate memory to hold the command line */
-   WCHAR * commandLineContents = (WCHAR *)_ca_alloc(ustrCommandLine.Length + sizeof(WCHAR));
+   WCHAR * commandLineContents = (WCHAR *)memory_alloc(ustrCommandLine.Length + sizeof(WCHAR));
    /* read the command line */
    if (!ReadProcessMemory(handleProcess, ustrCommandLine.Buffer, commandLineContents, ustrCommandLine.Length, NULL))
    {
@@ -94,7 +94,7 @@ string get_command_line(HANDLE handleProcess)
    }
    commandLineContents[ustrCommandLine.Length / sizeof(WCHAR)] = L'\0';
    string str = ::str::international::unicode_to_utf8(commandLineContents);
-   _ca_free(commandLineContents, 0);
+   memory_free_dbg(commandLineContents, 0);
    return str;
 }
 #else // WINDOWS
@@ -2237,7 +2237,7 @@ RetryHost:
       char * pszFind2;
       char * pszFind3;
       int32_t iBufSize = 16 * 1024;
-      char * buf = (char *) _ca_alloc(iBufSize);
+      char * buf = (char *) memory_alloc(iBufSize);
       while(fgets_dup(buf, iBufSize, f))
       {
          while(buf[strlen_dup(buf) - 1] == '\r' || buf[strlen_dup(buf) - 1] == '\n')
@@ -2295,7 +2295,7 @@ RetryHost:
             mapGzLen[(string)(const char *) buf] = -1;
       }
       fclose_dup(f);
-      _ca_free(buf, 0);
+      memory_free_dbg(buf, 0);
    }
 
    bool installer::spa_exec(const char * psz)

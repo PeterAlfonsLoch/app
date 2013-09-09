@@ -37,7 +37,7 @@ string_format::~string_format()
    if(m_pszBuffer != NULL)
    {
 
-      ca2_free(m_pszBuffer);
+      memory_free(m_pszBuffer);
 
    }
 
@@ -75,13 +75,13 @@ void string_format::allocate_add_up(strsize iLenAddUp)
       if(m_pszBuffer == NULL)
       {
 
-         m_pszBuffer = (char *) ca2_alloc(iNewSize);
+         m_pszBuffer = (char *) memory_alloc(iNewSize);
 
       }
       else
       {
 
-         m_pszBuffer = (char *) ca2_realloc(m_pszBuffer, iNewSize);
+         m_pszBuffer = (char *) memory_realloc(m_pszBuffer, iNewSize);
 
       }
 

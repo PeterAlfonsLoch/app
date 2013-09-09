@@ -73,7 +73,7 @@ namespace file
       {
          if(m_psz != NULL)
          {
-            ca2_free(m_psz);
+            memory_free(m_psz);
             m_iAlloc = 0;
             m_iSize = 0;
             m_psz = NULL;
@@ -92,7 +92,7 @@ namespace file
             m_iAlloc = iSize + 1024;
             if(m_psz == NULL)
             {
-               m_psz = (char *) ca2_alloc(m_iAlloc);
+               m_psz = (char *) memory_alloc(m_iAlloc);
             }
             else
             {
@@ -100,7 +100,7 @@ namespace file
                {
                   //::output_debug_string("strange string buffer usage");
                }
-               m_psz = (char *) ca2_realloc(m_psz, m_iAlloc);
+               m_psz = (char *) memory_realloc(m_psz, m_iAlloc);
             }
          }
 

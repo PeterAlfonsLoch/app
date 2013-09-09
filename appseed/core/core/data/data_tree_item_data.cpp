@@ -1,6 +1,7 @@
 #include "framework.h"
 
-namespace ca2
+
+namespace data
 {
 
 
@@ -43,4 +44,7 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace data
+
+
+

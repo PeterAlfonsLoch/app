@@ -87,8 +87,8 @@ public:
 
    inline T * operator ->();
    inline T * operator ->() const ;
-   inline operator T & ();
-   inline operator T & () const ;
+   inline T & operator *();
+   inline T & operator *() const ;
    inline operator T * const ();
    inline operator T * const () const;
    inline T * get_();

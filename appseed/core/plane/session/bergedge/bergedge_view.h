@@ -108,7 +108,7 @@ namespace bergedge
 
       static UINT c_cdecl ThreadProcShowWindow(LPVOID lpparam);
       
-      void _000OnMouse(message::mouse * pmouse);
+      void _000OnMouse(::message::mouse * pmouse);
 
    };
 

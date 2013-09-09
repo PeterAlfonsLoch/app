@@ -114,13 +114,13 @@
    }
 
    template < class T >
-   inline smart_pointer < T > ::operator T & ()
+   inline T & smart_pointer < T > ::operator * ()
    {
       return *m_p;
    }
 
    template < class T >
-   inline smart_pointer < T > ::operator T & () const
+   inline T & smart_pointer < T > ::operator * () const
    {
       return *m_p;
    }

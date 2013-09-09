@@ -255,7 +255,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
    string strMd5;
    string strMd5New;
    int32_t iBufSize = 1024 * 1024;
-   uchar * buf = (uchar *)  _ca_alloc(iBufSize);
+   uchar * buf = (uchar *)  memory_alloc(iBufSize);
    int32_t iLen;
    ::md5::md5 ctx;
    ::count dwRead;
@@ -333,7 +333,7 @@ void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str)
 {
    int32_t iLen;
    file_read_n_number_dup(hfile, pctx, iLen);
-   LPSTR lpsz = (LPSTR) _ca_alloc(iLen + 1);
+   LPSTR lpsz = (LPSTR) memory_alloc(iLen + 1);
    ::count dwRead;
    dwRead = fread(lpsz, iLen, 1, (FILE *) hfile);
    if(pctx != NULL)
@@ -342,7 +342,7 @@ void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str)
    }
    lpsz[iLen] = '\0';
    str = lpsz;
-   _ca_free(lpsz, 0);
+   memory_free_dbg(lpsz, 0);
 }
 
 

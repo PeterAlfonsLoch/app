@@ -14,7 +14,7 @@ namespace html
       index i;
       for(i = get_upper_bound(); i >= 0; i--)
       {
-         style_sheet & sheet = this->element_at(i);
+         style_sheet & sheet = *this->element_at(i);
          pstyle = sheet.rfind(pszTag, pszClass, pszSubClass, pszName);
          if(pstyle != NULL)
             break;
@@ -29,7 +29,7 @@ namespace html
       index i;
       for(i = get_upper_bound(); i >= 0; i--)
       {
-         style_sheet & sheet = this->element_at(i);
+         style_sheet & sheet = *this->element_at(i);
          pstyle = sheet.rfind_border_width(pszTag, pszClass, pszSubClass, pszName, f);
          if(pstyle != NULL)
             break;
@@ -44,7 +44,7 @@ namespace html
       index i;
       for(i = get_upper_bound(); i >= 0; i--)
       {
-         style_sheet & sheet = this->element_at(i);
+         style_sheet & sheet = *this->element_at(i);
          pstyle = sheet.rfind_border_color(pszTag, pszClass, pszSubClass, pszName, cr);
          if(pstyle != NULL)
             break;
@@ -74,7 +74,7 @@ namespace html
       index i;
       for(i = get_upper_bound(); i >= 0; i--)
       {
-         const style_sheet & sheet = this->element_at(i);
+         const style_sheet & sheet = *this->element_at(i);
          pstyle = sheet.greater(pstyle1, pstyle2);
          if(pstyle != NULL)
             return pstyle;
@@ -126,7 +126,7 @@ namespace html
       index i;
       for(i = get_upper_bound(); i >= 0; i--)
       {
-         const style_sheet & sheet = this->element_at(i);
+         const style_sheet & sheet = *this->element_at(i);
          if(sheet.greater(pstyleRet, iRet, varRet, pstyle1, i1, var1, pstyle2, i2, var2))
             return true;
       }

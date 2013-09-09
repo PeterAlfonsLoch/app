@@ -68,7 +68,7 @@ namespace user
       virtual void SetScrollSizes();
 
 
-      void send_scroll_message(message::scroll * pscroll);
+      void send_scroll_message(::message::scroll * pscroll);
 
 
       virtual void _001OnUpdateScrollPosition();

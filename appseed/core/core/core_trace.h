@@ -97,11 +97,11 @@ namespace core
       {
       public:
 
-         sp(base_application) m_papp;
+         sp(base_application) m_pbaseapp;
 
          trace(sp(base_application) papp)
          {
-            m_papp = papp;
+            m_pbaseapp = papp;
          }
 
          ~trace()

@@ -506,7 +506,7 @@ namespace user
       // default create client will create a ::user::view if asked for it
       if (pContext != NULL &&
          (pContext->m_user->m_typeinfoNewView ||
-         pContext->m_user->m_puiNew != NULL))
+          pContext->m_user->m_puiNew != NULL))
       {
          if(::user::view::s_create_view(pContext, this, "pane_first") == NULL)
             return FALSE;
@@ -881,7 +881,7 @@ namespace user
          return TRUE;
 
       // last but not least, pump through cast
-      application* pApp = get_app();
+      application* pApp = get_app()->m_pplaneapp;
       if (pApp != NULL && pApp->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 

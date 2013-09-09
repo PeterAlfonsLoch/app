@@ -254,7 +254,7 @@ namespace draw2d_cairo
 /*
       if(m_pdata != NULL)
       {
-         ca2_free(m_pdata);
+         memory_free(m_pdata);
          m_pdata = NULL;
       }
 

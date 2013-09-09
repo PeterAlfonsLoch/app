@@ -35,11 +35,11 @@ namespace frame
       EHitTest hit_test(point ptCursor);
       //void _000InstallEventHandling(iguimessage::MessageDispatch * pdispatch);
 
-      bool _000OnLButtonDown(message::mouse * pmouse);
-      bool _000OnMouseMove(message::mouse * pmouse);
-      bool _000OnLButtonUp(message::mouse * pmouse);
+      bool _000OnLButtonDown(::message::mouse * pmouse);
+      bool _000OnMouseMove(::message::mouse * pmouse);
+      bool _000OnLButtonUp(::message::mouse * pmouse);
 
-      bool Relay(message::mouse * pmouse);
+      bool Relay(::message::mouse * pmouse);
 
       void NotifyFramework(EHitTest emode);
       EGrip EModeToEGrip(EHitTest emode);

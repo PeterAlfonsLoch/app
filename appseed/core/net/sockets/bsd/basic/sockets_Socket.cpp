@@ -1839,6 +1839,17 @@ namespace sockets
    }
 
 
+   ::primitive::memory_size socket::read(void * pdata, ::primitive::memory_size n)
+   {
+
+      UNREFERENCED_PARAMETER(pdata);
+      UNREFERENCED_PARAMETER(n);
+
+      return 0;
+
+   }
+
+
    void socket::on_read(const void * pdata, ::primitive::memory_size n)
    {
       

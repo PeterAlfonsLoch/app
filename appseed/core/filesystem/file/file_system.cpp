@@ -334,7 +334,7 @@ restart:
       primitive::memory storage;
       if(varFile.element < ::file::binary_buffer > () != NULL)
       {
-         ::file::byte_input_stream is(varFile.element < ::file::binary_buffer >());
+         ::file::byte_input_stream is(*varFile.element < ::file::binary_buffer >());
          storage.read(is);
       }
       else
@@ -1022,7 +1022,7 @@ restart:
 #ifdef WINDOWS
 
 
-      return file_exists_dup(pszPath);
+      return file_exists_dup(pszPath) != FALSE;
 
       //return ::GetFileAttributesW(::str::international::utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
 
@@ -1089,7 +1089,7 @@ restart:
 #ifdef WINDOWS
 
 
-      return file_exists_dup(strPath);
+      return file_exists_dup(strPath) != FALSE;
       // return true;
 
       //return App(papp).m_spfsdata->file_exists(strPath);

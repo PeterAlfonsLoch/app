@@ -38,7 +38,7 @@ char * strdup_dup(const char * src)
 
    ::count iLen = strlen_dup(src);
 
-   char * dup = (char *) _ca_alloc(iLen + 1);
+   char * dup = (char *) memory_alloc(iLen + 1);
 
    strcpy_dup(dup, src);
 
@@ -48,7 +48,7 @@ char * strdup_dup(const char * src)
 
 char * strndup_dup(const char * src, ::count iLen)
 {
-   char * dup = (char *) _ca_alloc(iLen + 1);
+   char * dup = (char *) memory_alloc(iLen + 1);
    strncpy_dup(dup, src, iLen);
    dup[iLen] = '\0';
    return dup;

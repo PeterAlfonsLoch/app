@@ -13,7 +13,7 @@ namespace file
 
 
       plain_text_input_stream();
-      plain_text_input_stream(reader * preader);
+      plain_text_input_stream(stream_buffer * preader);
       plain_text_input_stream(const input_stream & istream);
       virtual ~plain_text_input_stream();
 

@@ -3,7 +3,7 @@
 namespace draw2d_direct2d
 {
 
-   palette::palette(application * papp) :
+   palette::palette(base_application * papp) :
       element(papp)
    { }
    palette::~palette()

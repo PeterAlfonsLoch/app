@@ -19,13 +19,13 @@
 
 mutex g_mutexStr(NULL);
 
-int32_t nibble_to_low_hex(byte nibble);
+//int32_t nibble_to_low_hex(byte nibble);
 
 
 UINT application::APPM_LANGUAGE = WM_APP + 117;
 WPARAM application::WPARAM_LANGUAGE_UPDATE = 1;
 
-HMODULE g_hmoduleOs = NULL;
+CLASS_DECL_ca2 HMODULE g_hmoduleOs = NULL;
 
 const char application::gen_FileSection[] = "Recent File List";
 const char application::gen_FileEntry[] = "File%d";
@@ -36,7 +36,7 @@ const char application::gen_PreviewEntry[] = "PreviewPages";
 
 
 application::application() :
-   element(this), // start m_papp as this for constructor referencing this app
+   element(this), // start m_pbaseapp as this for constructor referencing this app
    m_mutex(this),
    thread(NULL),
    m_mutexMatterLocator(this),
@@ -134,7 +134,7 @@ application::application() :
 {
 
 
-   if(m_papp.is_null())
+   if(m_pbaseapp.is_null())
    {
       set_app(this);
    }
@@ -1593,8 +1593,8 @@ void application::memory_to_hex(string & strHex, primitive::memory & memory)
    LPSTR lpsz = strHex.GetBufferSetLength(count * 2);
    for(index i = 0; i < count; i++)
    {
-      *lpsz++ = (char) nibble_to_low_hex((memory.get_data()[i] >> 4) & 0xf);
-      *lpsz++ = (char) nibble_to_low_hex(memory.get_data()[i] & 0xf);
+      *lpsz++ = ::hex::lower_from((byte) ((memory.get_data()[i] >> 4) & 0xf));
+      *lpsz++ = ::hex::lower_from((byte) (memory.get_data()[i] & 0xf));
    }
    strHex.ReleaseBuffer(count * 2);
 }
@@ -5871,6 +5871,13 @@ string application::draw2d_get_default_library_name()
 
 }
 
+
+string application::file_as_string(var varFile)
+{
+
+   return m_pplaneapp->file().as_string(varFile);
+
+}
 
 
 //namespace _001ca1api00001 + [core = (//namespace cube // ca8 + cube)]

@@ -35,7 +35,7 @@ namespace bergedge
 
       DECL_GEN_SIGNAL(_001OnApp1);
       DECL_GEN_SIGNAL(_001OnMouseLeave);
-      virtual void _000OnMouse(message::mouse * pmouse);
+      virtual void _000OnMouse(::message::mouse * pmouse);
 
       void OnHoverAction();
 

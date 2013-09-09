@@ -13,7 +13,7 @@ namespace userfs
 
    list_item & list_item_array::base_list_item_array::get_item(index i, index (* fCompare)(sp(list_item) *, sp(list_item) *))
    {
-      return this->element_at(i, fCompare);
+      return *this->element_at(i, fCompare);
    }
 
    list_item_array::list_item_array(sp(base_application) papp) :

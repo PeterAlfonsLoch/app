@@ -109,12 +109,12 @@ namespace uinteraction
          virtual COLORREF get_border_main_body_color();
 
          virtual EHitTest _000HitTest(point pt) = 0;
-         virtual bool _000OnLButtonDown(message::mouse * pmouse);
-         virtual bool _000OnLButtonUp(message::mouse * pmouse);
-         virtual bool _000OnMouseMove(message::mouse * pmouse);
-         virtual bool _000OnNcLButtonDown(message::mouse * pmouse);
-         virtual bool _000OnNcLButtonUp(message::mouse * pmouse);
-         virtual bool _000OnNcMouseMove(message::mouse * pmouse);
+         virtual bool _000OnLButtonDown(::message::mouse * pmouse);
+         virtual bool _000OnLButtonUp(::message::mouse * pmouse);
+         virtual bool _000OnMouseMove(::message::mouse * pmouse);
+         virtual bool _000OnNcLButtonDown(::message::mouse * pmouse);
+         virtual bool _000OnNcLButtonUp(::message::mouse * pmouse);
+         virtual bool _000OnNcMouseMove(::message::mouse * pmouse);
          virtual bool _000OnNcHitTest(point pt, LRESULT & nHitTest);
          virtual bool _000OnTimer(UINT nIDEvent);
          virtual bool _000OnSize(UINT nType, int32_t cx, int32_t cy);

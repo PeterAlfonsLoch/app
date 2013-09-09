@@ -1090,7 +1090,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="base\base_template.h" />
     <ClInclude Include="base\base_thread.h" />
     <ClInclude Include="base\base_types.h" />
-    <ClInclude Include="base\base_user_interaction.h" />
     <ClInclude Include="collection\collection.h" />
     <ClInclude Include="collection\collection_array_decl.h" />
     <ClInclude Include="collection\collection_array_impl.h" />
@@ -1207,6 +1206,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="net\net_http.h" />
     <ClInclude Include="net\net_net.h" />
     <ClInclude Include="net\net_url_departament.h" />
+    <ClInclude Include="os\os.h" />
     <ClInclude Include="primitive\primitive_bit.h" />
     <ClInclude Include="primitive\primitive_command.h" />
     <ClInclude Include="primitive\primitive_command_line.h" />
@@ -1335,6 +1335,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="primitive\primitive_wstringtou.h" />
     <ClInclude Include="spa\spa_trace.h" />
     <ClInclude Include="str\str_from_integer.h" />
+    <ClInclude Include="str\str_istring.h" />
     <ClInclude Include="str\str_str1.h" />
     <ClInclude Include="str\str_to_integer.h" />
     <ClInclude Include="str\str_wstring.h" />
@@ -1354,6 +1355,10 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="str\str_interface.h" />
     <ClInclude Include="str\str_tokenizer.h" />
     <ClInclude Include="str\str_wtostring.h" />
+    <ClInclude Include="user\user_base_document.h" />
+    <ClInclude Include="user\user_base_document_template.h" />
+    <ClInclude Include="user\user_base_interaction.h" />
+    <ClInclude Include="user\user_create_context.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
     <ClInclude Include="windows\windows.h" />
@@ -1602,6 +1607,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="spa\spa_trace.cpp" />
     <ClCompile Include="str\str_base64.cpp" />
     <ClCompile Include="str\str_c.cpp" />
+    <ClCompile Include="str\str_istring.cpp" />
     <ClCompile Include="str\str_simple.cpp" />
     <ClCompile Include="str\str_string.cpp" />
     <ClCompile Include="str\str_core.cpp" />
@@ -1621,6 +1627,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="str\str_hex.cpp" />
     <ClCompile Include="str\str_international.cpp" />
     <ClCompile Include="str\str_str.cpp" />
+    <ClCompile Include="user\user_create_context.cpp" />
     <ClCompile Include="version.cpp" />
     <ClCompile Include="windows\windows_http.cpp" />
     <ClCompile Include="windows\windows.cpp" />

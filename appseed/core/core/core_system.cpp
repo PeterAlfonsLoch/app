@@ -12,6 +12,8 @@ namespace core
 
       idEmpty = "";
 
+      ::draw2d::dib::static_initialize();
+
    }
 
 
@@ -42,6 +44,15 @@ namespace core
 
    }
 
+   bool system::process_initialize()
+   {
+      
+      if(!::base_system::process_initialize())
+         return false;
+
+      return true;
+
+   }
 
    bool system::initialize_instance()
    {
@@ -49,8 +60,8 @@ namespace core
       if(!::base_system::initialize_instance())
          return false;
 
-      if(!::application::initialize_instance())
-         return false;
+      //if(!::application::initialize_instance())
+        // return false;
 
       return true;
 

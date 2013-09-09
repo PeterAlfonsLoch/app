@@ -834,7 +834,7 @@ namespace plane
 
    session::run_application::run_application()
    {
-      m_papp = NULL;
+      m_pbaseapp = NULL;
       m_puiParent = NULL;
    }
 

@@ -23,7 +23,7 @@
 #ifdef DEBUG
 void TRACELASTERROR()
 {
-   sp(base_application) m_papp = get_thread_app();
+   sp(base_application) m_pbaseapp = get_thread_app();
    string strErrorMessage = ::get_system_error_message(::GetLastError());
    TRACE("Error Message :\n%s\n", strErrorMessage);
 }

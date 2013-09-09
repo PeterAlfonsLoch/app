@@ -151,7 +151,7 @@ namespace user
       // A ::user::view should be created in a given context!
       if (pContext != NULL && pContext->m_user->m_pCurrentDoc != NULL)
       {
-         pContext->m_user->m_pCurrentDoc->add_view(this);
+         pContext->m_user->m_pCurrentDoc->m_pdoc->add_view(this);
          ASSERT(::user::view::get_document() != NULL);
       }
       else
@@ -610,7 +610,7 @@ namespace user
 
    }
 
-   sp(::user::interaction) view::s_create_view(create_context * pContext, sp(::user::interaction) pwndParent, id id)
+   sp(::user::interaction) view::s_create_view(::create_context * pContext, sp(::user::interaction) pwndParent, id id)
    {
 
       // trans   ASSERT(pwndParent->get_handle() != NULL);
@@ -761,7 +761,7 @@ namespace user
 
    }
 
-   void view::on_draw_view(::draw2d::graphics * pdc, spa(::data) spadata)
+   void view::on_draw_view(::draw2d::graphics * pdc, spa(::data::data) spadata)
    {
 
       UNREFERENCED_PARAMETER(pdc);
@@ -775,7 +775,7 @@ namespace user
       if(get_document() == NULL)
          return;
 
-      spa(::data) spadata;
+      spa(::data::data) spadata;
 
       spadata.add(get_document()->m_spadata);
 

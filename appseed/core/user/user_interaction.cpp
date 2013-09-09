@@ -84,7 +84,7 @@ namespace user
          {
          }
          object * pobjTwf = NULL;
-         if(m_papp != NULL && &System != NULL)
+         if(m_pbaseapp != NULL && &System != NULL)
          {
             pobjTwf = System.get_twf();
          }
@@ -183,7 +183,7 @@ namespace user
 
    }
 
-   sp(interaction_base) interaction::get_parent_base() const
+   sp(base_interaction) interaction::get_parent_base() const
    {
       return get_parent();
    }
@@ -196,7 +196,7 @@ namespace user
       }
    }
 
-   sp(interaction_base) interaction::set_parent_base(sp(interaction_base) pguieParent)
+   sp(base_interaction) interaction::set_parent_base(sp(base_interaction) pguieParent)
    {
       return set_parent(pguieParent);
    }
@@ -447,7 +447,7 @@ namespace user
 
       try
       {
-         if(m_papp != NULL && m_papp->m_pplaneapp != NULL)
+         if(m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp != NULL)
          {
             Application.remove_frame(this);
          }
@@ -458,7 +458,7 @@ namespace user
 
       try
       {
-         if(m_papp != NULL && m_pbaseapp->m_pplaneapp->m_psession != NULL && &Session != NULL)
+         if(m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp->m_psession != NULL && &Session != NULL)
          {
             Session.remove_frame(this);
          }
@@ -469,7 +469,7 @@ namespace user
 
       try
       {
-         if(m_papp != NULL && m_pbaseapp->m_pplaneapp->m_psystem != NULL && &System != NULL)
+         if(m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp->m_psystem != NULL && &System != NULL)
          {
             System.remove_frame(this);
          }
@@ -736,7 +736,7 @@ namespace user
 
 
 
-   void interaction::_000OnMouse(message::mouse * pmouse)
+   void interaction::_000OnMouse(::message::mouse * pmouse)
    {
       try
       {
@@ -796,7 +796,7 @@ namespace user
       }
    }
 
-   void interaction::_000OnKey(message::key * pkey)
+   void interaction::_000OnKey(::message::key * pkey)
    {
       point ptCursor;
       System.get_cursor_pos(&ptCursor);
@@ -1080,7 +1080,7 @@ namespace user
    // pbase object should be allocated with new in
    // base or derived object and will be delete after
    // handling
-   LRESULT interaction::send(message::base * pbase)
+   LRESULT interaction::send(::message::base * pbase)
    {
       
       message_handler(pbase);
@@ -1093,7 +1093,7 @@ namespace user
    // pbase object should be allocated with new in
    // base or derived object and will be delete after
    // handling
-   bool interaction::post(message::base * pbase)
+   bool interaction::post(::message::base * pbase)
    {
       
       return post_message(WM_APP + 2014, 1, (LPARAM) pbase);
@@ -2362,7 +2362,7 @@ namespace user
 
       //bool bAttach = AttachThreadInput(get_wnd()->m_pthread->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
-      m_iaModalThread.add(::get_thread()->get_os_int());
+      m_iaModalThread.add(::get_thread()->m_pthread->get_os_int());
       sp(base_application) pappThis1 = (m_pthread->m_pthread->m_p);
       sp(base_application) pappThis2 = (m_pthread->m_pthread);
       // acquire and dispatch messages until the modal state is done
@@ -2402,11 +2402,11 @@ namespace user
             m_pthread->m_pthread->m_p->m_dwAlive = m_pthread->m_pthread->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
-               pappThis1->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
+               pappThis1->m_pthread->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
             }
             if(pappThis2 != NULL)
             {
-               pappThis2->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
+               pappThis2->m_pthread->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
             }
             if(pliveobject != NULL)
             {
@@ -2454,11 +2454,11 @@ namespace user
             m_pthread->m_pthread->m_p->m_dwAlive = m_pthread->m_pthread->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
-               pappThis1->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
+               pappThis1->m_pthread->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
             }
             if(pappThis2 != NULL)
             {
-               pappThis2->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
+               pappThis2->m_pthread->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
             }
             if(pliveobject != NULL)
             {

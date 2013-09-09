@@ -8,7 +8,7 @@ namespace draw2d_direct2d
 {
 
 
-   bitmap::bitmap(application * papp) :
+   bitmap::bitmap(base_application * papp) :
       element(papp)
    { 
 
@@ -268,7 +268,7 @@ namespace draw2d_direct2d
 /*
       if(m_pdata != NULL)
       {
-         ca2_free(m_pdata);
+         memory_free(m_pdata);
          m_pdata = NULL;
       }
 

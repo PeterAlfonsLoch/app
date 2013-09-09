@@ -32,7 +32,7 @@ namespace user
       m_fastblur(allocer()),
       m_dibBk(allocer()),
       ::data::tree(papp),
-      ::core::data_listener(papp),
+      ::data::data_listener(papp),
       m_keymessageLast(papp)
    {
 
@@ -52,9 +52,9 @@ namespace user
 
 
       m_y                  = -1;
-      m_iaLineIndex.set_size(0, 100000);
-      m_iaLineEndIndex.set_size(0, 100000);
-      m_iaCLineIndex.set_size(0, 1000);
+      m_iaLineIndex.allocate(0, 100000);
+      m_iaLineEndIndex.allocate(0, 100000);
+      m_iaCLineIndex.allocate(0, 1000);
       m_iViewOffset        = 0;
       m_iViewSize          = 1000;
       m_bMouseDown         = false;
@@ -509,7 +509,7 @@ namespace user
          set_plain_text_data(new ::user::plain_text_data(get_app()), true);
       }
 
-      ::data * pdataParentLock = oprop("parent_lock_data").element < ::data > ();
+      ::data::data * pdataParentLock = oprop("parent_lock_data").element < ::data::data > ();
       if(pdataParentLock != NULL)
       {
          m_pdata->m_spdataParentLock = pdataParentLock;
@@ -761,9 +761,9 @@ namespace user
          ::user::interaction::_001OnChar(pbase);
       }
    }
-   void edit_plain_text::key_to_char(message::key * pkey)
+   void edit_plain_text::key_to_char(::message::key * pkey)
    {
-      message::key & key = *pkey;
+      ::message::key & key = *pkey;
 //      LRESULT lresult = 0;
       if(
          key.m_ekey == ::user::key_shift   || key.m_ekey == ::user::key_lshift   || key.m_ekey == ::user::key_rshift
@@ -1325,7 +1325,7 @@ namespace user
       iSelEnd = m_iSelEnd - m_iViewOffset;
    }
 
-   void edit_plain_text::on_updata_data(::data * pdata, int32_t iHint)
+   void edit_plain_text::on_updata_data(::data::data * pdata, int32_t iHint)
    {
       if(pdata == m_pdata)
       {

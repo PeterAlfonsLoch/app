@@ -26,7 +26,7 @@ namespace file
       
       seek_to_begin();
 
-      transfer_to(ostream.m_spbuffer);
+      transfer_to(*ostream.m_spbuffer);
 
    }
 
@@ -34,7 +34,7 @@ namespace file
    void binary_buffer::read(input_stream & istream)
    {
    
-      transfer_from(istream.m_spbuffer);
+      transfer_from(*istream.m_spbuffer);
 
       seek_to_begin();
 
@@ -142,99 +142,6 @@ namespace file
 
 
 
-   /////////////////////////////////////////////////////////////////////////////
-   // file_exception helpers
-
-/*   #ifdef DEBUG
-   static const char * rgszFileExceptionCause[] =
-   {
-      "none",
-      "generic",
-      "fileNotFound",
-      "badPath",
-      "tooManyOpenFiles",
-      "accessDenied",
-      "invalidFile",
-      "removeCurrentDir",
-      "directoryFull",
-      "badSeek",
-      "hardIO",
-      "sharingViolation",
-      "lockViolation",
-      "diskFull",
-      "endOfFile",
-   };
-   static const char szUnknown[] = "unknown";
-   #endif*/
-
-
-   /*void vfxThrowFileException(int32_t cause, LONG lOsError,
-   //   const char * lpszFileName /* == NULL */
-   /*{
-   #ifdef DEBUG
-      const char * lpsz;
-      if (cause >= 0 && cause < _countof(rgszFileExceptionCause))
-         lpsz = rgszFileExceptionCause[cause];
-      else
-         lpsz = szUnknown;
-      TRACE3("file exception: %hs, file %W, App error information = %ld.\n",
-         lpsz, (lpszFileName == NULL) ? L"Unknown" : lpszFileName, lOsError);
-   #endif
-      THROW(new file_exception(cause, lOsError, lpszFileName));
-   }*/
-
-   /* Error Codes */
-
-   #define EPERM           1
-   #define ENOENT          2
-   #define ESRCH           3
-   #define EINTR           4
-   #define EIO             5
-   #define ENXIO           6
-   #define E2BIG           7
-   #define ENOEXEC         8
-   #define EBADF           9
-   #define ECHILD          10
-#ifndef MACOS
-   #define EAGAIN          11
-#endif
-   #define ENOMEM          12
-   #define EACCES          13
-   #define EFAULT          14
-   #define EBUSY           16
-   #define EEXIST          17
-   #define EXDEV           18
-   #define ENODEV          19
-   #define ENOTDIR         20
-   #define EISDIR          21
-   #define EINVAL          22
-   #define ENFILE          23
-   #define EMFILE          24
-   #define ENOTTY          25
-   #define EFBIG           27
-   #define ENOSPC          28
-   #define ESPIPE          29
-   #define EROFS           30
-   #define EMLINK          31
-   #define EPIPE           32
-   #define EDOM            33
-   #define ERANGE          34
-
-#if defined(WINDOWS)
-
-   #define EDEADLK         36
-   #define ENAMETOOLONG    38
-   #define ENOLCK          39
-   #define ENOSYS          40
-   #define ENOTEMPTY       41
-   #define EILSEQ          42
-
-#endif
-
-   /*
-    * Support EDEADLOCK for compatibiity with older MS-C versions.
-    */
-   #define EDEADLOCK       EDEADLK
 
 
    /////////////////////////////////////////////////////////////////////////////

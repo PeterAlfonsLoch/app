@@ -1,32 +1,34 @@
 #include "framework.h"
 
-namespace ca2
+
+namespace data
 {
 
-/*   #define ROUND(x,y) (((x)+(y-1))&~(y-1))
+
+   /*   #define ROUND(x,y) (((x)+(y-1))&~(y-1))
    #define ROUND4(x) ROUND(x, 4)
    __STATIC fixed_alloc_no_sync _alloc001TreeDataItem(ROUND4(sizeof(tree_item)));
 
-#undef new
+   #undef new
    void * tree_item::operator new(size_t, const char *, int32_t)
    {
-      return _alloc001TreeDataItem.Alloc();
+   return _alloc001TreeDataItem.Alloc();
    }
 
    void * tree_item::operator new(size_t)
    {
-      return _alloc001TreeDataItem.Alloc();
+   return _alloc001TreeDataItem.Alloc();
    }
-#define new DEBUG_NEW
+   #define new DEBUG_NEW
 
    void tree_item::operator delete(void * p)
    {
-      return _alloc001TreeDataItem.Free(p);
+   return _alloc001TreeDataItem.Free(p);
    }
 
    void tree_item::operator delete(void * p, const char *, int32_t)
    {
-      return _alloc001TreeDataItem.Free(p);
+   return _alloc001TreeDataItem.Free(p);
    }*/
 
    tree_item::tree_item()
@@ -53,7 +55,7 @@ namespace ca2
 
    void tree_item::sort_children(index ( * lpfnCompare )(sp(tree_item) &, sp(tree_item) &))
    {
-      
+
       sp(tree_item) pitemParent = this;
       sp(tree_item) pitem1 = pitemParent->m_pchild;
       sp(tree_item) pitem2;
@@ -170,10 +172,10 @@ namespace ca2
 
       if(m_pparent != NULL)
       {
-         
+
          if(m_pparent->m_pchild == this)
          {
-            
+
             m_pparent->m_pchild = m_pnext;
 
          }
@@ -187,7 +189,7 @@ namespace ca2
 
    ::count tree_item::remove_tree_item_descendants()
    {
-      
+
       ::count ca = 0;
 
       while(m_pchild.is_set())
@@ -305,7 +307,7 @@ namespace ca2
       case TreeNavigationExpandedForward:
          return get_next(true, true, pindexLevel);
       case TreeNavigationProperForward:
-         return get_next((m_dwState & ::ca2::tree_item_state_expanded) != 0, true, pindexLevel);
+         return get_next((m_dwState & ::data::tree_item_state_expanded) != 0, true, pindexLevel);
       default:
          // Not Expected
          ASSERT(FALSE);
@@ -448,7 +450,7 @@ namespace ca2
 
    sp(image_list) tree_item::get_image_list()
    {
-      
+
       if(m_ptreedata != NULL)
          return m_ptreedata->m_pimagelist;
 
@@ -502,4 +504,8 @@ namespace ca2
       return iCount;
    }
 
-} // namespace ca2
+
+} // namespace data
+
+
+

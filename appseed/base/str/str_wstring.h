@@ -47,7 +47,7 @@ public:
    inline static wchar_t * alloc(::count iCount)
    {
 
-      wstring_data * pdata = (wstring_data *) _ca_alloc(((iCount + 1) * sizeof(wchar_t)) + sizeof(count) + sizeof(count) + sizeof(wchar_t));
+      wstring_data * pdata = (wstring_data *) memory_alloc(((iCount + 1) * sizeof(wchar_t)) + sizeof(count) + sizeof(count) + sizeof(wchar_t));
       pdata->m_iAllocation = iCount;
       pdata->m_iLength = 0;
       pdata->m_wchFirst = L'\0';
@@ -62,7 +62,7 @@ public:
       wstring_data * pdata = (wstring_data *) (((byte *) pwsz) - sizeof(count) - sizeof(count));
       if(pdata->m_iAllocation <= 0)
          return;
-      _ca_free(pdata, 0);
+      memory_free(pdata);
 
    }
 

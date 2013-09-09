@@ -5,7 +5,7 @@
 void application_bias::callback::connect_to(sp(base_application) papp)
 {
    set_app(papp);
-   m_papp.cast < base_application >()->m_psignal->connect(this, &callback::on_call_signal);
+   m_pbaseapp.cast < base_application >()->m_psignal->connect(this, &callback::on_call_signal);
 }
 
 void application_bias::callback::on_call_signal(signal_details * pobj)

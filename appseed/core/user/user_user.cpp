@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   user::user(application * papp) :
+   user::user(base_application * papp) :
       element(papp),
       ::base_departament(papp)
    {
@@ -34,7 +34,7 @@ namespace user
    bool user::initialize1()
    {
 
-      if(m_papp->is_system())
+      if(m_pbaseapp->is_system())
       {
          m_pwindowmap = new class ::user::window_map(get_app());
       }
@@ -43,7 +43,7 @@ namespace user
          m_pwindowmap = System.user()->m_pwindowmap;
       }
 
-      m_pkeyboard = new ::user::keyboard(m_papp);
+      m_pkeyboard = new ::user::keyboard(m_pbaseapp);
 
       if(m_pkeyboard == NULL)
          return false;
@@ -54,12 +54,12 @@ namespace user
 
 
 
-      if(m_papp->is_system())
+      if(m_pbaseapp->is_system())
       {
          System.factory().creatable_small < keyboard_layout > ();
       }
 
-      m_pshellimageset = new filemanager::_shell::ImageSet(m_papp);
+      m_pshellimageset = new filemanager::_shell::ImageSet(m_pbaseapp);
 
       if(!base_departament::initialize1())
          return false;
@@ -845,7 +845,7 @@ retry_license:
       sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
-      createcontext->m_pviewAlloc                     = pview;
+      createcontext->m_puiAlloc                       = pview;
 
       if(var.get_type() == var::type_propset && var.has_property("hold") && !(bool) var["hold"])
       {
@@ -861,9 +861,9 @@ retry_license:
 
    sp(::form_document) user::create_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
-      if(pwndParent != NULL && pwndParent->m_papp != get_app())
+      if(pwndParent != NULL && pwndParent->m_pbaseapp != get_app())
       {
-         return App(pwndParent->m_papp).user()->create_form(pcallback, pwndParent, var);
+         return App(pwndParent->m_pbaseapp).user()->create_form(pcallback, pwndParent, var);
       }
       sp(::form_document) pdoc;
       if(m_ptemplateForm == NULL)
@@ -892,7 +892,7 @@ retry_license:
       sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
-      createcontext->m_pviewAlloc                     = pview;
+      createcontext->m_puiAlloc                       = pview;
 
       if(var.get_type() == var::type_propset && var.has_property("hold") && !(bool) var["hold"])
       {
@@ -908,9 +908,9 @@ retry_license:
 
    sp(::form_document) user::create_child_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
-      if(pwndParent != NULL && pwndParent->m_papp != get_app())
+      if(pwndParent != NULL && pwndParent->m_pbaseapp != get_app())
       {
-         return App(pwndParent->m_papp).user()->create_child_form(pcallback, pwndParent, var);
+         return App(pwndParent->m_pbaseapp).user()->create_child_form(pcallback, pwndParent, var);
       }
       if(m_ptemplateChildForm == NULL)
          return NULL;

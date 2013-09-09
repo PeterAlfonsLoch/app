@@ -73,7 +73,7 @@ namespace file
       
       seek_to_begin();
 
-      transfer_to(ostream.m_spbuffer);
+      transfer_to(*ostream.m_spbuffer);
 
    }
 
@@ -81,7 +81,7 @@ namespace file
    void stream_buffer::read(input_stream & istream)
    {
    
-      transfer_from(istream.m_spbuffer);
+      transfer_from(*istream.m_spbuffer);
 
       seek_to_begin();
 
@@ -179,7 +179,7 @@ namespace file
    #endif*/
 
 
-   /*void vfxThrowFileException(int32_t cause, LONG lOsError,
+   /*void throw_file_exception(int32_t cause, LONG lOsError,
    //   const char * lpszFileName /* == NULL */
    /*{
    #ifdef DEBUG

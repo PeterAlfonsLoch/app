@@ -13,7 +13,7 @@ namespace file
 
 
       plain_text_output_stream();
-      plain_text_output_stream(writer * pwriter);
+      plain_text_output_stream(stream_buffer * pwriter);
       plain_text_output_stream(const output_stream & ostream);
       virtual ~plain_text_output_stream();
 
@@ -47,7 +47,7 @@ namespace file
          return this;
       }
 
-
+      
 
    };
 

@@ -275,7 +275,7 @@ int_bool file_ftd_dup(const char * pszDir, const char * pszFile)
    
    int32_t iBufSize = 1024 * 1024;
    
-   uchar * buf = (uchar *)  _ca_alloc(iBufSize);
+   uchar * buf = (uchar *)  memory_alloc(iBufSize);
    
    int32_t iLen;
    md5::md5 ctx;
@@ -613,7 +613,7 @@ void file_read_gen_string_dup(HANDLE hfile, ::md5::md5 * pctx, string & str)
 {
    int32_t iLen;
    file_read_n_number_dup(hfile, pctx, iLen);
-   LPSTR lpsz = (LPSTR) _ca_alloc(iLen + 1);
+   LPSTR lpsz = (LPSTR) memory_alloc(iLen + 1);
    DWORD dwRead;
    ReadFile(hfile, lpsz, iLen, &dwRead, NULL);
    if(pctx != NULL)
@@ -622,7 +622,7 @@ void file_read_gen_string_dup(HANDLE hfile, ::md5::md5 * pctx, string & str)
    }
    lpsz[iLen] = '\0';
    str = lpsz;
-   _ca_free(lpsz, 0);
+   memory_free_dbg(lpsz, 0);
 }
 
 
@@ -646,13 +646,13 @@ bool PrintModules(string & strImage, uint32_t processID, const char * pszDll )
 
    const int32_t iImageSize = MAX_PATH * 8;
 
-   char * szImage = (char *) _ca_alloc(iImageSize);
+   char * szImage = (char *) memory_alloc(iImageSize);
 
    GetModuleFileNameEx(hProcess, NULL, szImage, iImageSize);
 
    strImage = szImage;
 
-   _ca_free(szImage, 0);
+   memory_free_dbg(szImage, 0);
 
    bool bFound = false;
 

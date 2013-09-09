@@ -65,7 +65,7 @@ void html_document::data_on_after_change(signal_details * pobj)
    UNREFERENCED_PARAMETER(pobj);
 }
 
-void html_document::OnBeforeNavigate2(html::data * pdata, var & varFile, uint32_t nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel)
+void html_document::OnBeforeNavigate2(::html::data * pdata, var & varFile, uint32_t nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel)
 {
    UNREFERENCED_PARAMETER(pdata);
    UNREFERENCED_PARAMETER(varFile);
@@ -102,7 +102,7 @@ bool html_document::on_open_document(var varFile)
       return FALSE;
 
    set_path_name(get_html_data()->m_strPathName);
-   /*   m_document.m_papp = get_app();*/
+   /*   m_document.m_pbaseapp = get_app();*/
 
    html_view_update_hint uh;
    uh.m_etype = html_view_update_hint::type_document_complete;

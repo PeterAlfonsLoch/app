@@ -1,13 +1,13 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace data
 {
 
 
    tree_data::tree_data(sp(base_application) papp) :
       element(papp),
-      ::data(papp)
+      ::data::data(papp)
    {
 
    }
@@ -41,15 +41,16 @@ namespace ca2
 
    }
 
-      sp(tree_item_data) tree_data::on_allocate_item()
-      {
+   sp(tree_item_data) tree_data::on_allocate_item()
+   {
 
-            return canew(::ca2::tree_item_data());
+      return canew(::data::tree_item_data());
 
-      }
-
-
+   }
 
 
+} // namespace data
 
-} // namespace ca2
+
+
+

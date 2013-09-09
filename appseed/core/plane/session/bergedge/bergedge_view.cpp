@@ -472,7 +472,7 @@ namespace bergedge
       gcom::backview::user::interaction::layout();
    }*/
 
-   void view::_000OnMouse(message::mouse * pmouse)
+   void view::_000OnMouse(::message::mouse * pmouse)
    {
       try
       {
@@ -499,8 +499,8 @@ namespace bergedge
             {
                papp = NULL;
             }
-            //if(papp != NULL && m_papp != NULL && m_pbaseapp->m_pplaneapp->m_psession != NULL && (papp) != (m_pbaseapp->m_pplaneapp->m_psession))
-            if(papp != NULL && m_papp != NULL && m_pbaseapp->m_pplaneapp->m_psession != NULL)
+            //if(papp != NULL && m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp->m_psession != NULL && (papp) != (m_pbaseapp->m_pplaneapp->m_psession))
+            if(papp != NULL && m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp->m_psession != NULL)
             {
                try
                {

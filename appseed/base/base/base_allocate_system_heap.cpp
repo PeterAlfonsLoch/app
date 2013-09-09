@@ -16,13 +16,14 @@ HANDLE g_system_heap()
 
 #endif
 
-static mutex g_mutexSystemHeap;
+
+mutex * g_pmutexSystemHeap = NULL;
 
 
 void * system_heap_alloc(size_t size)
 {
 
-   synch_lock lock(&g_mutexSystemHeap);
+   synch_lock lock(g_pmutexSystemHeap);
 
    size_t sizeAlloc = (size + 4 + sizeof(size_t) + 3) & ~3;
 
@@ -58,7 +59,7 @@ void * system_heap_alloc(size_t size)
 
 void * system_heap_realloc(void * pvoidOld, size_t size)
 {
-   synch_lock lock(&g_mutexSystemHeap);
+   synch_lock lock(g_pmutexSystemHeap);
    byte * pOld = (byte *) pvoidOld;
    int32_t iSize = sizeof(size_t);
    int32_t iMod = pOld[- 1 - iSize];
@@ -103,7 +104,7 @@ void * system_heap_realloc(void * pvoidOld, size_t size)
 void system_heap_free(void * pvoid)
 {
 
-   synch_lock lock(&g_mutexSystemHeap);
+   synch_lock lock(g_pmutexSystemHeap);
 
    byte * p = (byte *) pvoid;
 

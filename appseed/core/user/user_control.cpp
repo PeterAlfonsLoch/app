@@ -225,7 +225,7 @@ namespace user
    {
       m_pwndCustomWindowProc = pwnd;
       keeper <bool> keepOnCustomMessage(&m_bCustomWindowProc, true, false, true);
-      message::base base(get_app(), pwnd, message, wparam, lparam, lresult);
+      ::message::base base(get_app(), pwnd, message, wparam, lparam, lresult);
       _003CustomWindowProc(&base);
       return base.m_bRet;
    }

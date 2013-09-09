@@ -72,7 +72,7 @@ namespace html
    {
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
       {
-         class style & style = m_stylea.element_at(i);
+         class style & style = *m_stylea.element_at(i);
          if(style.matches(pszTag, pszClass, pszSubClass, pszName))
             return &style;
       }
@@ -88,7 +88,7 @@ namespace html
    {
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
       {
-         class style & style = m_stylea.element_at(i);
+         class style & style = *m_stylea.element_at(i);
          if(style.matches_border_width(pszTag, pszClass, pszSubClass, pszName, f))
             return &style;
       }
@@ -104,7 +104,7 @@ namespace html
    {
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
       {
-         class style & style = m_stylea.element_at(i);
+         class style & style = *m_stylea.element_at(i);
          if(style.matches_border_color(pszTag, pszClass, pszSubClass, pszName, cr))
             return &style;
       }
@@ -135,7 +135,7 @@ namespace html
       }
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
       {
-         const class style & style = m_stylea.element_at(i);
+         const class style & style = *m_stylea.element_at(i);
          if(&style == pstyle1)
             return pstyle1;
          else if(&style == pstyle2)
@@ -191,7 +191,7 @@ namespace html
       }
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
       {
-         const class style & style = m_stylea.element_at(i);
+         const class style & style = *m_stylea.element_at(i);
          if(&style == pstyle1)
          {
             pstyleRet   = pstyle1;

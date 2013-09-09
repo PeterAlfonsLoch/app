@@ -33,7 +33,7 @@ namespace html
          if(pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
             m_iImage = pdata->get_image_index(pelemental->m_propertyset["src"]);
-            synch_lock lockImage(Sys(pdata->m_papp).get_twf());
+            synch_lock lockImage(Sys(pdata->m_pbaseapp).get_twf());
             m_cxMax = (float) pdata->m_imagea[m_iImage].m_spdib->cx;
             m_cxMin = (float) pdata->m_imagea[m_iImage].m_spdib->cy;
          }

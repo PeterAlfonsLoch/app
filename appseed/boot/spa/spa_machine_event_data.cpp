@@ -11,7 +11,7 @@ blob::~blob()
 {
    if(m_pchData != NULL)
    {
-      _ca_free(m_pchData, 0); 
+      memory_free_dbg(m_pchData, 0); 
       m_pchData = NULL;
    }
 }
@@ -20,7 +20,7 @@ blob::~blob()
 void blob::read(HANDLE f)
 {
    if(m_pchData != NULL)
-      _ca_free(m_pchData, 0);
+      memory_free_dbg(m_pchData, 0);
    DWORD dwRead;
    ::ReadFile(f, &m_sizet, sizeof(m_sizet), &dwRead, NULL);
    if(m_sizet == 0)
@@ -30,7 +30,7 @@ void blob::read(HANDLE f)
    else
    {
       
-      m_pchData = (char *) _ca_alloc(m_sizet);
+      m_pchData = (char *) memory_alloc(m_sizet);
       
       size_t sRead = 0;
 

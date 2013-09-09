@@ -10,7 +10,7 @@ namespace file
    {
    }
 
-   plain_text_output_stream::plain_text_output_stream(writer * pwriter) :
+   plain_text_output_stream::plain_text_output_stream(stream_buffer * pwriter) :
       output_stream(pwriter)
    {
    }

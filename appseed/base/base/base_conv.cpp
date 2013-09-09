@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-
+/*
 int32_t nibble_to_low_hex(byte nibble)
 {
    if(nibble >= 0 && nibble <= 9)
@@ -20,3 +20,4 @@ int32_t nibble_to_low_hex(byte nibble)
 
 
 
+*/

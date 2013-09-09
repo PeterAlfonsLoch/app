@@ -225,7 +225,7 @@ namespace core
       /*
       char *	cmd_line;
 
-      cmd_line = (char *) ca2_alloc(strlen(pszCmdLine ) + 1 );
+      cmd_line = (char *) memory_alloc(strlen(pszCmdLine ) + 1 );
 
       if(cmd_line == NULL)
       return 0;

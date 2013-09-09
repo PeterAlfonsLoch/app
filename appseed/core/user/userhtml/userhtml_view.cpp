@@ -130,7 +130,7 @@ void html_view::_001OnCreate(signal_details * pobj)
       return;
 
    get_html_data()->m_pguie = this;
-   /*get_html_data()->m_papp = get_app();*/
+   /*get_html_data()->m_pbaseapp = get_app();*/
    get_html_data()->m_strPathName = get_document()->get_path_name();
 
 

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <sys/stat.h>
 
 
 #if defined(LINUX)
@@ -508,7 +509,7 @@ namespace dynamic_source
       Sleep(1984);
 
 #endif
-      pscript->m_memfileError.Truncate(0);
+      pscript->m_memfileError.m_spbuffer->set_length(0);
       pscript->m_memfileError << "<pre>";
 
       pscript->m_memfileError << "Compiling...\n";
@@ -857,7 +858,7 @@ namespace dynamic_source
 
       m_strLibsLibs = System.dir().element("time/library/" + m_strPlatform + "/library/library.lib");
 
-      m_memfileLibError.Truncate(0);
+      m_memfileLibError.set_length(0);
       string strFolder;
       strFolder = System.dir().element();
       m_straLibSourcePath.remove_all();
@@ -1010,7 +1011,7 @@ namespace dynamic_source
 
 
 #endif
-         m_memfileLibError<< "<html><head></head><body><pre>";
+         m_memfileLibError << "<html><head></head><body><pre>";
          str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-compile-log.txt"), str1);
          str = Application.file().as_string(str);
          str.replace("\r\n", "</pre><pre>");
@@ -1887,8 +1888,7 @@ ch_else:
             try
             {
                pdsscript->m_memfileError.seek_to_begin();
-               pdsscript->m_memfileError.to_string(strError);
-               m_pmanager->m_strPersistentError += strError;
+               m_pmanager->m_strPersistentError += pdsscript->m_memfileError.to_string();;
             }
             catch(...)
             {
@@ -1928,8 +1928,7 @@ ch_else:
                try
                {
                   pdsscript->m_memfileError.seek_to_begin();
-                  pdsscript->m_memfileError.to_string(strError);
-                  m_pmanager->m_strPersistentError += strError;
+                  m_pmanager->m_strPersistentError += pdsscript->m_memfileError.to_string();
                }
                catch(...)
                {
@@ -2002,9 +2001,9 @@ ch_else:
       if(!m_libraryLib.open(m_strLibraryPath))
          return;
 
-      m_ftaLibCreation.set_size(m_straLibSourcePath.get_size());
-      m_ftaLibAccess.set_size(m_straLibSourcePath.get_size());
-      m_ftaLibModified.set_size(m_straLibSourcePath.get_size());
+      m_ftaLibCreation.allocate(m_straLibSourcePath.get_size());
+      m_ftaLibAccess.allocate(m_straLibSourcePath.get_size());
+      m_ftaLibModified.allocate(m_straLibSourcePath.get_size());
 
       for(int32_t i = 0; i < m_straLibSourcePath.get_size(); i++)
       {

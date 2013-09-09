@@ -10,7 +10,7 @@ namespace user
 
    tab::data::data(sp(base_application) papp) :
       element(papp),
-      ::data(papp),
+      ::data::data(papp),
       m_imagelist(papp),
       m_pen(allocer()),
       m_font(allocer()),
@@ -1802,7 +1802,7 @@ namespace user
          throw e;
 
       }
-      catch(::exception::exception &)
+      catch(::exception::exception & e)
       {
 
          if(!Application.on_run_exception(e))
@@ -1922,7 +1922,7 @@ namespace user
       }
    }
 
-   void tab::_000OnMouse(message::mouse * pmouse)
+   void tab::_000OnMouse(::message::mouse * pmouse)
    {
       if(m_bShowTabs)
       {

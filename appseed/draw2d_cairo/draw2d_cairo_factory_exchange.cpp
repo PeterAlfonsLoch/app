@@ -9,17 +9,15 @@ namespace draw2d_cairo
       element(papp)
    {
 
-      System.factory().cloneable_large < dib                   >  (System. type < ::draw2d::dib                 > ());
-      System.factory().cloneable_large < graphics              >  (System. type < ::draw2d::graphics            > ());
-      System.factory().cloneable_large < bitmap                >  (System. type < ::draw2d::bitmap              > ());
-      System.factory().cloneable_large < pen                   >  (System. type < ::draw2d::pen                 > ());
-      System.factory().cloneable_large < brush                 >  (System. type < ::draw2d::brush               > ());
-      System.factory().cloneable_large < palette               >  (System. type < ::draw2d::palette             > ());
-      System.factory().cloneable_large < region                >  (System. type < ::draw2d::region              > ());
-      System.factory().cloneable_large < font                  >  (System. type < ::draw2d::font                > ());
-      System.factory().cloneable_large < path                  >  (System. type < ::draw2d::path                > ());
-
-      ::draw2d_cairo::dib::s_initialize();
+      System.factory().cloneable_large < dib                   >  (System.type_info < ::draw2d::dib                 > ());
+      System.factory().cloneable_large < graphics              >  (System.type_info < ::draw2d::graphics            > ());
+      System.factory().cloneable_large < bitmap                >  (System.type_info < ::draw2d::bitmap              > ());
+      System.factory().cloneable_large < pen                   >  (System.type_info < ::draw2d::pen                 > ());
+      System.factory().cloneable_large < brush                 >  (System.type_info < ::draw2d::brush               > ());
+      System.factory().cloneable_large < palette               >  (System.type_info < ::draw2d::palette             > ());
+      System.factory().cloneable_large < region                >  (System.type_info < ::draw2d::region              > ());
+      System.factory().cloneable_large < font                  >  (System.type_info < ::draw2d::font                > ());
+      System.factory().cloneable_large < path                  >  (System.type_info < ::draw2d::path                > ());
 
    }
 

@@ -3,7 +3,7 @@
 
 template < class T >
 class smart_pointer_array :
-   virtual public array < smart_pointer < T > >
+   virtual public lemon_array < smart_pointer < T > >
 {
 public:
 
@@ -13,14 +13,14 @@ public:
 
    smart_pointer_array(sp(base_application) papp) :
       element(papp),
-      array < smart_pointer < T > >(papp)
+      lemon_array < smart_pointer < T > >(papp)
    {
    }
 
    sp(T) & add_new()
    {
 
-      sp(T) & sp = ::lemon::array::add_new(*this);
+      sp(T) & sp = lemon_array < smart_pointer < T > >::add_new();
 
       sp.create(this->allocer());
 
@@ -32,16 +32,14 @@ public:
    ::count set_size(::count nNewSize, ::count nGrowBy = -1)
    {
 
-      ::lemon::array::set_size(*this, nNewSize);
-
-      return this->get_size();
+      return lemon_array < smart_pointer < T > > :: set_size(nNewSize);
 
    }
 
    ::count set_size_create(::count nNewSize, ::count nGrowBy = -1)
    {
       index i = this->get_size();
-      ::lemon::array::set_size(*this, nNewSize);
+      lemon_array < smart_pointer < T > > :: set_size(nNewSize);
       ::count ca = this->get_size();
       for(; i < ca; i++)
       {
@@ -195,21 +193,21 @@ public:
    const T & operator[](index nIndex) const
    {
 
-      return *this->array < smart_pointer < T > >::operator[](nIndex).m_p;
+      return *this->lemon_array < smart_pointer < T > >::operator[](nIndex).m_p;
 
    }
 
    T & operator[](index nIndex)
    {
 
-      return *this->array < smart_pointer < T > >::operator[](nIndex).m_p;
+      return *this->lemon_array < smart_pointer < T > >::operator[](nIndex).m_p;
 
    }
 
    const smart_pointer < T > & sp_at(index nIndex) const
    {
 
-      return this->array < smart_pointer < T > >::element_at(nIndex);
+      return this->lemon_array < smart_pointer < T > >::element_at(nIndex);
 
    }
 
@@ -217,7 +215,7 @@ public:
    smart_pointer < T > & sp_at(index nIndex)
    {
 
-      return this->array < smart_pointer < T > >::element_at(nIndex);
+      return this->lemon_array < smart_pointer < T > >::element_at(nIndex);
 
    }
 
@@ -256,7 +254,7 @@ public:
    const smart_pointer < T > & first_sp(index n = 0) const
    {
 
-      return this->array < smart_pointer < T > >::first_element(n);
+      return this->lemon_array < smart_pointer < T > >::first_element(n);
 
    }
 
@@ -264,7 +262,7 @@ public:
    smart_pointer < T > & first_sp(index n = 0)
    {
 
-      return this->array < smart_pointer < T > >::first_element(n);
+      return this->lemon_array < smart_pointer < T > >::first_element(n);
 
    }
 
@@ -304,7 +302,7 @@ public:
    T * last_sp(index n = -1) const
    {
 
-      return this->array < smart_pointer < T > >::last_element(n);
+      return this->lemon_array < smart_pointer < T > >::last_element(n);
 
    }
 
@@ -312,7 +310,7 @@ public:
    smart_pointer < T > & last_sp(index n = -1)
    {
 
-      return this->array < smart_pointer < T > >::last_element(n);
+      return this->lemon_array < smart_pointer < T > >::last_element(n);
 
    }
 

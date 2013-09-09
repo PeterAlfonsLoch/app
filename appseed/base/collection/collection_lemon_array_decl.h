@@ -33,6 +33,8 @@ public:
    inline void set_at_grow(index nIndex, ARG_TYPE newElement);
    inline TYPE & element_at_grow(index nIndex);
    inline TYPE get_at_grow(index nIndex);
+   inline TYPE & add_new();
+   inline ::index add_new(::count c);
 
 
    inline index push(ARG_TYPE newElement, index i = 0);
@@ -63,10 +65,10 @@ namespace lemon
       ::count set_size(ARRAY & a, ::count nNewSize, ::count nGrowBy = -1); // call default constructors and destructors
 
       template < class ARRAY >
-      inline index add_new(ARRAY & a, ::count count);
+      inline typename ARRAY::BASE_TYPE & add_new(ARRAY & a);
 
       template < class ARRAY >
-      inline typename ARRAY::BASE_TYPE & add_new(ARRAY & a);
+      inline ::index add_new(ARRAY & a, ::count count);
 
       template < class ARRAY >
       void copy(ARRAY & a, const typename ARRAY::BASE_TYPE * ptype, ::count c);

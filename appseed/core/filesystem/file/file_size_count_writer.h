@@ -9,7 +9,7 @@ namespace file
       virtual public writer
    {
    public:
-      sp(writer)     _stream;
+      buffer_sp     _stream;
       file_size         _size;
 
       void SetStream(writer * stream)

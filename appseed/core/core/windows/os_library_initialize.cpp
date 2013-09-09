@@ -65,7 +65,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
    if (dwReason == DLL_PROCESS_ATTACH)
    {
       g_bExiting = false;
-      use_base_ca2_allocator();
+      //use_base_ca2_allocator();
 
 
    }

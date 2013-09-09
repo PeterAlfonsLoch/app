@@ -23,11 +23,11 @@ string dir::appdata(const char * lpcsz)
    
    str = path(buf, "core");
    
-   //_ca_free(buf, 0);
+   //memory_free_dbg(buf, 0);
 
 #elif defined(WIN32)
    
-   char * buf = (char *) _ca_alloc(4096);
+   char * buf = (char *) memory_alloc(4096);
    
    memset_dup(buf, 0, sizeof(buf));
    
@@ -39,7 +39,7 @@ string dir::appdata(const char * lpcsz)
    
    str = path(buf, "core");
    
-   _ca_free(buf, 0);
+   memory_free_dbg(buf, 0);
 
 #endif
    
@@ -86,7 +86,7 @@ string dir::userappdata(const char * lpcsz)
 
    str = path(psz, "core");
 
-//   ca2_free(psz);
+//   memory_free(psz);
    
    CoTaskMemFree(buf);
 

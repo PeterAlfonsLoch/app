@@ -26,7 +26,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
 
    string strUrl;
 
-   char * szBuf = (char *) ca2_alloc(4096);
+   char * szBuf = (char *) memory_alloc(4096);
 
    prepare_http();
 
@@ -86,7 +86,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
 
    file_put_contents_dup(pszFile, buffer, len);
 
-   ca2_free(buffer);
+   memory_free(buffer);
 
    return ret == tiny_http::OK200;
 }
@@ -122,7 +122,7 @@ string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
 
    string strRet(buffer, len);
 
-   ca2_free(buffer);
+   memory_free(buffer);
 
    return strRet;
 }

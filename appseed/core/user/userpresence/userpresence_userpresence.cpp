@@ -34,7 +34,7 @@ namespace userpresence
    bool userpresence::finalize()
    {
 
-      if(!m_papp->is_system())
+      if(!m_pbaseapp->is_system())
       {
          defer_finalize_user_presence();
       }

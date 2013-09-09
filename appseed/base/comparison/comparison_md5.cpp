@@ -657,7 +657,7 @@ string get_file_md5_by_read(const char * path)
 
    int32_t iAlloc = min((int32_t) uiSize, 1024 * 1024 * 8);
 
-   char * psz = (char *) _ca_alloc(iAlloc);
+   char * psz = (char *) memory_alloc(iAlloc);
 
    ::md5::md5 md5;
 
@@ -702,7 +702,7 @@ string get_file_md5_by_read(const char * path)
    if(uiSize != 0)
    {
 
-      _ca_free(psz, 0);
+      memory_free_dbg(psz, 0);
 
       return "";
 
@@ -711,7 +711,7 @@ string get_file_md5_by_read(const char * path)
 
    md5.finalize();
 
-   _ca_free(psz, 0);
+   memory_free_dbg(psz, 0);
 
 
 #ifdef WINDOWS

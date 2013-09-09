@@ -131,9 +131,9 @@ namespace user
       stacker < ::user::create_context > context(pcreatecontext->m_user);
       context->m_pCurrentFrame    = pOther;
       context->m_pCurrentDoc      = pdocument;
-      if(pcreatecontext->m_pviewAlloc != NULL)
+      if(pcreatecontext->m_puiAlloc != NULL)
       {
-         context->m_puiNew           = pcreatecontext->m_pviewAlloc;
+         context->m_puiNew           = pcreatecontext->m_puiAlloc;
       }
       else
       {

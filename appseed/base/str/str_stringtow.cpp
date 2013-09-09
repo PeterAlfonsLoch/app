@@ -28,7 +28,7 @@ stringtow::~stringtow()
    {
 
       //g_pfixedallocaWstring->free(m_psz, (wcslen(m_psz) + 1) * 2);
-      _ca_free(m_psz, 0);
+      memory_free_dbg(m_psz, 0);
       m_psz = NULL;
 
    }*/

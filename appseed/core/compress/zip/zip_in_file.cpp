@@ -511,7 +511,7 @@ namespace zip
    #endif
 
 
-   /*void vfxThrowFileException(int32_t cause, LONG lOsError,
+   /*void throw_file_exception(int32_t cause, LONG lOsError,
    //   const wchar_t * lpszFileName /* == NULL */
    /*{
    #ifdef DEBUG

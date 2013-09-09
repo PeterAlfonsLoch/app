@@ -34,7 +34,7 @@ CLASS_DECL_c void BigFree(void *address);
 
 #endif
 
-CLASS_DECL_c void   use_base_ca2_allocator();
+//CLASS_DECL_c void   use_base_ca2_allocator();
 
 
 // Memory tracking allocation
@@ -57,10 +57,10 @@ CLASS_DECL_c extern void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse
 CLASS_DECL_c extern void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
 CLASS_DECL_c extern void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType);*/
 
-/*CLASS_DECL_c void * ca2_alloc(size_t size);
-CLASS_DECL_c void * ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-CLASS_DECL_c void * ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-CLASS_DECL_c void   ca2_free(void * pvoid, int32_t iBlockType);*/
+/*CLASS_DECL_c void * memory_alloc(size_t size);
+CLASS_DECL_c void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+CLASS_DECL_c void * memory_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+CLASS_DECL_c void   memory_free(void * pvoid, int32_t iBlockType);*/
 
 
 /*CLASS_DECL_c void * _ca2_alloc(size_t size);
@@ -147,12 +147,12 @@ inline void __cdecl operator delete[](void * pData, const char * /* lpszFileName
 
 inline void * __cdecl operator new(size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine)
 {
-   return ca2_alloc_dbg(nSize, nType, lpszFileName, nLine);
+   return memory_alloc_dbg(nSize, nType, lpszFileName, nLine);
 }
 
 inline void __cdecl operator delete(void * p, int32_t nType, const char * /* lpszFileName */, int32_t /* nLine */)
 {
-   ca2_free_dbg(p, nType);
+   memory_free_dbg(p, nType);
 }
 
 inline void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine)
@@ -273,19 +273,19 @@ void __cdecl operator delete[](void * p);
 
 inline void object::operator delete(void * p)
 {
-   ca2_free_dbg(p, ___CLIENT_BLOCK);
+   memory_free_dbg(p, ___CLIENT_BLOCK);
 }
 
 inline void object::operator delete(void * p, void *)
 {
-   ca2_free_dbg(p, ___CLIENT_BLOCK);
+   memory_free_dbg(p, ___CLIENT_BLOCK);
 }
 
 #ifdef DEBUG
 
 inline void object::operator delete(void *pObject, const char *, int32_t)
 {
-   ca2_free_dbg(pObject, ___CLIENT_BLOCK);
+   memory_free_dbg(pObject, ___CLIENT_BLOCK);
 }
 
 #endif

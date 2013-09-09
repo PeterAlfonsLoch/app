@@ -30,7 +30,7 @@ public:
    ~folder_selection_list_view();
 
 
-   virtual filemanager::data * get_filemanager_data();
+   virtual ::filemanager::data * get_filemanager_data();
 
 
 

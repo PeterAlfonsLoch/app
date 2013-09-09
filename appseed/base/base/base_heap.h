@@ -7,28 +7,29 @@
 BEGIN_EXTERN_C
 
 
+   /*
    CLASS_DECL_c void * c_alloc(size_t size);
    CLASS_DECL_c void * c_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
    CLASS_DECL_c void * c_realloc(void * pvoid, size_t nSize);
    CLASS_DECL_c void * c_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-   CLASS_DECL_c void   c_free(void * pvoid);
+   CLASS_DECL_c void   memory_free(void * pvoid);
    CLASS_DECL_c void   c_free_dbg(void * pvoid, int32_t iBlockType);
    CLASS_DECL_c size_t c_msize(void * p);
    CLASS_DECL_c size_t c_msize_dbg(void * p, int32_t iBlockType);
 
 
+   */
 
 
-
-   CLASS_DECL_c void * ca2_alloc(size_t size);
-   CLASS_DECL_c void * ca2_calloc(size_t size, size_t bytes);
-   CLASS_DECL_c void * ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-   CLASS_DECL_c void * ca2_realloc(void * pvoid, size_t nSize);
-   CLASS_DECL_c void * ca2_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-   CLASS_DECL_c void   ca2_free(void * pvoid);
-   CLASS_DECL_c void   ca2_free_dbg(void * pvoid, int32_t iBlockType);
-   CLASS_DECL_c size_t ca2_msize(void * p);
-   CLASS_DECL_c size_t ca2_msize_dbg(void * p, int32_t iBlockType);
+   CLASS_DECL_c void * memory_alloc(size_t size);
+   CLASS_DECL_c void * memory_calloc(size_t size, size_t bytes);
+   CLASS_DECL_c void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+   CLASS_DECL_c void * memory_realloc(void * pvoid, size_t nSize);
+   CLASS_DECL_c void * memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+   CLASS_DECL_c void   memory_free(void * pvoid);
+   CLASS_DECL_c void   memory_free_dbg(void * pvoid, int32_t iBlockType);
+   CLASS_DECL_c size_t memory_size(void * p);
+   CLASS_DECL_c size_t memory_size_dbg(void * p, int32_t iBlockType);
 
 
 
@@ -39,19 +40,19 @@ END_EXTERN_C
 extern HANDLE g_hmutexCa2Alloc;
 
 
-CLASS_DECL_c extern void * (*g_pfnca2_alloc)(size_t size);
+/*CLASS_DECL_c extern void * (*g_pfnca2_alloc)(size_t size);
 CLASS_DECL_c extern void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
 CLASS_DECL_c extern void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
 CLASS_DECL_c extern void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType);
 CLASS_DECL_c extern size_t (*g_pfnca2_msize)(void * pvoid, int32_t iBlockType);
+*/
 
-
-CLASS_DECL_c void * _ca_alloc(size_t size);
+/*CLASS_DECL_c void * memory_alloc(size_t size);
 CLASS_DECL_c void * _ca_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-CLASS_DECL_c void * _ca_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-CLASS_DECL_c void   _ca_free(void * pvoid, int32_t iBlockType);
+CLASS_DECL_c void * memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+CLASS_DECL_c void   memory_free_dbg(void * pvoid, int32_t iBlockType);
 CLASS_DECL_c size_t _ca_msize(void * pvoid, int32_t iBlockType);
-
+*/
 
 #ifdef __cplusplus
 
@@ -68,7 +69,7 @@ void __cdecl operator delete[](void * p);
 
 inline void * __cdecl operator new(size_t nSize)
 {
-   return ca2_alloc(nSize);
+   return memory_alloc(nSize);
 }
 
 inline void * __cdecl operator new(size_t nSize, void * p)
@@ -88,7 +89,7 @@ inline void __cdecl operator delete(void * p, void * palloc)
 
 inline void __cdecl operator delete(void * p)
 {
-   ca2_free(p);
+   memory_free(p);
 }
 
 inline void * __cdecl operator new[](size_t nSize)
@@ -126,12 +127,12 @@ public:
 
 inline CLASS_DECL_c void * __cdecl operator new (size_t size, const c_class &)
 {
-   return _ca_alloc(size);
+   return memory_alloc(size);
 }
 
 inline CLASS_DECL_c void * __cdecl operator new[](size_t size, const c_class &)
 {
-   return _ca_alloc(size);
+   return memory_alloc(size);
 }
 
 

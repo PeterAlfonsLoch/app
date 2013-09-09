@@ -289,7 +289,7 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
     { 
         LR_STREAM_CHK(); 
 
-        file::byte_input_stream is(f);
+        file::byte_input_stream is(f.m_p);
 
         /* HUGE ASSUMPTION: *fmt is either "%d" or "%f" */
         if (strcmp(fmt, "%d") == 0) {

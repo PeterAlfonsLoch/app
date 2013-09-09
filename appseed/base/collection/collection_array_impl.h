@@ -52,6 +52,12 @@ inline bool array<TYPE, ARG_TYPE>::is_empty(::count countMinimum) const
 }
 
 template<class TYPE, class ARG_TYPE>
+inline bool array<TYPE, ARG_TYPE>::empty(::count countMinimum) const
+{
+   return is_empty(countMinimum);
+}
+
+template<class TYPE, class ARG_TYPE>
 inline bool array<TYPE, ARG_TYPE>::has_elements(::count countMinimum) const
 {
    return m_nSize >= countMinimum;

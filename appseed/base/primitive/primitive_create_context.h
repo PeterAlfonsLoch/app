@@ -2,6 +2,7 @@
 
 
 #include "primitive_command.h"
+#include "base/user/user_create_context.h"
 
 
 
@@ -43,17 +44,17 @@ public:
    bool                                   m_bOuterPopupAlertLike;
    bool                                   m_bHold;
    sp(::user::base_interaction)           m_puiParent;
-   sp(::user::base_interaction)           m_puiViewAlloc;
+   sp(::user::base_interaction)           m_puiAlloc;
    sp(application_bias)                   m_spApplicationBias;
    command_line_sp                        m_spCommandLine;
-   stack < sp(::root) >                   m_user; // used root but expect to store ::user::create_context
-   sp(command_thread)                     m_pthreadParent;
+   stack < ::user::create_context >       m_user; 
+   sp(::command_thread)                   m_pthreadParent;
 
 
 
    create_context(sp(base_application) papp);
-   create_context(sp(command_thread) pthreadParent);
-   create_context(sp(command_thread) pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::base_interaction) puiParent = NULL);
+   create_context(sp(::command_thread) pthreadParent);
+   create_context(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::base_interaction) puiParent = NULL);
    create_context(const create_context & createcontext);
    virtual ~create_context();
 

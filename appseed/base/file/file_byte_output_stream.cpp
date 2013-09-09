@@ -50,7 +50,7 @@ namespace file
       m_b64bit = false;
    }
 
-   byte_output_stream::byte_output_stream(writer * pwriter) :
+   byte_output_stream::byte_output_stream(stream_buffer * pwriter) :
       output_stream(pwriter)
    {
       m_b64bit = false;

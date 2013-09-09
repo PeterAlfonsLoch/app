@@ -435,7 +435,11 @@ namespace user
       class CSortInfo
       {
       public:
-         array < CSortInfoItem, CSortInfoItem & > m_itema;
+         
+         
+         raw_array < CSortInfoItem > m_itema;
+
+
       };
 
       CSortInfo   m_sortinfo;

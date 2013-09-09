@@ -19,7 +19,6 @@ public:
 
    uint32_t                   m_ulFlags;
    sp(base_application)      m_pbaseapp;
-   sp(base_application)     m_papp;
    //::core::ptra *            m_pptraListener;
    //::core::ptra *            m_pptraListened;
    factory_item_base *        m_pfactoryitembase;

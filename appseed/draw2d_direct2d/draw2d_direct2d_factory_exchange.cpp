@@ -5,22 +5,20 @@ namespace draw2d_direct2d
 {
 
 
-   factory_exchange::factory_exchange(application * papp) :
+   factory_exchange::factory_exchange(base_application * papp) :
       element(papp)
    {
 
-      System.factory().cloneable_large < dib                   >  (System.template type < ::draw2d::dib               > ());
-      System.factory().cloneable_large < graphics              >  (System.template type < ::draw2d::graphics          > ());
-      System.factory().cloneable_large < graphics_path         >  (System.template type < ::draw2d::path              > ());
-      System.factory().cloneable_large < bitmap                >  (System.template type < ::draw2d::bitmap            > ());
-      System.factory().cloneable_large < pen                   >  (System.template type < ::draw2d::pen               > ());
-      System.factory().cloneable_large < brush                 >  (System.template type < ::draw2d::brush             > ());
-      System.factory().cloneable_large < palette               >  (System.template type < ::draw2d::palette           > ());
-      System.factory().cloneable_large < region                >  (System.template type < ::draw2d::region            > ());
-      System.factory().cloneable_large < font                  >  (System.template type < ::draw2d::font              > ());
+      System.factory().cloneable_large < dib                   >  (System.type_info < ::draw2d::dib               > ());
+      System.factory().cloneable_large < graphics              >  (System.type_info < ::draw2d::graphics          > ());
+      System.factory().cloneable_large < graphics_path         >  (System.type_info < ::draw2d::path              > ());
+      System.factory().cloneable_large < bitmap                >  (System.type_info < ::draw2d::bitmap            > ());
+      System.factory().cloneable_large < pen                   >  (System.type_info < ::draw2d::pen               > ());
+      System.factory().cloneable_large < brush                 >  (System.type_info < ::draw2d::brush             > ());
+      System.factory().cloneable_large < palette               >  (System.type_info < ::draw2d::palette           > ());
+      System.factory().cloneable_large < region                >  (System.type_info < ::draw2d::region            > ());
+      System.factory().cloneable_large < font                  >  (System.type_info < ::draw2d::font              > ());
       
-
-      ::draw2d_direct2d::dib::s_initialize();
 
       draw2d_direct2d_initialize();
 

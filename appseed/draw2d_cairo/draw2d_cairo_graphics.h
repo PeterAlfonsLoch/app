@@ -8,7 +8,7 @@ namespace draw2d_cairo
    class brush;
    class pen;
    class font;
-   class object
+   class object;
 
 
    class CLASS_DECL_DRAW2D_CAIRO graphics :
@@ -114,8 +114,8 @@ namespace draw2d_cairo
       virtual ::draw2d::font* SelectObject(::draw2d::font* pFont);
       ::draw2d::bitmap* SelectObject(::draw2d::bitmap* pBitmap);
       int32_t SelectObject(::draw2d::region* pRgn);       // special return for regions
-      object* SelectObject(object* pObject);
-         // object* provided so compiler doesn't use SelectObject(HGDIOBJ)
+      ::draw2d_cairo::object* SelectObject(::draw2d_cairo::object* pObject);
+         // ::draw2d_cairo::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
    // color and color Palette Functions
       COLORREF GetNearestColor(COLORREF crColor) const;
@@ -491,7 +491,7 @@ namespace draw2d_cairo
 
    //protected:
       // used for implementation of non-virtual SelectObject calls
-      //static object* PASCAL SelectGdiObject(sp(base_application) papp, HDC hDC, HGDIOBJ h);
+      //static ::draw2d_cairo::object* PASCAL SelectGdiObject(sp(base_application) papp, HDC hDC, HGDIOBJ h);
 
 
       // platform-specific or platform-internals

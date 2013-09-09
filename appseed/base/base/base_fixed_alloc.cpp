@@ -254,7 +254,7 @@ void * fixed_alloc_array::alloc(size_t nAllocSize)
    }
    else
    {
-      return ca2_alloc(nAllocSize);
+      return memory_alloc(nAllocSize);
    }
 }
 
@@ -267,7 +267,7 @@ void fixed_alloc_array::free(void * p, size_t nAllocSize)
    }
    else
    {
-      return ca2_free(p);
+      return memory_free(p);
    }
 }
 
@@ -277,7 +277,7 @@ void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNew
    fixed_alloc * pallocNew = find(nNewAllocSize);
    if(pallocOld == NULL && pallocNew == NULL)
    {
-      return ca2_realloc(pOld, nNewAllocSize);
+      return memory_realloc(pOld, nNewAllocSize);
    }
    else if(pallocOld == pallocNew)
    {
@@ -286,7 +286,7 @@ void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNew
    else
    {
 
-      void * pNew = pallocNew == NULL ? ca2_alloc(nNewAllocSize) : pallocNew->Alloc();
+      void * pNew = pallocNew == NULL ? memory_alloc(nNewAllocSize) : pallocNew->Alloc();
 
       if(pNew == NULL)
          return NULL;
@@ -299,7 +299,7 @@ void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNew
       }
       else
       {
-         ca2_free(pOld);
+         memory_free(pOld);
       }
 
       return pNew;

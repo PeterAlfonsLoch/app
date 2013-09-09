@@ -28,6 +28,7 @@ namespace draw2d
    public:
 
 
+
       enum e_type
       {
 
@@ -78,6 +79,14 @@ namespace draw2d
       bool              m_bMapped; // optionally used by implementation
 
       descriptor        m_descriptor;
+
+      static float Cosines[360];
+      static float Sines[360];
+      static int64_t CosN[360]; // * 1 << 31
+      static int64_t SinN[360]; 
+      static int64_t Cos10N[10]; // until 10 degress
+      static int64_t Sin10N[10]; // more precision * 1 << 34
+      static double dPi;
 
 
       dib();
@@ -265,6 +274,8 @@ namespace draw2d
       virtual bool update_window(::user::window * pwnd, signal_details * pobj);
       virtual bool print_window(::user::window * pwnd, signal_details * pobj);
 
+
+      static void static_initialize();
 
    };
 

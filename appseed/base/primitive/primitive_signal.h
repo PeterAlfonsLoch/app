@@ -357,7 +357,7 @@ inline void dispatch::signal_item_array::GetSignalsById(dispatch::signal_item_pt
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
-      signal_item & signal = this->element_at(i);
+      signal_item & signal = *this->element_at(i);
       if(signal.m_pid->matches(pid))
       {
          signalptra.add(&signal);
@@ -369,7 +369,7 @@ inline dispatch::signal_item * dispatch::signal_item_array::GetSignalById(signal
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
-      signal_item & signal = this->element_at(i);
+      signal_item & signal = *this->element_at(i);
       if(signal.m_pid->matches(pid))
       {
          return &signal;

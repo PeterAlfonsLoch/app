@@ -75,7 +75,7 @@ namespace user
 
                m_iControlItem             = iItem;
 
-               send_message(::core::message_event, 0, (LPARAM) &ev);
+               send_message(::message::message_event, 0, (LPARAM) &ev);
 
             }
          }
@@ -419,7 +419,7 @@ namespace user
       }
    }
 
-   void form_list::_000OnMouse(message::mouse * pmouse)
+   void form_list::_000OnMouse(::message::mouse * pmouse)
    {
 
       point pt = pmouse->m_pt;

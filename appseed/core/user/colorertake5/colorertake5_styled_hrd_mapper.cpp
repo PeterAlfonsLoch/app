@@ -31,7 +31,7 @@ void StyledHRDMapper::loadRegionMappings(::file::input_stream & istream)
    
    istream >> str;
 
-   xml::document hbasedoc(m_papp);
+   xml::document hbasedoc(m_pbaseapp);
 
    if(!hbasedoc.load(str))
    {

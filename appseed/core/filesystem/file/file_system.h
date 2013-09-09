@@ -60,7 +60,7 @@ namespace file
       void  get_ascendants_name(const char * lpcsz, stringa & stra);
 
       template < class T >
-      bool output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, const char *), const char * lpszSource)
+      bool output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
 #if defined(LINUX) || defined(MACOS) || defined(ANDROID)
          ;
 #else
@@ -74,7 +74,7 @@ namespace file
 #endif
 
       template < class T >
-      bool output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, ::file::reader &), const char * lpszInput)
+      bool output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
 #if defined(LINUX) || defined(MACOS) || defined(ANDROID)
          ;
 #else
@@ -98,7 +98,7 @@ namespace file
 #endif
 
       template < class T >
-      bool output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, ::file::reader &), ::file::reader & istream)
+      bool output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), ::file::input_stream & istream)
       {
          return (p->*lpfnOuput)(get(pszOutput, papp), istream);
       }
@@ -111,7 +111,7 @@ namespace file
       virtual ::file::binary_buffer_sp get(const char * name, sp(base_application) papp);
 
       template < class T >
-      string time_square(sp(base_application) papp, T * p, bool (T::*lpfnOutput)(::file::writer &, const char *), const char * lpszSource)
+      string time_square(sp(base_application) papp, T * p, bool (T::*lpfnOutput)(::file::output_stream &, const char *), const char * lpszSource)
       {
          string strTime = time_square(papp);
          if(strTime.has_char())

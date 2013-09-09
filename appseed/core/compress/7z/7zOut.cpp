@@ -566,7 +566,7 @@ namespace n7z
       //CBufInStream *streamSpec = new CBufInStream;
       //smart_pointer<::file::reader> stream = streamSpec;
       //streamSpec->Init(data, data.GetCapacity());
-      CFolder & folderItem = folders.add_new();
+      CFolder & folderItem = *folders.add_new();
       folderItem.UnpackCRCDefined = true;
       folderItem.UnpackCRC = crc_calc(data, data.GetCapacity());
       //  uint64_t dataSize64 = data.GetCapacity();

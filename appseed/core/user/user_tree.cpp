@@ -309,7 +309,7 @@ namespace user
       index iIndex = 0;
 
 
-      for(;pitem != NULL; pitem = pitem->get_item(::core::TreeNavigationProperForward, &iLevel))
+      for(;pitem != NULL; pitem = pitem->get_item(::data::TreeNavigationProperForward, &iLevel))
       {
          drawitemdata.m_pitem = pitem;
          drawitemdata.m_iItem = iItem;
@@ -1032,7 +1032,7 @@ namespace user
          {
             iMaxWidth = iWidth;
          }
-         pitem = pitem->get_item(::core::TreeNavigationProperForward, &iLevel);
+         pitem = pitem->get_item(::data::TreeNavigationProperForward, &iLevel);
          if(pitem == NULL)
             break;
       }
@@ -1069,7 +1069,7 @@ namespace user
 
       for(;;)
       {
-         pitem = pitem->get_item(::core::TreeNavigationProperForward, &iLevel);
+         pitem = pitem->get_item(::data::TreeNavigationProperForward, &iLevel);
          if(pitem == NULL)
             break;
          if(nOffset <= 0)

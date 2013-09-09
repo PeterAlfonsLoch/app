@@ -26,7 +26,7 @@ namespace user
 
 
 
-   bool document::set_data(::data * pdata)
+   bool document::set_data(::data::data * pdata)
    {
 
       if(m_spdata.is_set())

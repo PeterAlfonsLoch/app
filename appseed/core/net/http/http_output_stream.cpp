@@ -10,7 +10,7 @@ namespace http
    }
 
    output_stream::output_stream(::file::buffer_sp pbuffer) :
-      ::file::plain_text_output_stream(pbuffer)
+      ::file::plain_text_output_stream(pbuffer.m_p)
    {
    
    
@@ -29,16 +29,15 @@ namespace http
 
       return *this;
 
-   }
+   }*/
 
    void output_stream::write (const string & str)
    {
 
       write((const char *) str, str.get_length());
 
-      return *this;
+   }
 
-   }*/
 
    ::file::output_stream & output_stream::operator << (::file::memory_buffer & memfile)
    {

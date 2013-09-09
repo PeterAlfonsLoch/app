@@ -43,7 +43,7 @@ FILE * my_fopen(const char * psz, const char * pszMode)
 namespace core
 {
 
-   bool compress::ungz(::file::writer & ostreamUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::ungz(::file::output_stream & ostreamUncompressed, const char * lpcszGzFileCompressed)
    {
       int32_t fileUn = my_open(lpcszGzFileCompressed, _O_BINARY | _O_RDONLY);
       if (fileUn == -1)
@@ -128,7 +128,7 @@ namespace core
    }
 
 
-   bool compress::gz(::file::writer & ostreamCompressed, const char * lpcszUncompressed)
+   bool compress::gz(::file::output_stream & ostreamCompressed, const char * lpcszUncompressed)
    {
       string str(lpcszUncompressed);
       FILE * fileUn = my_fopen(lpcszUncompressed, "rb");
@@ -152,7 +152,7 @@ namespace core
       return true;
    }
 
-   bool compress::null(::file::writer & ostream, ::file::reader & istream)
+   bool compress::null(::file::output_stream & ostream, ::file::input_stream & istream)
    {
       class primitive::memory memory;
       memory.allocate(1024 * 256);
@@ -174,7 +174,7 @@ namespace core
       return System.file().output(papp, lpcszGzFileCompressed, this, &compress::gz, lpcszUncompressed);
    }
 
-   bool compress::unbz(::file::writer & ostreamUncompressed, const char * lpcszBzFileCompressed)
+   bool compress::unbz(::file::output_stream & ostreamUncompressed, const char * lpcszBzFileCompressed)
    {
       BZFILE * file = BZ2_bzopen(lpcszBzFileCompressed, "rb");
       if (file == NULL)
@@ -193,7 +193,7 @@ namespace core
       return true;
    }
 
-   bool compress::bz(::file::writer & ostreamBzFileCompressed, const char * lpcszUncompressed)
+   bool compress::bz(::file::output_stream & ostreamBzFileCompressed, const char * lpcszUncompressed)
    {
       ::file::binary_buffer_sp file = Application.file().get_file(lpcszUncompressed, ::file::mode_read | ::file::type_binary);
       if(file.is_null())
@@ -203,7 +203,7 @@ namespace core
       return bz_stream(ostreamBzFileCompressed, file);
    }
 
-   bool compress::bz_stream(::file::writer & ostreamBzFileCompressed, ::file::reader & istreamFileUncompressed)
+   bool compress::bz_stream(::file::output_stream & ostreamBzFileCompressed, ::file::input_stream & istreamFileUncompressed)
    {
       bzip bz(ostreamBzFileCompressed);
       class primitive::memory memory;

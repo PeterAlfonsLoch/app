@@ -24,45 +24,45 @@ namespace dynamic_source
 
 
 
-      file::memory_buffer          m_memfileLibError;
-      stringa                    m_straLibSourcePath;
-      stringa                    m_straLibSourceRelPath;
-      stringa                    m_straLibCppPath;
-      stringa                    m_straLibIncludePath;
-      stringa                    m_straLibIncludeRelPath;
-      stringa                    m_straLibHppPath;
-      string                     m_strLibraryPath;
-
-      uint32_t                   m_dwLastLibraryVersionCheck;
-      bool                       m_bLastLibraryVersionCheck;
-
-
-      string                     m_strDynamicSourceConfiguration;
-
-
-      ::ca::library               m_libraryLib;
-
-
-      array < __time_t >    m_ftaLibCreation;
-      array < __time_t >    m_ftaLibAccess;
-      array < __time_t >    m_ftaLibModified;
+      file::plain_text_stream_memory_buffer     m_memfileLibError;
+      stringa                                   m_straLibSourcePath;
+      stringa                                   m_straLibSourceRelPath;
+      stringa                                   m_straLibCppPath;
+      stringa                                   m_straLibIncludePath;
+      stringa                                   m_straLibIncludeRelPath;
+      stringa                                   m_straLibHppPath;
+      string                                    m_strLibraryPath;
+                                                
+      uint32_t                                  m_dwLastLibraryVersionCheck;
+      bool                                      m_bLastLibraryVersionCheck;
+                                                
+                                                
+      string                                    m_strDynamicSourceConfiguration;
+                                                
+                                                
+      ::ca::library                             m_libraryLib;
 
 
-      stringa                    m_straSync;
-      map_string_to_ptr          m_mapLib;
-      string                     m_strLibsLibs;
-      string                     m_strEnv;
-      sp(script_manager)         m_pmanager;
-      mutex                      m_mutexLibrary;
-      string                     m_strSdk1;
-      string                     m_strPlatform;
-      string                     m_strLibPlatform;
-      //::file_watcher::thread   m_folderwatch;
-      ::file_watcher::id         m_filewatchid;
-      ::file_watcher::id         m_filewatchidFribox;
-      
-      string                     m_strPlat1;
-      string                     m_strTime;
+      raw_array < __time_t >                    m_ftaLibCreation;
+      raw_array < __time_t >                    m_ftaLibAccess;
+      raw_array < __time_t >                    m_ftaLibModified;
+                                                
+                                                
+      stringa                                   m_straSync;
+      map_string_to_ptr                         m_mapLib;
+      string                                    m_strLibsLibs;
+      string                                    m_strEnv;
+      sp(script_manager)                        m_pmanager;
+      mutex                                     m_mutexLibrary;
+      string                                    m_strSdk1;
+      string                                    m_strPlatform;
+      string                                    m_strLibPlatform;
+      //::file_watcher::thread                  m_folderwatch;
+      ::file_watcher::id                        m_filewatchid;
+      ::file_watcher::id                        m_filewatchidFribox;
+                                               
+      string                                    m_strPlat1;
+      string                                    m_strTime;
 
 
       script_compiler(sp(base_application) papp);

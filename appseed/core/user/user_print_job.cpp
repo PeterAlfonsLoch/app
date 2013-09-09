@@ -4,18 +4,22 @@
 namespace user
 {
 
+
    print_job::print_job(sp(base_application) papp) :
       element(papp),
       ::print_job(papp),
       ::job(papp),
-      thread(papp),
-      ::user::job(papp)
+      thread(papp)
    {
+
    }
+
 
    print_job::~print_job()
    {
+
    }
+
 
    int32_t print_job::run()
    {

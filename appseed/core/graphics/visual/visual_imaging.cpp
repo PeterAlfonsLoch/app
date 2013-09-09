@@ -345,10 +345,10 @@ void EmbossedTextOut(
    RECT                    rcText;
 
    if (crShadow == (COLORREF)-1)
-      crShadow = Sess(pdc->m_papp).get_default_color (COLOR_BTNSHADOW);
+      crShadow = Sess(pdc->m_pbaseapp).get_default_color (COLOR_BTNSHADOW);
 
    if (crText == (COLORREF)-1)
-      crText = Sess(pdc->m_papp).get_default_color (COLOR_BTNTEXT);
+      crText = Sess(pdc->m_pbaseapp).get_default_color (COLOR_BTNTEXT);
 
    /* setup the DC, saving off the old values
    */

@@ -23,7 +23,7 @@ namespace file
 
 
       input_stream();
-      input_stream(sp(reader) preader);
+      input_stream(stream_buffer * preader);
       input_stream(const input_stream & preader);
       virtual ~input_stream();
 

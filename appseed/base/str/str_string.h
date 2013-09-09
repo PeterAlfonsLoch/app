@@ -1708,32 +1708,27 @@ inline void id::clear()
 
 
 
-namespace  core
+namespace str
 {
 
-   namespace str
+   inline CLASS_DECL_c bool ends_eat(string & str, const char * lpcszSuffix)
    {
 
-      inline CLASS_DECL_c bool ends_eat(string & str, const char * lpcszSuffix)
-      {
+      strsize iLen = strlen(lpcszSuffix);
 
-         strsize iLen = strlen(lpcszSuffix);
+      if(iLen > str.length())
+         return false;
 
-         if(iLen > str.length())
-            return false;
+      if(strncmp(&str[str.length() - iLen], lpcszSuffix, iLen) != 0)
+         return false;
 
-         if(strncmp(&str[str.length() - iLen], lpcszSuffix, iLen) != 0)
-            return false;
+      str.Truncate(str.length() - iLen);
 
-         str.Truncate(str.length() - iLen);
+      return true;
 
-         return true;
+   }
 
-      }
-
-   } // namespace str
-
-} // namespace core
+} // namespace str
 
 
 inline CLASS_DECL_c string operator + (const id & id, const char * psz)

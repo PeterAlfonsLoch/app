@@ -5,7 +5,7 @@ namespace draw2d_direct2d
 {
 
    
-   region::region(application * papp) :
+   region::region(base_application * papp) :
       element(papp)
    { 
       

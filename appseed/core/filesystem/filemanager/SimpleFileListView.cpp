@@ -137,7 +137,7 @@ namespace filemanager
             FileManagerViewUpdateHint * puh = (FileManagerViewUpdateHint *) phint;
             if(puh->is_type_of(FileManagerViewUpdateHint::TypeInitialize))
             {
-               m_papp = get_app()->m_pplaneapp;
+               m_pbaseapp = get_app()->m_pplaneapp;
                db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
                if(pcentral == NULL)
                   return;
@@ -445,7 +445,7 @@ namespace filemanager
    UINT c_cdecl SimpleFileListView::ThreadProcFileSize(LPVOID lpparam)
    {
       file_size * psize = (file_size *) lpparam;
-      db_server * pcentral = dynamic_cast < db_server * > (&App(psize->m_pview->m_papp).simpledb().db());
+      db_server * pcentral = dynamic_cast < db_server * > (&App(psize->m_pview->m_pbaseapp).simpledb().db());
       if(pcentral == NULL)
          return 0;
       DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;

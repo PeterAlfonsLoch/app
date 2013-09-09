@@ -6,6 +6,13 @@ base_application::base_application() :
    m_allocer(this)
 {
 
+   if(m_pbaseapp == NULL)
+   {
+
+      m_pbaseapp = this;
+
+   }
+
    m_psignal = new signal();
 
    m_pcommandthread           = new ::command_thread(this);
@@ -124,32 +131,32 @@ string base_application::file_name(const char * psz)
 }
 
 
-sp(command_thread) base_application::command_central()
+sp(::command_thread) base_application::command_central()
 {
    return m_pcommandthread;
 }
 
-sp(command_thread) base_application::command_thread()
+sp(::command_thread) base_application::command_thread()
 {
    return m_pcommandthread;
 }
 
-sp(command_thread) base_application::command()
+sp(::command_thread) base_application::command()
 {
    return m_pcommandthread;
 }
 
-sp(command_thread) base_application::guideline()
+sp(::command_thread) base_application::guideline()
 {
    return m_pcommandthread;
 }
 
-sp(command_thread) base_application::directrix()
+sp(::command_thread) base_application::directrix()
 {
    return m_pcommandthread;
 }
 
-sp(command_thread) base_application::axiom()
+sp(::command_thread) base_application::axiom()
 {
    return m_pcommandthread;
 }
@@ -160,7 +167,7 @@ bool base_application::verb()
    return true;
 }
 
-sp(command_thread) base_application::creation()
+sp(::command_thread) base_application::creation()
 {
    return m_pcommandthread;
 }
@@ -170,5 +177,16 @@ sp(command_thread) base_application::creation()
 {
 
    return NULL;
+
+}
+
+
+application_signal_details::application_signal_details(sp(base_application) papp, ::signal * psignal, e_application_signal esignal) :
+   element(papp),
+   ::signal_details(psignal)
+{
+
+   m_esignal         = esignal;
+   m_bOk             = true;
 
 }

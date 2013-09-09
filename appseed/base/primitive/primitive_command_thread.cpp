@@ -134,7 +134,7 @@ void command_thread::consolidate(sp(::create_context) pcreatecontext)
    m_varTopicQuery.propset().merge(pcreatecontext->m_spCommandLine->m_varQuery.propset());
 }
 
-void command_thread::consolidate(sp(command_thread) pthread)
+void command_thread::consolidate(sp(::command_thread) pthread)
 {
 
    if(pthread == NULL || pthread == this)
