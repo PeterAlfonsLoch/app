@@ -25,10 +25,10 @@ namespace file
    }
 
 
-   UINT text_buffer::read_string(string & str)
+   bool text_buffer::read_string(string & str)
    {
       UNREFERENCED_PARAMETER(str);
-      return 0;
+      return false;
    }
 
 

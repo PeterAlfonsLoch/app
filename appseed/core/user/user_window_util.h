@@ -32,6 +32,7 @@ namespace user
 
 
       interaction_ptr_array(sp(base_application) papp);
+      interaction_ptr_array(const ::user::interaction_ptr_array & a) : spa(::user::interaction)(a) { }
 
 
       using spa(::user::interaction)::find_first;

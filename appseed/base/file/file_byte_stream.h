@@ -14,7 +14,7 @@ namespace file
 
       
       byte_stream();
-      byte_stream(sp(stream_buffer) pbuffer);
+      byte_stream(stream_buffer * pbuffer);
       byte_stream(const stream & stream);
       virtual ~byte_stream();
 

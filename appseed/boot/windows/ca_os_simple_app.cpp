@@ -48,7 +48,7 @@ int32_t simple_app::main()
 	si.dwFlags = 0;
 	GetStartupInfo(&si);
 
-   initialize_primitive_heap(); 
+   //initialize_primitive_heap(); 
 
 
 //	_init_atexit();
@@ -68,7 +68,7 @@ int32_t simple_app::main()
     
    os_finalize(); 
     
-   finalize_primitive_heap(); 
+   //finalize_primitive_heap(); 
 
 	//_doexit();
 	_term_args();

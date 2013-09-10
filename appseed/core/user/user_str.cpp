@@ -151,8 +151,8 @@ namespace user
 
       InitHashTable(64);
 
-      operator[]("en")["en"]     =  m_pschemaEn    =  canew(str_schema);
-      operator[]("_std")["_std"] =  m_pschemaStd   =  canew(str_schema);
+      operator[]("en")["en"]     =  *(m_pschemaEn    =  canew(str_schema));
+      operator[]("_std")["_std"] =  *(m_pschemaStd   =  canew(str_schema));
 
 
    }

@@ -568,7 +568,7 @@ l1:
          return;
       }
 
-      Save(spfile);
+      Save(*spfile);
 
       char buf[4096];
       primitive::memory_size uiRead;

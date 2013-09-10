@@ -53,7 +53,7 @@ namespace libcompress
 #include "7z/7z.h"
 
 // bzip
-#include "compress_bzip_helper.h"
+#include "compress_bzip_stream.h"
 
 // rar
 #include "rar/rar.h"

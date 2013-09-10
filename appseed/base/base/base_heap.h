@@ -106,8 +106,8 @@ inline void __cdecl operator delete[](void * p)
 
 
 
-CLASS_DECL_c void initialize_primitive_heap();
-CLASS_DECL_c void finalize_primitive_heap();
+//CLASS_DECL_c void initialize_primitive_heap();
+//CLASS_DECL_c void finalize_primitive_heap();
 
 
 class CLASS_DECL_c c_class

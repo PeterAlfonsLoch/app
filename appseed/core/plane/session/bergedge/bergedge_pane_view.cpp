@@ -677,7 +677,7 @@ namespace bergedge
       control.m_id = "save_display_bandwidth";
       control.set_ddx_dbflags(
             "",
-            "core",
+            "ca2",
             "savings",
             ::core::resource_display_bandwidth);
    //   control.add_function(user::control::function_static);
@@ -688,7 +688,7 @@ namespace bergedge
       control.m_id = "save_processing";
       control.set_ddx_dbflags(
             "",
-            "core",
+            "ca2",
             "savings",
             ::core::resource_processing);
    //   control.add_function(user::control::function_static);
@@ -699,7 +699,7 @@ namespace bergedge
       control.m_id = "save_memory";
       control.set_ddx_dbflags(
             "",
-            "core",
+            "ca2",
             "savings",
             ::core::resource_memory);
    //   control.add_function(user::control::function_static);
@@ -710,7 +710,7 @@ namespace bergedge
       control.m_id = "enable_wallpaper";
       control.set_ddx_dbflags(
             "",
-            "core",
+            "ca2",
             "bergedge",
             0);
    //   control.add_function(user::control::function_static);

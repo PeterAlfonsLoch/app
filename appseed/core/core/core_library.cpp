@@ -212,7 +212,7 @@ namespace core
       if(strLibraryName == "libca2")
       {
 
-         strLibraryName = "core";
+         strLibraryName = "ca2";
 
       }
       else if(!::str::begins_eat(strLibraryName, "libca2"))
@@ -262,7 +262,7 @@ namespace core
       if(strLibraryName == "libca2")
       {
 
-         strLibraryName = "core";
+         strLibraryName = "ca2";
 
       }
       else if(!::str::begins_eat(strLibraryName, "libca2"))

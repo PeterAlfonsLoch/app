@@ -143,7 +143,7 @@ namespace user
    {
 //      ::user::frame_window_interface::install_message_handling(pinterface);
       database::user::interaction::install_message_handling(pinterface);
-      IGUI_MSG_LINK(::core::message_frame_initial_update, pinterface, this, &frame_window_interface::_guserbaseOnInitialUpdate);
+      IGUI_MSG_LINK(::message::message_frame_initial_update, pinterface, this, &frame_window_interface::_guserbaseOnInitialUpdate);
    }
 
    void frame_window_interface::_000OnDraw(::draw2d::graphics * pdc)
@@ -434,7 +434,7 @@ namespace user
    {
       database::user::interaction::data_on_after_change(pobj);
       SCAST_PTR(database::change_event, phint, pobj);
-      if(phint->m_key.m_idKey == "core"
+      if(phint->m_key.m_idKey == "ca2"
          && phint->m_key.m_idIndex == "savings")
       {
          defer_synch_layered();

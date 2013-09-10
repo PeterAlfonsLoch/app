@@ -34,3 +34,29 @@ private:
 
 };
 
+inline void critical_section::lock()
+{
+   try
+   {
+      ::EnterCriticalSection(&m_sect);
+   }
+   catch(...)
+   {
+      throw resource_exception(get_app());
+   }
+}
+
+
+inline bool critical_section::lock(const duration & durationTimeout)
+{
+   ASSERT(durationTimeout.is_pos_infinity());
+   (void)durationTimeout;
+   lock();
+   return true;
+}
+
+inline bool critical_section::unlock()
+{
+   ::LeaveCriticalSection(&m_sect);
+   return TRUE;
+}

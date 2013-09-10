@@ -5,26 +5,27 @@ namespace file
 {
 
 
-
-
-
    output_stream::output_stream()
    {
    
    }
 
 
-
-
-   output_stream::output_stream(buffer_sp pwriter)
+   output_stream::output_stream(stream_buffer * pwriter)
    {
+
       m_spbuffer     = pwriter;
+
    }
 
-   output_stream::output_stream(const  output_stream & ostream) 
+
+   output_stream::output_stream(const output_stream & ostream) 
    {
+
       m_spbuffer     = ostream.m_spbuffer;
+
    }
+
 
    output_stream::~output_stream()
    {
@@ -185,7 +186,12 @@ namespace file
    void output_stream::flush()
    {
       
-      m_spbuffer->flush();
+      if(m_spbuffer.is_set())
+      {
+
+         m_spbuffer->flush();
+
+      }
 
    }
 

@@ -10,21 +10,32 @@
 
 template < class TYPE, class ARG_TYPE >
 inline lemon_array < TYPE, ARG_TYPE > :: lemon_array(sp(base_application) papp, ::count nGrowBy) :
-   array < TYPE, ARG_TYPE > (papp, nGrowBy)
+array < TYPE, ARG_TYPE > (papp, nGrowBy)
 {
 }
 
 
 template < class TYPE, class ARG_TYPE >
-inline lemon_array < TYPE, ARG_TYPE > :: lemon_array(const array <TYPE, ARG_TYPE> & a) :
-   array < TYPE, ARG_TYPE > (a)
+inline lemon_array < TYPE, ARG_TYPE > :: lemon_array(const lemon_array & a)
 {
+   m_nGrowBy = 32;
+   m_pData = NULL;
+   m_nSize = m_nMaxSize = 0;
+   operator = (a);
 }
 
+template < class TYPE, class ARG_TYPE >
+inline lemon_array < TYPE, ARG_TYPE > :: lemon_array(const array <TYPE, ARG_TYPE> & a)
+{
+   m_nGrowBy = 32;
+   m_pData = NULL;
+   m_nSize = m_nMaxSize = 0;
+   operator = (a);
+}
 
 template < class TYPE, class ARG_TYPE >
 inline lemon_array < TYPE, ARG_TYPE > :: lemon_array(::count n) :
-   array < TYPE, ARG_TYPE > (n)
+array < TYPE, ARG_TYPE > (n)
 {
 }
 
@@ -32,7 +43,7 @@ inline lemon_array < TYPE, ARG_TYPE > :: lemon_array(::count n) :
 template < class TYPE, class ARG_TYPE >
 inline lemon_array < TYPE, ARG_TYPE > :: lemon_array(ARG_TYPE t, ::count n)
 {
-   
+
    ::lemon::array::insert_at(*this, 0, t, n);
 
 }
@@ -121,7 +132,6 @@ inline void lemon_array < TYPE, ARG_TYPE > :: push_back(ARG_TYPE newElement, ind
 }
 
 
-// Operations that move elements around
 template < class TYPE, class ARG_TYPE >
 inline index lemon_array < TYPE, ARG_TYPE > :: insert_at(index nIndex, ARG_TYPE newElement, ::count nCount)
 {
@@ -134,12 +144,57 @@ inline index lemon_array < TYPE, ARG_TYPE > :: insert_at(index nIndex, ARG_TYPE 
 template < class TYPE, class ARG_TYPE >
 inline index lemon_array < TYPE, ARG_TYPE > :: insert_at(index nStartIndex, array < TYPE, ARG_TYPE > * pNewArray)
 {
-   
+
    return ::lemon::array::insert_at(*this, nStartIndex, pNewArray);
 
 }
 
+template < class TYPE, class ARG_TYPE >
+inline index lemon_array < TYPE, ARG_TYPE > :: inset(index nIndex, ARG_TYPE newElement, ::count nCount)
+{
 
+   return insert_at(nIndex, newElement, nCount);
+
+}
+
+
+template < class TYPE, class ARG_TYPE >
+inline void lemon_array < TYPE, ARG_TYPE > :: copy(const array < TYPE, ARG_TYPE > & src)
+{
+
+   ::lemon::array::copy(*this, src);
+
+}
+
+template < class TYPE, class ARG_TYPE >
+inline lemon_array < TYPE, ARG_TYPE > & lemon_array < TYPE, ARG_TYPE > :: operator = (const array < TYPE, ARG_TYPE > & src)
+{
+
+   if(this != &src)
+   {
+
+      copy(src);
+
+   }
+
+   return *this;
+
+}
+
+template < class TYPE, class ARG_TYPE >
+inline lemon_array < TYPE, ARG_TYPE > & lemon_array < TYPE, ARG_TYPE > :: operator = (const lemon_array & src)
+{
+
+   if(this != &src)
+   {
+
+      copy(src);
+
+   }
+
+   return *this;
+
+}
 
 
 
@@ -153,7 +208,7 @@ namespace lemon
       template < class ARRAY >
       ::count set_size(ARRAY & a, ::count nNewSize, ::count nGrowBy) // call default constructors and destructors
       {
-         
+
          typedef typename ARRAY::BASE_TYPE TYPE;
 
          ::count countOld = a.get_count();
@@ -294,9 +349,9 @@ namespace lemon
       template < class ARRAY >
       void set_at_grow(ARRAY & a, index nIndex, typename ARRAY::BASE_ARG_TYPE newElement)
       {
-         
+
          ASSERT_VALID(&a);
-         
+
          ASSERT(nIndex >= 0);
 
          if(nIndex < 0)
@@ -319,7 +374,7 @@ namespace lemon
       template < class ARRAY >
       typename ARRAY::BASE_TYPE & element_at_grow(ARRAY & a, index nIndex)
       {
-         
+
          ASSERT_VALID(&a);
 
          ASSERT(nIndex >= 0);
@@ -337,9 +392,9 @@ namespace lemon
       template<class ARRAY>
       index insert_at(ARRAY & a, index nIndex, typename ARRAY::BASE_ARG_TYPE newElement, ::count nCount /*=1*/)
       {
-         
+
          ASSERT_VALID(&a);
-         
+
          ASSERT(nIndex >= 0);    // will expand to meet need
 
          if(nCount <= 0)
@@ -416,6 +471,103 @@ namespace lemon
          return nStartIndex;
 
       }
+
+      template<class ARRAY>
+      void copy(ARRAY & a, const ::array < typename ARRAY::BASE_TYPE, typename ARRAY::BASE_ARG_TYPE > & src)
+      {
+
+         ASSERT_VALID(&a);
+
+         ASSERT(&a != &src);   // cannot append to itself
+
+         if(&a != &src)
+         {
+            ::lemon::array::set_size(a, src.m_nSize);
+            CopyElements < typename ARRAY::BASE_TYPE >(a.m_pData, src.m_pData, src.m_nSize);
+         }
+
+      }
+
+      template<class ARRAY>
+      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia)
+      {
+         if(a.get_size() == 0)
+         {
+            return false;
+         }
+
+         index iLowerBound = 0;
+         index iMaxBound   = a.get_upper_bound();
+         index iUpperBound = iMaxBound;
+         index iCompare;
+         // do binary search
+         iIndex = (iUpperBound + iLowerBound) / 2;
+         while(iUpperBound - iLowerBound >= 8)
+         {
+            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *) &t);
+            if(iCompare == 0)
+            {
+               return true;
+            }
+            else if(iCompare > 0)
+            {
+               iUpperBound = iIndex - 1;
+               if(iUpperBound < 0)
+               {
+                  iIndex = 0;
+                  break;
+               }
+            }
+            else
+            {
+               iLowerBound = iIndex + 1;
+               if(iLowerBound > iMaxBound)
+               {
+                  iIndex = iMaxBound + 1;
+                  break;
+               }
+            }
+            iIndex = (iUpperBound + iLowerBound) / 2;
+         }
+         // do sequential search
+         while(iIndex < a.get_count())
+         {
+            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *) &t);
+            if(iCompare == 0)
+               return true;
+            else if(iCompare < 0)
+               iIndex++;
+            else
+               break;
+         }
+         if(iIndex >= a.get_count())
+            return false;
+         while(iIndex >= 0)
+         {
+            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *)  &t);
+            if(iCompare == 0)
+               return true;
+            else if(iCompare > 0)
+               iIndex--;
+            else
+               break;
+         }
+         iIndex++;
+         return false;
+
+      }
+
+
+      template<class ARRAY>
+      index sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia)
+      {
+         index iIndex = 0;
+         binary_search(a, t, iIndex, fCompare, ia);
+         a.inset(iIndex, t);
+         ia.add(iIndex);
+         return iIndex;
+      }
+
 
    } // namespace array
 

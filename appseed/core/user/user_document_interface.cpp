@@ -593,12 +593,12 @@ namespace user
          TRACE(::core::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
 #endif
 
-      ::file::byte_stream spfile;
+      ::file::buffer_sp spfile;
 
       try
       {
 
-         spfile = Application.file().get_byte_stream(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
+         spfile = Application.file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
 
          /*if(::str::begins_ci(varFile, "uifs://"))
          {
@@ -617,16 +617,16 @@ namespace user
 
       delete_contents();
       set_modified_flag();  // dirty during de-serialize
-
+      ::file::input_stream is(spfile);
       try
       {
          wait_cursor wait(get_app());
-         read(spfile);     // load me
-         spfile.close();
+         read(is);     // load me
+         spfile->close();
       }
       catch(::exception::base & e)
       {
-         spfile.close();
+         spfile->close();
          delete_contents();   // remove failed contents
 
          try
@@ -647,12 +647,12 @@ namespace user
    bool document_interface::on_save_document(var varFile)
    {
 
-      ::file::byte_stream spfile;
+      ::file::buffer_sp spfile;
 
       try
       {
 
-         spfile = Application.file().get_byte_stream(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_write | ::file::share_exclusive);
+         spfile = Application.file().get_file(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_write | ::file::share_exclusive);
 
       }
       catch(::exception::base & e)
@@ -664,6 +664,7 @@ namespace user
 
       }
 
+      ::file::output_stream os(spfile);
 
       try
       {
@@ -677,11 +678,11 @@ namespace user
          else
          {
 
-            write(spfile);
+            write(os);
 
          }
 
-         spfile.close();
+         spfile->close();
 
       }
       catch(::exception::base & e)

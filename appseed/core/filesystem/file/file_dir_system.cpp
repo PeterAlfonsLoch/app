@@ -915,11 +915,11 @@ namespace file
 
             if(bDir)
             {
-               strPath = System.http().get("http://server.core.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
             else
             {
-               strPath = System.http().get("http://server.core.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
 
             if(strPath.has_char())
@@ -1129,11 +1129,11 @@ ret:
             
             if(bDir)
             {
-               strPath = System.http().get("http://server.core.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
             else
             {
-               strPath = System.http().get("http://server.core.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://server.ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
 
             strPath.trim();

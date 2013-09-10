@@ -47,24 +47,26 @@
 #pragma once
 
 
-class bzip
+class bzip_stream :
+   virtual public ::file::output_stream
 {
 public:
-   ::file::output_stream m_ostream;
-   primitive::memory m_memory;
-   int32_t m_CurrentBufferSize;
-   bz_stream m_zstream;
-   int32_t      m_z_err;   /* error code for last stream operation */
-   //byte     *m_outbuf; /* output buffer */
-   uint_ptr    m_crc;     /* crc32 of uncompressed data */
 
 
-   bzip(::file::buffer_sp  pfileDest);
-   bzip(::file::writer & writer);
-   bzip(::file::output_stream & ostreamDest);
-   virtual ~bzip();
+   primitive::memory          m_memory;
+   int32_t                    m_CurrentBufferSize;
+   bz_stream                  m_zstream;
+   int32_t                    m_z_err;   /* error code for last stream operation */
+   //byte *                   m_outbuf; /* output buffer */
+   uint_ptr                   m_crc;     /* crc32 of uncompressed data */
 
-   bool write(void * buf, ::primitive::memory_size iSize);
+
+   bzip_stream(::file::stream_buffer * pfileDest);
+   bzip_stream(::file::output_stream & ostreamDest);
+   virtual ~bzip_stream();
+
+
+   void write(const void * buf, ::primitive::memory_size iSize);
    void finish();
 
 protected:

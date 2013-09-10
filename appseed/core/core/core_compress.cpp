@@ -200,12 +200,13 @@ namespace core
       {
          return false;
       }
-      return bz_stream(ostreamBzFileCompressed, file);
+      ::file::input_stream is(file);
+      return bz_stream(ostreamBzFileCompressed, is);
    }
 
    bool compress::bz_stream(::file::output_stream & ostreamBzFileCompressed, ::file::input_stream & istreamFileUncompressed)
    {
-      bzip bz(ostreamBzFileCompressed);
+      bzip_stream bz(ostreamBzFileCompressed);
       class primitive::memory memory;
       memory.allocate(1024 * 256);
       ::primitive::memory_size uncomprLen;

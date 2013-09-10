@@ -23,7 +23,7 @@ namespace core
       bool unbz(::file::output_stream & ostreamUncompressed, const char * lpcszBzFileCompressed);
       bool bz(::file::output_stream & ostreamBzFileCompressed, const char * lpcszUncompressed);
 
-      bool bz_stream(::file::writer & ostreamBzFileCompressed, ::file::input_stream & istreamFileUncompressed);
+      bool bz_stream(::file::output_stream & ostreamBzFileCompressed, ::file::input_stream & istreamFileUncompressed);
 
       bool _compress(class primitive::memory & memory, void * pdata, ::primitive::memory_size ulSizeUncompressed);
       bool _uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, ::primitive::memory_size ulSizeUncompressed);

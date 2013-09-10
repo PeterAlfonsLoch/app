@@ -3028,7 +3028,7 @@ namespace user
 
       for(index iOrder = 0; iOrder < this->get_size(); iOrder++)
       {
-         list_column & column = this->element_at(iOrder);
+         list_column & column = *this->element_at(iOrder);
          column.m_iOrder = iOrder;
       }
 

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#undef new
+
+
 class CLASS_DECL_c plex_heap     // warning var length structure
 {
 public:
@@ -31,7 +34,7 @@ public:
    UINT                       m_nBlockSize;  // number of blocks to get at a time
    plex_heap *                m_pBlocks;     // linked list of blocks (is nBlocks*nAllocSize)
    node*                      m_pnodeFree;   // first free node (NULL if no free nodes)
-   critical_section *         m_pprotect;
+   critical_section           m_protect;
    int64_t                    m_iFreeHitCount;
    node *                     m_pnodeLastBlock;
 
@@ -47,7 +50,18 @@ public:
 
    void NewBlock();
 
+   void * operator new(size_t s)
+   {
+      return ::HeapAlloc(::GetProcessHeap(), NULL, sizeof(plex_heap_alloc_sync));
+   }
+
+   void operator delete(void * p)
+   {
+      ::HeapFree(::GetProcessHeap(), NULL, p);
+   }
 
 };
 
+
+#define new DEBUG_NEW
 

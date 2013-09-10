@@ -42,8 +42,8 @@ namespace visual
          {
             try
             {
-               ::file::byte_stream stream = App(m_p->m_pbaseapp).file().get_byte_stream(strFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
-               m_p->read(stream);
+               ::file::byte_input_stream istream(App(m_p->m_pbaseapp).file().get_file(strFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary));
+               istream >> *m_p;
                return true;
             }
             catch(...)
@@ -73,8 +73,8 @@ namespace visual
       {
          try
          {
-            ::file::byte_stream stream = App(m_p->m_pbaseapp).file().get_byte_stream(strFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
-            m_p->write(stream);
+            ::file::byte_output_stream ostream(App(m_p->m_pbaseapp).file().get_file(strFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory));
+            ostream << *m_p;
          }
          catch(...)
          {

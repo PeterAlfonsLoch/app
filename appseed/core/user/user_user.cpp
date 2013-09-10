@@ -500,7 +500,7 @@ retry_license:
    void user::data_on_after_change(signal_details * pobj)
    {
       SCAST_PTR(::database::change_event, pchange, pobj);
-      if(pchange->m_key.m_idKey == "core")
+      if(pchange->m_key.m_idKey == "ca2")
       {
          if(pchange->m_key.m_idIndex  == "savings")
          {

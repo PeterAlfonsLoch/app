@@ -1102,6 +1102,8 @@ InitFailure:
 
             System.os().post_to_all_threads(WM_QUIT, 0, 0);
 
+            Sleep(1984 + 1977);
+
          }
 
       }
@@ -1148,7 +1150,7 @@ exit_application:
       if(strId.CompareNoCase("session") == 0)
       {
 
-         ::plane::session * psession = new ::plane::session();
+         ::plane::session * psession = new ::plane::session(this);
 
          papp = psession;
 
@@ -1232,7 +1234,9 @@ exit_application:
       }
 
       //pbaseapp->m_pbaseapp                               = this;
-      papp->m_pplaneapp->m_psystem                            = m_psystem;
+      papp->m_pplaneapp->m_psystem                             = m_psystem;
+
+      papp->m_pbasesystem                                      = m_pbasesystem;
 
       papp->m_pplaneapp->command_central()->consolidate(command_central());
 
@@ -1543,11 +1547,11 @@ exit_application:
       string strUrl;
       if(_ca_is_basis())
       {
-         strUrl = "http://basis.spaignition.api.server.core.cc/download?authnone&version=basis&stage=";
+         strUrl = "http://basis.spaignition.api.server.ca2.cc/download?authnone&version=basis&stage=";
       }
       else
       {
-         strUrl = "http://stage.spaignition.api.server.core.cc/download?authnone&version=stage&stage=";
+         strUrl = "http://stage.spaignition.api.server.ca2.cc/download?authnone&version=stage&stage=";
       }
 
       strUrl += System.url().url_encode(strRelative);
@@ -1820,7 +1824,7 @@ exit_application:
             user()->set_keyboard_layout(NULL, false);
          }
 
-         data_pulse_change("core", "savings", NULL);
+         data_pulse_change("ca2", "savings", NULL);
 
 
          App(this).fill_locale_schema(*str_context()->m_plocaleschema);
@@ -2031,7 +2035,7 @@ exit_application:
    void application::data_on_after_change(signal_details * pobj)
    {
       SCAST_PTR(::database::change_event, pchange, pobj);
-      if(pchange->m_key.m_idKey == "core")
+      if(pchange->m_key.m_idKey == "ca2")
       {
          if(pchange->m_key.m_idIndex  == "savings")
          {

@@ -21,7 +21,7 @@ string dir::appdata(const char * lpcsz)
 
    buf = "C:\\ProgramData";
    
-   str = path(buf, "core");
+   str = path(buf, "ca2");
    
    //memory_free_dbg(buf, 0);
 
@@ -37,7 +37,7 @@ string dir::appdata(const char * lpcsz)
       CSIDL_COMMON_APPDATA,
       FALSE);
    
-   str = path(buf, "core");
+   str = path(buf, "ca2");
    
    memory_free_dbg(buf, 0);
 
@@ -84,7 +84,7 @@ string dir::userappdata(const char * lpcsz)
 
    string psz = ::str::international::unicode_to_utf8(buf);
 
-   str = path(psz, "core");
+   str = path(psz, "ca2");
 
 //   memory_free(psz);
    

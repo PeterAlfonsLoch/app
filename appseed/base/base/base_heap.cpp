@@ -195,44 +195,139 @@ size_t _ca_msize(void * pvoid, int32_t iBlockType)
 }
 */
 
+#define ROUND(x,y) (((x)+(y-1))&~(y-1))
+#define ROUND4(x) ROUND(x, 4)
 
 extern mutex * g_pmutexSystemHeap;
 
+extern plex_heap_alloc_array * g_pheap;
 
-void initialize_primitive_heap()
+extern mutex * g_pmutexTrace;
+
+extern fixed_alloc * g_pfixedallocVar;
+
+extern fixed_alloc * g_pfixedallocProperty;
+
+extern mutex * g_pmutgen;
+
+void create_id_space();
+
+void destroy_id_space();
+
+extern string * g_pstrLastStatus;
+
+extern string * g_pstrLastGlsStatus;
+
+class base_static_start
 {
+public:
 
-   /*
-   if(g_pfnca2_alloc == NULL)
+   base_static_start()
    {
-      g_pfnca2_alloc       = memory_alloc;
-   }
-   if(g_pfnca2_alloc_dbg == NULL)
-   {
-      g_pfnca2_alloc_dbg   = _ca_alloc_dbg;
-   }
-   if(g_pfnca2_realloc == NULL)
-   {
-      g_pfnca2_realloc     = memory_realloc_dbg;
-   }
-   if(g_pfnca2_free == NULL)
-   {
-      g_pfnca2_free        = memory_free_dbg;
-   }
-   if(g_pfnca2_msize == NULL)
-   {
-      g_pfnca2_msize       = _ca_msize;
+
+      /*
+      if(g_pfnca2_alloc == NULL)
+      {
+         g_pfnca2_alloc       = memory_alloc;
+      }
+      if(g_pfnca2_alloc_dbg == NULL)
+      {
+         g_pfnca2_alloc_dbg   = _ca_alloc_dbg;
+      }
+      if(g_pfnca2_realloc == NULL)
+      {
+         g_pfnca2_realloc     = memory_realloc_dbg;
+      }
+      if(g_pfnca2_free == NULL)
+      {
+         g_pfnca2_free        = memory_free_dbg;
+      }
+      if(g_pfnca2_msize == NULL)
+      {
+         g_pfnca2_msize       = _ca_msize;
+      }
+
+      */
+
+      new plex_heap_alloc_array();
+   
+      g_pfixedallocVar = new fixed_alloc(ROUND4(sizeof(var) ), 1024);
+
+      g_pfixedallocProperty = new fixed_alloc(ROUND4(sizeof(property) ), 1024);
+
+      create_id_space();
+
+      g_pstrLastStatus = new string();
+
+      g_pstrLastGlsStatus = new string();
+
+      g_pmutexSystemHeap = new mutex(); 
+
+      g_pmutgen = new mutex();
+
+      g_pmutexTrace = new mutex();
+
+
    }
 
-   */
+   ~base_static_start()
+   {
 
-   g_pmutexSystemHeap = new mutex(); 
+      delete g_pmutexTrace;
+
+      g_pmutexTrace = NULL;
+
+      delete g_pmutgen;
+
+      g_pmutgen = NULL;
+
+      delete g_pmutexSystemHeap;
+
+      g_pmutexSystemHeap = NULL;
+
+      delete g_pstrLastGlsStatus;
+
+      g_pstrLastGlsStatus = NULL;
+
+      delete g_pstrLastStatus;
+
+      g_pstrLastStatus = NULL;
+
+      destroy_id_space();
+
+      delete g_pfixedallocProperty;
+
+      g_pfixedallocProperty = NULL;
+
+      delete g_pfixedallocVar;
+
+      g_pfixedallocVar = NULL;
+
+      delete g_pheap;
+
+
+
+   }
+
+} g_basestaticstart;
+
+
+void create_id_space()
+{
+   
+   base_system::s_pidspace = new id_space();
 
 }
 
-void finalize_primitive_heap()
+void destroy_id_space()
 {
+
+   delete base_system::s_pidspace;
+
+   base_system::s_pidspace = NULL;
+
 }
+
 
 /*
 BEGIN_EXTERN_C

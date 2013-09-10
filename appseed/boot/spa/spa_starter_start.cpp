@@ -141,7 +141,7 @@ void update_ca2_build()
 {
    if(g_pszCa2Build != NULL)
       memory_free_dbg(g_pszCa2Build, 0);
-   g_pszCa2Build = (char *) strdup_dup(http_get_dup("http://spaignition.api.server.core.cc/ca2_get_build?authnone"));
+   g_pszCa2Build = (char *) strdup_dup(http_get_dup("http://spaignition.api.server.ca2.cc/ca2_get_build?authnone"));
 }
 
 

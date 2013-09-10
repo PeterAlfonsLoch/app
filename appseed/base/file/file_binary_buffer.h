@@ -10,10 +10,7 @@ namespace file
 
 
    class CLASS_DECL_c binary_buffer :
-      virtual public ::file::reader,
-      virtual public ::file::writer,
-      virtual public ::file::seekable,
-      virtual public ::file::writer_flush
+      virtual public ::file::stream_buffer
    {
    public:
 

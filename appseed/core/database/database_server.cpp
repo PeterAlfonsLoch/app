@@ -5,9 +5,10 @@ namespace database
 {
 
 
-   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::file::writable & writable, update_hint * puh)
+   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::file::stream_buffer & writable, update_hint * puh)
    {
-      return var_load(pclient, idSection, id, idIndex, writable, puh);
+      file::output_stream ostream(&writable);
+      return var_load(pclient, idSection, id, idIndex, ostream, puh);
    }
 
    bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, var & var   , update_hint * puh)
@@ -29,7 +30,7 @@ namespace database
 
    bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::file::output_stream & ostream, update_hint * puh)
    {
-      return data_server_load(pclient, idSection, id, idIndex, (::file::writable &) ostream, puh);
+      return var_load(pclient, idSection, id, idIndex, ostream, puh);
    }
 
    bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * puh)
@@ -50,9 +51,10 @@ namespace database
    }
 
 
-   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::file::readable & readable, update_hint * puh)
+   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::file::stream_buffer & readable, update_hint * puh)
    {
-      return var_save(pclient, idSection, id, idIndex, readable, puh);
+      ::file::input_stream istream(&readable);
+      return var_save(pclient, idSection, id, idIndex, istream, puh);
    }
 
    bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, var & var   , update_hint * puh)
@@ -67,7 +69,7 @@ namespace database
 
    bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::file::input_stream & istream, update_hint * puh)
    {
-      return data_server_save(pclient, idSection, id, idIndex, (::file::readable &) istream, puh);
+      return var_save(pclient, idSection, id, idIndex,  istream, puh);
    }
 
    bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::file::serializable & obj, update_hint * puh)
@@ -134,20 +136,18 @@ namespace database
       return data_server_save(pclient, idSection, id, idIndex, var, phint);
    }
 
-   bool server::var_load(client * pclient, class id idSection, class id id, class id idIndex, ::file::writable & writable, update_hint * puh)
+   bool server::var_load(client * pclient, class id idSection, class id id, class id idIndex, ::file::output_stream & ostream, update_hint * puh)
    {
       var var;
       if(!data_server_load(pclient, idSection, id, idIndex, var, puh))
          return false;
-      ::file::output_stream ostream(&writable);
       var.write(ostream);
       return true;
    }
 
-   bool server::var_save(client * pclient, class id idSection, class id id, class id idIndex, ::file::readable & readable, update_hint * puh)
+   bool server::var_save(client * pclient, class id idSection, class id id, class id idIndex, ::file::input_stream & istream, update_hint * puh)
    {
       var var;
-      ::file::input_stream istream(&readable);
       var.read(istream);
       if(!data_server_save(pclient, idSection, id, idIndex, var, puh))
          return false;

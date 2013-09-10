@@ -419,7 +419,7 @@ namespace visual
          {
             fontUnderline.create(allocer());
             pfontUnderline = fontUnderline;
-            fontUnderline ->operator=(pdc->get_current_font());
+            fontUnderline ->operator=(*pdc->get_current_font());
             fontUnderline->set_bold();
          }
       }
@@ -472,7 +472,7 @@ namespace visual
             min(iUnderline, str.get_length()));*/
          if(iUnderline <= str.get_length())
          {
-            ::draw2d::font fPrevious = pdc->get_current_font();
+            ::draw2d::font fPrevious = *pdc->get_current_font();
             pfontOld = pdc->SelectObject(pfontUnderline);
             /*::GetTextExtentPoint32U(
                (HDC)pdc->get_os_data(),

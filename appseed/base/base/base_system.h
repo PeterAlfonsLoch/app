@@ -220,13 +220,14 @@ public:
    const id_pool                                m_cidpool;
 
 
-   static id_space                              s_idspace;
+   static id_space *                            s_pidspace;
    static class id                              idEmpty;
    class ::str::base64                          m_base64;
 
 
 
    base_system(sp(base_application) papp);
+
 
 
 

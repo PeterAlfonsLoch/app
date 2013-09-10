@@ -3,11 +3,11 @@
 //extern oswindow g_oswindow;
 
 
-mutex g_mutexTrace;
+mutex * g_pmutexTrace = NULL;
 stringa * g_pstraTrace = NULL;
 HANDLE g_ftrace = INVALID_HANDLE_VALUE;
-string g_strLastStatus;
-string g_strLastGlsStatus;
+string * g_pstrLastStatus = NULL;
+string * g_pstrLastGlsStatus = NULL;
 int32_t g_iLastStatus = 0;
 int32_t g_iLastGlsStatus = 0;
 
@@ -41,41 +41,41 @@ void trace(const char * psz)
    if(str_begins_ci_dup(psz, "***"))
    {
       g_iLastStatus = 0;
-      if(g_strLastStatus != psz)
+      if((*g_pstrLastStatus) != psz)
       {
-         g_strLastStatus = psz;
+         (*g_pstrLastStatus) = psz;
       }
    }
    else if(str_begins_ci_dup(psz, ":::::"))
    {
       g_iLastGlsStatus = 0;
-      if(g_strLastGlsStatus != psz)
+      if((*g_pstrLastGlsStatus) != psz)
       {
-         g_strLastGlsStatus = psz;
+         (*g_pstrLastGlsStatus) = psz;
       }
    }
    else
    {
-		if(g_strLastStatus.begins_ci("***"))
+		if((*g_pstrLastStatus).begins_ci("***"))
       {
          g_iLastStatus++;
          if(g_iLastStatus >= 23)
          {
-            trace(g_strLastStatus);
+            trace((*g_pstrLastStatus));
          }
       }
-		if(g_strLastGlsStatus.begins_ci(":::::"))
+		if((*g_pstrLastGlsStatus).begins_ci(":::::"))
       {
          g_iLastGlsStatus++;
          if(g_iLastGlsStatus >= 23)
          {
-            trace(g_strLastGlsStatus);
+            trace((*g_pstrLastGlsStatus));
          }
       }
    }
    string str;
    {
-      synch_lock lockTrace(&g_mutexTrace);
+      synch_lock lockTrace(g_pmutexTrace);
       g_pstraTrace->add(psz);
       str = g_pstraTrace->element_at(g_pstraTrace->get_count() - 1);
    }
@@ -88,7 +88,7 @@ void trace_add(const char * psz)
 {
    string str;
    {
-      synch_lock lockTrace(&g_mutexTrace);
+      synch_lock lockTrace(g_pmutexTrace);
       if(g_pstraTrace->get_count() == 0)
          g_pstraTrace->add(psz);
       else

@@ -15,30 +15,30 @@ inline id base_system::id(const property & prop)
 inline id base_system::id(const std_type_info & info)
 {
 #ifdef WINDOWS
-   return s_idspace(info.name());
+   return (*s_pidspace)(info.name());
 #else
-   return s_idspace(info.name());
+   return (*s_pidspace)(info.name());
 #endif
 }
 
 inline id base_system::id(const char * psz)
 {
-   return s_idspace(psz);
+   return (*s_pidspace)(psz);
 }
 
 inline id base_system::id(const string & str)
 {
-   return s_idspace(str);
+   return (*s_pidspace)(str);
 }
 
 inline id base_system::id(int64_t i)
 {
-   return s_idspace(i);
+   return (*s_pidspace)(i);
 }
 
 inline id_space & base_system::id()
 {
-   return s_idspace;
+   return (*s_pidspace);
 }
 
 

@@ -81,7 +81,7 @@ namespace plane
       string_map < sp(::uinteraction::interaction) >     m_mapUinteraction;
 
 
-      session();
+      session(base_application * papp);
       virtual ~session();
       virtual void construct();
 

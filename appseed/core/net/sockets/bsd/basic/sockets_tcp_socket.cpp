@@ -538,11 +538,11 @@ void ssl_sigpipe_handle( int x );
 
             }
          }
-         else
-         {
-            Handler().LogError(this, "tcp_socket::read", n, "abnormal value from SSL_read", ::core::log::level_error);
-         }
 
+      }
+      else
+      {
+         Handler().LogError(this, "tcp_socket::read", n, "abnormal value from SSL_read", ::core::log::level_error);
       }
 
       return n;

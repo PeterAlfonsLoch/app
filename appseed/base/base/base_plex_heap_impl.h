@@ -3,7 +3,7 @@
 inline void * plex_heap_alloc_sync::Alloc()
 {
 
-   m_pprotect->lock();
+   m_protect.lock();
    void * pdata = NULL;
    try
    {
@@ -19,7 +19,7 @@ inline void * plex_heap_alloc_sync::Alloc()
    catch(...)
    {
    }
-   m_pprotect->unlock();
+   m_protect.unlock();
    //memset(pdata, 0, m_nAllocSize); // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
    return pdata;
 }
@@ -37,7 +37,7 @@ inline void plex_heap_alloc_sync::Free(void * p)
    if(p == NULL)
       return;
 
-   m_pprotect->lock();
+   m_protect.lock();
 
    try
    {
@@ -95,7 +95,7 @@ inline void plex_heap_alloc_sync::Free(void * p)
 
    }
 
-   m_pprotect->unlock();
+   m_protect.unlock();
 
 }
 
@@ -125,6 +125,18 @@ public:
 
    void NewBlock();
 
+   void pre_finalize();
+
+
+   void * operator new(size_t s)
+   {
+      return ::HeapAlloc(::GetProcessHeap(), NULL, sizeof(plex_heap_alloc));
+   }
+
+   void operator delete(void * p)
+   {
+      ::HeapFree(::GetProcessHeap(), NULL, p);
+   }
 
 };
 
@@ -172,7 +184,7 @@ inline void plex_heap_alloc::Free(void * p)
 
 
 
-
+#undef new
 
 
 class CLASS_DECL_c plex_heap_alloc_array :
@@ -194,6 +206,9 @@ public:
    };
 
 
+   int m_iWorkingSize;
+
+
    static memdleak_block * s_pmemdleakList;
 
    plex_heap_alloc_array();
@@ -207,13 +222,26 @@ public:
    inline void * realloc(void * p, size_t nOldAllocSize, size_t nNewAllocSize);
    inline void free(void * p, size_t nAllocSize);
 
+   void pre_finalize();
+
    inline plex_heap_alloc * find(size_t nAllocSize);
 
    void * alloc_dbg(size_t nAllocSize, int32_t nBlockUse, const char * szFileName, int32_t iLine);
    void * realloc_dbg(void * p, size_t nOldAllocSize, size_t nNewAllocSize, int32_t nBlockUse, const char * szFileName, int32_t iLine);
    void free_dbg(void * p, size_t nAllocSize);
 
+   void * operator new(size_t s)
+   {
+      return ::HeapAlloc(::GetProcessHeap(), NULL, sizeof(plex_heap_alloc_array));
+   }
+
+   void operator delete(void * p)
+   {
+      ::HeapFree(::GetProcessHeap(), NULL, p);
+   }
+
 };
+
 
 
 inline void * plex_heap_alloc_array::alloc(size_t nAllocSize)
@@ -294,7 +322,7 @@ inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
 {
    size_t nFoundSize = MAX_DWORD_PTR;
    int32_t iFound = -1;
-   for(int32_t i = 0; i < this->get_count(); i++)
+   for(int32_t i = 0; i < m_iWorkingSize; i++)
    {
       if(this->element_at(i)->GetAllocSize() >= nAllocSize && (nFoundSize == MAX_DWORD_PTR || this->element_at(i)->GetAllocSize() < nFoundSize))
       {
@@ -308,3 +336,6 @@ inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
    else
       return NULL;
 }
+
+
+#define new DEBUG_NEW

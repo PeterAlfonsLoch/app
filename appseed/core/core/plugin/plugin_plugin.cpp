@@ -416,7 +416,7 @@ namespace plugin
 
       string strUrl;
 
-      strUrl = "https://account.core.cc/sec?action=logout";
+      strUrl = "https://account.ca2.cc/sec?action=logout";
 
       m_psystem->url().string_set(strUrl, "ruri", strLocation);
 
@@ -467,7 +467,7 @@ namespace plugin
 
          string strExtension     = System.file().extension(System.url().get_script(strPluginUrl));
 
-         if(strExtension.is_empty() || strExtension.compare_no_case("core") == 0)
+         if(strExtension.is_empty() || strExtension.compare_no_case("ca2") == 0)
          {
             // remark alarm
             // STRESS : http_get_dup

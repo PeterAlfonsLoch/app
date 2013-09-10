@@ -756,6 +756,10 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
 
       }
 
+      m_phead = NULL;
+
+      m_ptail = NULL;
+
       m_count = 0;
 
    }
@@ -790,6 +794,8 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
 
       m_phead = pNewNode;
 
+      m_count++;
+
       return (POSITION) pNewNode;
 
    }
@@ -809,6 +815,8 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
          m_phead = pNewNode;
 
       m_ptail = pNewNode;
+
+      m_count++;
 
       return (POSITION) pNewNode;
 
@@ -899,6 +907,9 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
       else
          m_ptail = NULL;
       delete pOldNode;
+
+      m_count--;
+
       return returnValue;
    }
 
@@ -917,6 +928,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
          m_ptail->m_pnext = NULL;
       else
          m_phead = NULL;
+      m_count--;
       delete pOldNode;
       return returnValue;
    }
@@ -1449,25 +1461,34 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
 
       ASSERT_VALID(this);
 
+      if(pnode == NULL)
+         return NULL;
+
       if(pnode == m_phead)
       {
          m_phead = pnode->m_pnext;
       }
-      else
+      
+      if(pnode->m_pprev != NULL)
       {
          ASSERT(__is_valid_address(pnode->m_pprev, sizeof(node)));
          pnode->m_pprev->m_pnext = pnode->m_pnext;
       }
 
-      if (pnode == m_ptail)
+      if(pnode == m_ptail)
       {
          m_ptail = pnode->m_pprev;
       }
-      else
+      
+      if(pnode->m_pnext != NULL)
       {
          ASSERT(__is_valid_address(pnode->m_pnext, sizeof(node)));
          pnode->m_pnext->m_pprev = pnode->m_pprev;
       }
+
+      pnode->m_pprev = NULL;
+
+      pnode->m_pnext = NULL;
 
       m_count--;
 

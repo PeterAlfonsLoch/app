@@ -420,9 +420,9 @@ bool application::initialize1()
    /*
    if(is_system())
    {
-   m_strFontopusServer     = System.get_fontopus_server("http://account.core.cc/get_fontopus", this, 8);
+   m_strFontopusServer     = System.get_fontopus_server("http://account.ca2.cc/get_fontopus", this, 8);
    if(m_strFontopusServer.is_empty())
-   m_strFontopusServer = "server.core.cc";
+   m_strFontopusServer = "server.ca2.cc";
    else
    {
    m_strFontopusServer.replace("account", "server");
@@ -955,13 +955,13 @@ int32_t application::exit_instance()
 
       ::application_base   * papp         = ::application_base::m_p.detach();
 
-      if(papp != NULL && papp != this && !papp->m_pplaneapp->is_system())
+      if(papp != NULL && papp != this && !papp->is_system())
       {
 
          try
          {
 
-            papp->m_pplaneapp->exit_instance();
+            papp->exit_instance();
 
          }
          catch(...)

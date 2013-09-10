@@ -8,7 +8,9 @@ namespace file
 
    class CLASS_DECL_c stream_buffer :
       virtual public ::file::reader,
-      virtual public ::file::writer
+      virtual public ::file::writer,
+      virtual public ::file::seekable,
+      virtual public ::file::writer_flush
    {
    public:
 

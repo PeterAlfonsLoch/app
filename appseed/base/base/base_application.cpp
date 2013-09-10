@@ -13,6 +13,21 @@ base_application::base_application() :
 
    }
 
+   if(m_pbaseapp != NULL)
+   {
+
+      m_pbasesystem = m_pbaseapp->m_pbasesystem;
+
+   }
+   else
+   {
+
+      m_pbasesystem = NULL;
+
+   }
+
+   m_pplaneapp = NULL;
+
    m_psignal = new signal();
 
    m_pcommandthread           = new ::command_thread(this);

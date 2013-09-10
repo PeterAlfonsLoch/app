@@ -59,8 +59,7 @@ public:
    uint32_t                      m_crc;     /* crc32 of uncompressed data */
 
 
-   gzip_stream(::file::buffer_sp  pfileDest);
-   gzip_stream(::file::writer & ostreamDest);
+   gzip_stream(::file::stream_buffer *  pfileDest);
    gzip_stream(::file::output_stream & ostreamDest);
    virtual ~gzip_stream();
 

@@ -184,7 +184,7 @@ namespace sockets
          Handler().AddList(m_socket, LIST_CLOSE, false);
       }
       m_socket = INVALID_SOCKET;
-      throw n;
+      //throw n;
    }
 
 

@@ -353,13 +353,13 @@ namespace core
       if(pszVersion != NULL && !strcmp(pszVersion, "basis"))
       {
 
-          strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.core.cc";
+          strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
 
       }
       else if(pszVersion != NULL && !strcmp(pszVersion, "stage"))
       {
 
-          strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.core.cc";
+          strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
 
       }
       else 
@@ -367,11 +367,11 @@ namespace core
 
    #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.core.cc";
+         strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
 
    #else
          
-         strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.core.cc";
+         strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
 
    #endif
 

@@ -61,11 +61,11 @@ namespace file
       inline output_stream & operator << (const string & str                   ) { write(str             ); return *this;}
 
 
-      void write_arbitrary(int32_t i);
-      void write_arbitrary(uint32_t ui);
-      void write_arbitrary(int64_t i);
-      void write_arbitrary(uint64_t ui);
-      void write_arbitrary(uint64_t ui, int signal);
+      virtual void write_arbitrary(int32_t i);
+      virtual void write_arbitrary(uint32_t ui);
+      virtual void write_arbitrary(int64_t i);
+      virtual void write_arbitrary(uint64_t ui);
+      virtual void write_arbitrary(uint64_t ui, int signal);
 
 
 

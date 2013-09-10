@@ -69,7 +69,8 @@ namespace file
          ::file::binary_buffer_sp fileOut = App(papp).file().get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
          if(fileOut.is_null())
             return false;
-         return (p->*lpfnOuput)(fileOut, lpszSource);
+         ::file::output_stream ostream(fileOut);
+         return (p->*lpfnOuput)(ostream, lpszSource);
       }
 #endif
 
@@ -92,7 +93,11 @@ namespace file
          if(fileIn.is_null())
             return false;
 
-         return (p->*lpfnOuput)(fileOut, fileIn);
+         ::file::output_stream ostream(fileOut);
+
+         ::file::input_stream istream(fileIn);
+
+         return (p->*lpfnOuput)(ostream, istream);
 
       }
 #endif
@@ -100,7 +105,11 @@ namespace file
       template < class T >
       bool output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), ::file::input_stream & istream)
       {
-         return (p->*lpfnOuput)(get(pszOutput, papp), istream);
+         
+         ::file::output_stream ostream(get(pszOutput, papp));
+
+         return (p->*lpfnOuput)(ostream, istream);
+
       }
 
       string time(sp(base_application) papp, const char * pszBasePath, int32_t iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);

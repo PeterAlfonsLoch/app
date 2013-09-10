@@ -78,7 +78,7 @@ void thread::CommonConstruct()
    m_bRun                        = true;
    m_pappDelete                  = NULL;
    m_pbReady                     = NULL;
-   m_pthread = this;
+   m_pthread                     = this;
 
    m_pappDelete      = NULL;
    m_pbReady         = NULL;
@@ -110,7 +110,7 @@ void thread::CommonConstruct()
 
 void * thread::get_os_data() const
 {
-   return m_p->get_os_data();
+   return m_p == NULL ? NULL : m_p->get_os_data();
 }
 
 

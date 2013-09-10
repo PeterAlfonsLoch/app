@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+#undef new
+
+
 plex_heap_alloc_array::memdleak_block * plex_heap_alloc_array::s_pmemdleakList = NULL;
 
 
@@ -40,7 +43,7 @@ void plex_heap::FreeDataChain()     // free this one and links
 plex_heap_alloc_sync::plex_heap_alloc_sync(UINT nAllocSize, UINT nBlockSize)
 {
 
-   m_pprotect = new critical_section();
+//   m_pprotect = new critical_section();
 
    if(nBlockSize <= 1)
       nBlockSize = 4;
@@ -68,7 +71,7 @@ plex_heap_alloc_sync::~plex_heap_alloc_sync()
    
    FreeAll();
 
-   delete m_pprotect;
+//   delete m_pprotect;
 
 }
 
@@ -76,7 +79,7 @@ plex_heap_alloc_sync::~plex_heap_alloc_sync()
 void plex_heap_alloc_sync::FreeAll()
 {
 
-   m_pprotect->lock();
+   m_protect.lock();
 
 
 
@@ -91,7 +94,7 @@ void plex_heap_alloc_sync::FreeAll()
    }
 
 
-   m_pprotect->unlock();
+   m_protect.unlock();
 
 }
 
@@ -178,8 +181,31 @@ void plex_heap_alloc::FreeAll()
 }
 
 
+void plex_heap_alloc::pre_finalize()
+{
+
+   FreeAll();
+
+   m_pData = NULL; // FreeAll freed all data alloced
+   m_nSize = 0;
+   m_nMaxSize = 0;
+
+}
+
+
+extern plex_heap_alloc_array * g_pheap;
+
 plex_heap_alloc_array::plex_heap_alloc_array()
 {
+
+   if(g_pheap == NULL)
+   {
+
+      g_pheap = this;
+
+   }
+
+   m_iWorkingSize = 0;
 
    add(new plex_heap_alloc(8, 256));
    add(new plex_heap_alloc(16, 256));
@@ -214,17 +240,44 @@ plex_heap_alloc_array::plex_heap_alloc_array()
    add(new plex_heap_alloc(1024 * 1024, 1));
    add(new plex_heap_alloc(1024 * 1024 * 2, 1));
 
+   m_iWorkingSize = get_size();
+
 }
 
 plex_heap_alloc_array::~plex_heap_alloc_array()
 {
+
+   pre_finalize();
+
+   m_iWorkingSize = 0;
+
    for(int32_t i = 0; i < this->get_count(); i++)
    {
       delete this->element_at(i);
    }
+
+   remove_all();
+
+   if(g_pheap == this)
+   {
+
+      g_pheap = NULL;
+
+   }
+
 }
 
-static mutex g_mutgen;
+void plex_heap_alloc_array::pre_finalize()
+{
+
+   for(int32_t i = 0; i < this->get_count(); i++)
+   {
+      this->element_at(i)->pre_finalize();
+   }
+
+}
+
+mutex * g_pmutgen = NULL;
 
 void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
@@ -246,7 +299,7 @@ void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int32_t nBlockUse, co
 
 
 
-   synch_lock lock(&g_mutgen);
+   synch_lock lock(g_pmutgen);
    pblock->m_pprevious                 = NULL;
    pblock->m_pnext                     = s_pmemdleakList;
    if(s_pmemdleakList != NULL)
@@ -269,7 +322,7 @@ void plex_heap_alloc_array::free_dbg(void * p, size_t nAllocSize)
 
    memdleak_block * pblock = &((memdleak_block *)p)[-1];
 
-   synch_lock lock(&g_mutgen);
+   synch_lock lock(g_pmutgen);
 
    if(s_pmemdleakList == pblock)
    {
@@ -307,7 +360,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
 
    memdleak_block * pblock = &((memdleak_block *)pOld)[-1];
 
-   synch_lock lock(&g_mutgen);
+   synch_lock lock(g_pmutgen);
 
    if(s_pmemdleakList == pblock)
    {
@@ -391,7 +444,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
 
 #endif
 
-   synch_lock lock(&g_mutgen);
+   synch_lock lock(g_pmutgen);
 
    memdleak_block * pblock = s_pmemdleakList;
 

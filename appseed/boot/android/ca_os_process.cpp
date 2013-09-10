@@ -134,7 +134,7 @@ CLASS_DECL_c DWORD call_sync(
 CLASS_DECL_c bool main_initialize()
 {
 
-   initialize_primitive_heap();
+   //initialize_primitive_heap();
 
    if(!os_initialize())
       return false;

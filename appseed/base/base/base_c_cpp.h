@@ -205,7 +205,6 @@ namespace file
 
 #include "base_allocate.h"
 #include "base_plex.h"
-#include "base_plex_heap.h"
 
 
 #include "base/primitive/primitive_id.h"
@@ -260,6 +259,7 @@ CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 
 #include "base/multithreading/multithreading.h"
 
+#include "base_plex_heap.h"
 
 #include "base/primitive/primitive_type.h"
 

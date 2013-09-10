@@ -369,7 +369,7 @@ namespace uinteraction
          for(int32_t i = 0; i < m_colorbezieraOutsideBorder.get_size(); i++)
          {
             CColorBezier & bezier = m_colorbezieraOutsideBorder[i];
-            bezier.draw(m_brushNull, pdc);
+            bezier.draw(*m_brushNull, pdc);
          }
 
       }

@@ -1,11 +1,10 @@
 #include "framework.h"
 
-#define ROUND(x,y) (((x)+(y-1))&~(y-1))
-#define ROUND4(x) ROUND(x, 4)
+
 #undef new
 
 
-static fixed_alloc g_fixedallocVar(ROUND4(sizeof(var) ), 1024);
+fixed_alloc * g_pfixedallocVar = NULL;
 
 void * var::operator new(size_t size, void * p)
    { 
@@ -15,33 +14,33 @@ void * var::operator new(size_t size, void * p)
 
 void * var::operator new(size_t nSize)
 {
-   return g_fixedallocVar.Alloc();
+   return g_pfixedallocVar->Alloc();
 }
 
 #ifdef DEBUG
 
 void * var::operator new(size_t nSize, const char * lpszFileName, int32_t nLine)
 {
-   return g_fixedallocVar.Alloc();
+   return g_pfixedallocVar->Alloc();
 }
 
 #endif
 
 inline void var::operator delete(void * p)
 {
-   g_fixedallocVar.Free(p);
+   g_pfixedallocVar->Free(p);
 }
 
 #ifdef DEBUG
 
 inline void var::operator delete(void * p, void *)
 {
-   g_fixedallocVar.Free(p);
+   g_pfixedallocVar->Free(p);
 }
 
 inline void var::operator delete(void *pvar, const char *, int32_t)
 {
-   g_fixedallocVar.Free(pvar);
+   g_pfixedallocVar->Free(pvar);
 }
 
 #endif

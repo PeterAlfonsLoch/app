@@ -7906,7 +7906,7 @@ namespace sqlite3
    **       b INTEGER CONSTRAINT fk1 REFERENCES element(x)
    **     );
    **
-   ** For foreign key "fk1", the from-table is "core" and the to-table is "core".
+   ** For foreign key "fk1", the from-table is "_core" and the to-table is "_core".
    **
    ** Each REFERENCES clause generates an instance of the following structure
    ** which is attached to the from-table.  The to-table need not exist when

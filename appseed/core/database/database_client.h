@@ -48,7 +48,7 @@ namespace database
       virtual bool data_set(class id, class id idIndex, int64_t i, update_hint * puh = NULL);
       virtual bool data_set(class id, class id idIndex, const char * lpsz, update_hint * puh = NULL);
       virtual bool data_set(class id, class id idIndex, const wchar_t * lpsz, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, ::file::readable & obj, update_hint * puh = NULL);
+      virtual bool data_set(class id, class id idIndex, ::file::stream_buffer & obj, update_hint * puh = NULL);
       virtual bool data_set(class id, class id idIndex, ::file::serializable & obj, update_hint * puh = NULL);
       virtual bool data_set(class id, class id idIndex, ::file::input_stream & obj, update_hint * puh = NULL);
 //      virtual bool data_set(class id, class id idIndex, ::file::serializable & obj, update_hint * puh = NULL);
@@ -63,7 +63,7 @@ namespace database
       virtual bool data_get(class id, class id idIndex, int32_t & i);
       virtual bool data_get(class id, class id idIndex, int64_t & i);
       virtual bool data_get(class id, class id idIndex, string & str);
-      virtual bool data_get(class id, class id idIndex, ::file::writable & obj);
+      virtual bool data_get(class id, class id idIndex, ::file::stream_buffer & obj);
       virtual bool data_get(class id, class id idIndex, ::file::serializable & obj);
       virtual bool data_get(class id, class id idIndex, ::file::output_stream & obj);
 //      virtual bool data_get(class id, class id idIndex, ::file::serializable & obj);

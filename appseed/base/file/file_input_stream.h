@@ -60,10 +60,10 @@ namespace file
       inline input_stream & operator >> (string          & str             ) { read(str            ); return *this; }
 
 
-      void read_arbitrary(int32_t & i);
-      void read_arbitrary(uint32_t & ui);
-      void read_arbitrary(int64_t & i);
-      void read_arbitrary(uint64_t & ui);
+      virtual void read_arbitrary(int32_t & i);
+      virtual void read_arbitrary(uint32_t & ui);
+      virtual void read_arbitrary(int64_t & i);
+      virtual void read_arbitrary(uint64_t & ui);
 
 
       virtual void read (bool & b);

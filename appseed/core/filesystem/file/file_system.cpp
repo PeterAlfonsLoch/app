@@ -334,7 +334,7 @@ restart:
       primitive::memory storage;
       if(varFile.element < ::file::binary_buffer > () != NULL)
       {
-         ::file::byte_input_stream is(*varFile.element < ::file::binary_buffer >());
+         ::file::byte_input_stream is(varFile.element < ::file::binary_buffer >());
          storage.read(is);
       }
       else
@@ -392,7 +392,7 @@ restart:
             {
                App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
             }
-            else if(domain.m_strRadix == "core" && strFilePath.contains("/matter/"))
+            else if(domain.m_strRadix == "ca2" && strFilePath.contains("/matter/"))
             {
                try
                {
@@ -766,7 +766,11 @@ restart:
             throw strError;
          }
 
-         System.compress().null(ofile, ifile);
+         ::file::output_stream ostream(ofile);
+
+         ::file::input_stream istream(ifile);
+
+         System.compress().null(ostream, istream);
 
 
 

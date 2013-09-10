@@ -356,7 +356,7 @@ string dir::element(const char * path1, const char * path2, const char * path3, 
 
    string str = path(getenv("HOME"), ".core/appdata");
 
-   return path(path(str, "core", strRelative), path1, path2, path3, path4);
+   return path(path(str, "ca2", strRelative), path1, path2, path3, path4);
 
 #endif
 
@@ -871,9 +871,9 @@ string dir::userfolder(const char * lpcsz, const char * lpcsz2)
       strUserFolderShift = strRelative;
    }
 
-   return path(path(str, "core", strUserFolderShift), lpcsz, lpcsz2);
+   return path(path(str, "ca2", strUserFolderShift), lpcsz, lpcsz2);
 
-   //      return path(path(str, "core"), lpcsz);
+   //      return path(path(str, "ca2"), lpcsz);
    /*      if(&AppUser(papp) == NULL)
    {
    string str;

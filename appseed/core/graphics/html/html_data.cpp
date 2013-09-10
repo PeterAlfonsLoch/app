@@ -456,7 +456,7 @@ restart:
          string filename;
          filename = System.file().time_square(get_app());
          System.http().download(
-            "https://api.core.cc/auth",
+            "https://api.ca2.cc/auth",
             filename,
             post,
             headers,

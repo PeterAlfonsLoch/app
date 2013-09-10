@@ -141,7 +141,7 @@ namespace file
       return lpszResult;
    }
 
-   UINT simple_binary_buffer::read_string(string & rString)
+   bool simple_binary_buffer::read_string(string & rString)
    {
       ASSERT_VALID(this);
 

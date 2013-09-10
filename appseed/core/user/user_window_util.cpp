@@ -258,7 +258,7 @@ namespace user
       while(oswindowChild != NULL)
       {
          m_oswindowtreea.add_new();
-         oswindow_tree & oswindowtreeChild = m_oswindowtreea.last_element();
+         oswindow_tree & oswindowtreeChild = *m_oswindowtreea.last_element();
          oswindowtreeChild.m_oswindow = oswindowChild;
          oswindowtreeChild.m_dwUser = 0;
          oswindowtreeChild.m_pvoidUser = NULL;
@@ -334,7 +334,7 @@ namespace user
       int32_t i;
       for(i = 0; i < this->get_size();)
       {
-         oswindow_tree & tree = this->element_at(i);
+         oswindow_tree & tree = *this->element_at(i);
          if(tree.m_oswindow == oswindow)
          {
             remove_at(i);
@@ -347,7 +347,7 @@ namespace user
       }
       for(i = 0; i < this->get_size(); i++)
       {
-         oswindow_tree & tree = this->element_at(i);
+         oswindow_tree & tree = *this->element_at(i);
          if(tree.m_oswindowtreea.remove(oswindow))
          {
             return true;

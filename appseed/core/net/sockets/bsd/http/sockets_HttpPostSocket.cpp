@@ -280,7 +280,7 @@ namespace sockets
                ::file::binary_buffer_sp file(get_app());
                if(file->open(filename, ::file::type_binary | ::file::mode_read))
                {
-                  transfer_from(file);
+                  transfer_from(*file);
                }
             }
             write("\r\n");

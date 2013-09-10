@@ -320,7 +320,7 @@ namespace plane
       if(file.is_null())
          return false;
 
-      ::file::input_stream is(file);
+      ::file::byte_input_stream is(file);
 
       is >> m_mapAppLibrary;
 
@@ -404,7 +404,7 @@ namespace plane
 
       }
 
-      ::file::output_stream os(file);
+      ::file::byte_output_stream os(file);
 
       os << m_mapAppLibrary;
 
@@ -449,7 +449,7 @@ namespace plane
       if(strLibrary == "libca2")
       {
 
-         strLibrary = "core";
+         strLibrary = "ca2";
 
       }
       else if(!::str::begins_eat(strLibrary, "libca2"))
@@ -513,7 +513,7 @@ namespace plane
       set_enum_name(var::type_string    , "string");
       set_enum_name(var::type_int32   , "integer");
       set_enum_name(var::type_uint32     , "ulong");
-      set_enum_name(var::type_element       , "core");
+      set_enum_name(var::type_element       , "ca2");
       set_enum_name(var::type_bool      , "bool");
       set_enum_name(var::type_double    , "double");*/
 
@@ -664,7 +664,7 @@ namespace plane
          TRACE("system::exit_instance: Potentially catastrophical error : error disabling simple factory request");
       }
 
-      m_typemap.release();
+
 
       int32_t iRet = 0;
       try
@@ -751,6 +751,9 @@ namespace plane
 
       m_plog.release();
 
+      m_typemap.remove_all();
+
+      m_typemap.release();
 
       return iRet;
    }
@@ -864,7 +867,7 @@ namespace plane
 
    ::core::os & system::os()
    {
-      return m_spos;
+      return *m_spos;
    }
 
 #ifndef METROWIN
@@ -1502,7 +1505,7 @@ namespace plane
 
    class ::core::crypt & system::crypt()
    {
-      return m_spcrypt;
+      return *m_spcrypt;
    }
 
    class ::core::email & system::email()
@@ -1518,7 +1521,7 @@ namespace plane
 
    ::core::copydesk & system::copydesk()
    {
-      return m_spcopydesk;
+      return *m_spcopydesk;
    }
 
    bool system::base_support()

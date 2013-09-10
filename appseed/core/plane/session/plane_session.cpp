@@ -5,7 +5,8 @@ namespace plane
 {
 
 
-   session::session()
+   session::session(base_application * papp) :
+      element(papp)
    {
 
       m_bDrawCursor              = true;

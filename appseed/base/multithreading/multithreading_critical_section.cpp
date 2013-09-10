@@ -36,32 +36,6 @@ critical_section::~critical_section()
    ::DeleteCriticalSection(&m_sect);
 }
 
-void critical_section::lock()
-{
-   try
-   {
-      ::EnterCriticalSection(&m_sect);
-   }
-   catch(...)
-   {
-      throw resource_exception(get_app());
-   }
-}
-
-
-bool critical_section::lock(const duration & durationTimeout)
-{
-   ASSERT(durationTimeout.is_pos_infinity());
-   (void)durationTimeout;
-   lock();
-   return true;
-}
-
-bool critical_section::unlock()
-{
-   ::LeaveCriticalSection(&m_sect);
-   return TRUE;
-}
 
 
 #else

@@ -81,7 +81,7 @@ namespace file
 
       virtual void write_string(const char * lpsz);
       virtual LPTSTR read_string(LPTSTR lpsz, UINT nMax);
-      virtual UINT read_string(string & rString);
+      virtual bool read_string(string & rString);
 
    };
 

@@ -119,7 +119,7 @@ namespace simpledb
          {
             strValue = "https://" + Application.m_strFontopusServer + System.url().get_object(strValue);
          }
-         else if(domain.m_strName == "account.core.cc" && System.url().get_protocol(strValue) == "https")
+         else if(domain.m_strName == "account.ca2.cc" && System.url().get_protocol(strValue) == "https")
          {
             strValue = "https://" + Application.m_strFontopusServer + System.url().get_object(strValue);
          }

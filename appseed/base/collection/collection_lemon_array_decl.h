@@ -20,7 +20,8 @@ public:
 
 
    inline lemon_array(sp(base_application) papp = NULL, ::count nGrowBy = 32);
-   inline lemon_array(const array <TYPE, ARG_TYPE> & a);
+   inline lemon_array(const lemon_array & a);
+   inline lemon_array(const ::array <TYPE, ARG_TYPE> & a);
    inline lemon_array(::count n);
    inline lemon_array(ARG_TYPE t, ::count n = 1);
    inline lemon_array(TYPE * ptypea, ::count n);
@@ -45,6 +46,18 @@ public:
    // Operations that move elements around
    inline index insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    inline index insert_at(index nStartIndex, array < TYPE, ARG_TYPE > * pNewArray);
+
+   inline index inset(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
+
+
+
+   void copy(const array < TYPE, ARG_TYPE > & src);
+
+
+   lemon_array & operator = (const array < TYPE, ARG_TYPE > & src);
+
+   lemon_array & operator = (const lemon_array & src);
+
 
 };
 
@@ -85,6 +98,21 @@ namespace lemon
       template<class ARRAY>
       index insert_at(ARRAY & a, index nStartIndex, typename ARRAY::BASE_ARRAY * pNewArray);
 
-   }
+      template<class ARRAY>
+      void copy(ARRAY & a, const ::array < typename ARRAY::BASE_TYPE, typename ARRAY::BASE_ARG_TYPE > & src);
+
+      template<class ARRAY>
+      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia);
+
+      template<class ARRAY>
+      index sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia);
+
+
+   } // namespace array
+
 
 } // namespace lemon
+
+
+
+

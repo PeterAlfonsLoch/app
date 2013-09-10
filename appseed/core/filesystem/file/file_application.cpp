@@ -234,7 +234,7 @@ namespace file
 
          domain.create(System.url().get_server(strPath));
 
-         if(domain.m_strRadix == "core" && ::str::begins(System.url().get_object(strPath), "/matter/"))
+         if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(strPath), "/matter/"))
          {
 
             string strFile(strPath);
@@ -321,7 +321,9 @@ namespace file
                   try
                   {
 
-                     System.file().output(m_pbaseapp, strFile, &System.compress(), &::core::compress::null, *spfile.m_p);
+                     ::file::input_stream is(spfile);
+
+                     System.file().output(m_pbaseapp, strFile, &System.compress(), &::core::compress::null, is);
 
                   }
                   catch(...)
@@ -457,13 +459,13 @@ namespace file
 
    }
 
-   ::file::byte_stream application::get_byte_stream(var varFile, UINT nOpenFlags)
+/*   ::file::byte_stream application::get_byte_stream(var varFile, UINT nOpenFlags)
    {
 
-      return ::file::byte_stream(get_file(varFile, nOpenFlags));
+      return get_file(varFile, nOpenFlags);
 
    }
-
+   */
 
 
 

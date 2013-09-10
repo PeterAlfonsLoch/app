@@ -884,9 +884,6 @@
     <ClInclude Include="compress\compress_coder.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
-    <ClInclude Include="compress\compress_bzip_helper.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
     <ClInclude Include="compress\compress_archive.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
@@ -3404,6 +3401,9 @@
     <ClInclude Include="compress\compress_gzip_stream.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
+    <ClInclude Include="compress\compress_bzip_stream.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive_scalar.cpp">
@@ -3689,9 +3689,6 @@
       <Filter>Source Files\compress\crypto</Filter>
     </ClCompile>
     <ClCompile Include="compress\compress_7z_crc_opt.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_bzip_helper.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
     <ClCompile Include="compress\compress_out_handler.cpp">
@@ -5715,6 +5712,9 @@
     </ClCompile>
     <ClCompile Include="net\http\http_signal.cpp">
       <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_bzip_stream.cpp">
+      <Filter>Source Files\compress</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

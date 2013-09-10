@@ -110,9 +110,9 @@ http::cookie & cookies::cookie(const char * name)
       {
          return *((http::cookie *) NULL);
       }
-      return this->element_at(iFind);;
+      return *this->element_at(iFind);;
    }
-   return this->element_at(iFind);
+   return *this->element_at(iFind);
 }
 
 http::cookie & cookies::lowcookie(const char * name)
@@ -129,9 +129,9 @@ http::cookie & cookies::lowcookie(const char * name)
       {
          return *((http::cookie *) NULL);
       }
-      return this->element_at(iFind);;
+      return *this->element_at(iFind);;
    }
-   return this->element_at(iFind);
+   return *this->element_at(iFind);
 }
 
 void cookies::add(const char * psz)

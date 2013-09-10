@@ -1146,7 +1146,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="compress\compress\compress_write_coder_properties_interface.h" />
     <ClInclude Include="compress\compress\compress_get_sub_stream_size_interface.h" />
     <ClInclude Include="compress\compress_archive.h" />
-    <ClInclude Include="compress\compress_bzip_helper.h" />
+    <ClInclude Include="compress\compress_bzip_stream.h" />
     <ClInclude Include="compress\compress_coder.h" />
     <ClInclude Include="compress\compress_coder_mixer.h" />
     <ClInclude Include="compress\compress_coder_mixer2.h" />
@@ -2086,7 +2086,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="compress\compress_archive_item_name.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="compress\compress_bzip_helper.cpp">
+    <ClCompile Include="compress\compress_bzip_stream.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="compress\compress_coder_mixer.cpp">

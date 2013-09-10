@@ -2,7 +2,7 @@
 
 
 class ::id base_system::idEmpty;
-class ::id_space base_system::s_idspace;
+class ::id_space * base_system::s_pidspace = NULL;
 
 
 base_system::base_system(sp(base_application) papp) :
@@ -303,7 +303,7 @@ void id_pool::_reset()
 
    id_fr = "fr";
    id_fr_ca = "fr-core";
-   id_ca = "core";
+   id_ca = "ca2";
 
    id_en = "en";
    id_en_us = "en-us";

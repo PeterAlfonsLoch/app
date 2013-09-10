@@ -1,5 +1,6 @@
 #pragma once
 
+
 #undef new
 
 template < class T >
@@ -19,12 +20,18 @@ inline index BaseNullCompare(T * p1, T * p2)
    return 0;
 }
 
+class index_array;
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_ARRAY = array < TYPE, ARG_TYPE >, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) = &BaseNullCompare < TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_ARRAY_TYPE = array < TYPE, ARG_TYPE >, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) = &BaseNullCompare < TYPE > >
 class sort_array :
-   protected BASE_ARRAY
+   protected BASE_ARRAY_TYPE
 {
 public:
+
+   typedef TYPE BASE_TYPE;
+   typedef ARG_TYPE BASE_ARG_TYPE;
+   typedef BASE_ARRAY_TYPE BASE_ARRAY;
+
 
    class sort_index :
       virtual public object
@@ -112,7 +119,11 @@ public:
 
    using BASE_ARRAY::get_size;
 
+   template<class ARRAY>
+   friend index lemon::array::sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia);
 
+   template<class ARRAY>
+   friend bool lemon::array::binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia);
 
 };
 
@@ -176,7 +187,7 @@ template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPA
 add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 {
 
-   ::index i = this->sort_add(t, fCompare, defer_update(fCompare));
+   ::index i = ::lemon::array::sort_add(*this, t, fCompare, defer_update(fCompare));
 
    m_indexmap.mark_dirty();
 

@@ -75,7 +75,7 @@ restart:
       var rec = Application.m_simpledb.db().veiev_post().last();
       rec.propset().set_app(get_app());
       rec.propset().remove_by_name("message");
-      strPath = "http://europe001.veiev.api.server.core.cc/get?" + rec.propset().get_http_post();
+      strPath = "http://europe001.veiev.api.server.ca2.cc/get?" + rec.propset().get_http_post();
       property_set post(get_app());
       property_set headers(get_app());
       property_set set(get_app());
@@ -129,12 +129,12 @@ restart:
    {
       if(pszText == NULL)
       {
-         pszText = "https://account.core.cc/";
+         pszText = "https://account.ca2.cc/";
       }
       string strText(pszText);
       if(strText.is_empty())
       {
-         strText = "https://account.core.cc/";
+         strText = "https://account.ca2.cc/";
       }
       strText = System.url().get_server(strText);
       if(strText.is_empty())
@@ -163,12 +163,12 @@ restart:
    {
       if(pszText == NULL)
       {
-         pszText = "https://account.core.cc/";
+         pszText = "https://account.ca2.cc/";
       }
       string strText(pszText);
       if(strText.is_empty())
       {
-         strText = "https://account.core.cc/";
+         strText = "https://account.ca2.cc/";
       }
       strText = System.url().get_server(strText);
       m_sessionidmap[strText] = pszSessid;
@@ -179,7 +179,7 @@ restart:
    {
 
       string strPrefix(pszPrefix);
-      string strDomain(".core.cc");
+      string strDomain(".ca2.cc");
 
       stringa straServer;
 

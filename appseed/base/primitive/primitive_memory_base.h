@@ -372,8 +372,8 @@ namespace primitive
          size = get_size() - pos;
       char * pchSrc = (char *) get_data();
       char * pchDst = str.GetBufferSetLength(size * 2);
-      uint64_t dwEnd = pos + size - 1;
-      for(uint64_t dw = pos; dw <= dwEnd; dw++)
+      uint64_t dwEnd = pos + size;
+      for(uint64_t dw = pos; dw < dwEnd; dw++)
       {
          if(((pchSrc[dw] & 0xf0) >> 4) < 10)
             *pchDst = (char)(((pchSrc[dw] & 0xf0) >> 4) + '0');

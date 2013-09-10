@@ -40,7 +40,7 @@ namespace http
 
       domain.create(System.url().get_server(psignal->m_strUrl));
 
-      if(domain.m_strRadix == "core" && ::str::begins(System.url().get_object(psignal->m_strUrl), "/matter/"))
+      if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(psignal->m_strUrl), "/matter/"))
       {
 
          string strUrl(psignal->m_strUrl);
@@ -141,7 +141,7 @@ namespace http
 
    string application::get(const char * pszUrl, ::fontopus::user * puser)
    {
-      if(puser == NULL && ::str::find_ci("/matter.core.cc/", pszUrl) < 0 && ::str::find_ci("-matter.core.cc/", pszUrl) < 0)
+      if(puser == NULL && ::str::find_ci("/matter.ca2.cc/", pszUrl) < 0 && ::str::find_ci("-matter.ca2.cc/", pszUrl) < 0)
       {
          if(get_thread() != NULL)
          {

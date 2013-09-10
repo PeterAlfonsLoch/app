@@ -24,7 +24,7 @@ namespace file
 
    }
 
-   input_stream::input_stream(stream_base * preader)
+   input_stream::input_stream(stream_buffer * preader)
    {
       
       m_spbuffer = preader;      

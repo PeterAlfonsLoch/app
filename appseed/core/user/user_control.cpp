@@ -139,7 +139,7 @@ namespace user
    {
       for(int32_t i = 0; i < this->get_size(); i++)
       {
-         class descriptor & descriptor = this->element_at(i);
+         class descriptor & descriptor = *this->element_at(i);
          if(descriptor.m_id == id)
          {
             return descriptor.m_pcontrol;
@@ -155,7 +155,7 @@ namespace user
          return NULL;
       for(int32_t i = 0; i < this->get_size(); i++)
       {
-         class descriptor & descriptor = this->element_at(i);
+         class descriptor & descriptor = *this->element_at(i);
          if(descriptor.m_pcontrol == pcontrol)
          {
             return &descriptor;
@@ -168,7 +168,7 @@ namespace user
    {
       for(int32_t i = 0; i < this->get_size(); i++)
       {
-         class descriptor & descriptor = this->element_at(i);
+         class descriptor & descriptor = *this->element_at(i);
          if(descriptor.m_iSubItem == iSubItem)
          {
             return &descriptor;

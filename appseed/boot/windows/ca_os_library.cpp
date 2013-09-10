@@ -51,7 +51,7 @@ namespace ca
       }
       else if(stricmp_dup(pszPath, "app_ca2") == 0)
       {
-         pszPath = "core";
+         pszPath = "ca2";
       }
 
       string strPath(pszPath);
@@ -78,14 +78,32 @@ namespace ca
 #endif
 
 
-      m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
+      try
+      {
+
+         m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
+
+      }
+      catch(...)
+      {
+
+      }
 
       if(m_plibrary == NULL)
       {
 
          strPath = "\\\\?\\" + strPath;
 
-         m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
+         try
+         {
+
+            m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
+
+         }
+         catch(...)
+         {
+
+         }
 
       }
    

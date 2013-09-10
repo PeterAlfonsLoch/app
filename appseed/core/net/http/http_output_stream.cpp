@@ -9,8 +9,8 @@ namespace http
    
    }
 
-   output_stream::output_stream(::file::buffer_sp pbuffer) :
-      ::file::plain_text_output_stream(pbuffer.m_p)
+   output_stream::output_stream(::file::stream_buffer * pbuffer) :
+      ::file::plain_text_output_stream(pbuffer)
    {
    
    

@@ -83,7 +83,7 @@ namespace user
 //         int32_t   fwKeys = (int32_t) lpMsg->wParam;        // key flags
          if(Session.is_mouse_button_pressed(::user::mouse_left_button))
          {
-            ::user::split_bar & splitbar = m_splitbara.element_at(iIndex);
+            ::user::split_bar & splitbar = *m_splitbara.element_at(iIndex);
             splitbar.set_capture();
             m_iIndex = iIndex;
             m_iState = stateDragging;
@@ -514,7 +514,7 @@ namespace user
       for(i = 0; i < iSplitBarCount; i++)
       {
          m_splitbara.add_new();
-         ::user::split_bar & splitbar = m_splitbara.element_at(i);
+         ::user::split_bar & splitbar = *m_splitbara.element_at(i);
          splitbar.m_iIndex = i;
          if(!splitbar.create(this))
             return false;
@@ -566,7 +566,7 @@ namespace user
       for(i = 0; i < iSplitBarCount; i++)
       {
          m_splitbara.add_new();
-         ::user::split_bar & splitbar = m_splitbara.element_at(i);
+         ::user::split_bar & splitbar = *m_splitbara.element_at(i);
          splitbar.m_iIndex = i;
          if(!splitbar.create(this))
             return false;

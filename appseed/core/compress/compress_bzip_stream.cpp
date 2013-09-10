@@ -20,37 +20,39 @@ static const int32_t gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
 typedef void *(*bzalloc)(void *,int32_t,int32_t);
 typedef void (*bzfree)(void *,void *);
 
-bzip::bzip(::file::buffer_sp  pfileDest) :
-   m_ostream(pfileDest)
-{
-   construct();
-}
 
-bzip::bzip(::file::writer & writer) :
-   m_ostream(&writer)
+bzip_stream::bzip_stream(::file::stream_buffer *  pfileDest) :
+   output_stream(pfileDest)
 {
    construct();
 }
 
 
-bzip::bzip(::file::output_stream & ostream) :
-   m_ostream(ostream)
+bzip_stream::bzip_stream(::file::output_stream & ostream) :
+   output_stream(ostream)
 {
    construct();
 }
 
-bzip::~bzip()
+bzip_stream::~bzip_stream()
 {
 }
 
-bool bzip::write(void * buf, ::primitive::memory_size len)
+void bzip_stream::write(const void * buf, ::primitive::memory_size len)
 {
-   int32_t n, n2, ret;
+
+   ::primitive::memory_size n, n2, ret;
 
    m_z_err = BZ_OK;
 
    if (len == 0)
-   { m_z_err = BZ_OK; return true; };
+   {
+
+      m_z_err = BZ_OK; 
+   
+      return;
+   
+   }
 
    m_zstream.avail_in = (uint32_t) len;
    m_zstream.next_in  = (char *) buf;
@@ -60,14 +62,19 @@ bool bzip::write(void * buf, ::primitive::memory_size len)
       m_zstream.next_out = (char *) m_memory.get_data();
       ret = BZ2_bzCompress ( &(m_zstream), BZ_RUN );
       if (ret != BZ_RUN_OK)
-      { BZ_SETERR(ret); return false; };
+      { 
+      
+         BZ_SETERR(ret); 
+         throw ret;
+      
+      };
 
       if (m_zstream.avail_out < BZ_MAX_UNUSED) {
          n = BZ_MAX_UNUSED - m_zstream.avail_out;
          bool bWriteOk = true;
          try
          {
-            m_ostream.write (m_memory.get_data(), n);
+            write (m_memory.get_data(), n);
             n2 = n;
          }
          catch(...)
@@ -75,15 +82,23 @@ bool bzip::write(void * buf, ::primitive::memory_size len)
             bWriteOk = false;
          }
          if (n != n2 || !bWriteOk)
-         { BZ_SETERR(BZ_IO_ERROR); return false; };
+         { 
+            BZ_SETERR(BZ_IO_ERROR); 
+
+            throw BZ_IO_ERROR;
+         }
+
       }
 
       if (m_zstream.avail_in == 0)
-      { BZ_SETERR(BZ_OK); return true; };
+      { 
+         BZ_SETERR(BZ_OK); 
+         return;
+      }
    }
 }
 
-void bzip::construct()
+void bzip_stream::construct()
 {
    m_CurrentBufferSize = 1024 * 1024 * 8;
    int32_t blockSize100k = 9; // 900k
@@ -115,7 +130,7 @@ void bzip::construct()
 
 
 
-void bzip::finish()
+void bzip_stream::finish()
 {
    int32_t   n, n2, ret;
 
@@ -138,7 +153,7 @@ void bzip::finish()
             bool bWriteOk = true;
             try
             {
-               m_ostream.write((char *) m_memory.get_data(), n);
+               write(m_memory.get_data(), n);
                n2 = n;
             }
             catch(...)

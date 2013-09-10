@@ -132,7 +132,7 @@ bool db_server::initialize()
 #endif
 
    //var varChange;
-   //data_server_load("core", "database_change", "change", varChange);
+   //data_server_load("ca2", "database_change", "change", varChange);
    //g_idbchange = varChange;
 
 #if !defined(METROWIN) && !defined(MACOS)
@@ -232,10 +232,10 @@ void db_server::_001OnTimer(signal_details * pobj)
    {
       /*var varChange;
       var var;
-      data_server_load("core", "database_change", "change", varChange);
+      data_server_load("ca2", "database_change", "change", varChange);
       while(g_idbchange <= (int32_t) varChange)
       {
-         if(data_server_load("core", "database_change", g_idbchange, var))
+         if(data_server_load("ca2", "database_change", g_idbchange, var))
          {
             if(var.stra().get_count() == 3)
             {
@@ -276,7 +276,7 @@ void db_server::close()
 }
 
 
-bool db_server::data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::file::stream_buffer & writable, ::database::update_hint * phint)
+bool db_server::data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::file::output_stream & writable, ::database::update_hint * phint)
 {
    UNREFERENCED_PARAMETER(phint);
 //   single_lock sl(&m_csImplDatabase, TRUE);
@@ -285,31 +285,31 @@ bool db_server::data_server_load(::database::client * pclient, ::database::id id
    return true;
 }
 
-bool db_server::data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::file::stream_buffer & readable, ::database::update_hint * phint)
+bool db_server::data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::file::input_stream & readable, ::database::update_hint * phint)
 {
    UNREFERENCED_PARAMETER(phint);
    single_lock sl(&m_csImplDatabase, TRUE);
    if(!save(calc_key(pclient, idSection, id, idIndex), readable))
       return false;
-/*   if(idSection.m_id.str() != "core" ||
+/*   if(idSection.m_id.str() != "ca2" ||
       id.m_id.str() != "database_change")
    {
       try
       {
          m_pdb->start_transaction();
          var varChange;
-         data_server_load("core", "database_change", "change", varChange);
+         data_server_load("ca2", "database_change", "change", varChange);
          varChange++;
          stringa stra;
          stra.add(idSection.m_id);
          stra.add(id.m_id);
          stra.add(idIndex.m_id);
-         if(!data_save("core", "database_change", varChange.int32(), stra))
+         if(!data_save("ca2", "database_change", varChange.int32(), stra))
          {
             m_pdb->rollback_transaction();
             goto end_write_change;
          }
-         if(!data_server_save("core", "database_change", "change", varChange))
+         if(!data_server_save("ca2", "database_change", "change", varChange))
          {
             m_pdb->rollback_transaction();
             goto end_write_change;
@@ -336,46 +336,45 @@ bool db_server::load(const char * lpcszKey, string & str)
 
 
 
-bool db_server::load(const char * lpKey, ::file::stream_buffer &  writable)
+bool db_server::load(const char * lpKey, ::file::output_stream & ostream)
 {
-//   single_lock sl(&m_csImplDatabase, TRUE);
+
    string str;
+   
    if(!load(lpKey, str))
    {
+
       return false;
+
    }
-   ::file::byte_output_stream os(&writable);
+
+
+   ::file::byte_output_stream os(ostream);
+
    os.write_from_hex(str);
+
    return true;
+
 }
 
 bool db_server::save(const char * lpcszKey, const char * lpcsz)
 {
-   single_lock sl(&m_csImplDatabase, TRUE);
    if(get_db_str_set() == NULL)
       return false;
    return get_db_str_set()->save(lpcszKey, lpcsz);
 }
 
 
-bool db_server::save(const char * lpKey, ::file::stream_buffer & readable)
+bool db_server::save(const char * lpKey, ::file::input_stream & istream)
 {
-   
-   single_lock sl(&m_csImplDatabase, TRUE);
-   
+
    string str;
    
-   sp(::file::seekable) spseekable = &readable;
-   
-   if(spseekable.is_set())
-      spseekable->seek_to_begin();
+   file::byte_input_stream is(istream);
 
-   ::file::byte_input_stream is(&readable);
+   is.seek_to_begin();
    
    is.read_to_hex(str);
-//   readable.to_hex(str);
-//   int32_t iLength = str.get_length();
-//   int32_t iKeyLen = strlen(lpKey);
 
    if(!save(lpKey, str))
       return false;

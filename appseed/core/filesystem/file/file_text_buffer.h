@@ -6,7 +6,7 @@ namespace file
 
 
    class CLASS_DECL_ca2 text_buffer : 
-      virtual public ::file::binary_buffer
+      virtual public ::file::stream_buffer
    {
    public:
 
@@ -16,7 +16,7 @@ namespace file
 
 
       virtual void write_string(const char * lpsz);
-      virtual UINT read_string(string & str);
+      virtual bool read_string(string & str);
       virtual UINT read_full_string(string & str);
 
       inline text_buffer & operator << (const char * lpsz)

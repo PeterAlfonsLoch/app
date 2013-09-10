@@ -1388,11 +1388,9 @@ template < class TYPE, class ARG_TYPE >
 index array < TYPE, ARG_TYPE >::
 sort_add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
 {
-   index iIndex = 0;
-   binary_search(t, iIndex, fCompare, ia);
-   this->inset(iIndex, t);
-   ia.add(iIndex);
-   return iIndex;
+
+   return ::lemon::array::sort_add(*this, t, fCompare, ia);
+
 }
 
 template < class TYPE, class ARG_TYPE >

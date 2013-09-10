@@ -207,7 +207,7 @@ namespace dynamic_source
       /*string strScript(strName);
       strScript.replace("\\", ",");
       strScript.replace("/", ",");
-      strScript = "core" + m_pmanager->m_strNamespace + "_script." + strScript;*/
+      strScript = "ca2" + m_pmanager->m_strNamespace + "_script." + strScript;*/
       string strScript;
       strScript = System.file().title_(strName);
       string strTransformName = strName;
