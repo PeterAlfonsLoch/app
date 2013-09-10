@@ -6,7 +6,7 @@ namespace userpresence
 
 
    presence::presence(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
       m_iShortStatusWayTag = status_online;
    }

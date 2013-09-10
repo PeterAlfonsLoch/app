@@ -6,7 +6,7 @@ namespace core
 
 
    copydesk::copydesk(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
    }
 
@@ -50,7 +50,7 @@ namespace core
 
    bool copydesk::finalize()
    {
-      
+
       return true;
 
    }

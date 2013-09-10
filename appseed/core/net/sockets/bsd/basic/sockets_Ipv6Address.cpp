@@ -75,7 +75,7 @@ namespace sockets
 
 
    ipv6_address::ipv6_address(sp(base_application) papp, const sockaddr_in6 & sa) :
-      element(papp)
+      base_element(papp)
    {
       m_addr = sa;
       m_bValid = sa.sin6_family == AF_INET6;

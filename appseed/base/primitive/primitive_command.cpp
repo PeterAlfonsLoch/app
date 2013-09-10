@@ -2,7 +2,7 @@
 
 
    command::command(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
    }
 

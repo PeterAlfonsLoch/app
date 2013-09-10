@@ -5,7 +5,7 @@ namespace simpledb
 {
 
    server::server(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
       m_pbase = NULL;
    }

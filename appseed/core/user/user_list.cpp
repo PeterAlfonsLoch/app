@@ -197,7 +197,7 @@ namespace user
 
       if(m_bTopText)
       {
-         
+
          ::draw2d::brush_sp brushText(allocer());
 
          brushText->create_solid(m_crText);
@@ -2989,7 +2989,7 @@ namespace user
    }
 
    list_column_array::list_column_array(sp(base_application) papp) :
-   element(papp)
+   base_element(papp)
    {
       m_plist = NULL;
    }

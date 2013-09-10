@@ -1,9 +1,9 @@
 #pragma once
 
-class element;
+class base_element;
 
-::count add_ref(element * pelement);
-::count release(element * & pelement);
+::count add_ref(base_element * pelement);
+::count release(base_element * & pelement);
 
 // ::ca::null_class back link to operational system oswindow.h
 //

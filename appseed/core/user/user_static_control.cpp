@@ -55,9 +55,9 @@ namespace user
 
 
    static_control::static_control(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
-      
+
       m_etype = type_text;
 
    }
@@ -65,7 +65,7 @@ namespace user
 
    void static_control::set_icon(::visual::icon * picon)
    {
-      
+
       if(picon == NULL)
          return;
 
@@ -111,7 +111,7 @@ namespace user
    void static_control::set_bitmap(::draw2d::bitmap * pbitmap)
    {
 
-      
+
       if(pbitmap == NULL)
          return;
 
@@ -153,7 +153,7 @@ namespace user
 
    ::user::static_control::e_type static_control::get_type()
    {
-      
+
       return m_etype;
 
    }

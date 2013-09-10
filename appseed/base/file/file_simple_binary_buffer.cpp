@@ -11,7 +11,7 @@ namespace file
 
 
    simple_binary_buffer::simple_binary_buffer(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
       m_pfile = NULL;
@@ -312,7 +312,7 @@ namespace file
       nLength = ftell(m_pfile);
       if (nLength == -1)
          throw_exception(get_app(), ::file::exception::invalidFile, _doserrno, m_strFileName);
-      
+
       nResult = fseek(m_pfile, nCurrent, SEEK_SET);
       if (nResult != 0)
          throw_exception(get_app(), ::file::exception::badSeek, _doserrno, m_strFileName);

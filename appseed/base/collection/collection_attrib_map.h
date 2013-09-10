@@ -20,14 +20,14 @@ public:
 
 template < class type_map >
 attrib_map < type_map >::attrib_map(sp(base_application) papp, ::count nBlockSize) :
-   element(papp),
+   base_element(papp),
    type_map(papp, nBlockSize)
 {
 }
 
 template < class type_map >
 attrib_map < type_map >::attrib_map(const attrib_map & attribmap) :
-   element(attribmap.get_app())
+   base_element(attribmap.get_app())
 {
    operator = (attribmap);
 }

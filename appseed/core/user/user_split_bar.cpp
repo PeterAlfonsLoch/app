@@ -6,7 +6,7 @@ namespace user
 
 
    split_bar::split_bar(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
       m_pparent                                 = NULL;

@@ -6,14 +6,14 @@ namespace xml
 
 
    edit_item::edit_item(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
    }
 
 
    void edit_item::set_name(const sp(::xml::node) pnode)
    {
-      
+
       m_eaction      = ::xml::set_name;
       pnode->get_indexed_path(m_iaPath);
       m_strName      = pnode->get_name();
@@ -22,7 +22,7 @@ namespace xml
 
    void edit_item::set_value(const sp(::xml::node) pnode)
    {
-      
+
       m_eaction      = ::xml::set_value;
       pnode->get_indexed_path(m_iaPath);
       m_strValue     = pnode->get_value();
@@ -31,7 +31,7 @@ namespace xml
 
    void edit_item::set_attr(const sp(::xml::node) pnode, const attr * pattr)
    {
-      
+
       m_eaction      = ::xml::set_attr;
       pnode->get_indexed_path(m_iaPath);
       m_strName      = pattr->name();
@@ -41,7 +41,7 @@ namespace xml
 
    void edit_item::add_attr(const sp(::xml::node) pnode, const attr * pattr)
    {
-      
+
       m_eaction      = ::xml::add_attr;
       pnode->get_indexed_path(m_iaPath);
       m_strName      = pattr->name();
@@ -75,7 +75,7 @@ namespace xml
       element(papp),
       ::edit < ::xml::document > (papp)
    {
-      
+
       m_iEdit = -1;
 
    }

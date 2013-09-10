@@ -6,7 +6,7 @@ namespace draw2d_cairo
 
 
    brush::brush(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
 

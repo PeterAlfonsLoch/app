@@ -6,7 +6,7 @@ namespace plane
 
 
    session::session(base_application * papp) :
-      element(papp)
+      base_element(papp)
    {
 
       m_bDrawCursor              = true;
@@ -1073,7 +1073,7 @@ alt1:
    request_topic_file();
    }
    }*/
-   //   
+   //
    //
    //   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create_context) pcreatecontext)
    //   {

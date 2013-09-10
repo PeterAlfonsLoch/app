@@ -54,8 +54,8 @@ public:
    virtual ~base_application();
 
 
-   virtual sp(element) alloc(sp(type) info);
-   virtual sp(element) alloc(const id & idType);
+   virtual sp(base_element) alloc(sp(type) info);
+   virtual sp(base_element) alloc(const id & idType);
 
 
    int32_t simple_message_box(const char * pszMessage, UINT fuStyle);
@@ -89,7 +89,7 @@ public:
    sp(::command_thread) creation();
 
    //virtual void on_allocation_error(const sp(type) info);
-   //virtual sp(element) on_alloc(const sp(type) info);
+   //virtual sp(base_element) on_alloc(const sp(type) info);
 
    virtual bool verb();
 
@@ -98,7 +98,7 @@ public:
 };
 
 
-inline allocatorsp element::allocer()
+inline allocatorsp base_element::allocer()
 {
    return m_pbaseapp->m_allocer;
 }

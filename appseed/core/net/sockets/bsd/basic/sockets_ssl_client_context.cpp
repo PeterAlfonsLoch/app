@@ -10,7 +10,7 @@ namespace sockets
 
 
    ssl_client_context::ssl_client_context(sp(base_application) papp, const SSL_METHOD * pmethod) :
-      element(papp)
+      base_element(papp)
    {
       m_psession = NULL;
       if(pmethod == NULL)
@@ -18,7 +18,7 @@ namespace sockets
       InitializeContext(pmethod);
       m_iRetry = 0;
    }
-      
+
    ssl_client_context::~ssl_client_context()
    {
       if(m_psession != NULL)

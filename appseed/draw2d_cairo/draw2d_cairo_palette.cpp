@@ -6,7 +6,7 @@ namespace draw2d_cairo
 
 
    palette::palette(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
    }

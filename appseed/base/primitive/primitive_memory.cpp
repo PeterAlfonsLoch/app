@@ -5,7 +5,7 @@ namespace primitive
 {
 
    memory::memory(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
       m_pbStorage          = NULL;

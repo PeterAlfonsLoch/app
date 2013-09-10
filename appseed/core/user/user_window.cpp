@@ -2266,14 +2266,14 @@ namespace user
 
    void window::_001UpdateWindow()
    {
-      
+
       if(m_bUpdateGraphics)
       {
          update_graphics_resources();
       }
 
       single_lock sl(mutex_graphics(), true);
-      
+
       if(m_spdib.is_null() || m_spdib->get_graphics() == NULL)
          return;
 
@@ -2299,27 +2299,27 @@ namespace user
       _001Print(m_spdib->get_graphics());
       //m_spdib->get_graphics()->SetViewportOrg(0, 0);
       //m_spdib->get_graphics()->FillSolidRect(100, 100, 100, 100, ARGB(127, 127, 0, 0));
-      
-      
+
+
       single_lock sl2(mutex_display(), true);
-      
+
       rect rect;
-      
+
       GetClientRect(rect);
-      
+
       if(m_spdibFlip.is_null())
          m_spdibFlip.create(allocer());
-      
+
       if(m_spdibFlip.is_null())
          return;
-      
+
       m_spdibFlip->create(rect.size());
-      
+
       if(m_spdibFlip->get_data() == NULL)
          return;
-      
+
       m_spdibFlip->Paste(m_spdib);
-      
+
       sl.unlock();
 
       m_spdibFlip->update_window(this, NULL);
@@ -2339,11 +2339,11 @@ namespace user
 
       if(m_pmutexDisplay == NULL)
       {
-         
+
          m_pmutexDisplay = new mutex(get_app());
-         
+
       }
-      
+
       single_lock sl(mutex_graphics(), false);
 
       if(!sl.lock(millis(0)))
@@ -2353,13 +2353,13 @@ namespace user
       }
 
       single_lock sl2(mutex_display(), false);
-      
+
       if(!sl2.lock(millis(0)))
       {
          m_bUpdateGraphics = true;
          return;
       }
-  
+
       m_bUpdateGraphics = false;
 
       rect rectWindow;
@@ -2381,7 +2381,7 @@ namespace user
 
          if(m_spdibFlip.is_null())
             m_spdibFlip.create(allocer());
-         
+
          m_spdibFlip->create(rectWindow.size());
 
          m_size = rectWindow.size();
@@ -2430,7 +2430,7 @@ void CTestCmdUI::SetText(const char *)
 
 
 guie_message_wnd::guie_message_wnd(sp(base_application) papp) :
-element(papp)
+base_element(papp)
 {
    m_pguieForward = NULL;
 }

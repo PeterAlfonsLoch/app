@@ -13,7 +13,7 @@ namespace hi5
    {
 
       authorization::authorization(sp(base_application) papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
-         element(papp)
+         base_element(papp)
       {
          m_strAuthorizationUrl=pszAuthorizationUrl;
          m_bInteractive    = bInteractive;
@@ -144,7 +144,7 @@ namespace hi5
          m_ptabview->GetParentFrame()->SetWindowPos(
             ZORDER_TOP,
             rectOpen.left, rectOpen.top,
-            rectOpen.width(), rectOpen.height(), 
+            rectOpen.width(), rectOpen.height(),
             SWP_SHOWWINDOW);
          m_pviewAuth->GetTopLevelParent()->SetForegroundWindow();
          m_pviewAuth->GetTopLevelParent()->BringWindowToTop();

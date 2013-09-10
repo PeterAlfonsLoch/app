@@ -1,7 +1,7 @@
 #include "framework.h"
 
 calendar_interface::calendar_interface(sp(base_application) papp) :
-   element(papp)
+   base_element(papp)
 {
    ::datetime::time time = ::datetime::time::get_current_time();
    m_iYear = time.GetYear();

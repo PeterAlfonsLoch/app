@@ -6,7 +6,7 @@ __STATIC UINT __read_string_length(::file::input_stream & ar);
 
 
 stringa::stringa(sp(base_application) papp) :
-element(papp)
+base_element(papp)
 {
 }
 
@@ -470,7 +470,7 @@ primitive::memory stringa::GetFormatV004()
    primitive::memory mem;
 
    mem.allocate(iTotalLength * sizeof(char));
-   
+
    char * lpsz = (char *) mem.get_data();
 
    memset(lpsz, 0x00, iTotalLength * sizeof(char));
@@ -636,26 +636,26 @@ void stringa::write(::file::output_stream & ostream)
 
 void stringa::read(::file::input_stream & istream)
 {
-   
+
    ::count iSize;
-   
+
    istream.read_arbitrary(iSize);
 
    remove_all();
-   
+
    for(int32_t i = 0; i < iSize; i++)
    {
-   
+
       if(i >= this->get_size())
          set_size(min(i + 1024, iSize));
-      
+
       istream >> this->element_at(i);
-      
+
    }
-   
+
    if(this->get_size() != iSize)
       throw io_exception(get_app());
-   
+
 }
 
 
@@ -733,11 +733,11 @@ string stringa::reverse_implode(const char * lpcszSeparator, index iStart, index
 
 stringa & stringa::explode(const string & strSeparator, const string & str)
 {
-   
+
    remove_all();
-   
+
    add_tokens(str, strSeparator, true);
-   
+
    return * this;
 
 }
@@ -745,7 +745,7 @@ stringa & stringa::explode(const string & strSeparator, const string & str)
 
 stringa & stringa::csstidy_explode_ws(char sep, const char * psz)
 {
-   
+
    string istring(psz);
 
    // 1 = st // 2 = str
@@ -1147,7 +1147,7 @@ string stringa::encode_v16()
             strEncode += sz;
          }
       }*/
-      
+
    }
    return strEncode;
 }

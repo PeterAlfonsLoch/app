@@ -83,7 +83,7 @@ namespace draw2d
       static float Cosines[360];
       static float Sines[360];
       static int64_t CosN[360]; // * 1 << 31
-      static int64_t SinN[360]; 
+      static int64_t SinN[360];
       static int64_t Cos10N[10]; // until 10 degress
       static int64_t Sin10N[10]; // more precision * 1 << 34
       static double dPi;
@@ -315,7 +315,7 @@ namespace draw2d
    public:
 
       dibmap(sp(base_application) papp) :
-         element(papp)
+         base_element(papp)
       {
       }
 
@@ -377,7 +377,7 @@ namespace draw2d
 
 
       dibmap_ex1(sp(base_application) papp, int32_t iLimitCount = 500) :
-         element(papp)
+         base_element(papp)
       {
 
          m_iLimitCount = iLimitCount;

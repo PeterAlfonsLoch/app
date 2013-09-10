@@ -18,7 +18,7 @@ public:
    typedef ARG_VALUE                            BASE_ARG_VALUE;
    typedef HASH                                 BASE_HASH;
    typedef EQUALS                               BASE_EQUALS;
-   
+
    typedef ::map_association < KEY, VALUE >     assoc;
    typedef typename assoc::pair                 pair;
 
@@ -422,9 +422,9 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assoc* map < KEY, 
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 inline UINT map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::GetHashTableSize() const
-{ 
+{
 
-   return m_nHashTableSize; 
+   return m_nHashTableSize;
 
 }
 
@@ -446,7 +446,7 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::construct(::count nBlo
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::map(sp(base_application) papp, ::count nBlockSize) :
-   element(papp)
+   base_element(papp)
 {
    construct(nBlockSize);
 }
@@ -504,7 +504,7 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::remove_all()
 
       for (passoc = m_passocHead; passoc != NULL; passoc = passoc->m_pnext)
       {
-         
+
          passoc->assoc::~assoc();
 
       }
@@ -578,13 +578,13 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assoc *
    }
 
    passoc->m_pnext            = m_passocHead;
-   
+
    m_passocHead               = passoc;
 
    m_passocHead->m_pprev      = NULL;
 
    m_nCount++;
-   
+
    ASSERT(m_nCount > 0);  // make sure we don't overflow
 
    ::new(passoc) assoc(key);
@@ -634,7 +634,7 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::free_assoc(assoc * pas
    m_passocFree = passoc;
 
    m_nCount--;
-   
+
    ASSERT(m_nCount >= 0);  // make sure we don't underflow
 
    // if no more elements, cleanup completely
@@ -648,7 +648,7 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assoc *
    map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_assoc_at(ARG_KEY key, UINT& nHashBucket, UINT& nHashValue) const
    // find association (or return NULL)
 {
-   
+
    nHashValue = HASH::HashKey((ARG_KEY) key);
 
    nHashBucket = nHashValue % m_nHashTableSize;
@@ -679,7 +679,7 @@ bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::Lookup(ARG_KEY key, VA
    UINT nHashBucket, nHashValue;
 
    assoc* passoc = get_assoc_at(key, nHashBucket, nHashValue);
-   
+
    if (passoc == NULL)
       return FALSE;  // not in map
 
@@ -735,7 +735,7 @@ VALUE * map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::pget(ARG_KEY key)
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 VALUE& map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::operator[](ARG_KEY key)
 {
-   
+
    ASSERT_VALID(this);
 
    UINT nHashBucket, nHashValue;

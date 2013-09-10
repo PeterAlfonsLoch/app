@@ -77,7 +77,7 @@ namespace user
    }
 
    keyboard_layout::keyboard_layout(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
    }

@@ -4,7 +4,7 @@ namespace core
 {
 
    savings::savings(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
    }

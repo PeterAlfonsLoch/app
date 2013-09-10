@@ -12,7 +12,7 @@ public:
    }
 
    smart_pointer_array(sp(base_application) papp) :
-      element(papp),
+      base_element(papp),
       lemon_array < smart_pointer < T > >(papp)
    {
    }

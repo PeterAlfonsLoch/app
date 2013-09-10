@@ -6,9 +6,9 @@ namespace user
 
 
    str_context::str_context(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
-      
+
 
       m_plocaleschema = canew(::str::international::locale_schema(papp));
 
@@ -26,16 +26,16 @@ namespace user
 
    void str_context::prepare()
    {
-      
+
       static ::id idEn("en");
       static ::id idStd("_std");
 
 
-      
+
 
 
       m_plocale               = NULL;
-      
+
       m_pschema               = NULL;
       m_pschemaLocale         = NULL;
       m_pschemaSchemaEn       = NULL;
@@ -47,10 +47,10 @@ namespace user
 
       if(m_plocaleschema != NULL)
       {
-         
+
          if(!m_plocaleschema->m_idLocale.is_empty())
          {
-            
+
             m_plocale = m_pstr->get_locale(m_plocaleschema->m_idLocale);
 
             if(m_plocale != NULL)
@@ -68,7 +68,7 @@ namespace user
          {
 
             str_locale * plocale = m_pstr->get_locale(m_plocaleschema->m_idSchema);
-            
+
             if(plocale != NULL)
             {
 
@@ -84,7 +84,7 @@ namespace user
 
          for(int32_t i = 0; i < m_plocaleschema->m_idaLocale.get_count(); i++)
          {
-            
+
             ::id & idLocale = m_plocaleschema->m_idaLocale[i];
 
 
@@ -146,7 +146,7 @@ namespace user
    }
 
    str::str(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
       InitHashTable(64);
@@ -209,7 +209,7 @@ namespace user
 
    }
 
-   
+
    void str::set(const ::id & id, const ::id & idLocale, const ::id & idSchema, const char * psz)
    {
 
@@ -223,7 +223,7 @@ namespace user
 
    string str::get(str_context * pcontext, const ::id & id)
    {
-   
+
       static ::id idEn("en");
       static ::id idStd("_std");
 
@@ -235,13 +235,13 @@ namespace user
 
          if(pcontext->m_pschema != NULL)
          {
-            
+
             str = (*pcontext->m_pschema)[id];
             if(str.has_char())
                return str;
 
          }
-         
+
          if(pcontext->m_pschemaLocale != NULL)
          {
             str = (*pcontext->m_pschemaLocale)[id];
@@ -251,7 +251,7 @@ namespace user
 
          for(int32_t i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
-            
+
             str = (*pcontext->m_schemaptra[i])[id];
             if(str.has_char())
                return str;
@@ -281,14 +281,14 @@ namespace user
 
    string str::get(str_context * pcontext, const ::id & id, const ::id & idLocale, const ::id & idSchema)
    {
-      
+
       if(!idLocale.is_empty())
       {
          string str;
          str_locale * plocale = get_locale(idLocale);
          if(plocale != NULL)
          {
-            
+
             if(!idSchema.is_empty() && idSchema != idLocale)
             {
                str_schema * pschema = plocale->get_schema(idSchema);
@@ -327,13 +327,13 @@ namespace user
 
          if(pcontext->m_pschema != NULL)
          {
-            
+
             str = (*pcontext->m_pschema)[id];
             if(str.has_char())
                stra.add(str);
 
          }
-         
+
          if(pcontext->m_pschemaLocale != NULL)
          {
             str = (*pcontext->m_pschemaLocale)[id];
@@ -343,7 +343,7 @@ namespace user
 
          for(int32_t i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
-            
+
             str = (*pcontext->m_schemaptra[i])[id];
             if(str.has_char())
                stra.add(str);
@@ -463,13 +463,13 @@ namespace user
 
          if(pcontext->m_pschema != NULL)
          {
-            
+
             str = (*pcontext->m_pschema)[id];
             if(!str.CompareNoCase(psz))
                return true;
 
          }
-         
+
          if(pcontext->m_pschemaLocale != NULL)
          {
             str = (*pcontext->m_pschemaLocale)[id];
@@ -479,7 +479,7 @@ namespace user
 
          for(int32_t i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
-            
+
             str = (*pcontext->m_schemaptra[i])[id];
             if(!str.CompareNoCase(psz))
                return true;
@@ -531,13 +531,13 @@ namespace user
 
          if(pcontext->m_pschema != NULL)
          {
-            
+
             str = (*pcontext->m_pschema)[id];
             if(str.has_char() && ::str::begins_ci(pszTopic, str))
                return true;
 
          }
-         
+
          if(pcontext->m_pschemaLocale != NULL)
          {
             str = (*pcontext->m_pschemaLocale)[id];
@@ -547,7 +547,7 @@ namespace user
 
          for(int32_t i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
-            
+
             str = (*pcontext->m_schemaptra[i])[id];
             if(str.has_char() && ::str::begins_ci(pszTopic, str))
                return true;
@@ -599,13 +599,13 @@ namespace user
 
          if(pcontext->m_pschema != NULL)
          {
-            
+
             str = (*pcontext->m_pschema)[id];
             if(str.has_char() && ::str::begins_eat_ci(strTopic, str))
                return true;
 
          }
-         
+
          if(pcontext->m_pschemaLocale != NULL)
          {
             str = (*pcontext->m_pschemaLocale)[id];
@@ -615,7 +615,7 @@ namespace user
 
          for(int32_t i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
-            
+
             str = (*pcontext->m_schemaptra[i])[id];
             if(str.has_char() && ::str::begins_eat_ci(strTopic, str))
                return true;

@@ -152,7 +152,7 @@ const string_composite str_str_interface::operator[](const char * pszName) const
 }
 
 property::property(sp(base_application) papp) :
-::element(papp)
+::base_element(papp)
 {
 }
 
@@ -1338,7 +1338,7 @@ property_map::property_map()
 }
 
 property_array::property_array(sp(base_application) papp) :
-   element(papp)
+   base_element(papp)
 {
    set_size(0, 64);
 }
@@ -2076,9 +2076,9 @@ var  operator * (const property & prop1, const property & prop2)
    fixed_alloc * g_pfixedallocProperty = NULL;
 
    void * property::operator new(size_t size, void * p)
-      { 
+      {
          UNREFERENCED_PARAMETER(size);
-         return p; 
+         return p;
       }
 
    void * property::operator new(size_t nSize)

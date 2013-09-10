@@ -6,7 +6,7 @@ namespace dynamic_source
 
 
    script_cache::script_cache(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
    }

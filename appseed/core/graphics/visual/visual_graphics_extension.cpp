@@ -9,7 +9,7 @@ namespace visual
 
 
    graphics_extension::graphics_extension(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
    }

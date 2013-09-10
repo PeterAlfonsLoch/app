@@ -1,7 +1,7 @@
 #include "framework.h"
 
 XfplayerViewLines::XfplayerViewLines(sp(base_application) papp) :
-   element(papp)
+   base_element(papp)
 {
     m_iFirstVisible = -1;
     m_iLastVisible = -1;
@@ -206,7 +206,7 @@ void XfplayerViewLines::get_sel_text(string & strSelText, const char * pszLineSe
    index iCharStart;
    index iLineEnd;
    index iCharEnd;
-   
+
    m_selection.GetNormalSelection(iLineStart, iCharStart, iLineEnd, iCharEnd);
 
    if(iLineEnd >= iLineStart)
@@ -247,7 +247,7 @@ void XfplayerViewLines::get_sel_text(string & strSelText, const char * pszLineSe
 
          }
       }
-         
+
    }
 
 }
@@ -273,7 +273,7 @@ void XfplayerViewLines::get_text(string & strText, const char * pszLineSeparator
       strText = element_at(0)->m_str;
 
    }
-         
+
    for(int32_t iLine = 1; iLine < get_count(); iLine++)
    {
 

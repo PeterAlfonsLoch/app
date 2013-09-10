@@ -96,7 +96,7 @@ namespace core
    }
 
    datetime::international::international(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
    }
 

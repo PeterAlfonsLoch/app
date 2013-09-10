@@ -8,7 +8,7 @@
 
 
 event::event(sp(base_application) papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
-   element(papp)
+   base_element(papp)
 {
 
    //if(papp == NULL)
@@ -401,7 +401,7 @@ wait_result event::wait (const duration & durationTimeout)
       {
 
          int error = pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
-         
+
          if(error != 0)
          {
 

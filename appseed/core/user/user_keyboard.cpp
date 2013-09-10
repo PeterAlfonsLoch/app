@@ -4,7 +4,7 @@ namespace user
 {
 
    keyboard::keyboard(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
 

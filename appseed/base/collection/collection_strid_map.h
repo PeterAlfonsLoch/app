@@ -19,7 +19,7 @@ public:
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(sp(base_application) papp, ::count nBlockSize) :
-   element(papp), 
+   base_element(papp),
    map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > (papp, nBlockSize)
 {
 }
@@ -27,7 +27,7 @@ strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(sp(base_application) pap
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(const strid_map & map) :
-   element(map.get_app()),
+   base_element(map.get_app()),
    attrib_map < ::map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > > (map)
 {
 }

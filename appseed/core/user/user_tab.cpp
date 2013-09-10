@@ -244,7 +244,7 @@ namespace user
    void tab::_001OnDraw(::draw2d::graphics * pdc)
    {
 
-      
+
       get_data()->m_pen->create_solid(pdc, 1, RGB(32, 32, 32));
 
 
@@ -467,7 +467,7 @@ namespace user
 
          if(get_element_rect(iVisiblePane, rectText, element_text))
          {
-            
+
             pdc->SelectObject(brushText);
 
             get_data()->m_dcextension._DrawText(pdc, pane.get_title(), rectText, DT_LEFT | DT_BOTTOM);
@@ -708,11 +708,11 @@ namespace user
 
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
-               
+
                pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
-               
+
                pane.m_dib->bitmap_blend(pdc, rectIcon);
-               
+
             }
 
             if(true)
@@ -724,11 +724,11 @@ namespace user
             {
 
                path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
-               
+
                path->add_line(rectClient.right, rectBorder.top);
-               
+
                path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
-               
+
                path->add_line(rectBorder.right - 1, rectClient.bottom);
 
                path->end_figure(false);
@@ -748,9 +748,9 @@ namespace user
                pdc->draw_path(path);
 
                pdc->set_font(get_data()->m_font);
-               
+
                brushText->create_solid(ARGB(255, 0, 0, 0));
-               
+
             }
             else
             {
@@ -758,13 +758,13 @@ namespace user
                //path->begin_figure(true, ::draw2d::fill_mode_winding);
 
                path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
-               
+
                path->add_line(rectClient.right, rectBorder.top);
-               
+
                path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
-               
+
                path->add_line(rectBorder.right - 1, rectClient.bottom);
-               
+
                path->end_figure(true);
 
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
@@ -807,7 +807,7 @@ namespace user
                   pdc->draw_path(path);
 
                   pdc->set_font(get_data()->m_font);
-                  
+
                   brushText->create_solid(ARGB(255, 0, 0, 0));
 
                }
@@ -815,39 +815,39 @@ namespace user
             }
 
          }
-         
+
             }
          if(get_element_rect(iVisiblePane, rectText, element_text))
          {
-            
+
             pdc->SelectObject(brushText);
 
             get_data()->m_dcextension._DrawText(pdc, pane.get_title(), rectText, DT_LEFT | DT_BOTTOM);
-            
+
          }
-         
+
          if(get_element_rect(iVisiblePane, rectClose, element_close_tab_button))
          {
-            
+
             pdc->set_font(get_data()->m_fontBold);
-            
+
             if(iVisiblePane == m_iHover && m_eelementHover == element_close_tab_button)
             {
-               
+
                brushText->create_solid(ARGB(0xff, 255, 127, 0));
-               
+
             }
             else
             {
-               
+
                brushText->create_solid(ARGB(0xff, 0, 0, 0));
-               
+
             }
 
             pdc->SelectObject(brushText);
-            
+
             pdc->draw_text("x", rectClose, DT_CENTER | DT_VCENTER);
-            
+
          }
 
 
@@ -1043,7 +1043,7 @@ namespace user
       }
 
       layout_pane(_001GetSel());
-      
+
       _001RedrawWindow();
 
    }
@@ -1375,44 +1375,44 @@ namespace user
 
    void tab::_001OnCreate(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::message::base, pbase, pobj);
-      
+
       if(pobj->previous())
          return;
-      
+
    //  m_pimagelist = new image_list(get_app());
-      
+
       get_data()->m_bCreated = true;
-      
+
       pbase->set_lresult(0);
-      
+
       post_message(WM_USER + 1342);
-      
+
    }
-   
+
 
    void tab::_011OnCreate(signal_details * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
-      
+
 //      SCAST_PTR(::message::base, pbase, pobj);
 
       keeper < bool > keepRestoringTabs(&m_bRestoringTabs, true, false, true);
-      
+
       if(get_data()->m_matchanyRestore.get_count() > 0)
       {
-         
+
          var_array vara;
-         
+
          if(data_get("restore_tab", "", vara))
          {
-            
+
             open_tabs(vara);
-            
+
          }
-         
+
       }
 
    }
@@ -1497,7 +1497,7 @@ namespace user
 
 
    tab::pane_array::pane_array(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
    }
 

@@ -28,7 +28,7 @@ base_application::base_application() :
 
    m_pplaneapp = NULL;
 
-   m_psignal = new signal();
+   m_psignal = new class signal();
 
    m_pcommandthread           = new ::command_thread(this);
 
@@ -49,7 +49,8 @@ int32_t base_application::simple_message_box(const char * pszMessage, UINT fuSty
 
 #elif  defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
-   return MessageBox((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
+   return MessageBox(NULL, pszMessage, m_strAppName, fuStyle);
+//   return MessageBox((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
 
 #else
 
@@ -68,12 +69,12 @@ bool base_application::load_string(string & str, id id)
 }
 
 
-sp(element) base_application::alloc(sp(type) info)
+sp(base_element) base_application::alloc(sp(type) info)
 {
    return System.alloc(this, info);
 }
 
-sp(element) base_application::alloc(const  id & idType)
+sp(base_element) base_application::alloc(const  id & idType)
 {
    return System.alloc(this, idType);
 }
@@ -196,7 +197,7 @@ sp(::command_thread) base_application::creation()
 }
 
 
-application_signal_details::application_signal_details(sp(base_application) papp, ::signal * psignal, e_application_signal esignal) :
+application_signal_details::application_signal_details(sp(base_application) papp, class ::signal * psignal, e_application_signal esignal) :
    element(papp),
    ::signal_details(psignal)
 {

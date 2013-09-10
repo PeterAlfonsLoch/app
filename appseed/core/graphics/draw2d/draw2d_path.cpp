@@ -16,7 +16,7 @@ namespace draw2d
    }
 
    path::path(base_application * papp) :
-      ::element(papp)
+      ::base_element(papp)
    {
 
       m_bUpdated     = false;
@@ -131,7 +131,7 @@ namespace draw2d
    {
 
       bool bOk1 = add_line(x, y);
-      
+
       bool bOk2 = add_line(x2, y2);
 
       return bOk1 && bOk2;
@@ -161,7 +161,7 @@ namespace draw2d
       element e;
 
       e.m_etype               = element::type_end;
-      
+
       e.m_end.m_bClose        = bClose;
 
       m_elementa.add(e);
@@ -180,7 +180,7 @@ namespace draw2d
 
    bool path::add_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
-      
+
       rect rect;
 
       rect.left      = x1;
@@ -302,7 +302,7 @@ namespace draw2d
       r.bottom       = (LONG) (a.m_yCenter + a.m_dRadiusY);
 
       POINT pt1;
-      
+
       POINT pt2;
 
       lprect->left   = (LONG) min(a.m_xCenter, lprect->left);
@@ -316,9 +316,9 @@ namespace draw2d
 //      double e = a.m_dRadiusY / a.m_dRadiusX;
 
       double f1 = a.m_dAngle1;
-      
+
       double f2 = a.m_dAngle2;
-      
+
       pt1.x          = (LONG) (a.m_xCenter + a.m_dRadiusX * cos(f1));
 
       pt1.y          = (LONG) (a.m_yCenter - a.m_dRadiusY * sin(f1));
@@ -395,7 +395,7 @@ namespace draw2d
 
    void path::get_bounding_rect(LPRECT lprect, move & m)
    {
-      
+
       lprect->left   = (LONG) min(m.m_x, lprect->left);
 
       lprect->top    = (LONG) min(m.m_y, lprect->top);
@@ -421,7 +421,7 @@ namespace draw2d
    }
 
 
-   
+
 } // namespace draw2d
 
 

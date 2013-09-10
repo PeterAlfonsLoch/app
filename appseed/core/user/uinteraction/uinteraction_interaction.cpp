@@ -6,11 +6,11 @@ namespace uinteraction
 
 
    interaction::interaction(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
    }
-      
-   
+
+
    interaction::~interaction()
    {
    }
@@ -29,7 +29,7 @@ namespace uinteraction
 
    sp(frame::frame) interaction::get_frame_schema(const char * pszSchema)
    {
-      
+
       UNREFERENCED_PARAMETER(pszSchema);
 
       return NULL;

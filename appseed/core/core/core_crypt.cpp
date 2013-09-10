@@ -13,7 +13,7 @@ namespace core
 
 
    crypt::crypt(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
    }
 
@@ -108,7 +108,7 @@ namespace core
       storageEncrypt.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(cipherkey, storageDecrypt.get_os_crypt_buffer(), iv.get_os_crypt_buffer()));
 
       return true;
-       
+
 #elif defined(MACOS)
 
       CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);

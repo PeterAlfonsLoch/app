@@ -99,12 +99,12 @@ namespace plane
       bool                                         m_bLibCharGuess;
 
       sp(::user::str)                              m_puserstr;
-       
+
        ::ca::library m_libraryDraw2d;
-       
-       
-       
-       
+
+
+
+
 
       string_map < int_map < string, string >, const int_map < string, string > & >
          m_mapEnumToName;
@@ -281,8 +281,8 @@ namespace plane
       sp(::plane::session) query_session(index iEdge);
 
 
-      //static void register_delete(sp(element) plistened, sp(element) plistener);
-      //static void unregister_delete(sp(element) plistened, sp(element) plistenerOld);
+      //static void register_delete(sp(base_element) plistened, sp(base_element) plistener);
+      //static void unregister_delete(sp(base_element) plistened, sp(base_element) plistenerOld);
 
       virtual bool wait_twf(uint32_t dwTimeOut = INFINITE);
 
@@ -362,7 +362,7 @@ namespace plane
 
       virtual bool create_twf();
 
-      //virtual void discard_to_factory(sp(element) pca);
+      //virtual void discard_to_factory(sp(base_element) pca);
 
       virtual bool verb();
 
@@ -449,9 +449,9 @@ bool ::core::file_system::output(sp(base_application) papp, const char * pszOutp
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
-   
+
    string strDownloading = pszOutput;
-   
+
    strDownloading += ".downloading";
 
    ::file::binary_buffer_sp fileOut = App(papp).file().get_file(strDownloading, ::file::mode_create | ::file::type_binary | ::file::mode_write);
@@ -466,13 +466,13 @@ bool ::core::file_system::output(sp(base_application) papp, const char * pszOutp
 
    if(!(p->*lpfnOuput)(fileOut, fileIn))
       return false;
-   
+
    if(::rename(strDownloading, pszOutput) != 0)
    {
       del(strDownloading);
       return false;
    }
-   
+
    return true;
 
 }

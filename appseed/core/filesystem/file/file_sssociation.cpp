@@ -5,7 +5,7 @@ namespace core
 
    /*
    file_association::file_association(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
       m_hkeyClassesRoot = NULL;
    }

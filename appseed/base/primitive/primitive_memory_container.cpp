@@ -6,21 +6,21 @@ namespace primitive
 
 
    memory_container ::memory_container(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
       m_dwAllocationAddUp = 1024;
    }
 
 
    memory_container ::memory_container(sp(base_application) papp, void * pmemory, memory_size dwSize) :
-      element(papp)
+      base_element(papp)
    {
       m_spmemory = new primitive::memory(this, pmemory, dwSize);
    }
 
 
    memory_container ::memory_container(sp(base_application) papp, memory_base * pmemory) :
-      element(papp)
+      base_element(papp)
    {
       m_spmemory = pmemory;
    }
@@ -49,10 +49,10 @@ namespace primitive
 
       if(dwNewLength <= 0)
       {
-         
+
          if(m_spmemory.is_set())
          {
-            
+
             if(!m_spmemory->allocate(dwNewLength))
             {
 
@@ -67,12 +67,12 @@ namespace primitive
 
       if(m_spmemory == NULL)
       {
-         
+
          m_spmemory = new primitive::memory(this);
 
          if(m_spmemory.is_null())
          {
-         
+
             throw memory_exception(get_app());
 
          }
@@ -294,7 +294,7 @@ namespace primitive
 
    void memory_container::str(const string & str)
    {
-      
+
       allocate(str.get_length());
 
       memcpy(get_data(), str, get_size());

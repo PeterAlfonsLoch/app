@@ -4,7 +4,7 @@ namespace fontopus
 {
 
    license::license(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
    }
 
@@ -40,9 +40,9 @@ namespace fontopus
       }
       else
       {
-         bLicensed = Application.m_pfontopus->check_license(pszId, bInteractive);   
+         bLicensed = Application.m_pfontopus->check_license(pszId, bInteractive);
       }
-      
+
       info.m_bLicensed = bLicensed;
       m_mapInfo.set_at(pszId, info);
       return info.m_bLicensed;

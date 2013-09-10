@@ -2,13 +2,13 @@
 
 
 template<class BASE_CLASS, class KEY, class VALUE>
-class typed_pointer_map : 
+class typed_pointer_map :
    public BASE_CLASS
 {
 public:
 
    typed_pointer_map(sp(base_application) papp = NULL, ::count nBlockSize = 10) :
-      element(papp),
+      base_element(papp),
       BASE_CLASS(papp, nBlockSize)
    {
    }

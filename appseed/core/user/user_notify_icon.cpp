@@ -5,9 +5,9 @@ namespace user
 {
 
    notify_icon::notify_icon(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
-#ifdef WINDOWSEX      
+#ifdef WINDOWSEX
       m_nid.cbSize = sizeof(m_nid);
 #endif
       m_bCreated = false;
@@ -92,7 +92,7 @@ namespace user
 
    bool notify_icon::Destroy()
    {
-      
+
       if(!m_bCreated)
          return false;
 
@@ -117,7 +117,7 @@ namespace user
 
    void notify_icon::_001OnNotifyIconMessage(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::message::base, pbase, pobj);
 
       m_plistener->OnNotifyIconMessage(m_uiId, (UINT) pbase->m_lparam);

@@ -13,7 +13,7 @@ namespace plugin
 {
 
    host_interaction::host_interaction(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
       m_pframe = NULL;
    }

@@ -113,7 +113,7 @@ protected:
 
 
    class signal_delegate :
-      virtual public element
+      virtual public base_element
    {
    public:
       virtual ~signal_delegate()

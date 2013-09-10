@@ -7,14 +7,14 @@ namespace core
    {
       m_phistory = NULL;
    }
-   
+
    history::history(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
       m_phistory = NULL;
    }
-         
-   
+
+
    bool history::hist(const char * psz)
    {
       if(m_phistory != NULL)

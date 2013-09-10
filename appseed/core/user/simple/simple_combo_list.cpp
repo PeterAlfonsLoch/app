@@ -2,7 +2,7 @@
 
 
 simple_combo_list::simple_combo_list(sp(base_application) papp) :
-   element(papp)
+   base_element(papp)
 {
 
 }
@@ -24,5 +24,5 @@ void simple_combo_list::_001OnDraw(::draw2d::graphics * pdc)
 {
 
    ::user::combo_list::_001OnDraw(pdc);
-   
+
 }

@@ -6,7 +6,7 @@ namespace data
 
 
    tree::tree(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
       m_pitem = allocate_item(NULL);
@@ -173,7 +173,7 @@ namespace data
 
    ::count tree::remove_tree_item_array(tree_item_ptr_array & itemptra)
    {
-      
+
       ::count ca = 0;
 
       for(int32_t i = 0; i < itemptra.get_count(); i++)

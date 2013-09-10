@@ -6,7 +6,7 @@ namespace primitive
 
 
    virtual_memory::virtual_memory(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
       m_pbStorage = NULL;
       m_pbComputed = NULL;

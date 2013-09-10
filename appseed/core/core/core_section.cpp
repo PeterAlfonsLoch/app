@@ -7,7 +7,7 @@ namespace core
 
 
    section::section(application * papp) :
-      element(papp)
+      base_element(papp)
    {
 
    }
@@ -30,7 +30,7 @@ namespace core
 
    }
 
-   
+
    void section::connect_to_application_signal()
    {
 

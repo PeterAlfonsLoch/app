@@ -12,7 +12,7 @@ namespace data
 
    typedef CLASS_DECL_c spa(data_listener) data_listener_ptra;
    typedef CLASS_DECL_c comparable_array < data * > data_ptra;
-   typedef CLASS_DECL_c comparable_array < sp(element) > ca_ptra;
+   typedef CLASS_DECL_c comparable_array < sp(base_element) > ca_ptra;
 
 
    class CLASS_DECL_c data :

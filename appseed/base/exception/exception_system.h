@@ -8,11 +8,11 @@ class CLASS_DECL_c system_exception :
 public:
    HRESULT ErrorCode;
    system_exception(sp(base_application) papp, HRESULT errorCode) :
-      element(papp),
+      base_element(papp),
       ::call_stack(papp),
       ::exception::base(papp),
       ::simple_exception(papp),
-      ErrorCode(errorCode) 
+      ErrorCode(errorCode)
    {
    }
 };

@@ -5,7 +5,7 @@ namespace data
 {
 
    data_listener::data_listener(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
    }

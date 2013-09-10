@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_c dump_context :
-   virtual public element
+   virtual public base_element
 {
 public:
    dump_context(::file::buffer_sp  pFile = NULL);

@@ -17,14 +17,14 @@ public:
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(sp(base_application) papp, ::count nBlockSize) :
-   element(papp),
+   base_element(papp),
    map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > (papp, nBlockSize)
 {
 }
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(const int_map & intmap) :
-   element(intmap.get_app()),
+   base_element(intmap.get_app()),
    attrib_map < map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > >(intmap)
 {
 }

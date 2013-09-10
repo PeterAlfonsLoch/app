@@ -2,7 +2,7 @@
 
 
 base_departament::base_departament(base_application * papp) :
-   element(papp)
+   base_element(papp)
 {
 
 }

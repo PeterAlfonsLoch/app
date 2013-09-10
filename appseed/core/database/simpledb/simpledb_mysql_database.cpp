@@ -6,7 +6,7 @@ namespace mysql
 {
 
    database::database(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
       m_pmysql = NULL;
 #ifdef WINDOWS
@@ -27,7 +27,7 @@ namespace mysql
 
    bool database::initialize()
    {
-      
+
       return true;
 
    }
@@ -132,13 +132,13 @@ namespace mysql
 
    sp(result) database::query(const char * pszSql)
    {
-	   
+
       m_strLastError = "";
-      
+
       MYSQL_RES * pres;
       if(m_pmysql == NULL)
       {
-         
+
          Sleep(1984);
          if(!initialize() || m_pmysql == NULL)
          {
@@ -177,15 +177,15 @@ namespace mysql
       }
       catch(...)
       {
-         
+
          trace_error1("Could not execute statement (2)");
          return NULL;
 
       }
-      
+
       /* the statement succeeded; determine whether it returned data */
       pres = mysql_store_result ((MYSQL *) m_pmysql);
-      
+
       if(pres) /* a result set was returned */
       {
          m_iLastUsedTime = ::core::profiler::micros();
@@ -199,7 +199,7 @@ namespace mysql
          */
          if (mysql_errno ((MYSQL *) m_pmysql) == 0)
          {
-           
+
             /*
             * statement generated no result set (it was not a SELECT,
             * SHOW, DESCRIBE, etc.); just report rows-affected value.

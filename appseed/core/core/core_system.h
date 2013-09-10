@@ -19,8 +19,8 @@ namespace core
       virtual ~system();
 
 
-      virtual sp(element) clone(sp(element) pobj);
-      virtual void discard_to_factory(sp(element) pca);
+      virtual sp(base_element) clone(sp(base_element) pobj);
+      virtual void discard_to_factory(sp(base_element) pca);
 
       virtual bool is_system();
 

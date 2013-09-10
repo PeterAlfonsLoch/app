@@ -14,7 +14,7 @@
 
 
 condition::condition(sp(base_application) papp) :
-   element(papp)
+   base_element(papp)
 {
 
    if(papp == NULL)

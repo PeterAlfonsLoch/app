@@ -6,7 +6,7 @@ namespace geometry
 
 
    geometry::geometry(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
    }
@@ -37,7 +37,7 @@ namespace geometry
       int32_t xParam,
       int32_t yParam,
       LPPOINT lppoint,
-      int32_t iCount, 
+      int32_t iCount,
       double phicos,
       double phisin)
    {
@@ -64,7 +64,7 @@ namespace geometry
    // Purpose:
    // Change rectangle dimension using its dimensions and the specified
    // rates. For example, the dLeftRate change the left position of the
-   // rectangle. If 0.0, it remains the same as the original left. 
+   // rectangle. If 0.0, it remains the same as the original left.
    // If 1.0, it turns as the original right. If 0.4, it will be 40%
    // of the width from left to right.
    //
@@ -79,10 +79,10 @@ namespace geometry
    void geometry::deflate(LPRECT lprect, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
    {
       rect rect(lprect);
-      lprect->left      = System.math().RangeRate(rect.left, rect.right, dLeftRate); 
-      lprect->right     = System.math().RangeRate(rect.right, rect.left, dRightRate); 
-      lprect->top       = System.math().RangeRate(rect.top, rect.bottom, dTopRate); 
-      lprect->bottom    = System.math().RangeRate(rect.bottom, rect.top, dBottomRate); 
+      lprect->left      = System.math().RangeRate(rect.left, rect.right, dLeftRate);
+      lprect->right     = System.math().RangeRate(rect.right, rect.left, dRightRate);
+      lprect->top       = System.math().RangeRate(rect.top, rect.bottom, dTopRate);
+      lprect->bottom    = System.math().RangeRate(rect.bottom, rect.top, dBottomRate);
 
    }
 

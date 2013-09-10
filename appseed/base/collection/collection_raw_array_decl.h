@@ -457,7 +457,7 @@ public:
 
 #if defined(MOVE_SEMANTICS)
     raw_array(raw_array && a) :
-   element(a.get_app())
+   base_element(a.get_app())
    {
 
    m_nGrowBy      = a.m_nGrowBy;

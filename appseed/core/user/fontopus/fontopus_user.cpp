@@ -6,7 +6,7 @@ namespace fontopus
 
 
    user::user(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
       m_ppresence       = NULL;
@@ -52,7 +52,7 @@ namespace fontopus
       || m_strLogin == system_user_2)
          return false;
 
-      
+
       if(m_pifs != NULL)
       {
          return true;
@@ -192,8 +192,8 @@ restart:
 
          for(int32_t j = 0; j < straServer.get_size(); j++)
          {
-                     
-            string strSessId = ApplicationUser.get_sessid(straServer[j]); 
+
+            string strSessId = ApplicationUser.get_sessid(straServer[j]);
 
             if(strSessId != "not_auth")
             {

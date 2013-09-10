@@ -192,7 +192,7 @@ namespace http
 
 
    system::proxy::proxy(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
    }
 

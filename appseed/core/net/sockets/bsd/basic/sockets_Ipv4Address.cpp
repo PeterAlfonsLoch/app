@@ -71,7 +71,7 @@ namespace sockets
    }
 
 
-   ipv4_address::ipv4_address(sp(base_application) papp, const sockaddr_in& sa) : element(papp)
+   ipv4_address::ipv4_address(sp(base_application) papp, const sockaddr_in& sa) : base_element(papp)
    {
       m_addr = sa;
       m_bValid = sa.sin_family == AF_INET;

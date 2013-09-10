@@ -24,12 +24,12 @@ namespace core
 
 
 
-   void system::discard_to_factory(sp(element) pca)
+   void system::discard_to_factory(sp(base_element) pca)
    {
       UNREFERENCED_PARAMETER(pca);
    }
 
-   sp(element) system::clone(sp(element) pca)
+   sp(base_element) system::clone(sp(base_element) pca)
    {
       UNREFERENCED_PARAMETER(pca);
       return NULL;
@@ -39,14 +39,14 @@ namespace core
 
    bool system::is_system()
    {
-      
+
       return true;
 
    }
 
    bool system::process_initialize()
    {
-      
+
       if(!::base_system::process_initialize())
          return false;
 

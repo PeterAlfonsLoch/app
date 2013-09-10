@@ -196,7 +196,7 @@ public:
       return false;
    }
 
-   /*inline void set_heap_alloc(sp(element) pca)
+   /*inline void set_heap_alloc(sp(base_element) pca)
    {
    if(find(pca, true))
    {

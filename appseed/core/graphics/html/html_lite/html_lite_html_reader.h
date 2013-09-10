@@ -193,7 +193,7 @@ public:
 // Construction/Destruction
 
    lite_html_reader(sp(base_application) papp)  :
-      element(papp)
+      base_element(papp)
    {
       m_bResolveEntities = true;   // entities are resolved, by default
       m_dwAppData = 0L;   // reasonable default!

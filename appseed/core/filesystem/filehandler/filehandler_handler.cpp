@@ -6,7 +6,7 @@ namespace filehandler
 
 
    handler::handler(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
       m_sptree = new tree_interface(papp);
@@ -53,7 +53,7 @@ namespace filehandler
       }
 
       stringa straMimeType;
-         
+
       plibrary->get_mime_type_list(straMimeType);
 
       for(int32_t i = 0; i < straMimeType.get_count(); i++)
@@ -84,7 +84,7 @@ namespace filehandler
       }
 
       stringa straMimeType;
-         
+
       plibrary->get_mime_type_list(straMimeType);
 
       for(int32_t i = 0; i < straMimeType.get_count(); i++)

@@ -6,7 +6,7 @@ namespace userfs
 
 
    list_item::list_item(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
       m_iIndex = -1;
       m_iArrange = -1;
@@ -107,7 +107,7 @@ namespace userfs
 
 
 
-template <> 
+template <>
 ::fs::item cast < ::fs::item > (::userfs::list_item & item)
 {
    ::fs::item itemT;

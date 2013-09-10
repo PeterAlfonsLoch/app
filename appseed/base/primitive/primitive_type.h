@@ -5,7 +5,7 @@ class factory_item_base;
 
 
 class CLASS_DECL_c type :
-   virtual public element
+   virtual public base_element
 {
 public:
 

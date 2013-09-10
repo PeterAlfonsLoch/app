@@ -460,7 +460,7 @@ public:
    void assert_valid() const;
 
    array(array && a) :
-   element(a.get_app())
+   base_element(a.get_app())
    {
 
       m_nGrowBy      = a.m_nGrowBy;

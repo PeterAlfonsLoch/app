@@ -1,7 +1,7 @@
 #include "framework.h"
 
 ErrorHandlerWriter::ErrorHandlerWriter(sp(base_application) papp) :
-element(papp)
+base_element(papp)
 {
 }
 
@@ -43,7 +43,7 @@ void ErrorHandlerWriter::warning(const string &msg){
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

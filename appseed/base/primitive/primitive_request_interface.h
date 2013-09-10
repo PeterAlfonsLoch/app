@@ -8,7 +8,7 @@ class command_line;
 
 
 class CLASS_DECL_c request_interface :
-   virtual public element
+   virtual public base_element
 {
 public:
 

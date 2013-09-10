@@ -53,7 +53,7 @@ namespace sockets
 
 
    address::address(sp(base_application) papp, const string & strAddress, const string & strServiceName) :
-      element(papp)
+      base_element(papp)
    {
 
 
@@ -65,7 +65,7 @@ namespace sockets
 
 
    address::address(sp(base_application) papp, const string & strAddress, int32_t iPort) :
-      element(papp)
+      base_element(papp)
    {
 
 

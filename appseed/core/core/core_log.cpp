@@ -9,7 +9,7 @@ namespace core
 
 
    log::log(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
 #if defined(WINDOWSEX)

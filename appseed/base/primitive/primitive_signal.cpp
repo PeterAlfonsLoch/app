@@ -3,7 +3,7 @@
 
 
 signal_details::signal_details(sp(base_application) papp) :
-   element(papp)
+   base_element(papp)
 {
    m_iParam    = 0;
    m_psignal   = NULL;

@@ -268,7 +268,7 @@ inline array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator = (const array & 
 
 template<class TYPE, class ARG_TYPE>
 array<TYPE, ARG_TYPE>::array(sp(base_application) papp, ::count nGrowBy) :
-element(papp)
+base_element(papp)
 {
    m_nGrowBy = max(0, nGrowBy);
    m_pData = NULL;
@@ -277,7 +277,7 @@ element(papp)
 
 template<class TYPE, class ARG_TYPE>
 array<TYPE, ARG_TYPE>::array(const array <TYPE, ARG_TYPE> & a) :
-element(a.get_app())
+base_element(a.get_app())
 {
    m_nGrowBy = 32;
    m_pData = NULL;

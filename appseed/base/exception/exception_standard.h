@@ -110,7 +110,7 @@ public:
 
 #else
    standard_exception(sp(base_application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
-      element(papp),
+      base_element(papp),
       ::call_stack(papp),
       ::exception::base(papp),
       m_iSignal(iSignal),
@@ -120,7 +120,7 @@ public:
 #endif
        { /*_ASSERTE(psiginfo != 0);*/ }
    standard_exception(const standard_exception& se) :
-      element(se),
+      base_element(se),
       ::call_stack(se),
       ::exception::base(se),
       m_iSignal(se.m_iSignal),
@@ -161,7 +161,7 @@ namespace exception
    protected:
    #if defined(ANDROID)
       standard_access_violation (sp(base_application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
-         element(papp),
+         base_element(papp),
          ::call_stack(papp),
          ::exception::base(papp),
          ::standard_exception(papp, signal, psiginfo, pc)
@@ -169,7 +169,7 @@ namespace exception
    public:
    #elif defined(LINUX) || defined(MACOS)
       standard_access_violation (sp(base_application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
-         element(papp),
+         base_element(papp),
 #ifdef LINUX
 #ifdef _LP64
          ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
@@ -205,7 +205,7 @@ namespace exception
    public:
       bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
       uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
-   #endif 
+   #endif
    };
    #if defined(ANDROID)
 
@@ -230,7 +230,7 @@ namespace exception
       friend class translator;
    protected:
       standard_sigfpe (sp(base_application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
-         element(papp),
+         base_element(papp),
 #ifdef LINUX
 #ifdef _LP64
       ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),

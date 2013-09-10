@@ -688,7 +688,7 @@ namespace user
       if(m_plist == NULL)
       {
 
-         sp(element) pca = Application.alloc(m_typeComboList);
+         sp(base_element) pca = Application.alloc(m_typeComboList);
 
          m_plist =  (pca);
 

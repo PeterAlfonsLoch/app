@@ -2,7 +2,7 @@
 
 
 simple_status_bar::simple_status_bar(sp(base_application) papp) :
-   element(papp)
+   base_element(papp)
 {
 
 }
@@ -24,7 +24,7 @@ simple_status_bar::~simple_status_bar()
 
 
 /*
-bool simple_status_bar::OnEraseBkgnd(::draw2d::graphics * pgraphics) 
+bool simple_status_bar::OnEraseBkgnd(::draw2d::graphics * pgraphics)
 {
    return TRUE;
 }
@@ -57,7 +57,7 @@ void simple_status_bar::_001OnDraw(::draw2d::graphics *pdc)
       ARGB(255, 184, 184, 177),
       208);
 #endif
-   
+
 
 
 }

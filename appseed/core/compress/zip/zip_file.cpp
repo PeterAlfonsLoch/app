@@ -5,7 +5,7 @@ namespace zip
 {
 
    File::File(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
       m_bOwnFile                 = false;
       m_filefuncdef.opaque       = (voidpf) this;

@@ -127,7 +127,7 @@ namespace database
    }
 
    result_set::result_set(sp(base_application) papp) :
-   element(papp)
+   base_element(papp)
    {
    }
 

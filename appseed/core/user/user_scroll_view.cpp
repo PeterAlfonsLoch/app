@@ -6,7 +6,7 @@ namespace user
 
 
    scroll_view::scroll_view(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
       m_scrollinfo.m_ptScroll.x = 0;

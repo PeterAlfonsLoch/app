@@ -6,7 +6,7 @@ int32_t g_idbchange;
 
 
 db_server::db_server(sp(base_application) papp) :
-   element(papp)
+   base_element(papp)
 {
    m_pdb                = NULL;
    m_pSongsDirsSet      = NULL;
@@ -340,7 +340,7 @@ bool db_server::load(const char * lpKey, ::file::output_stream & ostream)
 {
 
    string str;
-   
+
    if(!load(lpKey, str))
    {
 
@@ -369,11 +369,11 @@ bool db_server::save(const char * lpKey, ::file::input_stream & istream)
 {
 
    string str;
-   
+
    file::byte_input_stream is(istream);
 
    is.seek_to_begin();
-   
+
    is.read_to_hex(str);
 
    if(!save(lpKey, str))

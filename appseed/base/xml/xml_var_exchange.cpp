@@ -5,7 +5,7 @@ namespace xml
 {
 
    var_exchange::var_exchange(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
       m_pvar = NULL;
    }
@@ -41,7 +41,7 @@ namespace xml
       pnode->get_attr("type", i);
       m_pvar->m_etype = (var::e_type) i;
       m_pvar->set_string(pnode->get_value());
-   
+
    }
 
 } // namespace xml

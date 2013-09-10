@@ -4,9 +4,9 @@
 namespace core
 {
 
-   
+
    os::os(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
    }
 
@@ -193,7 +193,7 @@ namespace core
 
    bool os::open_in_ie(const char * lpcsz)
    {
-      
+
       throw interface_only_exception(get_app());
 
       return false;
@@ -205,11 +205,11 @@ namespace core
 
    bool os::create_service(sp(::plane::application) papp)
    {
-      
+
 
       throw not_implemented(get_app());
 
-      
+
       return false;
 
 
@@ -222,7 +222,7 @@ namespace core
 
       throw not_implemented(get_app());
 
-      
+
       return false;
 
 
@@ -235,7 +235,7 @@ namespace core
 
       throw not_implemented(get_app());
 
-      
+
       return false;
 
 
@@ -248,7 +248,7 @@ namespace core
 
       throw not_implemented(get_app());
 
-      
+
       return false;
 
 
@@ -274,7 +274,7 @@ namespace core
 
    }
 
-   
+
    void os::post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam)
    {
 

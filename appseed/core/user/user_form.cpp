@@ -1008,7 +1008,7 @@ namespace user
          TRACE("form::create_control: failed to create control, could not find proper type for allocation");
          return false;
       }
-      sp(element) pca = System.alloc(pdescriptor->m_typeinfo);
+      sp(base_element) pca = System.alloc(pdescriptor->m_typeinfo);
       if(pca == NULL)
       {
          TRACE("form::create_control: failed to create control, allocation error");
@@ -1218,11 +1218,11 @@ namespace user
 
 
 
-   
-   
 
 
-   
+
+
+
 
 
 

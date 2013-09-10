@@ -376,7 +376,7 @@ namespace plane
             || ::str::ends_eat_ci(strLibraryId, ".so")
             || ::str::ends_eat_ci(strLibraryId, ".dylib"))
          {
-            
+
             if(::str::begins_ci(strLibraryId, "libdraw2d_")
             || ::str::begins_ci(strLibraryId, "lib_ca2"))
             {
@@ -759,12 +759,12 @@ namespace plane
    }
 
    /*
-   sp(element) system::on_alloc(sp(base_application) papp, sp(type) info)
+   sp(base_element) system::on_alloc(sp(base_application) papp, sp(type) info)
    {
       /*string str;
       str.Format("Could not alloc %s", info.name());
       simple_message_box(str);*/
-      /*sp(element) pobj = Sys(papp).factory().create(papp, info);
+      /*sp(base_element) pobj = Sys(papp).factory().create(papp, info);
       if(pobj != NULL)
          return pobj;
       on_allocation_error(papp, info);
@@ -1231,7 +1231,7 @@ namespace plane
       return file().title_(psz);
    }
 
-   /*void system::register_delete(sp(element) plistened, sp(element) plistener)
+   /*void system::register_delete(sp(base_element) plistened, sp(base_element) plistener)
    {
       if(plistened == plistener)
          return;
@@ -1243,7 +1243,7 @@ namespace plane
       plistened->listenerptra().add(plistener);
    }
 
-   void system::unregister_delete(sp(element) plistened, sp(element) plistener)
+   void system::unregister_delete(sp(base_element) plistened, sp(base_element) plistener)
    {
       if(plistened == plistener)
          return;
@@ -1746,12 +1746,12 @@ namespace plane
 
    void system::monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, LPRECT lprcMonitor)
    {
-      
+
       UNREFERENCED_PARAMETER(hdcMonitor);
       UNREFERENCED_PARAMETER(lprcMonitor);
-      
+
       m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
-      
+
       ZERO(m_monitorinfoa.last_element());
 
       m_monitorinfoa.last_element().cbSize = sizeof(MONITORINFO);
@@ -1792,7 +1792,7 @@ namespace plane
 
 
 #ifdef WINDOWSEX
-      
+
       if(i < 0 || i >= get_monitor_count())
          return false;
 
@@ -1818,22 +1818,22 @@ namespace plane
 
       if(i < 0 || i >= get_monitor_count())
          return false;
-      
+
       GetMainScreenRect(lprect);
-      
+
 #else
-      
+
       throw todo(get_app());
-      
+
       ::GetWindowRect(::GetDesktopWindow(), lprect);
-      
+
 #endif
-      
+
       return true;
 
    }
 
-   
+
    index system::get_best_intersection_monitor(LPRECT lprect)
    {
 
@@ -2433,7 +2433,7 @@ retry:
 
    UINT system::os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam lparam)
    {
-      
+
       os().post_to_all_threads(uiMessage, wparam, lparam);
 
       return 0;

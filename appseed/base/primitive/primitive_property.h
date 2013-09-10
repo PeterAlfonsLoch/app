@@ -338,7 +338,7 @@ public:
       return *this;
    }
 
-   property & operator =(element * p)
+   property & operator =(base_element * p)
    {
       get_value() = p;
       return *this;

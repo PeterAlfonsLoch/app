@@ -6,7 +6,7 @@ namespace draw2d_cairo
 
 
    bitmap::bitmap(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
       m_psurface = NULL;

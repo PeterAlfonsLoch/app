@@ -1,7 +1,7 @@
 #include "framework.h"
 
 clock_interface::clock_interface(sp(base_application) papp) :
-   element(papp)
+   base_element(papp)
 {
 }
 

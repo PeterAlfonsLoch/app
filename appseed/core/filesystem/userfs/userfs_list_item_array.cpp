@@ -17,7 +17,7 @@ namespace userfs
    }
 
    list_item_array::list_item_array(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
       m_itema.set_app(papp);
       m_pfnCompare = &BaseNullCompare < sp(list_item) >;
@@ -49,11 +49,11 @@ namespace userfs
 
    void list_item_array::add_item(list_item & item)
    {
-      
+
       sp(list_item) spitem(new list_item(item));
-      
+
       m_itema.add(spitem);
-      
+
       spitem->m_iArrange = this->get_size() - 1;
 
    }

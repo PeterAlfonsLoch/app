@@ -7,7 +7,7 @@ namespace sockets
 
 
    http_batch_buffer::http_batch_buffer(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
       m_nOpenFlags = 0;

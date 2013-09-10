@@ -105,6 +105,8 @@
 		<Unit filename="base/base_departament.h" />
 		<Unit filename="base/base_departament_container.cpp" />
 		<Unit filename="base/base_departament_container.h" />
+		<Unit filename="base/base_element.cpp" />
+		<Unit filename="base/base_element.h" />
 		<Unit filename="base/base_enum.h" />
 		<Unit filename="base/base_fixed_alloc.cpp" />
 		<Unit filename="base/base_fixed_alloc.h" />
@@ -136,9 +138,6 @@
 		<Unit filename="base/base_thread.cpp" />
 		<Unit filename="base/base_thread.h" />
 		<Unit filename="base/base_types.h" />
-		<Unit filename="c_os_locale.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="collection/collection.h" />
 		<Unit filename="collection/collection_2d_array.cpp" />
 		<Unit filename="collection/collection_array.cpp" />
@@ -422,7 +421,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="linux/c_os_internal.h" />
-		<Unit filename="macos/c_os_internal.h" />
 		<Unit filename="math/math.h" />
 		<Unit filename="math/math_count.h" />
 		<Unit filename="math/math_index.h" />
@@ -514,8 +512,6 @@
 		<Unit filename="primitive/primitive_data_listener.h" />
 		<Unit filename="primitive/primitive_edit.cpp" />
 		<Unit filename="primitive/primitive_edit.h" />
-		<Unit filename="primitive/primitive_element.cpp" />
-		<Unit filename="primitive/primitive_element.h" />
 		<Unit filename="primitive/primitive_factory.cpp" />
 		<Unit filename="primitive/primitive_factory.h" />
 		<Unit filename="primitive/primitive_id.cpp" />
@@ -557,10 +553,6 @@
 		<Unit filename="primitive/primitive_virtual_memory.cpp" />
 		<Unit filename="primitive/primitive_virtual_memory.h" />
 		<Unit filename="product.version.config.h" />
-		<Unit filename="solaris/c_os.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="solaris/c_os_internal.h" />
 		<Unit filename="spa/spa_file.cpp" />
 		<Unit filename="spa/spa_trace.cpp" />
 		<Unit filename="spa/spa_trace.h" />
@@ -617,22 +609,6 @@
 		<Unit filename="version.config.h" />
 		<Unit filename="version.cpp" />
 		<Unit filename="version.h" />
-		<Unit filename="windows/windows.cpp" />
-		<Unit filename="windows/windows.h" />
-		<Unit filename="windows/windows_file.cpp" />
-		<Unit filename="windows/windows_file.h" />
-		<Unit filename="windows/windows_file_c.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="windows/windows_file_std.cpp" />
-		<Unit filename="windows/windows_http.cpp" />
-		<Unit filename="windows/windows_internal.cpp" />
-		<Unit filename="windows/windows_internal.h" />
-		<Unit filename="windows/windows_process.cpp" />
-		<Unit filename="windows/windows_thread.cpp" />
-		<Unit filename="windows/windows_thread.h" />
-		<Unit filename="windows/windows_utils.cpp" />
-		<Unit filename="windows/windows_utils.h" />
 		<Unit filename="x/x_charcategory.h" />
 		<Unit filename="x/x_charcategory2.h" />
 		<Unit filename="x/x_charcategory_names.h" />

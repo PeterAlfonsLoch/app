@@ -7,7 +7,7 @@ namespace draw2d_cairo
 
 
    graphics::graphics(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
       m_bPrinting       = FALSE;

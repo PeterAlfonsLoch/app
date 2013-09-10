@@ -14,7 +14,7 @@ void itemswap(void * pswaparg, index i1, index i2)
 bool is_safe_set(void * p);
 
 factory::factory(sp(base_application) papp) :
-   element(papp)
+   base_element(papp)
 {
    m_pmutex = new mutex(papp);
    m_pstrida = new strid_array(true);
@@ -82,7 +82,7 @@ void factory::set_at(const char * pszType, sp(factory_allocator) pallocator)
 
 }
 
-void factory::discard(sp(element) pobject)
+void factory::discard(sp(base_element) pobject)
 {
    single_lock sl(m_pmutex, TRUE);
    sp(factory_allocator) pallocator = get_allocator(typeid(*pobject).name());
@@ -160,7 +160,7 @@ sp(factory_allocator) factory::get_allocator(const char * pszType)
 
 
 
-sp(element) factory::create(sp(base_application) papp, sp(type) info)
+sp(base_element) factory::create(sp(base_application) papp, sp(type) info)
 {
 
    if(info->m_spmutex.is_null())
@@ -200,7 +200,7 @@ sp(element) factory::create(sp(base_application) papp, sp(type) info)
 
 
 
-sp(element) factory::base_clone(sp(element) pobject)
+sp(base_element) factory::base_clone(sp(base_element) pobject)
 {
 
    single_lock sl(m_pmutex, TRUE);

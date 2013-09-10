@@ -6,7 +6,7 @@ namespace user
 
 
    window_map::window_map(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
    }

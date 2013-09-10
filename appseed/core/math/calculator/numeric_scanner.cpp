@@ -23,7 +23,7 @@ namespace calculator
 
 
    scanner::scanner(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
       m_ptoken    = NULL;
       input       = NULL;

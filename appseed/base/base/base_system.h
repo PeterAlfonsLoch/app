@@ -11,7 +11,7 @@ public:
 };
 
 
-typedef ::map < sp(element), sp(element), sp(element), sp(element) > element_map;
+typedef ::map < sp(element), sp(element), sp(element), sp(base_element) > element_map;
 typedef ::map < sp(element), sp(element), ptra, ptra > map_many;
 
 
@@ -235,7 +235,7 @@ public:
 
 
 
-   class factory                                & factory();
+   class base_factory                           & factory();
    inline ::url::departament                    & url()     { return m_urldepartament; }
    ::xml::departament                           & xml();
    class ::str::base64                          & base64();
@@ -243,16 +243,16 @@ public:
 
 
    using base_application::alloc;
-   virtual sp(element) alloc(sp(base_application) papp, sp(type) info);
-   virtual sp(element) alloc(sp(base_application) papp, const class id & idType);
+   virtual sp(base_element) alloc(sp(base_application) papp, sp(type) info);
+   virtual sp(base_element) alloc(sp(base_application) papp, const class id & idType);
 
-   virtual sp(element) on_alloc(sp(base_application) papp, sp(type) info);
-   virtual sp(element) clone();
-   virtual sp(element) clone(sp(element) pobj);
+   virtual sp(base_element) on_alloc(sp(base_application) papp, sp(type) info);
+   virtual sp(base_element) clone();
+   virtual sp(base_element) clone(sp(base_element) pobj);
    template < typename T >
    inline T * cast_clone(T * pt)
    {
-      return dynamic_cast < T * > (clone(dynamic_cast < sp(element) > (pt)));
+      return dynamic_cast < T * > (clone(dynamic_cast < sp(base_element) > (pt)));
    }
 
    template < class T >
@@ -268,7 +268,7 @@ public:
    }
 
 
-   virtual void discard_to_factory(sp(element) pca);
+   virtual void discard_to_factory(sp(base_element) pca);
 
 
    static ::exception::engine & eengine();
@@ -287,9 +287,9 @@ public:
 
 
    virtual void on_allocation_error(sp(base_application) papp, sp(type) info);
-   //   sp(element) alloc(sp(base_application) papp, sp(type) info);
-   sp(element) alloc(sp(base_application) papp, const std_type_info & info);
-   //   virtual sp(element) on_alloc(sp(base_application) papp, sp(type) info);
+   //   sp(base_element) alloc(sp(base_application) papp, sp(type) info);
+   sp(base_element) alloc(sp(base_application) papp, const std_type_info & info);
+   //   virtual sp(base_element) on_alloc(sp(base_application) papp, sp(type) info);
 
 
    static inline class id id(const ::std_type_info & info);

@@ -91,7 +91,7 @@ void ssl_sigpipe_handle( int x ) {
 
 
    SSLInitializer::SSLInitializer(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
 

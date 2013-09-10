@@ -6,7 +6,7 @@ namespace core
 
 
    ip_enum::ip_enum(sp(base_application) papp) :
-      element(papp)
+      base_element(papp)
    {
 
    }
@@ -20,7 +20,7 @@ namespace core
 
    ::count ip_enum::enumerate(stringa & stra)
    {
-      
+
       UNREFERENCED_PARAMETER(stra);
 
       throw interface_only_exception(get_app());

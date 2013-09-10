@@ -6,7 +6,7 @@ command_target::command_target()
 }
 
 command_target::command_target(sp(base_application) papp)
-: element(papp)
+: base_element(papp)
 {
    CommonConstruct();
 }
@@ -365,7 +365,7 @@ const __MSGMAP* command_target::GetThisMessageMap()
 //        controls (usually buttons)
 
 cmd_ui::cmd_ui(sp(base_application) papp)  :
-   element(papp)
+   base_element(papp)
 {
 
    m_iIndex                      = 0;

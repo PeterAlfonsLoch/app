@@ -18,7 +18,7 @@ public:
 
 
    factory_allocator(sp(base_application) papp, int32_t iCount, UINT uiAllocSize, id idType) :
-      element(papp),
+      base_element(papp),
       m_iCount(iCount),
       m_uiAllocSize(uiAllocSize),
       m_idType(idType)
@@ -39,7 +39,7 @@ public:
    }
 
 
-   virtual void discard(element * pca) = 0;
+   virtual void discard(base_element * pca) = 0;
 
 };
 
@@ -61,7 +61,7 @@ public:
    }
 #endif
 
-   virtual void discard(element * pca)
+   virtual void discard(base_element * pca)
    {
       TYPE * ptype = (TYPE *) pca->m_pthis;
       if(ptype == NULL)
@@ -93,11 +93,11 @@ public:
 
    sp(factory_allocator)    m_pallocator;
 
-   inline factory_item_base(sp(base_application) papp, sp(factory_allocator) pallocator) : element(papp), m_pallocator(pallocator) {}
+   inline factory_item_base(sp(base_application) papp, sp(factory_allocator) pallocator) : base_element(papp), m_pallocator(pallocator) {}
    virtual ~factory_item_base();
 
-   virtual sp(element) create(sp(base_application) papp) = 0;
-   virtual sp(element) clone(sp(element) pobject) = 0;
+   virtual sp(base_element) create(sp(base_application) papp) = 0;
+   virtual sp(base_element) clone(sp(base_element) pobject) = 0;
 
 };
 
@@ -107,9 +107,9 @@ class creatable_factory_item :
 {
 public:
 
-   inline creatable_factory_item(sp(base_application) papp, sp(factory_allocator) pallocator) : element(papp), factory_item_base(papp, pallocator) {}
+   inline creatable_factory_item(sp(base_application) papp, sp(factory_allocator) pallocator) : base_element(papp), factory_item_base(papp, pallocator) {}
 
-   virtual sp(element) create(sp(base_application) papp)
+   virtual sp(base_element) create(sp(base_application) papp)
    {
 
       if(m_pallocator == NULL)
@@ -126,7 +126,7 @@ public:
       return pt;
    }
 
-   virtual sp(element) clone(sp(element) pobject)
+   virtual sp(base_element) clone(sp(base_element) pobject)
    {
       UNREFERENCED_PARAMETER(pobject);
       throw not_implemented(get_app());
@@ -142,7 +142,7 @@ public:
 
    inline cloneable_factory_item(sp(base_application) papp, sp(factory_allocator) pallocator) : element(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
 
-   virtual sp(element) clone(sp(element) pobject)
+   virtual sp(base_element) clone(sp(base_element) pobject)
    {
       const CLONEABLE_TYPE * ptSrc = dynamic_cast < const CLONEABLE_TYPE * > (pobject.m_p);
       void * pv = this->m_pallocator->alloc();
@@ -242,8 +242,8 @@ public:
          set_at(info->name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
-   virtual sp(element) create(sp(base_application) papp, sp(type) info);
-   virtual sp(element) base_clone(sp(element) pobject);
+   virtual sp(base_element) create(sp(base_application) papp, sp(type) info);
+   virtual sp(base_element) base_clone(sp(base_element) pobject);
    template < class T >
    sp(T) clone(sp(T) pobject)
    {
@@ -261,7 +261,7 @@ public:
 
    sp(factory_allocator) get_allocator(const char * pszType);
 
-   void discard(sp(element) pobject);
+   void discard(sp(base_element) pobject);
 
    void enable_simple_factory_request(bool bEnable = true);
 

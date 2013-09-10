@@ -33,7 +33,7 @@ namespace exception
 
 
    class CLASS_DECL_c translator :
-      virtual public element
+      virtual public base_element
    {
    public:
 

@@ -95,7 +95,7 @@ public:
    };
 
 
-   sp(element)                     m_sp;
+   sp(base_element)                     m_sp;
    string                           m_str;
    id                               m_id;
 
@@ -131,7 +131,7 @@ public:
    var(const SYSTEMTIME & time);
    var(string * pstr);
    var(var * pvar);
-   var(element * pca2);
+   var(base_element * pca2);
    var(const stringa & var);
    var(const int_array & var);
    var(const var_array & var);
@@ -288,7 +288,7 @@ public:
       return *this;
    }
 */
-   inline var & operator = (element * p)
+   inline var & operator = (base_element * p)
    {
       set_type(type_element, false);
       m_sp = p;

@@ -6,7 +6,7 @@ namespace user
 
 
    menu_base::menu_base(sp(base_application) papp):
-      element(papp)
+      base_element(papp)
    {
 
       m_pitem = new menu_item(papp);
@@ -40,10 +40,10 @@ namespace user
 
    bool menu_base::LoadXmlMenu(const char * pszMatter)
    {
-      
+
 
       xml::document doc(get_app());
-      
+
       doc.load(Application.file().as_string(Application.dir().matter(pszMatter)));
 
       return LoadMenu(doc.get_root());

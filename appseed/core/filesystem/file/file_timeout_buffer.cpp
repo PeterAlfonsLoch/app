@@ -7,7 +7,7 @@ namespace file
    // uiExpectedSize = (uint64_t) -1 - initially unknown size
    // uiExpectedSize = (uint64_t) -2 - permanent or until end unknown size
    timeout_buffer::timeout_buffer(sp(base_application) papp, ::file::buffer_sp  pfile, uint64_t uiExpectedSize) :
-      element(papp)
+      base_element(papp)
    {
       UNREFERENCED_PARAMETER(uiExpectedSize);
       m_pfile           = pfile;
@@ -22,7 +22,7 @@ namespace file
       m_dwTimeOut       = 120 * 1000;
       m_dwSleep         = 584;
    }
-   
+
    timeout_buffer::~timeout_buffer()
    {
    }
@@ -110,7 +110,7 @@ namespace file
       bool bAcquired = psl->IsLocked();
       if(bAcquired)
          psl->unlock();
-      
+
       if(m_uiExpectedSize == (uint64_t) -2)
          return (uint64_t) -2;
       if(m_uiExpectedSize == (uint64_t) -1)
@@ -151,8 +151,8 @@ namespace file
          }
          uiRead += uiReadNow;
          nCount -= uiReadNow;
-         if(nCount <= 0 || (::get_tick_count() - m_dwLastCall > m_dwTimeOut) || 
-            (m_pfile->get_position() >= m_uiExpectedSize && 
+         if(nCount <= 0 || (::get_tick_count() - m_dwLastCall > m_dwTimeOut) ||
+            (m_pfile->get_position() >= m_uiExpectedSize &&
                   m_uiExpectedSize != ((uint64_t) -1)
                   && m_uiExpectedSize != ((uint64_t) -2)))
             break;
