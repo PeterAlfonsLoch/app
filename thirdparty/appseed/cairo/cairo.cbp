@@ -8,9 +8,9 @@
 		<Option extended_obj_names="1" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../../stage/x86/lib_ca2cairo.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../../stage/x86/libbasecairo.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../../stage/x86/" />
-				<Option object_output="../../../../time/intermediate/app/_ca2cairo" />
+				<Option object_output="../../../../time/intermediate/app/basecairo" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
