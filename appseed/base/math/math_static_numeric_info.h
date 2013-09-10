@@ -1,6 +1,6 @@
 #pragma once
 
-#include <limits>
+#include <limits.h>
 
 template < class T >
 class static_numeric_info

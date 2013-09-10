@@ -1,7 +1,10 @@
 #pragma once
 
+#ifndef WINDOWS
+#include "base/os/cross/windows/os_cross_windows_shared_memory.h"
+#endif
 
-#ifndef METROWIN
+#if !defined(METROWIN)
 
 namespace primitive
 {

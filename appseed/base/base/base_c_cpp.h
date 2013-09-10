@@ -66,7 +66,7 @@ namespace plane
 namespace file
 {
 
-   
+
    class stream_buffer;
    class input_stream;
    class output_stream;
@@ -86,6 +86,12 @@ namespace user
 
 
 } // namespace user
+
+
+class random_access_iterator { public: };
+
+
+
 
 
 #define SCAST_PTR(TYPE, ptarget, psource) TYPE * ptarget = dynamic_cast < TYPE * > (psource);
@@ -140,7 +146,7 @@ CLASS_DECL_c base_application * get_thread_app();
 
 namespace file
 {
-   
+
 
    typedef sp(stream_buffer) buffer_sp;
 
@@ -355,3 +361,102 @@ CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 #include "base/base/base_enum.h"
 
 
+
+
+
+namespace numeric_info
+{
+
+
+   template < typename T >
+   inline T get_maximum_value()
+   {
+      throw not_implemented(get_thread_app());
+   }
+
+   template < typename T >
+   inline T get_minimum_value()
+   {
+      throw not_implemented(get_thread_app());
+   }
+   template < typename T >
+   inline T get_null_value()
+   {
+      return 0;
+   }
+   template < typename T >
+   inline T get_unitary_value()
+   {
+      return 1;
+   }
+
+   template < typename T >
+   inline T get_allset_value()
+   {
+      T t;
+      memset(&t, 0xff, sizeof(T));
+      return t;
+   }
+
+   template < typename T >
+   inline bool is_signed()
+   {
+      return ((T) -1) < 0;
+   }
+
+   template < typename T >
+   inline bool is_integer()
+   {
+      // guess, as float and double is implemented
+      return true;
+   }
+
+
+} // namespace numeric_info
+
+
+
+
+
+   template<typename T, typename... Args>
+   inline void string_format::printf(const char * & s, const T & value, Args... args)
+   {
+
+      while (*s)
+      {
+
+         if (*s == '%' && *(++s) != '%')
+         {
+
+            defer_get_additional_argument(s, value, args...);
+
+            return;
+
+         }
+
+         append(*s++);
+
+      }
+
+      throw simple_exception(get_thread_app(), "extra arguments provided to printf");
+
+   }
+
+
+
+   inline void string_format::printf(const char * & s)
+   {
+
+      while (*s)
+      {
+
+         if(*s == '%' && *(++s) != '%')
+            throw simple_exception(get_thread_app(), "invalid format string: missing arguments");
+
+         append(*s++);
+
+      }
+
+      (m_pprinter->*m_pfnPrinter)(m_pvoidPrinter, m_pszBuffer);
+
+   }

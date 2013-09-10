@@ -2,7 +2,7 @@
 
 
 template < class T >
-void factory::creatable(int32_t iCount, bool bOverwrite)
+void base_factory::creatable(int32_t iCount, bool bOverwrite)
 {
 
    if(bOverwrite || !is_set(System.type_info <  T  > ()->name()))
@@ -12,7 +12,7 @@ void factory::creatable(int32_t iCount, bool bOverwrite)
 
 
 template < class T >
-void factory::cloneable(int32_t iCount, bool bOverwrite)
+void base_factory::cloneable(int32_t iCount, bool bOverwrite)
 {
 
    if(bOverwrite || !is_set(System.type_info <  T  > ()->name()))
@@ -21,7 +21,7 @@ void factory::cloneable(int32_t iCount, bool bOverwrite)
 }
 
 template < class T >
-sp(factory_allocator) factory::get_allocator(int32_t iCount)
+sp(factory_allocator) base_factory::get_allocator(int32_t iCount)
 {
 
    sp(factory_allocator) pallocator = get_allocator(System.type_info <  T  > ()->name());

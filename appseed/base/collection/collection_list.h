@@ -21,53 +21,53 @@ public:
 
    };
 
-      
+
    node *         m_phead;
    node *         m_ptail;
    ::count        m_count;
 
    inline list_data();
-   inline list_data(const class list_data & l);
+   inline list_data(const class list_data < TYPE, ARG_TYPE >  & l);
    inline list_data(const class list < TYPE, ARG_TYPE > & l);
 
-   inline static void from(list_data & l, node * p);
-   inline static list_data from(node * p);
+   inline static void from(list_data < TYPE, ARG_TYPE >  & l, node * p);
+   inline static list_data < TYPE, ARG_TYPE >  from(node * p);
 
 };
 
 template<class TYPE, class ARG_TYPE>
-inline list_data<TYPE, ARG_TYPE>::list_data()
+inline list_data < TYPE, ARG_TYPE >::list_data()
 {
 
-   m_count       = 0;
-   m_phead       = NULL;
-   m_ptail       = NULL;
+   this->m_count       = 0;
+   this->m_phead       = NULL;
+   this->m_ptail       = NULL;
 
 }
 
 template<class TYPE, class ARG_TYPE>
-inline list_data<TYPE, ARG_TYPE>::list_data(const class list_data & l)
+inline list_data < TYPE, ARG_TYPE >::list_data (const class list_data < TYPE, ARG_TYPE >  & l)
 {
-      
-   m_count       = l.m_count;
-   m_phead       = l.m_phead;
-   m_ptail       = l.m_ptail;
+
+   this->m_count              = l.m_count;
+   this->m_phead        = l.m_phead;
+   this->m_ptail        = l.m_ptail;
 
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline list_data<TYPE, ARG_TYPE>::list_data(const class list < TYPE, ARG_TYPE > & l)
+inline list_data < TYPE, ARG_TYPE >::list_data (const class list < TYPE, ARG_TYPE > & l)
 {
-      
-   m_count       = l.m_count;
-   m_phead       = l.m_phead;
-   m_ptail       = l.m_ptail;
+
+   this->m_count              = l.m_count;
+   this->m_phead        = l.m_phead;
+   this->m_ptail        = l.m_ptail;
 
 }
 
 template<class TYPE, class ARG_TYPE>
-inline void list_data<TYPE, ARG_TYPE>::from(list_data & l, node * pnode)
+inline void list_data < TYPE, ARG_TYPE >::from(list_data < TYPE, ARG_TYPE >  & l, node * pnode)
 {
 
    l.m_ptail = NULL;
@@ -102,10 +102,10 @@ inline void list_data<TYPE, ARG_TYPE>::from(list_data & l, node * pnode)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline list_data<TYPE, ARG_TYPE> list_data<TYPE, ARG_TYPE>::from(node * p)
+inline list_data < TYPE, ARG_TYPE > list_data < TYPE, ARG_TYPE >::from(node * p)
 {
-   
-   list_data l;
+
+   list_data < TYPE, ARG_TYPE >  l;
    from(l, p);
    return l;
 
@@ -180,7 +180,7 @@ inline list_data<TYPE, ARG_TYPE> list_data<TYPE, ARG_TYPE>::from(node * p)
 
          iterator operator ++ ( int )
          {
-         
+
             if(m_pos == NULL || m_pos == m_plist->get_tail_position())
                return * this;
 
@@ -194,7 +194,7 @@ inline list_data<TYPE, ARG_TYPE> list_data<TYPE, ARG_TYPE>::from(node * p)
 
          iterator & operator ++ ()
          {
-         
+
             if(m_pos == NULL || m_pos == m_plist->get_tail_position())
                return * this;
 
@@ -334,7 +334,7 @@ inline list_data<TYPE, ARG_TYPE> list_data<TYPE, ARG_TYPE>::from(node * p)
 
          const_iterator & operator ++()
          {
-         
+
             if(m_pos == NULL || m_pos == m_plist->get_tail_position())
                return * this;
 
@@ -443,14 +443,14 @@ inline list_data<TYPE, ARG_TYPE> list_data<TYPE, ARG_TYPE>::from(node * p)
       // add before head or after tail
       POSITION add_head(ARG_TYPE newElement);
       POSITION add_tail(ARG_TYPE newElement);
-      
+
       void push_front(ARG_TYPE newElement);
       void push_back(ARG_TYPE newElement);
 
       // add another list of elements before head or after tail
-      void copy_head(const list_data & l);
-      void copy_tail(const list_data & l);
-      void copy(const list_data & l);
+      void copy_head(const list_data < TYPE, ARG_TYPE > & l);
+      void copy_tail(const list_data < TYPE, ARG_TYPE > & l);
+      void copy(const list_data < TYPE, ARG_TYPE > & l);
 
       // remove all elements
       void remove_all();
@@ -476,35 +476,35 @@ inline list_data<TYPE, ARG_TYPE> list_data<TYPE, ARG_TYPE>::from(node * p)
       const TYPE& get_at(POSITION position) const;
       void set_at(POSITION pos, ARG_TYPE newElement);
 
-      void remove_at(node * pnode);
+      void remove_at(typename list_data < TYPE, ARG_TYPE >::node * pnode);
       void remove_at(POSITION position);
       void remove_at(const_iterator it);
 
-      void remove(node * pnode);
+      void remove(typename list_data < TYPE, ARG_TYPE >::node * pnode);
       void remove(POSITION position);
       void remove(const_iterator it);
       void remove(ARG_TYPE elem);
 
-      void erase(node * pnode);
+      void erase(typename list_data < TYPE, ARG_TYPE >::node * pnode);
       void erase(POSITION position);
       void erase(const_iterator it);
       void erase(ARG_TYPE elem);
 
 
-      node * detach(node * pnode);
-      node * detach(POSITION position);
-      node * detach(const_iterator it);
+      typename list_data < TYPE, ARG_TYPE >::node * detach(typename list_data < TYPE, ARG_TYPE >::node * pnode);
+      typename list_data < TYPE, ARG_TYPE >::node * detach(POSITION position);
+      typename list_data < TYPE, ARG_TYPE >::node * detach(const_iterator it);
 
-      list_data detach(const_iterator first, const_iterator last);
-      list_data slice(const_iterator first, const_iterator last);
+      list_data < TYPE, ARG_TYPE > detach(const_iterator first, const_iterator last);
+      list_data < TYPE, ARG_TYPE > slice(const_iterator first, const_iterator last);
 
       POSITION insert(POSITION position, ARG_TYPE newElement); // same as insert before
       POSITION insert(POSITION position, const_iterator it); // same as insert before
-      POSITION insert(POSITION position, node * pnode); // same as insert before
+      POSITION insert(POSITION position, typename list_data < TYPE, ARG_TYPE >::node * pnode); // same as insert before
 
       iterator insert(const_iterator position, ARG_TYPE newElement); // same as insert before
       iterator insert(const_iterator position, const_iterator it); // same as insert before
-      iterator insert(const_iterator position, node * pnode); // same as insert before
+      iterator insert(const_iterator position, typename list_data < TYPE, ARG_TYPE >::node * pnode); // same as insert before
       iterator insert(const_iterator position, list_data < TYPE, ARG_TYPE > & l); // same as insert before
 
 
@@ -513,8 +513,8 @@ inline list_data<TYPE, ARG_TYPE> list_data<TYPE, ARG_TYPE>::from(node * p)
       POSITION insert_after(POSITION position, ARG_TYPE newElement);
       POSITION insert_before(POSITION position, const_iterator it);
       POSITION insert_after(POSITION position, const_iterator it);
-      POSITION insert_before(POSITION position, node * pnode);
-      POSITION insert_after(POSITION position, node * pnode);
+      POSITION insert_before(POSITION position, typename list_data < TYPE, ARG_TYPE >::node * pnode);
+      POSITION insert_after(POSITION position, typename list_data < TYPE, ARG_TYPE >::node * pnode);
       POSITION insert_before(POSITION position, list_data < TYPE, ARG_TYPE > & l);
       POSITION insert_after(POSITION position, list_data < TYPE, ARG_TYPE > & l);
 
@@ -522,8 +522,8 @@ inline list_data<TYPE, ARG_TYPE> list_data<TYPE, ARG_TYPE>::from(node * p)
       iterator insert_after(const_iterator position, ARG_TYPE newElement);
       iterator insert_before(const_iterator position, const_iterator it);
       iterator insert_after(const_iterator position, const_iterator it);
-      iterator insert_before(const_iterator position, node * pnode);
-      iterator insert_after(const_iterator position, node * pnode);
+      iterator insert_before(const_iterator position, typename list_data < TYPE, ARG_TYPE >::node * pnode);
+      iterator insert_after(const_iterator position, typename list_data < TYPE, ARG_TYPE >::node * pnode);
       iterator insert_before(const_iterator position, list_data < TYPE, ARG_TYPE > & l);
       iterator insert_after(const_iterator position, list_data < TYPE, ARG_TYPE > & l);
 
@@ -559,83 +559,83 @@ inline list_data<TYPE, ARG_TYPE> list_data<TYPE, ARG_TYPE>::from(node * p)
 template<class TYPE, class ARG_TYPE>
 inline ::count list<TYPE, ARG_TYPE>::get_count() const
 {
-   return m_count;
+   return this->m_count;
 }
 
 template<class TYPE, class ARG_TYPE>
 inline ::count list<TYPE, ARG_TYPE>::get_size() const
 {
-   return m_count;
+   return this->m_count;
 }
 
 template<class TYPE, class ARG_TYPE>
 inline ::count list<TYPE, ARG_TYPE>::size() const
 {
-   return m_count;
+   return this->m_count;
 }
 
 template<class TYPE, class ARG_TYPE>
 inline bool list<TYPE, ARG_TYPE>::is_empty(::count countMinimum) const
 {
-   return m_count < countMinimum;
+   return this->m_count < countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
 inline bool list<TYPE, ARG_TYPE>::empty(::count countMinimum) const
 {
-   return m_count < countMinimum;
+   return this->m_count < countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
 inline bool list<TYPE, ARG_TYPE>::has_elements(::count countMinimum) const
 {
-   return m_count >= countMinimum;
+   return this->m_count >= countMinimum;
 }
 
    template<class TYPE, class ARG_TYPE>
    inline TYPE& list<TYPE, ARG_TYPE>::get_head()
-      { ASSERT(m_phead != NULL);
-         return m_phead->m_value; }
+      { ASSERT(this->m_phead != NULL);
+         return this->m_phead->m_value; }
    template<class TYPE, class ARG_TYPE>
    inline const TYPE& list<TYPE, ARG_TYPE>::get_head() const
-      { ASSERT(m_phead != NULL);
-         return m_phead->m_value; }
+      { ASSERT(this->m_phead != NULL);
+         return this->m_phead->m_value; }
    template<class TYPE, class ARG_TYPE>
    inline TYPE& list<TYPE, ARG_TYPE>::get_tail()
-      { ASSERT(m_ptail != NULL);
-         return m_ptail->m_value; }
+      { ASSERT(this->m_ptail != NULL);
+         return this->m_ptail->m_value; }
    template<class TYPE, class ARG_TYPE>
    inline const TYPE& list<TYPE, ARG_TYPE>::get_tail() const
-      { ASSERT(m_ptail != NULL);
-         return m_ptail->m_value; }
+      { ASSERT(this->m_ptail != NULL);
+         return this->m_ptail->m_value; }
    template<class TYPE, class ARG_TYPE>
    inline POSITION list<TYPE, ARG_TYPE>::get_head_position() const
-      { return (POSITION) m_phead; }
+      { return (POSITION) this->m_phead; }
    template<class TYPE, class ARG_TYPE>
    inline POSITION list<TYPE, ARG_TYPE>::get_tail_position() const
-      { return (POSITION) m_ptail; }
+      { return (POSITION) this->m_ptail; }
    template<class TYPE, class ARG_TYPE>
    inline TYPE& list<TYPE, ARG_TYPE>::get_next(POSITION& rPosition) // return *position++
-      { node* pnode = (node*) rPosition;
-         ASSERT(__is_valid_address(pnode, sizeof(node)));
+      { typename list_data < TYPE, ARG_TYPE >::node* pnode = (typename list_data < TYPE, ARG_TYPE >::node*) rPosition;
+         ASSERT(__is_valid_address(pnode, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          rPosition = (POSITION) pnode->m_pnext;
          return pnode->m_value; }
    template<class TYPE, class ARG_TYPE>
    inline const TYPE& list<TYPE, ARG_TYPE>::get_next(POSITION& rPosition) const // return *position++
-      { node* pnode = (node*) rPosition;
-         ASSERT(__is_valid_address(pnode, sizeof(node)));
+      { typename list_data < TYPE, ARG_TYPE >::node* pnode = (typename list_data < TYPE, ARG_TYPE >::node*) rPosition;
+         ASSERT(__is_valid_address(pnode, sizeof(typename list_data < TYPE, ARG_TYPE >::ode)));
          rPosition = (POSITION) pnode->m_pnext;
          return pnode->m_value; }
    template<class TYPE, class ARG_TYPE>
    inline TYPE& list<TYPE, ARG_TYPE>::get_previous(POSITION& rPosition) // return *position--
-      { node* pnode = (node*) rPosition;
-         ASSERT(__is_valid_address(pnode, sizeof(node)));
+      { typename list_data < TYPE, ARG_TYPE >::node* pnode = (typename list_data < TYPE, ARG_TYPE >::node*) rPosition;
+         ASSERT(__is_valid_address(pnode, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          rPosition = (POSITION) pnode->m_pprev;
          return pnode->m_value; }
    template<class TYPE, class ARG_TYPE>
    inline const TYPE& list<TYPE, ARG_TYPE>::get_previous(POSITION& rPosition) const // return *position--
-      { node* pnode = (node*) rPosition;
-         ASSERT(__is_valid_address(pnode, sizeof(node)));
+      { typename list_data < TYPE, ARG_TYPE >::node* pnode = (typename list_data < TYPE, ARG_TYPE >::node*) rPosition;
+         ASSERT(__is_valid_address(pnode, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          rPosition = (POSITION) pnode->m_pprev;
          return pnode->m_value; }
 
@@ -671,18 +671,18 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
 
    template<class TYPE, class ARG_TYPE>
    inline TYPE& list<TYPE, ARG_TYPE>::get_at(POSITION position)
-      { node* pnode = (node*) position;
-         ASSERT(__is_valid_address(pnode, sizeof(node)));
+      { typename list_data < TYPE, ARG_TYPE >::node* pnode = (typename list_data < TYPE, ARG_TYPE >::node*) position;
+         ASSERT(__is_valid_address(pnode, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          return pnode->m_value; }
    template<class TYPE, class ARG_TYPE>
    inline const TYPE& list<TYPE, ARG_TYPE>::get_at(POSITION position) const
-      { node* pnode = (node*) position;
-         ASSERT(__is_valid_address(pnode, sizeof(node)));
+      { typename list_data < TYPE, ARG_TYPE >::node* pnode = (typename list_data < TYPE, ARG_TYPE >::node*) position;
+         ASSERT(__is_valid_address(pnode, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          return pnode->m_value; }
    template<class TYPE, class ARG_TYPE>
    inline void list<TYPE, ARG_TYPE>::set_at(POSITION pos, ARG_TYPE newElement)
-      { node* pnode = (node*) pos;
-         ASSERT(__is_valid_address(pnode, sizeof(node)));
+      { typename list_data < TYPE, ARG_TYPE >::node* pnode = (typename list_data < TYPE, ARG_TYPE >::node*) pos;
+         ASSERT(__is_valid_address(pnode, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          pnode->m_value = newElement; }
 
    template<class TYPE, class ARG_TYPE>
@@ -694,7 +694,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    template<class TYPE, class ARG_TYPE>
    list<TYPE, ARG_TYPE>::list(const class list & l)
    {
-      
+
       copy(l);
 
    }
@@ -702,10 +702,10 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    template<class TYPE, class ARG_TYPE>
    list<TYPE, ARG_TYPE>::list(const class list_data < TYPE, ARG_TYPE > & l)
    {
-      
-      m_count = l.m_count;
-      m_phead = l.m_phead;
-      m_ptail = l.m_ptail;
+
+      this->m_count = l.m_count;
+      this->m_phead = l.m_phead;
+      this->m_ptail = l.m_ptail;
 
    }
 
@@ -715,10 +715,10 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    template<class TYPE, class ARG_TYPE>
    list<TYPE, ARG_TYPE>::list(class list && l)
    {
-      
-      m_count       = l.m_count;
-      m_phead       = l.m_phead;
-      m_ptail       = l.m_ptail;
+
+      this->m_count       = l.m_count;
+      this->m_phead       = l.m_phead;
+      this->m_ptail       = l.m_ptail;
 
       l.m_phead     = NULL;
       l.m_ptail     = NULL;
@@ -730,22 +730,22 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    template<class TYPE, class ARG_TYPE>
    void list<TYPE, ARG_TYPE>::remove_all()
    {
-      
+
       ASSERT_VALID(this);
 
-      
-      node * pnode;
-      
-      node * pnext;
 
-      for (pnode = m_phead; pnode != NULL; pnode = pnext)
+      typename list_data < TYPE, ARG_TYPE >::node * pnode;
+
+      typename list_data < TYPE, ARG_TYPE >::node * pnext;
+
+      for (pnode = this->m_phead; pnode != NULL; pnode = pnext)
       {
 
          pnext = pnode->m_pnext;
 
          try
          {
-         
+
             delete pnode;
 
          }
@@ -756,11 +756,11 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
 
       }
 
-      m_phead = NULL;
+      this->m_phead = NULL;
 
-      m_ptail = NULL;
+      this->m_ptail = NULL;
 
-      m_count = 0;
+      this->m_count = 0;
 
    }
 
@@ -776,25 +776,25 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    list<TYPE, ARG_TYPE>::~list()
    {
       remove_all();
-      ASSERT(m_count == 0);
+      ASSERT(this->m_count == 0);
    }
 
    template<class TYPE, class ARG_TYPE>
    POSITION list<TYPE, ARG_TYPE>::add_head(ARG_TYPE newElement)
    {
-      
+
       ASSERT_VALID(this);
 
-      node * pNewNode = new node(newElement, NULL, m_phead);
+      typename list_data < TYPE, ARG_TYPE >::node * pNewNode = new typename list_data < TYPE, ARG_TYPE >::node(newElement, NULL, this->m_phead);
 
-      if(m_phead != NULL)
-         m_phead->m_pprev = pNewNode;
+      if(this->m_phead != NULL)
+         this->m_phead->m_pprev = pNewNode;
       else
-         m_ptail = pNewNode;
+         this->m_ptail = pNewNode;
 
-      m_phead = pNewNode;
+      this->m_phead = pNewNode;
 
-      m_count++;
+      this->m_count++;
 
       return (POSITION) pNewNode;
 
@@ -805,18 +805,18 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    {
       ASSERT_VALID(this);
 
-      node* pNewNode = new node(newElement, m_ptail, NULL);
+      typename list_data < TYPE, ARG_TYPE >::node* pNewNode = new typename list_data < TYPE, ARG_TYPE >::node(newElement, this->m_ptail, NULL);
 
       pNewNode->m_value = newElement;
 
-      if (m_ptail != NULL)
-         m_ptail->m_pnext = pNewNode;
+      if (this->m_ptail != NULL)
+         this->m_ptail->m_pnext = pNewNode;
       else
-         m_phead = pNewNode;
+         this->m_phead = pNewNode;
 
-      m_ptail = pNewNode;
+      this->m_ptail = pNewNode;
 
-      m_count++;
+      this->m_count++;
 
       return (POSITION) pNewNode;
 
@@ -833,18 +833,18 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    template<class TYPE, class ARG_TYPE>
    void list<TYPE, ARG_TYPE>::push_back(ARG_TYPE newElement)
    {
-      
+
       add_tail(newElement);
 
    }
 
    template<class TYPE, class ARG_TYPE>
-   void list<TYPE, ARG_TYPE>::copy_head(const list_data & l)
+   void list<TYPE, ARG_TYPE>::copy_head(const list_data < TYPE, ARG_TYPE >  & l)
    {
-      
+
       ASSERT_VALID(this);
 
-      node * pnode = l.m_ptail;
+      typename list_data < TYPE, ARG_TYPE >::node * pnode = l.m_ptail;
 
       while(pnode != NULL)
       {
@@ -855,13 +855,13 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    }
 
    template<class TYPE, class ARG_TYPE>
-   void list<TYPE, ARG_TYPE>::copy_tail(const list_data & l)
+   void list<TYPE, ARG_TYPE>::copy_tail(const list_data < TYPE, ARG_TYPE >  & l)
    {
 
       ASSERT_VALID(this);
 
-      node * pnode = l.m_ptail;
-      
+      typename list_data < TYPE, ARG_TYPE >::node * pnode = l.m_ptail;
+
       while(pnode != NULL)
       {
          add_tail(pnode->m_value);
@@ -871,18 +871,18 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    }
 
    template<class TYPE, class ARG_TYPE>
-   void list<TYPE, ARG_TYPE>::copy(const list_data & l)
+   void list<TYPE, ARG_TYPE>::copy(const list_data < TYPE, ARG_TYPE >  & l)
    {
 
       ASSERT_VALID(this);
 
       if(this == &l)
          return;
-      
+
       remove_all();
 
-      node * pnode = l.m_ptail;
-      
+      typename list_data < TYPE, ARG_TYPE >::node * pnode = l.m_ptail;
+
       while(pnode != NULL)
       {
          add_head(pnode->m_value);
@@ -895,20 +895,20 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    TYPE list<TYPE, ARG_TYPE>::remove_head()
    {
       ASSERT_VALID(this);
-      ASSERT(m_phead != NULL);  // don't call on is_empty list !!!
-      ASSERT(__is_valid_address(m_phead, sizeof(node)));
+      ASSERT(this->m_phead != NULL);  // don't call on is_empty list !!!
+      ASSERT(__is_valid_address(this->m_phead, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
 
-      node* pOldNode = m_phead;
+      typename list_data < TYPE, ARG_TYPE >::node* pOldNode = this->m_phead;
       TYPE returnValue = pOldNode->m_value;
 
-      m_phead = pOldNode->m_pnext;
-      if (m_phead != NULL)
-         m_phead->m_pprev = NULL;
+      this->m_phead = pOldNode->m_pnext;
+      if (this->m_phead != NULL)
+         this->m_phead->m_pprev = NULL;
       else
-         m_ptail = NULL;
+         this->m_ptail = NULL;
       delete pOldNode;
 
-      m_count--;
+      this->m_count--;
 
       return returnValue;
    }
@@ -917,18 +917,18 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    TYPE list<TYPE, ARG_TYPE>::remove_tail()
    {
       ASSERT_VALID(this);
-      ASSERT(m_ptail != NULL);  // don't call on is_empty list !!!
-      ASSERT(__is_valid_address(m_ptail, sizeof(node)));
+      ASSERT(this->m_ptail != NULL);  // don't call on is_empty list !!!
+      ASSERT(__is_valid_address(this->m_ptail, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
 
-      node* pOldNode = m_ptail;
+      typename list_data < TYPE, ARG_TYPE >::node* pOldNode = this->m_ptail;
       TYPE returnValue = pOldNode->m_value;
 
-      m_ptail = pOldNode->m_pprev;
-      if (m_ptail != NULL)
-         m_ptail->m_pnext = NULL;
+      this->m_ptail = pOldNode->m_pprev;
+      if (this->m_ptail != NULL)
+         this->m_ptail->m_pnext = NULL;
       else
-         m_phead = NULL;
-      m_count--;
+         this->m_phead = NULL;
+      this->m_count--;
       delete pOldNode;
       return returnValue;
    }
@@ -953,7 +953,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
 
 
    template<class TYPE, class ARG_TYPE>
-   POSITION list < TYPE, ARG_TYPE > :: insert(POSITION position, node * pnode) // same as insert before
+   POSITION list < TYPE, ARG_TYPE > :: insert(POSITION position, typename list_data < TYPE, ARG_TYPE >::node * pnode) // same as insert before
    {
 
       return insert_before(position, pnode);
@@ -980,7 +980,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
 
 
    template<class TYPE, class ARG_TYPE>
-   typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > :: insert(const_iterator position, node * pnode) // same as insert before
+   typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > :: insert(const_iterator position, typename list_data < TYPE, ARG_TYPE >::node * pnode) // same as insert before
    {
 
       return insert_before(position, pnode);
@@ -1026,14 +1026,14 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    }
 
    template<class TYPE, class ARG_TYPE>
-   typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > :: insert_before(const_iterator position, node * pnode)
+   typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > :: insert_before(const_iterator position, typename list_data < TYPE, ARG_TYPE >::node * pnode)
    {
       ASSERT(this == position.m_plist);
       return iterator(insert_before(position.m_pos, pnode), this);
    }
 
    template<class TYPE, class ARG_TYPE>
-   typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > :: insert_after(const_iterator position, node * pnode)
+   typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > :: insert_after(const_iterator position, typename list_data < TYPE, ARG_TYPE >::node * pnode)
    {
       ASSERT(this == position.m_plist);
       return iterator(insert_after(position.m_pos, pnode), this);
@@ -1054,7 +1054,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    }
 
    template<class TYPE, class ARG_TYPE>
-   POSITION list < TYPE, ARG_TYPE > :: insert_before(POSITION position, node * pnode)
+   POSITION list < TYPE, ARG_TYPE > :: insert_before(POSITION position, typename list_data < TYPE, ARG_TYPE >::node * pnode)
    {
 
       list_data < TYPE, ARG_TYPE > l;
@@ -1066,9 +1066,9 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    }
 
    template<class TYPE, class ARG_TYPE>
-   POSITION list < TYPE, ARG_TYPE > :: insert_after(POSITION position, node * pnode)
+   POSITION list < TYPE, ARG_TYPE > :: insert_after(POSITION position, typename list_data < TYPE, ARG_TYPE >::node * pnode)
    {
-      
+
       list_data < TYPE, ARG_TYPE > l;
 
       list_data < TYPE, ARG_TYPE >::from(l, pnode);
@@ -1084,30 +1084,30 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
       if(l.m_count <= 0)
          return position;
 
-      m_count += l.m_count;
+      this->m_count += l.m_count;
 
-      node * pnode = (node *) position;
+      typename list_data < TYPE, ARG_TYPE >::node * pnode = (typename list_data < TYPE, ARG_TYPE >::node *) position;
 
       if(pnode != NULL)
       {
-         
+
          if(pnode->m_pprev != NULL)
          {
 
             pnode->m_pprev->m_pnext = l.m_phead;
 
          }
-      
+
          l.m_phead->m_pprev = pnode->m_pprev;
 
          pnode->m_pprev = l.m_ptail;
 
-         if(pnode == m_phead)
+         if(pnode == this->m_phead)
          {
-         
-            m_phead = l.m_phead;
 
-            m_phead->m_pprev = NULL;
+            this->m_phead = l.m_phead;
+
+            this->m_phead->m_pprev = NULL;
 
          }
 
@@ -1115,23 +1115,23 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
       else
       {
 
-         l.m_phead->m_pprev = m_ptail;
+         l.m_phead->m_pprev = this->m_ptail;
 
-         m_ptail = l.m_phead;
+         this->m_ptail = l.m_phead;
 
-         if(m_phead == NULL)
+         if(this->m_phead == NULL)
          {
-            
-            m_phead = l.m_phead;
+
+            this->m_phead = l.m_phead;
 
          }
 
       }
 
       l.m_ptail->m_pnext = pnode;
-         
+
       return (POSITION) l.m_phead;
-      
+
    }
 
 
@@ -1142,30 +1142,30 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
       if(l.m_count <= 0)
          return position;
 
-      m_count += l.m_count;
+      this->m_count += l.m_count;
 
-      node * pnode = (node *) position;
+      typename list_data < TYPE, ARG_TYPE >::node * pnode = (typename list_data < TYPE, ARG_TYPE >::node *) position;
 
       if(pnode != NULL)
       {
-         
+
          if(pnode->m_pnext != NULL)
          {
 
             pnode->m_pnext->m_pprev = l.m_ptail;
 
          }
-      
+
          l.m_ptail->m_pnext = pnode->m_pnext;
 
          pnode->m_pnext = l.m_phead;
 
-         if(pnode == m_ptail)
+         if(pnode == this->m_ptail)
          {
-         
-            m_ptail = l.m_ptail;
 
-            m_ptail->m_pnext = NULL;
+            this->m_ptail = l.m_ptail;
+
+            this->m_ptail->m_pnext = NULL;
 
          }
 
@@ -1173,23 +1173,23 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
       else
       {
 
-         l.m_phead->m_pnext = m_phead;
+         l.m_phead->m_pnext = this->m_phead;
 
-         m_phead = l.m_ptail;
+         this->m_phead = l.m_ptail;
 
-         if(m_ptail == NULL)
+         if(this->m_ptail == NULL)
          {
-            
-            m_ptail = l.m_ptail;
+
+            this->m_ptail = l.m_ptail;
 
          }
 
       }
 
       l.m_phead->m_pprev = pnode;
-         
+
       return (POSITION) l.m_phead;
-      
+
    }
 
 
@@ -1202,19 +1202,19 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
          return add_head(newElement); // insert before nothing -> head of the list
 
       // Insert it before position
-      node* pOldNode = (node*) position;
-      node* pNewNode = new node(newElement, pOldNode->m_pprev, pOldNode);
+      typename list_data < TYPE, ARG_TYPE >::node* pOldNode = (typename list_data < TYPE, ARG_TYPE >::node*) position;
+      typename list_data < TYPE, ARG_TYPE >::node* pNewNode = new typename list_data < TYPE, ARG_TYPE >::node(newElement, pOldNode->m_pprev, pOldNode);
       pNewNode->m_value = newElement;
 
       if (pOldNode->m_pprev != NULL)
       {
-         ASSERT(__is_valid_address(pOldNode->m_pprev, sizeof(node)));
+         ASSERT(__is_valid_address(pOldNode->m_pprev, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          pOldNode->m_pprev->m_pnext = pNewNode;
       }
       else
       {
-         ASSERT(pOldNode == m_phead);
-         m_phead = pNewNode;
+         ASSERT(pOldNode == this->m_phead);
+         this->m_phead = pNewNode;
       }
       pOldNode->m_pprev = pNewNode;
       return (POSITION) pNewNode;
@@ -1229,20 +1229,20 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
          return add_tail(newElement); // insert after nothing -> tail of the list
 
       // Insert it before position
-      node* pOldNode = (node*) position;
-      ASSERT(__is_valid_address(pOldNode, sizeof(node)));
-      node* pNewNode = new node(newElement, pOldNode, pOldNode->m_pnext);
+      typename list_data < TYPE, ARG_TYPE >::node* pOldNode = (typename list_data < TYPE, ARG_TYPE >::node*) position;
+      ASSERT(__is_valid_address(pOldNode, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
+      typename list_data < TYPE, ARG_TYPE >::node* pNewNode = new typename list_data < TYPE, ARG_TYPE >::node(newElement, pOldNode, pOldNode->m_pnext);
       pNewNode->m_value = newElement;
 
       if (pOldNode->m_pnext != NULL)
       {
-         ASSERT(__is_valid_address(pOldNode->m_pnext, sizeof(node)));
+         ASSERT(__is_valid_address(pOldNode->m_pnext, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          pOldNode->m_pnext->m_pprev = pNewNode;
       }
       else
       {
-         ASSERT(pOldNode == m_ptail);
-         m_ptail = pNewNode;
+         ASSERT(pOldNode == this->m_ptail);
+         this->m_ptail = pNewNode;
       }
       pOldNode->m_pnext = pNewNode;
       return (POSITION) pNewNode;
@@ -1251,16 +1251,16 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    template<class TYPE, class ARG_TYPE>
    POSITION list<TYPE, ARG_TYPE>::insert_before(POSITION position, const_iterator it)
    {
-      
-      return insert_before(position, (node *) it.m_pos);
+
+      return insert_before(position, (typename list_data < TYPE, ARG_TYPE >::node *) it.m_pos);
 
    }
 
    template<class TYPE, class ARG_TYPE>
    POSITION list<TYPE, ARG_TYPE>::insert_after(POSITION position, const_iterator it)
    {
-      
-      return insert_after(position, (node *) it.m_pos);
+
+      return insert_after(position, (typename list_data < TYPE, ARG_TYPE >::node *) it.m_pos);
 
    }
 
@@ -1277,12 +1277,12 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
          }
          else
          {
-            node * pnode = (node *) position2;
-            if(pnode != m_phead)
+            typename list_data < TYPE, ARG_TYPE >::node * pnode = (typename list_data < TYPE, ARG_TYPE >::node *) position2;
+            if(pnode != this->m_phead)
             {
-               if(m_ptail == pnode)
+               if(this->m_ptail == pnode)
                {
-                  m_ptail = pnode->m_pprev;
+                  this->m_ptail = pnode->m_pprev;
                }
                if(pnode->m_pprev != NULL)
                {
@@ -1293,19 +1293,19 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
                   pnode->m_pnext->m_pprev = pnode->m_pprev;
                }
                pnode->m_pprev = NULL;
-               pnode->m_pnext = m_phead;
-               m_phead = pnode;
+               pnode->m_pnext = this->m_phead;
+               this->m_phead = pnode;
             }
          }
       }
       else if(position2 == NULL)
       {
-         node * pnode = (node *) position1;
-         if(pnode != m_ptail)
+         typename list_data < TYPE, ARG_TYPE >::node * pnode = (typename list_data < TYPE, ARG_TYPE >::node *) position1;
+         if(pnode != this->m_ptail)
          {
-            if(m_phead == pnode)
+            if(this->m_phead == pnode)
             {
-               m_phead = pnode->m_pnext;
+               this->m_phead = pnode->m_pnext;
             }
             if(pnode->m_pnext != NULL)
             {
@@ -1316,16 +1316,16 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
                pnode->m_pprev->m_pnext = pnode->m_pnext;
             }
             pnode->m_pnext = NULL;
-            pnode->m_pprev = m_ptail;
-            m_ptail = pnode;
+            pnode->m_pprev = this->m_ptail;
+            this->m_ptail = pnode;
          }
       }
       else
       {
-         node * pnode1 = (node *) position1;
-         node * pnode2 = (node *) position2;
-         node * pnodeSwapPrev = pnode1->m_pprev;
-         node * pnodeSwapNext = pnode1->m_pnext;
+         typename list_data < TYPE, ARG_TYPE >::node * pnode1 = (typename list_data < TYPE, ARG_TYPE >::node *) position1;
+         typename list_data < TYPE, ARG_TYPE >::node * pnode2 = (typename list_data < TYPE, ARG_TYPE >::node *) position2;
+         typename list_data < TYPE, ARG_TYPE >::node * pnodeSwapPrev = pnode1->m_pprev;
+         typename list_data < TYPE, ARG_TYPE >::node * pnodeSwapNext = pnode1->m_pnext;
          if(pnode1->m_pprev != NULL)
          {
             pnode1->m_pprev->m_pnext = pnode2;
@@ -1346,21 +1346,21 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
          pnode1->m_pnext = pnode2->m_pnext;
          pnode2->m_pprev = pnodeSwapPrev;
          pnode2->m_pnext = pnodeSwapNext;
-         if(pnode1 == m_phead)
+         if(pnode1 == this->m_phead)
          {
-            m_phead = pnode2;
+            this->m_phead = pnode2;
          }
-         if(pnode1 == m_ptail)
+         if(pnode1 == this->m_ptail)
          {
-            m_ptail = pnode2;
+            this->m_ptail = pnode2;
          }
-         if(pnode2 == m_phead)
+         if(pnode2 == this->m_phead)
          {
-            m_phead = pnode1;
+            this->m_phead = pnode1;
          }
-         if(pnode2 == m_ptail)
+         if(pnode2 == this->m_ptail)
          {
-            m_ptail = pnode1;
+            this->m_ptail = pnode1;
          }
       }
 
@@ -1368,7 +1368,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    }
 
    template<class TYPE, class ARG_TYPE>
-   void list<TYPE, ARG_TYPE>::erase(node * pnode)
+   void list<TYPE, ARG_TYPE>::erase(typename list_data < TYPE, ARG_TYPE >::node * pnode)
    {
       this->remove(pnode);
    }
@@ -1405,7 +1405,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    }
 
    template<class TYPE, class ARG_TYPE>
-   void list<TYPE, ARG_TYPE>::remove(node * pnode)
+   void list<TYPE, ARG_TYPE>::remove(typename list_data < TYPE, ARG_TYPE >::node * pnode)
    {
       this->remove_at(pnode);
    }
@@ -1419,7 +1419,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    template<class TYPE, class ARG_TYPE>
    void list<TYPE, ARG_TYPE>::remove_at(POSITION pos)
    {
-      this->remove_at((node *) pos);
+      this->remove_at((typename list_data < TYPE, ARG_TYPE >::node *) pos);
    }
 
    template<class TYPE, class ARG_TYPE>
@@ -1430,33 +1430,33 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    }
 
    template<class TYPE, class ARG_TYPE>
-   void list<TYPE, ARG_TYPE>::remove_at(node * pnode)
+   void list<TYPE, ARG_TYPE>::remove_at(typename list_data < TYPE, ARG_TYPE >::node * pnode)
    {
-      
+
       ASSERT_VALID(this);
 
-      node * pOldNode = detach(pnode);
-      
-      ASSERT(__is_valid_address(pOldNode, sizeof(node)));
+      typename list_data < TYPE, ARG_TYPE >::node * pOldNode = detach(pnode);
+
+      ASSERT(__is_valid_address(pOldNode, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
 
       delete pOldNode;
 
    }
 
    template < class TYPE, class ARG_TYPE >
-   typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::detach(POSITION position)
+   typename list_data < TYPE, ARG_TYPE >::node * list<TYPE, ARG_TYPE>::detach(POSITION position)
    {
-      return detach((node *) position);
+      return detach((typename list_data < TYPE, ARG_TYPE >::node *) position);
    }
 
    template<class TYPE, class ARG_TYPE >
-   typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::detach(const_iterator it)
+   typename list_data < TYPE, ARG_TYPE >::node * list<TYPE, ARG_TYPE>::detach(const_iterator it)
    {
       return detach(it.m_pos);
    }
 
    template < class TYPE, class ARG_TYPE >
-   typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::detach(node * pnode)
+   typename list_data < TYPE, ARG_TYPE >::node * list<TYPE, ARG_TYPE>::detach(typename list_data < TYPE, ARG_TYPE >::node * pnode)
    {
 
       ASSERT_VALID(this);
@@ -1464,25 +1464,25 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
       if(pnode == NULL)
          return NULL;
 
-      if(pnode == m_phead)
+      if(pnode == this->m_phead)
       {
-         m_phead = pnode->m_pnext;
+         this->m_phead = pnode->m_pnext;
       }
-      
+
       if(pnode->m_pprev != NULL)
       {
-         ASSERT(__is_valid_address(pnode->m_pprev, sizeof(node)));
+         ASSERT(__is_valid_address(pnode->m_pprev, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          pnode->m_pprev->m_pnext = pnode->m_pnext;
       }
 
-      if(pnode == m_ptail)
+      if(pnode == this->m_ptail)
       {
-         m_ptail = pnode->m_pprev;
+         this->m_ptail = pnode->m_pprev;
       }
-      
+
       if(pnode->m_pnext != NULL)
       {
-         ASSERT(__is_valid_address(pnode->m_pnext, sizeof(node)));
+         ASSERT(__is_valid_address(pnode->m_pnext, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          pnode->m_pnext->m_pprev = pnode->m_pprev;
       }
 
@@ -1490,64 +1490,64 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
 
       pnode->m_pnext = NULL;
 
-      m_count--;
+      this->m_count--;
 
       return pnode;
 
    }
 
    template < class TYPE, class ARG_TYPE >
-   list_data<TYPE, ARG_TYPE> list<TYPE, ARG_TYPE>::slice(const_iterator first, const_iterator last)
+   list_data < TYPE, ARG_TYPE > list<TYPE, ARG_TYPE>::slice(const_iterator first, const_iterator last)
    {
-      
+
       return detach(first, last);
 
    }
 
    template < class TYPE, class ARG_TYPE >
-   list_data<TYPE, ARG_TYPE> list<TYPE, ARG_TYPE>::detach(const_iterator first, const_iterator last)
+   list_data < TYPE, ARG_TYPE > list<TYPE, ARG_TYPE>::detach(const_iterator first, const_iterator last)
    {
 
       ASSERT_VALID(this);
 
-      node * pnodeFirst = (node *) first.m_pos;
+      typename list_data < TYPE, ARG_TYPE >::node * pnodeFirst = (typename list_data < TYPE, ARG_TYPE >::node *) first.m_pos;
 
-      node * pnodeLast = (node *) last.m_pos;
+      typename list_data < TYPE, ARG_TYPE >::node * pnodeLast = (typename list_data < TYPE, ARG_TYPE >::node *) last.m_pos;
 
       if(pnodeLast != NULL)
       {
 
-         if (pnodeLast == m_ptail)
+         if (pnodeLast == this->m_ptail)
          {
-            m_ptail = pnodeLast->m_pprev;
+            this->m_ptail = pnodeLast->m_pprev;
          }
          else
          {
-            ASSERT(__is_valid_address(pnodeLast->m_pnext, sizeof(node)));
+            ASSERT(__is_valid_address(pnodeLast->m_pnext, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
             pnodeLast->m_pnext->m_pprev = pnodeLast->m_pprev;
          }
 
       }
       else
       {
-         m_ptail = pnodeFirst->m_pprev;
+         this->m_ptail = pnodeFirst->m_pprev;
       }
 
-      if(pnodeFirst == m_phead)
+      if(pnodeFirst == this->m_phead)
       {
-         m_phead = pnodeFirst->m_pnext;
+         this->m_phead = pnodeFirst->m_pnext;
       }
       else
       {
-         ASSERT(__is_valid_address(pnodeFirst->m_pprev, sizeof(node)));
+         ASSERT(__is_valid_address(pnodeFirst->m_pprev, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          pnodeFirst->m_pprev->m_pnext = pnodeFirst->m_pnext;
       }
 
       ::count count = 0;
 
-      node * pnode = pnodeFirst;
+      typename list_data < TYPE, ARG_TYPE >::node * pnode = pnodeFirst;
 
-      node * pprev = NULL;
+      typename list_data < TYPE, ARG_TYPE >::node * pprev = NULL;
 
       while(pnode != pnodeLast)
       {
@@ -1556,7 +1556,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
          count++;
       }
 
-      m_count -= count;
+      this->m_count -= count;
 
       list l;
 
@@ -1571,7 +1571,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    template < class TYPE, class ARG_TYPE >
    typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::splice(const_iterator position, const_iterator i)
    {
-      
+
       return splice(position, *((list *) i.m_plist), i);
 
    }
@@ -1579,7 +1579,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    template < class TYPE, class ARG_TYPE >
    typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::splice(const_iterator position, const_iterator first, const_iterator last)
    {
-      
+
       return splice(position, *((list *) first.m_plist), first, last);
 
    }
@@ -1587,7 +1587,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    template < class TYPE, class ARG_TYPE >
    typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::splice(const_iterator position, list & l)
    {
-      
+
       return insert_before(position, l);
 
    }
@@ -1595,7 +1595,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    template < class TYPE, class ARG_TYPE >
    typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::splice(const_iterator position, list & l, const_iterator i)
    {
-      
+
       UNREFERENCED_PARAMETER(l);
 
       return insert_before(position, ((list *) i.m_plist)->detach(i));
@@ -1605,7 +1605,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    template < class TYPE, class ARG_TYPE >
    typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::splice(const_iterator position, list & l, const_iterator first, const_iterator last)
    {
-      
+
       UNREFERENCED_PARAMETER(l);
 
       return insert_before(position, ((list *) first.m_plist)->detach(first, last));
@@ -1618,13 +1618,13 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    {
       ASSERT_VALID(this);
 
-      if (nIndex >= m_count || nIndex < 0)
+      if (nIndex >= this->m_count || nIndex < 0)
          return NULL;  // went too far
 
-      node* pnode = m_phead;
+      typename list_data < TYPE, ARG_TYPE >::node* pnode = this->m_phead;
       while (nIndex--)
       {
-         ASSERT(__is_valid_address(pnode, sizeof(node)));
+         ASSERT(__is_valid_address(pnode, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          pnode = pnode->m_pnext;
       }
       return (POSITION) pnode;
@@ -1635,13 +1635,13 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    {
       ASSERT_VALID(this);
 
-      node* pnode = m_phead;
+      typename list_data < TYPE, ARG_TYPE >::node* pnode = this->m_phead;
       index i = 0;
       while(pnode != NULL)
       {
-         if((node *) pos == pnode)
+         if((typename list_data < TYPE, ARG_TYPE >::node *) pos == pnode)
             return i;
-         ASSERT(__is_valid_address(pnode, sizeof(node)));
+         ASSERT(__is_valid_address(pnode, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          pnode = pnode->m_pnext;
          i++;
       }
@@ -1653,14 +1653,14 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    {
       ASSERT_VALID(this);
 
-      node* pnode = (node*) startAfter;
+      typename list_data < TYPE, ARG_TYPE >::node* pnode = (typename list_data < TYPE, ARG_TYPE >::node*) startAfter;
       if (pnode == NULL)
       {
-         pnode = m_phead;  // start at head
+         pnode = this->m_phead;  // start at head
       }
       else
       {
-         ASSERT(__is_valid_address(pnode, sizeof(node)));
+         ASSERT(__is_valid_address(pnode, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          pnode = pnode->m_pnext;  // start after the one specified
       }
 
@@ -1680,10 +1680,10 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
 
       if (ar.IsStoring())
       {
-         ar.WriteCount(m_count);
-         for (node* pnode = m_phead; pnode != NULL; pnode = pnode->m_pnext)
+         ar.WriteCount(this->m_count);
+         for (typename list_data < TYPE, ARG_TYPE >::node* pnode = this->m_phead; pnode != NULL; pnode = pnode->m_pnext)
          {
-            ASSERT(__is_valid_address(pnode, sizeof(node)));
+            ASSERT(__is_valid_address(pnode, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
             TYPE* pData;
             //
             // in some cases the & operator might be overloaded, and we cannot use it to obtain
@@ -1710,7 +1710,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    {
       object::dump(dumpcontext);
 
-      dumpcontext << "with " << m_count << " elements";
+      dumpcontext << "with " << this->m_count << " elements";
       if (dumpcontext.GetDepth() > 0)
       {
          POSITION pos = get_head_position();
@@ -1731,17 +1731,17 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
    {
       object::assert_valid();
 
-      if (m_count == 0)
+      if (this->m_count == 0)
       {
          // is_empty list
-         ASSERT(m_phead == NULL);
-         ASSERT(m_ptail == NULL);
+         ASSERT(this->m_phead == NULL);
+         ASSERT(this->m_ptail == NULL);
       }
       else
       {
          // non-is_empty list
-         ASSERT(__is_valid_address(m_phead, sizeof(node)));
-         ASSERT(__is_valid_address(m_ptail, sizeof(node)));
+         ASSERT(__is_valid_address(this->m_phead, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
+         ASSERT(__is_valid_address(this->m_ptail, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
       }
    }
 
@@ -1772,9 +1772,9 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
       if(&l != this)
       {
 
-         m_count        = l.m_count;
-         m_phead    = l.m_phead;
-         m_ptail    = l.m_ptail;
+         this->m_count        = l.m_count;
+         this->m_phead    = l.m_phead;
+         this->m_ptail    = l.m_ptail;
 
       }
 

@@ -4,7 +4,7 @@
 // consult cpluplus.com
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class CONTAINER = array < TYPE, ARG_TYPE >, class FIRST = ::core::less < TYPE > > 
+template < class TYPE, class ARG_TYPE = const TYPE &, class CONTAINER = array < TYPE, ARG_TYPE >, class FIRST = ::comparison::less < TYPE, ARG_TYPE > >
 class priority_queue
 {
 public:
@@ -22,7 +22,7 @@ public:
 };
 
 
-template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST > 
+template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST >
 inline bool priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::is_empty() const
 {
 
@@ -30,7 +30,7 @@ inline bool priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::is_empty() con
 
 }
 
-template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST > 
+template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST >
 inline ::count priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::size() const
 {
 
@@ -39,7 +39,7 @@ inline ::count priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::size() cons
 }
 
 
-template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST > 
+template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST >
 inline TYPE & priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::top()
 {
 
@@ -47,7 +47,7 @@ inline TYPE & priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::top()
 
 }
 
-template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST > 
+template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST >
 inline const TYPE & priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::top() const
 {
 
@@ -55,7 +55,7 @@ inline const TYPE & priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::top() 
 
 }
 
-template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST > 
+template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST >
 inline void priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::push(const TYPE & t)
 {
 
@@ -65,7 +65,7 @@ inline void priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::push(const TYP
 
 }
 
-template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST > 
+template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST >
 inline void priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::pop()
 {
 

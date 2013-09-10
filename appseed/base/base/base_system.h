@@ -214,7 +214,7 @@ public:
 
    stridsp(type)                                m_typemap;
    spa(service_base)                            m_serviceptra;
-   sp(factory)                                  m_pfactory;
+   sp(base_factory)                             m_pfactory;
    ::url::departament                           m_urldepartament;
    sp(class ::xml::departament)                 m_pxml;
    const id_pool                                m_cidpool;

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/collection/collection_iterator.h"
+
+
 template < class TYPE, class ARG_TYPE >
 inline bool LessCompareElements(ARG_TYPE element1, ARG_TYPE element2)
 {
@@ -79,7 +82,7 @@ namespace lemon
    template <class RandomAccessIterator>
    void make_heap (RandomAccessIterator first, RandomAccessIterator last)
    {
-      iterator_info < RandomAccessIterator >::VALUE_TYPE t;
+      typename iterator_info < RandomAccessIterator >::VALUE_TYPE t;
       raw_array < RandomAccessIterator > stackLowerBound;
       raw_array < RandomAccessIterator > stackUpperBound;
       RandomAccessIterator iLowerBound;
@@ -156,7 +159,7 @@ namespace lemon
    void make_heap (RandomAccessIterator first, RandomAccessIterator last,
       Compare comp )
    {
-      iterator_info < RandomAccessIterator >::VALUE_TYPE t;
+      typename iterator_info < RandomAccessIterator >::VALUE_TYPE t;
       raw_array < RandomAccessIterator > stackLowerBound;
       raw_array < RandomAccessIterator > stackUpperBound;
       RandomAccessIterator iLowerBound;
@@ -235,7 +238,7 @@ namespace lemon
 
       make_heap(first, last);
 
-      iterator_info < RandomAccessIterator >::VALUE_TYPE t = *first;
+      typename iterator_info < RandomAccessIterator >::VALUE_TYPE t = *first;
       *first = *last;
       *last = t;
 
@@ -249,7 +252,7 @@ namespace lemon
 
       make_heap(first, last, comp);
 
-      iterator_info < RandomAccessIterator >::VALUE_TYPE t = *first;
+      typename iterator_info < RandomAccessIterator >::VALUE_TYPE t = *first;
       *first = *last;
       *last = t;
 
@@ -276,9 +279,9 @@ namespace lemon
    template <class RandomAccessIterator>
    void sort_heap (RandomAccessIterator first, RandomAccessIterator last)
    {
-      iterator_info < RandomAccessIterator >::VALUE_TYPE t;
-      array < RandomAccessIterator > stackLowerBound;
-      array < RandomAccessIterator > stackUpperBound;
+      typename iterator_info < RandomAccessIterator >::VALUE_TYPE t;
+      raw_array < RandomAccessIterator > stackLowerBound;
+      raw_array < RandomAccessIterator > stackUpperBound;
       RandomAccessIterator iLowerBound;
       RandomAccessIterator iUpperBound;
       RandomAccessIterator iLPos, iUPos, iMPos;
@@ -352,9 +355,9 @@ namespace lemon
    template <class RandomAccessIterator, class Compare>
    void sort_heap (RandomAccessIterator first, RandomAccessIterator last, Compare comp )
    {
-      iterator_info < RandomAccessIterator >::VALUE_TYPE t;
-      array < RandomAccessIterator > stackLowerBound;
-      array < RandomAccessIterator > stackUpperBound;
+      typename iterator_info < RandomAccessIterator >::VALUE_TYPE t;
+      raw_array < RandomAccessIterator > stackLowerBound;
+      raw_array < RandomAccessIterator > stackUpperBound;
       RandomAccessIterator iLowerBound;
       RandomAccessIterator iUpperBound;
       RandomAccessIterator iLPos, iUPos, iMPos;

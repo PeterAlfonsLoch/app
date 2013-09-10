@@ -50,6 +50,8 @@ public:
 
    void NewBlock();
 
+#ifdef WINDOWS
+
    void * operator new(size_t s)
    {
       return ::HeapAlloc(::GetProcessHeap(), NULL, sizeof(plex_heap_alloc_sync));
@@ -59,6 +61,20 @@ public:
    {
       ::HeapFree(::GetProcessHeap(), NULL, p);
    }
+
+#else
+
+   void * operator new(size_t s)
+   {
+      return ::malloc(sizeof(plex_heap_alloc_sync));
+   }
+
+   void operator delete(void * p)
+   {
+      return free(p);
+   }
+
+#endif
 
 };
 

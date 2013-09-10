@@ -166,7 +166,7 @@ public:
    }
 
 
-   
+
 
    bool                             get_bool(bool bDefault = false)     const;
    int32_t                          int32(int32_t iDefault = 0)  const;
@@ -340,17 +340,17 @@ public:
    }
 
    template < class T >
-   sp(T) element()
+   sp(T) obj()
    {
       if(m_etype == type_pvar && m_pvar != NULL)
-         return m_pvar->element < T > ();
+         return m_pvar->obj < T > ();
       if(m_etype != type_element)
          return NULL;
       return m_sp;
    }
 
    template < class T >
-   const sp(T) element() const
+   const sp(T) obj() const
    {
       if(m_etype != type_element)
          return NULL;

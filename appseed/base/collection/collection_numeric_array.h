@@ -1850,8 +1850,8 @@ namespace lemon
          ::count c = a.get_count();
          if(c == 0)
             return 0.0;
-         ARRAY::BASE_TYPE f = 0.0;
-         ARRAY::BASE_TYPE fCount = (ARRAY::BASE_TYPE) c;
+         typename ARRAY::BASE_TYPE f = 0.0;
+         typename ARRAY::BASE_TYPE fCount = (typename ARRAY::BASE_TYPE) c;
          for(index i = 0; i < c; i++)
          {
             f += a.element_at(i) / fCount;
@@ -1864,3 +1864,97 @@ namespace lemon
 } // namespace lemon
 
 
+
+
+namespace lemon
+{
+
+   namespace array
+   {
+
+      template<class ARRAY>
+      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia)
+      {
+         if(a.get_size() == 0)
+         {
+            return false;
+         }
+
+         index iLowerBound = 0;
+         index iMaxBound   = a.get_upper_bound();
+         index iUpperBound = iMaxBound;
+         index iCompare;
+         // do binary search
+         iIndex = (iUpperBound + iLowerBound) / 2;
+         while(iUpperBound - iLowerBound >= 8)
+         {
+            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *) &t);
+            if(iCompare == 0)
+            {
+               return true;
+            }
+            else if(iCompare > 0)
+            {
+               iUpperBound = iIndex - 1;
+               if(iUpperBound < 0)
+               {
+                  iIndex = 0;
+                  break;
+               }
+            }
+            else
+            {
+               iLowerBound = iIndex + 1;
+               if(iLowerBound > iMaxBound)
+               {
+                  iIndex = iMaxBound + 1;
+                  break;
+               }
+            }
+            iIndex = (iUpperBound + iLowerBound) / 2;
+         }
+         // do sequential search
+         while(iIndex < a.get_count())
+         {
+            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *) &t);
+            if(iCompare == 0)
+               return true;
+            else if(iCompare < 0)
+               iIndex++;
+            else
+               break;
+         }
+         if(iIndex >= a.get_count())
+            return false;
+         while(iIndex >= 0)
+         {
+            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *)  &t);
+            if(iCompare == 0)
+               return true;
+            else if(iCompare > 0)
+               iIndex--;
+            else
+               break;
+         }
+         iIndex++;
+         return false;
+
+      }
+
+
+      template<class ARRAY>
+      index sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia)
+      {
+         index iIndex = 0;
+         binary_search(a, t, iIndex, fCompare, ia);
+         a.inset(iIndex, t);
+         ia.add(iIndex);
+         return iIndex;
+      }
+
+
+
+   } // namespace array
+
+
+} // namespace lemon

@@ -86,13 +86,13 @@ public:
 
    enum e_state
    {
-      
+
       state_initial,
       state_waiting_width,
       state_parse_precision,
       state_waiting_precision,
       state_parse_length,
-      
+
    };
 
 
@@ -107,7 +107,7 @@ public:
 
 
    e_state                          m_estate;
-   
+
 
    bool                             m_bLeftJustify;
    bool                             m_bForceShowSign;
@@ -142,11 +142,11 @@ public:
    {
 
       allocate_add_up(1);
- 
+
       m_pszBuffer[m_iLength] = ch;
 
       m_iLength++;
-      
+
    }
 
 
@@ -264,46 +264,10 @@ public:
 
    }
 
-   inline void printf(const char * & s)
-   {
-
-      while (*s)
-      {
-
-         if(*s == '%' && *(++s) != '%')
-            throw simple_exception("invalid format string: missing arguments");
-
-         append(*s++);
-
-      }
-
-      (m_pprinter->*m_pfnPrinter)(m_pvoidPrinter, m_pszBuffer);
-
-   }
+   inline void printf(const char * & s);
 
    template<typename T, typename... Args>
-   inline void printf(const char * & s, const T & value, Args... args)
-   {
-
-      while (*s)
-      {
-
-         if (*s == '%' && *(++s) != '%')
-         {
-
-            defer_get_additional_argument(s, value, args...);
-
-            return;
-
-         }
-
-         append(*s++);
-
-      }
-
-      throw simple_exception("extra arguments provided to printf");
-
-   }
+   inline void printf(const char * & s, const T & value, Args... args);
 
 };
 

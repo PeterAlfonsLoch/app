@@ -129,13 +129,13 @@ END_EXTERN_C
 
 
 
-   #pragma once
+//   #pragma once
 
 
 
-typedef uint64_t  file_size;
-typedef uint64_t  file_position;
-typedef int64_t   file_offset;
+//typedef uint64_t  file_size;
+//typedef uint64_t  file_position;
+//typedef int64_t   file_offset;
 
 
 
@@ -168,7 +168,7 @@ CLASS_DECL_c int_bool file_copy_dup(const char * pszDup, const char * pszSrc, in
 
 
 
-typedef HANDLE handle;
+//typedef HANDLE handle;
 
 CLASS_DECL_c handle create_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
 CLASS_DECL_c int_bool close_handle(handle h);
@@ -292,7 +292,7 @@ namespace md5
 
 
 } // namespace md5
- 
+
 
 #ifdef WINDOWS
 CLASS_DECL_c void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int32_t & iNumber);

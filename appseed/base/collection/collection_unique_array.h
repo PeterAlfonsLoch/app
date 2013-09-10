@@ -1,6 +1,6 @@
 #pragma once
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_ARRAY = lemon_array < typename TYPE, ARG_TYPE >, class COMPARE = ::comparison::less < TYPE, ARG_TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_ARRAY = lemon_array < TYPE, ARG_TYPE >, class COMPARE = ::comparison::less < TYPE, ARG_TYPE > >
 class unique_sort_array :
    protected BASE_ARRAY
 {
@@ -25,7 +25,7 @@ public:
    bool find(ARG_TYPE t, index & find) const
    {
       index iL = find;
-      index iU = get_upper_bound();
+      index iU = this->get_upper_bound();
       while(iU - iL > 5)
       {
          find = (iL + iU) / 2;
@@ -81,7 +81,7 @@ public:
 
 template < class TYPE >
 class unique_array :
-   protected array < typename TYPE >
+   protected array < TYPE >
 {
 public:
    unique_array(sp(base_application) papp = NULL);

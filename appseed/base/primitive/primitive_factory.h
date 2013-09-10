@@ -159,7 +159,7 @@ public:
 };
 
 
-class CLASS_DECL_c factory :
+class CLASS_DECL_c base_factory :
    virtual public object
 {
 public:
@@ -170,8 +170,8 @@ public:
 
 
 
-   factory(sp(base_application) papp);
-   virtual ~factory();
+   base_factory(sp(base_application) papp);
+   virtual ~base_factory();
 
 
    template < class T >

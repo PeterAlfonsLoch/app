@@ -1,4 +1,5 @@
-#pragma once;
+#pragma once
+
 
 inline void * plex_heap_alloc_sync::Alloc()
 {
@@ -127,16 +128,16 @@ public:
 
    void pre_finalize();
 
-
    void * operator new(size_t s)
    {
-      return ::HeapAlloc(::GetProcessHeap(), NULL, sizeof(plex_heap_alloc));
+      return ::malloc(sizeof(plex_heap_alloc));
    }
 
    void operator delete(void * p)
    {
-      ::HeapFree(::GetProcessHeap(), NULL, p);
+      ::free(p);
    }
+
 
 };
 
@@ -232,12 +233,12 @@ public:
 
    void * operator new(size_t s)
    {
-      return ::HeapAlloc(::GetProcessHeap(), NULL, sizeof(plex_heap_alloc_array));
+      return ::malloc(sizeof(plex_heap_alloc_array));
    }
 
    void operator delete(void * p)
    {
-      ::HeapFree(::GetProcessHeap(), NULL, p);
+      ::free(p);
    }
 
 };

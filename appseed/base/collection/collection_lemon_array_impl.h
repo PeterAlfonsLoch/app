@@ -18,18 +18,18 @@ array < TYPE, ARG_TYPE > (papp, nGrowBy)
 template < class TYPE, class ARG_TYPE >
 inline lemon_array < TYPE, ARG_TYPE > :: lemon_array(const lemon_array & a)
 {
-   m_nGrowBy = 32;
-   m_pData = NULL;
-   m_nSize = m_nMaxSize = 0;
+   this->m_nGrowBy = 32;
+   this->m_pData = NULL;
+   this->m_nSize = this->m_nMaxSize = 0;
    operator = (a);
 }
 
 template < class TYPE, class ARG_TYPE >
 inline lemon_array < TYPE, ARG_TYPE > :: lemon_array(const array <TYPE, ARG_TYPE> & a)
 {
-   m_nGrowBy = 32;
-   m_pData = NULL;
-   m_nSize = m_nMaxSize = 0;
+   this->m_nGrowBy = 32;
+   this->m_pData = NULL;
+   this->m_nSize = this->m_nMaxSize = 0;
    operator = (a);
 }
 
@@ -422,7 +422,7 @@ namespace lemon
             memset((void *)(a.m_pData + nIndex), 0, (size_t)nCount * sizeof(ARRAY::BASE_TYPE));
 #undef new
             for( int32_t i = 0; i < nCount; i++ )
-               ::new( (void *)(a.m_pData + nIndex + i ) ) ARRAY::BASE_TYPE;
+               ::new( (void *)(a.m_pData + nIndex + i ) ) typename ARRAY::BASE_TYPE;
 #define new DEBUG_NEW
          }
 
@@ -488,85 +488,6 @@ namespace lemon
 
       }
 
-      template<class ARRAY>
-      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia)
-      {
-         if(a.get_size() == 0)
-         {
-            return false;
-         }
-
-         index iLowerBound = 0;
-         index iMaxBound   = a.get_upper_bound();
-         index iUpperBound = iMaxBound;
-         index iCompare;
-         // do binary search
-         iIndex = (iUpperBound + iLowerBound) / 2;
-         while(iUpperBound - iLowerBound >= 8)
-         {
-            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *) &t);
-            if(iCompare == 0)
-            {
-               return true;
-            }
-            else if(iCompare > 0)
-            {
-               iUpperBound = iIndex - 1;
-               if(iUpperBound < 0)
-               {
-                  iIndex = 0;
-                  break;
-               }
-            }
-            else
-            {
-               iLowerBound = iIndex + 1;
-               if(iLowerBound > iMaxBound)
-               {
-                  iIndex = iMaxBound + 1;
-                  break;
-               }
-            }
-            iIndex = (iUpperBound + iLowerBound) / 2;
-         }
-         // do sequential search
-         while(iIndex < a.get_count())
-         {
-            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *) &t);
-            if(iCompare == 0)
-               return true;
-            else if(iCompare < 0)
-               iIndex++;
-            else
-               break;
-         }
-         if(iIndex >= a.get_count())
-            return false;
-         while(iIndex >= 0)
-         {
-            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *)  &t);
-            if(iCompare == 0)
-               return true;
-            else if(iCompare > 0)
-               iIndex--;
-            else
-               break;
-         }
-         iIndex++;
-         return false;
-
-      }
-
-
-      template<class ARRAY>
-      index sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia)
-      {
-         index iIndex = 0;
-         binary_search(a, t, iIndex, fCompare, ia);
-         a.inset(iIndex, t);
-         ia.add(iIndex);
-         return iIndex;
-      }
 
 
    } // namespace array

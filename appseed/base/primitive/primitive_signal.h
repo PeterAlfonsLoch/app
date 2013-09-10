@@ -17,12 +17,12 @@ public:
    property_set *  m_pset;
    index                m_iParam;
    bool                 m_bRet;
-   signal *             m_psignal;
+   class signal *             m_psignal;
 
 
 
    signal_details(sp(base_application) papp = NULL);
-   signal_details(signal * psignal);
+   signal_details(class signal * psignal);
    virtual ~signal_details();
 
 
@@ -44,7 +44,7 @@ class CLASS_DECL_c signalizable :
 public:
 
 
-   comparable_eq_array < signal *, signal * > m_signalptra;
+   comparable_eq_array < class signal *, class signal * > m_signalptra;
 
 
    signalizable();
@@ -53,25 +53,25 @@ public:
 
    virtual void on_request_signal(request_signal * pobj);
 
-   void register_signal(signal * psignal);
-   void unregister_signal(signal * psignal);
+   void register_signal(class signal * psignal);
+   void unregister_signal(class signal * psignal);
    void unregister_target(signalizable* psignalizable);
    void filter_target(signalizable* psignalizable);
 
 };
 
-class CLASS_DECL_c base_signalizable_array : 
+class CLASS_DECL_c base_signalizable_array :
    virtual protected comparable_array < signalizable * >
 {
 public:
 
    inline index add(signalizable * psignalizable)
-   { 
+   {
       install_handlers(psignalizable);
       return ::comparable_array < signalizable * >::add(psignalizable);
    }
    inline index remove(signalizable * psignalizable)
-   { 
+   {
       return ::comparable_array < signalizable * >::remove(psignalizable);
    }
 
@@ -93,12 +93,12 @@ class signalizable_array :
 public:
 
    inline index add(SIGNALIZABLE * psignalizable)
-   { 
+   {
       return base_signalizable_array::add(psignalizable);
    }
 
    inline index remove(SIGNALIZABLE * psignalizable)
-   { 
+   {
       return base_signalizable_array::remove(psignalizable);
    }
 
@@ -179,7 +179,7 @@ protected:
 
 
 template < class T >
-void connect(signal & sig, T * p, void (T::*pfn)(signal_details *))
+void connect(class signal & sig, T * p, void (T::*pfn)(signal_details *))
 {
 
    sig.connect(p, pfn);
@@ -273,7 +273,7 @@ public:
 
 
       signalid *           m_pid;
-      ::signal *           m_psignal;
+      class ::signal *     m_psignal;
 
       handler_item_array   m_handlera;
 
@@ -321,7 +321,7 @@ public:
       {
          psignal                    = new signal_item;
          psignal->m_pid             = pid->copy();
-         psignal->m_psignal         = new ::signal();
+         psignal->m_psignal         = new class ::signal();
          psignal->m_psignal->connect(psignalizable, pfn);
          handler_item <T> * pitem   = new handler_item<T>;
          pitem->m_psignalizable     = psignalizable;

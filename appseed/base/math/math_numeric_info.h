@@ -8,47 +8,25 @@ namespace numeric_info
 
 
    template < typename T >
-   inline T get_maximum_value()
-   {
-      throw not_implemented(get_thread_app());
-   }
+   inline T get_maximum_value();
 
    template < typename T >
-   inline T get_minimum_value()
-   {
-      throw not_implemented(get_thread_app());
-   }
-   template < typename T >
-   inline T get_null_value()
-   {
-      return 0;
-   }
-   template < typename T >
-   inline T get_unitary_value()
-   {
-      return 1;
-   }
+   inline T get_minimum_value();
 
    template < typename T >
-   inline T get_allset_value()
-   {
-      T t;
-      memset(&t, 0xff, sizeof(T));
-      return t;
-   }
+   inline T get_null_value();
 
    template < typename T >
-   inline bool is_signed()
-   {
-      return ((T) -1) < 0;
-   }
+   inline T get_unitary_value();
 
    template < typename T >
-   inline bool is_integer()
-   {
-      // guess, as float and double is implemented
-      return true;
-   }
+   inline T get_allset_value();
+
+   template < typename T >
+   inline bool is_signed();
+
+   template < typename T >
+   inline bool is_integer();
 
 
 

@@ -191,7 +191,7 @@ extern CLASS_DECL_c bool g_bTraceEnabled;
 #define THREAD_NOTE __get_thread_note()
 #define SET_THREAD_NOTE(x) __set_thread_note(x);
 #else
-#define SET_THREAD_NOTE(x) 
+#define SET_THREAD_NOTE(x)
 #endif
 
 
@@ -222,7 +222,7 @@ CLASS_DECL_c void __dump(const object* pOb); // dump an object from CodeView
 //#define TRACE2 TRACE
 #endif
 #define THIS_FILE          __FILE__
-#define VERIFY(f)          ASSERT(f)
+//#define VERIFY(f)          ASSERT(f)
 //#define DEBUG_ONLY(f)      (f)
 
 // The following trace macros are provided for backward compatiblity

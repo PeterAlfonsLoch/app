@@ -580,9 +580,9 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 }
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
-typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::iterator sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find(ARG_KEY key) 
+typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::iterator sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find(ARG_KEY key)
 {
-   
+
    index i;
 
    if(!find_key(key, i))
@@ -595,7 +595,7 @@ typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::iterator sort_map
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
 typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::const_iterator sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find(ARG_KEY key) const
 {
-   
+
    index i;
 
    if(!find_key(key, i))
@@ -693,7 +693,7 @@ typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::iterator sort_map
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
 typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::const_iterator sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::lower_bound (ARG_KEY k) const
 {
-   
+
    index i = 0;
 
    find_key(k, i);
@@ -708,7 +708,7 @@ typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::const_iterator so
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
 typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::iterator sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::upper_bound (ARG_KEY k)
 {
-   
+
    index i = 0;
 
    if(find_key(k, i))
@@ -726,7 +726,7 @@ typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::iterator sort_map
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
 typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::const_iterator sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::upper_bound (ARG_KEY k) const
 {
-   
+
    index i = 0;
 
    if(find_key(k, i))
@@ -1070,7 +1070,7 @@ sort_string_map < VALUE, ARG_VALUE, COMPARE > & sort_string_map < VALUE, ARG_VAL
 
 }
 
-template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::core::strid_compare  >
+template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::comparison::strid_binary  >
 class sort_strid_map :
    virtual public sort_attrib_map < sort_map < id, const id &, VALUE, ARG_VALUE, COMPARE > >
 {

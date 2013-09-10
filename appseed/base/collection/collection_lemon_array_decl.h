@@ -101,6 +101,15 @@ namespace lemon
       template<class ARRAY>
       void copy(ARRAY & a, const ::array < typename ARRAY::BASE_TYPE, typename ARRAY::BASE_ARG_TYPE > & src);
 
+      template < class ARRAY >
+      void set_at_grow(ARRAY & a, index nIndex, typename ARRAY::BASE_ARG_TYPE newElement);
+
+      template < class ARRAY>
+      typename ARRAY::BASE_TYPE get_at_grow(ARRAY & a, index nIndex);
+
+      template < class ARRAY >
+      typename ARRAY::BASE_TYPE & element_at_grow(ARRAY & a, index nIndex);
+
       template<class ARRAY>
       bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia);
 

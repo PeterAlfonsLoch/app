@@ -4,9 +4,6 @@
 
 
 
-class random_access_iterator { public: };
-
-
 #include "collection_iterator.h"
 
 #include "collection_pair.h"

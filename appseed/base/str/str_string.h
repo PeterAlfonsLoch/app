@@ -180,7 +180,7 @@ public:
 
    inline string(const id & id);
    inline string(const var & var);
-   inline string::string(const property & prop);
+   inline string(const property & prop);
 
    template < typename T >
    inline explicit string(T o) :
@@ -649,7 +649,7 @@ public:
 
    void resize (strsize n, char c)
    {
-      
+
       strsize nOldSize = length();
 
       if(n < nOldSize)

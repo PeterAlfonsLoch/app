@@ -1,7 +1,9 @@
 #pragma once
 
+class element;
 
-
+::count add_ref(element * pelement);
+::count release(element * & pelement);
 
 // ::ca::null_class back link to operational system oswindow.h
 //
@@ -115,7 +117,7 @@ public:
    inline smart_pointer & operator = (long l);
 #endif
 #endif
-      
+
 
    template < class T2 >
    inline smart_pointer & operator = (const smart_pointer < T2 > & t)

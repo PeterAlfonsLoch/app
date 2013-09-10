@@ -73,14 +73,10 @@ BEGIN_EXTERN_C
 
 #include "base_c.h"
 
-   
+
 END_EXTERN_C
 
 
 #endif
-
-
-
-
 
 

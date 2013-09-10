@@ -34,6 +34,9 @@ private:
 
 };
 
+
+#ifdef WINDOWS
+
 inline void critical_section::lock()
 {
    try
@@ -60,3 +63,5 @@ inline bool critical_section::unlock()
    ::LeaveCriticalSection(&m_sect);
    return TRUE;
 }
+
+#endif

@@ -27,7 +27,7 @@ public:
    bool                             m_bOk;
 
 
-   application_signal_details(sp(base_application) papp, ::signal * psignal, e_application_signal esignal);
+   application_signal_details(sp(base_application) papp, class ::signal * psignal, e_application_signal esignal);
 
 
 };
@@ -40,7 +40,7 @@ class CLASS_DECL_c base_application :
 public:
 
 
-   signal *                                        m_psignal;
+   class signal *                                  m_psignal;
    base_system *                                   m_pbasesystem;
    string                                          m_strAppName;
    sp(::command_thread)                            m_pcommandthread;
@@ -107,7 +107,7 @@ inline allocatorsp element::allocer()
 
 inline sp(::command_thread) object::command_thread()
 {
-   
+
    return m_pbaseapp->command_thread();
 
 }

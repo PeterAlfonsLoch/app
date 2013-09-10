@@ -1,6 +1,11 @@
 #pragma once
 
 
+#ifdef LINUX
+#include <wchar.h>
+#endif
+
+
 namespace core
 {
 

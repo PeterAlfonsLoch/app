@@ -20,7 +20,7 @@ namespace file
       }
 
       buffer(const buffer & buffer) :
-         raw_array(buffer)
+         raw_array < T > (buffer)
       {
 
       }
@@ -38,31 +38,31 @@ namespace file
       }
 
       operator T *()
-      { 
+      {
 
-         return get_data();
+         return this->get_data();
 
       }
 
       operator const T *() const
-      { 
+      {
 
-         return get_data();
+         return this->get_data();
 
       }
 
 
       size_t GetCapacity() const
-      { 
+      {
 
-         return  get_size();
+         return  this->get_size();
 
       }
 
       void SetCapacity(size_t newCapacity)
       {
 
-         allocate(newCapacity);
+         this->allocate(newCapacity);
 
       }
 
@@ -73,7 +73,7 @@ namespace file
 
          if (buffer.GetCapacity() > 0)
          {
-            memcpy(get_data(), buffer.get_data(), buffer.GetCapacity() * sizeof(T));
+            memcpy(this->get_data(), buffer.get_data(), buffer.GetCapacity() * sizeof(T));
          }
 
          return *this;
@@ -84,11 +84,11 @@ namespace file
       bool operator == (const buffer < T > & b) const
       {
 
-         if(GetCapacity() != b.GetCapacity())
+         if(this->GetCapacity() != b.GetCapacity())
             return false;
 
-         for (size_t i = 0; i < GetCapacity(); i++)
-            if (operator[](i) != b[i])
+         for (size_t i = 0; i < this->GetCapacity(); i++)
+            if (this->operator[](i) != b[i])
                return false;
 
          return true;

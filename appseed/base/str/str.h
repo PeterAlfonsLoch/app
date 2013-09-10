@@ -11,6 +11,7 @@ class string_array;
 #include "str_simple.h"
 #include "str_interface.h"
 #include "str_composite.h"
+#include "str_format.h"
 #include "str_string.h"
 
 #include "str_stringtow.h"

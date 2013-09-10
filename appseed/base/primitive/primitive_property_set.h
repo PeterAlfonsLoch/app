@@ -11,7 +11,7 @@ public:
 
    property_map         m_map;
    property_array       m_propertya;
-   signal               m_signal;
+   class signal         m_signal;
    bool                 m_bAutoAdd;
    bool                 m_bMultiValue;
 
@@ -190,7 +190,7 @@ public:
    property_set * m_pset;
 
 
-   PropertySignalObject(signal * psignal);
+   PropertySignalObject(class signal * psignal);
 
 
 };

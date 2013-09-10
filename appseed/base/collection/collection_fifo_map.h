@@ -936,7 +936,7 @@ fifo_string_map < VALUE, ARG_VALUE, COMPARE > & fifo_string_map < VALUE, ARG_VAL
 
 }
 
-template < class VALUE, class ARG_VALUE = const VALUE & , class COMPARE = ::core::strid_compare  >
+template < class VALUE, class ARG_VALUE = const VALUE & , class COMPARE = ::comparison::strid_binary  >
 class fifo_strid_map :
    virtual public fifo_attrib_map < fifo_map < id, const id &, VALUE, ARG_VALUE, COMPARE > >
 {
