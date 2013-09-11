@@ -1281,7 +1281,7 @@ int32_t CScriptVar::getRefs() {
 // ----------------------------------------------------------------------------------- CSCRIPT
 
 tinyjs::tinyjs(sp(base_application) papp) :
-   base_element(papp)
+   element(papp)
 {
     l = 0;
     root = (new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref();

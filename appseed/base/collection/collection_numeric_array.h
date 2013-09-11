@@ -542,14 +542,14 @@ void numeric_array < TYPE >::divide(TYPE div)
 template < class TYPE >
 unique_number_sort_array < TYPE >::
    unique_number_sort_array(sp(base_application) papp) :
-   base_element(papp)
+   element(papp)
 {
 }
 
 template < class TYPE >
 unique_number_sort_array < TYPE >::
    unique_number_sort_array(const unique_number_sort_array < TYPE > & a) :
-   base_element(a.get_app())
+   element(a.get_app())
 {
    numeric_array < TYPE > ::operator = (a);
 }

@@ -69,12 +69,12 @@ bool base_application::load_string(string & str, id id)
 }
 
 
-sp(base_element) base_application::alloc(sp(type) info)
+sp(element) base_application::alloc(sp(type) info)
 {
    return System.alloc(this, info);
 }
 
-sp(base_element) base_application::alloc(const  id & idType)
+sp(element) base_application::alloc(const  id & idType)
 {
    return System.alloc(this, idType);
 }

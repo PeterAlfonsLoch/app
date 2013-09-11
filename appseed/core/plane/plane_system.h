@@ -281,8 +281,8 @@ namespace plane
       sp(::plane::session) query_session(index iEdge);
 
 
-      //static void register_delete(sp(base_element) plistened, sp(base_element) plistener);
-      //static void unregister_delete(sp(base_element) plistened, sp(base_element) plistenerOld);
+      //static void register_delete(sp(element) plistened, sp(element) plistener);
+      //static void unregister_delete(sp(element) plistened, sp(element) plistenerOld);
 
       virtual bool wait_twf(uint32_t dwTimeOut = INFINITE);
 
@@ -362,7 +362,7 @@ namespace plane
 
       virtual bool create_twf();
 
-      //virtual void discard_to_factory(sp(base_element) pca);
+      //virtual void discard_to_factory(sp(element) pca);
 
       virtual bool verb();
 

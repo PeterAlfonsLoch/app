@@ -3407,13 +3407,13 @@ bool var::has_property(const char * pszName) const
    }
    else if(get_type() == type_element)
    {
-      if(element < property_set >() != NULL)
+      if(cast < property_set >() != NULL)
       {
-         return element < property_set >()->has_property(pszName);
+         return cast < property_set >()->has_property(pszName);
       }
-      else if(element < property >() != NULL)
+      else if(cast < property >() != NULL)
       {
-         return element < property >()->name().CompareNoCase(pszName) == 0;
+         return cast < property >()->name().CompareNoCase(pszName) == 0;
       }
       else
       {

@@ -759,12 +759,12 @@ namespace plane
    }
 
    /*
-   sp(base_element) system::on_alloc(sp(base_application) papp, sp(type) info)
+   sp(element) system::on_alloc(sp(base_application) papp, sp(type) info)
    {
       /*string str;
       str.Format("Could not alloc %s", info.name());
       simple_message_box(str);*/
-      /*sp(base_element) pobj = Sys(papp).factory().create(papp, info);
+      /*sp(element) pobj = Sys(papp).factory().create(papp, info);
       if(pobj != NULL)
          return pobj;
       on_allocation_error(papp, info);
@@ -1231,7 +1231,7 @@ namespace plane
       return file().title_(psz);
    }
 
-   /*void system::register_delete(sp(base_element) plistened, sp(base_element) plistener)
+   /*void system::register_delete(sp(element) plistened, sp(element) plistener)
    {
       if(plistened == plistener)
          return;
@@ -1243,7 +1243,7 @@ namespace plane
       plistened->listenerptra().add(plistener);
    }
 
-   void system::unregister_delete(sp(base_element) plistened, sp(base_element) plistener)
+   void system::unregister_delete(sp(element) plistened, sp(element) plistener)
    {
       if(plistened == plistener)
          return;

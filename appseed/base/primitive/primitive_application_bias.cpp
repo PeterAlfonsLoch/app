@@ -28,7 +28,7 @@ application_bias::application_bias()
 }
 
 application_bias::application_bias(sp(base_application) papp) :
-   base_element(papp)
+   element(papp)
 {
    m_set["SessionSynchronizedInput"]      = true;
    m_set["NativeWindowFocus"]             = true;

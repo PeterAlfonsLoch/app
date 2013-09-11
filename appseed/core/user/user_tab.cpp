@@ -1497,7 +1497,7 @@ namespace user
 
 
    tab::pane_array::pane_array(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
    }
 

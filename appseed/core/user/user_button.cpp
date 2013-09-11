@@ -153,12 +153,12 @@ namespace user
          if(get_form() != NULL)
          {
             get_form()->send_message(
-               ::core::message_event, 0, (LPARAM) &ev);
+               ::message::message_event, 0, (LPARAM) &ev);
          }
          else
          {
             get_parent()->send_message(
-               ::core::message_event, 0, (LPARAM) &ev);
+               ::message::message_event, 0, (LPARAM) &ev);
          }
          pobj->m_bRet = true;
          pmouse->set_lresult(1);
@@ -186,7 +186,7 @@ namespace user
                   ev.m_puie = this;
                   ev.m_eevent = ::user::event_mouse_enter;
                   get_parent()->send_message(
-                     ::core::message_event, 0, (LPARAM) &ev);
+                     ::message::message_event, 0, (LPARAM) &ev);
                }
                else if(iHover == -1)
                {
@@ -194,7 +194,7 @@ namespace user
                   ev.m_puie = this;
                   ev.m_eevent = ::user::event_mouse_leave;
                   get_parent()->send_message(
-                     ::core::message_event, 0, (LPARAM) &ev);
+                     ::message::message_event, 0, (LPARAM) &ev);
                }
                track_mouse_hover();
             }
@@ -217,7 +217,7 @@ namespace user
                ev.m_eevent = ::user::event_mouse_leave;
                if(get_parent() != NULL)
                {
-                  get_parent()->send_message(::core::message_event, 0, (LPARAM) &ev);
+                  get_parent()->send_message(::message::message_event, 0, (LPARAM) &ev);
                }
                track_mouse_leave();
             }

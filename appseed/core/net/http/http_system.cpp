@@ -192,7 +192,7 @@ namespace http
 
 
    system::proxy::proxy(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
    }
 
@@ -455,7 +455,7 @@ namespace http
       UNREFERENCED_PARAMETER(pszVersion);
       string strServer = pszHost;
       string strProtocol = pszProtocol;
-      sp(base_application) papp = set["app"].element < application >();
+      sp(base_application) papp = set["app"].cast < application >();
       int32_t iPort;
       if(strProtocol == "https")
       {
@@ -538,7 +538,7 @@ namespace http
       if(strProtocol == "https")
       {
 #ifndef METROWIN
-         ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].element < ::sockets::ssl_client_context > ();
+         ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].cast < ::sockets::ssl_client_context > ();
          if(pcontext != NULL)
          {
             psession->m_spsslclientcontext = pcontext;
@@ -767,7 +767,7 @@ retry:
          }
          if(set.has_property("file"))
          {
-            psession->m_pfile = set["file"].element < ::file::binary_buffer >();
+            psession->m_pfile = set["file"].cast < ::file::binary_buffer >();
          }
          if(pcookies != NULL && pcookies->get_size() > 0)
          {
@@ -784,12 +784,12 @@ retry:
 
          bool bPost;
          bool bPut;
-         if(set["put"].element < ::file::binary_buffer >() != NULL || set["http_request"] == "PUT")
+         if(set["put"].cast < ::file::binary_buffer >() != NULL || set["http_request"] == "PUT")
          {
             bPost = false;
             bPut = true;
             psession->request("PUT", strRequest);
-            dynamic_cast < ::sockets::http_put_socket * > (psession)->m_file = set["put"].element < ::file::binary_buffer >();
+            dynamic_cast < ::sockets::http_put_socket * > (psession)->m_file = set["put"].cast < ::file::binary_buffer >();
          }
          else if(post.m_propertya.get_count() > 0 || set["http_request"] == "POST")
          {
@@ -831,11 +831,11 @@ retry:
             {
                break;
             }
-            if(set["file_out"].element < ::file::timeout_buffer >() != NULL)
+            if(set["file_out"].cast < ::file::timeout_buffer >() != NULL)
             {
-               if(psession->m_iFinalSize != -1 && set["file_out"].element < ::file::timeout_buffer >()->m_uiExpectedSize != psession->m_iFinalSize)
+               if(psession->m_iFinalSize != -1 && set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize != psession->m_iFinalSize)
                {
-                  set["file_out"].element < ::file::timeout_buffer >()->m_uiExpectedSize = psession->m_iFinalSize;
+                  set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize = psession->m_iFinalSize;
                }
             }
             dw2 = ::get_tick_count();
@@ -843,11 +843,11 @@ retry:
             iIteration++;
          }
 
-         if(set["file_out"].element < ::file::timeout_buffer >() != NULL)
+         if(set["file_out"].cast < ::file::timeout_buffer >() != NULL)
          {
-            if(psession->m_iFinalSize != -1 && set["file_out"].element < ::file::timeout_buffer >()->m_uiExpectedSize != psession->m_iFinalSize)
+            if(psession->m_iFinalSize != -1 && set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize != psession->m_iFinalSize)
             {
-               set["file_out"].element < ::file::timeout_buffer >()->m_uiExpectedSize = psession->m_iFinalSize;
+               set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize = psession->m_iFinalSize;
             }
          }
 
@@ -1089,7 +1089,7 @@ retry:
       string strServer = System.url().get_root(pszUrl);
       string strProtocol = System.url().get_protocol(pszUrl);
       string strObject = System.url().get_object(pszUrl);
-      sp(base_application) papp = set["app"].element < application >();
+      sp(base_application) papp = set["app"].cast < application >();
       int32_t iPort;
       if(strProtocol == "https")
       {
@@ -1168,12 +1168,12 @@ retry:
 
       bool bPost;
       bool bPut;
-      if(set["put"].element < ::file::binary_buffer >() != NULL || set["http_request"] == "PUT")
+      if(set["put"].cast < ::file::binary_buffer >() != NULL || set["http_request"] == "PUT")
       {
          bPost = false;
          bPut = true;
          psocket = new ::sockets::http_put_socket(handler, strUrl);
-         dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].element < ::file::binary_buffer >();
+         dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].cast < ::file::binary_buffer >();
       }
       else if(post.get_count() > 0 || set["http_request"] == "POST")
       {
@@ -1203,7 +1203,7 @@ retry:
       }
       if(set.has_property("file"))
       {
-         psocket->m_pfile = set["file"].element < ::file::binary_buffer >();
+         psocket->m_pfile = set["file"].cast < ::file::binary_buffer >();
       }
       if(pcookies != NULL && pcookies->get_size() > 0)
       {
@@ -1224,7 +1224,7 @@ retry:
       if(strProtocol == "https")
       {
 #ifdef BSD_STYLE_SOCKETS
-         ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].element < ::sockets::ssl_client_context > ();
+         ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].cast < ::sockets::ssl_client_context > ();
          if(pcontext != NULL)
          {
             psocket->m_spsslclientcontext = pcontext;
@@ -1286,11 +1286,11 @@ retry:
          {
             break;
          }
-         if(set["file_out"].element < ::file::timeout_buffer >() != NULL)
+         if(set["file_out"].cast < ::file::timeout_buffer >() != NULL)
          {
-            if(psocket->m_iFinalSize != ((size_t) -1) && set["file_out"].element < ::file::timeout_buffer >()->m_uiExpectedSize != psocket->m_iFinalSize)
+            if(psocket->m_iFinalSize != ((size_t) -1) && set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize != psocket->m_iFinalSize)
             {
-               set["file_out"].element < ::file::timeout_buffer >()->m_uiExpectedSize = psocket->m_iFinalSize;
+               set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize = psocket->m_iFinalSize;
             }
          }
          dw2 = ::get_tick_count();

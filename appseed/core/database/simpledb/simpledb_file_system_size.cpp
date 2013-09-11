@@ -26,7 +26,7 @@ file_size_table::get_fs_size & file_size_table::get_fs_size::operator = (const g
 
 
 file_size_table::file_size_table(sp(base_application) papp) :
-   base_element(papp)
+   element(papp)
 {
    m_hmap = NULL;
    m_item.m_pitemParent = NULL;

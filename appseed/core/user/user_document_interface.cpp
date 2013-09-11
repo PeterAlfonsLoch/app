@@ -222,7 +222,7 @@ namespace user
       {
          strPathName = varFile.propset()["url"];
       }
-      else if(varFile.element < ::file::binary_buffer > () != NULL)
+      else if(varFile.cast < ::file::binary_buffer > () != NULL)
       {
          strPathName = System.datetime().international().get_gmt_date_time() + "." + get_document_template()->m_set["default_extension"];
       }
@@ -671,7 +671,7 @@ namespace user
 
          wait_cursor wait(get_app());
 
-         if(varFile["xmledit"].element < ::file::memory_buffer > () != NULL)
+         if(varFile["xmledit"].cast < ::file::memory_buffer > () != NULL)
          {
 
          }

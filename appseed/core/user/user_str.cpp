@@ -6,7 +6,7 @@ namespace user
 
 
    str_context::str_context(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
 
 
@@ -146,7 +146,7 @@ namespace user
    }
 
    str::str(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
 
       InitHashTable(64);

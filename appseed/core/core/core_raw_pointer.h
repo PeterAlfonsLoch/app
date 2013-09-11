@@ -11,7 +11,7 @@ public:
 
    raw_pointer(::core::applicationsp papp);
    raw_pointer(const raw_pointer & holder);
-   raw_pointer(sp(base_element) pboject);
+   raw_pointer(sp(element) pboject);
 
    template < class T >
    T * core ()
@@ -38,7 +38,7 @@ public:
    }
 
 
-   sp(base_element) m_pca;
+   sp(element) m_pca;
 
 
 };

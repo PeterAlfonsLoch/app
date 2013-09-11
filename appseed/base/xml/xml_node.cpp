@@ -19,7 +19,7 @@ namespace xml
    static const CHAR szXMLCDATAClose[] = "]]>";
 
    node::array::array(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
    }
 

@@ -80,7 +80,7 @@ namespace n7z
    }
 
    CDecoder::CDecoder(sp(base_application) papp, bool multiThread) :
-      base_element(papp)
+      element(papp)
    {
       multiThread = true;
       _multiThread = multiThread;

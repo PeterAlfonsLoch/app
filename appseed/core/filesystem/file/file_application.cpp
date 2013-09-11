@@ -199,10 +199,10 @@ namespace file
 
       }
 
-      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].element < ::file::binary_buffer >() != NULL)
+      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].cast < ::file::binary_buffer >() != NULL)
       {
 
-         spfile = varFile.propset()["file"].element < ::file::binary_buffer >();
+         spfile = varFile.propset()["file"].cast < ::file::binary_buffer >();
 
       }
       else if(::str::find_ci(".zip:", strPath) >= 0)

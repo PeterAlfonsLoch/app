@@ -791,7 +791,7 @@ namespace user
 
 
    split_layout::Pane::Pane(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
 
       m_pholder = NULL;

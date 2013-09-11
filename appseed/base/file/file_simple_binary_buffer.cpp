@@ -11,7 +11,7 @@ namespace file
 
 
    simple_binary_buffer::simple_binary_buffer(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
 
       m_pfile = NULL;

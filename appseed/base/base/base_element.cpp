@@ -107,7 +107,7 @@ void element::delete_this()
 }
 
 
-sp(base_element) element::clone()
+sp(element) element::clone()
 {
 
    if(m_pfactoryitembase != NULL)

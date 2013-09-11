@@ -19,14 +19,14 @@ public:
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 string_map < VALUE, ARG_VALUE, HASH, EQUALS >::string_map(sp(base_application) papp, ::count nBlockSize) :
-   base_element(papp),
+   element(papp),
    map < string, const string &, VALUE, ARG_VALUE, HASH, EQUALS > (papp, nBlockSize)
 {
 }
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 string_map < VALUE, ARG_VALUE, HASH, EQUALS >::string_map(const string_map & map) :
-   base_element(map.get_app()),
+   element(map.get_app()),
    attrib_map < ::map < string, const string &, VALUE, ARG_VALUE, HASH, EQUALS > > (map)
 {
 }

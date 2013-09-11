@@ -7,7 +7,7 @@ namespace user
       ::user::interaction(papp),
 
       ::user::button(papp),
-      base_element(papp)
+      element(papp)
    {
       m_pitem = NULL;
    }

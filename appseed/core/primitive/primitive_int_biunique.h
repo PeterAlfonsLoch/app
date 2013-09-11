@@ -74,7 +74,7 @@ protected:
 
 template < class T, class T_to_T >
 biunique < T, T_to_T > ::biunique(sp(base_application) papp) :
-   base_element(papp)
+   element(papp)
 {
    m_bBiunivoca = true;
    m_iEmptyA = -1;

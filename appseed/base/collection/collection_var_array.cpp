@@ -6,7 +6,7 @@
 
 
 var_array::var_array(sp(base_application) papp) :
-   base_element(papp)
+   element(papp)
 {
    ::lemon::array::set_size(*this, 0, 64);
 }

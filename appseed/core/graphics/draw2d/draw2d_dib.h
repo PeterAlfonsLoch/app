@@ -315,7 +315,7 @@ namespace draw2d
    public:
 
       dibmap(sp(base_application) papp) :
-         base_element(papp)
+         element(papp)
       {
       }
 
@@ -377,7 +377,7 @@ namespace draw2d
 
 
       dibmap_ex1(sp(base_application) papp, int32_t iLimitCount = 500) :
-         base_element(papp)
+         element(papp)
       {
 
          m_iLimitCount = iLimitCount;

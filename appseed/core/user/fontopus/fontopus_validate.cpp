@@ -232,7 +232,7 @@ namespace fontopus
    {
       sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
-      createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").element < ::user::interaction > ();
+      createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").cast < ::user::interaction > ();
       createcontext->m_bOuterPopupAlertLike = true;
    }*/
 
@@ -1183,7 +1183,7 @@ namespace fontopus
 
       sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
-      createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").element < ::user::interaction > ();
+      createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").cast < ::user::interaction > ();
       createcontext->m_bOuterPopupAlertLike = true;
       //Sleep(15 * 1000);
       m_pdoc = m_ptemplatePane->open_document_file(createcontext);

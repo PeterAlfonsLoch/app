@@ -194,7 +194,7 @@ namespace libcompress
    }
 
    out_handler::out_handler(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
    }
 

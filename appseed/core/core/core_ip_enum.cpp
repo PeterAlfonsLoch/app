@@ -6,7 +6,7 @@ namespace core
 
 
    ip_enum::ip_enum(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
 
    }

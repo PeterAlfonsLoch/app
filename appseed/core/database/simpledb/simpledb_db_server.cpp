@@ -6,7 +6,7 @@ int32_t g_idbchange;
 
 
 db_server::db_server(sp(base_application) papp) :
-   base_element(papp)
+   element(papp)
 {
    m_pdb                = NULL;
    m_pSongsDirsSet      = NULL;

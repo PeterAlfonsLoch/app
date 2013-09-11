@@ -338,7 +338,7 @@ public:
       return *this;
    }
 
-   property & operator =(base_element * p)
+   property & operator =(element * p)
    {
       get_value() = p;
       return *this;
@@ -360,9 +360,15 @@ public:
 
 
    template < class T >
-   T * element()
+   T * cast()
    {
-      return get_value().element < T >();
+      return get_value().cast < T >();
+   }
+
+   template < class T >
+   const T * cast() const
+   {
+      return ((property *) this)->get_value().cast < T >();
    }
 
    operator const char *() const

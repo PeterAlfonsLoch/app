@@ -8,7 +8,7 @@ class typed_pointer_map :
 public:
 
    typed_pointer_map(sp(base_application) papp = NULL, ::count nBlockSize = 10) :
-      base_element(papp),
+      element(papp),
       BASE_CLASS(papp, nBlockSize)
    {
    }

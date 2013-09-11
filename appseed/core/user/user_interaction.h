@@ -103,7 +103,7 @@ namespace user
          void unset(sp(interaction) pguie);
          void detach(spa(timer_item) & timera, sp(interaction) pguie);
          void transfer(sp(::user::window) pwindow, sp(interaction) pguie);
-         sp(interaction) find(sp(base_element) pca);
+         sp(interaction) find(sp(element) pca);
          index find(sp(interaction) pguie, uint_ptr uiId);
          index find_from(sp(interaction) pguie, index iStart);
 

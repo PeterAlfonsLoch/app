@@ -13,8 +13,8 @@ void itemswap(void * pswaparg, index i1, index i2)
 
 bool is_safe_set(void * p);
 
-factory::factory(sp(base_application) papp) :
-   base_element(papp)
+base_factory::base_factory(sp(base_application) papp) :
+   element(papp)
 {
    m_pmutex = new mutex(papp);
    m_pstrida = new strid_array(true);
@@ -22,7 +22,7 @@ factory::factory(sp(base_application) papp) :
    m_bSimpleFactoryRequest = false;
 }
 
-factory::~factory()
+base_factory::~base_factory()
 {
 
    single_lock sl(m_pmutex, TRUE);
@@ -42,7 +42,7 @@ factory::~factory()
 
 
 
-void factory::set_at(const char * pszId, factory_item_base * pitem)
+void base_factory::set_at(const char * pszId, factory_item_base * pitem)
 {
 
    single_lock sl(m_pmutex, TRUE);
@@ -64,7 +64,7 @@ void factory::set_at(const char * pszId, factory_item_base * pitem)
 
 
 
-void factory::set_at(const char * pszType, sp(factory_allocator) pallocator)
+void base_factory::set_at(const char * pszType, sp(factory_allocator) pallocator)
 {
 
    single_lock sl(m_pmutex, TRUE);
@@ -82,7 +82,7 @@ void factory::set_at(const char * pszType, sp(factory_allocator) pallocator)
 
 }
 
-void factory::discard(sp(base_element) pobject)
+void base_factory::discard(sp(element) pobject)
 {
    single_lock sl(m_pmutex, TRUE);
    sp(factory_allocator) pallocator = get_allocator(typeid(*pobject).name());
@@ -102,7 +102,7 @@ bool is_safe_set(void * p)
 
 }
 
-void factory::enable_simple_factory_request(bool bEnable)
+void base_factory::enable_simple_factory_request(bool bEnable)
 {
 
    m_bSimpleFactoryRequest = bEnable;
@@ -120,7 +120,7 @@ void factory::enable_simple_factory_request(bool bEnable)
 
 
 
-bool factory::is_set(const char * pszType)
+bool base_factory::is_set(const char * pszType)
 {
 
    index iFind;
@@ -133,7 +133,7 @@ bool factory::is_set(const char * pszType)
 
 
 
-sp(factory_allocator) factory::get_allocator(const char * pszType)
+sp(factory_allocator) base_factory::get_allocator(const char * pszType)
 {
 
    single_lock sl(m_pmutex, TRUE);
@@ -160,7 +160,7 @@ sp(factory_allocator) factory::get_allocator(const char * pszType)
 
 
 
-sp(base_element) factory::create(sp(base_application) papp, sp(type) info)
+sp(element) base_factory::create(sp(base_application) papp, sp(type) info)
 {
 
    if(info->m_spmutex.is_null())
@@ -200,7 +200,7 @@ sp(base_element) factory::create(sp(base_application) papp, sp(type) info)
 
 
 
-sp(base_element) factory::base_clone(sp(base_element) pobject)
+sp(element) base_factory::base_clone(sp(element) pobject)
 {
 
    single_lock sl(m_pmutex, TRUE);

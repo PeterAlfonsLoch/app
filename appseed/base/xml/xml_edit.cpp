@@ -6,7 +6,7 @@ namespace xml
 
 
    edit_item::edit_item(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
    }
 

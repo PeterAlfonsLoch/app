@@ -5,7 +5,7 @@ namespace user
 {
 
    notify_icon::notify_icon(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
 #ifdef WINDOWSEX
       m_nid.cbSize = sizeof(m_nid);

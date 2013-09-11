@@ -95,7 +95,7 @@ public:
    };
 
 
-   sp(base_element)                     m_sp;
+   sp(element)                      m_sp;
    string                           m_str;
    id                               m_id;
 
@@ -131,7 +131,7 @@ public:
    var(const SYSTEMTIME & time);
    var(string * pstr);
    var(var * pvar);
-   var(base_element * pca2);
+   var(element * pca2);
    var(const stringa & var);
    var(const int_array & var);
    var(const var_array & var);
@@ -288,7 +288,7 @@ public:
       return *this;
    }
 */
-   inline var & operator = (base_element * p)
+   inline var & operator = (element * p)
    {
       set_type(type_element, false);
       m_sp = p;
@@ -340,21 +340,19 @@ public:
    }
 
    template < class T >
-   sp(T) obj()
+   sp(T) cast()
    {
       if(m_etype == type_pvar && m_pvar != NULL)
-         return m_pvar->obj < T > ();
+         return m_pvar->cast < T > ();
       if(m_etype != type_element)
          return NULL;
       return m_sp;
    }
 
    template < class T >
-   const sp(T) obj() const
+   const sp(T) cast() const
    {
-      if(m_etype != type_element)
-         return NULL;
-      return m_sp;
+      return ((var *) this)->cast < T > ();
    }
 
    bool strict_equal(const var & var) const;

@@ -24,12 +24,12 @@ namespace core
 
 
 
-   void system::discard_to_factory(sp(base_element) pca)
+   void system::discard_to_factory(sp(element) pca)
    {
       UNREFERENCED_PARAMETER(pca);
    }
 
-   sp(base_element) system::clone(sp(base_element) pca)
+   sp(element) system::clone(sp(element) pca)
    {
       UNREFERENCED_PARAMETER(pca);
       return NULL;

@@ -2989,7 +2989,7 @@ namespace user
    }
 
    list_column_array::list_column_array(sp(base_application) papp) :
-   base_element(papp)
+   element(papp)
    {
       m_plist = NULL;
    }

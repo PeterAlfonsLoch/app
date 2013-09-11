@@ -338,12 +338,12 @@ namespace user
          }
 
 
-         sp(::user::interaction) pframe = oprop("deactivate_together").element < ::user::interaction >();
+         sp(::user::interaction) pframe = oprop("deactivate_together").cast < ::user::interaction >();
 
          if(pActive != pframe)
          {
 
-            ::uinteraction::frame::WorkSet * pset = oprop("deactivate_together_set").element < ::uinteraction::frame::WorkSet > ();
+            ::uinteraction::frame::WorkSet * pset = oprop("deactivate_together_set").cast < ::uinteraction::frame::WorkSet > ();
 
             pset->SetActiveFlag(FALSE);
 

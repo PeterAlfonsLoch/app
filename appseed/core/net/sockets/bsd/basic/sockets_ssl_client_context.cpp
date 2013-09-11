@@ -10,7 +10,7 @@ namespace sockets
 
 
    ssl_client_context::ssl_client_context(sp(base_application) papp, const SSL_METHOD * pmethod) :
-      base_element(papp)
+      element(papp)
    {
       m_psession = NULL;
       if(pmethod == NULL)

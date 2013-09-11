@@ -446,7 +446,7 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::construct(::count nBlo
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
 map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::map(sp(base_application) papp, ::count nBlockSize) :
-   base_element(papp)
+   element(papp)
 {
    construct(nBlockSize);
 }

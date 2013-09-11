@@ -13,7 +13,7 @@ namespace file
    }
 
    string_buffer::string_buffer(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
       m_psz       = NULL;
       m_iSize     = 0;

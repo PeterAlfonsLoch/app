@@ -662,9 +662,9 @@ void string_array::add(const var & var)
    {
       add(var.stra());
    }
-   else if(var.element < string_array >() != NULL)
+   else if(var.cast < string_array >() != NULL)
    {
-      add(*var.element < string_array >());
+      add(*var.cast < string_array >());
    }
    else if(var.get_type() == var::type_vara)
    {

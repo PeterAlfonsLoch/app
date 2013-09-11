@@ -6,7 +6,7 @@ namespace data
 
 
    tree::tree(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
 
       m_pitem = allocate_item(NULL);

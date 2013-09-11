@@ -21,7 +21,7 @@ namespace user
 
       request_create(pcreatecontext);
 
-      return pcreatecontext->m_spCommandLine->m_varQuery["document"].element < ::user::document_interface > ();
+      return pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document_interface > ();
 
    }
 

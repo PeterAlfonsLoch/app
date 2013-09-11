@@ -10,7 +10,7 @@ namespace str
 
 
       locale_schema::locale_schema(sp(base_application) papp) :
-         base_element(papp)
+         element(papp)
       {
 
 

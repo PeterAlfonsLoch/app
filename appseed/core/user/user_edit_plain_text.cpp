@@ -509,7 +509,7 @@ namespace user
          set_plain_text_data(new ::user::plain_text_data(get_app()), true);
       }
 
-      ::data::data * pdataParentLock = oprop("parent_lock_data").element < ::data::data > ();
+      ::data::data * pdataParentLock = oprop("parent_lock_data").cast < ::data::data > ();
       if(pdataParentLock != NULL)
       {
          m_pdata->m_spdataParentLock = pdataParentLock;

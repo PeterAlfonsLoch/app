@@ -132,6 +132,15 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{8832ff75-5113-4095-b832-a6e62e777cfd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\linux">
+      <UniqueIdentifier>{7ab1859a-f13a-4c8b-96fa-b89949a0d872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\metrowin">
+      <UniqueIdentifier>{a1c05a72-0ecc-42d0-872a-8d935e0f9844}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\macos">
+      <UniqueIdentifier>{a0ad8bfa-333d-4043-98b6-6bfba0f132f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="android\c_os_internal.h">
@@ -704,9 +713,6 @@
     <ClInclude Include="primitive\primitive_signal.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive_element.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_type.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -1160,6 +1166,9 @@
     <ClInclude Include="os\os.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
+    <ClInclude Include="base\base_element.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="android\c_os_internal.c">
@@ -1481,9 +1490,6 @@
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_factory.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_element.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="xml\xml_attr.cpp">
@@ -1879,6 +1885,18 @@
     <ClCompile Include="str\str_istring.cpp">
       <Filter>Source Files\str</Filter>
     </ClCompile>
+    <ClCompile Include="base\base_element.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="linux\linux_time.cpp">
+      <Filter>Source Files\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="metrowin\metrowin_time.cpp">
+      <Filter>Source Files\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="macos\macos_time.cpp">
+      <Filter>Source Files\macos</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -1892,6 +1910,9 @@
     </None>
     <None Include="base.def">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

@@ -166,19 +166,19 @@ UINT base_system::os_post_to_all_threads(UINT uiMessage, WPARAM wparam, lparam l
 
 }
 
-sp(base_element) base_system::clone()
+sp(element) base_system::clone()
 {
    // by the time, it is not possible to clone a base_system
    return NULL;
 }
 
-sp(base_element) base_system::clone(sp(base_element) pobj)
+sp(element) base_system::clone(sp(element) pobj)
 {
    return System.factory().base_clone(pobj);
 }
 
 
-void base_system::discard_to_factory(sp(base_element) pca)
+void base_system::discard_to_factory(sp(element) pca)
 {
 
    if(m_pfactory == NULL)
@@ -389,24 +389,24 @@ bool base_system::on_assert_failed_line(const char * lpszFileName, int32_t iLine
 
 
 
-sp(base_element) base_system::on_alloc(sp(base_application) papp, sp(type) info)
+sp(element) base_system::on_alloc(sp(base_application) papp, sp(type) info)
 {
    /*string str;
    str.Format("Could not alloc %s", info.name());
    simple_message_box(str);*/
-   sp(base_element) pobj = Sys(papp).factory().create(papp, info);
+   sp(element) pobj = Sys(papp).factory().create(papp, info);
    if(pobj != NULL)
       return pobj;
    on_allocation_error(papp, info);
    return NULL;
 }
 
-sp(base_element) base_system::alloc(sp(base_application) papp, sp(type) info)
+sp(element) base_system::alloc(sp(base_application) papp, sp(type) info)
 {
    return on_alloc(papp, info);
 }
 
-sp(base_element) base_system::alloc(sp(base_application) papp, const std_type_info & info)
+sp(element) base_system::alloc(sp(base_application) papp, const std_type_info & info)
 {
    return on_alloc(papp, canew(type(info)));
 }
@@ -417,7 +417,7 @@ void base_system::on_allocation_error(sp(base_application) papp, sp(type) info)
    UNREFERENCED_PARAMETER(info);
 }
 
-sp(base_element) base_system::alloc(sp(base_application) papp, const class id & idType)
+sp(element) base_system::alloc(sp(base_application) papp, const class id & idType)
 {
    return on_alloc(papp, get_type_info(idType));
 }

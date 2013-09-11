@@ -2430,7 +2430,7 @@ void CTestCmdUI::SetText(const char *)
 
 
 guie_message_wnd::guie_message_wnd(sp(base_application) papp) :
-base_element(papp)
+element(papp)
 {
    m_pguieForward = NULL;
 }

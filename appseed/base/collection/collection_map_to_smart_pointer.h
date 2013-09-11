@@ -9,7 +9,7 @@ public:
 
 
    map_to_smart_pointer(sp(base_application) papp = NULL, ::count nBlockSize = 10) :
-      base_element(papp),
+      element(papp),
       map < TYPE, ARG_TYPE, smart_pointer < T >, const smart_pointer < T > & > (papp, nBlockSize)
    {
    }
@@ -31,7 +31,7 @@ public:
 
 
    string_to_smart_pointer(sp(base_application) papp = NULL, ::count nBlockSize = 10) :
-      base_element(papp),
+      element(papp),
       string_map < smart_pointer < T >, const smart_pointer < T > & > (papp, nBlockSize)
    {
 

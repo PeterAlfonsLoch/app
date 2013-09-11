@@ -10,7 +10,7 @@ namespace file
 
 
    class CLASS_DECL_c serializable :
-      virtual public base_element
+      virtual public element
    {
    public:
 

@@ -28,7 +28,7 @@
 
 
 class CLASS_DECL_c call_stack :
-   virtual public base_element
+   virtual public element
 {
 public:
 

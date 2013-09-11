@@ -4,7 +4,7 @@ namespace filemanager
 {
 
    iconoverlayer::iconoverlayer(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
    }
 

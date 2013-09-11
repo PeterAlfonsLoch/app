@@ -181,7 +181,7 @@ namespace user
    }
    */
    document_manager::document_manager(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
    }
 

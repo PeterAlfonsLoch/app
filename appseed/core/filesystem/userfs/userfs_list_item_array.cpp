@@ -17,7 +17,7 @@ namespace userfs
    }
 
    list_item_array::list_item_array(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
       m_itema.set_app(papp);
       m_pfnCompare = &BaseNullCompare < sp(list_item) >;

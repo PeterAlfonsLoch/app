@@ -59,8 +59,8 @@ namespace user
    {
       pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(element)) NULL;
       bool bMakeVisible = pcreatecontext->m_spCommandLine->m_varQuery["make_visible_boolean"] || pcreatecontext->m_bMakeVisible;
-      //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].element < ::user::interaction > ();
-      //   sp(::user::view) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].element < ::user::view > ();
+      //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
+      //   sp(::user::view) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::view > ();
 
       sp(::user::document_interface) pdocument = NULL;
       sp(::user::frame_window) pFrame = NULL;

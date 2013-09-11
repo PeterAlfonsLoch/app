@@ -6,7 +6,7 @@ namespace draw2d_cairo
 
 
    factory_exchange::factory_exchange(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
 
       System.factory().cloneable_large < dib                   >  (System.type_info < ::draw2d::dib                 > ());

@@ -4,7 +4,7 @@ namespace user
 {
 
    keyboard_layout_cfg::keyboard_layout_cfg(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
 //      ::data::data(papp)
 //      ::user::list_data(papp),
   //    ::user::split_layout(papp),

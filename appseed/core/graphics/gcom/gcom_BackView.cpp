@@ -115,7 +115,7 @@ namespace gcom
       }
       void Main::_001OnImageLoaded(signal_details * pobj)
       {
-         OnImageLoaded((*pobj)()["dib"].element < ::draw2d::dib > ());
+         OnImageLoaded((*pobj)()["dib"].cast < ::draw2d::dib > ());
       }
 
       void Main::OnImageLoaded(::draw2d::dib * pdib)

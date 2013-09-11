@@ -2,7 +2,7 @@
 
 
 simple_status_bar::simple_status_bar(sp(base_application) papp) :
-   base_element(papp)
+   element(papp)
 {
 
 }

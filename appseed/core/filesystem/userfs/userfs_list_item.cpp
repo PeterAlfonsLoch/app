@@ -6,7 +6,7 @@ namespace userfs
 
 
    list_item::list_item(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
       m_iIndex = -1;
       m_iArrange = -1;

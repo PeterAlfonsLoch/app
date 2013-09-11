@@ -333,9 +333,6 @@
     <Filter Include="Source Files\core">
       <UniqueIdentifier>{afafef36-ef8f-43c3-986e-c6d3d79971c3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core\api">
-      <UniqueIdentifier>{192ca103-fd43-4c09-b562-cdddde28d82b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\core\windows">
       <UniqueIdentifier>{4e78959a-4e29-4cfb-8184-a549dce8fadd}</UniqueIdentifier>
     </Filter>
@@ -2678,16 +2675,7 @@
     <ClInclude Include="core\api\api.h">
       <Filter>Header Files\core\api</Filter>
     </ClInclude>
-    <ClInclude Include="core\api\api_debug.h">
-      <Filter>Header Files\core\api</Filter>
-    </ClInclude>
-    <ClInclude Include="core\api\api_muldiv64.h">
-      <Filter>Header Files\core\api</Filter>
-    </ClInclude>
     <ClInclude Include="core\api\api_rotate.h">
-      <Filter>Header Files\core\api</Filter>
-    </ClInclude>
-    <ClInclude Include="core\api\api_string.h">
       <Filter>Header Files\core\api</Filter>
     </ClInclude>
     <ClInclude Include="core\api\mktime.h">
@@ -4890,9 +4878,6 @@
     </ClCompile>
     <ClCompile Include="core\windows\os_library_initialize.cpp">
       <Filter>Source Files\core\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="core\api\api_string.cpp">
-      <Filter>Source Files\core\api</Filter>
     </ClCompile>
     <ClCompile Include="core\libcharguess\libcharguess.cpp">
       <Filter>Source Files\core\libcharguess</Filter>

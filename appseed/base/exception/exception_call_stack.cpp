@@ -6,11 +6,11 @@ bool call_stack::s_bDoStackTrace = false;
 
 #if defined(LINUX) || defined(MACOS)
 call_stack::call_stack(sp(base_application) papp, uint32_t uiSkip, void * address) :
-   base_element(papp)
+   element(papp)
    ,m_caller_address(address)
 #else
 call_stack::call_stack(sp(base_application) papp, uint32_t uiSkip) :
-   base_element(papp)
+   element(papp)
 #endif
 {
 

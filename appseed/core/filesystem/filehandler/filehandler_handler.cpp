@@ -6,7 +6,7 @@ namespace filehandler
 
 
    handler::handler(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
 
       m_sptree = new tree_interface(papp);

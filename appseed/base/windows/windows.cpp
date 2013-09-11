@@ -285,3 +285,27 @@ void output_debug_string(const char * psz)
 {
    ::OutputDebugStringW(wstring(psz));
 }
+
+
+
+
+
+
+dword get_tick_count()
+{
+
+#ifdef METROWIN
+
+   return (dword) (GetTickCount64() % 0x100000000ULL);
+
+#else
+
+   return (dword) GetTickCount();
+
+#endif
+
+}
+
+
+
+

@@ -390,7 +390,7 @@ void *tree_search_key(TREE *tree, const void *key,
 	return NULL;
       }
     }
-    if (cmp < 0) /* element < key */
+    if (cmp < 0) /* cast < key */
     {
       last_right_step_parent= parents;
       element= element->right;
@@ -500,7 +500,7 @@ ha_rows tree_record_pos(TREE *tree, const void *key,
         return HA_POS_ERROR;
       }
     }
-    if (cmp < 0) /* element < key */
+    if (cmp < 0) /* cast < key */
     {
       element= element->right;
       left= (left + right) / 2;

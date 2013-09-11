@@ -6,21 +6,21 @@ namespace primitive
 
 
    memory_container ::memory_container(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
       m_dwAllocationAddUp = 1024;
    }
 
 
    memory_container ::memory_container(sp(base_application) papp, void * pmemory, memory_size dwSize) :
-      base_element(papp)
+      element(papp)
    {
       m_spmemory = new primitive::memory(this, pmemory, dwSize);
    }
 
 
    memory_container ::memory_container(sp(base_application) papp, memory_base * pmemory) :
-      base_element(papp)
+      element(papp)
    {
       m_spmemory = pmemory;
    }

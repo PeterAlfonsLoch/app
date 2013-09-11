@@ -15,7 +15,7 @@ namespace dynamic_source
 
    session::~session()
    {
-      ::str::international::locale_schema * pls = m_set["locale_schema"].element < ::str::international::locale_schema > ();
+      ::str::international::locale_schema * pls = m_set["locale_schema"].cast < ::str::international::locale_schema > ();
       if(pls != NULL)
       {
          ::output_debug_string("locale_schema.m_idLocale=" + pls->m_idLocale.str());

@@ -6,7 +6,7 @@ namespace plane
 
 
    session::session(base_application * papp) :
-      base_element(papp)
+      element(papp)
    {
 
       m_bDrawCursor              = true;
@@ -892,7 +892,7 @@ namespace plane
                get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
             }
             App(m_pappCurrent).request_create(pcreatecontext);
-            if(pcreatecontext->m_spCommandLine->m_varQuery["document"].element < ::user::document_interface > () == NULL)
+            if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document_interface > () == NULL)
             {
                goto alt1;
             }
@@ -1081,8 +1081,8 @@ alt1:
    //
    //      sp(::user::interaction) puiParent = NULL;
    //
-   //      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].element < ::user::interaction >() != NULL)
-   //         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].element < ::user::interaction >();
+   //      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].cast < ::user::interaction >() != NULL)
+   //         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].cast < ::user::interaction >();
    //
    //      if(puiParent == NULL && pcreatecontext->m_puiParent != NULL)
    //      {
@@ -1591,8 +1591,8 @@ alt1:
 
       sp(::user::interaction) puiParent = NULL;
 
-      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].element < ::user::interaction >() != NULL)
-         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].element < ::user::interaction >();
+      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].cast < ::user::interaction >() != NULL)
+         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].cast < ::user::interaction >();
 
       if(puiParent == NULL && pcreatecontext->m_puiParent != NULL)
       {

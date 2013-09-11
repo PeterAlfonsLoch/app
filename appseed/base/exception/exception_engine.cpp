@@ -167,7 +167,7 @@ namespace exception
 #endif
 
    engine::engine(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
 #ifdef WINDOWSEX
       ,m_bOk(false)
       ,m_pstackframe(NULL)

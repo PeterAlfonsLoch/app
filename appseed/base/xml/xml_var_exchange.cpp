@@ -5,7 +5,7 @@ namespace xml
 {
 
    var_exchange::var_exchange(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
       m_pvar = NULL;
    }

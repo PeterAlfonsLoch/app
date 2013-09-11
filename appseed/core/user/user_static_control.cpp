@@ -55,7 +55,7 @@ namespace user
 
 
    static_control::static_control(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
 
       m_etype = type_text;

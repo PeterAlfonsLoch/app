@@ -6,7 +6,7 @@ namespace sip
 
 
    transaction::transaction(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
 
    }

@@ -9,7 +9,7 @@ namespace core
    }
 
    history::history(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
       m_phistory = NULL;
    }

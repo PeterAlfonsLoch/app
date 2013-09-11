@@ -37,12 +37,12 @@ namespace user
       if(get_form() != NULL)
       {
          get_form()->send_message(
-            ::core::message_event, 0, (LPARAM) &ev);
+            ::message::message_event, 0, (LPARAM) &ev);
       }
       else
       {
          get_parent()->send_message(
-            ::core::message_event, 0, (LPARAM) &ev);
+            ::message::message_event, 0, (LPARAM) &ev);
       }
    }
 

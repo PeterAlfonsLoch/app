@@ -1508,19 +1508,19 @@ namespace dynamic_source
                         if(ch == ')')
                         {
                            add_var_id(strResult, iVar, straId);
-                           strResult += ").element < " + m_pmanager->m_strNamespace + "::object_base >()->call(\""+ strToken + "\" ";
+                           strResult += ").cast < " + m_pmanager->m_strNamespace + "::object_base >()->call(\""+ strToken + "\" ";
                         }
                         else
                         {
                            add_var_id(strResult, iVar, straId);
-                           strResult += ").element < " + m_pmanager->m_strNamespace + "::object_base >()->call(\""+ strToken + "\", ";
+                           strResult += ").cast < " + m_pmanager->m_strNamespace + "::object_base >()->call(\""+ strToken + "\", ";
                            continue;
                         }
                      }
                      else
                      {
                         add_var_id(strResult, iVar, straId);
-                        strResult += ").element < " + m_pmanager->m_strNamespace + "::object_base >()->m_propertyset[\""+ strToken + "\"]";
+                        strResult += ").cast < " + m_pmanager->m_strNamespace + "::object_base >()->m_propertyset[\""+ strToken + "\"]";
                      }
                   }
                   else

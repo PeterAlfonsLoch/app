@@ -1242,7 +1242,7 @@ void virtual_user_interface::message_handler(signal_details * pobj)
       if(pobj->m_bRet)
          return;
    }
-   if(pbase->m_uiMessage == ::core::message_event)
+   if(pbase->m_uiMessage == ::message::message_event)
    {
       if(m_pguie != this && m_pguie != NULL)
       {

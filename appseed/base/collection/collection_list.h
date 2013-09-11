@@ -623,7 +623,7 @@ inline bool list<TYPE, ARG_TYPE>::has_elements(::count countMinimum) const
    template<class TYPE, class ARG_TYPE>
    inline const TYPE& list<TYPE, ARG_TYPE>::get_next(POSITION& rPosition) const // return *position++
       { typename list_data < TYPE, ARG_TYPE >::node* pnode = (typename list_data < TYPE, ARG_TYPE >::node*) rPosition;
-         ASSERT(__is_valid_address(pnode, sizeof(typename list_data < TYPE, ARG_TYPE >::ode)));
+         ASSERT(__is_valid_address(pnode, sizeof(typename list_data < TYPE, ARG_TYPE >::node)));
          rPosition = (POSITION) pnode->m_pnext;
          return pnode->m_value; }
    template<class TYPE, class ARG_TYPE>

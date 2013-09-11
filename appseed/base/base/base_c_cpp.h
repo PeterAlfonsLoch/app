@@ -417,6 +417,7 @@ namespace numeric_info
 
 
 
+#ifndef NO_VARIADIC_TEMPLATE
 
    template<typename T, typename... Args>
    inline void string_format::printf(const char * & s, const T & value, Args... args)
@@ -460,3 +461,6 @@ namespace numeric_info
       (m_pprinter->*m_pfnPrinter)(m_pvoidPrinter, m_pszBuffer);
 
    }
+
+
+#endif

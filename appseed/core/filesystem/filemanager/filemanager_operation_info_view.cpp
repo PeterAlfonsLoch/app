@@ -37,7 +37,7 @@ void DoBar(::draw2d::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, in
 
 
 file_manager_operation_info_view::file_manager_operation_info_view(sp(base_application) papp) :
-   base_element(papp)
+   element(papp)
 {
    m_dAnime = 0.0;
 }

@@ -2,7 +2,7 @@
 
 
 job::job(sp(base_application) papp) :
-   base_element(papp)
+   element(papp)
 {
    m_bCancel = false;
 }

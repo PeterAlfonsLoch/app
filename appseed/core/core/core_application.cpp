@@ -4988,7 +4988,7 @@ void application::_001OnApplicationRequest(signal_details * pobj)
       catch(...)
       {
       }
-      sp(::plane::session) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].element < ::plane::session >();
+      sp(::plane::session) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].cast < ::plane::session >();
       // todobergedge
       /*if(pbergedge != NULL)
       {
@@ -5859,13 +5859,13 @@ string application::draw2d_get_default_library_name()
    if(bBigIcon)
    {
 
-      return const_cast < object * > (pobject)->oprop("big_icon").element < ::visual::icon >();
+      return const_cast < object * > (pobject)->oprop("big_icon").cast < ::visual::icon >();
 
    }
    else
    {
 
-      return const_cast < object * > (pobject)->oprop("small_icon").element < ::visual::icon >();
+      return const_cast < object * > (pobject)->oprop("small_icon").cast < ::visual::icon >();
 
    }
 

@@ -1057,6 +1057,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="base\base_application.h" />
     <ClInclude Include="base\base_auto_pointer.h" />
     <ClInclude Include="base\base_definition.h" />
+    <ClInclude Include="base\base_element.h" />
     <ClInclude Include="base\base_enum.h" />
     <ClInclude Include="base\base_root.h" />
     <ClInclude Include="base\base_c.h" />
@@ -1218,7 +1219,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="primitive\primitive_data.h" />
     <ClInclude Include="primitive\primitive_data_container.h" />
     <ClInclude Include="primitive\primitive_data_listener.h" />
-    <ClInclude Include="primitive\primitive_element.h" />
     <ClInclude Include="primitive\primitive_factory.h" />
     <ClInclude Include="primitive\primitive_object.h" />
     <ClInclude Include="primitive\primitive_property.h" />
@@ -1413,6 +1413,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="base\base_assert.cpp" />
     <ClCompile Include="base\base_checked.cpp" />
     <ClCompile Include="base\base_conv.cpp" />
+    <ClCompile Include="base\base_element.cpp" />
     <ClCompile Include="base\base_muldiv64.cpp" />
     <ClCompile Include="base\base_plex.cpp" />
     <ClCompile Include="base\base_plex_heap.cpp" />
@@ -1545,7 +1546,16 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="geometry\geometry_rect.cpp" />
     <ClCompile Include="geometry\geometry_size.cpp" />
     <ClCompile Include="geometry\geometry_types.cpp" />
+    <ClCompile Include="linux\linux_time.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="macos\macos_time.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="math\math_math.cpp" />
+    <ClCompile Include="metrowin\metrowin_time.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="multithreading\multithreading_condition.cpp" />
     <ClCompile Include="multithreading\multithreading_core.cpp" />
     <ClCompile Include="multithreading\multithreading_critical_section.cpp" />
@@ -1587,7 +1597,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="primitive\primitive_data.cpp" />
     <ClCompile Include="primitive\primitive_data_container.cpp" />
     <ClCompile Include="primitive\primitive_data_listener.cpp" />
-    <ClCompile Include="primitive\primitive_element.cpp" />
     <ClCompile Include="primitive\primitive_factory.cpp" />
     <ClCompile Include="primitive\primitive_memory.cpp" />
     <ClCompile Include="primitive\primitive_memory_base.cpp" />

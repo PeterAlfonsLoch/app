@@ -8,7 +8,7 @@ namespace gcom
    {
 
       Interface::Interface(sp(base_application) papp) :
-         base_element(papp)
+         element(papp)
       {
          m_bTransferVoid   = false;
          m_dwTimerStep      = 0;

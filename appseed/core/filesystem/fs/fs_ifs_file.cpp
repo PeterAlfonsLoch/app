@@ -77,20 +77,20 @@ void ifs_file::set_file_data()
    string strUrl;
 
 
-   if(m_varFile["xmledit"].element < ::file::memory_buffer > () != NULL)
+   if(m_varFile["xmledit"].cast < ::file::memory_buffer > () != NULL)
    {
 
       strUrl = "http://file.veriwell.net/ifs/xmledit?path=" + System.url().url_encode(m_varFile["url"]);
 
       string strResponse;
 
-      Application.http().put(strResponse, strUrl, m_varFile["xmledit"].element < ::file::memory_buffer >());
+      Application.http().put(strResponse, strUrl, m_varFile["xmledit"].cast < ::file::memory_buffer >());
 
       property_set set(get_app());
 
       set.parse_url_query(strResponse);
 
-      string strMd5Here = System.crypt().md5(*m_varFile["xml"].element < ::file::memory_buffer >()->get_primitive_memory());
+      string strMd5Here = System.crypt().md5(*m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory());
       string strMd5There = set["md5"];
 
       if(strMd5Here == strMd5There)
@@ -98,7 +98,7 @@ void ifs_file::set_file_data()
 
       strUrl = "http://file.veriwell.net/ifs/set?path=" + System.url().url_encode(m_varFile["url"]);
 
-      Application.http().put(strUrl, m_varFile["xml"].element < ::file::memory_buffer >());
+      Application.http().put(strUrl, m_varFile["xml"].cast < ::file::memory_buffer >());
 
       return;
    }

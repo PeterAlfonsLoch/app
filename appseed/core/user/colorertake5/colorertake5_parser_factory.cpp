@@ -113,7 +113,7 @@ namespace colorertake5
    };
 
    ParserFactory::ParserFactory(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
 
       fileErrorHandler = NULL;
@@ -127,7 +127,7 @@ namespace colorertake5
    }
 
    ParserFactory::ParserFactory(sp(base_application) papp, string catalogPath) :
-      base_element(papp)
+      element(papp)
    {
 
       fileErrorHandler = NULL;

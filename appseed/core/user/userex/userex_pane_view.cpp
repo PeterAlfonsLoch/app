@@ -6,7 +6,7 @@ namespace userex
 
 
    pane_view::pane_view(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
 
    }

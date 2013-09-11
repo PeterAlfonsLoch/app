@@ -152,7 +152,7 @@ const string_composite str_str_interface::operator[](const char * pszName) const
 }
 
 property::property(sp(base_application) papp) :
-::base_element(papp)
+::element(papp)
 {
 }
 
@@ -1338,7 +1338,7 @@ property_map::property_map()
 }
 
 property_array::property_array(sp(base_application) papp) :
-   base_element(papp)
+   element(papp)
 {
    set_size(0, 64);
 }

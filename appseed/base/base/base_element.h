@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c base_element :
+class CLASS_DECL_c element :
    virtual public root
 {
 public:
@@ -25,15 +25,15 @@ public:
    void *                     m_pthis;
 
 
-   base_element();
-   base_element(const base_element & o);
-   base_element(sp(base_application) papp);
-   virtual ~base_element();
+   element();
+   element(const element & o);
+   element(sp(base_application) papp);
+   virtual ~element();
 
    virtual void delete_this();
 
 
-   virtual sp(base_element) clone();
+   virtual sp(element) clone();
 
 
    static void system(const char * pszProjectName);
@@ -44,30 +44,30 @@ public:
 
    virtual void set_app(sp(base_application) papp);
 
-   inline bool is_set_ca_flag(base_element::flag eflag)
+   inline bool is_set_ca_flag(element::flag eflag)
    {
       return (m_ulFlags & ((uint32_t) eflag)) == (uint32_t) eflag;
    }
 
-   inline void clear_ca_flag(base_element::flag eflag)
+   inline void clear_ca_flag(element::flag eflag)
    {
       m_ulFlags &= ~eflag;
    }
 
-   inline void set_ca_flag(base_element::flag eflag)
+   inline void set_ca_flag(element::flag eflag)
    {
       m_ulFlags |= eflag;
    }
 
 
-   base_element & operator = (const base_element & o);
+   element & operator = (const element & o);
 
 
 };
 
 
 class CLASS_DECL_c allocator :
-   virtual public base_element
+   virtual public element
 {
 public:
 

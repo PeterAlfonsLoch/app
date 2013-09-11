@@ -7,7 +7,7 @@ namespace core
 
 
    section::section(application * papp) :
-      base_element(papp)
+      element(papp)
    {
 
    }

@@ -4,7 +4,7 @@ namespace xml
 {
 
    property_set_exchange::property_set_exchange(sp(base_application) papp) :
-      base_element(papp)
+      element(papp)
    {
       m_ppropertyset = NULL;
    }

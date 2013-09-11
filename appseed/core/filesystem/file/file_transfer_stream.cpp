@@ -6,7 +6,7 @@ namespace file
 
 
    transfer_stream::transfer_stream(sp(base_application) papp, mutex * pmutex) :
-      base_element(papp)
+      element(papp)
    {
 
       if(pmutex == NULL)
@@ -35,7 +35,7 @@ namespace file
    // it is not currently designed to call open.
    //
    transfer_stream::transfer_stream(sp(base_application) papp, ::file::memory_buffer * pmemoryfileIn) :
-      base_element(papp)
+      element(papp)
    {
 
       if(pmemoryfileIn->get_memory()->m_spmutex.is_null())

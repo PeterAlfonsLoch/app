@@ -1,7 +1,7 @@
 #include "framework.h"
 
 XfplayerViewLines::XfplayerViewLines(sp(base_application) papp) :
-   base_element(papp)
+   element(papp)
 {
     m_iFirstVisible = -1;
     m_iLastVisible = -1;

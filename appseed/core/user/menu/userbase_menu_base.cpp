@@ -6,7 +6,7 @@ namespace user
 
 
    menu_base::menu_base(sp(base_application) papp):
-      base_element(papp)
+      element(papp)
    {
 
       m_pitem = new menu_item(papp);

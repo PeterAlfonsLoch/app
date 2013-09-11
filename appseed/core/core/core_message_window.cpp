@@ -6,7 +6,7 @@ message_window_simple_callback::message_window_simple_callback()
 }
 
 message_window_simple_callback::message_window_simple_callback(sp(base_application) papp) :
-   base_element(papp)
+   element(papp)
 {
 }
 
