@@ -9,7 +9,7 @@
 * left as-is for anyone who may want to do such conversion, which was
 * allowed in earlier algorithms.
 */
-static const char trailingBytesForUTF8[256] = {
+const char trailingBytesForUTF8[256] = {
    (const char)  -1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

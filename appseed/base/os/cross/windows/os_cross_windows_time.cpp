@@ -55,14 +55,14 @@ LONG TIME_GetBias(void);
 
 /*#ifdef _WIN32
 #ifdef __CA__LIB
-   #define CLASS_DECL_ca2
+   #define CLASS_DECL_c
 #elif defined(__CA__DLL)
-   #define CLASS_DECL_ca2  _declspec(dllexport)
+   #define CLASS_DECL_c  _declspec(dllexport)
 #else
-   #define CLASS_DECL_ca2  _declspec(dllimport)
+   #define CLASS_DECL_c  _declspec(dllimport)
 #endif
 #else
-   #define CLASS_DECL_ca2
+   #define CLASS_DECL_c
 #endif
 */
 
@@ -76,9 +76,9 @@ LONG TIME_GetBias(void);
 
 #include "os_cross_windows_internals.h"
 //#define CLASS_DECL_c
-#include "ca/ca/ca_verisimple_string.h"
-#include "ca/ca/ca_simple_mutex.h"
-#include "ca/ca/ca_mutex_lock.h"
+//#include "ca/ca/ca_verisimple_string.h"
+//#include "ca/ca/ca_simple_mutex.h"
+//#include "ca/ca/ca_synch_lock.h"
 
 
 
@@ -116,7 +116,7 @@ static RTL_CRITICAL_SECTION_DEBUG critsect_debug =
 RTL_CRITICAL_SECTION TIME_tz_section = { &critsect_debug, -1, 0, 0, 0, 0 };*/
 
 
-simple_mutex g_mutexTz;
+mutex g_mutexTz;
 
 
 #define TICKSPERSEC        10000000
@@ -169,7 +169,7 @@ static inline int32_t IsLeapYear(int32_t Year)
  * RETURNS
  *   Nothing.
  */
-CLASS_DECL_ca2 void WINAPI RtlTimeToTimeFields(
+CLASS_DECL_c void WINAPI RtlTimeToTimeFields(
 	const LARGE_INTEGER *liTime,
 	PTIME_FIELDS TimeFields)
 {
@@ -305,7 +305,7 @@ LONG TIME_GetBias(void)
 
     utc = time( NULL );
 
-   mutex_lock ml(g_mutexTz, true);
+   synch_lock ml(&g_mutexTz);
 //    RtlEnterCriticalSection( &TIME_tz_section );
     if (utc != last_utc)
     {
@@ -849,7 +849,7 @@ static int32_t init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
     time_t year_start, year_end, tmp, dlt = 0, std = 0;
     int32_t is_dst, current_is_dst;
 
-   mutex_lock ml(g_mutexTz, true);
+   synch_lock ml(&g_mutexTz);
 //    RtlEnterCriticalSection( &TIME_tz_section );
 
     year_start = time(NULL);
@@ -1050,7 +1050,7 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
 /*********************************************************************
  *      LocalFileTimeToFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_ca2 WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
+CLASS_DECL_c WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
 {
     NTSTATUS status;
     LARGE_INTEGER local, utc;
@@ -1075,7 +1075,7 @@ CLASS_DECL_ca2 WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, 
 /*********************************************************************
  *      FileTimeToLocalFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_ca2 WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
+CLASS_DECL_c WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
 {
     NTSTATUS status;
     LARGE_INTEGER local, utc;
@@ -1160,7 +1160,7 @@ WINBOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
  *  RETURNS
  *   Nothing.
  */
-CLASS_DECL_ca2 void GetSystemTimeAsFileTime(
+CLASS_DECL_c void GetSystemTimeAsFileTime(
     LPFILETIME time) /* [out] Destination for the current utc time */
 {
     LARGE_INTEGER t;
@@ -1182,7 +1182,7 @@ CLASS_DECL_ca2 void GetSystemTimeAsFileTime(
  * RETURNS
  *  Nothing.
  */
-CLASS_DECL_ca2 void GetSystemTime(LPSYSTEMTIME systime)
+CLASS_DECL_c void GetSystemTime(LPSYSTEMTIME systime)
 {
     FILETIME ft;
     LARGE_INTEGER t;

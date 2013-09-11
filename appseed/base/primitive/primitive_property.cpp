@@ -1346,7 +1346,7 @@ property_array::property_array(sp(base_application) papp) :
 
 
 
-PropertySignalObject::PropertySignalObject(signal * psignal)
+PropertySignalObject::PropertySignalObject(class signal * psignal)
    : signal_details(psignal)
 {
 }
