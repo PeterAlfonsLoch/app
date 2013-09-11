@@ -18,23 +18,23 @@ void prepare_http()
 }
 
 
-bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int32_t * piStatus, void (*callback)(void *, int32_t, dword_ptr), void * callback_param )
+bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int32_t * piStatus, void (*callback)(void *, int32_t, dword_ptr), void * callback_param )
 {
 
    if(piStatus != NULL)
       *piStatus = 0;
 
-   vsstring strUrl;
+   string strUrl;
 
-   char * szBuf = (char *) ca2_alloc(4096);
+   char * szBuf = (char *) memory_alloc(4096);
 
    prepare_http();
 
    if(file_exists_dup(pszFile) && !::unlink(pszFile))
    {
       //trace("download failed: could not delete file prior to download.");
-      vsstring str;
-      str = "ms_download_dup: error url=\"";
+      string str;
+      str = "http_download_dup: error url=\"";
       str += pszUrl;
       str += "\"";
       str = "file path=\"";
@@ -61,8 +61,8 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
       strUrl.replace_ci("%3A", ":");
       strUrl.replace_ci("%2F", "/");
    }
-   vsstring strHost;
-   vsstring strReq;
+   string strHost;
+   string strReq;
    if(strUrl.substr(0, 7) == "http://")
    {
       size_t iPos = strUrl.find("/", 8);
@@ -73,7 +73,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    LPSTR pszOutBuffer;
    WINBOOL  bResults = FALSE;
 
-   WCHAR * pwzHost = utf8_to_16(strHost);
+//   WCHAR * pwzHost = utf8_to_16(strHost);
 
    g_tinyhttp.m_strUserAgent = "ccvotagus_ca2_fontopus/linux";
 
@@ -86,20 +86,20 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
 
    file_put_contents_dup(pszFile, buffer, len);
 
-   ca2_free(buffer);
+   memory_free(buffer);
 
    return ret == tiny_http::OK200;
 }
 
 
 
-vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int32_t, dword_ptr), void * callback_param, bool bProgress)
+string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int32_t, dword_ptr), void * callback_param, bool bProgress)
 {
 
    prepare_http();
-   vsstring strUrl(pszUrl);
-   vsstring strHost;
-   vsstring strReq;
+   string strUrl(pszUrl);
+   string strHost;
+   string strReq;
    if(strUrl.substr(0, 7) == "http://")
    {
       size_t iPos = strUrl.find("/", 8);
@@ -120,17 +120,17 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
 
    tiny_http::http_retcode ret = g_tinyhttp.t_get(&buffer, &len, callback, callback_param);
 
-   vsstring strRet(buffer, len);
+   string strRet(buffer, len);
 
-   ca2_free(buffer);
+   memory_free(buffer);
 
    return strRet;
 }
 
 
-vsstring url_encode_dup(const char * psz)
+string url_encode_dup(const char * psz)
 {
-   vsstring str;
+   string str;
    char sz[256];
    while(*psz != '\0')
    {
@@ -175,11 +175,11 @@ vsstring url_encode_dup(const char * psz)
 
 
 /*
-vsstring ms_post(const char * pszUrl, const char * pszPost)
+string http_post(const char * pszUrl, const char * pszPost)
 {
-vsstring strUrl(pszUrl);
-vsstring strHost;
-vsstring strReq;
+string strUrl(pszUrl);
+string strHost;
+string strReq;
 int32_t iPort;
 if(strUrl.substr(0, 7) == "http://")
 {
@@ -276,7 +276,7 @@ GetLastError());
 if (bResults)
 bResults = WinHttpReceiveResponse( hRequest, NULL);
 
-vsstring strResult;
+string strResult;
 
 // Keep checking for data until there is nothing left.
 if (bResults)

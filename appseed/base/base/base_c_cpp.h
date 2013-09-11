@@ -224,6 +224,9 @@ namespace file
 #include "base/datetime/datetime_time.h"
 
 
+#ifdef LINUX
+#include "base/linux/linux_http_lib.h"
+#endif
 
 
 #include "base/file/file.h"

@@ -150,12 +150,12 @@ tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * u
    char                 header[MAXBUF];
    int32_t                  hlg;
    http_retcode         ret;
-   int32_t proxy = (m_strProxyServer != NULL && m_iHttpProxyPort != 0);
+   int32_t proxy = (m_strProxyServer.has_char() && m_iHttpProxyPort != 0);
    int32_t port = proxy ? m_iHttpProxyPort : m_iHttpPort;
    if (pfd) * pfd = -1;
 
    /* get host info by name :*/
-   if(hp = gethostbyname(proxy ? m_strProxyServer : (m_strHttpServer != NULL ? m_strHttpServer : SERVER_DEFAULT )))
+   if(hp = gethostbyname(proxy ? m_strProxyServer : (m_strHttpServer.has_char() ? m_strHttpServer : SERVER_DEFAULT )))
    {
       memset((char *) &server,0, sizeof(server));
       memmove((char *) &server.sin_addr, hp->h_addr, hp->h_length);
@@ -312,15 +312,16 @@ tiny_http::http_retcode tiny_http::t_get(char ** pdata, int32_t * plength, void 
       /* convert to lower case 'till a : is found or end of string */
       for (pc=header; (*pc!=':' && *pc) ; pc++) *pc=tolower(*pc);
       sscanf(header,"content-length: %d",&length);
-      m_strContentType.alloc(1024);
-      sscanf(header,"content-type: %s", (char *) m_strContentType);
+
+      sscanf(header,"content-type: %s", (char *) m_strContentType.GetBufferSetLength(1024));
+      m_strContentType.ReleaseBuffer();
     }
     if (length<=0) {
       close(fd);
       return ERRNOLG;
     }
     if (plength) *plength=length;
-    if (!(*pdata=(char *) ca2_alloc(length))) {
+    if (!(*pdata=(char *) memory_alloc(length))) {
       close(fd);
       return ERRMEM;
     }
@@ -379,8 +380,9 @@ tiny_http::http_retcode tiny_http::t_head(int32_t * plength)
       /* convert to lower case 'till a : is found or end of string */
       for (pc=header; (*pc!=':' && *pc) ; pc++) *pc=tolower(*pc);
       sscanf(header,"content-length: %d",&length);
-      m_strContentType.alloc(1024);
-      sscanf(header,"content-type: %s", (char *) m_strContentType);
+
+      sscanf(header,"content-type: %s", (char *) m_strContentType.GetBufferSetLength(1024));
+      m_strContentType.ReleaseBuffer();
     }
     if (plength) *plength=length;
     close(fd);
@@ -414,8 +416,8 @@ tiny_http::http_retcode tiny_http::t_delete()
  */
 tiny_http::http_retcode tiny_http::t_parse_url(const char * url)
 {
-   vsstring strUrl(url);
-   if(!strUrl.begins_eat_ci("http://"))
+   string strUrl(url);
+   if(!str::begins_eat_ci(strUrl, "http://"))
    {
 #ifdef VERBOSE
     fprintf(stderr,"invalid url (must start with 'http://')\n");
