@@ -5,6 +5,16 @@
 //#include <io.h>
 //#include <fcntl.h>
 
+#ifdef LINUX
+
+#include <unistd.h>
+#define _doserrno errno
+#define _fputts fputs
+#define _TEOF EOF
+#define _fgetts fgets
+#define lstrlen strlen
+
+#endif
 
 namespace file
 {

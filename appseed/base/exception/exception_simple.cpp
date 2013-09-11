@@ -23,7 +23,7 @@ simple_exception::~simple_exception()
 
 }
 
-const char * simple_exception::get_error_message() const
+const char * simple_exception::get_error_message() const throw()
 {
 
    return what();

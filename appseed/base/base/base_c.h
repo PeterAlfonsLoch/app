@@ -15,7 +15,7 @@
 #elif defined(MACOS)
 #include "base/macos/c_os_internal.h"
 #elif defined(LINUX)
-#include "base/linux/c_os_internal.h"
+#include "base/linux/linux.h"
 #elif defined(WINDOWS)
 #include "base/windows/windows.h"
 #elif defined(METROWIN)

@@ -775,16 +775,16 @@ string dir::default_os_user_path_prefix()
 
 retry:
 
-   if(getlogin_r(mem.m_psz, mem.m_iSize))
+   if(getlogin_r((char *) mem.get_data(), mem.get_size()))
    {
 
       if(errno == ERANGE)
       {
 
-         if(mem.m_iSize < 65536)
+         if(mem.get_size() < 65536)
          {
 
-            mem.allocate(mem.m_iSize + 512);
+            mem.allocate(mem.get_size() + 512);
 
             goto retry;
 
@@ -796,7 +796,7 @@ retry:
 
    }
 
-   return mem.m_psz;
+   return mem.to_string();
 
 #endif
 

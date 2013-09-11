@@ -18,8 +18,8 @@ namespace file
    }
 
 
-   byte_stream::byte_stream(const stream & stream) :
-      stream(stream)
+   byte_stream::byte_stream(const stream & strm) :
+      stream(strm)
    {
 
    }
@@ -43,7 +43,7 @@ namespace file
 
    bool byte_stream::is_stream_null()
    {
-   
+
       return is_writer_null() && is_reader_null();
 
    }

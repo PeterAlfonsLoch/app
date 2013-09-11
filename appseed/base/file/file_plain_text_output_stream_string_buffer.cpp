@@ -6,10 +6,11 @@ namespace file
 
 
 
-   plain_text_output_stream_string_buffer::plain_text_output_stream_string_buffer(sp(base_application) papp)
+   plain_text_output_stream_string_buffer::plain_text_output_stream_string_buffer(sp(base_application) papp) :
+      element(papp.is_set() ? papp.m_p : get_thread_app())
    {
 
-      m_spstringbuffer.create(papp.is_set() ? papp : get_thread_app());
+      m_spstringbuffer.create(allocer());
 
       if(m_spstringbuffer.is_set())
       {
