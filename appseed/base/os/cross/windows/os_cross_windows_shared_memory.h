@@ -4,7 +4,7 @@
 #ifndef WINDOWS
 
 
-class CLASS_DECL_c hglobal
+class CLASS_DECL_ca2 hglobal
 {
 public:
 
