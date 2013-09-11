@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <sys/times.h>
 
-DWORD GetTickCount()
+DWORD get_tick_count()
 {
    timeval tv;
    gettimeofday(&tv, NULL);

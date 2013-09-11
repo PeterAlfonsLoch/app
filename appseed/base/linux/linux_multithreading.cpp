@@ -8,7 +8,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD
 
    if(dwTimeout != (DWORD) INFINITE)
    {
-      start = ::GetTickCount();
+      start = ::get_tick_count();
    }
 
 
@@ -29,7 +29,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD
       i = 0;
       for(; i < dwSize;)
       {
-         if(dwTimeout != (DWORD) INFINITE && ::GetTickCount() - start >= dwTimeout)
+         if(dwTimeout != (DWORD) INFINITE && ::get_tick_count() - start >= dwTimeout)
          {
             return WAIT_TIMEOUT;
          }
@@ -66,7 +66,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD
 
          for(i = 0; i < dwSize;)
          {
-            if(dwTimeout != (DWORD) INFINITE && ::GetTickCount() - start >= dwTimeout)
+            if(dwTimeout != (DWORD) INFINITE && ::get_tick_count() - start >= dwTimeout)
             {
                return WAIT_TIMEOUT;
             }

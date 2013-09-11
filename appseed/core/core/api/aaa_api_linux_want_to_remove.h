@@ -1,6 +1,6 @@
 #pragma once
 
-//long GetTickCount();
+//long get_tick_count();
 
 /*CLASS_DECL__ bool CopyRect(LPCRECT prectDest, LPCRECT prectSrc);
 CLASS_DECL__ bool PtInRect(LPCRECT prect, POINT point);

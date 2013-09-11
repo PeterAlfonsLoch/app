@@ -10,6 +10,8 @@ class single_lock;
 class multi_lock;
 
 
+
+
 #include "multithreading_sync_object.h"
 #include "multithreading_event_base.h"
 #include "multithreading_event_collection.h"
@@ -42,9 +44,9 @@ class multi_lock;
 
 // services
 #include "multithreading_service_status.h"
-#include "multithreading_thread_pool.h"
 #include "multithreading_service_base.h"
-#include "multithreading_plain_service.h"
+//#include "multithreading_plain_service.h"
+//#include "multithreading_thread_pool.h"
 
 
 #include "multithreading_thread_os.h"

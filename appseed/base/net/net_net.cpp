@@ -550,6 +550,7 @@ CLASS_DECL_c uint32_t c_inet_addr(const char * src)
 
 }
 
+
 CLASS_DECL_c string c_gethostbyname(const char * hostname)
 {
 

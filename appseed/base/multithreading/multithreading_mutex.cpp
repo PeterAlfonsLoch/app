@@ -67,7 +67,7 @@ mutex::mutex(sp(base_application) papp, bool bInitiallyOwn, const char * pstrNam
                   );
 
       if(m_semid < 0)
-         throw resource_exception();
+         throw resource_exception(get_app());
 
       semun semctl_arg;
 

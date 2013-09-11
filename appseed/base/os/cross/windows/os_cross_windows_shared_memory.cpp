@@ -145,7 +145,7 @@ SIZE_T WINAPI GlobalSize(HGLOBAL hglobal)
 }
 
 
-bool WINAPI GlobalUnlock(HGLOBAL hglobal)
+int_bool WINAPI GlobalUnlock(HGLOBAL hglobal)
 {
 
    if(hglobal->m_map == NULL)

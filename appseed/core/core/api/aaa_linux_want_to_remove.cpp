@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <sys/times.h>
 
-uint32_t GetTickCount()
+uint32_t get_tick_count()
 {
     tms tm;
     return times(&tm);
