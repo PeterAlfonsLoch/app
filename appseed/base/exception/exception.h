@@ -244,7 +244,7 @@ CLASS_DECL_c void __dump(const object* pOb); // dump an object from CodeView
 
 #define DEBUG_ONLY(f)      ((void)0)
 
-#define VERIFY(f)          ((void)(f))
+//#define VERIFY(f)          ((void)(f))
 #define DEBUG_ONLY(f)      ((void)0)
 #pragma warning(push)
 #pragma warning(disable : 4793)

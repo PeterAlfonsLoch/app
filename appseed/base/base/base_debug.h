@@ -24,6 +24,8 @@ typedef void *_HFILE; /* file handle pointer */
 #define _CRTDBG_MODE_WNDW      0x4
 #define _CRTDBG_REPORT_MODE    -1
 
+#ifndef WINDOWS
+
 #if defined(_M_IX86)
 #define _CRTDBG_INVALID_HFILE ((_HFILE)-1)
 #define _CRTDBG_HFILE_ERROR   ((_HFILE)-2)
@@ -36,6 +38,8 @@ typedef void *_HFILE; /* file handle pointer */
 #define _CRTDBG_FILE_STDOUT   ((_HFILE)(int64_t)-4)
 #define _CRTDBG_FILE_STDERR   ((_HFILE)(int64_t)-5)
 #define _CRTDBG_REPORT_FILE   ((_HFILE)(int64_t)-6)
+#endif
+
 #endif
 
 typedef int32_t (DECL_C * _CRT_REPORT_HOOK)(int32_t, char *, int32_t *);

@@ -67,7 +67,7 @@ class job;
 
 
 
-#include "core/api/api_rotate.h"
+#include "api/api_rotate.h"
 
 
 #define rgba_get_r(rgba)      ((byte)(rgba & 0xff))
@@ -723,8 +723,6 @@ namespace user
 
 
 // services
-#include "service/service_service_status.h"
-#include "service/service_service_base.h"
 #include "service/service_plain_service.h"
 #include "service/service_thread_pool.h"
 
