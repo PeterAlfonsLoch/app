@@ -47,7 +47,7 @@ FreeImage_GetScanLine(FIBITMAP *dib, int scanline) {
 	return CalculateScanLine(FreeImage_GetBits(dib), FreeImage_GetPitch(dib), scanline);
 }
 
-BOOL DLL_CALLCONV
+int_bool DLL_CALLCONV
 FreeImage_GetPixelIndex(FIBITMAP *dib, unsigned x, unsigned y, BYTE *value) {
 	BYTE shift;
 
@@ -78,7 +78,7 @@ FreeImage_GetPixelIndex(FIBITMAP *dib, unsigned x, unsigned y, BYTE *value) {
 	return FALSE;
 }
 
-BOOL DLL_CALLCONV
+int_bool DLL_CALLCONV
 FreeImage_GetPixelColor(FIBITMAP *dib, unsigned x, unsigned y, RGBQUAD *value) {
 	if(!FreeImage_HasPixels(dib) || (FreeImage_GetImageType(dib) != FIT_BITMAP))
 		return FALSE;
@@ -128,7 +128,7 @@ FreeImage_GetPixelColor(FIBITMAP *dib, unsigned x, unsigned y, RGBQUAD *value) {
 	return FALSE;
 }
 
-BOOL DLL_CALLCONV
+int_bool DLL_CALLCONV
 FreeImage_SetPixelIndex(FIBITMAP *dib, unsigned x, unsigned y, BYTE *value) {
 	BYTE shift;
 
@@ -160,7 +160,7 @@ FreeImage_SetPixelIndex(FIBITMAP *dib, unsigned x, unsigned y, BYTE *value) {
 	return FALSE;
 }
 
-BOOL DLL_CALLCONV
+int_bool DLL_CALLCONV
 FreeImage_SetPixelColor(FIBITMAP *dib, unsigned x, unsigned y, RGBQUAD *value) {
 	if(!FreeImage_HasPixels(dib) || (FreeImage_GetImageType(dib) != FIT_BITMAP))
 		return FALSE;

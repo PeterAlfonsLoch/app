@@ -23,7 +23,7 @@
 // THIS DISCLAIMER.
 //
 // Use at your own risk!
-// ========================================================== 
+// ==========================================================
 
 #include "FreeImageFramework.h"
 #include "Utilities.h"
@@ -200,7 +200,7 @@ tiff_write_geotiff_profile(TIFF *tif, FIBITMAP *dib) {
 /**
 Read a single exif tag
 */
-static BOOL 
+static int_bool
 tiff_read_exif_tag(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib, TagLib& tagLib, TIFFDirectory *td, ttag_t tag) {
 	const TIFFFieldInfo *fip;
 	uint32 value_count;
@@ -240,7 +240,7 @@ tiff_read_exif_tag(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib, TagLib& t
 	} else if(fip->field_tag == TIFFTAG_STRIPBYTECOUNTS && fip->field_type == TIFF_SHORT) {
 		fip = TIFFFindFieldInfo(tif, tag, TIFF_LONG);
 	}
-	// ### the tags left unchecked are SGI, Pixar and DNG tags filtered by tagLib.getTagFieldName 
+	// ### the tags left unchecked are SGI, Pixar and DNG tags filtered by tagLib.getTagFieldName
 
 
 	if(fip->field_passcount) { //<- "passcount" means "returns count"
@@ -282,13 +282,13 @@ tiff_read_exif_tag(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib, TagLib& t
 		     || fip->field_readcount == TIFF_VARIABLE2
 		     || fip->field_readcount == TIFF_SPP
 			 || value_count > 1)
-			 
+
 			 && fip->field_tag != TIFFTAG_PAGENUMBER
 			 && fip->field_tag != TIFFTAG_HALFTONEHINTS
 			 && fip->field_tag != TIFFTAG_YCBCRSUBSAMPLING
 			 && fip->field_tag != TIFFTAG_DOTRANGE
 
-			 && fip->field_tag != TIFFTAG_BITSPERSAMPLE	//<- these two are tricky - 
+			 && fip->field_tag != TIFFTAG_BITSPERSAMPLE	//<- these two are tricky -
 			 && fip->field_tag != TIFFTAG_COMPRESSION	//<- they are defined as TIFF_VARIABLE but in reality return a single value
 			 ) {
 				 if(TIFFGetField(tif, tag, &raw_data) != 1) {
@@ -302,8 +302,8 @@ tiff_read_exif_tag(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib, TagLib& t
 			raw_data = _TIFFmalloc(value_size * value_count);
 			mem_alloc = 1;
 			int ok = FALSE;
-			
-			// ### if value_count > 1, tag is PAGENUMBER or HALFTONEHINTS or YCBCRSUBSAMPLING or DOTRANGE, 
+
+			// ### if value_count > 1, tag is PAGENUMBER or HALFTONEHINTS or YCBCRSUBSAMPLING or DOTRANGE,
 			// all off which are value_count == 2 (see tif_dirinfo.c)
 			switch(value_count)
 			{
@@ -476,7 +476,7 @@ tiff_read_exif_tag(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib, TagLib& t
 /**
 Read all known exif tags
 */
-BOOL tiff_read_exif_tags(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib) {
+int_bool tiff_read_exif_tags(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib) {
 	int  i;
 	short count;
 

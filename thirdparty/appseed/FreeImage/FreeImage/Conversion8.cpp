@@ -32,14 +32,14 @@
 void DLL_CALLCONV
 FreeImage_ConvertLine1To8(BYTE *target, BYTE *source, int width_in_pixels) {
 	for (int cols = 0; cols < width_in_pixels; cols++)
-		target[cols] = (source[cols >> 3] & (0x80 >> (cols & 0x07))) != 0 ? 255 : 0;	
+		target[cols] = (source[cols >> 3] & (0x80 >> (cols & 0x07))) != 0 ? 255 : 0;
 }
 
 void DLL_CALLCONV
 FreeImage_ConvertLine4To8(BYTE *target, BYTE *source, int width_in_pixels) {
 	int count_new = 0;
 	int count_org = 0;
-	BOOL hinibble = TRUE;
+	int_bool hinibble = TRUE;
 
 	while (count_new < width_in_pixels) {
 		if (hinibble) {
@@ -74,7 +74,7 @@ FreeImage_ConvertLine16To8_565(BYTE *target, BYTE *source, int width_in_pixels) 
 	for (int cols = 0; cols < width_in_pixels; cols++)
 		target[cols] = GREY((((bits[cols] & FI16_565_RED_MASK) >> FI16_565_RED_SHIFT) * 0xFF) / 0x1F,
 			        (((bits[cols] & FI16_565_GREEN_MASK) >> FI16_565_GREEN_SHIFT) * 0xFF) / 0x3F,
-					(((bits[cols] & FI16_565_BLUE_MASK) >> FI16_565_BLUE_SHIFT) * 0xFF) / 0x1F);	
+					(((bits[cols] & FI16_565_BLUE_MASK) >> FI16_565_BLUE_SHIFT) * 0xFF) / 0x1F);
 }
 
 void DLL_CALLCONV
@@ -147,7 +147,7 @@ FreeImage_ConvertTo8Bits(FIBITMAP *dib) {
 
 					}
 					else if(FreeImage_GetColorType(dib) == FIC_MINISWHITE) {
-						
+
 						// Reverse the grayscale palette
 
 						for(int i = 0; i < 256; i++) {
@@ -182,7 +182,7 @@ FreeImage_ConvertTo8Bits(FIBITMAP *dib) {
 					// Expand and copy the bitmap data
 
 					for (int rows = 0; rows < height; rows++) {
-						FreeImage_ConvertLine4To8(FreeImage_GetScanLine(new_dib, rows), FreeImage_GetScanLine(dib, rows), width);					
+						FreeImage_ConvertLine4To8(FreeImage_GetScanLine(new_dib, rows), FreeImage_GetScanLine(dib, rows), width);
 					}
 					return new_dib;
 				}
@@ -198,7 +198,7 @@ FreeImage_ConvertTo8Bits(FIBITMAP *dib) {
 							FreeImage_ConvertLine16To8_555(FreeImage_GetScanLine(new_dib, rows), FreeImage_GetScanLine(dib, rows), width);
 						}
 					}
-					
+
 					return new_dib;
 				}
 
@@ -207,7 +207,7 @@ FreeImage_ConvertTo8Bits(FIBITMAP *dib) {
 					// Expand and copy the bitmap data
 
 					for (int rows = 0; rows < height; rows++) {
-						FreeImage_ConvertLine24To8(FreeImage_GetScanLine(new_dib, rows), FreeImage_GetScanLine(dib, rows), width);					
+						FreeImage_ConvertLine24To8(FreeImage_GetScanLine(new_dib, rows), FreeImage_GetScanLine(dib, rows), width);
 					}
 					return new_dib;
 				}
@@ -241,7 +241,7 @@ FreeImage_ConvertTo8Bits(FIBITMAP *dib) {
 
 			return new_dib;
 
-		} 
+		}
 
 	} // bpp != 8
 
@@ -320,8 +320,8 @@ FreeImage_ConvertToGreyscale(FIBITMAP *dib) {
 
 		return new_dib;
 
-	} 
-	
+	}
+
 	// Convert the bitmap to 8-bit greyscale
 	return FreeImage_ConvertTo8Bits(dib);
 }

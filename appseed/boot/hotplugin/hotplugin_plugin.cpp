@@ -11,9 +11,9 @@
 
 
 #ifdef LINUX
-#include "ca/linux/ca_os_cross_win_gdi_internal.h"
+#include "boot/linux/ca_os_cross_win_gdi_internal.h"
 #elif defined(ANDROID)
-#include "ca/android/ca_os_cross_win_gdi_internal.h"
+#include "bott/android/ca_os_cross_win_gdi_internal.h"
 #endif
 
 
@@ -1035,7 +1035,7 @@ namespace hotplugin
          wstring wstr(dir::path(dir::userappdata("time"), string("core\\ca2plugin-container-") + m_strBitmapChannel));
          m_hfileBitmap = CreateFileW(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, iOpen, FILE_ATTRIBUTE_NORMAL, NULL);
 #else
-         m_hfileBitmap = ::open(dir::path(dir::userappdata("time"), string("core\\ca2plugin-container-") + m_strBitmapChannel).m_psz, iOpen, S_IRUSR | S_IWUSR);
+         m_hfileBitmap = ::open(dir::path(dir::userappdata("time"), string("core\\ca2plugin-container-") + m_strBitmapChannel), iOpen, S_IRUSR | S_IWUSR);
 #endif
 
 

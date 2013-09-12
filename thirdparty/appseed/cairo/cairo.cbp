@@ -90,11 +90,11 @@
 			<Add option="-lX11" />
 			<Add option="-lXrender" />
 			<Add option="-lXext" />
-			<Add option="-l_ca2c" />
-			<Add option="-l_ca2zlib" />
-			<Add option="-l_ca2freetype" />
-			<Add option="-l_ca2pixman" />
-			<Add option="-l_ca2freeimage" />
+			<Add option="-lbase" />
+			<Add option="-lbasezlib" />
+			<Add option="-lbasefreetype" />
+			<Add option="-lbasepixman" />
+			<Add option="-lbasefreeimage" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>

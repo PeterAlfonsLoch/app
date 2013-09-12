@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ca2 DWORD GetTickCount();
+CLASS_DECL_ca2 DWORD get_tick_count();
 
 
 /*CLASS_DECL_ca2 bool CopyRect(LPRECT prectDest, LPCRECT prectSrc);

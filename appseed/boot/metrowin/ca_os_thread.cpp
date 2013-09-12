@@ -22,14 +22,14 @@ using namespace Windows::System::Threading;
 struct PendingThreadInfo
 {
 
-   
+
    uint32_t (*       m_pfn)(void *);
    void *            m_pv;
    HANDLE            m_hCompletionEvent;
    HANDLE            m_hSuspensionEvent;
    HTHREAD           m_hthread;
    int               m_iPriority;
-   
+
 
    PendingThreadInfo()
    {
@@ -42,10 +42,10 @@ struct PendingThreadInfo
 };
 
 
-static simple_map<HTHREAD, PendingThreadInfo> & pendingThreads()
+static map<HTHREAD, PendingThreadInfo> & pendingThreads()
 {
 
-   static simple_map<HTHREAD, PendingThreadInfo> * pts = new simple_map<HTHREAD, PendingThreadInfo>();
+   static map<HTHREAD, PendingThreadInfo> * pts = new map<HTHREAD, PendingThreadInfo>();
 
    return *pts;
 
@@ -53,10 +53,10 @@ static simple_map<HTHREAD, PendingThreadInfo> & pendingThreads()
 static simple_mutex pendingThreadsLock;
 
 static simple_mutex threadIdHandleLock;
-static simple_map < DWORD, HTHREAD > & thread_id_handle_map()
+static map < DWORD, HTHREAD > & thread_id_handle_map()
 {
 
-   static simple_map < DWORD, HTHREAD > * s_pmap = new simple_map < DWORD, HTHREAD >();
+   static map < DWORD, HTHREAD > * s_pmap = new map < DWORD, HTHREAD >();
 
    return *s_pmap;
 
@@ -64,10 +64,10 @@ static simple_map < DWORD, HTHREAD > & thread_id_handle_map()
 
 
 static simple_mutex threadIdLock;
-static simple_map < HTHREAD, DWORD > & thread_id_map()
+static map < HTHREAD, DWORD > & thread_id_map()
 {
 
-   static simple_map < HTHREAD, DWORD > * s_pmap = new simple_map < HTHREAD, DWORD >();
+   static map < HTHREAD, DWORD > * s_pmap = new map < HTHREAD, DWORD >();
 
    return *s_pmap;
 
@@ -92,10 +92,10 @@ __declspec(thread) ThreadLocalData* currentThreadData = nullptr;
 __declspec(thread) DWORD currentThreadId = -1;
 __declspec(thread) HTHREAD currentThread = NULL;
 
-simple_map < HTHREAD, ThreadLocalData * > & all_thread_data()
+map < HTHREAD, ThreadLocalData * > & all_thread_data()
 {
 
-   static simple_map < HTHREAD, ThreadLocalData * > * s_pallthreaddata = new simple_map < HTHREAD, ThreadLocalData * >();
+   static map < HTHREAD, ThreadLocalData * > * s_pallthreaddata = new map < HTHREAD, ThreadLocalData * >();
 
    return *s_pallthreaddata;
 
@@ -163,7 +163,7 @@ HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_p
 
    // Create a handle that will be signalled when the thread has completed.
    HTHREAD threadHandle = new hthread;
-   
+
    //threadHandle->mCreateEventEx(nullptr, nullptr, CREATE_EVENT_MANUAL_RESET, EVENT_ALL_ACCESS);
 
    if (!threadHandle)
@@ -254,7 +254,7 @@ DWORD WINAPI ResumeThread(HTHREAD hThread)
    // Start the thread.
    try
    {
-      
+
       PendingThreadInfo& info = threadInfo->m_element2;
 
       StartThread(info.m_pfn, info.m_pv, info.m_hthread, info.m_iPriority);
@@ -1093,9 +1093,9 @@ namespace ca2
 
 HTHREAD get_current_thread()
 {
-   
+
    return currentThread;
-   
+
 }
 
 

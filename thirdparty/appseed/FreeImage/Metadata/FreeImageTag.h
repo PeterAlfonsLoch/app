@@ -347,7 +347,7 @@ private:
 	@param tag_table Tag info table
 	@return Returns TRUE if successful, returns FALSE otherwise
 	*/
-	BOOL addMetadataModel(MDMODEL md_model, TagInfo *tag_table);
+	int_bool addMetadataModel(MDMODEL md_model, TagInfo *tag_table);
 
 public:
 	/// Destructor
@@ -422,11 +422,11 @@ extern "C" {
 #endif
 
 // JPEG Exif profile
-BOOL jpeg_read_exif_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen);
+int_bool jpeg_read_exif_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen);
 
 // JPEG / TIFF IPTC profile
-BOOL read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen);
-BOOL write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size);
+int_bool read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen);
+int_bool write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size);
 
 #if defined(__cplusplus)
 }

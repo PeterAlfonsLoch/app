@@ -52,7 +52,7 @@
  *      See cairo-pdf-operators.
  *   2. Using gs to do PS -> PDF and PDF -> PS will always work well.
  */
-
+#include "base/base/base.h"
 #define _BSD_SOURCE /* for ctime_r(), snprintf(), strdup() */
 #include "cairoint.h"
 

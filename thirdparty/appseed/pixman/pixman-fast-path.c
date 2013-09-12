@@ -23,6 +23,8 @@
  * Author:  Keith Packard, SuSE, Inc.
  */
 
+ #include "base/base/base.h"
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -2267,7 +2269,7 @@ fast_write_back_r5g6b5 (pixman_iter_t *iter)
     (FAST_PATH_STANDARD_FLAGS | FAST_PATH_ID_TRANSFORM |		\
      FAST_PATH_BITS_IMAGE | FAST_PATH_SAMPLES_COVER_CLIP_NEAREST)
 
-static const pixman_iter_info_t fast_iters[] = 
+static const pixman_iter_info_t fast_iters[] =
 {
     { PIXMAN_r5g6b5, IMAGE_FLAGS, ITER_NARROW | ITER_SRC,
       _pixman_iter_init_bits_stride, fast_fetch_r5g6b5, NULL },
@@ -2276,7 +2278,7 @@ static const pixman_iter_info_t fast_iters[] =
       ITER_NARROW | ITER_DEST,
       _pixman_iter_init_bits_stride,
       fast_fetch_r5g6b5, fast_write_back_r5g6b5 },
-    
+
     { PIXMAN_r5g6b5, FAST_PATH_STD_DEST_FLAGS,
       ITER_NARROW | ITER_DEST | ITER_IGNORE_RGB | ITER_IGNORE_ALPHA,
       _pixman_iter_init_bits_stride,

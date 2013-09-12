@@ -14,7 +14,7 @@ namespace primitive
 
 
       UINT                                   m_nAllocFlags;
-      HGLOBAL                                m_hGlobalMemory;
+   HGLOBAL                                m_hGlobalMemory;
       bool                                   m_bAllowGrow;
 
 

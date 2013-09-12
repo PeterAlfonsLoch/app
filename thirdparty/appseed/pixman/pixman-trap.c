@@ -20,7 +20,7 @@
  * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
  * PERFORMANCE OF THIS SOFTWARE.
  */
-
+#include "base/base/base.h"
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -42,7 +42,7 @@ pixman_sample_ceil_y (pixman_fixed_t y, int n)
 
     f = DIV (f - Y_FRAC_FIRST (n) + (STEP_Y_SMALL (n) - pixman_fixed_e), STEP_Y_SMALL (n)) * STEP_Y_SMALL (n) +
 	Y_FRAC_FIRST (n);
-    
+
     if (f > Y_FRAC_LAST (n))
     {
 	if (pixman_fixed_to_int (i) == 0x7fff)
@@ -221,7 +221,7 @@ pixman_line_fixed_edge_init (pixman_edge_t *            e,
 	top = &line->p2;
 	bot = &line->p1;
     }
-    
+
     pixman_edge_init (e, n, y,
                       top->x + x_off_fixed,
                       top->y + y_off_fixed,
@@ -245,7 +245,7 @@ pixman_add_traps (pixman_image_t *     image,
     pixman_fixed_t t, b;
 
     _pixman_image_validate (image);
-    
+
     height = image->bits.height;
     bpp = PIXMAN_FORMAT_BPP (image->bits.format);
 
@@ -358,7 +358,7 @@ pixman_rasterize_trapezoid (pixman_image_t *          image,
     return_if_fail (image->type == BITS);
 
     _pixman_image_validate (image);
-    
+
     if (!pixman_trapezoid_valid (trap))
 	return;
 
@@ -376,7 +376,7 @@ pixman_rasterize_trapezoid (pixman_image_t *          image,
     if (pixman_fixed_to_int (b) >= height)
 	b = pixman_int_to_fixed (height) - 1;
     b = pixman_sample_floor_y (b, bpp);
-    
+
     if (b >= t)
     {
 	/* initialize edge walkers */
@@ -423,45 +423,45 @@ get_trap_extents (pixman_op_t op, pixman_image_t *dest,
 	box->y2 = dest->bits.height;
 	return TRUE;
     }
-    
+
     box->x1 = INT32_MAX;
     box->y1 = INT32_MAX;
     box->x2 = INT32_MIN;
     box->y2 = INT32_MIN;
-	
+
     for (i = 0; i < n_traps; ++i)
     {
 	const pixman_trapezoid_t *trap = &(traps[i]);
 	int y1, y2;
-	    
+
 	if (!pixman_trapezoid_valid (trap))
 	    continue;
-	    
+
 	y1 = pixman_fixed_to_int (trap->top);
 	if (y1 < box->y1)
 	    box->y1 = y1;
-	    
+
 	y2 = pixman_fixed_to_int (pixman_fixed_ceil (trap->bottom));
 	if (y2 > box->y2)
 	    box->y2 = y2;
-	    
+
 #define EXTEND_MIN(x)							\
 	if (pixman_fixed_to_int ((x)) < box->x1)			\
 	    box->x1 = pixman_fixed_to_int ((x));
 #define EXTEND_MAX(x)							\
 	if (pixman_fixed_to_int (pixman_fixed_ceil ((x))) > box->x2)	\
 	    box->x2 = pixman_fixed_to_int (pixman_fixed_ceil ((x)));
-	    
+
 #define EXTEND(x)							\
 	EXTEND_MIN(x);							\
 	EXTEND_MAX(x);
-	    
+
 	EXTEND(trap->left.p1.x);
 	EXTEND(trap->left.p2.x);
 	EXTEND(trap->right.p1.x);
 	EXTEND(trap->right.p2.x);
     }
-	
+
     if (box->x1 >= box->x2 || box->y1 >= box->y2)
 	return FALSE;
 
@@ -492,7 +492,7 @@ pixman_composite_trapezoids (pixman_op_t		op,
     int i;
 
     return_if_fail (PIXMAN_FORMAT_TYPE (mask_format) == PIXMAN_TYPE_A);
-    
+
     if (n_traps <= 0)
 	return;
 
@@ -507,10 +507,10 @@ pixman_composite_trapezoids (pixman_op_t		op,
 	for (i = 0; i < n_traps; ++i)
 	{
 	    const pixman_trapezoid_t *trap = &(traps[i]);
-	    
+
 	    if (!pixman_trapezoid_valid (trap))
 		continue;
-	    
+
 	    pixman_rasterize_trapezoid (dst, trap, x_dst, y_dst);
 	}
     }
@@ -522,27 +522,27 @@ pixman_composite_trapezoids (pixman_op_t		op,
 
 	if (!get_trap_extents (op, dst, traps, n_traps, &box))
 	    return;
-	
+
 	if (!(tmp = pixman_image_create_bits (
 		  mask_format, box.x2 - box.x1, box.y2 - box.y1, NULL, -1)))
 	    return;
-	
+
 	for (i = 0; i < n_traps; ++i)
 	{
 	    const pixman_trapezoid_t *trap = &(traps[i]);
-	    
+
 	    if (!pixman_trapezoid_valid (trap))
 		continue;
-	    
+
 	    pixman_rasterize_trapezoid (tmp, trap, - box.x1, - box.y1);
 	}
-	
+
 	pixman_image_composite (op, src, tmp, dst,
 				x_src + box.x1, y_src + box.y1,
 				0, 0,
 				x_dst + box.x1, y_dst + box.y1,
 				box.x2 - box.x1, box.y2 - box.y1);
-	
+
 	pixman_image_unref (tmp);
     }
 }
@@ -604,7 +604,7 @@ triangle_to_trapezoids (const pixman_triangle_t *tri, pixman_trapezoid_t *traps)
 	right = left;
 	left = tmp;
     }
-    
+
     /*
      * Two cases:
      *
@@ -632,7 +632,7 @@ triangle_to_trapezoids (const pixman_triangle_t *tri, pixman_trapezoid_t *traps)
     traps++;
 
     *traps = *(traps - 1);
-    
+
     if (right->y < left->y)
     {
 	traps->top = right->y;
@@ -657,7 +657,7 @@ convert_triangles (int n_tris, const pixman_triangle_t *tris)
 
     if (n_tris <= 0)
 	return NULL;
-    
+
     traps = pixman_malloc_ab (n_tris, 2 * sizeof (pixman_trapezoid_t));
     if (!traps)
 	return NULL;
@@ -687,7 +687,7 @@ pixman_composite_triangles (pixman_op_t			op,
 	pixman_composite_trapezoids (op, src, dst, mask_format,
 				     x_src, y_src, x_dst, y_dst,
 				     n_tris * 2, traps);
-	
+
 	free (traps);
     }
 }

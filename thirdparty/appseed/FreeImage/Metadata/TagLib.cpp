@@ -1235,7 +1235,7 @@ TagLib::TagLib() {
 	addMetadataModel(TagLib::ANIMATION, animation_tag_table);
 }
 
-BOOL TagLib::addMetadataModel(MDMODEL md_model, TagInfo *tag_table) {
+int_bool TagLib::addMetadataModel(MDMODEL md_model, TagInfo *tag_table) {
 	// check that the model doesn't already exist
 	if((_table_map.find(md_model) == _table_map.end()) && (tag_table != NULL)) {
 

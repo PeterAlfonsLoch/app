@@ -3,7 +3,7 @@
 
 DWORD MsgWaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask)
 {
-   return WaitForMultipleObjects(dwSize, pwaitableptra, bWaitForAll, dwTimeout); 
+   return WaitForMultipleObjects(dwSize, pwaitableptra, bWaitForAll, dwTimeout);
 }
 
 DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, WINBOOL UNUSED(bAlertable))
@@ -13,7 +13,7 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, WINBOOL 
 
    if(dwTimeout != (DWORD) INFINITE)
    {
-      start = ::GetTickCount();
+      start = ::get_tick_count();
    }
 
    if(bWaitForAll)
@@ -29,7 +29,7 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, WINBOOL 
       i = 0;
       for(; i < dwSize;)
       {
-         if(dwTimeout != (DWORD) INFINITE && ::GetTickCount() - start >= dwTimeout)
+         if(dwTimeout != (DWORD) INFINITE && ::get_tick_count() - start >= dwTimeout)
          {
             return WAIT_TIMEOUT;
          }
@@ -54,7 +54,7 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, WINBOOL 
       }
 
    }
-   
+
    return 0;
 
 }
@@ -71,9 +71,9 @@ DWORD WaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bW
 
 DWORD WaitForSingleObjectEx(waitable * pwaitable, DWORD dwTimeout, WINBOOL bAlertable)
 {
-   
+
    return WaitForMultipleObjectsEx(1, &pwaitable, TRUE, dwTimeout, bAlertable);
-   
+
 }
 
 

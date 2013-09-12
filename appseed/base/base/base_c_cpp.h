@@ -130,6 +130,9 @@ class random_access_iterator { public: };
 #pragma warning(disable: 4250)  // via dominance
 #endif
 
+
+
+
 CLASS_DECL_c base_application * get_thread_app();
 
 #include "base_definition.h"
@@ -224,9 +227,6 @@ namespace file
 #include "base/datetime/datetime_time.h"
 
 
-#ifdef LINUX
-#include "base/linux/linux_http_lib.h"
-#endif
 
 
 #include "base/file/file.h"
@@ -251,22 +251,31 @@ namespace file
 
 #include "base/primitive/primitive_id_space.h"
 
+#include "base_thread.h"
+#include "base/user/user_base_interaction.h"
 
-#ifdef WINDOWS
+
+#include "base/multithreading/multithreading.h"
+
+#if defined(WINDOWS)
 
 #include "base/windows/windows.h"
 
+#elif defined(LINUX)
+
+#include "base/ansios/ansios.h"
+#include "base/linux/linux_http_lib.h"
+#include "base/linux/linux_user_impl.h"
+
 #endif
 
-#include "base_thread.h"
-#include "base/user/user_base_interaction.h"
+
 
 
 
 
 CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 
-#include "base/multithreading/multithreading.h"
 
 #include "base_plex_heap.h"
 
@@ -467,3 +476,7 @@ namespace numeric_info
 
 
 #endif
+
+
+
+

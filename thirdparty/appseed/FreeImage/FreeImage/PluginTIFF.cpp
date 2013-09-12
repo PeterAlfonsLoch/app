@@ -60,7 +60,7 @@ void tiff_write_geotiff_profile(TIFF *tif, FIBITMAP *dib);
 // ----------------------------------------------------------
 
 // TIFF Exif profile
-BOOL tiff_read_exif_tags(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib);
+int_bool tiff_read_exif_tags(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib);
 
 // ----------------------------------------------------------
 //   LogLuv conversion functions interface (see TIFFLogLuv.cpp)
@@ -101,19 +101,19 @@ static void WriteResolution(TIFF *tiff, FIBITMAP *dib);
 
 static void ReadPalette(TIFF *tiff, uint16 photometric, uint16 bitspersample, FIBITMAP *dib);
 
-static FIBITMAP* CreateImageType(BOOL header_only, FREE_IMAGE_TYPE fit, int width, int height, uint16 bitspersample, uint16 samplesperpixel);
+static FIBITMAP* CreateImageType(int_bool header_only, FREE_IMAGE_TYPE fit, int width, int height, uint16 bitspersample, uint16 samplesperpixel);
 static FREE_IMAGE_TYPE ReadImageType(TIFF *tiff, uint16 bitspersample, uint16 samplesperpixel);
 static void WriteImageType(TIFF *tiff, FREE_IMAGE_TYPE fit);
 
 static void WriteCompression(TIFF *tiff, uint16 bitspersample, uint16 samplesperpixel, uint16 photometric, int flags);
 
-static BOOL tiff_read_iptc_profile(TIFF *tiff, FIBITMAP *dib);
-static BOOL tiff_read_xmp_profile(TIFF *tiff, FIBITMAP *dib);
-static BOOL tiff_read_exif_profile(TIFF *tiff, FIBITMAP *dib);
+static int_bool tiff_read_iptc_profile(TIFF *tiff, FIBITMAP *dib);
+static int_bool tiff_read_xmp_profile(TIFF *tiff, FIBITMAP *dib);
+static int_bool tiff_read_exif_profile(TIFF *tiff, FIBITMAP *dib);
 static void ReadMetadata(TIFF *tiff, FIBITMAP *dib);
 
-static BOOL tiff_write_iptc_profile(TIFF *tiff, FIBITMAP *dib);
-static BOOL tiff_write_xmp_profile(TIFF *tiff, FIBITMAP *dib);
+static int_bool tiff_write_iptc_profile(TIFF *tiff, FIBITMAP *dib);
+static int_bool tiff_write_xmp_profile(TIFF *tiff, FIBITMAP *dib);
 static void WriteMetadata(TIFF *tiff, FIBITMAP *dib);
 
 static TIFFLoadMethod FindLoadMethod(TIFF *tif, uint16 photometric, uint16 bitspersample, uint16 samplesperpixel, FREE_IMAGE_TYPE image_type, int flags);
@@ -450,7 +450,7 @@ Allocate a FIBITMAP
 @return Returns the allocated image if successful, returns NULL otherwise
 */
 static FIBITMAP*
-CreateImageType(BOOL header_only, FREE_IMAGE_TYPE fit, int width, int height, uint16 bitspersample, uint16 samplesperpixel) {
+CreateImageType(int_bool header_only, FREE_IMAGE_TYPE fit, int width, int height, uint16 bitspersample, uint16 samplesperpixel) {
 	FIBITMAP *dib = NULL;
 
 	if((width < 0) || (height < 0)) {
@@ -768,7 +768,7 @@ WriteCompression(TIFF *tiff, uint16 bitspersample, uint16 samplesperpixel, uint1
 /**
 	Read the TIFFTAG_RICHTIFFIPTC tag (IPTC/NAA or Adobe Photoshop profile)
 */
-static BOOL
+static int_bool
 tiff_read_iptc_profile(TIFF *tiff, FIBITMAP *dib) {
 	BYTE *profile = NULL;
 	uint32 profile_size = 0;
@@ -790,7 +790,7 @@ tiff_read_iptc_profile(TIFF *tiff, FIBITMAP *dib) {
 	@param tiff LibTIFF TIFF handle
 	@return Returns TRUE if successful, FALSE otherwise
 */
-static BOOL
+static int_bool
 tiff_read_xmp_profile(TIFF *tiff, FIBITMAP *dib) {
 	BYTE *profile = NULL;
 	uint32 profile_size = 0;
@@ -825,9 +825,9 @@ tiff_read_xmp_profile(TIFF *tiff, FIBITMAP *dib) {
 	@param tiff LibTIFF TIFF handle
 	@return Returns TRUE if successful, FALSE otherwise
 */
-static BOOL
+static int_bool
 tiff_read_exif_profile(TIFF *tiff, FIBITMAP *dib) {
-	BOOL bResult = FALSE;
+	int_bool bResult = FALSE;
     uint32 exif_offset = 0;
 
 	// read EXIF-TIFF tags
@@ -872,7 +872,7 @@ ReadMetadata(TIFF *tiff, FIBITMAP *dib) {
 /**
 	Write the TIFFTAG_RICHTIFFIPTC tag (IPTC/NAA or Adobe Photoshop profile)
 */
-static BOOL
+static int_bool
 tiff_write_iptc_profile(TIFF *tiff, FIBITMAP *dib) {
 	if(FreeImage_GetMetadataCount(FIMD_IPTC, dib)) {
 		BYTE *profile = NULL;
@@ -910,7 +910,7 @@ tiff_write_iptc_profile(TIFF *tiff, FIBITMAP *dib) {
 	@param tiff LibTIFF TIFF handle
 	@return Returns TRUE if successful, FALSE otherwise
 */
-static BOOL
+static int_bool
 tiff_write_xmp_profile(TIFF *tiff, FIBITMAP *dib) {
 	FITAG *tag_xmp = NULL;
 	FreeImage_GetMetadata(FIMD_XMP, dib, g_TagLib_XMPFieldName, &tag_xmp);
@@ -969,7 +969,7 @@ MimeType() {
 	return "image/tiff";
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	BYTE tiff_id1[] = { 0x49, 0x49, 0x2A, 0x00 };
 	BYTE tiff_id2[] = { 0x4D, 0x4D, 0x00, 0x2A };
@@ -986,7 +986,7 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return (
 			(depth == 1)  ||
@@ -997,7 +997,7 @@ SupportsExportDepth(int depth) {
 		);
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return (
 		(type == FIT_BITMAP)  ||
@@ -1015,12 +1015,12 @@ SupportsExportType(FREE_IMAGE_TYPE type) {
 	);
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsICCProfiles() {
 	return TRUE;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
 }
@@ -1028,7 +1028,7 @@ SupportsNoPixels() {
 // ----------------------------------------------------------
 
 static void * DLL_CALLCONV
-Open(FreeImageIO *io, fi_handle handle, BOOL read) {
+Open(FreeImageIO *io, fi_handle handle, int_bool read) {
 	// wrapper for TIFF I/O
 	fi_TIFFIO *fio = (fi_TIFFIO*)malloc(sizeof(fi_TIFFIO));
 	if(!fio) return NULL;
@@ -1085,7 +1085,7 @@ check for uncommon bitspersample values (e.g. 10, 12, ...)
 @param samplesperpixel TIFFTAG_SAMPLESPERPIXEL tiff tag
 @return Returns FALSE if a uncommon bit-depth is encountered, returns TRUE otherwise
 */
-static BOOL
+static int_bool
 IsValidBitsPerSample(uint16 photometric, uint16 bitspersample, uint16 samplesperpixel) {
 	// check for missing mandatory tags
 	const uint16 missing_value = (uint16)-1;
@@ -1139,7 +1139,7 @@ FindLoadMethod(TIFF *tif, FREE_IMAGE_TYPE image_type, int flags) {
 	TIFFGetField(tif, TIFFTAG_BITSPERSAMPLE, &bitspersample);
 	TIFFGetFieldDefaulted(tif, TIFFTAG_PLANARCONFIG, &planar_config);
 
-	BOOL bIsTiled = (TIFFIsTiled(tif) == 0) ? FALSE:TRUE;
+	int_bool bIsTiled = (TIFFIsTiled(tif) == 0) ? FALSE:TRUE;
 
 	switch(photometric) {
 		// convert to 24 or 32 bits RGB if the image is full color
@@ -1311,7 +1311,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	uint32 iccSize = 0;		// ICC profile length
 	void *iccBuf = NULL;	// ICC profile data
 
-	const BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+	const int_bool header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
 	try {
 		fi_TIFFIO *fio = (fi_TIFFIO*)data;
@@ -1323,7 +1323,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			}
 		}
 
-		const BOOL asCMYK = (flags & TIFF_CMYK) == TIFF_CMYK;
+		const int_bool asCMYK = (flags & TIFF_CMYK) == TIFF_CMYK;
 
 		// first, get the photometric, the compression and basic metadata
 		// ---------------------------------------------------------------------------------
@@ -1380,7 +1380,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			// RGB[A] loading using the TIFFReadRGBAImage() API
 			// ---------------------------------------------------------------------------------
 
-			BOOL has_alpha = FALSE;
+			int_bool has_alpha = FALSE;
 
 			// Read the whole image into one big RGBA buffer and then
 			// convert it to a DIB. This is using the traditional
@@ -1607,7 +1607,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			// is recognized. Where all other formats are handled straight-forward, this
 			// format has to be handled special
 
-			BOOL isCMYKA = (photometric == PHOTOMETRIC_SEPARATED) && (samplesperpixel > 4);
+			int_bool isCMYKA = (photometric == PHOTOMETRIC_SEPARATED) && (samplesperpixel > 4);
 
 			// We use a temp dib to store the alpha for the CMYKA to RGBA conversion
 			// NOTE this is until we have Extra channels implementation.
@@ -1872,7 +1872,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					throw FI_MSG_ERROR_MEMORY;
 				}
 
-				BOOL bThrowMessage = FALSE;
+				int_bool bThrowMessage = FALSE;
 
 				if(planar_config == PLANARCONFIG_CONTIG) {
 
@@ -2226,7 +2226,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 // --------------------------------------------------------------------------
 
-static BOOL
+static int_bool
 SaveOneTIFF(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data, unsigned ifd, unsigned ifdCount) {
 	if (!dib || !handle || !data) {
 		return FALSE;
@@ -2564,12 +2564,12 @@ SaveOneTIFF(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flag
 	}
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
-	BOOL bResult = FALSE;
+	int_bool bResult = FALSE;
 
 	// handle thumbnail as SubIFD
-	const BOOL bHasThumbnail = (FreeImage_GetThumbnail(dib) != NULL);
+	const int_bool bHasThumbnail = (FreeImage_GetThumbnail(dib) != NULL);
 	const unsigned ifdCount = bHasThumbnail ? 2 : 1;
 
 	FIBITMAP *bitmap = dib;

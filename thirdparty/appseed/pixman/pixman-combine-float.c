@@ -25,6 +25,9 @@
  * Author: Soren Sandmann Pedersen (sandmann@cs.au.dk)
  */
 
+#include "base/base/base.h"
+
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -59,12 +62,12 @@ combine_inner (pixman_bool_t component,
 	    float sr = src[i + 1];
 	    float sg = src[i + 2];
 	    float sb = src[i + 3];
-	    
+
 	    float da = dest[i + 0];
 	    float dr = dest[i + 1];
 	    float dg = dest[i + 2];
-	    float db = dest[i + 3];					
-	    
+	    float db = dest[i + 3];
+
 	    dest[i + 0] = combine_a (sa, sa, da, da);
 	    dest[i + 1] = combine_c (sa, sr, da, dr);
 	    dest[i + 2] = combine_c (sa, sg, da, dg);
@@ -78,12 +81,12 @@ combine_inner (pixman_bool_t component,
 	    float sa, sr, sg, sb;
 	    float ma, mr, mg, mb;
 	    float da, dr, dg, db;
-	    
+
 	    sa = src[i + 0];
 	    sr = src[i + 1];
 	    sg = src[i + 2];
 	    sb = src[i + 3];
-	    
+
 	    if (component)
 	    {
 		ma = mask[i + 0];
@@ -99,7 +102,7 @@ combine_inner (pixman_bool_t component,
 		mr *= sa;
 		mg *= sa;
 		mb *= sa;
-		
+
 		sa = ma;
 	    }
 	    else
@@ -113,12 +116,12 @@ combine_inner (pixman_bool_t component,
 
 		ma = mr = mg = mb = sa;
 	    }
-	    
+
 	    da = dest[i + 0];
 	    dr = dest[i + 1];
 	    dg = dest[i + 2];
 	    db = dest[i + 3];
-	    
+
 	    dest[i + 0] = combine_a (ma, sa, da, da);
 	    dest[i + 1] = combine_c (mr, sr, da, dr);
 	    dest[i + 2] = combine_c (mg, sg, da, dg);

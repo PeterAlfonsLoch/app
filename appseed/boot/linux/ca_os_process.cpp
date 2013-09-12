@@ -13,7 +13,7 @@ int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
    char *   exec_path_name;
    char *	cmd_line;
 
-   cmd_line = (char *) ca2_alloc(strlen(_cmd_line ) + 1 );
+   cmd_line = (char *) memory_alloc(strlen(_cmd_line ) + 1 );
 
    if(cmd_line == NULL)
             return 0;
@@ -68,7 +68,7 @@ CLASS_DECL_c int32_t call_async(
                             const char * pszDir,
                             int32_t iShow)
 {
-    vsstring strCmdLine;
+    string strCmdLine;
 
     strCmdLine = pszPath;
     if(strlen_dup(pszParam) > 0)
@@ -96,7 +96,7 @@ CLASS_DECL_c DWORD call_sync(
                              int32_t (* pfnOnRetry)(int32_t iTry, dword_ptr dwParam),
                              dword_ptr dwParam)
 {
-    vsstring strCmdLine;
+    string strCmdLine;
 
     strCmdLine = pszPath;
     if(strlen_dup(pszParam) > 0)
@@ -126,15 +126,14 @@ CLASS_DECL_c DWORD call_sync(
 
 
 
-
-
-
+bool os_initialize();
+bool os_finalize();
 
 
 CLASS_DECL_c bool main_initialize()
 {
 
-   initialize_primitive_heap();
+//   initialize_primitive_heap();
 
    if(!os_initialize())
       return false;

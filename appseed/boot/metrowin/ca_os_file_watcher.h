@@ -34,14 +34,14 @@ namespace file_watcher
 
 	/// Implementation for Win Merde based on StorageFolder::CreateFileQueryWithOptions.
 	/// @class os_file_watcher
-	class os_file_watcher : 
+	class os_file_watcher :
       public file_watcher_impl
 	{
    public:
 
-      
+
       /// type for a map from id to watch_struct pointer
-		typedef simple_map < id , watch_struct ^ > watch_map;
+		typedef map < id , watch_struct ^ > watch_map;
 
 
 	private:

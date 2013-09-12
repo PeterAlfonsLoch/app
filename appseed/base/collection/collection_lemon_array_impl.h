@@ -415,11 +415,11 @@ namespace lemon
             ::lemon::array::set_size(a, a.m_nSize + nCount, -1);  // grow it to new size
             // destroy intial data before copying over it
             // shift old data up to fill gap
-            ::core::memmove_s(a.m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(ARRAY::BASE_TYPE),
-               a.m_pData + nIndex, (nOldSize-nIndex) * sizeof(ARRAY::BASE_TYPE));
+            ::core::memmove_s(a.m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(typename ARRAY::BASE_TYPE),
+               a.m_pData + nIndex, (nOldSize-nIndex) * sizeof(typename ARRAY::BASE_TYPE));
 
             // re-init slots we copied from
-            memset((void *)(a.m_pData + nIndex), 0, (size_t)nCount * sizeof(ARRAY::BASE_TYPE));
+            memset((void *)(a.m_pData + nIndex), 0, (size_t)nCount * sizeof(typename ARRAY::BASE_TYPE));
 #undef new
             for( int32_t i = 0; i < nCount; i++ )
                ::new( (void *)(a.m_pData + nIndex + i ) ) typename ARRAY::BASE_TYPE;

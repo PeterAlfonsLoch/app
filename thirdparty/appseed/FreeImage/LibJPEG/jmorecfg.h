@@ -131,7 +131,7 @@ typedef char JOCTET;
  */
 
 /* UINT8 must hold at least the values 0..255. */
-
+#if !defined(LINUX)
 #ifdef HAVE_UNSIGNED_CHAR
 typedef unsigned char UINT8;
 #else /* not HAVE_UNSIGNED_CHAR */
@@ -166,6 +166,9 @@ typedef long INT32;
 #endif
 #endif
 #endif
+#endif
+
+
 #endif
 
 /* Datatype used for image dimensions.  The JPEG standard only supports

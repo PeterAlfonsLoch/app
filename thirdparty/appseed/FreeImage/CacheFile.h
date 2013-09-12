@@ -60,12 +60,12 @@ class CacheFile {
 	typedef map<int, int, PageCacheIt, PageCacheIt>::iterator PageMapIt;
 
 public :
-	CacheFile(const string filename, BOOL keep_in_memory);
+	CacheFile(const string filename, int_bool keep_in_memory);
 	~CacheFile();
 
-	BOOL open();
+	int_bool open();
 	void close();
-	BOOL readFile(BYTE *data, int nr, int size);
+	int_bool readFile(BYTE *data, int nr, int size);
 	int writeFile(BYTE *data, int size);
 	void deleteFile(int nr);
 
@@ -73,8 +73,8 @@ private :
 	void cleanupMemCache();
 	int allocateBlock();
 	Block *lockBlock(int nr);
-	BOOL unlockBlock(int nr);
-	BOOL deleteBlock(int nr);
+	int_bool unlockBlock(int nr);
+	int_bool deleteBlock(int nr);
 
 private :
 	FILE *m_file;
@@ -85,7 +85,7 @@ private :
 	PageMap m_page_map;
 	int m_page_count;
 	Block *m_current_block;
-	BOOL m_keep_in_memory;
+	int_bool m_keep_in_memory;
 };
 
 #endif // CACHEFILE_H

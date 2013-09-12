@@ -44,7 +44,7 @@ WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
 {
 
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
 
    if(hdc == NULL)
@@ -62,7 +62,7 @@ WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
 WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
    XWindowAttributes attrs;
 
@@ -90,7 +90,7 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 
 
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
    if(!IsWindow(hwnd))
       return FALSE;
@@ -139,7 +139,7 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 int32_t FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
 
    XFillRectangle(hdc->m_display, hdc->m_d, hdc->m_gc, lprc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
@@ -170,7 +170,7 @@ WINBOOL EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
 WINBOOL GetCursorPos(LPPOINT lpptCursor)
 {
 
-   //mutex_lock sl(user_mutex(), true);
+   //single_lock sl(user_mutex(), true);
 
 
    Window root_return;
@@ -197,7 +197,7 @@ WINBOOL GetCursorPos(LPPOINT lpptCursor)
 WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT uFlags)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
 
    xdisplay display(hwnd->display());

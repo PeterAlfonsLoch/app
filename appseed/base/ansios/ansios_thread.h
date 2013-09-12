@@ -1,6 +1,41 @@
 #pragma once
 
 
+class hthread :
+    virtual public root
+{
+public:
+
+
+   event               * m_pevent;
+   base_thread          * m_pthread;
+   os_thread                  * m_posthread;
+
+
+   hthread();
+   virtual ~hthread();
+
+
+   void wait();
+
+
+};
+
+
+
+
+
+class thread;
+
+
+
+
+
+
+
+
+
+
 class CLASS_DECL_c message_array :
    public array < MESSAGE >
 {
@@ -49,12 +84,12 @@ CLASS_DECL_c HTHREAD GetCurrentThread();
 
 CLASS_DECL_c UINT GetCurrentThreadId();
 
-CLASS_DECL_ca void thread_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
+CLASS_DECL_c void thread_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
 
-CLASS_DECL_ca int32_t thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+CLASS_DECL_c int32_t thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
-CLASS_DECL_ca void process_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
+CLASS_DECL_c void process_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
 
-CLASS_DECL_ca int32_t process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+CLASS_DECL_c int32_t process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 

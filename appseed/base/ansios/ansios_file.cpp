@@ -113,7 +113,7 @@ string file_as_string_dup(const char * path)
 }
 
 
-bool file_get_memory_dup(::primitive::memory & memory, const char * path)
+bool file_get_memory_dup(::primitive::memory_base & memory, const char * path)
 {
 
    FILE * f = fopen(path, "rb");
@@ -371,7 +371,7 @@ void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str)
 
 
 
-bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
+int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverwrite)
 {
 
    int32_t input, output;

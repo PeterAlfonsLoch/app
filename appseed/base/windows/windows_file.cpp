@@ -28,7 +28,7 @@ int_bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinstance, UI
 
    if(hglobalResource != NULL)
    {
-      
+
       bOk = FALSE;
 
       pResource = (UINT FAR*) LockResource(hglobalResource);
@@ -63,9 +63,9 @@ int_bool file_exists_dup(const char * path1)
    wstr.alloc(strlen_dup(path1) + 256);
 
    wcscat(wstr, L"\\\\?\\");
-   
+
    utf8_to_16((wchar_t *) wstr + wcslen(wstr), path1);
-   
+
    wstr.set_length(wcslen(wstr));
 
    wchar_t * pwsz = (wchar_t *) wstr;
@@ -82,7 +82,7 @@ int_bool file_exists_dup(const char * path1)
 
    if(dwFileAttributes == INVALID_FILE_ATTRIBUTES || (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
       return FALSE;
-   
+
    return true;
 
 }
@@ -250,13 +250,13 @@ int_bool file_ftd_dup(const char * pszDir, const char * pszFile)
 {
 
    HANDLE hfile1 = NULL;
-   
+
    HANDLE hfile2 = NULL;
-   
+
    wstring wstr(pszFile);
 
    hfile1 = create_file(pszFile, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-   
+
    if(hfile1 == INVALID_HANDLE_VALUE)
       return FALSE;
 
@@ -264,19 +264,19 @@ int_bool file_ftd_dup(const char * pszDir, const char * pszFile)
 
 
    file_read_gen_string_dup(hfile1, NULL, strVersion);
-   
+
    int32_t n;
-   
+
    string strRelative;
-   
+
    string strMd5;
-   
+
    string strMd5New;
-   
+
    int32_t iBufSize = 1024 * 1024;
-   
+
    uchar * buf = (uchar *)  memory_alloc(iBufSize);
-   
+
    int32_t iLen;
    md5::md5 ctx;
    DWORD dwRead;
@@ -1259,12 +1259,6 @@ int ftruncate(int file, file_size len)
   return _chsize_s (file, len);
 }
 
-int_bool file_put_contents_dup(const char * path, const char * contents)
-{
-   
-   return file_put_contents_dup(path, contents, strlen(contents));
-
-}
 
 
 

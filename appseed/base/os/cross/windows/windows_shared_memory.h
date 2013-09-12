@@ -6,7 +6,6 @@
 
 struct CLASS_DECL_c hglobal
 {
-public:
 
    char        m_szFile[256];
    int32_t     m_fd;

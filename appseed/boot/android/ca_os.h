@@ -23,7 +23,7 @@
 
 
 
-DWORD GetTickCount();
+DWORD get_tick_count();
 
 
 
@@ -85,13 +85,6 @@ oswindow GetDesktopWindow();
 
 
 
-class oswindow_dataptra :
-   public array < oswindow_data * >
-{
-public:
-
-
-};
 
 
 

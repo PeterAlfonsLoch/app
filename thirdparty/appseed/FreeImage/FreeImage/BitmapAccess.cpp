@@ -60,7 +60,7 @@ FI_STRUCT (FREEIMAGEHEADER) {
 
 	RGBQUAD bkgnd_color;		// background color used for RGB transparency
 
-	BOOL transparent;			// why another table? for easy transparency table retrieval!
+	int_bool transparent;			// why another table? for easy transparency table retrieval!
 	int  transparency_count;	// transparency could be stored in the palette, which is better
 	BYTE transparent_table[256];// overall, but it requires quite some changes and it will render
 								// FreeImage_GetTransparencyTable obsolete in its current form;
@@ -68,7 +68,7 @@ FI_STRUCT (FREEIMAGEHEADER) {
 
 	METADATAMAP *metadata;		// contains a list of metadata models attached to the bitmap
 
-	BOOL has_pixels;			// FALSE if the FIBITMAP only contains the header and no pixel data
+	int_bool has_pixels;			// FALSE if the FIBITMAP only contains the header and no pixel data
 
 	FIBITMAP *thumbnail;		// optionally contains a thumbnail attached to the bitmap
 
@@ -149,7 +149,7 @@ Align the palette and the pixels on a FIBITMAP_ALIGNMENT bytes alignment boundar
 @see FreeImage_AllocateHeaderT
 */
 static unsigned
-FreeImage_GetImageSizeHeader(BOOL header_only, int width, int height, int bpp) {
+FreeImage_GetImageSizeHeader(int_bool header_only, int width, int height, int bpp) {
 	unsigned dib_size = sizeof(FREEIMAGEHEADER);
 	dib_size += (dib_size % FIBITMAP_ALIGNMENT ? FIBITMAP_ALIGNMENT - dib_size % FIBITMAP_ALIGNMENT : 0);
 	dib_size += FIBITMAP_ALIGNMENT - sizeof(BITMAPINFOHEADER) % FIBITMAP_ALIGNMENT;
@@ -166,7 +166,7 @@ FreeImage_GetImageSizeHeader(BOOL header_only, int width, int height, int bpp) {
 }
 
 FIBITMAP * DLL_CALLCONV
-FreeImage_AllocateHeaderT(BOOL header_only, FREE_IMAGE_TYPE type, int width, int height, int bpp, unsigned red_mask, unsigned green_mask, unsigned blue_mask) {
+FreeImage_AllocateHeaderT(int_bool header_only, FREE_IMAGE_TYPE type, int width, int height, int bpp, unsigned red_mask, unsigned green_mask, unsigned blue_mask) {
 	FIBITMAP *bitmap = (FIBITMAP *)malloc(sizeof(FIBITMAP));
 
 	if (bitmap != NULL) {
@@ -305,7 +305,7 @@ FreeImage_AllocateHeaderT(BOOL header_only, FREE_IMAGE_TYPE type, int width, int
 }
 
 FIBITMAP * DLL_CALLCONV
-FreeImage_AllocateHeader(BOOL header_only, int width, int height, int bpp, unsigned red_mask, unsigned green_mask, unsigned blue_mask) {
+FreeImage_AllocateHeader(int_bool header_only, int width, int height, int bpp, unsigned red_mask, unsigned green_mask, unsigned blue_mask) {
 	return FreeImage_AllocateHeaderT(header_only, FIT_BITMAP, width, height, bpp, red_mask, green_mask, blue_mask);
 }
 
@@ -366,7 +366,7 @@ FreeImage_Clone(FIBITMAP *dib) {
 	unsigned bpp    = FreeImage_GetBPP(dib);
 
 	// check for pixel availability ...
-	BOOL header_only = FreeImage_HasPixels(dib) ? FALSE : TRUE;
+	int_bool header_only = FreeImage_HasPixels(dib) ? FALSE : TRUE;
 
 	// allocate a new dib
 	FIBITMAP *new_dib = FreeImage_AllocateHeaderT(header_only, FreeImage_GetImageType(dib), width, height, bpp,
@@ -445,7 +445,7 @@ FreeImage_GetThumbnail(FIBITMAP *dib) {
 	return (dib != NULL) ? ((FREEIMAGEHEADER *)dib->data)->thumbnail : NULL;
 }
 
-BOOL DLL_CALLCONV
+int_bool DLL_CALLCONV
 FreeImage_SetThumbnail(FIBITMAP *dib, FIBITMAP *thumbnail) {
 	if(dib == NULL) {
 		return FALSE;
@@ -568,7 +568,7 @@ FreeImage_GetImageType(FIBITMAP *dib) {
 
 // ----------------------------------------------------------
 
-BOOL DLL_CALLCONV
+int_bool DLL_CALLCONV
 FreeImage_HasPixels(FIBITMAP *dib) {
 	return (dib != NULL) ? ((FREEIMAGEHEADER *)dib->data)->has_pixels : FALSE;
 }
@@ -592,7 +592,7 @@ FreeImage_GetBlueMask(FIBITMAP *dib) {
 
 // ----------------------------------------------------------
 
-BOOL DLL_CALLCONV
+int_bool DLL_CALLCONV
 FreeImage_HasBackgroundColor(FIBITMAP *dib) {
 	if(dib) {
 		RGBQUAD *bkgnd_color = &((FREEIMAGEHEADER *)dib->data)->bkgnd_color;
@@ -601,7 +601,7 @@ FreeImage_HasBackgroundColor(FIBITMAP *dib) {
 	return FALSE;
 }
 
-BOOL DLL_CALLCONV
+int_bool DLL_CALLCONV
 FreeImage_GetBackgroundColor(FIBITMAP *dib, RGBQUAD *bkcolor) {
 	if(dib && bkcolor) {
 		if(FreeImage_HasBackgroundColor(dib)) {
@@ -632,7 +632,7 @@ FreeImage_GetBackgroundColor(FIBITMAP *dib, RGBQUAD *bkcolor) {
 	return FALSE;
 }
 
-BOOL DLL_CALLCONV
+int_bool DLL_CALLCONV
 FreeImage_SetBackgroundColor(FIBITMAP *dib, RGBQUAD *bkcolor) {
 	if(dib) {
 		RGBQUAD *bkgnd_color = &((FREEIMAGEHEADER *)dib->data)->bkgnd_color;
@@ -653,7 +653,7 @@ FreeImage_SetBackgroundColor(FIBITMAP *dib, RGBQUAD *bkcolor) {
 
 // ----------------------------------------------------------
 
-BOOL DLL_CALLCONV
+int_bool DLL_CALLCONV
 FreeImage_IsTransparent(FIBITMAP *dib) {
 	if(dib) {
 		FREE_IMAGE_TYPE image_type = FreeImage_GetImageType(dib);
@@ -683,7 +683,7 @@ FreeImage_GetTransparencyTable(FIBITMAP *dib) {
 }
 
 void DLL_CALLCONV
-FreeImage_SetTransparent(FIBITMAP *dib, BOOL enabled) {
+FreeImage_SetTransparent(FIBITMAP *dib, int_bool enabled) {
 	if (dib) {
 		if ((FreeImage_GetBPP(dib) <= 8) || (FreeImage_GetBPP(dib) == 32)) {
 			((FREEIMAGEHEADER *)dib->data)->transparent = enabled;
@@ -939,7 +939,7 @@ FreeImage_FindFirstMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, FITAG **tag
 	return NULL;
 }
 
-BOOL DLL_CALLCONV
+int_bool DLL_CALLCONV
 FreeImage_FindNextMetadata(FIMETADATA *mdhandle, FITAG **tag) {
 	if(!mdhandle)
 		return FALSE;
@@ -982,7 +982,7 @@ FreeImage_FindCloseMetadata(FIMETADATA *mdhandle) {
 
 // ----------------------------------------------------------
 
-BOOL DLL_CALLCONV
+int_bool DLL_CALLCONV
 FreeImage_CloneMetadata(FIBITMAP *dst, FIBITMAP *src) {
 	if(!src || !dst) return FALSE;
 
@@ -1032,7 +1032,7 @@ FreeImage_CloneMetadata(FIBITMAP *dst, FIBITMAP *src) {
 
 // ----------------------------------------------------------
 
-BOOL DLL_CALLCONV
+int_bool DLL_CALLCONV
 FreeImage_SetMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, FITAG *tag) {
 	if(!dib)
 		return FALSE;
@@ -1121,7 +1121,7 @@ FreeImage_SetMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, 
 	return TRUE;
 }
 
-BOOL DLL_CALLCONV
+int_bool DLL_CALLCONV
 FreeImage_GetMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, FITAG **tag) {
 	if(!dib || !key || !tag)
 		return FALSE;

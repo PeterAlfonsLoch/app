@@ -1,8 +1,5 @@
 #pragma once
 
 
-#ifndef WINDOWSEX
+#include "cross/cross.h"
 
-#include "ca/cross/windows/windows.h"
-
-#endif

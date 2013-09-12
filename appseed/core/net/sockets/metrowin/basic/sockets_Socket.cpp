@@ -50,7 +50,7 @@ namespace sockets
    SOCKET socket::s_socket = 0;
    simple_mutex socket::s_mutex;
 
-   simple_map<int,class socket *> socket::s_mapSocket;
+   map<int,class socket *> socket::s_mapSocket;
 
 
    socket::socket(socket_handler_base& h)
@@ -284,7 +284,7 @@ namespace sockets
 
    ::sockets::address socket::GetRemoteHostname()
    {
-      
+
       return m_addressRemote;
 
    }
@@ -1923,7 +1923,7 @@ namespace sockets
       throw interface_only_exception(get_app());
 
    }
-   
+
 
    address socket::GetRemoteAddress()
    {
@@ -1931,7 +1931,7 @@ namespace sockets
       throw interface_only_exception(get_app());
 
    }
-   
+
 
    port_t socket::GetLocalPort()
    {
@@ -1939,8 +1939,8 @@ namespace sockets
       throw interface_only_exception(get_app());
 
    }
-   
-   
+
+
    address socket::GetLocalAddress()
    {
 

@@ -10,7 +10,7 @@ public:
    cairo_surface_t *             m_cairosurface;
    cairo_t *                     m_cairoSource;
    cairo_surface_t *             m_cairosurfaceSource;
-   simple_memory                 m_mem;
+   ::primitive::memory                 m_mem;
 
 
    window_cairo();

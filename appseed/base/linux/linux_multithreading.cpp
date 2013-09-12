@@ -12,9 +12,9 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD
    }
 
 
-   BOOL bWaitForAll        = dwFlags & MWMO_WAITALL;
-   BOOL bAlertable         = dwFlags & MWMO_ALERTABLE;
-   BOOL bInputAvailable    =  dwFlags & MWMO_INPUTAVAILABLE;
+   int_bool bWaitForAll        = dwFlags & MWMO_WAITALL;
+   int_bool bAlertable         = dwFlags & MWMO_ALERTABLE;
+   int_bool bInputAvailable    =  dwFlags & MWMO_INPUTAVAILABLE;
 
    timespec delay;
 

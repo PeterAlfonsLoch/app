@@ -24,7 +24,7 @@
 #include <ImfIO.h>
 #include <ImfXdr.h>
 #include <string.h>
-#include <ASSERT.h>
+#include <assert.h>
 
 #include <ImfBoxAttribute.h>
 #include <ImfChannelList.h>
@@ -101,7 +101,7 @@
 #include <ImfAutoArray.h>
 #include "Iex.h"
 #include <string.h>
-#include <ASSERT.h>
+#include <assert.h>
 
 #include <ImfInputFile.h>
 #include <ImfScanLineInputFile.h>
@@ -125,7 +125,7 @@
 #include <ImfLineOrderAttribute.h>
 #include <ImfLut.h>
 #include <math.h>
-#include <ASSERT.h>
+#include <assert.h>
 #include <ImfMatrixAttribute.h>
 #include <ImfMisc.h>
 #include <ImfHeader.h>
@@ -158,7 +158,7 @@
 
 
 
-#include <ASSERT.h>
+#include <assert.h>
 #include <ImfPizCompressor.h>
 #include <ImfHeader.h>
 #include <ImfChannelList.h>
@@ -173,7 +173,7 @@
 #include <ImfXdr.h>
 #include <ImfAutoArray.h>
 #include <string.h>
-#include <ASSERT.h>
+#include <assert.h>
 #include <ImfPreviewImage.h>
 #include <ImfCheckedArithmetic.h>
 #include "Iex.h"
@@ -187,7 +187,7 @@
 #include <Iex.h>
 #include <half.h>
 #include <zlib/zlib.h>
-#include <ASSERT.h>
+#include <assert.h>
 
 #include <ImfRational.h>
 #include <cmath>
@@ -204,7 +204,7 @@
 #include <string.h>
 
 #include <ImfRgbaYca.h>
-#include <ASSERT.h>
+#include <assert.h>
 
 #include <ImfRleCompressor.h>
 #include <ImfCheckedArithmetic.h>
@@ -225,7 +225,7 @@
 #include "Iex.h"
 
 
-#include <ASSERT.h>
+#include <assert.h>
 #include <ImfStandardAttributes.h>
 #include <ImfStdIO.h>
 #include "Iex.h"
@@ -259,7 +259,7 @@
 
 
 
-#include <ASSERT.h>
+#include <assert.h>
 #include <ImfTiledMisc.h>
 #include "Iex.h"
 #include <ImfMisc.h>
@@ -287,7 +287,7 @@
 
 
 
-#include <ASSERT.h>
+#include <assert.h>
 //#include <map>
 #include <ImfTiledRgbaFile.h>
 #include <ImfRgbaFile.h>

@@ -1,6 +1,10 @@
 #pragma once
 
 
+
+#ifdef __cplusplus
+
+
 class waitable;
 
 
@@ -15,6 +19,9 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD
 DWORD WaitForSingleObject(waitable * pwaitable, DWORD dwMilliseconds);
 
 DWORD WaitForSingleObjectEx(waitable * pwaitable, DWORD dwMilliseconds, WINBOOL bAlertable);
+
+
+#endif
 
 
 /*

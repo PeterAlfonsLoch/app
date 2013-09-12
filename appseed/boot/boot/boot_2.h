@@ -212,7 +212,7 @@ extern "C"
 }
 
 
-CLASS_DECL_ca vsstring _ca_get_file_name(const char * psz, bool bCreate = false, int32_t * pfd = NULL);
+CLASS_DECL_ca string _ca_get_file_name(const char * psz, bool bCreate = false, int32_t * pfd = NULL);
 
 
 

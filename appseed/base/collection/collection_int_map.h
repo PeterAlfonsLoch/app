@@ -43,6 +43,7 @@ int_map < VALUE, ARG_VALUE, HASH, EQUALS > & int_map < VALUE, ARG_VALUE, HASH, E
 }
 
 
+
 typedef CLASS_DECL_c int_map < int, int > int_to_int;
 
 typedef CLASS_DECL_c int_map < string, const string & > int_to_string;

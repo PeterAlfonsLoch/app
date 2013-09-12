@@ -86,7 +86,7 @@ warning_handler(png_structp png_ptr, const char *warning) {
 // Metadata routines
 // ==========================================================
 
-static BOOL
+static int_bool
 ReadMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP *dib) {
 	// XMP keyword
 	const char *g_png_xmp_keyword = "XML:com.adobe.xmp";
@@ -127,14 +127,14 @@ ReadMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP *dib) {
 	return TRUE;
 }
 
-static BOOL
+static int_bool
 WriteMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP *dib) {
 	// XMP keyword
 	const char *g_png_xmp_keyword = "XML:com.adobe.xmp";
 
 	FITAG *tag = NULL;
 	FIMETADATA *mdhandle = NULL;
-	BOOL bResult = TRUE;
+	int_bool bResult = TRUE;
 
 	png_text text_metadata;
 
@@ -218,7 +218,7 @@ MimeType() {
 	return "image/png";
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	BYTE png_signature[8] = { 137, 80, 78, 71, 13, 10, 26, 10 };
 	BYTE signature[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -228,7 +228,7 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return (memcmp(png_signature, signature, 8) == 0);
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return (
 			(depth == 1) ||
@@ -239,7 +239,7 @@ SupportsExportDepth(int depth) {
 		);
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return (
 		(type == FIT_BITMAP) ||
@@ -249,12 +249,12 @@ SupportsExportType(FREE_IMAGE_TYPE type) {
 	);
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsICCProfiles() {
 	return TRUE;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
 }
@@ -280,7 +280,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	fio.s_io = io;
 
 	if (handle) {
-		BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+		int_bool header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
 		try {
 			// check to see if the file is in fact a PNG file
@@ -646,13 +646,13 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	return NULL;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
 	png_structp png_ptr;
 	png_infop info_ptr;
 	png_colorp palette = NULL;
 	png_uint_32 width, height;
-	BOOL has_alpha_channel = FALSE;
+	int_bool has_alpha_channel = FALSE;
 
 	RGBQUAD *pal;					// pointer to dib palette
 	int bit_depth, pixel_depth;		// pixel_depth = bit_depth * channels
@@ -718,7 +718,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 			height = FreeImage_GetHeight(dib);
 			pixel_depth = FreeImage_GetBPP(dib);
 
-			BOOL bInterlaced = FALSE;
+			int_bool bInterlaced = FALSE;
 			if( (flags & PNG_INTERLACED) == PNG_INTERLACED) {
 				interlace_type = PNG_INTERLACE_ADAM7;
 				bInterlaced = TRUE;

@@ -43,7 +43,7 @@ CLASS_DECL_c int32_t WINAPI GetSystemMetrics(int32_t nIndex)
 
 
 
-CLASS_DECL_c bool CopyRect(LPRECT prectDest, LPCRECT pcrectSrc)
+CLASS_DECL_c int_bool CopyRect(LPRECT prectDest, LPCRECT pcrectSrc)
 {
 
    prectDest->left      = pcrectSrc->left;
@@ -55,14 +55,14 @@ CLASS_DECL_c bool CopyRect(LPRECT prectDest, LPCRECT pcrectSrc)
 
 }
 
-CLASS_DECL_c bool PtInRect(LPCRECT prect, POINT point)
+CLASS_DECL_c int_bool PtInRect(LPCRECT prect, POINT point)
 {
    return point.x >= prect->left && point.x <= prect->right
    && point.y >= prect->top && point.y <= prect->bottom;
 
 }
 
-CLASS_DECL_c bool SetRect(LPRECT prect, int32_t x1, int32_t y1, int32_t x2, int32_t y2)
+CLASS_DECL_c int_bool SetRect(LPRECT prect, int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 {
 
    prect->left = x1;
@@ -74,7 +74,7 @@ CLASS_DECL_c bool SetRect(LPRECT prect, int32_t x1, int32_t y1, int32_t x2, int3
 }
 
 
-CLASS_DECL_c bool SetRectEmpty(LPRECT prect)
+CLASS_DECL_c int_bool SetRectEmpty(LPRECT prect)
 {
 
    SetRect(prect, 0, 0, 0, 0);
@@ -82,7 +82,7 @@ CLASS_DECL_c bool SetRectEmpty(LPRECT prect)
 }
 
 
-CLASS_DECL_c bool EqualRect(LPCRECT prect1, LPCRECT prect2)
+CLASS_DECL_c int_bool EqualRect(LPCRECT prect1, LPCRECT prect2)
 {
       return prect1->left == prect2->left
          &&  prect1->top == prect2->top
@@ -91,7 +91,7 @@ CLASS_DECL_c bool EqualRect(LPCRECT prect1, LPCRECT prect2)
 }
 
 
-CLASS_DECL_c bool InflateRect(LPRECT prect, int32_t x, int32_t y)
+CLASS_DECL_c int_bool InflateRect(LPRECT prect, int32_t x, int32_t y)
 {
       prect->left -= x;
       prect->top -= y;
@@ -100,7 +100,7 @@ CLASS_DECL_c bool InflateRect(LPRECT prect, int32_t x, int32_t y)
       return true;
 }
 
-CLASS_DECL_c bool OffsetRect(LPRECT prect, int32_t x, int32_t y)
+CLASS_DECL_c int_bool OffsetRect(LPRECT prect, int32_t x, int32_t y)
 {
       prect->left += x;
       prect->top += y;
@@ -109,29 +109,29 @@ CLASS_DECL_c bool OffsetRect(LPRECT prect, int32_t x, int32_t y)
       return true;
 }
 
-CLASS_DECL_c bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
+CLASS_DECL_c int_bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
    prect->left = max(prect1->left, prect2->left);
    prect->right = min(prect1->right, prect2->right);
    return prect->right >= prect->left;
 }
 
-CLASS_DECL_c bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
+CLASS_DECL_c int_bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
    prect->top = max(prect1->top, prect2->top);
    prect->bottom = min(prect1->bottom, prect2->bottom);
    return prect->bottom >= prect->top;
 }
 
-CLASS_DECL_c bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
+CLASS_DECL_c int_bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
-   bool bXIntersects = x_intersect_rect(prect, prect1, prect2);
-   bool bYIntersects = y_intersect_rect(prect, prect1, prect2);
+   int_bool bXIntersects = x_intersect_rect(prect, prect1, prect2);
+   int_bool bYIntersects = y_intersect_rect(prect, prect1, prect2);
    return bXIntersects && bYIntersects;
 }
 
 
-CLASS_DECL_c bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
+CLASS_DECL_c int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
    prect->left = min(prect1->left, prect2->left);
    prect->top = min(prect1->top, prect2->top);
@@ -141,11 +141,11 @@ CLASS_DECL_c bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 }
 
 
-CLASS_DECL_c bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
+CLASS_DECL_c int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
    RECT rect;
-   bool bXIntersects = x_intersect_rect(&rect, prect1, prect2);
-   bool bYIntersects = y_intersect_rect(&rect, prect1, prect2);
+   int_bool bXIntersects = x_intersect_rect(&rect, prect1, prect2);
+   int_bool bYIntersects = y_intersect_rect(&rect, prect1, prect2);
    if(bXIntersects)
    {
       prect->left    = rect.left;

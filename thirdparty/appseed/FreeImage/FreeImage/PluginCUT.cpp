@@ -79,22 +79,22 @@ MimeType() {
 	return "image/freeimage-cut";
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static int_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
 }
@@ -107,7 +107,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		CUTHEADER header;
 		FIBITMAP *dib;
 
-		BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+		int_bool header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
 		// read the cut header
 
@@ -136,7 +136,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		for (int j = 0; j < 256; ++j) {
 			palette[j].rgbBlue = palette[j].rgbGreen = palette[j].rgbRed = (BYTE)j;
 		}
-		
+
 		if(header_only) {
 			// header only mode
 			return dib;
@@ -180,7 +180,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			i += count;
 		}
 
-		return dib;		
+		return dib;
 	}
 
 	return NULL;

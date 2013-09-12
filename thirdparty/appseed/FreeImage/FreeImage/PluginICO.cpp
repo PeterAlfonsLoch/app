@@ -65,7 +65,7 @@ typedef struct tagICONDIRECTORYENTRY {
 
 /**  How wide, in bytes, would this many bits be, DWORD aligned ?
 */
-static int 
+static int
 WidthBytes(int bits) {
 	return ((((bits) + 31)>>5)<<2);
 }
@@ -73,7 +73,7 @@ WidthBytes(int bits) {
 /** Calculates the size of a single icon image
 @return Returns the size for that image
 */
-static DWORD 
+static DWORD
 CalculateImageSize(FIBITMAP* icon_dib) {
 	DWORD dwNumBytes = 0;
 
@@ -93,12 +93,12 @@ CalculateImageSize(FIBITMAP* icon_dib) {
 /** Calculates the file offset for an icon image
 @return Returns the file offset for that image
 */
-static DWORD 
+static DWORD
 CalculateImageOffset(raw_array<FIBITMAP*>& vPages, int nIndex ) {
 	DWORD	dwSize;
 
     // calculate the ICO header size
-    dwSize = sizeof(ICONHEADER); 
+    dwSize = sizeof(ICONHEADER);
     // add the ICONDIRENTRY's
     dwSize += (DWORD)( vPages.size() * sizeof(ICONDIRENTRY) );
     // add the sizes of the previous images
@@ -181,7 +181,7 @@ MimeType() {
 	return "image/x-icon";
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	ICONHEADER icon_header;
 
@@ -193,7 +193,7 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return ((icon_header.idReserved == 0) && (icon_header.idType == 1) && (icon_header.idCount > 0));
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return (
 			(depth == 1) ||
@@ -205,12 +205,12 @@ SupportsExportDepth(int depth) {
 		);
 }
 
-static BOOL DLL_CALLCONV 
+static int_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return (type == FIT_BITMAP) ? TRUE : FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
 }
@@ -218,7 +218,7 @@ SupportsNoPixels() {
 // ----------------------------------------------------------
 
 static void * DLL_CALLCONV
-Open(FreeImageIO *io, fi_handle handle, BOOL read) {
+Open(FreeImageIO *io, fi_handle handle, int_bool read) {
 	// Allocate memory for the header structure
 	ICONHEADER *lpIH = (ICONHEADER*)malloc(sizeof(ICONHEADER));
 	if(lpIH == NULL) {
@@ -275,7 +275,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		page = 0;
 	}
 
-	BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+	int_bool header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
 	if (handle != NULL) {
 		FIBITMAP *dib = NULL;
@@ -342,7 +342,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					}
 #endif
 				}
-				
+
 				if(header_only) {
 					// header only mode
 					return dib;
@@ -425,7 +425,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	return NULL;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
 	int k;
 
@@ -616,13 +616,13 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 						for(int x = 0; x < width; x++) {
 							if(bits[x].rgbReserved != 0xFF) {
 								// set any transparent color to full transparency
-								and_bits[x >> 3] |= (0x80 >> (x & 0x7)); 
+								and_bits[x >> 3] |= (0x80 >> (x & 0x7));
 							}
 						}
 
 						and_bits += width_and;
 					}
-				} 
+				}
 				else if(bit_count <= 8) {
 					// create the AND mask from the transparency table
 
@@ -644,7 +644,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 									BYTE index = (bits[x >> 3] & (0x80 >> (x & 0x07))) != 0;
 									if(trns[index] != 0xFF) {
 										// set any transparent color to full transparency
-										and_bits[x >> 3] |= (0x80 >> (x & 0x7)); 
+										and_bits[x >> 3] |= (0x80 >> (x & 0x7));
 									}
 								}
 								and_bits += width_and;
@@ -662,7 +662,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 									BYTE index = (bits[x >> 1] & (0x0F << shift)) >> shift;
 									if(trns[index] != 0xFF) {
 										// set any transparent color to full transparency
-										and_bits[x >> 3] |= (0x80 >> (x & 0x7)); 
+										and_bits[x >> 3] |= (0x80 >> (x & 0x7));
 									}
 								}
 								and_bits += width_and;
@@ -679,7 +679,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 									BYTE index = bits[x];
 									if(trns[index] != 0xFF) {
 										// set any transparent color to full transparency
-										and_bits[x >> 3] |= (0x80 >> (x & 0x7)); 
+										and_bits[x >> 3] |= (0x80 >> (x & 0x7));
 									}
 								}
 								and_bits += width_and;

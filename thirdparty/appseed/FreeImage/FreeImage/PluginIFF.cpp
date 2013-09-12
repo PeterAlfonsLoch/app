@@ -156,7 +156,7 @@ MimeType() {
 	return "image/freeimage-iff";
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	DWORD type = 0;
 
@@ -168,7 +168,7 @@ Validate(FreeImageIO *io, fi_handle handle) {
 
 	if(type != ID_FORM)
 		return FALSE;
-		
+
 	// skip 4 bytes
 	io->read_proc(&type, 4, 1, handle);
 
@@ -183,12 +183,12 @@ Validate(FreeImageIO *io, fi_handle handle) {
 }
 
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static int_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return FALSE;
 }
@@ -277,7 +277,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 				RGBQUAD *pal = FreeImage_GetPalette(dib);
 
-				for (unsigned k = 0; k < ch_size / 3; k++) {					
+				for (unsigned k = 0; k < ch_size / 3; k++) {
 					io->read_proc(&pal[k].rgbRed, 1, 1, handle );
 					io->read_proc(&pal[k].rgbGreen, 1, 1, handle );
 					io->read_proc(&pal[k].rgbBlue, 1, 1, handle );
@@ -290,7 +290,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					// NON INTERLACED (LBM)
 
 					unsigned line = FreeImage_GetLine(dib) + 1 & ~1;
-					
+
 					for (unsigned i = 0; i < FreeImage_GetHeight(dib); i++) {
 						BYTE *bits = FreeImage_GetScanLine(dib, FreeImage_GetHeight(dib) - i - 1);
 
@@ -351,13 +351,13 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 								// read the next source byte into t
 								signed char t = 0;
 								io->read_proc(&t, 1, 1, handle);
-								
+
 								if (t >= 0) {
 									// t = [0..127] => copy the next t+1 bytes literally
 									unsigned size_to_read = t + 1;
 
 									if((size_to_read + x) > src_size) {
-										// sanity check for buffer overruns 
+										// sanity check for buffer overruns
 										size_to_read = src_size - x;
 										io->read_proc(src + x, size_to_read, 1, handle);
 										x += (t + 1);
@@ -372,7 +372,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 									unsigned size_to_copy = (unsigned)(-(int)t + 1);
 
 									if((size_to_copy + x) > src_size) {
-										// sanity check for buffer overruns 
+										// sanity check for buffer overruns
 										size_to_copy = src_size - x;
 										memset(src + x, b, size_to_copy);
 										x += (unsigned)(-(int)t + 1);

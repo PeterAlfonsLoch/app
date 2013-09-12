@@ -1,6 +1,6 @@
 #pragma once
 
-DWORD GetTickCount();
+DWORD get_tick_count();
 
 
 

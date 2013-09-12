@@ -51,6 +51,9 @@
 #include "base/datetime/datetime_c.h"
 
 
+#include "base/os/os.h"
+
+
 #define GetAValue(rgb)      (LOBYTE((rgb)>>24))
 #define ARGB(a, r, g, b)          ((COLORREF)(((byte)(r)|((uint16_t)((byte)(g))<<8))|(((uint32_t)(byte)(b))<<16)|(((uint32_t)(byte)(a))<<24)))
 

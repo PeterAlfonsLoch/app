@@ -19,7 +19,7 @@
  * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
  * PERFORMANCE OF THIS SOFTWARE.
  */
-
+#include "base/base/base.h"
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -325,11 +325,11 @@ rasterize_edges_8 (pixman_image_t *image,
                     ADD_SATURATE_8 (ap + fill_start, fill_size * N_X_FRAC (8),
                                     fill_end - fill_start);
 		}
-		
+
                 fill_start = fill_end = -1;
                 fill_size = 0;
 	    }
-	    
+
             line += stride;
 	}
     }
@@ -375,7 +375,7 @@ pixman_rasterize_edges (pixman_image_t *image,
 {
     return_if_fail (image->type == BITS);
     return_if_fail (PIXMAN_FORMAT_TYPE (image->bits.format) == PIXMAN_TYPE_A);
-    
+
     if (image->bits.read_func || image->bits.write_func)
 	pixman_rasterize_edges_accessors (image, l, r, t, b);
     else

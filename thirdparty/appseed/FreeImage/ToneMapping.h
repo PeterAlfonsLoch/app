@@ -26,12 +26,12 @@
 extern "C" {
 #endif
 
-BOOL ConvertInPlaceRGBFToYxy(FIBITMAP *dib);
-BOOL ConvertInPlaceYxyToRGBF(FIBITMAP *dib);
+int_bool ConvertInPlaceRGBFToYxy(FIBITMAP *dib);
+int_bool ConvertInPlaceYxyToRGBF(FIBITMAP *dib);
 FIBITMAP* ConvertRGBFToY(FIBITMAP *src);
 
-BOOL LuminanceFromYxy(FIBITMAP *dib, float *maxLum, float *minLum, float *worldLum);
-BOOL LuminanceFromY(FIBITMAP *dib, float *maxLum, float *minLum, float *Lav, float *Llav);
+int_bool LuminanceFromYxy(FIBITMAP *dib, float *maxLum, float *minLum, float *worldLum);
+int_bool LuminanceFromY(FIBITMAP *dib, float *maxLum, float *minLum, float *Lav, float *Llav);
 
 void NormalizeY(FIBITMAP *Y, float minPrct, float maxPrct);
 

@@ -29,6 +29,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+ #include "base/base/base.h"
+
 #ifdef __SSE__
 #include <xmmintrin.h>
 #endif
@@ -73,8 +75,8 @@ void mct_encode(
 /* </summary> */
 void mct_decode(
 		int* restrict c0,
-		int* restrict c1, 
-		int* restrict c2, 
+		int* restrict c1,
+		int* restrict c2,
 		int n)
 {
 	int i;

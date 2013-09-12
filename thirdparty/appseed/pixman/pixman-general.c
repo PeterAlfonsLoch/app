@@ -25,6 +25,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
  * SOFTWARE.
  */
+ #include "base/base/base.h"
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -156,7 +157,7 @@ general_composite_rect  (pixman_implementation_t *imp,
 	memset (mask_buffer, 0, width * Bpp);
 	memset (dest_buffer, 0, width * Bpp);
     }
-    
+
     /* src iter */
     src_iter_flags = width_flag | op_flags[op].src | ITER_SRC;
 

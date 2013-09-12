@@ -23,6 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
  * SOFTWARE.
  */
+#include "base/base/base.h"
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -742,23 +743,23 @@ fetch_scanline_yuy2 (pixman_image_t *image,
 {
     const uint32_t *bits = image->bits.bits + image->bits.rowstride * line;
     int i;
-    
+
     for (i = 0; i < width; i++)
     {
 	int16_t y, u, v;
 	int32_t r, g, b;
-	
+
 	y = ((uint8_t *) bits)[(x + i) << 1] - 16;
 	u = ((uint8_t *) bits)[(((x + i) << 1) & - 4) + 1] - 128;
 	v = ((uint8_t *) bits)[(((x + i) << 1) & - 4) + 3] - 128;
-	
+
 	/* R = 1.164(Y - 16) + 1.596(V - 128) */
 	r = 0x012b27 * y + 0x019a2e * v;
 	/* G = 1.164(Y - 16) - 0.813(V - 128) - 0.391(U - 128) */
 	g = 0x012b27 * y - 0x00d0f2 * v - 0x00647e * u;
 	/* B = 1.164(Y - 16) + 2.018(U - 128) */
 	b = 0x012b27 * y + 0x0206a2 * u;
-	
+
 	*buffer++ = 0xff000000 |
 	    (r >= 0 ? r < 0x1000000 ? r         & 0xff0000 : 0xff0000 : 0) |
 	    (g >= 0 ? g < 0x1000000 ? (g >> 8)  & 0x00ff00 : 0x00ff00 : 0) |
@@ -779,7 +780,7 @@ fetch_scanline_yv12 (pixman_image_t *image,
     uint8_t *u_line = YV12_U (line);
     uint8_t *v_line = YV12_V (line);
     int i;
-    
+
     for (i = 0; i < width; i++)
     {
 	int16_t y, u, v;
@@ -911,23 +912,23 @@ fetch_pixel_yuy2 (bits_image_t *image,
 		  int           line)
 {
     const uint32_t *bits = image->bits + image->rowstride * line;
-    
+
     int16_t y, u, v;
     int32_t r, g, b;
-    
+
     y = ((uint8_t *) bits)[offset << 1] - 16;
     u = ((uint8_t *) bits)[((offset << 1) & - 4) + 1] - 128;
     v = ((uint8_t *) bits)[((offset << 1) & - 4) + 3] - 128;
-    
+
     /* R = 1.164(Y - 16) + 1.596(V - 128) */
     r = 0x012b27 * y + 0x019a2e * v;
-    
+
     /* G = 1.164(Y - 16) - 0.813(V - 128) - 0.391(U - 128) */
     g = 0x012b27 * y - 0x00d0f2 * v - 0x00647e * u;
-    
+
     /* B = 1.164(Y - 16) + 2.018(U - 128) */
     b = 0x012b27 * y + 0x0206a2 * u;
-    
+
     return 0xff000000 |
 	(r >= 0 ? r < 0x1000000 ? r         & 0xff0000 : 0xff0000 : 0) |
 	(g >= 0 ? g < 0x1000000 ? (g >> 8)  & 0x00ff00 : 0x00ff00 : 0) |
@@ -944,16 +945,16 @@ fetch_pixel_yv12 (bits_image_t *image,
     int16_t u = YV12_U (line)[offset >> 1] - 128;
     int16_t v = YV12_V (line)[offset >> 1] - 128;
     int32_t r, g, b;
-    
+
     /* R = 1.164(Y - 16) + 1.596(V - 128) */
     r = 0x012b27 * y + 0x019a2e * v;
-    
+
     /* G = 1.164(Y - 16) - 0.813(V - 128) - 0.391(U - 128) */
     g = 0x012b27 * y - 0x00d0f2 * v - 0x00647e * u;
-    
+
     /* B = 1.164(Y - 16) + 2.018(U - 128) */
     b = 0x012b27 * y + 0x0206a2 * u;
-    
+
     return 0xff000000 |
 	(r >= 0 ? r < 0x1000000 ? r         & 0xff0000 : 0xff0000 : 0) |
 	(g >= 0 ? g < 0x1000000 ? (g >> 8)  & 0x00ff00 : 0x00ff00 : 0) |
@@ -1148,7 +1149,7 @@ fetch_scanline_a8r8g8b8_32_sRGB (pixman_image_t *image,
     const uint32_t *pixel = (uint32_t *)bits + x;
     const uint32_t *end = pixel + width;
     uint32_t tmp;
-    
+
     while (pixel < end)
     {
 	uint8_t a, r, g, b;
@@ -1201,7 +1202,7 @@ store_scanline_a8r8g8b8_32_sRGB (bits_image_t   *image,
     uint32_t *pixel = bits + x;
     uint64_t tmp;
     int i;
-    
+
     for (i = 0; i < width; ++i)
     {
 	uint8_t a, r, g, b;
@@ -1216,7 +1217,7 @@ store_scanline_a8r8g8b8_32_sRGB (bits_image_t   *image,
 	r = to_srgb (r * (1/255.0f));
 	g = to_srgb (g * (1/255.0f));
 	b = to_srgb (b * (1/255.0f));
-	
+
 	WRITE (image, pixel++, a | (r << 16) | (g << 8) | (b << 0));
     }
 }
@@ -1298,11 +1299,11 @@ static const format_info_t accessors[] =
 /* 24bpp formats */
     FORMAT_INFO (r8g8b8),
     FORMAT_INFO (b8g8r8),
-    
+
 /* 16bpp formats */
     FORMAT_INFO (r5g6b5),
     FORMAT_INFO (b5g6r5),
-    
+
     FORMAT_INFO (a1r5g5b5),
     FORMAT_INFO (x1r5g5b5),
     FORMAT_INFO (a1b5g5r5),
@@ -1311,47 +1312,47 @@ static const format_info_t accessors[] =
     FORMAT_INFO (x4r4g4b4),
     FORMAT_INFO (a4b4g4r4),
     FORMAT_INFO (x4b4g4r4),
-    
+
 /* 8bpp formats */
     FORMAT_INFO (a8),
     FORMAT_INFO (r3g3b2),
     FORMAT_INFO (b2g3r3),
     FORMAT_INFO (a2r2g2b2),
     FORMAT_INFO (a2b2g2r2),
-    
+
     FORMAT_INFO (c8),
-    
+
     FORMAT_INFO (g8),
-    
+
 #define fetch_scanline_x4c4 fetch_scanline_c8
 #define fetch_pixel_x4c4 fetch_pixel_c8
 #define store_scanline_x4c4 store_scanline_c8
     FORMAT_INFO (x4c4),
-    
+
 #define fetch_scanline_x4g4 fetch_scanline_g8
 #define fetch_pixel_x4g4 fetch_pixel_g8
 #define store_scanline_x4g4 store_scanline_g8
     FORMAT_INFO (x4g4),
-    
+
     FORMAT_INFO (x4a4),
-    
+
 /* 4bpp formats */
     FORMAT_INFO (a4),
     FORMAT_INFO (r1g2b1),
     FORMAT_INFO (b1g2r1),
     FORMAT_INFO (a1r1g1b1),
     FORMAT_INFO (a1b1g1r1),
-    
+
     FORMAT_INFO (c4),
-    
+
     FORMAT_INFO (g4),
-    
+
 /* 1bpp formats */
     FORMAT_INFO (a1),
     FORMAT_INFO (g1),
-    
+
 /* Wide formats */
-    
+
     { PIXMAN_a2r10g10b10,
       NULL, fetch_scanline_a2r10g10b10_float,
       fetch_pixel_generic_lossy_32, fetch_pixel_a2r10g10b10_float,
@@ -1382,7 +1383,7 @@ static const format_info_t accessors[] =
       fetch_scanline_yv12, fetch_scanline_generic_float,
       fetch_pixel_yv12, fetch_pixel_generic_float,
       NULL, NULL },
-    
+
     { PIXMAN_null },
 };
 
@@ -1390,7 +1391,7 @@ static void
 setup_accessors (bits_image_t *image)
 {
     const format_info_t *info = accessors;
-    
+
     while (info->format != PIXMAN_null)
     {
 	if (info->format == image->format)
@@ -1401,10 +1402,10 @@ setup_accessors (bits_image_t *image)
 	    image->fetch_pixel_float = info->fetch_pixel_float;
 	    image->store_scanline_32 = info->store_scanline_32;
 	    image->store_scanline_float = info->store_scanline_float;
-	    
+
 	    return;
 	}
-	
+
 	info++;
     }
 }

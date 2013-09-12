@@ -8,7 +8,7 @@ public:
 
    simple_event                     m_event;
    simple_mutex                     m_mutex;
-   simple_array < MESSAGE * >           m_msgptra;
+   ::lemon_array < MESSAGE * >           m_msgptra;
 
 
    WINBOOL GetMessage(MESSAGE * pmsg);

@@ -43,7 +43,7 @@
 
 
 struct GIFinfo {
-	BOOL read;
+	int_bool read;
 	//only really used when reading
 	size_t global_color_table_offset;
 	int global_color_table_size;
@@ -139,10 +139,10 @@ static int g_GifInterlaceIncrement[GIF_INTERLACE_PASSES] = {8, 8, 4, 2};
 // Helpers Functions
 // ==========================================================
 
-static BOOL
+static int_bool
 FreeImage_SetMetadataEx(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, WORD id, FREE_IMAGE_MDTYPE type, DWORD count, DWORD length, const void *value)
 {
-	BOOL bResult = FALSE;
+	int_bool bResult = FALSE;
 	FITAG *tag = FreeImage_CreateTag();
 	if(tag) {
 		FreeImage_SetTagKey(tag, key);
@@ -164,7 +164,7 @@ FreeImage_SetMetadataEx(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key
 	return bResult;
 }
 
-static BOOL
+static int_bool
 FreeImage_GetMetadataEx(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, FREE_IMAGE_MDTYPE type, FITAG **tag)
 {
 	if( FreeImage_GetMetadata(model, dib, key, tag) ) {
@@ -489,14 +489,14 @@ MimeType() {
 	return "image/gif";
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	char buf[6];
 	if( io->read_proc(buf, 6, 1, handle) < 1 ) {
 		return FALSE;
 	}
 
-	BOOL bResult = FALSE;
+	int_bool bResult = FALSE;
 	if( !strncmp(buf, "GIF", 3) ) {
 		if( buf[3] >= '0' && buf[3] <= '9' && buf[4] >= '0' && buf[4] <= '9' && buf[5] >= 'a' && buf[5] <= 'z' ) {
 			bResult = TRUE;
@@ -508,14 +508,14 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return bResult;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return	(depth == 1) ||
 			(depth == 4) ||
 			(depth == 8);
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return (type == FIT_BITMAP) ? TRUE : FALSE;
 }
@@ -523,7 +523,7 @@ SupportsExportType(FREE_IMAGE_TYPE type) {
 // ----------------------------------------------------------
 
 static void *DLL_CALLCONV
-Open(FreeImageIO *io, fi_handle handle, BOOL read) {
+Open(FreeImageIO *io, fi_handle handle, int_bool read) {
 	GIFinfo *info = new GIFinfo;
 	if( info == NULL ) {
 		return NULL;
@@ -1068,7 +1068,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	return dib;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
 	if( data == NULL ) {
 		return FALSE;

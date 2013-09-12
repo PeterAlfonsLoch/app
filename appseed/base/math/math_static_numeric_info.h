@@ -24,3 +24,13 @@ public:
 
 
 
+template <>
+class CLASS_DECL_c static_numeric_info < long unsigned int >
+{
+public:
+
+   static const bool is_signed = false;
+   static const bool is_integer = true;
+
+}; // numeric_info
+

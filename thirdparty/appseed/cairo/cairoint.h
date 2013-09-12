@@ -45,7 +45,7 @@
 
 #ifndef _CAIROINT_H_
 #define _CAIROINT_H_
-
+#undef _BSD_SOURCE
 #include "base/base/base.h"
 
 #if HAVE_CONFIG_H

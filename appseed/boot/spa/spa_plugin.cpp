@@ -14,7 +14,7 @@
 
 
 #ifdef LINUX
-#include "ca/linux/ca_os_cross_win_gdi_internal.h"
+#include "boot/linux/ca_os_cross_win_gdi_internal.h"
 #endif
 
 

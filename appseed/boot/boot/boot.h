@@ -107,7 +107,7 @@ class application;
 
 #include "boot_os.h"
 
-#include "boot/cross/cross.h"
+//#include "boot/cross/cross.h"
 
 
 
@@ -172,7 +172,7 @@ CLASS_DECL_ca WINBOOL IsWindow(oswindow oswindow);
 #endif
 
 
-#include "boot_user.h"
+//#include "boot_user.h"
 
 #include "zlib/zlib.h"
 

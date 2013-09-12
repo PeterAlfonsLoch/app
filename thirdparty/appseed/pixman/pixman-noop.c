@@ -21,6 +21,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+ #include "base/base/base.h"
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -50,7 +51,7 @@ noop_get_scanline (pixman_iter_t *iter, const uint32_t *mask)
 static void
 noop_init_solid_narrow (pixman_iter_t *iter,
 			const pixman_iter_info_t *info)
-{ 
+{
     pixman_image_t *image = iter->image;
     uint32_t *buffer = iter->buffer;
     uint32_t *end = buffer + iter->width;
@@ -154,7 +155,7 @@ _pixman_implementation_create_noop (pixman_implementation_t *fallback)
 {
     pixman_implementation_t *imp =
 	_pixman_implementation_create (fallback, noop_fast_paths);
- 
+
     imp->iter_info = noop_iters;
 
     return imp;

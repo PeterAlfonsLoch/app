@@ -1,7 +1,7 @@
 // ==========================================================
 // RAW camera image loader
 //
-// Design and implementation by 
+// Design and implementation by
 // - Hervé Drolon (drolon@infonie.fr)
 //
 // This file is part of FreeImage 3
@@ -40,7 +40,7 @@ static int s_format_id;
 // ----------------------------------------------------------
 
 class LibRaw_freeimage_datastream : public LibRaw_abstract_datastream {
-private: 
+private:
 	FreeImageIO *_io;
 	fi_handle _handle;
 	long _eof;
@@ -54,32 +54,32 @@ public:
 	}
 	~LibRaw_freeimage_datastream() {
 	}
-    virtual int valid() { 
+    virtual int valid() {
 		return (_io && _handle);
 	}
-    virtual int read(void *buffer, size_t size, size_t count) { 
+    virtual int read(void *buffer, size_t size, size_t count) {
 		if(substream) return substream->read(buffer, size, count);
 		return _io->read_proc(buffer, (unsigned)size, (unsigned)count, _handle);
-	}	
-    virtual int eof() { 
+	}
+    virtual int eof() {
         if(substream) return substream->eof();
         return (_io->tell_proc(_handle) >= _eof);
     }
-    virtual int seek(INT64 offset, int origin) { 
+    virtual int seek(INT64 offset, int origin) {
         if(substream) return substream->seek(offset, origin);
 		return _io->seek_proc(_handle, (long)offset, origin);
-	} 
-    virtual INT64 tell() { 
+	}
+    virtual INT64 tell() {
 		if(substream) return substream->tell();
         return _io->tell_proc(_handle);
     }
-    virtual int get_char() { 
+    virtual int get_char() {
 		int c = 0;
 		if(substream) return substream->get_char();
 		if(!_io->read_proc(&c, 1, 1, _handle)) return -1;
 		return c;
    }
-	virtual char* gets(char *buffer, int length) { 
+	virtual char* gets(char *buffer, int length) {
 		if (substream) return substream->gets(buffer, length);
 		memset(buffer, 0, length);
 		for(int i = 0; i < length; i++) {
@@ -94,7 +94,7 @@ public:
 		string buffer;
 		char element = 0;
 		bool bDone = false;
-		if(substream) return substream->scanf_one(fmt,val);				
+		if(substream) return substream->scanf_one(fmt,val);
 		do {
 			if(_io->read_proc(&element, 1, 1, _handle) == 1) {
 				switch(element) {
@@ -124,7 +124,7 @@ Convert a processed raw data array to a FIBITMAP
 @param image Processed raw image
 @return Returns the converted dib if successfull, returns NULL otherwise
 */
-static FIBITMAP * 
+static FIBITMAP *
 libraw_ConvertToDib(libraw_processed_image_t *image) {
 	FIBITMAP *dib = NULL;
 	try {
@@ -174,17 +174,17 @@ libraw_ConvertToDib(libraw_processed_image_t *image) {
 	return dib;
 }
 
-/** 
-Get the embedded JPEG preview image from RAW picture with included Exif Data. 
+/**
+Get the embedded JPEG preview image from RAW picture with included Exif Data.
 @param RawProcessor Libraw handle
 @param flags Loading JPEG flags
 @return Returns the loaded dib if successfull, returns NULL otherwise
 */
-static FIBITMAP * 
+static FIBITMAP *
 libraw_LoadEmbeddedPreview(LibRaw& RawProcessor, int flags) {
 	FIBITMAP *dib = NULL;
 	libraw_processed_image_t *thumb_image = NULL;
-	
+
 	try {
 		// unpack data
 		if(RawProcessor.unpack_thumb() != LIBRAW_SUCCESS) {
@@ -239,7 +239,7 @@ Load raw data and convert to FIBITMAP
 @param bitspersample Output bitdepth (8- or 16-bit)
 @return Returns the loaded dib if successfull, returns NULL otherwise
 */
-static FIBITMAP * 
+static FIBITMAP *
 libraw_LoadRawData(LibRaw& RawProcessor, int bitspersample) {
 	FIBITMAP *dib = NULL;
 	libraw_processed_image_t *processed_image = NULL;
@@ -247,7 +247,7 @@ libraw_LoadRawData(LibRaw& RawProcessor, int bitspersample) {
 	try {
 		// set decoding parameters
 		// -----------------------
-		
+
 		// (-6) 16-bit or 8-bit
 		RawProcessor.imgdata.params.output_bps = bitspersample;
 		// (-g power toe_slope)
@@ -300,7 +300,7 @@ libraw_LoadRawData(LibRaw& RawProcessor, int bitspersample) {
 
 		// convert processed data to output dib
 		dib = libraw_ConvertToDib(processed_image);
-	
+
 		// clean-up and return
 		RawProcessor.dcraw_clear_mem(processed_image);
 
@@ -334,11 +334,11 @@ Description() {
 static const char * DLL_CALLCONV
 Extension() {
 	/**
-	Below are known RAW file extensions that you can check using FreeImage_GetFIFFromFormat. 
-	If a file extension is not listed, that doesn't mean that you cannot load it. 
-	Using FreeImage_GetFileType is the best way to know if a RAW file format is supported. 
+	Below are known RAW file extensions that you can check using FreeImage_GetFIFFromFormat.
+	If a file extension is not listed, that doesn't mean that you cannot load it.
+	Using FreeImage_GetFileType is the best way to know if a RAW file format is supported.
 	*/
-	static const char *raw_extensions = 
+	static const char *raw_extensions =
 		"3fr,"   // Hasselblad Digital Camera Raw Image Format.
 		"arw,"   // Sony Digital Camera Raw Image Format for Alpha devices.
 		"bay,"   // Casio Digital Camera Raw File Format.
@@ -346,13 +346,13 @@ Extension() {
 		"cap,"   // Phase One Digital Camera Raw Image Format.
 		"cine,"  // Phantom Software Raw Image File.
 		"cr2,"   // Canon Digital Camera RAW Image Format version 2.0. These images are based on the TIFF image standard.
-		"crw,"   // Canon Digital Camera RAW Image Format version 1.0. 
+		"crw,"   // Canon Digital Camera RAW Image Format version 1.0.
 		"cs1,"   // Sinar Capture Shop Raw Image File.
 		"dc2,"   // Kodak DC25 Digital Camera File.
 		"dcr,"   // Kodak Digital Camera Raw Image Format for these models: Kodak DSC Pro SLR/c, Kodak DSC Pro SLR/n, Kodak DSC Pro 14N, Kodak DSC PRO 14nx.
 		"drf,"   // Kodak Digital Camera Raw Image Format.
 		"dsc,"   // Kodak Digital Camera Raw Image Format.
-		"dng,"   // Adobe Digital Negative: DNG is publicly available archival format for the raw files generated by digital cameras. By addressing the lack of an open standard for the raw files created by individual camera models, DNG helps ensure that photographers will be able to access their files in the future. 
+		"dng,"   // Adobe Digital Negative: DNG is publicly available archival format for the raw files generated by digital cameras. By addressing the lack of an open standard for the raw files created by individual camera models, DNG helps ensure that photographers will be able to access their files in the future.
 		"erf,"   // Epson Digital Camera Raw Image Format.
 		"fff,"   // Imacon Digital Camera Raw Image Format.
 		"ia,"    // Sinar Raw Image File.
@@ -394,11 +394,11 @@ MimeType() {
 	return "image/x-raw";
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	LibRaw RawProcessor;
-	BOOL bSuccess = TRUE;
-	
+	int_bool bSuccess = TRUE;
+
 	// wrap the input datastream
 	LibRaw_freeimage_datastream datastream(io, handle);
 
@@ -413,22 +413,22 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return bSuccess;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static int_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsICCProfiles() {
 	return TRUE;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
 }
@@ -440,7 +440,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	FIBITMAP *dib = NULL;
 	LibRaw RawProcessor;
 
-	BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+	int_bool header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
 	try {
 		// wrap the input datastream
@@ -470,11 +470,11 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				// no JPEG preview: try to load as 8-bit/sample (i.e. RGB 24-bit)
 				dib = libraw_LoadRawData(RawProcessor, 8);
 			}
-		} 
+		}
 		else if((flags & RAW_DISPLAY) == RAW_DISPLAY) {
 			// load raw data as 8-bit/sample (i.e. RGB 24-bit)
 			dib = libraw_LoadRawData(RawProcessor, 8);
-		} 
+		}
 		else {
 			// default: load raw data as linear 16-bit/sample (i.e. RGB 48-bit)
 			dib = libraw_LoadRawData(RawProcessor, 16);

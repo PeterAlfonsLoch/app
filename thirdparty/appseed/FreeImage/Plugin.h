@@ -20,9 +20,9 @@
 // Use at your own risk!
 // ==========================================================
 
-#ifdef _MSC_VER 
+#ifdef _MSC_VER
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
-#endif 
+#endif
 
 #ifndef PLUGIN_H
 #define PLUGIN_H
@@ -45,7 +45,7 @@ FI_STRUCT (PluginNode) {
 	/** The actual plugin, holding the function pointers */
 	Plugin *m_plugin;
 	/** Enable/Disable switch */
-	BOOL m_enabled;
+	int_bool m_enabled;
 
 	/** Unique format string for the plugin */
 	const char *m_format;
@@ -72,7 +72,7 @@ public :
 	PluginNode *FindNodeFromFIF(int node_id);
 
 	int Size() const;
-	BOOL IsEmpty() const;
+	int_bool IsEmpty() const;
 
 private :
 	int_map < PluginNode * > m_plugin_map;
@@ -96,8 +96,8 @@ int FreeImage_stricmp(const char *s1, const char *s2);
 // ==========================================================
 
 extern "C" {
-	BOOL DLL_CALLCONV FreeImage_Validate(FREE_IMAGE_FORMAT fif, FreeImageIO *io, fi_handle handle);
-    void * DLL_CALLCONV FreeImage_Open(PluginNode *node, FreeImageIO *io, fi_handle handle, BOOL open_for_reading);
+	int_bool DLL_CALLCONV FreeImage_Validate(FREE_IMAGE_FORMAT fif, FreeImageIO *io, fi_handle handle);
+    void * DLL_CALLCONV FreeImage_Open(PluginNode *node, FreeImageIO *io, fi_handle handle, int_bool open_for_reading);
     void DLL_CALLCONV FreeImage_Close(PluginNode *node, FreeImageIO *io, fi_handle handle, void *data); // plugin.cpp
     PluginList * DLL_CALLCONV FreeImage_GetPluginList(); // plugin.cpp
 }

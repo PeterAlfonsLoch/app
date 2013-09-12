@@ -48,17 +48,17 @@ it under the terms of the one of three licenses as you choose:
 class LibRaw_byte_buffer
 {
   public:
-    LibRaw_byte_buffer(unsigned sz=0) 
-        { 
+    LibRaw_byte_buffer(unsigned sz=0)
+        {
             buf=0; size=sz; offt=0; do_free=0; next_ff=0;
             if(size)
-                { 
+                {
                     buf = (unsigned char*)malloc(size); do_free=1;
                 }
         }
-    
+
     void set_buffer(void *bb, unsigned int sz) { buf = (unsigned char*)bb; size = sz; offt=0; do_free=0;}
-    
+
     virtual ~LibRaw_byte_buffer() { if(do_free) free(buf);}
 
     int get_byte() { if(offt>=size) return EOF; return buf[offt++];}
@@ -106,7 +106,7 @@ class LibRaw_bit_buffer
             int m = vbits >> 3;
             switch(m)
                 {
-                case 2:	
+                case 2:
                     c1 = buf->get_ljpeg_byte();
                     bitbuf = (bitbuf <<8) | (c1);
                     vbits+=8;
@@ -115,7 +115,7 @@ class LibRaw_bit_buffer
                     c1 = buf->get_ljpeg_byte();
                     c2 = buf->get_ljpeg_byte();
                     bitbuf = (bitbuf <<16) | (c1<<8) | c2;
-                    vbits+=16;		
+                    vbits+=16;
                     break;
                 case 0:
                     c1 = buf->get_ljpeg_byte();
@@ -225,8 +225,8 @@ class LibRaw_abstract_datastream
 class LibRaw_file_datastream: public LibRaw_abstract_datastream
 {
   protected:
-    smart_pointer<::file::stream_buffer> f; /* will close() automatically through dtor */
-    smart_pointer<::file::stream_buffer> saved_f; /* when *f is a subfile, *saved_f is the master file */
+    smart_pointer < ::file::stream_buffer > f; /* will close() automatically through dtor */
+    smart_pointer < ::file::stream_buffer > saved_f; /* when *f is a subfile, *saved_f is the master file */
     const char *filename;
 
   public:
@@ -235,7 +235,7 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
       :filename(fname)
     {
         if (filename) {
-            smart_pointer <::file::binary_buffer > buf;
+            smart_pointer < ::file::binary_buffer > buf;
             buf.create(get_thread_app()->allocer());
             buf->open(filename, ::file::mode_read | ::file::type_binary);
             if (buf->IsOpened())
@@ -258,11 +258,11 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
 
     virtual int eof() { LR_STREAM_CHK(); return f->sgetc() == EOF; }
 
-    virtual int seek(INT64 o, int whence) 
-    { 
-        LR_STREAM_CHK(); 
+    virtual int seek(INT64 o, int whence)
+    {
+        LR_STREAM_CHK();
         file::e_seek dir;
-        switch (whence) 
+        switch (whence)
             {
         case SEEK_SET: dir = ::file::seek_begin; break;
         case SEEK_CUR: dir = ::file::seek_current; break;
@@ -275,9 +275,9 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
     virtual INT64 tell()     { LR_STREAM_CHK(); return f->get_position();  }
 
     virtual int get_char() { LR_STREAM_CHK();  return f->sbumpc();  }
-    virtual char* gets(char *psz, int sz) 
-    { 
-        LR_STREAM_CHK(); 
+    virtual char* gets(char *psz, int sz)
+    {
+        LR_STREAM_CHK();
         string str;
         if(!f->read_string(str))
            return NULL;
@@ -285,9 +285,9 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
         return psz;
     }
 
-    virtual int scanf_one(const char *fmt, void*val) 
-    { 
-        LR_STREAM_CHK(); 
+    virtual int scanf_one(const char *fmt, void*val)
+    {
+        LR_STREAM_CHK();
 
         file::byte_input_stream is(f.m_p);
 
@@ -325,8 +325,8 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
         LR_STREAM_CHK();
         if (saved_f.is_set()) return EBUSY;
         saved_f = f;
-        smart_pointer<::file::binary_buffer> buf(new ::file::binary_buffer());
-        
+        smart_pointer < ::file::binary_buffer > buf(new ::file::binary_buffer());
+
         buf->open(fn,::file::mode_read | ::file::type_binary);
         if (!buf->IsOpened()) {
             f = saved_f;
@@ -337,14 +337,14 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
 
         return 0;
     }
-    
+
     virtual void subfile_close()    { if (!saved_f.is_set()) return; f = saved_f;   }
     virtual int tempbuffer_open()
     {
         LR_STREAM_CHK();
         if (saved_f.is_set()) return EBUSY;
         saved_f = f;
-        
+
         f.create(get_thread_app()->allocer());
         if (!f.is_set()) {
             f = saved_f;
@@ -352,7 +352,7 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
         }
         return 0;
     }
-    
+
     virtual void	tempbuffer_close()
     {
         if (!saved_f.is_set()) return;
@@ -380,12 +380,12 @@ class LibRaw_buffer_datastream : public LibRaw_abstract_datastream
 
 
     virtual int read(void * ptr,size_t sz, size_t nmemb)
-    { 
+    {
         if(substream) return substream->read(ptr,sz,nmemb);
         size_t to_read = sz*nmemb;
         if(to_read > streamsize - streampos)
             to_read = streamsize-streampos;
-        if(to_read<1) 
+        if(to_read<1)
             return 0;
         memmove(ptr,buf+streampos,to_read);
         streampos+=to_read;
@@ -394,13 +394,13 @@ class LibRaw_buffer_datastream : public LibRaw_abstract_datastream
 
 
     virtual int eof()
-    { 
+    {
         if(substream) return substream->eof();
         return streampos >= streamsize;
     }
-    
+
     virtual int seek(INT64 o, int whence)
-    { 
+    {
         if(substream) return substream->seek(o,whence);
         switch(whence)
             {
@@ -442,19 +442,19 @@ class LibRaw_buffer_datastream : public LibRaw_abstract_datastream
     }
 
     virtual INT64 tell()
-    { 
+    {
         if(substream) return substream->tell();
         return INT64(streampos);
     }
     virtual int get_char()
-    { 
+    {
         if(substream) return substream->get_char();
         if(streampos>=streamsize)
             return -1;
         return buf[streampos++];
     }
     virtual char* gets(char *s, int sz)
-    { 
+    {
         if (substream) return substream->gets(s,sz);
         unsigned char *psrc,*pdest,*str;
         str = (unsigned char *)s;
@@ -478,9 +478,9 @@ class LibRaw_buffer_datastream : public LibRaw_abstract_datastream
         streampos = psrc - buf;
         return s;
     }
-    
+
     virtual int scanf_one(const char *fmt, void* val)
-    { 
+    {
         if(substream) return substream->scanf_one(fmt,val);
         int scanf_res;
         if(streampos>streamsize) return 0;
@@ -527,10 +527,10 @@ class LibRaw_bigfile_datastream : public LibRaw_abstract_datastream
 {
   public:
     LibRaw_bigfile_datastream(const char *fname)
-        { 
+        {
             if(fname)
                 {
-                    filename = fname; 
+                    filename = fname;
 #ifndef WIN32SECURECALLS
                     f = fopen(fname,"rb");
 #else
@@ -538,7 +538,7 @@ class LibRaw_bigfile_datastream : public LibRaw_abstract_datastream
                         f = 0;
 #endif
                 }
-            else 
+            else
                 {filename=0;f=0;}
             sav=0;
         }
@@ -546,20 +546,20 @@ class LibRaw_bigfile_datastream : public LibRaw_abstract_datastream
     virtual             ~LibRaw_bigfile_datastream() {if(f)fclose(f); if(sav)fclose(sav);}
     virtual int         valid() { return f?1:0;}
 
-    virtual int         read(void * ptr,size_t size, size_t nmemb) 
-    { 
-        LR_BF_CHK(); 
+    virtual int         read(void * ptr,size_t size, size_t nmemb)
+    {
+        LR_BF_CHK();
         return substream?substream->read(ptr,size,nmemb):int(fread(ptr,size,nmemb,f));
     }
     virtual int         eof()
-    { 
-        LR_BF_CHK(); 
+    {
+        LR_BF_CHK();
         return substream?substream->eof():feof(f);
     }
     virtual int         seek(INT64 o, int whence)
-    { 
-        LR_BF_CHK(); 
-#if defined (WIN32) 
+    {
+        LR_BF_CHK();
+#if defined (WIN32)
 #ifdef WIN32SECURECALLS
         return substream?substream->seek(o,whence):_fseeki64(f,o,whence);
 #else
@@ -571,8 +571,8 @@ class LibRaw_bigfile_datastream : public LibRaw_abstract_datastream
     }
 
     virtual INT64       tell()
-    { 
-        LR_BF_CHK(); 
+    {
+        LR_BF_CHK();
 #if defined (WIN32)
 #ifdef WIN32SECURECALLS
         return substream?substream->tell():_ftelli64(f);
@@ -585,26 +585,26 @@ class LibRaw_bigfile_datastream : public LibRaw_abstract_datastream
     }
 
     virtual int         get_char()
-    { 
-        LR_BF_CHK(); 
+    {
+        LR_BF_CHK();
 #ifndef WIN32
         return substream?substream->get_char():getc_unlocked(f);
 #else
         return substream?substream->get_char():fgetc(f);
 #endif
     }
-        
+
     virtual char* gets(char *str, int sz)
-    { 
-        LR_BF_CHK(); 
+    {
+        LR_BF_CHK();
         return substream?substream->gets(str,sz):fgets(str,sz,f);
     }
 
     virtual int scanf_one(const char *fmt, void*val)
-    { 
-        LR_BF_CHK(); 
+    {
+        LR_BF_CHK();
         return substream?substream->scanf_one(fmt,val):
-#ifndef WIN32SECURECALLS			
+#ifndef WIN32SECURECALLS
             fscanf(f,fmt,val)
 #else
             fscanf_s(f,fmt,val)

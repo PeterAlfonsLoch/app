@@ -26,6 +26,7 @@
  *
  * Based on work by Owen Taylor and Søren Sandmann
  */
+ #include "base/base/base.h"
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -2793,12 +2794,12 @@ sse2_composite_over_8888_n_8888 (pixman_implementation_t *imp,
 	    if (s)
 	    {
 		uint32_t d = *dst;
-		
+
 		__m128i ms = unpack_32_1x128 (s);
 		__m128i alpha    = expand_alpha_1x128 (ms);
 		__m128i dest     = xmm_mask;
 		__m128i alpha_dst = unpack_32_1x128 (d);
-		
+
 		*dst = pack_1x128_32 (
 		    in_over_1x128 (&ms, &alpha, &dest, &alpha_dst));
 	    }
@@ -2813,21 +2814,21 @@ sse2_composite_over_8888_n_8888 (pixman_implementation_t *imp,
 	    if (!is_zero (xmm_src))
 	    {
 		xmm_dst = load_128_aligned ((__m128i*)dst);
-		
+
 		unpack_128_2x128 (xmm_src, &xmm_src_lo, &xmm_src_hi);
 		unpack_128_2x128 (xmm_dst, &xmm_dst_lo, &xmm_dst_hi);
 		expand_alpha_2x128 (xmm_src_lo, xmm_src_hi,
 				    &xmm_alpha_lo, &xmm_alpha_hi);
-		
+
 		in_over_2x128 (&xmm_src_lo, &xmm_src_hi,
 			       &xmm_alpha_lo, &xmm_alpha_hi,
 			       &xmm_mask, &xmm_mask,
 			       &xmm_dst_lo, &xmm_dst_hi);
-		
+
 		save_128_aligned (
 		    (__m128i*)dst, pack_2x128_128 (xmm_dst_lo, xmm_dst_hi));
 	    }
-		
+
 	    dst += 4;
 	    src += 4;
 	    w -= 4;
@@ -2840,12 +2841,12 @@ sse2_composite_over_8888_n_8888 (pixman_implementation_t *imp,
 	    if (s)
 	    {
 		uint32_t d = *dst;
-		
+
 		__m128i ms = unpack_32_1x128 (s);
 		__m128i alpha = expand_alpha_1x128 (ms);
 		__m128i mask  = xmm_mask;
 		__m128i dest  = unpack_32_1x128 (d);
-		
+
 		*dst = pack_1x128_32 (
 		    in_over_1x128 (&ms, &alpha, &mask, &dest));
 	    }
@@ -2941,17 +2942,17 @@ sse2_composite_src_x888_8888 (pixman_implementation_t *imp,
 	while (w >= 16)
 	{
 	    __m128i xmm_src1, xmm_src2, xmm_src3, xmm_src4;
-	    
+
 	    xmm_src1 = load_128_unaligned ((__m128i*)src + 0);
 	    xmm_src2 = load_128_unaligned ((__m128i*)src + 1);
 	    xmm_src3 = load_128_unaligned ((__m128i*)src + 2);
 	    xmm_src4 = load_128_unaligned ((__m128i*)src + 3);
-	    
+
 	    save_128_aligned ((__m128i*)dst + 0, _mm_or_si128 (xmm_src1, mask_ff000000));
 	    save_128_aligned ((__m128i*)dst + 1, _mm_or_si128 (xmm_src2, mask_ff000000));
 	    save_128_aligned ((__m128i*)dst + 2, _mm_or_si128 (xmm_src3, mask_ff000000));
 	    save_128_aligned ((__m128i*)dst + 3, _mm_or_si128 (xmm_src4, mask_ff000000));
-	    
+
 	    dst += 16;
 	    src += 16;
 	    w -= 16;
@@ -4192,7 +4193,7 @@ sse2_composite_in_n_8 (pixman_implementation_t *imp,
 	    xmm_dst = load_128_aligned ((__m128i*)dst);
 
 	    unpack_128_2x128 (xmm_dst, &xmm_dst_lo, &xmm_dst_hi);
-	    
+
 	    pix_multiply_2x128 (&xmm_alpha, &xmm_alpha,
 				&xmm_dst_lo, &xmm_dst_hi,
 				&xmm_dst_lo, &xmm_dst_hi);
@@ -6118,7 +6119,7 @@ static const pixman_fast_path_t sse2_fast_paths[] =
     PIXMAN_STD_FAST_PATH (OVER, rpixbuf, rpixbuf, b5g6r5, sse2_composite_over_pixbuf_0565),
     PIXMAN_STD_FAST_PATH (OVER, x8r8g8b8, null, x8r8g8b8, sse2_composite_copy_area),
     PIXMAN_STD_FAST_PATH (OVER, x8b8g8r8, null, x8b8g8r8, sse2_composite_copy_area),
-    
+
     /* PIXMAN_OP_OVER_REVERSE */
     PIXMAN_STD_FAST_PATH (OVER_REVERSE, solid, null, a8r8g8b8, sse2_composite_over_reverse_n_8888),
     PIXMAN_STD_FAST_PATH (OVER_REVERSE, solid, null, a8b8g8r8, sse2_composite_over_reverse_n_8888),
@@ -6347,7 +6348,7 @@ sse2_fetch_a8 (pixman_iter_t *iter, const uint32_t *mask)
     (FAST_PATH_STANDARD_FLAGS | FAST_PATH_ID_TRANSFORM |		\
      FAST_PATH_BITS_IMAGE | FAST_PATH_SAMPLES_COVER_CLIP_NEAREST)
 
-static const pixman_iter_info_t sse2_iters[] = 
+static const pixman_iter_info_t sse2_iters[] =
 {
     { PIXMAN_x8r8g8b8, IMAGE_FLAGS, ITER_NARROW,
       _pixman_iter_init_bits_stride, sse2_fetch_x8r8g8b8, NULL

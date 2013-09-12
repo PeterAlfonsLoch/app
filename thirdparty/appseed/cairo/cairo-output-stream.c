@@ -32,7 +32,7 @@
  * Author(s):
  *	Kristian Høgsberg <krh@redhat.com>
  */
-
+#include "base/base/base.h"
 #define _BSD_SOURCE /* for snprintf() */
 #include "cairoint.h"
 

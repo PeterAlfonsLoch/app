@@ -29,6 +29,7 @@
  *
  * Core Directory Tag Support.
  */
+ #include "base/base/base.h"
 #include "tiffiop.h"
 #include <stdlib.h>
 #include <string.h>

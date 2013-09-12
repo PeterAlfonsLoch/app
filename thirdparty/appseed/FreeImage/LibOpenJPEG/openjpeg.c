@@ -34,7 +34,7 @@
 /* ---------------------------------------------------------------------- */
 #ifdef _WIN32
 #ifndef OPJ_STATIC
-BOOL APIENTRY
+int_bool APIENTRY
 DllMain(HANDLE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
 	switch (ul_reason_for_call) {
 		case DLL_PROCESS_ATTACH :
@@ -226,7 +226,7 @@ void OPJ_CALLCONV opj_set_default_encoder_parameters(opj_cparameters_t *paramete
 	if(parameters) {
 		memset(parameters, 0, sizeof(opj_cparameters_t));
 		/* default coding parameters */
-		parameters->cp_cinema = OFF; 
+		parameters->cp_cinema = OFF;
 		parameters->max_comp_size = 0;
 		parameters->numresolution = 6;
 		parameters->cp_rsiz = STD_RSIZ;
@@ -239,7 +239,7 @@ void OPJ_CALLCONV opj_set_default_encoder_parameters(opj_cparameters_t *paramete
 		parameters->tp_on = 0;
 		parameters->decod_format = -1;
 		parameters->cod_format = -1;
-		parameters->tcp_rates[0] = 0;   
+		parameters->tcp_rates[0] = 0;
 		parameters->tcp_numlayers = 0;
     parameters->cp_disto_alloc = 0;
 		parameters->cp_fixed_alloc = 0;

@@ -4,25 +4,27 @@
  * Copyright (c) 1988-1997 Sam Leffler
  * Copyright (c) 1991-1997 Silicon Graphics, Inc.
  *
- * Permission to use, copy, modify, distribute, and sell this software and 
+ * Permission to use, copy, modify, distribute, and sell this software and
  * its documentation for any purpose is hereby granted without fee, provided
  * that (i) the above copyright notices and this permission notice appear in
  * all copies of the software and related documentation, and (ii) the names of
  * Sam Leffler and Silicon Graphics may not be used in any advertising or
  * publicity relating to the software without the specific, prior written
  * permission of Sam Leffler and Silicon Graphics.
- * 
- * THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
- * EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
- * WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
- * 
+ *
+ * THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY
+ * WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+ *
  * IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR
  * ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
  * OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
- * WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF 
- * LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
+ * WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF
+ * LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
  * OF THIS SOFTWARE.
  */
+
+ #include "base/base/base.h"
 
 #ifndef _TIFFIOP_
 #define	_TIFFIOP_
@@ -45,9 +47,9 @@
 #endif
 
 #ifdef HAVE_ASSERT_H
-# include <ASSERT.h>
+# include <assert.h>
 #else
-# define ASSERT(x) 
+# define ASSERT(x)
 #endif
 
 #ifdef HAVE_SEARCH_H
@@ -117,7 +119,7 @@ struct tiff {
 #define	TIFF_MAPPED		0x00800	/* file is mapped into memory */
 #define	TIFF_POSTENCODE		0x01000	/* need call to postencode routine */
 #define	TIFF_INSUBIFD		0x02000	/* currently writing a subifd */
-#define	TIFF_UPSAMPLED		0x04000	/* library is doing data up-sampling */ 
+#define	TIFF_UPSAMPLED		0x04000	/* library is doing data up-sampling */
 #define	TIFF_STRIPCHOP		0x08000	/* enable strip chopping support */
 #define	TIFF_HEADERONLY		0x10000	/* read header only, do not process */
 					/* the first directory */
@@ -261,7 +263,7 @@ extern	int _TIFFNoRowDecode(TIFF*, tidata_t, tsize_t, tsample_t);
 extern	int _TIFFNoStripDecode(TIFF*, tidata_t, tsize_t, tsample_t);
 extern	int _TIFFNoTileDecode(TIFF*, tidata_t, tsize_t, tsample_t);
 extern	void _TIFFNoPostDecode(TIFF*, tidata_t, tsize_t);
-extern  int  _TIFFNoPreCode (TIFF*, tsample_t); 
+extern  int  _TIFFNoPreCode (TIFF*, tsample_t);
 extern	int _TIFFNoSeek(TIFF*, uint32);
 extern	void _TIFFSwab16BitData(TIFF*, tidata_t, tsize_t);
 extern	void _TIFFSwab24BitData(TIFF*, tidata_t, tsize_t);

@@ -74,7 +74,7 @@ LONG TIME_GetBias(void);
 #define STATUS_PRIVILEGE_NOT_HELD 1
 #endif
 
-#include "os_cross_windows_internals.h"
+#include "windows_internals.h"
 //#define CLASS_DECL_c
 //#include "ca/ca/ca_verisimple_string.h"
 //#include "ca/ca/ca_simple_mutex.h"

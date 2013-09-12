@@ -3,7 +3,7 @@
  * Copyright 2008-2010 LibRaw LLC (info@libraw.org)
  * Created: Sat Mar  8 , 2008
  *
- * LibRaw C interface 
+ * LibRaw C interface
 
 
 LibRaw is free software; you can redistribute it and/or modify
@@ -25,8 +25,8 @@ it under the terms of the one of three licenses as you choose:
 #include "libraw/libraw.h"
 
 #ifdef __cplusplus
-#include <new>
-extern "C" 
+//#include <new>
+extern "C"
 {
 #endif
 
@@ -36,7 +36,7 @@ extern "C"
         try {
             ret = new LibRaw(flags);
         }
-        catch (std::bad_alloc)
+        catch (memory_exception &)
             {
                 return NULL;
             }

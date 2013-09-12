@@ -6,7 +6,7 @@ class CLASS_DECL_c os_simple_font
 public:
 
 
-   vsstring                m_strFamily;
+   string                m_strFamily;
    cairo_font_weight_t     m_weight;
    double                  m_dSize;
 

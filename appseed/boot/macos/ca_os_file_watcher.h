@@ -35,7 +35,7 @@ namespace file_watcher
 	{
 	public:
 		/// type for a map from id to watch_struct pointer
-		typedef simple_map < id , watch_struct*> watch_map;
+		typedef map < id , watch_struct*> watch_map;
 
 	public:
 		///
@@ -55,7 +55,7 @@ namespace file_watcher
 
 		/// Remove a directory watch. This is a map lookup O(logn).
 		void remove_watch(id watchid);
-      
+
       vsstring watch_path(id watchid);
 
 		/// Updates the watcher. Must be called often.
@@ -75,7 +75,7 @@ namespace file_watcher
 		int mLastWatchID;
 
 	};
-   
+
 
 } // namespace file_watcher
 

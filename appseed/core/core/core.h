@@ -550,15 +550,16 @@ CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(::application) papp, ::draw2d::gra
 #include "core_command_target.h"
 
 
+
+
 typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
-
-
 
 
 CLASS_DECL_ca2 thread* __begin_thread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_ca2 thread* __begin_thread(sp(::core::type_info) pThreadClass,
    int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
    uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
+
 
 template < class THREAD_TYPE >
 THREAD_TYPE * __begin_thread (sp(base_application) papp, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
@@ -567,6 +568,8 @@ THREAD_TYPE * __begin_thread (sp(base_application) papp, int32_t epriority = ::c
    pthread->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
    return pthread;
 }
+
+
 
 
 
@@ -719,6 +722,11 @@ namespace user
 #include "core_print_job.h"
 
 
+// services
+#include "service/service_service_status.h"
+#include "service/service_service_base.h"
+#include "service/service_plain_service.h"
+#include "service/service_thread_pool.h"
 
 
 

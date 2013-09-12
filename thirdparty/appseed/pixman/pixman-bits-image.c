@@ -25,7 +25,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
  * SOFTWARE.
  */
-
+#include "base/base/base.h"
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -808,7 +808,7 @@ bits_image_fetch_separable_convolution_affine (pixman_image_t * image,
 		    pixman_fixed_t fx = *x_params++;
 		    int rx = j;
 		    int ry = i;
-		    
+
 		    if (fx)
 		    {
 			pixman_fixed_t f;
@@ -1029,7 +1029,7 @@ bits_image_fetch_nearest_affine (pixman_image_t * image,
 				 int              width,
 				 uint32_t *       buffer,
 				 const uint32_t * mask,
-				 
+
 				 convert_pixel_t	convert_pixel,
 				 pixman_format_code_t	format,
 				 pixman_repeat_t	repeat_mode)
@@ -1061,7 +1061,7 @@ bits_image_fetch_nearest_affine (pixman_image_t * image,
 
 	if (mask && !mask[i])
 	    goto next;
-	
+
 	width = image->bits.width;
 	height = image->bits.height;
 	x0 = pixman_fixed_to_int (x - pixman_fixed_e);
@@ -1423,7 +1423,7 @@ static const fetcher_info_t fetcher_info[] =
      FAST_PATH_HAS_TRANSFORM           |				\
      FAST_PATH_AFFINE_TRANSFORM        |				\
      FAST_PATH_SEPARABLE_CONVOLUTION_FILTER)
-    
+
 #define SEPARABLE_CONVOLUTION_AFFINE_FAST_PATH(name, format, repeat)   \
     { PIXMAN_ ## format,                                               \
       GENERAL_SEPARABLE_CONVOLUTION_FLAGS | FAST_PATH_ ## repeat ## _REPEAT, \
@@ -1449,7 +1449,7 @@ static const fetcher_info_t fetcher_info[] =
     SEPARABLE_CONVOLUTION_AFFINE_FAST_PATH(name, format, repeat)	\
     BILINEAR_AFFINE_FAST_PATH(name, format, repeat)			\
     NEAREST_AFFINE_FAST_PATH(name, format, repeat)
-    
+
     AFFINE_FAST_PATHS (pad_a8r8g8b8, a8r8g8b8, PAD)
     AFFINE_FAST_PATHS (none_a8r8g8b8, a8r8g8b8, NONE)
     AFFINE_FAST_PATHS (reflect_a8r8g8b8, a8r8g8b8, REFLECT)
@@ -1653,7 +1653,7 @@ _pixman_bits_image_dest_iter_init (pixman_image_t *image, pixman_iter_t *iter)
 	{
 	    iter->get_scanline = dest_get_scanline_narrow;
 	}
-	
+
 	iter->write_back = dest_write_back_narrow;
     }
     else

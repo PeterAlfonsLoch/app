@@ -36,7 +36,7 @@ namespace file_watcher
 	struct watch_struct_item
 	{
 		id m_id;
-		vsstring m_strDirName;
+		string m_strDirName;
 	};
 
 
@@ -45,7 +45,7 @@ namespace file_watcher
 	{
 	   bool m_bRecursive;
 		file_watch_listener* m_plistener;
-	   simple_array < watch_struct_item > m_itema;
+	   ::lemon_array < watch_struct_item > m_itema;
 	};
 
 
@@ -74,7 +74,7 @@ namespace file_watcher
 	}
 
 	//--------
-	id os_file_watcher::add_watch(const vsstring & directory,  file_watch_listener * pwatcher, bool bRecursive)
+	id os_file_watcher::add_watch(const string & directory,  file_watch_listener * pwatcher, bool bRecursive)
 	{
 		int32_t wd = inotify_add_watch (mFD, directory, IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
 		if (wd < 0)
@@ -97,7 +97,7 @@ namespace file_watcher
 
          pWatch->m_bRecursive = true;
 
-		   stra_dup stra;
+		   stringa stra;
 
 		   dir::rls_dir(stra, directory);
 
@@ -136,7 +136,7 @@ namespace file_watcher
 	}
 
 	//--------
-	void os_file_watcher::remove_watch(const vsstring & directory)
+	void os_file_watcher::remove_watch(const string & directory)
 	{
 		WatchMap::pair * ppair = m_watchmap.PGetFirstAssoc();
 		for(; ppair != NULL; ppair = m_watchmap.PGetNextAssoc(ppair))
@@ -167,7 +167,7 @@ namespace file_watcher
 		watch = 0;
 	}
 
-	vsstring os_file_watcher::watch_path(id id)
+	string os_file_watcher::watch_path(id id)
 	{
 		return m_watchmap[id]->m_strDirName;
 	}

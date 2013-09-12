@@ -5,7 +5,7 @@
 oswindow_data::oswindow_data()
 {
 
-   m_plongmap              = new simple_map < int, LONG >();
+   m_plongmap              = new map < int, LONG >();
 
    m_hthread               = NULL;
 
@@ -642,7 +642,7 @@ bool oswindow_data::is_iconic()
 {
 
 #ifdef WINDOWS
-   
+
    return get_state() == IconicState;
 
 #endif
@@ -1171,7 +1171,7 @@ bool c_xstart()
    g_oswindowDesktop = oswindow_get(dpy, DefaultRootWindow(dpy));
 
    XSelectInput(g_oswindowDesktop->display(), g_oswindowDesktop->window(), StructureNotifyMask);
-   
+
 
    return true;
 

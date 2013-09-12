@@ -37,7 +37,7 @@
  *      Keith Packard <keithp@keithp.com>
  *      Carl Worth <cworth@cworth.org>
  */
-
+#include "base/base/base.h"
 #define _BSD_SOURCE /* for strdup() */
 #include "cairoint.h"
 
@@ -1479,7 +1479,7 @@ _transform_glyph_bitmap (cairo_matrix_t         * shape,
      * the "shape" portion of the font transform
      */
     original_to_transformed = *shape;
-    
+
     cairo_surface_get_device_offset (&(*surface)->base, &origin_x, &origin_y);
     orig_width = (*surface)->width;
     orig_height = (*surface)->height;
@@ -1614,7 +1614,7 @@ _get_pattern_ft_options (FcPattern *pattern, cairo_ft_options_t *ret)
     if (FcPatternGetBool (pattern,
 			  FC_ANTIALIAS, 0, &antialias) != FcResultMatch)
 	antialias = FcTrue;
-    
+
     if (antialias) {
 	cairo_subpixel_order_t subpixel_order;
 	int lcd_filter;

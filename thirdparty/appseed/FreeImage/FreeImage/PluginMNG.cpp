@@ -186,12 +186,12 @@ MimeType() {
 	return "video/x-mng";
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static int_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return FALSE;
 }
@@ -199,10 +199,10 @@ SupportsExportType(FREE_IMAGE_TYPE type) {
 // ----------------------------------------------------------
 
 static void * DLL_CALLCONV
-Open(FreeImageIO *io, fi_handle handle, BOOL read) {
+Open(FreeImageIO *io, fi_handle handle, int_bool read) {
 	mngstuff *mymng = (mngstuff *)calloc(1, sizeof(*mymng));
 	mymng->io = io;
-	mymng->file = handle;	
+	mymng->file = handle;
 
 	return mymng;
 }
@@ -227,9 +227,9 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			hmng = mng_initialize(mymng, mymngalloc, mymngfree, MNG_NULL);
 
 			if (hmng == MNG_NULL) {
-				throw "could not initialize libmng";			
+				throw "could not initialize libmng";
 			}
-			
+
 			// set the colorprofile, lcms uses this
 			mng_set_srgb(hmng, MNG_TRUE );
 			// set white as background color
@@ -253,7 +253,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			mng_setcb_refresh(hmng, mymngrefresh);
 			mng_setcb_gettickcount(hmng, mymnggetticks);
 			mng_setcb_settimer(hmng, mymngsettimer);
-	
+
 			// read in the bitmap
 			mng_readdisplay(hmng);
 
@@ -284,7 +284,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	}
 
 	return NULL;
-}	
+}
 
 // ==========================================================
 //   Init

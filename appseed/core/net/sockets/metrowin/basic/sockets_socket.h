@@ -97,7 +97,7 @@ namespace sockets
 
       static SOCKET                             s_socket; ///< Winsock initialization singleton class
       static simple_mutex                       s_mutex;
-      static simple_map < SOCKET, socket * >    s_mapSocket;
+      static map < SOCKET, socket * >    s_mapSocket;
 
       bool                    m_bEnableSsl; ///< Enable SSL for this tcp_socket
       bool                    m_bSsl; ///< ssl negotiation mode (tcp_socket)

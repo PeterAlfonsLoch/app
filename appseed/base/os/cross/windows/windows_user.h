@@ -1472,18 +1472,18 @@ CLASS_DECL_c int32_t WINAPI GetSystemMetrics(int32_t nIndex);
 
 
 
-CLASS_DECL_c bool CopyRect(LPRECT prectDest, LPCRECT pcrectSrc);
-CLASS_DECL_c bool PtInRect(LPCRECT prect, POINT point);
-CLASS_DECL_c bool SetRect(LPRECT prect, int32_t x1, int32_t y1, int32_t x2, int32_t y2);
-CLASS_DECL_c bool SetRectEmpty(LPRECT prect);
-CLASS_DECL_c bool EqualRect(LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_c bool InflateRect(LPRECT prect, int32_t x, int32_t y);
-CLASS_DECL_c bool OffsetRect(LPRECT prect, int32_t x, int32_t y);
-CLASS_DECL_c bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_c bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_c bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_c bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_c bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_c int_bool CopyRect(LPRECT prectDest, LPCRECT pcrectSrc);
+CLASS_DECL_c int_bool PtInRect(LPCRECT prect, POINT point);
+CLASS_DECL_c int_bool SetRect(LPRECT prect, int32_t x1, int32_t y1, int32_t x2, int32_t y2);
+CLASS_DECL_c int_bool SetRectEmpty(LPRECT prect);
+CLASS_DECL_c int_bool EqualRect(LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_c int_bool InflateRect(LPRECT prect, int32_t x, int32_t y);
+CLASS_DECL_c int_bool OffsetRect(LPRECT prect, int32_t x, int32_t y);
+CLASS_DECL_c int_bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_c int_bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_c int_bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_c int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_c int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 
 
 

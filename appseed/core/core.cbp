@@ -287,14 +287,9 @@
 		<Unit filename="core/android/os_debug.h" />
 		<Unit filename="core/android/os_multithreading.cpp" />
 		<Unit filename="core/android/os_multithreading.h" />
-		<Unit filename="core/api/aaa_api_linux_want_to_remove.h" />
 		<Unit filename="core/api/aaa_linux_want_to_remove.cpp" />
 		<Unit filename="core/api/api.h" />
-		<Unit filename="core/api/api_debug.h" />
-		<Unit filename="core/api/api_muldiv64.h" />
-		<Unit filename="core/api/api_rotate.h" />
 		<Unit filename="core/api/api_string.cpp" />
-		<Unit filename="core/api/api_string.h" />
 		<Unit filename="core/api/mktime.cpp" />
 		<Unit filename="core/api/mktime.h" />
 		<Unit filename="core/core.cpp" />
@@ -617,6 +612,9 @@
 		<Unit filename="core/plugin/plugin_run_start_installer.h" />
 		<Unit filename="core/plugin/plugin_system.cpp" />
 		<Unit filename="core/plugin/plugin_system.h" />
+		<Unit filename="core/service/service_plain_service.cpp" />
+		<Unit filename="core/service/service_plain_service.h" />
+		<Unit filename="core/service/service_thread_pool.h" />
 		<Unit filename="core/windows/os.h" />
 		<Unit filename="core/windows/os_defs.h" />
 		<Unit filename="core/windows/os_library.h" />

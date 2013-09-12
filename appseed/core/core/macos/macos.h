@@ -8,7 +8,7 @@
 
 #pragma once
 
-DWORD GetTickCount();
+DWORD get_tick_count();
 
 
 //typedef unsigned long * uint_ptr;

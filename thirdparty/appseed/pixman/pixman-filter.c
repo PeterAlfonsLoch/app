@@ -12,7 +12,7 @@
  * The above copyright notice and this permission notice (including the next
  * paragraph) shall be included in all copies or substantial portions of the
  * Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
@@ -23,6 +23,7 @@
  *
  * Author: Soren Sandmann <soren.sandmann@gmail.com>
  */
+ #include "base/base/base.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -65,7 +66,7 @@ gaussian_kernel (double x)
 {
 #define SQRT2 (1.4142135623730950488016887242096980785696718753769480)
 #define SIGMA (SQRT2 / 2.0)
-    
+
     return exp (- x * x / (2 * SIGMA * SIGMA)) / (SIGMA * sqrt (2.0 * M_PI));
 }
 
@@ -193,7 +194,7 @@ integral (pixman_kernel_t kernel1, double x1,
 #define N_SEGMENTS 128
 #define SAMPLE(a1, a2)							\
 	(filters[kernel1].func ((a1)) * filters[kernel2].func ((a2) * scale))
-	
+
 	double s = 0.0;
 	double h = width / (double)N_SEGMENTS;
 	int i;
@@ -212,7 +213,7 @@ integral (pixman_kernel_t kernel1, double x1,
 	}
 
 	s += SAMPLE (x1 + width, x2 + width);
-	
+
 	return h * s * (1.0 / 3.0);
     }
 }
@@ -325,9 +326,9 @@ pixman_filter_create_separable_convolution (int             *n_values,
 
     if (!horz || !vert)
         goto out;
-    
+
     *n_values = 4 + width * subsample_x + height * subsample_y;
-    
+
     params = malloc (*n_values * sizeof (pixman_fixed_t));
     if (!params)
         goto out;

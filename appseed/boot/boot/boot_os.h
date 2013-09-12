@@ -11,8 +11,8 @@
 
 #elif defined(LINUX)
 
-#include "boot/ansios/ansios.h"
-#include "os_binreloc.h"
+//#include "boot/ansios/ansios.h"
+#include "boot/os/os_binreloc.h"
 #include "boot/linux/ca_os.h"
 
 #define BSD_STYLE_SOCKETS

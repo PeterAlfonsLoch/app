@@ -22,7 +22,7 @@ DllMain( HINSTANCE hModule,
 }
 
 
-DWORD GetTickCount()
+DWORD get_tick_count()
 {
     return GetTickCount64() % 0xffffffffULL;
 }

@@ -7,7 +7,7 @@
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE_EX "ca2_ccvotagus_window_long_style_ex"
 
 osdisplay_dataptra * osdisplay_data::s_pdataptra = new osdisplay_dataptra;
-simple_mutex * osdisplay_data::s_pmutex = new simple_mutex;
+mutex * osdisplay_data::s_pmutex = new mutex;
 
 osdisplay_data::osdisplay_data()
 {
@@ -25,7 +25,7 @@ osdisplay_data::osdisplay_data()
 int32_t osdisplay_find(Display * pdisplay)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
    for(int32_t i = 0; i < osdisplay_data::s_pdataptra->get_count(); i++)
    {
@@ -42,7 +42,7 @@ int32_t osdisplay_find(Display * pdisplay)
 osdisplay_data * osdisplay_get(Display * pdisplay)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
    int_ptr iFind = osdisplay_find(pdisplay);
 
@@ -67,7 +67,7 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
 bool osdisplay_remove(Display * pdisplay)
 {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
    int_ptr iFind = osdisplay_find(pdisplay);
 
@@ -99,7 +99,7 @@ Atom osdisplay_data::get_window_long_atom(int32_t nIndex)
    default:
       {
 
-         vsstring strProperty;
+         string strProperty;
 
          strProperty = CA2_CCVOTAGUS_WINDOW_LONG + itoa_dup(nIndex);
 

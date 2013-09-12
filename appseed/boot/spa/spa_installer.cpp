@@ -3396,7 +3396,7 @@ RetryHost:
 
       int32_t iSpabootInstallStrSize = MAX_PATH * 16;
 
-      
+
 
 #ifdef WINDOWSEX
 
@@ -3492,9 +3492,10 @@ RetryHost:
       char * psz = NULL;
 #else
       char * psz = br_find_exe("app-install");
+      string str(psz);
 #endif
 
-      call_sync(str, param, NULL, SW_HIDE, -1, 84, NULL, 0);
+      call_sync(str, param, 0, SW_HIDE, -1, 84, 0, 0);
 #endif
       return 0;
 

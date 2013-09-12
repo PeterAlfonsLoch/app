@@ -6,7 +6,7 @@ using namespace std;
 int32_t get_process_pid(const char * procNameParam)
 {
 
-   vsstring procName(procNameParam);
+   string procName(procNameParam);
 
    int32_t pid = -1;
 
@@ -23,10 +23,11 @@ int32_t get_process_pid(const char * procNameParam)
          if (id > 0)
          {
             // Read contents of virtual /proc/{pid}/cmdline file
-            vsstring cmdPath = vsstring("/proc/") + dirp->d_name + "/cmdline";
+            string cmdPath = string("/proc/") + dirp->d_name + "/cmdline";
             FILE * cmdFile = fopen(cmdPath, "rb");
-            vsstring cmdLine;
-            fgets(cmdLine.alloc(1024 * 256), 1024 * 256, cmdFile);
+            string cmdLine;
+            fgets(cmdLine.GetBufferSetLength(1024 * 256), 1024 * 256, cmdFile);
+            cmdLine.ReleaseBuffer();
             if(cmdLine.has_char())
             {
                // Keep first cmdline item which contains the program path
@@ -34,7 +35,7 @@ int32_t get_process_pid(const char * procNameParam)
                if(pos >= 0)
                   cmdLine = cmdLine.substr(0, pos);
                // Keep program name only, removing the path
-               pos = cmdLine.rfind('/');
+               pos = cmdLine.reverse_find('/');
                if (pos >= 0)
                   cmdLine = cmdLine.substr(pos + 1);
                // Compare against requested process name

@@ -25,7 +25,7 @@
 
 // ----------------------------------------------------------
 
-CacheFile::CacheFile(const string filename, BOOL keep_in_memory) :
+CacheFile::CacheFile(const string filename, int_bool keep_in_memory) :
 m_file(NULL),
 m_filename(filename),
 m_free_pages(),
@@ -40,7 +40,7 @@ m_keep_in_memory(keep_in_memory) {
 CacheFile::~CacheFile() {
 }
 
-BOOL
+int_bool
 CacheFile::open() {
 	if ((!m_filename.is_empty()) && (!m_keep_in_memory)) {
 		m_file = fopen(m_filename, "w+b");
@@ -63,9 +63,9 @@ CacheFile::close() {
 	while (!m_page_cache_mem.is_empty()) {
 		PageCacheIt it = m_page_cache_mem.begin();
 		m_page_cache_mem.remove(it);
-		delete [] (*it)->data; 
-		delete *it; 
-	} 
+		delete [] (*it)->data;
+		delete *it;
+	}
 
 	if (m_file) {
 		// close the file
@@ -157,7 +157,7 @@ CacheFile::lockBlock(int nr) {
 	return NULL;
 }
 
-BOOL
+int_bool
 CacheFile::unlockBlock(int nr) {
 	if (m_current_block) {
 		m_current_block = NULL;
@@ -168,7 +168,7 @@ CacheFile::unlockBlock(int nr) {
 	return FALSE;
 }
 
-BOOL
+int_bool
 CacheFile::deleteBlock(int nr) {
 	if (!m_current_block) {
 		PageMapIt it = m_page_map.find(nr);
@@ -188,7 +188,7 @@ CacheFile::deleteBlock(int nr) {
 	return FALSE;
 }
 
-BOOL
+int_bool
 CacheFile::readFile(BYTE *data, int nr, int size) {
 	if ((data) && (size > 0)) {
 		int s = 0;
@@ -222,7 +222,7 @@ CacheFile::writeFile(BYTE *data, int size) {
 		int s = 0;
 		int stored_alloc;
 		int alloc;
-		
+
 		stored_alloc = alloc = allocateBlock();
 
 		do {
@@ -239,7 +239,7 @@ CacheFile::writeFile(BYTE *data, int size) {
 
 			unlockBlock(copy_alloc);
 
-			s += BLOCK_SIZE;			
+			s += BLOCK_SIZE;
 		} while (++count < nr_blocks_required);
 
 		return stored_alloc;

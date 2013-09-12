@@ -23,7 +23,7 @@
 /*
  * Matrix interfaces
  */
-
+#include "base/base/base.h"
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -435,7 +435,7 @@ pixman_transform_multiply (struct pixman_transform *      dst,
 	{
 	    pixman_fixed_48_16_t v;
 	    pixman_fixed_32_32_t partial;
-	    
+
 	    v = 0;
 	    for (o = 0; o < 3; o++)
 	    {
@@ -448,7 +448,7 @@ pixman_transform_multiply (struct pixman_transform *      dst,
 
 	    if (v > pixman_max_fixed_48_16 || v < pixman_min_fixed_48_16)
 		return FALSE;
-	    
+
 	    d.matrix[dy][dx] = (pixman_fixed_t) v;
 	}
     }
@@ -492,7 +492,7 @@ pixman_transform_scale (struct pixman_transform *forward,
 	if (!pixman_transform_multiply (forward, &t, forward))
 	    return FALSE;
     }
-    
+
     if (reverse)
     {
 	pixman_transform_init_scale (&t, fixed_inverse (sx),
@@ -500,7 +500,7 @@ pixman_transform_scale (struct pixman_transform *forward,
 	if (!pixman_transform_multiply (reverse, reverse, &t))
 	    return FALSE;
     }
-    
+
     return TRUE;
 }
 
@@ -539,7 +539,7 @@ pixman_transform_rotate (struct pixman_transform *forward,
 	if (!pixman_transform_multiply (reverse, reverse, &t))
 	    return FALSE;
     }
-    
+
     return TRUE;
 }
 
@@ -766,7 +766,7 @@ pixman_transform_from_pixman_f_transform (struct pixman_transform *        t,
 	    t->matrix[j][i] = (pixman_fixed_t) floor (d);
 	}
     }
-    
+
     return TRUE;
 }
 
@@ -792,10 +792,10 @@ pixman_f_transform_invert (struct pixman_f_transform *      dst,
 	    p = -p;
 	det += p;
     }
-    
+
     if (det == 0)
 	return FALSE;
-    
+
     det = 1 / det;
     for (j = 0; j < 3; j++)
     {
@@ -809,10 +809,10 @@ pixman_f_transform_invert (struct pixman_f_transform *      dst,
 
 	    p = (src->m[ai][aj] * src->m[bi][bj] -
 	         src->m[ai][bj] * src->m[bi][aj]);
-	    
+
 	    if (((i + j) & 1) != 0)
 		p = -p;
-	    
+
 	    d.m[j][i] = det * p;
 	}
     }
@@ -837,7 +837,7 @@ pixman_f_transform_point (const struct pixman_f_transform *t,
 	    a += t->m[j][i] * v->v[i];
 	result.v[j] = a;
     }
-    
+
     if (!result.v[2])
 	return FALSE;
 
@@ -864,7 +864,7 @@ pixman_f_transform_point_3d (const struct pixman_f_transform *t,
 	    a += t->m[j][i] * v->v[i];
 	result.v[j] = a;
     }
-    
+
     *v = result;
 }
 
@@ -887,7 +887,7 @@ pixman_f_transform_multiply (struct pixman_f_transform *      dst,
 	    d.m[dy][dx] = v;
 	}
     }
-    
+
     *dst = d;
 }
 
@@ -923,13 +923,13 @@ pixman_f_transform_scale (struct pixman_f_transform *forward,
 	pixman_f_transform_init_scale (&t, sx, sy);
 	pixman_f_transform_multiply (forward, &t, forward);
     }
-    
+
     if (reverse)
     {
 	pixman_f_transform_init_scale (&t, 1 / sx, 1 / sy);
 	pixman_f_transform_multiply (reverse, reverse, &t);
     }
-    
+
     return TRUE;
 }
 
@@ -962,7 +962,7 @@ pixman_f_transform_rotate (struct pixman_f_transform *forward,
 	pixman_f_transform_init_rotate (&t, c, s);
 	pixman_f_transform_multiply (forward, &t, forward);
     }
-    
+
     if (reverse)
     {
 	pixman_f_transform_init_rotate (&t, c, -s);

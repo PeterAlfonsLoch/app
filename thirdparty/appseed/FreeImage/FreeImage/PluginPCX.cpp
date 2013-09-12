@@ -60,7 +60,7 @@ typedef struct tagPCXHEADER {
 	WORD  v_screen_size;
 	BYTE  filler[54];		// Reserved filler
 } PCXHEADER;
-		
+
 #ifdef _WIN32
 #pragma pack(pop)
 #else
@@ -72,7 +72,7 @@ typedef struct tagPCXHEADER {
 // ==========================================================
 
 static unsigned
-readline(FreeImageIO &io, fi_handle handle, BYTE *buffer, unsigned length, BOOL rle, BYTE * ReadBuf, int * ReadPos) {
+readline(FreeImageIO &io, fi_handle handle, BYTE *buffer, unsigned length, int_bool rle, BYTE * ReadBuf, int * ReadPos) {
 	// -----------------------------------------------------------//
 	// Read either run-length encoded or normal image data        //
 	//                                                            //
@@ -225,7 +225,7 @@ MimeType() {
 	and comparing them with a known bitmap signature.
 	TRUE is returned if the bytes match the signature, FALSE otherwise.
 	The Validate function is used by using FreeImage_GetFileType.
-	
+
 	Note: a plugin can safely read data any data from the bitmap without seeking back
 	to the original entry point; the entry point is stored prior to calling this
 	function and restored after.
@@ -236,7 +236,7 @@ MimeType() {
 	because the end of the bitmap is not always known.
 */
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	BYTE pcx_signature = 0x0A;
 	BYTE signature = 0;
@@ -256,17 +256,17 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	returns FALSE if bitmap saving is not supported by the plugin at all.
 */
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static int_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
 }
@@ -296,10 +296,10 @@ SupportsNoPixels() {
 	in the bitmap or if we will load the default one. This parameter is only used if
 	the plugin supports multi-paged bitmaps, e.g. cabinet bitmaps that contain a series
 	of images or pages. If the plugin does support multi-paging, the page parameter
-	can contain either a number higher or equal to 0 to load a certain page, or -1 to 
+	can contain either a number higher or equal to 0 to load a certain page, or -1 to
 	load the default page. If the plugin does not support multi-paging,
 	the page parameter is always -1.
-	
+
 	The fourth parameter (int flags) manipulates the load function to load a bitmap
 	in a certain way. Every plugin has a different flag parameter with different meanings.
 
@@ -317,13 +317,13 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	RGBQUAD *pal;		  // Pointer to dib palette
 	BYTE *line = NULL;	  // PCX raster line
 	BYTE *ReadBuf = NULL; // buffer;
-	BOOL bIsRLE;		  // True if the file is run-length encoded
+	int_bool bIsRLE;		  // True if the file is run-length encoded
 
 	if(!handle) {
 		return NULL;
 	}
 
-	BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+	int_bool header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
 	try {
 		// process the header
@@ -350,7 +350,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		if (bitcount == 24) {
 			dib = FreeImage_AllocateHeader(header_only, width, height, bitcount, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
 		} else {
-			dib = FreeImage_AllocateHeader(header_only, width, height, bitcount);			
+			dib = FreeImage_AllocateHeader(header_only, width, height, bitcount);
 		}
 
 		// if the dib couldn't be allocated, throw an error
@@ -454,10 +454,10 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 		line = (BYTE*)malloc(linelength * sizeof(BYTE));
 		if(!line) throw FI_MSG_ERROR_MEMORY;
-		
+
 		ReadBuf = (BYTE*)malloc(IO_BUF_SIZE * sizeof(BYTE));
 		if(!ReadBuf) throw FI_MSG_ERROR_MEMORY;
-		
+
 		bits = FreeImage_GetScanLine(dib, height - 1);
 
 		int ReadPos = IO_BUF_SIZE;
@@ -541,7 +541,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				unsigned x;
 
 				for (x = 0; x < width; x++) {
-					bits[x * 3 + FI_RGBA_RED] = pline[x];						
+					bits[x * 3 + FI_RGBA_RED] = pline[x];
 				}
 				pline += header.bytes_per_line;
 
@@ -581,7 +581,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 		FreeImage_OutputMessageProc(s_format_id, text);
 	}
-	
+
 	return NULL;
 }
 

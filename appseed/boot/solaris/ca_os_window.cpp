@@ -10,7 +10,7 @@ extern cairo_t *  g_cairo;
 oswindow_data::oswindow_data()
 {
 
-   m_plongmap              = new simple_map < int, LONG >();
+   m_plongmap              = new int_to_int;
 
    m_hthread               = NULL;
 
@@ -697,7 +697,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(cairo_surface_t * cs, stra_dup & stra, simple_array < bool >  & baTab, simple_array < int >  & ya,SIZE * psize)
+void message_box_paint(cairo_surface_t * cs, stringa & stra, ::lemon_array < bool >  & baTab, ::lemon_array < int >  & ya,SIZE * psize)
 {
 	cairo_t *c;
 
@@ -763,18 +763,18 @@ void message_box_show_xlib(const char * lpText, const char * lpCaption)
 	sz.cy = 0;
 
 
-	stra_dup stra;
+	stringa stra;
 
 	stra.add_tokens(lpText, "\n");
 
-	simple_array < bool > baTab;
+	::lemon_array < bool > baTab;
 
-	simple_array < int > ya;
+	::lemon_array < int > ya;
 
 	for(index i = 0; i < stra.get_count(); i++)
 	{
 
-	   vsstring str = stra[i];
+	   string str = stra[i];
 
 	   bool bTab = str_begins_dup(str, "\t");
 

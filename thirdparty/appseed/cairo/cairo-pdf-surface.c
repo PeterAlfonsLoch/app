@@ -38,7 +38,7 @@
  *	Carl Worth <cworth@cworth.org>
  *	Adrian Johnson <ajohnson@redneon.com>
  */
-
+#include "base/base/base.h"
 #define _BSD_SOURCE /* for snprintf() */
 #include "cairoint.h"
 

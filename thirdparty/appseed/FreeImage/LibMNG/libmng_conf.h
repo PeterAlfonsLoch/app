@@ -57,6 +57,8 @@
 #pragma option -A                      /* force ANSI-C */
 #endif
 
+#include "base/base/base.h"
+
 #ifndef _libmng_conf_h_
 #define _libmng_conf_h_
 

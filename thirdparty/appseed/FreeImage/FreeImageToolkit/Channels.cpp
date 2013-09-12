@@ -22,12 +22,12 @@
 #include "FreeImageFramework.h"
 
 
-/** @brief Retrieves the red, green, blue or alpha channel of a BGR[A] image. 
+/** @brief Retrieves the red, green, blue or alpha channel of a BGR[A] image.
 @param src Input image to be processed.
 @param channel Color channel to extract
 @return Returns the extracted channel if successful, returns NULL otherwise.
 */
-FIBITMAP * DLL_CALLCONV 
+FIBITMAP * DLL_CALLCONV
 FreeImage_GetChannel(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 
 	if(!FreeImage_HasPixels(src)) return NULL;
@@ -35,7 +35,7 @@ FreeImage_GetChannel(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 	FREE_IMAGE_TYPE image_type = FreeImage_GetImageType(src);
 	unsigned bpp = FreeImage_GetBPP(src);
 
-	// 24- or 32-bit 
+	// 24- or 32-bit
 	if(image_type == FIT_BITMAP && ((bpp == 24) || (bpp == 32))) {
 		int c;
 
@@ -47,7 +47,7 @@ FreeImage_GetChannel(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 			case FICC_GREEN:
 				c = FI_RGBA_GREEN;
 				break;
-			case FICC_RED: 
+			case FICC_RED:
 				c = FI_RGBA_RED;
 				break;
 			case FICC_ALPHA:
@@ -84,7 +84,7 @@ FreeImage_GetChannel(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 
 		// copy metadata from src to dst
 		FreeImage_CloneMetadata(dst, src);
-		
+
 		return dst;
 	}
 
@@ -100,7 +100,7 @@ FreeImage_GetChannel(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 			case FICC_GREEN:
 				c = 1;
 				break;
-			case FICC_RED: 
+			case FICC_RED:
 				c = 0;
 				break;
 			case FICC_ALPHA:
@@ -132,7 +132,7 @@ FreeImage_GetChannel(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 
 		// copy metadata from src to dst
 		FreeImage_CloneMetadata(dst, src);
-		
+
 		return dst;
 	}
 
@@ -148,7 +148,7 @@ FreeImage_GetChannel(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 			case FICC_GREEN:
 				c = 1;
 				break;
-			case FICC_RED: 
+			case FICC_RED:
 				c = 0;
 				break;
 			case FICC_ALPHA:
@@ -180,26 +180,26 @@ FreeImage_GetChannel(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 
 		// copy metadata from src to dst
 		FreeImage_CloneMetadata(dst, src);
-		
+
 		return dst;
 	}
 
 	return NULL;
 }
 
-/** @brief Insert a greyscale dib into a RGB[A] image. 
+/** @brief Insert a greyscale dib into a RGB[A] image.
 Both src and dst must have the same width and height.
 @param dst Image to modify (RGB or RGBA)
 @param src Input greyscale image to insert
 @param channel Color channel to modify
 @return Returns TRUE if successful, FALSE otherwise.
 */
-BOOL DLL_CALLCONV 
+int_bool DLL_CALLCONV
 FreeImage_SetChannel(FIBITMAP *dst, FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 	int c;
 
 	if(!FreeImage_HasPixels(src) || !FreeImage_HasPixels(dst)) return FALSE;
-	
+
 	// src and dst images should have the same width and height
 	unsigned src_width  = FreeImage_GetWidth(src);
 	unsigned src_height = FreeImage_GetHeight(src);
@@ -235,7 +235,7 @@ FreeImage_SetChannel(FIBITMAP *dst, FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL chan
 			case FICC_GREEN:
 				c = FI_RGBA_GREEN;
 				break;
-			case FICC_RED: 
+			case FICC_RED:
 				c = FI_RGBA_RED;
 				break;
 			case FICC_ALPHA:
@@ -279,7 +279,7 @@ FreeImage_SetChannel(FIBITMAP *dst, FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL chan
 			case FICC_GREEN:
 				c = 1;
 				break;
-			case FICC_RED: 
+			case FICC_RED:
 				c = 0;
 				break;
 			case FICC_ALPHA:
@@ -305,7 +305,7 @@ FreeImage_SetChannel(FIBITMAP *dst, FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL chan
 
 		return TRUE;
 	}
-	
+
 	if(((dst_image_type == FIT_RGBF) || (dst_image_type == FIT_RGBAF)) && (src_image_type == FIT_FLOAT)) {
 
 		// src image should be grayscale, dst image should be 96- or 128-bit
@@ -323,7 +323,7 @@ FreeImage_SetChannel(FIBITMAP *dst, FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL chan
 			case FICC_GREEN:
 				c = 1;
 				break;
-			case FICC_RED: 
+			case FICC_RED:
 				c = 0;
 				break;
 			case FICC_ALPHA:
@@ -358,7 +358,7 @@ FreeImage_SetChannel(FIBITMAP *dst, FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL chan
 @param channel Channel to extract
 @return Returns the extracted channel if successful, returns NULL otherwise.
 */
-FIBITMAP * DLL_CALLCONV 
+FIBITMAP * DLL_CALLCONV
 FreeImage_GetComplexChannel(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 	unsigned x, y;
 	double mag, phase;
@@ -425,13 +425,13 @@ FreeImage_GetComplexChannel(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 				break;
          default:
             break;
- 
+
 		}
 	}
 
 	// copy metadata from src to dst
 	FreeImage_CloneMetadata(dst, src);
-	
+
 	return dst;
 }
 
@@ -442,7 +442,7 @@ Both src and dst must have the same width and height.
 @param channel Channel to modify
 @return Returns TRUE if successful, FALSE otherwise.
 */
-BOOL DLL_CALLCONV 
+int_bool DLL_CALLCONV
 FreeImage_SetComplexChannel(FIBITMAP *dst, FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 	unsigned x, y;
 	double *src_bits = NULL;
@@ -486,7 +486,7 @@ FreeImage_SetComplexChannel(FIBITMAP *dst, FIBITMAP *src, FREE_IMAGE_COLOR_CHANN
 			break;
       default:
          break;
- 
+
 	}
 
 	return TRUE;

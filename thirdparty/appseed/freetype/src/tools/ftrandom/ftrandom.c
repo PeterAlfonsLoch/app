@@ -27,9 +27,14 @@
 
 /* modified by Werner Lemberg <wl@gnu.org>       */
 /* This file is now part of the FreeType library */
+#include "base/base/base.h"
+
+#include <dirent.h>
+#include <sys/stat.h>
+#include <signal.h>
 
 
-#include <stdio.h>
+/*#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
@@ -40,7 +45,7 @@
 #include <dirent.h>
 #include <math.h>
 #include <signal.h>
-#include <time.h>
+#include <time.h>*/
 
 #include <ft2build.h>
 #include FT_FREETYPE_H

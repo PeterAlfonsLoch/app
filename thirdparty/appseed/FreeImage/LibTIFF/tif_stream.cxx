@@ -4,23 +4,23 @@
  * Copyright (c) 1988-1996 Sam Leffler
  * Copyright (c) 1991-1996 Silicon Graphics, Inc.
  *
- * Permission to use, copy, modify, distribute, and sell this software and 
+ * Permission to use, copy, modify, distribute, and sell this software and
  * its documentation for any purpose is hereby granted without fee, provided
  * that (i) the above copyright notices and this permission notice appear in
  * all copies of the software and related documentation, and (ii) the names of
  * Sam Leffler and Silicon Graphics may not be used in any advertising or
  * publicity relating to the software without the specific, prior written
  * permission of Sam Leffler and Silicon Graphics.
- * 
- * THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
- * EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
- * WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
- * 
+ *
+ * THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY
+ * WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+ *
  * IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR
  * ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
  * OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
- * WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF 
- * LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
+ * WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF
+ * LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
  * OF THIS SOFTWARE.
  */
 
@@ -28,7 +28,7 @@
  * TIFF Library UNIX-specific Routines.
  */
 #include "tiffiop.h"
-#include <iostream>
+//#include <iostream>
 
 #ifndef __VMS
 using namespace std;
@@ -38,7 +38,7 @@ class tiffis_data
 {
   public:
 
-	istream	*myIS;
+	::file::input_stream	*myIS;
         long	myStreamStartPos;
 };
 
@@ -46,7 +46,7 @@ class tiffos_data
 {
   public:
 
-	ostream	*myOS;
+	::file::output_stream	*myOS;
 	long	myStreamStartPos;
 };
 
@@ -70,7 +70,7 @@ static tsize_t
 _tiffosWriteProc(thandle_t fd, tdata_t buf, tsize_t size)
 {
 	tiffos_data	*data = (tiffos_data *)fd;
-	ostream		*os = data->myOS;
+	::file::output_stream		*os = data->myOS;
 	int		pos = os->tellp();
 
 	os->write((const char *)buf, size);
@@ -88,7 +88,7 @@ static toff_t
 _tiffosSeekProc(thandle_t fd, toff_t off, int whence)
 {
 	tiffos_data	*data = (tiffos_data *)fd;
-	ostream	*os = data->myOS;
+	::file::output_stream	*os = data->myOS;
 
 	// if the stream has already failed, don't do anything
 	if( os->fail() )
@@ -96,13 +96,13 @@ _tiffosSeekProc(thandle_t fd, toff_t off, int whence)
 
 	switch(whence) {
 	case SEEK_SET:
-	    os->seekp(data->myStreamStartPos + off, ios::beg);
+	    os->seekp(data->myStreamStartPos + off, ::file::seek_begin);
 		break;
 	case SEEK_CUR:
-		os->seekp(off, ios::cur);
+		os->seekp(off, ::file::seek_current);
 		break;
 	case SEEK_END:
-		os->seekp(off, ios::end);
+		os->seekp(off, ::file::seek_end);
 		break;
 	}
 
@@ -114,13 +114,13 @@ _tiffosSeekProc(thandle_t fd, toff_t off, int whence)
 #ifdef __VMS
 		int		old_state;
 #else
-		ios::iostate	old_state;
+		::file::e_iostate	old_state;
 #endif
 		toff_t		origin=0;
 
 		old_state = os->rdstate();
 		// reset the fail bit or else tellp() won't work below
-		os->clear(os->rdstate() & ~ios::failbit);
+		os->clear((file::e_iostate)(os->rdstate() & ~::file::failbit));
 		switch( whence ) {
 			case SEEK_SET:
 				origin = data->myStreamStartPos;
@@ -129,28 +129,28 @@ _tiffosSeekProc(thandle_t fd, toff_t off, int whence)
 				origin = os->tellp();
 				break;
 			case SEEK_END:
-				os->seekp(0, ios::end);
+				os->seekp(0, ::file::seek_end);
 				origin = os->tellp();
 				break;
 		}
 		// restore original stream state
-		os->clear(old_state);	
+		os->clear(old_state);
 
 		// only do something if desired seek position is valid
 		if( origin + off > data->myStreamStartPos ) {
 			toff_t	num_fill;
 
-			// clear the fail bit 
-			os->clear(os->rdstate() & ~ios::failbit);
+			// clear the fail bit
+			os->clear((file::e_iostate)(os->rdstate() & ~file::failbit));
 
 			// extend the stream to the expected size
-			os->seekp(0, ios::end);
+			os->seekp(0, file::seek_end);
 			num_fill = origin + off - (toff_t)os->tellp();
 			for( toff_t i = 0; i < num_fill; i++ )
-				os->put('\0');
+				os->write('\0');
 
 			// retry the seek
-			os->seekp(origin + off, ios::beg);
+			os->seekp(origin + off, file::seek_begin);
 		}
 	}
 
@@ -164,13 +164,13 @@ _tiffisSeekProc(thandle_t fd, toff_t off, int whence)
 
 	switch(whence) {
 	case SEEK_SET:
-		data->myIS->seekg(data->myStreamStartPos + off, ios::beg);
+		data->myIS->seekg(data->myStreamStartPos + off, file::seek_begin);
 		break;
 	case SEEK_CUR:
-		data->myIS->seekg(off, ios::cur);
+		data->myIS->seekg(off, file::seek_current);
 		break;
 	case SEEK_END:
-		data->myIS->seekg(off, ios::end);
+		data->myIS->seekg(off, file::seek_end);
 		break;
 	}
 
@@ -181,11 +181,11 @@ static toff_t
 _tiffosSizeProc(thandle_t fd)
 {
 	tiffos_data	*data = (tiffos_data *)fd;
-	ostream		*os = data->myOS;
+	file::output_stream		*os = data->myOS;
 	toff_t		pos = os->tellp();
 	toff_t		len;
 
-	os->seekp(0, ios::end);
+	os->seekp(0, file::seek_end);
 	len = os->tellp();
 	os->seekp(pos);
 
@@ -199,7 +199,7 @@ _tiffisSizeProc(thandle_t fd)
 	int		pos = data->myIS->tellg();
 	int		len;
 
-	data->myIS->seekg(0, ios::end);
+	data->myIS->seekg(0, file::seek_end);
 	len = data->myIS->tellg();
 	data->myIS->seekg(pos);
 
@@ -243,7 +243,7 @@ _tiffStreamOpen(const char* name, const char* mode, void *fd)
 
 	if( strchr(mode, 'w') ) {
 		tiffos_data	*data = new tiffos_data;
-		data->myOS = (ostream *)fd;
+		data->myOS = (file::output_stream *)fd;
 		data->myStreamStartPos = data->myOS->tellp();
 
 		// Open for writing.
@@ -255,7 +255,7 @@ _tiffStreamOpen(const char* name, const char* mode, void *fd)
 				_tiffDummyMapProc, _tiffDummyUnmapProc);
 	} else {
 		tiffis_data	*data = new tiffis_data;
-		data->myIS = (istream *)fd;
+		data->myIS = (file::input_stream *)fd;
 		data->myStreamStartPos = data->myIS->tellg();
 		// Open for reading.
 		tif = TIFFClientOpen(name, mode,
@@ -270,7 +270,7 @@ _tiffStreamOpen(const char* name, const char* mode, void *fd)
 }
 
 TIFF*
-TIFFStreamOpen(const char* name, ostream *os)
+TIFFStreamOpen(const char* name, file::output_stream *os)
 {
 	// If os is either a ostrstream or ostringstream, and has no data
 	// written to it yet, then tellp() will return -1 which will break us.
@@ -286,7 +286,7 @@ TIFFStreamOpen(const char* name, ostream *os)
 }
 
 TIFF*
-TIFFStreamOpen(const char* name, istream *is)
+TIFFStreamOpen(const char* name, file::input_stream *is)
 {
 	// NB: We don't support mapped files with streams so add 'm'
 	return _tiffStreamOpen(name, "rm", is);

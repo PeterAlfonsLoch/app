@@ -35,8 +35,6 @@ class simple_path;
 class simple_graphics;
 
 
-#define GetAValue(rgb)      (LOBYTE((rgb)>>24))
-#define ARGB(a, r, g, b)          ((COLORREF)(((byte)(r)|((uint16_t)((byte)(g))<<8))|(((uint32_t)(byte)(b))<<16)|(((uint32_t)(byte)(a))<<24)))
 
 
 

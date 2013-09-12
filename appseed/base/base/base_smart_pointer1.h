@@ -1,11 +1,11 @@
 #pragma once
 
 
-class root;
+template < class root_derived >
+inline int64_t add_ref(root_derived * pca);
 
-
-::count add_ref(root * pelement);
-::count release(root * & pelement);
+template < class root_derived >
+inline int64_t release(root_derived * & pca);
 
 // ::ca::null_class back link to operational system oswindow.h
 //

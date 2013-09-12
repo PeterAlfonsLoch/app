@@ -63,10 +63,10 @@ ls_jpeg_error_exit (j_common_ptr cinfo) {
 
 	// allow JPEG with a premature end of file
 	if((cinfo)->err->msg_parm.i[0] != 13) {
-	
+
 		// let the memory manager delete any temp files before we die
 		jpeg_destroy(cinfo);
-		
+
 		throw FIF_JPEG;
 	}
 }
@@ -89,8 +89,8 @@ ls_jpeg_output_message (j_common_ptr cinfo) {
 //   Main program
 // ----------------------------------------------------------
 
-static BOOL  
-LosslessTransform(const FilenameIO *filenameIO, FREE_IMAGE_JPEG_OPERATION operation, const char *crop, BOOL perfect) {
+static int_bool
+LosslessTransform(const FilenameIO *filenameIO, FREE_IMAGE_JPEG_OPERATION operation, const char *crop, int_bool perfect) {
 	// We assume all-in-memory processing and can therefore use only a
 	// single file pointer for sequential input and output operation
 	FILE *fp = NULL;
@@ -108,17 +108,17 @@ LosslessTransform(const FilenameIO *filenameIO, FREE_IMAGE_JPEG_OPERATION operat
 	JCOPY_OPTION copyoption;
 	// Image transformation options
 	jpeg_transform_info transfoptions;
-	
+
 	// Initialize structures
 	memset(&srcinfo, 0, sizeof(srcinfo));
 	memset(&jsrcerr, 0, sizeof(jsrcerr));
 	memset(&jdsterr, 0, sizeof(jdsterr));
 	memset(&dstinfo, 0, sizeof(dstinfo));
 	memset(&transfoptions, 0, sizeof(transfoptions));
-	
+
 	// Copy all extra markers from source file
 	copyoption = JCOPYOPT_ALL;
-	
+
 	// Set up default JPEG parameters
 	transfoptions.force_grayscale = FALSE;
 	transfoptions.crop = FALSE;
@@ -197,16 +197,16 @@ LosslessTransform(const FilenameIO *filenameIO, FREE_IMAGE_JPEG_OPERATION operat
 			jpeg_destroy_decompress(&srcinfo);
 			return FALSE;
 		}
-		
+
 		// Specify data source for decompression
 		jpeg_stdio_src(&srcinfo, fp);
-		
+
 		// Enable saving of extra markers that we want to copy
 		jcopy_markers_setup(&srcinfo, copyoption);
-		
+
 		// Read the file header
 		jpeg_read_header(&srcinfo, TRUE);
-		
+
 		// Any space needed by a transform option must be requested before
 		// jpeg_read_coefficients so that memory allocation will be done right
 
@@ -219,14 +219,14 @@ LosslessTransform(const FilenameIO *filenameIO, FREE_IMAGE_JPEG_OPERATION operat
 
 		// Read source file as DCT coefficients
 		src_coef_arrays = jpeg_read_coefficients(&srcinfo);
-		
+
 		// Initialize destination compression parameters from source values
 		jpeg_copy_critical_parameters(&srcinfo, &dstinfo);
 
 		// Adjust destination parameters if required by transform options;
 		// also find out which set of coefficient arrays will hold the output
 		dst_coef_arrays = jtransform_adjust_parameters(&srcinfo, &dstinfo, src_coef_arrays, &transfoptions);
-		
+
 		// Close the input file.
 		// Note: we assume that jpeg_read_coefficients consumed all input
 		// until JPEG_REACHED_EOI, and that jpeg_finish_decompress will
@@ -252,25 +252,25 @@ LosslessTransform(const FilenameIO *filenameIO, FREE_IMAGE_JPEG_OPERATION operat
 		if(fp == NULL) {
 			throw(1);
 		}
-		
+
 		// Specify data destination for compression
 		jpeg_stdio_dest(&dstinfo, fp);
-		
+
 		// Start compressor (note no image data is actually written here)
 		jpeg_write_coefficients(&dstinfo, dst_coef_arrays);
-		
+
 		// Copy to the output file any extra markers that we want to preserve
 		jcopy_markers_execute(&srcinfo, &dstinfo, copyoption);
-		
+
 		// Execute image transformation, if any
 		jtransform_execute_transformation(&srcinfo, &dstinfo, src_coef_arrays, &transfoptions);
-		
+
 		// Finish compression and release memory
 		jpeg_finish_compress(&dstinfo);
 		jpeg_destroy_compress(&dstinfo);
 		jpeg_finish_decompress(&srcinfo);
 		jpeg_destroy_decompress(&srcinfo);
-		
+
 		// Close output file and return
 		fclose(fp);
 	}
@@ -288,8 +288,8 @@ LosslessTransform(const FilenameIO *filenameIO, FREE_IMAGE_JPEG_OPERATION operat
 //   FreeImage interface
 // ----------------------------------------------------------
 
-BOOL DLL_CALLCONV 
-FreeImage_JPEGTransform(const char *src_file, const char *dst_file, FREE_IMAGE_JPEG_OPERATION operation, BOOL perfect) {
+int_bool DLL_CALLCONV
+FreeImage_JPEGTransform(const char *src_file, const char *dst_file, FREE_IMAGE_JPEG_OPERATION operation, int_bool perfect) {
 	try {
 		// check the src file format
 		if(FreeImage_GetFileType(src_file) != FIF_JPEG) {
@@ -311,7 +311,7 @@ FreeImage_JPEGTransform(const char *src_file, const char *dst_file, FREE_IMAGE_J
 	}
 }
 
-BOOL DLL_CALLCONV 
+int_bool DLL_CALLCONV
 FreeImage_JPEGCrop(const char *src_file, const char *dst_file, int left, int top, int right, int bottom) {
 	char crop[64];
 
@@ -320,7 +320,7 @@ FreeImage_JPEGCrop(const char *src_file, const char *dst_file, int left, int top
 		if(FreeImage_GetFileType(src_file) != FIF_JPEG) {
 			throw FI_MSG_ERROR_MAGIC_NUMBER;
 		}
-		
+
 		// normalize the rectangle
 		if(right < left) {
 			INPLACESWAP(left, right);
@@ -347,8 +347,8 @@ FreeImage_JPEGCrop(const char *src_file, const char *dst_file, int left, int top
 	}
 }
 
-BOOL DLL_CALLCONV 
-FreeImage_JPEGTransformU(const wchar_t *src_file, const wchar_t *dst_file, FREE_IMAGE_JPEG_OPERATION operation, BOOL perfect) {
+int_bool DLL_CALLCONV
+FreeImage_JPEGTransformU(const wchar_t *src_file, const wchar_t *dst_file, FREE_IMAGE_JPEG_OPERATION operation, int_bool perfect) {
 #ifdef _WIN32
 	try {
 		// check the src file format
@@ -372,7 +372,7 @@ FreeImage_JPEGTransformU(const wchar_t *src_file, const wchar_t *dst_file, FREE_
 	return FALSE;
 }
 
-BOOL DLL_CALLCONV 
+int_bool DLL_CALLCONV
 FreeImage_JPEGCropU(const wchar_t *src_file, const wchar_t *dst_file, int left, int top, int right, int bottom) {
 #ifdef _WIN32
 	char crop[64];
@@ -382,7 +382,7 @@ FreeImage_JPEGCropU(const wchar_t *src_file, const wchar_t *dst_file, int left, 
 		if(FreeImage_GetFileTypeU(src_file) != FIF_JPEG) {
 			throw FI_MSG_ERROR_MAGIC_NUMBER;
 		}
-		
+
 		// normalize the rectangle
 		if(right < left) {
 			INPLACESWAP(left, right);

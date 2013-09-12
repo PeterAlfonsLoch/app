@@ -143,7 +143,7 @@ MimeType() {
 	return "image/exr";
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	BYTE exr_signature[] = { 0x76, 0x2F, 0x31, 0x01 };
 	BYTE signature[] = { 0, 0, 0, 0 };
@@ -152,12 +152,12 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return (memcmp(exr_signature, signature, 4) == 0);
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return (
 		(type == FIT_FLOAT) ||
@@ -166,7 +166,7 @@ SupportsExportType(FREE_IMAGE_TYPE type) {
 	);
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
 }
@@ -183,7 +183,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	}
 
 	try {
-		BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+		int_bool header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
 		// save the stream starting point
 		long stream_start = io->tell_proc(handle);
@@ -448,7 +448,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 /**
 Set the preview image using the dib embedded thumbnail
 */
-static BOOL
+static int_bool
 SetPreviewImage(FIBITMAP *dib, Imf::Header& header) {
 	if(!FreeImage_GetThumbnail(dib)) {
 		return FALSE;
@@ -497,7 +497,7 @@ SetPreviewImage(FIBITMAP *dib, Imf::Header& header) {
 /**
 Save using EXR_LC compression (works only with RGB[A]F images)
 */
-static BOOL
+static int_bool
 SaveAsEXR_LC(C_OStream& ostream, FIBITMAP *dib, Imf::Header& header, int width, int height) {
 	int x, y;
 	Imf::RgbaChannels rgbaChannels;
@@ -554,10 +554,10 @@ SaveAsEXR_LC(C_OStream& ostream, FIBITMAP *dib, Imf::Header& header, int width, 
 
 }
 
-static BOOL DLL_CALLCONV
+static int_bool DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
 	const char *channel_name[4] = { "R", "G", "B", "A" };
-	BOOL bIsFlipped = FALSE;
+	int_bool bIsFlipped = FALSE;
 	half *halfData = NULL;
 
 	if(!dib || !handle) return FALSE;

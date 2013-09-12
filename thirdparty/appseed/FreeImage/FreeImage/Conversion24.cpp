@@ -44,7 +44,7 @@ FreeImage_ConvertLine1To24(BYTE *target, BYTE *source, int width_in_pixels, RGBQ
 
 void DLL_CALLCONV
 FreeImage_ConvertLine4To24(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) {
-	BOOL low_nibble = FALSE;
+	int_bool low_nibble = FALSE;
 	int x = 0;
 
 	for (int cols = 0; cols < width_in_pixels; ++cols ) {
@@ -146,7 +146,7 @@ FreeImage_ConvertTo24Bits(FIBITMAP *dib) {
 			case 1 :
 			{
 				for (int rows = 0; rows < height; rows++) {
-					FreeImage_ConvertLine1To24(FreeImage_GetScanLine(new_dib, rows), FreeImage_GetScanLine(dib, rows), width, FreeImage_GetPalette(dib));					
+					FreeImage_ConvertLine1To24(FreeImage_GetScanLine(new_dib, rows), FreeImage_GetScanLine(dib, rows), width, FreeImage_GetPalette(dib));
 				}
 				return new_dib;
 			}
@@ -158,7 +158,7 @@ FreeImage_ConvertTo24Bits(FIBITMAP *dib) {
 				}
 				return new_dib;
 			}
-				
+
 			case 8 :
 			{
 				for (int rows = 0; rows < height; rows++) {
