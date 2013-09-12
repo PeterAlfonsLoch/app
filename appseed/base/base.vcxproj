@@ -1569,7 +1569,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="multithreading\multithreading_manual_reset_event.cpp" />
     <ClCompile Include="multithreading\multithreading_multi_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_mutex.cpp" />
-    <ClCompile Include="multithreading\multithreading_plain_service.cpp" />
     <ClCompile Include="multithreading\multithreading_retry_multi_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_semaphore.cpp" />

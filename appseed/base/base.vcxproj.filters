@@ -1210,9 +1210,6 @@
     <ClCompile Include="multithreading\multithreading_mutex.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\multithreading_plain_service.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="multithreading\multithreading_retry_multi_lock.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
@@ -1910,6 +1907,9 @@
     </None>
     <None Include="base.def">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
