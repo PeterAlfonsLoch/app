@@ -39,6 +39,8 @@ namespace file
       {
 
          write(reader.get_internal_data(), reader.get_internal_data_size());
+
+         return;
          
       }
 
