@@ -171,7 +171,7 @@ So we've done a broad replace of all the member-related ASSERT to ASSUME.
 #ifdef DEBUG
 #define VERIFY(expr) ASSERT(expr)
 #else
-#define VERIFY(expr)
+#define VERIFY(expr) expr
 #endif // DEBUG
 #endif // VERIFY
 
