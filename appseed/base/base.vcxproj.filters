@@ -1923,6 +1923,9 @@
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="exception\_exception.txt">
