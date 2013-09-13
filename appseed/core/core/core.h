@@ -97,10 +97,10 @@ class job;
 #endif
 
 
-#include "primitive/count.h"
+//#include "primitive/count.h"
 
 
-#include "core/api/api.h"
+#include "api/api.h"
 
 
 
@@ -215,15 +215,15 @@ struct memory_state;
 
 
 
-#include "primitive/primitive.h"
+#include "core/primitive/primitive.h"
 
 
 #include "core_strn.h"
-#include "primitive/primitive_fixed_string.h"
+#include "core/primitive/primitive_fixed_string.h"
 
 
-#include "primitive/primitive.h"
-
+//#include "primitive/primitive.h"
+//
 
 
 #include "core_less.h"
@@ -266,7 +266,7 @@ struct memory_state;
 
 
 #include "core_international_locale_schema.h"
-#include "user/user_str.h"
+#include "core/user/user_str.h"
 
 
 typedef long VMSRESULT;

@@ -245,7 +245,11 @@ namespace file
    void input_stream::read_to_hex(string & str, ::primitive::memory_position dwStart, ::primitive::memory_position dwEnd)
    {
       primitive::memory memory(get_app());
-      if(dwStart != (::primitive::memory_position) -1)
+      if(dwStart == (::primitive::memory_position) -1)
+	  {
+		  dwStart = tellg();
+	  }
+	  else
       {
          seek(dwStart);
       }

@@ -207,7 +207,7 @@ public:
    };
 
 
-   int m_iWorkingSize;
+   ::count m_iWorkingSize;
 
 
    static memdleak_block * s_pmemdleakList;

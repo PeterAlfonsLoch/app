@@ -118,8 +118,8 @@ namespace sqlite
 
       if (fields_object.get_size() == 0) // Filling columns name
       {
-         fields_object.allocate(result.record_header.get_size());
-         edit_object.allocate(result.record_header.get_size());
+         fields_object.set_size(result.record_header.get_size());
+         edit_object.set_size(result.record_header.get_size());
          for (int32_t i = 0; i < result.record_header.get_size(); i++)
          {
             fields_object[i].m_properties    = result.record_header[i];
@@ -531,7 +531,7 @@ namespace sqlite
       //if (reslt == NULL ) cout << "EMPTY!!!\n";
       if (r->record_header.get_size() <= 0)
       {
-         r->record_header.allocate(ncol, 32);
+         r->record_header.set_size(ncol, 32);
          for (index i=0; i < ncol; i++)
          {
             r->record_header[i].name = cols[i];

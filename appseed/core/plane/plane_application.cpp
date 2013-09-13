@@ -1689,7 +1689,7 @@ exit_application:
 
       if(m_bIfs)
       {
-         if(&Session != NULL)
+		  if(m_psession != NULL && &Session != NULL)
          {
             if(m_spfsdata.is_null())
                m_spfsdata = new ::fs::set(this);
