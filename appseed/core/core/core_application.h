@@ -325,7 +325,7 @@ public:
    bool                                m_bService;
    bool                                m_bZipIsDir;
    ::plane::system *                   m_psystem;
-   sp(::plane::session)                m_psession;
+   sp(base_session)                    m_psession;
 
    signal                              m_signalAppLanguageChange;
    math::math *                        m_pmath;
@@ -442,8 +442,6 @@ public:
 
    int32_t                          m_iResourceId;
 
-   string_to_ptr                    m_appmap;
-
    //BaseIdSpaceIntegerMap      m_imapResource;
    //BaseIdSpaceStringKeyMap    m_strmapResource;
    //   id_space                   m_idspace;
@@ -501,8 +499,6 @@ public:
 
    virtual bool is_serviceable();
 
-   virtual bool app_map_lookup(const char * psz, void * &);
-   virtual void app_map_set(const char * psz, void *);
 
 
    virtual void pre_translate_message(signal_details * pobj);
@@ -511,27 +507,6 @@ public:
    virtual ::fontopus::user * get_safe_user();
 
 
-   template < class APP >
-   APP & cast_app()
-   {
-      if(this == NULL)
-         return (*(APP *) NULL);
-      void * papp;
-#ifdef WINDOWS
-      if(!app_map_lookup(typeid(APP).name(), papp))
-#else
-      if(!app_map_lookup(typeid(APP).name(), papp))
-#endif
-      {
-         papp = dynamic_cast < APP * > (this);
-#ifdef WINDOWS
-         app_map_set(typeid(APP).name(), papp);
-#else
-         app_map_set(typeid(APP).name(), papp);
-#endif
-      }
-      return (*(APP *) papp);
-   }
 
 
    virtual void install_message_handling(::message::dispatch * pdispatch);

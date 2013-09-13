@@ -124,9 +124,9 @@ namespace file
       return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->put_contents(varFile, lpcszContents, m_pbaseapp);
    }
 
-   bool application::put_contents(var varFile, ::file::binary_buffer & file)
+   bool application::put_contents(var varFile, ::file::reader & reader)
    {
-      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->put_contents(varFile, file, m_pbaseapp);
+      return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->put_contents(varFile, reader, m_pbaseapp);
    }
 
    bool application::put_contents(var varFile, primitive::memory & mem)

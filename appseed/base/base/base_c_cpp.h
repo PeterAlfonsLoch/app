@@ -286,6 +286,8 @@ CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 #include "base_departament.h"
 #include "base_departament_container.h"
 
+#include "base_session.h"
+
 #include "base/net/net_url_departament.h"
 
 #include "base/primitive/primitive_interlocked_long.h"

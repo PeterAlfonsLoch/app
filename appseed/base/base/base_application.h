@@ -46,8 +46,7 @@ public:
    sp(::command_thread)                            m_pcommandthread;
    allocatorsp                                     m_allocer;
    ::plane::application *                          m_pplaneapp; // can be used only from core and upper
-
-
+   string_to_ptr                                   m_appmap;
 
 
    base_application();
@@ -92,6 +91,37 @@ public:
    //virtual sp(element) on_alloc(const sp(type) info);
 
    virtual bool verb();
+
+
+
+   virtual bool app_map_lookup(const char * psz, void * &);
+   virtual void app_map_set(const char * psz, void *);
+
+
+
+   template < class APP >
+   APP & cast_app()
+   {
+      if(this == NULL)
+         return (*(APP *) NULL);
+      void * papp;
+#ifdef WINDOWS
+      if(!app_map_lookup(typeid(APP).name(), papp))
+#else
+      if(!app_map_lookup(typeid(APP).name(), papp))
+#endif
+      {
+         papp = dynamic_cast < APP * > (this);
+#ifdef WINDOWS
+         app_map_set(typeid(APP).name(), papp);
+#else
+         app_map_set(typeid(APP).name(), papp);
+#endif
+      }
+      return (*(APP *) papp);
+   }
+
+
 
 
 

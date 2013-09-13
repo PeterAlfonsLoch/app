@@ -336,7 +336,7 @@ retry_license:
 
       if(m_pbaseapp->m_pplaneapp->m_psession != NULL)
       {
-         return m_pbaseapp->m_pplaneapp->m_psession->simple_message_box(pwndOwner, pszMessage, fuStyle);
+         return m_pbaseapp->m_pplaneapp->m_psession->m_pplanesession->m_pplanesession->simple_message_box(pwndOwner, pszMessage, fuStyle);
       }
 
       class message_box box(get_app());

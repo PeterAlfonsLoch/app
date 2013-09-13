@@ -142,7 +142,7 @@ namespace user
       int32_t                                 m_iModal;
       int32_t                                 m_iModalCount;
       bool                                m_bRectOk;
-      sp(::plane::session)                  m_psession;
+      sp(base_session)                  m_psession;
       bool                                m_bMessageWindow;
 
 #if defined(WINDOWS) || defined(LINUX) || defined(MACOS)

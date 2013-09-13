@@ -69,7 +69,7 @@ namespace http
             }
             else
             {
-               seek(-1, ::ca2::seek_current);
+               seek(-1, ::file::seek_current);
             }
          }
          else if(ch == '\r')

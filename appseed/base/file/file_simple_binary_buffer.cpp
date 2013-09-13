@@ -417,7 +417,7 @@ namespace file
          struct stat st;
          if(fstat(fileno(m_pfile), &st) == -1)
             return FALSE;
-         // get time ::core::seek_current file size
+         // get time ::file::seek_current file size
          /*FILETIME ftCreate, ftAccess, ftModify;
          if (!::GetFileTime((HANDLE)m_iFile, &ftCreate, &ftAccess, &ftModify))
             return FALSE;*/

@@ -146,6 +146,16 @@ string base_application::file_name(const char * psz)
    return ::file_name_dup(psz);
 }
 
+bool base_application::app_map_lookup(const char * psz, void * & p)
+{
+   return m_appmap.Lookup(psz, p) != FALSE;
+}
+
+void base_application::app_map_set(const char * psz, void * p)
+{
+   m_appmap.set_at(psz, p);
+}
+
 
 sp(::command_thread) base_application::command_central()
 {
@@ -206,3 +216,6 @@ application_signal_details::application_signal_details(sp(base_application) papp
    m_bOk             = true;
 
 }
+
+
+

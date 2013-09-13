@@ -38,7 +38,7 @@ namespace plane
 #define Sys(pbaseapp) (*pbaseapp->m_pplaneapp->m_psystem)
 
 
-#define Sess(pbaseapp) (*pbaseapp->m_pplaneapp->m_psession)
+#define Sess(pbaseapp) (*pbaseapp->m_pplaneapp->m_psession->m_pplanesession->m_pplanesession->m_pplanesession)
 #define Session (Sess(this->m_pbaseapp))
 
 

@@ -566,26 +566,20 @@ public:
 
 };
 
-namespace core
+
+namespace str
 {
 
 
-   namespace str
+   inline CLASS_DECL_c string from(const var & var)
    {
 
+      return var.get_string();
 
-      inline CLASS_DECL_c string from(const var & var)
-      {
-
-         return var.get_string();
-
-      }
+   }
 
 
-   } // namespace str
-
-
-} // namespace core
+} // namespace str
 
 
 inline string CLASS_DECL_c operator+ (const char * psz, const var & var)

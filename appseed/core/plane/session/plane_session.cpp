@@ -9,6 +9,8 @@ namespace plane
       element(papp)
    {
 
+      m_pplanesession            = this;
+
       m_bDrawCursor              = true;
       m_pnaturedocument          = NULL;
       m_pplatformdocument        = NULL;
@@ -296,8 +298,8 @@ namespace plane
 
    bool session::create_bergedge(sp(::create_context) pcreatecontext)
    {
-      //m_psession->m_pbergedge = this;
-      //m_psession->m_pbergedgeInterface = this;
+      //m_psession->m_pplanesession->m_pbergedge = this;
+      //m_psession->m_pplanesession->m_pbergedgeInterface = this;
 
 
       if(m_pbergedgedocument == NULL)

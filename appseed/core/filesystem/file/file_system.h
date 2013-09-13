@@ -139,7 +139,7 @@ namespace file
 
       bool put_contents(var varFile, const void * pvoidContents, ::count count, sp(base_application) papp);
       bool put_contents(var varFile, const char * lpcszContents, sp(base_application) papp);
-      bool put_contents(var varFile, ::file::binary_buffer & file, sp(base_application) papp);
+      bool put_contents(var varFile, ::file::reader & reader, sp(base_application) papp);
       bool put_contents(var varFile, primitive::memory & mem, sp(base_application) papp);
       bool put_contents_utf8(var varFile, const char * lpcszContents, sp(base_application) papp);
 

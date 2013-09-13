@@ -471,6 +471,12 @@
     <Filter Include="Source Files\core\data">
       <UniqueIdentifier>{02ea13d1-b468-4618-a812-9cb07e01c7f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core\service">
+      <UniqueIdentifier>{3116622e-722d-4408-b2b6-bc6a41544f03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\service">
+      <UniqueIdentifier>{bed1a7a6-0249-4837-837a-3eaeb03138ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -3392,6 +3398,12 @@
     <ClInclude Include="compress\compress_bzip_stream.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
+    <ClInclude Include="core\service\service_plain_service.h">
+      <Filter>Header Files\core\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\service\service_thread_pool.h">
+      <Filter>Header Files\core\service</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive_scalar.cpp">
@@ -5700,6 +5712,9 @@
     </ClCompile>
     <ClCompile Include="compress\compress_bzip_stream.cpp">
       <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="core\service\service_plain_service.cpp">
+      <Filter>Source Files\core\service</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

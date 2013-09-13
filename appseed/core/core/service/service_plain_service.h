@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c plain_service :
+class CLASS_DECL_ca2 plain_service :
    public service_base
 {
 public:

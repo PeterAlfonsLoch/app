@@ -75,6 +75,27 @@ namespace dynamic_source
 
    }
 
+   ::file::stream_buffer & script_interface::output_file()
+   {
+      if(m_pinstanceMain == this)
+      {
+         return *((::file::stream_buffer *) NULL);
+      }
+      else if(m_pinstanceMain != NULL)
+      {
+         return m_pinstanceMain->output_file();
+      }
+      else if(m_pnetnodesocket != NULL)
+      {
+         return m_pnetnodesocket->response().file();
+      }
+      else
+      {
+         m_ostreamFallback.m_spbuffer = m_spmemoryfileFallback;
+         return *m_ostreamFallback.m_spbuffer;
+      }
+   }
+
    ::file::output_stream & script_interface::ostream()
    {
       if(m_pinstanceMain == this)

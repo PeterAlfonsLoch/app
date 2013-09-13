@@ -543,7 +543,7 @@ restart:
       }
    }
 
-   bool system::put_contents(var varFile, ::file::binary_buffer & file, sp(base_application) papp)
+   bool system::put_contents(var varFile, ::file::reader & reader, sp(base_application) papp)
    {
       ::file::binary_buffer_sp spfile;
       spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
@@ -552,7 +552,7 @@ restart:
       primitive::memory mem;
       mem.allocate(1024 * 1024 * 8);
       ::primitive::memory_size uiRead;
-      while((uiRead = file.read(mem.get_data(), mem.get_size())) > 0)
+      while((uiRead = reader.read(mem.get_data(), mem.get_size())) > 0)
       {
          spfile->write(mem.get_data(), uiRead);
       }

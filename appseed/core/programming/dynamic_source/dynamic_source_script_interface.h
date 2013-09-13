@@ -60,6 +60,7 @@ namespace dynamic_source
       virtual bool main_finalize();
 
 
+      virtual ::file::stream_buffer & output_file();
       virtual ::file::output_stream & ostream();
 
 

@@ -44,7 +44,7 @@ namespace file
 
       virtual bool put_contents(var varFile, const void * pvoidContents, ::count count);
       virtual bool put_contents(var varFile, const char * lpcszContents);
-      virtual bool put_contents(var varFile, ::file::binary_buffer & file);
+      virtual bool put_contents(var varFile, ::file::reader & reader);
       virtual bool put_contents(var varFile, primitive::memory & mem);
       virtual bool put_contents_utf8(var varFile, const char * lpcszContents);
 

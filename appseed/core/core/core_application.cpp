@@ -619,10 +619,10 @@ bool application::initialize3()
    if(m_psession == NULL)
       return NULL;
 
-   if(m_psession->m_pfontopus == NULL)
+   if(m_psession->m_pplanesession->m_pfontopus == NULL)
       return NULL;
 
-   return m_psession->m_pfontopus->m_puser;
+   return m_psession->m_pplanesession->m_pfontopus->m_puser;
 
 }
 
@@ -4305,15 +4305,6 @@ bool application::finalize()
 
 }
 
-bool application::app_map_lookup(const char * psz, void * & p)
-{
-   return m_appmap.Lookup(psz, p) != FALSE;
-}
-
-void application::app_map_set(const char * psz, void * p)
-{
-   m_appmap.set_at(psz, p);
-}
 
 /*   sp(::user::interaction) application::get_place_holder_container()
 {
@@ -4323,8 +4314,8 @@ if(m_psession != NULL)
 {
 try
 {
-if(m_psession->m_puiInitialPlaceHolderContainer != NULL)
-return m_psession->m_puiInitialPlaceHolderContainer;
+if(m_psession->m_pplanesession->m_puiInitialPlaceHolderContainer != NULL)
+return m_psession->m_pplanesession->m_puiInitialPlaceHolderContainer;
 }
 catch(...)
 {
