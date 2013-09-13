@@ -22,7 +22,7 @@ namespace file_watcher
          event m_event;
          id m_id;
 
-         op() : m_event(false, true) {}
+         op() : m_event(get_thread_app(), false, true) {}
 
       };
 

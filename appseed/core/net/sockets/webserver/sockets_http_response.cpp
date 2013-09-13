@@ -7,7 +7,8 @@ namespace http
    response::response(sp(base_application) papp, const string & version) :
    element(papp),
    transaction(papp),
-   m_memfileBody(papp )
+   m_memfileBody(papp ),
+   m_ostream(&m_memfileBody)
    {
       UNREFERENCED_PARAMETER(version);
    }
@@ -17,7 +18,8 @@ namespace http
    response::response(const response& src) :
    element(((response &)src).get_app()),
    transaction(src)
-   , m_memfileBody(((response &)src).get_app() )
+   , m_memfileBody(((response &)src).get_app() ),
+   m_ostream(&m_memfileBody)
    {
       m_memfileBody = src.m_memfileBody;
    }

@@ -115,7 +115,7 @@ namespace file_watcher
 
 			CloseHandle(pWatch->m_overlapped.hEvent);
 			CloseHandle(pWatch->m_hDirectory);
-			HeapFree(GetProcessHeap(), 0, pWatch);
+			delete pWatch;
 		}
 	}
 
@@ -123,8 +123,7 @@ namespace file_watcher
 	watch_struct* CreateWatch(LPCTSTR szDirectory, uint32_t m_dwNotify, bool bRecursive)
 	{
 		watch_struct* pWatch;
-		size_t ptrsize = sizeof(*pWatch);
-		pWatch = static_cast<watch_struct*>(HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, ptrsize));
+		pWatch = new watch_struct();
 
 		pWatch->m_hDirectory = CreateFileW(wstring(szDirectory), FILE_LIST_DIRECTORY,
 			FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, 
@@ -148,7 +147,7 @@ namespace file_watcher
 			}
 		}
 
-		HeapFree(GetProcessHeap(), 0, pWatch);
+		delete pWatch;
 		return NULL;
 	}
 

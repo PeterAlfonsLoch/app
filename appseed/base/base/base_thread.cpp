@@ -100,5 +100,7 @@ thread_state * get_thread_state()
 
 bool base_thread::verb()
 {
-   return false;
+
+   return true; // continue execution ... go on...
+
 }

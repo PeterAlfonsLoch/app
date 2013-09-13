@@ -218,7 +218,7 @@ namespace dynamic_source
       }
       else
       {
-         pscript->m_strSourcePath.Format(System.dir().path(m_pmanager->m_strNetnodePath, "net\\netseed\\ds\\core\\%s", false), strName);
+         pscript->m_strSourcePath.Format(System.dir().path(m_pmanager->m_strNetnodePath, "net\\netseed\\%s", false), strName);
       }
       pscript->m_strSourceDir = System.dir().name(pscript->m_strSourcePath);
 

@@ -5,19 +5,19 @@ namespace file
 {
 
 
-   plain_text_output_stream::plain_text_output_stream() :
-      output_stream(canew(string_buffer))
+   plain_text_output_stream::plain_text_output_stream()
    {
+	   m_spbuffer = canew(string_buffer);
    }
 
-   plain_text_output_stream::plain_text_output_stream(stream_buffer * pwriter) :
-      output_stream(pwriter)
+   plain_text_output_stream::plain_text_output_stream(stream_buffer * pwriter)
    {
+	   m_spbuffer = pwriter;
    }
 
-   plain_text_output_stream::plain_text_output_stream(const output_stream & ostream) :
-      output_stream(ostream)
+   plain_text_output_stream::plain_text_output_stream(const output_stream & ostream)
    {
+	   m_spbuffer = ostream.m_spbuffer;
    }
 
    plain_text_output_stream::~plain_text_output_stream()

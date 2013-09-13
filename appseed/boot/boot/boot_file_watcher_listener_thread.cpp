@@ -24,7 +24,7 @@ namespace file_watcher
          Sleep(84);
       }
 
-      PostThreadMessage(m_nId, WM_USER + 123, 0, (LPARAM) pop);
+      PostThreadMessage(m_nId, WM_USER + 123, 0, (lparam) pop);
 
       pop->m_event.wait();
       

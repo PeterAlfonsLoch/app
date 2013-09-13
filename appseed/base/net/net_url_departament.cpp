@@ -12,6 +12,7 @@ namespace url
 
 
    departament::departament(sp(base_application) papp) :
+	   element(papp),
       ::base_departament(papp)
    {
 
