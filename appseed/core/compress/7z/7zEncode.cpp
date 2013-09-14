@@ -346,7 +346,7 @@ namespace n7z
                   _bindInfo.BindPairs.add(bindPair);
                }
                else
-                  _bindInfo.OutStreams.inset(0, numOutStreams);
+                  _bindInfo.OutStreams.insert_at(0, numOutStreams);
                for (uint32_t j = 1; j < coderStreamsInfo.NumOutStreams; j++)
                   _bindInfo.OutStreams.add(numOutStreams + j);
             }
@@ -396,7 +396,7 @@ namespace n7z
                if (_bindInfo.OutStreams[i] == outIndex)
                {
                   _bindInfo.OutStreams.remove_at(i);
-                  _bindInfo.OutStreams.inset(0, outIndex);
+                  _bindInfo.OutStreams.insert_at(0, outIndex);
                   break;
                }
                break;

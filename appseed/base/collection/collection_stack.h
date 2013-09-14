@@ -1,7 +1,7 @@
 #pragma once
 
 
-template < class TYPE, class BASE_ARRAY = lemon_array < TYPE > >
+template < class TYPE, class BASE_ARRAY = array < TYPE > >
 class stack :
    virtual public BASE_ARRAY
 {

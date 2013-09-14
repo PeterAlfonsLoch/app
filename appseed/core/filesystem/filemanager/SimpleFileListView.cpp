@@ -835,7 +835,7 @@ namespace filemanager
                pmenuitem->m_button._001SetButtonText(stra[i]);
                pmenuitem->m_iLevel = pitema->m_pitemContainer != NULL ? pitema->m_pitemContainer->m_iLevel + 1 : 0;
                pmenuitem->m_pbase = pbase;
-               pitema->inset(iIndex, pmenuitem);
+               pitema->insert_at(iIndex, pmenuitem);
                iIndex++;
             }
             pcmdui->m_pcmdui->m_iIndex = iStartIndex;

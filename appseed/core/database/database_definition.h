@@ -125,12 +125,12 @@ namespace database
    };
 
    class CLASS_DECL_ca2 query_data :
-      public ::file::serializable_array < lemon_array < record, record & > >
+      public ::file::serializable_array < array < record, record & > >
    {
    };
 
-   typedef lemon_array <field, field &> CFields;
-   typedef ::file::serializable_array < lemon_array < field_properties, field_properties & > > record_properties;
+   typedef array <field, field &> CFields;
+   typedef ::file::serializable_array < array < field_properties, field_properties & > > record_properties;
 
    class CLASS_DECL_ca2 result_set :
       public object,

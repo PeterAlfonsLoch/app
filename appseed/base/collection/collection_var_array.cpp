@@ -8,30 +8,30 @@
 var_array::var_array(sp(base_application) papp) :
    element(papp)
 {
-   ::lemon::array::set_size(*this, 0, 64);
+   set_size(0, 64);
 }
 
 var_array::var_array(const stringa & stra)
 {
-   ::lemon::array::set_size(*this, 0, ROUND16(stra.get_size() + 16));
+   set_size(0, ROUND16(stra.get_size() + 16));
    operator = (stra);
 }
 
 var_array::var_array(const int_array & ia)
 {
-   ::lemon::array::set_size(*this, 0, ROUND16(ia.get_size() + 16));
+   set_size(0, ROUND16(ia.get_size() + 16));
    operator = (ia);
 }
 
 var_array::var_array(const property_set & propset)
 {
-   ::lemon::array::set_size(*this, 0, ROUND16(propset.get_count() + 16));
+   set_size(0, ROUND16(propset.get_count() + 16));
    operator = (propset);
 }
 
 var_array::var_array(const var_array & vara)
 {
-   ::lemon::array::set_size(*this, ROUND16(vara.get_size() + 16));
+   set_size(ROUND16(vara.get_size() + 16));
    operator = (vara);
 }
 
@@ -317,7 +317,7 @@ void var_array::parse_json(const char * & pszJson, const char * pszEnd)
    ::str::consume(pszJson, "[", 1, pszEnd);
    while(true)
    {
-      ::var & var = ::lemon::array::add_new(*this);
+      ::var & var = add_new();
       var.parse_json(pszJson, pszEnd);
       ::str::consume_spaces(pszJson, 0, pszEnd);
       if(*pszJson == ',')

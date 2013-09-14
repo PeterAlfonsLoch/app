@@ -10,7 +10,7 @@ void _123abc_debug_gen_array_randomize(sp(base_application) papp)
    int_array a;
    a.add_unique(1);
    a.add_unique(2);
-   App(papp).lemon_array().randomize(a);
+   App(papp).array().randomize(a);
 }
 */
 

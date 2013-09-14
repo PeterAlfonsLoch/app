@@ -763,7 +763,7 @@ namespace user
          iOrder = GetZOrder(oswindow);
          if(iOrder == 0x7fffffff)
             break;
-         ia.inset(0, iOrder);
+         ia.insert_at(0, iOrder);
          oswindow = ::GetParent(oswindow);
       }
 

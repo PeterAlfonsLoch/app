@@ -222,7 +222,7 @@ struct TiledOutputFile::Data: public Mutex
 						// each tile
 
     Compressor::Format	format;			// compressor's data format
-    lemon_array<TOutSliceInfo> slices;		// info about channels in file
+    array<TOutSliceInfo> slices;		// info about channels in file
     OStream *		os;			// file stream to write to
     bool		deleteStream;
 
@@ -1019,7 +1019,7 @@ TiledOutputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
     // Initialize slice table for writePixels().
     //
 
-    lemon_array<TOutSliceInfo> slices;
+    array<TOutSliceInfo> slices;
 
     for (ChannelList::ConstIterator i = channels.begin();
 	 i != channels.end();

@@ -8,6 +8,7 @@ namespace primitive
       element(papp)
    {
 
+      m_pprimitivememory   = this;
       m_pbStorage          = NULL;
       m_pbComputed         = NULL;
       m_pcontainer         = NULL;
@@ -16,6 +17,79 @@ namespace primitive
       m_cbStorage          = 0;
 
    }
+
+   memory::memory(const void * pdata, memory_size iCount)
+   {
+      m_pprimitivememory   = this;
+      m_pbStorage    = NULL;
+      m_pbComputed   = NULL;
+      m_iOffset      = 0;
+      allocate(iCount);
+      ASSERT(__is_valid_address(pdata, iCount, FALSE));
+      memcpy(m_pbStorage, pdata, iCount);
+   }
+
+   memory::memory(const memory_base & s)
+   {
+      m_pprimitivememory   = this;
+      m_pbStorage    = NULL;
+      m_pbComputed   = NULL;
+      m_iOffset      = 0;
+      m_dwAllocation = 0;
+      m_cbStorage    = 0;
+      memory_base::operator = (s);
+   }
+
+   memory::memory(const memory & s)
+   {
+      m_pprimitivememory   = this;
+      m_pbStorage    = NULL;
+      m_pbComputed   = NULL;
+      m_iOffset      = 0;
+      m_dwAllocation = 0;
+      m_cbStorage    = 0;
+      memory_base::operator = (s);
+   }
+
+   memory::memory(const char * psz)
+   {
+      m_pprimitivememory   = this;
+      m_pbStorage    = NULL;
+      m_pbComputed   = NULL;
+      m_iOffset      = 0;
+      m_dwAllocation = 0;
+      m_cbStorage    = 0;
+      from_string(psz);
+   }
+
+   memory::memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
+   {
+      UNREFERENCED_PARAMETER(nAllocFlags);
+      m_pprimitivememory   = this;
+      m_pbStorage          = NULL;
+      m_pbComputed         = NULL;
+      m_pcontainer         = pcontainer;
+      m_dwAllocationAddUp  = dwAllocationAddUp;
+      m_iOffset            = 0;
+      m_dwAllocation       = 0;
+      m_cbStorage          = 0;
+   }
+
+   memory::memory(primitive::memory_container * pcontainer, void * pMemory, memory_size dwSize)
+   {
+      m_pprimitivememory   = this;
+      m_pbStorage          = NULL;
+      m_pbComputed         = NULL;
+      m_pcontainer         = pcontainer;
+      m_iOffset            = 0;
+      m_dwAllocation       = 0;
+      m_cbStorage          = 0;
+
+      allocate(dwSize);
+      ASSERT(__is_valid_address(pMemory, (uint_ptr) dwSize, FALSE));
+      memcpy(m_pbStorage, pMemory, (size_t) dwSize);
+   }
+
 
    memory::~memory()
    {
@@ -165,72 +239,6 @@ namespace primitive
          m_iOffset         = 0;
       }
 
-   }
-
-   memory::memory(const void * pdata, memory_size iCount)
-   {
-      m_pbStorage    = NULL;
-      m_pbComputed   = NULL;
-      m_iOffset      = 0;
-      allocate(iCount);
-      ASSERT(__is_valid_address(pdata, iCount, FALSE));
-      memcpy(m_pbStorage, pdata, iCount);
-   }
-
-   memory::memory(const memory_base & s)
-   {
-      m_pbStorage    = NULL;
-      m_pbComputed   = NULL;
-      m_iOffset      = 0;
-      m_dwAllocation = 0;
-      m_cbStorage    = 0;
-      memory_base::operator = (s);
-   }
-
-   memory::memory(const memory & s)
-   {
-      m_pbStorage    = NULL;
-      m_pbComputed   = NULL;
-      m_iOffset      = 0;
-      m_dwAllocation = 0;
-      m_cbStorage    = 0;
-      memory_base::operator = (s);
-   }
-
-   memory::memory(const char * psz)
-   {
-      m_pbStorage    = NULL;
-      m_pbComputed   = NULL;
-      m_iOffset      = 0;
-      m_dwAllocation = 0;
-      m_cbStorage    = 0;
-      from_string(psz);
-   }
-
-   memory::memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
-   {
-      UNREFERENCED_PARAMETER(nAllocFlags);
-      m_pbStorage          = NULL;
-      m_pbComputed         = NULL;
-      m_pcontainer         = pcontainer;
-      m_dwAllocationAddUp  = dwAllocationAddUp;
-      m_iOffset            = 0;
-      m_dwAllocation       = 0;
-      m_cbStorage          = 0;
-   }
-
-   memory::memory(primitive::memory_container * pcontainer, void * pMemory, memory_size dwSize)
-   {
-      m_pbStorage          = NULL;
-      m_pbComputed         = NULL;
-      m_pcontainer         = pcontainer;
-      m_iOffset            = 0;
-      m_dwAllocation       = 0;
-      m_cbStorage          = 0;
-
-      allocate(dwSize);
-      ASSERT(__is_valid_address(pMemory, (uint_ptr) dwSize, FALSE));
-      memcpy(m_pbStorage, pMemory, (size_t) dwSize);
    }
 
 

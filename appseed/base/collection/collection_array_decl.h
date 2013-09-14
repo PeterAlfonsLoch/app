@@ -4,12 +4,62 @@
 class index_array;
 
 
+namespace constructor
+{
+
+
+   template < class TYPE >
+   class def
+   {
+   public:
+#undef new
+
+      inline static void construct(void * pvoid)
+      {
+         ::new(pvoid) TYPE;
+      }
+      inline static void construct(void * pvoid, ::count c)
+      {
+         TYPE * p = (TYPE *) pvoid;
+         while(c > 0)
+         {
+            ::new((void *) p) TYPE;
+            p++;
+            c--;
+         }
+      }
+
+#define new DEBUG_NEW
+
+   };
+
+
+   class nodef
+   {
+   public:
+
+      inline static void construct(void * p)
+      {
+         UNREFERENCED_PARAMETER(p);
+      }
+      inline static void construct(void * p, :: count c)
+      {
+         UNREFERENCED_PARAMETER(p);
+         UNREFERENCED_PARAMETER(c);
+      }
+
+   };
+
+
+} // namespace constructor
+
+
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
-// lemon_array is an array that call default constructors, copy constructs and destructors in elements
+// array is an array that call default constructors, copy constructs and destructors in elements
 
 
-template<class TYPE, class ARG_TYPE = const TYPE &>
+template<class TYPE, class ARG_TYPE = const TYPE &, class DEFCONSTRUCTOR = ::constructor::def < TYPE >>
 class array :
    virtual public object
 {
@@ -323,6 +373,7 @@ public:
    inline bool empty(::count countMinimum = 1) const;
    inline bool has_elements(::count countMinimum = 1) const;
    inline index get_upper_bound(index i = -1) const;
+   ::count set_size(index nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count allocate(index nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count allocate_in_bytes(index nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count set_raw_size(index nNewSize, ::count nGrowBy = -1); // does not call constructors and destructors on items/elements
@@ -373,6 +424,12 @@ public:
    index append(const array& src);
    void copy(const array& src);
 
+   index push_back(ARG_TYPE newElement);
+
+   inline typename TYPE & add_new();
+   inline index add_new( ::count count);
+
+
 
    TYPE pop(index index = -1);
    void pop_back(index index = -1);
@@ -397,12 +454,12 @@ public:
    inline TYPE& operator[](index nIndex);
 
    // Operations that move elements around
-   index inset(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
+   index insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    index remove_at(index nIndex, ::count nCount = 1);
    void _001RemoveIndexes(index_array & ia);
    void remove_indexes(const index_array & ia); // remove indexes from index array upper bound to index array lower bound
    void remove_descending_indexes(const index_array & ia); // remove indexes from index array lower bound to index array upper bound
-   index inset(index nStartIndex, array* pNewArray);
+   index insert_at(index nStartIndex, array* pNewArray);
    void swap(index index1, index index2);
 
    array & operator = (const array & src);
@@ -493,9 +550,27 @@ public:
    }
 
 
+
+   inline void set_at_grow(index nIndex, ARG_TYPE newElement);
+
+   inline TYPE & element_at_grow(index nIndex);
+
 };
 
 
 
 
+template < class TYPE, class ARG_TYPE = const TYPE & >
+class nodefctr_array :
+   public array < TYPE, ARG_TYPE, ::constructor::nodef > 
+{
+public:
 
+
+   nodefctr_array(sp(base_application) papp = NULL, ::count nGrowBy = 32) : array(papp, nGrowBy) {}
+   nodefctr_array(const array <TYPE, ARG_TYPE> & a) : array (a) {}
+   nodefctr_array(::count n) : array(n){}
+   virtual ~nodefctr_array() {}
+
+};
+   

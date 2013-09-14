@@ -187,7 +187,7 @@ struct TiledInputFile::Data: public Mutex
 					    // used to prevent unnecessary
 					    // seeking
 
-    lemon_array<TInSliceInfo> slices;	    // info about channels in file
+    array<TInSliceInfo> slices;	    // info about channels in file
     IStream *	    is;			    // file stream to read from
 
     bool	    deleteStream;	    // should we delete the stream
@@ -818,7 +818,7 @@ TiledInputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
     // Initialize the slice table for readPixels().
     //
 
-    lemon_array<TInSliceInfo> slices;
+    array<TInSliceInfo> slices;
     ChannelList::ConstIterator i = channels.begin();
 
     for (FrameBuffer::ConstIterator j = frameBuffer.begin();

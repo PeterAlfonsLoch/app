@@ -29,11 +29,11 @@ namespace file
      dynamic_buffer(size_t size): buffer<T>(size) {};
      dynamic_buffer& operator=(const dynamic_buffer &buffer)
      {
-       this->Free();
-       if (buffer._capacity > 0)
+       this->remove_all();
+       if (buffer.get_size() > 0)
        {
-         this->SetCapacity(buffer._capacity);
-         memmove(this->_items, buffer._items, buffer._capacity * sizeof(T));
+         this->SetCapacity(buffer.get_size());
+         memmove(this->get_data(), buffer.get_data(), buffer.get_size() * sizeof(T));
        }
        return *this;
      }

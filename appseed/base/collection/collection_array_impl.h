@@ -5,201 +5,211 @@
 //
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
-// lemon_array is an array that call default constructors, copy constructs and destructors in elements
+// array is an array that call default constructors, copy constructs and destructors in elements
 
 
-template<class TYPE, class ARG_TYPE>
-inline ::count array<TYPE, ARG_TYPE>::get_size() const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_size() const
 {
    return m_nSize;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline ::count array<TYPE, ARG_TYPE>::get_size_in_bytes() const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_size_in_bytes() const
 {
    return m_nSize * sizeof(TYPE);
 }
 
-template<class TYPE, class ARG_TYPE>
-inline ::count array<TYPE, ARG_TYPE>::get_count() const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_count() const
 {
    return this->get_size();
 }
 
-template<class TYPE, class ARG_TYPE>
-inline ::count array<TYPE, ARG_TYPE>::get_byte_count() const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_byte_count() const
 {
    return this->get_size_in_bytes();
 }
 
-template<class TYPE, class ARG_TYPE>
-inline ::count array<TYPE, ARG_TYPE>::size() const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::size() const
 {
    return this->get_size();
 }
 
-template<class TYPE, class ARG_TYPE>
-inline ::count array<TYPE, ARG_TYPE>::count() const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::count() const
 {
    return this->get_count();
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline bool array<TYPE, ARG_TYPE>::is_empty(::count countMinimum) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline bool array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::is_empty(::count countMinimum) const
 {
    return m_nSize < countMinimum;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline bool array<TYPE, ARG_TYPE>::empty(::count countMinimum) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline bool array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::empty(::count countMinimum) const
 {
    return is_empty(countMinimum);
 }
 
-template<class TYPE, class ARG_TYPE>
-inline bool array<TYPE, ARG_TYPE>::has_elements(::count countMinimum) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline bool array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::has_elements(::count countMinimum) const
 {
    return m_nSize >= countMinimum;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline index array<TYPE, ARG_TYPE>::get_upper_bound(index index) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_upper_bound(index index) const
 {
    return m_nSize + index;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline ::count array<TYPE, ARG_TYPE>::remove_all()
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::remove_all()
 {
    return allocate(0, -1);
 }
 
-template <class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::
-   clear()
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::set_size(index nNewSize, ::count nGrowBy) // does not call default constructors on new items/elements
+{
+   return allocate(nNewSize, nGrowBy);
+}
+
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::clear()
 {
    remove_all();
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline void array<TYPE, ARG_TYPE>::remove_last()
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::remove_last()
 {
    remove_at(get_upper_bound());
 }
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE& array<TYPE, ARG_TYPE>::get_at(index nIndex)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_at(index nIndex)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    return m_pData[nIndex];
    //   throw invalid_argument_exception(get_app());
 }
-template<class TYPE, class ARG_TYPE>
-inline const TYPE& array<TYPE, ARG_TYPE>::get_at(index nIndex) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline const TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_at(index nIndex) const
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    return m_pData[nIndex];
    // throw invalid_argument_exception(get_app());
 }
-template<class TYPE, class ARG_TYPE>
-inline void array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::set_at(index nIndex, ARG_TYPE newElement)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    m_pData[nIndex] = newElement;
    // else
    //  throw invalid_argument_exception(get_app());
 }
-template<class TYPE, class ARG_TYPE>
-inline const TYPE& array<TYPE, ARG_TYPE>::element_at(index nIndex) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline const TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::element_at(index nIndex) const
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    return m_pData[nIndex];
    // throw invalid_argument_exception(get_app());
 }
-template<class TYPE, class ARG_TYPE>
-inline TYPE& array<TYPE, ARG_TYPE>::element_at(index nIndex)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::element_at(index nIndex)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    return m_pData[nIndex];
    // throw invalid_argument_exception(get_app());
 }
-template<class TYPE, class ARG_TYPE>
-inline const TYPE& array<TYPE, ARG_TYPE>::first_element(index nIndex) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline const TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::first_element(index nIndex) const
 {
    return this->element_at(nIndex);
 }
-template<class TYPE, class ARG_TYPE>
-inline TYPE& array<TYPE, ARG_TYPE>::first_element(index nIndex)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::first_element(index nIndex)
 {
    return this->element_at(nIndex);
 }
-template<class TYPE, class ARG_TYPE>
-inline const TYPE& array<TYPE, ARG_TYPE>::last_element(index index) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline const TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::last_element(index index) const
 {
    return element_at(get_upper_bound(index));
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE& array<TYPE, ARG_TYPE>::last_element(index index)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::last_element(index index)
 {
    return element_at(get_upper_bound(index));
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE & array<TYPE, ARG_TYPE>::front(index n)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::front(index n)
 {
    return first_element(n);
 }
 
-template<class TYPE, class ARG_TYPE>
-inline const TYPE & array<TYPE, ARG_TYPE>::front(index n) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline const TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::front(index n) const
 {
    return first_element(n);
 }
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE & array<TYPE, ARG_TYPE>::back(index n)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::back(index n)
 {
    return last_element(n);
 }
 
-template<class TYPE, class ARG_TYPE>
-inline const TYPE & array<TYPE, ARG_TYPE>::back(index n) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline const TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::back(index n) const
 {
    return last_element(n);
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline const TYPE* array<TYPE, ARG_TYPE>::get_data() const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline const TYPE* array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_data() const
 {
    return (const TYPE*)m_pData;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE* array<TYPE, ARG_TYPE>::get_data()
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline TYPE* array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_data()
 {
    return (TYPE*)m_pData;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline index array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::push_back(ARG_TYPE newElement)
+{
+   return add(newElement);
+}
+
+
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::add(ARG_TYPE newElement)
 {
    index nIndex = m_nSize;
    allocate(nIndex + 1);
-#undef new
-   ::new(&last_element()) TYPE(newElement);
-#define new DEBUG_NEW
+   last_element() = newElement;
    return nIndex;
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline index array<TYPE, ARG_TYPE>::add(const array & src)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::add(const array & src)
 {
    return append(src);
 }
@@ -207,8 +217,8 @@ inline index array<TYPE, ARG_TYPE>::add(const array & src)
 
 
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE array<TYPE, ARG_TYPE>::pop(index n)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline TYPE array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::pop(index n)
 {
 
    index i = get_upper_bound(n);
@@ -221,8 +231,8 @@ inline TYPE array<TYPE, ARG_TYPE>::pop(index n)
 
 }
 
-template<class TYPE, class ARG_TYPE>
-inline void array<TYPE, ARG_TYPE>::pop_back(index n)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::pop_back(index n)
 {
 
    remove_at(get_upper_bound(n));
@@ -231,29 +241,29 @@ inline void array<TYPE, ARG_TYPE>::pop_back(index n)
 
 
 
-template<class TYPE, class ARG_TYPE>
-inline const TYPE& array<TYPE, ARG_TYPE>::operator[](index nIndex) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline const TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::operator[](index nIndex) const
 {
    return element_at(nIndex);
 }
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE& array<TYPE, ARG_TYPE>::operator[](index nIndex)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::operator[](index nIndex)
 {
    return this->element_at(nIndex);
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline void array<TYPE, ARG_TYPE>::swap(index index1, index index2)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::swap(index index1, index index2)
 {
    TYPE t = m_pData[index1];
    m_pData[index1] = m_pData[index2];
    m_pData[index2] = t;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator = (const array & src)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::operator = (const array & src)
 {
    if(&src != this)
    {
@@ -266,8 +276,8 @@ inline array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator = (const array & 
 
 // out-of-line functions
 
-template<class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE>::array(sp(base_application) papp, ::count nGrowBy) :
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::array(sp(base_application) papp, ::count nGrowBy) :
 element(papp)
 {
    m_nGrowBy = max(0, nGrowBy);
@@ -275,8 +285,8 @@ element(papp)
    m_nSize = m_nMaxSize = 0;
 }
 
-template<class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE>::array(const array <TYPE, ARG_TYPE> & a) :
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::array(const array <TYPE, ARG_TYPE> & a) :
 element(a.get_app())
 {
    m_nGrowBy = 32;
@@ -287,8 +297,8 @@ element(a.get_app())
 
 
 
-template<class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE>:: array(::count n)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > :: array(::count n)
 {
    m_nGrowBy = 32;
    m_pData = NULL;
@@ -300,16 +310,16 @@ array<TYPE, ARG_TYPE>:: array(::count n)
 
 
 
-template<class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE>::~array()
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::~array()
 {
 
    destroy();
 
 }
 
-template<class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::destroy()
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::destroy()
 {
    ASSERT_VALID(this);
 
@@ -325,14 +335,14 @@ void array<TYPE, ARG_TYPE>::destroy()
 
 }
 
-template<class TYPE, class ARG_TYPE>
-::count array<TYPE, ARG_TYPE>::resize(::count nNewSize, ::count nGrowBy)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::resize(::count nNewSize, ::count nGrowBy)
 {
    return allocate(nNewSize, nGrowBy);
 }
 
-template<class TYPE, class ARG_TYPE>
-::count array<TYPE, ARG_TYPE>::allocate_in_bytes(::count nNewSize, ::count nGrowBy)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::allocate_in_bytes(::count nNewSize, ::count nGrowBy)
 {
    if(nGrowBy < 0)
    {
@@ -344,9 +354,10 @@ template<class TYPE, class ARG_TYPE>
    }
 }
 
-template<class TYPE, class ARG_TYPE>
-::count array<TYPE, ARG_TYPE>::allocate(::count nNewSize, ::count nGrowBy)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::allocate(::count nNewSize, ::count nGrowBy)
 {
+
    ::count countOld = get_count();
    ASSERT_VALID(this);
    ASSERT(nNewSize >= 0);
@@ -380,6 +391,7 @@ template<class TYPE, class ARG_TYPE>
 #endif
       ::count nAllocSize = __max(nNewSize, m_nGrowBy);
       m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
+      DEFCONSTRUCTOR::construct( m_pData, nNewSize );
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
    }
@@ -388,8 +400,7 @@ template<class TYPE, class ARG_TYPE>
       // it fits
       if (nNewSize > m_nSize)
       {
-         // initialize the new elements
-         memset((void *)(m_pData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
+         DEFCONSTRUCTOR::construct( m_pData + m_nSize, nNewSize - m_nSize );
       }
       else if (m_nSize > nNewSize)
       {
@@ -427,12 +438,11 @@ template<class TYPE, class ARG_TYPE>
       TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
 
       // copy new data from old
-      ::core::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
-         m_pData, (size_t)m_nSize * sizeof(TYPE));
+      ::core::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE), m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
       ASSERT(nNewSize > m_nSize);
-      memset((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
+      DEFCONSTRUCTOR::construct(pNewData + m_nSize, nNewSize - m_nSize);
       // get rid of old stuff (note: no destructors called)
       delete[] (BYTE*)m_pData;
       m_pData = pNewData;
@@ -442,8 +452,8 @@ template<class TYPE, class ARG_TYPE>
    return countOld;
 }
 
-template<class TYPE, class ARG_TYPE>
-::count array<TYPE, ARG_TYPE>::set_raw_size(::count nNewSize, ::count nGrowBy)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::set_raw_size(::count nNewSize, ::count nGrowBy)
 {
    ::count countOld = get_count();
    ASSERT_VALID(this);
@@ -476,18 +486,11 @@ template<class TYPE, class ARG_TYPE>
 #endif
       ::count nAllocSize = __max(nNewSize, m_nGrowBy);
       m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
-      //memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
    }
    else if (nNewSize <= m_nMaxSize)
    {
-      // it fits
-      if (nNewSize > m_nSize)
-      {
-         // initialize the new elements
-         memset((void *)(m_pData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-      }
       m_nSize = nNewSize;
    }
    else
@@ -520,9 +523,6 @@ template<class TYPE, class ARG_TYPE>
       ::core::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
          m_pData, (size_t)m_nSize * sizeof(TYPE));
 
-      // construct remaining elements
-      ASSERT(nNewSize > m_nSize);
-      memset((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
       for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
          // get rid of old stuff (note: no destructors called)
             delete[] (BYTE*)m_pData;
@@ -536,8 +536,8 @@ template<class TYPE, class ARG_TYPE>
 }
 
 
-template<class TYPE, class ARG_TYPE>
-index array<TYPE, ARG_TYPE>::append(const array& src)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::append(const array& src)
 {
    ASSERT_VALID(this);
    ASSERT(this != &src);   // cannot append to itself
@@ -551,8 +551,8 @@ index array<TYPE, ARG_TYPE>::append(const array& src)
    return nOldSize;
 }
 
-template<class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::copy(const array& src)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::copy(const array& src)
 {
    ASSERT_VALID(this);
    ASSERT(this != &src);   // cannot append to itself
@@ -564,8 +564,8 @@ void array<TYPE, ARG_TYPE>::copy(const array& src)
    }
 }
 
-template<class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::free_extra()
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::free_extra()
 {
    ASSERT_VALID(this);
 
@@ -593,8 +593,8 @@ void array<TYPE, ARG_TYPE>::free_extra()
 
 
 
-template<class TYPE, class ARG_TYPE>
-inline index array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::remove_at(index nIndex, ::count nCount)
 {
 
    //ASSERT_VALID(this);
@@ -621,8 +621,8 @@ inline index array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
 
 
 
-template<class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::dump(dump_context & dumpcontext) const
 {
    object::dump(dumpcontext);
 
@@ -636,8 +636,8 @@ void array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
    dumpcontext << "\n";
 }
 
-template<class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::assert_valid() const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::assert_valid() const
 {
    object::assert_valid();
 
@@ -655,8 +655,8 @@ void array<TYPE, ARG_TYPE>::assert_valid() const
    }
 }
 
-template<class TYPE, class ARG_TYPE>
-typename array<TYPE, ARG_TYPE>::iterator array<TYPE, ARG_TYPE>::erase(iterator pos)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+typename array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::iterator array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::erase(iterator pos)
 {
    if(pos.m_parray == this)
    {
@@ -669,8 +669,8 @@ typename array<TYPE, ARG_TYPE>::iterator array<TYPE, ARG_TYPE>::erase(iterator p
    }
 }
 
-template<class TYPE, class ARG_TYPE>
-typename  array<TYPE, ARG_TYPE>::iterator array<TYPE, ARG_TYPE>::erase(iterator begin, iterator last)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+typename  array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::iterator array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::erase(iterator begin, iterator last)
 {
    if(begin.m_parray == this && last.m_parray == this)
    {
@@ -692,8 +692,8 @@ typename  array<TYPE, ARG_TYPE>::iterator array<TYPE, ARG_TYPE>::erase(iterator 
 }
 
 
-template <class TYPE, class ARG_TYPE>
-index array<TYPE, ARG_TYPE>::raw_find_first(TYPE *pt, index find, index last) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::raw_find_first(TYPE *pt, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -706,8 +706,9 @@ index array<TYPE, ARG_TYPE>::raw_find_first(TYPE *pt, index find, index last) co
    }
    return -1;
 }
-template <class TYPE, class ARG_TYPE>
-index array<TYPE, ARG_TYPE>::find_first(ARG_TYPE t, index ( * lpfnCompare )(ARG_TYPE, ARG_TYPE), index find, index last) const
+
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::find_first(ARG_TYPE t, index ( * lpfnCompare )(ARG_TYPE, ARG_TYPE), index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -723,9 +724,8 @@ index array<TYPE, ARG_TYPE>::find_first(ARG_TYPE t, index ( * lpfnCompare )(ARG_
 
 
 
-template < class TYPE, class ARG_TYPE >
-bool array < TYPE, ARG_TYPE >::
-   binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *)) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+bool array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *)) const
 {
    if(this->get_size() == 0)
    {
@@ -796,13 +796,13 @@ bool array < TYPE, ARG_TYPE >::
 
 
 
-template <class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator += (const array & a)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::operator += (const array & a)
 {
 
    if(&a == this)
    {
-      array<TYPE, ARG_TYPE> aCopy(a);
+      array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  aCopy(a);
       add(aCopy);
    }
    else
@@ -813,19 +813,21 @@ array<TYPE, ARG_TYPE> & array<TYPE, ARG_TYPE>::operator += (const array & a)
 
 }
 
-template <class TYPE, class ARG_TYPE>
-array<TYPE, ARG_TYPE> array<TYPE, ARG_TYPE>::operator + (const array & a) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::operator + (const array & a) const
 {
-   array<TYPE, ARG_TYPE> aNew(*this);
+   array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  aNew(*this);
    aNew += a;
    return a;
 }
 
-template <class TYPE, class ARG_TYPE>
-index array<TYPE, ARG_TYPE>::inset(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
-   //ASSERT_VALID(this);
-   //ASSERT(nIndex >= 0);    // will expand to meet need
+
+   ASSERT_VALID(this);
+
+   ASSERT(nIndex >= 0);    // will expand to meet need
 
    if(nCount <= 0)
       return -1;
@@ -836,18 +838,18 @@ index array<TYPE, ARG_TYPE>::inset(index nIndex, ARG_TYPE newElement, ::count nC
    if (nIndex >= m_nSize)
    {
       // adding after the end of the array
-      allocate(nIndex + nCount, -1);   // grow so nIndex is valid
+      set_size(nIndex + nCount, -1);   // grow so nIndex is valid
    }
    else
    {
       // inserting in the middle of the array
       ::count nOldSize = m_nSize;
-      allocate(m_nSize + nCount, -1);  // grow it to new size
+      set_size(m_nSize + nCount, -1);  // grow it to new size
       // destroy intial data before copying over it
       // shift old data up to fill gap
-      ::core::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
-         m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
+      ::core::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE), m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
 
+      DEFCONSTRUCTOR::construct(m_pData + nIndex, nCount);
    }
 
    // insert new value in the gap
@@ -862,8 +864,8 @@ index array<TYPE, ARG_TYPE>::inset(index nIndex, ARG_TYPE newElement, ::count nC
 
 }
 
-template <class TYPE, class ARG_TYPE>
-index array<TYPE, ARG_TYPE>::inset(index nStartIndex, array < TYPE, ARG_TYPE > * pNewArray)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::insert_at(index nStartIndex, array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  * pNewArray)
 {
    ASSERT_VALID(this);
    ASSERT(pNewArray != NULL);
@@ -875,9 +877,9 @@ index array<TYPE, ARG_TYPE>::inset(index nStartIndex, array < TYPE, ARG_TYPE > *
 
    if (pNewArray->get_size() > 0)
    {
-      inset(nStartIndex, pNewArray->element_at(0), pNewArray->get_size());
+      insert_at(nStartIndex, pNewArray->element_at(0), pNewArray->get_size());
       for (index i = 1; i < pNewArray->get_size(); i++)
-         inset(nStartIndex + i, pNewArray->element_at(i));
+         insert_at(nStartIndex + i, pNewArray->element_at(i));
    }
 
    return nStartIndex;
@@ -885,3 +887,56 @@ index array<TYPE, ARG_TYPE>::inset(index nStartIndex, array < TYPE, ARG_TYPE > *
 }
 
 
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::add_new()
+{
+   set_size(m_nSize + 1);
+   return last_element();
+}
+
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::add_new(::count count)
+{
+   set_size(m_nSize + count);
+   return get_upper_bound();
+}
+
+
+
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::set_at_grow(index nIndex, ARG_TYPE newElement)
+{
+
+   ASSERT_VALID(this);
+
+   ASSERT(nIndex >= 0);
+
+   if(nIndex < 0)
+      throw invalid_argument_exception(get_app());
+
+   if (nIndex >= m_nSize)
+      set_size(nIndex+1, -1);
+
+   m_pData[nIndex] = newElement;
+
+}
+
+
+
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::element_at_grow(index nIndex)
+{
+
+   ASSERT_VALID(this);
+
+   ASSERT(nIndex >= 0);
+
+   if(nIndex < 0)
+      throw invalid_argument_exception(get_app());
+
+   if (nIndex >= m_nSize)
+      set_size(nIndex+1, -1);
+
+   return m_pData[nIndex];
+
+}

@@ -1489,7 +1489,7 @@ namespace xml
       iaPath.remove_all();
       while(pnode != NULL && pnode != this)
       {
-         iaPath.inset(0, pnode->get_index());
+         iaPath.insert_at(0, pnode->get_index());
          pnode = pnode->m_pnodeParent;
       }
 

@@ -171,7 +171,7 @@ public:
       }
       else
       {
-         this->inset(iFind, newElement);
+         this->insert_at(iFind, newElement);
          return iFind;
       }
    }
@@ -723,8 +723,8 @@ public:
 // the index array by sorting it and returning
 // only the indexes that could be removed
 // without indexes duplicates
-template<class TYPE, class ARG_TYPE>
-inline void array<TYPE, ARG_TYPE>::_001RemoveIndexes( /* [in, out] */ index_array & ia /* [in, out] */ )
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::_001RemoveIndexes( /* [in, out] */ index_array & ia /* [in, out] */ )
 {
 
    // sort
@@ -769,8 +769,8 @@ inline void array<TYPE, ARG_TYPE>::_001RemoveIndexes( /* [in, out] */ index_arra
 
 
 
-template<class TYPE, class ARG_TYPE>
-inline void array<TYPE, ARG_TYPE>::remove_indexes(const index_array & ia)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::remove_indexes(const index_array & ia)
 {
 
 
@@ -785,8 +785,8 @@ inline void array<TYPE, ARG_TYPE>::remove_indexes(const index_array & ia)
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline void array<TYPE, ARG_TYPE>::remove_descending_indexes(const index_array & ia)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::remove_descending_indexes(const index_array & ia)
 {
 
    for(index i = 0; i < ia.get_count(); i++)
@@ -1094,8 +1094,8 @@ template < class TYPE >
 }
 
 
-template <class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::quick_sort(index (* fCompare)(TYPE *, TYPE *), void (* fSwap)(TYPE *, TYPE *))
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::quick_sort(index (* fCompare)(TYPE *, TYPE *), void (* fSwap)(TYPE *, TYPE *))
 {
    index_array stackLowerBound;
    index_array stackUpperBound;
@@ -1165,8 +1165,8 @@ void array<TYPE, ARG_TYPE>::quick_sort(index (* fCompare)(TYPE *, TYPE *), void 
 
 }
 
-template <class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::quick_sort(index (* fCompare)(TYPE *, TYPE *))
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::quick_sort(index (* fCompare)(TYPE *, TYPE *))
 {
    index_array stackLowerBound;
    index_array stackUpperBound;
@@ -1236,8 +1236,8 @@ void array<TYPE, ARG_TYPE>::quick_sort(index (* fCompare)(TYPE *, TYPE *))
 
 }
 
-template <class TYPE, class ARG_TYPE>
-void array<TYPE, ARG_TYPE>::quick_sort(index (* fCompare)(TYPE *, TYPE *), index_array & ia)
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::quick_sort(index (* fCompare)(TYPE *, TYPE *), index_array & ia)
 {
 
    // minimum check
@@ -1314,9 +1314,8 @@ void array<TYPE, ARG_TYPE>::quick_sort(index (* fCompare)(TYPE *, TYPE *), index
 
 
 
-template < class TYPE, class ARG_TYPE >
-bool array < TYPE, ARG_TYPE >::
-binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia) const
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+bool array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia) const
 {
    if(this->get_size() == 0)
    {
@@ -1384,8 +1383,8 @@ binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *),
 
 }
 
-template < class TYPE, class ARG_TYPE >
-index array < TYPE, ARG_TYPE >::
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::
 sort_add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
 {
 
@@ -1393,8 +1392,8 @@ sort_add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
 
 }
 
-template < class TYPE, class ARG_TYPE >
-::count array < TYPE, ARG_TYPE >::
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::
 sort_add(const array  < TYPE, ARG_TYPE> & a, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
 {
    for(index i = 0; i < a.get_size(); i++)
@@ -1404,8 +1403,8 @@ sort_add(const array  < TYPE, ARG_TYPE> & a, index ( * fCompare ) (TYPE *, TYPE 
    return a.get_size();
 }
 
-template < class TYPE, class ARG_TYPE >
-::count array < TYPE, ARG_TYPE >::
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::
 sort_remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
 {
    ::count ca = 0;
@@ -1651,7 +1650,7 @@ void raw_array<TYPE, ARG_TYPE>::quick_sort(index (* fCompare)(TYPE *, TYPE *), i
 }
 
 template < class TYPE, class ARG_TYPE >
-bool raw_array < TYPE, ARG_TYPE >::
+bool raw_array < TYPE, ARG_TYPE > ::
 binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *)) const
 {
    if(this->get_size() == 0)
@@ -1722,7 +1721,7 @@ binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *))
 
 
 template < class TYPE, class ARG_TYPE >
-bool raw_array < TYPE, ARG_TYPE >::
+bool raw_array < TYPE, ARG_TYPE > ::
 binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia) const
 {
    if(this->get_size() == 0)
@@ -1792,18 +1791,18 @@ binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *),
 }
 
 template < class TYPE, class ARG_TYPE >
-index raw_array < TYPE, ARG_TYPE >::
+index raw_array < TYPE, ARG_TYPE > ::
 sort_add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
 {
    index iIndex = 0;
    binary_search(t, iIndex, fCompare, ia);
-   this->inset(iIndex, t);
+   this->insert_at(iIndex, t);
    ia.add(iIndex);
    return iIndex;
 }
 
 template < class TYPE, class ARG_TYPE >
-::count raw_array < TYPE, ARG_TYPE >::
+::count raw_array < TYPE, ARG_TYPE> ::
 sort_add(const raw_array  < TYPE, ARG_TYPE> & a, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
 {
    for(index i = 0; i < a.get_size(); i++)
@@ -1814,7 +1813,7 @@ sort_add(const raw_array  < TYPE, ARG_TYPE> & a, index ( * fCompare ) (TYPE *, T
 }
 
 template < class TYPE, class ARG_TYPE >
-::count raw_array < TYPE, ARG_TYPE >::
+::count raw_array < TYPE, ARG_TYPE > ::
 sort_remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
 {
    ::count ca = 0;
@@ -1947,7 +1946,7 @@ namespace lemon
       {
          index iIndex = 0;
          binary_search(a, t, iIndex, fCompare, ia);
-         a.inset(iIndex, t);
+         a.insert_at(iIndex, t);
          ia.add(iIndex);
          return iIndex;
       }

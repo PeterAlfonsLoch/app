@@ -1,6 +1,6 @@
 #pragma once
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_ARRAY = lemon_array < TYPE, ARG_TYPE >, class COMPARE = ::comparison::less < TYPE, ARG_TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_ARRAY = array < TYPE, ARG_TYPE >, class COMPARE = ::comparison::less < TYPE, ARG_TYPE > >
 class unique_sort_array :
    protected BASE_ARRAY
 {

@@ -4584,14 +4584,14 @@ namespace user
          CSortInfoItem newItem = m_sortinfo.m_itema[iFound];
          m_sortinfo.m_itema.remove_at(iFound);
          newItem.m_bAscendent = !newItem.m_bAscendent;
-         m_sortinfo.m_itema.inset(0, newItem);
+         m_sortinfo.m_itema.insert_at(0, newItem);
       }
       else
       {
          CSortInfoItem newItem;
          newItem.m_iSubItem = iSubItem;
          newItem.m_bAscendent = true;
-         m_sortinfo.m_itema.inset(0, newItem);
+         m_sortinfo.m_itema.insert_at(0, newItem);
       }
 
       _001OnSort();

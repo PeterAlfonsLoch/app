@@ -713,7 +713,7 @@ geometry::geometry & application::geometry()
 }
 
 
-/*   ::lemon::array & application::lemon_array()
+/*   ::lemon::array & application::array()
 {
 
 return *m_plemonarray;

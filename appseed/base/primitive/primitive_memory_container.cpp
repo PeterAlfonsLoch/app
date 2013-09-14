@@ -65,7 +65,7 @@ namespace primitive
          return;
       }
 
-      if(m_spmemory == NULL)
+      if(m_spmemory.is_null())
       {
 
          m_spmemory = new primitive::memory(this);

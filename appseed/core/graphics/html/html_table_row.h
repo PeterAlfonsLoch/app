@@ -17,7 +17,7 @@ namespace html
          index                               m_iRow;
          int32_t                             m_cyMin;
          int32_t                             m_cyMax;
-         lemon_array < cell::holder >        m_cellholdera;
+         array < cell::holder >        m_cellholdera;
 
 
          table_row();

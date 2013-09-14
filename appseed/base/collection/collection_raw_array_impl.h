@@ -5,7 +5,7 @@
 //
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
-// lemon_array is an array that call default constructors, copy constructs and destructors in elements
+// array is an array that call default constructors, copy constructs and destructors in elements
 
 template<class TYPE, class ARG_TYPE>
 inline ::count raw_array<TYPE, ARG_TYPE>::get_size() const
@@ -240,13 +240,13 @@ inline void raw_array<TYPE, ARG_TYPE>::pop_back(index n)
 template<class TYPE, class ARG_TYPE>
 inline index raw_array<TYPE, ARG_TYPE>::push(ARG_TYPE newElement, index n)
 {
-   return inset(get_upper_bound(n), newElement);
+   return insert_at(get_upper_bound(n), newElement);
 }
 
 template<class TYPE, class ARG_TYPE>
 inline void raw_array<TYPE, ARG_TYPE>::push_back(ARG_TYPE newElement, index n)
 {
-   inset(get_upper_bound(n), newElement);
+   insert_at(get_upper_bound(n), newElement);
 }
 
 
@@ -321,7 +321,7 @@ raw_array<TYPE, ARG_TYPE>::raw_array(ARG_TYPE t, ::count n)
    m_nGrowBy = 32;
    m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
-   inset(0, t, n);
+   insert_at(0, t, n);
 }
 
 
@@ -590,7 +590,7 @@ TYPE & raw_array<TYPE, ARG_TYPE>::element_at_grow(index nIndex)
 
 
 template<class TYPE, class ARG_TYPE>
-index raw_array<TYPE, ARG_TYPE>::inset(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
+index raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
    //ASSERT_VALID(this);
    //ASSERT(nIndex >= 0);    // will expand to meet need
@@ -656,7 +656,7 @@ inline index raw_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
 
 
 template<class TYPE, class ARG_TYPE>
-index raw_array<TYPE, ARG_TYPE>::inset(index nStartIndex, raw_array * pNewArray)
+index raw_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, raw_array * pNewArray)
 {
    ASSERT_VALID(this);
    ASSERT(pNewArray != NULL);
@@ -668,9 +668,9 @@ index raw_array<TYPE, ARG_TYPE>::inset(index nStartIndex, raw_array * pNewArray)
 
    if (pNewArray->get_size() > 0)
    {
-      inset(nStartIndex, pNewArray->element_at(0), pNewArray->get_size());
+      insert_at(nStartIndex, pNewArray->element_at(0), pNewArray->get_size());
       for (index i = 1; i < pNewArray->get_size(); i++)
-         inset(nStartIndex + i, pNewArray->element_at(i));
+         insert_at(nStartIndex + i, pNewArray->element_at(i));
    }
 
    return nStartIndex;

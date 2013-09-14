@@ -820,7 +820,7 @@ OutputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
     // Initialize slice table for writePixels().
     //
 
-    lemon_array < OutSliceInfo > slices;
+    array < OutSliceInfo > slices;
 
     for (ChannelList::ConstIterator i = channels.begin();
 	 i != channels.end();

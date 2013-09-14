@@ -597,15 +597,15 @@ restart:
                id idLocale2 = strLocale.Left(iFind);
                if(m_idaLocale.find_first(idLocale2) < 0)
                {
-                  m_idaLocale.inset(i + 1, idLocale2);
-                  m_idaSchema.inset(i + 1, idSchema);
+                  m_idaLocale.insert_at(i + 1, idLocale2);
+                  m_idaSchema.insert_at(i + 1, idSchema);
                   goto restart;
                }
                idLocale2 = strLocale.Mid(iFind + 1);
                if(idLocale2.is_empty() && m_idaLocale.find_first(idLocale2) < 0)
                {
-                  m_idaLocale.inset(i + 1, idLocale2);
-                  m_idaSchema.inset(i + 1, idSchema);
+                  m_idaLocale.insert_at(i + 1, idLocale2);
+                  m_idaSchema.insert_at(i + 1, idSchema);
                   goto restart;
                }
             }

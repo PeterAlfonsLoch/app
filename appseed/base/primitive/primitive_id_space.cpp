@@ -60,7 +60,7 @@ id id_space::operator()(const string & str)
    id id;
    id.raw_set(new string(str));
    m_ida.add(id);
-   m_iaStr.inset(iIndex, m_ida.get_upper_bound());
+   m_iaStr.insert_at(iIndex, m_ida.get_upper_bound());
    //sort();
    return id;
    
@@ -455,7 +455,7 @@ void strid_array::add(const id & id)
       return;
 
    m_idptra.add(id);
-   m_iaId.inset(iIndex, m_idptra.get_upper_bound());
+   m_iaId.insert_at(iIndex, m_idptra.get_upper_bound());
    //m_iaId.add(m_idptra.get_upper_bound());
    //sort();
 

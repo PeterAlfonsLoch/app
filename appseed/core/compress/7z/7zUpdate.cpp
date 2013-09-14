@@ -424,7 +424,7 @@ namespace n7z
       {
          CMethodFull methodFull;
          GetMethodFull(k_BCJ2, 4, methodFull);
-         exeMethod.Methods.inset(0, new CMethodFull(methodFull));
+         exeMethod.Methods.insert_at(0, new CMethodFull(methodFull));
          GetMethodFull(k_LZMA, 1, methodFull);
          methodFull.Props[NCoderPropID::kAlgorithm] = (int64_t)kAlgorithmForBCJ2_LZMA;
          methodFull.Props[NCoderPropID::kMatchFinder] = (int64_t)kMatchFinderForBCJ2_LZMA;
@@ -455,7 +455,7 @@ namespace n7z
       {
          CMethodFull methodFull;
          GetMethodFull(k_BCJ, 1, methodFull);
-         exeMethod.Methods.inset(0, new CMethodFull(methodFull));
+         exeMethod.Methods.insert_at(0, new CMethodFull(methodFull));
          CBind bind;
          bind.OutCoder = 0;
          bind.InStream = 0;

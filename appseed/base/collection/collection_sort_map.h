@@ -664,7 +664,7 @@ index sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::add_pair(ARG_KEY key
    if(!find_key(key, i))
    {
 
-      m_ptra.inset(i, new pair(key));
+      m_ptra.insert_at(i, new pair(key));
 
    }
 

@@ -997,7 +997,7 @@ namespace user
 //         rect.bottom -= afxData.cyBorder2;
          rect.bottom -= 2;
 
-      // inset the top and bottom.
+      // insert_at the top and bottom.
       if (bHorz)
       {
          rect.left += m_cxLeftBorder;

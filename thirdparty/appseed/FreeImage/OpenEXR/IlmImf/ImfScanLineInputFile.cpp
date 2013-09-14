@@ -172,7 +172,7 @@ struct ScanLineInputFile::Data: public Mutex
                                             // channels
     numeric_array < size_t >	offsetInLineBuffer; // offset for each scanline in its
                                             // linebuffer
-    lemon_array<InSliceInfo>	slices;             // info about channels in file
+    array<InSliceInfo>	slices;             // info about channels in file
     IStream *		is;                 // file stream to read from
     
     comparable_array<LineBuffer*> lineBuffers;        // each holds one line buffer
@@ -766,7 +766,7 @@ ScanLineInputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
     // Initialize the slice table for readPixels().
     //
 
-    lemon_array<InSliceInfo> slices;
+    array<InSliceInfo> slices;
     ChannelList::ConstIterator i = channels.begin();
 
     for (FrameBuffer::ConstIterator j = frameBuffer.begin();
