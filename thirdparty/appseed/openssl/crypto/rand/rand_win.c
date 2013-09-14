@@ -108,7 +108,7 @@
  * Hudson (tjh@cryptsoft.com).
  *
  */
-
+#include "base/base/base.h"
 #include "cryptlib.h"
 #include <openssl/rand.h>
 #include "rand_lcl.h"

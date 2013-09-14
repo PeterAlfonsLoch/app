@@ -35,6 +35,10 @@
  *      Vladimir Vukicevic <vladimir@pobox.com>
  */
 
+
+#include "base/base/base.h"
+
+
 #define WIN32_LEAN_AND_MEAN
 /* We require Windows 2000 features such as ETO_PDY */
 #if !defined(WINVER) || (WINVER < 0x0500)

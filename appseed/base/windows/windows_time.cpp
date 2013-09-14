@@ -1,9 +1,7 @@
 #include "framework.h"
 
 
-
 BEGIN_EXTERN_C
-
 
 
 dword get_tick_count()
@@ -23,7 +21,4 @@ dword get_tick_count()
 
 
 
-
 END_EXTERN_C
-
-

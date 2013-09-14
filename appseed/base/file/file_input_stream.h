@@ -36,7 +36,7 @@ namespace file
       virtual bool is_reader_null();
       virtual bool is_reader_set();
 
-      virtual void read_to_hex(string & str, ::primitive::memory_position iStart = -1, ::primitive::memory_position iEnd = -1);
+      virtual void read_to_hex(string & str, file_position iStart = -1, file_position iEnd = -1);
 
 
       inline input_stream & operator >> (bool            & b               ) { read(b              ); return *this; }

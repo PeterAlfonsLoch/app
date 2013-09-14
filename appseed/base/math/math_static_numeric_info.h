@@ -36,10 +36,8 @@ public:
 
 
 
-#ifdef WINDOWS
-
 template <>
-class CLASS_DECL_c static_numeric_info < size_t >
+class CLASS_DECL_c static_numeric_info < uint64_t >
 {
 public:
 
@@ -49,4 +47,3 @@ public:
 }; // numeric_info
 
 
-#endif

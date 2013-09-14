@@ -33,6 +33,10 @@
  * Contributor(s):
  */
 
+
+#include "base/base/base.h"
+
+
 #define WIN32_LEAN_AND_MEAN
 /* We require Windows 2000 features such as GetGlyphIndices */
 #if !defined(WINVER) || (WINVER < 0x0500)
