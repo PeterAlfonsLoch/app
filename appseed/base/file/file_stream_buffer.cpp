@@ -422,7 +422,7 @@ namespace file
       if(i == EOF)
          return false;
 
-      while(true)
+      while(i != EOF)
       {
 
          if((char) i == '\n' || (char) i == '\r')
