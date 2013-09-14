@@ -13,7 +13,7 @@ public:
    cmd_ui * m_pcmdui;
 
 
-   base_cmd_ui(::signal * psignal);
+   base_cmd_ui(class ::signal * psignal);
 
 
 };
@@ -28,7 +28,7 @@ public:
    id   m_id;
 
 
-   BaseCommand(::signal * psignal);
+   BaseCommand(class ::signal * psignal);
 
 
 };

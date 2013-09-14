@@ -136,7 +136,7 @@ namespace message
       PrototypeOnDraw,
    };
 
-   ::signal * CreateSignal();
+   class ::signal * CreateSignal();
 
 /*   class CLASS_DECL_ca2 Handler
    {
@@ -189,7 +189,7 @@ namespace message
          UINT                 m_uiCode;
          UINT                 m_uiIdStart;
          UINT                 m_uiIdEnd;
-         sp(::signal)     m_psignal;
+         sp(class ::signal)     m_psignal;
 
          HandlerItemArray     m_handlera;
 
@@ -211,7 +211,7 @@ namespace message
          Signal * GetSignalByMessage(UINT uiMessage, UINT uiCode, UINT uiIdStart, UINT uiIdEnd);
       };
 
-         
+
       dispatch();
       virtual ~dispatch();
 
@@ -258,7 +258,7 @@ namespace message
             psignal->m_uiIdStart       = uiIdStart;
             psignal->m_uiIdEnd         = uiIdEnd;
             psignal->m_eprototype      = GetMessagePrototype(message, 0);
-            psignal->m_psignal         = canew(::signal());
+            psignal->m_psignal         = canew(class ::signal());
             psignal->m_psignal->connect(psignalizable, pfn);
             HandlerItem <T> * pitem    = canew(HandlerItem < T >);
             pitem->m_psignalizable     = psignalizable;
@@ -289,7 +289,7 @@ namespace message
 
       int32_t                    m_iHandling;
       SignalArray                m_signala;
-      ::signal               m_signalInstallMessageHandling;
+      class ::signal               m_signalInstallMessageHandling;
 //         sp(manual_reset_event)     m_pevOk;
 //         sp(mutex)                  m_pmutex;
 
@@ -324,7 +324,7 @@ namespace message
          lparam                  m_lparam;
          bool                    m_bConditional;
 
-         base(sp(base_application) papp, ::signal * psignal = NULL);
+         base(sp(base_application) papp, class ::signal * psignal = NULL);
          base(sp(base_application) papp, sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
 

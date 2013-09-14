@@ -12,17 +12,17 @@ DWORD get_tick_count();
 void RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, const ulong_ptr *lpArguments);
 
 
-namespace ca2
+namespace file
 {
 
 
-   class file;
+   class binary_buffer;
 
 
-} // namespace ca2
+} // namespace file
 
 
-typedef ::ca2::file * HFILE;
+typedef ::file::binary_buffer * HFILE;
 
 
 
@@ -32,4 +32,4 @@ typedef ::ca2::file * HFILE;
 
 CLASS_DECL_ca2 errno_t fopen_s(FILE ** pFile, const char * pFileName, const char * mode);
 
-#include "os_multithreading.h"
+//#include "os_multithreading.h"

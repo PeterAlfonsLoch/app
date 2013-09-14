@@ -429,7 +429,7 @@ namespace plane
 
 
 template < class T >
-bool ::core::file_system::output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, const char *), const char * lpszSource)
+bool ::file::file_system::output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, const char *), const char * lpszSource)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
@@ -445,7 +445,7 @@ bool ::core::file_system::output(sp(base_application) papp, const char * pszOutp
 
 
 template < class T >
-bool ::core::file_system::output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, ::file::reader &), const char * lpszInput)
+bool ::file::file_system::output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::writer &, ::file::reader &), const char * lpszInput)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));

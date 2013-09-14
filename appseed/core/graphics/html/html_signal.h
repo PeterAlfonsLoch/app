@@ -11,7 +11,7 @@ namespace html
    class data;
 
 
-   class signal : 
+   class signal :
       public signal_details
    {
    public:
@@ -22,7 +22,7 @@ namespace html
       sp(::user::interaction) m_pui;
 
 
-      signal(::signal * psignal);
+      signal(class ::signal * psignal);
 
 
    };

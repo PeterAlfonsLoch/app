@@ -163,8 +163,8 @@ class flags_ex :
    public flags < ENUM >
 {
 public:
-   
-   
+
+
    flags_ex();
    flags_ex(flags_ex & flags);
    virtual ~flags_ex();
@@ -178,7 +178,7 @@ public:
 
 protected:
 
-   ::signal        m_signal;
+   class ::signal        m_signal;
 
 };
 
@@ -254,20 +254,20 @@ public:
    int32_t m_iEnum;
 
 
-   flag_change_signalization(::signal * psignal) : 
+   flag_change_signalization(class ::signal * psignal) :
       signal_details(psignal)
    {
    }
-   
+
 
 };
 
 template < class ENUM >
 void flags_ex < ENUM > ::on_change_signalization(ENUM eenum)
 {
-   
+
    flag_change_signalization obj(&m_signal);
-   
+
    obj.m_iEnum = (int32_t) eenum;
 
    m_signal.emit(&obj);

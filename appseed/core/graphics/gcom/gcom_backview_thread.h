@@ -14,7 +14,7 @@ namespace gcom
       class load_image;
 
 
-      class CLASS_DECL_ca2 thread : 
+      class CLASS_DECL_ca2 thread :
          virtual public ::thread
       {
       public:
@@ -79,7 +79,7 @@ namespace gcom
 
          event                  m_evInitialized;
          mutex                     m_mutexBitmap;
-         backview::Main   *          m_pbackviewinterface;   
+         backview::Main   *          m_pbackviewinterface;
 
          thread(sp(base_application) papp);
 
@@ -139,7 +139,7 @@ namespace gcom
 
          string                  m_strImagePath;
          backview::Main *        m_pbackviewinterface;
-         ::signal             m_signalImageLoaded;
+         class ::signal             m_signalImageLoaded;
          ::draw2d::dib *             m_pdib;
 
 

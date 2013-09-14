@@ -327,7 +327,7 @@ public:
    ::plane::system *                   m_psystem;
    sp(base_session)                    m_psession;
 
-   signal                              m_signalAppLanguageChange;
+   class signal                        m_signalAppLanguageChange;
    math::math *                        m_pmath;
    geometry::geometry *                m_pgeometry;
    core::savings *                     m_psavings;
@@ -1136,43 +1136,5 @@ public:
 };
 
 
-namespace core
-{
-
-   // impl
-   template < class APP >
-   sp(::application) single_application_library < APP > :: get_new_app(const char * pszAppId)
-   {
-
-      if(!contains_app(pszAppId))
-         return NULL;
-
-      sp(application) papp = canew(APP());
-
-      if(papp == NULL)
-         return NULL;
-
-      try
-      {
-         papp->m_pplaneapp->construct(pszAppId);
-      }
-      catch(...)
-      {
-         try
-         {
-            papp.release();
-         }
-         catch(...)
-         {
-         }
-         return NULL;
-      }
-
-      return papp;
-
-   }
-
-
-} // namespace core
 
 

@@ -1,5 +1,5 @@
 #pragma once
-   
+
 namespace user
 {
 
@@ -13,7 +13,7 @@ namespace plane
 {
 
 
-   class CLASS_DECL_ca2 application : 
+   class CLASS_DECL_ca2 application :
       virtual public ::application,
       virtual public ::database::client
 
@@ -169,7 +169,7 @@ namespace plane
 
       virtual void construct();
       virtual void construct(const char * pszId);
-      
+
 
       virtual void _001OnFileNew();
 
@@ -187,7 +187,7 @@ namespace plane
 
 
 
-      
+
 
 
       // smart_pointer < ::cubebase::application >::oattrib
@@ -226,6 +226,47 @@ namespace plane
 } // namespace plane
 
 
+
+
+
+namespace core
+{
+
+   // impl
+   template < class APP >
+   sp(::application) single_application_library < APP > :: get_new_app(const char * pszAppId)
+   {
+
+      if(!contains_app(pszAppId))
+         return NULL;
+
+      sp(application) papp = canew(APP());
+
+      if(papp == NULL)
+         return NULL;
+
+      try
+      {
+         papp->m_pplaneapp->construct(pszAppId);
+      }
+      catch(...)
+      {
+         try
+         {
+            papp.release();
+         }
+         catch(...)
+         {
+         }
+         return NULL;
+      }
+
+      return papp;
+
+   }
+
+
+} // namespace core
 
 
 

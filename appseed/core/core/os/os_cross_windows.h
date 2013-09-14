@@ -14,11 +14,11 @@ CLASS_DECL_ca2 BOOL WINAPI UnlockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi
 
 
 #include "os_cross_windows_guid_def.h"
-#include "os_cross_windows_internals.h"
+//#include "os_cross_windows_internals.h"
 #include "os_cross_windows_winnt.h"
-#include "os_cross_windows_shared_memory.h"
-#include "os_cross_windows_time.h"
-#include "os_cross_windows_crt.h"
+//#include "os_cross_windows_shared_memory.h"
+//#include "os_cross_windows_time.h"
+//#include "os_cross_windows_crt.h"
 
 
 typedef char CHAR;
