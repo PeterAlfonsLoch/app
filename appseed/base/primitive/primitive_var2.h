@@ -12,8 +12,20 @@ class str_str_interface;
 
 
 var CLASS_DECL_c str_ends_get(const char * lpcsz, const char * lpcszSuffix);
-CLASS_DECL_c var ends_get(const char * pszSuffix, const char * psz);
-CLASS_DECL_c var ends_get_ci(const char * pszSuffix, const char * psz);
+
+
+namespace str
+{
+
+   CLASS_DECL_c var ends_get(const char * pszSuffix, const char * psz);
+   CLASS_DECL_c var ends_get_ci(const char * pszSuffix, const char * psz);
+
+
+} // namespace str
+
+
+
+
 
 
 
