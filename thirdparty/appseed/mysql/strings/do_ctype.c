@@ -25,12 +25,12 @@
 #include <my_sys.h>
 #include "m_string.h"
 
-uchar to_upper[256];
-uchar to_lower[256], sort_order[256];
+uchar table_to_upper[256];
+uchar table_to_lower[256], tab_sort_order[256];
 
 static int	ascii_output=1;
 static string	tab_names[]={ "to_lower[]={","to_upper[]={","sort_order[]={" };
-static uchar*	tabell[]= {to_lower,to_upper,sort_order};
+static uchar*	tabell[]= {tab_to_lower, tab_to_upper, tab_sort_order};
 
 void	get_options(),init_case_convert();
 

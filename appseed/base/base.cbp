@@ -513,11 +513,16 @@
 		<Unit filename="net/net_url_departament.h" />
 		<Unit filename="os/cross.h" />
 		<Unit filename="os/cross/cross.h" />
+		<Unit filename="os/cross/windows/windows.cpp" />
 		<Unit filename="os/cross/windows/windows.h" />
 		<Unit filename="os/cross/windows/windows_crt.cpp" />
 		<Unit filename="os/cross/windows/windows_crt.h" />
+		<Unit filename="os/cross/windows/windows_defs.h" />
+		<Unit filename="os/cross/windows/windows_error.cpp" />
 		<Unit filename="os/cross/windows/windows_gdi.h" />
+		<Unit filename="os/cross/windows/windows_guid_def.h" />
 		<Unit filename="os/cross/windows/windows_internals.h" />
+		<Unit filename="os/cross/windows/windows_locale.cpp" />
 		<Unit filename="os/cross/windows/windows_ole_automation.h" />
 		<Unit filename="os/cross/windows/windows_shared_memory.cpp" />
 		<Unit filename="os/cross/windows/windows_shared_memory.h" />
@@ -528,6 +533,7 @@
 		<Unit filename="os/cross/windows/windows_types.h" />
 		<Unit filename="os/cross/windows/windows_user.cpp" />
 		<Unit filename="os/cross/windows/windows_user.h" />
+		<Unit filename="os/cross/windows/windows_winnt.h" />
 		<Unit filename="os/os.h" />
 		<Unit filename="os/os_file.cpp" />
 		<Unit filename="os/os_http.cpp" />

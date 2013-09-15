@@ -22,10 +22,10 @@
 #define RAND_bytes yaRAND_bytes
 #endif /* YASSL_PREFIX */
 
-#include <openssl/ssl.h>
+#include "openssl/ssl.h"
 
 #elif defined(HAVE_OPENSSL)
-#include <openssl/rand.h>
+#include "openssl/rand.h"
 #endif /* HAVE_YASSL */
 
 

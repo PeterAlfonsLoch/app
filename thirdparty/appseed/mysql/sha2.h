@@ -23,7 +23,7 @@
 #include <stddef.h>
 
 #  ifndef HAVE_YASSL
-#    include <openssl/sha.h>
+#    include "openssl/sha.h"
 
 #  else
 

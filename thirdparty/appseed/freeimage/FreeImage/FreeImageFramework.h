@@ -49,7 +49,7 @@
 //#include <memory>
 */
 
-#include "FreeImage.h"
+#include "freeimage.h"
 #include "CacheFile.h"
 #include "FreeImageIO.h"
 #include "Plugin.h"

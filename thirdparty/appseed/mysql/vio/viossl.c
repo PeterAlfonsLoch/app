@@ -226,8 +226,8 @@ int vio_ssl_shutdown(Vio *vio)
     describing with length, we aren't vunerable to these attacks. Therefore,
     we just shutdown by closing the socket (quiet shutdown).
     */
-    SSL_set_quiet_shutdown(ssl, 1); 
-    
+    SSL_set_quiet_shutdown(ssl, 1);
+
     switch ((r= SSL_shutdown(ssl))) {
     case 1:
       /* Shutdown successful */
@@ -373,9 +373,9 @@ static int ssl_do(struct st_VioSSLFd *ptr, Vio *vio, long timeout,
     if ((cert= SSL_get_peer_certificate (ssl)))
     {
       DBUG_PRINT("info",("Peer certificate:"));
-      X509_NAME_oneline(X509_get_subject_name(cert), buf, sizeof(buf));
+      OPENSSL_X509_NAME_oneline(X509_get_subject_name(cert), buf, sizeof(buf));
       DBUG_PRINT("info",("\t subject: '%s'", buf));
-      X509_NAME_oneline(X509_get_issuer_name(cert), buf, sizeof(buf));
+      OPENSSL_X509_NAME_oneline(X509_get_issuer_name(cert), buf, sizeof(buf));
       DBUG_PRINT("info",("\t issuer: '%s'", buf));
       X509_free(cert);
     }

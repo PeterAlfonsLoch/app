@@ -37,7 +37,7 @@ static void my_md5_hash(char *digest, const char *buf, int len)
 }
 
 #elif defined(HAVE_OPENSSL)
-#include <openssl/md5.h>
+#include "openssl/md5.h"
 
 static void my_md5_hash(unsigned char* digest, unsigned const char *buf, int len)
 {

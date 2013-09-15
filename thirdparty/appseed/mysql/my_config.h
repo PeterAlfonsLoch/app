@@ -1,20 +1,27 @@
 /* Copyright (c) 2009, 2013, Oracle and/or its affiliates. All rights reserved.
- 
+
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; version 2 of the License.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
 
 #ifndef MY_CONFIG_H
 #define MY_CONFIG_H
+
+
+#include "base/base/base.h"
+
+
+#undef new
+
 
 #ifdef _WIN32
 #ifndef _WINSOCKAPI_
@@ -208,6 +215,31 @@
 #define HAVE_STRTOLL 1
 #define HAVE_TELL 1
 #define HAVE_TEMPNAM 1
+
+#ifdef LINUX
+#define SYSTEM_TYPE "Linux64"
+#define MACHINE_TYPE "x86_64"
+#define HAVE_RINT 1
+#define HAVE_GETPASS 1
+#define HAVE_UTIME_H 1
+#define HAVE_DIRENT_H 1
+#define HAVE_SYS_IOCTL_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_FDATASYNC 1
+#define HAVE_DECL_FDATASYNC 1
+#define HAVE_POLL_H 1
+#define HAVE_POLL 1
+#define HAVE_SYS_SOCKET_H 1
+#define HAVE_STDINT_H 1
+//#define HAVE_MKSTEMP 1
+#define _access access
+#define _chmod chmod
+#define _unlink unlink
+#define _getcwd getcwd
+#define _chdir chdir
+#define tell tell64
+#endif
+
 /* #undef HAVE_THR_SETCONCURRENCY */
 /* #undef HAVE_THR_YIELD */
 /* #undef HAVE_TIMES */
@@ -247,7 +279,7 @@
 
 /* #undef HAVE_VALGRIND */
 
-#define HAVE_OPENSSL
+#define HAVE_OPENSSL 1
 
 #define SIZEOF_LONG   4
 #ifdef _WIN32
@@ -354,10 +386,7 @@
 
 /* #undef TIME_WITH_SYS_TIME */
 
-#define STACK_DIRECTION -1
 
-#define SYSTEM_TYPE "Win64"
-#define MACHINE_TYPE "x86_64"
 /* #undef HAVE_DTRACE */
 
 /* Windows stuff, mostly functions, that have Posix analogs but named differently */
@@ -365,10 +394,14 @@
 #define S_IFIFO _S_IFIFO
 /* #undef IPPROTO_IPV6 */
 /* #undef IPV6_V6ONLY */
+#define STACK_DIRECTION -1
+#if defined(WINDOWS)
+#define SYSTEM_TYPE "Win64"
+#define MACHINE_TYPE "x86_64"
+#define SIGPIPE SIGINT
+#define SIGQUIT SIGTERM
 #define sigset_t int
 #define mode_t int
-#define SIGQUIT SIGTERM
-#define SIGPIPE SIGINT
 #define isnan _isnan
 #define finite _finite
 #define popen _popen
@@ -380,6 +413,7 @@
 #define strtok_r strtok_s
 #define strtoll _strtoi64
 #define strtoull _strtoui64
+#endif
 /* #undef vsnprintf */
 #if (_MSC_VER > 1310)
 # define HAVE_SETENV
@@ -431,7 +465,7 @@
 #define HAVE_CHARSET_cp1256 1
 #define HAVE_CHARSET_cp1257 1
 #define HAVE_CHARSET_cp850 1
-#define HAVE_CHARSET_cp852 1 
+#define HAVE_CHARSET_cp852 1
 #define HAVE_CHARSET_cp866 1
 #define HAVE_CHARSET_cp932 1
 #define HAVE_CHARSET_dec8 1
@@ -467,7 +501,7 @@
 /* #undef COMPILE_FLAG_WERROR */
 
 /*
-  Important storage engines (those that really need define 
+  Important storage engines (those that really need define
   WITH_<ENGINE>_STORAGE_ENGINE for the whole server)
 */
 /* #undef WITH_MYISAM_STORAGE_ENGINE */

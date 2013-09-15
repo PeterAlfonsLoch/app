@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "plane/session/platform/platform.h"
-#include "graphics/gcom/gcom.h"
+#include "core/plane/session/platform/platform.h"
+#include "core/graphics/gcom/gcom.h"
 
 
 #include "bergedge_view.h"

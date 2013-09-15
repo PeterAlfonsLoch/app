@@ -110,11 +110,6 @@ LONG CompareFileTime(const FILETIME* ft1, const FILETIME* ft2)
   return 0;
 }
 
-uint32_t GetLastError()
-{
-  return 0;
-}
-
 #endif // !defined(WINDOWS)
 
 
@@ -145,3 +140,7 @@ CLASS_DECL_ca2 BOOL WINAPI UnlockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi
 
 
 #endif
+
+
+VARIANT_BOOL BoolToVARIANT_BOOL(int_bool v) { return (v ? VARIANT_TRUE: VARIANT_FALSE); }
+int_bool VARIANT_BOOLToBool(VARIANT_BOOL v) { return (v != VARIANT_FALSE); }

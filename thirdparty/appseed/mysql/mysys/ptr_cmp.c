@@ -32,7 +32,7 @@
  * in CFLAGS if building with GCC on Solaris.
  */
 
-#include <string.h>
+//#include <string.h>
 
 static int native_compare(size_t *length, unsigned char **a, unsigned char **b)
 {

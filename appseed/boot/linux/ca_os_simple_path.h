@@ -63,7 +63,7 @@ public:
 
    };
 
-   ::lemon_array < element >      m_elementa;
+   ::array < element >      m_elementa;
    bool                          m_bFill;
    ::draw2d::e_fill_mode            m_efillmode;
 

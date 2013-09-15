@@ -19,11 +19,11 @@
 // Use at your own risk!
 // =============================================================
 
-// 
+//
 ////////////////////////////////////////////////////////////////
 #pragma once
 
-#include "FreeImage.h"
+#include "freeimage.h"
 
 ////////////////////////////////////////////////////////////////
 
@@ -37,9 +37,9 @@ public:
 typedef struct tagBox {
     int r0;			 // min value, exclusive
     int r1;			 // max value, inclusive
-    int g0;  
-    int g1;  
-    int b0;  
+    int g0;
+    int g1;
+    int b0;
     int b1;
     int vol;
 } Box;
@@ -84,7 +84,7 @@ public:
 // Constant definitions
 // ----------------------------------------------------------------
 
-/** number of colours used: 
+/** number of colours used:
 	for 256 colours, fixed arrays need 8kb, plus space for the image
 */
 //static const int netsize = 256;
@@ -119,7 +119,7 @@ static const int betagamma = (intbias << (gammashift-betashift));
 /// at 32.0 biased by 6 bits
 static const int radiusbiasshift = 6;
 static const int radiusbias = (((int)1) << radiusbiasshift);
-/// and decreases by a 
+/// and decreases by a
 //static const int initradius	= (initrad * radiusbias);
 // factor of 1/30 each cycle
 static const int radiusdec = 30;
@@ -137,7 +137,7 @@ static const int initalpha = (((int)1) << alphabiasshift);
 static const int radbiasshift = 8;
 static const int radbias = (((int)1) << radbiasshift);
 static const int alpharadbshift = (alphabiasshift+radbiasshift);
-static const int alpharadbias = (((int)1) << alpharadbshift);	
+static const int alpharadbias = (((int)1) << alpharadbshift);
 //@}
 
 class NNQuantizer
@@ -178,7 +178,7 @@ protected:
 
 protected:
 	/// Initialise network in range (0,0,0) to (255,255,255) and set parameters
-	void initnet();	
+	void initnet();
 
 	/// Unbias network to give byte values 0..255 and record position i to prepare for sort
 	void unbiasnet();
@@ -191,7 +191,7 @@ protected:
 
 	/// Search for biased BGR values
 	int contest(int b, int g, int r);
-	
+
 	/// Move neuron i towards biased (b,g,r) by factor alpha
 	void altersingle(int alpha, int i, int b, int g, int r);
 
@@ -216,7 +216,7 @@ public:
 
 	/** Quantizer
 	@param dib input 24-bit dib to be quantized
-	@param sampling a sampling factor in range 1..30. 
+	@param sampling a sampling factor in range 1..30.
 	1 => slower (but better), 30 => faster. Default value is 1
 	@return returns the quantized 8-bit (color palette) DIB
 	*/

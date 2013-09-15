@@ -30,10 +30,10 @@
 #if defined(HAVE_STRINGS_H)
 #include <strings.h>
 #endif
-#include <string.h>
+//#include <string.h>
 
 /* need by my_vsnprintf */
-#include <stdarg.h> 
+#include <stdarg.h>
 
 #define bfill please_use_memset_rather_than_bfill()
 #define bzero please_use_memset_rather_than_bzero()

@@ -66,7 +66,7 @@ void mysql_sha1_multi_yassl(uint8 *digest, const char *buf1, int len1,
 }
 
 #elif defined(HAVE_OPENSSL)
-#include <openssl/sha.h>
+#include "openssl/sha.h"
 
 int mysql_sha1_reset(SHA_CTX *context)
 {

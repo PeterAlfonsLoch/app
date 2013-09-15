@@ -178,7 +178,10 @@
 		<Unit filename="crypt/nessie.h" />
 		<Unit filename="crypt/whirpool.cpp" />
 		<Unit filename="framework.cpp" />
-		<Unit filename="framework.h" />
+		<Unit filename="framework.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="hotplugin/hotplugin.h" />
 		<Unit filename="hotplugin/hotplugin_container_launcher.cpp" />
 		<Unit filename="hotplugin/hotplugin_container_launcher.h" />

@@ -23,9 +23,9 @@
 #ifndef _RESIZE_H_
 #define _RESIZE_H_
 
-#include "FreeImage.h"
+#include "freeimage.h"
 #include "Utilities.h"
-#include "Filters.h" 
+#include "Filters.h"
 
 /**
   Filter weights table.<br>
@@ -33,7 +33,7 @@
 */
 class CWeightsTable
 {
-/** 
+/**
   Sampled filter weight table.<br>
   Contribution information for a single pixel
 */
@@ -41,19 +41,19 @@ typedef struct {
 	/// Normalized weights of neighboring pixels
 	double *Weights;
 	/// Bounds of source pixels window
-	int Left, Right;   
-} Contribution;  
+	int Left, Right;
+} Contribution;
 
 private:
-	/// Row (or column) of contribution weights 
+	/// Row (or column) of contribution weights
 	Contribution *m_WeightTable;
-	/// Filter window size (of affecting source pixels) 
+	/// Filter window size (of affecting source pixels)
 	DWORD m_WindowSize;
-	/// Length of line (no. of rows / cols) 
+	/// Length of line (no. of rows / cols)
 	DWORD m_LineLength;
 
 public:
-	/** 
+	/**
 	Constructor<br>
 	Allocate and compute the weights table
 	@param pFilter Filter used for upsampling or downsampling
@@ -98,14 +98,14 @@ public:
 
 /**
  CResizeEngine<br>
- This class performs filtered zoom. It scales an image to the desired dimensions with 
+ This class performs filtered zoom. It scales an image to the desired dimensions with
  any of the CGenericFilter derived filter class.<br>
  It works with 8-, 24- and 32-bit buffers.<br><br>
 
  <b>References</b> : <br>
- [1] Paul Heckbert, C code to zoom raster images up or down, with nice filtering. 
+ [1] Paul Heckbert, C code to zoom raster images up or down, with nice filtering.
  UC Berkeley, August 1989. [online] http://www-2.cs.cmu.edu/afs/cs.cmu.edu/Web/People/ph/heckbert.html
- [2] Eran Yariv, Two Pass Scaling using Filters. The Code Project, December 1999. 
+ [2] Eran Yariv, Two Pass Scaling using Filters. The Code Project, December 1999.
  [online] http://www.codeproject.com/bitmap/2_pass_scaling.asp
 
 */

@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
 #define MYSQL_SOCKET_H
 
 /* For strlen() */
-#include <string.h>
+//#include <string.h>
 /* For MY_STAT */
 #include <my_dir.h>
 /* For my_chsize */
@@ -1121,7 +1121,7 @@ inline_mysql_socket_shutdown
     GUID guidDisconnectEx = WSAID_DISCONNECTEX;
     WSAIoctl(mysql_socket.fd, SIO_GET_EXTENSION_FUNCTION_POINTER,
              &guidDisconnectEx, sizeof(GUID),
-             &DisconnectEx, sizeof(DisconnectEx), 
+             &DisconnectEx, sizeof(DisconnectEx),
              &dwBytesReturned, NULL, NULL);
   }
 #endif

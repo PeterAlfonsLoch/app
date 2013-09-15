@@ -426,7 +426,7 @@ public:
 
    index push_back(ARG_TYPE newElement);
 
-   inline typename TYPE & add_new();
+   inline TYPE & add_new();
    inline index add_new( ::count count);
 
 
@@ -562,15 +562,14 @@ public:
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class nodefctr_array :
-   public array < TYPE, ARG_TYPE, ::constructor::nodef > 
+   public array < TYPE, ARG_TYPE, ::constructor::nodef >
 {
 public:
 
 
-   nodefctr_array(sp(base_application) papp = NULL, ::count nGrowBy = 32) : array(papp, nGrowBy) {}
-   nodefctr_array(const array <TYPE, ARG_TYPE> & a) : array (a) {}
-   nodefctr_array(::count n) : array(n){}
+   nodefctr_array(sp(base_application) papp = NULL, ::count nGrowBy = 32) : array < TYPE, ARG_TYPE, ::constructor::nodef > (papp, nGrowBy) {}
+   nodefctr_array(const array <TYPE, ARG_TYPE> & a) : array < TYPE, ARG_TYPE, ::constructor::nodef > (a) {}
+   nodefctr_array(::count n) : array < TYPE, ARG_TYPE, ::constructor::nodef > (n){}
    virtual ~nodefctr_array() {}
 
 };
-   

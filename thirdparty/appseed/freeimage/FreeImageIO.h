@@ -23,7 +23,7 @@
 #define FREEIMAGEIO_H
 
 #ifndef FREEIMAGE_H
-#include "FreeImage.h"
+#include "freeimage.h"
 #endif
 
 // ----------------------------------------------------------

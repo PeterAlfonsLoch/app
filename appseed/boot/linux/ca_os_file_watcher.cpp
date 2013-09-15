@@ -45,7 +45,7 @@ namespace file_watcher
 	{
 	   bool m_bRecursive;
 		file_watch_listener* m_plistener;
-	   ::lemon_array < watch_struct_item > m_itema;
+	   ::array < watch_struct_item > m_itema;
 	};
 
 

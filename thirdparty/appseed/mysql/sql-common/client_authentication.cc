@@ -25,14 +25,14 @@
 #include "errmsg.h"
 #include "mysql/sql/sql_string.h"
 
-#include <string.h>
+//#include <string.h>
 #include <stdarg.h>
 #if !defined(HAVE_YASSL)
-#include <openssl/rsa.h>
-#include <openssl/pem.h>
-#include <openssl/err.h>
+#include "openssl/rsa.h"
+#include "openssl/pem.h"
+#include "openssl/err.h"
 #if defined(_WIN32) && !defined(_OPENSSL_Applink) && defined(HAVE_OPENSSL_APPLINK_C)
-#include <openssl/applink.c>
+#include "openssl/applink.c"
 #endif
 #endif
 
@@ -64,7 +64,7 @@ int sha256_password_deinit(void)
   Reads and parse RSA public key data from a file.
 
   @param mysql connection handle with file path data
- 
+
   @return Pointer to the RSA public key storage buffer
 */
 
@@ -104,7 +104,7 @@ RSA *rsa_init(MYSQL *mysql)
 
     return 0;
   }
-  
+
   mysql_mutex_lock(&g_public_key_mutex);
   key= g_public_key= PEM_read_RSA_PUBKEY(pub_key_file, 0, 0, 0);
   mysql_mutex_unlock(&g_public_key_mutex);
@@ -122,7 +122,7 @@ RSA *rsa_init(MYSQL *mysql)
 
 /**
   Authenticate the client using the RSA or TLS and a SHA256 salted password.
- 
+
   @param vio Provides plugin access to communication channel
   @param mysql Client connection handler
 
@@ -158,14 +158,14 @@ int sha256_password_auth_client(MYSQL_PLUGIN_VIO *vio, MYSQL *mysql)
     DBUG_RETURN(CR_ERROR);
   }
   /*
-    Copy the scramble to the stack or it will be lost on the next use of the 
+    Copy the scramble to the stack or it will be lost on the next use of the
     net buffer.
   */
   memcpy(scramble_pkt, pkt, SCRAMBLE_LENGTH);
 
   if (mysql_get_ssl_cipher(mysql) != NULL)
     connection_is_secure= true;
-  
+
   /* If connection isn't secure attempt to get the RSA public key file */
   if (!connection_is_secure)
   {
@@ -177,7 +177,7 @@ int sha256_password_auth_client(MYSQL_PLUGIN_VIO *vio, MYSQL *mysql)
   if (!uses_password)
   {
     /* We're not using a password */
-    static const unsigned char zero_byte= '\0'; 
+    static const unsigned char zero_byte= '\0';
     if (vio->write_packet(vio, (const unsigned char *) &zero_byte, 1))
       DBUG_RETURN(CR_ERROR);
   }
@@ -196,7 +196,7 @@ int sha256_password_auth_client(MYSQL_PLUGIN_VIO *vio, MYSQL *mysql)
         if (vio->write_packet(vio, (const unsigned char *) &request_public_key,
                               1))
           DBUG_RETURN(CR_ERROR);
-      
+
         int pkt_len= 0;
         unsigned char *pkt;
         if ((pkt_len= vio->read_packet(vio, &pkt)) == -1)
@@ -208,7 +208,7 @@ int sha256_password_auth_client(MYSQL_PLUGIN_VIO *vio, MYSQL *mysql)
           DBUG_RETURN(CR_ERROR);
         got_public_key_from_server= true;
       }
-      
+
       /* Obfuscate the plain text password with the session scramble */
       xor_string(mysql->passwd, (int) strlen(mysql->passwd), (char *) scramble_pkt,
                  SCRAMBLE_LENGTH);
@@ -244,10 +244,10 @@ int sha256_password_auth_client(MYSQL_PLUGIN_VIO *vio, MYSQL *mysql)
       if (vio->write_packet(vio, (uchar*) mysql->passwd, passwd_len))
         DBUG_RETURN(CR_ERROR);
     }
-    
+
     memset(mysql->passwd, 0, passwd_len);
   }
-    
+
   DBUG_RETURN(CR_OK);
 }
 

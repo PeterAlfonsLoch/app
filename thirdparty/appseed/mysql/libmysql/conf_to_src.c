@@ -21,7 +21,7 @@
 
 #include <my_global.h>
 #include <ctype.h>
-#include <string.h>
+//#include <string.h>
 #include <unistd.h>
 
 #define CHARSETS_SUBDIR "sql/share/charsets"

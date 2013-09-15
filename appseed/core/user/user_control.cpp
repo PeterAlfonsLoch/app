@@ -777,7 +777,7 @@ namespace user
    }
 
 
-   control_cmd_ui::control_cmd_ui(::signal * psignal) :
+   control_cmd_ui::control_cmd_ui(class ::signal * psignal) :
       base_cmd_ui(psignal)
    {
    }

@@ -22,9 +22,9 @@
 #include "aes.hpp"
 #include "openssl/ssl.h"
 #elif defined(HAVE_OPENSSL)
-#include <openssl/aes.h>
-#include <openssl/evp.h>
-#include <openssl/err.h>
+#include "openssl/aes.h"
+#include "openssl/evp.h"
+#include "openssl/err.h"
 #endif
 
 enum encrypt_dir { MY_AES_ENCRYPT, MY_AES_DECRYPT };

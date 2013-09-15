@@ -2,17 +2,21 @@
 
 //#include "Types.h"
 
-/*typedef struct {
+
+#ifndef REFGUID
+
+typedef struct {
   uint32_t Data1;
   uint16_t Data2;
   uint16_t Data3;
   unsigned char Data4[8];
-} GUID;*/
+} GUID;
 
 #ifdef __cplusplus
 #define REFGUID const GUID &
 #else
 #define REFGUID const GUID *
+#endif
 #endif
 
 

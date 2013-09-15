@@ -95,7 +95,6 @@
 		</Linker>
 		<Unit filename="CacheFile.h" />
 		<Unit filename="DeprecationManager/DeprecationMgr.h" />
-		<Unit filename="FreeImage.h" />
 		<Unit filename="FreeImage/BitmapAccess.cpp" />
 		<Unit filename="FreeImage/CacheFile.cpp" />
 		<Unit filename="FreeImage/ColorLookup.cpp" />
@@ -111,6 +110,7 @@
 		<Unit filename="FreeImage/ConversionType.cpp" />
 		<Unit filename="FreeImage/ConversionUINT16.cpp" />
 		<Unit filename="FreeImage/FreeImage.cpp" />
+		<Unit filename="FreeImage/FreeImageFramework.cpp" />
 		<Unit filename="FreeImage/FreeImageFramework.h">
 			<Option compile="1" />
 			<Option weight="0" />
@@ -531,7 +531,10 @@
 		<Unit filename="LibPNG/png.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="LibPNG/png_framework.h" />
+		<Unit filename="LibPNG/png_framework.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="LibPNG/pngerror.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -927,6 +930,7 @@
 		<Unit filename="Quantizers.h" />
 		<Unit filename="ToneMapping.h" />
 		<Unit filename="Utilities.h" />
+		<Unit filename="freeimage.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

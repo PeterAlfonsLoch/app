@@ -20,9 +20,9 @@ struct myfx_CTLCOLOR
 namespace message
 {
 
-   ::signal * CreateSignal()
+   class ::signal * CreateSignal()
    {
-      return new ::signal();
+      return new class ::signal();
    }
 
 
@@ -299,7 +299,7 @@ namespace message
       for(int32_t i = 0; i < signalptra.get_size(); i++)
       {
          Signal & signal = *signalptra[i];
-         ::signal * psignal = signal.m_psignal;
+         class ::signal * psignal = signal.m_psignal;
          pobj->m_psignal = psignal;
          psignal->emit(pobj);
          if(pobj->m_bRet)
@@ -534,7 +534,7 @@ namespace message
       }
    }
 
-   base::base(sp(base_application) papp, ::signal * psignal) :
+   base::base(sp(base_application) papp, class ::signal * psignal) :
       element(papp),
       signal_details(psignal)
    {

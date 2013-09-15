@@ -13,7 +13,6 @@
    along with this program; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
 
-
 // First include (the generated) my_config.h, to get correct platform defines.
 #include "my_config.h"
 
@@ -21,10 +20,10 @@
 
 #ifdef HAVE_YASSL
 #include <sha.hpp>
-#include <openssl/ssl.h>
+#include "openssl/ssl.h"
 #else
-#include <openssl/sha.h>
-#include <openssl/rand.h>
+#include "openssl/sha.h"
+#include "openssl/rand.h"
 #endif
 
 #include "crypt_genhash_impl.h"
@@ -42,7 +41,7 @@ typedef unsigned char uint8_t;
 #endif // !HAVE_STDINT_H
 
 #include <time.h>
-#include <string.h>
+//#include <string.h>
 
 
 
@@ -238,7 +237,7 @@ const char *sha256_find_digest(char *pass)
  *
  * "Released into the Public Domain by Ulrich Drepper <drepper@redhat.com>."
  */
- 
+
 /*
   Due to a Solaris namespace bug DS is a reserved word. To work around this
   DS is undefined.
@@ -434,7 +433,7 @@ my_crypt_genhash(char *ctbuffer,
 
 /**
   Generate a random string using ASCII characters but avoid seperator character.
-  Stdlib rand and srand are used to produce pseudo random numbers between 
+  Stdlib rand and srand are used to produce pseudo random numbers between
   with about 7 bit worth of entropty between 1-127.
 */
 extern "C"
@@ -446,10 +445,10 @@ void generate_user_salt(char *buffer, int buffer_len)
 #else
   RAND_bytes((unsigned char *) buffer, buffer_len);
 #endif
-      
+
   /* Sequence must be a legal UTF8 string */
   for (; buffer < end; buffer++)
-  { 
+  {
     *buffer &= 0x7f;
     if (*buffer == '\0' || *buffer == '$')
       *buffer= *buffer + 1;

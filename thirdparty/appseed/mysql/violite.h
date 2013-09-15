@@ -38,7 +38,7 @@ typedef struct st_vio Vio;
 
 enum enum_vio_type
 {
-  VIO_TYPE_TCPIP, VIO_TYPE_SOCKET, VIO_TYPE_NAMEDPIPE, VIO_TYPE_SSL, 
+  VIO_TYPE_TCPIP, VIO_TYPE_SOCKET, VIO_TYPE_NAMEDPIPE, VIO_TYPE_SSL,
   VIO_TYPE_SHARED_MEMORY
 };
 
@@ -120,7 +120,7 @@ int vio_getnameinfo(const struct sockaddr *sa,
                     int flags);
 
 #ifdef HAVE_OPENSSL
-#include <openssl/opensslv.h>
+#include "openssl/opensslv.h"
 #if OPENSSL_VERSION_NUMBER < 0x0090700f
 #define DES_cblock des_cblock
 #define DES_key_schedule des_key_schedule
@@ -140,14 +140,14 @@ int vio_getnameinfo(const struct sockaddr *sa,
 /* Set yaSSL to use same type as MySQL do for socket handles */
 typedef my_socket YASSL_SOCKET_T;
 #define YASSL_SOCKET_T_DEFINED
-#include <openssl/ssl.h>
-#include <openssl/err.h>
+#include "openssl/ssl.h"
+#include "openssl/err.h"
 
 #ifndef EMBEDDED_LIBRARY
 enum enum_ssl_init_error
 {
-  SSL_INITERR_NOERROR= 0, SSL_INITERR_CERT, SSL_INITERR_KEY, 
-  SSL_INITERR_NOMATCH, SSL_INITERR_BAD_PATHS, SSL_INITERR_CIPHERS, 
+  SSL_INITERR_NOERROR= 0, SSL_INITERR_CERT, SSL_INITERR_KEY,
+  SSL_INITERR_NOMATCH, SSL_INITERR_BAD_PATHS, SSL_INITERR_CIPHERS,
   SSL_INITERR_MEMFAIL, SSL_INITERR_LASTERR
 };
 const char* sslGetErrString(enum enum_ssl_init_error err);
@@ -229,15 +229,15 @@ struct st_vio
   char                  *read_end;      /* end of unfetched data */
   int                   read_timeout;   /* Timeout value (ms) for read ops. */
   int                   write_timeout;  /* Timeout value (ms) for write ops. */
-  
-  /* 
+
+  /*
      VIO vtable interface to be implemented by VIO's like SSL, Socket,
      Named Pipe, etc.
   */
-  
-  /* 
-     viodelete is responsible for cleaning up the VIO object by freeing 
-     internal buffers, closing descriptors, handles. 
+
+  /*
+     viodelete is responsible for cleaning up the VIO object by freeing
+     internal buffers, closing descriptors, handles.
   */
   void    (*viodelete)(Vio*);
   int     (*vioerrno)(Vio*);
@@ -250,8 +250,8 @@ struct st_vio
   void    (*in_addr)(Vio*, struct sockaddr_storage*);
   my_bool (*should_retry)(Vio*);
   my_bool (*was_timeout)(Vio*);
-  /* 
-     vioshutdown is resposnible to shutdown/close the channel, so that no 
+  /*
+     vioshutdown is resposnible to shutdown/close the channel, so that no
      further communications can take place, however any related buffers,
      descriptors, handles can remain valid after a shutdown.
   */

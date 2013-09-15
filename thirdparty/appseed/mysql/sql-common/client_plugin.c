@@ -15,7 +15,7 @@
 
 /**
   @file
-  
+
   Support code for the client side (libmysql) plugins
 
   Client plugins are somewhat different from server plugins, they are simpler.
@@ -36,6 +36,11 @@
 #include <sql_common.h>
 #include "errmsg.h"
 #include <mysql/client_plugin.h>
+
+#ifdef LINUX
+#define RTLD_NOW 2
+#endif
+
 
 struct st_client_plugin_int {
   struct st_client_plugin_int *next;
@@ -83,7 +88,7 @@ static int is_not_initialized(MYSQL *mysql, const char *name)
   @param type   plugin type
 
   @note this does NOT necessarily need a mutex, take care!
-  
+
   @retval a pointer to a found plugin or 0
 */
 static struct st_mysql_client_plugin *
@@ -208,7 +213,7 @@ add_plugin_withargs(MYSQL *mysql, struct st_mysql_client_plugin *plugin,
 /**
   Loads plugins which are specified in the environment variable
   LIBMYSQL_PLUGINS.
-  
+
   Multiple plugins must be separated by semicolon. This function doesn't
   return or log an error.
 
@@ -387,7 +392,7 @@ mysql_load_plugin_v(MYSQL *mysql, const char *name, int type,
   strxnmov(dlpath, sizeof(dlpath) - 1,
            plugindir, "/",
            name, SO_EXT, NullS);
-   
+
   DBUG_PRINT ("info", ("dlopeninig %s", dlpath));
   /* Open new dll handle */
   if (!(dlhandle= dlopen(dlpath, RTLD_NOW)))
@@ -417,7 +422,7 @@ mysql_load_plugin_v(MYSQL *mysql, const char *name, int type,
   }
 
 #if defined(__APPLE__)
-have_plugin:  
+have_plugin:
 #endif
   if (!(sym= dlsym(dlhandle, plugin_declarations_sym)))
   {

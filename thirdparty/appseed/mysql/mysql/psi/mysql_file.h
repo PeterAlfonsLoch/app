@@ -19,7 +19,7 @@
 #include <my_global.h>
 
 /* For strlen() */
-#include <string.h>
+//#include <string.h>
 /* For MY_STAT */
 #include <my_dir.h>
 /* For my_chsize */

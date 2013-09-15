@@ -20,6 +20,12 @@
 #include	<m_string.h>
 #include	<my_dir.h>	/* Structs used by my_dir,includes sys/types */
 #include	"mysys_err.h"
+#if defined(HAVE_SYS_STAT_H)
+# include <sys/stat.h>
+#endif
+#if defined(HAVE_SYS_TYPES_H)
+# include <sys/types.h>
+#endif
 #if defined(HAVE_DIRENT_H)
 # include <dirent.h>
 # define NAMLEN(dirent) strlen((dirent)->d_name)
@@ -44,7 +50,7 @@
 #endif
 
 /*
-  We are assuming that directory we are reading is either has less than 
+  We are assuming that directory we are reading is either has less than
   100 files and so can be read in one initial chunk or has more than 1000
   files and so big increment are suitable.
 */
@@ -63,9 +69,9 @@ void my_dirend(MY_DIR *buffer)
   DBUG_ENTER("my_dirend");
   if (buffer)
   {
-    delete_dynamic((DYNAMIC_ARRAY*)((char*)buffer + 
+    delete_dynamic((DYNAMIC_ARRAY*)((char*)buffer +
                                     ALIGN_SIZE(sizeof(MY_DIR))));
-    free_root((MEM_ROOT*)((char*)buffer + ALIGN_SIZE(sizeof(MY_DIR)) + 
+    free_root((MEM_ROOT*)((char*)buffer + ALIGN_SIZE(sizeof(MY_DIR)) +
                           ALIGN_SIZE(sizeof(DYNAMIC_ARRAY))), MYF(0));
     my_free(buffer);
   }
@@ -103,16 +109,16 @@ MY_DIR	*my_dir(const char *path, myf MyFlags)
 #endif
 
   dirp = opendir(directory_file_name(tmp_path,(char *) path));
-  if (dirp == NULL || 
-      ! (buffer= my_malloc(ALIGN_SIZE(sizeof(MY_DIR)) + 
+  if (dirp == NULL ||
+      ! (buffer= my_malloc(ALIGN_SIZE(sizeof(MY_DIR)) +
                            ALIGN_SIZE(sizeof(DYNAMIC_ARRAY)) +
                            sizeof(MEM_ROOT), MyFlags)))
     goto error;
 
-  dir_entries_storage= (DYNAMIC_ARRAY*)(buffer + ALIGN_SIZE(sizeof(MY_DIR))); 
+  dir_entries_storage= (DYNAMIC_ARRAY*)(buffer + ALIGN_SIZE(sizeof(MY_DIR)));
   names_storage= (MEM_ROOT*)(buffer + ALIGN_SIZE(sizeof(MY_DIR)) +
                              ALIGN_SIZE(sizeof(DYNAMIC_ARRAY)));
-  
+
   if (my_init_dynamic_array(dir_entries_storage, sizeof(FILEINFO),
                             ENTRIES_START_SIZE, ENTRIES_INCREMENT))
   {
@@ -120,25 +126,25 @@ MY_DIR	*my_dir(const char *path, myf MyFlags)
     goto error;
   }
   init_alloc_root(names_storage, NAMES_START_SIZE, NAMES_START_SIZE);
-  
+
   /* MY_DIR structure is allocated and completly initialized at this point */
   result= (MY_DIR*)buffer;
 
   tmp_file=strend(tmp_path);
 
   dp= (struct dirent*) dirent_tmp;
-  
+
   while (!(READDIR(dirp,(struct dirent*) dirent_tmp,dp)))
   {
     if (!(finfo.name= strdup_root(names_storage, dp->d_name)))
       goto error;
-    
+
     if (MyFlags & MY_WANT_STAT)
     {
-      if (!(finfo.mystat= (MY_STAT*)alloc_root(names_storage, 
+      if (!(finfo.mystat= (MY_STAT*)alloc_root(names_storage,
                                                sizeof(MY_STAT))))
         goto error;
-      
+
       memset(finfo.mystat, 0, sizeof(MY_STAT));
       (void) strmov(tmp_file,dp->d_name);
       (void) my_stat(tmp_path, finfo.mystat, MyFlags);
@@ -158,7 +164,7 @@ MY_DIR	*my_dir(const char *path, myf MyFlags)
 #endif
   result->dir_entry= (FILEINFO *)dir_entries_storage->buffer;
   result->number_off_files= dir_entries_storage->elements;
-  
+
   if (!(MyFlags & MY_DONT_SORT))
     my_qsort((void *) result->dir_entry, result->number_off_files,
           sizeof(FILEINFO), (qsort_cmp) comp_names);
@@ -246,15 +252,15 @@ MY_DIR	*my_dir(const char *path, myf MyFlags)
   tmp_file[2]='*';
   tmp_file[3]='\0';
 
-  if (!(buffer= my_malloc(ALIGN_SIZE(sizeof(MY_DIR)) + 
+  if (!(buffer= my_malloc(ALIGN_SIZE(sizeof(MY_DIR)) +
                           ALIGN_SIZE(sizeof(DYNAMIC_ARRAY)) +
                           sizeof(MEM_ROOT), MyFlags)))
     goto error;
 
-  dir_entries_storage= (DYNAMIC_ARRAY*)(buffer + ALIGN_SIZE(sizeof(MY_DIR))); 
+  dir_entries_storage= (DYNAMIC_ARRAY*)(buffer + ALIGN_SIZE(sizeof(MY_DIR)));
   names_storage= (MEM_ROOT*)(buffer + ALIGN_SIZE(sizeof(MY_DIR)) +
                              ALIGN_SIZE(sizeof(DYNAMIC_ARRAY)));
-  
+
   if (my_init_dynamic_array(dir_entries_storage, sizeof(FILEINFO),
                             ENTRIES_START_SIZE, ENTRIES_INCREMENT))
   {
@@ -262,7 +268,7 @@ MY_DIR	*my_dir(const char *path, myf MyFlags)
     goto error;
   }
   init_alloc_root(names_storage, NAMES_START_SIZE, NAMES_START_SIZE);
-  
+
   /* MY_DIR structure is allocated and completly initialized at this point */
   result= (MY_DIR*)buffer;
 
@@ -346,7 +352,7 @@ error:
 /****************************************************************************
 ** File status
 ** Note that MY_STAT is assumed to be same as struct stat
-****************************************************************************/ 
+****************************************************************************/
 
 
 int my_fstat(File Filedes, MY_STAT *stat_area,

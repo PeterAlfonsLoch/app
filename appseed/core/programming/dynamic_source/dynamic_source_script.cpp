@@ -5,6 +5,7 @@
 #define _DARWIN_C_SOURCE
 #endif
 #include <dlfcn.h>
+#include <sys/stat.h>
 #endif
 
 
@@ -125,7 +126,7 @@ namespace dynamic_source
 
 #else
 
-      struct stat st;
+      struct ::stat st;
 
       memset(&st, 0, sizeof(st));
 

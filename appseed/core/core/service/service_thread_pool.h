@@ -70,7 +70,7 @@ public:
          throw last_error_exception(pobject->get_app());
       }
 #else
-      if(!__begin_thread(thread_proc < T >, psignal))
+      if(!__begin_thread(get_thread_app(), thread_proc < T >, psignal))
       {
          delete psignal;
          throw 0;

@@ -4,10 +4,15 @@
 namespace html
 {
 
-   signal::signal(::signal * psignal)
+
+   signal::signal(class ::signal * psignal)
       : signal_details(psignal)
    {
+
    }
 
 
 } // namespace html
+
+
+
