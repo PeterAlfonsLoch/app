@@ -1,6 +1,19 @@
 #include "framework.h"
 
 
+bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, bool bPeek);
+
+extern bool (* g_defer_process_x_message)(HTHREAD hthread, LPMESSAGE lpMsg, oswindow oswindow, bool bPeek);
+
+__attribute__((constructor))
+static void initialize_g_defer_process_x_message()
+{
+
+   ::g_defer_process_x_message = &::defer_process_x_message;
+
+}
+
+
 bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, bool bPeek)
 {
 

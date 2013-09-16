@@ -41,6 +41,16 @@ namespace draw2d_cairo
    }
 
 
+   void dib::read(::file::input_stream & istream)
+   {
+
+      ::draw2d::dib::read(istream);
+
+      cairo_surface_t * surface = dynamic_cast < ::draw2d_cairo::bitmap * > (m_spbitmap.m_p)->m_psurface;
+
+      cairo_surface_mark_dirty (surface);
+
+   }
 
    void    dib::construct (int32_t cx,  int32_t cy)
    {
@@ -431,7 +441,7 @@ namespace draw2d_cairo
          return;
 
       byte * pdata =  (byte *) m_pcolorref;
-      /*int size = scan * cy / sizeof(COLORREF);
+      int size = scan * cy / sizeof(COLORREF);
       while(size > 0)
       {
          pdata[0] = pdata[0] * pdata[3] / 255;
@@ -439,7 +449,7 @@ namespace draw2d_cairo
          pdata[2] = pdata[2] * pdata[3] / 255;
          pdata += 4;
          size--;
-      }*/
+      }
 
       pdata =  (byte *) cairo_image_surface_get_data(surface);
 

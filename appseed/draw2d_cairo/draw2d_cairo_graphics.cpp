@@ -1356,6 +1356,16 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
          cairo_set_source(m_pdc, ppattern);
 
+         if(m_ealphamode == ::draw2d::alpha_mode_blend)
+         {
+            cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
+         }
+         else if(m_ealphamode == ::draw2d::alpha_mode_set)
+         {
+            cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
+         }
+
+
          cairo_paint(m_pdc);
 
          cairo_pattern_set_matrix(ppattern, &matrixOld);
@@ -4596,7 +4606,7 @@ return 1;
 
       set(m_spfont);
 
-      set_os_color(m_crColor);
+      set_os_color(m_spbrush->m_cr);
 
       cairo_show_text(m_pdc, str);
 
@@ -5418,7 +5428,7 @@ return true;
 
       ((graphics *) this)->set(m_spfont);
 
-      set_os_color(m_crColor);
+      set_os_color(m_spbrush->m_cr);
 
       cairo_move_to(m_pdc, x, y + sz.cy);
 

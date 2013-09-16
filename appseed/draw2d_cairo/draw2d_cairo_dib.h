@@ -35,6 +35,8 @@ namespace draw2d_cairo
       virtual ~dib();
 
 
+      virtual void read(::file::input_stream & istream);
+
 
       virtual ::draw2d::graphics * get_graphics();
       virtual ::draw2d::bitmap_sp get_bitmap();

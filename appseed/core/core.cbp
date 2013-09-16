@@ -314,8 +314,6 @@
 		<Unit filename="core/core_datetime.cpp" />
 		<Unit filename="core/core_datetime.h" />
 		<Unit filename="core/core_debug.h" />
-		<Unit filename="core/core_email.cpp" />
-		<Unit filename="core/core_email.h" />
 		<Unit filename="core/core_enum.h" />
 		<Unit filename="core/core_flags.cpp" />
 		<Unit filename="core/core_flags.h" />
@@ -330,8 +328,6 @@
 		<Unit filename="core/core_insert_iterator.h" />
 		<Unit filename="core/core_international_locale_schema.cpp" />
 		<Unit filename="core/core_international_locale_schema.h" />
-		<Unit filename="core/core_ip_enum.cpp" />
-		<Unit filename="core/core_ip_enum.h" />
 		<Unit filename="core/core_iterator.h" />
 		<Unit filename="core/core_job.cpp" />
 		<Unit filename="core/core_job.h" />
@@ -380,8 +376,6 @@
 		<Unit filename="core/core_patch.h" />
 		<Unit filename="core/core_pipe.cpp" />
 		<Unit filename="core/core_pipe.h" />
-		<Unit filename="core/core_port_forward.cpp" />
-		<Unit filename="core/core_port_forward.h" />
 		<Unit filename="core/core_print_job.cpp" />
 		<Unit filename="core/core_print_job.h" />
 		<Unit filename="core/core_process.cpp" />
@@ -1115,6 +1109,16 @@
 		<Unit filename="net/mail/mail_pop3_socket.cpp" />
 		<Unit filename="net/mail/mail_simple_pop3.cpp" />
 		<Unit filename="net/mail/simple_pop3.h" />
+		<Unit filename="net/net_email.cpp" />
+		<Unit filename="net/net_email.h" />
+		<Unit filename="net/net_email_address.cpp" />
+		<Unit filename="net/net_email_address.h" />
+		<Unit filename="net/net_email_departament.cpp" />
+		<Unit filename="net/net_email_departament.h" />
+		<Unit filename="net/net_ip_enum.cpp" />
+		<Unit filename="net/net_ip_enum.h" />
+		<Unit filename="net/net_port_forward.cpp" />
+		<Unit filename="net/net_port_forward.h" />
 		<Unit filename="net/net_url_domain.cpp" />
 		<Unit filename="net/net_url_domain.h" />
 		<Unit filename="net/sockets/bsd/asynch_dns/resolv_server.h" />
