@@ -93,3 +93,20 @@ CLASS_DECL_c void process_get_os_priority(int32_t * piOsPolicy, sched_param * pp
 CLASS_DECL_c int32_t process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
+
+// Stored data for CREATE_SUSPENDED and ResumeThread.
+struct PendingThreadInfo
+{
+
+   DWORD (WINAPI * lpStartAddress)(LPVOID);
+   LPVOID lpParameter;
+   HTHREAD m_hthread;
+   event  * suspensionEvent;
+   int32_t nPriority;
+   int32_t cbStack;
+
+   PendingThreadInfo()
+   {
+   }
+
+};

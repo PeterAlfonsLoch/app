@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2002, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -135,6 +135,7 @@ namespace Iex {
 	name (const char* text=0)      throw(): base (text) {}	\
 	name (const string &text) throw(): base (text) {}	\
 	name (::file::string_buffer &text) throw(): base (text) {}	\
+	virtual ~name() throw() {} \
     };
 
 
@@ -176,7 +177,7 @@ DEFINE_EXC (TypeExc, BaseExc) 	 // An object is an inappropriate type,
 
 //----------------------------------------------------------------------
 // Stack-tracing support:
-// 
+//
 // setStackTracer(st)
 //
 //	installs a stack-tracing routine, st, which will be called from
@@ -197,7 +198,7 @@ DEFINE_EXC (TypeExc, BaseExc) 	 // An object is an inappropriate type,
 //
 //	returns a pointer to the current stack-tracing routine, or 0
 //	if there is no current stack stack-tracing routine.
-// 
+//
 //----------------------------------------------------------------------
 
 typedef string (* StackTracer) ();

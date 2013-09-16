@@ -77,25 +77,16 @@ using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
 */
 
-// Stored data for CREATE_SUSPENDED and ResumeThread.
-struct PendingThreadInfo
-{
 
-   DWORD (WINAPI * lpStartAddress)(LPVOID);
-   LPVOID lpParameter;
-   HTHREAD m_hthread;
-   event  * suspensionEvent;
-   int32_t nPriority;
-   int32_t cbStack;
+map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo > * g_ppendingThreads = NULL;
 
-   PendingThreadInfo()
-   {
-   }
+mutex * g_pmutexPendingThreadsLock = NULL;
 
-};
+mutex * g_pmutexThreadHandleLock = NULL;
 
-map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo > * g_ppendingThreads = new map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo >();
+mutex * g_pmutexThreadIdHandleLock = NULL;
 
+mutex * g_pmutexThreadIdLock = NULL;
 
 map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo > & pendingThreads()
 {
@@ -105,9 +96,7 @@ map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo > & pendingThreads(
 }
 
 
-static mutex pendingThreadsLock;
 
-static mutex threadHandleLock;
 static map < HTHREAD, HTHREAD, HTHREAD, HTHREAD > & thread_handle_map()
 {
 
@@ -117,7 +106,6 @@ static map < HTHREAD, HTHREAD, HTHREAD, HTHREAD > & thread_handle_map()
 
 }
 
-static mutex threadIdHandleLock;
 static map < DWORD, DWORD, HTHREAD, HTHREAD > & thread_id_handle_map()
 {
 
@@ -128,7 +116,6 @@ static map < DWORD, DWORD, HTHREAD, HTHREAD > & thread_id_handle_map()
 }
 
 
-static mutex threadIdLock;
 static map < HTHREAD, HTHREAD, DWORD, DWORD > & thread_id_map()
 {
 
@@ -161,13 +148,13 @@ __thread os_thread * t_posthread = NULL;
 
 static raw_array<DWORD> freeTlsIndices;
 static map < HTHREAD, HTHREAD, ThreadLocalData *, ThreadLocalData * > allthreaddata;
-static mutex tlsdatamutex;
+mutex * g_pmutexTlsData = NULL;
 
 
 static DWORD nextTlsIndex = 0;
 
-mutex * os_thread::s_pmutex = new mutex();
-array < os_thread * > * os_thread::s_pptra = new array < os_thread * > ();
+mutex * os_thread::s_pmutex = NULL;
+array < os_thread * > * os_thread::s_pptra = NULL;
 
 
 // Converts a Win32 thread priority to WinRT format.
@@ -240,7 +227,7 @@ HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_p
       return NULL;
 
 
-   synch_lock mlThreadId(&threadIdLock);
+   synch_lock mlThreadId(g_pmutexThreadIdLock);
 
    thread_id_map().set_at(threadHandle, DwThreadId());
 
@@ -251,7 +238,7 @@ HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_p
 
 
 
-   synch_lock mlThreadIdHandle(&threadIdHandleLock);
+   synch_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
 
    thread_id_handle_map().set_at(thread_id_map()[threadHandle], threadHandle);
 
@@ -292,7 +279,7 @@ HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_p
             info.suspensionEvent    = new event(false, true);
             info.nPriority = 0;
 
-            synch_lock lock(&pendingThreadsLock);
+            synch_lock lock(g_pmutexPendingThreadsLock);
 
             pendingThreads()[threadHandle] = info;
 
@@ -326,7 +313,7 @@ HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_p
 
 DWORD WINAPI ResumeThread(HTHREAD hThread)
 {
-   synch_lock lock(&pendingThreadsLock);
+   synch_lock lock(g_pmutexPendingThreadsLock);
 
    // Look up the requested thread.
    map < HTHREAD , HTHREAD, PendingThreadInfo,  PendingThreadInfo >::pair * threadInfo = pendingThreads().PLookup(hThread);
@@ -360,7 +347,7 @@ DWORD WINAPI ResumeThread(HTHREAD hThread)
 int_bool WINAPI SetThreadPriority(HTHREAD hThread, int32_t nCa2Priority)
 {
 
-   synch_lock lock(&pendingThreadsLock);
+   synch_lock lock(g_pmutexPendingThreadsLock);
 
    // Look up the requested thread.
    map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo >::pair * threadInfo = pendingThreads().PLookup(hThread);
@@ -392,7 +379,7 @@ int_bool WINAPI SetThreadPriority(HTHREAD hThread, int32_t nCa2Priority)
 DWORD WINAPI TlsAlloc()
 {
 
-   synch_lock lock(&tlsdatamutex);
+   synch_lock lock(g_pmutexTlsData);
 
    // Can we reuse a previously freed TLS slot?
    if (freeTlsIndices.get_count() > 0)
@@ -410,7 +397,7 @@ DWORD WINAPI TlsAlloc()
 int_bool WINAPI TlsFree(DWORD dwTlsIndex)
 {
 
-   synch_lock lock(&tlsdatamutex);
+   synch_lock lock(g_pmutexTlsData);
 
    //assert(dwTlsIndex < nextTlsIndex);
 /*   for(int32_t i = 0; i < freeTlsIndices.get_count(); i++)
@@ -478,7 +465,7 @@ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
 LPVOID WINAPI TlsGetValue(HTHREAD hthread, DWORD dwTlsIndex)
 {
 
-    synch_lock lock(&tlsdatamutex);
+    synch_lock lock(g_pmutexTlsData);
 
    ThreadLocalData * threadData = allthreaddata[hthread];
 
@@ -507,7 +494,7 @@ int_bool WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
       {
             threadData = new ThreadLocalData;
 
-            synch_lock lock(&tlsdatamutex);
+            synch_lock lock(g_pmutexTlsData);
 
             allthreaddata.set_at(currentThread, threadData);
 
@@ -532,7 +519,7 @@ int_bool WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
 int_bool WINAPI TlsSetValue(HTHREAD hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
 {
 
-    synch_lock lock(&tlsdatamutex);
+    synch_lock lock(g_pmutexTlsData);
 
    ThreadLocalData * threadData = allthreaddata[hthread];
 
@@ -606,7 +593,7 @@ void WINAPI TlsShutdown()
 
 */
 
-      synch_lock ml(&tlsdatamutex);
+      synch_lock ml(g_pmutexTlsData);
 
       allthreaddata.remove_key(currentThread);
 
@@ -622,7 +609,7 @@ void WINAPI TlsShutdown()
 int32_t WINAPI GetThreadPriority(HTHREAD  hthread)
 {
 
-   synch_lock lock(&pendingThreadsLock);
+   synch_lock lock(g_pmutexPendingThreadsLock);
 
    // Look up the requested thread.
    map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo >::pair * threadInfo = pendingThreads().PLookup(hthread);
@@ -765,13 +752,13 @@ uint32_t os_thread::run()
 
    on_start_thread();
 
-   synch_lock mlThreadHandle(&threadHandleLock);
+   synch_lock mlThreadHandle(g_pmutexThreadHandleLock);
 
    currentThread =  m_hthread;
 
    mlThreadHandle.unlock();
 
-   synch_lock mlThreadId(&threadIdLock);
+   synch_lock mlThreadId(g_pmutexThreadIdLock);
 
    currentThreadId =  thread_id_map()[currentThread];
 
@@ -1095,7 +1082,7 @@ CLASS_DECL_c int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UI
 CLASS_DECL_c DWORD WINAPI GetThreadId(HTHREAD Thread)
 {
 
-   synch_lock mlThreadId(&threadIdLock);
+   synch_lock mlThreadId(g_pmutexThreadIdLock);
 
    map < HTHREAD, HTHREAD, DWORD, DWORD >::pair * p = thread_id_map().PLookup(Thread);
 
@@ -1110,7 +1097,7 @@ CLASS_DECL_c DWORD WINAPI GetThreadId(HTHREAD Thread)
 CLASS_DECL_c HTHREAD  WINAPI get_thread_handle(DWORD dw)
 {
 
-   synch_lock mlThreadIdHandle(&threadIdHandleLock);
+   synch_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
 
    map < DWORD, DWORD, HTHREAD, HTHREAD >::pair * p = thread_id_handle_map().PLookup(dw);
 

@@ -224,6 +224,18 @@ extern mutex * g_pmutexTz;
 
 extern tiny_http * g_ptinyhttp;
 
+extern map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo > * g_ppendingThreads;
+
+extern mutex * g_pmutexPendingThreadsLock;
+
+extern mutex * g_pmutexThreadHandleLock;
+
+extern mutex * g_pmutexThreadIdHandleLock;
+
+extern mutex * g_pmutexThreadIdLock;
+
+extern mutex * g_pmutexTlsData;
+
 #endif
 
 class base_static_start
@@ -289,6 +301,23 @@ public:
 
       osdisplay_data::s_pmutex = new mutex;
 
+      g_ppendingThreads = new map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo >();
+
+      g_pmutexPendingThreadsLock = new mutex;
+
+      g_pmutexThreadHandleLock = new mutex;
+
+      g_pmutexThreadIdHandleLock = new mutex;
+
+      g_pmutexThreadIdLock = new mutex;
+
+      g_pmutexTlsData = new mutex;
+
+      os_thread::s_pmutex = new mutex();
+
+      os_thread::s_pptra = new array < os_thread * > ();
+
+
 #endif
 
    }
@@ -297,6 +326,38 @@ public:
    {
 
 #ifdef LINUX
+
+      delete os_thread::s_pptra;
+
+      os_thread::s_pptra = NULL;
+
+      delete os_thread::s_pmutex;
+
+      os_thread::s_pmutex = NULL;
+
+      delete g_pmutexTlsData;
+
+      g_pmutexTlsData = NULL;
+
+      delete g_pmutexPendingThreadsLock;
+
+      g_pmutexPendingThreadsLock = NULL;
+
+      delete g_pmutexThreadHandleLock;
+
+      g_pmutexThreadHandleLock = NULL;
+
+      delete g_pmutexThreadIdHandleLock;
+
+      g_pmutexThreadIdHandleLock = NULL;
+
+      delete g_pmutexThreadIdLock;
+
+      g_pmutexThreadIdLock = NULL;
+
+      delete g_ppendingThreads;
+
+      g_ppendingThreads = NULL;
 
       delete osdisplay_data::s_pmutex;
 
