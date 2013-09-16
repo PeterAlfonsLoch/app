@@ -17,9 +17,9 @@ namespace file
 
    void writer::write(const void *lpBuf, ::primitive::memory_size nCount)
    {
-      
+
       ::primitive::memory_size memory_size;
-      
+
       write(lpBuf, nCount, &memory_size);
 
    }
@@ -35,13 +35,13 @@ namespace file
    {
 
 
-      if(reader.get_internal_data() != NULL && reader.get_internal_data_size() > 0)
+      if(reader.get_internal_data() != NULL && reader.get_internal_data_size() > reader.get_position())
       {
 
-         write(reader.get_internal_data(), reader.get_internal_data_size());
+         write((byte *) reader.get_internal_data() + reader.get_position(), reader.get_internal_data_size() - reader.get_position());
 
          return;
-         
+
       }
 
 
@@ -49,16 +49,20 @@ namespace file
       ::primitive::memory_size uiSize = 0;
       uiBufSize = max(8 * 1024, uiBufSize);
 
-      char * buf = (char *) malloc(uiBufSize);
-      if(buf == NULL)
-         throw "no primitive::memory";
+      ::primitive::memory buf;
+
+      buf.allocate(uiBufSize);
+
+      if(buf.get_data() == NULL)
+         throw memory_exception(get_app());
+
       try
       {
          while(true)
          {
-            uiRead = reader.read(buf, uiBufSize);
-            write(buf, uiRead);
-            if(uiRead < uiBufSize)
+            uiRead = reader.read(buf.get_data(), buf.get_size());
+            write(buf.get_data(), uiRead);
+            if(uiRead <= 0)
             {
                break;
             }
@@ -68,7 +72,7 @@ namespace file
       catch(...)
       {
       }
-      free(buf);
+
    }
 
    /*
@@ -153,7 +157,7 @@ namespace file
       UNREFERENCED_PARAMETER(ui);
       throw interface_only_exception(get_app());
    }
-    
+
    void writer::write (int64_t i)
    {
       UNREFERENCED_PARAMETER(i);
@@ -183,7 +187,7 @@ namespace file
       UNREFERENCED_PARAMETER(lpcrect);
       throw interface_only_exception(get_app());
    }
-    
+
    void writer::write (SIZE & size)
    {
       UNREFERENCED_PARAMETER(size);
@@ -207,7 +211,7 @@ namespace file
       UNREFERENCED_PARAMETER(psz);
       throw interface_only_exception(get_app());
    }
-    
+
    void writer::write (const id & id)
    {
       UNREFERENCED_PARAMETER(id);

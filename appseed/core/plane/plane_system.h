@@ -61,13 +61,13 @@ namespace plane
       class ::core::compress                         m_compress;
       class ::core::patch                            m_patch;
       ::core::crypt_sp                               m_spcrypt;
-      class ::http::system                     m_http;
-      class ::core::email                            m_email;
+      ::http::system                                  m_httpsystem;
+      ::net::email_departament                        m_emaildepartament;
       ::core::copydesk_sp                            m_spcopydesk;
-      ::core::port_forward_sp                        m_spportforward;
       ::string_to_string                       m_mapAppLibrary;
       sp(colorertake5::ParserFactory)              m_pparserfactory;
 
+      ::net::port_forward_sp                        m_spportforward;
 
       class ::fontopus::user_set                   m_userset;
       string_to_string                         m_mapFontopusServer;
@@ -241,9 +241,10 @@ namespace plane
       class ::core::compress            & compress();
       class ::core::patch               & patch();
       class ::core::crypt               & crypt();
-      class ::http::system        & http();
-      class ::core::email               & email();
       class ::core::copydesk            & copydesk();
+
+      ::http::system                   & http();
+      ::net::email_departament         & email();
 
       ::fontopus::user_set             & userset();
 

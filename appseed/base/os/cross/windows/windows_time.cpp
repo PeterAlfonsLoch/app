@@ -77,7 +77,7 @@ LONG TIME_GetBias(void);
 #include "windows_internals.h"
 //#define CLASS_DECL_c
 //#include "ca/ca/ca_verisimple_string.h"
-//#include "ca/ca/ca_simple_mutex.h"
+//#include "ca/ca/ca_mutex.h"
 //#include "ca/ca/ca_synch_lock.h"
 
 
@@ -116,7 +116,7 @@ static RTL_CRITICAL_SECTION_DEBUG critsect_debug =
 RTL_CRITICAL_SECTION TIME_tz_section = { &critsect_debug, -1, 0, 0, 0, 0 };*/
 
 
-mutex g_mutexTz;
+mutex * g_pmutexTz = NULL;
 
 
 #define TICKSPERSEC        10000000
@@ -305,7 +305,7 @@ LONG TIME_GetBias(void)
 
     utc = time( NULL );
 
-   synch_lock ml(&g_mutexTz);
+   synch_lock ml(g_pmutexTz);
 //    RtlEnterCriticalSection( &TIME_tz_section );
     if (utc != last_utc)
     {
@@ -849,7 +849,7 @@ static int32_t init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
     time_t year_start, year_end, tmp, dlt = 0, std = 0;
     int32_t is_dst, current_is_dst;
 
-   synch_lock ml(&g_mutexTz);
+   synch_lock ml(g_pmutexTz);
 //    RtlEnterCriticalSection( &TIME_tz_section );
 
     year_start = time(NULL);

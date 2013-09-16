@@ -277,7 +277,7 @@ int mysql_client_plugin_init()
 
   initialized= 1;
 
-  mysql_mutex_lock(&LOCK_load_client_plugin);
+  mysql_single_lock(&LOCK_load_client_plugin);
 
   for (builtin= mysql_client_builtins; *builtin; builtin++)
     add_plugin_noargs(&mysql, *builtin, 0, 0);
@@ -327,7 +327,7 @@ mysql_client_register_plugin(MYSQL *mysql,
   if (is_not_initialized(mysql, plugin->name))
     return NULL;
 
-  mysql_mutex_lock(&LOCK_load_client_plugin);
+  mysql_single_lock(&LOCK_load_client_plugin);
 
   /* make sure the plugin wasn't loaded meanwhile */
   if (find_plugin(plugin->name, plugin->type))
@@ -366,7 +366,7 @@ mysql_load_plugin_v(MYSQL *mysql, const char *name, int type,
     DBUG_RETURN (NULL);
   }
 
-  mysql_mutex_lock(&LOCK_load_client_plugin);
+  mysql_single_lock(&LOCK_load_client_plugin);
 
   /* make sure the plugin wasn't loaded meanwhile */
   if (type >= 0 && find_plugin(name, type))

@@ -216,7 +216,7 @@ static void check_locks(THR_LOCK *lock, const char *where,
 	found_errors++;
 	fprintf(stderr,
 		"Warning at '%s': Locks read_no_write_count was %u when it should have been %u\n", where, lock->read_no_write_count,count);
-      }      
+      }
 
       if (!lock->write.data)
       {
@@ -249,13 +249,13 @@ static void check_locks(THR_LOCK *lock, const char *where,
 	    fprintf(stderr,
 		    "Warning at '%s': Write lock %d waiting while no exclusive read locks\n",where,(int) lock->write_wait.data->type);
 	  }
-	}	      
+	}
       }
       else
       {						/* Have write lock */
 	if (lock->write_wait.data)
 	{
-	  if (!allow_no_locks && 
+	  if (!allow_no_locks &&
 	      lock->write.data->type == TL_WRITE_ALLOW_WRITE &&
 	      lock->write_wait.data->type == TL_WRITE_ALLOW_WRITE)
 	  {
@@ -325,7 +325,7 @@ void thr_lock_init(THR_LOCK *lock)
   lock->write_wait.last= &lock->write_wait.data;
   lock->write.last= &lock->write.data;
 
-  mysql_mutex_lock(&THR_LOCK_lock);              /* Add to locks in use */
+  mysql_single_lock(&THR_LOCK_lock);              /* Add to locks in use */
   lock->list.data=(void*) lock;
   thr_lock_thread_list=list_add(thr_lock_thread_list,&lock->list);
   mysql_mutex_unlock(&THR_LOCK_lock);
@@ -336,7 +336,7 @@ void thr_lock_init(THR_LOCK *lock)
 void thr_lock_delete(THR_LOCK *lock)
 {
   DBUG_ENTER("thr_lock_delete");
-  mysql_mutex_lock(&THR_LOCK_lock);
+  mysql_single_lock(&THR_LOCK_lock);
   thr_lock_thread_list=list_delete(thr_lock_thread_list,&lock->list);
   mysql_mutex_unlock(&THR_LOCK_lock);
   mysql_mutex_destroy(&lock->mutex);
@@ -520,7 +520,7 @@ wait_for_lock(struct st_lock_list *wait, THR_LOCK_DATA *data,
   mysql_mutex_unlock(&data->lock->mutex);
 
   /* The following must be done after unlock of lock->mutex */
-  mysql_mutex_lock(&thread_var->mutex);
+  mysql_single_lock(&thread_var->mutex);
   thread_var->current_mutex= 0;
   thread_var->current_cond=  0;
   mysql_mutex_unlock(&thread_var->mutex);
@@ -549,7 +549,7 @@ thr_lock(THR_LOCK_DATA *data, THR_LOCK_INFO *owner,
   MYSQL_START_TABLE_LOCK_WAIT(locker, &state, data->m_psi,
                               PSI_TABLE_LOCK, lock_type);
 
-  mysql_mutex_lock(&lock->mutex);
+  mysql_single_lock(&lock->mutex);
   DBUG_PRINT("lock",("data: 0x%lx  thread: 0x%lx  lock: 0x%lx  type: %d",
                      (long) data, data->owner->thread_id,
                      (long) lock, (int) lock_type));
@@ -576,7 +576,7 @@ thr_lock(THR_LOCK_DATA *data, THR_LOCK_INFO *owner,
            ||\ = READ_HIGH_PRIORITY
            |\  = READ_WITH_SHARED_LOCKS
            \   = READ
-          
+
 
         + = Request can be satisified.
         - = Request cannot be satisified.
@@ -785,7 +785,7 @@ static inline void free_all_read_locks(THR_LOCK *lock,
       if (using_concurrent_insert)
       {
 	/*
-	  We can't free this lock; 
+	  We can't free this lock;
 	  Link lock away from read chain back into read_wait chain
 	*/
 	if (((*data->prev)=data->next))
@@ -798,7 +798,7 @@ static inline void free_all_read_locks(THR_LOCK *lock,
 	continue;
       }
       lock->read_no_write_count++;
-    }      
+    }
     /* purecov: begin inspected */
     DBUG_PRINT("lock",("giving read lock to thread: 0x%lx",
 		       data->owner->thread_id));
@@ -821,7 +821,7 @@ void thr_unlock(THR_LOCK_DATA *data)
   DBUG_ENTER("thr_unlock");
   DBUG_PRINT("lock",("data: 0x%lx  thread: 0x%lx  lock: 0x%lx",
                      (long) data, data->owner->thread_id, (long) lock));
-  mysql_mutex_lock(&lock->mutex);
+  mysql_single_lock(&lock->mutex);
   check_locks(lock,"start of release lock",0);
 
   if (((*data->prev)=data->next))		/* remove from lock-list */
@@ -1144,7 +1144,7 @@ void thr_abort_locks(THR_LOCK *lock, my_bool upgrade_lock)
 {
   THR_LOCK_DATA *data;
   DBUG_ENTER("thr_abort_locks");
-  mysql_mutex_lock(&lock->mutex);
+  mysql_single_lock(&lock->mutex);
 
   for (data=lock->read_wait.data; data ; data=data->next)
   {
@@ -1181,7 +1181,7 @@ my_bool thr_abort_locks_for_thread(THR_LOCK *lock, my_thread_id thread_id)
   my_bool found= FALSE;
   DBUG_ENTER("thr_abort_locks_for_thread");
 
-  mysql_mutex_lock(&lock->mutex);
+  mysql_single_lock(&lock->mutex);
   for (data= lock->read_wait.data; data ; data= data->next)
   {
     if (data->owner->thread_id == thread_id)    /* purecov: tested */
@@ -1257,7 +1257,7 @@ void thr_downgrade_write_lock(THR_LOCK_DATA *in_data,
 #endif
   DBUG_ENTER("thr_downgrade_write_only_lock");
 
-  mysql_mutex_lock(&lock->mutex);
+  mysql_single_lock(&lock->mutex);
   DBUG_ASSERT(old_lock_type == TL_WRITE_ONLY);
   DBUG_ASSERT(old_lock_type > new_lock_type);
   in_data->type= new_lock_type;
@@ -1298,13 +1298,13 @@ void thr_print_locks(void)
   LIST *list;
   uint count=0;
 
-  mysql_mutex_lock(&THR_LOCK_lock);
+  mysql_single_lock(&THR_LOCK_lock);
   puts("Current locks:");
   for (list= thr_lock_thread_list; list && count++ < MAX_THREADS;
        list= list_rest(list))
   {
     THR_LOCK *lock=(THR_LOCK*) list->data;
-    mysql_mutex_lock(&lock->mutex);
+    mysql_single_lock(&lock->mutex);
     printf("lock: 0x%lx:",(ulong) lock);
     if ((lock->write_wait.data || lock->read_wait.data) &&
 	(! lock->read.data && ! lock->write.data))
@@ -1434,7 +1434,7 @@ static void *test_thread(void *arg)
       data[i].type= tests[param][i].lock_type;
     }
     thr_multi_lock(multi_locks, lock_counts[param], &lock_info, TEST_TIMEOUT);
-    mysql_mutex_lock(&LOCK_thread_count);
+    mysql_single_lock(&LOCK_thread_count);
     {
       int tmp=rand() & 7;			/* Do something from 0-2 sec */
       if (tmp == 0)
@@ -1454,7 +1454,7 @@ static void *test_thread(void *arg)
 
   printf("Thread %s (%d) ended\n",my_thread_name(),param); fflush(stdout);
   thr_print_locks();
-  mysql_mutex_lock(&LOCK_thread_count);
+  mysql_single_lock(&LOCK_thread_count);
   thread_count--;
   mysql_cond_signal(&COND_thread_count); /* Tell main we are ready */
   mysql_mutex_unlock(&LOCK_thread_count);
@@ -1524,9 +1524,9 @@ int main(int argc __attribute__((unused)),char **argv __attribute__((unused)))
     param=(int*) malloc(sizeof(int));
     *param=i;
 
-    if ((error= mysql_mutex_lock(&LOCK_thread_count)))
+    if ((error= mysql_single_lock(&LOCK_thread_count)))
     {
-      fprintf(stderr, "Got error: %d from mysql_mutex_lock (errno: %d)",
+      fprintf(stderr, "Got error: %d from mysql_single_lock (errno: %d)",
               error, errno);
       exit(1);
     }
@@ -1544,8 +1544,8 @@ int main(int argc __attribute__((unused)),char **argv __attribute__((unused)))
   }
 
   pthread_attr_destroy(&thr_attr);
-  if ((error= mysql_mutex_lock(&LOCK_thread_count)))
-    fprintf(stderr, "Got error: %d from mysql_mutex_lock\n", error);
+  if ((error= mysql_single_lock(&LOCK_thread_count)))
+    fprintf(stderr, "Got error: %d from mysql_single_lock\n", error);
   while (thread_count)
   {
     if ((error= mysql_cond_wait(&COND_thread_count, &LOCK_thread_count)))

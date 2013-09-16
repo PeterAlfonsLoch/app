@@ -10,7 +10,7 @@ namespace filehandler
    pane_view::pane_view(sp(::ca2::application) papp) :
       ca2(papp),
       ::user::tab(papp),
-      
+
       ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),
       place_holder_container(papp)
@@ -148,7 +148,7 @@ namespace filehandler
 
       string strFile = pcreatordata->m_id;
 
-      if(::ca2::str::begins_eat_ci(strFile, "default_file_handler://"))
+      if(::str::begins_eat_ci(strFile, "default_file_handler://"))
       {
 
          sp(::filehandler::view) pview = create_view < ::filehandler::view > (get_document(), pcreatordata->m_pholder);

@@ -212,7 +212,7 @@ namespace userstack
             get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
          }
          App(m_pappCurrent).request(pcreatecontext);
-         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].ca2 < ::user::document_interface > () == NULL)
+         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document_interface > () == NULL)
          {
             goto alt1;
          }
@@ -223,11 +223,11 @@ namespace userstack
          alt1:
          if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
          {
-            if(::ca2::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
+            if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
             {
                string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
-               if(::ca2::str::begins_eat(strCommand, "ca2prompt\r")
-               || ::ca2::str::begins_eat(strCommand, "ca2prompt\n"))
+               if(::str::begins_eat(strCommand, "ca2prompt\r")
+               || ::str::begins_eat(strCommand, "ca2prompt\n"))
                {
                   strCommand.trim();
                   command()->add_fork_uri(strCommand);
@@ -323,8 +323,8 @@ namespace userstack
 
       sp(::user::interaction) puiParent = NULL;
 
-      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca2 < ::user::interaction >() != NULL)
-         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca2 < ::user::interaction >();
+      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].cast < ::user::interaction >() != NULL)
+         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].cast < ::user::interaction >();
 
       if(puiParent == NULL && pcreatecontext->m_puiParent != NULL)
       {

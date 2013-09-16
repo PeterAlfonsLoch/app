@@ -317,7 +317,7 @@ static int keycache_pthread_mutex_lock(mysql_mutex_t *mutex);
 static void keycache_pthread_mutex_unlock(mysql_mutex_t *mutex);
 static int keycache_pthread_cond_signal(mysql_cond_t *cond);
 #else
-#define keycache_pthread_mutex_lock(M) mysql_mutex_lock(M)
+#define keycache_pthread_mutex_lock(M) mysql_single_lock(M)
 #define keycache_pthread_mutex_unlock(M) mysql_mutex_unlock(M)
 #define keycache_pthread_cond_signal(C) mysql_cond_signal(C)
 #endif /* defined(KEYCACHE_DEBUG) */
@@ -2030,7 +2030,7 @@ restart:
           DBUG_ASSERT(keycache->blocks_used <
                       (ulong) keycache->disk_blocks);
           block= &keycache->block_root[keycache->blocks_used];
-          block_mem_offset= 
+          block_mem_offset=
            ((size_t) keycache->blocks_used) * keycache->key_cache_block_size;
           block->buffer= ADD_TO_PTR(keycache->block_mem,
                                     block_mem_offset,
@@ -2524,7 +2524,7 @@ uchar *key_cache_read(KEY_CACHE *keycache,
                                 (ulong) (keycache->blocks_unused *
                                          keycache->key_cache_block_size));
     }
-  
+
     /*
       When the key cache is once initialized, we use the cache_lock to
       reliably distinguish the cases of normal operation, resizing, and
@@ -3272,7 +3272,7 @@ end:
     dec_counter_for_resize_op(keycache);
     keycache_pthread_mutex_unlock(&keycache->cache_lock);
   }
-  
+
   if (MYSQL_KEYCACHE_WRITE_DONE_ENABLED())
   {
     MYSQL_KEYCACHE_WRITE_DONE((ulong) (keycache->blocks_used *
@@ -3280,7 +3280,7 @@ end:
                               (ulong) (keycache->blocks_unused *
                                        keycache->key_cache_block_size));
   }
-  
+
 #if !defined(DBUG_OFF) && defined(EXTRA_DEBUG)
   DBUG_EXECUTE("exec",
                test_key_cache(keycache, "end of key_cache_write", 1););
@@ -4406,7 +4406,7 @@ static int keycache_pthread_cond_wait(mysql_cond_t *cond,
 static int keycache_pthread_mutex_lock(mysql_mutex_t *mutex)
 {
   int rc;
-  rc= mysql_mutex_lock(mutex);
+  rc= mysql_single_lock(mutex);
   KEYCACHE_THREAD_TRACE_BEGIN("");
   return rc;
 }

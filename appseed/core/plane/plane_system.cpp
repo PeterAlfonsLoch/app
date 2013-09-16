@@ -14,14 +14,15 @@ namespace plane
 
    system::system(sp(base_application) papp) :
       m_mutexDelete(this),
-      m_http(this),
+      m_httpsystem(this),
       m_net(this),
       m_mutex(this),
 #ifndef METROWIN
       m_processsection(this),
 #endif
       m_visual(this),
-      base_system(this)
+      base_system(papp),
+      m_emaildepartament(this)
    {
 
 #ifdef METROWIN
@@ -104,7 +105,7 @@ namespace plane
       m_processsection.set_app(this);
 #endif
       m_pdatetime = new class ::core::datetime(this);
-      m_email.set_app(this);
+//      m_email.set_app(this);
       m_http.set_app(this);
       m_compress.set_app(this);
       m_file.set_app(this);
@@ -1508,14 +1509,14 @@ namespace plane
       return *m_spcrypt;
    }
 
-   class ::core::email & system::email()
+   ::net::email_departament & system::email()
    {
-      return m_email;
+      return m_emaildepartament;
    }
 
-   class ::http::system & system::http()
+   ::http::system & system::http()
    {
-      return m_http;
+      return m_httpsystem;
    }
 
 

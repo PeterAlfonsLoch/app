@@ -4,8 +4,10 @@
 #include <unistd.h>
 #endif
 
-tiny_http g_tinyhttp;
+tiny_http * g_ptinyhttp = NULL;
+
 DWORD g_MsDownloadSize = 1024 * 128;
+
 char * g_MsDownloadBuffer = NULL;
 
 void prepare_http()
@@ -75,14 +77,14 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
 
 //   WCHAR * pwzHost = utf8_to_16(strHost);
 
-   g_tinyhttp.m_strUserAgent = "ccvotagus_ca2_fontopus/linux";
+   g_ptinyhttp->m_strUserAgent = "ccvotagus_ca2_fontopus/linux";
 
-   g_tinyhttp.t_parse_url(strUrl);
+   g_ptinyhttp->t_parse_url(strUrl);
 
    char * buffer;
    int32_t len;
 
-   tiny_http::http_retcode ret = g_tinyhttp.t_get(&buffer, &len, callback, callback_param);
+   tiny_http::http_retcode ret = g_ptinyhttp->t_get(&buffer, &len, callback, callback_param);
 
    file_put_contents_dup(pszFile, buffer, len);
 
@@ -111,14 +113,14 @@ string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    LPSTR pszOutBuffer;
    WINBOOL  bResults = FALSE;
 
-   g_tinyhttp.m_strUserAgent = "ccvotagus_ca2_fontopus/linux";
+   g_ptinyhttp->m_strUserAgent = "ccvotagus_ca2_fontopus/linux";
 
-   g_tinyhttp.t_parse_url(strUrl);
+   g_ptinyhttp->t_parse_url(strUrl);
 
    char * buffer;
    int32_t len;
 
-   tiny_http::http_retcode ret = g_tinyhttp.t_get(&buffer, &len, callback, callback_param);
+   tiny_http::http_retcode ret = g_ptinyhttp->t_get(&buffer, &len, callback, callback_param);
 
    string strRet(buffer, len);
 

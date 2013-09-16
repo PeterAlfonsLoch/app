@@ -7,6 +7,13 @@ extern bool (* g_defer_process_x_message)(HTHREAD hthread, LPMESSAGE lpMsg, oswi
 #endif
 
 
+mq::mq() :
+   m_eventNewMessage(get_thread_app())
+{
+
+}
+
+
 void on_start_thread();
 void on_end_thread();
 

@@ -509,7 +509,7 @@ void ssl_sigpipe_handle( int x );
       ::primitive::memory_size n = nBufSize;
 
       n = recv(buf, nBufSize);
-      
+
       if (n > 0 && n <= nBufSize)
       {
 
@@ -533,7 +533,7 @@ void ssl_sigpipe_handle( int x );
             }
             catch(...)
             {
-                  
+
                Handler().LogError(this, "tcp_socket::read", 0, "ibuf overflow", ::core::log::level_warning);
 
             }
@@ -551,7 +551,7 @@ void ssl_sigpipe_handle( int x );
 
    void tcp_socket::OnRead()
    {
-      
+
 #ifdef SOCKETS_DYNAMIC_TEMP
 
       char *buf = m_buf;
@@ -1423,7 +1423,7 @@ void ssl_sigpipe_handle( int x );
          m_ssl = NULL;
       }
    #endif
-      
+
       socket::close();
 
    }

@@ -494,7 +494,7 @@ restart:
    void system::lines(stringa & stra, var varFile, sp(base_application) papp)
    {
       UNREFERENCED_PARAMETER(papp);
-      ::file::text_file_sp spfile(allocer());
+      ::file::text_buffer_sp spfile(allocer());
 
       try
       {
@@ -1274,14 +1274,16 @@ restart:
 
    }
 
-   ::file::binary_buffer_sp system::time_square_file(sp(base_application) papp, const char * pszPrefix, const char * pszSuffix)
+
+   ::file::buffer_sp system::time_square_file(sp(base_application) papp, const char * pszPrefix, const char * pszSuffix)
    {
 
       return get(time_square(papp, pszPrefix, pszSuffix), papp);
 
    }
 
-   ::file::binary_buffer_sp system::get(const char * name, sp(base_application) papp)
+
+   ::file::buffer_sp system::get(const char * name, sp(base_application) papp)
    {
 
       System.dir().mk(System.dir().name(name), papp);

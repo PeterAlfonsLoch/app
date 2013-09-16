@@ -115,7 +115,7 @@ int32_t uni_to_utf8(char * psz, int32_t w)
 }
 
 
-void utf8_to_16(wchar_t * pwsz, const char * psz)
+void utf8_to_utf16(wchar_t * pwsz, const char * psz)
 {
    while(psz != NULL && *psz != '\0')
    {
@@ -127,9 +127,9 @@ void utf8_to_16(wchar_t * pwsz, const char * psz)
       *pwsz = L'\0';
    }
 }
-/*
 
-WCHAR * ::str::international::utf8_to_unicode(const char * psz)
+/*
+WCHAR * utf8_to_utf16(const char * psz)
 {
 
    ::count iCount = utf16_len(psz);
@@ -143,7 +143,7 @@ WCHAR * ::str::international::utf8_to_unicode(const char * psz)
 
    return pwz;
 
-}
+}*/
 
 int32_t utf8_len(const wchar_t * pwsz)
 {
@@ -163,7 +163,7 @@ int32_t utf8_len(const wchar_t * pwsz)
    return count;
 }
 
-/*void ::str::international::unicode_to_utf8(char * psz, const wchar_t * pwsz)
+void utf16_to_utf8(char * psz, const wchar_t * pwsz)
 {
    int32_t n;
    while(*pwsz != L'\0')
@@ -177,7 +177,7 @@ int32_t utf8_len(const wchar_t * pwsz)
    *psz = L'\0';
 }
 
-
+/*
 char * ::str::international::unicode_to_utf8(const wchar_t * pwsz)
 {
    int32_t iCount = utf8_len(pwsz);

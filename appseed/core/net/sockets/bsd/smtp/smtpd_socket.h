@@ -48,10 +48,10 @@ namespace sockets
       virtual bool OnHello(const string & domain) = 0;
 
       /** \return 'false' to abort */
-      virtual bool OnMailFrom(const email::address & addr) = 0;
+      virtual bool OnMailFrom(const ::net::email_address & addr) = 0;
 
       /** \return 'false' to abort */
-      virtual bool OnRcptTo(const email::address & addr) = 0;
+      virtual bool OnRcptTo(const ::net::email_address & addr) = 0;
 
       virtual void OnHeader(id idKey, const string & value) = 0;
 

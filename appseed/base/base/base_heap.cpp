@@ -75,7 +75,7 @@ size_t memory_size_dbg(void * pvoid, int32_t iBlockType)
 
 END_EXTERN_C
 
-#undef new 
+#undef new
 
 
 /*
@@ -218,6 +218,14 @@ extern string * g_pstrLastStatus;
 
 extern string * g_pstrLastGlsStatus;
 
+#ifdef LINUX
+
+extern mutex * g_pmutexTz;
+
+extern tiny_http * g_ptinyhttp;
+
+#endif
+
 class base_static_start
 {
 public:
@@ -250,7 +258,7 @@ public:
       */
 
       new plex_heap_alloc_array();
-   
+
       g_pfixedallocVar = new fixed_alloc(ROUND4(sizeof(var) ), 1024);
 
       g_pfixedallocProperty = new fixed_alloc(ROUND4(sizeof(property) ), 1024);
@@ -261,17 +269,56 @@ public:
 
       g_pstrLastGlsStatus = new string();
 
-      g_pmutexSystemHeap = new mutex(); 
+      g_pmutexSystemHeap = new mutex();
 
       g_pmutgen = new mutex();
 
       g_pmutexTrace = new mutex();
 
+#ifdef LINUX
+
+      g_pmutexTz = new mutex();
+
+      oswindow_data::s_pdataptra = new oswindow_dataptra;
+
+      oswindow_data::s_pmutex = new mutex;
+
+      g_ptinyhttp = new tiny_http;
+
+      osdisplay_data::s_pdataptra = new osdisplay_dataptra;
+
+      osdisplay_data::s_pmutex = new mutex;
+
+#endif
 
    }
 
    ~base_static_start()
    {
+
+#ifdef LINUX
+
+      delete osdisplay_data::s_pmutex;
+
+      osdisplay_data::s_pmutex = NULL;
+
+      delete osdisplay_data::s_pdataptra;
+
+      osdisplay_data::s_pdataptra = NULL;
+
+      delete oswindow_data::s_pmutex;
+
+      oswindow_data::s_pmutex = NULL;
+
+      delete oswindow_data::s_pdataptra;
+
+      oswindow_data::s_pdataptra = NULL;
+
+      delete g_pmutexTz;
+
+      g_pmutexTz = NULL;
+
+#endif
 
       delete g_pmutexTrace;
 
@@ -314,7 +361,7 @@ public:
 
 void create_id_space()
 {
-   
+
    base_system::s_pidspace = new id_space();
 
 }

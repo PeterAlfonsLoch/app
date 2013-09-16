@@ -9,9 +9,6 @@ namespace user
 
 
 
-   class window_callback;
-
-
    class CLASS_DECL_ca2 window :
       virtual public ::user::interaction
    {

@@ -336,8 +336,8 @@ typedef struct PSI_bootstrap PSI_bootstrap;
   Interface for an instrumented mutex operation.
   This is an opaque structure.
 */
-struct PSI_mutex_locker;
-typedef struct PSI_mutex_locker PSI_mutex_locker;
+struct PSI_single_locker;
+typedef struct PSI_single_locker PSI_single_locker;
 
 /**
   Interface for an instrumented rwlock operation.
@@ -825,7 +825,7 @@ typedef struct PSI_idle_locker_state_v1 PSI_idle_locker_state_v1;
   This memory is provided by the instrumented code for performance reasons.
   @sa start_mutex_wait_v1_t
 */
-struct PSI_mutex_locker_state_v1
+struct PSI_single_locker_state_v1
 {
   /** Internal state. */
   uint m_flags;
@@ -842,7 +842,7 @@ struct PSI_mutex_locker_state_v1
   /** Internal data. */
   void *m_wait;
 };
-typedef struct PSI_mutex_locker_state_v1 PSI_mutex_locker_state_v1;
+typedef struct PSI_single_locker_state_v1 PSI_single_locker_state_v1;
 
 /**
   State data storage for @c start_rwlock_rdwait_v1_t, @c start_rwlock_wrwait_v1_t.
@@ -1516,8 +1516,8 @@ typedef void (*end_idle_wait_v1_t)
   @param line the source line number
   @return a mutex locker, or NULL
 */
-typedef struct PSI_mutex_locker* (*start_mutex_wait_v1_t)
-  (struct PSI_mutex_locker_state_v1 *state,
+typedef struct PSI_single_locker* (*start_mutex_wait_v1_t)
+  (struct PSI_single_locker_state_v1 *state,
    struct PSI_mutex *mutex,
    enum PSI_mutex_operation op,
    const char *src_file, uint src_line);
@@ -1528,7 +1528,7 @@ typedef struct PSI_mutex_locker* (*start_mutex_wait_v1_t)
   @param rc the wait operation return code
 */
 typedef void (*end_mutex_wait_v1_t)
-  (struct PSI_mutex_locker *locker, int rc);
+  (struct PSI_single_locker *locker, int rc);
 
 /**
   Record a rwlock instrumentation read wait start event.
@@ -2265,7 +2265,7 @@ struct PSI_idle_locker_state_v2
 };
 
 /** Placeholder */
-struct PSI_mutex_locker_state_v2
+struct PSI_single_locker_state_v2
 {
   /** Placeholder */
   int placeholder;
@@ -2360,7 +2360,7 @@ typedef struct PSI_stage_info_v1 PSI_stage_info;
 typedef struct PSI_statement_info_v1 PSI_statement_info;
 typedef struct PSI_socket_info_v1 PSI_socket_info;
 typedef struct PSI_idle_locker_state_v1 PSI_idle_locker_state;
-typedef struct PSI_mutex_locker_state_v1 PSI_mutex_locker_state;
+typedef struct PSI_single_locker_state_v1 PSI_single_locker_state;
 typedef struct PSI_rwlock_locker_state_v1 PSI_rwlock_locker_state;
 typedef struct PSI_cond_locker_state_v1 PSI_cond_locker_state;
 typedef struct PSI_file_locker_state_v1 PSI_file_locker_state;
@@ -2380,7 +2380,7 @@ typedef struct PSI_stage_info_v2 PSI_stage_info;
 typedef struct PSI_statement_info_v2 PSI_statement_info;
 typedef struct PSI_socket_info_v2 PSI_socket_info;
 typedef struct PSI_idle_locker_state_v2 PSI_idle_locker_state;
-typedef struct PSI_mutex_locker_state_v2 PSI_mutex_locker_state;
+typedef struct PSI_single_locker_state_v2 PSI_single_locker_state;
 typedef struct PSI_rwlock_locker_state_v2 PSI_rwlock_locker_state;
 typedef struct PSI_cond_locker_state_v2 PSI_cond_locker_state;
 typedef struct PSI_file_locker_state_v2 PSI_file_locker_state;

@@ -29,7 +29,7 @@
 extern "C" {
 #else
 #define EXTERNC
-#endif /* __cplusplus */ 
+#endif /* __cplusplus */
 
 #if defined(_WIN32)
 typedef CRITICAL_SECTION pthread_mutex_t;
@@ -50,7 +50,7 @@ typedef struct st_pthread_link {
 
 /**
   Implementation of Windows condition variables.
-  We use native conditions on Vista and later, and fallback to own 
+  We use native conditions on Vista and later, and fallback to own
   implementation on earlier OS version.
 */
 typedef union
@@ -60,10 +60,10 @@ typedef union
 
   /* Own implementation (used on XP) */
   struct
-  { 
+  {
     uint32 waiting;
     CRITICAL_SECTION lock_waiting;
-    enum 
+    enum
     {
       SIGNAL= 0,
       BROADCAST= 1,
@@ -321,7 +321,7 @@ typedef struct st_safe_mutex_t
 
 int safe_mutex_init(safe_mutex_t *mp, const pthread_mutexattr_t *attr,
                     const char *file, uint line);
-int safe_mutex_lock(safe_mutex_t *mp, my_bool try_lock, const char *file, uint line);
+int safe_single_lock(safe_mutex_t *mp, my_bool try_lock, const char *file, uint line);
 int safe_mutex_unlock(safe_mutex_t *mp,const char *file, uint line);
 int safe_mutex_destroy(safe_mutex_t *mp,const char *file, uint line);
 int safe_cond_wait(pthread_cond_t *cond, safe_mutex_t *mp,const char *file,
@@ -371,9 +371,9 @@ typedef struct st_my_pthread_fastmutex_t
 } my_pthread_fastmutex_t;
 void fastmutex_global_init(void);
 
-int my_pthread_fastmutex_init(my_pthread_fastmutex_t *mp, 
+int my_pthread_fastmutex_init(my_pthread_fastmutex_t *mp,
                               const pthread_mutexattr_t *attr);
-int my_pthread_fastmutex_lock(my_pthread_fastmutex_t *mp);
+int my_pthread_fastsingle_lock(my_pthread_fastmutex_t *mp);
 
 #endif /* defined(MY_PTHREAD_FASTMUTEX) && !defined(SAFE_MUTEX) */
 
@@ -497,7 +497,7 @@ extern int rw_pr_destroy(rw_pr_lock_t *);
 typedef union
 {
   /* Native rwlock (is_srwlock == TRUE) */
-  struct 
+  struct
   {
     SRWLOCK srwlock;             /* native reader writer lock */
     BOOL have_exclusive_srwlock; /* used for unlock */
@@ -507,7 +507,7 @@ typedef union
     Portable implementation (is_srwlock == FALSE)
     Fields are identical with Unix my_rw_lock_t fields.
   */
-  struct 
+  struct
   {
     pthread_mutex_t lock;       /* lock for structure		*/
     pthread_cond_t  readers;    /* waiting readers		*/
@@ -680,9 +680,9 @@ extern uint my_thread_end_wait_time;
 #define thread_safe_decrement_rwlock(V,L) InterlockedDecrement((long*) &(V))
 #else
 #define thread_safe_increment(V,L) \
-        (mysql_mutex_lock((L)), (V)++, mysql_mutex_unlock((L)))
+        (mysql_single_lock((L)), (V)++, mysql_mutex_unlock((L)))
 #define thread_safe_decrement(V,L) \
-        (mysql_mutex_lock((L)), (V)--, mysql_mutex_unlock((L)))
+        (mysql_single_lock((L)), (V)--, mysql_mutex_unlock((L)))
 #define thread_safe_increment_rwlock(V,L) \
         (mysql_rwlock_wrlock((L)), (V)++, mysql_rwlock_unlock((L)))
 #define thread_safe_decrement_rwlock(V,L) \
@@ -698,9 +698,9 @@ extern uint my_thread_end_wait_time;
 #define thread_safe_sub_rwlock(V,C,L) InterlockedExchangeAdd((long*) &(V),-(long) (C))
 #else
 #define thread_safe_add(V,C,L) \
-        (mysql_mutex_lock((L)), (V)+=(C), mysql_mutex_unlock((L)))
+        (mysql_single_lock((L)), (V)+=(C), mysql_mutex_unlock((L)))
 #define thread_safe_sub(V,C,L) \
-        (mysql_mutex_lock((L)), (V)-=(C), mysql_mutex_unlock((L)))
+        (mysql_single_lock((L)), (V)-=(C), mysql_mutex_unlock((L)))
 #define thread_safe_add_rwlock(V,C,L) \
         (mysql_rwlock_wrlock((L)), (V)+=(C), mysql_rwlock_unlock((L)))
 #define thread_safe_sub_rwlock(V,C,L) \

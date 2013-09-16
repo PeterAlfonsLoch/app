@@ -376,7 +376,7 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      void system::rls_pattern(sp(base_application) papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, array < int64_t, int64_t > * piaSize, e_extract eextract)
+      void system::rls_pattern(sp(base_application) papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
       {
          UNREFERENCED_PARAMETER(pstraRelative);
          UNREFERENCED_PARAMETER(pszPattern);
@@ -391,7 +391,7 @@ namespace file
       }
 
 
-      void system::ls_pattern(sp(base_application) papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, array < int64_t, int64_t > * piaSize)
+      void system::ls_pattern(sp(base_application) papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
       {
          UNREFERENCED_PARAMETER(pszPattern);
          if(::str::begins_ci(lpcsz, "http://") || ::str::begins_ci(lpcsz, "https://"))
@@ -412,7 +412,7 @@ namespace file
 
       }
 
-      void system::ls(sp(base_application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, array < int64_t, int64_t > * piaSize)
+      void system::ls(sp(base_application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(pstraPath);
@@ -848,9 +848,9 @@ namespace file
          ::user::str_context * pcontext = App(papp).str_context();
 
          string strLocale;
-         
+
          string strSchema;
-         
+
          string strLs;
 
          string strPath;
@@ -874,7 +874,7 @@ namespace file
 
             if(iFind > 0)
             {
-               
+
                strFile.replace(":", "_", iFind + 1);
 
             }
@@ -893,7 +893,7 @@ namespace file
                straPath.add(path(strLs, stra[j]));
 
             }
-         
+
             for(int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
             {
 
@@ -928,7 +928,7 @@ namespace file
          }
 
 #else
-         
+
          {
 
             strLocale  = pcontext->m_plocaleschema->m_idLocale;
@@ -1073,9 +1073,9 @@ ret:
          ::user::str_context * pcontext = App(papp).str_context();
 
          string strLocale;
-         
+
          string strSchema;
-         
+
          string strLs;
 
          string strPath;
@@ -1099,7 +1099,7 @@ ret:
 
             if(iFind > 0)
             {
-               
+
                strFile.replace(":", "_", iFind + 1);
 
             }
@@ -1115,7 +1115,7 @@ ret:
 
 
             straPath.add(path(strLs, str, str2));
-         
+
             for(int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
             {
                strLocale         = pcontext->localeschema().m_idaLocale[i];
@@ -1123,10 +1123,10 @@ ret:
                strLs             = locale_schema_matter(papp, strLocale, strSchema);
                straPath.add(path(strLs, str, str2, true));
             }
-            
+
             strLs             = locale_schema_matter(papp, "en", "en");
             straPath.add(path(strLs, str, str2));
-            
+
             if(bDir)
             {
                strPath = System.http().get("http://server.ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
@@ -1420,7 +1420,7 @@ ret:
          }
          else
          {
-            
+
             appmatter_locators(strRoot, strDomain, papp->m_pplaneapp->m_strLibraryName, papp->m_pplaneapp->m_strAppId);
 
 
@@ -1538,17 +1538,17 @@ ret:
 
          string strRoot;
          string strDomain;
-         
+
          appmatter_locators(strRoot, strDomain, papp);
-         
+
 #ifdef MATTER_CACHE_FROM_HTTP_SERVER
 
          return simple_path(strRoot, "appmatter", strDomain);
-         
+
 #else
 
          return element(simple_path(strRoot, "appmatter", strDomain));
-         
+
 #endif
 
       }

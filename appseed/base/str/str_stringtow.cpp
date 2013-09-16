@@ -18,7 +18,7 @@ stringtow::~stringtow()
 
       m_pwstring->alloc(iLen + 1);
 
-      utf8_to_16(*m_pwstring, c_str());
+      utf8_to_utf16(*m_pwstring, c_str());
 
       m_pwstring->set_length(iLen);
 

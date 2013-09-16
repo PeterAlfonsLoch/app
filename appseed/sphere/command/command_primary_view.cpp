@@ -8,7 +8,7 @@ namespace command
    primary_view::primary_view(sp(::ca2::application) papp) :
       ca2(papp),
       ::user::interaction(papp),
-      
+
       ::user::edit_plain_text_view(papp),
       ::user::scroll_view(papp)
    {
@@ -120,7 +120,7 @@ namespace command
                         _001SetText(strNewText);
                         str = strNewText;
                         m_iCompromised = m_iSelStart = m_iSelEnd = strNewText.get_length();
-                        Application.send_simple_command("winactionareaview::show_calendar(\""+ ::ca2::str::from((int32_t) pelement->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
+                        Application.send_simple_command("winactionareaview::show_calendar(\""+ ::str::from((int32_t) pelement->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
                         bOk = true;
                      }
                   }
@@ -139,7 +139,7 @@ namespace command
                   if(::ShellExecuteW(
                      NULL,
                      NULL,
-                     ::ca2::international::utf8_to_unicode(strLine),
+                     ::str::international::utf8_to_unicode(strLine),
                      NULL,
                      NULL,
                      SW_SHOW))

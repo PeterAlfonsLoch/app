@@ -46,14 +46,14 @@ class CLASS_DECL_c mq
 public:
 
 
-   mutex               m_mutex;
+   mutex                      m_mutex;
    message_array              ma;
-   event               m_eventNewMessage;
+   manual_reset_event         m_eventNewMessage;
    HTHREAD                    m_hthread;
    uint32_t                   m_uiId;
 
 
-   mq() : m_eventNewMessage(false, true) {}
+   mq();
 
 
 

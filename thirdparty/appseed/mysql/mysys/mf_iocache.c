@@ -52,7 +52,7 @@ TODO:
 #include <errno.h>
 
 #define lock_append_buffer(info) \
-  mysql_mutex_lock(&(info)->append_buffer_lock)
+  mysql_single_lock(&(info)->append_buffer_lock)
 #define unlock_append_buffer(info) \
   mysql_mutex_unlock(&(info)->append_buffer_lock)
 
@@ -418,7 +418,7 @@ int _my_b_read(IO_CACHE *info, uchar *Buffer, size_t Count)
   */
   if (info->seek_not_done)
   {
-    if ((mysql_file_seek(info->file, pos_in_file, MY_SEEK_SET, MYF(0)) 
+    if ((mysql_file_seek(info->file, pos_in_file, MY_SEEK_SET, MYF(0))
         != MY_FILEPOS_ERROR))
     {
       /* No error, reset seek_not_done flag. */
@@ -669,7 +669,7 @@ void remove_io_thread(IO_CACHE *cache)
   if (cache == cshare->source_cache)
     flush_io_cache(cache);
 
-  mysql_mutex_lock(&cshare->mutex);
+  mysql_single_lock(&cshare->mutex);
   DBUG_PRINT("io_cache_share", ("%s: 0x%lx",
                                 (cache == cshare->source_cache) ?
                                 "writer" : "reader", (long) cache));
@@ -744,7 +744,7 @@ static int lock_io_cache(IO_CACHE *cache, my_off_t pos)
   DBUG_ENTER("lock_io_cache");
 
   /* Enter the lock. */
-  mysql_mutex_lock(&cshare->mutex);
+  mysql_single_lock(&cshare->mutex);
   cshare->running_threads--;
   DBUG_PRINT("io_cache_share", ("%s: 0x%lx  pos: %lu  running: %u",
                                 (cache == cshare->source_cache) ?
@@ -1098,7 +1098,7 @@ static void copy_to_read_buffer(IO_CACHE *write_cache,
 
 /*
   Do sequential read from the SEQ_READ_APPEND cache.
-  
+
   We do this in three stages:
    - first read from info->buffer
    - then if there are still data to read, try the file descriptor
@@ -1268,7 +1268,7 @@ int _my_b_get(IO_CACHE *info)
   return (int) (uchar) buff;
 }
 
-/* 
+/*
    Write a byte buffer to IO_CACHE and flush to disk
    if IO_CACHE is full.
 
@@ -1400,7 +1400,7 @@ int my_b_safe_write(IO_CACHE *info, const uchar *Buffer, size_t Count)
 {
   /*
     Sasha: We are not writing this with the ? operator to avoid hitting
-    a possible compiler bug. At least gcc 2.95 cannot deal with 
+    a possible compiler bug. At least gcc 2.95 cannot deal with
     several layers of ternary operators that evaluated comma(,) operator
     expressions inside - I do have a test case if somebody wants it
   */

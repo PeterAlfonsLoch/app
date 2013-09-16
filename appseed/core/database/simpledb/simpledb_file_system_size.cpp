@@ -93,7 +93,7 @@ void file_size_table::item::ls(sp(base_application) papp, index & iIteration)
    if(m_bDir)
    {
       stringa               straName;
-      array < int64_t, int64_t > iaSize;
+      int64_array iaSize;
       bool_array baIsDir;
       if(path().is_empty())
       {

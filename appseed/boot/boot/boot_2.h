@@ -128,10 +128,10 @@
 #endif
 
 
-#include "ca_simple_mutex.h"
+#include "ca_mutex.h"
 #include "ca_simple_event.h"
 
-#include "ca_mutex_lock.h"
+#include "ca_single_lock.h"
 
 #include "ca_simple_critical_section.h"
 

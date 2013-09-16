@@ -7,7 +7,7 @@ public:
 
 
    simple_event                     m_event;
-   simple_mutex                     m_mutex;
+   mutex                     m_mutex;
    ::array < MESSAGE * >           m_msgptra;
 
 
@@ -42,7 +42,7 @@ void _c_simple_message_loop()
 
 WINBOOL sys_message_queue::GetMessage(MESSAGE * pmsg)
 {
-   mutex_lock lockMutex(m_mutex, false);
+   single_lock lockMutex(m_mutex, false);
    while(true)
    {
       lockMutex.lock();
@@ -94,7 +94,7 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 {
 
 
-   mutex_lock lockMutex(m_mutex, false);
+   single_lock lockMutex(m_mutex, false);
 
 
    for(int32_t i = 0; i < m_threadptra.get_count(); i++)

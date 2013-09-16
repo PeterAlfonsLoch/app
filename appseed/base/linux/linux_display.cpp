@@ -6,8 +6,8 @@
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE "ca2_ccvotagus_window_long_style"
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE_EX "ca2_ccvotagus_window_long_style_ex"
 
-osdisplay_dataptra * osdisplay_data::s_pdataptra = new osdisplay_dataptra;
-mutex * osdisplay_data::s_pmutex = new mutex;
+osdisplay_dataptra * osdisplay_data::s_pdataptra = NULL;
+mutex * osdisplay_data::s_pmutex = NULL;
 
 osdisplay_data::osdisplay_data()
 {

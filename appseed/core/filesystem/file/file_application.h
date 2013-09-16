@@ -33,8 +33,8 @@ namespace file
       string time_log(const char * pszId);
 
 
-      virtual ::file::binary_buffer_sp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      virtual ::file::binary_buffer_sp get(const char * name);
+      virtual ::file::buffer_sp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      virtual ::file::buffer_sp get(const char * name);
 
 
       virtual string as_string(var varFile);

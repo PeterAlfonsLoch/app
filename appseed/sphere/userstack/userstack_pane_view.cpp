@@ -118,7 +118,7 @@ namespace userstack
       ::userex::pane_tab_view::on_show_view();
 //      sp(frame) pframe =  (GetParentFrame());
       string strId = get_view_id();
-      if(::ca2::str::begins_eat(strId, "app:"))
+      if(::str::begins_eat(strId, "app:"))
       {
          sp(::ca2::application) pappTab;
          if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
@@ -191,7 +191,7 @@ namespace userstack
 
       string strId = pcreatordata->m_id;
 
-      if(::ca2::str::begins_eat(strId, "app:"))
+      if(::str::begins_eat(strId, "app:"))
       {
          sp(::ca2::application) pappTab;
          if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
@@ -221,7 +221,7 @@ namespace userstack
 
             }
 
-            str = ::ca2::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent.m_p);
+            str = ::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent.m_p);
 
             createcontext->m_spCommandLine->m_eventReady.ResetEvent();
 
@@ -286,9 +286,9 @@ namespace userstack
          int32_t i = (int32_t) ::ShellExecuteW(
             GetTopLevelParent()->get_handle(),
             NULL,
-            L"\"" + ::ca2::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
+            L"\"" + ::str::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
             NULL,
-            L"\"" + ::ca2::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)) + L"\"",
+            L"\"" + ::str::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)) + L"\"",
             SW_SHOWNORMAL);
          string str;
          str.Format("%d", i);
@@ -343,7 +343,7 @@ namespace userstack
       while(pos != NULL)
       {
          System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
-         if(::ca2::str::begins_eat(strApp, "application:"))
+         if(::str::begins_eat(strApp, "application:"))
          {
             Application.file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\r\n"+ strApp);
          }

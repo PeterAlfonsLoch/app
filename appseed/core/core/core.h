@@ -1378,6 +1378,14 @@ class Ex1FactoryImpl;
 
 
 #include "net/http/http_output_stream.h"
+
+
+
+#include "net/net_email_address.h"
+#include "net/net_email.h"
+
+
+
 #include "net/sockets/sockets.h"
 
 
@@ -1456,17 +1464,20 @@ class Ex1FactoryImpl;
 #include "core_patch.h"
 #include "core_copydesk.h"
 #include "core_crypt.h"
-#include "core_email.h"
+
+
+#include "net/net_email_departament.h"
 #include "net/http/http_http.h"
 #include "net/http/http_application.h"
 #include "net/http/http_system.h"
 #include "net/http/http_get_socket.h"
-#include "core_ip_enum.h"
-#include "core_port_forward.h"
+#include "net/net_ip_enum.h"
+#include "net/net_port_forward.h"
 
 
 #include "net/hi5/hi5_oauth.h"
 #include "net/hi5/hi5_twit.h"
+
 
 #include "core_process_departament.h"
 

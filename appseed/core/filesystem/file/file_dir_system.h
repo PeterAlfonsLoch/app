@@ -2,7 +2,7 @@
 
 
 #if defined(METROWIN) || defined(MACOS)
-   
+
 #define MATTER_CACHE_FROM_HTTP_SERVER
 
 #endif
@@ -106,9 +106,9 @@ namespace file
 
 
          virtual string relpath(const char * lpcszSource, const char * lpcszRelative, const char * lpcsz2 = NULL);
-         virtual void  ls_pattern(sp(base_application) papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, bool_array * pbaIsDir = NULL, array < int64_t, int64_t > * piaSize = NULL);
-         virtual void  ls(sp(base_application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, bool_array * pbaIsDir = NULL, array < int64_t, int64_t > * piaSize = NULL);
-         virtual void  rls_pattern(sp(base_application) papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, bool_array * pbaIsDir = NULL, array < int64_t, int64_t > * piaSize = NULL, e_extract eextract = extract_first);
+         virtual void  ls_pattern(sp(base_application) papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL);
+         virtual void  ls(sp(base_application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL);
+         virtual void  rls_pattern(sp(base_application) papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL, e_extract eextract = extract_first);
          virtual void  rls(sp(base_application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, e_extract eextract = extract_first);
          virtual void  rls_dir(sp(base_application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL);
          virtual void  ls_dir(sp(base_application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);

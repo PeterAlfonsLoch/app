@@ -145,7 +145,7 @@ bool event::SetEvent()
 
 #elif defined(ANDROID)
 
-   pmutex_lock lockMutex(&m_mutex, true);
+   psingle_lock lockMutex(&m_mutex, true);
 
    if(m_bManualEvent)
    {
@@ -251,7 +251,7 @@ bool event::ResetEvent()
    else
    {
 
-      throw "simple_exception";
+      throw simple_exception(get_app(), "It does not make sense to Reset a Event that is Automatic. It can be only Pulsed/Broadcasted.");
 
    }
 
@@ -274,7 +274,7 @@ void event::wait ()
 #elif defined(ANDROID)
 
 
-   pmutex_lock lockMutex(&m_mutex, true);
+   psingle_lock lockMutex(&m_mutex, true);
 
    if(m_bManualEvent)
    {
@@ -345,7 +345,7 @@ wait_result event::wait (const duration & durationTimeout)
 
 #elif defined(ANDROID)
 
-   pmutex_lock lockMutex(&m_mutex, true);
+   psingle_lock lockMutex(&m_mutex, true);
 
    ((duration & ) durationTimeout).normalize();
 
@@ -577,7 +577,7 @@ bool event::lock(const duration & durationTimeout)
 
 #elif defined(ANDROID)
 
-   pmutex_lock lockMutex(&m_mutex, true);
+   psingle_lock lockMutex(&m_mutex, true);
 
    ((duration & ) durationTimeout).normalize();
 

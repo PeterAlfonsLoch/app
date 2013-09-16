@@ -314,8 +314,8 @@ static void end_idle_wait_noop(PSI_idle_locker* locker NNN)
   return;
 }
 
-static PSI_mutex_locker*
-start_mutex_wait_noop(PSI_mutex_locker_state *state NNN,
+static PSI_single_locker*
+start_mutex_wait_noop(PSI_single_locker_state *state NNN,
                       PSI_mutex *mutex NNN,
                       PSI_mutex_operation op NNN,
                       const char *src_file NNN, uint src_line NNN)
@@ -323,7 +323,7 @@ start_mutex_wait_noop(PSI_mutex_locker_state *state NNN,
   return NULL;
 }
 
-static void end_mutex_wait_noop(PSI_mutex_locker* locker NNN, int rc NNN)
+static void end_mutex_wait_noop(PSI_single_locker* locker NNN, int rc NNN)
 {
   return;
 }

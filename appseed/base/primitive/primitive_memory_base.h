@@ -73,8 +73,14 @@ namespace primitive
 
       //::primitive::memory_size read(::file::stream_buffer & buffer);
 
-      void write(::file::output_stream & ostream);
-      void read(::file::input_stream & istream);
+
+      virtual void write(::file::output_stream & ostream);
+      virtual void read(::file::input_stream & istream);
+
+
+      virtual void transfer_to(::file::writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024);
+      virtual void transfer_from(::file::reader & reader, ::primitive::memory_size uiBufferSize = 1024 * 1024);
+
 
       inline  void allocate_add_up(memory_size dwAddUp);
 

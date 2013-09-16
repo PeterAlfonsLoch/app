@@ -1,16 +1,19 @@
 #include "framework.h"
 
 
-namespace core
+namespace net
 {
 
 
    port_forward::port_forward()
    {
+
    }
+
 
    port_forward::~port_forward()
    {
+
    }
 
 
@@ -29,24 +32,31 @@ namespace core
 
    bool port_forward::IsAnyThreadRunning() const
    {
+
 	   bool bRet = FALSE;
+
 	   return bRet;
+
    }
-
-
 
 
    smart_pointer_array < port_forward::port_map > port_forward::get_port_map() const
    {
+
 	   return smart_pointer_array < port_forward::port_map > ();
+
    }
+
 
    smart_pointer_array < port_forward::device > port_forward::get_igd() const
    {
+
 	   // returns a copy of the current device information (note: thread-awareness is needed)
 
 	   // cast away const-ness of the critical section (since this is a const function)
+
 	   return smart_pointer_array < port_forward::device > ();
+
    }
 
 
@@ -271,6 +281,7 @@ namespace core
 
    }
 
+
    port_forward_change_callbacks::~port_forward_change_callbacks()
    {
 
@@ -305,6 +316,9 @@ namespace core
    }
 
 
+} // namespace net
 
-} // namespace core
+
+
+
 

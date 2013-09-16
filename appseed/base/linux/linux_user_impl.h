@@ -38,7 +38,7 @@ class oswindow_dataptra;
 class simple_event;
 
 
-class simple_mutex;
+class mutex;
 
 
 //typedef hthread * HTHREAD;

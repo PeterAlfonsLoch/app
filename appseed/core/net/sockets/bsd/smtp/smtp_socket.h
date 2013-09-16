@@ -1,45 +1,5 @@
 #pragma once
 
-class CLASS_DECL_ca2 email :
-   virtual public object
-{
-public:
-   email(sp(base_application) papp);
-
-   class CLASS_DECL_ca2 address
-   {
-   public:
-      address();
-      address(const char * psz);
-      address(const address & addr);
-      string get_name() const { return m_name; }
-      string get_domain() const { return m_domain; }
-      string get_top_domain() const { return m_top; }
-      string get_sub_domain() const { return m_sub; }
-
-      string to_string() const { return m_name + "@" + m_domain; }
-
-      address & operator = (const char * psz);
-      address & operator = (const address & addr);
-
-   private:
-      string m_name;
-      string m_domain;
-      string m_top;
-      string m_sub;
-   };
-
-
-   string m_strSenderName;
-   address m_addressSender;
-   string m_strRecipientName;
-   address m_addressRecipient;
-   string m_strSubject;
-   string m_strHeaders;
-   string m_strBody;
-
-   void prepare_headers();
-};
 
 
 
@@ -76,7 +36,7 @@ namespace sockets
 
       e_state m_estate;
 
-      email m_email;
+      ::net::email      m_email;
 
 
    public:
@@ -108,7 +68,7 @@ namespace sockets
       //virtual void OnAbort(reason_t) = 0;
 
       //virtual void OnNotSupported(const string & cmd, const string & arg) = 0;
-   
+
    };
 
 } // namespace sockets

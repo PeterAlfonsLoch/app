@@ -107,7 +107,7 @@ struct st_mysql_mutex
   @sa mysql_mutex_assert_owner
   @sa mysql_mutex_assert_not_owner
   @sa mysql_mutex_init
-  @sa mysql_mutex_lock
+  @sa mysql_single_lock
   @sa mysql_mutex_unlock
   @sa mysql_mutex_destroy
 */
@@ -301,23 +301,23 @@ typedef struct st_mysql_cond mysql_cond_t;
 #endif
 
 /**
-  @def mysql_mutex_lock(M)
-  Instrumented mutex_lock.
-  @c mysql_mutex_lock is a drop-in replacement for @c pthread_mutex_lock.
+  @def mysql_single_lock(M)
+  Instrumented single_lock.
+  @c mysql_single_lock is a drop-in replacement for @c pthread_mutex_lock.
   @param M The mutex to lock
 */
 
 #if defined(SAFE_MUTEX) || defined (HAVE_PSI_MUTEX_INTERFACE)
-  #define mysql_mutex_lock(M) \
-    inline_mysql_mutex_lock(M, __FILE__, __LINE__)
+  #define mysql_single_lock(M) \
+    inline_mysql_single_lock(M, __FILE__, __LINE__)
 #else
-  #define mysql_mutex_lock(M) \
-    inline_mysql_mutex_lock(M)
+  #define mysql_single_lock(M) \
+    inline_mysql_single_lock(M)
 #endif
 
 /**
   @def mysql_mutex_trylock(M)
-  Instrumented mutex_lock.
+  Instrumented single_lock.
   @c mysql_mutex_trylock is a drop-in replacement
   for @c pthread_mutex_trylock.
 */
@@ -671,7 +671,7 @@ static inline int inline_mysql_mutex_destroy(
 #endif
 }
 
-static inline int inline_mysql_mutex_lock(
+static inline int inline_mysql_single_lock(
   mysql_mutex_t *that
 #if defined(SAFE_MUTEX) || defined (HAVE_PSI_MUTEX_INTERFACE)
   , const char *src_file, uint src_line
@@ -684,16 +684,16 @@ static inline int inline_mysql_mutex_lock(
   if (that->m_psi != NULL)
   {
     /* Instrumentation start */
-    PSI_mutex_locker *locker;
-    PSI_mutex_locker_state state;
+    PSI_single_locker *locker;
+    PSI_single_locker_state state;
     locker= PSI_MUTEX_CALL(start_mutex_wait)(&state, that->m_psi,
                                        PSI_MUTEX_LOCK, src_file, src_line);
 
     /* Instrumented code */
 #ifdef SAFE_MUTEX
-    result= safe_mutex_lock(&that->m_mutex, FALSE, src_file, src_line);
+    result= safe_single_lock(&that->m_mutex, FALSE, src_file, src_line);
 #elif defined(MY_PTHREAD_FASTMUTEX)
-    result= my_pthread_fastmutex_lock(&that->m_mutex);
+    result= my_pthread_fastsingle_lock(&that->m_mutex);
 #else
     result= pthread_mutex_lock(&that->m_mutex);
 #endif
@@ -708,9 +708,9 @@ static inline int inline_mysql_mutex_lock(
 
   /* Non instrumented code */
 #ifdef SAFE_MUTEX
-  result= safe_mutex_lock(&that->m_mutex, FALSE, src_file, src_line);
+  result= safe_single_lock(&that->m_mutex, FALSE, src_file, src_line);
 #elif defined(MY_PTHREAD_FASTMUTEX)
-  result= my_pthread_fastmutex_lock(&that->m_mutex);
+  result= my_pthread_fastsingle_lock(&that->m_mutex);
 #else
   result= pthread_mutex_lock(&that->m_mutex);
 #endif
@@ -731,14 +731,14 @@ static inline int inline_mysql_mutex_trylock(
   if (that->m_psi != NULL)
   {
     /* Instrumentation start */
-    PSI_mutex_locker *locker;
-    PSI_mutex_locker_state state;
+    PSI_single_locker *locker;
+    PSI_single_locker_state state;
     locker= PSI_MUTEX_CALL(start_mutex_wait)(&state, that->m_psi,
                                        PSI_MUTEX_TRYLOCK, src_file, src_line);
 
     /* Instrumented code */
 #ifdef SAFE_MUTEX
-    result= safe_mutex_lock(&that->m_mutex, TRUE, src_file, src_line);
+    result= safe_single_lock(&that->m_mutex, TRUE, src_file, src_line);
 #elif defined(MY_PTHREAD_FASTMUTEX)
     result= pthread_mutex_trylock(&that->m_mutex.mutex);
 #else
@@ -755,7 +755,7 @@ static inline int inline_mysql_mutex_trylock(
 
   /* Non instrumented code */
 #ifdef SAFE_MUTEX
-  result= safe_mutex_lock(&that->m_mutex, TRUE, src_file, src_line);
+  result= safe_single_lock(&that->m_mutex, TRUE, src_file, src_line);
 #elif defined(MY_PTHREAD_FASTMUTEX)
   result= pthread_mutex_trylock(&that->m_mutex.mutex);
 #else

@@ -6,7 +6,7 @@ typedef int32_t key_t;
 typedef __key_t key_t;
 #elif defined(ANDROID)
 #else
-//#include "ca_simple_mutex.h"
+//#include "ca_mutex.h"
 #endif
 
 

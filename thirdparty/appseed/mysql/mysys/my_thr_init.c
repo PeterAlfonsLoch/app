@@ -186,7 +186,7 @@ void my_thread_global_end(void)
   my_bool all_threads_killed= 1;
 
   set_timespec(abstime, my_thread_end_wait_time);
-  mysql_mutex_lock(&THR_LOCK_threads);
+  mysql_single_lock(&THR_LOCK_threads);
   while (THR_thread_count > 0)
   {
     int error= mysql_cond_timedwait(&THR_COND_threads, &THR_LOCK_threads,
@@ -248,9 +248,9 @@ static my_thread_id thread_id= 0;
     my_thread_init()
 
   NOTES
-    We can't use mutex_locks here if we are using windows as
+    We can't use single_locks here if we are using windows as
     we may have compiled the program with SAFE_MUTEX, in which
-    case the checking of mutex_locks will not work until
+    case the checking of single_locks will not work until
     the pthread_self thread specific variable is initialized.
 
    This function may called multiple times for a thread, for example
@@ -269,14 +269,14 @@ my_bool my_thread_init(void)
 #ifdef EXTRA_DEBUG_THREADS
   fprintf(stderr,"my_thread_init(): thread_id: 0x%lx\n",
           (ulong) pthread_self());
-#endif  
+#endif
 
   if (_my_thread_var())
   {
 #ifdef EXTRA_DEBUG_THREADS
     fprintf(stderr,"my_thread_init() called more than once in thread 0x%lx\n",
             (long) pthread_self());
-#endif    
+#endif
     goto end;
   }
 
@@ -297,7 +297,7 @@ my_bool my_thread_init(void)
   tmp->stack_ends_here= (char*)&tmp +
                          STACK_DIRECTION * (long)my_thread_stack_size;
 
-  mysql_mutex_lock(&THR_LOCK_threads);
+  mysql_single_lock(&THR_LOCK_threads);
   tmp->id= ++thread_id;
   ++THR_thread_count;
   mysql_mutex_unlock(&THR_LOCK_threads);
@@ -332,7 +332,7 @@ void my_thread_end(void)
 #ifdef EXTRA_DEBUG_THREADS
   fprintf(stderr,"my_thread_end(): tmp: 0x%lx  pthread_self: 0x%lx  thread_id: %ld\n",
 	  (long) tmp, (long) pthread_self(), tmp ? (long) tmp->id : 0L);
-#endif  
+#endif
 
 #ifdef HAVE_PSI_INTERFACE
   /*
@@ -364,7 +364,7 @@ void my_thread_end(void)
       my_thread_end and thus freed all memory they have allocated in
       my_thread_init() and DBUG_xxxx
     */
-    mysql_mutex_lock(&THR_LOCK_threads);
+    mysql_single_lock(&THR_LOCK_threads);
     DBUG_ASSERT(THR_thread_count != 0);
     if (--THR_thread_count == 0)
       mysql_cond_signal(&THR_COND_threads);
@@ -441,7 +441,7 @@ extern void **my_thread_var_dbug()
   In Visual Studio 2005 and later, default SIGABRT handler will overwrite
   any unhandled exception filter set by the application  and will try to
   call JIT debugger. This is not what we want, this we calling __debugbreak
-  to stop in debugger, if process is being debugged or to generate 
+  to stop in debugger, if process is being debugged or to generate
   EXCEPTION_BREAKPOINT and then handle_segfault will do its magic.
 */
 

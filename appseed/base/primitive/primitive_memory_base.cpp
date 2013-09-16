@@ -23,7 +23,7 @@ namespace primitive
       m_pvirtualmemory     = NULL;
 
    }
-      
+
    memory_base::~memory_base()
    {
    }
@@ -67,11 +67,11 @@ namespace primitive
 
    memory_base & memory_base::prefix_der_type(int32_t iType)
    {
-      
+
       move_and_grow(1);
-      
+
       get_data()[0] = iType;
-      
+
       return *this;
 
    }
@@ -86,7 +86,7 @@ namespace primitive
       return prefix_der_length().prefix_der_type(0x30); // 0x30 - universal sequence
    }
 
-   
+
 
    inline bool memory_base::allocate(memory_size dwNewLength)
    {
@@ -125,7 +125,7 @@ namespace primitive
       return false;
    }
 
-   /*   
+   /*
    void memory_base::FullLoad(::file::binary_buffer & file)
    {
 
@@ -161,12 +161,14 @@ namespace primitive
 
    }
    */
- 
+
 
    void memory_base::read(::file::input_stream & istream)
    {
 
-      memory_size uiRead;
+      transfer_from(istream);
+
+      /*memory_size uiRead;
 
       memory_size uiBufSize = 1024 + 1024;
 
@@ -189,19 +191,20 @@ namespace primitive
 
          uiSize += uiBufSize;
 
-      }
+      }*/
 
    }
 
-   
+
    void memory_base::write(::file::output_stream & ostream)
    {
 
-      ostream.write(get_data(), this->get_size());
+      transfer_to(ostream);
+      //ostream.write(get_data(), this->get_size());
 
    }
 
-   
+
 
 /*   ::primitive::memory_size memory_base::read(::file::binary_buffer & file)
    {
@@ -225,20 +228,20 @@ namespace primitive
 
    void memory_base::delete_begin(memory_size iSize)
    {
-      
+
       iSize = max(0, min(get_size(), iSize));
-      
+
       m_iOffset += iSize;
-      
+
       if(m_pcontainer != NULL)
       {
-         
+
          m_pcontainer->offset_kept_pointers((::primitive::memory_offset) iSize);
 
       }
-      
+
       m_cbStorage -= iSize;
-      
+
       if(m_cbStorage <= 0)
       {
 
@@ -258,6 +261,74 @@ namespace primitive
          remove_offset();
 
       }
+
+   }
+
+
+   void memory_base::transfer_to(::file::writer & writer, ::primitive::memory_size uiBufferSize)
+   {
+
+      if(get_data() == NULL || get_size() <= 0)
+         return;
+
+      if(writer.increase_internal_data_size(get_size()) && writer.get_internal_data() != NULL)
+      {
+
+         if(writer.get_internal_data() == get_data())
+            return;
+
+         memmove(((byte *) writer.get_internal_data()) + writer.get_position() + get_size(), ((byte *) writer.get_internal_data()) + writer.get_position(), writer.get_internal_data_size() - get_size());
+         memcpy(((byte *) writer.get_internal_data()) + writer.get_position(), get_data(), get_size());
+         writer.seek(get_size(), ::file::seek_current);
+
+      }
+      else
+      {
+
+         writer.write(get_data(), get_size());
+
+      }
+
+   }
+
+
+   void memory_base::transfer_from(::file::reader & reader, ::primitive::memory_size uiBufferSize)
+   {
+
+      if(reader.get_internal_data() != NULL && reader.get_internal_data_size() > reader.get_position())
+      {
+
+         append((byte *) reader.get_internal_data() + reader.get_position(), reader.get_internal_data_size() - reader.get_position());
+
+      }
+      else
+      {
+
+         memory_size uiRead;
+
+         memory_size uiSize = 0;
+
+         while(true)
+         {
+
+            allocate(uiSize + uiBufferSize);
+
+            uiRead = reader.read(&get_data()[uiSize], uiBufferSize);
+
+            if(uiRead <= 0)
+            {
+               break;
+
+            }
+
+            uiSize += uiRead;
+
+         }
+
+         allocate(uiSize);
+
+      }
+
 
    }
 

@@ -360,7 +360,7 @@ namespace userstack
       else if(pbase->m_wparam == 33)
       {
          string str = System.get_local_mutex_id();
-         ::ca2::str::begins_eat_ci(str, "bergedge");
+         ::str::begins_eat_ci(str, "bergedge");
          int32_t iEdge = atoi(str);
          if(iEdge == 0)
             iEdge = 77;
@@ -429,7 +429,7 @@ namespace userstack
 #ifdef WINDOWSEX
 
       SCAST_PTR(::ca2::message::base, pbase, pobj);
-      
+
       MESSAGE * pmsg = (MESSAGE *) pbase->m_lparam.m_lparam;
 
       pmsg->hwnd = get_safe_handle();

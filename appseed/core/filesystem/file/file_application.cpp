@@ -84,12 +84,12 @@ namespace file
       return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->time_log(m_pbaseapp, pszId);
    }
 
-   ::file::binary_buffer_sp application::time_square_file(const char * pszPrefix, const char * pszSuffix)
+   ::file::buffer_sp application::time_square_file(const char * pszPrefix, const char * pszSuffix)
    {
       return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->time_square_file(m_pbaseapp, pszPrefix, pszSuffix);
    }
 
-   ::file::binary_buffer_sp application::get(const char * name)
+   ::file::buffer_sp application::get(const char * name)
    {
       return m_pbaseapp->m_pplaneapp->m_psystem->m_spfile->get(name, m_pbaseapp);
    }
@@ -240,7 +240,7 @@ namespace file
             string strFile(strPath);
 
             string strFileDownloading(strPath);
-            
+
             if(::str::ends(strPath, "en_us_international.xml"))
             {
                TRACE("Debug Here");
@@ -262,7 +262,7 @@ namespace file
              strFile.replace("://", "_/");
 #endif
             strFile = System.dir().appdata("cache/" + strFile);
-            
+
             strFile = strFile + ".local_copy";
 
             strFileDownloading = strFile + ".downloading";
@@ -317,7 +317,7 @@ namespace file
                }
                else if(!m_pbaseapp->m_pplaneapp->m_file.exists(strFileDownloading))
                {
-                  
+
                   try
                   {
 

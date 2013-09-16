@@ -60,7 +60,7 @@ size_t my_pread(File Filedes, uchar *Buffer, size_t Count, my_off_t offset,
   {
     errno= 0;    /* Linux, Windows don't reset this on EOF/success */
 #if !defined (HAVE_PREAD) && !defined (_WIN32)
-    mysql_mutex_lock(&my_file_info[Filedes].mutex);
+    mysql_single_lock(&my_file_info[Filedes].mutex);
     readbytes= (uint) -1;
     error= (lseek(Filedes, offset, MY_SEEK_SET) == (my_off_t) -1 ||
            (readbytes= read(Filedes, Buffer, Count)) != Count);
@@ -71,7 +71,7 @@ size_t my_pread(File Filedes, uchar *Buffer, size_t Count, my_off_t offset,
 #else
 #if defined(_WIN32)
     readbytes= my_win_pread(Filedes, Buffer, Count, offset);
-#else 
+#else
     readbytes= pread(Filedes, Buffer, Count, offset);
 #endif
     error= (readbytes != Count);
@@ -162,7 +162,7 @@ size_t my_pwrite(File Filedes, const uchar *Buffer, size_t Count,
 #if !defined (HAVE_PREAD) && !defined (_WIN32)
     int error;
     writtenbytes= (size_t) -1;
-    mysql_mutex_lock(&my_file_info[Filedes].mutex);
+    mysql_single_lock(&my_file_info[Filedes].mutex);
     error= (lseek(Filedes, offset, MY_SEEK_SET) != (my_off_t) -1 &&
             (writtenbytes= write(Filedes, Buffer, Count)) == Count);
     mysql_mutex_unlock(&my_file_info[Filedes].mutex);

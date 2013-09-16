@@ -84,7 +84,7 @@ void create_last_word_mask(MY_BITMAP *map)
 static inline void bitmap_lock(MY_BITMAP *map __attribute__((unused)))
 {
   if (map->mutex)
-    mysql_mutex_lock(map->mutex);
+    mysql_single_lock(map->mutex);
 }
 
 
@@ -601,7 +601,7 @@ uint bitmap_get_next_set(const MY_BITMAP *map, uint bitmap_bit)
 
   if (data_ptr == end)
     return get_first_set(first_word & ~map->last_word_mask, word_pos);
-   
+
   if (first_word)
     return get_first_set(first_word, word_pos);
 

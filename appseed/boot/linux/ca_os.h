@@ -44,3 +44,8 @@ CLASS_DECL_c bool _istlead(int32_t ch);
 bool c_xstart();
 
 extern oswindow g_oswindowDesktop;
+
+
+
+CLASS_DECL_c bool main_initialize();
+CLASS_DECL_c bool main_finalize();

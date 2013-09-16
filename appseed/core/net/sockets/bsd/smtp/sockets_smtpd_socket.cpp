@@ -141,15 +141,20 @@ namespace sockets
          ::str::parse pa(line, ":");
          pa.getword(); // 'mail'
          pa.getword(); // 'from'
-         string email = pa.getrest();
-         email.make_lower();
-         ::email::address addr( email );
+
+         string strEmailAddress = pa.getrest();
+
+         strEmailAddress.make_lower();
+
+         ::net::email_address addr( strEmailAddress );
+
          if (addr.get_name().get_length() > 64)
          {
             OnAbort(SMTP_NAME_TOO_LONG);
             write("500 Name too long.\r\n");
             return;
          }
+
          if (addr.get_domain().get_length() > 64)
          {
             OnAbort(SMTP_DOMAIN_TOO_LONG);
@@ -166,23 +171,27 @@ namespace sockets
             write("250 OK\r\n");
          }
       }
-      else
-      if (cmd == "RCPT") // rcpt to:
+      else if (cmd == "RCPT") // rcpt to:
       {
          ::str::parse pa(line, ":");
          pa.getword(); // 'rcpt'
          pa.getword(); // 'to'
-         string email = pa.getrest();
-         email.make_lower();
-         // %! reject based on ::fontopus::user / domain?
-         ::email::address addr( email );
 
-         if (addr.get_name().get_length() > 64)
+         string strEmailAddress = pa.getrest();
+
+         strEmailAddress.make_lower();
+
+         // %! reject based on ::fontopus::user / domain?
+
+         ::net::email_address addr(strEmailAddress);
+
+         if(addr.get_name().get_length() > 64)
          {
             OnAbort(SMTP_NAME_TOO_LONG);
             write("500 Name too long.\r\n");
             return;
          }
+
          if (addr.get_domain().get_length() > 64)
          {
             OnAbort(SMTP_DOMAIN_TOO_LONG);

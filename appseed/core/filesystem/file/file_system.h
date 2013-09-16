@@ -15,7 +15,7 @@ namespace file
          virtual public object
       {
       public:
-         
+
          ::file::system * m_pfile;
 
 
@@ -105,7 +105,7 @@ namespace file
       template < class T >
       bool output(sp(base_application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), ::file::input_stream & istream)
       {
-         
+
          ::file::output_stream ostream(get(pszOutput, papp));
 
          return (p->*lpfnOuput)(ostream, istream);
@@ -116,8 +116,8 @@ namespace file
       string time_square(sp(base_application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
       string time_log(sp(base_application) papp, const char * pszId);
 
-      virtual ::file::binary_buffer_sp time_square_file(sp(base_application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      virtual ::file::binary_buffer_sp get(const char * name, sp(base_application) papp);
+      virtual ::file::buffer_sp time_square_file(sp(base_application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      virtual ::file::buffer_sp get(const char * name, sp(base_application) papp);
 
       template < class T >
       string time_square(sp(base_application) papp, T * p, bool (T::*lpfnOutput)(::file::output_stream &, const char *), const char * lpszSource)

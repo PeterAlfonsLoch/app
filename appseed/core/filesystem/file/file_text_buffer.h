@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_ca2 text_buffer : 
+   class CLASS_DECL_ca2 text_buffer :
       virtual public ::file::stream_buffer
    {
    public:
@@ -28,8 +28,8 @@ namespace file
 
    };
 
-   
-   typedef smart_pointer < text_buffer > text_file_sp;
+
+   typedef smart_pointer < text_buffer > text_buffer_sp;
 
 
 } // namespace file

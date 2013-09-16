@@ -32,8 +32,8 @@
 #include "os_cross_windows_internals.h"
 #define CLASS_DECL_c
 #include "c/c/verisimple_string.h"
-#include "c/c/simple_mutex.h"
-#include "c/c/mutex_lock.h"
+#include "c/c/mutex.h"
+#include "c/c/single_lock.h"
 #include <stdarg.h>
 #include <stdlib.h>
 #include <errno.h>

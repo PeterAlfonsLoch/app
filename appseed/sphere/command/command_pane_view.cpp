@@ -326,9 +326,9 @@ namespace command
          i = (int32_t) ::ShellExecuteW(
             GetTopLevelParent()->get_handle(),
             NULL,
-            ::ca2::international::utf8_to_unicode("\"" + itema[0].m_strPath + "\""),
+            ::str::international::utf8_to_unicode("\"" + itema[0].m_strPath + "\""),
             NULL,
-            ::ca2::international::utf8_to_unicode("\"" +  System.dir().name(itema[0].m_strPath) + "\""),
+            ::str::international::utf8_to_unicode("\"" +  System.dir().name(itema[0].m_strPath) + "\""),
             SW_SHOWNORMAL);
 
 #else

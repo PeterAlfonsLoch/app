@@ -73,7 +73,7 @@ RSA *rsa_init(MYSQL *mysql)
   static RSA *g_public_key= NULL;
   RSA *key= NULL;
 
-  mysql_mutex_lock(&g_public_key_mutex);
+  mysql_single_lock(&g_public_key_mutex);
   key= g_public_key;
   mysql_mutex_unlock(&g_public_key_mutex);
 
@@ -105,7 +105,7 @@ RSA *rsa_init(MYSQL *mysql)
     return 0;
   }
 
-  mysql_mutex_lock(&g_public_key_mutex);
+  mysql_single_lock(&g_public_key_mutex);
   key= g_public_key= PEM_read_RSA_PUBKEY(pub_key_file, 0, 0, 0);
   mysql_mutex_unlock(&g_public_key_mutex);
   fclose(pub_key_file);

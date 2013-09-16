@@ -15,7 +15,7 @@ namespace zip
 
    }
 
-   void Util::ls(sp(base_application) papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, array < int64_t, int64_t > * piaSize, e_extract eextract)
+   void Util::ls(sp(base_application) papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
    {
       string strZip;
       string strRemain;

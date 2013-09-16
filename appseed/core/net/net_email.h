@@ -1,6 +1,7 @@
 #pragma once
 
-namespace core
+
+namespace net
 {
 
 
@@ -8,11 +9,27 @@ namespace core
       virtual public object
    {
    public:
-      email();
 
-      bool utf8_mail(class ::email & email);
 
-      bool syntax_is_valid(const char * pszCandidate);
+      string            m_strSenderName;
+      email_address     m_addressSender;
+      string            m_strRecipientName;
+      email_address     m_addressRecipient;
+      string            m_strSubject;
+      string            m_strHeaders;
+      string            m_strBody;
+
+
+      email(sp(base_application) papp);
+
+
+      void prepare_headers();
+
+
    };
 
-} // namespace core
+
+} // namespace net
+
+
+

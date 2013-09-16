@@ -1451,7 +1451,7 @@ void _db_doprnt_(const char *format,...)
 
 /*
  * This function is intended as a
- * vfprintf clone with consistent, platform independent output for 
+ * vfprintf clone with consistent, platform independent output for
  * problematic formats like %p, %zd and %lld.
  */
 static void DbugVfprintf(FILE *stream, const char* format, va_list args)

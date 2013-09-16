@@ -40,7 +40,7 @@ extern mysql_mutex_t LOCK_localtime_r;
 struct tm *localtime_r(const time_t *clock, struct tm *res)
 {
   struct tm *tmp;
-  mysql_mutex_lock(&LOCK_localtime_r);
+  mysql_single_lock(&LOCK_localtime_r);
   tmp=localtime(clock);
   *res= *tmp;
   mysql_mutex_unlock(&LOCK_localtime_r);
@@ -49,15 +49,15 @@ struct tm *localtime_r(const time_t *clock, struct tm *res)
 #endif
 
 #if !defined(HAVE_GMTIME_R)
-/* 
-  Reentrant version of standard gmtime() function. 
+/*
+  Reentrant version of standard gmtime() function.
   Needed on some systems which don't implement it.
 */
 
 struct tm *gmtime_r(const time_t *clock, struct tm *res)
 {
   struct tm *tmp;
-  mysql_mutex_lock(&LOCK_localtime_r);
+  mysql_single_lock(&LOCK_localtime_r);
   tmp= gmtime(clock);
   *res= *tmp;
   mysql_mutex_unlock(&LOCK_localtime_r);

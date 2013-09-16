@@ -79,7 +79,7 @@ void init_thr_alarm(uint max_alarms)
 
 void resize_thr_alarm(uint max_alarms)
 {
-  mysql_mutex_lock(&LOCK_alarm);
+  mysql_single_lock(&LOCK_alarm);
   /*
     It's ok not to shrink the queue as there may be more pending alarms than
     than max_alarms
@@ -121,7 +121,7 @@ my_bool thr_alarm(thr_alarm_t *alrm, uint sec, ALARM *alarm_data)
   DBUG_PRINT("enter",("thread: %s  sec: %d",my_thread_name(),sec));
 
   now= my_time(0);
-  mysql_mutex_lock(&LOCK_alarm);        /* Lock from threads & alarms */
+  mysql_single_lock(&LOCK_alarm);        /* Lock from threads & alarms */
   if (alarm_aborted > 0)
   {					/* No signal thread */
     DBUG_PRINT("info", ("alarm aborted"));
@@ -184,7 +184,7 @@ void thr_end_alarm(thr_alarm_t *alarmed)
   uint i, found=0;
   DBUG_ENTER("thr_end_alarm");
 
-  mysql_mutex_lock(&LOCK_alarm);
+  mysql_single_lock(&LOCK_alarm);
 
   alarm_data= (ALARM*) ((uchar*) *alarmed - offsetof(ALARM,alarmed));
   for (i=0 ; i < alarm_queue.elements ; i++)
@@ -233,7 +233,7 @@ sig_handler process_alarm(int sig __attribute__((unused)))
   */
 
   pthread_sigmask(SIG_SETMASK,&full_signal_set,&old_mask);
-  mysql_mutex_lock(&LOCK_alarm);
+  mysql_single_lock(&LOCK_alarm);
   process_alarm_part2(sig);
   mysql_mutex_unlock(&LOCK_alarm);
   pthread_sigmask(SIG_SETMASK,&old_mask,NULL);
@@ -335,7 +335,7 @@ void end_thr_alarm(my_bool free_structures)
   DBUG_ENTER("end_thr_alarm");
   if (alarm_aborted != 1)			/* If memory not freed */
   {
-    mysql_mutex_lock(&LOCK_alarm);
+    mysql_single_lock(&LOCK_alarm);
     DBUG_PRINT("info",("Resheduling %d waiting alarms",alarm_queue.elements));
     alarm_aborted= -1;				/* mark aborted */
     if (alarm_queue.elements || (alarm_thread_running && free_structures))
@@ -384,7 +384,7 @@ void thr_alarm_kill(my_thread_id thread_id)
   uint i;
   if (alarm_aborted)
     return;
-  mysql_mutex_lock(&LOCK_alarm);
+  mysql_single_lock(&LOCK_alarm);
   for (i=0 ; i < alarm_queue.elements ; i++)
   {
     if (((ALARM*) queue_element(&alarm_queue,i))->thread_id == thread_id)
@@ -402,7 +402,7 @@ void thr_alarm_kill(my_thread_id thread_id)
 
 void thr_alarm_info(ALARM_INFO *info)
 {
-  mysql_mutex_lock(&LOCK_alarm);
+  mysql_single_lock(&LOCK_alarm);
   info->next_alarm_time= 0;
   info->max_used_alarms= max_used_alarms;
   if ((info->active_alarms=  alarm_queue.elements))
@@ -609,7 +609,7 @@ static void *test_thread(void *arg)
     thr_end_alarm(&got_alarm);
     fflush(stdout);
   }
-  mysql_mutex_lock(&LOCK_thread_count);
+  mysql_single_lock(&LOCK_thread_count);
   thread_count--;
   mysql_cond_signal(&COND_thread_count); /* Tell main we are ready */
   mysql_mutex_unlock(&LOCK_thread_count);
@@ -638,7 +638,7 @@ static void *signal_hand(void *arg __attribute__((unused)))
   my_thread_init();
   pthread_detach_this_thread();
   init_thr_alarm(10);				/* Setup alarm handler */
-  mysql_mutex_lock(&LOCK_thread_count);         /* Required by bsdi */
+  mysql_single_lock(&LOCK_thread_count);         /* Required by bsdi */
   mysql_cond_signal(&COND_thread_count);        /* Tell main we are ready */
   mysql_mutex_unlock(&LOCK_thread_count);
 
@@ -726,7 +726,7 @@ int main(int argc __attribute__((unused)),char **argv __attribute__((unused)))
   pthread_attr_setstacksize(&thr_attr,65536L);
 
   /* Start signal thread and wait for it to start */
-  mysql_mutex_lock(&LOCK_thread_count);
+  mysql_single_lock(&LOCK_thread_count);
   mysql_thread_create(0,
                       &tid, &thr_attr, signal_hand, NULL);
   mysql_cond_wait(&COND_thread_count, &LOCK_thread_count);
@@ -740,7 +740,7 @@ int main(int argc __attribute__((unused)),char **argv __attribute__((unused)))
   {
     param=(int*) malloc(sizeof(int));
     *param= i;
-    mysql_mutex_lock(&LOCK_thread_count);
+    mysql_single_lock(&LOCK_thread_count);
     if ((error= mysql_thread_create(0,
                                     &tid, &thr_attr, test_thread,
                                     (void*) param)))
@@ -753,7 +753,7 @@ int main(int argc __attribute__((unused)),char **argv __attribute__((unused)))
   }
 
   pthread_attr_destroy(&thr_attr);
-  mysql_mutex_lock(&LOCK_thread_count);
+  mysql_single_lock(&LOCK_thread_count);
   thr_alarm_info(&alarm_info);
   printf("Main_thread:  Alarms: %u  max_alarms: %u  next_alarm_time: %lu\n",
 	 alarm_info.active_alarms, alarm_info.max_used_alarms,

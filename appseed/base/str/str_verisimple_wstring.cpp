@@ -173,7 +173,7 @@ verisimple_wstring & verisimple_wstring::operator = (const char * psz)
 
    alloc(iLen + 1);
 
-   utf8_to_16(*this, psz);
+   utf8_to_utf16(*this, psz);
 
    set_length(iLen);
 
@@ -228,7 +228,7 @@ wstring gen_utf8_to_16(const char * psz)
 
    wstr.alloc(iLen + 1);
 
-   utf8_to_16(wstr, psz);
+   utf8_to_utf16(wstr, psz);
 
    wstr.set_length(iLen);
 

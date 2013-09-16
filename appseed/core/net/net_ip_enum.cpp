@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace core
+namespace net
 {
 
 
@@ -30,7 +30,7 @@ namespace core
    }
 
 
-} // namespace core
+} // namespace net
 
 
 

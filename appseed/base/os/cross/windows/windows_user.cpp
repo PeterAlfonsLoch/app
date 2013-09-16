@@ -231,7 +231,13 @@ WideCharToMultiByte(
 
    wstring wstr(lpWideCharStr, cchWideChar);
 
-   string str(wstr);
+   string str;
+
+   LPSTR lpsz = str.GetBufferSetLength(utf8_len(wstr));
+
+   utf16_to_utf8(lpsz, wstr);
+
+   str.ReleaseBuffer();
 
    if(cbMultiByte == 0)
    {
