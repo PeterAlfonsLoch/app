@@ -17,7 +17,7 @@ public:
       }
       else
       {
-         insert_at(iFind, newElement);
+         this->insert_at(iFind, newElement);
          return iFind;
       }
    }
