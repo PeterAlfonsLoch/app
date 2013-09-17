@@ -291,7 +291,7 @@ void var::unset()
 
 bool var::ok() const
 {
-   return get_type() != type_parareturn || ::is_return_ok(m_parareturn);
+   return get_type() != type_parareturn || ::ok(m_parareturn);
 }
 
 bool var::failed() const
@@ -3634,7 +3634,7 @@ bool var::is_numeric() const
 
 
 
-bool ok(para_return eret)
+bool is_return_ok(para_return eret)
 {
    return ((int32_t)eret) >= 0;
 }
@@ -3642,7 +3642,7 @@ bool ok(para_return eret)
 
 var str_ends_get(const char * lpcsz, const char * lpcszSuffix)
 {
-      
+
    string str(lpcsz);
 
    string strSuffix(lpcszSuffix);
