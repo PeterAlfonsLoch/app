@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 #include <wchar.h>
 #endif
 
@@ -97,7 +97,7 @@ namespace core
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_strlwr_s(Str, _SizeInChars));
-#elif defined(ANDROID)
+#elif defined(ANDROID) || defined(MACOS)
       to_lower(Str);
 #else
       strlwr(Str);
@@ -117,7 +117,7 @@ namespace core
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_strupr_s(Str, _SizeInChars));
-#elif defined(ANDROID)
+#elif defined(ANDROID) || defined(MACOS)
       to_upper(Str);
 #else
       strupr(Str);

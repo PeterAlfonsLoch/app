@@ -56,7 +56,7 @@ void checkIsNullTerminated (const char (&str)[N], const char *what)
    }
     ::file::string_buffer s;
     ::file::plain_text_output_stream os(&s);
-    os << "Invalid " << what << ": it is more than " << (N - 1) 
+    os << "Invalid " << what << ": it is more than " << (strsize) (N - 1)
       << " characters long.";
     throw Iex::InputExc(s);
 }

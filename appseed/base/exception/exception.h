@@ -269,7 +269,7 @@ inline void c_cdecl __trace(...) { }
 /* We use the name _ASSUME to avoid name clashes */
 #define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
 //#define ASSERT_VALID(pOb)  DEBUG_ONLY((::assert_valid_object(pOb, THIS_FILE, __LINE__)))
-#define ASSERT_VALID(pOb)  ((::assert_valid_object(pOb, __FILE__, __LINE__)))
+#define ASSERT_VALID(pOb)  ::assert_valid_object(pOb, __FILE__, __LINE__)
 #else
 #define ASSERT(f)
 #define _ASSUME(cond)

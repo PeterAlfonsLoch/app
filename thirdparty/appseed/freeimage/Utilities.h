@@ -120,6 +120,8 @@ typedef struct tagFILE_BGR {
 //   Template utility functions
 // ==========================================================
 
+#if !defined(MACOS)
+
 /// Max function
 template <class T> T MAX(T a, T b) {
 	return (a > b) ? a: b;
@@ -129,6 +131,8 @@ template <class T> T MAX(T a, T b) {
 template <class T> T MIN(T a, T b) {
 	return (a < b) ? a: b;
 }
+
+#endif
 
 /// INPLACESWAP adopted from codeguru.com
 template <class T> void INPLACESWAP(T& a, T& b) {

@@ -133,7 +133,9 @@ typedef char JOCTET;
 /* UINT8 must hold at least the values 0..255. */
 #if !defined(LINUX)
 #ifdef HAVE_UNSIGNED_CHAR
+#if !defined(MACOS)
 typedef unsigned char UINT8;
+#endif
 #else /* not HAVE_UNSIGNED_CHAR */
 #ifdef CHAR_IS_UNSIGNED
 typedef char UINT8;
@@ -145,7 +147,9 @@ typedef short UINT8;
 /* UINT16 must hold at least the values 0..65535. */
 
 #ifdef HAVE_UNSIGNED_SHORT
+#if !defined(MACOS)
 typedef unsigned short UINT16;
+#endif
 #else /* not HAVE_UNSIGNED_SHORT */
 typedef unsigned int UINT16;
 #endif /* HAVE_UNSIGNED_SHORT */
@@ -153,12 +157,14 @@ typedef unsigned int UINT16;
 /* INT16 must hold at least the values -32768..32767. */
 
 #ifndef XMD_H			/* X11/xmd.h correctly defines INT16 */
+#if !defined(MACOS)
 typedef short INT16;
+#endif
 #endif
 
 /* INT32 must hold at least signed 32-bit values. */
 
-#ifndef XMD_H			/* X11/xmd.h correctly defines INT32 */
+#if !defined(XMD_H) && !defined(MACOS)			/* X11/xmd.h correctly defines INT32 */
 #ifndef _BASETSD_H_		/* Microsoft defines it in basetsd.h */
 #ifndef _BASETSD_H		/* MinGW is slightly different */
 #ifndef QGLOBAL_H		/* Qt defines it in qglobal.h */

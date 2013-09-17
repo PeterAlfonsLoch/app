@@ -1080,7 +1080,7 @@
 		9A86C4C616E7F601008420D3 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		9A86CBCB16E8260D008420D3 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		9A98A6161771D6F3000AE16E /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
-		9AA5E6D616F7C61B005C45CE /* lib_ca2freeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = lib_ca2freeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA5E6D616F7C61B005C45CE /* libbasefreeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbasefreeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEB7ABB16F7BEB20085103B /* lib_ca2zlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2zlib.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2zlib.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1121,7 +1121,7 @@
 				9A86C36916E7F600008420D3 /* Quantizers.h */,
 				9A86C4C516E7F601008420D3 /* ToneMapping.h */,
 				9A86C4C616E7F601008420D3 /* Utilities.h */,
-				9AA5E6D616F7C61B005C45CE /* lib_ca2freeimage.dylib */,
+				9AA5E6D616F7C61B005C45CE /* libbasefreeimage.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2018,9 +2018,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9AA5E4C216F7C61B005C45CE /* _ca2freeimage */ = {
+		9AA5E4C216F7C61B005C45CE /* basefreeimage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AA5E6D316F7C61B005C45CE /* Build configuration list for PBXNativeTarget "_ca2freeimage" */;
+			buildConfigurationList = 9AA5E6D316F7C61B005C45CE /* Build configuration list for PBXNativeTarget "basefreeimage" */;
 			buildPhases = (
 				9AA5E4C316F7C61B005C45CE /* Sources */,
 				9AA5E5FC16F7C61B005C45CE /* Frameworks */,
@@ -2030,9 +2030,9 @@
 			);
 			dependencies = (
 			);
-			name = _ca2freeimage;
+			name = basefreeimage;
 			productName = FreeImage;
-			productReference = 9AA5E6D616F7C61B005C45CE /* lib_ca2freeimage.dylib */;
+			productReference = 9AA5E6D616F7C61B005C45CE /* libbasefreeimage.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -2044,7 +2044,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 			};
-			buildConfigurationList = 9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "_ca2freeimage" */;
+			buildConfigurationList = 9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "basefreeimage" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2056,7 +2056,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9AA5E4C216F7C61B005C45CE /* _ca2freeimage */,
+				9AA5E4C216F7C61B005C45CE /* basefreeimage */,
 			);
 		};
 /* End PBXProject section */
@@ -2463,7 +2463,7 @@
 					"$(inherited)",
 					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
 				);
-				PRODUCT_NAME = _ca2freeimage;
+				PRODUCT_NAME = basefreeimage;
 			};
 			name = Debug;
 		};
@@ -2475,14 +2475,14 @@
 					"$(inherited)",
 					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
 				);
-				PRODUCT_NAME = _ca2freeimage;
+				PRODUCT_NAME = basefreeimage;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "_ca2freeimage" */ = {
+		9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "basefreeimage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A1B2F8A16A2AF5C00875A94 /* Debug */,
@@ -2491,7 +2491,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AA5E6D316F7C61B005C45CE /* Build configuration list for PBXNativeTarget "_ca2freeimage" */ = {
+		9AA5E6D316F7C61B005C45CE /* Build configuration list for PBXNativeTarget "basefreeimage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AA5E6D416F7C61B005C45CE /* Debug */,

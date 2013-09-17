@@ -16,7 +16,7 @@
 #if defined(ANDROID)
 #include "base/android/c_os_internal.h"
 #elif defined(MACOS)
-#include "base/macos/c_os_internal.h"
+#include "base/macos/macos.h"
 #elif defined(LINUX)
 #include "base/linux/linux.h"
 #elif defined(WINDOWS)

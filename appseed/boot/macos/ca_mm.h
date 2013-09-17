@@ -8,17 +8,6 @@
 #pragma once
 
 
-#ifdef __cplusplus
-//#define EXTERN_C			extern "C"
-#define BEGIN_EXTERN_C		extern "C" {
-#define END_EXTERN_C		}
-#else
-//#define EXTERN_C
-#define BEGIN_EXTERN_C
-#define END_EXTERN_C
-#endif
-
-
 #define __MM
 
 
@@ -42,21 +31,10 @@ namespace ca
 
 
 
-#include "nodeapp/operational_system/_.h"
-#include "nodeapp/operational_system/_c.h"
-#include "nodeapp/operational_system/_ca.h"
+#include "base/base/base.h"
 
 
-#include "ca/vms/vms.h"
-
-
-#include "ca/version/version.h"
-
-
-#include "ca/ca_types.h"
-
-
-#include "ca/ca_natural.h"
+#include "boot/vms/vms.h"
 
 
 #define GetAValue(rgb)      (LOBYTE((rgb)>>24))
@@ -67,51 +45,34 @@ namespace ca
 extern "C"
 {
    
-   #include "ca/ca_cpu_architecture.h"
+   #include "boot/boot_cpu_architecture.h"
    
 }
 
-#import "NSObject+DDExtensions.h"
-#import "DDInvocationGrabber.h"
 
 
-
-#include "ca/ca_libc.h"
-
-
-#include "ca/ca_count.h"
-#include "ca/ca_index.h"
-#include "ca/ca_keep_true.h"
+#include "boot/boot_libc.h"
 
 
-#include "ca/ca_debug.h"
+#include "boot/boot_keep_true.h"
+
+
+#include "boot/boot_debug.h"
 
 
 
 
-#include "ca/ca_printf.h"
-#include "ca/ca_sprintf.h"
-#include "ca/ca_str.h"
-#include "ca/ca_conv.h"
+#include "boot/boot_printf.h"
+#include "boot/boot_sprintf.h"
 
 
 
-#include "ca/ca_heap.h"
-#include "ca/ca_math.h"
+#include "boot/boot_math.h"
 
-#include "ca/ca_geometric_types.h"
-
-
-#include "ca/ca_verisimple_string.h"
-#include "ca/ca_verisimple_wstring.h"
-#include "ca/ca_vsstringtow.h"
-#include "ca/ca_wstringtovss.h"
-
-#include "ca/ca_dir.h"
-#include "ca/ca_md5.h"
+#include "boot/boot_geometric_types.h"
 
 
-#include "ca/ca_simple_memory.h"
+
 
 
 

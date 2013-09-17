@@ -37,7 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9A86B37816E7EDBE008420D3 /* lib_ca2zlib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = lib_ca2zlib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A86B37816E7EDBE008420D3 /* libbasezlib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbasezlib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A86CA5116E80CFA008420D3 /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adler32.c; sourceTree = "<group>"; };
 		9A86CA5C16E80CFA008420D3 /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compress.c; sourceTree = "<group>"; };
 		9A86CAFE16E80CFA008420D3 /* crc32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crc32.c; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 		9A86B37916E7EDBE008420D3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A86B37816E7EDBE008420D3 /* lib_ca2zlib.dylib */,
+				9A86B37816E7EDBE008420D3 /* libbasezlib.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,9 +145,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9A86B37716E7EDBE008420D3 /* _ca2zlib */ = {
+		9A86B37716E7EDBE008420D3 /* basezlib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A86B37C16E7EDBE008420D3 /* Build configuration list for PBXNativeTarget "_ca2zlib" */;
+			buildConfigurationList = 9A86B37C16E7EDBE008420D3 /* Build configuration list for PBXNativeTarget "basezlib" */;
 			buildPhases = (
 				9A86B37416E7EDBE008420D3 /* Sources */,
 				9A86B37516E7EDBE008420D3 /* Frameworks */,
@@ -157,9 +157,9 @@
 			);
 			dependencies = (
 			);
-			name = _ca2zlib;
+			name = basezlib;
 			productName = ca2zlib;
-			productReference = 9A86B37816E7EDBE008420D3 /* lib_ca2zlib.dylib */;
+			productReference = 9A86B37816E7EDBE008420D3 /* libbasezlib.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -171,7 +171,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 			};
-			buildConfigurationList = 9A86B37316E7EDBE008420D3 /* Build configuration list for PBXProject "_ca2zlib" */;
+			buildConfigurationList = 9A86B37316E7EDBE008420D3 /* Build configuration list for PBXProject "basezlib" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -183,7 +183,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9A86B37716E7EDBE008420D3 /* _ca2zlib */,
+				9A86B37716E7EDBE008420D3 /* basezlib */,
 			);
 		};
 /* End PBXProject section */
@@ -285,7 +285,7 @@
 					"$(inherited)",
 					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = basezlib;
 			};
 			name = Debug;
 		};
@@ -297,14 +297,14 @@
 					"$(inherited)",
 					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = basezlib;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A86B37316E7EDBE008420D3 /* Build configuration list for PBXProject "_ca2zlib" */ = {
+		9A86B37316E7EDBE008420D3 /* Build configuration list for PBXProject "basezlib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A86B37A16E7EDBE008420D3 /* Debug */,
@@ -313,7 +313,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A86B37C16E7EDBE008420D3 /* Build configuration list for PBXNativeTarget "_ca2zlib" */ = {
+		9A86B37C16E7EDBE008420D3 /* Build configuration list for PBXNativeTarget "basezlib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A86B37D16E7EDBE008420D3 /* Debug */,

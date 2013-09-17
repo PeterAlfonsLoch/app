@@ -1018,8 +1018,8 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					io->read_proc(&b, 1, 1, handle);
 				}
 				comment.append(1, '\0');
-#ifdef _LP64
-				sprintf(buf, "Comment%ld", idx);
+#ifdef _LP64 
+				sprintf(buf, "Comment%lld", idx);
 #else
 				sprintf(buf, "Comment%d", idx);
 #endif

@@ -272,8 +272,8 @@ write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size) {
 						stringa output;
 						string delimiter = IPTC_DELIMITER;
 
-						size_t offset = 0;
-						size_t delimiterIndex = 0;
+						strsize offset = 0;
+						strsize delimiterIndex = 0;
 
 						delimiterIndex = value.find(delimiter, offset);
 						while (delimiterIndex >= 0) {

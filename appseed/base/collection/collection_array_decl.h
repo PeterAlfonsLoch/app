@@ -58,8 +58,8 @@ namespace constructor
 // array is an array that call only copy constructor and destructor in elements
 // array is an array that call default constructors, copy constructs and destructors in elements
 
-
-template<class TYPE, class ARG_TYPE = const TYPE &, class DEFCONSTRUCTOR = ::constructor::def < TYPE >>
+ 
+template < class TYPE, class ARG_TYPE = const TYPE &, class DEFCONSTRUCTOR = ::constructor::def < TYPE > >
 class array :
    virtual public object
 {

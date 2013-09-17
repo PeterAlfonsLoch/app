@@ -1161,8 +1161,10 @@ void LibRaw::kodak_thumb_loader()
     (this->*thumb_load_raw)();
 
     // copy-n-paste from image pipe
+#if !defined(MACOS)
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
 #define MAX(a,b) ((a) > (b) ? (a) : (b))
+#endif
 #define LIM(x,min,max) MAX(min,MIN(x,max))
 #define CLIP(x) LIM(x,0,65535)
 #define SWAP(a,b) { a ^= b; a ^= (b ^= a); }

@@ -459,12 +459,12 @@ private:
 
 	void _Xoflo() const
 	{	// report converted value too big to represent
-		throw overflow_error("bitset<N> overflow");
+		throw overflow_error(get_thread_app(), "bitset<N> overflow");
 	}
 
 	void _Xran() const
 	{	// report bit index out of range
-		throw range_error("invalid bitset<N> position");
+		throw range_error(get_thread_app(), "invalid bitset<N> position");
 	}
 
 };

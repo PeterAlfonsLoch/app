@@ -75,7 +75,7 @@ extern "C" {
 typedef __int64 INT64;
 typedef unsigned __int64 UINT64;
 #else
-#ifndef _BASETSD_H_
+#if !defined(_BASETSD_H_) && !defined(MACOS)
 typedef long long INT64;
 typedef unsigned long long UINT64;
 #endif

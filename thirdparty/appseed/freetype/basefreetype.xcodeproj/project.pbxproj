@@ -172,7 +172,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9A1B358C16A2D7A500875A94 /* lib_ca2freetype.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = lib_ca2freetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A1B358C16A2D7A500875A94 /* libbasefreetype.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbasefreetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1B359B16A2D80800875A94 /* afangles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afangles.h; sourceTree = "<group>"; };
 		9A1B359D16A2D80800875A94 /* afcjk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afcjk.h; sourceTree = "<group>"; };
 		9A1B359F16A2D80800875A94 /* afdummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afdummy.h; sourceTree = "<group>"; };
@@ -385,7 +385,7 @@
 		9A1B358D16A2D7A500875A94 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A1B358C16A2D7A500875A94 /* lib_ca2freetype.dylib */,
+				9A1B358C16A2D7A500875A94 /* libbasefreetype.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -877,9 +877,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9A1B358B16A2D7A500875A94 /* _ca2freetype */ = {
+		9A1B358B16A2D7A500875A94 /* basefreetype */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A1B359016A2D7A500875A94 /* Build configuration list for PBXNativeTarget "_ca2freetype" */;
+			buildConfigurationList = 9A1B359016A2D7A500875A94 /* Build configuration list for PBXNativeTarget "basefreetype" */;
 			buildPhases = (
 				9A1B358816A2D7A500875A94 /* Sources */,
 				9A1B358916A2D7A500875A94 /* Frameworks */,
@@ -889,9 +889,9 @@
 			);
 			dependencies = (
 			);
-			name = _ca2freetype;
+			name = basefreetype;
 			productName = freetype;
-			productReference = 9A1B358C16A2D7A500875A94 /* lib_ca2freetype.dylib */;
+			productReference = 9A1B358C16A2D7A500875A94 /* libbasefreetype.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -903,7 +903,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 			};
-			buildConfigurationList = 9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "_ca2freetype" */;
+			buildConfigurationList = 9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "basefreetype" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -915,7 +915,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9A1B358B16A2D7A500875A94 /* _ca2freetype */,
+				9A1B358B16A2D7A500875A94 /* basefreetype */,
 			);
 		};
 /* End PBXProject section */
@@ -1044,7 +1044,7 @@
 					"$(inherited)",
 					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = basefreetype;
 				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -1058,7 +1058,7 @@
 					"$(inherited)",
 					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = basefreetype;
 				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
@@ -1066,7 +1066,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "_ca2freetype" */ = {
+		9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "basefreetype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A1B358E16A2D7A500875A94 /* Debug */,
@@ -1075,7 +1075,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A1B359016A2D7A500875A94 /* Build configuration list for PBXNativeTarget "_ca2freetype" */ = {
+		9A1B359016A2D7A500875A94 /* Build configuration list for PBXNativeTarget "basefreetype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A1B359116A2D7A500875A94 /* Debug */,

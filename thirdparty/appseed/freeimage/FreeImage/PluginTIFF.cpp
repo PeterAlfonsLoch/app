@@ -1486,7 +1486,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			// ---------------------------------------------------------------------------------
 
 			// create a new 8-bit DIB
-			dib = CreateImageType(header_only, image_type, width, height, bitspersample, MIN<uint16>(2, samplesperpixel));
+			dib = CreateImageType(header_only, image_type, width, height, bitspersample, min(2, samplesperpixel));
 			if (dib == NULL) {
 				throw FI_MSG_ERROR_MEMORY;
 			}
@@ -1636,7 +1636,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			}
 
 			// create a new DIB
-			const uint16 chCount = MIN<uint16>(samplesperpixel, 4);
+			const uint16 chCount = min(samplesperpixel, 4);
 			dib = CreateImageType(header_only, image_type, width, height, bitspersample, chCount);
 			if (dib == NULL) {
 				FreeImage_Unload(alpha);
@@ -1837,7 +1837,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			// ---------------------------------------------------------------------------------
 
 			// create a new DIB
-			const uint16 chCount = MIN<uint16>(samplesperpixel, 4);
+			const uint16 chCount = min(samplesperpixel, 4);
 			dib = CreateImageType(header_only, image_type, width, height, bitspersample, chCount);
 			if (dib == NULL) {
 				throw FI_MSG_ERROR_MEMORY;

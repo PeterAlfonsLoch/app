@@ -27,6 +27,8 @@ it under the terms of the one of three licenses as you choose:
 
 #ifdef __cplusplus
 
+#undef MSIZE
+
 #define MSIZE 32
 
 class DllDef libraw_memmgr

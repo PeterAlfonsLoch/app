@@ -35,7 +35,7 @@ public:
 }; // numeric_info
 
 
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(MACOS)
 
 template <>
 class CLASS_DECL_c static_numeric_info < long unsigned int >

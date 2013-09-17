@@ -900,7 +900,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9A1B399316A332AF00875A94 /* lib_ca2openssl.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = lib_ca2openssl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A1B399316A332AF00875A94 /* libbaseopenssl.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbaseopenssl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1B3A2816A43C8600875A94 /* CHANGES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES; sourceTree = "<group>"; };
 		9A1B3A2916A43C8600875A94 /* CHANGES.SSLeay */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES.SSLeay; sourceTree = "<group>"; };
 		9A1B3A2E16A43C8600875A94 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
@@ -1889,7 +1889,7 @@
 		9A1B399416A332AF00875A94 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A1B399316A332AF00875A94 /* lib_ca2openssl.dylib */,
+				9A1B399316A332AF00875A94 /* libbaseopenssl.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3536,9 +3536,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9A1B399216A332AF00875A94 /* _ca2openssl */ = {
+		9A1B399216A332AF00875A94 /* baseopenssl */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A1B399716A332AF00875A94 /* Build configuration list for PBXNativeTarget "_ca2openssl" */;
+			buildConfigurationList = 9A1B399716A332AF00875A94 /* Build configuration list for PBXNativeTarget "baseopenssl" */;
 			buildPhases = (
 				9A1B398F16A332AF00875A94 /* Sources */,
 				9A1B399016A332AF00875A94 /* Frameworks */,
@@ -3548,9 +3548,9 @@
 			);
 			dependencies = (
 			);
-			name = _ca2openssl;
+			name = baseopenssl;
 			productName = openssl;
-			productReference = 9A1B399316A332AF00875A94 /* lib_ca2openssl.dylib */;
+			productReference = 9A1B399316A332AF00875A94 /* libbaseopenssl.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -3562,7 +3562,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 			};
-			buildConfigurationList = 9A1B398D16A332AE00875A94 /* Build configuration list for PBXProject "_ca2openssl" */;
+			buildConfigurationList = 9A1B398D16A332AE00875A94 /* Build configuration list for PBXProject "baseopenssl" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -3574,7 +3574,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9A1B399216A332AF00875A94 /* _ca2openssl */,
+				9A1B399216A332AF00875A94 /* baseopenssl */,
 			);
 		};
 /* End PBXProject section */
@@ -4326,7 +4326,7 @@
 					"$(inherited)",
 					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = baseopenssl;
 			};
 			name = Debug;
 		};
@@ -4338,14 +4338,14 @@
 					"$(inherited)",
 					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = baseopenssl;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A1B398D16A332AE00875A94 /* Build configuration list for PBXProject "_ca2openssl" */ = {
+		9A1B398D16A332AE00875A94 /* Build configuration list for PBXProject "baseopenssl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A1B399516A332AF00875A94 /* Debug */,
@@ -4354,7 +4354,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A1B399716A332AF00875A94 /* Build configuration list for PBXNativeTarget "_ca2openssl" */ = {
+		9A1B399716A332AF00875A94 /* Build configuration list for PBXNativeTarget "baseopenssl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A1B399816A332AF00875A94 /* Debug */,

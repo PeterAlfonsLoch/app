@@ -38,7 +38,7 @@
 
 #include "base_types.h"
 
-#include "base/math/math.h"
+#include "base/math/math_math.h"
 
 #include "base_heap.h"
 
@@ -60,20 +60,17 @@
 
 
 
-#ifdef __cplusplus
+#if defined(__OBJC__)
+
+
+#include "base_c_objc.h"
+
+
+#elif defined(__cplusplus)
 
 
 #include "base_c.h"
 #include "base_c_cpp.h"
-
-
-
-
-
-#elif defined(__OBJC__)
-
-
-#include "base_c_objc.h"
 
 
 #else

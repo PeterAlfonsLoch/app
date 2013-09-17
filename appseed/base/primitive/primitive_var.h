@@ -16,7 +16,7 @@ enum para_return
    s_success = 0,
 };
 
-bool ok(para_return eret);
+bool is_return_ok(para_return eret);
 
 
 
