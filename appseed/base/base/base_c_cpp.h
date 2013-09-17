@@ -264,7 +264,6 @@ namespace file
 #elif defined(LINUX)
 
 #include "base/ansios/ansios.h"
-#include "base/linux/linux_http_lib.h"
 #include "base/linux/linux_user_impl.h"
 
 #endif
