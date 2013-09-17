@@ -80,6 +80,7 @@
 		<Unit filename="ansios/ansios.h" />
 		<Unit filename="ansios/ansios_cross_win.cpp" />
 		<Unit filename="ansios/ansios_cross_win_file.cpp" />
+		<Unit filename="ansios/ansios_cross_windows_user.cpp" />
 		<Unit filename="ansios/ansios_file.cpp" />
 		<Unit filename="ansios/ansios_file.h" />
 		<Unit filename="ansios/ansios_file_std.cpp" />
@@ -437,7 +438,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="linux/linux_cross_win_file.cpp" />
-		<Unit filename="linux/linux_cross_windows_user.cpp" />
 		<Unit filename="linux/linux_debug.cpp" />
 		<Unit filename="linux/linux_debug.h" />
 		<Unit filename="linux/linux_display.cpp" />
