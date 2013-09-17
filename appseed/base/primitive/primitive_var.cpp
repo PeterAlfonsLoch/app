@@ -291,7 +291,7 @@ void var::unset()
 
 bool var::ok() const
 {
-   return get_type() != type_parareturn || ::ok(m_parareturn);
+   return get_type() != type_parareturn || ::is_return_ok(m_parareturn);
 }
 
 bool var::failed() const
