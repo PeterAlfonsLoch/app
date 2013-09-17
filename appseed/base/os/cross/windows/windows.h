@@ -315,3 +315,5 @@ struct win_handle
 
 #include "windows_internals.h"
 
+#include "windows_file.h"
+
