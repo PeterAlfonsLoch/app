@@ -3488,6 +3488,7 @@ RetryHost:
       uint32_t path_len = MAXPATHLEN;
       _NSGetExecutablePath(path, &path_len);
       char * psz = path;
+      string str(psz);
 #elif defined(ANDROID)
       char * psz = NULL;
 #else

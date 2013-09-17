@@ -253,6 +253,7 @@ namespace file
 
 
 
+#include "base_enum.h"
 
 
 #include "base/multithreading/multithreading.h"

@@ -1,4 +1,4 @@
-#include "ca.h"
+#include "boot.h"
 #include <fcntl.h>
 #include <sys/file.h>
 #include <errno.h>
@@ -99,10 +99,10 @@ int _c_unlock(void ** pdata)
 
 
 
-vsstring _ca_get_file_name(const char * pszName, bool bCreate, int * pfd)
+string _ca_get_file_name(const char * pszName, bool bCreate, int * pfd)
 {
 
-   vsstring str(pszName);
+   string str(pszName);
 
    str.replace("\\", "/");
    str.replace("::", "_");

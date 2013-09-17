@@ -13,7 +13,7 @@ class CLASS_DECL_ca os_simple_font
 public:
    
    
-   vsstring                m_strFamily;
+   char                    m_szFamily[1024];
    int                     m_iWeight;
    int                     m_iSize;
    //XFontSet                m_fontset;

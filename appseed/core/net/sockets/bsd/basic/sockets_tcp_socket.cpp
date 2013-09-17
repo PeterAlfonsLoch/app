@@ -463,7 +463,7 @@ void ssl_sigpipe_handle( int x );
       {
 #ifdef MACOS
 //         n = (int32_t) recv(GetSocket(), buf, nBufSize, SO_NOSIGPIPE);
-         n = (int32_t) recv(GetSocket(), buf, nBufSize, 0);
+         n = (int32_t) ::recv(GetSocket(), buf, nBufSize, 0);
 
 #else
          n = ::recv(GetSocket(), (char *) buf, nBufSize, MSG_NOSIGNAL);
@@ -494,7 +494,7 @@ void ssl_sigpipe_handle( int x );
          }
          else
          {
-            Handler().LogError(this, "tcp_socket::recv", n, "abnormal value from recv", ::core::log::level_error);
+            Handler().LogError(this, "tcp_socket::recv", (int32_t) n, "abnormal value from recv", ::core::log::level_error);
             throw io_exception(get_app());
          }
 
@@ -542,7 +542,7 @@ void ssl_sigpipe_handle( int x );
       }
       else
       {
-         Handler().LogError(this, "tcp_socket::read", n, "abnormal value from SSL_read", ::core::log::level_error);
+         Handler().LogError(this, "tcp_socket::read", (int32_t) n, "abnormal value from SSL_read", ::core::log::level_error);
       }
 
       return n;
@@ -662,7 +662,7 @@ void ssl_sigpipe_handle( int x );
             return;
          OUTPUT * p = m_obuf.get_at(pos);
          repeat = false;
-         int32_t n = try_write(p -> Buf(), p -> Len());
+         int32_t n = (int32_t) try_write(p -> Buf(), p -> Len());
          if (n > 0)
          {
             size_t left = p -> remove(n);
@@ -797,7 +797,7 @@ void ssl_sigpipe_handle( int x );
          if (m_obuf_top && (space = m_obuf_top -> Space()) > 0)
          {
             const char *pbuf = buf + ptr;
-            int32_t sz = len - ptr;
+            int32_t sz = (int32_t) (len - ptr);
             if (space >= sz)
             {
                m_obuf_top -> add(pbuf, sz);
@@ -857,7 +857,7 @@ void ssl_sigpipe_handle( int x );
          buffer(buf, len);
          return;
       }
-      int32_t n = try_write(buf, len);
+      int32_t n = (int32_t) try_write(buf, len);
       if (n >= 0 && n < (int32_t)len)
       {
          buffer(buf + n, len - n);

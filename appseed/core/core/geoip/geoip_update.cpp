@@ -226,6 +226,9 @@ string GeoIP_get_host_or_proxy ()
 #endif
 }
 
+int16_t GeoIP_update_database (application * papp, char * license_key, int32_t verbose, void (*f)( char * ));
+
+
 int16_t GeoIP_update_database (application * papp, char * license_key, int32_t verbose, void (*f)( char * ))
 {
 
@@ -494,6 +497,9 @@ int16_t GeoIP_update_database (application * papp, char * license_key, int32_t v
 #endif
 
 }
+
+int16_t GeoIP_update_database_general (application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
+
 
 int16_t GeoIP_update_database_general (application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *)) {
 

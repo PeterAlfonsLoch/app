@@ -7,8 +7,8 @@ bool launcher::start()
    if(!ensure_executable())
       return false;
 
-   vsstring strPath(get_executable_path());
-   vsstring strDir(dir::name(strPath));
+   string strPath(get_executable_path());
+   string strDir(dir::name(strPath));
     
 
     /*vsstring strPath

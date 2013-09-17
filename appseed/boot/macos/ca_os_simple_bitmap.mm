@@ -39,14 +39,16 @@ bool simple_bitmap::create(int cx, int cy, simple_graphics & g,  COLORREF ** ppd
     m_Info.bmiHeader.biCompression=BI_RGB;
     m_Info.bmiHeader.biSizeImage=cx*cy*4;*/
    
-	m_mem.allocate(cx * cy * 4);
+	m_pmem = (COLORREF *) memory_alloc(cx * cy * 4);
    
-	memset(m_mem.get_data(), 0, m_mem.get_size());
+	memset(m_pmem, 0, cx * cy * 4);
    
-	if(!create_from_data(cx, cy, (COLORREF *) m_mem.get_data(), g))
+	if(!create_from_data(cx, cy, (COLORREF *) m_pmem, g))
 	{
       
-      m_mem.allocate(0);
+      memory_free(m_pmem);
+      
+      m_pmem = NULL;
       
       return false;
       
@@ -55,7 +57,7 @@ bool simple_bitmap::create(int cx, int cy, simple_graphics & g,  COLORREF ** ppd
 	if(ppdata != NULL)
 	{
       
-      *ppdata = (COLORREF *) m_mem.get_data();
+      *ppdata = (COLORREF *) m_pmem;
       
 	}
    
@@ -127,6 +129,13 @@ bool simple_bitmap::destroy()
       [m_nsbitmap release];
       
       m_nsbitmap = NULL;
+      
+   }
+   
+   if(m_pmem != NULL)
+   {
+      
+      memory_free(m_pmem);
       
    }
    

@@ -51,7 +51,7 @@ namespace file_watcher
 		~EntryStruct()
 		{
 		}
-		vsstring m_strFileName;
+		string m_strFileName;
 		time_t mModifiedTime;
 	};
 	
@@ -70,7 +70,7 @@ namespace file_watcher
 	struct watch_struct
 	{
 		id m_id;
-		vsstring m_strDirName;
+		string m_strDirName;
 		file_watch_listener* m_plistener;
 		
 		// index 0 is always the directory
@@ -167,7 +167,7 @@ namespace file_watcher
 			
 			while((dentry = readdir(dir)) != NULL)
 			{
-				vsstring fname = m_strDirName + "/" + dentry->d_name;
+				string fname = m_strDirName + "/" + dentry->d_name;
 				stat(fname, &attrib);
 				if(!S_ISREG(attrib.st_mode))
 					continue;
@@ -238,7 +238,7 @@ namespace file_watcher
 			struct stat attrib;
 			while((entry = readdir(dir)) != NULL)
 			{
-				vsstring fname = (m_strDirName + "/" + vsstring(entry->d_name));
+				string fname = (m_strDirName + "/" + string(entry->d_name));
 				stat(fname, &attrib);
 				if(S_ISREG(attrib.st_mode))
 					addFile(fname, false);
@@ -344,7 +344,7 @@ namespace file_watcher
 	}
 
 	//--------
-	id os_file_watcher::add_watch(const vsstring & directory, file_watch_listener * watcher, bool bRecursive)
+	id os_file_watcher::add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive)
 	{
 /*		int fd = open(directory.c_str(), O_RDONLY);
 		if(fd == -1)
@@ -362,7 +362,7 @@ namespace file_watcher
 	}
 
 	//--------
-	void os_file_watcher::remove_watch(const vsstring & directory)
+	void os_file_watcher::remove_watch(const string & directory)
 	{
 		watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
 		for(; ppair != NULL; ppair = m_watchmap.PGetNextAssoc(ppair))
@@ -392,7 +392,7 @@ namespace file_watcher
 		watch = 0;
 	}
    
-	vsstring os_file_watcher::watch_path(id watchid)
+	string os_file_watcher::watch_path(id watchid)
 	{
       return m_watchmap.PLookup(watchid)->m_element2->m_strDirName;
       

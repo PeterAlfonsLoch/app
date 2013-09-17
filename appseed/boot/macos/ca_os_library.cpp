@@ -40,7 +40,7 @@ namespace ca
    bool library::open(const char * pszPath)
    {
       
-      vsstring strPath(pszPath);
+      string strPath(pszPath);
       
       if(strPath == "os")
       {

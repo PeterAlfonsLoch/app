@@ -64,7 +64,7 @@ void bzip_stream::write(const void * buf, ::primitive::memory_size len)
       if (ret != BZ_RUN_OK)
       { 
       
-         BZ_SETERR(ret); 
+         BZ_SETERR((int32_t) ret);
          throw ret;
       
       };

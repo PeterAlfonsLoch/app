@@ -620,6 +620,7 @@
 		9AE72B9417E88C86003E47F9 /* macos_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72B9217E88C85003E47F9 /* macos_thread.cpp */; };
 		9AE72B9517E88C86003E47F9 /* macos_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE72B9317E88C85003E47F9 /* macos_thread.h */; };
 		9AE72B9B17E8990B003E47F9 /* macos_os.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72B9A17E8990B003E47F9 /* macos_os.cpp */; };
+		9AE72B9D17E8B75A003E47F9 /* ansios_cross_windows_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72B9C17E8B75A003E47F9 /* ansios_cross_windows_user.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1245,6 +1246,7 @@
 		9AE72B9217E88C85003E47F9 /* macos_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_thread.cpp; sourceTree = "<group>"; };
 		9AE72B9317E88C85003E47F9 /* macos_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_thread.h; sourceTree = "<group>"; };
 		9AE72B9A17E8990B003E47F9 /* macos_os.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_os.cpp; sourceTree = "<group>"; };
+		9AE72B9C17E8B75A003E47F9 /* ansios_cross_windows_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_cross_windows_user.cpp; sourceTree = "<group>"; };
 		CE4BB20E156B8B2600DD13ED /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = SOURCE_ROOT; };
 		CE931714155F1599005F90F6 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = ../../../../System/Library/Frameworks/Carbon.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1277,6 +1279,7 @@
 				9AE720BE17E83B68003E47F9 /* ansios.h */,
 				9AE720BF17E83B68003E47F9 /* ansios_cross_win.cpp */,
 				9AE720C017E83B68003E47F9 /* ansios_cross_win_file.cpp */,
+				9AE72B9C17E8B75A003E47F9 /* ansios_cross_windows_user.cpp */,
 				9AE720C117E83B68003E47F9 /* ansios_file.cpp */,
 				9AE720C217E83B68003E47F9 /* ansios_file.h */,
 				9AE720C317E83B68003E47F9 /* ansios_file_std.cpp */,
@@ -2740,6 +2743,7 @@
 				9AE72B9017E88709003E47F9 /* ansios_http.cpp in Sources */,
 				9AE72B9417E88C86003E47F9 /* macos_thread.cpp in Sources */,
 				9AE72B9B17E8990B003E47F9 /* macos_os.cpp in Sources */,
+				9AE72B9D17E8B75A003E47F9 /* ansios_cross_windows_user.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

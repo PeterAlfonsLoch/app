@@ -15,7 +15,7 @@ int create_process(const char * _cmd_line, int * pprocessId)
    char *   exec_path_name;
    char *	cmd_line;
 
-   cmd_line = (char *) ca2_alloc(strlen(_cmd_line ) + 1 );
+   cmd_line = (char *) memory_alloc(strlen(_cmd_line ) + 1 );
 
    if(cmd_line == NULL)
             return 0;
@@ -71,7 +71,7 @@ CLASS_DECL_c int call_async(
                             const char * pszDir,
                             int iShow)
 {
-    vsstring strCmdLine;
+    string strCmdLine;
     
     strCmdLine = pszPath;
     if(strlen_dup(pszParam) > 0)
@@ -100,7 +100,7 @@ CLASS_DECL_c DWORD call_sync(
                              uint_ptr dwParam)
 {
 
-   vsstring strCmdLine;
+   string strCmdLine;
     
    strCmdLine = pszPath;
    
@@ -141,10 +141,10 @@ CLASS_DECL_c DWORD call_sync(
 CLASS_DECL_c bool main_initialize()
 {
    
-   initialize_primitive_heap();
+//   initialize_primitive_heap();
    
-   if(!os_initialize())
-      return false;
+//   if(!os_initialize())
+  //    return false;
    
    t_posthread = new os_thread(NULL, NULL);
    
@@ -162,8 +162,8 @@ CLASS_DECL_c bool main_finalize()
    
    bool bOk = true;
    
-   if(!os_finalize())
-      bOk = false;
+//   if(!os_finalize())
+  //    bOk = false;
    
    if(t_posthread != NULL)
    {

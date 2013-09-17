@@ -20,7 +20,7 @@ public:
    
    //Display *               m_pdisplay;
    //Pixmap                  m_pixmap;
-   simple_memory              m_mem;
+   COLORREF *                 m_pmem;
    SIZE                       m_size;
 #ifdef __MM
    

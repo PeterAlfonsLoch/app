@@ -10,7 +10,7 @@ DWORD get_tick_count()
 
 }
 
-vsstring g_strCommandLine;
+string g_strCommandLine;
 wstring g_wstrCommandLine;
 
 
