@@ -83,8 +83,12 @@
 		<Unit filename="ansios/ansios_file.cpp" />
 		<Unit filename="ansios/ansios_file.h" />
 		<Unit filename="ansios/ansios_file_std.cpp" />
+		<Unit filename="ansios/ansios_http.cpp" />
+		<Unit filename="ansios/ansios_http.h" />
 		<Unit filename="ansios/ansios_http_lib.cpp" />
 		<Unit filename="ansios/ansios_http_lib.h" />
+		<Unit filename="ansios/ansios_multithreading.cpp" />
+		<Unit filename="ansios/ansios_multithreading.h" />
 		<Unit filename="ansios/ansios_thread.cpp" />
 		<Unit filename="ansios/ansios_thread.h" />
 		<Unit filename="base/base.cpp" />
@@ -437,11 +441,6 @@
 		<Unit filename="linux/linux_debug.cpp" />
 		<Unit filename="linux/linux_debug.h" />
 		<Unit filename="linux/linux_display.cpp" />
-		<Unit filename="linux/linux_http.cpp" />
-		<Unit filename="linux/linux_http.h" />
-		<Unit filename="linux/linux_http_lib.h" />
-		<Unit filename="linux/linux_multithreading.cpp" />
-		<Unit filename="linux/linux_multithreading.h" />
 		<Unit filename="linux/linux_os.cpp" />
 		<Unit filename="linux/linux_process.cpp" />
 		<Unit filename="linux/linux_thread.cpp" />
