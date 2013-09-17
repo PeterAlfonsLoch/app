@@ -83,6 +83,8 @@
 		<Unit filename="ansios/ansios_file.cpp" />
 		<Unit filename="ansios/ansios_file.h" />
 		<Unit filename="ansios/ansios_file_std.cpp" />
+		<Unit filename="ansios/ansios_http_lib.cpp" />
+		<Unit filename="ansios/ansios_http_lib.h" />
 		<Unit filename="ansios/ansios_thread.cpp" />
 		<Unit filename="ansios/ansios_thread.h" />
 		<Unit filename="base/base.cpp" />
@@ -431,14 +433,12 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="linux/linux_cross_win_file.cpp" />
-		<Unit filename="linux/linux_cross_win_file.h" />
 		<Unit filename="linux/linux_cross_windows_user.cpp" />
 		<Unit filename="linux/linux_debug.cpp" />
 		<Unit filename="linux/linux_debug.h" />
 		<Unit filename="linux/linux_display.cpp" />
 		<Unit filename="linux/linux_http.cpp" />
 		<Unit filename="linux/linux_http.h" />
-		<Unit filename="linux/linux_http_lib.cpp" />
 		<Unit filename="linux/linux_http_lib.h" />
 		<Unit filename="linux/linux_multithreading.cpp" />
 		<Unit filename="linux/linux_multithreading.h" />
@@ -519,6 +519,7 @@
 		<Unit filename="os/cross/windows/windows_crt.h" />
 		<Unit filename="os/cross/windows/windows_defs.h" />
 		<Unit filename="os/cross/windows/windows_error.cpp" />
+		<Unit filename="os/cross/windows/windows_file.h" />
 		<Unit filename="os/cross/windows/windows_gdi.h" />
 		<Unit filename="os/cross/windows/windows_guid_def.h" />
 		<Unit filename="os/cross/windows/windows_internals.h" />
