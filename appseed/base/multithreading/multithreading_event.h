@@ -1,15 +1,8 @@
 #pragma once
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 #include <sys/types.h>
 #include <sys/sem.h>
-//union semun {
-//    int              val;    /* Value for SETVAL */
-//    struct semid_ds *buf;    /* Buffer for IPC_STAT, IPC_SET */
-//    unsigned short  *array;  /* Array for GETALL, SETALL */
-//    struct seminfo  *__buf;  /* Buffer for IPC_INFO
-//                                (Linux-specific) */
-//};
 #endif
 
 class CLASS_DECL_c event :
@@ -27,18 +20,7 @@ public:
 
 
    event(sp(base_application) papp, bool bInitiallyOwn = FALSE, bool bManualReset = FALSE, const char * lpszNAme = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
-   virtual ~event()
-   {
-
-   #if defined(LINUX)
-
-      semun ignored_argument;
-
-      semctl(m_object, 0, IPC_RMID, ignored_argument);
-
-   #endif
-
-   }
+   virtual ~event();
 
 
    virtual bool lock(const duration & durationTimeout = duration::infinite());

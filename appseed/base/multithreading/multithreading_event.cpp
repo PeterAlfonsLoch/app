@@ -124,6 +124,20 @@ event::event(sp(base_application) papp, bool bInitiallyOwn, bool bManualReset, c
 }
 
 
+event::~event()
+   {
+
+   #if defined(LINUX)
+
+      semun ignored_argument;
+
+      semctl(m_object, 0, IPC_RMID, ignored_argument);
+
+   #endif
+
+   }
+
+
 bool event::SetEvent()
 {
 
