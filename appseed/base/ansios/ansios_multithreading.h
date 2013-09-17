@@ -43,7 +43,7 @@ DWORD WaitForSingleObjectEx(waitable * pwaitable, DWORD dwMilliseconds, WINBOOL 
 #define MAXIMUM_WAIT_OBJECTS      64
 
 
-
+#if !defined(MACOS)
 
 union semun {
     int              val;    /* Value for SETVAL */
@@ -53,6 +53,7 @@ union semun {
                                 (Linux-specific) */
 };
 
+#endif
 
 #define MWMO_WAITALL        0x0001
 #define MWMO_ALERTABLE      0x0002

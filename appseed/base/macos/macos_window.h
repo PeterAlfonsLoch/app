@@ -8,7 +8,11 @@
 #pragma once
 
 
-#ifndef __MM
+#ifdef __MM
+
+typedef void * int_to_int;
+
+#else
 
 struct NSWindow;
 
@@ -39,7 +43,7 @@ public:
    
    
    static oswindow_dataptra *    s_pdataptra;
-   simple_long_map *             m_plongmap;
+   int_to_int *                  m_plongmap;
    
    
    oswindow_data();

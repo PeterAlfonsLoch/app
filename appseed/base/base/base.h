@@ -11,6 +11,10 @@
 #define END_EXTERN_C
 #endif
 
+#ifdef __OBJC__
+#define __MM
+#endif
+
 
 #define system_user_1 "system_user_1"
 #define system_user_2 "system_user_2"
@@ -60,7 +64,7 @@
 
 
 
-#if defined(__OBJC__)
+#if defined(__MM)
 
 
 #include "base_c_objc.h"

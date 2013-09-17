@@ -34,7 +34,7 @@
 #include "framework.h"
 #include <unistd.h>
 
-static const char *rcsid="$Id: http_lib.c,v 3.5 1998/09/23 06:19:15 dl Exp $";
+//static const char *rcsid="$Id: http_lib.c,v 3.5 1998/09/23 06:19:15 dl Exp $";
 
 #define VERBOSE
 
@@ -104,11 +104,11 @@ int32_t tiny_http::t_read_line (int32_t fd, char * buffer, int32_t max)
  * returns the number of bytes read. negative if a read error (EOF) occured
  * before the requested length.
  */
-int32_t tiny_http::t_read_buffer (int32_t fd, char * buffer, int32_t length, void (*callback)(void *, int32_t, dword_ptr), void * callback_param)
+int32_t tiny_http::t_read_buffer (int32_t fd, char * buffer, int32_t length, void (*callback)(void *, int32_t, uint_ptr), void * callback_param)
 {
   int32_t n,r;
   for (n=0; n<length; n+=r) {
-    r=read(fd,buffer,length-n);
+    r = (int32_t) read(fd,buffer,length-n);
     if(callback)
     callback(callback_param, 1, n);
     if (r<=0) return -n;
@@ -155,7 +155,7 @@ tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * u
    if (pfd) * pfd = -1;
 
    /* get host info by name :*/
-   if(hp = gethostbyname(proxy ? m_strProxyServer : (m_strHttpServer.has_char() ? m_strHttpServer : SERVER_DEFAULT )))
+   if((hp = gethostbyname(proxy ? m_strProxyServer : (m_strHttpServer.has_char() ? m_strHttpServer : SERVER_DEFAULT ))) != NULL)
    {
       memset((char *) &server,0, sizeof(server));
       memmove((char *) &server.sin_addr, hp->h_addr, hp->h_length);
@@ -197,7 +197,7 @@ tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * u
 	      );
     }
 
-    hlg=strlen(header);
+    hlg = (int32_t) strlen(header);
 
     /* send header */
     if (write(s,header,hlg)!=hlg)
@@ -244,7 +244,7 @@ tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * u
     // int32_t overwrite;   /* flag to request to overwrite the ressource if it
 			 // was already existing */
      //char *type;      /* type of the data, if NULL default type is used */
-tiny_http::http_retcode tiny_http::t_put(const char * data, int32_t length, int32_t overwrite, void (*callback)(void *, int32_t, dword_ptr), void * callback_param)
+tiny_http::http_retcode tiny_http::t_put(const char * data, int32_t length, int32_t overwrite, void (*callback)(void *, int32_t, uint_ptr), void * callback_param)
 {
   char header[MAXBUF];
   if (m_strContentType.get_length() > 0)
@@ -281,7 +281,7 @@ tiny_http::http_retcode tiny_http::t_put(const char * data, int32_t length, int3
 //		      length of the read data */
   //   char *typebuf; /* allocated buffer where the read data type is returned.
 	//	    If NULL, the type is not returned */
-tiny_http::http_retcode tiny_http::t_get(char ** pdata, int32_t * plength, void (*callback)(void *, int32_t, dword_ptr), void * callback_param)
+tiny_http::http_retcode tiny_http::t_get(char ** pdata, int32_t * plength, void (*callback)(void *, int32_t, uint_ptr), void * callback_param)
 {
   http_retcode ret;
 
@@ -424,8 +424,8 @@ tiny_http::http_retcode tiny_http::t_parse_url(const char * url)
 #endif
     return ERRURLH;
   }
-  int32_t iFind1 = strUrl.find(":");
-  int32_t iFind2 = strUrl.find("/");
+  strsize iFind1 = strUrl.find(":");
+  strsize iFind2 = strUrl.find("/");
   if(iFind1 > 0)
   {
      if((iFind2 > 0 && iFind1 < iFind2) || iFind2 < 0)

@@ -155,7 +155,7 @@ template <class S, class T>
 void
 write (T &out, unsigned long v);
 
-#if ULONG_MAX != 18446744073709551615LU
+#if ULONG_MAX != 18446744073709551615LU || defined(MACOS)
 
     template <class S, class T>
     void
@@ -238,7 +238,7 @@ template <class S, class T>
 void
 read (T &in, unsigned long &v);
 
-#if ULONG_MAX != 18446744073709551615LU
+#if ULONG_MAX != 18446744073709551615LU || defined(MACOS)
 
     template <class S, class T>
     void

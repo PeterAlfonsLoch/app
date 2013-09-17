@@ -1,6 +1,13 @@
 #include "framework.h"
 
 
+#ifdef MACOS
+
+#include <stdlib.h>
+
+#endif
+
+
 #ifndef NO_VARIADIC_TEMPLATE
 
 
@@ -344,6 +351,18 @@ bool string_format::parse(const char * & s)
                 //pformat->append(::str::from(d));
                 //return;
              }
+#elif defined(MACOS)
+            
+            char * sz2 = fcvt(d, pformat->m_iPrecision, &decimal_point, &negative);
+            
+            if(sz2 == NULL)
+            {
+               pformat->append(::str::from(d));
+               return;
+            }
+            
+            strcpy(sz, sz2);
+            
 #else
              if(fcvt_r(d, pformat->m_iPrecision, &decimal_point, &negative, sz, sizeof(sz)) == -1)
              {
@@ -385,7 +404,19 @@ bool string_format::parse(const char * & s)
     //            pformat->append(::str::from(d));
   //              return;
              }
-
+            
+#elif defined(MACOS)
+            
+            char * sz2 = ecvt(d, sizeof(sz), &decimal_point, &negative);
+            
+            if(sz2 == NULL)
+            {
+               pformat->append(::str::from(d));
+               return;
+            }
+            
+            strcpy(sz, sz2);
+            
 #else
              if(ecvt_r(d, sizeof(sz), &decimal_point, &negative, sz, sizeof(sz)) == -1)
              {

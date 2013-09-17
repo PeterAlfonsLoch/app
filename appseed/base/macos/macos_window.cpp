@@ -10,7 +10,7 @@
 
 
 class oswindow_dataptra :
-public simple_array < oswindow_data * >
+public array < oswindow_data * >
 {
 public:
    
@@ -61,7 +61,7 @@ oswindow_data::oswindow_data()
    
    m_nswindow  = NULL;
    m_pui       = NULL;
-   m_plongmap  = new simple_long_map;
+   m_plongmap  = new int_to_int;
    
 }
 
@@ -71,7 +71,7 @@ oswindow_data::oswindow_data(nswindow window)
    
    m_nswindow  = window;
    m_pui       = NULL;
-   m_plongmap  = new simple_long_map;
+   m_plongmap  = new int_to_int;
    
 }
 
@@ -126,7 +126,7 @@ bool oswindow_remove(nswindow window)
 }
 
 
-void oswindow_data::set_user_interaction(::user::interaction_base * pui)
+void oswindow_data::set_user_interaction(::user::base_interaction * pui)
 {
    
    if(this == NULL)
@@ -137,7 +137,7 @@ void oswindow_data::set_user_interaction(::user::interaction_base * pui)
 }
 
 
-::user::interaction_base * oswindow_data::get_user_interaction_base()
+::user::base_interaction * oswindow_data::get_user_interaction_base()
 {
    
    if(this == NULL)
@@ -147,7 +147,7 @@ void oswindow_data::set_user_interaction(::user::interaction_base * pui)
    
 }
 
-::user::interaction_base * oswindow_data::get_user_interaction_base() const
+::user::base_interaction * oswindow_data::get_user_interaction_base() const
 {
    
    if(this == NULL)
@@ -303,6 +303,9 @@ WINBOOL ReleaseCapture()
    return bRet;
    
 }
+
+
+oswindow GetFocus();
 
 
 oswindow SetFocus(oswindow window)

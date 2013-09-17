@@ -324,7 +324,6 @@
 		9AA5E5FF16F7C61B005C45CE /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C0B216E7F5FF008420D3 /* CacheFile.h */; };
 		9AA5E60016F7C61B005C45CE /* FreeImageFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C0C816E7F5FF008420D3 /* FreeImageFramework.h */; };
 		9AA5E60116F7C61B005C45CE /* PSDParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C0F016E7F5FF008420D3 /* PSDParser.h */; };
-		9AA5E60216F7C61B005C45CE /* FreeImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C0FB16E7F5FF008420D3 /* FreeImage.h */; };
 		9AA5E60316F7C61B005C45CE /* FreeImageIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C0FF16E7F5FF008420D3 /* FreeImageIO.h */; };
 		9AA5E60416F7C61B005C45CE /* Filters.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C10C16E7F5FF008420D3 /* Filters.h */; };
 		9AA5E60516F7C61B005C45CE /* Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C11216E7F5FF008420D3 /* Resize.h */; };
@@ -533,6 +532,7 @@
 		9AA5E6D016F7C61B005C45CE /* Quantizers.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C36916E7F600008420D3 /* Quantizers.h */; };
 		9AA5E6D116F7C61B005C45CE /* ToneMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C4C516E7F601008420D3 /* ToneMapping.h */; };
 		9AA5E6D216F7C61B005C45CE /* Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C4C616E7F601008420D3 /* Utilities.h */; };
+		9AE728E917E85A32003E47F9 /* freeimage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE728E817E85A32003E47F9 /* freeimage.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -602,7 +602,6 @@
 		9A86C0F616E7F5FF008420D3 /* ToneMapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ToneMapping.cpp; sourceTree = "<group>"; };
 		9A86C0F716E7F5FF008420D3 /* WuQuantizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WuQuantizer.cpp; sourceTree = "<group>"; };
 		9A86C0F816E7F5FF008420D3 /* ZLibInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZLibInterface.cpp; sourceTree = "<group>"; };
-		9A86C0FB16E7F5FF008420D3 /* FreeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeImage.h; sourceTree = "<group>"; };
 		9A86C0FF16E7F5FF008420D3 /* FreeImageIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeImageIO.h; sourceTree = "<group>"; };
 		9A86C10116E7F5FF008420D3 /* FreeImageLib.2003.vcproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FreeImageLib.2003.vcproj; sourceTree = "<group>"; };
 		9A86C10216E7F5FF008420D3 /* FreeImageLib.2005.vcproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FreeImageLib.2005.vcproj; sourceTree = "<group>"; };
@@ -1081,6 +1080,7 @@
 		9A86CBCB16E8260D008420D3 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		9A98A6161771D6F3000AE16E /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
 		9AA5E6D616F7C61B005C45CE /* libbasefreeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbasefreeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE728E817E85A32003E47F9 /* freeimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = freeimage.h; sourceTree = "<group>"; };
 		9AEB7ABB16F7BEB20085103B /* lib_ca2zlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2zlib.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2zlib.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1114,8 +1114,8 @@
 				9A86C22B16E7F600008420D3 /* LibTIFF */,
 				9A86C27A16E7F600008420D3 /* Metadata */,
 				9A86C28416E7F600008420D3 /* OpenEXR */,
+				9AE728E817E85A32003E47F9 /* freeimage.h */,
 				9A86C0B216E7F5FF008420D3 /* CacheFile.h */,
-				9A86C0FB16E7F5FF008420D3 /* FreeImage.h */,
 				9A86C0FF16E7F5FF008420D3 /* FreeImageIO.h */,
 				9A86C36816E7F600008420D3 /* Plugin.h */,
 				9A86C36916E7F600008420D3 /* Quantizers.h */,
@@ -1803,7 +1803,6 @@
 				9AA5E5FF16F7C61B005C45CE /* CacheFile.h in Headers */,
 				9AA5E60016F7C61B005C45CE /* FreeImageFramework.h in Headers */,
 				9AA5E60116F7C61B005C45CE /* PSDParser.h in Headers */,
-				9AA5E60216F7C61B005C45CE /* FreeImage.h in Headers */,
 				9AA5E60316F7C61B005C45CE /* FreeImageIO.h in Headers */,
 				9AA5E60416F7C61B005C45CE /* Filters.h in Headers */,
 				9AA5E60516F7C61B005C45CE /* Resize.h in Headers */,
@@ -2012,6 +2011,7 @@
 				9AA5E6D016F7C61B005C45CE /* Quantizers.h in Headers */,
 				9AA5E6D116F7C61B005C45CE /* ToneMapping.h in Headers */,
 				9AA5E6D216F7C61B005C45CE /* Utilities.h in Headers */,
+				9AE728E917E85A32003E47F9 /* freeimage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2418,7 +2418,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/FreeImage/LibRawLite";
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/FreeImage/LibRawLite";
 				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -2450,7 +2450,7 @@
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/FreeImage/LibRawLite";
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/FreeImage/LibRawLite";
 				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
 			};
 			name = Release;

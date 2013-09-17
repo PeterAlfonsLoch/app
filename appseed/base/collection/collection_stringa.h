@@ -148,8 +148,8 @@ void SortEx(ARRAYCOMPARE * pacompare,
             int32_t fCompare(const char *, const char *),
             ARRAYRELATION * parelation)
 {
-   uint32_array stackLowerBound;
-   uint32_array stackUpperBound;
+   index_array stackLowerBound;
+   index_array stackUpperBound;
    index iLowerBound;
    index iUpperBound;
    index iLPos, iUPos, iMPos;

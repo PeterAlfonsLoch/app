@@ -1,5 +1,13 @@
 //
 //  macos_debug.cpp
+//  base
+//
+//  Created by Camilo Sasuke Tsumanuma on 2013-09-17.
+//
+//
+
+//
+//  macos_debug.cpp
 //  ca
 //
 //  Created by Lion User on 26/05/2012.
@@ -12,10 +20,8 @@
 #define user user_struct
 #include <sys/sysctl.h>
 
-bool AmIBeingDebugged();
-
 bool AmIBeingDebugged()
-// Returns true if the current process is being debugged (either 
+// Returns true if the current process is being debugged (either
 // running under the debugger or has a debugger attached post facto).
 {
    int                 junk;
@@ -23,7 +29,7 @@ bool AmIBeingDebugged()
    struct kinfo_proc   info;
    size_t              size;
    
-   // Initialize the flags so that, if sysctl fails for some bizarre 
+   // Initialize the flags so that, if sysctl fails for some bizarre
    // reason, we get a predictable result.
    
    info.kp_proc.p_flag = 0;

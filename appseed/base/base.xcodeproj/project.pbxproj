@@ -606,13 +606,15 @@
 		9AE728D017E840BF003E47F9 /* macos_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE728CF17E840BF003E47F9 /* macos_window.cpp */; };
 		9AE728D917E84154003E47F9 /* DDInvocationGrabber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE728D117E84154003E47F9 /* DDInvocationGrabber.h */; };
 		9AE728DA17E84154003E47F9 /* DDInvocationGrabber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AE728D217E84154003E47F9 /* DDInvocationGrabber.mm */; };
-		9AE728DB17E84154003E47F9 /* macos_http_lib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE728D317E84154003E47F9 /* macos_http_lib.cpp */; };
-		9AE728DC17E84154003E47F9 /* macos_http_lib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE728D417E84154003E47F9 /* macos_http_lib.h */; };
-		9AE728DD17E84154003E47F9 /* macos_http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE728D517E84154003E47F9 /* macos_http.cpp */; };
-		9AE728DE17E84154003E47F9 /* macos_http.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE728D617E84154003E47F9 /* macos_http.h */; };
 		9AE728DF17E84154003E47F9 /* NSObject+DDExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE728D717E84154003E47F9 /* NSObject+DDExtensions.h */; };
 		9AE728E017E84154003E47F9 /* NSObject+DDExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AE728D817E84154003E47F9 /* NSObject+DDExtensions.mm */; };
 		9AE728E517E84D3A003E47F9 /* macos_user.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AE728E417E84D3A003E47F9 /* macos_user.mm */; };
+		9AE728E717E85545003E47F9 /* windows_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE728E617E85545003E47F9 /* windows_file.h */; };
+		9AE72B8517E85F98003E47F9 /* macos_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72B8417E85F98003E47F9 /* macos_debug.cpp */; };
+		9AE72B8817E8641F003E47F9 /* ansios_http_lib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72B8617E8641F003E47F9 /* ansios_http_lib.cpp */; };
+		9AE72B8917E8641F003E47F9 /* ansios_http_lib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE72B8717E8641F003E47F9 /* ansios_http_lib.h */; };
+		9AE72B8C17E86E91003E47F9 /* ansios_multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72B8A17E86E90003E47F9 /* ansios_multithreading.cpp */; };
+		9AE72B8D17E86E91003E47F9 /* ansios_multithreading.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE72B8B17E86E91003E47F9 /* ansios_multithreading.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1223,14 +1225,16 @@
 		9AE728CF17E840BF003E47F9 /* macos_window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_window.cpp; sourceTree = "<group>"; };
 		9AE728D117E84154003E47F9 /* DDInvocationGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDInvocationGrabber.h; sourceTree = "<group>"; };
 		9AE728D217E84154003E47F9 /* DDInvocationGrabber.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DDInvocationGrabber.mm; sourceTree = "<group>"; };
-		9AE728D317E84154003E47F9 /* macos_http_lib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_http_lib.cpp; sourceTree = "<group>"; };
-		9AE728D417E84154003E47F9 /* macos_http_lib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_http_lib.h; sourceTree = "<group>"; };
-		9AE728D517E84154003E47F9 /* macos_http.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_http.cpp; sourceTree = "<group>"; };
-		9AE728D617E84154003E47F9 /* macos_http.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_http.h; sourceTree = "<group>"; };
 		9AE728D717E84154003E47F9 /* NSObject+DDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DDExtensions.h"; sourceTree = "<group>"; };
 		9AE728D817E84154003E47F9 /* NSObject+DDExtensions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSObject+DDExtensions.mm"; sourceTree = "<group>"; };
 		9AE728E117E8417B003E47F9 /* macos_mm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macos_mm.h; sourceTree = "<group>"; };
 		9AE728E417E84D3A003E47F9 /* macos_user.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_user.mm; sourceTree = "<group>"; };
+		9AE728E617E85545003E47F9 /* windows_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_file.h; sourceTree = "<group>"; };
+		9AE72B8417E85F98003E47F9 /* macos_debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_debug.cpp; sourceTree = "<group>"; };
+		9AE72B8617E8641F003E47F9 /* ansios_http_lib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_http_lib.cpp; sourceTree = "<group>"; };
+		9AE72B8717E8641F003E47F9 /* ansios_http_lib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ansios_http_lib.h; sourceTree = "<group>"; };
+		9AE72B8A17E86E90003E47F9 /* ansios_multithreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_multithreading.cpp; sourceTree = "<group>"; };
+		9AE72B8B17E86E91003E47F9 /* ansios_multithreading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ansios_multithreading.h; sourceTree = "<group>"; };
 		CE4BB20E156B8B2600DD13ED /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = SOURCE_ROOT; };
 		CE931714155F1599005F90F6 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = ../../../../System/Library/Frameworks/Carbon.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1266,6 +1270,10 @@
 				9AE720C117E83B68003E47F9 /* ansios_file.cpp */,
 				9AE720C217E83B68003E47F9 /* ansios_file.h */,
 				9AE720C317E83B68003E47F9 /* ansios_file_std.cpp */,
+				9AE72B8617E8641F003E47F9 /* ansios_http_lib.cpp */,
+				9AE72B8717E8641F003E47F9 /* ansios_http_lib.h */,
+				9AE72B8A17E86E90003E47F9 /* ansios_multithreading.cpp */,
+				9AE72B8B17E86E91003E47F9 /* ansios_multithreading.h */,
 				9AE720C417E83B68003E47F9 /* ansios_thread.cpp */,
 				9AE720C517E83B68003E47F9 /* ansios_thread.h */,
 			);
@@ -1661,14 +1669,11 @@
 				9AE728D217E84154003E47F9 /* DDInvocationGrabber.mm */,
 				9AE728D717E84154003E47F9 /* NSObject+DDExtensions.h */,
 				9AE728D817E84154003E47F9 /* NSObject+DDExtensions.mm */,
-				9AE728D317E84154003E47F9 /* macos_http_lib.cpp */,
-				9AE728D417E84154003E47F9 /* macos_http_lib.h */,
-				9AE728D517E84154003E47F9 /* macos_http.cpp */,
-				9AE728D617E84154003E47F9 /* macos_http.h */,
 				9AE7225A17E83B68003E47F9 /* macos_time.cpp */,
 				9AE725FF17E83E04003E47F9 /* macos_window.h */,
 				9AE728CF17E840BF003E47F9 /* macos_window.cpp */,
 				9AE728E417E84D3A003E47F9 /* macos_user.mm */,
+				9AE72B8417E85F98003E47F9 /* macos_debug.cpp */,
 			);
 			path = macos;
 			sourceTree = "<group>";
@@ -1771,8 +1776,8 @@
 		9AE722A017E83B69003E47F9 /* cross */ = {
 			isa = PBXGroup;
 			children = (
-				9AE722A117E83B69003E47F9 /* cross.h */,
 				9AE722A217E83B69003E47F9 /* windows */,
+				9AE722A117E83B69003E47F9 /* cross.h */,
 			);
 			path = cross;
 			sourceTree = "<group>";
@@ -1786,6 +1791,7 @@
 				9AE722A617E83B69003E47F9 /* windows_crt.h */,
 				9AE722A717E83B69003E47F9 /* windows_defs.h */,
 				9AE722A817E83B69003E47F9 /* windows_error.cpp */,
+				9AE728E617E85545003E47F9 /* windows_file.h */,
 				9AE722A917E83B69003E47F9 /* windows_gdi.h */,
 				9AE722AA17E83B69003E47F9 /* windows_guid_def.h */,
 				9AE722AB17E83B69003E47F9 /* windows_internals.h */,
@@ -2408,9 +2414,10 @@
 				9AE725FA17E83B69003E47F9 /* xml_var_exchange.h in Headers */,
 				9AE725FD17E83B69003E47F9 /* xml_xmlite.h in Headers */,
 				9AE728D917E84154003E47F9 /* DDInvocationGrabber.h in Headers */,
-				9AE728DC17E84154003E47F9 /* macos_http_lib.h in Headers */,
-				9AE728DE17E84154003E47F9 /* macos_http.h in Headers */,
 				9AE728DF17E84154003E47F9 /* NSObject+DDExtensions.h in Headers */,
+				9AE728E717E85545003E47F9 /* windows_file.h in Headers */,
+				9AE72B8917E8641F003E47F9 /* ansios_http_lib.h in Headers */,
+				9AE72B8D17E86E91003E47F9 /* ansios_multithreading.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2708,10 +2715,11 @@
 				9AE725FC17E83B69003E47F9 /* xml_xmlite.cpp in Sources */,
 				9AE728D017E840BF003E47F9 /* macos_window.cpp in Sources */,
 				9AE728DA17E84154003E47F9 /* DDInvocationGrabber.mm in Sources */,
-				9AE728DB17E84154003E47F9 /* macos_http_lib.cpp in Sources */,
-				9AE728DD17E84154003E47F9 /* macos_http.cpp in Sources */,
 				9AE728E017E84154003E47F9 /* NSObject+DDExtensions.mm in Sources */,
 				9AE728E517E84D3A003E47F9 /* macos_user.mm in Sources */,
+				9AE72B8517E85F98003E47F9 /* macos_debug.cpp in Sources */,
+				9AE72B8817E8641F003E47F9 /* ansios_http_lib.cpp in Sources */,
+				9AE72B8C17E86E91003E47F9 /* ansios_multithreading.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

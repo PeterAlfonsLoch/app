@@ -125,7 +125,7 @@ namespace Imf {
                return;
          }
          ::file::plain_text_stream_string_buffer s;
-         s << "Invalid " << what << ": it is more than " << (N - 1) 
+         s << "Invalid " << what << ": it is more than " << (strsize) (N - 1)
             << " characters long.";
          throw Iex::InputExc(s);
       }

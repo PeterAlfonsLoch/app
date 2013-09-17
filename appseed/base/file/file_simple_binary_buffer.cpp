@@ -5,7 +5,7 @@
 //#include <io.h>
 //#include <fcntl.h>
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 
 #include <unistd.h>
 #define _doserrno errno
@@ -69,8 +69,8 @@ namespace file
          szMode[nMode++] = 'r';
 
       // add '+' if necessary (when read/write modes mismatched)
-      if (szMode[0] == 'r' && (nOpenFlags & mode_read_write) ||
-         szMode[0] != 'r' && !(nOpenFlags & mode_write))
+      if ((szMode[0] == 'r' && (nOpenFlags & mode_read_write)) ||
+         (szMode[0] != 'r' && !(nOpenFlags & mode_write)))
       {
          // ::file::seek_current szMode mismatched, need to add '+' to fix
          szMode[nMode++] = '+';
@@ -311,7 +311,7 @@ namespace file
       LONG nLength;
       LONG nResult;
 
-      nCurrent = ftell(m_pfile);
+      nCurrent = (LONG) ftell(m_pfile);
       if (nCurrent == -1)
          throw_exception(get_app(), ::file::exception::invalidFile, _doserrno, m_strFileName);
 
@@ -319,7 +319,7 @@ namespace file
       if (nResult != 0)
          throw_exception(get_app(), ::file::exception::badSeek, _doserrno, m_strFileName);
 
-      nLength = ftell(m_pfile);
+      nLength = (LONG) ftell(m_pfile);
       if (nLength == -1)
          throw_exception(get_app(), ::file::exception::invalidFile, _doserrno, m_strFileName);
 

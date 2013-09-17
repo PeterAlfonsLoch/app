@@ -127,8 +127,8 @@ class random_access_iterator { public: };
 
 #ifdef WINDOWS
 #pragma warning(disable: 4251)  // using non-exported as public in exported
-#pragma warning(disable: 4250)  // via dominance
 #endif
+
 
 
 
@@ -251,11 +251,21 @@ namespace file
 
 #include "base/primitive/primitive_id_space.h"
 
-#include "base_thread.h"
-#include "base/user/user_base_interaction.h"
+
+
 
 
 #include "base/multithreading/multithreading.h"
+
+
+#include "base_thread.h"
+
+
+#include "base/user/user_base_document.h"
+#include "base/user/user_base_document_template.h"
+#include "base/user/user_base_interaction.h"
+#include "base/user/user_create_context.h"
+
 
 #if defined(WINDOWS)
 
@@ -266,7 +276,15 @@ namespace file
 #include "base/ansios/ansios.h"
 #include "base/linux/linux_user_impl.h"
 
+#elif defined(MACOS)
+
+#include "base/ansios/ansios.h"
+#include "base/macos/macos.h"
+#include "base/macos/macos_window.h"
+
 #endif
+
+
 
 
 
@@ -371,11 +389,6 @@ CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 
 #include "base/base/base.inl"
 
-#include "base/base/base_enum.h"
-
-
-
-
 
 namespace numeric_info
 {
@@ -424,7 +437,6 @@ namespace numeric_info
       return true;
    }
 
-
 } // namespace numeric_info
 
 
@@ -454,6 +466,7 @@ namespace numeric_info
 
       throw simple_exception(get_thread_app(), "extra arguments provided to printf");
 
+
    }
 
 
@@ -472,11 +485,13 @@ namespace numeric_info
       }
 
       (m_pprinter->*m_pfnPrinter)(m_pvoidPrinter, m_pszBuffer);
-
+      
    }
 
-
 #endif
+
+
+
 
 
 

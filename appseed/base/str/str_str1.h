@@ -45,12 +45,19 @@ CLASS_DECL_c int32_t isxdigit_dup(int32_t ch);
 CLASS_DECL_c int32_t isalpha_dup(int32_t ch);
 CLASS_DECL_c int32_t isspace_dup(int32_t ch);
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
 CLASS_DECL_c char * strlwr(char * psz);
 CLASS_DECL_c char * strupr(char * psz);
 
 #endif
+
+#if defined(MACOS)
+
+int32_t stricmp(const char * sz1, const char * sz2);
+
+#endif
+
 
 CLASS_DECL_c void wcscat_dup(wchar_t * dest, const wchar_t * cat);
 CLASS_DECL_c void wcscpy_dup(wchar_t * dest, const wchar_t * src);
