@@ -149,8 +149,16 @@ namespace file
       UNREFERENCED_PARAMETER(ui);
       throw interface_only_exception(get_app());
    }
-
-
+   
+#ifdef MACOS
+   
+   void input_stream::read(unsigned long & ui)
+   {
+      
+   }
+   
+#endif
+   
    void input_stream::read (float & f)
    {
       UNREFERENCED_PARAMETER(f);

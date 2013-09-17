@@ -97,6 +97,16 @@ namespace file
    {
 
    }
+   
+#ifdef MACOS
+   
+   void output_stream:: write (unsigned long ui)
+   {
+      
+   }
+   
+#endif
+   
 
    void output_stream::write_arbitrary(int32_t i)
    {

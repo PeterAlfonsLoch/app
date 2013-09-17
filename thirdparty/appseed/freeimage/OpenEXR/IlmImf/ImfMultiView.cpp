@@ -57,7 +57,7 @@ namespace Imf {
 
          while (name.size() > 0)
          {  
-            size_t s = name.find (c);
+            strsize s = name.find (c);
             string sec = name.substr (0, s);
 
             //
@@ -104,7 +104,7 @@ namespace Imf {
          for (::count i = 0; i < multiView.size(); ++i)
          {
             if (multiView[i] == view)
-               return i;
+               return (int) i;
          }
 
          return -1;

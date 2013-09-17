@@ -132,3 +132,20 @@ void ns_redraw_window(oswindow w)
    [w->window() display];
    
 }
+
+
+WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)
+{
+   
+   NSRect rect = [oswindow->window() frame];
+   
+   lprect->left        = rect.origin.x;
+   lprect->bottom      = [[NSScreen mainScreen] frame ].size.height - rect.origin.y;
+   lprect->right       = rect.origin.x  + rect.size.width;
+   lprect->top         = lprect->bottom - rect.size.height;
+   
+   return 1;
+   
+}
+
+

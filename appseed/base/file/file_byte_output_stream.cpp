@@ -130,6 +130,8 @@ namespace file
 
    }
 
+
+
    void byte_output_stream::write_arbitrary(int32_t i)
    {
 

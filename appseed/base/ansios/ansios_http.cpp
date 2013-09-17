@@ -20,7 +20,7 @@ void prepare_http()
 }
 
 
-bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int32_t * piStatus, void (*callback)(void *, int32_t, dword_ptr), void * callback_param )
+bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int32_t * piStatus, void (*callback)(void *, int32_t, uint_ptr), void * callback_param )
 {
 
    if(piStatus != NULL)
@@ -28,7 +28,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
 
    string strUrl;
 
-   char * szBuf = (char *) memory_alloc(4096);
+   //   char * szBuf = (char *) memory_alloc(4096);
 
    prepare_http();
 
@@ -51,7 +51,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
       callback(callback_param, -1, 0);
    }
 
-   int32_t iCol = 3;
+   //  int32_t iCol = 3;
 
 
    strUrl = pszUrl;
@@ -71,9 +71,9 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
       strHost = strUrl.substr(7, iPos - 7);
       strReq = strUrl.substr(iPos);
    }
-   DWORD dwSize = 0;
-   LPSTR pszOutBuffer;
-   WINBOOL  bResults = FALSE;
+//   DWORD dwSize = 0;
+//   LPSTR pszOutBuffer;
+//   WINBOOL  bResults = FALSE;
 
 //   WCHAR * pwzHost = utf8_to_16(strHost);
 
@@ -95,7 +95,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
 
 
 
-string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int32_t, dword_ptr), void * callback_param, bool bProgress)
+string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int32_t, uint_ptr), void * callback_param, bool bProgress)
 {
 
    prepare_http();
@@ -108,10 +108,10 @@ string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
       strHost = strUrl.substr(7, iPos - 7);
       strReq = strUrl.substr(iPos);
    }
-   DWORD dwSize = 0;
-   DWORD dwDownloaded = 0;
-   LPSTR pszOutBuffer;
-   WINBOOL  bResults = FALSE;
+//   DWORD dwSize = 0;
+//   DWORD dwDownloaded = 0;
+//   LPSTR pszOutBuffer;
+//   WINBOOL  bResults = FALSE;
 
    g_ptinyhttp->m_strUserAgent = "ccvotagus_ca2_fontopus/linux";
 
@@ -121,6 +121,9 @@ string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    int32_t len;
 
    tiny_http::http_retcode ret = g_ptinyhttp->t_get(&buffer, &len, callback, callback_param);
+   
+   if(ret != tiny_http::OK0 && ret != tiny_http::OK201 && ret != tiny_http::OK200)
+      return "";
 
    string strRet(buffer, len);
 

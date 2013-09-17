@@ -173,7 +173,7 @@ namespace file
       read_arbitrary(&ui, sizeof(ui));
 
    }
-
+   
    void byte_input_stream::read_arbitrary(void * p, ::count nMax)
    {
 

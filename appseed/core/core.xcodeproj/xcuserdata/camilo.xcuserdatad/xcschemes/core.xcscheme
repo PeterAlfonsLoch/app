@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A574B9716AAB906000CC4EF"
-               BuildableName = "libca2.dylib"
-               BlueprintName = "ca2"
-               ReferencedContainer = "container:ca2.xcodeproj">
+               BlueprintIdentifier = "9ACA760716F7CAAC00AA1CEE"
+               BuildableName = "libcore.dylib"
+               BlueprintName = "core"
+               ReferencedContainer = "container:core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
