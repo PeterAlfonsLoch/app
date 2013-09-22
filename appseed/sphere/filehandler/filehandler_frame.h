@@ -9,7 +9,7 @@ namespace filehandler
    {
    
    public:
-      frame(sp(::ca2::application) papp);
+      frame(sp(base_application) papp);
       // // DECLARE_DYNCREATE(frame)
 
    public:

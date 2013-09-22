@@ -590,13 +590,13 @@ static int cs_value(MY_XML_PARSER *st,const char *attr, size_t len)
   case _CS_ORDER:
     break;
   case _CS_ID:
-    i->cs.number= strtol(attr,(char**)NULL,10);
+    i->cs.number= (uint) strtol(attr,(char**)NULL,10);
     break;
   case _CS_BINARY_ID:
-    i->cs.binary_number= strtol(attr,(char**)NULL,10);
+    i->cs.binary_number= (uint) strtol(attr,(char**)NULL,10);
     break;
   case _CS_PRIMARY_ID:
-    i->cs.primary_number= strtol(attr,(char**)NULL,10);
+    i->cs.primary_number= (uint) strtol(attr,(char**)NULL,10);
     break;
   case _CS_COLNAME:
     i->cs.name=mstr(i->name,attr,len,MY_CS_NAME_SIZE-1);

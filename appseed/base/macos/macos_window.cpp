@@ -7,27 +7,18 @@
 //
 
 #include "framework.h"
+#include "macos_window_impl.h"
 
 
-class oswindow_dataptra :
-public array < oswindow_data * >
-{
-public:
-   
-   
-};
-
-
-
-oswindow_dataptra * oswindow_data::s_pdataptra = new oswindow_dataptra;
+oswindow_dataptra * g_poswindowdataptra = NULL;
 
 
 int oswindow_find(nswindow window)
 {
    
-   for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
+   for(int i = 0; i < g_poswindowdataptra->get_count(); i++)
    {
-      if(::oswindow_data::s_pdataptra->element_at(i)->m_nswindow == window)
+      if(g_poswindowdataptra->element_at(i)->m_nswindow == window)
       {
          return i;
       }
@@ -43,13 +34,13 @@ oswindow_data * oswindow_get(nswindow window)
    int_ptr iFind = oswindow_find(window);
    
    if(iFind >= 0)
-      return ::oswindow_data::s_pdataptra->element_at(iFind);
+      return g_poswindowdataptra->element_at(iFind);
    
    ::oswindow_data * pdata = new ::oswindow_data;
    
    pdata->m_nswindow    = window;
    
-   ::oswindow_data::s_pdataptra->add(pdata);
+   g_poswindowdataptra->add(pdata);
    
    return pdata;
    
@@ -119,7 +110,7 @@ bool oswindow_remove(nswindow window)
    if(iFind < 0)
       return false;
    
-   ::oswindow_data::s_pdataptra->remove_at(iFind);
+   g_poswindowdataptra->remove_at(iFind);
    
    return true;
    

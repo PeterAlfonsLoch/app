@@ -5,8 +5,8 @@ namespace filehandler
 {
 
 
-   view::view(sp(::ca2::application) papp) :
-      ca2(papp),
+   view::view(sp(base_application) papp) :
+      element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::user::form(papp),
@@ -24,7 +24,7 @@ namespace filehandler
 
    }
 
-   void view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void view::install_message_handling(::message::dispatch * pinterface)
    {
       form_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &view::_001OnCreate);
@@ -38,16 +38,16 @@ namespace filehandler
       layout();
    }
 
-   void view::_001OnTimer(::ca2::signal_object * pobj)
+   void view::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+      SCAST_PTR(::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 1984)
       {
          refresh();
       }
    }
 
-   void view::_001OnCreate(::ca2::signal_object * pobj)
+   void view::_001OnCreate(signal_details * pobj)
    {
 
       if(pobj->previous())
@@ -88,12 +88,12 @@ namespace filehandler
       UNREFERENCED_PARAMETER(plist);
 
       COLORREF cr;
-      sp(::ca2::application) papp = pview->get_app();
+      sp(base_application) papp = pview->get_app();
       bool bHover = pview->m_iHover == pitem->m_iIndex;
       cr = bHover ? ARGB(255, 230, 255, 230) : ARGB(255, 200, 255, 200);
-      if(!Sys(papp).savings().is_trying_to_save(::ca2::resource_processing)
-         && !Sys(papp).savings().is_trying_to_save(::ca2::resource_display_bandwidth)
-         && !Sys(papp).savings().is_trying_to_save(::ca2::resource_memory))
+      if(!Sys(papp).savings().is_trying_to_save(::core::resource_processing)
+         && !Sys(papp).savings().is_trying_to_save(::core::resource_display_bandwidth)
+         && !Sys(papp).savings().is_trying_to_save(::core::resource_memory))
       {
          class imaging & imaging = Sys(papp).visual().imaging();
          imaging.color_blend(pdc, m_rectItem, cr, 127);
@@ -185,10 +185,10 @@ namespace filehandler
 
    }
 
-   void view::_001OnLButtonUp(::ca2::signal_object * pobj)
+   void view::_001OnLButtonUp(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       e_element eelement;
 
@@ -205,7 +205,7 @@ namespace filehandler
          Session.request(varRequest);
          */
 
-         sp(::ca2::create_context) createcontext(get_app()->cast_app < ::ca2::application > ().command());
+         sp(::create_context) createcontext(get_app()->cast_app < ::application > ().command());
 
          createcontext->m_spCommandLine->m_strApp                 = m_list[iItem].m_strApp;
 

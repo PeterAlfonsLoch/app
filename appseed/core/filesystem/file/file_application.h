@@ -52,11 +52,11 @@ namespace file
       string sys_temp(const char * pszName, const char * pszExtension);
 
 
-      virtual ::file::binary_buffer_sp get_file(var varFile, UINT nOpenFlags);
+      virtual ::file::buffer_sp get_file(var varFile, UINT nOpenFlags);
       //virtual ::file::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
       // get a file and if there are exceptions, should show end user friendly messages
-      virtual ::file::binary_buffer_sp friendly_get_file(var varFile, UINT nOpenFlags);
+      virtual ::file::buffer_sp friendly_get_file(var varFile, UINT nOpenFlags);
 
    };
 

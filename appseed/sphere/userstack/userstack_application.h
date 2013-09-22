@@ -18,8 +18,8 @@ namespace userstack
                                                                      
       bool                                                           m_bShowPlatform;
                                                                      
-      sp(::ca2::application)                                            m_pappCurrent;
-      string_map < sp(::ca2::application) >               m_mapApplication;
+      sp(base_application)                                            m_pappCurrent;
+      string_map < sp(base_application) >               m_mapApplication;
                                                                      
       
       sp(::user::single_document_template)                         m_ptemplate_main;
@@ -47,7 +47,7 @@ namespace userstack
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-      virtual ::ca2::application * get_app() const;
+      virtual ::application * get_app() const;
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
@@ -82,11 +82,11 @@ namespace userstack
 
       virtual service_base * allocate_new_service();
 
-      void on_request(sp(::ca2::create_context) pcreatecontext);
+      void on_request(sp(::create_context) pcreatecontext);
 
-      sp(::ca2::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca2::application_bias * pbiasCreate = NULL);
+      sp(base_application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca2::application_bias * pbiasCreate = NULL);
 
-      sp(::ca2::application) get_current_application();
+      sp(base_application) get_current_application();
 
       virtual void get_screen_rect(LPRECT lprect);
 

@@ -14,10 +14,10 @@ namespace command
       strsize m_iCompromised;
 
 
-      primary_view(sp(::ca2::application) papp);
+      primary_view(sp(base_application) papp);
 
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
 
       virtual void _001OnAfterChangeText();

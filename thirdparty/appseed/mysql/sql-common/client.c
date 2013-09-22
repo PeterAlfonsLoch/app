@@ -1406,12 +1406,12 @@ unpack_fields(MYSQL *mysql, MYSQL_DATA *data,MEM_ROOT *alloc,uint fields,
       field->name=      strmake_root(alloc,(char*) row->data[4], lengths[4]);
       field->org_name=  strmake_root(alloc,(char*) row->data[5], lengths[5]);
 
-      field->catalog_length=	lengths[0];
-      field->db_length=		lengths[1];
-      field->table_length=	lengths[2];
-      field->org_table_length=	lengths[3];
-      field->name_length=	lengths[4];
-      field->org_name_length=	lengths[5];
+      field->catalog_length= (unsigned int)lengths[0];
+      field->db_length=		(unsigned int)lengths[1];
+      field->table_length=	(unsigned int)lengths[2];
+      field->org_table_length=	(unsigned int)lengths[3];
+      field->name_length=	(unsigned int)lengths[4];
+      field->org_name_length=	(unsigned int)lengths[5];
 
       /* Unpack fixed length parts */
       if (lengths[6] != 12)
@@ -1433,8 +1433,8 @@ unpack_fields(MYSQL *mysql, MYSQL_DATA *data,MEM_ROOT *alloc,uint fields,
         field->flags|= NUM_FLAG;
       if (default_value && row->data[7])
       {
-        field->def=strmake_root(alloc,(char*) row->data[7], lengths[7]);
-	field->def_length= lengths[7];
+        field->def=(unsigned int) strmake_root(alloc,(char*) row->data[7], lengths[7]);
+	field->def_length= (unsigned int)lengths[7];
       }
       else
         field->def=0;
@@ -1457,8 +1457,8 @@ unpack_fields(MYSQL *mysql, MYSQL_DATA *data,MEM_ROOT *alloc,uint fields,
       field->db=     (char*)  "";
       field->catalog_length= 0;
       field->db_length= 0;
-      field->org_table_length=	field->table_length=	lengths[0];
-      field->name_length=	lengths[1];
+      field->org_table_length=	field->table_length=	(unsigned int)lengths[0];
+      field->name_length=	(unsigned int)lengths[1];
 
       if (server_capabilities & CLIENT_LONG_FLAG)
       {
@@ -1475,7 +1475,7 @@ unpack_fields(MYSQL *mysql, MYSQL_DATA *data,MEM_ROOT *alloc,uint fields,
       if (default_value && row->data[5])
       {
         field->def=strdup_root(alloc,(char*) row->data[5]);
-	field->def_length= lengths[5];
+	field->def_length= (unsigned int)lengths[5];
       }
       else
         field->def=0;
@@ -1886,7 +1886,7 @@ static MYSQL_RES *cli_use_result(MYSQL *mysql);
 
 int cli_read_change_user_result(MYSQL *mysql)
 {
-  return cli_safe_read(mysql);
+  return (int) cli_safe_read(mysql);
 }
 
 static MYSQL_METHODS client_methods=
@@ -2793,7 +2793,7 @@ static int client_mpvio_read_packet(struct st_plugin_vio *mpv, uchar **buf)
 
   /* otherwise read the data */
   pkt_len= (*mysql->methods->read_change_user_result)(mysql);
-  mpvio->last_read_packet_len= pkt_len;
+  mpvio->last_read_packet_len= (int) pkt_len;
   *buf= mysql->net.read_pos;
 
   /* was it a request to change plugins ? */
@@ -2813,7 +2813,7 @@ static int client_mpvio_read_packet(struct st_plugin_vio *mpv, uchar **buf)
     pkt_len--;
   }
   mpvio->packets_read++;
-  return pkt_len;
+  return (int) pkt_len;
 }
 
 /**
@@ -3057,7 +3057,7 @@ int run_plugin_auth(MYSQL *mysql, char *data, uint data_len,
       uint len;
       auth_plugin_name= (char*)mysql->net.read_pos + 1;
       len= (uint) strlen(auth_plugin_name); /* safe as my_net_read always appends \0 */
-      mpvio.cached_server_reply.pkt_len= pkt_length - len - 2;
+      mpvio.cached_server_reply.pkt_len= (unsigned int) (pkt_length - len - 2);
       mpvio.cached_server_reply.pkt= mysql->net.read_pos + len + 2;
       DBUG_PRINT ("info", ("change plugin packet from server for plugin %s",
                            auth_plugin_name));
@@ -4113,7 +4113,7 @@ get_info:
     DBUG_RETURN(1);
   if (!(mysql->fields=unpack_fields(mysql, fields,&mysql->field_alloc,
 				    (uint) field_count,0,
-				    mysql->server_capabilities)))
+				    (unsigned int) mysql->server_capabilities)))
     DBUG_RETURN(1);
   mysql->status= MYSQL_STATUS_GET_RESULT;
   mysql->field_count= (uint) field_count;

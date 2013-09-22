@@ -1542,7 +1542,7 @@ void my_print_variables_ex(const struct my_option *options, FILE* file)
         fprintf(file, "\n");
         break;
       case GET_ENUM:
-        fprintf(file, "%s\n", get_type(optp->typelib, *(ulong*) value));
+        fprintf(file, "%s\n", get_type(optp->typelib, (unsigned int)*(ulong*) value));
         break;
       case GET_STR:
       case GET_PASSWORD:

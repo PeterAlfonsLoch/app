@@ -21,7 +21,7 @@ namespace sphere
 
       virtual void get_extension_app(stringa & straApp, const char * pszExtension);
 
-//      virtual sp(::ca2::application) get_new_app(const char * pszAppId);
+//      virtual sp(base_application) get_new_app(const char * pszAppId);
 
 
    };

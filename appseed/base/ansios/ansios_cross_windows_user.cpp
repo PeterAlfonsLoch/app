@@ -4,7 +4,21 @@
 char char_to_upper(int32_t ch);
 
 
+int_bool MessageBoxAForConsole(oswindow window, const char * psz, const char * pszTitle, uint32_t uiFlags);
+
+
+int_bool (* g_messageboxa)(oswindow window, const char * psz, const char * pszTitle, uint32_t uiFlags) = MessageBoxAForConsole;
+
+
 int_bool MessageBoxA(oswindow window, const char * psz, const char * pszTitle, uint32_t uiFlags)
+{
+   
+   return (*g_messageboxa)(window, psz, pszTitle, uiFlags);
+   
+}
+
+
+int_bool MessageBoxAForConsole(oswindow window, const char * psz, const char * pszTitle, uint32_t uiFlags)
 {
 
    string strLine;
@@ -141,6 +155,12 @@ repeat:
          break;
       }
 
+   }
+   else
+   {
+      
+      int c = getc(stdin);
+      
    }
 
 

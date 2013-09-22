@@ -306,7 +306,7 @@ namespace core
    }
 
 
-   sp(::application) library::get_new_app(const char * pszAppId)
+   sp(base_application) library::get_new_app(const char * pszAppId)
    {
 
       try
@@ -320,7 +320,7 @@ namespace core
             if(strAppName.is_empty())
                return NULL;
 
-            sp(::application) papp = m_pca2library->get_new_app(strAppName);
+            sp(base_application) papp = m_pca2library->get_new_app(strAppName);
 
             if(papp == NULL)
                return NULL;

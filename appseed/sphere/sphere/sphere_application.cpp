@@ -23,7 +23,7 @@ namespace sphere
    {
    }
 
-   sp(::ca2::application) application::get_system()
+   sp(base_application) application::get_system()
    {
       return new application();
    }
@@ -201,7 +201,7 @@ namespace sphere
    }
 
 
-   void application::on_request(sp(::ca2::create_context) pcreatecontext)
+   void application::on_request(sp(::create_context) pcreatecontext)
    {
       string strId = m_strId;
       char chFirst = '\0';

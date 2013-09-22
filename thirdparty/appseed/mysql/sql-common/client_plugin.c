@@ -39,6 +39,8 @@
 
 #ifdef LINUX
 #define RTLD_NOW 2
+#elif defined(MACOS)
+
 #endif
 
 

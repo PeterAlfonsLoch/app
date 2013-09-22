@@ -42,7 +42,6 @@ public:
    ::user::base_interaction *    m_pui;
    
    
-   static oswindow_dataptra *    s_pdataptra;
    int_to_int *                  m_plongmap;
    
    
@@ -190,3 +189,8 @@ inline int32_t IsWindowVisible(::oswindow oswindow)
 
 #define GetWindowLong GetWindowLongA
 #define SetWindowLong SetWindowLongA
+
+
+
+
+

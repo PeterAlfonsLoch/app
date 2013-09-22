@@ -5,8 +5,8 @@ namespace filehandler
 {
 
 
-   document::document(sp(::ca2::application) papp) :
-      ca2(papp),
+   document::document(sp(base_application) papp) :
+      element(papp),
       ::ca2::data_container_base(papp),
       html_document(papp)
    {

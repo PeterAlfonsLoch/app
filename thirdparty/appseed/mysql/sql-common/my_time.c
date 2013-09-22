@@ -397,8 +397,8 @@ str_to_datetime(const char *str, uint length, MYSQL_TIME *l_time,
       l_time->time_type= MYSQL_TIMESTAMP_NONE;
       DBUG_RETURN(1);
     }
-    date[i]=tmp_value;
-    not_zero_date|= tmp_value;
+    date[i]=(int)tmp_value;
+    not_zero_date|= (int)tmp_value;
 
     /* Length of next field */
     field_length= format_position[i+1] == 0 ? 4 : 2;
@@ -792,10 +792,10 @@ fractional:
   l_time->month=        0;
   
   l_time->day=  0;
-  l_time->hour= date[1] + date[0] * 24; /* Mix days and hours */
+  l_time->hour= (unsigned int) (date[1] + date[0] * 24); /* Mix days and hours */
 
-  l_time->minute=       date[2];
-  l_time->second=       date[3];
+  l_time->minute=  (unsigned int)     date[2];
+  l_time->second=  (unsigned int)    date[3];
   l_time->second_part=  date[4];
   l_time->time_type= MYSQL_TIMESTAMP_TIME;
 

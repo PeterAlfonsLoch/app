@@ -201,7 +201,7 @@ namespace sockets
          if(m_pfile != NULL)
          {
             m_pfile->write(m_memoryfile.get_data(), m_memoryfile.get_size());
-             m_iFinalSize = m_pfile->get_length();
+            m_iFinalSize = m_memoryfile.get_size();
          }
          OnContent();
          if (m_b_close_when_complete)

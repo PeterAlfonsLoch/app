@@ -1075,9 +1075,9 @@ pad_min_max:
   */
   res_length_diff= res_length % cs->mbminlen;
   cs->cset->fill(cs, min_str, min_end - min_str - res_length_diff,
-                 cs->min_sort_char);
+                 (int) cs->min_sort_char);
   cs->cset->fill(cs, max_str, max_end - max_str - res_length_diff,
-                 cs->max_sort_char);
+                 (int) cs->max_sort_char);
 
   /* In case of incomplete characters set the remainder to 0x00's */
   if (res_length_diff)

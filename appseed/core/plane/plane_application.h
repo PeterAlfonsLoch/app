@@ -234,7 +234,7 @@ namespace core
 
    // impl
    template < class APP >
-   sp(::application) single_application_library < APP > :: get_new_app(const char * pszAppId)
+   sp(base_application) single_application_library < APP > :: get_new_app(const char * pszAppId)
    {
 
       if(!contains_app(pszAppId))

@@ -413,7 +413,7 @@ int init_key_cache(KEY_CACHE *keycache, uint key_cache_block_size,
     for ( ; ; )
     {
       /* Set my_hash_entries to the next bigger 2 power */
-      if ((keycache->hash_entries= next_power(blocks)) < blocks * 5/4)
+      if ((keycache->hash_entries= next_power((uint)blocks)) < blocks * 5/4)
         keycache->hash_entries<<= 1;
       hash_links= 2 * blocks;
 #if defined(MAX_THREADS)
@@ -452,7 +452,7 @@ int init_key_cache(KEY_CACHE *keycache, uint key_cache_block_size,
     }
     keycache->blocks_unused= blocks;
     keycache->disk_blocks= (int) blocks;
-    keycache->hash_links= hash_links;
+    keycache->hash_links= (uint) hash_links;
     keycache->hash_root= (HASH_LINK**) ((char*) keycache->block_root +
 				        ALIGN_SIZE(blocks*sizeof(BLOCK_LINK)));
     keycache->hash_link_root= (HASH_LINK*) ((char*) keycache->hash_root +

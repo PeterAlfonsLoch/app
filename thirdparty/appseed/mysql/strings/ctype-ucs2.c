@@ -2039,7 +2039,7 @@ my_hash_sort_utf32(const CHARSET_INFO *cs, const uchar *s, size_t slen,
   {
     my_tosort_utf32(uni_plane, &wc);
 
-    ch= (wc >> 24);
+    ch= (unsigned int) (wc >> 24);
     tmp1^= (((tmp1 & 63) + tmp2) * ch) + (tmp1 << 8);
     tmp2+= 3;
 

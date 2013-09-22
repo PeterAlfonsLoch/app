@@ -173,7 +173,7 @@ public:
    int_array &                      inta();
    int64_array &                    int64a();
    var_array &                      vara();
-   gen::property_set &              propset(::ca::application * papp = NULL);
+   gen::property_set &              propset(::cabase_application * papp = NULL);
    gen::property &                  prop();
    const class primitive::memory &  memory() const;
    stringa                          stra() const;

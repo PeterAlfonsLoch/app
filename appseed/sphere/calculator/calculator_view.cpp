@@ -5,8 +5,8 @@ namespace calculator
 {
 
 
-   view::view(sp(::ca2::application) papp) :
-      ca2(papp),
+   view::view(sp(base_application) papp) :
+      element(papp),
       ::user::interaction(papp)
    {
 
@@ -19,7 +19,7 @@ namespace calculator
    }
 
 
-   void view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void view::install_message_handling(::message::dispatch * pinterface)
    {
 
       ::user::view::install_message_handling(pinterface);
@@ -77,7 +77,7 @@ namespace calculator
    }
 
 
-   void view::_001OnInitialUpdate(::ca2::signal_object * pobj)
+   void view::_001OnInitialUpdate(signal_details * pobj)
    {
       ::user::view::_001OnInitialUpdate(pobj);
 
@@ -100,7 +100,7 @@ namespace calculator
    {
       return this;
    }
-   void view::_001OnDestroy(::ca2::signal_object * pobj)
+   void view::_001OnDestroy(signal_details * pobj)
    {
       ::user::view::_001OnDestroy(pobj);
 
@@ -108,14 +108,14 @@ namespace calculator
 
 
 
-   void view::_001OnSize(::ca2::signal_object * pobj)
+   void view::_001OnSize(signal_details * pobj)
    {
       
       UNREFERENCED_PARAMETER(pobj);
 
    }
 
-   void view::_001OnPaint(::ca2::signal_object * pobj)
+   void view::_001OnPaint(signal_details * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -128,16 +128,16 @@ namespace calculator
       UNREFERENCED_PARAMETER(pdc);
    }
 
-   void view::_001OnCreate(::ca2::signal_object * pobj)
+   void view::_001OnCreate(signal_details * pobj)
    {
       if(pobj->previous())
          return;
 
 
    }
-   void view::_001OnContextMenu(::ca2::signal_object * pobj)
+   void view::_001OnContextMenu(signal_details * pobj)
    {
-//      SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
 //         point point = pcontextmenu->GetPoint();
 
    }
@@ -151,21 +151,21 @@ namespace calculator
       }
    }
 
-   void view::_001OnWavePlayerEvent(::ca2::signal_object * pobj)
+   void view::_001OnWavePlayerEvent(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::ca2::message::base, pbase, pobj)
+      //SCAST_PTR(::message::base, pbase, pobj)
    }
 
-   void view::_001OnUpdateViewEncoding(::ca2::signal_object * pobj)
+   void view::_001OnUpdateViewEncoding(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::ca2::message::update_cmd_ui, pupdatecmdui, pobj)
+      //SCAST_PTR(::message::update_cmd_ui, pupdatecmdui, pobj)
    }
-   void view::_001OnViewEncoding(::ca2::signal_object * pobj)
+   void view::_001OnViewEncoding(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::ca2::message::command, pcommand, pobj)
+      //SCAST_PTR(::message::command, pcommand, pobj)
    }
 
 
@@ -179,10 +179,10 @@ namespace calculator
    }*/
 
 
-   void view::_001OnSetCursor(::ca2::signal_object * pobj)
+   void view::_001OnSetCursor(signal_details * pobj)
    {
 
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
 
       pmouse->m_ecursor = ::visual::cursor_arrow;
 

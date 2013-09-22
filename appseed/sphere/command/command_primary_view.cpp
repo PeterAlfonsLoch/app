@@ -5,8 +5,8 @@ namespace command
 {
 
 
-   primary_view::primary_view(sp(::ca2::application) papp) :
-      ca2(papp),
+   primary_view::primary_view(sp(base_application) papp) :
+      element(papp),
       ::user::interaction(papp),
 
       ::user::edit_plain_text_view(papp),
@@ -32,7 +32,7 @@ namespace command
 
    }
 
-   void primary_view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void primary_view::install_message_handling(::message::dispatch * pinterface)
    {
 
       ::user::edit_plain_text_view::install_message_handling(pinterface);
@@ -164,35 +164,35 @@ namespace command
       }
    }
 
-   void primary_view::_001OnUpdateEditCopy(::ca2::signal_object * pobj)
+   void primary_view::_001OnUpdateEditCopy(signal_details * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(TRUE);
    }
 
-   void primary_view::_001OnEditCopy(::ca2::signal_object * pobj)
+   void primary_view::_001OnEditCopy(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       clipboard_copy();
    }
 
-   void primary_view::_001OnUpdateEditPaste(::ca2::signal_object * pobj)
+   void primary_view::_001OnUpdateEditPaste(signal_details * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(TRUE);
    }
 
 
-   void primary_view::_001OnEditPaste(::ca2::signal_object * pobj)
+   void primary_view::_001OnEditPaste(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       clipboard_paste();
    }
 
 
-   void primary_view::_001OnContextMenu(::ca2::signal_object * pobj)
+   void primary_view::_001OnContextMenu(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
       point point = pcontextmenu->GetPoint();
 
       ::user::menu menu(get_app());

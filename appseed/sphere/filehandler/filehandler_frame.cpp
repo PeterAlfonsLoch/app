@@ -5,8 +5,8 @@ namespace filehandler
 {
 
 
-   frame::frame(sp(::ca2::application) papp) :
-      ca2(papp),
+   frame::frame(sp(base_application) papp) :
+      element(papp),
       simple_frame_window(papp)
    {
       m_iFrameData = 10;

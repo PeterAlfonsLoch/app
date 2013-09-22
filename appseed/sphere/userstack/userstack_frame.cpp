@@ -5,8 +5,8 @@ namespace userstack
 {
 
 
-   frame::frame(sp(::ca2::application) papp) :
-      ca2(papp),
+   frame::frame(sp(base_application) papp) :
+      element(papp),
       simple_frame_window(papp),
       ::ca2::message_window_simple_callback(papp)
    {
@@ -32,9 +32,9 @@ namespace userstack
    {
    }
 
-   void frame::_001OnCreate(::ca2::signal_object * pobj)
+   void frame::_001OnCreate(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::create, pcreate, pobj);
+      SCAST_PTR(::message::create, pcreate, pobj);
 
       m_bWindowFrame = GetTypedParent < ::plugin::host_interaction >() == NULL;
 
@@ -52,7 +52,7 @@ namespace userstack
 
    }
 
-   void frame::install_message_handling(::ca2::message::dispatch * pinterface)
+   void frame::install_message_handling(::message::dispatch * pinterface)
    {
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CLOSE,          pinterface, this, &frame::_001OnClose);
@@ -89,9 +89,9 @@ namespace userstack
 #endif //DEBUG
 
 
-   void frame::_001OnTimer(::ca2::signal_object * pobj)
+   void frame::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj);
+      SCAST_PTR(::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
       static float theta;
       if(nIDEvent == 3)
@@ -170,7 +170,7 @@ namespace userstack
 
 
 
-   void frame::_000OnMouse(::ca2::message::mouse * pmouse)
+   void frame::_000OnMouse(::message::mouse * pmouse)
    {
       Session.m_ptCursor = pmouse->m_pt;
 //      ::aspheresp(::application) pappParent = &App(Application.m_papp);
@@ -203,19 +203,19 @@ namespace userstack
       simple_frame_window::_000OnMouse(pmouse);
    }
 
-   void frame::_001OnMouseLeave(::ca2::signal_object * pobj)
+   void frame::_001OnMouseLeave(signal_details * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
 
-//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::message::mouse, pmouse, pobj);
 //      m_bMouseOver = false;
 //      bergedgesp(::application) papp = dynamic_cast < bergedgesp(::application) > (get_app());
    }
 
-   void frame::pre_translate_message(::ca2::signal_object * pobj)
+   void frame::pre_translate_message(signal_details * pobj)
    {
-//      SCAST_PTR(::ca2::message::base, pbase, pobj);
+//      SCAST_PTR(::message::base, pbase, pobj);
       simple_frame_window::pre_translate_message(pobj);
    }
 
@@ -232,15 +232,15 @@ namespace userstack
       }
    }
 
-   void frame::message_handler(::ca2::signal_object * pobj)
+   void frame::message_handler(signal_details * pobj)
    {
       simple_frame_window::message_handler(pobj);
    }
 
 
-   void frame::message_window_message_handler(::ca2::signal_object * pobj)
+   void frame::message_window_message_handler(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == (WM_APP + 2000))
       {
          _001OnApp2000(pbase);
@@ -253,7 +253,7 @@ namespace userstack
          COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam.m_lparam;
          if(pstruct->dwData == 1984)
          {
-            ::primitive::memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
+            ::file::memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
             string strPath;
             file.to_string(strPath);
             System.open_by_file_extension(iEdge, strPath);
@@ -266,9 +266,9 @@ namespace userstack
    }
 
 
-   void frame::_001OnApp2000(::ca2::signal_object * pobj)
+   void frame::_001OnApp2000(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj)
 
 
       if(pbase->m_wparam == 0)
@@ -423,12 +423,12 @@ namespace userstack
    //}
 
 
-   void frame::_001OnApp1(::ca2::signal_object * pobj)
+   void frame::_001OnApp1(signal_details * pobj)
    {
 
 #ifdef WINDOWSEX
 
-      SCAST_PTR(::ca2::message::base, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       MESSAGE * pmsg = (MESSAGE *) pbase->m_lparam.m_lparam;
 
@@ -439,7 +439,7 @@ namespace userstack
 
          if(pmsg->message != WM_KICKIDLE)
          {
-            ::ca::smart_pointer < ::ca2::message::base > spbase;
+            ::smart_pointer < ::message::base > spbase;
             spbase = get_base(pmsg);
             pre_translate_message(spbase);
             if(!spbase->m_bRet)
@@ -449,7 +449,7 @@ namespace userstack
          }
 
       }
-      catch(const ::ca2::exception & )
+      catch(const ::exception::exception & )
       {
       }
       catch(...)

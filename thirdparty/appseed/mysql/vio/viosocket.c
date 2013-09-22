@@ -619,7 +619,7 @@ my_bool vio_peer_addr(Vio *vio, char *ip_buffer, uint16 *port,
 
     /* Get sockaddr by socked fd. */
 
-    err_code= mysql_socket_getpeername(vio->mysql_socket, addr, &addr_length);
+    err_code= mysql_socket_getpeername(vio->mysql_socket, addr, (socklen_t *) &addr_length);
 
     if (err_code)
     {
@@ -686,7 +686,7 @@ static my_bool socket_peek_read(Vio *vio, uint *bytes)
   ssize_t res= recv(sd, &buf, sizeof(buf), MSG_PEEK);
   if (res < 0)
     return TRUE;
-  *bytes= res;
+  *bytes= (unsigned int) res;
   return FALSE;
 #endif
 }

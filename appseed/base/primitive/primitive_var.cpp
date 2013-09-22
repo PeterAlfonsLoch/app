@@ -1469,7 +1469,7 @@ string & var::get_ref_string(const char * pszOnNull)
 }
 
 
-inline id var::get_id(const char * pszOnNull) const
+id var::get_id(const char * pszOnNull) const
 {
    if(m_etype == type_pvar)
    {

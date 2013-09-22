@@ -216,7 +216,8 @@
 #define HAVE_TELL 1
 #define HAVE_TEMPNAM 1
 
-#ifdef LINUX
+
+#if defined(LINUX)
 #define SYSTEM_TYPE "Linux64"
 #define MACHINE_TYPE "x86_64"
 #define HAVE_RINT 1
@@ -239,6 +240,38 @@
 #define _chdir chdir
 #define tell tell64
 #endif
+
+
+#if defined(MACOS)
+#define SYSTEM_TYPE "OSX64"
+#define MACHINE_TYPE "x86_64"
+#define HAVE_RINT 1
+//#define HAVE_TERM_H 1
+//#define HAVE_TERMIO_H 1
+#define HAVE_UTIME_H 1
+#define HAVE_DIRENT_H 1
+#define HAVE_SYS_IOCTL_H 1
+#define HAVE_UNISTD_H 1
+#define HAVE_FSYNC 1
+#define HAVE_POLL_H 1
+#define HAVE_POLL 1
+#define HAVE_SYS_SOCKET_H 1
+#define HAVE_STDINT_H 1
+//#define HAVE_MKSTEMP 1
+#define _access access
+#define _chmod chmod
+#define _unlink unlink
+#define _getcwd getcwd
+#define _chdir chdir
+//#define tell tell64
+#define HAVE_LIBPTHREAD
+#define HAVE_PTHREAD_YIELD_NP 1
+#define HAVE_SYS_MMAN_H
+#undef HAVE_TELL
+#define HAVE_DLFCN_H 1
+#define HAVE_DLOPEN 1
+#endif
+
 
 /* #undef HAVE_THR_SETCONCURRENCY */
 /* #undef HAVE_THR_YIELD */
@@ -279,7 +312,9 @@
 
 /* #undef HAVE_VALGRIND */
 
+#ifndef HAVE_OPENSSL
 #define HAVE_OPENSSL 1
+#endif
 
 #define SIZEOF_LONG   4
 #ifdef _WIN32
@@ -390,8 +425,10 @@
 /* #undef HAVE_DTRACE */
 
 /* Windows stuff, mostly functions, that have Posix analogs but named differently */
+#if !defined(MACOS)
 #define S_IROTH _S_IREAD
 #define S_IFIFO _S_IFIFO
+#endif
 /* #undef IPPROTO_IPV6 */
 /* #undef IPV6_V6ONLY */
 #define STACK_DIRECTION -1

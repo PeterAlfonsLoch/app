@@ -218,7 +218,14 @@ extern string * g_pstrLastStatus;
 
 extern string * g_pstrLastGlsStatus;
 
-#ifdef LINUX
+
+
+
+
+
+
+
+#if defined(LINUX) || defined(MACOS)
 
 extern mutex * g_pmutexTz;
 
@@ -236,7 +243,31 @@ extern mutex * g_pmutexThreadIdLock;
 
 extern mutex * g_pmutexTlsData;
 
+#endif // defined(LINUX) || defined(MACOS)
+
+
+
+
+#if defined(LINUX)
+
+
+
 #endif
+
+
+
+
+
+#if defined(MACOS)
+
+#include "base/macos/macos_window_impl.h"
+
+extern oswindow_dataptra * g_poswindowdataptra;
+
+#endif
+
+
+
 
 class base_static_start
 {
@@ -287,19 +318,16 @@ public:
 
       g_pmutexTrace = new mutex();
 
-#ifdef LINUX
+      
+      
+      
+      
+      
+#if defined(LINUX) || defined(MACOS)
 
       g_pmutexTz = new mutex();
 
-      oswindow_data::s_pdataptra = new oswindow_dataptra;
-
-      oswindow_data::s_pmutex = new mutex;
-
       g_ptinyhttp = new tiny_http;
-
-      osdisplay_data::s_pdataptra = new osdisplay_dataptra;
-
-      osdisplay_data::s_pmutex = new mutex;
 
       g_ppendingThreads = new map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo >();
 
@@ -316,16 +344,46 @@ public:
       os_thread::s_pmutex = new mutex();
 
       os_thread::s_pptra = new array < os_thread * > ();
+      
+#endif // defined(LINUX) || defined(MACOS)
+      
 
+      
+      
+      
+#if defined(LINUX)
+      
+      oswindow_data::s_pdataptra = new oswindow_dataptra;
+      
+      oswindow_data::s_pmutex = new mutex;
+      
+      osdisplay_data::s_pdataptra = new osdisplay_dataptra;
+      
+      osdisplay_data::s_pmutex = new mutex;
+      
+#endif // defined(LINUX)
+      
+      
+      
+#if defined(MACOS)
 
-#endif
+      g_poswindowdataptra = new oswindow_dataptra;
+
+#endif // defined(MACOS)
+      
+      
+      
 
    }
 
    ~base_static_start()
    {
 
-#ifdef LINUX
+      
+      
+      
+      
+#if defined(LINUX) || defined(MACOS)
 
       delete os_thread::s_pptra;
 
@@ -359,28 +417,52 @@ public:
 
       g_ppendingThreads = NULL;
 
-      delete osdisplay_data::s_pmutex;
-
-      osdisplay_data::s_pmutex = NULL;
-
-      delete osdisplay_data::s_pdataptra;
-
-      osdisplay_data::s_pdataptra = NULL;
-
-      delete oswindow_data::s_pmutex;
-
-      oswindow_data::s_pmutex = NULL;
-
-      delete oswindow_data::s_pdataptra;
-
-      oswindow_data::s_pdataptra = NULL;
-
       delete g_pmutexTz;
 
       g_pmutexTz = NULL;
+      
+#endif // defined(LINUX) || defined(MACOS)
 
-#endif
+      
+      
+      
+      
+#if defined(LINUX)
+      
+      delete osdisplay_data::s_pmutex;
+      
+      osdisplay_data::s_pmutex = NULL;
+      
+      delete osdisplay_data::s_pdataptra;
+      
+      osdisplay_data::s_pdataptra = NULL;
+      
+      delete oswindow_data::s_pmutex;
+      
+      oswindow_data::s_pmutex = NULL;
+      
+      delete oswindow_data::s_pdataptra;
+      
+      oswindow_data::s_pdataptra = NULL;
+      
+#endif // defined(LINUX)
+      
+      
+      
+      
+      
+#if defined(MACOS)
+      
+      delete g_poswindowdataptra;
+      
+      g_poswindowdataptra = NULL;
+      
+#endif // defined(MACOS)
 
+      
+      
+      
+      
       delete g_pmutexTrace;
 
       g_pmutexTrace = NULL;

@@ -9891,7 +9891,7 @@ my_wc_mb_euc_kr(const CHARSET_INFO *cs __attribute__((unused)),
     return 1;
   }
   
-  if (!(code=func_uni_ksc5601_onechar(wc)))
+  if (!(code=func_uni_ksc5601_onechar((int) wc)))
     return MY_CS_ILUNI;
   
   if (s+2>e)

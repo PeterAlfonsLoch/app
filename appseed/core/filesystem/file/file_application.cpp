@@ -145,7 +145,7 @@ namespace file
    }
 
 
-   ::file::binary_buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
+   ::file::buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
       try
       {
@@ -157,10 +157,10 @@ namespace file
       }
    }
 
-   ::file::binary_buffer_sp application::get_file(var varFile, UINT nOpenFlags)
+   ::file::buffer_sp application::get_file(var varFile, UINT nOpenFlags)
    {
 
-      ::file::binary_buffer_sp spfile;
+      ::file::buffer_sp spfile;
 
       string strPath;
 
@@ -270,7 +270,7 @@ namespace file
             if(m_pbaseapp->m_pplaneapp->m_file.exists(strFile) && !m_pbaseapp->m_pplaneapp->m_file.exists(strFileDownloading))
             {
 
-               spfile.create(allocer());
+               spfile = Application.alloc(System.type_info < ::file::binary_buffer > ());
 
                try
                {
@@ -398,7 +398,7 @@ namespace file
 
             strPath = System.url().get_object("matter://" + strPath).Mid(1);
 
-            spfile.create(m_pbaseapp);
+            spfile = Application.alloc(System.type_info < ::file::binary_buffer > ());
 
             if(!spfile->open(App(m_pbaseapp).dir().matter(strPath), nOpenFlags))
             {
@@ -437,7 +437,7 @@ namespace file
             return spfile;
          }
 
-         spfile.create(allocer());
+         spfile = Application.alloc(System.type_info < ::file::binary_buffer > ());
 
          if(!spfile->open(strPath, nOpenFlags))
          {

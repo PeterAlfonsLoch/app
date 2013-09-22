@@ -90,7 +90,7 @@ _my_hash_init(HASH *hash, uint growth_size, CHARSET_INFO *charset,
   hash->flags=flags;
   hash->charset=charset;
   DBUG_RETURN(my_init_dynamic_array_ci(&hash->array, 
-                                       sizeof(HASH_LINK), size, growth_size));
+                                      (uint)sizeof(HASH_LINK), (uint) size, growth_size));
 }
 
 
@@ -609,7 +609,7 @@ my_bool my_hash_update(HASH *hash, uchar *record, uchar *old_key,
   }
 
   data=dynamic_element(&hash->array,0,HASH_LINK*);
-  blength=(uint) hash->blength; records=hash->records;
+  blength=(uint) hash->blength; records=(uint) hash->records;
 
   /* Search after record with key */
 
@@ -715,7 +715,7 @@ my_bool my_hash_check(HASH *hash)
   uint records,blength;
   HASH_LINK *data,*hash_info;
 
-  records=hash->records; blength=hash->blength;
+  records=(uint) hash->records; blength=(uint) hash->blength;
   data=dynamic_element(&hash->array,0,HASH_LINK*);
   error=0;
 

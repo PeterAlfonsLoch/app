@@ -564,12 +564,12 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
 
       m_dwAlive = ::get_tick_count();
       // Perform specific initializations
-#if !defined(DEBUG) || defined(WINDOWS)
+//#if !defined(DEBUG) || defined(WINDOWS)
       try
       {
          try
          {
-#endif
+//#endif
             if(!process_initialize())
             {
                if (GetMainWnd() != NULL)
@@ -579,7 +579,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
                }
                goto InitFailure;
             }
-#if !defined(DEBUG) || defined(WINDOWS)
+//#if !defined(DEBUG) || defined(WINDOWS)
          }
          catch(::exit_exception & e)
          {
@@ -596,12 +596,12 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
             }
             goto InitFailure;
          }
-#endif
+//#endif
          m_dwAlive = ::get_tick_count();
-#if !defined(DEBUG) || defined(WINDOWS)
+//#if !defined(DEBUG) || defined(WINDOWS)
          try
          {
-#endif
+//#endif
             if(!initialize_instance())
             {
                if (GetMainWnd() != NULL)
@@ -610,20 +610,20 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
                   GetMainWnd()->DestroyWindow();
                }
 
-#if !defined(DEBUG) || defined(WINDOWS)
+//#if !defined(DEBUG) || defined(WINDOWS)
                try
                {
-#endif
+//#endif
                   exit();
-#if !defined(DEBUG) || defined(WINDOWS)
+//#if !defined(DEBUG) || defined(WINDOWS)
                }
                catch(...)
                {
                }
-#endif
+//#endif
                goto InitFailure;
             }
-#if !defined(DEBUG) || defined(WINDOWS)
+//#if !defined(DEBUG) || defined(WINDOWS)
          }
          catch(::exit_exception & e)
          {
@@ -754,7 +754,7 @@ typedef  void (* PFN_ca2_factory_exchange)(sp(base_application) papp);
          // - ...
 
       }
-#endif
+//#endif
       goto run;
 InitFailure:
       if(m_iReturnCode == 0)

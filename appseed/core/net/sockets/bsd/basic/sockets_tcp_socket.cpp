@@ -412,10 +412,10 @@ void ssl_sigpipe_handle( int x );
          if (!Ready())
             throw io_exception(get_app());
 
-         n = SSL_read(m_ssl, buf, nBufSize);
+         n = SSL_read(m_ssl, buf, (int) nBufSize);
          if (n == -1)
          {
-            n = SSL_get_error(m_ssl, n);
+            n = SSL_get_error(m_ssl, (int) n);
             switch (n)
             {
             case SSL_ERROR_NONE:
@@ -454,7 +454,7 @@ void ssl_sigpipe_handle( int x );
          }
          else
          {
-            Handler().LogError(this, "tcp_socket::recv(ssl)", n, "abnormal value from SSL_read", ::core::log::level_error);
+            Handler().LogError(this, "tcp_socket::recv(ssl)", (int) n, "abnormal value from SSL_read", ::core::log::level_error);
             throw io_exception(get_app());
          }
       }
@@ -745,7 +745,8 @@ void ssl_sigpipe_handle( int x );
    #endif // HAVE_OPENSSL
       {
 #ifdef MACOS
-         n = send(GetSocket(), buf, len, SO_NOSIGPIPE);
+         int iSocket = GetSocket();
+         n = send(iSocket, buf, len, SO_NOSIGPIPE);
 #else
          n = send(GetSocket(), (const char *) buf, len, MSG_NOSIGNAL);
 #endif

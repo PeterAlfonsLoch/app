@@ -5,8 +5,8 @@ namespace calculator
 {
 
 
-   frame::frame(sp(::ca2::application) papp) :
-      ca2(papp),
+   frame::frame(sp(base_application) papp) :
+      element(papp),
       simple_frame_window(papp)
    {
       m_pimagelist = NULL;
@@ -23,7 +23,7 @@ namespace calculator
    {
    }
 
-   void frame::_001OnCreate(::ca2::signal_object * pobj)
+   void frame::_001OnCreate(signal_details * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);

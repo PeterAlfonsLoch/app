@@ -413,7 +413,7 @@ void read_user_name(char *name)
 my_bool handle_local_infile(MYSQL *mysql, const char *net_filename)
 {
   my_bool result= 1;
-  uint packet_length=MY_ALIGN(mysql->net.max_packet-16,IO_SIZE);
+  uint packet_length=(uint) MY_ALIGN(mysql->net.max_packet-16,IO_SIZE);
   NET *net= &mysql->net;
   int readcount;
   void *li_ptr;          /* pass state to local_infile functions */
@@ -771,7 +771,7 @@ MYSQL_FIELD *cli_list_fields(MYSQL *mysql)
 
   mysql->field_count= (uint) query->rows;
   return unpack_fields(mysql, query,&mysql->field_alloc,
-		       mysql->field_count, 1, mysql->server_capabilities);
+		       mysql->field_count, 1, (uint) mysql->server_capabilities);
 }
 
 
@@ -831,7 +831,7 @@ mysql_list_processes(MYSQL *mysql)
 					      protocol_41(mysql) ? 7 : 5)))
     DBUG_RETURN(NULL);
   if (!(mysql->fields=unpack_fields(mysql, fields,&mysql->field_alloc,field_count,0,
-				    mysql->server_capabilities)))
+				   (uint) mysql->server_capabilities)))
     DBUG_RETURN(0);
   mysql->status=MYSQL_STATUS_GET_RESULT;
   mysql->field_count=field_count;
@@ -1396,11 +1396,11 @@ my_bool cli_read_prepare_result(MYSQL *mysql, MYSQL_STMT *stmt)
       DBUG_RETURN(1);
     if (!(stmt->fields= unpack_fields(mysql, fields_data,&stmt->mem_root,
 				      field_count,0,
-				      mysql->server_capabilities)))
+				      (uint) mysql->server_capabilities)))
       DBUG_RETURN(1);
   }
   stmt->field_count=  field_count;
-  stmt->param_count=  (ulong) param_count;
+  stmt->param_count=  (uint) param_count;
   DBUG_PRINT("exit",("field_count: %u  param_count: %u  warning_count: %u",
                      field_count, param_count, (uint) mysql->warning_count));
 
@@ -2983,14 +2983,14 @@ mysql_stmt_send_long_data(MYSQL_STMT *stmt, uint param_number,
 static void read_binary_time(MYSQL_TIME *tm, uchar **pos)
 {
   /* net_field_length will set pos to the first byte of data */
-  uint length= net_field_length(pos);
+  uint length= (uint) net_field_length(pos);
 
   if (length)
   {
     uchar *to= *pos;
     tm->neg=    to[0];
 
-    tm->day=    (ulong) sint4korr(to+1);
+    tm->day=    (uint) sint4korr(to+1);
     tm->hour=   (uint) to[5];
     tm->minute= (uint) to[6];
     tm->second= (uint) to[7];
@@ -3012,7 +3012,7 @@ static void read_binary_time(MYSQL_TIME *tm, uchar **pos)
 
 static void read_binary_datetime(MYSQL_TIME *tm, uchar **pos)
 {
-  uint length= net_field_length(pos);
+  uint length= (uint) net_field_length(pos);
 
   if (length)
   {
@@ -3042,7 +3042,7 @@ static void read_binary_datetime(MYSQL_TIME *tm, uchar **pos)
 
 static void read_binary_date(MYSQL_TIME *tm, uchar **pos)
 {
-  uint length= net_field_length(pos);
+  uint length= (uint) net_field_length(pos);
 
   if (length)
   {
@@ -3295,7 +3295,7 @@ static void fetch_long_with_conversion(MYSQL_BIND *param, MYSQL_FIELD *field,
     {
       memmove(buff + field->length - length, buff, length);
       memset(buff, '0', field->length - length);
-      length= field->length;
+      length= (uint) field->length;
     }
     fetch_string_with_conversion(param, (char*) buff, length);
     break;
@@ -3596,7 +3596,7 @@ static void fetch_result_with_conversion(MYSQL_BIND *param, MYSQL_FIELD *field,
   default:
   {
     ulong length= net_field_length(row);
-    fetch_string_with_conversion(param, (char*) *row, length);
+    fetch_string_with_conversion(param, (char*) *row, (uint) length);
     *row+= length;
     break;
   }

@@ -106,7 +106,7 @@ static void get_password(char *to,uint length,int fd, my_bool echo)
   for (;;)
   {
     char tmp;
-    if (my_read(fd,&tmp,1,MYF(0)) != 1)
+    if (my_read(fd, (uchar *) &tmp,1,MYF(0)) != 1)
       break;
     if (tmp == '\b' || (int) tmp == 127)
     {

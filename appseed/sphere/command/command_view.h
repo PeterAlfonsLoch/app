@@ -21,7 +21,7 @@ namespace command
          OpUpdateCurrentArea,
       };
 
-	   view(sp(::ca2::application) papp);
+	   view(sp(base_application) papp);
 	   virtual ~view();
 
 
@@ -36,7 +36,7 @@ namespace command
       virtual void _001OnDraw(::draw2d::graphics * pdc);
 
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 	   virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::view
       DECL_GEN_SIGNAL(_001OnInitialUpdate)

@@ -23,7 +23,7 @@ namespace userstack
 
 
 
-      pane_view(sp(::ca2::application) papp);
+      pane_view(sp(base_application) papp);
       virtual ~pane_view();
 
       using ::user::tab_view::on_show_view;
@@ -34,7 +34,7 @@ namespace userstack
       void on_create_view(::user::view_creator_data * pcreatordata);
       void on_show_view();
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
       void check_3click_dir(const char * psz);
       void check_menu_dir(const char * psz);

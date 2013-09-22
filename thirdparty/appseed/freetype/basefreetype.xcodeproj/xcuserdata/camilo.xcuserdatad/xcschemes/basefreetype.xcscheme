@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9A1B358B16A2D7A500875A94"
-               BuildableName = "lib_ca2freetype.dylib"
+               BuildableName = "libbasefreetype.dylib"
                BlueprintName = "basefreetype"
                ReferencedContainer = "container:basefreetype.xcodeproj">
             </BuildableReference>

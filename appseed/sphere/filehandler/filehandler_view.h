@@ -70,12 +70,12 @@ namespace filehandler
       draw_list               m_drawlist;
 
 
-      view(sp(::ca2::application) papp);
+      view(sp(base_application) papp);
 
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
       
-      virtual void install_message_handling(::ca2::message::dispatch * pdispatch);
+      virtual void install_message_handling(::message::dispatch * pdispatch);
 
       virtual void refresh();
 

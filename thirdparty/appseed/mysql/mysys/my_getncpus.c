@@ -27,7 +27,7 @@ int my_getncpus()
   if (!ncpus)
   {
 #ifdef _SC_NPROCESSORS_ONLN
-    ncpus= sysconf(_SC_NPROCESSORS_ONLN);
+    ncpus= (int) sysconf(_SC_NPROCESSORS_ONLN);
 #elif defined(_WIN32)
     SYSTEM_INFO sysinfo;
 

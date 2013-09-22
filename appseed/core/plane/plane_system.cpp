@@ -379,7 +379,7 @@ namespace plane
          {
 
             if(::str::begins_ci(strLibraryId, "libdraw2d_")
-            || ::str::begins_ci(strLibraryId, "lib_ca2"))
+            || ::str::begins_ci(strLibraryId, "libbase"))
             {
                continue;
             }
@@ -447,13 +447,13 @@ namespace plane
 
 #if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
-      if(strLibrary == "libca2")
+      if(strLibrary == "libbase")
       {
 
-         strLibrary = "ca2";
+         strLibrary = "base";
 
       }
-      else if(!::str::begins_eat(strLibrary, "libca2"))
+      else if(!::str::begins_eat(strLibrary, "libbase"))
       {
 
          ::str::begins_eat(strLibrary, "lib");

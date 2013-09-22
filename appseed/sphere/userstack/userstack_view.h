@@ -49,7 +49,7 @@ namespace userstack
       mutex m_mutexDraw;
 
 
-      view(sp(::ca2::application) papp);
+      view(sp(base_application) papp);
       virtual ~view();
 
    #ifdef DEBUG
@@ -65,9 +65,9 @@ namespace userstack
       virtual void _001OnDraw(::draw2d::graphics * pdc);
 
 
-      virtual void pre_translate_message(::ca2::signal_object * pobj);
+      virtual void pre_translate_message(signal_details * pobj);
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual void OnDraw(::draw2d::graphics * pgraphics);
       virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
@@ -98,7 +98,7 @@ namespace userstack
 
       static UINT c_cdecl ThreadProcShowWindow(LPVOID lpparam);
       
-      void _000OnMouse(::ca2::message::mouse * pmouse);
+      void _000OnMouse(::message::mouse * pmouse);
 
    };
 

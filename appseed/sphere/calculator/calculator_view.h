@@ -11,7 +11,7 @@ namespace calculator
       virtual public ::user::view
    {
    public:
-      view(sp(::ca2::application) papp);
+      view(sp(base_application) papp);
       virtual ~view();
 
 #ifdef DEBUG
@@ -25,7 +25,7 @@ namespace calculator
       virtual void _001OnDraw(::draw2d::graphics * pdc);
 
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
          virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);

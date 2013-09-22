@@ -19979,8 +19979,8 @@ static int my_uca_scanner_next_any(my_uca_scanner *scanner)
     }
 
     /* Process single character */
-    scanner->page= wc[0] >> 8;
-    scanner->code= wc[0] & 0xFF;
+    scanner->page= (int) (wc[0] >> 8);
+    scanner->code= (int) (wc[0] & 0xFF);
 
     /* If weight page for w[0] does not exist, then calculate algoritmically */
     if (!(wpage= scanner->level->weights[scanner->page]))
@@ -20341,8 +20341,8 @@ my_strnxfrm_uca(const CHARSET_INFO *cs,
 static int my_uca_charcmp(const CHARSET_INFO *cs, my_wc_t wc1, my_wc_t wc2)
 {
   size_t length1, length2;
-  uint16 *weight1= my_char_weight_addr(&cs->uca->level[0], wc1); /* W3-TODO */
-  uint16 *weight2= my_char_weight_addr(&cs->uca->level[0], wc2);
+  uint16 *weight1= my_char_weight_addr(&cs->uca->level[0], (unsigned int)wc1); /* W3-TODO */
+  uint16 *weight2= my_char_weight_addr(&cs->uca->level[0], (unsigned int)wc2);
   
   /* Check if some of the characters does not have implicit weights */
   if (!weight1 || !weight2)
@@ -21352,29 +21352,29 @@ my_coll_parser_scan_logical_position(MY_COLL_RULE_PARSER *p,
   MY_COLL_LEXEM *lexem= my_coll_parser_curr(p);
 
   if (!lex_cmp(lexem, C_STRING_WITH_LEN("[first non-ignorable]")))
-    lexem->code= rules->uca->first_non_ignorable;
+    lexem->code= (int) rules->uca->first_non_ignorable;
   else if (!lex_cmp(lexem, C_STRING_WITH_LEN("[last non-ignorable]")))
-    lexem->code= rules->uca->last_non_ignorable;
+    lexem->code= (int) rules->uca->last_non_ignorable;
   else if (!lex_cmp(lexem, C_STRING_WITH_LEN("[first primary ignorable]")))
-    lexem->code= rules->uca->first_primary_ignorable;
+    lexem->code= (int) rules->uca->first_primary_ignorable;
   else if (!lex_cmp(lexem, C_STRING_WITH_LEN("[last primary ignorable]")))
-    lexem->code= rules->uca->last_primary_ignorable;
+    lexem->code= (int) rules->uca->last_primary_ignorable;
   else if (!lex_cmp(lexem, C_STRING_WITH_LEN("[first secondary ignorable]")))
-    lexem->code= rules->uca->first_secondary_ignorable;
+    lexem->code= (int) rules->uca->first_secondary_ignorable;
   else if (!lex_cmp(lexem, C_STRING_WITH_LEN("[last secondary ignorable]")))
-    lexem->code= rules->uca->last_secondary_ignorable;
+    lexem->code= (int) rules->uca->last_secondary_ignorable;
   else if (!lex_cmp(lexem, C_STRING_WITH_LEN("[first tertiary ignorable]")))
-    lexem->code= rules->uca->first_tertiary_ignorable;
+    lexem->code= (int) rules->uca->first_tertiary_ignorable;
   else if (!lex_cmp(lexem, C_STRING_WITH_LEN("[last tertiary ignorable]")))
-    lexem->code= rules->uca->last_tertiary_ignorable;
+    lexem->code= (int) rules->uca->last_tertiary_ignorable;
   else if (!lex_cmp(lexem, C_STRING_WITH_LEN("[first trailing]")))
-    lexem->code= rules->uca->first_trailing;
+    lexem->code= (int) rules->uca->first_trailing;
   else if (!lex_cmp(lexem, C_STRING_WITH_LEN("[last trailing]")))
-    lexem->code= rules->uca->last_trailing;
+    lexem->code= (int) rules->uca->last_trailing;
   else if (!lex_cmp(lexem, C_STRING_WITH_LEN("[first variable]")))
-    lexem->code= rules->uca->first_variable;
+    lexem->code= (int) rules->uca->first_variable;
   else if (!lex_cmp(lexem, C_STRING_WITH_LEN("[last variable]")))
-    lexem->code= rules->uca->last_variable;
+    lexem->code= (int) rules->uca->last_variable;
   else
     return 0; /* Don't scan the next token */
 
@@ -21736,7 +21736,7 @@ my_char_weight_put(MY_UCA_WEIGHT_LEVEL *dst,
 
     if (!from)
     {
-      from= my_char_weight_addr(dst, *str);
+      from= my_char_weight_addr(dst, (unsigned int) *str);
       str++;
       len--;
     }
@@ -21877,7 +21877,7 @@ apply_one_rule(MY_CHARSET_LOADER *loader,
   {
     my_wc_t pagec= (r->curr[0] >> 8);
     DBUG_ASSERT(dst->weights[pagec]);
-    to= my_char_weight_addr(dst, r->curr[0]);
+    to= my_char_weight_addr(dst, (unsigned int) r->curr[0]);
     /* Store weights of the "reset to" character */
     nweights= my_char_weight_put(dst, to, dst->lengths[pagec], r->base, nreset);
   }
@@ -21948,7 +21948,7 @@ init_weight_level(MY_CHARSET_LOADER *loader, MY_COLL_RULES *rules, int level,
   {
     if (!r->curr[1]) /* If not a contraction */
     {
-      uint pagec= (r->curr[0] >> 8);
+      uint pagec= (unsigned int) (r->curr[0] >> 8);
       if (r->base[1]) /* Expansion */
       {
         /* Reserve space for maximum possible length */
@@ -21956,7 +21956,7 @@ init_weight_level(MY_CHARSET_LOADER *loader, MY_COLL_RULES *rules, int level,
       }
       else
       {
-        uint pageb= (r->base[0] >> 8);
+        uint pageb=(unsigned int)  (r->base[0] >> 8);
         if (dst->lengths[pagec] < src->lengths[pageb])
           dst->lengths[pagec]= src->lengths[pageb];
       }

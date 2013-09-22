@@ -6296,7 +6296,7 @@ my_wc_mb_gb2312(const CHARSET_INFO *cs  __attribute__((unused)),
     return 1;
   }
   
-  if (!(code=func_uni_gb2312_onechar(wc)))
+  if (!(code=func_uni_gb2312_onechar((int) wc)))
     return MY_CS_ILUNI;
   
   if (s+2>e)

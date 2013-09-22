@@ -4,8 +4,8 @@
 namespace userstack
 {
 
-   pane_view::pane_view(sp(::ca2::application) papp) :
-      ca2(papp),
+   pane_view::pane_view(sp(base_application) papp) :
+      element(papp),
       ::user::tab(papp),
       ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),
@@ -45,7 +45,7 @@ namespace userstack
    }
 #endif //DEBUG
 
-   void pane_view::_001OnCreate(::ca2::signal_object * pobj)
+   void pane_view::_001OnCreate(signal_details * pobj)
    {
 
       if(pobj->previous())
@@ -120,7 +120,7 @@ namespace userstack
       string strId = get_view_id();
       if(::str::begins_eat(strId, "app:"))
       {
-         sp(::ca2::application) pappTab;
+         sp(base_application) pappTab;
          if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
             Session.m_pappCurrent = pappTab;
@@ -193,14 +193,14 @@ namespace userstack
 
       if(::str::begins_eat(strId, "app:"))
       {
-         sp(::ca2::application) pappTab;
+         sp(base_application) pappTab;
          if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
 
             ::ca2::application_bias * pbiasCreate = new ::ca2::application_bias;
             pbiasCreate->m_puiParent = pcreatordata->m_pholder;
 
-            sp(::ca2::create_context) createcontext(allocer());
+            sp(::create_context) createcontext(allocer());
             createcontext->m_spApplicationBias = pbiasCreate;
             createcontext->m_spCommandLine->_001ParseCommandFork(strId);
 
@@ -231,7 +231,7 @@ namespace userstack
 
          }
 
-         sp(::ca2::application) pappCurrent = Session.m_pappCurrent;
+         sp(base_application) pappCurrent = Session.m_pappCurrent;
 
          Application.m_mapApplication[strId] = pappCurrent;
 
@@ -258,13 +258,13 @@ namespace userstack
 
 
 
-   void pane_view::_001OnMenuMessage(::ca2::signal_object * pobj)
+   void pane_view::_001OnMenuMessage(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       set_cur_tab_by_id(m_pviewdataOld->m_id);
    }
 
-   void pane_view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::message::dispatch * pinterface)
    {
       ::userex::pane_tab_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);
@@ -465,10 +465,10 @@ namespace userstack
       m_iDisplay = iDisplay;
    }
 
-   void pane_view::_001OnRButtonUp(::ca2::signal_object * pobj)
+   void pane_view::_001OnRButtonUp(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::message::mouse, pmouse, pobj);
       /*if(get_view_id() == ::bergedge::PaneViewWinActionArea)
       {
          ::user::menu menu(get_app());
@@ -510,7 +510,7 @@ namespace userstack
 
 
 
-   void pane_view::_001OnProperties(::ca2::signal_object * pobj)
+   void pane_view::_001OnProperties(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       if(get_view_id() == ::bergedge::PaneViewWinActionArea)
@@ -541,7 +541,7 @@ namespace userstack
             "",
             "ca2",
             "savings",
-            ::ca2::resource_display_bandwidth);
+            ::core::resource_display_bandwidth);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 
@@ -552,7 +552,7 @@ namespace userstack
             "",
             "ca2",
             "savings",
-            ::ca2::resource_processing);
+            ::core::resource_processing);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 
@@ -563,7 +563,7 @@ namespace userstack
             "",
             "ca2",
             "savings",
-            ::ca2::resource_memory);
+            ::core::resource_memory);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 

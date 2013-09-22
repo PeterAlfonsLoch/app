@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9AA5E4C216F7C61B005C45CE"
-               BuildableName = "lib_ca2freeimage.dylib"
-               BlueprintName = "_ca2freeimage"
-               ReferencedContainer = "container:_ca2freeimage.xcodeproj">
+               BuildableName = "libbasemysql.dylib"
+               BlueprintName = "basemysql"
+               ReferencedContainer = "container:basemysql.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

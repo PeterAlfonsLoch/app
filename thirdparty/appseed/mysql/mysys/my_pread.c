@@ -153,8 +153,8 @@ size_t my_pwrite(File Filedes, const uchar *Buffer, size_t Count,
   const size_t initial_count= Count;
 
   DBUG_ENTER("my_pwrite");
-  DBUG_PRINT("my",("fd: %d  Seek: %llu  Buffer: %p  Count: %lu  MyFlags: %d",
-             Filedes, offset, Buffer, (ulong)Count, MyFlags));
+  DBUG_PRINT("my",("fd: %d  Seek: %lu  Buffer: %p  Count: %lu  MyFlags: %d",
+             Filedes, (ulong) offset, Buffer, (ulong)Count, MyFlags));
 
   for (;;)
   {

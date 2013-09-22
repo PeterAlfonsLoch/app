@@ -6757,7 +6757,7 @@ my_wc_mb_big5(const CHARSET_INFO *cs __attribute__((unused)),
     return 1;
   }
   
-  if (!(code=func_uni_big5_onechar(wc)))
+  if (!(code=func_uni_big5_onechar((int)wc)))
     return MY_CS_ILUNI;
   
   if (s+2>e)

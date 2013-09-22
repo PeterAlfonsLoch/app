@@ -6,3 +6,6 @@
 #include "ansios_http_lib.h"
 #include "ansios_http.h"
 #include "ansios_multithreading.h"
+
+
+extern int_bool (* g_messageboxa)(oswindow window, const char * psz, const char * pszTitle, uint32_t uiFlags);

@@ -5,8 +5,8 @@ namespace userstack
 {
 
 
-   view::view(sp(::ca2::application) papp) :
-      ca2(papp),
+   view::view(sp(base_application) papp) :
+      element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       m_dibV(papp),
@@ -34,7 +34,7 @@ namespace userstack
    {
    }
 
-   void view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void view::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::view::install_message_handling(pinterface);
 
@@ -87,7 +87,7 @@ namespace userstack
       cs.style &= ~WS_EX_CLIENTEDGE;
       return ::user::view::pre_create_window(cs);
    }
-   void view::_001OnInitialUpdate(::ca2::signal_object * pobj)
+   void view::_001OnInitialUpdate(signal_details * pobj)
    {
       ::user::view::_001OnInitialUpdate(pobj);
 
@@ -103,7 +103,7 @@ namespace userstack
 
    }
 
-   void view::_001OnDestroy(::ca2::signal_object * pobj)
+   void view::_001OnDestroy(signal_details * pobj)
    {
       ::user::view::_001OnDestroy(pobj);
 
@@ -111,7 +111,7 @@ namespace userstack
 
 
 
-   void view::_001OnPaint(::ca2::signal_object * pobj)
+   void view::_001OnPaint(signal_details * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -126,7 +126,7 @@ namespace userstack
 
    }
 
-   void view::_001OnCreate(::ca2::signal_object * pobj)
+   void view::_001OnCreate(signal_details * pobj)
    {
       if(pobj->previous())
          return;
@@ -178,9 +178,9 @@ namespace userstack
 
    }
 
-   void view::_001OnContextMenu(::ca2::signal_object * pobj)
+   void view::_001OnContextMenu(signal_details * pobj)
    {
-//      SCAST_PTR(::ca2::message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
 //      point point = pcontextmenu->GetPoint();
 
    }
@@ -193,10 +193,10 @@ namespace userstack
       }
    }
 
-   void view::_001OnSetCursor(::ca2::signal_object * pobj)
+   void view::_001OnSetCursor(signal_details * pobj)
    {
       
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
    
       pmouse->m_ecursor = ::visual::cursor_arrow;
 
@@ -204,7 +204,7 @@ namespace userstack
 
    }
 
-   void view::pre_translate_message(::ca2::signal_object * pobj)
+   void view::pre_translate_message(signal_details * pobj)
    {
       ::user::view::pre_translate_message(pobj);
    }
@@ -214,9 +214,9 @@ namespace userstack
       return  (::user::scroll_view::get_document());
    }
 
-   void view::_001OnTimer(::ca2::signal_object * pobj)
+   void view::_001OnTimer(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::timer, ptimer, pobj)
+      SCAST_PTR(::message::timer, ptimer, pobj)
       switch(ptimer->m_nIDEvent)
       {
       case TimerBackView:
@@ -266,9 +266,9 @@ namespace userstack
    }
 
 
-   void view::_001OnLButtonUp(::ca2::signal_object * pobj)
+   void view::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::ca2::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj)
       pmouse->set_lresult(1);
       KillTimer(5432180);
       point pt = pmouse->m_pt;
@@ -359,7 +359,7 @@ namespace userstack
       gcom::backview::user::interaction::layout();
    }*/
 
-   void view::_000OnMouse(::ca2::message::mouse * pmouse)
+   void view::_000OnMouse(::message::mouse * pmouse)
    {
       try
       {
@@ -425,7 +425,7 @@ namespace userstack
       {
          if(m_pimpl == NULL)
             return;
-         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::ca2::signal_object * > (pmouse));
+         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
          if(pmouse->get_lresult() != 0)
             return;
       }

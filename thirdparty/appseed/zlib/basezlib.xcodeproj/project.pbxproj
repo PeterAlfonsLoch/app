@@ -33,7 +33,7 @@
 		9A86CBC616E80CFB008420D3 /* zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86CB5616E80CFB008420D3 /* zlib.h */; };
 		9A86CBC716E80CFB008420D3 /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CB5C16E80CFB008420D3 /* zutil.c */; };
 		9A86CBC816E80CFB008420D3 /* zutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86CB5D16E80CFB008420D3 /* zutil.h */; };
-		9A98A61D1771D710000AE16E /* lib_ca2c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A98A61C1771D710000AE16E /* lib_ca2c.dylib */; };
+		9A8CCAE217EA05DB00F87A02 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8CCAE117EA05DB00F87A02 /* libbase.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +64,7 @@
 		9A86CB5616E80CFB008420D3 /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
 		9A86CB5C16E80CFB008420D3 /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zutil.c; sourceTree = "<group>"; };
 		9A86CB5D16E80CFB008420D3 /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
+		9A8CCAE117EA05DB00F87A02 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
 		9A98A61C1771D710000AE16E /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A98A61D1771D710000AE16E /* lib_ca2c.dylib in Frameworks */,
+				9A8CCAE217EA05DB00F87A02 /* libbase.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +83,7 @@
 		9A86B36F16E7EDBE008420D3 = {
 			isa = PBXGroup;
 			children = (
+				9A8CCAE117EA05DB00F87A02 /* libbase.dylib */,
 				9A98A61C1771D710000AE16E /* lib_ca2c.dylib */,
 				9A86CA5116E80CFA008420D3 /* adler32.c */,
 				9A86CA5C16E80CFA008420D3 /* compress.c */,

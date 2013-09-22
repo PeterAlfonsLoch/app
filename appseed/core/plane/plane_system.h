@@ -452,7 +452,7 @@ bool ::file::system::output(sp(base_application) papp, const char * pszOutput, T
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
-
+   
    string strDownloading = pszOutput;
 
    strDownloading += ".downloading";
@@ -466,13 +466,40 @@ bool ::file::system::output(sp(base_application) papp, const char * pszOutput, T
 
    if(fileIn.is_null())
       return false;
+   
+   {
 
-   ::file::output_stream ostream(fileOut);
+      ::file::output_stream ostream(fileOut);
 
-   ::file::input_stream istream(fileIn);
+      ::file::input_stream istream(fileIn);
 
-   if(!(p->*lpfnOuput)(ostream, istream))
-      return false;
+      if(!(p->*lpfnOuput)(ostream, istream))
+         return false;
+      
+   }
+   
+   try
+   {
+      
+      fileOut->close();
+      
+   }
+   catch(...)
+   {
+      
+   }
+   
+   
+   try
+   {
+      
+      fileIn->close();
+      
+   }
+   catch(...)
+   {
+      
+   }
 
    if(::rename(strDownloading, pszOutput) != 0)
    {

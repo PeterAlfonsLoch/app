@@ -7,7 +7,7 @@ namespace sockets
 
    http_buffer::http_buffer(sp(base_application) papp, mutex * pmutex) :
       element(papp),
-      transfer_stream(papp, pmutex)
+      transfer_buffer(papp, pmutex)
    {
    }
 
@@ -15,7 +15,7 @@ namespace sockets
    //
    http_buffer::http_buffer(sp(base_application) papp, ::file::memory_buffer * pmemoryfileIn) :
       element(papp),
-      transfer_stream(papp, pmemoryfileIn)
+      transfer_buffer(papp, pmemoryfileIn)
    {
    }
 
@@ -32,7 +32,7 @@ namespace sockets
 
       ::http::signal * psignal = new ::http::signal;
 
-      psignal->m_set["http_buffer"]       = (sp(element)) m_pmemoryfileIn;
+      psignal->m_set["file"]       = (sp(element)) m_pmemoryfileIn;
       psignal->m_set["file_out"]   = (sp(element)) m_ptimeoutfile;
 
       psignal->m_strUrl = lpszFileName; 

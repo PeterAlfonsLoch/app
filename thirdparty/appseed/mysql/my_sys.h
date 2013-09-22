@@ -847,14 +847,18 @@ extern int my_getncpus();
 
 #else
 /* not a complete set of mmap() flags, but only those that nesessary */
+#if !defined(MACOS)
 #define PROT_READ        1
 #define PROT_WRITE       2
 #define MAP_NORESERVE    0
+#endif
 #define MAP_SHARED       0x0001
 #define MAP_PRIVATE      0x0002
 #define MAP_NOSYNC       0x0800
 #define MAP_FAILED       ((void *)-1)
+#if !defined(MACOS)
 #define MS_SYNC          0x0000
+#endif
 
 #define HAVE_MMAP
 void *my_mmap(void *, size_t, int, int, int, my_off_t);

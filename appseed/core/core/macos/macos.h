@@ -31,21 +31,12 @@ void RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumber
 
 
 
-namespace ca2
-{
 
-
-   class file;
-
-
-} // namespace ca2
-
-
-typedef ::ca2::file * HFILE;
+typedef ::file::stream_buffer * HFILE;
 
 
 
 CLASS_DECL_ca2 bool AmIBeingDebugged();
 
-#include "os_multithreading.h"
+//#include "os_multithreading.h"
 

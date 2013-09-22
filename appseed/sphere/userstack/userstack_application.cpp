@@ -67,7 +67,7 @@ namespace userstack
       }
 
       string strId;
-      sp(::ca2::application) pcaapp;
+      sp(base_application) pcaapp;
 
       POSITION pos = m_mapApplication.get_start_position();
 
@@ -79,7 +79,7 @@ namespace userstack
 
          m_mapApplication.get_next_assoc(pos, strId, pcaapp);
 
-         sp(::ca2::application) papp =  (pcaapp);
+         sp(base_application) papp =  (pcaapp);
 
          papp->post_thread_message(WM_QUIT);
       }
@@ -106,10 +106,10 @@ namespace userstack
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
    {
-      return ::ca2::application::_001OnCmdMsg(pcmdmsg);
+      return ::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::ca2::application * application::get_app() const
+   ::application * application::get_app() const
    {
       return ::asphere::application::get_app();
    }
@@ -170,7 +170,7 @@ namespace userstack
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void application::on_request(sp(::ca2::create_context) pcreatecontext)
+   void application::on_request(sp(::create_context) pcreatecontext)
    {
 
 
@@ -184,7 +184,7 @@ namespace userstack
       if(eexclusive == ::ca2::ExclusiveInstanceLocalId)
       {
 #ifdef WINDOWSEX
-         ::primitive::memory_file file(get_app());
+         ::file::memory_buffer file(get_app());
          file.from_string(command()->m_varTopicFile);
          COPYDATASTRUCT data;
          data.dwData = 1984;
@@ -200,7 +200,7 @@ namespace userstack
    }
 
 
-/*   void application::request(sp(::ca2::create_context) pcreatecontext)
+/*   void application::request(sp(::create_context) pcreatecontext)
    {
 
       if(m_pappCurrent != NULL && m_pappCurrent != this
@@ -264,9 +264,9 @@ namespace userstack
    }
 
 
-   sp(::ca2::application) application::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca2::application_bias * pbiasCreate)
+   sp(base_application) application::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca2::application_bias * pbiasCreate)
    {
-      sp(::ca2::application) papp = NULL;
+      sp(base_application) papp = NULL;
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
          return papp;
@@ -295,7 +295,7 @@ namespace userstack
       }
    }
 
-   sp(::ca2::application) application::get_current_application()
+   sp(base_application) application::get_current_application()
    {
       return m_pappCurrent;
    }
@@ -310,14 +310,14 @@ namespace userstack
       }
    }
 
-/*   sp(::user::interaction) application::get_request_parent_ui(sp(::user::main_frame) pmainframe, sp(::ca2::create_context) pcreatecontext)
+/*   sp(::user::interaction) application::get_request_parent_ui(sp(::user::main_frame) pmainframe, sp(::create_context) pcreatecontext)
    {
 
       return get_request_parent_ui((sp(::user::interaction) ) pmainframe, pcreatecontext);
 
    }
 
-   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::ca2::create_context) pcreatecontext)
+   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create_context) pcreatecontext)
    {
 
 
@@ -404,7 +404,7 @@ namespace userstack
 
    }
 
-   ::user::place_holder_ptra application::get_place_holder(sp(::user::main_frame) pmainframe, sp(::ca2::create_context) pcreatecontext)
+   ::user::place_holder_ptra application::get_place_holder(sp(::user::main_frame) pmainframe, sp(::create_context) pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -435,7 +435,7 @@ namespace userstack
 
    }
 
-   bool application::place(sp(::user::main_frame) pmainframe, sp(::ca2::create_context) pcreatecontext)
+   bool application::place(sp(::user::main_frame) pmainframe, sp(::create_context) pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
@@ -476,7 +476,7 @@ namespace userstack
    void application::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
-      sp(::ca2::application) papp = NULL;
+      sp(base_application) papp = NULL;
 
       if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {

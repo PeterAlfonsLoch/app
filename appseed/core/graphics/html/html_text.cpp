@@ -516,8 +516,8 @@ namespace html
 
          if(!pdata->m_bEdit)
          {
-            brushText->create_solid(cr);
-            pdc->SelectObject(brushText);
+//            brushText->create_solid(cr);
+  //          pdc->SelectObject(brushText);
          }
 
 

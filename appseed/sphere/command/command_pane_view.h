@@ -9,13 +9,13 @@ namespace command
       virtual public command::form_callback
    {
    public:
-	   pane_view(sp(::ca2::application) papp);
+	   pane_view(sp(base_application) papp);
 	   void rotate();
       
       void on_create_view(::user::view_creator_data * pcreatordata);
       void on_show_view();
 
-      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
 	   virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
 	   virtual bool pre_create_window(CREATESTRUCT& cs);

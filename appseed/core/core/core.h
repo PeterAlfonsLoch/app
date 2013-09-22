@@ -530,10 +530,10 @@ CLASS_DECL_ca2 CArchive& operator>>(CArchive& ar, RECT& rect);
 
 
 
-CLASS_DECL_ca2 void __get_gray_bitmap(sp(::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
-CLASS_DECL_ca2 void __draw_gray_bitmap(sp(::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
-CLASS_DECL_ca2 void __get_dithered_bitmap(sp(::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
-CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca2 void __get_gray_bitmap(sp(base_application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
+CLASS_DECL_ca2 void __draw_gray_bitmap(sp(base_application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
+CLASS_DECL_ca2 void __get_dithered_bitmap(sp(base_application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca2 void __draw_dithered_bitmap(sp(base_application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
 
 
 #include "graphics/draw2d/draw2d.h"
@@ -1301,7 +1301,7 @@ inline bool is_null(const TYPE & ref)
 
 #include "filesystem/file/file_folder_watch.h"
 
-#include "filesystem/file/file_transfer_stream.h"
+#include "filesystem/file/file_transfer_buffer.h"
 
 
 class document_interface;
@@ -1310,7 +1310,7 @@ class document_interface;
 class main_frame;
 
 
-typedef sp(::application) (* LP_GET_NEW_APP) ();
+typedef sp(base_application) (* LP_GET_NEW_APP) ();
 
 
 namespace core

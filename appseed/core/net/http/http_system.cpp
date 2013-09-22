@@ -1203,7 +1203,7 @@ retry:
       }
       if(set.has_property("file"))
       {
-         psocket->m_pfile = set["file"].cast < ::file::binary_buffer >();
+         psocket->m_pfile = set["file"].cast < ::file::stream_buffer >();
       }
       if(pcookies != NULL && pcookies->get_size() > 0)
       {

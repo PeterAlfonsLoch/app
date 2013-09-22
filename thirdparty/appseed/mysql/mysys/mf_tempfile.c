@@ -147,7 +147,7 @@ File create_temp_file(char *to, const char *dir, const char *prefix,
     old_env= (char**) environ;
     if (dir)
     {				/* Don't use TMPDIR if dir is given */
-      environ=(const char**) temp_env;
+      environ=(char**) temp_env;
       temp_env[0]=0;
     }
 
@@ -166,7 +166,7 @@ File create_temp_file(char *to, const char *dir, const char *prefix,
       DBUG_PRINT("error",("Got error: %d from tempnam",errno));
     }
 
-    environ=(const char**) old_env;
+    environ=(char**) old_env;
   }
 #else
 #error No implementation found for create_temp_file

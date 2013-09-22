@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   transfer_stream::transfer_stream(sp(base_application) papp, mutex * pmutex) :
+   transfer_buffer::transfer_buffer(sp(base_application) papp, mutex * pmutex) :
       element(papp)
    {
 
@@ -26,7 +26,8 @@ namespace file
       m_ptimeoutfile = new ::file::timeout_buffer(papp, m_pmemoryfileOut, (uint64_t) -1);
       m_ptimeoutfile->m_spmutex = m_spmutex;
 
-      m_spbuffer = m_ptimeoutfile;
+      m_spfile = m_ptimeoutfile;
+      
       m_ptimeoutfile->m_dwSleep = 284;
       m_ptimeoutfile->m_dwTimeOut = 184 * 1000;
 
@@ -34,7 +35,7 @@ namespace file
 
    // it is not currently designed to call open.
    //
-   transfer_stream::transfer_stream(sp(base_application) papp, ::file::memory_buffer * pmemoryfileIn) :
+   transfer_buffer::transfer_buffer(sp(base_application) papp, ::file::memory_buffer * pmemoryfileIn) :
       element(papp)
    {
 
@@ -51,27 +52,28 @@ namespace file
       m_ptimeoutfile = new ::file::timeout_buffer(papp, m_pmemoryfileOut);
       m_ptimeoutfile->m_spmutex = m_spmutex;
 
-      m_spbuffer = m_ptimeoutfile;
+      m_spfile = m_ptimeoutfile;
 
       m_ptimeoutfile->m_dwSleep = 284;
       m_ptimeoutfile->m_dwTimeOut = 184 * 1000;
 
    }
 
-   transfer_stream::~transfer_stream()
+   transfer_buffer::~transfer_buffer()
    {
 
    }
 
-   file_position transfer_stream::seek(file_offset lOff, ::file::e_seek nFrom)
+   /*
+   file_position transfer_buffer::seek(file_offset lOff, ::file::e_seek nFrom)
    {
       return m_ptimeoutfile->seek(lOff, nFrom);
    }
 
-   file_size transfer_stream::get_length() const
+   file_size transfer_buffer::get_length() const
    {
       return m_ptimeoutfile->get_length();
-   }
+   }*/
 
 
 } // namespace core

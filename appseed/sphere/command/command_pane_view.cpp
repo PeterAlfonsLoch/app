@@ -5,8 +5,8 @@ namespace command
 {
 
 
-   pane_view::pane_view(sp(::ca2::application) papp) :
-      ca2(papp),
+   pane_view::pane_view(sp(base_application) papp) :
+      element(papp),
       ::user::tab(papp),
 
       ::user::tab_view(papp),
@@ -40,9 +40,9 @@ namespace command
    /////////////////////////////////////////////////////////////////////////////
    // pane_view message handlers
 
-   void pane_view::_001OnCreate(::ca2::signal_object * pobj)
+   void pane_view::_001OnCreate(signal_details * pobj)
    {
-//      SCAST_PTR(::ca2::message::create, pcreate, pobj)
+//      SCAST_PTR(::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
 
@@ -119,7 +119,7 @@ namespace command
    }
 
 
-   void pane_view::_001OnSize(::ca2::signal_object * pobj)
+   void pane_view::_001OnSize(signal_details * pobj)
    {
 	   pobj->previous();
 
@@ -274,13 +274,13 @@ namespace command
       }
    }
 
-   void pane_view::_001OnMenuMessage(::ca2::signal_object * pobj)
+   void pane_view::_001OnMenuMessage(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       set_cur_tab_by_id(m_pviewdataOld->m_id);
    }
 
-   void pane_view::install_message_handling(::ca2::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::view::install_message_handling(pinterface);
 

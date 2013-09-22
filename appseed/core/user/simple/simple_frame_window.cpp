@@ -188,7 +188,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
             pinteractionframe = create_frame_schema();
 
         }
-        catch(const not_installed & e)
+        catch(not_installed & e)
         {
 
             System.remove_frame(this);
