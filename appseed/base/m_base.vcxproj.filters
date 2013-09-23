@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{6536ee96-520c-468d-8f6e-b661a5292221}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\c">
+      <UniqueIdentifier>{a5c865b3-8109-4696-8ef8-6e0d80599fd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{ebeeb70f-684d-4ccf-a743-b34a77907642}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\c">
+      <UniqueIdentifier>{8cfb5659-670a-459f-8d0b-58af5f16356e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\metrowin">
+      <UniqueIdentifier>{d696e325-44c7-4223-98f8-76e40f0c9e85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\metrowin">
+      <UniqueIdentifier>{8db4b1b9-ec75-4fe9-8f05-8f084c5da0ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base">
+      <UniqueIdentifier>{02d30df4-46a1-4a06-93d3-f0d0aa2dcd49}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="c\c.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="dll_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_allocate_base.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_allocate_base_heap.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_allocate_mid_big.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_allocate_system_heap.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_allocate_var.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_application.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_assert.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_checked.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_conv.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_departament.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_departament_container.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_element.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_fixed_alloc.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_heap.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_muldiv64.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_plex.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_plex_heap.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_root.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_system.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_template.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base_thread.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework_c.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="metrowin\c_os_internal.h">
+      <Filter>Header Files\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_mm.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_c.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

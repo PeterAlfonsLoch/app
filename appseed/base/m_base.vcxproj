@@ -30,7 +30,7 @@
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
     <ProjectGuid>{5487686F-8A2F-401A-A38E-FDA8900E1984}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>_c</ProjectName>
+    <ProjectName>base</ProjectName>
     <RootNamespace>m_c</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
@@ -134,7 +134,7 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>__C__LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -259,16 +259,40 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClInclude Include="metrowin\c_os_internal.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="base\base.cpp" />
+    <ClCompile Include="base\base_allocate_base.cpp" />
+    <ClCompile Include="base\base_allocate_base_heap.cpp" />
+    <ClCompile Include="base\base_allocate_mid_big.cpp" />
+    <ClCompile Include="base\base_allocate_system_heap.cpp" />
+    <ClCompile Include="base\base_allocate_var.cpp" />
+    <ClCompile Include="base\base_application.cpp" />
+    <ClCompile Include="base\base_assert.cpp" />
+    <ClCompile Include="base\base_checked.cpp" />
+    <ClCompile Include="base\base_conv.cpp" />
+    <ClCompile Include="base\base_departament.cpp" />
+    <ClCompile Include="base\base_departament_container.cpp" />
+    <ClCompile Include="base\base_element.cpp" />
+    <ClCompile Include="base\base_fixed_alloc.cpp" />
+    <ClCompile Include="base\base_heap.cpp" />
+    <ClCompile Include="base\base_muldiv64.cpp" />
+    <ClCompile Include="base\base_plex.cpp" />
+    <ClCompile Include="base\base_plex_heap.cpp" />
+    <ClCompile Include="base\base_root.cpp" />
+    <ClCompile Include="base\base_system.cpp" />
+    <ClCompile Include="base\base_template.cpp" />
+    <ClCompile Include="base\base_thread.cpp" />
     <ClCompile Include="c\c.c" />
     <ClCompile Include="dll_main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="framework.c">
+    <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="_c.def" />
+    <ClCompile Include="framework_c.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
