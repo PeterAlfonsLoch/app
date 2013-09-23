@@ -3,7 +3,7 @@
 #include "base/x/x_charcategory_names.h"
 
 
-int32_t gen_ch_class_reference_tables();
+void * gen_ch_class_reference_tables();
 
 
 inline bool is_legal_uni_index(int64_t ca)
@@ -11,9 +11,9 @@ inline bool is_legal_uni_index(int64_t ca)
    return ca >= ((uint64_t) 0xffff) ? false : true;
 }
 
-int32_t gen_ch_class_reference_tables()
+void * gen_ch_class_reference_tables()
 {
-   return sizeof(char_bidi_names);
+   return char_bidi_names;
 }
 
 

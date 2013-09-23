@@ -35,8 +35,9 @@ static void file_logger(int32_t level, const char *cname, const char *msg, va_li
 
   fflush(log);
 }
+   void console_logger(int32_t level, const char *cname, const char *msg, va_list v);
 
-static void console_logger(int32_t level, const char *cname, const char *msg, va_list v){
+ void console_logger(int32_t level, const char *cname, const char *msg, va_list v){
 
   printf("[%s][%s] ", levelNames[level], cname);
 

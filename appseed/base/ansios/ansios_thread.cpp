@@ -97,7 +97,7 @@ map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo > & pendingThreads(
 
 
 
-static map < HTHREAD, HTHREAD, HTHREAD, HTHREAD > & thread_handle_map()
+map < HTHREAD, HTHREAD, HTHREAD, HTHREAD > & thread_handle_map()
 {
 
    static map < HTHREAD, HTHREAD, HTHREAD, HTHREAD > * s_pmap = new map < HTHREAD, HTHREAD, HTHREAD, HTHREAD >();
@@ -106,7 +106,7 @@ static map < HTHREAD, HTHREAD, HTHREAD, HTHREAD > & thread_handle_map()
 
 }
 
-static map < DWORD, DWORD, HTHREAD, HTHREAD > & thread_id_handle_map()
+map < DWORD, DWORD, HTHREAD, HTHREAD > & thread_id_handle_map()
 {
 
    static map < DWORD, DWORD, HTHREAD, HTHREAD > * s_pmap = new map < DWORD, DWORD, HTHREAD, HTHREAD >();
@@ -116,7 +116,7 @@ static map < DWORD, DWORD, HTHREAD, HTHREAD > & thread_id_handle_map()
 }
 
 
-static map < HTHREAD, HTHREAD, DWORD, DWORD > & thread_id_map()
+map < HTHREAD, HTHREAD, DWORD, DWORD > & thread_id_map()
 {
 
    static map < HTHREAD , HTHREAD, DWORD, DWORD > * s_pmap = new map < HTHREAD, HTHREAD, DWORD, DWORD >();
@@ -158,7 +158,7 @@ array < os_thread * > * os_thread::s_pptra = NULL;
 
 
 // Converts a Win32 thread priority to WinRT format.
-static int32_t GetWorkItemPriority(int32_t nPriority)
+int32_t GetWorkItemPriority(int32_t nPriority)
 {
    if (nPriority < 0)
       return nPriority; // WorkItemPriority::Low;
@@ -170,7 +170,7 @@ static int32_t GetWorkItemPriority(int32_t nPriority)
 
 
 // Helper shared between CreateThread and ResumeThread.
-static os_thread * StartThread(LPTHREAD_START_ROUTINE pfn, LPVOID pv, HTHREAD hthread, int32_t nPriority, SIZE_T cbStack)
+os_thread * StartThread(LPTHREAD_START_ROUTINE pfn, LPVOID pv, HTHREAD hthread, int32_t nPriority, SIZE_T cbStack)
 {
 
    os_thread * pthread = new os_thread(pfn, pv);

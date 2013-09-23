@@ -112,6 +112,12 @@ namespace exception
    }
 
 #endif
+   
+#ifdef MACOS
+   
+   void InstallUncaughtExceptionHandler();
+
+#endif
 
    bool translator::attach()
    {
@@ -123,6 +129,10 @@ namespace exception
          //PreventSetUnhandledExceptionFilter();
          //EnforceFilter(true);
 #else
+         
+#ifdef MACOS
+         void InstallUncaughtExceptionHandler();
+#endif
 
          memset(&m_saSeg, 0, sizeof(m_saSeg));
          sigemptyset(&m_saSeg.sa_mask);

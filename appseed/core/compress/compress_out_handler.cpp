@@ -136,7 +136,9 @@ namespace libcompress
       { NCoderPropID::kDefaultProp, var::type_int32, "" }
    };
 
-   static bool ConvertProperty(var srcProp, var::e_type varType, var &destProp)
+    bool ConvertProperty(var srcProp, var::e_type varType, var &destProp);
+    
+   bool ConvertProperty(var srcProp, var::e_type varType, var &destProp)
    {
       if (varType == srcProp.get_type())
       {

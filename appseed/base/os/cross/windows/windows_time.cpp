@@ -644,7 +644,7 @@ static int32_t weekday_to_mday(int32_t year, int32_t day, int32_t mon, int32_t d
     return mday;
 }
 
-static WINBOOL match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_st)
+WINBOOL match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_st)
 {
     WORD wDay;
 
@@ -665,7 +665,7 @@ static WINBOOL match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *r
     return TRUE;
 }
 
-static WINBOOL match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE_INFORMATION *reg_tzi)
+WINBOOL match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE_INFORMATION *reg_tzi)
 {
     if (tzi->Bias == reg_tzi->Bias &&
         match_tz_date(&tzi->StandardDate, &reg_tzi->StandardDate) &&

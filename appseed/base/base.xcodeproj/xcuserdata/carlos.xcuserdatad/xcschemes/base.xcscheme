@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0460"
+   LastUpgradeVersion = "0500"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A86B37716E7EDBE008420D3"
-               BuildableName = "lib_ca2zlib.dylib"
-               BlueprintName = "_ca2zlib"
-               ReferencedContainer = "container:_ca2zlib.xcodeproj">
+               BlueprintIdentifier = "9A98A6031771D67E000AE16E"
+               BuildableName = "libbase.dylib"
+               BlueprintName = "base"
+               ReferencedContainer = "container:base.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

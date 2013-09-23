@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0460"
+   LastUpgradeVersion = "0500"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CEA754C314411F2B007E04DE"
-               BuildableName = "libca2c.dylib"
-               BlueprintName = "ca2c"
-               ReferencedContainer = "container:c.xcodeproj">
+               BuildableName = "libboot.dylib"
+               BlueprintName = "boot"
+               ReferencedContainer = "container:boot.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

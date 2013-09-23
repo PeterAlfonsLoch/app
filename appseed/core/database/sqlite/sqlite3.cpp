@@ -6567,12 +6567,12 @@ namespace sqlite3
 #if !defined(SQLITE_OMIT_SHARED_CACHE) && SQLITE_THREADSAFE
    SQLITE_PRIVATE   void sqlite3BtreeEnter(Btree*);
    SQLITE_PRIVATE   void sqlite3BtreeLeave(Btree*);
-   SQLITE_PRIVATE   int32_t sqlite3BtreeHoldsMutex(Btree*);
+      int32_t sqlite3BtreeHoldsMutex(Btree*);
    SQLITE_PRIVATE   void sqlite3BtreeEnterCursor(BtCursor*);
    SQLITE_PRIVATE   void sqlite3BtreeLeaveCursor(BtCursor*);
    SQLITE_PRIVATE   void sqlite3BtreeEnterAll(sqlite3*);
    SQLITE_PRIVATE   void sqlite3BtreeLeaveAll(sqlite3*);
-   SQLITE_PRIVATE   int32_t sqlite3BtreeHoldsAllMutexes(sqlite3*);
+      int32_t sqlite3BtreeHoldsAllMutexes(sqlite3*);
    SQLITE_PRIVATE   void sqlite3BtreeMutexArrayEnter(BtreeMutexArray*);
    SQLITE_PRIVATE   void sqlite3BtreeMutexArrayLeave(BtreeMutexArray*);
    SQLITE_PRIVATE   void sqlite3BtreeMutexArrayInsert(BtreeMutexArray*, Btree*);
@@ -9124,7 +9124,7 @@ namespace sqlite3
    SQLITE_PRIVATE   int32_t sqlite3FaultBenignFailures(int32_t);
    SQLITE_PRIVATE   int32_t sqlite3FaultPending(int32_t);
    SQLITE_PRIVATE   void sqlite3FaultBenign(int32_t,int32_t);
-   SQLITE_PRIVATE   int32_t sqlite3FaultStep(int32_t);
+   int32_t sqlite3FaultStep(int32_t);
 #else
 # define sqlite3FaultConfig(A,B,C)
 # define sqlite3FaultFailures(A)         0
@@ -10613,6 +10613,7 @@ zulu_time:
       assert( id>=0 && id<SQLITE_FAULTINJECTOR_COUNT );
       aFault[id].benign = enable;
    }
+#ifndef MACOS
 
    /*
    ** This routine exists as a place to set a breakpoint that will
@@ -10623,12 +10624,11 @@ zulu_time:
       cnt++;
    }
 
-
    /*
    ** Check to see if a fault should be simulated.  Return true to simulate
    ** the fault.  Return false if the fault should not be simulated.
    */
-   SQLITE_PRIVATE int32_t sqlite3FaultStep(int32_t id){
+    int32_t sqlite3FaultStep(int32_t id){
       assert( id>=0 && id<SQLITE_FAULTINJECTOR_COUNT );
       if( likely(!aFault[id].enable) ){
          return 0;
@@ -10648,6 +10648,8 @@ zulu_time:
       }
       return 1;
    }
+   
+#endif
 
 #endif /* SQLITE_OMIT_FAULTINJECTOR */
 

@@ -326,7 +326,7 @@
 #define SIZEOF_CHARP  4
 #endif
 #else
-#ifdef __LP64
+#if defined(__LP64) || defined(_LP64)
 #define SIZEOF_VOIDP  8
 #define SIZEOF_CHARP  8
 #else

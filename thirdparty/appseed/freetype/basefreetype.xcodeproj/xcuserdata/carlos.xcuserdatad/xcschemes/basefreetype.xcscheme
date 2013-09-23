@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0460"
+   LastUpgradeVersion = "0500"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A1B2F8716A2AF5C00875A94"
-               BuildableName = "libFreeImage.dylib"
-               BlueprintName = "FreeImage"
-               ReferencedContainer = "container:FreeImage.xcodeproj">
+               BlueprintIdentifier = "9A1B358B16A2D7A500875A94"
+               BuildableName = "libbasefreetype.dylib"
+               BlueprintName = "basefreetype"
+               ReferencedContainer = "container:basefreetype.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

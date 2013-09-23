@@ -159,7 +159,7 @@ repeat:
    else
    {
       
-      int c = getc(stdin);
+      getc(stdin);
       
    }
 

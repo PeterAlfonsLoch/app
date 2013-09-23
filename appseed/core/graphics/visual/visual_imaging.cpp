@@ -1589,9 +1589,13 @@ void imaging::BitmapBlend24CC(
       LPBYTE lpbC = (LPBYTE) lpbCParam + (w3 * i);
       for(j = 0; j < cx; j++)
       {
-         *lpbA++ = (BYTE) (((((uint32_t) *lpbA) * ((uint32_t) (255 - *lpbC)) + (((uint32_t) *lpbB++) * ((uint32_t) *lpbC++)))) / 255);
-         *lpbA++ = (BYTE) (((((uint32_t) *lpbA) * ((uint32_t) (255 - *lpbC)) + (((uint32_t) *lpbB++) * ((uint32_t) *lpbC++)))) / 255);
-         *lpbA++ = (BYTE) (((((uint32_t) *lpbA) * ((uint32_t) (255 - *lpbC)) + (((uint32_t) *lpbB++) * ((uint32_t) *lpbC++)))) / 255);
+         lpbA[0] = (BYTE) (((((uint32_t) lpbA[0]) * ((uint32_t) (255 - lpbC[0])) + (((uint32_t) lpbB[0]) * ((uint32_t) lpbC[0])))) / 255);
+         lpbA[1] = (BYTE) (((((uint32_t) lpbA[1]) * ((uint32_t) (255 - lpbC[1])) + (((uint32_t) lpbB[1]) * ((uint32_t) lpbC[1])))) / 255);
+         lpbA[2] = (BYTE) (((((uint32_t) lpbA[2]) * ((uint32_t) (255 - lpbC[2])) + (((uint32_t) lpbB[2]) * ((uint32_t) lpbC[2])))) / 255);
+         lpbA+=3;
+         lpbB+=3;
+         lpbC+=3;
+         
       }
    }
 
@@ -1657,9 +1661,11 @@ void imaging::BitmapBlend24CC(
 
          for(j = 0; j < cx; j++)
          {
-            *lpbDst++ = (BYTE) (((((int32_t)*lpbSrc++ - *lpbDst) * ((int32_t) (bAlpha))) / 256) + (int32_t) *lpbDst);
-            *lpbDst++ = (BYTE) (((((int32_t)*lpbSrc++ - *lpbDst) * ((int32_t) (bAlpha))) / 256) + (int32_t) *lpbDst);
-            *lpbDst++ = (BYTE) (((((int32_t)*lpbSrc++ - *lpbDst) * ((int32_t) (bAlpha))) / 256) + (int32_t) *lpbDst);
+            lpbDst[0] = (BYTE) (((((int32_t)lpbSrc[0] - lpbDst[0]) * ((int32_t) (bAlpha))) / 256) + (int32_t) lpbDst[0]);
+            lpbDst[1] = (BYTE) (((((int32_t)lpbSrc[1] - lpbDst[1]) * ((int32_t) (bAlpha))) / 256) + (int32_t) lpbDst[1]);
+            lpbDst[2] = (BYTE) (((((int32_t)lpbSrc[2] - lpbDst[2]) * ((int32_t) (bAlpha))) / 256) + (int32_t) lpbDst[2]);
+            lpbDst+=3;
+            lpbSrc+=3;
          }
          lpbDst = (LPBYTE) lpbDst + iDestPadding;
          lpbSrc = (LPBYTE) lpbSrc + iSrcPadding;
@@ -4760,9 +4766,11 @@ void imaging::color_blend_24CC(
       LPBYTE lpbC = (LPBYTE) lpbCParam + (w3 * i);
       for(j = 0; j < cx; j++)
       {
-         *lpbA++ = (BYTE) (((((uint32_t) *lpbA) * ((uint32_t) (255 - *lpbC)) + (((uint32_t) bB) * ((uint32_t) *lpbC++)))) / 255);
-         *lpbA++ = (BYTE) (((((uint32_t) *lpbA) * ((uint32_t) (255 - *lpbC)) + (((uint32_t) bG) * ((uint32_t) *lpbC++)))) / 255);
-         *lpbA++ = (BYTE) (((((uint32_t) *lpbA) * ((uint32_t) (255 - *lpbC)) + (((uint32_t) bR) * ((uint32_t) *lpbC++)))) / 255);
+         lpbA[0] = (BYTE) (((((uint32_t) lpbA[0]) * ((uint32_t) (255 - lpbC[0])) + (((uint32_t) bB) * ((uint32_t) lpbC[0])))) / 255);
+         lpbA[1] = (BYTE) (((((uint32_t) lpbA[1]) * ((uint32_t) (255 - lpbC[1])) + (((uint32_t) bG) * ((uint32_t) lpbC[1])))) / 255);
+         lpbA[2] = (BYTE) (((((uint32_t) lpbA[2]) * ((uint32_t) (255 - lpbC[2])) + (((uint32_t) bR) * ((uint32_t) lpbC[2])))) / 255);
+         lpbA += 3;
+         lpbC += 3;
       }
    }
 

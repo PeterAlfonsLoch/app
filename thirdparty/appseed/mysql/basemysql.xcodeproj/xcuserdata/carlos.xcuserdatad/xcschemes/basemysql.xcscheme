@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0460"
+   LastUpgradeVersion = "0500"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CEA754C314411F2B007E04DE"
-               BuildableName = "libca2c.dylib"
-               BlueprintName = "ca2c"
-               ReferencedContainer = "container:c.xcodeproj">
+               BlueprintIdentifier = "9AA5E4C216F7C61B005C45CE"
+               BuildableName = "libbasemysql.dylib"
+               BlueprintName = "basemysql"
+               ReferencedContainer = "container:basemysql.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -169,7 +169,11 @@ local void init_linkedlist(
     ll->first_block = ll->last_block = NULL;
 }
 
-local void free_linkedlist(
+void free_linkedlist(
+                     linkedlist_data* ll);
+
+
+void free_linkedlist(
     linkedlist_data* ll)
 {
     free_datablock(ll->first_block);

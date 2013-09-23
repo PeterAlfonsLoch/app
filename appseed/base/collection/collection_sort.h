@@ -18,15 +18,15 @@ namespace sort
    template <class TYPE>
    static index NumericCompare(const TYPE * ptA, const TYPE * ptB);
 
-   static index DWordCompare(const index dwA, const index dwB);
+//    static index DWordCompare(const index dwA, const index dwB);
 
-   static void BubbleSort(LPINT lpInt, index size);
+//   static void BubbleSort(LPINT lpInt, index size);
 
-   static void quick_sort(
-      array<uint32_t, uint32_t> & a,
-      index (*fCompare)(const index, const index),
-      void (*swap)(void * lpVoidSwapArg, index iA, index iB),
-      void * lpVoidSwapArg);
+//   static void quick_sort(
+  //    array<uint32_t, uint32_t> & a,
+    //  index (*fCompare)(const index, const index),
+      //void (*swap)(void * lpVoidSwapArg, index iA, index iB),
+      //void * lpVoidSwapArg);
 
    template <class A> static index  CompareTkPosition(const A a1, const A a2);
 

@@ -194,7 +194,9 @@ namespace n7z
       CNum NumCopyFiles;
    };
 
-   static int32_t CompareFolderRepacks(const CFolderRepack *p1, const CFolderRepack *p2, void *param)
+    int32_t CompareFolderRepacks(const CFolderRepack *p1, const CFolderRepack *p2, void *param);
+    
+   int32_t CompareFolderRepacks(const CFolderRepack *p1, const CFolderRepack *p2, void *param)
    {
       RINOZ_COMP(p1->Group, p2->Group);
       int32_t i1 = p1->FolderIndex;
@@ -217,8 +219,9 @@ namespace n7z
    }
 
    ////////////////////////////////////////////////////////////
+    int32_t CompareEmptyItems(const int32_t *p1, const int32_t *p2, void *param);
 
-   static int32_t CompareEmptyItems(const int32_t *p1, const int32_t *p2, void *param)
+   int32_t CompareEmptyItems(const int32_t *p1, const int32_t *p2, void *param)
    {
       const smart_pointer_array<CUpdateItem> &updateItems = *(const smart_pointer_array<CUpdateItem> *)param;
       const CUpdateItem &u1 = updateItems[*p1];

@@ -4,15 +4,10 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>FreeImage.xcscheme</key>
+		<key>basemysql.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
-		</dict>
-		<key>_ca2freeimage.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>20</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

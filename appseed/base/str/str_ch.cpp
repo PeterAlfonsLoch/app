@@ -30,6 +30,7 @@ namespace str
    namespace ch
    {
 
+       void * char_bidi_names_non_usage_warning();
 
       int32_t ref_tables();
 
@@ -335,6 +336,12 @@ error:
          ch -= offsetsFromUTF8[extraBytesToRead];
          return ch;
       }
+       
+       
+       void * char_bidi_names_non_usage_warning()
+       {
+           return char_bidi_names;
+       }
 
 
    } // namespace ch

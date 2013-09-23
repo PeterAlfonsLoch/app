@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07A684F417F0EAE900C41DE6 /* UncaughtExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684F217F0EAE900C41DE6 /* UncaughtExceptionHandler.h */; };
+		07A684F517F0EAE900C41DE6 /* UncaughtExceptionHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A684F317F0EAE900C41DE6 /* UncaughtExceptionHandler.mm */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -626,6 +628,8 @@
 /* Begin PBXFileReference section */
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
+		07A684F217F0EAE900C41DE6 /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
+		07A684F317F0EAE900C41DE6 /* UncaughtExceptionHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UncaughtExceptionHandler.mm; sourceTree = "<group>"; };
 		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A8CCAD817E9EE5A00F87A02 /* macos_window_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macos_window_impl.h; sourceTree = "<group>"; };
@@ -1494,6 +1498,8 @@
 		9AE7219517E83B68003E47F9 /* exception */ = {
 			isa = PBXGroup;
 			children = (
+				07A684F217F0EAE900C41DE6 /* UncaughtExceptionHandler.h */,
+				07A684F317F0EAE900C41DE6 /* UncaughtExceptionHandler.mm */,
 				9AE7219617E83B68003E47F9 /* _exception.txt */,
 				9AE7219717E83B68003E47F9 /* exception.cpp */,
 				9AE7219817E83B68003E47F9 /* exception.h */,
@@ -2128,6 +2134,7 @@
 				9AE723CE17E83B69003E47F9 /* collection_array_decl.h in Headers */,
 				9AE723CF17E83B69003E47F9 /* collection_array_impl.h in Headers */,
 				9AE723D017E83B69003E47F9 /* collection_attrib_map.h in Headers */,
+				07A684F417F0EAE900C41DE6 /* UncaughtExceptionHandler.h in Headers */,
 				9AE723D117E83B69003E47F9 /* collection_base_2array.h in Headers */,
 				9AE723D217E83B69003E47F9 /* collection_base_enum.h in Headers */,
 				9AE723D417E83B69003E47F9 /* collection_bit_array.h in Headers */,
@@ -2469,7 +2476,7 @@
 		CEA754BB14411F2B007E04DE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = CEA754BE14411F2B007E04DE /* Build configuration list for PBXProject "base" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2742,6 +2749,7 @@
 				9AE72B8517E85F98003E47F9 /* macos_debug.cpp in Sources */,
 				9AE72B8817E8641F003E47F9 /* ansios_http_lib.cpp in Sources */,
 				9AE72B8C17E86E91003E47F9 /* ansios_multithreading.cpp in Sources */,
+				07A684F517F0EAE900C41DE6 /* UncaughtExceptionHandler.mm in Sources */,
 				9AE72B9017E88709003E47F9 /* ansios_http.cpp in Sources */,
 				9AE72B9417E88C86003E47F9 /* macos_thread.cpp in Sources */,
 				9AE72B9B17E8990B003E47F9 /* macos_os.cpp in Sources */,
@@ -2811,8 +2819,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -2830,13 +2839,18 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(TARGET_BUILD_DIR)\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -2854,8 +2868,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -2870,13 +2885,18 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(TARGET_BUILD_DIR)\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";

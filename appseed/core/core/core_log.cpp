@@ -18,6 +18,8 @@ namespace core
       m_bTrace          = ::file_exists_dup(::dir::appdata("trace.txt")) || ::IsDebuggerPresent();
 #elif defined(LINUX)
       m_bTrace          = ::file_exists_dup("/etc/core/trace.txt") || ::gdb_check();
+#else
+      m_bTrace          = ::file_exists_dup("/etc/core/trace.txt") || ::AmIBeingDebugged();
 #endif
 
       m_pcsTrace        = new critical_section();

@@ -37,7 +37,7 @@
    template < class T >
    inline smart_pointer < T > ::smart_pointer(int32_t i)
    {
-      m_p = (T *) i;
+      m_p = (T *) (int_ptr) i;
    }
 
    template < class T >
