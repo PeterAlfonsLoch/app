@@ -33,7 +33,7 @@ int_bool os_initialize()
 
    ::os_thread::s_pmutex = new mutex();
 
-   ::os_thread::s_pptra = new array < os_thread * > ();
+   ::os_thread::s_pptra = new comparable_raw_array < os_thread * > ();
 
    //Sleep(15 * 1000);
 
@@ -65,18 +65,9 @@ int_bool os_finalize()
 
 
 
-LSTATUS
-APIENTRY
-WinRegGetValueW(
-    HKEY hkey,
-    LPCWSTR lpSubKey,
-    LPCWSTR lpValue,
-    uint32_t dwFlags,
-    LPDWORD pdwType,
-	 PVOID pvData,
-    LPDWORD pcbData
-    )
+int WinRegGetValueW(HKEY hkey, LPCWSTR lpSubKey, LPCWSTR lpValue, DWORD dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData)
 {
+
    if(g_pfnRegGetValueW != NULL)
    {
       return g_pfnRegGetValueW(hkey, lpSubKey, lpValue, dwFlags, pdwType, pvData, pcbData);

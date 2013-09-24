@@ -1,8 +1,17 @@
 #pragma once
 
 
-struct hthread;
+#ifdef WINDOWSEX
 
+typedef HANDLE HTHREAD;
+
+#else
+
+class event;
+
+typedef hthread * HTHREAD;
+
+#endif
 
 
 
@@ -103,8 +112,6 @@ public:
    static void stop_all(uint32_t millisMaxWait);
 
 };
-
-
 
 
 CLASS_DECL_c HTHREAD start_thread(uint32_t (*)(void *), void * pv, int32_t iPriority = 0);

@@ -69,6 +69,9 @@ namespace sockets
       ::file::stream_buffer * m_pfileTrafficMonitor;
 
 
+      base_socket *           m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
+
+
       ::file::memory_buffer   m_memfileInput;
       bool                    m_bEnd; // should finish by not sending no more writes
       string                  m_strCat;
@@ -83,7 +86,6 @@ namespace sockets
       int                     m_iBindPort;
       bool                    m_bDelete; ///< Delete by handler flag
       bool                    m_bClose; ///< close and delete flag
-      base_socket *           m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       time_t                  m_timeTimeoutStart; ///< Set by SetTimeout
       time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
@@ -262,7 +264,7 @@ namespace sockets
 
             /** Common interface for Send used by Tcp and Udp sockets. */
       /** Send string using printf formatting. */
-      virtual void writef(const char *format, ...);
+      //virtual void writef(const char *format, ...);
 
 
       /** Outgoing traffic counter. */

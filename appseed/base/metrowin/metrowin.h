@@ -28,7 +28,6 @@ CLASS_DECL_c UINT   get_main_thread_id();
 CLASS_DECL_c void attach_thread_input_to_main_thread(int_bool bAttach);
 
 
-//CLASS_DECL_c int WinRegGetValueW(HKEY hkey, LPCWSTR lpSubKey, LPCWSTR lpValue, DWORD dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData);
 
 #ifdef __cplusplus
 

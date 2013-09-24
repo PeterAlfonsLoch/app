@@ -41,24 +41,6 @@ CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach = true);
 
 #endif
 
-#ifndef METROWIN
-
-CLASS_DECL_c
-LSTATUS
-APIENTRY
-WinRegGetValueW(
-    HKEY hkey,
-    LPCWSTR lpSubKey,
-    LPCWSTR lpValue,
-    uint32_t dwFlags,
-    LPDWORD pdwType,
-	 PVOID pvData,
-    LPDWORD pcbData
-    );
-
-
-#endif
-
 
 #ifdef __cplusplus
 
@@ -69,3 +51,8 @@ CLASS_DECL_c string read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTS
 
 #define MESSAGE MSG
 #define LPMESSAGE LPMSG
+
+
+CLASS_DECL_c int WinRegGetValueW(HKEY hkey, LPCWSTR lpSubKey, LPCWSTR lpValue, DWORD dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData);
+
+

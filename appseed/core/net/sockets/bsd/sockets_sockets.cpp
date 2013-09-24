@@ -35,6 +35,7 @@ namespace sockets
          System.factory().creatable_small < ::file::memory_buffer > ();
          System.factory().cloneable_small < ::sockets::ipv4_address > ();
          System.factory().cloneable_small < ::sockets::ipv6_address > ();
+         System.factory().cloneable_large < ::sockets::bsd_address  >  (System.template type_info < ::net::address_base > ());
 
          m_pajpbasesocketinit = new AjpBaseSocket::Initializer;
       }

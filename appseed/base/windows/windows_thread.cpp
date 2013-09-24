@@ -5,7 +5,7 @@
 
 
 mutex * os_thread::s_pmutex = NULL;
-array < os_thread * > * os_thread::s_pptra = NULL;
+comparable_raw_array < os_thread * > * os_thread::s_pptra = NULL;
 __declspec(thread) os_thread * t_posthread = NULL;
 
 os_thread::os_thread(uint32_t ( * pfn)(void *), void * pv)

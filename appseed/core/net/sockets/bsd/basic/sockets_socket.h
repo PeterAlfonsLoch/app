@@ -69,66 +69,15 @@ namespace sockets
 
       SOCKET                     m_socket; ///< File descriptor
       socket_handler_base &      m_handler; ///< Reference of socket_handler_base in control of this socket
-      ::file::memory_buffer   m_memfileInput;
-      bool                    m_bEnd; // should finish by not sending no more writes
-      string                  m_strCat;
-      callback *              m_pcallback;
-      address                 m_addressRemote; ///< Remote end address
-      time_t                  m_timeCreate; ///< time in seconds when this socket was created
-      bool                    m_bDisableRead; ///< Disable checking for read events
-      bool                    m_bConnected; ///< socket is connected (tcp/udp)
-      bool                    m_bLost; ///< connection lost
-      bool                    m_bErasedByHandler; ///< set by handler before delete
-      time_t                  m_timeClose; ///< time in seconds when ordered to close
-      int32_t                     m_iBindPort;
-      bool                    m_bDelete; ///< Delete by handler flag
-      bool                    m_bClose; ///< close and delete flag
-      sp(socket)                m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
-      address                 m_addressRemoteClient; ///< Address of last connect()
-      ::file::buffer_sp              m_pfileTrafficMonitor;
-      time_t                  m_timeTimeoutStart; ///< set by SetTimeout
-      time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
-      bool                    m_bNonBlocking;
-      //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
-
+      
+      
+      
 #ifdef WINDOWSEX
 
       static WSAInitializer   m_winsock_init; ///< Winsock initialization singleton class
 
 #endif
 
-      bool                    m_bEnableSsl; ///< Enable SSL for this tcp_socket
-      bool                    m_bSsl; ///< ssl negotiation mode (tcp_socket)
-      bool                    m_bSslServer; ///< True if this is an incoming ssl tcp_socket connection
-
-      bool                    m_bIpv6; ///< This is an ipv6 socket if this one is true
-
-#ifdef ENABLE_POOL
-      int32_t                     m_iSocketType; ///< Type of socket, from socket() call
-      string                  m_strSocketProtocol; ///< Protocol, from socket() call
-      bool                    m_bClient; ///< only client connections are pooled
-      bool                    m_bRetain; ///< keep connection on close
-#endif
-
-      bool                    m_bSocks4; ///< socks4 negotiation mode (tcp_socket)
-      in_addr                m_socks4_host; ///< socks4 server address
-      port_t                  m_socks4_port; ///< socks4 server port number
-      string                  m_socks4_userid; ///< socks4 server usedid
-
-      bool                    m_detach; ///< socket ordered to detach flag
-      bool                    m_detached; ///< socket has been detached
-      socket_thread *         m_pThread; ///< detach socket thread class pointer
-      socket_handler_base *   m_slave_handler; ///< Actual sockethandler while detached
-
-
-      // LineProtocol
-      bool                    m_bLineProtocol; ///< Line protocol mode flag
-      bool                    m_skip_c; ///< Skip second char of CRLF or LFCR sequence in OnRead
-      char                    m_c; ///< First char in CRLF or LFCR sequence
-      string                  m_line; ///< Current line in line protocol mode
-
-      e_status                m_estatus;
-      uint32_t                   m_dwStart;
 
 
 
@@ -255,20 +204,6 @@ namespace sockets
       /** get address/port of last connect() call. */
       address GetClientRemoteAddress();
 
-      using ::file::stream_buffer::write;
-
-      /** Common interface for write used by Tcp and Udp sockets. */
-      virtual void write(const void *, primitive::memory_size c);
-
-      /** Common interface for Send used by Tcp and Udp sockets. */
-      /** Send a string.
-      \param s string to send
-      \param f Dummy flags -- not used */
-      virtual void write(const string & s);
-      
-      /** Common interface for Send used by Tcp and Udp sockets. */
-      /** Send string using printf formatting. */
-      virtual void writef(const char *format, ...);
 
       /** Outgoing traffic counter. */
       virtual uint64_t GetBytesSent(bool clear = false);

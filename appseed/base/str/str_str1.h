@@ -96,7 +96,7 @@ CLASS_DECL_c void __cdecl parse_cmdline(char *cmdstart, char **argv, char *args,
 CLASS_DECL_c char * strtok_r_dup(char *s1, const char *s2, char **lasts);
 
 CLASS_DECL_c count utf16_len(const char * psz);
-CLASS_DECL_c void utf8_to_16(wchar_t * pwsz, const char * psz);
+CLASS_DECL_c void utf8_to_utf16(wchar_t * pwsz, const char * psz);
 //CLASS_DECL_c wchar_t * ::str::international::utf8_to_unicode(const char * psz);
 //CLASS_DECL_c char * ::str::international::unicode_to_utf8(const wchar_t * psz);
 

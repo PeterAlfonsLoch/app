@@ -64,7 +64,7 @@ int_bool file_exists_dup(const char * path1)
 
    wcscat(wstr, L"\\\\?\\");
 
-   utf8_to_16((wchar_t *) wstr + wcslen(wstr), path1);
+   utf8_to_utf16((wchar_t *) wstr + wcslen(wstr), path1);
 
    wstr.set_length(wcslen(wstr));
 

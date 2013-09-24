@@ -500,38 +500,6 @@ namespace sockets
    }
 
 
-   void socket::write(const void * pdata, ::primitive::memory_size c)
-   {
-
-      UNREFERENCED_PARAMETER(pdata);
-      UNREFERENCED_PARAMETER(c);
-
-   }
-
-
-   void socket::write(const string & str)
-   {
-
-      write(str,  str.get_length());
-
-   }
-
-   void socket::writef(const char *format, ...)
-   {
-
-      string strFormat;
-
-      va_list list;
-
-      va_start(list, format);
-
-      strFormat.FormatV(format, list);
-
-      va_end(list);
-
-      write(strFormat);
-
-   }
 
    void socket::SetConnected(bool bConnected)
    {
