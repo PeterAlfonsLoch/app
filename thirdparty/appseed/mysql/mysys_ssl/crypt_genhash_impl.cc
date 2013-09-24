@@ -32,12 +32,12 @@
 #ifdef HAVE_STDINT_H
 #include <stdint.h>
 #else
-#ifndef uint32_t
-typedef unsigned long uint32_t;
-#endif
-#ifndef uint8_t
-typedef unsigned char uint8_t;
-#endif
+//#ifndef uint32_t
+//typedef unsigned long uint32_t;
+//#endif
+//#ifndef uint8_t
+//typedef unsigned char uint8_t;
+//#endif
 #endif // !HAVE_STDINT_H
 
 #include <time.h>

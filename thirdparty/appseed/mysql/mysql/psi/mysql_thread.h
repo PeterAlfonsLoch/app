@@ -107,7 +107,7 @@ struct st_mysql_mutex
   @sa mysql_mutex_assert_owner
   @sa mysql_mutex_assert_not_owner
   @sa mysql_mutex_init
-  @sa mysql_single_lock
+  @sa mysql_mutex_lock
   @sa mysql_mutex_unlock
   @sa mysql_mutex_destroy
 */
@@ -301,17 +301,17 @@ typedef struct st_mysql_cond mysql_cond_t;
 #endif
 
 /**
-  @def mysql_single_lock(M)
+  @def mysql_mutex_lock(M)
   Instrumented single_lock.
-  @c mysql_single_lock is a drop-in replacement for @c pthread_mutex_lock.
+  @c mysql_mutex_lock is a drop-in replacement for @c pthread_mutex_lock.
   @param M The mutex to lock
 */
 
 #if defined(SAFE_MUTEX) || defined (HAVE_PSI_MUTEX_INTERFACE)
-  #define mysql_single_lock(M) \
+  #define mysql_mutex_lock(M) \
     inline_mysql_single_lock(M, __FILE__, __LINE__)
 #else
-  #define mysql_single_lock(M) \
+  #define mysql_mutex_lock(M) \
     inline_mysql_single_lock(M)
 #endif
 

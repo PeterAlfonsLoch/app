@@ -67,7 +67,7 @@ FILE *my_fopen(const char *filename, int flags, myf MyFlags)
       thread_safe_increment(my_stream_opened,&THR_LOCK_open);
       DBUG_RETURN(fd);				/* safeguard */
     }
-    mysql_single_lock(&THR_LOCK_open);
+    mysql_mutex_lock(&THR_LOCK_open);
     if ((my_file_info[filedesc].name= (char*)
 	 my_strdup(filename,MyFlags)))
     {
@@ -234,7 +234,7 @@ int my_fclose(FILE *fd, myf MyFlags)
   DBUG_ENTER("my_fclose");
   DBUG_PRINT("my",("stream: 0x%lx  MyFlags: %d", (long) fd, MyFlags));
 
-  mysql_single_lock(&THR_LOCK_open);
+  mysql_mutex_lock(&THR_LOCK_open);
   file= my_fileno(fd);
 #ifndef _WIN32
   err= fclose(fd);
@@ -292,7 +292,7 @@ FILE *my_fdopen(File Filedes, const char *name, int Flags, myf MyFlags)
   }
   else
   {
-    mysql_single_lock(&THR_LOCK_open);
+    mysql_mutex_lock(&THR_LOCK_open);
     my_stream_opened++;
     if ((uint) Filedes < (uint) my_file_limit)
     {

@@ -186,7 +186,7 @@ void my_thread_global_end(void)
   my_bool all_threads_killed= 1;
 
   set_timespec(abstime, my_thread_end_wait_time);
-  mysql_single_lock(&THR_LOCK_threads);
+  mysql_mutex_lock(&THR_LOCK_threads);
   while (THR_thread_count > 0)
   {
     int error= mysql_cond_timedwait(&THR_COND_threads, &THR_LOCK_threads,
@@ -297,7 +297,7 @@ my_bool my_thread_init(void)
   tmp->stack_ends_here= (char*)&tmp +
                          STACK_DIRECTION * (long)my_thread_stack_size;
 
-  mysql_single_lock(&THR_LOCK_threads);
+  mysql_mutex_lock(&THR_LOCK_threads);
   tmp->id= ++thread_id;
   ++THR_thread_count;
   mysql_mutex_unlock(&THR_LOCK_threads);
@@ -364,7 +364,7 @@ void my_thread_end(void)
       my_thread_end and thus freed all memory they have allocated in
       my_thread_init() and DBUG_xxxx
     */
-    mysql_single_lock(&THR_LOCK_threads);
+    mysql_mutex_lock(&THR_LOCK_threads);
     DBUG_ASSERT(THR_thread_count != 0);
     if (--THR_thread_count == 0)
       mysql_cond_signal(&THR_COND_threads);

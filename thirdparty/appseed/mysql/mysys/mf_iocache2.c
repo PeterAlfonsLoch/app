@@ -92,7 +92,7 @@ my_off_t my_b_append_tell(IO_CACHE* info)
     from messing with the variables that we need in order to provide the
     answer to the question.
   */
-  mysql_single_lock(&info->append_buffer_lock);
+  mysql_mutex_lock(&info->append_buffer_lock);
 
 #ifndef DBUG_OFF
   /*

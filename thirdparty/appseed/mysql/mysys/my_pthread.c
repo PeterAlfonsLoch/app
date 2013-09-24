@@ -40,7 +40,7 @@ extern mysql_mutex_t LOCK_localtime_r;
 struct tm *localtime_r(const time_t *clock, struct tm *res)
 {
   struct tm *tmp;
-  mysql_single_lock(&LOCK_localtime_r);
+  mysql_mutex_lock(&LOCK_localtime_r);
   tmp=localtime(clock);
   *res= *tmp;
   mysql_mutex_unlock(&LOCK_localtime_r);
@@ -57,7 +57,7 @@ struct tm *localtime_r(const time_t *clock, struct tm *res)
 struct tm *gmtime_r(const time_t *clock, struct tm *res)
 {
   struct tm *tmp;
-  mysql_single_lock(&LOCK_localtime_r);
+  mysql_mutex_lock(&LOCK_localtime_r);
   tmp= gmtime(clock);
   *res= *tmp;
   mysql_mutex_unlock(&LOCK_localtime_r);

@@ -70,7 +70,7 @@ int my_close(File fd, myf MyFlags)
   DBUG_ENTER("my_close");
   DBUG_PRINT("my",("fd: %d  MyFlags: %d",fd, MyFlags));
 
-  mysql_single_lock(&THR_LOCK_open);
+  mysql_mutex_lock(&THR_LOCK_open);
 #ifndef _WIN32
   do
   {
@@ -138,7 +138,7 @@ File my_register_filename(File fd, const char *FileName, enum file_type
     }
     else
     {
-      mysql_single_lock(&THR_LOCK_open);
+      mysql_mutex_lock(&THR_LOCK_open);
       if ((my_file_info[fd].name = (char*) my_strdup(FileName,MyFlags)))
       {
         my_file_opened++;

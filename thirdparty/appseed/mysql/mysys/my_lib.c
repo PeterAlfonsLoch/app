@@ -105,7 +105,7 @@ MY_DIR	*my_dir(const char *path, myf MyFlags)
   DBUG_PRINT("my",("path: '%s' MyFlags: %d",path,MyFlags));
 
 #if !defined(HAVE_READDIR_R)
-  mysql_single_lock(&THR_LOCK_open);
+  mysql_mutex_lock(&THR_LOCK_open);
 #endif
 
   dirp = opendir(directory_file_name(tmp_path,(char *) path));

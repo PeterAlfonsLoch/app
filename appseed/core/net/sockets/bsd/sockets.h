@@ -289,18 +289,18 @@ namespace sockets
 #endif
 #endif
 
-#include "basic/ipv4_address.h"
-#include "basic/ipv6_address.h"
-#include "basic/address.h"
+#include "basic/sockets_ipv4_address.h"
+#include "basic/sockets_ipv6_address.h"
+#include "basic/sockets_address.h"
 #include "basic/sockets_ssl_client_context.h"
 #include "basic/sockets_ssl_client_context_map.h"
-#include "basic/socket.h"
-#include "basic/stream_socket.h"
-#include "basic/sctp_socket.h"
-#include "basic/tcp_socket.h"
+#include "basic/sockets_socket.h"
+#include "basic/sockets_stream_socket.h"
+#include "basic/sockets_sctp_socket.h"
+#include "basic/sockets_tcp_socket.h"
 #include "basic/udp_socket.h"
 
-#include "basic/tls_socket.h"
+#include "basic/sockets_tls_socket.h"
 
 
 #include "log/StdLog.h"

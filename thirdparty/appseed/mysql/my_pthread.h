@@ -680,9 +680,9 @@ extern uint my_thread_end_wait_time;
 #define thread_safe_decrement_rwlock(V,L) InterlockedDecrement((long*) &(V))
 #else
 #define thread_safe_increment(V,L) \
-        (mysql_single_lock((L)), (V)++, mysql_mutex_unlock((L)))
+        (mysql_mutex_lock((L)), (V)++, mysql_mutex_unlock((L)))
 #define thread_safe_decrement(V,L) \
-        (mysql_single_lock((L)), (V)--, mysql_mutex_unlock((L)))
+        (mysql_mutex_lock((L)), (V)--, mysql_mutex_unlock((L)))
 #define thread_safe_increment_rwlock(V,L) \
         (mysql_rwlock_wrlock((L)), (V)++, mysql_rwlock_unlock((L)))
 #define thread_safe_decrement_rwlock(V,L) \
@@ -698,9 +698,9 @@ extern uint my_thread_end_wait_time;
 #define thread_safe_sub_rwlock(V,C,L) InterlockedExchangeAdd((long*) &(V),-(long) (C))
 #else
 #define thread_safe_add(V,C,L) \
-        (mysql_single_lock((L)), (V)+=(C), mysql_mutex_unlock((L)))
+        (mysql_mutex_lock((L)), (V)+=(C), mysql_mutex_unlock((L)))
 #define thread_safe_sub(V,C,L) \
-        (mysql_single_lock((L)), (V)-=(C), mysql_mutex_unlock((L)))
+        (mysql_mutex_lock((L)), (V)-=(C), mysql_mutex_unlock((L)))
 #define thread_safe_add_rwlock(V,C,L) \
         (mysql_rwlock_wrlock((L)), (V)+=(C), mysql_rwlock_unlock((L)))
 #define thread_safe_sub_rwlock(V,C,L) \

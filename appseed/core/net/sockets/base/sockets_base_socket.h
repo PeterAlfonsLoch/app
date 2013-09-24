@@ -62,6 +62,9 @@ namespace sockets
          status_connection_timed_out,
       };
 
+
+      SOCKET                     m_socket; ///< File descriptor
+
       static mutex                       s_mutex;
 
       ::net::address_sp       m_spaddressRemote; ///< Remote end ::net::address_sp
@@ -206,9 +209,6 @@ namespace sockets
       \param protocol "tcp" / "udp" / ... */
       //SOCKET CreateSocket(int af,int type,const string & protocol = "");
 
-      /** Assign this base_socket a file descriptor created
-      by a call to base_socket() or otherwise. */
-      void attach(::Platform::Object ^ o);
 
       /** Return file descriptor assigned to this base_socket. */
       SOCKET GetSocket();

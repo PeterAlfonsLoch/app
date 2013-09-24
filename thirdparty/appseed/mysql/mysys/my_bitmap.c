@@ -84,7 +84,7 @@ void create_last_word_mask(MY_BITMAP *map)
 static inline void bitmap_lock(MY_BITMAP *map __attribute__((unused)))
 {
   if (map->mutex)
-    mysql_single_lock(map->mutex);
+    mysql_mutex_lock(map->mutex);
 }
 
 

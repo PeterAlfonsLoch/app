@@ -609,7 +609,7 @@ get_internal_charset(MY_CHARSET_LOADER *loader, uint cs_number, myf flags)
       To make things thread safe we are not allowing other threads to interfere
       while we may changing the cs_info_table
     */
-    mysql_single_lock(&THR_LOCK_charset);
+    mysql_mutex_lock(&THR_LOCK_charset);
 
     if (!(cs->state & (MY_CS_COMPILED|MY_CS_LOADED))) /* if CS is not in memory */
     {

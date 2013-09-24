@@ -31,20 +31,20 @@ namespace sockets
       string            m_strServiceName;
 
 
-      address(sp(base_application) papp, const in_addr & a, int32_t iPort = 0);
-      address(sp(base_application) papp, const in6_addr & a, int32_t iPort = 0);
-      address(sp(base_application) papp, const sockaddr & sa, int32_t sa_len);
-      address(sp(base_application) papp, const string & strAddress = "", const string & strServiceName = "");
-      address(sp(base_application) papp, const string & strAddress, int32_t iPort);
-      address(const address & address);
-      virtual ~address();
+      bsd_address(sp(base_application) papp);
+      virtual ~bsd_address();
+
+      virtual void construct(const in_addr & a, int32_t iPort = 0);
+      virtual void construct(const in6_addr & a, int32_t iPort = 0);
+      virtual void construct(const sockaddr & sa, int32_t sa_len);
+      virtual void construct(const string & strAddress = "", const string & strServiceName = "");
+      virtual void construct(const string & strAddress, int32_t iPort);
 
 
       bool create_address(const string & strAddress);
 
 
-      address & operator = (const address & address);
-      bool operator == (const address & address) const;
+      void copy(const address_base & address);
 
       virtual string get_display_number() const;
       virtual string get_canonical_name() const;
@@ -58,7 +58,8 @@ namespace sockets
       string  service_number_to_name(int32_t i) const;
 
 
-      virtual bool is_in_net(const address & addr, const address & addrMask) const;
+      virtual bool is_in_net(const address_base & addr, const address_base & addrMask) const;
+      bool is_equal(const address_base & address) const;
 
       virtual bool is_ipv4() const;
       virtual bool is_ipv6() const;

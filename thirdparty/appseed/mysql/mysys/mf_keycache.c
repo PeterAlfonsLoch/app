@@ -317,7 +317,7 @@ static int keycache_pthread_mutex_lock(mysql_mutex_t *mutex);
 static void keycache_pthread_mutex_unlock(mysql_mutex_t *mutex);
 static int keycache_pthread_cond_signal(mysql_cond_t *cond);
 #else
-#define keycache_pthread_mutex_lock(M) mysql_single_lock(M)
+#define keycache_pthread_mutex_lock(M) mysql_mutex_lock(M)
 #define keycache_pthread_mutex_unlock(M) mysql_mutex_unlock(M)
 #define keycache_pthread_cond_signal(C) mysql_cond_signal(C)
 #endif /* defined(KEYCACHE_DEBUG) */
@@ -4406,7 +4406,7 @@ static int keycache_pthread_cond_wait(mysql_cond_t *cond,
 static int keycache_pthread_mutex_lock(mysql_mutex_t *mutex)
 {
   int rc;
-  rc= mysql_single_lock(mutex);
+  rc= mysql_mutex_lock(mutex);
   KEYCACHE_THREAD_TRACE_BEGIN("");
   return rc;
 }

@@ -67,7 +67,6 @@ namespace sockets
       };
 
 
-      SOCKET                     m_socket; ///< File descriptor
       socket_handler_base &      m_handler; ///< Reference of socket_handler_base in control of this socket
       
       

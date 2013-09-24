@@ -52,7 +52,7 @@ TODO:
 #include <errno.h>
 
 #define lock_append_buffer(info) \
-  mysql_single_lock(&(info)->append_buffer_lock)
+  mysql_mutex_lock(&(info)->append_buffer_lock)
 #define unlock_append_buffer(info) \
   mysql_mutex_unlock(&(info)->append_buffer_lock)
 
@@ -669,7 +669,7 @@ void remove_io_thread(IO_CACHE *cache)
   if (cache == cshare->source_cache)
     flush_io_cache(cache);
 
-  mysql_single_lock(&cshare->mutex);
+  mysql_mutex_lock(&cshare->mutex);
   DBUG_PRINT("io_cache_share", ("%s: 0x%lx",
                                 (cache == cshare->source_cache) ?
                                 "writer" : "reader", (long) cache));
@@ -744,7 +744,7 @@ static int lock_io_cache(IO_CACHE *cache, my_off_t pos)
   DBUG_ENTER("lock_io_cache");
 
   /* Enter the lock. */
-  mysql_single_lock(&cshare->mutex);
+  mysql_mutex_lock(&cshare->mutex);
   cshare->running_threads--;
   DBUG_PRINT("io_cache_share", ("%s: 0x%lx  pos: %lu  running: %u",
                                 (cache == cshare->source_cache) ?

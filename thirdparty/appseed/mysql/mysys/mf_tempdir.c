@@ -75,7 +75,7 @@ char *my_tmpdir(MY_TMPDIR *tmpdir)
   char *dir;
   if (!tmpdir->max)
     return tmpdir->list[0];
-  mysql_single_lock(&tmpdir->mutex);
+  mysql_mutex_lock(&tmpdir->mutex);
   dir=tmpdir->list[tmpdir->cur];
   tmpdir->cur= (tmpdir->cur == tmpdir->max) ? 0 : tmpdir->cur+1;
   mysql_mutex_unlock(&tmpdir->mutex);
