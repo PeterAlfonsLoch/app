@@ -123,20 +123,21 @@ event::event(sp(base_application) papp, bool bInitiallyOwn, bool bManualReset, c
 
 }
 
+#ifndef METROWIN
+event:: ~event()
+{
 
-event::~event()
-   {
+#if defined(LINUX)
 
-   #if defined(LINUX)
+   semun ignored_argument;
 
-      semun ignored_argument;
+   semctl(m_object, 0, IPC_RMID, ignored_argument);
 
-      semctl(m_object, 0, IPC_RMID, ignored_argument);
+#endif
 
-   #endif
+}
 
-   }
-
+#endif
 
 bool event::SetEvent()
 {

@@ -2581,6 +2581,8 @@ CLASS_DECL_c  NTSTATUS CDECL wine_unix_to_nt_file_name( const ANSI_STRING *name,
 #define RtlRetrieveUlonglong(p,s) memcpy((p), (s), sizeof(ULONGLONG))
 #define RtlZeroMemory(Destination,Length) memset((Destination),0,(Length))
 
+#ifndef METROWIN
+
 static inline int_bool RtlCheckBit(PCRTL_BITMAP lpBits, ULONG ulBit)
 {
     if (lpBits && ulBit < lpBits->SizeOfBitMap &&
@@ -2605,12 +2607,16 @@ static inline ULONG RtlUlongByteSwap(ULONG i)
 #endif
 }
 
+#endif
+
 /* list manipulation macros */
 #define InitializeListHead(le)  (void)((le)->Flink = (le)->Blink = (le))
 #define InsertHeadList(le,e)    do { PLIST_ENTRY f = (le)->Flink; (e)->Flink = f; (e)->Blink = (le); f->Blink = (e); (le)->Flink = (e); } while (0)
 #define InsertTailList(le,e)    do { PLIST_ENTRY b = (le)->Blink; (e)->Flink = (le); (e)->Blink = b; b->Flink = (e); (le)->Blink = (e); } while (0)
 #define IsListEmpty(le)         ((le)->Flink == (le))
 #define RemoveEntryList(e)      do { PLIST_ENTRY f = (e)->Flink, b = (e)->Blink; f->Blink = b; b->Flink = f; (e)->Flink = (e)->Blink = NULL; } while (0)
+
+#ifndef METROWIN
 static inline PLIST_ENTRY RemoveHeadList(PLIST_ENTRY le)
 {
     PLIST_ENTRY f, b, e;
@@ -2638,6 +2644,7 @@ static inline PLIST_ENTRY RemoveTailList(PLIST_ENTRY le)
     return e;
 }
 
+#endif
 
 #ifdef __WINESRC__
 

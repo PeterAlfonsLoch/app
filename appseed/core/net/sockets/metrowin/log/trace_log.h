@@ -40,7 +40,7 @@ namespace sockets
    {
    public:
       void error(
-         socket_handler_base *,
+         base_socket_handler *,
          socket *,
          const string & call,
          int err,

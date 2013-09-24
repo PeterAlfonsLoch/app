@@ -34,15 +34,15 @@ namespace sockets
 {
 
 
-   EventHandler::EventHandler(::ca2::application * papp, StdLog *p) :
-      ca2(papp),
+   EventHandler::EventHandler(base_application * papp, StdLog *p) :
+      element(papp),
       socket_handler(papp, p), m_quit(false), m_socket(NULL)
    {
    }
 
 
-   EventHandler::EventHandler(::ca2::application * papp, mutex & m,StdLog *p) :
-      ca2(papp),
+   EventHandler::EventHandler(base_application * papp, mutex & m,StdLog *p) :
+      element(papp),
       socket_handler(papp, m, p),
       m_quit(false), m_socket(NULL)
    {

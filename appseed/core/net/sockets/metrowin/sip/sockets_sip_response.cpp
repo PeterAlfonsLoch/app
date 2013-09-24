@@ -4,8 +4,8 @@ namespace sip
 {
 
    // --------------------------------------------------------------------------------------
-   response::response(::ca2::application * papp, const string & version) :
-   ca2(papp),
+   response::response(base_application * papp, const string & version) :
+   element(papp),
    transaction(papp),
    m_memfileBody(papp )
    {
@@ -15,7 +15,7 @@ namespace sip
 
    // --------------------------------------------------------------------------------------
    response::response(const response& src) :
-   ::ca2::ca2(((response &)src).get_app()),
+   element(((response &)src).get_app()),
    transaction(src)
    , m_memfileBody(((response &)src).get_app() )
    {

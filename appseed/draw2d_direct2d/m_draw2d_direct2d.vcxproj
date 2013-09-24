@@ -285,11 +285,20 @@
     <ProjectReference Include="..\..\thirdparty\appseed\FreeImage\m_FreeImage.vcxproj">
       <Project>{fced5042-9a2d-4e71-8022-129e8e5d1993}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\freetype\_m_ca2freetype.vcxproj">
+      <Project>{af9dfa62-6f0e-47b8-a55b-5ad825571f4f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\zlib\_m_ca2zlib.vcxproj">
+      <Project>{84fbad70-591c-44fa-93c4-ee232b3a1995}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\base\m_base.vcxproj">
       <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
     </ProjectReference>
     <ProjectReference Include="..\boot\m_boot.vcxproj">
       <Project>{5fd926e7-e8b9-4451-baac-81efa94d1985}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\core\m_core.vcxproj">
+      <Project>{420d7aeb-cfca-45de-bb6e-95055df21987}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

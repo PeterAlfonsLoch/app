@@ -10,8 +10,8 @@
 #else // !defined(WINDOWS)
 
 #ifdef METROWIN
-CLASS_DECL_ca2 BOOL WINAPI LockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, uint32_t dwCountLo, uint32_t dwCountHi);
-CLASS_DECL_ca2 BOOL WINAPI UnlockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, uint32_t dwCountLo, uint32_t dwCountHi);
+CLASS_DECL_c BOOL WINAPI LockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, uint32_t dwCountLo, uint32_t dwCountHi);
+CLASS_DECL_c BOOL WINAPI UnlockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, uint32_t dwCountLo, uint32_t dwCountHi);
 #endif
 
 
@@ -88,15 +88,16 @@ typedef LONG SCODE;
 #define E_INVALIDARG ((HRESULT)0x80070057L)
 */
 
+
 #ifndef METROWIN
 #define STDMETHOD_(t, f) virtual t STDMETHODCALLTYPE f
 #define STDMETHOD(f) STDMETHOD_(HRESULT, f)
 #define STDMETHODIMP_(type) type STDMETHODCALLTYPE
-#endif
 #define PURE = 0
-#ifndef METROWIN
 #define MIDL_INTERFACE(x) struct
 #endif
+
+
 #ifdef __cplusplus
 
 #ifndef METROWIN

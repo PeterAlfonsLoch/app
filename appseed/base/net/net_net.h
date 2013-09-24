@@ -1,11 +1,11 @@
 #pragma once
 
 
-
 CLASS_DECL_c int_bool from_string(in6_addr * addr, const char * string);
 CLASS_DECL_c string to_vsstring(const in6_addr *addr);
 CLASS_DECL_c int_bool from_string(in_addr * addr, const char * string);
 CLASS_DECL_c string to_vsstring(const in_addr *addr);
+
 
 CLASS_DECL_c uint32_t c_inet_addr(const char *src);
 CLASS_DECL_c int32_t c_inet_pton(int32_t af, const char *src, void *dst);
@@ -42,12 +42,16 @@ CLASS_DECL_c string c_gethostbyname(const char * hostname);
 
 #endif
 
-#if 0
+#if defined(METROWIN)
 
-uint16_t htons(uint16_t n);
+/*uint16_t htons(uint16_t n);
 uint16_t ntohs(uint16_t n);
 unsigned long htonl(unsigned long n);
-unsigned long ntohl(unsigned long n);
+unsigned long ntohl(unsigned long n);*/
+
+#define AF_INET         2               // internetwork: UDP, TCP, etc.
+#define AF_INET6        23              // Internetwork Version 6
+
 
 #define htons(n) HTONS(n)
 #define ntohs(n) NTOHS(n)

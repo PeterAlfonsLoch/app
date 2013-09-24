@@ -12,11 +12,11 @@ namespace sip
 
 
       string               m_null;
-      http::memory_file    m_file;
+      file::memory_buffer    m_file;
       http::form           m_form;
 
 
-      request(::ca2::application * papp);
+      request(base_application * papp);
       request(const request& src);
       ~request();
 
@@ -37,7 +37,7 @@ namespace sip
 
       http::form & form();
 
-      http::memory_file & file() { return m_file; }
+      file::memory_buffer & file() { return m_file; }
 
       virtual void clear();
 

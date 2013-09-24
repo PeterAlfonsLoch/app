@@ -6,7 +6,6 @@ namespace sockets
 
 
    class socket_handler_base;
-   class address;
 
 
    /** \defgroup basic Basic sockets */

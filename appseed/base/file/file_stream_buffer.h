@@ -82,6 +82,15 @@ namespace file
       virtual bool read_string(string & str);
 
 
+      void writef(const char *format, ...);
+
+      /** Common interface for write used by Tcp and Udp sockets. */
+//      virtual void write(const void *, primitive::memory_size c);
+
+      /** Common interface for Send used by Tcp and Udp sockets. */
+      virtual void write(const string &);
+
+
 
    };
 

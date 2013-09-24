@@ -40,10 +40,10 @@ namespace file_watcher
 		id mWatchid;*/
 
 
-      property ::Windows::Storage::StorageFolder ^                   m_folder;
-      property ::Windows::Storage::Search::StorageItemQueryResult ^  m_queryresult;
-      property ::Windows::Foundation::EventRegistrationToken         m_evtoken;
-      property ::Platform::String ^                                  m_strDirName;
+      property Windows::Storage::StorageFolder ^                   m_folder;
+      property Windows::Storage::Search::StorageItemQueryResult ^  m_queryresult;
+      property Windows::Foundation::EventRegistrationToken         m_evtoken;
+      property Platform::String ^                                  m_strDirName;
       property size_t                                                m_pwatcher;   // should be exactly file_watcher_impl *
       property size_t                                                m_plistener;  // should be exactly file_watch_listener *
       property uint64_t                                              m_id;
@@ -176,7 +176,7 @@ namespace file_watcher
 		m_watchmap.remove_all();
 	}
 
-	id os_file_watcher::add_watch(const vsstring & directory, file_watch_listener * watcher, bool bRecursive)
+	id os_file_watcher::add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive)
 	{
 		id watchid = ++m_idLast;
 
@@ -198,7 +198,7 @@ namespace file_watcher
 	}
 
 
-	void os_file_watcher::remove_watch(const vsstring & directory)
+	void os_file_watcher::remove_watch(const string & directory)
 	{
       watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
       Platform::String ^ strDir = directory;
@@ -225,7 +225,7 @@ namespace file_watcher
 		DestroyWatch(pwatch);
 	}
 
-   vsstring os_file_watcher::watch_path(id watchid)
+   string os_file_watcher::watch_path(id watchid)
    {
       return begin(m_watchmap[watchid]->m_strDirName);
    }

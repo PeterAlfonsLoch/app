@@ -4,6 +4,8 @@
 #include "nodeapp/operational_system/operational_system.h"
 
 
+
+
 class string;
 class istring;
 class var;
@@ -268,14 +270,14 @@ namespace file
 #include "base/user/user_create_context.h"
 
 
-#if defined(WINDOWS)
-
-#include "base/windows/windows.h"
-
-#elif defined(LINUX)
+#if defined(LINUX)
 
 #include "base/ansios/ansios.h"
 #include "base/linux/linux_user_impl.h"
+
+#elif defined(METROWIN)
+
+#include "base/metrowin/metrowin.h"
 
 #elif defined(MACOS)
 
@@ -283,8 +285,11 @@ namespace file
 #include "base/macos/macos.h"
 #include "base/macos/macos_window.h"
 
-#endif
+#elif defined(WINDOWS)
 
+#include "base/windows/windows.h"
+
+#endif
 
 
 
@@ -495,5 +500,8 @@ namespace numeric_info
 
 
 
+#ifndef WINDOWSEX
 
+#include "base/os/cross/windows/windows_thread_impl.h"
 
+#endif

@@ -1,5 +1,7 @@
 #include "framework.h"
 
+#undef WINBASEAPI
+#define WINBASEAPI CLASS_DECL_c
 
 #define LOCALE_LOCALEINFOFLAGSMASK (LOCALE_NOUSEROVERRIDE|LOCALE_USE_CP_ACP|\
                                     LOCALE_RETURN_NUMBER|LOCALE_RETURN_GENITIVE_NAMES)
@@ -21,6 +23,9 @@ INT get_registry_locale_info( LPCWSTR value, LPWSTR buffer, INT len );
  *
  * See GetLocaleInfoA.
  */
+#ifdef WINDOWS
+WINBASEAPI
+#endif
 int32_t WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, int32_t len )
 {
     LANGID lang_id;
@@ -249,7 +254,9 @@ LCID convert_default_lcid( LCID lcid, LCTYPE lctype )
         case LOCALE_IDEFAULTCODEPAGE:
         case LOCALE_IDEFAULTEBCDICCODEPAGE:
         case LOCALE_IDEFAULTMACCODEPAGE:
+#ifndef METROWIN
         case LOCALE_IDEFAULTUNIXCODEPAGE:
+#endif
             default_id = lcid_LC_CTYPE;
             break;
 
@@ -645,6 +652,9 @@ UINT setup_unix_locales(void)
  * RETURNS
  *  The current LCID of the default locale for the system.
  */
+#ifdef WINDOWS
+WINBASEAPI
+#endif
 LCID WINAPI GetSystemDefaultLCID(void)
 {
     LCID lcid;
@@ -668,6 +678,9 @@ LCID WINAPI GetSystemDefaultLCID(void)
  *  GetUserDefaultLCID(), if lcid == LOCALE_USER_DEFAULT or LOCALE_NEUTRAL.
  *  Otherwise, lcid with sublanguage changed to SUBLANG_DEFAULT.
  */
+#ifdef WINDOWS
+WINBASEAPI
+#endif
 LCID WINAPI ConvertDefaultLocale( LCID lcid )
 {
     LANGID langid;
@@ -735,6 +748,9 @@ NTSTATUS WINAPI NtSetDefaultLocale( WINBOOL user, LCID lcid )
  * RETURNS
  *  The current LCID of the default locale for the current user.
  */
+#ifdef WINDOWS
+WINBASEAPI
+#endif
 LCID WINAPI GetUserDefaultLCID(void)
 {
     LCID lcid;

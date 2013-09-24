@@ -76,7 +76,7 @@ public:
 #endif
 
    static mutex *                  s_pmutex;
-   static array < os_thread * > *  s_pptra;
+   static comparable_raw_array < os_thread * > *  s_pptra;
 
 
    os_thread(uint32_t ( * pfn)(void *), void * pv);

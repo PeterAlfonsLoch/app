@@ -5,14 +5,14 @@ namespace sip
 {
 
 
-   transaction::transaction(::ca2::application * papp) :
-      ca2(papp)
+   transaction::transaction(base_application * papp) :
+      element(papp)
    {
 
    }
 
    transaction::transaction(const transaction & src) :
-      ::ca2::ca2(src.get_app()),
+      element(src.get_app()),
       m_propertysetAttribute(src.m_propertysetAttribute),
       m_propertysetHeader(src.m_propertysetHeader)
    {
@@ -27,7 +27,7 @@ namespace sip
 
 
 
-   ::ca2::property & transaction::header(const char * pszKey)
+   property & transaction::header(const char * pszKey)
    {
       return m_propertysetHeader[pszKey];
    }
@@ -188,7 +188,7 @@ namespace sip
 
 
    // --------------------------------------------------------------------------------------
-   ::ca2::property_set & transaction::headers()
+   property_set & transaction::headers()
    {
       return m_propertysetHeader;
    }
@@ -202,12 +202,12 @@ namespace sip
       m_cookies.remove_all();
    }
 
-   ::ca2::property & transaction::attr(const char * psz)
+   property & transaction::attr(const char * psz)
    {
       return m_propertysetAttribute[psz];
    }
 
-   ::ca2::property_set & transaction::attrs()
+   property_set & transaction::attrs()
    {
       return m_propertysetAttribute;
    }

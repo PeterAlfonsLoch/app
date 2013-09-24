@@ -39,7 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       /** socket container class, event generator.
       \ingroup basic */
       class CLASS_DECL_ca2 socket_handler :
-         public socket_handler_base
+         public base_socket_handler
       {
       protected:
          /** Map type for holding file descriptors/socket object pointers. */
@@ -48,12 +48,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       public:
          /** socket_handler constructor.
          \param log Optional log class pointer */
-         socket_handler(::ca2::application * papp, StdLog *log = NULL);
+         socket_handler(base_application * papp, StdLog *log = NULL);
 
          /** socket_handler threadsafe constructor.
          \param mutex Externally declared mutex var
          \param log Optional log class pointer */
-         socket_handler(::ca2::application * papp, mutex & mutex,StdLog *log = NULL);
+         socket_handler(base_application * papp, mutex & mutex,StdLog *log = NULL);
 
          ~socket_handler();
 
@@ -65,7 +65,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void RegStdLog(StdLog *log);
 
          /** Log error to log class for print out / storage. */
-         void LogError(socket *p,const string & user_text,int err,const string & sys_err, ::ca2::log::e_level elevel = ::ca_get_level_warning());
+         void LogError(base_socket *p,const string & user_text,int err,const string & sys_err, ::core::log::e_level elevel = ::ca_get_level_warning());
 
          /** add socket instance to socket ::map. Removal is always automatic. */
          void add(socket *);
@@ -100,7 +100,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          // Connection pool
          /** find available open connection (used by connection pool). */
-         socket_handler_base::PoolSocket *FindConnection(int type,const string & protocol,::sockets::address&);
+         PoolSocket * FindConnection(int type, const string & protocol, ::net::address_sp &);
          /** Enable connection pool (by default disabled). */
          void EnablePool(bool x = true);
          /** Check pool status.
@@ -215,7 +215,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int m_next_trigger_id; ///< Unique trigger id counter
          ::map<int, int, socket *, socket *> m_trigger_src; ///< mapping trigger id to source socket
          ::map<int, int, ::map<socket *, socket *, bool, bool>, ::map<socket *, socket *, bool, bool> & > m_trigger_dst; ///< mapping trigger id to destination sockets
-         bool m_slave; ///< Indicates that this is a socket_handler_base run in socket_thread
+         bool m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
       };
 
 

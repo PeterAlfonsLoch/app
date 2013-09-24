@@ -19,7 +19,9 @@ typedef int32_t socklen_t;
 #include "webserver/webserver_http_response.h"
 
 
-
+#include "core/net/net_address_base.h"
+#include "core/net/net_address.h"
+#include "base/sockets_base.h"
 
 #if defined(BSD_STYLE_SOCKETS)
 #include "bsd/sockets.h"

@@ -10,8 +10,8 @@ namespace sockets
    #endif
 
 
-   http_base_socket::http_base_socket(socket_handler_base& h) :
-      ::ca2::ca2(h.get_app()),
+   http_base_socket::http_base_socket(base_socket_handler& h) :
+      element(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -20,7 +20,7 @@ namespace sockets
    }
 
    http_base_socket::http_base_socket(const http_base_socket& s) :
-      ::ca2::ca2(((http_socket&) s).get_app()),
+      element(((http_socket&) s).get_app()),
       socket(s.m_handler),
       stream_socket(s),
       tcp_socket(s),
@@ -109,7 +109,7 @@ namespace sockets
       //TRACE("http version: %s\n", m_request.attr("http_version").get_string());
       //TRACE("connection: %s\n", m_request.header("connection").get_string());
       //TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
-   /*   if(::ca2::str::ends(m_request.attr("http_version").get_string(), "/1.1")
+   /*   if(::str::ends(m_request.attr("http_version").get_string(), "/1.1")
          && m_request.header("connection").get_string().CompareNoCase("close") != 0)
       {
          m_b_keepalive = true;
@@ -246,7 +246,7 @@ namespace sockets
             m_response.m_propertysetHeader.set(__id(content_encoding), "gzip");
 
 
-            ::primitive::memory_file file(get_app());
+            ::file::memory_buffer file(get_app());
 
             gzip gz(&file);
 

@@ -87,7 +87,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
       //if(FAILED(hr))
       // throw "dir::get_ca2_module_folder_dup : SHGetKnownFolderPath failed";
 
-      strcpy(lpszModuleFilePath, buf.m_psz);
+      strcpy(lpszModuleFilePath, buf.c_str());
 
       if(lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
          || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
@@ -760,11 +760,17 @@ string dir::default_os_user_path_prefix()
    return str;
 
 #elif defined(METROWIN)
-   string str(Windows::System::UserProfile::UserInformation::GetDomainNameAsync()->GetResults()->Data());
+
+   #undef System
+
+   string str(::Windows::System::UserProfile::UserInformation::GetDomainNameAsync()->GetResults()->Data());
+
    return str;
 
 #elif defined(ANDROID)
+
    string str("ca2user");
+
    return str;
 
 #else

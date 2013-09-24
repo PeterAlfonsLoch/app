@@ -1,4 +1,5 @@
 #include "framework.h"
+#undef new
 #include <msxml6.h>
 #include <wrl.h>
 
@@ -17,7 +18,7 @@ private:
    //
 
    HANDLE m_hComplete;
-   simple_memory m_mem;
+   ::primitive::memory m_mem;
 
    //
    // Return value from final callbacks, including OnResponseReceived or
@@ -85,16 +86,16 @@ public:
       _Out_ PDWORD pdwStatus
       );
 
-   vsstring as_string()
+   string as_string()
    {
-      vsstring str;
+      string str;
       m_mem.to_string(str);
       return str;
    }
 
    bool to_file(const char * pszFile)
    {
-      return m_mem.to_file(pszFile);
+      return file_put_contents_dup(pszFile, m_mem) != FALSE;
    }
 
 };
@@ -319,7 +320,7 @@ STDMETHODIMP
          goto Exit;
       }
 
-      m_mem.write(buffer, cbRead);
+      m_mem.append(buffer, cbRead);
    }
 
 Exit:
@@ -585,7 +586,7 @@ Exit:
 
 /*DWORD g_MsDownloadSize = 1024 * 16;
 char * g_MsDownloadBuffer = NULL;
-vsstring * g_pstrHost = NULL;
+string * g_pstrHost = NULL;
 */
 
 void reset_http()
@@ -620,14 +621,14 @@ void prepare_http()
    if(g_pstrHost == NULL)
    {
 
-   g_pstrHost = new vsstring();
+   g_pstrHost = new string();
 
    }
    */
 }
 
 
-bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int * piStatus, void (*callback)(void *, int, uint_ptr), void * callback_param )
+bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int * piStatus, void (*callback)(void *, int, uint_ptr), void * callback_param )
 {
 
    ComPtr<CXMLHttpRequest2Callback> spcallback;
@@ -662,7 +663,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
 }
 
 
-vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int, uint_ptr), void * callback_param, bool bProgress)
+string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int, uint_ptr), void * callback_param, bool bProgress)
 {
 
    ComPtr<CXMLHttpRequest2Callback> spcallback;
@@ -690,9 +691,9 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
 }
 
 
-vsstring url_encode_dup(const char * psz)
+string url_encode_dup(const char * psz)
 {
-   vsstring str;
+   string str;
    char sz[256];
    while(*psz != '\0')
    {

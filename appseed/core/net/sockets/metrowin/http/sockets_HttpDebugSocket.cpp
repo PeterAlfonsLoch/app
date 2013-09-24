@@ -31,8 +31,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
-   http_debug_socket::http_debug_socket(socket_handler_base& h) : 
-      ::ca2::ca2(h.get_app()),
+   http_debug_socket::http_debug_socket(base_socket_handler& h) : 
+      element(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -55,7 +55,7 @@ namespace sockets
    #ifdef HAVE_OPENSSL
          EnableSSL();
    #else
-         Handler().LogError(this, "url_this", -1, "SSL not available", ::ca2::log::level_warning);
+         Handler().LogError(this, "url_this", -1, "SSL not available", ::core::log::level_warning);
    #endif
       }
    }
@@ -63,20 +63,20 @@ namespace sockets
 
    void http_debug_socket::OnFirst()
    {
-      Send(
+      write(
          "HTTP/1.1 200 OK\n"
          "Content-type: text/html\n"
          "Connection: close\n"
          "Server: http_debug_socket/1.0\n"
          "\n");
-      Send(
+      write(
          "<html><head><title>Echo Request</title></head>"
          "<body><h3>Request header</h3>");
-      Send(   "<form method='post' action='/test_post'>"
+      write(   "<form method='post' action='/test_post'>"
          "<input type='text' name='text' value='test text'><br>"
          "<input type='submit' name='submit' value=' OK '></form>");
-      Send(   "<pre style='background: #e0e0e0'>");
-      Send(m_request.attr(__id(http_method)).get_string() + " " + m_request.attr(__id(request_uri)) + " " + m_request.attr(__id(http_version)) + "\n");
+      write(   "<pre style='background: #e0e0e0'>");
+      write(m_request.attr(__id(http_method)).get_string() + " " + m_request.attr(__id(request_uri)) + " " + m_request.attr(__id(http_version)) + "\n");
    }
 
 

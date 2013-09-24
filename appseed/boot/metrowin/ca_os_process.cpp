@@ -157,7 +157,7 @@ int get_current_process_affinity_order()
 
 #ifdef WINDOWSEX
 
-bool process_modules(stra_dup & stra, DWORD processID)
+bool process_modules(stringa & stra, DWORD processID)
 {
    
    HANDLE hProcess;
@@ -211,7 +211,7 @@ bool process_modules(stra_dup & stra, DWORD processID)
 
 #ifdef WINDOWSEX
 
-bool load_modules_diff(stra_dup & straOld, stra_dup & straNew, const char * pszExceptDir)
+bool load_modules_diff(stringa & straOld, stringa & straNew, const char * pszExceptDir)
 {
 
    bool bFound;

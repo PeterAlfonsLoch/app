@@ -41,7 +41,7 @@ CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach = true);
 
 #endif
 
-#ifndef MERDE_WINDOWS
+#ifndef METROWIN
 
 CLASS_DECL_c
 LSTATUS
@@ -69,4 +69,3 @@ CLASS_DECL_c string read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTS
 
 #define MESSAGE MSG
 #define LPMESSAGE LPMSG
-

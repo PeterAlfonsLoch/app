@@ -58,7 +58,7 @@ namespace ca
          pszPath = "sphere";
       }
 
-      vsstring strPath(pszPath);
+      string strPath(pszPath);
 
       if(str_ends_ci_dup(strPath, ".ilk"))
          return false;
@@ -132,7 +132,7 @@ namespace ca
 
    bool ca2_library::open(const char * pszPath)
    {
-      m_plibrary = ::ca2::open_ca2_library(pszPath);
+      m_plibrary = ::core::open_ca2_library(pszPath);
       return m_plibrary != NULL;
    }
 
@@ -142,7 +142,7 @@ namespace ca
 } // namespace ca
 
 
-namespace ca2
+namespace core
 {
 
    void * open_ca2_library(const char * psz)

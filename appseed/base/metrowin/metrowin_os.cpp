@@ -1,12 +1,12 @@
 #include "framework.h"
-#include <regex>
+//#include <regex>
 
 
 extern CLASS_DECL_THREAD os_thread * t_posthread;
 extern CLASS_DECL_THREAD HTHREAD currentThread;
 
 /*
-CLASS_DECL_ca Platform::String ^ rtstr(const char * psz)
+Platform::String ^ rtstr(const char * psz)
 {
    if(psz == NULL)
       return ref new Platform::String(L"");
@@ -17,11 +17,11 @@ CLASS_DECL_ca Platform::String ^ rtstr(const char * psz)
 
 
 
-CLASS_DECL_ca int MessageBox(oswindow window, const char * pszMessage, const char * pszTitle, int iFlags)
+int MessageBox(oswindow window, const char * pszMessage, const char * pszTitle, int iFlags)
 {
   
 
-   ::wait(get_os_window(window)->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=]()
+   ::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=]()
    {
    
       Windows::UI::Popups::MessageDialog ^ msg = ref new Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
@@ -51,7 +51,7 @@ CLASS_DECL_ca int MessageBox(oswindow window, const char * pszMessage, const cha
 }
 
 
-CLASS_DECL_ca VOID WINAPI Sleep(DWORD dwMilliseconds)
+VOID WINAPI Sleep(DWORD dwMilliseconds)
 {
    static HANDLE singletonEvent = nullptr;
 
@@ -108,10 +108,12 @@ LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 
 */
 
+/*
+
 bool os_initialize()
 {
 
-   ::os_thread::s_pmutex = new simple_mutex();
+   ::os_thread::s_pmutex = new mutex();
 
    ::os_thread::s_pptra = new simple_array < os_thread * > ();
 
@@ -147,7 +149,7 @@ bool os_finalize()
    return TRUE;
 
 }
-
+*/
 /*
 
 LSTATUS
@@ -188,7 +190,7 @@ ulong_ptr                        g_gdiplusToken             = NULL;
 ulong_ptr                        g_gdiplusHookToken         = NULL;
 */
 
-bool main_initialize()
+int_bool main_initialize()
 {
 
    //Sleep(15 * 1000);
@@ -239,7 +241,7 @@ bool main_initialize()
 } 
 
 
-bool main_finalize()
+int_bool main_finalize()
 {
 
    /*g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
@@ -252,10 +254,10 @@ bool main_finalize()
 }
 
 
-CLASS_DECL_ca int g_iMouse = -1;
+int g_iMouse = -1;
 
 
-CLASS_DECL_ca WINBOOL GetCursorPos(LPPOINT lppoint)
+WINBOOL GetCursorPos(LPPOINT lppoint)
 {
    
    lppoint->x = 0;
@@ -292,7 +294,7 @@ CLASS_DECL_ca WINBOOL GetCursorPos(LPPOINT lppoint)
 }
 
 
-CLASS_DECL_ca vsstring normalize_path(const char * lpcszPath)
+string normalize_path(const char * lpcszPath)
 {
 
    if(lpcszPath == NULL)
@@ -301,9 +303,9 @@ CLASS_DECL_ca vsstring normalize_path(const char * lpcszPath)
    if(*lpcszPath == '\0')
       return "";
 
-   vsstring path = lpcszPath;
+   string path = lpcszPath;
 
-   vsstring oldpath;
+   string oldpath;
 
    while(oldpath != path)
    {
@@ -336,7 +338,7 @@ CLASS_DECL_ca vsstring normalize_path(const char * lpcszPath)
       }
       else
       {
-         int_ptr iFind2 = path.rfind('\\', iFind);
+         int_ptr iFind2 = path.reverse_find('\\', iFind);
          if(iFind2 < 0)
          {
             path = path.substr(0, iFind) + path.substr(iFind + 2);
@@ -347,7 +349,7 @@ CLASS_DECL_ca vsstring normalize_path(const char * lpcszPath)
          }
          else
          {
-            int_ptr iFind3 = path.rfind('\\', iFind2 - 1);
+            int_ptr iFind3 = path.reverse_find('\\', iFind2 - 1);
             if(iFind3 <= 0)
             {
                path = path.substr(iFind + 2);
@@ -366,7 +368,7 @@ CLASS_DECL_ca vsstring normalize_path(const char * lpcszPath)
 
 
 
-vsstring key_to_char(WPARAM wparam, LPARAM lparam)
+string key_to_char(WPARAM wparam, LPARAM lparam)
 {
    throw "todo";
 }
@@ -374,7 +376,7 @@ vsstring key_to_char(WPARAM wparam, LPARAM lparam)
 
 
 
-CLASS_DECL_ca vsstring get_system_error_message(uint32_t dwError)
+string get_system_error_message(uint32_t dwError)
 {
    wstring wstr;
    wstr.alloc(64 * 1024 / sizeof(wchar_t));
@@ -386,12 +388,12 @@ CLASS_DECL_ca vsstring get_system_error_message(uint32_t dwError)
       (LPWSTR) (LPCWSTR) wstr,
       wstr.get_storage_size(),
       NULL);
-   vsstring str(wstr);
+   string str(wstr);
    return str;
 }
 
 
-CLASS_DECL_ca WINBOOL IsWindow(oswindow oswindow)
+WINBOOL IsWindow(oswindow oswindow)
 {
 
    if(((void *) oswindow) == NULL)
@@ -404,9 +406,11 @@ CLASS_DECL_ca WINBOOL IsWindow(oswindow oswindow)
 
 
 
-CLASS_DECL_ca void output_debug_string(const char * psz)
+void output_debug_string(const char * psz)
 {
    
    ::OutputDebugString(wstring(psz));
 
 }
+
+

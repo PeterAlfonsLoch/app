@@ -6,7 +6,7 @@ namespace sockets
 
 
    class CLASS_DECL_ca2 sockets :
-      virtual public ::ca2::section
+      virtual public base_departament
    {
    public:
 
@@ -26,7 +26,7 @@ namespace sockets
 
 
 
-      sockets(sp(::ca2::application) papp);
+      sockets(sp(base_application) papp);
 
 
       bool initialize1();

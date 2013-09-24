@@ -157,7 +157,7 @@ namespace primitive
       memory_base & prefix_der_sequence();
 
 
-#ifdef METROWIN
+#if defined(METROWIN) && defined(__cplusplus_winrt)
 
       inline Platform::Array < uchar, 1U > ^ get_os_bytes(memory_position pos = 0, memory_size size = -1) const;
       inline ::Windows::Storage::Streams::IBuffer ^ get_os_crypt_buffer(memory_position pos = 0, memory_size size = -1) const;
@@ -755,7 +755,7 @@ namespace primitive
 
    }
 
-#ifdef METROWIN
+#if defined(METROWIN) && defined(__cplusplus_winrt)
 
    inline Platform::Array < uchar, 1U > ^ memory_base::get_os_bytes(memory_position pos, memory_size size) const
    {

@@ -1,5 +1,6 @@
 #include "framework.h"
 
+#ifndef METROWIN
 
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -162,5 +163,9 @@ int_bool WINAPI GlobalUnlock(HGLOBAL hglobal)
 
 }
 
+
+
+
+#endif
 
 

@@ -16,9 +16,6 @@
     <Filter Include="Header Files\bsdiff">
       <UniqueIdentifier>{bb21cf68-a709-498f-88c6-f602e1f6df57}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\os">
-      <UniqueIdentifier>{62395444-ed47-4614-9e3b-3fa4af56c392}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\simple_ui">
       <UniqueIdentifier>{11187da3-5cbb-4d68-810a-db081b0f7ce4}</UniqueIdentifier>
     </Filter>
@@ -39,9 +36,6 @@
     </Filter>
     <Filter Include="Source Files\bsdiff">
       <UniqueIdentifier>{3fda5d48-31d1-4d38-b7b5-cd050a52caa9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os">
-      <UniqueIdentifier>{be60ca3c-8c61-42a3-a179-ffa98c973c9c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\simple_ui">
       <UniqueIdentifier>{288ce229-8a9f-4467-be43-9b87a15a72dd}</UniqueIdentifier>
@@ -64,23 +58,11 @@
     <Filter Include="Source Files\metrowin\crypt">
       <UniqueIdentifier>{20860910-2aa6-43a2-a318-b36ccce8b952}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\cross">
-      <UniqueIdentifier>{cad6af04-0c25-49fa-8dd1-5091737d1135}</UniqueIdentifier>
+    <Filter Include="Header Files\boot">
+      <UniqueIdentifier>{c0e41ec8-5c3f-447d-af6b-e83bb7dd702a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\cross\windows">
-      <UniqueIdentifier>{f8de6d3e-c020-442c-b4e3-2f1ba65fffd3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\cross">
-      <UniqueIdentifier>{d582e295-dda4-47ba-8700-b4cc066037a3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\cross\windows">
-      <UniqueIdentifier>{9932dbda-a60e-43ff-8b5d-d6bab33503cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ca">
-      <UniqueIdentifier>{a5c865b3-8109-4696-8ef8-6e0d80599fd1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ca">
-      <UniqueIdentifier>{8cfb5659-670a-459f-8d0b-58af5f16356e}</UniqueIdentifier>
+    <Filter Include="Source Files\boot">
+      <UniqueIdentifier>{7a3c1276-60bc-4eda-8adb-c0a2f865c494}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -150,9 +132,6 @@
     <ClCompile Include="spa\spa_starter_start.cpp">
       <Filter>Source Files\spa</Filter>
     </ClCompile>
-    <ClCompile Include="spa\spa_trace.cpp">
-      <Filter>Source Files\spa</Filter>
-    </ClCompile>
     <ClCompile Include="spa\spa_window.cpp">
       <Filter>Source Files\spa</Filter>
     </ClCompile>
@@ -192,9 +171,6 @@
     <ClCompile Include="bsdiff\randtable.cpp">
       <Filter>Source Files\bsdiff</Filter>
     </ClCompile>
-    <ClCompile Include="os\os_process.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
     <ClCompile Include="simple_ui\simple_edit_box.cpp">
       <Filter>Source Files\simple_ui</Filter>
     </ClCompile>
@@ -225,34 +201,10 @@
     <ClCompile Include="simple_graphics\simple_graphics.cpp">
       <Filter>Source Files\simple_graphics</Filter>
     </ClCompile>
-    <ClCompile Include="os\os_thread.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\os_http.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="cross\windows\windows_user.cpp">
-      <Filter>Source Files\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows_thread.cpp">
-      <Filter>Source Files\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="metrowin\ca_os.cpp">
-      <Filter>Source Files\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="metrowin\ca_os_ca_dll.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="metrowin\ca_os_file.cpp">
-      <Filter>Source Files\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="metrowin\ca_os_file_std.cpp">
-      <Filter>Source Files\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="metrowin\ca_os_file_watcher.cpp">
-      <Filter>Source Files\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="metrowin\ca_os_http.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="metrowin\ca_os_launcher.cpp">
@@ -300,173 +252,59 @@
     <ClCompile Include="metrowin\ca_os_sockets.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="metrowin\ca_os_thread.cpp">
-      <Filter>Source Files\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="metrowin\ca_os_window.cpp">
-      <Filter>Source Files\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="metrowin\crypt\c_os_crypt.cpp">
       <Filter>Source Files\metrowin\crypt</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_argcargv.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_argcargv.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_cpu_architecture.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_base64.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_debug.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_c.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_file_watcher.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_conv.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_file_watcher_impl.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_cpu_architecture.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_file_watcher_listener_thread.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_debug.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_file_watcher_thread.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_dir.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_geometric_types.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_dir2.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_international.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_file.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_math.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_file_spa.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_mktime.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_file_watcher.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_printf.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_file_watcher_impl.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_simple_shell_launcher.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_file_watcher_listener_thread.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_sprintf.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_file_watcher_thread.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_std_file.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_heap.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_url.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_integer_to_string.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_international.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_math.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_md5.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_mem.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_mktime.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_mutex_lock.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_net.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_printf.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_array.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_critical_section.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_event.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_list.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_memory.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_mutex.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_obj.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_simple_shell_launcher.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_sprintf.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_std_file.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_str.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_stra.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_strdup.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_string_to_integer.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_strw.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_strx.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_template.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_url.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_user.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_verisimple_string.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_verisimple_wstring.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_version.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_vsstringtow.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_wstringtovss.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_xmlite.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_geometric_types.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="metrowin\ca_os_direct2d_tls.cpp">
-      <Filter>Source Files\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_window_graphics.cpp">
-      <Filter>Source Files\ca</Filter>
+    <ClCompile Include="boot\boot_window_graphics.cpp">
+      <Filter>Source Files\boot</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -536,9 +374,6 @@
     <ClInclude Include="spa\spa_starter_start.h">
       <Filter>Header Files\spa</Filter>
     </ClInclude>
-    <ClInclude Include="spa\spa_trace.h">
-      <Filter>Header Files\spa</Filter>
-    </ClInclude>
     <ClInclude Include="bsdiff\bsdiff.h">
       <Filter>Header Files\bsdiff</Filter>
     </ClInclude>
@@ -550,12 +385,6 @@
     </ClInclude>
     <ClInclude Include="bsdiff\bzlib_private.h">
       <Filter>Header Files\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os_process.h">
-      <Filter>Header Files\os</Filter>
     </ClInclude>
     <ClInclude Include="simple_ui\simple_button.h">
       <Filter>Header Files\simple_ui</Filter>
@@ -608,34 +437,13 @@
     <ClInclude Include="simple_graphics\simple_path.h">
       <Filter>Header Files\simple_graphics</Filter>
     </ClInclude>
-    <ClInclude Include="cross\cross.h">
-      <Filter>Header Files\cross</Filter>
-    </ClInclude>
-    <ClInclude Include="cross\windows\windows.h">
-      <Filter>Header Files\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="cross\windows\windows_thread.h">
-      <Filter>Header Files\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="cross\windows\windows_user.h">
-      <Filter>Header Files\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os_thread.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
     <ClInclude Include="metrowin\ca_os.h">
-      <Filter>Header Files\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="metrowin\ca_os_file.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="metrowin\ca_os_file_watcher.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="metrowin\ca_os_gdi.h">
-      <Filter>Header Files\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="metrowin\ca_os_http.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="metrowin\ca_os_internal.h">
@@ -668,197 +476,89 @@
     <ClInclude Include="metrowin\ca_os_sockets.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="metrowin\ca_os_thread.h">
-      <Filter>Header Files\metrowin</Filter>
+    <ClInclude Include="boot\boot.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_2.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_async.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_async.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_base64.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_cpu_architecture.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_ca.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_debug.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_conv.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_file_watcher.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_count.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_file_watcher_impl.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_cpu_architecture.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_file_watcher_listener_thread.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_debug.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_file_watcher_thread.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_dir.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_geometric_types.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_file.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_international.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_file_watcher.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_keep_true.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_file_watcher_impl.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_launcher.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_file_watcher_listener_thread.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_libc.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_file_watcher_thread.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_library.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_heap.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_logic.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_index.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_math.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_integer_to_string.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_message_loop.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_international.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_number.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_keep_true.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_os.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_launcher.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_printf.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_libc.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_simple_app.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_library.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_simple_pixel_font.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_logic.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_simple_shell_launcher.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_math.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_small_ipca_channel.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_md5.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_sprintf.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_memory.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_url.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_message_loop.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_mutex_lock.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_natural.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_net.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_number.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_printf.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_app.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_array.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_critical_section.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_event.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_list.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_map.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_memory.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_mutex.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_obj.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_pixel_font.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_simple_shell_launcher.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_small_ipca_channel.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_smart_pointer1.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_smart_pointer2.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_sprintf.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_str.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_stra.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_string_to_integer.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_template.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_time.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_types.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_url.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_user.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_verisimple_string.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_verisimple_wstring.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_vsstringtow.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_wstringtovss.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_xmlite.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_geometric_types.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_cairo_keep.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_window_graphics.h">
-      <Filter>Header Files\ca</Filter>
+    <ClInclude Include="boot\boot_window_graphics.h">
+      <Filter>Header Files\boot</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

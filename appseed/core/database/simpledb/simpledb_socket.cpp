@@ -3,8 +3,9 @@
 namespace simpledb
 {
 
-   socket::socket(::sockets::socket_handler_base & h) :
+   socket::socket(::sockets::base_socket_handler & h) :
       element(h.get_app()),
+      base_socket(h),
       ::sockets::socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -133,7 +134,7 @@ namespace simpledb
 
    void socket::OnSSLAccept()
    {
-      m_strCat = System.m_simpledb.db().data_load(NULL, "netnodec", GetLocalAddress().get_display_number(), ::database::id());
+      m_strCat = System.m_simpledb.db().data_load(NULL, "netnodec", GetLocalAddress()->get_display_number(), ::database::id());
       ::sockets::httpd_socket::OnSSLAccept();
    }
 

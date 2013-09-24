@@ -20,24 +20,33 @@ namespace sockets
    'struct in_addr' is an IPv4 address.
    \ingroup basic
    */
-   class address :
-      virtual public ::ca2::object
+   class winrt_address :
+      virtual public ::object
    {
    public:
 
 
       ::Windows::Networking::HostName ^      m_hostname;
       ::Platform::String ^                   m_strService;
+      bool                                   m_bValid;
+
+      union
+      {
+         struct sockaddr_in      m_addr;
+         struct sockaddr_in6     m_addr6;
+      } m_addr;
       
 
-      address(::ca2::application * papp, const string & strAddress = "", const string & pszServiceName = "");
-      address(::ca2::application * papp, const string & strAddress, int iPort);
-      address(const address & address);
-      virtual ~address();
+      winrt_address(sp(base_application) papp);
+      virtual ~winrt_address();
 
+      virtual void construct(const in_addr & a, int32_t iPort = 0) = 0;
+      virtual void construct(const in6_addr & a, int32_t iPort = 0) = 0;
+      virtual void construct(const sockaddr & sa, int32_t sa_len) = 0;
+      virtual void construct(const string & strAddress = "", const string & pszServiceName = "");
+      virtual void construct(const string & strAddress, int iPort);
 
-      address & operator = (const address & address);
-      bool operator == (const address & address) const;
+      virtual void copy(const ::net::address_base & address);
 
       virtual string get_display_number() const;
       virtual string get_canonical_name() const;
@@ -45,14 +54,18 @@ namespace sockets
       virtual int    get_service_number() const;
 
 
-      int     service_name_to_number(const char * psz) const;
-      string  service_number_to_name(int i) const;
+      virtual int    service_name_to_number(const char * psz) const;
+      virtual string service_number_to_name(int i) const;
 
 
-      virtual bool is_in_net(const address & addr, const address & addrMask) const;
+      virtual bool is_in_net(const ::net::address_base & addr, const ::net::address_base & addrMask) const;
+      virtual bool is_equal(const ::net::address_base & address) const;
 
       virtual bool is_ipv4() const;
       virtual bool is_ipv6() const;
+
+
+      virtual void sync_addr();
 
 
    };

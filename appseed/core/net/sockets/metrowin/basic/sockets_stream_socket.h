@@ -20,12 +20,12 @@
          bool m_flush_before_close; ///< Send all data before closing (default true)
          int m_connection_retry; ///< Maximum connection retries (tcp)
          int m_retries; ///< Actual number of connection retries (tcp)
-         bool m_call_on_connect; ///< OnConnect will be called next socket_handler_base cycle if true
-         bool m_b_retry_connect; ///< Try another connection attempt next socket_handler_base cycle
+         bool m_call_on_connect; ///< OnConnect will be called next base_socket_handler cycle if true
+         bool m_b_retry_connect; ///< Try another connection attempt next base_socket_handler cycle
          int m_shutdown; ///< Shutdown status
 
 
-         stream_socket(socket_handler_base& );
+         stream_socket(base_socket_handler& );
          ~stream_socket();
 
 
@@ -104,9 +104,9 @@
          virtual int Protocol() = 0;
 
          virtual port_t GetRemotePort();
-         virtual address GetRemoteAddress();
+         virtual ::net::address_sp GetRemoteAddress();
          virtual port_t GetLocalPort();
-         virtual address GetLocalAddress();
+         virtual ::net::address_sp GetLocalAddress();
 
          virtual bool is_connecting();
 

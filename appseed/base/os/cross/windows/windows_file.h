@@ -1,5 +1,6 @@
 #pragma once
 
+#ifndef METROWIN
 
 #define INVALID_HANDLE_VALUE ((HANDLE)(long_ptr)-1)
 #define INVALID_FILE_SIZE ((DWORD)0xFFFFFFFF)
@@ -190,5 +191,8 @@ typedef GENERIC_MAPPING *PGENERIC_MAPPING;*/
 
 
 
+
+
+#endif
 
 

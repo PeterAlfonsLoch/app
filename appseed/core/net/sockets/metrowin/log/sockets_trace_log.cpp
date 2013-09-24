@@ -33,22 +33,22 @@ namespace sockets
 {
 
    void trace_log::error(
-      socket_handler_base * phandler,
+      base_socket_handler * phandler,
       socket * sock,
       const string & strCall,
       int iError,
       const string & strSystemError,
-      ::ca2::log::e_level elevel)
+      ::core::log::e_level elevel)
    {
-      string strLevel = ::ca2::log_level_name(elevel);
+      string strLevel = log_level_name(elevel);
 
       if (sock)
       {
-         Sys(phandler->m_papp).log().trace("fd %d :: %s: %d %s (%s)\n", sock->GetSocket(), strCall.c_str(), iError, strSystemError.c_str(), strLevel.c_str());
+         Sys(phandler->m_pbaseapp).log().trace("fd %d :: %s: %d %s (%s)\n", sock->GetSocket(), strCall.c_str(), iError, strSystemError.c_str(), strLevel.c_str());
       }
       else
       {
-         Sys(phandler->m_papp).log().trace("%s: %d %s (%s)\n", strCall.c_str(), iError, strSystemError.c_str(), strLevel.c_str());
+         Sys(phandler->m_pbaseapp).log().trace("%s: %d %s (%s)\n", strCall.c_str(), iError, strSystemError.c_str(), strLevel.c_str());
       }
    }
 

@@ -33,7 +33,7 @@ namespace sockets
 
 
    // --------------------------------------------------------------------------------------
-   Ajp13Socket::Ajp13Socket(socket_handler_base& h) :
+   Ajp13Socket::Ajp13Socket(base_socket_handler& h) :
       socket(h),
       stream_socket(h),
       AjpBaseSocket(h),
@@ -123,7 +123,7 @@ namespace sockets
       short             server_port = get_integer(buf, ptr);
       bool               is_ssl = get_boolean(buf, ptr);
 
-      string method_str = ::ca2::str::from( method );
+      string method_str = ::str::from( method );
       App(get_app()).sockets().m_pajpbasesocketinit->Method.Lookup(method, method_str);
       m_request.attr("http_method") = method_str;
       m_request.attr("http_protocol") = protocol;

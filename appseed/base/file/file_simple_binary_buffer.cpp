@@ -131,9 +131,13 @@ namespace file
    {
       ASSERT(lpsz != NULL);
       ASSERT(m_pfile != NULL);
-
+#if defined(METROWIN)
+      if (_fputts(wstring(lpsz), m_pfile) == _TEOF)
+         throw_exception(get_app(), ::file::exception::diskFull, _doserrno, m_strFileName);
+#else
       if (_fputts(lpsz, m_pfile) == _TEOF)
          throw_exception(get_app(), ::file::exception::diskFull, _doserrno, m_strFileName);
+#endif
    }
 
    LPTSTR simple_binary_buffer::read_string(LPTSTR lpsz, UINT nMax)
@@ -176,7 +180,7 @@ namespace file
 
          // if string is read completely or EOF
          if (lpszResult == NULL ||
-            (nLen = lstrlen(lpsz)) < nMaxSize ||
+            (nLen = strlen(lpsz)) < nMaxSize ||
             lpsz[nLen-1] == '\n')
             break;
 
@@ -555,13 +559,16 @@ namespace file
 
    void simple_binary_buffer::set_length(file_size dwNewLen)
    {
+
       ASSERT_VALID(this);
+
       ASSERT(m_pfile != (UINT)NULL);
 
       seek((LONG)dwNewLen, seek_begin);
 
       if (!::ftruncate(fileno(m_pfile), dwNewLen))
          throw_exception(get_app(), ::file::exception::invalidFile, _doserrno, m_strFileName);
+
    }
 
 

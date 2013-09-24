@@ -366,7 +366,7 @@ SIZE os_simple_graphics::get_text_extent(const char * psz, int iLen)
    if(iLen < 0)
       iLen = strlen(psz);
 
-   vsstring str(psz, iLen);
+   string str(psz, iLen);
 
    wstring wstr(str);
 
@@ -568,7 +568,7 @@ bool os_simple_graphics::fill_polygon(LPPOINT lpa, int iCount, ::draw2d::e_fill_
 bool os_simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 {
 
-   vsstring str(pszUtf8, iSize);
+   string str(pszUtf8, iSize);
 
    wstring wstr(str);
 

@@ -11,7 +11,7 @@ namespace sockets
    {
    public:
 
-      sip_udp_client_socket(socket_handler_base& );
+      sip_udp_client_socket(base_socket_handler& );
 
 
       /** Called when incoming data has been received.

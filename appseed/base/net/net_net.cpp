@@ -60,6 +60,8 @@ static const uchar index_hex[256] = {
 #define pr_s6_addr u.Byte
 #endif
 
+
+
 /*
 * StringToV6Addr() returns 1 if the conversion succeeds,
 * or 0 if the input is not a valid IPv6 address string.
@@ -370,6 +372,8 @@ CLASS_DECL_c string to_vsstring(const in_addr * addrParam)
    return str;
 
 }
+
+
 
 
 CLASS_DECL_c int32_t c_inet_pton(int32_t af, const char *src, void *dst)

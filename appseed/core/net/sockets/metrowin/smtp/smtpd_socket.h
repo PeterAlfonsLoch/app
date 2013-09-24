@@ -39,7 +39,7 @@ namespace sockets
       } reason_t;
 
    public:
-      smtpd_socket(socket_handler_base&);
+      smtpd_socket(base_socket_handler&);
 
       void OnAccept();
       void OnLine(const string &);
@@ -48,10 +48,10 @@ namespace sockets
       virtual bool OnHello(const string & domain) = 0;
 
       /** \return 'false' to abort */
-      virtual bool OnMailFrom(const email::address & addr) = 0;
+      virtual bool OnMailFrom(const ::net::email_address & addr) = 0;
 
       /** \return 'false' to abort */
-      virtual bool OnRcptTo(const email::address & addr) = 0;
+      virtual bool OnRcptTo(const ::net::email_address & addr) = 0;
 
       virtual void OnHeader(const string & key, const string & value, const string & lowvalue) = 0;
 

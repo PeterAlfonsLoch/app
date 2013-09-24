@@ -59,10 +59,10 @@ namespace sockets
 
 
       /** Constructor.
-      \param h socket_handler_base reference
+      \param h base_socket_handler reference
       \param ibufsz Maximum size of receive message (extra bytes will be truncated)
       \param ipv6 'true' if this is an ipv6 socket */
-      udp_socket(socket_handler_base& h,int ibufsz = 16384,bool ipv6 = false, int retries = 0);
+      udp_socket(base_socket_handler& h,int ibufsz = 16384,bool ipv6 = false, int retries = 0);
       ~udp_socket();
 
       /** Called when incoming data has been received.
@@ -93,22 +93,22 @@ namespace sockets
       \return 0 if bind succeeded */
       int Bind(const char * pszInterface, port_t port, int range = 1);
       /** To receive data on a specific interface:port, use this.
-      \param a Ip address
+      \param a Ip ::net::address_sp
       \param port Port number
       \param range Port range
       \return 0 if bind succeeded */
       //int Bind(ipaddr_t a,port_t& port,int range = 1);
       /** To receive data on a specific interface:port, use this.
-      \param a Ipv6 address
+      \param a Ipv6 ::net::address_sp
       \param port Port number
       \param range Port range
       \return 0 if bind succeeded */
       //int Bind(in6_addr a,port_t& port,int range = 1);
       /** To receive data on a specific interface:port, use this.
-      \param ad socket address
+      \param ad socket ::net::address_sp
       \param range Port range
       \return 0 if bind succeeded */
-      int Bind(const ::sockets::address & ad, int range = 1);
+      int Bind(const ::net::address_sp & ad, int range = 1);
 
       /** Define remote host.
       \param l Address of remote host
@@ -126,31 +126,31 @@ namespace sockets
       \return true if successful */
       //bool open(struct in6_addr& a,port_t port);
       /** Define remote host.
-      \param ad socket address
+      \param ad socket ::net::address_sp
       \return true if successful */
-      bool open(::sockets::address & ad);
+      bool open(::net::address_sp & ad);
 
       /** Send to specified host */
       //void SendToBuf(const string & ,port_t,const char *data,int len,int flags = 0);
-      /** Send to specified address */
+      /** Send to specified ::net::address_sp */
 //      void SendToBuf(ipaddr_t,port_t,const char *data,int len,int flags = 0);
-      /** Send to specified ipv6 address */
+      /** Send to specified ipv6 ::net::address_sp */
   //    void SendToBuf(in6_addr,port_t,const char *data,int len,int flags = 0);
-      /** Send to specified socket address */
-      //void SendToBuf(::sockets::address& ad,const char *data,int len,int flags = 0);
+      /** Send to specified socket ::net::address_sp */
+      //void SendToBuf(::net::address_sp& ad,const char *data,int len,int flags = 0);
 
       /** Send string to specified host */
       //void SendTo(const string &,port_t,const string &,int flags = 0);
-      /** Send string to specified address */
+      /** Send string to specified ::net::address_sp */
 //      void SendTo(ipaddr_t,port_t,const string &,int flags = 0);
-      /** Send string to specified ipv6 address */
+      /** Send string to specified ipv6 ::net::address_sp */
   //    void SendTo(in6_addr,port_t,const string &,int flags = 0);
-      /** Send string to specified socket address */
-      //void SendTo(::sockets::address& ad,const string &,int flags = 0);
+      /** Send string to specified socket ::net::address_sp */
+      //void SendTo(::net::address_sp& ad,const string &,int flags = 0);
 
-      /** Send to connected address */
+      /** Send to connected ::net::address_sp */
       void SendBuf(const char *data,size_t,int flags = 0);
-      /** Send string to connected address. */
+      /** Send string to connected ::net::address_sp. */
       void Send(const string & ,int flags = 0);
 
       /** Set broadcast */
@@ -181,12 +181,12 @@ namespace sockets
       void SetTimestamp(bool = true);
 
       virtual port_t GetRemotePort();
-      virtual address GetRemoteAddress();
+      virtual ::net::address_sp GetRemoteAddress();
       virtual port_t GetLocalPort();
-      virtual address GetLocalAddress();
+      virtual ::net::address_sp GetLocalAddress();
 
    protected:
-      udp_socket(const udp_socket& s) : socket(s) {}
+      udp_socket(const udp_socket& s) : base_socket(s), socket(s) {}
       void OnRead();
 #if defined(LINUX) || defined(MACOSX)
       /** This method emulates socket recvfrom, but uses messages so we can get the timestamp */

@@ -4,9 +4,15 @@
 namespace sockets
 {
 
+   winrt_address::winrt_address(sp(base_application) papp) :
+      element(papp)
+   {
+      
+      m_bValid = false;
 
-   address::address(::ca2::application * papp, const string & strAddress, const string & strServiceName) :
-      ca2(papp)
+   }
+
+   void winrt_address::construct(const string & strAddress, const string & strServiceName)
    {
 
       if(strAddress.is_empty())
@@ -16,11 +22,14 @@ namespace sockets
 
       m_strService   = strServiceName;
 
+      sync_addr();
+
+
    }
 
 
-   address::address(::ca2::application * papp, const string & strAddress, int iPort) :
-      ca2(papp)
+   winrt_address::winrt_address(base_application * papp, const string & strAddress, int iPort) :
+      element(papp)
    {
 
       try
@@ -38,43 +47,45 @@ namespace sockets
 
       m_strService   = itoa_dup(iPort);
 
+      sync_addr();
+
    }
 
    
-   address::address(const address & address)
+   winrt_address::winrt_address(const winrt_address & winrt_address)
    {
 
-      operator = (address);
+      operator = (winrt_address);
 
    }
 
 
-   address::~address()
+   winrt_address::~winrt_address()
    {
 
    }
 
 
-   address & address::operator = (const address & address)
+   winrt_address & winrt_address::operator = (const winrt_address & winrt_address)
    {
 
-      m_hostname        = address.m_hostname;
-      m_strService      = address.m_strService;
+      m_hostname        = winrt_address.m_hostname;
+      m_strService      = winrt_address.m_strService;
 
       return *this;
 
    }
 
 
-   bool address::operator == (const address & address) const
+   bool winrt_address::operator == (const winrt_address & winrt_address) const
    {
 
-      return m_hostname->IsEqual(address.m_hostname) && get_service_number() == address.get_service_number();
+      return m_hostname->IsEqual(winrt_address.m_hostname) && get_service_number() == winrt_address.get_service_number();
 
    }
 
 
-   string address::get_display_number() const
+   string winrt_address::get_display_number() const
    {
 
       return m_hostname->DisplayName;
@@ -82,7 +93,7 @@ namespace sockets
    }
 
 
-   string address::get_canonical_name() const
+   string winrt_address::get_canonical_name() const
    {
 
       return m_hostname->CanonicalName;
@@ -90,26 +101,26 @@ namespace sockets
    }
 
 
-   string address::get_service_name() const
+   string winrt_address::get_service_name() const
    {
 
       string strService = m_strService;
 
-      if(::ca2::str::is_simple_natural(strService))
-         return service_number_to_name(::ca2::str::to_int(strService));
+      if(::str::is_simple_natural(strService))
+         return service_number_to_name(::str::to_int(strService));
       else
          return strService;
 
    }
 
 
-   int address::get_service_number() const
+   int winrt_address::get_service_number() const
    {
 
       string strService = m_strService;
 
-      if(::ca2::str::is_simple_natural(strService))
-         return ::ca2::str::to_int(strService);
+      if(::str::is_simple_natural(strService))
+         return ::str::to_int(strService);
       else
          return service_name_to_number(strService);
          
@@ -117,7 +128,7 @@ namespace sockets
    }
    
 
-   int address::service_name_to_number(const char * psz) const
+   int winrt_address::service_name_to_number(const char * psz) const
    {
 
       return System.net().service_port(psz);
@@ -125,7 +136,7 @@ namespace sockets
    }
 
 
-   string  address::service_number_to_name(int iPort) const
+   string  winrt_address::service_number_to_name(int iPort) const
    {
 
       return System.net().service_name(iPort);
@@ -133,14 +144,14 @@ namespace sockets
    }
 
    
-   bool address::is_ipv4() const
+   bool winrt_address::is_ipv4() const
    {
 
       return System.net().isipv4(get_display_number());
 
    }
 
-   bool address::is_ipv6() const
+   bool winrt_address::is_ipv6() const
    {
 
       return System.net().isipv6(get_display_number());
@@ -148,7 +159,7 @@ namespace sockets
    }
 
 
-   bool address::is_in_net(const address & addr, const address & addrMask) const
+   bool winrt_address::is_in_net(const winrt_address & addr, const winrt_address & addrMask) const
    {
 
       if(is_ipv4() && addr.is_ipv4() && addrMask.is_ipv4())
@@ -189,6 +200,40 @@ namespace sockets
 
    }
 
+   bool winrt_address::sync_addr()
+   {
+
+      ZERO(m_addr);
+      if(is_ipv4())
+      {
+
+         m_addr.m_addr.sin_family = AF_INET;
+         m_addr.m_addr.sin_port = htons( port );
+         {
+            in_addr a;
+            if (System.net().convert(a, host))
+            {
+               m_addr.m_addr.sin_addr = a;
+               m_bValid = true;
+            }
+         }
+      }
+      else
+      {
+         m_addr.m_addr6.sin6_family = AF_INET6;
+         m_addr.m_addr6.sin6_port = htons( port );
+         {
+            struct in6_addr a;
+            if(System.net().convert(a, host))
+            {
+               m_addr.m_addr6.sin6_addr = a;
+               m_bValid = true;
+            }
+         }
+
+      }
+
+   }
 
 } // namespace sockets
 

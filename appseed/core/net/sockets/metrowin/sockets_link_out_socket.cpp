@@ -24,7 +24,7 @@ namespace sockets
 
 
 
-   link_out_socket::link_out_socket(socket_handler_base & h) : 
+   link_out_socket::link_out_socket(base_socket_handler & h) : 
       ca2(h.get_app()),
       socket(h),
       stream_socket(h),
@@ -74,8 +74,8 @@ namespace sockets
       m_flush_before_close = psocket->m_flush_before_close; ///< Send all data before closing (default true)
       m_connection_retry   = psocket->m_connection_retry; ///< Maximum connection retries (tcp)
       m_retries            = psocket->m_retries; ///< Actual number of connection retries (tcp)
-      m_call_on_connect    = psocket->m_call_on_connect; ///< OnConnect will be called next socket_handler_base cycle if true
-      m_b_retry_connect    = psocket->m_b_retry_connect; ///< Try another connection attempt next socket_handler_base cycle
+      m_call_on_connect    = psocket->m_call_on_connect; ///< OnConnect will be called next base_socket_handler cycle if true
+      m_b_retry_connect    = psocket->m_b_retry_connect; ///< Try another connection attempt next base_socket_handler cycle
       m_shutdown           = psocket->m_shutdown; ///< Shutdown status
 
       m_bSsl               = psocket->m_bSsl;

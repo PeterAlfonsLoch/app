@@ -285,7 +285,7 @@ namespace sockets
 #endif
 #endif
 
-#include "base/ca2/ca2_log.h"
+#include "core/core/core_log.h"
 
 #include "basic/sockets_address.h"
 //#include "basic/sockets_ssl_client_context.h"
@@ -301,7 +301,7 @@ namespace sockets
 
 #include "log/sockets_std_log.h"
 
-#include "basic/sockets_socket_handler_base.h"
+#include "core/net/sockets/base/sockets_base_socket_handler.h"
 #include "basic/sockets_socket_handler.h"
 #include "basic/sockets_listen_socket.h"
 

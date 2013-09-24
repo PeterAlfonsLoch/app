@@ -17,7 +17,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{FCED5042-9A2D-4E71-8022-129E8E5D1993}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>_ca2freeimage</ProjectName>
+    <ProjectName>basefreeimage</ProjectName>
     <RootNamespace>_freeimage</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
@@ -1288,7 +1288,7 @@
     <ClCompile Include="OpenEXR\Imath\ImathVec.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\appseed\c\m_c.vcxproj">
+    <ProjectReference Include="..\..\..\appseed\base\m_base.vcxproj">
       <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
     </ProjectReference>
     <ProjectReference Include="..\zlib\_m_ca2zlib.vcxproj">

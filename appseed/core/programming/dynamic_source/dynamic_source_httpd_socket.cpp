@@ -5,7 +5,7 @@ namespace dynamic_source
 {
 
 
-   httpd_socket::httpd_socket(::sockets::socket_handler_base& h) :
+   httpd_socket::httpd_socket(::sockets::base_socket_handler& h) :
       element(h.get_app()),
       socket(h),
       stream_socket(h),

@@ -50,7 +50,7 @@ namespace sockets
       int m_chunk_state;
       string m_chunk_line;
 
-      sip_base_client_socket(socket_handler_base& );
+      sip_base_client_socket(base_socket_handler& );
       ~sip_base_client_socket();
 
       void OnRawData(char *buf,size_t len);
@@ -92,17 +92,17 @@ namespace sockets
       /** Transfer coding 'chunked' */
       bool IsChunked() { return m_b_chunked; }
 
-      ::ca2::property & inattr(const char * pszName);
-      ::ca2::property_set & inattrs();
+      property & inattr(const char * pszName);
+      property_set & inattrs();
 
-      ::ca2::property & inheader(const char * pszName);
-      ::ca2::property_set & inheaders();
+      property & inheader(const char * pszName);
+      property_set & inheaders();
 
-      ::ca2::property & outattr(const char * pszName);
-      ::ca2::property_set & outattrs();
+      property & outattr(const char * pszName);
+      property_set & outattrs();
 
-      ::ca2::property & outheader(const char * pszName);
-      ::ca2::property_set & outheaders();
+      property & outheader(const char * pszName);
+      property_set & outheaders();
 
       sip::request & request();
       sip::response & response();

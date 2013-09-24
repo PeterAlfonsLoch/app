@@ -35,6 +35,7 @@
 #endif
 
 
+
 #if !defined(LINUX)
 typedef struct hthread * HTHREAD;
 #endif
@@ -55,7 +56,7 @@ CLASS_DECL_c int_bool WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
 void WINAPI TlsShutdown();
 
 
-#ifdef METROWIN
+#if defined(METROWIN) && defined(__cplusplus_winrt)
 
 
 interface IDWriteFactory;
@@ -79,7 +80,7 @@ CLASS_DECL_c IDXGIDevice * TlsGetDXGIDevice();
 #define TLS_d3_3              16
 #define TLS_d3_4              17
 
-#else
+#elif !defined(WINDOWS)
 
 #define PM_NOREMOVE 0
 #define PM_REMOVE 1

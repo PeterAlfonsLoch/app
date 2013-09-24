@@ -5,9 +5,9 @@ namespace sockets
 {
 
 
-   sockets::sockets(sp(::ca2::application) papp) :
-      ca2(papp),
-      ::ca2::section(papp),
+   sockets::sockets(sp(base_application) papp) :
+      element(papp),
+      base_departament(papp),
       m_mutexHttpPostBoundary(papp),
       m_mutexResolvCache(papp)
    {
@@ -25,6 +25,7 @@ namespace sockets
 /*            ::sockets::SSLInitializer ssl_init(m_psystem);*/
 
          System.factory().creatable_small < ::http::memory_file > ();
+         System.factory().cloneable_large < ::sockets::winrt_address  >  (System.template type_info < ::net::address_base > ());
 /*            System.factory().cloneable_small < ::sockets::ipv4_address > ();
          System.factory().cloneable_small < ::sockets::ipv6_address > ();*/
 

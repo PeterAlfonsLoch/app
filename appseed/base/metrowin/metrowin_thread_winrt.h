@@ -1,50 +1,6 @@
 #pragma once
 
 
-/*
-CLASS_DECL_ca _Use_decl_annotations_ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, SIZE_T unusedStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD unusedThreadId);
-CLASS_DECL_ca _Use_decl_annotations_ DWORD WINAPI ResumeThread(HANDLE hThread);
-CLASS_DECL_ca _Use_decl_annotations_ BOOL WINAPI SetThreadPriority(HANDLE hThread, int nPriority);
-CLASS_DECL_ca _Use_decl_annotations_ VOID WINAPI Sleep(DWORD dwMilliseconds);
-CLASS_DECL_ca DWORD WINAPI TlsAlloc();
-CLASS_DECL_ca _Use_decl_annotations_ BOOL WINAPI TlsFree(DWORD dwTlsIndex);
-CLASS_DECL_ca _Use_decl_annotations_ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex);
-CLASS_DECL_ca _Use_decl_annotations_ BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
-CLASS_DECL_ca void WINAPI TlsShutdown();
-CLASS_DECL_ca int WINAPI GetThreadPriority(_In_ HANDLE hThread);
-*/
-
-/*template < typename T >
-class m_waiter
-{
-   simple_event ev;
-   T op;
-   m_waiter(T op)
-   {
-      this->op = op;
-      op->Completed = new ::Windows::Foundation::AsyncOperationCompletedHandler(this, &m_waiter::cOMPLETed);
-   }
-   
-   
-   void cOMPLETed(T op, ::Windows::Foundation::AsyncStatus st)
-   {
-      if(st == Windows::Foundation::AsyncStatus::Completed)
-      {
-         mer = op->GetResults();
-      }
-      ev.set_event();
-   }
-
-   auto wait()
-   {
-      ev.lock();
-      return op->GetResults();
-   }
-
-};
-*/
-
-
 template < typename T >
 inline void waiter_null_result(T & t)
 {
@@ -63,7 +19,7 @@ ref class waiter_for_Windows_Foundation_IAsyncOperation sealed
 {
 private:
 
-   simple_event                                       m_event;
+   manual_reset_event                                 m_event;
    ::Windows::Foundation::IAsyncOperation < T > ^     m_operation;
    ::Windows::Foundation::AsyncStatus                 m_status;
    T                                                  m_result;
@@ -73,7 +29,7 @@ public:
 
 
    waiter_for_Windows_Foundation_IAsyncOperation(::Windows::Foundation::IAsyncOperation < T > ^ operation, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any) :
-      m_event(false, true)
+      m_event(get_thread_app())
    {
 
       m_operation             = operation;
@@ -99,7 +55,7 @@ public:
    T wait(unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = NULL)
    {
 
-      m_event.wait(dwMillis);
+      m_event.wait(millis(dwMillis));
 
       if(pstatus != NULL)
          *pstatus = m_status;
@@ -131,7 +87,7 @@ ref class waiter_for_Windows_Foundation_IAsyncAction sealed
 private:
 
 
-   simple_event                                       m_event;
+   manual_reset_event                                 m_event;
    ::Windows::Foundation::IAsyncAction ^              m_action;
    ::Windows::Foundation::AsyncStatus                 m_status;
 
@@ -139,7 +95,7 @@ public:
 
 
    waiter_for_Windows_Foundation_IAsyncAction(::Windows::Foundation::IAsyncAction ^ action, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any) :
-      m_event(false, true)
+      m_event(get_thread_app())
    {
 
       m_action                = action;
@@ -173,7 +129,7 @@ public:
    void wait(unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = NULL)
    {
 
-      m_event.wait(dwMillis);
+      m_event.wait(millis(dwMillis));
 
       if(pstatus != NULL)
          *pstatus = m_status;
@@ -209,52 +165,49 @@ inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncActi
 }
 
 
-/*
- * Message structure
- */
-typedef struct tagMESSAGE {
-    oswindow    oswindow;
-    UINT        message;
-    WPARAM      wParam;
-    LPARAM      lParam;
-    DWORD       time;
-    POINT       pt;
-#ifdef _MAC
-    DWORD       lPrivate;
-#endif
-} MESSAGE, *PMESSAGE, NEAR *NPMESSAGE, FAR *LPMESSAGE;
-
-class CLASS_DECL_ca message_array :
-   public simple_array < MESSAGE >
+class CLASS_DECL_c message_array :
+   public raw_array < MESSAGE >
 {
 };
 
-class CLASS_DECL_ca mq
+class CLASS_DECL_c mq
 {
 public:
 
-   simple_mutex               m_mutex;
+   mutex                      m_mutex;
    message_array              ma;
-   simple_event               m_eventNewMessage;
+   manual_reset_event         m_eventNewMessage;
 
-   mq() : m_eventNewMessage(false, true) {}
+   mq() : m_eventNewMessage(get_thread_app()) {}
 
 
 
 };
 
-CLASS_DECL_ca mq * get_mq(HTHREAD h);
+CLASS_DECL_c mq * get_mq(HTHREAD h);
 
-CLASS_DECL_ca WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
-#define GetMessage GetMessageW
 
-CLASS_DECL_ca WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax,UINT wRemoveMsg);
+// Stored data for CREATE_SUSPENDED and ResumeThread.
+struct PendingThreadInfo
+{
 
-#define PeekMessage PeekMessageW
 
-CLASS_DECL_ca DWORD WINAPI get_thread_id(HTHREAD Thread);
+   uint32_t (*       m_pfn)(void *);
+   void *            m_pv;
+   event *           m_peventCompletion;
+   event *           m_peventSuspension;
+   HTHREAD           m_hthread;
+   int               m_iPriority;
 
-#define PostThreadMessage  PostThreadMessageW
 
-CLASS_DECL_ca WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam);
+   PendingThreadInfo()
+   {
+
+      m_peventSuspension = NULL;
+      m_peventCompletion = NULL;
+
+   }
+
+
+};

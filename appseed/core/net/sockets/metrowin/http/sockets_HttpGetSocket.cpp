@@ -32,8 +32,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
-   http_get_socket::http_get_socket(socket_handler_base& h) :
-      ::ca2::ca2(h.get_app()),
+   http_get_socket::http_get_socket(base_socket_handler& h) :
+      element(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -45,8 +45,8 @@ namespace sockets
    }
 
 
-   http_get_socket::http_get_socket(socket_handler_base& h,const string & url_in) :
-      ::ca2::ca2(h.get_app()),
+   http_get_socket::http_get_socket(base_socket_handler& h,const string & url_in) :
+      element(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -58,8 +58,8 @@ namespace sockets
    }
 
 
-   http_get_socket::http_get_socket(socket_handler_base& h,const string & host,port_t port,const string & url_in) :
-      ::ca2::ca2(h.get_app()),
+   http_get_socket::http_get_socket(base_socket_handler& h,const string & host,port_t port,const string & url_in) :
+      element(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -97,7 +97,7 @@ namespace sockets
       //outheader("Content-Length") = "0";
 
       if (GetUrlPort() != 80 && GetUrlPort() != 443)
-         inheader(__id(host)) = GetUrlHost() + ":" + ::ca2::str::from(GetUrlPort());
+         inheader(__id(host)) = GetUrlHost() + ":" + ::str::from(GetUrlPort());
       else
          inheader(__id(host)) = GetUrlHost();
       m_bExpectResponse = true;

@@ -36,8 +36,8 @@ namespace sockets
 
 
 
-   httpd_socket::httpd_socket(socket_handler_base& h) :
-      ::ca2::ca2(h.get_app()),
+   httpd_socket::httpd_socket(base_socket_handler& h) :
+      element(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -48,7 +48,7 @@ namespace sockets
    }
 
    httpd_socket::httpd_socket(const httpd_socket& s) :
-      ::ca2::ca2(s.get_app()),
+      element(s.get_app()),
       socket(s.m_handler),
       stream_socket(s),
       tcp_socket(s),

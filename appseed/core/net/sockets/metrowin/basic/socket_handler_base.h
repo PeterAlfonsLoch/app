@@ -1,4 +1,4 @@
-/** \file socket_handler_base.h
+/** \file base_socket_handler.h
 **   \date  2004-02-13
 **   \author grymse@alhem.net
 **/
@@ -45,23 +45,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       } list_t;
 
 
-      class address;
-
 
       /** socket container class, event generator.
       \ingroup basic */
-      class socket_handler_base : 
+      class base_socket_handler : 
          virtual public ::radix::object
       {
          friend class socket;
 
       public:
-         /** Connection pool class for internal use by the socket_handler_base.
+         /** Connection pool class for internal use by the base_socket_handler.
          \ingroup internal */
          class PoolSocket : public socket
          {
          public:
-            PoolSocket(socket_handler_base& h,socket *src) : socket(h) {
+            PoolSocket(base_socket_handler& h,socket *src) : socket(h) {
                CopyConnection( src );
                SetIsClient();
             }
@@ -80,7 +78,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
       public:
-         virtual ~socket_handler_base() {}
+         virtual ~base_socket_handler() {}
 
          /** get mutex reference for threadsafe operations. */
          virtual mutex & GetMutex() const = 0;
@@ -128,7 +126,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          // Connection pool
          // -------------------------------------------------------------------------
          /** find available open connection (used by connection pool). */
-         virtual socket_handler_base::PoolSocket *FindConnection(int type,const string & protocol,sockets::address&) = 0;
+         virtual base_socket_handler::PoolSocket *FindConnection(int type,const string & protocol,sockets::address&) = 0;
          /** Enable connection pool (by default disabled). */
          virtual void EnablePool(bool = true) = 0;
          /** Check pool status.

@@ -35,7 +35,7 @@ namespace sockets
 
 
 
-   class socket_handler_base;
+   class base_socket_handler;
    class socket;
 
    /** \defgroup logging Log help classes */
@@ -46,7 +46,7 @@ namespace sockets
    public:
       virtual ~StdLog() {}
 
-      virtual void error(socket_handler_base *,socket *,
+      virtual void error(base_socket_handler *,socket *,
          const string & user_text,
          int err,
          const string & sys_err,

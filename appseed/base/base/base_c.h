@@ -19,10 +19,10 @@
 #include "base/macos/macos.h"
 #elif defined(LINUX)
 #include "base/linux/linux.h"
+#elif defined(METROWIN)
+#include "base/metrowin/metrowin.h"
 #elif defined(WINDOWS)
 #include "base/windows/windows.h"
-#elif defined(METROWIN)
-#include "base/windows/c_os_internal.h"
 #elif defined(SOLARIS)
 #include "base/solaris/c_os_internal.h"
 #else

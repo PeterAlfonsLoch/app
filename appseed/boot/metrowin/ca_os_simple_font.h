@@ -27,8 +27,3 @@ public:
 
 };
 
-CLASS_DECL_ca float point_dpi(float points);
-CLASS_DECL_ca float dpiy(float y);
-CLASS_DECL_ca float dpix(float y);
-CLASS_DECL_ca float y_dpi(float y);
-CLASS_DECL_ca float x_dpi(float y);

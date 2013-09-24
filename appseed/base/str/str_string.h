@@ -192,7 +192,7 @@ public:
    }
 
 
-#ifdef METROWIN
+#if defined(METROWIN) && defined(__cplusplus_winrt)
    string(Platform::Object ^ o);
 #endif
    string(const char * pszSrc,string_manager * pstringmanager );
@@ -208,7 +208,7 @@ public:
    string(const char* pch, strsize nLength, string_manager * pstringmanager );
    string(const wchar_t* pch, strsize nLength);
    string(const wchar_t* pch, strsize nLength, string_manager * pstringmanager);
-#ifdef METROWIN
+#if defined(METROWIN) && defined(__cplusplus_winrt)
    string(Platform::Object ^ o, string_manager * pstringmanager);
 #endif
    ~string() throw();
@@ -227,7 +227,7 @@ public:
    string & operator = (const wchar_t * pszSrc);
    string & operator = (const uchar* pszSrc);
    string & operator = (char ch);
-#ifdef METROWIN
+#if defined(METROWIN) && defined(__cplusplus_winrt)
    string & operator = (const Platform::String ^ & str);
 #endif
    string & operator = (wchar_t ch);
@@ -740,6 +740,21 @@ public:
    {
       return string();
    }
+
+
+
+#if defined(METROWIN) && defined(__cplusplus_winrt)
+inline operator Platform::String ^() const
+{
+   return ref new Platform::String(wstring(*this));
+}
+inline operator Platform::String ^()
+{
+   return ref new Platform::String(wstring(*this));
+}
+#endif
+
+
 
 };
 
@@ -1556,6 +1571,22 @@ inline string to_string(verisimple_wstring wstr)
 }
 
 
+#if defined(METROWIN) && defined(__cplusplus_winrt)
+
+
+template < >
+inline string to_string(Platform::String ^ str)
+{
+
+   return (const wchar_t *) wstring(begin(str));
+
+}
+
+
+#endif
+
+
+#ifndef METROWIN
 
 template < >
 inline string to_string(const in_addr * addr)
@@ -1574,6 +1605,7 @@ inline string to_string(const in6_addr * addr)
 
 }
 
+#endif
 
 inline string  & operator += (string & str, const ::id & id)
 {
@@ -1788,3 +1820,4 @@ inline string string::upper() const
    return string(*this).make_lower();
 
 }
+

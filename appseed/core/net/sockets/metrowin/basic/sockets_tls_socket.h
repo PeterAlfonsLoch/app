@@ -12,7 +12,7 @@
       public:
 
 
-         tls_socket(socket_handler_base& );
+         tls_socket(base_socket_handler& );
          ~tls_socket();
 
 

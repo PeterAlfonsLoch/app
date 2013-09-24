@@ -10,7 +10,6 @@
 #include "spa_install_ca2.h"
 #include "spa_canvas.h"
 #include "spa_window.h"
-#include "spa_trace.h"
 #include "spa_machine_event_data.h"
 #include "spa_machine_event.h"
 #include "spa_installer.h"

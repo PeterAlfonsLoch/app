@@ -1,9 +1,10 @@
 #include "framework.h"
 
+
 #define d2d1_fax_options D2D1_FACTORY_OPTIONS // fax of merde
 #define single_threaded D2D1_FACTORY_TYPE_MULTI_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
 
-CLASS_DECL_ca IDWriteFactory * TlsGetWriteFactory()
+IDWriteFactory * TlsGetWriteFactory()
 {
 
    IDWriteFactory * pfactory = (IDWriteFactory *) TlsGetValue(TLS_WRITE_FACTORY);
@@ -175,7 +176,7 @@ IDXGIDevice * TlsGetDXGIDevice()
 }
 
 
-CLASS_DECL_ca float point_dpi(float points)
+float point_dpi(float points)
 {
 
    FLOAT dpiX, dpiY;
@@ -186,7 +187,7 @@ CLASS_DECL_ca float point_dpi(float points)
 
 }
 
-CLASS_DECL_ca float dpiy(float y)
+float dpiy(float y)
 {
    
    FLOAT dpiX, dpiY;
@@ -197,7 +198,7 @@ CLASS_DECL_ca float dpiy(float y)
 
 }
 
-CLASS_DECL_ca float dpix(float x)
+float dpix(float x)
 {
    
    FLOAT dpiX, dpiY;
@@ -209,7 +210,7 @@ CLASS_DECL_ca float dpix(float x)
 }
 
 
-CLASS_DECL_ca float y_dpi(float y)
+float y_dpi(float y)
 {
    
    FLOAT dpiX, dpiY;
@@ -220,7 +221,7 @@ CLASS_DECL_ca float y_dpi(float y)
 
 }
 
-CLASS_DECL_ca float x_dpi(float x)
+float x_dpi(float x)
 {
    
    FLOAT dpiX, dpiY;

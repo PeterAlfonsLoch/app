@@ -7,10 +7,10 @@ int c_dll_main(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
 	if(dwReason == DLL_PROCESS_ATTACH)
 	{
 
-      initialize_primitive_heap();
+//      initialize_primitive_heap();
 
-      if(!os_initialize())
-         return FALSE;
+  //    if(!os_initialize())
+    //     return FALSE;
 
       ::OutputDebugStringW(L"::ca2:: c.dll :: initializing!\n");
 
@@ -20,9 +20,9 @@ int c_dll_main(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
       
       ::OutputDebugStringW(L"::ca2:: c.dll :: terminating!\n");
 
-      os_finalize();
+//      os_finalize();
 
-      finalize_primitive_heap();
+  //    finalize_primitive_heap();
 
 
 	}

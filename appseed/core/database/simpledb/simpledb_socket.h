@@ -19,7 +19,7 @@ namespace simpledb
       session *         m_psession;
       socket_thread *   m_pthreadParent;
 
-      socket(::sockets::socket_handler_base & h);
+      socket(::sockets::base_socket_handler & h);
       virtual ~socket();
 
       virtual void OnExecute();

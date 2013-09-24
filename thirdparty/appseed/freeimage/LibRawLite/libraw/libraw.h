@@ -266,7 +266,7 @@ class DllDef LibRaw
 
 
 
-#ifdef METROWIN
+/*#ifdef METROWIN
 
 #if BYTE_ORDER == BIG_ENDIAN
 
@@ -291,11 +291,13 @@ class DllDef LibRaw
                   ((((unsigned long)(n) & 0xFF000000)) >> 24))
 #endif
 
+#ifndef METROWIN
 
 uint16_t htons(uint16_t n);
 uint16_t ntohs(uint16_t n);
 unsigned long htonl(unsigned long n);
 unsigned long ntohl(unsigned long n);
+
 
 #define htons(n) HTONS(n)
 #define ntohs(n) NTOHS(n)
@@ -304,6 +306,9 @@ unsigned long ntohl(unsigned long n);
 #define ntohl(n) NTOHL(n)
 
 #endif
+
+#endif
+*/
 
 
 #endif /* _LIBRAW_CLASS_H */

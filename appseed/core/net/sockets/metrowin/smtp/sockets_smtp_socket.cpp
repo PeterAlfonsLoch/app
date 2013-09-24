@@ -3,8 +3,8 @@
 namespace sockets
 {
 
-   smtp_socket::smtp_socket(socket_handler_base& h) :
-      ::ca2::ca2(h.get_app()),
+   smtp_socket::smtp_socket(base_socket_handler& h) :
+      element(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -18,7 +18,7 @@ namespace sockets
    void smtp_socket::OnLine(const string & line)
    {
       SetNonblocking(false);
-      ::ca2::parse pa(line);
+      ::str::parse pa(line);
       string code = pa.getword();
 
       code.make_upper();
@@ -60,12 +60,12 @@ namespace sockets
             string strWord = pa.getword();
             string strRequest = System.base64().decode(strWord);
             string strResponse;
-            if(::ca2::str::find_ci("username", strRequest) >= 0)
+            if(::str::find_ci("username", strRequest) >= 0)
             {
                strResponse = System.base64().encode("2.25anos@carloscecyn.com");
                Send(strResponse + "\r\n");
             }
-            else if(::ca2::str::find_ci("password", strRequest) >= 0)
+            else if(::str::find_ci("password", strRequest) >= 0)
             {
                strResponse = System.base64().encode("anos514Lund");
                Send(strResponse + "\r\n");
@@ -141,16 +141,16 @@ namespace sockets
 
 } // namespace sockets
 
-email::address::address()
+::net::email_address::address()
 {
 }
 
-email::address::address(const char * psz)
+::net::email_address::address(const char * psz)
 {
    operator = (psz);
 }
 
-email::address & email::address::operator= (const char * psz)
+::net::email_address & ::net::email_address::operator= (const char * psz)
 {
    string str_in(psz);
    string str = str_in;
@@ -189,8 +189,8 @@ email::address & email::address::operator= (const char * psz)
    return *this;
 }
 
-email::email(::ca2::application * papp) :
-ca2(papp)
+email::email(base_application * papp) :
+element(papp)
 {
 }
 
@@ -201,13 +201,13 @@ void email::prepare_headers()
 }
 
 
-email::address::address(const address & addr)
+::net::email_address::address(const address & addr)
 {
    operator = (addr);
 }
 
 
-email::address & email::address::operator = (const address & addr)
+::net::email_address & ::net::email_address::operator = (const address & addr)
 {
    if(this != &addr)
    {

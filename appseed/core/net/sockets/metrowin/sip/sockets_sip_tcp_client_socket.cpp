@@ -3,8 +3,8 @@
 namespace sockets
 {
 
-   sip_tcp_client_socket::sip_tcp_client_socket(socket_handler_base & h) :
-      ::ca2::ca2(h.get_app()),
+   sip_tcp_client_socket::sip_tcp_client_socket(base_socket_handler & h) :
+      element(h.get_app()),
       socket(h),
       tcp_socket(h),
       stream_socket(h),

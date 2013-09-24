@@ -13,8 +13,8 @@
       public:
 
          mutex                         m_mutexData;
-         ::primitive::memory_file      m_memoryfile;
-         ::ca2::file *                 m_pfile;
+         ::file::memory_buffer      m_memoryfile;
+         ::file::stream_buffer *                 m_pfile;
          int64_t                       m_iFinalSize;
 
 
@@ -32,8 +32,8 @@
 
 
 
-         http_client_socket(socket_handler_base&);
-         http_client_socket(socket_handler_base&,const string & url_in);
+         http_client_socket(base_socket_handler&);
+         http_client_socket(base_socket_handler&,const string & url_in);
          ~http_client_socket();
 
          /** Parse url to protocol,host,port,url and spfile-> */

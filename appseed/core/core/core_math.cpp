@@ -153,7 +153,7 @@ namespace math
 #elif defined(METROWIN)
       Windows::Storage::Streams::IBuffer ^ buffer = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandom(dwLen);
       ::primitive::memory mem;
-      mem.set_os_stream_buffer(buffer);
+      mem.set_os_buffer(buffer);
       memcpy(buf, mem.get_data(), mem.get_size());
 #else
 

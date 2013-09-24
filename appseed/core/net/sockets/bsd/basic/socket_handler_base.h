@@ -45,8 +45,6 @@ namespace sockets
    } list_t;
 
 
-   class address;
-
 
    /** socket container class, event generator.
    \ingroup basic */

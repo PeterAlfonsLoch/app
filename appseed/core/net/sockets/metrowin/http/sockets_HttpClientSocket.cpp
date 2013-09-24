@@ -27,8 +27,8 @@ namespace sockets
 {
 
 
-   http_client_socket::http_client_socket(socket_handler_base& h) :
-      ::ca2::ca2(h.get_app()),
+   http_client_socket::http_client_socket(base_socket_handler& h) :
+      element(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -49,8 +49,8 @@ namespace sockets
    }
 
 
-   http_client_socket::http_client_socket(socket_handler_base & h, const string & strUrlParam) :
-      ::ca2::ca2(h.get_app()),
+   http_client_socket::http_client_socket(base_socket_handler & h, const string & strUrlParam) :
+      element(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -89,7 +89,7 @@ namespace sockets
    {
       if (!IsResponse())
       {
-         Handler().LogError(this, "OnFirst", 0, "Response expected but not received - aborting", ::ca2::log::level_fatal);
+         Handler().LogError(this, "OnFirst", 0, "Response expected but not received - aborting", ::core::log::level_fatal);
          SetCloseAndDelete();
       }
       m_content = m_response.attr(__id(http_version)) + " " +
@@ -136,7 +136,7 @@ namespace sockets
 
       m_memoryfile.seek_to_begin();
 
-      if(::ca2::str::ends(m_strUrl, "arialuni.ttf"))
+      if(::str::ends(m_strUrl, "arialuni.ttf"))
       {
          TRACE("Debug Here : arialuni.ttf");
       }
@@ -152,13 +152,13 @@ namespace sockets
          m_bExpectResponse = false;
       }
 
-      if(::ca2::str::ends(m_strUrl, "en_us_international.xml"))
+      if(::str::ends(m_strUrl, "en_us_international.xml"))
       {
          TRACE("Debug Here");
       }
 
 
-      if(::ca2::str::ends(m_strUrl, "text_select.xml"))
+      if(::str::ends(m_strUrl, "text_select.xml"))
       {
          TRACE("Debug Here");
       }

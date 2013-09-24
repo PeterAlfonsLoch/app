@@ -40,7 +40,7 @@ namespace sockets
 
 
 
-      http_socket(socket_handler_base& );
+      http_socket(base_socket_handler& );
       ~http_socket();
 
       void OnRawData(char *buf,size_t len);
@@ -82,17 +82,17 @@ namespace sockets
       /** Transfer coding 'chunked' */
       bool IsChunked() { return m_b_chunked; }
 
-      ::ca2::property & inattr(const char * pszName);
-      ::ca2::property_set & inattrs();
+      property & inattr(const char * pszName);
+      property_set & inattrs();
 
-      ::ca2::property & inheader(const char * pszName);
-      ::ca2::property_set & inheaders();
+      property & inheader(const char * pszName);
+      property_set & inheaders();
 
-      ::ca2::property & outattr(const char * pszName);
-      ::ca2::property_set & outattrs();
+      property & outattr(const char * pszName);
+      property_set & outattrs();
 
-      ::ca2::property & outheader(const char * pszName);
-      ::ca2::property_set & outheaders();
+      property & outheader(const char * pszName);
+      property_set & outheaders();
 
       ::http::request & request();
       ::http::response & response();
@@ -120,42 +120,42 @@ namespace sockets
       return m_response;
    }
 
-   inline ::ca2::property & http_socket::inattr(const char * pszName)
+   inline property & http_socket::inattr(const char * pszName)
    {
       return m_request.attr(pszName);
    }
 
-   inline ::ca2::property_set & http_socket::inattrs()
+   inline property_set & http_socket::inattrs()
    {
       return m_request.attrs();
    }
 
-   inline ::ca2::property & http_socket::outattr(const char * pszName)
+   inline property & http_socket::outattr(const char * pszName)
    {
       return m_response.attr(pszName);
    }
 
-   inline ::ca2::property_set & http_socket::outattrs()
+   inline property_set & http_socket::outattrs()
    {
       return m_response.attrs();
    }
 
-   inline ::ca2::property & http_socket::inheader(const char * pszName)
+   inline property & http_socket::inheader(const char * pszName)
    {
       return m_request.header(pszName);
    }
 
-   inline ::ca2::property_set & http_socket::inheaders()
+   inline property_set & http_socket::inheaders()
    {
       return m_request.headers();
    }
 
-   inline ::ca2::property & http_socket::outheader(const char * pszName)
+   inline property & http_socket::outheader(const char * pszName)
    {
       return m_response.header(pszName);
    }
 
-   inline ::ca2::property_set & http_socket::outheaders()
+   inline property_set & http_socket::outheaders()
    {
       return m_response.headers();
    }

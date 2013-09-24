@@ -1,13 +1,6 @@
 #pragma once
 
 
-// logic
-#include "primitive_logic.h"
-
-
-// maths
-#include "primitive_natural.h"
-#include "primitive_index.h"
 #include "primitive_scalar.h"
 
 

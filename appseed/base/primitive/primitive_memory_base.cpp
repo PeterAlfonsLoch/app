@@ -298,7 +298,7 @@ namespace primitive
       if(reader.get_internal_data() != NULL && reader.get_internal_data_size() > reader.get_position())
       {
 
-         append((byte *) reader.get_internal_data() + reader.get_position(), reader.get_internal_data_size() - reader.get_position());
+         append((byte *) reader.get_internal_data() + reader.get_position(), (::primitive::memory_size) (reader.get_internal_data_size() - reader.get_position()));
 
       }
       else

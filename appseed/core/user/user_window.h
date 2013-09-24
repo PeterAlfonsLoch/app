@@ -29,7 +29,7 @@ namespace user
       //UINT m_nFlags;      // see WF_ flags above
 
 #ifdef METROWIN
-      system_window ^               m_pwindow;
+      ::core::system_window ^       m_pwindow;
 #endif
 
 

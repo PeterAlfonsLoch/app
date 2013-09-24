@@ -525,7 +525,7 @@ public:
       return( m_pszData );
    }
 
-#ifdef METROWIN
+#if defined(METROWIN) && defined(__cplusplus_winrt)
    inline operator Platform::String ^() const
    {
       return ref new Platform::String(wstring(*this));

@@ -32,8 +32,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
-   http_put_socket::http_put_socket(socket_handler_base& h) : 
-      ::ca2::ca2(h.get_app()),
+   http_put_socket::http_put_socket(base_socket_handler& h) : 
+      element(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -45,8 +45,8 @@ namespace sockets
    }
 
 
-   http_put_socket::http_put_socket(socket_handler_base& h,const string & url_in) : 
-      ::ca2::ca2(h.get_app()),
+   http_put_socket::http_put_socket(base_socket_handler& h,const string & url_in) : 
+      element(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -72,7 +72,7 @@ namespace sockets
       }
       else
       {
-         Handler().LogError(this, "SetFile", Errno, StrError(Errno), ::ca2::log::level_fatal);
+         Handler().LogError(this, "SetFile", Errno, StrError(Errno), ::core::log::level_fatal);
          SetCloseAndDelete();
       }
    }
@@ -115,7 +115,7 @@ namespace sockets
          m_file->seek_to_begin();
          while ((n = m_file->read(buf, 32768)) > 0)
          {
-            SendBuf(buf, n);
+            write(buf, n);
          }
       }
       else
@@ -127,7 +127,7 @@ namespace sockets
             char buf[32768];
             while ((n = fread(buf, 1, 32768, fil)) > 0)
             {
-               SendBuf(buf, n);
+               write(buf, n);
             }
             fclose(fil);
          }

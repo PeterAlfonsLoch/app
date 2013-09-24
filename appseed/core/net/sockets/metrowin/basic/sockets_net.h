@@ -85,7 +85,7 @@ namespace sockets
    */
 
    class CLASS_DECL_ca2 net :
-      public ::ca2::object
+      public ::object
    {
    private:
 
@@ -116,7 +116,7 @@ namespace sockets
       ::string_map < dns_cache_item * >   m_mapCache;
 
 
-      net(::ca2::application * papp);
+      net(base_application * papp);
       virtual ~net();
 
       /*

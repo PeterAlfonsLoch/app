@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
          /* type, host, result */
-         typedef ::string_map < ::string_to_string_map > cache_t;
+         typedef ::string_map < ::string_to_string > cache_t;
 
          /* type, host, time */
          typedef ::string_map < ::string_map < time_t > > timeout_t; 
@@ -60,10 +60,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool m_cached;
 
 
-         resolv_socket(socket_handler_base&);
-         resolv_socket(socket_handler_base&, socket *parent, const string & host, port_t port, bool ipv6 = false);
-         resolv_socket(socket_handler_base&, socket *parent, in_addr);
-         resolv_socket(socket_handler_base&, socket *parent, in6_addr&);
+         resolv_socket(base_socket_handler&);
+         resolv_socket(base_socket_handler&, socket *parent, const string & host, port_t port, bool ipv6 = false);
+         resolv_socket(base_socket_handler&, socket *parent, in_addr);
+         resolv_socket(base_socket_handler&, socket *parent, in6_addr&);
          ~resolv_socket();
 
          void OnAccept() { m_bServer = true; }

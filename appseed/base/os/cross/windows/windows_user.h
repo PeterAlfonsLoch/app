@@ -1466,6 +1466,14 @@ CLASS_DECL_c int32_t WINAPI GetSystemMetrics(int32_t nIndex);
 
 
 
+#define DI_MASK         0x0001
+#define DI_IMAGE        0x0002
+#define DI_NORMAL       0x0003
+#define DI_COMPAT       0x0004
+#define DI_DEFAULTSIZE  0x0008
+#if(_WIN32_WINNT >= 0x0501)
+#define DI_NOMIRROR     0x0010
+#endif /* _WIN32_WINNT >= 0x0501 */
 
 
 
@@ -1484,6 +1492,7 @@ CLASS_DECL_c int_bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT pre
 CLASS_DECL_c int_bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL_c int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL_c int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+
 
 
 

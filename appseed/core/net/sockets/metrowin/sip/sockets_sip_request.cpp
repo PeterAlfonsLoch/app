@@ -4,8 +4,8 @@ namespace sip
 {
 
    // --------------------------------------------------------------------------------------
-   request::request(::ca2::application * papp) :
-      ca2(papp),
+   request::request(base_application * papp) :
+      element(papp),
       transaction(papp),
       m_file(papp),
       m_form(papp)
@@ -15,7 +15,7 @@ namespace sip
 
    // --------------------------------------------------------------------------------------
    request::request(const request& src) :
-   ::ca2::ca2(((request&) src).get_app()),
+   element(((request&) src).get_app()),
    transaction(src),
    m_null(src.m_null),
    m_file(((request&) src).get_app()),

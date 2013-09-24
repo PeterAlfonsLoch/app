@@ -7,8 +7,8 @@ namespace sockets
 {
 
 
-   tls_socket::tls_socket(::sockets::socket_handler_base& h) :
-      ::ca2::ca2(h.get_app()),
+   tls_socket::tls_socket(::sockets::base_socket_handler& h) :
+      element(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h)

@@ -33,15 +33,15 @@
 
 
          /** Constructor.
-         \param h socket_handler_base reference
+         \param h base_socket_handler reference
          \param use_creator Optional use of creator (default true) */
-         listen_socket(socket_handler_base& h,bool use_creator = true) : ::ca2::ca2(h.get_app()), socket(h), m_depth(0), m_creator(NULL)
+         listen_socket(base_socket_handler& h,bool use_creator = true) : element(h.get_app()), base_socket(h), socket(h), m_depth(0), m_creator(NULL)
             ,m_bHasCreate(false), m_bDetach(false)
          {
             if (use_creator)
             {
                m_creator = new X(h);
-               socket *tmp = m_creator -> create();
+               base_socket *tmp = m_creator -> create();
                if (tmp && dynamic_cast<X *>(tmp))
                {
                   m_bHasCreate = true;
@@ -60,7 +60,7 @@
          }
 
          /** close file descriptor. */
-         int close()
+         void close()
          {
 
             if(m_listener != nullptr)
@@ -71,7 +71,7 @@
             {
                ::closesocket(GetSocket());
             }*/
-            return 0;
+            //return 0;
          }
 
          /** Bind and listen to any interface.
@@ -91,7 +91,7 @@
 
          }
 
-         int Bind(::sockets::address & ad,int depth)
+         int Bind(::net::address_sp & ad,int depth)
          {
 
 #ifdef USE_SCTP
@@ -131,7 +131,7 @@
          int Bind(const char * pszInterface, port_t port, const string & protocol, int depth = 20)
          {
 
-            return Bind(::sockets::address(get_app(), pszInterface, port), protocol, depth);
+            return Bind(::net::address(get_app(), pszInterface, port), protocol, depth);
 
          }
 
@@ -141,7 +141,7 @@
          \param ad Interface address
          \param protocol Network protocol
          \param depth Listen queue depth */
-         int Bind(::sockets::address & ad, const string & protocol, int depth = 20)
+         int Bind(::net::address_sp & ad, const string & protocol, int depth = 20)
          {
 
 
@@ -149,7 +149,7 @@
 
             //SOCKET s;
             //m_iBindPort = ad.GetPort();
-            m_listener->BindEndpointAsync(ad.m_hostname, ::ca2::str::from(ad.get_service_number()));
+            m_listener->BindEndpointAsync(ad.cast < ::sockets::winrt_address > ()->m_hostname, ::str::from(ad->get_service_number()));
 /*            {
                return -1;
             }
@@ -204,7 +204,7 @@
             }
             if (Handler().get_count() >= FD_SETSIZE)
             {
-               Handler().LogError(this, "accept", (int)Handler().get_count(), "socket_handler_base fd_set limit reached", ::ca::log::level_fatal);
+               Handler().LogError(this, "accept", (int)Handler().get_count(), "base_socket_handler fd_set limit reached", ::ca::log::level_fatal);
                ::closesocket(a_s);
                return;
             }

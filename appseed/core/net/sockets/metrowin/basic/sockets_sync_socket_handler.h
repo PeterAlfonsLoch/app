@@ -6,18 +6,18 @@ namespace sockets
 
 
    class CLASS_DECL_ca2 sync_socket_handler :
-      virtual public ::ca2::object,
+      virtual public ::object,
       public socket::callback
    {
    public:
 
 
       socket *                      m_psocket;
-      ::primitive::memory_file      m_file;
+      ::file::memory_buffer      m_file;
       socket_handler                m_handler;
       int                           m_iDefaultTimeout;
 
-      sync_socket_handler(::ca2::application * papp, StdLog *log = NULL);
+      sync_socket_handler(base_application * papp, StdLog *log = NULL);
       virtual ~sync_socket_handler();
 
 

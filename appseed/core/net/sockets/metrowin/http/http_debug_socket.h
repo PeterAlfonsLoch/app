@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
 
 
-      class socket_handler_base;
+      class base_socket_handler;
 
 
       /** HTTP request "echo" class. This class echoes a http request/body
@@ -49,7 +49,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int m_read_ptr;
 
 
-         http_debug_socket(socket_handler_base&);
+         http_debug_socket(base_socket_handler&);
          ~http_debug_socket();
 
          void Init();

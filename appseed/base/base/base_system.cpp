@@ -18,15 +18,6 @@ base_system::base_system(sp(base_application) papp) :
 {
 
 
-#ifdef METROWIN
-   m_window                                  = nullptr;
-#endif
-#ifdef WINDOWS
-   //      m_pmutexDc                                = NULL;
-   //    m_pdevicecontext                          = NULL;
-#endif
-
-   //m_psystem                                 = this;
    m_pbasesystem                                 = this;
    set_app(this);
 

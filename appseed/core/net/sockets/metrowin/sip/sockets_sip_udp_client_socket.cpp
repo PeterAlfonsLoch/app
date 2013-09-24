@@ -3,8 +3,8 @@
 namespace sockets
 {
 
-   sip_udp_client_socket::sip_udp_client_socket(socket_handler_base & h) :
-      ::ca2::ca2(h.get_app()),
+   sip_udp_client_socket::sip_udp_client_socket(base_socket_handler & h) :
+      element(h.get_app()),
       socket(h),
       udp_socket(h),
       sip_base_client_socket(h)

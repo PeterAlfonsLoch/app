@@ -39,9 +39,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
 
 
-      class address;
-
-
       /** socket implementation for TCP.
       \ingroup basic */
       class CLASS_DECL_ca2 tcp_socket :
@@ -123,12 +120,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
   //       string                     m_strInitSSLClientContext;
 
          /** Constructor with standard values on input/output buffers. */
-         tcp_socket(socket_handler_base& );
+         tcp_socket(base_socket_handler& );
          /** Constructor with custom values for i/o buffer.
-         \param h socket_handler_base reference
+         \param h base_socket_handler reference
          \param isize Input buffer size
          \param osize Output buffer size */
-         tcp_socket(socket_handler_base& h,size_t isize,size_t osize);
+         tcp_socket(base_socket_handler& h,size_t isize,size_t osize);
          ~tcp_socket();
 
          /** open a connection to a remote server.
@@ -145,8 +142,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param port Port number
          \param skip_socks Do not use socks4 even if configured */
          //bool open(in6_addr ip,port_t port,bool skip_socks = false);
-         bool open(const ::sockets::address & addr, bool skip_socks = false);
-         bool open(const ::sockets::address & addr, const ::sockets::address & bind_address, bool skip_socks = false);
+         bool open(const ::net::address_base * paddr, bool skip_socks = false);
+         bool open(const ::net::address_base * paddr, const ::net::address_sp & bind_address, bool skip_socks = false);
          /** open connection.
          \param host Hostname
          \param port Port number */
@@ -161,19 +158,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          /** close file descriptor - internal use only.
          \sa SetCloseAndDelete */
-         int close();
+         void close();
 
          /** Send a string.
          \param s string to send
          \param f Dummy flags -- not used */
-         void Send(const string &s,int f = 0);
+         //void Send(const string &s,int f = 0);
          /** Send string using printf formatting. */
-         void Sendf(const char *format, ...);
+         //void Sendf(const char *format, ...);
          /** Send buffer of bytes.
          \param buf buffer pointer
          \param len Length of data
          \param f Dummy flags -- not used */
-         void SendBuf(const char *buf,size_t len,int f = 0);
+         using stream_socket::write;
+      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
          /** This callback is executed after a successful read from the socket.
          \param buf Pointer to the data
          \param len Length of the data */
@@ -206,7 +204,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool OnSocks4Read();
 
          /** Callback executed when resolver thread has finished a resolve request. */
-         void OnResolved(int id, const address & addr);
+         void OnResolved(int id, const ::net::address_sp & addr);
          //void OnResolved(int id,in6_addr& a,port_t port);
          /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
          void OnSSLConnect();
@@ -247,7 +245,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          tcp_socket(const tcp_socket& );
          void OnRead();
-         virtual void OnRead( char *buf, size_t n );
+         virtual void on_read(const void * buf, ::primitive::memory_size n );
          void OnWrite();
 
 
@@ -282,7 +280,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          void OnConnected(::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status);
 
-         ::ca2::circular_buffer ibuf; ///< Circular input buffer
+         ::file::circular_buffer ibuf; ///< Circular input buffer
       public:
 
          virtual string get_url();

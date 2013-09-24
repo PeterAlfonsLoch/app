@@ -45,8 +45,9 @@ namespace sockets
 
 
 
-   resolv_socket::resolv_socket(socket_handler_base& h) :
-      ::ca2::ca2(h.get_app()),
+   resolv_socket::resolv_socket(base_socket_handler& h) :
+      ::element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -59,8 +60,9 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(socket_handler_base& h, socket *parent, const string & host, port_t port, bool ipv6) :
-      ::ca2::ca2(h.get_app()),
+   resolv_socket::resolv_socket(base_socket_handler& h, socket *parent, const string & host, port_t port, bool ipv6) :
+      ::element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -75,8 +77,9 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(socket_handler_base& h, socket *parent, in_addr a) :
-      ::ca2::ca2(h.get_app()),
+   resolv_socket::resolv_socket(base_socket_handler& h, socket *parent, in_addr a) :
+      element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -91,8 +94,9 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(socket_handler_base& h, socket *parent, in6_addr& a) :
-      ::ca2::ca2(h.get_app()),
+   resolv_socket::resolv_socket(base_socket_handler& h, socket *parent, in6_addr& a) :
+      element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -114,7 +118,7 @@ namespace sockets
 
    void resolv_socket::OnLine(const string & line)
    {
-      ::ca2::parse pa(line, ":");
+      ::str::parse pa(line, ":");
       if (m_bServer)
       {
          m_query = pa.getword();
@@ -129,28 +133,28 @@ namespace sockets
                if (time(NULL) - System.sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
                {
    TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query, m_data, result);
-                  Send("Cached\n");
+                  write("Cached\n");
                   if (result.is_empty()) /* failed */
                   {
-                     Send("Failed\n\n");
+                     write("Failed\n\n");
                      SetCloseAndDelete();
                      return;
                   }
                   else if (m_query == "gethostbyname")
                   {
-                     Send("A: " + result + "\n\n");
+                     write("A: " + result + "\n\n");
                      SetCloseAndDelete();
                      return;
                   }
                   else if (m_query == "gethostbyname2")
                   {
-                     Send("AAAA: " + result + "\n\n");
+                     write("AAAA: " + result + "\n\n");
                      SetCloseAndDelete();
                      return;
                   }
                   else if (m_query == "gethostbyaddr")
                   {
-                     Send("Name: " + result + "\n\n");
+                     write("Name: " + result + "\n\n");
                      SetCloseAndDelete();
                      return;
                   }
@@ -257,13 +261,13 @@ namespace sockets
          {
             string ip;
             System.net().convert(ip, sa);
-            Send("A: " + ip + "\n");
+            write("A: " + ip + "\n");
          }
          else
          {
-            Send("Failed\n");
+            write("Failed\n");
          }
-         Send("\n");
+         write("\n");
       }
       else if(m_query == "gethostbyname2")
       {
@@ -272,13 +276,13 @@ namespace sockets
          {
             string ip;
             System.net().convert(ip, sa);
-            Send("AAAA: " + ip + "\n");
+            write("AAAA: " + ip + "\n");
          }
          else
          {
-            Send("Failed\n");
+            write("Failed\n");
          }
-         Send("\n");
+         write("\n");
       }
       else
       if (m_query == "gethostbyaddr")
@@ -290,24 +294,24 @@ namespace sockets
          {
             if(System.net().isipv4(addr.get_canonical_name()) || System.net().isipv6(addr.get_canonical_name()))
             {
-               Send("Failed: convert to sockaddr_in failed\n");
+               write("Failed: convert to sockaddr_in failed\n");
             }
             else
             {
-               Send("Name: " + addr.get_canonical_name() + "\n");
+               write("Name: " + addr.get_canonical_name() + "\n");
             }
          }
          else
          {
-            Send("Failed: malformed address\n");
+            write("Failed: malformed address\n");
          }
-         Send("\n");
+         write("\n");
       }
       else
       {
          string msg = "Unknown query type: " + m_query;
          Handler().LogError(this, "OnDetached", 0, msg);
-         Send("Unknown\n\n");
+         write("Unknown\n\n");
       }
       SetCloseAndDelete();
    }
@@ -320,7 +324,7 @@ namespace sockets
          string msg = (m_resolve_ipv6 ? "gethostbyname2 " : "gethostbyname ") + m_resolv_host + "\n";
          m_query = m_resolve_ipv6 ? "gethostbyname2" : "gethostbyname";
          m_data = m_resolv_host;
-         Send( msg );
+         write( msg );
          return;
       }
       if (m_resolve_ipv6)
@@ -330,14 +334,14 @@ namespace sockets
          m_query = "gethostbyaddr";
          m_data = tmp;
          string msg = "gethostbyaddr " + tmp + "\n";
-         Send( msg );
+         write( msg );
       }
       string tmp;
       System.net().convert(tmp, m_resolv_address);
       m_query = "gethostbyaddr";
       m_data = tmp;
       string msg = "gethostbyaddr " + tmp + "\n";
-      Send( msg );
+      write( msg );
    }
 
 

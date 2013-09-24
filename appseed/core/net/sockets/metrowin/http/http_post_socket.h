@@ -34,7 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
 
 
-      class socket_handler_base;
+      class base_socket_handler;
 
       /** Generate a http post request, get response.
       \ingroup http */
@@ -45,18 +45,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
          string                              m_boundary;
-         string_to_string_map                m_mapFiles;
+         string_to_string                m_mapFiles;
          ::string_map < long >   m_mapContentLength;
-         string_to_string_map                m_mapContentType;
+         string_to_string                m_mapContentType;
          bool                                m_bMultipart;
          //static int m_boundary_count;
          //static mutex m_boundary_mutex;
 
 
-         http_post_socket(socket_handler_base&);
+         http_post_socket(base_socket_handler&);
          /* client constructor,
          \param url_in = 'http://host:port/resource' */
-         http_post_socket(socket_handler_base&,const string & url_in);
+         http_post_socket(base_socket_handler&,const string & url_in);
          ~http_post_socket();
 
          // these must be specified before connecting / adding to handler
@@ -74,7 +74,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** http put client implemented in OnConnect */
          void step();
 
-         ::ca2::property_set m_fields;
+         property_set m_fields;
          void DoMultipartPost();
          //
 

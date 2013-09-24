@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "metrowin_window_impl.h"
 
 
 #include <agile.h>
@@ -13,7 +14,7 @@ namespace user
 
 
 class oswindow_dataptra :
-   public simple_array < oswindow_data * >
+   public comparable_raw_array < oswindow_data * >
 {
 public:
 
@@ -42,7 +43,7 @@ oswindow_dataptra * g_oswindow_dataptra()
 }
 
 
-int oswindow_find(::user::interaction_base * pui)
+int oswindow_find(::user::base_interaction * pui)
 {
 
    for(int i = 0; i < g_oswindow_dataptra()->get_count(); i++)
@@ -58,7 +59,7 @@ int oswindow_find(::user::interaction_base * pui)
 }
 
 
-oswindow oswindow_get(::user::interaction_base * pui)
+oswindow oswindow_get(::user::base_interaction * pui)
 {
 
    int_ptr iFind = oswindow_find(pui);
@@ -79,7 +80,7 @@ oswindow oswindow_get(::user::interaction_base * pui)
 
 
 
-bool oswindow_remove(::user::interaction_base * pui)
+int_bool oswindow_remove(::user::base_interaction * pui)
 {
 
    int_ptr iFind = oswindow_find(pui);
@@ -106,14 +107,14 @@ Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window(oswindow window)
 static oswindow g_oswindowFocus;
 
 
-CLASS_DECL_ca oswindow WINAPI GetFocus()
+oswindow WINAPI GetFocus()
 {
 
    return g_oswindowFocus;
 
 }
 
-CLASS_DECL_ca oswindow WINAPI SetFocus(oswindow __oswindow)
+oswindow WINAPI SetFocus(oswindow __oswindow)
 {
    
    ::oswindow oswindowOldFocus = g_oswindowFocus;
@@ -133,14 +134,14 @@ CLASS_DECL_ca oswindow WINAPI SetFocus(oswindow __oswindow)
 static oswindow g_oswindowCapture;
 
 
-CLASS_DECL_ca oswindow WINAPI GetCapture()
+oswindow WINAPI GetCapture()
 {
 
    return g_oswindowCapture;
 
 }
 
-CLASS_DECL_ca oswindow WINAPI SetCapture(oswindow __oswindow)
+oswindow WINAPI SetCapture(oswindow __oswindow)
 {
    
    ::oswindow oswindowOldCapture = g_oswindowCapture;
@@ -156,7 +157,7 @@ CLASS_DECL_ca oswindow WINAPI SetCapture(oswindow __oswindow)
 }
 
 
-CLASS_DECL_ca oswindow WINAPI ReleaseCapture()
+oswindow WINAPI ReleaseCapture()
 {
    
    ::oswindow oswindowOldCapture = g_oswindowCapture;

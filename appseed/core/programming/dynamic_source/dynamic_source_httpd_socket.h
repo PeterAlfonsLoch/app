@@ -16,7 +16,7 @@ namespace dynamic_source
       string                                       m_strLocale;
 
 
-      httpd_socket(::sockets::socket_handler_base& );
+      httpd_socket(::sockets::base_socket_handler& );
       ~httpd_socket();
    protected:
       httpd_socket(const httpd_socket& s);

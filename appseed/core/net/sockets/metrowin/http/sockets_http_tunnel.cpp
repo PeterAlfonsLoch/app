@@ -3,8 +3,8 @@
 namespace sockets
 {
 
-   http_tunnel::http_tunnel(socket_handler_base & h) :
-      ::ca2::ca2(h.get_app()),
+   http_tunnel::http_tunnel(base_socket_handler & h) :
+      element(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -51,11 +51,11 @@ namespace sockets
          {
             string str;
             str.Format("CONNECT %s:%d HTTP/1.0\r\n", GetUrlHost(), (int) GetUrlPort());
-            Send(str);
+            write(str);
             str.Format("host: %s:%d\r\n", GetUrlHost(), (int) GetUrlPort());
-            Send(str);
+            write(str);
             str = "\r\n";
-            Send(str);
+            write(str);
             m_estate = state_connect_sent;
          }
       }
@@ -79,7 +79,7 @@ namespace sockets
                {
                   strStatus = str.Mid(iPos + 1);
                }
-               if(::ca2::str::begins(strStatus, "200 "))
+               if(::str::begins(strStatus, "200 "))
                {
                   m_estate = state_proxy_ok;
                }
@@ -166,7 +166,7 @@ namespace sockets
          {
             if (!Connecting())
             {
-               Handler().LogError(this, "http_get_socket", -1, "connect() failed miserably", ::ca2::log::level_fatal);
+               Handler().LogError(this, "http_get_socket", -1, "connect() failed miserably", ::core::log::level_fatal);
                SetCloseAndDelete();
             }
             return false;
@@ -180,7 +180,7 @@ namespace sockets
          {
             if (!Connecting())
             {
-               Handler().LogError(this, "http_get_socket", -1, "connect() failed miserably", ::ca2::log::level_fatal);
+               Handler().LogError(this, "http_get_socket", -1, "connect() failed miserably", ::core::log::level_fatal);
                SetCloseAndDelete();
             }
             return false;

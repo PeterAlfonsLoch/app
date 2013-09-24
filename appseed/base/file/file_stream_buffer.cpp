@@ -450,6 +450,31 @@ namespace file
    }
 
 
+   void stream_buffer::write(const string & str)
+   {
+
+      write(str,  str.get_length());
+
+   }
+
+
+   void stream_buffer::writef(const char *format, ...)
+   {
+
+      string strFormat;
+
+      va_list list;
+
+      va_start(list, format);
+
+      strFormat.FormatV(format, list);
+
+      va_end(list);
+
+      write(strFormat);
+
+   }
+
 } // namespace file
 
 

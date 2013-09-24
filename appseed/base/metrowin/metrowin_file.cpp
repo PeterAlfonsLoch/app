@@ -1,10 +1,11 @@
 #include "framework.h"
+#include <io.h>
 
 
 void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, string & str);
 
 
-CLASS_DECL_ca void ensure_file_size(HANDLE h, int64_t iSize)
+void ensure_file_size(HANDLE h, int64_t iSize)
 {
 
    DWORD dwHi;
@@ -20,7 +21,7 @@ CLASS_DECL_ca void ensure_file_size(HANDLE h, int64_t iSize)
 
 }
 
-CLASS_DECL_ca DWORD SetFilePointer(HANDLE h, LONG lMove, PLONG plHi, DWORD dwMeth)
+DWORD SetFilePointer(HANDLE h, LONG lMove, PLONG plHi, DWORD dwMeth)
 {
 
    LARGE_INTEGER liMove;
@@ -61,7 +62,7 @@ CLASS_DECL_ca DWORD SetFilePointer(HANDLE h, LONG lMove, PLONG plHi, DWORD dwMet
 
 }
 
-CLASS_DECL_ca DWORD GetFileSize(HANDLE h, LPDWORD lpdwHi)
+DWORD GetFileSize(HANDLE h, LPDWORD lpdwHi)
 {
 
    FILE_STANDARD_INFO info;
@@ -79,7 +80,7 @@ CLASS_DECL_ca DWORD GetFileSize(HANDLE h, LPDWORD lpdwHi)
 }
 
 
-CLASS_DECL_ca DWORD GetFileAttributes(const wchar_t * psz)
+DWORD GetFileAttributes(const wchar_t * psz)
 {
 
    WIN32_FILE_ATTRIBUTE_DATA data;
@@ -99,15 +100,15 @@ CLASS_DECL_ca DWORD GetFileAttributes(const wchar_t * psz)
 
 
 
-CLASS_DECL_ca HANDLE FindFirstFile(const wchar_t * pwsz, WIN32_FIND_DATA * pdata)
+HANDLE FindFirstFile(const wchar_t * pwsz, WIN32_FIND_DATA * pdata)
 {
 
    return FindFirstFileEx(pwsz, FindExInfoStandard, pdata, FindExSearchNameMatch, NULL, 0);
 
 }
 
-
-CLASS_DECL_ca BOOL FileTimeToLocalFileTime(const FILETIME * lpFileTime, LPFILETIME lpLocalFileTime)
+/*
+int_bool WINAPI FileTimeToLocalFileTime(const FILETIME * lpFileTime, LPFILETIME lpLocalFileTime)
 {
 
    SYSTEMTIME st;
@@ -134,9 +135,9 @@ CLASS_DECL_ca BOOL FileTimeToLocalFileTime(const FILETIME * lpFileTime, LPFILETI
 }
 
 
+*/
 
-
-CLASS_DECL_ca HANDLE create_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile)
+HANDLE create_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
 
    CREATEFILE2_EXTENDED_PARAMETERS ps;
@@ -154,13 +155,16 @@ CLASS_DECL_ca HANDLE create_file(const char * lpcszFileName, dword dwDesiredAcce
 
 }
 
-CLASS_DECL_ca bool close_handle(handle h)
+
+int_bool close_handle(handle h)
 {
+
    return ::CloseHandle(h) != FALSE;
+
 }
 
 
-CLASS_DECL_ca ::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName)
+::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName)
 {
 
    return wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(lpcszDirName)));
@@ -168,7 +172,7 @@ CLASS_DECL_ca ::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpc
 }
 
 
-CLASS_DECL_ca ::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile)
+::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
 
 /*
@@ -261,7 +265,7 @@ CLASS_DECL_ca ::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFi
 }
 
 
-CLASS_DECL_ca bool get_file_time(::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime)
+bool get_file_time(::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime)
 {
 
    if(lpCreationTime != NULL)
@@ -304,7 +308,7 @@ string get_sys_temp_path()
 
 
 
-bool file_exists_dup(const char * path1)
+int_bool file_exists_dup(const char * path1)
 {
 
    string str(path1);
@@ -321,7 +325,7 @@ bool file_exists_dup(const char * path1)
 
 
 
-bool file_put_contents_dup(const char * path, const char * contents, ::count len)
+int_bool file_put_contents_dup(const char * path, const char * contents, ::count len)
 {
 
    dir::mk(dir::name(path));
@@ -362,13 +366,15 @@ string file_as_string_dup(const char * path)
 
    uint32_t dwSize = ::GetFileSize(hfile, &dwSizeHigh);
 
-   str.alloc(dwSize);
+   char * psz = str.GetBufferSetLength(dwSize);
 
    DWORD dwRead;
 
-   ::ReadFile(hfile, str, dwSize, &dwRead, NULL);
+   ::ReadFile(hfile, psz, dwSize, &dwRead, NULL);
 
-   str.m_psz[dwSize] = '\0';
+   psz[dwSize] = '\0';
+
+   str.ReleaseBuffer();
 
    ::CloseHandle(hfile);
 
@@ -376,7 +382,7 @@ string file_as_string_dup(const char * path)
 
 }
 
-bool file_get_memory_dup(simple_memory & memory, const char * path)
+bool file_get_memory_dup(::primitive::memory_base & memory, const char * path)
 {
 
    memory.allocate(0);
@@ -394,7 +400,7 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
 
    DWORD dwRead;
 
-   ::ReadFile(hfile, memory.m_psz, (uint32_t) memory.m_iSize, &dwRead, NULL);
+   ::ReadFile(hfile, memory.get_data(), (uint32_t) memory.get_size(), &dwRead, NULL);
 
    ::CloseHandle(hfile);
 
@@ -404,7 +410,7 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
 }
 
 
-bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate)
+int_bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate)
 {
 
    string str(::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path);
@@ -462,7 +468,7 @@ bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char *
          strcat_dup(szRet, "-");
       }
       {
-         sprint_hex(buf, i + 1);
+         ::hex::lower_from(buf, i + 1);
          strcat_dup(szRet, buf);
          strcat_dup(szRet, "\\");
       }
@@ -525,7 +531,7 @@ string file_module_path_dup()
 
 
 
-bool file_ftd_dup(const char * pszDir, const char * pszFile)
+int_bool file_ftd_dup(const char * pszDir, const char * pszFile)
 {
 
    HANDLE hfile1 = NULL;
@@ -544,7 +550,9 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
    string strMd5;
    string strMd5New;
    int32_t iBufSize = 1024 * 1024;
-   uchar * buf = (uchar *)  _ca_alloc(iBufSize);
+   primitive::memory mem;
+   mem.allocate(iBufSize);
+   uchar * buf = (uchar *) mem.get_data();
    int32_t iLen;
    ::md5::md5 ctx;
    DWORD dwRead;
@@ -622,7 +630,9 @@ void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, string & str)
 {
    int32_t iLen;
    file_read_n_number_dup(hfile, pctx, iLen);
-   LPSTR lpsz = (LPSTR) _ca_alloc(iLen + 1);
+   primitive::memory mem;
+   mem.allocate(max(iLen, 64));
+   LPSTR lpsz = (LPSTR) mem.get_data();
    DWORD dwRead;
    ReadFile(hfile, lpsz, iLen, &dwRead, NULL);
    if(pctx != NULL)
@@ -631,7 +641,6 @@ void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, string & str)
    }
    lpsz[iLen] = '\0';
    str = lpsz;
-   _ca_free(lpsz, 0);
 }
 
 
@@ -658,7 +667,7 @@ void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, string & str)
 
 
 
-bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
+int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverwrite)
 {
 
     ::Windows::Storage::IStorageFolder ^ folderNew = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(dir::name(pszNew)));
@@ -689,7 +698,7 @@ bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
 
 
 
-CLASS_DECL_ca bool file_is_equal_path(const char * psz1, const char * psz2)
+int_bool file_is_equal_path(const char * psz1, const char * psz2)
 {
 
    return normalize_path(psz1).CompareNoCase(normalize_path(psz2)) == 0;
@@ -697,7 +706,7 @@ CLASS_DECL_ca bool file_is_equal_path(const char * psz1, const char * psz2)
 }
 
 
-CLASS_DECL_ca string file_get_mozilla_firefox_plugin_container_path()
+string file_get_mozilla_firefox_plugin_container_path()
 {
 
    throw " todo ";
@@ -710,4 +719,10 @@ CLASS_DECL_ca string file_get_mozilla_firefox_plugin_container_path()
 
 
 
+
+
+int ftruncate(int file, file_size len)
+{
+  return _chsize_s (file, len);
+}
 

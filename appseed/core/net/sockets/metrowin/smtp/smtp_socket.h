@@ -1,52 +1,6 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 email :
-   virtual public ::ca2::object
-{
-public:
-
-
-   class CLASS_DECL_ca2 address
-   {
-   public:
-      address();
-      address(const char * psz);
-      address(const address & addr);
-      string get_name() const { return m_name; }
-      string get_domain() const { return m_domain; }
-      string get_top_domain() const { return m_top; }
-      string get_sub_domain() const { return m_sub; }
-
-      string to_string() const { return m_name + "@" + m_domain; }
-
-      address & operator = (const char * psz);
-      address & operator = (const address & addr);
-
-   private:
-      string m_name;
-      string m_domain;
-      string m_top;
-      string m_sub;
-   };
-
-
-   string m_strSenderName;
-   address m_addressSender;
-   string m_strRecipientName;
-   address m_addressRecipient;
-   string m_strSubject;
-   string m_strHeaders;
-   string m_strBody;
-
-
-   email(::ca2::application * papp);
-
-
-   void prepare_headers();
-
-
-};
 
 
 namespace sockets
@@ -84,11 +38,11 @@ namespace sockets
 
       e_state m_estate;
 
-      email m_email;
+      ::net::email m_email;
 
 
    public:
-      smtp_socket(socket_handler_base&);
+      smtp_socket(base_socket_handler&);
 
 
       void OnLine(const string &);

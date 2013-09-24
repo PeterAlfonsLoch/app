@@ -42,7 +42,7 @@ namespace sockets
    class CLASS_DECL_ca2 httpd_socket : public http_base_socket
    {
    public:
-      httpd_socket(socket_handler_base& );
+      httpd_socket(base_socket_handler& );
       ~httpd_socket();
 
 

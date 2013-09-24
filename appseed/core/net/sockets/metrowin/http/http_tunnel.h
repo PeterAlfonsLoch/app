@@ -15,7 +15,7 @@
             state_proxy_ok,
             state_init_ssl,
          };
-         http_tunnel(socket_handler_base & h);
+         http_tunnel(base_socket_handler & h);
          string      m_strProxy;
          int         m_iProxyPort;
          bool        m_bSslTunnel;
@@ -27,7 +27,7 @@
          string      m_strRequest;
          primitive::memory      m_memoryBody;
          primitive::memory      m_memoryBuf;
-         ::primitive::memory_file m_fileBody;
+         ::file::memory_buffer m_fileBody;
          int         m_iContentLength;
          bool        m_bHeaders;
          bool        m_bDirect;

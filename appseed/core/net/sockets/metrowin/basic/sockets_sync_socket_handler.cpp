@@ -3,8 +3,8 @@
 namespace sockets
 {
 
-   sync_socket_handler::sync_socket_handler(::ca2::application * papp, StdLog * plog) :
-      ca2(papp),
+   sync_socket_handler::sync_socket_handler(base_application * papp, StdLog * plog) :
+      element(papp),
       m_handler(papp, plog),
       m_file(papp)
    {
@@ -36,12 +36,12 @@ namespace sockets
 
    void sync_socket_handler::write(string &str)
    {
-      m_psocket->Send(str);
+      m_psocket->write(str);
    }
 
    void sync_socket_handler::write(void * pdata, ::primitive::memory_size len)
    {
-      m_psocket->SendBuf((char *) pdata, len);
+      m_psocket->write((char *) pdata, len);
    }
 
    ::primitive::memory_size sync_socket_handler::read(void * pdata, ::primitive::memory_size len)
@@ -82,7 +82,7 @@ namespace sockets
             }
             else
             {
-               m_file.seek(-1, ::ca2::seek_current);
+               m_file.seek(-1, ::file::seek_current);
                return str;
             }
          }

@@ -54,7 +54,7 @@ int32_t base_application::simple_message_box(const char * pszMessage, UINT fuSty
 
 #else
 
-   return MessageBox(m_psystem->m_pui->get_handle(), pszMessage, m_strAppName, fuStyle);
+   return MessageBox(NULL, pszMessage, m_strAppName, fuStyle);
 
 #endif
 

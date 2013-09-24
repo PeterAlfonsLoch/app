@@ -40,12 +40,12 @@ namespace sockets
    {
    public:
       void error(
-         socket_handler_base *,
+         base_socket_handler *,
          socket *,
          const string & call,
          int err,
          const string & sys_err,
-         ::ca2::log::e_level);
+         ::core::log::e_level);
    };
 
 } // namespace sockets

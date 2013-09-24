@@ -22,9 +22,7 @@
 
 #include "nodeapp/operational_system/config.h"
 
-
 #include "nodeapp/operational_system/_.h"
-
 
 #ifdef __C__STATIC
    #define CLASS_DECL_c
@@ -54,7 +52,6 @@
 
 #include "base/datetime/datetime_c.h"
 
-
 #include "base/os/os.h"
 
 
@@ -68,6 +65,14 @@
 
 
 #include "base_c_objc.h"
+
+
+#elif defined(__cplusplus_winrt)
+
+
+#include "base_c.h"
+#include "base_c_cpp.h"
+#include "base_c_winrt.h"
 
 
 #elif defined(__cplusplus)

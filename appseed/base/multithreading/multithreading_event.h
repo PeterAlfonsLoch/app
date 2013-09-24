@@ -20,7 +20,9 @@ public:
 
 
    event(sp(base_application) papp, bool bInitiallyOwn = FALSE, bool bManualReset = FALSE, const char * lpszNAme = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
-   virtual ~event();
+#ifdef METROWIN
+   virtual ~event() { }
+#endif
 
 
    virtual bool lock(const duration & durationTimeout = duration::infinite());
