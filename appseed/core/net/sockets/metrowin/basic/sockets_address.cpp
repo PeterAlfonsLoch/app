@@ -28,8 +28,7 @@ namespace sockets
    }
 
 
-   winrt_address::winrt_address(base_application * papp, const string & strAddress, int iPort) :
-      element(papp)
+   void winrt_address::construct(const string & strAddress, int iPort)
    {
 
       try

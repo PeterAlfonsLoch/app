@@ -30,8 +30,8 @@ namespace net
 
 
 
-      address & operator = (const address & address);
-      bool operator == (const address & address) const;
+      address & operator = (const address_base & address);
+      bool operator == (const address_base & address) const;
 
       virtual string get_display_number() const;
       virtual string get_canonical_name() const;

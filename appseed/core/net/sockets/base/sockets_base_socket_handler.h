@@ -69,13 +69,13 @@ namespace sockets
             Handler().LogError(this, "OnRead", 0, "data on hibernating socket", ::core::log::level_fatal);
             SetCloseAndDelete();
          }
-         void OnOptions(int32_t,int32_t,int32_t,SOCKET) {}
+         void OnOptions(int,int,int,SOCKET) {}
 
       };
 
    public:
 
-      int32_t m_iSelectErrno;
+      int m_iSelectErrno;
 
 
    public:
@@ -89,7 +89,7 @@ namespace sockets
       virtual void RegStdLog(StdLog *log) = 0;
 
       /** Log error to log class for print out / storage. */
-      virtual void LogError(base_socket *p,const string & user_text,int32_t err,const string & sys_err, ::core::log::e_level elevel = ::ca_get_level_warning()) = 0;
+      virtual void LogError(base_socket *p,const string & user_text,int err,const string & sys_err, ::core::log::e_level elevel = ::ca_get_level_warning()) = 0;
 
       // -------------------------------------------------------------------------
       // socket stuff
@@ -106,11 +106,11 @@ namespace sockets
       /** Set read/write/exception file descriptor sets (fd_set). */
       virtual void Set(SOCKET s,bool bRead,bool bWrite,bool bException = true) = 0;
       /** Wait for events, generate callbacks. */
-      virtual int32_t Select(int32_t sec, int32_t usec) = 0;
+      virtual int Select(long sec,long usec) = 0;
       /** This method will not return until an event has been detected. */
-      virtual int32_t Select() = 0;
+      virtual int Select() = 0;
       /** Wait for events, generate callbacks. */
-      virtual int32_t Select(struct timeval *tsel) = 0;
+      virtual int Select(struct timeval *tsel) = 0;
 
       /** Check that a socket really is handled by this socket handler. */
       virtual bool Valid(socket *) = 0;
@@ -127,7 +127,7 @@ namespace sockets
       // Connection pool
       // -------------------------------------------------------------------------
       /** find available open connection (used by connection pool). */
-      virtual PoolSocket * FindConnection(int32_t type,const string & protocol,::net::address_sp&) = 0;
+      virtual PoolSocket * FindConnection(int type,const string & protocol,::net::address_sp&) = 0;
 
       /** Enable connection pool (by default disabled). */
       virtual void EnablePool(bool = true) = 0;
@@ -172,11 +172,11 @@ namespace sockets
       /** Queue a dns request.
       \param host Hostname to be resolved
       \param port Port number will be echoed in socket::OnResolved callback */
-      virtual int32_t Resolve(socket *,const string & host,port_t port) = 0;
-      virtual int32_t Resolve6(socket *,const string & host,port_t port) = 0;
+      virtual int Resolve(socket *,const string & host,port_t port) = 0;
+      virtual int Resolve6(socket *,const string & host,port_t port) = 0;
       /** Do a reverse dns lookup. */
-      virtual int32_t Resolve(socket *,in_addr a) = 0;
-      virtual int32_t Resolve(socket *,in6_addr& a) = 0;
+      virtual int Resolve(socket *,in_addr a) = 0;
+      virtual int Resolve(socket *,in6_addr& a) = 0;
       /** get listen port of asynchronous dns server. */
       virtual port_t GetResolverPort() = 0;
       /** Resolver thread ready for queries. */
@@ -184,17 +184,17 @@ namespace sockets
       /** Returns true if socket waiting for a resolve event. */
       virtual bool Resolving(socket *) = 0;
       /** Fetch unique trigger id. */
-      virtual int32_t TriggerID(socket *src) = 0;
+      virtual int TriggerID(socket *src) = 0;
       /** Subscribe socket to trigger id. */
-      virtual bool Subscribe(int32_t id, socket *dst) = 0;
+      virtual bool Subscribe(int id, socket *dst) = 0;
       /** Unsubscribe socket from trigger id. */
-      virtual bool Unsubscribe(int32_t id, socket *dst) = 0;
+      virtual bool Unsubscribe(int id, socket *dst) = 0;
       /** Execute OnTrigger for subscribed sockets.
       \param id Trigger ID
       \param data Data passed from source to destination
       \param erase Empty trigger id source and destination maps if 'true',
       Leave them in place if 'false' - if a trigger should be called many times */
-      virtual void Trigger(int32_t id, socket::TriggerData& data, bool erase = true) = 0;
+      virtual void Trigger(int id, socket::TriggerData& data, bool erase = true) = 0;
       /** Indicates that the handler runs under socket_thread. */
       virtual void SetSlave(bool x = true) = 0;
       /** Indicates that the handler runs under socket_thread. */

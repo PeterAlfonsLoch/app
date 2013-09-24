@@ -101,15 +101,15 @@ namespace net
    }
 
 
-   address & address::operator = (const address & address)
+   address & address::operator = (const address_base & address)
    {
 
       if(&address == this || address.m_p == m_p)
          return *this;
 
-      release();
+      address_sp::release();
 
-      create(allocer());
+      address_sp::create(allocer());
 
       m_p->copy(address);
 
