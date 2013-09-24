@@ -79,7 +79,6 @@ namespace sockets
       time_t                  m_timeCreate; ///< time in seconds when this base_socket was created
       bool                    m_bDisableRead; ///< Disable checking for read events
       bool                    m_bConnected; ///< base_socket is connected (tcp/udp)
-      bool                    m_bOnConnect;
       bool                    m_bLost; ///< connection lost
       bool                    m_bErasedByHandler; ///< Set by handler before delete
       time_t                  m_timeClose; ///< time in seconds when ordered to close
@@ -92,8 +91,6 @@ namespace sockets
       bool                    m_bNonBlocking;
       //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
 
-      bool                    m_bExpectResponse;
-      bool                    m_bExpectRequest;
 
       manual_reset_event      m_event;
 
@@ -699,8 +696,9 @@ namespace sockets
       virtual void OnCancelled(int id);
       //@}
 
-      virtual void run();
       virtual void step();
+
+
    };
 
 

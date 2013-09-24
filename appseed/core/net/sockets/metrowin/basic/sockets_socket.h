@@ -28,6 +28,10 @@ namespace sockets
 
       static SOCKET s_socketNextIdSeed;
       static socket_map s_mapSocket;
+      bool                    m_bOnConnect;
+      bool                    m_bExpectResponse;
+      bool                    m_bExpectRequest;
+
 
       /** "Default" constructor */
       socket(base_socket_handler & handler);
@@ -38,6 +42,8 @@ namespace sockets
       /** Assign this base_socket a file descriptor created
       by a call to base_socket() or otherwise. */
       void attach(::Platform::Object ^ o);
+
+      virtual void run();
 
 
    };

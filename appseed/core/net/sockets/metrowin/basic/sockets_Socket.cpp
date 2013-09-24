@@ -85,6 +85,39 @@ namespace sockets
 
 
 
+   void socket::run()
+   {
+      if(m_bOnConnect)
+      {
+         m_bOnConnect = false;
+         if(m_bEnableSsl)
+         {
+            OnSSLConnect();
+            OnConnect();
+         }
+         else
+         {
+            OnConnect();
+         }
+         return;
+      }
+      if(m_bExpectRequest)
+      {
+         m_bExpectRequest = false;
+         step();
+         return;
+      }
+      if(m_bExpectResponse)
+      {
+         m_bExpectResponse = false;
+         OnRead();
+         return;
+      }
+      SetCloseAndDelete();
+   }
+
+
+
 } // namespace sockets
 
 

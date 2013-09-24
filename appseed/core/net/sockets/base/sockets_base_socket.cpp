@@ -84,9 +84,6 @@ namespace sockets
       m_iBindPort    = -1;
       m_dwStart      = ::get_tick_count();
       m_pcallback    = NULL;
-      m_bExpectResponse = false;
-      m_bExpectRequest = false;
-      m_bOnConnect = false;
 
    }
 
@@ -1916,36 +1913,6 @@ namespace sockets
    {
    }
 
-   void base_socket::run()
-   {
-      if(m_bOnConnect)
-      {
-         m_bOnConnect = false;
-         if(m_bEnableSsl)
-         {
-            OnSSLConnect();
-            OnConnect();
-         }
-         else
-         {
-            OnConnect();
-         }
-         return;
-      }
-      if(m_bExpectRequest)
-      {
-         m_bExpectRequest = false;
-         step();
-         return;
-      }
-      if(m_bExpectResponse)
-      {
-         m_bExpectResponse = false;
-         OnRead();
-         return;
-      }
-      SetCloseAndDelete();
-   }
 
 } // namespace sockets
 
