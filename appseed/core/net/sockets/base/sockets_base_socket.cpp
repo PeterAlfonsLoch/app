@@ -208,17 +208,6 @@ namespace sockets
    }
    */
 
-   void base_socket::attach(Platform::Object ^ o)
-   {
-
-      synch_lock ml(&s_mutex);
-      m_socket = s_socket;
-      s_mapSocket.set_at(m_socket, this);
-      s_socket++;
-
-
-   }
-
 
    SOCKET base_socket::GetSocket()
    {

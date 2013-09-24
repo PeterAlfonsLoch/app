@@ -47,6 +47,8 @@ namespace sockets
    #define DEB(x)
    #endif
 
+   SOCKET socket::s_socketNextIdSeed = 1;
+   socket_map socket::s_mapSocket;
 
    socket::socket(base_socket_handler & h) :
       element(h.get_app()),
@@ -67,6 +69,18 @@ namespace sockets
    socket::~socket()
    {
       Handler().remove(this);
+   }
+
+
+   void socket::attach(Platform::Object ^ o)
+   {
+
+      synch_lock ml(&s_mutex);
+      m_socket = s_socketNextIdSeed;
+      s_mapSocket.set_at(m_socket, this);
+      s_socket++;
+
+
    }
 
 

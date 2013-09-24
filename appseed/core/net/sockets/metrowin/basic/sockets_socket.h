@@ -4,9 +4,13 @@
 namespace sockets
 {
 
-
    class base_socket_handler;
 
+   class socket;
+
+   typedef map < SOCKET, SOCKET, sp(socket), sp(socket) > socket_map;
+
+   typedef ::comparable_eq_list < sp(socket) > socket_list;
 
    /** \defgroup basic Basic sockets */
    /** socket base class.
@@ -22,12 +26,24 @@ namespace sockets
 
       base_socket_handler &   m_handler; ///< Reference of base_socket_handler in control of this socket
 
+      static SOCKET s_socketNextIdSeed;
+      static socket_map s_mapSocket;
+
       /** "Default" constructor */
       socket(base_socket_handler & handler);
 
       virtual ~socket();
 
+
+      /** Assign this base_socket a file descriptor created
+      by a call to base_socket() or otherwise. */
+      void attach(::Platform::Object ^ o);
+
+
    };
+
+
+
 
 
 
