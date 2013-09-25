@@ -11,18 +11,23 @@ namespace sockets
 
    httpd_socket::httpd_socket(base_socket_handler& h) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
       http_base_socket(h),
       m_received(0)
    {
+
       m_http_date = datetime2httpdate(GetDate());
+
    }
+
 
    httpd_socket::httpd_socket(const httpd_socket& s) :
       element(s.get_app()),
-      socket(s.m_handler),
+      base_socket(s),
+      socket(s),
       stream_socket(s),
       tcp_socket(s),
       http_base_socket(s)
@@ -61,7 +66,7 @@ namespace sockets
    //      m_response.header("Last-modified") = m_start;
          SendResponse();
 
-         SendBuf((char *)mem.get_data(), mem.get_size());
+         write((char *)mem.get_data(), mem.get_size());
       }
    }
 

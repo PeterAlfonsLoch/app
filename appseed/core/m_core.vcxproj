@@ -1434,7 +1434,6 @@
     <ClInclude Include="user\user_control.h" />
     <ClInclude Include="user\user_control_event.h" />
     <ClInclude Include="user\user_control_property.h" />
-    <ClInclude Include="user\user_create_context.h" />
     <ClInclude Include="user\user_data_exchange.h" />
     <ClInclude Include="user\user_document.h" />
     <ClInclude Include="user\user_document_interface.h" />
@@ -1939,7 +1938,7 @@
     <ClCompile Include="primitive\datetime\datetime_clock.cpp" />
     <ClCompile Include="primitive\datetime\datetime_clock_interface.cpp" />
     <ClCompile Include="primitive\datetime\datetime_float_time.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_time.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_value.cpp" />
     <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp" />
     <ClCompile Include="primitive\primitive_color.cpp" />
     <ClCompile Include="primitive\primitive_fixed_string.cpp" />
@@ -2121,7 +2120,6 @@
     <ClCompile Include="user\user_control.cpp" />
     <ClCompile Include="user\user_control_event.cpp" />
     <ClCompile Include="user\user_control_property.cpp" />
-    <ClCompile Include="user\user_create_context.cpp" />
     <ClCompile Include="user\user_data_exchange.cpp" />
     <ClCompile Include="user\user_document.cpp" />
     <ClCompile Include="user\user_document_interface.cpp" />
@@ -2178,6 +2176,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\thirdparty\appseed\freetype\_m_ca2freetype.vcxproj">
       <Project>{af9dfa62-6f0e-47b8-a55b-5ad825571f4f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\openssl\m_basecrypto.vcxproj">
+      <Project>{a94bfce2-df46-4f9f-a196-26a60bc7ae9a}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\thirdparty\appseed\zlib\_m_ca2zlib.vcxproj">
       <Project>{84fbad70-591c-44fa-93c4-ee232b3a1995}</Project>

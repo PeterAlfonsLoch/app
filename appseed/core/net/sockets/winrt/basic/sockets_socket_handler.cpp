@@ -528,12 +528,12 @@ namespace sockets
       return m_resolver_port;
    }
 
-   base_socket_handler::PoolSocket *socket_handler::FindConnection(int type,const string & protocol,::net::address& ad)
+   base_socket_handler::pool_socket *socket_handler::FindConnection(int type,const string & protocol, const ::net::address & ad)
    {
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         PoolSocket *pools = dynamic_cast<PoolSocket *>(ppair->m_element2);
+         pool_socket * pools = ppair->m_element2.cast < pool_socket > ();
          if (pools)
          {
             if (pools -> GetSocketType() == type &&
@@ -629,7 +629,7 @@ namespace sockets
          POSITION pos = m_delete.get_head_position();
          while(pos != NULL)
          {
-            socket * p = m_delete.get_next(pos);
+            sp(base_socket) p = m_delete.get_next(pos);
             if(p->GetSocket() == s)
             {
                found = true;
@@ -677,7 +677,7 @@ namespace sockets
    }
 
 
-   int socket_handler::TriggerID(socket *src)
+   int socket_handler::TriggerID(base_socket *src)
    {
       int id = m_next_trigger_id++;
       m_trigger_src[id] = src;
@@ -685,7 +685,7 @@ namespace sockets
    }
 
 
-   bool socket_handler::Subscribe(int id, socket *dst)
+   bool socket_handler::Subscribe(int id, base_socket *dst)
    {
       if(m_trigger_src.PLookup(id) != NULL)
       {
@@ -702,7 +702,7 @@ namespace sockets
    }
 
 
-   bool socket_handler::Unsubscribe(int id, socket *dst)
+   bool socket_handler::Unsubscribe(int id, base_socket *dst)
    {
       if (m_trigger_src.PLookup(id) != NULL)
       {
@@ -719,15 +719,15 @@ namespace sockets
    }
 
 
-   void socket_handler::Trigger(int id, socket::TriggerData& data, bool erase)
+   void socket_handler::Trigger(int id, socket::trigger_data& data, bool erase)
    {
       if(m_trigger_src.PLookup(id) != NULL)
       {
          data.SetSource( m_trigger_src[id]);
-         ::map < socket *, socket *, bool, bool >::pair * ppair = m_trigger_dst[id].PGetFirstAssoc();
+         socket_bool::pair * ppair = m_trigger_dst[id].PGetFirstAssoc();
          while(ppair != NULL);
          {
-            socket * dst = ppair->m_element1;
+            sp(base_socket) dst = ppair->m_element1;
             if (Valid(dst))
             {
                dst->OnTrigger(id, data);

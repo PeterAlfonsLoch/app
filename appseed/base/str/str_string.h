@@ -1586,8 +1586,6 @@ inline string to_string(Platform::String ^ str)
 #endif
 
 
-#ifndef METROWIN
-
 template < >
 inline string to_string(const in_addr * addr)
 {
@@ -1604,8 +1602,6 @@ inline string to_string(const in6_addr * addr)
    return to_vsstring(addr);
 
 }
-
-#endif
 
 inline string  & operator += (string & str, const ::id & id)
 {

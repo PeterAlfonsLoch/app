@@ -70,7 +70,7 @@ namespace sockets
    int udp_socket::Bind(const char * pszHost, port_t port, int range)
    {
 
-      return Bind(::sockets::::net::address(pszHost, port), range);
+      return Bind(::net::address(pszHost, port), range);
 
    }
 
@@ -776,7 +776,7 @@ namespace sockets
    }
 
 
-   address udp_socket::GetRemoteAddress()
+   ::net::address udp_socket::GetRemoteAddress()
    {
 
       return ::net::address(m_datagramsocket->Information->RemoteAddress->CanonicalName, m_datagramsocket->Information->RemotePort);
@@ -792,7 +792,7 @@ namespace sockets
    }
 
 
-   address udp_socket::GetLocalAddress()
+   ::net::address udp_socket::GetLocalAddress()
    {
 
       return ::net::address(m_datagramsocket->Information->LocalAddress->CanonicalName, m_datagramsocket->Information->LocalPort);

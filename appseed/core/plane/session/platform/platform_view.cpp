@@ -708,7 +708,7 @@ namespace platform
          if(::IsWindow(m_oswindowWinutil))
          {
             mt_show_window(GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
-            ::PostMessage(m_oswindowWinutil, WM_APP + 2000, 0, 2);
+            ::PostMessageW(m_oswindowWinutil, WM_APP + 2000, 0, 2);
          }
       }
       else if(iHitArea == m_i_veriwell)

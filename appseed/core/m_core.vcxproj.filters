@@ -596,9 +596,6 @@
     <ClInclude Include="user\user_check_interface.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_create_context.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_draw_interface.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -4342,9 +4339,6 @@
     <ClCompile Include="primitive\datetime\datetime_clock_interface.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_time.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
@@ -4418,9 +4412,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_control_property.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_create_context.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_data_exchange.cpp">
@@ -6186,6 +6177,9 @@
     </ClCompile>
     <ClCompile Include="net\sockets\sockets_link_out_socket.cpp">
       <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_value.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

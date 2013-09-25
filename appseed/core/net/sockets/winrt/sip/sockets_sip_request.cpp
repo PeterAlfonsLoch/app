@@ -3,7 +3,6 @@
 namespace sip
 {
 
-   // --------------------------------------------------------------------------------------
    request::request(base_application * papp) :
       element(papp),
       transaction(papp),
@@ -13,7 +12,6 @@ namespace sip
    }
 
 
-   // --------------------------------------------------------------------------------------
    request::request(const request& src) :
    element(((request&) src).get_app()),
    transaction(src),
@@ -26,7 +24,6 @@ namespace sip
 
 
 
-   // --------------------------------------------------------------------------------------
    request::~request()
    {
    }
@@ -36,14 +33,12 @@ namespace sip
 
 
 
-   // --------------------------------------------------------------------------------------
    void request::add_cookie(const char * pszSetCookie)
    {
       m_cookies.add(pszSetCookie);
    }
 
 
-   // --------------------------------------------------------------------------------------
    void request::InitBody( size_t sz )
    {
       UNREFERENCED_PARAMETER(sz);
@@ -55,21 +50,18 @@ namespace sip
    }
 
 
-   // --------------------------------------------------------------------------------------
    void request::write( const char *buf, size_t sz )
    {
          m_file.write(buf, sz);
    }
 
 
-   // --------------------------------------------------------------------------------------
    void request::CloseBody()
    {
       //m_file.close();
    }
 
 
-   // --------------------------------------------------------------------------------------
    void request::ParseBody()
    {
       //Utility::ncmap<string>::const_iterator it;

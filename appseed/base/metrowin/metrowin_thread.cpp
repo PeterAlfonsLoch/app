@@ -1046,6 +1046,43 @@ BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT message, WPARAM wparam, LPAR
 }
 
 
+CLASS_DECL_c WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
+{
+
+   HTHREAD  h = oswindow->m_pui->m_pthread->get_os_handle();
+
+   if(h == NULL)
+      return FALSE;
+
+
+   mq * pmq = get_mq(h);
+
+   if(pmq == NULL)
+      return FALSE;
+
+   synch_lock ml(&pmq->m_mutex);
+
+   MESSAGE msg;
+
+   //zero(&msg, sizeof(msg));
+
+   msg.oswindow   = oswindow;
+   msg.message    = Msg;
+   msg.wParam     = wParam;
+   msg.lParam     = lParam;
+   msg.pt.x       = 0x80000000;
+   msg.pt.y       = 0x80000000;
+
+
+   pmq->ma.add(msg);
+
+   pmq->m_eventNewMessage.set_event();
+
+   return true;
+
+}
+
+
 namespace ca2
 {
 

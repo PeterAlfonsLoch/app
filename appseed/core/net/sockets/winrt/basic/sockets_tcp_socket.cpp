@@ -369,7 +369,7 @@ namespace sockets
    }
 
 
-   void tcp_socket::OnResolved(int id, const address & addr)
+   void tcp_socket::OnResolved(int id, const ::net::address & addr)
    {
       TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, addr.get_display_number(), addr.get_service_number());
       if (id == m_resolver_id)
@@ -432,7 +432,7 @@ namespace sockets
       {
          Platform::Array < unsigned char, 1U > ^ ucha = ref new Platform::Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
          reader->ReadBytes(ucha);
-         OnRead((char *) ucha->Data, ucha->Length);
+         on_read((char *) ucha->Data, ucha->Length);
          return ;
       }
 
@@ -475,7 +475,7 @@ namespace sockets
             reader->ReadBytes(ucha);
             ::primitive::memory mem;
             mem.assign(ucha->Data, ucha->Length);
-            OnRead((char *) mem.get_data(), mem.get_size());
+            on_read((char *) mem.get_data(), mem.get_size());
          }
          else
          {
@@ -489,12 +489,15 @@ namespace sockets
    }
 
 
-   void tcp_socket::OnRead( char *buf, size_t n )
+   void tcp_socket::on_read(const void * pdata, ::primitive::memory_size n)
    {
+
+      char * buf = (char *) pdata;
+
       // unbuffered
       if (n > 0)
       {
-         stream_socket::OnRead(buf, n);
+         stream_socket::on_read(buf, n);
       }
       if (m_b_input_buffer_disabled)
       {
@@ -752,8 +755,11 @@ namespace sockets
 
 
 
-   void tcp_socket::write(const char *buf,size_t len,int)
+   void tcp_socket::write(const void * pdata, ::primitive::memory_size len)
    {
+
+      const char * buf = (const char * ) pdata;
+
       if (!Ready() && !Connecting())
       {
          log("SendBuf", -1, "Attempt to write to a non-ready socket" ); // warning
@@ -813,7 +819,8 @@ namespace sockets
    #endif
    tcp_socket::tcp_socket(const tcp_socket& s) :
       element(s.get_app()),
-      socket(s.m_handler),
+      base_socket(s),
+      socket(s),
       stream_socket(s),
       ibuf(0)
    {
@@ -846,14 +853,14 @@ namespace sockets
       }
       strcpy(request + 8, GetSocks4Userid());
       size_t length = GetSocks4Userid().get_length() + 8 + 1;
-      SendBuf(request, length);
+      write(request, length);
       m_socks4_state = 0;
    }
 
 
    void tcp_socket::OnSocks4ConnectFailed()
    {
-      Handler().LogError(this,"OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection",::core::log::level_warning);
+      log("OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection",::core::log::level_warning);
       if (!Handler().Socks4TryDirect())
       {
          SetConnecting(false);
@@ -905,13 +912,13 @@ namespace sockets
             case 91:
             case 92:
             case 93:
-               Handler().LogError(this,"OnSocks4Read",m_socks4_cd,"socks4 server reports connect failed",::core::log::level_fatal);
+               log("OnSocks4Read",m_socks4_cd,"socks4 server reports connect failed",::core::log::level_fatal);
                SetConnecting(false);
                SetCloseAndDelete();
                OnConnectFailed();
                break;
             default:
-               Handler().LogError(this,"OnSocks4Read",m_socks4_cd,"socks4 server unrecognized response",::core::log::level_fatal);
+               log("OnSocks4Read",m_socks4_cd,"socks4 server unrecognized response",::core::log::level_fatal);
                SetCloseAndDelete();
                break;
             }
@@ -925,20 +932,6 @@ namespace sockets
       return false;
    }
 
-
-   void tcp_socket::Sendf(const char *format, ...)
-   {
-      va_list ap;
-      va_start(ap, format);
-      char slask[5000]; // vsprintf / vsnprintf temporary
-   #ifdef _WIN32
-      vsprintf(slask, format, ap);
-   #else
-      vsnprintf(slask, 5000, format, ap);
-   #endif
-      va_end(ap);
-      Send( slask );
-   }
 
 
    void tcp_socket::OnSSLConnect()
@@ -1289,7 +1282,7 @@ namespace sockets
    }
    */
 
-   int tcp_socket::close()
+   void tcp_socket::close()
    {
 /*      if (GetSocket() == INVALID_SOCKET) // this could happen
       {
@@ -1324,7 +1317,9 @@ namespace sockets
          m_ssl = NULL;
       }
    #endif*/
-      return stream_socket::close();
+      //return stream_socket::close();
+      stream_socket::close();
+
    }
 
 

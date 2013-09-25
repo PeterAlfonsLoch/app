@@ -1,20 +1,26 @@
 #include "framework.h"
 
+
 namespace sockets
 {
 
+
    http_base_socket::http_base_socket(base_socket_handler& h) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
       http_socket(h)
    {
+
    }
+
 
    http_base_socket::http_base_socket(const http_base_socket& s) :
       element(((http_socket&) s).get_app()),
-      socket(s.m_handler),
+      base_socket(s),
+      socket(s),
       stream_socket(s),
       tcp_socket(s),
       http_socket(s)
@@ -134,7 +140,7 @@ namespace sockets
 
       }
 
-      m_response.m_propertysetHeader.set(__id(content_length), (int64_t) m_response.file().get_size());
+      m_response.m_propertysetHeader.set(__id(content_length), (int64_t) m_response.file().get_length());
 
       for(int i = 0; i < m_response.cookies().get_size(); i++)
       {
@@ -165,7 +171,8 @@ namespace sockets
          OnWriteComplete();
       }
 
-      response().file().Truncate(0);
+      response().file().set_length(0);
+
    }
 
 
@@ -238,16 +245,15 @@ namespace sockets
        
             m_response.m_propertysetHeader.set(__id(content_encoding), "gzip");
 
-
             ::file::memory_buffer file(get_app());
 
-            gzip gz(&file);
+            gzip_stream gz(&file);
 
-            gz.write(response().file().get_data(), response().file().get_size());
+            gz.transfer_from(response().file());
 
             gz.finish();
 
-            response().file().Truncate(0);
+            response().file().set_length(0);
             response().file().write(file.get_data(), file.get_size());
 
          }

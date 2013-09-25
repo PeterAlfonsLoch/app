@@ -313,7 +313,7 @@ namespace sockets
          TRACE(strTrace + "\n");
       }
       msg += "\r\n";
-      Send( msg );
+      write( msg );
    }
 
    void sip_base_client_socket::SendResponseBody()
@@ -331,7 +331,7 @@ namespace sockets
          msg += m_response.m_propertysetHeader.m_propertya[i].name() + ": " + m_response.m_propertysetHeader.m_propertya[i].get_string() + "\r\n";
       }
       msg += "\r\n";
-      Send( msg );
+      write( msg );
    }
 
 
