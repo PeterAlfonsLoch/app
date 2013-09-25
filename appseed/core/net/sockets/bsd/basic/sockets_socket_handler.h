@@ -61,10 +61,6 @@ namespace sockets
 
       mutex & GetMutex() const;
 
-      void set_logger(logger *log);
-
-      /** Log error to log class for print out / storage. */
-      void log(base_socket *p,const string & user_text,int32_t err,const string & sys_err, ::core::log::e_level elevel = ::ca_get_level_warning());
 
       /** add base_socket instance to base_socket map. Removal is always automatic. */
       void add(base_socket *);

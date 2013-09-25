@@ -25,17 +25,11 @@
 
 
 
-#include "http/http_socket.h"
+#include "core/net/sockets/http/sockets_http.h"
 
 
-#include "http/http_tunnel.h"
-#include "http/http_client_socket.h"
-#include "http/http_request_socket.h"
-#include "http/http_get_socket.h"
-#include "http/http_post_socket.h"
-#include "http/http_put_socket.h"
-#include "http/http_debug_socket.h"
-#include "http/http_session.h"
+
+
 
 
 #include "webserver/AjpBaseSocket.h"

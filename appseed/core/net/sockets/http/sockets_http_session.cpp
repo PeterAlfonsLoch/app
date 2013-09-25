@@ -7,6 +7,7 @@ namespace sockets
 
    http_session::http_session(base_socket_handler & h, const string & protocol, const string & host) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),

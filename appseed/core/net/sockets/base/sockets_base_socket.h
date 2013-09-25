@@ -148,6 +148,9 @@ namespace sockets
       DWORD                   m_dwStart;
 
 
+      bool                    m_bExpectResponse;
+      bool                    m_bExpectRequest;
+
 
       /** base_socket mode flags. */
       /*

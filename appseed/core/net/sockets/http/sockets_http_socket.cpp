@@ -7,6 +7,7 @@ namespace sockets
 
    http_socket::http_socket(base_socket_handler& h) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -65,7 +66,7 @@ namespace sockets
                         char tmp[TCP_BUFSIZE_READ];
                         memcpy(tmp, buf + ptr, len - ptr);
                         tmp[len - ptr] = 0;
-                        OnRead( tmp, len - ptr );
+                        on_read( tmp, len - ptr );
                         ptr = len;
                      }
                   }
@@ -150,7 +151,7 @@ namespace sockets
                   char tmp[TCP_BUFSIZE_READ];
                   memcpy(tmp, buf + sz, len - sz);
                   tmp[len - sz] = 0;
-                  OnRead( tmp, len - sz );
+                  on_read( tmp, len - sz );
                }
             }
          }
@@ -363,7 +364,7 @@ namespace sockets
 
       msg += "\r\n";
 
-      Send( msg );
+      write( msg );
 
       if(bContentLength)
       {
@@ -376,15 +377,9 @@ namespace sockets
 
    void http_socket::SendResponseBody()
    {
-      if(response().file().get_size() > 0)
+      if(response().file().get_length() > 0)
       {
-         primitive::memory_size iSize = response().file().get_size();
-         while(iSize > 0)
-         {
-            primitive::memory_size iSend = min(iSize, 1024 * 16);
-            SendBuf(&((const char *) response().file().get_data())[response().file().get_size() - iSize], iSend);
-            iSize -= iSend;
-         }
+         transfer_from(response().file());
       }
    }
 
@@ -415,7 +410,7 @@ namespace sockets
          msg += strKey + ": " + strValue + "\r\n";
       }
       msg += "\r\n";
-      Send( msg );
+      write( msg );
    }
 
 

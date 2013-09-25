@@ -19,9 +19,9 @@ namespace sockets
    #endif
 
 
-   socket_handler::socket_handler(sp(base_application) papp, logger *p) :
+   socket_handler::socket_handler(sp(base_application) papp, logger *plogger) :
    element(papp),
-   m_splogger(p),
+   base_socket_handler(papp, plogger),
    m_pmutex(NULL),
    m_b_use_mutex(false)
    ,m_maxsock(0)
@@ -43,9 +43,9 @@ namespace sockets
    }
 
 
-   socket_handler::socket_handler(sp(base_application) papp, mutex& mutex, logger *p) :
+   socket_handler::socket_handler(sp(base_application) papp, mutex& mutex, logger * plogger) :
    element(papp),
-   m_splogger(p)
+   base_socket_handler(papp, plogger)
    ,m_pmutex(&mutex)
    ,m_b_use_mutex(true)
    ,m_maxsock(0)
@@ -130,21 +130,6 @@ namespace sockets
    bool socket_handler::IsSlave()
    {
       return m_slave;
-   }
-
-
-   void socket_handler::set_logger(logger *log)
-   {
-      m_splogger = log;
-   }
-
-
-   void socket_handler::log(base_socket * p,const string & user_text,int32_t err,const string & sys_err,::core::log::e_level t)
-   {
-      if (m_splogger)
-      {
-         m_splogger -> error(this, p, user_text, err, sys_err, t);
-      }
    }
 
 

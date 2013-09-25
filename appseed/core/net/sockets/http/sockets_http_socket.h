@@ -39,6 +39,9 @@ namespace sockets
       bool                 m_bNoClose;
 
 
+      
+
+
 
       http_socket(base_socket_handler& );
       ~http_socket();

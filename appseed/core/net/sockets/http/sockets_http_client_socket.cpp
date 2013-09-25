@@ -30,7 +30,7 @@ namespace sockets
 
    http_client_socket::http_client_socket(base_socket_handler & h, const string & strUrlParam) :
       element(h.get_app()),
-      base_socket(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
