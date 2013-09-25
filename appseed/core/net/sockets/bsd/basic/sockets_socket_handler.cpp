@@ -1041,7 +1041,7 @@ namespace sockets
       resolv -> SetDeleteByHandler();
       in_addr local;
       System.net().convert(local, "127.0.0.1");
-      if (!resolv -> open(::net::address(get_app(), local, m_resolver_port)))
+      if (!resolv -> open(::net::address(local, m_resolver_port)))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::core::log::level_fatal);
       }
@@ -1060,7 +1060,7 @@ namespace sockets
       resolv -> SetDeleteByHandler();
       in_addr local;
       System.net().convert(local, "127.0.0.1");
-      if (!resolv -> open(::net::address(get_app(), local, m_resolver_port)))
+      if (!resolv -> open(::net::address(local, m_resolver_port)))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::core::log::level_fatal);
       }
@@ -1078,7 +1078,7 @@ namespace sockets
       resolv -> SetDeleteByHandler();
       in_addr local;
       System.net().convert(local, "127.0.0.1");
-      if (!resolv -> open(::net::address(get_app(), local, m_resolver_port)))
+      if (!resolv -> open(::net::address(local, m_resolver_port)))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::core::log::level_fatal);
       }
@@ -1096,7 +1096,7 @@ namespace sockets
       resolv -> SetDeleteByHandler();
       in_addr local;
       System.net().convert(local, "127.0.0.1");
-      if (!resolv -> open(::net::address(get_app(), local, m_resolver_port)))
+      if (!resolv -> open(::net::address(local, m_resolver_port)))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::core::log::level_fatal);
       }
@@ -1161,7 +1161,7 @@ namespace sockets
       return m_resolver_port;
    }
 
-   base_socket_handler::pool_socket *socket_handler::FindConnection(int32_t type,const string & protocol,::net::address ad)
+   base_socket_handler::pool_socket *socket_handler::FindConnection(int32_t type, const string & protocol, const ::net::address & ad)
    {
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)

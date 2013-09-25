@@ -1494,7 +1494,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\mail\pop3_socket.h" />
     <ClInclude Include="net\mail\simple_pop3.h" />
     <ClInclude Include="net\net_address.h" />
-    <ClInclude Include="net\net_address_base.h" />
     <ClInclude Include="net\net_email.h" />
     <ClInclude Include="net\net_email_address.h" />
     <ClInclude Include="net\net_email_departament.h" />
@@ -1505,9 +1504,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\sockets\base\sockets_base_socket_handler.h" />
     <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_server.h" />
     <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_socket.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_address.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ipv4_address.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ipv6_address.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_listen_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_net.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_sctp_socket.h" />
@@ -2490,7 +2486,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="net\mail\mail_pop3_socket.cpp" />
     <ClCompile Include="net\mail\mail_simple_pop3.cpp" />
     <ClCompile Include="net\net_address.cpp" />
-    <ClCompile Include="net\net_address_base.cpp" />
     <ClCompile Include="net\net_email.cpp" />
     <ClCompile Include="net\net_email_address.cpp" />
     <ClCompile Include="net\net_email_departament.cpp" />
@@ -2500,9 +2495,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="net\sockets\base\sockets_base_socket.cpp" />
     <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_server.cpp" />
     <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_address.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ipv4_address.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ipv6_address.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_net.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_sctp_socket.cpp" />

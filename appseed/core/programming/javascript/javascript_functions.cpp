@@ -82,12 +82,12 @@ void scIsInNet(CScriptVar *ca, void *data)
       return;
    }*/
 
-   ::net::address ad_host(tinyJS->get_app(), host, 0);
-   ::net::address ad_addr(tinyJS->get_app(), addr, 0);
-   ::net::address ad_mask(tinyJS->get_app(), mask, 0);
+   ::net::address ad_host(host, 0);
+   ::net::address ad_addr(addr, 0);
+   ::net::address ad_mask(mask, 0);
 
 
-	ca->getReturnVar()->setInt(ad_host.is_in_net(ad_addr, ad_mask));
+	ca->getReturnVar()->setInt(ad_host.is_in_same_net(ad_addr, ad_mask));
 
 }
 

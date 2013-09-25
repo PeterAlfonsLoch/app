@@ -237,7 +237,7 @@ namespace sockets
    }
 
 
-   void base_socket::SetRemoteHostname(::net::address ad) //struct sockaddr* sa, socklen_t l)
+   void base_socket::SetRemoteHostname(const ::net::address & ad) //struct sockaddr* sa, socklen_t l)
    {
 
       m_addressRemote = ad;
@@ -522,7 +522,7 @@ namespace sockets
    }
 
 
-   void base_socket::SetClientRemoteAddress(::net::address address)
+   void base_socket::SetClientRemoteAddress(const ::net::address & address)
    {
 
       /*      if (!ad.IsValid())
@@ -897,7 +897,7 @@ namespace sockets
    }
 
 
-   void base_socket::OnResolved(int , const ::net::address)
+   void base_socket::OnResolved(int , const ::net::address & address)
    {
    }
 
@@ -1903,7 +1903,7 @@ namespace sockets
    port_t base_socket::GetRemotePort()
    {
 
-      return m_addressRemote->get_service_number();
+      return m_addressRemote.get_service_number();
 
    }
 
@@ -1947,10 +1947,7 @@ namespace sockets
    string base_socket::get_short_description()
    {
       
-      if(GetRemoteAddress().is_null())
-         return "(null)";
-
-      return GetRemoteAddress()->get_canonical_name();
+      return System.net().canonical_name(GetRemoteAddress());
 
    }
 

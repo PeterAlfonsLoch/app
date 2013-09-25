@@ -17,6 +17,7 @@
 namespace sockets
 {
 
+
    net::net(sp(base_application) papp) :
       element(papp),
       m_mutexCache(papp)
@@ -711,7 +712,7 @@ namespace sockets
    bool net::reverse(string & number, const string & hostname, int32_t flags)
    {
 
-      ::net::address address(get_app(), hostname);
+      ::net::address address(hostname);
 
       number = address.get_display_number();
 
@@ -922,6 +923,35 @@ namespace sockets
       }
 
    }
+
+   string net::canonical_name(const ::net::address & address)
+   {
+
+      string str;
+
+      if(address.is_ipv4())
+      {
+         ::sockets::net::convert(str, address.m_addr.sin_addr);
+      }
+      else if(address.is_ipv6())
+      {
+         ::sockets::net::convert(str, address.m_addr6.sin6_addr);
+      }
+
+      return str;
+
+   }
+
+
+   string net::service_name(const ::net::address & address)
+   {
+
+      return service_name(address.get_service_number());
+
+   }
+
+
+
 
 
 

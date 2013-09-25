@@ -262,9 +262,9 @@ namespace http
       {
          return false;
       }*/
-      ::net::address ad(get_app(), strHost, port);
+      ::net::address ad(strHost, port);
 
-      strHost = ad->get_display_number();
+      strHost = ad.get_display_number();
 
       string var;
       try
@@ -362,15 +362,15 @@ namespace http
          bOk = true;
          string strHost = System.url().get_server(pszUrl);
          int32_t iHostPort = System.url().get_port(pszUrl);
-         ::net::address ipHost(get_app(), strHost, iHostPort);
+         ::net::address ipHost(strHost, iHostPort);
          for(int32_t iNode = 0; iNode < doc.get_root()->get_children_count(); iNode++)
          {
             sp(::xml::node) pnode = doc.get_root()->child_at(iNode);
             if(pnode->get_name() == "proxy")
             {
-               ::net::address ipAddress(get_app(), pnode->attr("address"), 0);
-               ::net::address ipMask(get_app(), pnode->attr("mask"), 0);
-               if(ipHost.is_in_net(ipAddress, ipMask))
+               ::net::address ipAddress(pnode->attr("address").get_string(), 0);
+               ::net::address ipMask(pnode->attr("mask").get_string(), 0);
+               if(ipHost.is_in_same_net(ipAddress, ipMask))
                {
                   if(pnode->attr("server") == "DIRECT")
                   {

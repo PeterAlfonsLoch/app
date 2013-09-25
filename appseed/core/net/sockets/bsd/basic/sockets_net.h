@@ -170,6 +170,11 @@ namespace sockets
 
       string  service_name(int32_t iPort, int32_t flags = 0);
 
+
+      string canonical_name(const ::net::address & address);
+
+      string service_name(const ::net::address & address);
+
    };
 
 

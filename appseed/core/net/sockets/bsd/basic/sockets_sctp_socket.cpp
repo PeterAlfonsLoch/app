@@ -40,7 +40,7 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::Bind(::net::address ad)
+   int32_t SctpSocket::Bind(const ::net::address & ad)
    {
       if (!ad.IsValid())
       {
@@ -83,7 +83,7 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::AddAddress(::net::address ad)
+   int32_t SctpSocket::AddAddress(const ::net::address & ad)
    {
       if (!ad.IsValid())
       {
@@ -120,7 +120,7 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::RemoveAddress(::net::address ad)
+   int32_t SctpSocket::RemoveAddress(const ::net::address & ad)
    {
       if (!ad.IsValid())
       {
@@ -157,7 +157,7 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::open(::net::address ad)
+   int32_t SctpSocket::open(const ::net::address & ad)
    {
       if (!ad.IsValid())
       {
@@ -215,7 +215,7 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::AddConnection(::net::address ad)
+   int32_t SctpSocket::AddConnection(const ::net::address & ad)
    {
       if (!ad.IsValid())
       {

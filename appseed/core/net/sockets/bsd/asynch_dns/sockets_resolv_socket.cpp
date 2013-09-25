@@ -213,7 +213,7 @@ namespace sockets
          {
             in_addr l;
             System.net().convert(l, value); // ip2ipaddr_t
-            m_parent -> OnResolved(m_resolv_id, ::net::address(get_app(), l, m_resolv_port));
+            m_parent -> OnResolved(m_resolv_id, ::net::address(l, m_resolv_port));
          }
          // update cache
          if (!m_cached)
@@ -231,7 +231,7 @@ namespace sockets
          {
             in6_addr a;
             System.net().convert(value, a);
-            m_parent -> OnResolved(m_resolv_id, ::net::address(get_app(), a, m_resolv_port));
+            m_parent -> OnResolved(m_resolv_id, ::net::address(a, m_resolv_port));
          }
          // update cache
          if (!m_cached)

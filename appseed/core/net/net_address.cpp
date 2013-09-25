@@ -8,144 +8,124 @@ namespace net
    address::address()
    {
 
+      zero(this, sizeof(m_sa));
+
    }
 
-
-   address::address(sp(base_application) papp, const in_addr & a, int32_t iPort) :
-      element(papp),
-      address_sp(allocer())
+   address::address(int32_t family, port_t port)
    {
 
-      construct(a, iPort);
+      zero(this, sizeof(m_sa));
+
+      m_family    = family;
+      m_port      = htons( port );
 
    }
 
 
-   address::address(sp(base_application) papp, const in6_addr & a, int32_t iPort) :
-      element(papp),
-      address_sp(allocer())
+   address::address(const sockaddr & sa)
    {
 
-      construct(a, iPort);
+      m_sa        = sa;
+
+      if(m_family != AF_INET6 && m_family != AF_INET)
+      {
+         m_family    = AF_UNSPEC;
+      }
 
    }
 
 
-   address::address(sp(base_application) papp, const sockaddr & sa, int32_t sa_len) :
-      element(papp),
-      address_sp(allocer())
+   address::address(const string & host, port_t port)
    {
 
-      construct(sa, sa_len);
+      zero(this, sizeof(m_sa));
+
+      set_address(host);
+      m_port = htons( port );
 
    }
 
 
-   address::address(sp(base_application) papp, const string & strAddress, const string & strServiceName) :
-      element(papp),
-      address_sp(allocer())
+
+
+   address::address(const in6_addr & a,port_t port)
    {
 
-      construct(strAddress, strServiceName);
+      zero(this, sizeof(m_sa));
+
+      m_family             = AF_INET6;
+      m_port               = htons( port );
+      m_addr6.sin6_addr    = a;
 
    }
 
-
-   address::address(sp(base_application) papp, const string & strAddress, int32_t iPort) :
-      element(papp),
-      address_sp(allocer())
+   address::address(const sockaddr_in6 & sa)
    {
 
-      construct(strAddress, iPort);
+      m_addr6     = sa;
+
+      if(m_family != AF_INET6)
+      {
+         m_family    = AF_UNSPEC;
+      }
 
    }
+
+
+   address::address(const in_addr& a,port_t port)
+   {
+
+      zero(this, sizeof(m_sa));
+
+      m_family             = AF_INET;
+      m_port               = htons( port );
+      m_addr.sin_addr      = a;
+
+   }
+
+   address::address(const sockaddr_in & sa)
+   {
+
+      m_addr      = sa;
+
+      if(m_family != AF_INET)
+      {
+         m_family    = AF_UNSPEC;
+      }
+
+   }
+
 
    address::address(const address & address)
    {
 
-      if(address.is_null() || address.get_app() == NULL)
-         return;
-
-      set_app(address.get_app());
-      
-      address_sp::create(allocer());
-
-      construct(*address.m_p);
+      copy(address);
 
    }
 
-   address::~address()
+
+
+   address & address::operator = (const address & address)
    {
 
-   }
-
-   void address::construct(const in_addr & a, int32_t iPort)
-   {
-      m_p->construct(a, iPort);
-   }
-
-   void address::construct(const in6_addr & a, int32_t iPort)
-   {
-      m_p->construct(a, iPort);
-   }
-
-   void address::construct(const sockaddr & sa, int32_t sa_len)
-   {
-      m_p->construct(sa, sa_len);
-   }
-
-   void address::construct(const string & strAddress, const string & pszServiceName)
-   {
-      m_p->construct(strAddress, pszServiceName);
-   }
-
-   void address::construct(const string & strAddress, int iPort)
-   {
-      m_p->construct(strAddress, iPort);
-   }
-
-   void address::construct(const address_base & addr)
-   {
-      m_p->construct(addr);
-   }
-
-   void address::copy(const address_base & address)
-   {
-
-      if(this == &address || m_p == &address)
-         return;
-
-      address_sp::create(allocer());
-
-      m_p->copy(address);
-      
-   }
-
-
-   address & address::operator = (const address_base & address)
-   {
-
-      if(&address == this || &address == m_p)
+      if(&address == this)
          return *this;
 
-      address_sp::release();
-
-      address_sp::create(allocer());
-
-      m_p->construct(address);
+      copy(address);
 
       return * this;
 
    }
 
 
-   bool address::operator == (const address_base & address) const
+   bool address::operator == (const address & address) const
    {
 
-      if(&address == this || &address == m_p)
+      if(&address == this)
          return true;
 
-      return m_p->is_equal(address);
+      return is_equal(address);
 
    }
 
@@ -153,169 +133,126 @@ namespace net
    string address::get_display_number() const
    {
 
-      if(m_p == NULL)
+      if(is_ipv4())
+      {
+
+         return ::to_vsstring(&m_addr.sin_addr);
+
+      }
+      else if(is_ipv6())
+      {
+
+         return ::to_vsstring(&m_addr6.sin6_addr);
+
+      }
+      else
+      {
+
          return "";
 
-      return m_p->get_display_number();
-
-
-   }
-
-
-   string address::get_canonical_name() const
-   {
-
-      if(m_p == NULL)
-         return "";
-
-      return m_p->get_canonical_name();
+      }
 
    }
 
 
-   string address::get_service_name() const
+
+
+
+
+   bool address::is_in_same_net(const ::net::address & addr, const ::net::address & addrMask) const
    {
 
-      if(m_p == NULL)
-         return "";
+      if(is_ipv4() && addr.is_ipv4() && addrMask.is_ipv4())
+      {
 
-      return m_p->get_service_name();
+         in_addr a1 = m_addr.sin_addr;
+
+         in_addr a2 = addr.m_addr.sin_addr;
+
+         in_addr aM = addrMask.m_addr.sin_addr;
+
+         memand_dup(&a1, &a1, &aM, sizeof(a1));
+
+         memand_dup(&a2, &a2, &aM, sizeof(a2));
+
+         return memcmp(&a1, &a2, sizeof(aM)) == 0;
+
+      }
+      else if(is_ipv6() && addr.is_ipv6() && addrMask.is_ipv6())
+      {
+
+         in_addr6 a1 = m_addr6.sin6_addr;
+
+         in_addr6 a2 = addr.m_addr6.sin6_addr;
+
+         in_addr6 aM = addrMask.m_addr6.sin6_addr;
+
+         memand_dup(&a1, &a1, &aM, sizeof(a1));
+
+         memand_dup(&a2, &a2, &aM, sizeof(a2));
+
+         return memcmp(&a1, &a2, sizeof(aM)) == 0;
+
+      }
+      else
+      {
+         return false;
+      }
 
    }
 
-
-   int32_t address::get_service_number() const
+   bool address::is_equal(const address & addr) const
    {
 
-      if(m_p == NULL)
-         return -1;
-
-      return m_p->get_service_number();
-
-   }
-
-   bool address::set_service_number(int32_t iPort)
-   {
-
-      if(m_p == NULL)
+      if(m_port != addr.m_port)
          return false;
 
-     return m_p->set_service_number(iPort);
+      if(is_ipv6() && addr.is_ipv6())
+      {
+
+         return memcmp(&m_addr6.sin6_addr, &addr.m_addr6.sin6_addr, sizeof(in6_addr)) == 0;
+
+      }
+      else if(is_ipv4() && addr.is_ipv4())
+      {
+
+         return memcmp(&m_addr.sin_addr, &addr.m_addr.sin_addr, sizeof(in_addr)) == 0;
+
+      }
+
+      return false;
+
+   }
+
+   bool address::set_address(const string & strAddress)
+   {
+
+      if(Sys(get_thread_app()).net().convert(m_addr6.sin6_addr, strAddress))
+      {
+         m_family = AF_INET6;
+      }
+      else if(Sys(get_thread_app()).net().convert(m_addr.sin_addr, strAddress))
+      {
+         m_family = AF_INET;
+      }
+      else
+      {
+         m_family = AF_UNSPEC;
+      }
+
+      return m_family != AF_UNSPEC;
 
    }
 
 
-   int32_t address::service_name_to_number(const char * psz) const
+   string address::reverse() const
    {
 
-      if(m_p == NULL)
-         return -1;
+      string tmp;
 
-      return m_p->service_name_to_number(psz);
+      Sys(get_thread_app()).net().reverse((sockaddr *) &m_sa, sa_len(), tmp);
 
-   }
-
-
-   string  address::service_number_to_name(int32_t iPort) const
-   {
-
-      if(m_p == NULL)
-         return "";
-
-      return m_p->service_number_to_name(iPort);
-
-   }
-
-
-   bool address::is_ipv4() const
-   {
-
-      if(m_p == NULL)
-         return false;
-
-      return m_p->is_ipv4();
-
-   }
-
-   bool address::is_ipv6() const
-   {
-
-      if(m_p == NULL)
-         return false;
-
-      return m_p->is_ipv6();
-
-   }
-
-
-   e_family address::get_family() const
-   {
-
-      if(m_p == NULL)
-         return family_none;
-
-      return m_p->get_family();
-
-   }
-
-   int32_t address::get_bsd_family() const
-   {
-
-      if(m_p == NULL)
-         return 0;
-
-      return m_p->get_bsd_family();
-
-   }
-
-   const sockaddr * address::sa() const
-   {
-
-      if(m_p == NULL)
-         return NULL;
-
-      return m_p->sa();
-
-   }
-
-   int32_t address::sa_len() const
-   {
-
-      if(m_p == NULL)
-         return 0;
-
-      return m_p->sa_len();
-
-   }
-
-
-   bool address::is_in_net(const ::net::address_base & addr, const ::net::address_base & addrMask) const
-   {
-
-      if(m_p == NULL)
-         return false;
-
-      return m_p->is_in_net(addr, addrMask);
-
-   }
-
-   bool address::is_equal(const address_base & addr) const
-   {
-
-      if(m_p == NULL)
-         return false;
-
-      return m_p->is_equal(addr);
-
-   }
-
-   bool address::is_valid() const
-   {
-
-      if(m_p == NULL)
-         return false;
-
-      return m_p->is_valid();
+      return tmp;
 
    }
 

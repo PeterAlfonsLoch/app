@@ -129,8 +129,8 @@ namespace sockets
       tcp_socket(base_socket_handler& h,size_t isize,size_t osize);
       ~tcp_socket();
 
-      bool open(::net::address paddress, bool skip_socks = false);
-      bool open(::net::address paddress, ::net::address paddressBind,bool skip_socks = false);
+      bool open(const ::net::address & address, bool skip_socks = false);
+      bool open(const ::net::address & address, const ::net::address & addressBind,bool skip_socks = false);
       /** open connection.
       \param host Hostname
       \param port Port number */

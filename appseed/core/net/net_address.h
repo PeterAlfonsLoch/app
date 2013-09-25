@@ -5,71 +5,197 @@ namespace net
 {
 
 
-   class address :
-      virtual public address_base,
-      public address_sp
+   class address
    {
    public:
 
 
+      union
+      {
+
+
+         struct
+         {
+
+
+            uint16_t m_family;
+            uint16_t m_port;
+
+
+         };
+
+
+         struct sockaddr_in      m_addr;
+         struct sockaddr_in6     m_addr6;
+         struct sockaddr         m_sa;
+
+
+      };
+
+
+
       address();
-      address(sp(base_application) papp, const string & strAddress = "", const string & pszServiceName = "");
-      address(sp(base_application) papp, const in_addr & a, int32_t iPort = 0);
-      address(sp(base_application) papp, const in6_addr & a, int32_t iPort = 0);
-      address(sp(base_application) papp, const sockaddr & sa, int32_t sa_len);
-      address(sp(base_application) papp, const string & strAddress, int iPort);
+      address(int32_t family, port_t port = 0);
+      address(const string & strAddress, port_t port = 0);
+      address(const string & strAddress, const string & strServiceName);
+      address(const in_addr & a, port_t port = 0);
+      address(const in6_addr & a, port_t port = 0);
+      address(const sockaddr_in & a);
+      address(const sockaddr_in6 & a);
+      address(const sockaddr & sa);
       address(const address & address);
-#ifdef MOVE_SEMANTICS
-      address(address && address) : element(address.get_app()), address_sp(address) { }
+
+
+
+      address & operator = (const address & address);
+      bool operator == (const address & address) const;
+
+
+      inline void copy(const address & address);
+
+      string get_display_number() const;
+
+      inline port_t get_service_number() const;
+      inline void set_service_number(port_t iPort);
+
+
+      bool is_in_same_net(const address & addr, const address & addrMask) const;
+      bool is_equal(const address & addr) const;
+
+
+      inline bool is_ipv4() const;
+      inline bool is_ipv6() const;
+
+
+      inline bool is_valid() const;
+
+
+      inline int32_t get_family() const;
+      
+
+      inline const sockaddr * sa() const;
+      inline int32_t sa_len() const;
+
+
+      bool set_address(const string & strAddress);
+
+      string reverse() const;
+
+
+      inline void SetFlowinfo(uint32_t x);
+      inline uint32_t GetFlowinfo();
+
+
+#ifndef WINDOWS
+      inline void SetScopeId(uint32_t x);
+      inline uint32_t GetScopeId();
 #endif
-      virtual ~address();
-
-
-      virtual void construct(const in_addr & a, int32_t iPort = 0);
-      virtual void construct(const in6_addr & a, int32_t iPort = 0);
-      virtual void construct(const sockaddr & sa, int32_t sa_len);
-      virtual void construct(const string & strAddress = "", const string & pszServiceName = "");
-      virtual void construct(const string & strAddress, int iPort);
-      virtual void construct(const address_base & addr);
-
-      virtual void copy(const address_base & address);
-
-      address & operator = (const address_base & address);
-      bool operator == (const address_base & address) const;
-
-      virtual string get_display_number() const;
-      virtual string get_canonical_name() const;
-      virtual string get_service_name() const;
-      virtual int    get_service_number() const;
-
-
-      virtual bool set_service_number(int32_t iPort);
-
-
-      virtual int     service_name_to_number(const char * psz) const;
-      virtual string  service_number_to_name(int i) const;
-
-
-      virtual bool is_in_net(const address_base & addr, const address_base & addrMask) const;
-      virtual bool is_equal(const address_base & addr) const;
-
-
-      virtual bool is_ipv4() const;
-      virtual bool is_ipv6() const;
-
-
-      virtual bool is_valid() const;
-
-
-      virtual e_family get_family() const;
-      virtual int32_t get_bsd_family() const;
-
-
-      virtual const sockaddr * sa() const;
-      virtual int32_t sa_len() const;
 
 
    };
+
+
+   inline int32_t address::get_family() const
+   {
+      
+      return m_family;
+
+   }
+
+   inline port_t address::get_service_number() const
+   {
+
+      return ntohs(m_port);
+
+   }
+
+
+   inline void address::set_service_number(port_t port)
+   {
+
+      m_port = htons(port);
+
+   }
+
+
+   inline void address::copy(const address & address)
+   {
+
+      memcpy(this, &address, sizeof(m_sa));
+
+   }
+
+
+   inline bool address::is_ipv4() const
+   {
+
+      return m_family == AF_INET;
+
+   }
+
+
+   inline bool address::is_ipv6() const
+   {
+
+      return m_family == AF_INET6;
+
+   }
+
+
+   inline bool address::is_valid() const
+   {
+
+      return is_ipv6() || is_ipv4();
+
+   }
+
+
+   inline const sockaddr * address::sa() const
+   {
+
+      return &m_sa;
+
+   }
+
+
+   inline int32_t address::sa_len() const
+   {
+
+      return family_len(m_family);
+
+   }
+
+   inline void address::SetFlowinfo(uint32_t x)
+   {
+      ASSERT(is_ipv6());
+      m_addr6.sin6_flowinfo = x;
+   }
+
+
+   inline uint32_t address::GetFlowinfo()
+   {
+      ASSERT(is_ipv6());
+      return m_addr6.sin6_flowinfo;
+   }
+
+
+#ifndef WINDOWS
+
+   inline void address::SetScopeId(uint32_t x)
+   {
+      ASSERT(is_ipv6());
+      m_addr6.sin6_scope_id = x;
+   }
+
+
+   inline uint32_t address::GetScopeId()
+   {
+      ASSERT(is_ipv6());
+      return m_addr6.sin6_scope_id;
+   }
+
+#endif
+
 
 
 } // namespace sockets

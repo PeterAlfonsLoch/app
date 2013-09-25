@@ -3344,12 +3344,6 @@
     <ClInclude Include="net\sockets\base\sockets_base_socket_handler.h">
       <Filter>Header Files\net\sockets\base</Filter>
     </ClInclude>
-    <ClInclude Include="net\net_address.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_address_base.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
     <ClInclude Include="net\net_email.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
@@ -3364,15 +3358,6 @@
     </ClInclude>
     <ClInclude Include="net\net_port_forward.h">
       <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_address.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ipv4_address.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ipv6_address.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\bsd\basic\sockets_listen_socket.h">
       <Filter>Header Files\net\sockets\bsd\basic</Filter>
@@ -3418,6 +3403,9 @@
     </ClInclude>
     <ClInclude Include="net\sockets\sockets_trace_logger.h">
       <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_address.h">
+      <Filter>Header Files\net</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4515,9 +4503,6 @@
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\asynch_dns</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_address.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\basic\sockets_net.cpp">
       <Filter>Source Files\net\sockets\bsd\basic</Filter>
@@ -5668,9 +5653,6 @@
     <ClCompile Include="net\net_address.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
-    <ClCompile Include="net\net_address_base.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
     <ClCompile Include="net\net_email.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
@@ -5688,12 +5670,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\file_transfer_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ipv4_address.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ipv6_address.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\basic\sockets_sctp_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\basic</Filter>

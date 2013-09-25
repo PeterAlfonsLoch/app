@@ -99,7 +99,7 @@ namespace sockets
 
       // Connection pool
       /** find available open connection (used by connection pool). */
-      pool_socket * FindConnection(int32_t type,const string & protocol,::net::address );
+      pool_socket * FindConnection(int32_t type,const string & protocol, const ::net::address & address);
       /** Enable connection pool (by default disabled). */
       void EnablePool(bool x = true);
       /** Check pool status.

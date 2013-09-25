@@ -52,7 +52,7 @@ namespace sockets
       \param depth Listen queue depth */
       virtual int32_t Bind(port_t port,int32_t depth = 20);
 
-      virtual int32_t Bind(::net::address paddress,int32_t depth);
+      virtual int32_t Bind(const ::net::address & paddress,int32_t depth);
 
       /** Bind and listen to any interface, with optional protocol.
       \param port Port (0 is random)
@@ -104,7 +104,7 @@ namespace sockets
       \param ad Interface address
       \param protocol Network protocol
       \param depth Listen queue depth */
-      virtual int32_t Bind(::net::address paddress,const string & protocol,int32_t depth);
+      virtual int32_t Bind(const ::net::address & paddress,const string & protocol,int32_t depth);
 
       /** Return assigned port number. */
 //         port_t GetPort()

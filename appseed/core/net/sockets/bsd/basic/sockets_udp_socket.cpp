@@ -34,55 +34,58 @@ namespace sockets
    {
       if (IsIpv6())
       {
-         ipv6_address ad(get_app(), port);
-         return Bind((in6_addr) ad.m_addr.sin6_addr, ad.m_addr.sin6_port, range);
+         ::net::address ad(AF_INET6, port);
+         return Bind((in6_addr) ad.m_addr6.sin6_addr, ad.m_addr6.sin6_port, range);
       }
-      ipv4_address ad(get_app(), port);
+      ::net::address ad(AF_INET, port);
       return Bind((in_addr)  ad.m_addr.sin_addr, ad.m_addr.sin_port, range);
    }
 
 
    int32_t udp_socket::Bind(const string & intf, port_t &port, int32_t range)
    {
-      if (IsIpv6())
+
+      ::net::address ad(intf, port);
+      
+      if (ad.is_valid())
       {
-         ipv6_address ad(get_app(), intf, port);
-         if (ad.IsValid())
+         if(ad.is_ipv6())
          {
-            return Bind((in6_addr) ad.m_addr.sin6_addr, ad.m_addr.sin6_port, range);
+            return Bind((in6_addr) ad.m_addr6.sin6_addr, ad.m_addr6.sin6_port, range);
          }
-         SetCloseAndDelete();
-         return -1;
+         else if(ad.is_ipv4())
+         {
+            return Bind((in_addr)  ad.m_addr.sin_addr, ad.m_addr.sin_port, range);
+         }
+
       }
-      ipv4_address ad(get_app(), intf, port);
-      if (ad.IsValid())
-      {
-         return Bind((in_addr)  ad.m_addr.sin_addr, ad.m_addr.sin_port, range);
-      }
+         
       SetCloseAndDelete();
+
       return -1;
+
    }
 
 
    int32_t udp_socket::Bind(in_addr a, port_t &port, int32_t range)
    {
-      ::net::address ad(get_app(), a, port);
+      ::net::address ad(a, port);
       return Bind(ad, range);
    }
 
 
    int32_t udp_socket::Bind(in6_addr a, port_t &port, int32_t range)
    {
-      ::net::address ad(get_app(), a, port);
+      ::net::address ad(a, port);
       return Bind(ad, range);
    }
 
 
-   int32_t udp_socket::Bind(::net::address ad, int32_t range)
+   int32_t udp_socket::Bind(::net::address & ad, int32_t range)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
-         attach(CreateSocket(ad.get_bsd_family(), SOCK_DGRAM, "udp"));
+         attach(CreateSocket(ad.get_family(), SOCK_DGRAM, "udp"));
       }
       if (GetSocket() != INVALID_SOCKET)
       {
@@ -112,14 +115,14 @@ namespace sockets
    /** if you wish to use Send, first open a connection */
    bool udp_socket::open(in_addr l, port_t port)
    {
-      ::net::address ad(get_app(), l, port);
+      ::net::address ad(l, port);
       return open(ad);
    }
 
 
    bool udp_socket::open(const string & host, port_t port)
    {
-      ::net::address ad(get_app(), host, port);
+      ::net::address ad(host, port);
       if(!ad.is_valid())
          return false;
       return open(ad);
@@ -128,16 +131,16 @@ namespace sockets
 
    bool udp_socket::open(struct in6_addr& a, port_t port)
    {
-     ::net:: address ad(get_app(), a, port);
+     ::net::address ad(a, port);
       return open(ad);
    }
 
 
-   bool udp_socket::open(::net::address ad)
+   bool udp_socket::open(const ::net::address & ad)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
-         attach(CreateSocket(ad.get_bsd_family(), SOCK_DGRAM, "udp"));
+         attach(CreateSocket(ad.get_family(), SOCK_DGRAM, "udp"));
       }
       if (GetSocket() != INVALID_SOCKET)
       {
@@ -187,28 +190,28 @@ namespace sockets
    /** send to specified address */
    void udp_socket::SendToBuf(const string & h, port_t p, const char *data, int32_t len, int32_t flags)
    {
-      SendToBuf(::net::address(get_app(), h, p), data, len, flags);
+      SendToBuf(::net::address(h, p), data, len, flags);
    }
 
 
    /** send to specified address */
    void udp_socket::SendToBuf(const in_addr & a, port_t p, const char *data, int32_t len, int32_t flags)
    {
-      SendToBuf(::net::address(get_app(), a, p), data, len, flags);
+      SendToBuf(::net::address(a, p), data, len, flags);
    }
 
 
    void udp_socket::SendToBuf(const in6_addr & a, port_t p, const char *data, int32_t len, int32_t flags)
    {
-      SendToBuf(::net::address(get_app(), a, p), data, len, flags);
+      SendToBuf(::net::address(a, p), data, len, flags);
    }
 
 
-   void udp_socket::SendToBuf(const ::net::address ad, const char *data, int32_t len, int32_t flags)
+   void udp_socket::SendToBuf(const ::net::address & ad, const char *data, int32_t len, int32_t flags)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
-         attach(CreateSocket(ad.get_bsd_family(), SOCK_DGRAM, "udp"));
+         attach(CreateSocket(ad.get_family(), SOCK_DGRAM, "udp"));
       }
       if (GetSocket() != INVALID_SOCKET)
       {
@@ -239,7 +242,7 @@ namespace sockets
    }
 
 
-   void udp_socket::SendTo(::net::address ad, const string & str, int32_t flags)
+   void udp_socket::SendTo(const ::net::address & ad, const string & str, int32_t flags)
    {
       SendToBuf(ad, str, (int32_t)str.get_length(), flags);
    }

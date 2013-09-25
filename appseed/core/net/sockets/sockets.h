@@ -17,6 +17,27 @@ typedef int32_t socklen_t;
 #endif
 
 
+namespace net
+{
+
+
+   inline int32_t family_len(int32_t family)
+   {
+      
+      if(family == AF_INET)
+         return sizeof(sockaddr_in);
+      else if(family == AF_INET6)
+         return sizeof(sockaddr_in6);
+      else 
+         return 0;
+
+   }
+
+
+
+} // namespace net
+
+
 //#include "http_file.h"
 //#include "http_memory_file.h"
 
@@ -32,9 +53,9 @@ typedef int32_t socklen_t;
 #include "sockets_trace_logger.h"
 
 
-#include "core/net/net_address_base.h"
 #include "core/net/net_address.h"
 #include "base/sockets_base_socket.h"
+
 
 #if defined(BSD_STYLE_SOCKETS)
 #include "bsd/sockets.h"

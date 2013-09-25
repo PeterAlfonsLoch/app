@@ -267,10 +267,10 @@ namespace sockets
       /** Total lifetime of instance. */
       time_t Uptime();
 
-      /** Set ::net::address/port of last connect() call. */
-      void SetClientRemoteAddress(::net::address);
+      /** Set address/port of last connect() call. */
+      void SetClientRemoteAddress(const ::net::address & address);
 
-      /** get ::net::address/port of last connect() call. */
+      /** get address/port of last connect() call. */
       ::net::address GetClientRemoteAddress();
 
 
@@ -289,7 +289,7 @@ namespace sockets
       bool Timeout(time_t tnow);
 
       /** Used by listen_socket. ipv4 and ipv6 */
-      void SetRemoteHostname(::net::address);
+      void SetRemoteHostname(const ::net::address & address);
 
       /** \name Event callbacks */
       //@{
@@ -384,11 +384,11 @@ namespace sockets
 
       /** \name Information about remote connection */
       //@{
-      /** Returns ::net::address of remote end. */
+      /** Returns address/port of remote end. */
       //::net::address GetRemoteSocketAddress();
-      /** Returns ::net::address of remote end: ipv4. */
+      /** Returns address/port of remote end: ipv4. */
       //string GetRemoteIP4();
-      /** Returns ::net::address of remote end: ipv6. */
+      /** Returns address/port of remote end: ipv6. */
       //struct in6_addr GetRemoteIP6();
       /** Returns remote port number: ipv4 and ipv6. */
       virtual port_t GetRemotePort();
@@ -400,13 +400,13 @@ namespace sockets
 
       /** Returns local port number for bound base_socket file descriptor. */
       virtual port_t GetLocalPort();
-      /** Returns local ipv4 ::net::address for bound base_socket file descriptor. */
+      /** Returns local ipv4 address/port for bound base_socket file descriptor. */
       //ipaddr_t GetSockIP4();
-      /** Returns local ipv4 ::net::address as text for bound base_socket file descriptor. */
+      /** Returns local ipv4 address/port as text for bound base_socket file descriptor. */
       virtual ::net::address GetLocalAddress();
-      /** Returns local ipv6 ::net::address for bound base_socket file descriptor. */
+      /** Returns local ipv6 address/port for bound base_socket file descriptor. */
       //struct in6_addr GetSockIP6();
-      /** Returns local ipv6 ::net::address as text for bound base_socket file descriptor. */
+      /** Returns local ipv6 address/port as text for bound base_socket file descriptor. */
       //string GetSockAddress6();
 
 
@@ -628,7 +628,7 @@ namespace sockets
       /** Set flag indicating Socks4 handshaking in progress */
       void SetSocks4(bool x = true);
 
-      /** Set socks4 server host ::net::address to use */
+      /** Set socks4 server host address/port to use */
       void SetSocks4Host(in_addr a);
       /** Set socks4 server hostname to use. */
       void SetSocks4Host(const string & );
@@ -636,8 +636,8 @@ namespace sockets
       void SetSocks4Port(port_t p);
       /** Provide a socks4 userid if required by the socks4 server. */
       void SetSocks4Userid(const string & x);
-      /** get the ip ::net::address of socks4 server to use.
-      \return socks4 server host ::net::address */
+      /** get the ip address/port of socks4 server to use.
+      \return socks4 server host address/port */
       in_addr GetSocks4Host();
       /** get the socks4 server port to use.
       \return socks4 server port */
@@ -656,9 +656,9 @@ namespace sockets
       int Resolve6(const string & host, port_t port = 0);
       /** Callback returning a resolved ::net::address.
       \param id Resolve ID from Resolve call
-      \param a resolved ip ::net::address
+      \param a resolved ip address/port
       \param port port number passed to Resolve */
-      virtual void OnResolved(int id, const ::net::address addr);
+      virtual void OnResolved(int id, const ::net::address & addr);
       //virtual void OnResolved(int id, in6_addr & a, port_t port);
       /** Request asynchronous reverse dns lookup.
       \param a in_addr to be translated */

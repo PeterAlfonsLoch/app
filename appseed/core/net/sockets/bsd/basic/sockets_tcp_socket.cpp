@@ -146,14 +146,14 @@ void ssl_sigpipe_handle( int x );
    }
    */
 
-   bool tcp_socket::open(::net::address ad,bool skip_socks)
+   bool tcp_socket::open(const ::net::address & ad,bool skip_socks)
    {
-      ::net::address bind_ad(get_app(), "0.0.0.0", 0);
+      ::net::address bind_ad("0.0.0.0", 0);
       return open(ad, bind_ad, skip_socks);
    }
 
 
-   bool tcp_socket::open(::net::address ad,::net::address bind_ad,bool skip_socks)
+   bool tcp_socket::open(const ::net::address & ad, const ::net::address & bind_ad,bool skip_socks)
    {
       if (!ad.is_valid())
       {
@@ -185,7 +185,7 @@ void ssl_sigpipe_handle( int x );
          }
       }
       // if not, create new connection
-      SOCKET s = CreateSocket(ad.get_bsd_family(), SOCK_STREAM, "tcp");
+      SOCKET s = CreateSocket(ad.get_family(), SOCK_STREAM, "tcp");
       if (s == INVALID_SOCKET)
       {
          return false;
@@ -207,7 +207,7 @@ void ssl_sigpipe_handle( int x );
       in_addr addrSocks4 = GetSocks4Host();
       if (!skip_socks && ISNT_ZERO(addrSocks4) && GetSocks4Port())
       {
-         ::net::address sa(get_app(), GetSocks4Host(), GetSocks4Port());
+         ::net::address sa(GetSocks4Host(), GetSocks4Port());
          {
             string sockshost;
             System.net().convert(sockshost, GetSocks4Host());
@@ -283,8 +283,8 @@ void ssl_sigpipe_handle( int x );
                SetCloseAndDelete();
                return false;
             }
-            ::net::address ad(get_app(), a, port);
-            ::net::address local(get_app());
+            ::net::address ad(a, port);
+            ::net::address local;
             if(!open(ad, local))
                return false;
             m_strHost = host;
@@ -302,8 +302,8 @@ void ssl_sigpipe_handle( int x );
             SetCloseAndDelete();
             return false;
          }
-         ::net::address ad(get_app(), l, port);
-         ::net::address local(get_app());
+         ::net::address ad(l, port);
+         ::net::address local;
          m_strHost = host;
          if(!open(ad, local))
             return false;
@@ -324,8 +324,8 @@ void ssl_sigpipe_handle( int x );
       {
          if (ISNT_ZERO(a) && port)
          {
-            ::net::address ad(get_app(), a, port);
-            ::net::address local(get_app());
+            ::net::address ad(a, port);
+            ::net::address local;
             if (open(ad, local))
             {
                if (!Handler().Valid(this))
@@ -352,10 +352,10 @@ void ssl_sigpipe_handle( int x );
    {
       if (id == m_resolver_id)
       {
-         ::net::address ad(get_app(), a, port);
+         ::net::address ad(a, port);
          if (ad.is_valid())
          {
-            ::net::address local(get_app());
+            ::net::address local;
             if (open(ad, local))
             {
                if (!Handler().Valid(this))
