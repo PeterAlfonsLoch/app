@@ -426,6 +426,54 @@
     <Filter Include="Header Files\net\sockets\http">
       <UniqueIdentifier>{39100169-c99c-400c-9837-587c3805115e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core\crypto">
+      <UniqueIdentifier>{083758f4-0fc9-4996-91fb-588091ee861d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\crypto">
+      <UniqueIdentifier>{99d6ba06-e282-470f-b03f-b25ac96c237c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\plugin">
+      <UniqueIdentifier>{cce68d40-ed57-402d-ab1d-80803ac098dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\plugin">
+      <UniqueIdentifier>{7b09e32b-4cef-4dc7-a3da-db293c370795}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\geoip">
+      <UniqueIdentifier>{662747aa-d232-4c47-aa81-0634af44d770}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\geopip">
+      <UniqueIdentifier>{f0a6eaa2-890f-4b66-b735-0928cad53e8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\install">
+      <UniqueIdentifier>{2ed6f793-e13e-4721-8eae-8da725afe120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\install">
+      <UniqueIdentifier>{5e327f01-89a1-45f5-9faa-53223bee6b16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\libcharguess">
+      <UniqueIdentifier>{d3cc909c-06d1-4ff9-af70-5822e86c8318}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\libcharguess">
+      <UniqueIdentifier>{3a62bca0-b36b-4759-a57a-380a1a464f39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\data">
+      <UniqueIdentifier>{8a89f4c1-9a1d-4f30-b1e5-4449402fd165}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\data">
+      <UniqueIdentifier>{38b6eff8-109c-469f-aab9-b25627b3e831}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\data\NewFilter1">
+      <UniqueIdentifier>{1d133bbc-11e1-40f6-a5b5-fffb4e24a548}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\service">
+      <UniqueIdentifier>{2b3dbd61-ef08-4478-b190-231eb7599833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\service">
+      <UniqueIdentifier>{5426f898-7600-4ce4-b276-cf6e97f9e342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\userpresence">
+      <UniqueIdentifier>{80cfbf1f-d919-47cd-8157-ff1946b23215}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="compress\compress.h">
@@ -3641,9 +3689,6 @@
     <ClInclude Include="core\core_microtimer.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core_message_window.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core_message.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
@@ -4123,6 +4168,441 @@
     </ClInclude>
     <ClInclude Include="net\sockets\sockets_link_out_socket.h">
       <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_aes.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_aes_cbc.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_aes_icm.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_alg.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_alloc.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_auth.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_c_crypto.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_cipher.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_config.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_datatypes.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_err.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_gf2_8.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_hmac.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_hmac_sha1.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_integers.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_kernel.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_kernel_compat.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_key.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_math.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_md5.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_null_auth.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_null_cipher.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_prng.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_rand_source.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_rdb.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_rdbx.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_sha1.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_stat.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_types.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_ut_sim.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\crypto\crypto_xfm.h">
+      <Filter>Header Files\core\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin_gen.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin_history.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin_host_interaction.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin_instance.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin_plugin.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin_run_start_installer.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin_system.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\geoip\geoip.h">
+      <Filter>Header Files\core\geopip</Filter>
+    </ClInclude>
+    <ClInclude Include="core\geoip\geoip_city.h">
+      <Filter>Header Files\core\geopip</Filter>
+    </ClInclude>
+    <ClInclude Include="core\geoip\geoip_internal.h">
+      <Filter>Header Files\core\geopip</Filter>
+    </ClInclude>
+    <ClInclude Include="core\geoip\geoip_update.h">
+      <Filter>Header Files\core\geopip</Filter>
+    </ClInclude>
+    <ClInclude Include="core\geoip\global.h">
+      <Filter>Header Files\core\geopip</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_00.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_bitmap_button.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_button.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_button_control.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_check_box.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_combo_box.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_combo_list.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_control_bar.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_dock_context.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_dock_state.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_edit_plain_text.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_edit_plain_text_view.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_elastic_slider.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_form_list.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_form1.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_front_end.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_front_end_schema.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_image_manager.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_inline.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_key_enum.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_list.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_list_cache.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_list_cache_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_list_data.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_list_data_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_list_header.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_main_frame.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_meta_button.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_notification_area.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_notify_icon.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_notify_icon_listener.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_plain_text_data.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_print_job.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_printer.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_scroll_bar.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_scroll_view.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_simple_list_data.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_split_bar.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_split_layout.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_split_view.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_split_window.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_static_control.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_statusbar.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_step_slider.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_tab.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_tab_callback.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_tab_view.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_tab_view_update_hint.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_template.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_thread.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_tool_cmd_ui.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_tool_tip_tool.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_tool_tip_window.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_toolbar.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_toolbar_control.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_tree.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_wait_cursor.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_window.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_window_draw.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_xfplayer_view_line.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_xfplayer_view_line_selection.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_xfplayer_view_lines.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user1.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="core\install\install.h">
+      <Filter>Header Files\core\install</Filter>
+    </ClInclude>
+    <ClInclude Include="core\install\install_install.h">
+      <Filter>Header Files\core\install</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\big5Prober.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\charDistribution.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\charguess.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\charsetProber.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\codingStateMachine.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\config.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\EscCharsetProber.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\EUCJPProber.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\EUCKRProber.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\EUCTWProber.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\GB2312Prober.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\jpCntx.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\Latin1Prober.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\libcharguess.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\MBCSGroupProber.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\pkgInt.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\SBCharsetProber.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\SBCSGroupProber.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\SJISProber.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\types.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\universal.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\libcharguess\UTF8Prober.h">
+      <Filter>Header Files\core\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="core\data\data_simple_tree_data.h">
+      <Filter>Header Files\core\data</Filter>
+    </ClInclude>
+    <ClInclude Include="core\data\data_simple_tree_item_data.h">
+      <Filter>Header Files\core\data</Filter>
+    </ClInclude>
+    <ClInclude Include="core\data\data_tree.h">
+      <Filter>Header Files\core\data</Filter>
+    </ClInclude>
+    <ClInclude Include="core\data\data_tree_data.h">
+      <Filter>Header Files\core\data</Filter>
+    </ClInclude>
+    <ClInclude Include="core\data\data_tree_item.h">
+      <Filter>Header Files\core\data</Filter>
+    </ClInclude>
+    <ClInclude Include="core\data\data_tree_item_data.h">
+      <Filter>Header Files\core\data</Filter>
+    </ClInclude>
+    <ClInclude Include="core\service\service_plain_service.h">
+      <Filter>Header Files\core\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\service\service_thread_pool.h">
+      <Filter>Header Files\core\service</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_message_queue.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_message_queue_listener.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence.h">
+      <Filter>Header Files\user\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence_user_presence.h">
+      <Filter>Header Files\user\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence_userpresence.h">
+      <Filter>Header Files\user\userpresence</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5788,9 +6268,6 @@
     <ClCompile Include="core\core_microtimer.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core_message_window.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core_message.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
@@ -6181,6 +6658,228 @@
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
+    <ClCompile Include="core\crypto\crypto_ae_xfm.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_cipher_aes.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_cipher_aes_cbc.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_cipher_aes_icm.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_cipher_cipher.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_cipher_null_cipher.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_gf2_8.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_hash_auth.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_hash_hmac.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_hash_null_auth.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_hash_sha1.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_hmac_sha1.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_kernel_alloc.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_kernel_crypto_kernel.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_kernel_err.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_kernel_key.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_math.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_math_stat.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_md5.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_my_aes.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_replay_rdb.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_replay_rdbx.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_replay_ut_sim.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_rng_ctr_prng.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_rng_prng.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_rng_rand_source.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\crypto\crypto_sha1.cpp">
+      <Filter>Source Files\core\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_history.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_host_interaction.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_instance.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_plugin.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_run_start_installer.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_system.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="core\geoip\geoip.cpp">
+      <Filter>Source Files\core\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="core\geoip\geoip_city.cpp">
+      <Filter>Source Files\core\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="core\geoip\geoip_region_name.cpp">
+      <Filter>Source Files\core\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="core\geoip\geoip_time_zone.cpp">
+      <Filter>Source Files\core\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="core\geoip\geoip_update.cpp">
+      <Filter>Source Files\core\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_wait_cursor.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_window.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_window_draw.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="core\install\install_install.cpp">
+      <Filter>Source Files\core\install</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_big5Prober.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_charDistribution.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_charguess.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_EscCharsetProber.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_EscSM.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_EUCJPProber.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_EUCKRProber.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_EUCTWProber.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_GB2312Prober.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_jpCntx.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_LangBulgarianModel.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_LangCyrillicModel.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_LangGreekModel.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_LangHungarianModel.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_LangThaiModel.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_Latin1Prober.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_MBCSGroupProber.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_MBCSSM.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_SBCharsetProber.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_SBCSGroupProber.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_SJISProber.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_universal.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\libcharguess\libcharguess_UTF8Prober.cpp">
+      <Filter>Source Files\core\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="core\data\data_simple_tree_data.cpp">
+      <Filter>Source Files\core\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\data\data_simple_tree_item_data.cpp">
+      <Filter>Source Files\core\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\data\data_tree.cpp">
+      <Filter>Source Files\core\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\data\data_tree_data.cpp">
+      <Filter>Source Files\core\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\data\data_tree_item.cpp">
+      <Filter>Source Files\core\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\data\data_tree_item_data.cpp">
+      <Filter>Source Files\core\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\service\service_plain_service.cpp">
+      <Filter>Source Files\core\service</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_message_queue.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="base\collection\collection.inl">
@@ -6194,6 +6893,12 @@
     </None>
     <None Include="core\core.inl">
       <Filter>Header Files\core</Filter>
+    </None>
+    <None Include="user\interaction.inl">
+      <Filter>Header Files\user</Filter>
+    </None>
+    <None Include="user\user_interaction.inl">
+      <Filter>Header Files\user</Filter>
     </None>
   </ItemGroup>
 </Project>

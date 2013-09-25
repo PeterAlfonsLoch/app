@@ -82,8 +82,8 @@ public:
    virtual bool initialize();
    virtual bool finalize();
 
-   bool create_message_window();
-   bool destroy_message_window();
+   bool create_message_queue();
+   bool destroy_message_queue();
 
    virtual class ::im_post & im_post();
    virtual class ::veiev_post & veiev_post();

@@ -8,7 +8,7 @@ namespace bergedge
    frame::frame(sp(base_application) papp) :
       element(papp),
       simple_frame_window(papp),
-      message_window_simple_callback(papp)
+      message_queue(papp)
    {
       m_pdocument = NULL;
       m_iFrameData = 10;
@@ -41,7 +41,7 @@ namespace bergedge
       if(pobj->previous())
          return;
 
-      if(!initialize_message_window("::draw2d::fontopus::message_wnd::bergedge::" + System.get_local_mutex_id()))
+      if(!message_queue::create_message_queue("::draw2d::fontopus::message_wnd::bergedge::" + System.get_local_mutex_id()))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;
@@ -238,7 +238,7 @@ namespace bergedge
    }
 
 
-   void frame::message_window_message_handler(signal_details * pobj)
+   void frame::message_queue_message_handler(signal_details * pobj)
    {
 
 #ifdef WINDOWSEX

@@ -414,3 +414,41 @@ void output_debug_string(const char * psz)
 }
 
 
+DWORD WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ DWORD dwMilliseconds )
+{
+
+   return ::WaitForSingleObjectEx(hHandle, dwMilliseconds, FALSE);
+
+}
+
+BEGIN_EXTERN_C
+
+CLASS_DECL_c
+HANDLE
+WINAPI
+CreateMutex(
+    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
+    _In_ BOOL bInitialOwner,
+    _In_opt_ LPCSTR lpName
+    )
+{
+   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
+}
+
+CLASS_DECL_c char* getenv (const char* name)
+{
+   return "";
+}
+END_EXTERN_C
+
+CLASS_DECL_c
+HANDLE
+WINAPI
+CreateMutexW(
+    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
+    _In_ BOOL bInitialOwner,
+    _In_opt_ LPCWSTR lpName
+    )
+{
+   return ::CreateMutexEx(lpMutexAttributes, lpName, bInitialOwner ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);
+}

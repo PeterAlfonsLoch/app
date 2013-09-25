@@ -699,7 +699,8 @@ namespace user
 
 
 #include "user/user_window.h"
-#include "core/core_message_window.h"
+#include "core/core_message_queue_listener.h"
+#include "core/core_message_queue.h"
 
 
 

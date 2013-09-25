@@ -100,7 +100,7 @@ namespace plane
 
       sp(::user::str)                              m_puserstr;
 
-       ::ca::library m_libraryDraw2d;
+       ::boot::library m_libraryDraw2d;
 
 
 

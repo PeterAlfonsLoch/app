@@ -220,11 +220,6 @@ CLASS_DECL_ca string _ca_get_file_name(const char * psz, bool bCreate = false, i
 //#include <openssl/ssl.h>
 //#endif
 
-#ifndef WINDOWSEX
-#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID)
-CLASS_DECL_ca int_bool IsWindow(oswindow oswindow);
-#endif
-#endif
 
 
 #include "ca_user.h"

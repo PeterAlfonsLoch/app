@@ -3,7 +3,7 @@
 
 #include "user/user_window_interface.h"
 
-   class message_window_callback;
+   class message_queue_listener;
 
 namespace core
 {
@@ -114,7 +114,7 @@ namespace user
 
 
 
-      virtual bool create_message_window(const char * pszName, ::message_window_callback * pcallback = NULL);
+      virtual bool create_message_queue(const char * pszName, ::message_queue_listener * pcallback = NULL);
 #ifdef METROWIN
       virtual bool initialize(Windows::UI::Core::CoreWindow ^ window, ::core::system_window ^ pwindow);
 #endif

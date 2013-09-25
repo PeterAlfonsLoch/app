@@ -42,7 +42,7 @@ namespace core
 
 
    class CLASS_DECL_ca2 library :
-      virtual public ::ca::library,
+      virtual public ::boot::library,
       virtual public object
    {
    public:
@@ -94,7 +94,7 @@ namespace core
 
    private:
 
-      using ::ca::library::open;
+      using ::boot::library::open;
 
    };
 

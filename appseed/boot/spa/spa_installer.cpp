@@ -3514,7 +3514,7 @@ RetryHost:
       ::SetDllDirectory(dir::path(dir::element(), "stage\\" + strPlatform));
 #endif
 
-      ::ca::library libraryOs;
+      ::boot::library libraryOs;
 
       libraryOs.open(dir::path(dir::element(), "stage\\" + strPlatform + "\\os"));
 

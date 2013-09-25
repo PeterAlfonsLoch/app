@@ -34,7 +34,7 @@ namespace user
 
       strNotifyIcon.Format("user::notify_icon - %d", uiId);
 
-      if(!create_message_window(strNotifyIcon))
+      if(!create_message_queue(strNotifyIcon))
          return false;
 
       m_uiId                     = uiId;

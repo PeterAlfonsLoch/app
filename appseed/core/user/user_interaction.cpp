@@ -2759,7 +2759,7 @@ ExitModal:
    }
 
 
-   bool interaction::create_message_window(const char * pszName, ::message_window_callback * pcallback)
+   bool interaction::create_message_queue(const char * pszName, ::message_queue_listener * pcallback)
    {
 
       UNREFERENCED_PARAMETER(pcallback);
@@ -2783,7 +2783,7 @@ ExitModal:
 
       m_pimpl->m_pguie = this;
 
-      if(!m_pimpl->create_message_window(pszName, pcallback))
+      if(!m_pimpl->create_message_queue(pszName, pcallback))
       {
          m_pimpl->m_pguie->release();
          m_pimpl->release();

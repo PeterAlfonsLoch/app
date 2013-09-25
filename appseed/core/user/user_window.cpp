@@ -25,7 +25,7 @@ namespace user
 
    }
 
-   bool window::create_message_window(const char * pszName, ::message_window_callback * pcallback)
+   bool window::create_message_queue(const char * pszName, ::message_queue_listener * pcallback)
    {
       UNREFERENCED_PARAMETER(pszName);
       UNREFERENCED_PARAMETER(pcallback);

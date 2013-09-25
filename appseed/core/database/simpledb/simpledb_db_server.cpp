@@ -73,7 +73,7 @@ bool db_server::initialize_user(mysql::database * pmysqldbUser, const char * psz
    m_pLongsSet    = new db_long_set(this);
    m_pStringSet   = new db_str_set(this);
 
-   if(!create_message_window())
+   if(!create_message_queue())
       return false;
 
    m_bWorking = true;
@@ -137,7 +137,7 @@ bool db_server::initialize()
 
 #if !defined(METROWIN) && !defined(MACOS)
 
-   if(!create_message_window())
+   if(!create_message_queue())
       return false;
 
 #endif
@@ -153,7 +153,7 @@ bool db_server::finalize()
 {
    m_bWorking = false;
 
-   destroy_message_window();
+   destroy_message_queue();
 
    if(m_pfilesystemsizeset != NULL)
    {
@@ -194,13 +194,13 @@ bool db_server::finalize()
    return true;
 }
 
-bool db_server::create_message_window()
+bool db_server::create_message_queue()
 {
 
    if(!IsWindow())
    {
       string strName = "::draw2d::fontopus::message_wnd::simpledb::db_server";
-      if(!::user::interaction::create_message_window(strName))
+      if(!::user::interaction::create_message_queue(strName))
       {
          return false;
       }
@@ -216,7 +216,7 @@ bool db_server::create_message_window()
 
 }
 
-bool db_server::destroy_message_window()
+bool db_server::destroy_message_queue()
 {
    if(IsWindow())
    {

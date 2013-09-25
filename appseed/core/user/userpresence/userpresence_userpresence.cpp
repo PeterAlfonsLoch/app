@@ -8,7 +8,7 @@ namespace userpresence
    userpresence::userpresence(sp(base_application) papp) :
       element(papp),
       base_departament(papp),
-      message_window_simple_callback(papp)
+      message_queue(papp)
    {
 
       m_bUserPresenceFeatureRequired = false;
@@ -54,7 +54,7 @@ namespace userpresence
            // m_spuiMessage = canew(::user::interaction());
          }
 
-         if(!initialize_message_window("ca5::user::userpresence::message_window"))
+         if(!create_message_queue("ca5::user::userpresence::message_queue"))
             return false;
 
       }
@@ -142,7 +142,7 @@ namespace userpresence
 
       }
 
-      finalize_message_window();
+      destroy_message_queue();
 
       if(ApplicationUser.m_ppresence != NULL)
       {
@@ -173,7 +173,7 @@ namespace userpresence
    }
 
 
-   void userpresence::message_window_message_handler(signal_details * pobj)
+   void userpresence::message_queue_message_handler(signal_details * pobj)
    {
 
       SCAST_PTR(::message::base, pbase, pobj);

@@ -164,11 +164,6 @@ CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 //#include <openssl/ssl.h>
 //#endif
 
-#ifndef WINDOWSEX
-#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID)
-CLASS_DECL_ca WINBOOL IsWindow(oswindow oswindow);
-#endif
-#endif
 
 
 //#include "boot_user.h"

@@ -75,7 +75,7 @@ public:
    virtual void _002InstallMessageHandling(::message::dispatch * pinterface);
 
 
-   bool create_message_window();
+   bool create_message_queue();
 
 // timer Functions
    virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,

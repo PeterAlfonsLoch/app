@@ -2,7 +2,7 @@
 #include <windows.h>
 
 
-namespace ca
+namespace boot
 {
 
 
@@ -139,7 +139,7 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace boot
 
 
 namespace core
@@ -166,5 +166,5 @@ namespace core
       return LoadPackagedLibrary(wstring(psz), 0);
    }
 
-} // namespace ca2
+} // namespace core
 

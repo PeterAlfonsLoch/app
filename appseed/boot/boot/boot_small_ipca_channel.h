@@ -108,8 +108,8 @@ public:
 
 #ifdef WINDOWS
    ATOM register_class(HINSTANCE hInstance);
-   static LRESULT CALLBACK s_message_window_proc(oswindow oswindow, UINT message, WPARAM wParam, LPARAM lParam);
-   LRESULT message_window_proc(UINT message, WPARAM wParam, LPARAM lParam);
+   static LRESULT CALLBACK s_message_queue_proc(oswindow oswindow, UINT message, WPARAM wParam, LPARAM lParam);
+   LRESULT message_queue_proc(UINT message, WPARAM wParam, LPARAM lParam);
 #else
    bool start_receiving();
    static void * receive_proc(void * param);

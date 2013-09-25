@@ -69,12 +69,14 @@
 #ifdef OPENSSL_SYS_WIN32
 /* Needed for struct timeval */
 //#include <winsock.h>
+#ifndef METROWIN
 #ifndef _WINSOCK2API_
 
 struct timeval {
         long    tv_sec;         /* seconds */
         long    tv_usec;        /* and microseconds */
 };
+#endif
 
 #endif
 

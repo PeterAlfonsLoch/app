@@ -99,13 +99,23 @@ DWORD GetFileAttributes(const wchar_t * psz)
 }
 
 
+BEGIN_EXTERN_C
 
-HANDLE FindFirstFile(const wchar_t * pwsz, WIN32_FIND_DATA * pdata)
+HANDLE FindFirstFileW(const wchar_t * pwsz, WIN32_FIND_DATAW * pdata)
 {
 
-   return FindFirstFileEx(pwsz, FindExInfoStandard, pdata, FindExSearchNameMatch, NULL, 0);
+   return FindFirstFileExW(pwsz, FindExInfoStandard, pdata, FindExSearchNameMatch, NULL, 0);
 
 }
+
+HANDLE FindFirstFileA(const char * pwsz, WIN32_FIND_DATAA * pdata)
+{
+   
+   return FindFirstFileExA(pwsz, FindExInfoStandard, pdata, FindExSearchNameMatch, NULL, 0);
+   
+}
+
+END_EXTERN_C
 
 /*
 int_bool WINAPI FileTimeToLocalFileTime(const FILETIME * lpFileTime, LPFILETIME lpLocalFileTime)

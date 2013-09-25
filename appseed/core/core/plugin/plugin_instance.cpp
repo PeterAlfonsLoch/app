@@ -73,7 +73,7 @@ namespace plugin
 
       host_interaction * pinteraction = new host_interaction(m_psystem);
 
-      pinteraction->create_message_window("npca2");
+      pinteraction->create_message_queue("npca2");
 
       sp(::user::window) pwindow = pinteraction->m_pimpl;
 

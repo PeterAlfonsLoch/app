@@ -7,7 +7,7 @@ namespace userpresence
 
    class CLASS_DECL_ca2 userpresence :
       virtual public ::base_departament,
-      virtual public message_window_simple_callback
+      virtual public message_queue
    {
    public:
 
@@ -27,7 +27,7 @@ namespace userpresence
       virtual bool defer_finalize_user_presence();
 
 
-      virtual void message_window_message_handler(signal_details * pobj);
+      virtual void message_queue_message_handler(signal_details * pobj);
 
       virtual bool is_initialized();
 

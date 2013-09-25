@@ -29,7 +29,7 @@ namespace dynamic_source
 
    class CLASS_DECL_ca2 script_manager :
       virtual public thread,
-      virtual public message_window_simple_callback
+      virtual public message_queue
    {
    public:
 
@@ -190,7 +190,7 @@ namespace dynamic_source
 
 
 
-      virtual void message_window_message_handler(signal_details * pobj);
+      virtual void message_queue_message_handler(signal_details * pobj);
 
       void clear_include_matches();
       static UINT c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure

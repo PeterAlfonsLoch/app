@@ -346,7 +346,7 @@ bool FileSystemSizeWnd::CreateClient()
 //#ifdef WINDOWS
 
    m_bServer = false;
-   return m_p->create_message_window("::draw2d::fontopus::FileSystemSizeWnd::Client");
+   return m_p->create_message_queue("::draw2d::fontopus::FileSystemSizeWnd::Client");
 /*  sp(::user::interaction) puiMessage = NULL;
    puiMessage = System.window_from_os_data(HWND_MESSAGE);
    return m_p->create(NULL, "::draw2d::fontopus::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;*/

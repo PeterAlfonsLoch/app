@@ -43,7 +43,7 @@ namespace user
       window();
 
 
-      virtual bool create_message_window(const char * pszName, ::message_window_callback * pcallback = NULL);
+      virtual bool create_message_queue(const char * pszName, ::message_queue_listener * pcallback = NULL);
 #ifdef METROWIN
       virtual bool initialize(Windows::UI::Core::CoreWindow ^ window, ::core::system_window ^ pwindow) = 0;
 #endif

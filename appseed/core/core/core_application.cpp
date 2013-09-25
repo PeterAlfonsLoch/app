@@ -634,7 +634,7 @@ void application::Ex1OnFactoryExchange()
 
    System.factory().creatable_large < ::file::exception > ();
 
-   ::ca::library library;
+   ::boot::library library;
 
    if(!library.open("os"))
       throw "failed to do factory exchange";
@@ -654,7 +654,7 @@ void application::draw2d_factory_exchange()
    if(strLibrary.is_empty())
       strLibrary = "draw2d_cairo";
 
-   ::ca::library & library = System.m_libraryDraw2d;
+   ::boot::library & library = System.m_libraryDraw2d;
 
    if(library.is_opened())
       return;
@@ -744,7 +744,7 @@ bool application::initialize_instance()
 
 #ifndef METROWIN
 
-   if(!initialize_message_window(this, strWindow))
+   if(!create_message_queue(this, strWindow))
    {
       TRACE("Fatal error: could not initialize application message window (name=\"%s\").", strWindow);
       return false;
@@ -865,7 +865,7 @@ int32_t application::exit_instance()
 
    release_exclusive();
 
-   if(!finalize_message_window())
+   if(!destroy_message_queue())
    {
       TRACE("Could not finalize message window");
    }
@@ -5292,7 +5292,7 @@ sp(::user::interaction) application::uie_from_point(point pt)
    return NULL;
 }
 
-void application::message_window_message_handler(signal_details * pobj)
+void application::message_queue_message_handler(signal_details * pobj)
 {
    SCAST_PTR(::message::base, pbase, pobj);
    if(pbase->m_uiMessage == WM_TIMER)

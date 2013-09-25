@@ -28,6 +28,16 @@ CLASS_DECL_c UINT   get_main_thread_id();
 CLASS_DECL_c void attach_thread_input_to_main_thread(int_bool bAttach);
 
 
+CLASS_DECL_c DWORD WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ DWORD dwMilliseconds );
+
+BEGIN_EXTERN_C
+
+   
+CLASS_DECL_c char* getenv (const char* name);
+CLASS_DECL_c HANDLE WINAPI CreateMutex(_In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes, _In_ BOOL bInitialOwner, _In_opt_ LPCSTR lpName  );
+END_EXTERN_C
+CLASS_DECL_c HANDLE WINAPI CreateMutexW(    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,    _In_ BOOL bInitialOwner,    _In_opt_ LPCWSTR lpName    );
+
 
 #ifdef __cplusplus
 
@@ -64,3 +74,6 @@ CLASS_DECL_c oswindow WINAPI SetCapture(oswindow oswindow);
 CLASS_DECL_c oswindow WINAPI ReleaseCapture();
 
 
+
+
+CLASS_DECL_c int_bool IsWindow(oswindow oswindow);

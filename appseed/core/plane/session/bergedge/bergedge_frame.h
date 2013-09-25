@@ -10,8 +10,8 @@ namespace bergedge
 
 
    class CLASS_DECL_ca2 frame : 
-      public simple_frame_window,
-      public message_window_simple_callback
+      virtual public simple_frame_window,
+      public message_queue
    {
    public:
       
@@ -58,7 +58,7 @@ namespace bergedge
 
       virtual void message_handler(signal_details * pobj);
 
-      virtual void message_window_message_handler(signal_details * pobj);
+      virtual void message_queue_message_handler(signal_details * pobj);
 
 
    };

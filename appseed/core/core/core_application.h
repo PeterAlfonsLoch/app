@@ -196,7 +196,7 @@ class CLASS_DECL_ca2 application :
    virtual public application_base,
    virtual public command_target_interface,
    virtual public request_interface,
-   virtual public message_window_simple_callback
+   virtual public message_queue
 {
 public:
 
@@ -583,7 +583,7 @@ public:
    virtual void set_env_var(const string & var,const string & value);
    virtual uint32_t get_thread_id();
 
-   virtual void message_window_message_handler(signal_details * pobj);
+   virtual void message_queue_message_handler(signal_details * pobj);
 
    virtual bool on_install();
    virtual bool on_uninstall();

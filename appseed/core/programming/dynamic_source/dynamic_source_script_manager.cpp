@@ -47,7 +47,7 @@ namespace dynamic_source
    script_manager::script_manager(sp(base_application) papp) :
       element(papp),
       thread(papp),
-      message_window_simple_callback(papp),
+      message_queue(papp),
       m_mutexIncludeMatches(papp),
       m_mutexIncludeHasScript(papp),
       m_mutexIncludeExpandMd5(papp),
@@ -122,7 +122,7 @@ namespace dynamic_source
    bool script_manager::initialize_instance()
    {
 
-      initialize_message_window("::core::netnode::cgclcst");
+      create_message_queue("::core::netnode::cgclcst");
       m_pcompiler->initialize();
 #ifdef WINDOWS
       {
@@ -417,7 +417,7 @@ namespace dynamic_source
 
    }
 
-   void script_manager::message_window_message_handler(signal_details * pobj)
+   void script_manager::message_queue_message_handler(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_APP + 13)

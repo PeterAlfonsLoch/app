@@ -54,6 +54,16 @@ namespace net
    }
 
 
+   address::address(const string & host, const string & strService)
+   {
+
+      zero(this, sizeof(m_sa));
+
+      set_address(host);
+      m_port = Sys(get_thread_app()).net().service_port(strService);
+      sync_os_service();
+
+   }
 
 
    address::address(const in6_addr & a,port_t port)

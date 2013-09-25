@@ -37,10 +37,14 @@
     broken WinCE headers and explicitly opt for UNICODE call.
     Keep in mind that our WinCE builds are compiled with -DUNICODE
     [as well as -D_UNICODE]. */
-#if defined(LP_SYS_WINCE) && !defined(FindFirstFile)
+#if defined(METROWIN)
+# define FindFirstFile FindFirstFileW
+#elif defined(LP_SYS_WINCE) && !defined(FindFirstFile)
 # define FindFirstFile FindFirstFileW
 #endif
-#if defined(LP_SYS_WINCE) && !defined(FindFirstFile)
+#if defined(METROWIN)
+# define FindNextFile FindNextFileW
+#elif defined(LP_SYS_WINCE) && !defined(FindFirstFile)
 # define FindNextFile FindNextFileW
 #endif
 

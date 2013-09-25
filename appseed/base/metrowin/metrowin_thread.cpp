@@ -1083,7 +1083,7 @@ CLASS_DECL_c WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wPa
 }
 
 
-namespace ca2
+namespace core
 {
 
 ///  \brief		global function to set thread priority for current thread
@@ -1106,7 +1106,7 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace core
 
 
 HTHREAD get_current_thread()

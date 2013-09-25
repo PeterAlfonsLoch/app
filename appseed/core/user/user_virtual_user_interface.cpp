@@ -163,7 +163,7 @@ bool virtual_user_interface::SetWindowPos(int32_t z, int32_t x, int32_t y, int32
    return true;
 }
 
-bool virtual_user_interface::create_message_window()
+bool virtual_user_interface::create_message_queue()
 {
    if(m_pguieMessage == NULL)
    {
@@ -218,7 +218,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
    m_bCreate = true;
    
-   if(!create_message_window())
+   if(!create_message_queue())
       return false;
    
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
@@ -353,7 +353,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    
    m_bCreate = true;
    
-   if(!create_message_window())
+   if(!create_message_queue())
       return FALSE;
    
    m_pthread->m_pthread->add(this);
@@ -489,7 +489,7 @@ bool virtual_user_interface::create(sp(::user::interaction) pparent, id id)
    if(m_pthread == NULL)
       return false;
    
-   if(!create_message_window())
+   if(!create_message_queue())
       return false;
    
    m_bCreate = true;

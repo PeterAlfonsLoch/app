@@ -199,9 +199,11 @@ int RAND_poll(void)
 	/* Determine the OS version we are on so we can turn off things
 	 * that do not work properly.
 	 */
+#ifndef METROWIN
         OSVERSIONINFO osverinfo ;
         osverinfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO) ;
         GetVersionEx( &osverinfo ) ;
+#endif
 
 #if defined(OPENSSL_SYS_WINCE)
 # if defined(_WIN32_WCE) && _WIN32_WCE>=300
@@ -617,8 +619,10 @@ int RAND_poll(void)
 	readtimer();
 
 	/* memory usage statistics */
+#ifndef METROWIN
 	GlobalMemoryStatus(&m);
 	RAND_add(&m, sizeof(m), 1);
+#endif
 
 	/* process ID */
 	w = GetCurrentProcessId();

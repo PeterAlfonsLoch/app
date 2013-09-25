@@ -8,7 +8,7 @@ namespace simpledb
    manager::manager(sp(base_application) papp) :
       element(papp),
       thread(papp),
-      message_window_simple_callback(papp),
+      message_queue(papp),
       m_mutexSession(papp),
       m_mutexTagId(papp),
       m_mutexTagName(papp)
@@ -30,7 +30,7 @@ namespace simpledb
 
    bool manager::initialize_instance()
    {
-      initialize_message_window("::core::netnode::cgclcst");
+      create_message_queue("::core::netnode::cgclcst");
 
       return true;
    }
@@ -60,7 +60,7 @@ namespace simpledb
 
 
 
-   void manager::message_window_message_handler(signal_details * pobj)
+   void manager::message_queue_message_handler(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_APP + 13)
