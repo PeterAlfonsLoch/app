@@ -17,7 +17,7 @@
          };
          http_tunnel(base_socket_handler & h);
          string      m_strProxy;
-         int32_t         m_iProxyPort;
+         int         m_iProxyPort;
          bool        m_bSslTunnel;
          bool        m_bOk ;
          string m_host; ///< Hostname from url_in
@@ -28,7 +28,7 @@
          primitive::memory      m_memoryBody;
          primitive::memory      m_memoryBuf;
          ::file::memory_buffer m_fileBody;
-         int32_t         m_iContentLength;
+         int         m_iContentLength;
          bool        m_bHeaders;
          bool        m_bDirect;
          string      m_strPasswordFile;
@@ -50,7 +50,7 @@
          virtual void step();
 
          virtual void OnFirst();
-         virtual void OnHeader(id idKey, const string &);
+         virtual void OnHeader(const string &, const string &);
          virtual void OnHeaderComplete();
          virtual void OnData(const char * psz, size_t size);
 
