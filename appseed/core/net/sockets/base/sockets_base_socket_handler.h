@@ -82,18 +82,21 @@ namespace sockets
 
       };
 
-      int m_iSelectErrno;
+      int               m_iSelectErrno;
+
+      sp(logger)        m_splogger; ///< Registered log class, or NULL
 
 
-      virtual ~base_socket_handler() { }
+      base_socket_handler(sp(base_application) papp, logger * plogger = NULL);
+      virtual ~base_socket_handler();
 
       /** get mutex reference for threadsafe operations. */
       virtual mutex & GetMutex() const = 0;
 
-      virtual void set_logger(logger * plog) = 0;
+      virtual void set_logger(logger * plog);
 
       /** Log error to log class for print out / storage. */
-      virtual void log(base_socket *p,const string & user_text,int err,const string & sys_err, ::core::log::e_level elevel = ::ca_get_level_warning()) = 0;
+      virtual void log(base_socket *p,const string & user_text,int err,const string & sys_err, ::core::log::e_level elevel = ::ca_get_level_warning());
 
       // -------------------------------------------------------------------------
       // socket stuff

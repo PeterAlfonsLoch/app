@@ -33,6 +33,14 @@ namespace net
       };
 
 
+#ifdef METROWIN
+
+      ::Windows::Networking::HostName ^      m_hostname;
+      ::Platform::String ^                   m_strService;
+
+#endif
+
+
 
       address();
       address(int32_t family, port_t port = 0);
@@ -79,7 +87,7 @@ namespace net
 
       bool set_address(const string & strAddress);
 
-      string reverse() const;
+      //string reverse() const;
 
 
       inline void SetFlowinfo(uint32_t x);
@@ -91,6 +99,8 @@ namespace net
       inline uint32_t GetScopeId();
 #endif
 
+      inline void sync_os_address();
+      inline void sync_os_service();
 
    };
 
@@ -122,6 +132,9 @@ namespace net
    {
 
       memcpy(this, &address, sizeof(m_sa));
+
+      sync_os_address();
+      sync_os_service();
 
    }
 
@@ -196,6 +209,18 @@ namespace net
 
 #endif
 
+   inline void address::sync_os_address()
+   {
+#ifdef METROWIN
+      m_hostname  = ref new ::Windows::Networking::HostName(get_display_number());
+#endif
+   }
+   
+   inline void address::sync_os_service()
+   {
+#ifdef METROWIN
+#endif
+   }
 
 
 } // namespace sockets

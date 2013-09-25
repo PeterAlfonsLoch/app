@@ -11,7 +11,7 @@ typedef int32_t socklen_t;
 #if defined(BSD_STYLE_SOCKETS)
 #include "bsd/sockets_config.h"
 #elif defined(METROWIN)
-#include "metrowin/sockets_config.h"
+#include "winrt/sockets_config.h"
 #else
 #error "Unknown Sockets Type?"
 #endif
@@ -60,7 +60,7 @@ namespace net
 #if defined(BSD_STYLE_SOCKETS)
 #include "bsd/sockets.h"
 #elif defined(METROWIN)
-#include "metrowin/sockets.h"
+#include "winrt/sockets.h"
 #else
 #error "Unknown Sockets Type?"
 #endif

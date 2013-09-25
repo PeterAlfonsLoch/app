@@ -1,6 +1,6 @@
 #pragma once
 
-
+#define AF_UNSPEC       0                 
 #define AF_INET         2                 // internetwork: UDP, TCP, etc.
 #define AF_INET6        23                // Internetwork Version 6
 

@@ -369,9 +369,6 @@
     <Filter Include="Header Files\net\http">
       <UniqueIdentifier>{dc1dad4b-ee81-44ad-a540-477622f6dbd1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net\sockets\NewFilter1">
-      <UniqueIdentifier>{b74eb8eb-8e54-479f-b70e-0eebcbd7c078}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\net\hi5\NewFilter1">
       <UniqueIdentifier>{623ebd3c-9211-4d38-9678-6735f255f6e5}</UniqueIdentifier>
     </Filter>
@@ -389,12 +386,6 @@
     </Filter>
     <Filter Include="Header Files\net\sockets\winrt\http">
       <UniqueIdentifier>{568f7fe6-0b3b-4c26-bb8d-5540fcec9040}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\winrt\internal">
-      <UniqueIdentifier>{788463a1-3816-40de-925c-d9d1c43a271a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\winrt\log">
-      <UniqueIdentifier>{4d8a8b45-4d91-4d74-b965-3bde914d3b7d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\sockets\winrt\sip">
       <UniqueIdentifier>{63164557-a99b-42c1-a4e5-c72a7b40cf18}</UniqueIdentifier>
@@ -423,12 +414,6 @@
     <Filter Include="Source Files\net\sockets\winrt\http">
       <UniqueIdentifier>{dbf7b75e-02a6-420d-a2c2-0ca4a22eb00f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net\sockets\winrt\internal">
-      <UniqueIdentifier>{e0c4ceca-75c1-4950-975a-457417f4ed38}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\winrt\log">
-      <UniqueIdentifier>{c82de40c-09e4-4e07-abbf-7febd374983a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\net\sockets\winrt\sip">
       <UniqueIdentifier>{bc140c63-aca9-471d-a9e1-58bce73153cf}</UniqueIdentifier>
     </Filter>
@@ -440,6 +425,15 @@
     </Filter>
     <Filter Include="Source Files\net\sockets\winrt\webserver">
       <UniqueIdentifier>{1afe9b5e-037c-49fe-8f23-ba4de6ae3bd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\asynch_dns\NewFilter1">
+      <UniqueIdentifier>{a5824f21-8726-43e6-8ba0-976656cb33ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\http">
+      <UniqueIdentifier>{b74eb8eb-8e54-479f-b70e-0eebcbd7c078}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\http">
+      <UniqueIdentifier>{39100169-c99c-400c-9837-587c3805115e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2276,207 +2270,6 @@
     <ClInclude Include="net\mail\simple_pop3.h">
       <Filter>Header Files\net\mail</Filter>
     </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sockets.h">
-      <Filter>Header Files\net\sockets\winrt</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sockets_link_in_socket.h">
-      <Filter>Header Files\net\sockets\winrt</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sockets_link_out_socket.h">
-      <Filter>Header Files\net\sockets\winrt</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\asynch_dns\resolv_server.h">
-      <Filter>Header Files\net\sockets\winrt\asynch_dns</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\asynch_dns\resolv_socket.h">
-      <Filter>Header Files\net\sockets\winrt\asynch_dns</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\asynch_dns\sockets_resolv_server.h">
-      <Filter>Header Files\net\sockets\winrt\asynch_dns</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\asynch_dns\sockets_resolv_socket.h">
-      <Filter>Header Files\net\sockets\winrt\asynch_dns</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\basic\socket_handler.h">
-      <Filter>Header Files\net\sockets\winrt\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\basic\socket_handler_base.h">
-      <Filter>Header Files\net\sockets\winrt\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\basic\sockets_address.h">
-      <Filter>Header Files\net\sockets\winrt\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\basic\sockets_listen_socket.h">
-      <Filter>Header Files\net\sockets\winrt\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\basic\sockets_net.h">
-      <Filter>Header Files\net\sockets\winrt\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\basic\sockets_sctp_socket.h">
-      <Filter>Header Files\net\sockets\winrt\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\basic\sockets_socket.h">
-      <Filter>Header Files\net\sockets\winrt\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\basic\sockets_socket_handler.h">
-      <Filter>Header Files\net\sockets\winrt\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\basic\sockets_stream_socket.h">
-      <Filter>Header Files\net\sockets\winrt\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\basic\sockets_sync_socket_handler.h">
-      <Filter>Header Files\net\sockets\winrt\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\basic\sockets_tcp_socket.h">
-      <Filter>Header Files\net\sockets\winrt\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\basic\sockets_tls_socket.h">
-      <Filter>Header Files\net\sockets\winrt\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\basic\sockets_udp_socket.h">
-      <Filter>Header Files\net\sockets\winrt\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\http\http_client_socket.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\http\http_debug_socket.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\http\http_get_socket.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\http\http_post_socket.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\http\http_put_socket.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\http\http_request_socket.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\http\http_session.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\http\http_socket.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\http\http_tunnel.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\log\sockets_std_log.h">
-      <Filter>Header Files\net\sockets\winrt\log</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\log\sockets_trace_log.h">
-      <Filter>Header Files\net\sockets\winrt\log</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\log\StdLog.h">
-      <Filter>Header Files\net\sockets\winrt\log</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\log\trace_log.h">
-      <Filter>Header Files\net\sockets\winrt\log</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\timer\Event.h">
-      <Filter>Header Files\net\sockets\winrt\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\timer\EventHandler.h">
-      <Filter>Header Files\net\sockets\winrt\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\timer\EventTime.h">
-      <Filter>Header Files\net\sockets\winrt\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\timer\IEventHandler.h">
-      <Filter>Header Files\net\sockets\winrt\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\timer\IEventOwner.h">
-      <Filter>Header Files\net\sockets\winrt\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\timer\sockets_event.h">
-      <Filter>Header Files\net\sockets\winrt\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\timer\sockets_event_handler.h">
-      <Filter>Header Files\net\sockets\winrt\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\timer\sockets_event_time.h">
-      <Filter>Header Files\net\sockets\winrt\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\timer\sockets_ievent_handler.h">
-      <Filter>Header Files\net\sockets\winrt\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\timer\sockets_ievent_owner.h">
-      <Filter>Header Files\net\sockets\winrt\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\webserver\ajp13.h">
-      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\webserver\Ajp13Socket.h">
-      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\webserver\AjpBaseSocket.h">
-      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\webserver\http_base_socket.h">
-      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\webserver\httpd_socket.h">
-      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\webserver\webserver_ajp_base_socket.h">
-      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\webserver\webserver_ajp13.h">
-      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\webserver\webserver_ajp13_socket.h">
-      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\webserver\webserver_http_base_socket.h">
-      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\webserver\webserver_httpd_socket.h">
-      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\smtp\smtp_socket.h">
-      <Filter>Header Files\net\sockets\winrt\smtp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\smtp\smtpd_socket.h">
-      <Filter>Header Files\net\sockets\winrt\smtp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sip\sip_base.h">
-      <Filter>Header Files\net\sockets\winrt\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sip\sip_base_client_socket.h">
-      <Filter>Header Files\net\sockets\winrt\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sip\sip_callback.h">
-      <Filter>Header Files\net\sockets\winrt\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sip\sip_client.h">
-      <Filter>Header Files\net\sockets\winrt\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sip\sip_event.h">
-      <Filter>Header Files\net\sockets\winrt\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sip\sip_request.h">
-      <Filter>Header Files\net\sockets\winrt\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sip\sip_response.h">
-      <Filter>Header Files\net\sockets\winrt\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sip\sip_server.h">
-      <Filter>Header Files\net\sockets\winrt\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sip\sip_socket.h">
-      <Filter>Header Files\net\sockets\winrt\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sip\sip_tcp_client_socket.h">
-      <Filter>Header Files\net\sockets\winrt\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sip\sip_transaction.h">
-      <Filter>Header Files\net\sockets\winrt\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sip\sip_udp_client_socket.h">
-      <Filter>Header Files\net\sockets\winrt\sip</Filter>
-    </ClInclude>
     <ClInclude Include="net\usermail\usermail.h">
       <Filter>Header Files\net\usermail</Filter>
     </ClInclude>
@@ -3076,9 +2869,6 @@
     </ClInclude>
     <ClInclude Include="net\sockets\webserver\webserver_http_transaction.h">
       <Filter>Header Files\net\sockets\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\metrowin\sockets_sockets.h">
-      <Filter>Header Files\net\sockets\winrt</Filter>
     </ClInclude>
     <ClInclude Include="plane\session\plane_session.h">
       <Filter>Header Files\plane\session</Filter>
@@ -4181,6 +3971,198 @@
     <ClInclude Include="net\sockets\base\sockets_base_socket_handler.h">
       <Filter>Header Files\net\sockets\base</Filter>
     </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sockets_config.h">
+      <Filter>Header Files\net\sockets\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sockets.h">
+      <Filter>Header Files\net\sockets\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sockets_link_in_socket.h">
+      <Filter>Header Files\net\sockets\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sockets_link_out_socket.h">
+      <Filter>Header Files\net\sockets\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sockets_sockets.h">
+      <Filter>Header Files\net\sockets\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_ajp_base_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_ajp13.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_ajp13_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_http_base_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_httpd_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_event.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_event_handler.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_event_time.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_ievent_handler.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_ievent_owner.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\smtp\smtp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\smtp\smtpd_socket.h">
+      <Filter>Header Files\net\sockets\winrt\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_base.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_base_client_socket.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_callback.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_client.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_event.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_request.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_response.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_server.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_socket.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_tcp_client_socket.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_transaction.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_udp_client_socket.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\asynch_dns\sockets_resolv_server.h">
+      <Filter>Header Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\asynch_dns\sockets_resolv_socket.h">
+      <Filter>Header Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_listen_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_net.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_sctp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_socket_handler.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_stream_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_sync_socket_handler.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_tcp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_tls_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_udp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\zzz_want_to_remove_socket_handler.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\zzz_want_to_remove_socket_handler_base.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\http\sockets_http_client_socket.h">
+      <Filter>Header Files\net\sockets\winrt\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\http\sockets_http_debug_socket.h">
+      <Filter>Header Files\net\sockets\winrt\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\http\sockets_http_get_socket.h">
+      <Filter>Header Files\net\sockets\winrt\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\http\sockets_http_post_socket.h">
+      <Filter>Header Files\net\sockets\winrt\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\http\sockets_http_put_socket.h">
+      <Filter>Header Files\net\sockets\winrt\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\http\sockets_http_request_socket.h">
+      <Filter>Header Files\net\sockets\winrt\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\http\sockets_http_session.h">
+      <Filter>Header Files\net\sockets\winrt\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\http\sockets_http_socket.h">
+      <Filter>Header Files\net\sockets\winrt\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\http\sockets_http_tunnel.h">
+      <Filter>Header Files\net\sockets\winrt\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_logger.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_trace_logger.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_client_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_debug_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_get_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_post_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_put_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_request_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_session.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_socket.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http_tunnel.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\http\sockets_http.h">
+      <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress_archive.cpp">
@@ -5122,138 +5104,6 @@
     <ClCompile Include="net\mail\mail_simple_pop3.cpp">
       <Filter>Source Files\net\mail</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\asynch_dns\sockets_resolv_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\asynch_dns</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\asynch_dns\sockets_resolv_server.cpp">
-      <Filter>Source Files\net\sockets\winrt\asynch_dns</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\basic\sockets_address.cpp">
-      <Filter>Source Files\net\sockets\winrt\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\basic\sockets_net.cpp">
-      <Filter>Source Files\net\sockets\winrt\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\basic\sockets_SctpSocket.cpp">
-      <Filter>Source Files\net\sockets\winrt\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\basic\sockets_SocketHandler.cpp">
-      <Filter>Source Files\net\sockets\winrt\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\basic\sockets_StreamSocket.cpp">
-      <Filter>Source Files\net\sockets\winrt\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\basic\sockets_sync_socket_handler.cpp">
-      <Filter>Source Files\net\sockets\winrt\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\basic\sockets_tcp_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\basic\sockets_tls_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\basic\sockets_udp_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\http\sockets_http_request_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\http\sockets_http_session.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\http\sockets_http_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\http\sockets_http_tunnel.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\http\sockets_HttpClientSocket.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\http\sockets_HttpDebugSocket.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\http\sockets_HttpGetSocket.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\http\sockets_HttpPostSocket.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\http\sockets_HttpPutSocket.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\log\sockets_trace_log.cpp">
-      <Filter>Source Files\net\sockets\winrt\log</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sip\sockets_sip_base.cpp">
-      <Filter>Source Files\net\sockets\winrt\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sip\sockets_sip_base_client_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sip\sockets_sip_callback.cpp">
-      <Filter>Source Files\net\sockets\winrt\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sip\sockets_sip_client.cpp">
-      <Filter>Source Files\net\sockets\winrt\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sip\sockets_sip_request.cpp">
-      <Filter>Source Files\net\sockets\winrt\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sip\sockets_sip_response.cpp">
-      <Filter>Source Files\net\sockets\winrt\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sip\sockets_sip_server.cpp">
-      <Filter>Source Files\net\sockets\winrt\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sip\sockets_sip_tcp_client_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sip\sockets_sip_transaction.cpp">
-      <Filter>Source Files\net\sockets\winrt\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sip\sockets_sip_udp_client_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\smtp\sockets_smtp_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\smtp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\smtp\sockets_smtpd_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\smtp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\timer\sockets_Event.cpp">
-      <Filter>Source Files\net\sockets\winrt\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\timer\sockets_EventHandler.cpp">
-      <Filter>Source Files\net\sockets\winrt\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\timer\sockets_EventTime.cpp">
-      <Filter>Source Files\net\sockets\winrt\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\timer\sockets_IEventOwner.cpp">
-      <Filter>Source Files\net\sockets\winrt\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\webserver\sockets_Ajp13Socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\webserver\sockets_AjpBaseSocket.cpp">
-      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\webserver\sockets_http_base_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\webserver\sockets_httpd_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sockets_include.cpp">
-      <Filter>Source Files\net\sockets\winrt</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sockets_link_in_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sockets_link_out_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt</Filter>
-    </ClCompile>
     <ClCompile Include="net\usermail\usermail_account.cpp">
       <Filter>Source Files\net\usermail</Filter>
     </ClCompile>
@@ -5706,9 +5556,6 @@
     </ClCompile>
     <ClCompile Include="net\sockets\webserver\sockets_http_transaction.cpp">
       <Filter>Source Files\net\sockets\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\sockets_sockets.cpp">
-      <Filter>Source Files\net\sockets\winrt</Filter>
     </ClCompile>
     <ClCompile Include="user\user_bitmap_button.cpp">
       <Filter>Source Files\user</Filter>
@@ -6196,12 +6043,6 @@
     <ClCompile Include="net\http\http_system.cpp">
       <Filter>Source Files\net\http</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\http_file.cpp">
-      <Filter>Source Files\net\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http_memory_file.cpp">
-      <Filter>Source Files\net\sockets</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\sockets_http_batch_buffer.cpp">
       <Filter>Source Files\net\sockets</Filter>
     </ClCompile>
@@ -6238,17 +6079,179 @@
     <ClCompile Include="primitive\primitive_shared_file.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\metrowin\basic\sockets_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\basic</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\base\sockets_base_socket.cpp">
       <Filter>Source Files\net\sockets\base</Filter>
     </ClCompile>
-    <ClCompile Include="net\net_address_base.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
     <ClCompile Include="net\net_address.cpp">
       <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\http\sockets_http_put_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\http\sockets_http_post_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\http\sockets_http_get_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\http\sockets_http_debug_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\http\sockets_http_client_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\http\sockets_http_tunnel.cpp">
+      <Filter>Source Files\net\sockets\winrt\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\http\sockets_http_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\http\sockets_http_session.cpp">
+      <Filter>Source Files\net\sockets\winrt\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\http\sockets_http_request_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_net.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_sync_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_tcp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_tls_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_udp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_sctp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_stream_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_base.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_base_client_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_callback.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_client.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_request.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_response.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_server.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_tcp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_transaction.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_udp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\smtp\sockets_smtp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\smtp\sockets_smtpd_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\timer\sockets_Event.cpp">
+      <Filter>Source Files\net\sockets\winrt\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\timer\sockets_EventHandler.cpp">
+      <Filter>Source Files\net\sockets\winrt\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\timer\sockets_EventTime.cpp">
+      <Filter>Source Files\net\sockets\winrt\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\timer\sockets_IEventOwner.cpp">
+      <Filter>Source Files\net\sockets\winrt\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\webserver\sockets_Ajp13Socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\webserver\sockets_AjpBaseSocket.cpp">
+      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\webserver\sockets_http_base_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\webserver\sockets_httpd_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\base\sockets_base_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_trace_logger.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sockets_application_interface.cpp">
+      <Filter>Source Files\net\sockets\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sockets_include.cpp">
+      <Filter>Source Files\net\sockets\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sockets_link_in_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sockets_link_out_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sockets_sockets.cpp">
+      <Filter>Source Files\net\sockets\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\asynch_dns\sockets_resolv_server.cpp">
+      <Filter>Source Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\asynch_dns\sockets_resolv_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_client_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_debug_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_get_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_post_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_put_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_request_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_session.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_tunnel.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

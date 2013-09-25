@@ -11,7 +11,7 @@ namespace sockets
    public:
 
 
-      virtual void error(base_socket_handler *, base_socket * , const string & strUser, int32_t err, const string & strSystem, ::core::log::e_level elevel = ::core::log::level_warning);
+      virtual void log(base_socket_handler *, base_socket * , const string & strUser, int32_t err, const string & strSystem, ::core::log::e_level elevel = ::core::log::level_warning);
 
 
    };

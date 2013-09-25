@@ -19,6 +19,7 @@ namespace net
 
       m_family    = family;
       m_port      = htons( port );
+      sync_os_service();
 
    }
 
@@ -32,6 +33,11 @@ namespace net
       {
          m_family    = AF_UNSPEC;
       }
+      else
+      {
+         sync_os_address();
+         sync_os_service();
+      }
 
    }
 
@@ -43,6 +49,7 @@ namespace net
 
       set_address(host);
       m_port = htons( port );
+      sync_os_service();
 
    }
 
@@ -57,6 +64,8 @@ namespace net
       m_family             = AF_INET6;
       m_port               = htons( port );
       m_addr6.sin6_addr    = a;
+      sync_os_address();
+      sync_os_service();
 
    }
 
@@ -68,6 +77,11 @@ namespace net
       if(m_family != AF_INET6)
       {
          m_family    = AF_UNSPEC;
+      }
+      else
+      {
+         sync_os_address();
+         sync_os_service();
       }
 
    }
@@ -81,6 +95,8 @@ namespace net
       m_family             = AF_INET;
       m_port               = htons( port );
       m_addr.sin_addr      = a;
+      sync_os_address();
+      sync_os_service();
 
    }
 
@@ -92,6 +108,11 @@ namespace net
       if(m_family != AF_INET)
       {
          m_family    = AF_UNSPEC;
+      }
+      else
+      {
+         sync_os_address();
+         sync_os_service();
       }
 
    }
@@ -230,10 +251,16 @@ namespace net
       if(Sys(get_thread_app()).net().convert(m_addr6.sin6_addr, strAddress))
       {
          m_family = AF_INET6;
+#ifdef METROWIN
+         m_hostname  = ref new ::Windows::Networking::HostName(strAddress);
+#endif
       }
       else if(Sys(get_thread_app()).net().convert(m_addr.sin_addr, strAddress))
       {
          m_family = AF_INET;
+#ifdef METROWIN
+         m_hostname  = ref new ::Windows::Networking::HostName(strAddress);
+#endif
       }
       else
       {
@@ -245,7 +272,7 @@ namespace net
    }
 
 
-   string address::reverse() const
+/*   string address::reverse() const
    {
 
       string tmp;
@@ -254,7 +281,7 @@ namespace net
 
       return tmp;
 
-   }
+   }*/
 
 
 } // namespace net
