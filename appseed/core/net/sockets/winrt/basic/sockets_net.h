@@ -131,17 +131,17 @@ namespace sockets
       */
       string rfc1738_decode(const string & src);
 
-      bool isipv4(const string & str);
+      static bool isipv4(const string & str);
 
-      bool isipv6(const string & str);
+      static bool isipv6(const string & str);
 
-      bool convert(in_addr & addr, const string & psz, int ai_flags = 0);
+      static bool convert(in_addr & addr, const string & psz, int ai_flags = 0);
 
-      bool convert(in6_addr & addr, const string & psz, int ai_flags = 0);
+      static bool convert(in6_addr & addr, const string & psz, int ai_flags = 0);
 
-      bool convert(string & str, const in_addr & addr, int ai_flags = 0);
+      static bool convert(string & str, const in_addr & addr, int ai_flags = 0);
 
-      bool convert(string & str, const in6_addr & addr, int ai_flags = 0);
+      static bool convert(string & str, const in6_addr & addr, int ai_flags = 0);
 
       // use memcmp;
       //int in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
@@ -166,7 +166,7 @@ namespace sockets
 
       bool reverse(string & hostname, const ::net::address & address, int flags = 0);
 
-      int service_port(const string & strName, int ai_flags = 0);
+      static int service_port(const string & strName, int ai_flags = 0);
 
       string service_name(int iPort, int ai_flags = 0);
 

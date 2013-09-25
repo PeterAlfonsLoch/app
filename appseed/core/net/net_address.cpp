@@ -60,7 +60,7 @@ namespace net
       zero(this, sizeof(m_sa));
 
       set_address(host);
-      m_port = Sys(get_thread_app()).net().service_port(strService);
+      m_port = ::sockets::net::service_port(strService);
       sync_os_service();
 
    }
@@ -164,6 +164,17 @@ namespace net
    string address::get_display_number() const
    {
 
+#ifdef METROWIN
+
+      if(!is_ipv4() && !is_ipv6() && m_hostname != nullptr)
+      {
+
+         ((address *) this)->sync_os_address();
+
+      }
+
+#endif
+
       if(is_ipv4())
       {
 
@@ -255,27 +266,69 @@ namespace net
 
    }
 
+
+   void address::sync_os_address()
+   {
+#ifdef METROWIN
+
+      if(m_family == AF_INET || m_family == AF_INET6)
+      {
+         m_hostname  = ref new ::Windows::Networking::HostName(get_display_number());
+      }
+      else if(m_hostname != nullptr)
+      {
+
+         string strDisplayNumber = m_hostname->RawName;
+
+         if(::sockets::net::isipv4(strDisplayNumber))
+         {
+            ::sockets::net::convert(m_addr.sin_addr, strDisplayNumber);
+            m_family = AF_INET;
+         }
+         else if(::sockets::net::isipv6(strDisplayNumber))
+         {
+            ::sockets::net::convert(m_addr6.sin6_addr, strDisplayNumber);
+            m_family = AF_INET;
+         }
+         else
+         {
+              m_family = AF_UNSPEC;
+         }
+
+      }
+#endif
+   }
+   
+   void address::sync_os_service()
+   {
+#ifdef METROWIN
+#endif
+   }
+
+
    bool address::set_address(const string & strAddress)
    {
+
+#ifdef METROWIN
+
+      m_hostname  = ref new ::Windows::Networking::HostName(strAddress);
+
+#else
 
       if(Sys(get_thread_app()).net().convert(m_addr6.sin6_addr, strAddress))
       {
          m_family = AF_INET6;
-#ifdef METROWIN
-         m_hostname  = ref new ::Windows::Networking::HostName(strAddress);
-#endif
       }
       else if(Sys(get_thread_app()).net().convert(m_addr.sin_addr, strAddress))
       {
          m_family = AF_INET;
-#ifdef METROWIN
-         m_hostname  = ref new ::Windows::Networking::HostName(strAddress);
-#endif
       }
       else
       {
          m_family = AF_UNSPEC;
       }
+
+#endif
 
       return m_family != AF_UNSPEC;
 

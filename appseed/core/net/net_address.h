@@ -99,8 +99,8 @@ namespace net
       inline uint32_t GetScopeId();
 #endif
 
-      inline void sync_os_address();
-      inline void sync_os_service();
+      void sync_os_address();
+      void sync_os_service();
 
    };
 
@@ -158,7 +158,11 @@ namespace net
    inline bool address::is_valid() const
    {
 
-      return is_ipv6() || is_ipv4();
+      return is_ipv6() || is_ipv4()
+#ifdef METROWIN
+         || m_hostname != nullptr
+#endif
+         ;
 
    }
 
@@ -209,18 +213,6 @@ namespace net
 
 #endif
 
-   inline void address::sync_os_address()
-   {
-#ifdef METROWIN
-      m_hostname  = ref new ::Windows::Networking::HostName(get_display_number());
-#endif
-   }
-   
-   inline void address::sync_os_service()
-   {
-#ifdef METROWIN
-#endif
-   }
 
 
 } // namespace sockets

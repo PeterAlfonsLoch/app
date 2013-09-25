@@ -26,7 +26,7 @@ using namespace Windows::System::Threading;
 map<HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo> & pendingThreads()
 {
 
-   map<HTHREAD, HTHREAD, PendingThreadInfo,PendingThreadInfo> * pts = new map<HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo>();
+   static map<HTHREAD, HTHREAD, PendingThreadInfo,PendingThreadInfo> * pts = new map<HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo>();
 
    return *pts;
 
@@ -37,7 +37,7 @@ mutex * g_pmutexThreadIdHandleLock = NULL;
 map < DWORD, DWORD, HTHREAD, HTHREAD > & thread_id_handle_map()
 {
 
-   map < DWORD,DWORD, HTHREAD,  HTHREAD > * s_pmap = new map < DWORD, DWORD, HTHREAD, HTHREAD >();
+   static map < DWORD,DWORD, HTHREAD,  HTHREAD > * s_pmap = new map < DWORD, DWORD, HTHREAD, HTHREAD >();
 
    return *s_pmap;
 
@@ -48,7 +48,7 @@ mutex * g_pmutexThreadIdLock = NULL;
 map < HTHREAD,HTHREAD, DWORD, DWORD > & thread_id_map()
 {
 
-   map < HTHREAD, HTHREAD, DWORD, DWORD > * s_pmap = new map < HTHREAD, HTHREAD, DWORD, DWORD >();
+   static map < HTHREAD, HTHREAD, DWORD, DWORD > * s_pmap = new map < HTHREAD, HTHREAD, DWORD, DWORD >();
 
    return *s_pmap;
 
@@ -56,7 +56,7 @@ map < HTHREAD,HTHREAD, DWORD, DWORD > & thread_id_map()
 
 DWORD DwThreadId()
 {
-   DWORD g_dw_thread_id = 0;
+   static DWORD g_dw_thread_id = 0;
 
    if(g_dw_thread_id  <= 0)
       g_dw_thread_id = 1;
@@ -76,7 +76,7 @@ __declspec(thread) HTHREAD currentThread = NULL;
 map < HTHREAD, HTHREAD, ThreadLocalData* ,  ThreadLocalData * > & all_thread_data()
 {
 
-   map < HTHREAD, HTHREAD, ThreadLocalData* ,  ThreadLocalData * > * s_pallthreaddata = new map < HTHREAD, HTHREAD, ThreadLocalData* , ThreadLocalData * >();
+   static map < HTHREAD, HTHREAD, ThreadLocalData* ,  ThreadLocalData * > * s_pallthreaddata = new map < HTHREAD, HTHREAD, ThreadLocalData* , ThreadLocalData * >();
 
    return *s_pallthreaddata;
 
@@ -204,6 +204,10 @@ HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_p
       {
          // Start the thread immediately.
          StartThread(pfn, pv, threadHandle, 0);
+      }
+      if(puiId != NULL)
+      {
+         *puiId =thread_id_map()[threadHandle];
       }
 
       return threadHandle;

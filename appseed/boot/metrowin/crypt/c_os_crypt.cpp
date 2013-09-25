@@ -13,7 +13,7 @@ int crypt_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memor
 
    ::Windows::Storage::Streams::IBuffer ^ bufferOut = wait(provider->UnprotectAsync(bufferIn));
 
-   storageDecrypt.set_os_buffer(bufferOut);
+   storageDecrypt.set_os_crypt_buffer(bufferOut);
 
    return 1;
 
@@ -30,7 +30,7 @@ int crypt_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memor
 
    ::Windows::Storage::Streams::IBuffer ^ bufferOut = wait(provider->ProtectAsync(bufferIn));
 
-   storageEncrypt.set_os_buffer(bufferOut);
+   storageEncrypt.set_os_crypt_buffer(bufferOut);
 
    return 1;
 

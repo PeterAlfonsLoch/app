@@ -332,6 +332,9 @@ public:
 
       g_pmutexTlsData = new mutex;
 
+      os_thread::s_pmutex = new mutex();
+
+      os_thread::s_pptra = new comparable_raw_array < os_thread * > ();
 
 #endif // defined(LINUX) || defined(MACOS) || defined(METROWIN)      
       
@@ -345,9 +348,6 @@ public:
 
       g_pmutexThreadHandleLock = new mutex;
 
-      os_thread::s_pmutex = new mutex();
-
-      os_thread::s_pptra = new array < os_thread * > ();
       
 #endif // defined(LINUX) || defined(MACOS)
       
@@ -389,13 +389,6 @@ public:
       
 #if defined(LINUX) || defined(MACOS)
 
-      delete os_thread::s_pptra;
-
-      os_thread::s_pptra = NULL;
-
-      delete os_thread::s_pmutex;
-
-      os_thread::s_pmutex = NULL;
 
 
 
@@ -416,6 +409,14 @@ public:
 
       
 #if defined(LINUX) || defined(MACOS) || defined(METROWIN)
+
+      delete os_thread::s_pptra;
+
+      os_thread::s_pptra = NULL;
+
+      delete os_thread::s_pmutex;
+
+      os_thread::s_pmutex = NULL;
 
       delete g_pmutexTlsData;
 
