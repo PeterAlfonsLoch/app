@@ -121,6 +121,9 @@
     <Filter Include="Source Files\datetime">
       <UniqueIdentifier>{cf25819c-73e1-4040-97e0-09a48898cae8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\net\NewFilter1">
+      <UniqueIdentifier>{292a4581-88a8-4172-853b-90d0d9a73ce3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dll_main.cpp">
