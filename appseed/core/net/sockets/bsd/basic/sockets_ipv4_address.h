@@ -60,7 +60,7 @@ namespace sockets
       ipv4_address(const ipv4_address & addr);
       ~ipv4_address();
 
-      // ::sockets::address implementation
+      // ::net::address implementation
 
       //operator struct sockaddr *();
       //operator socklen_t();
@@ -79,7 +79,6 @@ namespace sockets
       string Reverse();
 
 
-      bool is_in_net(ipv4_address & addr, ipv4_address & mask);
 
       /** Resolve hostname. */
       //static bool Resolve(sp(base_application) papp, const string & hostname, in_addr& a);
@@ -88,15 +87,14 @@ namespace sockets
       /** Convert address struct to text. */
       //static string Convert(sp(base_application) papp, in_addr& a);
 
-      ipv4_address & operator = (const ipv4_address &);
-
-
-      bool IsEqual(const ipv4_address &) const;
 
       string get_display_number() const;
       string get_canonical_name() const;
 
 
+      void copy(const ipv4_address & address);
+      bool is_in_net(const ipv4_address & addr, const ipv4_address & addrMask) const;
+      bool is_equal(const ipv4_address & address) const;
 
    };
 

@@ -34,7 +34,7 @@ namespace net
       while (true)
       {
 
-         handler.Select(8,0);
+         handler.select(8,0);
 
          if(::get_tick_count() > dwEnd)
             break;

@@ -15,7 +15,7 @@
             state_proxy_ok,
             state_init_ssl,
          };
-         http_tunnel(socket_handler_base & h);
+         http_tunnel(base_socket_handler & h);
          string      m_strProxy;
          int32_t         m_iProxyPort;
          bool        m_bSslTunnel;

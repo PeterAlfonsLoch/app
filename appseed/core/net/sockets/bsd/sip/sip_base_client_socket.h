@@ -50,7 +50,7 @@ namespace sockets
       int32_t m_chunk_state;
       string m_chunk_line;
 
-      sip_base_client_socket(socket_handler_base& );
+      sip_base_client_socket(base_socket_handler& );
       ~sip_base_client_socket();
 
       void OnRawData(char *buf,size_t len);

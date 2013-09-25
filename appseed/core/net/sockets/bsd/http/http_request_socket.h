@@ -45,9 +45,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          string      m_strMethod;
 
 
-         http_request_socket(socket_handler_base & handler);
-         http_request_socket(socket_handler_base & handler, const char * pszMethod, const string & url);
-         http_request_socket(socket_handler_base & handler, const char * pszMethod, const string & host, port_t port, const string & url);
+         http_request_socket(base_socket_handler & handler);
+         http_request_socket(base_socket_handler & handler, const char * pszMethod, const string & url);
+         http_request_socket(base_socket_handler & handler, const char * pszMethod, const string & host, port_t port, const string & url);
          ~http_request_socket();
 
 

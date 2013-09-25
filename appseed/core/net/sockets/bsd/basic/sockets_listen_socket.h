@@ -24,9 +24,9 @@ namespace sockets
 
 
       /** Constructor.
-      \param h socket_handler_base reference
+      \param h base_socket_handler reference
       \param use_creator Optional use of creator (default true) */
-      listen_socket_base(socket_handler_base& h);
+      listen_socket_base(base_socket_handler& h);
    
    
    protected:
@@ -52,7 +52,7 @@ namespace sockets
       \param depth Listen queue depth */
       virtual int32_t Bind(port_t port,int32_t depth = 20);
 
-      virtual int32_t Bind(::sockets::address & ad,int32_t depth);
+      virtual int32_t Bind(::net::address paddress,int32_t depth);
 
       /** Bind and listen to any interface, with optional protocol.
       \param port Port (0 is random)
@@ -104,7 +104,7 @@ namespace sockets
       \param ad Interface address
       \param protocol Network protocol
       \param depth Listen queue depth */
-      virtual int32_t Bind(::sockets::address & ad,const string & protocol,int32_t depth);
+      virtual int32_t Bind(::net::address paddress,const string & protocol,int32_t depth);
 
       /** Return assigned port number. */
 //         port_t GetPort()
@@ -145,10 +145,11 @@ namespace sockets
 
 
       /** Constructor.
-      \param h socket_handler_base reference
+      \param h base_socket_handler reference
       \param use_creator Optional use of creator (default true) */
-      listen_socket(socket_handler_base& h,bool use_creator = true) : 
+      listen_socket(base_socket_handler& h,bool use_creator = true) : 
          element(h.get_app()), 
+         base_socket(h),
          socket(h),
          listen_socket_base(h),
          m_bHasCreate(false),
@@ -160,7 +161,7 @@ namespace sockets
 
             m_creator = new LISTENER(h);
 
-            socket * plistener = m_creator->create();
+            base_socket * plistener = m_creator->create();
 
             if(plistener != NULL)
             {

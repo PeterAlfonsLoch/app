@@ -1,6 +1,12 @@
 #pragma once
 
 
+// Note: afxData.cxBorder and afxData.cyBorder aren't used anymore
+#define CX_BORDER   1
+#define CY_BORDER   1
+
+
+
 namespace user
 {
 

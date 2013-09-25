@@ -1,32 +1,3 @@
-/** \file udp_socket.cpp
- **   \date  2004-02-13
- **   \author grymse@alhem.net
-**/
-/*
-Copyright (C) 2004-2007  Anders Hedstrom
-
-This library is made available under the terms of the GNU GPL.
-
-If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about
-the closed-source license agreement for the C++ sockets library,
-please visit http://www.alhem.net/Sockets/license.html and/or
-email license@alhem.net.
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*/
 #include "framework.h"
 
 
@@ -34,7 +5,10 @@ namespace sockets
 {
 
 
-   udp_socket::udp_socket(socket_handler_base& h, int32_t ibufsz, bool ipv6, int32_t retries) : socket(h)
+   udp_socket::udp_socket(base_socket_handler& h, int32_t ibufsz, bool ipv6, int32_t retries) : 
+      element(h.get_app())
+      ,base_socket(h)
+      ,socket(h)
    , m_ibuf(new char[ibufsz])
    , m_ibufsz(ibufsz)
    , m_bind_ok(false)
@@ -92,23 +66,23 @@ namespace sockets
 
    int32_t udp_socket::Bind(in_addr a, port_t &port, int32_t range)
    {
-      address ad(get_app(), a, port);
+      ::net::address ad(get_app(), a, port);
       return Bind(ad, range);
    }
 
 
    int32_t udp_socket::Bind(in6_addr a, port_t &port, int32_t range)
    {
-      address ad(get_app(), a, port);
+      ::net::address ad(get_app(), a, port);
       return Bind(ad, range);
    }
 
 
-   int32_t udp_socket::Bind(::sockets::address & ad, int32_t range)
+   int32_t udp_socket::Bind(::net::address ad, int32_t range)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
-         attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
+         attach(CreateSocket(ad.get_bsd_family(), SOCK_DGRAM, "udp"));
       }
       if (GetSocket() != INVALID_SOCKET)
       {
@@ -122,7 +96,7 @@ namespace sockets
          }
          if (n == -1)
          {
-            Handler().LogError(this, "bind", Errno, StrError(Errno), ::core::log::level_fatal);
+            log("bind", Errno, StrError(Errno), ::core::log::level_fatal);
             SetCloseAndDelete();
             throw simple_exception(get_app(), "bind() failed for udp_socket, port:range: " + ::str::from(ad.get_service_number()) + ":" + ::str::from(range));
             return -1;
@@ -138,14 +112,14 @@ namespace sockets
    /** if you wish to use Send, first open a connection */
    bool udp_socket::open(in_addr l, port_t port)
    {
-      address ad(get_app(), l, port);
+      ::net::address ad(get_app(), l, port);
       return open(ad);
    }
 
 
    bool udp_socket::open(const string & host, port_t port)
    {
-      address ad(get_app(), host, port);
+      ::net::address ad(get_app(), host, port);
       if(!ad.is_valid())
          return false;
       return open(ad);
@@ -154,23 +128,23 @@ namespace sockets
 
    bool udp_socket::open(struct in6_addr& a, port_t port)
    {
-      address ad(get_app(), a, port);
+     ::net:: address ad(get_app(), a, port);
       return open(ad);
    }
 
 
-   bool udp_socket::open(::sockets::address & ad)
+   bool udp_socket::open(::net::address ad)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
-         attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
+         attach(CreateSocket(ad.get_bsd_family(), SOCK_DGRAM, "udp"));
       }
       if (GetSocket() != INVALID_SOCKET)
       {
          SetNonblocking(true);
          if (connect(GetSocket(), ad.sa(), ad.sa_len()) == -1)
          {
-            Handler().LogError(this, "connect", Errno, StrError(Errno), ::core::log::level_fatal);
+            log("connect", Errno, StrError(Errno), ::core::log::level_fatal);
             SetCloseAndDelete();
             return false;
          }
@@ -213,35 +187,35 @@ namespace sockets
    /** send to specified address */
    void udp_socket::SendToBuf(const string & h, port_t p, const char *data, int32_t len, int32_t flags)
    {
-      SendToBuf(address(get_app(), h, p), data, len, flags);
+      SendToBuf(::net::address(get_app(), h, p), data, len, flags);
    }
 
 
    /** send to specified address */
    void udp_socket::SendToBuf(const in_addr & a, port_t p, const char *data, int32_t len, int32_t flags)
    {
-      SendToBuf(address(get_app(), a, p), data, len, flags);
+      SendToBuf(::net::address(get_app(), a, p), data, len, flags);
    }
 
 
    void udp_socket::SendToBuf(const in6_addr & a, port_t p, const char *data, int32_t len, int32_t flags)
    {
-      SendToBuf(address(get_app(), a, p), data, len, flags);
+      SendToBuf(::net::address(get_app(), a, p), data, len, flags);
    }
 
 
-   void udp_socket::SendToBuf(const ::sockets::address & ad, const char *data, int32_t len, int32_t flags)
+   void udp_socket::SendToBuf(const ::net::address ad, const char *data, int32_t len, int32_t flags)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
-         attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
+         attach(CreateSocket(ad.get_bsd_family(), SOCK_DGRAM, "udp"));
       }
       if (GetSocket() != INVALID_SOCKET)
       {
          SetNonblocking(true);
          if ((m_last_size_written = sendto(GetSocket(), data, len, flags, ad.sa(), (int32_t) ad.sa_len())) == -1)
          {
-            Handler().LogError(this, "sendto", Errno, StrError(Errno), ::core::log::level_error);
+            log("sendto", Errno, StrError(Errno), ::core::log::level_error);
          }
       }
    }
@@ -265,7 +239,7 @@ namespace sockets
    }
 
 
-   void udp_socket::SendTo(::sockets::address & ad, const string & str, int32_t flags)
+   void udp_socket::SendTo(::net::address ad, const string & str, int32_t flags)
    {
       SendToBuf(ad, str, (int32_t)str.get_length(), flags);
    }
@@ -278,7 +252,7 @@ namespace sockets
       if (!IsConnected())
       {
 
-         Handler().LogError(this, "write", 0, "not connected", ::core::log::level_error);
+         log("write", 0, "not connected", ::core::log::level_error);
 
          return;
 
@@ -287,7 +261,7 @@ namespace sockets
       if ((m_last_size_written = send(GetSocket(), (const char *) data, (int32_t)len, m_iWriteFlags)) == -1)
       {
 
-         Handler().LogError(this, "write", Errno, StrError(Errno), ::core::log::level_error);
+         log("write", Errno, StrError(Errno), ::core::log::level_error);
 
       }
 
@@ -392,7 +366,7 @@ namespace sockets
    #else
                if (Errno != EWOULDBLOCK)
    #endif
-                  Handler().LogError(this, "recvfrom", Errno, StrError(Errno), ::core::log::level_error);
+                  log("recvfrom", Errno, StrError(Errno), ::core::log::level_error);
             }
             return;
          }
@@ -402,7 +376,7 @@ namespace sockets
          {
             if (sa_len != sizeof(sa))
             {
-               Handler().LogError(this, "recvfrom", 0, "unexpected address struct size", ::core::log::level_warning);
+               log("recvfrom", 0, "unexpected address struct size", ::core::log::level_warning);
             }
             this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
             if (!q--)
@@ -417,7 +391,7 @@ namespace sockets
    #else
             if (Errno != EWOULDBLOCK)
    #endif
-               Handler().LogError(this, "recvfrom", Errno, StrError(Errno), ::core::log::level_error);
+               log("recvfrom", Errno, StrError(Errno), ::core::log::level_error);
          }
          return;
       }
@@ -444,7 +418,7 @@ namespace sockets
    #else
             if (Errno != EWOULDBLOCK)
    #endif
-               Handler().LogError(this, "recvfrom", Errno, StrError(Errno), ::core::log::level_error);
+               log("recvfrom", Errno, StrError(Errno), ::core::log::level_error);
          }
          return;
       }
@@ -454,7 +428,7 @@ namespace sockets
       {
          if (sa_len != sizeof(sa))
          {
-            Handler().LogError(this, "recvfrom", 0, "unexpected address struct size", ::core::log::level_warning);
+            log("recvfrom", 0, "unexpected address struct size", ::core::log::level_warning);
          }
          this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
          if (!q--)
@@ -469,7 +443,7 @@ namespace sockets
    #else
          if (Errno != EWOULDBLOCK)
    #endif
-            Handler().LogError(this, "recvfrom", Errno, StrError(Errno), ::core::log::level_error);
+            log("recvfrom", Errno, StrError(Errno), ::core::log::level_error);
       }
    }
 
@@ -487,14 +461,14 @@ namespace sockets
       {
          if (setsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *) &one, sizeof(one)) == -1)
          {
-            Handler().LogError(this, "SetBroadcast", Errno, StrError(Errno), ::core::log::level_warning);
+            log("SetBroadcast", Errno, StrError(Errno), ::core::log::level_warning);
          }
       }
       else
       {
          if (setsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *) &zero, sizeof(zero)) == -1)
          {
-            Handler().LogError(this, "SetBroadcast", Errno, StrError(Errno), ::core::log::level_warning);
+            log("SetBroadcast", Errno, StrError(Errno), ::core::log::level_warning);
          }
       }
    }
@@ -511,7 +485,7 @@ namespace sockets
       }
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *)&is_broadcast, &size) == -1)
       {
-         Handler().LogError(this, "IsBroadcast", Errno, StrError(Errno), ::core::log::level_warning);
+         log("IsBroadcast", Errno, StrError(Errno), ::core::log::level_warning);
       }
       return is_broadcast != 0;
    }
@@ -525,7 +499,7 @@ namespace sockets
       }
       if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(int32_t)) == -1)
       {
-         Handler().LogError(this, "SetMulticastTTL", Errno, StrError(Errno), ::core::log::level_warning);
+         log("SetMulticastTTL", Errno, StrError(Errno), ::core::log::level_warning);
       }
    }
 
@@ -541,7 +515,7 @@ namespace sockets
       }
       if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, &size) == -1)
       {
-         Handler().LogError(this, "GetMulticastTTL", Errno, StrError(Errno), ::core::log::level_warning);
+         log("GetMulticastTTL", Errno, StrError(Errno), ::core::log::level_warning);
       }
       return ttl;
    }
@@ -558,14 +532,14 @@ namespace sockets
          int32_t val = x ? 1 : 0;
          if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&val, sizeof(int32_t)) == -1)
          {
-            Handler().LogError(this, "SetMulticastLoop", Errno, StrError(Errno), ::core::log::level_warning);
+            log("SetMulticastLoop", Errno, StrError(Errno), ::core::log::level_warning);
          }
          return;
       }
       int32_t val = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(int32_t)) == -1)
       {
-         Handler().LogError(this, "SetMulticastLoop", Errno, StrError(Errno), ::core::log::level_warning);
+         log("SetMulticastLoop", Errno, StrError(Errno), ::core::log::level_warning);
       }
    }
 
@@ -582,7 +556,7 @@ namespace sockets
          socklen_t size = sizeof(int32_t);
          if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
          {
-            Handler().LogError(this, "IsMulticastLoop", Errno, StrError(Errno), ::core::log::level_warning);
+            log("IsMulticastLoop", Errno, StrError(Errno), ::core::log::level_warning);
          }
          return is_loop ? true : false;
       }
@@ -590,7 +564,7 @@ namespace sockets
       socklen_t size = sizeof(int32_t);
       if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
       {
-         Handler().LogError(this, "IsMulticastLoop", Errno, StrError(Errno), ::core::log::level_warning);
+         log("IsMulticastLoop", Errno, StrError(Errno), ::core::log::level_warning);
       }
       return is_loop ? true : false;
    }
@@ -612,7 +586,7 @@ namespace sockets
             x.ipv6mr_interface = if_index;
             if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
             {
-               Handler().LogError(this, "AddMulticastMembership", Errno, StrError(Errno), ::core::log::level_warning);
+               log("AddMulticastMembership", Errno, StrError(Errno), ::core::log::level_warning);
             }
          }
          return;
@@ -627,7 +601,7 @@ namespace sockets
    //      x.imr_ifindex = if_index;
          if (setsockopt(GetSocket(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
          {
-            Handler().LogError(this, "AddMulticastMembership", Errno, StrError(Errno), ::core::log::level_warning);
+            log("AddMulticastMembership", Errno, StrError(Errno), ::core::log::level_warning);
          }
       }
    }
@@ -649,7 +623,7 @@ namespace sockets
             x.ipv6mr_interface = if_index;
             if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
             {
-               Handler().LogError(this, "DropMulticastMembership", Errno, StrError(Errno), ::core::log::level_warning);
+               log("DropMulticastMembership", Errno, StrError(Errno), ::core::log::level_warning);
             }
          }
          return;
@@ -664,7 +638,7 @@ namespace sockets
    //      x.imr_ifindex = if_index;
          if (setsockopt(GetSocket(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
          {
-            Handler().LogError(this, "DropMulticastMembership", Errno, StrError(Errno), ::core::log::level_warning);
+            log("DropMulticastMembership", Errno, StrError(Errno), ::core::log::level_warning);
          }
       }
    }
@@ -678,12 +652,12 @@ namespace sockets
       }
       if (!IsIpv6())
       {
-         Handler().LogError(this, "SetMulticastHops", 0, "Ipv6 only", ::core::log::level_error);
+         log("SetMulticastHops", 0, "Ipv6 only", ::core::log::level_error);
          return;
       }
       if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(int32_t)) == -1)
       {
-         Handler().LogError(this, "SetMulticastHops", Errno, StrError(Errno), ::core::log::level_warning);
+         log("SetMulticastHops", Errno, StrError(Errno), ::core::log::level_warning);
       }
    }
 
@@ -696,14 +670,14 @@ namespace sockets
       }
       if (!IsIpv6())
       {
-         Handler().LogError(this, "SetMulticastHops", 0, "Ipv6 only", ::core::log::level_error);
+         log("SetMulticastHops", 0, "Ipv6 only", ::core::log::level_error);
          return -1;
       }
       int32_t hops = 0;
       socklen_t size = sizeof(int32_t);
       if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, &size) == -1)
       {
-         Handler().LogError(this, "GetMulticastHops", Errno, StrError(Errno), ::core::log::level_warning);
+         log("GetMulticastHops", Errno, StrError(Errno), ::core::log::level_warning);
       }
       return hops;
    }

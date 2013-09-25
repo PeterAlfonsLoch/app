@@ -155,7 +155,7 @@ namespace sockets
 
       string Sa2String(sockaddr * psa);
 
-      //::sockets::address CreateAddress(sockaddr * psa, socklen_t sa_len);
+      //::net::address CreateAddress(sockaddr * psa, socklen_t sa_len);
 
       bool reverse(sockaddr * psa, socklen_t sa_len, string & hostname, int32_t flags = 0);
 

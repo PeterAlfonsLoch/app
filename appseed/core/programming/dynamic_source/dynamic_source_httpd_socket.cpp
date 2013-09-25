@@ -7,6 +7,7 @@ namespace dynamic_source
 
    httpd_socket::httpd_socket(::sockets::base_socket_handler& h) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -19,7 +20,8 @@ namespace dynamic_source
 
    httpd_socket::httpd_socket(const httpd_socket& s) :
       element(s.get_app()),
-      socket(s.m_handler),
+      base_socket(s),
+      socket(s),
       stream_socket(s),
       tcp_socket(s),
       ::sockets::httpd_socket(s)

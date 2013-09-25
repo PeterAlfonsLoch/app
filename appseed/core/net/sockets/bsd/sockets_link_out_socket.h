@@ -30,7 +30,7 @@ namespace sockets
    {
    public:
       
-      link_out_socket(socket_handler_base & h);
+      link_out_socket(base_socket_handler & h);
       virtual ~link_out_socket();
 
       virtual void on_read(const void * pdata, ::primitive::memory_size n);

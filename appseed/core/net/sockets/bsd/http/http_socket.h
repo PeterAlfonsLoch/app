@@ -37,7 +37,7 @@
          bool                 m_bOnlyHeaders;
 
 
-         http_socket(socket_handler_base& );
+         http_socket(base_socket_handler& );
          ~http_socket();
 
          void OnRawData(char *buf,size_t len);

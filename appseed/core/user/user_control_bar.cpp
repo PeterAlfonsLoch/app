@@ -291,8 +291,8 @@ namespace user
       // handle CBRS_FLYBY style (status bar flyby help)
       if (((m_dwStyle & CBRS_FLYBY) ||
          message == WM_LBUTTONDOWN || message == WM_LBUTTONUP) &&
-         ((message >= WM_MOUSEFIRST && message <= WM_MOUSELAST) ||
-          (message >= WM_NCMOUSEFIRST && message <= WM_NCMOUSELAST)))
+         ((message >= WM_MOUSEFIRST && message <= WM_MOUSELAST)))
+//          (message >= WM_NCMOUSEFIRST && message <= WM_NCMOUSELAST)))
       {
    //      __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
 
@@ -300,8 +300,9 @@ namespace user
          point point;
          System.get_cursor_pos(&point);
          ScreenToClient(&point);
-         TOOLINFO ti; memset(&ti, 0, sizeof(TOOLINFO));
-         ti.cbSize = sizeof(__OLDTOOLINFO);
+//         TOOLINFO ti; 
+         //memset(&ti, 0, sizeof(TOOLINFO));
+         //ti.cbSize = sizeof(__OLDTOOLINFO);
       }
 #else
 //      throw todo(get_app());

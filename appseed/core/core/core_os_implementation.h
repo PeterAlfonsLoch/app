@@ -81,10 +81,6 @@ extern CLASS_DECL_ca2 AUX_DATA afxData;*/
 
 
 
-// Note: afxData.cxBorder and afxData.cyBorder aren't used anymore
-#define CX_BORDER   1
-#define CY_BORDER   1
-
 // states for Shift+F1 hep mode
 #define HELP_INACTIVE   0   // not in Shift+F1 help mode (must be 0)
 #define HELP_ACTIVE     1   // in Shift+F1 help mode (non-zero)
@@ -136,12 +132,6 @@ typedef struct tag__OLDTOOLINFO {
 // special _ ::user::window class name mangling
 
 
-#define __WNDCLASS(s)    "ca2" _T(s)
-#define __WND             __WNDCLASS("Wnd")
-#define __WNDCONTROLBAR   __WNDCLASS("ControlBar")
-#define __WNDMDIFRAME     __WNDCLASS("MDIFrame")
-#define __WNDFRAMEORVIEW  __WNDCLASS("FrameOrView")
-#define __WNDOLECONTROL   __WNDCLASS("OleControl")
 
 // dialog/commdlg hook procs
 CLASS_DECL_ca2 int_ptr CALLBACK __dialog_procedure(oswindow, UINT, WPARAM, LPARAM);
@@ -207,35 +197,6 @@ int32_t c_cdecl __critical_new_handler(size_t nSize);
 #endif
 
 
-/////////////////////////////////////////////////////////////////////////////
-// locale-invariant comparison helpers till CRT gets that support
-inline int32_t __invariant_stricmp(const char *pszLeft, const char *pszRight)
-{
-#ifdef WINDOWSEX
-    return ::CompareStringA(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),
-                            NORM_IGNORECASE,
-                            pszLeft,
-                            -1,
-                            pszRight,
-                            -1)-CSTR_EQUAL;
-#else
-   return stricmp_dup(pszLeft, pszRight);
-#endif
-}
-
-inline int32_t __invariant_stricmp(const wchar_t *pwszLeft, const wchar_t *pwszRight)
-{
-#ifdef WINDOWSEX
-    return ::CompareStringW(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),
-                            NORM_IGNORECASE,
-                            pwszLeft,
-                            -1,
-                            pwszRight,
-                            -1)-CSTR_EQUAL;
-#else
-   return wcsicmp_dup(pwszLeft, pwszRight);
-#endif
-}
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -256,13 +217,6 @@ extern resource_exception _simpleResourceException;
 #define WM_NCMOUSELAST  WM_NCMBUTTONDBLCLK
 
 
-/////////////////////////////////////////////////////////////////////////////
-// Portability abstractions
-
-#define __set_dialog_control_id(oswindow, nID)     SetWindowLong(oswindow, GWL_ID, nID)
-#define __set_dialog_control_id_(oswindow, nID)     oswindow->SetWindowLong(GWL_ID, nID)
-#define __get_dialog_control_id(oswindow)         ((UINT)(WORD)::GetDlgCtrlID(oswindow))
-#define __get_dialog_control_id_(oswindow)         ((UINT)(WORD)oswindow->GetDlgCtrlId())
 
 // misc helpers
 CLASS_DECL_ca2 void __get_root_path(const char * lpszPath, string & strRoot);

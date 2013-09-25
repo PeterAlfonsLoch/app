@@ -39,7 +39,7 @@ namespace sockets
       } reason_t;
 
    public:
-      smtpd_socket(socket_handler_base&);
+      smtpd_socket(base_socket_handler&);
 
       void OnAccept();
       void OnLine(const string &);

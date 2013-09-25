@@ -1085,7 +1085,7 @@ namespace sockets
       return m_resolver_port;
    }
 
-   socket_handler_base::PoolSocket *socket_handler::FindConnection(int type,const string & protocol,sockets::address& ad)
+   base_socket_handler::PoolSocket *socket_handler::FindConnection(int type,const string & protocol,sockets::address& ad)
    {
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)

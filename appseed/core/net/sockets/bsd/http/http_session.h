@@ -19,7 +19,7 @@
          bool        m_bRequestComplete;
 
 
-         http_session(socket_handler_base &, const string & protocol, const string & host);
+         http_session(base_socket_handler &, const string & protocol, const string & host);
          ~http_session();
 
 

@@ -34,7 +34,7 @@ namespace sockets
 {
 
 
-   class StdLog;
+   class logger;
    class IEventOwner;
    class Event;
    class tcp_socket;
@@ -60,8 +60,8 @@ namespace sockets
    public:
 
 
-      EventHandler(sp(base_application) papp, StdLog * = NULL);
-      EventHandler(sp(base_application) papp, mutex &,StdLog * = NULL);
+      EventHandler(sp(base_application) papp, logger * = NULL);
+      EventHandler(sp(base_application) papp, mutex &,logger * = NULL);
       ~EventHandler();
 
       bool GetTimeUntilNextEvent(struct timeval *tv);

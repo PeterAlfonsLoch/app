@@ -121,30 +121,16 @@ namespace sockets
       string                     m_strInitSSLClientContext;
 
       /** Constructor with standard values on input/output buffers. */
-      tcp_socket(socket_handler_base& );
+      tcp_socket(base_socket_handler& );
       /** Constructor with custom values for i/o buffer.
-      \param h socket_handler_base reference
+      \param h base_socket_handler reference
       \param isize Input buffer size
       \param osize Output buffer size */
-      tcp_socket(socket_handler_base& h,size_t isize,size_t osize);
+      tcp_socket(base_socket_handler& h,size_t isize,size_t osize);
       ~tcp_socket();
 
-      /** open a connection to a remote server.
-      If you want your socket to connect to a server,
-      always call open before add'ing a socket to the sockethandler.
-      If not, the connection attempt will not be monitored by the
-      socket handler...
-      \param ip IP address
-      \param port Port number
-      \param skip_socks Do not use socks4 even if configured */
-      bool open(in_addr ip,port_t port,bool skip_socks = false);
-      /** open connection.
-      \param ip Ipv6 address
-      \param port Port number
-      \param skip_socks Do not use socks4 even if configured */
-      bool open(in6_addr ip,port_t port,bool skip_socks = false);
-      bool open(::sockets::address &,bool skip_socks = false);
-      bool open(::sockets::address &,::sockets::address & bind_address,bool skip_socks = false);
+      bool open(::net::address paddress, bool skip_socks = false);
+      bool open(::net::address paddress, ::net::address paddressBind,bool skip_socks = false);
       /** open connection.
       \param host Hostname
       \param port Port number */

@@ -5,8 +5,9 @@ namespace sockets
 {
 
 
-   http_socket::http_socket(socket_handler_base& h) :
+   http_socket::http_socket(base_socket_handler& h) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -469,7 +470,7 @@ namespace sockets
    #ifdef HAVE_OPENSSL
          EnableSSL();
    #else
-         Handler().LogError(this, "url_this", -1, "SSL not available", ::core::log::level_warning);
+         log("url_this", -1, "SSL not available", ::core::log::level_warning);
    #endif
          port = 443;
       }

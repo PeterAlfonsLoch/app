@@ -70,7 +70,7 @@ namespace sockets
    #ifdef _MSC_VER
    #pragma warning(disable:4355)
    #endif
-   tcp_socket::tcp_socket(socket_handler_base& h) :
+   tcp_socket::tcp_socket(base_socket_handler& h) :
    ::ca::ca(h.get_app()),
    socket(h),
    stream_socket(h)
@@ -104,7 +104,7 @@ namespace sockets
    #ifdef _MSC_VER
    #pragma warning(disable:4355)
    #endif
-   tcp_socket::tcp_socket(socket_handler_base& h,size_t isize,size_t osize) :
+   tcp_socket::tcp_socket(base_socket_handler& h,size_t isize,size_t osize) :
    ::ca::ca(h.get_app()),
    socket(h),
    stream_socket(h)
@@ -199,14 +199,14 @@ namespace sockets
       // check for pooling
       if (Handler().PoolEnabled())
       {
-         socket_handler_base::PoolSocket *pools = Handler().FindConnection(SOCK_STREAM, "tcp", ad);
+         base_socket_handler::PoolSocket *pools = Handler().FindConnection(SOCK_STREAM, "tcp", ad);
          if (pools)
          {
             CopyConnection( pools );
             delete pools;
 
             SetIsClient();
-            SetCallOnConnect(); // socket_handler_base must call OnConnect
+            SetCallOnConnect(); // base_socket_handler must call OnConnect
             Handler().LogError(this, "SetCallOnConnect", 0, "Found pooled connection", ::gen::log::level::info);
             return true;
          }
@@ -288,7 +288,7 @@ namespace sockets
       else
       {
          Attach(s);
-         SetCallOnConnect(); // socket_handler_base must call OnConnect
+         SetCallOnConnect(); // base_socket_handler must call OnConnect
       }
 
       // 'true' means connected or connecting(not yet connected)

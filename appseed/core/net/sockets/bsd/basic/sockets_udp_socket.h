@@ -57,10 +57,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int m_iWriteFlags;
 
          /** Constructor.
-         \param h socket_handler_base reference
+         \param h base_socket_handler reference
          \param ibufsz Maximum size of receive message (extra bytes will be truncated)
          \param ipv6 'true' if this is an ipv6 socket */
-         udp_socket(socket_handler_base& h,int32_t ibufsz = 16384,bool ipv6 = false, int32_t retries = 0);
+         udp_socket(base_socket_handler& h,int32_t ibufsz = 16384,bool ipv6 = false, int32_t retries = 0);
          ~udp_socket();
 
          /** Called when incoming data has been received.
@@ -106,7 +106,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param ad socket address
          \param range Port range
          \return 0 if bind succeeded */
-         int32_t Bind(::sockets::address & addr, int32_t range = 1);
+         int32_t Bind(::net::address paddress, int32_t range = 1);
 
          /** Define remote host.
          \param l Address of remote host
@@ -126,7 +126,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Define remote host.
          \param ad socket address
          \return true if successful */
-         bool open(::sockets::address & ad);
+         bool open(::net::address paddress);
 
          /** Send to specified host */
          void SendToBuf(const string & ,port_t,const char *data,int32_t len,int32_t flags = 0);
@@ -135,7 +135,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Send to specified ipv6 address */
          void SendToBuf(const in6_addr & a,port_t,const char *data,int32_t len,int32_t flags = 0);
          /** Send to specified socket address */
-         void SendToBuf(const ::sockets::address & ad,const char *data,int32_t len,int32_t flags = 0);
+         void SendToBuf(const ::net::address paddress,const char *data,int32_t len,int32_t flags = 0);
 
          /** Send string to specified host */
          void SendTo(const string &,port_t,const string &,int32_t flags = 0);
@@ -144,7 +144,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Send string to specified ipv6 address */
          void SendTo(in6_addr,port_t,const string &,int32_t flags = 0);
          /** Send string to specified socket address */
-         void SendTo(::sockets::address & ad,const string &,int32_t flags = 0);
+         void SendTo(const ::net::address paddress,const string &,int32_t flags = 0);
 
          /** Send to connected address */
          using ::sockets::socket::write;
@@ -180,7 +180,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void SetTimestamp(bool = true);
 
       protected:
-         udp_socket(const udp_socket& s) : socket(s) {}
+         udp_socket(const udp_socket& s) : base_socket(s), socket(s) {}
          void OnRead();
 #if defined(LINUX) || defined(MACOSX)
          /** This method emulates socket recvfrom, but uses messages so we can get the timestamp */

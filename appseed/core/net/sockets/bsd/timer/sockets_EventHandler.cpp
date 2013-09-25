@@ -34,14 +34,14 @@ namespace sockets
 {
 
 
-   EventHandler::EventHandler(sp(base_application) papp, StdLog *p) :
+   EventHandler::EventHandler(sp(base_application) papp, logger *p) :
       element(papp),
       socket_handler(papp, p), m_quit(false), m_socket(NULL)
    {
    }
 
 
-   EventHandler::EventHandler(sp(base_application) papp, mutex & m,StdLog *p) :
+   EventHandler::EventHandler(sp(base_application) papp, mutex & m,logger *p) :
       element(papp),
       socket_handler(papp, m, p),
       m_quit(false), m_socket(NULL)
@@ -165,12 +165,12 @@ namespace sockets
          struct timeval tv;
          if (GetTimeUntilNextEvent(&tv))
          {
-            Select(&tv);
+            select(&tv);
             CheckEvents();
          }
          else
          {
-            Select();
+            select();
          }
       }
    }

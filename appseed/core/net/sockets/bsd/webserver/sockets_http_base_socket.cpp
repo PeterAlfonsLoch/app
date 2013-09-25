@@ -10,8 +10,9 @@ namespace sockets
    #endif
 
 
-   http_base_socket::http_base_socket(socket_handler_base& h) :
+   http_base_socket::http_base_socket(base_socket_handler& h) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -21,7 +22,8 @@ namespace sockets
 
    http_base_socket::http_base_socket(const http_base_socket& s) :
       element(((http_socket&) s).get_app()),
-      socket(s.m_handler),
+      base_socket(s),
+      socket(s),
       stream_socket(s),
       tcp_socket(s),
       http_socket(s)

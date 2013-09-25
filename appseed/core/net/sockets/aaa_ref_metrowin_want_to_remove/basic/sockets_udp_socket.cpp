@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
-   udp_socket::udp_socket(socket_handler_base& h, int ibufsz, bool ipv6, int retries) : socket(h)
+   udp_socket::udp_socket(base_socket_handler& h, int ibufsz, bool ipv6, int retries) : socket(h)
 #ifndef METROWIN
    , m_ibuf(new char[ibufsz])
    , m_ibufsz(ibufsz)

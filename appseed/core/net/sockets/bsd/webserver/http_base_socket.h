@@ -33,7 +33,7 @@ namespace sockets
    public:
 
 
-      http_base_socket(socket_handler_base& h);
+      http_base_socket(base_socket_handler& h);
       ~http_base_socket();
 
 

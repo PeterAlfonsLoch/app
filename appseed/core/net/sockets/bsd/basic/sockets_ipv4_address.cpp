@@ -1,25 +1,3 @@
-/**
- **   \file ipv4_address.cpp
- **   \date  2006-09-21
- **   \author grymse@alhem.net
-**/
-/*
-Copyright (C) 2007  Anders Hedstrom
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*/
 #include "framework.h"
 
 
@@ -175,7 +153,7 @@ namespace sockets
    }
 
 
-/*   bool ipv4_address::operator==(::sockets::address & a)
+/*   bool ipv4_address::operator==(::net::address a)
    {
       if (a.GetFamily() != GetFamily())
          return false;
@@ -197,7 +175,7 @@ namespace sockets
       return tmp;
    }
 
-   bool ipv4_address::is_in_net(ipv4_address & addr, ipv4_address & mask)
+   bool ipv4_address::is_in_net(const ipv4_address & addr, const ipv4_address & mask) const
    {
 #ifdef WINDOWS
       return (addr.m_addr.sin_addr.S_un.S_addr & mask.m_addr.sin_addr.S_un.S_addr) == (m_addr.sin_addr.S_un.S_addr & mask.m_addr.sin_addr.S_un.S_addr);
@@ -206,17 +184,16 @@ namespace sockets
 #endif
    }
 
-   ipv4_address & ipv4_address::operator = (const ipv4_address & addr)
+   void ipv4_address::copy(const ipv4_address & addr)
    {
       if(&addr != this)
       {
          m_addr = addr.m_addr;
          m_bValid = addr.m_bValid;
       }
-      return *this;
    }
 
-   bool ipv4_address::IsEqual(const ipv4_address &a ) const
+   bool ipv4_address::is_equal(const ipv4_address &a ) const
    {
 
       if(!m_bValid || !a.m_bValid)
@@ -241,3 +218,7 @@ namespace sockets
 
 
 } // namespace sockets
+
+
+
+

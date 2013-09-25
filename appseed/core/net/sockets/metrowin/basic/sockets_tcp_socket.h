@@ -142,8 +142,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param port Port number
          \param skip_socks Do not use socks4 even if configured */
          //bool open(in6_addr ip,port_t port,bool skip_socks = false);
-         bool open(const ::net::address_base * paddr, bool skip_socks = false);
-         bool open(const ::net::address_base * paddr, const ::net::address_sp & bind_address, bool skip_socks = false);
+         bool open(const ::net::address_sp paddr, bool skip_socks = false);
+         bool open(const ::net::address_sp paddr, const ::net::address_sp & bind_address, bool skip_socks = false);
          /** open connection.
          \param host Hostname
          \param port Port number */

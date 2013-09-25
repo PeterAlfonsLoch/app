@@ -1,11 +1,47 @@
 #include "framework.h"
 
-/*
 
-namespace sockets
+
+namespace net
 {
 
 
+   e_family address_base::get_family() const
+   {
+      
+      if(!is_valid())
+         return family_none;
+      
+      if(is_ipv4())
+         return family_ipv4;
+      
+      if(is_ipv6())
+         return family_ipv6;
+
+      return family_none;
+
+   }
+
+
+   int32_t address_base::get_bsd_family() const
+   {
+
+      switch(get_family())
+      {
+      case family_ipv4:
+         return AF_INET;
+      case family_ipv6:
+         return AF_INET6;
+      case family_none:
+      default:
+         break;
+      }
+
+      return 0;
+
+   }
+
+/*
    address::address(sp(base_application) papp, const in_addr & a, int32_t iPort)
    {
 
@@ -401,10 +437,10 @@ namespace sockets
 
    }
 
+   */
 
-} // namespace sockets
+} // namespace net
 
 
 
 
-*/

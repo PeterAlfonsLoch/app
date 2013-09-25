@@ -132,6 +132,9 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{8832ff75-5113-4095-b832-a6e62e777cfd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\datetime\NewFilter1">
+      <UniqueIdentifier>{ac59d0dd-4eaa-4a42-b51c-a205853270c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="android\c_os_internal.h">
@@ -1895,6 +1898,9 @@
     </None>
     <None Include="base.def">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

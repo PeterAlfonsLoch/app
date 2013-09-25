@@ -1904,9 +1904,6 @@ namespace user
       m_hMenuAlt = NULL;
       m_nIdleFlags = 0;               // no idle work at start
       m_rectBorder.null();
-#ifdef WINDOWSEX
-      m_bHelpMode = HELP_INACTIVE;    // not in Shift+F1 help mode
-#endif
       m_dwPromptContext = 0;
 
       m_pNextFrameWnd = NULL;         // not in list yet

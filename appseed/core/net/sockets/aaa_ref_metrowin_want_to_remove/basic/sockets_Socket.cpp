@@ -53,7 +53,7 @@ namespace sockets
    #endif
 
 
-   socket::socket(socket_handler_base& h)
+   socket::socket(base_socket_handler& h)
    //:m_flags(0)
    :m_handler(h)
    ,m_memfileInput(h.get_app())
@@ -326,7 +326,7 @@ namespace sockets
    }
 
 
-   socket_handler_base& socket::Handler() const
+   base_socket_handler& socket::Handler() const
    {
       if (IsDetached())
          return *m_slave_handler;
@@ -334,7 +334,7 @@ namespace sockets
    }
 
 
-   socket_handler_base& socket::MasterHandler() const
+   base_socket_handler& socket::MasterHandler() const
    {
       return m_handler;
    }
@@ -899,7 +899,7 @@ namespace sockets
    }
 
 
-   void socket::SetSlaveHandler(socket_handler_base *p)
+   void socket::SetSlaveHandler(base_socket_handler *p)
    {
       m_slave_handler = p;
    }

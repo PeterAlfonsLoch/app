@@ -825,7 +825,7 @@ retry:
          while(handler.get_count() > 0 && !psession->m_bRequestComplete)
          {
             dw1 = ::get_tick_count();
-            handler.Select(240, 0);
+            handler.select(240, 0);
             keeplive.keep_alive();
             if(psession->m_estatus == ::sockets::socket::status_connection_timed_out)
             {
@@ -1277,10 +1277,13 @@ retry:
          keeplive.keep(&Sess(papp));
          keeplive.keep(&Sys(papp));
       }
+
+      psocket->m_bEnablePool = false;
+
       while(handler.get_count() > 0)
       {
          dw1 = ::get_tick_count();
-         handler.Select(iTimeout, 0);
+         handler.select(iTimeout, 0);
          keeplive.keep_alive();
          if(psocket->m_estatus == ::sockets::socket::status_connection_timed_out)
          {

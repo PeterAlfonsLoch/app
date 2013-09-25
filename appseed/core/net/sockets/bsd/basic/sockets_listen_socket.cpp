@@ -5,8 +5,9 @@ namespace sockets
 {
 
 
-      listen_socket_base::listen_socket_base(socket_handler_base & h) : 
+      listen_socket_base::listen_socket_base(base_socket_handler & h) : 
          element(h.get_app()), 
+         base_socket(h),
          socket(h), 
          m_depth(0),
          m_bDetach(false)
@@ -16,6 +17,7 @@ namespace sockets
 
       listen_socket_base::listen_socket_base(const listen_socket_base& s) : 
          element(s.get_app()), 
+         base_socket(s),
          socket(s)
       {
       
@@ -31,7 +33,8 @@ namespace sockets
 
          if (GetSocket() != INVALID_SOCKET)
          {
-            close_socket();
+
+            close_socket(GetSocket());
 
          }
          
@@ -54,7 +57,7 @@ namespace sockets
          }
       }
 
-      int32_t listen_socket_base::Bind(::sockets::address & ad,int32_t depth)
+      int32_t listen_socket_base::Bind(::net::address ad,int32_t depth)
       {
 #ifdef USE_SCTP
          if (dynamic_cast<SctpSocket *>(m_creator))
@@ -89,12 +92,12 @@ namespace sockets
       \param depth Listen queue depth */
       int32_t listen_socket_base::Bind(const string & intf,port_t port,int32_t depth)
       {
-         address ad(get_app(), intf, port);
+         ::net::address ad(get_app(), intf, port);
          if (ad.is_valid())
          {
             return Bind(ad, depth);
          }
-         Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::core::log::level_fatal);
+         log("Bind", 0, "name resolution of interface name failed", ::core::log::level_fatal);
          return -1;
       }
 
@@ -105,12 +108,12 @@ namespace sockets
       \param depth Listen queue depth */
       int32_t listen_socket_base::Bind(const string & intf,port_t port,const string & protocol,int32_t depth)
       {
-         address ad(get_app(), intf, port);
+         ::net::address ad(get_app(), intf, port);
          if (ad.is_valid())
          {
                return Bind(ad, protocol, depth);
          }
-         Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::core::log::level_fatal);
+         log("Bind", 0, "name resolution of interface name failed", ::core::log::level_fatal);
          return -1;
       }
 
@@ -120,7 +123,7 @@ namespace sockets
       \param depth Listen queue depth */
       int32_t listen_socket_base::Bind(in_addr a,port_t port,int32_t depth)
       {
-         address ad(get_app(), a, port);
+         ::net::address ad(get_app(), a, port);
 #ifdef USE_SCTP
          if (dynamic_cast<SctpSocket *>(m_creator))
          {
@@ -136,7 +139,7 @@ namespace sockets
       \param depth Listen queue depth */
       int32_t listen_socket_base::Bind(in_addr a,port_t port,const string & protocol,int32_t depth)
       {
-         address ad(get_app(), a, port);
+         ::net::address ad(get_app(), a, port);
          return Bind(ad, protocol, depth);
       }
 
@@ -146,7 +149,7 @@ namespace sockets
       \param depth Listen queue depth */
       int32_t listen_socket_base::Bind(in6_addr a,port_t port,int32_t depth) 
       {
-         address ad(get_app(), a, port);
+         ::net::address ad(get_app(), a, port);
 #ifdef USE_SCTP
          if (dynamic_cast<SctpSocket *>(m_creator))
          {
@@ -162,7 +165,7 @@ namespace sockets
       \param depth Listen queue depth */
       int32_t listen_socket_base::Bind(in6_addr a,port_t port,const string & protocol,int32_t depth)
       {
-         address ad(get_app(), a, port);
+         ::net::address ad(get_app(), a, port);
          return Bind(ad, protocol, depth);
       }
 
@@ -170,24 +173,24 @@ namespace sockets
       \param ad Interface address
       \param protocol Network protocol
       \param depth Listen queue depth */
-      int32_t listen_socket_base::Bind(::sockets::address & ad,const string & protocol,int32_t depth)
+      int32_t listen_socket_base::Bind(::net::address ad,const string & protocol,int32_t depth)
       {
 
          SOCKET s;
          m_iBindPort = ad.get_service_number();
-         if ( (s = CreateSocket(ad.GetFamily(), SOCK_STREAM, protocol)) == INVALID_SOCKET)
+         if ( (s = CreateSocket(ad.get_bsd_family(), SOCK_STREAM, protocol)) == INVALID_SOCKET)
          {
             return -1;
          }
          if (bind(s, ad.sa(), ad.sa_len()) == -1)
          {
-            Handler().LogError(this, "bind() failed for port " + ::str::from(ad.get_service_number()), Errno, StrError(Errno), ::core::log::level_fatal);
+            log("bind() failed for port " + ::str::from(ad.get_service_number()), Errno, StrError(Errno), ::core::log::level_fatal);
             close_socket(s);
             return -1;
          }
          if (listen(s, depth) == -1)
          {
-            Handler().LogError(this, "listen", Errno, StrError(Errno), ::core::log::level_fatal);
+            log("listen", Errno, StrError(Errno), ::core::log::level_fatal);
             close_socket(s);
             throw simple_exception(get_app(), "listen() failed for port " + ::str::from(ad.get_service_number()) + ": " + StrError(Errno));
             return -1;
@@ -219,18 +222,18 @@ namespace sockets
 
          if (a_s == INVALID_SOCKET)
          {
-            Handler().LogError(this, "accept", Errno, StrError(Errno), ::core::log::level_error);
+            log("accept", Errno, StrError(Errno), ::core::log::level_error);
             return;
          }
          if (!Handler().OkToAccept(this))
          {
-            Handler().LogError(this, "accept", -1, "Not OK to accept", ::core::log::level_warning);
+            log("accept", -1, "Not OK to accept", ::core::log::level_warning);
             close_socket(a_s);
             return;
          }
          if (Handler().get_count() >= FD_SETSIZE)
          {
-            Handler().LogError(this, "accept", (int32_t)Handler().get_count(), "socket_handler_base fd_set limit reached", ::core::log::level_fatal);
+            log("accept", (int32_t)Handler().get_count(), "base_socket_handler fd_set limit reached", ::core::log::level_fatal);
             close_socket(a_s);
             return;
          }
@@ -241,7 +244,7 @@ namespace sockets
          tmp -> set_parent(this);
          tmp -> attach(a_s);
          tmp -> SetNonblocking(true);
-         tmp->SetRemoteHostname(address(get_app(), sa, sa_len));
+         tmp->SetRemoteHostname(::net::address(get_app(), sa, sa_len));
          tmp->m_iBindPort = m_iBindPort;
          tmp -> SetConnected(true);
          tmp -> Init();

@@ -41,8 +41,9 @@ namespace sockets
 
 
 
-   resolv_socket::resolv_socket(socket_handler_base& h) :
+   resolv_socket::resolv_socket(base_socket_handler& h) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -55,8 +56,9 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(socket_handler_base& h, socket *parent, const string & host, port_t port, bool ipv6) :
+   resolv_socket::resolv_socket(base_socket_handler& h, base_socket *parent, const string & host, port_t port, bool ipv6) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -71,8 +73,9 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(socket_handler_base& h, socket *parent, in_addr a) :
+   resolv_socket::resolv_socket(base_socket_handler& h, base_socket *parent, in_addr a) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -87,8 +90,9 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(socket_handler_base& h, socket *parent, in6_addr& a) :
+   resolv_socket::resolv_socket(base_socket_handler& h, base_socket *parent, in6_addr& a) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -209,7 +213,7 @@ namespace sockets
          {
             in_addr l;
             System.net().convert(l, value); // ip2ipaddr_t
-            m_parent -> OnResolved(m_resolv_id, l, m_resolv_port);
+            m_parent -> OnResolved(m_resolv_id, ::net::address(get_app(), l, m_resolv_port));
          }
          // update cache
          if (!m_cached)
@@ -227,7 +231,7 @@ namespace sockets
          {
             in6_addr a;
             System.net().convert(value, a);
-            m_parent -> OnResolved(m_resolv_id, a, m_resolv_port);
+            m_parent -> OnResolved(m_resolv_id, ::net::address(get_app(), a, m_resolv_port));
          }
          // update cache
          if (!m_cached)
@@ -327,7 +331,7 @@ namespace sockets
       else
       {
          string msg = "Unknown query type: " + m_query;
-         Handler().LogError(this, "OnDetached", 0, msg);
+         log("OnDetached", 0, msg);
          write("Unknown\n\n");
       }
       SetCloseAndDelete();

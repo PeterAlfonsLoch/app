@@ -113,7 +113,7 @@ namespace simpledb
                   ::sockets::socket_handler::add(&ll);
                   while (true)
                   {
-                     Select(8,0);
+                     select(8,0);
                      if(!m_pservice-get_run())
                         break;
                   }

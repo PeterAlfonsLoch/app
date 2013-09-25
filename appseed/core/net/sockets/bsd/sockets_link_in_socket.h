@@ -35,7 +35,7 @@ namespace sockets
       event                m_eventFinished;
 
 
-      link_in_socket(socket_handler_base& h);
+      link_in_socket(base_socket_handler& h);
       ~link_in_socket();
 
 

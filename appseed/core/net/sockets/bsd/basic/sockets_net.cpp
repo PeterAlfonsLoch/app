@@ -470,7 +470,7 @@ namespace sockets
 
 
    /*
-   ::sockets::address net::CreateAddress(struct sockaddr *sa,socklen_t sa_len)
+   ::net::address net::CreateAddress(struct sockaddr *sa,socklen_t sa_len)
    {
       retur
       switch (sa -> sa_family)
@@ -711,7 +711,7 @@ namespace sockets
    bool net::reverse(string & number, const string & hostname, int32_t flags)
    {
 
-      ::sockets::address address(get_app(), hostname);
+      ::net::address address(get_app(), hostname);
 
       number = address.get_display_number();
 

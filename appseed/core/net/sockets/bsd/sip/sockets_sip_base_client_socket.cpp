@@ -1,10 +1,13 @@
 #include "framework.h"
 
+
 namespace sockets
 {
 
-   sip_base_client_socket::sip_base_client_socket(socket_handler_base& h) :
+
+   sip_base_client_socket::sip_base_client_socket(base_socket_handler& h) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       m_request(h.get_app()),
       m_response(h.get_app()),
@@ -26,7 +29,8 @@ namespace sockets
 
    sip_base_client_socket::sip_base_client_socket(const sip_base_client_socket& s) :
       element(s.get_app()),
-      socket(s.m_handler),
+      base_socket(s),
+      socket(s),
       m_request(s.get_app()),
       m_response(s.get_app())
    {
@@ -378,7 +382,7 @@ namespace sockets
    #ifdef HAVE_OPENSSL
          EnableSSL();
    #else
-         Handler().LogError(this, "url_this", -1, "SSL not available", ::core::log::level_warning);
+         log("url_this", -1, "SSL not available", ::core::log::level_warning);
    #endif
          port = 443;
       }

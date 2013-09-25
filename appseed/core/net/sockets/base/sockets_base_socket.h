@@ -24,37 +24,55 @@ namespace sockets
       };
 
       friend class base_socket_handler;
+
+
       /** Detached base_socket run thread.
       \ingroup internal */
       class CLASS_DECL_ca2 socket_thread :
          virtual public ::thread
       {
       public:
+
+
+         sp(base_socket)         m_spsocket;
+
+
          socket_thread(base_socket * psocket);
-         ~socket_thread();
+         virtual ~socket_thread();
+
+
+         sp(base_socket) get_socket() const { return m_spsocket; }
+
 
          virtual int run();
-         base_socket * GetSocket() const { return m_psocket; }
-         base_socket * m_psocket;
+
 
       private:
+         
+         
          socket_thread(const socket_thread& s);
          socket_thread& operator=(const socket_thread& ) { return *this; }
+
+
       };
 
       /** Data pass class from source to destination. */
-      class TriggerData
+      class trigger_data
       {
       public:
-         TriggerData() : m_src(NULL) {}
-         virtual ~TriggerData() {}
+         
+         
+         base_socket *m_src;
+
+
+         trigger_data() : m_src(NULL) {}
+         virtual ~trigger_data() {}
 
          base_socket *GetSource() const { return m_src; }
          void SetSource(base_socket *x) { m_src = x; }
 
-      private:
-         base_socket *m_src;
       };
+
 
       enum e_status
       {
@@ -62,14 +80,14 @@ namespace sockets
          status_connection_timed_out,
       };
 
+      base_socket_handler &   m_handler; ///< Reference of base_socket_handler in control of this socket
+      SOCKET                  m_socket; ///< File descriptor
 
-      SOCKET                     m_socket; ///< File descriptor
+      static mutex            s_mutex;
 
-      static mutex                       s_mutex;
-
-      ::net::address_sp       m_spaddressRemote; ///< Remote end ::net::address_sp
-      ::net::address_sp       m_spaddressRemoteClient; ///< Address of last connect()
-      ::file::stream_buffer * m_pfileTrafficMonitor;
+      ::net::address          m_addressRemote; ///< Remote end ::net::address
+      ::net::address          m_addressRemoteClient; ///< Address of last connect()
+      ::file::buffer_sp       m_spfileTrafficMonitor;
 
 
       ::file::memory_buffer   m_memfileInput;
@@ -106,10 +124,11 @@ namespace sockets
       string                  m_strSocketProtocol; ///< Protocol, from base_socket() call
       bool                    m_bClient; ///< only client connections are pooled
       bool                    m_bRetain; ///< keep connection on close
+      bool                    m_bEnablePool; ///< true if this socket may enter in a pool
 #endif
 
       bool                    m_bSocks4; ///< socks4 negotiation mode (tcp_socket)
-      in_addr                 m_socks4_host; ///< socks4 server ::net::address_sp
+      in_addr                 m_socks4_host; ///< socks4 server ::net::address
       port_t                  m_socks4_port; ///< socks4 server port number
       string                  m_socks4_userid; ///< socks4 server usedid
 
@@ -178,6 +197,7 @@ namespace sockets
       * needs to be used for the base_socket class. Note: the base_socket class still needs
       * the "default" constructor with one base_socket_handler& as input parameter.
       */
+      using ::request_interface::create;
       virtual base_socket *create() { return NULL; }
 
       /** Returns reference to sockethandler that owns the base_socket.
@@ -200,12 +220,10 @@ namespace sockets
       */
       virtual void Init();
 
-      /** create a base_socket file descriptor.
-      \param af Address family AF_INET / AF_INET6 / ...
-      \param type SOCK_STREAM / SOCK_DGRAM / ...
-      \param protocol "tcp" / "udp" / ... */
-      //SOCKET CreateSocket(int af,int type,const string & protocol = "");
 
+      /** Assign this socket a file descriptor created
+      by a call to socket() or otherwise. */
+      void attach(SOCKET s);
 
       /** Return file descriptor assigned to this base_socket. */
       SOCKET GetSocket();
@@ -214,7 +232,8 @@ namespace sockets
       \sa SetCloseAndDelete */
       virtual void close();
 
-      virtual bool close_socket();
+
+      virtual int32_t close_socket(SOCKET s);
 
 
       virtual bool is_connecting();
@@ -248,18 +267,11 @@ namespace sockets
       /** Total lifetime of instance. */
       time_t Uptime();
 
-      /** Set ::net::address_sp/port of last connect() call. */
-      void SetClientRemoteAddress(::net::address_sp&);
+      /** Set ::net::address/port of last connect() call. */
+      void SetClientRemoteAddress(::net::address);
 
-      /** get ::net::address_sp/port of last connect() call. */
-      ::net::address_sp GetClientRemoteAddress();
-
-//      using ::file::stream_buffer::write;
-
-
-            /** Common interface for Send used by Tcp and Udp sockets. */
-      /** Send string using printf formatting. */
-      virtual void writef(const char *format, ...);
+      /** get ::net::address/port of last connect() call. */
+      ::net::address GetClientRemoteAddress();
 
 
       /** Outgoing traffic counter. */
@@ -277,7 +289,7 @@ namespace sockets
       bool Timeout(time_t tnow);
 
       /** Used by listen_socket. ipv4 and ipv6 */
-      void SetRemoteHostname(::net::address_sp&);
+      void SetRemoteHostname(::net::address);
 
       /** \name Event callbacks */
       //@{
@@ -299,7 +311,7 @@ namespace sockets
       * line protocol mode. */
       virtual void OnLine(const string & );
 
-      virtual primitive::memory_size read(void * buf, primitive::memory_size c);
+      //virtual primitive::memory_size read(void * buf, primitive::memory_size c);
 
       virtual void on_read(const void * buf, primitive::memory_size c);
       virtual void OnRawData(char * buf, size_t len);
@@ -372,30 +384,40 @@ namespace sockets
 
       /** \name Information about remote connection */
       //@{
-      /** Returns ::net::address_sp of remote end. */
-      //::net::address_sp GetRemoteSocketAddress();
-      /** Returns ::net::address_sp of remote end: ipv4. */
+      /** Returns ::net::address of remote end. */
+      //::net::address GetRemoteSocketAddress();
+      /** Returns ::net::address of remote end: ipv4. */
       //string GetRemoteIP4();
-      /** Returns ::net::address_sp of remote end: ipv6. */
+      /** Returns ::net::address of remote end: ipv6. */
       //struct in6_addr GetRemoteIP6();
       /** Returns remote port number: ipv4 and ipv6. */
       virtual port_t GetRemotePort();
       /** Returns remote ip as string? ipv4 and ipv6. */
-      virtual ::net::address_sp GetRemoteAddress();
+      virtual ::net::address GetRemoteAddress();
       /** ipv4 and ipv6(not implemented) */
-      virtual ::net::address_sp GetRemoteHostname();
+      virtual ::net::address GetRemoteHostname();
       //@}
 
       /** Returns local port number for bound base_socket file descriptor. */
       virtual port_t GetLocalPort();
-      /** Returns local ipv4 ::net::address_sp for bound base_socket file descriptor. */
+      /** Returns local ipv4 ::net::address for bound base_socket file descriptor. */
       //ipaddr_t GetSockIP4();
-      /** Returns local ipv4 ::net::address_sp as text for bound base_socket file descriptor. */
-      virtual ::net::address_sp GetLocalAddress();
-      /** Returns local ipv6 ::net::address_sp for bound base_socket file descriptor. */
+      /** Returns local ipv4 ::net::address as text for bound base_socket file descriptor. */
+      virtual ::net::address GetLocalAddress();
+      /** Returns local ipv6 ::net::address for bound base_socket file descriptor. */
       //struct in6_addr GetSockIP6();
-      /** Returns local ipv6 ::net::address_sp as text for bound base_socket file descriptor. */
+      /** Returns local ipv6 ::net::address as text for bound base_socket file descriptor. */
       //string GetSockAddress6();
+
+
+
+
+
+
+
+
+
+
       // --------------------------------------------------------------------------
       /** @name IP options
       When an ip or base_socket option is available on all of the operating systems
@@ -534,13 +556,13 @@ namespace sockets
       /** SSL client/server support - internal use. \sa tcp_socket */
       virtual void OnSSLConnect();
       /** SSL client/server support - internal use. \sa tcp_socket */
-      //virtual void OnSSLAccept();
+      virtual void OnSSLAccept();
       /** SSL negotiation failed for client connect. */
-      //virtual void OnSSLConnectFailed();
+      virtual void OnSSLConnectFailed();
       /** SSL negotiation failed for server accept. */
-      //virtual void OnSSLAcceptFailed();
+      virtual void OnSSLAcceptFailed();
       /** new SSL support */
-      //virtual bool SSLNegotiate();
+      virtual bool SSLNegotiate();
       /** Check if SSL is Enabled for this tcp_socket.
       \return true if this is a tcp_socket with SSL enabled */
       bool IsSSL();
@@ -606,7 +628,7 @@ namespace sockets
       /** Set flag indicating Socks4 handshaking in progress */
       void SetSocks4(bool x = true);
 
-      /** Set socks4 server host ::net::address_sp to use */
+      /** Set socks4 server host ::net::address to use */
       void SetSocks4Host(in_addr a);
       /** Set socks4 server hostname to use. */
       void SetSocks4Host(const string & );
@@ -614,8 +636,8 @@ namespace sockets
       void SetSocks4Port(port_t p);
       /** Provide a socks4 userid if required by the socks4 server. */
       void SetSocks4Userid(const string & x);
-      /** get the ip ::net::address_sp of socks4 server to use.
-      \return socks4 server host ::net::address_sp */
+      /** get the ip ::net::address of socks4 server to use.
+      \return socks4 server host ::net::address */
       in_addr GetSocks4Host();
       /** get the socks4 server port to use.
       \return socks4 server port */
@@ -632,11 +654,11 @@ namespace sockets
       \return Resolve ID */
       int Resolve(const string & host,port_t port = 0);
       int Resolve6(const string & host, port_t port = 0);
-      /** Callback returning a resolved ::net::address_sp.
+      /** Callback returning a resolved ::net::address.
       \param id Resolve ID from Resolve call
-      \param a resolved ip ::net::address_sp
+      \param a resolved ip ::net::address
       \param port port number passed to Resolve */
-      virtual void OnResolved(int id, const ::net::address_sp & addr);
+      virtual void OnResolved(int id, const ::net::address addr);
       //virtual void OnResolved(int id, in6_addr & a, port_t port);
       /** Request asynchronous reverse dns lookup.
       \param a in_addr to be translated */
@@ -680,9 +702,9 @@ namespace sockets
       //@}
 
       /** write traffic to an IFile. base_socket will not delete this object. */
-      void SetTrafficMonitor(::file::stream_buffer *p) { m_pfileTrafficMonitor = p; }
+      void SetTrafficMonitor(::file::buffer_sp p) { m_spfileTrafficMonitor = p; }
       /** All traffic will be written to this IFile, if set. */
-      ::file::stream_buffer *GetTrafficMonitor() { return m_pfileTrafficMonitor; }
+      ::file::buffer_sp GetTrafficMonitor() { return m_spfileTrafficMonitor; }
 
       /** \name Triggers */
       //@{
@@ -691,15 +713,27 @@ namespace sockets
       /** Unsubscribe from trigger id. */
       void Unsubscribe(int id);
       /** Trigger callback, with data passed from source to destination. */
-      virtual void OnTrigger(int id, const TriggerData& data);
+      virtual void OnTrigger(int id, const trigger_data & data);
       /** Trigger cancelled because source has been deleted (as in delete). */
       virtual void OnCancelled(int id);
       //@}
 
+
       virtual void step();
 
 
+      virtual void log(const string & strUser, int32_t err, const string & strSystem, ::core::log::e_level elevel = ::core::log::level_warning);
+
+      
+      virtual string get_short_description();
+
+
    };
+
+   typedef map < base_socket *, base_socket *, bool, bool > socket_bool;
+   typedef int_map < socket_bool > int_socket_bool;
+   typedef map < SOCKET, SOCKET, sp(base_socket), sp(base_socket) > socket_map;
+   typedef ::comparable_eq_list < sp(base_socket) > socket_list;
 
 
 } // namespace sockets

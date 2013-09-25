@@ -1,34 +1,14 @@
-/**
- **   \file SctpSocket.cpp
- **   \date  2006-09-04
- **   \author grymse@alhem.net
-**/
-/*
-Copyright (C) 2007  Anders Hedstrom
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*/
 #include "framework.h"
 
+
 #ifdef USE_SCTP
+
 
 namespace sockets
 {
 
 
-   SctpSocket::SctpSocket(socket_handler_base& h,int32_t type) : stream_socket(h)
+   SctpSocket::SctpSocket(base_socket_handler& h,int32_t type) : stream_socket(h)
    ,m_type(type)
    ,m_buf(new char[SCTP_BUFSIZE_READ])
    {
@@ -60,11 +40,11 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::Bind(::sockets::address & ad)
+   int32_t SctpSocket::Bind(::net::address ad)
    {
       if (!ad.IsValid())
       {
-         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::core::log::level_error);
+         log("SctpSocket", -1, "invalid address", ::core::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
@@ -76,7 +56,7 @@ namespace sockets
          int32_t n = bind(GetSocket(), ad, ad);
          if (n == -1)
          {
-            Handler().LogError(this, "SctpSocket", -1, "bind() failed", ::core::log::level_error);
+            log("SctpSocket", -1, "bind() failed", ::core::log::level_error);
    #ifdef ENABLE_EXCEPTIONS
             throw Exception("bind() failed for SctpSocket, port: " + Utility::l2string(ad.GetPort()));
    #endif
@@ -103,22 +83,22 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::AddAddress(::sockets::address & ad)
+   int32_t SctpSocket::AddAddress(::net::address ad)
    {
       if (!ad.IsValid())
       {
-         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::core::log::level_error);
+         log("SctpSocket", -1, "invalid address", ::core::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
       {
-         Handler().LogError(this, "SctpSocket", -1, "AddAddress called with invalid file descriptor", ::core::log::level_error);
+         log("SctpSocket", -1, "AddAddress called with invalid file descriptor", ::core::log::level_error);
          return -1;
       }
       int32_t n = sctp_bindx(GetSocket(), ad, ad, SCTP_BINDX_ADD_ADDR);
       if (n == -1)
       {
-         Handler().LogError(this, "SctpSocket", -1, "sctp_bindx() failed", ::core::log::level_error);
+         log("SctpSocket", -1, "sctp_bindx() failed", ::core::log::level_error);
       }
       return n;
    }
@@ -140,22 +120,22 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::RemoveAddress(::sockets::address & ad)
+   int32_t SctpSocket::RemoveAddress(::net::address ad)
    {
       if (!ad.IsValid())
       {
-         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::core::log::level_error);
+         log("SctpSocket", -1, "invalid address", ::core::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
       {
-         Handler().LogError(this, "SctpSocket", -1, "RemoveAddress called with invalid file descriptor", ::core::log::level_error);
+         log("SctpSocket", -1, "RemoveAddress called with invalid file descriptor", ::core::log::level_error);
          return -1;
       }
       int32_t n = sctp_bindx(GetSocket(), ad, ad, SCTP_BINDX_REM_ADDR);
       if (n == -1)
       {
-         Handler().LogError(this, "SctpSocket", -1, "sctp_bindx() failed", ::core::log::level_error);
+         log("SctpSocket", -1, "sctp_bindx() failed", ::core::log::level_error);
       }
       return n;
    }
@@ -177,11 +157,11 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::open(::sockets::address & ad)
+   int32_t SctpSocket::open(::net::address ad)
    {
       if (!ad.IsValid())
       {
-         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::core::log::level_error);
+         log("SctpSocket", -1, "invalid address", ::core::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
@@ -204,12 +184,12 @@ namespace sockets
             if (Errno == EINPROGRESS)
    #endif
             {
-               Handler().LogError(this, "connect: connection pending", Errno, StrError(Errno), ::core::log::level_info);
+               log("connect: connection pending", Errno, StrError(Errno), ::core::log::level_info);
                SetConnecting( true ); // this flag will control fd_set's
             }
             else
             {
-               Handler().LogError(this, "SctpSocket", -1, "connect() failed", ::core::log::level_error);
+               log("SctpSocket", -1, "connect() failed", ::core::log::level_error);
             }
          }
          return n;
@@ -235,22 +215,22 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::AddConnection(::sockets::address & ad)
+   int32_t SctpSocket::AddConnection(::net::address ad)
    {
       if (!ad.IsValid())
       {
-         Handler().LogError(this, "SctpSocket", -1, "invalid address", ::core::log::level_error);
+         log("SctpSocket", -1, "invalid address", ::core::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
       {
-         Handler().LogError(this, "SctpSocket", -1, "AddConnection called with invalid file descriptor", ::core::log::level_error);
+         log("SctpSocket", -1, "AddConnection called with invalid file descriptor", ::core::log::level_error);
          return -1;
       }
       int32_t n = sctp_connectx(GetSocket(), ad, ad);
       if (n == -1)
       {
-         Handler().LogError(this, "SctpSocket", -1, "sctp_connectx() failed", ::core::log::level_error);
+         log("SctpSocket", -1, "sctp_connectx() failed", ::core::log::level_error);
       }
       else
       {
@@ -267,7 +247,7 @@ namespace sockets
       int32_t n = sctp_getpaddrs(GetSocket(), id, &p);
       if (!n || n == -1)
       {
-         Handler().LogError(this, "SctpSocket", -1, "sctp_getpaddrs failed", ::core::log::level_warning);
+         log("SctpSocket", -1, "sctp_getpaddrs failed", ::core::log::level_warning);
          return n;
       }
       for (int32_t i = 0; i < n; i++)
@@ -285,7 +265,7 @@ namespace sockets
       int32_t n = sctp_getladdrs(GetSocket(), id, &p);
       if (!n || n == -1)
       {
-         Handler().LogError(this, "SctpSocket", -1, "sctp_getladdrs failed", ::core::log::level_warning);
+         log("SctpSocket", -1, "sctp_getladdrs failed", ::core::log::level_warning);
          return n;
       }
       for (int32_t i = 0; i < n; i++)
@@ -302,7 +282,7 @@ namespace sockets
       int32_t n = sctp_peeloff(GetSocket(), id);
       if (n == -1)
       {
-         Handler().LogError(this, "SctpSocket", -1, "PeelOff failed", ::core::log::level_warning);
+         log("SctpSocket", -1, "PeelOff failed", ::core::log::level_warning);
          return -1;
       }
       socket *p = create();
@@ -339,7 +319,7 @@ namespace sockets
       int32_t n = sctp_recvmsg(GetSocket(), m_buf, SCTP_BUFSIZE_READ, &sa, &sa_len, &sinfo, &flags);
       if (n == -1)
       {
-         Handler().LogError(this, "SctpSocket", Errno, StrError(Errno), ::core::log::level_fatal);
+         log("SctpSocket", Errno, StrError(Errno), ::core::log::level_fatal);
          SetCloseAndDelete();
       }
       else
@@ -369,7 +349,7 @@ namespace sockets
             SetCallOnConnect();
             return;
          }
-         Handler().LogError(this, "sctp: connect failed", err, StrError(err), ::core::log::level_fatal);
+         log("sctp: connect failed", err, StrError(err), ::core::log::level_fatal);
          set(false, false); // no more monitoring because connection failed
 
          // failed
@@ -400,7 +380,7 @@ namespace sockets
 
    void SctpSocket::OnConnectTimeout()
    {
-      Handler().LogError(this, "connect", -1, "connect timeout", ::core::log::level_fatal);
+      log("connect", -1, "connect timeout", ::core::log::level_fatal);
    #ifdef ENABLE_SOCKS4
       if (Socks4())
       {
@@ -466,7 +446,7 @@ namespace sockets
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int32_t err = SoError();
-      Handler().LogError(this, "exception on select", err, StrError(err), ::core::log::level_fatal);
+      log("exception on select", err, StrError(err), ::core::log::level_fatal);
       SetCloseAndDelete();
    }
    #endif // _WIN32
@@ -482,3 +462,6 @@ namespace sockets
 
 
 #endif
+
+
+

@@ -21,7 +21,7 @@ namespace sockets
    \ingroup basic
    */
    class CLASS_DECL_ca2 bsd_address :
-      virtual public object
+      virtual public ::net::address_base
    {
    public:
 
@@ -39,12 +39,11 @@ namespace sockets
       virtual void construct(const sockaddr & sa, int32_t sa_len);
       virtual void construct(const string & strAddress = "", const string & strServiceName = "");
       virtual void construct(const string & strAddress, int32_t iPort);
+      virtual void construct(const address_base & address);
 
 
       bool create_address(const string & strAddress);
 
-
-      void copy(const address_base & address);
 
       virtual string get_display_number() const;
       virtual string get_canonical_name() const;
@@ -58,21 +57,27 @@ namespace sockets
       string  service_number_to_name(int32_t i) const;
 
 
+      virtual void copy(const address_base & address);
       virtual bool is_in_net(const address_base & addr, const address_base & addrMask) const;
-      bool is_equal(const address_base & address) const;
+      virtual bool is_equal(const address_base & addr) const;
+
+      void copy(const bsd_address & address);
+      bool is_in_net(const bsd_address & addr, const bsd_address & addrMask) const;
+      bool is_equal(const bsd_address & address) const;
 
       virtual bool is_ipv4() const;
       virtual bool is_ipv6() const;
 
 
-      int32_t GetFamily() const;
-
-      bool is_valid() const;
+      virtual bool is_valid() const;
 
 
-      const sockaddr * sa() const;
-      int32_t sa_len() const;
+      virtual ::net::e_family get_family() const;
+      virtual int32_t get_bsd_family() const;
 
+
+      virtual const sockaddr * sa() const;
+      virtual int32_t sa_len() const;
 
    };
 

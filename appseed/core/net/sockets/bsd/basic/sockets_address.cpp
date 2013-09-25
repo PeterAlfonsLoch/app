@@ -4,24 +4,28 @@
 namespace sockets
 {
 
+   bsd_address::bsd_address(sp(base_application) papp) :
+      element(papp)
+   {
+   }
 
-   address::address(sp(base_application) papp, const in_addr & a, int32_t iPort)
+   void bsd_address::construct(const in_addr & a, int32_t iPort)
    {
 
-      m_pipv4 = canew(ipv4_address(papp, a, iPort));
+      m_pipv4 = canew(ipv4_address(get_app(), a, iPort));
 
    }
 
 
-   address::address(sp(base_application) papp, const in6_addr & a, int32_t iPort)
+   void bsd_address::construct(const in6_addr & a, int32_t iPort)
    {
 
-      m_pipv6 = canew(ipv6_address(papp, a, iPort));
+      m_pipv6 = canew(ipv6_address(get_app(), a, iPort));
 
    }
 
 
-   address::address(sp(base_application) papp, const sockaddr & sa, int32_t sa_len)
+   void bsd_address::construct(const sockaddr & sa, int32_t sa_len)
    {
 
       if (sa_len == sizeof(struct sockaddr_in6))
@@ -45,17 +49,14 @@ namespace sockets
             m_pipv4 = canew(ipv4_address(get_app(), p->sin_addr, ntohs(p->sin_port)));
             m_strServiceName = itoa_dup(p->sin_port);
          }
+
       }
-
-
 
    }
 
 
-   address::address(sp(base_application) papp, const string & strAddress, const string & strServiceName) :
-      element(papp)
+   void bsd_address::construct(const string & strAddress, const string & strServiceName)
    {
-
 
       m_strServiceName = strServiceName;
 
@@ -64,32 +65,31 @@ namespace sockets
    }
 
 
-   address::address(sp(base_application) papp, const string & strAddress, int32_t iPort) :
-      element(papp)
+   void bsd_address::construct(const string & strAddress, int32_t iPort)
    {
 
 
       m_strServiceName = ::str::from(iPort);
 
       if(!create_address(strAddress))
-         throw "failed to create socket address";
+         throw "failed to create socket bsd_address";
 
    }
 
-   address::address(const address & address)
+   void bsd_address::construct(const address_base & address)
    {
 
-      operator = (address);
+      copy(address);
 
    }
 
 
-   address::~address()
+   bsd_address::~bsd_address()
    {
 
    }
 
-   bool address::create_address(const string & strAddress)
+   bool bsd_address::create_address(const string & strAddress)
    {
 
       m_pipv4.release();
@@ -124,29 +124,27 @@ namespace sockets
 
 
 
-   address & address::operator = (const address & address)
+   void bsd_address::copy(const bsd_address & bsd_address)
    {
 
       m_pipv4.release();
       m_pipv6.release();
 
-      if(address.m_pipv6 != NULL)
+      if(bsd_address.m_pipv6 != NULL)
       {
-         m_pipv6 = canew(ipv6_address(*address.m_pipv6));
+         m_pipv6 = canew(ipv6_address(*bsd_address.m_pipv6));
       }
-      else if(address.m_pipv4 != NULL)
+      else if(bsd_address.m_pipv4 != NULL)
       {
-         m_pipv4 = canew(ipv4_address(*address.m_pipv4));
+         m_pipv4 = canew(ipv4_address(*bsd_address.m_pipv4));
       }
 
-      m_strServiceName      = address.m_strServiceName;
-
-      return *this;
+      m_strServiceName      = bsd_address.m_strServiceName;
 
    }
 
 
-   bool address::operator == (const address & address) const
+   bool bsd_address::is_equal(const bsd_address & bsd_address) const
    {
 
       if(m_pipv6 == NULL)
@@ -157,9 +155,9 @@ namespace sockets
          }
          else
          {
-            if(address.m_pipv4 != NULL)
+            if(bsd_address.m_pipv4 != NULL)
             {
-               if(!m_pipv4->IsEqual(*address.m_pipv4))
+               if(!m_pipv4->is_equal(*bsd_address.m_pipv4))
                   return false;
             }
             else
@@ -170,9 +168,9 @@ namespace sockets
       }
       else if(m_pipv4 == NULL)
       {
-         if(address.m_pipv6 != NULL)
+         if(bsd_address.m_pipv6 != NULL)
          {
-            if(!m_pipv6->IsEqual(*address.m_pipv6))
+            if(!m_pipv6->is_equal(*bsd_address.m_pipv6))
                return false;
          }
          else
@@ -181,12 +179,12 @@ namespace sockets
          }
       }
 
-      return get_service_number() == address.get_service_number();
+      return get_service_number() == bsd_address.get_service_number();
 
    }
 
 
-   string address::get_display_number() const
+   string bsd_address::get_display_number() const
    {
 
       if(m_pipv6 != NULL)
@@ -199,7 +197,7 @@ namespace sockets
    }
 
 
-   string address::get_canonical_name() const
+   string bsd_address::get_canonical_name() const
    {
 
       if(m_pipv6 != NULL)
@@ -212,7 +210,7 @@ namespace sockets
    }
 
 
-   string address::get_service_name() const
+   string bsd_address::get_service_name() const
    {
 
       string strService = m_strServiceName;
@@ -225,7 +223,7 @@ namespace sockets
    }
 
 
-   int32_t address::get_service_number() const
+   int32_t bsd_address::get_service_number() const
    {
 
       string strService = m_strServiceName;
@@ -237,7 +235,7 @@ namespace sockets
 
    }
 
-   bool address::set_service_number(int32_t iPort)
+   bool bsd_address::set_service_number(int32_t iPort)
    {
 
       if(iPort < 0 || iPort >= 65536)
@@ -250,7 +248,7 @@ namespace sockets
    }
 
 
-   int32_t address::service_name_to_number(const char * psz) const
+   int32_t bsd_address::service_name_to_number(const char * psz) const
    {
 
       return System.net().service_port(psz);
@@ -258,7 +256,7 @@ namespace sockets
    }
 
 
-   string  address::service_number_to_name(int32_t iPort) const
+   string  bsd_address::service_number_to_name(int32_t iPort) const
    {
 
       return System.net().service_name(iPort);
@@ -266,14 +264,14 @@ namespace sockets
    }
 
 
-   bool address::is_ipv4() const
+   bool bsd_address::is_ipv4() const
    {
 
       return System.net().isipv4(get_display_number());
 
    }
 
-   bool address::is_ipv6() const
+   bool bsd_address::is_ipv6() const
    {
 
       return System.net().isipv6(get_display_number());
@@ -281,7 +279,7 @@ namespace sockets
    }
 
 
-   bool address::is_valid() const
+   bool bsd_address::is_valid() const
    {
 
       try
@@ -302,7 +300,7 @@ namespace sockets
 
    }
 
-   bool address::is_in_net(const address & addr, const address & addrMask) const
+   bool bsd_address::is_in_net(const bsd_address & addr, const bsd_address & addrMask) const
    {
 
       if(is_ipv4() && addr.is_ipv4() && addrMask.is_ipv4())
@@ -346,7 +344,25 @@ namespace sockets
 
    }
 
-   int32_t address::GetFamily() const
+   ::net::e_family bsd_address::get_family() const
+   {
+
+      if(m_pipv4 != NULL && m_pipv4->m_bValid)
+      {
+         return ::net::family_ipv4;
+      }
+      else if(m_pipv6 != NULL && m_pipv6->m_bValid)
+      {
+         return ::net::family_ipv6;
+      }
+      else
+      {
+         return ::net::family_none;
+      }
+
+   }
+
+   int32_t bsd_address::get_bsd_family() const
    {
 
       if(m_pipv4 != NULL && m_pipv4->m_bValid)
@@ -364,7 +380,7 @@ namespace sockets
 
    }
 
-   const sockaddr * address::sa() const
+   const sockaddr * bsd_address::sa() const
    {
 
       if(m_pipv4 != NULL && m_pipv4->m_bValid)
@@ -382,7 +398,7 @@ namespace sockets
 
    }
 
-   int32_t address::sa_len() const
+   int32_t bsd_address::sa_len() const
    {
 
       if(m_pipv4 != NULL && m_pipv4->m_bValid)
@@ -397,6 +413,28 @@ namespace sockets
       {
          return 0;
       }
+
+   }
+
+   void bsd_address::copy(const address_base & address)
+   {
+
+      copy(dynamic_cast < const bsd_address & > (address));
+
+   }
+
+   bool bsd_address::is_in_net(const address_base & address, const address_base & addressMask) const
+   {
+
+      return is_in_net(dynamic_cast < const bsd_address & > (address), dynamic_cast < const bsd_address & > (addressMask));
+
+   }
+
+
+   bool bsd_address::is_equal(const address_base & address) const
+   {
+
+      return is_equal(dynamic_cast < const bsd_address & > (address));
 
    }
 

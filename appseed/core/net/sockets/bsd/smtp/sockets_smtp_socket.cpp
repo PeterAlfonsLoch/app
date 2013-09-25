@@ -1,10 +1,13 @@
 #include "framework.h"
 
+
 namespace sockets
 {
 
-   smtp_socket::smtp_socket(socket_handler_base& h) :
+
+   smtp_socket::smtp_socket(base_socket_handler& h) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),

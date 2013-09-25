@@ -4,17 +4,18 @@
 namespace sockets
 {
 
-   stream_socket::stream_socket(socket_handler_base& h) : 
-      element(h.get_app()),
-      socket(h)
-   ,m_bConnecting(false)
-   ,m_connect_timeout(5)
-   ,m_flush_before_close(true)
-   ,m_connection_retry(0)
-   ,m_retries(0)
-   ,m_call_on_connect(false)
-   ,m_b_retry_connect(false)
-   ,m_shutdown(0)
+   stream_socket::stream_socket(base_socket_handler& h) : 
+      element(h.get_app())
+      ,base_socket(h)
+      ,socket(h)
+      ,m_bConnecting(false)
+      ,m_connect_timeout(5)
+      ,m_flush_before_close(true)
+      ,m_connection_retry(0)
+      ,m_retries(0)
+      ,m_call_on_connect(false)
+      ,m_b_retry_connect(false)
+      ,m_shutdown(0)
    {
    }
 

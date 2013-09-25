@@ -44,7 +44,7 @@ namespace sockets
       m_ready = true;
       while (!m_quit && get_run())
       {
-         h.Select(0, 500000);
+         h.select(0, 500000);
       }
    }
 

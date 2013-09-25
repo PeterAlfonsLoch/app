@@ -44,7 +44,7 @@ namespace sockets
 
       };
 
-      AjpBaseSocket(socket_handler_base& h);
+      AjpBaseSocket(base_socket_handler& h);
 
       void OnRawData(char *buf, primitive::memory_size sz);
 

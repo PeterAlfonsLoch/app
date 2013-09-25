@@ -32,7 +32,7 @@ namespace sockets
 
    #define SCTP_BUFSIZE_READ 16400
 
-   class ::sockets::address;
+   class ::net::address;
 
 
    class SctpSocket : public stream_socket
@@ -41,22 +41,22 @@ namespace sockets
       /** SctpSocket constructor.
          \param h Owner
          \param type SCTP_STREAM or SCTP_SEQPACKET */
-      SctpSocket(socket_handler_base& h,int32_t type);
+      SctpSocket(base_socket_handler& h,int32_t type);
       ~SctpSocket();
 
       /** bind() */
       int32_t Bind(const string &,port_t);
-      int32_t Bind(::sockets::address &);
+      int32_t Bind(::net::address);
       /** sctp_bindx() */
       int32_t AddAddress(const string &,port_t);
-      int32_t AddAddress(::sockets::address &);
+      int32_t AddAddress(::net::address);
       /** sctp_bindx() */
       int32_t RemoveAddress(const string &,port_t);
-      int32_t RemoveAddress(::sockets::address &);
+      int32_t RemoveAddress(::net::address);
 
       /** connect() */
       int32_t open(const string &,port_t);
-      int32_t open(::sockets::address &);
+      int32_t open(::net::address);
 
       /** Connect timeout callback. */
       void OnConnectTimeout();
@@ -68,7 +68,7 @@ namespace sockets
    #ifndef SOLARIS
       /** sctp_connectx() */
       int32_t AddConnection(const string &,port_t);
-      int32_t AddConnection(::sockets::address &);
+      int32_t AddConnection(::net::address);
    #endif
 
       /** get peer addresses of an association. */

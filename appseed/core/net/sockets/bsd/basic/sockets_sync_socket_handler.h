@@ -13,12 +13,12 @@
       public:
 
 
-         socket *             m_psocket;
-         ::file::memory_buffer     m_file;
-         socket_handler       m_handler;
-         int32_t                  m_iDefaultTimeout;
+         socket *                m_psocket;
+         ::file::memory_buffer   m_file;
+         socket_handler          m_handler;
+         int32_t                 m_iDefaultTimeout;
 
-         sync_socket_handler(sp(base_application) papp, StdLog *log = NULL);
+         sync_socket_handler(sp(base_application) papp, logger *log = NULL);
          virtual ~sync_socket_handler();
 
 

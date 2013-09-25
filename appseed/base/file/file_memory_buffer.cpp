@@ -255,7 +255,7 @@ namespace file
 
    bool memory_buffer::IsValid() const
    {
-      return memory_container::IsValid() && !(m_dwPosition & 0x80000000);
+      return memory_container::IsValid();
    }
 
 

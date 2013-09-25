@@ -3,7 +3,7 @@
 namespace sockets
 {
 
-   sync_socket_handler::sync_socket_handler(sp(base_application) papp, StdLog * plog) :
+   sync_socket_handler::sync_socket_handler(sp(base_application) papp, logger * plog) :
       element(papp),
       m_handler(papp, plog),
       m_file(papp)
@@ -58,7 +58,7 @@ namespace sockets
    {
       while(less_than(m_file.get_size(), len) && m_handler.get_count() > 0)
       {
-         m_handler.Select(8, 0);
+         m_handler.select(8, 0);
       }
       return (int32_t) m_file.remove_begin(pdata, len);
    }

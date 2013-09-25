@@ -56,7 +56,7 @@ namespace sockets
       ipv6_address(const ipv6_address & addr);
       ~ipv6_address();
 
-      // ::sockets::address implementation
+      // ::net::address implementation
 
       //operator struct sockaddr *();
       //operator socklen_t();
@@ -88,11 +88,12 @@ namespace sockets
       uint32_t GetScopeId();
 #endif
 
-      ipv6_address & operator = (const ipv6_address &);
-
-      bool IsEqual(const ipv6_address &) const;
       string get_display_number() const;
       string get_canonical_name() const;
+
+      void copy(const ipv6_address & address);
+      bool is_in_net(const ipv6_address & addr, const ipv6_address & addrMask) const;
+      bool is_equal(const ipv6_address & address) const;
 
    };
 

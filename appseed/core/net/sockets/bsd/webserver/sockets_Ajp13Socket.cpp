@@ -33,8 +33,10 @@ namespace sockets
 
 
    // --------------------------------------------------------------------------------------
-   Ajp13Socket::Ajp13Socket(socket_handler_base& h) :
+   Ajp13Socket::Ajp13Socket(base_socket_handler& h) :
+      element(h.get_app()),
       socket(h),
+      base_socket(h),
       stream_socket(h),
       AjpBaseSocket(h),
       m_request(h.get_app()),
