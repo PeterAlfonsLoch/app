@@ -160,7 +160,7 @@ namespace sockets
 
       //string Sa2String(sockaddr * psa);
 
-      //::sockets::address CreateAddress(sockaddr * psa, socklen_t sa_len);
+      //::net::address CreateAddress(sockaddr * psa, socklen_t sa_len);
 
       bool reverse(string & number, const string & hostname, int flags = 0);
 

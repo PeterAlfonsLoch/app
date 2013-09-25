@@ -24,8 +24,8 @@ namespace sockets
 
 /*            ::sockets::SSLInitializer ssl_init(m_psystem);*/
 
-         System.factory().creatable_small < ::http::memory_file > ();
-         System.factory().cloneable_large < ::sockets::winrt_address  >  (System.template type_info < ::net::address_base > ());
+         //System.factory().creatable_small < ::http::memory_file > ();
+         //System.factory().cloneable_large < ::sockets::winrt_address  >  (System.template type_info < ::net::address_base > ());
 /*            System.factory().cloneable_small < ::sockets::ipv4_address > ();
          System.factory().cloneable_small < ::sockets::ipv6_address > ();*/
 

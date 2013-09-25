@@ -1,10 +1,13 @@
 #include "framework.h"
 
+
 namespace sockets
 {
 
+
    sip_tcp_client_socket::sip_tcp_client_socket(base_socket_handler & h) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       tcp_socket(h),
       stream_socket(h),
@@ -25,4 +28,10 @@ namespace sockets
       sip_base_client_socket::OnLine(line);
    }
 
+
 } // namespace sockets
+
+
+
+
+

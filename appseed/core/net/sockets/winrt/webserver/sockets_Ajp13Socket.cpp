@@ -1,40 +1,13 @@
-/**
- **   \file Ajp13Socket.cpp
- **   \date  2007-10-05
- **   \author grymse@alhem.net
-**/
-/*
-Copyright (C) 2007  Anders Hedstrom
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*/
 #include "framework.h"
+
 
 namespace sockets
 {
 
-   #ifdef DEBUG
-   #define DEB(x) x
-   #else
-   #define DEB(x)
-   #endif
 
-
-   // --------------------------------------------------------------------------------------
    Ajp13Socket::Ajp13Socket(base_socket_handler& h) :
       socket(h),
+      base_socket(h),
       stream_socket(h),
       AjpBaseSocket(h),
       m_request(h.get_app()),
@@ -44,7 +17,6 @@ namespace sockets
    }
 
 
-   // --------------------------------------------------------------------------------------
    void Ajp13Socket::OnHeader( short id, short len )
    {
       if (id != 0x1234)
@@ -93,7 +65,7 @@ namespace sockets
          short len = htons((u_short)( ptr - 4 ));
          memcpy( msg + 2, &len, 2 );
 
-         SendBuf( msg, ptr );
+         write( msg, ptr );
          return;
       }
 
@@ -300,7 +272,7 @@ namespace sockets
          short len = htons((u_short) ( ptr - 4 ));
          memcpy( msg + 2, &len, 2 );
 
-         SendBuf( msg, ptr );
+         write( msg, ptr );
       }
       // Send Body Chunk
       OnTransferLimit();
@@ -326,7 +298,7 @@ namespace sockets
          short len = htons((u_short) ( ptr - 4 ));
          memcpy( msg + 2, &len, 2 );
 
-         SendBuf( msg, ptr );
+         write( msg, ptr );
          if (GetOutputLength() > 1)
          {
             SetTransferLimit( 1 );
@@ -351,7 +323,7 @@ namespace sockets
          short len = htons((u_short) ( ptr - 4 ));
          memcpy( msg + 2, &len, 2 );
 
-         SendBuf( msg, ptr );
+         write( msg, ptr );
 
          OnResponseComplete();
       }
@@ -394,4 +366,8 @@ namespace sockets
    {
    }
 
+
 } // namespace sockets
+
+
+

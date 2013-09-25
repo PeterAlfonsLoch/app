@@ -70,12 +70,12 @@ namespace sockets
    int udp_socket::Bind(const char * pszHost, port_t port, int range)
    {
 
-      return Bind(::sockets::address(get_app(), pszHost, port), range);
+      return Bind(::sockets::::net::address(pszHost, port), range);
 
    }
 
 
-   int udp_socket::Bind(const ::sockets::address & ad, int range)
+   int udp_socket::Bind(const ::net::address & ad, int range)
    {
 
       //         attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
@@ -116,7 +116,7 @@ namespace sockets
    bool udp_socket::open(const char * host, port_t port)
    {
 
-      return open(address(get_app(), host, port));
+      return open(::net::address(host, port));
 
    }
 
@@ -128,7 +128,7 @@ namespace sockets
    }
    */
 
-   bool udp_socket::open(::sockets::address & ad)
+   bool udp_socket::open(::net::address & ad)
    {
 
       m_datagramsocket = ref new ::Windows::Networking::Sockets::DatagramSocket();
@@ -189,7 +189,7 @@ namespace sockets
    /*   void udp_socket::SendToBuf(const string & h, port_t p, const char *data, int len, int flags)
    {
 
-   ::sockets::address ad(get_app(), h, p);
+   ::net::address ad(get_app(), h, p);
 
    SendToBuf(ad, data, len, flags);
 
@@ -212,7 +212,7 @@ namespace sockets
    */
 
    /*
-   void udp_socket::SendToBuf(::sockets::address& ad, const char *data, int len, int flags)
+   void udp_socket::SendToBuf(::net::address& ad, const char *data, int len, int flags)
    {
    if (GetSocket() == INVALID_SOCKET)
    {
@@ -247,7 +247,7 @@ namespace sockets
    }
 
 
-   void udp_socket::SendTo(::sockets::address& ad, const string & str, int flags)
+   void udp_socket::SendTo(::net::address& ad, const string & str, int flags)
    {
    SendToBuf(ad, str, (int)str.get_length(), flags);
    }
@@ -779,7 +779,7 @@ namespace sockets
    address udp_socket::GetRemoteAddress()
    {
 
-      return address(get_app(), m_datagramsocket->Information->RemoteAddress->CanonicalName, m_datagramsocket->Information->RemotePort);
+      return ::net::address(m_datagramsocket->Information->RemoteAddress->CanonicalName, m_datagramsocket->Information->RemotePort);
 
    }
 
@@ -795,7 +795,7 @@ namespace sockets
    address udp_socket::GetLocalAddress()
    {
 
-      return address(get_app(), m_datagramsocket->Information->LocalAddress->CanonicalName, m_datagramsocket->Information->LocalPort);
+      return ::net::address(m_datagramsocket->Information->LocalAddress->CanonicalName, m_datagramsocket->Information->LocalPort);
 
    }
 

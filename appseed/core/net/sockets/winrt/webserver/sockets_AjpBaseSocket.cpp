@@ -1,35 +1,10 @@
-/**
- **   \file AjpBaseSocket.cpp
- **   \date  2007-10-05
- **   \author grymse@alhem.net
-**/
-/*
-Copyright (C) 2007  Anders Hedstrom
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*/
 #include "framework.h"
+
 
 namespace sockets
 {
 
-   #ifdef DEBUG
-   #define DEB(x) x
-   #else
-   #define DEB(x) 
-   #endif
+
 
 
    // ---------------------------------------------------------------------------
@@ -109,9 +84,9 @@ namespace sockets
    }
 
 
-   // ---------------------------------------------------------------------------
    AjpBaseSocket::AjpBaseSocket(base_socket_handler& h) : 
       socket(h),
+      base_socket(h),
       stream_socket(h),
       tcp_socket(h),
       m_state(0),
@@ -121,7 +96,6 @@ namespace sockets
    }
 
 
-   // ---------------------------------------------------------------------------
    void AjpBaseSocket::OnRawData(char *buf, size_t sz)
    {
    TRACE("OnRawData: %d bytes\n", sz);

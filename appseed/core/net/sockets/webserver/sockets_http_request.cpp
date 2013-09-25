@@ -55,7 +55,7 @@ namespace http
       m_memfileBody.Truncate(0);
       /*if (!m_file.get())
          m_file = smart_pointer<IFile>(new MemFile);
-   DEB(   else
+   DEBUG_ONLY(   else
          TRACE("Body data file already opened\n");*/
    }
 

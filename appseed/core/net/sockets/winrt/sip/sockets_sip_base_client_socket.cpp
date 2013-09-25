@@ -7,6 +7,7 @@ namespace sockets
 
    sip_base_client_socket::sip_base_client_socket(base_socket_handler& h) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       m_request(h.get_app()),
       m_response(h.get_app()),
@@ -28,7 +29,8 @@ namespace sockets
 
    sip_base_client_socket::sip_base_client_socket(const sip_base_client_socket& s) :
       element(s.get_app()),
-      socket(s.m_handler),
+      base_socket(s),
+      socket(s),
       m_request(s.get_app()),
       m_response(s.get_app())
    {
@@ -81,7 +83,7 @@ namespace sockets
                      m_chunk_line = m_chunk_line.Left(m_chunk_line.get_length() - 2);
                      ::str::parse pa(m_chunk_line, ";");
                      string size_str = pa.getword();
-                     m_chunk_size = ::ca2::hex::to_uint(size_str);
+                     m_chunk_size = ::hex::to_uint(size_str);
                      if (!m_chunk_size)
                      {
                         m_chunk_state = 4;
@@ -153,7 +155,7 @@ namespace sockets
                   char tmp[TCP_BUFSIZE_READ];
                   memcpy(tmp, buf + sz, len - sz);
                   tmp[len - sz] = 0;
-                  OnRead( tmp, len - sz );
+                  on_read( tmp, len - sz );
                }
             }
          }

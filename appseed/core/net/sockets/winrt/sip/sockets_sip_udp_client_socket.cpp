@@ -1,10 +1,13 @@
 #include "framework.h"
 
+
 namespace sockets
 {
 
+
    sip_udp_client_socket::sip_udp_client_socket(base_socket_handler & h) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       udp_socket(h),
       sip_base_client_socket(h)
@@ -33,3 +36,6 @@ namespace sockets
 
 
 } // namespace sockets
+
+
+

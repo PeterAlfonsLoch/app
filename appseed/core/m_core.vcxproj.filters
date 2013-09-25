@@ -360,9 +360,6 @@
     <Filter Include="Header Files\filesystem\file\NewFilter1">
       <UniqueIdentifier>{5f377991-42fd-4a1c-b01c-ba9beacd3ebe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\NewFilter1">
-      <UniqueIdentifier>{6c976648-5924-43f4-af06-94f104fa7134}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\net\http">
       <UniqueIdentifier>{054129d1-df6b-4854-93ad-dabe2365c198}</UniqueIdentifier>
     </Filter>
@@ -383,9 +380,6 @@
     </Filter>
     <Filter Include="Header Files\net\sockets\winrt\asynch_dns">
       <UniqueIdentifier>{9cc0b7cf-843f-474d-b700-5cf8dd69d1fc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\winrt\http">
-      <UniqueIdentifier>{568f7fe6-0b3b-4c26-bb8d-5540fcec9040}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\sockets\winrt\sip">
       <UniqueIdentifier>{63164557-a99b-42c1-a4e5-c72a7b40cf18}</UniqueIdentifier>
@@ -410,9 +404,6 @@
     </Filter>
     <Filter Include="Source Files\net\sockets\winrt\basic">
       <UniqueIdentifier>{37d2b548-cd7a-4fd2-a336-648e3274a42d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\winrt\http">
-      <UniqueIdentifier>{dbf7b75e-02a6-420d-a2c2-0ca4a22eb00f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\net\sockets\winrt\sip">
       <UniqueIdentifier>{bc140c63-aca9-471d-a9e1-58bce73153cf}</UniqueIdentifier>
@@ -3977,12 +3968,6 @@
     <ClInclude Include="net\sockets\winrt\sockets.h">
       <Filter>Header Files\net\sockets\winrt</Filter>
     </ClInclude>
-    <ClInclude Include="net\sockets\winrt\sockets_link_in_socket.h">
-      <Filter>Header Files\net\sockets\winrt</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\winrt\sockets_link_out_socket.h">
-      <Filter>Header Files\net\sockets\winrt</Filter>
-    </ClInclude>
     <ClInclude Include="net\sockets\winrt\sockets_sockets.h">
       <Filter>Header Files\net\sockets\winrt</Filter>
     </ClInclude>
@@ -4100,33 +4085,6 @@
     <ClInclude Include="net\sockets\winrt\basic\zzz_want_to_remove_socket_handler_base.h">
       <Filter>Header Files\net\sockets\winrt\basic</Filter>
     </ClInclude>
-    <ClInclude Include="net\sockets\winrt\http\sockets_http_client_socket.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\winrt\http\sockets_http_debug_socket.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\winrt\http\sockets_http_get_socket.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\winrt\http\sockets_http_post_socket.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\winrt\http\sockets_http_put_socket.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\winrt\http\sockets_http_request_socket.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\winrt\http\sockets_http_session.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\winrt\http\sockets_http_socket.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\winrt\http\sockets_http_tunnel.h">
-      <Filter>Header Files\net\sockets\winrt\http</Filter>
-    </ClInclude>
     <ClInclude Include="net\sockets\sockets_logger.h">
       <Filter>Header Files\net\sockets</Filter>
     </ClInclude>
@@ -4162,6 +4120,12 @@
     </ClInclude>
     <ClInclude Include="net\sockets\http\sockets_http.h">
       <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_link_in_socket.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_link_out_socket.h">
+      <Filter>Header Files\net\sockets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -6085,33 +6049,6 @@
     <ClCompile Include="net\net_address.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\winrt\http\sockets_http_put_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\winrt\http\sockets_http_post_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\winrt\http\sockets_http_get_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\winrt\http\sockets_http_debug_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\winrt\http\sockets_http_client_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\winrt\http\sockets_http_tunnel.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\winrt\http\sockets_http_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\winrt\http\sockets_http_session.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\winrt\http\sockets_http_request_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt\http</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\winrt\basic\sockets_net.cpp">
       <Filter>Source Files\net\sockets\winrt\basic</Filter>
     </ClCompile>
@@ -6205,16 +6142,7 @@
     <ClCompile Include="net\sockets\sockets_trace_logger.cpp">
       <Filter>Source Files\net\sockets</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\winrt\sockets_application_interface.cpp">
-      <Filter>Source Files\net\sockets\winrt</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\winrt\sockets_include.cpp">
-      <Filter>Source Files\net\sockets\winrt</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\winrt\sockets_link_in_socket.cpp">
-      <Filter>Source Files\net\sockets\winrt</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\winrt\sockets_link_out_socket.cpp">
       <Filter>Source Files\net\sockets\winrt</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\winrt\sockets_sockets.cpp">
@@ -6252,6 +6180,12 @@
     </ClCompile>
     <ClCompile Include="net\sockets\http\sockets_http_tunnel.cpp">
       <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_link_in_socket.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_link_out_socket.cpp">
+      <Filter>Source Files\net\sockets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

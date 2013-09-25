@@ -26,8 +26,6 @@ namespace sockets
       static SOCKET           s_socketNextIdSeed;
       static socket_map       s_mapSocket;
       bool                    m_bOnConnect;
-      bool                    m_bExpectResponse;
-      bool                    m_bExpectRequest;
 
 
       /** "Default" constructor */

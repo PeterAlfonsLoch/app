@@ -1,10 +1,13 @@
 #include "framework.h"
 
+
 namespace sockets
 {
 
+
    smtp_socket::smtp_socket(base_socket_handler& h) :
       element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -27,8 +30,8 @@ namespace sockets
          if(code == "220")
          {
             m_estate = state_hello;
-            //Send("HELO localhost\r\n");
-            Send("EHLO account.ca2.cc\r\n");
+            //write("HELO localhost\r\n");
+            write("EHLO account.ca2.cc\r\n");
          }
       }
       else if(m_estate == state_hello)
@@ -43,13 +46,13 @@ namespace sockets
                if(stra.contains_ci("login"))
                {
                   m_estate = state_auth_login;
-                  Send("AUTH LOGIN\r\n");
+                  write("AUTH LOGIN\r\n");
                }
             }
             else
             {
                m_estate = state_sender;
-               Send("MAIL FROM: " + m_email.m_addressSender.to_string() + "\r\n");
+               write("MAIL FROM: " + m_email.m_addressSender.to_string() + "\r\n");
             }
          }
       }
@@ -63,18 +66,18 @@ namespace sockets
             if(::str::find_ci("username", strRequest) >= 0)
             {
                strResponse = System.base64().encode("2.25anos@carloscecyn.com");
-               Send(strResponse + "\r\n");
+               write(strResponse + "\r\n");
             }
             else if(::str::find_ci("password", strRequest) >= 0)
             {
                strResponse = System.base64().encode("anos514Lund");
-               Send(strResponse + "\r\n");
+               write(strResponse + "\r\n");
             }
          }
          else if(code == "235")
          {
             m_estate = state_sender;
-            Send("MAIL FROM: " + m_email.m_addressSender.to_string() + "\r\n");
+            write("MAIL FROM: " + m_email.m_addressSender.to_string() + "\r\n");
          }
       }
       else if(m_estate == state_sender)
@@ -82,7 +85,7 @@ namespace sockets
          if(code == "250")
          {
             m_estate = state_recipient;
-            Send("RCPT TO: " + m_email.m_addressRecipient.to_string() + "\r\n");
+            write("RCPT TO: " + m_email.m_addressRecipient.to_string() + "\r\n");
          }
       }
       else if(m_estate == state_recipient)
@@ -90,7 +93,7 @@ namespace sockets
          if(code == "250")
          {
             m_estate = state_data;
-            Send("DATA\r\n");
+            write("DATA\r\n");
          }
       }
       else if(m_estate == state_data)
@@ -98,11 +101,11 @@ namespace sockets
          if(code.Mid(0, 1) == "3")
          {
             m_estate = state_body;
-            Send("Subject:  =?utf-8?B?" + System.base64().encode(m_email.m_strSubject) + "?=\r\n");
+            write("Subject:  =?utf-8?B?" + System.base64().encode(m_email.m_strSubject) + "?=\r\n");
             m_email.prepare_headers();
-            Send(m_email.m_strHeaders);
-            Send("Content-Type: text/plain; charset=\"utf-8\"\r\n");
-            Send("\r\n");
+            write(m_email.m_strHeaders);
+            write("Content-Type: text/plain; charset=\"utf-8\"\r\n");
+            write("\r\n");
             string strBody = m_email.m_strBody;
             strBody.replace("\r\n", "\n");
             stringa stra;
@@ -111,14 +114,14 @@ namespace sockets
             {
                if(stra[i].Mid(0, 1) == ".")
                {
-                  Send("." + stra[i] + "\r\n");
+                  write("." + stra[i] + "\r\n");
                }
                else
                {
-                  Send(stra[i] + "\r\n");
+                  write(stra[i] + "\r\n");
                }
             }
-            Send(".\r\n");
+            write(".\r\n");
          }
       }
       else if(m_estate == state_body)
@@ -126,7 +129,7 @@ namespace sockets
          if(code == "250")
          {
             m_estate = state_quit;
-            Send("QUIT\r\n");
+            write("QUIT\r\n");
          }
       }
       else if(m_estate == state_quit)

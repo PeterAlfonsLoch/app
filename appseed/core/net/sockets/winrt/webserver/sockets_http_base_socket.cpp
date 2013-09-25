@@ -3,13 +3,6 @@
 namespace sockets
 {
 
-   #ifdef DEBUG
-   #define DEB(x) x; fflush(stderr);
-   #else
-   #define DEB(x)
-   #endif
-
-
    http_base_socket::http_base_socket(base_socket_handler& h) :
       element(h.get_app()),
       socket(h),

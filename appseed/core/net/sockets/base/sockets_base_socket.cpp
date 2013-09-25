@@ -40,12 +40,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
-#ifdef DEBUG
-#define DEB(x) x; fflush(stderr);
-#else
-#define DEB(x)
-#endif
-
 
    mutex base_socket::s_mutex;
 
@@ -1929,6 +1923,10 @@ namespace sockets
 
       throw interface_only_exception(get_app());
 
+   }
+
+   void base_socket::run()
+   {
    }
 
    void base_socket::step()

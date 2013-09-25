@@ -41,12 +41,6 @@ namespace sockets
 {
 
 
-   #ifdef DEBUG
-   #define DEB(x) x; fflush(stderr);
-   #else
-   #define DEB(x)
-   #endif
-
    SOCKET socket::s_socketNextIdSeed = 1;
 
    socket_map socket::s_mapSocket;
@@ -122,19 +116,19 @@ namespace sockets
 
    void socket::close()
    {
- if (m_socket == INVALID_SOCKET) // this could happen
+      if (m_socket == INVALID_SOCKET) // this could happen
       {
          log("base_socket::close", 0, "file descriptor invalid", ::core::log::level_warning);
          throw io_exception(get_app());
       }
       int n = 0;
-      if(!close_socket())
+      if(close_socket(m_socket) == -1)
       {
          // failed...
          log("close", Errno, StrError(Errno), ::core::log::level_error);
          n = -1;
       }
-      Handler().Set(m_socket, false, false, false); // remove from fd_set's
+      Handler().set(m_socket, false, false, false); // remove from fd_set's
       Handler().AddList(m_socket, LIST_CALLONCONNECT, false);
       Handler().AddList(m_socket, LIST_DETACH, false);
       Handler().AddList(m_socket, LIST_TIMEOUT, false);

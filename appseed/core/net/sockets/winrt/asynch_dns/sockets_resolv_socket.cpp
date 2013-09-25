@@ -36,14 +36,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
-   #ifdef DEBUG
-   #define DEB(x) x
-   #else
-   #define DEB(x)
-   #endif
-
-
-
 
    resolv_socket::resolv_socket(base_socket_handler& h) :
       ::element(h.get_app()),
@@ -218,7 +210,7 @@ namespace sockets
             //in_addr l;
             //System.net().convert(l, value); // ip2ipaddr_t
 
-            m_parent -> OnResolved(m_resolv_id, address(get_app(), value, m_resolv_port));
+            m_parent -> OnResolved(m_resolv_id, ::net::address(value, m_resolv_port));
          }
          // update cache
          if (!m_cached)
@@ -236,7 +228,7 @@ namespace sockets
          {
             //in6_addr a;
             //System.net().convert(a, value);
-            m_parent -> OnResolved(m_resolv_id, address(get_app(), value, m_resolv_port));
+            m_parent -> OnResolved(m_resolv_id, ::net::address(value, m_resolv_port));
          }
          // update cache
          if (!m_cached)
@@ -288,18 +280,22 @@ namespace sockets
       if (m_query == "gethostbyaddr")
       {
 
-         ::sockets::address addr(get_app(), m_data);
+         ::net::address addr(m_data);
 
          if(System.net().isipv4(m_data) || System.net().isipv6(m_data))
          {
-            if(System.net().isipv4(addr.get_canonical_name()) || System.net().isipv6(addr.get_canonical_name()))
+
+            string strCanonicalName = System.net().canonical_name(addr);
+
+            if(System.net().isipv4(strCanonicalName) || System.net().isipv6(strCanonicalName))
             {
                write("Failed: convert to sockaddr_in failed\n");
             }
             else
             {
-               write("Name: " + addr.get_canonical_name() + "\n");
+               write("Name: " + strCanonicalName+ "\n");
             }
+
          }
          else
          {

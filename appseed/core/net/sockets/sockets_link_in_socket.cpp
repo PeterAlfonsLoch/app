@@ -1,21 +1,3 @@
-//OutSocket.cpp
-/*
-Copyright (C) 2004  Anders Hedstrom
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*/
 #include "framework.h"
 
 
@@ -24,39 +6,45 @@ namespace sockets
 
 
 
-   link_out_socket::link_out_socket(base_socket_handler & h) : 
-      ca2(h.get_app()),
+   link_in_socket::link_in_socket(base_socket_handler & h) :
+      element(h.get_app()),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h, 32000, 32000),
       m_in(NULL),
-      m_out(NULL)
+      m_out(NULL),
+      m_eventFinished(h.get_app())
    {
    }
 
 
-   link_out_socket::~link_out_socket()
+   link_in_socket::~link_in_socket()
    {
    }
 
-   void link_out_socket::OnRead( char *buf, size_t n )
+
+   void link_in_socket::OnRead( char *buf, size_t n )
    {
 
-      m_in->link_write(buf, n);
+      m_out->link_write(buf, n);
 
    }
 
-   void link_out_socket::link_write(void * p, size_t size)
+
+   void link_in_socket::link_write(void * p, size_t n)
    {
-      m_out->SendBuf((const char *) p, size);
+      
+      m_in->write((const char *) p, n);
+
    }
 
 
-   void link_out_socket::server_to_link_out(httpd_socket * psocket)
+   void link_in_socket::server_to_link_in(httpd_socket * psocket)
    {
       socket_handler & h = dynamic_cast < socket_handler & > (psocket->Handler());
       POSITION pos = h.m_sockets.get_start_position();
-      ::sockets::socket * psocket2;
+      sp(::sockets::base_socket) psocket2;
       SOCKET key;
       while(pos != NULL)
       {
@@ -66,7 +54,7 @@ namespace sockets
             h.m_sockets.set_at(key, this);
          }
       }
-//      m_bSsl = psocket->GetSsl();
+//      m_ssl = psocket->GetSsl();
       m_socket = psocket->m_socket;
 
       m_bConnecting        = psocket->m_bConnecting; ///< Flag indicating connection in progress
@@ -86,5 +74,25 @@ namespace sockets
 
    }
 
+   link_in_socket * link_in_socket::from_server(httpd_socket * psocket)
+   {
+      
+      link_in_socket * pinsocket = new link_in_socket(psocket->Handler());
+
+	   pinsocket->m_in = psocket;
+	
+      pinsocket->m_memfileInput.transfer_from(psocket->m_memfileInput);
+
+      pinsocket->server_to_link_in(psocket);
+
+      psocket->m_bEnd = true;
+
+      return pinsocket;
+
+   }
 
 } // namespace sockets
+
+
+
+

@@ -400,7 +400,7 @@ namespace sockets
    bool net::reverse(string & number, const string & hostname, int flags)
    {
       
-      ::sockets::address address(get_app(), hostname);
+      ::net::address ::net::address(hostname);
 
       number = address.get_display_number();
 

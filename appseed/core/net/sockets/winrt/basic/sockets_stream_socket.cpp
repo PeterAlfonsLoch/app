@@ -163,10 +163,10 @@ namespace sockets
    }
    
    
-   address stream_socket::GetRemoteAddress()
+   ::net::address stream_socket::GetRemoteAddress()
    {
 
-      return address(get_app(), m_streamsocket->Information->RemoteAddress->CanonicalName, m_streamsocket->Information->RemotePort);
+      return ::net::address(m_streamsocket->Information->RemoteAddress->CanonicalName, m_streamsocket->Information->RemotePort);
 
    }
 
@@ -179,10 +179,10 @@ namespace sockets
    }
      
 
-   address stream_socket::GetLocalAddress()
+   ::net::address stream_socket::GetLocalAddress()
    {
 
-      return address(get_app(), m_streamsocket->Information->LocalAddress->CanonicalName, m_streamsocket->Information->LocalPort);
+      return ::net::address(m_streamsocket->Information->LocalAddress->CanonicalName, m_streamsocket->Information->LocalPort);
 
    }
 
