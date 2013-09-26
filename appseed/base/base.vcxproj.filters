@@ -137,9 +137,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="android\c_os_internal.h">
-      <Filter>Header Files\android</Filter>
-    </ClInclude>
     <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1166,14 +1163,17 @@
     <ClInclude Include="base\base_session.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
+    <ClInclude Include="android\c_os_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android\android.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
+    <ClInclude Include="android\android_window_impl.h">
+      <Filter>Header Files\android</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="android\c_os_internal.c">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="c_os_locale.c">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
     <ClCompile Include="framework_c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1885,6 +1885,15 @@
     <ClCompile Include="windows\windows_time.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
+    <ClCompile Include="android\android.c">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_window_impl.cpp">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_locale.c">
+      <Filter>Source Files\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -1898,6 +1907,15 @@
     </None>
     <None Include="base.def">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
