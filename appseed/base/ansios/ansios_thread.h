@@ -1,7 +1,7 @@
 #pragma once
 
 
-class hthread :
+/*class hthread :
     virtual public root
 {
 public:
@@ -20,7 +20,7 @@ public:
 
 
 };
-
+*/
 
 
 

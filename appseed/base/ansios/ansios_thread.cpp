@@ -154,7 +154,7 @@ mutex * g_pmutexTlsData = NULL;
 static DWORD nextTlsIndex = 0;
 
 mutex * os_thread::s_pmutex = NULL;
-array < os_thread * > * os_thread::s_pptra = NULL;
+comparable_raw_array < os_thread * > * os_thread::s_pptra = NULL;
 
 
 // Converts a Win32 thread priority to WinRT format.

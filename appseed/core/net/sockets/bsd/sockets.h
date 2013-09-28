@@ -67,8 +67,8 @@
 #include "basic/sockets_sync_socket_handler.h"
 
 
-#include "sockets_link_out_socket.h"
-#include "sockets_link_in_socket.h"
+#include "core/net/sockets/sockets_link_out_socket.h"
+#include "core/net/sockets/sockets_link_in_socket.h"
 
 #include "basic/sockets_net.h"
 

@@ -223,11 +223,11 @@ namespace net
       else if(is_ipv6() && addr.is_ipv6() && addrMask.is_ipv6())
       {
 
-         in_addr6 a1 = m_addr6.sin6_addr;
+         in6_addr a1 = m_addr6.sin6_addr;
 
-         in_addr6 a2 = addr.m_addr6.sin6_addr;
+         in6_addr a2 = addr.m_addr6.sin6_addr;
 
-         in_addr6 aM = addrMask.m_addr6.sin6_addr;
+         in6_addr aM = addrMask.m_addr6.sin6_addr;
 
          memand_dup(&a1, &a1, &aM, sizeof(a1));
 
@@ -298,7 +298,7 @@ namespace net
       }
 #endif
    }
-   
+
    void address::sync_os_service()
    {
 #ifdef METROWIN

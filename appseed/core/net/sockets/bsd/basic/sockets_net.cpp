@@ -17,10 +17,12 @@
 namespace sockets
 {
 
+    mutex net::m_mutexCache;
+    string_map < net::dns_cache_item * >  net::m_mapCache;
+
 
    net::net(sp(base_application) papp) :
-      element(papp),
-      m_mutexCache(papp)
+      element(papp)
    {
 
    }
@@ -262,7 +264,7 @@ namespace sockets
       }
       if (!vec.get_count())
          return false;
-      ai = vec[System.math().rnd() % vec.get_count()];
+      ai = vec[rand() % vec.get_count()];
       {
          memcpy(&sa, ai -> ai_addr, ai -> ai_addrlen);
       }
@@ -271,12 +273,12 @@ namespace sockets
       pitem->m_dwLastChecked = ::get_tick_count();
       m_mapCache.set_at(str, pitem);
       uint32_t dwTimeProfile2 = get_tick_count();
-      TRACE("DNS Lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-         (uint32_t)((byte*)&pitem->m_ipaddr)[0],
-         (uint32_t)((byte*)&pitem->m_ipaddr)[1],
-         (uint32_t)((byte*)&pitem->m_ipaddr)[2],
-         (uint32_t)((byte*)&pitem->m_ipaddr)[3],
-         (dwTimeProfile2 - dwTimeProfile1));
+//      TRACE("DNS Lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+  //       (uint32_t)((byte*)&pitem->m_ipaddr)[0],
+    //     (uint32_t)((byte*)&pitem->m_ipaddr)[1],
+      //   (uint32_t)((byte*)&pitem->m_ipaddr)[2],
+        // (uint32_t)((byte*)&pitem->m_ipaddr)[3],
+         //(dwTimeProfile2 - dwTimeProfile1));
       l = pitem->m_ipaddr;
 
       return pitem->r;
