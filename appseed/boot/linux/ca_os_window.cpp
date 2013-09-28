@@ -100,7 +100,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(cairo_surface_t * cs, stringa & stra, ::lemon_array < bool >  & baTab, int_array  & ya,SIZE * psize)
+void message_box_paint(cairo_surface_t * cs, stringa & stra, bool_array  & baTab, int_array  & ya,SIZE * psize)
 {
 	cairo_t *c;
 
@@ -170,7 +170,7 @@ void message_box_show_xlib(const char * lpText, const char * lpCaption)
 
 	stra.add_tokens(lpText, "\n");
 
-	::lemon_array < bool > baTab;
+	bool_array baTab;
 
 	int_array ya;
 
@@ -250,7 +250,7 @@ void message_box_show_xlib(const char * lpText, const char * lpCaption)
 
 
 
-int32_t WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
+int32_t WINAPI MessageBoxA_x11(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
 {
 
    message_box_show_xlib(lpText, lpCaption);
@@ -258,4 +258,18 @@ int32_t WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCa
    return 0;
 
 }
+
+
+
+
+
+__attribute__((constructor))
+static void initialize_x11_message_box()
+{
+
+   g_messageboxa = &::MessageBoxA_x11;
+
+}
+
+
 

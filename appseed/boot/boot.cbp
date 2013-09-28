@@ -229,6 +229,7 @@
 		<Unit filename="linux/ca_os_small_ipca_channel.cpp" />
 		<Unit filename="linux/ca_os_thread.cpp" />
 		<Unit filename="linux/ca_os_win_base.cpp" />
+		<Unit filename="linux/ca_os_window.cpp" />
 		<Unit filename="linux/ca_os_window_cairo.cpp" />
 		<Unit filename="linux/ca_os_window_cairo.h" />
 		<Unit filename="linux/linux_internal.h" />

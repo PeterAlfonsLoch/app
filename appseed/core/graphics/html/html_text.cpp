@@ -14,7 +14,7 @@ namespace html
          user::scroll_view(papp),
          user::edit_plain_text(papp)
       {
-         
+
          m_bLink                                         = false;
 
          m_bSendEnterKey                                 = true;
@@ -297,7 +297,7 @@ namespace html
                }
                m_box.set_cx(cx);
             }
-            
+
             float cy = 0.f;
             int32_t i;
             for(i = 0; i < m_sizea.get_size(); i++)
@@ -313,8 +313,8 @@ namespace html
             }
             else
             {
-             
-               m_box.set_cy(cy + m_pelemental->m_pparent->m_pimpl->m_padding.top 
+
+               m_box.set_cy(cy + m_pelemental->m_pparent->m_pimpl->m_padding.top
                             + m_pelemental->m_pparent->m_pimpl->m_padding.bottom
                             + m_pelemental->m_pparent->m_pimpl->m_border.top
                             + m_pelemental->m_pparent->m_pimpl->m_border.bottom
@@ -447,7 +447,7 @@ namespace html
             bOpaque = false;
             //pdc->SetBkMode(TRANSPARENT);
          }
-         
+
          ::draw2d::brush_sp brushText(allocer());
 
          if(m_bHover && m_pelemental->m_style.get_color("color", "hover", pdata, m_pelemental, cr))
@@ -480,16 +480,16 @@ namespace html
          _001GetViewSel(iSelStart, iSelEnd);
          strsize iCursor = iSelEnd;
          sort::sort(iSelStart, iSelEnd);
-         
+
          ::html::font * pfont = pdata->get_font(m_pelemental);
 
          if(pfont != NULL)
          {
 
             pdc->SelectObject(pfont->m_font);
-   
+
          }
-         
+
          float x = get_x();
 
          float y = get_y();
@@ -517,7 +517,7 @@ namespace html
          if(!pdata->m_bEdit)
          {
 //            brushText->create_solid(cr);
-  //          pdc->SelectObject(brushText);
+            pdc->SelectObject(brushText);
          }
 
 
@@ -568,7 +568,7 @@ namespace html
             //pdc->SetBkColor(RGB(120, 240, 180));
   //          pdc->SetBkMode(TRANSPARENT);
             pdc->TextOut(left + size1.cx + size2.cx, y, strExtent3);
-    
+
             maxcy = max(size1.cy, size2.cy);
             maxcy = max(maxcy, size3.cy);
             if(m_bFocus && m_bCaretOn && i3 == str1.get_length())
@@ -593,7 +593,7 @@ namespace html
          lim += strLine.get_length();
         }
         //pdc->FillSolidRect(0, 0, 100, 100, RGB(0, 255, 0));
-        
+
       }
 
       float text::get_first_line_height()
@@ -846,11 +846,11 @@ namespace html
             return;
 
          keeper < bool > keep(&m_bOnAfterChangeText, true, false, true);
-         
+
          string strText;
-         
+
          _001GetText(strText);
-         
+
          m_pelemental->_001SetText(strText);
 
          m_pelemental->m_pdata->m_pform->layout();

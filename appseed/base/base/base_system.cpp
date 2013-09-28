@@ -385,7 +385,7 @@ sp(element) base_system::on_alloc(sp(base_application) papp, sp(type) info)
    /*string str;
    str.Format("Could not alloc %s", info.name());
    simple_message_box(str);*/
-   sp(element) pobj = Sys(papp).factory().create(papp, info);
+   sp(element) pobj = m_pfactory->create(papp, info);
    if(pobj != NULL)
       return pobj;
    on_allocation_error(papp, info);
