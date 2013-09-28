@@ -186,7 +186,7 @@ bool small_ipc_rx_channel::create(const char * pszKey, const char * pszWindowPro
 
    ATOM atom = register_class(hinstance);
 
-   m_oswindow = ::CreateWindowExA(0, "small_ipc_rx_channel_message_window_class", pszKey, 0, 0, 0, 0, 0, HWND_MESSAGE, NULL, hinstance, NULL);
+   m_oswindow = ::CreateWindowExA(0, "small_ipc_rx_channel_message_queue_class", pszKey, 0, 0, 0, 0, 0, HWND_MESSAGE, NULL, hinstance, NULL);
    
    if(m_oswindow == NULL)
    {
@@ -275,7 +275,7 @@ void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int64_t 
 }
 
 
-LRESULT CALLBACK small_ipc_rx_channel::s_message_window_proc(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam)
+LRESULT CALLBACK small_ipc_rx_channel::s_message_queue_proc(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam)
 {
 
    int32_t iRet = 0;
@@ -291,7 +291,7 @@ LRESULT CALLBACK small_ipc_rx_channel::s_message_window_proc(oswindow oswindow, 
    else
    {
 
-      return pchannel->message_window_proc(message, wparam, lparam);
+      return pchannel->message_queue_proc(message, wparam, lparam);
 
    }
 
@@ -306,7 +306,7 @@ ATOM small_ipc_rx_channel::register_class(HINSTANCE hInstance)
 	wcex.cbSize = sizeof(WNDCLASSEX);
 
 	wcex.style			   = 0;
-	wcex.lpfnWndProc	   = &small_ipc_rx_channel::s_message_window_proc;
+	wcex.lpfnWndProc	   = &small_ipc_rx_channel::s_message_queue_proc;
 	wcex.cbClsExtra	   = 0;
 	wcex.cbWndExtra	   = 0;
 	wcex.hInstance		   = hInstance;
@@ -314,14 +314,14 @@ ATOM small_ipc_rx_channel::register_class(HINSTANCE hInstance)
 	wcex.hCursor		   = LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
    wcex.lpszMenuName	   = NULL;
-	wcex.lpszClassName	= "small_ipc_rx_channel_message_window_class";
+	wcex.lpszClassName	= "small_ipc_rx_channel_message_queue_class";
 	wcex.hIconSm		   = NULL;
 
 	return RegisterClassEx(&wcex);
 }
 
 
-LRESULT small_ipc_rx_channel::message_window_proc(UINT message, WPARAM wparam, LPARAM lparam)
+LRESULT small_ipc_rx_channel::message_queue_proc(UINT message, WPARAM wparam, LPARAM lparam)
 {
    
    if(message == WM_USER + 100)

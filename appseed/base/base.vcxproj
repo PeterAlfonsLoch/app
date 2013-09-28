@@ -1400,9 +1400,15 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="x\x_tables.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="android\android.c" />
-    <ClCompile Include="android\android_locale.c" />
-    <ClCompile Include="android\android_window_impl.cpp" />
+    <ClCompile Include="android\android.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\android_locale.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\android_window_impl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="base\base.cpp" />
     <ClCompile Include="base\base_allocate_base.cpp" />
     <ClCompile Include="base\base_allocate_base_heap.cpp" />

@@ -1883,12 +1883,6 @@
     <ClInclude Include="net\sockets\bsd\sockets.h">
       <Filter>Header Files\net\sockets\bsd</Filter>
     </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sockets_link_in_socket.h">
-      <Filter>Header Files\net\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sockets_link_out_socket.h">
-      <Filter>Header Files\net\sockets\bsd</Filter>
-    </ClInclude>
     <ClInclude Include="net\sockets\bsd\sockets_sockets.h">
       <Filter>Header Files\net\sockets\bsd</Filter>
     </ClInclude>
@@ -3410,6 +3404,12 @@
     <ClInclude Include="net\sockets\http\sockets_http_tunnel.h">
       <Filter>Header Files\net\sockets\http</Filter>
     </ClInclude>
+    <ClInclude Include="net\sockets\sockets_link_in_socket.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\sockets_link_out_socket.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive_scalar.cpp">
@@ -4486,12 +4486,6 @@
     <ClCompile Include="net\sockets\bsd\sockets_include.cpp">
       <Filter>Source Files\net\sockets\bsd</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sockets_link_in_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sockets_link_out_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\bsd\sockets_sockets.cpp">
       <Filter>Source Files\net\sockets\bsd</Filter>
     </ClCompile>
@@ -5272,9 +5266,6 @@
     <ClCompile Include="net\sockets\webserver\sockets_http_transaction.cpp">
       <Filter>Source Files\net\sockets\webserver</Filter>
     </ClCompile>
-    <ClCompile Include="net\mail\mail_simple_pop3.cpp">
-      <Filter>Source Files\net\sockets</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -5450,9 +5441,6 @@
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_message.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core_message_window.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core_microtimer.cpp">
@@ -5712,6 +5700,18 @@
     </ClCompile>
     <ClCompile Include="net\sockets\base\sockets_base_socket_handler.cpp">
       <Filter>Source Files\net\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_link_in_socket.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_link_out_socket.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_simple_pop3.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core_message_queue.cpp">
+      <Filter>Source Files\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

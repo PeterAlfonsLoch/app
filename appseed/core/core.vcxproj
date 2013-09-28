@@ -1533,8 +1533,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h" />
     <ClInclude Include="net\sockets\bsd\sockets.h" />
     <ClInclude Include="net\sockets\bsd\sockets_config.h" />
-    <ClInclude Include="net\sockets\bsd\sockets_link_in_socket.h" />
-    <ClInclude Include="net\sockets\bsd\sockets_link_out_socket.h" />
     <ClInclude Include="net\sockets\bsd\sockets_sockets.h" />
     <ClInclude Include="net\sockets\bsd\timer\Event.h" />
     <ClInclude Include="net\sockets\bsd\timer\EventHandler.h" />
@@ -1564,6 +1562,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\sockets\sockets.h" />
     <ClInclude Include="net\sockets\sockets_http_batch_buffer.h" />
     <ClInclude Include="net\sockets\sockets_http_buffer.h" />
+    <ClInclude Include="net\sockets\sockets_link_in_socket.h" />
+    <ClInclude Include="net\sockets\sockets_link_out_socket.h" />
     <ClInclude Include="net\sockets\sockets_logger.h" />
     <ClInclude Include="net\sockets\sockets_logger.h\Header.h" />
     <ClInclude Include="net\sockets\sockets_trace_logger.h" />
@@ -1963,7 +1963,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\core_math_rng.cpp" />
     <ClCompile Include="core\core_memory.cpp" />
     <ClCompile Include="core\core_message.cpp" />
-    <ClCompile Include="core\core_message_window.cpp" />
+    <ClCompile Include="core\core_message_queue.cpp" />
     <ClCompile Include="core\core_microtimer.cpp" />
     <ClCompile Include="core\core_nessie.cpp" />
     <ClCompile Include="core\core_os.cpp" />
@@ -2523,8 +2523,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="net\sockets\bsd\smtp\sockets_smtpd_socket.cpp" />
     <ClCompile Include="net\sockets\bsd\smtp\sockets_smtp_socket.cpp" />
     <ClCompile Include="net\sockets\bsd\sockets_include.cpp" />
-    <ClCompile Include="net\sockets\bsd\sockets_link_in_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\sockets_link_out_socket.cpp" />
     <ClCompile Include="net\sockets\bsd\sockets_sockets.cpp" />
     <ClCompile Include="net\sockets\bsd\timer\sockets_Event.cpp" />
     <ClCompile Include="net\sockets\bsd\timer\sockets_EventHandler.cpp" />
@@ -2545,6 +2543,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="net\sockets\http\sockets_http_tunnel.cpp" />
     <ClCompile Include="net\sockets\sockets_http_batch_buffer.cpp" />
     <ClCompile Include="net\sockets\sockets_http_buffer.cpp" />
+    <ClCompile Include="net\sockets\sockets_link_in_socket.cpp" />
+    <ClCompile Include="net\sockets\sockets_link_out_socket.cpp" />
     <ClCompile Include="net\sockets\sockets_trace_logger.cpp" />
     <ClCompile Include="net\sockets\webserver\sockets_http_cookie.cpp" />
     <ClCompile Include="net\sockets\webserver\sockets_http_form.cpp" />

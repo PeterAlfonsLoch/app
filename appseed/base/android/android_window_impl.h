@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca
+namespace boot
 {
 
 
@@ -9,7 +9,7 @@ namespace ca
    class window;
 
 
-} // namespace ca
+} // namespace boot
 
 
 namespace user

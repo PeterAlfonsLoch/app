@@ -2,7 +2,7 @@
 #include <windows.h>
 
 
-namespace ca
+namespace boot
 {
 
 
@@ -159,7 +159,7 @@ namespace ca
 
 
 
-} // namespace ca
+} // namespace boot
 
 
 namespace core
