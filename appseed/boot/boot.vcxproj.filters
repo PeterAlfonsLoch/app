@@ -69,12 +69,6 @@
     <Filter Include="Source Files\ansios\crypto">
       <UniqueIdentifier>{7ba43f41-9f54-4f74-a26d-bce7dbf86caa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\cross">
-      <UniqueIdentifier>{9713475d-2040-4058-adb0-6d971b4284cf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\cross\windows">
-      <UniqueIdentifier>{e2cfe0cf-c68f-488a-979d-762d5e1aece1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\cross">
       <UniqueIdentifier>{88b02266-acd6-4f74-b94b-680cde4be37b}</UniqueIdentifier>
     </Filter>
@@ -747,12 +741,6 @@
     </ClCompile>
     <ClCompile Include="ansios\crypto\ansios_crypt.cpp">
       <Filter>Source Files\ansios\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="cross\windows\windows_thread.cpp">
-      <Filter>Source Files\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="cross\windows\windows_user.cpp">
-      <Filter>Source Files\cross\windows</Filter>
     </ClCompile>
     <ClCompile Include="boot\_initterm.cpp">
       <Filter>Source Files\boot</Filter>
