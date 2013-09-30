@@ -24,6 +24,8 @@ namespace file
       virtual void * get_data();
       virtual string to_string();
 
+
+
    };
 
 

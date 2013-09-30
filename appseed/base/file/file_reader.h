@@ -29,7 +29,7 @@ namespace file
       virtual void close();
 
 
-      virtual file_position get_position();
+      virtual file_position get_position() const;
 
       file_position tellg() { return get_position(); }
 

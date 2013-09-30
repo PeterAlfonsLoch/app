@@ -24,12 +24,12 @@ namespace file
       virtual void write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten);
 
       virtual void transfer_from(reader & reader, ::primitive::memory_size uiBufferSize = 1024 * 1024);
+      virtual void transfer_from_begin(reader & reader, ::primitive::memory_size uiBufSize = 1024 * 1024);
 
       virtual void close();
 
       virtual void flush();
 
-      
 
    };
 

@@ -10,6 +10,7 @@ namespace file
       m_psz       = NULL;
       m_iSize     = 0;
       m_iAlloc    = 0;
+      m_dwPos     = 0;
    }
 
    string_buffer::string_buffer(sp(base_application) papp) :
@@ -18,6 +19,7 @@ namespace file
       m_psz       = NULL;
       m_iSize     = 0;
       m_iAlloc    = 0;
+      m_dwPos     = 0;
    }
 
    string_buffer::string_buffer(const string & str)
@@ -25,6 +27,7 @@ namespace file
       m_psz       = NULL;
       m_iSize     = 0;
       m_iAlloc    = 0;
+      m_dwPos     = 0;
       append(str);
    }
 
@@ -32,6 +35,7 @@ namespace file
    {
       m_psz       = NULL;
       m_iSize     = 0;
+      m_dwPos     = 0;
       m_iAlloc    = 0;
       append(text);
    }
@@ -44,6 +48,8 @@ namespace file
 
    ::primitive::memory_size string_buffer::read(void *lpBuf, ::primitive::memory_size nCount)
    {
+      if(m_dwPos >= m_iSize)
+         return 0;
       primitive::memory_size uiRead = min(nCount, (primitive::memory_size) (m_iSize - m_dwPos));
       memcpy(lpBuf, &m_psz[m_dwPos], uiRead);
       m_dwPos += uiRead;
@@ -73,6 +79,13 @@ namespace file
    {
 
       destroy();
+
+   }
+
+   file_position string_buffer::get_position() const
+   {
+
+      return m_dwPos;
 
    }
 

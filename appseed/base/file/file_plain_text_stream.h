@@ -26,6 +26,8 @@ namespace file
 
       virtual void close();
 
+
+
    };
 
 

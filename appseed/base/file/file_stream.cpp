@@ -47,6 +47,38 @@ namespace file
    }
 
 
+   void * stream::get_internal_data()
+   {
+      
+      return m_spbuffer->get_internal_data();
+
+   }
+
+
+   ::primitive::memory_size stream::get_internal_data_size()
+   {
+      
+      return m_spbuffer->get_internal_data_size();
+
+   }
+
+
+   bool stream::set_internal_data_size(::primitive::memory_size c)
+   {
+      
+      return m_spbuffer->set_internal_data_size(c);
+
+   }
+
+
+   file_position stream::get_position() const
+   {
+      
+      return m_spbuffer->get_position();
+
+   }
+
+
 } // namespace file
 
 

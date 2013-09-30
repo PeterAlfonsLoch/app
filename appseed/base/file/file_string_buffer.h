@@ -69,6 +69,9 @@ namespace file
          return m_iAlloc;
       }
 
+
+      virtual file_position get_position() const;
+
       void destroy()
       {
          if(m_psz != NULL)

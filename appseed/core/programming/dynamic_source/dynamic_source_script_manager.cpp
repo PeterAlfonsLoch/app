@@ -297,6 +297,8 @@ namespace dynamic_source
                if(pdsscript->m_memfileError.get_length() > 0)
                {
 
+                  pdsscript->m_memfileError.seek_to_begin();
+
                   pinstance->ostream().transfer_from(pdsscript->m_memfileError);
 
                }

@@ -267,6 +267,9 @@ namespace sockets
 
             gzip_stream gz(&file);
 
+
+            response().file().seek_to_begin();
+
             gz.transfer_from(response().file());
 
             gz.finish();

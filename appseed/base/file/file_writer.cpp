@@ -31,6 +31,15 @@ namespace file
 
    }
 
+   void writer::transfer_from_begin(reader & reader, ::primitive::memory_size uiBufSize)
+   {
+
+      reader.seek_to_begin();
+
+      transfer_from(reader, uiBufSize);
+
+   }
+
    void writer::transfer_from(reader & reader, ::primitive::memory_size uiBufSize)
    {
 

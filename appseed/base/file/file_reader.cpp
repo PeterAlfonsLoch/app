@@ -159,7 +159,7 @@ namespace file
    {
    }
 
-   file_position reader::get_position()
+   file_position reader::get_position() const
    {
       throw interface_only_exception(get_app());
       return 0;

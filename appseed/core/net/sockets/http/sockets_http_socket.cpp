@@ -379,7 +379,7 @@ namespace sockets
    {
       if(response().file().get_length() > 0)
       {
-         transfer_from(response().file());
+         transfer_from_begin(response().file());
       }
    }
 
