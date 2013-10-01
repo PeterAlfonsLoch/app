@@ -8,7 +8,7 @@ namespace sphere
    library::library() :
       ::ca2::single_application_library < application > ("app"),
       ::filehandler::menu_library(),
-      ::ca2::library("app")
+      ::core::library("app")
    {
    }
 
@@ -82,7 +82,7 @@ namespace sphere
 #ifndef _WIN32
 extern "C"
 #endif
-::ca2::library * get_new_library()
+::core::library * get_new_library()
 {
    return new ::sphere::library();
 }
