@@ -23,9 +23,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="math\math.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
     <ClInclude Include="kissfft\kissfft_ifftd.h">
       <Filter>Header Files\kissfft</Filter>
     </ClInclude>
@@ -49,6 +46,9 @@
     </ClInclude>
     <ClInclude Include="kissfft\kiss_fft_guts.h">
       <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="math\math_math.h">
+      <Filter>Header Files\math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

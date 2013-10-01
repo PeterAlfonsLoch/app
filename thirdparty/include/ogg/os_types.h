@@ -21,7 +21,7 @@
 
 /* make it easy on the folks that want to compile the libs with a
    different malloc than stdlib */
-#define _ogg_malloc  ca2_alloc
+#define _ogg_malloc  memory_alloc
 #define _ogg_calloc  ca2_calloc
 #define _ogg_realloc ca2_realloc
 #define _ogg_free    ca2_free
