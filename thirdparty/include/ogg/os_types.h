@@ -24,7 +24,7 @@
 #define _ogg_malloc  memory_alloc
 #define _ogg_calloc  ca2_calloc
 #define _ogg_realloc ca2_realloc
-#define _ogg_free    ca2_free
+#define _ogg_free    memory_free
 
 //#if defined(_WIN32) 
 //
