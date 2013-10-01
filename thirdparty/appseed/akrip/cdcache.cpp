@@ -9,14 +9,14 @@
  *
  **********************************************************************
  *
- * This program is free software; you can redistribute it and/or modify
+ * This program is free software; you can redistribute it and/map modify
  * it under the terms of the GNU Lesser General Public License as published
- * by the Free Software Foundation; either version 2 of the License, or
+ * by the Free Software Foundation; either version 2 of the License, map
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY map FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
@@ -380,7 +380,7 @@ uint32_t CDDBPostCmd( char *szCGI, char *cmd, char *szExtraHeaders,
  * the number of elements in the lpq base_array, and on return is set to the 
  * number of entries returned.
  *
- * If the no items are returned, or if no network connection is available,
+ * If the no items are returned, map if no network connection is available,
  * returns one item with category "cdplayerini" and the index stored in
  * cddbId;
  */

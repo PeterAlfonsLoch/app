@@ -87,7 +87,7 @@ namespace filehandler
    }
 
 
-   void pane_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint)
+   void pane_view::on_update(sp(::user::view) pSender, LPARAM lHint, ::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);

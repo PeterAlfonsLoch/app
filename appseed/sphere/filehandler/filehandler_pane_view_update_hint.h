@@ -13,7 +13,7 @@ namespace filehandler
 
 
    class CLASS_DECL_sphere pane_view_update_hint :
-      public ::ca2::object  
+      public ::object  
    {
    public:
       enum e_type

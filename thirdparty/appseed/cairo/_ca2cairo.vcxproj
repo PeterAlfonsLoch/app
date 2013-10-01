@@ -983,6 +983,20 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FreeImage\FreeImage.vcxproj">
+      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\freetype\freetype.vcxproj">
+      <Project>{771f4b49-cad1-438f-b272-20f3eb8e88f1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\pixman\_ca2pixman.vcxproj">
+      <Project>{63108f1c-eaa8-4c49-a591-13f813a76b05}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\zlib\_ca2zlib.vcxproj">
+      <Project>{9ffc2cf6-737c-43db-a1ee-383f7bfdb05b}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

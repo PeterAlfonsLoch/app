@@ -28,7 +28,7 @@ namespace calculator
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool pre_create_window(CREATESTRUCT& cs);
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
-         virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
+         virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::object* pHint);
 
       sp(::user::document) get_document();
 

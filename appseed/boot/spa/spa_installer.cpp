@@ -16,7 +16,7 @@ extern CHAR szTitle[1024];					// The title bar text
 extern CHAR szWindowClassSpaAdmin[1024];			// the main window class name
 
 //void ensure_trace_file();
-bool g_bInstalling = false;
+CLASS_DECL_ca bool g_bInstalling = false;
 
 typedef PVOID * PPVOID;
 

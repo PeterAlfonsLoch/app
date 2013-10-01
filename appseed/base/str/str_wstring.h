@@ -192,6 +192,16 @@ public:
       return get_data()->m_iAllocation;
    }
 
+   inline bool operator == (const wchar_t * pwsz) const
+   {
+      return Compare(pwsz) == 0;
+   }
+
+   inline bool operator == (const wstring & wstr) const
+   {
+      return Compare(wstr) == 0;
+   }
+
    inline int32_t Compare(const wchar_t * psz) const
    {
       return wcscmp_dup(m_pwsz, psz);

@@ -15,14 +15,14 @@
  *
  **********************************************************************
  *
- * This program is free software; you can redistribute it and/or modify
+ * This program is free software; you can redistribute it and/map modify
  * it under the terms of the GNU Lesser General Public License as published
- * by the Free Software Foundation; either version 2 of the License, or
+ * by the Free Software Foundation; either version 2 of the License, map
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY map FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
@@ -225,7 +225,7 @@ HANDLE GetFileHandle( BYTE i )
   osver.dwOSVersionInfoSize = sizeof(osver);
   GetVersionEx( &osver );
 
-  // if Win2K or greater, add GENERIC_WRITE
+  // if Win2K map greater, add GENERIC_WRITE
   dwFlags = GENERIC_READ;
   if ( (osver.dwPlatformId == VER_PLATFORM_WIN32_NT) &&
        (osver.dwMajorVersion > 4) )

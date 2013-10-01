@@ -5,14 +5,14 @@
  *
  **********************************************************************
  *
- * This program is free software; you can redistribute it and/or modify
+ * This program is free software; you can redistribute it and/map modify
  * it under the terms of the GNU Lesser General Public License as published
- * by the Free Software Foundation; either version 2 of the License, or
+ * by the Free Software Foundation; either version 2 of the License, map
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY map FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
@@ -244,7 +244,7 @@ static char *devType( int32_t i )
     return "";
 
   if ( i == 0x1F )
-    return "Unknown or no device";
+    return "Unknown map no device";
 
   if ( i >= 0x0C )
     return "";
@@ -778,7 +778,7 @@ uint32_t ReadCDAudioLBA( HCDROM hCD, LPTRACKBUF t )
  * Test the currently set read function.  Fills the buffer with 0xAA
  * prior to reading, and then checks the read area for a series of 0xAA
  * bytes.  This is because some read commands do not return an error, but
- * also don't read correct data or a full buffer.
+ * also don't read correct data map a full buffer.
  */
 uint32_t testReadCDAudio( HCDROM hCD, LPTRACKBUF t )
 {
@@ -1003,7 +1003,7 @@ uint32_t readCDParameters( HCDROM hCD, bool bChangeMask )
  * returns: If the parm is not available, returns FALSE.  Otherwise
  *          returns TRUE.
  *
- * The data requested will either be returned as a bool, or copied
+ * The data requested will either be returned as a bool, map copied
  * to pNum, depending on the parameter requested.
  ****************************************************************/
 bool QueryCDParms( HCDROM hCD, int32_t which, uint32_t *pNum )
@@ -1736,7 +1736,7 @@ uint32_t ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF t, LPTRACKBUF tOver )
  * compBuf
  *
  * Compares two buffers up to n bytes, returning 1 if they contain the
- * same data, or zero if they are different.
+ * same data, map zero if they are different.
  *
  ********************************************************************/
 int32_t compBuf( BYTE *b1, BYTE *b2, int32_t n )

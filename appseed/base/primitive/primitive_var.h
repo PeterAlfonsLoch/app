@@ -781,3 +781,48 @@ inline var & var::operator = (var && v)
 
 
 
+
+#undef new
+
+
+CLASS_DECL_c extern fixed_alloc * g_pfixedallocVar;
+
+
+inline void * var::operator new(size_t size, void * p)
+   { 
+      UNREFERENCED_PARAMETER(size);
+      return p; 
+   }
+
+inline void * var::operator new(size_t nSize)
+{
+   return g_pfixedallocVar->Alloc();
+}
+
+#ifdef DEBUG
+
+inline void * var::operator new(size_t nSize, const char * lpszFileName, int32_t nLine)
+{
+   return g_pfixedallocVar->Alloc();
+}
+
+#endif
+
+inline void var::operator delete(void * p)
+{
+   g_pfixedallocVar->Free(p);
+}
+
+#ifdef DEBUG
+
+inline void var::operator delete(void * p, void *)
+{
+   g_pfixedallocVar->Free(p);
+}
+
+inline void var::operator delete(void *pvar, const char *, int32_t)
+{
+   g_pfixedallocVar->Free(pvar);
+}
+
+#endif

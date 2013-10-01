@@ -50,6 +50,33 @@ namespace comparison
 
    };
 
+   template < >
+   class CLASS_DECL_c hash < const wstring & >
+   {
+   public:
+
+      inline static UINT HashKey (const wstring & key)
+      {
+         register uint64_t * puiKey = (uint64_t *) (const wchar_t *) key;
+         register strsize counter = key.get_length() * sizeof(wchar_t);
+         register uint64_t nHash = 0;
+         while(counter >= sizeof(*puiKey))
+         {
+            nHash = (nHash<<5) + nHash + *puiKey++;
+            counter -= sizeof(*puiKey);
+         }
+         register const wchar_t * pszKey = (const wchar_t *) puiKey;
+         while(true)
+         {
+            counter -= 2;
+            if(counter < 0)
+               break;
+               nHash = (nHash<<5) + nHash + *pszKey++;
+         }
+         return (UINT) nHash;
+      }
+
+   };
    class CLASS_DECL_c strid_hash
    {
    public:

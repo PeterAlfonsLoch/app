@@ -1,7 +1,7 @@
 #pragma once
 
 
-extern bool g_bInstalling;
+CLASS_DECL_ca extern bool g_bInstalling;
 
 #define SPA_FILE_FLAG_VOID_COPY 1
 

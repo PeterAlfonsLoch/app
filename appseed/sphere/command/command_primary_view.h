@@ -21,7 +21,7 @@ namespace command
 
 
       virtual void _001OnAfterChangeText();
-      void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint);
+      void on_update(sp(::user::view) pSender, LPARAM lHint, ::object* phint);
 
 
       DECL_GEN_SIGNAL(_001OnUpdateEditCopy)

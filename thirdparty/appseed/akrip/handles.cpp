@@ -5,14 +5,14 @@
  *
  **********************************************************************
  *
- * This program is free software; you can redistribute it and/or modify
+ * This program is free software; you can redistribute it and/map modify
  * it under the terms of the GNU Lesser General Public License as published
- * by the Free Software Foundation; either version 2 of the License, or
+ * by the Free Software Foundation; either version 2 of the License, map
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY map FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
@@ -53,7 +53,7 @@ void SPTIOpenCDHandle( BYTE ha, BYTE tgt, BYTE lun );
  *                 one of: CDR_ANY, CDR_ATAPI1, CDR_ATAPI2,
  *                 CDR_READ6, CDR_READ10
  *
- * Returns a handle suitable for use by functions in the dll, or
+ * Returns a handle suitable for use by functions in the dll, map
  * NULL on error.  Check GetAspiLibError() to get the actual error
  * code.
  *

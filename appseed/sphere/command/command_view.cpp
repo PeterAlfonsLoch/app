@@ -93,7 +93,7 @@ namespace command
    }
 
 
-   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* phint)
+   void view::on_update(sp(::user::view) pSender, LPARAM lHint, ::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);

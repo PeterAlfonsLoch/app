@@ -17,7 +17,7 @@ namespace command
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-	   virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::ca2::object* pHint);
+	   virtual void on_update(sp(::user::view) pSender, LPARAM lHint, ::object* pHint);
 	   virtual bool pre_create_window(CREATESTRUCT& cs);
 
 

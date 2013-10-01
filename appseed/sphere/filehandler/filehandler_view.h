@@ -12,7 +12,7 @@ namespace filehandler
 
 
       class CLASS_DECL_sphere item :
-         virtual public ::ca2::object
+         virtual public ::object
       {
       public:
          
@@ -38,7 +38,7 @@ namespace filehandler
       };
 
       class CLASS_DECL_sphere draw_item :
-         virtual public ::ca2::object
+         virtual public ::object
       {
       public:
 

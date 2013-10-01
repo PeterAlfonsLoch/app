@@ -441,9 +441,6 @@
     <Filter Include="Header Files\core\data">
       <UniqueIdentifier>{7d3860be-3de6-4106-8af1-292bf77af63d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\core\data\NewFilter1">
-      <UniqueIdentifier>{c9878c48-411e-4ebe-8c26-650832e1dfa4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\filesystem\file\NewFilter2">
       <UniqueIdentifier>{3dc15f7d-8433-4629-a500-96bcfffa0935}</UniqueIdentifier>
     </Filter>

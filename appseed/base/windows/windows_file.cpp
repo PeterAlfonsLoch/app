@@ -802,10 +802,11 @@ HANDLE OnlyGetDrv()
 								FILE_SHARE_READ | FILE_SHARE_WRITE, 0,
 								OPEN_EXISTING, FILE_FLAG_OVERLAPPED, 0 );
 	return hFile;
+
 }
 
-extern "C" __declspec(dllexport) void GetOpenedFiles( LPCWSTR lpPath, OF_TYPE Filter, OF_CALLBACK CallBackProc,
-													  uint_ptr pUserContext )
+
+extern "C" CLASS_DECL_c void GetOpenedFiles(LPCWSTR lpPath, OF_TYPE Filter, OF_CALLBACK CallBackProc, uint_ptr pUserContext)
 {
 	string csPath = lpPath;
 	csPath.make_lower();
