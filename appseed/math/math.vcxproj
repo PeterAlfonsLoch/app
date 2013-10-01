@@ -230,7 +230,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CA2_MATH_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -617,17 +617,6 @@
     <ClInclude Include="kissfft\aaa_vmskissfftfKiss_want_to_remove_xxx.h" />
     <ClInclude Include="math\math.h" />
     <ClInclude Include="framework.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ca2\ca2.vcxproj">
-      <Project>{afc48570-75e4-46bd-b8ab-4590b257e1c8}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\ca\ca.vcxproj">
-      <Project>{ab77745a-af30-4253-9e4b-961bf2d98641}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\c\c.vcxproj">
-      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="kissfft\kissfft_fftd.cpp" />

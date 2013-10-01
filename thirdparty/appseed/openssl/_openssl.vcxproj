@@ -793,7 +793,7 @@
     <None Include="_ca2openssl.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>__ca2openssl</ProjectName>
+    <ProjectName>_baseopenssl</ProjectName>
     <ProjectGuid>{927486E9-5AE9-46C5-B423-06E8B016B33C}</ProjectGuid>
     <RootNamespace>__ca2openssl</RootNamespace>
   </PropertyGroup>
@@ -887,7 +887,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);crypto;ssl;crypto/asn1;crypto/evp;crypto/krb5;crypto/modes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>OPENSSL_NO_STATIC_ENGINE;OPENSSL_SYSNAME_WIN32;OPENSSL_EXPORT_VAR_AS_FUNCTION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

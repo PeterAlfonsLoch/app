@@ -36,72 +36,95 @@ namespace core
    bool library::open(sp(base_application) papp, const char * pszPath, bool bAutoClose)
    {
 
-      set_app(papp);
-
-      m_bAutoClose      = bAutoClose;
-
-      string strCa2Name = pszPath;
-
-
       try
       {
 
-         if(!::boot::library::open(strCa2Name))
+         set_app(papp);
+
+         m_bAutoClose      = bAutoClose;
+
+         string strCa2Name = pszPath;
+
+
+         try
+         {
+
+            if(!::boot::library::open(strCa2Name))
+               return false;
+
+         }
+         catch(...)
+         {
+            return false;
+         }
+
+         ::plane::system::eengine().reset();
+
+         PFN_GET_NEW_LIBRARY pfn_get_new_library = NULL;
+
+         try
+         {
+
+            pfn_get_new_library = get < PFN_GET_NEW_LIBRARY > ("get_new_library");
+
+         }
+         catch(...)
+         {
+
+            close();
+
             return false;
 
+         }
+
+         if(pfn_get_new_library == NULL)
+         {
+
+            close();
+
+            return false;
+
+         }
+
+         m_pca2library = pfn_get_new_library();
+
+         if(m_pca2library == NULL)
+         {
+
+            close();
+
+
+            return false;
+
+         }
+
+         m_pca2library->set_app(get_app());
+
+         m_pca2library->m_strCa2Name = strCa2Name;
+
+         m_strCa2Name = strCa2Name;
+
+         return true;
+
       }
       catch(...)
       {
-         return false;
       }
-
-      ::plane::system::eengine().reset();
-
-      PFN_GET_NEW_LIBRARY pfn_get_new_library = NULL;
 
       try
       {
 
-         pfn_get_new_library = get < PFN_GET_NEW_LIBRARY > ("get_new_library");
+         close();
+
+         //System.file().del(pszPath);
 
       }
       catch(...)
       {
-
-         close();
-
-         return false;
-
       }
 
-      if(pfn_get_new_library == NULL)
-      {
 
-         close();
-
-         return false;
-
-      }
-
-      m_pca2library = pfn_get_new_library();
-
-      if(m_pca2library == NULL)
-      {
-
-         close();
-
-
-         return false;
-
-      }
-
-      m_pca2library->set_app(get_app());
-
-      m_pca2library->m_strCa2Name = strCa2Name;
-
-      m_strCa2Name = strCa2Name;
-
-      return true;
+      return false;
 
    }
 

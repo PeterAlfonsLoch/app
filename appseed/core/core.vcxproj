@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{AFC48570-75E4-46BD-B8AB-4590B257E1C8}</ProjectGuid>
+    <ProjectGuid>{E000FFAF-392F-4E32-BF51-FD7ED638991F}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>ca</RootNamespace>
@@ -2842,32 +2842,11 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <None Include="user\user_interaction.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\thirdparty\appseed\cairo\_ca2cairo.vcxproj">
-      <Project>{e6c58c82-71e5-48e6-98ed-1b505d6f10c2}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\FreeImage\FreeImage.vcxproj">
-      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\freetype\freetype.vcxproj">
-      <Project>{771f4b49-cad1-438f-b272-20f3eb8e88f1}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\mysql\mysql.vcxproj">
-      <Project>{2652c96f-6e86-4ed1-b3b6-ac977dfb0593}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\openssl\openssl.vcxproj">
-      <Project>{ac98b756-e84c-4a70-9cdb-e9812fef9b98}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\pixman\_ca2pixman.vcxproj">
-      <Project>{63108f1c-eaa8-4c49-a591-13f813a76b05}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\zlib\_ca2zlib.vcxproj">
-      <Project>{9ffc2cf6-737c-43db-a1ee-383f7bfdb05b}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\base\base.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
     <ProjectReference Include="..\boot\boot.vcxproj">
-      <Project>{ab77745a-af30-4253-9e4b-961bf2d98641}</Project>
+      <Project>{20ad9c6f-4eb1-48d7-a696-1d5b277e7e36}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca2.h"
+#include "core.h"
 #include "akrip32.h"
 #include "scsidefs.h"
 #include "aspilib.h"
