@@ -34,8 +34,7 @@ namespace fs
 
       virtual bool file_move(const char * pszDst, const char * pszSrc);
 
-      virtual ::file::binary_buffer_sp get_file(var varFile, UINT nOpenFlags);
-      virtual ::file::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
+      virtual ::file::buffer_sp get_file(var varFile, UINT nOpenFlags);
 
 
       virtual bool fast_has_subdir(const char * pszPath);

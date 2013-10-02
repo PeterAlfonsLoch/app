@@ -281,10 +281,10 @@ namespace fs
    }
 
 
-   ::file::binary_buffer_sp remote_native::get_file(var varFile, UINT nOpenFlags)
+   ::file::buffer_sp remote_native::get_file(var varFile, UINT nOpenFlags)
    {
 
-      ::file::binary_buffer_sp spfile;
+      ::file::buffer_sp spfile;
 
       spfile = new remote_native_file(get_app(), varFile);
 

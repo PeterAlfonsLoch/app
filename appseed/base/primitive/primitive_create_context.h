@@ -33,7 +33,7 @@ public:
 
 
 class CLASS_DECL_c create_context :
-   virtual public command
+   virtual public ::primitive::command
 {
 public:
 

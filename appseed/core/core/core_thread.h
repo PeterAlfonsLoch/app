@@ -237,7 +237,6 @@ public:
    mutex          m_mutex;
 
    thread_sp                     m_p;
-   bool                                m_bRun;
    sp(user::interaction_ptr_array)     m_puiptra;
    sp(user::interaction::timer_array)  m_ptimera;
    bool                                m_bAutoDelete;       // enables 'delete this' after thread termination

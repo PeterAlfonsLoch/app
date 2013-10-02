@@ -25,7 +25,7 @@ namespace userstack
       m_ppropform       = NULL;
       m_dataid          = "ca2::bergedge::pane_view";
 
-      get_data()->m_matchanyRestore.add(new ::ca2::match::prefix("app:"));
+      get_data()->m_matchanyRestore.add(new ::core::match::prefix("app:"));
 
    }
 

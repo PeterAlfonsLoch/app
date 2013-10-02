@@ -36,7 +36,7 @@ public:
 
    virtual bool file_move(const char * pszDst, const char * pszSrc);
 
-   virtual ::file::binary_buffer_sp get_file(var varFile, UINT nOpenFlags);
+   virtual ::file::buffer_sp get_file(var varFile, UINT nOpenFlags);
 
    virtual bool file_exists(const char * pszPath);
 

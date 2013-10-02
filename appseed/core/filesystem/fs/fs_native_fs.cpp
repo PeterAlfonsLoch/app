@@ -109,7 +109,7 @@ namespace fs
    }
 
 
-   ::file::binary_buffer_sp native::get_file(var varFile, UINT nOpenFlags)
+   ::file::buffer_sp native::get_file(var varFile, UINT nOpenFlags)
    {
 
       ::file::binary_buffer_sp spfile(allocer());

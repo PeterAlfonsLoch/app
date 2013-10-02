@@ -3508,9 +3508,6 @@
     <ClCompile Include="compress\zip\zip_util.cpp">
       <Filter>Source Files\compress\zip</Filter>
     </ClCompile>
-    <ClCompile Include="compress\zip\zip_memory_file.cpp">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
     <ClCompile Include="compress\zip\zip_in_file.cpp">
       <Filter>Source Files\compress\zip</Filter>
     </ClCompile>
@@ -5703,6 +5700,9 @@
     </ClCompile>
     <ClCompile Include="core\core_message_queue.cpp">
       <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_memory_buffer.cpp">
+      <Filter>Source Files\compress\zip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

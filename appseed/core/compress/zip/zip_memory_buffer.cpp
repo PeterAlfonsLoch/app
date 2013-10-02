@@ -5,9 +5,24 @@ namespace zip
 {
 
    memory_buffer::memory_buffer(sp(base_application) papp) :
+      element(papp),
       ::file::memory_buffer(papp),
       ::primitive::memory_container(papp)
    {
+
+   }
+
+   memory_buffer::memory_buffer(sp(base_application) papp, ::primitive::memory_base * pmemory) :
+      element(papp),
+      ::file::memory_buffer(papp, pmemory),
+      ::primitive::memory_container(papp, pmemory)
+   {
+   }
+
+
+   void memory_buffer::common_construct()
+   {
+    
       m_filefuncdef.opaque = (voidpf) this;
       m_filefuncdef.zopen_file   = open_file_func;
       m_filefuncdef.zread_file   = read_file_func;
@@ -18,6 +33,7 @@ namespace zip
       m_filefuncdef.zerror_file  = testerror_file_func;
 
    }
+
 
    memory_buffer::~memory_buffer()
    {

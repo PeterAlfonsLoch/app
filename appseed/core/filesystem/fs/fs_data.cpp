@@ -141,16 +141,11 @@ namespace fs
       }
    }
 
-   ::file::binary_buffer_sp data::get_file(var varFile, UINT nOpenFlags)
+   ::file::buffer_sp data::get_file(var varFile, UINT nOpenFlags)
    {
       UNREFERENCED_PARAMETER(varFile);
       UNREFERENCED_PARAMETER(nOpenFlags);
       return NULL;
-   }
-
-   ::file::byte_stream data::get_byte_stream(var varFile, UINT nOpenFlags)
-   {
-      return ::file::byte_stream(get_file(varFile, nOpenFlags));
    }
 
    bool data::file_exists(const char * pszPath)

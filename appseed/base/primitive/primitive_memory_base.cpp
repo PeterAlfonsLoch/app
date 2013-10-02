@@ -291,6 +291,14 @@ namespace primitive
 
    }
 
+   void memory_base::transfer_from_begin(::file::reader & reader, ::primitive::memory_size uiBufferSize)
+   {
+
+      reader.seek_to_begin();
+
+      transfer_from(reader, uiBufferSize);
+
+   }
 
    void memory_base::transfer_from(::file::reader & reader, ::primitive::memory_size uiBufferSize)
    {

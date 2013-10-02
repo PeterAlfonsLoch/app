@@ -18,7 +18,9 @@ class CLASS_DECL_c base_thread :
 public:
 
 
-   thread *          m_pthread;
+   thread *                            m_pthread;
+   bool                                m_bRun;
+
 
 
    base_thread();
