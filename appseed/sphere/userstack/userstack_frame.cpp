@@ -8,7 +8,7 @@ namespace userstack
    frame::frame(sp(base_application) papp) :
       element(papp),
       simple_frame_window(papp),
-      ::ca2::message_window_simple_callback(papp)
+      ::message_queue(papp)
    {
       m_pdocument = NULL;
       m_iFrameData = 10;
@@ -41,7 +41,7 @@ namespace userstack
       if(pobj->previous())
          return;
 
-      if(!initialize_message_window("::ca2::fontopus::message_wnd::bergedge::" + System.get_local_mutex_id()))
+      if(!create_message_queue("::ca2::fontopus::message_wnd::bergedge::" + System.get_local_mutex_id()))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;
@@ -173,7 +173,7 @@ namespace userstack
    void frame::_000OnMouse(::message::mouse * pmouse)
    {
       Session.m_ptCursor = pmouse->m_pt;
-//      ::aspheresp(::application) pappParent = &App(Application.m_papp);
+//      ::aspheresp(::application) pappParent = &App(Application.m_pbaseapp->m_pplaneapp);
 //      ::aspheresp(::application) papp = &Application;
 /*      if(pmouse->m_uiMessage == WM_MOUSEMOVE
       && m_pdocument != NULL
@@ -238,7 +238,7 @@ namespace userstack
    }
 
 
-   void frame::message_window_message_handler(signal_details * pobj)
+   void frame::message_queue_message_handler(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == (WM_APP + 2000))

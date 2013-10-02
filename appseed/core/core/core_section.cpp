@@ -6,14 +6,14 @@ namespace core
 {
 
 
-   section::section(application * papp) :
+   departament::departament(application * papp) :
       element(papp)
    {
 
    }
 
 
-   section::~section()
+   departament::~departament()
    {
 
    }
@@ -23,7 +23,7 @@ namespace core
    // not contain advanced initialization as the
    // papp application pointer may be incompletely
    // initialized specially its virtual functions.
-   void section::construct(sp(base_application) papp)
+   void departament::construct(sp(base_application) papp)
    {
 
       set_app(papp);
@@ -31,7 +31,7 @@ namespace core
    }
 
 
-   void section::connect_to_application_signal()
+   void departament::connect_to_application_signal()
    {
 
       m_pbaseapp->m_psignal->connect(this, &base_departament::on_signal);
@@ -39,7 +39,7 @@ namespace core
    }
 
 
-   bool section::process_initialize()
+   bool departament::process_initialize()
    {
 
       return true;
@@ -47,7 +47,7 @@ namespace core
    }
 
 
-   bool section::initialize()
+   bool departament::initialize()
    {
 
       return true;
@@ -55,7 +55,7 @@ namespace core
    }
 
 
-   bool section::initialize1()
+   bool departament::initialize1()
    {
 
       return true;
@@ -63,7 +63,7 @@ namespace core
    }
 
 
-   bool section::initialize2()
+   bool departament::initialize2()
    {
 
       return true;
@@ -71,7 +71,7 @@ namespace core
    }
 
 
-   bool section::initialize3()
+   bool departament::initialize3()
    {
 
       return true;
@@ -79,7 +79,7 @@ namespace core
    }
 
 
-   bool section::initialize_instance()
+   bool departament::initialize_instance()
    {
 
       return true;
@@ -87,7 +87,7 @@ namespace core
    }
 
 
-   bool section::finalize()
+   bool departament::finalize()
    {
 
       return true;
@@ -95,14 +95,14 @@ namespace core
    }
 
 
-   int32_t section::exit_instance()
+   int32_t departament::exit_instance()
    {
 
       return 0;
 
    }
 
-   void section::on_signal(signal_details * pobj)
+   void departament::on_signal(signal_details * pobj)
    {
 
       SCAST_PTR(application_signal_details, papplicationsignal, pobj);

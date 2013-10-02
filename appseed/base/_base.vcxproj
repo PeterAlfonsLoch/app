@@ -366,16 +366,8 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcp110d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcr110d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\libmysql.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\ListOpenedFileDrv_32.sys" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\ListOpenedFileDrv_64.sys" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\ListOpenedFileDrv_64.inf" "$(OutDir)"
-
-
-copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)"
-</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>

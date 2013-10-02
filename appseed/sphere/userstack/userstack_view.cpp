@@ -386,7 +386,7 @@ namespace userstack
             {
                papp = NULL;
             }
-            if(papp != NULL && m_papp != NULL && m_papp->m_psession != NULL &&  (papp) !=  (m_papp->m_psession))
+            if(papp != NULL && m_pbaseapp->m_pplaneapp != NULL && m_pbaseapp->m_pplaneapp->m_psession != NULL &&  (papp) !=  (m_pbaseapp->m_pplaneapp->m_psession))
             {
                try
                {

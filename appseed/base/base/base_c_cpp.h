@@ -106,8 +106,6 @@ class random_access_iterator { public: };
 #define Sys(pbaseapp) (*pbaseapp->m_pbasesystem)
 #define System (Sys(this->m_pbaseapp))
 #define threadSystem (Sys(get_thread_app()))
-//#define Mathematics(papp) (Sys(papp).math())
-//#define Math (Mathematics(this->m_pbaseapp))
 
 //#define Sess(papp) (*papp->m_pplaneapp->m_psession)
 //#define Session (Sess(this->m_pbaseapp))

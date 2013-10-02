@@ -113,8 +113,8 @@ namespace Platform {
 
 	} } // namespace Platform::Details
 
-//Put initialization data into the section that we can return failure
-#pragma section(".CRT$XIY",long,read)
+//Put initialization data into the departament that we can return failure
+#pragma departament(".CRT$XIY",long,read)
 extern "C" __declspec(allocate(".CRT$XIY")) void* __abi__initialize = Platform::Details::Initialize;
 
 // All required libraries must be pulled in in init.cpp file because it always referenced

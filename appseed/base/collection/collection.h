@@ -226,3 +226,7 @@ class CLASS_DECL_c time_array :
 #include "collection_stack.h"
 
 
+#include "collection_base_2array.h"
+
+
+

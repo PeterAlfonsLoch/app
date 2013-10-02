@@ -11,7 +11,7 @@ namespace userstack
 
    class CLASS_DECL_sphere frame : 
       public simple_frame_window,
-      public ::ca2::message_window_simple_callback
+      public ::message_queue
    {
    public:
       
@@ -58,7 +58,7 @@ namespace userstack
 
       virtual void message_handler(signal_details * pobj);
 
-      virtual void message_window_message_handler(signal_details * pobj);
+      virtual void message_queue_message_handler(signal_details * pobj);
 
 
    };

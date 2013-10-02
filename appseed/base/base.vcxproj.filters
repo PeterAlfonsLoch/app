@@ -48,9 +48,6 @@
     <Filter Include="Header Files\primitive\datetime">
       <UniqueIdentifier>{0510e3ff-0079-4cb1-b9e8-2cca759dcb0a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\NewFilter1">
-      <UniqueIdentifier>{326d7651-69ad-4ff0-9152-df6029fce47f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\comparison">
       <UniqueIdentifier>{276fbcc3-9187-4eb9-8009-ea8317821e53}</UniqueIdentifier>
     </Filter>
@@ -1172,6 +1169,12 @@
     <ClInclude Include="android\android_window_impl.h">
       <Filter>Header Files\android</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive_application_bias.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_memory_c.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -1907,6 +1910,9 @@
     </None>
     <None Include="base.def">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

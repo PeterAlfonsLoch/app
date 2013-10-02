@@ -5,7 +5,7 @@ namespace net
 {
 
 
-   class address
+   class CLASS_DECL_ca2 address
    {
    public:
 

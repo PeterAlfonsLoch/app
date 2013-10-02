@@ -444,7 +444,7 @@ namespace colorertak5
    };
 
    /**
-    * Abstract Text Data section node.
+    * Abstract Text Data departament node.
     * @ingroup xml
     */
    class CharacterData : public xml::node

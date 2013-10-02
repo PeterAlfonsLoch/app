@@ -368,7 +368,6 @@
     <PreBuildEvent>
       <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcp110d.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcr110d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\libmysql.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\ListOpenedFileDrv_32.sys" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\ListOpenedFileDrv_64.sys" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\ListOpenedFileDrv_64.inf" "$(OutDir)"
@@ -1211,6 +1210,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="net\net_net.h" />
     <ClInclude Include="net\net_url_departament.h" />
     <ClInclude Include="os\os.h" />
+    <ClInclude Include="primitive\primitive_application_bias.h" />
     <ClInclude Include="primitive\primitive_bit.h" />
     <ClInclude Include="primitive\primitive_command.h" />
     <ClInclude Include="primitive\primitive_command_line.h" />
@@ -1223,6 +1223,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="primitive\primitive_data_container.h" />
     <ClInclude Include="primitive\primitive_data_listener.h" />
     <ClInclude Include="primitive\primitive_factory.h" />
+    <ClInclude Include="primitive\primitive_memory_c.h" />
     <ClInclude Include="primitive\primitive_object.h" />
     <ClInclude Include="primitive\primitive_property.h" />
     <ClInclude Include="primitive\primitive_property_set.h" />

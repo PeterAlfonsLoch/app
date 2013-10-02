@@ -6,7 +6,7 @@ namespace sphere
 
 
    library::library() :
-      ::ca2::single_application_library < application > ("app"),
+      ::core::single_application_library < application > ("app"),
       ::filehandler::menu_library(),
       ::core::library("app")
    {
@@ -71,7 +71,7 @@ namespace sphere
          return new ::filehandler::application();
       }
 
-      return ::ca2::single_application_library < application >::get_new_app(pszAppId);
+      return ::core::single_application_library < application >::get_new_app(pszAppId);
 
    }*/
 

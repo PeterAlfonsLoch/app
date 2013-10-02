@@ -32,7 +32,7 @@ namespace userstack
       m_strBaseSupportId   = "ca2_userstack";
       m_strInstallToken    = "userstack";
       m_bLicense           = false;
-      m_eexclusiveinstance = ::ca2::ExclusiveInstanceNone;
+      m_eexclusiveinstance = ::ExclusiveInstanceNone;
 
    }
 
@@ -181,7 +181,7 @@ namespace userstack
 
    void application::on_exclusive_instance_conflict(::ca2::EExclusiveInstance eexclusive)
    {
-      if(eexclusive == ::ca2::ExclusiveInstanceLocalId)
+      if(eexclusive == ::ExclusiveInstanceLocalId)
       {
 #ifdef WINDOWSEX
          ::file::memory_buffer file(get_app());
@@ -264,7 +264,7 @@ namespace userstack
    }
 
 
-   sp(base_application) application::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca2::application_bias * pbiasCreate)
+   sp(base_application) application::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
       sp(base_application) papp = NULL;
 
@@ -465,7 +465,7 @@ namespace userstack
 
       string strSentinelPath;
 
-      strSentinelPath = System.dir().ca2("stage/x86/app-sentinel.exe");
+      strSentinelPath = System.dir().element("stage/x86/app-sentinel.exe");
 
       System.os().local_machine_set_run("ca2 app-sentinel", "\"" + strSentinelPath + "\"");
 

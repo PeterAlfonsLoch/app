@@ -3784,7 +3784,7 @@ ASSERT(lpszSection != NULL);
 if (m_pszRegistryKey != NULL)
 {
 LONG lResult;
-if (lpszEntry == NULL) //delete whole section
+if (lpszEntry == NULL) //delete whole departament
 {
 HKEY hAppKey = GetAppRegistryKey();
 if (hAppKey == NULL)

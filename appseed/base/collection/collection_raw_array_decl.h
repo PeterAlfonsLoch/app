@@ -318,6 +318,7 @@ public:
    inline bool has_elements(::count countMinimum = 1) const;
    inline index get_upper_bound(index i = -1) const;
    ::count allocate(index nNewSize, ::count nGrowBy = -1);
+   ::count set_size(index nNewSize, ::count nGrowBy = -1);
    ::count allocate_in_bytes(index nNewSize, ::count nGrowBy = -1);
    ::count resize(index nNewSize, ::count nGrowBy = -1);
 

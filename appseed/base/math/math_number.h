@@ -352,3 +352,19 @@ namespace numeric_info
    template < typename T > class CLASS_DECL_c type   < ::c_number < T > > { public: typedef typename ::numeric_info::type   < T >::TYPE TYPE; };
 
 }
+
+template < typename T > 
+inline ::file::input_stream &  operator >>(::file::input_stream & istream, c_number < T > & t)
+{
+   
+   return istream >> t.m_number;
+
+}
+
+template < typename T > 
+inline ::file::output_stream &  operator <<(::file::output_stream & ostream, const c_number < T > & t)
+{
+   
+   return ostream << t.m_number;
+
+}

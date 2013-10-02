@@ -432,17 +432,11 @@
     <Filter Include="Header Files\filesystem\file">
       <UniqueIdentifier>{ec0bc585-ba95-4719-91bb-202ddde49dc9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\filesystem\file\NewFilter1">
-      <UniqueIdentifier>{b98a8bd5-4ad6-4cbe-bd95-282b1034f4c1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\filesystem\file">
       <UniqueIdentifier>{e51c6660-f414-4fee-a338-a3e074eafd03}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\core\data">
       <UniqueIdentifier>{7d3860be-3de6-4106-8af1-292bf77af63d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\file\NewFilter2">
-      <UniqueIdentifier>{3dc15f7d-8433-4629-a500-96bcfffa0935}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\hi5">
       <UniqueIdentifier>{3728a81f-1e66-4661-8f29-af1e5a81f3e7}</UniqueIdentifier>

@@ -34,8 +34,12 @@ namespace plane
 #define planeApplication (planeApp(m_pbaseapp))
 #define App(pbaseapp) planeApp(pbaseapp)
 #define Application (App(m_pbaseapp))
+#undef CaSys
+#define CaSys(pca) (*pca->m_pbaseapp->m_pplaneapp->m_psystem)
 #undef Sys
 #define Sys(pbaseapp) (*pbaseapp->m_pplaneapp->m_psystem)
+#define Mathematics(papp) (Sys(papp).math())
+#define Math (Mathematics(this->m_pbaseapp))
 
 
 #define Sess(pbaseapp) (*pbaseapp->m_pplaneapp->m_psession->m_pplanesession->m_pplanesession->m_pplanesession)
@@ -556,7 +560,7 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 
 CLASS_DECL_ca2 thread* __begin_thread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam, int32_t epriority = ::core::scheduling_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
-/* xxx CLASS_DECL_ca2 thread* __begin_thread(sp(::core::type_info) pThreadClass,
+/* xxx CLASS_DECL_ca2 thread* __begin_thread(sp(::coretype) pThreadClass,
    int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
    uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 

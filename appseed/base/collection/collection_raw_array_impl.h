@@ -365,10 +365,18 @@ void raw_array<TYPE, ARG_TYPE>::destroy()
 
 }
 
+
+template<class TYPE, class ARG_TYPE>
+::count raw_array<TYPE, ARG_TYPE>::set_size(::count nNewSize, ::count nGrowBy)
+{
+   return allocate(nNewSize, nGrowBy);
+}
+
+
 template<class TYPE, class ARG_TYPE>
 ::count raw_array<TYPE, ARG_TYPE>::resize(::count nNewSize, ::count nGrowBy)
 {
-   return allocate(nNewSize, -1);
+   return allocate(nNewSize, nGrowBy);
 }
 
 

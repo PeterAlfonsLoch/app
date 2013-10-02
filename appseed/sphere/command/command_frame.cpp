@@ -8,7 +8,7 @@ namespace command
    frame::frame(sp(base_application) papp) :
       element(papp),
       simple_frame_window(papp),
-      ::ca2::message_window_simple_callback(papp),
+      ::message_queue(papp),
       m_toolbar(papp)
    {
       m_pimagelist = NULL;
@@ -269,7 +269,7 @@ namespace command
 	   }
       if(pobj->m_bRet)
          return;
-      if(!initialize_message_window("::ca2::fontopus::message_wnd::command"))
+      if(!create_message_queue("::ca2::fontopus::message_wnd::command"))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;
@@ -368,7 +368,7 @@ namespace command
          SWP_SHOWWINDOW);
    }
 
-   void frame::message_window_message_handler(signal_details * pobj)
+   void frame::message_queue_message_handler(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == (WM_APP + 2000))

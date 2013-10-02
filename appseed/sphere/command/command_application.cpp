@@ -15,7 +15,7 @@ namespace command
    {
       m_strAppName            = _strdup("command");
       m_strBaseSupportId      = "ca2_command";
-      m_eexclusiveinstance    = ::ca2::ExclusiveInstanceLocal;
+      m_eexclusiveinstance    = ::ExclusiveInstanceLocal;
    }
 
    bool application::initialize_instance()
