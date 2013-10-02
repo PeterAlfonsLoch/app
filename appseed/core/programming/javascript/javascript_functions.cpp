@@ -53,7 +53,7 @@ void scMyIpAddress(CScriptVar *ca, void *data);
 
 void scIsInNet(CScriptVar *ca, void *data)
 {
-	tinyjs *tinyJS = (tinyjs *)data;
+//	tinyjs *tinyJS = (tinyjs *)data;
 	string host = ca->getParameter("host")->getString();
    string addr = ca->getParameter("addr")->getString();
    string mask = ca->getParameter("mask")->getString();

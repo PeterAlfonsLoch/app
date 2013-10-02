@@ -1,7 +1,11 @@
 #include "framework.h"
 
 
-#if !defined(MACOS)
+#if defined(MACOS)
+
+#define bcopy(src, dest, len) memcpy(dest, src, len)
+
+#else
 
 #define FD_COPY(pfdsetSrc, pfdsetDst) (*(pfdsetDst)) = (*(pfdsetSrc))
 

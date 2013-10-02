@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07A684F417F0EAE900C41DE6 /* UncaughtExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684F217F0EAE900C41DE6 /* UncaughtExceptionHandler.h */; };
-		07A684F517F0EAE900C41DE6 /* UncaughtExceptionHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A684F317F0EAE900C41DE6 /* UncaughtExceptionHandler.mm */; };
+		9A01C8C417FCA0B000DC8E64 /* UncaughtExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A01C8C217FCA0B000DC8E64 /* UncaughtExceptionHandler.h */; };
+		9A01C8C517FCA0B000DC8E64 /* UncaughtExceptionHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A01C8C317FCA0B000DC8E64 /* UncaughtExceptionHandler.mm */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -628,9 +628,9 @@
 /* Begin PBXFileReference section */
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
-		07A684F217F0EAE900C41DE6 /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
-		07A684F317F0EAE900C41DE6 /* UncaughtExceptionHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UncaughtExceptionHandler.mm; sourceTree = "<group>"; };
 		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		9A01C8C217FCA0B000DC8E64 /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
+		9A01C8C317FCA0B000DC8E64 /* UncaughtExceptionHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UncaughtExceptionHandler.mm; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A8CCAD817E9EE5A00F87A02 /* macos_window_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macos_window_impl.h; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1498,8 +1498,6 @@
 		9AE7219517E83B68003E47F9 /* exception */ = {
 			isa = PBXGroup;
 			children = (
-				07A684F217F0EAE900C41DE6 /* UncaughtExceptionHandler.h */,
-				07A684F317F0EAE900C41DE6 /* UncaughtExceptionHandler.mm */,
 				9AE7219617E83B68003E47F9 /* _exception.txt */,
 				9AE7219717E83B68003E47F9 /* exception.cpp */,
 				9AE7219817E83B68003E47F9 /* exception.h */,
@@ -1700,6 +1698,8 @@
 				9AE725FF17E83E04003E47F9 /* macos_window.h */,
 				9AE728CF17E840BF003E47F9 /* macos_window.cpp */,
 				9A8CCAD817E9EE5A00F87A02 /* macos_window_impl.h */,
+				9A01C8C217FCA0B000DC8E64 /* UncaughtExceptionHandler.h */,
+				9A01C8C317FCA0B000DC8E64 /* UncaughtExceptionHandler.mm */,
 			);
 			path = macos;
 			sourceTree = "<group>";
@@ -2134,7 +2134,6 @@
 				9AE723CE17E83B69003E47F9 /* collection_array_decl.h in Headers */,
 				9AE723CF17E83B69003E47F9 /* collection_array_impl.h in Headers */,
 				9AE723D017E83B69003E47F9 /* collection_attrib_map.h in Headers */,
-				07A684F417F0EAE900C41DE6 /* UncaughtExceptionHandler.h in Headers */,
 				9AE723D117E83B69003E47F9 /* collection_base_2array.h in Headers */,
 				9AE723D217E83B69003E47F9 /* collection_base_enum.h in Headers */,
 				9AE723D417E83B69003E47F9 /* collection_bit_array.h in Headers */,
@@ -2164,6 +2163,7 @@
 				9AE723F217E83B69003E47F9 /* collection_numeric_array.h in Headers */,
 				9AE723F417E83B69003E47F9 /* collection_object_list.h in Headers */,
 				9AE723F517E83B69003E47F9 /* collection_packset.h in Headers */,
+				9A01C8C417FCA0B000DC8E64 /* UncaughtExceptionHandler.h in Headers */,
 				9AE723F617E83B69003E47F9 /* collection_pair.h in Headers */,
 				9AE723F817E83B69003E47F9 /* collection_point_array.h in Headers */,
 				9AE723FA17E83B69003E47F9 /* collection_pointer_list.h in Headers */,
@@ -2510,6 +2510,7 @@
 				9AE7238D17E83B69003E47F9 /* base_allocate_base.cpp in Sources */,
 				9AE7238E17E83B69003E47F9 /* base_allocate_base_heap.cpp in Sources */,
 				9AE7238F17E83B69003E47F9 /* base_allocate_mid_big.cpp in Sources */,
+				9A01C8C517FCA0B000DC8E64 /* UncaughtExceptionHandler.mm in Sources */,
 				9AE7239017E83B69003E47F9 /* base_allocate_system_heap.cpp in Sources */,
 				9AE7239117E83B69003E47F9 /* base_allocate_var.cpp in Sources */,
 				9AE7239217E83B69003E47F9 /* base_application.cpp in Sources */,
@@ -2749,7 +2750,6 @@
 				9AE72B8517E85F98003E47F9 /* macos_debug.cpp in Sources */,
 				9AE72B8817E8641F003E47F9 /* ansios_http_lib.cpp in Sources */,
 				9AE72B8C17E86E91003E47F9 /* ansios_multithreading.cpp in Sources */,
-				07A684F517F0EAE900C41DE6 /* UncaughtExceptionHandler.mm in Sources */,
 				9AE72B9017E88709003E47F9 /* ansios_http.cpp in Sources */,
 				9AE72B9417E88C86003E47F9 /* macos_thread.cpp in Sources */,
 				9AE72B9B17E8990B003E47F9 /* macos_os.cpp in Sources */,
