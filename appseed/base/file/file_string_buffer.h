@@ -29,7 +29,7 @@ namespace file
 
       strsize     m_iSize;
       strsize     m_iAlloc; // if alloced, should be at least one character (for the terminating null character) greater than m_iSize
-      primitive::memory_size        m_dwPos;
+      strsize     m_iPos;
 
 
       string_buffer();

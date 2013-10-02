@@ -269,7 +269,7 @@ namespace command
 	   }
       if(pobj->m_bRet)
          return;
-      if(!create_message_queue("::ca2::fontopus::message_wnd::command"))
+      if(!message_queue::create_message_queue("::ca2::fontopus::message_wnd::command"))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;

@@ -81,7 +81,7 @@ namespace userstack
 
          sp(base_application) papp =  (pcaapp);
 
-         papp->post_thread_message(WM_QUIT);
+         papp->m_pplaneapp->post_thread_message(WM_QUIT);
       }
 
       return 0;
@@ -179,7 +179,7 @@ namespace userstack
    }
 
 
-   void application::on_exclusive_instance_conflict(::ca2::EExclusiveInstance eexclusive)
+   void application::on_exclusive_instance_conflict(::EExclusiveInstance eexclusive)
    {
       if(eexclusive == ::ExclusiveInstanceLocalId)
       {

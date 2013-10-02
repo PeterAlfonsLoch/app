@@ -17,7 +17,7 @@ var command_thread::run()
 {
    single_lock sl(&m_mutex);
    sp(::create_context) pcreatecontext;
-   sp(command) spcommand;
+   sp(primitive::command) spcommand;
    while(m_ptra.get_size() > 0)
    {
       spcommand = NULL;

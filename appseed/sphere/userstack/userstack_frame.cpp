@@ -41,7 +41,7 @@ namespace userstack
       if(pobj->previous())
          return;
 
-      if(!create_message_queue("::ca2::fontopus::message_wnd::bergedge::" + System.get_local_mutex_id()))
+      if(!message_queue::create_message_queue("::ca2::fontopus::message_wnd::bergedge::" + System.get_local_mutex_id()))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;
