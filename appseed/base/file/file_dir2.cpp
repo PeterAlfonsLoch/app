@@ -77,22 +77,18 @@ string dir::userappdata(const char * lpcsz)
    string str;
 
 #ifdef WINDOWSEX
-   
-   wchar_t * buf = NULL;
-   
-   SHGetKnownFolderPath(FOLDERID_LocalAppDataLow, 0, NULL, &buf);
 
-   string psz = ::str::international::unicode_to_utf8(buf);
 
-   str = path(psz, "ca2");
+   ::SHGetSpecialFolderPathW(NULL, wtostring(str, MAX_PATH * 8), CSIDL_PROFILE, TRUE);
 
-//   memory_free(psz);
-   
-   CoTaskMemFree(buf);
+   str = path(str, "ca2");
+
 
 #elif defined(METROWIN)
 
+
    str = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
+
 
 #endif
    
@@ -114,6 +110,8 @@ string dir::userappdata(const char * lpcsz)
    }
    
    str = path(str, strCa2);
+
+   str = path(str, "appdata");
    
    return path(str, lpcsz);
 

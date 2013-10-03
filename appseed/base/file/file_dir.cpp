@@ -139,7 +139,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
    char lpszModuleFilePath[MAX_PATH * 8];
 
-   HMODULE hmodule = ::GetModuleHandleA("ca.dll");
+   HMODULE hmodule = ::GetModuleHandleA("core.dll");
 
    if(hmodule == NULL)
       hmodule = ::GetModuleHandleA("spalib.dll");
