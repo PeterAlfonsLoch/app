@@ -23,7 +23,7 @@ namespace sockets
 
 
       m_pfile           = NULL;
-
+      m_iFinalSize      = -1;
 
    }
 
@@ -56,6 +56,7 @@ namespace sockets
       m_strUrl = strUrlParam;
 
       m_pfile = NULL;
+      m_iFinalSize = -1;
 
    }
 
