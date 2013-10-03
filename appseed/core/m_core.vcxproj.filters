@@ -572,9 +572,6 @@
     <ClInclude Include="compress\zip\iowin32.h">
       <Filter>Header Files\compress\zip</Filter>
     </ClInclude>
-    <ClInclude Include="compress\zip\memory_file.h">
-      <Filter>Header Files\compress\zip</Filter>
-    </ClInclude>
     <ClInclude Include="compress\zip\unzip.h">
       <Filter>Header Files\compress\zip</Filter>
     </ClInclude>
@@ -4604,6 +4601,9 @@
     <ClInclude Include="user\userpresence\userpresence_userpresence.h">
       <Filter>Header Files\user\userpresence</Filter>
     </ClInclude>
+    <ClInclude Include="compress\zip\memory_buffer.h">
+      <Filter>Header Files\compress\zip</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress_archive.cpp">
@@ -4706,9 +4706,6 @@
       <Filter>Source Files\compress\7z</Filter>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_util.cpp">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_memory_file.cpp">
       <Filter>Source Files\compress\zip</Filter>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_in_file.cpp">
@@ -6879,6 +6876,9 @@
     </ClCompile>
     <ClCompile Include="core\core_message_queue.cpp">
       <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_memory_buffer.cpp">
+      <Filter>Source Files\compress\zip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -769,7 +769,7 @@
     <ClInclude Include="compress\zip\InFile.h" />
     <ClInclude Include="compress\zip\ioapi.h" />
     <ClInclude Include="compress\zip\iowin32.h" />
-    <ClInclude Include="compress\zip\memory_file.h" />
+    <ClInclude Include="compress\zip\memory_buffer.h" />
     <ClInclude Include="compress\zip\unzip.h" />
     <ClInclude Include="compress\zip\Util.h" />
     <ClInclude Include="compress\zip\zip.h" />
@@ -1675,7 +1675,7 @@
     <ClCompile Include="compress\zip\zip_file.cpp" />
     <ClCompile Include="compress\zip\zip_in_file.cpp" />
     <ClCompile Include="compress\zip\zip_ioapi.cpp" />
-    <ClCompile Include="compress\zip\zip_memory_file.cpp" />
+    <ClCompile Include="compress\zip\zip_memory_buffer.cpp" />
     <ClCompile Include="compress\zip\zip_unzip.cpp" />
     <ClCompile Include="compress\zip\zip_util.cpp" />
     <ClCompile Include="compress\zip\zip_zip.cpp" />
