@@ -37,7 +37,7 @@ namespace file
       virtual ::file::buffer_sp  Duplicate() const;
 
       virtual file_position seek(file_offset lOff, ::file::e_seek  nFrom);
-      virtual file_position seek(file_position lPos);
+      virtual file_position seek_from_begin(file_position lPos);
       virtual void set_length(file_size dwNewLen);
       virtual file_size get_length() const;
 

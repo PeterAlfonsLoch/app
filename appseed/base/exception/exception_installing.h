@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "exception_installing.h"
+//#include "exception_installing.h"
 
 
 class CLASS_DECL_c installing_exception : 

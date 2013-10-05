@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if !defined(NO_VARIADIC_TEMPLATE)
+#if defined(VARIADIC_TEMPLATE)
 
 
 class CLASS_DECL_c string_format_printer
@@ -91,7 +91,7 @@ public:
       state_waiting_width,
       state_parse_precision,
       state_waiting_precision,
-      state_parse_length,
+      state_parse_length
 
    };
 
@@ -185,7 +185,7 @@ public:
 
    }
 
-
+   
    template < typename T, typename... Args>
    inline void defer_get_additional_argument(const char * & s, const T & value, Args... args)
    {
@@ -268,7 +268,7 @@ public:
 
    template<typename T, typename... Args>
    inline void printf(const char * & s, const T & value, Args... args);
-
+   
 };
 
 #endif

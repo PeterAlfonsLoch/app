@@ -312,7 +312,6 @@ struct win_handle
 #include "windows_shared_memory.h"
 #include "windows_time.h"
 #include "windows_crt.h"
-#include "windows_user.h"
 
 #include "windows_internals.h"
 

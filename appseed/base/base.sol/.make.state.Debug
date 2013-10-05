@@ -1,8 +1,5 @@
 .MAKE_VERSION:	VERSION-1.0
 .BUILT_LAST_MAKE_RUN:
-.build-conf:
-	"/opt/solstudio12.2/bin/dmake"  -f nbproject/Makefile-Debug.mk dist/Debug/OracleSolarisStudio-Solaris-x86/lib_c.sol.so
-.BUILT_LAST_MAKE_RUN:
 .depcheck-impl:
 	echo "# This code depends on make tool being used" >.dep.inc
 	if [ -n "" ]; then \
@@ -17,6 +14,9 @@
 build/Debug/OracleSolarisStudio-Solaris-x86/_ext/583780700/c_os.o:
 	mkdir -p build/Debug/OracleSolarisStudio-Solaris-x86/_ext/583780700
 	cc   -c -g -KPIC  -o build/Debug/OracleSolarisStudio-Solaris-x86/_ext/583780700/c_os.o ../solaris/c_os.c
+build/Debug/OracleSolarisStudio-Solaris-x86/_ext/761140800/base_departament.o:
+	mkdir -p build/Debug/OracleSolarisStudio-Solaris-x86/_ext/761140800
+	CC -features=no%anachronisms,no%transitions,tmplife -features=extensions,tmplrefstatic,iddollar   -c -g -I.. -I../../../.. -I../.. -KPIC  -o build/Debug/OracleSolarisStudio-Solaris-x86/_ext/761140800/base_departament.o ../base/base_departament.cpp
 dist/Debug/OracleSolarisStudio-Solaris-x86/lib_c.sol.so:
 	mkdir -p dist/Debug/OracleSolarisStudio-Solaris-x86
 	cc    -G -o dist/Debug/OracleSolarisStudio-Solaris-x86/lib_c.sol.so -KPIC -norunpath -h lib_c.sol.so build/Debug/OracleSolarisStudio-Solaris-x86/_ext/583780700/c_os.o  

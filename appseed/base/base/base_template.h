@@ -184,11 +184,6 @@ bool CompareElements(const TYPE* pElement1, const ARG_TYPE* pElement2)
 
 
 
-#pragma once
-
-
-//#include "base/core/ca2_definition.h"
-#include "base_core.h"
 
 #define _TYPELIB_INDEX_LENGTH 10
 #define _QUOTES_SPACE 2

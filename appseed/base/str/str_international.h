@@ -24,7 +24,7 @@ namespace str
 #else
          CodePageUtf8 = 65001,
          CodePageAnsi = 10,
-         CodePageOem = 11,
+         CodePageOem = 11
 #endif
       };
 

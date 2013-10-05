@@ -1,3 +1,6 @@
+#ifndef BASE_X_CHARCATEGORY_H
+#define BASE_X_CHARCATEGORY_H
+
 #pragma once
 /*
     This file was automatically generated from
@@ -101,4 +104,7 @@ BIDI_CLASS_LAST
  * the terms of any one of the MPL, the GPL or the LGPL.
  *
  * ***** END LICENSE BLOCK ***** */
+
+#endif // BASE_X_CHARCATEGORY_H
+
 

@@ -1494,7 +1494,7 @@ typedef struct atom_table *RTL_ATOM_TABLE, **PRTL_ATOM_TABLE;
 
 typedef enum _ATOM_INFORMATION_CLASS {
    AtomBasicInformation         = 0,
-   AtomTableInformation         = 1,
+   AtomTableInformation         = 1
 } ATOM_INFORMATION_CLASS;
 
 typedef struct _ATOM_BASIC_INFORMATION {
@@ -1761,7 +1761,7 @@ typedef struct _SEMAPHORE_BASIC_INFORMATION {
 typedef enum _SECTION_INFORMATION_CLASS
 {
   SectionBasicInformation,
-  SectionImageInformation,
+  SectionImageInformation
 } SECTION_INFORMATION_CLASS;
 
 typedef struct _SECTION_BASIC_INFORMATION {

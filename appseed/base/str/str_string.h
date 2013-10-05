@@ -536,13 +536,7 @@ public:
    string SpanExcluding(const char * pszCharSet ) const;
 
    // Format data using format string 'pszFormat'
-#ifdef NO_VARIADIC_TEMPLATE
-
-   void __cdecl Format(const char * pszFormat, ... );
-
-#else
-
-
+#ifdef VARIADIC_TEMPLATE
 
    void FormatPrinter(void * , const char * s)
    {
@@ -570,6 +564,14 @@ public:
       format.printf(s, value, args...);
 
    }
+
+
+#else
+
+
+   void __cdecl Format(const char * pszFormat, ... );
+
+
 
 #endif
 

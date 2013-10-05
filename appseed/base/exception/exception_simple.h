@@ -14,7 +14,7 @@ public:
    virtual ~simple_exception();
 
 
-   virtual const char * get_error_message () const throw ();
+   virtual bool get_error_message(string & str, PUINT pnHelpContext = NULL);
 
 
 };

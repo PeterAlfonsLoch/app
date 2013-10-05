@@ -45,7 +45,7 @@ CLASS_DECL_c int32_t isxdigit_dup(int32_t ch);
 CLASS_DECL_c int32_t isalpha_dup(int32_t ch);
 CLASS_DECL_c int32_t isspace_dup(int32_t ch);
 
-#if defined(LINUX) || defined(MACOS) || defined(ANDROID)
+#if defined(LINUX) || defined(MACOS) || defined(ANDROID) || defined(SOLARIS)
 
 CLASS_DECL_c char * strlwr(char * psz);
 CLASS_DECL_c char * strupr(char * psz);
@@ -121,3 +121,5 @@ CLASS_DECL_c int_bool matches_wildcard_criteria_ci(const char * pszCriteria, con
 
 
 END_EXTERN_C
+
+

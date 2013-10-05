@@ -516,6 +516,7 @@ public:
    void dump(dump_context &) const;
    void assert_valid() const;
 
+#ifdef MOVE_SEMANTICS
    array(array && a) :
    element(a.get_app())
    {
@@ -549,7 +550,7 @@ public:
       return *this;
    }
 
-
+#endif
 
    inline void set_at_grow(index nIndex, ARG_TYPE newElement);
 

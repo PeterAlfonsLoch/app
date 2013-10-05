@@ -167,7 +167,7 @@ namespace exception
          ::standard_exception(papp, signal, psiginfo, pc)
          {}
    public:
-   #elif defined(LINUX) || defined(MACOS)
+#elif defined(LINUX) || defined(MACOS) || defined(SOLARIS)
       standard_access_violation (sp(base_application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
          element(papp),
 #ifdef LINUX
@@ -180,7 +180,11 @@ namespace exception
 #ifdef _LP64
       ::call_stack(papp, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__rip),
 #else
-      ::call_stack(papp, 3, (void *) ((ucontext_t *) pc)->uc_mcontext.eip),
+#ifdef SOLARIS
+      ::call_stack(papp, 3, (void *) ((ucontext_t *) pc)->uc_mcontext.gregs[EIP]),
+#else
+        ::call_stack(papp, 3, (void *) ((ucontext_t *) pc)->uc_mcontext.eip),
+#endif
 #endif
 #endif
          ::exception::base(papp),

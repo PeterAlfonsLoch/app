@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #define _NORMAL_BLOCK 1
@@ -12,7 +12,7 @@
  *
  ***************************************************************************/
 
-typedef void *_HFILE; /* file handle pointer */
+typedef void * _HFILE; /* file handle pointer */
 
 #define _CRT_WARN           0
 #define _CRT_ERROR          1

@@ -24,7 +24,7 @@
 #elif defined(WINDOWS)
 #include "base/windows/windows.h"
 #elif defined(SOLARIS)
-#include "base/solaris/c_os_internal.h"
+#include "base/solaris/solaris.h"
 #else
 #error Not Supported Operational System
 #endif

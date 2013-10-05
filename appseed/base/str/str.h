@@ -23,7 +23,6 @@ CLASS_DECL_c string get_md5(const char * psz);
 CLASS_DECL_c void zero_pad(string & str, count iPad);
 
 
-#include "str_ch.h"
 #include "str_ch_class.h"
 #include "str_international.h"
 #include "str_str2.h"

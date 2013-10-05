@@ -16,7 +16,7 @@ namespace file
 	   eofbit         = 0x01,
 	   failbit        = 0x02,
 	   badbit         = 0x04,
-	   _Hardfail      = 0x10,
+	   _Hardfail      = 0x10
    };
 
 
@@ -62,7 +62,7 @@ namespace file
       right          = 0x00004000,
       adjustfield	   = left | right | internal,
       basefield	   = dec | oct | hex,
-      floatfield	   = scientific | fixed,
+      floatfield	   = scientific | fixed
    };
 
 
