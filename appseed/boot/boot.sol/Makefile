@@ -128,6 +128,6 @@ include nbproject/Makefile-impl.mk
 include nbproject/Makefile-variables.mk
 
 
-CND_BASEDIR=../../../../
+CND_BASEDIR=../../../../pwd
 CND_DISTDIR=../../../../stage
 CND_BUILDDIR=../../../../time
