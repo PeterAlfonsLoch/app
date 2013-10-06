@@ -37,3 +37,5 @@ class CLASS_DECL_c const_char_ptra :
 
 
 #define pointera(T) ::comparable_array < T * , T * >
+
+

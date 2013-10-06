@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "user_base_document.h"
-#include "user_base_document_template.h"
+//#include "user_base_document.h"
+//#include "user_base_document_template.h"
 
 
 namespace user

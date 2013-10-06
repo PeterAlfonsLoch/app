@@ -1,8 +1,6 @@
 #pragma once
 
-//#include <iostream>
 
-//std::iostate
 
 namespace file
 {

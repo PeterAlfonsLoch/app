@@ -2,8 +2,7 @@
 
 
 
-class CLASS_DECL_c multi_lock :
-   virtual public object
+class CLASS_DECL_c multi_lock
 {
 public:
 

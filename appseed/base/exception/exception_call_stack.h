@@ -15,12 +15,12 @@
 
  the exception class holding the call stack's information
 
- exception2 : std::exception
+ exception2 : std_exception
 
  try {
  }
  catch(exception2& ex) {
-   std::cout << ex.trace_call();
+   std_cout << ex.trace_call();
  }
 
 */

@@ -209,3 +209,6 @@ CLASS_DECL_c bool deflate(LPRECT prect, LPCRECT lpcrect);
 #include "geometry_point.h"
 #include "geometry_size.h"
 #include "geometry_rect.h"
+
+
+

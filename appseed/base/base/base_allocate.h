@@ -44,11 +44,11 @@ CLASS_DECL_c void * __cdecl operator new(size_t nSize, const char * lpszFileName
 CLASS_DECL_c void __cdecl operator delete(void * p, const char * lpszFileName, int32_t nLine);
 
 #undef new
-void * __cdecl operator new[](size_t);
-CLASS_DECL_c void * __cdecl operator new[](size_t nSize, const char * lpszFileName, int32_t nLine);
+void * __cdecl operator new[](size_t) throw (std::bad_alloc);
+CLASS_DECL_c void * __cdecl operator new[](size_t nSize, const char * lpszFileName, int32_t nLine) throw (std::bad_alloc);
 #define new DEBUG_NEW
-CLASS_DECL_c void __cdecl operator delete[](void * p, const char * lpszFileName, int32_t nLine);
-void __cdecl operator delete[](void *);
+CLASS_DECL_c void __cdecl operator delete[](void * p, const char * lpszFileName, int32_t nLine) throw();
+void __cdecl operator delete[](void *) throw();
 
 
 
@@ -76,11 +76,10 @@ CLASS_DECL_c void use_ca2_allocator();
 #undef new
 #endif
 
-void * __cdecl operator new(size_t nSize);
-
-void __cdecl operator delete(void * p);
-void * __cdecl operator new[](size_t nSize);
-void __cdecl operator delete[](void * p);
+void * __cdecl operator new(size_t nSize) throw (std::bad_alloc);
+void __cdecl operator delete(void * p) throw();
+void * __cdecl operator new[](size_t nSize) throw (std::bad_alloc);
+void __cdecl operator delete[](void * p) throw();
 
 
 
@@ -123,47 +122,6 @@ void __cdecl operator delete[](void * p, int32_t nType, const char * lpszFileNam
 
 
 
-inline void * __cdecl operator new(size_t nSize, const char * lpszFileName, int32_t nLine)
-{
-   return ::operator new(nSize, _NORMAL_BLOCK, lpszFileName, nLine);
-}
-
-inline void * __cdecl operator new[](size_t nSize, const char * lpszFileName, int32_t nLine)
-{
-   return ::operator new[](nSize, _NORMAL_BLOCK, lpszFileName, nLine);
-}
-
-inline void __cdecl operator delete(void * pData, const char * /* lpszFileName */,  int32_t /* nLine */)
-{
-   ::operator delete(pData, _NORMAL_BLOCK, NULL, -1);
-}
-
-inline void __cdecl operator delete[](void * pData, const char * /* lpszFileName */,  int32_t /* nLine */)
-{
-   ::operator delete(pData, _NORMAL_BLOCK, NULL, -1);
-}
-
-
-
-inline void * __cdecl operator new(size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine)
-{
-   return memory_alloc_dbg(nSize, nType, lpszFileName, nLine);
-}
-
-inline void __cdecl operator delete(void * p, int32_t nType, const char * /* lpszFileName */, int32_t /* nLine */)
-{
-   memory_free_dbg(p, nType);
-}
-
-inline void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine)
-{
-   return ::operator new(nSize, nType, lpszFileName, nLine);
-}
-
-inline void __cdecl operator delete[](void * p, int32_t nType, const char * lpszFileName, int32_t nLine)
-{
-   ::operator delete(p, nType, lpszFileName, nLine);
-}
 
 
 
@@ -236,11 +194,10 @@ CLASS_DECL_c int32_t c_cdecl __new_handler(size_t /* nSize */);
 #undef new
 #undef delete
 
-void * __cdecl operator new(size_t nSize);
-
-void __cdecl operator delete(void * p);
-void * __cdecl operator new[](size_t nSize);
-void __cdecl operator delete[](void * p);
+void * __cdecl operator new(size_t nSize) throw (std::bad_alloc);
+void __cdecl operator delete(void * p) throw();
+void * __cdecl operator new[](size_t nSize) throw (std::bad_alloc);
+void __cdecl operator delete[](void * p) throw();
 
 
 #define DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION \

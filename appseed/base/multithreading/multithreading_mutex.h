@@ -55,7 +55,8 @@ public:
    virtual wait_result wait(const duration & durationTimeout);
 
 #endif
-
+   
+   using sync_object::unlock;
    virtual bool unlock();
 
 
@@ -66,3 +67,6 @@ public:
 
 
 CLASS_DECL_c void wait_until_mutex_does_not_exist(const char * pszName);
+
+
+

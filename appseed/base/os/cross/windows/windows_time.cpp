@@ -782,7 +782,7 @@ static void find_reg_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
         reg_tzi.DaylightDate = tz_data.dlt_date;
 
         TRACE("%s: bias %d\n", debugstr_wn(nameW.Buffer, nameW.Length/sizeof(WCHAR)), reg_tzi.Bias);
-        TRACE("std (d/m/y): %u/%02u/%04u day of week %u %u:%02u:%02u.%03u bias %d\n",
+        TRACE("Standard (d/m/y): %u/%02u/%04u day of week %u %u:%02u:%02u.%03u bias %d\n",
             reg_tzi.StandardDate.wDay, reg_tzi.StandardDate.wMonth,
             reg_tzi.StandardDate.wYear, reg_tzi.StandardDate.wDayOfWeek,
             reg_tzi.StandardDate.wHour, reg_tzi.StandardDate.wMinute,
@@ -812,7 +812,7 @@ static void find_reg_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
     NtClose(hkey);
 
     FIXME("Can't find matching timezone information in the registry for "
-          "bias %d, std (d/m/y): %u/%02u/%04u, dlt (d/m/y): %u/%02u/%04u\n",
+          "bias %d, Standard (d/m/y): %u/%02u/%04u, dlt (d/m/y): %u/%02u/%04u\n",
           tzi->Bias,
           tzi->StandardDate.wDay, tzi->StandardDate.wMonth, tzi->StandardDate.wYear,
           tzi->DaylightDate.wDay, tzi->DaylightDate.wMonth, tzi->DaylightDate.wYear);
@@ -846,7 +846,7 @@ static int32_t init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
     static RTL_TIME_ZONE_INFORMATION cached_tzi;
     static int32_t current_year = -1;
     struct tm *tm;
-    time_t year_start, year_end, tmp, dlt = 0, std = 0;
+    time_t year_start, year_end, tmp, dlt = 0, iStandard = 0;
     int32_t is_dst, current_is_dst;
 
    synch_lock ml(g_pmutexTz);
@@ -889,18 +889,18 @@ static int32_t init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
     if (is_dst)
         dlt = tmp;
     else
-        std = tmp;
+        iStandard = tmp;
 
     tmp = find_dst_change(tmp, year_end, &is_dst);
     if (is_dst)
         dlt = tmp;
     else
-        std = tmp;
+        iStandard = tmp;
 
-//xxx    TRACE("std: %s", ctime(&std));
+//xxx    TRACE("Standard: %s", ctimeiStandardstd));
 //xxx    TRACE("dlt: %s", ctime(&dlt));
 
-    if (dlt == std || !dlt || !std)
+    if (dlt == iStandard || !dlt || !iStandard)
     {
 //xxx   TRACE("there is no daylight saving rules in this time zone\n");
     }
@@ -927,9 +927,9 @@ static int32_t init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 //xxx            tzi->DaylightDate.wSecond, tzi->DaylightDate.wMilliseconds,
 //xxx            tzi->DaylightBias);
 
-        tmp = std - tzi->Bias * 60 - tzi->DaylightBias * 60;
+        tmp = iStandard - tzi->Bias * 60 - tzi->DaylightBias * 60;
         tm = gmtime(&tmp);
-//xxx        TRACE("std gmtime: %s", asctime(tm));
+//xxx        TRACE("Standard gmtime: %s", asctime(tm));
 
         tzi->StandardBias = 0;
         tzi->StandardDate.wYear = tm->tm_year + 1900;

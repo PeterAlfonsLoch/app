@@ -13,7 +13,7 @@ namespace primitive
 enum para_return
 {
    e_fail = 0x80000000,
-   s_success = 0,
+   s_success = 0
 };
 
 bool is_return_ok(para_return eret);
@@ -59,7 +59,7 @@ public:
       type_pid,
       type_int64a,
       type_char,
-      type_byte,
+      type_byte
    };
 
    e_type             m_etype;
@@ -331,7 +331,9 @@ public:
    var & operator = (const string_composite & composite);
    var & operator = (const id & id);
    var & operator = (id * pid);
+#ifdef MOVE_SEMANTICS
    inline var & operator = (var && v);
+#endif
 
    template < class T >
    var & operator = (const sp(T) & sp)
@@ -756,7 +758,7 @@ inline var::var(var && v)
 
 #endif
 
-
+#ifdef MOVE_SEMANTICS
 inline var & var::operator = (var && v)
 {
 
@@ -779,7 +781,7 @@ inline var & var::operator = (var && v)
 
 }
 
-
+#endif
 
 
 #undef new
@@ -826,3 +828,7 @@ inline void var::operator delete(void *pvar, const char *, int32_t)
 }
 
 #endif
+
+
+
+

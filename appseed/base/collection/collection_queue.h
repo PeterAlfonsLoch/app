@@ -22,6 +22,7 @@
 
 
 
+
 template < class TYPE, class CONTAINER = deque < TYPE > >
 class queue :
    virtual public CONTAINER

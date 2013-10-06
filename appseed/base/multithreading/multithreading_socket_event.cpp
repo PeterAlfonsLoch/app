@@ -55,14 +55,14 @@ void socket_event::init_wait ()
 		set_active();
 		internal::g_globals->socketWaiterThread_.AddEvent(this);
 	}*/
-	//std::cout << "init wait " << static_cast<int32_t>(m_iSocket) << std::endl;
+	//std_cout << "init wait " << static_cast<int32_t>(m_iSocket) << std::endl;
 };
 
 void socket_event::exit_wait ()
 {
 /*xxx	if ( internal::g_globals && m_bActive )
 		internal::g_globals->socketWaiterThread_.RemoveEvent(this); */
-	//std::cout << "exit wait " << static_cast<int32_t>(m_iSocket) << std::endl;
+	//std_cout << "exit wait " << static_cast<int32_t>(m_iSocket) << std::endl;
 };
 
 //void socket_event::ChangeSocketHandle (SOCKET socket)

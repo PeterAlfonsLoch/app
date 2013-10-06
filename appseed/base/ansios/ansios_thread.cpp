@@ -1,9 +1,12 @@
 #include "framework.h"
 
+
 #if defined(LINUX) || defined(ANDROID)
+
 bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow oswindow, bool bPeek);
 
 extern bool (* g_defer_process_x_message)(HTHREAD hthread, LPMESSAGE lpMsg, oswindow oswindow, bool bPeek);
+
 #endif
 
 
@@ -18,64 +21,6 @@ void on_start_thread();
 void on_end_thread();
 
 
-/*class sys_thread
-{
-public:
-
-
-   pthread_t                        m_pthread;
-   sys_message_queue                m_messagequeue;
-
-
-   sys_thread(pthread_t pthread);
-
-
-   int_bool GetMessage(MESSAGE * pmsg);
-
-
-};
-
-
-class sys_thread_pool
-{
-public:
-
-
-   mutex                     m_mutex;
-   array < sys_thread * >    m_threadptra;
-
-
-   sys_thread * get_current();
-   sys_thread * get(pthread_t pthread);
-
-
-};
-
-static sys_thread_pool * g_psysthreadpool;
-
-#include "framework.h"
-
-
-
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
-// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
-// PARTICULAR PURPOSE.
-//
-// Copyright (c) Microsoft Corporation. All rights reserved.
-
-#include "framework.h"
-
-#include <assert.h>
-//
-//#include <set>
-//#include <map>
-
-//using namespace std;
-using namespace Platform;
-using namespace Windows::Foundation;
-using namespace Windows::System::Threading;
-*/
 
 
 map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo > * g_ppendingThreads = NULL;

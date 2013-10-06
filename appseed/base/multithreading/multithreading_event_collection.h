@@ -47,7 +47,7 @@ public:
    //{
    //	if ( m_objecta.size() > MAXIMUM_WAIT_OBJECTS ) {
    //		m_objecta.clear();
-   //		throw std::invalid_argument("event_collection: too many wait objects");
+   //		throw invalid_argument_exception("event_collection: too many wait objects");
    //	}
    //}
 

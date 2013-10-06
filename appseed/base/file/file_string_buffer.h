@@ -59,12 +59,12 @@ namespace file
 
 
 
-      strsize get_length()
+      file_size get_length() const
       {
          return m_iSize;
       }
 
-      strsize get_allocation_size()
+      strsize get_allocation_size() const
       {
          return m_iAlloc;
       }

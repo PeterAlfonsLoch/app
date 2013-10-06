@@ -62,11 +62,11 @@ namespace file
       virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
 
 
-      using ::file::writer::write;
+      using ::file::stream_buffer::write;
       void write(output_stream & ostream);
 
 
-      using ::file::reader::read;
+      using ::file::stream_buffer::read;
       void read(input_stream & istream);
 
 

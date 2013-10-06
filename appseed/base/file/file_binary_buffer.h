@@ -69,11 +69,11 @@ namespace file
 
 
 
-      using ::file::writer::write;
+      using ::file::stream_buffer::write;
       void write(output_stream & ostream);
 
 
-      using ::file::reader::read;
+      using ::file::stream_buffer::read;
       void read(input_stream & istream);
 
 

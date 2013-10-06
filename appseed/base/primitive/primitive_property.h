@@ -116,6 +116,7 @@ public:
    property(const property & prop);
    property(id strName);
    property(id strName, var var);
+#ifdef MOVE_SEMANTICS
    property(property && prop)
    {
       m_idName.m_pstr = prop.m_idName.m_pstr;
@@ -126,6 +127,7 @@ public:
       prop.m_var.m_str.m_pszData    = NULL;
       prop.m_var.m_id.m_pstr        = NULL;
    }
+#endif
    ~property()
    {
    }
@@ -343,7 +345,7 @@ public:
       get_value() = p;
       return *this;
    }
-
+#ifdef MOVE_SEMANTICS
    property & operator = (property && prop)
    {
       if(this != &prop)
@@ -357,7 +359,7 @@ public:
       }
       return *this;
    }
-
+#endif
 
    template < class T >
    T * cast()

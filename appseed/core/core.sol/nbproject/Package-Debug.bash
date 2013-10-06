@@ -6,14 +6,15 @@
 
 # Macros
 TOP=`pwd`
-CND_PLATFORM=OracleSolarisStudio-Solaris-x86
+CND_PLATFORM=OracleSolarisStudio_12.3-Solaris-x86
 CND_CONF=Debug
 CND_DISTDIR=dist
-NBTMPDIR=build/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
+CND_BUILDDIR=build
+NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libca2.sol.so
-OUTPUT_BASENAME=libca2.sol.so
-PACKAGE_TOP_DIR=libca2.sol.so/
+OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libcore.sol.so
+OUTPUT_BASENAME=libcore.sol.so
+PACKAGE_TOP_DIR=libcore.sol.so/
 
 # Functions
 function checkReturnCode
@@ -58,15 +59,15 @@ mkdir -p ${NBTMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory "${NBTMPDIR}/libca2.sol.so/lib"
+makeDirectory "${NBTMPDIR}/libcore.sol.so/lib"
 copyFileToTmpDir "${OUTPUT_PATH}" "${NBTMPDIR}/${PACKAGE_TOP_DIR}lib/${OUTPUT_BASENAME}" 0644
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/libca2.sol.so.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/libcore.sol.so.tar
 cd ${NBTMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/libca2.sol.so.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/libcore.sol.so.tar *
 checkReturnCode
 
 # Cleanup

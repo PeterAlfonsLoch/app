@@ -10,5 +10,5 @@ enum Align
    AlignV                  = 12,
    AlignVerticalCenter     = 4,
    AlignTop                = 8,
-   AlignBottom             = 12,
+   AlignBottom             = 12
 };

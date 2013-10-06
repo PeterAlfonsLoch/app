@@ -97,7 +97,7 @@ namespace file
       virtual void write (const string & str);
 
       ::file_position tellp() { return m_spbuffer->tell(); }
-      output_stream & seekp(file_position position) { m_spbuffer->seek(position); return *this; }
+      output_stream & seekp(file_position position) { m_spbuffer->seek_from_begin(position); return *this; }
       output_stream & seekp(file_offset offset, e_seek eseek) { m_spbuffer->seek(offset, eseek); return *this; }
 
    };

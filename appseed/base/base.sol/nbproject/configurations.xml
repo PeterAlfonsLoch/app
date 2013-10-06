@@ -702,7 +702,7 @@
     <conf name="Debug" type="2">
       <toolsSet>
         <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
-        <compilerSet>OracleSolarisStudio|OracleSolarisStudio</compilerSet>
+        <compilerSet>OracleSolarisStudio_12.3|OracleSolarisStudio_12.3</compilerSet>
       </toolsSet>
       <compileType>
         <ccTool>
@@ -714,9 +714,6 @@
           <standardsEvolution>3</standardsEvolution>
           <languageExtension>2</languageExtension>
         </ccTool>
-        <linkerTool>
-          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lib_ca2c.so</output>
-        </linkerTool>
       </compileType>
     </conf>
     <conf name="Release" type="2">

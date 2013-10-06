@@ -13,3 +13,24 @@ public:
 
 
 };
+
+
+#ifndef SOLARIS
+
+
+namespace std
+{
+
+    
+        typedef ::memory_exception bad_alloc;
+        
+        
+} // namespace std
+
+
+
+#endif
+
+
+
+

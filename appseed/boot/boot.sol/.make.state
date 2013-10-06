@@ -1,7 +1,4 @@
 .MAKE_VERSION:	VERSION-1.0
-.clean-impl:
-	#echo "=> Running .clean-impl... Configuration=Debug"
-	"/opt/solarisstudio12.3/bin/dmake" -f nbproject/Makefile-Debug.mk QMAKE= SUBPROJECTS= .clean-conf
 .BUILT_LAST_MAKE_RUN:
 .depcheck-impl:
 	echo "# This code depends on make tool being used" >.dep.inc
@@ -19,7 +16,7 @@
 	if [ ! -f nbproject/Makefile-Debug.mk ]; \
 	then \
 	    echo ""; \
-	    echo "Error: can not find the makefile for configuration 'Debug' in project base.sol"; \
+	    echo "Error: can not find the makefile for configuration 'Debug' in project boot.sol"; \
 	    echo "See 'make help' for details."; \
 	    echo "Current directory: " `pwd`; \
 	    echo ""; \

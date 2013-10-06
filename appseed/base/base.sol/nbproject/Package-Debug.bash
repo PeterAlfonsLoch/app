@@ -6,14 +6,14 @@
 
 # Macros
 TOP=`pwd`
-CND_PLATFORM=OracleSolarisStudio-Solaris-x86
+CND_PLATFORM=OracleSolarisStudio_12.3-Solaris-x86
 CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lib_ca2c.so
-OUTPUT_BASENAME=lib_ca2c.so
+OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbase.sol.so
+OUTPUT_BASENAME=libbase.sol.so
 PACKAGE_TOP_DIR=libbase.sol.so/
 
 # Functions

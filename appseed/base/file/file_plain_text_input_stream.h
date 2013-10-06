@@ -18,6 +18,7 @@ namespace file
       virtual ~plain_text_input_stream();
 
 
+      using input_stream::read;
       virtual void read (bool & b);
       virtual void read (char & ch);
       virtual void read (uchar & uch);

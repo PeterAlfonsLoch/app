@@ -6,12 +6,12 @@ class CLASS_DECL_c condition :
 {
 public:
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(SOLARIS)
 
    int_ptr           m_object;
    bool              m_bManualEvent;
    bool              m_bSignaled;  // meaningful only when m_bManualEvent
-   int32_t               m_iSignalId;  // meaningful only when m_bManualEvent
+   int32_t           m_iSignalId;  // meaningful only when m_bManualEvent
 
 #elif defined(ANDROID)
 
@@ -29,7 +29,7 @@ public:
    virtual ~condition();
 
 
-
+   using waitable::lock;
    virtual bool lock(const duration & durationTimeout = duration::infinite());
 
    using waitable::unlock;

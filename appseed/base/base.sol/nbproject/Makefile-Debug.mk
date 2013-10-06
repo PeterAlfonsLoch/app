@@ -21,7 +21,7 @@ FC=f95
 AS=as
 
 # Macros
-CND_PLATFORM=OracleSolarisStudio-Solaris-x86
+CND_PLATFORM=OracleSolarisStudio_12.3-Solaris-x86
 CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
@@ -306,11 +306,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lib_ca2c.so
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbase.sol.so
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lib_ca2c.so: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbase.sol.so: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -G -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lib_ca2c.so -KPIC -norunpath -h lib_ca2c.so ${OBJECTFILES} ${LDLIBSOPTIONS} 
+	${LINK.cc} -G -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbase.sol.so -KPIC -norunpath -h libbase.sol.so ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
 ${OBJECTDIR}/_ext/1422879424/exception_os.o: ../exception/exception_os.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1422879424
@@ -1326,7 +1326,7 @@ ${OBJECTDIR}/_ext/1055495342/multithreading_semaphore.o: ../multithreading/multi
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lib_ca2c.so
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libbase.sol.so
 	${CCADMIN} -clean
 
 # Subprojects

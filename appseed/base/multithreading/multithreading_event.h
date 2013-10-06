@@ -27,7 +27,7 @@ public:
       ;
 #endif
 
-
+   using event_base::lock;
    virtual bool lock(const duration & durationTimeout = duration::infinite());
 
    using waitable::unlock;

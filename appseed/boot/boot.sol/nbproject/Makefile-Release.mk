@@ -24,12 +24,13 @@ AS=as
 CND_PLATFORM=OracleSolarisStudio-Solaris-x86
 CND_CONF=Release
 CND_DISTDIR=dist
+CND_BUILDDIR=build
 
 # Include project Makefile
 include Makefile
 
 # Object Directory
-OBJECTDIR=build/${CND_CONF}/${CND_PLATFORM}
+OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
@@ -189,10 +190,10 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-Release.mk dist/Release/OracleSolarisStudio-Solaris-x86/libca2ca.so
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libca2ca.so
 
-dist/Release/OracleSolarisStudio-Solaris-x86/libca2ca.so: ${OBJECTFILES}
-	${MKDIR} -p dist/Release/OracleSolarisStudio-Solaris-x86
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libca2ca.so: ${OBJECTFILES}
+	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -G -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libca2ca.so -KPIC -norunpath -h libca2ca.so ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
 ${OBJECTDIR}/_ext/43900685/ca_wstringtovss.o: ../ca/ca_wstringtovss.cpp 
@@ -744,8 +745,8 @@ ${OBJECTDIR}/_ext/43900685/ca_cpu_architecture.o: ../ca/ca_cpu_architecture.cpp
 
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
-	${RM} -r build/Release
-	${RM} dist/Release/OracleSolarisStudio-Solaris-x86/libca2ca.so
+	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libca2ca.so
 	${CCADMIN} -clean
 
 # Subprojects

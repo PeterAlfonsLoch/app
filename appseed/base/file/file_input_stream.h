@@ -96,7 +96,7 @@ namespace file
 
       ::primitive::memory_size gcount() { return m_gcount; }
       ::file_position tellg() { return m_spbuffer->tell(); }
-      input_stream & seekg(file_position position) { m_spbuffer->seek(position); return *this; }
+      input_stream & seekg(file_position position) { m_spbuffer->seek_from_begin(position); return *this; }
       input_stream & seekg(file_offset offset, e_seek eseek) { m_spbuffer->seek(offset, eseek); return *this; }
 
    };

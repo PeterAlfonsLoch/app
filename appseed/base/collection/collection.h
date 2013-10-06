@@ -4,14 +4,13 @@
 
 
 
-#include "collection_iterator.h"
+//#include "collection_iterator.h"
 
 #include "collection_pair.h"
 
 
 #include "collection_array_impl.h"
 #include "collection_raw_array_impl.h"
-#include "collection_array_impl.h"
 #include "collection_smart_pointer_array.h"
 #include "collection_comparable_eq_array.h"
 #include "collection_comparable_array.h"
@@ -138,10 +137,10 @@ public:
 
 
 #include "collection_string_to_string_map.h"
-#include "collection_bit_array.h"
+//#include "collection_bit_array.h"
 #include "collection_string_array.h"
 
-#include "base/datetime/datetime_time.h"
+//#include "base/datetime/datetime_time.h"
 
 #include "base/primitive/primitive_var.h"
 
@@ -162,7 +161,7 @@ public:
 #include "collection_rect_array.h"
 
 
-#include "collection_string_to_string_map.h"
+//#include "collection_string_to_string_map.h"
 
 
 #include "collection_typed_pointer_map.h"
@@ -209,9 +208,7 @@ class CLASS_DECL_c time_array :
 
 #include "collection_stringl.h"
 #include "collection_string_sort_array.h"
-#include "collection_stringa.h"
-
-#include "collection_numeric_array.h"
+//#include "collection_stringa.h"
 
 #include "collection_lemon_array.h"
 

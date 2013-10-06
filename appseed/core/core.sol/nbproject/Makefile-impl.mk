@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=ca2.sol
+PROJECTNAME=core.sol
 
 # Active Configuration
 DEFAULTCONF=Debug

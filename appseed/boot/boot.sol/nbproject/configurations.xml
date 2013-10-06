@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="69">
-  <logicalFolder name="root" displayName="root" projectFiles="true">
+<configurationDescriptor version="80">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
-                   projectFiles="true"
-                   kind="SOURCE_LOGICAL_FOLDER">
-      <logicalFolder name="f2"
-                     displayName="ansios"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+                   projectFiles="true">
+      <logicalFolder name="f2" displayName="ansios" projectFiles="true">
         <itemPath>../ansios/ansios.h</itemPath>
         <itemPath>../ansios/ansios_file.h</itemPath>
         <itemPath>../ansios/ansios_thread.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f5"
-                     displayName="bsdiff"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f5" displayName="bsdiff" projectFiles="true">
         <itemPath>../bsdiff/bsdiff.h</itemPath>
         <itemPath>../bsdiff/bsdiff_private.h</itemPath>
         <itemPath>../bsdiff/bzlib.h</itemPath>
         <itemPath>../bsdiff/bzlib_private.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f1"
-                     displayName="ca"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f1" displayName="ca" projectFiles="true">
         <itemPath>../ca/ca.h</itemPath>
         <itemPath>../ca/ca_async.h</itemPath>
         <itemPath>../ca/ca_base64.h</itemPath>
@@ -89,14 +79,8 @@
         <itemPath>../ca/ca_wstringtovss.h</itemPath>
         <itemPath>../ca/ca_xmlite.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f6"
-                     displayName="cross"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
-        <logicalFolder name="f1"
-                       displayName="windows"
-                       projectFiles="true"
-                       kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f6" displayName="cross" projectFiles="true">
+        <logicalFolder name="f1" displayName="windows" projectFiles="true">
           <itemPath>../cross/windows/windows.h</itemPath>
           <itemPath>../cross/windows/windows_gdi.h</itemPath>
           <itemPath>../cross/windows/windows_ole_automation.h</itemPath>
@@ -106,35 +90,23 @@
         </logicalFolder>
         <itemPath>../cross/cross.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f7"
-                     displayName="crypt"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f7" displayName="crypt" projectFiles="true">
         <itemPath>../crypt/crypt.h</itemPath>
         <itemPath>../crypt/nessie.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f8"
-                     displayName="hotplugin"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f8" displayName="hotplugin" projectFiles="true">
         <itemPath>../hotplugin/hotplugin.h</itemPath>
         <itemPath>../hotplugin/hotplugin_container_launcher.h</itemPath>
         <itemPath>../hotplugin/hotplugin_host.h</itemPath>
         <itemPath>../hotplugin/hotplugin_plugin.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f9"
-                     displayName="os"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f9" displayName="os" projectFiles="true">
         <itemPath>../os/os.h</itemPath>
         <itemPath>../os/os_binreloc.h</itemPath>
         <itemPath>../os/os_process.h</itemPath>
         <itemPath>../os/os_thread.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f3"
-                     displayName="simple_graphics"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f3" displayName="simple_graphics" projectFiles="true">
         <itemPath>../simple_graphics/simple_font.h</itemPath>
         <itemPath>../simple_graphics/simple_graphics.h</itemPath>
         <itemPath>../simple_graphics/simple_graphics_first_phase.h</itemPath>
@@ -145,20 +117,14 @@
         <itemPath>../simple_graphics/simple_solid_brush.h</itemPath>
         <itemPath>../simple_graphics/simple_solid_pen.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f10"
-                     displayName="simple_ui"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f10" displayName="simple_ui" projectFiles="true">
         <itemPath>../simple_ui/simple_edit_box.h</itemPath>
         <itemPath>../simple_ui/simple_label.h</itemPath>
         <itemPath>../simple_ui/simple_password.h</itemPath>
         <itemPath>../simple_ui/simple_tap.h</itemPath>
         <itemPath>../simple_ui/simple_ui.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f4"
-                     displayName="solaris"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f4" displayName="solaris" projectFiles="true">
         <itemPath>../solaris/ca_os.h</itemPath>
         <itemPath>../solaris/ca_os_cairo_keep.h</itemPath>
         <itemPath>../solaris/ca_os_cross_win_file.h</itemPath>
@@ -180,10 +146,7 @@
         <itemPath>../solaris/ca_os_window_cairo.h</itemPath>
         <itemPath>../solaris/linux_internal.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f11"
-                     displayName="spa"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f11" displayName="spa" projectFiles="true">
         <itemPath>../spa/resource.h</itemPath>
         <itemPath>../spa/spa.h</itemPath>
         <itemPath>../spa/spa_boot.h</itemPath>
@@ -204,17 +167,11 @@
         <itemPath>../spa/spa_trace.h</itemPath>
         <itemPath>../spa/spa_window.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f12"
-                     displayName="version"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f12" displayName="version" projectFiles="true">
         <itemPath>../version/version.config.h</itemPath>
         <itemPath>../version/version.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f13"
-                     displayName="vms"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f13" displayName="vms" projectFiles="true">
         <itemPath>../vms/veriwell_musical_studio.h</itemPath>
         <itemPath>../vms/vms.h</itemPath>
         <itemPath>../vms/vms_2.h</itemPath>
@@ -222,27 +179,19 @@
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
-                   projectFiles="true"
-                   kind="SOURCE_LOGICAL_FOLDER">
+                   projectFiles="true">
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
-                   projectFiles="true"
-                   kind="SOURCE_LOGICAL_FOLDER">
-      <logicalFolder name="f2"
-                     displayName="ansios"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+                   projectFiles="true">
+      <logicalFolder name="f2" displayName="ansios" projectFiles="true">
         <itemPath>../ansios/ansios_cross_win.cpp</itemPath>
         <itemPath>../ansios/ansios_cross_win_file.cpp</itemPath>
         <itemPath>../ansios/ansios_file.cpp</itemPath>
         <itemPath>../ansios/ansios_file_std.cpp</itemPath>
         <itemPath>../ansios/ansios_thread.cpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f5"
-                     displayName="bsdiff"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f5" displayName="bsdiff" projectFiles="true">
         <itemPath>../bsdiff/blocksort.cpp</itemPath>
         <itemPath>../bsdiff/bsdiff.cpp</itemPath>
         <itemPath>../bsdiff/bspatch.cpp</itemPath>
@@ -255,10 +204,7 @@
         <itemPath>../bsdiff/main_bspatch.cpp</itemPath>
         <itemPath>../bsdiff/randtable.cpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f1"
-                     displayName="ca"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f1" displayName="ca" projectFiles="true">
         <itemPath>../ca/_initterm.cpp</itemPath>
         <itemPath>../ca/ca.cpp</itemPath>
         <itemPath>../ca/ca_argcargv.cpp</itemPath>
@@ -314,64 +260,40 @@
         <itemPath>../ca/ca_wstringtovss.cpp</itemPath>
         <itemPath>../ca/ca_xmlite.cpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f6"
-                     displayName="cross"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
-        <logicalFolder name="f1"
-                       displayName="windows"
-                       projectFiles="true"
-                       kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f6" displayName="cross" projectFiles="true">
+        <logicalFolder name="f1" displayName="windows" projectFiles="true">
           <itemPath>../cross/windows/windows_thread.cpp</itemPath>
           <itemPath>../cross/windows/windows_user.cpp</itemPath>
         </logicalFolder>
       </logicalFolder>
-      <logicalFolder name="f7"
-                     displayName="crypt"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f7" displayName="crypt" projectFiles="true">
         <itemPath>../crypt/crypt.cpp</itemPath>
         <itemPath>../crypt/nessie.cpp</itemPath>
         <itemPath>../crypt/whirpool.cpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f8"
-                     displayName="hotplugin"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f8" displayName="hotplugin" projectFiles="true">
         <itemPath>../hotplugin/hotplugin_container_launcher.cpp</itemPath>
         <itemPath>../hotplugin/hotplugin_host.cpp</itemPath>
         <itemPath>../hotplugin/hotplugin_plugin.cpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f9"
-                     displayName="os"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f9" displayName="os" projectFiles="true">
         <itemPath>../os/os_binreloc.cpp</itemPath>
         <itemPath>../os/os_http.cpp</itemPath>
         <itemPath>../os/os_process.cpp</itemPath>
         <itemPath>../os/os_thread.cpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f3"
-                     displayName="simple_graphics"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f3" displayName="simple_graphics" projectFiles="true">
         <itemPath>../simple_graphics/simple_graphics.cpp</itemPath>
         <itemPath>../simple_graphics/simple_path.cpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f10"
-                     displayName="simple_ui"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f10" displayName="simple_ui" projectFiles="true">
         <itemPath>../simple_ui/simple_edit_box.cpp</itemPath>
         <itemPath>../simple_ui/simple_label.cpp</itemPath>
         <itemPath>../simple_ui/simple_password.cpp</itemPath>
         <itemPath>../simple_ui/simple_tap.cpp</itemPath>
         <itemPath>../simple_ui/simple_ui.cpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f4"
-                     displayName="solaris"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f4" displayName="solaris" projectFiles="true">
         <itemPath>../solaris/ca_os.cpp</itemPath>
         <itemPath>../solaris/ca_os_cairo_keep.cpp</itemPath>
         <itemPath>../solaris/ca_os_cross_win_file.cpp</itemPath>
@@ -400,10 +322,7 @@
         <itemPath>../solaris/ca_os_window.cpp</itemPath>
         <itemPath>../solaris/ca_os_window_cairo.cpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f11"
-                     displayName="spa"
-                     projectFiles="true"
-                     kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f11" displayName="spa" projectFiles="true">
         <itemPath>../spa/spa.cpp</itemPath>
         <itemPath>../spa/spa_boot.cpp</itemPath>
         <itemPath>../spa/spa_bz.cpp</itemPath>
@@ -442,9 +361,8 @@
   <confs>
     <conf name="Debug" type="2">
       <toolsSet>
-        <developmentServer>localhost</developmentServer>
-        <compilerSet>OracleSolarisStudio|OracleSolarisStudio</compilerSet>
-        <platform>1</platform>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>OracleSolarisStudio_12.3|OracleSolarisStudio_12.3</compilerSet>
       </toolsSet>
       <compileType>
         <ccTool>
@@ -455,9 +373,6 @@
             <pElem>..</pElem>
           </incDir>
         </ccTool>
-        <linkerTool>
-          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libca2ca.so</output>
-        </linkerTool>
         <requiredProjects>
           <makeArtifact PL="../../c/_c.sol"
                         CT="2"
@@ -474,9 +389,8 @@
     </conf>
     <conf name="Release" type="2">
       <toolsSet>
-        <developmentServer>localhost</developmentServer>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
         <compilerSet>OracleSolarisStudio|OracleSolarisStudio</compilerSet>
-        <platform>1</platform>
       </toolsSet>
       <compileType>
         <cTool>

@@ -59,88 +59,15 @@ CLASS_DECL_c size_t _ca_msize(void * pvoid, int32_t iBlockType);
 void * __cdecl operator new(size_t nSize, void * p);
 void __cdecl operator delete(void * p, void * palloc);
 
-void * __cdecl operator new(size_t nSize);
-void __cdecl operator delete(void * p);
+void * __cdecl operator new(size_t nSize) throw (std::bad_alloc);
+void __cdecl operator delete(void * p) throw();
 
-void * __cdecl operator new[](size_t nSize);
-void __cdecl operator delete[](void * p);
+void * __cdecl operator new[](size_t nSize) throw (std::bad_alloc);
+void __cdecl operator delete[](void * p) throw();
 
 #define __NORMAL_BLOCK    1
 
-inline void * __cdecl operator new(size_t nSize)
-{
-   return memory_alloc(nSize);
-}
 
-inline void * __cdecl operator new(size_t nSize, void * p)
-{
-   UNREFERENCED_PARAMETER(nSize);
-   return p;
-}
-#define __PLACEMENT_NEW_INLINE
-
-
-inline void __cdecl operator delete(void * p, void * palloc)
-{
-   UNREFERENCED_PARAMETER(p);
-   UNREFERENCED_PARAMETER(palloc);
-}
-
-
-inline void __cdecl operator delete(void * p)
-{
-   memory_free(p);
-}
-
-inline void * __cdecl operator new[](size_t nSize)
-{
-   return ::operator new(nSize);
-}
-
-inline void __cdecl operator delete[](void * p)
-{
-   ::operator delete(p);
-}
-
-
-
-
-
-//CLASS_DECL_c void initialize_primitive_heap();
-//CLASS_DECL_c void finalize_primitive_heap();
-
-
-class CLASS_DECL_c c_class
-{
-public:
-
-
-   static c_class s_cclass;
-
-
-   c_class();
-   c_class(const c_class &);
-   virtual ~c_class();
-
-
-};
-
-inline CLASS_DECL_c void * __cdecl operator new (size_t size, const c_class &)
-{
-   return memory_alloc(size);
-}
-
-inline CLASS_DECL_c void * __cdecl operator new[](size_t size, const c_class &)
-{
-   return memory_alloc(size);
-}
-
-
-#define C_NEW new(c_class::s_cclass)
-
-
-
-#endif
 
 
 

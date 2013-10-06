@@ -5,7 +5,7 @@ namespace str
 {
 
 
-   // operations.hpp -- string operations for use with std::basic_string<> and character arrays
+   // operations.hpp -- string operations for use with strings and character arrays
    // author: Guenter Berner
    //
    // $Log: operations.hpp,v $
@@ -22,7 +22,7 @@ namespace str
    // LINUX: Added cast for "isspace".
    //
    // Revision 1.18  2008/05/21 13:42:17  alsdorf\jgo
-   // BR080522150941- The parameter domain don’t work
+   // BR080522150941- The parameter domain donï¿½t work
    //
    // Revision 1.17  2008/01/25 19:13:19  alsdorf\jgo
    // BR080125110525 - Text to Speech is not working on Satellite Nodes

@@ -12,7 +12,7 @@ enum e_application_signal
    application_signal_finalize,
    application_signal_exit_instance,
    application_signal_init_application,
-   application_signal_none,
+   application_signal_none
 };
 
 

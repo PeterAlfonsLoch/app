@@ -29,7 +29,7 @@ namespace file
       virtual file_position seek_to_end();
 
 
-      virtual file_position seek(file_position position);
+      virtual file_position seek_from_begin(file_position position);
       virtual file_position seek(file_offset offset, e_seek seekOrigin);
       virtual file_position get_position() const;
 

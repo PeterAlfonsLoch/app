@@ -180,7 +180,7 @@ public:
    enum e_type
    {
       TypeBeforeChange,
-      TypeAfterChange,
+      TypeAfterChange
    };
 
 

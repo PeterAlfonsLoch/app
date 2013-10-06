@@ -19,7 +19,7 @@ event_collection::event_collection(sp(base_application) papp) :
 //{
 //	if ( m_objecta.size() > MAXIMUM_WAIT_OBJECTS ) {
 //		m_objecta.clear();
-//		throw std::invalid_argument("event_collection: too many wait objects");
+//		throw invalid_argument_exception("event_collection: too many wait objects");
 //	}
 //}
 
@@ -163,7 +163,7 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
    uint32_t winResult;
    bool FoundExternal=false;
    do {
-      //std::cout << "Start waiting in wc :" << m_objecta.size() << std::endl;
+      //std_cout << "Start waiting in wc :" << m_objecta.size() << std::endl;
 
       if (timeout)  {
          // if ANY timeout available
@@ -180,7 +180,7 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
       else
          winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()), &*m_objecta.begin(), waitForAll, 0, FALSE);
 
-      //std::cout << "Finished waiting in wc" << std::endl;
+      //std_cout << "Finished waiting in wc" << std::endl;
       if(callback_cnt>0 && winResult!=WAIT_TIMEOUT && winResult!=WAIT_FAILED) {
          // if events with callback are signaled call callback
          wait_result result=wait_result(winResult,m_objecta.size());
@@ -197,7 +197,7 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
             index position = result.abandoned() ? result.abandoned_index() : result.signaled_index();
 
             if(m_waitableelementa[position].callback) {
-               //std::cout << "Calling callback" << std::endl;
+               //std_cout << "Calling callback" << std::endl;
                m_waitableelementa[position].callback->callback(*m_waitableelementa[position].item);
             }
             else
@@ -231,7 +231,7 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
    for (it = m_waitableelementa.begin(); it != m_waitableelementa.end(); ++it)
       (*it).item->exit_wait();
 
-   //std::cout << "Leaving wait in wc:" << std::endl;
+   //std_cout << "Leaving wait in wc:" << std::endl;
    return wait_result(winResult,m_objecta.size());
 }
 
