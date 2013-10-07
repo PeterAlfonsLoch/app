@@ -1,50 +1,22 @@
 #include "framework.h"
 
 
-/////////////////////////////////////////////////////////////////////////////
-// Runtime Typing
-
-// special runtime-class structure for ::object (no base class)
-/*const struct sp(type) object::classbase_object =
-{ "::object", sizeof(::object), 0xffff, NULL, NULL, NULL };*/
-/*
-sp(type) object::GetRuntimeClass() const
-{
-return _RUNTIME_CLASS(::object);
-}
-*/
 
 object::object()
 { 
-/*      try
-   {
-      if(::core::get_thread_state() != NULL)
-      {
-         ::core::get_thread_state()->m_heapitema.set_heap_alloc(this);
-      }
-   }
-   catch(...)
-   {
-   }*/
+
    common_construct(); 
+
 }
+
 
 object::object(const object& objectSrc)
 {
 	   
 	m_psetObject = NULL;
 
-   /*try
-   {
-      if(::core::get_thread_state() != NULL)
-      {
-         ::core::get_thread_state()->m_heapitema.set_heap_alloc(this);
-      }
-   }
-   catch(...)
-   {
-   }*/
    operator =(objectSrc);
+
 }
 
 void object::common_construct()
@@ -54,6 +26,7 @@ void object::common_construct()
 
 }
    
+
 object::~object()
 { 
 
@@ -149,37 +122,9 @@ property_set & object::propset()
 
 
 
-#undef new
-void * object::operator new(size_t size, void * p)
-{ 
-   UNREFERENCED_PARAMETER(size);
-   return p; 
-}
-#define new DEBUG_NEW
-#ifndef DEBUG
-// DEBUG versions in afxmem.cpp
-//void object::operator delete(void * p)
-// { ::operator delete(p); }
-#if _MSC_VER >= 1200
-//void object::operator delete(void * p, void *)
-// { ::operator delete(p); }
-#endif
-//void * object::operator new(size_t nSize)
-// { return ::operator new(nSize); }
-// DEBUG versions in objcore.cpp
-//void object::AssertValid() const
-//   { /* no asserts in release builds */ }
-//void object::Dump(dump_context &) const
-//   { /* no dumping in release builds */ }
-#endif //!DEBUG
 
 
 
-
-/////////////////////////////////////////////////////////////////////////////
-// Diagnostic Support
-
-//#ifdef DEBUG
 void assert_valid_object(const object * pOb, const char * lpszFileName, int32_t nLine)
 {
    if (pOb == NULL)

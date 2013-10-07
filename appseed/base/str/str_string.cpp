@@ -685,7 +685,7 @@ void __cdecl string::Construct(class string * pstring)
 {
    new (pstring) class string;
 }
-#define new DEBUG_NEW
+#define new BASE_NEW
 
 // copy constructor
 string::string(const string & strSrc) :

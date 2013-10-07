@@ -52,7 +52,7 @@ namespace file
 
 #undef new
          DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new DEBUG_NEW
+#define new BASE_NEW
 
 
       };
@@ -149,7 +149,7 @@ namespace file
 
 #undef new
          DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new DEBUG_NEW
+#define new BASE_NEW
 
       };
 

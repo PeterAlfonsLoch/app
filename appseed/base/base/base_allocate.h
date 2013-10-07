@@ -4,11 +4,6 @@
 #pragma once
 
 
-//#ifdef DEBUG
-// Special _CLIENT_BLOCK type to identifiy CObjects.
-#define ___CLIENT_BLOCK (_CLIENT_BLOCK|(0xc0<<16))
-//#endif
-
 CLASS_DECL_c void * MyAlloc(size_t size);
 CLASS_DECL_c void * MyRealloc(void * address, size_t sizeOld, size_t sizeNew);
 CLASS_DECL_c void MyFree(void *address);
@@ -34,122 +29,20 @@ CLASS_DECL_c void BigFree(void *address);
 
 #endif
 
-//CLASS_DECL_c void   use_base_ca2_allocator();
 
-
-// Memory tracking allocation
-#undef new
-CLASS_DECL_c void * __cdecl operator new(size_t nSize, const char * lpszFileName, int32_t nLine);
-#define new DEBUG_NEW
-CLASS_DECL_c void __cdecl operator delete(void * p, const char * lpszFileName, int32_t nLine);
-
-#undef new
-void * __cdecl operator new[](size_t) throw (std::bad_alloc);
-CLASS_DECL_c void * __cdecl operator new[](size_t nSize, const char * lpszFileName, int32_t nLine) throw (std::bad_alloc);
-#define new DEBUG_NEW
-CLASS_DECL_c void __cdecl operator delete[](void * p, const char * lpszFileName, int32_t nLine) throw();
-void __cdecl operator delete[](void *) throw();
-
-
-
-/*CLASS_DECL_c extern void * (*g_pfnca2_alloc)(size_t size);
-CLASS_DECL_c extern void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-CLASS_DECL_c extern void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-CLASS_DECL_c extern void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType);*/
-
-/*CLASS_DECL_c void * memory_alloc(size_t size);
-CLASS_DECL_c void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-CLASS_DECL_c void * memory_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-CLASS_DECL_c void   memory_free(void * pvoid, int32_t iBlockType);*/
-
-
-/*CLASS_DECL_c void * _ca2_alloc(size_t size);
-CLASS_DECL_c void * _ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-CLASS_DECL_c void * _ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-CLASS_DECL_c void   _ca2_free(void * pvoid, int32_t iBlockType);
-CLASS_DECL_c size_t _ca2_msize(void * pvoid, int32_t iBlockType);
-
-CLASS_DECL_c void use_ca2_allocator();
-*/
-
-#ifdef new
-#undef new
-#endif
-
-void * __cdecl operator new(size_t nSize) throw (std::bad_alloc);
-void __cdecl operator delete(void * p) throw();
-void * __cdecl operator new[](size_t nSize) throw (std::bad_alloc);
-void __cdecl operator delete[](void * p) throw();
-
-
-
-#define DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION \
-   public: \
-   void * operator new(size_t i, const char * lpszFileName, int32_t iLine) \
-{ \
-   return ::operator new(i, lpszFileName, iLine); \
-} \
-   void * operator new(size_t i) \
-{ \
-   return ::operator new(i); \
-} \
-   void operator delete(void * p, const char * lpszFileName, int32_t iLine) \
-{ \
-   ::operator delete(p, lpszFileName, iLine); \
-} \
-   void operator delete(void * p) \
-{ \
-   ::operator delete(p); \
-} \
+#define __NORMAL_BLOCK    1
+#define ___CLIENT_BLOCK (_CLIENT_BLOCK|(0xc0<<16))
 
 
 
 
 
-void * __cdecl operator new(size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
-void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
-
-/////////////////////////////////////////////////////////////////////////////
-// Debug primitive::memory globals and implementation helpers
-
-#undef new
-#undef delete
-
-void * __cdecl operator new(size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
-void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
-void __cdecl operator delete(void * p, int32_t nType, const char * /* lpszFileName */, int32_t nLine);
-void __cdecl operator delete[](void * p, int32_t nType, const char * lpszFileName, int32_t nLine);
-
-
-
-
-
-
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////
-// Debug primitive::memory globals and implementation helpers
-
-
-
-
-#ifdef DEBUG       // most of this file is for debugging
-
-#undef new
-
-/////////////////////////////////////////////////////////////////////////////
-// test allocation routines
-
+#ifdef DEBUG
 
 #ifndef ___NO_DEBUG_CRT
 
 CLASS_DECL_c void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const char * lpszFileName, int32_t nLine);
 CLASS_DECL_c void __free_memory_debug(void * pbData, bool bIsObject);
-
-/////////////////////////////////////////////////////////////////////////////
-// allocation failure hook, tracking turn on
 
 CLASS_DECL_c bool __default_alloc_hook(size_t, bool, LONG);
 
@@ -190,63 +83,6 @@ CLASS_DECL_c bool __dump_memory_leaks();
 // Non-diagnostic primitive::memory routines
 
 CLASS_DECL_c int32_t c_cdecl __new_handler(size_t /* nSize */);
-
-#undef new
-#undef delete
-
-void * __cdecl operator new(size_t nSize) throw (std::bad_alloc);
-void __cdecl operator delete(void * p) throw();
-void * __cdecl operator new[](size_t nSize) throw (std::bad_alloc);
-void __cdecl operator delete[](void * p) throw();
-
-
-#define DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION \
-   public: \
-   void * operator new(size_t i, const char * lpszFileName, int32_t iLine) \
-{ \
-   return ::operator new(i, lpszFileName, iLine); \
-} \
-   void * operator new(size_t i) \
-{ \
-   return ::operator new(i); \
-} \
-   void operator delete(void * p, const char * lpszFileName, int32_t iLine) \
-{ \
-   ::operator delete(p, lpszFileName, iLine); \
-} \
-   void operator delete(void * p) \
-{ \
-   ::operator delete(p); \
-} \
-
-
-
-
-
-
-//void * __cdecl operator new(size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
-//void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
-
-
-inline void object::operator delete(void * p)
-{
-   memory_free_dbg(p, ___CLIENT_BLOCK);
-}
-
-inline void object::operator delete(void * p, void *)
-{
-   memory_free_dbg(p, ___CLIENT_BLOCK);
-}
-
-#ifdef DEBUG
-
-inline void object::operator delete(void *pObject, const char *, int32_t)
-{
-   memory_free_dbg(pObject, ___CLIENT_BLOCK);
-}
-
-#endif
-
 
 
 

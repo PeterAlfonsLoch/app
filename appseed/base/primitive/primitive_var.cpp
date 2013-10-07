@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+IMPLEMENT_FIXED_ALLOC(var, 1024);
+
+
 var::var(const char * psz)
 {
    m_etype = type_new;

@@ -135,12 +135,11 @@ CLASS_DECL_c bool __enable_memory_leak_override(bool bEnable);
 void ::core::DoForAllClasses(void (c_cdecl *pfn)(sp(type) pClass,
    void * pContext), void * pContext);*/
 
-#define new DEBUG_NEW
 
 #else
 
 // non-DEBUG_ALLOC version that assume everything is OK
-#define DEBUG_NEW new
+#define BASE_NEW new
 #define __check_memory() TRUE
 #define __is_memory_block(p, nBytes) TRUE
 #define __enable_memory_tracking(bTrack) FALSE
@@ -187,7 +186,7 @@ extern CLASS_DECL_c bool g_bTraceEnabled;
 
 #ifdef DEBUG
 #define DEBUG_NOTE __FILE__
-#define DEBUG_NEW new(DEBUG_NOTE, __LINE__)
+#define BASE_NEW new(DEBUG_NOTE, __LINE__)
 #define THREAD_NOTE __get_thread_note()
 #define SET_THREAD_NOTE(x) __set_thread_note(x);
 #else

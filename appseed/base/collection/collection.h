@@ -9,8 +9,7 @@
 #include "collection_pair.h"
 
 
-#include "collection_array_impl.h"
-#include "collection_raw_array_impl.h"
+
 #include "collection_smart_pointer_array.h"
 #include "collection_comparable_eq_array.h"
 #include "collection_comparable_array.h"

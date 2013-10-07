@@ -4,8 +4,9 @@
 #include <ctype.h>
 #endif
 
-#define ROUND(x,y) (((x)+(y-1))&~(y-1))
-#define ROUND16(x) ROUND(x, 16)
+
+IMPLEMENT_FIXED_ALLOC(property, 1024);
+
 
 void prop_id_debug(sp(base_application) papp);
 
@@ -2069,50 +2070,6 @@ var  operator * (const property & prop1, const property & prop2)
 
 
 
-
-
-
-
-   fixed_alloc * g_pfixedallocProperty = NULL;
-
-   void * property::operator new(size_t size, void * p)
-      {
-         UNREFERENCED_PARAMETER(size);
-         return p;
-      }
-
-   void * property::operator new(size_t nSize)
-   {
-      return g_pfixedallocProperty->Alloc();
-   }
-
-#ifdef DEBUG
-
-   void * property::operator new(size_t nSize, const char * lpszFileName, int32_t nLine)
-   {
-      return g_pfixedallocProperty->Alloc();
-   }
-
-#endif
-
-   void property::operator delete(void * p)
-   {
-      g_pfixedallocProperty->Free(p);
-   }
-
-   void property::operator delete(void * p, void *)
-   {
-      g_pfixedallocProperty->Free(p);
-   }
-
-#ifdef DEBUG
-
-   void property::operator delete(void * p, const char *, int32_t)
-   {
-      g_pfixedallocProperty->Free(p);
-   }
-
-#endif
 
 
 

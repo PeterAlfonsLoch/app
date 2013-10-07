@@ -35,5 +35,3 @@ public:
          (typename BASE_CLASS::BASE_VALUE&)rValue); }
 };
 
-#undef new
-#define new DEBUG_NEW

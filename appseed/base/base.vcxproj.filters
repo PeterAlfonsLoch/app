@@ -968,29 +968,11 @@
     <ClInclude Include="base\base_root.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base_system_primitive_var.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_system_factory.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_system_id.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_system_smart_pointer.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_system_object.h">
-      <Filter>Header Files\base</Filter>
-    </ClInclude>
     <ClInclude Include="windows\windows_file.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
     <ClInclude Include="windows\windows.h">
       <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base_system_xml.h">
-      <Filter>Header Files\base</Filter>
     </ClInclude>
     <ClInclude Include="str\str_str1.h">
       <Filter>Header Files\str</Filter>
@@ -1001,19 +983,10 @@
     <ClInclude Include="base\base_auto_pointer.h">
       <Filter>Header Files\base</Filter>
     </ClInclude>
-    <ClInclude Include="collection\collection_array_impl.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include="collection\collection_raw_array_decl.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
-    <ClInclude Include="collection\collection_raw_array_impl.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include="collection\collection_lemon_array_decl.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\collection_lemon_array_impl.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
     <ClInclude Include="collection\collection_stack.h">
@@ -1174,6 +1147,36 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive_memory_c.h">
       <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_new.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_system_object.inl">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_system_primitive_var.inl">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_system_smart_pointer.inl">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_system_id.inl">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_system_factory.inl">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_lemon_array_impl.inl">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_raw_array_impl.inl">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_array_impl.inl">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_system_xml.inl">
+      <Filter>Header Files\base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1762,9 +1765,6 @@
     <ClCompile Include="windows\windows_http.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\base_allocate_var.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
     <ClCompile Include="comparison\comparison_md5.cpp">
       <Filter>Source Files\comparison</Filter>
     </ClCompile>
@@ -1961,6 +1961,27 @@
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="collection\collection_fifo_map_impl.inl">
+      <Filter>Header Files\collection</Filter>
+    </None>
+    <None Include="collection\collection_list_impl.inl">
+      <Filter>Header Files\collection</Filter>
+    </None>
+    <None Include="collection\collection_map_impl.inl">
+      <Filter>Header Files\collection</Filter>
+    </None>
+    <None Include="collection\collection_sort_array_impl.inl">
+      <Filter>Header Files\collection</Filter>
+    </None>
+    <None Include="collection\collection_sort_map_impl.inl">
+      <Filter>Header Files\collection</Filter>
+    </None>
+    <None Include="primitive\primitive_factory_impl.inl">
+      <Filter>Header Files\primitive</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@
 #ifdef WINDOWSEX
 #undef new
 #include <gdiplus.h>
-#define new DEBUG_NEW
+#define new BASE_NEW
 
 
 void fastblur(::draw2d::dib * pimg, int32_t radius);

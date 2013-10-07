@@ -2776,7 +2776,7 @@ fill_last:
    }
 
 
-#define new DEBUG_NEW
+#define new BASE_NEW
 
    bool dib::defer_realize(::draw2d::graphics * pgraphics)
    {

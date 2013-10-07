@@ -34,7 +34,7 @@ namespace file
       return 0;
    }
 
-   file_position stream_buffer::seek(file_position lPos)
+   file_position stream_buffer::seek_from_begin(file_position lPos)
    {
       return seek(lPos, seek_begin);
    }

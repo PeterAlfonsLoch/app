@@ -131,9 +131,7 @@ protected:
 
 static inline void ConstructElement(string* pNewData)
 {
-#undef new
    ((string *)pNewData)->construct();
-#define new DEBUG_NEW
 }
 
 static inline void DestructElement(string* pOldData)

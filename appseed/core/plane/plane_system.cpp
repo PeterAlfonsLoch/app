@@ -4,7 +4,7 @@
 #ifdef WINDOWS
 #undef new
 #include <GdiPlus.h>
-#define new DEBUG_NEW
+#define new BASE_NEW
 #endif
 
 

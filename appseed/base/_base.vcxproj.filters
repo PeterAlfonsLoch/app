@@ -1891,9 +1891,6 @@
     <ClCompile Include="android\android_locale.c">
       <Filter>Source Files\android</Filter>
     </ClCompile>
-    <ClCompile Include="base\base_allocate_var.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -1904,9 +1901,6 @@
     </None>
     <None Include="base\base.inl">
       <Filter>Header Files\base</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

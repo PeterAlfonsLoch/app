@@ -1,7 +1,6 @@
 #pragma once
 
 
-#undef new
 
 
 
@@ -655,25 +654,6 @@ bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find_key(ARG_KEY key,
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
-index sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::add_pair(ARG_KEY key, ARG_VALUE newValue)
-{
-
-   index i;
-
-   if(!find_key(key, i))
-   {
-
-      m_ptra.insert_at(i, new pair(key));
-
-   }
-
-   m_ptra[i]->m_element2 = newValue;
-
-   return i;
-
-}
-
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
 typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::iterator sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::lower_bound (ARG_KEY k)
@@ -971,33 +951,6 @@ sort_attrib_map < type_map >::sort_attrib_map(const sort_attrib_map & attribmap)
    operator = (attribmap);
 }
 
-template < class type_map >
-sort_attrib_map < type_map > & sort_attrib_map < type_map >::operator = (const sort_attrib_map & attribmap)
-{
-
-   if(this != &attribmap)
-   {
-
-      this->remove_all();
-
-      typename type_map::pair * ppair;
-
-      for(index i = 0; i < attribmap.m_ptra.get_count(); i++)
-      {
-
-         ppair      = new typename type_map::pair(attribmap.m_ptra[i]->m_element1);
-
-         ppair->m_element2    = attribmap.m_ptra[i]->m_element2;
-
-         this->m_ptra.add(ppair);
-
-      }
-
-   }
-
-   return *this;
-
-}
 
 template < class type_map >
 bool sort_attrib_map < type_map >::operator == (const sort_attrib_map & attribmap) const
@@ -1221,4 +1174,4 @@ typedef CLASS_DECL_c sort_string_map < int_ptr, int_ptr > sort_string_to_intptr;
 typedef CLASS_DECL_c sort_string_map < string, const string & > sort_string_to_string_map;
 
 
-#define new DEBUG_NEW
+

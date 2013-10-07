@@ -621,7 +621,7 @@ namespace dynamic_source
          
 #undef new
        ::new(ppair->m_element2.m_p) ::dynamic_source::session(pszId, this);
-#define new DEBUG_NEW
+#define new BASE_NEW
 
          return ppair->m_element2;
 

@@ -259,7 +259,7 @@ namespace file
 	  }
 	  else
       {
-         seek(dwStart);
+         seek_from_begin(dwStart);
       }
       ::primitive::memory_position uiPos = 0;
       ::primitive::memory_size uiRead;

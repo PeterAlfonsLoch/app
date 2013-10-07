@@ -663,7 +663,7 @@ namespace message
       };
 
 
-#define new DEBUG_NEW
+#define new BASE_NEW
 
    #define VMSGEN_WINDOW_ON_NOTIFY_REFLECT(wNotifyCode, pinterface, phandler, pfunction) \
       pinterface->AddMessageHandler( \

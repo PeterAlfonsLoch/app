@@ -109,28 +109,9 @@ public:
 
    inline creatable_factory_item(sp(base_application) papp, sp(factory_allocator) pallocator) : element(papp), factory_item_base(papp, pallocator) {}
 
-   virtual sp(element) create(sp(base_application) papp)
-   {
+   virtual sp(element) create(sp(base_application) papp);
 
-      if(m_pallocator == NULL)
-         return NULL;
-
-      void * pv = m_pallocator->alloc();
-#undef new
-      CREATABLE_TYPE * pt = ::new (pv) CREATABLE_TYPE(papp);
-#define new DEBUG_NEW
-      ::dereference_no_delete(pt);
-      pt->::element::set_ca_flag(element::flag_discard_to_factory);
-      pt->m_pfactoryitembase = this;
-      pt->m_pthis = pt;
-      return pt;
-   }
-
-   virtual sp(element) clone(sp(element) pobject)
-   {
-      UNREFERENCED_PARAMETER(pobject);
-      throw not_implemented(get_app());
-   }
+   virtual sp(element) clone(sp(element) pobject);
 
 };
 
@@ -142,21 +123,10 @@ public:
 
    inline cloneable_factory_item(sp(base_application) papp, sp(factory_allocator) pallocator) : element(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
 
-   virtual sp(element) clone(sp(element) pobject)
-   {
-      const CLONEABLE_TYPE * ptSrc = dynamic_cast < const CLONEABLE_TYPE * > (pobject.m_p);
-      void * pv = this->m_pallocator->alloc();
-#undef new
-      CLONEABLE_TYPE * pt = ::new (pv) CLONEABLE_TYPE(*ptSrc);
-#define new DEBUG_NEW
-      ::dereference_no_delete(pt);
-      pt->::element::set_ca_flag(element::flag_discard_to_factory);
-      pt->m_pfactoryitembase = this;
-      pt->m_pthis = pt;
-      return pt;
-   }
+   virtual sp(element) clone(sp(element) pobject);
 
 };
+
 
 
 class CLASS_DECL_c base_factory :
@@ -172,6 +142,7 @@ public:
 
    base_factory(sp(base_application) papp);
    virtual ~base_factory();
+
 
 
    template < class T >
@@ -229,18 +200,10 @@ public:
    void cloneable(int32_t iCount, bool bOverwrite = false);
 
    template < class T >
-   void creatable(sp(type) info, int32_t iCount, bool bOverwrite = false)
-   {
-      if(bOverwrite || !is_set(info->name()))
-         set_at(info->name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
-   }
+   void creatable(sp(type) info, int32_t iCount, bool bOverwrite = false);
 
    template < class T >
-   void cloneable(sp(type)  info, int32_t iCount, bool bOverwrite = false)
-   {
-      if(bOverwrite || !is_set(info->name()))
-         set_at(info->name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
-   }
+   void cloneable(sp(type)  info, int32_t iCount, bool bOverwrite = false);
 
    virtual sp(element) create(sp(base_application) papp, sp(type) info);
    virtual sp(element) base_clone(sp(element) pobject);

@@ -137,6 +137,8 @@ CLASS_DECL_c base_application * get_thread_app();
 
 #include "base_definition.h"
 
+#include "base_new.h"
+
 #include "base_lparam.h"
 #include "base_muldiv64.h"
 
@@ -343,12 +345,6 @@ CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 
 
 #include "base_system.h"
-#include "base_system_smart_pointer.h"
-#include "base_system_object.h"
-#include "base_system_id.h"
-#include "base_system_factory.h"
-#include "base_system_primitive_var.h"
-#include "base_system_xml.h"
 
 
 #include "base/primitive/primitive_memory_base.h"
@@ -384,6 +380,9 @@ CLASS_DECL_c string get_system_error_message(uint32_t dwError);
 
 
 #include "base/spa/spa_trace.h"
+
+
+#define new BASE_NEW
 
 
 #include "base/multithreading/multithreading.inl"
@@ -508,3 +507,29 @@ namespace numeric_info
    
    
    
+#include "base/collection/collection_array_impl.inl"
+#include "base/collection/collection_raw_array_impl.inl"
+#include "base/collection/collection_sort_array_impl.inl"
+#include "base/collection/collection_lemon_array_impl.inl"
+
+#include "base/collection/collection_list_impl.inl"
+#include "base/collection/collection_map_impl.inl"
+
+#include "base/collection/collection_sort_map_impl.inl"
+
+#include "base/collection/collection_fifo_map_impl.inl"
+
+
+
+#include "base/primitive/primitive_factory_impl.inl"
+
+
+
+
+
+#include "base_system_smart_pointer.inl"
+#include "base_system_object.inl"
+#include "base_system_id.inl"
+#include "base_system_factory.inl"
+#include "base_system_primitive_var.inl"
+#include "base_system_xml.inl"

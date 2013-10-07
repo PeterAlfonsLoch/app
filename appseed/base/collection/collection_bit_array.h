@@ -1,6 +1,5 @@
 #pragma once
 
-#undef new
 
 
 /** Bit Array field.
@@ -90,4 +89,4 @@ private:
  * ***** END LICENSE BLOCK ***** */
 
 
-#define new DEBUG_NEW
+

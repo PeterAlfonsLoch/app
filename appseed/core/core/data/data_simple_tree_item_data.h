@@ -25,7 +25,7 @@ namespace data
       /*#undef new
       void * operator new(size_t i, const char * lpszFileName, int32_t iLine);
       void * operator new(size_t i);
-      #define new DEBUG_NEW
+      #define new BASE_NEW
       void operator delete(void *);
       void operator delete(void *, const char * lpszFileName, int32_t iLine);*/
 

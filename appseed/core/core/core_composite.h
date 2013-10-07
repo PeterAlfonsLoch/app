@@ -133,4 +133,4 @@ namespace core
 } // namespace core
 
 
-#define new DEBUG_NEW
+#define new BASE_NEW

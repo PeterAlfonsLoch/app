@@ -32,47 +32,62 @@ inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
 
 
 
-inline void * __cdecl operator new(size_t nSize) throw (std::bad_alloc)
+#undef new
+
+
+inline void * __cdecl operator new(size_t nSize) new_throw_spec
 {
+
    return memory_alloc(nSize);
+
 }
 
+/*
 inline void * __cdecl operator new(size_t nSize, void * p)
 {
+   
    UNREFERENCED_PARAMETER(nSize);
+
    return p;
+
 }
-#define __PLACEMENT_NEW_INLINE
 
 
 inline void __cdecl operator delete(void * p, void * palloc)
 {
+
    UNREFERENCED_PARAMETER(p);
    UNREFERENCED_PARAMETER(palloc);
+
 }
+*/
 
 
 inline void __cdecl operator delete(void * p)
 {
+
    memory_free(p);
+
 }
 
-inline void * __cdecl operator new[](size_t nSize) throw (std::bad_alloc);
+
+inline void * __cdecl operator new[](size_t nSize) new_throw_spec
 {
+
    return ::operator new(nSize);
+
 }
+
 
 inline void __cdecl operator delete[](void * p)
 {
+
    ::operator delete(p);
+
 }
 
 
 
-
-
-//CLASS_DECL_c void initialize_primitive_heap();
-//CLASS_DECL_c void finalize_primitive_heap();
 
 
 class CLASS_DECL_c c_class
@@ -90,62 +105,89 @@ public:
 
 };
 
+
 inline CLASS_DECL_c void * __cdecl operator new (size_t size, const c_class &)
 {
+
    return memory_alloc(size);
+
 }
+
 
 inline CLASS_DECL_c void * __cdecl operator new[](size_t size, const c_class &)
 {
+
    return memory_alloc(size);
+
 }
 
 
 #define C_NEW new(c_class::s_cclass)
 
 
-
-#endif
-
-
 inline void * __cdecl operator new(size_t nSize, const char * lpszFileName, int32_t nLine)
 {
+
    return ::operator new(nSize, _NORMAL_BLOCK, lpszFileName, nLine);
+
 }
 
-inline void * __cdecl operator new[](size_t nSize, const char * lpszFileName, int32_t nLine) throw (std::bad_alloc)
+
+inline void * __cdecl operator new[](size_t nSize, const char * lpszFileName, int32_t nLine) new_throw_spec
 {
+
    return ::operator new[](nSize, _NORMAL_BLOCK, lpszFileName, nLine);
+
 }
+
 
 inline void __cdecl operator delete(void * pData, const char * /* lpszFileName */,  int32_t /* nLine */)
 {
+
    ::operator delete(pData, _NORMAL_BLOCK, NULL, -1);
+
 }
+
 
 inline void __cdecl operator delete[](void * pData, const char * /* lpszFileName */,  int32_t /* nLine */) throw()
 {
-   ::operator delete(pData, _NORMAL_BLOCK, NULL, -1);
-}
 
+   ::operator delete(pData, _NORMAL_BLOCK, NULL, -1);
+
+}
 
 
 inline void * __cdecl operator new(size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine)
 {
+
    return memory_alloc_dbg(nSize, nType, lpszFileName, nLine);
+
 }
+
 
 inline void __cdecl operator delete(void * p, int32_t nType, const char * /* lpszFileName */, int32_t /* nLine */)
 {
+
    memory_free_dbg(p, nType);
+
 }
+
 
 inline void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine)
 {
+
    return ::operator new(nSize, nType, lpszFileName, nLine);
+
 }
+
 
 inline void __cdecl operator delete[](void * p, int32_t nType, const char * lpszFileName, int32_t nLine)
 {
+
    ::operator delete(p, nType, lpszFileName, nLine);
+
 }
+
+
+
+

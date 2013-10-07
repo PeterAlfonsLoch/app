@@ -19,7 +19,7 @@ namespace data
    {
    return _alloc001TreeDataItem.Alloc();
    }
-   #define new DEBUG_NEW
+   #define new BASE_NEW
 
    void tree_item::operator delete(void * p)
    {

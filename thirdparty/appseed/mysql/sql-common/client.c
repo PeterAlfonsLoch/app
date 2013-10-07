@@ -1433,7 +1433,7 @@ unpack_fields(MYSQL *mysql, MYSQL_DATA *data,MEM_ROOT *alloc,uint fields,
         field->flags|= NUM_FLAG;
       if (default_value && row->data[7])
       {
-        field->def=(unsigned int) strmake_root(alloc,(char*) row->data[7], lengths[7]);
+        field->def=strmake_root(alloc,(char*) row->data[7], lengths[7]);
 	field->def_length= (unsigned int)lengths[7];
       }
       else

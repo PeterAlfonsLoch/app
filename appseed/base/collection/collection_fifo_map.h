@@ -1,8 +1,6 @@
 #pragma once
 
 
-#undef new
-
 
 template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE = ::comparison::binary < KEY > >
 class fifo_map :
@@ -566,48 +564,6 @@ void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::sort(bool bAsc)
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
-index fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::add_key(ARG_KEY key)
-{
-
-   index i;
-
-   if(!find_key(key, i))
-   {
-
-      m_ptra.add(new pair(key));
-
-      i = m_ptra.get_upper_bound();
-
-   }
-
-   return i;
-
-}
-
-
-
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
-index fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::add_pair(ARG_KEY key, ARG_VALUE newValue)
-{
-
-   index i;
-
-   if(!find_key(key, i))
-   {
-
-      m_ptra.add(new pair(key));
-
-      i = m_ptra.get_upper_bound();
-
-   }
-
-   m_ptra[i]->m_element2 = newValue;
-
-   return i;
-
-}
-
 
 
 
@@ -837,33 +793,6 @@ fifo_attrib_map < type_map >::fifo_attrib_map(const fifo_attrib_map & attribmap)
    operator = (attribmap);
 }
 
-template < class type_map >
-fifo_attrib_map < type_map > & fifo_attrib_map < type_map >::operator = (const fifo_attrib_map & attribmap)
-{
-
-   if(this != &attribmap)
-   {
-
-      this->remove_all();
-
-      typename type_map::pair * ppair;
-
-      for(index i = 0; i < attribmap.m_ptra.get_count(); i++)
-      {
-
-         ppair      = new typename type_map::pair(attribmap.m_ptra[i]->m_element1);
-
-         ppair->m_element2    = attribmap.m_ptra[i]->m_element2;
-
-         this->m_ptra.add(ppair);
-
-      }
-
-   }
-
-   return *this;
-
-}
 
 template < class type_map >
 bool fifo_attrib_map < type_map >::operator == (const fifo_attrib_map & attribmap) const
@@ -1087,4 +1016,4 @@ typedef CLASS_DECL_c fifo_string_map < int_ptr, int_ptr > fifo_string_to_intptr;
 typedef CLASS_DECL_c fifo_string_map < string, const string & > fifo_string_to_string_map;
 
 
-#define new DEBUG_NEW
+

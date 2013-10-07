@@ -164,7 +164,6 @@ size_t base_memory_size_dbg(void * pvoid, int32_t iBlockType)
 
 #ifdef DEBUG       // most of this file is for debugging
 
-#undef new
 
 void * __cdecl operator new(size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
 void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
@@ -173,7 +172,6 @@ void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFile
 // test allocation routines
 
 
-#define new DEBUG_NEW
 
 void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const char * lpszFileName, int32_t nLine)
 {

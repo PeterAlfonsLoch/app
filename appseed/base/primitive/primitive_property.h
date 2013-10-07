@@ -650,23 +650,8 @@ public:
    var explode(const char * pszSeparator, bool bAddEmpty = true) const;
 
 
-#undef new
-#undef delete
+   DECLARE_FIXED_ALLOC(property)
 
-   void * operator new(size_t nSize);
-   void * operator new(size_t, void * p);
-   void operator delete(void * p);
-   void operator delete(void * p, void * pPlace);
-
-#if defined(DEBUG)
-
-   // for file name/line number tracking using DEBUG_NEW
-   void * operator new(size_t nSize, const char * lpszFileName, int32_t nLine);
-   void operator delete(void *p, const char * lpszFileName, int32_t nLine);
-
-#endif
-
-#define new DEBUG_NEW
 
 };
 

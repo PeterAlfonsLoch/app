@@ -14,7 +14,7 @@ namespace data
 
    /*#undef new
       new(&m_str) string;
-   #define new DEBUG_NEW*/
+   #define new BASE_NEW*/
    }
 
    simple_tree_item_data::~simple_tree_item_data()
@@ -50,7 +50,7 @@ namespace data
    {
       return _alloc001SimpleTreeItem.Alloc();
    }
-#define new DEBUG_NEW*/
+#define new BASE_NEW*/
 
 /*   void simple_tree_item_data::operator delete(void * p)
    {

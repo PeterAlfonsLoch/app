@@ -6,3 +6,6 @@
 #include "base/base.h"
 
 
+#define new BASE_NEW
+
+

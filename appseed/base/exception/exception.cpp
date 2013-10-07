@@ -55,7 +55,7 @@ void __set_thread_note(const char * pszNote)
    {
 #undef new
       t_pstrNote = ::new(t_pdataNote) string;
-#define new DEBUG_NEW
+#define new BASE_NEW
    }
    *t_pstrNote = pszNote;
 }

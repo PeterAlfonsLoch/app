@@ -433,7 +433,7 @@ template<class TYPE, class ARG_TYPE>
       //memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
       for( int32_t i = 0; i < nNewSize; i++ )
          ::new( (void *)( m_pData + i ) ) TYPE;
-#define new DEBUG_NEW
+#define new BASE_NEW
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
    }
@@ -447,7 +447,7 @@ template<class TYPE, class ARG_TYPE>
          for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
 #undef new
             ::new( (void *)( m_pData + m_nSize + i ) ) TYPE;
-#define new DEBUG_NEW
+#define new BASE_NEW
       }
       else if (m_nSize > nNewSize)
       {
@@ -484,7 +484,7 @@ template<class TYPE, class ARG_TYPE>
 #endif
 #undef new
       TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
-#define new DEBUG_NEW
+#define new BASE_NEW
 
       // copy new data from old
       ::core::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
@@ -496,7 +496,7 @@ template<class TYPE, class ARG_TYPE>
       for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
 #undef new
          ::new( (void *)( pNewData + m_nSize + i ) ) TYPE;
-#define new DEBUG_NEW
+#define new BASE_NEW
       // get rid of old stuff (note: no destructors called)
       delete[] (BYTE*)m_pData;
       m_pData = pNewData;
@@ -815,7 +815,7 @@ raw_array<TYPE, ARG_TYPE> raw_array<TYPE, ARG_TYPE>::operator + (const raw_array
 }
 
 
-#define new DEBUG_NEW
+
 
 
 

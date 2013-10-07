@@ -23,9 +23,11 @@ simple_exception::~simple_exception()
 
 }
 
-const char * simple_exception::get_error_message() const throw()
+bool simple_exception::get_error_message(string & str, PUINT pnHelpContext)
 {
 
-   return what();
+   str = what();
+
+   return true;
 
 }

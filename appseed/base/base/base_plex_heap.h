@@ -1,9 +1,6 @@
 #pragma once
 
 
-#undef new
-
-
 class CLASS_DECL_c plex_heap     // warning var length structure
 {
 public:
@@ -79,5 +76,4 @@ public:
 };
 
 
-#define new DEBUG_NEW
 

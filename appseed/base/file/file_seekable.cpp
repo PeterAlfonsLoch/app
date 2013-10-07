@@ -21,7 +21,7 @@ namespace file
    }
 
 
-   file_position seekable::seek(file_position position)
+   file_position seekable::seek_from_begin(file_position position)
    {
 
       return seek((file_offset) position, seek_begin);

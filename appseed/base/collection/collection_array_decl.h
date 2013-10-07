@@ -12,7 +12,6 @@ namespace constructor
    class def
    {
    public:
-#undef new
 
       inline static void construct(void * pvoid)
       {
@@ -29,7 +28,7 @@ namespace constructor
          }
       }
 
-#define new DEBUG_NEW
+
 
    };
 

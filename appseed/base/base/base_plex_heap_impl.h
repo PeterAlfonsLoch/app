@@ -185,9 +185,6 @@ inline void plex_heap_alloc::Free(void * p)
 
 
 
-#undef new
-
-
 class CLASS_DECL_c plex_heap_alloc_array :
    public array < plex_heap_alloc * >
 {
@@ -339,4 +336,4 @@ inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
 }
 
 
-#define new DEBUG_NEW
+

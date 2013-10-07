@@ -1409,7 +1409,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="base\base_allocate_base_heap.cpp" />
     <ClCompile Include="base\base_allocate_mid_big.cpp" />
     <ClCompile Include="base\base_allocate_system_heap.cpp" />
-    <ClCompile Include="base\base_allocate_var.cpp" />
     <ClCompile Include="base\base_application.cpp" />
     <ClCompile Include="base\base_assert.cpp" />
     <ClCompile Include="base\base_checked.cpp" />

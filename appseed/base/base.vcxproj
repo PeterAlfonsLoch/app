@@ -1060,6 +1060,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="base\base_definition.h" />
     <ClInclude Include="base\base_element.h" />
     <ClInclude Include="base\base_enum.h" />
+    <ClInclude Include="base\base_new.h" />
     <ClInclude Include="base\base_root.h" />
     <ClInclude Include="base\base_c.h" />
     <ClInclude Include="base\base_common.h" />
@@ -1084,18 +1085,18 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="base\base_smart_pointer1.h" />
     <ClInclude Include="base\base_smart_pointer2.h" />
     <ClInclude Include="base\base_system.h" />
-    <ClInclude Include="base\base_system_factory.h" />
-    <ClInclude Include="base\base_system_id.h" />
-    <ClInclude Include="base\base_system_object.h" />
-    <ClInclude Include="base\base_system_primitive_var.h" />
-    <ClInclude Include="base\base_system_smart_pointer.h" />
-    <ClInclude Include="base\base_system_xml.h" />
+    <ClInclude Include="base\base_system_factory.inl" />
+    <ClInclude Include="base\base_system_id.inl" />
+    <ClInclude Include="base\base_system_object.inl" />
+    <ClInclude Include="base\base_system_primitive_var.inl" />
+    <ClInclude Include="base\base_system_smart_pointer.inl" />
+    <ClInclude Include="base\base_system_xml.inl" />
     <ClInclude Include="base\base_template.h" />
     <ClInclude Include="base\base_thread.h" />
     <ClInclude Include="base\base_types.h" />
     <ClInclude Include="collection\collection.h" />
     <ClInclude Include="collection\collection_array_decl.h" />
-    <ClInclude Include="collection\collection_array_impl.h" />
+    <ClInclude Include="collection\collection_array_impl.inl" />
     <ClInclude Include="collection\collection_attrib_map.h" />
     <ClInclude Include="collection\collection_base_2array.h" />
     <ClInclude Include="collection\collection_base_enum.h" />
@@ -1116,7 +1117,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="collection\collection_key_sort_array.h" />
     <ClInclude Include="collection\collection_lemon_array.h" />
     <ClInclude Include="collection\collection_lemon_array_decl.h" />
-    <ClInclude Include="collection\collection_lemon_array_impl.h" />
+    <ClInclude Include="collection\collection_lemon_array_impl.inl" />
     <ClInclude Include="collection\collection_list.h" />
     <ClInclude Include="collection\collection_logic_array.h" />
     <ClInclude Include="collection\collection_map.h" />
@@ -1132,7 +1133,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="collection\collection_priority_queue.h" />
     <ClInclude Include="collection\collection_queue.h" />
     <ClInclude Include="collection\collection_raw_array_decl.h" />
-    <ClInclude Include="collection\collection_raw_array_impl.h" />
+    <ClInclude Include="collection\collection_raw_array_impl.inl" />
     <ClInclude Include="collection\collection_rect_array.h" />
     <ClInclude Include="collection\collection_simple.h" />
     <ClInclude Include="collection\collection_simple_array.h" />
@@ -1418,7 +1419,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="base\base_allocate_base_heap.cpp" />
     <ClCompile Include="base\base_allocate_mid_big.cpp" />
     <ClCompile Include="base\base_allocate_system_heap.cpp" />
-    <ClCompile Include="base\base_allocate_var.cpp" />
     <ClCompile Include="base\base_application.cpp" />
     <ClCompile Include="base\base_assert.cpp" />
     <ClCompile Include="base\base_checked.cpp" />
@@ -1730,7 +1730,13 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
   <ItemGroup>
     <None Include="base.def" />
     <None Include="base\base.inl" />
+    <None Include="collection\collection_fifo_map_impl.inl" />
+    <None Include="collection\collection_list_impl.inl" />
+    <None Include="collection\collection_map_impl.inl" />
+    <None Include="collection\collection_sort_array_impl.inl" />
+    <None Include="collection\collection_sort_map_impl.inl" />
     <None Include="multithreading\multithreading.inl" />
+    <None Include="primitive\primitive_factory_impl.inl" />
     <None Include="str\str.inl" />
     <None Include="base.def" />
   </ItemGroup>

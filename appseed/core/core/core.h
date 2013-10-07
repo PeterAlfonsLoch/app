@@ -215,7 +215,7 @@ struct memory_state;
 
 
 
-#define new DEBUG_NEW
+#define new BASE_NEW
 
 
 

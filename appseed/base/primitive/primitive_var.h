@@ -549,21 +549,8 @@ public:
    void parse_json(const char * & pszJson, const char * pszEnd);
 
 
-
-
 #undef new
-#undef delete
-
-   void * operator new(size_t nSize);
-   void * operator new(size_t, void * p);
-   void operator delete(void * p);
-   void operator delete(void * p, void * pPlace);
-
-   // for file name/line number tracking using DEBUG_NEW
-   void * operator new(size_t nSize, const char * lpszFileName, int32_t nLine);
-   void operator delete(void *p, const char * lpszFileName, int32_t nLine);
-
-#define new DEBUG_NEW
+   DECLARE_FIXED_ALLOC(var)
 
 
 };
@@ -782,53 +769,5 @@ inline var & var::operator = (var && v)
 }
 
 #endif
-
-
-#undef new
-
-
-CLASS_DECL_c extern fixed_alloc * g_pfixedallocVar;
-
-
-inline void * var::operator new(size_t size, void * p)
-   { 
-      UNREFERENCED_PARAMETER(size);
-      return p; 
-   }
-
-inline void * var::operator new(size_t nSize)
-{
-   return g_pfixedallocVar->Alloc();
-}
-
-#ifdef DEBUG
-
-inline void * var::operator new(size_t nSize, const char * lpszFileName, int32_t nLine)
-{
-   return g_pfixedallocVar->Alloc();
-}
-
-#endif
-
-inline void var::operator delete(void * p)
-{
-   g_pfixedallocVar->Free(p);
-}
-
-#ifdef DEBUG
-
-inline void var::operator delete(void * p, void *)
-{
-   g_pfixedallocVar->Free(p);
-}
-
-inline void var::operator delete(void *pvar, const char *, int32_t)
-{
-   g_pfixedallocVar->Free(pvar);
-}
-
-#endif
-
-
 
 

@@ -31,7 +31,7 @@ namespace user
 
 #undef new
          DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new DEBUG_NEW
+#define new BASE_NEW
 
       };
 
@@ -68,7 +68,7 @@ namespace user
 
 #undef new
          DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new DEBUG_NEW
+#define new BASE_NEW
 
       };
 

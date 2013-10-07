@@ -195,18 +195,11 @@ size_t _ca_msize(void * pvoid, int32_t iBlockType)
 }
 */
 
-#define ROUND(x,y) (((x)+(y-1))&~(y-1))
-#define ROUND4(x) ROUND(x, 4)
-
 extern mutex * g_pmutexSystemHeap;
 
 extern plex_heap_alloc_array * g_pheap;
 
 extern mutex * g_pmutexTrace;
-
-extern fixed_alloc * g_pfixedallocVar;
-
-extern fixed_alloc * g_pfixedallocProperty;
 
 extern mutex * g_pmutgen;
 
@@ -303,10 +296,6 @@ public:
       */
 
       new plex_heap_alloc_array();
-
-      g_pfixedallocVar = new fixed_alloc(ROUND4(sizeof(var) ), 1024);
-
-      g_pfixedallocProperty = new fixed_alloc(ROUND4(sizeof(property) ), 1024);
 
       create_id_space();
 
@@ -495,14 +484,6 @@ public:
       g_pstrLastStatus = NULL;
 
       destroy_id_space();
-
-      delete g_pfixedallocProperty;
-
-      g_pfixedallocProperty = NULL;
-
-      delete g_pfixedallocVar;
-
-      g_pfixedallocVar = NULL;
 
       delete g_pheap;
 

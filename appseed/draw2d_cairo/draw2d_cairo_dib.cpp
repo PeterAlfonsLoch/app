@@ -2654,7 +2654,7 @@ namespace draw2d_cairo
    }
 
 
-#define new DEBUG_NEW
+#define new BASE_NEW
 
 #if defined(WINDOWS)
 

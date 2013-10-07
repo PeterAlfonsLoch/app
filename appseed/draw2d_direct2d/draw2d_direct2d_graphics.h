@@ -513,4 +513,4 @@ namespace draw2d_direct2d
 } // namespace draw2d_direct2d
 
 
-#define new DEBUG_NEW
+#define new BASE_NEW
