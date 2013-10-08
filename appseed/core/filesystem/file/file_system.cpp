@@ -468,7 +468,7 @@ restart:
 
       }
 
-      ::file::binary_buffer_sp spfile;
+      ::file::buffer_sp spfile;
 
       try
       {

@@ -53,12 +53,13 @@ void base_factory::set_at(const char * pszId, factory_item_base * pitem)
 
    if(m_pstrida->find(id, iFind))
    {
-      m_itemptra[iFind].release();
+      m_itemptra(iFind) = pitem;
    }
-
-   m_pstrida->add(id);
-
-   m_itemptra.add(pitem);
+   else
+   {
+      m_pstrida->add(id);
+      m_itemptra.add(pitem);
+   }
 
 }
 
