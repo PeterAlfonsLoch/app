@@ -46,7 +46,7 @@ namespace boot
       else if(strPath == "app_sphere")
       {
 
-         strPath = "ca2sphere";
+         strPath = "basesphere";
 
       }
 

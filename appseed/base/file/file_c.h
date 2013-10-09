@@ -324,3 +324,9 @@ CLASS_DECL_c string file_get_mozilla_firefox_plugin_container_path();
 
 
 #endif
+
+
+
+CLASS_DECL_c int_bool file_set_length(const char * pszName, size_t iSize);
+
+

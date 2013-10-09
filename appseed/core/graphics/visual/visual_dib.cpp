@@ -25,7 +25,6 @@ namespace visual
 
    bool dib_sp::load_from_file(var varFile)
    {
-      synch_lock ml(&user_mutex());
       // image cache load
       // cache of decompression time
       string strFile;

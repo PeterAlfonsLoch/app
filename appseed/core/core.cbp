@@ -265,7 +265,6 @@
 		<Unit filename="compress/zip/crypt.h" />
 		<Unit filename="compress/zip/ioapi.h" />
 		<Unit filename="compress/zip/iowin32.h" />
-		<Unit filename="compress/zip/memory_buffer.h" />
 		<Unit filename="compress/zip/unzip.h" />
 		<Unit filename="compress/zip/zip.h" />
 		<Unit filename="compress/zip/zipImpl.h" />
@@ -274,7 +273,7 @@
 		<Unit filename="compress/zip/zip_in_file.cpp" />
 		<Unit filename="compress/zip/zip_internal.h" />
 		<Unit filename="compress/zip/zip_ioapi.cpp" />
-		<Unit filename="compress/zip/zip_memory_file.cpp" />
+		<Unit filename="compress/zip/zip_memory_buffer.cpp" />
 		<Unit filename="compress/zip/zip_unzip.cpp" />
 		<Unit filename="compress/zip/zip_util.cpp" />
 		<Unit filename="compress/zip/zip_zip.cpp" />

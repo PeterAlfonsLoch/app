@@ -29,7 +29,7 @@ namespace draw2d
    float dib::Sines[360];
 
    int64_t dib::CosN[360]; // * 1 << 31
-   int64_t dib::SinN[360]; 
+   int64_t dib::SinN[360];
 
    int64_t dib::Cos10N[10]; // until 10 degress
    int64_t dib::Sin10N[10]; // more precision * 1 << 34
@@ -3056,6 +3056,9 @@ fill_last:
 
    void dib::write(::file::output_stream & ostream)
    {
+
+      synch_lock ml(&user_mutex());
+
       ostream << (int32_t) cx;
       ostream << (int32_t) cy;
       if(area() <= 0)
@@ -3066,10 +3069,14 @@ fill_last:
       {
          ostream.write(&((byte *) get_data())[scan * i], wc);
       }
+
    }
 
    void dib::read(::file::input_stream & istream)
    {
+
+      synch_lock ml(&user_mutex());
+
       int32_t width;
       int32_t height;
       istream >> width;
@@ -3460,22 +3467,22 @@ fill_last:
 
     }
 
-   
+
    bool dib::update_window(::user::window * pwnd, signal_details * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pwnd);
       UNREFERENCED_PARAMETER(pobj);
-      
+
       // default implementation does nothing, dib should be now updated (before calling update window)
       // and ready to be queried if post queried
-      
+
 //      throw interface_only_exception(get_app());
-      
+
       return true;
-      
+
    }
-   
+
 
    bool dib::print_window(::user::window * pwnd, signal_details * pobj)
    {

@@ -8,11 +8,13 @@
 
 void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str);
 
-void ensure_file_size(int32_t fd, size_t iSize)
+int_bool ensure_file_size(int32_t fd, size_t iSize)
 {
 
    if(ftruncate(fd, iSize) == -1)
-      throw "fd_ensure_file_size exception";
+      return false;
+
+   return true;
 
 }
 
@@ -36,6 +38,19 @@ size_t get_file_size(int32_t fd)
 }
 
 
+
+int_bool file_set_length(const char * pszName, size_t iSize)
+{
+
+   int32_t fd = ::open(pszName, O_RDONLY);
+
+   int_bool bSet = ::ensure_file_size(fd, iSize) != -1;
+
+   ::close(fd);
+
+   return bSet;
+
+}
 
 
 

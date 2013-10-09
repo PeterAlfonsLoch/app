@@ -42,10 +42,13 @@ inline void * __cdecl operator new(size_t nSize) new_throw_spec
 
 }
 
-/*
+
+#ifdef LINUX
+
+
 inline void * __cdecl operator new(size_t nSize, void * p)
 {
-   
+
    UNREFERENCED_PARAMETER(nSize);
 
    return p;
@@ -60,7 +63,9 @@ inline void __cdecl operator delete(void * p, void * palloc)
    UNREFERENCED_PARAMETER(palloc);
 
 }
-*/
+
+
+#endif
 
 
 inline void __cdecl operator delete(void * p)
@@ -149,7 +154,7 @@ inline void __cdecl operator delete(void * pData, const char * /* lpszFileName *
 }
 
 
-inline void __cdecl operator delete[](void * pData, const char * /* lpszFileName */,  int32_t /* nLine */) throw()
+inline void __cdecl operator delete[](void * pData, const char * /* lpszFileName */,  int32_t /* nLine */) del_throw_spec
 {
 
    ::operator delete(pData, _NORMAL_BLOCK, NULL, -1);
