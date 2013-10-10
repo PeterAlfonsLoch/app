@@ -1291,7 +1291,7 @@ retry:
          }
          if(set["file_out"].cast < ::file::timeout_buffer >() != NULL)
          {
-            if(psocket->m_iFinalSize != ((size_t) -1) && set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize != psocket->m_iFinalSize)
+            if(psocket->m_iFinalSize != -1 && set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize != psocket->m_iFinalSize)
             {
                set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize = psocket->m_iFinalSize;
             }

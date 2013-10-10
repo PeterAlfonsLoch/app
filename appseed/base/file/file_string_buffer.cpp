@@ -68,7 +68,11 @@ namespace file
       if(m_psz == NULL)
          return "";
 
+      if(m_psz == NULL)
+         return "";
+
       m_psz[m_iSize] = '\0';
+
       return string(m_psz, m_iSize);
 
    }
