@@ -5,6 +5,12 @@ namespace exception
 {
 
 
+   exception::exception()
+   {
+
+   }
+
+
    exception::~exception()
    {
 
@@ -23,7 +29,7 @@ namespace exception
       throw pe;
 
    }
-   
+
    const char * exception::what() const throw()
    {
 

@@ -14,6 +14,7 @@ namespace exception
       string m_strMessage;
 
 
+      exception();
       virtual ~exception();
       virtual void Delete();
 
