@@ -110,7 +110,7 @@ namespace sockets
          m_memoryfile.allocate_internal(m_content_length);
           if(outheader(__id(content_encoding)).compare_value_ci("gzip") != 0)
           {
-              
+
               m_iFinalSize = m_content_length;
           }
       }
@@ -174,10 +174,10 @@ namespace sockets
 
       if(m_pfile != NULL )
       {
-         
+
          if(outheader(__id(content_encoding)).compare_value_ci("gzip") != 0)
          {
-            
+
             m_pfile->write(buf, len);
 
             if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
@@ -196,9 +196,9 @@ namespace sockets
             }
 
             return;
-            
+
          }
-         
+
       }
 
       m_memoryfile.write(buf, len);
@@ -217,6 +217,8 @@ namespace sockets
             m_pfile->write(m_memoryfile.get_data(), m_memoryfile.get_size());
             m_iFinalSize = m_pfile->get_length();
          }
+
+
          OnContent();
          if (m_b_close_when_complete)
          {

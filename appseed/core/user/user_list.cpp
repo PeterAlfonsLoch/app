@@ -997,6 +997,8 @@ namespace user
       m_bIcon                    = false;
       m_pil                      = NULL;
       m_pilHover                 = NULL;
+      m_sizeIcon.cx              = 0;
+      m_sizeIcon.cy              = 0;
    }
    list_column::list_column(const list_column & column)
    {

@@ -3787,6 +3787,9 @@ return 1;
       else
       {
 
+         if(m_spregion.is_null())
+            m_spregion.create(allocer());
+
          *m_spregion.m_p = *pregion;
 
          //cairo_clip(m_pdc);

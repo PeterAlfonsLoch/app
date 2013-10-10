@@ -7,10 +7,10 @@
 #ifndef MPG123_MSVC_H
 #define MPG123_MSVC_H
 
+#ifdef WINDOWSEX
 #include <tchar.h>
 #include <stdlib.h>
 #include <sys/types.h>
-
 
 // Needed for Visual Studio versions before VS 2010.
 #if (_MSC_VER < 1600)
@@ -25,9 +25,17 @@ typedef __int64 intmax_t;
 // ftell returns long, _ftelli64 returns __int64
 // off_t is long, not __int64, use ftell
 #define ftello ftell
+#else
+
+
+#endif
+
 
 #define MPG123_NO_CONFIGURE
 #include "mpg123.h.in" /* Yes, .h.in; we include the configure template! */
+
+
+#ifdef WINDOWSEX
 
 #ifdef __cplusplus
 extern "C" {
@@ -42,4 +50,5 @@ extern "C" {
 }
 #endif
 
+#endif
 #endif

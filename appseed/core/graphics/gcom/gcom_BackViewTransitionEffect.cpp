@@ -14,8 +14,8 @@ namespace gcom
          element(view.get_app()),
          Helper(view),
          m_tool001(view),
-         m_eventStartTransition(view.get_app()),
-         m_eventThreadExit(view.get_app())
+         m_eventStartTransition(view.get_app(), false, true),
+         m_eventThreadExit(view.get_app(), false, true)
       {
          m_bRun = true;
          m_eventThreadExit.ResetEvent();

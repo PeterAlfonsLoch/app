@@ -21,7 +21,10 @@ BaseMenuCentral::BaseMenuCentral(sp(base_application) papp) :
       throw simple_exception(papp, "resource exception BaseMenuCentral constructor");
    }
 #else
-   //throw todo(get_app());
+   if(!MenuV033GetImageList()->create(16, 16, 0, 0, 10))
+   {
+      throw simple_exception(papp, "resource exception BaseMenuCentral constructor");
+   }
 #endif
 
 }

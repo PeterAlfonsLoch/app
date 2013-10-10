@@ -65,6 +65,9 @@ namespace file
    ::string string_buffer::str() const
    {
 
+      if(m_psz == NULL)
+         return "";
+
       m_psz[m_iSize] = '\0';
       return string(m_psz, m_iSize);
 
