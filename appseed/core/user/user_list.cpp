@@ -1944,7 +1944,6 @@ namespace user
          if(m_pilGroup != NULL)
          {
 
-#ifdef WINDOWSEX
 
             ::image_list::info ii;
 
@@ -1971,11 +1970,6 @@ namespace user
             {
                return_(pdrawitem->m_bOk, false);
             }
-#else
-
-            throw todo(get_app());
-
-#endif
 
          }
          else if(eelement == ::user::list::ElementGroupImage)

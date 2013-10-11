@@ -188,7 +188,7 @@ namespace gcom
             return false;
 
          try
-         {   
+         {
             //sl2Buffer.lock();
 
             dcBuffer.FillSolidRect(rectClient, ARGB(0, 0, 0, 0));
@@ -244,14 +244,14 @@ namespace gcom
             }
 #else
 
-            throw todo(get_app());
+            //throw todo(get_app());
 
 #endif
 
             //sl3Source.lock();
             ::draw2d::bitmap & bmpSource = GetSourceBitmap();
 
-            if(bmpSource.get_os_data() != NULL 
+            if(bmpSource.get_os_data() != NULL
                && GetDib(_graphics::DibSource)->area() > 0)
             {
                if(main.IsFullScreen())
@@ -509,7 +509,7 @@ namespace gcom
             {
                // Radial Fill (Center Full alpha, Radius = 256 pixels)
                pdib->create(512, 512);
-               pdib->RadialFill(255, 0, 0, 0, 
+               pdib->RadialFill(255, 0, 0, 0,
                   0, 0, 0, 0,
                   255, 255, 256);
             }
