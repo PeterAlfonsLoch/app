@@ -44,20 +44,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       public:
 
 
-         string                              m_boundary;
-         string_to_string                m_mapFiles;
-         ::string_map < long >   m_mapContentLength;
-         string_to_string                m_mapContentType;
-         bool                                m_bMultipart;
-         //static int m_boundary_count;
-         //static mutex m_boundary_mutex;
+         string                           m_boundary;
+         string_to_string                 m_mapFiles;
+         ::string_map < uint64_t >        m_mapContentLength;
+         string_to_string                 m_mapContentType;
+         bool                             m_bMultipart;
+         //static int                     m_boundary_count;
+         //static mutex                   m_boundary_mutex;
 
 
          http_post_socket(base_socket_handler&);
          /* client constructor,
          \param url_in = 'http://host:port/resource' */
          http_post_socket(base_socket_handler&,const string & url_in);
-         ~http_post_socket();
+         virtual ~http_post_socket();
 
          // these must be specified before connecting / adding to handler
          /** add field to post. */
@@ -76,7 +76,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          property_set m_fields;
          void DoMultipartPost();
-         //
+         
 
       };
 

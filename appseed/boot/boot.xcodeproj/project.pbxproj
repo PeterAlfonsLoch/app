@@ -705,13 +705,13 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
-				9AE72B9E17E8D259003E47F9 /* libbaseopenssl.dylib */,
-				9AE728E217E847E1003E47F9 /* libbase.dylib */,
 				073EDDE4164E96DA00818801 /* SecurityFoundation.framework */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
 				CE931714155F1599005F90F6 /* Carbon.framework */,
 				9A8897A514C24736006B4023 /* Foundation.framework */,
 				073EDDE1164E968100818801 /* Security.framework */,
+				9AE72B9E17E8D259003E47F9 /* libbaseopenssl.dylib */,
+				9AE728E217E847E1003E47F9 /* libbase.dylib */,
 				9AE7260017E83F1E003E47F9 /* ansios */,
 				9AE7260317E83F1E003E47F9 /* boot */,
 				9AE7264E17E83F1E003E47F9 /* bsdiff */,

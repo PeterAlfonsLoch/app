@@ -335,8 +335,6 @@
 		9A86CA4B16E8076D008420D3 /* ftgzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ftgzip.c; path = src/gzip/ftgzip.c; sourceTree = "<group>"; };
 		9A8CCAD917EA05B000F87A02 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
 		9A8CCADA17EA05B000F87A02 /* libbasezlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbasezlib.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbasezlib.dylib"; sourceTree = "<group>"; };
-		9A98A6181771D700000AE16E /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
-		9AEB7ABF16F7BF720085103B /* lib_ca2zlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2zlib.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2zlib.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,8 +355,6 @@
 			children = (
 				9A8CCAD917EA05B000F87A02 /* libbase.dylib */,
 				9A8CCADA17EA05B000F87A02 /* libbasezlib.dylib */,
-				9A98A6181771D700000AE16E /* lib_ca2c.dylib */,
-				9AEB7ABF16F7BF720085103B /* lib_ca2zlib.dylib */,
 				9A1B359916A2D80800875A94 /* autofit */,
 				9A1B35B816A2D80800875A94 /* base */,
 				9A1B35E216A2D80800875A94 /* bdf */,

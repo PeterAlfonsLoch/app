@@ -1078,12 +1078,10 @@
 		9A86C4C516E7F601008420D3 /* ToneMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToneMapping.h; sourceTree = "<group>"; };
 		9A86C4C616E7F601008420D3 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		9A86CBCB16E8260D008420D3 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
-		9A98A6161771D6F3000AE16E /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
 		9AA5E6D616F7C61B005C45CE /* libbasefreeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbasefreeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE728E817E85A32003E47F9 /* freeimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = freeimage.h; sourceTree = "<group>"; };
 		9AE72B9617E88E8B003E47F9 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = ../../../appseed/base/build/Release/libbase.dylib; sourceTree = "<group>"; };
 		9AE72B9817E88E9C003E47F9 /* libbasezlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbasezlib.dylib; path = ../zlib/build/Release/libbasezlib.dylib; sourceTree = "<group>"; };
-		9AEB7ABB16F7BEB20085103B /* lib_ca2zlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2zlib.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2zlib.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1104,8 +1102,6 @@
 			children = (
 				9AE72B9817E88E9C003E47F9 /* libbasezlib.dylib */,
 				9AE72B9617E88E8B003E47F9 /* libbase.dylib */,
-				9A98A6161771D6F3000AE16E /* lib_ca2c.dylib */,
-				9AEB7ABB16F7BEB20085103B /* lib_ca2zlib.dylib */,
 				9AEB768616F7BAA50085103B /* Products */,
 				9A86C0B716E7F5FF008420D3 /* FreeImage */,
 				9A86C10016E7F5FF008420D3 /* FreeImageLib */,

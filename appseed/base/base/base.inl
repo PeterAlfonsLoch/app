@@ -68,7 +68,7 @@ inline void __cdecl operator delete(void * p, void * palloc)
 #endif
 
 
-inline void __cdecl operator delete(void * p)
+inline void __cdecl operator delete(void * p) del_throw_spec
 {
 
    memory_free(p);
@@ -84,7 +84,7 @@ inline void * __cdecl operator new[](size_t nSize) new_throw_spec
 }
 
 
-inline void __cdecl operator delete[](void * p)
+inline void __cdecl operator delete[](void * p) del_throw_spec
 {
 
    ::operator delete(p);
@@ -130,7 +130,7 @@ inline CLASS_DECL_c void * __cdecl operator new[](size_t size, const c_class &)
 #define C_NEW new(c_class::s_cclass)
 
 
-inline void * __cdecl operator new(size_t nSize, const char * lpszFileName, int32_t nLine)
+inline void * __cdecl operator new(size_t nSize, const char * lpszFileName, int32_t nLine) new_throw_spec
 {
 
    return ::operator new(nSize, _NORMAL_BLOCK, lpszFileName, nLine);
@@ -146,7 +146,7 @@ inline void * __cdecl operator new[](size_t nSize, const char * lpszFileName, in
 }
 
 
-inline void __cdecl operator delete(void * pData, const char * /* lpszFileName */,  int32_t /* nLine */)
+inline void __cdecl operator delete(void * pData, const char * /* lpszFileName */,  int32_t /* nLine */) del_throw_spec
 {
 
    ::operator delete(pData, _NORMAL_BLOCK, NULL, -1);

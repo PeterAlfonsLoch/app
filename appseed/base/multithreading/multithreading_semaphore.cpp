@@ -55,6 +55,31 @@ semaphore::~semaphore()
 {
 }
 
+
+#if defined(MACOS) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
+
+bool semaphore:: lock(const duration & durationTimeout)
+{
+   
+   struct sembuf sb;
+   
+   sb.sem_num  = 0;
+   sb.sem_op   = 0;
+   sb.sem_flg  = 0;
+   
+   semop(static_cast < int32_t > (m_object), &sb, 1);
+   
+   return true;
+   
+   
+}
+
+
+
+#endif
+
+
+
 bool semaphore::unlock(LONG lCount, LPLONG lpPrevCount /* =NULL */)
 {
 

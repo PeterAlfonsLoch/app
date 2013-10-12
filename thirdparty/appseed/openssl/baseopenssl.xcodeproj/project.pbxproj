@@ -1772,7 +1772,6 @@
 		9A1B48F316A4747900875A94 /* tb_rsa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tb_rsa.c; path = engine/tb_rsa.c; sourceTree = "<group>"; };
 		9A1B48F416A4747900875A94 /* tb_store.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tb_store.c; path = engine/tb_store.c; sourceTree = "<group>"; };
 		9A8CCADF17EA05CC00F87A02 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
-		9A98A61A1771D708000AE16E /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
 		9AEB74FE16F778590085103B /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aes.h; path = ../../../include/openssl/aes.h; sourceTree = "<group>"; };
 		9AEB74FF16F7785A0085103B /* asn1_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asn1_mac.h; path = ../../../include/openssl/asn1_mac.h; sourceTree = "<group>"; };
 		9AEB750016F7785A0085103B /* asn1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asn1.h; path = ../../../include/openssl/asn1.h; sourceTree = "<group>"; };
@@ -1867,7 +1866,6 @@
 			isa = PBXGroup;
 			children = (
 				9A8CCADF17EA05CC00F87A02 /* libbase.dylib */,
-				9A98A61A1771D708000AE16E /* lib_ca2c.dylib */,
 				9AEB74FD16F778320085103B /* include */,
 				9A1B3A2C16A43C8600875A94 /* crypto */,
 				9A1B40CC16A43C8D00875A94 /* engines */,

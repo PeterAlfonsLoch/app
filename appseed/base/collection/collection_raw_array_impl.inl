@@ -411,8 +411,8 @@ template<class TYPE, class ARG_TYPE>
       // shrink to nothing
       if (m_pData != NULL)
       {
-         for( int32_t i = 0; i < m_nSize; i++ )
-            (m_pData + i)->~TYPE();
+//         for( int32_t i = 0; i < m_nSize; i++ )
+//            (m_pData + i)->~TYPE();
          delete[] (BYTE*)m_pData;
          m_pData = NULL;
       }
@@ -428,12 +428,12 @@ template<class TYPE, class ARG_TYPE>
       ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
 #endif
       ::count nAllocSize = __max(nNewSize, m_nGrowBy);
-#undef new
+//#undef new
       m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
       //memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
-      for( int32_t i = 0; i < nNewSize; i++ )
-         ::new( (void *)( m_pData + i ) ) TYPE;
-#define new BASE_NEW
+//      for( index i = 0; i < nNewSize; i++ )
+  //       ::new( (void *)( m_pData + i ) ) TYPE;
+//#define new BASE_NEW
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
    }
@@ -443,17 +443,17 @@ template<class TYPE, class ARG_TYPE>
       if (nNewSize > m_nSize)
       {
          // initialize the new elements
-         memset((void *)(m_pData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-         for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
-#undef new
-            ::new( (void *)( m_pData + m_nSize + i ) ) TYPE;
-#define new BASE_NEW
+//         memset((void *)(m_pData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
+//         for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
+//#undef new
+//            ::new( (void *)( m_pData + m_nSize + i ) ) TYPE;
+//#define new BASE_NEW
       }
       else if (m_nSize > nNewSize)
       {
          // destroy the old elements
-         for( int32_t i = 0; i < m_nSize-nNewSize; i++ )
-            (m_pData + nNewSize + i)->~TYPE();
+//         for( int32_t i = 0; i < m_nSize-nNewSize; i++ )
+  //          (m_pData + nNewSize + i)->~TYPE();
       }
       m_nSize = nNewSize;
    }
@@ -492,11 +492,11 @@ template<class TYPE, class ARG_TYPE>
 
       // construct remaining elements
       ASSERT(nNewSize > m_nSize);
-      memset((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-      for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
-#undef new
-         ::new( (void *)( pNewData + m_nSize + i ) ) TYPE;
-#define new BASE_NEW
+//      memset((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
+//      for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
+//#undef new
+//         ::new( (void *)( pNewData + m_nSize + i ) ) TYPE;
+//#define new BASE_NEW
       // get rid of old stuff (note: no destructors called)
       delete[] (BYTE*)m_pData;
       m_pData = pNewData;

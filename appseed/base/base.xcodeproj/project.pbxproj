@@ -29,7 +29,6 @@
 		9AE7238E17E83B69003E47F9 /* base_allocate_base_heap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE720CC17E83B68003E47F9 /* base_allocate_base_heap.cpp */; };
 		9AE7238F17E83B69003E47F9 /* base_allocate_mid_big.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE720CD17E83B68003E47F9 /* base_allocate_mid_big.cpp */; };
 		9AE7239017E83B69003E47F9 /* base_allocate_system_heap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE720CE17E83B68003E47F9 /* base_allocate_system_heap.cpp */; };
-		9AE7239117E83B69003E47F9 /* base_allocate_var.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE720CF17E83B68003E47F9 /* base_allocate_var.cpp */; };
 		9AE7239217E83B69003E47F9 /* base_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE720D017E83B68003E47F9 /* base_application.cpp */; };
 		9AE7239317E83B69003E47F9 /* base_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE720D117E83B68003E47F9 /* base_application.h */; };
 		9AE7239417E83B69003E47F9 /* base_assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE720D217E83B68003E47F9 /* base_assert.cpp */; };
@@ -650,7 +649,6 @@
 		9AE720CC17E83B68003E47F9 /* base_allocate_base_heap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_allocate_base_heap.cpp; sourceTree = "<group>"; };
 		9AE720CD17E83B68003E47F9 /* base_allocate_mid_big.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_allocate_mid_big.cpp; sourceTree = "<group>"; };
 		9AE720CE17E83B68003E47F9 /* base_allocate_system_heap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_allocate_system_heap.cpp; sourceTree = "<group>"; };
-		9AE720CF17E83B68003E47F9 /* base_allocate_var.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_allocate_var.cpp; sourceTree = "<group>"; };
 		9AE720D017E83B68003E47F9 /* base_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_application.cpp; sourceTree = "<group>"; };
 		9AE720D117E83B68003E47F9 /* base_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_application.h; sourceTree = "<group>"; };
 		9AE720D217E83B68003E47F9 /* base_assert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_assert.cpp; sourceTree = "<group>"; };
@@ -809,7 +807,6 @@
 		9AE7219117E83B68003E47F9 /* datetime_duration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime_duration.h; sourceTree = "<group>"; };
 		9AE7219217E83B68003E47F9 /* datetime_time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime_time.cpp; sourceTree = "<group>"; };
 		9AE7219317E83B68003E47F9 /* datetime_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime_time.h; sourceTree = "<group>"; };
-		9AE7219617E83B68003E47F9 /* _exception.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _exception.txt; sourceTree = "<group>"; };
 		9AE7219717E83B68003E47F9 /* exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception.cpp; sourceTree = "<group>"; };
 		9AE7219817E83B68003E47F9 /* exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
 		9AE7219917E83B68003E47F9 /* exception2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception2.h; sourceTree = "<group>"; };
@@ -1271,13 +1268,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07740C7F16AD57A20065CE47 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9AE720BD17E83B68003E47F9 /* ansios */ = {
 			isa = PBXGroup;
 			children = (
@@ -1311,7 +1301,6 @@
 				9AE720CC17E83B68003E47F9 /* base_allocate_base_heap.cpp */,
 				9AE720CD17E83B68003E47F9 /* base_allocate_mid_big.cpp */,
 				9AE720CE17E83B68003E47F9 /* base_allocate_system_heap.cpp */,
-				9AE720CF17E83B68003E47F9 /* base_allocate_var.cpp */,
 				9AE720D017E83B68003E47F9 /* base_application.cpp */,
 				9AE720D117E83B68003E47F9 /* base_application.h */,
 				9AE720D217E83B68003E47F9 /* base_assert.cpp */,
@@ -1498,7 +1487,6 @@
 		9AE7219517E83B68003E47F9 /* exception */ = {
 			isa = PBXGroup;
 			children = (
-				9AE7219617E83B68003E47F9 /* _exception.txt */,
 				9AE7219717E83B68003E47F9 /* exception.cpp */,
 				9AE7219817E83B68003E47F9 /* exception.h */,
 				9AE7219917E83B68003E47F9 /* exception2.h */,
@@ -2069,7 +2057,6 @@
 				9AE7234E17E83B69003E47F9 /* x */,
 				9AE7235717E83B69003E47F9 /* xml */,
 				9A98A6151771D67E000AE16E /* libbase.dylib */,
-				07740C7F16AD57A20065CE47 /* Products */,
 				9AE7223217E83B68003E47F9 /* framework_c.c */,
 				9AE7223317E83B68003E47F9 /* framework_c.h */,
 				9AE7223417E83B68003E47F9 /* framework.cpp */,
@@ -2512,7 +2499,6 @@
 				9AE7238F17E83B69003E47F9 /* base_allocate_mid_big.cpp in Sources */,
 				9A01C8C517FCA0B000DC8E64 /* UncaughtExceptionHandler.mm in Sources */,
 				9AE7239017E83B69003E47F9 /* base_allocate_system_heap.cpp in Sources */,
-				9AE7239117E83B69003E47F9 /* base_allocate_var.cpp in Sources */,
 				9AE7239217E83B69003E47F9 /* base_application.cpp in Sources */,
 				9AE7239417E83B69003E47F9 /* base_assert.cpp in Sources */,
 				9AE7239617E83B69003E47F9 /* base_c.c in Sources */,

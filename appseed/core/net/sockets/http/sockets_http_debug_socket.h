@@ -45,8 +45,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       public:
 
 
-         int m_content_length;
-         int m_read_ptr;
+         ::primitive::memory_size      m_content_length;
+         int                           m_read_ptr;
 
 
          http_debug_socket(base_socket_handler&);

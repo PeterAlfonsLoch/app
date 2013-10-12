@@ -2,21 +2,29 @@
 
 
 
-#ifdef SOLARIS
+#if defined(SOLARIS)
 
+#define inplace_new_throw_spec
+#define new_throw_spec throw (std::bad_alloc)
+#define del_throw_spec throw()
+
+#elif defined(MACOS)
+
+#define inplace_new_throw_spec throw ()
 #define new_throw_spec throw (std::bad_alloc)
 #define del_throw_spec throw()
 
 #else
 
+#define inplace_new_throw_spec
 #define new_throw_spec
 #define del_throw_spec 
 
 #endif
 
 
-void * __cdecl operator new(size_t nSize, void * p);
-void __cdecl operator delete(void * p, void * palloc);
+void * __cdecl operator new(size_t nSize, void * p) inplace_new_throw_spec;
+void __cdecl operator delete(void * p, void * palloc) del_throw_spec;
 
 void * __cdecl operator new(size_t nSize) new_throw_spec;
 void __cdecl operator delete(void * p) del_throw_spec;

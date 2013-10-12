@@ -445,7 +445,7 @@ namespace numeric_info
 
 
 
-#ifndef NO_VARIADIC_TEMPLATE
+#ifdef VARIADIC_TEMPLATE
 
    template<typename T, typename... Args>
    inline void string_format::printf(const char * & s, const T & value, Args... args)

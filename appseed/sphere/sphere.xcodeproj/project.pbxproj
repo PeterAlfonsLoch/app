@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07A27B131808977D005F7B47 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A27B101808977D005F7B47 /* libbase.dylib */; };
+		07A27B141808977D005F7B47 /* libboot.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A27B111808977D005F7B47 /* libboot.dylib */; };
+		07A27B151808977D005F7B47 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A27B121808977D005F7B47 /* libcore.dylib */; };
 		9A57509E16AAB9A1000CC4EF /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
 		9A57509F16AAB9A1000CC4EF /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A574D2C16AAB99E000CC4EF /* framework.h */; };
 		9ACABF2A17BD0516004C3F85 /* asphere.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACABEAE17BD0515004C3F85 /* asphere.h */; };
@@ -75,9 +78,6 @@
 		9ACABF6917BD0516004C3F85 /* userstack_pane_view_update_hint.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACABF2717BD0516004C3F85 /* userstack_pane_view_update_hint.h */; };
 		9ACABF6A17BD0516004C3F85 /* userstack_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACABF2817BD0516004C3F85 /* userstack_view.cpp */; };
 		9ACABF6B17BD0516004C3F85 /* userstack_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACABF2917BD0516004C3F85 /* userstack_view.h */; };
-		9ACABF9517BD15BC004C3F85 /* lib_ca2c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACABF9417BD15BC004C3F85 /* lib_ca2c.dylib */; };
-		9ACABF9717BD15C5004C3F85 /* libca2ca.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACABF9617BD15C5004C3F85 /* libca2ca.dylib */; };
-		9ACABF9917BD15CC004C3F85 /* libca2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACABF9817BD15CC004C3F85 /* libca2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +98,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07A27B101808977D005F7B47 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
+		07A27B111808977D005F7B47 /* libboot.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboot.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libboot.dylib"; sourceTree = "<group>"; };
+		07A27B121808977D005F7B47 /* libcore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcore.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libcore.dylib"; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libsphere.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsphere.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A574D2B16AAB99E000CC4EF /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A574D2C16AAB99E000CC4EF /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
@@ -210,9 +213,6 @@
 		9ACABF2717BD0516004C3F85 /* userstack_pane_view_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userstack_pane_view_update_hint.h; sourceTree = "<group>"; };
 		9ACABF2817BD0516004C3F85 /* userstack_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userstack_view.cpp; sourceTree = "<group>"; };
 		9ACABF2917BD0516004C3F85 /* userstack_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userstack_view.h; sourceTree = "<group>"; };
-		9ACABF9417BD15BC004C3F85 /* lib_ca2c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2c.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2c.dylib"; sourceTree = "<group>"; };
-		9ACABF9617BD15C5004C3F85 /* libca2ca.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libca2ca.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libca2ca.dylib"; sourceTree = "<group>"; };
-		9ACABF9817BD15CC004C3F85 /* libca2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libca2.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libca2.dylib"; sourceTree = "<group>"; };
 		9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = ../../../nodeapp/appseed/draw2d_quartz2d/draw2d_quartz2d.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -221,9 +221,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ACABF9917BD15CC004C3F85 /* libca2.dylib in Frameworks */,
-				9ACABF9717BD15C5004C3F85 /* libca2ca.dylib in Frameworks */,
-				9ACABF9517BD15BC004C3F85 /* lib_ca2c.dylib in Frameworks */,
+				07A27B131808977D005F7B47 /* libbase.dylib in Frameworks */,
+				07A27B141808977D005F7B47 /* libboot.dylib in Frameworks */,
+				07A27B151808977D005F7B47 /* libcore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,9 +234,9 @@
 			isa = PBXGroup;
 			children = (
 				9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */,
-				9ACABF9817BD15CC004C3F85 /* libca2.dylib */,
-				9ACABF9617BD15C5004C3F85 /* libca2ca.dylib */,
-				9ACABF9417BD15BC004C3F85 /* lib_ca2c.dylib */,
+				07A27B101808977D005F7B47 /* libbase.dylib */,
+				07A27B111808977D005F7B47 /* libboot.dylib */,
+				07A27B121808977D005F7B47 /* libcore.dylib */,
 				9ACABEAC17BD04FF004C3F85 /* sphere */,
 				9A574B9916AAB906000CC4EF /* Products */,
 			);
@@ -630,7 +630,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/boot $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -666,7 +666,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/boot $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
@@ -675,6 +675,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug",
+				);
 				PRODUCT_NAME = sphere;
 			};
 			name = Debug;
@@ -683,6 +687,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug",
+				);
 				PRODUCT_NAME = sphere;
 			};
 			name = Release;
