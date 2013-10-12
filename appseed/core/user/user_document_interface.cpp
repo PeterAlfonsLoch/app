@@ -664,6 +664,16 @@ namespace user
 
       }
 
+      if(spfile.is_null())
+      {
+         
+         report_save_load_exception(varFile, NULL, TRUE, "__IDP_FAILED_TO_SAVE_DOC");
+      
+         return false;
+         
+      }
+      
+
       ::file::output_stream os(spfile);
 
       try
@@ -692,6 +702,14 @@ namespace user
 
          return false;
 
+      }
+      catch(...)
+      {
+
+         report_save_load_exception(varFile, NULL, TRUE, "__IDP_FAILED_TO_SAVE_DOC");
+         
+         return false;
+         
       }
 
 

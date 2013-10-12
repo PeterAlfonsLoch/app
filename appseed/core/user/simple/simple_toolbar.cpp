@@ -562,7 +562,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
 
    pdc->SelectObject(System.visual().font_central().GetMenuFont());
 
-#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(MACOS) || defined(SOLARIS)
 
    simple_toolbar_item & item = m_itema[iItem];
 
@@ -930,7 +930,7 @@ bool simple_toolbar::_001GetItemRect(int32_t iItem, LPRECT lprect, EElement eele
 
    rect rect;
 
-#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN)
+#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(MACOS) || defined(SOLARIS)
 
    simple_toolbar_item & item = m_itema[iItem];
 
