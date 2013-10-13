@@ -57,12 +57,6 @@ namespace win
 
 
 
-#include "exception_vms.h"
-
-
-
-
-
 #include "exception_hresult.h"
 
 

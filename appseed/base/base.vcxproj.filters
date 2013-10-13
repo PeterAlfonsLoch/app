@@ -578,9 +578,6 @@
     <ClInclude Include="exception\exception_user.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\exception_vms.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
     <ClInclude Include="exception\exception_void_implementation.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
@@ -1354,9 +1351,6 @@
     <ClCompile Include="exception\exception_user.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\exception_VMSException.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\exception_void_implementation.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -1982,6 +1976,9 @@
     </None>
     <None Include="primitive\primitive_factory_impl.inl">
       <Filter>Header Files\primitive</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
