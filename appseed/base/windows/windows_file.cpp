@@ -1264,23 +1264,26 @@ int ftruncate(int file, file_size len)
 
 
 
-void ensure_file_size(int32_t fd, size_t iSize)
+int_bool ensure_file_size(int32_t fd, size_t iSize)
 {
 
    if(ftruncate(fd, iSize) == -1)
-      throw "fd_ensure_file_size exception";
+      return false;
+
+   return true;
 
 }
 
-void ensure_file_size(FILE * file, size_t iSize)
+
+int_bool ensure_file_size(FILE * file, size_t iSize)
 {
 
-   ensure_file_size(fileno(file), iSize);
+   return ensure_file_size(fileno(file), iSize);
 
 }
 
 
-void ensure_file_size(HANDLE h, uint64_t iSize)
+int_bool ensure_file_size(HANDLE h, uint64_t iSize)
 {
 
    DWORD dwHi;
@@ -1292,11 +1295,18 @@ void ensure_file_size(HANDLE h, uint64_t iSize)
 
       LONG l = (iSize >> 32) & 0xffffffff;
 
-      SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET);
+      if(SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET) != (DWORD) (iSize & 0xffffffff))
+         return false;
 
-      SetEndOfFile(h);
+      if(l != ((iSize >> 32) & 0xffffffff))
+         return false;
+
+      if(!SetEndOfFile(h))
+         return false;
 
    }
+
+   return true;
 
 }
 
@@ -1338,3 +1348,27 @@ int_bool close_handle(handle h)
 
 
 
+int_bool file_set_length(const char * pszName, size_t iSize)
+{
+
+   wstring wstr(pszName);
+
+   HANDLE h = ::CreateFileW(wstr, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+   if(h == INVALID_HANDLE_VALUE)
+      return false;
+
+   if(!ensure_file_size(h, iSize))
+   {
+
+      ::CloseHandle(h);
+
+      return false;
+
+   }
+
+   ::CloseHandle(h);
+
+   return true;
+
+}
