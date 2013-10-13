@@ -79,7 +79,7 @@ namespace bergedge
 
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
       
-      VMSRESULT UpdateScreen(rect_array & recta, UINT uiRedraw);
+      bool UpdateScreen(rect_array & recta, UINT uiRedraw);
       void BackViewUpdateScreen(LPCRECT lpcrect, UINT uiRedraw);
       void BackViewUpdateScreen(rect_array & recta, UINT uiRedraw);
       void BackViewUpdateScreen();

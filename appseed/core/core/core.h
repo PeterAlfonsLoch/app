@@ -273,8 +273,6 @@ struct memory_state;
 #include "core/user/user_str.h"
 
 
-typedef long VMSRESULT;
-
 /*typedef struct tagVMSNMHDR {
     oswindow oswindowFrom;
     UINT idFrom;
@@ -309,8 +307,6 @@ typedef struct tagE17_SYSKEYDOWN {
 #define E17N_ESCAPE 1
 #define E17N_RETURN 0
 
-#define VMS_FAILED(Status) ((VMSRESULT)(Status)<0)
-#define VMS_SUCCEEDED(Status) ((VMSRESULT)(Status)>=0)
 
 #define VMSR_SUCCESS          0
 #define VMSR_S_NOTFOUND       2000

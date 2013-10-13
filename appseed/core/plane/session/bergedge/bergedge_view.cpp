@@ -268,7 +268,7 @@ namespace bergedge
 
    }
 
-   VMSRESULT view::UpdateScreen(rect_array & recta, UINT uiRedraw)
+   bool view::UpdateScreen(rect_array & recta, UINT uiRedraw)
    {
       UNREFERENCED_PARAMETER(uiRedraw);
       m_rectaUpdate.add(recta);
