@@ -1872,7 +1872,7 @@ namespace gcom
 
          event.ResetEvent();
 
-//         ::multimedia::result mmr;
+//         ::multimedia::e_result mmr;
 //         int32_t iResolution = 25;
          UINT uiRet = 0;
          try

@@ -401,36 +401,72 @@ wait_result event::wait (const duration & durationTimeout)
 
    if(m_bManualEvent)
    {
-
+      
       ((duration & ) durationTimeout).normalize();
-
-      delay.tv_sec = durationTimeout.m_iSeconds;
-
-      delay.tv_nsec = durationTimeout.m_iNanoseconds;
 
       pthread_mutex_lock(&m_mutex);
 
       int iSignal = m_iSignalId;
+      
+      timeval tsEnd;
+      
+      gettimeofday(&tsEnd, 0);
+      
+      int64_t iMicros = durationTimeout.m_iNanoseconds / 1000;
+      
+      timeval ts;
+      
+      int64_t iCompare;
+      
+      int error;
 
       while(!m_bSignaled && iSignal == m_iSignalId)
       {
 
-         int error = pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
-
+         delay.tv_sec = 0;
+         
+         delay.tv_nsec = 1000 * 1000;
+         
+         error = pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
+         
+         pthread_mutex_unlock(&m_mutex);
+         
          if(error != 0)
          {
 
-
             if(error == ETIMEDOUT)
             {
+               
+               gettimeofday(&ts,0);
+               
+               iCompare = ts.tv_sec - tsEnd.tv_sec;
+               
+               if(iCompare > durationTimeout.m_iSeconds)
+               {
+               
+                  return wait_result(wait_result::Timeout);
+                  
+               }
+               else if(iCompare == durationTimeout.m_iSeconds)
+               {
+                  
+                  iCompare = ts.tv_usec - tsEnd.tv_usec;
+                  
+                  if(iCompare > iMicros)
+                  {
+                     
+                     return wait_result(wait_result::Timeout);
+                     
+                  }
 
-               pthread_mutex_unlock(&m_mutex);
-
-               return wait_result(wait_result::Timeout);
+               }
 
             }
 
          }
+         
+         pthread_mutex_lock(&m_mutex);
+
 
       }
 
@@ -638,50 +674,8 @@ bool event::lock(const duration & durationTimeout)
 
    if(m_bManualEvent)
    {
-
-      ((duration & ) durationTimeout).normalize();
-
-      DWORD dwStart = get_tick_count();
-
-      DWORD dwTimeout = (DWORD) durationTimeout.get_total_milliseconds();
-      DWORD dwSleep = min(84, max(1, dwTimeout / 20));
-
-//      delay.tv_sec = durationTimeout.m_iSeconds;
-
-  //    delay.tv_nsec = ;
-
-      pthread_mutex_lock(&m_mutex);
-
-      int iSignal = m_iSignalId;
-
-//int iError = 0;
-//int iError2 = 0;
-    while(!m_bSignaled && iSignal == m_iSignalId && get_tick_count() - dwStart < dwTimeout)
-    {
-      pthread_mutex_unlock(&m_mutex);
-
-//iError = pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
-  //  if(iError != 0)
-    //     {
-
-      //       iError = errno;
-
-            //if(errno == ETIMEDOUT)
-            {
-
-              // pthread_mutex_unlock(&m_mutex);
-
-               //return false;
-
-            }
-            Sleep(dwSleep);
-      pthread_mutex_lock(&m_mutex);
-
-         }
-
-      //}
-
-      pthread_mutex_unlock(&m_mutex);
+      
+      wait(durationTimeout);
 
       return m_bSignaled;
 
