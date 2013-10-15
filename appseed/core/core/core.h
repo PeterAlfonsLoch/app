@@ -308,14 +308,6 @@ typedef struct tagE17_SYSKEYDOWN {
 #define E17N_RETURN 0
 
 
-#define VMSR_SUCCESS          0
-#define VMSR_S_NOTFOUND       2000
-#define VMSR_S_ENDOFFILE     3000
-#define VMSR_S_SKIP         4000
-#define VMSR_E_FAIL          -1
-#define VMSR_E_NOMEMORY    -13
-#define VMSR_E_INVALIDFILE    -15
-
 #define VMS_DOC_VERSION_1    1
 
 #define VMS_EVENT_NULL 0

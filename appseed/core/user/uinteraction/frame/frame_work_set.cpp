@@ -277,7 +277,7 @@ namespace frame
            m_pappearance->SetAppearanceMode();
        }
 
-       return VMSR_SUCCESS;
+       return true;
    };
 
    bool WorkSet::update(

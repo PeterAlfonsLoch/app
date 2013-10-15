@@ -440,7 +440,7 @@ void ssl_sigpipe_handle( int x );
          n = (int32_t) ::recv(GetSocket(), buf, nBufSize, 0);
 
 #else
-         n = ::recv(GetSocket(), (char *) buf, nBufSize, MSG_NOSIGNAL);
+         n = ::recv(GetSocket(), (char *) buf, (int) nBufSize, MSG_NOSIGNAL);
 #endif
          if (n == -1)
          {
@@ -722,7 +722,7 @@ void ssl_sigpipe_handle( int x );
          int iSocket = GetSocket();
          n = send(iSocket, buf, len, SO_NOSIGPIPE);
 #else
-         n = send(GetSocket(), (const char *) buf, len, MSG_NOSIGNAL);
+         n = send(GetSocket(), (const char *) buf, (int) len, MSG_NOSIGNAL);
 #endif
          if (n == -1)
          {

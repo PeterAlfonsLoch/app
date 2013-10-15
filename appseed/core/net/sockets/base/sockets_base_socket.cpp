@@ -1692,7 +1692,7 @@ namespace sockets
    }
 
 
-   void base_socket::OnCancelled(int)
+   void base_socket::OnCancelled(SOCKET)
    {
    }
 

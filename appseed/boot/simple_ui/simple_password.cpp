@@ -40,7 +40,7 @@ void simple_password::draw_this(simple_graphics & g)
 
    string str;
 
-   str.append('*', m_strText.get_length());
+   str.append(m_strText.get_length(), '*');
 
    g.text_out(m_rect.left + 2, m_rect.top, str);
 

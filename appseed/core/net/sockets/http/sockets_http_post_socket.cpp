@@ -186,22 +186,35 @@ namespace sockets
 
       // files
       {
+         
          POSITION pos = m_mapFiles.get_start_position();
+
          for(; pos != NULL; )
          {
+            
             string name;
+            
             string filename;
+            
             m_mapFiles.get_next_assoc(pos, name, filename);
-            long content_length = m_mapContentLength[filename];
+            
+            uint64_t content_length = m_mapContentLength[filename];
+
             string content_type = m_mapContentType[filename];
+
             tmp = "--" + m_boundary + "\r\n"
                "content-disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\"\r\n"
                "content-type: " + content_type + "\r\n"
                "\r\n";
+
             length += (long)tmp.get_length();
+
             length += content_length;
+
             length += 2; // crlf after file
+
          }
+
       }
 
       // end

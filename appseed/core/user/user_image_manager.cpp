@@ -47,7 +47,8 @@ namespace user
          &GetImageListDisable(),
          &GetImageList());*/
 
-      return VMSR_SUCCESS;
+      return true;
+
    }
 
    image_list & image_manager::GetImageList()

@@ -2,13 +2,19 @@
 
 namespace gcom
 {
+
+
    namespace backview
    {
+
+
       class InterfaceData;
       class Interface;
 
+
       namespace user
       {
+
 
          class CLASS_DECL_ca2 interaction :
             virtual public Interface,
@@ -45,8 +51,16 @@ namespace gcom
 
          };
 
+
       } // namespace user
    
+
    } // namespace backview
 
+
 } //namespace gcom
+
+
+
+
+

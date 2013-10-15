@@ -30,9 +30,9 @@
 
 typedef uchar u_char;
 
-#ifdef WINDOWS
-typedef uint_ptr ssize_t;
-#endif
+//#ifdef WINDOWS
+//typedef uint_ptr ssize_t;
+//#endif
 
 int32_t err(int32_t i, const char* str)
 {

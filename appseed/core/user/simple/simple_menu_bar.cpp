@@ -116,10 +116,10 @@ bool simple_menu_bar::pre_create_window(CREATESTRUCT& cs)
     *result = TBDDRET_DEFAULT;
 }*/
 
-/*VMSRESULT simple_menu_bar::GetMenu(SimpleMenu **ppmenu)
+/*bool simple_menu_bar::GetMenu(SimpleMenu **ppmenu)
 {
     *ppmenu = m_pmenu;
-    return VMSR_SUCCESS;
+    return ::multimedia::result_success;
 }*/
 
 
@@ -139,7 +139,7 @@ void simple_menu_bar::_001OnMouseMove(signal_details * pobj)
 }
 
 
-VMSRESULT simple_menu_bar::_TrackPopupMenu(int32_t iItem)
+bool simple_menu_bar::_TrackPopupMenu(int32_t iItem)
 {
     TRACE("simple_menu_bar::_TrackPopupMenu % d\n", iItem);
     m_iTracking = iItem;
@@ -163,7 +163,8 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(int32_t iItem)
 
 //    oswindow oswindowOld = __get_thread_state()->m_hTrackingWindow;
 //    m_oswindowFilter = NULL;
-    return VMSR_SUCCESS;
+    return true;
+
 }
 
 void simple_menu_bar::_001OnNcMouseMove(signal_details * pobj)
@@ -241,7 +242,7 @@ LRESULT CALLBACK simple_menu_bar::MessageProc(
 }
 
 
-VMSRESULT simple_menu_bar::_TrackPopupMenu(point point)
+bool simple_menu_bar::_TrackPopupMenu(point point)
 {
    if(m_bTracking)
    {
@@ -261,7 +262,7 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(point point)
         }
     }
 
-    return VMSR_SUCCESS;
+    return true;
 
 }
 
@@ -274,7 +275,7 @@ void simple_menu_bar::_001OnKeyDown(signal_details * pobj)
 
 
 
-/*VMSRESULT simple_menu_bar::CalcSize(::user::tool_bar_control & tbc, size & size)
+/*bool simple_menu_bar::CalcSize(::user::tool_bar_control & tbc, size & size)
 {
     rect rectItem;
     rect rectSize(0, 0, 0, 0);
@@ -285,10 +286,10 @@ void simple_menu_bar::_001OnKeyDown(signal_details * pobj)
         rectSize.union(rectSize, rectItem);
     }
     size = rectSize.size();
-    return VMSR_SUCCESS;
+    return ::multimedia::result_success;
 }
 
-VMSRESULT simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size & size)
+bool simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size & size)
 {
     rect rectItem;
     rect rectSize(0, 0, 0, 0);
@@ -299,7 +300,7 @@ VMSRESULT simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size & size)
         rectSize.union(rectSize, rectItem);
     }
     size = rectSize.size();
-    return VMSR_SUCCESS;
+    return ::multimedia::result_success;
 }*/
 
 

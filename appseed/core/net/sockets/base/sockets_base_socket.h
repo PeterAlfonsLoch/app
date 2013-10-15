@@ -718,7 +718,7 @@ namespace sockets
       /** Trigger callback, with data passed from source to destination. */
       virtual void OnTrigger(int id, const trigger_data & data);
       /** Trigger cancelled because source has been deleted (as in delete). */
-      virtual void OnCancelled(int id);
+      virtual void OnCancelled(SOCKET id);
       //@}
 
 
@@ -735,7 +735,7 @@ namespace sockets
    };
 
    typedef map < base_socket *, base_socket *, bool, bool > socket_bool;
-   typedef int_map < socket_bool > int_socket_bool;
+   typedef map < SOCKET, SOCKET, socket_bool, socket_bool > socket_socket_bool;
    typedef map < SOCKET, SOCKET, sp(base_socket), sp(base_socket) > socket_map;
    typedef ::comparable_eq_list < sp(base_socket) > socket_list;
 

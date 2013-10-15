@@ -66,7 +66,7 @@ BaseMenuCentral * BaseMenuCentral::GetMenuCentral(sp(base_application) papp)
 
 
 
-   return VMSR_SUCCESS;
+   return ::multimedia::result_success;
 }
 
 */
@@ -122,7 +122,8 @@ bool BaseMenuCentral::MenuV033AddImageMap(sp(::xml::node) lpnode)
       RGB(220, 220, 215),
       0.5);
 
-   return VMSR_SUCCESS;
+   return true;
+
 }
 
 
@@ -140,7 +141,7 @@ bool BaseMenuCentral::MenuV033AddImageMap(sp(::xml::node) lpnode)
 
 
 
-/*VMSRESULT BaseMenuCentral::MenuV033CreateImageMap()
+/*bool BaseMenuCentral::MenuV033CreateImageMap()
 {
     UINT uiaMenuV003Map [][2] =
     {
@@ -170,7 +171,7 @@ bool BaseMenuCentral::MenuV033AddImageMap(sp(::xml::node) lpnode)
     {
         theDll.m_relMenuV033ImageMap.add(uiaMenuV003Map[user][0], uiaMenuV003Map[user][1]);
     }
-    return VMSR_SUCCESS;
+    return ::multimedia::result_success;
 }*/
 
 UINT BaseMenuCentral::CommandToImage(id id)
