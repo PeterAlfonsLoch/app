@@ -2697,16 +2697,33 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
       cairo_keep keep(m_pdc);
 
+      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+         return false;
+
       cairo_translate(m_pdc, xDst, yDst);
+
+      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+         return false;
 
       cairo_scale(m_pdc, (double) nDstWidth / (double) nSrcWidth, (double) nDstHeight / (double) nSrcHeight);
 
+      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+         return false;
+
       cairo_set_source(m_pdc, ppattern);
+
+      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+         return false;
 
       cairo_paint_with_alpha(m_pdc, dRate);
 
+      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+         return false;
+
       cairo_pattern_destroy(ppattern);
 
+      if(cairo_status(m_pdc) != CAIRO_STATUS_SUCCESS)
+         return false;
 
       return true;
 
