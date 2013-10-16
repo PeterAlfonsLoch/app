@@ -2691,6 +2691,10 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       if(ppattern == NULL)
          return false;
 
+
+      if(m_pdc == NULL)
+         return false;
+
       cairo_keep keep(m_pdc);
 
       cairo_translate(m_pdc, xDst, yDst);
