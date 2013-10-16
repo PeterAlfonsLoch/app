@@ -66,7 +66,7 @@ BaseMenuCentral * BaseMenuCentral::GetMenuCentral(sp(base_application) papp)
 
 
 
-   return ::multimedia::result_success;
+   return ;
 }
 
 */
@@ -171,7 +171,7 @@ bool BaseMenuCentral::MenuV033AddImageMap(sp(::xml::node) lpnode)
     {
         theDll.m_relMenuV033ImageMap.add(uiaMenuV003Map[user][0], uiaMenuV003Map[user][1]);
     }
-    return ::multimedia::result_success;
+    return ;
 }*/
 
 UINT BaseMenuCentral::CommandToImage(id id)

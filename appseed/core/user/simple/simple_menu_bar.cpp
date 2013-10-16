@@ -119,7 +119,7 @@ bool simple_menu_bar::pre_create_window(CREATESTRUCT& cs)
 /*bool simple_menu_bar::GetMenu(SimpleMenu **ppmenu)
 {
     *ppmenu = m_pmenu;
-    return ::multimedia::result_success;
+    return ;
 }*/
 
 
@@ -286,7 +286,7 @@ void simple_menu_bar::_001OnKeyDown(signal_details * pobj)
         rectSize.union(rectSize, rectItem);
     }
     size = rectSize.size();
-    return ::multimedia::result_success;
+    return ;
 }
 
 bool simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size & size)
@@ -300,7 +300,7 @@ bool simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size & size)
         rectSize.union(rectSize, rectItem);
     }
     size = rectSize.size();
-    return ::multimedia::result_success;
+    return ;
 }*/
 
 
