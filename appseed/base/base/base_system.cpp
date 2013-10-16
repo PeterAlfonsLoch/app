@@ -39,8 +39,6 @@ base_system::base_system(sp(base_application) papp) :
    //::ca::application::m_file.set_app(this);
    //::ca::application::m_dir.set_app(this);
 
-   //      m_bDoNotExitIfNoApplications              = true;
-
    string strId;
    //strId = m_strAppName;
    //strId += ::str::has_char(m_strAppId, ".");

@@ -260,7 +260,6 @@
 		<Unit filename="exception/exception.cpp" />
 		<Unit filename="exception/exception.h" />
 		<Unit filename="exception/exception2.h" />
-		<Unit filename="exception/exception_VMSException.cpp" />
 		<Unit filename="exception/exception_archive.cpp" />
 		<Unit filename="exception/exception_archive_exception.cpp" />
 		<Unit filename="exception/exception_assert.h" />
@@ -339,7 +338,6 @@
 		<Unit filename="exception/exception_unhandled_report.h" />
 		<Unit filename="exception/exception_user.cpp" />
 		<Unit filename="exception/exception_user.h" />
-		<Unit filename="exception/exception_vms.h" />
 		<Unit filename="exception/exception_void_implementation.cpp" />
 		<Unit filename="exception/exception_void_implementation.h" />
 		<Unit filename="file/file.h" />

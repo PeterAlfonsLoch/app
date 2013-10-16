@@ -17,18 +17,6 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
-					<Add directory="../ca2" />
-					<Add directory="." />
-					<Add directory=".." />
-					<Add directory="../../.." />
-					<Add directory="../../../app" />
-					<Add directory="../../appseedcore" />
-					<Add directory="../../nodeapp/linux" />
-					<Add directory="../../thirdparty" />
-					<Add directory="../../thirdparty/appseed" />
-					<Add directory="../../../app/thirdparty/include" />
-					<Add directory="../../../app/thirdparty/appseed" />
-					<Add directory="../ca" />
 				</Compiler>
 			</Target>
 			<Target title="memdleak">
@@ -43,18 +31,6 @@
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
 					<Add option="-DMEMDLEAK" />
-					<Add directory="../ca2" />
-					<Add directory="." />
-					<Add directory=".." />
-					<Add directory="../../.." />
-					<Add directory="../../../app" />
-					<Add directory="../../appseedcore" />
-					<Add directory="../../nodeapp/linux" />
-					<Add directory="../../thirdparty" />
-					<Add directory="../../thirdparty/appseed" />
-					<Add directory="../../../app/thirdparty/include" />
-					<Add directory="../../../app/thirdparty/appseed" />
-					<Add directory="../ca" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -70,23 +46,24 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-Wno-conversion-null" />
 			<Add directory="." />
-			<Add directory="../ca2" />
 			<Add directory="../../.." />
+			<Add directory=".." />
+			<Add directory="../../../app" />
+			<Add directory="../../appseedcore" />
+			<Add directory="../../nodeapp/linux" />
+			<Add directory="../../thirdparty" />
+			<Add directory="../../thirdparty/appseed" />
+			<Add directory="../../../app/thirdparty/include" />
+			<Add directory="../../../app/thirdparty/appseed" />
+			<Add directory="../boot" />
+			<Add directory="../core" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
-			<Add option="-ldl" />
-			<Add option="-lpthread" />
-			<Add option="-lX11" />
-			<Add option="-lmysqlclient" />
-			<Add option="-l_ca2c" />
-			<Add option="-l_ca2zlib" />
-			<Add option="-l_ca2freeimage" />
-			<Add option="-l_ca2freetype" />
-			<Add option="-l_ca2openssl" />
-			<Add option="-lca2ca" />
-			<Add option="-lca2" />
+			<Add option="-lbase" />
+			<Add option="-lboot" />
+			<Add option="-lcore" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />

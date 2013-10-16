@@ -903,7 +903,8 @@ namespace plane
       appptra().add_unique(papp->m_pplaneapp);
 
       if(!papp->m_pplaneapp->is_session()
-      && !papp->m_pplaneapp->is_system())
+      && !papp->m_pplaneapp->is_system()
+      && !papp->m_pplaneapp->is_serviceable())
       {
 
          if(System.is_installing() || System.is_uninstalling())

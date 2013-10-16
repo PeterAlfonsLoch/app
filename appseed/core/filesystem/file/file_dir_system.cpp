@@ -1153,12 +1153,12 @@ ret:
             strPath           = path(strLs, str, str2);
             if(bDir)
             {
-               if(System.dir().is(strPath, get_app()))
+               if(System.dir().is(strPath, papp))
                   goto ret;
             }
             else
             {
-               if(System.file().exists(strPath, get_app()))
+               if(System.file().exists(strPath, papp))
                   goto ret;
             }
 
@@ -1172,12 +1172,12 @@ ret:
                strPath           = path(strLs, str, str2);
                if(bDir)
                {
-                  if(System.dir().is(strPath, get_app()))
+                  if(System.dir().is(strPath, papp))
                      goto ret;
                }
                else
                {
-                  if(System.file().exists(strPath, get_app()))
+                  if(System.file().exists(strPath, papp))
                      goto ret;
                }
 
@@ -1188,12 +1188,12 @@ ret:
             strPath           = path(strLs, str, str2);
             if(bDir)
             {
-               if(System.dir().is(strPath, get_app()))
+               if(System.dir().is(strPath, papp))
                   goto ret;
             }
             else
             {
-               if(System.file().exists(strPath, get_app()))
+               if(System.file().exists(strPath, papp))
                   goto ret;
             }
 
@@ -1204,12 +1204,12 @@ ret:
                strPath = matter(papp->m_pplaneapp->m_psession, str, str2);
                if(bDir)
                {
-                  if(System.dir().is(strPath, get_app()))
+                  if(System.dir().is(strPath, papp))
                      goto ret;
                }
                else
                {
-                  if(System.file().exists(strPath, get_app()))
+                  if(System.file().exists(strPath, papp))
                      goto ret;
                }
             }

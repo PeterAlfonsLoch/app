@@ -61,7 +61,21 @@ namespace boot
 
       const char * psz = strerror(iError);
 
+      if(psz != NULL)
+      {
+
+         fprintf(stderr, "%s\n", psz);
+
+      }
+
       const char * psz2 = dlerror();
+
+      if(psz2 != NULL)
+      {
+
+         fprintf(stderr, "%s\n", psz2);
+
+      }
 
       return m_plibrary != NULL;
 
