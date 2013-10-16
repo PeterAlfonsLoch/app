@@ -30,6 +30,13 @@ namespace file
 
 
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
+      virtual void full_read(void *lpBuf, ::primitive::memory_size nCount);
+      template < typename TYPE >
+      void full_fill(TYPE & t)
+      {
+         full_read(&t, sizeof(t));
+      }
+      virtual void full_fill(::primitive::memory_base & m);
 
       input_stream & operator = (const input_stream & ostream);
 
@@ -98,6 +105,8 @@ namespace file
       ::file_position tellg() { return m_spbuffer->tell(); }
       input_stream & seekg(file_position position) { m_spbuffer->seek_from_begin(position); return *this; }
       input_stream & seekg(file_offset offset, e_seek eseek) { m_spbuffer->seek(offset, eseek); return *this; }
+
+      ::file_size get_left() { return m_spbuffer->get_length() - m_spbuffer->get_position(); }
 
    };
 

@@ -62,6 +62,29 @@ namespace file
       return ::file::reader::read(lpBuf, nCount);
    }
 
+
+   void stream_buffer::full_read(void * lpBuf, ::primitive::memory_size nCount)
+   {
+
+      ::primitive::memory_size uiRead;
+      ::primitive::memory_size uiPos = 0;
+      byte * buf = (byte *) lpBuf;
+
+      while(nCount > 0)
+      {
+         
+         uiRead = read(&buf[uiPos], nCount);
+
+         if(uiRead <= 0)
+            throw io_exception(get_app());
+
+         nCount   -= uiRead;
+         uiPos    += uiRead;
+
+      }
+
+   }
+
    void stream_buffer::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
       ::file::writer::write(lpBuf, nCount);

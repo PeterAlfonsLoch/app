@@ -55,6 +55,22 @@ namespace file
       
    }
 
+   void input_stream::full_read(void * lpBuf, ::primitive::memory_size nCount)
+   {
+      
+      m_spbuffer->full_read(lpBuf, nCount);
+
+      m_gcount = nCount;
+      
+   }
+
+
+   void input_stream::full_fill(::primitive::memory_base & m)
+   {
+      
+      full_read(m.get_data(), m.get_size());
+
+   }
 
    void input_stream::read_arbitrary(int32_t & i)
    {

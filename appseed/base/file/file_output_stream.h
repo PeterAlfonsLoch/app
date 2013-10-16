@@ -25,6 +25,8 @@ namespace file
       
       virtual void write(const void *lpBuf, ::primitive::memory_size nCount);
       virtual void write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten);
+      template < typename T >
+      void full_write(const T & t) { write(&t, sizeof(T)); }
 
       //virtual void read(reader & reader);
 

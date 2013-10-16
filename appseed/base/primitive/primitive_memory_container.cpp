@@ -8,6 +8,7 @@ namespace primitive
    memory_container ::memory_container(sp(base_application) papp) :
       element(papp)
    {
+      m_spmemory = new primitive::memory(papp);
       m_dwAllocationAddUp = 1024;
    }
 

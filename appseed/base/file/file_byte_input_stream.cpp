@@ -179,8 +179,7 @@ namespace file
 
       byte b;
 
-      if(m_spbuffer->read(&b, sizeof(b)) < sizeof(b))
-         throw io_exception(get_app(), "core::byte_input_stream::read_arbitrary : unexpected end of stream, cannot read header byte");
+      full_read(&b, sizeof(b));
 
       if(b == 0)
       {
@@ -195,8 +194,7 @@ namespace file
       if(len > sizeof(uiRead) || len > nMax)
          throw io_exception(get_app(), "core::byte_input_stream::read_arbitrary : overflow");
 
-      if(m_spbuffer->read(&uiRead, len) != len)
-         throw io_exception(get_app(), "core::byte_input_stream::read_arbitrary : unexpected end of stream, cannot read number body");
+      full_read(&uiRead, len);
 
       if(b & 0x40)
       {
@@ -210,53 +208,62 @@ namespace file
 
    }
 
+
    void byte_input_stream::read(float & f)
    {
-      m_spbuffer->read(&f, sizeof(f));
+      
+      full_read(&f, sizeof(f));
 
    }
 
+
    void byte_input_stream::read(double & d)
    {
-      m_spbuffer->read(&d, sizeof(d));
+      
+      full_read(&d, sizeof(d));
 
    }
 
    void byte_input_stream::read(LPRECT lprect)
    {
-      m_spbuffer->read(&lprect->left,     sizeof(lprect->left));
-      m_spbuffer->read(&lprect->top,      sizeof(lprect->top));
-      m_spbuffer->read(&lprect->right,    sizeof(lprect->right));
-      m_spbuffer->read(&lprect->bottom,   sizeof(lprect->bottom));
+
+      full_read(&lprect->left,     sizeof(lprect->left));
+      full_read(&lprect->top,      sizeof(lprect->top));
+      full_read(&lprect->right,    sizeof(lprect->right));
+      full_read(&lprect->bottom,   sizeof(lprect->bottom));
 
    }
 
    void byte_input_stream::read(SIZE & size)
    {
-      m_spbuffer->read(&size.cx,     sizeof(size.cx));
-      m_spbuffer->read(&size.cy,      sizeof(size.cy));
+
+      full_read(&size.cx,     sizeof(size.cx));
+      full_read(&size.cy,      sizeof(size.cy));
 
    }
 
+
    void byte_input_stream::read(sp(type) info)
    {
+
+      ::primitive::memory m;
+
+
       {
          int32_t iLen;
-         m_spbuffer->read(&iLen, sizeof(iLen));
-         char * psz = (char *) malloc(iLen + 1);
-         m_spbuffer->read(psz, iLen);
-         psz[iLen] = '\0';
-         info->m_id = psz;
-         free((void *) psz);
+         full_read(&iLen, sizeof(iLen));
+         m.allocate(iLen + 1);
+         full_fill(m);
+         m.get_data()[iLen] = '\0';
+         info->m_id = (const char *) m.get_data();
       }
       {
          int32_t iLen;
-         m_spbuffer->read(&iLen, sizeof(iLen));
-         char * psz = (char *) malloc(iLen + 1);
-         m_spbuffer->read(psz, iLen);
-         psz[iLen] = '\0';
-         info->m_idFriendly = psz;
-         free((void *) psz);
+         full_read(&iLen, sizeof(iLen));
+         m.allocate(iLen + 1);
+         full_fill(m);
+         m.get_data()[iLen] = '\0';
+         info->m_idFriendly = (const char *) m.get_data();
       }
 
    }
