@@ -504,21 +504,30 @@ namespace gcom
 
       }
 
-      ::draw2d::dib * Graphics::GetDib(int32_t iIndex)
+      ::draw2d::dib_sp Graphics::GetDib(int32_t iIndex)
       {
-         ::draw2d::dib * pdib;
-         if(m_mapDib.Lookup(iIndex, pdib))
+
+         ::draw2d::dib_sp spdib;
+
+         if(m_mapDib.Lookup(iIndex, spdib))
          {
-            return pdib;
+
+            return spdib;
+
          }
          else
          {
-            ::draw2d::dib_sp spdib(allocer());
+
+            spdib.create(allocer());
+
             OnCreateDib(spdib, iIndex);
+
             m_mapDib.set_at(iIndex, spdib);
-            ::add_ref(spdib.m_p);
+
             return spdib;
+
          }
+
       }
 
       void Graphics::BufferToBack()

@@ -48,7 +48,7 @@ namespace gcom
          rect                                m_rectFinalPlacement;
 
 
-         int_map < ::draw2d::dib * >         m_mapDib;
+         int_map < ::draw2d::dib_sp >        m_mapDib;
 
 
          mutex   m_mutex1Back;
