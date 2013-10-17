@@ -12,8 +12,8 @@ namespace gcom
       Graphics::Graphics(Main & main) :
          element(main.get_app()),
          Helper(main),
-         m_mutgenBack(main.get_app()),
-         m_mutgenBuffer(main.get_app()),
+         m_mutex1Back(main.get_app()),
+         m_mutex2Buffer(main.get_app()),
          m_mutex3Source(main.get_app()),
          m_mutex4Transfer(main.get_app())
       {
@@ -26,84 +26,121 @@ namespace gcom
       {
       }
 
-      ::draw2d::graphics & Graphics::GetScreenDC()
+
+      ::draw2d::graphics_sp Graphics::GetScreenDC()
       {
-         return *m_dcScreen;
+
+         return m_dcScreen;
+
       }
 
-      ::draw2d::graphics & Graphics::GetBackDC()
+
+      ::draw2d::graphics_sp Graphics::GetBackDC()
       {
-         return *GetDib(_graphics::DibBack)->get_graphics();
+
+         return GetDib(_graphics::DibBack)->get_graphics();
+
       }
 
-      ::draw2d::graphics & Graphics::GetTransferDC()
+
+      ::draw2d::graphics_sp Graphics::GetTransferDC()
       {
+
          GetDib(_graphics::DibTransfer)->dc_select();
-         return *GetDib(_graphics::DibTransfer)->get_graphics();
-      }
 
-      ::draw2d::graphics & Graphics::GetFrame1DC()
-      {
-         return *GetDib(_graphics::DibFrame1)->get_graphics();
-      }
-
-      ::draw2d::graphics & Graphics::GetBufferDC()
-      {
-         return *GetDib(_graphics::DibBuffer)->get_graphics();
-      }
-
-      ::draw2d::graphics & Graphics::GetSourceDC()
-      {
-         return *GetDib(_graphics::DibSource)->get_graphics();
-      }
-
-      ::draw2d::bitmap & Graphics::GetBackBitmap()
-      {
-         return *GetDib(_graphics::DibBack)->get_bitmap();
-      }
-
-      ::draw2d::bitmap & Graphics::GetTransferBitmap()
-      {
-         return *GetDib(_graphics::DibTransfer)->get_bitmap();
-      }
-
-      ::draw2d::bitmap & Graphics::GetFrame1Bitmap()
-      {
-         return *GetDib(_graphics::DibFrame1)->get_bitmap();
-      }
-
-      ::draw2d::bitmap & Graphics::GetBufferBitmap()
-      {
-         return *GetDib(_graphics::DibBuffer)->get_bitmap();
+         return GetDib(_graphics::DibTransfer)->get_graphics();
 
       }
 
-      ::draw2d::bitmap & Graphics::GetSourceBitmap()
+
+      ::draw2d::graphics_sp Graphics::GetFrame1DC()
       {
-         return *GetDib(_graphics::DibSource)->get_bitmap();
+
+         return GetDib(_graphics::DibFrame1)->get_graphics();
+
       }
 
-//      ::core::draw_dib & Graphics::GetDrawDib()
-//      {
-//         return m_spdrawdib;
-//      }
 
-      void Graphics::LayoutBackBitmap(
-         BITMAP *   lpbmBack)
+      ::draw2d::graphics_sp Graphics::GetBufferDC()
       {
+
+         return GetDib(_graphics::DibBuffer)->get_graphics();
+
+      }
+
+
+      ::draw2d::graphics_sp Graphics::GetSourceDC()
+      {
+
+         return GetDib(_graphics::DibSource)->get_graphics();
+
+      }
+
+
+      ::draw2d::bitmap_sp Graphics::GetBackBitmap()
+      {
+
+         return GetDib(_graphics::DibBack)->get_bitmap();
+
+      }
+
+
+      ::draw2d::bitmap_sp Graphics::GetTransferBitmap()
+      {
+
+         return GetDib(_graphics::DibTransfer)->get_bitmap();
+
+      }
+
+
+      ::draw2d::bitmap_sp Graphics::GetFrame1Bitmap()
+      {
+
+         return GetDib(_graphics::DibFrame1)->get_bitmap();
+
+      }
+
+
+      ::draw2d::bitmap_sp Graphics::GetBufferBitmap()
+      {
+
+         return GetDib(_graphics::DibBuffer)->get_bitmap();
+
+      }
+
+
+      ::draw2d::bitmap_sp Graphics::GetSourceBitmap()
+      {
+
+         return GetDib(_graphics::DibSource)->get_bitmap();
+
+      }
+
+
+      void Graphics::LayoutBackBitmap(BITMAP * lpbmBack)
+      {
+
          UNREFERENCED_PARAMETER(lpbmBack);
+
          rect rectClient;
 
          HelperGetMain().GetInterface().BackViewGetClientRect(rectClient);
 
          int32_t cx = rectClient.width();
+
          int32_t cy = rectClient.height();
 
-         single_lock sl1Back(&m_mutgenBack, TRUE);
-         ::draw2d::graphics & dcBack = GetBackDC();
-         GetDib(_graphics::DibBack)->create(cx, cy);
-         dcBack.FillSolidRect(0, 0, cx, cy, ARGB(0, 0, 0, 0));
+         single_lock sl1Back(&m_mutex1Back, TRUE);
+
+         if(!GetDib(_graphics::DibBack)->create(cx, cy))
+            return;
+
+         ::draw2d::graphics_sp dcBack = GetBackDC();
+
+         dcBack->FillSolidRect(0, 0, cx, cy, ARGB(0, 0, 0, 0));
+
          sl1Back.unlock();
+
       }
 
 
@@ -134,8 +171,8 @@ namespace gcom
       void Graphics::OnDestroy()
       {
 
-         single_lock sl1Back(&m_mutgenBack, TRUE);
-         single_lock sl2Buffer(&m_mutgenBuffer, TRUE);
+         single_lock sl1Back(&m_mutex1Back, TRUE);
+         single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
          single_lock sl3Source(&m_mutex3Source, TRUE);
 
       }
@@ -162,36 +199,38 @@ namespace gcom
          //         const int32_t ciBufferBitmapInfoNotAvailable = 5;
          //         const int32_t ciScaledBitmapInfoNotAvailable = 6;
 
-         single_lock sl2Buffer(&m_mutgenBuffer, TRUE);
+         single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
          single_lock sl3Source(&m_mutex3Source, TRUE);
 
          //HelperGetMain().DeferCheckLayout();
 
-         //         ::draw2d::graphics & dcScreen = GetScreenDC();
-         ::draw2d::graphics & dcBuffer = GetBufferDC();
-         ::draw2d::graphics & dcSource = GetSourceDC();
-         //         ::draw2d::bitmap & bmpBuffer = GetBufferBitmap();
+         //         ::draw2d::graphics_sp dcScreen = GetScreenDC();
+         ::draw2d::graphics_sp dcBuffer = GetBufferDC();
+         ::draw2d::graphics_sp dcSource = GetSourceDC();
+         //         ::draw2d::bitmap_sp bmpBuffer = GetBufferBitmap();
 
 
          //dcSource.FillSolidRect(200, 200, 500, 500, ARGB(255, 255, 0, 0));
 
 
          //         ::draw2d::dib * pdibSource = GetDib(_graphics::DibSource);
-
-         if(dcSource.get_os_data() == NULL)
+         if(dcSource.is_null())
             return false;
 
-         if(&dcBuffer == NULL)
+         if(dcSource->get_os_data() == NULL)
             return false;
 
-         if(dcBuffer.get_os_data() == NULL)
+         if(dcBuffer.is_null())
+            return false;
+
+         if(dcBuffer->get_os_data() == NULL)
             return false;
 
          try
          {
             //sl2Buffer.lock();
 
-            dcBuffer.FillSolidRect(rectClient, ARGB(0, 0, 0, 0));
+            dcBuffer->FillSolidRect(rectClient, ARGB(0, 0, 0, 0));
 
 #ifdef WINDOWSEX
 
@@ -205,7 +244,7 @@ namespace gcom
                   sizeof(emh),
                   &emh);
 
-               dcBuffer.FillSolidRect(rectClient, ARGB(0, 0, 0, 0));
+               dcBuffer->FillSolidRect(rectClient, ARGB(0, 0, 0, 0));
 
                rect rectMeta(0, 0, emh.rclBounds.right - emh.rclBounds.left, emh.rclBounds.bottom - emh.rclBounds.top);
                rectMeta.FitOnCenterOf(rect(0, 0, 64, 64));
@@ -236,7 +275,7 @@ namespace gcom
                   for(int32_t j = 0; j < jCount; j++)
                   {
                      rectMeta.SetBottomRightSize(iW, iH);
-                     dcBuffer.PlayMetaFile(hemf, rectMeta);
+                     dcBuffer->PlayMetaFile(hemf, rectMeta);
                      rectMeta.top += iH;
                   }
                   rectMeta.left += iW;
@@ -249,25 +288,25 @@ namespace gcom
 #endif
 
             //sl3Source.lock();
-            ::draw2d::bitmap & bmpSource = GetSourceBitmap();
+            ::draw2d::bitmap_sp bmpSource = GetSourceBitmap();
 
-            if(bmpSource.get_os_data() != NULL
+            if(bmpSource->get_os_data() != NULL
                && GetDib(_graphics::DibSource)->area() > 0)
             {
                if(main.IsFullScreen())
                {
-                  dcBuffer.FillSolidRect(
+                  dcBuffer->FillSolidRect(
                      rectClient,
                      GetDib(_graphics::DibSource)->GetAverageColor());
                }
                else
                {
-                  dcBuffer.FillSolidRect(
+                  dcBuffer->FillSolidRect(
                      rectClient,
                      GetDib(_graphics::DibSource)->GetAverageColor());
                }
 
-               class size sizeSource = bmpSource.get_size();
+               class size sizeSource = bmpSource->get_size();
 
 
                int32_t finalX;
@@ -328,10 +367,10 @@ namespace gcom
                      for(int32_t j = 0; j < jCount; j++)
                      {
                         int32_t iY = iYOffset + iH * j;
-                        dcBuffer.BitBlt(
+                        dcBuffer->BitBlt(
                            iX, iY,
                            iW, iH,
-                           &dcSource,
+                           dcSource,
                            0, 0,
                            SRCCOPY);
                      }
@@ -353,11 +392,11 @@ namespace gcom
                   int32_t srcW = sizeSource.cx;
                   int32_t srcH = sizeSource.cy;
 
-                  dcBuffer.SetStretchBltMode(HALFTONE);
-                  dcBuffer.StretchBlt(
+                  dcBuffer->SetStretchBltMode(HALFTONE);
+                  dcBuffer->StretchBlt(
                      finalX, finalY,
                      finalW, finalH,
-                     &dcSource,
+                     dcSource,
                      srcX, srcY,
                      srcW, srcH,
                      SRCCOPY);
@@ -404,18 +443,21 @@ namespace gcom
          int32_t cx = rectClient.width();
          int32_t cy = rectClient.height();
 
-         single_lock sl1Back(&m_mutgenBack, TRUE);
-         single_lock sl2Buffer(&m_mutgenBuffer, TRUE);
+         single_lock sl1Back(&m_mutex1Back, TRUE);
+         single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
          single_lock sl3Source(&m_mutex3Source, TRUE);
 
 
-         ::draw2d::graphics & spgraphicsScreen    = GetScreenDC();
+         ::draw2d::graphics_sp spgraphicsScreen    = GetScreenDC();
 
-         if(spgraphicsScreen.get_os_data() != NULL)
+         if(spgraphicsScreen->get_os_data() != NULL)
          {
-            spgraphicsScreen.DeleteDC();
+
+            spgraphicsScreen->DeleteDC();
+
          }
-         spgraphicsScreen.CreateCompatibleDC(NULL);
+
+         spgraphicsScreen->CreateCompatibleDC(NULL);
 
          GetDib(_graphics::DibBack)->create(cx, cy); // Back
          GetDib(_graphics::DibBack)->Fill(0, 0, 0, 0);
@@ -438,9 +480,9 @@ namespace gcom
 
 #ifdef WINDOWSEX
 
-         ::draw2d::bitmap & bmpSource = GetSourceBitmap();
+         ::draw2d::bitmap_sp bmpSource = GetSourceBitmap();
 
-         class size size = bmpSource.get_size();
+         class size size = bmpSource->get_size();
 
          if(size.cx < (GetSystemMetrics(SM_CXSCREEN) / 2) &&
             size.cy < (GetSystemMetrics(SM_CYSCREEN) / 2))
@@ -481,8 +523,8 @@ namespace gcom
 
       void Graphics::BufferToBack()
       {
-         single_lock sl1Back(&m_mutgenBack, FALSE);
-         single_lock sl2Buffer(&m_mutgenBuffer, FALSE);
+         single_lock sl1Back(&m_mutex1Back, FALSE);
+         single_lock sl2Buffer(&m_mutex2Buffer, FALSE);
          if(!sl1Back.lock(millis(25)))
             return;
          if(!sl2Buffer.lock(millis(25)))
@@ -493,7 +535,7 @@ namespace gcom
       void Graphics::BackToTransfer()
       {
 
-         single_lock sl1Back(&m_mutgenBack, FALSE);
+         single_lock sl1Back(&m_mutex1Back, FALSE);
 
          if(!sl1Back.lock(millis(25)))
             return;

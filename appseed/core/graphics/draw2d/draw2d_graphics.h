@@ -42,7 +42,7 @@ namespace draw2d
       // advanced use and implementation
       bool                          m_bPrinting;
 
-      
+
 
 
       graphics();
@@ -574,6 +574,12 @@ namespace draw2d
       graphics_sp()
       {
       }
+
+      graphics_sp(graphics * p) :
+         smart_pointer < graphics > (p)
+      {
+      }
+
 
       graphics_sp(const smart_pointer < graphics > & p) :
          smart_pointer < graphics > (p)

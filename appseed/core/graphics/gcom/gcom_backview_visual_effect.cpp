@@ -45,8 +45,8 @@ namespace gcom
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-         single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
-         single_lock sl2Buffer(&graphics.m_mutgenBuffer, FALSE);
+         single_lock sl1Back(&graphics.m_mutex1Back, FALSE);
+         single_lock sl2Buffer(&graphics.m_mutex2Buffer, FALSE);
          ::draw2d::graphics & dcBack = graphics.GetBackDC();
          ::draw2d::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::draw2d::graphics & dcFrame1 = graphics.GetFrame1DC();
@@ -693,8 +693,8 @@ namespace gcom
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-         single_lock sl1Back(&graphics.m_mutgenBack, FALSE);
-         single_lock sl2Buffer(&graphics.m_mutgenBuffer, FALSE);
+         single_lock sl1Back(&graphics.m_mutex1Back, FALSE);
+         single_lock sl2Buffer(&graphics.m_mutex2Buffer, FALSE);
          ::draw2d::graphics & dcBack = graphics.GetBackDC();
          ::draw2d::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::draw2d::graphics & dcFrame1 = graphics.GetFrame1DC();

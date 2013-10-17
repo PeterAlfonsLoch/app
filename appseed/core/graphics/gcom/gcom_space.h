@@ -1,16 +1,18 @@
 #pragma once
 
-#include "gcom_Enum.h"
 
 namespace gcom
 {
 
-   class Space  
+
+   class Space
    {
    public:
+
+
       Space();
       virtual ~Space();
-      
+
       void Align(LPRECT lprectAlign, LPRECT lprectSpace, EAlign ealign, double dRate);
       void Deviate(LPRECT lprectDeviate, LPRECT lprectSpace, EDirection edirection, double dRate);
       void Slice(LPRECT lprectSliced, LPRECT lprectSlicing, EDirection edirection, double dRate, double dRateEx);
@@ -22,9 +24,11 @@ namespace gcom
       void GetCenter(LPPOINT lppoint, LPRECT lprect);
 
 
-
-
    };
 
+
 } // namespace gcom
+
+
+
 

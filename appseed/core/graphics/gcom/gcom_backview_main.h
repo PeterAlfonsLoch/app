@@ -7,6 +7,8 @@ namespace gcom
 
    namespace backview
    {
+
+
       class Graphics;
       class ImageChange;
       class TransitionEffect;
@@ -14,39 +16,41 @@ namespace gcom
       class Interface;
       class thread;
 
+
       class CLASS_DECL_ca2 Main :
          virtual public signalizable
       {
-      protected:
+      public:
 
 
-         int32_t                        m_iRefCount;
+         int32_t                    m_iRefCount;
 
          bool                       m_bEnabled;
-         e_state                     m_estate;
-         Graphics *                  m_pgraphics;
+         e_state                    m_estate;
+         Graphics *                 m_pgraphics;
          Interface *                m_pinterface;
-         ImageChange *               m_pimagechange;
+         ImageChange *              m_pimagechange;
          TransitionEffect *         m_ptransitioneffect;
          VisualEffect *             m_pvisualeffect;
 
          thread *                   m_pthreadIdlePriority;
-         thread *                    m_pthreadHighestPriority;
-         bool                        m_bInitialized;
-         ::mutex                     m_mutexStateMachine;
-
-      public:
+         thread *                   m_pthreadHighestPriority;
+         bool                       m_bInitialized;
+         ::mutex                    m_mutexStateMachine;
 
          bool                       m_bPendingLayout;
 
-      public:
+
          Main(sp(base_application) papp, Interface * pbackviewinterface);
          virtual ~Main();
 
-         void AddRef();
-         void Release();
+
          void Shutdown();
 
+
+
+         ::mutex & GetTransferMutex();
+         ::draw2d::graphics_sp GetTransferDC();
 
 
          bool IsInitialized();
@@ -56,16 +60,13 @@ namespace gcom
          void SetCurrentImagePlacement(EImagePlacement eplacement);
          EImagePlacement GetCurrentImagePlacement();
          bool GetNextImagePath(string & str);
-         ::mutex & GetTransferMutex();
-         ::draw2d::graphics & GetTransferDC();
          void SetBackgroundImageChangeInterval(uint32_t dwMillis);
          void OnImageLoaded(::draw2d::dib * pdib);
          void UpdateDrawingObjects();
          void OnDestroy();
          void OnResize();
          int32_t SetState(e_state estate);
-         //void RunTransitionEffectStep();
-         DECL_GEN_SIGNAL(_001OnImageLoaded);
+
 
          Interface & GetInterface();
          ImageChange & GetImageChange();
@@ -81,20 +82,18 @@ namespace gcom
 
          int32_t PulseEvent(e_event eevent);
 
-
          void DeferCheckLayout();
-
 
          virtual bool UpdateBuffer(LPCRECT lpcrect);
 
-
          virtual void OnAfterImageLoaded();
-
 
          virtual bool RenderBuffer();
          virtual bool LoadNextImage(bool bSynch);
          virtual bool IsFullScreen();
 
+
+         DECL_GEN_SIGNAL(_001OnImageLoaded);
 
 
       };

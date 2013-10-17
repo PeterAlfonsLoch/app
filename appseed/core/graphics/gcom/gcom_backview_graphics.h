@@ -1,46 +1,58 @@
 #pragma once
 
-class dib;
-class draw_dib;
 
 namespace gcom
 {
+
+
    namespace backview
    {
+
+
       namespace _graphics
       {
+
+
          enum EDib
          {
-            DibTemp1 = 2,
+
+            DibTemp1,
             DibTemp2,
             DibTemp3,
             DibTemp4,
             DibTemp5,
-            DibBuffer = 100,
-            DibFrame1 = 101,
-            DibSource = 99,
-            DibFinal = 98,
-            DibBack = 150,
-            DibTransfer = 200,
+            DibBuffer,
+            DibFrame1,
+            DibSource,
+            DibFinal,
+            DibBack,
+            DibTransfer,
+
          };
+
+
       }
 
+
       class Interface;
-      class CImageChange;
+      class ImageChange;
+
 
       class CLASS_DECL_ca2 Graphics :
          public Helper
       {
       public:
 
+
          ::draw2d::graphics_sp               m_dcScreen;
-         rect             m_rectFinalPlacement;
+         rect                                m_rectFinalPlacement;
 
-         map < int32_t, int32_t, ::draw2d::dib *, ::draw2d::dib * > m_mapDib;
-//         ::core::draw_dib_sp         m_spdrawdib;
 
-         mutex   m_mutgenBack;
-         mutex   m_mutgenBuffer;
+         int_map < ::draw2d::dib * >         m_mapDib;
+
+
+         mutex   m_mutex1Back;
+         mutex   m_mutex2Buffer;
          mutex   m_mutex3Source;
          mutex   m_mutex4Transfer;
 
