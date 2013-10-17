@@ -8,9 +8,9 @@ namespace bergedge
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::user::place_holder(papp),
-      
-      gcom::backview::user::interaction(papp),
-      gcom::backview::Interface(papp),
+
+      ::backview::user::interaction(papp),
+      ::backview::Interface(papp),
       m_dibV(papp),
       m_dib_veriwell(papp),
       m_dib_winactionarea(papp),
@@ -40,7 +40,7 @@ namespace bergedge
    {
       ::user::view::install_message_handling(pinterface);
       ::user::place_holder::install_message_handling(pinterface);
-      gcom::backview::Interface::install_message_handling(pinterface);
+      ::backview::Interface::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_PAINT, pinterface, this, &view::_001OnPaint);
@@ -126,15 +126,15 @@ namespace bergedge
    void view:: _001OnDraw(::draw2d::graphics * pdc)
    {
 
-      if(gcom::backview::Interface::IsEnabled())
+      if(::backview::Interface::IsEnabled())
       {
 
          rect rectClient;
          GetClientRect(rectClient);
 
 
-         gcom::backview::Main & main = gcom::backview::Interface::GetMain();
-//         gcom::backview::Graphics & graphics = main.GetGraphics();
+         ::backview::Main & main = ::backview::Interface::GetMain();
+//         ::backview::Graphics & graphics = main.GetGraphics();
 
          if(main.IsInitialized())
          {
@@ -145,7 +145,7 @@ namespace bergedge
             rgn->create_rect(rect);
             pdc->SelectClipRgn(rgn);*/
             pdc->SelectClipRgn(NULL);
-            gcom::backview::Interface::BackViewRender(pdc, rectClient);
+            ::backview::Interface::BackViewRender(pdc, rectClient);
 
 
          }
@@ -181,9 +181,9 @@ namespace bergedge
          }
       }
 
-      gcom::backview::Interface::Enable(false);
-      gcom::backview::Interface::GetMain().GetImageChange().m_dwBackgroundUpdateMillis = 1000 * 30;
-      //gcom::backview::Interface::GetMain().GetTransitionEffect().DisableEffect(gcom::backview::TransitionEffectVisual);
+      ::backview::Interface::Enable(false);
+      ::backview::Interface::GetMain().GetImageChange().m_dwBackgroundUpdateMillis = 1000 * 30;
+      //::backview::Interface::GetMain().GetTransitionEffect().DisableEffect(::backview::TransitionEffectVisual);
 
 
       SetTimer(TimerBackView, 83, NULL);  // max. 12 fps
@@ -228,7 +228,7 @@ namespace bergedge
    {
 
       SCAST_PTR(::message::mouse, pmouse, pobj);
-      
+
       pmouse->m_ecursor = ::visual::cursor_arrow;
 
       pobj->previous();
@@ -252,7 +252,7 @@ namespace bergedge
       {
       case TimerBackView:
          {
-            //gcom::backview::Interface::ImageChangePostEvent(gcom::backview::event_timer);
+            //::backview::Interface::ImageChangePostEvent(::backview::event_timer);
          }
          break;
       }
@@ -313,17 +313,17 @@ namespace bergedge
       UpdateScreen(recta, 0);
    }
 
-   void view::BackViewGetData(gcom::backview::InterfaceData & data)
+   void view::BackViewGetData(::backview::InterfaceData & data)
    {
 
-      gcom::backview::user::interaction::BackViewGetData(data);
+      ::backview::user::interaction::BackViewGetData(data);
 
    }
 
-   void view::BackViewSetData(gcom::backview::InterfaceData & data)
+   void view::BackViewSetData(::backview::InterfaceData & data)
    {
 
-      gcom::backview::user::interaction::BackViewSetData(data);
+      ::backview::user::interaction::BackViewSetData(data);
 
    }
 
@@ -469,7 +469,7 @@ namespace bergedge
          }
       }
       ::user::scroll_view::layout();
-      gcom::backview::user::interaction::layout();
+      ::backview::user::interaction::layout();
    }*/
 
    void view::_000OnMouse(::message::mouse * pmouse)

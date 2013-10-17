@@ -1,19 +1,26 @@
 #include "framework.h"
 
+
 namespace gcom
 {
 
-Rect::Rect()
-{
 
-}
+   rect::rect()
+   {
 
-Rect::~Rect()
-{
+   }
 
-}
 
+   rect::~rect()
+   {
+
+   }
 
 
 } // namespace gcom
+
+
+
+
+
 

@@ -1,23 +1,22 @@
 #include "framework.h"
 
 
-namespace gcom
+namespace backview
 {
 
-   namespace backview
+   Helper::Helper(Main & main) :
+      m_main(main)
    {
+   }
 
-      Helper::Helper(Main & main) :
-         m_main(main)
-      {
-      }
 
-      
-      Main & Helper::HelperGetMain()
-      {
-         return m_main;
-      }
+   Main & Helper::HelperGetMain()
+   {
+      return m_main;
+   }
 
-  } // namespace backview
+} // namespace backview
 
-} // namespace gcom
+
+
+

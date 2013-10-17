@@ -1,11 +1,26 @@
 #include "framework.h"
 
-_vmsgcomUtil::_vmsgcomUtil()
+
+namespace gcom
 {
 
-}
 
-_vmsgcomUtil::~_vmsgcomUtil()
-{
+   util::util()
+   {
 
-}
+   }
+
+
+   util::~util()
+   {
+
+   }
+
+
+} // namespace gcom
+
+
+
+
+
+

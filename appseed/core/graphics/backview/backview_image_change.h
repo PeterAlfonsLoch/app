@@ -1,64 +1,61 @@
 #pragma once
 
 
-namespace gcom
+namespace backview
 {
 
 
-   namespace backview
+   class CLASS_DECL_ca2 ImageChange :
+      public Helper
    {
+   public:
 
 
-      class CLASS_DECL_ca2 ImageChange :
-         public Helper
+      struct NO_PRECISION_TIMER
       {
-      public:
+
+         uint32_t                      m_dwHundredCounter;
+         uint32_t                      m_dwThousandCounter;
+
+      } m_noprecisiontimer;
 
 
-         uint32_t                      m_dwBackgroundUpdateMillis;
-         EImagePlacement            m_eplacement;
-         
-         event                      m_evImageChangeFinish;
-         uint32_t                      m_dwLoadCounter;
-         uint32_t                      m_dwBackgroundLastUpdateTime;
-         uint32_t                      m_dwBackgroundPreTransitionStartTime;
-         bool                       m_bLastLoadImageSynch;
-         string                     m_wstrCurrentImagePath;
-         uint32_t                      m_dwLoadStartTime;
+      uint32_t                         m_dwBackgroundUpdateMillis;
+      EImagePlacement                  m_eplacement;
 
-         ::draw2d::dib_sp               m_spdib;
+      event                            m_evImageChangeFinish;
+      uint32_t                         m_dwLoadCounter;
+      uint32_t                         m_dwBackgroundLastUpdateTime;
+      uint32_t                         m_dwBackgroundPreTransitionStartTime;
+      bool                             m_bLastLoadImageSynch;
+      string                           m_strCurrentImagePath;
+      uint32_t                         m_dwLoadStartTime;
 
-         struct NO_PRECISION_TIMER
-         {
-
-            uint32_t                        m_dwHundredCounter;
-            uint32_t                        m_dwThousandCounter;
-
-         } m_noprecisiontimer;
+      ::draw2d::dib_sp                 m_spdib;
 
 
-         ImageChange(Main & view);
+
+      ImageChange(Main & view);
 
 
-         void OnEventLoadNow();
+      void OnEventLoadNow();
 
-         bool LoadNextImage(bool bSynch);
-         bool LoadImageSync();
-         bool LoadImageSync(const char * lpcwszImagePath);
-         bool LoadImageAsync(const char * lpcwszImagePath);
-         bool LoadImageAsync();
+      bool LoadNextImage(bool bSynch);
+      bool LoadImageSync();
+      bool LoadImageSync(const char * lpcwszImagePath);
+      bool LoadImageAsync(const char * lpcwszImagePath);
+      bool LoadImageAsync();
 
-         uint32_t GetBackgroundUpdateMillis();
-         void SetBackgroundUpdateMillis(uint32_t dwMillis);
-
-
-      };
+      uint32_t GetBackgroundUpdateMillis();
+      void SetBackgroundUpdateMillis(uint32_t dwMillis);
 
 
-   } // namespace gcom::backview
+   };
 
 
-} // namespace gcom
+} // namespace backview
+
+
 
 
 

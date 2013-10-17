@@ -941,7 +941,10 @@
 		<Unit filename="graphics/draw2d/draw2d_region.cpp" />
 		<Unit filename="graphics/draw2d/draw2d_region.h" />
 		<Unit filename="graphics/gcom/gcom.h" />
+		<Unit filename="graphics/gcom/gcom_double3d_point.h" />
 		<Unit filename="graphics/gcom/gcom_enum.h" />
+		<Unit filename="graphics/gcom/gcom_pixel_explosion.cpp" />
+		<Unit filename="graphics/gcom/gcom_pixel_explosion.h" />
 		<Unit filename="graphics/gcom/gcom_rect.cpp" />
 		<Unit filename="graphics/gcom/gcom_rect.h" />
 		<Unit filename="graphics/gcom/gcom_space.cpp" />

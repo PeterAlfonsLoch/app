@@ -1,22 +1,33 @@
 #pragma once
 
-namespace gcom
+
+namespace backview
 {
-   namespace backview
+
+
+   class CLASS_DECL_ca2 Helper :
+      virtual public object
    {
-      class Main;
+   public:
 
-      class CLASS_DECL_ca2 Helper : 
-         virtual public object
-      {
-      private:
-         Main & m_main;
 
-      public:
-         Helper(Main & main);
-      
-         Main & HelperGetMain();
-      };
+      Main & m_main;
 
-   }
-}
+
+      Helper(Main & main);
+
+
+      Main & HelperGetMain();
+
+
+   };
+
+
+} // namespace backview
+
+
+
+
+
+
+

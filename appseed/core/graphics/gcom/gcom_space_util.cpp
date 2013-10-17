@@ -1,11 +1,32 @@
 #include "framework.h"
 
-_vmsgcomSpaceUtil::_vmsgcomSpaceUtil()
+
+namespace gcom
 {
 
-}
 
-_vmsgcomSpaceUtil::~_vmsgcomSpaceUtil()
-{
+   space_util::space_util()
+   {
 
-}
+   }
+
+   space_util::~space_util()
+   {
+
+   }
+
+
+} //  namespace gcom
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,98 +1,100 @@
 #include "framework.h"
 
+
 namespace gcom
 {
 
-   Space::Space()
+
+   space::space()
    {
 
    }
 
-   Space::~Space()
+   space::~space()
    {
 
    }
 
-   void Space::Align(LPRECT lprectAlign, LPRECT lprectSpace, EAlign ealign, double dRate)
+   void space::align(LPRECT lprectalign, LPRECT lprectspace, e_align ealign, double dRate)
    {
       int32_t cx = 0;
       int32_t cy = 0;
       switch(ealign)
       {
-      case ::gcom::AlignBottomLeft:
-         cx = lprectSpace->left - lprectAlign->left;
-         cy = lprectSpace->bottom - lprectAlign->bottom;
-      
+      case align_bottom_left:
+         cx = lprectspace->left - lprectalign->left;
+         cy = lprectspace->bottom - lprectalign->bottom;
+
          break;
-      case ::gcom::AlignLeft:
-         cx = lprectSpace->left - lprectAlign->left;
+      case align_left:
+         cx = lprectspace->left - lprectalign->left;
          break;
-      case ::gcom::AlignTop:
-         cy = lprectSpace->top - lprectAlign->top;
+      case align_top:
+         cy = lprectspace->top - lprectalign->top;
          break;
-      case ::gcom::AlignRight:
-         cx = lprectSpace->right - lprectAlign->right;
+      case align_right:
+         cx = lprectspace->right - lprectalign->right;
          break;
-      case ::gcom::AlignBottom:
-         cy = lprectSpace->bottom - lprectAlign->bottom;
+      case align_bottom:
+         cy = lprectspace->bottom - lprectalign->bottom;
          break;
-      case ::gcom::AlignTopLeft:
-         cx = lprectSpace->left - lprectAlign->left;
-         cy = lprectSpace->top - lprectAlign->top;
+      case align_top_left:
+         cx = lprectspace->left - lprectalign->left;
+         cy = lprectspace->top - lprectalign->top;
          break;
-      case ::gcom::AlignTopRight:
-         cx = lprectSpace->right - lprectAlign->right;
-         cy = lprectSpace->top - lprectAlign->top;
+      case align_top_right:
+         cx = lprectspace->right - lprectalign->right;
+         cy = lprectspace->top - lprectalign->top;
          break;
-      case ::gcom::AlignBottomRight:
-         cx = lprectSpace->right - lprectAlign->right;
-         cy = lprectSpace->bottom - lprectAlign->bottom;
+      case align_bottom_right:
+         cx = lprectspace->right - lprectalign->right;
+         cy = lprectspace->bottom - lprectalign->bottom;
          break;
          default:
             break;
       }
       cx = (int32_t) (cx * dRate);
       cy = (int32_t) (cy * dRate);
-      lprectAlign->left     += cx;
-      lprectAlign->right    += cx;
-      lprectAlign->top      += cy;
-      lprectAlign->bottom   += cy;
+      lprectalign->left     += cx;
+      lprectalign->right    += cx;
+      lprectalign->top      += cy;
+      lprectalign->bottom   += cy;
    }
 
-   void Space::Deviate(LPRECT lprectDeviate, LPRECT lprectSpace, EDirection edirection, double dRate)
+   void space::deviate(LPRECT lprectDeviate, LPRECT lprectspace, e_direction edirection, double dRate)
    {
 
-      int32_t dx = lprectSpace->right - lprectSpace->left;
-      int32_t dy = lprectSpace->bottom - lprectSpace->top;
+      int32_t dx = lprectspace->right - lprectspace->left;
+      int32_t dy = lprectspace->bottom - lprectspace->top;
       dx = (int32_t) (dx * dRate);
       dy = (int32_t) (dy * dRate);
 
       switch(edirection)
       {
-      case ::gcom::DirectionLeft:
+      case direction_left:
          dx = -dx;
          dy = 0;
          break;
-      case ::gcom::DirectionTop:
+      case direction_top:
          dx = 0;
          dy = - dy;
          break;
-      case ::gcom::DirectionRight:
+      case direction_right:
          dy = 0;
          break;
-      case ::gcom::DirectionBottom:
+      case direction_bottom:
          dx = 0;
          break;
-      case ::gcom::DirectionTopLeft:
+      case direction_top_left:
          dx = - dx;
          dy = - dy;
          break;
-      case ::gcom::DirectionTopRight:
+      case direction_top_right:
          dy = - dy;
          break;
-      case ::gcom::DirectionBottomRight:
+      case direction_bottom_right:
          break;
-      case ::gcom::DirectionBottomLeft:
+      case direction_bottom_left:
          dx = -dx;
          break;
          default:
@@ -106,56 +108,56 @@ namespace gcom
 
    }
 
-   void Space::Slice(LPRECT lprectSliced1, LPRECT lprectSlicing, EDirection edirection, double dRate, double dRateEx)
+   void space::slice(LPRECT lprectSliced1, LPRECT lprectSlicing, e_direction edirection, double dRate, double dRateEx)
    {
       int32_t cx = lprectSlicing->right - lprectSlicing->left;
       int32_t cy = lprectSlicing->bottom - lprectSlicing->top;
-   
+
       switch(edirection)
       {
-      case ::gcom::DirectionLeft:
+      case direction_left:
          lprectSliced1->left     = lprectSlicing->left + (int32_t) (cx * (1.0 - dRateEx));
          lprectSliced1->right    = lprectSlicing->left + (int32_t) (cx * (1.0 - dRate));
          lprectSliced1->top      = lprectSlicing->top;
          lprectSliced1->bottom   = lprectSlicing->bottom;
          break;
-      case ::gcom::DirectionTop:
+      case direction_top:
          lprectSliced1->left     = lprectSlicing->left;
          lprectSliced1->right    = lprectSlicing->right;
          lprectSliced1->top      = lprectSlicing->top + (int32_t) (cy * (1.0 - dRateEx));
          lprectSliced1->bottom   = lprectSlicing->top + (int32_t) (cy * (1.0 - dRate));
          break;
-      case ::gcom::DirectionRight:
+      case direction_right:
          lprectSliced1->left     = lprectSlicing->left + (int32_t) (cx * dRate);
          lprectSliced1->right    = lprectSlicing->left + (int32_t) (cx * dRateEx);
          lprectSliced1->top      = lprectSlicing->top;
          lprectSliced1->bottom   = lprectSlicing->bottom;
          break;
-      case ::gcom::DirectionBottom:
+      case direction_bottom:
          lprectSliced1->left     = lprectSlicing->left;
          lprectSliced1->right    = lprectSlicing->right;
          lprectSliced1->top      = lprectSlicing->top + (int32_t) (cy * dRate);
          lprectSliced1->bottom   = lprectSlicing->top + (int32_t) (cy * dRateEx);
          break;
-      case ::gcom::DirectionTopLeft:
+      case direction_top_left:
          lprectSliced1->left     = lprectSlicing->left + (int32_t) (cx * (1.0 - dRateEx));
          lprectSliced1->right    = lprectSlicing->left + (int32_t) (cx * (1.0 - dRate));
          lprectSliced1->top      = lprectSlicing->top + (int32_t) (cy * (1.0 - dRateEx));
          lprectSliced1->bottom   = lprectSlicing->top + (int32_t) (cy * (1.0 - dRate));
          break;
-      case ::gcom::DirectionTopRight:
+      case direction_top_right:
          lprectSliced1->left     = lprectSlicing->left + (int32_t) (cx * dRate);
          lprectSliced1->right    = lprectSlicing->left + (int32_t) (cx * dRateEx);
          lprectSliced1->top      = lprectSlicing->top + (int32_t) (cy * (1.0 - dRateEx));
          lprectSliced1->bottom   = lprectSlicing->top + (int32_t) (cy * (1.0 - dRate));
          break;
-      case ::gcom::DirectionBottomRight:
+      case direction_bottom_right:
          lprectSliced1->left     = lprectSlicing->left + (int32_t) (cx * dRate);
          lprectSliced1->right    = lprectSlicing->left + (int32_t) (cx * dRateEx);
          lprectSliced1->top      = lprectSlicing->top + (int32_t) (cy * dRate);
          lprectSliced1->bottom   = lprectSlicing->top + (int32_t) (cy * dRateEx);
          break;
-      case ::gcom::DirectionBottomLeft:
+      case direction_bottom_left:
          lprectSliced1->left     = lprectSlicing->left + (int32_t) (cx * (1.0 - dRateEx));
          lprectSliced1->right    = lprectSlicing->left + (int32_t) (cx * (1.0 - dRate));
          lprectSliced1->top      = lprectSlicing->top + (int32_t) (cy * dRate);
@@ -166,25 +168,28 @@ namespace gcom
       }
 
    }
-   void Space::Slice(LPRECT lprectSliced1, LPRECT lprectSliced2, LPRECT lprectSliced3, LPRECT lprectSlicing, EDirection edirection, double dRate, double dRateEx)
+
+
+   void space::slice(LPRECT lprectSliced1, LPRECT lprectSliced2, LPRECT lprectSliced3, LPRECT lprectSlicing, e_direction edirection, double dRate, double dRateEx)
    {
-      Slice(lprectSliced1, lprectSlicing, edirection, dRate, dRateEx);
-   
+
+      slice(lprectSliced1, lprectSlicing, edirection, dRate, dRateEx);
+
       switch(edirection)
       {
-      case ::gcom::DirectionLeft:
+      case direction_left:
          ASSERT(FALSE);
          break;
-      case ::gcom::DirectionTop:
+      case direction_top:
          ASSERT(FALSE);
          break;
-      case ::gcom::DirectionRight:
+      case direction_right:
          ASSERT(FALSE);
          break;
-      case ::gcom::DirectionBottom:
+      case direction_bottom:
          ASSERT(FALSE);
          break;
-      case ::gcom::DirectionTopLeft:
+      case direction_top_left:
          lprectSliced2->left     = lprectSliced1->right;
          lprectSliced2->right    = lprectSlicing->right;
          lprectSliced2->top      = lprectSliced1->top;
@@ -195,7 +200,7 @@ namespace gcom
          lprectSliced3->top      = lprectSliced1->bottom;
          lprectSliced3->bottom   = lprectSlicing->bottom;
          break;
-      case ::gcom::DirectionTopRight:
+      case direction_top_right:
          lprectSliced2->left     = lprectSlicing->left;
          lprectSliced2->right    = lprectSliced1->left;
          lprectSliced2->top      = lprectSliced1->top;
@@ -206,7 +211,7 @@ namespace gcom
          lprectSliced3->top      = lprectSliced1->bottom;
          lprectSliced3->bottom   = lprectSlicing->bottom;
          break;
-      case ::gcom::DirectionBottomRight:
+      case direction_bottom_right:
          lprectSliced2->left     = lprectSlicing->left;
          lprectSliced2->right    = lprectSliced1->left;
          lprectSliced2->top      = lprectSliced1->top;
@@ -217,7 +222,7 @@ namespace gcom
          lprectSliced3->top      = lprectSlicing->top;
          lprectSliced3->bottom   = lprectSliced1->top;
          break;
-      case ::gcom::DirectionBottomLeft:
+      case direction_bottom_left:
          lprectSliced2->left     = lprectSliced1->right;
          lprectSliced2->right    = lprectSlicing->right;
          lprectSliced2->top      = lprectSliced1->top;
@@ -234,15 +239,21 @@ namespace gcom
 
    }
 
-   void Space::GetCenter(LPPOINT lppoint, LPRECT lprect)
+
+   void space::get_center(LPPOINT lppoint, LPRECT lprect)
    {
+
       lppoint->x = (lprect->left + lprect->right) / 2;
       lppoint->y = (lprect->top + lprect->bottom) / 2;
+
    }
-   void Space::Scale(LPRECT lprectScaling, double dRate)
+
+
+   void space::scale(LPRECT lprectScaling, double dRate)
    {
+
       point point;
-      GetCenter(&point, lprectScaling);
+      get_center(&point, lprectScaling);
       int32_t cx = lprectScaling->right - lprectScaling->left;
       int32_t cy = lprectScaling->bottom - lprectScaling->top;
 
@@ -254,16 +265,17 @@ namespace gcom
       lprectScaling->top      = point.y - cy / 2;
       lprectScaling->bottom   = lprectScaling->top + cy;
 
-
    }
 
-   void Space::WipeIn(LPRECT lprect1, LPRECT lprect2, LPRECT lprect3, LPRECT lprect4, LPRECT lprect, double dRate, double dRateEx)
-   {
-      rect rectIn(lprect);
-      Scale(rectIn, dRate);
 
-      rect rectOut(lprect);
-      Scale(rectOut, dRateEx);
+   void space::wipe_in(LPRECT lprect1, LPRECT lprect2, LPRECT lprect3, LPRECT lprect4, LPRECT lprect, double dRate, double dRateEx)
+   {
+
+      ::rect rectIn(lprect);
+      scale(rectIn, dRate);
+
+      ::rect rectOut(lprect);
+      scale(rectOut, dRateEx);
 
       lprect1->left     = rectIn.left;
       lprect1->right    = rectOut.right;
@@ -284,6 +296,16 @@ namespace gcom
       lprect4->right    = rectIn.left;
       lprect4->top      = rectOut.top;
       lprect4->bottom   = rectIn.bottom;
+
    }
 
+
 } // namespace gcom
+
+
+
+
+
+
+
+

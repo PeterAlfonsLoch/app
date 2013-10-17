@@ -5,13 +5,14 @@ namespace gcom
 {
 
 
-   class Rect : public rect
+   class rect :
+      public ::rect
    {
    public:
 
-      Rect();
-      virtual ~Rect();
 
+      rect();
+      ~rect();
 
 
    };

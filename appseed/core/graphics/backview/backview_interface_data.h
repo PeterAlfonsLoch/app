@@ -1,30 +1,31 @@
 #pragma once
 
-namespace gcom
+
+namespace backview
 {
 
-   namespace backview
+
+   class CLASS_DECL_ca2 InterfaceData
    {
+   public:
 
-      class CLASS_DECL_ca2 InterfaceData  
-      {
-      public:
-         flags < EInterfaceData >   m_einterfacedataflags;
-         HENHMETAFILE               m_henhmetafile;
-         EImagePlacement            m_eimageplacemnt;
-         string                    m_wstrNextImagePath;
-         string                    m_wstrCurrentImagePath;
-         rect                      m_rect;
-      public:
-         void signalize(EInterfaceData edata);
-         bool is_signalized(EInterfaceData edata);
 
-      public:
-         InterfaceData();
-         virtual ~InterfaceData();
+      flags < EInterfaceData >      m_einterfacedataflags;
+      HENHMETAFILE                  m_henhmetafile;
+      EImagePlacement               m_eimageplacement;
+      string                        m_strNextImagePath;
+      string                        m_strCurrentImagePath;
+      rect                          m_rect;
 
-      };
-   } // namespace backview
 
-} // namespace gcom
+      InterfaceData();
+      virtual ~InterfaceData();
 
+
+      void signalize(EInterfaceData edata);
+      bool is_signalized(EInterfaceData edata);
+
+   };
+
+
+} // namespace backview
