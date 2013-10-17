@@ -61,26 +61,25 @@ namespace gcom
          // and the final background buffer.
          bool RenderBufferLevel2();
 
-         ::draw2d::graphics & GetTransferDC(); // m_dcBackView2
-         ::draw2d::graphics & GetFrame1DC(); // m_dcBackView2
-         ::draw2d::graphics & GetBufferDC(); // m_dcBackView2
-         ::draw2d::graphics & GetSourceDC(); // m_dcBackViewSource
-         ::draw2d::graphics & GetScreenDC(); // m_dcBackViewSource
+         ::draw2d::graphics_sp GetTransferDC(); // m_dcBackView2
+         ::draw2d::graphics_sp GetFrame1DC(); // m_dcBackView2
+         ::draw2d::graphics_sp GetBufferDC(); // m_dcBackView2
+         ::draw2d::graphics_sp GetSourceDC(); // m_dcBackViewSource
+         ::draw2d::graphics_sp GetScreenDC(); // m_dcBackViewSource
 
-         ::draw2d::dib * GetDib(int32_t iIndex);
-//         ::core::draw_dib & GetDrawDib();
+         ::draw2d::dib_sp GetDib(int32_t iIndex);
 
-         ::draw2d::bitmap & GetTransferBitmap(); // m_bmpBackView2
-         ::draw2d::bitmap & GetFrame1Bitmap(); // m_bmpBackView2
-         ::draw2d::bitmap & GetBufferBitmap(); // m_bmpBackView2
-         ::draw2d::bitmap & GetSourceBitmap(); // m_bmpBackViewSource
+         ::draw2d::bitmap_sp GetTransferBitmap(); // m_bmpBackView2
+         ::draw2d::bitmap_sp GetFrame1Bitmap(); // m_bmpBackView2
+         ::draw2d::bitmap_sp GetBufferBitmap(); // m_bmpBackView2
+         ::draw2d::bitmap_sp GetSourceBitmap(); // m_bmpBackViewSource
 
          virtual void OnCreateDib(::draw2d::dib * pdib, int32_t iIndex);
-         
 
-         ::draw2d::bitmap & GetBackBitmap(); // m_bmpBackView
-         ::draw2d::graphics & GetBackDC(); // m_dcBackView
-         
+
+         ::draw2d::bitmap_sp GetBackBitmap(); // m_bmpBackView
+         ::draw2d::graphics_sp GetBackDC(); // m_dcBackView
+
 //         // Back tools keep the current background snapshot
 //         ::draw2d::graphics_sp               m_dcBack;
 //         ::draw2d::bitmap            m_bmpBack;
@@ -109,8 +108,8 @@ namespace gcom
          void GetFinalPlacement(LPRECT lprect);
          void BackToTransfer();
          void BufferToBack();
-         
-         
+
+
       };
    } // namespace backview
 

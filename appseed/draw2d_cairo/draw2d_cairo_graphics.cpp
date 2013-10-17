@@ -2691,6 +2691,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       if(ppattern == NULL)
          return false;
 
+      if(cairo_pattern_status(ppattern) != CAIRO_STATUS_SUCCESS)
+         return false;
 
       if(m_pdc == NULL)
          return false;

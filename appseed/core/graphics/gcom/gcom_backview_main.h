@@ -1,7 +1,10 @@
 #pragma once
 
+
 namespace gcom
 {
+
+
    namespace backview
    {
       class Graphics;
@@ -26,7 +29,7 @@ namespace gcom
          ImageChange *               m_pimagechange;
          TransitionEffect *         m_ptransitioneffect;
          VisualEffect *             m_pvisualeffect;
-         
+
          thread *                   m_pthreadIdlePriority;
          thread *                    m_pthreadHighestPriority;
          bool                        m_bInitialized;
@@ -44,7 +47,7 @@ namespace gcom
          void Release();
          void Shutdown();
 
-         
+
 
          bool IsInitialized();
          void Enable(bool bEnable);
@@ -75,7 +78,7 @@ namespace gcom
          void OnDequeueMessage(WPARAM wparam, LPARAM lparam);
 
          virtual void ImageChangePostEvent(e_event eevent);
-         
+
          int32_t PulseEvent(e_event eevent);
 
 
@@ -83,11 +86,11 @@ namespace gcom
 
 
          virtual bool UpdateBuffer(LPCRECT lpcrect);
-         
-         
+
+
          virtual void OnAfterImageLoaded();
 
-         
+
          virtual bool RenderBuffer();
          virtual bool LoadNextImage(bool bSynch);
          virtual bool IsFullScreen();
@@ -97,8 +100,11 @@ namespace gcom
       };
 
 
-
-
    } // namespace backview
 
+
 } // namespace gcom
+
+
+
+
