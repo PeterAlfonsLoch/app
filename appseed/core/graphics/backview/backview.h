@@ -1,23 +1,24 @@
 #pragma once
 
 
-#include "gcom_enum.h"
+#include "backview_enum.h"
 
 
-#include "gcom_backview_enum.h"
-#include "gcom_backview_interface_data.h"
-#include "gcom_backview_main.h"
+#include "backview_interface_data.h"
+#include "backview_main.h"
+#include "backview_graphics.h"
 
 
-#include "gcom_backview_helper.h"
-#include "gcom_backview_image_change.h"
-#include "gcom_backview_transition_effect.h"
+#include "backview_helper.h"
+#include "backview_image_change.h"
+#include "backview_transition_effect.h"
 
 
-#include "gcom_backview_interface.h"
-#include "gcom_backview_user_interaction.h"
+#include "backview_interface.h"
+#include "backview_user_interaction.h"
 
 
-#include "gcom_internal.h"
+#include "backview_thread.h"
+
 
 
