@@ -500,6 +500,7 @@ public:
    virtual sp(::user::interaction) get_active_ui();
    virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);
    virtual void step_timer();
+   virtual void on_run_step();
 
 
    virtual void assert_valid() const;
@@ -510,6 +511,9 @@ public:
    virtual void DispatchThreadMessageEx(signal_details * pobj);  // helper
 
    virtual int32_t main();
+   
+   
+   
 
 
    virtual void wait();

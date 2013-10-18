@@ -837,6 +837,19 @@ void thread::step_timer()
 
 }
 
+
+void thread::on_run_step()
+{
+
+   if(m_p == NULL)
+      return;
+   
+   return m_p->on_run_step();
+   
+
+}
+
+
 int32_t thread::main()
 {
 

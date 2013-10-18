@@ -7,6 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		072AE9BC1810372200F74E98 /* backview.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9971810372200F74E98 /* backview.h */; };
+		072AE9BD1810372200F74E98 /* backview_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9981810372200F74E98 /* backview_enum.h */; };
+		072AE9BE1810372200F74E98 /* backview_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9991810372200F74E98 /* backview_graphics.cpp */; };
+		072AE9BF1810372200F74E98 /* backview_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE99A1810372200F74E98 /* backview_graphics.h */; };
+		072AE9C01810372200F74E98 /* backview_helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE99B1810372200F74E98 /* backview_helper.cpp */; };
+		072AE9C11810372200F74E98 /* backview_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE99C1810372200F74E98 /* backview_helper.h */; };
+		072AE9C21810372200F74E98 /* backview_image_change.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE99D1810372200F74E98 /* backview_image_change.cpp */; };
+		072AE9C31810372200F74E98 /* backview_image_change.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE99E1810372200F74E98 /* backview_image_change.h */; };
+		072AE9C41810372200F74E98 /* backview_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE99F1810372200F74E98 /* backview_interface.cpp */; };
+		072AE9C51810372200F74E98 /* backview_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9A01810372200F74E98 /* backview_interface.h */; };
+		072AE9C61810372200F74E98 /* backview_interface_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9A11810372200F74E98 /* backview_interface_data.cpp */; };
+		072AE9C71810372200F74E98 /* backview_interface_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9A21810372200F74E98 /* backview_interface_data.h */; };
+		072AE9C81810372200F74E98 /* backview_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9A31810372200F74E98 /* backview_main.cpp */; };
+		072AE9C91810372200F74E98 /* backview_main.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9A41810372200F74E98 /* backview_main.h */; };
+		072AE9CA1810372200F74E98 /* backview_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9A51810372200F74E98 /* backview_thread.cpp */; };
+		072AE9CB1810372200F74E98 /* backview_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9A61810372200F74E98 /* backview_thread.h */; };
+		072AE9CC1810372200F74E98 /* backview_transition_effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9A71810372200F74E98 /* backview_transition_effect.cpp */; };
+		072AE9CD1810372200F74E98 /* backview_transition_effect.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9A81810372200F74E98 /* backview_transition_effect.h */; };
+		072AE9CE1810372200F74E98 /* backview_transition_effect_tool001.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9A91810372200F74E98 /* backview_transition_effect_tool001.cpp */; };
+		072AE9CF1810372200F74E98 /* backview_user_interaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9AA1810372200F74E98 /* backview_user_interaction.cpp */; };
+		072AE9D01810372200F74E98 /* backview_user_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9AB1810372200F74E98 /* backview_user_interaction.h */; };
+		072AE9D11810372200F74E98 /* backview_visual_effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9AC1810372200F74E98 /* backview_visual_effect.cpp */; };
+		072AE9D21810372200F74E98 /* backview_visual_effect.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9AD1810372200F74E98 /* backview_visual_effect.h */; };
+		072AE9D31810372200F74E98 /* gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9AF1810372200F74E98 /* gcom.h */; };
+		072AE9D41810372200F74E98 /* gcom_double3d_point.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9B01810372200F74E98 /* gcom_double3d_point.h */; };
+		072AE9D51810372200F74E98 /* gcom_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9B11810372200F74E98 /* gcom_enum.h */; };
+		072AE9D61810372200F74E98 /* gcom_pixel_explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9B21810372200F74E98 /* gcom_pixel_explosion.cpp */; };
+		072AE9D71810372200F74E98 /* gcom_pixel_explosion.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9B31810372200F74E98 /* gcom_pixel_explosion.h */; };
+		072AE9D81810372200F74E98 /* gcom_rect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9B41810372200F74E98 /* gcom_rect.cpp */; };
+		072AE9D91810372200F74E98 /* gcom_rect.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9B51810372200F74E98 /* gcom_rect.h */; };
+		072AE9DA1810372200F74E98 /* gcom_space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9B61810372200F74E98 /* gcom_space.cpp */; };
+		072AE9DB1810372200F74E98 /* gcom_space.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9B71810372200F74E98 /* gcom_space.h */; };
+		072AE9DC1810372200F74E98 /* gcom_space_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9B81810372200F74E98 /* gcom_space_util.cpp */; };
+		072AE9DD1810372200F74E98 /* gcom_space_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9B91810372200F74E98 /* gcom_space_util.h */; };
+		072AE9DE1810372200F74E98 /* gcom_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9BA1810372200F74E98 /* gcom_util.cpp */; };
+		072AE9DF1810372200F74E98 /* gcom_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9BB1810372200F74E98 /* gcom_util.h */; };
 		07A6DBD0173C27EB009E6FB8 /* ca2_res.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D1F6173C27E6009E6FB8 /* ca2_res.h */; };
 		07A6DBD2173C27EB009E6FB8 /* 7z.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D203173C27E7009E6FB8 /* 7z.h */; };
 		07A6DBD3173C27EB009E6FB8 /* 7zCompressionMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D204173C27E7009E6FB8 /* 7zCompressionMode.h */; };
@@ -437,39 +473,6 @@
 		07A6DD82173C27EB009E6FB8 /* userfs_userfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3C7173C27E7009E6FB8 /* userfs_userfs.h */; };
 		07A6DD83173C27EB009E6FB8 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3C8173C27E7009E6FB8 /* framework.cpp */; };
 		07A6DD84173C27EB009E6FB8 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3C9173C27E7009E6FB8 /* framework.h */; };
-		07A6DD86173C27EB009E6FB8 /* gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3CD173C27E8009E6FB8 /* gcom.h */; };
-		07A6DD87173C27EB009E6FB8 /* gcom_BackView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3CE173C27E8009E6FB8 /* gcom_BackView.cpp */; };
-		07A6DD88173C27EB009E6FB8 /* gcom_BackView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3CF173C27E8009E6FB8 /* gcom_BackView.h */; };
-		07A6DD89173C27EB009E6FB8 /* gcom_backview_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3D0173C27E8009E6FB8 /* gcom_backview_interface.cpp */; };
-		07A6DD8A173C27EB009E6FB8 /* gcom_backview_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3D1173C27E8009E6FB8 /* gcom_backview_interface.h */; };
-		07A6DD8B173C27EB009E6FB8 /* gcom_backview_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3D2173C27E8009E6FB8 /* gcom_backview_thread.cpp */; };
-		07A6DD8C173C27EB009E6FB8 /* gcom_backview_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3D3173C27E8009E6FB8 /* gcom_backview_thread.h */; };
-		07A6DD8D173C27EB009E6FB8 /* gcom_backview_user_interaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3D4173C27E8009E6FB8 /* gcom_backview_user_interaction.cpp */; };
-		07A6DD8E173C27EB009E6FB8 /* gcom_backview_user_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3D5173C27E8009E6FB8 /* gcom_backview_user_interaction.h */; };
-		07A6DD8F173C27EB009E6FB8 /* gcom_BackViewEnum.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3D6173C27E8009E6FB8 /* gcom_BackViewEnum.h */; };
-		07A6DD90173C27EB009E6FB8 /* gcom_BackViewGraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3D7173C27E8009E6FB8 /* gcom_BackViewGraphics.cpp */; };
-		07A6DD91173C27EB009E6FB8 /* gcom_BackViewGraphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3D8173C27E8009E6FB8 /* gcom_BackViewGraphics.h */; };
-		07A6DD92173C27EB009E6FB8 /* gcom_BackViewHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3D9173C27E8009E6FB8 /* gcom_BackViewHelper.cpp */; };
-		07A6DD93173C27EB009E6FB8 /* gcom_BackViewHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3DA173C27E8009E6FB8 /* gcom_BackViewHelper.h */; };
-		07A6DD94173C27EB009E6FB8 /* gcom_BackViewImageChange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3DB173C27E8009E6FB8 /* gcom_BackViewImageChange.cpp */; };
-		07A6DD95173C27EB009E6FB8 /* gcom_BackViewImageChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3DC173C27E8009E6FB8 /* gcom_BackViewImageChange.h */; };
-		07A6DD96173C27EB009E6FB8 /* gcom_BackViewInterfaceData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3DD173C27E8009E6FB8 /* gcom_BackViewInterfaceData.cpp */; };
-		07A6DD97173C27EB009E6FB8 /* gcom_BackViewInterfaceData.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3DE173C27E8009E6FB8 /* gcom_BackViewInterfaceData.h */; };
-		07A6DD98173C27EB009E6FB8 /* gcom_BackViewTransitionEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3DF173C27E8009E6FB8 /* gcom_BackViewTransitionEffect.cpp */; };
-		07A6DD99173C27EB009E6FB8 /* gcom_BackViewTransitionEffect.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3E0173C27E8009E6FB8 /* gcom_BackViewTransitionEffect.h */; };
-		07A6DD9A173C27EB009E6FB8 /* gcom_BackViewTransitionEffectTool001.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3E1173C27E8009E6FB8 /* gcom_BackViewTransitionEffectTool001.cpp */; };
-		07A6DD9B173C27EB009E6FB8 /* gcom_BackViewVisualEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3E2173C27E8009E6FB8 /* gcom_BackViewVisualEffect.cpp */; };
-		07A6DD9C173C27EB009E6FB8 /* gcom_BackViewVisualEffect.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3E3173C27E8009E6FB8 /* gcom_BackViewVisualEffect.h */; };
-		07A6DD9D173C27EB009E6FB8 /* gcom_Enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3E4173C27E8009E6FB8 /* gcom_Enum.h */; };
-		07A6DD9E173C27EB009E6FB8 /* gcom_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3E5173C27E8009E6FB8 /* gcom_internal.h */; };
-		07A6DD9F173C27EB009E6FB8 /* gcom_Rect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3E6173C27E8009E6FB8 /* gcom_Rect.cpp */; };
-		07A6DDA0173C27EB009E6FB8 /* gcom_Rect.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3E7173C27E8009E6FB8 /* gcom_Rect.h */; };
-		07A6DDA1173C27EB009E6FB8 /* gcom_Space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3E8173C27E8009E6FB8 /* gcom_Space.cpp */; };
-		07A6DDA2173C27EB009E6FB8 /* gcom_Space.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3E9173C27E8009E6FB8 /* gcom_Space.h */; };
-		07A6DDA3173C27EB009E6FB8 /* gcom_SpaceUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3EA173C27E8009E6FB8 /* gcom_SpaceUtil.cpp */; };
-		07A6DDA4173C27EB009E6FB8 /* gcom_SpaceUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3EB173C27E8009E6FB8 /* gcom_SpaceUtil.h */; };
-		07A6DDA5173C27EB009E6FB8 /* gcom_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3EC173C27E8009E6FB8 /* gcom_Util.cpp */; };
-		07A6DDA6173C27EB009E6FB8 /* gcom_Util.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3ED173C27E8009E6FB8 /* gcom_Util.h */; };
 		07A6DDA7173C27EB009E6FB8 /* html.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3EF173C27E8009E6FB8 /* html.h */; };
 		07A6DDA8173C27EB009E6FB8 /* html2.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3F0173C27E8009E6FB8 /* html2.h */; };
 		07A6DDA9173C27EB009E6FB8 /* html_attribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3F1173C27E8009E6FB8 /* html_attribute.cpp */; };
@@ -1769,6 +1772,42 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		072AE9971810372200F74E98 /* backview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backview.h; sourceTree = "<group>"; };
+		072AE9981810372200F74E98 /* backview_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backview_enum.h; sourceTree = "<group>"; };
+		072AE9991810372200F74E98 /* backview_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = backview_graphics.cpp; sourceTree = "<group>"; };
+		072AE99A1810372200F74E98 /* backview_graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backview_graphics.h; sourceTree = "<group>"; };
+		072AE99B1810372200F74E98 /* backview_helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = backview_helper.cpp; sourceTree = "<group>"; };
+		072AE99C1810372200F74E98 /* backview_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backview_helper.h; sourceTree = "<group>"; };
+		072AE99D1810372200F74E98 /* backview_image_change.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = backview_image_change.cpp; sourceTree = "<group>"; };
+		072AE99E1810372200F74E98 /* backview_image_change.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backview_image_change.h; sourceTree = "<group>"; };
+		072AE99F1810372200F74E98 /* backview_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = backview_interface.cpp; sourceTree = "<group>"; };
+		072AE9A01810372200F74E98 /* backview_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backview_interface.h; sourceTree = "<group>"; };
+		072AE9A11810372200F74E98 /* backview_interface_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = backview_interface_data.cpp; sourceTree = "<group>"; };
+		072AE9A21810372200F74E98 /* backview_interface_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backview_interface_data.h; sourceTree = "<group>"; };
+		072AE9A31810372200F74E98 /* backview_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = backview_main.cpp; sourceTree = "<group>"; };
+		072AE9A41810372200F74E98 /* backview_main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backview_main.h; sourceTree = "<group>"; };
+		072AE9A51810372200F74E98 /* backview_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = backview_thread.cpp; sourceTree = "<group>"; };
+		072AE9A61810372200F74E98 /* backview_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backview_thread.h; sourceTree = "<group>"; };
+		072AE9A71810372200F74E98 /* backview_transition_effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = backview_transition_effect.cpp; sourceTree = "<group>"; };
+		072AE9A81810372200F74E98 /* backview_transition_effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backview_transition_effect.h; sourceTree = "<group>"; };
+		072AE9A91810372200F74E98 /* backview_transition_effect_tool001.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = backview_transition_effect_tool001.cpp; sourceTree = "<group>"; };
+		072AE9AA1810372200F74E98 /* backview_user_interaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = backview_user_interaction.cpp; sourceTree = "<group>"; };
+		072AE9AB1810372200F74E98 /* backview_user_interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backview_user_interaction.h; sourceTree = "<group>"; };
+		072AE9AC1810372200F74E98 /* backview_visual_effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = backview_visual_effect.cpp; sourceTree = "<group>"; };
+		072AE9AD1810372200F74E98 /* backview_visual_effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backview_visual_effect.h; sourceTree = "<group>"; };
+		072AE9AF1810372200F74E98 /* gcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom.h; sourceTree = "<group>"; };
+		072AE9B01810372200F74E98 /* gcom_double3d_point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_double3d_point.h; sourceTree = "<group>"; };
+		072AE9B11810372200F74E98 /* gcom_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_enum.h; sourceTree = "<group>"; };
+		072AE9B21810372200F74E98 /* gcom_pixel_explosion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_pixel_explosion.cpp; sourceTree = "<group>"; };
+		072AE9B31810372200F74E98 /* gcom_pixel_explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_pixel_explosion.h; sourceTree = "<group>"; };
+		072AE9B41810372200F74E98 /* gcom_rect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_rect.cpp; sourceTree = "<group>"; };
+		072AE9B51810372200F74E98 /* gcom_rect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_rect.h; sourceTree = "<group>"; };
+		072AE9B61810372200F74E98 /* gcom_space.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_space.cpp; sourceTree = "<group>"; };
+		072AE9B71810372200F74E98 /* gcom_space.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_space.h; sourceTree = "<group>"; };
+		072AE9B81810372200F74E98 /* gcom_space_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_space_util.cpp; sourceTree = "<group>"; };
+		072AE9B91810372200F74E98 /* gcom_space_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_space_util.h; sourceTree = "<group>"; };
+		072AE9BA1810372200F74E98 /* gcom_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_util.cpp; sourceTree = "<group>"; };
+		072AE9BB1810372200F74E98 /* gcom_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_util.h; sourceTree = "<group>"; };
 		07A6D1F6173C27E6009E6FB8 /* ca2_res.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca2_res.h; sourceTree = "<group>"; };
 		07A6D203173C27E7009E6FB8 /* 7z.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 7z.h; sourceTree = "<group>"; };
 		07A6D204173C27E7009E6FB8 /* 7zCompressionMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 7zCompressionMode.h; sourceTree = "<group>"; };
@@ -2204,39 +2243,6 @@
 		07A6D3C7173C27E7009E6FB8 /* userfs_userfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_userfs.h; sourceTree = "<group>"; };
 		07A6D3C8173C27E7009E6FB8 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		07A6D3C9173C27E7009E6FB8 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		07A6D3CD173C27E8009E6FB8 /* gcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom.h; sourceTree = "<group>"; };
-		07A6D3CE173C27E8009E6FB8 /* gcom_BackView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_BackView.cpp; sourceTree = "<group>"; };
-		07A6D3CF173C27E8009E6FB8 /* gcom_BackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_BackView.h; sourceTree = "<group>"; };
-		07A6D3D0173C27E8009E6FB8 /* gcom_backview_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_backview_interface.cpp; sourceTree = "<group>"; };
-		07A6D3D1173C27E8009E6FB8 /* gcom_backview_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_backview_interface.h; sourceTree = "<group>"; };
-		07A6D3D2173C27E8009E6FB8 /* gcom_backview_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_backview_thread.cpp; sourceTree = "<group>"; };
-		07A6D3D3173C27E8009E6FB8 /* gcom_backview_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_backview_thread.h; sourceTree = "<group>"; };
-		07A6D3D4173C27E8009E6FB8 /* gcom_backview_user_interaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_backview_user_interaction.cpp; sourceTree = "<group>"; };
-		07A6D3D5173C27E8009E6FB8 /* gcom_backview_user_interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_backview_user_interaction.h; sourceTree = "<group>"; };
-		07A6D3D6173C27E8009E6FB8 /* gcom_BackViewEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_BackViewEnum.h; sourceTree = "<group>"; };
-		07A6D3D7173C27E8009E6FB8 /* gcom_BackViewGraphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_BackViewGraphics.cpp; sourceTree = "<group>"; };
-		07A6D3D8173C27E8009E6FB8 /* gcom_BackViewGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_BackViewGraphics.h; sourceTree = "<group>"; };
-		07A6D3D9173C27E8009E6FB8 /* gcom_BackViewHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_BackViewHelper.cpp; sourceTree = "<group>"; };
-		07A6D3DA173C27E8009E6FB8 /* gcom_BackViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_BackViewHelper.h; sourceTree = "<group>"; };
-		07A6D3DB173C27E8009E6FB8 /* gcom_BackViewImageChange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_BackViewImageChange.cpp; sourceTree = "<group>"; };
-		07A6D3DC173C27E8009E6FB8 /* gcom_BackViewImageChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_BackViewImageChange.h; sourceTree = "<group>"; };
-		07A6D3DD173C27E8009E6FB8 /* gcom_BackViewInterfaceData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_BackViewInterfaceData.cpp; sourceTree = "<group>"; };
-		07A6D3DE173C27E8009E6FB8 /* gcom_BackViewInterfaceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_BackViewInterfaceData.h; sourceTree = "<group>"; };
-		07A6D3DF173C27E8009E6FB8 /* gcom_BackViewTransitionEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_BackViewTransitionEffect.cpp; sourceTree = "<group>"; };
-		07A6D3E0173C27E8009E6FB8 /* gcom_BackViewTransitionEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_BackViewTransitionEffect.h; sourceTree = "<group>"; };
-		07A6D3E1173C27E8009E6FB8 /* gcom_BackViewTransitionEffectTool001.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_BackViewTransitionEffectTool001.cpp; sourceTree = "<group>"; };
-		07A6D3E2173C27E8009E6FB8 /* gcom_BackViewVisualEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_BackViewVisualEffect.cpp; sourceTree = "<group>"; };
-		07A6D3E3173C27E8009E6FB8 /* gcom_BackViewVisualEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_BackViewVisualEffect.h; sourceTree = "<group>"; };
-		07A6D3E4173C27E8009E6FB8 /* gcom_Enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_Enum.h; sourceTree = "<group>"; };
-		07A6D3E5173C27E8009E6FB8 /* gcom_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_internal.h; sourceTree = "<group>"; };
-		07A6D3E6173C27E8009E6FB8 /* gcom_Rect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_Rect.cpp; sourceTree = "<group>"; };
-		07A6D3E7173C27E8009E6FB8 /* gcom_Rect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_Rect.h; sourceTree = "<group>"; };
-		07A6D3E8173C27E8009E6FB8 /* gcom_Space.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_Space.cpp; sourceTree = "<group>"; };
-		07A6D3E9173C27E8009E6FB8 /* gcom_Space.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_Space.h; sourceTree = "<group>"; };
-		07A6D3EA173C27E8009E6FB8 /* gcom_SpaceUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_SpaceUtil.cpp; sourceTree = "<group>"; };
-		07A6D3EB173C27E8009E6FB8 /* gcom_SpaceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_SpaceUtil.h; sourceTree = "<group>"; };
-		07A6D3EC173C27E8009E6FB8 /* gcom_Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_Util.cpp; sourceTree = "<group>"; };
-		07A6D3ED173C27E8009E6FB8 /* gcom_Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_Util.h; sourceTree = "<group>"; };
 		07A6D3EF173C27E8009E6FB8 /* html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html.h; sourceTree = "<group>"; };
 		07A6D3F0173C27E8009E6FB8 /* html2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html2.h; sourceTree = "<group>"; };
 		07A6D3F1173C27E8009E6FB8 /* html_attribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = html_attribute.cpp; sourceTree = "<group>"; };
@@ -3560,6 +3566,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		072AE9961810372200F74E98 /* backview */ = {
+			isa = PBXGroup;
+			children = (
+				072AE9971810372200F74E98 /* backview.h */,
+				072AE9981810372200F74E98 /* backview_enum.h */,
+				072AE9991810372200F74E98 /* backview_graphics.cpp */,
+				072AE99A1810372200F74E98 /* backview_graphics.h */,
+				072AE99B1810372200F74E98 /* backview_helper.cpp */,
+				072AE99C1810372200F74E98 /* backview_helper.h */,
+				072AE99D1810372200F74E98 /* backview_image_change.cpp */,
+				072AE99E1810372200F74E98 /* backview_image_change.h */,
+				072AE99F1810372200F74E98 /* backview_interface.cpp */,
+				072AE9A01810372200F74E98 /* backview_interface.h */,
+				072AE9A11810372200F74E98 /* backview_interface_data.cpp */,
+				072AE9A21810372200F74E98 /* backview_interface_data.h */,
+				072AE9A31810372200F74E98 /* backview_main.cpp */,
+				072AE9A41810372200F74E98 /* backview_main.h */,
+				072AE9A51810372200F74E98 /* backview_thread.cpp */,
+				072AE9A61810372200F74E98 /* backview_thread.h */,
+				072AE9A71810372200F74E98 /* backview_transition_effect.cpp */,
+				072AE9A81810372200F74E98 /* backview_transition_effect.h */,
+				072AE9A91810372200F74E98 /* backview_transition_effect_tool001.cpp */,
+				072AE9AA1810372200F74E98 /* backview_user_interaction.cpp */,
+				072AE9AB1810372200F74E98 /* backview_user_interaction.h */,
+				072AE9AC1810372200F74E98 /* backview_visual_effect.cpp */,
+				072AE9AD1810372200F74E98 /* backview_visual_effect.h */,
+			);
+			path = backview;
+			sourceTree = "<group>";
+		};
+		072AE9AE1810372200F74E98 /* gcom */ = {
+			isa = PBXGroup;
+			children = (
+				072AE9AF1810372200F74E98 /* gcom.h */,
+				072AE9B01810372200F74E98 /* gcom_double3d_point.h */,
+				072AE9B11810372200F74E98 /* gcom_enum.h */,
+				072AE9B21810372200F74E98 /* gcom_pixel_explosion.cpp */,
+				072AE9B31810372200F74E98 /* gcom_pixel_explosion.h */,
+				072AE9B41810372200F74E98 /* gcom_rect.cpp */,
+				072AE9B51810372200F74E98 /* gcom_rect.h */,
+				072AE9B61810372200F74E98 /* gcom_space.cpp */,
+				072AE9B71810372200F74E98 /* gcom_space.h */,
+				072AE9B81810372200F74E98 /* gcom_space_util.cpp */,
+				072AE9B91810372200F74E98 /* gcom_space_util.h */,
+				072AE9BA1810372200F74E98 /* gcom_util.cpp */,
+				072AE9BB1810372200F74E98 /* gcom_util.h */,
+			);
+			path = gcom;
+			sourceTree = "<group>";
+		};
 		07A6D201173C27E7009E6FB8 /* compress */ = {
 			isa = PBXGroup;
 			children = (
@@ -4135,53 +4191,14 @@
 		07A6D3CA173C27E8009E6FB8 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				072AE9961810372200F74E98 /* backview */,
 				9A81FC2917B99D7B009E0FB3 /* draw2d */,
-				07A6D3CB173C27E8009E6FB8 /* gcom */,
+				072AE9AE1810372200F74E98 /* gcom */,
 				07A6D3EE173C27E8009E6FB8 /* html */,
 				07A6D432173C27E8009E6FB8 /* optca_fastblur.cpp */,
 				07A6D433173C27E8009E6FB8 /* visual */,
 			);
 			path = graphics;
-			sourceTree = "<group>";
-		};
-		07A6D3CB173C27E8009E6FB8 /* gcom */ = {
-			isa = PBXGroup;
-			children = (
-				07A6D3CD173C27E8009E6FB8 /* gcom.h */,
-				07A6D3CE173C27E8009E6FB8 /* gcom_BackView.cpp */,
-				07A6D3CF173C27E8009E6FB8 /* gcom_BackView.h */,
-				07A6D3D0173C27E8009E6FB8 /* gcom_backview_interface.cpp */,
-				07A6D3D1173C27E8009E6FB8 /* gcom_backview_interface.h */,
-				07A6D3D2173C27E8009E6FB8 /* gcom_backview_thread.cpp */,
-				07A6D3D3173C27E8009E6FB8 /* gcom_backview_thread.h */,
-				07A6D3D4173C27E8009E6FB8 /* gcom_backview_user_interaction.cpp */,
-				07A6D3D5173C27E8009E6FB8 /* gcom_backview_user_interaction.h */,
-				07A6D3D6173C27E8009E6FB8 /* gcom_BackViewEnum.h */,
-				07A6D3D7173C27E8009E6FB8 /* gcom_BackViewGraphics.cpp */,
-				07A6D3D8173C27E8009E6FB8 /* gcom_BackViewGraphics.h */,
-				07A6D3D9173C27E8009E6FB8 /* gcom_BackViewHelper.cpp */,
-				07A6D3DA173C27E8009E6FB8 /* gcom_BackViewHelper.h */,
-				07A6D3DB173C27E8009E6FB8 /* gcom_BackViewImageChange.cpp */,
-				07A6D3DC173C27E8009E6FB8 /* gcom_BackViewImageChange.h */,
-				07A6D3DD173C27E8009E6FB8 /* gcom_BackViewInterfaceData.cpp */,
-				07A6D3DE173C27E8009E6FB8 /* gcom_BackViewInterfaceData.h */,
-				07A6D3DF173C27E8009E6FB8 /* gcom_BackViewTransitionEffect.cpp */,
-				07A6D3E0173C27E8009E6FB8 /* gcom_BackViewTransitionEffect.h */,
-				07A6D3E1173C27E8009E6FB8 /* gcom_BackViewTransitionEffectTool001.cpp */,
-				07A6D3E2173C27E8009E6FB8 /* gcom_BackViewVisualEffect.cpp */,
-				07A6D3E3173C27E8009E6FB8 /* gcom_BackViewVisualEffect.h */,
-				07A6D3E4173C27E8009E6FB8 /* gcom_Enum.h */,
-				07A6D3E5173C27E8009E6FB8 /* gcom_internal.h */,
-				07A6D3E6173C27E8009E6FB8 /* gcom_Rect.cpp */,
-				07A6D3E7173C27E8009E6FB8 /* gcom_Rect.h */,
-				07A6D3E8173C27E8009E6FB8 /* gcom_Space.cpp */,
-				07A6D3E9173C27E8009E6FB8 /* gcom_Space.h */,
-				07A6D3EA173C27E8009E6FB8 /* gcom_SpaceUtil.cpp */,
-				07A6D3EB173C27E8009E6FB8 /* gcom_SpaceUtil.h */,
-				07A6D3EC173C27E8009E6FB8 /* gcom_Util.cpp */,
-				07A6D3ED173C27E8009E6FB8 /* gcom_Util.h */,
-			);
-			path = gcom;
 			sourceTree = "<group>";
 		};
 		07A6D3EE173C27E8009E6FB8 /* html */ = {
@@ -5992,6 +6009,7 @@
 				07A6DBD2173C27EB009E6FB8 /* 7z.h in Headers */,
 				07A6DBD3173C27EB009E6FB8 /* 7zCompressionMode.h in Headers */,
 				07A6DBD5173C27EB009E6FB8 /* 7zDecode.h in Headers */,
+				072AE9C71810372200F74E98 /* backview_interface_data.h in Headers */,
 				07A6DBD7173C27EB009E6FB8 /* 7zEncode.h in Headers */,
 				07A6DBDA173C27EB009E6FB8 /* 7zFolderInStream.h in Headers */,
 				07A6DBDC173C27EB009E6FB8 /* 7zFolderOutStream.h in Headers */,
@@ -6021,6 +6039,7 @@
 				07A6DBFD173C27EB009E6FB8 /* compress_gzip_helper.h in Headers */,
 				07A6DBFE173C27EB009E6FB8 /* compress_huffman_decoder.h in Headers */,
 				9A01C98117FCA77000DC8E64 /* sockets_tls_socket.h in Headers */,
+				072AE9D41810372200F74E98 /* gcom_double3d_point.h in Headers */,
 				07A6DBFF173C27EB009E6FB8 /* compress_input_stream_with_crc.h in Headers */,
 				07A6DC00173C27EB009E6FB8 /* compress_int_to_string.h in Headers */,
 				07A6DC01173C27EB009E6FB8 /* compress_item_name.h in Headers */,
@@ -6051,6 +6070,7 @@
 				07A6DC18173C27EB009E6FB8 /* compress_coder2_interface.h in Headers */,
 				07A6DC19173C27EB009E6FB8 /* compress_coder_interface.h in Headers */,
 				07A6DC1A173C27EB009E6FB8 /* compress_filter_interface.h in Headers */,
+				072AE9DD1810372200F74E98 /* gcom_space_util.h in Headers */,
 				9A01C9CF17FCA77000DC8E64 /* sockets_http_client_socket.h in Headers */,
 				07A6DC1B173C27EB009E6FB8 /* compress_get_input_stream_processed_size_interface.h in Headers */,
 				07A6DC1C173C27EB009E6FB8 /* compress_get_sub_stream_size_interface.h in Headers */,
@@ -6093,6 +6113,7 @@
 				9A01C98717FCA77000DC8E64 /* sip_base_client_socket.h in Headers */,
 				07A6DC5B173C27EB009E6FB8 /* crypto_aes_cbc_coder.h in Headers */,
 				07A6DC5C173C27EB009E6FB8 /* crypto_get_text_password2_interface.h in Headers */,
+				072AE9DB1810372200F74E98 /* gcom_space.h in Headers */,
 				07A6DC5D173C27EB009E6FB8 /* crypto_get_text_password_interface.h in Headers */,
 				07A6DC5E173C27EB009E6FB8 /* crypto_properties_interface.h in Headers */,
 				07A6DC60173C27EB009E6FB8 /* crypto_rar20.h in Headers */,
@@ -6130,6 +6151,7 @@
 				07A6DC94173C27EB009E6FB8 /* database_database.h in Headers */,
 				07A6DC96173C27EB009E6FB8 /* database_definition.h in Headers */,
 				07A6DC99173C27EB009E6FB8 /* database_field_definition.h in Headers */,
+				072AE9BD1810372200F74E98 /* backview_enum.h in Headers */,
 				07A6DC9B173C27EB009E6FB8 /* database_id.h in Headers */,
 				07A6DC9D173C27EB009E6FB8 /* database_key.h in Headers */,
 				07A6DC9F173C27EB009E6FB8 /* database_selection.h in Headers */,
@@ -6137,6 +6159,7 @@
 				07A6DCA3173C27EB009E6FB8 /* database_server.h in Headers */,
 				07A6DCA5173C27EB009E6FB8 /* database_set.h in Headers */,
 				07A6DCA7173C27EB009E6FB8 /* database_stringhelper.h in Headers */,
+				072AE9D91810372200F74E98 /* gcom_rect.h in Headers */,
 				07A6DCA8173C27EB009E6FB8 /* database_template.h in Headers */,
 				07A6DCAA173C27EB009E6FB8 /* database_update_hint.h in Headers */,
 				07A6DCAC173C27EB009E6FB8 /* database_user_interaction.h in Headers */,
@@ -6158,6 +6181,7 @@
 				07A6DCC6173C27EB009E6FB8 /* simpledb_manager.h in Headers */,
 				07A6DCC9173C27EB009E6FB8 /* simpledb_record.h in Headers */,
 				07A6DCCC173C27EB009E6FB8 /* simpledb_server.h in Headers */,
+				072AE9D71810372200F74E98 /* gcom_pixel_explosion.h in Headers */,
 				07A6DCCE173C27EB009E6FB8 /* simpledb_service.h in Headers */,
 				07A6DCD0173C27EB009E6FB8 /* simpledb_session.h in Headers */,
 				07A6DCD2173C27EB009E6FB8 /* simpledb_set.h in Headers */,
@@ -6167,6 +6191,7 @@
 				07A6DCDE173C27EB009E6FB8 /* simpledb_table.h in Headers */,
 				07A6DCE0173C27EB009E6FB8 /* sqlite_base.h in Headers */,
 				07A6DCE1173C27EB009E6FB8 /* sqlite_set.h in Headers */,
+				072AE9CD1810372200F74E98 /* backview_transition_effect.h in Headers */,
 				07A6DCE2173C27EB009E6FB8 /* veiev_post.h in Headers */,
 				9A01C9B117FCA77000DC8E64 /* http_base_socket.h in Headers */,
 				07A6DCE3173C27EB009E6FB8 /* sqlite.h in Headers */,
@@ -6233,6 +6258,7 @@
 				07A6DD54173C27EB009E6FB8 /* SimplePreviewInterface.h in Headers */,
 				07A6DD55173C27EB009E6FB8 /* fs.h in Headers */,
 				07A6DD57173C27EB009E6FB8 /* fs_data.h in Headers */,
+				072AE9D31810372200F74E98 /* gcom.h in Headers */,
 				07A6DD59173C27EB009E6FB8 /* fs_fs.h in Headers */,
 				07A6DD5B173C27EB009E6FB8 /* fs_ifs.h in Headers */,
 				07A6DD5D173C27EB009E6FB8 /* fs_ifs_file.h in Headers */,
@@ -6257,25 +6283,7 @@
 				07A6DD80173C27EB009E6FB8 /* userfs_tree_item_data.h in Headers */,
 				07A6DD82173C27EB009E6FB8 /* userfs_userfs.h in Headers */,
 				07A6DD84173C27EB009E6FB8 /* framework.h in Headers */,
-				07A6DD86173C27EB009E6FB8 /* gcom.h in Headers */,
-				07A6DD88173C27EB009E6FB8 /* gcom_BackView.h in Headers */,
-				07A6DD8A173C27EB009E6FB8 /* gcom_backview_interface.h in Headers */,
-				07A6DD8C173C27EB009E6FB8 /* gcom_backview_thread.h in Headers */,
-				07A6DD8E173C27EB009E6FB8 /* gcom_backview_user_interaction.h in Headers */,
-				07A6DD8F173C27EB009E6FB8 /* gcom_BackViewEnum.h in Headers */,
-				07A6DD91173C27EB009E6FB8 /* gcom_BackViewGraphics.h in Headers */,
-				07A6DD93173C27EB009E6FB8 /* gcom_BackViewHelper.h in Headers */,
-				07A6DD95173C27EB009E6FB8 /* gcom_BackViewImageChange.h in Headers */,
-				07A6DD97173C27EB009E6FB8 /* gcom_BackViewInterfaceData.h in Headers */,
-				07A6DD99173C27EB009E6FB8 /* gcom_BackViewTransitionEffect.h in Headers */,
-				07A6DD9C173C27EB009E6FB8 /* gcom_BackViewVisualEffect.h in Headers */,
-				07A6DD9D173C27EB009E6FB8 /* gcom_Enum.h in Headers */,
-				07A6DD9E173C27EB009E6FB8 /* gcom_internal.h in Headers */,
 				9A01C8CD17FCA62C00DC8E64 /* core_message_queue_listener.h in Headers */,
-				07A6DDA0173C27EB009E6FB8 /* gcom_Rect.h in Headers */,
-				07A6DDA2173C27EB009E6FB8 /* gcom_Space.h in Headers */,
-				07A6DDA4173C27EB009E6FB8 /* gcom_SpaceUtil.h in Headers */,
-				07A6DDA6173C27EB009E6FB8 /* gcom_Util.h in Headers */,
 				07A6DDA7173C27EB009E6FB8 /* html.h in Headers */,
 				07A6DDA8173C27EB009E6FB8 /* html2.h in Headers */,
 				07A6DDAA173C27EB009E6FB8 /* html_attribute.h in Headers */,
@@ -6326,6 +6334,7 @@
 				9A01C98817FCA77000DC8E64 /* sip_callback.h in Headers */,
 				07A6DDF6173C27EB009E6FB8 /* visual_fastblur.h in Headers */,
 				07A6DDF8173C27EB009E6FB8 /* visual_font.h in Headers */,
+				072AE9DF1810372200F74E98 /* gcom_util.h in Headers */,
 				07A6DDFA173C27EB009E6FB8 /* visual_font_central.h in Headers */,
 				9A01C98317FCA77000DC8E64 /* sockets_udp_socket.h in Headers */,
 				07A6DDFC173C27EB009E6FB8 /* visual_FreeImageFileProc.h in Headers */,
@@ -6465,6 +6474,7 @@
 				07A6E02F173C27EC009E6FB8 /* colorertake5_file_writer.h in Headers */,
 				07A6E030173C27EC009E6FB8 /* colorertake5_hrc_parser.h in Headers */,
 				07A6E032173C27EC009E6FB8 /* colorertake5_hrc_parser_helpers.h in Headers */,
+				072AE9C11810372200F74E98 /* backview_helper.h in Headers */,
 				07A6E034173C27EC009E6FB8 /* colorertake5_hrc_parser_impl.h in Headers */,
 				07A6E035173C27EC009E6FB8 /* colorertake5_line_region.h in Headers */,
 				07A6E037173C27EC009E6FB8 /* colorertake5_line_regions_compact_support.h in Headers */,
@@ -6590,6 +6600,7 @@
 				07A6E0FC173C27EC009E6FB8 /* user_document_manager.h in Headers */,
 				07A6E0FE173C27EC009E6FB8 /* user_document_request_interface.h in Headers */,
 				07A6E100173C27EC009E6FB8 /* user_document_template.h in Headers */,
+				072AE9BF1810372200F74E98 /* backview_graphics.h in Headers */,
 				07A6E101173C27EC009E6FB8 /* user_document_template_interface.h in Headers */,
 				07A6E104173C27EC009E6FB8 /* user_draw_context.h in Headers */,
 				07A6E106173C27EC009E6FB8 /* user_draw_interface.h in Headers */,
@@ -6631,6 +6642,7 @@
 				07A6E147173C27EC009E6FB8 /* user_network_configuration.h in Headers */,
 				07A6E149173C27EC009E6FB8 /* user_notification_area.h in Headers */,
 				07A6E14B173C27EC009E6FB8 /* user_notify_icon.h in Headers */,
+				072AE9C31810372200F74E98 /* backview_image_change.h in Headers */,
 				07A6E14D173C27EC009E6FB8 /* user_notify_icon_listener.h in Headers */,
 				07A6E14F173C27EC009E6FB8 /* user_place_holder.h in Headers */,
 				07A6E151173C27EC009E6FB8 /* user_place_holder_container.h in Headers */,
@@ -6666,6 +6678,7 @@
 				07A6E18B173C27EC009E6FB8 /* user_user.h in Headers */,
 				07A6E18E173C27EC009E6FB8 /* user_view.h in Headers */,
 				07A6E190173C27EC009E6FB8 /* user_view_container.h in Headers */,
+				072AE9D01810372200F74E98 /* backview_user_interaction.h in Headers */,
 				07A6E192173C27EC009E6FB8 /* user_view_creator.h in Headers */,
 				07A6E195173C27EC009E6FB8 /* user_virtual_user_interface.h in Headers */,
 				07A6E197173C27EC009E6FB8 /* user_wait_message_dialog.h in Headers */,
@@ -6707,6 +6720,7 @@
 				07A6E1D4173C27EC009E6FB8 /* userhtml_child_frame.h in Headers */,
 				07A6E1D6173C27EC009E6FB8 /* userhtml_document.h in Headers */,
 				07A6E1D8173C27EC009E6FB8 /* userhtml_form.h in Headers */,
+				072AE9C51810372200F74E98 /* backview_interface.h in Headers */,
 				9A01C9E317FCA77000DC8E64 /* sockets_link_out_socket.h in Headers */,
 				07A6E1DA173C27EC009E6FB8 /* userhtml_form_view.h in Headers */,
 				07A6E1DC173C27EC009E6FB8 /* userhtml_frame.h in Headers */,
@@ -6732,6 +6746,7 @@
 				9A81FC4D17B99D7B009E0FB3 /* draw2d_object.h in Headers */,
 				9A81FC4F17B99D7B009E0FB3 /* draw2d_palette.h in Headers */,
 				9A81FC5117B99D7B009E0FB3 /* draw2d_path.h in Headers */,
+				072AE9BC1810372200F74E98 /* backview.h in Headers */,
 				9A81FC5317B99D7B009E0FB3 /* draw2d_pen.h in Headers */,
 				9A81FC5517B99D7B009E0FB3 /* draw2d_region.h in Headers */,
 				9AE72A4F17E85ECE003E47F9 /* api.h in Headers */,
@@ -6798,6 +6813,7 @@
 				9AE72AB517E85ECE003E47F9 /* core_process_departament.h in Headers */,
 				9AE72AB817E85ECE003E47F9 /* core_profiler.h in Headers */,
 				9AE72AB917E85ECE003E47F9 /* core_progress_interface.h in Headers */,
+				072AE9D51810372200F74E98 /* gcom_enum.h in Headers */,
 				9AE72ABA17E85ECE003E47F9 /* core_raw_pointer.h in Headers */,
 				9AE72ABB17E85ECE003E47F9 /* core_reference.h in Headers */,
 				9AE72ABD17E85ECE003E47F9 /* core_resource.h in Headers */,
@@ -6857,6 +6873,7 @@
 				9AE72B1E17E85ECE003E47F9 /* data_simple_tree_item_data.h in Headers */,
 				9AE72B2017E85ECE003E47F9 /* data_tree.h in Headers */,
 				9AE72B2217E85ECE003E47F9 /* data_tree_data.h in Headers */,
+				072AE9D21810372200F74E98 /* backview_visual_effect.h in Headers */,
 				9AE72B2417E85ECE003E47F9 /* data_tree_item.h in Headers */,
 				9AE72B2617E85ECE003E47F9 /* data_tree_item_data.h in Headers */,
 				9AE72B2817E85ECE003E47F9 /* geoip.h in Headers */,
@@ -6901,6 +6918,7 @@
 				9AE72B7917E85ECE003E47F9 /* plugin_run_start_installer.h in Headers */,
 				9A01C8C817FCA59500DC8E64 /* memory_buffer.h in Headers */,
 				9AE72B7B17E85ECE003E47F9 /* plugin_system.h in Headers */,
+				072AE9CB1810372200F74E98 /* backview_thread.h in Headers */,
 				9AE72B7D17E85ECE003E47F9 /* service_plain_service.h in Headers */,
 				9AE72B7E17E85ECE003E47F9 /* service_thread_pool.h in Headers */,
 				9AE72BA517E8FEDF003E47F9 /* compress_bzip_stream.h in Headers */,
@@ -6909,6 +6927,7 @@
 				9AE72BC217E9008A003E47F9 /* http_get_socket.h in Headers */,
 				9AE72BC317E9008A003E47F9 /* http_http.h in Headers */,
 				9AE72BC517E9008A003E47F9 /* http_output_stream.h in Headers */,
+				072AE9C91810372200F74E98 /* backview_main.h in Headers */,
 				9AE72BC817E9008A003E47F9 /* http_system.h in Headers */,
 				9AE72BCA17E9008A003E47F9 /* net_email_address.h in Headers */,
 				9AE72BCC17E9008A003E47F9 /* net_email_departament.h in Headers */,
@@ -7033,6 +7052,7 @@
 				07A6DC27173C27EB009E6FB8 /* compress_archive.cpp in Sources */,
 				07A6DC29173C27EB009E6FB8 /* compress_archive_item_name.cpp in Sources */,
 				07A6DC2D173C27EB009E6FB8 /* compress_coder_mixer.cpp in Sources */,
+				072AE9D81810372200F74E98 /* gcom_rect.cpp in Sources */,
 				07A6DC2F173C27EB009E6FB8 /* compress_coder_mixer2.cpp in Sources */,
 				07A6DC31173C27EB009E6FB8 /* compress_coder_mixer2mt.cpp in Sources */,
 				07A6DC33173C27EB009E6FB8 /* compress_copy_coder.cpp in Sources */,
@@ -7138,6 +7158,7 @@
 				07A6DCF9173C27EB009E6FB8 /* filemanager_data.cpp in Sources */,
 				07A6DCFB173C27EB009E6FB8 /* filemanager_document.cpp in Sources */,
 				07A6DCFD173C27EB009E6FB8 /* filemanager_filemanager.cpp in Sources */,
+				072AE9DA1810372200F74E98 /* gcom_space.cpp in Sources */,
 				07A6DCFF173C27EB009E6FB8 /* filemanager_folder_list_data.cpp in Sources */,
 				07A6DD01173C27EB009E6FB8 /* filemanager_folder_list_view.cpp in Sources */,
 				07A6DD03173C27EB009E6FB8 /* filemanager_folder_selection_list_view.cpp in Sources */,
@@ -7152,6 +7173,7 @@
 				07A6DD13173C27EB009E6FB8 /* filemanager_icon.cpp in Sources */,
 				07A6DD15173C27EB009E6FB8 /* filemanager_iconoverlayer.cpp in Sources */,
 				9A01C8CE17FCA62C00DC8E64 /* core_message_queue.cpp in Sources */,
+				072AE9CE1810372200F74E98 /* backview_transition_effect_tool001.cpp in Sources */,
 				07A6DD17173C27EB009E6FB8 /* filemanager_item_action.cpp in Sources */,
 				07A6DD19173C27EB009E6FB8 /* filemanager_operation_child_frame.cpp in Sources */,
 				07A6DD1B173C27EB009E6FB8 /* filemanager_operation_document.cpp in Sources */,
@@ -7187,6 +7209,7 @@
 				07A6DD56173C27EB009E6FB8 /* fs_data.cpp in Sources */,
 				07A6DD58173C27EB009E6FB8 /* fs_fs.cpp in Sources */,
 				07A6DD5A173C27EB009E6FB8 /* fs_ifs.cpp in Sources */,
+				072AE9DC1810372200F74E98 /* gcom_space_util.cpp in Sources */,
 				07A6DD5C173C27EB009E6FB8 /* fs_ifs_file.cpp in Sources */,
 				07A6DD5E173C27EB009E6FB8 /* fs_item.cpp in Sources */,
 				07A6DD60173C27EB009E6FB8 /* fs_item_array.cpp in Sources */,
@@ -7207,21 +7230,6 @@
 				07A6DD7F173C27EB009E6FB8 /* userfs_tree_item_data.cpp in Sources */,
 				07A6DD81173C27EB009E6FB8 /* userfs_userfs.cpp in Sources */,
 				07A6DD83173C27EB009E6FB8 /* framework.cpp in Sources */,
-				07A6DD87173C27EB009E6FB8 /* gcom_BackView.cpp in Sources */,
-				07A6DD89173C27EB009E6FB8 /* gcom_backview_interface.cpp in Sources */,
-				07A6DD8B173C27EB009E6FB8 /* gcom_backview_thread.cpp in Sources */,
-				07A6DD8D173C27EB009E6FB8 /* gcom_backview_user_interaction.cpp in Sources */,
-				07A6DD90173C27EB009E6FB8 /* gcom_BackViewGraphics.cpp in Sources */,
-				07A6DD92173C27EB009E6FB8 /* gcom_BackViewHelper.cpp in Sources */,
-				07A6DD94173C27EB009E6FB8 /* gcom_BackViewImageChange.cpp in Sources */,
-				07A6DD96173C27EB009E6FB8 /* gcom_BackViewInterfaceData.cpp in Sources */,
-				07A6DD98173C27EB009E6FB8 /* gcom_BackViewTransitionEffect.cpp in Sources */,
-				07A6DD9A173C27EB009E6FB8 /* gcom_BackViewTransitionEffectTool001.cpp in Sources */,
-				07A6DD9B173C27EB009E6FB8 /* gcom_BackViewVisualEffect.cpp in Sources */,
-				07A6DD9F173C27EB009E6FB8 /* gcom_Rect.cpp in Sources */,
-				07A6DDA1173C27EB009E6FB8 /* gcom_Space.cpp in Sources */,
-				07A6DDA3173C27EB009E6FB8 /* gcom_SpaceUtil.cpp in Sources */,
-				07A6DDA5173C27EB009E6FB8 /* gcom_Util.cpp in Sources */,
 				07A6DDA9173C27EB009E6FB8 /* html_attribute.cpp in Sources */,
 				07A6DDAB173C27EB009E6FB8 /* html_base.cpp in Sources */,
 				07A6DDAF173C27EB009E6FB8 /* html_cell.cpp in Sources */,
@@ -7307,6 +7315,7 @@
 				07A6DF70173C27EB009E6FB8 /* plane_library.cpp in Sources */,
 				07A6DF72173C27EB009E6FB8 /* plane_system.cpp in Sources */,
 				9A01C97817FCA77000DC8E64 /* sockets_ssl_client_context_map.cpp in Sources */,
+				072AE9D61810372200F74E98 /* gcom_pixel_explosion.cpp in Sources */,
 				07A6DF78173C27EB009E6FB8 /* plane_system_gen_str.cpp in Sources */,
 				07A6DF7E173C27EB009E6FB8 /* bergedge_document.cpp in Sources */,
 				07A6DF80173C27EB009E6FB8 /* bergedge_form_callback.cpp in Sources */,
@@ -7328,6 +7337,7 @@
 				07A6DFA1173C27EB009E6FB8 /* platform_document.cpp in Sources */,
 				07A6DFA3173C27EB009E6FB8 /* platform_frame.cpp in Sources */,
 				07A6DFA5173C27EB009E6FB8 /* platform_pane_view.cpp in Sources */,
+				072AE9BE1810372200F74E98 /* backview_graphics.cpp in Sources */,
 				07A6DFA7173C27EB009E6FB8 /* platform_pane_view_update_hint.cpp in Sources */,
 				07A6DFAA173C27EB009E6FB8 /* platform_view.cpp in Sources */,
 				9A01C9E217FCA77000DC8E64 /* sockets_link_out_socket.cpp in Sources */,
@@ -7364,6 +7374,7 @@
 				07A6E031173C27EC009E6FB8 /* colorertake5_hrc_parser_helpers.cpp in Sources */,
 				07A6E033173C27EC009E6FB8 /* colorertake5_hrc_parser_impl.cpp in Sources */,
 				07A6E036173C27EC009E6FB8 /* colorertake5_line_regions_compact_support.cpp in Sources */,
+				072AE9C41810372200F74E98 /* backview_interface.cpp in Sources */,
 				07A6E038173C27EC009E6FB8 /* colorertake5_line_regions_support.cpp in Sources */,
 				07A6E03A173C27EC009E6FB8 /* colorertake5_line_source.cpp in Sources */,
 				07A6E03C173C27EC009E6FB8 /* colorertake5_logging.cpp in Sources */,
@@ -7474,8 +7485,10 @@
 				07A6E121173C27EC009E6FB8 /* user_interaction.cpp in Sources */,
 				07A6E123173C27EC009E6FB8 /* user_job.cpp in Sources */,
 				07A6E126173C27EC009E6FB8 /* user_keyboard.cpp in Sources */,
+				072AE9CF1810372200F74E98 /* backview_user_interaction.cpp in Sources */,
 				07A6E128173C27EC009E6FB8 /* user_keyboard_focus.cpp in Sources */,
 				9A01C9CE17FCA77000DC8E64 /* sockets_http_client_socket.cpp in Sources */,
+				072AE9C01810372200F74E98 /* backview_helper.cpp in Sources */,
 				07A6E12A173C27EC009E6FB8 /* user_keyboard_layout.cpp in Sources */,
 				07A6E12C173C27EC009E6FB8 /* user_keyboard_layout_cfg.cpp in Sources */,
 				07A6E12E173C27EC009E6FB8 /* user_list.cpp in Sources */,
@@ -7495,6 +7508,7 @@
 				07A6E146173C27EC009E6FB8 /* user_network_configuration.cpp in Sources */,
 				07A6E148173C27EC009E6FB8 /* user_notification_area.cpp in Sources */,
 				07A6E14A173C27EC009E6FB8 /* user_notify_icon.cpp in Sources */,
+				072AE9C61810372200F74E98 /* backview_interface_data.cpp in Sources */,
 				9A01C99817FCA77000DC8E64 /* sockets_sip_server.cpp in Sources */,
 				07A6E14C173C27EC009E6FB8 /* user_notify_icon_listener.cpp in Sources */,
 				07A6E14E173C27EC009E6FB8 /* user_place_holder.cpp in Sources */,
@@ -7504,6 +7518,7 @@
 				07A6E156173C27EC009E6FB8 /* user_printer.cpp in Sources */,
 				07A6E158173C27EC009E6FB8 /* user_scroll_bar.cpp in Sources */,
 				07A6E15A173C27EC009E6FB8 /* user_scroll_view.cpp in Sources */,
+				072AE9CA1810372200F74E98 /* backview_thread.cpp in Sources */,
 				07A6E15C173C27EC009E6FB8 /* user_shell.cpp in Sources */,
 				07A6E15F173C27EC009E6FB8 /* user_single_document_template.cpp in Sources */,
 				07A6E161173C27EC009E6FB8 /* user_split_bar.cpp in Sources */,
@@ -7528,6 +7543,7 @@
 				07A6E189173C27EC009E6FB8 /* user_tree_window.cpp in Sources */,
 				07A6E18A173C27EC009E6FB8 /* user_user.cpp in Sources */,
 				9A01C99417FCA77000DC8E64 /* sockets_sip_callback.cpp in Sources */,
+				072AE9CC1810372200F74E98 /* backview_transition_effect.cpp in Sources */,
 				07A6E18C173C27EC009E6FB8 /* user_util.cpp in Sources */,
 				07A6E18D173C27EC009E6FB8 /* user_view.cpp in Sources */,
 				07A6E18F173C27EC009E6FB8 /* user_view_container.cpp in Sources */,
@@ -7539,6 +7555,7 @@
 				07A6E19B173C27EC009E6FB8 /* user_window_map.cpp in Sources */,
 				07A6E19D173C27EC009E6FB8 /* user_window_util.cpp in Sources */,
 				07A6E19F173C27EC009E6FB8 /* user_xfplayer_view_line.cpp in Sources */,
+				072AE9DE1810372200F74E98 /* gcom_util.cpp in Sources */,
 				07A6E1A1173C27EC009E6FB8 /* user_xfplayer_view_line_selection.cpp in Sources */,
 				07A6E1A3173C27EC009E6FB8 /* user_xfplayer_view_lines.cpp in Sources */,
 				07A6E1A6173C27EC009E6FB8 /* userex_dialog.cpp in Sources */,
@@ -7637,6 +7654,7 @@
 				9AE72AB017E85ECE003E47F9 /* core_print_job.cpp in Sources */,
 				9AE72AB217E85ECE003E47F9 /* core_process.cpp in Sources */,
 				9AE72AB617E85ECE003E47F9 /* core_process_section.cpp in Sources */,
+				072AE9C21810372200F74E98 /* backview_image_change.cpp in Sources */,
 				9AE72AB717E85ECE003E47F9 /* core_profiler.cpp in Sources */,
 				9AE72ABC17E85ECE003E47F9 /* core_resource.cpp in Sources */,
 				9AE72ABE17E85ECE003E47F9 /* core_savings.cpp in Sources */,
@@ -7747,6 +7765,7 @@
 				9AE72BD317E9008A003E47F9 /* net_url_domain.cpp in Sources */,
 				9AE72BDC17E900B8003E47F9 /* hi5_oauth.cpp in Sources */,
 				9AE72BDE17E900B8003E47F9 /* hi5_twit.cpp in Sources */,
+				072AE9C81810372200F74E98 /* backview_main.cpp in Sources */,
 				9AE72BE017E900B8003E47F9 /* hi5_twitter_authorization.cpp in Sources */,
 				9AE72BE717E900E0003E47F9 /* sockets_http_batch_buffer.cpp in Sources */,
 				9AE72BE917E900E0003E47F9 /* sockets_http_buffer.cpp in Sources */,
@@ -7768,6 +7787,7 @@
 				9AAE85EF17E921DA00F0512E /* file_limited_reader.cpp in Sources */,
 				9A01C99317FCA77000DC8E64 /* sockets_sip_base_client_socket.cpp in Sources */,
 				9AAE85F117E921DA00F0512E /* file_limited_writer.cpp in Sources */,
+				072AE9D11810372200F74E98 /* backview_visual_effect.cpp in Sources */,
 				9AAE85F317E921DA00F0512E /* file_locked_in_stream.cpp in Sources */,
 				9AAE85F517E921DA00F0512E /* file_out_buffer.cpp in Sources */,
 				9AAE85F717E921DA00F0512E /* file_set.cpp in Sources */,

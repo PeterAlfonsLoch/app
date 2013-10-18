@@ -1852,7 +1852,8 @@ true);
 
       single_lock sl(&graphics.m_mutex4Transfer, TRUE);
 
-      if(dcTransfer.is_set() != NULL && dcTransfer->get_os_data() != NULL)
+      if(dcTransfer.is_set()
+         && dcTransfer->get_os_data() != NULL)
       {
          dcFrame1->BitBlt(0, 0, cx, cy, dcTransfer, 0, 0, SRCCOPY);
       }

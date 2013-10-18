@@ -8,15 +8,18 @@ namespace primitive
    memory_container ::memory_container(sp(base_application) papp) :
       element(papp)
    {
-      m_spmemory = new primitive::memory(papp);
+      
+//      m_spmemory = canew(primitive::memory(papp));
+      
       m_dwAllocationAddUp = 1024;
+      
    }
 
 
    memory_container ::memory_container(sp(base_application) papp, void * pmemory, memory_size dwSize) :
       element(papp)
    {
-      m_spmemory = new primitive::memory(this, pmemory, dwSize);
+      m_spmemory = canew(primitive::memory(this, pmemory, dwSize));
    }
 
 

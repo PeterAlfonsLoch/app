@@ -171,18 +171,32 @@ namespace user
       }
 
       thread* pThread = System.GetThread();
-      ASSERT(pThread);
-      if(bCreated)
+      
+      if(pThread != NULL)
       {
-         if(pThread->GetMainWnd() == NULL)
+         
+         ASSERT(pThread);
+      
+         if(bCreated)
          {
-            // set as main frame (InitialUpdateFrame will show the ::user::window)
-            pThread->SetMainWnd(pFrame);
+            
+            if(pThread->GetMainWnd() == NULL)
+            {
+            
+               // set as main frame (InitialUpdateFrame will show the ::user::window)
+               pThread->SetMainWnd(pFrame);
+               
+            }
+            
+            if(Application.m_puiMain == NULL)
+            {
+               
+               Application.m_puiMain = pFrame;
+               
+            }
+            
          }
-         if(Application.m_puiMain == NULL)
-         {
-            Application.m_puiMain = pFrame;
-         }
+         
       }
 
       if(!pcreatecontext->m_bHold)

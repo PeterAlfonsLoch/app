@@ -418,3 +418,6 @@ namespace exception
 
 
 CLASS_DECL_c bool g_bExiting;
+
+
+

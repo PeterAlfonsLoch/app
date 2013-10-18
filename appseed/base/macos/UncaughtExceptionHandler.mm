@@ -12,7 +12,9 @@
 //  appreciated but not required.
 //
 
+
 #import "UncaughtExceptionHandler.h"
+#include "macos_ns_exception.h"
 #include <libkern/OSAtomic.h>
 #include <execinfo.h>
 
@@ -27,16 +29,14 @@ const NSInteger UncaughtExceptionHandlerSkipAddressCount = 4;
 const NSInteger UncaughtExceptionHandlerReportAddressCount = 5;
 
 
+
+
 void HandleException(NSException *exception)
 {
-	int32_t exceptionCount = OSAtomicIncrement32(&UncaughtExceptionCount);
-	if (exceptionCount > UncaughtExceptionMaximum)
-	{
-		return;
-	}
-   
-   throw 0;
-	
+
+
+   throw ns_exception();
+
 }
 
 

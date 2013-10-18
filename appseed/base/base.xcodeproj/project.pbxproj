@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07A84FF6181145D50030A38C /* macos_ns_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A84FF4181145D50030A38C /* macos_ns_exception.cpp */; };
+		07A84FF7181145D50030A38C /* macos_ns_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A84FF5181145D50030A38C /* macos_ns_exception.h */; };
 		9A01C8C417FCA0B000DC8E64 /* UncaughtExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A01C8C217FCA0B000DC8E64 /* UncaughtExceptionHandler.h */; };
 		9A01C8C517FCA0B000DC8E64 /* UncaughtExceptionHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A01C8C317FCA0B000DC8E64 /* UncaughtExceptionHandler.mm */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
@@ -267,8 +269,6 @@
 		9AE7248217E83B69003E47F9 /* exception_unhandled_report.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE721E517E83B68003E47F9 /* exception_unhandled_report.h */; };
 		9AE7248317E83B69003E47F9 /* exception_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE721E617E83B68003E47F9 /* exception_user.cpp */; };
 		9AE7248417E83B69003E47F9 /* exception_user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE721E717E83B68003E47F9 /* exception_user.h */; };
-		9AE7248517E83B69003E47F9 /* exception_vms.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE721E817E83B68003E47F9 /* exception_vms.h */; };
-		9AE7248617E83B69003E47F9 /* exception_VMSException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE721E917E83B68003E47F9 /* exception_VMSException.cpp */; };
 		9AE7248717E83B69003E47F9 /* exception_void_implementation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE721EA17E83B68003E47F9 /* exception_void_implementation.cpp */; };
 		9AE7248817E83B69003E47F9 /* exception_void_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE721EB17E83B68003E47F9 /* exception_void_implementation.h */; };
 		9AE7248917E83B69003E47F9 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE721ED17E83B68003E47F9 /* file.h */; };
@@ -627,7 +627,10 @@
 /* Begin PBXFileReference section */
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
+		07A84FF4181145D50030A38C /* macos_ns_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_ns_exception.cpp; sourceTree = "<group>"; };
+		07A84FF5181145D50030A38C /* macos_ns_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_ns_exception.h; sourceTree = "<group>"; };
 		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		07F3372018111CA200A34D04 /* multithreading_set_event_on_exit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = multithreading_set_event_on_exit.h; sourceTree = "<group>"; };
 		9A01C8C217FCA0B000DC8E64 /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
 		9A01C8C317FCA0B000DC8E64 /* UncaughtExceptionHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UncaughtExceptionHandler.mm; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
@@ -888,8 +891,6 @@
 		9AE721E517E83B68003E47F9 /* exception_unhandled_report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_unhandled_report.h; sourceTree = "<group>"; };
 		9AE721E617E83B68003E47F9 /* exception_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_user.cpp; sourceTree = "<group>"; };
 		9AE721E717E83B68003E47F9 /* exception_user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_user.h; sourceTree = "<group>"; };
-		9AE721E817E83B68003E47F9 /* exception_vms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_vms.h; sourceTree = "<group>"; };
-		9AE721E917E83B68003E47F9 /* exception_VMSException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_VMSException.cpp; sourceTree = "<group>"; };
 		9AE721EA17E83B68003E47F9 /* exception_void_implementation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_void_implementation.cpp; sourceTree = "<group>"; };
 		9AE721EB17E83B68003E47F9 /* exception_void_implementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_void_implementation.h; sourceTree = "<group>"; };
 		9AE721ED17E83B68003E47F9 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
@@ -1568,8 +1569,6 @@
 				9AE721E517E83B68003E47F9 /* exception_unhandled_report.h */,
 				9AE721E617E83B68003E47F9 /* exception_user.cpp */,
 				9AE721E717E83B68003E47F9 /* exception_user.h */,
-				9AE721E817E83B68003E47F9 /* exception_vms.h */,
-				9AE721E917E83B68003E47F9 /* exception_VMSException.cpp */,
 				9AE721EA17E83B68003E47F9 /* exception_void_implementation.cpp */,
 				9AE721EB17E83B68003E47F9 /* exception_void_implementation.h */,
 			);
@@ -1688,6 +1687,8 @@
 				9A8CCAD817E9EE5A00F87A02 /* macos_window_impl.h */,
 				9A01C8C217FCA0B000DC8E64 /* UncaughtExceptionHandler.h */,
 				9A01C8C317FCA0B000DC8E64 /* UncaughtExceptionHandler.mm */,
+				07A84FF4181145D50030A38C /* macos_ns_exception.cpp */,
+				07A84FF5181145D50030A38C /* macos_ns_exception.h */,
 			);
 			path = macos;
 			sourceTree = "<group>";
@@ -1741,6 +1742,7 @@
 				9AE7228517E83B68003E47F9 /* multithreading_service_base.cpp */,
 				9AE7228617E83B68003E47F9 /* multithreading_service_base.h */,
 				9AE7228717E83B68003E47F9 /* multithreading_service_status.h */,
+				07F3372018111CA200A34D04 /* multithreading_set_event_on_exit.h */,
 				9AE7228817E83B68003E47F9 /* multithreading_single_lock.cpp */,
 				9AE7228917E83B68003E47F9 /* multithreading_single_lock.h */,
 				9AE7228A17E83B68003E47F9 /* multithreading_socket_event.cpp */,
@@ -2240,7 +2242,6 @@
 				9AE7248117E83B69003E47F9 /* exception_trap.h in Headers */,
 				9AE7248217E83B69003E47F9 /* exception_unhandled_report.h in Headers */,
 				9AE7248417E83B69003E47F9 /* exception_user.h in Headers */,
-				9AE7248517E83B69003E47F9 /* exception_vms.h in Headers */,
 				9AE7248817E83B69003E47F9 /* exception_void_implementation.h in Headers */,
 				9AE7248917E83B69003E47F9 /* file.h in Headers */,
 				9AE7248B17E83B69003E47F9 /* file_binary_buffer.h in Headers */,
@@ -2310,6 +2311,7 @@
 				9AE7251717E83B69003E47F9 /* multithreading_service_base.h in Headers */,
 				9AE7251817E83B69003E47F9 /* multithreading_service_status.h in Headers */,
 				9AE7251A17E83B69003E47F9 /* multithreading_single_lock.h in Headers */,
+				07A84FF7181145D50030A38C /* macos_ns_exception.h in Headers */,
 				9AE7251C17E83B69003E47F9 /* multithreading_socket_event.h in Headers */,
 				9AE7251E17E83B69003E47F9 /* multithreading_sync_object.h in Headers */,
 				9AE7252017E83B69003E47F9 /* multithreading_synch_lock.h in Headers */,
@@ -2544,6 +2546,7 @@
 				9AE7243417E83B69003E47F9 /* exception.cpp in Sources */,
 				9AE7243717E83B69003E47F9 /* exception_archive.cpp in Sources */,
 				9AE7243817E83B69003E47F9 /* exception_archive_exception.cpp in Sources */,
+				07A84FF6181145D50030A38C /* macos_ns_exception.cpp in Sources */,
 				9AE7243A17E83B69003E47F9 /* exception_base.cpp in Sources */,
 				9AE7243C17E83B69003E47F9 /* exception_call_stack.cpp in Sources */,
 				9AE7243E17E83B69003E47F9 /* exception_debug.cpp in Sources */,
@@ -2579,7 +2582,6 @@
 				9AE7247D17E83B69003E47F9 /* exception_temporary.cpp in Sources */,
 				9AE7247F17E83B69003E47F9 /* exception_todo.cpp in Sources */,
 				9AE7248317E83B69003E47F9 /* exception_user.cpp in Sources */,
-				9AE7248617E83B69003E47F9 /* exception_VMSException.cpp in Sources */,
 				9AE7248717E83B69003E47F9 /* exception_void_implementation.cpp in Sources */,
 				9AE7248A17E83B69003E47F9 /* file_binary_buffer.cpp in Sources */,
 				9AE7248D17E83B69003E47F9 /* file_byte_input_stream.cpp in Sources */,

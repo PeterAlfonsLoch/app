@@ -779,7 +779,6 @@ void simple_frame_window::_001OnDdeInitiate(signal_details * pobj)
 
 void simple_frame_window::pre_translate_message(signal_details * pobj)
 {
-#ifdef WINDOWSEX
    SCAST_PTR(::message::base, pbase, pobj);
    if(pbase->m_uiMessage == WM_KEYDOWN)
    {
@@ -826,9 +825,6 @@ void simple_frame_window::pre_translate_message(signal_details * pobj)
          }
       }
    }
-#else
-   //throw todo(get_app());
-#endif
    return ::user::frame_window::pre_translate_message(pobj);
 }
 

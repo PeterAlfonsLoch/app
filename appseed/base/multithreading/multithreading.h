@@ -18,6 +18,7 @@ class multi_lock;
 #include "multithreading_semaphore.h"
 #include "multithreading_mutex.h"
 #include "multithreading_event.h"
+#include "multithreading_set_event_on_exit.h"
 #include "multithreading_condition.h"
 #include "multithreading_file_change_event.h"
 #include "multithreading_socket_event.h"
