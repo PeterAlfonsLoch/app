@@ -26,3 +26,12 @@ public:
 
 
 #endif
+
+
+
+void InstallUncaughtExceptionHandler();
+void InstallNullExceptionHandler();
+
+
+
+

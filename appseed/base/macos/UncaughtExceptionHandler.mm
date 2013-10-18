@@ -40,8 +40,28 @@ void HandleException(NSException *exception)
 }
 
 
+void NullHandleException(NSException *exception)
+{
+    
+    
+}
+
+
 void InstallUncaughtExceptionHandler()
 {
+    
 	NSSetUncaughtExceptionHandler(&HandleException);
 
 }
+
+
+
+void InstallNullExceptionHandler()
+{
+    
+	NSSetUncaughtExceptionHandler(&NullHandleException);
+    
+}
+
+
+
