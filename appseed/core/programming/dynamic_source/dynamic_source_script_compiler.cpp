@@ -63,14 +63,14 @@ namespace dynamic_source
       System.file().path().eat_end_level(strVars, 2, "\\");
       //m_strEnv = strVars;
       //m_strEnv += "vc\\vcvarsall.bat";
-      m_strEnv = ".\\vc10vars64.bat";
+      m_strEnv = ".\\vc_vars.bat";
 
       m_strTime = System.dir().element("time");
 
       //m_strEnv = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
 
       //m_strSdk1 = "windows7.1sdk";
-      m_strSdk1 = "110";
+      m_strSdk1 = "vc120";
       string strPlat2;
 #ifdef _M_X64
       m_strPlat1     = "64";
@@ -107,10 +107,10 @@ namespace dynamic_source
       string vars2batSrc;
       string vars1batDst;
       string vars2batDst;
-      vars1batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc10vars64.bat");
-      vars2batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc10vars_query_registry.bat");
-      vars1batDst = System.dir().element("stage/front", "vc10vars64.bat");
-      vars2batDst = System.dir().element("stage/front", "vc10vars_query_registry.bat");
+      vars1batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars.bat");
+      vars2batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars_query_registry.bat");
+      vars1batDst = System.dir().element("stage/front", "vc_vars.bat");
+      vars2batDst = System.dir().element("stage/front", "vc_vars_query_registry.bat");
       try
       {
          Application.file().copy(vars1batDst, vars1batSrc, false);
@@ -247,11 +247,11 @@ namespace dynamic_source
       strP.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.pdb"), System.dir().path(System.dir().name(strTransformName), strScript, false));
       strL.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.lib"), System.dir().path(System.dir().name(strTransformName), strScript, false));
       strE.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.exp"), System.dir().path(System.dir().name(strTransformName), strScript, false));
-      strDVI.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\vc" + m_strSdk1 + ".idb", false), strTransformName);
-      strDVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\vc" + m_strSdk1 + ".pdb", false), strTransformName);
+      strDVI.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_strSdk1 + ".idb", false), strTransformName);
+      strDVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_strSdk1 + ".pdb", false), strTransformName);
       strDPCH.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_pmanager->m_strNamespace + "_dynamic_source_script.pch", false), strTransformName);
-      strSVI.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\vc" + m_strSdk1 + ".idb", false), strTransformName);
-      strSVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\vc" + m_strSdk1 + ".pdb", false), strTransformName);
+      strSVI.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\" + m_strSdk1 + ".idb", false), strTransformName);
+      strSVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\" + m_strSdk1 + ".pdb", false), strTransformName);
       strSPCH.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\" + m_pmanager->m_strNamespace + "_dynamic_source_script.pch", false), strTransformName);
       pscript->m_strScriptPath = System.dir().path(System.dir().stage(m_strPlatform+"\\dynamic_source"), System.dir().path(System.dir().name(strTransformName), strScript + ".dll", false));
 #endif
@@ -397,10 +397,10 @@ namespace dynamic_source
       string vars2batSrc;
       string vars1batDst;
       string vars2batDst;
-      vars1batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc10vars64.bat");
-      vars2batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc10vars_query_registry.bat");
-      vars1batDst = System.dir().path(System.dir().name(pscript->m_strBuildBat), "vc10vars64.bat", false);
-      vars2batDst = System.dir().path(System.dir().name(pscript->m_strBuildBat), "vc10vars_query_registry.bat", false);
+      vars1batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars.bat");
+      vars2batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars_query_registry.bat");
+      vars1batDst = System.dir().path(System.dir().name(pscript->m_strBuildBat), "vc_vars.bat", false);
+      vars2batDst = System.dir().path(System.dir().name(pscript->m_strBuildBat), "vc_vars_query_registry.bat", false);
       try
       {
          Application.file().copy(vars1batDst, vars1batSrc, false);
@@ -790,6 +790,7 @@ namespace dynamic_source
       strV.replace("\\", "/");
       str.replace("%CA2_ROOT%", strV);
       str.replace("%NETNODE_ROOT%", strN);
+      str.replace("%SDK1%", m_strSdk1);
       string strDest = "stage\\front\\";
       strDest += lpcszDest;
       string strCmd;
@@ -970,10 +971,10 @@ namespace dynamic_source
          string vars2batSrc;
          string vars1batDst;
          string vars2batDst;
-         vars1batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc10vars64.bat");
-         vars2batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc10vars_query_registry.bat");
-         vars1batDst = System.dir().stage("stage\\front", "vc10vars64.bat");
-         vars2batDst = System.dir().stage("stage\\front", "vc10vars_query_registry.bat");
+         vars1batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars.bat");
+         vars2batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars_query_registry.bat");
+         vars1batDst = System.dir().stage("stage\\front", "vc_vars.bat");
+         vars2batDst = System.dir().stage("stage\\front", "vc_vars_query_registry.bat");
          try
          {
             Application.file().copy(vars1batDst, vars1batSrc, false);

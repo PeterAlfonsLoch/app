@@ -141,9 +141,9 @@ public:
    var(const pair_set_interface & set);
    var(const str_str_interface & set);
    var(const string_composite & composite);
-#if defined(MOVE_SEMANTICS)
-   inline var(var && v);
-#endif
+//#if defined(MOVE_SEMANTICS)
+  // inline var(var && v);
+//#endif
    template < class T >
    var(const sp(T) & sp)
    {
@@ -331,9 +331,9 @@ public:
    var & operator = (const string_composite & composite);
    var & operator = (const id & id);
    var & operator = (id * pid);
-#ifdef MOVE_SEMANTICS
-   inline var & operator = (var && v);
-#endif
+//#ifdef MOVE_SEMANTICS
+   //inline var & operator = (var && v);
+//#endif
 
    template < class T >
    var & operator = (const sp(T) & sp)
@@ -728,7 +728,7 @@ inline string  & operator += (string & str, const var & var)
 }
 
 
-#ifdef MOVE_SEMANTICS
+/*#ifdef MOVE_SEMANTICS
 
 
 inline var::var(var && v)
@@ -769,5 +769,5 @@ inline var & var::operator = (var && v)
 }
 
 #endif
-
+*/
 

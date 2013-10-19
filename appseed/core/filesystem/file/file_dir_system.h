@@ -94,6 +94,7 @@ namespace file
          virtual string path(const string & strFolder, const string & strRelative, const string & str2, bool bUrl);
 
          virtual string path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2, bool bUrl);
+         virtual string path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, bool bUrl);
 
          virtual string path(const string & strFolder, const string & strRelative);
          virtual string path(const string & strFolder, const string & strRelative, const char * psz2);

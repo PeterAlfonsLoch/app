@@ -1268,12 +1268,11 @@ int_bool ensure_file_size(int32_t fd, size_t iSize)
 {
 
    if(ftruncate(fd, iSize) == -1)
-      return false;
+      return 0;
 
-   return true;
+   return 1;
 
 }
-
 
 int_bool ensure_file_size(FILE * file, size_t iSize)
 {
@@ -1306,7 +1305,8 @@ int_bool ensure_file_size(HANDLE h, uint64_t iSize)
 
    }
 
-   return true;
+
+   return 1;
 
 }
 

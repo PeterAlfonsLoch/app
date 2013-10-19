@@ -59,6 +59,13 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
+      string system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, bool bUrl)
+      {
+
+         return path(pszFolder, iLenFolder, pszRelative, iLenRelative, NULL, 0, bUrl);
+
+      }
+
       string system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2)
       {
 
@@ -85,7 +92,7 @@ namespace file
       {
          if(psz2 == NULL)
          {
-            return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), psz2, 0, ::url::is_url(strFolder));
+            return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), ::url::is_url(strFolder));
          }
          else
          {
