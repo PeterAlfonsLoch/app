@@ -859,7 +859,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcr110d.dll" "$(O
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>MEMDLEAK;__C__LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MEMDLEAK;_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -895,8 +895,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcr110d.dll" "$(O
       <FixedBaseAddress>false</FixedBaseAddress>
     </Link>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcp120d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcr120d.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -1760,6 +1760,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">%(FullPath)</AdditionalInputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
       <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcr120d.dll">
       <FileType>Document</FileType>
@@ -1768,6 +1769,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">%(FullPath)</AdditionalInputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
       <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <None Include="base.def" />
     <None Include="base\base.inl" />
