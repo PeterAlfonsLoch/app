@@ -99,7 +99,7 @@ public:
 namespace user
 {
 
-   class CLASS_DECL_ca2 control_bar :
+   class CLASS_DECL_CORE control_bar :
       virtual public ::user::interaction
    {
    public:

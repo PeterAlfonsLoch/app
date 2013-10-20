@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_ca2 edit_buffer :
+   class CLASS_DECL_CORE edit_buffer :
       public ::file::buffer_sp ,
       public ::data::tree,
       public ::data::tree_data

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c element :
+class CLASS_DECL_BASE element :
    virtual public root
 {
 public:
@@ -66,7 +66,7 @@ public:
 };
 
 
-class CLASS_DECL_c allocator :
+class CLASS_DECL_BASE allocator :
    virtual public element
 {
 public:
@@ -78,7 +78,7 @@ public:
 };
 
 
-class CLASS_DECL_c allocatorsp :
+class CLASS_DECL_BASE allocatorsp :
    public sp(allocator)
 {
 public:

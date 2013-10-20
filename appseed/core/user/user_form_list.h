@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 form_list :
+   class CLASS_DECL_CORE form_list :
       virtual public ::user::form,
       virtual public ::user::list
    {
@@ -20,7 +20,7 @@ namespace user
       index         m_iControlItem;
       index         m_iControlSubItem;
 
-      class CLASS_DECL_ca2 control_keep
+      class CLASS_DECL_CORE control_keep
       {
       public:
          inline control_keep(form_list * pformlist, index iNewItem, index iNewSubItem)

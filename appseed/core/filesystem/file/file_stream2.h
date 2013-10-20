@@ -5,7 +5,7 @@
 namespace file
 {
 
-   class CLASS_DECL_ca2 output_stream2 :
+   class CLASS_DECL_CORE output_stream2 :
       virtual public output_stream
    {
    public:

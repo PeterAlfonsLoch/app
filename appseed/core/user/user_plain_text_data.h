@@ -3,7 +3,7 @@
 namespace user
 {
 
-   class CLASS_DECL_ca2 plain_text_data :
+   class CLASS_DECL_CORE plain_text_data :
       public ::data::tree_data
    {
    public:

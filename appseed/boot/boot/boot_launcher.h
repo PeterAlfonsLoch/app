@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca launcher
+class CLASS_DECL_BOOT launcher
 {
 public:
 

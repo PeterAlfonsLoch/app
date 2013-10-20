@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   class CLASS_DECL_ca2 item_array :
+   class CLASS_DECL_CORE item_array :
       public spa(item)
    {
    public:

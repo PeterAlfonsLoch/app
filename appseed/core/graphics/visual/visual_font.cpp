@@ -436,7 +436,7 @@ namespace visual
 } // namespace visual
 
 
-bool CLASS_DECL_ca2 TextOutU(HDC hdc, int32_t x, int32_t y, const char * lpString, int32_t ca)
+bool CLASS_DECL_CORE TextOutU(HDC hdc, int32_t x, int32_t y, const char * lpString, int32_t ca)
 {
 
 #ifdef WINDOWSEX
@@ -472,7 +472,7 @@ bool CLASS_DECL_ca2 TextOutU(HDC hdc, int32_t x, int32_t y, const char * lpStrin
 }
 
 
-CLASS_DECL_ca2 bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int32_t ca, LPSIZE psizl)
+CLASS_DECL_CORE bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int32_t ca, LPSIZE psizl)
 {
 
 #ifdef WINDOWSEX
@@ -499,7 +499,7 @@ CLASS_DECL_ca2 bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int32_
 }
 
 
-CLASS_DECL_ca2 int32_t  DrawTextU(HDC hdc, const char * lpchText, int32_t cchText, LPRECT lprc, UINT format)
+CLASS_DECL_CORE int32_t  DrawTextU(HDC hdc, const char * lpchText, int32_t cchText, LPRECT lprc, UINT format)
 {
 
 #ifdef WINDOWSEX

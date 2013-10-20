@@ -33,7 +33,7 @@ class simple_mutex;
 
 
 
-struct CLASS_DECL_c oswindow_data
+struct CLASS_DECL_BASE oswindow_data
 {
 
 
@@ -125,13 +125,13 @@ struct CLASS_DECL_c oswindow_data
 };
 
 
-CLASS_DECL_c int32_t oswindow_find_message_only_window(::user::interaction_base * puibaseMessageWindow);
-CLASS_DECL_c int32_t oswindow_find(::ca::window * pwindow);
-CLASS_DECL_c oswindow_data * oswindow_get_message_only_window(::user::interaction_base * puibaseMessageWindow);
-CLASS_DECL_c oswindow_data * oswindow_get(::ca::window * pwindow);
-CLASS_DECL_c oswindow oswindow_defer_get(::ca::window * pwindow);
-CLASS_DECL_c bool oswindow_remove(::ca::window * pwindow);
-CLASS_DECL_c bool oswindow_remove_message_only_window(::user::interaction_base * puibaseMessageOnlyWindow);
+CLASS_DECL_BASE int32_t oswindow_find_message_only_window(::user::interaction_base * puibaseMessageWindow);
+CLASS_DECL_BASE int32_t oswindow_find(::ca::window * pwindow);
+CLASS_DECL_BASE oswindow_data * oswindow_get_message_only_window(::user::interaction_base * puibaseMessageWindow);
+CLASS_DECL_BASE oswindow_data * oswindow_get(::ca::window * pwindow);
+CLASS_DECL_BASE oswindow oswindow_defer_get(::ca::window * pwindow);
+CLASS_DECL_BASE bool oswindow_remove(::ca::window * pwindow);
+CLASS_DECL_BASE bool oswindow_remove_message_only_window(::user::interaction_base * puibaseMessageOnlyWindow);
 
 
 

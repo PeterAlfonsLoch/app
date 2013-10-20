@@ -2,12 +2,12 @@
 
 
 
-CLASS_DECL_c int64_t strtoi(const char * psz)
+CLASS_DECL_BASE int64_t strtoi(const char * psz)
 {
    return ::str::to_int64(psz);
 }
 
-CLASS_DECL_c int64_t strtoi(const wchar_t * psz)
+CLASS_DECL_BASE int64_t strtoi(const wchar_t * psz)
 {
    return wtoi64_dup(psz);
 }
@@ -53,9 +53,9 @@ void const_empty_string::set_string(const char * psz)
 
 namespace str
 {
-   CLASS_DECL_c const_empty_string g_strEmpty;
+   CLASS_DECL_BASE const_empty_string g_strEmpty;
 
-   CLASS_DECL_c string_interface & empty_string()
+   CLASS_DECL_BASE string_interface & empty_string()
    {
       return g_strEmpty;
    }

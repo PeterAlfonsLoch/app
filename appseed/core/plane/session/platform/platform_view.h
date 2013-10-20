@@ -6,7 +6,7 @@ namespace platform
    class document;
 
 
-   class CLASS_DECL_ca2 view :
+   class CLASS_DECL_CORE view :
       virtual public form_view
    {
    public:

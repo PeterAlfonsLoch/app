@@ -5,7 +5,7 @@
 
 /*namespace win
 {
-class CLASS_DECL_ca2 message
+class CLASS_DECL_CORE message
 {
 public:
 sp(::user::interaction)  m_pguie;
@@ -76,7 +76,7 @@ wait_result wait (size_t numberOfItems, event_base * waitableItems[], const dura
 
 #endif
 
-class CLASS_DECL_ca2 heap_item
+class CLASS_DECL_CORE heap_item
 {
 public:
 
@@ -131,7 +131,7 @@ public:
 
 };
 
-class CLASS_DECL_ca2 heap_item_array :
+class CLASS_DECL_CORE heap_item_array :
    public array < heap_item, heap_item >
 {
 public:
@@ -215,7 +215,7 @@ class thread;
 typedef smart_pointer < thread > thread_sp;
 
 
-class CLASS_DECL_ca2 thread :
+class CLASS_DECL_CORE thread :
    virtual public base_thread,
    virtual public command_target,
 #ifdef WINDOWS
@@ -527,7 +527,7 @@ public:
 
 };
 
-CLASS_DECL_ca2 void thread_alloc_ready(bool bReady);
+CLASS_DECL_CORE void thread_alloc_ready(bool bReady);
 
 
 

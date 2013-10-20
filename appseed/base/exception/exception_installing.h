@@ -4,7 +4,7 @@
 //#include "exception_installing.h"
 
 
-class CLASS_DECL_c installing_exception : 
+class CLASS_DECL_BASE installing_exception : 
    virtual public temporary_exception
 {
 public:

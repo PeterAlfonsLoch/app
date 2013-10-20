@@ -5,7 +5,7 @@ namespace boot
 {
 
 
-   class CLASS_DECL_ca library
+   class CLASS_DECL_BOOT library
    {
    public:
 
@@ -35,7 +35,7 @@ namespace boot
 
    };
 
-   class CLASS_DECL_ca ca2_library :
+   class CLASS_DECL_BOOT ca2_library :
       virtual public library
    {
    public:
@@ -57,7 +57,7 @@ namespace core
 {
 
 
-   CLASS_DECL_ca void * open_ca2_library(const char * psz);
+   CLASS_DECL_BOOT void * open_ca2_library(const char * psz);
 
 
 } // namespace core

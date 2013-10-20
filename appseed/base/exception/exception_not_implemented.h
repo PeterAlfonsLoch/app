@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c not_implemented : 
+class CLASS_DECL_BASE not_implemented : 
    virtual public ::exception::base
 {
 public:

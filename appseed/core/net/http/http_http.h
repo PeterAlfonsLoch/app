@@ -19,7 +19,7 @@ namespace http
       status_failed,
    };
 
-   class CLASS_DECL_ca2 signal :
+   class CLASS_DECL_CORE signal :
       public signal_details
    {
    public:

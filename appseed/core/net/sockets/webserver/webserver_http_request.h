@@ -6,7 +6,7 @@ namespace http
 
    class form;
 
-   class CLASS_DECL_ca2 request : public transaction
+   class CLASS_DECL_CORE request : public transaction
    {
    public:
 

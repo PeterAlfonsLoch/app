@@ -19,7 +19,7 @@
 namespace user
 {
 
-   CLASS_DECL_ca2 window_interface * window_interface::g_pwndLastLButtonDown = NULL;
+   CLASS_DECL_CORE window_interface * window_interface::g_pwndLastLButtonDown = NULL;
 
 
 

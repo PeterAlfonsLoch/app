@@ -3,7 +3,7 @@
 namespace user
 {
 
-   CLASS_DECL_ca2 bool window_draw::s_bRunning = false;
+   CLASS_DECL_CORE bool window_draw::s_bRunning = false;
 
    window_draw::window_draw(sp(base_application) papp) :
       element(papp),

@@ -6,7 +6,7 @@ namespace bergedge
    class document;
    class pane_view;
 
-   class CLASS_DECL_ca2 view :
+   class CLASS_DECL_CORE view :
       virtual public ::user::scroll_view,
       virtual public ::user::place_holder,
       virtual public ::backview::user::interaction

@@ -23,7 +23,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_ca2 data :
+   class CLASS_DECL_CORE data :
       virtual public ::userfs::tree_data,
       virtual public ::userfs::list_data
    {

@@ -11,7 +11,7 @@ namespace async
 
 
 
-   struct CLASS_DECL_ca token
+   struct CLASS_DECL_BOOT token
    {
       token *     m_ptoken;
       uint_ptr    m_uiToken;
@@ -75,13 +75,13 @@ namespace async
 
    };
 
-   struct CLASS_DECL_ca registration_token : public token
+   struct CLASS_DECL_BOOT registration_token : public token
    {
 
    };
 
 
-   struct CLASS_DECL_ca cancellation_token : public token
+   struct CLASS_DECL_BOOT cancellation_token : public token
    {
       callback *   m_pcallback;
       void(callback ::*m_pfnCancel)();
@@ -160,7 +160,7 @@ namespace async
 
 
    template < class T >
-   class CLASS_DECL_ca task :
+   class CLASS_DECL_BOOT task :
       public thread_layer
    {
    public:

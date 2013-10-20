@@ -6,7 +6,7 @@ namespace core
 {
 
 
-   class CLASS_DECL_ca2 os :
+   class CLASS_DECL_CORE os :
       public object
    {
    public:

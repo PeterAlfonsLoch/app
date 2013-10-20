@@ -5,7 +5,7 @@ namespace nature
 {
 
 
-   class CLASS_DECL_ca2 pane_view : 
+   class CLASS_DECL_CORE pane_view : 
       virtual public ::userex::pane_tab_view
    {
    public:

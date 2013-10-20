@@ -8,7 +8,7 @@ namespace userfs
    class document;
 
 
-   class CLASS_DECL_ca2 main_view :
+   class CLASS_DECL_CORE main_view :
       public ::user::split_view
    {
    public:

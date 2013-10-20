@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_ca2 folder_list_data :
+   class CLASS_DECL_CORE folder_list_data :
       public ::user::list_data,
       public ::database::client
    {

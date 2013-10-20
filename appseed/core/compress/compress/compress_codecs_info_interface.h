@@ -3,7 +3,7 @@
 namespace libcompress
 {
 
-   class CLASS_DECL_ca2 codecs_info_interface :
+   class CLASS_DECL_CORE codecs_info_interface :
       virtual public object
    {
    public:

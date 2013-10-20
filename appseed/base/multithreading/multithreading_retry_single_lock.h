@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c retry_single_lock
+class CLASS_DECL_BASE retry_single_lock
 {
 protected:
 

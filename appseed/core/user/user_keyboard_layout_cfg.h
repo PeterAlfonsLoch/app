@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 keyboard_layout_cfg :
+   class CLASS_DECL_CORE keyboard_layout_cfg :
       virtual public object
    {
    public:

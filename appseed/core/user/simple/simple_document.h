@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 simple_document :
+class CLASS_DECL_CORE simple_document :
    virtual public ::user::document
 {
 public:

@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_ca2 item
+   class CLASS_DECL_CORE item
    {
    public:
        UINT          CtlType;

@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_ca2 sip_client :
+   class CLASS_DECL_CORE sip_client :
       virtual public object
    {
    public:

@@ -15,7 +15,7 @@ namespace user
 namespace user
 {
 
-   class CLASS_DECL_ca2 window_draw :
+   class CLASS_DECL_CORE window_draw :
       virtual public thread
    {
    public:

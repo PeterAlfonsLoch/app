@@ -3,7 +3,7 @@
 
 namespace core
 {
-   class CLASS_DECL_ca2 stra :
+   class CLASS_DECL_CORE stra :
       public object
    {
    public:

@@ -100,7 +100,7 @@ namespace message
 
    };
 
-   CLASS_DECL_ca2 UINT translate_to_os_message(UINT uiMessage);
+   CLASS_DECL_CORE UINT translate_to_os_message(UINT uiMessage);
 
    class base;
 
@@ -138,7 +138,7 @@ namespace message
 
    class ::signal * CreateSignal();
 
-/*   class CLASS_DECL_ca2 Handler
+/*   class CLASS_DECL_CORE Handler
    {
    public:
       Handler();
@@ -147,12 +147,12 @@ namespace message
    };
    */
 
-   class CLASS_DECL_ca2 dispatch :
+   class CLASS_DECL_CORE dispatch :
       virtual public object
    {
    public:
 
-      class CLASS_DECL_ca2 HandlerItemBase :
+      class CLASS_DECL_CORE HandlerItemBase :
          virtual public root
       {
       public:
@@ -172,7 +172,7 @@ namespace message
          virtual signalizable* get_signalizable() { return m_psignalizable; }
       };
 
-      class CLASS_DECL_ca2 HandlerItemArray :
+      class CLASS_DECL_CORE HandlerItemArray :
          public array < HandlerItemBase *, HandlerItemBase *>
       {
       public:
@@ -180,7 +180,7 @@ namespace message
          bool HasSignalizable(signalizable* psignalizable);
       };
 
-      class CLASS_DECL_ca2 Signal :
+      class CLASS_DECL_CORE Signal :
          virtual public element
       {
       public:
@@ -197,12 +197,12 @@ namespace message
          ~Signal();
       };
 
-      class CLASS_DECL_ca2 SignalPtrArray :
+      class CLASS_DECL_CORE SignalPtrArray :
          public array < Signal * , Signal * >
       {
       };
 
-      class CLASS_DECL_ca2 SignalArray :
+      class CLASS_DECL_CORE SignalArray :
          public spa(Signal)
       {
       public:
@@ -312,7 +312,7 @@ namespace message
 
 #undef new
 
-   class CLASS_DECL_ca2 base :
+   class CLASS_DECL_CORE base :
          public signal_details
       {
       public:
@@ -338,7 +338,7 @@ namespace message
          LRESULT  m_lresult;
       };
 
-      class CLASS_DECL_ca2 create : public base
+      class CLASS_DECL_CORE create : public base
       {
       public:
 
@@ -351,7 +351,7 @@ namespace message
          virtual void failed(const char * lpcszErrorMessage);
       };
 
-      class CLASS_DECL_ca2 timer : public base
+      class CLASS_DECL_CORE timer : public base
       {
       public:
 
@@ -361,7 +361,7 @@ namespace message
          UINT m_nIDEvent;
       };
 
-      class CLASS_DECL_ca2 activate : public base
+      class CLASS_DECL_CORE activate : public base
       {
       public:
 
@@ -376,7 +376,7 @@ namespace message
          virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
       };
 
-      class CLASS_DECL_ca2 move : public base
+      class CLASS_DECL_CORE move : public base
       {
       public:
 
@@ -385,7 +385,7 @@ namespace message
          point m_pt;
       };
 
-      class CLASS_DECL_ca2 size : public base
+      class CLASS_DECL_CORE size : public base
       {
       public:
 
@@ -397,7 +397,7 @@ namespace message
       };
 
 
-      class CLASS_DECL_ca2 scroll : public base
+      class CLASS_DECL_CORE scroll : public base
       {
       public:
 
@@ -410,7 +410,7 @@ namespace message
       };
 
 
-      class CLASS_DECL_ca2 mouse : public base
+      class CLASS_DECL_CORE mouse : public base
       {
       public:
 
@@ -427,7 +427,7 @@ namespace message
          static mouse * cast(signal_details * pobj) { return (mouse *) pobj; }
       };
 
-      class CLASS_DECL_ca2 mouse_wheel : public mouse
+      class CLASS_DECL_CORE mouse_wheel : public mouse
       {
       public:
 
@@ -441,7 +441,7 @@ namespace message
       };
 
 
-      class CLASS_DECL_ca2 mouse_activate : public base
+      class CLASS_DECL_CORE mouse_activate : public base
       {
       public:
 
@@ -452,7 +452,7 @@ namespace message
          UINT GetMessage();
       };
 
-      class CLASS_DECL_ca2 context_menu : public base
+      class CLASS_DECL_CORE context_menu : public base
       {
       public:
 
@@ -463,7 +463,7 @@ namespace message
       };
 
 
-      class CLASS_DECL_ca2 set_cursor : public base
+      class CLASS_DECL_CORE set_cursor : public base
       {
       public:
 
@@ -474,7 +474,7 @@ namespace message
          UINT m_message;
       };
 
-      class CLASS_DECL_ca2 show_window : public base
+      class CLASS_DECL_CORE show_window : public base
       {
       public:
 
@@ -485,7 +485,7 @@ namespace message
          virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
       };
 
-      class CLASS_DECL_ca2 on_draw : public base
+      class CLASS_DECL_CORE on_draw : public base
       {
       public:
 
@@ -494,7 +494,7 @@ namespace message
          ::draw2d::graphics * m_pdc;
       };
 
-      class CLASS_DECL_ca2 erase_bkgnd : public base
+      class CLASS_DECL_CORE erase_bkgnd : public base
       {
       public:
 
@@ -511,7 +511,7 @@ namespace message
       // WM_PAINT -> base
       // WM_MOUSELEAVE -> base
 
-      class CLASS_DECL_ca2 nchittest : public base
+      class CLASS_DECL_CORE nchittest : public base
       {
       public:
 
@@ -520,7 +520,7 @@ namespace message
          point m_pt;
       };
 
-      class CLASS_DECL_ca2 key : public base
+      class CLASS_DECL_CORE key : public base
       {
       public:
 
@@ -544,7 +544,7 @@ namespace message
          virtual void set(sp(::user::interaction) pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
       };
 
-      class CLASS_DECL_ca2 nc_activate : public base
+      class CLASS_DECL_CORE nc_activate : public base
       {
       public:
 
@@ -559,7 +559,7 @@ namespace message
 
 #ifdef WINDOWSEX
 
-      class CLASS_DECL_ca2 notify : public base
+      class CLASS_DECL_CORE notify : public base
       {
       public:
 
@@ -571,7 +571,7 @@ namespace message
 
 #endif
 
-      class CLASS_DECL_ca2 update_cmd_ui : public base
+      class CLASS_DECL_CORE update_cmd_ui : public base
       {
       public:
 
@@ -580,7 +580,7 @@ namespace message
          cmd_ui *    m_pcmdui;
       };
 
-      class CLASS_DECL_ca2 command : public base
+      class CLASS_DECL_CORE command : public base
       {
       public:
 
@@ -591,7 +591,7 @@ namespace message
          oswindow get_oswindow();
       };
 
-      class CLASS_DECL_ca2 ctl_color : public base
+      class CLASS_DECL_CORE ctl_color : public base
       {
       public:
 
@@ -603,7 +603,7 @@ namespace message
          UINT        m_nCtlType;
       };
 
-      class CLASS_DECL_ca2 set_focus : public base
+      class CLASS_DECL_CORE set_focus : public base
       {
       public:
 
@@ -614,7 +614,7 @@ namespace message
 
 
 
-      class CLASS_DECL_ca2 window_pos : public base
+      class CLASS_DECL_CORE window_pos : public base
       {
       public:
 
@@ -628,7 +628,7 @@ namespace message
 #ifdef WINDOWSEX
 
 
-      class CLASS_DECL_ca2 measure_item : public base
+      class CLASS_DECL_CORE measure_item : public base
       {
       public:
 
@@ -640,7 +640,7 @@ namespace message
 
 #endif
 
-      class CLASS_DECL_ca2 nc_calc_size : public base
+      class CLASS_DECL_CORE nc_calc_size : public base
       {
       public:
 
@@ -653,7 +653,7 @@ namespace message
       };
 
 
-      class CLASS_DECL_ca2 enable : public base
+      class CLASS_DECL_CORE enable : public base
       {
       public:
 

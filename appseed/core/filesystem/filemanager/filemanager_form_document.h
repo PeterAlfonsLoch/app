@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 file_manager_form_document :
+class CLASS_DECL_CORE file_manager_form_document :
    virtual public form_document
 {
 public:

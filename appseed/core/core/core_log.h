@@ -24,9 +24,9 @@ namespace core
 
 
 
-   CLASS_DECL_ca2 int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat, va_list list);
+   CLASS_DECL_CORE int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat, va_list list);
 
-   /*   CLASS_DECL_ca2 int32_t __cdecl ca2_logging_report(
+   /*   CLASS_DECL_CORE int32_t __cdecl ca2_logging_report(
    int32_t iReportType,
    const char * pszFileName,
    int32_t iLineNumber,
@@ -35,7 +35,7 @@ namespace core
    va_list list);
 
 
-   extern CLASS_DECL_ca2 int32_t  ( __cdecl *  __ca2_logging_report)(
+   extern CLASS_DECL_CORE int32_t  ( __cdecl *  __ca2_logging_report)(
    int32_t iReportType,
    const char * pszFileName,
    int32_t iLineNumber,
@@ -43,7 +43,7 @@ namespace core
    const char * pszFormat,
    va_list list);*/
 
-   class CLASS_DECL_ca2 log :
+   class CLASS_DECL_CORE log :
       virtual public element
    {
    public:

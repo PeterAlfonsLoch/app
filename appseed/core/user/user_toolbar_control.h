@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 tool_bar_control :
+   class CLASS_DECL_CORE tool_bar_control :
       public ::user::interaction
    {
    public:

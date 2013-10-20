@@ -9,7 +9,7 @@ namespace frame
 {
 
 
-   class CLASS_DECL_ca2 WorkSetClientInterface :
+   class CLASS_DECL_CORE WorkSetClientInterface :
       virtual public database::user::interaction
    {
    public:

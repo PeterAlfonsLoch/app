@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_ca2 get_socket : 
+   class CLASS_DECL_CORE get_socket : 
       public ::sockets::http_get_socket
    {
    public:

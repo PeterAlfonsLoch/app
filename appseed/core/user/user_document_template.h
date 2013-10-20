@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 document_template :
+   class CLASS_DECL_CORE document_template :
       virtual public ::user::base_document_template,
       virtual public command_target,
       virtual public ::user::document_request_interface,

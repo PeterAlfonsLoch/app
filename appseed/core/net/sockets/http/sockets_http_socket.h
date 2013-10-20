@@ -8,7 +8,7 @@ namespace sockets
    /** \defgroup http HTTP Sockets */
    /** HTTP request/response base class.
    \ingroup http */
-   class CLASS_DECL_ca2 http_socket :
+   class CLASS_DECL_CORE http_socket :
       virtual public tcp_socket
    {
    public:

@@ -3,7 +3,7 @@
 namespace database
 {
 
-   class CLASS_DECL_ca2 id
+   class CLASS_DECL_CORE id
    {
    public:
       id(const id & id);

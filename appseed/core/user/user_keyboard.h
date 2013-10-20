@@ -6,7 +6,7 @@ namespace user
 
    class keyboard_layout;
 
-   class CLASS_DECL_ca2 keyboard :
+   class CLASS_DECL_CORE keyboard :
       virtual public object
    {
    public:

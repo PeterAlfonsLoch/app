@@ -6,7 +6,7 @@ namespace file
 
 
 
-   class CLASS_DECL_c stream_buffer :
+   class CLASS_DECL_BASE stream_buffer :
       virtual public ::file::reader,
       virtual public ::file::writer,
       virtual public ::file::seekable,

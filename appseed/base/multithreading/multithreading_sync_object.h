@@ -9,7 +9,7 @@
  **   \author grymse@alhem.net
 **/
 
-class CLASS_DECL_c sync_object :
+class CLASS_DECL_BASE sync_object :
    public object
 {
 public:

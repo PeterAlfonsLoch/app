@@ -25,7 +25,7 @@ namespace comparison
    };
 
    template < >
-   class CLASS_DECL_c binary < int32_t >
+   class CLASS_DECL_BASE binary < int32_t >
    {
    public:
 
@@ -38,7 +38,7 @@ namespace comparison
 
    };
 
-   class CLASS_DECL_c strid_binary
+   class CLASS_DECL_BASE strid_binary
    {
    public:
 

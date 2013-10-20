@@ -3,7 +3,7 @@
 namespace xml
 {
 
-   class CLASS_DECL_c property_set_exchange :
+   class CLASS_DECL_BASE property_set_exchange :
       virtual public exportable,
       virtual public importable,
       virtual public object

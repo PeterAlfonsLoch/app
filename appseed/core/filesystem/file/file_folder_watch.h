@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_ca2 folder_watch :
+   class CLASS_DECL_CORE folder_watch :
       virtual public object
    {
    public:
@@ -19,7 +19,7 @@ namespace file
          action_unexpected,
       };
 
-      class CLASS_DECL_ca2 callback
+      class CLASS_DECL_CORE callback
       {
       public:
          virtual void on_file_action(e_action eaction, const char * pszFolder, const char * psz);

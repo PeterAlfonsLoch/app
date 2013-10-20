@@ -16,7 +16,7 @@ namespace spa_install
    };
 
 
-   class CLASS_DECL_ca plugin :
+   class CLASS_DECL_BOOT plugin :
       virtual public ::hotplugin::plugin,
       virtual public ::simple_ui,
       virtual public ::spa_login::callback
@@ -24,7 +24,7 @@ namespace spa_install
    public:
 
 
-      class CLASS_DECL_ca thread_start_ca2 :
+      class CLASS_DECL_BOOT thread_start_ca2 :
          public thread_layer
       {
       public:

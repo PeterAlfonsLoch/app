@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c interlocked_long_pulse
+class CLASS_DECL_BASE interlocked_long_pulse
 {
 public:
 

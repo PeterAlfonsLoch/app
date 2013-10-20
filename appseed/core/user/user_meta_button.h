@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 MetaButton :
+class CLASS_DECL_CORE MetaButton :
    public ::user::button,
    public ::uinteraction::frame::ControlBoxButton
 {

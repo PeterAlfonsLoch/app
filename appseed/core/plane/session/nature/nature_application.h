@@ -8,7 +8,7 @@ namespace nature
    class database;
 
 
-   class CLASS_DECL_ca2 application :
+   class CLASS_DECL_CORE application :
       virtual public ::plane::application
    {
    public:

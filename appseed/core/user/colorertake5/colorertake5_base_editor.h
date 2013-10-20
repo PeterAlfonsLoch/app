@@ -15,7 +15,7 @@ namespace colorertake5
    * is passed into this object and gets internal processing.
    * @ingroup colorer_editor
    */
-   class CLASS_DECL_ca2 base_editor :
+   class CLASS_DECL_CORE base_editor :
       public RegionHandler,
       virtual public object
    {

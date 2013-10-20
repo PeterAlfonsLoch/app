@@ -31,7 +31,7 @@ namespace plugin
    class host_interaction;
    class system;
 
-   class CLASS_DECL_ca2 plugin :
+   class CLASS_DECL_CORE plugin :
       virtual public hotplugin::plugin,
       virtual public object
    {

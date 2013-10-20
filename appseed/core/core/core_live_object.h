@@ -4,7 +4,7 @@
 namespace core
 {
 
-   class CLASS_DECL_ca2 live_object :
+   class CLASS_DECL_CORE live_object :
       virtual public element
    {
    public:

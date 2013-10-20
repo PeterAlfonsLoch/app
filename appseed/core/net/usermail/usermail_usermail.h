@@ -5,7 +5,7 @@ namespace usermail
 {
 
 
-   class CLASS_DECL_ca2 usermail : 
+   class CLASS_DECL_CORE usermail : 
       virtual public ::base_departament
    {
    public:

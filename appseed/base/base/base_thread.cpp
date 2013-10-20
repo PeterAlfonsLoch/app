@@ -60,8 +60,8 @@ mutex & user_mutex()
 
 
 
-CLASS_DECL_c PFN_get_thread g_pfn_get_thread = NULL;
-CLASS_DECL_c PFN_get_thread_state g_pfn_get_thread_state = NULL;
+CLASS_DECL_BASE PFN_get_thread g_pfn_get_thread = NULL;
+CLASS_DECL_BASE PFN_get_thread_state g_pfn_get_thread_state = NULL;
 
 
 base_thread * get_thread()

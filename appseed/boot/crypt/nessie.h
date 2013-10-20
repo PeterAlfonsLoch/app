@@ -23,9 +23,9 @@ typedef struct NESSIEstruct {
 } NESSIEstruct;
 
 
-CLASS_DECL_ca void NESSIEinit(struct NESSIEstruct * const structpointer);
-CLASS_DECL_ca void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstruct * const structpointer);
-CLASS_DECL_ca void NESSIEfinalize(struct NESSIEstruct * const structpointer, uchar * const result);
+CLASS_DECL_BOOT void NESSIEinit(struct NESSIEstruct * const structpointer);
+CLASS_DECL_BOOT void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstruct * const structpointer);
+CLASS_DECL_BOOT void NESSIEfinalize(struct NESSIEstruct * const structpointer, uchar * const result);
 
 string crypt_nessie(const char * psz);
 

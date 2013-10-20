@@ -5,7 +5,7 @@ class strid_array;
 class mutex;
 
 
-class CLASS_DECL_c factory_allocator :
+class CLASS_DECL_BASE factory_allocator :
    virtual public object
 {
 public:
@@ -86,7 +86,7 @@ public:
 };
 
 
-class CLASS_DECL_c factory_item_base :
+class CLASS_DECL_BASE factory_item_base :
    virtual public object
 {
 public:
@@ -129,7 +129,7 @@ public:
 
 
 
-class CLASS_DECL_c base_factory :
+class CLASS_DECL_BASE base_factory :
    virtual public object
 {
 public:

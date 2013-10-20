@@ -6,7 +6,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_ca2 filemanager :
+   class CLASS_DECL_CORE filemanager :
       virtual public ::base_departament,
       virtual public FileManagerCallbackInterface,
       virtual public FileManagerFileListCallback,

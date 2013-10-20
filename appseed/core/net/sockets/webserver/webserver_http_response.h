@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_ca2 response : public http::transaction
+   class CLASS_DECL_CORE response : public http::transaction
    {
    public:
 

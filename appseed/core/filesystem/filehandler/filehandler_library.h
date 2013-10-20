@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   class CLASS_DECL_ca2 library :
+   class CLASS_DECL_CORE library :
       virtual public ::core::library
    {
    public:

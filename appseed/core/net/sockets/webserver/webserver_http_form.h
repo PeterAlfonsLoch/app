@@ -7,7 +7,7 @@ namespace http
 
    /** Parse/store a http query_string/form-data body. 
       \ingroup webserver */
-   class CLASS_DECL_ca2 form :
+   class CLASS_DECL_CORE form :
       virtual public object
    {
    public:

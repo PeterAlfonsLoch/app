@@ -95,7 +95,7 @@ inline void __cdecl operator delete[](void * p) del_throw_spec
 
 
 
-class CLASS_DECL_c c_class
+class CLASS_DECL_BASE c_class
 {
 public:
 
@@ -111,7 +111,7 @@ public:
 };
 
 
-inline CLASS_DECL_c void * __cdecl operator new (size_t size, const c_class &)
+inline CLASS_DECL_BASE void * __cdecl operator new (size_t size, const c_class &)
 {
 
    return memory_alloc(size);
@@ -119,7 +119,7 @@ inline CLASS_DECL_c void * __cdecl operator new (size_t size, const c_class &)
 }
 
 
-inline CLASS_DECL_c void * __cdecl operator new[](size_t size, const c_class &)
+inline CLASS_DECL_BASE void * __cdecl operator new[](size_t size, const c_class &)
 {
 
    return memory_alloc(size);

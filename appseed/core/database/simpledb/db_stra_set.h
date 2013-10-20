@@ -4,7 +4,7 @@
 #include "database/database_id.h"
 
 
-class CLASS_DECL_ca2 db_stra_set :
+class CLASS_DECL_CORE db_stra_set :
    public ::database::client
 {
 public:

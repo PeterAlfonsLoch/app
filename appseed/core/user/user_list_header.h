@@ -8,13 +8,13 @@ namespace user
    class list;
 
 
-   class CLASS_DECL_ca2 list_header :
+   class CLASS_DECL_CORE list_header :
       virtual public database::user::interaction
    {
    public:
 
 
-      class CLASS_DECL_ca2 item
+      class CLASS_DECL_CORE item
       {
       public:
 

@@ -93,7 +93,7 @@ namespace core
 
 //   extern sp(base_application) g_papp;
 
-   CLASS_DECL_ca2 int32_t SimpleDebugReport(int32_t iReportType, const char * pszFileName,int32_t iLine,const char *,const char * pszFormat, va_list list)
+   CLASS_DECL_CORE int32_t SimpleDebugReport(int32_t iReportType, const char * pszFileName,int32_t iLine,const char *,const char * pszFormat, va_list list)
    {
       #ifdef WIN32
 

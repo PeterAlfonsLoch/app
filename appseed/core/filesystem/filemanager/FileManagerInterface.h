@@ -11,7 +11,7 @@ namespace filemanager
 } // namespace filemanager
 
 
-class CLASS_DECL_ca2 FileManagerInterface :
+class CLASS_DECL_CORE FileManagerInterface :
    virtual public ::database::client
 {
 public:

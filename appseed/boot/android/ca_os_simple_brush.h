@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c simple_brush
+class CLASS_DECL_BASE simple_brush
 {
 public:
 

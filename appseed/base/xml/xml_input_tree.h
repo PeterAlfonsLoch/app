@@ -9,7 +9,7 @@ namespace xml
    class attribute_array;
 
 
-   class CLASS_DECL_c input_tree :
+   class CLASS_DECL_BASE input_tree :
       public tree_base
    {
    public:

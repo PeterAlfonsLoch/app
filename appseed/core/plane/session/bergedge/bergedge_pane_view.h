@@ -4,7 +4,7 @@
 namespace bergedge
 {
 
-   class CLASS_DECL_ca2 pane_view : 
+   class CLASS_DECL_CORE pane_view : 
       public ::userex::pane_tab_view,
       public FileManagerCallbackInterface,
       public ::bergedge::form_callback

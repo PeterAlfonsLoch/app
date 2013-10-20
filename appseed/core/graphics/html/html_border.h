@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   class CLASS_DECL_ca2 border :
+   class CLASS_DECL_CORE border :
       public box
    {
    public:

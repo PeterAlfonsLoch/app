@@ -11,7 +11,7 @@ namespace user
    class scroll_bar;
 
 
-   class CLASS_DECL_ca2 tree_draw_item
+   class CLASS_DECL_CORE tree_draw_item
    {
    public:
       sp(::data::tree_item)      m_pitem;
@@ -32,7 +32,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca2 tree :
+   class CLASS_DECL_CORE tree :
       virtual public scroll_view,
       public ::data::tree
    {
@@ -146,7 +146,7 @@ namespace user
 namespace user
 {
 
-   class CLASS_DECL_ca2 tree_window :
+   class CLASS_DECL_CORE tree_window :
       virtual public ::user::tree
    {
    public:

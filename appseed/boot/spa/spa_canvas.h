@@ -4,7 +4,7 @@
 namespace spa_install
 {
 
-   class CLASS_DECL_ca canvas
+   class CLASS_DECL_BOOT canvas
    {
    public:
 

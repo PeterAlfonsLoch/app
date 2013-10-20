@@ -7,7 +7,7 @@ namespace filemanager
 
 } // namespace filemanager
 
-class CLASS_DECL_ca2 FileManagerViewInterface
+class CLASS_DECL_CORE FileManagerViewInterface
 {
 public:
    FileManagerViewInterface();

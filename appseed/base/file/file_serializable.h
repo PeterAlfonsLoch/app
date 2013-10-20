@@ -9,7 +9,7 @@ namespace file
    class output_stream;
 
 
-   class CLASS_DECL_c serializable :
+   class CLASS_DECL_BASE serializable :
       virtual public element
    {
    public:

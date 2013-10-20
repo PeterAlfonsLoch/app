@@ -3,7 +3,7 @@
 namespace xml
 {
 
-   class CLASS_DECL_c tree_base :
+   class CLASS_DECL_BASE tree_base :
       virtual public object
    {
    protected:

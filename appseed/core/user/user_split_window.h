@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 BaseSplitWnd :
+class CLASS_DECL_CORE BaseSplitWnd :
    virtual public ::user::split_layout
 {
 public:

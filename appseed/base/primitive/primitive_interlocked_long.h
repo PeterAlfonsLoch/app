@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c interlocked_long
+class CLASS_DECL_BASE interlocked_long
 {
 public:
 

@@ -5,7 +5,7 @@ namespace usermail
 {
 
 
-   class CLASS_DECL_ca2 list_interface :
+   class CLASS_DECL_CORE list_interface :
       virtual public ::user::list
    {
    public:
@@ -14,7 +14,7 @@ namespace usermail
 
       account * m_paccount;
 
-      class CLASS_DECL_ca2 data :
+      class CLASS_DECL_CORE data :
          virtual public ::user::list_data
       {
       public:

@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_ca2 sip_socket :
+   class CLASS_DECL_CORE sip_socket :
       public http_tunnel
    {
    public:

@@ -11,7 +11,7 @@ namespace database
    represents  connection with database server;
 
    ******************************************************************/
-   class CLASS_DECL_ca2 base :
+   class CLASS_DECL_CORE base :
       virtual public object
    {
    public:

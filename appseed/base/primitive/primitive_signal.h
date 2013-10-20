@@ -7,7 +7,7 @@ class signal;
 class request_signal;
 
 
-class CLASS_DECL_c signal_details :
+class CLASS_DECL_BASE signal_details :
    public object
 {
 public:
@@ -38,7 +38,7 @@ public:
 };
 
 
-class CLASS_DECL_c signalizable :
+class CLASS_DECL_BASE signalizable :
    virtual public object
 {
 public:
@@ -60,7 +60,7 @@ public:
 
 };
 
-class CLASS_DECL_c base_signalizable_array :
+class CLASS_DECL_BASE base_signalizable_array :
    virtual protected comparable_array < signalizable * >
 {
 public:
@@ -106,7 +106,7 @@ public:
 
 };
 
-class CLASS_DECL_c signal :
+class CLASS_DECL_BASE signal :
    virtual public root
 {
 protected:
@@ -205,7 +205,7 @@ bool signal::signal_delegate_instance<T>::operator == (const signal_delegate_ins
 }
 
 
-class CLASS_DECL_c signalid
+class CLASS_DECL_BASE signalid
 {
 public:
 
@@ -218,7 +218,7 @@ public:
 
 };
 
-class CLASS_DECL_c signalid_array :
+class CLASS_DECL_BASE signalid_array :
    virtual public array < signalid *, signalid * >
 {
 public:
@@ -231,12 +231,12 @@ public:
 };
 
 
-class CLASS_DECL_c dispatch
+class CLASS_DECL_BASE dispatch
 {
 public:
 
 
-   class CLASS_DECL_c handler_item_base
+   class CLASS_DECL_BASE handler_item_base
    {
    public:
 
@@ -258,7 +258,7 @@ public:
    };
 
 
-   class CLASS_DECL_c handler_item_array :
+   class CLASS_DECL_BASE handler_item_array :
       public array < handler_item_base *, handler_item_base *>
    {
    public:
@@ -266,7 +266,7 @@ public:
    };
 
 
-   class CLASS_DECL_c signal_item :
+   class CLASS_DECL_BASE signal_item :
       virtual public object
    {
    public:
@@ -284,7 +284,7 @@ public:
    };
 
 
-   class CLASS_DECL_c signal_item_ptr_array :
+   class CLASS_DECL_BASE signal_item_ptr_array :
       public array < signal_item * , signal_item * >
    {
    public:
@@ -294,7 +294,7 @@ public:
    };
 
 
-   class CLASS_DECL_c signal_item_array :
+   class CLASS_DECL_BASE signal_item_array :
       public spa(signal_item)
    {
    public:

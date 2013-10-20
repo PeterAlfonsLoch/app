@@ -87,14 +87,14 @@
 #include "collection_string_list.h"
 
 
-class CLASS_DECL_c map_word_to_ptr :
+class CLASS_DECL_BASE map_word_to_ptr :
    virtual public map < WORD, WORD, void *, void * >
 {
 public:
    map_word_to_ptr(sp(base_application) papp = NULL, ::count nBlockSize = 10);
 };
 
-class CLASS_DECL_c map_ptr_to_word :
+class CLASS_DECL_BASE map_ptr_to_word :
    virtual public map < void *, void *, WORD, WORD >
 {
 public:
@@ -102,14 +102,14 @@ public:
 };
 
 
-class CLASS_DECL_c map_ptr_to_ptr :
+class CLASS_DECL_BASE map_ptr_to_ptr :
    virtual public map < void *, void *, void *, void * >
 {
 public:
    map_ptr_to_ptr(sp(base_application) papp = NULL, ::count nBlockSize = 10);
 };
 
-class CLASS_DECL_c map_word_to_ob :
+class CLASS_DECL_BASE map_word_to_ob :
    virtual public map < WORD, WORD, object *, object * >
 {
 public:
@@ -117,14 +117,14 @@ public:
 };
 
 
-class CLASS_DECL_c map_string_to_ptr :
+class CLASS_DECL_BASE map_string_to_ptr :
    virtual public map < string, const string &, void *, void * >
 {
 public:
    map_string_to_ptr(sp(base_application) papp = NULL, ::count nBlockSize = 10);
 };
 
-class CLASS_DECL_c map_string_to_ob :
+class CLASS_DECL_BASE map_string_to_ob :
    virtual public map < string, const string &, object *, object * >
 {
 public:
@@ -169,13 +169,13 @@ public:
 #include "collection.inl"
 
 
-class CLASS_DECL_c dword_2darray :
+class CLASS_DECL_BASE dword_2darray :
    public spa(uint32_array)
 {
 public:
 };
 
-class CLASS_DECL_c index_2darray :
+class CLASS_DECL_BASE index_2darray :
    public spa(index_array)
 {
 public:
@@ -199,7 +199,7 @@ public:
 
 #include "collection_priority_queue.h"
 
-class CLASS_DECL_c time_array :
+class CLASS_DECL_BASE time_array :
    public array < ::datetime::time, ::datetime::time & >
 {
 };

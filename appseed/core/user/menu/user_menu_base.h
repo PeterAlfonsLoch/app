@@ -5,7 +5,7 @@ namespace user
 
    class menu_item;
 
-   class CLASS_DECL_ca2 menu_base :
+   class CLASS_DECL_CORE menu_base :
       virtual public object
    {
    public:

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c istring
+class CLASS_DECL_BASE istring
 {
 protected:
 

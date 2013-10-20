@@ -5,7 +5,7 @@ namespace userfs
 {
 
 
-   class CLASS_DECL_ca2 list_item :
+   class CLASS_DECL_CORE list_item :
       virtual public ::fs::item
    {
    public:
@@ -43,4 +43,4 @@ T cast (::userfs::list_item & item)
 
 
 template <>
-CLASS_DECL_ca2 ::fs::item cast < ::fs::item > (::userfs::list_item & item);
+CLASS_DECL_CORE ::fs::item cast < ::fs::item > (::userfs::list_item & item);

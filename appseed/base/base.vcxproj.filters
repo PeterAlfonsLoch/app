@@ -132,6 +132,15 @@
     <Filter Include="Source Files\datetime\NewFilter1">
       <UniqueIdentifier>{ac59d0dd-4eaa-4a42-b51c-a205853270c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Binary Files">
+      <UniqueIdentifier>{0e5699d5-e5c9-4fe6-bf50-fdbc06f88940}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Binary Files\x64">
+      <UniqueIdentifier>{bf6e62f4-c0ee-4267-b9f2-badb91fbfe3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Binary Files\x86">
+      <UniqueIdentifier>{8bedbbf7-bbee-4bec-b9ca-3e59352115ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework_c.h">
@@ -1175,6 +1184,12 @@
     <ClInclude Include="base\base_system_xml.inl">
       <Filter>Header Files\base</Filter>
     </ClInclude>
+    <ClInclude Include="comparison\comparison_md5.h">
+      <Filter>Header Files\comparison</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_set_event_on_exit.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_c.c">
@@ -1983,10 +1998,27 @@
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="exception\_exception.txt">
       <Filter>Header Files\exception</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcr120d.dll">
+      <Filter>Binary Files\x86</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcp120d.dll">
+      <Filter>Binary Files\x86</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\msvcp120d.dll">
+      <Filter>Binary Files\x64</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\msvcr120d.dll">
+      <Filter>Binary Files\x64</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

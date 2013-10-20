@@ -9,7 +9,7 @@ namespace file
    typedef smart_pointer < writer_flush > writer_flush_sp;
 
 
-   class CLASS_DECL_c writer_flush :
+   class CLASS_DECL_BASE writer_flush :
       virtual public object
    {
    public:

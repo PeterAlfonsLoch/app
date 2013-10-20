@@ -8,7 +8,7 @@ namespace hotplugin
    class host;
 
 
-   class CLASS_DECL_ca plugin 
+   class CLASS_DECL_BOOT plugin 
 #ifndef METROWIN
       : virtual public ::small_ipc_channel
 #endif

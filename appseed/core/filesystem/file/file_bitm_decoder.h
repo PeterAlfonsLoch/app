@@ -64,7 +64,7 @@ namespace file
          void AlignToByte() { MovePos((32 - m_BitPos) & 7); }
       };
 
-      typedef CLASS_DECL_ca2 decoder < in_buffer > in_buffer_decoder;
+      typedef CLASS_DECL_CORE decoder < in_buffer > in_buffer_decoder;
 
    } // namespace bitm
 

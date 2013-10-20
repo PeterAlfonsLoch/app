@@ -18,7 +18,7 @@ namespace simpledb
 {
 
 
-   class CLASS_DECL_ca2 simpledb :
+   class CLASS_DECL_CORE simpledb :
       virtual public ::base_departament,
       virtual public ::database::database
    {

@@ -1,6 +1,6 @@
 #pragma once
 
-class  CLASS_DECL_ca2 folder_list_view :
+class  CLASS_DECL_CORE folder_list_view :
    virtual public simple_list_view,
    virtual public FileManagerViewInterface
 {

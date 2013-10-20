@@ -31,7 +31,7 @@ namespace user
 class SimpleDialogBar;
 
 
-class CLASS_DECL_ca2 FileManagerTemplate :
+class CLASS_DECL_CORE FileManagerTemplate :
    virtual public object
 {
 public:

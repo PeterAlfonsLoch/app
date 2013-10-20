@@ -27,6 +27,6 @@
 #define TINYJS_FUNCTIONS_H
 
 /// Register useful functions with the TinyJS interpreter
-CLASS_DECL_ca2 void registerFunctions(tinyjs *tinyJS);
+CLASS_DECL_CORE void registerFunctions(tinyjs *tinyJS);
 
 #endif

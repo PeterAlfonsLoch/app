@@ -13,7 +13,7 @@ namespace filemanager
          class tree_view;
          class list_view;
 
-         class CLASS_DECL_ca2 view :
+         class CLASS_DECL_CORE view :
             virtual public ::user::split_view
          {
          public:

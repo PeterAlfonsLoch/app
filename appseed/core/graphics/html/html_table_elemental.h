@@ -7,7 +7,7 @@ namespace html
 namespace impl
 {
 
-   class CLASS_DECL_ca2 table_elemental : public elemental
+   class CLASS_DECL_CORE table_elemental : public elemental
    {
    public:
       table_elemental();

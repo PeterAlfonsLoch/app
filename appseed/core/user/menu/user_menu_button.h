@@ -7,7 +7,7 @@ namespace user
    class menu_item;
    class menu_item_ptra;
 
-   class CLASS_DECL_ca2 menu_button_cmd_ui : public cmd_ui
+   class CLASS_DECL_CORE menu_button_cmd_ui : public cmd_ui
    {
    public:
 
@@ -27,7 +27,7 @@ namespace user
 
 
 
-   class CLASS_DECL_ca2 menu_button :
+   class CLASS_DECL_CORE menu_button :
       public button
    {
    public:

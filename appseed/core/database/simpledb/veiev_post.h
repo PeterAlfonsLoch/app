@@ -4,7 +4,7 @@
 class db_server;
 
 
-class CLASS_DECL_ca2 veiev_post :
+class CLASS_DECL_CORE veiev_post :
    public db_set
 {
 public:
@@ -14,7 +14,7 @@ public:
    virtual ~veiev_post();
 
 
-   /*class CLASS_DECL_ca2 record
+   /*class CLASS_DECL_CORE record
    {
    public:
       var sender;

@@ -2,7 +2,7 @@
 
 class image_list;
 
-class CLASS_DECL_ca2 simple_static : 
+class CLASS_DECL_CORE simple_static : 
    public ::user::static_control
 {
 public:

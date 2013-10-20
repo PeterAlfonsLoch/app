@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_ca2 html_form :
+class CLASS_DECL_CORE html_form :
    virtual public ::user::form
 {
 public:

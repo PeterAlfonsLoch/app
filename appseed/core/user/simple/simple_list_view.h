@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 simple_list_view :
+class CLASS_DECL_CORE simple_list_view :
    virtual public ::user::view,
    virtual public ::user::form_list
 {

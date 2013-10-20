@@ -8,14 +8,14 @@ namespace xml
    class document;
 
 
-   class CLASS_DECL_c node :
+   class CLASS_DECL_BASE node :
       virtual public object,
       virtual public ::file::serializable
    {
    public:
 
 
-      class CLASS_DECL_c array :
+      class CLASS_DECL_BASE array :
          virtual public spa(node)
       {
       public:

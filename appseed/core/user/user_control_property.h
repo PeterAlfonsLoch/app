@@ -3,7 +3,7 @@
 namespace user
 {
 
-   class CLASS_DECL_ca2 control_property
+   class CLASS_DECL_CORE control_property
    {
    public:
       control_property();

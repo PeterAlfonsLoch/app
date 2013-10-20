@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_ca2 glyph
+   class CLASS_DECL_CORE glyph
    {
    public:
 

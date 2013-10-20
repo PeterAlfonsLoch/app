@@ -3413,6 +3413,12 @@
     <ClInclude Include="graphics\gcom\gcom_util.h">
       <Filter>Header Files\graphics\gcom</Filter>
     </ClInclude>
+    <ClInclude Include="core\core_message_queue_listener.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core_message_queue.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive_scalar.cpp">

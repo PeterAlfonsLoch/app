@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 form_child_frame : 
+class CLASS_DECL_CORE form_child_frame : 
    virtual public simple_child_frame
 {
 public:

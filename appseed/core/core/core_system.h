@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   class CLASS_DECL_ca2 system :
+   class CLASS_DECL_CORE system :
       virtual public ::application,
       virtual public base_system
       #ifdef LINUX

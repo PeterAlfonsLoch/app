@@ -5,7 +5,7 @@ namespace userex // ca8 + cube
 {
 
 
-   class CLASS_DECL_ca2 message_box :
+   class CLASS_DECL_CORE message_box :
       virtual public wait_message_dialog
    {
    public:

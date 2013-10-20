@@ -24,12 +24,12 @@
 
 #include "nodeapp/operational_system/_.h"
 
-#ifdef __C__STATIC
-   #define CLASS_DECL_c
-#elif defined(__C__LIBRARY)
-   #define CLASS_DECL_c  CLASS_DECL_EXPORT
+#ifdef _BASE_STATIC
+   #define CLASS_DECL_BASE
+#elif defined(_BASE_LIBRARY)
+   #define CLASS_DECL_BASE  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_c  CLASS_DECL_IMPORT
+   #define CLASS_DECL_BASE  CLASS_DECL_IMPORT
 #endif
 
 #include "base/version.h"

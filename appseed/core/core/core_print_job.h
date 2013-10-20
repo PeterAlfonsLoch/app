@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_ca2 print_job :
+class CLASS_DECL_CORE print_job :
    virtual public job
 {
 public:

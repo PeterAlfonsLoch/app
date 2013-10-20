@@ -3,7 +3,7 @@
 namespace core
 {
 
-   class CLASS_DECL_ca2 contact_list :
+   class CLASS_DECL_CORE contact_list :
       public smart_pointer_array < ::user::profile *, ::user::profile * >
    {
    public:

@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 simple_tab_control :
+class CLASS_DECL_CORE simple_tab_control :
    virtual public ::user::interaction,
    virtual public ::user::tab
 {

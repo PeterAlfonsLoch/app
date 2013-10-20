@@ -5,7 +5,7 @@ namespace userfs
 {
 
 
-   class CLASS_DECL_ca2 userfs :
+   class CLASS_DECL_CORE userfs :
       virtual public ::base_departament
    {
    public:

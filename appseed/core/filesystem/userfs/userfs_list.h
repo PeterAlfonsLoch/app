@@ -6,7 +6,7 @@ namespace userfs
 
    class main_view;
 
-   class CLASS_DECL_ca2 list :
+   class CLASS_DECL_CORE list :
       virtual public list_interface
    {
    public:

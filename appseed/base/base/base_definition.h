@@ -271,8 +271,8 @@ do {                                           \
 #endif
 #endif
 
-#define API CLASS_DECL_ca2 __declspec(nothrow) HRESULT __stdcall
-#define API_(x)CLASS_DECL_ca2 __declspec(nothrow) x __stdcall
+#define API CLASS_DECL_CORE __declspec(nothrow) HRESULT __stdcall
+#define API_(x)CLASS_DECL_CORE __declspec(nothrow) x __stdcall
 #define APIINL API
 #define APIINL_(x) API_(x)
 #define INLINE inline

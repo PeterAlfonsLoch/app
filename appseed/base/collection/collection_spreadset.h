@@ -76,14 +76,14 @@ get_b_pack_count()
 }
 
 
-class CLASS_DECL_c int_int_spreadset :
+class CLASS_DECL_BASE int_int_spreadset :
    virtual public spreadset < int32_t, int32_t, int32_t, int32_t, unique_int_sort_array, unique_int_sort_array >
 {
 public:
 };
 
 
-class CLASS_DECL_c index_index_spreadset :
+class CLASS_DECL_BASE index_index_spreadset :
    virtual public spreadset < index, index, index, index, unique_index_sort_array, unique_index_sort_array >
 {
 public:

@@ -5,7 +5,7 @@ namespace math
 {
 
 
-   class CLASS_DECL_ca2 math :
+   class CLASS_DECL_CORE math :
       virtual public object
    {
    private:

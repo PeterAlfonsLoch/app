@@ -31,7 +31,7 @@ typedef struct bio_st BIO;
 namespace sockets
 {
 
-   class CLASS_DECL_ca2 SSLInitializer :
+   class CLASS_DECL_CORE SSLInitializer :
       public element
    {
    public:

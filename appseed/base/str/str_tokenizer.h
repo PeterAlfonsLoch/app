@@ -4,7 +4,7 @@
 namespace str
 {
 
-   class CLASS_DECL_c tokenizer : public string 
+   class CLASS_DECL_BASE tokenizer : public string 
    {
    protected:
 

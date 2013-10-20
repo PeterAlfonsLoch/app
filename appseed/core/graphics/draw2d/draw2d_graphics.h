@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_ca2 graphics :
+   class CLASS_DECL_CORE graphics :
       virtual public ::core::simple_chain < ::user::draw_context >
    {
    public:
@@ -566,7 +566,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_ca2 graphics_sp :
+   class CLASS_DECL_CORE graphics_sp :
       public smart_pointer < graphics >
    {
    public:
@@ -593,7 +593,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_ca2 memory_graphics :
+   class CLASS_DECL_CORE memory_graphics :
       public graphics_sp
    {
    public:
@@ -604,7 +604,7 @@ namespace draw2d
    };
 
 
-   class CLASS_DECL_ca2 window_graphics :
+   class CLASS_DECL_CORE window_graphics :
       virtual public graphics_sp
    {
    public:
@@ -616,7 +616,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_ca2 paint_graphics :
+   class CLASS_DECL_CORE paint_graphics :
       virtual public graphics_sp
    {
    public:

@@ -14,7 +14,7 @@ namespace filemanager
    class document;
 
 
-   class CLASS_DECL_ca2 SimpleFileListView :
+   class CLASS_DECL_CORE SimpleFileListView :
       virtual public ::user::view,
       virtual public ::filemanager::SimpleFileListInterface
    {

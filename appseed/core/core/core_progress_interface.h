@@ -15,7 +15,7 @@
 namespace core
 {
 
-   class CLASS_DECL_ca2 progress_interface :
+   class CLASS_DECL_CORE progress_interface :
       virtual public object
    {
    public:

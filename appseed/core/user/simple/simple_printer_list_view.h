@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 simple_printer_list_view :
+class CLASS_DECL_CORE simple_printer_list_view :
    virtual public simple_list_view
 {
 public:

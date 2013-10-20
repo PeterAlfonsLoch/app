@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 simple_button :
+class CLASS_DECL_CORE simple_button :
    virtual public ::user::button
 {
 public:

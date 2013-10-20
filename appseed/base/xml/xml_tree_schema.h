@@ -4,7 +4,7 @@ namespace xml
 {
 
 
-class CLASS_DECL_c tree_schema  
+class CLASS_DECL_BASE tree_schema  
 {
 public:
    tree_schema();

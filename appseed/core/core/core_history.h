@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   class CLASS_DECL_ca2 history :
+   class CLASS_DECL_CORE history :
       virtual public object
    {
    public:

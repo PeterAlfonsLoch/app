@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 DoubleScalar
+class CLASS_DECL_CORE DoubleScalar
 {
 public:
 
@@ -13,7 +13,7 @@ public:
 };
 
 
-class CLASS_DECL_ca2 IntScalar
+class CLASS_DECL_CORE IntScalar
 {
 public:
 

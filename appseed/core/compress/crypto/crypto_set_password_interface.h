@@ -5,7 +5,7 @@
 namespace crypto
 {
 
-   class CLASS_DECL_ca2 set_password_interface :
+   class CLASS_DECL_CORE set_password_interface :
       virtual public object
    {
    public:

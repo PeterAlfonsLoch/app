@@ -2,7 +2,7 @@
 
 namespace core
 {
-   class CLASS_DECL_ca2 service :
+   class CLASS_DECL_CORE service :
       public object
    {
    public:

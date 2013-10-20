@@ -212,12 +212,12 @@ bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
 
 
 
-CLASS_DECL_c double width(LPRECTD lpcrect)
+CLASS_DECL_BASE double width(LPRECTD lpcrect)
 {
    return lpcrect->right - lpcrect->left;
 }
 
-CLASS_DECL_c double height(LPCRECTD lpcrect)
+CLASS_DECL_BASE double height(LPCRECTD lpcrect)
 {
    return lpcrect->bottom - lpcrect->top;
 }
@@ -437,7 +437,7 @@ bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
 
 
 
-CLASS_DECL_c bool deflate(LPRECT prect, LPCRECT lpcrect)
+CLASS_DECL_BASE bool deflate(LPRECT prect, LPCRECT lpcrect)
 {
    prect->left    += lpcrect->left;
    prect->right   -= lpcrect->right;

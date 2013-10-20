@@ -5,21 +5,21 @@ namespace user
 
    class button;
 
-   class CLASS_DECL_ca2 front_end_schema :
+   class CLASS_DECL_CORE front_end_schema :
       virtual public object
    {
    public:
 
       class button;
 
-      class CLASS_DECL_ca2 system_menu
+      class CLASS_DECL_CORE system_menu
       {
       public:
          system_menu(sp(base_application) papp);
          ::draw2d::font_sp    m_fontMarlett;
       };
 
-      class CLASS_DECL_ca2 menu
+      class CLASS_DECL_CORE menu
       {
       public:
          menu(sp(base_application) papp);
@@ -30,7 +30,7 @@ namespace user
          button *          m_pschemaPopupButton;
       };
 
-      class CLASS_DECL_ca2 button
+      class CLASS_DECL_CORE button
       {
       public:
          button(sp(base_application) papp);

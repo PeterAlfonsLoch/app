@@ -20,32 +20,32 @@
 //#define ARGB(a, r,g,b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((uint32_t)(BYTE)(b))<<16)|(((uint32_t)(BYTE)(a))<<24)))
 
 
-CLASS_DECL_c int_bool os_initialize();
-CLASS_DECL_c int_bool os_finalize();
+CLASS_DECL_BASE int_bool os_initialize();
+CLASS_DECL_BASE int_bool os_finalize();
 
 
-CLASS_DECL_c int_bool main_initialize();
-CLASS_DECL_c int_bool main_finalize();
+CLASS_DECL_BASE int_bool main_initialize();
+CLASS_DECL_BASE int_bool main_finalize();
 
 
-CLASS_DECL_c void set_main_thread(HANDLE hThread);
-CLASS_DECL_c void set_main_thread_id(UINT uiThread);
+CLASS_DECL_BASE void set_main_thread(HANDLE hThread);
+CLASS_DECL_BASE void set_main_thread_id(UINT uiThread);
 
 
-CLASS_DECL_c HANDLE get_main_thread();
-CLASS_DECL_c UINT   get_main_thread_id();
+CLASS_DECL_BASE HANDLE get_main_thread();
+CLASS_DECL_BASE UINT   get_main_thread_id();
 
 #ifdef __cplusplus
 
-CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach = true);
+CLASS_DECL_BASE void attach_thread_input_to_main_thread(bool bAttach = true);
 
 #endif
 
 
 #ifdef __cplusplus
 
-CLASS_DECL_c string key_to_char(WPARAM wparam, LPARAM lparam);
-CLASS_DECL_c string read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszType);
+CLASS_DECL_BASE string key_to_char(WPARAM wparam, LPARAM lparam);
+CLASS_DECL_BASE string read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszType);
 
 #endif
 
@@ -53,6 +53,6 @@ CLASS_DECL_c string read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTS
 #define LPMESSAGE LPMSG
 
 
-CLASS_DECL_c int WinRegGetValueW(HKEY hkey, LPCWSTR lpSubKey, LPCWSTR lpValue, DWORD dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData);
+CLASS_DECL_BASE int WinRegGetValueW(HKEY hkey, LPCWSTR lpSubKey, LPCWSTR lpValue, DWORD dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData);
 
 

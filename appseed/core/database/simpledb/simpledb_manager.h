@@ -3,7 +3,7 @@
 namespace simpledb
 {
 
-   class CLASS_DECL_ca2 manager :
+   class CLASS_DECL_CORE manager :
       virtual public thread,
       virtual public message_queue
    {

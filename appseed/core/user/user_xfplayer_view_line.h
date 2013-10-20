@@ -7,7 +7,7 @@
 class XfplayerViewLines;
 
 
-class CLASS_DECL_ca2 XfplayerViewLine  :
+class CLASS_DECL_CORE XfplayerViewLine  :
    virtual public object
 {
 public:

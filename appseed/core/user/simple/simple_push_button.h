@@ -1,13 +1,13 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 SimplePushButton :
+class CLASS_DECL_CORE SimplePushButton :
    public ::user::button
 {
 public:
 
 
-   class CLASS_DECL_ca2 ColorSchema
+   class CLASS_DECL_CORE ColorSchema
    {
    public:
       color::hls   m_hlsRateHover;

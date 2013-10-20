@@ -5,13 +5,13 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_ca2 path :
+   class CLASS_DECL_CORE path :
       virtual public ::draw2d::object
    {
    public:
 
 
-     class CLASS_DECL_c arc
+     class CLASS_DECL_BASE arc
       {
       public:
 
@@ -26,7 +26,7 @@ namespace draw2d
 
       };
 
-      class CLASS_DECL_c move
+      class CLASS_DECL_BASE move
       {
       public:
 
@@ -36,7 +36,7 @@ namespace draw2d
       };
 
 
-      class CLASS_DECL_c line
+      class CLASS_DECL_BASE line
       {
       public:
 
@@ -45,7 +45,7 @@ namespace draw2d
 
       };
 
-      class CLASS_DECL_c end
+      class CLASS_DECL_BASE end
       {
       public:
 
@@ -54,7 +54,7 @@ namespace draw2d
       };
 
 
-      class CLASS_DECL_c element
+      class CLASS_DECL_BASE element
       {
       public:
 
@@ -140,7 +140,7 @@ namespace draw2d
    };
 
 
-   class CLASS_DECL_ca2 path_sp :
+   class CLASS_DECL_CORE path_sp :
       public smart_pointer < path >
    {
    public:

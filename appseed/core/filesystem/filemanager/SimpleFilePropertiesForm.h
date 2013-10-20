@@ -3,7 +3,7 @@
 namespace filemanager
 {
 
-   class CLASS_DECL_ca2 SimpleFilePropertiesForm :
+   class CLASS_DECL_CORE SimpleFilePropertiesForm :
          virtual public ::user::form_callback,
          virtual public ::user::view_creator,
          virtual public ::user::tab_callback

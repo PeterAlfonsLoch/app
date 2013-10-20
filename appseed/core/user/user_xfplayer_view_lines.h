@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 XfplayerViewLines :
+class CLASS_DECL_CORE XfplayerViewLines :
    virtual public spa(XfplayerViewLine),
    virtual public signalizable
 {

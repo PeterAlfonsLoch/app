@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   class CLASS_DECL_ca2 hour_list_view :
+   class CLASS_DECL_CORE hour_list_view :
       virtual public ::simple_list_view
    {
    public:

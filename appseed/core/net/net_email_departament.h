@@ -5,7 +5,7 @@ namespace net
 {
 
 
-   class CLASS_DECL_ca2 email_departament :
+   class CLASS_DECL_CORE email_departament :
       virtual public base_departament
    {
    public:

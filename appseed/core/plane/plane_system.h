@@ -19,7 +19,7 @@ namespace plane
 {
 
 
-   class CLASS_DECL_ca2 system :
+   class CLASS_DECL_CORE system :
       virtual public ::plane::application,
       virtual public ::core::system
    {

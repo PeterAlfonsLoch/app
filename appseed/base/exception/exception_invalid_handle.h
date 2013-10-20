@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c invalid_handle_exception :
+class CLASS_DECL_BASE invalid_handle_exception :
    virtual public os_exception
 {
 public:

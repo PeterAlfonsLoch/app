@@ -133,7 +133,7 @@ class random_access_iterator { public: };
 
 
 
-CLASS_DECL_c base_application * get_thread_app();
+CLASS_DECL_BASE base_application * get_thread_app();
 
 #include "base_definition.h"
 
@@ -297,7 +297,7 @@ namespace file
 
 
 
-CLASS_DECL_c string get_system_error_message(uint32_t dwError);
+CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 #include "base_plex_heap.h"

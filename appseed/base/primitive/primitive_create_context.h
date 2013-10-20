@@ -10,7 +10,7 @@
 
 class command_line;
 
-class CLASS_DECL_c command_line_sp :
+class CLASS_DECL_BASE command_line_sp :
    public smart_pointer < command_line >
 {
 public:
@@ -32,7 +32,7 @@ public:
 
 
 
-class CLASS_DECL_c create_context :
+class CLASS_DECL_BASE create_context :
    virtual public ::primitive::command
 {
 public:

@@ -256,7 +256,7 @@ _AFX_INLINE CArchive& CArchive::operator>>(LONG& l)
 //   { }
 //_AFX_INLINE void CArchive::operator=(const CArchive& /* arSrc */)
 /*   { }
-CLASS_DECL_ca2api00000001 CArchive& operator<<(CArchive& ar, const object* pOb);
+CLASS_DECL_COREapi00000001 CArchive& operator<<(CArchive& ar, const object* pOb);
 _AFX_INLINE CArchive& operator>>(CArchive& ar, object*& pOb)
    { pOb = ar.ReadObject(NULL); return ar; }
 _AFX_INLINE CArchive& operator>>(CArchive& ar, const object*& pOb)

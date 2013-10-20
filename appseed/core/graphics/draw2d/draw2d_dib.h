@@ -21,7 +21,7 @@ namespace draw2d
    //////////////////////////////////////////////////////////////////////
 
 
-   class CLASS_DECL_ca2 dib :
+   class CLASS_DECL_CORE dib :
       virtual public object,
       virtual public ::file::serializable
    {
@@ -279,7 +279,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_ca2 dib_sp :
+   class CLASS_DECL_CORE dib_sp :
       public smart_pointer < dib >
    {
    public:
@@ -309,7 +309,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_ca2 dibmap :
+   class CLASS_DECL_CORE dibmap :
       virtual public map < size, size, ::draw2d::dib_sp, ::draw2d::dib_sp >
    {
    public:
@@ -343,7 +343,7 @@ namespace comparison
 
 
    template < >
-   class CLASS_DECL_ca2 hash < const ::draw2d::dib::descriptor & >
+   class CLASS_DECL_CORE hash < const ::draw2d::dib::descriptor & >
    {
    public:
 
@@ -367,7 +367,7 @@ namespace comparison
 namespace draw2d
 {
 
-   class CLASS_DECL_ca2 dibmap_ex1 :
+   class CLASS_DECL_CORE dibmap_ex1 :
       virtual public map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, ::draw2d::dib_sp, ::draw2d::dib_sp >
    {
    public:

@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   class CLASS_DECL_ca2 property_sheet :
+   class CLASS_DECL_CORE property_sheet :
       virtual public ::form_view
    {
    public:

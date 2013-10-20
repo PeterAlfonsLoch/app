@@ -8,7 +8,7 @@ namespace userex
    class property_sheet;
 
 
-   class CLASS_DECL_ca2  property_page:
+   class CLASS_DECL_CORE  property_page:
       virtual public ::userex::pane_tab_view
    {
    public:

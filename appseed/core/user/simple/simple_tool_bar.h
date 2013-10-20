@@ -35,7 +35,7 @@ public:
 };
 
 
-class CLASS_DECL_ca2 simple_toolbar :
+class CLASS_DECL_CORE simple_toolbar :
    public ::user::control_bar
 {
 

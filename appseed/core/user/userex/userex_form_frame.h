@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 form_frame : 
+class CLASS_DECL_CORE form_frame : 
    virtual public simple_frame_window
 {
 public:

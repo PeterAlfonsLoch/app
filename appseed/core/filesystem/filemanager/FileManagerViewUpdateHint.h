@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 FileManagerViewUpdateHint :
+class CLASS_DECL_CORE FileManagerViewUpdateHint :
    public object  
 {
 public:

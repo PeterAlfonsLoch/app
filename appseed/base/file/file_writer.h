@@ -10,7 +10,7 @@ namespace file
    typedef smart_pointer < writer > writer_sp;
 
 
-   class CLASS_DECL_c writer :
+   class CLASS_DECL_BASE writer :
       virtual public stream_buffer_base
    {
    public:
@@ -37,7 +37,7 @@ namespace file
    typedef writer writable;
 
    
-   CLASS_DECL_c HRESULT write(writer * pwriter, const void * data, ::primitive::memory_size size);
+   CLASS_DECL_BASE HRESULT write(writer * pwriter, const void * data, ::primitive::memory_size size);
 
 
 

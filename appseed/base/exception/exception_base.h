@@ -9,7 +9,7 @@ class string;
 namespace exception
 {
 
-   class CLASS_DECL_c base :
+   class CLASS_DECL_BASE base :
       virtual public ::exception::exception,
       virtual public call_stack
    {

@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_ca2 SimplePreview :
+   class CLASS_DECL_CORE SimplePreview :
       virtual public ::filemanager::SimplePreviewInterface
    {
    public:

@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_ca2 message_queue :
+class CLASS_DECL_CORE message_queue :
    virtual public message_queue_listener
 {
 public:

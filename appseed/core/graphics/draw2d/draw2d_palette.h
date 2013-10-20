@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_ca2 palette :
+   class CLASS_DECL_CORE palette :
       virtual public ::draw2d::object
    {
    public:

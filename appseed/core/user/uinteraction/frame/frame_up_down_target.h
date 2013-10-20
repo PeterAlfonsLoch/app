@@ -10,7 +10,7 @@ namespace frame
 {
 
 
-   class CLASS_DECL_ca2 UpDownTarget :
+   class CLASS_DECL_CORE UpDownTarget :
       virtual public object
    {
    public:

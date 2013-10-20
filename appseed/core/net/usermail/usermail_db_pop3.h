@@ -11,7 +11,7 @@ namespace usermail
    class list;
 
 
-   class CLASS_DECL_ca2 db_pop3 :
+   class CLASS_DECL_CORE db_pop3 :
       virtual public ::mail::pop3
    {
    public:

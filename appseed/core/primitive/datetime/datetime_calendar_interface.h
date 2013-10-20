@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 calendar_interface :
+class CLASS_DECL_CORE calendar_interface :
    virtual public object
 {
 public:

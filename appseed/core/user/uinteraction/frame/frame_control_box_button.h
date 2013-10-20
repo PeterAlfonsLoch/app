@@ -10,7 +10,7 @@ namespace uinteraction
    {
 
 
-      class  CLASS_DECL_ca2 ControlBoxButton :
+      class  CLASS_DECL_CORE ControlBoxButton :
          virtual public ::user::interaction
       {
       public:

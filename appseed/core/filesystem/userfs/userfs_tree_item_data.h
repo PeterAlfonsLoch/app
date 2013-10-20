@@ -5,7 +5,7 @@ namespace userfs
 {
 
 
-   class CLASS_DECL_ca2 tree_item_data :
+   class CLASS_DECL_CORE tree_item_data :
       virtual public ::data::tree_item_data,
       virtual public ::fs::item
 

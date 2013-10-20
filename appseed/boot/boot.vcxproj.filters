@@ -643,41 +643,8 @@
     <ClCompile Include="windows\crypt\ca_os_crypt.cpp">
       <Filter>Source Files\windows\crypt</Filter>
     </ClCompile>
-    <ClCompile Include="android\ca_os.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_simple_bitmap.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_simple_brush.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_simple_font.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_simple_graphics.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_simple_path.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_simple_pen.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
     <ClCompile Include="windows\ca_os_window_gdi.cpp">
       <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_cairo_keep.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_http.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_http_lib.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_thread.cpp">
-      <Filter>Source Files\android</Filter>
     </ClCompile>
     <ClCompile Include="ansios\ansios_cross_win.cpp">
       <Filter>Source Files\ansios</Filter>
@@ -693,51 +660,6 @@
     </ClCompile>
     <ClCompile Include="ansios\ansios_thread.cpp">
       <Filter>Source Files\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_cross_win_file.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_cross_win_gdi.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_process.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_process_pid.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_file.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_file_watcher.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_window_android.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_window.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_win_base.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_small_ipca_channel.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_simple_shell_launcher.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_message_loop.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_lock.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_library.cpp">
-      <Filter>Source Files\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android\ca_os_launcher.cpp">
-      <Filter>Source Files\android</Filter>
     </ClCompile>
     <ClCompile Include="ansios\crypto\ansios_crypt.cpp">
       <Filter>Source Files\ansios\crypto</Filter>
@@ -798,6 +720,84 @@
     </ClCompile>
     <ClCompile Include="boot\boot_window_graphics.cpp">
       <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_cairo_keep.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_cross_win_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_cross_win_gdi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_file_watcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_http.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_http_lib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_launcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_library.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_lock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_message_loop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_process.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_process_pid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_simple_bitmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_simple_brush.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_simple_font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_simple_graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_simple_path.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_simple_pen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_simple_shell_launcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_small_ipca_channel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_thread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_window_android.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android\android_win_base.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

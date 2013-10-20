@@ -9,7 +9,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_c exception :
+   class CLASS_DECL_BASE exception :
       virtual public ::io_exception
    {
    public:
@@ -83,7 +83,7 @@ namespace file
 
 
 
-CLASS_DECL_c void throw_file_exception(base_application * papp, int32_t cause, LONG lOsError,   const char * lpszFileName = NULL);
+CLASS_DECL_BASE void throw_file_exception(base_application * papp, int32_t cause, LONG lOsError,   const char * lpszFileName = NULL);
 
 
 

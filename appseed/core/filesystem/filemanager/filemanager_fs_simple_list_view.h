@@ -45,7 +45,7 @@ namespace filemanager
 
          class view;
 
-         class CLASS_DECL_ca2 list_view :
+         class CLASS_DECL_CORE list_view :
             public simple_list_view
          {
          public:

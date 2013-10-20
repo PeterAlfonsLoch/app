@@ -20,7 +20,7 @@ namespace platform
    class frame;
 
 
-   class CLASS_DECL_ca2 document :
+   class CLASS_DECL_CORE document :
       public form_document
    {
    public:

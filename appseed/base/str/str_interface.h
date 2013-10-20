@@ -11,7 +11,7 @@ class string;
 class istring;
 
 
-class CLASS_DECL_c string_interface :
+class CLASS_DECL_BASE string_interface :
    virtual public root
 {
 public:

@@ -29,7 +29,7 @@ namespace core
       }
 
 
-      CLASS_DECL_ca2 int64_t micros()
+      CLASS_DECL_CORE int64_t micros()
       {
 #ifdef WINDOWSEX
          int64_t iCount;

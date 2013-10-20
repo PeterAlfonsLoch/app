@@ -6,7 +6,7 @@ namespace user
 
    class menu_item_ptra;
 
-   class CLASS_DECL_ca2 menu_item :
+   class CLASS_DECL_CORE menu_item :
       virtual public object
    {
    public:
@@ -40,7 +40,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_ca2 menu_item_ptra :
+   class CLASS_DECL_CORE menu_item_ptra :
       public spa(menu_item)
    {
    public:

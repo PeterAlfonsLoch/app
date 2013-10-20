@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   class CLASS_DECL_ca2 copydesk : 
+   class CLASS_DECL_CORE copydesk : 
       virtual public object
    {
    public:

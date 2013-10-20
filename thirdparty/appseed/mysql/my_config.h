@@ -439,7 +439,9 @@
 #define SIGQUIT SIGTERM
 #define sigset_t int
 #define mode_t int
+#if _MSC_VER < 180
 #define isnan _isnan
+#endif
 #define finite _finite
 #define popen _popen
 #define pclose _pclose

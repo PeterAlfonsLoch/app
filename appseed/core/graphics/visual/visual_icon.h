@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_ca2 icon :
+   class CLASS_DECL_CORE icon :
       virtual public object
    {
    public:
@@ -32,7 +32,7 @@ namespace visual
    };
 
 
-   class CLASS_DECL_ca2 icon_int_map :
+   class CLASS_DECL_CORE icon_int_map :
       virtual public int_map < icon * >
    {
    public:

@@ -41,7 +41,7 @@ namespace exception
 {
 
 
-   class CLASS_DECL_c engine :
+   class CLASS_DECL_BASE engine :
       virtual public element
    {
    public:

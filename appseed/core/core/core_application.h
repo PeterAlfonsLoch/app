@@ -69,11 +69,11 @@ namespace fontopus
 
 
 
-CLASS_DECL_ca2 UINT c_cdecl application_thread_procedure(LPVOID pvoid);
+CLASS_DECL_CORE UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
 typedef sp(base_application) (* LPFN_instantiate_application)(sp(base_application) pappParent, const char * pszId);
 
-extern CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application;
+extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_application;
 
 
 class type;
@@ -97,7 +97,7 @@ enum EExclusiveInstance
 class application_base;
 
 
-class CLASS_DECL_ca2 application_ptra :
+class CLASS_DECL_CORE application_ptra :
    virtual public spa(application_base)
 {
 public:
@@ -107,7 +107,7 @@ public:
 };
 
 
-class CLASS_DECL_ca2 application_base :
+class CLASS_DECL_CORE application_base :
    virtual public base_application,
    virtual public ::core::live_object,
    virtual public thread
@@ -192,7 +192,7 @@ public:
 };
 
 
-class CLASS_DECL_ca2 application :
+class CLASS_DECL_CORE application :
    virtual public application_base,
    virtual public command_target_interface,
    virtual public request_interface,

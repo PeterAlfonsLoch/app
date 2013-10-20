@@ -10,7 +10,7 @@ namespace frame
 
    class WorkSet;
 
-   class CLASS_DECL_ca2 SizeManager :
+   class CLASS_DECL_CORE SizeManager :
       virtual public signalizable  
    {
       friend class WorkSet;

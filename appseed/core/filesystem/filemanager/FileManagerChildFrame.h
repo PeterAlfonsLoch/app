@@ -16,7 +16,7 @@ namespace fs
 
 
 
-class CLASS_DECL_ca2 FileManagerChildFrame :
+class CLASS_DECL_CORE FileManagerChildFrame :
    public simple_child_frame
 {
 public:

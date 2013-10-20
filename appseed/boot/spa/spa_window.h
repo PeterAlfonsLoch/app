@@ -9,14 +9,14 @@ namespace spa_install
    class window;
 
 
-   class CLASS_DECL_ca window_map :
+   class CLASS_DECL_BOOT window_map :
       public ::map < oswindow, oswindow, window *, window * >
    {
 
 
    };
 
-   class CLASS_DECL_ca window
+   class CLASS_DECL_BOOT window
    {
    public:
 

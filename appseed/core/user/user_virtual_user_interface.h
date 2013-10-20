@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 virtual_user_interface :
+class CLASS_DECL_CORE virtual_user_interface :
    virtual public ::user::interaction
 {
 public:

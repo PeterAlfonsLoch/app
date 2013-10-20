@@ -9,7 +9,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 edit_plain_text :
+   class CLASS_DECL_CORE edit_plain_text :
       virtual public scroll_view,
       public colorertake5::base_editor,
       public ::data::data_listener,

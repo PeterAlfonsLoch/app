@@ -4,10 +4,10 @@
 #define ROUND4(x) ROUND(x, 4)
 
 
-//CLASS_DECL_c fixed_alloc_array * g_pfixedallocaWstring = NULL;
+//CLASS_DECL_BASE fixed_alloc_array * g_pfixedallocaWstring = NULL;
 
 
-/*CLASS_DECL_c fixed_alloc_array * new_wstring_manager()
+/*CLASS_DECL_BASE fixed_alloc_array * new_wstring_manager()
 {
    if(g_pfixedallocaWstring != NULL)
       return g_pfixedallocaWstring;

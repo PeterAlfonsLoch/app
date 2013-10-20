@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_c str_sort_array
+class CLASS_DECL_BASE str_sort_array
 {
 public:
    str_sort_array();

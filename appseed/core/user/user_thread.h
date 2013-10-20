@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 thread :
+   class CLASS_DECL_CORE thread :
       virtual public thread
    {
    public:

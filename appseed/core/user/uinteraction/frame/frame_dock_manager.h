@@ -10,7 +10,7 @@ namespace frame
    class WorkSet;
 
 
-   class CLASS_DECL_ca2 DockManager  
+   class CLASS_DECL_CORE DockManager  
    {
    public:
 

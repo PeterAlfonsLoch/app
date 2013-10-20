@@ -3,7 +3,7 @@
 class SimpleMenu;
 class image_list;
 
-class CLASS_DECL_ca2 BaseMenuCentral :
+class CLASS_DECL_CORE BaseMenuCentral :
    virtual public object
 {
 public:
@@ -36,7 +36,7 @@ public:
 };
 
 
-class CLASS_DECL_ca2 BaseMenuCentralContainer
+class CLASS_DECL_CORE BaseMenuCentralContainer
 {
 public:
    BaseMenuCentralContainer();

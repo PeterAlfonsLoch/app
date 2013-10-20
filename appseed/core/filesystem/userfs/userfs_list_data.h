@@ -5,7 +5,7 @@ namespace userfs
 {
 
 
-   class CLASS_DECL_ca2 list_data :
+   class CLASS_DECL_CORE list_data :
          public ::user::list_data
    {
    public:

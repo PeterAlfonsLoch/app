@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 html_form_view :
+class CLASS_DECL_CORE html_form_view :
    virtual public html_form
 {
 public:

@@ -32,7 +32,7 @@ namespace user
    class frame_window;
 
 
-   class CLASS_DECL_ca2 interaction :
+   class CLASS_DECL_CORE interaction :
       virtual public window_interface,
       virtual public ::user::base_interaction
    {
@@ -67,7 +67,7 @@ namespace user
       };
 
 
-      class CLASS_DECL_ca2 timer_item :
+      class CLASS_DECL_CORE timer_item :
          virtual public element
       {
       public:
@@ -83,7 +83,7 @@ namespace user
 
       };
 
-      class CLASS_DECL_ca2 timer_array :
+      class CLASS_DECL_CORE timer_array :
          virtual public spa(interaction)
       {
       public:
@@ -569,7 +569,7 @@ namespace user
 
 } // namespace user
 
-CLASS_DECL_ca2 sp(::user::interaction) WINAPI CreateGuieEx(
+CLASS_DECL_CORE sp(::user::interaction) WINAPI CreateGuieEx(
    sp(base_application) papp,
     uint32_t dwExStyle,
     const char * lpClassName,

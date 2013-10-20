@@ -14,10 +14,10 @@ namespace core
 
    //typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
 
-   CLASS_DECL_ca2 void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
-   //CLASS_DECL_ca2 void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
+   CLASS_DECL_CORE void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
+   //CLASS_DECL_CORE void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
 
-   //extern CLASS_DECL_ca2 PFN_trace_v trace_v;
+   //extern CLASS_DECL_CORE PFN_trace_v trace_v;
 
    namespace trace
    {
@@ -72,7 +72,7 @@ namespace core
       class trace;
 
       // Declare a global instance of this class to automatically register a custom trace category at startup
-      class CLASS_DECL_ca2 category
+      class CLASS_DECL_CORE category
       {
       public:
 
@@ -93,7 +93,7 @@ namespace core
       };
 
 
-      class CLASS_DECL_ca2 trace
+      class CLASS_DECL_CORE trace
       {
       public:
 
@@ -187,10 +187,10 @@ namespace core
 #endif  // _NO_DEBUG_CRT
 
 
-      CLASS_DECL_ca2 void __cdecl __trace(const char * pszFormat, ...);
-      CLASS_DECL_ca2 void __cdecl __trace(const wchar_t * pszFormat, ...);
-      CLASS_DECL_ca2 void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const char * pszFormat, ...);
-      CLASS_DECL_ca2 void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const wchar_t * pszFormat, ...);
+      CLASS_DECL_CORE void __cdecl __trace(const char * pszFormat, ...);
+      CLASS_DECL_CORE void __cdecl __trace(const wchar_t * pszFormat, ...);
+      CLASS_DECL_CORE void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const char * pszFormat, ...);
+      CLASS_DECL_CORE void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const wchar_t * pszFormat, ...);
 #define TRACENOTIMPL(funcname)  do { TRACE(::core::atlTraceNotImpl, 0, "core: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
    } // namespace trace
     

@@ -5,7 +5,7 @@ namespace math
 {
 
 
-   class CLASS_DECL_ca2 _float :
+   class CLASS_DECL_CORE _float :
       virtual public value_impl
    {
    public:

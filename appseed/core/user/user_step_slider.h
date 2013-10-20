@@ -4,7 +4,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 step_slider :
+   class CLASS_DECL_CORE step_slider :
       public ::user::interaction
    {
    public:

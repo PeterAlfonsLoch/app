@@ -11,7 +11,7 @@ namespace frame
    class WorkSet;
    class WorkSetListenerArray;
 
-   class CLASS_DECL_ca2 WorkSetListener :
+   class CLASS_DECL_CORE WorkSetListener :
       public spa(WorkSetListenerArray)
    {
    public:

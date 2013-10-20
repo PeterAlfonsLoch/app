@@ -5,7 +5,7 @@ namespace data
 {
 
 
-   class CLASS_DECL_c data_container :
+   class CLASS_DECL_BASE data_container :
       virtual public object
    {
    public:
@@ -27,7 +27,7 @@ namespace data
 
    };
 
-   class CLASS_DECL_c data_container_base :
+   class CLASS_DECL_BASE data_container_base :
       virtual public object
    {
    public:

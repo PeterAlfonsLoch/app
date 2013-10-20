@@ -26,7 +26,7 @@ namespace user
    class str_context;
 
 
-   class CLASS_DECL_ca2 str_schema : 
+   class CLASS_DECL_CORE str_schema : 
       public strid_map < string >
    {
    public:
@@ -40,7 +40,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_ca2 str_locale : 
+   class CLASS_DECL_CORE str_locale : 
       public strid_map < str_schema >
    {
    public:
@@ -63,7 +63,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca2 str : 
+   class CLASS_DECL_CORE str : 
       public strid_map < str_locale >
    {
    public:
@@ -108,7 +108,7 @@ namespace user
 
 
 
-   class CLASS_DECL_ca2 str_context :
+   class CLASS_DECL_CORE str_context :
       virtual public object
    {
    public:

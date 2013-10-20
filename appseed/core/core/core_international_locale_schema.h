@@ -9,7 +9,7 @@ namespace str
    {
 
 
-      class CLASS_DECL_ca2 locale_schema : 
+      class CLASS_DECL_CORE locale_schema : 
          virtual public object
       {
       public:

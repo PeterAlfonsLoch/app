@@ -5,7 +5,7 @@ namespace usermail
 {
 
 
-   class CLASS_DECL_ca2 frame : 
+   class CLASS_DECL_CORE frame : 
       public simple_frame_window
    {
    public:

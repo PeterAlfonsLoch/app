@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_ca2 SimpleFolderListInterface :
+   class CLASS_DECL_CORE SimpleFolderListInterface :
       virtual public ::user::list,
       virtual public FileManagerViewInterface
    {

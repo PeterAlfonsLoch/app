@@ -9,7 +9,7 @@ namespace user
 
 
 
-   class CLASS_DECL_ca2 window :
+   class CLASS_DECL_CORE window :
       virtual public ::user::interaction
    {
    public:
@@ -708,7 +708,7 @@ namespace user
 } // namespace user
 
 
-class CLASS_DECL_ca2 guie_message_wnd :
+class CLASS_DECL_CORE guie_message_wnd :
    virtual public ::user::window
 {
 public:

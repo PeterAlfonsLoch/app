@@ -6,7 +6,7 @@ namespace user
    class front_end;
    class menu_item;
 
-   class CLASS_DECL_ca2 menu : 
+   class CLASS_DECL_CORE menu : 
       public ::user::interaction,
       public menu_base
    {

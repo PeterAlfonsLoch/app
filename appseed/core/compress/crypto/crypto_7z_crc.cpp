@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "crypto_7z_crc.h"
 
-CLASS_DECL_ca2 uint32_t * CrcGetTable();
+CLASS_DECL_CORE uint32_t * CrcGetTable();
 
 struct CCRCTableInit
 {
@@ -28,13 +28,13 @@ typedef uint32_t (*CRC_FUNC)(uint32_t v, const void *data, ::primitive::memory_s
 
 static CRC_FUNC g_CrcUpdate = NULL;
 
-CLASS_DECL_ca2 uint32_t * CrcGetTable()
+CLASS_DECL_CORE uint32_t * CrcGetTable()
 {
     static uint32_t table[256 * CRC_NUM_TABLES];
     return table;
 }
 
-CLASS_DECL_ca2 uint32_t * g_pCrcTable = NULL;
+CLASS_DECL_CORE uint32_t * g_pCrcTable = NULL;
 
 #if CRC_NUM_TABLES == 1
 

@@ -16,7 +16,7 @@ enum e_application_signal
 };
 
 
-class CLASS_DECL_c application_signal_details :
+class CLASS_DECL_BASE application_signal_details :
    public signal_details
 {
 public:
@@ -34,7 +34,7 @@ public:
 
 
 
-class CLASS_DECL_c base_application :
+class CLASS_DECL_BASE base_application :
    virtual public base_thread
 {
 public:

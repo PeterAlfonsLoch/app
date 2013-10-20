@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_ca2 file_manager_operation_list_view :
+class CLASS_DECL_CORE file_manager_operation_list_view :
    virtual public ::user::view,
    virtual public ::user::list
 {

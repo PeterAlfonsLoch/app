@@ -1,28 +1,28 @@
 #pragma once
 
 
-CLASS_DECL_ca2 int32_t SWN(int32_t y, int32_t m, int32_t d );
+CLASS_DECL_CORE int32_t SWN(int32_t y, int32_t m, int32_t d );
 //where DP ("Days Passed") is given by:
 //   DP( y, 1 ) = 0
 //  DP( y, m+1 ) = DP( y, m ) + ML( y, m )
-CLASS_DECL_ca2 int32_t DP(int32_t y, int32_t m);
-CLASS_DECL_ca2 int32_t ML(int32_t y, int32_t m);
-CLASS_DECL_ca2 int32_t LEAP(int32_t y );
-CLASS_DECL_ca2 int32_t dayofweek(int32_t y, int32_t m, int32_t d);	/* 0 = Sunday */
-CLASS_DECL_ca2 int32_t SDOW(int32_t y,int32_t m, int32_t d ); // ( 0 = Monday, ..., 6 = Sunday )
-CLASS_DECL_ca2 int32_t DOW(int32_t y, int32_t m, int32_t d);
-CLASS_DECL_ca2 int32_t getDayOfWeek(int32_t month, int32_t day, int32_t year, int32_t CalendarSystem);
+CLASS_DECL_CORE int32_t DP(int32_t y, int32_t m);
+CLASS_DECL_CORE int32_t ML(int32_t y, int32_t m);
+CLASS_DECL_CORE int32_t LEAP(int32_t y );
+CLASS_DECL_CORE int32_t dayofweek(int32_t y, int32_t m, int32_t d);	/* 0 = Sunday */
+CLASS_DECL_CORE int32_t SDOW(int32_t y,int32_t m, int32_t d ); // ( 0 = Monday, ..., 6 = Sunday )
+CLASS_DECL_CORE int32_t DOW(int32_t y, int32_t m, int32_t d);
+CLASS_DECL_CORE int32_t getDayOfWeek(int32_t month, int32_t day, int32_t year, int32_t CalendarSystem);
 
 
 namespace core
 {
 
    
-   class CLASS_DECL_ca2 datetime :
+   class CLASS_DECL_CORE datetime :
       virtual public object
    {
    public:
-      class CLASS_DECL_ca2 international :
+      class CLASS_DECL_CORE international :
          virtual public object
       {
       public:
@@ -34,7 +34,7 @@ namespace core
          string get_local_date_time();
       };
 
-      class CLASS_DECL_ca2 str :
+      class CLASS_DECL_CORE str :
          virtual public object
       {
       public:

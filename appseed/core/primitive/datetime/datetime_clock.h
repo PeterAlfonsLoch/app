@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 clock :
+class CLASS_DECL_CORE clock :
    public clock_interface
 {
 protected:

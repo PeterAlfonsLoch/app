@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 simple_scroll_bar :
+class CLASS_DECL_CORE simple_scroll_bar :
    virtual public ::user::scroll_bar
 {
 public:

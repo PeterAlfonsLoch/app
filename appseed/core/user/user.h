@@ -165,7 +165,7 @@ class CDockState;           // forward reference (see afxpriv.h)
 
 #pragma warning( disable: 4263 )
 #pragma warning( disable: 4264 )
-class CLASS_DECL_ca2 CMiniFrameWnd : public frame_window
+class CLASS_DECL_CORE CMiniFrameWnd : public frame_window
 {
 public:
 
@@ -218,7 +218,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 message :
+   class CLASS_DECL_CORE message :
       virtual public object
    {
    public:
@@ -237,8 +237,8 @@ namespace user
    };
 
 
-   CLASS_DECL_ca2 sp(::user::interaction) get_parent_owner(sp(::user::interaction) pui);
-   CLASS_DECL_ca2 bool is_descendant(sp(::user::interaction) puiParent, sp(::user::interaction) puiChild);
+   CLASS_DECL_CORE sp(::user::interaction) get_parent_owner(sp(::user::interaction) pui);
+   CLASS_DECL_CORE bool is_descendant(sp(::user::interaction) puiParent, sp(::user::interaction) puiChild);
 
 
 } // namespace user

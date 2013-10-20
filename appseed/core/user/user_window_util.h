@@ -15,7 +15,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 oswindow_array :
+   class CLASS_DECL_CORE oswindow_array :
       public comparable_array < oswindow, oswindow >
    {
    public:
@@ -25,7 +25,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca2 interaction_ptr_array :
+   class CLASS_DECL_CORE interaction_ptr_array :
       virtual public spa(::user::interaction)
    {
    public:
@@ -46,12 +46,12 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca2 oswindow_tree :
+   class CLASS_DECL_CORE oswindow_tree :
       virtual public element
    {
    public:
 
-      class CLASS_DECL_ca2 Array :
+      class CLASS_DECL_CORE Array :
          public spa(oswindow_tree)
       {
       public:
@@ -83,7 +83,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca2 window_util
+   class CLASS_DECL_CORE window_util
    {
    public:
       static void ContraintPosToParent(oswindow oswindow);

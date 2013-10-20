@@ -8,7 +8,7 @@ namespace user
    class view_creator_data;
 
 
-   class CLASS_DECL_ca2 view_container :
+   class CLASS_DECL_CORE view_container :
       virtual public object
    {
    public:

@@ -17,7 +17,7 @@ namespace user
 namespace user
 {
 
-   class CLASS_DECL_ca2 front_end
+   class CLASS_DECL_CORE front_end
    {
    public:
 

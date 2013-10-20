@@ -5,7 +5,7 @@ namespace dynamic_source
 {
 
 
-   class CLASS_DECL_ca2 session :
+   class CLASS_DECL_CORE session :
       virtual public object
    {
    public:
@@ -28,7 +28,7 @@ namespace dynamic_source
    };
 
 
-   class CLASS_DECL_ca2 session_map :
+   class CLASS_DECL_CORE session_map :
       virtual public strsp(session)
    {
    public:

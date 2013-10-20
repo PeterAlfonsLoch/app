@@ -5,7 +5,7 @@
 namespace crypto
 {
 
-   class CLASS_DECL_ca2 reset_init_vector_interface :
+   class CLASS_DECL_CORE reset_init_vector_interface :
       virtual public object
    {
    public:

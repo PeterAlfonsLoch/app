@@ -5,7 +5,7 @@ namespace geometry
 {
 
 
-   class CLASS_DECL_ca2 rotation
+   class CLASS_DECL_CORE rotation
    {
    public:
       double   m_dCosPhi;
@@ -16,7 +16,7 @@ namespace geometry
       void rotate(LPPOINT lppoint, int32_t iCount);
    };
 
-   class CLASS_DECL_ca2 geometry  :
+   class CLASS_DECL_CORE geometry  :
       virtual public object
    {
    public:

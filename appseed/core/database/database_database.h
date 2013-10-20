@@ -5,7 +5,7 @@ namespace database
 {
 
 
-   class CLASS_DECL_ca2 database :
+   class CLASS_DECL_CORE database :
       virtual public ::database::client
    {
    public:

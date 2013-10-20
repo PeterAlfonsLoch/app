@@ -17,7 +17,7 @@ namespace frame
    class SysMenuManager;
    class WorkSetListener;
 
-   class CLASS_DECL_ca2 WorkSet :
+   class CLASS_DECL_CORE WorkSet :
       virtual public ::database::client,
       virtual public signalizable
    {

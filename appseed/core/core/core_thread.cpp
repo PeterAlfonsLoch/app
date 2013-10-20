@@ -495,7 +495,7 @@ int32_t thread::priority()
 
 
 
-CLASS_DECL_ca2 void thread_alloc_ready(bool bReady)
+CLASS_DECL_CORE void thread_alloc_ready(bool bReady)
 {
    thread::s_bAllocReady = bReady;
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 mini_dock_frame_window :
+class CLASS_DECL_CORE mini_dock_frame_window :
    virtual public simple_frame_window
 {
 public:

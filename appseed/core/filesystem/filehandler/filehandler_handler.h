@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   class CLASS_DECL_ca2 handler :
+   class CLASS_DECL_CORE handler :
       virtual public object,
       virtual public ::file::serializable
    {

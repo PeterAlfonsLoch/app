@@ -5,13 +5,13 @@ namespace file
 {
 
 
-   class CLASS_DECL_ca2 system :
+   class CLASS_DECL_CORE system :
       public object
    {
    public:
 
 
-      class CLASS_DECL_ca2 path :
+      class CLASS_DECL_CORE path :
          virtual public object
       {
       public:

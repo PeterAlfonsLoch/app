@@ -5,7 +5,7 @@ namespace backview
 {
 
 
-   class CLASS_DECL_ca2 Helper :
+   class CLASS_DECL_CORE Helper :
       virtual public object
    {
    public:

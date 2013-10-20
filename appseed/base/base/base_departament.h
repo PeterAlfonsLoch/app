@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c base_departament :
+class CLASS_DECL_BASE base_departament :
    virtual public signalizable
 {
 public:

@@ -10,13 +10,13 @@ namespace mysql
 }
 
 
-class CLASS_DECL_ca2 db_long_set :
+class CLASS_DECL_CORE db_long_set :
    public db_set
 {
 public:
 
 
-   class CLASS_DECL_ca2 item
+   class CLASS_DECL_CORE item
    {
    public:
 
@@ -25,7 +25,7 @@ public:
 
    };
 
-   class CLASS_DECL_ca2 queue_item :
+   class CLASS_DECL_CORE queue_item :
       virtual public element
    {
    public:
@@ -44,7 +44,7 @@ public:
 
    };
 
-   class CLASS_DECL_ca2 sync_queue :
+   class CLASS_DECL_CORE sync_queue :
       public simple_thread
    {
    public:

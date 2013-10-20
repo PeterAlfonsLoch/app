@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   class CLASS_DECL_ca2 fs :
+   class CLASS_DECL_CORE fs :
       virtual public ::base_departament
    {
    public:

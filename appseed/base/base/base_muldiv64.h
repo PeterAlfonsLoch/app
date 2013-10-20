@@ -23,7 +23,7 @@
  *     Xscaled = Xstart * Multiplier / Divider
  * Uses 128 bit intermediate result
  */
-CLASS_DECL_c int64_t _stdcall muldiv64(int64_t operant, int64_t multiplier, int64_t divider);
+CLASS_DECL_BASE int64_t _stdcall muldiv64(int64_t operant, int64_t multiplier, int64_t divider);
 
 
 /*
@@ -33,22 +33,22 @@ CLASS_DECL_c int64_t _stdcall muldiv64(int64_t operant, int64_t multiplier, int6
  *     Xscaled = (Xstart * Multiplier) SHR rshift
  * Uses 128 bit intermediate result
  */
-CLASS_DECL_c int64_t _stdcall mulshr64(int64_t operant, int64_t multiplier, uchar rshift);
+CLASS_DECL_BASE int64_t _stdcall mulshr64(int64_t operant, int64_t multiplier, uchar rshift);
 
 
-CLASS_DECL_c void mul64(uint64_t v1, uint64_t v2, uint64_t & hi, uint64_t & lo);
+CLASS_DECL_BASE void mul64(uint64_t v1, uint64_t v2, uint64_t & hi, uint64_t & lo);
 
 
-CLASS_DECL_c void mul64(int64_t v1, int64_t v2, int64_t & hi, uint64_t & lo);
+CLASS_DECL_BASE void mul64(int64_t v1, int64_t v2, int64_t & hi, uint64_t & lo);
 
 
-CLASS_DECL_c uint64_t div128_64(uint64_t hi, uint64_t lo, uint64_t div, uint64_t & remainder);
+CLASS_DECL_BASE uint64_t div128_64(uint64_t hi, uint64_t lo, uint64_t div, uint64_t & remainder);
 
 
-CLASS_DECL_c int64_t div128_64(int64_t hi, uint64_t lo, int64_t div, uint64_t & remainder);
+CLASS_DECL_BASE int64_t div128_64(int64_t hi, uint64_t lo, int64_t div, uint64_t & remainder);
 
 
-CLASS_DECL_c int64_t div128_64(int64_t hi, uint64_t lo, int64_t div, uint64_t & remainder);
+CLASS_DECL_BASE int64_t div128_64(int64_t hi, uint64_t lo, int64_t div, uint64_t & remainder);
 
 
 #endif //__FULL_MULDIV64_

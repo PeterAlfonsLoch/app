@@ -8,7 +8,7 @@ namespace user
    class document_template;
 
 
-    class CLASS_DECL_c base_document_template :
+    class CLASS_DECL_BASE base_document_template :
         virtual public object
    {
    public:

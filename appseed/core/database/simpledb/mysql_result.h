@@ -14,7 +14,7 @@ namespace mysql
    class database;
 
 
-   class CLASS_DECL_ca2 result :
+   class CLASS_DECL_CORE result :
       virtual public object
    {
    public:

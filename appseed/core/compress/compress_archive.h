@@ -81,7 +81,7 @@ namespace libcompress
      virtual HRes SetTotal(const uint64_t *files, const uint64_t *bytes) specifier; \
      virtual HRes SetCompleted(const uint64_t *files, const uint64_t *bytes) specifier; \
 
-   class CLASS_DECL_ca2 archive_open_callback_interface :
+   class CLASS_DECL_CORE archive_open_callback_interface :
       virtual public object
    {
    public:
@@ -95,7 +95,7 @@ namespace libcompress
      virtual HRes PrepareOperation(int32_t askExtractMode) specifier; \
      virtual HRes SetOperationResult(int32_t resultEOperationResult) specifier; \
 
-   class CLASS_DECL_ca2 archive_extract_callback_interface :
+   class CLASS_DECL_CORE archive_extract_callback_interface :
       virtual public ::core::progress_interface
    {
    public:
@@ -107,21 +107,21 @@ namespace libcompress
      virtual HRes GetProperty(int32_t propID, var *value) specifier; \
      virtual HRes GetStream(const char * name, ::file::input_stream **inStream) specifier; \
 
-   class CLASS_DECL_ca2 archive_open_volume_callback_interface
+   class CLASS_DECL_CORE archive_open_volume_callback_interface
    {
    public:
       CA2_COMPRESS_INTERFACE_archive_OpenVolumeCallback(= 0);
    };
 
 
-   class CLASS_DECL_ca2 input_archive_get_stream_interface
+   class CLASS_DECL_CORE input_archive_get_stream_interface
    {
    public:
       virtual HRes GetStream(uint32_t index, ::file::input_stream **stream) = 0;
    };
 
 
-   class CLASS_DECL_ca2 input_archive_open_set_sub_archive_name_interface
+   class CLASS_DECL_CORE input_archive_open_set_sub_archive_name_interface
    {
    public:
      virtual HRes SetSubArchiveName(const char *name) = 0;
@@ -148,14 +148,14 @@ namespace libcompress
      virtual HRes GetNumberOfArchiveProperties(uint32_t *numProperties) specifier; \
      virtual HRes GetArchivePropertyInfo(uint32_t index, string & name, int32_t *propID, var::e_type *varType) specifier;
 
-   class CLASS_DECL_ca2 input_archive_interface :
+   class CLASS_DECL_CORE input_archive_interface :
       virtual public object
    {
    public:
       CA2_COMPRESS_INTERFACE_input_archive(= 0)
    };
 
-   class CLASS_DECL_ca2 archive_open_input_stream :
+   class CLASS_DECL_CORE archive_open_input_stream :
       virtual public object
    {
    public:
@@ -173,7 +173,7 @@ namespace libcompress
      virtual HRes GetStream(uint32_t index, ::file::input_stream **inStream) specifier; \
      virtual HRes SetOperationResult(int32_t operationResult) specifier; \
 
-   class CLASS_DECL_ca2 archive_update_callback_interface :
+   class CLASS_DECL_CORE archive_update_callback_interface :
       virtual public ::core::progress_interface
    {
    public:
@@ -185,7 +185,7 @@ namespace libcompress
      virtual HRes GetVolumeSize(uint32_t index, uint64_t *size) specifier; \
      virtual HRes GetVolumeStream(uint32_t index, ::file::output_stream **volumeStream) specifier; \
 
-   class CLASS_DECL_ca2 archive_update_callback2_interface :
+   class CLASS_DECL_CORE archive_update_callback2_interface :
       virtual public archive_update_callback_interface
    {
    public:
@@ -197,14 +197,14 @@ namespace libcompress
      virtual HRes UpdateItems(::file::writer *outStream, uint32_t numItems, ::libcompress::archive_update_callback_interface *updateCallback) specifier; \
      virtual HRes GetFileTimeType(uint32_t *type) specifier;
 
-   class CLASS_DECL_ca2 output_archive_interface
+   class CLASS_DECL_CORE output_archive_interface
    {
    public:
       CA2_COMPRESS_INTERFACE_IOutArchive(= 0)
    };
 
 
-   class CLASS_DECL_ca2 set_properties_interface
+   class CLASS_DECL_CORE set_properties_interface
    {
    public:
       virtual HRes SetProperties(const char **names, const var *values, int32_t numProperties) PURE;

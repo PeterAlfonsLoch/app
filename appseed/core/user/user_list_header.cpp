@@ -1,6 +1,6 @@
 #include "framework.h"
 
-//CLASS_DECL_ca2 COLORREF Session.get_default_color(uint32_t dw);
+//CLASS_DECL_CORE COLORREF Session.get_default_color(uint32_t dw);
 
 namespace user
 {

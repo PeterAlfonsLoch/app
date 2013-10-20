@@ -5,7 +5,7 @@ namespace userfs
 {
 
 
-   class CLASS_DECL_ca2 list_interface :
+   class CLASS_DECL_CORE list_interface :
       virtual public ::user::form_list
    {
    public:

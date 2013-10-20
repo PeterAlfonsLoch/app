@@ -21,7 +21,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_ca2 frame_window_interface :
+   class CLASS_DECL_CORE frame_window_interface :
       virtual public database::user::interaction,
       virtual public ::uinteraction::frame::WorkSetClientInterface,
       virtual public ::uinteraction::frame::WorkSetListener

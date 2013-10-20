@@ -5,7 +5,7 @@ namespace backview
 
 
 
-   class CLASS_DECL_ca2 TransitionEffect :
+   class CLASS_DECL_CORE TransitionEffect :
       public Helper
    {
 

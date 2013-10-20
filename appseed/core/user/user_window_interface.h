@@ -9,7 +9,7 @@ namespace user
    class frame_window_interface;
 
 
-   class CLASS_DECL_ca2 window_interface :
+   class CLASS_DECL_CORE window_interface :
       virtual public elemental,
       virtual public command_target,
       virtual public text_interface,

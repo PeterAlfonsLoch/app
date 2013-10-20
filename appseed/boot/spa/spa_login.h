@@ -9,7 +9,7 @@ namespace spa_install
 } // namespace spa
 
 
-class CLASS_DECL_ca spa_login :
+class CLASS_DECL_BOOT spa_login :
    public simple_ui
 {
 public:
@@ -26,7 +26,7 @@ public:
 
    };
 
-   class CLASS_DECL_ca callback
+   class CLASS_DECL_BOOT callback
    {
    public:
 

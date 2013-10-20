@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_c stringa :
+class CLASS_DECL_BASE stringa :
    virtual public string_array,
    virtual public ::file::serializable
 {

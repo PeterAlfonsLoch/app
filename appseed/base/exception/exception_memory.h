@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c memory_exception : 
+class CLASS_DECL_BASE memory_exception : 
    virtual public simple_exception
 {
 public:

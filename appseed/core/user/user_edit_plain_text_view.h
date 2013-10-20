@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 edit_plain_text_view :
+   class CLASS_DECL_CORE edit_plain_text_view :
       virtual public view,
       public edit_plain_text
    {

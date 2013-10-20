@@ -140,7 +140,7 @@ namespace file
          }
       };
 
-      typedef CLASS_DECL_ca2 decoder < in_buffer > in_buffer_decoder;
+      typedef CLASS_DECL_CORE decoder < in_buffer > in_buffer_decoder;
 
    } // namespace bitl
 

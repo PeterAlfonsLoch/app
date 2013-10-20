@@ -13,7 +13,7 @@ namespace core
       resource_translucent_background,
    };
 
-   class CLASS_DECL_ca2 savings :
+   class CLASS_DECL_CORE savings :
       virtual public object
    {
    public:

@@ -4,7 +4,7 @@
 class command_target;
 
 
-class CLASS_DECL_ca2 base_cmd_ui :
+class CLASS_DECL_CORE base_cmd_ui :
    public signal_details
 {
 public:
@@ -19,7 +19,7 @@ public:
 };
 
 
-class CLASS_DECL_ca2 BaseCommand :
+class CLASS_DECL_CORE BaseCommand :
    public signal_details
 {
 public:
@@ -34,7 +34,7 @@ public:
 };
 
 
-class CLASS_DECL_ca2 BaseCmdMsg :
+class CLASS_DECL_CORE BaseCmdMsg :
    public object
 {
 public:

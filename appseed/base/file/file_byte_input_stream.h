@@ -16,7 +16,7 @@ namespace file
    class serializable;
 
 
-   class CLASS_DECL_c byte_input_stream  :
+   class CLASS_DECL_BASE byte_input_stream  :
       virtual public input_stream
    {
    public:

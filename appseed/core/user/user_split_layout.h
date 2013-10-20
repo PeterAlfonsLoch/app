@@ -8,7 +8,7 @@ namespace user
    class split_bar;
 
 
-   class CLASS_DECL_ca2 split_layout :
+   class CLASS_DECL_CORE split_layout :
       virtual public ::user::place_holder_container
    {
    public:
@@ -34,7 +34,7 @@ namespace user
       };
 
 
-      class CLASS_DECL_ca2 Pane :
+      class CLASS_DECL_CORE Pane :
          virtual public element
       {
       public:

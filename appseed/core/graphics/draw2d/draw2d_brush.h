@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_ca2 brush :
+   class CLASS_DECL_CORE brush :
       virtual public ::draw2d::object
    {
    public:
@@ -57,7 +57,7 @@ namespace draw2d
       virtual void dump(dump_context & dumpcontext) const;
    };
 
-   class CLASS_DECL_ca2 brush_sp :
+   class CLASS_DECL_CORE brush_sp :
       virtual public smart_pointer < brush >
    {
    public:

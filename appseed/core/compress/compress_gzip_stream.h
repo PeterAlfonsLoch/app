@@ -47,7 +47,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 gzip_stream :
+class CLASS_DECL_CORE gzip_stream :
    virtual public ::file::output_stream
 {
 public:

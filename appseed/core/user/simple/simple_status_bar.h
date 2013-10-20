@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 simple_status_bar :
+class CLASS_DECL_CORE simple_status_bar :
    public ::user::status_bar
 {
 public:

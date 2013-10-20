@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 split_view :
+   class CLASS_DECL_CORE split_view :
       virtual public view,
       virtual public split_layout
    {

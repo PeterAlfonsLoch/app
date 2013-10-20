@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 ifs_file : 
+class CLASS_DECL_CORE ifs_file : 
    virtual public ::sockets::http_batch_buffer
 {
 public:

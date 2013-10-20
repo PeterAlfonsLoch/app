@@ -18,7 +18,7 @@
 namespace core
 {
 
-   class CLASS_DECL_ca2 resource :
+   class CLASS_DECL_CORE resource :
       virtual public object
    {
    public:

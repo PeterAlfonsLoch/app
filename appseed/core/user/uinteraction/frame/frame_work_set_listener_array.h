@@ -11,7 +11,7 @@ namespace frame
    class WorkSetListener;
    class WorkSet;
 
-   class CLASS_DECL_ca2 WorkSetListenerArray :
+   class CLASS_DECL_CORE WorkSetListenerArray :
       public spa(WorkSetListener)
    {
       friend class WorkSet;

@@ -11,7 +11,7 @@ namespace file
    namespace dir
    {
 
-      class CLASS_DECL_ca2 application :
+      class CLASS_DECL_CORE application :
          virtual public object
       {
       public:

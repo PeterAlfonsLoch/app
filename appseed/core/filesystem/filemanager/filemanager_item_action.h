@@ -4,7 +4,7 @@
 namespace filemanager
 {
 
-   class CLASS_DECL_ca2 item_action
+   class CLASS_DECL_CORE item_action
    {
    public:
       item_action();

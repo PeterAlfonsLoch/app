@@ -6,7 +6,7 @@
 namespace core
 {
 
-   class CLASS_DECL_ca2 live_signal :
+   class CLASS_DECL_CORE live_signal :
       virtual public ::core::live_object,
       virtual protected ::comparable_array < live_object * >
    {

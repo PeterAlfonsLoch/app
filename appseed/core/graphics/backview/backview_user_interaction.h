@@ -9,7 +9,7 @@ namespace backview
    {
 
 
-      class CLASS_DECL_ca2 interaction :
+      class CLASS_DECL_CORE interaction :
          virtual public Interface,
          virtual public ::user::view
       {

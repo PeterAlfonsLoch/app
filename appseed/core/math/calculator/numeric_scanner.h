@@ -23,7 +23,7 @@ numbers:
 */
 
 
-   class CLASS_DECL_ca2 scanner :
+   class CLASS_DECL_CORE scanner :
       virtual public object
    {
    public:

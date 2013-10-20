@@ -4,7 +4,7 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_ca2 value
+   class CLASS_DECL_CORE value
    {
    public:
 
@@ -32,19 +32,19 @@ namespace calculator
    };
 
 
-   CLASS_DECL_ca2 double pi();
+   CLASS_DECL_CORE double pi();
 
-   CLASS_DECL_ca2 calculator::value operator + (const calculator::value & val1, const calculator::value & val2);
-   CLASS_DECL_ca2 calculator::value operator - (const calculator::value & val1, const calculator::value & val2);
-   CLASS_DECL_ca2 calculator::value operator * (const calculator::value & val1, const calculator::value & val2);
-   CLASS_DECL_ca2 calculator::value operator / (const calculator::value & val1, const calculator::value & val2);
+   CLASS_DECL_CORE calculator::value operator + (const calculator::value & val1, const calculator::value & val2);
+   CLASS_DECL_CORE calculator::value operator - (const calculator::value & val1, const calculator::value & val2);
+   CLASS_DECL_CORE calculator::value operator * (const calculator::value & val1, const calculator::value & val2);
+   CLASS_DECL_CORE calculator::value operator / (const calculator::value & val1, const calculator::value & val2);
 
-   CLASS_DECL_ca2 value pow(const value & val1, const value & val2);
+   CLASS_DECL_CORE value pow(const value & val1, const value & val2);
 
-   CLASS_DECL_ca2 value sqr(const value & val);
-   CLASS_DECL_ca2 value sqrt(const value & val);
-   CLASS_DECL_ca2 value exp(const value & val);
-   CLASS_DECL_ca2 value log(const value & val);
+   CLASS_DECL_CORE value sqr(const value & val);
+   CLASS_DECL_CORE value sqrt(const value & val);
+   CLASS_DECL_CORE value exp(const value & val);
+   CLASS_DECL_CORE value log(const value & val);
 
 } // namespace calculator
 

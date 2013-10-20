@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_c string http_defer_locale_schema_get(const char * pszUrl, const char * pszLocale, const char * pszSchema)
+CLASS_DECL_BASE string http_defer_locale_schema_get(const char * pszUrl, const char * pszLocale, const char * pszSchema)
 {
    
    string str;

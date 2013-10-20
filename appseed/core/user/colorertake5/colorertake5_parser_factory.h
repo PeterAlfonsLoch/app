@@ -32,7 +32,7 @@ namespace colorertake5
  *
  * @ingroup colorer
  */
-   class CLASS_DECL_ca2 ParserFactory :
+   class CLASS_DECL_CORE ParserFactory :
       virtual public object
 {
 public:

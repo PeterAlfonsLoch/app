@@ -10,7 +10,7 @@ namespace database
    class client_array;
 
 
-   class CLASS_DECL_ca2 client :
+   class CLASS_DECL_CORE client :
       virtual public object
    {
    public:
@@ -83,7 +83,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_ca2 client_array :
+   class CLASS_DECL_CORE client_array :
       public comparable_array < client * , client * >
    {
    public:

@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_ca2 trace_logger : 
+   class CLASS_DECL_CORE trace_logger : 
       public logger
    {
    public:

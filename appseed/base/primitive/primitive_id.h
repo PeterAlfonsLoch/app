@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_c id
+class CLASS_DECL_BASE id
 {
 public:
 

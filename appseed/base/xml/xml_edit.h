@@ -15,7 +15,7 @@ namespace xml
    };
 
 
-   class CLASS_DECL_c edit_item :
+   class CLASS_DECL_BASE edit_item :
       public ::file::serializable
    {
    public:
@@ -42,7 +42,7 @@ namespace xml
       
    };
 
-   class CLASS_DECL_c edit :
+   class CLASS_DECL_BASE edit :
       public ::edit < ::xml::document >,
       public ::file::byte_serializable_pointer_array < spa(edit_item) >
    {

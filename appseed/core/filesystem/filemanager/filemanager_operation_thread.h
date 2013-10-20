@@ -5,7 +5,7 @@ class file_manager_operation_thread;
 class file_manager_operation_view;
 
 
-class CLASS_DECL_ca2 file_manager_operation_thread :
+class CLASS_DECL_CORE file_manager_operation_thread :
    public simple_thread
 {
 public:

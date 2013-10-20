@@ -472,14 +472,14 @@ T biunique < T, T_to_T > ::calc_max_b()
 
 
 
-class CLASS_DECL_ca2 index_biunique :
+class CLASS_DECL_CORE index_biunique :
    public biunique < index >
 {
 public:
    index_biunique(sp(base_application) papp = NULL);
 };
 
-class CLASS_DECL_ca2 int_biunique :
+class CLASS_DECL_CORE int_biunique :
    public biunique < int32_t, int_to_int >
 {
 public:

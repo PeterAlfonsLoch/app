@@ -1,16 +1,16 @@
 #pragma once
 
 
-CLASS_DECL_c string url_encode_dup(const char * psz);
+CLASS_DECL_BASE string url_encode_dup(const char * psz);
 
 namespace url
 {
 
 
-   bool CLASS_DECL_c is_url(const char * pszCandidate, const char ** ppszRequest = NULL);
+   bool CLASS_DECL_BASE is_url(const char * pszCandidate, const char ** ppszRequest = NULL);
 
 
-   class CLASS_DECL_c departament :
+   class CLASS_DECL_BASE departament :
       virtual public base_departament
    {
    public:

@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_ca2 bitmap :
+   class CLASS_DECL_CORE bitmap :
       virtual public ::draw2d::object
    {
    public:

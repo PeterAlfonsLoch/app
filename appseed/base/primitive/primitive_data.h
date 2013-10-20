@@ -10,18 +10,18 @@ namespace data
    class data_listener;
    class data;
 
-   typedef CLASS_DECL_c spa(data_listener) data_listener_ptra;
-   typedef CLASS_DECL_c comparable_array < data * > data_ptra;
-   typedef CLASS_DECL_c comparable_array < sp(element) > ca_ptra;
+   typedef CLASS_DECL_BASE spa(data_listener) data_listener_ptra;
+   typedef CLASS_DECL_BASE comparable_array < data * > data_ptra;
+   typedef CLASS_DECL_BASE comparable_array < sp(element) > ca_ptra;
 
 
-   class CLASS_DECL_c data :
+   class CLASS_DECL_BASE data :
       virtual public object
    {
    public:
 
 
-      class CLASS_DECL_c writing :
+      class CLASS_DECL_BASE writing :
          public interlocked_long_pulse
       {
       public:
@@ -35,7 +35,7 @@ namespace data
 
       };
 
-      class CLASS_DECL_c saving :
+      class CLASS_DECL_BASE saving :
          public interlocked_long_pulse
       {
       public:

@@ -13,7 +13,7 @@ namespace data
    class tree;
 
 
-   class CLASS_DECL_ca2 tree_item_data :
+   class CLASS_DECL_CORE tree_item_data :
       virtual public root
    {
    public:
@@ -35,7 +35,7 @@ namespace data
    };
 
 
-   class CLASS_DECL_ca2 tree_item_data_ptr_array :
+   class CLASS_DECL_CORE tree_item_data_ptr_array :
       public spa(tree_item_data)
    {
    public:

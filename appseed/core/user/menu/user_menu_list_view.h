@@ -4,7 +4,7 @@
 namespace user
 {
 
-   class CLASS_DECL_ca2 menu_list_view : 
+   class CLASS_DECL_CORE menu_list_view : 
       virtual public menu_list_window
    {
    public:

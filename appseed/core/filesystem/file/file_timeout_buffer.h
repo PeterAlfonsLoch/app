@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_ca2 timeout_buffer : 
+   class CLASS_DECL_CORE timeout_buffer : 
       public ::file::binary_buffer
    {
    public:

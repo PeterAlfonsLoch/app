@@ -5,7 +5,7 @@ namespace fontopus
 {
 
 
-   class CLASS_DECL_ca2 fontopus :
+   class CLASS_DECL_CORE fontopus :
       virtual public ::base_departament
    {
    public:

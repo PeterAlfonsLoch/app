@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c os_simple_graphics
+class CLASS_DECL_BASE os_simple_graphics
 {
 public:
 

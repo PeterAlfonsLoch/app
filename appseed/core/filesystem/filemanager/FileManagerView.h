@@ -10,7 +10,7 @@ namespace filemanager
 
 
 
-class CLASS_DECL_ca2 FileManagerAView :
+class CLASS_DECL_CORE FileManagerAView :
    virtual public ::user::split_view,
    virtual public FileManagerViewInterface
 {
@@ -31,7 +31,7 @@ public:
 
 
 
-class CLASS_DECL_ca2 FileManagerView :
+class CLASS_DECL_CORE FileManagerView :
    virtual public ::user::split_view,
    virtual public FileManagerViewInterface
 {

@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   class CLASS_DECL_ca2 html_ex :
+   class CLASS_DECL_CORE html_ex :
       virtual public object
    {
    public:

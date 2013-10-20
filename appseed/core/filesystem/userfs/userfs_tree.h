@@ -8,7 +8,7 @@ namespace userfs
    class main_view;
 
 
-   class CLASS_DECL_ca2 tree :
+   class CLASS_DECL_CORE tree :
       public tree_interface
    {
    public:

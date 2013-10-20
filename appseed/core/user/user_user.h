@@ -16,7 +16,7 @@ namespace user
    class document;
 
 
-   class CLASS_DECL_ca2 user :
+   class CLASS_DECL_CORE user :
       virtual public ::base_departament,
       virtual public ::user::document_request_interface,
       virtual public BaseMenuCentralContainer,
@@ -220,8 +220,8 @@ namespace user
    };
 
 
-   CLASS_DECL_ca2 ::user::front_end_schema * GetUfeSchema(sp(base_application) papp);
-   CLASS_DECL_ca2 ::user::front_end * GetUfe(sp(base_application) papp);
+   CLASS_DECL_CORE ::user::front_end_schema * GetUfeSchema(sp(base_application) papp);
+   CLASS_DECL_CORE ::user::front_end * GetUfe(sp(base_application) papp);
 
 
 } // namespace core

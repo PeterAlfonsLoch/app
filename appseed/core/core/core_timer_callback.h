@@ -3,7 +3,7 @@
 
 class timer_window;
 
-class CLASS_DECL_ca2 timer_callback
+class CLASS_DECL_CORE timer_callback
 {
 protected:
 

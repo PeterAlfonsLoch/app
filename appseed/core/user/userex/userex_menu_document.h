@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 menu_document :
+class CLASS_DECL_CORE menu_document :
    virtual public form_document
 {
 public:

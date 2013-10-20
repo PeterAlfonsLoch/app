@@ -30,7 +30,7 @@
 
 //namespace graphics_round_rect
 //{
-class CLASS_DECL_ca simple_path :
+class CLASS_DECL_BOOT simple_path :
    public os_simple_path
 {
 public:

@@ -10,10 +10,10 @@ void dlr(uint32_t dwDownload);
 */
 
 
-CLASS_DECL_ca void ms_download_callback(void * param, int32_t i, uint_ptr dwLen);
-CLASS_DECL_ca void ms_get_callback(void * param, int32_t i, uint_ptr dwLen);
+CLASS_DECL_BOOT void ms_download_callback(void * param, int32_t i, uint_ptr dwLen);
+CLASS_DECL_BOOT void ms_get_callback(void * param, int32_t i, uint_ptr dwLen);
 
-CLASS_DECL_ca void dlr(uint32_t dwDownload);
+CLASS_DECL_BOOT void dlr(uint32_t dwDownload);
 
 
 

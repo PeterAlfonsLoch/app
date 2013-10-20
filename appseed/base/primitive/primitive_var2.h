@@ -11,14 +11,14 @@ class pair_set_interface;
 class str_str_interface;
 
 
-var CLASS_DECL_c str_ends_get(const char * lpcsz, const char * lpcszSuffix);
+var CLASS_DECL_BASE str_ends_get(const char * lpcsz, const char * lpcszSuffix);
 
 
 namespace str
 {
 
-   CLASS_DECL_c var ends_get(const char * pszSuffix, const char * psz);
-   CLASS_DECL_c var ends_get_ci(const char * pszSuffix, const char * psz);
+   CLASS_DECL_BASE var ends_get(const char * pszSuffix, const char * psz);
+   CLASS_DECL_BASE var ends_get_ci(const char * pszSuffix, const char * psz);
 
 
 } // namespace str

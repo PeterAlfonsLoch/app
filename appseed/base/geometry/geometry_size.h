@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // size - An extent, similar to Windows SIZE structure.
 
-class CLASS_DECL_c size : public tagSIZE
+class CLASS_DECL_BASE size : public tagSIZE
 {
 public:
 
@@ -64,7 +64,7 @@ inline bool size::is_empty() const throw()
 /////////////////////////////////////////////////////////////////////////////
 // size64 - An extent, similar to Windows SIZE structure.
 
-class CLASS_DECL_c size64 : public __size64
+class CLASS_DECL_BASE size64 : public __size64
 {
 public:
 
@@ -124,7 +124,7 @@ inline bool size64::is_empty() const throw()
 /////////////////////////////////////////////////////////////////////////////
 // sized - An extent, similar to Windows SIZE structure.
 
-class CLASS_DECL_c sized : public tagSIZED
+class CLASS_DECL_BASE sized : public tagSIZED
 {
 public:
 

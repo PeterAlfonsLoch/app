@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 menu_view :
+class CLASS_DECL_CORE menu_view :
    virtual public form_view
 {
 public:

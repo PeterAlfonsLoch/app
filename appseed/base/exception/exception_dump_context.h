@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c dump_context :
+class CLASS_DECL_BASE dump_context :
    virtual public element
 {
 public:

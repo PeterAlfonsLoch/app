@@ -36,7 +36,7 @@ inline int_ptr GetWindowLongPtrW( oswindow oswindow, int32_t nIndex )
 /////////////////////////////////////////////////////////////////////////////
 // Auxiliary System/Screen metrics
 /*
-struct CLASS_DECL_ca2 AUX_DATA
+struct CLASS_DECL_CORE AUX_DATA
 {
    // system metrics
    int32_t cxVScroll, cyHScroll;
@@ -76,7 +76,7 @@ struct CLASS_DECL_ca2 AUX_DATA
    void UpdateSysMetrics();
 };
 
-extern CLASS_DECL_ca2 AUX_DATA afxData;*/
+extern CLASS_DECL_CORE AUX_DATA afxData;*/
 
 
 
@@ -134,8 +134,8 @@ typedef struct tag__OLDTOOLINFO {
 
 
 // dialog/commdlg hook procs
-CLASS_DECL_ca2 int_ptr CALLBACK __dialog_procedure(oswindow, UINT, WPARAM, LPARAM);
-CLASS_DECL_ca2 uint_ptr CALLBACK __common_dialog_procedure(oswindow oswindow, UINT, WPARAM, LPARAM);
+CLASS_DECL_CORE int_ptr CALLBACK __dialog_procedure(oswindow, UINT, WPARAM, LPARAM);
+CLASS_DECL_CORE uint_ptr CALLBACK __common_dialog_procedure(oswindow oswindow, UINT, WPARAM, LPARAM);
 
 // support for standard dialogs
 extern UINT gen_MsgSETRGB;
@@ -182,7 +182,7 @@ typedef struct
 
 /*// UNICODE/MBCS abstractions
 #ifdef _MBCS
-   extern CLASS_DECL_ca2 const bool gen_DBCS;
+   extern CLASS_DECL_CORE const bool gen_DBCS;
 #else
    #define gen_DBCS FALSE
 #endif
@@ -219,10 +219,10 @@ extern resource_exception _simpleResourceException;
 
 
 // misc helpers
-CLASS_DECL_ca2 void __get_root_path(const char * lpszPath, string & strRoot);
+CLASS_DECL_CORE void __get_root_path(const char * lpszPath, string & strRoot);
 
 #ifndef ___NO_OLE_SUPPORT
-class CLASS_DECL_ca2 __COM
+class CLASS_DECL_CORE __COM
 {
 public:
    HRESULT CreateInstance(REFCLSID rclsid, LPUNKNOWN pUnkOuter,
@@ -230,8 +230,8 @@ public:
    HRESULT GetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv);
 };
 
-CLASS_DECL_ca2 string __iding_from_clsid(REFCLSID rclsid);
-CLASS_DECL_ca2 bool __get_in_proc_server(const char * lpszCLSID, string & str);
+CLASS_DECL_CORE string __iding_from_clsid(REFCLSID rclsid);
+CLASS_DECL_CORE bool __get_in_proc_server(const char * lpszCLSID, string & str);
 #endif // ___NO_OLE_SUPPORT
 
 #define NULL_TLS ((uint32_t)-1)
@@ -245,7 +245,7 @@ CLASS_DECL_ca2 bool __get_in_proc_server(const char * lpszCLSID, string & str);
 // Debugging/Tracing helpers
 
 #ifdef DEBUG
-   CLASS_DECL_ca2 bool __check_dialog_template(const char * lpszResource, bool bInvisibleChild);
+   CLASS_DECL_CORE bool __check_dialog_template(const char * lpszResource, bool bInvisibleChild);
 #endif
 
 

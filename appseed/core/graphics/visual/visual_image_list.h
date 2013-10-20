@@ -1,11 +1,11 @@
 #pragma once
 
-class CLASS_DECL_ca2 image_list :
+class CLASS_DECL_CORE image_list :
    virtual public object
 {
 public:
 
-   class CLASS_DECL_ca2 info
+   class CLASS_DECL_CORE info
    {
    public:
 

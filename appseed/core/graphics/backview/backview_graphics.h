@@ -5,7 +5,7 @@ namespace backview
 {
 
 
-   class CLASS_DECL_ca2 Graphics :
+   class CLASS_DECL_CORE Graphics :
       public Helper
    {
    public:

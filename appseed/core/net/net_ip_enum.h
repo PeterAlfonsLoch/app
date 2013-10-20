@@ -14,7 +14,7 @@ namespace net
 {
 
 
-   class CLASS_DECL_ca2 ip_enum :
+   class CLASS_DECL_CORE ip_enum :
       virtual public object
    {
    public:

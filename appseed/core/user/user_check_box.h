@@ -3,7 +3,7 @@
 namespace user
 {
 
-   class CLASS_DECL_ca2 check_box :
+   class CLASS_DECL_CORE check_box :
       virtual public control,
       virtual public check_interface
    {

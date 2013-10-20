@@ -41,7 +41,7 @@ namespace colorertake5
    HRC information.
    @ingroup colorer
    */
-   class CLASS_DECL_ca2 HRCParser :
+   class CLASS_DECL_CORE HRCParser :
       virtual public object
    {
    public:

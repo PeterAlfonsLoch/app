@@ -31,7 +31,7 @@ namespace primitive
    class virtual_memory;
 
 
-   class CLASS_DECL_c memory_base :
+   class CLASS_DECL_BASE memory_base :
       public object,
       public ::file::serializable
    {

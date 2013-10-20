@@ -13,7 +13,7 @@ namespace uinteraction
       class WorkSet;
 
 
-      class CLASS_DECL_ca2 SysMenuManager
+      class CLASS_DECL_CORE SysMenuManager
       {
       public:
 

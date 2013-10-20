@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c pointer_list :
+class CLASS_DECL_BASE pointer_list :
    virtual public object
 {
 public:

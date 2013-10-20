@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 data_exchange :
+   class CLASS_DECL_CORE data_exchange :
       virtual public object
    {
    public:

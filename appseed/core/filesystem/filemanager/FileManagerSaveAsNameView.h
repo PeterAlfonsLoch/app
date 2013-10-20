@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 FileManagerSaveAsView :
+class CLASS_DECL_CORE FileManagerSaveAsView :
    virtual public ::user::edit_plain_text_view,
    virtual public FileManagerViewInterface
 {

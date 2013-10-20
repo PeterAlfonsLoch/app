@@ -4,7 +4,7 @@ namespace libcompress
 {
 
 
-   class CLASS_DECL_ca2 set_coder_mt_interface :
+   class CLASS_DECL_CORE set_coder_mt_interface :
       virtual public object
    {
    public:

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 simple_combo_box :
+class CLASS_DECL_CORE simple_combo_box :
    virtual public ::user::combo_box
 {
 public:

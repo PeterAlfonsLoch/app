@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 simple_edit :
+class CLASS_DECL_CORE simple_edit :
    public ::user::edit_plain_text
 {
 public:

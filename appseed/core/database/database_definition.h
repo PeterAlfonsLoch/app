@@ -30,7 +30,7 @@ namespace database
                error handling
 
    ******************************************************************/
-   class CLASS_DECL_ca2 DbErrors
+   class CLASS_DECL_CORE DbErrors
    {
 
    public:
@@ -65,7 +65,7 @@ namespace database
 
 
 
-   class CLASS_DECL_ca2 field_properties :
+   class CLASS_DECL_CORE field_properties :
       virtual public ::file::serializable
    {
    public:
@@ -92,7 +92,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_ca2 field
+   class CLASS_DECL_CORE field
    {
    public:
 
@@ -110,7 +110,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_ca2 record :
+   class CLASS_DECL_CORE record :
       virtual public var_array
    {
    public:
@@ -124,7 +124,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_ca2 query_data :
+   class CLASS_DECL_CORE query_data :
       public ::file::serializable_array < array < record, record & > >
    {
    };
@@ -132,7 +132,7 @@ namespace database
    typedef array <field, field &> CFields;
    typedef ::file::serializable_array < array < field_properties, field_properties & > > record_properties;
 
-   class CLASS_DECL_ca2 result_set :
+   class CLASS_DECL_CORE result_set :
       public object,
       public ::file::serializable
    {
@@ -157,7 +157,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_ca2 parameter_list
+   class CLASS_DECL_CORE parameter_list
    {
    public:
 

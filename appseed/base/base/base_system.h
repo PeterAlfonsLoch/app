@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_c ptra :
+class CLASS_DECL_BASE ptra :
    virtual public spa(element)
 {
 public:
@@ -21,7 +21,7 @@ typedef ::map < sp(element), sp(element), ptra, ptra > map_many;
 
 
 
-class CLASS_DECL_c id_pool
+class CLASS_DECL_BASE id_pool
 {
 public:
 
@@ -206,7 +206,7 @@ protected:
 
 
 
-class CLASS_DECL_c base_system :
+class CLASS_DECL_BASE base_system :
    virtual public base_application
 {
 public:

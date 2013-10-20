@@ -45,9 +45,9 @@ string_map < VALUE, ARG_VALUE, HASH, EQUALS > & string_map < VALUE, ARG_VALUE, H
 }
 
 
-typedef CLASS_DECL_c string_map < int_ptr, int_ptr > string_to_intptr;
+typedef CLASS_DECL_BASE string_map < int_ptr, int_ptr > string_to_intptr;
 
-typedef CLASS_DECL_c string_map < void *, void * > string_to_ptr;
+typedef CLASS_DECL_BASE string_map < void *, void * > string_to_ptr;
 
 
 #define strmap(T) string_map < T >

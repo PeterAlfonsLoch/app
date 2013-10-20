@@ -16,7 +16,7 @@ namespace user
    class base_interaction;
 
 
-    class CLASS_DECL_c base_interaction :
+    class CLASS_DECL_BASE base_interaction :
         virtual public root
    {
    public:

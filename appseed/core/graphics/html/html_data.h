@@ -8,14 +8,14 @@ namespace html
 {
 
 
-   class CLASS_DECL_ca2 data :
+   class CLASS_DECL_CORE data :
       virtual public signalizable,
       public ::data::data
    {
    public:
 
 
-      class CLASS_DECL_ca2 image :
+      class CLASS_DECL_CORE image :
          virtual public object
       {
       public:
@@ -28,7 +28,7 @@ namespace html
       };
 
 
-      class CLASS_DECL_ca2 load_image
+      class CLASS_DECL_CORE load_image
       {
       public:
          image * m_pimage;
@@ -36,7 +36,7 @@ namespace html
       };
 
 
-      class CLASS_DECL_ca2 layout_state
+      class CLASS_DECL_CORE layout_state
       {
       public:
          int32_t      m_iBody;

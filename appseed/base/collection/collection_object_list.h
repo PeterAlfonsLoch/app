@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_c object_list :
+class CLASS_DECL_BASE object_list :
    public object
 {
 public:

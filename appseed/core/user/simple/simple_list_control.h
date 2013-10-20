@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 simple_list_control :
+class CLASS_DECL_CORE simple_list_control :
    virtual public ::user::interaction,
    virtual public ::user::list
 {

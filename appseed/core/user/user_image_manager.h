@@ -7,7 +7,7 @@ namespace user
 
    class tool_bar;
 
-   class CLASS_DECL_ca2 image_manager :
+   class CLASS_DECL_CORE image_manager :
       virtual public object
    {
    public:

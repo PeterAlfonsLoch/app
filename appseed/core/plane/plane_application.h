@@ -13,7 +13,7 @@ namespace plane
 {
 
 
-   class CLASS_DECL_ca2 application :
+   class CLASS_DECL_CORE application :
       virtual public ::application,
       virtual public ::database::client
 
@@ -216,11 +216,11 @@ namespace plane
    };
 
 
-   CLASS_DECL_ca2 UINT c_cdecl application_thread_procedure(LPVOID pvoid);
+   CLASS_DECL_CORE UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
    typedef sp(base_application) (* LPFN_instantiate_application)(sp(base_application) pappParent, const char * pszId);
 
-   extern CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application;
+   extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_application;
 
 
 } // namespace plane

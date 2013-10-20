@@ -41,7 +41,7 @@ bool simple_edit_box::is_focusable()
 
 /*
 
-CLASS_DECL_ca char to_upper(int32_t ch)
+CLASS_DECL_BOOT char to_upper(int32_t ch)
 {
    
    if(ch >= 'a' && ch <= 'z')
@@ -54,7 +54,7 @@ CLASS_DECL_ca char to_upper(int32_t ch)
 }
 
 
-CLASS_DECL_ca char * to_upper(char * pchParam)
+CLASS_DECL_BOOT char * to_upper(char * pchParam)
 {
 char * pch = pchParam;
 while(*pch == '\0')

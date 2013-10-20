@@ -12,7 +12,7 @@ namespace user
 
 
 
-class CLASS_DECL_ca2 simple_form_list_edit :
+class CLASS_DECL_CORE simple_form_list_edit :
    public ::user::edit_plain_text
 {
 public:

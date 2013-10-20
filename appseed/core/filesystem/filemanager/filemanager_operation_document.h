@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 file_manager_operation_document :
+class CLASS_DECL_CORE file_manager_operation_document :
    public ::user::document
 {
 public:

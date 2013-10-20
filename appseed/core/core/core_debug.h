@@ -1,13 +1,13 @@
 #pragma once
 
 #ifdef DEBUG
-   void CLASS_DECL_ca2 TRACELASTERROR();
+   void CLASS_DECL_CORE TRACELASTERROR();
 #else
    #define TRACELASTERROR() ((void)0)
 #endif
 
 
-CLASS_DECL_ca2 string FormatMessageFromSystem(uint32_t dwError);
+CLASS_DECL_CORE string FormatMessageFromSystem(uint32_t dwError);
 
 
 

@@ -3,7 +3,7 @@
 namespace user
 {
 
-   class CLASS_DECL_CA2_VEIEV tree_set :
+   class CLASS_DECL_CORE_VEIEV tree_set :
       virtual public ::user::view,
       virtual public ::user::tree_set_interface
    {

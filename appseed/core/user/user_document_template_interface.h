@@ -4,7 +4,7 @@
 namespace user
 {
 
-   class CLASS_DECL_ca2 document_template_interface  
+   class CLASS_DECL_CORE document_template_interface  
    {
    public:
       virtual void reload_template() = 0;

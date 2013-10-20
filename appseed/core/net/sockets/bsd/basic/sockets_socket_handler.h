@@ -9,7 +9,7 @@ namespace sockets
    class resolv_server;
 
 
-   class CLASS_DECL_ca2 socket_handler : 
+   class CLASS_DECL_CORE socket_handler : 
       public base_socket_handler
    {
    public:

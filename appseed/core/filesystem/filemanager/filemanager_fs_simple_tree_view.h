@@ -35,7 +35,7 @@ namespace filemanager
             int32_t FindAbsolute(int64_t iFolder);
          };
 
-         class CLASS_DECL_ca2 tree_view :
+         class CLASS_DECL_CORE tree_view :
             virtual public ::user::view,
             virtual public ::user::tree
          {

@@ -5,7 +5,7 @@ namespace backview
 {
 
 
-   class CLASS_DECL_ca2 Interface :
+   class CLASS_DECL_CORE Interface :
       virtual public signalizable
    {
    public:

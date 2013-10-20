@@ -5,7 +5,7 @@ namespace usernet // ca8 + cube
 {
 
 
-   class CLASS_DECL_ca2 network_configuration :
+   class CLASS_DECL_CORE network_configuration :
       public ::user::form_callback,
       public ::user::view_creator
    {

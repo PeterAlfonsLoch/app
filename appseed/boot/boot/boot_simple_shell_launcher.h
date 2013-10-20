@@ -9,7 +9,7 @@
 // to detect erronous adaptations of replacement
 
 
-class CLASS_DECL_ca simple_shell_launcher
+class CLASS_DECL_BOOT simple_shell_launcher
 {
 public:
 

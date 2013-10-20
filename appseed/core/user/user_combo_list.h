@@ -8,7 +8,7 @@ namespace user
    class combo_box;
 
 
-   class CLASS_DECL_ca2 combo_list : 
+   class CLASS_DECL_CORE combo_list : 
       virtual public ::user::control
    {
    public:

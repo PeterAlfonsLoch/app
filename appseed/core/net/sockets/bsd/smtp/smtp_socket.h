@@ -6,7 +6,7 @@
 namespace sockets
 {
    /** Smtp server base class. */
-   class CLASS_DECL_ca2 smtp_socket : public tcp_socket
+   class CLASS_DECL_CORE smtp_socket : public tcp_socket
    {
    public:
       typedef enum {

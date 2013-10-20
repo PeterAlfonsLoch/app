@@ -15,7 +15,7 @@ namespace user
 namespace nature
 {
 
-   class CLASS_DECL_ca2 appearance_view :
+   class CLASS_DECL_CORE appearance_view :
       public ::userex::pane_tab_view
    {
    public:

@@ -40,12 +40,12 @@ namespace core
 
 	//  \brief		global function to set thread priority for current thread
 	//  \param		new priority
-	CLASS_DECL_c bool set_thread_priority(int32_t priority);
-	CLASS_DECL_c bool set_priority_class(int32_t priority);
+	CLASS_DECL_BASE bool set_thread_priority(int32_t priority);
+	CLASS_DECL_BASE bool set_priority_class(int32_t priority);
 
 	//  \brief		global function to get thread priority for current thread
 	//  \return	priority of current thread
-	CLASS_DECL_c int32_t thread_priority();
+	CLASS_DECL_BASE int32_t thread_priority();
 
 
 } // namespace core
@@ -68,7 +68,7 @@ inline int32_t get_scheduling_priority_normal()
 
 
 
-class CLASS_DECL_c os_thread
+class CLASS_DECL_BASE os_thread
 {
 public:
 
@@ -114,12 +114,12 @@ public:
 };
 
 
-CLASS_DECL_c HTHREAD start_thread(uint32_t (*)(void *), void * pv, int32_t iPriority = 0);
+CLASS_DECL_BASE HTHREAD start_thread(uint32_t (*)(void *), void * pv, int32_t iPriority = 0);
 
-CLASS_DECL_c HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (*)(void *), void * pv, uint32_t uiFlags, uint32_t * puiId);
+CLASS_DECL_BASE HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (*)(void *), void * pv, uint32_t uiFlags, uint32_t * puiId);
 
 
-class CLASS_DECL_c thread_layer
+class CLASS_DECL_BASE thread_layer
 {
 public:
 
@@ -149,7 +149,7 @@ public:
 
 
 
-CLASS_DECL_c DWORD get_current_thread_id();
+CLASS_DECL_BASE DWORD get_current_thread_id();
 
 
 

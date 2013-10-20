@@ -12,7 +12,7 @@ namespace uinteraction
       class WorkSet;
       class ControlBoxButton;
 
-      class CLASS_DECL_ca2 appearance :
+      class CLASS_DECL_CORE appearance :
          public CWorkSetDownUpInterface,
          virtual public signalizable
       {

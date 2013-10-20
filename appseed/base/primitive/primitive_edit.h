@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c base_edit :
+class CLASS_DECL_BASE base_edit :
    public ::data::data_container
 {
 public:

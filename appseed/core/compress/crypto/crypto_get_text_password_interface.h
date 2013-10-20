@@ -14,7 +14,7 @@ namespace crypto
 
    #define PASSWORD_INTERFACE(i, x) DECL_INTERFACE(i, 5, x)*/
 
-   class CLASS_DECL_ca2 get_text_password_interface :
+   class CLASS_DECL_CORE get_text_password_interface :
       virtual public object
    {
    public:

@@ -7,7 +7,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   struct CLASS_DECL_ca2 TRAYDATA
+   struct CLASS_DECL_CORE TRAYDATA
    {
       HWND    m_oswindow;
       UINT        uID;
@@ -17,7 +17,7 @@ namespace user
    };
 
 
-   struct CLASS_DECL_ca2 TrayItemInfo :
+   struct CLASS_DECL_CORE TrayItemInfo :
       virtual public element
    {
       oswindow    m_oswindow;
@@ -30,12 +30,12 @@ namespace user
 
 #endif
 
-   CLASS_DECL_ca2 char GetDriveLetter(const char * lpDevicePath);
-   CLASS_DECL_ca2 oswindow FindTrayToolbarWindow();
-   CLASS_DECL_ca2 string GetFilenameFromPid(uint32_t pid);
+   CLASS_DECL_CORE char GetDriveLetter(const char * lpDevicePath);
+   CLASS_DECL_CORE oswindow FindTrayToolbarWindow();
+   CLASS_DECL_CORE string GetFilenameFromPid(uint32_t pid);
 
 
-   class CLASS_DECL_ca2 notification_area :
+   class CLASS_DECL_CORE notification_area :
       virtual public object
    {
    public:

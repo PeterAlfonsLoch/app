@@ -5,7 +5,7 @@ namespace backview
 {
 
 
-   class CLASS_DECL_ca2 ImageChange :
+   class CLASS_DECL_CORE ImageChange :
       public Helper
    {
    public:

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c plex_heap     // warning var length structure
+class CLASS_DECL_BASE plex_heap     // warning var length structure
 {
 public:
    plex_heap* pNext;
@@ -16,7 +16,7 @@ public:
    void FreeDataChain();       // free this one and links
 };
 
-class CLASS_DECL_c plex_heap_alloc_sync
+class CLASS_DECL_BASE plex_heap_alloc_sync
 {
 public:
 

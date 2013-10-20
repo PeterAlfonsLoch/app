@@ -8,7 +8,7 @@ namespace user
    class tool_bar_control; // forward reference (see afxcmn.h for definition)
 
 
-   class CLASS_DECL_ca2 tool_bar :
+   class CLASS_DECL_CORE tool_bar :
       public ::user::control_bar
    {
    public:

@@ -2,7 +2,7 @@
 
 class XfplayerViewLine;
 
-class CLASS_DECL_ca2 XfplayerViewLineSelectionItem  
+class CLASS_DECL_CORE XfplayerViewLineSelectionItem  
 {
 protected:
 
@@ -41,7 +41,7 @@ public:
 };
 
 
-class CLASS_DECL_ca2 XfplayerViewLineSelection :
+class CLASS_DECL_CORE XfplayerViewLineSelection :
    virtual object
 {
 public:

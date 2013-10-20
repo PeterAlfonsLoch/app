@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 go_thread :
+class CLASS_DECL_CORE go_thread :
    virtual public simple_thread
 {
 public:

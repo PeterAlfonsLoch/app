@@ -2,14 +2,14 @@
 
 
 
-CLASS_DECL_ca2 void DDX_Control(::user::data_exchange * pdx, id idControl, ::user::interaction & control);
-CLASS_DECL_ca2 void DDX_Text(::user::data_exchange * pdx, id idControl, string & str);
-CLASS_DECL_ca2 void DDV_MaxChars(::user::data_exchange * pdx, string & str, int32_t iMax);
-CLASS_DECL_ca2 void DDX_Check(::user::data_exchange * pdx, id idControl, int32_t & iBool);
-CLASS_DECL_ca2 void DDX_Check(::user::data_exchange * pdx, id idControl, bool & b);
+CLASS_DECL_CORE void DDX_Control(::user::data_exchange * pdx, id idControl, ::user::interaction & control);
+CLASS_DECL_CORE void DDX_Text(::user::data_exchange * pdx, id idControl, string & str);
+CLASS_DECL_CORE void DDV_MaxChars(::user::data_exchange * pdx, string & str, int32_t iMax);
+CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, id idControl, int32_t & iBool);
+CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, id idControl, bool & b);
 
 
-class CLASS_DECL_ca2 dialog :
+class CLASS_DECL_CORE dialog :
    virtual public form_view
 {
 public:

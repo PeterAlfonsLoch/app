@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c string_list :
+class CLASS_DECL_BASE string_list :
    virtual public object
 {
 public:

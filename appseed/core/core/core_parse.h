@@ -36,7 +36,7 @@ namespace str
 
    // Splits a string whatever way you want.
 
-   class CLASS_DECL_ca2 parse
+   class CLASS_DECL_CORE parse
    {
    public:
       parse();

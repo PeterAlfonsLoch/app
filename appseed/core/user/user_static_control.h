@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 static_control :
+   class CLASS_DECL_CORE static_control :
       virtual public ::user::control
    {
    public:

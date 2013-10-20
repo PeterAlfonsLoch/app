@@ -5,7 +5,7 @@ namespace colorertake5
 {
 
 
-   class CLASS_DECL_ca2 colorertake5 :
+   class CLASS_DECL_CORE colorertake5 :
       virtual public ::base_departament
    {
    public:

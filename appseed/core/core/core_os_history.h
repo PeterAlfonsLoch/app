@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 os_history :
+class CLASS_DECL_CORE os_history :
    virtual public ::core::history
 {
 public:

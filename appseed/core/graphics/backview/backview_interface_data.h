@@ -5,7 +5,7 @@ namespace backview
 {
 
 
-   class CLASS_DECL_ca2 InterfaceData
+   class CLASS_DECL_CORE InterfaceData
    {
    public:
 

@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 FileManagerMainFrame :
+class CLASS_DECL_CORE FileManagerMainFrame :
    public simple_frame_window
 {
 public:

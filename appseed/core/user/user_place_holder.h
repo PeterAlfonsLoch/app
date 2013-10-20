@@ -6,7 +6,7 @@ namespace user
 
    class place_holder_container;
 
-   class CLASS_DECL_ca2 place_holder :
+   class CLASS_DECL_CORE place_holder :
       virtual public control
    {
    public:
@@ -38,7 +38,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_ca2 place_holder_ptra :
+   class CLASS_DECL_CORE place_holder_ptra :
       virtual public spa(place_holder)
    {
    public:

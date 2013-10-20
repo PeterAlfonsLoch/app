@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 file_manager_operation_info_view :
+class CLASS_DECL_CORE file_manager_operation_info_view :
    virtual public ::user::view
    
 {

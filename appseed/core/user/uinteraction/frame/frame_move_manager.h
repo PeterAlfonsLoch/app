@@ -9,7 +9,7 @@ namespace frame
 
    class WorkSet;
 
-   class CLASS_DECL_ca2 MoveManager :
+   class CLASS_DECL_CORE MoveManager :
       virtual public signalizable
    {
       friend class WorkSet;

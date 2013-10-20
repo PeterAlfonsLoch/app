@@ -3,7 +3,7 @@
 namespace calculator
 {
 
-   class CLASS_DECL_ca2 token
+   class CLASS_DECL_CORE token
    {
    public:
       token();

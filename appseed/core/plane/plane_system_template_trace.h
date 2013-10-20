@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   class CLASS_DECL_ca2 trace_add_file_and_line
+   class CLASS_DECL_CORE trace_add_file_and_line
 #if defined(LINUX) || defined(MACOS)
       : public string_format_printer
 #endif
@@ -20,7 +20,7 @@ namespace core
 
 #if defined(LINUX) || defined(MACOS) || defined(ANDROID)
 
-      class CLASS_DECL_ca2 category_level
+      class CLASS_DECL_CORE category_level
       {
       public:
 

@@ -6,7 +6,7 @@ namespace user
    class tab_drop_target_window;
    class single_document_template;
 
-   class CLASS_DECL_ca2 tab_view : 
+   class CLASS_DECL_CORE tab_view : 
       virtual public ::user::view,
       virtual public ::user::tab,
       virtual public ::user::tab_callback,

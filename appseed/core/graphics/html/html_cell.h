@@ -13,13 +13,13 @@ namespace html
       class table_row;
 
 
-      class CLASS_DECL_ca2 cell : 
+      class CLASS_DECL_CORE cell : 
          public ::html::impl::text
       {
       public:
 
 
-         class CLASS_DECL_ca2 holder
+         class CLASS_DECL_CORE holder
          {
          public:
 

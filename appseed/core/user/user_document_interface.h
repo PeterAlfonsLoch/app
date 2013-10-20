@@ -8,7 +8,7 @@ namespace user
    class document;
 
 
-   class CLASS_DECL_ca2 document_interface :
+   class CLASS_DECL_CORE document_interface :
       virtual public ::user::base_document,
       virtual public command_target,
       virtual public ::data::data_container_base,

@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_ca2 output_stream :
+   class CLASS_DECL_CORE output_stream :
       virtual public ::file::plain_text_output_stream
    {
    public:

@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_ca2 transfer_buffer :
+   class CLASS_DECL_CORE transfer_buffer :
       virtual public ::file::composite
    {
    public:

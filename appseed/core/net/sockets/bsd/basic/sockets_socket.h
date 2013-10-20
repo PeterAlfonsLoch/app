@@ -8,7 +8,7 @@ namespace sockets
    /** \defgroup basic Basic sockets */
    /** socket base class.
    \ingroup basic */
-   class CLASS_DECL_ca2 socket :
+   class CLASS_DECL_CORE socket :
       virtual public ::sockets::base_socket
    {
    public:

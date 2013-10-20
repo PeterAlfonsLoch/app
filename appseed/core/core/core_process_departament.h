@@ -8,7 +8,7 @@ namespace core
 {
 
 
-   class CLASS_DECL_ca2 process_departament :
+   class CLASS_DECL_CORE process_departament :
       public ::base_departament
    {
    public:

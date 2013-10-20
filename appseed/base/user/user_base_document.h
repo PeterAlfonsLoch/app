@@ -8,7 +8,7 @@ namespace user
    class document_interface;
 
 
-    class CLASS_DECL_c base_document :
+    class CLASS_DECL_BASE base_document :
         virtual public object
    {
    public:

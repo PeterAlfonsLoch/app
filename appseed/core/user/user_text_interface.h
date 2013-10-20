@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 text_interface :
+class CLASS_DECL_CORE text_interface :
    virtual public string_interface
 {
 public:

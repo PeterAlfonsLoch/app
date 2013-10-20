@@ -13,7 +13,7 @@ typedef struct ssl_session_st SSL_SESSION;
    {
 
 
-      class CLASS_DECL_ca2 ssl_client_context :
+      class CLASS_DECL_CORE ssl_client_context :
          virtual public object
       {
       public:

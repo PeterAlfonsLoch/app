@@ -15,7 +15,7 @@ class SimpleMenu;
 class CMenuTrackingThreadV033;
 class CMenuBarHookV033;
 
-class CLASS_DECL_ca2 simple_menu_bar :
+class CLASS_DECL_CORE simple_menu_bar :
    public simple_toolbar
 {
 public:

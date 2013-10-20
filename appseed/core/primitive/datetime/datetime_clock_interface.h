@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 clock_interface :
+class CLASS_DECL_CORE clock_interface :
    virtual public object
 {
 protected:

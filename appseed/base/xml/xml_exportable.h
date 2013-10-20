@@ -8,7 +8,7 @@ namespace xml
    class output_tree;
 
 
-   class CLASS_DECL_c exportable :
+   class CLASS_DECL_BASE exportable :
       virtual public object
    {
    public:

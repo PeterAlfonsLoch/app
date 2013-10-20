@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_ca2 buffered_buffer : 
+   class CLASS_DECL_CORE buffered_buffer : 
       public ::file::binary_buffer
    {
    public:

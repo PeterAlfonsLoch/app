@@ -1,7 +1,7 @@
 #pragma
 
 
-class CLASS_DECL_ca simple_edit_box :
+class CLASS_DECL_BOOT simple_edit_box :
    public simple_ui
 {
 public:

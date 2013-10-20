@@ -9,7 +9,7 @@ namespace crypto
    {
 
 
-      class CLASS_DECL_ca2 context
+      class CLASS_DECL_CORE context
       {
       public:
 

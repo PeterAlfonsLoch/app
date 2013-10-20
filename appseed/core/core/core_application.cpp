@@ -25,7 +25,7 @@ mutex g_mutexStr(NULL);
 UINT application::APPM_LANGUAGE = WM_APP + 117;
 WPARAM application::WPARAM_LANGUAGE_UPDATE = 1;
 
-CLASS_DECL_ca2 HMODULE g_hmoduleOs = NULL;
+CLASS_DECL_CORE HMODULE g_hmoduleOs = NULL;
 
 const char application::gen_FileSection[] = "Recent File List";
 const char application::gen_FileEntry[] = "File%d";
@@ -1611,9 +1611,9 @@ void application::memory_to_hex(string & strHex, primitive::memory & memory)
 #endif
 
 
-CLASS_DECL_ca2 extern fixed_alloc_array * g_pfixedallocaWstring;
+CLASS_DECL_CORE extern fixed_alloc_array * g_pfixedallocaWstring;
 
-CLASS_DECL_ca2 fixed_alloc_array * new_wstring_manager();
+CLASS_DECL_CORE fixed_alloc_array * new_wstring_manager();
 
 
 

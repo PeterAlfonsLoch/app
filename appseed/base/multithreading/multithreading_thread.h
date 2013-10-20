@@ -3,4 +3,4 @@
 
 
 
-CLASS_DECL_c HTHREAD get_current_thread();
+CLASS_DECL_BASE HTHREAD get_current_thread();

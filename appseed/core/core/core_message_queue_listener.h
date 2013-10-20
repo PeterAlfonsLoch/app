@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 message_queue_listener :
+class CLASS_DECL_CORE message_queue_listener :
    virtual public object
 {
 public:

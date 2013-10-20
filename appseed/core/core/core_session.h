@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   class CLASS_DECL_ca2 session :
+   class CLASS_DECL_CORE session :
       virtual public base_session,
       virtual public ::application
    {

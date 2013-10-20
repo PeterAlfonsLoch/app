@@ -8,7 +8,7 @@ namespace filemanager
    class document;
 
 
-   class CLASS_DECL_ca2 SimpleFolderTreeView :
+   class CLASS_DECL_CORE SimpleFolderTreeView :
       virtual public ::filemanager::SimpleFolderTreeInterface
    {
    public:

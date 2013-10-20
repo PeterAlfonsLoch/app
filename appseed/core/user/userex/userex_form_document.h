@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 form_document :
+class CLASS_DECL_CORE form_document :
    public html_document
 {
 public:

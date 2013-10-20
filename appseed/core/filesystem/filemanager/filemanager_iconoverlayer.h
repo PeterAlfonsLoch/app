@@ -4,7 +4,7 @@
 namespace filemanager
 {
 
-   class CLASS_DECL_ca2 iconoverlayer :
+   class CLASS_DECL_CORE iconoverlayer :
       virtual public object
    {
    public:

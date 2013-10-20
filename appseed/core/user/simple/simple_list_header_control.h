@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 simple_list_header_control :
+class CLASS_DECL_CORE simple_list_header_control :
    virtual public ::user::list_header
 {
 public:

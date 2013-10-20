@@ -2,7 +2,7 @@
 
    class timer_callback;
 
-class CLASS_DECL_ca2 timer  
+class CLASS_DECL_CORE timer  
 {
 public:
    class CCreate

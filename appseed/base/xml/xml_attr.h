@@ -9,7 +9,7 @@ namespace xml
    typedef property attr;
 
 
-   class CLASS_DECL_c attr_array :
+   class CLASS_DECL_BASE attr_array :
       public property_set
    {
    protected:

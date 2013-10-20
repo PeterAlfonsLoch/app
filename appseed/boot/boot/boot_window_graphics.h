@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca window_graphics
+class CLASS_DECL_BOOT window_graphics
 {
 public:
 

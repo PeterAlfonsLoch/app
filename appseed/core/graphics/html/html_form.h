@@ -8,7 +8,7 @@ namespace html
    namespace impl
    {
 
-      class CLASS_DECL_ca2 form : public elemental
+      class CLASS_DECL_CORE form : public elemental
       {
       public:
          form();

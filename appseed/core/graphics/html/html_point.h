@@ -4,7 +4,7 @@
 namespace html
 {
 
-   class CLASS_DECL_ca2 point
+   class CLASS_DECL_CORE point
    {
    public:
 

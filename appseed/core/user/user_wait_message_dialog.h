@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 wait_message_dialog :
+class CLASS_DECL_CORE wait_message_dialog :
    virtual public object
 {
 public:

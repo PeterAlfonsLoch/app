@@ -10,7 +10,7 @@
 namespace visual
 {
 
-   class CLASS_DECL_ca2 fastblur :
+   class CLASS_DECL_CORE fastblur :
       public ::visual::dib_sp
    {
    public:

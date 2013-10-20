@@ -29,7 +29,7 @@ namespace user
    class list_column_array;
 
 
-   class CLASS_DECL_ca2 list_column :
+   class CLASS_DECL_CORE list_column :
       virtual public element
    {
    public:
@@ -80,7 +80,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_ca2 list_column_array :
+   class CLASS_DECL_CORE list_column_array :
       public smart_pointer_array < ::user::list_column >
    {
    public:
@@ -146,7 +146,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca2 list_item :
+   class CLASS_DECL_CORE list_item :
       virtual public object
    {
    public:
@@ -176,7 +176,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_ca2 draw_list_item :
+   class CLASS_DECL_CORE draw_list_item :
       virtual public list_item,
       virtual public draw_context
    {
@@ -226,7 +226,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca2 list :
+   class CLASS_DECL_CORE list :
       virtual public scroll_view,
       public ::sort::compare_interface
    {
@@ -281,7 +281,7 @@ namespace user
 
       };
 
-      class CLASS_DECL_ca2 sub_item_range
+      class CLASS_DECL_CORE sub_item_range
       {
       public:
 
@@ -301,7 +301,7 @@ namespace user
 
       };
 
-      class CLASS_DECL_ca2 item_range
+      class CLASS_DECL_CORE item_range
       {
       public:
          
@@ -328,7 +328,7 @@ namespace user
 
       };
 
-      class CLASS_DECL_ca2 range
+      class CLASS_DECL_CORE range
       {
       public:
 
@@ -358,7 +358,7 @@ namespace user
 
 
 
-      class CLASS_DECL_ca2 list_layout :
+      class CLASS_DECL_CORE list_layout :
          virtual public ::file::serializable
       {
       public:
@@ -372,7 +372,7 @@ namespace user
          virtual void read(::file::input_stream & istream);
       };
 
-      class CLASS_DECL_ca2 icon_layout :
+      class CLASS_DECL_CORE icon_layout :
          virtual public ::file::serializable
       {
       public:

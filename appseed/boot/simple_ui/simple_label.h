@@ -1,7 +1,7 @@
 #pragma
 
 
-class CLASS_DECL_ca simple_label :
+class CLASS_DECL_BOOT simple_label :
    public simple_ui
 {
 public:

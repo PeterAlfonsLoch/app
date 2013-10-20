@@ -8,9 +8,9 @@
 #include FT_FREETYPE_H
 
 
-CLASS_DECL_ca2 bool TextOutU(HDC hdc, int32_t x, int32_t y, const char * lpString, int32_t ca);
-CLASS_DECL_ca2 bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int32_t ca, LPSIZE psizl);
-CLASS_DECL_ca2 int32_t  DrawTextU(HDC hdc, const char * lpchText, int32_t cchText, LPRECT lprc, UINT format);
+CLASS_DECL_CORE bool TextOutU(HDC hdc, int32_t x, int32_t y, const char * lpString, int32_t ca);
+CLASS_DECL_CORE bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int32_t ca, LPSIZE psizl);
+CLASS_DECL_CORE int32_t  DrawTextU(HDC hdc, const char * lpchText, int32_t cchText, LPRECT lprc, UINT format);
 
 
 

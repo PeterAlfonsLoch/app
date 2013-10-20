@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   class CLASS_DECL_ca2 main_init_data
+   class CLASS_DECL_CORE main_init_data
    {
    public:
 

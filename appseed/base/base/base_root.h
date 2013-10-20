@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_c root
+class CLASS_DECL_BASE root
 {
 public:
 

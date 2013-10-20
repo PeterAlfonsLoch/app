@@ -8,7 +8,7 @@ namespace user
    class notify_icon_listener;
 
 
-   class CLASS_DECL_ca2 notify_icon :
+   class CLASS_DECL_CORE notify_icon :
       virtual public ::user::interaction
    {
    public:

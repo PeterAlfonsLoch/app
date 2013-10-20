@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_ca2 html_frame : public simple_frame_window
+class CLASS_DECL_CORE html_frame : public simple_frame_window
 {
    
 public: // create from serialization only

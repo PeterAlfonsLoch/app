@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_c point_array :
+class CLASS_DECL_BASE point_array :
    public array < point >
 {
 public:
@@ -28,7 +28,7 @@ public:
 
 };
 
-class CLASS_DECL_c point64_array :
+class CLASS_DECL_BASE point64_array :
    public array < point64 >
 {
 public:
@@ -39,7 +39,7 @@ public:
 };
 
 
-class CLASS_DECL_c pointd_array :
+class CLASS_DECL_BASE pointd_array :
    public array < pointd >
 {
 public:

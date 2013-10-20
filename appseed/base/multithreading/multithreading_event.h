@@ -5,7 +5,7 @@
 #include <sys/sem.h>
 #endif
 
-class CLASS_DECL_c event :
+class CLASS_DECL_BASE event :
    virtual public event_base
 {
 public:

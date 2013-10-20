@@ -8,7 +8,7 @@ namespace xml
    class input_tree;
 
 
-   class CLASS_DECL_c importable :
+   class CLASS_DECL_BASE importable :
       virtual public object
    {
    public:

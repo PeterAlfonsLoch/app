@@ -3,7 +3,7 @@
 namespace calculator
 {
 
-   class CLASS_DECL_ca2 parser :
+   class CLASS_DECL_CORE parser :
       virtual public object
    {
    public:

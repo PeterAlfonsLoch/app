@@ -105,9 +105,9 @@ namespace file
 
 
 
-   typedef CLASS_DECL_c buffer < char >      char_buffer;
-   typedef CLASS_DECL_c buffer < wchar_t >   wchar_buffer;
-   typedef CLASS_DECL_c buffer < byte >      byte_buffer;
+   typedef CLASS_DECL_BASE buffer < char >      char_buffer;
+   typedef CLASS_DECL_BASE buffer < wchar_t >   wchar_buffer;
+   typedef CLASS_DECL_BASE buffer < byte >      byte_buffer;
 
 
 } // namespace file

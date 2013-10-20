@@ -6,7 +6,7 @@ namespace simpledb
 
    class server;
 
-   class CLASS_DECL_ca2 session :
+   class CLASS_DECL_CORE session :
       virtual public object
    {
    public:

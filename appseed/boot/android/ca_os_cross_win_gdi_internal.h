@@ -4,7 +4,7 @@
 
 
 
-struct CLASS_DECL_c gdi_object
+struct CLASS_DECL_BASE gdi_object
 {
 
 
@@ -35,7 +35,7 @@ struct tag_WINDOW
 
 };
 
-class CLASS_DECL_c device_context
+class CLASS_DECL_BASE device_context
 {
 public:
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c assert_exception : 
+class CLASS_DECL_BASE assert_exception : 
    virtual public simple_exception
 {
 public:

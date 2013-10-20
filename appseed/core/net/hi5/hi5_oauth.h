@@ -4,8 +4,8 @@
 namespace hi5
 {
 
-   CLASS_DECL_ca2 string char2hex( char dec );
-   CLASS_DECL_ca2 string urlencode( const string &ca );
+   CLASS_DECL_CORE string char2hex( char dec );
+   CLASS_DECL_CORE string urlencode( const string &ca );
   
 
    typedef enum _eOAuthHttpRequestType
@@ -19,7 +19,7 @@ namespace hi5
    typedef stringa oAuthKeyValueList;
    typedef property_set oAuthKeyValuePairs;
 
-   class CLASS_DECL_ca2 oauth :
+   class CLASS_DECL_CORE oauth :
       virtual public object
    {
    public:

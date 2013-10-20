@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 list_cache  :
+   class CLASS_DECL_CORE list_cache  :
       public list_cache_interface
    {
    protected:

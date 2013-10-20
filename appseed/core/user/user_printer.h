@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 printer :
+   class CLASS_DECL_CORE printer :
       virtual public object
    {
    public:

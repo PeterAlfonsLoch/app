@@ -5,7 +5,7 @@ namespace net
 {
 
 
-   class CLASS_DECL_ca2 email_address
+   class CLASS_DECL_CORE email_address
    {
    public:
 

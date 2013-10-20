@@ -12,7 +12,7 @@ typedef hthread * HTHREAD;
 #endif
 
 
-class CLASS_DECL_c base_thread :
+class CLASS_DECL_BASE base_thread :
    virtual public object
 {
 public:
@@ -43,7 +43,7 @@ public:
 };
 
 
-class CLASS_DECL_c thread_state
+class CLASS_DECL_BASE thread_state
 {
 public:
 
@@ -53,15 +53,15 @@ public:
 
 };
 
-CLASS_DECL_c base_thread * get_thread();
-CLASS_DECL_c thread_state * get_thread_state();
+CLASS_DECL_BASE base_thread * get_thread();
+CLASS_DECL_BASE thread_state * get_thread_state();
 
 
 typedef base_thread * (* PFN_get_thread)();
 typedef thread_state * (* PFN_get_thread_state)();
 
-extern CLASS_DECL_c PFN_get_thread g_pfn_get_thread;
-extern CLASS_DECL_c PFN_get_thread_state g_pfn_get_thread_state;
+extern CLASS_DECL_BASE PFN_get_thread g_pfn_get_thread;
+extern CLASS_DECL_BASE PFN_get_thread_state g_pfn_get_thread_state;
 
-CLASS_DECL_c mutex & user_mutex();
+CLASS_DECL_BASE mutex & user_mutex();
 

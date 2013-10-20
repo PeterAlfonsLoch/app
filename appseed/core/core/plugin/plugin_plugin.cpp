@@ -12,10 +12,10 @@
 //#include <fcntl.h>
 #endif
 
-void CLASS_DECL_ca2 __cdecl _ca2_purecall_();
+void CLASS_DECL_CORE __cdecl _ca2_purecall_();
 
 
-void CLASS_DECL_ca2 __cdecl _ca2_purecall_()
+void CLASS_DECL_CORE __cdecl _ca2_purecall_()
 {
     throw simple_exception(get_thread_app());
 }

@@ -19,7 +19,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca2 check_interface :
+   class CLASS_DECL_CORE check_interface :
       virtual public object
    {
    public:

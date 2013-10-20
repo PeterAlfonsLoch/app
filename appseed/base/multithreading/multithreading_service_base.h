@@ -11,7 +11,7 @@
 
 #pragma once
 
-class CLASS_DECL_c service_base :
+class CLASS_DECL_BASE service_base :
    virtual public object
 {
 public:

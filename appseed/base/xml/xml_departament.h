@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   class CLASS_DECL_c departament :
+   class CLASS_DECL_BASE departament :
       public base_departament
    {
    public:

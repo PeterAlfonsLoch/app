@@ -6,7 +6,7 @@ namespace simpledb
    class table;
    class set;
 
-   class CLASS_DECL_ca2 base : 
+   class CLASS_DECL_CORE base : 
       public ::database::base
    {
    public:

@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_c simple_exception : 
+class CLASS_DECL_BASE simple_exception : 
    virtual public ::exception::base
 {
 public:

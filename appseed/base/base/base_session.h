@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_c base_session :
+class CLASS_DECL_BASE base_session :
    virtual public base_application
 {
 public:

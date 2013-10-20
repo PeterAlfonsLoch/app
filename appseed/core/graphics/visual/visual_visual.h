@@ -5,7 +5,7 @@
 namespace visual
 {
 
-   class CLASS_DECL_ca2 visual
+   class CLASS_DECL_CORE visual
    {
    public:
       visual(::draw2d::graphics * pdc);
@@ -30,7 +30,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_ca2 visual  :
+   class CLASS_DECL_CORE visual  :
       virtual public ::base_departament
    {
    public:

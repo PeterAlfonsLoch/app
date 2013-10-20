@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   class CLASS_DECL_ca2 patch :
+   class CLASS_DECL_CORE patch :
       public object
    {
    public:

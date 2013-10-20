@@ -8,7 +8,7 @@ namespace user
    class tab_callback;
 
 
-   class CLASS_DECL_ca2 tab :
+   class CLASS_DECL_CORE tab :
       virtual public control,
       virtual public place_holder_container
    {
@@ -17,7 +17,7 @@ namespace user
 
 
 
-      class CLASS_DECL_ca2 pane :
+      class CLASS_DECL_CORE pane :
          virtual public object
       {
       public:
@@ -45,7 +45,7 @@ namespace user
       };
 
 
-      class CLASS_DECL_ca2 pane_array :
+      class CLASS_DECL_CORE pane_array :
          public spa(pane)
       {
       public:
@@ -62,7 +62,7 @@ namespace user
       };
 
 
-      class CLASS_DECL_ca2 data :
+      class CLASS_DECL_CORE data :
          virtual public ::data::data
       {
       public:
@@ -103,7 +103,7 @@ namespace user
       };
 
 
-      class CLASS_DECL_ca2 remove_tab_exception
+      class CLASS_DECL_CORE remove_tab_exception
       {
       public:
 

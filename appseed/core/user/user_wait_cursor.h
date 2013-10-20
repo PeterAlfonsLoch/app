@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca2 wait_cursor :
+class CLASS_DECL_CORE wait_cursor :
    virtual public object
 {
 public:

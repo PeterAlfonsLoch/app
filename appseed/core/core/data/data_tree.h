@@ -11,7 +11,7 @@ namespace data
    class tree_data;
 
 
-   class CLASS_DECL_ca2 tree :
+   class CLASS_DECL_CORE tree :
       virtual public ::data::data_container
    {
    public:

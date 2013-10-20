@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   class CLASS_DECL_ca2 box
+   class CLASS_DECL_CORE box
    {
    public:
 
