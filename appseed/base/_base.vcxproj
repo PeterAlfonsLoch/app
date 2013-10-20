@@ -327,7 +327,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>__C__STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_BASE_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
@@ -1270,7 +1270,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClInclude Include="exception\exception_trap.h" />
     <ClInclude Include="exception\exception_unhandled_report.h" />
     <ClInclude Include="exception\exception_user.h" />
-    <ClInclude Include="exception\exception_vms.h" />
     <ClInclude Include="exception\exception_void_implementation.h" />
     <ClInclude Include="file\file.h" />
     <ClInclude Include="file\file_serializable.h" />
@@ -1506,7 +1505,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
     <ClCompile Include="exception\exception_temporary.cpp" />
     <ClCompile Include="exception\exception_todo.cpp" />
     <ClCompile Include="exception\exception_user.cpp" />
-    <ClCompile Include="exception\exception_VMSException.cpp" />
     <ClCompile Include="exception\exception_void_implementation.cpp" />
     <ClCompile Include="file\file_byte_stream_memory_buffer.cpp" />
     <ClCompile Include="file\file_stream_buffer.cpp" />

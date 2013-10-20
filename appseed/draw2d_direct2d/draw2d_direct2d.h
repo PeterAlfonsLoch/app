@@ -17,10 +17,10 @@
 
 
 
-#ifdef _CA2_DRAW2D_DIRECT2D_LIBRARY
-    #define CLASS_DECL_DRAW2D_DIRECT2D  _declspec(dllexport)
+#ifdef _DRAW2D_DIRECT2D_LIBRARY
+    #define CLASS_DECL_DRAW2D_DIRECT2D  CLASS_DECL_EXPORT
 #else
-    #define CLASS_DECL_DRAW2D_DIRECT2D  _declspec(dllimport)
+    #define CLASS_DECL_DRAW2D_DIRECT2D  CLASS_DECL_IMPORT
 #endif
 
 
