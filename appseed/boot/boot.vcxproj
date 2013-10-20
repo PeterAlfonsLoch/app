@@ -362,6 +362,7 @@
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
+      <FixedBaseAddress>false</FixedBaseAddress>
     </Link>
     <PreBuildEvent>
       <Command>

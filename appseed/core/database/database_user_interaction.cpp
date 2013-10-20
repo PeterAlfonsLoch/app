@@ -151,123 +151,135 @@ namespace database
       bool interaction::LoadWindowRect_(::database::id key, ::database::id idIndex, sp(::user::interaction) pWnd, bool bForceRestore)
       {
 
-         ::file::byte_stream_memory_buffer memstream(get_app());
-
-         if(!data_get(key, idIndex, memstream))
-            return false;
-
-         memstream.seek_to_begin();
-
-         bool bZoomed = false;
-
-         memstream >> bZoomed;
-
-         if(!bForceRestore && bZoomed)
+         try
          {
 
-            pWnd->ShowWindow(SW_MAXIMIZE);
+            ::file::byte_stream_memory_buffer memstream(get_app());
 
-         }
+            if (!data_get(key, idIndex, memstream))
+               return false;
 
-         bool bFullScreen = false;
+            memstream.seek_to_begin();
 
-         memstream >> bFullScreen;
+            bool bZoomed = false;
 
-         if(!bForceRestore)
-         {
+            memstream >> bZoomed;
 
-            if(bFullScreen)
+            if (!bForceRestore && bZoomed)
             {
-               if(!pWnd->IsFullScreen())
-               {
-                  pWnd->ShowWindowFullScreen(true, false);
-               }
+
+               pWnd->ShowWindow(SW_MAXIMIZE);
+
             }
-            else
+
+            bool bFullScreen = false;
+
+            memstream >> bFullScreen;
+
+            if (!bForceRestore)
             {
-               if(pWnd->IsFullScreen())
+
+               if (bFullScreen)
+               {
+                  if (!pWnd->IsFullScreen())
+                  {
+                     pWnd->ShowWindowFullScreen(true, false);
+                  }
+               }
+               else
+               {
+                  if (pWnd->IsFullScreen())
+                  {
+                     pWnd->ShowWindowFullScreen(false, false);
+                  }
+               }
+
+            }
+            else if (!bFullScreen)
+            {
+
+               if (pWnd->IsFullScreen())
                {
                   pWnd->ShowWindowFullScreen(false, false);
                }
+
             }
 
+            bool bIconic = false;
+
+            memstream >> bIconic;
+
+            if (!bForceRestore && bIconic)
+            {
+
+               pWnd->ShowWindow(SW_MINIMIZE);
+
+            }
+
+            if (bForceRestore)
+            {
+
+               pWnd->ShowWindow(SW_RESTORE);
+
+            }
+
+            if (bForceRestore || (!bZoomed && !bFullScreen && !bIconic))
+            {
+
+               rect rectWindow;
+
+               memstream >> rectWindow;
+
+               rect rectDesktop;
+               if (get_parent() != NULL)
+               {
+                  get_parent()->GetClientRect(rectDesktop);
+                  get_parent()->ScreenToClient(rectWindow);
+               }
+               else
+               {
+                  System.get_screen_rect(rectDesktop);
+               }
+               rect rectIntersect;
+               rectIntersect.intersect(rectDesktop, rectWindow);
+               if (rectIntersect.width() < rectDesktop.width() / 64
+                  || rectIntersect.height() < rectDesktop.height() / 64
+                  || rectDesktop.width() * 2 / 5 < 100
+                  || rectDesktop.height() * 2 / 5 < 100)
+               {
+                  SetWindowPos(
+                     -3,
+                     rectDesktop.left + rectDesktop.width() / 7,
+                     rectDesktop.top + rectDesktop.height() / 7,
+                     rectDesktop.width() * 2 / 5,
+                     rectDesktop.height() * 2 / 5, 0);
+               }
+               else
+               {
+                  SetWindowPos(
+                     -3,
+                     rectWindow.left,
+                     rectWindow.top,
+                     rectWindow.width(),
+                     rectWindow.height(),
+                     0);
+               }
+
+
+               //pWnd->SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), SWP_NOZORDER | SWP_NOACTIVATE);
+
+            }
+
+            return true;
+
          }
-         else if(!bFullScreen)
+         catch (...)
          {
 
-            if(pWnd->IsFullScreen())
-            {
-               pWnd->ShowWindowFullScreen(false, false);
-            }
+            return false;
 
          }
 
-         bool bIconic = false;
-
-         memstream >> bIconic;
-
-         if(!bForceRestore && bIconic)
-         {
-
-            pWnd->ShowWindow(SW_MINIMIZE);
-
-         }
-
-         if(bForceRestore)
-         {
-
-            pWnd->ShowWindow(SW_RESTORE);
-
-         }
-
-         if(bForceRestore || (!bZoomed && !bFullScreen && !bIconic))
-         {
-
-            rect rectWindow;
-
-            memstream >> rectWindow;
-
-            rect rectDesktop;
-            if(get_parent() != NULL)
-            {
-               get_parent()->GetClientRect(rectDesktop);
-               get_parent()->ScreenToClient(rectWindow);
-            }
-            else
-            {
-               System.get_screen_rect(rectDesktop);
-            }
-            rect rectIntersect;
-            rectIntersect.intersect(rectDesktop, rectWindow);
-            if(rectIntersect.width() < rectDesktop.width() / 64
-               || rectIntersect.height() < rectDesktop.height() / 64
-               ||  rectDesktop.width() * 2 / 5 < 100
-               ||  rectDesktop.height() * 2 / 5 < 100)
-            {
-               SetWindowPos(
-                  -3,
-                  rectDesktop.left + rectDesktop.width() / 7,
-                  rectDesktop.top + rectDesktop.height() / 7,
-                  rectDesktop.width() * 2 / 5,
-                  rectDesktop.height() * 2 / 5, 0);
-            }
-            else
-            {
-               SetWindowPos(
-                  -3,
-                  rectWindow.left,
-                  rectWindow.top,
-                  rectWindow.width(),
-                  rectWindow.height(),
-                  0);
-            }
-
-
-            //pWnd->SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), SWP_NOZORDER | SWP_NOACTIVATE);
-
-         }
-
-         return true;
 
       }
 
