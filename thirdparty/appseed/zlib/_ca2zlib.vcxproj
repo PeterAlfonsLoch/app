@@ -85,6 +85,9 @@
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="basezlib.def" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>basezlib</ProjectName>
     <ProjectGuid>{9FFC2CF6-737C-43DB-A1EE-383F7BFDB05B}</ProjectGuid>
@@ -378,7 +381,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>basezlib.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -437,7 +440,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>basezlib.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -495,6 +498,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
       <AndroidSystemLibs>c;m;log;gcc;_c</AndroidSystemLibs>
+      <ModuleDefinitionFile>basezlib.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -556,6 +560,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
       <AndroidSystemLibs>c;m;log;gcc;_c</AndroidSystemLibs>
+      <ModuleDefinitionFile>basezlib.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -615,7 +620,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>basezlib.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -669,6 +674,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>basezlib.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -725,7 +731,7 @@
       <Profile>true</Profile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>basezlib.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -778,6 +784,7 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <Profile>true</Profile>
+      <ModuleDefinitionFile>basezlib.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -833,7 +840,7 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>basezlib.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -889,7 +896,7 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>basezlib.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -945,7 +952,7 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>basezlib.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -1010,7 +1017,7 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>basezlib.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>

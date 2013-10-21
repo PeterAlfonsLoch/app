@@ -741,4 +741,7 @@
       <Filter>Source Files\win32</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="basecairo.def" />
+  </ItemGroup>
 </Project>
