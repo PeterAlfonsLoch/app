@@ -110,7 +110,7 @@ namespace plane
 
       virtual void on_app_request_bergedge_callback(sp(base_application) papp);
 
-      
+
 
 
       // semantics defined by application

@@ -5,12 +5,12 @@ namespace core
 {
 
 
-   class CLASS_DECL_CORE copydesk : 
+   class CLASS_DECL_CORE copydesk :
       virtual public object
    {
    public:
 
-      
+
       copydesk(sp(base_application) papp);
       virtual ~copydesk();
 

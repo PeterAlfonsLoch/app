@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c simple_pen
+class CLASS_DECL_BASE simple_pen
 {
 public:
 

@@ -38,8 +38,8 @@ namespace user
          virtual public element
       {
       public:
-         
-         
+
+
          id                      m_id;
          rect                    m_rect;
          size                    m_sizeFixed;

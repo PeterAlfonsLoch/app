@@ -9,8 +9,8 @@ namespace user
       virtual public object
    {
    public:
-      
-      
+
+
       sp(menu_item)  m_pitem;
 
 
@@ -21,7 +21,7 @@ namespace user
       bool create_menu(const stringa & straCommand, const stringa & straCommandTitle);
       bool LoadMenu(sp(::xml::node) lpnode);
       bool LoadXmlMenu(const char * pszMatter);
-      
+
 
       virtual void clear();
       virtual void layout() = 0;

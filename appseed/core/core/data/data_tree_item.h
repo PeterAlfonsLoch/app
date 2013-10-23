@@ -84,7 +84,7 @@ namespace data
       virtual ::count get_proper_item_count();
 
       virtual sp(tree) get_tree();
-      
+
       virtual bool set_selection();
       virtual bool add_selection();
       virtual bool clear_selection();

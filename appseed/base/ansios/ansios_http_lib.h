@@ -15,7 +15,7 @@
 
 
 
-class CLASS_DECL_c tiny_http
+class CLASS_DECL_BASE tiny_http
 {
 public:
 

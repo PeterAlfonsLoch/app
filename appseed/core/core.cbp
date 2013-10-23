@@ -561,7 +561,6 @@
 		<Unit filename="core/linux/os_allocate_debug.h" />
 		<Unit filename="core/linux/os_debug.cpp" />
 		<Unit filename="core/linux/os_debug.h" />
-		<Unit filename="core/linux/os_multithreading.h" />
 		<Unit filename="core/os/os.h" />
 		<Unit filename="core/os/os_cross_windows.h" />
 		<Unit filename="core/os/os_cross_windows_crt.h" />

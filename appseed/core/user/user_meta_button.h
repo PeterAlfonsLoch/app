@@ -6,7 +6,7 @@ class CLASS_DECL_CORE MetaButton :
    public ::uinteraction::frame::ControlBoxButton
 {
 public:
-   
+
 
    enum ETimer
    {

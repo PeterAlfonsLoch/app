@@ -28,7 +28,7 @@ namespace fs
 
       virtual string file_name(const char * pszPath);
       virtual string dir_path(const char * psz1, const char * psz2);
-      
+
       virtual bool file_exists(const char * pszPath);
 
       virtual bool file_move(const char * pszDst, const char * pszSrc);

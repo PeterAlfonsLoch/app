@@ -10,7 +10,7 @@ namespace state
    };
 
    typedef flags < e_state > state;
-   
+
 } // namespace check
 
 namespace user
@@ -42,7 +42,7 @@ namespace user
       void VirtualOnSize();
 
       virtual bool create_control(class control::descriptor * pdescriptor);
-      
+
       visual::dib_sp          m_dib;
 
 
@@ -70,7 +70,7 @@ namespace user
 
       virtual index get_hover();
 
-      
+
 //      virtual void ResizeToFit();
       virtual void _001Layout();
 

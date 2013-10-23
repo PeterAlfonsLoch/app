@@ -34,8 +34,8 @@ namespace core
       class on_retry
       {
       public:
-         
-         
+
+
          uint32_t    m_dwTimeout;
          uint32_t    m_dwStartTime;
 

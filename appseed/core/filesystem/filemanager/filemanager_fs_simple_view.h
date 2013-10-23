@@ -9,7 +9,7 @@ namespace filemanager
 
       namespace simple
       {
-      
+
          class tree_view;
          class list_view;
 

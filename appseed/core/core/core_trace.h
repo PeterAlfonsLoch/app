@@ -193,7 +193,7 @@ namespace core
       CLASS_DECL_CORE void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const wchar_t * pszFormat, ...);
 #define TRACENOTIMPL(funcname)  do { TRACE(::core::atlTraceNotImpl, 0, "core: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
    } // namespace trace
-    
+
 
 };  // namespace core
 

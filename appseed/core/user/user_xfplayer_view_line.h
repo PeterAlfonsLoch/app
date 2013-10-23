@@ -11,14 +11,14 @@ class CLASS_DECL_CORE XfplayerViewLine  :
    virtual public object
 {
 public:
-   
-   
+
+
    enum EAnimate
    {
       AnimateNoAnimate = 0,
       AnimateRHL = 1 // Rotates Horizontally Left
    };
-   
+
 
    enum EEffect
    {
@@ -105,8 +105,8 @@ public:
    XfplayerViewLine(const XfplayerViewLine & line);
    XfplayerViewLine(XfplayerViewLines * pContainer);
    virtual ~XfplayerViewLine();
-   
-   
+
+
    void SetBlend(double d);
    ::draw2d::font * GetFont();
    bool CalcChar(point pt, strsize &iChar);
@@ -162,12 +162,12 @@ public:
       strsize iLen,
       double dBlend);
 
-   
+
    void CacheEmboss(
       sp(base_application) papp,
-      ::draw2d::graphics * pdc, 
-      const char * lpcsz, 
-      strsize iLen, 
+      ::draw2d::graphics * pdc,
+      const char * lpcsz,
+      strsize iLen,
       ::draw2d::dib * pdibCache);
 
 
@@ -182,8 +182,8 @@ public:
    void SetRenderCriticalSection(::critical_section *pcs);
    void SetAnimateIncrement(double dIncrement);
    int32_t MapToFontEffect(int32_t iLineEffect);
-    
-   
+
+
    void SetForegroundColor(COLORREF cr);
    void SetEmbossPen(::draw2d::pen * lpPen);
    void SetTextEffect(int32_t iTextEffect);
@@ -205,7 +205,7 @@ public:
 
 
 // Operations
-   
+
    bool PrepareLine(
       ::draw2d::graphics * pdc,
       const char * lpcsz,
@@ -221,7 +221,7 @@ public:
 
    void GetPlacement(LPRECT lprect);
 
-   void AddChar(   
+   void AddChar(
       WCHAR wch,
       strsize &index);
 
@@ -229,7 +229,7 @@ public:
       WCHAR wch,
       strsize &index,
       visual::font * pFont);
-   
+
    bool to(
       sp(base_application) papp,
       ::draw2d::graphics *                  pdc,

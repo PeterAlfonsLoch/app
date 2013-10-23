@@ -1,6 +1,6 @@
 
 
-class CLASS_DECL_ca window_cairo :
+class CLASS_DECL_BOOT window_cairo :
    public window_graphics
 {
 public:

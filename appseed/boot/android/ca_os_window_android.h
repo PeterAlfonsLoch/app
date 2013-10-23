@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca window_android :
+class CLASS_DECL_BOOT window_android :
    public window_graphics
 {
 public:

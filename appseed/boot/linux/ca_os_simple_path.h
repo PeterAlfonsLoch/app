@@ -1,12 +1,12 @@
 #pragma once
 
 
-class CLASS_DECL_c os_simple_path
+class CLASS_DECL_BASE os_simple_path
 {
 public:
 
 
-   class CLASS_DECL_c arc
+   class CLASS_DECL_BASE arc
    {
    public:
 
@@ -22,7 +22,7 @@ public:
    };
 
 
-   class CLASS_DECL_c line
+   class CLASS_DECL_BASE line
    {
    public:
 
@@ -35,7 +35,7 @@ public:
    };
 
 
-   class CLASS_DECL_c element
+   class CLASS_DECL_BASE element
    {
    public:
 

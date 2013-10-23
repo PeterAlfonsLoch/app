@@ -3,7 +3,7 @@
 namespace sip
 {
 
-   class CLASS_DECL_CORE response : 
+   class CLASS_DECL_CORE response :
       virtual public transaction
    {
    public:
@@ -27,10 +27,10 @@ namespace sip
       void clear();
 
    protected:
-   
+
       //Utility::ncmap<string> m_cookie;
       file::memory_buffer m_memfileBody;
-   
+
 
    }; // end of class
 

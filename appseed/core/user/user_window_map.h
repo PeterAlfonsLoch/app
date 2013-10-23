@@ -35,7 +35,7 @@ namespace user
       window_map(sp(base_application) papp);
       virtual ~window_map();
 
-      
+
       ::user::window_interface * get(int_ptr iWindow);
 
 

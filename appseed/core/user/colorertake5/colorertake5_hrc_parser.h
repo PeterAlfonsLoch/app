@@ -8,7 +8,7 @@ namespace colorertake5
    /** Informs application about internal HRC parsing problems.
    @ingroup colorer
    */
-   class HRCParserException : 
+   class HRCParserException :
       virtual public exception
    {
    public:
@@ -120,7 +120,7 @@ namespace colorertake5
 * The Initial Developer of the Original Code is
 * Cail Lomecb <cail@nm.ru>.
 * Portions created by the Initial Developer are Copyright (C) 1999-2005
-* the Initial Developer. 
+* the Initial Developer.
 *
 * Contributor(s):
 *

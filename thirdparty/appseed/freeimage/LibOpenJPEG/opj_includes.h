@@ -63,8 +63,8 @@
 #endif
 
 /*
-The inline keyword is supported by C99 but not by C90. 
-Most compilers implement their own version of this keyword ... 
+The inline keyword is supported by C99 but not by C90.
+Most compilers implement their own version of this keyword ...
 */
 #ifndef INLINE
 	#if defined(_MSC_VER)
@@ -73,9 +73,9 @@ Most compilers implement their own version of this keyword ...
 		#define INLINE __inline__
 	#elif defined(__MWERKS__)
 		#define INLINE inline
-	#else 
+	#else
 		/* add other compilers here ... */
-		#define INLINE 
+		#define INLINE
 	#endif /* defined(<Compiler>) */
 #endif /* INLINE */
 
@@ -90,11 +90,11 @@ Most compilers implement their own version of this keyword ...
 #endif
 
 /* MSVC and Borland C do not have lrintf */
-#if _MSC_VER < 1800 || defined(__BORLANDC__)
+#if (defined(_MSC_VER) && _MSC_VER < 1800) || defined(__BORLANDC__)
 static long lrintf(float f){
 #ifdef _M_X64
     return (long)((f > 0.0f) ? (f + 0.5f) : (f - 0.5f));
-#else 
+#else
 	int i;
 
 	_asm{

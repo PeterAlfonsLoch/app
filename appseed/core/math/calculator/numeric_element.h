@@ -20,11 +20,11 @@ namespace calculator
 
          value get_value();
          string get_expression();
-         
 
 
 
-        
+
+
       };
 
 

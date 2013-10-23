@@ -4,7 +4,7 @@
 namespace fontopus
 {
 
-   
+
    class contact_list;
 
 
@@ -13,7 +13,7 @@ namespace fontopus
    {
    public:
 
-         
+
       ::http::cookies *                      m_phttpcookies;
 
       string                                 m_strLogin;
@@ -40,7 +40,7 @@ namespace fontopus
       virtual ~user();
 
       virtual void start_veiev_synch();
-         
+
 
       DECL_GEN_SIGNAL(veiev_synch);
       DECL_GEN_VSIGNAL(on_end_veiev_synch);

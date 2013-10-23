@@ -10,7 +10,7 @@ namespace math
    **   \date  2004-02-13
    **   \author grymse@alhem.net
    **/
-   /** Conversion utilities. 
+   /** Conversion utilities.
    \ingroup util */
    /**
    The Mersenne Twister
@@ -33,7 +33,7 @@ namespace math
    /** from C++ Sockets Library \file Utility.h
    **   \date  2004-02-13
    **   \author grymse@alhem.net
-   **/ 
+   **/
    // }
 
 

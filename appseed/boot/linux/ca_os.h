@@ -32,11 +32,11 @@ DWORD get_tick_count();
 
 
 
-CLASS_DECL_c DWORD GetLastError();
-CLASS_DECL_c DWORD SetLastError(DWORD dw);
+CLASS_DECL_BASE DWORD GetLastError();
+CLASS_DECL_BASE DWORD SetLastError(DWORD dw);
 
 
-CLASS_DECL_c bool _istlead(int32_t ch);
+CLASS_DECL_BASE bool _istlead(int32_t ch);
 
 
 
@@ -47,5 +47,5 @@ extern oswindow g_oswindowDesktop;
 
 
 
-CLASS_DECL_c bool main_initialize();
-CLASS_DECL_c bool main_finalize();
+CLASS_DECL_BASE bool main_initialize();
+CLASS_DECL_BASE bool main_finalize();

@@ -11,8 +11,8 @@ namespace userfs
 
    {
    public:
-      
-      
+
+
       string                                 m_strName;
       int32_t                                m_iIdentation;
       string                                 m_strFolder;

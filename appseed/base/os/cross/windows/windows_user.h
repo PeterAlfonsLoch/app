@@ -1264,7 +1264,7 @@ TrackMouseEvent(
 //#pragma region Desktop Family
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
-CLASS_DECL_c int32_t WINAPI GetSystemMetrics(int32_t nIndex);
+CLASS_DECL_BASE int32_t WINAPI GetSystemMetrics(int32_t nIndex);
 
 
 //#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
@@ -1480,18 +1480,18 @@ CLASS_DECL_c int32_t WINAPI GetSystemMetrics(int32_t nIndex);
 
 
 
-CLASS_DECL_c int_bool CopyRect(LPRECT prectDest, LPCRECT pcrectSrc);
-CLASS_DECL_c int_bool PtInRect(LPCRECT prect, POINT point);
-CLASS_DECL_c int_bool SetRect(LPRECT prect, int32_t x1, int32_t y1, int32_t x2, int32_t y2);
-CLASS_DECL_c int_bool SetRectEmpty(LPRECT prect);
-CLASS_DECL_c int_bool EqualRect(LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_c int_bool InflateRect(LPRECT prect, int32_t x, int32_t y);
-CLASS_DECL_c int_bool OffsetRect(LPRECT prect, int32_t x, int32_t y);
-CLASS_DECL_c int_bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_c int_bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_c int_bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_c int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_c int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_BASE int_bool CopyRect(LPRECT prectDest, LPCRECT pcrectSrc);
+CLASS_DECL_BASE int_bool PtInRect(LPCRECT prect, POINT point);
+CLASS_DECL_BASE int_bool SetRect(LPRECT prect, int32_t x1, int32_t y1, int32_t x2, int32_t y2);
+CLASS_DECL_BASE int_bool SetRectEmpty(LPRECT prect);
+CLASS_DECL_BASE int_bool EqualRect(LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_BASE int_bool InflateRect(LPRECT prect, int32_t x, int32_t y);
+CLASS_DECL_BASE int_bool OffsetRect(LPRECT prect, int32_t x, int32_t y);
+CLASS_DECL_BASE int_bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_BASE int_bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_BASE int_bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_BASE int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_BASE int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 
 
 

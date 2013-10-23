@@ -5,14 +5,14 @@
 
 __thread DWORD g_dwLastError = 0;
 
-CLASS_DECL_c DWORD GetLastError()
+CLASS_DECL_BASE DWORD GetLastError()
 {
 
    return g_dwLastError;
 
 }
 
-CLASS_DECL_c DWORD SetLastError(DWORD dw)
+CLASS_DECL_BASE DWORD SetLastError(DWORD dw)
 {
 
    DWORD dwLastError = g_dwLastError;
@@ -24,7 +24,7 @@ CLASS_DECL_c DWORD SetLastError(DWORD dw)
 }
 
 
-CLASS_DECL_c bool _istlead(int32_t ch)
+CLASS_DECL_BASE bool _istlead(int32_t ch)
 {
 
    return false;

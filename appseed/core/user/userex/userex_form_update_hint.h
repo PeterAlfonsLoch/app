@@ -2,11 +2,11 @@
 
 class form_view;
 
-class CLASS_DECL_CORE form_update_hint : 
+class CLASS_DECL_CORE form_update_hint :
    virtual public object
 {
 public:
-   
+
 
    enum e_type
    {

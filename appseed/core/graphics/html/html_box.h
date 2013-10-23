@@ -203,7 +203,7 @@ namespace html
 
    inline box & box::constrain(box & box) const
    {
-      
+
       if(box.left < left)
          box.left = left;
 
@@ -219,7 +219,7 @@ namespace html
       return box;
 
    }
-   
+
    inline void box::set_pos_dim(float x, float y, float cx, float cy)
    {
 
@@ -245,7 +245,7 @@ namespace html
 
    inline float box::area() const
    {
-      
+
       return get_cx() * get_cy();
 
    }

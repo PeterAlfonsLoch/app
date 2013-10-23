@@ -9,7 +9,7 @@ namespace filehandler
       virtual public ::data::tree
    {
    public:
-      
+
 
       tree_interface(sp(base_application) papp);
       virtual ~tree_interface();

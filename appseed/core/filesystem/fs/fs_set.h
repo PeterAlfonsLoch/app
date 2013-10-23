@@ -18,10 +18,10 @@ namespace fs
       set(sp(base_application) papp);
       virtual ~set();
 
-   
+
       strsp(data) &                 fsmap();
       spa(data) &                   fsa();
-      
+
 
       virtual sp(data) path_data(const char * psz);
       virtual void root_ones(stringa & stra);

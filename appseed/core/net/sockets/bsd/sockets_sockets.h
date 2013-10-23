@@ -21,7 +21,7 @@
          resolv_socket::cache_t                       m_resolvcache;
          resolv_socket::timeout_t                     m_resolvtimeout;
          mutex                                        m_mutexResolvCache;
-         
+
 
 
          sockets(base_application * papp);
@@ -31,7 +31,7 @@
          bool initialize1();
 
          bool finalize();
-         
+
       };
 
 

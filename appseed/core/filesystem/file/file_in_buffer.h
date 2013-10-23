@@ -11,7 +11,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_CORE in_buffer_exception : 
+   class CLASS_DECL_CORE in_buffer_exception :
       virtual public system_exception
    {
    public:
@@ -47,12 +47,12 @@ namespace file
 
      bool Create(uint32_t bufferSize);
      void Free();
-  
+
      void SetStream(reader *stream);
      void Init();
-     void ReleaseStream() 
+     void ReleaseStream()
      {
-     //   _stream.Release(); 
+     //   _stream.Release();
      }
 
      bool ReadByte(byte &b)

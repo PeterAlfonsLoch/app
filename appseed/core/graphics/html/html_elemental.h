@@ -32,7 +32,7 @@ namespace html
       FlagWidthPercent,
       // width in pixel
       FlagWidthPixel,
-      FlagWidth, 
+      FlagWidth,
    };
 
 
@@ -113,8 +113,8 @@ namespace html
 
          virtual void implement_phase1(data * pdoc, ::html::elemental * pelemental);
          virtual void implement_phase2(data * pdoc);
-         
-         
+
+
          virtual void layout_phase1(data * pdoc);
          virtual void layout_phase2(data * pdoc);
          virtual void layout_phase3(data * pdoc);
@@ -176,10 +176,10 @@ namespace html
       virtual elemental * bound_hit_test(data * pdoc, ::point pt);
       virtual elemental * bound_hit_test(data * pdoc, ::point pt, double & dMin);
 
-      
+
       virtual void implement(data * pdoc);
       virtual void layout(data * pdoc);
-      
+
       virtual void _001OnDraw(data * pdoc);
       virtual void load(data * pdoc, base * pbase);
 

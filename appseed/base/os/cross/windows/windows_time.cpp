@@ -42,27 +42,27 @@ LONG TIME_GetBias(void);
 
 /*#ifdef _WIN32
 #ifdef __CA__STATIC
-   #define CLASS_DECL_ca
+   #define CLASS_DECL_BOOT
 #elif defined(__CA__LIBRARY)
-   #define CLASS_DECL_ca  _declspec(dllexport)
+   #define CLASS_DECL_BOOT  _declspec(dllexport)
 #else
-   #define CLASS_DECL_ca  _declspec(dllimport)
+   #define CLASS_DECL_BOOT  _declspec(dllimport)
 #endif
 #else
-   #define CLASS_DECL_ca
+   #define CLASS_DECL_BOOT
 #endif*/
 
 
 /*#ifdef _WIN32
 #ifdef __CA__LIB
-   #define CLASS_DECL_c
+   #define CLASS_DECL_BASE
 #elif defined(__CA__DLL)
-   #define CLASS_DECL_c  _declspec(dllexport)
+   #define CLASS_DECL_BASE  _declspec(dllexport)
 #else
-   #define CLASS_DECL_c  _declspec(dllimport)
+   #define CLASS_DECL_BASE  _declspec(dllimport)
 #endif
 #else
-   #define CLASS_DECL_c
+   #define CLASS_DECL_BASE
 #endif
 */
 
@@ -75,7 +75,7 @@ LONG TIME_GetBias(void);
 //#endif
 
 #include "windows_internals.h"
-//#define CLASS_DECL_c
+//#define CLASS_DECL_BASE
 //#include "ca/ca/ca_verisimple_string.h"
 //#include "ca/ca/ca_mutex.h"
 //#include "ca/ca/ca_synch_lock.h"
@@ -169,7 +169,7 @@ static inline int32_t IsLeapYear(int32_t Year)
  * RETURNS
  *   Nothing.
  */
-CLASS_DECL_c void WINAPI RtlTimeToTimeFields(
+CLASS_DECL_BASE void WINAPI RtlTimeToTimeFields(
 	const LARGE_INTEGER *liTime,
 	PTIME_FIELDS TimeFields)
 {
@@ -1050,7 +1050,7 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
 /*********************************************************************
  *      LocalFileTimeToFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_c WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
+CLASS_DECL_BASE WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
 {
     NTSTATUS status;
     LARGE_INTEGER local, utc;
@@ -1075,7 +1075,7 @@ CLASS_DECL_c WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LP
 /*********************************************************************
  *      FileTimeToLocalFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_c WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
+CLASS_DECL_BASE WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
 {
     NTSTATUS status;
     LARGE_INTEGER local, utc;
@@ -1160,7 +1160,7 @@ WINBOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
  *  RETURNS
  *   Nothing.
  */
-CLASS_DECL_c void GetSystemTimeAsFileTime(
+CLASS_DECL_BASE void GetSystemTimeAsFileTime(
     LPFILETIME time) /* [out] Destination for the current utc time */
 {
     LARGE_INTEGER t;
@@ -1182,7 +1182,7 @@ CLASS_DECL_c void GetSystemTimeAsFileTime(
  * RETURNS
  *  Nothing.
  */
-CLASS_DECL_c void GetSystemTime(LPSYSTEMTIME systime)
+CLASS_DECL_BASE void GetSystemTime(LPSYSTEMTIME systime)
 {
     FILETIME ft;
     LARGE_INTEGER t;

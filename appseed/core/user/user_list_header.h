@@ -76,27 +76,27 @@ namespace user
 
 
       bool GetItemRect(
-         LPRECT lprect, 
-         EElement eelement, 
+         LPRECT lprect,
+         EElement eelement,
          index iItem);
 
       bool GetItemRect(
-         LPRECT lprect, 
-         EElement eelementLButtonDown, 
-         index iItemLButtonDown, 
-         EElement eelement, 
+         LPRECT lprect,
+         EElement eelementLButtonDown,
+         index iItemLButtonDown,
+         EElement eelement,
          index iItem);
 
       bool hit_test(
-         POINT point, 
-         EElement & eelement, 
+         POINT point,
+         EElement & eelement,
          index & iItem);
 
       bool hit_test(
-         POINT point, 
-         EElement eelementLButtonDown, 
-         index iItemLButtonDown, 
-         EElement & eelement, 
+         POINT point,
+         EElement eelementLButtonDown,
+         index iItemLButtonDown,
+         EElement & eelement,
          index & iItem);
 
       // Message Handlers

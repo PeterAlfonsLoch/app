@@ -44,8 +44,8 @@ namespace user
       public spa(menu_item)
    {
    public:
-      
-      
+
+
       menu_item *    m_pitemContainer;
 
 

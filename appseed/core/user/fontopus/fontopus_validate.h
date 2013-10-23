@@ -42,7 +42,7 @@ namespace fontopus
    };
 
 
-   class CLASS_DECL_CORE http_execute_array : 
+   class CLASS_DECL_CORE http_execute_array :
       public spa(http_execute)
    {
    };
@@ -68,8 +68,8 @@ namespace fontopus
 
       stringa                    m_straRequestingServer;
       bool                       m_bFontopusServer;
-      
-      
+
+
       string                     m_strValidUntil;
 
       string                     m_strSalt;
@@ -78,8 +78,8 @@ namespace fontopus
       http_execute_array         m_httpexecutea;
       bool                       m_bOk;
       login_thread_callback *    m_pcallback;
-      
-      
+
+
 
 
 
@@ -209,10 +209,10 @@ namespace fontopus
 
          //virtual void on_show_view();
 
-      
+
          virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
 
-      
+
   //    virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
    };
 

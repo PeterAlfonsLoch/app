@@ -5,16 +5,16 @@ namespace plugin
 {
 
 
-   class CLASS_DECL_CORE instance : 
+   class CLASS_DECL_CORE instance :
       public ::plugin::plugin
    {
    public:
 
-   
-   
+
+
       oswindow                          m_oswindow;
       bool                          m_bStream;
-   
+
 
 
       instance();

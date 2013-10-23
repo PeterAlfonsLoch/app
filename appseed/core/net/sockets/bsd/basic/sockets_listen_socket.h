@@ -13,7 +13,7 @@ namespace sockets
 
    /** Binds incoming port number to new socket class X.
    \ingroup basic */
-   class CLASS_DECL_CORE listen_socket_base : 
+   class CLASS_DECL_CORE listen_socket_base :
       virtual public socket
    {
    public:
@@ -27,15 +27,15 @@ namespace sockets
       \param h base_socket_handler reference
       \param use_creator Optional use of creator (default true) */
       listen_socket_base(base_socket_handler& h);
-   
-   
+
+
    protected:
-      
-   
+
+
       listen_socket_base(const listen_socket_base& s);
       listen_socket_base& operator=(const listen_socket_base& );
-   
-   
+
+
    public:
 
 
@@ -133,7 +133,7 @@ namespace sockets
    /** Binds incoming port number to new socket class X.
    \ingroup basic */
    template < class LISTENER >
-   class listen_socket : 
+   class listen_socket :
       virtual public listen_socket_base
    {
    public:
@@ -147,8 +147,8 @@ namespace sockets
       /** Constructor.
       \param h base_socket_handler reference
       \param use_creator Optional use of creator (default true) */
-      listen_socket(base_socket_handler& h,bool use_creator = true) : 
-         element(h.get_app()), 
+      listen_socket(base_socket_handler& h,bool use_creator = true) :
+         element(h.get_app()),
          base_socket(h),
          socket(h),
          listen_socket_base(h),
@@ -179,7 +179,7 @@ namespace sockets
          }
       }
 
-      virtual ~listen_socket() 
+      virtual ~listen_socket()
       {
          if (m_creator)
          {
@@ -195,11 +195,11 @@ namespace sockets
          {
 
             return m_creator -> create();
-            
+
          }
          else
          {
-            
+
             return canew(LISTENER(Handler()));
 
          }
@@ -207,8 +207,8 @@ namespace sockets
       }
 
       bool HasCreator()
-      { 
-         return m_bHasCreate; 
+      {
+         return m_bHasCreate;
       }
 
 
