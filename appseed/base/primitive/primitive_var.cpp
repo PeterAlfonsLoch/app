@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-IMPLEMENT_FIXED_ALLOC(var, 1024);
+IMPLEMENT_BASE_FIXED_ALLOC_STATIC(var);
 
 
 var::var(const char * psz)

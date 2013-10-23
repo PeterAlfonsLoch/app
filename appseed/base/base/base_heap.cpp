@@ -309,10 +309,10 @@ public:
 
       g_pmutexTrace = new mutex();
 
-      
-      
-#if defined(LINUX) || defined(MACOS) || defined(METROWIN)      
-      
+
+
+#if defined(LINUX) || defined(MACOS) || defined(METROWIN)
+
       g_pmutexThreadIdHandleLock = new mutex;
 
       g_pmutexThreadIdLock = new mutex;
@@ -325,8 +325,8 @@ public:
 
       os_thread::s_pptra = new comparable_raw_array < os_thread * > ();
 
-#endif // defined(LINUX) || defined(MACOS) || defined(METROWIN)      
-      
+#endif // defined(LINUX) || defined(MACOS) || defined(METROWIN)
+
 #if defined(LINUX) || defined(MACOS)
 
       g_pmutexTz = new mutex();
@@ -337,45 +337,49 @@ public:
 
       g_pmutexThreadHandleLock = new mutex;
 
-      
-#endif // defined(LINUX) || defined(MACOS)
-      
 
-      
-      
-      
+#endif // defined(LINUX) || defined(MACOS)
+
+
+
+
+
 #if defined(LINUX)
-      
+
       oswindow_data::s_pdataptra = new oswindow_dataptra;
-      
+
       oswindow_data::s_pmutex = new mutex;
-      
+
       osdisplay_data::s_pdataptra = new osdisplay_dataptra;
-      
+
       osdisplay_data::s_pmutex = new mutex;
-      
+
 #endif // defined(LINUX)
-      
-      
-      
+
+
+
 #if defined(MACOS)
 
       g_poswindowdataptra = new oswindow_dataptra;
 
 #endif // defined(MACOS)
-      
-      
-      
+
+
+      IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(var, 1024)
+      IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(property, 1024)
+
 
    }
 
    ~base_static_start()
    {
 
-      
-      
-      
-      
+
+      IMPLEMENT_BASE_FIXED_ALLOC_DESTRUCTOR(property)
+      IMPLEMENT_BASE_FIXED_ALLOC_DESTRUCTOR(var)
+
+
+
 #if defined(LINUX) || defined(MACOS)
 
 
@@ -393,10 +397,10 @@ public:
       delete g_pmutexTz;
 
       g_pmutexTz = NULL;
-      
+
 #endif // defined(LINUX) || defined(MACOS)
 
-      
+
 #if defined(LINUX) || defined(MACOS) || defined(METROWIN)
 
       delete os_thread::s_pptra;
@@ -424,45 +428,45 @@ public:
       g_pmutexThreadIdLock = NULL;
 
 #endif  // defined(LINUX) || defined(MACOS) || defined(METROWIN)
-      
-      
-      
+
+
+
 #if defined(LINUX)
-      
+
       delete osdisplay_data::s_pmutex;
-      
+
       osdisplay_data::s_pmutex = NULL;
-      
+
       delete osdisplay_data::s_pdataptra;
-      
+
       osdisplay_data::s_pdataptra = NULL;
-      
+
       delete oswindow_data::s_pmutex;
-      
+
       oswindow_data::s_pmutex = NULL;
-      
+
       delete oswindow_data::s_pdataptra;
-      
+
       oswindow_data::s_pdataptra = NULL;
-      
+
 #endif // defined(LINUX)
-      
-      
-      
-      
-      
+
+
+
+
+
 #if defined(MACOS)
-      
+
       delete g_poswindowdataptra;
-      
+
       g_poswindowdataptra = NULL;
-      
+
 #endif // defined(MACOS)
 
-      
-      
-      
-      
+
+
+
+
       delete g_pmutexTrace;
 
       g_pmutexTrace = NULL;

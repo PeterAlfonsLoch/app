@@ -18,6 +18,7 @@
 #endif
 
 
+#include "boot_fixed_alloc.h"
 
 
 class application;

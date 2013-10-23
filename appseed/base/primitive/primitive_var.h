@@ -550,7 +550,7 @@ public:
 
 
 #undef new
-   DECLARE_FIXED_ALLOC(var)
+   DECLARE_BASE_FIXED_ALLOC(var)
 
 
 };

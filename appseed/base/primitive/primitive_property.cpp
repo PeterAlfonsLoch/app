@@ -5,7 +5,7 @@
 #endif
 
 
-IMPLEMENT_FIXED_ALLOC(property, 1024);
+IMPLEMENT_BASE_FIXED_ALLOC_STATIC(property);
 
 
 void prop_id_debug(sp(base_application) papp);
