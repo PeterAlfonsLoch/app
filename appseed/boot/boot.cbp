@@ -121,6 +121,7 @@
 		<Unit filename="boot/boot_file_watcher_listener_thread.h" />
 		<Unit filename="boot/boot_file_watcher_thread.cpp" />
 		<Unit filename="boot/boot_file_watcher_thread.h" />
+		<Unit filename="boot/boot_fixed_alloc.h" />
 		<Unit filename="boot/boot_geometric_types.cpp" />
 		<Unit filename="boot/boot_geometric_types.h" />
 		<Unit filename="boot/boot_international.cpp" />
