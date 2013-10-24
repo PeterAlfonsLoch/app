@@ -176,6 +176,7 @@ namespace dynamic_source
          {
             if(pinstance->get("debug_lib").is_set())
             {
+               m_pcompiler->m_memfileLibError.seek_to_begin();
                pdssocket->response().file().transfer_from(m_pcompiler->m_memfileLibError);
             }
          }
@@ -296,7 +297,7 @@ namespace dynamic_source
 
                if(pdsscript->m_memfileError.get_length() > 0)
                {
-
+                  pdsscript->m_memfileError.seek_to_begin();
                   pdsscript->m_memfileError.seek_to_begin();
 
                   pinstance->ostream().transfer_from(pdsscript->m_memfileError);
