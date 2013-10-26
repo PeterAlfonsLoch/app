@@ -4290,7 +4290,7 @@ m_bOk             = true;
 bool application::finalize()
 {
 
-   bool bFinalize = false;
+   bool bFinalize = true;
 
    try
    {
