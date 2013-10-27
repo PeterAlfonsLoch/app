@@ -58,7 +58,6 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-fPIC" />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -68,6 +67,7 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-Wno-vla" />
 			<Add option="-Wno-conversion-null" />
+			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
 			<Add option="-DOPENSSL_OPT_LIBRARY" />
 			<Add option="-DOPENSSL_NO_ASM" />

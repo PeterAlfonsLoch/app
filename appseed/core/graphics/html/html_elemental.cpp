@@ -583,6 +583,9 @@ namespace html
 
             elemental * pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
 
+            if(pelemental == NULL)
+               continue;
+
             if(!use_in_final_layout(pelemental))
                continue;
 
@@ -1379,7 +1382,7 @@ namespace html
    {
 
       string strTag = get_tag_name();
-      
+
       string strDisplay = m_style.m_propertyset["display"];
 
       if(strDisplay == "table" || (strDisplay.is_empty() && strTag == "table"))

@@ -58,7 +58,6 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-fPIC" />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -67,6 +66,7 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add option="-Wno-conversion-null" />
+			<Add option="-fPIC" />
 			<Add option="-DRAW_LINUX" />
 			<Add directory="OpenEXR/IlmImf" />
 			<Add directory="OpenEXR/Imath" />

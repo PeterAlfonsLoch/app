@@ -59,7 +59,6 @@
 		</Build>
 		<Compiler>
 			<Add option="-std=c++0x" />
-			<Add option="-fPIC" />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -68,6 +67,7 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add option="-Wno-conversion-null" />
+			<Add option="-fPIC" />
 			<Add option="-DRAW_LINUX" />
 			<Add directory="../../include" />
 			<Add directory="OpenEXR/IlmImf" />

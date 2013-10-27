@@ -132,7 +132,7 @@ namespace draw2d
 
    void graphics::set_text_color(COLORREF clr)
    {
-      
+
       ::draw2d::brush_sp brush(allocer(), clr);
 
       SelectObject(brush);
@@ -231,7 +231,7 @@ namespace draw2d
 
    int32_t graphics::GetROP2() const
    {
-   
+
       throw interface_only_exception(get_app());
 
    }
@@ -239,12 +239,12 @@ namespace draw2d
 
    int32_t graphics::GetStretchBltMode() const
    {
-   
+
       throw interface_only_exception(get_app());
 
    }
 
-   
+
    int32_t graphics::GetMapMode() const
    {
 
@@ -1748,11 +1748,16 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
+
    ::draw2d::font* graphics::SelectObject(::draw2d::font * pFont)
    {
-      UNREFERENCED_PARAMETER(pFont);
-      throw interface_only_exception(get_app());
+
+      set_font(pFont);
+
+      return m_spfont;
+
    }
+
 
    int32_t graphics::SelectObject(::draw2d::region * pRgn)
    {
@@ -1953,7 +1958,7 @@ namespace draw2d
 
    bool graphics::LineTo(double x, double y)
    {
-      
+
       return LineTo((int32_t) x, (int32_t) y);
 
    }
@@ -2094,7 +2099,7 @@ namespace draw2d
 
    size graphics::GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const
    {
-      
+
       return GetTextExtent(lpszString, iIndex);
 
    }
@@ -2114,7 +2119,7 @@ namespace draw2d
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, int32_t iIndex) const
    {
-      
+
       ::size sz = GetTextExtent(string(lpszString), iIndex);
 
       size.cx = sz.cx;
@@ -2126,7 +2131,7 @@ namespace draw2d
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount) const
    {
-      
+
       ::size sz = GetTextExtent(string(lpszString), nCount);
 
       size.cx = sz.cx;
@@ -2138,12 +2143,12 @@ namespace draw2d
 
    bool graphics::GetTextExtent(sized & size, const string & str) const
    {
-      
+
       ::size sz = GetTextExtent(str);
 
       size.cx = sz.cx;
       size.cy = sz.cy;
-      
+
       return true;
 
    }
@@ -2426,13 +2431,13 @@ namespace draw2d
 
    void graphics::set_solid_pen(double dWidth)
    {
-      
+
       m_sppen.release();
-      
+
       m_sppen.create(allocer());
 
       m_sppen->create_solid(this, dWidth, m_crColor);
-      
+
    }
 
    memory_graphics::memory_graphics(allocatorsp allocer) :
@@ -2504,8 +2509,8 @@ namespace draw2d
 
 
    bool graphics::create_client_dc(::user::window * pwnd)
-   { 
-      
+   {
+
       UNREFERENCED_PARAMETER(pwnd);
       throw interface_only_exception(get_app());
 
@@ -2522,7 +2527,7 @@ namespace draw2d
 
 
    bool graphics::release_dc(::user::window * pwnd)
-   { 
+   {
 
       UNREFERENCED_PARAMETER(pwnd);
       throw interface_only_exception(get_app());
