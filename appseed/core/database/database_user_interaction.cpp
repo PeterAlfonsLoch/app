@@ -301,10 +301,17 @@ namespace database
          rect rectOld;
          if(bGet)
          {
-            memstreamGet >> bZoomedOld;
-            memstreamGet >> bFullScreenOld;
-            memstreamGet >> bIconicOld;
-            memstreamGet >> rectOld;
+            try
+            {
+               memstreamGet >> bZoomedOld;
+               memstreamGet >> bFullScreenOld;
+               memstreamGet >> bIconicOld;
+               memstreamGet >> rectOld;
+            }
+            catch (...)
+            {
+               bGet = false;
+            }
          }
          bool bZoomed = pWnd->IsZoomed() != FALSE;
          memstream << bZoomed;
