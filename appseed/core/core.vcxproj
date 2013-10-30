@@ -2879,7 +2879,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
     <ProjectReference Include="..\boot\boot.vcxproj">
-      <Project>{20ad9c6f-4eb1-48d7-a696-1d5b277e7e36}</Project>
+      <Project>{ab77745a-af30-4253-9e4b-961bf2d98641}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
