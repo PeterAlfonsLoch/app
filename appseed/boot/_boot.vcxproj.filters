@@ -589,9 +589,6 @@
     <ClCompile Include="bsdiff\randtable.cpp">
       <Filter>Source Files\bsdiff</Filter>
     </ClCompile>
-    <ClCompile Include="windows\ca_os_ca_dll.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
     <ClCompile Include="windows\ca_os_file_watcher.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>

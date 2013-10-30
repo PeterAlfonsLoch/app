@@ -937,10 +937,18 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\filesystem\file\file_transfer_stream.h" />
-    <ClInclude Include="core\android\os.h" />
-    <ClInclude Include="core\android\os_allocate_debug.h" />
-    <ClInclude Include="core\android\os_debug.h" />
-    <ClInclude Include="core\android\os_multithreading.h" />
+    <ClInclude Include="core\android\os.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="core\android\os_allocate_debug.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="core\android\os_debug.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="core\android\os_multithreading.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="core\api\api.h" />
     <ClInclude Include="core\api\api_rotate.h" />
     <ClInclude Include="core\api\mktime.h" />
