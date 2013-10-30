@@ -1269,6 +1269,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\appseed\base\base.vcxproj">
+      <Project>{e3f4b718-ba6b-46eb-a3f1-9aa8b2b4cd9b}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\FreeImage\FreeImage.vcxproj">
       <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
     </ProjectReference>
