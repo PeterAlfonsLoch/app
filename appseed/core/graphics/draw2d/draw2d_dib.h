@@ -409,7 +409,7 @@ namespace draw2d
          assoc * passoc = PGetFirstAssoc();
          while(passoc != NULL)
          {
-            if(passoc->m_element2->area() > iAreaMax)
+            if(passoc->m_element2->get_ref_count() <= 1 && passoc->m_element2->area() > iAreaMax)
             {
                iAreaMax = passoc->m_element2->area();
                keyFind = passoc->m_element1;
