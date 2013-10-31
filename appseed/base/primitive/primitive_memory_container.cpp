@@ -206,8 +206,14 @@ namespace primitive
 
    memory *          memory_container::get_primitive_memory()
    {
+      
+      if (m_spmemory.is_null())
+         m_spmemory = canew(::primitive::memory(get_app()));
+
       return m_spmemory->m_pprimitivememory;
+
    }
+
 
 #if !defined(METROWIN)
    shared_memory *   memory_container::get_shared_memory()
