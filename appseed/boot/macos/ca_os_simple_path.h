@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca os_simple_path
+class CLASS_DECL_BOOT os_simple_path
 {
 public:
 

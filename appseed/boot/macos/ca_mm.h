@@ -12,11 +12,11 @@
 
 
 #ifdef __CA__STATIC
-#define CLASS_DECL_ca
+#define CLASS_DECL_BOOT
 #elif defined(__CA__LIBRARY)
-#define CLASS_DECL_ca  CLASS_DECL_EXPORT
+#define CLASS_DECL_BOOT  CLASS_DECL_EXPORT
 #else
-#define CLASS_DECL_ca  CLASS_DECL_IMPORT
+#define CLASS_DECL_BOOT  CLASS_DECL_IMPORT
 #endif
 
 

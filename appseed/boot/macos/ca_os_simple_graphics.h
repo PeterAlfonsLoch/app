@@ -11,7 +11,7 @@
 typedef CGRect NSRect;
 #endif
 
-class CLASS_DECL_ca os_simple_graphics
+class CLASS_DECL_BOOT os_simple_graphics
 {
 public:
    

@@ -33,7 +33,7 @@ namespace user
 } // namespace user
 
 
-class CLASS_DECL_c oswindow_data
+class CLASS_DECL_BASE oswindow_data
 {
 public:
    

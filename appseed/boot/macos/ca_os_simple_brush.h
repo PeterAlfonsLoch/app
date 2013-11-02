@@ -8,7 +8,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca simple_brush
+class CLASS_DECL_BOOT simple_brush
 {
 public:
    
