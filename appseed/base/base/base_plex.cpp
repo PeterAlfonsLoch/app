@@ -28,7 +28,7 @@ void plex::FreeDataChain()     // free this one and links
       {
          BYTE* bytes = (BYTE*) p;
          plex* pNext = p->pNext;
-         g_pheap->free(bytes, p->size);
+         g_pheap->free(bytes);
          pPrevious = p;
          p = pNext;
       }

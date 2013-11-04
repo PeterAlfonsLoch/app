@@ -217,16 +217,16 @@ public:
 
 
    inline void * alloc(size_t nAllocSize);
-   inline void * realloc(void * p, size_t nOldAllocSize, size_t nNewAllocSize);
-   inline void free(void * p, size_t nAllocSize);
+   inline void * realloc(void * p, size_t nAllocSize);
+   inline void free(void * p);
 
    void pre_finalize();
 
    inline plex_heap_alloc * find(size_t nAllocSize);
 
    void * alloc_dbg(size_t nAllocSize, int32_t nBlockUse, const char * szFileName, int32_t iLine);
-   void * realloc_dbg(void * p, size_t nOldAllocSize, size_t nNewAllocSize, int32_t nBlockUse, const char * szFileName, int32_t iLine);
-   void free_dbg(void * p, size_t nAllocSize);
+   void * realloc_dbg(void * p, size_t nNewAllocSize, int32_t nBlockUse, const char * szFileName, int32_t iLine);
+   void free_dbg(void * p);
 
    void * operator new(size_t s)
    {
@@ -242,77 +242,141 @@ public:
 
 
 
-inline void * plex_heap_alloc_array::alloc(size_t nAllocSize)
+inline void * plex_heap_alloc_array::alloc(size_t size)
 {
-   plex_heap_alloc * palloc = find(nAllocSize);
-   if(palloc != NULL)
-   {
-      return palloc->Alloc();
-   }
-   else
-   {
-      return ::system_heap_alloc(nAllocSize);
-   }
-}
+   
+   plex_heap_alloc * palloc = find(size + sizeof(size_t));
 
-
-void plex_heap_alloc_array::free(void * p, size_t nAllocSize)
-{
-
-   plex_heap_alloc * palloc = find(nAllocSize);
+   size_t * psize = NULL;
 
    if(palloc != NULL)
    {
-      return palloc->Free(p);
+      
+      psize = (size_t *) palloc->Alloc();
+      
+      psize[0] = size + sizeof(size_t);
+      
    }
    else
    {
-      return ::system_heap_free(p);
+      
+      psize = (size_t *) ::system_heap_alloc(size + sizeof(size_t));
+      
+      psize[0] = 0;
+      
+   }
+   
+   return &psize[1];
+   
+}
+
+
+void plex_heap_alloc_array::free(void * p)
+{
+   
+   size_t * psize = &((size_t *)p)[-1];
+   
+   if(*psize == 0)
+   {
+   
+      return ::system_heap_free(psize);
+      
+   }
+   
+   plex_heap_alloc * palloc = find(*psize);
+
+   if(palloc != NULL)
+   {
+      
+      return palloc->Free(psize);
+      
+   }
+   else
+   {
+      
+      return ::system_heap_free(psize);
+      
    }
 
 }
 
 
-inline void * plex_heap_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize)
+inline void * plex_heap_alloc_array::realloc(void * p, size_t size)
 {
-   plex_heap_alloc * pallocOld = find(nOldAllocSize);
-   plex_heap_alloc * pallocNew = find(nNewAllocSize);
+   
+   size_t * psizeOld = &((size_t *)p)[-1];
+
+   plex_heap_alloc * pallocOld = find(*psizeOld);
+   
+   plex_heap_alloc * pallocNew = find(size + sizeof(size_t));
+   
+   size_t * psizeNew = NULL;
+   
+   
    if(pallocOld == NULL && pallocNew == NULL)
    {
-      return ::system_heap_realloc(pOld, nNewAllocSize);
+      
+      psizeNew = (size_t *) ::system_heap_realloc(p, size + sizeof(size_t));
+      
+      *psizeNew = 0;
+      
    }
    else if(pallocOld == pallocNew)
    {
-      return pOld;
+
+      psizeNew = psizeOld;
+
+      *psizeNew = size + sizeof(size_t);
+      
    }
    else
    {
 
-      void * pNew;
-
       if(pallocNew != NULL)
       {
-         pNew = pallocNew->Alloc();
+         
+         psizeNew = (size_t *) pallocNew->Alloc();
+         
       }
       else
       {
-         pNew = ::system_heap_alloc(nNewAllocSize);
+         
+         psizeNew = (size_t *) ::system_heap_alloc(size + sizeof(size_t));
+         
       }
 
-      memcpy(pNew, pOld, min(nOldAllocSize, nNewAllocSize));
+      memcpy(psizeNew, psizeOld, min(*psizeOld, size + sizeof(size_t)));
 
       if(pallocOld != NULL)
       {
-         pallocOld->Free(pOld);
+         
+         pallocOld->Free(psizeOld);
+         
       }
       else
       {
-         ::system_heap_free(pOld);
+         
+         ::system_heap_free(psizeOld);
+         
       }
 
-      return pNew;
+      if(pallocNew != NULL)
+      {
+         
+         *psizeNew = size + sizeof(size_t);
+         
+      }
+      else
+      {
+         
+         *psizeNew = 0;
+         
+      }
 
    }
+   
+   return &psizeNew[1];
+   
 }
 
 

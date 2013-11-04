@@ -650,7 +650,7 @@ public:
    var explode(const char * pszSeparator, bool bAddEmpty = true) const;
 
 
-   DECLARE_BASE_FIXED_ALLOC(property)
+//   DECLARE_BASE_FIXED_ALLOC(property)
 
 
 };

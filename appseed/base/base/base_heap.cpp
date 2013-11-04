@@ -195,6 +195,8 @@ size_t _ca_msize(void * pvoid, int32_t iBlockType)
 }
 */
 
+extern string_manager * s_pstringmanager;
+
 extern mutex * g_pmutexSystemHeap;
 
 extern plex_heap_alloc_array * g_pheap;
@@ -296,6 +298,8 @@ public:
       */
 
       new plex_heap_alloc_array();
+      
+      s_pstringmanager = new string_manager();
 
       create_id_space();
 
@@ -365,8 +369,8 @@ public:
 #endif // defined(MACOS)
 
 
-      IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(var, 1024)
-      IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(property, 1024)
+//      IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(var, 1024)
+  //    IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(property, 1024)
 
 
    }
@@ -375,8 +379,8 @@ public:
    {
 
 
-      IMPLEMENT_BASE_FIXED_ALLOC_DESTRUCTOR(property)
-      IMPLEMENT_BASE_FIXED_ALLOC_DESTRUCTOR(var)
+    //  IMPLEMENT_BASE_FIXED_ALLOC_DESTRUCTOR(property)
+//      IMPLEMENT_BASE_FIXED_ALLOC_DESTRUCTOR(var)
 
 
 
@@ -488,6 +492,10 @@ public:
       g_pstrLastStatus = NULL;
 
       destroy_id_space();
+      
+      delete s_pstringmanager;
+      
+      s_pstringmanager = NULL;
 
       delete g_pheap;
 

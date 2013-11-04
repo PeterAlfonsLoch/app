@@ -1,7 +1,7 @@
 #include "framework.h"
 
-#define ROUND(x,y) (((x)+(y-1))&~(y-1))
-#define ROUND4(x) ROUND(x, 4)
+//#define ROUND(x,y) (((x)+(y-1))&~(y-1))
+//#define ROUND4(x) ROUND(x, 4)
 
 
 //CLASS_DECL_BASE fixed_alloc_array * g_pfixedallocaWstring = NULL;

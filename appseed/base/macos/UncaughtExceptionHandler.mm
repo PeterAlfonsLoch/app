@@ -50,7 +50,7 @@ void NullHandleException(NSException *exception)
 void InstallUncaughtExceptionHandler()
 {
     
-	NSSetUncaughtExceptionHandler(&HandleException);
+//	NSSetUncaughtExceptionHandler(&HandleException);
 
 }
 
@@ -59,7 +59,7 @@ void InstallUncaughtExceptionHandler()
 void InstallNullExceptionHandler()
 {
     
-	NSSetUncaughtExceptionHandler(&NullHandleException);
+//	NSSetUncaughtExceptionHandler(&NullHandleException);
     
 }
 

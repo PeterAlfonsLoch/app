@@ -20,143 +20,210 @@ void use_base_ca2_allocator()
 }
 */
 
+struct memory_align
+{
+   
+   
+   byte                 m_back;
+   byte                 m_blockuse;
+   size_t               m_size;
+   char                 m_paddingBefore[16];
+   static const int     m_iPaddingAfter;
+   
+   
+   inline static size_t provision_get_size(size_t size)
+   {
+      
+      return size + ((sizeof(memory_align) + m_iPaddingAfter + sizeof(size_t) - 1) & (~(sizeof(size_t) - 1)));
+      
+   }
+   
+
+   inline static void * align(void * poriginal, size_t size, byte blockuse)
+   {
+      
+      void * paligned = (void *) (((((int_ptr) poriginal) + sizeof(memory_align) + sizeof(size_t) - 1) & ((int_ptr) (~(sizeof(size_t) - 1)))));
+      
+      memory_align * palign = pget(paligned);
+      
+      palign->m_back = (byte) (((int_ptr) paligned) - ((int_ptr) poriginal));
+      
+      palign->m_blockuse = blockuse;
+      
+      palign->m_size = size;
+      
+      return paligned;
+      
+   }
+   
+   
+   inline static memory_align * pget(void * paligned)
+   {
+      
+      return (memory_align *) (((int_ptr) paligned) - sizeof(memory_align));
+      
+   }
+    
+   
+   inline static void * get_original(void * paligned)
+   {
+
+      return (void *) (((int_ptr) paligned) - pget(paligned)->m_back);
+        
+   }
+
+   inline static byte get_block_use(void * paligned)
+   {
+      
+      return pget(paligned)->m_blockuse;
+      
+   }
+
+   
+   inline static size_t get_size(void * paligned)
+   {
+      
+      return pget(paligned)->m_size;
+      
+   }
+   
+};
+
+
+const int memory_align::m_iPaddingAfter = 16;
+
+
+plex_heap_alloc_array * g_pheap = NULL;
+
+
 void * base_memory_alloc(size_t size)
 {
-   byte * p = (byte *) ca2_heap_alloc(size + 4 + 32);
-   if(p == NULL)
+
+   void * poriginal = g_pheap->alloc(memory_align::provision_get_size(size));
+   
+   if(poriginal == NULL)
    {
+   
       throw memory_exception(get_thread_app());
+      
    }
-   p[0] = 0;
-   *((size_t *) &p[1]) = size;
-   return p + 4 + 16;
+   
+   return memory_align::align(poriginal, size, 0);
+    
 }
 
-void * base_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+
+void * base_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
+   
    UNREFERENCED_PARAMETER(nBlockUse);
    UNREFERENCED_PARAMETER(szFileName);
    UNREFERENCED_PARAMETER(nLine);
+   
    //TODO: to do the dbg version
-   //byte * p = (byte *) _malloc_dbg(nSize + 4 + 32, nBlockUse, szFileName, nLine);
-   byte * p = (byte *) ca2_heap_alloc_dbg(nSize + 4 + 32, nBlockUse, szFileName, nLine);
-   if(p == NULL)
+   //byte * p = (byte *) _malloc_dbg(nSize + sizeof(size_t) + 32, nBlockUse, szFileName, nLine);
+   void * poriginal = g_pheap->alloc_dbg(memory_align::provision_get_size(size), nBlockUse, szFileName, nLine);
+   
+   if(poriginal == NULL)
    {
+      
       throw memory_exception(get_thread_app());
+      
    }
-   p[0] = 1;
-   *((size_t *) &p[1]) = nSize;
-   return p + 4 + 16;
+    
+   return memory_align::align(poriginal, size, 1);
+    
 }
 
-void * base_memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+
+void * base_memory_realloc_dbg(void * paligned, size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
-   byte * p = (byte *) pvoid;
-   if(p == NULL)
-      return memory_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
-   p -= (4 + 16);
-   try
+
+   if(paligned == NULL)
+      return memory_alloc_dbg(size, nBlockUse, szFileName, nLine);
+   
+   byte blockuse = memory_align::get_block_use(paligned);
+   
+   void * poriginal = NULL;
+
+   if(blockuse == 0)
    {
-      if(p == NULL)
-      {
-         return memory_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
-      }
-      else if(p[0] == 0)
-      {
-         p = (byte *) ca2_heap_realloc(p, nSize + 4 + 32);
-      }
-      else if(p[0] == 1)
-      {
-   //TODO: to do the dbg version
-         p = (byte *) ca2_heap_realloc_dbg(p, nSize + 4 + 32, nBlockUse, szFileName, nLine);
-         //p = (byte *) _realloc_dbg(p, nSize + 4 + 32, nBlockUse, szFileName, nLine);
-      }
-      else
-      {
-         return ca2_heap_realloc_dbg(pvoid, nSize, nBlockUse, szFileName, nLine);
-      }
+         
+      poriginal = g_pheap->realloc(memory_align::get_original(paligned), memory_align::provision_get_size(size));
+         
    }
-   catch(...)
+   else if(blockuse == 1)
    {
-      // todo: rethrow free exception
-      {
-         throw memory_exception(get_thread_app());
-      }
+
+      //TODO: to do the dbg version
+         
+      poriginal = g_pheap->realloc_dbg(memory_align::get_original(paligned), memory_align::provision_get_size(size), nBlockUse, szFileName, nLine);
+         
+      //p = (byte *) _realloc_dbg(p, nSize + 4 + 32, nBlockUse, szFileName, nLine);
+         
    }
-   if(p == NULL)
+   else
    {
+         
+     throw memory_exception(get_thread_app());
+         
+   }
+      
+   if(poriginal == NULL)
+   {
+      
       throw memory_exception(get_thread_app());
+      
    }
-   *((size_t *) &p[1]) = nSize;
-   return p + 4 + 16;
+   
+   return memory_align::align(poriginal, size, blockuse);
+   
 }
 
-void base_memory_free_dbg(void * pvoid, int32_t iBlockType)
+
+void base_memory_free_dbg(void * paligned, int32_t iBlockType)
 {
-   byte * p = (byte *) pvoid;
-   if(p == NULL)
+
+   if(paligned == NULL)
       return;
-   p -= (4 + 16);
-   try
+   
+   byte blockuse = memory_align::get_block_use(paligned);
+   
+   if(blockuse == 0)
    {
-      if(p[0] == 0)
-      {
-         ca2_heap_free(p);
-      }
-      else if(p[0] == 1)
-      {
-            //TODO: to do the dbg version
 
-         ca2_heap_free_dbg(p);
-         //_free_dbg(p, iBlockType);
-      }
-      else
-      {
-         ca2_heap_free_dbg(pvoid);
-      }
+      g_pheap->free(memory_align::get_original(paligned));
+      
    }
-   catch(...)
+   else if(blockuse == 1)
    {
-      // todo: rethrow free exception
+   
+      //TODO: to do the dbg version
+
+      g_pheap->free_dbg(memory_align::get_original(paligned));
+      
+      //_free_dbg(p, iBlockType);
+   
    }
+   else
+   {
+      
+   }
+   
 }
 
-size_t base_memory_size_dbg(void * pvoid, int32_t iBlockType)
+
+size_t base_memory_size_dbg(void * paligned, int32_t iBlockType)
 {
 
-   byte * p = (byte *) pvoid;
-
-   if(p == NULL)
+   if(paligned == NULL)
       return 0;
 
-   p -= (4 + 16);
-
-   try
-   {
-      if(p[0] == 0)
-      {
-         return *((size_t *) &p[1]);
-      }
-      else if(p[0] == 1)
-      {
-         //TODO: to do the dbg version
-
-         return *((size_t *) &p[1]);
-         //_free_dbg(p, iBlockType);
-      }
-      else
-      {
-         return memory_size_dbg(pvoid, iBlockType);
-      }
-   }
-   catch(...)
-   {
-      // todo: rethrow free exception
-   }
-
-   return 0;
-
+   return memory_align::get_size(paligned);
+   
 }
+
+
 
 /*
 /////////////////////////////////////////////////////////////////////////////

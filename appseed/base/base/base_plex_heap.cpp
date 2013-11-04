@@ -279,86 +279,190 @@ void plex_heap_alloc_array::pre_finalize()
 
 mutex * g_pmutgen = NULL;
 
-void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
+/*
+
+#define LAST_MEM_FILE_AND_LINE 0
+
+
+void * ca2_heap_alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
-   plex_heap_alloc * palloc = find(nAllocSize + sizeof(memdleak_block));
+#ifdef MEMDLEAK
+   size_t * psize = (size_t *) g_pheap->alloc_dbg(size + sizeof(size_t), nBlockUse, pszFileName, iLine);
+   psize[0] = size + sizeof(size_t);
+   memset(&psize[1], 0, size);
+   return &psize[1];
+#else
+#if LAST_MEM_FILE_AND_LINE
+   string str;
+   str.Format("%s(%d)", pszFileName, iLine);
+   size_t * psize = (size_t *) g_pheap->alloc(size + sizeof(size_t) + 128);
+   psize[0] = size + sizeof(size_t) + 128;
+   strncpy((char *) &psize[1], str.Mid(max(0, str.get_length() - 124)), 124);
+   return ((byte *) &psize[1]) + 128;
+#else
+   
+   size_t * psize = psize = (size_t *) g_pheap->alloc(size + sizeof(size_t));
+   
+   psize[0] = size + sizeof(size_t);
+   
+   return &psize[1];
+   
+#endif
+#endif
+}
+
+void * ca2_heap_realloc_dbg(void * pvoidOld, size_t size, int32_t nBlockUse, const char * szFileName, int32_t iLine)
+{
+#ifdef MEMDLEAK
+   size_t * psize = (size_t *) g_pheap->realloc_dbg(&((size_t *)pvoidOld)[-1], ((size_t *)pvoidOld)[-1], size + sizeof(size_t), nBlockUse, szFileName, iLine);
+   psize[0] = size + sizeof(size_t);
+   return &psize[1];
+#else
+#if LAST_MEM_FILE_AND_LINE
+   string str;
+   str.Format("%s(%d)", szFileName, iLine);
+   size_t * psize = (size_t *) g_pheap->realloc(&((size_t *)(((byte *)pvoidOld) - 128))[-1], ((size_t *)(((byte *)pvoidOld) - 128))[-1], size + sizeof(size_t) + 128);
+   psize[0] = size + sizeof(size_t) + 128;
+   strncpy((char *) &psize[1], str.Mid(max(0, str.get_length() - 124)), 124);
+   return ((byte *) &psize[1]) + 128;
+#else
+   size_t * psize = (size_t *) g_pheap->realloc(&((size_t *)(((byte *)pvoidOld)))[-1], ((size_t *)(((byte *)pvoidOld)))[-1], size + sizeof(size_t));
+   psize[0] = size + sizeof(size_t);
+   return &psize[1];
+#endif
+#endif
+}
+
+
+void ca2_heap_free_dbg(void * pvoid)
+{
+
+}
+
+*/
+
+
+
+void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
+{
+   
+#ifdef MEMDLEAK
+   
+   size_t nAllocSize = size + sizeof(size_t) + sizeof(memdleak_block);
+   
+   plex_heap_alloc * palloc = find(nAllocSize);
+   
    memdleak_block * pblock;
+   
    if(palloc != NULL)
    {
-      pblock = (memdleak_block *) palloc->Alloc();
+      
+      pblock = (memdleak_block *) palloc->Alloc(nAllocSize);
+      
    }
    else
    {
-      pblock = (memdleak_block *) ::system_heap_alloc(nAllocSize + sizeof(memdleak_block));
+      
+      pblock = (memdleak_block *) ::system_heap_alloc(nAllocSize);
+      
    }
-
+   
    pblock->m_iBlockUse     = nBlockUse;
+   
    pblock->m_pszFileName   = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
+   
    pblock->m_iLine         = iLine;
-
-
-
-
+   
    synch_lock lock(g_pmutgen);
+   
    pblock->m_pprevious                 = NULL;
+   
    pblock->m_pnext                     = s_pmemdleakList;
+   
    if(s_pmemdleakList != NULL)
    {
-      s_pmemdleakList->m_pprevious        = pblock;
+      
+      s_pmemdleakList->m_pprevious     = pblock;
+      
    }
+   
    s_pmemdleakList                     = pblock;
+   
    lock.unlock();
-
-
-   return &pblock[1];
-
-}
-
-
-void plex_heap_alloc_array::free_dbg(void * p, size_t nAllocSize)
-{
-
-   plex_heap_alloc * palloc = find(nAllocSize + sizeof(memdleak_block));
-
-   memdleak_block * pblock = &((memdleak_block *)p)[-1];
-
-   synch_lock lock(g_pmutgen);
-
-   if(s_pmemdleakList == pblock)
-   {
-      s_pmemdleakList = pblock->m_pnext;
-      s_pmemdleakList->m_pprevious = NULL;
-   }
-   else
-   {
-      pblock->m_pprevious->m_pnext = pblock->m_pnext;
-      if(pblock->m_pnext != NULL)
-      {
-         pblock->m_pnext->m_pprevious = pblock->m_pprevious;
-      }
-   }
-
-   ::free((void *) pblock->m_pszFileName);
-
+   
+   size_t * psize = (size_t *) &pblock[1];
+   
    if(palloc != NULL)
    {
-      return palloc->Free(pblock);
+   
+      psize[0] = nAllocSize;
+      
    }
    else
    {
-      return ::system_heap_free(pblock);
+   
+      psize[0] = 0;
+      
    }
+   
+   memset(&psize[1], 0, size);
+   
+   return &psize[1];
+   
+#else
+#if LAST_MEM_FILE_AND_LINE
+   
+   string str;
+
+   str.Format("%s(%d)", pszFileName, iLine);
+   
+   size_t nAllocSize = size + sizeof(size_t) + 128;
+   
+   plex_heap_alloc * palloc = find(nAllocSize);
+   
+   size_t * psize = NULL;
+   
+   if(palloc != NULL)
+   {
+      
+      psize = (size_t *) palloc->Alloc();
+      
+      psize[0] = nAllocSize;
+      
+   }
+   else
+   {
+      
+      psize = (size_t *) ::system_heap_alloc(nAllocSize);
+      
+      psize[0] = 0;
+      
+   }
+   
+   strncpy((char *) &psize[1], str.Mid(max(0, str.get_length() - 124)), 124);
+   
+   return ((byte *) &psize[1]) + 128;
+   
+#else
+   
+   return alloc(size);
+   
+#endif
+#endif
+  
+
 
 }
 
 
-void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
+void plex_heap_alloc_array::free_dbg(void * p)
 {
-   plex_heap_alloc * pallocOld = find(nOldAllocSize + sizeof(memdleak_block));
-   plex_heap_alloc * pallocNew = find(nNewAllocSize + sizeof(memdleak_block));
-
-
-   memdleak_block * pblock = &((memdleak_block *)pOld)[-1];
+   
+#ifdef MEMDLEAK
+   
+   size_t * psize = &((size_t *)p)[-1];
+   
+   memdleak_block * pblock = &((memdleak_block *)psize)[-1];
 
    synch_lock lock(g_pmutgen);
 
@@ -377,42 +481,179 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
    }
 
    ::free((void *) pblock->m_pszFileName);
+
+   
+   if(*psize == 0)
+   {
+     
+      return ::system_heap_free(pblock);
+      
+   }
+   else
+   {
+      
+      plex_heap_alloc * palloc = find(*psize);
+      
+      if(palloc != NULL)
+      {
+      
+         return palloc->Free(pblock);
+      
+      }
+      else
+      {
+      
+         return ::system_heap_free(pblock);
+      
+      }
+      
+   }
+   
+#else
+   
+#if LAST_MEM_FILE_AND_LINE
+   
+   
+   size_t * psize = &((size_t *)((byte *)pvoid) - 128))[-1];
+   
+   if(*psize == 0)
+   {
+      
+      return ::system_heap_free(psize);
+      
+   }
+   
+   plex_heap_alloc * palloc = find(*psize);
+   
+   if(palloc != NULL)
+   {
+      
+      return palloc->Free(psize);
+      
+   }
+   else
+   {
+      
+      return ::system_heap_free(psize);
+      
+   }
+
+#else
+   
+   return free(p);
+   
+#endif
+#endif
+
+}
+
+
+void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
+{
+   
+#ifdef MEMDLEAK
+   
+   
+   size_t nAllocSize = size + sizeof(size_t) + sizeof(memdleak_block);
+   
+   size_t * psizeOld = &((size_t *)p)[-1];
+   
+   plex_heap_alloc * pallocOld = find(*psizeOld));
+
+   plex_heap_alloc * pallocNew = find(nAllocSize));
+
+   memdleak_block * pblock = &((memdleak_block *)psizeOld)[-1];
+
+   synch_lock lock(g_pmutgen);
+
+   if(s_pmemdleakList == pblock)
+   {
+      s_pmemdleakList = pblock->m_pnext;
+      s_pmemdleakList->m_pprevious = NULL;
+   }
+   else
+   {
+      pblock->m_pprevious->m_pnext = pblock->m_pnext;
+      if(pblock->m_pnext != NULL)
+      {
+         pblock->m_pnext->m_pprevious = pblock->m_pprevious;
+      }
+   }
+
+   ::free((void *) pblock->m_pszFileName);
+
+   size_t * psizeNew = NULL;
 
    if(pallocOld == NULL && pallocNew == NULL)
    {
-      pblock = (memdleak_block *) ::system_heap_realloc(pOld, nNewAllocSize + sizeof(memdleak_block));
+   
+      pblock = (memdleak_block *) ::system_heap_realloc(pblock, nNewAllocSize + sizeof(memdleak_block));
+      
+      psizeNew = (size_t *) &pblock[1];
+      
+      psizeNew[0] = 0;
+
    }
    else if(pallocOld == pallocNew)
    {
-      pblock = (memdleak_block *) pOld;
+      
+      pblock = (memdleak_block *) pblock;
+      
+      psizeNew = (size_t *) &pblock[1];
+      
+      psizeNew[0] = nAllocSize;
+      
    }
    else
    {
-
-      void * pNew;
+      
+      memory_block * pblockNew = NULL;
 
       if(pallocNew != NULL)
       {
-         pNew = pallocNew->Alloc();
+         
+         pblockNew = (memdleak_block *) pallocNew->Alloc();
+         
       }
       else
       {
-         pNew = ::system_heap_alloc(nNewAllocSize + sizeof(memdleak_block));
+         
+         pblockNew = (memdleak_block *) ::system_heap_alloc(nAllocSize);
+         
       }
 
-      memcpy(pNew, pOld, min(nOldAllocSize + sizeof(memdleak_block), nNewAllocSize + sizeof(memdleak_block)));
+      memcpy(pblockNew, pblock, min(*psizeOld, nAllocSize));
 
       if(pallocOld != NULL)
       {
-         pallocOld->Free(pOld);
+         
+         pallocOld->Free(pblock);
+         
       }
       else
       {
-         ::system_heap_free(pOld);
+         
+         ::system_heap_free(pblock);
+         
       }
 
-      pblock = (memdleak_block *) pNew;
+      pblock = pblockNew;
 
+      psizeNew = (size_t *) &pblock[1];
+      
+      if(pallocNew != NULL)
+      {
+         
+         psizeNew[0] = nAllocSize;
+         
+      }
+      else
+      {
+
+         psizeNew[0] = 0;
+            
+      }
+      
    }
 
    pblock->m_iBlockUse     = nBlockUse;
@@ -430,7 +671,25 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
    lock.unlock();
 
 
-   return pblock + sizeof(memdleak_block);
+   return &psizeNew[1];
+   
+   size_t * psize = (size_t *) g_pheap->realloc_dbg(&((size_t *)pvoidOld)[-1], ((size_t *)pvoidOld)[-1], size + sizeof(size_t), nBlockUse, szFileName, iLine);
+   psize[0] = size + sizeof(size_t);
+   return &psize[1];
+#else
+#if LAST_MEM_FILE_AND_LINE
+   string str;
+   str.Format("%s(%d)", szFileName, iLine);
+   size_t * psize = (size_t *) realloc(&((size_t *)(((byte *)pvoidOld) - 128))[-1], ((size_t *)(((byte *)pvoidOld) - 128))[-1], size + sizeof(size_t) + 128);
+   psize[0] = size + sizeof(size_t) + 128;
+   strncpy((char *) &psize[1], str.Mid(max(0, str.get_length() - 124)), 124);
+   return ((byte *) &psize[1]) + 128;
+#else
+   
+   return realloc(p, size);
+   
+#endif
+#endif
 
 }
 

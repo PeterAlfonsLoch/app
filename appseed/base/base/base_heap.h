@@ -24,13 +24,13 @@ END_EXTERN_C
 
 
 
-CLASS_DECL_BASE void * ca2_heap_alloc(size_t size);
-CLASS_DECL_BASE void * ca2_heap_realloc(void * p, size_t size);
-CLASS_DECL_BASE void   ca2_heap_free(void * p);
+//CLASS_DECL_BASE void * ca2_heap_alloc(size_t size);
+//CLASS_DECL_BASE void * ca2_heap_realloc(void * p, size_t size);
+//CLASS_DECL_BASE void   ca2_heap_free(void * p);
 
-CLASS_DECL_BASE void * ca2_heap_alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileName, int32_t LineNumber);
-CLASS_DECL_BASE void * ca2_heap_realloc_dbg(void * p, size_t size, int32_t nBlockUse, const char * pszFileName, int32_t LineNumber);
-CLASS_DECL_BASE void   ca2_heap_free_dbg(void * p);
+//CLASS_DECL_BASE void * ca2_heap_alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileName, int32_t LineNumber);
+//CLASS_DECL_BASE void * ca2_heap_realloc_dbg(void * p, size_t size, int32_t nBlockUse, const char * pszFileName, int32_t LineNumber);
+//CLASS_DECL_BASE void   ca2_heap_free_dbg(void * p);
 
 CLASS_DECL_BASE void * system_heap_alloc(size_t size);
 CLASS_DECL_BASE void * system_heap_realloc(void * pvoidOld, size_t size);

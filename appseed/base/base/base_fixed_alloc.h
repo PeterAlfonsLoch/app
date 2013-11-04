@@ -134,7 +134,7 @@ public:
 
 
 // DECLARE_FIXED_ALLOC -- used in class definition
-#define DECLARE_BASE_FIXED_ALLOC(class_name) \
+/*#define DECLARE_BASE_FIXED_ALLOC(class_name) \
 public: \
    void * operator new(size_t) { return s_palloc->Alloc(); } \
    void * operator new(size_t, void * p) { return p; } \
@@ -156,4 +156,10 @@ class_name::s_palloc = new fixed_alloc(sizeof(class_name), block_size);
 if(class_name::s_palloc != NULL) \
 { \
    delete class_name::s_palloc; \
-}
+}*/
+
+
+
+
+
+

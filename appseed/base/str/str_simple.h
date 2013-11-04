@@ -73,7 +73,7 @@ class string_manager
 protected:
 
 
-   fixed_alloc_array * m_palloca;
+   //   fixed_alloc_array * m_palloca;
 
    nil_string_data  m_nil;
 
@@ -114,8 +114,8 @@ inline string_data * string_manager::allocate(strsize nChars, int32_t nCharSize 
    
    try
    {
-      pData = (string_data *) m_palloca->alloc(nTotalSize);
-//      pData = (string_data *) memory_alloc(nTotalSize);
+//      pData = (string_data *) m_palloca->alloc(nTotalSize);
+      pData = (string_data *) memory_alloc(nTotalSize);
    }
    catch(...)
    {
@@ -136,9 +136,9 @@ inline string_data * string_manager::allocate(strsize nChars, int32_t nCharSize 
 
 inline void string_manager::Free(string_data * pData)
 {
-   size_t nTotalSize = sizeof( string_data  ) + pData->nAllocLength + 1;
-   m_palloca->free(pData, nTotalSize);
-   //memory_free(pData, 0);
+//   size_t nTotalSize = sizeof( string_data  ) + pData->nAllocLength + 1;
+//   m_palloca->free(pData, nTotalSize);
+   memory_free_dbg(pData, 0);
 }
 
 inline string_data * string_manager::Reallocate(string_data * pOldData, strsize nChars, int32_t nCharSize)
@@ -167,8 +167,8 @@ inline string_data * string_manager::Reallocate(string_data * pOldData, strsize 
    try
    {
 
-      pNewData = (string_data *) m_palloca->realloc(pOldData, nOldTotalSize, nNewTotalSize);
-      //pNewData = (string_data *) memory_realloc(pOldData, nNewTotalSize, 0, NULL, 0);
+//      pNewData = (string_data *) m_palloca->realloc(pOldData, nOldTotalSize, nNewTotalSize);
+      pNewData = (string_data *) memory_realloc_dbg(pOldData, nNewTotalSize, 0, NULL, 0);
 
    }
    catch(...)

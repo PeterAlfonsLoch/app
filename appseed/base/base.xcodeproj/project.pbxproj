@@ -73,12 +73,6 @@
 		9AE723B917E83B69003E47F9 /* base_smart_pointer2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE720F717E83B68003E47F9 /* base_smart_pointer2.h */; };
 		9AE723BA17E83B69003E47F9 /* base_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE720F817E83B68003E47F9 /* base_system.cpp */; };
 		9AE723BB17E83B69003E47F9 /* base_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE720F917E83B68003E47F9 /* base_system.h */; };
-		9AE723BC17E83B69003E47F9 /* base_system_factory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE720FA17E83B68003E47F9 /* base_system_factory.h */; };
-		9AE723BD17E83B69003E47F9 /* base_system_id.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE720FB17E83B68003E47F9 /* base_system_id.h */; };
-		9AE723BE17E83B69003E47F9 /* base_system_object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE720FC17E83B68003E47F9 /* base_system_object.h */; };
-		9AE723BF17E83B69003E47F9 /* base_system_primitive_var.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE720FD17E83B68003E47F9 /* base_system_primitive_var.h */; };
-		9AE723C017E83B69003E47F9 /* base_system_smart_pointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE720FE17E83B68003E47F9 /* base_system_smart_pointer.h */; };
-		9AE723C117E83B69003E47F9 /* base_system_xml.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE720FF17E83B68003E47F9 /* base_system_xml.h */; };
 		9AE723C217E83B69003E47F9 /* base_template.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7210017E83B68003E47F9 /* base_template.cpp */; };
 		9AE723C317E83B69003E47F9 /* base_template.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE7210117E83B68003E47F9 /* base_template.h */; };
 		9AE723C417E83B69003E47F9 /* base_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7210217E83B68003E47F9 /* base_thread.cpp */; };
@@ -694,12 +688,6 @@
 		9AE720F717E83B68003E47F9 /* base_smart_pointer2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_smart_pointer2.h; sourceTree = "<group>"; };
 		9AE720F817E83B68003E47F9 /* base_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_system.cpp; sourceTree = "<group>"; };
 		9AE720F917E83B68003E47F9 /* base_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_system.h; sourceTree = "<group>"; };
-		9AE720FA17E83B68003E47F9 /* base_system_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_system_factory.h; sourceTree = "<group>"; };
-		9AE720FB17E83B68003E47F9 /* base_system_id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_system_id.h; sourceTree = "<group>"; };
-		9AE720FC17E83B68003E47F9 /* base_system_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_system_object.h; sourceTree = "<group>"; };
-		9AE720FD17E83B68003E47F9 /* base_system_primitive_var.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_system_primitive_var.h; sourceTree = "<group>"; };
-		9AE720FE17E83B68003E47F9 /* base_system_smart_pointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_system_smart_pointer.h; sourceTree = "<group>"; };
-		9AE720FF17E83B68003E47F9 /* base_system_xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_system_xml.h; sourceTree = "<group>"; };
 		9AE7210017E83B68003E47F9 /* base_template.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_template.cpp; sourceTree = "<group>"; };
 		9AE7210117E83B68003E47F9 /* base_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_template.h; sourceTree = "<group>"; };
 		9AE7210217E83B68003E47F9 /* base_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_thread.cpp; sourceTree = "<group>"; };
@@ -1344,12 +1332,6 @@
 				9AE720F717E83B68003E47F9 /* base_smart_pointer2.h */,
 				9AE720F817E83B68003E47F9 /* base_system.cpp */,
 				9AE720F917E83B68003E47F9 /* base_system.h */,
-				9AE720FA17E83B68003E47F9 /* base_system_factory.h */,
-				9AE720FB17E83B68003E47F9 /* base_system_id.h */,
-				9AE720FC17E83B68003E47F9 /* base_system_object.h */,
-				9AE720FD17E83B68003E47F9 /* base_system_primitive_var.h */,
-				9AE720FE17E83B68003E47F9 /* base_system_smart_pointer.h */,
-				9AE720FF17E83B68003E47F9 /* base_system_xml.h */,
 				9AE7210017E83B68003E47F9 /* base_template.cpp */,
 				9AE7210117E83B68003E47F9 /* base_template.h */,
 				9AE7210217E83B68003E47F9 /* base_thread.cpp */,
@@ -2110,12 +2092,6 @@
 				9AE723B817E83B69003E47F9 /* base_smart_pointer1.h in Headers */,
 				9AE723B917E83B69003E47F9 /* base_smart_pointer2.h in Headers */,
 				9AE723BB17E83B69003E47F9 /* base_system.h in Headers */,
-				9AE723BC17E83B69003E47F9 /* base_system_factory.h in Headers */,
-				9AE723BD17E83B69003E47F9 /* base_system_id.h in Headers */,
-				9AE723BE17E83B69003E47F9 /* base_system_object.h in Headers */,
-				9AE723BF17E83B69003E47F9 /* base_system_primitive_var.h in Headers */,
-				9AE723C017E83B69003E47F9 /* base_system_smart_pointer.h in Headers */,
-				9AE723C117E83B69003E47F9 /* base_system_xml.h in Headers */,
 				9AE723C317E83B69003E47F9 /* base_template.h in Headers */,
 				9AE723C517E83B69003E47F9 /* base_thread.h in Headers */,
 				9AE723C617E83B69003E47F9 /* base_types.h in Headers */,

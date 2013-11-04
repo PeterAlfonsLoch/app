@@ -549,8 +549,8 @@ public:
    void parse_json(const char * & pszJson, const char * pszEnd);
 
 
-#undef new
-   DECLARE_BASE_FIXED_ALLOC(var)
+//#undef new
+  // DECLARE_BASE_FIXED_ALLOC(var)
 
 
 };

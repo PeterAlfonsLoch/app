@@ -6,7 +6,7 @@
 
 string_manager::string_manager()
 {
-   m_palloca = new fixed_alloc_array();
+/*   m_palloca = new fixed_alloc_array();
    //bool bEnable = __enable_memory_tracking(FALSE);
    try
    {
@@ -56,7 +56,7 @@ string_manager::string_manager()
    }
    catch(...)
    {
-   }
+   }*/
    //__enable_memory_tracking(bEnable);
 
    

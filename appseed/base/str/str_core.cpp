@@ -27,11 +27,16 @@ template<> UINT HashKey<const wchar_t *> (const wchar_t * key)
 
 
 
+string_manager * s_pstringmanager = NULL;
+
 
 string_manager * __get_string_manager()
 {
-   static string_manager s_stringmanager;
-   return &s_stringmanager;
+   
+   
+   return s_pstringmanager;
+   
+   
 }
 
 
