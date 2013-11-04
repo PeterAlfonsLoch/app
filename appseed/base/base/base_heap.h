@@ -8,6 +8,12 @@
 BEGIN_EXTERN_C
 
 
+   CLASS_DECL_BASE void * unaligned_memory_alloc(size_t size);
+   CLASS_DECL_BASE void * unaligned_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+
+   CLASS_DECL_BASE void * aligned_memory_alloc(size_t size);
+   CLASS_DECL_BASE void * aligned_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+
    CLASS_DECL_BASE void * memory_alloc(size_t size);
    CLASS_DECL_BASE void * memory_calloc(size_t size, size_t bytes);
    CLASS_DECL_BASE void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
@@ -24,13 +30,6 @@ END_EXTERN_C
 
 
 
-//CLASS_DECL_BASE void * ca2_heap_alloc(size_t size);
-//CLASS_DECL_BASE void * ca2_heap_realloc(void * p, size_t size);
-//CLASS_DECL_BASE void   ca2_heap_free(void * p);
-
-//CLASS_DECL_BASE void * ca2_heap_alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileName, int32_t LineNumber);
-//CLASS_DECL_BASE void * ca2_heap_realloc_dbg(void * p, size_t size, int32_t nBlockUse, const char * pszFileName, int32_t LineNumber);
-//CLASS_DECL_BASE void   ca2_heap_free_dbg(void * p);
 
 CLASS_DECL_BASE void * system_heap_alloc(size_t size);
 CLASS_DECL_BASE void * system_heap_realloc(void * pvoidOld, size_t size);
@@ -42,20 +41,6 @@ extern HANDLE g_hmutexCa2Alloc;
 
 
 extern CLASS_DECL_BASE HANDLE g_hHeap;
-
-
-#ifdef __cplusplus
-
-
-
-class mutex;
-
-CLASS_DECL_BASE void set_heap_mutex(mutex * pmutex);
-
-CLASS_DECL_BASE mutex * get_heap_mutex();
-
-
-#endif
 
 
 

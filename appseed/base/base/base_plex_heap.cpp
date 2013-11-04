@@ -548,7 +548,7 @@ void plex_heap_alloc_array::free_dbg(void * p)
 }
 
 
-void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
+void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, int align, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
    
 #ifdef MEMDLEAK
@@ -686,7 +686,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, int32_t nBlock
    return ((byte *) &psize[1]) + 128;
 #else
    
-   return realloc(p, size);
+   return realloc(p, size, align);
    
 #endif
 #endif

@@ -74,13 +74,6 @@ base_system::base_system(sp(base_application) papp) :
    */
 
 
-   if(::get_heap_mutex() == NULL)
-   {
-
-      ::set_heap_mutex(new mutex(this));
-
-   }
-
    //use_base_ca2_allocator();
 
 

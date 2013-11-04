@@ -217,7 +217,7 @@ public:
 
 
    inline void * alloc(size_t nAllocSize);
-   inline void * realloc(void * p, size_t nAllocSize);
+   inline void * realloc(void * p, size_t nAllocSize, int align);
    inline void free(void * p);
 
    void pre_finalize();
@@ -225,7 +225,7 @@ public:
    inline plex_heap_alloc * find(size_t nAllocSize);
 
    void * alloc_dbg(size_t nAllocSize, int32_t nBlockUse, const char * szFileName, int32_t iLine);
-   void * realloc_dbg(void * p, size_t nNewAllocSize, int32_t nBlockUse, const char * szFileName, int32_t iLine);
+   void * realloc_dbg(void * p, size_t nNewAllocSize, int align, int32_t nBlockUse, const char * szFileName, int32_t iLine);
    void free_dbg(void * p);
 
    void * operator new(size_t s)
@@ -301,7 +301,7 @@ void plex_heap_alloc_array::free(void * p)
 }
 
 
-inline void * plex_heap_alloc_array::realloc(void * p, size_t size)
+inline void * plex_heap_alloc_array::realloc(void * p, size_t size, int align)
 {
    
    size_t * psizeOld = &((size_t *)p)[-1];
@@ -345,7 +345,18 @@ inline void * plex_heap_alloc_array::realloc(void * p, size_t size)
          
       }
 
-      memcpy(psizeNew, psizeOld, min(*psizeOld, size + sizeof(size_t)));
+      if(align > 0)
+      {
+
+         memcpy((void *)(((int_ptr)psizeNew + align - 1) & ~(align - 1)), (void *)(((int_ptr)psizeOld + align - 1) & ~(align - 1)), min(*psizeOld, size + sizeof(size_t)) & ~(align - 1));
+
+      }
+      else
+      {
+
+         memcpy(psizeNew, psizeOld, min(*psizeOld, size + sizeof(size_t)));
+
+      }
 
       if(pallocOld != NULL)
       {

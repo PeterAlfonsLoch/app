@@ -1400,8 +1400,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="base\base.cpp" />
-    <ClCompile Include="base\base_allocate_base.cpp" />
-    <ClCompile Include="base\base_allocate_base_heap.cpp" />
     <ClCompile Include="base\base_allocate_mid_big.cpp" />
     <ClCompile Include="base\base_allocate_system_heap.cpp" />
     <ClCompile Include="base\base_application.cpp" />

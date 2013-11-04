@@ -1,199 +1,107 @@
 #include "framework.h"
 
-/*
-#ifdef WINDOWS
-CLASS_DECL_BASE void * (*g_pfnca2_alloc)(size_t size) = NULL;
-CLASS_DECL_BASE void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = NULL;
-CLASS_DECL_BASE void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = NULL;
-CLASS_DECL_BASE void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType) = NULL;
-CLASS_DECL_BASE size_t (*g_pfnca2_msize)(void * pvoid, int32_t iBlockType) = NULL;
-#else
-CLASS_DECL_BASE void * (*g_pfnca2_alloc)(size_t size) = &::memory_alloc;
-CLASS_DECL_BASE void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = &::_ca_alloc_dbg;
-CLASS_DECL_BASE void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine) = &::memory_realloc_dbg;
-CLASS_DECL_BASE void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType) = &::memory_free_dbg;
-CLASS_DECL_BASE size_t (*g_pfnca2_msize)(void * pvoid, int32_t iBlockType) = &::_ca_msize;
-#endif
-*/
 
-
-void * base_memory_alloc(size_t size);
-void * base_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-void * base_memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-void   base_memory_free_dbg(void * pvoid, int32_t iBlockType);
-size_t base_memory_size_dbg(void * pvoid, int32_t iBlockType);
-
-
-BEGIN_EXTERN_C
-
-
-void * memory_alloc(size_t size)
-{
-   return base_memory_alloc(size);
-}
-
-void * memory_calloc(size_t size, size_t bytes)
-{
-   return base_memory_alloc(size * bytes);
-}
-
-void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
-{
-   return base_memory_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
-}
-
-void * memory_realloc(void * pvoid, size_t nSize)
-{
-   return base_memory_realloc_dbg(pvoid, nSize, 0, NULL, -1);
-}
-
-void * memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
-{
-   return base_memory_realloc_dbg(pvoid, nSize, nBlockUse, szFileName, nLine);
-}
-
-void memory_free(void * pvoid)
-{
-   return base_memory_free_dbg(pvoid, 0);
-}
-
-void memory_free_dbg(void * pvoid, int32_t iBlockType)
-{
-   return base_memory_free_dbg(pvoid, iBlockType);
-}
-
-size_t memory_size(void * pvoid)
-{
-   return base_memory_size_dbg(pvoid, 0);
-}
-
-size_t memory_size_dbg(void * pvoid, int32_t iBlockType)
-{
-   return base_memory_size_dbg(pvoid, iBlockType);
-}
-
-
-END_EXTERN_C
-
-#undef new
-
-
-/*
-mutex & get_mutex_c_heap()
+struct heap_memory
 {
 
-   static mutex * s_pmutex = NULL;
 
-   if(s_pmutex == NULL)
+   byte                 m_back;
+   byte                 m_blockuse;
+   size_t               m_size;
+   char                 m_paddingBefore[16];
+   static const int     m_iPaddingAfter;
+
+
+   inline static size_t aligned_provision_get_size(size_t size)
    {
 
-      s_pmutex = (mutex *) malloc(sizeof(mutex));
-
-      new (s_pmutex) mutex;
+      return size + ((sizeof(heap_memory) + m_iPaddingAfter + sizeof(size_t) - 1) & (~(sizeof(size_t) - 1)));
 
    }
 
-   return *s_pmutex;
-
-}
-
-
-void * memory_alloc(size_t size)
-{
-   synch_lock ml(&get_mutex_c_heap());
-#ifdef WINDOWSEX
-#if ZEROED_ALLOC
-   byte * p = (byte *) HeapAlloc(::GetProcessHeap(), HEAP_ZERO_MEMORY, size + 4 + 32);
-#else
-   byte * p = (byte *) HeapAlloc(::GetProcessHeap(), 0, size + 4 + 32);
-#endif
-#else
-   byte * p = (byte *) malloc(size + 4 + 32);
-#if ZEROED_ALLOC
-   memset_dup(p, 0, size);
-#endif
-#endif
-   p[0] = 22;
-   *((size_t *) &p[1]) = size;
-   return p + 4 + 16;
-}
-
-void * _ca_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
-{
-   synch_lock ml(&get_mutex_c_heap());
-   return memory_alloc(nSize);
-}
-
-
-void * memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
-{
-   synch_lock ml(&get_mutex_c_heap());
-   byte * p = (byte *) pvoid;
-   if(p == NULL)
-      return memory_alloc(nSize);
-   p -= (4 + 16);
-   if(p[0] == 22)
+   inline static size_t unaligned_provision_get_size(size_t size)
    {
-#ifdef WINDOWSEX
-#if ZEROED_ALLOC
-      p = (byte *) HeapReAlloc(::GetProcessHeap(), HEAP_ZERO_MEMORY, p, nSize + 4 + 32);
-#else
-      p = (byte *) HeapAlloc(::GetProcessHeap(), 0, p, nSize + 4 + 32);
-#endif
-      //p = (byte *) HeapReAlloc(::GetProcessHeap(), 0, p, nSize + 4 + 32);
-#else
-      p = (byte *) realloc(p, nSize + 4 + 32);
-#if ZEROED_ALLOC
-      if(nSize > *((size_t *) &p[1]))
-      {
-         memset_dup(&p[4 + 16 + *((size_t *) &p[1])], 0, nSize - *((size_t *) &p[1]));
-      }
-#endif
-#endif
+
+      return size + sizeof(heap_memory) + m_iPaddingAfter;
 
    }
-   *((size_t *) &p[1]) = nSize;
-   return p + 4 + 16;
-}
 
-void memory_free_dbg(void * pvoid, int32_t iBlockType)
-{
-   synch_lock ml(&get_mutex_c_heap());
-   byte * p = (byte *) pvoid;
-   if(p == NULL)
-      return;
-   p -= (4 + 16);
-   if(p[0] == 22)
+   inline static void * unaligned(void * pbase, size_t size, byte blockuse)
    {
-#ifdef WINDOWSEX
-      HeapFree(::GetProcessHeap(), 0, p);
-#else
-      free(p);
-#endif
-   }
-}
 
-size_t _ca_msize(void * pvoid, int32_t iBlockType)
-{
-   synch_lock ml(&get_mutex_c_heap());
-   byte * p = (byte *) pvoid;
-   if(p == NULL)
-      return 0;
-   p -= (4 + 16);
-   if(p[0] == 22)
-   {
-//#ifdef WINDOWS
-//      return HeapSize(::GetProcessHeap(), 0, p)  - (4 + 16);
-//#elif defined(MACOS)
-//      return malloc_size(p);
-//#else
-      return *((size_t *) &p[1]);
-      //return malloc_usable_size(p);
-//#endif
+      void * punaligned = (void *)((int_ptr)pbase + sizeof(heap_memory));
+
+      heap_memory * pheap = heap_get(punaligned);
+
+      pheap->m_back = (byte)(((int_ptr)punaligned) - ((int_ptr)pbase));
+
+      pheap->m_blockuse = blockuse;
+
+      pheap->m_size = size;
+
+      return punaligned;
+
    }
-   return 0;
-}
-*/
+
+
+   inline static void * aligned(void * pbase, size_t size, byte blockuse)
+   {
+
+      void * paligned = (void *)(((((int_ptr)pbase) + sizeof(heap_memory)+sizeof(size_t)-1) & ((int_ptr)(~(sizeof(size_t)-1)))));
+
+      heap_memory * pheap = heap_get(paligned);
+
+      pheap->m_back = (byte)(((int_ptr)paligned) - ((int_ptr)pbase));
+
+      pheap->m_blockuse = blockuse;
+
+      pheap->m_size = size;
+
+      return paligned;
+
+   }
+
+
+   inline static heap_memory * heap_get(void * paligned)
+   {
+
+      return (heap_memory *)(((int_ptr)paligned) - sizeof(heap_memory));
+
+   }
+
+
+   inline static void * base_get(void * paligned)
+   {
+
+      return (void *)(((int_ptr)paligned) - heap_get(paligned)->m_back);
+
+   }
+
+   inline static byte heap_get_block_use(void * paligned)
+   {
+
+      return heap_get(paligned)->m_blockuse;
+
+   }
+
+
+   inline static size_t heap_get_size(void * paligned)
+   {
+
+      return heap_get(paligned)->m_size;
+
+   }
+
+};
+
+
+
+const int heap_memory::m_iPaddingAfter = 16;
+
+plex_heap_alloc_array * g_pheap = NULL;
+
+
+
 
 extern string_manager * s_pstringmanager;
 
@@ -213,6 +121,147 @@ extern string * g_pstrLastStatus;
 
 extern string * g_pstrLastGlsStatus;
 
+
+
+c_class c_class::s_cclass;
+
+
+c_class::c_class()
+{
+}
+
+c_class::c_class(const c_class &)
+{
+}
+
+c_class::~c_class()
+{
+}
+
+
+
+
+BEGIN_EXTERN_C
+
+
+void * memory_alloc(size_t size)
+{
+
+   return unaligned_memory_alloc(size);
+
+}
+
+
+void * memory_calloc(size_t size, size_t bytes)
+{
+
+   return memory_alloc(size * bytes);
+
+}
+
+
+void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+{
+
+   return unaligned_memory_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
+
+}
+
+
+void * memory_realloc(void * pvoid, size_t nSize)
+{
+
+   return memory_realloc_dbg(pvoid, nSize, 0, NULL, -1);
+
+}
+
+
+void * memory_realloc_dbg(void * pvoid, size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+{
+
+   if (pvoid == NULL)
+      return memory_alloc_dbg(size, nBlockUse, szFileName, nLine);
+
+   byte blockuse = heap_memory::heap_get_block_use(pvoid);
+
+   void * pbase = NULL;
+
+   if (blockuse == 0) // aligned
+   {
+
+      pbase = g_pheap->realloc(heap_memory::base_get(pvoid), heap_memory::aligned_provision_get_size(size), sizeof(size_t));
+
+   }
+   else if (blockuse == 1) // aligned
+   {
+
+      //TODO: to do the dbg version
+
+      pbase = g_pheap->realloc_dbg(heap_memory::base_get(pvoid), heap_memory::aligned_provision_get_size(size), sizeof(size_t), nBlockUse, szFileName, nLine);
+
+      //p = (byte *) _realloc_dbg(p, nSize + 4 + 32, nBlockUse, szFileName, nLine);
+
+   }
+   else if (blockuse == 2) // unaligned
+   {
+
+      pbase = g_pheap->realloc(heap_memory::base_get(pvoid), heap_memory::unaligned_provision_get_size(size), 0);
+
+   }
+   else if (blockuse == 3) // unaligned
+   {
+
+      //TODO: to do the dbg version
+
+      pbase = g_pheap->realloc_dbg(heap_memory::base_get(pvoid), heap_memory::unaligned_provision_get_size(size), 0, nBlockUse, szFileName, nLine);
+
+      //p = (byte *) _realloc_dbg(p, nSize + 4 + 32, nBlockUse, szFileName, nLine);
+
+   }
+   else
+   {
+
+      throw memory_exception(get_thread_app());
+
+   }
+
+   if (pbase == NULL)
+   {
+
+      throw memory_exception(get_thread_app());
+
+   }
+
+   if (blockuse == 0 || blockuse == 1) // aligned
+   {
+
+      return heap_memory::aligned(pbase, size, blockuse);
+
+   }
+   else
+   {
+
+      return heap_memory::unaligned(pbase, size, blockuse);
+
+   }
+
+   
+
+
+}
+
+void memory_free(void * pvoid)
+{
+   return memory_free_dbg(pvoid, 0);
+}
+
+
+size_t memory_size(void * pvoid)
+{
+   return memory_size_dbg(pvoid, 0);
+}
+
+#undef new
 
 
 
@@ -506,6 +555,149 @@ public:
 } g_basestaticstart;
 
 
+
+void * aligned_memory_alloc(size_t size)
+{
+
+   void * poriginal = g_pheap->alloc(heap_memory::aligned_provision_get_size(size));
+
+   if (poriginal == NULL)
+   {
+
+      throw memory_exception(get_thread_app());
+
+   }
+
+   return heap_memory::aligned(poriginal, size, 0);
+
+}
+
+void * unaligned_memory_alloc(size_t size)
+{
+
+   void * poriginal = g_pheap->alloc(heap_memory::unaligned_provision_get_size(size));
+
+   if (poriginal == NULL)
+   {
+
+      throw memory_exception(get_thread_app());
+
+   }
+
+   return heap_memory::unaligned(poriginal, size, 2);
+
+}
+
+
+void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+{
+
+   UNREFERENCED_PARAMETER(nBlockUse);
+   UNREFERENCED_PARAMETER(szFileName);
+   UNREFERENCED_PARAMETER(nLine);
+
+   //TODO: to do the dbg version
+   //byte * p = (byte *) _malloc_dbg(nSize + sizeof(size_t) + 32, nBlockUse, szFileName, nLine);
+   void * poriginal = g_pheap->alloc_dbg(heap_memory::aligned_provision_get_size(size), nBlockUse, szFileName, nLine);
+
+   if (poriginal == NULL)
+   {
+
+      throw memory_exception(get_thread_app());
+
+   }
+
+   return heap_memory::aligned(poriginal, size, 1);
+
+}
+
+void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+{
+
+   UNREFERENCED_PARAMETER(nBlockUse);
+   UNREFERENCED_PARAMETER(szFileName);
+   UNREFERENCED_PARAMETER(nLine);
+
+   //TODO: to do the dbg version
+   //byte * p = (byte *) _malloc_dbg(nSize + sizeof(size_t) + 32, nBlockUse, szFileName, nLine);
+   void * poriginal = g_pheap->alloc_dbg(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
+
+   if (poriginal == NULL)
+   {
+
+      throw memory_exception(get_thread_app());
+
+   }
+
+   return heap_memory::unaligned(poriginal, size, 3);
+
+}
+
+
+void memory_free_dbg(void * paligned, int32_t iBlockType)
+{
+
+   if (paligned == NULL)
+      return;
+
+   byte blockuse = heap_memory::heap_get_block_use(paligned);
+
+   if (blockuse == 0)
+   {
+
+      g_pheap->free(heap_memory::base_get(paligned));
+
+   }
+   else if (blockuse == 1)
+   {
+
+      //TODO: to do the dbg version
+
+      g_pheap->free_dbg(heap_memory::base_get(paligned));
+
+      //_free_dbg(p, iBlockType);
+
+   }
+   else if (blockuse == 2)
+   {
+
+      g_pheap->free(heap_memory::base_get(paligned));
+
+   }
+   else if (blockuse == 3)
+   {
+
+      //TODO: to do the dbg version
+
+      g_pheap->free_dbg(heap_memory::base_get(paligned));
+
+      //_free_dbg(p, iBlockType);
+
+   }
+   else
+   {
+
+   }
+
+}
+
+
+size_t memory_size_dbg(void * paligned, int32_t iBlockType)
+{
+
+   if (paligned == NULL)
+      return 0;
+
+   return heap_memory::heap_get_size(paligned);
+
+}
+
+
+
+END_EXTERN_C
+
+
+
 void create_id_space()
 {
 
@@ -523,58 +715,7 @@ void destroy_id_space()
 }
 
 
-/*
-BEGIN_EXTERN_C
-
-   CLASS_DECL_BASE void * c_alloc(size_t size)
-{
-   return memory_alloc(size);
-}
-   CLASS_DECL_BASE void * c_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
-{
-   return memory_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
-}
-   CLASS_DECL_BASE void * c_realloc(void * pvoid, size_t nSize)
-{
-   return memory_realloc(pvoid, nSize);
-}
-   CLASS_DECL_BASE void * c_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
-{
-   return memory_realloc_dbg(pvoid, nSize, nBlockUse, szFileName, nLine);
-}
-   CLASS_DECL_BASE void   memory_free(void * pvoid)
-{
-   return memory_free(pvoid);
-}
-   CLASS_DECL_BASE void   c_free_dbg(void * pvoid, int32_t iBlockType)
-   {
-      return memory_free_dbg(pvoid, iBlockType);
-   }
-   CLASS_DECL_BASE size_t c_msize(void * p)
-{
-   return memory_size(p);
-}
-   CLASS_DECL_BASE size_t c_msize_dbg(void * p, int32_t iBlockType)
-{
-   return memory_size_dbg(p, iBlockType);
-}
-
-END_EXTERN_C
-
-*/
-
-c_class c_class::s_cclass;
 
 
-c_class::c_class()
-{
-}
 
-c_class::c_class(const c_class &)
-{
-}
-
-c_class::~c_class()
-{
-}
 
