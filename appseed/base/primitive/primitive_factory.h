@@ -15,13 +15,15 @@ public:
    int32_t                       m_iCount;
    int64_t                       m_iAllocCount;
    id                            m_idType;
+   bool                          m_bAligned;
 
 
-   factory_allocator(sp(base_application) papp, int32_t iCount, UINT uiAllocSize, id idType) :
+   factory_allocator(sp(base_application) papp, int32_t iCount, UINT uiAllocSize, id idType, bool bAligned) :
       element(papp),
       m_iCount(iCount),
       m_uiAllocSize(uiAllocSize),
-      m_idType(idType)
+      m_idType(idType),
+      m_bAligned(bAligned)
    {
       m_iAllocCount = 0;
    }
@@ -31,17 +33,29 @@ public:
    inline void * alloc()
    {
       m_iAllocCount++;
+      if(m_bAligned)
+      {
 #if MEMDLEAK
-      return memory_alloc_dbg(m_uiAllocSize, 0, "typeid://" + *m_idType.m_pstr, 0);
+         return aligned_memory_alloc_dbg(m_uiAllocSize, 0, "typeid://" + *m_idType.m_pstr, 0);
 #else
-      return memory_alloc(m_uiAllocSize);
+         return aligned_memory_alloc(m_uiAllocSize);
 #endif
+      }
+      else
+      {
+#if MEMDLEAK
+         return memory_alloc_dbg(m_uiAllocSize, 0, "typeid://" + *m_idType.m_pstr, 0);
+#else
+         return memory_alloc(m_uiAllocSize);
+#endif
+      }
    }
 
 
    virtual void discard(element * pca) = 0;
 
 };
+
 
 template < class TYPE >
 class factory_allocator_impl :
@@ -50,13 +64,13 @@ class factory_allocator_impl :
 public:
 
 #ifdef WINDOWS
-   factory_allocator_impl(sp(base_application) papp, int32_t iCount) :
-      factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name())
+   factory_allocator_impl(sp(base_application) papp, int32_t iCount, bool bAligned) :
+      factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name(), bAligned)
    {
    }
 #else
-   factory_allocator_impl(sp(base_application) papp, int32_t iCount) :
-      factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name())
+   factory_allocator_impl(sp(base_application) papp, int32_t iCount, bool bAligned) :
+      factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name(), bAligned)
    {
    }
 #endif
@@ -146,64 +160,64 @@ public:
 
 
    template < class T >
-   void creatable_small(bool bOverwrite = false)
+   void creatable_small(bool bOverwrite = false, bool bAligned = false)
    {
-      creatable < T > (32, bOverwrite);
+      creatable < T > (32, bOverwrite, bAligned);
    }
 
    template < class T >
-   void cloneable_small(bool bOverwrite = false)
+   void cloneable_small(bool bOverwrite = false, bool bAligned = false)
    {
-      cloneable < T > (32, bOverwrite);
+      cloneable < T > (32, bOverwrite, bAligned);
    }
 
    template < class T >
-   void creatable_large(bool bOverwrite = false)
+   void creatable_large(bool bOverwrite = false, bool bAligned = false)
    {
-      creatable < T > (1024, bOverwrite);
+      creatable < T > (1024, bOverwrite, bAligned);
    }
 
    template < class T >
-   void cloneable_large(bool bOverwrite = false)
+   void cloneable_large(bool bOverwrite = false, bool bAligned = false)
    {
-      cloneable < T > (1024, bOverwrite);
+      cloneable < T > (1024, bOverwrite, bAligned);
    }
 
    template < class T >
-   void creatable_small(sp(type) info, bool bOverwrite = false)
+   void creatable_small(sp(type) info, bool bOverwrite = false, bool bAligned = false)
    {
-      creatable < T > (info, 32, bOverwrite);
+      creatable < T > (info, 32, bOverwrite, bAligned);
    }
 
    template < class T >
-   void cloneable_small(sp(type) info, bool bOverwrite = false)
+   void cloneable_small(sp(type) info, bool bOverwrite = false, bool bAligned = false)
    {
-      cloneable < T > (info, 32, bOverwrite);
+      cloneable < T > (info, 32, bOverwrite, bAligned);
    }
 
    template < class T >
-   void creatable_large(sp(type) info, bool bOverwrite = false)
+   void creatable_large(sp(type) info, bool bOverwrite = false, bool bAligned = false)
    {
-      creatable < T > (info, 1024, bOverwrite);
+      creatable < T > (info, 1024, bOverwrite, bAligned);
    }
 
    template < class T >
-   void cloneable_large(sp(type) info, bool bOverwrite = false)
+   void cloneable_large(sp(type) info, bool bOverwrite = false, bool bAligned = false)
    {
-      cloneable < T > (info, 1024, bOverwrite);
+      cloneable < T > (info, 1024, bOverwrite, bAligned);
    }
 
    template < class T >
-   void creatable(int32_t iCount, bool bOverwrite = false);
+   void creatable(int32_t iCount, bool bOverwrite = false, bool bAligned = false);
 
    template < class T >
-   void cloneable(int32_t iCount, bool bOverwrite = false);
+   void cloneable(int32_t iCount, bool bOverwrite = false, bool bAligned = false);
 
    template < class T >
-   void creatable(sp(type) info, int32_t iCount, bool bOverwrite = false);
+   void creatable(sp(type) info, int32_t iCount, bool bOverwrite = false, bool bAligned = false);
 
    template < class T >
-   void cloneable(sp(type)  info, int32_t iCount, bool bOverwrite = false);
+   void cloneable(sp(type)  info, int32_t iCount, bool bOverwrite = false, bool bAligned = false);
 
    virtual sp(element) create(sp(base_application) papp, sp(type) info);
    virtual sp(element) base_clone(sp(element) pobject);
@@ -214,7 +228,7 @@ public:
    }
 
    template < class T >
-   sp(factory_allocator) get_allocator(int32_t iCount);
+   sp(factory_allocator) get_allocator(int32_t iCount, bool bAligned);
 
 
    bool is_set(const char * pszType);
