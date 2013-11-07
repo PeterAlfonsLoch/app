@@ -18,6 +18,7 @@ namespace user
    void split_view::install_message_handling(::message::dispatch * pinterface)
    {
       view::install_message_handling(pinterface);
+      USER_MESSAGE_LINK(message_create, pinterface, this, &split_view::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &split_view::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &split_view::_001OnShowWindow);
    }
@@ -39,6 +40,31 @@ namespace user
    }
    #endif //DEBUG
 
+   void split_view::_001OnCreate(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::create, pcreate, pobj)
+
+      try
+      {
+
+         on_create_views();
+
+      }
+      catch (...)
+      {
+
+         string strMessage;
+
+         strMessage.Format("split_view::on_create_views failed to create views for split view %s", typeid(this).raw_name());
+
+         Application.simple_message_box_timeout(this, strMessage, seconds(10), MB_ICONEXCLAMATION);
+
+      }
+
+      
+
+   }
 
    void split_view::_001OnSize(signal_details * pobj)
    {
@@ -52,6 +78,13 @@ namespace user
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
       return view::pre_create_window(cs);
+   }
+
+
+   void split_view::on_create_views()
+   {
+
+
    }
 
    void split_view::_001OnDraw(::draw2d::graphics *pdc)

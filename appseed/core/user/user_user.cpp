@@ -394,7 +394,7 @@ retry_license:
       }
    }
 
-   int32_t user::simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle)
+   int32_t user::simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, ::duration durationTimeout, UINT fuStyle)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
@@ -403,7 +403,7 @@ retry_license:
 
       property_set propertyset;
       propertyset["message"] = pszMessage;
-      propertyset["simple_message_box_timeout_ms"] = iTimeout;
+      propertyset["simple_message_box_timeout_ms"] = durationTimeout.get_total_milliseconds();
 
       string strMatter;
       if(fuStyle & MB_YESNOCANCEL)

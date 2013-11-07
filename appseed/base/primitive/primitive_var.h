@@ -59,14 +59,16 @@ public:
       type_pid,
       type_int64a,
       type_char,
-      type_byte
+      type_byte,
+      type_duration,
+      type_pduration
    };
 
    e_type             m_etype;
    union
    {
       void               * m_p;
-      para_return     m_parareturn;
+      para_return          m_parareturn;
       bool                 m_b;
       bool *               m_pb;
       int32_t              m_i32;
@@ -88,10 +90,12 @@ public:
       stringa *            m_pstra;
       int64_array *        m_pia64;
       var_array *          m_pvara;
-      property_set *  m_pset;
-      property *      m_pprop;
-      uchar        m_uch;
+      property_set *       m_pset;
+      property *           m_pprop;
+      uchar                m_uch;
       char                 m_ch;
+      duration             m_duration;
+      duration *           m_pduration;
    };
 
 
@@ -141,6 +145,8 @@ public:
    var(const pair_set_interface & set);
    var(const str_str_interface & set);
    var(const string_composite & composite);
+   var(const duration & duration);
+   var(duration * pduration);
 //#if defined(MOVE_SEMANTICS)
   // inline var(var && v);
 //#endif
@@ -188,15 +194,17 @@ public:
    int_array &                      inta();
    int64_array &                    int64a();
    var_array &                      vara();
-   property_set &              propset(sp(base_application) papp = NULL);
-   property &                  prop();
+   ::duration &                     duration();
+   property_set &                   propset(sp(base_application) papp = NULL);
+   property &                       prop();
    const class primitive::memory &  memory() const;
    stringa                          stra() const;
    int_array                        inta() const;
    int64_array                      int64a() const;
    var_array                        vara()  const;
-   property_set                propset() const;
-   property                prop() const;
+   property_set                     propset() const;
+   property                         prop() const;
+   ::duration                       duration() const;
 
    bool is_scalar() const;
    inline bool is_array() const;
@@ -205,6 +213,7 @@ public:
    bool is_natural() const;
 
    bool is_double() const;
+   bool is_duration() const;
 
    bool ok() const;
    bool failed() const;
@@ -246,6 +255,7 @@ public:
    operator uint32_t() const;
    operator int64_t() const;
    operator uint64_t() const;
+   operator ::duration() const;
 
    //operator string & ();
    //operator id &();
@@ -331,6 +341,8 @@ public:
    var & operator = (const string_composite & composite);
    var & operator = (const id & id);
    var & operator = (id * pid);
+   var & operator = (const ::duration & pid);
+   var & operator = (::duration * pduration);
 //#ifdef MOVE_SEMANTICS
    //inline var & operator = (var && v);
 //#endif
@@ -644,6 +656,10 @@ inline var::operator uint64_t() const
    return uint64();
 }
 
+inline var::operator ::duration() const
+{
+   return duration();
+}
 
 inline int_ptr var::intptr(int_ptr iDefault) const
 {

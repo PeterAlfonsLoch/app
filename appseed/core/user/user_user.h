@@ -68,7 +68,7 @@ namespace user
 
 
       string message_box(const char * pszMatter, property_set & propertyset);
-      virtual int32_t simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box_timeout(sp(::user::interaction) puiOwner, const char * pszMessage, ::duration durationTimeout, UINT fuStyle = MB_OK);
       virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
       virtual int32_t track_popup_menu(const char * pszMatter, point pt, sp(::user::interaction) puie);
 

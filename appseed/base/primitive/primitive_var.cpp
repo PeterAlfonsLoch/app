@@ -178,6 +178,24 @@ var::var(const id & id)
 }
 
 
+var::var(const ::duration & duration)
+{
+   
+   m_etype = type_duration;
+   m_duration = duration;
+
+}
+
+
+var::var(::duration * pduration)
+{
+
+   m_etype = type_pduration;
+   m_pduration = pduration;
+
+}
+
+
 var::~var()
 {
 
@@ -707,6 +725,32 @@ var::operator string & ()
    set_type(type_string);
    return m_str;
 }*/
+
+
+class var & var::operator = (const ::duration & duration)
+{
+
+   
+   set_type(type_duration);
+   
+   m_duration = duration;
+
+   return *this;
+
+}
+
+
+class var & var::operator = (::duration * pduration)
+{
+
+
+   set_type(type_pduration);
+
+   m_pduration = pduration;
+
+   return *this;
+
+}
 
 
 var::operator const char *() const
@@ -1827,6 +1871,35 @@ int64_array & var::int64a()
    return *dynamic_cast < int64_array * > (m_sp.m_p);
 }
 
+duration & var::duration()
+{
+
+   if (m_etype == type_duration)
+   {
+
+      return m_duration;
+
+   }
+   else if (m_etype == type_pduration)
+   {
+
+      return *m_pduration;
+
+   }
+   else
+   {
+      
+      set_type(type_duration);
+      
+      m_duration.set_null();
+
+      return m_duration;
+
+   }
+
+}
+
+
 const class primitive::memory & var::memory() const
 {
    if(get_type() != type_memory)
@@ -1904,6 +1977,14 @@ var_array var::vara() const
    }
    return *m_pvara;
 }
+
+
+::duration var::duration() const
+{
+   var varDuration = *this;
+   return varDuration.duration();
+}
+
 
 property_set & var::propset(sp(base_application) papp)
 {

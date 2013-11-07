@@ -24,8 +24,13 @@ namespace user
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
+      virtual void on_create_views();
+
+      DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnSize)
       DECL_GEN_SIGNAL(_001OnShowWindow)
+
+
    };
 
 

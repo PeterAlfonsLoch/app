@@ -5,12 +5,38 @@ class CLASS_DECL_BASE duration
 {
 public:
 
+   enum e_unit
+   {
+
+      unit_nanos,
+      unit_micros,
+      unit_millis,
+      unit_seconds,
+      unit_minutes,
+      unit_hours,
+      unit_days
+
+   };
+
+   
    int64_t     m_iNanoseconds;
    int64_t     m_iSeconds;
 
-   inline duration();
-   inline duration(int64_t iSeconds, int64_t iNanoseconds, bool bNormalize = true);
-   inline duration(const duration & duration);
+   
+   inline void raw_set(int64_t iSeconds, int64_t iNanoseconds);
+   inline void set(int64_t iSeconds, int64_t iNanoseconds);
+   inline void set_null();
+   static inline duration raw_create(int64_t iSeconds, int64_t iNanoseconds);
+   static inline duration create(int64_t iSeconds, int64_t iNanoseconds);
+   static inline duration create_null();
+
+
+   inline void fset(double dSeconds, double dNanoseconds);
+   static inline duration fcreate(double dSeconds, double dNanoseconds);
+
+   void set(int64_t i, e_unit eunit);
+   void set(double d, e_unit eunit);
+
 
    inline int64_t get_total_milliseconds() const;
    inline int64_t total_milliseconds() const;
@@ -22,7 +48,6 @@ public:
    inline static duration zero();
    inline bool operator == (const duration & duration) const;
 
-   inline duration & operator = (const duration & duration);
 
    void normalize();
 
@@ -38,33 +63,98 @@ public:
 
 };
 
-duration::duration()
-{
-   m_iSeconds     = 0;
-   m_iNanoseconds = 0;
-}
 
-
-duration::duration(int64_t iSeconds, int64_t iNanoseconds, bool bNormalize)
+void duration::raw_set(int64_t iSeconds, int64_t iNanoseconds)
 {
-   m_iSeconds     = iSeconds;
+
+   m_iSeconds = iSeconds;
+
    m_iNanoseconds = iNanoseconds;
-   if(bNormalize)
-   {
-      normalize();
-   }
+
 }
 
-duration::duration(const duration & duration)
+
+void duration::set(int64_t iSeconds, int64_t iNanoseconds)
 {
-   m_iSeconds        = duration.m_iSeconds;
-   m_iNanoseconds    = duration.m_iNanoseconds;
+
+   raw_set(iSeconds, iNanoseconds);
+
+   normalize();
+
 }
+
+
+void duration::set_null()
+{
+
+   raw_set(0, 0);
+
+}
+
+duration duration::raw_create(int64_t iSeconds, int64_t iNanoseconds)
+{
+
+   duration duration;
+
+   duration.raw_set(iSeconds, iNanoseconds);
+
+   return duration;
+
+}
+
+void duration::fset(double d, double dNano)
+{
+
+   dNano += fmod(d, 1.0) * 1000.0 * 1000.0 * 1000.0;
+
+   raw_set((int64_t)(floor(d) + floor((dNano / (1000.0 * 1000.0 * 1000.0)))), (int64_t)fmod(dNano, 1000.0 * 1000.0 * 1000.0));
+
+}
+
+
+duration duration::fcreate(double d, double dNano)
+{
+
+   duration duration;
+
+   duration.fset(d, dNano);
+
+   return duration;
+
+}
+
+
+duration duration::create(int64_t iSeconds, int64_t iNanoseconds)
+{
+
+   duration duration;
+
+   duration.set(iSeconds, iNanoseconds);
+
+   return duration;
+
+}
+
+
+duration duration::create_null()
+{
+
+   duration duration;
+
+   duration.set_null();
+
+   return duration;
+
+}
+
 
 int64_t duration::get_total_milliseconds() const
 {
+
    return m_iSeconds * 1000 + m_iNanoseconds / 1000000;
+
 }
+
 
 os_lock_duration duration::os_lock_duration() const
 {
@@ -98,12 +188,12 @@ duration duration::infinite()
 
 duration duration::pos_infinity()
 {
-   return duration(0x7fffffffffffffffLL, 999999999, false);
+   return duration::raw_create(0x7fffffffffffffffLL, 999999999);
 }
 
 duration duration::zero()
 {
-   return duration(0, 0);
+   return duration::create(0, 0);
 }
 
 bool duration::operator == (const duration & duration) const
@@ -112,13 +202,6 @@ bool duration::operator == (const duration & duration) const
    const_cast < class duration * >(&duration)->normalize();
    return m_iSeconds == duration.m_iSeconds
       && m_iNanoseconds == duration.m_iNanoseconds;
-}
-
-duration & duration::operator = (const duration & duration)
-{
-   m_iSeconds        = duration.m_iSeconds;
-   m_iNanoseconds    = duration.m_iNanoseconds;
-   return *this;
 }
 
 class CLASS_DECL_BASE millis :
@@ -197,19 +280,27 @@ public:
 
 
 
-millis::millis(int64_t i) :
-   duration(i / 1000, (i % 1000) * 1000000)
+millis::millis(int64_t i)
 {
+
+   raw_set(i / 1000, (i % 1000) * 1000000);
+
 }
 
-millis::millis(int32_t i) :
-   duration(i / 1000, (i % 1000) * 1000000)
+
+millis::millis(int32_t i)
 {
+
+   raw_set(i / 1000, (i % 1000) * 1000000);
+
 }
 
-millis::millis(uint32_t dw) :
-   duration(dw / 1000, (dw % 1000) * 1000000)
+
+millis::millis(uint32_t dw)
 {
+
+   raw_set(dw / 1000, (dw % 1000) * 1000000);
+
 }
 
 
@@ -308,3 +399,4 @@ inline int64_t duration::total_seconds() const
 {
    return (total_milliseconds() + 500) / 1000;
 }
+

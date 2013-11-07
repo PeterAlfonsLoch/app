@@ -2999,9 +2999,9 @@ int32_t application::DoMessageBox(const char * lpszPrompt, UINT nType, UINT nIDP
    return ShowAppMessageBox(this, lpszPrompt, nType, nIDPrompt);
 }
 
-int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, int32_t iTimeOut,  UINT fuStyle)
+int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, ::duration durationTimeOut,  UINT fuStyle)
 {
-   UNREFERENCED_PARAMETER(iTimeOut);
+   UNREFERENCED_PARAMETER(durationTimeOut);
    return simple_message_box(pwndOwner, pszMessage, fuStyle);
 }
 
