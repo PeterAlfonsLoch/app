@@ -92,7 +92,7 @@ bool db_server::initialize()
    || System.directrix()->m_varTopicQuery["app"] == "app-core/netnodecfg"
    || System.directrix()->m_varTopicQuery["app"] == "app-core/mydns"
    || System.directrix()->m_varTopicQuery["app"] == "app-gtech/alarm"
-   || System.directrix()->m_varTopicQuery["app"] == "app-gtech/alarm_monitor")
+   || System.directrix()->m_varTopicQuery["app"] == "app-gtech/sensible_service")
    {
       m_bRemote = false;
    }

@@ -86,7 +86,7 @@ namespace userpresence
       if(Application.command()->m_varTopicQuery["app"] == "app-gtech/alarm")
          return true;
 	  
-      if(Application.command()->m_varTopicQuery["app"] == "app-gtech/alarm_monitor")
+      if(Application.command()->m_varTopicQuery["app"] == "app-gtech/sensible_service")
          return true;
 	  
 	  // it may not be initialized, due
