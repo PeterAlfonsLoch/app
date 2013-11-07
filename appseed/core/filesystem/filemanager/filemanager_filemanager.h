@@ -8,15 +8,15 @@ namespace filemanager
 
    class CLASS_DECL_CORE filemanager :
       virtual public ::base_departament,
-      virtual public FileManagerCallbackInterface,
-      virtual public FileManagerFileListCallback,
+      virtual public filemanager::callback,
+      virtual public filemanager::file_list_callback,
       virtual public ::database::client
    {
    public:
 
 
-      FileManagerTemplate *                        m_ptemplateStd;
-      FileManagerTemplate *                        m_ptemplateFs;
+      ::filemanager::schema *                        m_ptemplateStd;
+      ::filemanager::schema *                        m_ptemplateFs;
       sp(::user::multiple_document_template)     m_ptemplateForm;
       sp(::user::single_document_template)       m_ptemplateOperation;
 
@@ -33,11 +33,11 @@ namespace filemanager
       virtual void InitializeFileManager(const char * pszMatter);
       
       
-      inline FileManagerTemplate & std()     { return *m_ptemplateStd   ; }
-      inline FileManagerTemplate & fs()      { return *m_ptemplateFs    ; }
+      inline ::filemanager::schema & std()     { return *m_ptemplateStd   ; }
+      inline ::filemanager::schema & fs()      { return *m_ptemplateFs    ; }
 
 
-      void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
+      void OnFileManagerOpenFile(::filemanager::list_data * pdata, ::fs::item_array & itema);
 
 
 

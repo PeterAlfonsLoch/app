@@ -1,7 +1,9 @@
 #include "framework.h"
 
+
 namespace platform
 {
+
 
    pane_view::pane_view(sp(base_application) papp) :
       element(papp),
@@ -145,7 +147,7 @@ namespace platform
          break;
       case platform::PaneViewFileManager:
          {
-            sp(::filemanager::document) pdoc = papp->m_pplaneapp->filemanager().std().OpenChild(false, true);
+            sp(::filemanager::document) pdoc = papp->m_pplaneapp->filemanager().std().open_child(false, true);
             if(pdoc != NULL)
             {
                sp(::user::view) pview = pdoc->get_view();

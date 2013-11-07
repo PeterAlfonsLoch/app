@@ -9,7 +9,6 @@ namespace data
 
 
    class tree_item_ptr_array;
-   class tree_data;
    class tree;
 
 
@@ -22,7 +21,8 @@ namespace data
       RelativePreviousSibling,
       RelativeNextSibling,
       RelativeLastSibling,
-      RelativeReplace
+      RelativeReplace,
+      RelativeMacroRecord
    };
 
 
@@ -46,16 +46,13 @@ namespace data
    public:
 
 
-      uint_ptr                      m_dwUser;
-      uint_ptr                      m_dwMetaData;
-      sp(tree_item)                 m_pparent;
-      sp(tree_item)                 m_pchild;
-      sp(tree_item)                 m_pnext;
-      sp(tree_item)                 m_pprevious;
-      uint32_t                      m_dwState;
-      sp(tree_item_data)            m_pitemdata;
-      sp(tree_data)                 m_ptreedata;
       sp(tree)                      m_ptree;
+      sp(tree_item)                 m_pparent;
+      spa(tree_item)                m_children;
+      sp(::data::item)              m_pitem;
+      uint_ptr                      m_dwUser;
+      uint32_t                      m_dwState;
+      uint_ptr                      m_dwMetaData;
 
 
       tree_item();
@@ -70,11 +67,10 @@ namespace data
       sp(tree_item) get_expandable_child(index iIndex);
       sp(tree_item) get_previous();
       sp(tree_item) get_next(bool bChild = true, bool bParent = true, index * pindexLevel = NULL);
+      sp(tree_item) first_child();
 
 
-      void sort_children(index ( * lpfnCompare )(sp(tree_item) &, sp(tree_item) &));
-
-      static void swap_sibling(sp(tree_item) pitem1, sp(tree_item) pitem2);
+      void sort_children(index ( * lpfnCompare )(sp(tree_item) *, sp(tree_item) *));
 
       sp(tree_item) get_item(ETreeNavigation enavigation, index * piLevelOffset = NULL);
       sp(tree_item) get_item(ERelative erelative);
@@ -85,13 +81,6 @@ namespace data
 
       virtual sp(tree) get_tree();
 
-      virtual bool set_selection();
-      virtual bool add_selection();
-      virtual bool clear_selection();
-      virtual bool remove_selection();
-      virtual bool hover();
-      virtual bool is_hover();
-      virtual bool is_selected();
       virtual string get_text();
       virtual index get_image();
       virtual sp(image_list) get_image_list();
@@ -101,12 +90,6 @@ namespace data
       ::count remove_tree_item_descendants();
 
 
-/*#undef new
-      void * operator new(size_t i, const char * lpszFileName, int32_t iLine);
-      void * operator new(size_t i);
-#define new BASE_NEW
-      void operator delete(void *, const char * lpszFileName, int32_t iLine);
-      void operator delete(void *);*/
    };
 
 

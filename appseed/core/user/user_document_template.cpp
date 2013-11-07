@@ -329,7 +329,7 @@ namespace user
 
          class on_open_document * ponopendocument = new class on_open_document();
 
-         ponopendocument->m_ptemplate     = this;
+         ponopendocument->m_pschema     = this;
          ponopendocument->m_pdocument     = pdocument;
          ponopendocument->m_varFile       = varFile;
 
@@ -366,7 +366,7 @@ namespace user
 
       class on_open_document * ponopendocument = (class on_open_document *) lpvoid;
 
-      ponopendocument->m_ptemplate->do_open_document(ponopendocument->m_pdocument, ponopendocument->m_varFile);
+      ponopendocument->m_pschema->do_open_document(ponopendocument->m_pdocument, ponopendocument->m_varFile);
 
       return 0;
 

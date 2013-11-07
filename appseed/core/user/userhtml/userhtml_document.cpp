@@ -79,7 +79,7 @@ void html_document::OnBeforeNavigate2(::html::data * pdata, var & varFile, uint3
 bool html_document::on_open_document(var varFile)
 {
 
-   ::data::data::writing writing(get_html_data());
+   ::data::lock lock(get_html_data());
 
 
 
@@ -120,7 +120,7 @@ bool html_document::on_open_document(var varFile)
 
 void html_document::soft_reload()
 {
-   ::data::data::writing writing(get_html_data());
+   ::data::lock lock(get_html_data());
    string str = get_html_data()->m_strSource;
    //if(m_propset["bReplaceEx1"])
    {

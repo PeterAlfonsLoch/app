@@ -135,7 +135,7 @@ namespace html
 
    void data::delete_contents()
    {
-      ::data::data::writing writing(this);
+      ::data::lock lock(this);
       m_elemental.m_propertyset.clear();
       m_elemental.m_pbase = NULL;
       delete m_elemental.m_pimpl;
@@ -248,7 +248,7 @@ namespace html
    {
       if(m_bImplement || m_bLayout)
          return;
-      if(is_in_use())
+      if(is_locked())
          return;
       m_pdc = pdc;
       m_elemental._001OnDraw(this);
@@ -404,7 +404,7 @@ namespace html
 
 restart:
 
-      ::data::data::writing writing(this);
+      ::data::lock lock(this);
 
       string strPathName;
 

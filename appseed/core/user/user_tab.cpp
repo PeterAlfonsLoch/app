@@ -300,7 +300,7 @@ namespace user
             return;
       }
 
-      if(get_data()->is_in_use())
+      if(get_data()->is_locked())
          return;
 
       //pdc->SetBkColor(RGB(255, 255, 255));
@@ -545,7 +545,7 @@ namespace user
          }
       }
 
-      if(get_data()->is_in_use())
+      if(get_data()->is_locked())
          return;
 
       //pdc->SetBkColor(RGB(255, 255, 255));
@@ -1432,7 +1432,7 @@ namespace user
 
    void tab::_001SetSel(::index iSel)
    {
-      ::data::data::writing writing(get_data());
+      ::data::lock lock(get_data());
       get_data()->m_iaSel.remove_all();
       get_data()->m_iaSel.add(iSel);
       on_change_pane_count();
@@ -1441,7 +1441,7 @@ namespace user
 
    void tab::_001AddSel(::index iSel)
    {
-      ::data::data::writing writing(get_data());
+      ::data::lock lock(get_data());
       get_data()->m_iaSel.add(iSel);
       on_change_pane_count();
    }

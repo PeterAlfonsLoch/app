@@ -22,7 +22,7 @@ namespace user
       public:
 
 
-         sp(document_template)                 m_ptemplate;
+         sp(document_template)                 m_pschema;
          sp(::user::document_interface)        m_pdocument;
          var                                 m_varFile;
 

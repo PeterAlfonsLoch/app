@@ -5,67 +5,63 @@ namespace user
 {
 
 
-   plain_text_data::plain_text_data(sp(base_application) papp) :
-      element(papp),
-      ::data::tree_data(papp),
+   plain_text_tree::plain_text_tree(sp(base_application) papp) :
       m_editfile(papp)
    {
       m_pgroupcommand      = NULL;
-      m_ptreeitem          = NULL;
       m_pfile              = NULL;
       m_iBranch            = 0;
    }
 
-   plain_text_data::~plain_text_data()
+   plain_text_tree::~plain_text_tree()
    {
    }
 
 
-   void plain_text_data::SetFile(::file::buffer_sp  pfile)
+   void plain_text_tree::SetFile(::file::buffer_sp  pfile)
    {
       m_editfile.SetFile(pfile);
-      on_update_data(update_hint_set_file);
    }
 
 
 
 
-   plain_text_data::ECommand plain_text_data::Command::get_command()
+   e_plain_text_command plain_text_command::get_command()
    {
-      return CommandUndefined;
+      return plain_text_command_none;
    }
 
-   void plain_text_data::Command::Undo(plain_text_data * pedit)
-   {
-      UNREFERENCED_PARAMETER(pedit);
-   }
-
-   void plain_text_data::Command::Redo(plain_text_data * pedit)
+   void plain_text_command::Undo(plain_text_tree * pedit)
    {
       UNREFERENCED_PARAMETER(pedit);
    }
 
+   void plain_text_command::Redo(plain_text_tree * pedit)
+   {
+      UNREFERENCED_PARAMETER(pedit);
+   }
 
 
-   void plain_text_data::SetSelCommand::Undo(plain_text_data * pdoc)
+
+   void plain_text_set_sel_command::Undo(plain_text_tree * pdoc)
    {
       UNREFERENCED_PARAMETER(pdoc);
       pdoc->m_iSelStart = m_iPreviousSelStart;
       pdoc->m_iSelEnd = m_iPreviousSelEnd;
    }
-   void plain_text_data::SetSelCommand::Redo(plain_text_data * pdoc)
+   void plain_text_set_sel_command::Redo(plain_text_tree * pdoc)
    {
       UNREFERENCED_PARAMETER(pdoc);
       pdoc->m_iSelStart = m_iSelStart;
       pdoc->m_iSelEnd = m_iSelEnd;
    }
 
-   void plain_text_data::FileCommand::Undo(plain_text_data * pdoc)
+   void plain_text_file_command::Undo(plain_text_tree * pdoc)
    {
       pdoc->m_editfile.Undo();
    }
 
-   void plain_text_data::FileCommand::Redo(plain_text_data * pdoc)
+   void plain_text_file_command::Redo(plain_text_tree * pdoc)
    {
       pdoc->m_editfile.Redo();
    }
@@ -73,14 +69,14 @@ namespace user
 
 
 
-   plain_text_data::GroupCommand::GroupCommand()
+   plain_text_group_command::plain_text_group_command()
    {
 
       m_pparent = NULL;
 
    }
 
-   void plain_text_data::GroupCommand::Undo(plain_text_data * pdoc)
+   void plain_text_group_command::Undo(plain_text_tree * pdoc)
    {
 
       for(index i = get_upper_bound(); i >= 0; i--)
@@ -90,7 +86,7 @@ namespace user
 
    }
 
-   void plain_text_data::GroupCommand::Redo(plain_text_data * pdoc)
+   void plain_text_group_command::Redo(plain_text_tree * pdoc)
    {
 
       for(index i = 0; i < this->get_size(); i++)

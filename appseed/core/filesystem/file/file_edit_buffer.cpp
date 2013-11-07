@@ -334,7 +334,6 @@ namespace file
 
    edit_buffer::edit_buffer(sp(base_application) papp) :
       element(papp),
-      ::data::tree_data(papp),
       ::file::buffer_sp(papp),
       ::data::tree(papp)
    {
@@ -397,7 +396,7 @@ l1:
          m_dwReadPosition = m_dwPosition;
          while(nCount > 0 && ptreeitem != NULL && ptreeitem != m_ptreeitemFlush && m_dwPosition < m_dwFileLength)
          {
-            sp(Item) pitem = (sp(Item) )ptreeitem->m_pitemdata;
+            sp(Item) pitem = (sp(Item) )ptreeitem->m_pitem;
             uiReadItem = pitem->read_ch(this);
             if(uiReadItem <= 255)
             {
@@ -409,7 +408,7 @@ l1:
             }
             if(nCount <= 0)
                break;
-            ptreeitem = m_bRootDirection ? get_previous(ptreeitem) : get_next(ptreeitem);
+            ptreeitem = m_bRootDirection ? ptreeitem->get_previous() : ptreeitem->get_next();
          }
          if(nCount > 0 && m_dwPosition < m_dwFileLength)
          {
@@ -439,9 +438,9 @@ l1:
          return;
       }
       sp(::data::tree_item) pitemNew = NULL;
-      if(m_ptreeitem != NULL && m_ptreeitem->m_pnext != NULL)
+      if(m_ptreeitem != NULL && m_ptreeitem->m_pparent->m_children.get_count() > 1)
       {
-         pitemNew = insert_item_data(this, pitem, ::data::RelativeFirstChild, m_ptreeitem);
+         pitemNew = insert_item(pitem, ::data::RelativeFirstChild, m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_ptreeitem = pitemNew;
@@ -449,7 +448,7 @@ l1:
       }
       else
       {
-         pitemNew = insert_item_data(this, pitem, ::data::RelativeLastSibling, m_ptreeitem);
+         pitemNew = insert_item(pitem, ::data::RelativeLastSibling, m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_ptreeitem = pitemNew;
@@ -649,8 +648,8 @@ l1:
          return 1;
       else
          return   m_ptreeitem->get_expandable_children_count()
-           + (m_ptreeitem->m_pnext != NULL ? 1 : 0)
-           + (m_ptreeitem->m_pchild != NULL ? 1 : 0);
+           + (m_ptreeitem->get_next(false, false) != NULL ? 1 : 0)
+           + (m_ptreeitem->m_children.has_elements() ? 1 : 0);
    }
 
    bool edit_buffer::Undo()
@@ -658,8 +657,8 @@ l1:
       if(!CanUndo())
          return false;
 
-      m_dwFileLength -= ((sp(Item))m_ptreeitem->m_pitemdata)->get_delta_length();
-      m_ptreeitem = get_previous(m_ptreeitem);
+      m_dwFileLength -= ((sp(Item))m_ptreeitem->m_pitem)->get_delta_length();
+      m_ptreeitem = m_ptreeitem->get_previous();
 
       return true;
    }
@@ -677,10 +676,10 @@ l1:
          ptreeitem = m_ptreeitem->get_expandable_child(m_iBranch);
       }
       else
-         ptreeitem = get_next(m_ptreeitem);
+         ptreeitem = m_ptreeitem->get_next();
       if(ptreeitem == NULL)
          return false;
-      m_dwFileLength += (( sp(Item) ) ptreeitem->m_pitemdata)->get_delta_length();
+      m_dwFileLength += (( sp(Item) ) ptreeitem->m_pitem)->get_delta_length();
       m_ptreeitem = ptreeitem;
       return true;
    }
@@ -715,39 +714,12 @@ l1:
          return false;
       for(ptreeitem  = m_ptreeitem;
           ptreeitem != m_ptreeitemFlush && ptreeitem != get_base_item() && ptreeitem != NULL;
-          ptreeitem  = get_previous(ptreeitem))
+          ptreeitem  = ptreeitem->get_previous())
       {
       }
       return ptreeitem == m_ptreeitemFlush;
    }
 
-
-   sp(::data::tree_item) edit_buffer::get_previous(sp(::data::tree_item) pitem)
-   {
-      if(pitem->m_pprevious != NULL)
-         return pitem->m_pprevious;
-      else
-         return pitem->m_pparent;
-   }
-
-   sp(::data::tree_item) edit_buffer::get_next(sp(::data::tree_item) pitem, bool bChild)
-   {
-      if(bChild && pitem->m_pchild != NULL)
-         return pitem->m_pchild;
-      else if(pitem->m_pnext != NULL)
-         return pitem->m_pnext;
-      else if(pitem->m_pparent != NULL)
-         return get_next(pitem->m_pparent, false);
-      else
-         return NULL;
-   }
-
-
-
-   sp(::data::tree_item_data) edit_buffer::on_allocate_item()
-   {
-      return new Item;
-   }
 
 
 

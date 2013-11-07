@@ -15,12 +15,12 @@ namespace user
    {
    public:
       sp(::data::tree_item)      m_pitem;
-      ::draw2d::graphics *        m_pdc;
-      index                   m_iItem;
-      index                   m_iIndentation;
-      index                   m_iItemHeight;
-      rect                    m_rectClient;
-      rect                    m_rect;
+      ::draw2d::graphics *       m_pdc;
+      index                      m_iItem;
+      index                      m_iIndentation;
+      index                      m_iItemHeight;
+      rect                       m_rectClient;
+      rect                       m_rect;
    };
 
 
@@ -33,8 +33,7 @@ namespace user
 
 
    class CLASS_DECL_CORE tree :
-      virtual public scroll_view,
-      public ::data::tree
+      virtual public scroll_view
    {
    public:
 
@@ -44,8 +43,12 @@ namespace user
          TimerHover,
       };
 
+
+      spa(::data::tree)             m_treeptra;
+      ::data::tree_item_ptr_array   m_itemptraSelected;
+      sp(::data::tree_item)         m_pitemHover;
+
       ::visual::graphics_extension  m_dcextension;
-      comparable_array < sp(tree) >   m_treeptra;
       index                         m_dwFirstVisibleItem;
       index                         m_iItemCount;
       index                         m_iClick;
@@ -60,7 +63,7 @@ namespace user
       COLORREF                      m_crTextHighlight;
       COLORREF                      m_crTextSelectedHighlight;
       uint32_array                  m_dwaItemState;
-      sp(image_list)                  m_pimagelist;
+      sp(image_list)                m_pimagelist;
       index                         m_iImageCollapse;
       index                         m_iImageExpand;
       int32_t                       m_iItemHeight;
@@ -74,6 +77,8 @@ namespace user
       BYTE                          m_uchHoverAlphaInit;
       
 
+
+
       tree(sp(base_application) papp);
       virtual ~tree();
 
@@ -82,6 +87,8 @@ namespace user
       virtual void _001DrawItem(tree_draw_item & data);
 
       void layout();
+
+      virtual sp(::data::tree) find_tree(::data::tree_item * pitem) const;
 
       void _001GetViewRect(LPRECT lprect);
 
@@ -131,9 +138,40 @@ namespace user
       DECL_GEN_SIGNAL(_001OnVScroll)
       DECL_GEN_SIGNAL(_001OnHScroll)
 
-      virtual bool can_merge(sp(::user::interaction) pui);
-      virtual bool merge(sp(::user::interaction) pui);
 
+      virtual bool      hover(::data::tree_item * pitem);
+      virtual bool      hover(::data::item * pitem, index i = 0);
+
+      virtual bool      is_hover(::data::tree_item * pitem);
+      virtual bool      is_hover(::data::item * pitem);
+
+
+      virtual ::count   clear_selection();
+
+
+
+
+      virtual bool      is_selected(::data::tree_item * pitem);
+      virtual bool      is_selected(::data::item * pitem);
+
+      virtual ::count   selection_add(::data::tree_item_ptr_array & itemptra);
+      virtual bool      selection_add(::data::tree_item * pitem);
+      virtual bool      selection_add(::data::item * pitem, index i = 0);
+
+      virtual ::count   selection_set(::data::tree_item_ptr_array & itemptra);
+      virtual bool      selection_set(::data::tree_item * pitem);
+      virtual bool      selection_set(::data::item * pitem, index i = 0);
+
+      virtual ::count   selection_remove(::data::tree_item_ptr_array & itemptra);
+      virtual bool      selection_remove(::data::tree_item * pitem);
+      virtual bool      selection_remove(::data::item * pitem, index i = 0);
+
+
+      virtual bool      can_merge(::data::tree * ptree);
+      virtual bool      merge(::data::tree * ptree);
+
+
+      virtual index     get_proper_item_index(::data::tree_item *pitemParam, index * piLevel);
 
    };
 

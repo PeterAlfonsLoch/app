@@ -1,24 +1,24 @@
 #include "framework.h"
-#include "ContextMenu.h"
+
 
 
 namespace filemanager
 {
 
 
-   ContextMenu::ContextMenu()
+   context_menu::context_menu()
    {
 #ifdef WINDOWSEX
       m_pcontextmenu = NULL;
 #endif
    }
 
-   ContextMenu::~ContextMenu()
+   context_menu::~context_menu()
    {
 
    }
 
-   void ContextMenu::GetMessageString(UINT nID, string &rstrMessage)
+   void context_menu::GetMessageString(UINT nID, string &rstrMessage)
    {
 #ifdef WINDOWSEX
       if(m_pcontextmenu == NULL)
@@ -35,7 +35,7 @@ namespace filemanager
 #endif
    }
 
-   void ContextMenu::GetVerb(UINT nID, string & rwstrMessage)
+   void context_menu::GetVerb(UINT nID, string & rwstrMessage)
    {
 #ifdef WINDOWSEX
       if(m_pcontextmenu == NULL)
@@ -53,7 +53,7 @@ namespace filemanager
    }
 
 
-   void ContextMenu::OnCommand(UINT uiId)
+   void context_menu::OnCommand(UINT uiId)
    {
 #ifdef WINDOWSEX
       if(m_pcontextmenu == NULL)

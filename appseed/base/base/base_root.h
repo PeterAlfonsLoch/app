@@ -9,6 +9,8 @@ public:
 
    int64_t                    m_countReference;
    bool                       m_bHeap;
+   sp(base_application)       m_pbaseapp;
+
 
 
    root();

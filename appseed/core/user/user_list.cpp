@@ -169,7 +169,7 @@ namespace user
 
       if(m_pdata != NULL)
       {
-         if(m_pdata->is_in_use())
+         if(m_pdata->is_locked())
          {
             return;
          }
@@ -1155,7 +1155,7 @@ namespace user
          m_iItemWidth = _001CalcColumnWidth(0);
       }
 
-      if(m_pheaderctrl->IsWindow())
+      if(m_pheaderctrl != NULL && m_pheaderctrl->IsWindow())
       {
          //      while(m_pheaderctrl->DeleteItem(0));
 
@@ -2252,6 +2252,10 @@ namespace user
 
    void list::LayoutHeaderCtrl()
    {
+
+      if (m_pheaderctrl == NULL)
+         return;
+
       if(m_bHeaderCtrl)
       {
          rect rectClient;
@@ -2771,14 +2775,12 @@ namespace user
 
    index list::HeaderCtrlMapColumnToOrder(index iColumn)
    {
+
+      if (m_pheaderctrl == NULL)
+         return iColumn;
+
       return m_pheaderctrl->MapItemToOrder(iColumn);
-      for(index iOrder = 0; iOrder < _001GetColumnCount() ; iOrder++)
-      {
-         //      if(m_pheaderctrl->GetItemLParam(iOrder) == iColumn)
-         //         return iOrder;
-      }
-      ASSERT(FALSE);
-      return -1;
+
    }
 
    bool list::_001OnHeaderCtrlEndDrag(WPARAM wparam, LPARAM lparam)
@@ -3796,6 +3798,10 @@ namespace user
 
    bool list::DIDDXHeaderLayout(bool bSave)
    {
+
+      if (m_pheaderctrl == NULL)
+         return false;
+
       return m_pheaderctrl->DIDDXLayout(bSave);
    }
 

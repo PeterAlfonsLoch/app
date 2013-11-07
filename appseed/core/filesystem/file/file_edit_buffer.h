@@ -7,8 +7,7 @@ namespace file
 
    class CLASS_DECL_CORE edit_buffer :
       public ::file::buffer_sp ,
-      public ::data::tree,
-      public ::data::tree_data
+      public ::data::tree
    {
    public:
 
@@ -23,7 +22,7 @@ namespace file
       };
 
       class Item : 
-         public ::data::tree_item_data
+         public ::data::item
       {
       public:
 
@@ -160,8 +159,6 @@ namespace file
       file_offset             m_iCurItem;
 
 
-      //ItemPtrArray         m_itemptra;
-      //tree_data            m_tree;
       sp(::data::tree_item)   m_ptreeitem;
       sp(::data::tree_item)   m_ptreeitemFlush;
       ::primitive::memory_offset              m_iBranch;
@@ -213,11 +210,6 @@ namespace file
       void MacroEnd();
 
 
-      sp(::data::tree_item) get_previous(sp(::data::tree_item) pitem);
-      sp(::data::tree_item) get_next(sp(::data::tree_item) pitem, bool bChild = true);
-
-      virtual sp(::data::tree_item_data) on_allocate_item();
-      //virtual void on_delete_item(sp(tree_item_data) pitem);
 
 
    protected:
@@ -231,8 +223,7 @@ namespace file
 
 
       edit_buffer(const ::file::edit_buffer & ) :
-         ::data::tree(NULL),
-         ::data::tree_data(NULL)
+         ::data::tree(NULL)
       {
 
       }

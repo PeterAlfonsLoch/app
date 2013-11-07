@@ -24,6 +24,7 @@ namespace user
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
+      virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
       virtual void on_create_views();
 
       DECL_GEN_SIGNAL(_001OnCreate)

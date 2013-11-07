@@ -89,21 +89,21 @@ namespace filemanager
    {
 
       {
-         FileManagerViewUpdateHint uh;
-         uh.set_type(FileManagerViewUpdateHint::TypeSynchronizePath);
+         update_hint uh;
+         uh.set_type(update_hint::TypeSynchronizePath);
          update_all_views(NULL, 0, &uh);
       }
 
 
-      FileManagerInterface::OnFileManagerBrowse();
+      manager::OnFileManagerBrowse();
 
    }
 
    void document::OpenSelectionProperties()
    {
       {
-         FileManagerViewUpdateHint uh;
-         uh.set_type(FileManagerViewUpdateHint::TypeOpenSelectionProperties);
+         update_hint uh;
+         uh.set_type(update_hint::TypeOpenSelectionProperties);
          update_all_views(NULL, 0, &uh);
       }
 
@@ -114,10 +114,10 @@ namespace filemanager
    {
 
       if(get_filemanager_data() != NULL
-      && get_filemanager_data()->m_ptemplate != NULL)
+      && get_filemanager_data()->m_pschema != NULL)
       {
-//         FileManagerTemplate * ptemplate = get_filemanager_data()->m_ptemplate;
-         if(id == get_filemanager_data()->m_ptemplate->m_strLevelUp)
+//         ::schema * ptemplate = get_filemanager_data()->m_pschema;
+         if(id == get_filemanager_data()->m_pschema->m_strLevelUp)
          {
             FileManagerOneLevelUp();
             return true;
@@ -128,7 +128,7 @@ namespace filemanager
 
    bool document::_001OnUpdateCmdUi(cmd_ui * pcmdui)
    {
-      /*if(pcmdui->m_id == get_filemanager_data()->m_ptemplate->m_strLevelUp)
+      /*if(pcmdui->m_id == get_filemanager_data()->m_pschema->m_strLevelUp)
       {
       FileManagerOnUpdateLevelUp(pcmdui);
       return true;
@@ -142,7 +142,7 @@ namespace filemanager
    if (nCode == CN_UPDATE_COMMAND_UI)
    {
    cmd_ui * pcmdui = (cmd_ui *) pExtra;
-   if(nID == get_filemanager_data()->m_ptemplate->m_uiLevelUp)
+   if(nID == get_filemanager_data()->m_pschema->m_uiLevelUp)
    {
    FileManagerOnUpdateLevelUp(pcmdui);
    return TRUE;
@@ -159,7 +159,7 @@ namespace filemanager
 
    if(nMsg == WM_COMMAND)
    {
-   if(nID == get_filemanager_data()->m_ptemplate->m_uiLevelUp)
+   if(nID == get_filemanager_data()->m_pschema->m_uiLevelUp)
    {
    FileManagerOnLevelUp();
    return TRUE;
@@ -259,9 +259,9 @@ namespace filemanager
 
       if(get_filemanager_data()->is_saving())
       {
-         FileManagerViewUpdateHint uh;
+         update_hint uh;
          uh.m_pmanager = this;
-         uh.set_type(FileManagerViewUpdateHint::TypeSaveAsOK);
+         uh.set_type(update_hint::TypeSaveAsOK);
          update_all_views(NULL, 0, &uh);
       }
 
@@ -278,7 +278,7 @@ namespace filemanager
 
       CreateViews();
 
-      FileManagerViewUpdateHint uh;
+      update_hint uh;
 
 
       uh.m_pmanager = this;
@@ -316,12 +316,12 @@ namespace filemanager
          FileManagerBrowse("");
       }
 
-      uh.set_type(FileManagerViewUpdateHint::TypeCreateBars);
+      uh.set_type(update_hint::TypeCreateBars);
       update_all_views(NULL, 0, &uh);
 
       if(bMakeVisible)
       {
-         uh.set_type(FileManagerViewUpdateHint::TypePop);
+         uh.set_type(update_hint::TypePop);
          update_all_views(NULL, 0, &uh);
       }
 
@@ -335,17 +335,17 @@ namespace filemanager
    void document::CreateViews()
    {
 
-      FileManagerViewUpdateHint uh;
+      update_hint uh;
       uh.m_pmanager = this;
-      uh.set_type(FileManagerViewUpdateHint::TypeCreateViews);
+      uh.set_type(update_hint::TypeCreateViews);
       update_all_views(NULL, 0, &uh);
 
-      uh.set_type(FileManagerViewUpdateHint::TypeInitialize);
+      uh.set_type(update_hint::TypeInitialize);
       uh.m_uiId = get_filemanager_data()->m_iDocument;
       uh.m_pmanager = this;
       update_all_views(NULL, 0, &uh);
 
-      uh.set_type(FileManagerViewUpdateHint::TypeSynchronizeLocations);
+      uh.set_type(update_hint::TypeSynchronizeLocations);
       uh.m_uiId = get_filemanager_data()->m_iDocument;
       uh.m_pmanager = this;
       update_all_views(NULL, 0, &uh);
@@ -355,13 +355,13 @@ namespace filemanager
 
    void document::PopViews()
    {
-      FileManagerViewUpdateHint uh;
+      update_hint uh;
       uh.m_uiId = get_filemanager_data()->m_iDocument;
       uh.m_pmanager = this;
-      uh.set_type(FileManagerViewUpdateHint::TypeCreateBars);
+      uh.set_type(update_hint::TypeCreateBars);
       update_all_views(NULL, 0, &uh);
 
-      uh.set_type(FileManagerViewUpdateHint::TypePop);
+      uh.set_type(update_hint::TypePop);
 
       update_all_views(NULL, 0, &uh);
    }
@@ -394,7 +394,7 @@ namespace filemanager
 
    sp(file_manager_operation_document) document::get_operation_doc(bool bSwitch)
    {
-      FileManagerTabView * ptabview = get_typed_view < FileManagerTabView > ();
+      ::filemanager::tab_view * ptabview = get_typed_view < ::filemanager::tab_view > ();
       if(ptabview == NULL)
          return NULL;
 
@@ -417,8 +417,8 @@ namespace filemanager
 
    void document::GetActiveViewSelection(::fs::item_array & itema)
    {
-      FileManagerViewUpdateHint uh;
-      uh.set_type(FileManagerViewUpdateHint::TypeGetActiveViewSelection);
+      update_hint uh;
+      uh.set_type(update_hint::TypeGetActiveViewSelection);
       update_all_views(NULL, 0, &uh);
       itema = uh.m_itemaSelected;
    }
@@ -426,19 +426,19 @@ namespace filemanager
 
    void document::FileManagerSaveAs(sp(::user::document_interface) pdocument)
    {
-      FileManagerInterface::FileManagerSaveAs(pdocument);
-      FileManagerViewUpdateHint uh;
+      ::manager::FileManagerSaveAs(pdocument);
+      update_hint uh;
       uh.m_pmanager = this;
-      uh.set_type(FileManagerViewUpdateHint::TypeSaveAsStart);
+      uh.set_type(update_hint::TypeSaveAsStart);
       update_all_views(NULL, 0, &uh);
-      uh.set_type(FileManagerViewUpdateHint::TypeCreateBars);
+      uh.set_type(update_hint::TypeCreateBars);
       update_all_views(NULL, 0, &uh);
    }
 
 
 
 
-   ::filemanager::data * document::get_filemanager_data()
+   ::list_data * document::get_filemanager_data()
    {
 
 
@@ -458,7 +458,7 @@ namespace filemanager
    }
 
 
-   bool document::set_filemanager_data(::filemanager::data * pdata)
+   bool document::set_filemanager_data(::list_data * pdata)
    {
 
 

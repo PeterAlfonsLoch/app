@@ -16,21 +16,21 @@ namespace filemanager
 
 class CLASS_DECL_CORE folder_selection_list_view :
    virtual public ::user::split_view,
-   virtual public FileManagerInterface
+   virtual public ::filemanager::manager
 {
 public:
 
 
-   filemanager::SimpleFolderTreeView *    m_ptreeview;
+   ::filemanager::tree *    m_ptreeview;
    folder_list_view *                     m_plistview;
-   sp(filemanager::data)                  m_pdata;
+   sp(filemanager::list_data)                  m_pdata;
 
 
    folder_selection_list_view(sp(base_application) papp);
    ~folder_selection_list_view();
 
 
-   virtual ::filemanager::data * get_filemanager_data();
+   virtual ::filemanager::list_data * get_filemanager_data();
 
 
 
@@ -41,7 +41,7 @@ public:
 
    void CreateViews();
 
-   void Initialize(FileManagerTemplate * ptemplate, const char * lpcszSection, ::database::id datakey, bool bRecursive);
+   void Initialize(::filemanager::schema * ptemplate, const char * lpcszSection, ::database::id datakey, bool bRecursive);
 
    virtual void OnFileManagerBrowse();
 

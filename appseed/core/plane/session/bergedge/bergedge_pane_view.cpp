@@ -288,7 +288,7 @@ namespace bergedge
          case PaneViewWinActionArea:
             {
                pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
-               FileManagerTemplate * ptemplate = &papp.filemanager().std();
+               ::filemanager::schema * ptemplate = &papp.filemanager().std();
                sp(::filemanager::document) pdoc = ptemplate->open_child_list(false, true, pcreatordata->m_pholder);
                if(pdoc != NULL)
                {
@@ -380,7 +380,7 @@ namespace bergedge
             {
                if(m_ppropform == NULL)
                {
-                  m_ppropform = new filemanager::SimpleFilePropertiesForm(get_app());
+                  m_ppropform = new filemanager::::filemanager::file_properties_form(get_app());
                }
                pcreatordata->m_pwnd = m_ppropform->open(this, m_itema);
                if(pcreatordata->m_pwnd == NULL)
@@ -418,7 +418,7 @@ namespace bergedge
    }
 
    /*void pane_view::OnFileManagerOpenFile(
-         ::filemanager::data * pdata,
+         ::filemanager::list_data * pdata,
          ::fs::item_array & itema)
    {
       if(itema.get_size() > 0)
@@ -619,7 +619,7 @@ namespace bergedge
       }*/
    }
 
-   void pane_view::OnFileManagerOpenContextMenu(::filemanager::data * pdata)
+   void pane_view::OnFileManagerOpenContextMenu(::filemanager::list_data * pdata)
    {
 
       UNREFERENCED_PARAMETER(pdata);
@@ -637,11 +637,11 @@ namespace bergedge
 
    }
 
-   /*void pane_view::OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, ::fs::item & item)
+   /*void pane_view::OnFileManagerOpenContextMenuFolder(::filemanager::list_data * pdata, ::fs::item & item)
    {
    }
 */
-   void pane_view::OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema)
+   void pane_view::OnFileManagerOpenContextMenuFile(::filemanager::list_data * pdata, const ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
       m_itema = itema;

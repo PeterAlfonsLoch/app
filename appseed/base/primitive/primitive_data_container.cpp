@@ -24,9 +24,9 @@ namespace data
       return m_spdata;
    }
 
-   bool data_container::is_data_in_use() const
+   bool data_container::is_data_locked() const
    {
-      return m_spdata->is_in_use();
+      return m_spdata->is_locked();
    }
 
    void data_container::on_update_data(int32_t iHint)

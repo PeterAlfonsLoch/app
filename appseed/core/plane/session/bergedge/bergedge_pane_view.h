@@ -6,7 +6,7 @@ namespace bergedge
 
    class CLASS_DECL_CORE pane_view : 
       public ::userex::pane_tab_view,
-      public FileManagerCallbackInterface,
+      public filemanager::callback,
       public ::bergedge::form_callback
    {
    public:
@@ -17,7 +17,7 @@ namespace bergedge
       int32_t                                   m_iNewArea;
       int32_t                                   m_iArea;
       int32_t                                   m_iDisplay;
-      filemanager::SimpleFilePropertiesForm *   m_ppropform;
+      ::filemanager::file_properties_form *     m_ppropform;
       ::fs::item_array                          m_itema;
 
 
@@ -43,10 +43,10 @@ namespace bergedge
       bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
       
    /*   virtual void OnFileManagerOpenContextMenuFolder(
-         ::filemanager::data * pdata, 
+         ::filemanager::list_data * pdata, 
          ::fs::item & item);*/
-      virtual void OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema);
-      virtual void OnFileManagerOpenContextMenu(::filemanager::data * pdata);
+      virtual void OnFileManagerOpenContextMenuFile(::filemanager::list_data * pdata, const ::fs::item_array & itema);
+      virtual void OnFileManagerOpenContextMenu(::filemanager::list_data * pdata);
 
       void _001OnDraw(::draw2d::graphics * pdc);
 

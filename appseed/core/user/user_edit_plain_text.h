@@ -65,7 +65,6 @@ namespace user
       index_array                m_iaLineEndIndex;
       count_array                m_iaCLineIndex;
 
-      plain_text_data *          m_pdata;
       bool                       m_bOwnData;
 
 
@@ -132,7 +131,7 @@ namespace user
 
       static UINT ThreadProcScrollSize(LPVOID lpvoid);
 
-      void set_plain_text_data(plain_text_data * pdata, bool bOwnData);
+      void set_plain_root(plain_text_tree * proot, bool bOwnData);
 
       void _001OnKeyboardFocusTimer(int32_t iTimer);
 
@@ -145,7 +144,7 @@ namespace user
 
 
 
-      virtual void on_updata_data(::data::data * pdata, int32_t iHint);
+      virtual void on_updata_data(::data::simple_data * pdata, int32_t iHint);
 
 
       virtual bool create_control(class ::user::control::descriptor * pdescriptor);
@@ -184,7 +183,7 @@ namespace user
       void IndexRegisterInsert(strsize iSel, const char * lpcszWhat);
 
       void MacroBegin();
-      void MacroRecord(sp(plain_text_data::Command) pcommand);
+      void MacroRecord(sp(plain_text_command) pcommand);
       void MacroEnd();
 
       bool Undo();
@@ -201,8 +200,9 @@ namespace user
       DECL_GEN_SIGNAL(_001OnSetCursor)
 
 
-      virtual sp(::data::tree_item_data) on_allocate_item();
+      virtual sp(::data::item) on_allocate_item();
 
+      void set_root(plain_text_tree * pdata, bool bOwnData);
 
    };
 

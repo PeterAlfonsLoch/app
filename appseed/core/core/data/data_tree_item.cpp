@@ -34,12 +34,7 @@ namespace data
    tree_item::tree_item()
    {
       m_dwUser          = 0;
-      m_pparent         = NULL;
-      m_pchild          = NULL;
-      m_pprevious       = NULL;
-      m_pnext           = NULL;
       m_dwState         = 0;
-      m_pitemdata       = NULL;
    }
 
 
@@ -53,98 +48,10 @@ namespace data
       return m_ptree;
    }
 
-   void tree_item::sort_children(index ( * lpfnCompare )(sp(tree_item) &, sp(tree_item) &))
+   void tree_item::sort_children(index ( * lpfnCompare )(sp(tree_item) * pitem, sp(tree_item) * pitem2))
    {
 
-      sp(tree_item) pitemParent = this;
-      sp(tree_item) pitem1 = pitemParent->m_pchild;
-      sp(tree_item) pitem2;
-      for(; pitem1 != NULL; pitem1 = pitem1->m_pnext)
-      {
-         pitem2 = pitem1->m_pnext;
-         for(;pitem2 != NULL; pitem2 = pitem2->m_pnext)
-         {
-            if(lpfnCompare(pitem1, pitem2) > 0)
-            {
-               swap_sibling(pitem1, pitem2);
-            }
-         }
-      }
-
-   }
-
-   void tree_item::swap_sibling(sp(tree_item) pitem1, sp(tree_item) pitem2)
-   {
-      ASSERT(pitem1 != NULL);
-      ASSERT(pitem2 != NULL);
-      ASSERT(pitem1->m_pparent == pitem2->m_pparent);
-
-      sp(tree_item) pprevious1 = pitem1->m_pprevious;
-      sp(tree_item) pnext1 = pitem1->m_pnext;
-      sp(tree_item) pprevious2 = pitem2->m_pprevious;
-      sp(tree_item) pnext2 = pitem2->m_pnext;
-      if(pitem1->m_pnext == pitem2)
-      {
-         pitem1->m_pnext      = pnext2;
-         pitem2->m_pprevious  = pprevious1;
-         pitem1->m_pprevious  = pitem2;
-         pitem2->m_pnext      = pitem1;
-         if(pprevious1 != NULL)
-         {
-            pprevious1->m_pnext = pitem2;
-         }
-         if(pnext2 != NULL)
-         {
-            pnext2->m_pprevious = pitem1;
-         }
-      }
-      else if(pitem1->m_pprevious == pitem2)
-      {
-         pitem1->m_pprevious  = pprevious2;
-         pitem2->m_pnext      = pnext1;
-         pitem1->m_pnext      = pitem2;
-         pitem2->m_pprevious  = pitem1;
-         if(pnext1 != NULL)
-         {
-            pnext1->m_pprevious = pitem2;
-         }
-         if(pprevious2 != NULL)
-         {
-            pprevious2->m_pnext = pitem1;
-         }
-      }
-      else
-      {
-         pitem1->m_pprevious  = pprevious2;
-         pitem1->m_pnext      = pnext2;
-         pitem2->m_pprevious  = pprevious1;
-         pitem2->m_pnext      = pnext1;
-         if(pprevious1 != NULL)
-         {
-            pprevious1->m_pnext = pitem2;
-         }
-         if(pnext1 != NULL)
-         {
-            pnext1->m_pprevious = pitem2;
-         }
-         if(pprevious2 != NULL)
-         {
-            pprevious2->m_pnext = pitem1;
-         }
-         if(pnext2 != NULL)
-         {
-            pnext2->m_pprevious = pitem1;
-         }
-      }
-
-      if(pitem2->m_pparent->m_pchild == pitem2)
-      {
-         pitem2->m_pparent->m_pchild = pitem1;
-      }
-      else if(pitem1->m_pparent->m_pchild == pitem1)
-      {
-         pitem1->m_pparent->m_pchild = pitem2;
-      }
+      m_children.quick_sort(lpfnCompare);
 
    }
 
@@ -155,28 +62,15 @@ namespace data
 
       ca += remove_tree_item_descendants();
 
-      if(m_pnext != NULL)
-      {
-
-         m_pnext->m_pprevious = m_pprevious;
-
-      }
-
-
-      if(m_pprevious != NULL)
-      {
-
-         m_pprevious->m_pnext = m_pnext;
-
-      }
-
       if(m_pparent != NULL)
       {
 
-         if(m_pparent->m_pchild == this)
+         if(m_pparent->m_children.contains(this))
          {
 
-            m_pparent->m_pchild = m_pnext;
+            m_pparent->m_children.remove(this);
+
+            m_pparent.release();
 
          }
 
@@ -190,12 +84,13 @@ namespace data
    ::count tree_item::remove_tree_item_descendants()
    {
 
+
       ::count ca = 0;
 
-      while(m_pchild.is_set())
+      while(m_children.has_elements())
       {
 
-         ca += m_pchild->remove_tree_item();
+         ca += m_children.last_element()->remove_tree_item();
 
       }
 
@@ -219,50 +114,36 @@ namespace data
 
    sp(tree_item) tree_item::get_child_by_user_data(uint_ptr iUserData)
    {
-      sp(tree_item) pitem = m_pchild;
-      while(pitem != NULL)
+      for (index i = 0; i < m_children.get_count(); i++)
       {
-         if(pitem->m_dwUser == iUserData)
-            return pitem;
-         pitem = pitem->m_pnext;
+         if(m_children[i].m_dwUser == iUserData)
+            return m_children(i);
       }
       return NULL;
    }
 
    void tree_item::get_children(tree_item_ptr_array & ptra)
    {
-      sp(tree_item) pitem = m_pchild;
-      while(pitem != NULL)
-      {
-         ptra.add(pitem);
-         pitem = pitem->m_pnext;
-      }
+      ptra.copy(m_children);
    }
 
 
    ::count tree_item::get_children_count()
    {
-      ::count iCount = 0;
-      sp(tree_item) pitem = m_pchild;
-      while(pitem != NULL)
-      {
-         iCount++;
-         pitem = pitem->m_pnext;
-      }
-      return iCount;
+
+      return m_children.get_count();
+
    }
 
    ::count tree_item::get_expandable_children_count()
    {
       ::count iCount = 0;
-      sp(tree_item) pitem = m_pchild;
-      while(pitem != NULL)
+      for (index i = 0; i < m_children.get_count(); i++)
       {
-         if(pitem->get_children_count() > 0)
+         if (m_children[i].get_children_count() > 0)
          {
             iCount++;
          }
-         pitem = pitem->m_pnext;
       }
       return iCount;
    }
@@ -270,16 +151,14 @@ namespace data
    sp(tree_item) tree_item::get_expandable_child(index iIndex)
    {
       ::count iCount = 0;
-      sp(tree_item) pitem = m_pchild;
-      while(pitem != NULL)
+      for (index i = 0; i < m_children.get_count(); i++)
       {
-         if(pitem->get_children_count() > 0)
+         if (m_children[i].get_children_count() > 0)
          {
-            if(iCount == iIndex)
-               return pitem;
+            if (iCount == iIndex)
+               return m_children(i);
             iCount++;
          }
-         pitem = pitem->m_pnext;
       }
       return NULL;
    }
@@ -322,19 +201,12 @@ namespace data
       {
       case RelativeFirstChild:
          {
-            return m_pchild;
+            return m_children.has_elements() ? m_children.first_element() : NULL;
          }
          break;
       case RelativeLastChild:
          {
-            if(m_pchild == NULL)
-               return NULL;
-            pitem = m_pchild;
-            while(pitem->m_pnext != NULL)
-            {
-               pitem = pitem->m_pnext;
-            }
-            return pitem;
+            return m_children.has_elements() ? m_children.last_element() : NULL;
          }
       case RelativeParent:
          {
@@ -349,12 +221,20 @@ namespace data
          break;
       case RelativePreviousSibling:
          {
-            return m_pprevious;
+            ASSERT(m_pparent != NULL);
+            index iFind = m_pparent->m_children.find_first(this);
+            if (iFind <= 0)
+               return NULL;
+            return m_pparent->m_children(iFind - 1);
          }
          break;
       case RelativeNextSibling:
          {
-            return m_pnext;
+            ASSERT(m_pparent != NULL);
+            index iFind = m_pparent->m_children.find_first(this);
+            if (iFind < 0 || iFind >= m_pparent->m_children.get_upper_bound())
+               return NULL;
+            return m_pparent->m_children(iFind + 1);
          }
          break;
       case RelativeLastSibling:
@@ -372,22 +252,42 @@ namespace data
 
    sp(tree_item) tree_item::get_previous()
    {
-      if(m_pprevious != NULL)
-         return m_pprevious;
-      else
+      if (m_pparent == NULL)
+         return NULL;
+      index iFind = m_pparent->m_children.find_first(this);
+      if (iFind <= 0)
          return m_pparent;
+      return m_pparent->m_children(iFind - 1);
+   }
+
+
+   sp(tree_item) tree_item::first_child()
+   {
+      
+      if (m_children.is_empty())
+         return NULL;
+
+      return m_children.first_element();
+
    }
 
 
    sp(tree_item) tree_item::get_next(bool bChild, bool bParent, index * pindexLevel)
    {
-      if(bChild && m_pchild != NULL)
+
+      index iFind;
+      
+      if(bChild && m_children.has_elements())
       {
-         if(pindexLevel != NULL) (*pindexLevel)++;
-         return m_pchild;
+         
+         if(pindexLevel != NULL)
+            (*pindexLevel)++;
+
+         return m_children(0);
+
       }
-      else if(m_pnext != NULL)
-         return m_pnext;
+      else if (m_pparent != NULL && (iFind = m_pparent->m_children.find_first(this)) >= 0 && iFind >= m_pparent->m_children.get_upper_bound())
+         return m_pparent->m_children(iFind + 1);
       else if(bParent && m_pparent != NULL)
       {
          if(pindexLevel != NULL) (*pindexLevel)--;
@@ -398,61 +298,26 @@ namespace data
    }
 
 
-   bool tree_item::add_selection()
-   {
-      return m_ptree->add_tree_item_selection(this);
-   }
-
-   bool tree_item::set_selection()
-   {
-      return m_ptree->set_tree_item_selection(this);
-   }
-
-   bool tree_item::clear_selection()
-   {
-      return m_ptree->remove_tree_item_selection(this);
-   }
-
-   bool tree_item::remove_selection()
-   {
-      return m_ptree->remove_tree_item_selection(this);
-   }
-
-   bool tree_item::hover()
-   {
-      return m_ptree->hover_tree_item(this);
-   }
-
-   bool tree_item::is_hover()
-   {
-      return m_ptree->is_tree_item_hover(this);
-   }
-
-   bool tree_item::is_selected()
-   {
-      return m_ptree->is_tree_item_selected(this);
-   }
-
 
    string tree_item::get_text()
    {
-      if(m_pitemdata == NULL)
+      if(m_pitem == NULL)
          return "";
-      return m_pitemdata->get_text(m_ptree);
+      return m_pitem->data_item_get_text(m_ptree);
    }
 
    index tree_item::get_image()
    {
-      if(m_pitemdata == NULL)
+
+      if(m_pitem == NULL)
          return -1;
-      return m_pitemdata->get_image(m_ptree);
+
+      return m_pitem->data_item_get_image(m_ptree.cast < ::user::interaction >());
+
    }
 
    sp(image_list) tree_item::get_image_list()
    {
-
-      if(m_ptreedata != NULL)
-         return m_ptreedata->m_pimagelist;
 
       if(m_ptree != NULL)
          return m_ptree->get_image_list();

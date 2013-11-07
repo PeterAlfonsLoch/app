@@ -1,23 +1,44 @@
 #pragma once
 
-/*namespace filemanager
+
+namespace filemanager
 {
 
    enum e_flag
    {
-      FlagInZip,
-      FlagFolder,
-      FlagFolderEx001,
-      FlagFolderEx001Calc,
-      FlagHasSubFolder,
-      FlagHasSubFolderUnknown,
+
+      flag_zip_compressed,
+      flag_folder,
+      flag_folder_ex001,
+      flag_folder_ex001_calc,
+      flag_has_sub_folder,
+      flag_has_sub_folder_unknown
+
    };
 
-   enum EArrange
+   
+   enum e_attribute
    {
-      ArrangeByName,
+
+      attribute_name
+
+   };
+
+   enum EFolder
+   {
+
+
+   FolderMyComputer,
+
+
    };
 
 
 } // namespace filenamager
-*/
+
+
+#define FILE_MANAGER_ID_FILE_NAME 1
+
+
+
+

@@ -225,19 +225,6 @@ namespace user
 //         virtual void install_message_handling(::message::dispatch * pinterface);
    };
 
-   class view_update_hint :
-      virtual public object
-   {
-   public:
-      enum etype
-      {
-         TypeOpenDocument,
-      };
-   public:
-      view_update_hint(sp(base_application) papp);
-      etype m_etype;
-   };
-
 
 
 

@@ -1,9 +1,4 @@
 #include "framework.h"
-#include "SimpleFileListView.h"
-#include "SimpleFolderTreeView.h"
-#include "SimplePreview.h"
-#include "filemanager_folder_selection_list_view.h"
-#include "filemanager_folder_list_view.h"
 
 
 namespace filemanager
@@ -27,7 +22,7 @@ namespace filemanager
 
       set_data_server(Application.simpledb().get_data_server());
 
-      if(!FileManagerFileListCallback::initialize())
+      if(!filemanager::file_list_callback::initialize())
          return false;
 
       InitializeFileManager("filemanager/filemanager");
@@ -79,18 +74,17 @@ namespace filemanager
       if(Application.is_system())
       {
          System.factory().creatable_small < ::filemanager::document > ();
-         System.factory().creatable_small < FileManagerChildFrame > ();
-         System.factory().creatable_small < FileManagerAView > ();
-         System.factory().creatable_small < FileManagerPathView > ();
+         System.factory().creatable_small < ::filemanager::child_frame > ();
+         System.factory().creatable_small < ::filemanager::a_view > ();
+         System.factory().creatable_small < ::filemanager::path_view > ();
          System.factory().creatable_small < FileManagerSaveAsView > ();
-         System.factory().creatable_small < FileManagerLeftView > ();
-         System.factory().creatable_small < FileManagerView > ();
+         System.factory().creatable_small < ::filemanager::left_view > ();
+         System.factory().creatable_small < ::filemanager::main_view > ();
          System.factory().creatable_small < ::filemanager::document > ();
-         System.factory().creatable_small < ::filemanager::SimpleFileListView > ();
-         System.factory().creatable_small < ::filemanager::SimpleFolderTreeView > ();
-         System.factory().creatable_small < ::filemanager::SimplePreview > ();
-         System.factory().creatable_small < FileManagerMainFrame > ();
-         System.factory().creatable_small < FileManagerTabView > ();
+         System.factory().creatable_small < ::filemanager::::filemanager::file_list > ();
+         System.factory().creatable_small < ::filemanager::::filemanager::preview > ();
+         System.factory().creatable_small < ::filemanager::main_frame > ();
+         System.factory().creatable_small < ::filemanager::tab_view > ();
          System.factory().creatable_small < file_manager_form_document > ();
          System.factory().creatable_small < file_manager_form_child_frame > ();
          System.factory().creatable_small < file_manager_form_view > ();
@@ -104,16 +98,15 @@ namespace filemanager
 
 
          System.factory().creatable_small < ::filemanager::fs::simple::view > ();
-         System.factory().creatable_small < ::filemanager::fs::simple::tree_view > ();
          System.factory().creatable_small < ::filemanager::fs::simple::list_view > ();
       }
 
 
-      m_ptemplateStd = new FileManagerTemplate(this);
+      m_ptemplateStd = new ::filemanager::schema(this);
       Application.user()->shellimageset().initialize();
       m_ptemplateStd->Initialize(0, pszMatter);
 
-      m_ptemplateFs = new FileManagerTemplate(this);
+      m_ptemplateFs = new ::filemanager::schema(this);
       m_ptemplateFs->Initialize(0, string("fs.") + string(pszMatter));
 
       m_ptemplateForm = new ::user::multiple_document_template(
@@ -133,7 +126,7 @@ namespace filemanager
 
 
 
-   void filemanager::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
+   void filemanager::OnFileManagerOpenFile(::filemanager::list_data * pdata, ::fs::item_array & itema)
    {
 
       item_action * pitemaction = dynamic_cast < item_action * > (this);
@@ -174,7 +167,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(ptemplate);
       ASSERT(bOpenFileDialog == FALSE);
       sp(::filemanager::document) pdoc =  (m_ptemplateStd->open());
-      FileManagerTabView * pview = pdoc->get_typed_view < FileManagerTabView >();
+      ::filemanager::tab_view * pview = pdoc->get_typed_view < ::filemanager::tab_view >();
 
 #ifdef WINDOWSEX
       oswindow oswindowDesktop = ::GetDesktopWindow();
@@ -249,7 +242,7 @@ namespace filemanager
 
    void filemanager::on_request(sp(::create_context) pcreatecontext)
    {
-      FileManagerCallbackInterface::on_request(pcreatecontext);
+      filemanager::callback::on_request(pcreatecontext);
    }
 
 

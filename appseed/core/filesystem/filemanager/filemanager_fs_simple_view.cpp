@@ -53,13 +53,15 @@ namespace filemanager
         
             set_position_rate(0, 0.2);
 
-         
-
-            m_ptree = create_view < tree_view > ();
+            m_ptree = new tree(get_app());
 
             m_ptree->m_pserver = this;
 
-            SetPane(0, m_ptree, false);
+            m_pusertree = create_view < ::user::tree > ();
+
+            m_pusertree->merge(m_ptree);
+
+            SetPane(0, m_pusertree, false);
 
             m_plist = create_view < list_view > ();
 
@@ -96,7 +98,13 @@ namespace filemanager
             psignal->m_memoryRet.to_string(strResponse);
 
             m_ptree->parse(strResponse);
+
+            m_pusertree->_001SelectItem(m_ptree->FindTreeItem(m_ptree->m_iParentFolder));
+
+
             m_plist->parse(strResponse);
+
+            layout();
 
          }
 

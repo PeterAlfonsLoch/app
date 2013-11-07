@@ -10,8 +10,6 @@ namespace filehandler
       ::data::tree(papp)
    {
 
-      ::data::data_container::m_spdata = new tree_data(get_app());
-         
    }
 
 
@@ -26,10 +24,6 @@ namespace filehandler
 
    }
 
-   sp(tree_data) tree_interface::get_filehandler_tree_data()
-   {
-      return  (::data::data_container::m_spdata.m_p);
-   }
    
    
 } // namespace filehandler

@@ -4,37 +4,53 @@
 namespace data
 {
 
-   data::writing::writing(::data::data * pdata) :
-      interlocked_long_pulse(pdata != NULL ? &pdata->m_lockedlongWriting : NULL, 1)
+   simple_lock::simple_lock(simple_data * pdata) :
+      interlocked_long_pulse(pdata != NULL ? &pdata->m_lockedlong : NULL, 1)
    {
       if(pdata != NULL)
       {
-         if(pdata->m_lockedlongWriting == 1 && (pdata->m_spdataParentLock.is_null() || !pdata->m_spdataParentLock->is_in_use()))
+         if(pdata->m_lockedlong == 1)
          {
             Sys(pdata->m_pbaseapp).wait_twf();
          }
       }
    }
 
-   data::writing::~writing()
+   simple_lock::~simple_lock()
    {
    }
 
-   data::saving::saving(data * pdata) :
-      interlocked_long_pulse(pdata != NULL ? &pdata->m_lockedlongSaving : NULL, 1)
+   
+   bool simple_data::is_locked() const
    {
-      if(pdata != NULL)
+
+      return m_lockedlong > 0;
+
+   }
+
+
+   void simple_data::on_update_data(int32_t iHint)
+   {
+
+   }
+
+
+   lock::lock(::data::data * pdata) :
+      interlocked_long_pulse(pdata != NULL ? &pdata->m_lockedlong : NULL, 1)
+   {
+      if (pdata != NULL)
       {
-         if(pdata->m_lockedlongSaving == 1 && (pdata->m_spdataParentLock.is_null() || !pdata->m_spdataParentLock->is_in_use()))
+         if (pdata->m_lockedlong == 1 && (pdata->m_spdataParentLock.is_null() || !pdata->m_spdataParentLock->is_locked()))
          {
             Sys(pdata->m_pbaseapp).wait_twf();
          }
       }
    }
 
-   data::saving::~saving()
+   lock::~lock()
    {
    }
+
 
    data::data(sp(base_application) papp) :
       element(papp),
@@ -52,9 +68,9 @@ namespace data
       }
    }
 
-   bool data::is_in_use() const
+   bool data::is_locked() const
    {
-      return m_lockedlongWriting > 0 || m_lockedlongSaving > 0 || (m_spdataParentLock.is_set() && m_spdataParentLock->is_in_use());
+      return ::data::simple_data::is_locked() || (m_spdataParentLock.is_set() && m_spdataParentLock->is_locked());
    }
 
    void data::on_update_data(int32_t iHint)

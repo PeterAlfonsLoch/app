@@ -7,70 +7,92 @@ class base_edit;
 namespace data
 {
 
+
    class data_listener;
    class data;
+   class simple_data;
+
 
    typedef CLASS_DECL_BASE spa(data_listener) data_listener_ptra;
    typedef CLASS_DECL_BASE comparable_array < data * > data_ptra;
    typedef CLASS_DECL_BASE comparable_array < sp(element) > ca_ptra;
 
 
-   class CLASS_DECL_BASE data :
-      virtual public object
+   class CLASS_DECL_BASE simple_lock :
+      public interlocked_long_pulse
    {
    public:
 
 
-      class CLASS_DECL_BASE writing :
-         public interlocked_long_pulse
-      {
-      public:
+      sp(simple_data)    m_spdata;
 
 
-         sp(data)    m_spdata;
+      simple_lock(simple_data * pdata);
+      virtual ~simple_lock();
+
+   };
+
+   
 
 
-         writing(data * pdata);
-         virtual ~writing();
-
-      };
-
-      class CLASS_DECL_BASE saving :
-         public interlocked_long_pulse
-      {
-      public:
+   class CLASS_DECL_BASE simple_data :
+      virtual public root
+   {
+   public:
 
 
-         sp(data) m_spdata;
+      // writing to or reading from this data
+      interlocked_long  m_lockedlong;
 
 
-         saving(data * pdata);
-         virtual ~saving();
+      virtual bool is_locked() const;
 
 
-      };
+      virtual void on_update_data(int32_t iHint);
+
+
+   };
+
+
+
+   class CLASS_DECL_BASE lock :
+      public interlocked_long_pulse
+   {
+   public:
+
+
+      sp(data)    m_spdata;
+
+
+      lock(data * pdata);
+      virtual ~lock();
+
+   };
+
+
+
+
+   class CLASS_DECL_BASE data :
+      virtual public object,
+      virtual public simple_data
+   {
+   public:
+
 
       spa(data_listener)                     m_listenerptra;
       sp(data)                               m_spdataParentLock;
 
-      // writing to this data
-      interlocked_long  m_lockedlongWriting;
 
-      // reading data - for saving for example;
-      interlocked_long  m_lockedlongSaving;
+      mutex  *                               m_pmutex;
 
-
-      mutex  *           m_pmutex;
 
       data(sp(base_application) papp);
       virtual ~data();
 
 
-      virtual bool is_in_use() const;
-
+      virtual bool is_locked() const;
 
       virtual void on_update_data(int32_t iHint);
-
 
       virtual void edit(base_edit * pbaseedit);
       template < class EDIT >

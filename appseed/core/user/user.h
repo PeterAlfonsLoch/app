@@ -66,6 +66,7 @@ namespace user
 
 
 #include "user_view.h"
+#include "user_view_update_hint.h"
 
 
 #include "user_control.h"

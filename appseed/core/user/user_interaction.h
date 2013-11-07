@@ -3,7 +3,10 @@
 
 #include "user/user_window_interface.h"
 
-   class message_queue_listener;
+class message_queue_listener;
+
+class image_list;
+
 
 namespace core
 {
@@ -22,6 +25,16 @@ namespace core
 #endif
 
 } // namespace core
+
+
+namespace data
+{
+   
+
+   class item;
+
+
+} // namespace data
 
 
 namespace user
@@ -553,6 +566,10 @@ namespace user
 
 
       virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
+
+
+      virtual bool is_selected(::data::item * pitem);
+      sp(image_list) get_image_list();
 
    };
 

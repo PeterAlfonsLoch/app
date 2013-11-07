@@ -1,8 +1,4 @@
 #include "framework.h"
-#include "filemanager_folder_list_view.h"
-#include "filemanager_folder_selection_list_view.h"
-#include "SimpleFolderTreeView.h"
-#include "FileManagerViewUpdateHint.h"
 
 
 folder_selection_list_view::folder_selection_list_view(sp(base_application) papp) :
@@ -11,7 +7,7 @@ folder_selection_list_view::folder_selection_list_view(sp(base_application) papp
    
    ::user::split_view(papp),
    place_holder_container(papp),
-   m_pdata(new filemanager::data(papp))
+   m_pdata(new filemanager::list_data(papp))
 {
 }
 
@@ -26,21 +22,21 @@ void folder_selection_list_view::install_message_handling(::message::dispatch * 
 
 
 
-void folder_selection_list_view::Initialize(FileManagerTemplate * ptemplate, const char * lpcszSection, ::database::id datakey, bool bRecursive)
+void folder_selection_list_view::Initialize(::filemanager::schema * ptemplate, const char * lpcszSection, ::database::id datakey, bool bRecursive)
 {
    get_filemanager_data()->m_pmanager  = this;
-   get_filemanager_data()->m_ptemplate = ptemplate;
+   get_filemanager_data()->m_pschema = ptemplate;
    get_filemanager_data()->m_iTemplate = ptemplate->m_iTemplate;
    get_filemanager_data()->m_iDocument = 0;
 
    string str;
-   str.Format("folder_selection_list_view(%s,%s)", get_filemanager_data()->m_ptemplate->m_strDISection, lpcszSection);
+   str.Format("folder_selection_list_view(%s,%s)", get_filemanager_data()->m_pschema->m_strDISection, lpcszSection);
    m_dataid = str;
 
    CreateViews();
    
    m_plistview->Initialize(datakey, bRecursive);
-   str.Format("folder_selection_list_view.ListView(%s,%s)", get_filemanager_data()->m_ptemplate->m_strDISection, lpcszSection);
+   str.Format("folder_selection_list_view.ListView(%s,%s)", get_filemanager_data()->m_pschema->m_strDISection, lpcszSection);
    m_plistview->m_dataid = str;
 
    m_plistview->_001UpdateColumns();
@@ -65,7 +61,7 @@ void folder_selection_list_view::CreateViews()
   
    set_position_rate(0, 0.30);
 
-   m_ptreeview = create_view  < filemanager::SimpleFolderTreeView > ();
+   m_ptreeview = create_view  < ::filemanager::tree > ();
 
    if(m_ptreeview == NULL)
    {
@@ -92,8 +88,8 @@ void folder_selection_list_view::CreateViews()
 void folder_selection_list_view::OnFileManagerBrowse()
 {
    {
-      FileManagerViewUpdateHint uh;
-      uh.set_type(FileManagerViewUpdateHint::TypeSynchronizeFolderSelection);
+      filemanager::update_hint uh;
+      uh.set_type(filemanager::update_hint::TypeSynchronizeFolderSelection);
       get_document()->update_all_views(NULL, 0, &uh);
    }
 }
@@ -134,7 +130,7 @@ void folder_selection_list_view::_001OnRemove(signal_details * pobj)
    FolderRemove();
 }
 
-::filemanager::data * folder_selection_list_view::get_filemanager_data()
+::filemanager::list_data * folder_selection_list_view::get_filemanager_data()
 {
    return m_pdata;
 }

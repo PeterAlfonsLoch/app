@@ -16,21 +16,21 @@ element::element()
 }
 
 
-element::element(const element & o) :
-   m_pbaseapp(o.m_pbaseapp)
+element::element(const element & o)
 {
 
-   m_ulFlags            = o.m_ulFlags;
+   m_pbaseapp = o.m_pbaseapp;
+   m_ulFlags = o.m_ulFlags;
    m_pfactoryitembase   = NULL;
 
 }
 
 
-element::element(sp(base_application) papp) :
-   m_pbaseapp(papp)
+element::element(sp(base_application) papp)
 {
 
-   m_ulFlags            = (uint32_t) flag_auto_clean;
+   m_pbaseapp = papp;
+   m_ulFlags = (uint32_t)flag_auto_clean;
    m_pfactoryitembase   = NULL;
 
 }

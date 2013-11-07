@@ -4,6 +4,41 @@
 #include "filesystem/userfs/userfs.h"
 
 
+
+namespace user
+{
+
+
+   class button;
+   class multiple_document_template;
+
+
+} // namespace user
+
+
+namespace fs
+{
+
+
+   class item;
+   class item_array;
+
+
+} // namespace fs
+
+
+namespace filemanager
+{
+
+   class callback;
+   class manager;
+   class schema;
+   class file_list;
+   class folder_list;
+
+} // namespace filemanager
+
+
 #include "filemanager_const.h"
 
 #include "filemanager_icon.h"
@@ -19,39 +54,37 @@
 
 #include "filemanager_folder_list_data.h"
 
-#include "FileManagerCallbackInterface.h"
-#include "filemanager_data.h"
+#include "filemanager_callback.h"
+#include "filemanager_list_data.h"
 #include "filemanager_item_action.h"
-#include "FileManagerInterface.h"
-#include "FileManagerViewUpdateHint.h"
-#include "FileManagerViewInterface.h"
-#include "FileManagerFileListCallback.h"
-#include "FileManagerTemplate.h"
+#include "filemanager_manager.h"
+#include "filemanager_update_hint.h"
+#include "filemanager_data_interface.h"
+#include "filemanager_file_list_callback.h"
+#include "filemanager_schema.h"
 #include "filemanager_document.h"
-#include "FileManagerFrame.h"
-#include "FileManagerMainFrame.h"
-#include "FileManagerPathView.h"
-#include "FileManagerSaveAsNameView.h"
-#include "FileManagerTabView.h"
-#include "FileManagerLeftView.h"
-#include "FileManagerView.h"
-#include "FileManagerChildFrame.h"
+#include "filemanager_frame.h"
+#include "filemanager_main_frame.h"
+#include "filemanager_path_view.h"
+#include "filemanager_save_as_name_view.h"
+#include "filemanager_tab_view.h"
+#include "filemanager_left_view.h"
+#include "filemanager_view.h"
+#include "filemanager_child_frame.h"
 
 
 #include "filemanager_fs_simple_list_view.h"
-#include "filemanager_fs_simple_tree_view.h"
+#include "filemanager_fs_simple_tree.h"
 #include "filemanager_fs_simple_view.h"
 
-#include "ContextMenu.h"
+#include "filemanager_context_menu.h"
 
-#include "SimpleFolderTreeInterface.h"
-#include "SimpleFolderTreeView.h"
+#include "filemanager_tree.h"
 
-#include "SimpleFilePropertiesForm.h"
+#include "filemanager_file_properties_form.h"
 
-#include "SimplePreviewInterface.h"
-#include "SimplePreview.h"
-#include "SimpleFileListView.h"
+#include "filemanager_preview.h"
+#include "filemanager_file_list.h"
 
 
 #include "filemanager_form_document.h"
@@ -59,9 +92,19 @@
 #include "filemanager_form_view.h"
 #include "filemanager_form_update_hint.h"
 
+#include "filemanager_folder_selection_list_view.h"
+#include "filemanager_folder_list_view.h"
+
+#include "filemanager_update_hint.h"
+
+#include "filemanager_frame.h"
+#include "filemanager_child_frame.h"
+#include "filemanager_main_frame.h"
+
 
 
 #include "filemanager_filemanager.h"
+
 
 
 

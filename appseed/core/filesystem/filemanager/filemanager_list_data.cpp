@@ -1,0 +1,229 @@
+#include "framework.h"
+
+
+namespace filemanager
+{
+
+
+   list_data::list_data(sp(base_application) papp) :
+      element(papp),
+      ::userfs::list_data(papp)
+   {
+      m_iIconSize                = 16;
+      m_bListText                = true;
+      m_bListSelection           = true;
+      m_bFileSize                = false;
+      m_bPassBk                  = false;
+      m_bIconView                = false;
+      m_pholderFileList          = NULL;
+      m_ptreeFileTreeMerge       = NULL;
+      m_pdocumentSave            = NULL;
+      m_pschema                = NULL;
+      m_bSetBergedgeTopicFile    = false;
+   }
+
+   list_data::~list_data()
+   {
+
+   }
+
+   void list_data::OnFileManagerOpenContextMenuFolder(sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle)
+   {
+
+      ASSERT(m_pcallback != NULL);
+
+      if(m_pcallback != NULL)
+      {
+
+         m_pcallback->OnFileManagerOpenContextMenuFolder(this, item, straCommand, straCommandTitle);
+
+      }
+
+   }
+
+
+   void list_data::OnFileManagerOpenContextMenuFile(const ::fs::item_array & itema)
+   {
+
+      ASSERT(m_pcallback != NULL);
+
+      if(m_pcallback != NULL)
+      {
+
+         m_pcallback->OnFileManagerOpenContextMenuFile(this, itema);
+
+      }
+
+   }
+
+
+   void list_data::OnFileManagerOpenContextMenu()
+   {
+
+      ASSERT(m_pcallback != NULL);
+
+      if(m_pcallback != NULL)
+      {
+
+         m_pcallback->OnFileManagerOpenContextMenu(this);
+
+      }
+
+   }
+
+
+   void list_data::OnFileManagerOpenFile(const ::fs::item_array & itema)
+   {
+
+      ASSERT(m_pcallback != NULL);
+
+      if(is_saving() && itema.get_count() == 1)
+      {
+
+         sp(document) pdoc =  (m_pmanager);
+         update_hint uh;
+         uh.m_pmanager = m_pmanager;
+         uh.m_strPath = itema[0].m_strPath;
+         uh.set_type(update_hint::TypeSaveAsOK);
+         pdoc->update_all_views(NULL, 0, &uh);
+         m_pdocumentSave = NULL;
+
+      }
+      else if(m_pcallback != NULL)
+      {
+         
+         var varFile;
+
+         var varQuery;
+
+         if(itema.get_count() == 2 && m_id == "left_file")
+         {
+            {
+               varFile = itema[0].m_strPath;
+               varQuery["file_manager_id"] = "left_file";
+               m_pcallback->request_file_query(varFile, varQuery);
+            }
+
+            {
+               varFile = itema[1].m_strPath;
+               varQuery["file_manager_id"] = "right_file";
+               m_pcallback->request_file_query(varFile, varQuery);
+            }
+         }
+         else if(itema.get_count() == 2 && m_id == "right_file")
+         {
+            {
+               varFile = itema[0].m_strPath;
+               varQuery["file_manager_id"] = "right_file";
+               m_pcallback->request_file_query(varFile, varQuery);
+            }
+
+            {
+               varFile = itema[1].m_strPath;
+               varQuery["file_manager_id"] = "left_file";
+               m_pcallback->request_file_query(varFile, varQuery);
+            }
+         }
+         else
+         {
+
+            varFile = itema.get_var_file();
+
+            varQuery = itema.get_var_query();
+
+            varQuery["file_manager_id"] = m_id;
+
+            m_pcallback->request_file_query(varFile, varQuery);
+
+         }
+
+      }
+
+   }
+
+
+   void list_data::OnFileManagerOpenFolder(sp(::fs::item)  item)
+   {
+
+      ASSERT(m_pcallback != NULL);
+
+      if(m_pcallback != NULL)
+      {
+
+         m_pcallback->OnFileManagerOpenFolder(this, item);
+
+      }
+
+   }
+
+
+   void list_data::OnFileManagerItemUpdate(cmd_ui * pcmdui, const ::fs::item_array & itema)
+   {
+
+      ASSERT(m_pcallback != NULL);
+
+      if(m_pcallback != NULL)
+      {
+
+         m_pcallback->OnFileManagerItemUpdate(this, pcmdui, itema);
+
+      }
+
+   }
+
+
+   void list_data::OnFileManagerItemCommand(const char * pszId, const ::fs::item_array & itema)
+   {
+
+      ASSERT(m_pcallback != NULL);
+
+      if(m_pcallback != NULL)
+      {
+
+         m_pcallback->OnFileManagerItemCommand(this, pszId, itema);
+
+      }
+
+   }
+
+
+   void list_data::FileManagerBrowse(sp(::fs::item)  item)
+   {
+
+      ASSERT(m_pmanager != NULL);
+
+      if(m_pmanager != NULL)
+      {
+
+         m_pmanager->FileManagerBrowse(item);
+
+      }
+
+   }
+
+   void list_data::FileManagerBrowse(const char * lpcsz)
+   {
+      
+      ASSERT(m_pmanager != NULL);
+      
+      if(m_pmanager != NULL)
+      {
+
+         m_pmanager->FileManagerBrowse(lpcsz);
+
+      }
+
+   }
+
+
+   bool list_data::is_saving()
+   {
+
+      return m_pdocumentSave != NULL;
+
+   }
+
+
+} // namespace filemanager
+
+

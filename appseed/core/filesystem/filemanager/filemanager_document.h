@@ -7,12 +7,12 @@ namespace filemanager
 
    class CLASS_DECL_CORE document :
       public ::userfs::document,
-      virtual public FileManagerInterface
+      virtual public ::filemanager::manager
    {
    public:
 
 
-      sp(::filemanager::data)       m_spfilemanagerdata;
+      sp(::filemanager::list_data)       m_spfilemanagerdata;
 
 
 
@@ -26,7 +26,7 @@ namespace filemanager
       virtual bool _001OnCommand(id id);
       virtual bool _001OnUpdateCmdUi(cmd_ui * pcmdui);
 
-      virtual ::filemanager::data * get_filemanager_data();
+      virtual ::filemanager::list_data * get_filemanager_data();
 
       virtual ::fs::data * get_fs_data();
 
@@ -59,7 +59,7 @@ namespace filemanager
 
       virtual void FileManagerSaveAs(sp(::user::document_interface) pdocument);
 
-      bool set_filemanager_data(::filemanager::data * pdata);
+      bool set_filemanager_data(::filemanager::list_data * pdata);
 
 
    };

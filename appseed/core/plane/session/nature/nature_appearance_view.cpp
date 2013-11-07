@@ -56,19 +56,29 @@ namespace nature
 
    void appearance_view::on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint)
    {
+      
       UNREFERENCED_PARAMETER(pSender);
+      
       UNREFERENCED_PARAMETER(lHint);
+
       if(pHint != NULL)
       {
          if(base < ::user::view_update_hint > :: bases(pHint))
          {
+
             ::user::view_update_hint * puh = dynamic_cast < ::user::view_update_hint * > (pHint);
-            if(puh->m_etype == ::user::view_update_hint::TypeOpenDocument)
+
+            if(puh->m_ehint == ::user::view_update_hint::hint_open_document)
             {
+
                set_cur_tab_by_id(view_image_folder);
+
             }
+
          }
+
       }
+
    }
 
 

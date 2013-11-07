@@ -21,7 +21,7 @@ namespace data
       virtual bool set_data(::data::data * pdata);
       data * get_data();
 
-      virtual bool is_data_in_use() const;
+      virtual bool is_data_locked() const;
 
       virtual void on_update_data(int32_t iHint);
 

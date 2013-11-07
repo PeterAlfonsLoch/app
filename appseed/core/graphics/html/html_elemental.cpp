@@ -715,7 +715,7 @@ namespace html
 
    elemental::~elemental()
    {
-      ::data::data::writing writing(m_pdata);
+      ::data::lock lock(m_pdata);
       delete m_pimpl;
       for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
       {
@@ -727,7 +727,7 @@ namespace html
    void elemental::implement(data * pdata)
    {
       m_pdata = pdata;
-      ::data::data::writing writing(pdata);
+      ::data::lock lock(pdata);
       implement_phase1(pdata);
       implement_phase2(pdata);
    }
@@ -1418,7 +1418,7 @@ namespace html
          return;
       if(pbase == NULL)
          return;
-      ::data::data::writing writing(pdata);
+      ::data::lock lock(pdata);
 
       m_pbase = pbase;
       m_elementalptra.remove_all();

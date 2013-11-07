@@ -1,0 +1,1368 @@
+#include "framework.h"
+
+
+namespace filemanager
+{
+
+
+   tree::tree(sp(base_application) papp) :
+      element(papp),
+      ::userfs::tree(papp),
+      m_mutexMissinUpdate(papp)
+   {
+      m_pdataitemCreateImageListStep = NULL;
+
+      m_iAnimate = 0;
+      //   IconKey iconkey;
+      //iconkey.m_strExtension = "";
+      //iconkey.m_strPath = "";
+      //iconkey.m_iIcon = 0;
+      //SHFILEINFO shfi;
+      //SHGetFileInfo(
+      // "foo",
+      //FILE_ATTRIBUTE_DIRECTORY,
+      //&shfi,
+      //sizeof(shfi),
+      //SHGFI_USEFILEATTRIBUTES
+      //| SHGFI_ICON
+      //| SHGFI_SMALLICON);
+      //icon icon;
+      //icon.m_hicon = shfi.hIcon;
+      //icon.m_iImage = m_pimagelist->add(icon.m_hicon);
+
+      //   m_pimagelist = NULL;
+
+
+      //   m_iDefaultImage = icon.m_iImage;
+      //   m_iconmap.set_at(iconkey, icon);
+
+      //   iconkey.m_strExtension = "";
+      // iconkey.m_strPath = "";
+      //iconkey.m_iIcon = 1;
+      /*SHGetFileInfo(
+      "foo",
+      FILE_ATTRIBUTE_DIRECTORY,
+      &shfi,
+      sizeof(shfi),
+      SHGFI_USEFILEATTRIBUTES
+      | SHGFI_ICON
+      | SHGFI_SMALLICON
+      | SHGFI_OPENICON);
+      icon.m_hicon = shfi.hIcon;
+      icon.m_iImage = m_pimagelist->add(icon.m_hicon);
+      m_iDefaultImageSelected = icon.m_iImage;
+      m_iconmap.set_at(iconkey, icon);*/
+
+
+      m_bDelayedListUpdate = false;
+
+
+
+
+   }
+
+   tree::~tree()
+   {
+
+   }
+
+
+
+   void tree::_017EnsureVisible(const char * lpcsz)
+   {
+      stringa stra;
+
+      get_document()->set().get_ascendants_path(lpcsz, stra);
+
+      m_straUpdatePtrFilter = stra;
+
+      //for(int32_t i = stra.get_size() - 1; i >= 0; i--)
+      for(int32_t i = 0; i < stra.get_size(); i++)
+      {
+         string strAscendant = stra[i];
+         sp(::data::tree_item) pitem = find_item(strAscendant);
+         if(pitem == NULL)
+         {
+            string str;
+            str = strAscendant;
+            if(i == 0)
+            {
+               _017UpdateList("", NULL, 1);
+            }
+            else
+            {
+               get_document()->set().eat_end_level(str, 1);
+               _017UpdateList(str, NULL, 1);
+            }
+         }
+         pitem = find_item(strAscendant);
+         if(pitem == NULL)
+            break;
+
+         if(!(pitem->m_dwState & ::data::tree_item_state_expanded))
+         {
+            _001ExpandItem(pitem, true, false, false);
+         }
+      }
+
+
+      m_straUpdatePtrFilter.remove_all();
+
+      {
+
+         single_lock sl(&m_mutexMissinUpdate, TRUE);
+
+         m_straMissingUpdate = stra;
+
+      }
+
+      _StartDelayedListUpdate();
+
+      sp(::data::tree_item) pitem = find_item(lpcsz);
+
+      if(pitem != NULL)
+      {
+         index iLevel = 0;
+
+         index iIndex = get_proper_item_index(pitem, &iLevel);
+
+         index iLastVisibleIndex = (index) (m_scrollinfo.m_ptScroll.y + _001GetVisibleItemCount() - 5);
+
+         index iObscured; // obscured proper descendants
+         iObscured = iIndex  - iLastVisibleIndex;
+
+         if(iObscured > 0)
+         {
+            int32_t iNewScroll = (int32_t) (m_scrollinfo.m_ptScroll.y + iIndex * _001GetItemHeight());
+            m_scrollinfo.m_ptScroll.y = max(iNewScroll, 0);
+         }
+      }
+      layout();
+      _001RedrawWindow();
+   }
+
+   sp(::data::tree_item) tree::find_item(const char * lpcsz)
+   {
+      return find_absolute(lpcsz);
+   }
+
+   void tree::_017Browse(const char * lpcsz, bool bForceUpdate)
+   {
+      if(!bForceUpdate)
+      {
+         sp(::data::tree_item) pitem = find_item(lpcsz);
+         if(pitem != NULL)
+         {
+            if(is_selected(pitem))
+               return;
+            if(is_selected(pitem->m_pparent))
+            {
+               selection_add(pitem);
+               return;
+            }
+         }
+      }
+
+      single_lock slBrowse(&m_csBrowse, TRUE);
+
+      if(strlen(lpcsz) == 0)
+      {
+         _017UpdateList("", get_base_item(), 1);
+      }
+
+      _017EnsureVisible(lpcsz);
+
+      _001SelectItem(find_item(lpcsz));
+
+
+      _StartCreateImageList();
+
+   }
+
+   void tree::_017UpdateZipList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel)
+   {
+
+      string szPath(lpcsz);
+
+      string wstrExtraPath;
+      string wstrItemExtra;
+
+      index iFind;
+      ::file::binary_buffer_sp spfile(allocer());
+
+      //spfile->open(szPath, ::file::mode_read | ::file::type_binary);
+
+      /*array < ::file::memory_buffer, ::file::memory_buffer & > filea;
+      _vmszipFile zipfile;
+
+      zipfile.m_pfile = &file;
+
+      unzFile pf = _vmszipApi::unzipOpen(&zipfile);
+
+      array < ::file::memory_buffer, ::file::memory_buffer & > filea;
+      int32_t iStart = 0;
+      int32_t iFind;
+      while((iFind  = wstrExtra.find(L".zip:", iStart)) >= 0)
+      {
+      filea.add(::file::memory_buffer());
+      pf->dump(filea.last_element(), wstrExtra.Mid(iStart + 5, iFind - iStart + 5));
+      iStart = iFind + 1;
+      }*/
+
+
+      stringa wstraItem;
+      stringa wstraChildItem;
+
+      string str;
+
+      str = szPath;
+      str = str.Mid(0, str.reverse_find(".zip:") + 4);
+
+      zip::Util().ls(get_app(), str, false, &wstraItem);
+
+      string wstrFolder;
+      stringa wstraFolder;
+      string wstrItem;
+      ::data::tree_item_ptr_array ptraRemove;
+      pitemParent->get_children(ptraRemove);
+
+      for(int32_t i = 0; i < wstraItem.get_size(); i++)
+      {
+         wstrItem = wstraItem[i];
+
+         sp(::userfs::item) pitemNew = canew(::userfs::item);
+
+         pitemNew->m_strPath = lpcsz;
+         pitemNew->m_flags.signalize(::fs::FlagInZip);
+
+         wstrExtraPath = wstrItem;
+
+         // ignore this file if its not in the Extra sub folder
+         /*            if(wstrExtraPath.Left(wstrExtra.get_length()) != wstrExtra ||
+         wstrExtraPath == wstrExtra)
+         continue;*/
+
+         //            wstrItemExtra = wstrExtraPath.Mid(wstrExtra.get_length());
+
+         pitemNew->m_flags.unsignalize_all();
+
+         iFind = wstrItemExtra.find("/");
+         if(iFind > 0)
+         {
+            wstrFolder = wstrItemExtra.Left(iFind);
+            if(wstraFolder.find_first(wstrFolder) >= 0)
+               continue;
+            wstraFolder.add(wstrFolder);
+            pitemNew->m_flags.signalize(::fs::FlagFolder);
+            pitemNew->m_strPath   = szPath;
+            pitemNew->m_iImage     = -1;
+            pitemNew->m_strName   = wstrFolder;
+         }
+         else
+         {
+            pitemNew->m_strPath   = szPath;
+            pitemNew->m_iImage     = -1;
+            pitemNew->m_strName   = wstrItemExtra;
+            string str;
+            str = szPath + wstrExtraPath;
+            if(zip::Util().IsUnzipable(get_app(), str))
+            {
+               pitemNew->m_flags.signalize(::fs::FlagFolder);
+            }
+         }
+         if(pitemNew->m_flags.is_signalized(::fs::FlagFolder))
+         {
+            pitemNew->m_iImage         = m_iDefaultImage;
+            pitemNew->m_iImageSelected = m_iDefaultImageSelected;
+            //         item.m_flags.signalize(FlagInZip);
+            ::data::tree_item  * pitem    = find_item(pitemNew->m_strPath);
+            if(pitem == NULL)
+            {
+               pitem = insert_item(pitemNew, ::data::RelativeLastChild, pitemParent);
+            }
+            else
+            {
+               pitem = insert_item(pitemNew, ::data::RelativeReplace, pitem);
+            }
+            str = szPath;
+            wstraChildItem.remove_all();
+            if(zip::Util().HasSubFolder(get_app(), str))
+            {
+               pitem->m_dwState |= ::data::tree_item_state_expandable;
+            }
+            if(iLevel > 1)
+            {
+               _017UpdateZipList(pitemNew->m_strPath, pitem, iLevel - 1);
+            }
+         }
+      }
+
+
+      remove(ptraRemove);
+
+   }
+
+   void tree::_017UpdateList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel)
+   {
+      if(lpcsz == NULL)
+         lpcsz = "";
+
+
+      /*if(lpcsz == NULL)
+      {
+      if(zip::Util(get_app()).IsUnzipable(pitemParent->m_strPath))
+      {
+      _017UpdateZipList(lpcsz, NULL, pitemParent, iLevel - 1);
+      }
+      return;
+      }*/
+
+      m_strPath = lpcsz;
+
+      if(pitemParent == NULL)
+      {
+         pitemParent =  get_base_item();
+      }
+      else if(get_base_item() == NULL)
+      {
+         m_pitem = pitemParent;
+      }
+
+
+      stringa straAscendants;
+
+      sp(::data::tree_item) pitem;
+
+      sp(::data::tree_item) pitemBase;
+
+      sp(::userfs::item) pitemChild;
+
+      string strNew;
+
+      System.file().get_ascendants_path(lpcsz, straAscendants);
+
+      pitemBase = get_base_item();
+
+      for(int32_t i = 0; i < straAscendants.get_count(); i++)
+      {
+         string strItem = straAscendants[i];
+         strItem.trim("/\\");
+         if(strItem.is_empty())
+            continue;
+         pitem = find_item(strItem);
+         if(pitem == NULL)
+         {
+            pitem = find_item(strItem + "\\");
+            if(pitem == NULL)
+            {
+               pitem = find_item(strItem + "/");
+               if(pitem == NULL)
+               {
+                  pitem = find_item(strItem + "//");
+                  if(pitem == NULL)
+                  {
+                     strItem.replace("\\", "/");
+                     pitem = find_item(strItem);
+                     if(pitem == NULL)
+                     {
+                        pitem = find_item(strItem + "/");
+                     }
+                  }
+               }
+            }
+
+         }
+         strNew.Empty();
+         if(pitem != NULL)
+         {
+            pitemBase = pitem;
+            continue;
+         }
+         else
+         {
+            // pitem == NULL
+            if(i == 0)
+            {
+               if(strItem[1] == ':')
+               {
+                  strNew = strItem + "\\";
+               }
+               else if(strItem.find(':') >= 0)
+               {
+                  strNew = strItem + "//";
+               }
+            }
+            else
+            {
+               strNew = strItem;
+            }
+         }
+         if(strNew.is_empty())
+         {
+            // error
+            return;
+         }
+
+         pitemChild = canew(::userfs::item);
+
+         pitemChild->m_strPath = get_document()->set().dir_path(strNew, "");
+
+         //if(m_straUpdatePtrFilter.find_first(straPath[i]) >= 0)
+         //{
+         //   continue;
+         //}
+         pitemChild->m_strName = System.file().name_(strNew);
+
+         pitemChild->m_flags.signalize(::fs::FlagFolder);
+//         pitemChild->m_iImage = m_iDefaultImage;
+
+#ifdef WINDOWSEX
+
+         pitemChild->m_iImage = System.user()->shellimageset().GetImage(
+            NULL,
+            pitemChild->m_strPath,
+            NULL,
+            _shell::IconNormal,
+            true);
+
+#else
+
+         pitemChild->m_iImage = -1;
+
+#endif
+
+         pitemChild->m_iImageSelected = m_iDefaultImageSelected;
+
+         pitem = find_item(pitemChild->m_strPath);
+         if(pitem != NULL)
+         {
+            //pitem = insert_item(pitemChild, ::data::RelativeReplace, pitem);
+            // a refresh or a file monitoring event for folder deletion or creation should
+            // the most precisely possible way reset this flag
+            //pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
+            // error
+            return;
+         }
+         else
+         {
+            pitem = insert_item(pitemChild, ::data::RelativeLastChild, pitemBase);
+         }
+
+         if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
+         {
+            pitem->m_dwState |= ::data::tree_item_state_expandable;
+         }
+
+
+         pitemBase = pitem;
+
+         //if(iLevel > 1)
+         //{
+           // _017UpdateList(pitemChild->m_strPath,  pitem, iLevel - 1);
+         //}
+
+      }
+
+
+      pitemParent = pitemBase;
+
+
+
+      if(GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge != NULL
+         && !(dynamic_cast < ::user::tree * > (GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge.m_p))->m_treeptra.contains(this))
+      {
+         GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge->merge(this);
+      }
+
+      sp(::userfs::item) pitemFolder = NULL;
+
+      pitemFolder = pitemParent->m_pitem;
+
+      if(pitemFolder != NULL && pitemFolder->m_flags.is_signalized(::fs::FlagHasSubFolderUnknown))
+      {
+         if(get_document()->set().has_subdir(pitemFolder->m_strPath))
+         {
+            pitemFolder->m_flags.signalize(::fs::FlagHasSubFolder);
+         }
+         pitemFolder->m_flags.unsignalize(::fs::FlagHasSubFolderUnknown);
+      }
+
+      stringa straChildItem;
+      string str;
+
+      uint32_t dwTimeIn;
+      uint32_t dwTimeOut;
+
+      dwTimeIn = get_tick_count();
+
+      int32_t iMaxSize;
+      iMaxSize = 1000;
+
+      int32_t iSize;
+      iSize = 0;
+
+      int32_t iChildCount;
+
+      iChildCount = 0;
+
+      stringa straPath;
+      stringa straTitle;
+      if(strlen(lpcsz) == 0)
+      {
+         get_document()->set().root_ones(straPath);
+         straTitle = straPath;
+      }
+      else
+      {
+         get_document()->set().ls(lpcsz, &straPath, & straTitle);
+      }
+
+      pitem = pitemParent->m_children.first_element();
+
+      stringa straNew = straPath;
+
+      straNew.trim_right("/\\");
+
+      ::data::tree_item_ptr_array ptraRemove;
+
+      while(pitem != NULL)
+      {
+
+         string strPathOld =  pitem->m_pitem.cast < ::userfs::item > ()->m_strPath;
+
+         strPathOld.trim_right("/\\");
+
+         if(!straNew.contains(strPathOld) || !GetFileManager()->get_fs_data()->is_dir(strPathOld))
+         {
+            ptraRemove.add(pitem);
+         }
+
+         pitem = pitem->get_next(false, false);
+
+      }
+
+      remove(ptraRemove);
+
+
+
+      int32_t i;
+
+      for(i = 0; i < straPath.get_size(); i++)
+      {
+
+         pitemChild = canew(::userfs::item);
+
+         iChildCount++;
+
+         pitemChild->m_strPath = get_document()->set().dir_path(straPath[i], "");
+
+         //if(m_straUpdatePtrFilter.find_first(straPath[i]) >= 0)
+         //{
+         //   continue;
+         //}
+         pitemChild->m_strName = straTitle[i];
+         if(!get_document()->set().is_dir(straPath[i]))
+         {
+            if(zip::Util().IsUnzipable(get_app(), pitemChild->m_strPath))
+            {
+
+               pitemChild->m_flags.signalize(::fs::FlagFolder);
+
+               pitemChild->m_iImage = m_iDefaultImage;
+
+               pitemChild->m_iImageSelected = m_iDefaultImageSelected;
+
+               pitemChild->m_flags.signalize(::fs::FlagInZip);
+
+               pitem = find_item(pitemChild->m_strPath);
+
+               if(pitem != NULL)
+               {
+
+                  pitem = insert_item(pitemChild, ::data::RelativeReplace, pitem);
+
+               }
+               else
+               {
+
+                  pitem = insert_item(pitemChild, ::data::RelativeLastChild, pitemParent);
+
+               }
+
+               if(zip::Util().HasSubFolder(get_app(), pitemChild->m_strPath))
+               {
+
+                  pitem->m_dwState |= ::data::tree_item_state_expandable;
+
+               }
+
+               if(iLevel > 1)
+               {
+
+                  _017UpdateZipList(pitemChild->m_strPath, pitem, iLevel - 1);
+
+               }
+
+            }
+            else
+            {
+               continue;
+            }
+         }
+
+         if(get_document()->set().fast_has_subdir(pitemChild->m_strPath))
+         {
+            pitemChild->m_flags.signalize(::fs::FlagHasSubFolder);
+         }
+
+
+
+         pitemChild->m_flags.signalize(::fs::FlagFolder);
+
+#ifdef WINDOWSEX
+         try
+         {
+            pitemChild->m_iImage = System.user()->shellimageset().GetImage(
+               NULL,
+               pitemChild->m_strPath,
+               NULL,
+               _shell::IconNormal,
+               true);
+            pitemChild->m_iImageSelected = System.user()->shellimageset().GetImage(
+               NULL,
+               pitemChild->m_strPath,
+               NULL,
+               _shell::IconOpen,
+               true);
+         }
+         catch(...)
+         {
+            pitemChild->m_iImage = m_iDefaultImage;
+            pitemChild->m_iImageSelected = m_iDefaultImageSelected;
+         }
+#else
+
+         pitemChild->m_iImage = m_iDefaultImage;
+         pitemChild->m_iImageSelected = m_iDefaultImageSelected;
+
+#endif
+
+         pitem = find_item(pitemChild->m_strPath);
+         if(pitem != NULL)
+         {
+            pitem = insert_item(pitemChild, ::data::RelativeReplace, pitem);
+            // a refresh or a file monitoring event for folder deletion or creation should
+            // the most precisely possible way reset this flag
+            pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
+         }
+         else
+         {
+            pitem = insert_item(pitemChild, ::data::RelativeLastChild, pitemParent);
+         }
+
+         if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
+         {
+            pitem->m_dwState |= ::data::tree_item_state_expandable;
+         }
+
+         if(iLevel > 1)
+         {
+            _017UpdateList(pitemChild->m_strPath,  pitem, iLevel - 1);
+         }
+
+      }
+
+      arrange(::fs::arrange_by_name);
+
+      if(iChildCount == 0)
+      {
+         pitemParent->m_dwState &= ~::data::tree_item_state_expandable;
+      }
+
+      dwTimeOut = get_tick_count();
+
+      TRACE("timeIn%d\n", dwTimeIn);
+      TRACE("timeOut%d\n", dwTimeIn);
+      TRACE("timeDelta%d\n", dwTimeOut - dwTimeIn);
+
+
+   }
+
+   void tree::_001UpdateImageList(sp(::data::tree_item) pitem)
+   {
+      UNREFERENCED_PARAMETER(pitem);
+      //         Item & item = m_itema.get_item(pitem->m_dwUser);
+
+      //oswindow oswindow = get_handle();
+
+      /*   IShellFolder * lpsf = item.m_spshellfolder;
+
+      item.m_iImage =
+      _shell::g_imageset.GetImage(
+      oswindow,
+      lpsf,
+      item.m_lpiidlAbsolute,
+      item.m_lpiidlRelative,
+      ::str::international::utf8_to_unicode(item.m_strExtra),
+      _shell::IconNormal);
+
+      item.m_iImageSelected =
+      _shell::g_imageset.GetImage(
+      oswindow,
+      lpsf,
+      item.m_lpiidlAbsolute,
+      item.m_lpiidlRelative,
+      ::str::international::utf8_to_unicode(item.m_strExtra),
+      _shell::IconOpen);*/
+
+
+   }
+
+   void tree::_001InsertColumns()
+   {
+
+      /*::user::form_control control;
+
+      control.set_type(::user::form_control::type_edit);
+      control.m_iKey = FILE_MANAGER_ID_FILE_NAME;
+      pcontrol->descriptor().m_id = FILE_MANAGER_ID_FILE_NAME;
+      control.set_data_type(::user::form_control::DataTypeString);
+
+      int32_t iControl =  _001AddControl(control);
+
+      CColumn column;
+
+      column.m_iWidth               = 500;
+      column.m_iSubItem             = 1;
+      column.m_bIcon                = true;
+      column.m_sizeIcon.cx          = 16;
+      column.m_sizeIcon.cy          = 16;
+      column.m_iControl             = iControl;
+      column.m_iConfigId            = FILE_MANAGER_ID_FILE_NAME;
+      column.m_bEditOnSecondClick   = true;
+      _001AddColumn(column);*/
+
+   }
+
+   void tree::GetSelectedFilePath(stringa & stra)
+   {
+      for(int32_t i = 0; i < m_itemptraSelected.get_size(); i++)
+      {
+         stra.add(( (m_itemptraSelected[0].m_pitem.cast < ::userfs::item > ()))->m_strPath);
+      }
+   }
+
+
+   void tree::_017UpdateList()
+   {
+
+   }
+
+
+   void tree::_001OnMainPostMessage(signal_details * pobj)
+   {
+      SCAST_PTR(::message::base, pbase, pobj)
+         switch(pbase->m_wparam)
+      {
+         case MessageMainPostCreateImageListItemRedraw:
+            {
+               RedrawWindow();
+               KillTimer(123);
+               /*
+               rect rect;
+               int32_t iArrange = (int32_t) lparam;
+               if(_001IsItemVisible(iArrange))
+               {
+               m_bCreateImageListRedraw = true;
+               _001GetItemRect(iArrange, iArrange, rect);
+               RedrawWindow(rect);
+               m_bCreateImageListRedraw = false;
+               }*/
+            }
+            break;
+      }
+      pbase->set_lresult(0);
+      pbase->m_bRet = true;
+   }
+
+   /*
+   ::fs::item & tree::GetFileManagerItem()
+   {
+   return GetFileManager()->get_item();
+   }
+   */
+
+   void tree::_017Synchronize()
+   {
+      _017Browse(GetFileManagerItem().m_strPath);
+   }
+
+   void tree::install_message_handling(::message::dispatch *pinterface)
+   {
+      ::userfs::tree::install_message_handling(pinterface);
+      IGUI_WIN_MSG_LINK(MessageMainPost, pinterface,  this,  &tree::_001OnMainPostMessage);
+      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree::_001OnTimer);
+   }
+
+   void tree::StartAnimation()
+   {
+      m_iAnimate = 1;
+   }
+
+   void tree::TakeAnimationSnapshot()
+   {
+      m_iAnimate = 1;
+      //   ::user::tree::_001OnDraw(m_gdibuffer.GetBuffer());
+   }
+
+   void tree::_017PreSynchronize()
+   {
+      TakeAnimationSnapshot();
+   }
+
+#ifdef WINDOWSEX
+
+   IShellFolder * tree::_001GetFolder(EFolder efolder)
+   {
+      IShellFolder * psf;
+
+      if(m_mapFolder.Lookup(efolder, psf))
+      {
+         return psf;
+      }
+      else
+      {
+         int32_t iCSIDL = MapToCSIDL(efolder);
+
+         ASSERT(iCSIDL >= 0);
+
+         if(iCSIDL < 0)
+            return NULL;
+
+         IShellFolder * psfDesktop = NULL;
+         HRESULT hr = SHGetDesktopFolder(&psfDesktop);
+         LPITEMIDLIST lpidl;
+
+         hr = SHGetSpecialFolderLocation(
+            NULL,
+            iCSIDL,
+            &lpidl);
+
+         if(FAILED(hr))
+            return NULL;
+
+         hr = psfDesktop->BindToObject(
+            lpidl,
+            NULL,
+            IID_IShellFolder,
+            (void **) &psf);
+
+         if(FAILED(hr))
+            return NULL;
+
+         m_mapFolder.set_at(efolder, psf);
+
+         psf->AddRef();
+         psfDesktop->Release();
+         return psf;
+      }
+
+   }
+
+   int32_t tree::MapToCSIDL(EFolder efolder)
+   {
+      switch(efolder)
+      {
+      case FolderMyComputer:
+         return CSIDL_DRIVES;
+      default:
+         return -1;
+      }
+   }
+
+
+#endif
+
+
+   void tree::_001OnItemExpand(sp(::data::tree_item) pitem)
+   {
+      if(typeid(*pitem->m_pitem) == System.type_info < ::userfs::item > ())
+      {
+         _017UpdateList(pitem->m_pitem.cast < ::userfs::item > ()->m_strPath, pitem, 1);
+      }
+      else
+      {
+         _017UpdateList("", pitem, 1);
+      }
+   }
+
+   void tree::_001OnItemCollapse(sp(::data::tree_item) pitem)
+   {
+      UNREFERENCED_PARAMETER(pitem);
+   }
+
+   bool tree::_001IsTranslucent()
+   {
+      return true;
+   }
+
+   void tree::_001OnOpenItem(sp(::data::tree_item) pitem)
+   {
+
+      _017OpenFolder(new ::fs::item(*pitem->m_pitem.cast < ::userfs::item > ()));
+
+   }
+
+   void tree::_017OpenFolder(sp(::fs::item)  item)
+   {
+      UNREFERENCED_PARAMETER(item);
+      ASSERT(FALSE);
+   }
+
+
+   void tree::_StartCreateImageList()
+   {
+
+      if(m_pimagelist == NULL)
+      {
+
+         m_pimagelist = System.user()->shellimageset().GetImageList16();
+
+         m_iDefaultImage = System.user()->shellimageset().GetImage(
+            "foo",
+            _shell::FileAttributeDirectory,
+            _shell::IconNormal);
+
+         m_iDefaultImageSelected = System.user()->shellimageset().GetImage(
+            "foo",
+            _shell::FileAttributeDirectory,
+            _shell::IconOpen);
+
+      }
+
+
+
+      m_pdataitemCreateImageListStep = (sp(::data::tree_item)) get_base_item()->first_child();
+      SetTimer(TimerCreateImageList, 80, NULL);
+   }
+
+   void tree::_StopCreateImageList()
+   {
+      KillTimer(TimerCreateImageList);
+   }
+
+   void tree::_CreateImageListStep()
+   {
+      if(m_pdataitemCreateImageListStep == NULL)
+      {
+         _StopCreateImageList();
+         return;
+      }
+
+      _001UpdateImageList(m_pdataitemCreateImageListStep);
+
+      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(::data::TreeNavigationProperForward);
+
+
+   }
+
+   void tree::_001OnTimer(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::timer, ptimer, pobj);
+
+      switch(ptimer->m_nIDEvent)
+      {
+         case TimerDelayedListUpdate:
+            {
+               _DelayedListUpdate();
+               break;
+            }
+         case TimerCreateImageList:
+            {
+               _CreateImageListStep();
+            }
+            break;
+      }
+
+      ptimer->m_bRet = false;
+
+   }
+
+
+   void tree::_StartDelayedListUpdate()
+   {
+
+      SetTimer(TimerDelayedListUpdate, 500, NULL);
+
+   }
+
+
+   void tree::_StopDelayedListUpdate()
+   {
+
+      KillTimer(TimerDelayedListUpdate);
+
+   }
+
+
+   void tree::_DelayedListUpdate()
+   {
+
+      single_lock sl(&m_mutexMissinUpdate, TRUE);
+
+      if(m_straMissingUpdate.get_size() == 0)
+      {
+         _StopDelayedListUpdate();
+         return;
+      }
+
+      if(m_bDelayedListUpdate)
+         return;
+
+      m_bDelayedListUpdate = true;
+
+
+      sp(::data::tree_item) pitem = find_item(m_straMissingUpdate[0]);
+      if(pitem != NULL)
+      {
+
+         _017UpdateList(m_straMissingUpdate[0], pitem, 1);
+      }
+
+      m_straMissingUpdate.remove_at(0);
+
+      m_bDelayedListUpdate = false;
+
+
+   }
+
+   COLORREF tree::get_background_color()
+   {
+
+      if(GetFileManager() == NULL)
+      {
+         return ARGB(255, 200, 255, 255);
+      }
+      else if(GetFileManager()->get_filemanager_data()->is_saving())
+      {
+         return ARGB(255, 255, 177, 84);
+      }
+      else
+      {
+         return ARGB(255, 200, 255, 255);
+      }
+
+   }
+
+#include "framework.h"
+
+
+#define SHELL_COMMAND_FIRST 0x1000
+#define SHELL_COMMAND_LAST 0x2000
+
+
+   namespace filemanager
+   {
+
+
+      SimpleFolderTreeView::SimpleFolderTreeView(sp(base_application) papp) :
+         element(papp),
+
+         ::user::scroll_view(papp),
+         tree(papp),
+         m_headerctrl(papp)
+      {
+
+            m_etranslucency = TranslucencyPresent;
+
+         }
+
+      SimpleFolderTreeView::~SimpleFolderTreeView()
+      {
+      }
+
+
+
+#ifdef DEBUG
+      void SimpleFolderTreeView::assert_valid() const
+      {
+         tree::assert_valid();
+      }
+
+      void SimpleFolderTreeView::dump(dump_context & dumpcontext) const
+      {
+         tree::dump(dumpcontext);
+      }
+#endif //DEBUG
+
+
+      void SimpleFolderTreeView::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+      {
+         ::filemanager::data_interface::on_update(pSender, lHint, phint);
+         if (phint != NULL)
+         {
+            if (base < filemanager::update_hint > ::bases(phint))
+            {
+               filemanager::update_hint * puh = (filemanager::update_hint *)phint;
+               if (puh->is_type_of(filemanager::update_hint::TypeInitialize))
+               {
+                  /* xxx _001SetExpandImage(
+                  System.LoadIcon(
+                  GetFileManager()->get_filemanager_data()->m_pschema->m_uiExpandBox));
+                  _001SetCollapseImage(
+                  System.LoadIcon(
+                  GetFileManager()->get_filemanager_data()->m_pschema->m_uiCollapseBox));*/
+
+
+                  //            VmsDataInitialize(this);
+                  //          SetDataInterface(&m_datainterface);
+                  //        AddClient(&m_datainterface);
+                  string str;
+                  str.Format("SimpleFolderTreeView(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
+                  if (GetFileManager()->get_filemanager_data()->m_bTransparentBackground)
+                  {
+                     ::user::tree::m_etranslucency = ::user::tree::TranslucencyPresent;
+                  }
+                  m_dataid = str;
+                  //            _001UpdateColumns();
+               }
+               if (puh->is_type_of(filemanager::update_hint::TypeSynchronizePath))
+               {
+                  _017PreSynchronize();
+                  _017Synchronize();
+               }
+               if (puh->is_type_of(filemanager::update_hint::TypeFilter))
+               {
+                  if (puh->m_wstrFilter.is_empty())
+                  {
+                     //               FilterClose();
+                  }
+                  else
+                  {
+                     //             FilterBegin();
+                     //           Filter1(puh->m_wstrFilter);
+                     //         FilterApply();
+                  }
+               }
+            }
+         }
+      }
+
+
+      void SimpleFolderTreeView::_001OnLButtonDblClk(signal_details * pobj)
+      {
+         UNREFERENCED_PARAMETER(pobj);
+         //   int32_t iItem;
+
+         /*   if(_001HitTest_(point, iItem))
+         {
+         if(m_itema.get_item(iItem).IsFolder())
+         {
+         ::fs::item item;
+         item.m_strPath         = m_itema.get_item(iItem).m_strPath;
+         item.m_lpiidlAbsolute   = m_itema.get_item(iItem).m_lpiidlAbsolute;
+         item.m_lpiidlRelative   = m_itema.get_item(iItem).m_lpiidlAbsolute;
+         get_document()->OpenFolder(item);
+         }
+         else
+         {
+         ::fs::item item;
+         item.m_strPath         = m_itema.get_item(iItem).m_strPath;
+         item.m_lpiidlAbsolute   = m_itema.get_item(iItem).m_lpiidlAbsolute;
+         item.m_lpiidlRelative   = m_itema.get_item(iItem).m_lpiidlAbsolute;
+
+         ::fs::item_array itema;
+         itema.add(item);
+
+         GetFileManager()->get_filemanager_data()->OnFileManagerOpenFile(itema);
+         }
+         }*/
+      }
+
+      /*
+      bool SimpleFolderTreeView::OnSetData(const ::database::id &key, int32_t iLine, int32_t iColumn, var & var, ::database::update_hint * puh)
+      {
+      if(key.get_value() == FILE_MANAGER_ID_FILE_NAME)
+      {
+      ASSERT(var.get_type() == var::type_string
+      || var.is_empty());
+      string str;
+      str = var.m_str;
+      RenameFile(iLine, str);
+      }
+      return true;
+      }
+      */
+
+      /*
+      bool SimpleFolderTreeView::get_data(const ::database::id & key, int32_t iLine, int32_t iColumn, var & var)
+      {
+      string str;
+      if(key.get_value() == FILE_MANAGER_ID_FILE_NAME)
+      {
+      str = m_itema.get_item(iLine).m_wstrName;
+      }
+      var.set_type(var::type_string);
+      var.m_str = str;
+      return true;
+      }
+
+      void SimpleFolderTreeView::RenameFile(int32_t iLine, string &wstrNameNew)
+      {
+      string str = m_itema.get_item(iLine).m_strPath;
+
+      int32_t iFind = str.reverse_find(L'\\');
+
+
+      string wstrNew = str.Left(iFind + 1) + wstrNameNew;
+
+      if(!::win::shell::MoveFile(str, wstrNew))
+      {
+      System.simple_message_box("Could not rename the file");
+      }
+
+      }*/
+
+      void SimpleFolderTreeView::_001OnContextMenu(signal_details * pobj)
+      {
+         SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
+            //   int32_t iItem;
+            //   HRESULT hr;
+            point ptClient = pcontextmenu->GetPoint();
+         ::user::tree::ScreenToClient(&ptClient);
+         /*     if(_001HitTest_(ptClient, iItem))
+         {
+         CSimpleMenu menu(CBaseMenuCentral::GetMenuCentral());
+         if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_pschema->m_uiFilePopup))
+         {
+         CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
+         ASSERT(pPopup != NULL);
+         sp(::user::frame_window) pframe = GetTopLevelFrame();
+
+         pframe->SetActiveView(this);
+
+         //IContextMenu * pcontextmenu;
+
+         hr = m_spshellfolder->GetUIObjectOf(
+         NULL,
+         1,
+         (LPCITEMIDLIST *) &m_itema.get_item(iItem).m_lpiidlRelative,
+         IID_IContextMenu,
+         NULL,
+         (void **) &m_contextmenu.m_pcontextmenu);
+
+
+         if(SUCCEEDED(hr))
+         {
+         hr = m_contextmenu.m_pcontextmenu->QueryContextMenu(
+         pPopup->GetSafeHmenu(),
+         0,
+         SHELL_COMMAND_FIRST,
+         SHELL_COMMAND_LAST,
+         CMF_NORMAL);
+
+         }
+
+
+         pPopup->TrackPopupMenu(
+         point.x, point.y,
+         (sp(::user::window)) pframe);
+         }
+         }
+         else
+         {
+         ::user::menu menu;
+         if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_pschema->m_uiPopup))
+         {
+         ::user::menu* pPopup = menu.GetSubMenu(0);
+         ASSERT(pPopup != NULL);
+         sp(::user::frame_window) pframe = GetTopLevelFrame();
+         pPopup->TrackPopupMenu(
+         point.x, point.y,
+         (sp(::user::window)) pframe);
+         }
+         }*/
+      }
+
+      bool SimpleFolderTreeView::pre_create_window(CREATESTRUCT& cs)
+      {
+
+         cs.style |= WS_CLIPCHILDREN;
+
+         return tree::pre_create_window(cs);
+      }
+
+
+      void SimpleFolderTreeView::_001OnTimer(signal_details * pobj)
+      {
+         SCAST_PTR(::message::timer, ptimer, pobj)
+         if (ptimer->m_nIDEvent == 1234567)
+         {
+            m_iAnimate += 2;
+            if (m_iAnimate >= 11)
+            {
+               m_iAnimate = 0;
+               KillTimer(ptimer->m_nIDEvent);
+
+            }
+            RedrawWindow();
+         }
+         else if (ptimer->m_nIDEvent == 123)
+         {
+            _001RedrawWindow();
+            m_bTimer123 = false;
+            KillTimer(123);
+         }
+      }
+
+      void SimpleFolderTreeView::StartAnimation()
+      {
+         SetTimer(1234567, 50, NULL);
+      }
+
+      bool SimpleFolderTreeView::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+      {
+         // TODO: add your specialized code here and/or call the base class
+
+         return tree::_001OnCmdMsg(pcmdmsg);
+      }
+
+      void SimpleFolderTreeView::_001OnShellCommand(signal_details * pobj)
+      {
+         SCAST_PTR(::message::command, pcommand, pobj)
+            m_contextmenu.OnCommand(pcommand->GetId());
+      }
+
+      void SimpleFolderTreeView::_017OpenFolder(sp(::fs::item) item)
+      {
+         GetFileManager()->FileManagerBrowse(item);
+
+      }
+
+      void SimpleFolderTreeView::_001OnCreate(signal_details * pobj)
+      {
+
+         UNREFERENCED_PARAMETER(pobj);
+
+      }
+
+
+      void SimpleFolderTreeView::install_message_handling(::message::dispatch * pinterface)
+      {
+         tree::install_message_handling(pinterface);
+
+         IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &SimpleFolderTreeView::_001OnLButtonDblClk);
+         IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &SimpleFolderTreeView::_001OnContextMenu);
+         IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &SimpleFolderTreeView::_001OnTimer);
+         IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &SimpleFolderTreeView::_001OnCreate);
+
+         connect_command_range(SHELL_COMMAND_FIRST, SHELL_COMMAND_LAST, &SimpleFolderTreeView::_001OnShellCommand);
+      }
+
+
+
+
+} // namespace filemanager
+
+

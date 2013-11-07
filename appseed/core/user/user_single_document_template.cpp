@@ -207,7 +207,7 @@ namespace user
       InitialUpdateFrame(pFrame, pdocument, bMakeVisible);
 
       ::user::view_update_hint uh(get_app());
-      uh.m_etype = ::user::view_update_hint::TypeOpenDocument;
+      uh.m_ehint = ::user::view_update_hint::hint_open_document;
       pdocument->update_all_views(NULL, 0, &uh);
 
       pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;

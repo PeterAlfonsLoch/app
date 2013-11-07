@@ -3525,6 +3525,23 @@ restart:
    }
 
 
+   bool interaction::is_selected(::data::item * pitem)
+   {
+
+      UNREFERENCED_PARAMETER(pitem);
+
+      return false;
+
+   }
+
+   sp(image_list) interaction::get_image_list()
+   {
+
+      return NULL;
+
+   }
+
+
 } // namespace user
 
 

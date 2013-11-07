@@ -45,26 +45,49 @@ namespace user
 
       SCAST_PTR(::message::create, pcreate, pobj)
 
-      try
-      {
 
-         on_create_views();
-
-      }
-      catch (...)
-      {
-
-         string strMessage;
-
-         strMessage.Format("split_view::on_create_views failed to create views for split view %s", typeid(this).raw_name());
-
-         Application.simple_message_box_timeout(this, strMessage, seconds(10), MB_ICONEXCLAMATION);
-
-      }
-
-      
 
    }
+
+   void split_view::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+   {
+
+      if (phint != NULL)
+      {
+
+         view_update_hint * pupdatehint = dynamic_cast < view_update_hint * > (phint);
+
+
+         if(pupdatehint->m_ehint == view_update_hint::hint_open_document
+            || pupdatehint->m_ehint == view_update_hint::hint_create_views)
+         {
+
+            try
+            {
+
+               on_create_views();
+
+            }
+            catch (...)
+            {
+
+               string strMessage;
+
+               strMessage.Format("split_view::on_create_views failed to create views for split view %s", typeid(this).raw_name());
+
+               Application.simple_message_box_timeout(this, strMessage, seconds(10), MB_ICONEXCLAMATION);
+
+            }
+
+            layout();
+
+         }
+
+      }
+
+
+   }
+
 
    void split_view::_001OnSize(signal_details * pobj)
    {

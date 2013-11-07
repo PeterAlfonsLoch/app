@@ -120,7 +120,7 @@ namespace html
       virtual sp(::user::interaction) get_frame();
 
 
-      //virtual bool is_in_use();
+      //virtual bool is_locked();
 
       void load(const char *);
       void implement(::draw2d::graphics * pdc);

@@ -798,9 +798,8 @@ namespace core
 #include "core_process_data.h"
 
 
-#include "core/data/data_tree_item_data.h"
+#include "core/data/data_item.h"
 #include "core/data/data_tree_item.h"
-#include "core/data/data_tree_data.h"
 #include "core/data/data_tree.h"
 
 #include "core_fs_interface.h"
@@ -1203,8 +1202,7 @@ CLASS_DECL_CORE char * ::core::TaskStringW2A(const wchar_t * lpw);
 //#include "core_file_system.h"
 #include "core_resource.h"
 
-#include "core/data/data_simple_tree_item_data.h"
-#include "core/data/data_simple_tree_data.h"
+#include "core/data/data_simple_item.h"
 
 
 

@@ -36,7 +36,7 @@ void html_form::_001OnDraw(::draw2d::graphics * pdc)
    {
    }
 
-   if(sphtmldata.is_set() && !sphtmldata->is_in_use())
+   if(sphtmldata.is_set() && !sphtmldata->is_locked())
    {
       sphtmldata->_001OnDraw(pdc);
    }
@@ -89,7 +89,7 @@ void html_form::_001OnImageLoaded(signal_details * pobj)
 
          get_html_data()->m_box = rectClient;
 
-         ::data::data::writing writing(get_html_data());
+         ::data::lock lock(get_html_data());
 
          ::draw2d::memory_graphics pdc(allocer());
          get_html_data()->delete_implementation();

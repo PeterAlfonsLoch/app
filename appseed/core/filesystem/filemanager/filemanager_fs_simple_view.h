@@ -1,5 +1,6 @@
 #pragma once
 
+
 namespace filemanager
 {
 
@@ -7,21 +8,30 @@ namespace filemanager
    namespace fs
    {
 
+
       namespace simple
       {
 
-         class tree_view;
+
          class list_view;
+
 
          class CLASS_DECL_CORE view :
             virtual public ::user::split_view
          {
          public:
-            tree_view * m_ptree;
-            sp(list_view) m_plist;
-            request_interface * m_prequestinterface;
+            
+            
+            sp(tree)             m_ptree;
+            sp(::user::tree)     m_pusertree;
 
+            sp(list_view)        m_plist;
+            request_interface *  m_prequestinterface;
+
+            
             view(sp(base_application) papp);
+            virtual ~view();
+
 
             void install_message_handling(::message::dispatch * pinterface);
 
@@ -33,7 +43,6 @@ namespace filemanager
 
             void set_request_interface(request_interface * prequestinterface);
 
-            virtual ~view();
          #ifdef DEBUG
             virtual void assert_valid() const;
             virtual void dump(dump_context & dumpcontext) const;

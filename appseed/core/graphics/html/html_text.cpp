@@ -31,7 +31,7 @@ namespace html
       void text::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
 
-         ::data::data::writing writing(pdata);
+         ::data::lock lock(pdata);
 
          ::html::impl::elemental::implement_phase1(pdata, pelemental);
          string strTag;

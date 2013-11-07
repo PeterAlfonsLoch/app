@@ -1553,9 +1553,6 @@
     <ClInclude Include="filesystem\fs\fs_set.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\ContextMenu.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\file_operation.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
@@ -1563,9 +1560,6 @@
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_const.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_data.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_document.h">
@@ -1598,9 +1592,6 @@
     <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_list_view.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_tree_view.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_view.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
@@ -1629,81 +1620,6 @@
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_operation_view.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\FileManagerCallbackInterface.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\FileManagerChildFrame.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\FileManagerFileListCallback.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\FileManagerFrame.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\FileManagerInterface.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\FileManagerLeftView.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\FileManagerMainFrame.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\FileManagerPathView.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\FileManagerSaveAsNameView.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\FileManagerTabView.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\FileManagerTemplate.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\FileManagerView.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\FileManagerViewInterface.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\FileManagerViewUpdateHint.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\folder_list_view.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\folder_selection_list_view.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\SimpleFileListInterface.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\SimpleFileListView.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\SimpleFilePropertiesForm.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\SimpleFolderListInterface.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\SimpleFolderListView.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\SimpleFolderTreeInterface.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\SimpleFolderTreeView.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\SimplePreview.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\SimplePreviewInterface.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="graphics\html\html.h">
@@ -2606,13 +2522,7 @@
     <ClInclude Include="filesystem\filehandler\filehandler_menu_library.h">
       <Filter>Header Files\filesystem\filehandler</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filehandler\filehandler_tree_data.h">
-      <Filter>Header Files\filesystem\filehandler</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filehandler\filehandler_tree_interface.h">
-      <Filter>Header Files\filesystem\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filehandler\filehandler_tree_item_data.h">
       <Filter>Header Files\filesystem\filehandler</Filter>
     </ClInclude>
     <ClInclude Include="user\user_static_control.h">
@@ -2651,15 +2561,6 @@
     <ClInclude Include="net\usermail\usermail_list_interface.h">
       <Filter>Header Files\net\usermail</Filter>
     </ClInclude>
-    <ClInclude Include="net\usermail\usermail_tree_data.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_tree_interface.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_tree_item_data.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
     <ClInclude Include="net\usermail\usermail_usermail.h">
       <Filter>Header Files\net\usermail</Filter>
     </ClInclude>
@@ -2678,9 +2579,6 @@
     <ClInclude Include="filesystem\userfs\userfs_list_data.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\userfs\userfs_list_interface.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\userfs\userfs_list_item.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
@@ -2691,15 +2589,6 @@
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\userfs\userfs_tree.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\userfs_tree_data.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\userfs_tree_interface.h">
-      <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\userfs\userfs_tree_item_data.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\webserver\webserver_http_cookie.h">
@@ -2918,19 +2807,7 @@
     <ClInclude Include="core\data\data_tree.h">
       <Filter>Header Files\core\data</Filter>
     </ClInclude>
-    <ClInclude Include="core\data\data_tree_data.h">
-      <Filter>Header Files\core\data</Filter>
-    </ClInclude>
     <ClInclude Include="core\data\data_tree_item.h">
-      <Filter>Header Files\core\data</Filter>
-    </ClInclude>
-    <ClInclude Include="core\data\data_tree_item_data.h">
-      <Filter>Header Files\core\data</Filter>
-    </ClInclude>
-    <ClInclude Include="core\data\data_simple_tree_data.h">
-      <Filter>Header Files\core\data</Filter>
-    </ClInclude>
-    <ClInclude Include="core\data\data_simple_tree_item_data.h">
       <Filter>Header Files\core\data</Filter>
     </ClInclude>
     <ClInclude Include="core\core.h">
@@ -3418,6 +3295,90 @@
     </ClInclude>
     <ClInclude Include="core\core_message_queue.h">
       <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_view_update_hint.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="core\data\data_simple_item.h">
+      <Filter>Header Files\core\data</Filter>
+    </ClInclude>
+    <ClInclude Include="core\data\data_item.h">
+      <Filter>Header Files\core\data</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filehandler\filehandler_item.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_item.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="net\usermail\usermail_item.h">
+      <Filter>Header Files\net\usermail</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_tree.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_tree.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_list_data.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_data_interface.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_update_hint.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_callback.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_manager.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_path_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_main_frame.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_left_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_frame.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_file_list_callback.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_child_frame.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_save_as_name_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_tab_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_schema.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_file_list.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_file_properties_form.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_folder_list.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_preview.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_context_menu.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4195,9 +4156,6 @@
     <ClCompile Include="filesystem\filemanager\filemanager_ContextMenu.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_data.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_document.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -4228,9 +4186,6 @@
     <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_list_view.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree_view.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_view.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -4259,75 +4214,6 @@
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation_view.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\FileManagerCallbackInterface.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\FileManagerChildFrame.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\FileManagerFileListCallback.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\FileManagerFrame.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\FileManagerInterface.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\FileManagerLeftView.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\FileManagerMainFrame.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\FileManagerPathView.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\FileManagerSaveAsNameView.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\FileManagerTabView.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\FileManagerTemplate.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\FileManagerView.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\FileManagerViewInterface.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\FileManagerViewUpdateHint.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\SimpleFileListInterface.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\SimpleFileListView.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\SimpleFilePropertiesForm.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\SimpleFolderListInterface.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\SimpleFolderListView.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\SimpleFolderTreeInterface.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\SimpleFolderTreeView.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\SimplePreview.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\SimplePreviewInterface.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_data.cpp">
@@ -5047,13 +4933,7 @@
     <ClCompile Include="filesystem\filehandler\filehandler_menu_library.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filehandler\filehandler_tree_data.cpp">
-      <Filter>Source Files\filesystem\filehandler</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filehandler\filehandler_tree_interface.cpp">
-      <Filter>Source Files\filesystem\filehandler</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filehandler\filehandler_tree_item_data.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
     </ClCompile>
     <ClCompile Include="user\userpresence\userpresence_user_presence.cpp">
@@ -5152,9 +5032,6 @@
     <ClCompile Include="filesystem\userfs\userfs_list_data.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\userfs\userfs_list_interface.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_list_item.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
@@ -5165,15 +5042,6 @@
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_tree.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\userfs\userfs_tree_data.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\userfs\userfs_tree_interface.cpp">
-      <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\userfs\userfs_tree_item_data.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
     <ClCompile Include="database\databaseuser\database_key_list_data.cpp">
@@ -5195,15 +5063,6 @@
       <Filter>Source Files\net\usermail</Filter>
     </ClCompile>
     <ClCompile Include="net\usermail\usermail_list_interface.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\usermail_tree_data.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\usermail_tree_interface.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\usermail_tree_item.cpp">
       <Filter>Source Files\net\usermail</Filter>
     </ClCompile>
     <ClCompile Include="net\usermail\usermail_usermail.cpp">
@@ -5563,22 +5422,10 @@
     <ClCompile Include="compress\compress_gzip_stream.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
-    <ClCompile Include="core\data\data_simple_tree_data.cpp">
-      <Filter>Source Files\core\data</Filter>
-    </ClCompile>
-    <ClCompile Include="core\data\data_simple_tree_item_data.cpp">
-      <Filter>Source Files\core\data</Filter>
-    </ClCompile>
     <ClCompile Include="core\data\data_tree.cpp">
       <Filter>Source Files\core\data</Filter>
     </ClCompile>
-    <ClCompile Include="core\data\data_tree_data.cpp">
-      <Filter>Source Files\core\data</Filter>
-    </ClCompile>
     <ClCompile Include="core\data\data_tree_item.cpp">
-      <Filter>Source Files\core\data</Filter>
-    </ClCompile>
-    <ClCompile Include="core\data\data_tree_item_data.cpp">
       <Filter>Source Files\core\data</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\basic\sockets_socket.cpp">
@@ -5724,6 +5571,84 @@
     </ClCompile>
     <ClCompile Include="graphics\gcom\gcom_util.cpp">
       <Filter>Source Files\graphics\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="core\data\data_simple_item.cpp">
+      <Filter>Source Files\core\data</Filter>
+    </ClCompile>
+    <ClCompile Include="core\data\data_item.cpp">
+      <Filter>Source Files\core\data</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_item.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_item.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usermail\usermail_item.cpp">
+      <Filter>Source Files\net\usermail</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_tree.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_callback.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_manager.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_path_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_child_frame.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_list_callback.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_frame.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_left_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_main_frame.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_save_as_name_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_tab_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_data_interface.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_update_hint.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_schema.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_list_data.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_preview.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_properties_form.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_list.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

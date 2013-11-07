@@ -160,7 +160,7 @@ namespace userex
          || pcreatordata->m_id == "right_file")
       {
 
-         ::filemanager::data * pfilemanagerdata = new ::filemanager::data(get_app());
+         ::filemanager::list_data * pfilemanagerdata = new ::filemanager::list_data(get_app());
 
 
          pfilemanagerdata->m_id = pcreatordata->m_id;
@@ -175,7 +175,7 @@ namespace userex
          else
             pfilemanagerdata->m_strToolBarSave = "file_manager_toolbar_save.xml";
 
-         sp(::filemanager::document) pdoc = Application.filemanager().std().OpenChild(true, true, pcreatordata->m_pholder, pfilemanagerdata);
+         sp(::filemanager::document) pdoc = Application.filemanager().std().open_child(true, true, pcreatordata->m_pholder, pfilemanagerdata);
          if(pdoc != NULL)
          {
             sp(::user::view) pview = pdoc->get_view();
