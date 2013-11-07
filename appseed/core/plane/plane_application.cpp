@@ -226,6 +226,7 @@ namespace plane
          if(command()->m_varTopicQuery.has_property("install")
          || command()->m_varTopicQuery.has_property("uninstall"))
          {
+
          }
          else if(command()->m_varTopicQuery.has_property("service"))
          {
