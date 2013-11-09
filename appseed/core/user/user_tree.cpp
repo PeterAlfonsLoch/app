@@ -799,20 +799,30 @@ namespace user
       return true;
    }
 
-   void tree::_001SelectItem(sp(::data::tree_item)pitem)
+   void tree::_001SelectItem(::data::tree_item * pitem)
    {
-      if(pitem != NULL)
-      {
-         pitem->set_selection();
-      }
+
+      if (is_selected(pitem))
+         return;
+
+      //if (is_selected(pitem->m_pparent))
+      //{
+         selection_add(pitem);
+        // return;
+      //}
+
    }
 
-   void tree::_001ExpandItem(sp(::data::tree_item)pitem, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
+   void tree::_001ExpandItem(::data::tree_item * pitem, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
    {
-      ::data::lock lock(::data::data_container::m_spdata);
+      
+      ::data::simple_lock lock(pitem->m_pitem);
+
       UNREFERENCED_PARAMETER(bLayout);
+
       if(bExpand)
       {
+
          if(!(pitem->m_dwState & ::data::tree_item_state_expanded))
          {
 
@@ -873,6 +883,46 @@ namespace user
 
    }
 
+   sp(::data::tree_item) tree::find(::data::item * pitem, index * piIndex)
+   {
+
+      sp(::data::tree_item) pitemFound;
+
+      for (int iTree = 0; iTree < m_treeptra.get_count(); iTree++)
+      {
+
+         pitemFound = m_treeptra(iTree)->find(pitem, piIndex);
+
+         if (pitemFound.is_set())
+            return pitemFound;
+
+      }
+
+      return NULL;
+
+   }
+
+   bool tree::contains(::data::item * pitem)
+   {
+
+      return find(pitem).is_set();
+
+   }
+
+   bool tree::contains(::data::tree_item * pitem)
+   {
+
+      for (int iTree = 0; iTree < m_treeptra.get_count(); iTree++)
+      {
+
+         if (m_treeptra(iTree)->contains(pitem))
+            return true;
+
+      }
+
+      return false;
+
+   }
    void tree::_001OnItemExpand(::data::tree_item * pitem)
    {
       
@@ -977,12 +1027,11 @@ namespace user
 
 
 
-   void tree::_001OnOpenItem(sp(::data::tree_item)pitem)
+   void tree::_001OnOpenItem(::data::tree_item * pitem)
    {
-      if(pitem->get_tree() != this)
-      {
-         dynamic_cast < tree * > (pitem->get_tree().m_p)->_001OnOpenItem(pitem);
-      }
+
+      pitem->m_ptree->_001OnOpenItem(pitem);
+
    }
 
    void tree::UpdateHover()
@@ -1078,31 +1127,43 @@ namespace user
 
    sp(::data::tree_item) tree::CalcFirstVisibleItem(index & iLevel, index & iProperIndex)
    {
+      
       index nOffset;
+      
       if(_001GetItemHeight() == 0)
          return NULL;
+
       nOffset = m_scrollinfo.m_ptScroll.y / _001GetItemHeight();
 
-      sp(::data::tree_item) pitem = get_base_item();
+      sp(::data::tree_item) pitem;
 
-      iLevel = 0;
-      iProperIndex = 0;
-
-      for(;;)
+      for (index i = 0; i < m_treeptra.get_count(); i++)
       {
-         pitem = pitem->get_item(::data::TreeNavigationProperForward, &iLevel);
-         if(pitem == NULL)
-            break;
-         if(nOffset <= 0)
+
+         pitem = m_treeptra[i].get_base_item();
+
+         iLevel = 0;
+         iProperIndex = 0;
+
+         for (;;)
          {
-            break;
+            pitem = pitem->get_item(::data::TreeNavigationProperForward, &iLevel);
+            if (pitem == NULL)
+               break;
+            if (nOffset <= 0)
+            {
+               break;
+            }
+            nOffset--;
+            iProperIndex++;
          }
-         nOffset--;
-         iProperIndex++;
+
       }
 
       return pitem;
+
    }
+
 
    void tree::_001OnTreeDataChange()
    {
@@ -1126,16 +1187,9 @@ namespace user
    }
 
 
-   bool tree::is_selected(::data::item * pitem)
-   {
-
-      return ::data::tree::is_selected(pitem);
-
-   }
-
    bool tree::selection_add(::data::item * pitemdata, index i)
    {
-      sp(tree_item) pitem = find(pitemdata, i);
+      sp(::data::tree_item) pitem = find(pitemdata, &i);
       if (pitem == NULL)
          return false;
       return selection_add(pitem);
@@ -1159,12 +1213,19 @@ namespace user
       return m_itemptraSelected.add_unique(pitem);
    }
 
-   bool tree::selection_set(::data::item * pitemdata, index i)
+   bool tree::selection_set(::data::item * pitemdata, bool bIfNotInSelection, bool bIfParentInSelection)
    {
-      sp(tree_item) pitem = find(pitemdata, i);
+
+      return selection_set(0, pitemdata, bIfNotInSelection, bIfParentInSelection);
+
+   }
+
+   bool tree::selection_set(index i, ::data::item * pitemdata, bool bIfNotInSelection, bool bIfParentInSelection)
+   {
+      sp(::data::tree_item) pitem = find(pitemdata, &i);
       if (pitem == NULL)
          return false;
-      return selection_set(pitem);
+      return selection_set(pitem, bIfNotInSelection, bIfParentInSelection);
    }
 
    ::count tree::selection_set(::data::tree_item_ptr_array & itemptra)
@@ -1178,19 +1239,32 @@ namespace user
       return count;
    }
 
-   bool tree::selection_set(::data::tree_item * pitem)
+   bool tree::selection_set(::data::tree_item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
+      
       if (!contains(pitem))
          return false;
+      
+      if (bIfNotInSelection && is_selected(pitem))
+         return true;
+   
+      if (bIfParentInSelection && !is_selected(pitem->m_pparent))
+         return true;
+
       bool bContains = m_itemptraSelected.contains(pitem);
+
       m_itemptraSelected.remove_all();
+
       m_itemptraSelected.add(pitem);
+
       return bContains;
+
    }
+
 
    bool tree::selection_remove(::data::item * pitemdata, index i)
    {
-      sp(tree_item) pitem = find(pitemdata, i);
+      sp(::data::tree_item) pitem = find(pitemdata, &i);
       if (pitem == NULL)
          return false;
       return selection_remove(pitem);
@@ -1218,13 +1292,13 @@ namespace user
       return m_itemptraSelected.remove_all();
    }
 
-   bool tree::hover(item * pitemdata, index i)
+   bool tree::hover(::data::item * pitemdata, index i)
    {
-      sp(tree_item) pitem = find(pitemdata, i);
+      sp(::data::tree_item) pitem = find(pitemdata, &i);
       return hover(pitem);
    }
 
-   bool tree::hover(tree_item * pitem)
+   bool tree::hover(::data::tree_item * pitem)
    {
       if (pitem == NULL)
       {
@@ -1236,42 +1310,53 @@ namespace user
       return m_pitemHover == pitem;
    }
 
-   bool tree::is_selected(tree_item * pitem)
+
+   bool tree::is_selected(const ::data::tree_item * pitem) const
    {
+
       return m_itemptraSelected.contains(pitem);
+
    }
 
-   bool tree::is_selected(item * pitemdata)
+
+   bool tree::is_selected(const ::data::item * pitemdata) const
    {
+
       if (pitemdata == NULL)
          return false;
+
       for (int32_t i = 0; i < m_itemptraSelected.get_count(); i++)
       {
-         if (m_itemptraSelected[i].m_proot == pitemdata)
+
+         if (m_itemptraSelected[i].m_pitem == pitemdata)
             return true;
+
       }
+
       return false;
+
    }
 
-   bool tree::is_hover(tree_item * pitem)
+
+   bool tree::is_hover(const ::data::tree_item * pitem) const
    {
       return pitem != NULL && m_pitemHover == pitem;
    }
 
-   bool tree::is_hover(item * pitem)
+   bool tree::is_hover(const ::data::item * pitem) const
    {
       if (pitem == NULL)
          return false;
       if (m_pitemHover == NULL)
          return false;
-      if (m_pitemHover->m_proot != pitem)
+      if (m_pitemHover->m_pitem != pitem)
          return false;
       return true;
    }
 
 
 
-   bool tree::can_merge(::data::tree * ptree)
+   bool tree::can_merge(const ::data::tree * ptree) const
    {
 
       return !m_treeptra.contains(ptree);
@@ -1279,7 +1364,7 @@ namespace user
    }
 
 
-   bool tree::merge(::data::tree * ptree)
+   bool tree::merge(::data::tree * ptree, bool bBind)
    {
 
       if (ptree == NULL)
@@ -1290,8 +1375,49 @@ namespace user
 
       m_treeptra.add(ptree);
 
+      ptree->m_treeptra.add(this);
+
+      if (bBind)
+      {
+
+         m_treeptraBound.add(ptree);
+
+         ptree->m_treeptraBound.add(this);
+
+      }
+
+      ptree->install_message_handling(m_pimpl);
+
       return true;
 
+
+   }
+
+   sp(::data::tree_item) tree::get_proper_item(index i, index * piLevel, index * piCount)
+   {
+
+      index iCount = 0;
+
+      sp(::data::tree_item) pitem;
+
+      for (index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
+      {
+
+         if (piLevel != NULL)
+            *piLevel = 1;
+
+         pitem = m_treeptra[iTree].get_proper_item(i - iCount, piLevel, &iCount);
+
+         if (pitem.is_set())
+            return pitem;
+
+      }
+
+
+      if (piCount != NULL)
+         *piCount += iCount;
+
+      return NULL;
 
    }
 
@@ -1299,9 +1425,9 @@ namespace user
    index tree::get_proper_item_index(::data::tree_item *pitemParam, index * piLevel)
    {
 
-      int32_t iIndex = 0;
+      index iCount = 0;
 
-      sp(::data::tree_item) pitem;
+      index iFound;
 
       for (index i = 0; i < m_treeptra.get_count(); i++)
       {
@@ -1309,18 +1435,62 @@ namespace user
          if (piLevel != NULL) 
             *piLevel = 1;
 
-         pitem = m_treeptra->get_proper_item_index(pitemParam, piLevel);
+         iFound = m_treeptra[i].get_proper_item_index(pitemParam, piLevel, &iCount);
 
-         if (pitem == pitemParam)
-            return iIndex;
-
-         iIndex++;
+         if (iFound >= 0)
+            return iCount;
 
       }
 
       return -1;
+
    }
 
+
+   index tree::get_proper_item_count()
+   {
+
+      index iCount = 0;
+
+      for (index i = 0; i < m_treeptra.get_count(); i++)
+      {
+
+         iCount++; // per tree
+
+         iCount += m_treeptra[i].get_proper_item_count();
+
+      }
+
+      return iCount;
+
+   }
+
+
+   void tree::_001EnsureVisible(::data::tree_item * pitem)
+   {
+
+      if (pitem == NULL)
+         return;
+
+      index iLevel = 0;
+
+      index iIndex = get_proper_item_index(pitem, &iLevel);
+
+      index iLastVisibleIndex = (index)(m_scrollinfo.m_ptScroll.y + _001GetVisibleItemCount() - 5);
+
+      index iObscured; // obscured proper descendants
+      iObscured = iIndex - iLastVisibleIndex;
+
+      if (iObscured > 0)
+      {
+         int32_t iNewScroll = (int32_t)(m_scrollinfo.m_ptScroll.y + iIndex * _001GetItemHeight());
+         m_scrollinfo.m_ptScroll.y = max(iNewScroll, 0);
+      }
+
+      layout();
+      _001RedrawWindow();
+
+   }
 
 
 } // namespace core

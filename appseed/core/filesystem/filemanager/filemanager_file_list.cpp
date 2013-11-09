@@ -1,24 +1,27 @@
 #include "framework.h"
 
 
-#define SHELL_COMMAND_FIRST 0x1000
-#define SHELL_COMMAND_LAST 0x2000
-
-
 namespace filemanager
 {
 
 
-   ::filemanager::file_list::::filemanager::file_list(sp(base_application) papp) :
+   file_list::file_list(sp(base_application) papp) :
       element(papp),
+      ::filemanager::data_interface(papp),
       ::user::interaction(papp),
       ::user::form(papp),
       ::user::form_list(papp),
-      ::filemanager::file_list(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
-      ::userfs::list(papp)
+      ::userfs::list(papp),
+      m_gdibuffer(papp),
+      m_mutex(papp)
    {
+         m_iAnimate = 0;
+         m_bRestartCreateImageList = false;
+         m_bStatic = false;
+         m_bPendingSize = false;
+         m_pcreateimagelistthread = NULL;
 
       m_bFileSize = false;
       m_bShow = false;
@@ -27,34 +30,38 @@ namespace filemanager
       m_pheaderctrl     = &m_headerctrl;
       m_pheaderctrl->SetBaseListCtrlInterface(this);
 
-      connect_update_cmd_ui("edit_copy", &::filemanager::file_list::_001OnUpdateEditCopy);
-      connect_command("edit_copy", &::filemanager::file_list::_001OnEditCopy);
-      connect_update_cmd_ui("edit_paste", &::filemanager::file_list::_001OnUpdateEditPaste);
-      connect_command("edit_paste", &::filemanager::file_list::_001OnEditPaste);
-      connect_update_cmd_ui("trash_that_is_not_trash", &::filemanager::file_list::_001OnUpdateTrashThatIsNotTrash);
-      connect_command("trash_that_is_not_trash", &::filemanager::file_list::_001OnTrashThatIsNotTrash);
-      connect_update_cmd_ui("open_with", &::filemanager::file_list::_001OnUpdateOpenWith);
-      connect_update_cmd_ui("spafy", &::filemanager::file_list::_001OnUpdateSpafy);
-      connect_command("spafy", &::filemanager::file_list::_001OnSpafy);
-      connect_update_cmd_ui("spafy2", &::filemanager::file_list::_001OnUpdateSpafy2);
-      connect_command("spafy2", &::filemanager::file_list::_001OnSpafy2);
-      connect_update_cmd_ui("file_rename", &::filemanager::file_list::_001OnUpdateFileRename);
-      connect_command("file_rename", &::filemanager::file_list::_001OnFileRename);
+      connect_update_cmd_ui("edit_copy", &file_list::_001OnUpdateEditCopy);
+      connect_command("edit_copy", &file_list::_001OnEditCopy);
+      connect_update_cmd_ui("edit_paste", &file_list::_001OnUpdateEditPaste);
+      connect_command("edit_paste", &file_list::_001OnEditPaste);
+      connect_update_cmd_ui("trash_that_is_not_trash", &file_list::_001OnUpdateTrashThatIsNotTrash);
+      connect_command("trash_that_is_not_trash", &file_list::_001OnTrashThatIsNotTrash);
+      connect_update_cmd_ui("open_with", &file_list::_001OnUpdateOpenWith);
+      connect_update_cmd_ui("spafy", &file_list::_001OnUpdateSpafy);
+      connect_command("spafy", &file_list::_001OnSpafy);
+      connect_update_cmd_ui("spafy2", &file_list::_001OnUpdateSpafy2);
+      connect_command("spafy2", &file_list::_001OnSpafy2);
+      connect_update_cmd_ui("file_rename", &file_list::_001OnUpdateFileRename);
+      connect_command("file_rename", &file_list::_001OnFileRename);
 
    }
 
-   ::filemanager::file_list::~::filemanager::file_list()
+   file_list::~file_list()
    {
    }
 
-   void ::filemanager::file_list::install_message_handling(::message::dispatch * pinterface)
+   void file_list::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::view::install_message_handling(pinterface);
-      ::filemanager::file_list::install_message_handling(pinterface);
-      IGUI_WIN_MSG_LINK(WM_RBUTTONUP, pinterface, this, &::filemanager::file_list::_001OnContextMenu);
-      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &::filemanager::file_list::_001OnTimer);
-      connect_command_range(SHELL_COMMAND_FIRST, SHELL_COMMAND_LAST, &::filemanager::file_list::_001OnShellCommand);
-      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &::filemanager::file_list::_001OnShowWindow);
+      file_list::install_message_handling(pinterface);
+      ::user::form_list::install_message_handling(pinterface);
+      IGUI_WIN_MSG_LINK(MessageMainPost, pinterface, this, &file_list::_001OnMainPostMessage);
+      IGUI_WIN_MSG_LINK(WM_HSCROLL, pinterface, this, &file_list::_001OnHScroll);
+      IGUI_WIN_MSG_LINK(WM_VSCROLL, pinterface, this, &file_list::_001OnVScroll);
+      IGUI_WIN_MSG_LINK(WM_RBUTTONUP, pinterface, this, &file_list::_001OnContextMenu);
+      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &file_list::_001OnTimer);
+      connect_command_range(FILEMANAGER_SHELL_COMMAND_FIRST, FILEMANAGER_SHELL_COMMAND_LAST, &file_list::_001OnShellCommand);
+      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &file_list::_001OnShowWindow);
 
    }
 
@@ -63,22 +70,22 @@ namespace filemanager
 
 
    #ifdef DEBUG
-   void ::filemanager::file_list::assert_valid() const
+   void file_list::assert_valid() const
    {
       ::user::view::assert_valid();
    }
 
-   void ::filemanager::file_list::dump(dump_context & dumpcontext) const
+   void file_list::dump(dump_context & dumpcontext) const
    {
       ::user::view::dump(dumpcontext);
    }
    #endif //DEBUG
 
 
-   void ::filemanager::file_list::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+   void file_list::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
    {
 
-      ::filemanager::data_interface::on_update(pSender, lHint, phint);
+      data_interface::on_update(pSender, lHint, phint);
 
       if(m_bStatic && lHint == hint_add_location)
       {
@@ -131,10 +138,10 @@ namespace filemanager
       }
       if(phint != NULL)
       {
-         if(base < filemanager::update_hint >::bases(phint))
+         if(base < update_hint >::bases(phint))
          {
-            filemanager::update_hint * puh = (filemanager::update_hint *) phint;
-            if(puh->is_type_of(filemanager::update_hint::TypeInitialize))
+            update_hint * puh = (update_hint *) phint;
+            if(puh->is_type_of(update_hint::TypeInitialize))
             {
                m_pbaseapp = get_app()->m_pplaneapp;
                db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
@@ -148,7 +155,7 @@ namespace filemanager
      //          SetDataInterface(&m_datainterface);
        //        AddClient(&m_datainterface);
                string str;
-               str.Format("::filemanager::file_list(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
+               str.Format("file_list(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
                if(GetFileManager()->get_filemanager_data()->m_bPassBk)
                {
                   ::user::list::m_bBackgroundBypass = true;
@@ -161,7 +168,7 @@ namespace filemanager
                _001UpdateColumns();
 
             }
-            else if(!m_bStatic && puh->is_type_of(filemanager::update_hint::TypeSynchronizePath))
+            else if(!m_bStatic && puh->is_type_of(update_hint::TypeSynchronizePath))
             {
                if(GetFileManager()->get_filemanager_data()->m_pholderFileList != NULL)
                {
@@ -190,11 +197,11 @@ namespace filemanager
                   }
                }*/
             }
-            else if(m_bStatic && puh->is_type_of(filemanager::update_hint::TypeSynchronizeLocations))
+            else if(m_bStatic && puh->is_type_of(update_hint::TypeSynchronizeLocations))
             {
                _017UpdateList();
             }
-            else if(puh->is_type_of(filemanager::update_hint::TypeFilter))
+            else if(puh->is_type_of(update_hint::TypeFilter))
             {
                if(puh->m_wstrFilter.is_empty())
                {
@@ -207,7 +214,7 @@ namespace filemanager
 //                  FilterApply();
                }
             }
-            else if(puh->is_type_of(filemanager::update_hint::TypeGetActiveViewSelection))
+            else if(puh->is_type_of(update_hint::TypeGetActiveViewSelection))
             {
                if(GetParentFrame()->GetActiveView() ==  (this))
                {
@@ -247,7 +254,7 @@ namespace filemanager
       }
    }
 
-   void ::filemanager::file_list::_001OnClick(UINT nFlags, point point)
+   void file_list::_001OnClick(UINT nFlags, point point)
    {
       UNREFERENCED_PARAMETER(nFlags);
       index iItem;
@@ -261,7 +268,7 @@ namespace filemanager
       }
    }
 
-   void ::filemanager::file_list::_001OnRightClick(UINT nFlags, point point)
+   void file_list::_001OnRightClick(UINT nFlags, point point)
    {
       UNREFERENCED_PARAMETER(nFlags);
       index iItem;
@@ -276,7 +283,7 @@ namespace filemanager
       }
    }
 
-   /*bool ::filemanager::file_list::OnSetData(
+   /*bool file_list::OnSetData(
       const ::database::id & key,
       int32_t iLine,
       int32_t iColumn,
@@ -293,7 +300,7 @@ namespace filemanager
       return data_server_interface::OnSetData(key, iLine, iColumn, var, puh);
    }
 
-   bool ::filemanager::file_list::get_data(
+   bool file_list::get_data(
       const ::database::id & key,
       int32_t iLine,
       int32_t iColumn,
@@ -310,7 +317,7 @@ namespace filemanager
       return data_server_interface::OnSetData(key, iLine, iColumn, var);
    }*/
 
-   void ::filemanager::file_list::RenameFile(int32_t iLine, string &wstrNameNew)
+   void file_list::RenameFile(int32_t iLine, string &wstrNameNew)
    {
 
       string str = get_fs_list_data()->m_itema.get_item(iLine).m_strPath;
@@ -325,7 +332,7 @@ namespace filemanager
 
    }
 
-   void ::filemanager::file_list::_001OnContextMenu(signal_details * pobj)
+   void file_list::_001OnContextMenu(signal_details * pobj)
    {
       //SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
       SCAST_PTR(::message::mouse, pcontextmenu, pobj)
@@ -433,7 +440,7 @@ namespace filemanager
       }
    }
 
-   bool ::filemanager::file_list::pre_create_window(CREATESTRUCT& cs)
+   bool file_list::pre_create_window(CREATESTRUCT& cs)
    {
 
       cs.style |= WS_CLIPCHILDREN;
@@ -441,7 +448,7 @@ namespace filemanager
       return ::user::view::pre_create_window(cs);
    }
 
-   UINT c_cdecl ::filemanager::file_list::ThreadProcFileSize(LPVOID lpparam)
+   UINT c_cdecl file_list::ThreadProcFileSize(LPVOID lpparam)
    {
       file_size * psize = (file_size *) lpparam;
       db_server * pcentral = dynamic_cast < db_server * > (&App(psize->m_pview->m_pbaseapp).simpledb().db());
@@ -459,12 +466,12 @@ namespace filemanager
       }
       //psize->m_pview->_001RedrawWindow();
       delete psize;
-      //::filemanager::file_list * pview = (::filemanager::file_list *) lpparam;
+      //file_list * pview = (file_list *) lpparam;
       //pview->FileSize();
       return 0;
    }
 
-   void ::filemanager::file_list::FileSize()
+   void file_list::FileSize()
    {
       if(m_bFileSize)
          return;
@@ -506,7 +513,7 @@ namespace filemanager
    }
 
 
-   void ::filemanager::file_list::_001OnTimer(signal_details * pobj)
+   void file_list::_001OnTimer(signal_details * pobj)
    {
       SCAST_PTR(::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == 198477)
@@ -578,12 +585,14 @@ namespace filemanager
       }
    }
 
-   void ::filemanager::file_list::StartAnimation()
+   void file_list::StartAnimation()
    {
+      m_iAnimate = 1;
+
       //SetTimer(1234567, 50, NULL);
    }
 
-   bool ::filemanager::file_list::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+   bool file_list::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    {
       ::fs::item_array itema;
       GetSelected(itema);
@@ -592,13 +601,13 @@ namespace filemanager
       return ::user::view::_001OnCmdMsg(pcmdmsg);
    }
 
-   void ::filemanager::file_list::_001OnShellCommand(signal_details * pobj)
+   void file_list::_001OnShellCommand(signal_details * pobj)
    {
       SCAST_PTR(::message::command, pcommand, pobj)
       m_contextmenu.OnCommand(pcommand->GetId());
    }
 
-   void ::filemanager::file_list::_001OnFileManagerItemCommand(signal_details * pobj)
+   void file_list::_001OnFileManagerItemCommand(signal_details * pobj)
    {
       SCAST_PTR(BaseCommand, pcommand, pobj)
       ::fs::item_array itema;
@@ -620,7 +629,7 @@ namespace filemanager
          itema);
    }
 
-   void ::filemanager::file_list::_001OnFileManagerItemUpdate(signal_details * pobj)
+   void file_list::_001OnFileManagerItemUpdate(signal_details * pobj)
    {
       SCAST_PTR(::message::update_cmd_ui, pupdatecmdui, pobj)
       ::fs::item_array itema;
@@ -643,7 +652,7 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
-   void ::filemanager::file_list::_017OpenContextMenuFolder(sp(::fs::item)  item)
+   void file_list::_017OpenContextMenuFolder(sp(::fs::item)  item)
    {
       
       stringa straCommand;
@@ -672,40 +681,56 @@ namespace filemanager
 
    }
 
-   void ::filemanager::file_list::_017OpenContextMenuFile(const ::fs::item_array & itema)
+   void file_list::_017OpenContextMenuFile(const ::fs::item_array & itema)
    {
       GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenuFile(itema);
    }
 
-   void ::filemanager::file_list::_017OpenContextMenu()
+   void file_list::_017OpenContextMenu()
    {
       GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenu();
    }
 
-   void ::filemanager::file_list::_017OpenFolder(sp(::fs::item) item)
+   void file_list::_017OpenFolder(sp(::fs::item) item)
    {
       GetFileManager()->FileManagerBrowse(item);
    }
 
-   void ::filemanager::file_list::_017OpenFile(const ::fs::item_array &itema)
+   void file_list::_017OpenFile(const ::fs::item_array &itema)
    {
       GetFileManager()->get_filemanager_data()->OnFileManagerOpenFile(itema);
    }
 
-   void ::filemanager::file_list::_001OnFileRename(signal_details * pobj)
+   void file_list::_001OnFileRename(signal_details * pobj)
    {
-      ::filemanager::file_list::_001OnFileRename(pobj);
+      UNREFERENCED_PARAMETER(pobj);
+      sp(::user::control) pcontrol = _001GetControlBySubItem(m_iNameSubItem);
+      range range;
+      _001GetSelection(range);
+      if (range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
+      {
+         _001PlaceControl(pcontrol);
+      }
    }
 
-   void ::filemanager::file_list::_001OnUpdateFileRename(signal_details * pobj)
+   void file_list::_001OnUpdateFileRename(signal_details * pobj)
    {
+//      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+  //    pcmdui->m_pcmdui->Enable(_001GetSelectedItemCount() == 1);
+    //  pobj->m_bRet = true;
+
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
-      pcmdui->m_pcmdui->Enable(_001GetSelectedItemCount() == 1);
+         range range;
+      _001GetSelection(range);
+      pcmdui->m_pcmdui->Enable(
+         range.get_item_count() == 1
+         && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound());
       pobj->m_bRet = true;
+
    }
 
 
-   void ::filemanager::file_list::_001OnUpdateEditCopy(signal_details * pobj)
+   void file_list::_001OnUpdateEditCopy(signal_details * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       range range;
@@ -714,7 +739,7 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
-   void ::filemanager::file_list::_001OnEditCopy(signal_details * pobj)
+   void file_list::_001OnEditCopy(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       ::fs::item_array itema;
@@ -743,7 +768,7 @@ namespace filemanager
 
    }
 
-   void ::filemanager::file_list::_001OnUpdateEditPaste(signal_details * pobj)
+   void file_list::_001OnUpdateEditPaste(signal_details * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(System.copydesk().get_file_count() > 0);
@@ -751,7 +776,7 @@ namespace filemanager
    }
 
 
-   void ::filemanager::file_list::_001OnEditPaste(signal_details * pobj)
+   void file_list::_001OnEditPaste(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       stringa stra;
@@ -773,7 +798,7 @@ namespace filemanager
       //get_document()->update_all_views(NULL, 123);
    }
 
-   void ::filemanager::file_list::_001OnUpdateTrashThatIsNotTrash(signal_details * pobj)
+   void file_list::_001OnUpdateTrashThatIsNotTrash(signal_details * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       range range;
@@ -782,7 +807,7 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
-   void ::filemanager::file_list::_001OnTrashThatIsNotTrash(signal_details * pobj)
+   void file_list::_001OnTrashThatIsNotTrash(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       ::fs::item_array itema;
@@ -796,7 +821,7 @@ namespace filemanager
       _017UpdateList();
    }
 
-   void ::filemanager::file_list::_001OnUpdateOpenWith(signal_details * pobj)
+   void file_list::_001OnUpdateOpenWith(signal_details * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
 
@@ -849,7 +874,7 @@ namespace filemanager
    }
 
 
-   bool ::filemanager::file_list::_001OnUpdateCmdUi(cmd_ui * pcmdui)
+   bool file_list::_001OnUpdateCmdUi(cmd_ui * pcmdui)
    {
       int32_t iPos = -1;
       for(int32_t i = 0; i < m_straOpenWith.get_size(); i++)
@@ -872,7 +897,7 @@ namespace filemanager
       }
    }
 
-   bool ::filemanager::file_list::_001OnCommand(id id)
+   bool file_list::_001OnCommand(id id)
    {
       if(id == "1000")
       {
@@ -917,7 +942,7 @@ namespace filemanager
 
    }
 
-   void ::filemanager::file_list::_001OnUpdateSpafy(signal_details * pobj)
+   void file_list::_001OnUpdateSpafy(signal_details * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       range range;
@@ -926,7 +951,7 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
-   void ::filemanager::file_list::_001OnSpafy(signal_details * pobj)
+   void file_list::_001OnSpafy(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       ::fs::item_array itema;
@@ -982,14 +1007,14 @@ namespace filemanager
 
    }
 
-   void ::filemanager::file_list::_001OnUpdateSpafy2(signal_details * pobj)
+   void file_list::_001OnUpdateSpafy2(signal_details * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(TRUE);
       pobj->m_bRet = true;
    }
 
-   void ::filemanager::file_list::_001OnSpafy2(signal_details * pobj)
+   void file_list::_001OnSpafy2(signal_details * pobj)
    {
       ::userfs::list_data * pdata = get_fs_list_data();
       UNREFERENCED_PARAMETER(pobj);
@@ -1054,12 +1079,12 @@ namespace filemanager
    }
 
 
-   void ::filemanager::file_list::_001OnAfterSort()
+   void file_list::_001OnAfterSort()
    {
       data_set_DisplayToStrict();
    }
 
-   void ::filemanager::file_list::schedule_file_size(const char * psz)
+   void file_list::schedule_file_size(const char * psz)
    {
       UNREFERENCED_PARAMETER(psz);
       if(!IsWindowVisible())
@@ -1070,7 +1095,7 @@ namespace filemanager
       //__begin_thread(ThreadProc4, psize, THREAD_PRIORITY_IDLE);
    }
 
-   void ::filemanager::file_list::_001OnShowWindow(signal_details * pobj)
+   void file_list::_001OnShowWindow(signal_details * pobj)
    {
       SCAST_PTR(::message::show_window, pshowwindow, pobj);
 
@@ -1079,40 +1104,39 @@ namespace filemanager
    //      System.simple_message_box("hide");
       }
 
+      UNREFERENCED_PARAMETER(pobj);
+      //      SCAST_PTR(::message::show_window, pshow, pobj)
+
+      db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
+      if (pcentral == NULL)
+         return;
+      //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
+      /*if(pshow->m_bShow)
+      {
+      for(int32_t i = 0; i < m_itema.get_item_count(); i++)
+      {
+      pset->m_table.add_request(m_itema.get_item(i).m_strPath);
+      }
+      }
+      else
+      {
+      for(int32_t i = 0; i < m_itema.get_item_count(); i++)
+      {
+      pset->m_table.remove_request(m_itema.get_item(i).m_strPath);
+      }
+      }*/
+
    }
 
-   id ::filemanager::file_list::data_get_current_list_layout_id()
+   id file_list::data_get_current_list_layout_id()
    {
       return GetFileManager()->get_item().m_strPath;
    }
 
-   ::filemanager::file_list::::filemanager::file_list(sp(base_application) papp) :
-      element(papp),
-      ::user::interaction(papp),
-      ::user::form(papp),
-      ::user::form_list(papp),
-      ::user::scroll_view(papp),
-      ::user::list(papp),
-      ::userfs::list(papp),
-      m_gdibuffer(papp),
-      m_mutex(papp)
-   {
-         m_iAnimate = 0;
-         m_bRestartCreateImageList = false;
-         m_bStatic = false;
-         m_bPendingSize = false;
-         m_pcreateimagelistthread = NULL;
-      }
-
-   ::filemanager::file_list::~::filemanager::file_list()
-   {
-
-   }
 
 
 
-
-   void ::filemanager::file_list::_017Browse(const char * lpcsz)
+   void file_list::_017Browse(const char * lpcsz)
    {
       _001ClearSelection();
 
@@ -1138,7 +1162,7 @@ namespace filemanager
       //   zipDone:;
    }
 
-   void ::filemanager::file_list::_017UpdateList(const char * lpcsz)
+   void file_list::_017UpdateList(const char * lpcsz)
    {
       /*      UNREFERENCED_PARAMETER(lpcsz);
       stringa straStrictOrder;
@@ -1196,7 +1220,7 @@ namespace filemanager
       item.m_flags.unsignalize_all();
       if(Application.dir().is(straPath[i]))
       {
-      item.m_flags.signalize(filemanager::FlagFolder);
+      item.m_flags.signalize(FlagFolder);
       }
       else
       {
@@ -1299,7 +1323,7 @@ namespace filemanager
    }
 
 
-   void ::filemanager::file_list::_017UpdateZipList(const char * lpcsz)
+   void file_list::_017UpdateZipList(const char * lpcsz)
    {
       /*      ::fs::list_item item;
 
@@ -1371,7 +1395,7 @@ namespace filemanager
       if(wstraFolder.contains(wstrFolder))
       continue;
       wstraFolder.add(wstrFolder);
-      item.m_flags.signalize(filemanager::FlagFolder);
+      item.m_flags.signalize(FlagFolder);
       item.m_strPath    = szPath;
       item.m_iImage     = -1;
       item.m_strName    = wstrFolder;
@@ -1400,7 +1424,7 @@ namespace filemanager
 
    }
 
-   void ::filemanager::file_list::_001CreateImageList()
+   void file_list::_001CreateImageList()
    {
 
       icon_key iconkey;
@@ -1425,13 +1449,13 @@ namespace filemanager
       }
    }
 
-   ::filemanager::file_list::create_image_list_thread::create_image_list_thread(sp(base_application) papp) :
+   file_list::create_image_list_thread::create_image_list_thread(sp(base_application) papp) :
       element(papp),
       thread(papp)
    {
    }
 
-   int32_t ::filemanager::file_list::create_image_list_thread::run()
+   int32_t file_list::create_image_list_thread::run()
    {
       int32_t iStepSetCount = 84;
       int32_t iStepSetSleep = 23;
@@ -1455,7 +1479,7 @@ namespace filemanager
 
    }
 
-   bool ::filemanager::file_list::_001CreateImageListStep()
+   bool file_list::_001CreateImageListStep()
    {
 
       single_lock sl(&m_mutex, true);
@@ -1503,7 +1527,7 @@ namespace filemanager
       return true;
    }
 
-   void ::filemanager::file_list::_001InsertColumns()
+   void file_list::_001InsertColumns()
    {
       class user::control::descriptor control;
 
@@ -1517,7 +1541,7 @@ namespace filemanager
 
       int32_t iCount = 0;
 
-      filemanager::file_list_callback * pcallback =
+      file_list_callback * pcallback =
          GetFileManager()->get_filemanager_data()->m_pschema->m_pfilelistcallback;
 
       if (pcallback != NULL)
@@ -1634,7 +1658,7 @@ namespace filemanager
    }
 
 
-   void ::filemanager::file_list::_001GetItemText(::user::list_item * pitem)
+   void file_list::_001GetItemText(::user::list_item * pitem)
    {
 
       if (m_bStatic)
@@ -1680,7 +1704,7 @@ namespace filemanager
       return false;*/
    }
 
-   void ::filemanager::file_list::_001GetItemImage(::user::list_item * pitem)
+   void file_list::_001GetItemImage(::user::list_item * pitem)
    {
       return ::userfs::list::_001GetItemImage(pitem);
       /*      if(iSubItem == m_iSelectionSubItem)
@@ -1703,7 +1727,7 @@ namespace filemanager
 
    }
 
-   /*UINT c_cdecl ::filemanager::file_list::_017ThreadProcCreateImageList(LPVOID lpParameter)
+   /*UINT c_cdecl file_list::_017ThreadProcCreateImageList(LPVOID lpParameter)
    {
    try
    {
@@ -1711,8 +1735,8 @@ namespace filemanager
    ::get_current_thread(),
    THREAD_PRIORITY_ABOVE_NORMAL);
 
-   ::filemanager::file_list * plist =
-   (::filemanager::file_list *) lpParameter;
+   file_list * plist =
+   (file_list *) lpParameter;
    plist->m_bCreateImageList = true;
    ::user::list_column & column = plist->m_columna.GetBySubItem(1);
    //      if(column.m_pil->GetSafeHandle() != NULL)
@@ -1727,13 +1751,13 @@ namespace filemanager
    }*/
 
 
-   bool ::filemanager::file_list::TwiHasTranslucency()
+   bool file_list::TwiHasTranslucency()
    {
       return ::user::list::TwiHasTranslucency() && !m_bCreateImageListRedraw;
    }
 
 
-   void ::filemanager::file_list::GetSelectedFilePath(stringa & array)
+   void file_list::GetSelectedFilePath(stringa & array)
    {
       range range;
 
@@ -1766,7 +1790,7 @@ namespace filemanager
    }
 
 
-   void ::filemanager::file_list::_017UpdateList()
+   void file_list::_017UpdateList()
    {
 
       if (m_bStatic)
@@ -1829,7 +1853,7 @@ namespace filemanager
 
    }
 
-   /*void ::filemanager::file_list::_017OneLevelUp()
+   /*void file_list::_017OneLevelUp()
    {
    if(m_lpiidlAbsolute == NULL)
    return;
@@ -1852,7 +1876,7 @@ namespace filemanager
 
    }*/
 
-   void ::filemanager::file_list::_001OnMainPostMessage(signal_details * pobj)
+   void file_list::_001OnMainPostMessage(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj)
          switch (pbase->m_wparam)
@@ -1877,12 +1901,12 @@ namespace filemanager
       pbase->m_bRet = true;
    }
 
-   ::fs::item & ::filemanager::file_list::GetFileManagerItem()
+   ::fs::item & file_list::GetFileManagerItem()
    {
       return GetFileManager()->get_item();
    }
 
-   void ::filemanager::file_list::_017Synchronize()
+   void file_list::_017Synchronize()
    {
 
       if (m_bStatic)
@@ -1902,17 +1926,8 @@ namespace filemanager
 
    }
 
-   void ::filemanager::file_list::install_message_handling(::message::dispatch *pinterface)
-   {
-      ::user::form_list::install_message_handling(pinterface);
-      IGUI_WIN_MSG_LINK(MessageMainPost, pinterface, this, &::filemanager::file_list::_001OnMainPostMessage);
-      IGUI_WIN_MSG_LINK(WM_HSCROLL, pinterface, this, &::filemanager::file_list::_001OnHScroll);
-      IGUI_WIN_MSG_LINK(WM_VSCROLL, pinterface, this, &::filemanager::file_list::_001OnVScroll);
-      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &::filemanager::file_list::_001OnShowWindow);
 
-   }
-
-   void ::filemanager::file_list::_001OnDraw(::draw2d::graphics *pdc)
+   void file_list::_001OnDraw(::draw2d::graphics *pdc)
    {
       if (m_iAnimate <= 0)
       {
@@ -1943,18 +1958,13 @@ namespace filemanager
 
    }
 
-   void ::filemanager::file_list::StartAnimation()
-   {
-      m_iAnimate = 1;
-   }
-
-   void ::filemanager::file_list::TakeAnimationSnapshot()
+   void file_list::TakeAnimationSnapshot()
    {
       m_iAnimate = 1;
       ::user::list::_001OnDraw(m_gdibuffer.GetBuffer());
    }
 
-   void ::filemanager::file_list::_017PreSynchronize()
+   void file_list::_017PreSynchronize()
    {
       //TakeAnimationSnapshot();
    }
@@ -1963,7 +1973,7 @@ namespace filemanager
 
 
 
-   void ::filemanager::file_list::_017OpenSelected(bool bOpenFile)
+   void file_list::_017OpenSelected(bool bOpenFile)
    {
       ::fs::item_array itema;
       index iItemRange, iItem;
@@ -2010,7 +2020,7 @@ namespace filemanager
       _001ClearSelection();
    }
 
-   void ::filemanager::file_list::_017OpenContextMenuSelected()
+   void file_list::_017OpenContextMenuSelected()
    {
       ::fs::item_array itema;
       index iItemRange, iItem;
@@ -2060,39 +2070,14 @@ namespace filemanager
       _001ClearSelection();
    }
 
-   void ::filemanager::file_list::_017OpenContextMenuFolder(sp(::fs::item) item)
-   {
-      UNREFERENCED_PARAMETER(item);
-   }
 
-   void ::filemanager::file_list::_017OpenContextMenuFile(const ::fs::item_array &itema)
-   {
-      UNREFERENCED_PARAMETER(itema);
-   }
-
-   void ::filemanager::file_list::_017OpenContextMenu()
-   {
-   }
-
-   void ::filemanager::file_list::_017OpenFolder(sp(::fs::item) item)
-   {
-      UNREFERENCED_PARAMETER(item);
-      ASSERT(FALSE);
-   }
-
-   void ::filemanager::file_list::_017OpenFile(const ::fs::item_array &itema)
-   {
-      UNREFERENCED_PARAMETER(itema);
-      ASSERT(FALSE);
-   }
-
-   void ::filemanager::file_list::_001OnInitializeForm(sp(::user::control) pcontrol)
+   void file_list::_001OnInitializeForm(sp(::user::control) pcontrol)
    {
       ASSERT(pcontrol != NULL);
       if (pcontrol == NULL)
          return;
 
-      filemanager::file_list_callback * pcallback =
+      file_list_callback * pcallback =
          GetFileManager()->get_filemanager_data()->m_pschema->m_pfilelistcallback;
 
       sp(BaseButtonControl) pbutton = (pcontrol);
@@ -2102,10 +2087,10 @@ namespace filemanager
       }
    }
 
-   void ::filemanager::file_list::_001OnButtonAction(
+   void file_list::_001OnButtonAction(
       sp(::user::control) pcontrol)
    {
-      filemanager::file_list_callback * pcallback =
+      file_list_callback * pcallback =
          GetFileManager()->get_filemanager_data()->m_pschema->m_pfilelistcallback;
 
       if (pcallback != NULL)
@@ -2125,7 +2110,7 @@ namespace filemanager
       }
    }
 
-   void ::filemanager::file_list::GetSelected(::fs::item_array &itema)
+   void file_list::GetSelected(::fs::item_array &itema)
    {
       index iItemRange, iItem;
       range range;
@@ -2177,7 +2162,7 @@ namespace filemanager
       }
    }
 
-   void ::filemanager::file_list::_001OnVScroll(signal_details * pobj)
+   void file_list::_001OnVScroll(signal_details * pobj)
    {
       SCAST_PTR(::message::scroll, pscroll, pobj)
          m_iCreateImageListStep = pscroll->m_nPos;
@@ -2185,18 +2170,18 @@ namespace filemanager
       pobj->m_bRet = false;
    }
 
-   void ::filemanager::file_list::_001OnHScroll(signal_details * pobj)
+   void file_list::_001OnHScroll(signal_details * pobj)
    {
       pobj->m_bRet = false;
    }
 
-   ::count ::filemanager::file_list::_001GetItemCount()
+   ::count file_list::_001GetItemCount()
    {
       return get_fs_list_data()->m_itema.get_count();
    }
 
 
-   bool ::filemanager::file_list::add_item(const char * pszPath, const char * pszTitle)
+   bool file_list::add_item(const char * pszPath, const char * pszTitle)
    {
 
       ::userfs::list_item item(get_app());
@@ -2221,7 +2206,7 @@ namespace filemanager
    }
 
 
-   sp(image_list) ::filemanager::file_list::GetActionButtonImageList(index i)
+   sp(image_list) file_list::GetActionButtonImageList(index i)
    {
       if (i == 0)
       {
@@ -2230,55 +2215,9 @@ namespace filemanager
       return NULL;
    }
 
-   void ::filemanager::file_list::_001OnFileRename(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-      sp(::user::control) pcontrol = _001GetControlBySubItem(m_iNameSubItem);
-      range range;
-      _001GetSelection(range);
-      if (range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
-      {
-         _001PlaceControl(pcontrol);
-      }
-   }
 
-   void ::filemanager::file_list::_001OnUpdateFileRename(signal_details * pobj)
-   {
-      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
-         range range;
-      _001GetSelection(range);
-      pcmdui->m_pcmdui->Enable(
-         range.get_item_count() == 1
-         && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound());
-      pobj->m_bRet = true;
-   }
 
-   void ::filemanager::file_list::_001OnShowWindow(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(::message::show_window, pshow, pobj)
-
-      db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
-      if (pcentral == NULL)
-         return;
-      //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
-      /*if(pshow->m_bShow)
-      {
-      for(int32_t i = 0; i < m_itema.get_item_count(); i++)
-      {
-      pset->m_table.add_request(m_itema.get_item(i).m_strPath);
-      }
-      }
-      else
-      {
-      for(int32_t i = 0; i < m_itema.get_item_count(); i++)
-      {
-      pset->m_table.remove_request(m_itema.get_item(i).m_strPath);
-      }
-      }*/
-   }
-
-   void ::filemanager::file_list::file_size_add_request(bool bClear)
+   void file_list::file_size_add_request(bool bClear)
    {
       UNREFERENCED_PARAMETER(bClear);
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
@@ -2296,14 +2235,14 @@ namespace filemanager
    }
 
 
-   void ::filemanager::file_list::_001InitializeFormPreData()
+   void file_list::_001InitializeFormPreData()
    {
-      ::filemanager::list_data * pdata = GetFileManager()->get_filemanager_data();
+      list_data * pdata = GetFileManager()->get_filemanager_data();
       pdata->m_pcallback->OnFileManagerInitializeFormPreData(pdata, GetDlgCtrlId(), this);
    }
 
 
-   bool ::filemanager::file_list::query_drop(index iDisplayDrop, index iDisplayDrag)
+   bool file_list::query_drop(index iDisplayDrop, index iDisplayDrag)
    {
       if (iDisplayDrag < 0)
          return false;
@@ -2330,7 +2269,7 @@ namespace filemanager
    }
 
 
-   bool ::filemanager::file_list::do_drop(index iDisplayDrop, index iDisplayDrag)
+   bool file_list::do_drop(index iDisplayDrop, index iDisplayDrag)
    {
       index strict;
       index strictDrag;
@@ -2360,7 +2299,7 @@ namespace filemanager
       return true;
    }
 
-   COLORREF ::filemanager::file_list::get_background_color()
+   COLORREF file_list::get_background_color()
    {
       if (GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->is_saving())
       {

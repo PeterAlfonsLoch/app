@@ -27,6 +27,14 @@ namespace plane
 
 } // namespace plane
 
+class image_list;
+
+namespace user
+{
+
+   class tree;
+
+} // namespace user
 
 #undef App
 #undef Application

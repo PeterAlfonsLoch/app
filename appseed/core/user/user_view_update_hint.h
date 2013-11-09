@@ -22,9 +22,14 @@ namespace user
 
       
       e_hint         m_ehint;
+      bool           m_bOk;
+
+
+      bool is_type_of(e_hint ehint) const;
 
    
       view_update_hint(sp(base_application) papp);
+      virtual ~view_update_hint();
 
 
    };

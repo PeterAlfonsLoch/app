@@ -33,13 +33,13 @@ namespace userfs
 
       void update_list();
 
-      void _001OnItemExpand(sp(::data::tree_item) pitem);
-      void _017UpdateList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel);
+      void _001OnItemExpand(::data::tree_item * pitem);
+      void _017UpdateList(const char * lpcsz, ::data::tree_item * pitemParent, int32_t iLevel);
 
       sp(::userfs::document) get_document();
 
       virtual void _001InsertColumns();
-      virtual void _001UpdateImageList(sp(::data::tree_item) pitem);
+      virtual void _001UpdateImageList(::data::tree_item * pitem);
 
 
 
@@ -52,8 +52,8 @@ namespace userfs
       void _CreateImageListStep();
 
       // user::tree
-      virtual void _001OnOpenItem(sp(::data::tree_item) pitem);
-      virtual void _001OnItemCollapse(sp(::data::tree_item) pitem);
+      virtual void _001OnOpenItem(::data::tree_item * pitem);
+      virtual void _001OnItemCollapse(::data::tree_item * pitem);
 
 
       virtual void _017OpenFolder(sp(::fs::item) item);
@@ -62,13 +62,13 @@ namespace userfs
 
       void _017PreSynchronize();
       void TakeAnimationSnapshot();
-      virtual void StartAnimation();
+      virtual void StartAnimation(::user::interaction * pui);
       void GetSelectedFilePath(stringa & stra);
       virtual bool _001IsTranslucent();
 
       void _017Browse(const char * lpcsz, bool bForceUpdate = false);
       void _017UpdateList();
-      void _017UpdateZipList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel);
+      void _017UpdateZipList(const char * lpcsz, ::data::tree_item * pitemParent, int32_t iLevel);
       void _017EnsureVisible(const char * lpcsz);
 
       sp(::data::tree_item) find_item(const char * lpcsz);

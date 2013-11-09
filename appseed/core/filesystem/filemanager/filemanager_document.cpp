@@ -335,10 +335,17 @@ namespace filemanager
    void document::CreateViews()
    {
 
+      {
+       
+         ::user::view_update_hint uh(get_app());
+         
+         uh.oprop("manager") = this;
+         uh.m_ehint = ::user::view_update_hint::hint_create_views;
+         update_all_views(NULL, 0, &uh);
+
+      }
+
       update_hint uh;
-      uh.m_pmanager = this;
-      uh.set_type(update_hint::TypeCreateViews);
-      update_all_views(NULL, 0, &uh);
 
       uh.set_type(update_hint::TypeInitialize);
       uh.m_uiId = get_filemanager_data()->m_iDocument;
@@ -426,19 +433,22 @@ namespace filemanager
 
    void document::FileManagerSaveAs(sp(::user::document_interface) pdocument)
    {
-      ::manager::FileManagerSaveAs(pdocument);
+      
+      manager::FileManagerSaveAs(pdocument);
+
       update_hint uh;
       uh.m_pmanager = this;
       uh.set_type(update_hint::TypeSaveAsStart);
       update_all_views(NULL, 0, &uh);
       uh.set_type(update_hint::TypeCreateBars);
       update_all_views(NULL, 0, &uh);
+
    }
 
 
 
 
-   ::list_data * document::get_filemanager_data()
+   list_data * document::get_filemanager_data()
    {
 
 
@@ -458,7 +468,7 @@ namespace filemanager
    }
 
 
-   bool document::set_filemanager_data(::list_data * pdata)
+   bool document::set_filemanager_data(list_data * pdata)
    {
 
 

@@ -380,7 +380,7 @@ namespace bergedge
             {
                if(m_ppropform == NULL)
                {
-                  m_ppropform = new filemanager::::filemanager::file_properties_form(get_app());
+                  m_ppropform = new ::filemanager::file_properties_form(get_app());
                }
                pcreatordata->m_pwnd = m_ppropform->open(this, m_itema);
                if(pcreatordata->m_pwnd == NULL)

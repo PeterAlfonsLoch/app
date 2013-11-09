@@ -13,23 +13,28 @@ namespace data
    {
    }
 
-   string item::data_item_get_text(object * pobject)
+   string item::data_item_get_text(object * pobject) const
    {
       UNREFERENCED_PARAMETER(pobject);
       return "";
    }
 
-   index item::data_item_get_image(::user::interaction * pui)
+   index item::data_item_get_image(object * pobject) const
    {
-      UNREFERENCED_PARAMETER(pui);
+      UNREFERENCED_PARAMETER(pobject);
       return -1;
    }
 
-   sp(image_list) item::data_item_get_image_list(::user::interaction * pui)
+   sp(image_list) item::data_item_get_image_list(object * pobject) const
    {
-      if (pui == NULL)
-         return NULL;
-      return pui->get_image_list();
+      UNREFERENCED_PARAMETER(pobject);
+      return NULL;
+   }
+
+
+   void item::data_item_on_fill_children(::data::tree_item * pitem)
+   {
+
    }
 
 

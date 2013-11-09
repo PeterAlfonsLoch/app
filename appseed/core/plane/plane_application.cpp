@@ -2046,6 +2046,28 @@ exit_application:
    }
 
 
+   int32_t application::simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle)
+   {
+
+      if (!user().is_set())
+         return ::application::simple_message_box(puiOwner, pszMessage, fuStyle);
+
+      return user()->simple_message_box(puiOwner, pszMessage, fuStyle);
+
+   }
+
+
+   int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle)
+   {
+
+      if (!user().is_set())
+         return ::application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
+
+      return user()->simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
+
+   }
+
+
    void application::assert_valid() const
    {
 

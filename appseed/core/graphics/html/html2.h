@@ -26,6 +26,7 @@
 #include "html_input_button.h"
 #include "html_input_check_box.h"
 #include "html_input_text.h"
+#include "html_select.h"
 #include "html_form.h"
 
 

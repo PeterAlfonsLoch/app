@@ -7,6 +7,7 @@ namespace filehandler
 
    tree_interface::tree_interface(sp(base_application) papp) :
       element(papp),
+      ::data::data(papp),
       ::data::tree(papp)
    {
 

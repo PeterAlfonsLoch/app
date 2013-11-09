@@ -52,6 +52,7 @@ namespace user
       virtual void _001SetCurSel(index iSel);
       virtual index _001GetCurSel();
 
+      virtual void _001SetCurSelByData(uint_ptr ui);
 
       virtual void _001GetText(string & str);
       virtual void _001SetText(const char * psz);
@@ -133,7 +134,7 @@ namespace user
       void ShowDropDown(bool bShowIt = TRUE);
 
       // manipulating listbox items
-      index AddString(const char * lpszString);
+      virtual index AddString(const char * lpszString, uint_ptr dwItemData = 0);
       index DeleteString(index nIndex);
       index InsertString(index nIndex, const char * lpszString);
       void ResetContent();

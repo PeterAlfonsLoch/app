@@ -188,6 +188,8 @@ retry_license:
          System.factory().creatable_small < simple_printer_list_view > ();
          System.factory().creatable_small < simple_combo_list > ();
 
+         System.factory().creatable_small < ::user::tree >();
+
 
          System.factory().creatable_small < SimplePushButton > ();
 
@@ -339,7 +341,7 @@ retry_license:
          return m_pbaseapp->m_pplaneapp->m_psession->m_pplanesession->m_pplanesession->simple_message_box(pwndOwner, pszMessage, fuStyle);
       }
 
-      class message_box box(get_app());
+      class ::userex::message_box box(get_app());
 
       property_set propertyset;
       propertyset["message"] = pszMessage;
@@ -355,12 +357,12 @@ retry_license:
       }
       try
       {
-         /*         if(!box.show(strMatter, propertyset))
+         if(!box.show(strMatter, &propertyset))
          {
-         string strMessage = pszMessage;
-         strMessage.replace("<br>", "\r\n");
-         return MessageBox(pwndOwner == NULL ? NULL : pwndOwner->get_wnd()->get_os_data(), strMessage, m_strAppName, fuStyle);
-         }*/
+            string strMessage = pszMessage;
+            strMessage.replace("<br>", "\r\n");
+            return MessageBox((HWND) (pwndOwner.is_null() ? NULL : pwndOwner->get_wnd()->get_os_data()), strMessage, Application.m_strAppName, fuStyle);
+         }
       }
       catch(...)
       {
@@ -399,7 +401,7 @@ retry_license:
 
       UNREFERENCED_PARAMETER(puiOwner);
 
-      class message_box box(get_app());
+      class ::userex::message_box box(get_app());
 
       property_set propertyset;
       propertyset["message"] = pszMessage;
@@ -414,8 +416,9 @@ retry_license:
       {
          strMatter = "system\\user\\simple_message_box\\ok.xhtml";
       }
-      throw not_implemented(get_app());
-      //      box.show(strMatter, propertyset);
+      
+      box.show(strMatter, &propertyset);
+
       if(box.m_strResponse == "ok")
       {
          return IDOK;

@@ -70,6 +70,13 @@ signalizable::~signalizable()
    }
 }
 
+void signalizable::install_message_handling(::message::dispatch * pdispatch)
+{
+
+   UNREFERENCED_PARAMETER(pdispatch);
+
+}
+
 
 void signalizable::register_signal(class signal * psignal)
 {

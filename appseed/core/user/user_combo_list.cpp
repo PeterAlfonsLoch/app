@@ -29,6 +29,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_ACTIVATE, pdispatch, this, &combo_list::_001OnActivate);
       IGUI_WIN_MSG_LINK(WM_MOUSEACTIVATE, pdispatch, this, &combo_list::_001OnMouseActivate);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &combo_list::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &combo_list::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MBUTTONDOWN, pdispatch, this, &combo_list::_001OnMButtonDown);
       IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN, pdispatch, this, &combo_list::_001OnRButtonDown);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &combo_list::_001OnMouseMove);
@@ -229,6 +230,9 @@ namespace user
    void combo_list::query_full_size(LPSIZE lpsize) const
    {
 
+      if (!((combo_list *)this)->IsWindow())
+         return;
+
       ::draw2d::graphics_sp pdc(((combo_list *) this)->allocer());
 
 
@@ -364,6 +368,15 @@ namespace user
 
 //      SCAST_PTR(::message::mouse_activate, pactivate, pobj);
 
+
+   }
+
+   void combo_list::_001OnLButtonUp(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+
+      pmouse->m_bRet = true;
 
    }
 

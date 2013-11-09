@@ -98,15 +98,31 @@ public:
 
    }
 
+   ::count add_unique(const smart_pointer_array & a)
+   {
 
-   bool contains(T * p, index iStart = 0, ::count nCount = -1)
+      ::count c = 0;
+
+      for (index i = 0; i < a.get_count(); i++)
+      {
+
+         if (add_unique(a(i)))
+            c++;
+
+      }
+
+      return c;
+
+   }
+
+   bool contains(const T * p, index iStart = 0, ::count nCount = -1) const
    {
 
       return find_first(p, iStart, nCount) >= 0;
 
    }
 
-   ::index find_first(const T * p, index iStart = 0, ::count nCount = -1)
+   ::index find_first(const T * p, index iStart = 0, ::count nCount = -1) const
    {
 
       index iEnd;
@@ -129,15 +145,15 @@ public:
    }
 
 
-   ::index find_first(const T & t, index (* lpfnCompare)(const T *, const T *), index iStart = 0, ::count nCount = -1)
-   {
+   ::index find_first(const T & t, index (* lpfnCompare)(const T *, const T *), index iStart = 0, ::count nCount = -1) const
+   { 
 
       return this->find_first(&t, lpfnCompare, iStart, nCount);
 
    }
 
 
-   ::index find_first(const T * p, index (* lpfnCompare)(const T *, const T *), index iStart = 0, ::count nCount = -1)
+   ::index find_first(const T * p, index (* lpfnCompare)(const T *, const T *), index iStart = 0, ::count nCount = -1) const
    {
 
       index iEnd;

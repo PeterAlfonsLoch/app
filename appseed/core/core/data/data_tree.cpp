@@ -6,10 +6,9 @@ namespace data
 
 
    tree::tree(sp(base_application) papp) :
-      element(papp)
+      element(papp),
+      ::data::data(papp)
    {
-
-/*    
       
       m_proot = new tree_item;
 
@@ -20,13 +19,8 @@ namespace data
 
       m_proot->m_dwState |= ::data::tree_item_state_expanded;
 
-      ::data::simple_item * pitemdata = new ::data::simple_item();
+      m_proot->m_ptree = this;
 
-      m_proot->m_proot = pitemdata;
-
-      pitemdata->m_str = "tree";
-
-*/
 
    }
 
@@ -37,23 +31,36 @@ namespace data
    }
 
 
-   sp(tree_item) tree::find(item * pitemdata, index i)
+   sp(tree_item) tree::find(item * pitemdata, index * piIndex)
    {
-      if(i < 0)
-         return NULL;
+      
+      index iIndex;
+
       if(pitemdata == NULL)
          return NULL;
+
+      if (piIndex == NULL)
+         iIndex = 0;
+      else
+         iIndex = *piIndex;
+
+
       sp(::data::tree_item) pitem = m_proot;
       for(; pitem != NULL; pitem = pitem->get_item(TreeNavigationExpandedForward))
       {
          if(pitem->m_pitem == pitemdata)
          {
-            i--;
-            if(i < 0)
+            iIndex--;
+            if(iIndex < 0)
                return pitem;
          }
       }
+
+      if (piIndex != NULL)
+         *piIndex = iIndex;
+
       return NULL;
+
    }
 
    bool tree::contains(item * pitemdata)
@@ -80,7 +87,7 @@ namespace data
 
    ::count tree::remove(item * pitemdata, index i)
    {
-      sp(tree_item) pitem = find(pitemdata, i);
+      sp(tree_item) pitem = find(pitemdata, &i);
       if(pitem == NULL)
          return false;
       return remove(pitem);
@@ -114,32 +121,65 @@ namespace data
 
 
 
-   sp(::data::tree_item) tree::get_proper_item(index iIndex, index * piLevel)
+   sp(::data::tree_item) tree::get_proper_item(index iIndex, index * piLevel, index * piCount)
    {
-      if(*piLevel) *piLevel = 0;
+
+      index iCount = 0;
+
+      if(*piLevel) 
+         *piLevel = 0;
+
       sp(::data::tree_item) pitem = get_base_item();
+      
       while(pitem != NULL && iIndex >= 0)
       {
          pitem = pitem->get_item(TreeNavigationProperForward, piLevel);
          iIndex--;
+         iCount++;
       }
-      return pitem;
+      
+      if (iIndex < 0 && pitem.is_set())
+         return pitem;
+
+      if (piCount != NULL)
+         *piCount = iCount;
+
+      return NULL;
 
    }
 
-   index tree::get_proper_item_index(::data::tree_item *pitemParam, index * piLevel)
+   index tree::get_proper_item_index(::data::tree_item *pitemParam, index * piLevel, index * piCount)
    {
+      
+      index iFound = 0;
+
       int32_t iIndex = 0;
-      if(piLevel != NULL) *piLevel = 0;
+
+      count iCount = 0;
+
+      if(piLevel != NULL)
+         *piLevel = 0;
+
       sp(::data::tree_item) pitem = get_base_item();
-      while(pitem != NULL)
+
+      while (pitem != NULL)
       {
          pitem = pitem->get_item(TreeNavigationProperForward, piLevel);
-         if(pitem == pitemParam)
+         if (pitem == pitemParam)
+         {
+            if (piCount != NULL)
+               *piCount += iCount;
             return iIndex;
+         }
          iIndex++;
+         iCount++;
       }
+
+      if (piCount != NULL)
+         *piCount += iCount;
+         
       return -1;
+
    }
 
    ::count tree::get_proper_item_count()
@@ -200,11 +240,13 @@ namespace data
       case RelativeFirstChild:
          {
             pitemRelative->m_children.insert_at(0, pitemNew);
+            pitemNew->m_pparent = pitemRelative;
          }
          break;
       case RelativeLastChild:
          {
             pitemRelative->m_children.add(pitemNew);
+            pitemNew->m_pparent = pitemRelative;
          }
          break;
       case RelativePreviousSibling:
@@ -216,6 +258,7 @@ namespace data
             if(iFind > 0)
                iFind--;
             pitemRelative->m_pparent->m_children.insert_at(0, pitemNew);
+            pitemNew->m_pparent = pitemRelative->m_pparent;
          }
          break;
       case RelativeNextSibling:
@@ -229,6 +272,7 @@ namespace data
             else
                iFind++;
             pitemRelative->m_pparent->m_children.insert_at(0, pitemNew);
+            pitemNew->m_pparent = pitemRelative->m_pparent;
          }
          break;
       case RelativeLastSibling:
@@ -236,6 +280,7 @@ namespace data
             // all tree items that have siblings have a parent (at least the base item)
             ASSERT(pitemRelative->m_pparent != NULL);
             pitemRelative->m_pparent->m_children.add(pitemNew);
+            pitemNew->m_pparent = pitemRelative->m_pparent;
          }
          break;
       case RelativeReplace:
@@ -269,7 +314,7 @@ namespace data
          default:
             throw not_supported_exception(get_app());
       }
-
+      pitemNew->m_ptree = this;
       _001OnTreeDataChange();
       return true;
    }
@@ -291,6 +336,228 @@ namespace data
       }
    }
 
+
+   void tree::_001ExpandItem(::data::tree_item * pitem, bool bExpand, bool bRedraw, bool bLayout)
+   {
+
+      for (index i = 0; i < m_treeptra.get_count(); i++)
+      {
+
+         m_treeptra[i]._001ExpandItem(pitem, bExpand, bRedraw, bLayout);
+
+      }
+
+   }
+
+   void tree::_001EnsureVisible(::data::tree_item * pitem)
+   {
+
+      for (index i = 0; i < m_treeptra.get_count(); i++)
+      {
+
+         m_treeptra[i]._001EnsureVisible(pitem);
+
+      }
+
+   }
+
+
+   void tree::_001SelectItem(::data::tree_item * pitem)
+   {
+
+      for (index i = 0; i < m_treeptra.get_count(); i++)
+      {
+
+         m_treeptra[i]._001SelectItem(pitem);
+
+      }
+
+   }
+
+   void tree::get_selection(::data::tree_item_ptr_array & itemptraSelected) const
+   {
+
+      for (index i = 0; i < m_treeptra.get_count(); i++)
+      {
+
+         itemptraSelected.add_unique(m_treeptra[i].m_itemptraSelected);
+
+      }
+
+   }
+
+
+   bool tree::is_selected(const ::data::tree_item * pitem) const
+   {
+
+      for (index i = 0; i < m_treeptra.get_count(); i++)
+      {
+
+         if (m_treeptra[i].is_selected(pitem))
+            return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   bool tree::is_selected(const ::data::item * pitem) const
+   {
+
+      for (index i = 0; i < m_treeptra.get_count(); i++)
+      {
+
+         if (m_treeptra[i].is_selected(pitem))
+            return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   void tree::_001OnItemExpand(::data::tree_item * pitem)
+   {
+
+      if (pitem->is_expanded())
+         return;
+
+      pitem->on_fill_children();
+
+      if (pitem->get_children_count() > 0)
+      {
+         pitem->m_dwState |= ::data::tree_item_state_expanded;
+         pitem->m_dwState |= ::data::tree_item_state_expandable;
+      }
+
+/*      for (index i = 0; i < m_treeptra.get_count(); i++)
+      {
+
+         m_treeptra[i]._001OnItemExpand(pitem);
+
+      }*/
+
+
+      
+
+   }
+
+
+   void tree::_001OnItemCollapse(::data::tree_item * pitem)
+   {
+
+      if (!pitem->is_expanded())
+         return;
+      if (pitem->get_children_count() > 0)
+      {
+         pitem->m_dwState |= ::data::tree_item_state_expandable;
+      }
+      pitem->m_dwState &= ~::data::tree_item_state_expanded;
+      /*for (index i = 0; i < m_treeptra.get_count(); i++)
+      {
+
+         m_treeptra[i]._001OnItemCollapse(pitem);
+
+      }*/
+
+   }
+
+
+   void tree::_001OnOpenItem(::data::tree_item * pitem)
+   {
+
+      for (index i = 0; i < m_treeptra.get_count(); i++)
+      {
+
+         m_treeptra[i]._001OnOpenItem(pitem);
+
+      }
+
+   }
+
+
+
+   ::count   tree::selection_set(::data::tree_item_ptr_array & itemptra)
+   {
+
+      ::count c = 0;
+
+      for (index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
+      {
+
+         c += m_treeptra[iTree].selection_set(itemptra);
+
+      }
+
+      return c;
+
+   }
+
+
+   bool      tree::selection_set(::data::tree_item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   {
+
+      bool bAllOk = true;
+
+      for (index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
+      {
+
+         if (!m_treeptra[iTree].selection_set(pitem))
+            bAllOk = false;
+
+      }
+
+
+      return bAllOk;
+
+   }
+
+
+   bool      tree::selection_set(::data::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   {
+
+      bool bAllOk = true;
+
+      for (index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
+      {
+
+         if(!m_treeptra[iTree].selection_set(pitem, bIfNotInSelection, bIfParentInSelection))
+            bAllOk = false;
+
+      }
+
+      return bAllOk;
+
+   }
+
+
+   bool      tree::selection_set(index iIndex, ::data::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   {
+
+      bool bAllOk = true;
+
+      for (index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
+      {
+
+         if (!m_treeptra[iTree].selection_set(iIndex, pitem, bIfNotInSelection, bIfParentInSelection))
+            bAllOk = false;
+
+      }
+
+      return bAllOk;
+
+   }
+
+
+   sp(image_list) tree::get_image_list() const
+   {
+      
+      return m_pimagelist;
+
+   }
 
 
 

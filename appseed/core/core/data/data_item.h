@@ -9,6 +9,7 @@ namespace data
 
 
    class item_data_array;
+   class tree_item;
    class tree;
 
 
@@ -21,9 +22,12 @@ namespace data
       item();
       virtual ~item();
 
-      virtual string data_item_get_text(object * pobject);
-      virtual index data_item_get_image(::user::interaction * pobject);
-      virtual sp(image_list) data_item_get_image_list(::user::interaction * pui);
+      virtual string data_item_get_text(object * pobject) const;
+      virtual index data_item_get_image(object * pobject) const;
+      virtual sp(image_list) data_item_get_image_list(object * pobject) const;
+
+
+      virtual void data_item_on_fill_children(::data::tree_item * pitem);
 
    };
 

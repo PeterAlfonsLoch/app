@@ -65,9 +65,13 @@ namespace data
       ::count get_expandable_children_count();
       ::count get_proper_descendant_count();
       sp(tree_item) get_expandable_child(index iIndex);
-      sp(tree_item) get_previous();
+      sp(tree_item) get_previous(bool bParent = true);
       sp(tree_item) get_next(bool bChild = true, bool bParent = true, index * pindexLevel = NULL);
+      
+
+      sp(tree_item) previous();
       sp(tree_item) first_child();
+      sp(tree_item) next();
 
 
       void sort_children(index ( * lpfnCompare )(sp(tree_item) *, sp(tree_item) *));
@@ -81,14 +85,19 @@ namespace data
 
       virtual sp(tree) get_tree();
 
-      virtual string get_text();
-      virtual index get_image();
-      virtual sp(image_list) get_image_list();
+      virtual string get_text() const;
+      virtual index get_image() const;
+      virtual sp(image_list) get_image_list() const;
 
 
       ::count remove_tree_item();
       ::count remove_tree_item_descendants();
 
+
+      virtual bool is_expanded() const;
+      virtual bool is_expandable() const;
+
+      virtual void on_fill_children();
 
    };
 

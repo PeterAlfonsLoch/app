@@ -7,12 +7,12 @@ namespace filemanager
 
    a_view::a_view(sp(base_application) papp) :
       element(papp),
+      ::filemanager::data_interface(papp),
       ::user::split_layout(papp),
-
       ::user::split_view(papp),
       place_holder_container(papp)
    {
-      }
+   }
 
    a_view::~a_view()
    {
@@ -66,7 +66,7 @@ namespace filemanager
                   if (pframe != NULL)
                   {
                      ASSERT(pframe != NULL);
-                     ASSERT(base < ::frame > ::bases(pframe));
+                     ASSERT(base < frame > ::bases(pframe));
                      pframe->SetActiveView(this);
                      pframe->CreateBars();
                   }
@@ -76,11 +76,11 @@ namespace filemanager
                      pmainframe->SetActiveView(this);
                      pmainframe->CreateBars();
                   }
-                  sp(::filemanager::child_frame) pchildframe = (GetParentFrame());
+                  sp(child_frame) pchildframe = (GetParentFrame());
                   if (pchildframe != NULL)
                   {
                      ASSERT(pchildframe != NULL);
-                     ASSERT(base < ::filemanager::child_frame > ::bases(pchildframe));
+                     ASSERT(base < child_frame > ::bases(pchildframe));
 
                      pchildframe->SetActiveView(this);
                      pchildframe->CreateBars();
@@ -194,7 +194,7 @@ namespace filemanager
          }
       }
 
-      ::filemanager::tab_view * ptabview = GetParentFrame()->GetTypedParent < ::filemanager::tab_view >();
+      tab_view * ptabview = GetParentFrame()->GetTypedParent < tab_view >();
       if (ptabview != NULL)
       {
          ptabview->on_update(this, lHint, phint);
@@ -202,33 +202,41 @@ namespace filemanager
 
    }
 
-   void a_view::CreateViews()
+   void a_view::on_create_views()
    {
+
+      if (get_pane_count() > 0)
+         return;
+
       SetPaneCount(2);
 
       SetSplitOrientation(orientation_horizontal);
 
       set_position(0, 24);
 
+      path_view * ppathview = create_view < path_view >();
 
-
-      ::path_view * ptopview = create_view < ::path_view >();
-      if (ptopview == NULL)
+      if (ppathview == NULL)
       {
-         System.simple_message_box(NULL, "Could not create folder tree ::user::view");
-      }
-      SetPane(0, ptopview, false);
-      //ptopview->CreateViews();
 
+         System.simple_message_box(NULL, "Could not create filemanager path view");
+
+      }
+
+      SetPane(0, ppathview, false);
 
       main_view * pmediaview = create_view < main_view >();
 
       if (pmediaview == NULL)
       {
+
          System.simple_message_box(NULL, "Could not create file list ::user::view");
+
       }
+
       SetPane(1, pmediaview, false);
-      pmediaview->CreateViews();
+
+      pmediaview->create_views();
 
    }
 
@@ -236,13 +244,15 @@ namespace filemanager
 
    main_view::main_view(sp(base_application) papp) :
       element(papp),
+      ::filemanager::data_interface(papp),
       ::user::split_layout(papp),
-
       ::user::split_view(papp),
       place_holder_container(papp)
    {
-         m_ppropform = NULL;
-      }
+
+      m_ppropform = NULL;
+
+   }
 
    main_view::~main_view()
    {
@@ -287,16 +297,11 @@ namespace filemanager
                {
                   string str;
                   str.Format("::frame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-                  sp(::frame) pframe = ((sp(::user::window)) GetParentFrame());
+                  sp(frame) pframe = ((sp(::user::window)) GetParentFrame());
                   if (pframe != NULL)
                   {
                      pframe->m_dataid = str;
                   }
-               }
-               else if (puh->is_type_of(update_hint::TypeCreateViews)
-                  && get_pane_count() == 0)
-               {
-                  CreateViews();
                }
                else if (puh->is_type_of(update_hint::TypeOpenSelectionProperties))
                {
@@ -308,7 +313,7 @@ namespace filemanager
                   GetParentFrame()->ActivateFrame(SW_SHOW);
                   OnActivateView(TRUE, this, this);
                   RedrawWindow();
-                  sp(::frame) pframe = ((sp(::user::window)) GetParentFrame());
+                  sp(frame) pframe = ((sp(::user::window)) GetParentFrame());
                   if (pframe != NULL)
                   {
                      //xxx               pframe->WindowDataLoadWindowRect();
@@ -317,11 +322,11 @@ namespace filemanager
                }
                else if (puh->is_type_of(update_hint::TypeCreateBars))
                {
-                  sp(::frame) pframe = ((sp(::user::window)) GetParentFrame());
+                  sp(frame) pframe = ((sp(::user::window)) GetParentFrame());
                   if (pframe != NULL)
                   {
                      ASSERT(pframe != NULL);
-                     ASSERT(base < ::frame > ::bases(pframe));
+                     ASSERT(base < frame > ::bases(pframe));
 
                      pframe->CreateBars();
                   }
@@ -330,11 +335,11 @@ namespace filemanager
                   {
                      pmainframe->CreateBars();
                   }
-                  sp(::filemanager::child_frame) pchildframe = ((sp(::user::window)) GetParentFrame());
+                  sp(child_frame) pchildframe = ((sp(::user::window)) GetParentFrame());
                   if (pchildframe != NULL)
                   {
                      ASSERT(pchildframe != NULL);
-                     ASSERT(base < ::filemanager::child_frame > ::bases(pchildframe));
+                     ASSERT(base < child_frame > ::bases(pchildframe));
 
 
                      pchildframe->CreateBars();
@@ -347,8 +352,12 @@ namespace filemanager
 
    }
 
-   void main_view::CreateViews()
+   void main_view::on_create_views()
    {
+
+      if (get_pane_count() > 0)
+         return;
+
       SetPaneCount(2);
 
       SetSplitOrientation(orientation_vertical);
@@ -357,16 +366,16 @@ namespace filemanager
 
 
 
-      ::filemanager::left_view * pleftview = create_view < ::filemanager::left_view >();
+      left_view * pleftview = create_view < left_view >();
 
       if (pleftview == NULL)
       {
          System.simple_message_box(NULL, "Could not create folder tree ::user::view");
       }
       SetPane(0, pleftview, false);
-      pleftview->CreateViews();
+      pleftview->create_views();
 
-      m_pfilelist = create_view < ::filemanager::file_list >();
+      m_pfilelist = create_view < file_list >();
 
       if (m_pfilelist == NULL)
       {
@@ -374,7 +383,7 @@ namespace filemanager
       }
       SetPane(1, m_pfilelist, false);
 
-      m_ppreview = create_view < ::filemanager::preview >();
+      m_ppreview = create_view < preview >();
       m_ppreview->ShowWindow(SW_HIDE);
    }
 
@@ -385,7 +394,7 @@ namespace filemanager
       m_pfilelist->GetSelected(itema);
       if (m_ppropform == NULL)
       {
-         m_ppropform = new ::filemanager::file_properties_form(get_app());
+         m_ppropform = new file_properties_form(get_app());
       }
       sp(::user::interaction) puie = m_ppropform->open(this, itema);
       if (puie == NULL)

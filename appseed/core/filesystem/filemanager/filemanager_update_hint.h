@@ -18,7 +18,6 @@ namespace filemanager
          TypeSynchronizeFolderSelection,
          TypeCreateBars,
          TypePop,
-         TypeCreateViews,
          TypeFilter,
          TypeGetActiveViewSelection,
          TypeOpenSelectionProperties,

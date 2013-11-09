@@ -1357,7 +1357,8 @@ namespace plane
    void system::on_allocation_error(sp(base_application) papp, sp(type) info)
    {
       UNREFERENCED_PARAMETER(papp);
-      simple_message_box(NULL, MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info->friendly_name());
+      // info->friendly_name();
+      simple_message_box(NULL, "Implement \"%s\" allocation\n", MB_ICONINFORMATION);
    }
 
 

@@ -5,17 +5,18 @@ namespace filemanager
 {
 
 
-   class document;
-
-
-   class CLASS_DECL_CORE data_interface
+   class CLASS_DECL_CORE data_interface :
+      virtual public object
    {
    public:
       
-      data_interface();
-      virtual ~data_interface();
-   
+
       sp(::filemanager::manager) m_pfilemanagerinterface;
+
+
+      data_interface(sp(base_application) papp);
+      virtual ~data_interface();
+
 
       ::fs::item & GetFileManagerItem();
 

@@ -35,6 +35,9 @@ namespace filemanager
    class schema;
    class file_list;
    class folder_list;
+   class document;
+
+
 
 } // namespace filemanager
 
@@ -94,6 +97,7 @@ namespace filemanager
 
 #include "filemanager_folder_selection_list_view.h"
 #include "filemanager_folder_list_view.h"
+#include "filemanager_folder_list.h"
 
 #include "filemanager_update_hint.h"
 

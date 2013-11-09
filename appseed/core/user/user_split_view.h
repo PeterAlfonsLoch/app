@@ -25,6 +25,7 @@ namespace user
    #endif
 
       virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
+      virtual bool create_views();
       virtual void on_create_views();
 
       DECL_GEN_SIGNAL(_001OnCreate)

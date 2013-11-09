@@ -59,7 +59,7 @@ namespace filemanager
 
             m_pusertree = create_view < ::user::tree > ();
 
-            m_pusertree->merge(m_ptree);
+            m_pusertree->merge(m_ptree, true);
 
             SetPane(0, m_pusertree, false);
 

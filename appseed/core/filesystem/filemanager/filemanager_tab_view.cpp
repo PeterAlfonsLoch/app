@@ -7,6 +7,7 @@ namespace filemanager
 
    tab_view::tab_view(sp(base_application) papp) :
       element(papp),
+      ::filemanager::data_interface(papp),
       ::user::tab(papp),
       ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),
@@ -35,32 +36,63 @@ namespace filemanager
 
    void tab_view::install_message_handling(::message::dispatch * pinterface)
    {
+
       ::user::tab_view::install_message_handling(pinterface);
+
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tab_view::_001OnCreate);
+
    }
+
 
    void tab_view::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
    {
+
       data_interface::on_update(pSender, lHint, phint);
+
       ::user::tab_view::on_update(pSender, lHint, phint);
+
       if (phint != NULL)
       {
-         if (base < update_hint > ::bases(phint))
+
+         if (base < ::user::view_update_hint > ::bases(phint))
          {
-            update_hint * puh = (update_hint *) phint;
-            if (puh->is_type_of(update_hint::TypeCreateViews) && m_viewmap.get_count() == 0)
+
+            sp(::user::view_update_hint) puh = phint;
+
+            if (puh->is_type_of(::user::view_update_hint::hint_create_views))
             {
-               set_cur_tab_by_id(0);
+
+               if (m_viewmap.get_count() == 0)
+               {
+
+                  set_cur_tab_by_id(0);
+
+               }
+               
             }
+
+         }
+         else if (base < update_hint > ::bases(phint))
+         {
+
+            update_hint * puh = (update_hint *) phint;
+
             if (puh->is_type_of(update_hint::TypeInitialize))
             {
+
                string str;
+
                str.Format("frame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
+
                sp(frame) pframe = ((sp(::user::window)) GetParentFrame());
+
                if (pframe != NULL)
                {
+
                   pframe->m_dataid = str;
+
                }
+
             }
             else if (puh->is_type_of(update_hint::TypePop))
             {

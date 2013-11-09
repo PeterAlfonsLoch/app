@@ -15,6 +15,7 @@ namespace filemanager
 
          tree::tree(sp(base_application) papp) :
             element(papp),
+            ::data::data(papp),
             ::data::tree(papp)
          {
 
@@ -133,12 +134,12 @@ namespace filemanager
 
                if(pdataitemChild == NULL)
                {
-                  pdataitemChild = insert_item(new ::data::simple_item, ::data::RelativeLastChild, pdataitemParent);
+                  pdataitemChild = insert_item(new ::data::simple_item(this), ::data::RelativeLastChild, pdataitemParent);
                }
 
                if(pdataitemChild->m_pitem == NULL)
                {
-                  pdataitemChild->m_pitem = new ::data::simple_item();
+                  pdataitemChild->m_pitem = new ::data::simple_item(this);
                }
 
                pdataitemChild->m_pitem.cast < ::data::simple_item >()->m_str = folder.m_strName;

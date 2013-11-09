@@ -210,7 +210,8 @@ namespace plane
       virtual void data_on_after_change(signal_details * pobj);
 
 
-
+      virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle = MB_OK);
 
 
    };

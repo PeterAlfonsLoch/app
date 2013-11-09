@@ -7,9 +7,12 @@ namespace filemanager
 
    tree::tree(sp(base_application) papp) :
       element(papp),
+      ::data::data(papp),
+      ::filemanager::data_interface(papp),
       ::userfs::tree(papp),
       m_mutexMissinUpdate(papp)
    {
+
       m_pdataitemCreateImageListStep = NULL;
 
       m_iAnimate = 0;
@@ -118,27 +121,8 @@ namespace filemanager
 
       _StartDelayedListUpdate();
 
-      sp(::data::tree_item) pitem = find_item(lpcsz);
 
-      if(pitem != NULL)
-      {
-         index iLevel = 0;
-
-         index iIndex = get_proper_item_index(pitem, &iLevel);
-
-         index iLastVisibleIndex = (index) (m_scrollinfo.m_ptScroll.y + _001GetVisibleItemCount() - 5);
-
-         index iObscured; // obscured proper descendants
-         iObscured = iIndex  - iLastVisibleIndex;
-
-         if(iObscured > 0)
-         {
-            int32_t iNewScroll = (int32_t) (m_scrollinfo.m_ptScroll.y + iIndex * _001GetItemHeight());
-            m_scrollinfo.m_ptScroll.y = max(iNewScroll, 0);
-         }
-      }
-      layout();
-      _001RedrawWindow();
+      _001EnsureVisible(find_item(lpcsz));
    }
 
    sp(::data::tree_item) tree::find_item(const char * lpcsz)
@@ -153,13 +137,7 @@ namespace filemanager
          sp(::data::tree_item) pitem = find_item(lpcsz);
          if(pitem != NULL)
          {
-            if(is_selected(pitem))
-               return;
-            if(is_selected(pitem->m_pparent))
-            {
-               selection_add(pitem);
-               return;
-            }
+            _001SelectItem(pitem);
          }
       }
 
@@ -174,8 +152,12 @@ namespace filemanager
 
       _001SelectItem(find_item(lpcsz));
 
+      if (m_treeptra.has_elements())
+      {
 
-      _StartCreateImageList();
+         _StartCreateImageList(m_treeptra(0));
+
+      }
 
    }
 
@@ -230,7 +212,7 @@ namespace filemanager
       {
          wstrItem = wstraItem[i];
 
-         sp(::userfs::item) pitemNew = canew(::userfs::item);
+         sp(::userfs::item) pitemNew = canew(::userfs::item(this));
 
          pitemNew->m_strPath = lpcsz;
          pitemNew->m_flags.signalize(::fs::FlagInZip);
@@ -325,7 +307,7 @@ namespace filemanager
       }
       else if(get_base_item() == NULL)
       {
-         m_pitem = pitemParent;
+         m_proot = pitemParent;
       }
 
 
@@ -403,7 +385,7 @@ namespace filemanager
             return;
          }
 
-         pitemChild = canew(::userfs::item);
+         pitemChild = canew(::userfs::item(this));
 
          pitemChild->m_strPath = get_document()->set().dir_path(strNew, "");
 
@@ -550,7 +532,7 @@ namespace filemanager
       for(i = 0; i < straPath.get_size(); i++)
       {
 
-         pitemChild = canew(::userfs::item);
+         pitemChild = canew(::userfs::item(this));
 
          iChildCount++;
 
@@ -746,10 +728,16 @@ namespace filemanager
 
    void tree::GetSelectedFilePath(stringa & stra)
    {
-      for(int32_t i = 0; i < m_itemptraSelected.get_size(); i++)
+
+      ::data::tree_item_ptr_array itemptraSelected;
+
+      get_selection(itemptraSelected);
+
+      for(int32_t i = 0; i < itemptraSelected.get_size(); i++)
       {
-         stra.add(( (m_itemptraSelected[0].m_pitem.cast < ::userfs::item > ()))->m_strPath);
+         stra.add(( (itemptraSelected[0].m_pitem.cast < ::userfs::item > ()))->m_strPath);
       }
+
    }
 
 
@@ -765,21 +753,21 @@ namespace filemanager
          switch(pbase->m_wparam)
       {
          case MessageMainPostCreateImageListItemRedraw:
+         {
+            pbase->m_pwnd->RedrawWindow();
+            pbase->m_pwnd->KillTimer(123);
+            /*
+            rect rect;
+            int32_t iArrange = (int32_t) lparam;
+            if(_001IsItemVisible(iArrange))
             {
-               RedrawWindow();
-               KillTimer(123);
-               /*
-               rect rect;
-               int32_t iArrange = (int32_t) lparam;
-               if(_001IsItemVisible(iArrange))
-               {
-               m_bCreateImageListRedraw = true;
-               _001GetItemRect(iArrange, iArrange, rect);
-               RedrawWindow(rect);
-               m_bCreateImageListRedraw = false;
-               }*/
-            }
-            break;
+            m_bCreateImageListRedraw = true;
+            _001GetItemRect(iArrange, iArrange, rect);
+            RedrawWindow(rect);
+            m_bCreateImageListRedraw = false;
+            }*/
+         }
+         break;
       }
       pbase->set_lresult(0);
       pbase->m_bRet = true;
@@ -802,11 +790,21 @@ namespace filemanager
       ::userfs::tree::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageMainPost, pinterface,  this,  &tree::_001OnMainPostMessage);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree::_001OnTimer);
+
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &tree::_001OnLButtonDblClk);
+      IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &tree::_001OnContextMenu);
+      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree::_001OnTimer);
+      IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tree::_001OnCreate);
+
+      //connect_command_range(FILEMANAGER_SHELL_COMMAND_FIRST, FILEMANAGER_SHELL_COMMAND_LAST, &tree::_001OnShellCommand);
+
    }
 
    void tree::StartAnimation()
    {
       m_iAnimate = 1;
+      m_treeptra(0)->SetTimer(1234567, 50, NULL);
+
    }
 
    void tree::TakeAnimationSnapshot()
@@ -911,16 +909,17 @@ namespace filemanager
 
       _017OpenFolder(new ::fs::item(*pitem->m_pitem.cast < ::userfs::item > ()));
 
+
+
    }
 
    void tree::_017OpenFolder(sp(::fs::item)  item)
    {
-      UNREFERENCED_PARAMETER(item);
-      ASSERT(FALSE);
+      GetFileManager()->FileManagerBrowse(item);
    }
 
 
-   void tree::_StartCreateImageList()
+   void tree::_StartCreateImageList(::user::interaction * pui)
    {
 
       if(m_pimagelist == NULL)
@@ -943,19 +942,25 @@ namespace filemanager
 
 
       m_pdataitemCreateImageListStep = (sp(::data::tree_item)) get_base_item()->first_child();
-      SetTimer(TimerCreateImageList, 80, NULL);
+      pui->SetTimer(TimerCreateImageList, 80, NULL);
+
    }
 
-   void tree::_StopCreateImageList()
+   void tree::_StopCreateImageList(::user::interaction * pui)
    {
-      KillTimer(TimerCreateImageList);
+      pui->KillTimer(TimerCreateImageList);
    }
 
    void tree::_CreateImageListStep()
    {
       if(m_pdataitemCreateImageListStep == NULL)
       {
-         _StopCreateImageList();
+         if (m_treeptra.has_elements())
+         {
+
+            _StopCreateImageList(m_treeptra(0));
+
+         }
          return;
       }
 
@@ -986,6 +991,23 @@ namespace filemanager
       }
 
       ptimer->m_bRet = false;
+      if (ptimer->m_nIDEvent == 1234567)
+      {
+         m_iAnimate += 2;
+         if (m_iAnimate >= 11)
+         {
+            m_iAnimate = 0;
+            ptimer->m_pwnd->KillTimer(ptimer->m_nIDEvent);
+
+         }
+         ptimer->m_pwnd->RedrawWindow();
+      }
+      else if (ptimer->m_nIDEvent == 123)
+      {
+         ptimer->m_pwnd->_001RedrawWindow();
+         m_bTimer123 = false;
+         ptimer->m_pwnd->KillTimer(123);
+      }
 
    }
 
@@ -993,7 +1015,7 @@ namespace filemanager
    void tree::_StartDelayedListUpdate()
    {
 
-      SetTimer(TimerDelayedListUpdate, 500, NULL);
+      m_treeptra(0)->SetTimer(TimerDelayedListUpdate, 500, NULL);
 
    }
 
@@ -1001,7 +1023,7 @@ namespace filemanager
    void tree::_StopDelayedListUpdate()
    {
 
-      KillTimer(TimerDelayedListUpdate);
+      m_treeptra(0)->KillTimer(TimerDelayedListUpdate);
 
    }
 
@@ -1055,57 +1077,31 @@ namespace filemanager
 
    }
 
-#include "framework.h"
-
-
-#define SHELL_COMMAND_FIRST 0x1000
-#define SHELL_COMMAND_LAST 0x2000
-
-
-   namespace filemanager
-   {
-
-
-      SimpleFolderTreeView::SimpleFolderTreeView(sp(base_application) papp) :
-         element(papp),
-
-         ::user::scroll_view(papp),
-         tree(papp),
-         m_headerctrl(papp)
-      {
-
-            m_etranslucency = TranslucencyPresent;
-
-         }
-
-      SimpleFolderTreeView::~SimpleFolderTreeView()
-      {
-      }
 
 
 
 #ifdef DEBUG
-      void SimpleFolderTreeView::assert_valid() const
+      void tree::assert_valid() const
       {
          tree::assert_valid();
       }
 
-      void SimpleFolderTreeView::dump(dump_context & dumpcontext) const
+      void tree::dump(dump_context & dumpcontext) const
       {
          tree::dump(dumpcontext);
       }
 #endif //DEBUG
 
 
-      void SimpleFolderTreeView::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
+      void tree::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
       {
-         ::filemanager::data_interface::on_update(pSender, lHint, phint);
+         data_interface::on_update(pSender, lHint, phint);
          if (phint != NULL)
          {
-            if (base < filemanager::update_hint > ::bases(phint))
+            if (base < update_hint > ::bases(phint))
             {
-               filemanager::update_hint * puh = (filemanager::update_hint *)phint;
-               if (puh->is_type_of(filemanager::update_hint::TypeInitialize))
+               update_hint * puh = (update_hint *)phint;
+               if (puh->is_type_of(update_hint::TypeInitialize))
                {
                   /* xxx _001SetExpandImage(
                   System.LoadIcon(
@@ -1119,20 +1115,20 @@ namespace filemanager
                   //          SetDataInterface(&m_datainterface);
                   //        AddClient(&m_datainterface);
                   string str;
-                  str.Format("SimpleFolderTreeView(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
+                  str.Format("tree(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
                   if (GetFileManager()->get_filemanager_data()->m_bTransparentBackground)
                   {
-                     ::user::tree::m_etranslucency = ::user::tree::TranslucencyPresent;
+                     //::user::tree::m_etranslucency = ::user::tree::TranslucencyPresent;
                   }
-                  m_dataid = str;
+//                  m_dataid = str;
                   //            _001UpdateColumns();
                }
-               if (puh->is_type_of(filemanager::update_hint::TypeSynchronizePath))
+               if (puh->is_type_of(update_hint::TypeSynchronizePath))
                {
                   _017PreSynchronize();
                   _017Synchronize();
                }
-               if (puh->is_type_of(filemanager::update_hint::TypeFilter))
+               if (puh->is_type_of(update_hint::TypeFilter))
                {
                   if (puh->m_wstrFilter.is_empty())
                   {
@@ -1150,7 +1146,7 @@ namespace filemanager
       }
 
 
-      void SimpleFolderTreeView::_001OnLButtonDblClk(signal_details * pobj)
+      void tree::_001OnLButtonDblClk(signal_details * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
          //   int32_t iItem;
@@ -1181,7 +1177,7 @@ namespace filemanager
       }
 
       /*
-      bool SimpleFolderTreeView::OnSetData(const ::database::id &key, int32_t iLine, int32_t iColumn, var & var, ::database::update_hint * puh)
+      bool tree::OnSetData(const ::database::id &key, int32_t iLine, int32_t iColumn, var & var, ::database::update_hint * puh)
       {
       if(key.get_value() == FILE_MANAGER_ID_FILE_NAME)
       {
@@ -1196,7 +1192,7 @@ namespace filemanager
       */
 
       /*
-      bool SimpleFolderTreeView::get_data(const ::database::id & key, int32_t iLine, int32_t iColumn, var & var)
+      bool tree::get_data(const ::database::id & key, int32_t iLine, int32_t iColumn, var & var)
       {
       string str;
       if(key.get_value() == FILE_MANAGER_ID_FILE_NAME)
@@ -1208,7 +1204,7 @@ namespace filemanager
       return true;
       }
 
-      void SimpleFolderTreeView::RenameFile(int32_t iLine, string &wstrNameNew)
+      void tree::RenameFile(int32_t iLine, string &wstrNameNew)
       {
       string str = m_itema.get_item(iLine).m_strPath;
 
@@ -1224,13 +1220,13 @@ namespace filemanager
 
       }*/
 
-      void SimpleFolderTreeView::_001OnContextMenu(signal_details * pobj)
+      void tree::_001OnContextMenu(signal_details * pobj)
       {
          SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
             //   int32_t iItem;
             //   HRESULT hr;
             point ptClient = pcontextmenu->GetPoint();
-         ::user::tree::ScreenToClient(&ptClient);
+//         ::user::tree::ScreenToClient(&ptClient);
          /*     if(_001HitTest_(ptClient, iItem))
          {
          CSimpleMenu menu(CBaseMenuCentral::GetMenuCentral());
@@ -1285,7 +1281,7 @@ namespace filemanager
          }*/
       }
 
-      bool SimpleFolderTreeView::pre_create_window(CREATESTRUCT& cs)
+      bool tree::pre_create_window(CREATESTRUCT& cs)
       {
 
          cs.style |= WS_CLIPCHILDREN;
@@ -1294,70 +1290,26 @@ namespace filemanager
       }
 
 
-      void SimpleFolderTreeView::_001OnTimer(signal_details * pobj)
-      {
-         SCAST_PTR(::message::timer, ptimer, pobj)
-         if (ptimer->m_nIDEvent == 1234567)
-         {
-            m_iAnimate += 2;
-            if (m_iAnimate >= 11)
-            {
-               m_iAnimate = 0;
-               KillTimer(ptimer->m_nIDEvent);
 
-            }
-            RedrawWindow();
-         }
-         else if (ptimer->m_nIDEvent == 123)
-         {
-            _001RedrawWindow();
-            m_bTimer123 = false;
-            KillTimer(123);
-         }
-      }
 
-      void SimpleFolderTreeView::StartAnimation()
-      {
-         SetTimer(1234567, 50, NULL);
-      }
-
-      bool SimpleFolderTreeView::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
+      bool tree::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
       {
          // TODO: add your specialized code here and/or call the base class
 
          return tree::_001OnCmdMsg(pcmdmsg);
       }
 
-      void SimpleFolderTreeView::_001OnShellCommand(signal_details * pobj)
+      void tree::_001OnShellCommand(signal_details * pobj)
       {
          SCAST_PTR(::message::command, pcommand, pobj)
             m_contextmenu.OnCommand(pcommand->GetId());
       }
 
-      void SimpleFolderTreeView::_017OpenFolder(sp(::fs::item) item)
-      {
-         GetFileManager()->FileManagerBrowse(item);
-
-      }
-
-      void SimpleFolderTreeView::_001OnCreate(signal_details * pobj)
+      void tree::_001OnCreate(signal_details * pobj)
       {
 
          UNREFERENCED_PARAMETER(pobj);
 
-      }
-
-
-      void SimpleFolderTreeView::install_message_handling(::message::dispatch * pinterface)
-      {
-         tree::install_message_handling(pinterface);
-
-         IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &SimpleFolderTreeView::_001OnLButtonDblClk);
-         IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &SimpleFolderTreeView::_001OnContextMenu);
-         IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &SimpleFolderTreeView::_001OnTimer);
-         IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &SimpleFolderTreeView::_001OnCreate);
-
-         connect_command_range(SHELL_COMMAND_FIRST, SHELL_COMMAND_LAST, &SimpleFolderTreeView::_001OnShellCommand);
       }
 
 

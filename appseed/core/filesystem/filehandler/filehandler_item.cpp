@@ -7,7 +7,7 @@ namespace filehandler
 {
 
 
-   string item::data_item_get_text(object * pobject)
+   string item::data_item_get_text(object * pobject) const
    {
 
       UNREFERENCED_PARAMETER(pobject);
@@ -16,16 +16,11 @@ namespace filehandler
 
    }
 
-   index item::data_item_get_image(::user::interaction * pui)
+
+   index item::data_item_get_image(object * pobject) const
    {
-      if(pui->is_selected(this))
-      {
-         return -1;
-      }
-      else
-      {
-         return -1;
-      }
+
+      return -1;
 
    }
    

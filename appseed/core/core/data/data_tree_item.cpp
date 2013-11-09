@@ -250,14 +250,26 @@ namespace data
       }
    }
 
-   sp(tree_item) tree_item::get_previous()
+   sp(tree_item) tree_item::get_previous(bool bParent)
    {
+      
       if (m_pparent == NULL)
          return NULL;
+      
       index iFind = m_pparent->m_children.find_first(this);
+      
       if (iFind <= 0)
-         return m_pparent;
+      {
+         
+         if (bParent)
+            return m_pparent;
+         else
+            return NULL;
+
+      }
+
       return m_pparent->m_children(iFind - 1);
+
    }
 
 
@@ -268,6 +280,22 @@ namespace data
          return NULL;
 
       return m_children.first_element();
+
+   }
+
+
+   sp(tree_item) tree_item::previous()
+   {
+
+      return get_previous(false);
+
+   }
+
+
+   sp(tree_item) tree_item::next()
+   {
+
+      return get_next(false, false);
 
    }
 
@@ -286,7 +314,7 @@ namespace data
          return m_children(0);
 
       }
-      else if (m_pparent != NULL && (iFind = m_pparent->m_children.find_first(this)) >= 0 && iFind >= m_pparent->m_children.get_upper_bound())
+      else if (m_pparent != NULL && (iFind = m_pparent->m_children.find_first(this)) >= 0 && iFind < m_pparent->m_children.get_upper_bound())
          return m_pparent->m_children(iFind + 1);
       else if(bParent && m_pparent != NULL)
       {
@@ -299,24 +327,24 @@ namespace data
 
 
 
-   string tree_item::get_text()
+   string tree_item::get_text() const
    {
       if(m_pitem == NULL)
          return "";
       return m_pitem->data_item_get_text(m_ptree);
    }
 
-   index tree_item::get_image()
+   index tree_item::get_image() const
    {
 
       if(m_pitem == NULL)
          return -1;
 
-      return m_pitem->data_item_get_image(m_ptree.cast < ::user::interaction >());
+      return m_pitem->data_item_get_image(m_ptree);
 
    }
 
-   sp(image_list) tree_item::get_image_list()
+   sp(image_list) tree_item::get_image_list() const
    {
 
       if(m_ptree != NULL)
@@ -367,6 +395,46 @@ namespace data
             break;
       }
       return iCount;
+   }
+
+
+   bool tree_item::is_expanded() const
+   {
+
+      return (m_dwState & ::data::tree_item_state_expanded) != 0;
+
+   }
+
+   bool tree_item::is_expandable() const
+   {
+
+      return (m_dwState & ::data::tree_item_state_expandable) != 0;
+
+   }
+
+
+   void tree_item::on_fill_children()
+   {
+
+      if (m_pitem != NULL)
+      {
+
+         m_pitem->data_item_on_fill_children(this);
+
+      }
+
+      for (index i = 0; i < m_children.get_count(); i++)
+      {
+
+         if (m_children(i)->is_expanded())
+         {
+
+            m_children(i)->on_fill_children();
+
+         }
+
+      }
+
    }
 
 

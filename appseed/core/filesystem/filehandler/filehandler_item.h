@@ -26,8 +26,8 @@ namespace filehandler
       stringa        m_straApp;
 
 
-      string data_item_get_text(object * pobject);
-      index data_item_get_image(::user::interaction * pui);
+      string data_item_get_text(object * pobject) const;
+      index data_item_get_image(object * pobject) const;
 
 
 

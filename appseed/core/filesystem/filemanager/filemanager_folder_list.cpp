@@ -7,11 +7,11 @@ namespace filemanager
 
    folder_list::folder_list(sp(base_application) papp) :
       element(papp),
-      m_headerctrl(papp),
+      ::filemanager::data_interface(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
-      folder_list(papp)
-   {
+      m_headerctrl(papp)
+      {
 
       m_pheaderctrl     = &m_headerctrl;
 
@@ -73,10 +73,10 @@ namespace filemanager
       data_interface::on_update(pSender, lHint, phint);  
       if(phint != NULL)
       {
-         if(base < filemanager::update_hint > :: bases(phint))
+         if(base < update_hint > :: bases(phint))
          {
-            filemanager::update_hint * puh = (filemanager::update_hint *) phint;
-            if(puh->is_type_of(filemanager::update_hint::TypeInitialize))
+            update_hint * puh = (update_hint *) phint;
+            if(puh->is_type_of(update_hint::TypeInitialize))
             {
                string str;
                str.Format("folder_list(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
@@ -91,7 +91,7 @@ namespace filemanager
                }
                _001UpdateColumns();
             }
-            else if(puh->is_type_of(filemanager::update_hint::TypeSynchronizePath))
+            else if(puh->is_type_of(update_hint::TypeSynchronizePath))
             {
                _017Synchronize();
             }
@@ -125,22 +125,6 @@ namespace filemanager
 
       return ::user::view::pre_create_window(cs);
    }
-
-   folder_list::folder_list(sp(base_application) papp) :
-      element(papp),
-
-      ::user::scroll_view(papp),
-      ::user::list(papp)
-   {
-
-      }
-
-
-   folder_list::~folder_list()
-   {
-
-   }
-
 
    void folder_list::_001InsertColumns()
    {

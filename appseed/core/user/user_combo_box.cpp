@@ -191,7 +191,7 @@ namespace user
 
       int32_t i = 0;
 
-      int32_t iColorRate;
+      int32_t iColorRate = 6;
 
       simple_graphics g;
 
@@ -734,6 +734,14 @@ namespace user
 
       m_iSel = iSel;
 
+      ::user::control_event ev;
+      ev.m_puie = this;
+      ev.m_eevent = ::user::event_after_change_cur_sel;
+      ev.m_bUser = true;
+      get_parent()->BaseOnControlEvent(&ev);
+      BaseOnControlEvent(&ev);
+
+
    }
 
    index combo_box::_001GetCurSel()
@@ -817,9 +825,14 @@ namespace user
 
    bool combo_box::create(sp(::user::interaction) pParentWnd, id id)
    {
-      sp(::user::interaction) pWnd = this;
-      return pWnd->create(pParentWnd, id);
+
+      if (!::user::edit_plain_text::create(pParentWnd, id))
+         return false;
+
+      return true;
+
    }
+
 
 #ifdef WINDOWSEX
     //Derived class is responsible for implementing these handlers
@@ -986,7 +999,7 @@ namespace user
 
    }
 
-   index combo_box::AddString(const char * lpszString)
+   index combo_box::AddString(const char * lpszString, uint_ptr dwItemData)
    {
 
       //ASSERT(IsWindow());
@@ -1266,6 +1279,36 @@ namespace user
 //      return (int32_t)send_message( CB_GETDROPPEDWIDTH, 0, 0);
 
          return -1;
+
+   }
+
+
+   void combo_box::_001SetCurSelByData(uint_ptr ui)
+   {
+
+      ::count c = _001GetListCount();
+
+      index iSel = -1;
+      
+      for (index i = 0; i < c; i++)
+      {
+
+         if (GetItemData(i) == ui)
+         {
+
+            iSel = i;
+
+            break;
+
+         }
+
+      }
+
+      if (iSel < 0)
+         return;
+
+
+      _001SetCurSel(iSel);
 
    }
 

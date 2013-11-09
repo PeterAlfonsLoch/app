@@ -1,7 +1,12 @@
 #pragma once
 
 
+namespace message
+{
 
+   class dispatch;
+
+} // namespace message
 
 class signal;
 class request_signal;
@@ -57,6 +62,9 @@ public:
    void unregister_signal(class signal * psignal);
    void unregister_target(signalizable* psignalizable);
    void filter_target(signalizable* psignalizable);
+
+
+   virtual void install_message_handling(::message::dispatch * pdispatch);
 
 };
 

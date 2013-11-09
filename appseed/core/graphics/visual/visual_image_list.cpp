@@ -25,6 +25,13 @@ image_list::~image_list()
 }
 
 
+bool image_list::create(int32_t cx, int32_t cy)
+{
+
+   return create(cx, cy, 0, 0, 0);
+
+}
+
 bool image_list::create(int32_t cx, int32_t cy, UINT nFlags, int32_t nInitial, int32_t nGrow)
 {
 
@@ -270,7 +277,7 @@ int32_t image_list::add_matter(const char * lpcsz, sp(base_application) papp)
 {
    if(papp == NULL)
    {
-      return add_file(System.dir().matter(&System, lpcsz));
+      return add_file(Application.dir().matter(lpcsz));
    }
    else
    {

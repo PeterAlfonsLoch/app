@@ -5,9 +5,12 @@ namespace filemanager
 {
 
 
-   data_interface::data_interface()
+   data_interface::data_interface(sp(base_application) papp) :
+      element(papp)
    {
+
       m_pfilemanagerinterface = NULL;
+
    }
 
    data_interface::~data_interface()
@@ -29,17 +32,30 @@ namespace filemanager
       return  (m_pfilemanagerinterface);
    }
 
+
    void data_interface::on_update(sp(::user::view) psender, LPARAM lhint, object * phint)
    {
       UNREFERENCED_PARAMETER(psender);
       UNREFERENCED_PARAMETER(lhint);
       if (phint != NULL)
       {
-         if (base < update_hint > ::bases(phint))
+         if (base < ::user::view_update_hint > ::bases(phint))
+         {
+            sp(::user::view_update_hint) puh = phint;
+            if (puh->is_type_of(::user::view_update_hint::hint_create_views))
+            {
+               if (m_pfilemanagerinterface == NULL
+                  && (puh->oprop("data").cast < data_interface > () == NULL ||
+                  puh->oprop("data").cast < data_interface >() == (this)))
+               {
+                  m_pfilemanagerinterface = puh->oprop("manager").cast < manager >();
+               }
+            }
+         }
+         else if (base < update_hint > ::bases(phint))
          {
             update_hint * puh = (update_hint *)phint;
-            if (puh->is_type_of(update_hint::TypeCreateViews)
-               || puh->is_type_of(update_hint::TypeInitialize))
+            if (puh->is_type_of(update_hint::TypeInitialize))
             {
                if (m_pfilemanagerinterface == NULL
                   && (puh->m_pview == NULL ||

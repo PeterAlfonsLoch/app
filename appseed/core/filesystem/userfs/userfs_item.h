@@ -4,6 +4,7 @@
 namespace userfs
 {
 
+   class tree;
 
    class CLASS_DECL_CORE item:
       virtual public ::data::item,
@@ -13,6 +14,7 @@ namespace userfs
    public:
 
 
+      ::userfs::tree *                       m_ptree;
       string                                 m_strName;
       int32_t                                m_iIdentation;
       string                                 m_strFolder;
@@ -21,10 +23,11 @@ namespace userfs
       int32_t                                m_iImageSelected;
 
 
-      item();
+      item(::userfs::tree * ptree);
 
-      string data_item_get_text(object * pobject);
-      index data_item_get_image(::user::interaction * pui);
+      string data_item_get_text(object * pobject) const;
+      index data_item_get_image(object * pobject) const;
+      sp(image_list) data_item_get_image_list(object * pobject) const;
 
       static index CompareArrangeByName(sp(::data::tree_item) * pitema, sp(::data::tree_item) * pitemb);
       int32_t get_index() const;

@@ -43,6 +43,8 @@ namespace backview
 
          virtual void initialize_user_interaction();
 
+         virtual void install_message_handling(::message::dispatch * pdispatch);
+
       };
 
 

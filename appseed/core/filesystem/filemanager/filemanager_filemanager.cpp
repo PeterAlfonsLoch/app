@@ -73,18 +73,18 @@ namespace filemanager
 
       if(Application.is_system())
       {
-         System.factory().creatable_small < ::filemanager::document > ();
-         System.factory().creatable_small < ::filemanager::child_frame > ();
-         System.factory().creatable_small < ::filemanager::a_view > ();
-         System.factory().creatable_small < ::filemanager::path_view > ();
+         System.factory().creatable_small < document > ();
+         System.factory().creatable_small < child_frame > ();
+         System.factory().creatable_small < a_view > ();
+         System.factory().creatable_small < path_view > ();
          System.factory().creatable_small < FileManagerSaveAsView > ();
-         System.factory().creatable_small < ::filemanager::left_view > ();
-         System.factory().creatable_small < ::filemanager::main_view > ();
-         System.factory().creatable_small < ::filemanager::document > ();
-         System.factory().creatable_small < ::filemanager::::filemanager::file_list > ();
-         System.factory().creatable_small < ::filemanager::::filemanager::preview > ();
-         System.factory().creatable_small < ::filemanager::main_frame > ();
-         System.factory().creatable_small < ::filemanager::tab_view > ();
+         System.factory().creatable_small < left_view > ();
+         System.factory().creatable_small < main_view > ();
+         System.factory().creatable_small < document > ();
+         System.factory().creatable_small < file_list > ();
+         System.factory().creatable_small < preview > ();
+         System.factory().creatable_small < main_frame > ();
+         System.factory().creatable_small < tab_view > ();
          System.factory().creatable_small < file_manager_form_document > ();
          System.factory().creatable_small < file_manager_form_child_frame > ();
          System.factory().creatable_small < file_manager_form_view > ();
@@ -97,16 +97,16 @@ namespace filemanager
          System.factory().creatable_small < file_manager_operation_list_view > ();
 
 
-         System.factory().creatable_small < ::filemanager::fs::simple::view > ();
-         System.factory().creatable_small < ::filemanager::fs::simple::list_view > ();
+         System.factory().creatable_small < fs::simple::view > ();
+         System.factory().creatable_small < fs::simple::list_view > ();
       }
 
 
-      m_ptemplateStd = new ::filemanager::schema(this);
+      m_ptemplateStd = new schema(this);
       Application.user()->shellimageset().initialize();
       m_ptemplateStd->Initialize(0, pszMatter);
 
-      m_ptemplateFs = new ::filemanager::schema(this);
+      m_ptemplateFs = new schema(this);
       m_ptemplateFs->Initialize(0, string("fs.") + string(pszMatter));
 
       m_ptemplateForm = new ::user::multiple_document_template(
@@ -126,7 +126,7 @@ namespace filemanager
 
 
 
-   void filemanager::OnFileManagerOpenFile(::filemanager::list_data * pdata, ::fs::item_array & itema)
+   void filemanager::OnFileManagerOpenFile(list_data * pdata, ::fs::item_array & itema)
    {
 
       item_action * pitemaction = dynamic_cast < item_action * > (this);
@@ -166,8 +166,8 @@ namespace filemanager
       UNREFERENCED_PARAMETER(lFlags);
       UNREFERENCED_PARAMETER(ptemplate);
       ASSERT(bOpenFileDialog == FALSE);
-      sp(::filemanager::document) pdoc =  (m_ptemplateStd->open());
-      ::filemanager::tab_view * pview = pdoc->get_typed_view < ::filemanager::tab_view >();
+      sp(document) pdoc =  (m_ptemplateStd->open());
+      tab_view * pview = pdoc->get_typed_view < tab_view >();
 
 #ifdef WINDOWSEX
       oswindow oswindowDesktop = ::GetDesktopWindow();
@@ -195,7 +195,7 @@ namespace filemanager
 
       string strId;
 
-      strId.Format("::filemanager::document(%s)", m_ptemplateStd->m_strDISection);
+      strId.Format("document(%s)", m_ptemplateStd->m_strDISection);
 
       database::id dataid = strId;
 

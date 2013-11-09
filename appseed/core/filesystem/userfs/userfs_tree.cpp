@@ -7,6 +7,7 @@ namespace userfs
 
    tree::tree(sp(base_application) papp) :
       element(papp),
+      ::data::data(papp),
       ::data::tree(papp)
    {
 
@@ -35,13 +36,13 @@ namespace userfs
 
    void tree::install_message_handling(::message::dispatch * pinterface)
    {
-      ::user::tree::install_message_handling(pinterface);
+      
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree::_001OnTimer);
-
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tree::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &tree::_001OnLButtonDblClk);
       IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &tree::_001OnContextMenu);
+
    }
 
    void tree::on_update(sp(::user::view) pSender, LPARAM lHint, object* phint)
@@ -180,7 +181,7 @@ namespace userfs
          //   int32_t iItem;
          //   HRESULT hr;
          point ptClient = pcontextmenu->GetPoint();
-      ::user::tree::ScreenToClient(&ptClient);
+//      ::user::tree::ScreenToClient(&ptClient);
       /*     if(_001HitTest_(ptClient, iItem))
          {
          CSimpleMenu menu(CBaseMenuCentral::GetMenuCentral());
@@ -253,23 +254,23 @@ namespace userfs
          if (m_iAnimate >= 11)
          {
             m_iAnimate = 0;
-            KillTimer(ptimer->m_nIDEvent);
+            ptimer->m_pwnd->KillTimer(ptimer->m_nIDEvent);
 
          }
-         RedrawWindow();
+         ptimer->m_pwnd->RedrawWindow();
       }
       else if (ptimer->m_nIDEvent == 123)
       {
-         _001RedrawWindow();
+         ptimer->m_pwnd->_001RedrawWindow();
          m_bTimer123 = false;
-         KillTimer(123);
+         ptimer->m_pwnd->KillTimer(123);
       }
    }
 
-   void tree::StartAnimation()
+   void tree::StartAnimation(::user::interaction * pui)
    {
       m_iAnimate = 1;
-      SetTimer(1234567, 50, NULL);
+      pui->SetTimer(1234567, 50, NULL);
    }
 
    bool tree::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
@@ -310,7 +311,7 @@ namespace userfs
    }
 
 
-   void tree::_017UpdateList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel)
+   void tree::_017UpdateList(const char * lpcsz, ::data::tree_item * pitemParent, int32_t iLevel)
    {
       if (lpcsz == NULL)
          lpcsz = "";
@@ -323,7 +324,7 @@ namespace userfs
       }
       else if (get_base_item() == NULL)
       {
-         m_pitem = pitemParent;
+         m_proot = pitemParent;
       }
 
       /*if(GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge != NULL
@@ -385,7 +386,7 @@ namespace userfs
       for (i = 0; i < straPath.get_size(); i++)
       {
 
-         pitemChild = canew(::userfs::item);
+         pitemChild = canew(::userfs::item(this));
 
          pitemChild->m_strPath = straPath[i];
 
@@ -539,25 +540,8 @@ namespace userfs
 
       sp(::data::tree_item) pitem = find_item(lpcsz);
 
-      if (pitem != NULL)
-      {
-         index iLevel = 0;
+      _001EnsureVisible(pitem);
 
-         index iIndex = get_proper_item_index(pitem, &iLevel);
-
-         index iLastVisibleIndex = (index)(m_scrollinfo.m_ptScroll.y + _001GetVisibleItemCount() - 5);
-
-         index iObscured; // obscured proper descendants
-         iObscured = iIndex - iLastVisibleIndex;
-
-         if (iObscured > 0)
-         {
-            int32_t iNewScroll = (int32_t)(m_scrollinfo.m_ptScroll.y + iIndex * _001GetItemHeight());
-            m_scrollinfo.m_ptScroll.y = max(iNewScroll, 0);
-         }
-      }
-      layout();
-      _001RedrawWindow();
    }
 
    sp(::data::tree_item) tree::find_item(const char * lpcsz)
@@ -569,17 +553,11 @@ namespace userfs
    {
       if (!bForceUpdate)
       {
-         sp(::data::tree_item) pitem = find_item(lpcsz);
-         if (pitem != NULL)
-         {
-            if (is_selected(pitem))
-               return;
-            if (is_selected(pitem->m_pparent))
-            {
-               pitem->set_selection();
-               return;
-            }
-         }
+         
+         selection_set(find_item(lpcsz), true, true);
+         
+         return;
+
       }
 
       single_lock slBrowse(&m_csBrowse, TRUE);
@@ -598,7 +576,7 @@ namespace userfs
 
    }
 
-   void tree::_017UpdateZipList(const char * lpcsz, sp(::data::tree_item) pitemParent, int32_t iLevel)
+   void tree::_017UpdateZipList(const char * lpcsz, ::data::tree_item * pitemParent, int32_t iLevel)
    {
 
       string szPath(lpcsz);
@@ -649,7 +627,7 @@ namespace userfs
       {
          wstrItem = wstraItem[i];
 
-         sp(::userfs::item) pitemNew = canew(::userfs::item);
+         sp(::userfs::item) pitemNew = canew(::userfs::item(this));
 
          pitemNew->m_strPath = lpcsz;
          pitemNew->m_flags.signalize(::fs::FlagInZip);
@@ -724,7 +702,7 @@ namespace userfs
    }
 
 
-   void tree::_001UpdateImageList(sp(::data::tree_item) pitem)
+   void tree::_001UpdateImageList(::data::tree_item * pitem)
    {
       UNREFERENCED_PARAMETER(pitem);
       //         Item & item = m_itema.get_item(pitem->m_dwUser);
@@ -782,10 +760,18 @@ namespace userfs
 
    void tree::GetSelectedFilePath(stringa & stra)
    {
-      for (int32_t i = 0; i < m_itemptraSelected.get_size(); i++)
+
+      ::data::tree_item_ptr_array itemptraSelected;
+
+      get_selection(itemptraSelected);
+
+      for (int32_t i = 0; i < itemptraSelected.get_size(); i++)
       {
-         stra.add(m_itemptraSelected(0)->m_pitem.cast < ::userfs::item >()->m_strPath);
+
+         stra.add(itemptraSelected(0)->m_pitem.cast < ::userfs::item >()->m_strPath);
+
       }
+
    }
 
 
@@ -872,7 +858,7 @@ namespace userfs
    }
    */
 
-   void tree::_001OnItemExpand(sp(::data::tree_item) pitem)
+   void tree::_001OnItemExpand(::data::tree_item * pitem)
    {
       if (typeid(*pitem->m_pitem) == System.type_info < ::userfs::item >())
       {
@@ -884,7 +870,7 @@ namespace userfs
       }
    }
 
-   void tree::_001OnItemCollapse(sp(::data::tree_item) pitem)
+   void tree::_001OnItemCollapse(::data::tree_item * pitem)
    {
       UNREFERENCED_PARAMETER(pitem);
    }
@@ -894,7 +880,7 @@ namespace userfs
       return true;
    }
 
-   void tree::_001OnOpenItem(sp(::data::tree_item) pitem)
+   void tree::_001OnOpenItem(::data::tree_item * pitem)
    {
 
       _017OpenFolder(canew(::fs::item(*pitem->m_pitem.cast < ::userfs::item >())));
@@ -1016,7 +1002,7 @@ namespace userfs
 
    sp(::userfs::document) tree::get_document()
    {
-      return  (::user::tree::get_document());
+      return  (::data::data::get_document());
    }
 
 

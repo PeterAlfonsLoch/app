@@ -42,3 +42,7 @@ namespace filemanager
 
 
 
+#define FILEMANAGER_SHELL_COMMAND_FIRST 0x1000
+#define FILEMANAGER_SHELL_COMMAND_LAST 0x2000
+
+

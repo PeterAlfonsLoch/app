@@ -248,8 +248,6 @@ namespace user
 #include "user_window_util.h"
 
 
-#include "user_wait_message_dialog.h"
-#include "user_message_box.h"
 #include "user_network_configuration.h"
 #include "user_shell.h"
 #include "user_keyboard_layout.h"

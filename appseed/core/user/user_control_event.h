@@ -17,6 +17,7 @@ namespace user
       event_tab_key,
       event_key_down,
       event_after_change_text,
+      event_after_change_cur_sel,
    };
 
    class CLASS_DECL_CORE control_event

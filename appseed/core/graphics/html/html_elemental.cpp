@@ -378,7 +378,7 @@ namespace html
       }
       bool elemental::has_link()
       {
-         if(m_pelemental->m_pparent != NULL)
+         if (m_pelemental->m_pparent != NULL && m_pelemental->m_pparent->m_pimpl != NULL)
          {
             return m_pelemental->m_pparent->m_pimpl->has_link();
          }
@@ -845,7 +845,16 @@ namespace html
                m_pimpl = new ::html::impl::text(pdata->get_app());
             }
          }
-         else if(strTag == "img")
+         else if (strTag == "select")
+         {
+            m_pimpl = new ::html::impl::select(pdata);
+         }
+         else if (strTag == "option")
+         {
+            //m_pimpl = new ::html::impl::elemental();
+            m_pimpl = NULL;
+         }
+         else if (strTag == "img")
          {
             m_pimpl = new ::html::impl::image();
          }
@@ -867,16 +876,22 @@ namespace html
          }
       }
 
-      m_style.get_surround_box("padding", NULL, pdata, this, m_pimpl->m_padding);
-      m_style.get_border_box("border", NULL, pdata, this, m_pimpl->m_border);
-      m_style.get_border_color("border", NULL, pdata, this, m_pimpl->m_border);
-      m_style.get_surround_box("margin", NULL, pdata, this, m_pimpl->m_margin);
-
-      m_pimpl->implement_phase1(pdata, this);
-      for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
+      if (m_pimpl != NULL)
       {
-         m_elementalptra[i]->implement_phase1(pdata);
+
+         m_style.get_surround_box("padding", NULL, pdata, this, m_pimpl->m_padding);
+         m_style.get_border_box("border", NULL, pdata, this, m_pimpl->m_border);
+         m_style.get_border_color("border", NULL, pdata, this, m_pimpl->m_border);
+         m_style.get_surround_box("margin", NULL, pdata, this, m_pimpl->m_margin);
+
+         m_pimpl->implement_phase1(pdata, this);
+         for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
+         {
+            m_elementalptra[i]->implement_phase1(pdata);
+         }
+
       }
+
    }
 
    void elemental::implement_phase2(data * pdata)
@@ -1014,6 +1029,11 @@ namespace html
             m_pimpl->set_bound_point(pdata, m_pparent->m_pimpl->get_bound_point());
             m_pimpl->set_bound_size(pdata, m_pparent->m_pimpl->get_bound_size());
          }
+         else if (strTag == "select")
+         {
+            m_pimpl->set_bound_point(pdata, m_pparent->m_pimpl->get_bound_point());
+            m_pimpl->set_bound_size(pdata, m_pparent->m_pimpl->get_bound_size());
+         }
          else
          {
             m_pimpl->set_bound_point(pdata, m_pparent->m_pimpl->get_bound_point());
@@ -1085,6 +1105,19 @@ namespace html
             {
             }
          }
+         else if (strTag == "select")
+         {
+            string strType = m_propertyset["type"];
+            if (strType == "text")
+            {
+            }
+            else if (strType == "button")
+            {
+            }
+            else
+            {
+            }
+         }
       }
       m_pimpl->layout_phase2(pdata);
       int32_t i;
@@ -1136,6 +1169,19 @@ namespace html
             {
             }
             else if(strType == "button")
+            {
+            }
+            else
+            {
+            }
+         }
+         else if (strTag == "select")
+         {
+            string strType = m_propertyset["type"];
+            if (strType == "text")
+            {
+            }
+            else if (strType == "button")
             {
             }
             else

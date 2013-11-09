@@ -65,8 +65,8 @@ namespace filemanager
       void install_message_handling(::message::dispatch * pinterface);
 
 
-      void _StartCreateImageList();
-      void _StopCreateImageList();
+      void _StartCreateImageList(::user::interaction * pui);
+      void _StopCreateImageList(::user::interaction * pui);
       void _CreateImageListStep();
 
       // user::tree

@@ -1,10 +1,9 @@
 #include "framework.h"
-#include "filemanager_folder_list_view.h"
-#include "filemanager_folder_selection_list_view.h"
+
 
 folder_list_view::folder_list_view(sp(base_application) papp) :
    element(papp),
-   
+   ::filemanager::data_interface(papp),
    ::user::scroll_view(papp),
    ::user::list(papp),
    ::user::form(papp),

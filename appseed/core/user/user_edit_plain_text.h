@@ -12,60 +12,61 @@ namespace user
    class CLASS_DECL_CORE edit_plain_text :
       virtual public scroll_view,
       public colorertake5::base_editor,
-      public ::data::data_listener,
-      public ::data::tree
+      public ::data::data_listener
    {
    public:
 
 
       //WPARAM                        m_dwLastKeyWparam;
       //LPARAM                        m_dwLastKeyLparam;
-      message::key            m_keymessageLast;
+      message::key                  m_keymessageLast;
 
 
 
       bool                          m_bKeyPressed;
       bool                          m_bColorerTake5;
-      int32_t                           m_iLineCount;
+      int32_t                       m_iLineCount;
       visual::dib_sp                m_dibBk;
       bool                          m_bCustomFrameBefore;
       rect                          m_FullScreenWindowRect;
       visual::fastblur              m_fastblur;
 
-      bool                       m_bPassword;
+      bool                          m_bPassword;
 
-      bool                       m_bMouseDown;
-      point                      m_ptSelStart;
-      bool                       m_bFocus;
-      bool                       m_bCaretOn;
+      bool                          m_bMouseDown;
+      point                         m_ptSelStart;
+      bool                          m_bFocus;
+      bool                          m_bCaretOn;
       uint32_t                      m_dwLastCaret;
       uint32_t                      m_dwCaretTime;
-      index                      m_iLineOffset;
-      stringa                    m_straSep;
-      colorertake5::text_lines   m_lines;
-      int32_t                        m_y;
-      bool                       m_bGetTextNeedUpdate;
-      bool                       m_bNeedScrollUpdate;
+      index                         m_iLineOffset;
+      stringa                       m_straSep;
+      colorertake5::text_lines      m_lines;
+      int32_t                       m_y;
+      bool                          m_bGetTextNeedUpdate;
+      bool                          m_bNeedScrollUpdate;
 
-      strsize                    m_iSelStart;
-      strsize                    m_iSelEnd;
-      strsize                    m_iViewOffset; // in bytes
-      strsize                    m_iViewSize; // in bytes
-      int32_t                        m_iLineHeight;
-      index                      m_iColumn;
-      bool                       m_bMultiLine;
-      bool                       m_bSendEnterKey;
-      bool                       m_bReadOnly;
+      //strsize                       m_iSelStart;
+      //strsize                       m_iSelEnd;
+      strsize                       m_iViewOffset; // in bytes
+      strsize                       m_iViewSize; // in bytes
+      int32_t                       m_iLineHeight;
+      index                         m_iColumn;
+      bool                          m_bMultiLine;
+      bool                          m_bSendEnterKey;
+      bool                          m_bReadOnly;
 
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line size
-      index_array                m_iaLineIndex;
+      index_array                   m_iaLineIndex;
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line end flag 3 = \r \n     1 = \n  \r = 2
-      index_array                m_iaLineEndIndex;
-      count_array                m_iaCLineIndex;
+      index_array                   m_iaLineEndIndex;
+      count_array                   m_iaCLineIndex;
 
-      bool                       m_bOwnData;
+      bool                          m_bOwnData;
+      plain_text_tree *             m_ptree;
+      ::data::tree_item *           m_pitem;
 
 
 

@@ -628,7 +628,7 @@ namespace user
       if(pContext->m_user->m_puiNew != NULL)
       {
 
-         pguie =  (pContext->m_user->m_puiNew.m_p);
+         pguie =  pContext->m_user->m_puiNew;
 
       }
       else
@@ -656,7 +656,7 @@ namespace user
       }
 
 
-      sp(::user::view) pview =  (pguie.m_p);
+      sp(::user::view) pview =  pguie;
       if(pview != NULL)
       {
          pview->_001OnInitialUpdate(NULL);

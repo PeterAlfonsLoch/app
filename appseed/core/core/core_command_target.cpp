@@ -191,3 +191,10 @@ void command_target_interface::get_command_signal_array(BaseCmdMsg::e_type etype
       }
    }
 }
+
+void command_target_interface::install_message_handling(::message::dispatch * pdispatch)
+{
+
+   UNREFERENCED_PARAMETER(pdispatch);
+
+}

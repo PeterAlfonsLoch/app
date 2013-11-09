@@ -2,8 +2,8 @@
 
 file_manager_form_view::file_manager_form_view(sp(base_application) papp) :
    element(papp),
+   ::filemanager::data_interface(papp),
    ::user::interaction(papp),
-   
    ::user::scroll_view(papp),
    ::user::form(papp),
    html_form(papp), 

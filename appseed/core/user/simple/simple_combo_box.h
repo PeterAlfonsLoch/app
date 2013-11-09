@@ -7,7 +7,21 @@ class CLASS_DECL_CORE simple_combo_box :
 public:
 
 
-   stringa           m_straList;
+   enum e_data_mode
+   {
+
+      data_mode_opaque,
+      data_mode_string
+
+   };
+
+
+   e_data_mode                   m_edatamode;
+   stringa                       m_straList;
+   numeric_array < uint_ptr >    m_uiptra;
+
+
+
    
 
 
@@ -17,7 +31,11 @@ public:
    
 
    
-   
+   virtual void _001SetCurSelByStringValue(const string & strValue);
+   virtual void _001SetCurSelByData(uint_ptr ui);
+
+   virtual string _001GetCurSelStringValue();
+
 
 
    virtual void _001OnDraw(::draw2d::graphics * pdc);
@@ -26,6 +44,9 @@ public:
    virtual index _001FindListText(const string & str) const;
    virtual count _001GetListCount() const;
 
+
+   virtual index AddString(const char * lpszString, uint_ptr dwItemData);
+   virtual index AddString(const char * lpszString, const string & strValue);
 
 
 };

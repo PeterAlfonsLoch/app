@@ -5,7 +5,20 @@ namespace usermail
 {
 
 
-   string item::data_item_get_text(object * pobject)
+   item::item(tree * ptree) :
+      m_ptree(ptree)
+   {
+
+   }
+
+
+   item::~item()
+   {
+
+   }
+
+
+   string item::data_item_get_text(object * pobject) const
    {
 
       UNREFERENCED_PARAMETER(pobject);
@@ -15,10 +28,10 @@ namespace usermail
    }
 
 
-   index item::data_item_get_image(::user::interaction * pui)
+   index item::data_item_get_image(object * pobject) const
    {
 
-      if(pui->is_selected(this))
+/*      if(m_ptree->is_selected(this))
       {
          return -1;
       }
@@ -26,9 +39,19 @@ namespace usermail
       {
          return -1;
       }
+      */
+
+      return -1;
 
    }
 
+   sp(image_list) item::data_item_get_image_list(object * pobject) const
+   {
+
+      /*return m_ptree->get_image_list();*/
+      return NULL;
+
+   }
 
 } // namespace mail
 

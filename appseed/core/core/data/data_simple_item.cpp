@@ -7,7 +7,8 @@ namespace data
    #define ROUND4(x) ROUND(x, 4)
    __STATIC fixed_alloc_no_sync _alloc001SimpleTreeItem(ROUND4(sizeof(::data::simple_item)));*/
 
-   simple_item::simple_item()
+   simple_item::simple_item(::data::tree * pdatatree) :
+      m_pdatatree(pdatatree)
    {
       m_iImage          = -1;
       m_iImageSelected  = -1;
@@ -21,16 +22,16 @@ namespace data
    {
    }
 
-   string simple_item::data_item_get_text(object * pobject)
+   string simple_item::data_item_get_text(object * pobject) const
    {
       UNREFERENCED_PARAMETER(pobject);
       return m_str;
    }
    
-   index simple_item::data_item_get_image(::user::interaction * pui)
+   index simple_item::data_item_get_image(object * pobject) const
    {
 
-      if(pui->is_selected(this))
+      if(m_pdatatree->is_selected(this))
       {
 
          return m_iImageSelected;
@@ -42,6 +43,13 @@ namespace data
          return m_iImage;
 
       }
+
+   }
+
+   sp(image_list) simple_item::data_item_get_image_list(object * pobject) const
+   {
+
+      return m_pdatatree->get_image_list();
 
    }
 

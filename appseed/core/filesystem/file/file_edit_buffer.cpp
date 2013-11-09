@@ -335,6 +335,7 @@ namespace file
    edit_buffer::edit_buffer(sp(base_application) papp) :
       element(papp),
       ::file::buffer_sp(papp),
+      ::data::data(papp),
       ::data::tree(papp)
    {
 
@@ -438,7 +439,7 @@ l1:
          return;
       }
       sp(::data::tree_item) pitemNew = NULL;
-      if(m_ptreeitem != NULL && m_ptreeitem->m_pparent->m_children.get_count() > 1)
+      if(m_ptreeitem != NULL && m_ptreeitem->next().is_set())
       {
          pitemNew = insert_item(pitem, ::data::RelativeFirstChild, m_ptreeitem);
          if(pitemNew != NULL)

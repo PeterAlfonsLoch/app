@@ -37,14 +37,18 @@ namespace user
    {
    public:
 
+
       enum ETimer
       {
+
          TimerClick,
          TimerHover,
+
       };
 
 
       spa(::data::tree)             m_treeptra;
+      spa(::data::tree)             m_treeptraBound;
       ::data::tree_item_ptr_array   m_itemptraSelected;
       sp(::data::tree_item)         m_pitemHover;
 
@@ -54,7 +58,7 @@ namespace user
       index                         m_iClick;
       UINT                          m_uiLButtonUpFlags;
       point                         m_ptLButtonUp;
-      sp(::data::tree_item)             m_pitemFirstVisible;
+      sp(::data::tree_item)         m_pitemFirstVisible;
       index                         m_iFirstVisibleItemLevel;
       index                         m_iFirstVisibleItemProperIndex;
       int32_t                       m_iCurrentViewWidth;
@@ -89,21 +93,25 @@ namespace user
       void layout();
 
       virtual sp(::data::tree) find_tree(::data::tree_item * pitem) const;
+      virtual sp(::data::tree_item) find(::data::item * pitem, index * piIndex = NULL);
+      virtual bool contains(::data::item * pitem);
+      virtual bool contains(::data::tree_item * pitem);
+
 
       void _001GetViewRect(LPRECT lprect);
 
       void _001OnTreeDataChange();
       sp(::data::tree_item) CalcFirstVisibleItem(index & iLevel, index & iProperIndex);
       virtual int32_t _001CalcCurrentViewWidth();
-      void _001SelectItem(sp(::data::tree_item) pitem);
+      void _001SelectItem(::data::tree_item * pitem);
       count _001GetVisibleItemCount();
       void _001SetCollapseImage(const char * pszMatter);
       void _001SetExpandImage(const char * pszMatter);
       void UpdateHover();
-      virtual void _001OnOpenItem(sp(::data::tree_item) pitem);
-      void _001ExpandItem(sp(::data::tree_item) pitem, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
-      virtual void _001OnItemExpand(sp(::data::tree_item) pitem);
-      virtual void _001OnItemCollapse(sp(::data::tree_item) pitem);
+      virtual void _001OnOpenItem(::data::tree_item * pitem);
+      void _001ExpandItem(::data::tree_item * pitem, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
+      virtual void _001OnItemExpand(::data::tree_item * pitem);
+      virtual void _001OnItemCollapse(::data::tree_item * pitem);
       virtual bool _001GetItemElementRect(LPRECT lprect, tree_draw_item & drawitem, ::user::e_tree_element eelement);
       virtual void install_message_handling(::message::dispatch * pdispatch);
       int32_t _001GetItemHeight();
@@ -142,8 +150,8 @@ namespace user
       virtual bool      hover(::data::tree_item * pitem);
       virtual bool      hover(::data::item * pitem, index i = 0);
 
-      virtual bool      is_hover(::data::tree_item * pitem);
-      virtual bool      is_hover(::data::item * pitem);
+      virtual bool      is_hover(const ::data::tree_item * pitem) const;
+      virtual bool      is_hover(const ::data::item * pitem) const;
 
 
       virtual ::count   clear_selection();
@@ -151,27 +159,31 @@ namespace user
 
 
 
-      virtual bool      is_selected(::data::tree_item * pitem);
-      virtual bool      is_selected(::data::item * pitem);
+      virtual bool      is_selected(const ::data::tree_item * pitem) const;
+      virtual bool      is_selected(const ::data::item * pitem) const;
 
       virtual ::count   selection_add(::data::tree_item_ptr_array & itemptra);
       virtual bool      selection_add(::data::tree_item * pitem);
       virtual bool      selection_add(::data::item * pitem, index i = 0);
 
       virtual ::count   selection_set(::data::tree_item_ptr_array & itemptra);
-      virtual bool      selection_set(::data::tree_item * pitem);
-      virtual bool      selection_set(::data::item * pitem, index i = 0);
+      virtual bool      selection_set(::data::tree_item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
+      virtual bool      selection_set(::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
+      virtual bool      selection_set(index iIndex, ::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
 
       virtual ::count   selection_remove(::data::tree_item_ptr_array & itemptra);
       virtual bool      selection_remove(::data::tree_item * pitem);
       virtual bool      selection_remove(::data::item * pitem, index i = 0);
 
 
-      virtual bool      can_merge(::data::tree * ptree);
-      virtual bool      merge(::data::tree * ptree);
+      virtual bool      can_merge(const ::data::tree * ptree) const;
+      virtual bool      merge(::data::tree * ptree, bool bBind);
 
-
+      virtual sp(::data::tree_item) get_proper_item(index iIndex, index * piLevel, index * piCount = NULL);
       virtual index     get_proper_item_index(::data::tree_item *pitemParam, index * piLevel);
+      virtual index     get_proper_item_count();
+
+      virtual void      _001EnsureVisible(::data::tree_item * pitem);
 
    };
 

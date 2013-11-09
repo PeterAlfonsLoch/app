@@ -156,12 +156,16 @@ public:
    //virtual bool _001HasCommandHandler(const char * pszId);
 
    void get_command_signal_array(BaseCmdMsg::e_type etype, ::dispatch::signal_item_ptr_array & signalptra, id id);
+
+
+   virtual void install_message_handling(::message::dispatch * pdispatch);
+
+
 };
 
 
 
 class CLASS_DECL_CORE command_target :
-   virtual public signalizable,
    virtual public command_target_interface
 {
 public:

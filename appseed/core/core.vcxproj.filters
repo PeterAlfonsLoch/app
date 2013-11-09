@@ -698,9 +698,6 @@
     <ClInclude Include="user\user_keyboard_layout.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_message_box.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_network_configuration.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -3380,6 +3377,9 @@
     <ClInclude Include="filesystem\filemanager\filemanager_context_menu.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\html\html_select.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive_scalar.cpp">
@@ -3787,9 +3787,6 @@
     <ClCompile Include="user\user_message.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_message_box.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_mouse_focus.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -3860,9 +3857,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_virtual_user_interface.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_wait_message_dialog.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_window_interface.cpp">
@@ -5649,6 +5643,9 @@
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_file_list.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html\html_select.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

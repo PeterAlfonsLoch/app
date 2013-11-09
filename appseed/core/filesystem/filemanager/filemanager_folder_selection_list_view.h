@@ -8,10 +8,11 @@ namespace filemanager
 {
 
 
-   class SimpleFolderTreeView;
+   class tree;
 
 
 } // namespace filemanager
+
 
 
 class CLASS_DECL_CORE folder_selection_list_view :

@@ -85,6 +85,8 @@ namespace data
 
       mutex  *                               m_pmutex;
 
+      sp(::user::base_document)              m_pdocument;
+
 
       data(sp(base_application) papp);
       virtual ~data();
@@ -99,6 +101,8 @@ namespace data
       EDIT * validate_edit(base_edit * pedit);
 
       inline mutex * data_mutex() { if(m_pmutex != NULL) return m_pmutex; m_pmutex = new ::mutex(get_app()); return m_pmutex; }
+
+      inline ::user::base_document * get_document() { return m_pdocument; }
 
    };
 

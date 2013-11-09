@@ -223,6 +223,7 @@ namespace file
 
 
       edit_buffer(const ::file::edit_buffer & ) :
+         ::data::data(NULL),
          ::data::tree(NULL)
       {
 
