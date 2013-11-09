@@ -49,10 +49,10 @@ namespace user
       virtual void _001OnDrawStaticText(::draw2d::graphics * pdc);
 
 
-      virtual void _001SetCurSel(index iSel);
+      virtual void _001SetCurSel(index iSel, bool bUser = false);
       virtual index _001GetCurSel();
 
-      virtual void _001SetCurSelByData(uint_ptr ui);
+      virtual void _001SetCurSelByData(uint_ptr ui, bool bUser = false);
 
       virtual void _001GetText(string & str);
       virtual void _001SetText(const char * psz);

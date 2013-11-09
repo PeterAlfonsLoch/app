@@ -31,8 +31,8 @@ public:
    
 
    
-   virtual void _001SetCurSelByStringValue(const string & strValue);
-   virtual void _001SetCurSelByData(uint_ptr ui);
+   virtual void _001SetCurSelByStringValue(const string & strValue, bool bUser = false);
+   virtual void _001SetCurSelByData(uint_ptr ui, bool bUser = false);
 
    virtual string _001GetCurSelStringValue();
 

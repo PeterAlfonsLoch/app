@@ -723,7 +723,7 @@ namespace user
 
    }
 
-   void combo_box::_001SetCurSel(index iSel)
+   void combo_box::_001SetCurSel(index iSel, bool bUser)
    {
 
       string strItem;
@@ -737,7 +737,7 @@ namespace user
       ::user::control_event ev;
       ev.m_puie = this;
       ev.m_eevent = ::user::event_after_change_cur_sel;
-      ev.m_bUser = true;
+      ev.m_bUser = bUser;
       get_parent()->BaseOnControlEvent(&ev);
       BaseOnControlEvent(&ev);
 
@@ -1283,7 +1283,7 @@ namespace user
    }
 
 
-   void combo_box::_001SetCurSelByData(uint_ptr ui)
+   void combo_box::_001SetCurSelByData(uint_ptr ui, bool bUser)
    {
 
       ::count c = _001GetListCount();
@@ -1308,7 +1308,7 @@ namespace user
          return;
 
 
-      _001SetCurSel(iSel);
+      _001SetCurSel(iSel, bUser);
 
    }
 

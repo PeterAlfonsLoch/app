@@ -99,15 +99,15 @@ index simple_combo_box::AddString(const char * lpszString, const string & strVal
 
 }
 
-void simple_combo_box::_001SetCurSelByStringValue(const string & strValue)
+void simple_combo_box::_001SetCurSelByStringValue(const string & strValue, bool bUser)
 {
 
-   _001SetCurSelByData((uint_ptr) id(strValue).m_pstr);
+   _001SetCurSelByData((uint_ptr) id(strValue).m_pstr, bUser);
 
 }
 
 
-void simple_combo_box::_001SetCurSelByData(uint_ptr ui)
+void simple_combo_box::_001SetCurSelByData(uint_ptr ui, bool bUser)
 {
 
    index iSel = m_uiptra.find_first(ui);
@@ -115,7 +115,7 @@ void simple_combo_box::_001SetCurSelByData(uint_ptr ui)
    if (iSel < 0)
       return;
 
-   _001SetCurSel(iSel);
+   _001SetCurSel(iSel, bUser);
 
 }
 
