@@ -29,6 +29,8 @@ namespace user
 
       ASSERT(iPaneCount > 0);
 
+      int iOldSize = m_panea.get_count();
+
       m_panea.set_size(iPaneCount);
 
       int32_t iSplitBarCount = get_pane_count() - 1;
@@ -47,7 +49,7 @@ namespace user
 
       m_panea.set_size(get_pane_count());
 
-      for(i = 0; i < get_pane_count(); i++)
+      for(i = iOldSize; i < get_pane_count(); i++)
       {
          m_panea(i) = canew(::user::split_layout::Pane(get_app()));
          m_panea[i].m_bFixedSize =  false;
