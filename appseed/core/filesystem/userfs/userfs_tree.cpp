@@ -177,10 +177,12 @@ namespace userfs
 
    void tree::_001OnContextMenu(signal_details * pobj)
    {
-      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
+      
+      UNREFERENCED_PARAMETER(pobj);
+//      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
          //   int32_t iItem;
          //   HRESULT hr;
-         point ptClient = pcontextmenu->GetPoint();
+//         point ptClient = pcontextmenu->GetPoint();
 //      ::user::tree::ScreenToClient(&ptClient);
       /*     if(_001HitTest_(ptClient, iItem))
          {

@@ -321,20 +321,13 @@
 		07A6DCEA173C27EB009E6FB8 /* filehandler_library.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D32C173C27E7009E6FB8 /* filehandler_library.h */; };
 		07A6DCEB173C27EB009E6FB8 /* filehandler_menu_library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D32D173C27E7009E6FB8 /* filehandler_menu_library.cpp */; };
 		07A6DCEC173C27EB009E6FB8 /* filehandler_menu_library.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D32E173C27E7009E6FB8 /* filehandler_menu_library.h */; };
-		07A6DCED173C27EB009E6FB8 /* filehandler_tree_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D32F173C27E7009E6FB8 /* filehandler_tree_data.cpp */; };
-		07A6DCEE173C27EB009E6FB8 /* filehandler_tree_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D330173C27E7009E6FB8 /* filehandler_tree_data.h */; };
 		07A6DCEF173C27EB009E6FB8 /* filehandler_tree_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D331173C27E7009E6FB8 /* filehandler_tree_interface.cpp */; };
 		07A6DCF0173C27EB009E6FB8 /* filehandler_tree_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D332173C27E7009E6FB8 /* filehandler_tree_interface.h */; };
-		07A6DCF1173C27EB009E6FB8 /* filehandler_tree_item_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D333173C27E7009E6FB8 /* filehandler_tree_item_data.cpp */; };
-		07A6DCF2173C27EB009E6FB8 /* filehandler_tree_item_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D334173C27E7009E6FB8 /* filehandler_tree_item_data.h */; };
-		07A6DCF3173C27EB009E6FB8 /* ContextMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D336173C27E7009E6FB8 /* ContextMenu.h */; };
 		07A6DCF4173C27EB009E6FB8 /* file_operation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D337173C27E7009E6FB8 /* file_operation.cpp */; };
 		07A6DCF5173C27EB009E6FB8 /* file_operation.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D338173C27E7009E6FB8 /* file_operation.h */; };
 		07A6DCF6173C27EB009E6FB8 /* filemanager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D339173C27E7009E6FB8 /* filemanager.h */; };
 		07A6DCF7173C27EB009E6FB8 /* filemanager_const.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D33A173C27E7009E6FB8 /* filemanager_const.h */; };
 		07A6DCF8173C27EB009E6FB8 /* filemanager_ContextMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D33B173C27E7009E6FB8 /* filemanager_ContextMenu.cpp */; };
-		07A6DCF9173C27EB009E6FB8 /* filemanager_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D33C173C27E7009E6FB8 /* filemanager_data.cpp */; };
-		07A6DCFA173C27EB009E6FB8 /* filemanager_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D33D173C27E7009E6FB8 /* filemanager_data.h */; };
 		07A6DCFB173C27EB009E6FB8 /* filemanager_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D33E173C27E7009E6FB8 /* filemanager_document.cpp */; };
 		07A6DCFC173C27EB009E6FB8 /* filemanager_document.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D33F173C27E7009E6FB8 /* filemanager_document.h */; };
 		07A6DCFD173C27EB009E6FB8 /* filemanager_filemanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D340173C27E7009E6FB8 /* filemanager_filemanager.cpp */; };
@@ -355,8 +348,6 @@
 		07A6DD0C173C27EB009E6FB8 /* filemanager_form_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D34F173C27E7009E6FB8 /* filemanager_form_view.h */; };
 		07A6DD0D173C27EB009E6FB8 /* filemanager_fs_simple_list_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D350173C27E7009E6FB8 /* filemanager_fs_simple_list_view.cpp */; };
 		07A6DD0E173C27EB009E6FB8 /* filemanager_fs_simple_list_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D351173C27E7009E6FB8 /* filemanager_fs_simple_list_view.h */; };
-		07A6DD0F173C27EB009E6FB8 /* filemanager_fs_simple_tree_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D352173C27E7009E6FB8 /* filemanager_fs_simple_tree_view.cpp */; };
-		07A6DD10173C27EB009E6FB8 /* filemanager_fs_simple_tree_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D353173C27E7009E6FB8 /* filemanager_fs_simple_tree_view.h */; };
 		07A6DD11173C27EB009E6FB8 /* filemanager_fs_simple_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D354173C27E7009E6FB8 /* filemanager_fs_simple_view.cpp */; };
 		07A6DD12173C27EB009E6FB8 /* filemanager_fs_simple_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D355173C27E7009E6FB8 /* filemanager_fs_simple_view.h */; };
 		07A6DD13173C27EB009E6FB8 /* filemanager_icon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D356173C27E7009E6FB8 /* filemanager_icon.cpp */; };
@@ -377,54 +368,6 @@
 		07A6DD22173C27EB009E6FB8 /* filemanager_operation_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D365173C27E7009E6FB8 /* filemanager_operation_thread.h */; };
 		07A6DD23173C27EB009E6FB8 /* filemanager_operation_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D366173C27E7009E6FB8 /* filemanager_operation_view.cpp */; };
 		07A6DD24173C27EB009E6FB8 /* filemanager_operation_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D367173C27E7009E6FB8 /* filemanager_operation_view.h */; };
-		07A6DD25173C27EB009E6FB8 /* FileManagerCallbackInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D368173C27E7009E6FB8 /* FileManagerCallbackInterface.cpp */; };
-		07A6DD26173C27EB009E6FB8 /* FileManagerCallbackInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D369173C27E7009E6FB8 /* FileManagerCallbackInterface.h */; };
-		07A6DD27173C27EB009E6FB8 /* FileManagerChildFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D36A173C27E7009E6FB8 /* FileManagerChildFrame.cpp */; };
-		07A6DD28173C27EB009E6FB8 /* FileManagerChildFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D36B173C27E7009E6FB8 /* FileManagerChildFrame.h */; };
-		07A6DD29173C27EB009E6FB8 /* FileManagerFileListCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D36C173C27E7009E6FB8 /* FileManagerFileListCallback.cpp */; };
-		07A6DD2A173C27EB009E6FB8 /* FileManagerFileListCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D36D173C27E7009E6FB8 /* FileManagerFileListCallback.h */; };
-		07A6DD2B173C27EB009E6FB8 /* FileManagerFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D36E173C27E7009E6FB8 /* FileManagerFrame.cpp */; };
-		07A6DD2C173C27EB009E6FB8 /* FileManagerFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D36F173C27E7009E6FB8 /* FileManagerFrame.h */; };
-		07A6DD2D173C27EB009E6FB8 /* FileManagerInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D370173C27E7009E6FB8 /* FileManagerInterface.cpp */; };
-		07A6DD2E173C27EB009E6FB8 /* FileManagerInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D371173C27E7009E6FB8 /* FileManagerInterface.h */; };
-		07A6DD2F173C27EB009E6FB8 /* FileManagerLeftView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D372173C27E7009E6FB8 /* FileManagerLeftView.cpp */; };
-		07A6DD30173C27EB009E6FB8 /* FileManagerLeftView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D373173C27E7009E6FB8 /* FileManagerLeftView.h */; };
-		07A6DD31173C27EB009E6FB8 /* FileManagerMainFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D374173C27E7009E6FB8 /* FileManagerMainFrame.cpp */; };
-		07A6DD32173C27EB009E6FB8 /* FileManagerMainFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D375173C27E7009E6FB8 /* FileManagerMainFrame.h */; };
-		07A6DD33173C27EB009E6FB8 /* FileManagerPathView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D376173C27E7009E6FB8 /* FileManagerPathView.cpp */; };
-		07A6DD34173C27EB009E6FB8 /* FileManagerPathView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D377173C27E7009E6FB8 /* FileManagerPathView.h */; };
-		07A6DD35173C27EB009E6FB8 /* FileManagerSaveAsNameView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D378173C27E7009E6FB8 /* FileManagerSaveAsNameView.cpp */; };
-		07A6DD36173C27EB009E6FB8 /* FileManagerSaveAsNameView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D379173C27E7009E6FB8 /* FileManagerSaveAsNameView.h */; };
-		07A6DD37173C27EB009E6FB8 /* FileManagerTabView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D37A173C27E7009E6FB8 /* FileManagerTabView.cpp */; };
-		07A6DD38173C27EB009E6FB8 /* FileManagerTabView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D37B173C27E7009E6FB8 /* FileManagerTabView.h */; };
-		07A6DD39173C27EB009E6FB8 /* FileManagerTemplate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D37C173C27E7009E6FB8 /* FileManagerTemplate.cpp */; };
-		07A6DD3A173C27EB009E6FB8 /* FileManagerTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D37D173C27E7009E6FB8 /* FileManagerTemplate.h */; };
-		07A6DD3B173C27EB009E6FB8 /* FileManagerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D37E173C27E7009E6FB8 /* FileManagerView.cpp */; };
-		07A6DD3C173C27EB009E6FB8 /* FileManagerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D37F173C27E7009E6FB8 /* FileManagerView.h */; };
-		07A6DD3D173C27EB009E6FB8 /* FileManagerViewInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D380173C27E7009E6FB8 /* FileManagerViewInterface.cpp */; };
-		07A6DD3E173C27EB009E6FB8 /* FileManagerViewInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D381173C27E7009E6FB8 /* FileManagerViewInterface.h */; };
-		07A6DD3F173C27EB009E6FB8 /* FileManagerViewUpdateHint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D382173C27E7009E6FB8 /* FileManagerViewUpdateHint.cpp */; };
-		07A6DD40173C27EB009E6FB8 /* FileManagerViewUpdateHint.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D383173C27E7009E6FB8 /* FileManagerViewUpdateHint.h */; };
-		07A6DD41173C27EB009E6FB8 /* folder_list_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D384173C27E7009E6FB8 /* folder_list_view.h */; };
-		07A6DD42173C27EB009E6FB8 /* folder_selection_list_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D385173C27E7009E6FB8 /* folder_selection_list_view.h */; };
-		07A6DD43173C27EB009E6FB8 /* SimpleFileListInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D386173C27E7009E6FB8 /* SimpleFileListInterface.cpp */; };
-		07A6DD44173C27EB009E6FB8 /* SimpleFileListInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D387173C27E7009E6FB8 /* SimpleFileListInterface.h */; };
-		07A6DD45173C27EB009E6FB8 /* SimpleFileListView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D388173C27E7009E6FB8 /* SimpleFileListView.cpp */; };
-		07A6DD46173C27EB009E6FB8 /* SimpleFileListView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D389173C27E7009E6FB8 /* SimpleFileListView.h */; };
-		07A6DD47173C27EB009E6FB8 /* SimpleFilePropertiesForm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D38A173C27E7009E6FB8 /* SimpleFilePropertiesForm.cpp */; };
-		07A6DD48173C27EB009E6FB8 /* SimpleFilePropertiesForm.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D38B173C27E7009E6FB8 /* SimpleFilePropertiesForm.h */; };
-		07A6DD49173C27EB009E6FB8 /* SimpleFolderListInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D38C173C27E7009E6FB8 /* SimpleFolderListInterface.cpp */; };
-		07A6DD4A173C27EB009E6FB8 /* SimpleFolderListInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D38D173C27E7009E6FB8 /* SimpleFolderListInterface.h */; };
-		07A6DD4B173C27EB009E6FB8 /* SimpleFolderListView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D38E173C27E7009E6FB8 /* SimpleFolderListView.cpp */; };
-		07A6DD4C173C27EB009E6FB8 /* SimpleFolderListView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D38F173C27E7009E6FB8 /* SimpleFolderListView.h */; };
-		07A6DD4D173C27EB009E6FB8 /* SimpleFolderTreeInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D390173C27E7009E6FB8 /* SimpleFolderTreeInterface.cpp */; };
-		07A6DD4E173C27EB009E6FB8 /* SimpleFolderTreeInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D391173C27E7009E6FB8 /* SimpleFolderTreeInterface.h */; };
-		07A6DD4F173C27EB009E6FB8 /* SimpleFolderTreeView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D392173C27E7009E6FB8 /* SimpleFolderTreeView.cpp */; };
-		07A6DD50173C27EB009E6FB8 /* SimpleFolderTreeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D393173C27E7009E6FB8 /* SimpleFolderTreeView.h */; };
-		07A6DD51173C27EB009E6FB8 /* SimplePreview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D394173C27E7009E6FB8 /* SimplePreview.cpp */; };
-		07A6DD52173C27EB009E6FB8 /* SimplePreview.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D395173C27E7009E6FB8 /* SimplePreview.h */; };
-		07A6DD53173C27EB009E6FB8 /* SimplePreviewInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D396173C27E7009E6FB8 /* SimplePreviewInterface.cpp */; };
-		07A6DD54173C27EB009E6FB8 /* SimplePreviewInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D397173C27E7009E6FB8 /* SimplePreviewInterface.h */; };
 		07A6DD55173C27EB009E6FB8 /* fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D399173C27E7009E6FB8 /* fs.h */; };
 		07A6DD56173C27EB009E6FB8 /* fs_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D39A173C27E7009E6FB8 /* fs_data.cpp */; };
 		07A6DD57173C27EB009E6FB8 /* fs_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D39B173C27E7009E6FB8 /* fs_data.h */; };
@@ -453,8 +396,6 @@
 		07A6DD6E173C27EB009E6FB8 /* userfs_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3B3173C27E7009E6FB8 /* userfs_list.h */; };
 		07A6DD6F173C27EB009E6FB8 /* userfs_list_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3B4173C27E7009E6FB8 /* userfs_list_data.cpp */; };
 		07A6DD70173C27EB009E6FB8 /* userfs_list_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3B5173C27E7009E6FB8 /* userfs_list_data.h */; };
-		07A6DD71173C27EB009E6FB8 /* userfs_list_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3B6173C27E7009E6FB8 /* userfs_list_interface.cpp */; };
-		07A6DD72173C27EB009E6FB8 /* userfs_list_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3B7173C27E7009E6FB8 /* userfs_list_interface.h */; };
 		07A6DD73173C27EB009E6FB8 /* userfs_list_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3B8173C27E7009E6FB8 /* userfs_list_item.cpp */; };
 		07A6DD74173C27EB009E6FB8 /* userfs_list_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3B9173C27E7009E6FB8 /* userfs_list_item.h */; };
 		07A6DD75173C27EB009E6FB8 /* userfs_list_item_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3BA173C27E7009E6FB8 /* userfs_list_item_array.cpp */; };
@@ -463,12 +404,6 @@
 		07A6DD78173C27EB009E6FB8 /* userfs_main_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3BD173C27E7009E6FB8 /* userfs_main_view.h */; };
 		07A6DD79173C27EB009E6FB8 /* userfs_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3BE173C27E7009E6FB8 /* userfs_tree.cpp */; };
 		07A6DD7A173C27EB009E6FB8 /* userfs_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3BF173C27E7009E6FB8 /* userfs_tree.h */; };
-		07A6DD7B173C27EB009E6FB8 /* userfs_tree_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3C0173C27E7009E6FB8 /* userfs_tree_data.cpp */; };
-		07A6DD7C173C27EB009E6FB8 /* userfs_tree_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3C1173C27E7009E6FB8 /* userfs_tree_data.h */; };
-		07A6DD7D173C27EB009E6FB8 /* userfs_tree_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3C2173C27E7009E6FB8 /* userfs_tree_interface.cpp */; };
-		07A6DD7E173C27EB009E6FB8 /* userfs_tree_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3C3173C27E7009E6FB8 /* userfs_tree_interface.h */; };
-		07A6DD7F173C27EB009E6FB8 /* userfs_tree_item_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3C4173C27E7009E6FB8 /* userfs_tree_item_data.cpp */; };
-		07A6DD80173C27EB009E6FB8 /* userfs_tree_item_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3C5173C27E7009E6FB8 /* userfs_tree_item_data.h */; };
 		07A6DD81173C27EB009E6FB8 /* userfs_userfs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3C6173C27E7009E6FB8 /* userfs_userfs.cpp */; };
 		07A6DD82173C27EB009E6FB8 /* userfs_userfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D3C7173C27E7009E6FB8 /* userfs_userfs.h */; };
 		07A6DD83173C27EB009E6FB8 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D3C8173C27E7009E6FB8 /* framework.cpp */; };
@@ -1205,6 +1140,53 @@
 		07A6E1E3173C27EC009E6FB8 /* userpresence_user_presence.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D86C173C27EB009E6FB8 /* userpresence_user_presence.h */; };
 		07A6E1E4173C27EC009E6FB8 /* userpresence_userpresence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D86D173C27EB009E6FB8 /* userpresence_userpresence.cpp */; };
 		07A6E1E5173C27EC009E6FB8 /* userpresence_userpresence.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D86E173C27EB009E6FB8 /* userpresence_userpresence.h */; };
+		07AD9A42182FF93B005C3335 /* filehandler_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A40182FF93B005C3335 /* filehandler_item.cpp */; };
+		07AD9A43182FF93B005C3335 /* filehandler_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A41182FF93B005C3335 /* filehandler_item.h */; };
+		07AD9A6F182FF968005C3335 /* filemanager_callback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A44182FF967005C3335 /* filemanager_callback.cpp */; };
+		07AD9A70182FF968005C3335 /* filemanager_callback.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A45182FF967005C3335 /* filemanager_callback.h */; };
+		07AD9A71182FF968005C3335 /* filemanager_child_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A46182FF967005C3335 /* filemanager_child_frame.cpp */; };
+		07AD9A72182FF968005C3335 /* filemanager_child_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A47182FF967005C3335 /* filemanager_child_frame.h */; };
+		07AD9A73182FF968005C3335 /* filemanager_context_menu.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A48182FF967005C3335 /* filemanager_context_menu.h */; };
+		07AD9A74182FF968005C3335 /* filemanager_data_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A49182FF967005C3335 /* filemanager_data_interface.cpp */; };
+		07AD9A75182FF968005C3335 /* filemanager_data_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A4A182FF967005C3335 /* filemanager_data_interface.h */; };
+		07AD9A76182FF968005C3335 /* filemanager_file_list_callback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A4B182FF967005C3335 /* filemanager_file_list_callback.cpp */; };
+		07AD9A77182FF968005C3335 /* filemanager_file_list_callback.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A4C182FF967005C3335 /* filemanager_file_list_callback.h */; };
+		07AD9A78182FF968005C3335 /* filemanager_file_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A4D182FF967005C3335 /* filemanager_file_list.cpp */; };
+		07AD9A79182FF968005C3335 /* filemanager_file_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A4E182FF967005C3335 /* filemanager_file_list.h */; };
+		07AD9A7A182FF968005C3335 /* filemanager_file_properties_form.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A4F182FF967005C3335 /* filemanager_file_properties_form.cpp */; };
+		07AD9A7B182FF968005C3335 /* filemanager_file_properties_form.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A50182FF967005C3335 /* filemanager_file_properties_form.h */; };
+		07AD9A7C182FF968005C3335 /* filemanager_folder_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A51182FF967005C3335 /* filemanager_folder_list.cpp */; };
+		07AD9A7D182FF968005C3335 /* filemanager_folder_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A52182FF967005C3335 /* filemanager_folder_list.h */; };
+		07AD9A7E182FF968005C3335 /* filemanager_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A53182FF967005C3335 /* filemanager_frame.cpp */; };
+		07AD9A7F182FF968005C3335 /* filemanager_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A54182FF967005C3335 /* filemanager_frame.h */; };
+		07AD9A80182FF968005C3335 /* filemanager_fs_simple_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A55182FF967005C3335 /* filemanager_fs_simple_tree.cpp */; };
+		07AD9A81182FF968005C3335 /* filemanager_fs_simple_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A56182FF967005C3335 /* filemanager_fs_simple_tree.h */; };
+		07AD9A82182FF968005C3335 /* filemanager_left_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A57182FF967005C3335 /* filemanager_left_view.cpp */; };
+		07AD9A83182FF968005C3335 /* filemanager_left_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A58182FF967005C3335 /* filemanager_left_view.h */; };
+		07AD9A84182FF968005C3335 /* filemanager_list_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A59182FF967005C3335 /* filemanager_list_data.cpp */; };
+		07AD9A85182FF968005C3335 /* filemanager_list_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A5A182FF967005C3335 /* filemanager_list_data.h */; };
+		07AD9A86182FF968005C3335 /* filemanager_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A5B182FF967005C3335 /* filemanager_main_frame.cpp */; };
+		07AD9A87182FF968005C3335 /* filemanager_main_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A5C182FF968005C3335 /* filemanager_main_frame.h */; };
+		07AD9A88182FF968005C3335 /* filemanager_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A5D182FF968005C3335 /* filemanager_manager.cpp */; };
+		07AD9A89182FF968005C3335 /* filemanager_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A5E182FF968005C3335 /* filemanager_manager.h */; };
+		07AD9A8A182FF968005C3335 /* filemanager_path_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A5F182FF968005C3335 /* filemanager_path_view.cpp */; };
+		07AD9A8B182FF968005C3335 /* filemanager_path_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A60182FF968005C3335 /* filemanager_path_view.h */; };
+		07AD9A8C182FF968005C3335 /* filemanager_preview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A61182FF968005C3335 /* filemanager_preview.cpp */; };
+		07AD9A8D182FF968005C3335 /* filemanager_preview.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A62182FF968005C3335 /* filemanager_preview.h */; };
+		07AD9A8E182FF968005C3335 /* filemanager_save_as_name_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A63182FF968005C3335 /* filemanager_save_as_name_view.cpp */; };
+		07AD9A8F182FF968005C3335 /* filemanager_save_as_name_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A64182FF968005C3335 /* filemanager_save_as_name_view.h */; };
+		07AD9A90182FF968005C3335 /* filemanager_schema.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A65182FF968005C3335 /* filemanager_schema.cpp */; };
+		07AD9A91182FF968005C3335 /* filemanager_schema.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A66182FF968005C3335 /* filemanager_schema.h */; };
+		07AD9A92182FF968005C3335 /* filemanager_tab_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A67182FF968005C3335 /* filemanager_tab_view.cpp */; };
+		07AD9A93182FF968005C3335 /* filemanager_tab_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A68182FF968005C3335 /* filemanager_tab_view.h */; };
+		07AD9A94182FF968005C3335 /* filemanager_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A69182FF968005C3335 /* filemanager_tree.cpp */; };
+		07AD9A95182FF968005C3335 /* filemanager_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A6A182FF968005C3335 /* filemanager_tree.h */; };
+		07AD9A96182FF968005C3335 /* filemanager_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A6B182FF968005C3335 /* filemanager_update_hint.cpp */; };
+		07AD9A97182FF968005C3335 /* filemanager_update_hint.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A6C182FF968005C3335 /* filemanager_update_hint.h */; };
+		07AD9A98182FF968005C3335 /* filemanager_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A6D182FF968005C3335 /* filemanager_view.cpp */; };
+		07AD9A99182FF968005C3335 /* filemanager_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A6E182FF968005C3335 /* filemanager_view.h */; };
+		07AD9A9C182FF9E1005C3335 /* userfs_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A9A182FF9E1005C3335 /* userfs_item.cpp */; };
+		07AD9A9D182FF9E1005C3335 /* userfs_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A9B182FF9E1005C3335 /* userfs_item.h */; };
 		9A01C8C817FCA59500DC8E64 /* memory_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A01C8C617FCA59500DC8E64 /* memory_buffer.h */; };
 		9A01C8C917FCA59500DC8E64 /* zip_memory_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A01C8C717FCA59500DC8E64 /* zip_memory_buffer.cpp */; };
 		9A01C8CD17FCA62C00DC8E64 /* core_message_queue_listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A01C8CA17FCA62C00DC8E64 /* core_message_queue_listener.h */; };
@@ -2091,20 +2073,13 @@
 		07A6D32C173C27E7009E6FB8 /* filehandler_library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filehandler_library.h; sourceTree = "<group>"; };
 		07A6D32D173C27E7009E6FB8 /* filehandler_menu_library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filehandler_menu_library.cpp; sourceTree = "<group>"; };
 		07A6D32E173C27E7009E6FB8 /* filehandler_menu_library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filehandler_menu_library.h; sourceTree = "<group>"; };
-		07A6D32F173C27E7009E6FB8 /* filehandler_tree_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filehandler_tree_data.cpp; sourceTree = "<group>"; };
-		07A6D330173C27E7009E6FB8 /* filehandler_tree_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filehandler_tree_data.h; sourceTree = "<group>"; };
 		07A6D331173C27E7009E6FB8 /* filehandler_tree_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filehandler_tree_interface.cpp; sourceTree = "<group>"; };
 		07A6D332173C27E7009E6FB8 /* filehandler_tree_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filehandler_tree_interface.h; sourceTree = "<group>"; };
-		07A6D333173C27E7009E6FB8 /* filehandler_tree_item_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filehandler_tree_item_data.cpp; sourceTree = "<group>"; };
-		07A6D334173C27E7009E6FB8 /* filehandler_tree_item_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filehandler_tree_item_data.h; sourceTree = "<group>"; };
-		07A6D336173C27E7009E6FB8 /* ContextMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextMenu.h; sourceTree = "<group>"; };
 		07A6D337173C27E7009E6FB8 /* file_operation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_operation.cpp; sourceTree = "<group>"; };
 		07A6D338173C27E7009E6FB8 /* file_operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_operation.h; sourceTree = "<group>"; };
 		07A6D339173C27E7009E6FB8 /* filemanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager.h; sourceTree = "<group>"; };
 		07A6D33A173C27E7009E6FB8 /* filemanager_const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_const.h; sourceTree = "<group>"; };
 		07A6D33B173C27E7009E6FB8 /* filemanager_ContextMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_ContextMenu.cpp; sourceTree = "<group>"; };
-		07A6D33C173C27E7009E6FB8 /* filemanager_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_data.cpp; sourceTree = "<group>"; };
-		07A6D33D173C27E7009E6FB8 /* filemanager_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_data.h; sourceTree = "<group>"; };
 		07A6D33E173C27E7009E6FB8 /* filemanager_document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_document.cpp; sourceTree = "<group>"; };
 		07A6D33F173C27E7009E6FB8 /* filemanager_document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_document.h; sourceTree = "<group>"; };
 		07A6D340173C27E7009E6FB8 /* filemanager_filemanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_filemanager.cpp; sourceTree = "<group>"; };
@@ -2125,8 +2100,6 @@
 		07A6D34F173C27E7009E6FB8 /* filemanager_form_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_form_view.h; sourceTree = "<group>"; };
 		07A6D350173C27E7009E6FB8 /* filemanager_fs_simple_list_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_fs_simple_list_view.cpp; sourceTree = "<group>"; };
 		07A6D351173C27E7009E6FB8 /* filemanager_fs_simple_list_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_fs_simple_list_view.h; sourceTree = "<group>"; };
-		07A6D352173C27E7009E6FB8 /* filemanager_fs_simple_tree_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_fs_simple_tree_view.cpp; sourceTree = "<group>"; };
-		07A6D353173C27E7009E6FB8 /* filemanager_fs_simple_tree_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_fs_simple_tree_view.h; sourceTree = "<group>"; };
 		07A6D354173C27E7009E6FB8 /* filemanager_fs_simple_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_fs_simple_view.cpp; sourceTree = "<group>"; };
 		07A6D355173C27E7009E6FB8 /* filemanager_fs_simple_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_fs_simple_view.h; sourceTree = "<group>"; };
 		07A6D356173C27E7009E6FB8 /* filemanager_icon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_icon.cpp; sourceTree = "<group>"; };
@@ -2147,54 +2120,6 @@
 		07A6D365173C27E7009E6FB8 /* filemanager_operation_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_operation_thread.h; sourceTree = "<group>"; };
 		07A6D366173C27E7009E6FB8 /* filemanager_operation_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_operation_view.cpp; sourceTree = "<group>"; };
 		07A6D367173C27E7009E6FB8 /* filemanager_operation_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_operation_view.h; sourceTree = "<group>"; };
-		07A6D368173C27E7009E6FB8 /* FileManagerCallbackInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManagerCallbackInterface.cpp; sourceTree = "<group>"; };
-		07A6D369173C27E7009E6FB8 /* FileManagerCallbackInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerCallbackInterface.h; sourceTree = "<group>"; };
-		07A6D36A173C27E7009E6FB8 /* FileManagerChildFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManagerChildFrame.cpp; sourceTree = "<group>"; };
-		07A6D36B173C27E7009E6FB8 /* FileManagerChildFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerChildFrame.h; sourceTree = "<group>"; };
-		07A6D36C173C27E7009E6FB8 /* FileManagerFileListCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManagerFileListCallback.cpp; sourceTree = "<group>"; };
-		07A6D36D173C27E7009E6FB8 /* FileManagerFileListCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerFileListCallback.h; sourceTree = "<group>"; };
-		07A6D36E173C27E7009E6FB8 /* FileManagerFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManagerFrame.cpp; sourceTree = "<group>"; };
-		07A6D36F173C27E7009E6FB8 /* FileManagerFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerFrame.h; sourceTree = "<group>"; };
-		07A6D370173C27E7009E6FB8 /* FileManagerInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManagerInterface.cpp; sourceTree = "<group>"; };
-		07A6D371173C27E7009E6FB8 /* FileManagerInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerInterface.h; sourceTree = "<group>"; };
-		07A6D372173C27E7009E6FB8 /* FileManagerLeftView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManagerLeftView.cpp; sourceTree = "<group>"; };
-		07A6D373173C27E7009E6FB8 /* FileManagerLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerLeftView.h; sourceTree = "<group>"; };
-		07A6D374173C27E7009E6FB8 /* FileManagerMainFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManagerMainFrame.cpp; sourceTree = "<group>"; };
-		07A6D375173C27E7009E6FB8 /* FileManagerMainFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerMainFrame.h; sourceTree = "<group>"; };
-		07A6D376173C27E7009E6FB8 /* FileManagerPathView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManagerPathView.cpp; sourceTree = "<group>"; };
-		07A6D377173C27E7009E6FB8 /* FileManagerPathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerPathView.h; sourceTree = "<group>"; };
-		07A6D378173C27E7009E6FB8 /* FileManagerSaveAsNameView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManagerSaveAsNameView.cpp; sourceTree = "<group>"; };
-		07A6D379173C27E7009E6FB8 /* FileManagerSaveAsNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerSaveAsNameView.h; sourceTree = "<group>"; };
-		07A6D37A173C27E7009E6FB8 /* FileManagerTabView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManagerTabView.cpp; sourceTree = "<group>"; };
-		07A6D37B173C27E7009E6FB8 /* FileManagerTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerTabView.h; sourceTree = "<group>"; };
-		07A6D37C173C27E7009E6FB8 /* FileManagerTemplate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManagerTemplate.cpp; sourceTree = "<group>"; };
-		07A6D37D173C27E7009E6FB8 /* FileManagerTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerTemplate.h; sourceTree = "<group>"; };
-		07A6D37E173C27E7009E6FB8 /* FileManagerView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManagerView.cpp; sourceTree = "<group>"; };
-		07A6D37F173C27E7009E6FB8 /* FileManagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerView.h; sourceTree = "<group>"; };
-		07A6D380173C27E7009E6FB8 /* FileManagerViewInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManagerViewInterface.cpp; sourceTree = "<group>"; };
-		07A6D381173C27E7009E6FB8 /* FileManagerViewInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerViewInterface.h; sourceTree = "<group>"; };
-		07A6D382173C27E7009E6FB8 /* FileManagerViewUpdateHint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileManagerViewUpdateHint.cpp; sourceTree = "<group>"; };
-		07A6D383173C27E7009E6FB8 /* FileManagerViewUpdateHint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerViewUpdateHint.h; sourceTree = "<group>"; };
-		07A6D384173C27E7009E6FB8 /* folder_list_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = folder_list_view.h; sourceTree = "<group>"; };
-		07A6D385173C27E7009E6FB8 /* folder_selection_list_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = folder_selection_list_view.h; sourceTree = "<group>"; };
-		07A6D386173C27E7009E6FB8 /* SimpleFileListInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleFileListInterface.cpp; sourceTree = "<group>"; };
-		07A6D387173C27E7009E6FB8 /* SimpleFileListInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFileListInterface.h; sourceTree = "<group>"; };
-		07A6D388173C27E7009E6FB8 /* SimpleFileListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleFileListView.cpp; sourceTree = "<group>"; };
-		07A6D389173C27E7009E6FB8 /* SimpleFileListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFileListView.h; sourceTree = "<group>"; };
-		07A6D38A173C27E7009E6FB8 /* SimpleFilePropertiesForm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleFilePropertiesForm.cpp; sourceTree = "<group>"; };
-		07A6D38B173C27E7009E6FB8 /* SimpleFilePropertiesForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFilePropertiesForm.h; sourceTree = "<group>"; };
-		07A6D38C173C27E7009E6FB8 /* SimpleFolderListInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleFolderListInterface.cpp; sourceTree = "<group>"; };
-		07A6D38D173C27E7009E6FB8 /* SimpleFolderListInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFolderListInterface.h; sourceTree = "<group>"; };
-		07A6D38E173C27E7009E6FB8 /* SimpleFolderListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleFolderListView.cpp; sourceTree = "<group>"; };
-		07A6D38F173C27E7009E6FB8 /* SimpleFolderListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFolderListView.h; sourceTree = "<group>"; };
-		07A6D390173C27E7009E6FB8 /* SimpleFolderTreeInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleFolderTreeInterface.cpp; sourceTree = "<group>"; };
-		07A6D391173C27E7009E6FB8 /* SimpleFolderTreeInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFolderTreeInterface.h; sourceTree = "<group>"; };
-		07A6D392173C27E7009E6FB8 /* SimpleFolderTreeView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleFolderTreeView.cpp; sourceTree = "<group>"; };
-		07A6D393173C27E7009E6FB8 /* SimpleFolderTreeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFolderTreeView.h; sourceTree = "<group>"; };
-		07A6D394173C27E7009E6FB8 /* SimplePreview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimplePreview.cpp; sourceTree = "<group>"; };
-		07A6D395173C27E7009E6FB8 /* SimplePreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePreview.h; sourceTree = "<group>"; };
-		07A6D396173C27E7009E6FB8 /* SimplePreviewInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimplePreviewInterface.cpp; sourceTree = "<group>"; };
-		07A6D397173C27E7009E6FB8 /* SimplePreviewInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePreviewInterface.h; sourceTree = "<group>"; };
 		07A6D399173C27E7009E6FB8 /* fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs.h; sourceTree = "<group>"; };
 		07A6D39A173C27E7009E6FB8 /* fs_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fs_data.cpp; sourceTree = "<group>"; };
 		07A6D39B173C27E7009E6FB8 /* fs_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_data.h; sourceTree = "<group>"; };
@@ -2223,8 +2148,6 @@
 		07A6D3B3173C27E7009E6FB8 /* userfs_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_list.h; sourceTree = "<group>"; };
 		07A6D3B4173C27E7009E6FB8 /* userfs_list_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userfs_list_data.cpp; sourceTree = "<group>"; };
 		07A6D3B5173C27E7009E6FB8 /* userfs_list_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_list_data.h; sourceTree = "<group>"; };
-		07A6D3B6173C27E7009E6FB8 /* userfs_list_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userfs_list_interface.cpp; sourceTree = "<group>"; };
-		07A6D3B7173C27E7009E6FB8 /* userfs_list_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_list_interface.h; sourceTree = "<group>"; };
 		07A6D3B8173C27E7009E6FB8 /* userfs_list_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userfs_list_item.cpp; sourceTree = "<group>"; };
 		07A6D3B9173C27E7009E6FB8 /* userfs_list_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_list_item.h; sourceTree = "<group>"; };
 		07A6D3BA173C27E7009E6FB8 /* userfs_list_item_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userfs_list_item_array.cpp; sourceTree = "<group>"; };
@@ -2233,12 +2156,6 @@
 		07A6D3BD173C27E7009E6FB8 /* userfs_main_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_main_view.h; sourceTree = "<group>"; };
 		07A6D3BE173C27E7009E6FB8 /* userfs_tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userfs_tree.cpp; sourceTree = "<group>"; };
 		07A6D3BF173C27E7009E6FB8 /* userfs_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_tree.h; sourceTree = "<group>"; };
-		07A6D3C0173C27E7009E6FB8 /* userfs_tree_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userfs_tree_data.cpp; sourceTree = "<group>"; };
-		07A6D3C1173C27E7009E6FB8 /* userfs_tree_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_tree_data.h; sourceTree = "<group>"; };
-		07A6D3C2173C27E7009E6FB8 /* userfs_tree_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userfs_tree_interface.cpp; sourceTree = "<group>"; };
-		07A6D3C3173C27E7009E6FB8 /* userfs_tree_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_tree_interface.h; sourceTree = "<group>"; };
-		07A6D3C4173C27E7009E6FB8 /* userfs_tree_item_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userfs_tree_item_data.cpp; sourceTree = "<group>"; };
-		07A6D3C5173C27E7009E6FB8 /* userfs_tree_item_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_tree_item_data.h; sourceTree = "<group>"; };
 		07A6D3C6173C27E7009E6FB8 /* userfs_userfs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userfs_userfs.cpp; sourceTree = "<group>"; };
 		07A6D3C7173C27E7009E6FB8 /* userfs_userfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_userfs.h; sourceTree = "<group>"; };
 		07A6D3C8173C27E7009E6FB8 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
@@ -2979,6 +2896,53 @@
 		07A6D86C173C27EB009E6FB8 /* userpresence_user_presence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userpresence_user_presence.h; sourceTree = "<group>"; };
 		07A6D86D173C27EB009E6FB8 /* userpresence_userpresence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userpresence_userpresence.cpp; sourceTree = "<group>"; };
 		07A6D86E173C27EB009E6FB8 /* userpresence_userpresence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userpresence_userpresence.h; sourceTree = "<group>"; };
+		07AD9A40182FF93B005C3335 /* filehandler_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filehandler_item.cpp; sourceTree = "<group>"; };
+		07AD9A41182FF93B005C3335 /* filehandler_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filehandler_item.h; sourceTree = "<group>"; };
+		07AD9A44182FF967005C3335 /* filemanager_callback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_callback.cpp; sourceTree = "<group>"; };
+		07AD9A45182FF967005C3335 /* filemanager_callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_callback.h; sourceTree = "<group>"; };
+		07AD9A46182FF967005C3335 /* filemanager_child_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_child_frame.cpp; sourceTree = "<group>"; };
+		07AD9A47182FF967005C3335 /* filemanager_child_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_child_frame.h; sourceTree = "<group>"; };
+		07AD9A48182FF967005C3335 /* filemanager_context_menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_context_menu.h; sourceTree = "<group>"; };
+		07AD9A49182FF967005C3335 /* filemanager_data_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_data_interface.cpp; sourceTree = "<group>"; };
+		07AD9A4A182FF967005C3335 /* filemanager_data_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_data_interface.h; sourceTree = "<group>"; };
+		07AD9A4B182FF967005C3335 /* filemanager_file_list_callback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_file_list_callback.cpp; sourceTree = "<group>"; };
+		07AD9A4C182FF967005C3335 /* filemanager_file_list_callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_file_list_callback.h; sourceTree = "<group>"; };
+		07AD9A4D182FF967005C3335 /* filemanager_file_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_file_list.cpp; sourceTree = "<group>"; };
+		07AD9A4E182FF967005C3335 /* filemanager_file_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_file_list.h; sourceTree = "<group>"; };
+		07AD9A4F182FF967005C3335 /* filemanager_file_properties_form.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_file_properties_form.cpp; sourceTree = "<group>"; };
+		07AD9A50182FF967005C3335 /* filemanager_file_properties_form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_file_properties_form.h; sourceTree = "<group>"; };
+		07AD9A51182FF967005C3335 /* filemanager_folder_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_folder_list.cpp; sourceTree = "<group>"; };
+		07AD9A52182FF967005C3335 /* filemanager_folder_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_folder_list.h; sourceTree = "<group>"; };
+		07AD9A53182FF967005C3335 /* filemanager_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_frame.cpp; sourceTree = "<group>"; };
+		07AD9A54182FF967005C3335 /* filemanager_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_frame.h; sourceTree = "<group>"; };
+		07AD9A55182FF967005C3335 /* filemanager_fs_simple_tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_fs_simple_tree.cpp; sourceTree = "<group>"; };
+		07AD9A56182FF967005C3335 /* filemanager_fs_simple_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_fs_simple_tree.h; sourceTree = "<group>"; };
+		07AD9A57182FF967005C3335 /* filemanager_left_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_left_view.cpp; sourceTree = "<group>"; };
+		07AD9A58182FF967005C3335 /* filemanager_left_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_left_view.h; sourceTree = "<group>"; };
+		07AD9A59182FF967005C3335 /* filemanager_list_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_list_data.cpp; sourceTree = "<group>"; };
+		07AD9A5A182FF967005C3335 /* filemanager_list_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_list_data.h; sourceTree = "<group>"; };
+		07AD9A5B182FF967005C3335 /* filemanager_main_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_main_frame.cpp; sourceTree = "<group>"; };
+		07AD9A5C182FF968005C3335 /* filemanager_main_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_main_frame.h; sourceTree = "<group>"; };
+		07AD9A5D182FF968005C3335 /* filemanager_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_manager.cpp; sourceTree = "<group>"; };
+		07AD9A5E182FF968005C3335 /* filemanager_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_manager.h; sourceTree = "<group>"; };
+		07AD9A5F182FF968005C3335 /* filemanager_path_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_path_view.cpp; sourceTree = "<group>"; };
+		07AD9A60182FF968005C3335 /* filemanager_path_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_path_view.h; sourceTree = "<group>"; };
+		07AD9A61182FF968005C3335 /* filemanager_preview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_preview.cpp; sourceTree = "<group>"; };
+		07AD9A62182FF968005C3335 /* filemanager_preview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_preview.h; sourceTree = "<group>"; };
+		07AD9A63182FF968005C3335 /* filemanager_save_as_name_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_save_as_name_view.cpp; sourceTree = "<group>"; };
+		07AD9A64182FF968005C3335 /* filemanager_save_as_name_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_save_as_name_view.h; sourceTree = "<group>"; };
+		07AD9A65182FF968005C3335 /* filemanager_schema.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_schema.cpp; sourceTree = "<group>"; };
+		07AD9A66182FF968005C3335 /* filemanager_schema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_schema.h; sourceTree = "<group>"; };
+		07AD9A67182FF968005C3335 /* filemanager_tab_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_tab_view.cpp; sourceTree = "<group>"; };
+		07AD9A68182FF968005C3335 /* filemanager_tab_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_tab_view.h; sourceTree = "<group>"; };
+		07AD9A69182FF968005C3335 /* filemanager_tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_tree.cpp; sourceTree = "<group>"; };
+		07AD9A6A182FF968005C3335 /* filemanager_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_tree.h; sourceTree = "<group>"; };
+		07AD9A6B182FF968005C3335 /* filemanager_update_hint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_update_hint.cpp; sourceTree = "<group>"; };
+		07AD9A6C182FF968005C3335 /* filemanager_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_update_hint.h; sourceTree = "<group>"; };
+		07AD9A6D182FF968005C3335 /* filemanager_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_view.cpp; sourceTree = "<group>"; };
+		07AD9A6E182FF968005C3335 /* filemanager_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_view.h; sourceTree = "<group>"; };
+		07AD9A9A182FF9E1005C3335 /* userfs_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userfs_item.cpp; sourceTree = "<group>"; };
+		07AD9A9B182FF9E1005C3335 /* userfs_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_item.h; sourceTree = "<group>"; };
 		9A01C8C617FCA59500DC8E64 /* memory_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory_buffer.h; sourceTree = "<group>"; };
 		9A01C8C717FCA59500DC8E64 /* zip_memory_buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zip_memory_buffer.cpp; sourceTree = "<group>"; };
 		9A01C8CA17FCA62C00DC8E64 /* core_message_queue_listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_message_queue_listener.h; sourceTree = "<group>"; };
@@ -4006,6 +3970,8 @@
 		07A6D327173C27E7009E6FB8 /* filehandler */ = {
 			isa = PBXGroup;
 			children = (
+				07AD9A40182FF93B005C3335 /* filehandler_item.cpp */,
+				07AD9A41182FF93B005C3335 /* filehandler_item.h */,
 				07A6D328173C27E7009E6FB8 /* filehandler.h */,
 				07A6D329173C27E7009E6FB8 /* filehandler_handler.cpp */,
 				07A6D32A173C27E7009E6FB8 /* filehandler_handler.h */,
@@ -4013,12 +3979,8 @@
 				07A6D32C173C27E7009E6FB8 /* filehandler_library.h */,
 				07A6D32D173C27E7009E6FB8 /* filehandler_menu_library.cpp */,
 				07A6D32E173C27E7009E6FB8 /* filehandler_menu_library.h */,
-				07A6D32F173C27E7009E6FB8 /* filehandler_tree_data.cpp */,
-				07A6D330173C27E7009E6FB8 /* filehandler_tree_data.h */,
 				07A6D331173C27E7009E6FB8 /* filehandler_tree_interface.cpp */,
 				07A6D332173C27E7009E6FB8 /* filehandler_tree_interface.h */,
-				07A6D333173C27E7009E6FB8 /* filehandler_tree_item_data.cpp */,
-				07A6D334173C27E7009E6FB8 /* filehandler_tree_item_data.h */,
 			);
 			path = filehandler;
 			sourceTree = "<group>";
@@ -4026,14 +3988,54 @@
 		07A6D335173C27E7009E6FB8 /* filemanager */ = {
 			isa = PBXGroup;
 			children = (
-				07A6D336173C27E7009E6FB8 /* ContextMenu.h */,
+				07AD9A44182FF967005C3335 /* filemanager_callback.cpp */,
+				07AD9A45182FF967005C3335 /* filemanager_callback.h */,
+				07AD9A46182FF967005C3335 /* filemanager_child_frame.cpp */,
+				07AD9A47182FF967005C3335 /* filemanager_child_frame.h */,
+				07AD9A48182FF967005C3335 /* filemanager_context_menu.h */,
+				07AD9A49182FF967005C3335 /* filemanager_data_interface.cpp */,
+				07AD9A4A182FF967005C3335 /* filemanager_data_interface.h */,
+				07AD9A4B182FF967005C3335 /* filemanager_file_list_callback.cpp */,
+				07AD9A4C182FF967005C3335 /* filemanager_file_list_callback.h */,
+				07AD9A4D182FF967005C3335 /* filemanager_file_list.cpp */,
+				07AD9A4E182FF967005C3335 /* filemanager_file_list.h */,
+				07AD9A4F182FF967005C3335 /* filemanager_file_properties_form.cpp */,
+				07AD9A50182FF967005C3335 /* filemanager_file_properties_form.h */,
+				07AD9A51182FF967005C3335 /* filemanager_folder_list.cpp */,
+				07AD9A52182FF967005C3335 /* filemanager_folder_list.h */,
+				07AD9A53182FF967005C3335 /* filemanager_frame.cpp */,
+				07AD9A54182FF967005C3335 /* filemanager_frame.h */,
+				07AD9A55182FF967005C3335 /* filemanager_fs_simple_tree.cpp */,
+				07AD9A56182FF967005C3335 /* filemanager_fs_simple_tree.h */,
+				07AD9A57182FF967005C3335 /* filemanager_left_view.cpp */,
+				07AD9A58182FF967005C3335 /* filemanager_left_view.h */,
+				07AD9A59182FF967005C3335 /* filemanager_list_data.cpp */,
+				07AD9A5A182FF967005C3335 /* filemanager_list_data.h */,
+				07AD9A5B182FF967005C3335 /* filemanager_main_frame.cpp */,
+				07AD9A5C182FF968005C3335 /* filemanager_main_frame.h */,
+				07AD9A5D182FF968005C3335 /* filemanager_manager.cpp */,
+				07AD9A5E182FF968005C3335 /* filemanager_manager.h */,
+				07AD9A5F182FF968005C3335 /* filemanager_path_view.cpp */,
+				07AD9A60182FF968005C3335 /* filemanager_path_view.h */,
+				07AD9A61182FF968005C3335 /* filemanager_preview.cpp */,
+				07AD9A62182FF968005C3335 /* filemanager_preview.h */,
+				07AD9A63182FF968005C3335 /* filemanager_save_as_name_view.cpp */,
+				07AD9A64182FF968005C3335 /* filemanager_save_as_name_view.h */,
+				07AD9A65182FF968005C3335 /* filemanager_schema.cpp */,
+				07AD9A66182FF968005C3335 /* filemanager_schema.h */,
+				07AD9A67182FF968005C3335 /* filemanager_tab_view.cpp */,
+				07AD9A68182FF968005C3335 /* filemanager_tab_view.h */,
+				07AD9A69182FF968005C3335 /* filemanager_tree.cpp */,
+				07AD9A6A182FF968005C3335 /* filemanager_tree.h */,
+				07AD9A6B182FF968005C3335 /* filemanager_update_hint.cpp */,
+				07AD9A6C182FF968005C3335 /* filemanager_update_hint.h */,
+				07AD9A6D182FF968005C3335 /* filemanager_view.cpp */,
+				07AD9A6E182FF968005C3335 /* filemanager_view.h */,
 				07A6D337173C27E7009E6FB8 /* file_operation.cpp */,
 				07A6D338173C27E7009E6FB8 /* file_operation.h */,
 				07A6D339173C27E7009E6FB8 /* filemanager.h */,
 				07A6D33A173C27E7009E6FB8 /* filemanager_const.h */,
 				07A6D33B173C27E7009E6FB8 /* filemanager_ContextMenu.cpp */,
-				07A6D33C173C27E7009E6FB8 /* filemanager_data.cpp */,
-				07A6D33D173C27E7009E6FB8 /* filemanager_data.h */,
 				07A6D33E173C27E7009E6FB8 /* filemanager_document.cpp */,
 				07A6D33F173C27E7009E6FB8 /* filemanager_document.h */,
 				07A6D340173C27E7009E6FB8 /* filemanager_filemanager.cpp */,
@@ -4054,8 +4056,6 @@
 				07A6D34F173C27E7009E6FB8 /* filemanager_form_view.h */,
 				07A6D350173C27E7009E6FB8 /* filemanager_fs_simple_list_view.cpp */,
 				07A6D351173C27E7009E6FB8 /* filemanager_fs_simple_list_view.h */,
-				07A6D352173C27E7009E6FB8 /* filemanager_fs_simple_tree_view.cpp */,
-				07A6D353173C27E7009E6FB8 /* filemanager_fs_simple_tree_view.h */,
 				07A6D354173C27E7009E6FB8 /* filemanager_fs_simple_view.cpp */,
 				07A6D355173C27E7009E6FB8 /* filemanager_fs_simple_view.h */,
 				07A6D356173C27E7009E6FB8 /* filemanager_icon.cpp */,
@@ -4076,54 +4076,6 @@
 				07A6D365173C27E7009E6FB8 /* filemanager_operation_thread.h */,
 				07A6D366173C27E7009E6FB8 /* filemanager_operation_view.cpp */,
 				07A6D367173C27E7009E6FB8 /* filemanager_operation_view.h */,
-				07A6D368173C27E7009E6FB8 /* FileManagerCallbackInterface.cpp */,
-				07A6D369173C27E7009E6FB8 /* FileManagerCallbackInterface.h */,
-				07A6D36A173C27E7009E6FB8 /* FileManagerChildFrame.cpp */,
-				07A6D36B173C27E7009E6FB8 /* FileManagerChildFrame.h */,
-				07A6D36C173C27E7009E6FB8 /* FileManagerFileListCallback.cpp */,
-				07A6D36D173C27E7009E6FB8 /* FileManagerFileListCallback.h */,
-				07A6D36E173C27E7009E6FB8 /* FileManagerFrame.cpp */,
-				07A6D36F173C27E7009E6FB8 /* FileManagerFrame.h */,
-				07A6D370173C27E7009E6FB8 /* FileManagerInterface.cpp */,
-				07A6D371173C27E7009E6FB8 /* FileManagerInterface.h */,
-				07A6D372173C27E7009E6FB8 /* FileManagerLeftView.cpp */,
-				07A6D373173C27E7009E6FB8 /* FileManagerLeftView.h */,
-				07A6D374173C27E7009E6FB8 /* FileManagerMainFrame.cpp */,
-				07A6D375173C27E7009E6FB8 /* FileManagerMainFrame.h */,
-				07A6D376173C27E7009E6FB8 /* FileManagerPathView.cpp */,
-				07A6D377173C27E7009E6FB8 /* FileManagerPathView.h */,
-				07A6D378173C27E7009E6FB8 /* FileManagerSaveAsNameView.cpp */,
-				07A6D379173C27E7009E6FB8 /* FileManagerSaveAsNameView.h */,
-				07A6D37A173C27E7009E6FB8 /* FileManagerTabView.cpp */,
-				07A6D37B173C27E7009E6FB8 /* FileManagerTabView.h */,
-				07A6D37C173C27E7009E6FB8 /* FileManagerTemplate.cpp */,
-				07A6D37D173C27E7009E6FB8 /* FileManagerTemplate.h */,
-				07A6D37E173C27E7009E6FB8 /* FileManagerView.cpp */,
-				07A6D37F173C27E7009E6FB8 /* FileManagerView.h */,
-				07A6D380173C27E7009E6FB8 /* FileManagerViewInterface.cpp */,
-				07A6D381173C27E7009E6FB8 /* FileManagerViewInterface.h */,
-				07A6D382173C27E7009E6FB8 /* FileManagerViewUpdateHint.cpp */,
-				07A6D383173C27E7009E6FB8 /* FileManagerViewUpdateHint.h */,
-				07A6D384173C27E7009E6FB8 /* folder_list_view.h */,
-				07A6D385173C27E7009E6FB8 /* folder_selection_list_view.h */,
-				07A6D386173C27E7009E6FB8 /* SimpleFileListInterface.cpp */,
-				07A6D387173C27E7009E6FB8 /* SimpleFileListInterface.h */,
-				07A6D388173C27E7009E6FB8 /* SimpleFileListView.cpp */,
-				07A6D389173C27E7009E6FB8 /* SimpleFileListView.h */,
-				07A6D38A173C27E7009E6FB8 /* SimpleFilePropertiesForm.cpp */,
-				07A6D38B173C27E7009E6FB8 /* SimpleFilePropertiesForm.h */,
-				07A6D38C173C27E7009E6FB8 /* SimpleFolderListInterface.cpp */,
-				07A6D38D173C27E7009E6FB8 /* SimpleFolderListInterface.h */,
-				07A6D38E173C27E7009E6FB8 /* SimpleFolderListView.cpp */,
-				07A6D38F173C27E7009E6FB8 /* SimpleFolderListView.h */,
-				07A6D390173C27E7009E6FB8 /* SimpleFolderTreeInterface.cpp */,
-				07A6D391173C27E7009E6FB8 /* SimpleFolderTreeInterface.h */,
-				07A6D392173C27E7009E6FB8 /* SimpleFolderTreeView.cpp */,
-				07A6D393173C27E7009E6FB8 /* SimpleFolderTreeView.h */,
-				07A6D394173C27E7009E6FB8 /* SimplePreview.cpp */,
-				07A6D395173C27E7009E6FB8 /* SimplePreview.h */,
-				07A6D396173C27E7009E6FB8 /* SimplePreviewInterface.cpp */,
-				07A6D397173C27E7009E6FB8 /* SimplePreviewInterface.h */,
 			);
 			path = filemanager;
 			sourceTree = "<group>";
@@ -4159,6 +4111,8 @@
 		07A6D3AE173C27E7009E6FB8 /* userfs */ = {
 			isa = PBXGroup;
 			children = (
+				07AD9A9A182FF9E1005C3335 /* userfs_item.cpp */,
+				07AD9A9B182FF9E1005C3335 /* userfs_item.h */,
 				07A6D3AF173C27E7009E6FB8 /* userfs.h */,
 				07A6D3B0173C27E7009E6FB8 /* userfs_document.cpp */,
 				07A6D3B1173C27E7009E6FB8 /* userfs_document.h */,
@@ -4166,8 +4120,6 @@
 				07A6D3B3173C27E7009E6FB8 /* userfs_list.h */,
 				07A6D3B4173C27E7009E6FB8 /* userfs_list_data.cpp */,
 				07A6D3B5173C27E7009E6FB8 /* userfs_list_data.h */,
-				07A6D3B6173C27E7009E6FB8 /* userfs_list_interface.cpp */,
-				07A6D3B7173C27E7009E6FB8 /* userfs_list_interface.h */,
 				07A6D3B8173C27E7009E6FB8 /* userfs_list_item.cpp */,
 				07A6D3B9173C27E7009E6FB8 /* userfs_list_item.h */,
 				07A6D3BA173C27E7009E6FB8 /* userfs_list_item_array.cpp */,
@@ -4176,12 +4128,6 @@
 				07A6D3BD173C27E7009E6FB8 /* userfs_main_view.h */,
 				07A6D3BE173C27E7009E6FB8 /* userfs_tree.cpp */,
 				07A6D3BF173C27E7009E6FB8 /* userfs_tree.h */,
-				07A6D3C0173C27E7009E6FB8 /* userfs_tree_data.cpp */,
-				07A6D3C1173C27E7009E6FB8 /* userfs_tree_data.h */,
-				07A6D3C2173C27E7009E6FB8 /* userfs_tree_interface.cpp */,
-				07A6D3C3173C27E7009E6FB8 /* userfs_tree_interface.h */,
-				07A6D3C4173C27E7009E6FB8 /* userfs_tree_item_data.cpp */,
-				07A6D3C5173C27E7009E6FB8 /* userfs_tree_item_data.h */,
 				07A6D3C6173C27E7009E6FB8 /* userfs_userfs.cpp */,
 				07A6D3C7173C27E7009E6FB8 /* userfs_userfs.h */,
 			);
@@ -6017,6 +5963,7 @@
 				07A6DBE1173C27EB009E6FB8 /* 7zHeader.h in Headers */,
 				07A6DBE3173C27EB009E6FB8 /* 7zIn.h in Headers */,
 				07A6DBE4173C27EB009E6FB8 /* 7zItem.h in Headers */,
+				07AD9A7B182FF968005C3335 /* filemanager_file_properties_form.h in Headers */,
 				07A6DBE6173C27EB009E6FB8 /* 7zOut.h in Headers */,
 				07A6DBE8173C27EB009E6FB8 /* 7zProperties.h in Headers */,
 				07A6DBEB173C27EB009E6FB8 /* 7zSpecStream.h in Headers */,
@@ -6044,6 +5991,7 @@
 				07A6DC00173C27EB009E6FB8 /* compress_int_to_string.h in Headers */,
 				07A6DC01173C27EB009E6FB8 /* compress_item_name.h in Headers */,
 				07A6DC02173C27EB009E6FB8 /* compress_local_progress.h in Headers */,
+				07AD9A77182FF968005C3335 /* filemanager_file_list_callback.h in Headers */,
 				07A6DC03173C27EB009E6FB8 /* compress_lz_out_window.h in Headers */,
 				07A6DC04173C27EB009E6FB8 /* compress_method_properties.h in Headers */,
 				07A6DC05173C27EB009E6FB8 /* compress_out_handler.h in Headers */,
@@ -6108,6 +6056,7 @@
 				07A6DC54173C27EB009E6FB8 /* compress_reader_with_crc.h in Headers */,
 				07A6DC55173C27EB009E6FB8 /* compress_register_codec.h in Headers */,
 				07A6DC57173C27EB009E6FB8 /* compress_writer_with_crc.h in Headers */,
+				07AD9A79182FF968005C3335 /* filemanager_file_list.h in Headers */,
 				07A6DC58173C27EB009E6FB8 /* crypto.h in Headers */,
 				07A6DC5A173C27EB009E6FB8 /* crypto_7z_crc.h in Headers */,
 				9A01C98717FCA77000DC8E64 /* sip_base_client_socket.h in Headers */,
@@ -6117,12 +6066,14 @@
 				07A6DC5D173C27EB009E6FB8 /* crypto_get_text_password_interface.h in Headers */,
 				07A6DC5E173C27EB009E6FB8 /* crypto_properties_interface.h in Headers */,
 				07A6DC60173C27EB009E6FB8 /* crypto_rar20.h in Headers */,
+				07AD9A99182FF968005C3335 /* filemanager_view.h in Headers */,
 				07A6DC61173C27EB009E6FB8 /* crypto_reset_init_vector_interface.h in Headers */,
 				07A6DC62173C27EB009E6FB8 /* crypto_set_password_interface.h in Headers */,
 				9A01C98D17FCA77000DC8E64 /* sip_server.h in Headers */,
 				07A6DC63173C27EB009E6FB8 /* aes.h in Headers */,
 				07A6DC64173C27EB009E6FB8 /* folder_reader.h in Headers */,
 				07A6DC65173C27EB009E6FB8 /* handler.h in Headers */,
+				07AD9A8B182FF968005C3335 /* filemanager_path_view.h in Headers */,
 				07A6DC66173C27EB009E6FB8 /* header.h in Headers */,
 				07A6DC67173C27EB009E6FB8 /* input_file.h in Headers */,
 				07A6DC68173C27EB009E6FB8 /* item.h in Headers */,
@@ -6150,6 +6101,7 @@
 				07A6DC93173C27EB009E6FB8 /* database_client.h in Headers */,
 				07A6DC94173C27EB009E6FB8 /* database_database.h in Headers */,
 				07A6DC96173C27EB009E6FB8 /* database_definition.h in Headers */,
+				07AD9A85182FF968005C3335 /* filemanager_list_data.h in Headers */,
 				07A6DC99173C27EB009E6FB8 /* database_field_definition.h in Headers */,
 				072AE9BD1810372200F74E98 /* backview_enum.h in Headers */,
 				07A6DC9B173C27EB009E6FB8 /* database_id.h in Headers */,
@@ -6165,6 +6117,7 @@
 				07A6DCAC173C27EB009E6FB8 /* database_user_interaction.h in Headers */,
 				07A6DCAD173C27EB009E6FB8 /* data_key_list_data.h in Headers */,
 				07A6DCB0173C27EB009E6FB8 /* databaseuser.h in Headers */,
+				07AD9A7F182FF968005C3335 /* filemanager_frame.h in Headers */,
 				07A6DCB1173C27EB009E6FB8 /* list_data.h in Headers */,
 				07A6DCB2173C27EB009E6FB8 /* db_long_set.h in Headers */,
 				07A6DCB3173C27EB009E6FB8 /* db_server.h in Headers */,
@@ -6185,6 +6138,7 @@
 				07A6DCCE173C27EB009E6FB8 /* simpledb_service.h in Headers */,
 				07A6DCD0173C27EB009E6FB8 /* simpledb_session.h in Headers */,
 				07A6DCD2173C27EB009E6FB8 /* simpledb_set.h in Headers */,
+				07AD9A95182FF968005C3335 /* filemanager_tree.h in Headers */,
 				07A6DCD4173C27EB009E6FB8 /* simpledb_simpledb.h in Headers */,
 				07A6DCD6173C27EB009E6FB8 /* simpledb_socket.h in Headers */,
 				07A6DCD8173C27EB009E6FB8 /* simpledb_socket_thread.h in Headers */,
@@ -6201,14 +6155,10 @@
 				07A6DCE8173C27EB009E6FB8 /* filehandler_handler.h in Headers */,
 				07A6DCEA173C27EB009E6FB8 /* filehandler_library.h in Headers */,
 				07A6DCEC173C27EB009E6FB8 /* filehandler_menu_library.h in Headers */,
-				07A6DCEE173C27EB009E6FB8 /* filehandler_tree_data.h in Headers */,
 				07A6DCF0173C27EB009E6FB8 /* filehandler_tree_interface.h in Headers */,
-				07A6DCF2173C27EB009E6FB8 /* filehandler_tree_item_data.h in Headers */,
-				07A6DCF3173C27EB009E6FB8 /* ContextMenu.h in Headers */,
 				07A6DCF5173C27EB009E6FB8 /* file_operation.h in Headers */,
 				07A6DCF6173C27EB009E6FB8 /* filemanager.h in Headers */,
 				07A6DCF7173C27EB009E6FB8 /* filemanager_const.h in Headers */,
-				07A6DCFA173C27EB009E6FB8 /* filemanager_data.h in Headers */,
 				07A6DCFC173C27EB009E6FB8 /* filemanager_document.h in Headers */,
 				07A6DCFE173C27EB009E6FB8 /* filemanager_filemanager.h in Headers */,
 				07A6DD00173C27EB009E6FB8 /* filemanager_folder_list_data.h in Headers */,
@@ -6219,7 +6169,6 @@
 				07A6DD0A173C27EB009E6FB8 /* filemanager_form_update_hint.h in Headers */,
 				07A6DD0C173C27EB009E6FB8 /* filemanager_form_view.h in Headers */,
 				07A6DD0E173C27EB009E6FB8 /* filemanager_fs_simple_list_view.h in Headers */,
-				07A6DD10173C27EB009E6FB8 /* filemanager_fs_simple_tree_view.h in Headers */,
 				07A6DD12173C27EB009E6FB8 /* filemanager_fs_simple_view.h in Headers */,
 				07A6DD14173C27EB009E6FB8 /* filemanager_icon.h in Headers */,
 				07A6DD16173C27EB009E6FB8 /* filemanager_iconoverlayer.h in Headers */,
@@ -6230,32 +6179,7 @@
 				07A6DD20173C27EB009E6FB8 /* filemanager_operation_list_view.h in Headers */,
 				07A6DD22173C27EB009E6FB8 /* filemanager_operation_thread.h in Headers */,
 				07A6DD24173C27EB009E6FB8 /* filemanager_operation_view.h in Headers */,
-				07A6DD26173C27EB009E6FB8 /* FileManagerCallbackInterface.h in Headers */,
-				07A6DD28173C27EB009E6FB8 /* FileManagerChildFrame.h in Headers */,
-				07A6DD2A173C27EB009E6FB8 /* FileManagerFileListCallback.h in Headers */,
-				07A6DD2C173C27EB009E6FB8 /* FileManagerFrame.h in Headers */,
-				07A6DD2E173C27EB009E6FB8 /* FileManagerInterface.h in Headers */,
-				07A6DD30173C27EB009E6FB8 /* FileManagerLeftView.h in Headers */,
-				07A6DD32173C27EB009E6FB8 /* FileManagerMainFrame.h in Headers */,
-				07A6DD34173C27EB009E6FB8 /* FileManagerPathView.h in Headers */,
-				07A6DD36173C27EB009E6FB8 /* FileManagerSaveAsNameView.h in Headers */,
 				9A01C9DF17FCA77000DC8E64 /* sockets_http_tunnel.h in Headers */,
-				07A6DD38173C27EB009E6FB8 /* FileManagerTabView.h in Headers */,
-				07A6DD3A173C27EB009E6FB8 /* FileManagerTemplate.h in Headers */,
-				07A6DD3C173C27EB009E6FB8 /* FileManagerView.h in Headers */,
-				07A6DD3E173C27EB009E6FB8 /* FileManagerViewInterface.h in Headers */,
-				07A6DD40173C27EB009E6FB8 /* FileManagerViewUpdateHint.h in Headers */,
-				07A6DD41173C27EB009E6FB8 /* folder_list_view.h in Headers */,
-				07A6DD42173C27EB009E6FB8 /* folder_selection_list_view.h in Headers */,
-				07A6DD44173C27EB009E6FB8 /* SimpleFileListInterface.h in Headers */,
-				07A6DD46173C27EB009E6FB8 /* SimpleFileListView.h in Headers */,
-				07A6DD48173C27EB009E6FB8 /* SimpleFilePropertiesForm.h in Headers */,
-				07A6DD4A173C27EB009E6FB8 /* SimpleFolderListInterface.h in Headers */,
-				07A6DD4C173C27EB009E6FB8 /* SimpleFolderListView.h in Headers */,
-				07A6DD4E173C27EB009E6FB8 /* SimpleFolderTreeInterface.h in Headers */,
-				07A6DD50173C27EB009E6FB8 /* SimpleFolderTreeView.h in Headers */,
-				07A6DD52173C27EB009E6FB8 /* SimplePreview.h in Headers */,
-				07A6DD54173C27EB009E6FB8 /* SimplePreviewInterface.h in Headers */,
 				07A6DD55173C27EB009E6FB8 /* fs.h in Headers */,
 				07A6DD57173C27EB009E6FB8 /* fs_data.h in Headers */,
 				072AE9D31810372200F74E98 /* gcom.h in Headers */,
@@ -6272,15 +6196,11 @@
 				07A6DD6C173C27EB009E6FB8 /* userfs_document.h in Headers */,
 				07A6DD6E173C27EB009E6FB8 /* userfs_list.h in Headers */,
 				07A6DD70173C27EB009E6FB8 /* userfs_list_data.h in Headers */,
-				07A6DD72173C27EB009E6FB8 /* userfs_list_interface.h in Headers */,
 				07A6DD74173C27EB009E6FB8 /* userfs_list_item.h in Headers */,
 				07A6DD76173C27EB009E6FB8 /* userfs_list_item_array.h in Headers */,
 				07A6DD78173C27EB009E6FB8 /* userfs_main_view.h in Headers */,
 				07A6DD7A173C27EB009E6FB8 /* userfs_tree.h in Headers */,
 				9A01C9E417FCA77000DC8E64 /* sockets_logger.h in Headers */,
-				07A6DD7C173C27EB009E6FB8 /* userfs_tree_data.h in Headers */,
-				07A6DD7E173C27EB009E6FB8 /* userfs_tree_interface.h in Headers */,
-				07A6DD80173C27EB009E6FB8 /* userfs_tree_item_data.h in Headers */,
 				07A6DD82173C27EB009E6FB8 /* userfs_userfs.h in Headers */,
 				07A6DD84173C27EB009E6FB8 /* framework.h in Headers */,
 				9A01C8CD17FCA62C00DC8E64 /* core_message_queue_listener.h in Headers */,
@@ -6303,12 +6223,14 @@
 				07A6DDC0173C27EB009E6FB8 /* html_image.h in Headers */,
 				07A6DDC2173C27EB009E6FB8 /* html_input_button.h in Headers */,
 				07A6DDC3173C27EB009E6FB8 /* html_input_check_box.h in Headers */,
+				07AD9A70182FF968005C3335 /* filemanager_callback.h in Headers */,
 				07A6DDC6173C27EB009E6FB8 /* html_input_text.h in Headers */,
 				07A6DDC7173C27EB009E6FB8 /* html_lite.h in Headers */,
 				07A6DDC9173C27EB009E6FB8 /* html_lite_html_attributes.h in Headers */,
 				07A6DDCA173C27EB009E6FB8 /* html_lite_html_common.h in Headers */,
 				07A6DDCC173C27EB009E6FB8 /* html_lite_html_entity_resolver.h in Headers */,
 				07A6DDCE173C27EB009E6FB8 /* html_lite_html_reader.h in Headers */,
+				07AD9A9D182FF9E1005C3335 /* userfs_item.h in Headers */,
 				07A6DDD0173C27EB009E6FB8 /* html_lite_html_tag.h in Headers */,
 				07A6DDD1173C27EB009E6FB8 /* html_point.h in Headers */,
 				07A6DDD3173C27EB009E6FB8 /* html_reader.h in Headers */,
@@ -6321,6 +6243,7 @@
 				07A6DDE0173C27EB009E6FB8 /* html_table_elemental.h in Headers */,
 				07A6DDE2173C27EB009E6FB8 /* html_table_row.h in Headers */,
 				07A6DDE4173C27EB009E6FB8 /* html_tag.h in Headers */,
+				07AD9A97182FF968005C3335 /* filemanager_update_hint.h in Headers */,
 				07A6DDE6173C27EB009E6FB8 /* html_text.h in Headers */,
 				07A6DDE8173C27EB009E6FB8 /* html_value.h in Headers */,
 				07A6DDEA173C27EB009E6FB8 /* visual.h in Headers */,
@@ -6331,6 +6254,7 @@
 				07A6DDF1173C27EB009E6FB8 /* visual_cursor.h in Headers */,
 				07A6DDF3173C27EB009E6FB8 /* visual_dib.h in Headers */,
 				07A6DDF4173C27EB009E6FB8 /* visual_dib_pal.h in Headers */,
+				07AD9A91182FF968005C3335 /* filemanager_schema.h in Headers */,
 				9A01C98817FCA77000DC8E64 /* sip_callback.h in Headers */,
 				07A6DDF6173C27EB009E6FB8 /* visual_fastblur.h in Headers */,
 				07A6DDF8173C27EB009E6FB8 /* visual_font.h in Headers */,
@@ -6419,6 +6343,7 @@
 				07A6DF99173C27EB009E6FB8 /* nature_pane_view_update_hint.h in Headers */,
 				07A6DF9B173C27EB009E6FB8 /* nature_view.h in Headers */,
 				07A6DF9D173C27EB009E6FB8 /* plane_session.h in Headers */,
+				07AD9A8D182FF968005C3335 /* filemanager_preview.h in Headers */,
 				07A6DF9E173C27EB009E6FB8 /* platform.h in Headers */,
 				07A6DFA0173C27EB009E6FB8 /* platform_application.h in Headers */,
 				07A6DFA2173C27EB009E6FB8 /* platform_document.h in Headers */,
@@ -6432,6 +6357,7 @@
 				07A6DFB3173C27EB009E6FB8 /* datetime_calendar_interface.h in Headers */,
 				07A6DFB5173C27EB009E6FB8 /* datetime_clock.h in Headers */,
 				07A6DFB7173C27EB009E6FB8 /* datetime_clock_interface.h in Headers */,
+				07AD9A75182FF968005C3335 /* filemanager_data_interface.h in Headers */,
 				07A6DFBB173C27EB009E6FB8 /* datetime_float_time.h in Headers */,
 				07A6DFBF173C27EB009E6FB8 /* datetime_value.h in Headers */,
 				07A6DFC1173C27EB009E6FB8 /* datetime_windows_file_time.h in Headers */,
@@ -6440,6 +6366,7 @@
 				07A6DFC6173C27EB009E6FB8 /* primitive_color.h in Headers */,
 				07A6DFC9173C27EB009E6FB8 /* primitive_fixed_string.h in Headers */,
 				07A6DFD0173C27EB009E6FB8 /* primitive_img.h in Headers */,
+				07AD9A83182FF968005C3335 /* filemanager_left_view.h in Headers */,
 				07A6DFD4173C27EB009E6FB8 /* primitive_int_biunique.h in Headers */,
 				07A6DFE7173C27EB009E6FB8 /* primitive_scalar.h in Headers */,
 				07A6DFE9173C27EB009E6FB8 /* primitive_shared_file.h in Headers */,
@@ -6532,6 +6459,7 @@
 				07A6E07B173C27EC009E6FB8 /* user_menu_list_window.h in Headers */,
 				07A6E082173C27EC009E6FB8 /* simple.h in Headers */,
 				07A6E084173C27EC009E6FB8 /* simple_button.h in Headers */,
+				07AD9A93182FF968005C3335 /* filemanager_tab_view.h in Headers */,
 				07A6E086173C27EC009E6FB8 /* simple_child_frame.h in Headers */,
 				07A6E088173C27EC009E6FB8 /* simple_combo_box.h in Headers */,
 				07A6E08A173C27EC009E6FB8 /* simple_combo_list.h in Headers */,
@@ -6582,13 +6510,16 @@
 				07A6E0D8173C27EC009E6FB8 /* user_00.h in Headers */,
 				07A6E0DA173C27EC009E6FB8 /* user_bitmap_button.h in Headers */,
 				07A6E0DC173C27EC009E6FB8 /* user_buffer.h in Headers */,
+				07AD9A7D182FF968005C3335 /* filemanager_folder_list.h in Headers */,
 				07A6E0DE173C27EC009E6FB8 /* user_button.h in Headers */,
+				07AD9A8F182FF968005C3335 /* filemanager_save_as_name_view.h in Headers */,
 				07A6E0E0173C27EC009E6FB8 /* user_button_control.h in Headers */,
 				07A6E0E2173C27EC009E6FB8 /* user_check_box.h in Headers */,
 				07A6E0E4173C27EC009E6FB8 /* user_check_interface.h in Headers */,
 				07A6E0E6173C27EC009E6FB8 /* user_combo_box.h in Headers */,
 				07A6E0E8173C27EC009E6FB8 /* user_combo_list.h in Headers */,
 				07A6E0EA173C27EC009E6FB8 /* user_control.h in Headers */,
+				07AD9A73182FF968005C3335 /* filemanager_context_menu.h in Headers */,
 				07A6E0EC173C27EC009E6FB8 /* user_control_bar.h in Headers */,
 				07A6E0EE173C27EC009E6FB8 /* user_control_event.h in Headers */,
 				07A6E0F0173C27EC009E6FB8 /* user_control_property.h in Headers */,
@@ -6749,6 +6680,7 @@
 				072AE9BC1810372200F74E98 /* backview.h in Headers */,
 				9A81FC5317B99D7B009E0FB3 /* draw2d_pen.h in Headers */,
 				9A81FC5517B99D7B009E0FB3 /* draw2d_region.h in Headers */,
+				07AD9A72182FF968005C3335 /* filemanager_child_frame.h in Headers */,
 				9AE72A4F17E85ECE003E47F9 /* api.h in Headers */,
 				9AE72A5017E85ECE003E47F9 /* api_rotate.h in Headers */,
 				9AE72A5217E85ECE003E47F9 /* mktime.h in Headers */,
@@ -6789,6 +6721,7 @@
 				9AE72A8E17E85ECE003E47F9 /* core_log.h in Headers */,
 				9AE72A9017E85ECE003E47F9 /* core_logic.h in Headers */,
 				9AE72A9217E85ECE003E47F9 /* core_machine_event_central.h in Headers */,
+				07AD9A81182FF968005C3335 /* filemanager_fs_simple_tree.h in Headers */,
 				9AE72A9317E85ECE003E47F9 /* core_main.h in Headers */,
 				9AE72A9417E85ECE003E47F9 /* core_main_init_data.h in Headers */,
 				9AE72A9517E85ECE003E47F9 /* core_map_to_smart_pointer.h in Headers */,
@@ -6798,6 +6731,7 @@
 				9AE72A9E17E85ECE003E47F9 /* core_message.h in Headers */,
 				9AE72AA217E85ECE003E47F9 /* core_microtimer.h in Headers */,
 				9AE72AA317E85ECE003E47F9 /* core_muldiv32.h in Headers */,
+				07AD9A87182FF968005C3335 /* filemanager_main_frame.h in Headers */,
 				9AE72AA617E85ECE003E47F9 /* core_os.h in Headers */,
 				9AE72AA817E85ECE003E47F9 /* core_os_history.h in Headers */,
 				9AE72AA917E85ECE003E47F9 /* core_os_implementation.h in Headers */,
@@ -6829,6 +6763,7 @@
 				9AE72ACE17E85ECE003E47F9 /* core_strn.h in Headers */,
 				9AE72AD017E85ECE003E47F9 /* core_system.h in Headers */,
 				9AE72AD217E85ECE003E47F9 /* core_thread.h in Headers */,
+				07AD9A43182FF93B005C3335 /* filehandler_item.h in Headers */,
 				9AE72AD417E85ECE003E47F9 /* core_timer.h in Headers */,
 				9AE72AD617E85ECE003E47F9 /* core_timer_callback.h in Headers */,
 				9AE72AD817E85ECE003E47F9 /* core_timer_listener.h in Headers */,
@@ -6903,6 +6838,7 @@
 				9A01C99D17FCA77000DC8E64 /* smtpd_socket.h in Headers */,
 				9AE72B5C17E85ECE003E47F9 /* SBCharsetProber.h in Headers */,
 				9AE72B5D17E85ECE003E47F9 /* SBCSGroupProber.h in Headers */,
+				07AD9A89182FF968005C3335 /* filemanager_manager.h in Headers */,
 				9AE72B5E17E85ECE003E47F9 /* SJISProber.h in Headers */,
 				9AE72B5F17E85ECE003E47F9 /* types.h in Headers */,
 				9AE72B6017E85ECE003E47F9 /* universal.h in Headers */,
@@ -7054,6 +6990,7 @@
 				07A6DC2D173C27EB009E6FB8 /* compress_coder_mixer.cpp in Sources */,
 				072AE9D81810372200F74E98 /* gcom_rect.cpp in Sources */,
 				07A6DC2F173C27EB009E6FB8 /* compress_coder_mixer2.cpp in Sources */,
+				07AD9A92182FF968005C3335 /* filemanager_tab_view.cpp in Sources */,
 				07A6DC31173C27EB009E6FB8 /* compress_coder_mixer2mt.cpp in Sources */,
 				07A6DC33173C27EB009E6FB8 /* compress_copy_coder.cpp in Sources */,
 				07A6DC35173C27EB009E6FB8 /* compress_create_coder.cpp in Sources */,
@@ -7146,16 +7083,14 @@
 				07A6DCDF173C27EB009E6FB8 /* simpledb_veiev_post.cpp in Sources */,
 				9A01C9D017FCA77000DC8E64 /* sockets_http_debug_socket.cpp in Sources */,
 				07A6DCE4173C27EB009E6FB8 /* sqlite3.cpp in Sources */,
+				07AD9A7A182FF968005C3335 /* filemanager_file_properties_form.cpp in Sources */,
 				9A01C9D817FCA77000DC8E64 /* sockets_http_request_socket.cpp in Sources */,
 				07A6DCE7173C27EB009E6FB8 /* filehandler_handler.cpp in Sources */,
 				07A6DCE9173C27EB009E6FB8 /* filehandler_library.cpp in Sources */,
 				07A6DCEB173C27EB009E6FB8 /* filehandler_menu_library.cpp in Sources */,
-				07A6DCED173C27EB009E6FB8 /* filehandler_tree_data.cpp in Sources */,
 				07A6DCEF173C27EB009E6FB8 /* filehandler_tree_interface.cpp in Sources */,
-				07A6DCF1173C27EB009E6FB8 /* filehandler_tree_item_data.cpp in Sources */,
 				07A6DCF4173C27EB009E6FB8 /* file_operation.cpp in Sources */,
 				07A6DCF8173C27EB009E6FB8 /* filemanager_ContextMenu.cpp in Sources */,
-				07A6DCF9173C27EB009E6FB8 /* filemanager_data.cpp in Sources */,
 				07A6DCFB173C27EB009E6FB8 /* filemanager_document.cpp in Sources */,
 				07A6DCFD173C27EB009E6FB8 /* filemanager_filemanager.cpp in Sources */,
 				072AE9DA1810372200F74E98 /* gcom_space.cpp in Sources */,
@@ -7163,12 +7098,12 @@
 				07A6DD01173C27EB009E6FB8 /* filemanager_folder_list_view.cpp in Sources */,
 				07A6DD03173C27EB009E6FB8 /* filemanager_folder_selection_list_view.cpp in Sources */,
 				07A6DD05173C27EB009E6FB8 /* filemanager_form_child_frame.cpp in Sources */,
+				07AD9A7E182FF968005C3335 /* filemanager_frame.cpp in Sources */,
 				07A6DD07173C27EB009E6FB8 /* filemanager_form_document.cpp in Sources */,
 				9A01C8D217FCA73E00DC8E64 /* net_address.cpp in Sources */,
 				07A6DD09173C27EB009E6FB8 /* filemanager_form_update_hint.cpp in Sources */,
 				07A6DD0B173C27EB009E6FB8 /* filemanager_form_view.cpp in Sources */,
 				07A6DD0D173C27EB009E6FB8 /* filemanager_fs_simple_list_view.cpp in Sources */,
-				07A6DD0F173C27EB009E6FB8 /* filemanager_fs_simple_tree_view.cpp in Sources */,
 				07A6DD11173C27EB009E6FB8 /* filemanager_fs_simple_view.cpp in Sources */,
 				07A6DD13173C27EB009E6FB8 /* filemanager_icon.cpp in Sources */,
 				07A6DD15173C27EB009E6FB8 /* filemanager_iconoverlayer.cpp in Sources */,
@@ -7176,37 +7111,16 @@
 				072AE9CE1810372200F74E98 /* backview_transition_effect_tool001.cpp in Sources */,
 				07A6DD17173C27EB009E6FB8 /* filemanager_item_action.cpp in Sources */,
 				07A6DD19173C27EB009E6FB8 /* filemanager_operation_child_frame.cpp in Sources */,
+				07AD9A8E182FF968005C3335 /* filemanager_save_as_name_view.cpp in Sources */,
 				07A6DD1B173C27EB009E6FB8 /* filemanager_operation_document.cpp in Sources */,
 				07A6DD1D173C27EB009E6FB8 /* filemanager_operation_info_view.cpp in Sources */,
 				07A6DD1F173C27EB009E6FB8 /* filemanager_operation_list_view.cpp in Sources */,
 				07A6DD21173C27EB009E6FB8 /* filemanager_operation_thread.cpp in Sources */,
 				07A6DD23173C27EB009E6FB8 /* filemanager_operation_view.cpp in Sources */,
-				07A6DD25173C27EB009E6FB8 /* FileManagerCallbackInterface.cpp in Sources */,
-				07A6DD27173C27EB009E6FB8 /* FileManagerChildFrame.cpp in Sources */,
-				07A6DD29173C27EB009E6FB8 /* FileManagerFileListCallback.cpp in Sources */,
-				07A6DD2B173C27EB009E6FB8 /* FileManagerFrame.cpp in Sources */,
-				07A6DD2D173C27EB009E6FB8 /* FileManagerInterface.cpp in Sources */,
-				07A6DD2F173C27EB009E6FB8 /* FileManagerLeftView.cpp in Sources */,
-				07A6DD31173C27EB009E6FB8 /* FileManagerMainFrame.cpp in Sources */,
 				9A01C9D217FCA77000DC8E64 /* sockets_http_get_socket.cpp in Sources */,
 				9A01C96417FCA77000DC8E64 /* sockets_base_socket.cpp in Sources */,
-				07A6DD33173C27EB009E6FB8 /* FileManagerPathView.cpp in Sources */,
-				07A6DD35173C27EB009E6FB8 /* FileManagerSaveAsNameView.cpp in Sources */,
-				07A6DD37173C27EB009E6FB8 /* FileManagerTabView.cpp in Sources */,
-				07A6DD39173C27EB009E6FB8 /* FileManagerTemplate.cpp in Sources */,
-				07A6DD3B173C27EB009E6FB8 /* FileManagerView.cpp in Sources */,
-				07A6DD3D173C27EB009E6FB8 /* FileManagerViewInterface.cpp in Sources */,
-				07A6DD3F173C27EB009E6FB8 /* FileManagerViewUpdateHint.cpp in Sources */,
-				07A6DD43173C27EB009E6FB8 /* SimpleFileListInterface.cpp in Sources */,
-				07A6DD45173C27EB009E6FB8 /* SimpleFileListView.cpp in Sources */,
-				07A6DD47173C27EB009E6FB8 /* SimpleFilePropertiesForm.cpp in Sources */,
-				07A6DD49173C27EB009E6FB8 /* SimpleFolderListInterface.cpp in Sources */,
-				07A6DD4B173C27EB009E6FB8 /* SimpleFolderListView.cpp in Sources */,
-				07A6DD4D173C27EB009E6FB8 /* SimpleFolderTreeInterface.cpp in Sources */,
-				07A6DD4F173C27EB009E6FB8 /* SimpleFolderTreeView.cpp in Sources */,
-				07A6DD51173C27EB009E6FB8 /* SimplePreview.cpp in Sources */,
-				07A6DD53173C27EB009E6FB8 /* SimplePreviewInterface.cpp in Sources */,
 				07A6DD56173C27EB009E6FB8 /* fs_data.cpp in Sources */,
+				07AD9A8C182FF968005C3335 /* filemanager_preview.cpp in Sources */,
 				07A6DD58173C27EB009E6FB8 /* fs_fs.cpp in Sources */,
 				07A6DD5A173C27EB009E6FB8 /* fs_ifs.cpp in Sources */,
 				072AE9DC1810372200F74E98 /* gcom_space_util.cpp in Sources */,
@@ -7220,17 +7134,14 @@
 				07A6DD6B173C27EB009E6FB8 /* userfs_document.cpp in Sources */,
 				07A6DD6D173C27EB009E6FB8 /* userfs_list.cpp in Sources */,
 				07A6DD6F173C27EB009E6FB8 /* userfs_list_data.cpp in Sources */,
-				07A6DD71173C27EB009E6FB8 /* userfs_list_interface.cpp in Sources */,
 				07A6DD73173C27EB009E6FB8 /* userfs_list_item.cpp in Sources */,
 				07A6DD75173C27EB009E6FB8 /* userfs_list_item_array.cpp in Sources */,
 				07A6DD77173C27EB009E6FB8 /* userfs_main_view.cpp in Sources */,
 				07A6DD79173C27EB009E6FB8 /* userfs_tree.cpp in Sources */,
-				07A6DD7B173C27EB009E6FB8 /* userfs_tree_data.cpp in Sources */,
-				07A6DD7D173C27EB009E6FB8 /* userfs_tree_interface.cpp in Sources */,
-				07A6DD7F173C27EB009E6FB8 /* userfs_tree_item_data.cpp in Sources */,
 				07A6DD81173C27EB009E6FB8 /* userfs_userfs.cpp in Sources */,
 				07A6DD83173C27EB009E6FB8 /* framework.cpp in Sources */,
 				07A6DDA9173C27EB009E6FB8 /* html_attribute.cpp in Sources */,
+				07AD9A7C182FF968005C3335 /* filemanager_folder_list.cpp in Sources */,
 				07A6DDAB173C27EB009E6FB8 /* html_base.cpp in Sources */,
 				07A6DDAF173C27EB009E6FB8 /* html_cell.cpp in Sources */,
 				07A6DDB1173C27EB009E6FB8 /* html_data.cpp in Sources */,
@@ -7278,6 +7189,7 @@
 				07A6DE07173C27EB009E6FB8 /* visual_imaging.cpp in Sources */,
 				07A6DE09173C27EB009E6FB8 /* visual_rgb_quad_array.cpp in Sources */,
 				07A6DE0B173C27EB009E6FB8 /* visual_visual.cpp in Sources */,
+				07AD9A42182FF93B005C3335 /* filehandler_item.cpp in Sources */,
 				07A6DE0D173C27EB009E6FB8 /* visual_water_routine.cpp in Sources */,
 				07A6DE0F173C27EB009E6FB8 /* _double.cpp in Sources */,
 				07A6DE11173C27EB009E6FB8 /* _float.cpp in Sources */,
@@ -7329,6 +7241,7 @@
 				07A6DF90173C27EB009E6FB8 /* nature_database.cpp in Sources */,
 				07A6DF92173C27EB009E6FB8 /* nature_document.cpp in Sources */,
 				07A6DF94173C27EB009E6FB8 /* nature_frame.cpp in Sources */,
+				07AD9A94182FF968005C3335 /* filemanager_tree.cpp in Sources */,
 				07A6DF96173C27EB009E6FB8 /* nature_pane_view.cpp in Sources */,
 				07A6DF98173C27EB009E6FB8 /* nature_pane_view_update_hint.cpp in Sources */,
 				07A6DF9A173C27EB009E6FB8 /* nature_view.cpp in Sources */,
@@ -7354,6 +7267,7 @@
 				9A01C99A17FCA77000DC8E64 /* sockets_sip_transaction.cpp in Sources */,
 				07A6DFE6173C27EB009E6FB8 /* primitive_scalar.cpp in Sources */,
 				07A6DFE8173C27EB009E6FB8 /* primitive_shared_file.cpp in Sources */,
+				07AD9A78182FF968005C3335 /* filemanager_file_list.cpp in Sources */,
 				07A6DFFF173C27EB009E6FB8 /* dynamic_source_exit_exception.cpp in Sources */,
 				07A6E001173C27EB009E6FB8 /* dynamic_source_httpd_socket.cpp in Sources */,
 				07A6E003173C27EB009E6FB8 /* dynamic_source_library_class.cpp in Sources */,
@@ -7392,6 +7306,7 @@
 				07A6E066173C27EC009E6FB8 /* fontopus_contact_list.cpp in Sources */,
 				07A6E068173C27EC009E6FB8 /* fontopus_fontopus.cpp in Sources */,
 				07A6E06A173C27EC009E6FB8 /* fontopus_license.cpp in Sources */,
+				07AD9A76182FF968005C3335 /* filemanager_file_list_callback.cpp in Sources */,
 				07A6E06C173C27EC009E6FB8 /* fontopus_user.cpp in Sources */,
 				07A6E06F173C27EC009E6FB8 /* fontopus_user_set.cpp in Sources */,
 				07A6E071173C27EC009E6FB8 /* fontopus_usera.cpp in Sources */,
@@ -7459,6 +7374,7 @@
 				07A6E0E9173C27EC009E6FB8 /* user_control.cpp in Sources */,
 				07A6E0EB173C27EC009E6FB8 /* user_control_bar.cpp in Sources */,
 				07A6E0ED173C27EC009E6FB8 /* user_control_event.cpp in Sources */,
+				07AD9A86182FF968005C3335 /* filemanager_main_frame.cpp in Sources */,
 				07A6E0EF173C27EC009E6FB8 /* user_control_property.cpp in Sources */,
 				07A6E0F3173C27EC009E6FB8 /* user_data_exchange.cpp in Sources */,
 				9A01C9B417FCA77000DC8E64 /* sockets_AjpBaseSocket.cpp in Sources */,
@@ -7487,6 +7403,7 @@
 				07A6E126173C27EC009E6FB8 /* user_keyboard.cpp in Sources */,
 				072AE9CF1810372200F74E98 /* backview_user_interaction.cpp in Sources */,
 				07A6E128173C27EC009E6FB8 /* user_keyboard_focus.cpp in Sources */,
+				07AD9A8A182FF968005C3335 /* filemanager_path_view.cpp in Sources */,
 				9A01C9CE17FCA77000DC8E64 /* sockets_http_client_socket.cpp in Sources */,
 				072AE9C01810372200F74E98 /* backview_helper.cpp in Sources */,
 				07A6E12A173C27EC009E6FB8 /* user_keyboard_layout.cpp in Sources */,
@@ -7516,6 +7433,7 @@
 				07A6E152173C27EC009E6FB8 /* user_plain_text_data.cpp in Sources */,
 				07A6E154173C27EC009E6FB8 /* user_print_job.cpp in Sources */,
 				07A6E156173C27EC009E6FB8 /* user_printer.cpp in Sources */,
+				07AD9A74182FF968005C3335 /* filemanager_data_interface.cpp in Sources */,
 				07A6E158173C27EC009E6FB8 /* user_scroll_bar.cpp in Sources */,
 				07A6E15A173C27EC009E6FB8 /* user_scroll_view.cpp in Sources */,
 				072AE9CA1810372200F74E98 /* backview_thread.cpp in Sources */,
@@ -7563,6 +7481,7 @@
 				9A01C9D617FCA77000DC8E64 /* sockets_http_put_socket.cpp in Sources */,
 				07A6E1AA173C27EC009E6FB8 /* userex_form_document.cpp in Sources */,
 				07A6E1AC173C27EC009E6FB8 /* userex_form_frame.cpp in Sources */,
+				07AD9A88182FF968005C3335 /* filemanager_manager.cpp in Sources */,
 				07A6E1AE173C27EC009E6FB8 /* userex_form_update_hint.cpp in Sources */,
 				07A6E1B0173C27EC009E6FB8 /* userex_form_view.cpp in Sources */,
 				9A01C9AD17FCA77000DC8E64 /* sockets_IEventOwner.cpp in Sources */,
@@ -7578,6 +7497,7 @@
 				07A6E1C4173C27EC009E6FB8 /* userex_pane_tab_view.cpp in Sources */,
 				07A6E1C6173C27EC009E6FB8 /* userex_pane_view.cpp in Sources */,
 				07A6E1C8173C27EC009E6FB8 /* userex_property_page.cpp in Sources */,
+				07AD9A84182FF968005C3335 /* filemanager_list_data.cpp in Sources */,
 				07A6E1CA173C27EC009E6FB8 /* userex_property_sheet.cpp in Sources */,
 				07A6E1CC173C27EC009E6FB8 /* userex_second_list_view.cpp in Sources */,
 				07A6E1CE173C27EC009E6FB8 /* userex_split_view.cpp in Sources */,
@@ -7647,12 +7567,14 @@
 				9AE72AA417E85ECE003E47F9 /* core_nessie.cpp in Sources */,
 				9AE72AA517E85ECE003E47F9 /* core_os.cpp in Sources */,
 				9A01C99B17FCA77000DC8E64 /* sockets_sip_udp_client_socket.cpp in Sources */,
+				07AD9A82182FF968005C3335 /* filemanager_left_view.cpp in Sources */,
 				9AE72AA717E85ECE003E47F9 /* core_os_history.cpp in Sources */,
 				9AE72AAA17E85ECE003E47F9 /* core_parse.cpp in Sources */,
 				9AE72AAC17E85ECE003E47F9 /* core_patch.cpp in Sources */,
 				9AE72AAE17E85ECE003E47F9 /* core_pipe.cpp in Sources */,
 				9AE72AB017E85ECE003E47F9 /* core_print_job.cpp in Sources */,
 				9AE72AB217E85ECE003E47F9 /* core_process.cpp in Sources */,
+				07AD9A98182FF968005C3335 /* filemanager_view.cpp in Sources */,
 				9AE72AB617E85ECE003E47F9 /* core_process_section.cpp in Sources */,
 				072AE9C21810372200F74E98 /* backview_image_change.cpp in Sources */,
 				9AE72AB717E85ECE003E47F9 /* core_profiler.cpp in Sources */,
@@ -7714,6 +7636,7 @@
 				9AE72B2917E85ECE003E47F9 /* geoip_city.cpp in Sources */,
 				9AE72B2C17E85ECE003E47F9 /* geoip_region_name.cpp in Sources */,
 				9AE72B2D17E85ECE003E47F9 /* geoip_time_zone.cpp in Sources */,
+				07AD9A71182FF968005C3335 /* filemanager_child_frame.cpp in Sources */,
 				9AE72B2E17E85ECE003E47F9 /* geoip_update.cpp in Sources */,
 				9A01C99E17FCA77000DC8E64 /* sockets_smtp_socket.cpp in Sources */,
 				9AE72B3217E85ECE003E47F9 /* install_install.cpp in Sources */,
@@ -7743,9 +7666,11 @@
 				9AE72B5817E85ECE003E47F9 /* libcharguess_universal.cpp in Sources */,
 				9AE72B5917E85ECE003E47F9 /* libcharguess_UTF8Prober.cpp in Sources */,
 				9AE72B7017E85ECE003E47F9 /* plugin_history.cpp in Sources */,
+				07AD9A96182FF968005C3335 /* filemanager_update_hint.cpp in Sources */,
 				9AE72B7217E85ECE003E47F9 /* plugin_host_interaction.cpp in Sources */,
 				9AE72B7417E85ECE003E47F9 /* plugin_instance.cpp in Sources */,
 				9AE72B7617E85ECE003E47F9 /* plugin_plugin.cpp in Sources */,
+				07AD9A6F182FF968005C3335 /* filemanager_callback.cpp in Sources */,
 				9AE72B7817E85ECE003E47F9 /* plugin_run_start_installer.cpp in Sources */,
 				9AE72B7A17E85ECE003E47F9 /* plugin_system.cpp in Sources */,
 				9AE72B7C17E85ECE003E47F9 /* service_plain_service.cpp in Sources */,
@@ -7761,6 +7686,7 @@
 				9A01C9DA17FCA77000DC8E64 /* sockets_http_session.cpp in Sources */,
 				9AE72BCD17E9008A003E47F9 /* net_email.cpp in Sources */,
 				9AE72BCF17E9008A003E47F9 /* net_ip_enum.cpp in Sources */,
+				07AD9A90182FF968005C3335 /* filemanager_schema.cpp in Sources */,
 				9AE72BD117E9008A003E47F9 /* net_port_forward.cpp in Sources */,
 				9AE72BD317E9008A003E47F9 /* net_url_domain.cpp in Sources */,
 				9AE72BDC17E900B8003E47F9 /* hi5_oauth.cpp in Sources */,
@@ -7771,6 +7697,7 @@
 				9AE72BE917E900E0003E47F9 /* sockets_http_buffer.cpp in Sources */,
 				9AAE859117E9212A00F0512E /* user_wait_cursor.cpp in Sources */,
 				9AAE859317E9212A00F0512E /* user_window_draw.cpp in Sources */,
+				07AD9A80182FF968005C3335 /* filemanager_fs_simple_tree.cpp in Sources */,
 				9AAE859517E9212A00F0512E /* user_window.cpp in Sources */,
 				9AAE85D017E921DA00F0512E /* file_application.cpp in Sources */,
 				9AAE85D717E921DA00F0512E /* file_buffered.cpp in Sources */,
@@ -7783,6 +7710,7 @@
 				9AAE85E717E921DA00F0512E /* file_folder_watch.cpp in Sources */,
 				9AAE85E917E921DA00F0512E /* file_in_buffer.cpp in Sources */,
 				9AAE85EB17E921DA00F0512E /* file_io_temp_buffer.cpp in Sources */,
+				07AD9A9C182FF9E1005C3335 /* userfs_item.cpp in Sources */,
 				9AAE85ED17E921DA00F0512E /* file_limited_input_stream.cpp in Sources */,
 				9AAE85EF17E921DA00F0512E /* file_limited_reader.cpp in Sources */,
 				9A01C99317FCA77000DC8E64 /* sockets_sip_base_client_socket.cpp in Sources */,
