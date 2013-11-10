@@ -170,11 +170,13 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
    }
 
-   GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
+   if (!GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath)))
+      return false;
 
    LPTSTR lpszModuleFileName;
 
-   GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName);
+   if (!GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName))
+      return false;
 
    lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
 

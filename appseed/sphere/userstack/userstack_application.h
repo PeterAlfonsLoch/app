@@ -49,11 +49,11 @@ namespace userstack
 
       virtual ::application * get_app() const;
 
-      void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
+      void OnFileManagerOpenFile(::filemanager::list_data * pdata, ::fs::item_array & itema);
 
       void load_string_table();
 
-      virtual bool file_manager_open_file(::filemanager::data * pdata, ::fs::item_array & itema);
+      virtual bool file_manager_open_file(::filemanager::list_data * pdata, ::fs::item_array & itema);
 
       void initialize_bergedge_application_interface();
 

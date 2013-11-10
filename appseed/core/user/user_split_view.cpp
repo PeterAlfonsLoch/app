@@ -45,7 +45,7 @@ namespace user
 
       SCAST_PTR(::message::create, pcreate, pobj)
 
-
+         pobj->previous();
 
    }
 
@@ -90,11 +90,15 @@ namespace user
 
          view_update_hint * pupdatehint = dynamic_cast < view_update_hint * > (phint);
 
-
-         if(pupdatehint->is_type_of(view_update_hint::hint_open_document) || pupdatehint->is_type_of(view_update_hint::hint_create_views))
+         if (pupdatehint != NULL)
          {
 
-            pupdatehint->m_bOk = create_views();
+            if (pupdatehint->is_type_of(view_update_hint::hint_open_document) || pupdatehint->is_type_of(view_update_hint::hint_create_views))
+            {
+
+               pupdatehint->m_bOk = create_views();
+
+            }
 
          }
 

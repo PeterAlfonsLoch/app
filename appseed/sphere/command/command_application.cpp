@@ -63,7 +63,7 @@ namespace command
       return ::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   void application::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
+   void application::OnFileManagerOpenFile(::filemanager::list_data * pdata, ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
       if(itema.get_size() > 0)

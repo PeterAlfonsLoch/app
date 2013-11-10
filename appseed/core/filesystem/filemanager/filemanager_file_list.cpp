@@ -53,8 +53,8 @@ namespace filemanager
    void file_list::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::view::install_message_handling(pinterface);
-      file_list::install_message_handling(pinterface);
       ::user::form_list::install_message_handling(pinterface);
+      ::userfs::list::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageMainPost, pinterface, this, &file_list::_001OnMainPostMessage);
       IGUI_WIN_MSG_LINK(WM_HSCROLL, pinterface, this, &file_list::_001OnHScroll);
       IGUI_WIN_MSG_LINK(WM_VSCROLL, pinterface, this, &file_list::_001OnVScroll);
@@ -143,6 +143,10 @@ namespace filemanager
             update_hint * puh = (update_hint *) phint;
             if(puh->is_type_of(update_hint::TypeInitialize))
             {
+
+               _001UpdateColumns();
+               _001OnUpdateItemCount();
+
                m_pbaseapp = get_app()->m_pplaneapp;
                db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
                if(pcentral == NULL)

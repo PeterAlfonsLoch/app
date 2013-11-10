@@ -499,7 +499,7 @@ namespace filemanager
          get_document()->set().ls(lpcsz, &straPath, & straTitle);
       }
 
-      pitem = pitemParent->m_children.first_element();
+      pitem = pitemParent->first_child();
 
       stringa straNew = straPath;
 
@@ -1083,12 +1083,12 @@ namespace filemanager
 #ifdef DEBUG
       void tree::assert_valid() const
       {
-         tree::assert_valid();
+         ::data::tree::assert_valid();
       }
 
       void tree::dump(dump_context & dumpcontext) const
       {
-         tree::dump(dumpcontext);
+         ::data::tree::dump(dumpcontext);
       }
 #endif //DEBUG
 

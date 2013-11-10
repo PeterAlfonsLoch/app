@@ -4,7 +4,7 @@
 interlocked_long::interlocked_long()
 {
 #ifdef WINDOWS
-   m_plong = (long *) _aligned_malloc(sizeof(long), 4);
+   m_plong = (long *) aligned_memory_alloc(sizeof(long));
 #else
    m_plong = (long *) malloc(sizeof(long));
 #endif
@@ -16,7 +16,7 @@ interlocked_long::~interlocked_long()
    if(m_plong != NULL)
    {
 #ifdef WINDOWS
-      _aligned_free(m_plong);
+      memory_free(m_plong);
 #else
       free(m_plong);
 #endif

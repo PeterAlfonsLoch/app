@@ -91,14 +91,18 @@ namespace filemanager
 
       SetPane(0, plist, false);
 
-      tree * pmediaview = create_view < tree >();
+      ::user::tree * pusertree = create_view < ::user::tree >();
 
-      if (pmediaview == NULL)
+      if (pusertree == NULL)
       {
          System.simple_message_box(NULL, "Could not create file list ::user::view");
       }
 
-      SetPane(1, pmediaview, false);
+      tree * ptree = new tree(get_app());
+
+      pusertree->merge(ptree, true);
+
+      SetPane(1, pusertree, false);
 
    }
 

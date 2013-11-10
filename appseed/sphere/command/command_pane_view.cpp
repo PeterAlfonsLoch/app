@@ -147,7 +147,7 @@ namespace command
                pdoc->get_filemanager_data()->m_iIconSize = 16;
                pdoc->get_filemanager_data()->m_bListText = true;
                pdoc->get_filemanager_data()->m_bListSelection = false;
-               pdoc->get_filemanager_data()->m_ptemplate->m_strFilePopup = "filemanager\\file_popup.xml";
+               pdoc->get_filemanager_data()->m_pschema->m_strFilePopup = "filemanager\\file_popup.xml";
                pdoc->get_filemanager_data()->m_strDISection = "winactionarea_menu";
                pdoc->get_filemanager_data()->m_pcallback = this;
                pdoc->Initialize(true);
@@ -184,7 +184,7 @@ namespace command
          break;
       case PaneViewFileManager:
          {
-            sp(::filemanager::document) pdoc = papp->filemanager().std().OpenChild(false, true);
+            sp(::filemanager::document) pdoc = papp->filemanager().std().open_child(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_strDISection = "winactionarea_filemanager";
@@ -311,7 +311,7 @@ namespace command
       set_cur_tab_by_id(eviewNew);
    }
 
-   void pane_view::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
+   void pane_view::OnFileManagerOpenFile(::filemanager::list_data * pdata, ::fs::item_array & itema)
    {
 
       UNREFERENCED_PARAMETER(pdata);

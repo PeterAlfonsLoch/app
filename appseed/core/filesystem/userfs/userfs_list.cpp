@@ -50,8 +50,6 @@ namespace userfs
       pobj->previous();
       if(pobj->m_bRet)
          return;
-      _001UpdateColumns();
-      _001OnUpdateItemCount();
    }
 
 
@@ -117,9 +115,8 @@ namespace userfs
 
    void list::on_update(sp(::user::view) pSender, LPARAM lHint, object * phint)
    {
-      UNREFERENCED_PARAMETER(pSender);
-      UNREFERENCED_PARAMETER(lHint);
-      UNREFERENCED_PARAMETER(phint);
+      
+
       /*if(phint != NULL)
       {
          if(base < filemanager::update_hint > :: bases(phint))

@@ -70,7 +70,7 @@ namespace command
                   strNewText.replace("\r\n", "\n");
                   _001SetText(strNewText);
                   str = strNewText;
-                  m_iCompromised = m_iSelStart = m_iSelEnd = strNewText.get_length();
+                  m_iCompromised = m_ptree->m_iSelStart = m_ptree->m_iSelEnd = strNewText.get_length();
                   bOk = true;
                }
                catch(const char * psz)
@@ -100,7 +100,7 @@ namespace command
                         strNewText.replace("\r\n", "\n");
                         _001SetText(strNewText);
                         str = strNewText;
-                        m_iCompromised = m_iSelStart = m_iSelEnd = strNewText.get_length();
+                        m_iCompromised = m_ptree->m_iSelStart = m_ptree->m_iSelEnd = strNewText.get_length();
                         bOk = true;
                      }
                      else if(cregexp_util::match(stra, strLine, "(.+)\\s*dias", true, 2) == 1)
@@ -119,7 +119,7 @@ namespace command
                         strNewText.replace("\r\n", "\n");
                         _001SetText(strNewText);
                         str = strNewText;
-                        m_iCompromised = m_iSelStart = m_iSelEnd = strNewText.get_length();
+                        m_iCompromised = m_ptree->m_iSelStart = m_ptree->m_iSelEnd = strNewText.get_length();
                         Application.send_simple_command("winactionareaview::show_calendar(\""+ ::str::from((int32_t) pelement->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
                         bOk = true;
                      }
@@ -147,7 +147,7 @@ namespace command
                      string strNewText = str + "executing " + strLine  + "...";
                      strNewText.replace("\r\n", "\n");
                      _001SetText(strNewText);
-                     m_iCompromised = m_iSelStart = m_iSelEnd = strNewText.get_length();
+                     m_iCompromised = m_ptree->m_iSelStart = m_ptree->m_iSelEnd = strNewText.get_length();
                   }
 
 #else

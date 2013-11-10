@@ -357,7 +357,7 @@ void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const ch
    if(palloc != NULL)
    {
       
-      pblock = (memdleak_block *) palloc->Alloc(nAllocSize);
+      pblock = (memdleak_block *) palloc->Alloc();
       
    }
    else
@@ -558,9 +558,9 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, int align, int
    
    size_t * psizeOld = &((size_t *)p)[-1];
    
-   plex_heap_alloc * pallocOld = find(*psizeOld));
+   plex_heap_alloc * pallocOld = find(*psizeOld);
 
-   plex_heap_alloc * pallocNew = find(nAllocSize));
+   plex_heap_alloc * pallocNew = find(nAllocSize);
 
    memdleak_block * pblock = &((memdleak_block *)psizeOld)[-1];
 
@@ -752,3 +752,92 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, int align, int
 
 
 
+
+void * plex_heap_alloc_array::realloc(void * p, size_t size, int align)
+{
+
+   size_t * psizeOld = &((size_t *)p)[-1];
+
+   plex_heap_alloc * pallocOld = *psizeOld == 0 ? NULL : find(*psizeOld);
+
+   plex_heap_alloc * pallocNew = find(size + sizeof(size_t));
+
+   size_t * psizeNew = NULL;
+
+
+   if (pallocOld == NULL && pallocNew == NULL)
+   {
+
+      psizeNew = (size_t *) ::system_heap_realloc(psizeOld, size + sizeof(size_t));
+
+      *psizeNew = 0;
+
+   }
+   else if (pallocOld == pallocNew)
+   {
+
+      psizeNew = psizeOld;
+
+      *psizeNew = size + sizeof(size_t);
+
+   }
+   else
+   {
+
+      if (pallocNew != NULL)
+      {
+
+         psizeNew = (size_t *)pallocNew->Alloc();
+
+      }
+      else
+      {
+
+         psizeNew = (size_t *) ::system_heap_alloc(size + sizeof(size_t));
+
+      }
+
+      if (align > 0)
+      {
+
+         memcpy((void *)(((int_ptr)psizeNew + align - 1) & ~(align - 1)), (void *)(((int_ptr)psizeOld + align - 1) & ~(align - 1)), min(*psizeOld, size + sizeof(size_t)) & ~(align - 1));
+
+      }
+      else
+      {
+
+         memcpy(psizeNew, psizeOld, min(*psizeOld, size + sizeof(size_t)));
+
+      }
+
+      if (pallocOld != NULL)
+      {
+
+         pallocOld->Free(psizeOld);
+
+      }
+      else
+      {
+
+         ::system_heap_free(psizeOld);
+
+      }
+
+      if (pallocNew != NULL)
+      {
+
+         *psizeNew = size + sizeof(size_t);
+
+      }
+      else
+      {
+
+         *psizeNew = 0;
+
+      }
+
+   }
+
+   return &psizeNew[1];
+
+}

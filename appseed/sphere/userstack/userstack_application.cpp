@@ -114,9 +114,7 @@ namespace userstack
       return ::asphere::application::get_app();
    }
 
-   void application::OnFileManagerOpenFile(
-         ::filemanager::data * pdata,
-         ::fs::item_array & itema)
+   void application::OnFileManagerOpenFile(::filemanager::list_data * pdata, ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
    }
@@ -128,7 +126,7 @@ namespace userstack
    }
 
    bool application::file_manager_open_file(
-            ::filemanager::data * pdata,
+            ::filemanager::list_data * pdata,
             ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);

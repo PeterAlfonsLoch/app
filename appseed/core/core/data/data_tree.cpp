@@ -559,7 +559,10 @@ namespace data
 
    }
 
+   void tree::on_update(sp(::user::view) pSender, LPARAM lHint, ::object* pHint)
+   {
 
+   }
 
 
 } // namespace data

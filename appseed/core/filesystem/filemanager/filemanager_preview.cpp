@@ -18,7 +18,6 @@ namespace filemanager
    void preview::install_message_handling(::message::dispatch * pdispatch)
    {
       ::user::view::install_message_handling(pdispatch);
-      preview::install_message_handling(pdispatch);
    }
 
 

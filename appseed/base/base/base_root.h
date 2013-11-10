@@ -14,6 +14,7 @@ public:
 
 
    root();
+   root(sp(base_application) papp);
    virtual ~root();
 
 

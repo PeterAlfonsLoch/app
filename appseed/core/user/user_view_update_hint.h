@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class view_update_hint :
+   class CLASS_DECL_CORE view_update_hint :
       virtual public object
    {
    public:

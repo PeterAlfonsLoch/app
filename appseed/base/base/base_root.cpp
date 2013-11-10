@@ -9,6 +9,17 @@ root::root()
 
 }
 
+
+root::root(sp(base_application) papp) :
+   m_pbaseapp(papp)
+{
+
+   m_countReference = 1;
+   m_bHeap = false;
+
+}
+
+
 root::~root()
 {
 }

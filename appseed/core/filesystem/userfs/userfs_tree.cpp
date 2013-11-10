@@ -339,7 +339,7 @@ namespace userfs
       string strRawName2 = typeid(::userfs::item).name();
       if (strRawName1 == strRawName2)
       {
-         pitemFolder = pitemParent;
+         pitemFolder = pitemParent->m_pitem;
       }
 
 

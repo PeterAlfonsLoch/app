@@ -1386,6 +1386,8 @@ namespace user
 
       }
 
+      ptree->m_pdocument = get_document();
+
       ptree->install_message_handling(m_pimpl);
 
       return true;
@@ -1489,6 +1491,21 @@ namespace user
 
       layout();
       _001RedrawWindow();
+
+   }
+
+   void tree::on_update(sp(::user::view) pSender, LPARAM lHint, ::object* pHint)
+   {
+
+      if (pSender.is_null())
+         pSender = this;
+
+      for (index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
+      {
+
+         m_treeptra(iTree)->on_update(pSender, lHint, pHint);
+
+      }
 
    }
 
