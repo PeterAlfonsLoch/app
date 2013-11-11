@@ -361,7 +361,7 @@ retry_license:
          {
             string strMessage = pszMessage;
             strMessage.replace("<br>", "\r\n");
-            return MessageBox((HWND) (pwndOwner.is_null() ? NULL : pwndOwner->get_wnd()->get_os_data()), strMessage, Application.m_strAppName, fuStyle);
+            return MessageBox((oswindow) (pwndOwner.is_null() ? NULL : pwndOwner->get_wnd()->get_os_data()), strMessage, Application.m_strAppName, fuStyle);
          }
       }
       catch(...)

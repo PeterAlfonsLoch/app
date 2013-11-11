@@ -43,7 +43,7 @@ namespace user
    void split_view::_001OnCreate(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::create, pcreate, pobj)
+//      SCAST_PTR(::message::create, pcreate, pobj)
 
          pobj->previous();
 
@@ -68,8 +68,11 @@ namespace user
          bOk = false;
 
          string strMessage;
-
+#ifdef MACOS
+         strMessage.Format("split_view::on_create_views failed to create views for split view %s", typeid(this).name());
+#else
          strMessage.Format("split_view::on_create_views failed to create views for split view %s", typeid(this).raw_name());
+#endif
 
          Application.simple_message_box_timeout(this, strMessage, seconds(10), MB_ICONEXCLAMATION);
 

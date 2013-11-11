@@ -408,65 +408,45 @@ wait_result event::wait (const duration & durationTimeout)
 
       int iSignal = m_iSignalId;
       
-      timeval tsEnd;
+      timeval tsStart;
       
-      gettimeofday(&tsEnd, 0);
-      
-      int64_t iMicros = durationTimeout.m_iNanoseconds / 1000;
+      gettimeofday(&tsStart, 0);
       
       timeval ts;
       
-      int64_t iCompare;
       
       int error;
 
+      int64_t sec = durationTimeout.m_iSeconds;
+      
+      int64_t nsec = durationTimeout.m_iNanoseconds;
+
       while(!m_bSignaled && iSignal == m_iSignalId)
       {
+      
+         delay.tv_sec = sec;
+         delay.tv_nsec = nsec;
 
-         delay.tv_sec = 0;
-         
-         delay.tv_nsec = 1000 * 1000;
-         
          error = pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
          
          pthread_mutex_unlock(&m_mutex);
          
-         if(error != 0)
+         gettimeofday(&ts,0);
+               
+         sec -= ts.tv_sec - tsStart.tv_sec;
+         nsec -= (ts.tv_usec - tsStart.tv_usec) * 1000;
+         if(nsec < 0)
          {
-
-            if(error == ETIMEDOUT)
-            {
-               
-               gettimeofday(&ts,0);
-               
-               iCompare = ts.tv_sec - tsEnd.tv_sec;
-               
-               if(iCompare > durationTimeout.m_iSeconds)
-               {
-               
-                  return wait_result(wait_result::Timeout);
-                  
-               }
-               else if(iCompare == durationTimeout.m_iSeconds)
-               {
-                  
-                  iCompare = ts.tv_usec - tsEnd.tv_usec;
-                  
-                  if(iCompare > iMicros)
-                  {
-                     
-                     return wait_result(wait_result::Timeout);
-                     
-                  }
-
-               }
-
-            }
-
+            nsec += 1000000000;
+            sec +=1;
          }
          
-         pthread_mutex_lock(&m_mutex);
-
+         if(sec < 0 || nsec < 0)
+         {
+               
+            return wait_result(wait_result::Timeout);
+                  
+         }
 
       }
 

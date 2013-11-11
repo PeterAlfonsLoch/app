@@ -29,7 +29,7 @@ namespace user
 
       ASSERT(iPaneCount > 0);
 
-      int iOldSize = m_panea.get_count();
+      ::count iOldSize = m_panea.get_count();
 
       m_panea.set_size(iPaneCount);
 
@@ -37,12 +37,12 @@ namespace user
 
       m_splitbara.remove_all();
 
-      int32_t i;
+      ::index i;
       for(i = 0; i < iSplitBarCount; i++)
       {
          m_splitbara.add(canew(::user::split_bar(get_app())));
          ::user::split_bar & splitbar = m_splitbara.last();
-         splitbar.m_iIndex = i;
+         splitbar.m_iIndex = (int) i;
          if(!splitbar.create(this))
             return false;
       }

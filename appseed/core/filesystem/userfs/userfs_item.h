@@ -24,6 +24,7 @@ namespace userfs
 
 
       item(::userfs::tree * ptree);
+      virtual ~item();
 
       string data_item_get_text(object * pobject) const;
       index data_item_get_image(object * pobject) const;

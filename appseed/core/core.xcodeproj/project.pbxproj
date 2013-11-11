@@ -43,6 +43,14 @@
 		072AE9DD1810372200F74E98 /* gcom_space_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9B91810372200F74E98 /* gcom_space_util.h */; };
 		072AE9DE1810372200F74E98 /* gcom_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9BA1810372200F74E98 /* gcom_util.cpp */; };
 		072AE9DF1810372200F74E98 /* gcom_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9BB1810372200F74E98 /* gcom_util.h */; };
+		07A56819183062C500BA805E /* usermail_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A56817183062C500BA805E /* usermail_item.cpp */; };
+		07A5681A183062C500BA805E /* usermail_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A56818183062C500BA805E /* usermail_item.h */; };
+		07A5681F183065D000BA805E /* data_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A5681B183065D000BA805E /* data_item.cpp */; };
+		07A56820183065D000BA805E /* data_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A5681C183065D000BA805E /* data_item.h */; };
+		07A56821183065D000BA805E /* data_simple_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A5681D183065D000BA805E /* data_simple_item.cpp */; };
+		07A56822183065D000BA805E /* data_simple_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A5681E183065D000BA805E /* data_simple_item.h */; };
+		07A568251830667D00BA805E /* html_select.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A568231830667D00BA805E /* html_select.cpp */; };
+		07A568261830667D00BA805E /* html_select.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A568241830667D00BA805E /* html_select.h */; };
 		07A6DBD0173C27EB009E6FB8 /* ca2_res.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D1F6173C27E6009E6FB8 /* ca2_res.h */; };
 		07A6DBD2173C27EB009E6FB8 /* 7z.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D203173C27E7009E6FB8 /* 7z.h */; };
 		07A6DBD3173C27EB009E6FB8 /* 7zCompressionMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D204173C27E7009E6FB8 /* 7zCompressionMode.h */; };
@@ -561,12 +569,6 @@
 		07A6DF5C173C27EB009E6FB8 /* usermail_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D5C8173C27E9009E6FB8 /* usermail_frame.h */; };
 		07A6DF5D173C27EB009E6FB8 /* usermail_list_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D5C9173C27E9009E6FB8 /* usermail_list_interface.cpp */; };
 		07A6DF5E173C27EB009E6FB8 /* usermail_list_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D5CA173C27E9009E6FB8 /* usermail_list_interface.h */; };
-		07A6DF5F173C27EB009E6FB8 /* usermail_tree_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D5CB173C27E9009E6FB8 /* usermail_tree_data.cpp */; };
-		07A6DF60173C27EB009E6FB8 /* usermail_tree_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D5CC173C27E9009E6FB8 /* usermail_tree_data.h */; };
-		07A6DF61173C27EB009E6FB8 /* usermail_tree_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D5CD173C27E9009E6FB8 /* usermail_tree_interface.cpp */; };
-		07A6DF62173C27EB009E6FB8 /* usermail_tree_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D5CE173C27E9009E6FB8 /* usermail_tree_interface.h */; };
-		07A6DF63173C27EB009E6FB8 /* usermail_tree_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D5CF173C27E9009E6FB8 /* usermail_tree_item.cpp */; };
-		07A6DF64173C27EB009E6FB8 /* usermail_tree_item_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D5D0173C27E9009E6FB8 /* usermail_tree_item_data.h */; };
 		07A6DF65173C27EB009E6FB8 /* usermail_usermail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D5D1173C27E9009E6FB8 /* usermail_usermail.cpp */; };
 		07A6DF66173C27EB009E6FB8 /* usermail_usermail.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D5D2173C27E9009E6FB8 /* usermail_usermail.h */; };
 		07A6DF67173C27EB009E6FB8 /* usernet.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D5D4173C27E9009E6FB8 /* usernet.h */; };
@@ -972,8 +974,6 @@
 		07A6E13B173C27EC009E6FB8 /* user_main_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D7BF173C27EA009E6FB8 /* user_main_frame.h */; };
 		07A6E13C173C27EC009E6FB8 /* user_menu_list_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D7C0173C27EA009E6FB8 /* user_menu_list_view.cpp */; };
 		07A6E13D173C27EC009E6FB8 /* user_message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D7C1173C27EA009E6FB8 /* user_message.cpp */; };
-		07A6E13E173C27EC009E6FB8 /* user_message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D7C2173C27EA009E6FB8 /* user_message_box.cpp */; };
-		07A6E13F173C27EC009E6FB8 /* user_message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D7C3173C27EA009E6FB8 /* user_message_box.h */; };
 		07A6E140173C27EC009E6FB8 /* user_meta_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D7C4173C27EA009E6FB8 /* user_meta_button.cpp */; };
 		07A6E141173C27EC009E6FB8 /* user_meta_button.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D7C5173C27EA009E6FB8 /* user_meta_button.h */; };
 		07A6E142173C27EC009E6FB8 /* user_mouse_focus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D7C6173C27EA009E6FB8 /* user_mouse_focus.cpp */; };
@@ -1060,8 +1060,6 @@
 		07A6E193173C27EC009E6FB8 /* user_view_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D817173C27EB009E6FB8 /* user_view_update_hint.cpp */; };
 		07A6E194173C27EC009E6FB8 /* user_virtual_user_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D818173C27EB009E6FB8 /* user_virtual_user_interface.cpp */; };
 		07A6E195173C27EC009E6FB8 /* user_virtual_user_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D819173C27EB009E6FB8 /* user_virtual_user_interface.h */; };
-		07A6E196173C27EC009E6FB8 /* user_wait_message_dialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D81A173C27EB009E6FB8 /* user_wait_message_dialog.cpp */; };
-		07A6E197173C27EC009E6FB8 /* user_wait_message_dialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D81B173C27EB009E6FB8 /* user_wait_message_dialog.h */; };
 		07A6E198173C27EC009E6FB8 /* user_window_id.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D81C173C27EB009E6FB8 /* user_window_id.h */; };
 		07A6E199173C27EC009E6FB8 /* user_window_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D81D173C27EB009E6FB8 /* user_window_interface.cpp */; };
 		07A6E19A173C27EC009E6FB8 /* user_window_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D81E173C27EB009E6FB8 /* user_window_interface.h */; };
@@ -1606,18 +1604,10 @@
 		9AE72B1817E85ECE003E47F9 /* crypto_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729C317E85ECE003E47F9 /* crypto_types.h */; };
 		9AE72B1917E85ECE003E47F9 /* crypto_ut_sim.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729C417E85ECE003E47F9 /* crypto_ut_sim.h */; };
 		9AE72B1A17E85ECE003E47F9 /* crypto_xfm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729C517E85ECE003E47F9 /* crypto_xfm.h */; };
-		9AE72B1B17E85ECE003E47F9 /* data_simple_tree_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE729C717E85ECE003E47F9 /* data_simple_tree_data.cpp */; };
-		9AE72B1C17E85ECE003E47F9 /* data_simple_tree_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729C817E85ECE003E47F9 /* data_simple_tree_data.h */; };
-		9AE72B1D17E85ECE003E47F9 /* data_simple_tree_item_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE729C917E85ECE003E47F9 /* data_simple_tree_item_data.cpp */; };
-		9AE72B1E17E85ECE003E47F9 /* data_simple_tree_item_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729CA17E85ECE003E47F9 /* data_simple_tree_item_data.h */; };
 		9AE72B1F17E85ECE003E47F9 /* data_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE729CB17E85ECE003E47F9 /* data_tree.cpp */; };
 		9AE72B2017E85ECE003E47F9 /* data_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729CC17E85ECE003E47F9 /* data_tree.h */; };
-		9AE72B2117E85ECE003E47F9 /* data_tree_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE729CD17E85ECE003E47F9 /* data_tree_data.cpp */; };
-		9AE72B2217E85ECE003E47F9 /* data_tree_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729CE17E85ECE003E47F9 /* data_tree_data.h */; };
 		9AE72B2317E85ECE003E47F9 /* data_tree_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE729CF17E85ECE003E47F9 /* data_tree_item.cpp */; };
 		9AE72B2417E85ECE003E47F9 /* data_tree_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729D017E85ECE003E47F9 /* data_tree_item.h */; };
-		9AE72B2517E85ECE003E47F9 /* data_tree_item_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE729D117E85ECE003E47F9 /* data_tree_item_data.cpp */; };
-		9AE72B2617E85ECE003E47F9 /* data_tree_item_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729D217E85ECE003E47F9 /* data_tree_item_data.h */; };
 		9AE72B2717E85ECE003E47F9 /* geoip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE729D517E85ECE003E47F9 /* geoip.cpp */; };
 		9AE72B2817E85ECE003E47F9 /* geoip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE729D617E85ECE003E47F9 /* geoip.h */; };
 		9AE72B2917E85ECE003E47F9 /* geoip_city.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE729D717E85ECE003E47F9 /* geoip_city.cpp */; };
@@ -1790,6 +1780,14 @@
 		072AE9B91810372200F74E98 /* gcom_space_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_space_util.h; sourceTree = "<group>"; };
 		072AE9BA1810372200F74E98 /* gcom_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_util.cpp; sourceTree = "<group>"; };
 		072AE9BB1810372200F74E98 /* gcom_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_util.h; sourceTree = "<group>"; };
+		07A56817183062C500BA805E /* usermail_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = usermail_item.cpp; sourceTree = "<group>"; };
+		07A56818183062C500BA805E /* usermail_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usermail_item.h; sourceTree = "<group>"; };
+		07A5681B183065D000BA805E /* data_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_item.cpp; sourceTree = "<group>"; };
+		07A5681C183065D000BA805E /* data_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_item.h; sourceTree = "<group>"; };
+		07A5681D183065D000BA805E /* data_simple_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_simple_item.cpp; sourceTree = "<group>"; };
+		07A5681E183065D000BA805E /* data_simple_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_simple_item.h; sourceTree = "<group>"; };
+		07A568231830667D00BA805E /* html_select.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = html_select.cpp; sourceTree = "<group>"; };
+		07A568241830667D00BA805E /* html_select.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_select.h; sourceTree = "<group>"; };
 		07A6D1F6173C27E6009E6FB8 /* ca2_res.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca2_res.h; sourceTree = "<group>"; };
 		07A6D203173C27E7009E6FB8 /* 7z.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 7z.h; sourceTree = "<group>"; };
 		07A6D204173C27E7009E6FB8 /* 7zCompressionMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 7zCompressionMode.h; sourceTree = "<group>"; };
@@ -2313,12 +2311,6 @@
 		07A6D5C8173C27E9009E6FB8 /* usermail_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usermail_frame.h; sourceTree = "<group>"; };
 		07A6D5C9173C27E9009E6FB8 /* usermail_list_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = usermail_list_interface.cpp; sourceTree = "<group>"; };
 		07A6D5CA173C27E9009E6FB8 /* usermail_list_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usermail_list_interface.h; sourceTree = "<group>"; };
-		07A6D5CB173C27E9009E6FB8 /* usermail_tree_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = usermail_tree_data.cpp; sourceTree = "<group>"; };
-		07A6D5CC173C27E9009E6FB8 /* usermail_tree_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usermail_tree_data.h; sourceTree = "<group>"; };
-		07A6D5CD173C27E9009E6FB8 /* usermail_tree_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = usermail_tree_interface.cpp; sourceTree = "<group>"; };
-		07A6D5CE173C27E9009E6FB8 /* usermail_tree_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usermail_tree_interface.h; sourceTree = "<group>"; };
-		07A6D5CF173C27E9009E6FB8 /* usermail_tree_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = usermail_tree_item.cpp; sourceTree = "<group>"; };
-		07A6D5D0173C27E9009E6FB8 /* usermail_tree_item_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usermail_tree_item_data.h; sourceTree = "<group>"; };
 		07A6D5D1173C27E9009E6FB8 /* usermail_usermail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = usermail_usermail.cpp; sourceTree = "<group>"; };
 		07A6D5D2173C27E9009E6FB8 /* usermail_usermail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usermail_usermail.h; sourceTree = "<group>"; };
 		07A6D5D4173C27E9009E6FB8 /* usernet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usernet.h; sourceTree = "<group>"; };
@@ -2728,8 +2720,6 @@
 		07A6D7BF173C27EA009E6FB8 /* user_main_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_main_frame.h; sourceTree = "<group>"; };
 		07A6D7C0173C27EA009E6FB8 /* user_menu_list_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_menu_list_view.cpp; sourceTree = "<group>"; };
 		07A6D7C1173C27EA009E6FB8 /* user_message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_message.cpp; sourceTree = "<group>"; };
-		07A6D7C2173C27EA009E6FB8 /* user_message_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_message_box.cpp; sourceTree = "<group>"; };
-		07A6D7C3173C27EA009E6FB8 /* user_message_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_message_box.h; sourceTree = "<group>"; };
 		07A6D7C4173C27EA009E6FB8 /* user_meta_button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_meta_button.cpp; sourceTree = "<group>"; };
 		07A6D7C5173C27EA009E6FB8 /* user_meta_button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_meta_button.h; sourceTree = "<group>"; };
 		07A6D7C6173C27EA009E6FB8 /* user_mouse_focus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_mouse_focus.cpp; sourceTree = "<group>"; };
@@ -2816,8 +2806,6 @@
 		07A6D817173C27EB009E6FB8 /* user_view_update_hint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_view_update_hint.cpp; sourceTree = "<group>"; };
 		07A6D818173C27EB009E6FB8 /* user_virtual_user_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_virtual_user_interface.cpp; sourceTree = "<group>"; };
 		07A6D819173C27EB009E6FB8 /* user_virtual_user_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_virtual_user_interface.h; sourceTree = "<group>"; };
-		07A6D81A173C27EB009E6FB8 /* user_wait_message_dialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_wait_message_dialog.cpp; sourceTree = "<group>"; };
-		07A6D81B173C27EB009E6FB8 /* user_wait_message_dialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_wait_message_dialog.h; sourceTree = "<group>"; };
 		07A6D81C173C27EB009E6FB8 /* user_window_id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_window_id.h; sourceTree = "<group>"; };
 		07A6D81D173C27EB009E6FB8 /* user_window_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_window_interface.cpp; sourceTree = "<group>"; };
 		07A6D81E173C27EB009E6FB8 /* user_window_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_window_interface.h; sourceTree = "<group>"; };
@@ -3364,18 +3352,10 @@
 		9AE729C317E85ECE003E47F9 /* crypto_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_types.h; sourceTree = "<group>"; };
 		9AE729C417E85ECE003E47F9 /* crypto_ut_sim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_ut_sim.h; sourceTree = "<group>"; };
 		9AE729C517E85ECE003E47F9 /* crypto_xfm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_xfm.h; sourceTree = "<group>"; };
-		9AE729C717E85ECE003E47F9 /* data_simple_tree_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_simple_tree_data.cpp; sourceTree = "<group>"; };
-		9AE729C817E85ECE003E47F9 /* data_simple_tree_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_simple_tree_data.h; sourceTree = "<group>"; };
-		9AE729C917E85ECE003E47F9 /* data_simple_tree_item_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_simple_tree_item_data.cpp; sourceTree = "<group>"; };
-		9AE729CA17E85ECE003E47F9 /* data_simple_tree_item_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_simple_tree_item_data.h; sourceTree = "<group>"; };
 		9AE729CB17E85ECE003E47F9 /* data_tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_tree.cpp; sourceTree = "<group>"; };
 		9AE729CC17E85ECE003E47F9 /* data_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_tree.h; sourceTree = "<group>"; };
-		9AE729CD17E85ECE003E47F9 /* data_tree_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_tree_data.cpp; sourceTree = "<group>"; };
-		9AE729CE17E85ECE003E47F9 /* data_tree_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_tree_data.h; sourceTree = "<group>"; };
 		9AE729CF17E85ECE003E47F9 /* data_tree_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_tree_item.cpp; sourceTree = "<group>"; };
 		9AE729D017E85ECE003E47F9 /* data_tree_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_tree_item.h; sourceTree = "<group>"; };
-		9AE729D117E85ECE003E47F9 /* data_tree_item_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_tree_item_data.cpp; sourceTree = "<group>"; };
-		9AE729D217E85ECE003E47F9 /* data_tree_item_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_tree_item_data.h; sourceTree = "<group>"; };
 		9AE729D517E85ECE003E47F9 /* geoip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip.cpp; sourceTree = "<group>"; };
 		9AE729D617E85ECE003E47F9 /* geoip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoip.h; sourceTree = "<group>"; };
 		9AE729D717E85ECE003E47F9 /* geoip_city.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip_city.cpp; sourceTree = "<group>"; };
@@ -4150,6 +4130,8 @@
 		07A6D3EE173C27E8009E6FB8 /* html */ = {
 			isa = PBXGroup;
 			children = (
+				07A568231830667D00BA805E /* html_select.cpp */,
+				07A568241830667D00BA805E /* html_select.h */,
 				07A6D3EF173C27E8009E6FB8 /* html.h */,
 				07A6D3F0173C27E8009E6FB8 /* html2.h */,
 				07A6D3F1173C27E8009E6FB8 /* html_attribute.cpp */,
@@ -4401,6 +4383,8 @@
 		07A6D5C2173C27E9009E6FB8 /* usermail */ = {
 			isa = PBXGroup;
 			children = (
+				07A56817183062C500BA805E /* usermail_item.cpp */,
+				07A56818183062C500BA805E /* usermail_item.h */,
 				07A6D5C3173C27E9009E6FB8 /* usermail.h */,
 				07A6D5C4173C27E9009E6FB8 /* usermail_account.cpp */,
 				07A6D5C5173C27E9009E6FB8 /* usermail_account.h */,
@@ -4409,12 +4393,6 @@
 				07A6D5C8173C27E9009E6FB8 /* usermail_frame.h */,
 				07A6D5C9173C27E9009E6FB8 /* usermail_list_interface.cpp */,
 				07A6D5CA173C27E9009E6FB8 /* usermail_list_interface.h */,
-				07A6D5CB173C27E9009E6FB8 /* usermail_tree_data.cpp */,
-				07A6D5CC173C27E9009E6FB8 /* usermail_tree_data.h */,
-				07A6D5CD173C27E9009E6FB8 /* usermail_tree_interface.cpp */,
-				07A6D5CE173C27E9009E6FB8 /* usermail_tree_interface.h */,
-				07A6D5CF173C27E9009E6FB8 /* usermail_tree_item.cpp */,
-				07A6D5D0173C27E9009E6FB8 /* usermail_tree_item_data.h */,
 				07A6D5D1173C27E9009E6FB8 /* usermail_usermail.cpp */,
 				07A6D5D2173C27E9009E6FB8 /* usermail_usermail.h */,
 			);
@@ -4741,8 +4719,6 @@
 				07A6D7BF173C27EA009E6FB8 /* user_main_frame.h */,
 				07A6D7C0173C27EA009E6FB8 /* user_menu_list_view.cpp */,
 				07A6D7C1173C27EA009E6FB8 /* user_message.cpp */,
-				07A6D7C2173C27EA009E6FB8 /* user_message_box.cpp */,
-				07A6D7C3173C27EA009E6FB8 /* user_message_box.h */,
 				07A6D7C4173C27EA009E6FB8 /* user_meta_button.cpp */,
 				07A6D7C5173C27EA009E6FB8 /* user_meta_button.h */,
 				07A6D7C6173C27EA009E6FB8 /* user_mouse_focus.cpp */,
@@ -4831,8 +4807,6 @@
 				07A6D819173C27EB009E6FB8 /* user_virtual_user_interface.h */,
 				9AAE858B17E9212900F0512E /* user_wait_cursor.cpp */,
 				9AAE858C17E9212A00F0512E /* user_wait_cursor.h */,
-				07A6D81A173C27EB009E6FB8 /* user_wait_message_dialog.cpp */,
-				07A6D81B173C27EB009E6FB8 /* user_wait_message_dialog.h */,
 				9AAE858F17E9212A00F0512E /* user_window.cpp */,
 				9AAE859017E9212A00F0512E /* user_window.h */,
 				9AAE858D17E9212A00F0512E /* user_window_draw.cpp */,
@@ -5761,18 +5735,14 @@
 		9AE729C617E85ECE003E47F9 /* data */ = {
 			isa = PBXGroup;
 			children = (
-				9AE729C717E85ECE003E47F9 /* data_simple_tree_data.cpp */,
-				9AE729C817E85ECE003E47F9 /* data_simple_tree_data.h */,
-				9AE729C917E85ECE003E47F9 /* data_simple_tree_item_data.cpp */,
-				9AE729CA17E85ECE003E47F9 /* data_simple_tree_item_data.h */,
+				07A5681B183065D000BA805E /* data_item.cpp */,
+				07A5681C183065D000BA805E /* data_item.h */,
+				07A5681D183065D000BA805E /* data_simple_item.cpp */,
+				07A5681E183065D000BA805E /* data_simple_item.h */,
 				9AE729CB17E85ECE003E47F9 /* data_tree.cpp */,
 				9AE729CC17E85ECE003E47F9 /* data_tree.h */,
-				9AE729CD17E85ECE003E47F9 /* data_tree_data.cpp */,
-				9AE729CE17E85ECE003E47F9 /* data_tree_data.h */,
 				9AE729CF17E85ECE003E47F9 /* data_tree_item.cpp */,
 				9AE729D017E85ECE003E47F9 /* data_tree_item.h */,
-				9AE729D117E85ECE003E47F9 /* data_tree_item_data.cpp */,
-				9AE729D217E85ECE003E47F9 /* data_tree_item_data.h */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -6306,12 +6276,9 @@
 				07A6DF5B173C27EB009E6FB8 /* usermail_db_pop3.h in Headers */,
 				07A6DF5C173C27EB009E6FB8 /* usermail_frame.h in Headers */,
 				07A6DF5E173C27EB009E6FB8 /* usermail_list_interface.h in Headers */,
-				07A6DF60173C27EB009E6FB8 /* usermail_tree_data.h in Headers */,
 				9A01C9A017FCA77000DC8E64 /* sockets.h in Headers */,
-				07A6DF62173C27EB009E6FB8 /* usermail_tree_interface.h in Headers */,
 				9A01C98617FCA77000DC8E64 /* sip_base.h in Headers */,
 				9A01C9EC17FCADF500DC8E64 /* javascript_functions.h in Headers */,
-				07A6DF64173C27EB009E6FB8 /* usermail_tree_item_data.h in Headers */,
 				9A01C98C17FCA77000DC8E64 /* sip_response.h in Headers */,
 				07A6DF66173C27EB009E6FB8 /* usermail_usermail.h in Headers */,
 				07A6DF67173C27EB009E6FB8 /* usernet.h in Headers */,
@@ -6417,6 +6384,7 @@
 				07A6E045173C27EC009E6FB8 /* colorertake5_parsed_line_writer.h in Headers */,
 				9A01C9A117FCA77000DC8E64 /* sockets_config.h in Headers */,
 				07A6E047173C27EC009E6FB8 /* colorertake5_parser_factory.h in Headers */,
+				07A56822183065D000BA805E /* data_simple_item.h in Headers */,
 				07A6E048173C27EC009E6FB8 /* colorertake5_parser_factory_exception.h in Headers */,
 				07A6E049173C27EC009E6FB8 /* colorertake5_region.h in Headers */,
 				07A6E04A173C27EC009E6FB8 /* colorertake5_region_define.h in Headers */,
@@ -6455,6 +6423,7 @@
 				07A6E077173C27EC009E6FB8 /* user_menu_button.h in Headers */,
 				07A6E078173C27EC009E6FB8 /* user_menu_central.h in Headers */,
 				07A6E079173C27EC009E6FB8 /* user_menu_item.h in Headers */,
+				07A56820183065D000BA805E /* data_item.h in Headers */,
 				07A6E07A173C27EC009E6FB8 /* user_menu_list_view.h in Headers */,
 				07A6E07B173C27EC009E6FB8 /* user_menu_list_window.h in Headers */,
 				07A6E082173C27EC009E6FB8 /* simple.h in Headers */,
@@ -6566,7 +6535,6 @@
 				07A6E137173C27EC009E6FB8 /* user_list_data_interface.h in Headers */,
 				07A6E139173C27EC009E6FB8 /* user_list_header.h in Headers */,
 				07A6E13B173C27EC009E6FB8 /* user_main_frame.h in Headers */,
-				07A6E13F173C27EC009E6FB8 /* user_message_box.h in Headers */,
 				07A6E141173C27EC009E6FB8 /* user_meta_button.h in Headers */,
 				07A6E143173C27EC009E6FB8 /* user_mouse_focus.h in Headers */,
 				07A6E145173C27EC009E6FB8 /* user_multiple_document_template.h in Headers */,
@@ -6612,7 +6580,6 @@
 				072AE9D01810372200F74E98 /* backview_user_interaction.h in Headers */,
 				07A6E192173C27EC009E6FB8 /* user_view_creator.h in Headers */,
 				07A6E195173C27EC009E6FB8 /* user_virtual_user_interface.h in Headers */,
-				07A6E197173C27EC009E6FB8 /* user_wait_message_dialog.h in Headers */,
 				07A6E198173C27EC009E6FB8 /* user_window_id.h in Headers */,
 				07A6E19A173C27EC009E6FB8 /* user_window_interface.h in Headers */,
 				07A6E19C173C27EC009E6FB8 /* user_window_map.h in Headers */,
@@ -6777,6 +6744,7 @@
 				9AE72AE317E85ECE003E47F9 /* crypto_aes_cbc.h in Headers */,
 				9AE72AE417E85ECE003E47F9 /* crypto_aes_icm.h in Headers */,
 				9AE72AE517E85ECE003E47F9 /* crypto_alg.h in Headers */,
+				07A568261830667D00BA805E /* html_select.h in Headers */,
 				9AE72AE617E85ECE003E47F9 /* crypto_alloc.h in Headers */,
 				9AE72AE717E85ECE003E47F9 /* crypto_auth.h in Headers */,
 				9AE72AE817E85ECE003E47F9 /* crypto_c_crypto.h in Headers */,
@@ -6804,13 +6772,9 @@
 				9AE72B1817E85ECE003E47F9 /* crypto_types.h in Headers */,
 				9AE72B1917E85ECE003E47F9 /* crypto_ut_sim.h in Headers */,
 				9AE72B1A17E85ECE003E47F9 /* crypto_xfm.h in Headers */,
-				9AE72B1C17E85ECE003E47F9 /* data_simple_tree_data.h in Headers */,
-				9AE72B1E17E85ECE003E47F9 /* data_simple_tree_item_data.h in Headers */,
 				9AE72B2017E85ECE003E47F9 /* data_tree.h in Headers */,
-				9AE72B2217E85ECE003E47F9 /* data_tree_data.h in Headers */,
 				072AE9D21810372200F74E98 /* backview_visual_effect.h in Headers */,
 				9AE72B2417E85ECE003E47F9 /* data_tree_item.h in Headers */,
-				9AE72B2617E85ECE003E47F9 /* data_tree_item_data.h in Headers */,
 				9AE72B2817E85ECE003E47F9 /* geoip.h in Headers */,
 				9AE72B2A17E85ECE003E47F9 /* geoip_city.h in Headers */,
 				9AE72B2B17E85ECE003E47F9 /* geoip_internal.h in Headers */,
@@ -6840,6 +6804,7 @@
 				9AE72B5D17E85ECE003E47F9 /* SBCSGroupProber.h in Headers */,
 				07AD9A89182FF968005C3335 /* filemanager_manager.h in Headers */,
 				9AE72B5E17E85ECE003E47F9 /* SJISProber.h in Headers */,
+				07A5681A183062C500BA805E /* usermail_item.h in Headers */,
 				9AE72B5F17E85ECE003E47F9 /* types.h in Headers */,
 				9AE72B6017E85ECE003E47F9 /* universal.h in Headers */,
 				9AE72B6117E85ECE003E47F9 /* UTF8Prober.h in Headers */,
@@ -7120,6 +7085,7 @@
 				9A01C9D217FCA77000DC8E64 /* sockets_http_get_socket.cpp in Sources */,
 				9A01C96417FCA77000DC8E64 /* sockets_base_socket.cpp in Sources */,
 				07A6DD56173C27EB009E6FB8 /* fs_data.cpp in Sources */,
+				07A56821183065D000BA805E /* data_simple_item.cpp in Sources */,
 				07AD9A8C182FF968005C3335 /* filemanager_preview.cpp in Sources */,
 				07A6DD58173C27EB009E6FB8 /* fs_fs.cpp in Sources */,
 				07A6DD5A173C27EB009E6FB8 /* fs_ifs.cpp in Sources */,
@@ -7216,9 +7182,6 @@
 				07A6DF58173C27EB009E6FB8 /* usermail_account.cpp in Sources */,
 				07A6DF5A173C27EB009E6FB8 /* usermail_db_pop3.cpp in Sources */,
 				07A6DF5D173C27EB009E6FB8 /* usermail_list_interface.cpp in Sources */,
-				07A6DF5F173C27EB009E6FB8 /* usermail_tree_data.cpp in Sources */,
-				07A6DF61173C27EB009E6FB8 /* usermail_tree_interface.cpp in Sources */,
-				07A6DF63173C27EB009E6FB8 /* usermail_tree_item.cpp in Sources */,
 				9A01C9E517FCA77000DC8E64 /* sockets_trace_logger.cpp in Sources */,
 				07A6DF65173C27EB009E6FB8 /* usermail_usermail.cpp in Sources */,
 				07A6DF68173C27EB009E6FB8 /* usernet_network_configuration.cpp in Sources */,
@@ -7358,6 +7321,7 @@
 				07A6E0C8173C27EC009E6FB8 /* frame_work_set_down_up_interface.cpp in Sources */,
 				07A6E0CA173C27EC009E6FB8 /* frame_work_set_listener.cpp in Sources */,
 				9A01C97617FCA77000DC8E64 /* sockets_ssl_client_context.cpp in Sources */,
+				07A568251830667D00BA805E /* html_select.cpp in Sources */,
 				07A6E0CC173C27EC009E6FB8 /* frame_work_set_listener_array.cpp in Sources */,
 				07A6E0CF173C27EC009E6FB8 /* uinteraction_frame.cpp in Sources */,
 				07A6E0D1173C27EC009E6FB8 /* uinteraction_interaction.cpp in Sources */,
@@ -7375,6 +7339,7 @@
 				07A6E0EB173C27EC009E6FB8 /* user_control_bar.cpp in Sources */,
 				07A6E0ED173C27EC009E6FB8 /* user_control_event.cpp in Sources */,
 				07AD9A86182FF968005C3335 /* filemanager_main_frame.cpp in Sources */,
+				07A56819183062C500BA805E /* usermail_item.cpp in Sources */,
 				07A6E0EF173C27EC009E6FB8 /* user_control_property.cpp in Sources */,
 				07A6E0F3173C27EC009E6FB8 /* user_data_exchange.cpp in Sources */,
 				9A01C9B417FCA77000DC8E64 /* sockets_AjpBaseSocket.cpp in Sources */,
@@ -7418,11 +7383,11 @@
 				07A6E13A173C27EC009E6FB8 /* user_main_frame.cpp in Sources */,
 				07A6E13C173C27EC009E6FB8 /* user_menu_list_view.cpp in Sources */,
 				07A6E13D173C27EC009E6FB8 /* user_message.cpp in Sources */,
-				07A6E13E173C27EC009E6FB8 /* user_message_box.cpp in Sources */,
 				07A6E140173C27EC009E6FB8 /* user_meta_button.cpp in Sources */,
 				07A6E142173C27EC009E6FB8 /* user_mouse_focus.cpp in Sources */,
 				07A6E144173C27EC009E6FB8 /* user_multiple_document_template.cpp in Sources */,
 				07A6E146173C27EC009E6FB8 /* user_network_configuration.cpp in Sources */,
+				07A5681F183065D000BA805E /* data_item.cpp in Sources */,
 				07A6E148173C27EC009E6FB8 /* user_notification_area.cpp in Sources */,
 				07A6E14A173C27EC009E6FB8 /* user_notify_icon.cpp in Sources */,
 				072AE9C61810372200F74E98 /* backview_interface_data.cpp in Sources */,
@@ -7468,7 +7433,6 @@
 				07A6E191173C27EC009E6FB8 /* user_view_creator.cpp in Sources */,
 				07A6E193173C27EC009E6FB8 /* user_view_update_hint.cpp in Sources */,
 				07A6E194173C27EC009E6FB8 /* user_virtual_user_interface.cpp in Sources */,
-				07A6E196173C27EC009E6FB8 /* user_wait_message_dialog.cpp in Sources */,
 				07A6E199173C27EC009E6FB8 /* user_window_interface.cpp in Sources */,
 				07A6E19B173C27EC009E6FB8 /* user_window_map.cpp in Sources */,
 				07A6E19D173C27EC009E6FB8 /* user_window_util.cpp in Sources */,
@@ -7625,12 +7589,8 @@
 				9AE72B1317E85ECE003E47F9 /* crypto_rng_prng.cpp in Sources */,
 				9AE72B1417E85ECE003E47F9 /* crypto_rng_rand_source.cpp in Sources */,
 				9AE72B1517E85ECE003E47F9 /* crypto_sha1.cpp in Sources */,
-				9AE72B1B17E85ECE003E47F9 /* data_simple_tree_data.cpp in Sources */,
-				9AE72B1D17E85ECE003E47F9 /* data_simple_tree_item_data.cpp in Sources */,
 				9AE72B1F17E85ECE003E47F9 /* data_tree.cpp in Sources */,
-				9AE72B2117E85ECE003E47F9 /* data_tree_data.cpp in Sources */,
 				9AE72B2317E85ECE003E47F9 /* data_tree_item.cpp in Sources */,
-				9AE72B2517E85ECE003E47F9 /* data_tree_item_data.cpp in Sources */,
 				9AE72B2717E85ECE003E47F9 /* geoip.cpp in Sources */,
 				9A01C9B617FCA77000DC8E64 /* sockets_httpd_socket.cpp in Sources */,
 				9AE72B2917E85ECE003E47F9 /* geoip_city.cpp in Sources */,

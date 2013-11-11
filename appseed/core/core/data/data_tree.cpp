@@ -151,7 +151,7 @@ namespace data
    index tree::get_proper_item_index(::data::tree_item *pitemParam, index * piLevel, index * piCount)
    {
       
-      index iFound = 0;
+//      index iFound = 0;
 
       int32_t iIndex = 0;
 

@@ -150,6 +150,91 @@ c_class::~c_class()
 BEGIN_EXTERN_C
 
 
+#define BASE_MEMORY_MANAGEMENT 0
+
+
+#if BASE_MEMORY_MANAGEMENT
+
+void * aligned_memory_alloc(size_t size)
+{
+   
+   void * poriginal = g_pheap->alloc(heap_memory::aligned_provision_get_size(size));
+   
+   if (poriginal == NULL)
+   {
+      
+      throw memory_exception(get_thread_app());
+      
+   }
+   
+   return heap_memory::aligned(poriginal, size, 0);
+   
+}
+
+void * unaligned_memory_alloc(size_t size)
+{
+   
+   void * poriginal = g_pheap->alloc(heap_memory::unaligned_provision_get_size(size));
+   
+   if (poriginal == NULL)
+   {
+      
+      throw memory_exception(get_thread_app());
+      
+   }
+   
+   return heap_memory::unaligned(poriginal, size, 2);
+   
+}
+
+
+void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+{
+   
+   UNREFERENCED_PARAMETER(nBlockUse);
+   UNREFERENCED_PARAMETER(szFileName);
+   UNREFERENCED_PARAMETER(nLine);
+   
+   //TODO: to do the dbg version
+   //byte * p = (byte *) _malloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+   void * poriginal = g_pheap->alloc_dbg(heap_memory::aligned_provision_get_size(size), nBlockUse, szFileName, nLine);
+   
+   if (poriginal == NULL)
+   {
+      
+      throw memory_exception(get_thread_app());
+      
+   }
+   
+   return heap_memory::aligned(poriginal, size, 1);
+   
+}
+
+void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+{
+   
+   UNREFERENCED_PARAMETER(nBlockUse);
+   UNREFERENCED_PARAMETER(szFileName);
+   UNREFERENCED_PARAMETER(nLine);
+   
+   //TODO: to do the dbg version
+   //byte * p = (byte *) _malloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+   void * poriginal = g_pheap->alloc_dbg(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
+   
+   if (poriginal == NULL)
+   {
+      
+      throw memory_exception(get_thread_app());
+      
+   }
+   
+   return heap_memory::unaligned(poriginal, size, 3);
+   
+}
+
+
+
+
 void * memory_alloc(size_t size)
 {
 
@@ -266,6 +351,176 @@ size_t memory_size(void * pvoid)
 {
    return memory_size_dbg(pvoid, 0);
 }
+
+
+
+
+void memory_free_dbg(void * paligned, int32_t iBlockType)
+{
+   
+   if (paligned == NULL)
+      return;
+   
+   byte blockuse = heap_memory::heap_get_block_use(paligned);
+   
+   if (blockuse == 0)
+   {
+      
+      g_pheap->free(heap_memory::base_get(paligned));
+      
+   }
+   else if (blockuse == 1)
+   {
+      
+      //TODO: to do the dbg version
+      
+      g_pheap->free_dbg(heap_memory::base_get(paligned));
+      
+      //_free_dbg(p, iBlockType);
+      
+   }
+   else if (blockuse == 2)
+   {
+      
+      g_pheap->free(heap_memory::base_get(paligned));
+      
+   }
+   else if (blockuse == 3)
+   {
+      
+      //TODO: to do the dbg version
+      
+      g_pheap->free_dbg(heap_memory::base_get(paligned));
+      
+      //_free_dbg(p, iBlockType);
+      
+   }
+   else
+   {
+      
+   }
+   
+}
+
+
+size_t memory_size_dbg(void * paligned, int32_t iBlockType)
+{
+   
+   if (paligned == NULL)
+      return 0;
+   
+   return heap_memory::heap_get_size(paligned);
+   
+}
+
+
+#else
+
+
+
+void * aligned_memory_alloc(size_t size)
+{
+   
+   return malloc(size);
+   
+}
+
+void * unaligned_memory_alloc(size_t size)
+{
+   
+   return malloc(size);
+   
+}
+
+
+void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+{
+   
+   return malloc(size);
+   
+}
+
+void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+{
+   
+   return malloc(size);
+   
+}
+
+
+
+
+void * memory_alloc(size_t size)
+{
+   
+   return malloc(size);
+   
+}
+
+
+void * memory_calloc(size_t size, size_t bytes)
+{
+   
+   return calloc(size, bytes);
+   
+}
+
+
+void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+{
+   
+   return malloc(nSize);
+   
+}
+
+
+void * memory_realloc(void * pvoid, size_t nSize)
+{
+   
+   return realloc(pvoid, nSize);
+   
+}
+
+
+void * memory_realloc_dbg(void * pvoid, size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+{
+   
+   
+   return realloc(pvoid, size);
+   
+   
+   
+}
+
+void memory_free(void * pvoid)
+{
+   return free(pvoid);
+}
+
+
+size_t memory_size(void * pvoid)
+{
+   return malloc_size(pvoid);
+}
+
+
+void memory_free_dbg(void * paligned, int32_t iBlockType)
+{
+   
+      memory_free(paligned);
+   
+}
+
+
+size_t memory_size_dbg(void * paligned, int32_t iBlockType)
+{
+   
+   return malloc_size(paligned);
+   
+}
+
+
+#endif
 
 #undef new
 
@@ -562,141 +817,6 @@ public:
 
 
 
-void * aligned_memory_alloc(size_t size)
-{
-
-   void * poriginal = g_pheap->alloc(heap_memory::aligned_provision_get_size(size));
-
-   if (poriginal == NULL)
-   {
-
-      throw memory_exception(get_thread_app());
-
-   }
-
-   return heap_memory::aligned(poriginal, size, 0);
-
-}
-
-void * unaligned_memory_alloc(size_t size)
-{
-
-   void * poriginal = g_pheap->alloc(heap_memory::unaligned_provision_get_size(size));
-
-   if (poriginal == NULL)
-   {
-
-      throw memory_exception(get_thread_app());
-
-   }
-
-   return heap_memory::unaligned(poriginal, size, 2);
-
-}
-
-
-void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
-{
-
-   UNREFERENCED_PARAMETER(nBlockUse);
-   UNREFERENCED_PARAMETER(szFileName);
-   UNREFERENCED_PARAMETER(nLine);
-
-   //TODO: to do the dbg version
-   //byte * p = (byte *) _malloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
-   void * poriginal = g_pheap->alloc_dbg(heap_memory::aligned_provision_get_size(size), nBlockUse, szFileName, nLine);
-
-   if (poriginal == NULL)
-   {
-
-      throw memory_exception(get_thread_app());
-
-   }
-
-   return heap_memory::aligned(poriginal, size, 1);
-
-}
-
-void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
-{
-
-   UNREFERENCED_PARAMETER(nBlockUse);
-   UNREFERENCED_PARAMETER(szFileName);
-   UNREFERENCED_PARAMETER(nLine);
-
-   //TODO: to do the dbg version
-   //byte * p = (byte *) _malloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
-   void * poriginal = g_pheap->alloc_dbg(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
-
-   if (poriginal == NULL)
-   {
-
-      throw memory_exception(get_thread_app());
-
-   }
-
-   return heap_memory::unaligned(poriginal, size, 3);
-
-}
-
-
-void memory_free_dbg(void * paligned, int32_t iBlockType)
-{
-
-   if (paligned == NULL)
-      return;
-
-   byte blockuse = heap_memory::heap_get_block_use(paligned);
-
-   if (blockuse == 0)
-   {
-
-      g_pheap->free(heap_memory::base_get(paligned));
-
-   }
-   else if (blockuse == 1)
-   {
-
-      //TODO: to do the dbg version
-
-      g_pheap->free_dbg(heap_memory::base_get(paligned));
-
-      //_free_dbg(p, iBlockType);
-
-   }
-   else if (blockuse == 2)
-   {
-
-      g_pheap->free(heap_memory::base_get(paligned));
-
-   }
-   else if (blockuse == 3)
-   {
-
-      //TODO: to do the dbg version
-
-      g_pheap->free_dbg(heap_memory::base_get(paligned));
-
-      //_free_dbg(p, iBlockType);
-
-   }
-   else
-   {
-
-   }
-
-}
-
-
-size_t memory_size_dbg(void * paligned, int32_t iBlockType)
-{
-
-   if (paligned == NULL)
-      return 0;
-
-   return heap_memory::heap_get_size(paligned);
-
-}
 
 
 

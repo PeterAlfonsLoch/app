@@ -43,6 +43,10 @@ namespace data
 
       // writing to or reading from this data
       interlocked_long  m_lockedlong;
+      
+      
+      simple_data();
+      virtual ~simple_data();
 
 
       virtual bool is_locked() const;

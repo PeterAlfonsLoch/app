@@ -12,6 +12,12 @@ namespace userfs
       m_iImageSelected = 1;
    }
 
+   item::~item()
+   {
+   
+   }
+   
+
 
    index item::CompareArrangeByName(sp(::data::tree_item) * pitem1, sp(::data::tree_item)  * pitem2)
    {

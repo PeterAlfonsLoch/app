@@ -1222,10 +1222,10 @@ namespace filemanager
 
       void tree::_001OnContextMenu(signal_details * pobj)
       {
-         SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
+//         SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
             //   int32_t iItem;
             //   HRESULT hr;
-            point ptClient = pcontextmenu->GetPoint();
+//            point ptClient = pcontextmenu->GetPoint();
 //         ::user::tree::ScreenToClient(&ptClient);
          /*     if(_001HitTest_(ptClient, iItem))
          {
