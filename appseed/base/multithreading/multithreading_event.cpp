@@ -408,12 +408,9 @@ wait_result event::wait (const duration & durationTimeout)
 
       int iSignal = m_iSignalId;
       
-      timeval tsStart;
+      timeval ts1, ts2;
       
-      gettimeofday(&tsStart, 0);
-      
-      timeval ts;
-      
+      gettimeofday(&ts1, 0);
       
       int error;
 
@@ -425,20 +422,23 @@ wait_result event::wait (const duration & durationTimeout)
       {
       
          delay.tv_sec = sec;
+
          delay.tv_nsec = nsec;
 
          error = pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
          
          pthread_mutex_unlock(&m_mutex);
          
-         gettimeofday(&ts,0);
+         gettimeofday(&ts2,0);
                
-         sec -= ts.tv_sec - tsStart.tv_sec;
-         nsec -= (ts.tv_usec - tsStart.tv_usec) * 1000;
+         sec -= ts2.tv_sec - ts1.tv_sec;
+         
+         nsec -= (ts2.tv_usec - ts1.tv_usec) * 1000;
+         
          if(nsec < 0)
          {
-            nsec += 1000000000;
-            sec +=1;
+            nsec  += 1000000000;
+            sec   -= 1;
          }
          
          if(sec < 0 || nsec < 0)
@@ -447,6 +447,8 @@ wait_result event::wait (const duration & durationTimeout)
             return wait_result(wait_result::Timeout);
                   
          }
+         
+         ts1 = ts2;
 
       }
 

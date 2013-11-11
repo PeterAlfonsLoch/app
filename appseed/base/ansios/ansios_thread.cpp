@@ -943,7 +943,7 @@ restart:
    if(bFirst)
    {
 
-      pmq->m_eventNewMessage.wait();
+      pmq->m_eventNewMessage.wait(millis(11));
 
       pmq->m_eventNewMessage.ResetEvent();
 
