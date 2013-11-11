@@ -13,7 +13,7 @@ namespace filemanager
    }
 
    bool item_action::file_manager_open_file(
-         ::filemanager::list_data * pdata, 
+         ::filemanager::data * pdata, 
          ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);

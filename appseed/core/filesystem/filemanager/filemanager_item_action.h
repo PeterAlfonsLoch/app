@@ -11,7 +11,7 @@ namespace filemanager
       virtual ~item_action();
 
       virtual bool file_manager_open_file(
-         ::filemanager::list_data * pdata, 
+         ::filemanager::data * pdata, 
          ::fs::item_array & itema);
 
    };

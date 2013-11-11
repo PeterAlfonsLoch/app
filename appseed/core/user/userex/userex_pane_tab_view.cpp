@@ -160,7 +160,7 @@ namespace userex
          || pcreatordata->m_id == "right_file")
       {
 
-         ::filemanager::list_data * pfilemanagerdata = new ::filemanager::list_data(get_app());
+         ::filemanager::data * pfilemanagerdata = new ::filemanager::data(get_app());
 
 
          pfilemanagerdata->m_id = pcreatordata->m_id;

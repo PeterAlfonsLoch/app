@@ -1407,8 +1407,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutD
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="base\base.cpp" />
-    <ClCompile Include="base\base_allocate_base.cpp" />
-    <ClCompile Include="base\base_allocate_base_heap.cpp" />
     <ClCompile Include="base\base_allocate_mid_big.cpp" />
     <ClCompile Include="base\base_allocate_system_heap.cpp" />
     <ClCompile Include="base\base_application.cpp" />

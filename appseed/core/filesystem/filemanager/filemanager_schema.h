@@ -5,20 +5,6 @@
 namespace filemanager
 {
 
-   class callback;
-
-
-   class document;
-   class filemanager;
-
-
-
-
-   class file_list_callback;
-
-
-   class SimpleDialogBar;
-
 
    class CLASS_DECL_CORE schema :
       virtual public object
@@ -58,12 +44,12 @@ namespace filemanager
       sp(::user::multiple_document_template) m_pdoctemplateChild;
       sp(::user::multiple_document_template) m_pdoctemplateChildList;
 
-      SimpleDialogBar *    m_pdialogbar;
+      //SimpleDialogBar *    m_pdialogbar;
 
 
-      sp(document) open(sp(::create_context) pcreatecontext = NULL, ::fs::data * pdata = NULL, list_data * pfilemanagerdata = NULL);
-      sp(document) open_child(bool bMakeVisible = true, bool bTransparentBackground = false, sp(::user::interaction) pwndParent = NULL, list_data * pfilemanagerdata = NULL);
-      sp(document) open_child_list(bool bMakeVisible = true, bool bTransparentBackground = false, sp(::user::interaction) pwndParent = NULL, list_data * pfilemanagerdata = NULL);
+      sp(document) open(sp(::create_context) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL);
+      sp(document) open_child(bool bMakeVisible = true, bool bTransparentBackground = false, sp(::user::interaction) pwndParent = NULL, data * pfilemanagerdata = NULL);
+      sp(document) open_child_list(bool bMakeVisible = true, bool bTransparentBackground = false, sp(::user::interaction) pwndParent = NULL, data * pfilemanagerdata = NULL);
 
       sp(document) create_new_document(callback * pinterface);
 

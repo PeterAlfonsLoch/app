@@ -5,10 +5,6 @@ namespace filemanager
 {
 
 
-   class list_data;
-
-
-
    class CLASS_DECL_CORE manager :
       virtual public ::database::client
    {
@@ -26,7 +22,7 @@ namespace filemanager
 
 
 
-      virtual list_data * get_filemanager_data() = 0;
+      virtual data * get_filemanager_data() = 0;
       ::critical_section * GetItemIdListCriticalSection();
       ::fs::item & get_item();
 

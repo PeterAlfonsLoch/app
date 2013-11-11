@@ -15,7 +15,7 @@ namespace filemanager
 
    }
 
-   void callback::OnFileManagerOpenContextMenuFolder(::filemanager::list_data * pdata, sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle)
+   void callback::OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle)
    {
       UNREFERENCED_PARAMETER(item);
       UNREFERENCED_PARAMETER(straCommand);
@@ -26,7 +26,7 @@ namespace filemanager
       }
    }
 
-   void callback::OnFileManagerOpenContextMenuFile(::filemanager::list_data * pdata, const ::fs::item_array & itema)
+   void callback::OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(itema);
       if (pdata->m_pmanager != NULL)
@@ -35,7 +35,7 @@ namespace filemanager
       }
    }
 
-   void callback::OnFileManagerOpenContextMenu(::filemanager::list_data * pdata)
+   void callback::OnFileManagerOpenContextMenu(::filemanager::data * pdata)
    {
       UNREFERENCED_PARAMETER(pdata);
    }
@@ -47,20 +47,20 @@ namespace filemanager
 
    }
 
-   void callback::OnFileManagerOpenFolder(::filemanager::list_data * pdata, sp(::fs::item)  item)
+   void callback::OnFileManagerOpenFolder(::filemanager::data * pdata, sp(::fs::item)  item)
    {
       UNREFERENCED_PARAMETER(pdata);
       UNREFERENCED_PARAMETER(item);
    }
 
-   void callback::OnFileManagerItemCommand(::filemanager::list_data * pdata, id id, const ::fs::item_array & itema)
+   void callback::OnFileManagerItemCommand(::filemanager::data * pdata, id id, const ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
       UNREFERENCED_PARAMETER(id);
       UNREFERENCED_PARAMETER(itema);
    }
 
-   void callback::OnFileManagerItemUpdate(::filemanager::list_data * pdata, cmd_ui * pcmdui, const ::fs::item_array & itema)
+   void callback::OnFileManagerItemUpdate(::filemanager::data * pdata, cmd_ui * pcmdui, const ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
       UNREFERENCED_PARAMETER(pcmdui);
@@ -68,7 +68,7 @@ namespace filemanager
    }
 
 
-   void callback::OnFileManagerInitializeFormPreData(::filemanager::list_data * pdata, id id, ::user::form * pform)
+   void callback::OnFileManagerInitializeFormPreData(::filemanager::data * pdata, id id, ::user::form * pform)
    {
       UNREFERENCED_PARAMETER(pdata);
       UNREFERENCED_PARAMETER(id);
@@ -76,7 +76,7 @@ namespace filemanager
    }
 
 
-   bool callback::GetFileManagerItemCallback(::filemanager::list_data * pdata, id id, const ::fs::item_array & itema)
+   bool callback::GetFileManagerItemCallback(::filemanager::data * pdata, id id, const ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
       UNREFERENCED_PARAMETER(id);

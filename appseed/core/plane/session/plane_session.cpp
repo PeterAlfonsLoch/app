@@ -283,7 +283,7 @@ namespace plane
    }
 
    /*   bool session::file_manager_open_file(
-   ::filemanager::list_data * pdata,
+   ::filemanager::data * pdata,
    ::fs::item_array & itema)
    {
    UNREFERENCED_PARAMETER(pdata);
@@ -1326,7 +1326,7 @@ alt1:
 
 
    void session::OnFileManagerOpenFile(
-      ::filemanager::list_data * pdata,
+      ::filemanager::data * pdata,
       ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
@@ -1334,7 +1334,7 @@ alt1:
    }
 
    bool session::file_manager_open_file(
-      ::filemanager::list_data * pdata,
+      ::filemanager::data * pdata,
       ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);

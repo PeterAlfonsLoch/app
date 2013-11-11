@@ -43,10 +43,10 @@ namespace bergedge
       bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
       
    /*   virtual void OnFileManagerOpenContextMenuFolder(
-         ::filemanager::list_data * pdata, 
+         ::filemanager::data * pdata, 
          ::fs::item & item);*/
-      virtual void OnFileManagerOpenContextMenuFile(::filemanager::list_data * pdata, const ::fs::item_array & itema);
-      virtual void OnFileManagerOpenContextMenu(::filemanager::list_data * pdata);
+      virtual void OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema);
+      virtual void OnFileManagerOpenContextMenu(::filemanager::data * pdata);
 
       void _001OnDraw(::draw2d::graphics * pdc);
 

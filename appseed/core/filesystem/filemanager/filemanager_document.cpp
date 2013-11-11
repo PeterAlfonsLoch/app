@@ -448,7 +448,7 @@ namespace filemanager
 
 
 
-   list_data * document::get_filemanager_data()
+   ::filemanager::data * document::get_filemanager_data()
    {
 
 
@@ -468,7 +468,7 @@ namespace filemanager
    }
 
 
-   bool document::set_filemanager_data(list_data * pdata)
+   bool document::set_filemanager_data(::filemanager::data * pdata)
    {
 
 

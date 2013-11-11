@@ -278,7 +278,7 @@ namespace userstack
    }
 
    /*void pane_view::OnFileManagerOpenFile(
-         ::filemanager::list_data * pdata,
+         ::filemanager::data * pdata,
          ::fs::item_array & itema)
    {
       if(itema.get_size() > 0)
@@ -479,7 +479,7 @@ namespace userstack
       }*/
    }
 
-   void pane_view::OnFileManagerOpenContextMenu(::filemanager::list_data * pdata)
+   void pane_view::OnFileManagerOpenContextMenu(::filemanager::data * pdata)
    {
 
       UNREFERENCED_PARAMETER(pdata);
@@ -497,11 +497,11 @@ namespace userstack
 
    }
 
-   /*void pane_view::OnFileManagerOpenContextMenuFolder(::filemanager::list_data * pdata, ::fs::item & item)
+   /*void pane_view::OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, ::fs::item & item)
    {
    }
 */
-   void pane_view::OnFileManagerOpenContextMenuFile(::filemanager::list_data * pdata, const ::fs::item_array & itema)
+   void pane_view::OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
       m_itema = itema;

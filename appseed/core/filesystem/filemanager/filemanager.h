@@ -36,7 +36,10 @@ namespace filemanager
    class file_list;
    class folder_list;
    class document;
-
+   class data;
+   class callback;
+   class filemanager;
+   class file_list_callback;
 
 
 } // namespace filemanager
@@ -58,7 +61,7 @@ namespace filemanager
 #include "filemanager_folder_list_data.h"
 
 #include "filemanager_callback.h"
-#include "filemanager_list_data.h"
+#include "filemanager_data.h"
 #include "filemanager_item_action.h"
 #include "filemanager_manager.h"
 #include "filemanager_update_hint.h"

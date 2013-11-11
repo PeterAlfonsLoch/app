@@ -24,14 +24,14 @@ public:
 
    ::filemanager::tree *    m_ptreeview;
    folder_list_view *                     m_plistview;
-   sp(filemanager::list_data)                  m_pdata;
+   sp(::filemanager::data)                  m_pdata;
 
 
    folder_selection_list_view(sp(base_application) papp);
    ~folder_selection_list_view();
 
 
-   virtual ::filemanager::list_data * get_filemanager_data();
+   virtual ::filemanager::data * get_filemanager_data();
 
 
 

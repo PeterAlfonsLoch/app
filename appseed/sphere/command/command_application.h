@@ -28,7 +28,7 @@ namespace command
 	   virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
 
-      void OnFileManagerOpenFile(::filemanager::list_data * pdata, ::fs::item_array & itema);
+      void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
    };
 

@@ -27,7 +27,7 @@ namespace platform
 
       //virtual baseapplication * get_app() const;
       void OnFileManagerOpenFile(
-         ::filemanager::list_data * pdata, 
+         ::filemanager::data * pdata, 
          ::fs::item_array & itema);
 
    };

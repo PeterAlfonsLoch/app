@@ -28,7 +28,7 @@ namespace command
 	   virtual bool pre_create_window(CREATESTRUCT& cs);
 
 
-      void OnFileManagerOpenFile(::filemanager::list_data * pdata, ::fs::item_array & itema);
+      void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
       DECL_GEN_SIGNAL(_001OnMenuMessage)
 

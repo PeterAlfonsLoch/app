@@ -1020,7 +1020,7 @@ namespace filemanager
 
    void file_list::_001OnSpafy2(signal_details * pobj)
    {
-      ::userfs::list_data * pdata = get_fs_list_data();
+      sp(::userfs::list_data) pdata = get_fs_list_data();
       UNREFERENCED_PARAMETER(pobj);
       stringa stra;
       stringa straSub;
@@ -2241,7 +2241,7 @@ namespace filemanager
 
    void file_list::_001InitializeFormPreData()
    {
-      list_data * pdata = GetFileManager()->get_filemanager_data();
+      ::filemanager::data * pdata = GetFileManager()->get_filemanager_data();
       pdata->m_pcallback->OnFileManagerInitializeFormPreData(pdata, GetDlgCtrlId(), this);
    }
 

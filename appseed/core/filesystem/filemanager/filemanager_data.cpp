@@ -5,9 +5,9 @@ namespace filemanager
 {
 
 
-   list_data::list_data(sp(base_application) papp) :
+   data::data(sp(base_application) papp) :
       element(papp),
-      ::userfs::list_data(papp)
+      ::data::data(papp)
    {
       m_iIconSize                = 16;
       m_bListText                = true;
@@ -22,12 +22,12 @@ namespace filemanager
       m_bSetBergedgeTopicFile    = false;
    }
 
-   list_data::~list_data()
+   data::~data()
    {
 
    }
 
-   void list_data::OnFileManagerOpenContextMenuFolder(sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle)
+   void data::OnFileManagerOpenContextMenuFolder(sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle)
    {
 
       ASSERT(m_pcallback != NULL);
@@ -42,7 +42,7 @@ namespace filemanager
    }
 
 
-   void list_data::OnFileManagerOpenContextMenuFile(const ::fs::item_array & itema)
+   void data::OnFileManagerOpenContextMenuFile(const ::fs::item_array & itema)
    {
 
       ASSERT(m_pcallback != NULL);
@@ -57,7 +57,7 @@ namespace filemanager
    }
 
 
-   void list_data::OnFileManagerOpenContextMenu()
+   void data::OnFileManagerOpenContextMenu()
    {
 
       ASSERT(m_pcallback != NULL);
@@ -72,7 +72,7 @@ namespace filemanager
    }
 
 
-   void list_data::OnFileManagerOpenFile(const ::fs::item_array & itema)
+   void data::OnFileManagerOpenFile(const ::fs::item_array & itema)
    {
 
       ASSERT(m_pcallback != NULL);
@@ -142,7 +142,7 @@ namespace filemanager
    }
 
 
-   void list_data::OnFileManagerOpenFolder(sp(::fs::item)  item)
+   void data::OnFileManagerOpenFolder(sp(::fs::item)  item)
    {
 
       ASSERT(m_pcallback != NULL);
@@ -157,7 +157,7 @@ namespace filemanager
    }
 
 
-   void list_data::OnFileManagerItemUpdate(cmd_ui * pcmdui, const ::fs::item_array & itema)
+   void data::OnFileManagerItemUpdate(cmd_ui * pcmdui, const ::fs::item_array & itema)
    {
 
       ASSERT(m_pcallback != NULL);
@@ -172,7 +172,7 @@ namespace filemanager
    }
 
 
-   void list_data::OnFileManagerItemCommand(const char * pszId, const ::fs::item_array & itema)
+   void data::OnFileManagerItemCommand(const char * pszId, const ::fs::item_array & itema)
    {
 
       ASSERT(m_pcallback != NULL);
@@ -187,7 +187,7 @@ namespace filemanager
    }
 
 
-   void list_data::FileManagerBrowse(sp(::fs::item)  item)
+   void data::FileManagerBrowse(sp(::fs::item)  item)
    {
 
       ASSERT(m_pmanager != NULL);
@@ -201,7 +201,7 @@ namespace filemanager
 
    }
 
-   void list_data::FileManagerBrowse(const char * lpcsz)
+   void data::FileManagerBrowse(const char * lpcsz)
    {
       
       ASSERT(m_pmanager != NULL);
@@ -216,7 +216,7 @@ namespace filemanager
    }
 
 
-   bool list_data::is_saving()
+   bool data::is_saving()
    {
 
       return m_pdocumentSave != NULL;

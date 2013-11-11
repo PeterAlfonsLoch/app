@@ -150,7 +150,7 @@ c_class::~c_class()
 BEGIN_EXTERN_C
 
 
-#define BASE_MEMORY_MANAGEMENT FALSE
+#define BASE_MEMORY_MANAGEMENT TRUE
 
 
 #if BASE_MEMORY_MANAGEMENT
@@ -500,23 +500,30 @@ void memory_free(void * pvoid)
 
 size_t memory_size(void * pvoid)
 {
+#ifdef WINDOWS
+   return _msize(pvoid);
+#else
    return malloc_size(pvoid);
+#endif
 }
 
 
-void memory_free_dbg(void * paligned, int32_t iBlockType)
+void memory_free_dbg(void * pvoid, int32_t iBlockType)
 {
    
-      memory_free(paligned);
+   memory_free(pvoid);
    
 }
 
 
-size_t memory_size_dbg(void * paligned, int32_t iBlockType)
+size_t memory_size_dbg(void * pvoid, int32_t iBlockType)
 {
-   
-   return malloc_size(paligned);
-   
+#ifdef WINDOWS
+   return _msize(pvoid);
+#else
+
+   return malloc_size(pvoid);
+#endif
 }
 
 

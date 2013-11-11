@@ -13,7 +13,7 @@ namespace filemanager
 
       m_iTemplate = -1;
 
-      m_pdialogbar = NULL;
+//      m_pdialogbar = NULL;
       m_pfilelistcallback = NULL;
 
       //m_uiLevelUp       = 0xffffffff;
@@ -33,14 +33,14 @@ namespace filemanager
       }
    }
 
-   sp(document) schema::open(sp(::create_context) pcreatecontext, ::fs::data * pdata, list_data * pfilemanagerdata)
+   sp(document) schema::open(sp(::create_context) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata)
    {
       sp(document) pdoc = (m_pdoctemplateMain->open_document_file(pcreatecontext));
       if (pdoc != NULL)
       {
          if (pfilemanagerdata == NULL)
          {
-            pfilemanagerdata = new list_data(get_app());
+            pfilemanagerdata = new ::filemanager::data(get_app());
          }
          pdoc->set_filemanager_data(pfilemanagerdata);
          pdoc->get_filemanager_data()->m_pcallback = m_pfilemanager;
@@ -81,7 +81,7 @@ namespace filemanager
    }
 
 
-   sp(document) schema::open_child(bool bMakeVisible, bool bTransparentBackground, sp(::user::interaction) pwndParent, list_data * pfilemanagerdata)
+   sp(document) schema::open_child(bool bMakeVisible, bool bTransparentBackground, sp(::user::interaction) pwndParent, ::filemanager::data * pfilemanagerdata)
    {
       sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
@@ -91,7 +91,7 @@ namespace filemanager
       {
          if (pfilemanagerdata == NULL)
          {
-            pfilemanagerdata = new list_data(get_app());
+            pfilemanagerdata = new ::filemanager::data(get_app());
          }
          pdoc->set_filemanager_data(pfilemanagerdata);
          pdoc->get_filemanager_data()->m_pcallback = m_pfilemanager;
@@ -112,7 +112,7 @@ namespace filemanager
    }
 
 
-   sp(document) schema::open_child_list(bool bMakeVisible, bool bTransparentBackground, sp(::user::interaction) pwndParent, list_data * pfilemanagerdata)
+   sp(document) schema::open_child_list(bool bMakeVisible, bool bTransparentBackground, sp(::user::interaction) pwndParent, ::filemanager::data * pfilemanagerdata)
    {
       UNREFERENCED_PARAMETER(bMakeVisible);
       sp(::create_context) createcontext(allocer());
@@ -125,7 +125,7 @@ namespace filemanager
          //      pdoc->get_filemanager_data()->m_uiToolBar = m_uiToolBar;
          if (pfilemanagerdata == NULL)
          {
-            pfilemanagerdata = new list_data(get_app());
+            pfilemanagerdata = new ::filemanager::data(get_app());
          }
          pdoc->set_filemanager_data(pfilemanagerdata);
          pdoc->get_filemanager_data()->m_pcallback = m_pfilemanager;

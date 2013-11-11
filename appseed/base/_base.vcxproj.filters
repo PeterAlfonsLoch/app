@@ -1732,12 +1732,6 @@
     <ClCompile Include="base\base_muldiv64.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
-    <ClCompile Include="base\base_allocate_base_heap.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_allocate_base.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
     <ClCompile Include="spa\spa_file.cpp">
       <Filter>Source Files\spa</Filter>
     </ClCompile>
@@ -1895,9 +1889,6 @@
     </None>
     <None Include="base\base.inl">
       <Filter>Header Files\base</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

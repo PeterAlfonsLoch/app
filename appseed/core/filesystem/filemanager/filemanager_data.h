@@ -5,8 +5,8 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_CORE list_data :
-      virtual public ::userfs::list_data
+   class CLASS_DECL_CORE data :
+      virtual public ::data::data
    {
    public:
 
@@ -39,8 +39,8 @@ namespace filemanager
       bool                                m_bIconView;
 
 
-      list_data(sp(base_application) papp);
-      virtual ~list_data();
+      data(sp(base_application) papp);
+      virtual ~data();
 
       bool is_saving();
 

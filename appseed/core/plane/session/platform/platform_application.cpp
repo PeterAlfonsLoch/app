@@ -82,7 +82,7 @@ application * application::get_app() const
 */
 
    void application::OnFileManagerOpenFile(
-      ::filemanager::list_data * pdata,
+      ::filemanager::data * pdata,
       ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);

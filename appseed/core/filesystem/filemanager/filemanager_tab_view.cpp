@@ -199,7 +199,7 @@ namespace filemanager
             pdoc->set().m_spafsdata = GetFileManagerDoc()->set().m_spafsdata;
             pdoc->set().m_fsdatamap = GetFileManagerDoc()->set().m_fsdatamap;
 
-            list_data * pfilemanagerdata = new list_data(get_app());
+            ::filemanager::data * pfilemanagerdata = new ::filemanager::data(get_app());
 
             pdoc->set_filemanager_data(pfilemanagerdata);
 

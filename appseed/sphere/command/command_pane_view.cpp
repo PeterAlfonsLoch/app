@@ -311,7 +311,7 @@ namespace command
       set_cur_tab_by_id(eviewNew);
    }
 
-   void pane_view::OnFileManagerOpenFile(::filemanager::list_data * pdata, ::fs::item_array & itema)
+   void pane_view::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
    {
 
       UNREFERENCED_PARAMETER(pdata);

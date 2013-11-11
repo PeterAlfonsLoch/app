@@ -780,7 +780,7 @@ namespace userfs
 
    void list::_001InitializeFormPreData()
    {
-      /*      ::filemanager::list_data * pdata = GetFileManager()->get_filemanager_data();
+      /*      ::filemanager::data * pdata = GetFileManager()->get_filemanager_data();
       pdata->m_pcallback->OnFileManagerInitializeFormPreData(
       pdata,
       GetDlgCtrlId(),

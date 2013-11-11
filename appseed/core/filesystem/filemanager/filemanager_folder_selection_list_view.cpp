@@ -7,7 +7,7 @@ folder_selection_list_view::folder_selection_list_view(sp(base_application) papp
    
    ::user::split_view(papp),
    place_holder_container(papp),
-   m_pdata(new filemanager::list_data(papp))
+   m_pdata(new ::filemanager::data(papp))
 {
 }
 
@@ -130,7 +130,7 @@ void folder_selection_list_view::_001OnRemove(signal_details * pobj)
    FolderRemove();
 }
 
-::filemanager::list_data * folder_selection_list_view::get_filemanager_data()
+::filemanager::data * folder_selection_list_view::get_filemanager_data()
 {
    return m_pdata;
 }

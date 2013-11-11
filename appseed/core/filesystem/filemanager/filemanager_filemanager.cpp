@@ -126,7 +126,7 @@ namespace filemanager
 
 
 
-   void filemanager::OnFileManagerOpenFile(list_data * pdata, ::fs::item_array & itema)
+   void filemanager::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
    {
 
       item_action * pitemaction = dynamic_cast < item_action * > (this);
