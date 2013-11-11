@@ -305,21 +305,21 @@ void plex_heap_alloc_array::free(void * p)
 
 inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
 {
-   size_t nFoundSize = MAX_DWORD_PTR;
-   int32_t iFound = -1;
+
    for(int32_t i = 0; i < m_iWorkingSize; i++)
    {
-      if(this->element_at(i)->GetAllocSize() >= nAllocSize && (nFoundSize == MAX_DWORD_PTR || this->element_at(i)->GetAllocSize() < nFoundSize))
+   
+      if(this->element_at(i)->GetAllocSize() >= nAllocSize)
       {
-         iFound = i;
-         nFoundSize = this->element_at(i)->GetAllocSize();
-         break;
+      
+         return this->element_at(i);
+         
       }
+      
    }
-   if(iFound >= 0)
-      return this->element_at(iFound);
-   else
-      return NULL;
+   
+   return NULL;
+   
 }
 
 

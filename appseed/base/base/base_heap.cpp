@@ -21,7 +21,7 @@ struct heap_memory
    inline static size_t aligned_provision_get_size(size_t size)
    {
 
-      return size + ((sizeof(heap_memory) + m_iPaddingAfter + ALIGN_BYTE_COUNT - 1) & (~(ALIGN_BYTE_COUNT - 1)));
+      return size + sizeof(heap_memory) + m_iPaddingAfter + ALIGN_BYTE_COUNT - 1;
 
    }
 
@@ -53,7 +53,7 @@ struct heap_memory
    inline static void * aligned(void * pbase, size_t size, byte blockuse)
    {
 
-      void * paligned = (void *)(((((int_ptr)pbase) + sizeof(heap_memory)+ALIGN_BYTE_COUNT-1) & ((int_ptr)(~(ALIGN_BYTE_COUNT-1)))));
+      void * paligned = (void *)((((int_ptr)pbase) + sizeof(heap_memory) + ALIGN_BYTE_COUNT - 1) & ((int_ptr)(~(ALIGN_BYTE_COUNT - 1))));
 
       heap_memory * pheap = heap_get(paligned);
 
@@ -150,7 +150,7 @@ c_class::~c_class()
 BEGIN_EXTERN_C
 
 
-#define BASE_MEMORY_MANAGEMENT 0
+#define BASE_MEMORY_MANAGEMENT FALSE
 
 
 #if BASE_MEMORY_MANAGEMENT

@@ -558,7 +558,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, int align, int
    
    size_t * psizeOld = &((size_t *)p)[-1];
    
-   plex_heap_alloc * pallocOld = find(*psizeOld);
+   plex_heap_alloc * pallocOld = *psizeOld == 0 ? NULL : find(*psizeOld);
 
    plex_heap_alloc * pallocNew = find(nAllocSize);
 
@@ -764,7 +764,6 @@ void * plex_heap_alloc_array::realloc(void * p, size_t size, int align)
 
    size_t * psizeNew = NULL;
 
-
    if (pallocOld == NULL && pallocNew == NULL)
    {
 
@@ -800,7 +799,10 @@ void * plex_heap_alloc_array::realloc(void * p, size_t size, int align)
       if (align > 0)
       {
 
-         memcpy((void *)(((int_ptr)psizeNew + align - 1) & ~(align - 1)), (void *)(((int_ptr)psizeOld + align - 1) & ~(align - 1)), min(*psizeOld, size + sizeof(size_t)) & ~(align - 1));
+         memcpy(
+                (void *)(((int_ptr)psizeNew + align - 1) & ~(align - 1)),
+                (void *)(((int_ptr)psizeOld + align - 1) & ~(align - 1)),
+                min(*psizeOld - (((int_ptr) psizeOld % ~(align - 1))) , size + sizeof(size_t) - (((int_ptr) psizeNew % ~(align - 1)))));
 
       }
       else
