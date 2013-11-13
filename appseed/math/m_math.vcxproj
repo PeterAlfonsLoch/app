@@ -27,10 +27,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0EEC2ECE-CAAF-446A-B805-7E538FF11996}</ProjectGuid>
+    <ProjectGuid>{5FD926E7-E8B9-4451-BAAC-81EFA94D1985}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>draw2d_direct2d</ProjectName>
-    <RootNamespace>draw2d_direct2d</RootNamespace>
+    <ProjectName>boot</ProjectName>
+    <RootNamespace>m_ca</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
@@ -134,7 +134,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_DRAW2D_DIRECT2D_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_BOOT_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -146,20 +146,22 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalDependencies>d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DWrite.lib;Msxml6.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <EntryPointSymbol>
-      </EntryPointSymbol>
-      <NoEntryPoint>false</NoEntryPoint>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_METROWIN_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__C__DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -171,10 +173,18 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalDependencies>d2d1.lib;d3d11.lib;dxgi.lib;kernel32.lib;dwrite.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DWrite.lib;Msxml6.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcp110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcr110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\m_freetype.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)"
+</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
     <ClCompile>
@@ -243,44 +253,178 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="draw2d_direct2d.h" />
-    <ClInclude Include="draw2d_direct2d_bitmap.h" />
-    <ClInclude Include="draw2d_direct2d_brush.h" />
-    <ClInclude Include="draw2d_direct2d_dib.h" />
-    <ClInclude Include="draw2d_direct2d_directx.h" />
-    <ClInclude Include="draw2d_direct2d_factory_exchange.h" />
-    <ClInclude Include="draw2d_direct2d_font.h" />
-    <ClInclude Include="draw2d_direct2d_graphics.h" />
-    <ClInclude Include="draw2d_direct2d_object.h" />
-    <ClInclude Include="draw2d_direct2d_path.h" />
-    <ClInclude Include="draw2d_direct2d_palette.h" />
-    <ClInclude Include="draw2d_direct2d_pen.h" />
-    <ClInclude Include="draw2d_direct2d_printer.h" />
-    <ClInclude Include="draw2d_direct2d_region.h" />
+    <ClInclude Include="boot\boot.h" />
+    <ClInclude Include="boot\boot_2.h" />
+    <ClInclude Include="boot\boot_async.h" />
+    <ClInclude Include="boot\boot_cpu_architecture.h" />
+    <ClInclude Include="boot\boot_debug.h" />
+    <ClInclude Include="boot\boot_file_watcher.h" />
+    <ClInclude Include="boot\boot_file_watcher_impl.h" />
+    <ClInclude Include="boot\boot_file_watcher_listener_thread.h" />
+    <ClInclude Include="boot\boot_file_watcher_thread.h" />
+    <ClInclude Include="boot\boot_geometric_types.h" />
+    <ClInclude Include="boot\boot_international.h" />
+    <ClInclude Include="boot\boot_keep_true.h" />
+    <ClInclude Include="boot\boot_launcher.h" />
+    <ClInclude Include="boot\boot_libc.h" />
+    <ClInclude Include="boot\boot_library.h" />
+    <ClInclude Include="boot\boot_logic.h" />
+    <ClInclude Include="boot\boot_math.h" />
+    <ClInclude Include="boot\boot_message_loop.h" />
+    <ClInclude Include="boot\boot_number.h" />
+    <ClInclude Include="boot\boot_os.h" />
+    <ClInclude Include="boot\boot_printf.h" />
+    <ClInclude Include="boot\boot_simple_app.h" />
+    <ClInclude Include="boot\boot_simple_pixel_font.h" />
+    <ClInclude Include="boot\boot_simple_shell_launcher.h" />
+    <ClInclude Include="boot\boot_small_ipca_channel.h" />
+    <ClInclude Include="boot\boot_sprintf.h" />
+    <ClInclude Include="boot\boot_url.h" />
+    <ClInclude Include="boot\boot_window_graphics.h" />
+    <ClInclude Include="bsdiff\bsdiff.h" />
+    <ClInclude Include="bsdiff\bsdiff_private.h" />
+    <ClInclude Include="bsdiff\bzlib.h" />
+    <ClInclude Include="bsdiff\bzlib_private.h" />
+    <ClInclude Include="crypt\crypt.h" />
+    <ClInclude Include="crypt\nessie.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="hotplugin\hotplugin.h" />
+    <ClInclude Include="hotplugin\hotplugin_host.h" />
+    <ClInclude Include="hotplugin\hotplugin_plugin.h" />
+    <ClInclude Include="metrowin\ca_os.h" />
+    <ClInclude Include="metrowin\ca_os_file_watcher.h" />
+    <ClInclude Include="metrowin\ca_os_gdi.h" />
+    <ClInclude Include="metrowin\ca_os_internal.h" />
+    <ClInclude Include="metrowin\ca_os_process.h" />
+    <ClInclude Include="metrowin\ca_os_simple_bitmap.h" />
+    <ClInclude Include="metrowin\ca_os_simple_brush.h" />
+    <ClInclude Include="metrowin\ca_os_simple_font.h" />
+    <ClInclude Include="metrowin\ca_os_simple_graphics.h" />
+    <ClInclude Include="metrowin\ca_os_simple_hold_handle.h" />
+    <ClInclude Include="metrowin\ca_os_simple_path.h" />
+    <ClInclude Include="metrowin\ca_os_simple_pen.h" />
+    <ClInclude Include="metrowin\ca_os_sockets.h" />
+    <ClInclude Include="simple_graphics\simple_graphics.h" />
+    <ClInclude Include="simple_graphics\simple_graphics_first_phase.h" />
+    <ClInclude Include="simple_graphics\simple_graphics_second_phase.h" />
+    <ClInclude Include="simple_graphics\simple_linear_gradient_brush.h" />
+    <ClInclude Include="simple_graphics\simple_path.h" />
+    <ClInclude Include="simple_graphics\simple_pixel_font.h" />
+    <ClInclude Include="simple_graphics\simple_solid_brush.h" />
+    <ClInclude Include="simple_graphics\simple_solid_pen.h" />
+    <ClInclude Include="simple_ui\simple_button.h" />
+    <ClInclude Include="simple_ui\simple_edit.h" />
+    <ClInclude Include="simple_ui\simple_edit_box.h" />
+    <ClInclude Include="simple_ui\simple_label.h" />
+    <ClInclude Include="simple_ui\simple_password.h" />
+    <ClInclude Include="simple_ui\simple_tap.h" />
+    <ClInclude Include="simple_ui\simple_ui.h" />
+    <ClInclude Include="spa\resource.h" />
+    <ClInclude Include="spa\spa.h" />
+    <ClInclude Include="spa\spa_boot.h" />
+    <ClInclude Include="spa\spa_ca2_install_canvas.h" />
+    <ClInclude Include="spa\spa_command_start.h" />
+    <ClInclude Include="spa\spa_cube_run.h" />
+    <ClInclude Include="spa\spa_focus.h" />
+    <ClInclude Include="spa\spa_http.h" />
+    <ClInclude Include="spa\spa_installer.h" />
+    <ClInclude Include="spa\spa_install_ca2.h" />
+    <ClInclude Include="spa\spa_machine_event.h" />
+    <ClInclude Include="spa\spa_machine_event_data.h" />
+    <ClInclude Include="spa\spa_plugin.h" />
+    <ClInclude Include="spa\spa_small_bell.h" />
+    <ClInclude Include="spa\spa_spa.h" />
+    <ClInclude Include="spa\spa_starter_start.h" />
+    <ClInclude Include="version.config.h" />
+    <ClInclude Include="version.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="draw2d_direct2d.cpp" />
-    <ClCompile Include="draw2d_direct2d_bitmap.cpp" />
-    <ClCompile Include="draw2d_direct2d_brush.cpp" />
-    <ClCompile Include="draw2d_direct2d_dib.cpp" />
-    <ClCompile Include="draw2d_direct2d_factory_exchange.cpp" />
-    <ClCompile Include="draw2d_direct2d_font.cpp" />
-    <ClCompile Include="draw2d_direct2d_graphics.cpp" />
-    <ClCompile Include="draw2d_direct2d_object.cpp" />
-    <ClCompile Include="draw2d_direct2d_path.cpp" />
-    <ClCompile Include="draw2d_direct2d_palette.cpp" />
-    <ClCompile Include="draw2d_direct2d_pen.cpp" />
-    <ClCompile Include="draw2d_direct2d_preview_dc.cpp" />
-    <ClCompile Include="draw2d_direct2d_printer.cpp" />
-    <ClCompile Include="draw2d_direct2d_region.cpp" />
+    <ClCompile Include="boot\boot_argcargv.cpp" />
+    <ClCompile Include="boot\boot_cpu_architecture.cpp" />
+    <ClCompile Include="boot\boot_debug.cpp" />
+    <ClCompile Include="boot\boot_file_watcher.cpp" />
+    <ClCompile Include="boot\boot_file_watcher_impl.cpp" />
+    <ClCompile Include="boot\boot_file_watcher_listener_thread.cpp" />
+    <ClCompile Include="boot\boot_file_watcher_thread.cpp" />
+    <ClCompile Include="boot\boot_geometric_types.cpp" />
+    <ClCompile Include="boot\boot_international.cpp" />
+    <ClCompile Include="boot\boot_math.cpp" />
+    <ClCompile Include="boot\boot_mktime.cpp" />
+    <ClCompile Include="boot\boot_printf.cpp" />
+    <ClCompile Include="boot\boot_simple_shell_launcher.cpp" />
+    <ClCompile Include="boot\boot_sprintf.cpp" />
+    <ClCompile Include="boot\boot_std_file.cpp" />
+    <ClCompile Include="boot\boot_url.cpp" />
+    <ClCompile Include="boot\boot_window_graphics.cpp" />
+    <ClCompile Include="bsdiff\blocksort.cpp" />
+    <ClCompile Include="bsdiff\bsdiff.cpp" />
+    <ClCompile Include="bsdiff\bspatch.cpp" />
+    <ClCompile Include="bsdiff\bzlib.cpp" />
+    <ClCompile Include="bsdiff\compress.cpp" />
+    <ClCompile Include="bsdiff\crctable.cpp" />
+    <ClCompile Include="bsdiff\decompress.cpp" />
+    <ClCompile Include="bsdiff\huffman.cpp" />
+    <ClCompile Include="bsdiff\randtable.cpp" />
+    <ClCompile Include="crypt\crypt.cpp" />
+    <ClCompile Include="crypt\nessie.cpp" />
+    <ClCompile Include="crypt\whirpool.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="hotplugin\hotplugin_container_launcher.cpp" />
+    <ClCompile Include="hotplugin\hotplugin_host.cpp" />
+    <ClCompile Include="hotplugin\hotplugin_plugin.cpp" />
+    <ClCompile Include="metrowin\ca_os_ca_dll.cpp" />
+    <ClCompile Include="metrowin\ca_os_file_watcher.cpp" />
+    <ClCompile Include="metrowin\ca_os_launcher.cpp" />
+    <ClCompile Include="metrowin\ca_os_library.cpp" />
+    <ClCompile Include="metrowin\ca_os_lock.cpp" />
+    <ClCompile Include="metrowin\ca_os_message_loop.cpp" />
+    <ClCompile Include="metrowin\ca_os_process.cpp" />
+    <ClCompile Include="metrowin\ca_os_simple_app.cpp" />
+    <ClCompile Include="metrowin\ca_os_simple_bitmap.cpp" />
+    <ClCompile Include="metrowin\ca_os_simple_brush.cpp" />
+    <ClCompile Include="metrowin\ca_os_simple_font.cpp" />
+    <ClCompile Include="metrowin\ca_os_simple_graphics.cpp" />
+    <ClCompile Include="metrowin\ca_os_simple_path.cpp" />
+    <ClCompile Include="metrowin\ca_os_simple_pen.cpp" />
+    <ClCompile Include="metrowin\ca_os_simple_shell_launcher.cpp" />
+    <ClCompile Include="metrowin\ca_os_small_ipca_channel.cpp" />
+    <ClCompile Include="metrowin\ca_os_sockets.cpp" />
+    <ClCompile Include="metrowin\crypt\c_os_crypt.cpp" />
+    <ClCompile Include="simple_graphics\simple_graphics.cpp" />
+    <ClCompile Include="simple_graphics\simple_path.cpp" />
+    <ClCompile Include="simple_ui\simple_edit_box.cpp" />
+    <ClCompile Include="simple_ui\simple_label.cpp" />
+    <ClCompile Include="simple_ui\simple_password.cpp" />
+    <ClCompile Include="simple_ui\simple_tap.cpp" />
+    <ClCompile Include="simple_ui\simple_ui.cpp" />
+    <ClCompile Include="spa\spa.cpp" />
+    <ClCompile Include="spa\spa_boot.cpp" />
+    <ClCompile Include="spa\spa_bz.cpp" />
+    <ClCompile Include="spa\spa_canvas.cpp" />
+    <ClCompile Include="spa\spa_cube_run.cpp" />
+    <ClCompile Include="spa\spa_focus.cpp" />
+    <ClCompile Include="spa\spa_http.cpp" />
+    <ClCompile Include="spa\spa_installer.cpp" />
+    <ClCompile Include="spa\spa_installer_square.cpp" />
+    <ClCompile Include="spa\spa_install_ca2.cpp" />
+    <ClCompile Include="spa\spa_login.cpp" />
+    <ClCompile Include="spa\spa_machine_event.cpp" />
+    <ClCompile Include="spa\spa_machine_event_data.cpp" />
+    <ClCompile Include="spa\spa_main.cpp" />
+    <ClCompile Include="spa\spa_plugin.cpp" />
+    <ClCompile Include="spa\spa_small_bell.cpp" />
+    <ClCompile Include="spa\spa_spa.cpp" />
+    <ClCompile Include="spa\spa_starter_start.cpp" />
+    <ClCompile Include="spa\spa_window.cpp" />
+    <ClCompile Include="spa\windows\spa_windows_boot.cpp" />
+    <ClCompile Include="spa\windows\spa_windows_service.cpp" />
+    <ClCompile Include="spa\windows\spa_windows_win.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="draw2d_direct2d.def" />
+    <None Include="c.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\thirdparty\appseed\FreeImage\m_FreeImage.vcxproj">
@@ -291,6 +435,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\thirdparty\appseed\zlib\_m_ca2zlib.vcxproj">
       <Project>{84fbad70-591c-44fa-93c4-ee232b3a1995}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\base\m_base.vcxproj">
+      <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
