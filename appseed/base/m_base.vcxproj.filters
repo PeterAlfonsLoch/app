@@ -132,19 +132,10 @@
     <ClCompile Include="base\base.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
-    <ClCompile Include="base\base_allocate_base.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_allocate_base_heap.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
     <ClCompile Include="base\base_allocate_mid_big.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
     <ClCompile Include="base\base_allocate_system_heap.cpp">
-      <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base_allocate_var.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
     <ClCompile Include="base\base_application.cpp">
@@ -364,9 +355,6 @@
       <Filter>Source Files\file</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_void_implementation.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_VMSException.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_user.cpp">
@@ -1116,9 +1104,6 @@
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\exception_user.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception_vms.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\exception_void_implementation.h">
@@ -1892,6 +1877,9 @@
     <ClInclude Include="version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="base\base_new.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -1904,6 +1892,24 @@
       <Filter>Header Files\str</Filter>
     </None>
     <None Include="base\base.inl">
+      <Filter>Header Files\base</Filter>
+    </None>
+    <None Include="base\base_system_factory.inl">
+      <Filter>Header Files\base</Filter>
+    </None>
+    <None Include="base\base_system_id.inl">
+      <Filter>Header Files\base</Filter>
+    </None>
+    <None Include="base\base_system_object.inl">
+      <Filter>Header Files\base</Filter>
+    </None>
+    <None Include="base\base_system_primitive_var.inl">
+      <Filter>Header Files\base</Filter>
+    </None>
+    <None Include="base\base_system_smart_pointer.inl">
+      <Filter>Header Files\base</Filter>
+    </None>
+    <None Include="base\base_system_xml.inl">
       <Filter>Header Files\base</Filter>
     </None>
   </ItemGroup>

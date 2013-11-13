@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_ca2 sockets :
+   class CLASS_DECL_CORE sockets :
       virtual public base_departament
    {
    public:

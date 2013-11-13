@@ -497,7 +497,17 @@ bool application::initialize1()
 
    stringa stra;
 
-   stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
+   try
+   {
+
+      stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
+
+   }
+   catch (long l)
+   {
+
+
+   }
 
    strLocale = stra[0];
 

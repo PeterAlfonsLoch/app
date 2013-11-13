@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       /** socket container class, event generator.
       \ingroup basic */
-      class CLASS_DECL_ca2 socket_handler :
+      class CLASS_DECL_CORE socket_handler :
          public base_socket_handler
       {
       public:
@@ -202,7 +202,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool m_b_enable_pool; ///< Connection pool enabled if true
          int m_next_trigger_id; ///< Unique trigger id counter
          socket_map m_trigger_src; ///< mapping trigger id to source socket
-         int_socket_bool m_trigger_dst; ///< mapping trigger id to destination sockets
+         socket_socket_bool m_trigger_dst; ///< mapping trigger id to destination sockets
          bool m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
       };
 

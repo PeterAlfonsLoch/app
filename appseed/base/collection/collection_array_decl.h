@@ -33,6 +33,40 @@ namespace constructor
    };
 
 
+   template < class TYPE >
+   class zero
+   {
+   public:
+
+      inline static void construct(void * pvoid)
+      {
+
+         ::zero(pvoid, sizeof(TYPE));
+
+      }
+
+      inline static void construct(void * pvoid, ::count c)
+      {
+
+         TYPE * p = (TYPE *)pvoid;
+
+         while (c > 0)
+         {
+
+            ::zero(p, sizeof(TYPE));
+
+            p++;
+
+            c--;
+
+         }
+
+      }
+
+
+
+   };
+
    class nodef
    {
    public:
@@ -415,9 +449,6 @@ public:
    inline TYPE* get_data();
 
    // Potentially growing the array
-   //void set_at_grow(index nIndex, ARG_TYPE newElement);
-   //TYPE & element_at_grow(index nIndex);
-   //TYPE get_at_grow(index nIndex);
    index add(ARG_TYPE newElement);
    index add(const array& src);
    index append(const array& src);

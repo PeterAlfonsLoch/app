@@ -4,7 +4,7 @@
 
 #ifdef WINDOWSEX
 
-CLASS_DECL_ca int call_async(
+CLASS_DECL_BOOT int call_async(
    const char * pszPath, 
    const char * pszParam, 
    const char * pszDir,
@@ -30,7 +30,7 @@ CLASS_DECL_ca int call_async(
 #endif
 
 #ifdef WINDOWSEX
-CLASS_DECL_ca DWORD call_sync(
+CLASS_DECL_BOOT DWORD call_sync(
    const char * pszPath, 
    const char * pszParam, 
    const char * pszDir,

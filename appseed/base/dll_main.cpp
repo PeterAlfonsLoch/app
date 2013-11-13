@@ -1,4 +1,4 @@
-#include <windows.h>
+#include "framework.h"
 
 #ifdef METROWIN
 [Platform::MTAThread]

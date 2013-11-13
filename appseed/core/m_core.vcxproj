@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="basis|ARM">
       <Configuration>basis</Configuration>
@@ -27,45 +27,46 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
     <ProjectGuid>{420D7AEB-CFCA-45DE-BB6E-95055DF21987}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>core</ProjectName>
     <RootNamespace>m_ca2</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationTypeRevision>8.1</ApplicationTypeRevision>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
@@ -133,7 +134,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_CA2_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CORE_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -889,6 +890,8 @@
     <ClInclude Include="core\crypto\crypto_types.h" />
     <ClInclude Include="core\crypto\crypto_ut_sim.h" />
     <ClInclude Include="core\crypto\crypto_xfm.h" />
+    <ClInclude Include="core\data\data_item.h" />
+    <ClInclude Include="core\data\data_simple_item.h" />
     <ClInclude Include="core\data\data_simple_tree_data.h" />
     <ClInclude Include="core\data\data_simple_tree_item_data.h" />
     <ClInclude Include="core\data\data_tree.h" />
@@ -986,29 +989,20 @@
     <ClInclude Include="filesystem\filehandler\filehandler_handler.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_library.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_menu_library.h" />
-    <ClInclude Include="filesystem\filehandler\filehandler_tree_data.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_tree_interface.h" />
-    <ClInclude Include="filesystem\filehandler\filehandler_tree_item_data.h" />
-    <ClInclude Include="filesystem\filemanager\ContextMenu.h" />
     <ClInclude Include="filesystem\filemanager\filemanager.h" />
-    <ClInclude Include="filesystem\filemanager\FileManagerCallbackInterface.h" />
-    <ClInclude Include="filesystem\filemanager\FileManagerChildFrame.h" />
-    <ClInclude Include="filesystem\filemanager\FileManagerFileListCallback.h" />
-    <ClInclude Include="filesystem\filemanager\FileManagerFrame.h" />
-    <ClInclude Include="filesystem\filemanager\FileManagerInterface.h" />
-    <ClInclude Include="filesystem\filemanager\FileManagerLeftView.h" />
-    <ClInclude Include="filesystem\filemanager\FileManagerMainFrame.h" />
-    <ClInclude Include="filesystem\filemanager\FileManagerPathView.h" />
-    <ClInclude Include="filesystem\filemanager\FileManagerSaveAsNameView.h" />
-    <ClInclude Include="filesystem\filemanager\FileManagerTabView.h" />
-    <ClInclude Include="filesystem\filemanager\FileManagerTemplate.h" />
-    <ClInclude Include="filesystem\filemanager\FileManagerView.h" />
-    <ClInclude Include="filesystem\filemanager\FileManagerViewInterface.h" />
-    <ClInclude Include="filesystem\filemanager\FileManagerViewUpdateHint.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_callback.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_child_frame.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_const.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_context_menu.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_data.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_data_interface.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_document.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_filemanager.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_file_list.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_file_list_callback.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_file_properties_form.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_folder_list.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_folder_list_data.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_folder_list_view.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_folder_selection_list_view.h" />
@@ -1016,30 +1010,31 @@
     <ClInclude Include="filesystem\filemanager\filemanager_form_document.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_form_update_hint.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_form_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_frame.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_list_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_tree_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_tree.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_view.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_icon.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_iconoverlayer.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_item_action.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_left_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_main_frame.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_manager.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_operation_child_frame.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_operation_document.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_operation_info_view.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_operation_list_view.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_operation_thread.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_operation_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_path_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_preview.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_save_as_name_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_schema.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_tab_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_tree.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_update_hint.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_view.h" />
     <ClInclude Include="filesystem\filemanager\file_operation.h" />
-    <ClInclude Include="filesystem\filemanager\folder_list_view.h" />
-    <ClInclude Include="filesystem\filemanager\folder_selection_list_view.h" />
-    <ClInclude Include="filesystem\filemanager\SimpleFileListInterface.h" />
-    <ClInclude Include="filesystem\filemanager\SimpleFileListView.h" />
-    <ClInclude Include="filesystem\filemanager\SimpleFilePropertiesForm.h" />
-    <ClInclude Include="filesystem\filemanager\SimpleFolderListInterface.h" />
-    <ClInclude Include="filesystem\filemanager\SimpleFolderListView.h" />
-    <ClInclude Include="filesystem\filemanager\SimpleFolderTreeInterface.h" />
-    <ClInclude Include="filesystem\filemanager\SimpleFolderTreeView.h" />
-    <ClInclude Include="filesystem\filemanager\SimplePreview.h" />
-    <ClInclude Include="filesystem\filemanager\SimplePreviewInterface.h" />
     <ClInclude Include="filesystem\file\file_application.h" />
     <ClInclude Include="filesystem\file\file_bitl_decoder.h" />
     <ClInclude Include="filesystem\file\file_bitl_encoder.h" />
@@ -1084,18 +1079,27 @@
     <ClInclude Include="filesystem\fs\fs_set.h" />
     <ClInclude Include="filesystem\userfs\userfs.h" />
     <ClInclude Include="filesystem\userfs\userfs_document.h" />
+    <ClInclude Include="filesystem\userfs\userfs_item.h" />
     <ClInclude Include="filesystem\userfs\userfs_list.h" />
     <ClInclude Include="filesystem\userfs\userfs_list_data.h" />
-    <ClInclude Include="filesystem\userfs\userfs_list_interface.h" />
     <ClInclude Include="filesystem\userfs\userfs_list_item.h" />
     <ClInclude Include="filesystem\userfs\userfs_list_item_array.h" />
     <ClInclude Include="filesystem\userfs\userfs_main_view.h" />
     <ClInclude Include="filesystem\userfs\userfs_tree.h" />
-    <ClInclude Include="filesystem\userfs\userfs_tree_data.h" />
-    <ClInclude Include="filesystem\userfs\userfs_tree_interface.h" />
-    <ClInclude Include="filesystem\userfs\userfs_tree_item_data.h" />
     <ClInclude Include="filesystem\userfs\userfs_userfs.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="graphics\backview\backview.h" />
+    <ClInclude Include="graphics\backview\backview_enum.h" />
+    <ClInclude Include="graphics\backview\backview_graphics.h" />
+    <ClInclude Include="graphics\backview\backview_helper.h" />
+    <ClInclude Include="graphics\backview\backview_image_change.h" />
+    <ClInclude Include="graphics\backview\backview_interface.h" />
+    <ClInclude Include="graphics\backview\backview_interface_data.h" />
+    <ClInclude Include="graphics\backview\backview_main.h" />
+    <ClInclude Include="graphics\backview\backview_thread.h" />
+    <ClInclude Include="graphics\backview\backview_transition_effect.h" />
+    <ClInclude Include="graphics\backview\backview_user_interaction.h" />
+    <ClInclude Include="graphics\backview\backview_visual_effect.h" />
     <ClInclude Include="graphics\draw2d\draw2d.h" />
     <ClInclude Include="graphics\draw2d\draw2d_bitmap.h" />
     <ClInclude Include="graphics\draw2d\draw2d_brush.h" />
@@ -1109,23 +1113,13 @@
     <ClInclude Include="graphics\draw2d\draw2d_pen.h" />
     <ClInclude Include="graphics\draw2d\draw2d_region.h" />
     <ClInclude Include="graphics\gcom\gcom.h" />
-    <ClInclude Include="graphics\gcom\gcom_BackView.h" />
-    <ClInclude Include="graphics\gcom\gcom_BackViewEnum.h" />
-    <ClInclude Include="graphics\gcom\gcom_BackViewGraphics.h" />
-    <ClInclude Include="graphics\gcom\gcom_BackViewHelper.h" />
-    <ClInclude Include="graphics\gcom\gcom_BackViewImageChange.h" />
-    <ClInclude Include="graphics\gcom\gcom_BackViewInterfaceData.h" />
-    <ClInclude Include="graphics\gcom\gcom_BackViewTransitionEffect.h" />
-    <ClInclude Include="graphics\gcom\gcom_BackViewVisualEffect.h" />
-    <ClInclude Include="graphics\gcom\gcom_backview_interface.h" />
-    <ClInclude Include="graphics\gcom\gcom_backview_thread.h" />
-    <ClInclude Include="graphics\gcom\gcom_backview_user_interaction.h" />
-    <ClInclude Include="graphics\gcom\gcom_Enum.h" />
-    <ClInclude Include="graphics\gcom\gcom_internal.h" />
-    <ClInclude Include="graphics\gcom\gcom_Rect.h" />
-    <ClInclude Include="graphics\gcom\gcom_Space.h" />
-    <ClInclude Include="graphics\gcom\gcom_SpaceUtil.h" />
-    <ClInclude Include="graphics\gcom\gcom_Util.h" />
+    <ClInclude Include="graphics\gcom\gcom_double3d_point.h" />
+    <ClInclude Include="graphics\gcom\gcom_enum.h" />
+    <ClInclude Include="graphics\gcom\gcom_pixel_explosion.h" />
+    <ClInclude Include="graphics\gcom\gcom_rect.h" />
+    <ClInclude Include="graphics\gcom\gcom_space.h" />
+    <ClInclude Include="graphics\gcom\gcom_space_util.h" />
+    <ClInclude Include="graphics\gcom\gcom_util.h" />
     <ClInclude Include="graphics\html\html.h" />
     <ClInclude Include="graphics\html\html2.h" />
     <ClInclude Include="graphics\html\html_attribute.h" />
@@ -1153,6 +1147,7 @@
     <ClInclude Include="graphics\html\html_lite\html_lite_html_tag.h" />
     <ClInclude Include="graphics\html\html_point.h" />
     <ClInclude Include="graphics\html\html_reader.h" />
+    <ClInclude Include="graphics\html\html_select.h" />
     <ClInclude Include="graphics\html\html_signal.h" />
     <ClInclude Include="graphics\html\html_size.h" />
     <ClInclude Include="graphics\html\html_style.h" />
@@ -1291,10 +1286,8 @@
     <ClInclude Include="net\usermail\usermail_account.h" />
     <ClInclude Include="net\usermail\usermail_db_pop3.h" />
     <ClInclude Include="net\usermail\usermail_frame.h" />
+    <ClInclude Include="net\usermail\usermail_item.h" />
     <ClInclude Include="net\usermail\usermail_list_interface.h" />
-    <ClInclude Include="net\usermail\usermail_tree_data.h" />
-    <ClInclude Include="net\usermail\usermail_tree_interface.h" />
-    <ClInclude Include="net\usermail\usermail_tree_item_data.h" />
     <ClInclude Include="net\usermail\usermail_usermail.h" />
     <ClInclude Include="net\usernet\usernet.h" />
     <ClInclude Include="net\usernet\usernet_network_configuration.h" />
@@ -1592,7 +1585,6 @@
     <ClInclude Include="user\user_keyboard_focus.h" />
     <ClInclude Include="user\user_keyboard_layout.h" />
     <ClInclude Include="user\user_keyboard_layout_cfg.h" />
-    <ClInclude Include="user\user_message_box.h" />
     <ClInclude Include="user\user_mouse_focus.h" />
     <ClInclude Include="user\user_multiple_document_template.h" />
     <ClInclude Include="user\user_network_configuration.h" />
@@ -1607,7 +1599,6 @@
     <ClInclude Include="user\user_view_creator.h" />
     <ClInclude Include="user\user_virtual_user_interface.h" />
     <ClInclude Include="user\user_wait_cursor.h" />
-    <ClInclude Include="user\user_wait_message_dialog.h" />
     <ClInclude Include="user\user_window.h" />
     <ClInclude Include="user\user_window_draw.h" />
     <ClInclude Include="user\user_window_id.h" />
@@ -1766,12 +1757,10 @@
     <ClCompile Include="core\crypto\crypto_rng_prng.cpp" />
     <ClCompile Include="core\crypto\crypto_rng_rand_source.cpp" />
     <ClCompile Include="core\crypto\crypto_sha1.cpp" />
-    <ClCompile Include="core\data\data_simple_tree_data.cpp" />
-    <ClCompile Include="core\data\data_simple_tree_item_data.cpp" />
+    <ClCompile Include="core\data\data_item.cpp" />
+    <ClCompile Include="core\data\data_simple_item.cpp" />
     <ClCompile Include="core\data\data_tree.cpp" />
-    <ClCompile Include="core\data\data_tree_data.cpp" />
     <ClCompile Include="core\data\data_tree_item.cpp" />
-    <ClCompile Include="core\data\data_tree_item_data.cpp" />
     <ClCompile Include="core\geoip\geoip.cpp" />
     <ClCompile Include="core\geoip\geoip_city.cpp" />
     <ClCompile Include="core\geoip\geoip_region_name.cpp" />
@@ -1852,29 +1841,21 @@
     <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp" />
     <ClCompile Include="database\sqlite\sqlite3.cpp" />
     <ClCompile Include="filesystem\filehandler\filehandler_handler.cpp" />
+    <ClCompile Include="filesystem\filehandler\filehandler_item.cpp" />
     <ClCompile Include="filesystem\filehandler\filehandler_library.cpp" />
     <ClCompile Include="filesystem\filehandler\filehandler_menu_library.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_tree_data.cpp" />
     <ClCompile Include="filesystem\filehandler\filehandler_tree_interface.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_tree_item_data.cpp" />
-    <ClCompile Include="filesystem\filemanager\FileManagerCallbackInterface.cpp" />
-    <ClCompile Include="filesystem\filemanager\FileManagerChildFrame.cpp" />
-    <ClCompile Include="filesystem\filemanager\FileManagerFileListCallback.cpp" />
-    <ClCompile Include="filesystem\filemanager\FileManagerFrame.cpp" />
-    <ClCompile Include="filesystem\filemanager\FileManagerInterface.cpp" />
-    <ClCompile Include="filesystem\filemanager\FileManagerLeftView.cpp" />
-    <ClCompile Include="filesystem\filemanager\FileManagerMainFrame.cpp" />
-    <ClCompile Include="filesystem\filemanager\FileManagerPathView.cpp" />
-    <ClCompile Include="filesystem\filemanager\FileManagerSaveAsNameView.cpp" />
-    <ClCompile Include="filesystem\filemanager\FileManagerTabView.cpp" />
-    <ClCompile Include="filesystem\filemanager\FileManagerTemplate.cpp" />
-    <ClCompile Include="filesystem\filemanager\FileManagerView.cpp" />
-    <ClCompile Include="filesystem\filemanager\FileManagerViewInterface.cpp" />
-    <ClCompile Include="filesystem\filemanager\FileManagerViewUpdateHint.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_callback.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_child_frame.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_ContextMenu.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_data.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_data_interface.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_document.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_filemanager.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_file_list.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_file_list_callback.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_file_properties_form.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_folder_list_data.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_folder_list_view.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_folder_selection_list_view.cpp" />
@@ -1882,28 +1863,31 @@
     <ClCompile Include="filesystem\filemanager\filemanager_form_document.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_form_update_hint.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_form_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_frame.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_list_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_view.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_icon.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_iconoverlayer.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_item_action.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_left_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_main_frame.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_manager.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_operation_child_frame.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_operation_document.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_operation_info_view.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_operation_list_view.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_operation_thread.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_operation_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_path_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_preview.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_save_as_name_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_schema.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_tab_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_tree.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_update_hint.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_view.cpp" />
     <ClCompile Include="filesystem\filemanager\file_operation.cpp" />
-    <ClCompile Include="filesystem\filemanager\SimpleFileListInterface.cpp" />
-    <ClCompile Include="filesystem\filemanager\SimpleFileListView.cpp" />
-    <ClCompile Include="filesystem\filemanager\SimpleFilePropertiesForm.cpp" />
-    <ClCompile Include="filesystem\filemanager\SimpleFolderListInterface.cpp" />
-    <ClCompile Include="filesystem\filemanager\SimpleFolderListView.cpp" />
-    <ClCompile Include="filesystem\filemanager\SimpleFolderTreeInterface.cpp" />
-    <ClCompile Include="filesystem\filemanager\SimpleFolderTreeView.cpp" />
-    <ClCompile Include="filesystem\filemanager\SimplePreview.cpp" />
-    <ClCompile Include="filesystem\filemanager\SimplePreviewInterface.cpp" />
     <ClCompile Include="filesystem\file\file_application.cpp" />
     <ClCompile Include="filesystem\file\file_buffered.cpp" />
     <ClCompile Include="filesystem\file\file_circular_buffer.cpp" />
@@ -1941,21 +1925,29 @@
     <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp" />
     <ClCompile Include="filesystem\fs\fs_set.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_document.cpp" />
+    <ClCompile Include="filesystem\userfs\userfs_item.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_list.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_list_data.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_list_interface.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_list_item.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_list_item_array.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_main_view.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_tree.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_tree_data.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_tree_interface.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_tree_item_data.cpp" />
     <ClCompile Include="filesystem\userfs\userfs_userfs.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="graphics\backview\backview_graphics.cpp" />
+    <ClCompile Include="graphics\backview\backview_helper.cpp" />
+    <ClCompile Include="graphics\backview\backview_image_change.cpp" />
+    <ClCompile Include="graphics\backview\backview_interface.cpp" />
+    <ClCompile Include="graphics\backview\backview_interface_data.cpp" />
+    <ClCompile Include="graphics\backview\backview_main.cpp" />
+    <ClCompile Include="graphics\backview\backview_thread.cpp" />
+    <ClCompile Include="graphics\backview\backview_transition_effect.cpp" />
+    <ClCompile Include="graphics\backview\backview_transition_effect_tool001.cpp" />
+    <ClCompile Include="graphics\backview\backview_user_interaction.cpp" />
+    <ClCompile Include="graphics\backview\backview_visual_effect.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_dib.cpp" />
@@ -1966,21 +1958,11 @@
     <ClCompile Include="graphics\draw2d\draw2d_path.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_pen.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_region.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_BackView.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_BackViewGraphics.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_BackViewHelper.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_BackViewImageChange.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_BackViewInterfaceData.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_BackViewTransitionEffect.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_BackViewTransitionEffectTool001.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_BackViewVisualEffect.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_backview_interface.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_backview_thread.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_backview_user_interaction.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_Rect.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_Space.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_SpaceUtil.cpp" />
-    <ClCompile Include="graphics\gcom\gcom_Util.cpp" />
+    <ClCompile Include="graphics\gcom\gcom_pixel_explosion.cpp" />
+    <ClCompile Include="graphics\gcom\gcom_rect.cpp" />
+    <ClCompile Include="graphics\gcom\gcom_space.cpp" />
+    <ClCompile Include="graphics\gcom\gcom_space_util.cpp" />
+    <ClCompile Include="graphics\gcom\gcom_util.cpp" />
     <ClCompile Include="graphics\html\html_attribute.cpp" />
     <ClCompile Include="graphics\html\html_base.cpp" />
     <ClCompile Include="graphics\html\html_cell.cpp" />
@@ -1999,6 +1981,7 @@
     <ClCompile Include="graphics\html\html_lite\html_lite_html_reader.cpp" />
     <ClCompile Include="graphics\html\html_lite\html_lite_html_tag.cpp" />
     <ClCompile Include="graphics\html\html_reader.cpp" />
+    <ClCompile Include="graphics\html\html_select.cpp" />
     <ClCompile Include="graphics\html\html_signal.cpp" />
     <ClCompile Include="graphics\html\html_style.cpp" />
     <ClCompile Include="graphics\html\html_style_sheet.cpp" />
@@ -2117,10 +2100,8 @@
     <ClCompile Include="net\sockets\winrt\webserver\sockets_http_base_socket.cpp" />
     <ClCompile Include="net\usermail\usermail_account.cpp" />
     <ClCompile Include="net\usermail\usermail_db_pop3.cpp" />
+    <ClCompile Include="net\usermail\usermail_item.cpp" />
     <ClCompile Include="net\usermail\usermail_list_interface.cpp" />
-    <ClCompile Include="net\usermail\usermail_tree_data.cpp" />
-    <ClCompile Include="net\usermail\usermail_tree_interface.cpp" />
-    <ClCompile Include="net\usermail\usermail_tree_item.cpp" />
     <ClCompile Include="net\usermail\usermail_usermail.cpp" />
     <ClCompile Include="net\usernet\usernet_network_configuration.cpp" />
     <ClCompile Include="plane\plane_application.cpp" />
@@ -2354,7 +2335,6 @@
     <ClCompile Include="user\user_keyboard_focus.cpp" />
     <ClCompile Include="user\user_keyboard_layout.cpp" />
     <ClCompile Include="user\user_keyboard_layout_cfg.cpp" />
-    <ClCompile Include="user\user_message_box.cpp" />
     <ClCompile Include="user\user_mouse_focus.cpp" />
     <ClCompile Include="user\user_multiple_document_template.cpp" />
     <ClCompile Include="user\user_network_configuration.cpp" />
@@ -2371,7 +2351,6 @@
     <ClCompile Include="user\user_view_update_hint.cpp" />
     <ClCompile Include="user\user_virtual_user_interface.cpp" />
     <ClCompile Include="user\user_wait_cursor.cpp" />
-    <ClCompile Include="user\user_wait_message_dialog.cpp" />
     <ClCompile Include="user\user_window.cpp" />
     <ClCompile Include="user\user_window_draw.cpp" />
     <ClCompile Include="user\user_window_interface.cpp" />

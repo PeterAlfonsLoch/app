@@ -43,7 +43,7 @@ inline void * __cdecl operator new(size_t nSize) new_throw_spec
 }
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(METROWIN)
 
 
 inline void * __cdecl operator new(size_t nSize, void * p)

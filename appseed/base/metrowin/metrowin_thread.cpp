@@ -20,8 +20,12 @@ using namespace Platform;
 using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
 
-
-
+BEGIN_EXTERN_C
+mutex * g_pmutexPendingThreadsLock = NULL;
+mutex * g_pmutexThreadIdHandleLock = NULL;
+mutex * g_pmutexThreadIdLock = NULL;
+mutex * g_pmutexTlsData = NULL;
+END_EXTERN_C
 
 map<HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo> & pendingThreads()
 {
@@ -31,9 +35,6 @@ map<HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo> & pendingThreads()
    return *pts;
 
 }
-mutex * g_pmutexPendingThreadsLock = NULL;
-
-mutex * g_pmutexThreadIdHandleLock = NULL;
 map < DWORD, DWORD, HTHREAD, HTHREAD > & thread_id_handle_map()
 {
 
@@ -44,7 +45,6 @@ map < DWORD, DWORD, HTHREAD, HTHREAD > & thread_id_handle_map()
 }
 
 
-mutex * g_pmutexThreadIdLock = NULL;
 map < HTHREAD,HTHREAD, DWORD, DWORD > & thread_id_map()
 {
 
@@ -65,7 +65,7 @@ DWORD DwThreadId()
 }
 
 // Thread local storage.
-typedef comparable_raw_array<void*> ThreadLocalData;
+typedef comparable_array < void *, void *, array < void *, void *, ::constructor::zero < void * > > > ThreadLocalData;
 
 
 
@@ -84,7 +84,6 @@ map < HTHREAD, HTHREAD, ThreadLocalData* ,  ThreadLocalData * > & all_thread_dat
 
 DWORD nextTlsIndex = 0;
 uint32_array freeTlsIndices;
-mutex * g_pmutexTlsData = NULL;
 
 
 // Converts a Win32 thread priority to WinRT format.
@@ -407,6 +406,7 @@ BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
 
 BOOL WINAPI TlsSetValue(HTHREAD hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
 {
+
    ThreadLocalData* threadData = all_thread_data()[hthread];
 
    if (!threadData)
@@ -1050,7 +1050,7 @@ BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT message, WPARAM wparam, LPAR
 }
 
 
-CLASS_DECL_c WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
+CLASS_DECL_BASE WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
 
    HTHREAD  h = oswindow->m_pui->m_pthread->get_os_handle();

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="basis|ARM">
       <Configuration>basis</Configuration>
@@ -27,45 +27,46 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
     <ProjectGuid>{5487686F-8A2F-401A-A38E-FDA8900E1984}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>base</ProjectName>
     <RootNamespace>m_c</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationTypeRevision>8.1</ApplicationTypeRevision>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
@@ -133,7 +134,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>__C__LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -274,6 +275,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClInclude Include="base\base_heap.h" />
     <ClInclude Include="base\base_lparam.h" />
     <ClInclude Include="base\base_muldiv64.h" />
+    <ClInclude Include="base\base_new.h" />
     <ClInclude Include="base\base_plex.h" />
     <ClInclude Include="base\base_plex_heap.h" />
     <ClInclude Include="base\base_plex_heap_impl.h" />
@@ -414,7 +416,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClInclude Include="exception\exception_trap.h" />
     <ClInclude Include="exception\exception_unhandled_report.h" />
     <ClInclude Include="exception\exception_user.h" />
-    <ClInclude Include="exception\exception_vms.h" />
     <ClInclude Include="exception\exception_void_implementation.h" />
     <ClInclude Include="file\file.h" />
     <ClInclude Include="file\file_binary_buffer.h" />
@@ -598,11 +599,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base.cpp" />
-    <ClCompile Include="base\base_allocate_base.cpp" />
-    <ClCompile Include="base\base_allocate_base_heap.cpp" />
     <ClCompile Include="base\base_allocate_mid_big.cpp" />
     <ClCompile Include="base\base_allocate_system_heap.cpp" />
-    <ClCompile Include="base\base_allocate_var.cpp" />
     <ClCompile Include="base\base_application.cpp" />
     <ClCompile Include="base\base_assert.cpp" />
     <ClCompile Include="base\base_c.c">
@@ -690,7 +688,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile Include="exception\exception_temporary.cpp" />
     <ClCompile Include="exception\exception_todo.cpp" />
     <ClCompile Include="exception\exception_user.cpp" />
-    <ClCompile Include="exception\exception_VMSException.cpp" />
     <ClCompile Include="exception\exception_void_implementation.cpp" />
     <ClCompile Include="file\file_binary_buffer.cpp" />
     <ClCompile Include="file\file_byte_input_stream.cpp" />
@@ -858,6 +855,12 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
   </ItemGroup>
   <ItemGroup>
     <None Include="base\base.inl" />
+    <None Include="base\base_system_factory.inl" />
+    <None Include="base\base_system_id.inl" />
+    <None Include="base\base_system_object.inl" />
+    <None Include="base\base_system_primitive_var.inl" />
+    <None Include="base\base_system_smart_pointer.inl" />
+    <None Include="base\base_system_xml.inl" />
     <None Include="collection\collection.inl" />
     <None Include="multithreading\multithreading.inl" />
     <None Include="str\str.inl" />

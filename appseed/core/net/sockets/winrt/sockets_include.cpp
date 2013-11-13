@@ -2,7 +2,7 @@
 
 
 // only to be included in win32 projects
-CLASS_DECL_ca2 const char *StrError(int x)
+CLASS_DECL_CORE const char *StrError(int x)
 {
 static   char tmp[100];
    switch (x)

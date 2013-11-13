@@ -478,25 +478,69 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
+      bool system::is_or_definitively_not(bool & bIs, const char * lpcszPath, sp(base_application) papp)
+      {
+
+         bIs = false;
+         
+         if (::str::begins_ci(lpcszPath, "http://") || ::str::begins_ci(lpcszPath, "https://"))
+         {
+            
+            bIs = App(papp).http().exists(lpcszPath);
+
+            return true;
+
+         }
+
+         if (papp->m_pplaneapp->m_bZipIsDir && (::str::ends_ci(lpcszPath, ".zip")))
+         {
+
+            bIs = true;
+
+            return true;
+         }
+
+         if (papp->m_pplaneapp->m_bZipIsDir && (::str::find_ci(".zip:", lpcszPath) >= 0))
+         {
+            
+            bool bHasSubFolder;
+            
+            uint32_t dwLastError;
+            
+            if (m_isdirmap.lookup(lpcszPath, bHasSubFolder, dwLastError))
+            {
+               
+               bIs = bHasSubFolder;
+
+               return true;
+
+            }
+
+            bHasSubFolder = m_pziputil->HasSubFolder(papp, lpcszPath);
+            
+            m_isdirmap.set(lpcszPath, bHasSubFolder, ::GetLastError());
+            
+            bIs = bHasSubFolder;
+
+            return true;
+
+         }
+
+         return false;
+
+      }
+
+
       bool system::is(const char * lpcszPath, sp(base_application) papp)
       {
-         if(::str::begins_ci(lpcszPath, "http://") || ::str::begins_ci(lpcszPath, "https://"))
-         {
-            return App(papp).http().exists(lpcszPath);
-         }
-         if(papp->m_pplaneapp->m_bZipIsDir && (::str::ends_ci(lpcszPath, ".zip")))
-            return true;
-         if(papp->m_pplaneapp->m_bZipIsDir && (::str::find_ci(".zip:", lpcszPath) >= 0))
-         {
-            bool bHasSubFolder;
-            uint32_t dwLastError;
-            if(m_isdirmap.lookup(lpcszPath, bHasSubFolder, dwLastError))
-               return bHasSubFolder;
-            bHasSubFolder = m_pziputil->HasSubFolder(papp, lpcszPath);
-            m_isdirmap.set(lpcszPath, bHasSubFolder, ::GetLastError());
-            return bHasSubFolder;
-         }
-         return false;
+         
+         bool bIs;
+
+         if (!is_or_definitively_not(bIs, lpcszPath, papp) || !bIs)
+            return false;
+
+         return true;
+
       }
 
       bool system::is(const string & strPath, sp(base_application) papp)

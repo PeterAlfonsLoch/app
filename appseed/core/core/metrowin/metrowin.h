@@ -2,7 +2,7 @@
 
 
 
-//CLASS_DECL_ca2 BOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam);
+//CLASS_DECL_CORE BOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam);
 
 //#define PostMessage PostMessageW
 

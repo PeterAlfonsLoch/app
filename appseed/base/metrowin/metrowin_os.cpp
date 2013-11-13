@@ -423,7 +423,7 @@ DWORD WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ DWORD dwMilliseconds
 
 BEGIN_EXTERN_C
 
-CLASS_DECL_c
+CLASS_DECL_BASE
 HANDLE
 WINAPI
 CreateMutex(
@@ -435,13 +435,13 @@ CreateMutex(
    return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
 }
 
-CLASS_DECL_c char* getenv (const char* name)
+CLASS_DECL_BASE char* getenv (const char* name)
 {
    return "";
 }
 END_EXTERN_C
 
-CLASS_DECL_c
+CLASS_DECL_BASE
 HANDLE
 WINAPI
 CreateMutexW(

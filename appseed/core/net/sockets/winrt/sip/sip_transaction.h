@@ -5,7 +5,7 @@ namespace sip
 {
 
 
-   class CLASS_DECL_ca2 transaction :
+   class CLASS_DECL_CORE transaction :
       virtual public ::object
    {
    public:

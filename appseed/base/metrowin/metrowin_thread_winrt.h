@@ -165,12 +165,12 @@ inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncActi
 }
 
 
-class CLASS_DECL_c message_array :
+class CLASS_DECL_BASE message_array :
    public raw_array < MESSAGE >
 {
 };
 
-class CLASS_DECL_c mq
+class CLASS_DECL_BASE mq
 {
 public:
 
@@ -184,7 +184,7 @@ public:
 
 };
 
-CLASS_DECL_c mq * get_mq(HTHREAD h);
+CLASS_DECL_BASE mq * get_mq(HTHREAD h);
 
 
 

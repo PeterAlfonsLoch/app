@@ -120,6 +120,8 @@ namespace file
          virtual bool  is(const string & str, sp(base_application) papp);
          virtual bool  is(const var & var, sp(base_application) papp);
 
+         virtual bool  is_or_definitively_not(bool & bIs, const char * lpcsz, sp(base_application) papp);
+
          virtual bool  name_is(const char * lpcsz, sp(base_application) papp);
          virtual bool  name_is(const string & str, sp(base_application) papp);
          virtual bool  name_is(const var & var, sp(base_application) papp);

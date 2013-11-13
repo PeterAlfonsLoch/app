@@ -624,7 +624,20 @@ void dir::ls(stringa & stra, const char *psz)
 
 #elif defined(METROWIN)
 
-   ::Windows::Storage::StorageFolder ^ folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
+   ::Windows::Storage::StorageFolder ^ folder = nullptr;
+
+   try
+   {
+
+      folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
+
+   }
+   catch (...)
+   {
+      
+      return;
+
+   }
 
    if(folder == nullptr)
       return;

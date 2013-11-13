@@ -176,7 +176,7 @@ inline void plex_heap_alloc::Free(void * p)
    else
    {
    
-      ::OutputDebugString("plex_heap_alloc::Free error");
+      ::OutputDebugString(L"plex_heap_alloc::Free error");
       
    }
       

@@ -3,7 +3,7 @@
 
 #ifdef WINDOWS
 
-class CLASS_DECL_ca simple_hold_handle
+class CLASS_DECL_BOOT simple_hold_handle
 {
 public:
 
