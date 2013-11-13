@@ -27,10 +27,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5FD926E7-E8B9-4451-BAAC-81EFA94D1985}</ProjectGuid>
+    <ProjectGuid>{106E3938-FA19-4D4D-83D5-A36692C93E86}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>boot</ProjectName>
-    <RootNamespace>m_ca</RootNamespace>
+    <ProjectName>math</ProjectName>
+    <RootNamespace>math</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
