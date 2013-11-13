@@ -25,99 +25,49 @@ void * system_heap_alloc(size_t size)
 
    synch_lock lock(g_pmutexSystemHeap);
 
-   size_t sizeAlloc = (size + 4 + sizeof(size_t) + 3) & ~3;
-
 //#if ZEROED_ALLOC
   // byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, HEAP_ZERO_MEMORY, ((size + 4 + 3) & ~3));
 //#else  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
 #ifdef WINDOWSEX
 
-   byte * p = (byte *) ::HeapAlloc(g_system_heap(), 0, sizeAlloc);
+   return ::HeapAlloc(g_system_heap(), 0, size);
 
 #else
 
-   byte * p = (byte *) ::malloc(sizeAlloc);
+   return ::malloc(size);
 
 #endif
 //#endif
 
-   if(p == NULL)
-      return NULL;
-
-   ((uint32_t *)p)[0] = 0;
-
-   *((size_t *)&((uint32_t *)p)[1]) = size;
-
-   int32_t iMod = ((uint_ptr)p) % 4;
-
-   p[3 - iMod] = (uint8_t) (4 - iMod);
-
-   return &p[4 + sizeof(size_t) - iMod];
-
 }
 
 
-void * system_heap_realloc(void * pvoidOld, size_t size)
+void * system_heap_realloc(void * p, size_t size)
 {
+
    synch_lock lock(g_pmutexSystemHeap);
-   byte * pOld = (byte *) pvoidOld;
-   int32_t iSize = sizeof(size_t);
-   int32_t iMod = pOld[- 1 - iSize];
-   if(iMod < 1 || iMod > 4)
-      return NULL;
-   size_t sizeOld = *((size_t *)&((uint32_t *) (pOld - iMod - sizeof(size_t)))[1]);
+
 #ifdef WINDOWSEX
-   byte * p = (byte *) ::HeapReAlloc(g_system_heap(), 0, pOld - iMod- sizeof(size_t), ((size + 4+  sizeof(size_t)  + 3) & ~3));
+
+   return ::HeapReAlloc(g_system_heap(), 0, p, size);
+
 #else
-   byte * p = (byte *) ::realloc(pOld - iMod- sizeof(size_t), ((size + 4 +  sizeof(size_t) + 3) & ~3));
+
+   return ::realloc(p, size);
+
 #endif
-   if(p == NULL)
-   {
-      byte * pNew = (byte *) system_heap_alloc(size);
-      if(pNew == NULL)
-      {
-         system_heap_free(pvoidOld);
-         return NULL;
-      }
-      memcpy(pNew, pvoidOld, min(size, sizeOld));
-//#if ZEROED_ALLOC
-  //    if(size > sizeOld)
-    //  {
-      //   memset(&pNew[sizeOld], 0, size - sizeOld);
-      //}
-//#endif  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
-      system_heap_free(pvoidOld);
-      return pNew;
-   }
-   if(size > sizeOld)
-   {
-      // memset(&p[sizeOld], 0, ((size + 4 + 3) & ~3) - sizeOld);  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
-   }
-   ((uint32_t *)p)[0] = 0;
-   iMod = ((uint_ptr)p) % 4;
-   *((size_t *)&((uint32_t *)p)[1]) = size;
-   p[3 - iMod] = (uint8_t) (4 - iMod);
-   return &p[4 + sizeof(size_t) - iMod];
+
 }
 
 
-void system_heap_free(void * pvoid)
+void system_heap_free(void * p)
 {
 
    synch_lock lock(g_pmutexSystemHeap);
 
-   byte * p = (byte *) pvoid;
-
-   int32_t iSize = sizeof(size_t);
-
-   int_ptr iMod = p[- 1 - iSize];
-
-   if(iMod < 1 || iMod > 4)
-      return;
-
 #ifdef WINDOWSEX
 
-   if(!::HeapFree(g_system_heap(), 0, p - iMod - sizeof(size_t)))
+   if(!::HeapFree(g_system_heap(), 0, p)
    {
 
       uint32_t dw = ::GetLastError();
@@ -131,7 +81,7 @@ void system_heap_free(void * pvoid)
    try
    {
 
-      ::free(p - iMod - sizeof(size_t));
+      ::free(p);
 
    }
    catch(...)

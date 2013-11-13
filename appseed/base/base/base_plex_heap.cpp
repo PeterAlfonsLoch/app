@@ -15,7 +15,7 @@ plex_heap * plex_heap::create(plex_heap*& pHead, uint_ptr nMax, uint_ptr cbEleme
       throw invalid_argument_exception(get_thread_app());
    }
 
-   plex_heap* p = (plex_heap*) system_heap_alloc(sizeof(plex) + nMax * cbElement);
+   plex_heap* p = (plex_heap*) system_heap_alloc(sizeof(plex_heap) + nMax * cbElement);
          // may throw exception
    p->pNext = pHead;
    pHead = p;  // change head (adds in reverse order for simplicity)
@@ -104,7 +104,7 @@ void plex_heap_alloc_sync::NewBlock()
 
    if (m_pnodeFree == NULL)
    {
-      size_t nAllocSize = m_nAllocSize + 32;
+      size_t nAllocSize = m_nAllocSize;
 
       // add another block
       plex_heap* pNewBlock = plex_heap::create(m_pBlocks, m_nBlockSize, nAllocSize);
@@ -112,8 +112,8 @@ void plex_heap_alloc_sync::NewBlock()
       // chain them into free list
       node* pNode = (node*)pNewBlock->data();
       // free in reverse order to make it easier to debug
-      (BYTE*&)pNode += (nAllocSize * m_nBlockSize) - nAllocSize;
-      for (int32_t i = m_nBlockSize-1; i >= 0; i--, (BYTE*&)pNode -= nAllocSize)
+      ((BYTE*&)pNode) += (nAllocSize * m_nBlockSize) - nAllocSize;
+      for (int32_t i = m_nBlockSize-1; i >= 0; i--, ((BYTE*&)pNode) -= nAllocSize)
       {
          pNode->pNext = m_pnodeFree;
          m_pnodeFree = pNode;
@@ -147,6 +147,8 @@ plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
    }
 
    m_iShareCount = iShareCount;
+   
+   m_iAllocSize = nAllocSize;
 
    m_i = 0;
 
@@ -455,7 +457,7 @@ void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const ch
 }
 
 
-void plex_heap_alloc_array::free_dbg(void * p)
+void plex_heap_alloc_array::free_dbg(void * p, size_t size)
 {
    
 #ifdef MEMDLEAK
@@ -540,7 +542,7 @@ void plex_heap_alloc_array::free_dbg(void * p)
 
 #else
    
-   return free(p);
+   return free(p, size);
    
 #endif
 #endif
@@ -548,7 +550,7 @@ void plex_heap_alloc_array::free_dbg(void * p)
 }
 
 
-void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, int align, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
+void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld, int align, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
    
 #ifdef MEMDLEAK
@@ -591,8 +593,6 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, int align, int
       
       psizeNew = (size_t *) &pblock[1];
       
-      psizeNew[0] = 0;
-
    }
    else if(pallocOld == pallocNew)
    {
@@ -600,8 +600,6 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, int align, int
       pblock = (memdleak_block *) pblock;
       
       psizeNew = (size_t *) &pblock[1];
-      
-      psizeNew[0] = nAllocSize;
       
    }
    else
@@ -641,21 +639,10 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, int align, int
 
       psizeNew = (size_t *) &pblock[1];
       
-      if(pallocNew != NULL)
-      {
-         
-         psizeNew[0] = nAllocSize;
-         
-      }
-      else
-      {
-
-         psizeNew[0] = 0;
-            
-      }
-      
    }
 
+   psizeNew[0] = nAllocSize;
+   
    pblock->m_iBlockUse     = nBlockUse;
    pblock->m_pszFileName   = strdup(pszFileName);
    pblock->m_iLine         = iLine;
@@ -686,7 +673,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, int align, int
    return ((byte *) &psize[1]) + 128;
 #else
    
-   return realloc(p, size, align);
+   return realloc(p, size, sizeOld, align);
    
 #endif
 #endif
@@ -753,31 +740,25 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, int align, int
 
 
 
-void * plex_heap_alloc_array::realloc(void * p, size_t size, int align)
+void * plex_heap_alloc_array::realloc(void * p, size_t size, size_t sizeOld, int align)
 {
 
-   size_t * psizeOld = &((size_t *)p)[-1];
+   plex_heap_alloc * pallocOld = find(sizeOld);
 
-   plex_heap_alloc * pallocOld = *psizeOld == 0 ? NULL : find(*psizeOld);
-
-   plex_heap_alloc * pallocNew = find(size + sizeof(size_t));
-
-   size_t * psizeNew = NULL;
+   plex_heap_alloc * pallocNew = find(size);
+   
+   void * pNew = NULL;
 
    if (pallocOld == NULL && pallocNew == NULL)
    {
 
-      psizeNew = (size_t *) ::system_heap_realloc(psizeOld, size + sizeof(size_t));
-
-      *psizeNew = 0;
+      pNew = (size_t *) ::system_heap_realloc(p, size);
 
    }
    else if (pallocOld == pallocNew)
    {
 
-      psizeNew = psizeOld;
-
-      *psizeNew = size + sizeof(size_t);
+      pNew = p;
 
    }
    else
@@ -786,60 +767,77 @@ void * plex_heap_alloc_array::realloc(void * p, size_t size, int align)
       if (pallocNew != NULL)
       {
 
-         psizeNew = (size_t *)pallocNew->Alloc();
+         pNew = (size_t *) pallocNew->Alloc();
 
       }
       else
       {
 
-         psizeNew = (size_t *) ::system_heap_alloc(size + sizeof(size_t));
+         pNew = (size_t *) ::system_heap_alloc(size);
 
       }
 
       if (align > 0)
       {
+      
+         int_ptr oldSize = (((int_ptr) p & ((int_ptr) align - 1)));
+         
+         if(oldSize > 0)
+         {
+         
+            oldSize = sizeOld - (align - oldSize);
+            
+         }
+         else
+         {
+         
+            oldSize = sizeOld;
+         
+         }
 
+         int_ptr newSize = (((int_ptr) pNew & ((int_ptr) align - 1)));
+         
+         if(newSize > 0)
+         {
+            
+            newSize = size - (align - newSize);
+            
+         }
+         else
+         {
+         
+            newSize = size;
+         
+         }
+         
          memcpy(
-                (void *)(((int_ptr)psizeNew + align - 1) & ~(align - 1)),
-                (void *)(((int_ptr)psizeOld + align - 1) & ~(align - 1)),
-                min(*psizeOld - (((int_ptr) psizeOld % ~(align - 1))) , size + sizeof(size_t) - (((int_ptr) psizeNew % ~(align - 1)))));
+                (void *)(((int_ptr)pNew + align - 1) & ~((int_ptr)align - 1)),
+                (void *)(((int_ptr)p + align - 1) & ~((int_ptr)align - 1)),
+                min(oldSize, newSize));
 
       }
       else
       {
 
-         memcpy(psizeNew, psizeOld, min(*psizeOld, size + sizeof(size_t)));
+         memcpy(pNew, p, min(sizeOld, size));
 
       }
 
       if (pallocOld != NULL)
       {
 
-         pallocOld->Free(psizeOld);
+         pallocOld->Free(p);
 
       }
       else
       {
 
-         ::system_heap_free(psizeOld);
-
-      }
-
-      if (pallocNew != NULL)
-      {
-
-         *psizeNew = size + sizeof(size_t);
-
-      }
-      else
-      {
-
-         *psizeNew = 0;
+         ::system_heap_free(p);
 
       }
 
    }
 
-   return &psizeNew[1];
+   return pNew;
 
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0713FB07183177EF00F4AEDC /* filemanager_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0713FB05183177EF00F4AEDC /* filemanager_data.cpp */; };
+		0713FB08183177EF00F4AEDC /* filemanager_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 0713FB06183177EF00F4AEDC /* filemanager_data.h */; };
 		072AE9BC1810372200F74E98 /* backview.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9971810372200F74E98 /* backview.h */; };
 		072AE9BD1810372200F74E98 /* backview_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 072AE9981810372200F74E98 /* backview_enum.h */; };
 		072AE9BE1810372200F74E98 /* backview_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072AE9991810372200F74E98 /* backview_graphics.cpp */; };
@@ -1161,8 +1163,6 @@
 		07AD9A81182FF968005C3335 /* filemanager_fs_simple_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A56182FF967005C3335 /* filemanager_fs_simple_tree.h */; };
 		07AD9A82182FF968005C3335 /* filemanager_left_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A57182FF967005C3335 /* filemanager_left_view.cpp */; };
 		07AD9A83182FF968005C3335 /* filemanager_left_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A58182FF967005C3335 /* filemanager_left_view.h */; };
-		07AD9A84182FF968005C3335 /* filemanager_list_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A59182FF967005C3335 /* filemanager_list_data.cpp */; };
-		07AD9A85182FF968005C3335 /* filemanager_list_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A5A182FF967005C3335 /* filemanager_list_data.h */; };
 		07AD9A86182FF968005C3335 /* filemanager_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A5B182FF967005C3335 /* filemanager_main_frame.cpp */; };
 		07AD9A87182FF968005C3335 /* filemanager_main_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AD9A5C182FF968005C3335 /* filemanager_main_frame.h */; };
 		07AD9A88182FF968005C3335 /* filemanager_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AD9A5D182FF968005C3335 /* filemanager_manager.cpp */; };
@@ -1744,6 +1744,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0713FB05183177EF00F4AEDC /* filemanager_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_data.cpp; sourceTree = "<group>"; };
+		0713FB06183177EF00F4AEDC /* filemanager_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_data.h; sourceTree = "<group>"; };
 		072AE9971810372200F74E98 /* backview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backview.h; sourceTree = "<group>"; };
 		072AE9981810372200F74E98 /* backview_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backview_enum.h; sourceTree = "<group>"; };
 		072AE9991810372200F74E98 /* backview_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = backview_graphics.cpp; sourceTree = "<group>"; };
@@ -2907,8 +2909,6 @@
 		07AD9A56182FF967005C3335 /* filemanager_fs_simple_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_fs_simple_tree.h; sourceTree = "<group>"; };
 		07AD9A57182FF967005C3335 /* filemanager_left_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_left_view.cpp; sourceTree = "<group>"; };
 		07AD9A58182FF967005C3335 /* filemanager_left_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_left_view.h; sourceTree = "<group>"; };
-		07AD9A59182FF967005C3335 /* filemanager_list_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_list_data.cpp; sourceTree = "<group>"; };
-		07AD9A5A182FF967005C3335 /* filemanager_list_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_list_data.h; sourceTree = "<group>"; };
 		07AD9A5B182FF967005C3335 /* filemanager_main_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_main_frame.cpp; sourceTree = "<group>"; };
 		07AD9A5C182FF968005C3335 /* filemanager_main_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_main_frame.h; sourceTree = "<group>"; };
 		07AD9A5D182FF968005C3335 /* filemanager_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_manager.cpp; sourceTree = "<group>"; };
@@ -3968,6 +3968,8 @@
 		07A6D335173C27E7009E6FB8 /* filemanager */ = {
 			isa = PBXGroup;
 			children = (
+				0713FB05183177EF00F4AEDC /* filemanager_data.cpp */,
+				0713FB06183177EF00F4AEDC /* filemanager_data.h */,
 				07AD9A44182FF967005C3335 /* filemanager_callback.cpp */,
 				07AD9A45182FF967005C3335 /* filemanager_callback.h */,
 				07AD9A46182FF967005C3335 /* filemanager_child_frame.cpp */,
@@ -3989,8 +3991,6 @@
 				07AD9A56182FF967005C3335 /* filemanager_fs_simple_tree.h */,
 				07AD9A57182FF967005C3335 /* filemanager_left_view.cpp */,
 				07AD9A58182FF967005C3335 /* filemanager_left_view.h */,
-				07AD9A59182FF967005C3335 /* filemanager_list_data.cpp */,
-				07AD9A5A182FF967005C3335 /* filemanager_list_data.h */,
 				07AD9A5B182FF967005C3335 /* filemanager_main_frame.cpp */,
 				07AD9A5C182FF968005C3335 /* filemanager_main_frame.h */,
 				07AD9A5D182FF968005C3335 /* filemanager_manager.cpp */,
@@ -6071,7 +6071,6 @@
 				07A6DC93173C27EB009E6FB8 /* database_client.h in Headers */,
 				07A6DC94173C27EB009E6FB8 /* database_database.h in Headers */,
 				07A6DC96173C27EB009E6FB8 /* database_definition.h in Headers */,
-				07AD9A85182FF968005C3335 /* filemanager_list_data.h in Headers */,
 				07A6DC99173C27EB009E6FB8 /* database_field_definition.h in Headers */,
 				072AE9BD1810372200F74E98 /* backview_enum.h in Headers */,
 				07A6DC9B173C27EB009E6FB8 /* database_id.h in Headers */,
@@ -6364,6 +6363,7 @@
 				07A6E02B173C27EC009E6FB8 /* colorertake5_features.h in Headers */,
 				07A6E02C173C27EC009E6FB8 /* colorertake5_file_input_source.h in Headers */,
 				07A6E02D173C27EC009E6FB8 /* colorertake5_file_type.h in Headers */,
+				0713FB08183177EF00F4AEDC /* filemanager_data.h in Headers */,
 				07A6E02E173C27EC009E6FB8 /* colorertake5_file_type_impl.h in Headers */,
 				07A6E02F173C27EC009E6FB8 /* colorertake5_file_writer.h in Headers */,
 				07A6E030173C27EC009E6FB8 /* colorertake5_hrc_parser.h in Headers */,
@@ -7293,6 +7293,7 @@
 				07A6E093173C27EC009E6FB8 /* simple_form_list_view.cpp in Sources */,
 				07A6E095173C27EC009E6FB8 /* simple_frame_window.cpp in Sources */,
 				07A6E098173C27EC009E6FB8 /* simple_list_ctrl.cpp in Sources */,
+				0713FB07183177EF00F4AEDC /* filemanager_data.cpp in Sources */,
 				07A6E09A173C27EC009E6FB8 /* simple_list_header_ctrl.cpp in Sources */,
 				07A6E09B173C27EC009E6FB8 /* simple_list_view.cpp in Sources */,
 				07A6E09D173C27EC009E6FB8 /* simple_main_frame.cpp in Sources */,
@@ -7461,7 +7462,6 @@
 				07A6E1C4173C27EC009E6FB8 /* userex_pane_tab_view.cpp in Sources */,
 				07A6E1C6173C27EC009E6FB8 /* userex_pane_view.cpp in Sources */,
 				07A6E1C8173C27EC009E6FB8 /* userex_property_page.cpp in Sources */,
-				07AD9A84182FF968005C3335 /* filemanager_list_data.cpp in Sources */,
 				07A6E1CA173C27EC009E6FB8 /* userex_property_sheet.cpp in Sources */,
 				07A6E1CC173C27EC009E6FB8 /* userex_second_list_view.cpp in Sources */,
 				07A6E1CE173C27EC009E6FB8 /* userex_split_view.cpp in Sources */,

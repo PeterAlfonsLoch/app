@@ -15,7 +15,7 @@ inline void * plex_heap_alloc_sync::Alloc()
       // remove the first available node from the free list
       void * pNode = m_pnodeFree;
       m_pnodeFree = m_pnodeFree->pNext;
-      pdata = &((byte *)pNode)[16];
+      pdata = pNode;
    }
    catch(...)
    {
@@ -29,11 +29,6 @@ inline void * plex_heap_alloc_sync::Alloc()
 
 inline void plex_heap_alloc_sync::Free(void * p)
 {
-
-   if(p == NULL)
-      return;
-
-   p = &((byte *)p)[-16];
 
    if(p == NULL)
       return;
@@ -113,12 +108,13 @@ public:
 
    int32_t                        m_i;
    int32_t                        m_iShareCount;
+   int32_t                        m_iAllocSize;
 
 
    plex_heap_alloc(UINT nAllocSize, UINT nBlockSize = 64);
    virtual ~plex_heap_alloc();
 
-   inline UINT GetAllocSize() { return element_at(0)->GetAllocSize(); }
+   inline UINT GetAllocSize() { return m_iAllocSize; }
 
    inline void * Alloc();               // return a chunk of primitive::memory of nAllocSize
    inline void Free(void * p);          // free chunk of primitive::memory returned from Alloc
@@ -150,23 +146,16 @@ inline void * plex_heap_alloc::Alloc()
    // perfectly sequential or perfectly distributed,
    // just fair well distributed
    // but very important is extremely fast
-   register int32_t i = m_i;
-   if(i >= m_iShareCount)
-   {
-      i = 0;
-      m_i = 1;
-   }
-   else
-   {
-      m_i++;
-   }
 
+   int32_t i = m_i % m_iShareCount;
+   
+   m_i++;
+   
+   int32_t * pi = (int32_t *) element_at(i)->Alloc();
 
-   register void * p  = get_data()[i]->Alloc();
+   *pi = i;
 
-   ((int32_t *) p)[0] = i;
-
-   return &((int32_t *)p)[1];
+   return &pi[1];
 
 }
 
@@ -176,9 +165,21 @@ inline void plex_heap_alloc::Free(void * p)
    if (p == NULL)
       return;
 
-   register int32_t i = ((int32_t *)p)[-1];
-
-   get_data()[i]->Free(&((int32_t *)p)[-1]);
+   int32_t i = ((int32_t *)p)[-1];
+   
+   if(i >= 0 && i < m_iShareCount)
+   {
+   
+      element_at(i)->Free(&((int32_t *)p)[-1]);
+      
+   }
+   else
+   {
+   
+      ::OutputDebugString("plex_heap_alloc::Free error");
+      
+   }
+      
 
 }
 
@@ -217,16 +218,16 @@ public:
 
 
    inline void * alloc(size_t nAllocSize);
-   inline void * realloc(void * p, size_t nAllocSize, int align);
-   inline void free(void * p);
+   inline void * realloc(void * p, size_t nAllocSize, size_t nOldAllocSize, int align);
+   inline void free(void * p, size_t nAllocSize);
 
    void pre_finalize();
 
    inline plex_heap_alloc * find(size_t nAllocSize);
 
    void * alloc_dbg(size_t nAllocSize, int32_t nBlockUse, const char * szFileName, int32_t iLine);
-   void * realloc_dbg(void * p, size_t nNewAllocSize, int align, int32_t nBlockUse, const char * szFileName, int32_t iLine);
-   void free_dbg(void * p);
+   void * realloc_dbg(void * p, size_t nAllocSize, size_t nOldAllocSize, int align, int32_t nBlockUse, const char * szFileName, int32_t iLine);
+   void free_dbg(void * p, size_t nAllocSize);
 
    void * operator new(size_t s)
    {
@@ -245,56 +246,39 @@ public:
 inline void * plex_heap_alloc_array::alloc(size_t size)
 {
    
-   plex_heap_alloc * palloc = find(size + sizeof(size_t));
-
-   size_t * psize = NULL;
+   plex_heap_alloc * palloc = find(size);
 
    if(palloc != NULL)
    {
       
-      psize = (size_t *) palloc->Alloc();
-      
-      psize[0] = size + sizeof(size_t);
+      return palloc->Alloc();
       
    }
    else
    {
       
-      psize = (size_t *) ::system_heap_alloc(size + sizeof(size_t));
-      
-      psize[0] = 0;
+      return ::system_heap_alloc(size);
       
    }
-   
-   return &psize[1];
-   
+
 }
 
 
-void plex_heap_alloc_array::free(void * p)
+void plex_heap_alloc_array::free(void * p, size_t size)
 {
    
-   size_t * psize = &((size_t *)p)[-1];
-   
-   if(*psize == 0)
-   {
-   
-      return ::system_heap_free(psize);
-      
-   }
-   
-   plex_heap_alloc * palloc = find(*psize);
+   plex_heap_alloc * palloc = find(size);
 
    if(palloc != NULL)
    {
       
-      return palloc->Free(psize);
+      return palloc->Free(p);
       
    }
    else
    {
       
-      return ::system_heap_free(psize);
+      return ::system_heap_free(p);
       
    }
 

@@ -2,17 +2,26 @@
 
 
 #ifdef MACOS
+
+
 #define ALIGN_BYTE_COUNT (sizeof(size_t) * 2)
+
+
 #else
+
+
 #define ALIGN_BYTE_COUNT (sizeof(size_t))
+
+
 #endif
+
 
 struct heap_memory
 {
 
 
-   byte                 m_back;
-   byte                 m_blockuse;
+   int32_t              m_back;
+   int32_t              m_blockuse;
    size_t               m_size;
    char                 m_paddingBefore[16];
    static const int     m_iPaddingAfter;
@@ -32,38 +41,38 @@ struct heap_memory
 
    }
 
-   inline static void * unaligned(void * pbase, size_t size, byte blockuse)
+   inline static void * unaligned(void * pbase, size_t size, int32_t blockuse)
    {
 
-      void * punaligned = (void *)((int_ptr)pbase + sizeof(heap_memory));
+      void * pmemory = (void *)((int_ptr)pbase + sizeof(heap_memory));
 
-      heap_memory * pheap = heap_get(punaligned);
+      heap_memory * pheap = heap_get(pmemory);
 
-      pheap->m_back = (byte)(((int_ptr)punaligned) - ((int_ptr)pbase));
+      pheap->m_back = (int32_t)(((int_ptr)pmemory) - ((int_ptr)pbase));
 
       pheap->m_blockuse = blockuse;
 
       pheap->m_size = size;
 
-      return punaligned;
+      return pmemory;
 
    }
 
 
-   inline static void * aligned(void * pbase, size_t size, byte blockuse)
+   inline static void * aligned(void * pbase, size_t size, int32_t blockuse)
    {
 
-      void * paligned = (void *)((((int_ptr)pbase) + sizeof(heap_memory) + ALIGN_BYTE_COUNT - 1) & ((int_ptr)(~(ALIGN_BYTE_COUNT - 1))));
+      void * pmemory = (void *)((((int_ptr)pbase) + sizeof(heap_memory) + ALIGN_BYTE_COUNT - 1) & ((~((int_ptr)ALIGN_BYTE_COUNT - 1))));
 
-      heap_memory * pheap = heap_get(paligned);
+      heap_memory * pheap = heap_get(pmemory);
 
-      pheap->m_back = (byte)(((int_ptr)paligned) - ((int_ptr)pbase));
+      pheap->m_back = (int32_t)(((int_ptr)pmemory) - ((int_ptr)pbase));
 
       pheap->m_blockuse = blockuse;
 
       pheap->m_size = size;
 
-      return paligned;
+      return pmemory;
 
    }
 
@@ -83,7 +92,7 @@ struct heap_memory
 
    }
 
-   inline static byte heap_get_block_use(void * pmemory)
+   inline static int32_t heap_get_block_use(void * pmemory)
    {
 
       return heap_get(pmemory)->m_blockuse;
@@ -97,36 +106,42 @@ struct heap_memory
       return heap_get(pmemory)->m_size;
 
    }
+   
 
 };
 
 
-
 const int heap_memory::m_iPaddingAfter = 16;
+
 
 plex_heap_alloc_array * g_pheap = NULL;
 
 
-
-
 extern string_manager * s_pstringmanager;
+
 
 extern mutex * g_pmutexSystemHeap;
 
+
 extern plex_heap_alloc_array * g_pheap;
+
 
 extern mutex * g_pmutexTrace;
 
+
 extern mutex * g_pmutgen;
+
 
 void create_id_space();
 
+
 void destroy_id_space();
+
 
 extern string * g_pstrLastStatus;
 
-extern string * g_pstrLastGlsStatus;
 
+extern string * g_pstrLastGlsStatus;
 
 
 c_class c_class::s_cclass;
@@ -157,33 +172,41 @@ BEGIN_EXTERN_C
 
 void * aligned_memory_alloc(size_t size)
 {
+
+   void * pbase = g_pheap->alloc(heap_memory::aligned_provision_get_size(size));
    
-   void * poriginal = g_pheap->alloc(heap_memory::aligned_provision_get_size(size));
-   
-   if (poriginal == NULL)
+   if (pbase == NULL)
    {
       
       throw memory_exception(get_thread_app());
       
    }
    
-   return heap_memory::aligned(poriginal, size, 0);
+   return heap_memory::aligned(pbase, size, 0);
    
 }
 
 void * unaligned_memory_alloc(size_t size)
 {
+
+#ifdef MACOS
+
+   return aligned_memory_alloc(size);
    
-   void * poriginal = g_pheap->alloc(heap_memory::unaligned_provision_get_size(size));
+#else
    
-   if (poriginal == NULL)
+   void * pbase = g_pheap->alloc(heap_memory::unaligned_provision_get_size(size));
+   
+   if (pbase == NULL)
    {
       
       throw memory_exception(get_thread_app());
       
    }
    
-   return heap_memory::unaligned(poriginal, size, 2);
+   return heap_memory::unaligned(pbase, size, 2);
+   
+#endif
    
 }
 
@@ -197,21 +220,27 @@ void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szF
    
    //TODO: to do the dbg version
    //byte * p = (byte *) _malloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
-   void * poriginal = g_pheap->alloc_dbg(heap_memory::aligned_provision_get_size(size), nBlockUse, szFileName, nLine);
+   void * pbase = g_pheap->alloc_dbg(heap_memory::aligned_provision_get_size(size), nBlockUse, szFileName, nLine);
    
-   if (poriginal == NULL)
+   if (pbase == NULL)
    {
       
       throw memory_exception(get_thread_app());
       
    }
    
-   return heap_memory::aligned(poriginal, size, 1);
+   return heap_memory::aligned(pbase, size, 1);
    
 }
 
 void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
+
+#ifdef MACOS
+
+   return aligned_memory_alloc(size);
+   
+#else
    
    UNREFERENCED_PARAMETER(nBlockUse);
    UNREFERENCED_PARAMETER(szFileName);
@@ -219,16 +248,18 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
    
    //TODO: to do the dbg version
    //byte * p = (byte *) _malloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
-   void * poriginal = g_pheap->alloc_dbg(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
+   void * pbase = g_pheap->alloc_dbg(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
    
-   if (poriginal == NULL)
+   if (pbase == NULL)
    {
       
       throw memory_exception(get_thread_app());
       
    }
    
-   return heap_memory::unaligned(poriginal, size, 3);
+   return heap_memory::unaligned(pbase, size, 3);
+   
+#endif
    
 }
 
@@ -238,7 +269,15 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 void * memory_alloc(size_t size)
 {
 
+#if defined(MACOS)
+
+   return aligned_memory_alloc(size);
+   
+#else
+
    return unaligned_memory_alloc(size);
+   
+#endif
 
 }
 
@@ -259,28 +298,30 @@ void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName
 }
 
 
-void * memory_realloc(void * pvoid, size_t nSize)
+void * memory_realloc(void * pmemory, size_t nSize)
 {
 
-   return memory_realloc_dbg(pvoid, nSize, 0, NULL, -1);
+   return memory_realloc_dbg(pmemory, nSize, 0, NULL, -1);
 
 }
 
 
-void * memory_realloc_dbg(void * pvoid, size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
+void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
 
-   if (pvoid == NULL)
+   if (pmemory == NULL)
       return memory_alloc_dbg(size, nBlockUse, szFileName, nLine);
 
-   byte blockuse = heap_memory::heap_get_block_use(pvoid);
+   byte blockuse = heap_memory::heap_get_block_use(pmemory);
+   
+   size_t sizeOld = heap_memory::heap_get_size(pmemory);
 
    void * pbase = NULL;
 
    if (blockuse == 0) // aligned
    {
 
-      pbase = g_pheap->realloc(heap_memory::base_get(pvoid), heap_memory::aligned_provision_get_size(size), ALIGN_BYTE_COUNT);
+      pbase = g_pheap->realloc(heap_memory::base_get(pmemory), heap_memory::aligned_provision_get_size(size), heap_memory::aligned_provision_get_size(sizeOld), ALIGN_BYTE_COUNT);
 
    }
    else if (blockuse == 1) // aligned
@@ -288,15 +329,13 @@ void * memory_realloc_dbg(void * pvoid, size_t size, int32_t nBlockUse, const ch
 
       //TODO: to do the dbg version
 
-      pbase = g_pheap->realloc_dbg(heap_memory::base_get(pvoid), heap_memory::aligned_provision_get_size(size), ALIGN_BYTE_COUNT, nBlockUse, szFileName, nLine);
-
-      //p = (byte *) _realloc_dbg(p, nSize + 4 + 32, nBlockUse, szFileName, nLine);
+      pbase = g_pheap->realloc_dbg(heap_memory::base_get(pmemory), heap_memory::aligned_provision_get_size(size), heap_memory::aligned_provision_get_size(sizeOld), ALIGN_BYTE_COUNT, nBlockUse, szFileName, nLine);
 
    }
    else if (blockuse == 2) // unaligned
    {
 
-      pbase = g_pheap->realloc(heap_memory::base_get(pvoid), heap_memory::unaligned_provision_get_size(size), 0);
+      pbase = g_pheap->realloc(heap_memory::base_get(pmemory), heap_memory::unaligned_provision_get_size(size), heap_memory::unaligned_provision_get_size(sizeOld), 0);
 
    }
    else if (blockuse == 3) // unaligned
@@ -304,9 +343,7 @@ void * memory_realloc_dbg(void * pvoid, size_t size, int32_t nBlockUse, const ch
 
       //TODO: to do the dbg version
 
-      pbase = g_pheap->realloc_dbg(heap_memory::base_get(pvoid), heap_memory::unaligned_provision_get_size(size), 0, nBlockUse, szFileName, nLine);
-
-      //p = (byte *) _realloc_dbg(p, nSize + 4 + 32, nBlockUse, szFileName, nLine);
+      pbase = g_pheap->realloc_dbg(heap_memory::base_get(pmemory), heap_memory::unaligned_provision_get_size(size), heap_memory::unaligned_provision_get_size(sizeOld), 0, nBlockUse, szFileName, nLine);
 
    }
    else
@@ -341,32 +378,38 @@ void * memory_realloc_dbg(void * pvoid, size_t size, int32_t nBlockUse, const ch
 
 }
 
-void memory_free(void * pvoid)
+void memory_free(void * pmemory)
 {
-   return memory_free_dbg(pvoid, 0);
+
+   return memory_free_dbg(pmemory, 0);
+   
 }
 
 
-size_t memory_size(void * pvoid)
+size_t memory_size(void * pmemory)
 {
-   return memory_size_dbg(pvoid, 0);
+
+   return memory_size_dbg(pmemory, 0);
+   
 }
 
 
 
 
-void memory_free_dbg(void * paligned, int32_t iBlockType)
+void memory_free_dbg(void * pmemory, int32_t iBlockType)
 {
    
-   if (paligned == NULL)
+   if (pmemory == NULL)
       return;
    
-   byte blockuse = heap_memory::heap_get_block_use(paligned);
+   byte blockuse = heap_memory::heap_get_block_use(pmemory);
+   
+   size_t sizeOld = heap_memory::heap_get_size(pmemory);
    
    if (blockuse == 0)
    {
       
-      g_pheap->free(heap_memory::base_get(paligned));
+      g_pheap->free(heap_memory::base_get(pmemory), heap_memory::aligned_provision_get_size(sizeOld));
       
    }
    else if (blockuse == 1)
@@ -374,15 +417,13 @@ void memory_free_dbg(void * paligned, int32_t iBlockType)
       
       //TODO: to do the dbg version
       
-      g_pheap->free_dbg(heap_memory::base_get(paligned));
-      
-      //_free_dbg(p, iBlockType);
+      g_pheap->free_dbg(heap_memory::base_get(pmemory), heap_memory::aligned_provision_get_size(sizeOld));
       
    }
    else if (blockuse == 2)
    {
       
-      g_pheap->free(heap_memory::base_get(paligned));
+      g_pheap->free(heap_memory::base_get(pmemory), heap_memory::unaligned_provision_get_size(sizeOld));
       
    }
    else if (blockuse == 3)
@@ -390,26 +431,26 @@ void memory_free_dbg(void * paligned, int32_t iBlockType)
       
       //TODO: to do the dbg version
       
-      g_pheap->free_dbg(heap_memory::base_get(paligned));
-      
-      //_free_dbg(p, iBlockType);
+      g_pheap->free_dbg(heap_memory::base_get(pmemory), heap_memory::unaligned_provision_get_size(sizeOld));
       
    }
    else
    {
+   
+      ::OutputDebugString("wrong free");
       
    }
    
 }
 
 
-size_t memory_size_dbg(void * paligned, int32_t iBlockType)
+size_t memory_size_dbg(void * pmemory, int32_t iBlockType)
 {
    
-   if (paligned == NULL)
+   if (pmemory == NULL)
       return 0;
    
-   return heap_memory::heap_get_size(paligned);
+   return heap_memory::heap_get_size(pmemory);
    
 }
 
