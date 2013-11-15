@@ -685,15 +685,6 @@ fill_last:
       }
    }
 
-   void dib::copy(::draw2d::dib * pdib)
-   {
-      // If DibSize Wrong Re-create dib
-      if ( (pdib->cx!=cx) || (pdib->cy!=cy) )
-         pdib->create (cx, cy );
-      // do copy
-      memcpy ( pdib->m_pcolorref, m_pcolorref, cx*cy*4 );
-   }
-
 
    void dib::Paste ( ::draw2d::dib * pdib )
    {

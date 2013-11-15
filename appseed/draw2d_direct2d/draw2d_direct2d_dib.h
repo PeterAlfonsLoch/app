@@ -116,7 +116,6 @@ namespace draw2d_direct2d
 
       void Map (int ToRgb, int FromRgb );
 
-      void copy( ::draw2d::dib *dib );
       void Paste ( ::draw2d::dib *dib );
 
       void Blend ( ::draw2d::dib *dib, int A );

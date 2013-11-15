@@ -996,13 +996,26 @@ fill_last:
 
    void dib::copy(dib * dib)
    {
+
+      if (area() <= 0)
+         return;
+
       // If DibSize Wrong Re-create dib
       if(dib->size() != size())
          dib->create(size());
+
       // do copy
+
       map();
+
       dib->map();
+
+      if (get_data() == NULL || dib->get_data() == NULL)
+         return;
+
       memcpy ( dib->get_data(), get_data(), cx*cy*4 );
+
+
    }
 
 

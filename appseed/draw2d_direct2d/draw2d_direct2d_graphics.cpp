@@ -5910,6 +5910,9 @@ namespace draw2d_direct2d
 
       ::ID2D1Brush * pbrush = get_os_pen_brush();
 
+      if (pbrush == NULL)
+         return false;
+
       m_prendertarget->DrawGeometry((ID2D1PathGeometry *) ppath->get_os_data(), pbrush, (FLOAT) m_sppen->m_dWidth);
 
       //HRESULT hr = m_prendertarget->Flush();
@@ -5920,6 +5923,9 @@ namespace draw2d_direct2d
 
    bool graphics::fill_path(::draw2d::path * ppath)
    {
+
+      if (ppath == NULL)
+         return false;
 
       keeper < bool > keepPreviousFill(&ppath->m_bFill, true, ppath->m_bFill, true);
 
@@ -5947,6 +5953,9 @@ namespace draw2d_direct2d
 
    bool graphics::path(::draw2d::path * ppath)
    {
+
+      if (ppath == NULL)
+         return false;
 
       bool bOk1 = fill_path(ppath);
 

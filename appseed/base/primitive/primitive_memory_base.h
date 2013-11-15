@@ -779,17 +779,28 @@ namespace primitive
       return writer->DetachBuffer();
    }
 
+
    inline void memory_base::set_os_bytes(Platform::Array < uchar, 1U > ^ a, memory_position pos, memory_size size)
    {
+      
+      if (a == nullptr)
+         return;
+
       if(pos > a->Length)
          throw invalid_argument_exception(get_app());
+
       if(pos > a->Length)
          throw invalid_argument_exception(get_app());
+
       if(size < 0 || pos + size > a->Length)
          size = a->Length - pos;
+
       allocate(size);
+
       memcpy(get_data(), &a->Data[pos], size);
+
    }
+
 
    inline void memory_base::set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos, memory_size size)
    {

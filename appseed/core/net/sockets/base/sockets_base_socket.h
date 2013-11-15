@@ -150,6 +150,8 @@ namespace sockets
 
       bool                    m_bExpectResponse;
       bool                    m_bExpectRequest;
+      bool                    m_bReading;
+      bool                    m_bWriting;
 
 
       /** base_socket mode flags. */

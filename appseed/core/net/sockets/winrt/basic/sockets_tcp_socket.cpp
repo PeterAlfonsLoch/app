@@ -422,7 +422,8 @@ namespace sockets
 
    void tcp_socket::OnRead()
    {
-
+      
+      m_bReading = true;
       m_bExpectRequest = false;
       m_bExpectResponse = false;
 
@@ -483,6 +484,7 @@ namespace sockets
          }
          //delete reader;
          reader->DetachStream();
+         m_bReading = false;
          m_event.SetEvent();
       });
 

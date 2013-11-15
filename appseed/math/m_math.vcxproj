@@ -150,6 +150,8 @@
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -265,6 +267,12 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ProjectReference Include="..\base\m_base.vcxproj">
       <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\boot\m_boot.vcxproj">
+      <Project>{5fd926e7-e8b9-4451-baac-81efa94d1985}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\core\m_core.vcxproj">
+      <Project>{420d7aeb-cfca-45de-bb6e-95055df21987}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
@@ -278,7 +286,9 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClInclude Include="math\math_math.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="framework.cpp" />
+    <ClCompile Include="framework.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="kissfft\kissfft_fftd.cpp" />
     <ClCompile Include="kissfft\kissfft_ifftd.cpp" />
     <ClCompile Include="kissfft\kiss_fft.cpp" />

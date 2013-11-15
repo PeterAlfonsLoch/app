@@ -736,3 +736,17 @@ int ftruncate(int file, file_size len)
   return _chsize_s (file, len);
 }
 
+
+
+int_bool file_set_length(const char * pszName, size_t iSize)
+{
+
+   int i = open(pszName, 0);
+
+   ftruncate(i, iSize);
+
+   ::close(i);
+
+   return true;
+
+}

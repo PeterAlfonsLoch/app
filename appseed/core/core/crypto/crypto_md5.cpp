@@ -45,7 +45,11 @@ namespace crypto
          if(m_bEnd)
             throw "invalid state exception";
 
+         if (data == NULL || size == 0)
+            return;
+
 #ifdef METROWIN
+
 
          m_hash->Append(::Windows::Security::Cryptography::CryptographicBuffer::CreateFromByteArray(ref new Platform::Array < uchar, 1U > ((uchar *) data, size)));
 

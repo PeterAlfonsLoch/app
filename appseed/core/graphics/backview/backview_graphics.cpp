@@ -526,16 +526,30 @@ namespace backview
 
    }
 
+
    void Graphics::BufferToBack()
    {
+      
       single_lock sl1Back(&m_mutex1Back, FALSE);
+      
       single_lock sl2Buffer(&m_mutex2Buffer, FALSE);
+      
       if(!sl1Back.lock(millis(25)))
          return;
+      
       if(!sl2Buffer.lock(millis(25)))
          return;
+      
+      if (GetDib(_graphics::DibBack).is_null())
+         return;
+
+      if (GetDib(_graphics::DibBuffer).is_null())
+         return;
+
       GetDib(_graphics::DibBack)->copy(GetDib(_graphics::DibBuffer));
+
    }
+
 
    void Graphics::BackToTransfer()
    {

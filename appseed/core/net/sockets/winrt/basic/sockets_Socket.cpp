@@ -111,7 +111,13 @@ namespace sockets
          OnRead();
          return;
       }
-      SetCloseAndDelete();
+      if (!m_bReading && !m_bWriting)
+      {
+
+         SetCloseAndDelete();
+
+      }
+      
    }
 
    void socket::close()
