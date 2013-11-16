@@ -1281,23 +1281,8 @@ namespace filemanager
          }*/
       }
 
-      bool tree::pre_create_window(CREATESTRUCT& cs)
-      {
-
-         cs.style |= WS_CLIPCHILDREN;
-
-         return tree::pre_create_window(cs);
-      }
 
 
-
-
-      bool tree::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
-      {
-         // TODO: add your specialized code here and/or call the base class
-
-         return tree::_001OnCmdMsg(pcmdmsg);
-      }
 
       void tree::_001OnShellCommand(signal_details * pobj)
       {

@@ -118,10 +118,7 @@ namespace filemanager
 
       void RenameFile(int32_t iLine, string & str);
 
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
-
       virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
-      virtual bool pre_create_window(CREATESTRUCT& cs);
 
 #ifdef DEBUG
       virtual void assert_valid() const;

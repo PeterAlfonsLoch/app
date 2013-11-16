@@ -227,7 +227,7 @@ void color::get_hls(
       return ( d1 );
 } */
 
-double round(double d)
+double primitive_color_round(double d)
 {
    double n;
    double f;
@@ -356,9 +356,9 @@ void color::set_hls(
    m_dG      = (dCMin + dG * dCAdd);
    m_dB      = (dCMin + dB * dCAdd);
 
-   m_uchR      = (BYTE) round(m_dR * 255.0);
-   m_uchG      = (BYTE) round(m_dG * 255.0);
-   m_uchB      = (BYTE) round(m_dB * 255.0);
+   m_uchR      = (BYTE) primitive_color_round(m_dR * 255.0);
+   m_uchG      = (BYTE) primitive_color_round(m_dG * 255.0);
+   m_uchB      = (BYTE) primitive_color_round(m_dB * 255.0);
    
 
 

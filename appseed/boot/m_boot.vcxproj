@@ -309,6 +309,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClInclude Include="metrowin\ca_os_simple_path.h" />
     <ClInclude Include="metrowin\ca_os_simple_pen.h" />
     <ClInclude Include="metrowin\ca_os_sockets.h" />
+    <ClInclude Include="metrowin\metrowin_fontopus.h" />
     <ClInclude Include="simple_graphics\simple_graphics.h" />
     <ClInclude Include="simple_graphics\simple_graphics_first_phase.h" />
     <ClInclude Include="simple_graphics\simple_graphics_second_phase.h" />

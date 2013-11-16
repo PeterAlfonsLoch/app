@@ -169,4 +169,6 @@ bool simple_edit_box::on_char(int32_t iKey, const string & strChar)
 
    }
 
+   return false;
+
 }

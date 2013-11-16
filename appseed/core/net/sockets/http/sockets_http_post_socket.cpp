@@ -163,7 +163,7 @@ namespace sockets
 
    void http_post_socket::DoMultipartPost()
    {
-      long length = 0; // calculate content_length of our post body
+      uint64_t length = 0; // calculate content_length of our post body
       string tmp;
 
       // fields

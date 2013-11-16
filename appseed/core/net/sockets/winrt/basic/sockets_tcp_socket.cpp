@@ -938,7 +938,7 @@ namespace sockets
 
    void tcp_socket::OnSSLConnect()
    {
-      ::wait(m_streamsocket->UpgradeToSslAsync(::Windows::Networking::Sockets::SocketProtectionLevel::Ssl, m_addressRemote.m_hostname));
+      ::wait(m_streamsocket->UpgradeToSslAsync(::Windows::Networking::Sockets::SocketProtectionLevel::Tls10, m_addressRemote.m_hostname));
 /*      SetNonblocking(true);
       {
          if (m_ssl_ctx)

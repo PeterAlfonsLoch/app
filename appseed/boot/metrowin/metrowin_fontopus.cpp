@@ -353,17 +353,13 @@ namespace fontopus
 
    string fontopus::show_auth_window(LPRECT lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
    {
+
       m_rectDesktop = *lprect;
 
-      // TODO: Place code here.
-      MESSAGE msg;
-
       m_strTitle = "fontopus Auth Windows";
+
       m_strWindowClass = "fontopus Auth Windows";
 
-//      m_hinstance = ::GetModuleHandle(NULL);
-
-      // Perform application initialization:
       if (!prepare_window(NULL, SW_SHOW))
       {
          return "";

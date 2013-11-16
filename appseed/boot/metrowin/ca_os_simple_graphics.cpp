@@ -451,7 +451,7 @@ bool os_simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen & pen)
    r.right     = (FLOAT) lpcrect->right;
    r.bottom    = (FLOAT) lpcrect->bottom;
 
-   m_pdc->DrawRectangle(r, pen.get_os_brush(), (FLOAT) m_pen.m_iWidth - 0.5);
+   m_pdc->DrawRectangle(r, pen.get_os_brush(), (FLOAT) m_pen.m_iWidth - 0.5f);
 
    return true;
 
@@ -533,7 +533,7 @@ void os_simple_graphics::fill_solid_rect(LPCRECT lpcrect, COLORREF clr)
 bool os_simple_graphics::draw_path(simple_path & path, simple_pen & pen)
 {
    
-   m_pdc->DrawGeometry(path.get_os_data(), pen.get_os_brush(), (FLOAT) pen.m_iWidth - 0.5);
+   m_pdc->DrawGeometry(path.get_os_data(), pen.get_os_brush(), (FLOAT) pen.m_iWidth - 0.5f);
 
    return true;
 

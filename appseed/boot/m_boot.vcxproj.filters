@@ -584,6 +584,9 @@
     <ClInclude Include="fontopus\fontopus_user_authentication.h">
       <Filter>Header Files\fontopus</Filter>
     </ClInclude>
+    <ClInclude Include="metrowin\metrowin_fontopus.h">
+      <Filter>Header Files\metrowin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="c.def">

@@ -238,13 +238,6 @@ namespace userfs
          }*/
    }
 
-   bool tree::pre_create_window(CREATESTRUCT& cs)
-   {
-
-      cs.style |= WS_CLIPCHILDREN;
-
-      return ::userfs::tree::pre_create_window(cs);
-   }
 
 
    void tree::_001OnTimer(signal_details * pobj)
@@ -274,12 +267,6 @@ namespace userfs
       m_iAnimate = 1;
       pui->SetTimer(1234567, 50, NULL);
    }
-
-   bool tree::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
-   {
-      return ::userfs::tree::_001OnCmdMsg(pcmdmsg);
-   }
-
 
    void tree::_001OnShellCommand(signal_details * pobj)
    {

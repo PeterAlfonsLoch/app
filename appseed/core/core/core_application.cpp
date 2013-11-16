@@ -503,7 +503,7 @@ bool application::initialize1()
       stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
 
    }
-   catch (long l)
+   catch (long)
    {
 
 

@@ -87,10 +87,7 @@ namespace userfs
 
       void RenameFile(int32_t iLine, string & str);
 
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
-
       virtual void on_update(sp(::user::view) pSender, LPARAM lHint, object* pHint);
-      virtual bool pre_create_window(CREATESTRUCT& cs);
     
       DECL_GEN_SIGNAL(_001OnLButtonDblClk)
       DECL_GEN_SIGNAL(_001OnContextMenu)
