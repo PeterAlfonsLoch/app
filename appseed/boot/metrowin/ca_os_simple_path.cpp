@@ -13,10 +13,24 @@ os_simple_path::os_simple_path()
 
    m_psink  = NULL;
 
+   HRESULT hr = ::GetD2D1Factory1()->CreatePathGeometry(&m_ppath);
+
+   if (FAILED(hr))
+      throw resource_exception(NULL);
+
 }
 
 os_simple_path::~os_simple_path()
 {
+
+   if (m_psink != NULL)
+   {
+
+      m_psink->Release();
+
+      m_psink = NULL;
+
+   }
 
    if(m_ppath != NULL)
    {
@@ -128,9 +142,9 @@ bool os_simple_path::add_lines(LPPOINT lpa, int iCount)
    for(int i = 0; i < iCount; i++)
    {
       
-      points[i].x = (FLOAT) lpa[i].x;
+      points[i].x = (FLOAT) lpa[i + 1].x;
    
-      points[i].y = (FLOAT) lpa[i].y;
+      points[i].y = (FLOAT) lpa[i + 1].y;
 
    }
 

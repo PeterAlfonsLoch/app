@@ -42,21 +42,25 @@ void simple_label::draw_this(simple_graphics & g)
 
    }
 
+   rect rectClient;
+
+   get_client_rect(rectClient);
+
    simple_brush b;
 
    b.create_solid(g, c);
 
    simple_font f;
 
-   f.create_pixel(g, (int32_t)height(m_rect) * 10, "Geneva");
+   f.create_pixel(g, (int32_t)height(rectClient) * 10, "Geneva");
 
-   float fMargin = (height(m_rect) * ((1.0f - 0.7f) / 2.0f));
+   float fMargin = (height(rectClient) * ((1.0f - 0.7f) / 2.0f));
 
    g.select(f);
 
    g.select(b);
 
-   g.text_out(m_rect.left, (int32_t) (m_rect.top + fMargin), m_strText);
+   g.text_out(rectClient.left, (int32_t)(rectClient.top + fMargin), m_strText);
 
 }
 

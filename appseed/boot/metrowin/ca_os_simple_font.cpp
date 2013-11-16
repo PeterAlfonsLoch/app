@@ -113,7 +113,7 @@ bool os_simple_font::create_pixel(simple_graphics & g, int nPixelSize, const cha
       (DWRITE_FONT_WEIGHT) bBold ? DWRITE_FONT_WEIGHT_BOLD : DWRITE_FONT_WEIGHT_NORMAL,
       style,
       stretch,
-      y_dpi(nPixelSize / 10.f),
+      dpiy(nPixelSize / 15.f),
       L"",
       &m_pformat);
 

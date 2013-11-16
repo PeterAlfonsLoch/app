@@ -82,6 +82,74 @@ public:
 };
 
 
+template < typename T, typename T2 >
+ref class waiter_for_Windows_Foundation_IAsyncOperationWithProgress sealed
+{
+private:
+
+   manual_reset_event                                                m_event;
+   ::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^    m_operation;
+   ::Windows::Foundation::AsyncStatus                                m_status;
+   T                                                                 m_result;
+
+
+public:
+
+
+   waiter_for_Windows_Foundation_IAsyncOperationWithProgress(::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any) :
+      m_event(get_thread_app())
+   {
+
+      m_operation = operation;
+
+      m_operation->Completed = ref new ::Windows::Foundation::AsyncOperationWithProgressCompletedHandler < T, T2 >([this](::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, ::Windows::Foundation::AsyncStatus status)
+      {
+
+         m_status = status;
+
+         m_event.set_event();
+
+      });
+
+   }
+
+
+   virtual ~waiter_for_Windows_Foundation_IAsyncOperationWithProgress()
+   {
+
+   }
+
+
+   T wait(unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = NULL)
+   {
+
+      m_event.wait(millis(dwMillis));
+
+      if (pstatus != NULL)
+         *pstatus = m_status;
+
+      if (m_status == ::Windows::Foundation::AsyncStatus::Completed)
+      {
+
+         return m_operation->GetResults();
+
+      }
+      else
+      {
+
+         T t;
+
+         waiter_null_result(t);
+
+         return t;
+
+      }
+
+   }
+
+};
+
+
 ref class waiter_for_Windows_Foundation_IAsyncAction sealed
 {
 private:
@@ -146,6 +214,17 @@ inline T wait(::Windows::Foundation::IAsyncOperation < T > ^ operation, DWORD dw
    
    waiter_for_Windows_Foundation_IAsyncOperation < T > waiter(operation, callbackcontext);
       
+   return waiter.wait(dwMillis, pstatus);
+
+}
+
+
+template < typename T, typename T2 >
+inline T wait(::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, DWORD dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = NULL, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any)
+{
+
+   waiter_for_Windows_Foundation_IAsyncOperationWithProgress < T, T2 > waiter(operation, callbackcontext);
+
    return waiter.wait(dwMillis, pstatus);
 
 }

@@ -64,6 +64,12 @@
     <Filter Include="Source Files\boot">
       <UniqueIdentifier>{7a3c1276-60bc-4eda-8adb-c0a2f865c494}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\fontopus">
+      <UniqueIdentifier>{87ce6c1c-0ef1-40a3-bdb6-64a2fe994807}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\fontopus">
+      <UniqueIdentifier>{c91ca338-d824-4b53-a9af-1d30d3417f7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -305,6 +311,15 @@
     </ClCompile>
     <ClCompile Include="boot\boot_window_graphics.cpp">
       <Filter>Source Files\boot</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus.cpp">
+      <Filter>Source Files\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus_authentication_map.cpp">
+      <Filter>Source Files\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="metrowin\metrowin_fontopus.cpp">
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -559,6 +574,15 @@
     </ClInclude>
     <ClInclude Include="boot\boot_window_graphics.h">
       <Filter>Header Files\boot</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_authentication_map.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_user_authentication.h">
+      <Filter>Header Files\fontopus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

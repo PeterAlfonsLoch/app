@@ -22,12 +22,13 @@ namespace user
       m_bRectOk               = false;
       m_bVisible              = true;
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-      m_crDefaultBackgroundColor    = ARGB(127, 255, 200, 250);
-#else
-      m_crDefaultBackgroundColor    = ARGB(127, 200, 255, 220);
-#endif
+//#if CA2_PLATFORM_VERSION == CA2_BASIS
+//       m_crDefaultBackgroundColor    = ARGB(127, 255, 200, 250);
+//#else
+//       m_crDefaultBackgroundColor    = ARGB(127, 200, 255, 220);
+//#endif
 
+      m_crDefaultBackgroundColor = ARGB(0xcc, 0xcc, 0xcc, 0xcc);
 
       m_pui                   = this;
       m_psession              = NULL;
@@ -53,7 +54,7 @@ namespace user
       m_bRectOk                     = false;
       m_bVisible                    = true;
 
-      m_crDefaultBackgroundColor    = ARGB(127, 200, 255, 220);
+      m_crDefaultBackgroundColor = ARGB(0xcc, 0xcc, 0xcc, 0xcc);
 
       m_pui                         = this;
       m_psession                    = NULL;

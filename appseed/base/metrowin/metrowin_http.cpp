@@ -194,7 +194,9 @@ STDMETHODIMP
    UNREFERENCED_PARAMETER(pXHR);
    UNREFERENCED_PARAMETER(pwszRedirectUrl);
 
-   return S_OK;
+   m_hr = S_OK;
+   SetEvent(m_hComplete);
+   return m_hr;
 }
 
 STDMETHODIMP
@@ -473,7 +475,7 @@ STDMETHODIMP
       goto Exit;
    }
 
-   dwError = WaitForSingleObjectEx(m_hComplete, INFINITE, FALSE);
+   dwError = WaitForSingleObjectEx(m_hComplete, (1984 + 1977) * 23, FALSE);
 
    if (dwError == WAIT_FAILED)
    {
@@ -483,6 +485,14 @@ STDMETHODIMP
    else if (dwError != WAIT_OBJECT_0)
    {
       hr = E_ABORT;
+      goto Exit;
+   }
+   else if (dwError == WAIT_OBJECT_0)
+   {
+   }
+   else
+   {
+      hr = HRESULT_FROM_WIN32(GetLastError());
       goto Exit;
    }
 
@@ -502,87 +512,67 @@ Exit:
 
 
 using namespace Microsoft::WRL;
+using namespace Windows::Foundation;
+using namespace Windows::Web::Http;
 
-void Get(PCWSTR pcwszUrl, ComPtr<CXMLHttpRequest2Callback> spXhrCallback)
+
+string Get(LPCWSTR pcwszUrl)
 {
-   HRESULT hr = S_OK;
-   DWORD dwStatus = 0;
-   BOOL fAbort = TRUE;
-   ComPtr<IXMLHTTPRequest2> spXHR;
 
-   //
-   // Create an object of the IID_IXMLHTTPRequest2 class.
-   //
+   Uri ^ uri = ref new Uri(ref new Platform::String(pcwszUrl));
 
-   hr = CoCreateInstance(CLSID_FreeThreadedXMLHTTP60,
-      NULL,
-      CLSCTX_INPROC_SERVER,
-      IID_PPV_ARGS(&spXHR));
-   if (FAILED(hr))
+   HttpClient ^ httpClient = ref new HttpClient();
+
+   Platform::String ^ str;
+
+   try
    {
-      goto Exit;
+
+      str = ::wait(httpClient->GetStringAsync(uri));
+
+   }
+   catch (...)
+   {
+
+      return "";
+
    }
 
+   return str;
 
-   //
-   // Send a HTTP GET request.
-   //
-
-   hr = spXHR->Open(L"GET",              // Method.
-      pcwszUrl,            // Url.
-      spXhrCallback.Get(), // Callback.
-      NULL,                // Username.
-      NULL,                // Password.
-      NULL,                // Proxy username.
-      NULL);               // Proxy password.
-   if (FAILED(hr))
-   {
-      goto Exit;
-   }
-
-   //
-   // Send the request to the server.
-   //
-
-   hr = spXHR->Send(NULL, 0);
-   if (FAILED(hr))
-   {
-      goto Exit;
-   }
-
-   //
-   // Waiting for the completion of the request.
-   // Callers needing to receive completion or status events on a STA or UI
-   // thread must use a mechanism that will not block the threads window message
-   // pump. One example is by posting a window message to the STA or UI thread
-   // window handle.
-   //
-
-   hr = spXhrCallback->WaitForComplete(&dwStatus);
-
-   if (FAILED(hr))
-   {
-      goto Exit;
-   }
-
-   fAbort = FALSE;
-
-Exit:
-
-   if (FAILED(hr))
-   {
-      wprintf(L"Failed, Error code = 0x%08x.\n", hr);
-   }
-   else
-   {
-      wprintf(L"Succeed, Status code = %u.\n", dwStatus);
-   }
-
-   if (fAbort)
-   {
-      spXHR->Abort();
-   }
 }
+
+
+bool Download(LPCWSTR pcwszUrl, const char * pszFile)
+{
+
+   Uri ^ uri = ref new Uri(ref new Platform::String(pcwszUrl));
+
+   HttpClient ^ httpClient = ref new HttpClient();
+
+   Windows::Storage::Streams::IBuffer ^ buf;
+
+   try
+   {
+
+      buf = ::wait(httpClient->GetBufferAsync(uri));
+
+   }
+   catch (...)
+   {
+
+      return false;
+
+   }
+
+   ::primitive::memory memory;
+
+   memory.set_os_buffer(buf);
+
+   return file_put_contents_dup(pszFile, memory);
+
+}
+
 
 /*DWORD g_MsDownloadSize = 1024 * 16;
 char * g_MsDownloadBuffer = NULL;
@@ -642,23 +632,8 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
       return false;
    }
 
-   Get(wstring(pszUrl), spcallback);
+   return Download(wstring(pszUrl), pszFile);
 
-   DWORD st = 0;
-
-   spcallback->WaitForComplete(&st);
-
-   if(piStatus != NULL)
-   {
-
-      *piStatus = st;
-
-   }
-
-   if(st != 200)
-      return false;
-
-   return spcallback->to_file(pszFile);
 
 }
 
@@ -666,27 +641,7 @@ bool http_download_dup(const char * pszUrl, const char * pszFile, bool bProgress
 string http_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int, uint_ptr), void * callback_param, bool bProgress)
 {
 
-   ComPtr<CXMLHttpRequest2Callback> spcallback;
-
-
-   HRESULT hr = MakeAndInitialize<CXMLHttpRequest2Callback>(&spcallback);
-
-   if (FAILED(hr))
-   {
-      return "";
-   }
-
-   Get(wstring(pszUrl), spcallback);
-
-   DWORD st = 0;
-
-   spcallback->WaitForComplete(&st);
-
-   if(st != 200)
-      return "";
-
-   return spcallback->as_string();
-
+   return Get(wstring(pszUrl));
 
 }
 

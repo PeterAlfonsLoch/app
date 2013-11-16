@@ -7,8 +7,6 @@ CLASS_DECL_BOOT bool crypt_encrypt(::primitive::memory & storageEncrypt, const :
 CLASS_DECL_BOOT bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt);
 CLASS_DECL_BOOT bool crypt_file_set(const char * pszFile, const char * pszData, const char * pszSalt);
 
-#ifndef METROWIN
 CLASS_DECL_BOOT string spa_login_crypt(const char * psz, const char * pszRsa);
-#endif
 
 #include "nessie.h"

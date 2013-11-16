@@ -55,6 +55,12 @@ void simple_ui::draw(simple_graphics & g)
    if(m_bVisible)
    {
 
+      rect rectWindow;
+
+      get_window_rect(rectWindow);
+
+      g.set_offset(rectWindow.left, rectWindow.top);
+
       draw_this(g);
 
       draw_children(g);
@@ -105,7 +111,7 @@ bool simple_ui::on_lbutton_down(int32_t x, int32_t y)
       && y <= m_uiptra[i]->m_rect.bottom)
       {
 
-         if (m_uiptra[i]->on_lbutton_down(x, y))
+         if (m_uiptra[i]->on_lbutton_down(x - m_uiptra[i]->m_rect.left, y - m_uiptra[i]->m_rect.top))
             return true;
 
       }
@@ -128,7 +134,7 @@ bool simple_ui::on_lbutton_up(int32_t x, int32_t y)
       && y <= m_uiptra[i]->m_rect.bottom)
       {
 
-         if (m_uiptra[i]->on_lbutton_up(x, y))
+         if (m_uiptra[i]->on_lbutton_up(x - m_uiptra[i]->m_rect.left, y - m_uiptra[i]->m_rect.top))
             return true;
 
       }
@@ -152,7 +158,7 @@ bool simple_ui::on_mouse_move(int32_t x, int32_t y)
       && y <= m_uiptra[i]->m_rect.bottom)
       {
 
-         if (m_uiptra[i]->on_mouse_move(x, y))
+         if (m_uiptra[i]->on_mouse_move(x - m_uiptra[i]->m_rect.left, y - m_uiptra[i]->m_rect.top))
             return true;
 
       }
@@ -378,6 +384,10 @@ void simple_ui::draw_this(simple_graphics & g)
 void simple_ui::draw_focus_rect(simple_graphics & g)
 {
 
+   rect rectClient;
+
+   get_client_rect(rectClient);
+
    g.set_alpha_mode(::draw2d::alpha_mode_blend);
 
    int32_t iStyle = 1;
@@ -388,22 +398,18 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
       if(iStyle == 1)
       {
 
-         RECT rect;
-
-         rect = m_rect;
-
          {
          
             simple_solid_pen pen(g, ARGB(255, 108, 149, 255));
 
-            g.draw_rect(rect, pen);
+            g.draw_rect(rectClient, pen);
 
          }
 
-         rect.left--;
-         rect.right++;
-         rect.top--;
-         rect.bottom++;
+         rectClient.left--;
+         rectClient.right++;
+         rectClient.top--;
+         rectClient.bottom++;
 
          {
          
@@ -411,7 +417,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             pathRound.begin_figure(true, ::draw2d::fill_mode_winding);
             
-            pathRound.add_round_rect(rect, 1 * 2);
+            pathRound.add_round_rect(rectClient, 1 * 2);
 
             pathRound.end_figure(true);
 
@@ -421,10 +427,10 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          }
 
-         rect.left--;
-         rect.right++;
-         rect.top--;
-         rect.bottom++;
+         rectClient.left--;
+         rectClient.right++;
+         rectClient.top--;
+         rectClient.bottom++;
 
          {
 
@@ -432,7 +438,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             pathRound.begin_figure(true, ::draw2d::fill_mode_winding);
             
-            pathRound.add_round_rect(rect, 1 * 2);
+            pathRound.add_round_rect(rectClient, 1 * 2);
 
             pathRound.end_figure(true);
 
@@ -442,10 +448,10 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          }
 
-         rect.left--;
-         rect.right++;
-         rect.top--;
-         rect.bottom++;
+         rectClient.left--;
+         rectClient.right++;
+         rectClient.top--;
+         rectClient.bottom++;
 
          {
 
@@ -453,7 +459,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             pathRound.begin_figure(true, ::draw2d::fill_mode_winding);
             
-            pathRound.add_round_rect(rect, 1 * 2);
+            pathRound.add_round_rect(rectClient, 1 * 2);
 
             pathRound.end_figure(true);
 
@@ -464,10 +470,10 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
          }
 
 
-         rect.left--;
-         rect.right++;
-         rect.top--;
-         rect.bottom++;
+         rectClient.left--;
+         rectClient.right++;
+         rectClient.top--;
+         rectClient.bottom++;
 
          {
 
@@ -475,7 +481,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             pathRound.begin_figure(true, ::draw2d::fill_mode_winding);
             
-            pathRound.add_round_rect(rect, 1 * 2);
+            pathRound.add_round_rect(rectClient, 1 * 2);
 
             pathRound.end_figure(true);
 
@@ -487,10 +493,10 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
 
 
-         rect.left--;
-         rect.right++;
-         rect.top--;
-         rect.bottom++;
+         rectClient.left--;
+         rectClient.right++;
+         rectClient.top--;
+         rectClient.bottom++;
 
          {
 
@@ -498,7 +504,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             pathRound.begin_figure(true, ::draw2d::fill_mode_winding);
             
-            pathRound.add_round_rect(rect, 1 * 2);
+            pathRound.add_round_rect(rectClient, 1 * 2);
 
             pathRound.end_figure(true);
 
@@ -512,10 +518,10 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
 
 
-         rect.left--;
-         rect.right++;
-         rect.top--;
-         rect.bottom++;
+         rectClient.left--;
+         rectClient.right++;
+         rectClient.top--;
+         rectClient.bottom++;
 
          {
 
@@ -523,7 +529,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             pathRound.begin_figure(true, ::draw2d::fill_mode_winding);
             
-            pathRound.add_round_rect(rect, 1 * 2);
+            pathRound.add_round_rect(rectClient, 1 * 2);
 
             pathRound.end_figure(true);
 
@@ -540,7 +546,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
          
          simple_solid_pen pen(g, ARGB(255, 84, 77, 255), 3);
 
-         g.draw_rect(m_rect, pen);
+         g.draw_rect(rectClient, pen);
 
       }
 
@@ -550,7 +556,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
       simple_solid_pen pen(g, ARGB(255, 149, 149, 123));
 
-      g.draw_rect(m_rect, pen);
+      g.draw_rect(rectClient, pen);
 
    }
 

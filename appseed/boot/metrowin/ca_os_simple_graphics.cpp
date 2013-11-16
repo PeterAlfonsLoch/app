@@ -451,7 +451,7 @@ bool os_simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen & pen)
    r.right     = (FLOAT) lpcrect->right;
    r.bottom    = (FLOAT) lpcrect->bottom;
 
-   m_pdc->DrawRectangle(r, pen.get_os_brush(), (FLOAT) m_pen.m_iWidth);
+   m_pdc->DrawRectangle(r, pen.get_os_brush(), (FLOAT) m_pen.m_iWidth - 0.5);
 
    return true;
 
@@ -533,7 +533,7 @@ void os_simple_graphics::fill_solid_rect(LPCRECT lpcrect, COLORREF clr)
 bool os_simple_graphics::draw_path(simple_path & path, simple_pen & pen)
 {
    
-   m_pdc->DrawGeometry(path.get_os_data(), pen.get_os_brush(), (FLOAT) pen.m_iWidth);
+   m_pdc->DrawGeometry(path.get_os_data(), pen.get_os_brush(), (FLOAT) pen.m_iWidth - 0.5);
 
    return true;
 
@@ -565,6 +565,24 @@ bool os_simple_graphics::fill_polygon(LPPOINT lpa, int iCount, ::draw2d::e_fill_
 
 }
 
+
+bool os_simple_graphics::draw_polygon(LPPOINT lpa, int iCount)
+{
+
+   simple_path path;
+
+   path.begin_figure(true, ::draw2d::fill_mode_winding);
+
+   path.add_lines(lpa, iCount);
+
+   path.end_figure(true);
+
+   draw_path(path, m_pen);
+
+   return true;
+
+}
+
 bool os_simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 {
 
@@ -579,7 +597,9 @@ bool os_simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
    rect.right = x + (1024.f * 1024.f);
    rect.bottom = y + (1024.f * 1024.f);
 
-   m_pdc->DrawText(wstr, wstr.get_length(), m_font.m_pformat, &rect, m_brush.m_pbrush);
+   int iLen = wstr.get_length();
+
+   m_pdc->DrawText(wstr, iLen, m_font.m_pformat, &rect, m_brush.m_pbrush);
 
    return true;
 

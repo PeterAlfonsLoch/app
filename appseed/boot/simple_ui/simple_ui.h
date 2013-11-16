@@ -19,7 +19,7 @@ public:
 
 
    bool                             m_bVisible;
-   RECT                             m_rect;
+   rect                             m_rect;
    string                           m_strId;
    string                           m_strText;
    simple_ui_ptra                   m_uiptra;

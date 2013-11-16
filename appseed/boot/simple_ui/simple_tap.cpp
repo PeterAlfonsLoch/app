@@ -80,7 +80,17 @@ bool simple_tap::is_hover()
 
    POINT ptCursor;
 
-   ::GetCursorPos(&ptCursor);
+   ::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([=, &ptCursor]()
+   {
+      try
+      {
+         ::GetCursorPos(&ptCursor);
+      }
+      catch (...)
+      {
+      }
+   })));
+      
 
    bool bHover = ptCursor.x >= rectWindow.left
               && ptCursor.x <= rectWindow.right
@@ -114,7 +124,11 @@ void simple_tap::draw_simple(simple_graphics & g)
 
 #endif
 
-      g.fill_rect(m_rect, br);
+      rect rectClient;
+
+      get_client_rect(rectClient);
+
+      g.fill_rect(rectClient, br);
 
       draw_focus_rect(g);
 
@@ -197,25 +211,29 @@ void simple_tap::draw_volume(simple_graphics & g)
 
       }
 
-      int32_t iBorderH = height(&m_rect) / 2;
+      rect rectClient;
 
-      simple_linear_gradient_brush br1(g, m_rect.left, m_rect.top - 1, m_rect.left, m_rect.top + iBorderH + 2, crOut, crIn);
+      get_client_rect(rectClient);
 
-      g.fill_rect(rect_dim(m_rect.left, m_rect.top, (int32_t) width(&m_rect), iBorderH), br1);
+      int32_t iBorderH = height(&rectClient) / 2;
 
-      simple_linear_gradient_brush br2(g, m_rect.left, m_rect.top + iBorderH - 1, m_rect.left, m_rect.top + iBorderH * 2 + 2, crIn, crOut);
+      simple_linear_gradient_brush br1(g, rectClient.left, rectClient.top - 1, rectClient.left, rectClient.top + iBorderH + 2, crOut, crIn);
 
-      g.fill_rect(rect_dim( m_rect.left, m_rect.top + iBorderH, (int32_t) width(&m_rect), iBorderH), br2);
+      g.fill_rect(rect_dim(rectClient.left, rectClient.top, (int32_t)width(&rectClient), iBorderH), br1);
+
+      simple_linear_gradient_brush br2(g, rectClient.left, rectClient.top + iBorderH - 1, rectClient.left, rectClient.top + iBorderH * 2 + 2, crIn, crOut);
+
+      g.fill_rect(rect_dim(rectClient.left, rectClient.top + iBorderH, (int32_t)width(&rectClient), iBorderH), br2);
 
       /*Gdiplus::Pen pen1(crBorderOut);
 
-      graphics2.DrawRectangle(&pen1, m_rect.left, m_rect.top, width(&m_rect), iBorderH * 2);*/
+      graphics2.DrawRectangle(&pen1, rectClient.left, rectClient.top, width(&rectClient), iBorderH * 2);*/
 
       draw_focus_rect(g);
 
       simple_solid_pen pen(g, crBorderIn);
 
-      g.draw_rect(rect_dim(m_rect.left + 1, m_rect.top + 1, (int32_t) width(&m_rect) - 2, iBorderH * 2 - 2), pen);
+      g.draw_rect(rect_dim(rectClient.left + 1, rectClient.top + 1, (int32_t)width(&rectClient) - 2, iBorderH * 2 - 2), pen);
 
    }
 
@@ -226,6 +244,10 @@ void simple_tap::draw_volume(simple_graphics & g)
 
 void simple_tap::draw_text(simple_graphics & g)
 {
+
+   rect rectClient;
+
+   get_client_rect(rectClient);
 
    g.set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -241,13 +263,13 @@ void simple_tap::draw_text(simple_graphics & g)
 
    g.select(b);
 
-   simple_pixel_font f(g, (int32_t) height(m_rect) * 10, "Geneva");
+   simple_pixel_font f(g, (int32_t)height(rectClient) * 10, "Geneva");
 
    g.select(f);
 
-   float fMargin = (height(&m_rect) * ((1.0f - 0.7f) / 2.0f));
+   float fMargin = (height(&rectClient) * ((1.0f - 0.7f) / 2.0f));
 
-   g.text_out((int32_t) (m_rect.left + fMargin), (int32_t) (m_rect.top + fMargin), m_strText);
+   g.text_out((int32_t)(rectClient.left + fMargin), (int32_t)(rectClient.top + fMargin), m_strText);
 
 }
 

@@ -289,6 +289,9 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClInclude Include="bsdiff\bzlib_private.h" />
     <ClInclude Include="crypt\crypt.h" />
     <ClInclude Include="crypt\nessie.h" />
+    <ClInclude Include="fontopus\fontopus.h" />
+    <ClInclude Include="fontopus\fontopus_authentication_map.h" />
+    <ClInclude Include="fontopus\fontopus_user_authentication.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="hotplugin\hotplugin.h" />
     <ClInclude Include="hotplugin\hotplugin_host.h" />
@@ -370,6 +373,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile Include="crypt\crypt.cpp" />
     <ClCompile Include="crypt\nessie.cpp" />
     <ClCompile Include="crypt\whirpool.cpp" />
+    <ClCompile Include="fontopus\fontopus.cpp" />
+    <ClCompile Include="fontopus\fontopus_authentication_map.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
@@ -395,6 +400,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile Include="metrowin\ca_os_small_ipca_channel.cpp" />
     <ClCompile Include="metrowin\ca_os_sockets.cpp" />
     <ClCompile Include="metrowin\crypt\c_os_crypt.cpp" />
+    <ClCompile Include="metrowin\metrowin_fontopus.cpp" />
     <ClCompile Include="simple_graphics\simple_graphics.cpp" />
     <ClCompile Include="simple_graphics\simple_path.cpp" />
     <ClCompile Include="simple_ui\simple_edit_box.cpp" />

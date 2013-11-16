@@ -260,9 +260,7 @@ spa_login::e_result spa_login::login()
 
    string strHex;
 
-#ifndef METROWIN
    strHex = spa_login_crypt(strPass, strRsaModulus);
-#endif
 
    string strResponse;
 
@@ -424,9 +422,9 @@ void spa_login::layout()
 
 
 
-   int32_t x1 = m_rect.left + 49;
-   int32_t x2 = m_rect.right - 49;
-   int32_t x6 = m_rect.right * 6 / 10;
+   int32_t x1 = 49;
+   int32_t x2 = m_rect.width() - 49;
+   int32_t x6 = m_rect.width() * 6 / 10;
    int32_t h1 = 23;
    int32_t pad = 5;
 
@@ -441,7 +439,7 @@ void spa_login::layout()
    m_tap.m_rect.left = x1;
    m_tap.m_rect.right = x2;
 
-   int32_t y = m_rect.top + 5;
+   int32_t y = 5;
    m_labelUser.m_rect.top = y;
    y += h1;
    m_labelUser.m_rect.bottom = y;

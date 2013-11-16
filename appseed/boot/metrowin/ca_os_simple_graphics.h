@@ -54,6 +54,7 @@ public:
    bool draw_rect(LPCRECT lpcrect, simple_pen & pen);
    bool fill_rect(LPCRECT lpcrect, simple_brush & brush);
    bool fill_polygon(LPPOINT lpa, int iCount, ::draw2d::e_fill_mode emode);
+   bool draw_polygon(LPPOINT lpa, int iCount);
    bool replace_clip(simple_path & path);
    bool exclude_clip(simple_path & path);
    bool replace_clip(const RECT & rect);
